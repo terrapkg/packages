@@ -31,7 +31,7 @@ jobs:
         id: generate_build_matrix
         # generate build matrix by checking out changes in anda/
         run: |
-          # get the list of changed folders in the current commit
+          # get the list of changed folders in the current commit, including subfolders
           changed_folders=$(git diff --name-only HEAD^ | grep -oP 'anda/\K[^/]*' | sort -u )
           echo "Changed folders: $changed_folders"
           # if changed_folders is empty then set is empty to true
