@@ -1,0 +1,6 @@
+[rust-zellij]
+spec = "rust-zellij.spec"
+build_script = ""
+build_method = "mock"
+owner = "cappy"
+git_repo = "https://github.com/ultramarine-linux/rust-zellij"

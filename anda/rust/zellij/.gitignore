@@ -1,0 +1,7 @@
+build/
+anda-build/
+*.tar.*
+*.zip
+*.crate
+*.deb
+*.rpm
