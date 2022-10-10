@@ -7,7 +7,7 @@
 
 Name:           rust-sccache
 Version:        0.3.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Ccache-like tool
 
 License:        Apache-2.0
@@ -39,6 +39,19 @@ Summary:        %{summary}
 %doc README.md
 #%%{_bindir}/sccache-dist
 %{_bindir}/sccache
+
+
+# if x86_64
+%ifarch x86_64
+%package     -n %{crate}-dist
+Summary:        sccache distributed server
+
+%description -n %{crate}-dist
+Distributed server for sccache.
+
+%files       -n %{crate}-dist
+%{_bindir}/sccache-dist
+%endif
 
 %package        devel
 Summary:        %{summary}
@@ -480,10 +493,18 @@ use the "void" feature of the "%{crate}" crate.
 %cargo_prep_online
 
 %build
+%ifarch x86_64
+%cargo_build -a
+%else
 %cargo_build
+%endif
 
 %install
+%ifarch x86_64
+%cargo_install -a
+%else
 %cargo_install
+%endif
 
 
 %changelog
