@@ -7,7 +7,7 @@
 
 Name:           rust-sccache
 Version:        0.3.0
-Release:        %autorelease
+Release:        2%{?dist}
 Summary:        Ccache-like tool
 
 License:        Apache-2.0
@@ -37,7 +37,7 @@ Summary:        %{summary}
 %license LICENSE
 %doc CODE_OF_CONDUCT.md
 %doc README.md
-%{_bindir}/sccache-dist
+#%%{_bindir}/sccache-dist
 %{_bindir}/sccache
 
 %package        devel
@@ -480,10 +480,10 @@ use the "void" feature of the "%{crate}" crate.
 %cargo_prep_online
 
 %build
-%cargo_build -a
+%cargo_build
 
 %install
-%cargo_install -a
+%cargo_install
 
 
 %changelog
