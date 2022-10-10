@@ -1,4 +1,3 @@
-%undefine _disable_source_fetch
 
 Name:		budgie-extras
 Version:	1.5.0
@@ -28,7 +27,6 @@ BuildRequires:	pkgconfig(libnotify)
 BuildRequires:	pkgconfig(libsoup-2.4)
 BuildRequires:	pkgconfig(libwnck-3.0)
 
-%if 0%{?fedora}
 BuildRequires:	pkgconfig(appstream)
 BuildRequires:	pkgconfig(granite)
 BuildRequires:	pkgconfig(libhandy-1)
@@ -36,7 +34,6 @@ BuildRequires:	pkgconfig(zeitgeist-2.0)
 
 Requires:	budgie-applet-applications-menu
 Requires:	budgie-applet-weathershow
-%endif
 
 Requires:	budgie-applet-app-launcher
 Requires:	budgie-applet-brightness-controller
@@ -91,13 +88,11 @@ The app-launcher applet allows the ability to add favorite apps to the
 panel as well as finding and launching applications.  The list of
 applications listed can be easily configured to be visible or hidden.
 
-%if 0%{?fedora}
 %package -n	budgie-applet-applications-menu
 Requires:	budgie-extras-common
 Summary:	Lightweight and stylish app launcher
 %description -n	budgie-applet-applications-menu
 %{summary}
-%endif
 
 %package -n	budgie-applet-brightness-controller
 Requires:	budgie-extras-common
@@ -234,14 +229,12 @@ Summary:	A mini-app to switch wallpapers on regular intervalls
 %description -n	budgie-applet-wallstreet
 Budgie WallStreet is a mini-app to switch wallpapers on regular intervalls.
 
-%if 0%{?fedora}
 %package -n	budgie-applet-weathershow
 Requires:	budgie-extras-common
 Summary:	Applet to display the weather and forecast
 %description -n	budgie-applet-weathershow
 The weathershow applet displays daily and three hourly weather
 forecasts on both the desktop and a Popover.
-%endif
 
 %package -n	budgie-applet-window-shuffler
 Requires:	budgie-extras-common
@@ -280,11 +273,7 @@ workspaces.
 %autosetup -p1
 
 %build
-%if 0%{?fedora}
 %meson
-%else
-%meson
-%endif
 %meson_build
 
 %install
@@ -302,6 +291,7 @@ rm -f %{buildroot}%{_bindir}/quickchar
 
 %files common
 %{_datadir}/locale
+%{_datadir}/glib-2.0/schemas/20_budgie-extras.gschema.override
 
 %files daemon
 %{_sysconfdir}/xdg/autostart/budgie-extras-daemon.desktop
@@ -315,12 +305,10 @@ rm -f %{buildroot}%{_bindir}/quickchar
 %{_datadir}/pixmaps/budgie-app-launcher*.svg
 %{_libdir}/budgie-desktop/plugins/budgie-app-launcher
 
-%if 0%{?fedora}
 %files -n budgie-applet-applications-menu
 %{_libdir}/budgie-desktop/plugins/applications-menu
 %{_datadir}/glib-2.0/schemas/org.ubuntubudgie.plugins.budgie-appmenu.gschema.xml
 #%%{_datadir}/glib-2.0/schemas/io.elementary.desktop.wingpanel.applications-menu.gschema.xml
-%endif
 
 %files -n budgie-applet-brightness-controller
 %{_libdir}/budgie-desktop/plugins/budgie-brightness-controller
@@ -412,12 +400,10 @@ rm -f %{buildroot}%{_bindir}/quickchar
 %{_datadir}/icons/hicolor/scalable/apps/org.ubuntubudgie.wallstreet-control.svg
 %{_datadir}/metainfo/org.ubuntubudgie.wallstreetcontrol.metainfo.xml
 
-%if 0%{?fedora}
 %files -n budgie-applet-weathershow
 %{_libdir}/budgie-desktop/plugins/budgie-weathershow
 %{_datadir}/glib-2.0/schemas/org.ubuntubudgie.plugins.weathershow.gschema.xml
 %{_datadir}/pixmaps/budgie-wticon-symbolic.svg
-%endif
 
 %files -n budgie-applet-window-shuffler
 %{_sysconfdir}/xdg/autostart/layoutspopup-autostart.desktop
