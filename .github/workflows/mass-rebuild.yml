@@ -26,7 +26,7 @@ jobs:
         # generate build matrix by checking out changes in anda/
         run: |
           # get the list of changed folders in the current commit
-          changed_folders=$(git diff --name-only HEAD^ | grep -oP 'anda/\K[^/]*' | sort -u )
+          changed_folders=$(git diff --name-only HEAD^ | grep -oP 'anda\/(.+)(\/|\$)' | sort -u )
           echo "Changed folders: $changed_folders"
           # if changed_folders is empty then set is empty to true
           if [ -z "$changed_folders" ]; then
@@ -39,7 +39,7 @@ jobs:
 
           # if there's only one folder then check if it's
 
-          build_matrix=$(ls anda/ | jq -R -s -c 'split("\n")[:-1]')
+          build_matrix=$(find anda/ | grep -oP 'anda\/(.+)(\/|\$)' | sort -u | jq -R -s -c 'split("\n")[:-1]')
           # create build matrix with { changed_folders: [ "folder1", "folder2" ] }
 
           echo "::set-output name=build_matrix::$build_matrix"

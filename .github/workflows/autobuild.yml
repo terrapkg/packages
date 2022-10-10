@@ -32,7 +32,7 @@ jobs:
         # generate build matrix by checking out changes in anda/
         run: |
           # get the list of changed folders in the current commit, including subfolders
-          changed_folders=$(git diff --name-only HEAD^ | grep -oP 'anda/\K[^/]*' | sort -u )
+          changed_folders=$(git diff --name-only HEAD^ | grep -oP 'anda\/(.+)(\/|\$)' | sort -u )
           echo "Changed folders: $changed_folders"
           # if changed_folders is empty then set is empty to true
           if [ -z "$changed_folders" ]; then
@@ -42,11 +42,6 @@ jobs:
           fi
           # turn it into a json array
           build_matrix=$(echo "$changed_folders" | jq -R . | jq -s . | jq -c .)
-
-          # if there's only one folder then check if it's
-
-          #build_matrix=$(ls anda/ | jq -R -s -c 'split("\n")[:-1]')
-          # create build matrix with { changed_folders: [ "folder1", "folder2" ] }
 
           echo "::set-output name=build_matrix::$build_matrix"
           #echo "::set-output name=build_matrix::$build_matrix"
@@ -70,10 +65,10 @@ jobs:
           sudo dnf config-manager --add-repo https://github.com/andaman-common-pkgs/subatomic-repos/raw/main/ad37.repo
           sudo dnf install -y anda-mock-configs subatomic-cli anda mock rpm-build
 
-      - uses: andaman-common-pkgs/anda-build@main
+      - uses: terrapkg/anda-build@main
         if: ${{ !fromJson(needs.manifest.outputs.is_empty) }}
         with:
-          name: "anda/${{ matrix.pkg }}/pkg"
+          name: "${{ matrix.pkg }}pkg"
           mockConfig: anda-37-${{ matrix.arch }}
           andaRepo: https://github.com/andaman-common-pkgs/subatomic-repos/raw/main/ad37.repo
 
