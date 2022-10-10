@@ -1,0 +1,16 @@
+
+
+%_sccache %{_bindir}/sccache
+
+%sccache_prep (\
+export CC="sccache gcc" \
+export CXX="sccache g++" \
+export RUSTC_WRAPPER="sccache" \
+%if %{with dist_cache} && %{?sccache_endpoint} && %{?sccache_accesskey} && %{?sccache_secret} && %{?sccache_bucket} \
+export SCCACHE_BUCKET=%{sccache_bucket}\
+export SCCACHE_ENDPOINT=%{sccache_endpoint}\
+export AWS_SECRET_ACCESS_KEY=%{sccache_secret}\
+export AWS_ACCESS_KEY_ID=%{sccache_accesskey}\
+export SCCACHE_S3_USE_SSL=true\
+%endif \
+)

@@ -1,0 +1,28 @@
+%cargo_prep_online (\
+set -eu \
+%{__mkdir} -p .cargo \
+cat > .cargo/config << EOF \
+[build]\
+rustc = "%{__rustc}"\
+rustdoc = "%{__rustdoc}"\
+\
+[env]\
+CFLAGS = "%{build_cflags}"\
+CXXFLAGS = "%{build_cxxflags}"\
+LDFLAGS = "%{build_ldflags}"\
+\
+[install]\
+root = "%{buildroot}%{_prefix}"\
+\
+[term]\
+verbose = true\
+\
+[source]\
+\
+[source.local-registry]\
+directory = "%{cargo_registry}"\
+\
+EOF\
+%{__rm} -f Cargo.lock \
+%{__rm} -f Cargo.toml.orig \
+)
