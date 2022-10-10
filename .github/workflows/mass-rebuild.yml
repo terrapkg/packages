@@ -1,6 +1,6 @@
 # for each folder in anda/
 # generate a new workflow for each folder in anda/
-name: Automatically build packages
+name: Mass Rebuild
 on:
   workflow_dispatch:
 
