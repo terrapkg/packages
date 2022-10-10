@@ -1,0 +1,12 @@
+diff --color -ru budgie-extras-1.4.0/budgie-weathershow/src/desktop_weather/desktop_weather.vala budgie-extras-1.4.0-patched/budgie-weathershow/src/desktop_weather/desktop_weather.vala
+--- budgie-extras-1.4.0/budgie-weathershow/src/desktop_weather/desktop_weather.vala	2022-03-11 06:24:44.000000000 +0700
++++ budgie-extras-1.4.0-patched/budgie-weathershow/src/desktop_weather/desktop_weather.vala	2022-06-09 14:57:46.677283438 +0700
+@@ -308,7 +308,7 @@
+     private void get_icondata () {
+         // fetch the icon list
+         string icondir = "/".concat(
+-            "usr/lib/budgie-desktop/plugins",
++            "usr/lib64/budgie-desktop/plugins",
+             "/budgie-weathershow/weather_icons"
+         );
+         iconnames = {};
