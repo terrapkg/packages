@@ -1,2 +1,3 @@
-# anda-pkgs
-Monorepo for Andaman Common packages
+# Terra repositories
+
+This monorepo contains the package manifests for the Terra repositories.
