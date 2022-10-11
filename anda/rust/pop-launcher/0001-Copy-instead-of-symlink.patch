@@ -1,0 +1,25 @@
+From 211c16228c2d7ec02eb63a23b3190bc840bb6b35 Mon Sep 17 00:00:00 2001
+From: Cappy Ishihara <cappy@cappuchino.xyz>
+Date: Fri, 20 May 2022 02:59:50 +0700
+Subject: [PATCH] Copy instead of symlink
+
+---
+ justfile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/justfile b/justfile
+index 9aab837..826049d 100644
+--- a/justfile
++++ b/justfile
+@@ -60,7 +60,7 @@ install_plugins:
+         dest={{plugin_dir}}${plugin}
+         mkdir -p ${dest}
+         install -Dm0644 plugins/src/${plugin}/*.ron ${dest}
+-        ln -sf {{bin_path}} {{plugin_dir}}${plugin}/$(echo ${plugin} | sed 's/_/-/')
++        cp -af {{bin_path}} {{plugin_dir}}${plugin}/$(echo ${plugin} | sed 's/_/-/')
+     done
+ 
+ # Install pop-launcher scripts
+-- 
+2.36.1
+
