@@ -14,7 +14,7 @@ export AWS_ACCESS_KEY_ID=%{?sccache_accesskey}\
 export SCCACHE_S3_USE_SSL=true\
 )
 
-(\
+%cargo_prep_online_sccache (\
 set -eu \
 %{__mkdir} -p .cargo \
 cat > .cargo/config << EOF \
