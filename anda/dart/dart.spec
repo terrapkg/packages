@@ -1,6 +1,6 @@
 Name: dart
 Version: 2.18.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: The Dart Language
 License: BSD-3-Clause
 URL: https://dart.dev/
@@ -30,8 +30,8 @@ install -vd %{buildroot}%{_libdir}/dart
 
 cp -rv ./* %{buildroot}%{_libdir}/dart
 
-ln -sf /usr/lib/dart/bin/dart %{buildroot}/usr/bin/dart
-ln -sf /usr/lib/dart/bin/dartaotruntime %{buildroot}/usr/bin/dartaotruntime
+ln -sf %{buildroot}%{_libdir}/dart/bin/dart %{buildroot}/usr/bin/dart
+ln -sf %{buildroot}%{_libdir}/dart/bin/dartaotruntime %{buildroot}/usr/bin/dartaotruntime
 
 %files
 %{_libdir}/dart/
