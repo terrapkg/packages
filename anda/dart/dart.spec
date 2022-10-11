@@ -30,8 +30,8 @@ install -vd %{buildroot}%{_libdir}/dart
 
 cp -rv ./* %{buildroot}%{_libdir}/dart
 
-ln -sf %{buildroot}%{_libdir}/dart/bin/dart %{buildroot}/usr/bin/dart
-ln -sf %{buildroot}%{_libdir}/dart/bin/dartaotruntime %{buildroot}/usr/bin/dartaotruntime
+ln -sf %{_libdir}/dart/bin/dart %{buildroot}%{_bindir}/dart
+ln -sf %{_libdir}/dart/bin/dartaotruntime %{buildroot}%{_bindir}/dartaotruntime
 
 %files
 %{_libdir}/dart/
