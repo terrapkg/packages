@@ -1,0 +1,33 @@
+From e0095415cdbfc369e6482e84b8aaffc6a04cafe7 Mon Sep 17 00:00:00 2001
+From: Vishal Rao <vishalrao@gmail.com>
+Date: Fri, 13 May 2022 00:46:38 +0530
+Subject: [PATCH] Fix initial alt-tab switcher indicator visibility. (#1417)
+
+---
+ src/Widgets/WindowSwitcher.vala | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/src/Widgets/WindowSwitcher.vala b/src/Widgets/WindowSwitcher.vala
+index c1521e52..42d9416f 100644
+--- a/src/Widgets/WindowSwitcher.vala
++++ b/src/Widgets/WindowSwitcher.vala
+@@ -418,7 +418,7 @@ namespace Gala {
+             //       are here too early, in which case all the children are at
+             //       (0|0), so we can easily check for that and come back later
+             if (container.get_n_children () > 1
+-                && container.get_child_at_index (1).allocation.x1 < 1) {
++                && container.get_child_at_index (1).x < 1) {
+ 
+                 GLib.Timeout.add (FIX_TIMEOUT_INTERVAL, () => {
+                     update_indicator_position (initial);
+@@ -427,8 +427,8 @@ namespace Gala {
+                 return;
+             }
+ 
+-            float x, y;
+-            cur_icon.allocation.get_origin (out x, out y);
++            float x = cur_icon.x;
++            float y = cur_icon.y;
+ 
+             if (initial) {
+                 indicator.visible = true;

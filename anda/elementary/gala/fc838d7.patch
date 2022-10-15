@@ -1,0 +1,29 @@
+From fc838d7add2c42f8d7d9d4a09478688edce60b90 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Danielle=20For=C3=A9?= <daniel@elementary.io>
+Date: Mon, 16 May 2022 08:07:39 +0000
+Subject: [PATCH] MultitaskingView: Remove key_focus_out override (#1418)
+
+---
+ src/Widgets/MultitaskingView.vala | 9 ---------
+ 1 file changed, 9 deletions(-)
+
+diff --git a/src/Widgets/MultitaskingView.vala b/src/Widgets/MultitaskingView.vala
+index cfaa9ff2..042adcd1 100644
+--- a/src/Widgets/MultitaskingView.vala
++++ b/src/Widgets/MultitaskingView.vala
+@@ -164,15 +164,6 @@ namespace Gala {
+             }
+         }
+ 
+-        /**
+-         * We generally assume that when the key-focus-out signal is emitted
+-         * a different component was opened, so we close in that case.
+-         */
+-        public override void key_focus_out () {
+-            if (opened && !contains (get_stage ().key_focus))
+-                toggle ();
+-        }
+-
+         /**
+          * Scroll through workspaces with the mouse wheel. Smooth scrolling is handled by
+          * GestureTracker.

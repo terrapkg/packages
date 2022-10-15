@@ -1,0 +1,24 @@
+From f9008e4f7a028b2f5fd4c09341a0af857b9759b6 Mon Sep 17 00:00:00 2001
+From: Vishal Rao <vishalrao@gmail.com>
+Date: Fri, 22 Apr 2022 17:11:30 +0530
+Subject: [PATCH] WindowSwitcher: Fix missing focus on selected window upon
+ release key with Mutter 42 (#1408)
+
+---
+ src/Widgets/WindowSwitcher.vala | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/src/Widgets/WindowSwitcher.vala b/src/Widgets/WindowSwitcher.vala
+index 847f2ced..c1521e52 100644
+--- a/src/Widgets/WindowSwitcher.vala
++++ b/src/Widgets/WindowSwitcher.vala
+@@ -344,7 +344,9 @@ namespace Gala {
+                     || name == "switch-windows" || name == "switch-windows-backward");
+             });
+ 
++#if !HAS_MUTTER42
+             grab_key_focus ();
++#endif
+         }
+ 
+         void close_switcher (uint32 time, bool cancel = false) {

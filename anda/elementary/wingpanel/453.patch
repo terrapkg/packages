@@ -1,0 +1,582 @@
+From 9a64bfe0d8844483d7ba8e412d8766f4bff8905a Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Corentin=20No=C3=ABl?= <tintou@noel.tf>
+Date: Tue, 26 Apr 2022 09:41:35 +0200
+Subject: [PATCH] Synchronize the .vapi with Gala
+
+---
+ vapi/Clutter-10.metadata |  1 -
+ vapi/Meta-10.metadata    | 10 +++++-
+ vapi/libmutter.vapi      | 66 +++++++++++++++++++++++++-----------
+ vapi/mutter-clutter.vapi | 72 ++++++++++++++++++++++++++++++++++++++--
+ vapi/mutter-cogl-6.vapi  | 26 +++++++--------
+ 5 files changed, 136 insertions(+), 39 deletions(-)
+
+diff --git a/vapi/Clutter-10.metadata b/vapi/Clutter-10.metadata
+index 5b69ae58..516fc6fb 100644
+--- a/vapi/Clutter-10.metadata
++++ b/vapi/Clutter-10.metadata
+@@ -123,7 +123,6 @@ FrameClock.new skip
+ StageView.layout skip
+ 
+ Stage
+- 	.event name="emit_event"
+ 	.paint_view.redraw_clip type="Cairo.Region"
+ 
+ Capture
+diff --git a/vapi/Meta-10.metadata b/vapi/Meta-10.metadata
+index eaefc051..e4438413 100644
+--- a/vapi/Meta-10.metadata
++++ b/vapi/Meta-10.metadata
+@@ -65,10 +65,10 @@ KeyHandlerFunc cheader_filename="meta/prefs.h"
+ KeyHandlerFunc.event type="Clutter.KeyEvent?"
+ KeyHandlerFunc.window nullable
+ LaunchContext cheader_filename="meta/meta-launch-context.h"
++Laters cheader_filename="meta/types.h"
+ LaterType cheader_filename="meta/util.h"
+ LocaleDirection cheader_filename="meta/util.h"
+ MaximizeFlags cheader_filename="meta/window.h"
+-ModalOptions cheader_filename="meta/meta-plugin.h"
+ MonitorManager cheader_filename="meta/meta-monitor-manager.h"
+ MonitorSwitchConfigType cheader_filename="meta/meta-monitor-manager.h"
+ MotionDirection cheader_filename="meta/common.h"
+@@ -123,6 +123,9 @@ WindowShape cheader_filename="meta/meta-window-shape.h"
+ WindowType cheader_filename="meta/window.h"
+ X11Display cheader_filename="meta/meta-x11-display.h"
+ 
++// As per https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/2287
++MonitorManager.monitor_privacy_screen_changed skip
++
+ rect skip
+ prefs_* parent="Meta.Prefs" name="prefs_(.+)" cheader_filename="meta/prefs.h"
+ 
+@@ -145,6 +148,11 @@ PRIORITY_PREFS_NOTIFY cheader_filename="meta/common.h"
+ VIRTUAL_CORE_POINTER_ID cheader_filename="meta/common.h"
+ VIRTUAL_CORE_KEYBOARD_ID cheader_filename="meta/common.h"
+ 
++Display.window_visibility_updated
++	.object name="unplaced" type="GLib.List<unowned Meta.Window>"
++	.p0 name="should_show" type="GLib.List<unowned Meta.Window>"
++	.p1 name="should_hide" type="GLib.List<unowned Meta.Window>"
++
+ add_verbose_topic parent="Meta.Util" cheader_filename="meta/util.h"
+ bug parent="Meta.Util" cheader_filename="meta/util.h"
+ external_binding_name_for_action parent="Meta.Util" cheader_filename="meta/util.h"
+diff --git a/vapi/libmutter.vapi b/vapi/libmutter.vapi
+index 5dacb629..5edcddb1 100644
+--- a/vapi/libmutter.vapi
++++ b/vapi/libmutter.vapi
+@@ -316,6 +316,9 @@ namespace Meta {
+ 		public void destroy ();
+ 		public bool filter_keybinding (Meta.KeyBinding binding);
+ 		public void flash_display (Meta.Display display);
++#if HAS_MUTTER42
++		public unowned Meta.Laters get_laters ();
++#endif
+ 		public void hide_tile_preview ();
+ 		public void hide_window (Meta.Window window, Meta.CompEffect effect);
+ 		public void manage ();
+@@ -354,6 +357,10 @@ namespace Meta {
+ 		public unowned Meta.Display get_display ();
+ 		public bool is_replacing ();
+ 		public void notify_ready ();
++#if HAS_MUTTER42
++		public bool raise_rlimit_nofile () throws GLib.Error;
++		public bool restore_rlimit_nofile () throws GLib.Error;
++#endif
+ 		public bool run_main_loop () throws GLib.Error;
+ 		public void set_gnome_wm_keybindings (string wm_keybindings);
+ 		public void set_plugin_gtype (GLib.Type plugin_gtype);
+@@ -376,7 +383,7 @@ namespace Meta {
+ 		protected CursorTracker ();
+ 		public void get_hot (out int x, out int y);
+ #if HAS_MUTTER40
+-		public void get_pointer (Graphene.Point coords, out Clutter.ModifierType mods);
++		public void get_pointer (out Graphene.Point coords, out Clutter.ModifierType mods);
+ #else
+ 		public void get_pointer (out int x, out int y, out Clutter.ModifierType mods);
+ #endif
+@@ -511,6 +518,9 @@ namespace Meta {
+ 		public signal void window_entered_monitor (int object, Meta.Window p0);
+ 		public signal void window_left_monitor (int object, Meta.Window p0);
+ 		public signal void window_marked_urgent (Meta.Window object);
++#if HAS_MUTTER42
++		public signal void window_visibility_updated ([CCode (type = "gpointer")] GLib.List<weak Meta.Window> unplaced, [CCode (type = "gpointer")] GLib.List<weak Meta.Window> should_show, [CCode (type = "gpointer")] GLib.List<weak Meta.Window> should_hide);
++#endif
+ 		public signal void workareas_changed ();
+ 		public signal void x11_display_closing ();
+ 		public signal void x11_display_opened ();
+@@ -562,6 +572,14 @@ namespace Meta {
+ 		[CCode (cheader_filename = "meta/keybindings.h", cname = "meta_keybindings_set_custom_handler")]
+ 		public static bool set_custom_handler (string name, owned Meta.KeyHandlerFunc? handler);
+ 	}
++#if HAS_MUTTER42
++	[CCode (cheader_filename = "meta/types.h", has_type_id = false)]
++	[Compact]
++	public class Laters {
++		public uint add (Meta.LaterType when, owned GLib.SourceFunc func);
++		public void remove (uint later_id);
++	}
++#endif
+ 	[CCode (cheader_filename = "meta/meta-launch-context.h", type_id = "meta_launch_context_get_type ()")]
+ 	public class LaunchContext : GLib.AppLaunchContext {
+ 		[CCode (has_construct_function = false)]
+@@ -607,7 +625,9 @@ namespace Meta {
+ 	public abstract class Plugin : GLib.Object {
+ 		[CCode (has_construct_function = false)]
+ 		protected Plugin ();
++#if !HAS_MUTTER42
+ 		public bool begin_modal (Meta.ModalOptions options, uint32 timestamp);
++#endif
+ 		public void complete_display_change (bool ok);
+ 		[NoWrapper]
+ 		public virtual void confirm_display_change ();
+@@ -618,7 +638,9 @@ namespace Meta {
+ 		[NoWrapper]
+ 		public virtual void destroy (Meta.WindowActor actor);
+ 		public void destroy_completed (Meta.WindowActor actor);
++#if !HAS_MUTTER42
+ 		public void end_modal (uint32 timestamp);
++#endif
+ 		public unowned Meta.Display get_display ();
+ 		public unowned Meta.PluginInfo? get_info ();
+ 		[NoWrapper]
+@@ -767,19 +789,19 @@ namespace Meta {
+ 		public unowned GLib.SList<Meta.StartupSequence> get_sequences ();
+ 		[NoAccessorMethod]
+ 		public Meta.Display display { owned get; construct; }
+-		public signal void changed ([CCode (type = "gpointer")] Meta.StartupSequence object);
++		public signal void changed (Meta.StartupSequence object);
+ 	}
+ 	[CCode (cheader_filename = "meta/meta-startup-notification.h", type_id = "meta_startup_sequence_get_type ()")]
+ 	public class StartupSequence : GLib.Object {
+ 		[CCode (has_construct_function = false)]
+ 		protected StartupSequence ();
+-		public unowned string get_application_id ();
++		public unowned string? get_application_id ();
+ 		public bool get_completed ();
+-		public unowned string get_icon_name ();
++		public unowned string? get_icon_name ();
+ 		public unowned string get_id ();
+ 		public unowned string get_name ();
+ 		public uint64 get_timestamp ();
+-		public unowned string get_wmclass ();
++		public unowned string? get_wmclass ();
+ 		public int get_workspace ();
+ 		public string application_id { get; construct; }
+ 		public string icon_name { get; construct; }
+@@ -840,7 +862,7 @@ namespace Meta {
+ 		public void foreach_transient (Meta.WindowForeachFunc func);
+ 		public Meta.Rectangle frame_rect_to_client_rect (Meta.Rectangle frame_rect);
+ 		public Meta.Rectangle get_buffer_rect ();
+-		public unowned string get_client_machine ();
++		public unowned string? get_client_machine ();
+ 		public Meta.WindowClientType get_client_type ();
+ 		public unowned GLib.Object get_compositor_private ();
+ 		public unowned string get_description ();
+@@ -849,32 +871,32 @@ namespace Meta {
+ 		public unowned Cairo.Region? get_frame_bounds ();
+ 		public Meta.Rectangle get_frame_rect ();
+ 		public Meta.FrameType get_frame_type ();
+-		public unowned Meta.Group get_group ();
+-		public unowned string get_gtk_app_menu_object_path ();
+-		public unowned string get_gtk_application_id ();
+-		public unowned string get_gtk_application_object_path ();
+-		public unowned string get_gtk_menubar_object_path ();
+-		public unowned string get_gtk_theme_variant ();
+-		public unowned string get_gtk_unique_bus_name ();
+-		public unowned string get_gtk_window_object_path ();
++		public unowned Meta.Group? get_group ();
++		public unowned string? get_gtk_app_menu_object_path ();
++		public unowned string? get_gtk_application_id ();
++		public unowned string? get_gtk_application_object_path ();
++		public unowned string? get_gtk_menubar_object_path ();
++		public unowned string? get_gtk_theme_variant ();
++		public unowned string? get_gtk_unique_bus_name ();
++		public unowned string? get_gtk_window_object_path ();
+ 		public bool get_icon_geometry (out Meta.Rectangle rect);
+ 		public uint64 get_id ();
+ 		public Meta.StackLayer get_layer ();
+ 		public Meta.MaximizeFlags get_maximized ();
+ 		public int get_monitor ();
+-		public unowned string get_mutter_hints ();
++		public unowned string? get_mutter_hints ();
+ 		public int get_pid ();
+ 		public unowned string get_role ();
+-		public unowned string get_sandboxed_app_id ();
++		public unowned string? get_sandboxed_app_id ();
+ 		public uint get_stable_sequence ();
+-		public unowned string get_startup_id ();
++		public unowned string? get_startup_id ();
+ 		public unowned Meta.Window? get_tile_match ();
+ 		public unowned string get_title ();
+-		public unowned Meta.Window get_transient_for ();
++		public unowned Meta.Window? get_transient_for ();
+ 		public uint32 get_user_time ();
+ 		public Meta.WindowType get_window_type ();
+-		public unowned string get_wm_class ();
+-		public unowned string get_wm_class_instance ();
++		public unowned string? get_wm_class ();
++		public unowned string? get_wm_class_instance ();
+ 		public Meta.Rectangle get_work_area_all_monitors ();
+ 		public Meta.Rectangle get_work_area_current_monitor ();
+ 		public Meta.Rectangle get_work_area_for_monitor (int which_monitor);
+@@ -1394,7 +1416,9 @@ namespace Meta {
+ 	public enum GrabOp {
+ 		NONE,
+ 		WINDOW_BASE,
++#if !HAS_MUTTER42
+ 		COMPOSITOR,
++#endif
+ 		WAYLAND_POPUP,
+ 		FRAME_BUTTON,
+ 		MOVING,
+@@ -1568,12 +1592,14 @@ namespace Meta {
+ 		VERTICAL,
+ 		BOTH
+ 	}
++#if !HAS_MUTTER42
+ 	[CCode (cheader_filename = "meta/meta-plugin.h", cprefix = "META_MODAL_", type_id = "meta_modal_options_get_type ()")]
+ 	[Flags]
+ 	public enum ModalOptions {
+ 		POINTER_ALREADY_GRABBED,
+ 		KEYBOARD_ALREADY_GRABBED
+ 	}
++#endif
+ 	[CCode (cheader_filename = "meta/meta-monitor-manager.h", cprefix = "META_MONITOR_SWITCH_CONFIG_", type_id = "meta_monitor_switch_config_type_get_type ()")]
+ 	public enum MonitorSwitchConfigType {
+ 		ALL_MIRROR,
+diff --git a/vapi/mutter-clutter.vapi b/vapi/mutter-clutter.vapi
+index 04307759..c2a63a09 100644
+--- a/vapi/mutter-clutter.vapi
++++ b/vapi/mutter-clutter.vapi
+@@ -6312,6 +6312,16 @@ namespace Clutter {
+ 		public virtual signal void gesture_end (Clutter.Actor actor);
+ 		public virtual signal bool gesture_progress (Clutter.Actor actor);
+ 	}
++#if HAS_MUTTER42
++	[CCode (cheader_filename = "clutter/clutter.h", ref_function = "clutter_grab_ref", type_id = "clutter_grab_get_type ()", unref_function = "clutter_grab_unref")]
++	[Compact]
++	public class Grab {
++		public void dismiss ();
++		public Clutter.GrabState get_seat_state ();
++		public unowned Clutter.Grab @ref ();
++		public void unref ();
++	}
++#endif
+ 	[CCode (cheader_filename = "clutter/clutter.h", type_id = "clutter_grid_layout_get_type ()")]
+ 	[Version (since = "1.12")]
+ 	public class GridLayout : Clutter.LayoutManager {
+@@ -6421,8 +6431,10 @@ namespace Clutter {
+ 		[Version (since = "1.6")]
+ 		public bool get_enabled ();
+ #endif
++#if !HAS_MUTTER42
+ 		[Version (since = "1.10")]
+ 		public unowned Clutter.Actor get_grabbed_actor ();
++#endif
+ 		public virtual int get_group_n_modes (int group);
+ 		[Version (since = "1.6")]
+ 		public bool get_has_cursor ();
+@@ -6430,7 +6442,9 @@ namespace Clutter {
+ 		[Version (since = "1.6")]
+ 		public bool get_key (uint index_, out uint keyval, out Clutter.ModifierType modifiers);
+ 		public Clutter.InputDeviceMapping get_mapping_mode ();
++#endif
+ 		public int get_mode_switch_button_group (uint button);
++#if !HAS_MUTTER40
+ 		[Version (since = "1.16")]
+ 		public Clutter.ModifierType get_modifier_state ();
+ #endif
+@@ -6479,12 +6493,14 @@ namespace Clutter {
+ 		[Version (since = "1.10")]
+ 		public virtual bool keycode_to_evdev (uint hardware_keycode, uint evdev_keycode);
+ #endif
++#if !HAS_MUTTER42
+ 		[Version (since = "1.12")]
+ 		public unowned Clutter.Actor sequence_get_grabbed_actor (Clutter.EventSequence sequence);
+ 		[Version (since = "1.12")]
+ 		public void sequence_grab (Clutter.EventSequence sequence, Clutter.Actor actor);
+ 		[Version (since = "1.12")]
+ 		public void sequence_ungrab (Clutter.EventSequence sequence);
++#endif
+ #if !HAS_MUTTER40
+ 		[Version (since = "1.6")]
+ 		public void set_enabled (bool enabled);
+@@ -6492,8 +6508,10 @@ namespace Clutter {
+ 		public void set_key (uint index_, uint keyval, Clutter.ModifierType modifiers);
+ 		public void set_mapping_mode (Clutter.InputDeviceMapping mapping);
+ #endif
++#if !HAS_MUTTER42
+ 		[Version (since = "1.10")]
+ 		public void ungrab ();
++#endif
+ #if !HAS_MUTTER40
+ 		[Version (since = "1.2")]
+ 		public void update_from_event (Clutter.Event event, bool update_stage);
+@@ -7185,6 +7203,10 @@ namespace Clutter {
+ 		public virtual Clutter.VirtualDeviceType get_supported_virtual_device_types ();
+ #endif
+ 		public bool get_touch_mode ();
++#if HAS_MUTTER42
++		[NoWrapper]
++		public virtual Clutter.GrabState grab (uint32 time);
++#endif
+ #if HAS_MUTTER40
+ 		public virtual bool handle_event_post (Clutter.Event event);
+ #elif HAS_MUTTER338
+@@ -7204,6 +7226,10 @@ namespace Clutter {
+ #endif
+ 		public void set_pointer_a11y_dwell_click_type (Clutter.PointerA11yDwellClickType click_type);
+ 		public void set_pointer_a11y_settings (Clutter.PointerA11ySettings settings);
++#if HAS_MUTTER42
++		[NoWrapper]
++		public virtual void ungrab (uint32 time);
++#endif
+ 		public void uninhibit_unfocus ();
+ 		public virtual void warp_pointer (int x, int y);
+ #if !HAS_MUTTER42
+@@ -7327,7 +7353,9 @@ namespace Clutter {
+ 		public bool capture (bool paint, Cairo.RectangleInt rect, [CCode (array_length_cname = "out_n_captures", array_length_pos = 3.1)] out Clutter.Capture[] out_captures);
+ #endif
+ #if HAS_MUTTER40
++#if !HAS_MUTTER42
+ 		public void capture_into (Cairo.RectangleInt rect, float scale, uint8 data, int stride);
++#endif
+ 		public void capture_view_into (Clutter.StageView view, Cairo.RectangleInt rect, uint8 data, int stride);
+ #else
+ 		public void capture_into (bool paint, Cairo.RectangleInt rect, uint8 data);
+@@ -7365,12 +7393,15 @@ namespace Clutter {
+ 		public int64 get_frame_counter ();
+ 		[Version (since = "0.6")]
+ 		public unowned Clutter.Actor get_key_focus ();
++#if HAS_MUTTER42
++		public unowned Clutter.Actor get_grab_actor ();
++#endif
+ #if !HAS_MUTTER42
+ 		[Version (since = "1.2")]
+ 		public void get_minimum_size (out uint width, out uint height);
+-#endif
+ 		[Version (since = "1.8")]
+ 		public bool get_motion_events_enabled ();
++#endif
+ 		public Clutter.Perspective get_perspective ();
+ #if !HAS_MUTTER338
+ 		[Version (since = "1.8")]
+@@ -7380,8 +7411,13 @@ namespace Clutter {
+ 		public bool get_throttle_motion_events ();
+ 		[Version (since = "0.4")]
+ 		public unowned string get_title ();
++#if HAS_MUTTER42
++		public Clutter.Grab grab (Clutter.Actor actor);
++#endif
++#if !HAS_MUTTER42
+ 		[Version (since = "1.2")]
+ 		public bool get_use_alpha ();
++#endif
+ #if HAS_MUTTER338
+ 		public bool paint_to_buffer (Cairo.RectangleInt rect, float scale, [CCode (array_length = false)] uint8[] data, int stride, Cogl.PixelFormat format, Clutter.PaintFlag paint_flags) throws GLib.Error;
+ #if HAS_MUTTER42
+@@ -7414,8 +7450,10 @@ namespace Clutter {
+ 		public void set_key_focus (Clutter.Actor? actor);
+ 		[Version (since = "1.2")]
+ 		public void set_minimum_size (uint width, uint height);
++#if !HAS_MUTTER42
+ 		[Version (since = "1.8")]
+ 		public void set_motion_events_enabled (bool enabled);
++#endif
+ #if !HAS_MUTTER338
+ 		public void set_perspective (Clutter.Perspective perspective);
+ #endif
+@@ -7423,8 +7461,10 @@ namespace Clutter {
+ 		public void set_throttle_motion_events (bool throttle);
+ 		[Version (since = "0.4")]
+ 		public void set_title (string title);
++#if !HAS_MUTTER42
+ 		[Version (since = "1.2")]
+ 		public void set_use_alpha (bool use_alpha);
++#endif
+ #if HAS_MUTTER42
+ 		public void update_device (Clutter.InputDevice device, Clutter.EventSequence sequence, Graphene.Point point, uint32 time, Clutter.Actor new_actor, Cairo.Region region, bool emit_crossing);
+ #elif HAS_MUTTER40
+@@ -8064,6 +8104,9 @@ namespace Clutter {
+ 		[CCode (has_construct_function = false)]
+ 		protected VirtualInputDevice ();
+ 		public int get_device_type ();
++#if HAS_MUTTER42
++		public unowned Clutter.Seat get_seat ();
++#endif
+ 		public virtual void notify_absolute_motion (uint64 time_us, double x, double y);
+ 		public virtual void notify_button (uint64 time_us, uint32 button, Clutter.ButtonState button_state);
+ 		public virtual void notify_discrete_scroll (uint64 time_us, Clutter.ScrollDirection direction, Clutter.ScrollSource scroll_source);
+@@ -8075,8 +8118,12 @@ namespace Clutter {
+ 		public virtual void notify_touch_motion (uint64 time_us, int slot, double x, double y);
+ 		public virtual void notify_touch_up (uint64 time_us, int slot);
+ 		public Clutter.InputDeviceType device_type { get; construct; }
++#if HAS_MUTTER42
++		public Clutter.Seat seat { get; construct; }
++#else
+ 		[NoAccessorMethod]
+ 		public Clutter.Seat seat { owned get; construct; }
++#endif
+ 	}
+ 	[CCode (cheader_filename = "clutter/clutter.h", type_id = "clutter_zoom_action_get_type ()")]
+ 	[Version (since = "1.12")]
+@@ -8649,6 +8696,9 @@ namespace Clutter {
+ 		FLAG_INPUT_METHOD,
+ #if HAS_MUTTER40
+ 		FLAG_RELATIVE_MOTION,
++#endif
++#if HAS_MUTTER42
++		FLAG_GRAB_NOTIFY,
+ #endif
+ 		FLAG_REPEATED
+ 	}
+@@ -8747,6 +8797,16 @@ namespace Clutter {
+ 		AFTER,
+ 		BEFORE
+ 	}
++#if HAS_MUTTER42
++	[CCode (cheader_filename = "clutter/clutter.h", cprefix = "CLUTTER_GRAB_STATE_", type_id = "clutter_grab_state_get_type ()")]
++	[Flags]
++	public enum GrabState {
++		NONE,
++		POINTER,
++		KEYBOARD,
++		ALL
++	}
++#endif
+ 	[CCode (cheader_filename = "clutter/clutter.h", cprefix = "CLUTTER_GRAVITY_", type_id = "clutter_gravity_get_type ()")]
+ 	[Version (deprecated = true, deprecated_since = "1.22", since = "0.2")]
+ 	public enum Gravity {
+@@ -9300,13 +9360,13 @@ namespace Clutter {
+ 		BOTH
+ 	}
+ #endif
+-	[CCode (cheader_filename = "clutter/clutter.h", cprefix = "CLUTTER_IMAGE_ERROR_INVALID_")]
++	[CCode (cheader_filename = "clutter/clutter.h", cprefix = "CLUTTER_IMAGE_ERROR_INVALID_", type_id = "clutter_image_error_get_type ()")]
+ 	[Version (since = "1.10")]
+ 	public errordomain ImageError {
+ 		DATA;
+ 		public static GLib.Quark quark ();
+ 	}
+-	[CCode (cheader_filename = "clutter/clutter.h", cprefix = "CLUTTER_SCRIPT_ERROR_INVALID_")]
++	[CCode (cheader_filename = "clutter/clutter.h", cprefix = "CLUTTER_SCRIPT_ERROR_INVALID_", type_id = "clutter_script_error_get_type ()")]
+ 	[Version (since = "0.6")]
+ 	public errordomain ScriptError {
+ 		TYPE_FUNCTION,
+@@ -9360,8 +9420,10 @@ namespace Clutter {
+ 	[CCode (cheader_filename = "clutter/clutter.h", cname = "CLUTTER_PRIORITY_REDRAW")]
+ 	[Version (since = "0.8")]
+ 	public const int PRIORITY_REDRAW;
++#if !HAS_MUTTER42
+ 	[CCode (cheader_filename = "clutter/clutter.h")]
+ 	public static void base_init ();
++#endif
+ 	[CCode (cheader_filename = "clutter/clutter.h")]
+ 	[Version (since = "1.12")]
+ 	public static void cairo_clear (Cairo.Context cr);
+@@ -9402,9 +9464,11 @@ namespace Clutter {
+ 	[CCode (cheader_filename = "clutter/clutter.h")]
+ 	[Version (since = "0.4")]
+ 	public static unowned Clutter.Backend get_default_backend ();
++#if !HAS_MUTTER42
+ 	[CCode (cheader_filename = "clutter/clutter.h")]
+ 	[Version (since = "0.6")]
+ 	public static uint get_default_frame_rate ();
++#endif
+ 	[CCode (cheader_filename = "clutter/clutter.h")]
+ 	[Version (since = "1.2")]
+ 	public static Clutter.TextDirection get_default_text_direction ();
+@@ -9441,8 +9505,10 @@ namespace Clutter {
+ 	[CCode (cheader_filename = "clutter/clutter.h")]
+ 	public static void main_quit ();
+ #endif
++#if !HAS_MUTTER42
+ 	[CCode (cheader_filename = "clutter/clutter.h")]
+ 	public static void set_custom_backend_func (void* func);
++#endif
+ 	[CCode (cheader_filename = "clutter/clutter.h")]
+ 	[Version (since = "1.10")]
+ 	public static uint unicode_to_keysym (uint32 wc);
+diff --git a/vapi/mutter-cogl-6.vapi b/vapi/mutter-cogl-6.vapi
+index 526bb415..89a1169e 100644
+--- a/vapi/mutter-cogl-6.vapi
++++ b/vapi/mutter-cogl-6.vapi
+@@ -1136,8 +1136,6 @@ namespace Cogl {
+ #if HAS_MUTTER42
+ 		[CCode (cname = "COGL_FEATURE_ID_TIMESTAMP_QUERY")]
+ 		OGL_FEATURE_ID_TIMESTAMP_QUERY,
+-		[CCode (cname = "COGL_FEATURE_ID_GET_GPU_TIME")]
+-		OGL_FEATURE_ID_GET_GPU_TIME,
+ #endif
+ 		[CCode (cname = "COGL_FEATURE_ID_TEXTURE_EGL_IMAGE_EXTERNAL")]
+ 		OGL_FEATURE_ID_TEXTURE_EGL_IMAGE_EXTERNAL
+@@ -1369,7 +1367,7 @@ namespace Cogl {
+ 		SYNC_AND_COMPLETE_EVENT,
+ 		N_FEATURES
+ 	}
+-	[CCode (cheader_filename = "cogl/cogl.h", cprefix = "COGL_BITMAP_ERROR_")]
++	[CCode (cheader_filename = "cogl/cogl.h", cprefix = "COGL_BITMAP_ERROR_", has_type_id = false)]
+ 	[Version (since = "1.4")]
+ 	public errordomain BitmapError {
+ 		FAILED,
+@@ -1377,7 +1375,7 @@ namespace Cogl {
+ 		CORRUPT_IMAGE;
+ 		public static uint32 quark ();
+ 	}
+-	[CCode (cheader_filename = "cogl/cogl.h", cprefix = "COGL_BLEND_STRING_ERROR_")]
++	[CCode (cheader_filename = "cogl/cogl.h", cprefix = "COGL_BLEND_STRING_ERROR_", has_type_id = false)]
+ 	[Version (since = "1.0")]
+ 	public errordomain BlendStringError {
+ 		PARSE_ERROR,
+@@ -1387,13 +1385,18 @@ namespace Cogl {
+ 		[CCode (cheader_filename = "cogl/cogl.h")]
+ 		public static uint32 quark ();
+ 	}
+-	[CCode (cheader_filename = "cogl/cogl.h", cprefix = "COGL_FRAMEBUFFER_ERROR_")]
++	[CCode (cheader_filename = "cogl/cogl.h", cprefix = "COGL_FRAMEBUFFER_ERROR_", has_type_id = false)]
+ 	public errordomain FramebufferError {
+ 		[CCode (cname = "COGL_FRAMEBUFFER_ERROR_ALLOCATE")]
+ 		FRAMEBUFFER_ERROR_ALLOCATE
+ 	}
++	[CCode (cheader_filename = "cogl/cogl.h", cprefix = "COGL_RENDERER_ERROR_", has_type_id = false)]
++	public errordomain RendererError {
++		XLIB_DISPLAY_OPEN,
++		BAD_CONSTRAINT
++	}
+ #if HAS_MUTTER40
+-	[CCode (cheader_filename = "cogl/cogl.h", cprefix = "COGL_SCANOUT_ERROR_")]
++	[CCode (cheader_filename = "cogl/cogl.h", cprefix = "COGL_SCANOUT_ERROR_", has_type_id = false)]
+ 	public errordomain ScanoutError {
+ 		[CCode (cname = "COGL_SCANOUT_ERROR_INHIBITED")]
+ 		SCANOUT_ERROR_INHIBITED;
+@@ -1401,18 +1404,13 @@ namespace Cogl {
+ 		public static GLib.Quark quark ();
+ 	}
+ #endif
+-	[CCode (cheader_filename = "cogl/cogl.h", cprefix = "COGL_RENDERER_ERROR_")]
+-	public errordomain RendererError {
+-		XLIB_DISPLAY_OPEN,
+-		BAD_CONSTRAINT
+-	}
+-	[CCode (cheader_filename = "cogl/cogl.h", cprefix = "COGL_SYSTEM_ERROR_")]
++	[CCode (cheader_filename = "cogl/cogl.h", cprefix = "COGL_SYSTEM_ERROR_", has_type_id = false)]
+ 	[Version (since = "1.4")]
+ 	public errordomain SystemError {
+ 		UNSUPPORTED,
+ 		NO_MEMORY
+ 	}
+-	[CCode (cheader_filename = "cogl/cogl.h", cprefix = "COGL_TEXTURE_ERROR_")]
++	[CCode (cheader_filename = "cogl/cogl.h", cprefix = "COGL_TEXTURE_ERROR_", has_type_id = false)]
+ 	[Version (since = "1.8")]
+ 	public errordomain TextureError {
+ 		SIZE,
+@@ -1464,7 +1462,7 @@ namespace Cogl {
+ 	[CCode (cheader_filename = "cogl/cogl.h", cname = "COGL_TEXTURE_MAX_WASTE")]
+ 	public const int TEXTURE_MAX_WASTE;
+ 	[CCode (cheader_filename = "cogl/cogl.h")]
+-	public static bool blit_framebuffer (Cogl.Framebuffer src, Cogl.Framebuffer dest, int src_x, int src_y, int dst_x, int dst_y, int width, int height) throws GLib.Error;
++	public static bool blit_framebuffer (Cogl.Framebuffer framebuffer, Cogl.Framebuffer dst, int src_x, int src_y, int dst_x, int dst_y, int width, int height) throws GLib.Error;
+ 	[CCode (cheader_filename = "cogl/cogl.h")]
+ 	public static bool clutter_winsys_has_feature_CLUTTER (Cogl.WinsysFeature feature);
+ #if !HAS_MUTTER40

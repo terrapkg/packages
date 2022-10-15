@@ -1,0 +1,23 @@
+diff --git a/data/meson.build b/data/meson.build
+index 435b841..321d7fb 100644
+--- a/data/meson.build
++++ b/data/meson.build
+@@ -32,18 +32,6 @@ i18n.merge_file (
+     po_dir: join_paths(meson.source_root (), 'po', 'extra')
+ )
+ 
+-test (
+-    'Validate desktop file',
+-    find_program('desktop-file-validate'),
+-    args: join_paths(meson.current_build_dir (), meson.project_name() + '.desktop')
+-)
+-
+-test (
+-    'Validate open here desktop file',
+-    find_program('desktop-file-validate'),
+-    args: join_paths(meson.current_build_dir (), 'open-pantheon-terminal-here.desktop')
+-)
+-
+ install_data(
+     'pantheon_terminal_process_completion_notifications.fish',
+     install_dir: join_paths(get_option('datadir'), 'fish', 'vendor_conf.d')
