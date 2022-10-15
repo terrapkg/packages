@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<!-- SPDX-License-Identifier: MIT -->
+<fontconfig>
+  <group>
+    <target>Raleway</target>
+    <like>
+      <family>Raleway-v4020</family>
+      <family>Raleway-v4013</family>
+      <family>Museo Sans Cyrillic</family>
+      <family>Apercu</family>
+      <family>Circular</family>
+      <family>Founders Grotesk</family>
+      <family>sans-serif</family>
+    </like>
+  </group>
+</fontconfig>
+

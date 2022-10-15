@@ -10,6 +10,7 @@ Requires: nss
 BuildRequires: squashfs-tools
 
 %description
+%{summary}.
 
 %prep
 unsquashfs -q -f -d snap %{SOURCE0}
