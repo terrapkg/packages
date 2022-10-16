@@ -19,7 +19,7 @@ ver = data['channel-map'][0]['version']
 
 f = open(SPEC, 'r')
 content = f.read()
-found = re.findall(REGEX, content)
+found = re.findall(REGEX_VER, content)
 try:
     assert found
     curver = found[0][1]
