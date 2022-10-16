@@ -10,12 +10,12 @@ def run_cmds(*cmds: str):
             exit(f"chkupdate: Stopping because {rc=}")
 
 
-SPEC = 'discord-canary.spec'
+SPEC = 'discord-ptb.spec'
 REGEX = r'Version:(\s+)([\.\d]+)\n'
-LINK = 'https://discordapp.com/api/download/canary?platform=linux&format=tar.gz'
+LINK = 'https://discordapp.com/api/download/ptb?platform=linux&format=tar.gz'
 
 html = get(LINK, allow_redirects=False).text
-newver = re.findall(r'https://dl-canary\.discordapp\.net/apps/linux/([\.\d]+)/', html)
+newver = re.findall(r'https://dl-ptb\.discordapp\.net/apps/linux/([\.\d]+)/', html)
 if not any(newver):
     exit("chkupdate: Failed to parse html!")
 newver = newver[0]
