@@ -19,6 +19,7 @@ BuildRequires:  meson
 BuildRequires:  vala
 
 BuildRequires:  pkgconfig(camel-1.2) = 3.44.4
+BuildRequires:  evolution-data-server = 3.44.4  # hope choose our version
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(gobject-2.0)
 BuildRequires:  pkgconfig(granite) >= 6.0.0
