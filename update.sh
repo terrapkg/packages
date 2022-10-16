@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 search() {
     for folder in $1/*; do
