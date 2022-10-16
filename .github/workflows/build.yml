@@ -1,59 +1,19 @@
-# for each folder in anda/
-# generate a new workflow for each folder in anda/
-name: Automatically build packages
+name: Build Packages
 on:
-
-  push:
-    paths:
-      - anda/**
-    branches:
-      - main
   workflow_dispatch:
+    inputs:
+      packages:
+        description: "Packages to Build (like this: ['pkg-a', 'pkg-b', ...])"
+        required: true
 
 jobs:
-  manifest:
-    runs-on: ubuntu-latest
-
-    outputs:
-      build_matrix: ${{ steps.generate_build_matrix.outputs.build_matrix }}
-      is_empty: ${{ steps.generate_build_matrix.outputs.is_empty }}
-
-    # check out the repo
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 2
-      - run: git fetch
-      #- run: git checkout HEAD^
-
-      - name: Generate Build matrix
-        id: generate_build_matrix
-        # generate build matrix by checking out changes in anda/
-        run: |
-          # get the list of changed folders in the current commit, including subfolders
-          changed_folders=$(git diff --name-only HEAD^ | grep -oP 'anda\/(.+)(\/|\$)' | sort -u )
-          echo "Changed folders: $changed_folders"
-          # if changed_folders is empty then set is empty to true
-          if [ -z "$changed_folders" ]; then
-            echo "::set-output name=is_empty::true"
-          else
-            echo "::set-output name=is_empty::false"
-          fi
-          # turn it into a json array
-          build_matrix=$(echo "$changed_folders" | jq -R . | jq -s . | jq -c .)
-
-          echo "::set-output name=build_matrix::$build_matrix"
-          #echo "::set-output name=build_matrix::$build_matrix"
   build:
-    needs: manifest
     strategy:
       matrix:
-        pkg: ${{ fromJson(needs.manifest.outputs.build_matrix) }}
+        pkg: ${{ fromJson(inputs.packages) }}
         version: ["ad37"]
         arch: ["x86_64", "aarch64"]
       fail-fast: false
-    #if: ${{ matrix.changed_folders != '' }}
     runs-on: ${{ matrix.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
     container:
       image: registry.fedoraproject.org/fedora:37
