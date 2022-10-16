@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       packages:
-        description: 'Packages to Build (like this: ['pkg-a', 'pkg-b', ...])'
+        description: "Packages to Build (like this: ['pkg-a', 'pkg-b', ...])"
         required: true
 
 jobs:
