@@ -1,5 +1,10 @@
 #!/bin/bash
 
+echo :: ensurepip
+python -m ensurepip
+echo :: python modules
+python -m pip install -r requirements.txt
+
 search() {
     for folder in $1/*; do
         if [ -f "$folder/chkupdate.py" ]; then
