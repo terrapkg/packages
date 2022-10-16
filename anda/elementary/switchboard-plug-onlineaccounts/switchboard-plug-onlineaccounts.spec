@@ -18,7 +18,7 @@ BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala
 
-BuildRequires:  pkgconfig(camel-1.2) >= 3.28
+BuildRequires:  pkgconfig(camel-1.2) = 3.44.4
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(gobject-2.0)
 BuildRequires:  pkgconfig(granite) >= 6.0.0

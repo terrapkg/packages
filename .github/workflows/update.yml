@@ -1,0 +1,53 @@
+# for each folder in ultramarine/
+# if there is chkupdate.py
+# run it every 2 hours
+name: Automatically check for updates
+on:
+  schedule:
+    - cron: '0 */2 * * *'
+  workflow_dispatch:
+
+jobs:
+  get-chkupdate-scripts:
+    runs-on: ubuntu-latest
+    outputs:
+      scripts: ${{ steps.list_scr.outputs.script_matrix }}
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      - run: git fetch
+
+      - name: List out the Update Scripts
+        id: list_scr
+        # folder:12 is to substr out 'ultramarine/'
+        run: |
+          scripts=()
+          for folder in ultramarine/*; do
+            if [ -f "$folder/chkupdate.py" ]; then
+             scripts+=("${folder:12}")
+            fi
+          done
+          echo "script_matrix=$scripts" >> $GITHUB_ENV
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Run the Scripts
+        run: |
+          for path in ${{ env.scripts }}; do
+            python ultramarine/$path/chkupdate.py
+          done
+
+      - name: Save
+        run: |
+          if [[ `git status --porcelain` ]]; then
+            git config user.name "Package Update Checker"
+            git config user.email "<>"
+            git commit -a -m "Automatic Update by chkupdate.py"
+            git push origin master
+          fi
