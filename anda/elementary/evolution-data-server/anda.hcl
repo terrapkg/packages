@@ -1,6 +1,6 @@
 project "pkg" {
     rpm {
-        spec = "camel-1.2.spec"
+        spec = "evolution-data-server.spec"
         sources = "."
     }
 }
