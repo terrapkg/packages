@@ -21,3 +21,5 @@ search() {
 }
 
 search anda
+
+exit 0
