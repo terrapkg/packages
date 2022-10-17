@@ -9,12 +9,12 @@ on:
 jobs:
   parse:
     outputs:
-      pkgs: ${{ steps.parse.outputs.pkgs }}
+      pkgs: ${{ steps.parsing.outputs.pkgs }}
     runs-on: 'ubuntu-latest'
     steps:
       - name: Parse Input
-        id: parse
-        run: echo "${{ inputs.packages }}" | sed 's/ /","/g' | sed 's/^/pkgs=["/' | sed 's/$/"]/' > $GITHUB_ENV
+        id: parsing
+        run: echo "${{ inputs.packages }}" | sed 's/ /","/g' | sed 's/^/::set-output name=pkgs::["/' | sed 's/$/"]/'
   build:
     needs: parse
     strategy:
