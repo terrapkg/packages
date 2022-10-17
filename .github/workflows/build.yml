@@ -3,14 +3,23 @@ on:
   workflow_dispatch:
     inputs:
       packages:
-        description: "Packages to Build (like this: ['pkg-a', 'pkg-b', ...])"
+        description: "Packages to Build (pkg-a, pkg-b, ...)"
         required: true
 
 jobs:
+  parse:
+    outputs:
+      pkgs: ${{ steps.parse.outputs.pkgs }}
+    runs-on: 'ubuntu-latest'
+    steps:
+      - name: Parse Input
+        id: parse
+        run: echo "${{ inputs.packages }}" | sed 's/ /","/g' | sed 's/^/pkgs=["/' | sed 's/$/"]' > $GITHUB_ENV
   build:
+    needs: parse
     strategy:
       matrix:
-        pkg: ${{ fromJson(inputs.packages) }}
+        pkg: ${{ fromJson(needs.parse.outputs.pkgs) }}
         version: ["ad37"]
         arch: ["x86_64", "aarch64"]
       fail-fast: false
