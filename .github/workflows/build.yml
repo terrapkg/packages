@@ -35,7 +35,6 @@ jobs:
           sudo dnf install -y anda-mock-configs subatomic-cli anda mock rpm-build mock-scm
 
       - uses: terrapkg/anda-build@main
-        if: ${{ !fromJson(needs.manifest.outputs.is_empty) }}
         with:
           name: "${{ matrix.pkg }}pkg"
           mockConfig: anda-37-${{ matrix.arch }}
@@ -46,7 +45,6 @@ jobs:
         run: sudo dnf install -y subatomic-cli
 
       - name: Upload packages to subatomic
-        if: ${{ !fromJson(needs.manifest.outputs.is_empty) }}
         run: |
           subatomic-cli upload --prune \
             --server https://subatomic.fyralabs.com \
