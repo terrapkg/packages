@@ -18,13 +18,16 @@ BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala
 
+# FIXME: Actually patch this module to accomodate for the new evolution-data-server API
+
+# todo for windowsboy111: Actually patch this module
+
 BuildRequires:  pkgconfig(camel-1.2) = 3.44.4
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(gobject-2.0)
 BuildRequires:  pkgconfig(granite) >= 6.0.0
 BuildRequires:  pkgconfig(gtk+-3.0)
-BuildRequires:  pkgconfig(libedataserver-1.2)
-BuildRequires:  pkgconfig(libedataserverui-1.2)
+BuildRequires:  evolution-data-server-devel = 3.44.4
 BuildRequires:  pkgconfig(libhandy-1) >= 1.0.0
 BuildRequires:  pkgconfig(switchboard-2.0)
 
