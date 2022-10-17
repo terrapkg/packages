@@ -1,8 +1,5 @@
 %undefine __cmake_in_source_build
 
-
-%global fedora %{ultramarine}
-
 %define ldap_support 1
 %define static_ldap 0
 %define krb5_support 1
