@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 echo :: ensurepip
 python -m ensurepip
