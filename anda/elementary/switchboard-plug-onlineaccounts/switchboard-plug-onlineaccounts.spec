@@ -18,9 +18,7 @@ BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala
 
-# FIXME: Actually patch this module to accomodate for the new evolution-data-server API
-
-# todo for windowsboy111: Actually patch this module
+Patch0: b60f0458a23a2f76ad14d399f145e150e1ab82d3.patch
 
 BuildRequires:  pkgconfig(camel-1.2) = 3.44.4
 BuildRequires:  pkgconfig(glib-2.0)
