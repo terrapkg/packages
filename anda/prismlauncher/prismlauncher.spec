@@ -1,4 +1,4 @@
-%define commit 3405fd91c6e116bc0af69a8be48c95e447306b52
+%define commit f3db9c392066ae632191658ade4e1946db9d29ee
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %define libnbtplusplus_commit       2203af7eeb48c45398139b583615134efd8d407f
 %define libnbtplusplus_shortcommit  %(c=%{libnbtplusplus_commit}; echo ${c:0:7})
@@ -68,9 +68,9 @@ Summary:        Minecraft launcher with ability to manage multiple instances
 #
 
 License:        CC-BY-SA and ASL 2.0 and BSD and Boost and LGPLv2 and LGPLv2+ and LGPLv3+ and GPLv2 and GPLv2+ and GPLv3 and ISC and zlib
-URL:            https://github.com/PlaceholderMC
-Source0:        https://github.com/PlaceholderMC/PrismLauncher/archive/%{commit}.tar.gz
-Source1:        https://github.com/PolyMC/libnbtplusplus/archive/%{libnbtplusplus_commit}/libnbtplusplus-%{libnbtplusplus_shortcommit}.tar.gz
+URL:            https://github.com/PrismLauncher
+Source0:        https://github.com/PrismLauncher/PrismLauncher/archive/%{commit}.tar.gz
+Source1:        https://github.com/PrismLauncher/libnbtplusplus/archive/%{libnbtplusplus_commit}/libnbtplusplus-%{libnbtplusplus_shortcommit}.tar.gz
 Source2:        https://github.com/stachenov/quazip/archive/%{quazip_commit}/quazip-%{quazip_shortcommit}.tar.gz
 Source3:        https://github.com/marzer/tomlplusplus/archive/%{tomlplusplus_commit}.tar.gz#/tomlplusplus-%{tomlplusplus_shortcommit}.tar.gz
 Source4:        https://github.com/gulrak/filesystem/archive/%{filesystem_commit}.tar.gz#/filesystem-%{filesystem_shortcommit}.tar.gz
@@ -187,6 +187,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.prismlauncher.Pri
 
 
 %changelog
+* Tue Oct 18 2022 seth <getchoo at tuta dot io> - 1.4.2.gitf3db9c3-1
+- start using new project urls
+
 * Tue Oct 18 2022 seth <getchoo at tuta dot io> - 1.4.2.git3405fd9-1
 - merge with terrapkg and bump commit
 
