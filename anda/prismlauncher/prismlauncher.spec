@@ -18,7 +18,7 @@
 
 Name:           prismlauncher
 Version:        1.4.2.git%{shortcommit}
-Release:        2%{?dist}
+Release:        4%{?dist}
 Summary:        Minecraft launcher with ability to manage multiple instances
 
 #
@@ -80,6 +80,11 @@ BuildRequires:  ninja-build
 BuildRequires:  desktop-file-utils
 BuildRequires:  gcc-c++
 BuildRequires:  extra-cmake-modules
+
+Conflicts:      polymc >= 0.0.0
+
+# TO fix our old mistakes with the naming
+Provides:       prism-launcher = %{version}-%{release}
 
 BuildRequires:  java-devel
 %if %{with qt6}
@@ -197,6 +202,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.polymc.PolyMC.des
 
 
 %changelog
+* Tue Oct 18 2022 Cappy Ishihara <cappy@cappuchino.xyz> - 1.4.2.git981e9cf-4
+- Update provides and obsoletes
+
 * Tue Oct 18 2022 seth <getchoo at tuta dot io> - 1.4.2.git981e9cf-3
 - start using qt6
 
