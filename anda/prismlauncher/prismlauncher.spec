@@ -1,4 +1,4 @@
-%define commit 981e9cf290b4b65bf308a82336f69325b504398a
+%define commit afaef4e83bd3d680897762554a23be9c55d3f901
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %define libnbtplusplus_commit       2203af7eeb48c45398139b583615134efd8d407f
 %define libnbtplusplus_shortcommit  %(c=%{libnbtplusplus_commit}; echo ${c:0:7})
@@ -18,7 +18,7 @@
 
 Name:           prismlauncher
 Version:        1.4.2.git%{shortcommit}
-Release:        4%{?dist}
+Release:        1%{?dist}
 Summary:        Minecraft launcher with ability to manage multiple instances
 
 #
@@ -185,19 +185,19 @@ mv -f libraries/filesystem-%{filesystem_commit}/* libraries/filesystem
 %if ! 0%{?suse_version}
 # check why broken
 #%%ctest
-desktop-file-validate %{buildroot}%{_datadir}/applications/org.polymc.PolyMC.desktop
+desktop-file-validate %{buildroot}%{_datadir}/applications/org.prismlauncher.PrismLauncher.desktop
 %endif
 
 
 %files
 %license COPYING.md
-%{_bindir}/polymc
-%{_datadir}/icons/hicolor/scalable/apps/org.polymc.PolyMC.svg
-%{_datadir}/applications/org.polymc.PolyMC.desktop
-%{_datadir}/metainfo/org.polymc.PolyMC.metainfo.xml
+%{_bindir}/prismlauncher
+%{_datadir}/icons/hicolor/scalable/apps/org.prismlauncher.PrismLauncher.svg
+%{_datadir}/applications/org.prismlauncher.PrismLauncher.desktop
+%{_datadir}/metainfo/org.prismlauncher.PrismLauncher.metainfo.xml
 %{_datadir}/jars/NewLaunch.jar
 %{_datadir}/jars/JavaCheck.jar
-%{_mandir}/man6/polymc.6*
+%{_mandir}/man6/prismlauncher.6*
 #%%config %%{_sysconfdir}/ld.so.conf.d/*
 
 
