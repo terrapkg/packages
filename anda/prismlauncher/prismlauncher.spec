@@ -1,4 +1,4 @@
-%define commit afaef4e83bd3d680897762554a23be9c55d3f901
+%define commit 2b7b9a2abb512f48399ff91d854eb68fccdc6f37
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %define libnbtplusplus_commit       2203af7eeb48c45398139b583615134efd8d407f
 %define libnbtplusplus_shortcommit  %(c=%{libnbtplusplus_commit}; echo ${c:0:7})
@@ -80,8 +80,6 @@ BuildRequires:  ninja-build
 BuildRequires:  desktop-file-utils
 BuildRequires:  gcc-c++
 BuildRequires:  extra-cmake-modules
-
-Conflicts:      polymc >= 0.0.0
 
 # TO fix our old mistakes with the naming
 Provides:       prism-launcher = %{version}-%{release}
@@ -171,8 +169,7 @@ mv -f libraries/filesystem-%{filesystem_commit}/* libraries/filesystem
 %check
 # skip tests on systems that aren't officially supported
 %if ! 0%{?suse_version}
-# check why broken
-#%%ctest
+%ctest
 desktop-file-validate %{buildroot}%{_datadir}/applications/org.prismlauncher.PrismLauncher.desktop
 %endif
 
@@ -190,6 +187,18 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.prismlauncher.Pri
 
 
 %changelog
+* Tue Oct 18 2022 seth <getchoo at tuta dot io> - 1.4.2.git2b7b9a2-1
+- bump commit
+
+* Tue Oct 18 2022 seth <getchoo at tuta dot io> - 1.4.2.git3773f2e-2
+- fix desktop file path
+
+* Tue Oct 18 2022 seth <getchoo at tuta dot io> - 1.4.2.git3773f2e-1
+- add new curseforge api key
+
+* Tue Oct 18 2022 seth <getchoo at tuta dot io> - 1.4.2.gitafaef4e-3
+- bump commit and add rebrand
+
 * Tue Oct 18 2022 Cappy Ishihara <cappy@cappuchino.xyz> - 1.4.2.git981e9cf-4
 - Update provides and obsoletes
 
