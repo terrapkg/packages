@@ -1,16 +1,24 @@
-
-%global libnbtplusplus_commit       2203af7eeb48c45398139b583615134efd8d407f
-%global libnbtplusplus_shortcommit  %(c=%{libnbtplusplus_commit}; echo ${c:0:7})
-%global quazip_commit               6117161af08e366c37499895b00ef62f93adc345
-%global quazip_shortcommit          %(c=%{quazip_commit}; echo ${c:0:7})
+%define commit 981e9cf290b4b65bf308a82336f69325b504398a
+%global shortcommit %(c=%{commit}; echo ${c:0:7})
+%define libnbtplusplus_commit       2203af7eeb48c45398139b583615134efd8d407f
+%define libnbtplusplus_shortcommit  %(c=%{libnbtplusplus_commit}; echo ${c:0:7})
+%define quazip_commit               6117161af08e366c37499895b00ef62f93adc345
+%define quazip_shortcommit          %(c=%{quazip_commit}; echo ${c:0:7})
 %global tomlplusplus_commit         4b166b69f28e70a416a1a04a98f365d2aeb90de8
 %global tomlplusplus_shortcommit    %(c=%{tomlplusplus_commit}; echo ${c:0:7})
 %global filesystem_commit           cd6805e94dd5d6346be1b75a54cdc27787319dd2
 %global filesystem_shortcommit      %(c=%{filesystem_commit}; echo ${c:0:7})
+%bcond qt6 1
+
+%if %{with qt6}
+%define qt_version 6
+%else
+%define qt_version 5
+%endif
 
 Name:           prismlauncher
-Version:        1.4.2.git0868a5e5
-Release:        1%{?dist}
+Version:        1.4.2.git%{shortcommit}
+Release:        2%{?dist}
 Summary:        Minecraft launcher with ability to manage multiple instances
 
 #
@@ -60,36 +68,54 @@ Summary:        Minecraft launcher with ability to manage multiple instances
 #
 
 License:        CC-BY-SA and ASL 2.0 and BSD and Boost and LGPLv2 and LGPLv2+ and LGPLv3+ and GPLv2 and GPLv2+ and GPLv3 and ISC and zlib
-URL:            https://polymc.org
-Source0:        https://github.com/PlaceholderMC/PrismLauncher/archive/refs/heads/develop.zip
-
-#Source0:        https://github.com/PolyMC/PolyMC/archive/%{version}/polymc-%{version}.tar.gz
+URL:            https://github.com/PlaceholderMC
+Source0:        https://github.com/PlaceholderMC/PrismLauncher/archive/%{commit}.tar.gz
 Source1:        https://github.com/PolyMC/libnbtplusplus/archive/%{libnbtplusplus_commit}/libnbtplusplus-%{libnbtplusplus_shortcommit}.tar.gz
 Source2:        https://github.com/stachenov/quazip/archive/%{quazip_commit}/quazip-%{quazip_shortcommit}.tar.gz
 Source3:        https://github.com/marzer/tomlplusplus/archive/%{tomlplusplus_commit}.tar.gz#/tomlplusplus-%{tomlplusplus_shortcommit}.tar.gz
 Source4:        https://github.com/gulrak/filesystem/archive/%{filesystem_commit}.tar.gz#/filesystem-%{filesystem_shortcommit}.tar.gz
 
 BuildRequires:  cmake
+BuildRequires:  ninja-build
 BuildRequires:  desktop-file-utils
 BuildRequires:  gcc-c++
 BuildRequires:  extra-cmake-modules
 
 BuildRequires:  java-devel
+%if %{with qt6}
+BuildRequires:  %{?suse_version:lib}qt6-qtbase-devel
+BuildRequires:  %{?suse_version:lib}qt6-qt5compat-devel
+%else
 BuildRequires:  %{?suse_version:lib}qt5-qtbase-devel
+%endif
+
 # require zlib to ensure we do not compile against zlib-ng
 BuildRequires:  zlib zlib-devel
 BuildRequires:  scdoc
 BuildRequires:  git-core
 
 # Needed for loading SVG Icons for Themes
+%if %{with qt6}
+%if 0%{?suse_version}
+Requires:       libQt6Svg5
+%else
+Requires:       qt6-qtsvg
+%endif
+%else
 %if 0%{?suse_version}
 Requires:       libQt5Svg5
 %else
 Requires:       qt5-qtsvg
 %endif
+%endif
 
 # Needed for a variety of Image formats fetched from the web
+%if %{with qt6}
+Requires:       %{?suse_version:lib}qt6-qtimageformats
+%else
 Requires:       %{?suse_version:lib}qt5-qtimageformats
+%endif
+
 # LWJGL uses xrandr for detection
 Requires:       xrandr
 
@@ -97,42 +123,51 @@ Requires:       xrandr
 Recommends:     java-1.8.0-openjdk
 # Minecraft >= 1.17
 Recommends:     java-17-openjdk
-# PolyMC supports enabling gamemode
+# Prism supports enabling gamemode
 Recommends:     gamemode
 
 %description
-PolyMC is a free, open source launcher for Minecraft. It allows you to have
+Prism Launcher is a free, open source launcher for Minecraft. It allows you to have
 multiple, separate instances of Minecraft (each with their own mods, texture
 packs, saves, etc) and helps you manage them and their associated options with
 a simple interface.
 
 
 %prep
-# %%autosetup -p1 -n PolyMC-%{version}
-%autosetup -n PrismLauncher-develop -Sgit
-
-
-git remote add origin https://github.com/PlaceholderMC/PrismLauncher.git
-
-git submodule update --init --recursive
+%autosetup -p1 -n PrismLauncher-%{commit}
 
 tar -xvf %{SOURCE1} -C libraries
 tar -xvf %{SOURCE2} -C libraries
 tar -xvf %{SOURCE3} -C libraries
 tar -xvf %{SOURCE4} -C libraries
-rmdir libraries/libnbtplusplus libraries/quazip
+rmdir libraries/{quazip/,libnbtplusplus}
 mv -f libraries/quazip-%{quazip_commit} libraries/quazip
 mv -f libraries/libnbtplusplus-%{libnbtplusplus_commit} libraries/libnbtplusplus
 mv -f libraries/tomlplusplus-%{tomlplusplus_commit}/* libraries/tomlplusplus
 mv -f libraries/filesystem-%{filesystem_commit}/* libraries/filesystem
 
-
 %build
+%if %{with qt6}
+%cmake_qt6 \
+	-DLauncher_FORCE_BUNDLED_LIBS:BOOL=ON \
+	-DLauncher_QT_VERSION_MAJOR="6" \
+	-DLauncher_UPDATER_BASE:STRING="" \
+	-DLauncher_META_URL:STRING="https://meta.scrumplex.rocks/v1/" \
+	-DLauncher_TRANSLATIONS_URL:STRING="" \
+	-DLauncher_MATRIX_URL:STRING="" \
+	-DLauncher_DISCORD_URL:STRING="https://discord.gg/prismlauncher" \
+	-DLauncher_SUBREDDIT_URL:STRING="https://www.reddit.com/r/PrismLauncher/"
+%else
 %cmake \
-    -DCMAKE_BUILD_TYPE:STRING="RelWithDebInfo" \
-    -DLauncher_FORCE_BUNDLED_LIBS:BOOL=ON \
-    -DLauncher_QT_VERSION_MAJOR=5 \
-    -DLauncher_UPDATER_BASE:STRING=""
+	-DLauncher_FORCE_BUNDLED_LIBS:BOOL=ON \
+	-DLauncher_QT_VERSION_MAJOR="5" \
+	-DLauncher_UPDATER_BASE:STRING="" \
+	-DLauncher_META_URL:STRING="https://meta.scrumplex.rocks/v1/" \
+	-DLauncher_TRANSLATIONS_URL:STRING="" \
+	-DLauncher_MATRIX_URL:STRING="" \
+	-DLauncher_DISCORD_URL:STRING="https://discord.gg/prismlauncher" \
+	-DLauncher_SUBREDDIT_URL:STRING="https://www.reddit.com/r/PrismLauncher/"
+%endif
 
 %cmake_build
 
@@ -162,6 +197,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.polymc.PolyMC.des
 
 
 %changelog
+* Tue Oct 18 2022 seth <getchoo at tuta dot io> - 1.4.2.git981e9cf-3
+- start using qt6
+
 * Tue Oct 18 2022 Cappy Ishihara <cappy@cappuchino.xyz> - 1.4.2-1
 - Repackaged as Prism Launcher
 
