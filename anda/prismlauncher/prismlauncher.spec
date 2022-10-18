@@ -8,7 +8,7 @@
 %global filesystem_commit           cd6805e94dd5d6346be1b75a54cdc27787319dd2
 %global filesystem_shortcommit      %(c=%{filesystem_commit}; echo ${c:0:7})
 
-Name:           prism-launcher
+Name:           prismlauncher
 Version:        1.4.2.git0868a5e5
 Release:        1%{?dist}
 Summary:        Minecraft launcher with ability to manage multiple instances

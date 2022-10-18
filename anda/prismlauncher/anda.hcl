@@ -1,6 +1,6 @@
 project "pkg" {
     rpm {
-        spec = "prism-launcher.spec"
+        spec = "prismlauncher.spec"
         sources = "."
     }
 }
