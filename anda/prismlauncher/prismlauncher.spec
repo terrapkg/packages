@@ -156,22 +156,10 @@ mv -f libraries/filesystem-%{filesystem_commit}/* libraries/filesystem
 %cmake_qt6 \
 	-DLauncher_FORCE_BUNDLED_LIBS:BOOL=ON \
 	-DLauncher_QT_VERSION_MAJOR="6" \
-	-DLauncher_UPDATER_BASE:STRING="" \
-	-DLauncher_META_URL:STRING="https://meta.scrumplex.rocks/v1/" \
-	-DLauncher_TRANSLATIONS_URL:STRING="" \
-	-DLauncher_MATRIX_URL:STRING="" \
-	-DLauncher_DISCORD_URL:STRING="https://discord.gg/prismlauncher" \
-	-DLauncher_SUBREDDIT_URL:STRING="https://www.reddit.com/r/PrismLauncher/"
 %else
 %cmake \
 	-DLauncher_FORCE_BUNDLED_LIBS:BOOL=ON \
 	-DLauncher_QT_VERSION_MAJOR="5" \
-	-DLauncher_UPDATER_BASE:STRING="" \
-	-DLauncher_META_URL:STRING="https://meta.scrumplex.rocks/v1/" \
-	-DLauncher_TRANSLATIONS_URL:STRING="" \
-	-DLauncher_MATRIX_URL:STRING="" \
-	-DLauncher_DISCORD_URL:STRING="https://discord.gg/prismlauncher" \
-	-DLauncher_SUBREDDIT_URL:STRING="https://www.reddit.com/r/PrismLauncher/"
 %endif
 
 %cmake_build
