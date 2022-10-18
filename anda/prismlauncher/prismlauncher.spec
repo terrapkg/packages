@@ -1,4 +1,4 @@
-%define commit 2b7b9a2abb512f48399ff91d854eb68fccdc6f37
+%define commit 3405fd91c6e116bc0af69a8be48c95e447306b52
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %define libnbtplusplus_commit       2203af7eeb48c45398139b583615134efd8d407f
 %define libnbtplusplus_shortcommit  %(c=%{libnbtplusplus_commit}; echo ${c:0:7})
@@ -187,6 +187,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.prismlauncher.Pri
 
 
 %changelog
+* Tue Oct 18 2022 seth <getchoo at tuta dot io> - 1.4.2.git3405fd9-1
+- merge with terrapkg and bump commit
+
 * Tue Oct 18 2022 seth <getchoo at tuta dot io> - 1.4.2.git2b7b9a2-1
 - bump commit
 
