@@ -1,6 +1,6 @@
 Name:           discord-canary
 Version:        0.0.140
-Release:        %autorelease
+Release:        1%{?dist}
 Summary:        Free Voice and Text Chat for Gamers.
 URL:            discord.com
 Source0:        https://dl-canary.discordapp.net/apps/linux/%{version}/discord-canary-%{version}.tar.gz
@@ -30,6 +30,9 @@ install discord.png %{buildroot}%{_datadir}/pixmaps/discord-canary.png
 %{_datadir}/pixmaps/discord-canary.png
 
 %changelog
+* Wed Oct 19 2022 windowsboy111 <wboy111@outlook.com> - 0.0.140-1
+- new version
+
 * Sun Oct 16 2022 windowsboy111 <wboy111@outlook.com> - 0.0.139
 - Repackaged for Terra
 

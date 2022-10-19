@@ -1,14 +1,11 @@
 #!/bin/bash -x
 
-echo :: ensurepip
 python -m ensurepip
-echo :: python modules
 python -m pip install -r requirements.txt
 
 search() {
     for folder in $1/*; do
         if [ -f "$folder/chkupdate.py" ]; then
-            echo :: $folder
             (cd $folder && python chkupdate.py)
             continue
         fi
@@ -16,7 +13,7 @@ search() {
         for thing in $folder/*; do
             [[ -f $thing ]] && x=1 && break
         done
-        [[ $x -eq 1 ]] && search $folder
+        [[ $x -eq 0 ]] && search $folder
     done
 }
 

@@ -23,6 +23,9 @@ jobs:
         with:
           python-version: '3.10'
 
+      - name: Install rpmdev
+        run: dnf install rpmdevtools
+
       - name: Run Update
         run: ./update.sh
 
@@ -31,6 +34,6 @@ jobs:
           if [[ `git status --porcelain` ]]; then
             git config user.name "Package Update Checker"
             git config user.email "<>"
-            git commit -a -m "Automatic Update by chkupdate.py"
+            git commit -a -m "Automatic Update"
             git push -u origin main
           fi

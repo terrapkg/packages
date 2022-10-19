@@ -3,15 +3,16 @@ import re
 from requests import get
 import json
 
-SPEC = "authy.spec"
+NAME = "authy"
+SPEC = f"{NAME}.spec"
 REGEX_VER = r'Version:(\s*)([\.\d]+)\n'
 REGEX_SRC = r'Source0:(\s*)([^\n]+)\n'
 
 def run_cmds(*cmds: str):
     for cmd in cmds:
-        print(f"chkupdate: $ {cmd}")
+        print(f"{NAME}: $ {cmd}")
         if rc := os.system(cmd):
-            exit(f"chkupdate: Stopping because {rc=}")
+            exit(f"{NAME}: Stopping because {rc=}")
 
 raw = get('https://api.snapcraft.io/v2/snaps/info/authy', headers={'Snap-Device-Series': '16'}).text
 data = json.loads(raw)
@@ -24,10 +25,10 @@ try:
     assert found
     curver = found[0][1]
     if ver == curver:
-        exit("chkupdate: Up to date!")
-    print(f"chkupdate: {curver} -> {ver}")
+        exit(f"{NAME}: Up to date!")
+    print(f"{NAME}: {curver} -> {ver}")
 except IndexError or AssertionError:
-    exit("chkupdate: Failed to read spec!")
+    exit(f"{NAME}: Failed to read spec!")
 
 link = data['channel-map'][0]['download']['url']
 newspec = re.sub(REGEX_VER, f'Version:{found[0][0]}{ver}\n', ver)

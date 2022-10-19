@@ -1,4 +1,4 @@
-%define commit f3db9c392066ae632191658ade4e1946db9d29ee
+%define commit c6515c1dad7e2d3698e78398f838ac60bd5d376f
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %define libnbtplusplus_commit       2203af7eeb48c45398139b583615134efd8d407f
 %define libnbtplusplus_shortcommit  %(c=%{libnbtplusplus_commit}; echo ${c:0:7})
