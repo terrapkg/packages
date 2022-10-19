@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=2.0
+Name=Minecraft Launcher
+Comment=Official Minecraft Launcher
+Exec=/usr/bin/minecraft-launcher
+Path=/usr/bin
+Icon=minecraft-launcher
+Terminal=false
+Categories=Game;Application;
