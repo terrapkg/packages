@@ -1,23 +1,10 @@
-%define commit c6515c1dad7e2d3698e78398f838ac60bd5d376f
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
-%define libnbtplusplus_commit       2203af7eeb48c45398139b583615134efd8d407f
-%define libnbtplusplus_shortcommit  %(c=%{libnbtplusplus_commit}; echo ${c:0:7})
-%define quazip_commit               6117161af08e366c37499895b00ef62f93adc345
-%define quazip_shortcommit          %(c=%{quazip_commit}; echo ${c:0:7})
-%global tomlplusplus_commit         4b166b69f28e70a416a1a04a98f365d2aeb90de8
-%global tomlplusplus_shortcommit    %(c=%{tomlplusplus_commit}; echo ${c:0:7})
-%global filesystem_commit           cd6805e94dd5d6346be1b75a54cdc27787319dd2
-%global filesystem_shortcommit      %(c=%{filesystem_commit}; echo ${c:0:7})
+%global fancy_name PrismLauncher
+%global repo https://github.com/%{fancy_name}/%{fancy_name}
+
 %bcond qt6 1
 
-%if %{with qt6}
-%define qt_version 6
-%else
-%define qt_version 5
-%endif
-
 Name:           prismlauncher
-Version:        1.4.2.git%{shortcommit}
+Version:        5.0
 Release:        1%{?dist}
 Summary:        Minecraft launcher with ability to manage multiple instances
 
@@ -68,23 +55,16 @@ Summary:        Minecraft launcher with ability to manage multiple instances
 #
 
 License:        CC-BY-SA and ASL 2.0 and BSD and Boost and LGPLv2 and LGPLv2+ and LGPLv3+ and GPLv2 and GPLv2+ and GPLv3 and ISC and zlib
-URL:            https://github.com/PrismLauncher
-Source0:        https://github.com/PrismLauncher/PrismLauncher/archive/%{commit}.tar.gz
-Source1:        https://github.com/PrismLauncher/libnbtplusplus/archive/%{libnbtplusplus_commit}/libnbtplusplus-%{libnbtplusplus_shortcommit}.tar.gz
-Source2:        https://github.com/stachenov/quazip/archive/%{quazip_commit}/quazip-%{quazip_shortcommit}.tar.gz
-Source3:        https://github.com/marzer/tomlplusplus/archive/%{tomlplusplus_commit}.tar.gz#/tomlplusplus-%{tomlplusplus_shortcommit}.tar.gz
-Source4:        https://github.com/gulrak/filesystem/archive/%{filesystem_commit}.tar.gz#/filesystem-%{filesystem_shortcommit}.tar.gz
+URL:            https://prismlauncher.org/
+Source0:        %{repo}/releases/download/%{version}/%{fancy_name}-%{version}.tar.gz
 
 BuildRequires:  cmake
 BuildRequires:  ninja-build
 BuildRequires:  desktop-file-utils
 BuildRequires:  gcc-c++
 BuildRequires:  extra-cmake-modules
-
-# TO fix our old mistakes with the naming
-Provides:       prism-launcher = %{version}-%{release}
-
 BuildRequires:  java-devel
+
 %if %{with qt6}
 BuildRequires:  %{?suse_version:lib}qt6-qtbase-devel
 BuildRequires:  %{?suse_version:lib}qt6-qt5compat-devel
@@ -95,21 +75,24 @@ BuildRequires:  %{?suse_version:lib}qt5-qtbase-devel
 # require zlib to ensure we do not compile against zlib-ng
 BuildRequires:  zlib zlib-devel
 BuildRequires:  scdoc
-BuildRequires:  git-core
 
 # Needed for loading SVG Icons for Themes
 %if %{with qt6}
+
 %if 0%{?suse_version}
 Requires:       libQt6Svg5
 %else
 Requires:       qt6-qtsvg
 %endif
+
 %else
+
 %if 0%{?suse_version}
 Requires:       libQt5Svg5
 %else
 Requires:       qt5-qtsvg
 %endif
+
 %endif
 
 # Needed for a variety of Image formats fetched from the web
@@ -129,6 +112,9 @@ Recommends:     java-17-openjdk
 # Prism supports enabling gamemode
 Recommends:     gamemode
 
+# TO fix our old mistakes with the naming
+Provides:       prism-launcher = %{version}-%{release}
+
 %description
 Prism Launcher is a free, open source launcher for Minecraft. It allows you to have
 multiple, separate instances of Minecraft (each with their own mods, texture
@@ -137,17 +123,7 @@ a simple interface.
 
 
 %prep
-%autosetup -p1 -n PrismLauncher-%{commit}
-
-tar -xvf %{SOURCE1} -C libraries
-tar -xvf %{SOURCE2} -C libraries
-tar -xvf %{SOURCE3} -C libraries
-tar -xvf %{SOURCE4} -C libraries
-rmdir libraries/{quazip/,libnbtplusplus}
-mv -f libraries/quazip-%{quazip_commit} libraries/quazip
-mv -f libraries/libnbtplusplus-%{libnbtplusplus_commit} libraries/libnbtplusplus
-mv -f libraries/tomlplusplus-%{tomlplusplus_commit}/* libraries/tomlplusplus
-mv -f libraries/filesystem-%{filesystem_commit}/* libraries/filesystem
+%autosetup -p1 -n %{fancy_name}-%{version}
 
 %build
 %if %{with qt6}
@@ -165,12 +141,13 @@ mv -f libraries/filesystem-%{filesystem_commit}/* libraries/filesystem
 %install
 %cmake_install
 
-
 %check
 # skip tests on systems that aren't officially supported
 %if ! 0%{?suse_version}
+
 %ctest
 desktop-file-validate %{buildroot}%{_datadir}/applications/org.prismlauncher.PrismLauncher.desktop
+
 %endif
 
 
@@ -183,10 +160,21 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.prismlauncher.Pri
 %{_datadir}/jars/NewLaunch.jar
 %{_datadir}/jars/JavaCheck.jar
 %{_mandir}/man6/prismlauncher.6*
-#%%config %%{_sysconfdir}/ld.so.conf.d/*
 
 
 %changelog
+* Wed Oct 19 2022 seth <getchoo at tuta dot io> - 5.0-1
+- update to version 5.0
+
+* Wed Oct 19 2022 seth <getchoo at tuta dot io> - 4.999-0.1.20221019.11.41032aa
+- fix versioning
+
+* Wed Oct 19 2022 seth <getchoo at tuta dot io> - 1.4.2.git325e58d-1
+- bump 2 electric boogalo
+
+* Tue Oct 18 2022 seth <getchoo at tuta dot io> - 1.4.2.gitfb4cf0b-1
+- bump
+
 * Tue Oct 18 2022 seth <getchoo at tuta dot io> - 1.4.2.gitf3db9c3-1
 - start using new project urls
 
