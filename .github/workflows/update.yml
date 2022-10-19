@@ -10,7 +10,9 @@ on:
 jobs:
   get-chkupdate-scripts:
     runs-on: ubuntu-latest
-    
+    container:
+      image: registry.fedoraproject.org/fedora:37
+      options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Checkout
         uses: actions/checkout@v3
