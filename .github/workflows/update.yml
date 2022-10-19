@@ -32,5 +32,5 @@ jobs:
             git config user.name "Package Update Checker"
             git config user.email "<>"
             git commit -a -m "Automatic Update by chkupdate.py"
-            git push origin master
+            git push -u origin master
           fi
