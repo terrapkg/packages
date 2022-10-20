@@ -23,7 +23,6 @@ BuildArch:      noarch
 %build
 
 
-
 %install
 mkdir -p %{buildroot}%{_sysusersdir}
 mkdir -p %{buildroot}%{_sysconfdir}/mock/templates
