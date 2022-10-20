@@ -5,8 +5,8 @@
 
 Name:           wingpanel-indicator-notifications
 Summary:        Notifications Indicator for wingpanel
-Version:        6.0.6
-Release:        %autorelease
+Version:        6.0.7
+Release:        1%{?dist}
 License:        LGPLv2+
 
 URL:            https://github.com/elementary/wingpanel-indicator-notifications
@@ -64,5 +64,8 @@ appstream-util validate-relax --nonet \
 
 
 %changelog
+* Thu Oct 20 2022 windowsboy111 <wboy111@outlook.com> - 6.0.7-1
+- new version
+
 * Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
 - Repackaged for Terra

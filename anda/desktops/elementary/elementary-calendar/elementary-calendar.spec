@@ -29,7 +29,7 @@ BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(gmodule-2.0)
 BuildRequires:  pkgconfig(granite) >= 6.2.0
 BuildRequires:  pkgconfig(gtk+-3.0) >= 3.22
-BuildRequires:  pkgconfig(libecal-2.0)
+# BuildRequires:  pkgconfig(libecal-2.0)
 BuildRequires:  pkgconfig(libgeoclue-2.0)
 BuildRequires:  pkgconfig(libhandy-1) >= 0.90.0
 BuildRequires:  pkgconfig(libical-glib)

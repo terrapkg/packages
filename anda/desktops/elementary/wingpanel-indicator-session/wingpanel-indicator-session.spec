@@ -5,8 +5,8 @@
 
 Name:           wingpanel-indicator-session
 Summary:        Session Indicator for wingpanel
-Version:        2.3.0
-Release:        %autorelease
+Version:        2.3.1
+Release:        1%{?dist}
 License:        GPLv2+
 
 URL:            https://github.com/elementary/wingpanel-indicator-session
@@ -62,5 +62,8 @@ appstream-util validate-relax --nonet \
 
 
 %changelog
+* Thu Oct 20 2022 windowsboy111 <wboy111@outlook.com> - 2.3.1-1
+- new version
+
 * Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
 - Repackaged for Terra

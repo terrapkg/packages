@@ -1,6 +1,6 @@
 Name:           discord-ptb
-Version:        0.0.33
-Release:        %autorelease
+Version:        0.0.34
+Release:        1%{?dist}
 Summary:        Free Voice and Text Chat for Gamers.
 URL:            discord.com
 Source0:        https://dl-ptb.discordapp.net/apps/linux/%{version}/discord-ptb-%{version}.tar.gz
@@ -30,5 +30,8 @@ install discord.png %{buildroot}%{_datadir}/pixmaps/discord-ptb.png
 %{_datadir}/pixmaps/discord-ptb.png
 
 %changelog
+* Thu Oct 20 2022 windowsboy111 <wboy111@outlook.com> - 0.0.34-1
+- new version
+
 * Sun Oct 16 2022 windowsboy111 <wboy111@outlook.com> - 0.0.33
 - Initial Package.

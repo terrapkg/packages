@@ -6,17 +6,12 @@ launcher.}
 
 Name:           wingpanel
 Summary:        Stylish top panel
-Version:        3.0.2
+Version:        3.0.3
 Release:        %autorelease
 License:        GPLv2+
 
 URL:            https://github.com/elementary/wingpanel
 Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
-
-# merged PR for mutter 42 / libmutter-10 support
-Patch0:         %{url}/pull/434.patch
-# merged PR to support latest mutter / gala changes
-Patch1:         %{url}/pull/453.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
@@ -32,9 +27,9 @@ BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  pkgconfig(glib-2.0) >= 2.32
 BuildRequires:  pkgconfig(granite) >= 5.4.0
 BuildRequires:  pkgconfig(gtk+-3.0) >= 3.10
-BuildRequires:  pkgconfig(mutter-clutter-10)
-BuildRequires:  pkgconfig(mutter-cogl-10)
-BuildRequires:  pkgconfig(mutter-cogl-pango-10)
+BuildRequires:  pkgconfig(mutter-clutter-11)
+BuildRequires:  pkgconfig(mutter-cogl-11)
+BuildRequires:  pkgconfig(mutter-cogl-pango-11)
 
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 

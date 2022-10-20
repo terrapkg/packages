@@ -5,8 +5,8 @@
 
 Name:           wingpanel-indicator-datetime
 Summary:        Datetime Indicator for wingpanel
-Version:        2.4.0
-Release:        %autorelease
+Version:        2.4.1
+Release:        1%{?dist}
 License:        GPLv3+
 
 URL:            https://github.com/elementary/wingpanel-indicator-datetime
@@ -67,5 +67,8 @@ appstream-util validate-relax --nonet \
 
 
 %changelog
+* Thu Oct 20 2022 windowsboy111 <wboy111@outlook.com> - 2.4.1-1
+- new version
+
 * Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
 - Repackaged for Terra
