@@ -1,202 +1,138 @@
 %global fancy_name PrismLauncher
 %global repo https://github.com/%{fancy_name}/%{fancy_name}
+%bcond_without qt6 1
 
-%bcond qt6 1
+# Change this variables if you want to use custom keys
+# Leave blank if you want to build Prism Launcher without MSA id or curseforge api key
+%define msa_id default
+%define curseforge_key default
+
+%if %{with qt6}
+%global qt_version 6
+%global min_qt_version 6
+%else
+%global qt_version 5
+%global min_qt_version 5.12
+%endif
+
+%global build_platform unknown
+
+%if 0%{?suse_version}
+%global build_platform openSUSE
+%endif
+
+%if 0%{?fedora}
+%global build_platform Fedora
+%endif
 
 Name:           prismlauncher
 Version:        5.0
-Release:        1%{?dist}
+Release:        3%{?dist}
 Summary:        Minecraft launcher with ability to manage multiple instances
-
-#
-# CC-BY-SA
-# ---------------------------------------
-# launcher/resources/multimc/
-#
-# BSD 3-clause "New" or "Revised" License
-# ---------------------------------------
-# application/
-# libraries/LocalPeer/
-# libraries/ganalytics/
-#
-# Boost Software License (v1.0)
-# ---------------------------------------
-# cmake/
-#
-# Expat License
-# ---------------------------------------
-# libraries/systeminfo/
-#
-# GNU Lesser General Public License (v2 or later)
-# ---------------------------------------
-# libraries/rainbow
-#
-# GNU Lesser General Public License (v2.1 or later)
-# ---------------------------------------
-# libraries/iconfix/
-# libraries/quazip/
-#
-# GNU Lesser General Public License (v3 or later)
-# ---------------------------------------
-# libraries/libnbtplusplus/
-#
-# GPL (v2)
-# ---------------------------------------
-# libraries/pack200/
-#
-# ISC License
-# ---------------------------------------
-# libraries/hoedown/
-#
-# zlib/libpng license
-# ---------------------------------------
-# libraries/quazip/quazip/unzip.h
-# libraries/quazip/quazip/zip.h
-#
-
-License:        CC-BY-SA and ASL 2.0 and BSD and Boost and LGPLv2 and LGPLv2+ and LGPLv3+ and GPLv2 and GPLv2+ and GPLv3 and ISC and zlib
+License:        GPL-3.0-only
 URL:            https://prismlauncher.org/
 Source0:        %{repo}/releases/download/%{version}/%{fancy_name}-%{version}.tar.gz
-
-BuildRequires:  cmake
-BuildRequires:  ninja-build
-BuildRequires:  desktop-file-utils
-BuildRequires:  gcc-c++
+Patch0:         change-jars-path.patch
+BuildRequires:  cmake >= 3.15
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
 BuildRequires:  java-devel
-
-%if %{with qt6}
-BuildRequires:  %{?suse_version:lib}qt6-qtbase-devel
-BuildRequires:  %{?suse_version:lib}qt6-qt5compat-devel
-%else
-BuildRequires:  %{?suse_version:lib}qt5-qtbase-devel
-%endif
-
-# require zlib to ensure we do not compile against zlib-ng
-BuildRequires:  zlib zlib-devel
-BuildRequires:  scdoc
-
-# Needed for loading SVG Icons for Themes
-%if %{with qt6}
-
 %if 0%{?suse_version}
-Requires:       libQt6Svg5
+BuildRequires:  appstream-glib
 %else
-Requires:       qt6-qtsvg
+BuildRequires:	libappstream-glib
 %endif
-
-%else
-
-%if 0%{?suse_version}
-Requires:       libQt5Svg5
-%else
-Requires:       qt5-qtsvg
-%endif
-
-%endif
-
-# Needed for a variety of Image formats fetched from the web
+BuildRequires:  desktop-file-utils
+BuildRequires:  cmake(Qt%{qt_version}Concurrent) >= %{min_qt_version}
+BuildRequires:  cmake(Qt%{qt_version}Core) >= %{min_qt_version}
+BuildRequires:  cmake(Qt%{qt_version}Gui) >= %{min_qt_version}
+BuildRequires:  cmake(Qt%{qt_version}Network) >= %{min_qt_version}
+BuildRequires:  cmake(Qt%{qt_version}Test) >= %{min_qt_version}
+BuildRequires:  cmake(Qt%{qt_version}Widgets) >= %{min_qt_version}
+BuildRequires:  cmake(Qt%{qt_version}Xml) >= %{min_qt_version}
 %if %{with qt6}
-Requires:       %{?suse_version:lib}qt6-qtimageformats
-%else
-Requires:       %{?suse_version:lib}qt5-qtimageformats
+BuildRequires:  cmake(Qt6Core5Compat)
 %endif
-
-# LWJGL uses xrandr for detection
-Requires:       xrandr
-
-# Minecraft <  1.17
-Recommends:     java-1.8.0-openjdk
-# Minecraft >= 1.17
-Recommends:     java-17-openjdk
+BuildRequires:  pkgconfig(scdoc)
+BuildRequires:  zlib-devel
+# Prism Launcher requires QuaZip >= 1.3
+%if 0%{?suse_version} >= 1550
+BuildRequires:  cmake(QuaZip-Qt%{qt_version})
+%endif
+%if 0%{?suse_version}
+Requires:       qt%{qt_version}-imageformats
+Requires:       qt%{qt_version}-svg
+%else
+Requires:       qt%{qt_version}-qtimageformats
+Requires:       qt%{qt_version}-qtsvg
+%endif
+Recommends:     java-openjdk-headless
+# xrandr needed for LWJGL [2.9.2, 3) https://github.com/LWJGL/lwjgl/issues/128
+Recommends:     xrandr
 # Prism supports enabling gamemode
 Recommends:     gamemode
 
-# TO fix our old mistakes with the naming
-Provides:       prism-launcher = %{version}-%{release}
-
 %description
-Prism Launcher is a free, open source launcher for Minecraft. It allows you to have
-multiple, separate instances of Minecraft (each with their own mods, texture
-packs, saves, etc) and helps you manage them and their associated options with
-a simple interface.
+A custom launcher for Minecraft that allows you to easily manage
+multiple installations of Minecraft at once (Fork of MultiMC)
 
 
 %prep
 %autosetup -p1 -n %{fancy_name}-%{version}
 
+# Do not set RPATH
+sed -i "s|\$ORIGIN/||" CMakeLists.txt
+
 %build
-%if %{with qt6}
-%cmake_qt6 \
-	-DLauncher_FORCE_BUNDLED_LIBS:BOOL=ON \
-	-DLauncher_QT_VERSION_MAJOR="6" \
-%else
 %cmake \
-	-DLauncher_FORCE_BUNDLED_LIBS:BOOL=ON \
-	-DLauncher_QT_VERSION_MAJOR="5" \
-%endif
+  -DLauncher_QT_VERSION_MAJOR="%{qt_version}" \
+  -DLauncher_BUILD_PLATFORM="%{build_platform}" \
+  %if "%{msa_id}" != "default"
+  -DLauncher_MSA_CLIENT_ID="%{msa_id}" \
+  %endif
+  %if "%{curseforge_key}" != "default"
+  -DLauncher_CURSEFORGE_API_KEY="%{curseforge_key}" \
+  %endif
 
 %cmake_build
 
 %install
 %cmake_install
 
-%check
-# skip tests on systems that aren't officially supported
-%if ! 0%{?suse_version}
+appstream-util validate-relax --nonet \
+    %{buildroot}%{_datadir}/metainfo/org.prismlauncher.PrismLauncher.metainfo.xml
 
+%check
 %ctest
 desktop-file-validate %{buildroot}%{_datadir}/applications/org.prismlauncher.PrismLauncher.desktop
 
-%endif
-
-
 %files
-%license COPYING.md
+%doc README.md
+%license LICENSE COPYING.md
+%dir %{_datadir}/%{name}
 %{_bindir}/prismlauncher
-%{_datadir}/icons/hicolor/scalable/apps/org.prismlauncher.PrismLauncher.svg
+%{_datadir}/%{name}/NewLaunch.jar
+%{_datadir}/%{name}/JavaCheck.jar
 %{_datadir}/applications/org.prismlauncher.PrismLauncher.desktop
 %{_datadir}/metainfo/org.prismlauncher.PrismLauncher.metainfo.xml
-%{_datadir}/jars/NewLaunch.jar
-%{_datadir}/jars/JavaCheck.jar
-%{_mandir}/man6/prismlauncher.6*
+%{_datadir}/icons/hicolor/scalable/apps/org.prismlauncher.PrismLauncher.svg
+%{_mandir}/man?/prismlauncher.*
 
 
 %changelog
+* Wed Oct 19 2022 seth <getchoo at tuta dot io> - 5.0-3
+- add missing deps and build with qt6 by default
+
+* Wed Oct 19 2022 seth <getchoo at tuta dot io> - 5.0-2
+- add change-jars-path.patch and allow for building on opensuse
+
 * Wed Oct 19 2022 seth <getchoo at tuta dot io> - 5.0-1
 - update to version 5.0
 
-* Wed Oct 19 2022 seth <getchoo at tuta dot io> - 4.999-0.1.20221019.11.41032aa
-- fix versioning
-
-* Wed Oct 19 2022 seth <getchoo at tuta dot io> - 1.4.2.git325e58d-1
-- bump 2 electric boogalo
-
-* Tue Oct 18 2022 seth <getchoo at tuta dot io> - 1.4.2.gitfb4cf0b-1
-- bump
-
-* Tue Oct 18 2022 seth <getchoo at tuta dot io> - 1.4.2.gitf3db9c3-1
-- start using new project urls
-
-* Tue Oct 18 2022 seth <getchoo at tuta dot io> - 1.4.2.git3405fd9-1
-- merge with terrapkg and bump commit
-
-* Tue Oct 18 2022 seth <getchoo at tuta dot io> - 1.4.2.git2b7b9a2-1
-- bump commit
-
-* Tue Oct 18 2022 seth <getchoo at tuta dot io> - 1.4.2.git3773f2e-2
-- fix desktop file path
-
-* Tue Oct 18 2022 seth <getchoo at tuta dot io> - 1.4.2.git3773f2e-1
-- add new curseforge api key
-
-* Tue Oct 18 2022 seth <getchoo at tuta dot io> - 1.4.2.gitafaef4e-3
-- bump commit and add rebrand
-
-* Tue Oct 18 2022 Cappy Ishihara <cappy@cappuchino.xyz> - 1.4.2.git981e9cf-4
+* Tue Oct 18 2022 Cappy Ishihara <cappy@cappuchino.xyz> - 1.4.2.git981e9cf-0.2.20221018.981e9cf
 - Update provides and obsoletes
 
-* Tue Oct 18 2022 seth <getchoo at tuta dot io> - 1.4.2.git981e9cf-3
+* Tue Oct 18 2022 seth <getchoo at tuta dot io> - 1.4.2.git981e9cf-0.1.20221018.981e9cf
 - start using qt6
 
 * Tue Oct 18 2022 Cappy Ishihara <cappy@cappuchino.xyz> - 1.4.2-1
