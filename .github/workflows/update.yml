@@ -38,5 +38,5 @@ jobs:
           fi
         
       - name: Autobuild
-        if: ${{ steps.save.outputs.updated }}
+        if: ${{ steps.save.outputs.updated == 1 }}
         uses: ./.github/workflows/autobuild.yml
