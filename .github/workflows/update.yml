@@ -6,6 +6,7 @@ on:
   schedule:
     - cron: "0 */2 * * *"
   workflow_dispatch:
+  
 
 jobs:
   autoupdate:
@@ -27,6 +28,7 @@ jobs:
 
       - name: Save
         run: |
+          git config --global --add safe.directory "*"
           if [[ `git status --porcelain` ]]; then
             git config user.name "Package Update Checker"
             git config user.email "<>"
@@ -36,5 +38,5 @@ jobs:
           fi
         
       - name: Autobuild
-        if: ${{ steps.save.outputs.updated }}
-        uses: terrapkg/packages/.github/workflows/autobuild.yml@manifest
+        if: ${{ steps.save.outputs.updated == 1 }}
+        uses: ./.github/workflows/autobuild.yml
