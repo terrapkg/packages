@@ -26,7 +26,7 @@ jobs:
           python-version: '3.10'
 
       - name: Install rpmdev
-        run: dnf install rpmdevtools
+        run: dnf install rpmdevtools git python3
 
       - name: Run Update
         run: ./update.sh
