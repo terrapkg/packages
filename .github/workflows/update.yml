@@ -15,17 +15,12 @@ jobs:
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Install packages
-        run: dnf install -y rpmdevtools git
+        run: dnf install -y rpmdevtools git python
 
       - name: Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 2
-
-      # - name: Setup Python
-      #   uses: actions/setup-python@v4
-      #   with:
-      #     python-version: "3.10"
 
       - name: Run Update
         run: bash ./update.sh
