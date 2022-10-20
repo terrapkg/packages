@@ -1,3 +1,6 @@
+# Moved chkupdate because we are now going stable
+
+
 import requests
 import re
 
