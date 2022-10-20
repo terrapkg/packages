@@ -29,6 +29,7 @@ jobs:
       - name: Save
         run: |
           if [[ `git status --porcelain` ]]; then
+            git config --global --add safe.directory '*'
             git config user.name "Package Update Checker"
             git config user.email "<>"
             git commit -a -m "Automatic Update"
