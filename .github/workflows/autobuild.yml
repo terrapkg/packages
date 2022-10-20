@@ -21,13 +21,6 @@ jobs:
       options: --cap-add=SYS_ADMIN --privileged
     # check out the repo
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 2
-      - run: git fetch
-      #- run: git checkout HEAD^
-
       - name: Set up dependencies
         run: |
           sudo dnf install -y dnf-plugins-core
@@ -35,6 +28,13 @@ jobs:
           sudo dnf install -y anda mock rpm-build git-core
           # add to safe directory
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      - run: git fetch
+      #- run: git checkout HEAD^
+
 
       # - name: Generate Build matrix
       #   id: generate_build_matrix
