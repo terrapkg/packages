@@ -6,6 +6,7 @@ on:
   schedule:
     - cron: "0 */2 * * *"
   workflow_dispatch:
+  
 
 jobs:
   autoupdate:
@@ -38,3 +39,4 @@ jobs:
       - name: Autobuild
         if: ${{ steps.save.outputs.updated }}
         uses: terrapkg/packages/.github/workflows/autobuild.yml@manifest
+        with: {}
