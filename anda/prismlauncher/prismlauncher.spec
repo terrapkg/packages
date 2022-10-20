@@ -27,7 +27,7 @@
 
 Name:           prismlauncher
 Version:        5.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Minecraft launcher with ability to manage multiple instances
 License:        GPL-3.0-only
 URL:            https://prismlauncher.org/
@@ -60,8 +60,8 @@ BuildRequires:  zlib-devel
 BuildRequires:  cmake(QuaZip-Qt%{qt_version})
 %endif
 %if 0%{?suse_version}
-Requires:       qt%{qt_version}-imageformats
-Requires:       qt%{qt_version}-svg
+Requires:       %{!?with qt6:lib}qt%{qt_version}-%{!?with qt6:qt}imageformats
+Requires:       libQt%{qt_version}Svg%{qt_version}
 %else
 Requires:       qt%{qt_version}-qtimageformats
 Requires:       qt%{qt_version}-qtsvg
@@ -120,6 +120,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.prismlauncher.Pri
 
 
 %changelog
+* Wed Oct 19 2022 seth <getchoo at tuta dot io> - 5.0-4
+- fix opensuse deps
+
 * Wed Oct 19 2022 seth <getchoo at tuta dot io> - 5.0-3
 - add missing deps and build with qt6 by default
 
