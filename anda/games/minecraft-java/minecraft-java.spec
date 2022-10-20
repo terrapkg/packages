@@ -1,4 +1,4 @@
-%global         debug_package %{nil}
+%global     debug_package %{nil}
 
 Name:		minecraft-launcher
 Version:	1121
