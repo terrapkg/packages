@@ -19,7 +19,6 @@ BuildArch:      noarch
 
 %prep
 
-
 %build
 
 
