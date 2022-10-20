@@ -4,7 +4,7 @@
 name: Automatically check for updates
 on:
   schedule:
-    - cron: '0 */2 * * *'
+    - cron: "0 */2 * * *"
   workflow_dispatch:
 
 jobs:
@@ -25,10 +25,10 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: "3.10"
 
       - name: Run Update
-        run: /bin/bash ./update.sh
+        run: bash ./update.sh
 
       - name: Save
         run: |
