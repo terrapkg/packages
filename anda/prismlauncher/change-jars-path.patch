@@ -1,0 +1,26 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 48411175..5bd7e0dd 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -250,7 +250,7 @@ if(UNIX AND APPLE)
+ elseif(UNIX)
+     set(BINARY_DEST_DIR "bin")
+     set(LIBRARY_DEST_DIR "lib${LIB_SUFFIX}")
+-    set(JARS_DEST_DIR "share/jars")
++    set(JARS_DEST_DIR "share/prismlauncher")
+     set(LAUNCHER_DESKTOP_DEST_DIR "share/applications" CACHE STRING "Path to the desktop file directory")
+     set(LAUNCHER_METAINFO_DEST_DIR "share/metainfo" CACHE STRING "Path to the metainfo directory")
+     set(LAUNCHER_ICON_DEST_DIR "share/icons/hicolor/scalable/apps" CACHE STRING "Path to the scalable icon directory")
+diff --git a/launcher/Application.cpp b/launcher/Application.cpp
+index 2bd91fd7..9597977c 100644
+--- a/launcher/Application.cpp
++++ b/launcher/Application.cpp
+@@ -1578,7 +1578,7 @@ QString Application::getJarPath(QString jarFile)
+ {
+     QStringList potentialPaths = {
+ #if defined(Q_OS_LINUX) || defined(Q_OS_FREEBSD) || defined(Q_OS_OPENBSD)
+-        FS::PathCombine(m_rootPath, "share/jars"),
++        FS::PathCombine(m_rootPath, "share/prismlauncher"),
+ #endif
+         FS::PathCombine(m_rootPath, "jars"),
+         FS::PathCombine(applicationDirPath(), "jars")
