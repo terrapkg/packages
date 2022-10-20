@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  get-chkupdate-scripts:
+  autoupdate:
     runs-on: ubuntu-latest
     container:
       image: registry.fedoraproject.org/fedora:37
@@ -32,4 +32,9 @@ jobs:
             git config user.email "<>"
             git commit -a -m "Automatic Update"
             git push -u origin main
+            echo "updated=1" > $GITHUB_ENV
           fi
+        
+      - name: Autobuild
+        if: ${{ steps.save.outputs.updated }}
+        uses: terrapkg/packages/.github/workflows/autobuild.yml@manifest

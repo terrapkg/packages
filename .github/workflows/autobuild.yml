@@ -2,13 +2,13 @@
 # generate a new workflow for each folder in anda/
 name: Automatically build packages
 on:
-
   push:
     paths:
       - anda/**
     branches:
       - main
   workflow_dispatch:
+  workflow_call:
 
 jobs:
   manifest:
