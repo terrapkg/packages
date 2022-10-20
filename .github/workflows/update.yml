@@ -38,5 +38,4 @@ jobs:
         
       - name: Autobuild
         if: ${{ steps.save.outputs.updated }}
-        uses: terrapkg/packages/.github/workflows/autobuild.yml@manifest
-        with: {}
+        uses: ./.github/workflows/autobuild.yml
