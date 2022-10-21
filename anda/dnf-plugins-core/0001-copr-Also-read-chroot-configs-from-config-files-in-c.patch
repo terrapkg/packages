@@ -1,0 +1,76 @@
+From 475fc8b45864a65d36d3592df9bc8bb94265d218 Mon Sep 17 00:00:00 2001
+From: Cappy Ishihara <cappy@cappuchino.xyz>
+Date: Fri, 9 Sep 2022 10:40:37 +0700
+Subject: [PATCH] copr: Also read chroot configs from config files in
+ copr.conf.d
+
+= changelog =
+msg: [copr] Also read chroot configs from other files in copr.conf.d
+type: enhancement
+resolves: https://bugzilla.redhat.com/show_bug.cgi?id=2091662
+---
+ plugins/copr.py | 34 +++++++++++++++++++++++++---------
+ 1 file changed, 25 insertions(+), 9 deletions(-)
+
+diff --git a/plugins/copr.py b/plugins/copr.py
+index 16946b7..a4bc936 100644
+--- a/plugins/copr.py
++++ b/plugins/copr.py
+@@ -141,15 +141,6 @@ class CoprCommand(dnf.cli.Command):
+         if os.path.isfile(default_config_file):
+             config_files.append(default_config_file)
+ 
+-            copr_plugin_config.read(default_config_file)
+-            if copr_plugin_config.has_option('main', 'distribution') and\
+-                    copr_plugin_config.has_option('main', 'releasever'):
+-                distribution = copr_plugin_config.get('main', 'distribution')
+-                releasever = copr_plugin_config.get('main', 'releasever')
+-                self.chroot_config = [distribution, releasever]
+-            else:
+-                self.chroot_config = [False, False]
+-
+         for filename in os.listdir(os.path.join(config_path, PLUGIN_CONF + ".d")):
+             if filename.endswith('.conf'):
+                 config_file = os.path.join(config_path, PLUGIN_CONF + ".d", filename)
+@@ -179,6 +170,16 @@ class CoprCommand(dnf.cli.Command):
+         else:
+             copr_hub = self.opts.hub
+ 
++        # Check distribution and releasever in all config files
++        if config_files:
++
++            if len(config_files) > 1:
++                self._get_copr_chroot(config_files[1])
++            else:
++                self._get_copr_chroot(config_files[0])
++        else:
++            self.chroot_config = [False, False]
++
+         # Try to find hub in a config file
+         if config_files and copr_hub:
+             self.copr_url = None
+@@ -211,6 +212,21 @@ class CoprCommand(dnf.cli.Command):
+         except (NoOptionError, NoSectionError):
+             return default
+ 
++    def _get_copr_chroot(self, config):
++        """
++        Sets the Copr root from a config file
++        This is refactored from configure() to avoid code duplication
++        """
++        copr_plugin_config = ConfigParser()
++        copr_plugin_config.read(config)
++        if copr_plugin_config.has_option('main', 'distribution') and\
++                copr_plugin_config.has_option('main', 'releasever'):
++            distribution = copr_plugin_config.get('main', 'distribution')
++            releasever = copr_plugin_config.get('main', 'releasever')
++            self.chroot_config = [distribution, releasever]
++        else:
++            self.chroot_config = [False, False]
++
+     def _user_warning_before_prompt(self, text):
+         sys.stderr.write("{0}\n".format(text.strip()))
+ 
+-- 
+2.37.3
+
