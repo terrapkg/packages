@@ -43,6 +43,7 @@ Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
 Patch:          0001-copr-Also-read-chroot-configs-from-config-files-in-c.patch
 BuildArch:      noarch
 BuildRequires:  cmake
+BuildRequires:  git-core
 BuildRequires:  gettext
 # Documentation
 %if %{with python3}
