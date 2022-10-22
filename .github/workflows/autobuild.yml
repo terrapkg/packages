@@ -24,7 +24,7 @@ jobs:
       - name: Set up dependencies
         run: |
           sudo dnf install -y dnf-plugins-core
-          sudo dnf config-manager --add-repo https://github.com/andaman-common-pkgs/subatomic-repos/raw/main/terra37.repo
+          sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic/raw/main/terra.repo
           sudo dnf install -y anda mock rpm-build git-core
           # add to safe directory
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
@@ -74,7 +74,7 @@ jobs:
       - name: Install repositories
         run: |
           sudo dnf install -y dnf-plugins-core
-          sudo dnf config-manager --add-repo https://github.com/andaman-common-pkgs/subatomic-repos/raw/main/ad${{ matrix.version }}.repo
+          sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic-repos/raw/main/terra${{ matrix.version }}.repo
           sudo dnf install -y anda-mock-configs subatomic-cli anda mock rpm-build mock-scm
 
       - uses: terrapkg/anda-build@main
@@ -82,7 +82,7 @@ jobs:
           name: "${{ matrix.pkg.pkg }}"
           mockConfig: anda-${{ matrix.version }}-${{ matrix.pkg.arch }}
           extraArgs: -D "sccache_bucket ${{secrets.SCCACHE_BUCKET}}" -D "sccache_endpoint ${{secrets.SCCACHE_ENDPOINT}}" -D "sccache_secret ${{secrets.SCCACHE_SECRET}}" -D "sccache_accesskey ${{secrets.SCCACHE_ACCESSKEY}}"
-          andaRepo: https://github.com/andaman-common-pkgs/subatomic-repos/raw/main/ad${{ matrix.version }}.repo
+          andaRepo: https://github.com/terrapkg/subatomic-repos/raw/main/terra${{ matrix.version }}.repo
 
       - name: Install Subatomic client
         run: sudo dnf install -y subatomic-cli
