@@ -61,7 +61,7 @@ jobs:
       - name: Install repositories
         run: |
           sudo dnf install -y dnf-plugins-core
-          sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic/raw/main/terra.repo
+          sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
           sudo dnf install -y anda-mock-configs subatomic-cli anda mock rpm-build
 
       - uses: andaman-common-pkgs/anda-build@main
@@ -69,7 +69,7 @@ jobs:
         with:
           name: "anda/${{ matrix.pkg }}/pkg"
           mockConfig: anda-37-${{ matrix.arch }}
-          andaRepo: https://github.com/terrapkg/subatomic/raw/main/terra.repo
+          andaRepo: https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
 
       - name: Install Subatomic client
         run: sudo dnf install -y subatomic-cli

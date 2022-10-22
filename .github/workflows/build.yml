@@ -31,7 +31,7 @@ jobs:
       - name: Install repositories
         run: |
           sudo dnf install -y dnf-plugins-core
-          sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic/raw/main/terra.repo
+          sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
           sudo dnf install -y anda-mock-configs subatomic-cli anda mock rpm-build mock-scm
 
       - uses: terrapkg/anda-build@main
@@ -39,7 +39,7 @@ jobs:
           name: "${{ matrix.pkg }}pkg"
           mockConfig: anda-37-${{ matrix.arch }}
           extraArgs: -D "sccache_bucket ${{secrets.SCCACHE_BUCKET}}" -D "sccache_endpoint ${{secrets.SCCACHE_ENDPOINT}}" -D "sccache_secret ${{secrets.SCCACHE_SECRET}}" -D "sccache_accesskey ${{secrets.SCCACHE_ACCESSKEY}}"
-          andaRepo: https://github.com/terrapkg/subatomic/raw/main/terra.repo
+          andaRepo: https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
 
       - name: Install Subatomic client
         run: sudo dnf install -y subatomic-cli

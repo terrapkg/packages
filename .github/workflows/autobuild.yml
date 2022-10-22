@@ -24,7 +24,7 @@ jobs:
       - name: Set up dependencies
         run: |
           sudo dnf install -y dnf-plugins-core
-          sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic/raw/main/terra.repo
+          sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
           sudo dnf install -y anda mock rpm-build git-core
           # add to safe directory
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
