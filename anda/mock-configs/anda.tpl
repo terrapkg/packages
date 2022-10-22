@@ -25,16 +25,17 @@ best=1
 module_platform_id=platform:fc{{ releasever }}
 protected_packages=
 
-[andaman-common]
-name=andaman-common
-baseurl=https://subatomic.fyralabs.com/ad$releasever/
-type=rpm-md
+[terra]
+name=Terra $releasever
+baseurl=https://repos.fyralabs.com/terra$releasever
+type=rpm
 skip_if_unavailable=True
-gpgcheck=0
-repo_gpgcheck=0
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://repos.fyralabs.com/terra$releasever/key.asc
 enabled=1
 enabled_metadata=1
-priority=50
+metadata_expire=4h
 
 [rpmfusion-free]
 name=RPM Fusion for Fedora $releasever - Free

@@ -10,7 +10,7 @@ jobs:
   parse:
     outputs:
       pkgs: ${{ steps.parsing.outputs.pkgs }}
-    runs-on: 'ubuntu-latest'
+    runs-on: "ubuntu-latest"
     steps:
       - name: Parse Input
         id: parsing
@@ -20,7 +20,7 @@ jobs:
     strategy:
       matrix:
         pkg: ${{ fromJson(needs.parse.outputs.pkgs) }}
-        version: ["ad37"]
+        version: ["terra37"]
         arch: ["x86_64", "aarch64"]
       fail-fast: false
     runs-on: ${{ matrix.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
@@ -31,7 +31,7 @@ jobs:
       - name: Install repositories
         run: |
           sudo dnf install -y dnf-plugins-core
-          sudo dnf config-manager --add-repo https://github.com/andaman-common-pkgs/subatomic-repos/raw/main/ad37.repo
+          sudo dnf config-manager --add-repo https://github.com/andaman-common-pkgs/subatomic-repos/raw/main/terra37.repo
           sudo dnf install -y anda-mock-configs subatomic-cli anda mock rpm-build mock-scm
 
       - uses: terrapkg/anda-build@main
@@ -39,7 +39,7 @@ jobs:
           name: "${{ matrix.pkg }}pkg"
           mockConfig: anda-37-${{ matrix.arch }}
           extraArgs: -D "sccache_bucket ${{secrets.SCCACHE_BUCKET}}" -D "sccache_endpoint ${{secrets.SCCACHE_ENDPOINT}}" -D "sccache_secret ${{secrets.SCCACHE_SECRET}}" -D "sccache_accesskey ${{secrets.SCCACHE_ACCESSKEY}}"
-          andaRepo: https://github.com/andaman-common-pkgs/subatomic-repos/raw/main/ad37.repo
+          andaRepo: https://github.com/andaman-common-pkgs/subatomic-repos/raw/main/terra37.repo
 
       - name: Install Subatomic client
         run: sudo dnf install -y subatomic-cli

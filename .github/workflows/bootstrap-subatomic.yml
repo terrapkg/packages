@@ -1,6 +1,5 @@
 name: Bootstrap subatomic
 
-
 on:
   workflow_dispatch:
 
@@ -8,7 +7,7 @@ jobs:
   bootstrap:
     strategy:
       matrix:
-        version: ["ad37"]
+        version: ["terra37"]
         arch: ["x86_64", "aarch64"]
       fail-fast: true
     runs-on: ${{ matrix.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
@@ -16,12 +15,10 @@ jobs:
       image: fedora:37
       options: --cap-add=SYS_ADMIN --privileged
     steps:
-
       # - name: Run shell commands
       #   run: |
       #     git config --global url.https://github.com/.insteadOf git://github.com/
       #     git clone https://github.com/FyraLabs/anda.git
-
 
       - uses: actions/setup-go@v3
         with:
@@ -30,7 +27,7 @@ jobs:
       - name: Install repositories
         run: |
           sudo dnf install -y dnf-plugins-core
-          sudo dnf config-manager --add-repo https://github.com/andaman-common-pkgs/subatomic-repos/raw/main/ad37.repo
+          sudo dnf config-manager --add-repo https://github.com/andaman-common-pkgs/subatomic-repos/raw/main/terra37.repo
       - run: sudo dnf install -y mock createrepo_c rpm-build anda-mock-configs gcc curl wget git-core openssl-devel
       - uses: actions/checkout@v3
         with:

@@ -24,7 +24,7 @@ jobs:
       - name: Set up dependencies
         run: |
           sudo dnf install -y dnf-plugins-core
-          sudo dnf config-manager --add-repo https://github.com/andaman-common-pkgs/subatomic-repos/raw/main/ad37.repo
+          sudo dnf config-manager --add-repo https://github.com/andaman-common-pkgs/subatomic-repos/raw/main/terra37.repo
           sudo dnf install -y anda mock rpm-build git-core
           # add to safe directory
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
@@ -34,7 +34,6 @@ jobs:
           fetch-depth: 2
       - run: git fetch
       #- run: git checkout HEAD^
-
 
       # - name: Generate Build matrix
       #   id: generate_build_matrix
