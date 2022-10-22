@@ -25,6 +25,14 @@
 %global build_platform Fedora
 %endif
 
+%if 0%{?rhel_version}
+%global build_platform RedHat
+%endif
+
+%if 0%{?centos_version}
+%global build_platform CentOS
+%endif
+
 Name:           prismlauncher
 Version:        5.0
 Release:        4%{?dist}
@@ -33,15 +41,18 @@ License:        GPL-3.0-only
 URL:            https://prismlauncher.org/
 Source0:        %{repo}/releases/download/%{version}/%{fancy_name}-%{version}.tar.gz
 Patch0:         change-jars-path.patch
+
 BuildRequires:  cmake >= 3.15
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  java-devel
+
 %if 0%{?suse_version}
 BuildRequires:  appstream-glib
 %else
 BuildRequires:	libappstream-glib
 %endif
+
 BuildRequires:  desktop-file-utils
 BuildRequires:  cmake(Qt%{qt_version}Concurrent) >= %{min_qt_version}
 BuildRequires:  cmake(Qt%{qt_version}Core) >= %{min_qt_version}
@@ -50,27 +61,37 @@ BuildRequires:  cmake(Qt%{qt_version}Network) >= %{min_qt_version}
 BuildRequires:  cmake(Qt%{qt_version}Test) >= %{min_qt_version}
 BuildRequires:  cmake(Qt%{qt_version}Widgets) >= %{min_qt_version}
 BuildRequires:  cmake(Qt%{qt_version}Xml) >= %{min_qt_version}
+
 %if %{with qt6}
 BuildRequires:  cmake(Qt6Core5Compat)
 %endif
+
 BuildRequires:  pkgconfig(scdoc)
 BuildRequires:  zlib-devel
+
 # Prism Launcher requires QuaZip >= 1.3
 %if 0%{?suse_version} >= 1550
 BuildRequires:  cmake(QuaZip-Qt%{qt_version})
 %endif
+
 %if 0%{?suse_version}
-Requires:       %{!?with qt6:lib}qt%{qt_version}-%{!?with qt6:qt}imageformats
+Requires:       %{!?with_qt6:lib}qt%{qt_version}-%{!?with_qt6:qt}imageformats
 Requires:       libQt%{qt_version}Svg%{qt_version}
 %else
 Requires:       qt%{qt_version}-qtimageformats
 Requires:       qt%{qt_version}-qtsvg
 %endif
+
 Recommends:     java-openjdk-headless
 # xrandr needed for LWJGL [2.9.2, 3) https://github.com/LWJGL/lwjgl/issues/128
 Recommends:     xrandr
+
 # Prism supports enabling gamemode
+%if 0%{?suse_version}
+Recommends:     gamemoded
+%else
 Recommends:     gamemode
+%endif
 
 %description
 A custom launcher for Minecraft that allows you to easily manage
