@@ -48,7 +48,7 @@ jobs:
         with:
           fetch-depth: 2
       - run: |
-          sudo dnf install -y git
+          sudo dnf install -y git-core
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git fetch
       - name: Check file existence
