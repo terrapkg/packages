@@ -5,8 +5,6 @@ Release:        86
 License:        GPLv3
 URL:            https://tauos.co
 Source0:        https://github.com/tau-OS/tau-helium/archive/refs/heads/main.zip
-Source1:        README.md
-Source2:        LICENSE
 BuildArch:      noarch
 BuildRequires:  sass
 BuildRequires:  meson
@@ -25,12 +23,10 @@ A set of GTK/GNOME Shell Themes for tauOS
 %install
 # Install licenses
 mkdir -p licenses
-install -pm 0644 %SOURCE1 licenses/LICENSE
-install -pm 0644 %SOURCE0 README.md
 %meson_install
 
 %files
-%license licenses/LICENSE
+%license LICENSE
 %doc README.md
 %{_datadir}/themes/Helium/*
 %{_datadir}/themes/Helium-dark/*
