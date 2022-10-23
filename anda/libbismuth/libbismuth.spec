@@ -1,7 +1,7 @@
 Summary:        libadwaita responsive widgets, without all the baggage.
 Name:           libbismuth
-Version:        1.0
-Release:        2%{?dist}
+Version:        1.0.0
+Release:        1%{?dist}
 License:        LGPL-2.1+
 URL:            https://tauos.co
 Source0:        https://github.com/tau-OS/libbismuth/archive/refs/tags/%{version}.tar.gz
@@ -58,8 +58,5 @@ rm -rf %{buildroot}%{_datadir}/themes/*
 %{_datadir}/vala/*
 
 %changelog
-* Tue Jun 14 2022 Jamie Murphy <jamie@fyralabs.com> - 1.0-6
-- I think we finally fixed naming
-
-* Sat Jun 4 2022 Jamie Murphy <jamie@fyralabs.com> - 1.0-1
-- Initial Release
+* Sun Oct 23 2022 Lleyton Gray <lleyton@fyralabs.com> - 1.0.0
+- Initial release
