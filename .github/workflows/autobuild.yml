@@ -92,4 +92,4 @@ jobs:
           subatomic-cli upload --prune \
             --server https://subatomic.fyralabs.com \
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
-            ad${{ matrix.version }} anda-build/rpm/rpms/*
+            terra${{ matrix.version }} anda-build/rpm/rpms/*
