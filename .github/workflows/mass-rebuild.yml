@@ -45,7 +45,7 @@ jobs:
     steps:
       - name: Check file existence
         id: check_files
-        uses: andstor/file-existence-action@v1
+        uses: andstor/file-existence-action@v1.1.0
         with:
           files: "${{ matrix.pkg }}anda.hcl"
 
