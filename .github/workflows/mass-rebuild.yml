@@ -45,19 +45,21 @@ jobs:
     steps:
       - name: Check file existence
         id: check_files
-        uses: andstor/file-existence-action@v1.1.0
-        with:
-          files: "${{ matrix.pkg }}anda.hcl"
-
+        run: |
+          if test -f "$FILE"; then
+            echo "EXISTS=true" >> $GITHUB_OUTPUT
+          else
+            echo "EXISTS=false" >> $GITHUB_OUTPUT
+          fi
       - name: Install repositories
-        if: steps.check_files.outputs.files_exists == 'true'
+        if: steps.check_files.outputs.EXISTS == 'true'
         run: |
           sudo dnf install -y dnf-plugins-core
           sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic-repos/raw/main/terra${{ matrix.version }}.repo
           sudo dnf install -y anda-mock-configs subatomic-cli anda mock rpm-build
 
       - uses: andaman-common-pkgs/anda-build@main
-        if: steps.check_files.outputs.files_exists == 'true'
+        if: steps.check_files.outputs.EXISTS == 'true'
         with:
           name: "${{ matrix.pkg }}"
           mockConfig: anda-37-${{ matrix.arch }}
@@ -65,11 +67,11 @@ jobs:
           andaRepo: https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
 
       - name: Install Subatomic client
-        if: steps.check_files.outputs.files_exists == 'true'
+        if: steps.check_files.outputs.EXISTS == 'true'
         run: sudo dnf install -y subatomic-cli
 
       - name: Upload packages to subatomic
-        if: steps.check_files.outputs.files_exists == 'true'
+        if: steps.check_files.outputs.EXISTS == 'true'
         run: |
           subatomic-cli upload --prune \
             --server https://subatomic.fyralabs.com \
