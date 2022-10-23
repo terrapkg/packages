@@ -14,7 +14,7 @@ BuildRequires:  ninja-build
 A set of GTK/GNOME Shell Themes for tauOS
 
 %prep
-%autosetup
+%autosetup -n tau-helium-main
 
 %build
 %meson
