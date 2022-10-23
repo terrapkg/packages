@@ -43,6 +43,7 @@ jobs:
       image: registry.fedoraproject.org/fedora:37
       options: --cap-add=SYS_ADMIN --privileged
     steps:
+      - run: sudo dnf install -y git
       - name: Checkout
         uses: actions/checkout@v3
         with:
