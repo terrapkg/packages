@@ -46,7 +46,7 @@ jobs:
       - name: Check file existence
         id: check_files
         run: |
-          if test -f "$FILE"; then
+          if test -f "${{ matrix.pkg }}"; then
             echo "EXISTS=true" >> $GITHUB_OUTPUT
           else
             echo "EXISTS=false" >> $GITHUB_OUTPUT
