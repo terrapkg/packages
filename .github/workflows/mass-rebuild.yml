@@ -25,18 +25,8 @@ jobs:
         id: generate_build_matrix
         # generate build matrix by checking out changes in anda/
         run: |
-          # get the list of changed folders in the current commit, including subfolders
-          changed_folders=$(git diff --name-only HEAD^ | grep -oP 'anda\/(.+)(\/|\$)' | sort -u )
-          echo "Changed folders: $changed_folders"
-          # if changed_folders is empty then set is empty to true
-          if [ -z "$changed_folders" ]; then
-            echo "::set-output name=is_empty::true"
-          else
-            echo "::set-output name=is_empty::false"
-          fi
-          # turn it into a json array
-          build_matrix=$(echo "$changed_folders" | jq -R . | jq -s . | jq -c .)
-
+          build_matrix=$(find anda/ | grep -oP 'anda\/(.+)(\/|\$)' | sort -u | jq -R -s -c 'split("\n")[:-1]')
+          # create build matrix with { changed_folders: [ "folder1", "folder2" ] }
           echo "::set-output name=build_matrix::$build_matrix"
           #echo "::set-output name=build_matrix::$build_matrix"
   build:
@@ -53,27 +43,35 @@ jobs:
       image: registry.fedoraproject.org/fedora:37
       options: --cap-add=SYS_ADMIN --privileged
     steps:
+      - name: Check file existence
+        id: check_files
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "${{ matrix.pkg }}/anda.hcl"
+
       - name: Install repositories
+        if: steps.check_files.outputs.files_exists == 'true'
         run: |
           sudo dnf install -y dnf-plugins-core
           sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic-repos/raw/main/terra${{ matrix.version }}.repo
           sudo dnf install -y anda-mock-configs subatomic-cli anda mock rpm-build
 
-      - uses: terrapkg/anda-build@main
-        if: ${{ !fromJson(needs.manifest.outputs.is_empty) }}
+      - uses: andaman-common-pkgs/anda-build@main
+        if: steps.check_files.outputs.files_exists == 'true'
         with:
-          name: "${{ matrix.pkg }}pkg"
+          name: "${{ matrix.pkg }}"
           mockConfig: anda-37-${{ matrix.arch }}
           extraArgs: -D "sccache_bucket ${{secrets.SCCACHE_BUCKET}}" -D "sccache_endpoint ${{secrets.SCCACHE_ENDPOINT}}" -D "sccache_secret ${{secrets.SCCACHE_SECRET}}" -D "sccache_accesskey ${{secrets.SCCACHE_ACCESSKEY}}"
           andaRepo: https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
 
       - name: Install Subatomic client
+        if: steps.check_files.outputs.files_exists == 'true'
         run: sudo dnf install -y subatomic-cli
 
       - name: Upload packages to subatomic
-        if: ${{ !fromJson(needs.manifest.outputs.is_empty) }}
+        if: steps.check_files.outputs.files_exists == 'true'
         run: |
           subatomic-cli upload --prune \
             --server https://subatomic.fyralabs.com \
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
-           terra${{ matrix.version }} anda-build/rpm/rpms/*
+            terra${{ matrix.version }} anda-build/rpm/rpms/*
