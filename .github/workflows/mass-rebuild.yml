@@ -43,6 +43,11 @@ jobs:
       image: registry.fedoraproject.org/fedora:37
       options: --cap-add=SYS_ADMIN --privileged
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      - run: git fetch
       - name: Check file existence
         id: check_files
         run: |
