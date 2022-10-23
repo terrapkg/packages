@@ -25,7 +25,7 @@ jobs:
         id: generate_build_matrix
         # generate build matrix by checking out changes in anda/
         run: |
-          # get the list of changed folders in the current commit
+          # get the list of changed folders in the current commit, including subfolders
           changed_folders=$(git diff --name-only HEAD^ | grep -oP 'anda\/(.+)(\/|\$)' | sort -u )
           echo "Changed folders: $changed_folders"
           # if changed_folders is empty then set is empty to true
@@ -35,12 +35,7 @@ jobs:
             echo "::set-output name=is_empty::false"
           fi
           # turn it into a json array
-          #build_matrix=$(echo "$changed_folders" | jq -R . | jq -s . | jq -c .)
-
-          # if there's only one folder then check if it's
-
-          build_matrix=$(find anda/ | grep -oP 'anda\/(.+)(\/|\$)' | sort -u | jq -R -s -c 'split("\n")[:-1]')
-          # create build matrix with { changed_folders: [ "folder1", "folder2" ] }
+          build_matrix=$(echo "$changed_folders" | jq -R . | jq -s . | jq -c .)
 
           echo "::set-output name=build_matrix::$build_matrix"
           #echo "::set-output name=build_matrix::$build_matrix"
@@ -65,6 +60,7 @@ jobs:
           sudo dnf install -y anda-mock-configs subatomic-cli anda mock rpm-build
 
       - uses: terrapkg/anda-build@main
+        if: ${{ !fromJson(needs.manifest.outputs.is_empty) }}
         with:
           name: "${{ matrix.pkg }}pkg"
           mockConfig: anda-37-${{ matrix.arch }}
@@ -75,6 +71,7 @@ jobs:
         run: sudo dnf install -y subatomic-cli
 
       - name: Upload packages to subatomic
+        if: ${{ !fromJson(needs.manifest.outputs.is_empty) }}
         run: |
           subatomic-cli upload --prune \
             --server https://subatomic.fyralabs.com \
