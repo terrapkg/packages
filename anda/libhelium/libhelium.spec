@@ -5,8 +5,6 @@ Release:        48%{?dist}
 License:        GPLv3
 URL:            https://tauos.co
 Source0:        https://github.com/tau-OS/libhelium/archive/refs/heads/main.zip
-Source1:        README.md
-Source2:        COPYING
 
 BuildRequires:  sass
 BuildRequires:  meson
@@ -48,15 +46,13 @@ for writing applications with libhelium.
 %install
 # Install licenses
 mkdir -p licenses
-install -pm 0644 %SOURCE1 licenses/LICENSE
-install -pm 0644 %SOURCE0 README.md
 %meson_install
 
 rm -rf %{buildroot}%{_bindir}/blueprint-compiler
 rm -rf %{buildroot}%{_datadir}/themes/*
 
 %files
-%license licenses/LICENSE
+%license COPYING
 %doc README.md
 %{_libdir}/libhelium-1.so*
 %{_libdir}/girepository-1.0
