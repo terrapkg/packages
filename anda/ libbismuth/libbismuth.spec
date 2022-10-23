@@ -1,10 +1,10 @@
-Summary:        The Application Framework for tauOS apps
-Name:           libhelium
-Version:        1.1
-Release:        48%{?dist}
-License:        GPLv3
+Summary:        libadwaita responsive widgets, without all the baggage.
+Name:           libbismuth
+Version:        1.0
+Release:        1%{?dist}
+License:        LGPL-2.1+
 URL:            https://tauos.co
-Source0:        https://github.com/tau-OS/libhelium/archive/refs/tags/%{version}.tar.gz
+Source0:        https://github.com/tau-OS/libbismuth/archive/refs/heads/main.zip
 
 BuildRequires:  sass
 BuildRequires:  meson
@@ -13,36 +13,31 @@ BuildRequires:  vala
 # Needed for wrap
 BuildRequires:  git
 BuildRequires:  pkgconfig(glib-2.0) >= 2.66.0
-BuildRequires:  pkgconfig(gobject-introspection-1.0)
-BuildRequires:  pkgconfig(gee-0.8)
+# BuildRequires:  pkgconfig(gobject-introspection-1.0)
+# BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  pkgconfig(gtk4) >= 4.4
-BuildRequires:  pkgconfig(libbismuth)
 
-Requires: libbismuth
 Requires: gtk4 >= 4.4
 Requires: glib2 >= 2.66.0
 Requires: libgee >= 0.20
 Requires: tau-helium >= %{version}
 
 %description
-The Application Framework for tauOS apps
+Based on libadwaita responsive widgets, without all the baggage.
 
 %package devel
-Summary:        Development files for libhelium
-Requires:       libhelium = %{version}-%{release}
+Summary:        Development files for libbismuth
+Requires:       libbismuth = %{version}-%{release}
 
 %description devel
 This package contains the libraries and header files that are needed
-for writing applications with libhelium.
+for writing applications with libbismuth.
 
 %prep
-%autosetup -n libhelium-%{version}
+%autosetup -n libbismuth-main
 
 %build
-%meson \
-    -Ddemo=false \
-    -Ddocumentation=false \
-    --wrap-mode=default
+%meson -Dgtk_doc=true
 %meson_build
 
 %install
@@ -56,7 +51,7 @@ rm -rf %{buildroot}%{_datadir}/themes/*
 %files
 %license COPYING
 %doc README.md
-%{_libdir}/libhelium-1.so*
+%{_libdir}/libbismuth-1.so*
 %{_libdir}/girepository-1.0
 
 %files devel
