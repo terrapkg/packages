@@ -47,7 +47,7 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v1
         with:
-          files: "${{ matrix.pkg }}/anda.hcl"
+          files: "${{ matrix.pkg }}anda.hcl"
 
       - name: Install repositories
         if: steps.check_files.outputs.files_exists == 'true'
