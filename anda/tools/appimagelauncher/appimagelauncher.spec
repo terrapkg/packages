@@ -26,6 +26,8 @@ BuildRequires:  libcurl-devel
 BuildRequires:  boost-devel
 BuildRequires:  libappimage-devel
 BuildRequires:  systemd-rpm-macros
+BuildRequires:  librsvg2-devel
+
 
 %description
 %{summary}.
