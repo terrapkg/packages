@@ -1,0 +1,16 @@
+diff -ur appimagelauncher-0f91801.source/i18n/CMakeLists.txt appimagelauncher-0f91801.source.patched/i18n/CMakeLists.txt
+--- appimagelauncher-0f91801.source/i18n/CMakeLists.txt	2020-09-30 04:33:08.000000000 +0700
++++ appimagelauncher-0f91801.source.patched/i18n/CMakeLists.txt	2022-10-25 15:25:01.919567879 +0700
+@@ -1,6 +1,9 @@
+ # lupdate must be installed and available
+-check_program(NAME lupdate)
+-check_program(NAME lrelease)
++check_program(NAME lupdate-qt5)
++check_program(NAME lrelease-qt5)
++# alias lupdate and lrelease to lupdate-qt5 and lrelease-qt5
++set(LUPDATE lupdate-qt5)
++set(LRELEASE lrelease-qt5)
+ 
+ # create target calling custom commands
+ add_custom_target(i18n)
+Only in appimagelauncher-0f91801.source/i18n: CMakeLists.txt.rej
