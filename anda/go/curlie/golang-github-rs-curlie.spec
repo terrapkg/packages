@@ -21,6 +21,8 @@ License:        MIT
 URL:            %{gourl}
 Source:         %{gosource}
 
+Requires:       curl
+
 %description %{common_description}
 
 %gopkg
@@ -55,6 +57,7 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %autochangelog
 
 %package -n curlie
+Requires:       curl
 Summary:        The power of curl, the ease of use of httpie
 %description -n curlie %{common_description}
 %files -n curlie
