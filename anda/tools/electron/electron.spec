@@ -88,8 +88,7 @@ The Electron framework lets you write cross-platform desktop applications using 
 # mkdir -p electron
 # tar -xvf %{SOURCE1} --strip-components=1 -C electron
 
-# mkdir -p third_party/electron_node
-# # tar -xvf %{SOURCE3} --strip-components=1 -C third_party/electron_node
+
 
 # popd
 
@@ -97,8 +96,12 @@ cd %{_builddir}
 echo $PWD
 #%{_builddir}/depot_tools/gclient config -v --name "src" --unmanaged https://chromium.googlesource.com/chromium/src
 #%{_builddir}/depot_tools/gclient sync --force -v --nohooks --shallow --deps=linux
-%{_builddir}/depot_tools/gclient config -vvv --name "src/electron" --unmanaged https://github.com/electron/electron
-%{_builddir}/depot_tools/gclient sync --force -vvv --nohooks --shallow --deps=linux
+%{_builddir}/depot_tools/gclient config -vvv --name "src/electron" --unmanaged https://github.com/electron/electron@%{version}
+%{_builddir}/depot_tools/gclient sync --force -vvv --nohooks --with_branch_heads --with_tags --deps=linux
+
+#mkdir -p third_party/electron_node
+#tar -xvf %{SOURCE3} --strip-components=1 -C third_party/electron_node
+
 
 %build
 cd %{_builddir}/src
@@ -117,31 +120,25 @@ export RANLIB="ranlib"
 
 export CHROMIUM_BUILDTOOLS_PATH=`pwd`/buildtools
 
-# # build/landmines.py
-# %{_builddir}/depot_tools/download_from_google_storage.py \
-#     --no_resume --extract --no_auth --bucket chromium-nodejs \
-#     -s srcthird_party/node/node_modules.tar.gz.sha1
+build/landmines.py
+build/util/lastchange.py -o build/util/LASTCHANGE
 
-# mkdir -p buildtools/linux64
-# mkdir -p third_party/node/linux/node-linux-x64/bin
-
-# # Let's do some symlinking
-# ln -s /usr/bin/clang-format buildtools/linux64
-# ln -s /usr/bin/gn buildtools/linux64
-# ln -sf /usr/bin/node third_party/node/linux/node-linux-x64/bin
+%{_builddir}/depot_tools/download_from_google_storage.py \
+    --no_resume --extract --no_auth --bucket chromium-nodejs \
+    -s third_party/node/node_modules.tar.gz.sha1
 
 CHROMIUM_CORE_GN_DEFINES=""
 CHROMIUM_CORE_GN_DEFINES+=' is_debug=false dcheck_always_on=false dcheck_is_configurable=false'
 %ifarch x86_64 aarch64
 CHROMIUM_CORE_GN_DEFINES+=' system_libdir="lib64"'
 %endif
-CHROMIUM_CORE_GN_DEFINES+=' ffmpeg_branding="ChromeOS" proprietary_codecs=true'
+#CHROMIUM_CORE_GN_DEFINES+=' ffmpeg_branding="ChromeOS" proprietary_codecs=true'
 CHROMIUM_CORE_GN_DEFINES+=' use_custom_libcxx=false'
 CHROMIUM_CORE_GN_DEFINES+=' enable_ppapi=true'
 CHROMIUM_CORE_GN_DEFINES+=' is_clang=false use_sysroot=false disable_fieldtrial_testing_config=true use_lld=false rtc_enable_symbol_export=true'
-CHROMIUM_BROWSER_GN_DEFINES+=' exec_script_whitelist=exec_script_whitelist + ["//electron/BUILD.gn"]'
+#CHROMIUM_CORE_GN_DEFINES+=' exec_script_whitelist=exec_script_whitelist+["//electron/BUILD.gn"]'
 # allow //electron to use exec_script
-# echo '   + ["//electron/BUILD.gn"]' >> .gn
+echo '   + ["//electron/BUILD.gn"]' >> .gn
 
 # remove first line of .gn
 # sed -i '1d' .gn
@@ -149,7 +146,7 @@ CHROMIUM_BROWSER_GN_DEFINES+=' exec_script_whitelist=exec_script_whitelist + ["/
 # sed -i 's|angle_dotfile_settings.exec_script_whitelist +||g' .gn
 
 # CHROMIUM_CORE_GN_DEFINES+=' is_official_build=true use_thin_lto=false is_cfi=false chrome_pgo_phase=0 use_debug_fission=true'
-sed -i 's|OFFICIAL_BUILD|GOOGLE_CHROME_BUILD|g' tools/generate_shim_headers/generate_shim_headers.py
+#sed -i 's|OFFICIAL_BUILD|GOOGLE_CHROME_BUILD|g' tools/generate_shim_headers/generate_shim_headers.py
 
 export CHROMIUM_CORE_GN_DEFINES
 
@@ -182,8 +179,8 @@ rm -rf buildtools/third_party/eu-strip/bin/eu-strip
 ln -sf %{_bindir}/eu-strip buildtools/third_party/eu-strip/bin/eu-strip
 
 # is_mas_build fails to build and we're not on a mac
-# sed -i 's|is_mas_build|is_mac|g' electron/BUILD.gn
-# sed -i 's|enable_ppapi|true|g' electron/BUILD.gn
+sed -i 's|is_mas_build|is_mac|g' electron/BUILD.gn
+sed -i 's|enable_ppapi|true|g' electron/BUILD.gn
 # tools/gn/bootstrap/bootstrap.py -v --no-clean --gn-gen-args="$CHROMIUM_CORE_GN_DEFINES $CHROMIUM_BROWSER_GN_DEFINES $GN_EXTRA_ARGS"
 mkdir -p %{builddir}
 ln -sf /usr/bin/gn buildtools/linux64/gn
