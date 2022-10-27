@@ -27,6 +27,7 @@ jobs:
         run: bash ./update.sh
 
       - name: Save
+        id: save
         run: |
           git config --global --add safe.directory "*"
           if [[ `git status --porcelain` ]]; then
@@ -38,5 +39,5 @@ jobs:
           fi
         
       - name: Autobuild
-        #if: ${{ steps.save.outputs.updated == 1 }}
+        if: ${{ steps.save.outputs.updated == 1 }}
         uses: ./.github/workflows/autobuild.yml
