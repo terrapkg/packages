@@ -1,5 +1,5 @@
 Name:           discord-canary
-Version:        0.0.140
+Version:        0.0.141
 Release:        1%{?dist}
 Summary:        Free Voice and Text Chat for Gamers.
 URL:            discord.com
@@ -30,6 +30,9 @@ install discord.png %{buildroot}%{_datadir}/pixmaps/discord-canary.png
 %{_datadir}/pixmaps/discord-canary.png
 
 %changelog
+* Thu Oct 27 2022 root - 0.0.141-1
+- new version
+
 * Wed Oct 19 2022 windowsboy111 <wboy111@outlook.com> - 0.0.140-1
 - new version
 
