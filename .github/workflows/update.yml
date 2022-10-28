@@ -14,6 +14,8 @@ jobs:
     container:
       image: registry.fedoraproject.org/fedora:37
       options: --cap-add=SYS_ADMIN --privileged
+    outputs:
+      updated: ${{ steps.save.outputs.updated }}
     steps:
       - name: Install packages
         run: dnf install -y rpmdevtools git python
@@ -41,3 +43,7 @@ jobs:
       - name: Autobuild
         if: ${{ steps.save.outputs.updated == 1 }}
         uses: ./.github/workflows/autobuild.yml
+  autobuild:
+    needs: autoupdate
+    if: autoupdate.outputs.updated == 1
+    uses: ./.github/workflows/autobuild.yml
