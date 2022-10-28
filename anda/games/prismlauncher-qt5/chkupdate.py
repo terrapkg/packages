@@ -2,7 +2,7 @@ import os
 import requests
 import re
 
-NAME = 'prismlauncher'
+NAME = 'prismlauncher-qt5'
 REPO = "PrismLauncher/PrismLauncher"
 REGEX_VER = r'Version:\s*([\.\d]+)\n'
 SPEC = f"{NAME}.spec"
