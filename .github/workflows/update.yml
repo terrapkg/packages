@@ -39,11 +39,8 @@ jobs:
             git push -u origin main
             echo "updated=1" >> $GITHUB_OUTPUT
           fi
-        
-      - name: Autobuild
-        if: ${{ steps.save.outputs.updated == 1 }}
-        uses: ./.github/workflows/autobuild.yml
+
   autobuild:
     needs: autoupdate
-    if: needs.autoupdate.outputs.updated == 1
+    if: needs.autoupdate.outputs.updated
     uses: ./.github/workflows/autobuild.yml
