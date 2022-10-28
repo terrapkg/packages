@@ -35,7 +35,7 @@ jobs:
             git config user.email "<>"
             git commit -a -m "Automatic Update"
             git push -u origin main
-            echo "updated=1" > $GITHUB_ENV
+            echo "::set-output name=updated::1"
           fi
         
       - name: Autobuild
