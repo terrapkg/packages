@@ -45,5 +45,5 @@ jobs:
         uses: ./.github/workflows/autobuild.yml
   autobuild:
     needs: autoupdate
-    if: autoupdate.outputs.updated == 1
+    if: needs.autoupdate.outputs.updated == 1
     uses: ./.github/workflows/autobuild.yml
