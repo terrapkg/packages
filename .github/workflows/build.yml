@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: Parse Input
         id: parsing
-        run: echo "${{ inputs.packages }}" | sed 's/ /\n/g' | sed 's/$/\//g' | jq -R . | jq -s . | jq -c . | sed 's/^/::set-output name=pkgs::/'
+        run: echo "${{ inputs.packages }}" | sed 's/ /\n/g' | sed 's/$/\//g' | jq -R . | jq -s . | jq -c . | sed 's/^/pkgs=/' >> $GITHUB_OUTPUT
   build:
     needs: parse
     strategy:

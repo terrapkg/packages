@@ -27,7 +27,7 @@ jobs:
         run: |
           build_matrix=$(find anda/ | grep -oP 'anda\/(.+)(\/|\$)' | sort -u | jq -R -s -c 'split("\n")[:-1]')
           # create build matrix with { changed_folders: [ "folder1", "folder2" ] }
-          echo "::set-output name=build_matrix::$build_matrix"
+          echo "build_matrix=$build_matrix" >> $GITHUB_OUTPUT
           #echo "::set-output name=build_matrix::$build_matrix"
   build:
     needs: manifest
