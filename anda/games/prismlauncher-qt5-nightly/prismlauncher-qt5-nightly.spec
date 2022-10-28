@@ -2,7 +2,7 @@
 %global real_name prismlauncher
 %global repo https://github.com/%{fancy_name}/%{fancy_name}
 
-%global commit f229574758871d7e95c835c3ec026635799c7015
+%global commit e885f3c26a030d093e2c7e60770c069e4d958cff
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global filesystem_commit cd6805e94dd5d6346be1b75a54cdc27787319dd2
 %global libnbtplusplus_commit 2203af7eeb48c45398139b583615134efd8d407f
