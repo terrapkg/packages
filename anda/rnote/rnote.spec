@@ -27,6 +27,7 @@ Rnote is an open-source vector-based drawing app for sketching, handwritten note
 %install
 %meson_install
 
+
 %files
 %doc README.md
 %license LICENSE
