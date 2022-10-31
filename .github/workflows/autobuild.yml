@@ -19,7 +19,7 @@ jobs:
       - id: files
         uses: jitterbit/get-changed-files@v1
       - id: parse
-        run: echo "${{ steps.files.outputs.added_modified }}" | sed 's/ /\n/g' | sed 's@(.*)/.*@\1/@g' | jq -R . | jq -s . | jq -c . | sed 's/^/b=/' >> $GITHUB_OUTPUT
+        run: echo "${{ steps.files.outputs.added_modified }}" | sed 's/ /\n/g' | sed 's@\(.*\)/.*@\1/@g' | jq -R . | jq -s . | jq -c . | sed 's/^/b=/' >> $GITHUB_OUTPUT
         
   build:
     needs: manifest
