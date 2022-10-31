@@ -13,51 +13,13 @@ on:
 jobs:
   manifest:
     runs-on: ubuntu-latest
-
     outputs:
-      build_matrix: ${{ steps.generate_build_matrix.outputs.build_matrix }}
-    container:
-      image: registry.fedoraproject.org/fedora:37
-      options: --cap-add=SYS_ADMIN --privileged
-    # check out the repo
+      build_matrix: steps.files.outputs.added_modified
     steps:
-      - name: Set up dependencies
-        run: |
-          sudo dnf install -y dnf-plugins-core
-          sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic-repos/raw/main/terra37.repo
-          sudo dnf install -y anda mock rpm-build git-core
-          # add to safe directory
-          git config --global --add safe.directory "$GITHUB_WORKSPACE"
-      - name: Checkout
-        uses: actions/checkout@v3
+      - id: files
+        uses: jitterbit/get-changed-files@v1
         with:
-          fetch-depth: 2
-      - run: git fetch
-      #- run: git checkout HEAD^
-
-      # - name: Generate Build matrix
-      #   id: generate_build_matrix
-      #   # generate build matrix by checking out changes in anda/
-      #   run: |
-      #     # get the list of changed folders in the current commit, including subfolders
-      #     changed_folders=$(git diff --name-only HEAD^ | grep -oP 'anda\/(.+)(\/|\$)' | sort -u )
-      #     echo "Changed folders: $changed_folders"
-      #     # if changed_folders is empty then set is empty to true
-      #     if [ -z "$changed_folders" ]; then
-      #       echo "::set-output name=is_empty::true"
-      #     else
-      #       echo "::set-output name=is_empty::false"
-      #     fi
-      #     # turn it into a json array
-      #     build_matrix=$(echo "$changed_folders" | jq -R . | jq -s . | jq -c .)
-
-      #     echo "::set-output name=build_matrix::$build_matrix"
-      #     #echo "::set-output name=build_matrix::$build_matrix"
-
-      - name: Generate build matrix
-        id: generate_build_matrix
-        run: |
-          anda ci >> $GITHUB_OUTPUT
+          format: 'json'
   build:
     needs: manifest
     strategy:
