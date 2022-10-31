@@ -1,10 +1,10 @@
 Summary:        tauOS GTK/GNOME Shell Themes
 Name:           tau-helium
-Version:        1.1.0
-Release:        87
+Version:        1.1.1
+Release:        1
 License:        GPLv3
 URL:            https://tauos.co
-Source0:        https://github.com/tau-OS/tau-helium/archive/refs/heads/main.zip
+Source0:        https://github.com/tau-OS/tau-helium/archive/refs/tags/%{version}.tar.gz
 BuildArch:      noarch
 BuildRequires:  sass
 BuildRequires:  meson
@@ -14,7 +14,7 @@ BuildRequires:  ninja-build
 A set of GTK/GNOME Shell Themes for tauOS
 
 %prep
-%autosetup -n tau-helium-main
+%autosetup -n tau-helium-%{version}
 
 %build
 %meson
