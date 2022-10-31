@@ -32,7 +32,7 @@ Rnote is an open-source vector-based drawing app for sketching, handwritten note
 %license LICENSE
 
 /usr/bin/rnote
-/usr/lib/debug/usr/bin/rnote-0.5.7-1.fc37.x86_64.debug
+/usr/lib/debug/usr/bin/rnote-*.debug
 /usr/share/applications/com.github.flxzt.rnote.desktop
 /usr/share/glib-2.0/schemas/com.github.flxzt.rnote.gschema.xml
 /usr/share/icons/hicolor/scalable/apps/com.github.flxzt.rnote.svg
