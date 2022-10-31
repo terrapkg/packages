@@ -35,8 +35,7 @@ jobs:
           if [[ `git status --porcelain` ]]; then
             git config user.name "Package Update Checker"
             git config user.email "<>"
-            git status | grep modified | sed -r "s@.+/([^/]+)/[^/]+\n?@\1 @g" | tr -d '\n' > $m
-            git commit -a -m "Automatic Update: $m"
+            git commit -a -m "Automatic Update: $(git status | grep modified | sed -r 's@.+/([^/]+)/[^/]+\n?@\1 @g' | tr -d '\n')"
             git push -u origin main
             echo "updated=1" >> $GITHUB_OUTPUT
           fi
