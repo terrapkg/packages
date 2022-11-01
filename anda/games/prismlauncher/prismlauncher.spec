@@ -34,13 +34,12 @@
 %endif
 
 Name:           prismlauncher
-Version:        5.0
-Release:        4%{?dist}
+Version:        5.1
+Release:        1%{?dist}
 Summary:        Minecraft launcher with ability to manage multiple instances
 License:        GPL-3.0-only
 URL:            https://prismlauncher.org/
 Source0:        %{repo}/releases/download/%{version}/%{fancy_name}-%{version}.tar.gz
-Patch0:         change-jars-path.patch
 
 BuildRequires:  cmake >= 3.15
 BuildRequires:  extra-cmake-modules
@@ -99,7 +98,7 @@ multiple installations of Minecraft at once (Fork of MultiMC)
 
 
 %prep
-%autosetup -p1 -n %{fancy_name}-%{version}
+%autosetup -n %{fancy_name}-%{version}
 
 # Do not set RPATH
 sed -i "s|\$ORIGIN/||" CMakeLists.txt
@@ -141,6 +140,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.prismlauncher.Pri
 
 
 %changelog
+* Tue Nov 01 2022 root - 5.1-1
+- new version
+
 * Wed Oct 19 2022 seth <getchoo at tuta dot io> - 5.0-4
 - fix opensuse deps
 
