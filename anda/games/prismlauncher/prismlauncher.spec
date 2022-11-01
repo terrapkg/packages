@@ -34,8 +34,8 @@
 %endif
 
 Name:           prismlauncher
-Version:        5.0
-Release:        4%{?dist}
+Version:        5.1
+Release:        1%{?dist}
 Summary:        Minecraft launcher with ability to manage multiple instances
 License:        GPL-3.0-only
 URL:            https://prismlauncher.org/
@@ -141,6 +141,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.prismlauncher.Pri
 
 
 %changelog
+* Tue Nov 01 2022 root - 5.1-1
+- new version
+
 * Wed Oct 19 2022 seth <getchoo at tuta dot io> - 5.0-4
 - fix opensuse deps
 
