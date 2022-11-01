@@ -41,7 +41,6 @@ Summary:        Minecraft launcher with ability to manage multiple instances
 License:        GPL-3.0-only
 URL:            https://prismlauncher.org/
 Source0:        %{repo}/releases/download/%{version}/%{fancy_name}-%{version}.tar.gz
-Patch0:         change-jars-path.patch
 
 BuildRequires:  cmake >= 3.15
 BuildRequires:  extra-cmake-modules
@@ -103,7 +102,7 @@ multiple installations of Minecraft at once (Fork of MultiMC)
 
 
 %prep
-%autosetup -p1 -n %{fancy_name}-%{version}
+%autosetup -n %{fancy_name}-%{version}
 
 # Do not set RPATH
 sed -i "s|\$ORIGIN/||" CMakeLists.txt
