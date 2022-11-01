@@ -9,7 +9,7 @@ REGEX_SHA = r'%global commit (.+)'
 SPEC = f"{NAME}.spec"
 LINK = f'https://api.github.com/repos/{REPO}/commits/HEAD'
 
-if datetime.utcnow().hour != 0: exit(f'{NAME}: skipping update check')
+if datetime.utcnow().hour not in [0, 12]: exit(f'{NAME}: skipping update check')
 
 sha = requests.get(LINK).json()['sha']
 f = open(SPEC, 'r')
