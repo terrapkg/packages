@@ -5,7 +5,7 @@ Summary:        Sketch and take handwritten notes.
 License:        GPLv3
 URL:            https://github.com/flxzt/rnote
 Source0:        %{url}/releases/download/v%{version}/rnote-%{version}.tar.xz
-Requires:       libadwaita poppler-glib glib2-devel pkgconfig(gtk4) 
+Requires:       libadwaita poppler-glib glib2 gtk4
 BuildRequires:  cargo meson cmake libappstream-glib gcc-c++ pkgconfig(alsa) alsa-lib clang-devel
 BuildRequires:  pkgconfig(glib-2.0) >= 2.66
 BuildRequires:  pkgconfig(gtk4) >= 4.7
@@ -45,5 +45,8 @@ Rnote is an open-source vector-based drawing app for sketching, handwritten note
 
 
 %changelog
+* Wed Nov 2 2022 windowsboy111 <windowsboy111@fyralabs.com>
+- Fix requires
+
 * Sun Oct 23 2022 windowsboy111 <windowsboy111@fyralabs.com>
 - Initial package
