@@ -1,5 +1,5 @@
 Name:           tectonic
-Version:        tectonic@0.12.0
+Version:        0.12.0
 Release:        %autorelease
 Summary:        A modernized, complete, self-contained TeX/LaTeX engine, powered by XeTeX and TeXLive
 URL:            https://github.com/tectonic-typesetting/tectonic
