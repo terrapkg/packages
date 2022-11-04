@@ -6,7 +6,6 @@ on:
   schedule:
     - cron: "0 */2 * * *"
   workflow_dispatch:
-  
 
 jobs:
   autoupdate:
@@ -44,3 +43,4 @@ jobs:
     needs: autoupdate
     if: needs.autoupdate.outputs.updated
     uses: ./.github/workflows/autobuild.yml
+    secrets: inherit
