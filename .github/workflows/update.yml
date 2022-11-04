@@ -13,8 +13,6 @@ jobs:
     container:
       image: registry.fedoraproject.org/fedora:37
       options: --cap-add=SYS_ADMIN --privileged
-    outputs:
-      updated: ${{ steps.save.outputs.updated }}
     steps:
       - name: Install packages
         run: dnf install -y rpmdevtools git python
@@ -28,7 +26,6 @@ jobs:
         run: bash ./update.sh
 
       - name: Save
-        id: save
         run: |
           git config --global --add safe.directory "*"
           if [[ `git status --porcelain` ]]; then
@@ -36,11 +33,4 @@ jobs:
             git config user.email "<>"
             git commit -a -m "Automatic Update: $(git status | grep modified | sed -r 's@.+/([^/]+)/[^/]+\n?@\1 @g' | tr -d '\n')"
             git push -u origin main
-            echo "updated=1" >> $GITHUB_OUTPUT
           fi
-
-  autobuild:
-    needs: autoupdate
-    if: needs.autoupdate.outputs.updated
-    uses: ./.github/workflows/autobuild.yml
-    secrets: inherit
