@@ -164,10 +164,14 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.prismlauncher.Pri
 %{_datadir}/applications/org.prismlauncher.PrismLauncher.desktop
 %{_datadir}/metainfo/org.prismlauncher.PrismLauncher.metainfo.xml
 %{_datadir}/icons/hicolor/scalable/apps/org.prismlauncher.PrismLauncher.svg
+%{_datadir}/mime/packages/modrinth-mrpack-mime.xml
 %{_mandir}/man?/prismlauncher.*
 
 
 %changelog
+* Sun Nov 06 2022 seth <getchoo at tuta dot io> - 5.0-0.1.20221105.9fb80a2
+- update installed files
+
 * Thu Oct 27 2022 seth <getchoo at tuta dot io> - 5.0-0.1.20221027.610b971
 - initial commit
 
