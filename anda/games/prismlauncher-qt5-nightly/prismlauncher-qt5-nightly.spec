@@ -45,8 +45,12 @@
 %global build_platform CentOS
 %endif
 
+%if %{with qt6}
+Name:           prismlauncher-nightly
+%else
 Name:           prismlauncher-qt5-nightly
-Version:        5.0
+%endif
+Version:        5.1
 Release:        0.1%{?git_rel}%{?dist}
 Summary:        Minecraft launcher with ability to manage multiple instances
 License:        GPL-3.0-only
@@ -56,6 +60,7 @@ Source1:        https://github.com/PrismLauncher/libnbtplusplus/archive/%{libnbt
 Source2:        https://github.com/stachenov/quazip/archive/%{quazip_commit}/quazip-%{quazip_commit}.tar.gz
 Source3:        https://github.com/marzer/tomlplusplus/archive/%{tomlplusplus_commit}/tomlplusplus-%{tomlplusplus_commit}.tar.gz
 Source4:        https://github.com/gulrak/filesystem/archive/%{filesystem_commit}/filesystem-%{filesystem_commit}.tar.gz
+
 BuildRequires:  cmake >= 3.15
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
@@ -107,7 +112,13 @@ Recommends:     gamemoded
 Recommends:     gamemode
 %endif
 
-Conflicts:      prismlauncher
+Conflicts:     %{realname}
+Conflicts:     %{realname}-qt5
+%if %{with qt6}
+Conflicts:     %{realname}-qt5-nightly
+%else
+Conflicts:     %{realname}-nightly
+%endif
 
 %description
 A custom launcher for Minecraft that allows you to easily manage
@@ -146,9 +157,10 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 %install
 %cmake_install
 
-# this seems to be erroring out on older versions of fedora and epel
-# appstream-util validate-relax --nonet \
-#     %{buildroot}%{_datadir}/metainfo/org.prismlauncher.PrismLauncher.metainfo.xml
+%if 0%{?suse_version} > 1500 || 0%{?fedora} > 35
+appstream-util validate-relax --nonet \
+    %{buildroot}%{_datadir}/metainfo/org.prismlauncher.PrismLauncher.metainfo.xml
+%endif
 
 %check
 %ctest
@@ -174,4 +186,3 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.prismlauncher.Pri
 
 * Thu Oct 27 2022 seth <getchoo at tuta dot io> - 5.0-0.1.20221027.610b971
 - initial commit
-
