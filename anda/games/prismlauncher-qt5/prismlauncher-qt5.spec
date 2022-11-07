@@ -34,7 +34,11 @@
 %global build_platform CentOS
 %endif
 
+%if %{with qt6}
+Name:           prismlauncher
+%else
 Name:           prismlauncher-qt5
+%endif
 Version:        5.1
 Release:        1%{?dist}
 Summary:        Minecraft launcher with ability to manage multiple instances
@@ -93,7 +97,11 @@ Recommends:     gamemoded
 Recommends:     gamemode
 %endif
 
-Conflicts:      prismlauncher
+%if %{with qt6}
+Conflicts:     %{real_name}-qt5
+%else
+Conflicts:     %{real_name}
+%endif
 
 
 %description
@@ -123,8 +131,10 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 %install
 %cmake_install
 
+%if 0%{?suse_version} > 1500 || 0%{?fedora} > 35
 appstream-util validate-relax --nonet \
     %{buildroot}%{_datadir}/metainfo/org.prismlauncher.PrismLauncher.metainfo.xml
+%endif
 
 %check
 %ctest

@@ -1,6 +1,7 @@
 %global fancy_name PrismLauncher
+%global real_name prismlauncher
 %global repo https://github.com/%{fancy_name}/%{fancy_name}
-%bcond_without qt6 1
+%bcond_without qt6
 
 # Change this variables if you want to use custom keys
 # Leave blank if you want to build Prism Launcher without MSA id or curseforge api key
@@ -33,7 +34,11 @@
 %global build_platform CentOS
 %endif
 
+%if %{with qt6}
 Name:           prismlauncher
+%else
+Name:           prismlauncher-qt5
+%endif
 Version:        5.1
 Release:        1%{?dist}
 Summary:        Minecraft launcher with ability to manage multiple instances
@@ -92,6 +97,12 @@ Recommends:     gamemoded
 Recommends:     gamemode
 %endif
 
+%if %{with qt6}
+Conflicts:     %{real_name}-qt5
+%else
+Conflicts:     %{real_name}
+%endif
+
 %description
 A custom launcher for Minecraft that allows you to easily manage
 multiple installations of Minecraft at once (Fork of MultiMC)
@@ -119,8 +130,10 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 %install
 %cmake_install
 
+%if 0%{?suse_version} > 1500 || 0%{?fedora} > 35
 appstream-util validate-relax --nonet \
     %{buildroot}%{_datadir}/metainfo/org.prismlauncher.PrismLauncher.metainfo.xml
+%endif
 
 %check
 %ctest
@@ -129,10 +142,10 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.prismlauncher.Pri
 %files
 %doc README.md
 %license LICENSE COPYING.md
-%dir %{_datadir}/%{name}
+%dir %{_datadir}/%{real_name}
 %{_bindir}/prismlauncher
-%{_datadir}/%{name}/NewLaunch.jar
-%{_datadir}/%{name}/JavaCheck.jar
+%{_datadir}/%{real_name}/NewLaunch.jar
+%{_datadir}/%{real_name}/JavaCheck.jar
 %{_datadir}/applications/org.prismlauncher.PrismLauncher.desktop
 %{_datadir}/metainfo/org.prismlauncher.PrismLauncher.metainfo.xml
 %{_datadir}/icons/hicolor/scalable/apps/org.prismlauncher.PrismLauncher.svg
