@@ -98,10 +98,11 @@ Recommends:     gamemode
 %endif
 
 %if %{with qt6}
-Conflicts:     %{real_name}-qt5
+Conflicts:      %{real_name}-qt5
 %else
-Conflicts:     %{real_name}
+Conflicts:      %{real_name}
 %endif
+
 
 %description
 A custom launcher for Minecraft that allows you to easily manage
