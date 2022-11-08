@@ -112,13 +112,14 @@ Recommends:     gamemoded
 Recommends:     gamemode
 %endif
 
-Conflicts:     %{realname}
-Conflicts:     %{realname}-qt5
+Conflicts:      %{real_name}
+Conflicts:      %{real_name}-qt5
 %if %{with qt6}
-Conflicts:     %{realname}-qt5-nightly
+Conflicts:      %{real_name}-qt5-nightly
 %else
-Conflicts:     %{realname}-nightly
+Conflicts:      %{real_name}-nightly
 %endif
+
 
 %description
 A custom launcher for Minecraft that allows you to easily manage
