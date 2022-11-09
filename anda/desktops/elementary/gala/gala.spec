@@ -128,5 +128,8 @@ desktop-file-validate \
 
 
 %changelog
+* Wed Nov 09 2022 Cappy Ishihara <cappy@cappuchino.xyz>
+- Rebuild
+
 * Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
 - Repackaged for Terra
