@@ -54,6 +54,11 @@ Version:        5.1
 Release:        0.1%{?git_rel}%{?dist}
 Summary:        Minecraft launcher with ability to manage multiple instances
 License:        GPL-3.0-only
+%if 0%{?suse_version}
+Group:          Amusements/Games/Action/Other
+%else
+Group:          Amusements/Games
+%endif
 URL:            https://prismlauncher.org/
 Source0:        %{repo}/archive/%{commit}/%{fancy_name}-%{shortcommit}.tar.gz
 Source1:        https://github.com/PrismLauncher/libnbtplusplus/archive/%{libnbtplusplus_commit}/libnbtplusplus-%{libnbtplusplus_commit}.tar.gz
@@ -69,7 +74,7 @@ BuildRequires:  java-devel
 %if 0%{?suse_version}
 BuildRequires:  appstream-glib
 %else
-BuildRequires:	libappstream-glib
+BuildRequires:  libappstream-glib
 %endif
 
 BuildRequires:  desktop-file-utils
@@ -182,6 +187,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.prismlauncher.Pri
 
 
 %changelog
+* Thu Nov 10 2022 seth <getchoo at tuta dot io> - 5.1-0.1.20221110.e6d057f
+- add package to Amusements/Games
+
 * Sun Nov 06 2022 seth <getchoo at tuta dot io> - 5.0-0.1.20221105.9fb80a2
 - update installed files
 
