@@ -3,7 +3,7 @@ Name:           libbismuth
 Version:        1.0.0
 Release:        1%{?dist}
 License:        LGPL-2.1+
-URL:            https://tauos.co
+URL:            https://github.com/tau-OS/libbismuth
 Source0:        https://github.com/tau-OS/libbismuth/archive/refs/tags/%{version}.tar.gz
 
 BuildRequires:  gcc

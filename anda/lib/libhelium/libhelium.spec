@@ -3,7 +3,7 @@ Name:           libhelium
 Version:        1.1.5
 Release:        1%{?dist}
 License:        GPLv3
-URL:            https://tauos.co
+URL:            https://github.com/tau-OS/libhelium
 Source0:        https://github.com/tau-OS/libhelium/archive/refs/tags/%{version}.tar.gz
 
 BuildRequires:  sass
@@ -66,6 +66,9 @@ rm -rf %{buildroot}%{_datadir}/themes/*
 %{_datadir}/vala/*
 
 %changelog
+* Fri Nov 11 2022 Lleyton Gray <lleyton@fyralabs.com> - 1.1.5-1
+- new version
+
 * Sun Oct 23 2022 Lleyton Gray <lleyton@fyralabs.com> - 1.1.0-1
 - 1.1.0 release
 
