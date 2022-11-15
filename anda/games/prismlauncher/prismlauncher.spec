@@ -1,6 +1,7 @@
 %global fancy_name PrismLauncher
 %global real_name prismlauncher
 %global repo https://github.com/%{fancy_name}/%{fancy_name}
+%global tomlplusplus_commit 0a90913abf9390b9e08ab6d3b40ac11634553f38
 %bcond_without qt6
 
 # Change this variables if you want to use custom keys
@@ -50,6 +51,8 @@ Group:          Amusements/Games
 %endif
 URL:            https://prismlauncher.org/
 Source0:        %{repo}/releases/download/%{version}/%{fancy_name}-%{version}.tar.gz
+Source1:        https://github.com/marzer/tomlplusplus/archive/%{tomlplusplus_commit}/tomlplusplus-%{tomlplusplus_commit}.tar.gz
+Patch0:         fix-disable-FLOAT16-in-toml.patch
 
 BuildRequires:  cmake >= 3.15
 BuildRequires:  extra-cmake-modules
@@ -116,6 +119,10 @@ multiple installations of Minecraft at once (Fork of MultiMC)
 
 %prep
 %autosetup -n %{fancy_name}-%{version}
+
+tar -xzf %{SOURCE1} -C libraries
+rm -rf libraries/tomlplusplus/*
+mv -f libraries/tomlplusplus-%{tomlplusplus_commit}/* libraries/tomlplusplus
 
 # Do not set RPATH
 sed -i "s|\$ORIGIN/||" CMakeLists.txt
