@@ -39,8 +39,8 @@ Name:           prismlauncher
 %else
 Name:           prismlauncher-qt5
 %endif
-Version:        5.1
-Release:        2%{?dist}
+Version:        5.2
+Release:        1%{?dist}
 Summary:        Minecraft launcher with ability to manage multiple instances
 License:        GPL-3.0-only
 %if 0%{?suse_version}
@@ -159,6 +159,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.prismlauncher.Pri
 
 
 %changelog
+* Tue Nov 15 2022 root - 5.2-1
+- new version
+
 * Thu Nov 10 2022 seth <getchoo at tuta dot io> - 5.1-2
 - add package to Amusements/Games
 
