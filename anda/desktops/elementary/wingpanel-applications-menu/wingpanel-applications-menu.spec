@@ -5,7 +5,7 @@
 
 Name:           wingpanel-applications-menu
 Summary:        Lightweight and stylish app launcher
-Version:        2.10.2
+Version:        2.11.0
 Release:        %autorelease
 License:        GPLv3+
 
