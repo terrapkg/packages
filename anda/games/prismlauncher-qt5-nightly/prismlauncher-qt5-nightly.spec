@@ -7,7 +7,7 @@
 %global filesystem_commit cd6805e94dd5d6346be1b75a54cdc27787319dd2
 %global libnbtplusplus_commit 2203af7eeb48c45398139b583615134efd8d407f
 %global quazip_commit 6117161af08e366c37499895b00ef62f93adc345
-%global tomlplusplus_commit 4b166b69f28e70a416a1a04a98f365d2aeb90de8
+%global tomlplusplus_commit 0a90913abf9390b9e08ab6d3b40ac11634553f38
 
 %global commit_date %(date '+%Y%m%d')
 %global git_rel .%{commit_date}.%{shortcommit}
@@ -65,6 +65,7 @@ Source1:        https://github.com/PrismLauncher/libnbtplusplus/archive/%{libnbt
 Source2:        https://github.com/stachenov/quazip/archive/%{quazip_commit}/quazip-%{quazip_commit}.tar.gz
 Source3:        https://github.com/marzer/tomlplusplus/archive/%{tomlplusplus_commit}/tomlplusplus-%{tomlplusplus_commit}.tar.gz
 Source4:        https://github.com/gulrak/filesystem/archive/%{filesystem_commit}/filesystem-%{filesystem_commit}.tar.gz
+Patch0:         fix-disable-FLOAT16-in-toml.patch
 
 BuildRequires:  cmake >= 3.15
 BuildRequires:  extra-cmake-modules
