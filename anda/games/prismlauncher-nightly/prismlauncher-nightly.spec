@@ -65,7 +65,6 @@ Source1:        https://github.com/PrismLauncher/libnbtplusplus/archive/%{libnbt
 Source2:        https://github.com/stachenov/quazip/archive/%{quazip_commit}/quazip-%{quazip_commit}.tar.gz
 Source3:        https://github.com/marzer/tomlplusplus/archive/%{tomlplusplus_commit}/tomlplusplus-%{tomlplusplus_commit}.tar.gz
 Source4:        https://github.com/gulrak/filesystem/archive/%{filesystem_commit}/filesystem-%{filesystem_commit}.tar.gz
-Patch0:         fix-disable-FLOAT16-in-toml.patch
 
 BuildRequires:  cmake >= 3.15
 BuildRequires:  extra-cmake-modules
