@@ -59,7 +59,7 @@ notifications when using the fish shell.
 
 
 %build
-%meson -Dubuntu-bionic-patched-vte=false
+%meson
 %meson_build
 
 

@@ -53,7 +53,7 @@ wallpapers show up in gnome-control-center.
 %install
 # copy wallpapers to install location
 mkdir -p %{buildroot}/%{_datadir}/backgrounds/elementary
-cp -pav *.jpg %{buildroot}/%{_datadir}/backgrounds/elementary/
+sh -c "cp -pav *.jpg %{buildroot}/%{_datadir}/backgrounds/elementary/"
 
 # create default wallpaper symlink
 ln -s ./%{default_wallpaper} %{buildroot}/%{_datadir}/backgrounds/elementary/default

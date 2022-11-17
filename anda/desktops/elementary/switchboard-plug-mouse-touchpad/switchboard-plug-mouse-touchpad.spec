@@ -38,7 +38,7 @@ A switchboard plug to configure the behavior of mice and touchpads.
 
 
 %build
-%meson -Dgnome_40=true
+%meson
 %meson_build
 
 
