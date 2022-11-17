@@ -5,8 +5,8 @@
 
 Name:           elementary-calendar
 Summary:        Desktop calendar app designed for elementary
-Version:        6.1.1
-Release:        %autorelease
+Version:        6.1.2
+Release:        1%{?dist}
 License:        GPLv3+
 
 URL:            https://github.com/elementary/calendar
@@ -104,5 +104,8 @@ appstream-util validate-relax --nonet \
 
 
 %changelog
+* Thu Nov 17 2022 windowsboy111 <wboy111@outlook.com> - 6.1.2-1
+- new version
+
 * Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
 - Repackaged for Terra

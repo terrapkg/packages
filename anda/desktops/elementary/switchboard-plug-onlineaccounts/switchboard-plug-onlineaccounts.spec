@@ -6,8 +6,8 @@
 
 Name:           switchboard-plug-onlineaccounts
 Summary:        Switchboard Online Accounts plug
-Version:        6.5.0
-Release:        %autorelease
+Version:        6.5.1
+Release:        1%{?dist}
 License:        GPLv3+
 
 URL:            https://github.com/elementary/switchboard-plug-onlineaccounts
@@ -71,5 +71,8 @@ appstream-util validate-relax --nonet \
 
 
 %changelog
+* Thu Nov 17 2022 windowsboy111 <wboy111@outlook.com> - 6.5.1-1
+- new version
+
 * Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
 - Repackaged for Terra

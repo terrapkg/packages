@@ -3,7 +3,7 @@
 %global commit      98add575720aa077b7d253477e26c463a55e71da
 %forgemeta
 
-Version: 4.025
+Version: 4.101
 Release: 10%{?dist}
 URL:     %{forgeurl}
 
@@ -58,7 +58,10 @@ This package provides optional documentation files shipped with
 %doc documents/*
 
 %changelog
-* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
+* Thu Nov 17 2022 windowsboy111 <windowsboy111@fyralabs.com> - 4.101
+- Bump
+
+* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com> - 4.025
 - Repackaged for Terra
 
 * Thu Jul 21 2022 Fedora Release Engineering <releng@fedoraproject.org> - 4.025-10

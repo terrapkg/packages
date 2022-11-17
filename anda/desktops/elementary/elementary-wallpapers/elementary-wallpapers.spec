@@ -3,8 +3,8 @@
 
 Name:           elementary-wallpapers
 Summary:        Collection of wallpapers from the elementary project
-Version:        5.4
-Release:        7%{?dist}
+Version:        6.1.0
+Release:        1%{?dist}
 
 # License breakdown is available in debian/copyright
 License:        Public Domain
@@ -75,6 +75,9 @@ cp -pav %{SOURCE1} %{buildroot}/%{_datadir}/gnome-background-properties/
 
 
 %changelog
+* Thu Nov 17 2022 windowsboy111 <wboy111@outlook.com> - 6.1.0-1
+- new version
+
 * Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
 - Repackaged for Terra
 

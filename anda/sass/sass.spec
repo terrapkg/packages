@@ -4,8 +4,8 @@
 %define _build_id_links none
 
 Name: sass
-Version: 1.53.0
-Release: 5%{?dist}
+Version: 1.56.1
+Release: 1%{?dist}
 Summary: The reference implementation of Sass, written in Dart
 License: MIT
 URL: https://sass-lang.com/dart-sass
@@ -34,5 +34,8 @@ install -m 755 sass %{buildroot}%{_bindir}/sass
 %doc README.md
 
 %changelog
+* Thu Nov 17 2022 windowsboy111 <wboy111@outlook.com> - 1.56.1-1
+- new version
+
 * Tue Oct 11 2022 Cappy Ishihara <cappy@cappuchino.xyz> - 1.53.0-5
 - Repackaged from tauOS repository

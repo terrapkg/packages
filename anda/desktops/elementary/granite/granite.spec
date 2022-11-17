@@ -5,8 +5,8 @@ apps built for elementary.}
 
 Name:           granite
 Summary:        elementary companion library for GTK+ and GLib
-Version:        6.2.0
-Release:        %autorelease
+Version:        7.1.0
+Release:        1%{?dist}
 License:        LGPLv3+
 
 URL:            https://github.com/elementary/granite
@@ -97,5 +97,8 @@ appstream-util validate-relax --nonet \
 
 
 %changelog
+* Thu Nov 17 2022 windowsboy111 <wboy111@outlook.com> - 7.1.0-1
+- new version
+
 * Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
 - Repackaged for Terra

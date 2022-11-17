@@ -10,7 +10,7 @@ BuildRequires:  cargo meson cmake libappstream-glib gcc-c++ pkgconfig(alsa) alsa
 BuildRequires:  pkgconfig(glib-2.0) >= 2.66
 BuildRequires:  pkgconfig(gtk4) >= 4.7
 BuildRequires:  pkgconfig(libadwaita-1) >= 1.2
-BuildRequires:  pkgconfig(poppler-glib) >= 22.09
+BuildRequires:  pkgconfig(poppler-glib) >= 22.07
 
 %description
 Rnote is an open-source vector-based drawing app for sketching, handwritten notes and to annotate documents and pictures. Targeted at students, teachers and those who own a drawing tablet, it provides features like PDF and picture import and export, an infinite canvas and an adaptive UI for big and small screens.

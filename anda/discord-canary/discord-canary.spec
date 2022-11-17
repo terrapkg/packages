@@ -30,7 +30,7 @@ install discord.png %{buildroot}%{_datadir}/pixmaps/discord-canary.png
 %{_datadir}/pixmaps/discord-canary.png
 
 %changelog
-* Fri Nov 04 2022 root - 0.0.143-1
+* Thu Nov 17 2022 windowsboy111 <wboy111@outlook.com> - 0.0.143-1
 - new version
 
 * Fri Oct 28 2022 root - 0.0.142-1

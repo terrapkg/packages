@@ -10,8 +10,8 @@ utilizes Granite for a consistent and slick UI.}
 
 Name:           elementary-music
 Summary:        Music player and library from elementary
-Version:        5.1.1
-Release:        %autorelease
+Version:        7.0.0
+Release:        1%{?dist}
 License:        LGPLv2+
 
 URL:            https://github.com/elementary/%{srcname}
@@ -122,5 +122,8 @@ appstream-util validate-relax --nonet \
 
 
 %changelog
+* Thu Nov 17 2022 windowsboy111 <wboy111@outlook.com> - 7.0.0-1
+- new version
+
 * Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
 - Repackaged for Terra
