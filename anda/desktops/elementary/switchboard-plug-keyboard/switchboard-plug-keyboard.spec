@@ -8,7 +8,7 @@
 
 Name:           switchboard-plug-keyboard
 Summary:        Switchboard Keyboard plug
-Version:        2.7.0
+Version:        3.1.0
 Release:        %autorelease
 License:        GPLv3+
 

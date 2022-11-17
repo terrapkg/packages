@@ -8,7 +8,7 @@
 
 Name:           switchboard-plug-sound
 Summary:        Switchboard Sound Plug
-Version:        2.3.1
+Version:        2.3.2
 Release:        %autorelease
 License:        LGPLv2+
 
