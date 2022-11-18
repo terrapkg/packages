@@ -12,7 +12,7 @@ Version:        6.0.1
 Release:        %autorelease
 License:        GPLv3+
 
-URL:            http://github.com/elementary/switchboard-plug-applications
+URL:            https://github.com/elementary/switchboard-plug-applications
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 
 BuildRequires:  gettext

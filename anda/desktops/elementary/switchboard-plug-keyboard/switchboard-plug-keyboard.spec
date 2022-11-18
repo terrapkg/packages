@@ -15,9 +15,6 @@ License:        GPLv3+
 URL:            https://github.com/elementary/switchboard-plug-keyboard
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 
-# upstream patch to support screenshot keyboard shortcut changes in gala
-Patch:          %{url}/commit/6ebd576.patch
-
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson

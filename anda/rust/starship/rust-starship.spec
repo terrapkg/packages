@@ -12,9 +12,6 @@ Summary:        Minimal, blazing-fast, and infinitely customizable prompt for an
 License:        ISC
 URL:            https://crates.io/crates/starship
 Source:         %{crates_source}
-# Automatically generated patch to strip foreign dependencies
-Patch:          starship-fix-metadata-auto.diff
-
 ExclusiveArch:  %{rust_arches}
 
 BuildRequires:  rust-packaging >= 21

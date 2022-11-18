@@ -69,7 +69,7 @@ This package contains files needed for developing with Music.
 
 
 %build
-%meson -Dplugins=audioplayer,ipod
+%meson
 %meson_build
 
 
