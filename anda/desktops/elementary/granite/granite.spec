@@ -57,8 +57,6 @@ This package contains the development headers.
 %install
 %meson_install
 
-%find_lang granite
-
 
 %check
 desktop-file-validate \
