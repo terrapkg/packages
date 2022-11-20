@@ -3,7 +3,7 @@
 
 Name:           elementary-shortcut-overlay
 Summary:        Native, OS-wide shortcut overlay
-Version:        1.2.1
+Version:        2.0.1
 Release:        %autorelease
 License:        GPLv3
 

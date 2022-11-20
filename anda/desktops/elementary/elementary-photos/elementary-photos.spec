@@ -5,7 +5,7 @@
 
 Name:           elementary-photos
 Summary:        Photo manager and viewer from elementary
-Version:        2.7.5
+Version:        2.8.0
 Release:        %autorelease
 License:        LGPLv2+
 
