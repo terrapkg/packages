@@ -66,6 +66,7 @@ appstream-util validate-relax --nonet \
 
 %dir %{_datadir}/themes/%{appname}.*/
 %{_datadir}/themes/%{appname}.*/gtk-3.0/
+%{_datadir}/themes/%{appname}.*/gtk-4.0/
 
 %{_datadir}/metainfo/%{appname}.appdata.xml
 

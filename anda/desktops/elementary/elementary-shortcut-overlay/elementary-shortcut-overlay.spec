@@ -10,9 +10,6 @@ License:        GPLv3
 URL:            https://github.com/elementary/shortcut-overlay
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 
-# meson: remove deprecated positional arguments from i18n.merge_file calls
-Patch1:         0001-meson-remove-deprecated-positional-arguments-from-i1.patch
-
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib

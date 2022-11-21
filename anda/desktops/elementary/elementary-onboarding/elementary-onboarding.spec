@@ -12,7 +12,7 @@ Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 
 # Patch to fix "NotShowIn" in group "Desktop Entry" contains an unregistered value "Installer"
 # https://github.com/elementary/onboarding/issues/154
-Patch0:         %{url}/pull/155.patch
+# Patch0:         %%{url}/pull/155.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext

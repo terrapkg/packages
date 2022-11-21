@@ -21,6 +21,7 @@ BuildRequires:  pkgconfig(glib-2.0) >= 2.32.0
 BuildRequires:  pkgconfig(gobject-2.0)
 BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(libgeoclue-2.0)
+BuildRequires:  pkgconfig(granite)
 
 %description
 Provides a dialog asking for the user's permission when an application

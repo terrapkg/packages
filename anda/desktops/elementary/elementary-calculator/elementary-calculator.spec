@@ -19,6 +19,7 @@ BuildRequires:  vala
 BuildRequires:  pkgconfig(granite) >= 6.0.0
 BuildRequires:  pkgconfig(gtk+-3.0) >= 3.11.6
 BuildRequires:  pkgconfig(libhandy-1) >= 0.91.0
+BuildRequires:  pkgconfig(gtk4)
 
 Requires:       hicolor-icon-theme
 

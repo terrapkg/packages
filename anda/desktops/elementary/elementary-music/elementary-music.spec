@@ -28,7 +28,7 @@ BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  pkgconfig(gio-2.0)
 BuildRequires:  pkgconfig(glib-2.0) >= 2.40
 BuildRequires:  pkgconfig(gobject-2.0)
-BuildRequires:  pkgconfig(granite) >= 6.0.0
+BuildRequires:  granite-devel >= 7.0.0
 BuildRequires:  pkgconfig(gstreamer-1.0)
 BuildRequires:  pkgconfig(gstreamer-pbutils-1.0)
 BuildRequires:  pkgconfig(gstreamer-tag-1.0)
