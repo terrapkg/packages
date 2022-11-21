@@ -1,0 +1,11 @@
+{
+  "name": "Fedora",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "args": { "VARIANT": "37" }
+  },
+  "settings": {},
+  "extensions": [],
+  "remoteUser": "vscode",
+  "runArgs": ["--privileged"]
+}
