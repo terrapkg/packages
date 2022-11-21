@@ -11,7 +11,7 @@ Summary:    CJK Unicode font Ming style
 
 
 %prep
-%setup -n fonts-arphic-uming-%{version}
+%setup -n ttf-arphic-uming-%{version}
 
 
 %install
