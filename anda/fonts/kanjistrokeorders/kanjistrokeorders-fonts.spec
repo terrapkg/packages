@@ -6,6 +6,7 @@ License:    custom
 Summary:    Kanji stroke order font
 BuildRequires: unzip
 
+
 %description
 %{summary}.
 

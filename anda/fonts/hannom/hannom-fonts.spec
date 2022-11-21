@@ -11,7 +11,6 @@ BuildRequires: unzip
 %description
 %{summary}.
 
-
 %prep
 unzip %{SOURCE0}
 

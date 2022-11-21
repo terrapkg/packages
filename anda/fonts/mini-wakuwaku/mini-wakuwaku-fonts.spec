@@ -7,6 +7,7 @@ License:    custom
 Summary:    A fat looking, rounded and cute Japanese font
 BuildRequires: unzip
 
+
 %description
 %{summary}.
 
