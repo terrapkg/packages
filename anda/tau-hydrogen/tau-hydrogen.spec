@@ -8,6 +8,8 @@ Source0:        https://github.com/tau-OS/tau-hydrogen/archive/refs/tags/%{versi
 BuildArch:      noarch
 BuildRequires:  meson
 BuildRequires:  ninja-build
+BuildRequires:  librsvg2-tools
+BuildRequires:  xcursorgen
 
 %description
 Hydrogen is the default icon theme in tauOS
@@ -27,8 +29,9 @@ mkdir -p licenses
 %files
 %license LICENSE
 %doc README.md
-%{_datadir}/themes/Helium/*
-%{_datadir}/themes/Helium-dark/*
+%{_datadir}/icons/Hydrogen/*
+%{_datadir}/gimp/2.0/palettes/Helium.gpl
+%{_datadir}/inkscape/palettes/Helium.gpl
 
 %changelog
 * Sun Nov 20 2022 Lleyton Gray <lleyton@fyralabs.com> - 1.0.1
