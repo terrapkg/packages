@@ -4,8 +4,7 @@ Release:    %autorelease
 URL:        https://www.freedesktop.org/wiki/Software/CJKUnifonts
 Source0:	https://deb.debian.org/debian/pool/main/f/fonts-arphic-ukai/fonts-arphic-ukai_%{version}.orig.tar.bz2
 License:    custom
-Summary:    A fat looking, rounded and cute Japanese font
-BuildRequires: unzip
+Summary:    CJK Unicode font Kaiti style
 
 %description
 %{summary}.
