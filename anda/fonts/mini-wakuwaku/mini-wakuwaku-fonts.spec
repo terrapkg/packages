@@ -6,6 +6,7 @@ Source0:	http://mini-design.jp/font/img/mini-wakuwaku.zip
 License:    custom
 Summary:    A fat looking, rounded and cute Japanese font
 BuildRequires: unzip
+BuildArch: noarch
 
 
 %description

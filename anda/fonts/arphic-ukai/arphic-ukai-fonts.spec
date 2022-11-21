@@ -5,6 +5,7 @@ URL:        https://www.freedesktop.org/wiki/Software/CJKUnifonts
 Source0:	https://deb.debian.org/debian/pool/main/f/fonts-arphic-ukai/fonts-arphic-ukai_%{version}.orig.tar.bz2
 License:    custom
 Summary:    CJK Unicode font Kaiti style
+BuildArch: noarch
 
 %description
 %{summary}.

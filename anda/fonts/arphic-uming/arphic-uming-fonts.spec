@@ -5,6 +5,7 @@ URL:        https://www.freedesktop.org/wiki/Software/CJKUnifonts
 Source0:	https://deb.debian.org/debian/pool/main/f/fonts-arphic-uming/fonts-arphic-uming_%{version}.orig.tar.bz2
 License:    custom
 Summary:    CJK Unicode font Ming style
+BuildArch: noarch
 
 %description
 %{summary}.

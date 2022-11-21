@@ -5,6 +5,7 @@ URL:        https://sites.google.com/site/nihilistorguk
 License:    custom
 Summary:    Kanji stroke order font
 BuildRequires: unzip
+BuildArch: noarch
 
 
 %description

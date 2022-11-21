@@ -7,6 +7,7 @@ Source1:    COPYING
 License:    custom
 Summary:    Chinese and Vietnamese TrueType fonts
 BuildRequires: unzip
+BuildArch: noarch
 
 %description
 %{summary}.
