@@ -57,45 +57,38 @@ This package contains the development headers.
 %install
 %meson_install
 
-%find_lang granite
-
+%find_lang granite-7
 
 %check
 desktop-file-validate \
-    %{buildroot}/%{_datadir}/applications/io.elementary.granite.demo.desktop
+    %{buildroot}/%{_datadir}/applications/io.elementary.granite-7.demo.desktop
 
 appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/granite.appdata.xml
+    %{buildroot}/%{_datadir}/metainfo/granite-7.appdata.xml
 
 
-%files -f granite.lang
+%files -f granite-7.lang
 %doc README.md
 %license COPYING
 
-%{_libdir}/libgranite.so.6
-%{_libdir}/libgranite.so.6.*
+%{_libdir}/libgranite-7.so.7
+%{_libdir}/libgranite-7.so.7.*
+%{_libdir}/girepository-1.0/Granite-7.0.typelib
 
-%{_libdir}/girepository-1.0/Granite-1.0.typelib
-
-%{_datadir}/icons/hicolor/*/actions/appointment.svg
-%{_datadir}/icons/hicolor/*/actions/open-menu.svg
-%{_datadir}/icons/hicolor/scalable/actions/open-menu-symbolic.svg
-
-%{_datadir}/metainfo/granite.appdata.xml
+%{_datadir}/metainfo/granite-7.appdata.xml
 
 %files devel
-%{_bindir}/granite-demo
+%{_bindir}/granite-7-demo
 
-%{_libdir}/libgranite.so
-%{_libdir}/pkgconfig/granite.pc
+%{_libdir}/libgranite-7.so
+%{_libdir}/pkgconfig/granite-7.pc
 
-%{_includedir}/granite/
+%{_includedir}/granite-7/granite-7.h
 
-%{_datadir}/applications/io.elementary.granite.demo.desktop
-%{_datadir}/gir-1.0/Granite-1.0.gir
-%{_datadir}/vala/vapi/granite.deps
-%{_datadir}/vala/vapi/granite.vapi
-
+%{_datadir}/applications/io.elementary.granite-7.demo.desktop
+%{_datadir}/gir-1.0/Granite-7.0.gir
+%{_datadir}/vala/vapi/granite-7.deps
+%{_datadir}/vala/vapi/granite-7.vapi
 
 %changelog
 * Thu Nov 17 2022 windowsboy111 <wboy111@outlook.com> - 7.1.0-1

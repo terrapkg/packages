@@ -3,7 +3,7 @@
 
 Name:           elementary-onboarding
 Summary:        Onboarding app for new users
-Version:        6.1.0
+Version:        7.0.1
 Release:        %autorelease
 License:        GPLv3+
 

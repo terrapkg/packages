@@ -3,7 +3,7 @@
 
 Name:           elementary-calculator
 Summary:        Calculator app designed for elementary
-Version:        1.7.2
+Version:        2.0.0
 Release:        %autorelease
 License:        GPLv3+
 

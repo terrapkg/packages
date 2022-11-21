@@ -3,7 +3,7 @@
 
 Name:           elementary-greeter
 Summary:        LightDM Login Screen for the elementary desktop
-Version:        6.1.0
+Version:        6.1.1
 Release:        %autorelease
 License:        GPLv3
 

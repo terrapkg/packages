@@ -3,7 +3,7 @@
 
 Name:           elementary-tasks
 Summary:        Synced tasks and reminders application
-Version:        6.3.0
+Version:        6.3.1
 Release:        %autorelease
 License:        GPLv3+
 
