@@ -27,6 +27,7 @@ Summary:    A free font family derived from setofont (TW version)
 
 
 %install
+mkdir -p %{buildroot}/%{_datadir}/fonts/%{name}-{jp,tw}/
 install -D -m644 jp/*.ttf %{buildroot}/%{_datadir}/fonts/%{name}-jp/
 install -D -m644 tw/*.ttf %{buildroot}/%{_datadir}/fonts/%{name}-tw/
 
