@@ -23,7 +23,7 @@ install -D -m644 KanjiStrokeOrders_v%{version}.ttf %{buildroot}/%{_datadir}/font
 
 %files
 %defattr(-,root,root,0755)
-/%{prefix}/%{name}
+/%{_datadir}/fonts/TTF/KanjiStrokeOrders_v%{version}.ttf
 
 %changelog
 * Mon Nov 21 2022 windowsboy111 <windowsboy111@fyralabs.com> - 4.004
