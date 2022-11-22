@@ -16,7 +16,7 @@ BuildRequires:  libappstream-glib
 BuildRequires:  meson >= 0.49
 BuildRequires:  vala
 
-BuildRequires:  pkgconfig(granite) >= 6.0.0
+BuildRequires:  pkgconfig(granite-7) >= 7.0.0
 BuildRequires:  pkgconfig(gtk+-3.0) >= 3.11.6
 BuildRequires:  pkgconfig(libhandy-1) >= 0.91.0
 BuildRequires:  pkgconfig(gtk4)
