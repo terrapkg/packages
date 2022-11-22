@@ -75,12 +75,6 @@ This package contains files needed for developing with Music.
 
 %install
 %meson_install
-
-ls %{_libdir}
-ls %{_libdir}/pkgconfig
-ls %{_includedir}
-ls %{datadir}/vala/*
-
 %find_lang %{appname}
 
 
