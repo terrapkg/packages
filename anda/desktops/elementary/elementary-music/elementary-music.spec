@@ -11,7 +11,7 @@ utilizes Granite for a consistent and slick UI.}
 Name:           elementary-music
 Summary:        Music player and library from elementary
 Version:        7.0.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        LGPLv2+
 
 URL:            https://github.com/elementary/%{srcname}
@@ -76,6 +76,11 @@ This package contains files needed for developing with Music.
 %install
 %meson_install
 
+ls %{_libdir}
+ls %{_libdir}/pkgconfig
+ls %{_includedir}
+ls %{datadir}/vala/*
+
 %find_lang %{appname}
 
 
@@ -97,6 +102,7 @@ appstream-util validate-relax --nonet \
 %{_datadir}/glib-2.0/schemas/%{appname}.gschema.xml
 %{_datadir}/icons/hicolor/*/apps/%{appname}.svg
 %{_datadir}/metainfo/%{appname}.appdata.xml
+%{_datadir}/locale/*/LC_MESSAGES/%{appname}.mo
 
 %files devel
 
