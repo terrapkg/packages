@@ -89,20 +89,9 @@ appstream-util validate-relax --nonet \
 
 %files -f %{appname}.lang
 %doc README.md
-%license COPYING
+%license LICENSE
 
 %{_bindir}/%{appname}
-
-%{_libdir}/lib%{appname}-core.so.0
-%{_libdir}/lib%{appname}-core.so.0.1
-
-%dir %{_libdir}/%{appname}
-%dir %{_libdir}/%{appname}/plugins
-
-%{_libdir}/%{appname}/plugins/audioplayer-device.plugin
-%{_libdir}/%{appname}/plugins/libaudioplayer-device.so
-%{_libdir}/%{appname}/plugins/ipod-device.plugin
-%{_libdir}/%{appname}/plugins/libipod-device.so
 
 %{_datadir}/applications/%{appname}.desktop
 %{_datadir}/glib-2.0/schemas/%{appname}.gschema.xml
@@ -110,7 +99,6 @@ appstream-util validate-relax --nonet \
 %{_datadir}/metainfo/%{appname}.appdata.xml
 
 %files devel
-%{_libdir}/lib%{appname}-core.so
 %{_libdir}/pkgconfig/%{appname}-core.pc
 
 %{_includedir}/%{appname}-core.h
