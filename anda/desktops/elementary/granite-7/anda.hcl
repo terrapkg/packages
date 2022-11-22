@@ -1,6 +1,6 @@
 project "pkg" {
     rpm {
-        spec = "granite.spec"
+        spec = "granite-7.spec"
         sources = "."
     }
 }

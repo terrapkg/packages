@@ -3,7 +3,7 @@ Granite is a companion library for GTK+ and GLib. Among other things, it
 provides complex widgets and convenience functions designed for use in
 apps built for elementary.}
 
-Name:           granite
+Name:           granite-7
 Summary:        elementary companion library for GTK+ and GLib
 Version:        7.1.0
 Release:        1%{?dist}

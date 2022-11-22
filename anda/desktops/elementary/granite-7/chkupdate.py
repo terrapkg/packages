@@ -2,7 +2,7 @@ import os
 import requests
 import re
 
-NAME = 'granite'
+NAME = 'granite-7'
 REPO = "elementary/granite"
 REGEX_VER = r'Version:\s*([\.\d]+)\n'
 SPEC = f"{NAME}.spec"
