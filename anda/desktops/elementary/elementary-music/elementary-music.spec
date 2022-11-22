@@ -99,13 +99,6 @@ appstream-util validate-relax --nonet \
 %{_datadir}/metainfo/%{appname}.appdata.xml
 
 %files devel
-%{_libdir}/pkgconfig/%{appname}-core.pc
-
-%{_includedir}/%{appname}-core.h
-
-%{_datadir}/vala/vapi/%{appname}-core.deps
-%{_datadir}/vala/vapi/%{appname}-core.vapi
-
 
 %changelog
 * Thu Nov 17 2022 windowsboy111 <wboy111@outlook.com> - 7.0.0-1
