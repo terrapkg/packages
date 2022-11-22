@@ -1,5 +1,5 @@
 %global srcname wallpapers
-%global default_wallpaper "Ryan Schroeder.jpg"
+%global default_wallpaper "Photo of Valley.jpg"
 
 Name:           elementary-wallpapers
 Summary:        Collection of wallpapers from the elementary project
@@ -51,20 +51,22 @@ wallpapers show up in gnome-control-center.
 
 
 %install
+cd wallpapers
 # copy wallpapers to install location
 mkdir -p %{buildroot}/%{_datadir}/backgrounds/elementary
-sh -c "cp -pav *.jpg %{buildroot}/%{_datadir}/backgrounds/elementary/"
+cp -pav *.jpg %{buildroot}/%{_datadir}/backgrounds/elementary/
 
 # create default wallpaper symlink
 ln -s ./%{default_wallpaper} %{buildroot}/%{_datadir}/backgrounds/elementary/default
 
 # copy backgrounds list for gnome-control-center to install location
 mkdir -p %{buildroot}/%{_datadir}/gnome-background-properties
+cd ..
 cp -pav %{SOURCE1} %{buildroot}/%{_datadir}/gnome-background-properties/
 
 
 %files
-%license debian/copyright
+%license LICENSE.md
 %doc README.md
 
 %{_datadir}/backgrounds/elementary/
