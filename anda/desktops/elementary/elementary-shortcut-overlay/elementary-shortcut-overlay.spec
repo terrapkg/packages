@@ -17,9 +17,8 @@ BuildRequires:  meson
 BuildRequires:  vala
 
 BuildRequires:  pkgconfig(gee-0.8)
-BuildRequires:  pkgconfig(granite) >= 5.2.0
-BuildRequires:  pkgconfig(gtk+-3.0)
-BuildRequires:  pkgconfig(libhandy-1) >= 0.80.0
+BuildRequires:  pkgconfig(granite-7)    >= 7.0.0
+BuildRequires:  pkgconfig(gtk4)
 
 %description
 This GTK+ applet reads window manager and OS keyboard shortcuts from
