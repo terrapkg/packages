@@ -6,8 +6,8 @@
 %global crate sccache
 
 Name:           rust-sccache
-Version:        0.3.0
-Release:        3%{?dist}
+Version:        0.3.1
+Release:        %autorelease
 Summary:        Ccache-like tool
 
 License:        Apache-2.0
