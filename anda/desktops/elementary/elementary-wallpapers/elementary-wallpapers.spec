@@ -51,7 +51,7 @@ wallpapers show up in gnome-control-center.
 
 
 %install
-cd wallpapers
+cd backgrounds
 # copy wallpapers to install location
 mkdir -p %{buildroot}/%{_datadir}/backgrounds/elementary
 cp -pav *.jpg %{buildroot}/%{_datadir}/backgrounds/elementary/
