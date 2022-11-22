@@ -18,12 +18,7 @@ unzip a.zip
 
 
 %install
-mkdir -p $RPM_BUILD_ROOT/%{prefix}/%{name}/
-cp -r *.ttf $RPM_BUILD_ROOT/%{prefix}/%{name}/
-
-
-%clean
-rm -rf $RPM_BUILD_ROOT
+install -D -m644 KanjiStrokeOrders_v%{version}.ttf %{buildroot}/%{_datadir}/fonts/TTF/KanjiStrokeOrders_v%{version}.ttf
 
 
 %files

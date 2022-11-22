@@ -17,18 +17,14 @@ unzip %{SOURCE0}
 
 
 %install
-mkdir -p $RPM_BUILD_ROOT/%{prefix}/%{name}/
-cp -r *.ttf $RPM_BUILD_ROOT/%{prefix}/%{name}/
-
-
-%clean
-rm -rf $RPM_BUILD_ROOT
+install -D -m644 'HAN NOM A.ttf' "%{buildroot}/%{_datadir}/fonts/hannom/HAN NOM A.ttf"
+install -D -m644 'HAN NOM B.ttf' "%{buildroot}/%{_datadir}/fonts/hannom/HAN NOM B.ttf"
 
 
 %files
 # %license %{SOURCE1}
 %defattr(-,root,root,0755)
-/%{prefix}/%{name}
+/%{_datadir}/fonts/hannom/
 
 %changelog
 * Mon Nov 21 2022 windowsboy111 <windowsboy111@fyralabs.com> - 4.004

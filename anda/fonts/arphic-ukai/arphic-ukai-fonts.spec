@@ -16,14 +16,14 @@ BuildArch: noarch
 
 
 %install
-install -D -m644 ukai.ttc %{buildroot}/%{_datadir}/fonts/TTF/ukai.ttc
+install -D -m644 ukai.ttc %{buildroot}/%{_datadir}/fonts/arphic-ukai/ukai.ttc
 
 
 %files
 %doc README
 %license license/english/ARPHICPL.TXT
 %defattr(-,root,root,0755)
-/%{_datadir}/fonts/TTF/ukai.ttc
+/%{_datadir}/fonts/arphic-ukai/ukai.ttc
 
 %changelog
 * Mon Nov 21 2022 windowsboy111 <windowsboy111@fyralabs.com> - 4.004

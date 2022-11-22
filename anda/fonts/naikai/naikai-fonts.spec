@@ -27,26 +27,22 @@ Summary:    A free font family derived from setofont (TW version)
 
 
 %install
-mkdir -p $RPM_BUILD_ROOT/%{prefix}/%{name}-{jp,tw}/
-cp -r jp/*.ttf $RPM_BUILD_ROOT/%{prefix}/%{name}-jp/
-cp -r tw/*.ttf $RPM_BUILD_ROOT/%{prefix}/%{name}-tw/
-
-
-%clean
-rm -rf $RPM_BUILD_ROOT
+mkdir 
+install -D -m644 jp/*.ttf %{buildroot}/%{_datadir}/fonts/%{name}-jp/
+install -D -m644 tw/*.ttf %{buildroot}/%{_datadir}/fonts/%{name}-tw/
 
 
 %files jp
 %doc README.md
 %license SIL_Open_Font_License_1.1.txt
 %defattr(-,root,root,0755)
-/%{prefix}/%{name}-jp
+/%{_datadir}/fonts/%{name}-jp
 
 %files tw
 %doc README.md
 %license SIL_Open_Font_License_1.1.txt
 %defattr(-,root,root,0755)
-/%{prefix}/%{name}-tw
+/%{_datadir}/fonts/%{name}-tw
 
 %changelog
 * Tue Nov 22 2022 windowsboy111 <windowsboy111@fyralabs.com> - 1.87

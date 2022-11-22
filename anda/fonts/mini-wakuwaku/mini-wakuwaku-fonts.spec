@@ -18,18 +18,14 @@ BuildArch: noarch
 
 
 %install
-mkdir -p $RPM_BUILD_ROOT/%{prefix}/%{name}/
-cp -r *.otf $RPM_BUILD_ROOT/%{prefix}/%{name}/
-
-
-%clean
-rm -rf $RPM_BUILD_ROOT
+install -D -m644 mini-wakuwaku-maru.otf %{buildroot}/%{_datadir}/fonts/mini-wakuwaku/mini-wakuwaku-maru.otf
+install -D -m644 mini-wakuwaku.otf %{buildroot}/%{_datadir}/fonts/mini-wakuwaku/mini-wakuwaku.otf
 
 
 %files
 %doc readme.html
 %defattr(-,root,root,0755)
-/%{prefix}/%{name}
+/%{_datadir}/fonts/mini-wakuwaku/
 
 %changelog
 * Mon Nov 21 2022 windowsboy111 <windowsboy111@fyralabs.com> - 4.004

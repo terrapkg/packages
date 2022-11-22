@@ -16,14 +16,14 @@ BuildArch: noarch
 
 
 %install
-install -D -m644 uming.ttc %{buildroot}/%{_datadir}/fonts/TTF/uming.ttc
+install -D -m644 uming.ttc %{buildroot}/%{_datadir}/fonts/arphic-uming/uming.ttc
 
 
 %files
 %doc README
 %license license/english/ARPHICPL.TXT
 %defattr(-,root,root,0755)
-/%{_datadir}/fonts/TTF/uming.ttc
+/%{_datadir}/fonts/arphic-uming/uming.ttc
 
 %changelog
 * Mon Nov 21 2022 windowsboy111 <windowsboy111@fyralabs.com> - 4.004
