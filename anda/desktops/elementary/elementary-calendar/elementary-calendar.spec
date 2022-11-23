@@ -22,9 +22,9 @@ BuildRequires:  pkgconfig(libecal-2.0)
 #BuildRequires:  libedataserverui1.2-dev
 BuildRequires:  folks-devel
 BuildRequires:  libgee-devel
-BuildRequires:  geocode-glib-dev
-BuildRequires:  pkgconfig(geoclue2)
-BuildRequires:  pkgconfig(glib2)
+BuildRequires:  geocode-glib-devel
+BuildRequires:  geoclue2-devel
+BuildRequires:  glib2-devel
 BuildRequires:  granite-devel >= 6.2.0
 BuildRequires:  gtk+-devel
 BuildRequires:  libical
