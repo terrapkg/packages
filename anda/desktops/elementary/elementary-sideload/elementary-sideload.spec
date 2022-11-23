@@ -1,71 +1,68 @@
-%global srcname calculator
-%global appname io.elementary.calculator
-
-Name:           elementary-calculator
-Summary:        Calculator app designed for elementary
-Version:        2.0.0
+%global srcname sideload
+%global appname io.elementary.sideload
+ 
+Name:           elementary-sideload
+Summary:        Sideload flatpaks on Pantheon
+Version:        6.1.0
 Release:        %autorelease
 License:        GPLv3+
-
-URL:            https://github.com/elementary/%{srcname}
+ 
+URL:            https://github.com/elementary/sideload
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
-
+ 
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib
-BuildRequires:  meson >= 0.49
+BuildRequires:  meson
 BuildRequires:  vala
-
+ 
+BuildRequires:  pkgconfig(flatpak)
+BuildRequires:  pkgconfig(glib-2.0)
+BuildRequires:  pkgconfig(gobject-2.0)
 BuildRequires:  pkgconfig(granite-7) >= 7.0.0
 BuildRequires:  pkgconfig(gtk4)
-
+BuildRequires:  pkgconfig(libxml-2.0)
+ 
 Requires:       hicolor-icon-theme
-
-Provides:       pantheon-calculator = %{version}-%{release}
-Obsoletes:      pantheon-calculator < 0.1.3-5
-
+ 
 %description
-A simple calculator for everyday use.
-
-It supports basic and some scientific calculations, including trigonometry
-functions (sin, cos, and tan).
-
-
+Sideload is a simple application that lets users install flatpaks on
+Pantheon without needing to use a command line application.
+ 
+ 
 %prep
 %autosetup -n %{srcname}-%{version} -p1
-
-
+ 
+ 
 %build
 %meson
 %meson_build
-
-
+ 
 %install
 %meson_install
-
 %find_lang %{appname}
-
-
+ 
+ 
 %check
 desktop-file-validate \
     %{buildroot}/%{_datadir}/applications/%{appname}.desktop
-
+ 
 appstream-util validate-relax --nonet \
     %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
-
-
+ 
+ 
 %files -f %{appname}.lang
-%license COPYING
+%license LICENSE
 %doc README.md
-
+ 
 %{_bindir}/%{appname}
-
+ 
 %{_datadir}/applications/%{appname}.desktop
-%{_datadir}/glib-2.0/schemas/%{appname}.gschema.xml
 %{_datadir}/icons/hicolor/*/apps/%{appname}.svg
+%{_datadir}/glib-2.0/schemas/%{appname}.gschema.xml
 %{_datadir}/metainfo/%{appname}.appdata.xml
-
-
+ 
+ 
 %changelog
-* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
+* Tue Nov 22 2022 Lleyton Gray <lleyton@fyralabs.com>
 - Repackaged for Terra
