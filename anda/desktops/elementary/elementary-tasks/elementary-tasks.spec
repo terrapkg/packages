@@ -25,8 +25,7 @@ BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(gobject-2.0)
 BuildRequires:  pkgconfig(granite) >= 6.2.0
 BuildRequires:  pkgconfig(gtk+-3.0)
-BuildRequires:  pkgconfig(libecal-2.0)
-BuildRequires:  pkgconfig(libedataserver-1.2)
+BuildRequires:  pkgconfig(libedataserver-1.2) = 3.44.4
 BuildRequires:  pkgconfig(libgdata)
 BuildRequires:  pkgconfig(libgeoclue-2.0)
 BuildRequires:  pkgconfig(libhandy-1) >= 0.90.0
