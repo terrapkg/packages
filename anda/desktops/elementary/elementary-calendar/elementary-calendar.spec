@@ -26,7 +26,6 @@ BuildRequires:  libgee-devel
 BuildRequires:  geocode-glib-devel
 BuildRequires:  geoclue2-devel
 BuildRequires:  glib2-devel
-BuildRequires:  granite-devel >= 6.2.0
 BuildRequires:  gtk+-devel
 BuildRequires:  libical
 BuildRequires:  libhandy >= 0.90.0
