@@ -4,6 +4,7 @@ Name:           folks
 Version:        0.15.5
 Release:        4%{?dist}
 Summary:        GObject contact aggregation library
+Epoch:          1
 
 License:        LGPLv2+
 URL:            https://wiki.gnome.org/Projects/Folks
@@ -32,22 +33,22 @@ Facebook, etc.) to create meta-contacts.
 
 %package        telepathy
 Summary:        Folks telepathy backend
-Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{epoch}:%{version}-%{release}
 
 %description    telepathy
 %{name}-telepathy contains the folks telepathy backend.
 
 %package        tools
 Summary:        Tools for %{name}
-Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{epoch}:%{version}-%{release}
 
 %description    tools
 %{name}-tools contains a database and import tool.
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       %{name}-tools%{?_isa} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:       %{name}-tools%{?_isa} = %{epoch}:%{version}-%{release}
 
 %description    devel
 The %{name}-devel package contains libraries and header files for

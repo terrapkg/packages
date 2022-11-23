@@ -16,12 +16,10 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  pkgconfig(champlain-0.12)
-BuildRequires:  pkgconfig(champlain-gtk-0.12)
-BuildRequires:  pkgconfig(clutter-1.0)
-BuildRequires:  pkgconfig(libecal-2.0)
+# BuildRequires:  pkgconfig(libecal-2.0)
 BuildRequires:  pkgconfig(granite)
-#BuildRequires:  libedataserverui1.2-dev
-BuildRequires:  folks-devel
+BuildRequires:  pkgconfig(libhandy-1)
+BuildRequires:  folks-devel = 0.15.5-4
 BuildRequires:  libgee-devel
 BuildRequires:  geocode-glib-devel
 BuildRequires:  geoclue2-devel
@@ -31,6 +29,7 @@ BuildRequires:  libical
 BuildRequires:  libhandy >= 0.90.0
 BuildRequires:  meson
 BuildRequires:  vala
+BuildRequires:  evolution-data-server-devel = 3.44.4
 
 Requires:       hicolor-icon-theme
 
