@@ -462,16 +462,6 @@ find $RPM_BUILD_ROOT -name '*.so.*' -exec chmod +x {} \;
 %{_datadir}/vala/vapi/libedataserverui-1.2.vapi
 %{_datadir}/vala/vapi/libedataserverui4-1.0.deps
 %{_datadir}/vala/vapi/libedataserverui4-1.0.vapi
-/usr/lib/debug/usr/lib64/libcamel-1.2.so.64.0.0-3.46.1-2.fc37.x86_64.debug
-/usr/lib/debug/usr/lib64/libebackend-1.2.so.11.0.0-3.46.1-2.fc37.x86_64.debug
-/usr/lib/debug/usr/lib64/libebook-1.2.so.21.1.3-3.46.1-2.fc37.x86_64.debug
-/usr/lib/debug/usr/lib64/libebook-contacts-1.2.so.4.0.0-3.46.1-2.fc37.x86_64.debug
-/usr/lib/debug/usr/lib64/libecal-2.0.so.2.0.0-3.46.1-2.fc37.x86_64.debug
-/usr/lib/debug/usr/lib64/libedata-book-1.2.so.27.0.0-3.46.1-2.fc37.x86_64.debug
-/usr/lib/debug/usr/lib64/libedata-cal-2.0.so.2.0.0-3.46.1-2.fc37.x86_64.debug
-/usr/lib/debug/usr/lib64/libedataserver-1.2.so.27.0.0-3.46.1-2.fc37.x86_64.debug
-/usr/lib/debug/usr/lib64/libedataserverui-1.2.so.4.0.0-3.46.1-2.fc37.x86_64.debug
-/usr/lib/debug/usr/lib64/libedataserverui4-1.0.so.0.0.0-3.46.1-2.fc37.x86_64.debug
 
 %files langpacks -f %{name}.lang
 
