@@ -53,7 +53,7 @@
 
 Name: evolution-data-server
 Version: 3.44.4
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Backend data server for Evolution
 License: LGPLv2+
 URL: https://wiki.gnome.org/Apps/Evolution
@@ -142,7 +142,6 @@ Requires: pkgconfig(libgdata) >= %{libgdata_version}
 Requires: pkgconfig(gweather-3.0) >= %{libgweather_version}
 Requires: pkgconfig(libical-glib) >= %{libical_version}
 Requires: pkgconfig(libsecret-unstable) >= %{libsecret_version}
-Requires: pkgconfig(libsoup-2.4) >= %{libsoup_version}
 Requires: pkgconfig(sqlite3) >= %{sqlite_version}
 Requires: pkgconfig(webkit2gtk-4.0) >= %{webkit2gtk_version}
 Requires: pkgconfig(json-glib-1.0) >= %{json_glib_version}
