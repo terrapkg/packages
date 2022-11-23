@@ -13,7 +13,7 @@ Source1:        40-%{appname}.conf
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
-BuildRequires:  libappstream-glib
+BuildRequires:  appstream
 BuildRequires:  meson
 BuildRequires:  vala
 

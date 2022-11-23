@@ -144,7 +144,7 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 %cmake_install
 
 %if 0%{?suse_version} > 1500 || 0%{?fedora} > 35
-appstreamcli validate --nonet \
+appstream-util validate-relax --nonet \
     %{buildroot}%{_datadir}/metainfo/org.prismlauncher.PrismLauncher.metainfo.xml
 %endif
 

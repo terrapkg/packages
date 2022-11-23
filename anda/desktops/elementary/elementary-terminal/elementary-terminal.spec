@@ -15,7 +15,7 @@ Patch0:         00-drop-upstream-tests.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
-BuildRequires:  libappstream-glib
+BuildRequires:  appstream
 BuildRequires:  meson
 BuildRequires:  vala >= 0.40.0
 

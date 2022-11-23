@@ -15,7 +15,7 @@ Patch1:         0001-meson-remove-deprecated-positional-arguments-from-i1.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
-BuildRequires:  libappstream-glib
+BuildRequires:  appstream
 BuildRequires:  meson >= 0.46
 BuildRequires:  vala >= 0.24
 

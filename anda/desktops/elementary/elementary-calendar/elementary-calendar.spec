@@ -14,7 +14,7 @@ Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
-BuildRequires:  libappstream-glib
+BuildRequires:  appstream
 BuildRequires:  pkgconfig(champlain-0.12)
 BuildRequires:  pkgconfig(champlain-gtk-0.12)
 BuildRequires:  pkgconfig(clutter-1.0)

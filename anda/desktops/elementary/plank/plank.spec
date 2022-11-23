@@ -29,7 +29,7 @@ Source0:        https://github.com/elementary/dock/archive/%{commit}/dock-%{shor
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
 BuildRequires:  help2man
-BuildRequires:  libappstream-glib
+BuildRequires:  appstream
 BuildRequires:  meson
 BuildRequires:  vala
 

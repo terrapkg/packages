@@ -16,7 +16,7 @@ URL:            https://github.com/elementary/switchboard-plug-printers
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 
 BuildRequires:  gettext
-BuildRequires:  libappstream-glib
+BuildRequires:  appstream
 BuildRequires:  meson
 BuildRequires:  vala >= 0.22.0
 

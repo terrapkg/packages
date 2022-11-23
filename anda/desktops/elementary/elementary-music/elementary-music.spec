@@ -21,7 +21,7 @@ Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
 BuildRequires:  meson
-BuildRequires:  libappstream-glib
+BuildRequires:  appstream
 BuildRequires:  vala >= 0.26
 
 BuildRequires:  pkgconfig(gee-0.8)
