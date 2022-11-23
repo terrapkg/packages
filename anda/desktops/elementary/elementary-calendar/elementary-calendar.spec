@@ -15,25 +15,22 @@ Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib
-BuildRequires:  meson
-BuildRequires:  vala
-
 BuildRequires:  pkgconfig(champlain-0.12)
 BuildRequires:  pkgconfig(champlain-gtk-0.12)
 BuildRequires:  pkgconfig(clutter-1.0)
-BuildRequires:  pkgconfig(clutter-gtk-1.0)
-BuildRequires:  pkgconfig(folks)
-BuildRequires:  pkgconfig(gee-0.8)
-BuildRequires:  pkgconfig(geocode-glib-1.0)
-BuildRequires:  pkgconfig(glib-2.0)
-BuildRequires:  pkgconfig(gmodule-2.0)
-BuildRequires:  pkgconfig(granite) >= 6.2.0
-BuildRequires:  pkgconfig(gtk+-3.0) >= 3.22
-# BuildRequires:  pkgconfig(libecal-2.0)
-BuildRequires:  pkgconfig(libgeoclue-2.0)
-BuildRequires:  pkgconfig(libhandy-1) >= 0.90.0
-BuildRequires:  pkgconfig(libical-glib)
-BuildRequires:  pkgconfig(libsoup-2.4)
+BuildRequires:  pkgconfig(libecal-2.0)
+#BuildRequires:  libedataserverui1.2-dev
+BuildRequires:  folks-devel
+BuildRequires:  libgee-devel
+BuildRequires:  geocode-glib-dev
+BuildRequires:  pkgconfig(geoclue2)
+BuildRequires:  pkgconfig(glib2)
+BuildRequires:  granite-devel >= 6.2.0
+BuildRequires:  gtk+-devel
+BuildRequires:  libical
+BuildRequires:  libhandy >= 0.90.0
+BuildRequires:  meson
+BuildRequires:  vala
 
 Requires:       hicolor-icon-theme
 
