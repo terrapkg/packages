@@ -12,16 +12,18 @@ License:        GPLv3+
 URL:            https://github.com/elementary/calendar
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 
+Patch0:         https://patch-diff.githubusercontent.com/raw/elementary/calendar/pull/758.patch
+
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  pkgconfig(champlain-0.12)
-# BuildRequires:  pkgconfig(libecal-2.0)
+BuildRequires:  pkgconfig(libecal-2.0)
 BuildRequires:  pkgconfig(granite)
 BuildRequires:  pkgconfig(libhandy-1)
-BuildRequires:  folks-devel = 1:0.15.5-4.fc37
+BuildRequires:  folks-devel
 BuildRequires:  libgee-devel
-BuildRequires:  geocode-glib-devel
+BuildRequires:  pkgconfig(geocode-glib-2.0)
 BuildRequires:  geoclue2-devel
 BuildRequires:  glib2-devel
 BuildRequires:  gtk+-devel
@@ -29,7 +31,7 @@ BuildRequires:  libical
 BuildRequires:  libhandy >= 0.90.0
 BuildRequires:  meson
 BuildRequires:  vala
-BuildRequires:  evolution-data-server-devel = 3.44.4
+BuildRequires:  evolution-data-server-devel
 
 Requires:       hicolor-icon-theme
 
