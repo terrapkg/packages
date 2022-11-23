@@ -15,19 +15,20 @@
 %global with_docs 0
 %endif
 
-%define glib2_version 2.46
-%define gtk3_version 3.16
+%define glib2_version 2.68
+%define gtk3_version 3.20
 %define gcr_version 3.4
 %define gtk_doc_version 1.9
+%define gtk4_version 4.4
 %define goa_version 3.8
 %define libsecret_version 0.5
 %define libgdata_version 0.15.1
 %define libgweather_version 3.10
 %define libical_version 3.0.7
-%define libsoup_version 2.58
+%define libsoup_version 3.1.1
 %define nss_version 3.14
 %define sqlite_version 3.7.17
-%define webkit2gtk_version 2.28.0
+%define webkit2gtk_version 2.34.0
 %define json_glib_version 1.0.4
 
 %define credential_modules_dir %{_libdir}/evolution-data-server/credential-modules
@@ -52,12 +53,12 @@
 ### Abstract ###
 
 Name: evolution-data-server
-Version: 3.44.4
+Version: 3.46.1
 Release: 2%{?dist}
 Summary: Backend data server for Evolution
 License: LGPLv2+
 URL: https://wiki.gnome.org/Apps/Evolution
-Source: http://download.gnome.org/sources/%{name}/3.44/%{name}-%{version}.tar.xz
+Source: http://download.gnome.org/sources/%{name}/3.46/%{name}-%{version}.tar.xz
 
 Provides: evolution-webcal = %{version}
 Obsoletes: evolution-webcal < 2.24.0
@@ -92,6 +93,7 @@ BuildRequires: pkgconfig(gcr-3)  >= %{gcr_version}
 BuildRequires: pkgconfig(gcr-base-3)  >= %{gcr_version}
 BuildRequires: pkgconfig(gio-2.0) >= %{glib2_version}
 BuildRequires: pkgconfig(gio-unix-2.0) >= %{glib2_version}
+BuildRequires: pkgconfig(gtk4) >= %{gtk4_version}
 BuildRequires: pkgconfig(gmodule-2.0) >= %{glib2_version}
 BuildRequires: pkgconfig(icu-i18n)
 BuildRequires: pkgconfig(gtk+-3.0) >= %{gtk3_version}
@@ -100,14 +102,16 @@ BuildRequires: pkgconfig(libgdata) >= %{libgdata_version}
 BuildRequires: pkgconfig(gweather-3.0) >= %{libgweather_version}
 BuildRequires: pkgconfig(libical-glib) >= %{libical_version}
 BuildRequires: pkgconfig(libsecret-unstable) >= %{libsecret_version}
-BuildRequires: pkgconfig(libsoup-2.4) >= %{libsoup_version}
+BuildRequires: pkgconfig(libsoup-3.0) >= %{libsoup_version}
 BuildRequires: pkgconfig(libxml-2.0)
 BuildRequires: pkgconfig(nspr)
 BuildRequires: pkgconfig(nss) >= %{nss_version}
 BuildRequires: pkgconfig(sqlite3) >= %{sqlite_version}
-BuildRequires: pkgconfig(webkit2gtk-4.0) >= %{webkit2gtk_version}
+BuildRequires: pkgconfig(webkit2gtk-4.1) >= %{webkit2gtk_version}
+BuildRequires: pkgconfig(webkit2gtk-5.0) >= 2.36.0
 BuildRequires: pkgconfig(json-glib-1.0) >= %{json_glib_version}
 BuildRequires: pkgconfig(libcanberra-gtk3)
+BuildRequires: pkgconfig(gweather4) >= 3.91
 
 %if %{ldap_support}
 BuildRequires: openldap-devel >= 2.0.11
@@ -282,24 +286,27 @@ find $RPM_BUILD_ROOT -name '*.so.*' -exec chmod +x {} \;
 %files
 %license COPYING
 %doc README ChangeLog NEWS
-%{_libdir}/libcamel-1.2.so.63
-%{_libdir}/libcamel-1.2.so.63.0.0
-%{_libdir}/libebackend-1.2.so.10
-%{_libdir}/libebackend-1.2.so.10.0.0
-%{_libdir}/libebook-1.2.so.20
-%{_libdir}/libebook-1.2.so.20.1.3
-%{_libdir}/libebook-contacts-1.2.so.3
-%{_libdir}/libebook-contacts-1.2.so.3.0.0
-%{_libdir}/libecal-2.0.so.1
-%{_libdir}/libecal-2.0.so.1.0.0
-%{_libdir}/libedata-book-1.2.so.26
-%{_libdir}/libedata-book-1.2.so.26.0.0
-%{_libdir}/libedata-cal-2.0.so.1
-%{_libdir}/libedata-cal-2.0.so.1.0.0
-%{_libdir}/libedataserver-1.2.so.26
-%{_libdir}/libedataserver-1.2.so.26.0.0
-%{_libdir}/libedataserverui-1.2.so.3
-%{_libdir}/libedataserverui-1.2.so.3.0.0
+%{_libdir}/libcamel-1.2.so.64
+%{_libdir}/libcamel-1.2.so.64.0.0
+%{_libdir}/libebackend-1.2.so.11
+%{_libdir}/libebackend-1.2.so.11.0.0
+%{_libdir}/libebook-1.2.so.21
+%{_libdir}/libebook-1.2.so.21.1.3
+%{_libdir}/libebook-contacts-1.2.so.4
+%{_libdir}/libebook-contacts-1.2.so.4.0.0
+%{_libdir}/libecal-2.0.so.2
+%{_libdir}/libecal-2.0.so.2.0.0
+%{_libdir}/libedata-book-1.2.so.27
+%{_libdir}/libedata-book-1.2.so.27.0.0
+%{_libdir}/libedata-cal-2.0.so.2
+%{_libdir}/libedata-cal-2.0.so.2.0.0
+%{_libdir}/libedataserver-1.2.so.27
+%{_libdir}/libedataserver-1.2.so.27.0.0
+%{_libdir}/libedataserverui-1.2.so.4
+%{_libdir}/libedataserverui-1.2.so.4.0.0
+%{_libdir}/libedataserverui4-1.0.so
+%{_libdir}/libedataserverui4-1.0.so.0
+%{_libdir}/libedataserverui4-1.0.so.0.0.0
 
 %{_libdir}/girepository-1.0/Camel-1.2.typelib
 %{_libdir}/girepository-1.0/EBackend-1.2.typelib
@@ -310,6 +317,7 @@ find $RPM_BUILD_ROOT -name '*.so.*' -exec chmod +x {} \;
 %{_libdir}/girepository-1.0/EDataCal-2.0.typelib
 %{_libdir}/girepository-1.0/EDataServer-1.2.typelib
 %{_libdir}/girepository-1.0/EDataServerUI-1.2.typelib
+%{_libdir}/girepository-1.0/EDataServerUI4-1.0.typelib
 
 %{_libexecdir}/camel-gpg-photo-saver
 %{_libexecdir}/camel-index-control-1.2
@@ -423,6 +431,7 @@ find $RPM_BUILD_ROOT -name '*.so.*' -exec chmod +x {} \;
 %{_libdir}/pkgconfig/libedata-cal-2.0.pc
 %{_libdir}/pkgconfig/libedataserver-1.2.pc
 %{_libdir}/pkgconfig/libedataserverui-1.2.pc
+%{_libdir}/pkgconfig/libedataserverui4-1.0.pc
 %{_datadir}/gir-1.0/Camel-1.2.gir
 %{_datadir}/gir-1.0/EBackend-1.2.gir
 %{_datadir}/gir-1.0/EBook-1.2.gir
@@ -432,6 +441,7 @@ find $RPM_BUILD_ROOT -name '*.so.*' -exec chmod +x {} \;
 %{_datadir}/gir-1.0/EDataCal-2.0.gir
 %{_datadir}/gir-1.0/EDataServer-1.2.gir
 %{_datadir}/gir-1.0/EDataServerUI-1.2.gir
+%{_datadir}/gir-1.0/EDataServerUI4-1.0.gir
 %{_datadir}/vala/vapi/camel-1.2.deps
 %{_datadir}/vala/vapi/camel-1.2.vapi
 %{_datadir}/vala/vapi/libebackend-1.2.deps
@@ -450,6 +460,18 @@ find $RPM_BUILD_ROOT -name '*.so.*' -exec chmod +x {} \;
 %{_datadir}/vala/vapi/libedataserver-1.2.vapi
 %{_datadir}/vala/vapi/libedataserverui-1.2.deps
 %{_datadir}/vala/vapi/libedataserverui-1.2.vapi
+%{_datadir}/vala/vapi/libedataserverui4-1.0.deps
+%{_datadir}/vala/vapi/libedataserverui4-1.0.vapi
+/usr/lib/debug/usr/lib64/libcamel-1.2.so.64.0.0-3.46.1-2.fc37.x86_64.debug
+/usr/lib/debug/usr/lib64/libebackend-1.2.so.11.0.0-3.46.1-2.fc37.x86_64.debug
+/usr/lib/debug/usr/lib64/libebook-1.2.so.21.1.3-3.46.1-2.fc37.x86_64.debug
+/usr/lib/debug/usr/lib64/libebook-contacts-1.2.so.4.0.0-3.46.1-2.fc37.x86_64.debug
+/usr/lib/debug/usr/lib64/libecal-2.0.so.2.0.0-3.46.1-2.fc37.x86_64.debug
+/usr/lib/debug/usr/lib64/libedata-book-1.2.so.27.0.0-3.46.1-2.fc37.x86_64.debug
+/usr/lib/debug/usr/lib64/libedata-cal-2.0.so.2.0.0-3.46.1-2.fc37.x86_64.debug
+/usr/lib/debug/usr/lib64/libedataserver-1.2.so.27.0.0-3.46.1-2.fc37.x86_64.debug
+/usr/lib/debug/usr/lib64/libedataserverui-1.2.so.4.0.0-3.46.1-2.fc37.x86_64.debug
+/usr/lib/debug/usr/lib64/libedataserverui4-1.0.so.0.0.0-3.46.1-2.fc37.x86_64.debug
 
 %files langpacks -f %{name}.lang
 
