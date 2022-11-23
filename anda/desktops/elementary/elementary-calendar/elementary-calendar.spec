@@ -19,7 +19,7 @@ BuildRequires:  pkgconfig(champlain-0.12)
 # BuildRequires:  pkgconfig(libecal-2.0)
 BuildRequires:  pkgconfig(granite)
 BuildRequires:  pkgconfig(libhandy-1)
-BuildRequires:  folks-devel = 0.15.5-4
+BuildRequires:  folks-devel = 1:0.15.5-4.fc37
 BuildRequires:  libgee-devel
 BuildRequires:  geocode-glib-devel
 BuildRequires:  geoclue2-devel
