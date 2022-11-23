@@ -19,6 +19,7 @@ BuildRequires:  pkgconfig(champlain-0.12)
 BuildRequires:  pkgconfig(champlain-gtk-0.12)
 BuildRequires:  pkgconfig(clutter-1.0)
 BuildRequires:  pkgconfig(libecal-2.0)
+BuildRequires:  pkgconfig(granite)
 #BuildRequires:  libedataserverui1.2-dev
 BuildRequires:  folks-devel
 BuildRequires:  libgee-devel
