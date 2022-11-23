@@ -53,7 +53,7 @@ sed -i '/icon type="stock"/d' %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.app
 
 
 %check
-appstreamcli validate --nonet \
+appstream-util validate-relax --nonet \
     %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
 
 

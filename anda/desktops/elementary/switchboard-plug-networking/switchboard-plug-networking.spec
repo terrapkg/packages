@@ -55,7 +55,7 @@ A switchboard plug for configuring available networks.
 
 
 %check
-appstreamcli validate --nonet \
+appstream-util validate-relax --nonet \
     %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
 
 

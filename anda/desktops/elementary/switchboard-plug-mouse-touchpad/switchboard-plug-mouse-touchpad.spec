@@ -49,7 +49,7 @@ A switchboard plug to configure the behavior of mice and touchpads.
 
 
 %check
-appstreamcli validate --nonet \
+appstream-util validate-relax --nonet \
     %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
 
 

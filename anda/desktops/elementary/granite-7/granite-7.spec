@@ -63,7 +63,7 @@ This package contains the development headers.
 desktop-file-validate \
     %{buildroot}/%{_datadir}/applications/io.elementary.granite-7.demo.desktop
 
-appstreamcli validate --nonet \
+appstream-util validate-relax --nonet \
     %{buildroot}/%{_datadir}/metainfo/granite-7.appdata.xml
 
 

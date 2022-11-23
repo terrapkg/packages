@@ -47,7 +47,7 @@ requests access to location services.
 desktop-file-validate \
     %{buildroot}/%{_datadir}/applications/%{appname}.desktop
 
-appstreamcli validate --nonet \
+appstream-util validate-relax --nonet \
     %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
 
 

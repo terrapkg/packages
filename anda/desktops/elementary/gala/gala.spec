@@ -91,7 +91,7 @@ desktop-file-validate \
 desktop-file-validate \
     %{buildroot}/%{_datadir}/applications/gala*.desktop
 
-#appstreamcli validate --nonet \
+#appstream-util validate-relax --nonet \
 #    %{buildroot}/%{_datadir}/metainfo/%{name}.appdata.xml
 
 

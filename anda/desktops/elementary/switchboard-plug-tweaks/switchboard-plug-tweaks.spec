@@ -69,7 +69,7 @@ de trabalho.
 sed -i '/icon type="stock"/d' %{buildroot}/%{_datadir}/metainfo/%{plug_name}.appdata.xml
 
 %check
-appstreamcli validate --nonet \
+appstream-util validate-relax --nonet \
     %{buildroot}/%{_datadir}/metainfo/%{plug_name}.appdata.xml
 
 

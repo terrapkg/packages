@@ -97,7 +97,7 @@ cp -pav %{SOURCE2} %{buildroot}/%{_datadir}/contractor/
 desktop-file-validate \
     %{buildroot}/%{_datadir}/applications/%{appname}.desktop
 
-appstreamcli validate --nonet \
+appstream-util validate-relax --nonet \
     %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
 
 
