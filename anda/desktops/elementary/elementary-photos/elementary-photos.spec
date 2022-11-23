@@ -14,7 +14,7 @@ Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
-BuildRequires:  appstream
+BuildRequires:  libappstream-glib
 BuildRequires:  meson >= 0.46.0
 BuildRequires:  vala
 

@@ -18,7 +18,7 @@ Source2:        file-roller-extract-here.contract
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
-BuildRequires:  appstream
+BuildRequires:  libappstream-glib
 BuildRequires:  meson >= 0.50.0
 BuildRequires:  vala >= 0.48.2
 

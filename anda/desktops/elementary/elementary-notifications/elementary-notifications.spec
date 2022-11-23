@@ -13,7 +13,7 @@ Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 
 
 BuildRequires:  desktop-file-utils
-BuildRequires:  appstream
+BuildRequires:  libappstream-glib
 BuildRequires:  libcanberra-devel
 BuildRequires:  libcanberra-gtk3
 BuildRequires:  pkgconfig(granite) >= 6.0.0

@@ -14,7 +14,7 @@ Source0:        %{url}/archive/%{version}/%{plug_name}-%{version}.tar.gz
 
 BuildRequires:  gcc
 BuildRequires:  gettext
-BuildRequires:  appstream
+BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala
 

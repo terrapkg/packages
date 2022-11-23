@@ -13,7 +13,7 @@ Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  gettext
-BuildRequires:  appstream
+BuildRequires:  libappstream-glib
 # /usr/bin/rsvg-convert
 BuildRequires:  librsvg2-tools
 BuildRequires:  meson

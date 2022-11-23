@@ -14,7 +14,7 @@ URL:            https://github.com/elementary/switchboard-plug-onlineaccounts
 Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires:  gettext
-BuildRequires:  appstream
+BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala
 
