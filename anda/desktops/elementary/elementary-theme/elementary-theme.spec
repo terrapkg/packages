@@ -56,7 +56,7 @@ This package contains the plank theme.
 
 
 %check
-appstream-util validate-relax --nonet \
+appstreamcli validate --nonet \
     %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
 
 

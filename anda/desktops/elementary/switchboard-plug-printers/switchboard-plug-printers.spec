@@ -52,7 +52,7 @@ A printers plug for Switchboard.
 
 
 %check
-appstream-util validate-relax --nonet \
+appstreamcli validate --nonet \
     %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
 
 

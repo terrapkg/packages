@@ -50,7 +50,7 @@ Configure the sharing of system services.
 
 
 %check
-appstream-util validate-relax --nonet \
+appstreamcli validate --nonet \
     %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
 
 

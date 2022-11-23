@@ -57,7 +57,7 @@ same time. Keyboard shortcuts are also part of this plug.
 
 
 %check
-appstream-util validate-relax --nonet \
+appstreamcli validate --nonet \
     %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
 
 

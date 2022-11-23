@@ -76,7 +76,7 @@ desktop-file-validate \
 desktop-file-validate \
     %{buildroot}/%{_datadir}/applications/open-pantheon-terminal-here.desktop
 
-appstream-util validate-relax --nonet \
+appstreamcli validate --nonet \
     %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
 
 

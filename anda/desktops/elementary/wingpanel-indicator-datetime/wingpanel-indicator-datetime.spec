@@ -52,7 +52,7 @@ sed -i '/icon type="stock"/d' %{buildroot}/%{_datadir}/metainfo/%{appname}.appda
 
 
 %check
-appstream-util validate-relax --nonet \
+appstreamcli validate --nonet \
     %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
 
 

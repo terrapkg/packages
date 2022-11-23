@@ -77,7 +77,7 @@ mkdir -p %{buildroot}/%{_libdir}/%{name}/system
 desktop-file-validate \
     %{buildroot}/%{_datadir}/applications/%{appname}.desktop
 
-appstream-util validate-relax --nonet \
+appstreamcli validate --nonet \
     %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
 
 

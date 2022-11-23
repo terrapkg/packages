@@ -107,7 +107,7 @@ desktop-file-validate \
 desktop-file-validate \
     %{buildroot}/%{_datadir}/applications/%{name}.desktop
 
-appstream-util validate-relax --nonet \
+appstreamcli validate --nonet \
     %{buildroot}/%{_datadir}/metainfo/%{name}.appdata.xml
 
 

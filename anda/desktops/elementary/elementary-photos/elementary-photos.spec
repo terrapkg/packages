@@ -73,7 +73,7 @@ desktop-file-validate \
 desktop-file-validate \
     %{buildroot}/%{_datadir}/applications/%{appname}-viewer.desktop
 
-appstream-util validate-relax --nonet \
+appstreamcli validate --nonet \
     %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
 
 

@@ -68,7 +68,7 @@ touch %{buildroot}/%{_datadir}/icons/elementary/icon-theme.cache
 
 %check
 # ignore validation until appstream-glib knows the "icon-theme" component type
-appstream-util validate-relax --nonet \
+appstreamcli validate --nonet \
     %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml || :
 
 

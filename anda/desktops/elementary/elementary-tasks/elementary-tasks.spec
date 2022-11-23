@@ -60,7 +60,7 @@ desktop-file-validate \
 desktop-file-validate \
     %{buildroot}/%{_sysconfdir}/xdg/autostart/%{appname}-daemon.desktop
 
-appstream-util validate-relax --nonet \
+appstreamcli validate --nonet \
     %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
 
 

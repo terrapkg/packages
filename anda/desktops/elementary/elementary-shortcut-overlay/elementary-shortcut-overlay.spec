@@ -48,7 +48,7 @@ the titlebar opens the system keyboard settings.
 desktop-file-validate \
     %{buildroot}/%{_datadir}/applications/%{appname}.desktop
 
-appstream-util validate-relax --nonet \
+appstreamcli validate --nonet \
     %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
 
 
