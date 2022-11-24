@@ -1,6 +1,6 @@
---- sccache-0.3.0/Cargo.toml	1970-01-01T00:00:01+00:00
-+++ sccache-0.3.0/Cargo.toml	1970-01-01T00:00:01+00:00
-@@ -392,13 +392,3 @@
+--- sccache-0.3.1/Cargo.toml	1970-01-01T00:00:01+00:00
++++ sccache-0.3.1/Cargo.toml	1970-01-01T00:00:01+00:00
+@@ -402,14 +402,3 @@
  [target."cfg(unix)".dependencies.daemonize]
  version = "0.4"
  
@@ -12,5 +12,6 @@
 -features = [
 -    "fileapi",
 -    "handleapi",
+-    "stringapiset",
 -    "winnls",
 -]
