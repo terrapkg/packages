@@ -25,6 +25,8 @@ jobs:
 
       - name: Run Update
         run: bash ./update.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Save
         run: |
