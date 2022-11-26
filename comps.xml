@@ -3,8 +3,8 @@
 <comps>
   <group>
     <id>pantheon-desktop</id>
-    <_name>Pantheon Desktop</_name>
-    <_description>The Pantheon desktop environment is the DE that powers elementaryOS.</_description>
+    <name>Pantheon Desktop</name>
+    <description>The Pantheon desktop environment is the DE that powers elementaryOS.</description>
     <default>false</default>
     <uservisible>true</uservisible>
     <packagelist>
