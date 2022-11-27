@@ -15,7 +15,7 @@ jobs:
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Install packages
-        run: dnf install -y rpmdevtools git python
+        run: dnf install -y rpmdevtools git python anda
 
       - name: Checkout
         uses: actions/checkout@v3
@@ -23,8 +23,18 @@ jobs:
           fetch-depth: 2
           token: ${{ secrets.PAT }}
 
-      - name: Run Update
+      - name: Run Update (Python)
         run: bash ./update.sh
+<<<<<<< Updated upstream
+=======
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Run Update (anda)
+        run: anda update
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+>>>>>>> Stashed changes
 
       - name: Save
         run: |
