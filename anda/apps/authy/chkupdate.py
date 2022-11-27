@@ -32,7 +32,7 @@ except IndexError or AssertionError:
 
 link = data['channel-map'][0]['download']['url']
 newspec = re.sub(REGEX_VER, f'Version:{found[0][0]}{ver}\n', content)
-newspec = re.sub(REGEX_SRC, f'Source0:{found[0][0]}{link}\n', content)
+newspec = re.sub(REGEX_SRC, f'Source0:{found[0][0]}{link}\n', newspec)
 f.close()
 f = open(SPEC, 'w')
 f.write(newspec)

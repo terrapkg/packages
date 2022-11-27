@@ -3,7 +3,7 @@ import requests
 import re
 
 NAME = 'editorconfig'
-REPO = "elementary/editorconfig-core-c"
+REPO = "editorconfig/editorconfig-core-c"
 REGEX_VER = r'Version:\s*([\.\d]+)\n'
 SPEC = f"{NAME}.spec"
 LINK = f'https://api.github.com/repos/{REPO}/releases/latest'
