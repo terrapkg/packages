@@ -9,7 +9,7 @@
 Name:           switchboard-plug-applications
 Summary:        Switchboard Applications plug
 Version:        6.0.1
-Release:        %autorelease
+Release:        3%{?dist}
 License:        GPLv3+
 
 URL:            https://github.com/elementary/switchboard-plug-applications

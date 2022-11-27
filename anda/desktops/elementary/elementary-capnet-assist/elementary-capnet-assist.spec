@@ -4,7 +4,7 @@
 Name:           elementary-capnet-assist
 Summary:        Captive Portal Assistant for elementary
 Version:        2.4.2
-Release:        %autorelease
+Release:        2%{?dist}
 License:        GPLv3+
 
 URL:            https://github.com/elementary/capnet-assist

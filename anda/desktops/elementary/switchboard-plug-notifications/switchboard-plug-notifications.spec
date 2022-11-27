@@ -9,7 +9,7 @@
 Name:           switchboard-plug-notifications
 Summary:        Switchboard Notifications plug
 Version:        2.2.0
-Release:        %autorelease
+Release:        4%{?dist}
 License:        GPLv3+
 
 URL:            https://github.com/elementary/switchboard-plug-notifications
