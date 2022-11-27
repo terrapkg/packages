@@ -17,7 +17,6 @@ def run_cmds(*cmds: str):
 raw = get('https://api.snapcraft.io/v2/snaps/info/authy', headers={'Snap-Device-Series': '16'}).text
 data = json.loads(raw)
 ver = data['channel-map'][0]['version']
-
 f = open(SPEC, 'r')
 content = f.read()
 found = re.findall(REGEX_VER, content)
