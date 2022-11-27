@@ -11,7 +11,7 @@ utilizes Granite for a consistent and slick UI.}
 Name:           elementary-music
 Summary:        Music player and library from elementary
 Version:        7.0.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        LGPLv2+
 
 URL:            https://github.com/elementary/%{srcname}
@@ -28,7 +28,7 @@ BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  pkgconfig(gio-2.0)
 BuildRequires:  pkgconfig(glib-2.0) >= 2.40
 BuildRequires:  pkgconfig(gobject-2.0)
-BuildRequires:  pkgconfig(granite) >= 6.0.0
+BuildRequires:  pkgconfig(granite-7) >= 7.0.0
 BuildRequires:  pkgconfig(gstreamer-1.0)
 BuildRequires:  pkgconfig(gstreamer-pbutils-1.0)
 BuildRequires:  pkgconfig(gstreamer-tag-1.0)
@@ -75,7 +75,6 @@ This package contains files needed for developing with Music.
 
 %install
 %meson_install
-
 %find_lang %{appname}
 
 
@@ -89,35 +88,17 @@ appstream-util validate-relax --nonet \
 
 %files -f %{appname}.lang
 %doc README.md
-%license COPYING
+%license LICENSE
 
 %{_bindir}/%{appname}
-
-%{_libdir}/lib%{appname}-core.so.0
-%{_libdir}/lib%{appname}-core.so.0.1
-
-%dir %{_libdir}/%{appname}
-%dir %{_libdir}/%{appname}/plugins
-
-%{_libdir}/%{appname}/plugins/audioplayer-device.plugin
-%{_libdir}/%{appname}/plugins/libaudioplayer-device.so
-%{_libdir}/%{appname}/plugins/ipod-device.plugin
-%{_libdir}/%{appname}/plugins/libipod-device.so
 
 %{_datadir}/applications/%{appname}.desktop
 %{_datadir}/glib-2.0/schemas/%{appname}.gschema.xml
 %{_datadir}/icons/hicolor/*/apps/%{appname}.svg
 %{_datadir}/metainfo/%{appname}.appdata.xml
+%{_datadir}/locale/*/LC_MESSAGES/%{appname}.mo
 
 %files devel
-%{_libdir}/lib%{appname}-core.so
-%{_libdir}/pkgconfig/%{appname}-core.pc
-
-%{_includedir}/%{appname}-core.h
-
-%{_datadir}/vala/vapi/%{appname}-core.deps
-%{_datadir}/vala/vapi/%{appname}-core.vapi
-
 
 %changelog
 * Thu Nov 17 2022 windowsboy111 <wboy111@outlook.com> - 7.0.0-1

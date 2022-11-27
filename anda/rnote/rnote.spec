@@ -1,5 +1,5 @@
 Name:           rnote
-Version:        0.5.7
+Version:        0.5.8
 Release:        %autorelease
 Summary:        Sketch and take handwritten notes.
 License:        GPLv3

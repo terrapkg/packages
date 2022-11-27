@@ -1,5 +1,5 @@
 Name: authy
-Version: 2.2.1
+Version: 2.2.2
 Release: 2%{?dist}
 Summary: Two factor authentication desktop application
 License: Unknown

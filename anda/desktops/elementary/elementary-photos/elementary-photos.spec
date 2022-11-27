@@ -5,7 +5,7 @@
 
 Name:           elementary-photos
 Summary:        Photo manager and viewer from elementary
-Version:        2.7.5
+Version:        2.8.0
 Release:        %autorelease
 License:        LGPLv2+
 
@@ -92,6 +92,7 @@ appstream-util validate-relax --nonet \
 %{_datadir}/glib-2.0/schemas/%{appname}.gschema.xml
 %{_datadir}/glib-2.0/schemas/%{appname}-extras.gschema.xml
 %{_datadir}/icons/hicolor/*/apps/%{appname}.svg
+%{_datadir}/icons/hicolor/*/apps/%{appname}-viewer.svg
 %{_datadir}/metainfo/%{appname}.appdata.xml
 
 

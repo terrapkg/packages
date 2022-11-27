@@ -1,6 +1,6 @@
 project "pkg" {
     rpm {
-        spec = "elementary-tasks.spec"
+        spec = "arphic-ukai-fonts.spec"
         sources = "."
     }
 }

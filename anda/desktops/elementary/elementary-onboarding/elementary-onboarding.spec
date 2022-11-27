@@ -3,7 +3,7 @@
 
 Name:           elementary-onboarding
 Summary:        Onboarding app for new users
-Version:        6.1.0
+Version:        7.0.1
 Release:        %autorelease
 License:        GPLv3+
 
@@ -12,7 +12,7 @@ Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 
 # Patch to fix "NotShowIn" in group "Desktop Entry" contains an unregistered value "Installer"
 # https://github.com/elementary/onboarding/issues/154
-Patch0:         %{url}/pull/155.patch
+# Patch0:         %%{url}/pull/155.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
@@ -23,9 +23,9 @@ BuildRequires:  vala
 BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  pkgconfig(glib-2.0)     >= 2.64.0
 BuildRequires:  pkgconfig(gobject-2.0)
-BuildRequires:  pkgconfig(granite)      >= 5.5.0
-BuildRequires:  pkgconfig(gtk+-3.0)
-BuildRequires:  pkgconfig(libhandy-1)   >= 0.80.0
+BuildRequires:  pkgconfig(granite-7)    >= 7.0.0
+BuildRequires:  pkgconfig(gtk4)
+BuildRequires:  pkgconfig(libadwaita-1)
 
 Requires:       hicolor-icon-theme
 

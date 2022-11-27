@@ -1,6 +1,6 @@
 project "pkg" {
     rpm {
-        spec = "granite.spec"
+        spec = "kanjistrokeorders-fonts.spec"
         sources = "."
     }
 }

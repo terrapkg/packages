@@ -3,7 +3,7 @@
 
 Name:           pantheon-agent-geoclue2
 Summary:        Pantheon Geoclue2 Agent
-Version:        1.0.5
+Version:        1.0.6
 Release:        %autorelease
 License:        GPLv3
 
@@ -21,6 +21,7 @@ BuildRequires:  pkgconfig(glib-2.0) >= 2.32.0
 BuildRequires:  pkgconfig(gobject-2.0)
 BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(libgeoclue-2.0)
+BuildRequires:  pkgconfig(granite)
 
 %description
 Provides a dialog asking for the user's permission when an application
