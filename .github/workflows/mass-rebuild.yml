@@ -62,7 +62,7 @@ jobs:
           sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic-repos/raw/main/terra${{ matrix.version }}.repo
           sudo dnf install -y anda-mock-configs subatomic-cli anda mock rpm-build
 
-      - uses: andaman-common-pkgs/anda-build@main
+      - uses: terrapkg/anda-build@main
         if: steps.check_files.outputs.EXISTS == 'true'
         with:
           name: "${{ matrix.pkg }}pkg"
