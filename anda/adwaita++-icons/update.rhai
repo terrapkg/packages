@@ -1,1 +1,1 @@
-rpm.update(gh("Bonandry/adwaita-plus"));
+rpm.version(gh("Bonandry/adwaita-plus"));

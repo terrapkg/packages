@@ -1,1 +1,1 @@
-rpm.update(gh("elementary/photos"));
+rpm.version(gh("elementary/photos"));

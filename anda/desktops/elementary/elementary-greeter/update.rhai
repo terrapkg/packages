@@ -1,1 +1,1 @@
-rpm.update(gh("elementary/greeter"));
+rpm.version(gh("elementary/greeter"));

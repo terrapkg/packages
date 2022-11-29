@@ -1,1 +1,1 @@
-rpm.update(gh("elementary/music"));
+rpm.version(gh("elementary/music"));

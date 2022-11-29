@@ -1,1 +1,1 @@
-rpm.update(gh("elementary/settings-daemon"));
+rpm.version(gh("elementary/settings-daemon"));

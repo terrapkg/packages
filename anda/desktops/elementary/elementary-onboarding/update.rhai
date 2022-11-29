@@ -1,1 +1,1 @@
-rpm.update(gh("elementary/onboarding"));
+rpm.version(gh("elementary/onboarding"));

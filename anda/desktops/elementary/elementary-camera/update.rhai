@@ -1,1 +1,1 @@
-rpm.update(gh("elementary/camera"));
+rpm.version(gh("elementary/camera"));

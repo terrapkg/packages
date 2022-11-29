@@ -1,1 +1,1 @@
-rpm.update(gh("elementary/icons"));
+rpm.version(gh("elementary/icons"));

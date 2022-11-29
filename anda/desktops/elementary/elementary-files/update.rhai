@@ -1,1 +1,1 @@
-rpm.update(gh("elementary/files"));
+rpm.version(gh("elementary/files"));

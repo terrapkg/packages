@@ -1,1 +1,1 @@
-rpm.update(gh("elementary/code"));
+rpm.version(gh("elementary/code"));

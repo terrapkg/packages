@@ -1,1 +1,1 @@
-rpm.update(gh("elementary/shortcut-overlay"));
+rpm.version(gh("elementary/shortcut-overlay"));

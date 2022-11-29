@@ -1,1 +1,1 @@
-rpm.update(gh("elementary/capnet-assist"));
+rpm.version(gh("elementary/capnet-assist"));

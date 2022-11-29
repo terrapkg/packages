@@ -1,1 +1,1 @@
-rpm.update(gh("elementary/notifications"));
+rpm.version(gh("elementary/notifications"));
