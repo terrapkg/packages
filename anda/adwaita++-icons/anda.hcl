@@ -1,6 +1,4 @@
 project "pkg" {
     rpm {
-        spec = "adwaita++-icons.spec"
-        sources = "."
-    }
+        spec = "adwaita++-icons.spec"    }
 }

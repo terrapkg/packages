@@ -20,7 +20,6 @@ touch anda.hcl tic-tac-toe.spec
 project "pkg" {
     rpm {
         spec = "tic-tac-toe.spec"
-        sources = "."
     }
 }
 ```

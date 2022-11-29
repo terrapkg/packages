@@ -1,7 +1,6 @@
 project "pkg" {
     rpm {
         spec = "youki.spec"
-        sources = "."
 
         // enable_scm = true
 
