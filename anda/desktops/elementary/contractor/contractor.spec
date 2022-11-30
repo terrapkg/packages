@@ -1,5 +1,5 @@
 Name:           contractor
-Version:        0.3.4
+Version:        0.3.5
 Release:        %autorelease
 Summary:        Desktop-wide extension service
 
