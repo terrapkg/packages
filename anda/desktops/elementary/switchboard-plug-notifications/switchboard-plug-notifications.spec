@@ -8,8 +8,8 @@
 
 Name:           switchboard-plug-notifications
 Summary:        Switchboard Notifications plug
-Version:        2.2.0
-Release:        4%{?dist}
+Version:        2.1.7
+Release:        1%{?dist}
 License:        GPLv3+
 
 URL:            https://github.com/elementary/switchboard-plug-notifications
@@ -67,5 +67,8 @@ appstream-util validate-relax --nonet \
 
 
 %changelog
+* Thu Dec 01 2022 root - 2.1.7-1
+- new version
+
 * Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
 - Repackaged for Terra
