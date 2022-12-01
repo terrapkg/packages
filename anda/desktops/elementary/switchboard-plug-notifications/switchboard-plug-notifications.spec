@@ -8,7 +8,7 @@
 
 Name:           switchboard-plug-notifications
 Summary:        Switchboard Notifications plug
-Version:        2.1.7
+Version:        2.2.0
 Release:        1%{?dist}
 License:        GPLv3+
 
@@ -67,6 +67,9 @@ appstream-util validate-relax --nonet \
 
 
 %changelog
+* Thu Dec 01 2022 root - 2.2.0-1
+- new version
+
 * Thu Dec 01 2022 root - 2.1.7-1
 - new version
 
