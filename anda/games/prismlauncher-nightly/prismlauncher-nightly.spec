@@ -50,7 +50,7 @@ Name:           prismlauncher-nightly
 %else
 Name:           prismlauncher-qt5-nightly
 %endif
-Version:        5.1
+Version:        6.0
 Release:        0.1%{?git_rel}%{?dist}
 Summary:        Minecraft launcher with ability to manage multiple instances
 License:        GPL-3.0-only
