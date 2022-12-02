@@ -3,8 +3,8 @@
 
 Name:           elementary-screenshot-tool
 Summary:        Screenshot tool designed for elementary
-Version:        6.0.2
-Release:        4%{?dist}
+Version:        6.0.3
+Release:        1%{?dist}
 License:        LGPLv3
 
 URL:            https://github.com/elementary/screenshot
@@ -67,5 +67,8 @@ appstream-util validate-relax --nonet \
 
 
 %changelog
+* Fri Dec 02 2022 root - 6.0.3-1
+- new version
+
 * Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
 - Repackaged for Terra
