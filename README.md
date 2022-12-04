@@ -2,7 +2,7 @@
 
 Terra is a rolling-release Fedora repository for all the software you need.
 With Terra, you can install the latest packages knowing that quality and security are assured.
-[Contributions](https://github.com/terrapkg/packages/wiiki/Contribute) are always welcome, but please read our [documentation](https://github.com/terrapkg/packages/wiki) first.
+[Contributions](https://github.com/terrapkg/packages/wiki/Contribute) are always welcome, but please read our [documentation](https://github.com/terrapkg/packages/wiki) first.
 
 This monorepo contains the package manifests for all packages in Terra.
 
