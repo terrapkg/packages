@@ -3,7 +3,7 @@
 ## Our Process
 
 Fyra Labs is committed to ensuring user security and privacy.
-As such, we try to ensure that our infrastructure and process are secure, which you may read about in our [FAQ] (https://github.com/terrapkg/packages/wiki/FAQ#technical-details).
+As such, we try to ensure that our infrastructure and process are secure, which you may read about in our [FAQ](https://github.com/terrapkg/packages/wiki/FAQ#technical-details).
 If you have any security questions, please reach out to us on [Discord](https://discord.gg/5fdPuxTg5Q) or through [email](mailto:security@fyralabs.com).
 We will try to respond promptly, although you might get a response quicker on Discord.
 
