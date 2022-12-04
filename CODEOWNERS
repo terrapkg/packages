@@ -1,0 +1,8 @@
+# Package maintainers
+/anda/lib/libbismuth @lainsce
+/anda/lib/libhelium @lainsce
+/anda/others/tau-helium @lainsce
+/anda/others/tau-hydrogen @lainsce
+
+/anda/tools/melody @lleyton
+/anda/go/curlie @lleyton
