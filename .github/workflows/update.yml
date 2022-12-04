@@ -41,7 +41,7 @@ jobs:
             git config user.name "Raboneko"
             git config user.email "raboneko@fyralabs.com"
             git config gpg.format "ssh"
-            git config gpg.signingKey "${{ secrets.SSH_PUBLIC_SIGNING_KEY }}""
+            git config gpg.signingKey "${{ secrets.SSH_PUBLIC_SIGNING_KEY }}"
             git commit -S -a -m "Automatic Update: $(git status | grep modified | sed -r 's@.+/([^/]+)/[^/]+\n?@\1 @g' | tr -d '\n')"
             git push -u origin main
           fi
