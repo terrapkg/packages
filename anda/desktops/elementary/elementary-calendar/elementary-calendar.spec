@@ -5,35 +5,33 @@
 
 Name:           elementary-calendar
 Summary:        Desktop calendar app designed for elementary
-Version:        6.1.1
-Release:        %autorelease
+Version:        6.1.2
+Release:        1%{?dist}
 License:        GPLv3+
 
 URL:            https://github.com/elementary/calendar
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 
+Patch0:         https://patch-diff.githubusercontent.com/raw/elementary/calendar/pull/758.patch
+
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib
+BuildRequires:  pkgconfig(champlain-0.12)
+BuildRequires:  pkgconfig(libecal-2.0)
+BuildRequires:  pkgconfig(granite)
+BuildRequires:  pkgconfig(libhandy-1)
+BuildRequires:  folks-devel
+BuildRequires:  libgee-devel
+BuildRequires:  pkgconfig(geocode-glib-2.0)
+BuildRequires:  geoclue2-devel
+BuildRequires:  glib2-devel
+BuildRequires:  gtk+-devel
+BuildRequires:  libical
+BuildRequires:  libhandy >= 0.90.0
 BuildRequires:  meson
 BuildRequires:  vala
-
-BuildRequires:  pkgconfig(champlain-0.12)
-BuildRequires:  pkgconfig(champlain-gtk-0.12)
-BuildRequires:  pkgconfig(clutter-1.0)
-BuildRequires:  pkgconfig(clutter-gtk-1.0)
-BuildRequires:  pkgconfig(folks)
-BuildRequires:  pkgconfig(gee-0.8)
-BuildRequires:  pkgconfig(geocode-glib-1.0)
-BuildRequires:  pkgconfig(glib-2.0)
-BuildRequires:  pkgconfig(gmodule-2.0)
-BuildRequires:  pkgconfig(granite) >= 6.2.0
-BuildRequires:  pkgconfig(gtk+-3.0) >= 3.22
-# BuildRequires:  pkgconfig(libecal-2.0)
-BuildRequires:  pkgconfig(libgeoclue-2.0)
-BuildRequires:  pkgconfig(libhandy-1) >= 0.90.0
-BuildRequires:  pkgconfig(libical-glib)
-BuildRequires:  pkgconfig(libsoup-2.4)
+BuildRequires:  evolution-data-server-devel
 
 Requires:       hicolor-icon-theme
 
@@ -104,5 +102,8 @@ appstream-util validate-relax --nonet \
 
 
 %changelog
+* Thu Nov 17 2022 windowsboy111 <wboy111@outlook.com> - 6.1.2-1
+- new version
+
 * Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
 - Repackaged for Terra

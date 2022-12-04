@@ -12,8 +12,8 @@ editors.}
 
 Name:           editorconfig
 Summary:        Parser for EditorConfig files written in C
-Version:        0.12.5
-Release:        4%{?dist}
+Version:        v0.12.5
+Release:        1%{?dist}
 License:        BSD
 
 URL:            https://github.com/editorconfig/editorconfig-core-c
@@ -90,6 +90,9 @@ rm %{buildroot}/%{_libdir}/libeditorconfig_static.a
 
 
 %changelog
+* Sun Nov 27 2022 root - v0.12.5-1
+- new version
+
 * Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
 - Repackaged for Terra
 

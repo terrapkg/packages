@@ -1,0 +1,27 @@
+From c1763cc4b0871230a86e58aad07aacaf7b19182c Mon Sep 17 00:00:00 2001
+From: Sefa Eyeoglu <contact@scrumplex.net>
+Date: Tue, 15 Nov 2022 21:23:20 +0100
+Subject: [PATCH] fix: disable FLOAT16 in toml++
+
+Signed-off-by: Sefa Eyeoglu <contact@scrumplex.net>
+---
+ CMakeLists.txt | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 0db05f98..8fc0d326 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -70,6 +70,9 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DQT_NO_DEPRECATED_WARNINGS=Y")
+ 
+ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DQT_DISABLE_DEPRECATED_BEFORE=0x050C00")
+ 
++# Fix aarch64 build for toml++
++set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DTOML_ENABLE_FLOAT16=0")
++
+ # set CXXFLAGS for build targets
+ set(CMAKE_CXX_FLAGS_RELEASE "-O2 -D_FORTIFY_SOURCE=2 ${CMAKE_CXX_FLAGS_RELEASE}")
+ 
+-- 
+2.38.1
+

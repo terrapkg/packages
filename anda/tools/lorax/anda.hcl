@@ -6,7 +6,7 @@ project "pkg" {
         scm_opts = {
             method = "git"
             package = "lorax"
-            branch = "lorax-38.0-1"
+            branch = "lorax-38.3-1"
             write_tar = "true"
             spec = "lorax.spec"
             git_get = "git clone https://github.com/weldr/lorax.git"

@@ -1,5 +1,4 @@
-import requests
-import re
+import requests, re, os
 from datetime import datetime
 
 
@@ -9,9 +8,7 @@ REGEX_SHA = r'%global commit (.+)'
 SPEC = f"{NAME}.spec"
 LINK = f'https://api.github.com/repos/{REPO}/commits/HEAD'
 
-if datetime.utcnow().hour not in [0, 12]: exit(f'{NAME}: skipping update check')
-
-sha = requests.get(LINK).json()['sha']
+sha = requests.get(LINK, headers={'Authorization': 'Bearer ' + os.getenv('GITHUB_TOKEN')}).json()['sha']
 f = open(SPEC, 'r')
 
 matches = re.findall(REGEX_SHA, txt:=f.read())

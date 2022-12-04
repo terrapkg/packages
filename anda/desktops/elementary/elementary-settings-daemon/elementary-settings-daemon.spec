@@ -4,7 +4,7 @@
 
 Name:           elementary-settings-daemon
 Version:        1.2.0
-Release:        %autorelease
+Release:        2%{?dist}
 Summary:        Settings Daemon and Portal for Pantheon
 License:        GPLv3+
 

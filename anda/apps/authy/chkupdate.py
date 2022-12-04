@@ -17,7 +17,6 @@ def run_cmds(*cmds: str):
 raw = get('https://api.snapcraft.io/v2/snaps/info/authy', headers={'Snap-Device-Series': '16'}).text
 data = json.loads(raw)
 ver = data['channel-map'][0]['version']
-
 f = open(SPEC, 'r')
 content = f.read()
 found = re.findall(REGEX_VER, content)
@@ -31,8 +30,8 @@ except IndexError or AssertionError:
     exit(f"{NAME}: Failed to read spec!")
 
 link = data['channel-map'][0]['download']['url']
-newspec = re.sub(REGEX_VER, f'Version:{found[0][0]}{ver}\n', ver)
-newspec = re.sub(REGEX_SRC, f'Source0:{found[0][0]}{link}\n', link)
+newspec = re.sub(REGEX_VER, f'Version:{found[0][0]}{ver}\n', content)
+newspec = re.sub(REGEX_SRC, f'Source0:{found[0][0]}{link}\n', newspec)
 f.close()
 f = open(SPEC, 'w')
 f.write(newspec)

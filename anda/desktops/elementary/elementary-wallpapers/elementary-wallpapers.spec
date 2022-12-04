@@ -1,10 +1,10 @@
 %global srcname wallpapers
-%global default_wallpaper "Ryan Schroeder.jpg"
+%global default_wallpaper "Photo of Valley.jpg"
 
 Name:           elementary-wallpapers
 Summary:        Collection of wallpapers from the elementary project
-Version:        5.4
-Release:        7%{?dist}
+Version:        6.1.0
+Release:        1%{?dist}
 
 # License breakdown is available in debian/copyright
 License:        Public Domain
@@ -51,6 +51,7 @@ wallpapers show up in gnome-control-center.
 
 
 %install
+cd backgrounds
 # copy wallpapers to install location
 mkdir -p %{buildroot}/%{_datadir}/backgrounds/elementary
 cp -pav *.jpg %{buildroot}/%{_datadir}/backgrounds/elementary/
@@ -60,11 +61,12 @@ ln -s ./%{default_wallpaper} %{buildroot}/%{_datadir}/backgrounds/elementary/def
 
 # copy backgrounds list for gnome-control-center to install location
 mkdir -p %{buildroot}/%{_datadir}/gnome-background-properties
+cd ..
 cp -pav %{SOURCE1} %{buildroot}/%{_datadir}/gnome-background-properties/
 
 
 %files
-%license debian/copyright
+%license LICENSE.md
 %doc README.md
 
 %{_datadir}/backgrounds/elementary/
@@ -75,6 +77,9 @@ cp -pav %{SOURCE1} %{buildroot}/%{_datadir}/gnome-background-properties/
 
 
 %changelog
+* Thu Nov 17 2022 windowsboy111 <wboy111@outlook.com> - 6.1.0-1
+- new version
+
 * Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
 - Repackaged for Terra
 

@@ -6,8 +6,8 @@
 
 Name:           switchboard-plug-onlineaccounts
 Summary:        Switchboard Online Accounts plug
-Version:        6.5.0
-Release:        %autorelease
+Version:        6.5.1
+Release:        1%{?dist}
 License:        GPLv3+
 
 URL:            https://github.com/elementary/switchboard-plug-onlineaccounts
@@ -20,12 +20,12 @@ BuildRequires:  vala
 
 Patch0: b60f0458a23a2f76ad14d399f145e150e1ab82d3.patch
 
-BuildRequires:  pkgconfig(camel-1.2) = 3.44.4
+BuildRequires:  pkgconfig(camel-1.2)
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(gobject-2.0)
 BuildRequires:  pkgconfig(granite) >= 6.0.0
 BuildRequires:  pkgconfig(gtk+-3.0)
-BuildRequires:  evolution-data-server-devel = 3.44.4
+BuildRequires:  evolution-data-server-devel 
 BuildRequires:  pkgconfig(libhandy-1) >= 1.0.0
 BuildRequires:  pkgconfig(switchboard-2.0)
 
@@ -71,5 +71,8 @@ appstream-util validate-relax --nonet \
 
 
 %changelog
+* Thu Nov 17 2022 windowsboy111 <wboy111@outlook.com> - 6.5.1-1
+- new version
+
 * Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
 - Repackaged for Terra

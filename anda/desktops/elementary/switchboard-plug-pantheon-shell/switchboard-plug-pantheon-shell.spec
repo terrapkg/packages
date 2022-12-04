@@ -8,8 +8,8 @@
 
 Name:           switchboard-plug-pantheon-shell
 Summary:        Switchboard Pantheon Shell plug
-Version:        6.3.0
-Release:        %autorelease
+Version:        6.3.1
+Release:        1%{?dist}
 License:        GPLv3
 
 URL:            https://github.com/elementary/switchboard-plug-pantheon-shell
@@ -79,5 +79,8 @@ appstream-util validate-relax --nonet \
 
 
 %changelog
+* Thu Nov 17 2022 windowsboy111 <wboy111@outlook.com> - 6.3.1-1
+- new version
+
 * Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
 - Repackaged for Terra

@@ -3,15 +3,12 @@
 
 Name:           elementary-shortcut-overlay
 Summary:        Native, OS-wide shortcut overlay
-Version:        1.2.1
+Version:        2.0.1
 Release:        %autorelease
 License:        GPLv3
 
 URL:            https://github.com/elementary/shortcut-overlay
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
-
-# meson: remove deprecated positional arguments from i18n.merge_file calls
-Patch1:         0001-meson-remove-deprecated-positional-arguments-from-i1.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
@@ -20,9 +17,8 @@ BuildRequires:  meson
 BuildRequires:  vala
 
 BuildRequires:  pkgconfig(gee-0.8)
-BuildRequires:  pkgconfig(granite) >= 5.2.0
-BuildRequires:  pkgconfig(gtk+-3.0)
-BuildRequires:  pkgconfig(libhandy-1) >= 0.80.0
+BuildRequires:  pkgconfig(granite-7)    >= 7.0.0
+BuildRequires:  pkgconfig(gtk4)
 
 %description
 This GTK+ applet reads window manager and OS keyboard shortcuts from

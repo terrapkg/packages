@@ -30,6 +30,9 @@ install discord.png %{buildroot}%{_datadir}/pixmaps/discord-ptb.png
 %{_datadir}/pixmaps/discord-ptb.png
 
 %changelog
+* Thu Nov 17 2022 windowsboy111 <wboy111@outlook.com> - 0.0.35-1
+- new version
+
 * Thu Oct 20 2022 windowsboy111 <wboy111@outlook.com> - 0.0.34-1
 - new version
 

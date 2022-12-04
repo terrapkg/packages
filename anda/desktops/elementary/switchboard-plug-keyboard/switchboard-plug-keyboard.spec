@@ -8,15 +8,14 @@
 
 Name:           switchboard-plug-keyboard
 Summary:        Switchboard Keyboard plug
-Version:        2.7.0
+Version:        3.1.0
 Release:        %autorelease
 License:        GPLv3+
 
 URL:            https://github.com/elementary/switchboard-plug-keyboard
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 
-# upstream patch to support screenshot keyboard shortcut changes in gala
-Patch:          %{url}/commit/6ebd576.patch
+Patch0:         https://github.com/elementary/switchboard-plug-keyboard/pull/427.patch
 
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib

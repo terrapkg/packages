@@ -1,15 +1,19 @@
-# Terra repositories
+# Terra Sources
 
-This monorepo contains the package manifests for the Terra repositories.
+Terra is a rolling-release Fedora repository for all the software you need.
+With Terra, you can install the latest packages knowing that quality and security are assured.
+[Contributions](https://github.com/terrapkg/packages/wiki/Contribute) are always welcome, but please read our [documentation](https://github.com/terrapkg/packages/wiki) first.
 
+This monorepo contains the package manifests for all packages in Terra.
 
-# How to use
+## Installation
 ```bash
 sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
 ```
-# Add packages
-Pull requests are welcomed! See [here](docs/BUILDING.md) for instructions.
-1. Add a new dir named after the package
-1. Add `pkg.spec` and replace `pkg` with the name
-1. See [here](https://rpm-packaging-guide.github.io/) for the RPM packaging guide (for writing a spec file)
-1. Commit to a new branch then send a pull request
+
+## Documentation
+Our documentation can be found on our [GitHub Wiki](https://github.com/terrapkg/packages/wiki).
+
+## Questions?
+Feel free to reach out on [Discord](https://discord.gg/5fdPuxTg5Q). We're always happy to help!
+

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE comps PUBLIC "-//Red Hat, Inc.//DTD Comps info//EN" "comps.dtd">
+<comps>
+  <group>
+    <id>pantheon-desktop</id>
+    <name>Pantheon Desktop</name>
+    <description>The Pantheon desktop environment is the DE that powers elementaryOS.</description>
+    <default>false</default>
+    <uservisible>true</uservisible>
+    <packagelist>
+      <packagereq type="mandatory">contractor</packagereq>
+      <packagereq type="mandatory">elementary-capnet-assist</packagereq>
+      <packagereq type="mandatory">elementary-icon-theme</packagereq>
+      <packagereq type="mandatory">elementary-notifications</packagereq>
+      <packagereq type="mandatory">elementary-sound-theme</packagereq>
+      <packagereq type="mandatory">elementary-theme</packagereq>
+      <packagereq type="mandatory">elementary-wallpapers</packagereq>
+      <packagereq type="mandatory">gala</packagereq>
+      <packagereq type="mandatory">gnome-session</packagereq>
+      <packagereq type="mandatory">pantheon-agent-geoclue2</packagereq>
+      <packagereq type="mandatory">pantheon-agent-polkit</packagereq>
+      <packagereq type="mandatory">pantheon-session-settings</packagereq>
+      <packagereq type="mandatory">plank</packagereq>
+      <packagereq type="mandatory">wingpanel</packagereq>
+      <packagereq type="mandatory">wingpanel-applications-menu</packagereq>
+      <packagereq type="mandatory">wingpanel-indicator-bluetooth</packagereq>
+      <packagereq type="mandatory">wingpanel-indicator-datetime</packagereq>
+      <packagereq type="mandatory">wingpanel-indicator-keyboard</packagereq>
+      <packagereq type="mandatory">wingpanel-indicator-network</packagereq>
+      <packagereq type="mandatory">wingpanel-indicator-nightlight</packagereq>
+      <packagereq type="mandatory">wingpanel-indicator-notifications</packagereq>
+      <packagereq type="mandatory">wingpanel-indicator-power</packagereq>
+      <packagereq type="mandatory">wingpanel-indicator-session</packagereq>
+      <packagereq type="mandatory">wingpanel-indicator-sound</packagereq>
+      <packagereq type="default">elementary-calculator</packagereq>
+      <packagereq type="default">elementary-calendar</packagereq>
+      <packagereq type="default">elementary-camera</packagereq>
+      <packagereq type="default">elementary-code</packagereq>
+      <packagereq type="default">elementary-files</packagereq>
+      <packagereq type="default">elementary-greeter</packagereq>
+      <packagereq type="default">elementary-music</packagereq>
+      <packagereq type="default">elementary-photos</packagereq>
+      <packagereq type="default">elementary-print</packagereq>
+      <packagereq type="default">elementary-screenshot-tool</packagereq>
+      <packagereq type="default">elementary-shortcut-overlay</packagereq>
+      <packagereq type="default">elementary-sideload</packagereq>
+      <packagereq type="default">elementary-terminal</packagereq>
+      <packagereq type="default">elementary-videos</packagereq>
+      <packagereq type="default">switchboard</packagereq>
+      <packagereq type="default">switchboard-plug-a11y</packagereq>
+      <packagereq type="default">switchboard-plug-about</packagereq>
+      <packagereq type="default">switchboard-plug-applications</packagereq>
+      <packagereq type="default">switchboard-plug-bluetooth</packagereq>
+      <packagereq type="default">switchboard-plug-display</packagereq>
+      <packagereq type="default">switchboard-plug-keyboard</packagereq>
+      <packagereq type="default">switchboard-plug-mouse-touchpad</packagereq>
+      <packagereq type="default">switchboard-plug-networking</packagereq>
+      <packagereq type="default">switchboard-plug-notifications</packagereq>
+      <packagereq type="default">switchboard-plug-pantheon-shell</packagereq>
+      <packagereq type="default">switchboard-plug-printers</packagereq>
+      <packagereq type="default">switchboard-plug-sharing</packagereq>
+      <packagereq type="default">switchboard-plug-sound</packagereq>
+    </packagelist>
+  </group>
+</comps>

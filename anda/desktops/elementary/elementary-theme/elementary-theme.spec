@@ -3,7 +3,7 @@
 
 Name:           elementary-theme
 Summary:        elementary GTK+ Stylesheet
-Version:        6.1.1
+Version:        7.0.1
 Release:        %autorelease
 License:        GPLv3
 
@@ -66,6 +66,7 @@ appstream-util validate-relax --nonet \
 
 %dir %{_datadir}/themes/%{appname}.*/
 %{_datadir}/themes/%{appname}.*/gtk-3.0/
+%{_datadir}/themes/%{appname}.*/gtk-4.0/
 
 %{_datadir}/metainfo/%{appname}.appdata.xml
 
