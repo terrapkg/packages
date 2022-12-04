@@ -24,3 +24,8 @@ Depending on the package, we might remove it from the Terra repositories or patc
 
 In the case of a vulnerability in our infrastructure or packaging, you may report it using [GitHub's security advisory system](https://github.com/terrapkg/packages/security/advisories).
 We will try to respond to reports as soon as possible, at most in 24 hours. Please refrain from publicizing the vulnerability until we have published the security advisory in order to avoid putting end-users at risk.
+
+## Contact Us
+
+If you have any questions out our security policy, please reach out to us on [Discord](https://discord.gg/5fdPuxTg5Q) or through [email](mailto:security@fyralabs.com). Please report security vulnerabilities using the aforementioned method.
+We will try to respond promptly to both, however you will likely get a quicker response via Discord.
