@@ -4,4 +4,4 @@ First of all, thanks for wanting to contribute to Terra! If you have any questio
 
 * [Contribution Guide](https://github.com/terrapkg/packages/wiki/Contribute)
 * [FAQ](https://github.com/terrapkg/packages/wiki/FAQ)
-<!-- TODO: Submission/Package Policy -->
+* [Policy](https://github.com/terrapkg/packages/wiki/Policy)
