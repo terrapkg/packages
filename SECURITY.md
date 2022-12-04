@@ -4,7 +4,6 @@
 
 Fyra Labs is committed to ensuring user security and privacy.
 As such, we constantly try our best to ensure that our infrastructure and process are secure, which you may read about in our [FAQ](https://github.com/terrapkg/packages/wiki/FAQ#technical-details).
-We will try to respond promptly, although you might get a response quicker on Discord.
 
 As a part of Fyra Labs's transparency measures, we will publicize details of any known breaches. This information will include, but will not be limited to:
 * Affected users, infrastructure, and data.
