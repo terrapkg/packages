@@ -1,3 +1,17 @@
+# Repository
+/.github @lleyton 
+/.devcontainer @lleyton 
+/.gitignore @windowsboy111 
+/CODE_OF_CONDUCT.md @lleyton 
+/CONTRIBUTING.md @lleyton 
+/LICENSE @lleyton 
+/README.md @windowsboy111 
+/SECURITY.md @lleyton 
+/anda.hcl @lleyton 
+/comps.xml @lleyton 
+/requirements.txt @windowsboy111 
+/update.sh @windowsboy111 
+
 # Package maintainers
 /anda/lib/libbismuth @lainsce
 /anda/lib/libhelium @lainsce
