@@ -24,4 +24,4 @@ However, if the upstream project is unmaintained or does not resolve the vulnera
 Depending on the package, we might remove it from the Terra repositories or patch it to resolve the vulnerability.
 
 In the case of a vulnerability in our infrastructure or packaging, you may report it using [GitHub's security advisory system](https://github.com/terrapkg/packages/security/advisories).
-We will try to respond to reports ASAP, at most in 24 hours. Please refrain from publicizing the vulnerability until we have published the security advisory. Not doing so **will** put end-users at risk.
+We will try to respond to reports as soon as possible, at most in 24 hours. Please refrain from publicizing the vulnerability until we have published the security advisory in order to avoid putting end-users at risk.
