@@ -24,7 +24,9 @@ jobs:
           ssh-key: ${{ secrets.SSH_AUTHENTICATION_KEY }}
     
       - name: Install SSH signing key
-        run: echo "${{ secrets.SSH_SIGNING_KEY }}" > ${{ runner.temp }}/signing_key
+        run: |
+          mkdir -p ${{ runner.temp }}
+          echo "${{ secrets.SSH_SIGNING_KEY }}" > ${{ runner.temp }}/signing_key
 
       - name: Run Update
         run: bash ./update.sh
