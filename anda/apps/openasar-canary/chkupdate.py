@@ -21,3 +21,10 @@ cur = matches[0]
 if sha == cur:
     exit(f"{NAME}: Up to date!")
 print(f"{NAME}: {cur} -> {sha}")
+
+newspec = re.sub(REGEX_SHA, f"%define commit {sha}", txt)
+
+f.close()
+f = open(SPEC, "w")
+f.write(newspec)
+f.close()
