@@ -9,7 +9,7 @@
 Name:           switchboard-plug-about
 Summary:        Switchboard System Information plug
 Version:        6.1.0
-Release:        %autorelease
+Release:        2%{?dist}
 License:        GPLv3+
 
 URL:            https://github.com/elementary/switchboard-plug-about

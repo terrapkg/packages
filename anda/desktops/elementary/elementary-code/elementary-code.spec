@@ -6,7 +6,7 @@
 Name:           elementary-code
 Summary:        Code editor from elementary
 Version:        6.2.0
-Release:        %autorelease
+Release:        2%{?dist}
 License:        GPLv3
 
 URL:            https://github.com/elementary/%{srcname}

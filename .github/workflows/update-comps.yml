@@ -18,7 +18,7 @@ jobs:
       - name: Install repositories
         run: |
           sudo dnf install -y dnf-plugins-core
-          sudo dnf config-manager --add-repo https://github.com/andaman-common-pkgs/subatomic-repos/raw/main/terra37.repo
+          sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic-repos/raw/main/terra37.repo
       - name: Install dependencies
         run: |
           sudo dnf install -y subatomic-cli

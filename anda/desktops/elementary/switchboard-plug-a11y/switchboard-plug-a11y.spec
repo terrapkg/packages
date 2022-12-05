@@ -9,7 +9,7 @@
 Name:           switchboard-plug-a11y
 Summary:        Switchboard Accessibility plug
 Version:        2.3.0
-Release:        %autorelease
+Release:        4%{?dist}
 License:        GPLv3+
 
 URL:            https://github.com/elementary/switchboard-plug-a11y

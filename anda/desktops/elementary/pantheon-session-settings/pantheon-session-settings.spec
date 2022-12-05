@@ -3,7 +3,7 @@
 Name:           pantheon-session-settings
 Summary:        Pantheon session configuration files
 Version:        35.0
-Release:        %autorelease
+Release:        2%{?dist}
 License:        GPLv3
 
 URL:            https://pagure.io/pantheon-fedora/session-settings
