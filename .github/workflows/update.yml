@@ -23,11 +23,8 @@ jobs:
           fetch-depth: 2
           ssh-key: ${{ secrets.SSH_AUTHENTICATION_KEY }}
     
-      - name: Install SSH key
-        uses: shimataro/ssh-key-action@v2
-        with:
-          key: ${{ secrets.SSH_SIGNING_KEY }}
-          known_hosts: unnecessary
+      - name: Install SSH signing key
+        run: echo "${{ secrets.SSH_SIGNING_KEY }}" > ${{ runner.temp }}/signing_key
 
       - name: Run Update (Python)
         run: bash ./update.sh
@@ -46,7 +43,7 @@ jobs:
             git config user.name "Raboneko"
             git config user.email "raboneko@fyralabs.com"
             git config gpg.format "ssh"
-            git config user.signingkey "${{ secrets.SSH_PUBLIC_SIGNING_KEY }}"
+            git config user.signingkey "${{ runner.temp }}/signing_key"
             git commit -S -a -m "Automatic Update: $(git status | grep modified | sed -r 's@.+/([^/]+)/[^/]+\n?@\1 @g' | tr -d '\n')"
             git push -u origin main
           fi
