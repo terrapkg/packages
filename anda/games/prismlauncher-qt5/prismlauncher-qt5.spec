@@ -21,11 +21,11 @@
 %global build_platform Fedora
 %endif
 
-%if 0%{?rhel_version}
+%if 0%{?rhel}
 %global build_platform RedHat
 %endif
 
-%if 0%{?centos_version}
+%if 0%{?centos}
 %global build_platform CentOS
 %endif
 
@@ -116,8 +116,10 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 %check
 %ctest
 
+%if 0%{?fedora} > 35
 appstream-util validate-relax --nonet \
     %{buildroot}%{_metainfodir}/org.prismlauncher.PrismLauncher.metainfo.xml
+%endif
 
 desktop-file-validate %{buildroot}%{_datadir}/applications/org.prismlauncher.PrismLauncher.desktop
 
