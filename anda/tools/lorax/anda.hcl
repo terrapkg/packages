@@ -1,7 +1,6 @@
 project "pkg" {
     rpm {
         spec = "lorax.spec"
-        update = ""
         enable_scm = true
 
         scm_opts = {
