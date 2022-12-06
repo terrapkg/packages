@@ -28,11 +28,6 @@ jobs:
           mkdir -p ${{ runner.temp }}
           echo "${{ secrets.SSH_SIGNING_KEY }}" > ${{ runner.temp }}/signing_key
           chmod 0700 ${{ runner.temp }}/signing_key
-
-      - name: Run Update (Python)
-        run: bash ./update.sh
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Run Update (anda)
         run: anda update
