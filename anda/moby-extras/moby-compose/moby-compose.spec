@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:           moby-compose
-Version:        2.11.2
+Version:        2.14.0
 Release:        1%{?dist}
 Summary:        Define and run multi-container applications with Docker
 
@@ -39,5 +39,8 @@ install -m 0755 bin/build/docker-compose %{buildroot}%{_libexecdir}/docker/cli-p
 %{_libexecdir}/docker/cli-plugins/docker-compose
 
 %changelog
+* Tue Dec 06 2022 root - 2.14.0-1
+- new version
+
 * Tue Oct 04 2022 Cappy Ishihara <cappy@cappuchino.xyz>
 - Initial Release
