@@ -1,6 +1,6 @@
 Summary:        The Application Framework for tauOS apps
 Name:           libhelium
-Version:        1.1.7
+Version:        1.2.0
 Release:        1%{?dist}
 License:        GPLv3
 URL:            https://github.com/tau-OS/libhelium
@@ -66,6 +66,9 @@ rm -rf %{buildroot}%{_datadir}/themes/*
 %{_datadir}/vala/*
 
 %changelog
+* Tue Dec 06 2022 root - 1.2.0-1
+- new version
+
 * Tue Dec 06 2022 root - 1.1.7-1
 - new version
 
