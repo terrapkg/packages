@@ -3,8 +3,8 @@
 
 Name:           elementary-camera
 Summary:        Camera app designed for elementary
-Version:        6.2.0
-Release:        2%{?dist}
+Version:        6.2.1
+Release:        1%{?dist}
 License:        GPLv3
 
 URL:            https://github.com/elementary/camera
@@ -68,5 +68,8 @@ appstream-util validate-relax --nonet \
 
 
 %changelog
+* Tue Dec 06 2022 root - 6.2.1-1
+- new version
+
 * Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
 - Repackaged for Terra

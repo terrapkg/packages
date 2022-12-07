@@ -1,6 +1,3 @@
-%global fancy_name PrismLauncher
-%global real_name prismlauncher
-%global repo https://github.com/%{fancy_name}/%{fancy_name}
 %global tomlplusplus_commit 0a90913abf9390b9e08ab6d3b40ac11634553f38
 %bcond_without qt6
 
@@ -19,97 +16,64 @@
 
 %global build_platform unknown
 
-%if 0%{?suse_version}
-%global build_platform openSUSE
-%endif
-
 %if 0%{?fedora}
 %global build_platform Fedora
 %endif
 
-%if 0%{?rhel_version}
+%if 0%{?rhel}
 %global build_platform RedHat
 %endif
 
-%if 0%{?centos_version}
+%if 0%{?centos}
 %global build_platform CentOS
 %endif
 
-%if %{with qt6}
-Name:           prismlauncher
-%else
-Name:           prismlauncher-qt5
-%endif
-Version:        5.2
-Release:        2%{?dist}
-Summary:        Minecraft launcher with ability to manage multiple instances
-License:        GPL-3.0-only
-%if 0%{?suse_version}
-Group:          Amusements/Games/Action/Other
-%else
-Group:          Amusements/Games
-%endif
-URL:            https://prismlauncher.org/
-Source0:        %{repo}/releases/download/%{version}/%{fancy_name}-%{version}.tar.gz
-Source1:        https://github.com/marzer/tomlplusplus/archive/%{tomlplusplus_commit}/tomlplusplus-%{tomlplusplus_commit}.tar.gz
-Patch0:         fix-disable-FLOAT16-in-toml.patch
+Name:             prismlauncher
+Version:          5.2
+Release:          3%{?dist}
+Summary:          Minecraft launcher with ability to manage multiple instances
+License:          GPL-3.0-only
+Group:            Amusements/Games
+URL:              https://prismlauncher.org/
+Source0:          https://github.com/PrismLauncher/PrismLauncher/releases/download/%{version}/%{name}-%{version}.tar.gz
+Source1:          https://github.com/marzer/tomlplusplus/archive/%{tomlplusplus_commit}/tomlplusplus-%{tomlplusplus_commit}.tar.gz
+Patch0:           fix-disable-FLOAT16-in-toml.patch
 
-BuildRequires:  cmake >= 3.15
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  java-devel
-
-%if 0%{?suse_version}
-BuildRequires:  appstream-glib
-%else
-BuildRequires:  libappstream-glib
-%endif
-
-BuildRequires:  desktop-file-utils
-BuildRequires:  cmake(Qt%{qt_version}Concurrent) >= %{min_qt_version}
-BuildRequires:  cmake(Qt%{qt_version}Core) >= %{min_qt_version}
-BuildRequires:  cmake(Qt%{qt_version}Gui) >= %{min_qt_version}
-BuildRequires:  cmake(Qt%{qt_version}Network) >= %{min_qt_version}
-BuildRequires:  cmake(Qt%{qt_version}Test) >= %{min_qt_version}
-BuildRequires:  cmake(Qt%{qt_version}Widgets) >= %{min_qt_version}
-BuildRequires:  cmake(Qt%{qt_version}Xml) >= %{min_qt_version}
+BuildRequires:    cmake >= 3.15
+BuildRequires:    extra-cmake-modules
+BuildRequires:    gcc-c++
+BuildRequires:    java-devel >= 17
+BuildRequires:    desktop-file-utils
+BuildRequires:    libappstream-glib
+BuildRequires:    cmake(ghc_filesystem)
+BuildRequires:    cmake(Qt%{qt_version}Concurrent) >= %{min_qt_version}
+BuildRequires:    cmake(Qt%{qt_version}Core) >= %{min_qt_version}
+BuildRequires:    cmake(Qt%{qt_version}Gui) >= %{min_qt_version}
+BuildRequires:    cmake(Qt%{qt_version}Network) >= %{min_qt_version}
+BuildRequires:    cmake(Qt%{qt_version}Test) >= %{min_qt_version}
+BuildRequires:    cmake(Qt%{qt_version}Widgets) >= %{min_qt_version}
+BuildRequires:    cmake(Qt%{qt_version}Xml) >= %{min_qt_version}
 
 %if %{with qt6}
-BuildRequires:  cmake(Qt6Core5Compat)
+BuildRequires:    cmake(Qt6Core5Compat)
 %endif
 
-BuildRequires:  pkgconfig(scdoc)
-BuildRequires:  zlib-devel
+BuildRequires:    pkgconfig(scdoc)
+BuildRequires:    pkgconfig(zlib)
 
-# Prism Launcher requires QuaZip >= 1.3
-%if 0%{?suse_version} >= 1550
-BuildRequires:  cmake(QuaZip-Qt%{qt_version})
-%endif
+Requires(post):   desktop-file-utils
+Requires(postun): desktop-file-utils
 
-%if 0%{?suse_version}
-Requires:       %{!?with_qt6:lib}qt%{qt_version}-%{!?with_qt6:qt}imageformats
-Requires:       libQt%{qt_version}Svg%{qt_version}
-%else
-Requires:       qt%{qt_version}-qtimageformats
-Requires:       qt%{qt_version}-qtsvg
-%endif
+Requires:         qt%{qt_version}-qtimageformats
+Requires:         qt%{qt_version}-qtsvg
+Requires:         javapackages-filesystem
+Requires:         java-headless >= 17
+Requires:         java-1.8.0-openjdk-headless
 
-Recommends:     java-openjdk-headless
 # xrandr needed for LWJGL [2.9.2, 3) https://github.com/LWJGL/lwjgl/issues/128
-Recommends:     xrandr
-
+Recommends:       xrandr
 # Prism supports enabling gamemode
-%if 0%{?suse_version}
-Recommends:     gamemoded
-%else
-Recommends:     gamemode
-%endif
-
-%if %{with qt6}
-Conflicts:      %{real_name}-qt5
-%else
-Conflicts:      %{real_name}
-%endif
+Suggests:         gamemode
 
 
 %description
@@ -118,7 +82,7 @@ multiple installations of Minecraft at once (Fork of MultiMC)
 
 
 %prep
-%autosetup -n %{fancy_name}-%{version}
+%autosetup -n PrismLauncher-%{version}
 
 tar -xzf %{SOURCE1} -C libraries
 rm -rf libraries/tomlplusplus/*
@@ -126,6 +90,7 @@ mv -f libraries/tomlplusplus-%{tomlplusplus_commit}/* libraries/tomlplusplus
 
 # Do not set RPATH
 sed -i "s|\$ORIGIN/||" CMakeLists.txt
+
 
 %build
 %cmake \
@@ -140,52 +105,75 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 
 %cmake_build
 
+
 %install
 %cmake_install
 
-%if 0%{?suse_version} > 1500 || 0%{?fedora} > 35
-appstream-util validate-relax --nonet \
-    %{buildroot}%{_datadir}/metainfo/org.prismlauncher.PrismLauncher.metainfo.xml
-%endif
 
 %check
 %ctest
+
+%if 0%{?fedora} > 35
+appstream-util validate-relax --nonet \
+    %{buildroot}%{_metainfodir}/org.prismlauncher.PrismLauncher.metainfo.xml
+%endif
+
 desktop-file-validate %{buildroot}%{_datadir}/applications/org.prismlauncher.PrismLauncher.desktop
+
+
+%post
+/usr/bin/update-desktop-database &> /dev/null || :
+/bin/touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
+
+
+%postun
+/usr/bin/update-desktop-database &> /dev/null || :
+if [ $1 -eq 0 ] ; then
+    /bin/touch --no-create %{_datadir}/icons/hicolor &>/dev/null
+    /usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
+fi
+
+
+%posttrans
+/usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
+
 
 %files
 %doc README.md
 %license LICENSE COPYING.md
-%dir %{_datadir}/%{real_name}
+%dir %{_datadir}/%{name}
 %{_bindir}/prismlauncher
-%{_datadir}/%{real_name}/NewLaunch.jar
-%{_datadir}/%{real_name}/JavaCheck.jar
+%{_datadir}/%{name}/NewLaunch.jar
+%{_datadir}/%{name}/JavaCheck.jar
 %{_datadir}/applications/org.prismlauncher.PrismLauncher.desktop
-%{_datadir}/metainfo/org.prismlauncher.PrismLauncher.metainfo.xml
+%{_metainfodir}/org.prismlauncher.PrismLauncher.metainfo.xml
 %{_datadir}/icons/hicolor/scalable/apps/org.prismlauncher.PrismLauncher.svg
 %{_mandir}/man?/prismlauncher.*
 
 
 %changelog
-* Tue Nov 15 2022 seth <getchoo at tuta dot io> - 5.2-2
-- use newer version of toml++
+* Mon Dec 05 2022 seth <getchoo at tuta dot io> - 5.2-3
+- revise file to better follow fedora packaging guidelines and add java 8 as a
+  dependency
 
-* Tue Nov 15 2022 root - 5.2-1
-- new version
+
+* Tue Nov 15 2022 seth <getchoo at tuta dot io> - 5.2-2
+- use newer version of toml++ to fix issues on aarch64
+
+* Tue Nov 15 2022 seth <getchoo at tuta dot io> - 5.2-1
+- update to 5.2
 
 * Thu Nov 10 2022 seth <getchoo at tuta dot io> - 5.1-2
 - add package to Amusements/Games
 
-* Tue Nov 01 2022 root - 5.1-1
-- new version
-
-* Wed Oct 19 2022 seth <getchoo at tuta dot io> - 5.0-4
-- fix opensuse deps
+* Tue Nov 01 2022 seth <getchoo at tuta dot io> - 5.1-1
+- update to 5.1
 
 * Wed Oct 19 2022 seth <getchoo at tuta dot io> - 5.0-3
 - add missing deps and build with qt6 by default
 
 * Wed Oct 19 2022 seth <getchoo at tuta dot io> - 5.0-2
-- add change-jars-path.patch and allow for building on opensuse
+- add change-jars-path.patch to allow for package-specific jar path
 
 * Wed Oct 19 2022 seth <getchoo at tuta dot io> - 5.0-1
 - update to version 5.0
@@ -198,63 +186,3 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.prismlauncher.Pri
 
 * Tue Oct 18 2022 Cappy Ishihara <cappy@cappuchino.xyz> - 1.4.2-1
 - Repackaged as Prism Launcher
-
-* Thu Sep 08 2022 Jan Drögehoff <sentrycraft123@gmail.com> - 1.4.2-1
-- Update to 1.4.2
-
-* Fri Jul 29 2022 Jan Drögehoff <sentrycraft123@gmail.com> - 1.4.1-1
-- Update to 1.4.1
-
-* Sat Jul 23 2022 Jan Drögehoff <sentrycraft123@gmail.com> - 1.4.0-2
-- Recommend gamemode
-
-* Sat Jul 23 2022 Jan Drögehoff <sentrycraft123@gmail.com> - 1.4.0-1
-- Update to 1.4.0
-
-* Wed Jun 15 2022 Jan Drögehoff <sentrycraft123@gmail.com> - 1.3.2-2
-- Fixing OpenSuse Tumbleweed compilation
-
-* Sun Jun 12 2022 Jan Drögehoff <sentrycraft123@gmail.com> - 1.3.2-1
-- Update to 1.3.2
-
-* Mon May 30 2022 Jan Drögehoff <sentrycraft123@gmail.com> - 1.3.1-1
-- Update to 1.3.1
-
-* Mon May 23 2022 Jan Drögehoff <sentrycraft123@gmail.com> - 1.3.0-1
-- Update to 1.3.0
-
-* Sat May 14 2022 Jan Drögehoff <sentrycraft123@gmail.com> - 1.2.2-1
-- Update to 1.2.2
-
-* Mon Apr 25 2022 Jan Drögehoff <sentrycraft123@gmail.com> - 1.2.1-2
-- Correct dependencies for openSUSE
-
-* Wed Apr 20 2022 Jan Drögehoff <sentrycraft123@gmail.com> - 1.2.1-1
-- Update to 1.2.1
-
-* Tue Apr 19 2022 Jan Drögehoff <sentrycraft123@gmail.com> - 1.2.0-1
-- Update to 1.2.0
-
-* Tue Apr 19 2022 Jan Drögehoff <sentrycraft123@gmail.com> - 1.1.1-3
-- Correct dependencies for openSuse
-
-* Wed Apr 06 2022 Jan Drögehoff <sentrycraft123@gmail.com> - 1.1.1-2
-- Add missing dependencies
-
-* Mon Mar 28 2022 Jan Drögehoff <sentrycraft123@gmail.com> - 1.1.1-1
-- Update to 1.1.1
-
-* Wed Mar 16 2022 Jan Drögehoff <sentrycraft123@gmail.com> - 1.1.0-1
-- Update to 1.1.0
-
-* Mon Jan 24 2022 Jan Drögehoff <sentrycraft123@gmail.com> - 1.0.5-2
-- remove explicit dependencies, correct dependencies to work on OpenSuse
-
-* Sun Jan 09 2022 Jan Drögehoff <sentrycraft123@gmail.com> - 1.0.5-1
-- Update to 1.0.5
-
-* Sun Jan 09 2022 Jan Drögehoff <sentrycraft123@gmail.com> - 1.0.4-2
-- rework spec
-
-* Fri Jan 7 2022 getchoo <getchoo at tuta dot io> - 1.0.4-1
-- Initial polymc spec
