@@ -1,1 +1,3 @@
-rpm.version(gh("tectonic-typesetting/tectonic"));
+let v = gh("tectonic-typesetting/tectonic");
+v.crop(9);
+rpm.version(v);
