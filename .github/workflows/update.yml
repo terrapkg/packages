@@ -15,7 +15,10 @@ jobs:
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Install packages
-        run: dnf install -y rpmdevtools git python anda
+        run: |
+          sudo dnf install -y dnf-plugins-core
+          sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic-repos/raw/main/terra37.repo
+          dnf install -y rpmdevtools git python anda
 
       - name: Checkout
         uses: actions/checkout@v3
