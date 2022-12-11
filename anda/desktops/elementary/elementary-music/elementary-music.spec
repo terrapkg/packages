@@ -10,7 +10,7 @@ utilizes Granite for a consistent and slick UI.}
 
 Name:           elementary-music
 Summary:        Music player and library from elementary
-Version:        7.0.0
+Version:        7.0.1
 Release:        2%{?dist}
 License:        LGPLv2+
 
