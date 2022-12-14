@@ -47,10 +47,6 @@ pushd crates/
 
 
 %install
-# install -D -m 0755 youki %{buildroot}%{_bindir}/youki
-
-
-pushd crates/
 install -D -m 0755 target/release/youki %{buildroot}%{_bindir}/youki
 
 %files
