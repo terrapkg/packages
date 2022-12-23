@@ -1,6 +1,8 @@
 %global git_commit 0f918015fa418affec32435d1c61c6ae473f2af5
 %global git_shortcommit %(c=%{git_commit}; echo ${c:0:7})
 
+# exclude libappimageupdate* from provides
+%global __requires_exclude ^libappimageupdate.*$
 
 Name:           appimagelauncher
 Version:        2.2.0
