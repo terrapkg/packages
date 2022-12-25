@@ -1,6 +1,6 @@
 project "pkg" {
     rpm {
-        spec = "latte-dock.spec"
+        spec = "latte-dock-git.spec"
         update = ""
     }
 }
