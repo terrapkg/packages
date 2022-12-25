@@ -25,3 +25,8 @@
 /anda/games/prismlauncher-nightly @getchoo
 /anda/games/prismlauncher-qt5-nightly @getchoo
 /anda/games/prismlauncher-qt5 @getchoo
+
+/anda/srpm-macros @korewaChino
+/anda/rust/starship @korewaChino
+/anda/rust/zellij @korewaChino
+/anda/audio/distrho @korewaChino
