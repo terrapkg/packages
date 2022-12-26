@@ -48,7 +48,7 @@ git submodule update --init --recursive
 
 %build
 # add include path for argagg
-%cmake -DBUILD_QT_UI=OFF \
+%cmake -DBUILD_QT_UI=ON \
     -DBUILD_LIBAPPIMAGEUPDATE_ONLY=ON \
     -DUSE_SYSTEM_LIBAPPIMAGE=ON
 %cmake_build
