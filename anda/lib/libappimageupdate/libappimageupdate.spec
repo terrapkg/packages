@@ -23,6 +23,12 @@ BuildRequires:  cmake3
 BuildRequires:  gcc-c++
 BuildRequires:  libappimage-devel curl-devel libX11-devel zlib-devel fuse-devel librsvg2-devel cairo-devel git-core
 BuildRequires:  nlohmann-json-devel
+BuildRequires:  pkgconfig(libgcrypt)
+BuildRequires:  pkgconfig(gpgme)
+BuildRequires:  pkgconfig(Qt5)
+BuildRequires:  openssl-devel
+BuildRequires:  inotify-tools-devel
+BuildRequires:  argagg-devel
 
 %description
 Implements functionality for dealing with AppImage files. It is written in C++ and is using Boost.
