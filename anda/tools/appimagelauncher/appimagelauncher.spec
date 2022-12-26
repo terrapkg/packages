@@ -57,6 +57,38 @@ popd
 %cmake_install
 
 
+%post
+echo "Installing AppImageLauncher as interpreter for AppImages"
+# as there's no _real_ package that we could use as a dependency to take care of the kernel module,
+# we need to make sure that the kernel module is loaded manually
+modprobe -v binfmt_misc
+
+(set -x; systemctl restart systemd-binfmt)
+
+
+%postun
+
+echo "Removing AppImageLauncher as interpreter for AppImages"
+(set -x; systemctl restart systemd-binfmt)
+
+update_notifier="/usr/share/update-notifier/notify-reboot-required"
+if [ -x "$update_notifier" ]; then
+    "$update_notifier"
+fi
+
+cat <<EOF
+#####################################################
+#                                                   #
+#  NOTE: you need to reboot your computer in order  #
+#  to complete the uninstallation                   #
+#                                                   #
+#  (If you see this message during an upgrade:      #
+#  don't worry, you do not have to take any         #
+#  action, no reboot required!)                     #
+#                                                   #
+#####################################################
+EOF
+
 %files
 %{_datadir}/appimagelauncher
 %{_datadir}/applications/appimagelauncher.desktop
