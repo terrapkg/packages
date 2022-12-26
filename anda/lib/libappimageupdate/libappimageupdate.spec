@@ -70,11 +70,6 @@ git submodule update --init --recursive
 %{_includedir}/*
 %{_prefix}/lib/cmake/AppImageUpdate/
 
-
-
-
-
-
 %changelog
 * Tue Oct 25 2022 Cappy Ishihara <cappy@cappuchino.xyz>
 - 
