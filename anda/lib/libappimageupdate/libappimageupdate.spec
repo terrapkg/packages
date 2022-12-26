@@ -72,4 +72,4 @@ git submodule update --init --recursive
 
 %changelog
 * Tue Oct 25 2022 Cappy Ishihara <cappy@cappuchino.xyz>
-- 
+- Initial build
