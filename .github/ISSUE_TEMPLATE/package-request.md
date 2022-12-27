@@ -1,7 +1,7 @@
 ---
 name: Package request
 about: Request a new package
-title: ''
+title: "[Package Request] "
 labels: enhancement
 assignees: ''
 
