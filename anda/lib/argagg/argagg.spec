@@ -11,6 +11,7 @@ Source0:        https://github.com/vietjtnguyen/argagg/archive/%{version}.tar.gz
 
 BuildRequires:  cmake
 BuildRequires:  doxygen
+BuildRequires:  gcc-c++
 
 %description
 This is yet another C++ command line argument/option parser. It was written as
