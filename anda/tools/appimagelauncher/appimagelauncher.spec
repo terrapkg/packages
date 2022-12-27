@@ -1,12 +1,9 @@
 %global git_commit 0f918015fa418affec32435d1c61c6ae473f2af5
 %global git_shortcommit %(c=%{git_commit}; echo ${c:0:7})
 
-# exclude libappimageupdate* from provides
-%global __requires_exclude ^libappimageupdate.*$
-
 Name:           appimagelauncher
 Version:        2.2.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Helper application for Linux distributions serving as a kind of "entry point" for running and integrating AppImages
 
 License:        MIT
@@ -27,6 +24,7 @@ BuildRequires:  qt5-linguist
 BuildRequires:  libcurl-devel
 BuildRequires:  boost-devel
 BuildRequires:  libappimage-devel
+BuildRequires:  libappimageupdate-devel
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  librsvg2-devel
 
@@ -59,6 +57,38 @@ popd
 %cmake_install
 
 
+%post
+echo "Installing AppImageLauncher as interpreter for AppImages"
+# as there's no _real_ package that we could use as a dependency to take care of the kernel module,
+# we need to make sure that the kernel module is loaded manually
+modprobe -v binfmt_misc
+
+(set -x; systemctl restart systemd-binfmt)
+
+
+%postun
+
+echo "Removing AppImageLauncher as interpreter for AppImages"
+(set -x; systemctl restart systemd-binfmt)
+
+update_notifier="/usr/share/update-notifier/notify-reboot-required"
+if [ -x "$update_notifier" ]; then
+    "$update_notifier"
+fi
+
+cat <<EOF
+#####################################################
+#                                                   #
+#  NOTE: you need to reboot your computer in order  #
+#  to complete the uninstallation                   #
+#                                                   #
+#  (If you see this message during an upgrade:      #
+#  don't worry, you do not have to take any         #
+#  action, no reboot required!)                     #
+#                                                   #
+#####################################################
+EOF
+
 %files
 %{_datadir}/appimagelauncher
 %{_datadir}/applications/appimagelauncher.desktop
@@ -75,5 +105,8 @@ popd
 %{_mandir}/man1/AppImageLauncher.1.gz
 
 %changelog
+* Mon Dec 26 2022 Cappy Ishihara <cappy@cappuchino.xyz>
+- Bumped release, added missing dependency
+
 * Tue Oct 25 2022 Cappy Ishihara <cappy@cappuchino.xyz>
 - Initial Release
