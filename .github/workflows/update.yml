@@ -33,7 +33,7 @@ jobs:
           chmod 0700 ${{ runner.temp }}/signing_key
       
       - name: Run Update (anda)
-        run: anda update -vvv
+        run: anda update -vv
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
