@@ -6,7 +6,7 @@ License:        GPLv3
 URL:            https://github.com/flxzt/rnote
 Source0:        %{url}/releases/download/v%{version}/rnote-%{version}.tar.xz
 Requires:       libadwaita poppler-glib glib2 gtk4
-BuildRequires:  cargo meson cmake libappstream-glib gcc-c++ pkgconfig(alsa) alsa-lib clang-devel
+BuildRequires:  cargo meson cmake libappstream-glib gcc-c++ pkgconfig(alsa) alsa-lib clang-devel python
 BuildRequires:  pkgconfig(glib-2.0) >= 2.66
 BuildRequires:  pkgconfig(gtk4) >= 4.7
 BuildRequires:  pkgconfig(libadwaita-1) >= 1.2
