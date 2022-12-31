@@ -173,6 +173,7 @@ fi
 %{_datadir}/icons/hicolor/scalable/apps/org.prismlauncher.PrismLauncher.svg
 %{_datadir}/mime/packages/modrinth-mrpack-mime.xml
 %{_mandir}/man?/prismlauncher.*
+%{_datadir}/qlogging-categories6/prismlauncher.categories
 
 
 %changelog
