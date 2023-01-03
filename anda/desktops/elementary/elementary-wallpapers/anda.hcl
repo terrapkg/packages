@@ -1,6 +1,6 @@
 project "pkg" {
     rpm {
         spec = "elementary-wallpapers.spec"
-        sources = "."
+        update = ""
     }
 }

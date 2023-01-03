@@ -10,7 +10,7 @@ utilizes Granite for a consistent and slick UI.}
 
 Name:           elementary-music
 Summary:        Music player and library from elementary
-Version:        7.0.0
+Version:        7.0.1
 Release:        2%{?dist}
 License:        LGPLv2+
 
@@ -83,7 +83,7 @@ desktop-file-validate \
     %{buildroot}/%{_datadir}/applications/%{appname}.desktop
 
 appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
+    %{buildroot}/%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %files -f %{appname}.lang
@@ -95,7 +95,7 @@ appstream-util validate-relax --nonet \
 %{_datadir}/applications/%{appname}.desktop
 %{_datadir}/glib-2.0/schemas/%{appname}.gschema.xml
 %{_datadir}/icons/hicolor/*/apps/%{appname}.svg
-%{_datadir}/metainfo/%{appname}.appdata.xml
+%{_datadir}/metainfo/%{appname}.metainfo.xml
 %{_datadir}/locale/*/LC_MESSAGES/%{appname}.mo
 
 %files devel

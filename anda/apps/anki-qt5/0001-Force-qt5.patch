@@ -1,0 +1,20 @@
+diff -uNr anki-2.1.55.old/qt/aqt/qt/__init__.py anki-2.1.55/qt/aqt/qt/__init__.py
+--- anki-2.1.55.old/qt/aqt/qt/__init__.py	2023-01-02 18:34:13.716216913 +0800
++++ anki-2.1.55/qt/aqt/qt/__init__.py	2023-01-02 18:34:00.410033708 +0800
+@@ -9,16 +9,7 @@
+ import traceback
+ from typing import Callable, TypeVar, Union
+ 
+-try:
+-    import PyQt6
+-except:
+-    from .qt5 import *  # type: ignore
+-else:
+-    if not os.getenv("DISABLE_QT5_COMPAT"):
+-        print("Running with temporary Qt5 compatibility shims.")
+-        print("Run with DISABLE_QT5_COMPAT=1 to confirm compatibility with Qt6.")
+-        from . import qt5_compat  # needs to be imported first
+-    from .qt6 import *
++from .qt5 import *  # type: ignore
+ 
+ from anki.utils import is_mac, is_win

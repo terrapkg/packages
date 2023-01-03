@@ -1,6 +1,6 @@
 project "pkg" {
     rpm {
         spec = "elementary-calendar.spec"
-        sources = "."
+        update = ""
     }
 }

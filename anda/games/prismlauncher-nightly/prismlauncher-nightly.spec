@@ -1,6 +1,6 @@
 %global real_name prismlauncher
 
-%global commit 5ae044db93373e20add854e3be48e59e6c38421b
+%global commit 4b12c85d91be34504384117584fb4f25a754481e
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global libnbtplusplus_commit 2203af7eeb48c45398139b583615134efd8d407f
 %global quazip_commit 6117161af08e366c37499895b00ef62f93adc345
@@ -39,7 +39,7 @@
 %endif
 
 Name:             prismlauncher-nightly
-Version:          6.0^%{snapshot_info}
+Version:          7.0^%{snapshot_info}
 Release:          1%{?dist}
 Summary:          Minecraft launcher with ability to manage multiple instances
 License:          GPL-3.0-only
@@ -78,8 +78,8 @@ Requires(postun): desktop-file-utils
 Requires:         qt%{qt_version}-qtimageformats
 Requires:         qt%{qt_version}-qtsvg
 Requires:         javapackages-filesystem
-Requires:         java-headless >= 17
-Requires:         java-1.8.0-openjdk-headless
+Requires:         java >= 17
+Requires:         java-1.8.0-openjdk
 
 # xrandr needed for LWJGL [2.9.2, 3) https://github.com/LWJGL/lwjgl/issues/128
 Recommends:       xrandr
@@ -172,10 +172,14 @@ fi
 %{_metainfodir}/org.prismlauncher.PrismLauncher.metainfo.xml
 %{_datadir}/icons/hicolor/scalable/apps/org.prismlauncher.PrismLauncher.svg
 %{_datadir}/mime/packages/modrinth-mrpack-mime.xml
+%{_datadir}/qlogging-categories%{qt_version}/prismlauncher.categories
 %{_mandir}/man?/prismlauncher.*
 
 
 %changelog
+* Tue Jan 03 2023 seth <getchoo at tuta dot io> - 7.0^20230102.4b12c85-1
+- add qlogging categories
+
 * Mon Dec 05 2022 seth <getchoo at tuta dot io> - 6.0^20221204.79d5bef-1
 - revise file to better follow fedora packaging guidelines and add java 8 as a
   dependency

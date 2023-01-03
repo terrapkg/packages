@@ -1,6 +1,6 @@
 project "pkg" {
     rpm {
         spec = "elementary-shortcut-overlay.spec"
-        sources = "."
+        update = ""
     }
 }

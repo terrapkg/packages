@@ -3,7 +3,7 @@
 
 Name:           elementary-capnet-assist
 Summary:        Captive Portal Assistant for elementary
-Version:        2.4.2
+Version:        2.4.3
 Release:        2%{?dist}
 License:        GPLv3+
 
@@ -24,7 +24,7 @@ BuildRequires:  pkgconfig(gobject-2.0)
 BuildRequires:  pkgconfig(granite)
 BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(libhandy-1) >= 1.0.0
-BuildRequires:  pkgconfig(webkit2gtk-4.0)
+BuildRequires:  pkgconfig(webkit2gtk-4.1)
 
 Requires:       NetworkManager
 Requires:       hicolor-icon-theme

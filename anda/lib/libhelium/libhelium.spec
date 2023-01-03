@@ -1,6 +1,6 @@
 Summary:        The Application Framework for tauOS apps
 Name:           libhelium
-Version:        1.2.0
+Version:        1.2.10
 Release:        1%{?dist}
 License:        GPLv3
 URL:            https://github.com/tau-OS/libhelium
@@ -16,9 +16,7 @@ BuildRequires:  pkgconfig(glib-2.0) >= 2.66.0
 BuildRequires:  pkgconfig(gobject-introspection-1.0)
 BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  pkgconfig(gtk4) >= 4.4
-BuildRequires:  pkgconfig(libbismuth-1)
 
-Requires: libbismuth
 Requires: gtk4 >= 4.4
 Requires: glib2 >= 2.66.0
 Requires: libgee >= 0.20

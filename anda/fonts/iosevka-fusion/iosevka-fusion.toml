@@ -1,0 +1,191 @@
+[buildPlans.iosevka-fusion]
+family      = "Iosevka Fusion"
+spacing     = "fixed"
+serifs      = "sans"
+
+[buildPlans.iosevka-fusion.variants.design]
+cv01 = 1    # A cap straight
+cv02 = 1    # B cap straight
+cv03 = 1    # C cap serifless
+cv04 = 1    # D cap serifless
+cv05 = 1    # E cap serifless
+cv06 = 1    # F cap serifless
+cv07 = 6    # G cap toothless rounded serifless hooked
+cv08 = 1    # H cap serifless
+cv09 = 1    # I cap long serifs
+cv10 = 2    # J cap serified
+cv11 = 2    # K cap curly
+cv12 = 1    # L cap serifless
+cv13 = 3    # M cap short middle leg slanted sides
+cv14 = 1    # N cap symmetric
+cv15 = 1    # P cap straight
+cv16 = 4    # Q cap crossing tail
+cv17 = 1    # R cap straight
+cv18 = 1    # S cap serifless
+cv19 = 1    # T cap serifless
+cv20 = 3    # U cap serifless
+cv21 = 1    # V cap straight
+cv22 = 1    # W straight
+cv23 = 1    # X cap straight
+cv24 = 1    # Y cap straight
+cv25 = 1    # Z cap straight
+cv28 = 1    # c serifless
+cv33 = 1    # h straight
+cv34 = 10   # i serified flat tailed
+cv35 = 6    # j flat hook serified
+cv37 = 10   # l serified flat tailed
+cv42 = 9    # r compact
+cv43 = 1    # s serifless
+cv44 = 2    # t flat hook
+cv49 = 6    # y cursive flat terminal hook
+cv53 = 1    # Λ, Δ lambda and delta cap straight
+cv54 = 2    # α alpha straight tailed
+VXAA = 1    # δ delta rounded top
+cv55 = 1    # Γ gamma cap straight
+cv56 = 6    # ι iota serified flat tailed
+cv57 = 2    # λ lambda top tailed
+VXAC = 1    # μ me tailless
+VXAB = 2    # ξ xe flat top
+cv71 = 13   # 0 oval dashed forward slash
+cv74 = 2    # 3 arched
+cv76 = 2    # 5 open contour
+cv78 = 1    # 7 straight
+cv79 = 3    # 8 two asymmetric circles
+cv81 = 2    # ~ tilde low
+cv82 = 2    # * asterisk five-pointed low
+cv83 = 1    # _ underscore right below baseline
+cv85 = 1    # ^ uptick high
+cv86 = 1    # ( parentheses normal slope
+cv87 = 2    # { braces curly
+cv88 = 1    # # column straight
+cv90 = 4    # @ three-fold, tall height
+cv91 = 2    # $ dollar strike through
+cv92 = 2    # ¢ cent strike through
+cv93 = 1    # % percent dots
+cv94 = 1    # | bar natural slope
+cv95 = 2    # ≥ equal-or-{higher,lower} slanted
+cv96 = 1    # ' single quote straight
+cv97 = 1    # ` grave/backtick straight
+cv98 = 1    # ? smooth
+cv99 = 2    # .:; square punctuation marks
+VXDD = 2    # ijäöü square diacretics
+
+[buildPlans.iosevka-fusion.variants.upright]
+cv26 = 3    # a double storey rounded
+cv27 = 2    # b rounded
+cv29 = 2    # d rounded
+cv30 = 1    # e straight
+cv31 = 16   # f serifless bottom flat top crossbar at x height
+cv32 = 9    # g single storey flat hook earless cornered top
+cv36 = 1    # k straight
+cv38 = 5    # m earless normal middle leg
+cv39 = 3    # n earless straight
+cv40 = 2    # p earless
+cv41 = 2    # q earless
+cv45 = 2    # u rounded
+cv46 = 1    # v straight
+cv47 = 1    # w straight
+cv48 = 1    # x straight
+cv50 = 1    # z straight
+cv72 = 3    # 1 serified with base
+cv73 = 1    # 2 straight
+cv75 = 3    # 4 semi-open contour
+cv77 = 3    # 6 straight
+cv80 = 3    # 9 straight
+cv89 = 2    # & et open top (ampersand)
+
+[buildPlans.iosevka-fusion.variants.italic]
+cv26 = 1    # a double storey straight
+cv27 = 1    # b straight
+cv29 = 1    # d straight
+cv30 = 2    # e curly
+cv31 = 18   # f flat hook tailed crossbar at x height
+cv32 = 7    # g single storey flat hook
+cv36 = 2    # k curly
+cv38 = 1    # m straight normal middle leg
+cv39 = 1    # n straight
+cv40 = 1    # p straight
+cv41 = 1    # q straight
+cv45 = 1    # u straight
+cv46 = 2    # v curly
+cv47 = 2    # w curly short middle top
+cv48 = 2    # x curly
+cv50 = 4    # z curly
+cv72 = 2    # 1 serified no base
+cv73 = 2    # 2 curly
+cv75 = 1    # 4 closed contour crossing
+cv77 = 1    # 6 closed contour
+cv80 = 1    # 9 closed contour
+cv89 = 4    # & et open top toothed (ampersand)
+
+[buildPlans.iosevka-fusion.weights.thin]
+shape = 100
+menu  = 100
+css   = 100
+
+[buildPlans.iosevka-fusion.weights.extralight]
+shape = 200
+menu  = 200
+css   = 200
+
+[buildPlans.iosevka-fusion.weights.light]
+shape = 300
+menu  = 300
+css   = 300
+
+[buildPlans.iosevka-fusion.weights.regular]
+shape = 400
+menu  = 400
+css   = 400
+
+[buildPlans.iosevka-fusion.weights.book]
+shape = 450
+menu  = 450
+css   = 450
+
+[buildPlans.iosevka-fusion.weights.medium]
+shape = 500
+menu  = 500
+css   = 500
+
+[buildPlans.iosevka-fusion.weights.semibold]
+shape = 600
+menu  = 600
+css   = 600
+
+[buildPlans.iosevka-fusion.weights.bold]
+shape = 700
+menu  = 700
+css   = 700
+
+[buildPlans.iosevka-fusion.weights.extrabold]
+shape = 800
+menu  = 800
+css   = 800
+
+[buildPlans.iosevka-fusion.weights.heavy]
+shape = 900
+menu  = 900
+css   = 900
+
+[buildPlans.iosevka-fusion.slopes.upright]
+angle = 0
+shape = "upright"
+menu  = "upright"
+css   = "normal"
+
+[buildPlans.iosevka-fusion.slopes.italic]
+angle = 9.4
+shape = "italic"
+menu  = "italic"
+css   = "italic"
+
+[buildPlans.iosevka-fusion.widths.normal]
+shape = 600
+menu  = 5
+css   = "normal"
+
+[buildPlans.iosevka-fusion.metric-override]
+leading = 1350
+sb = 60
+xHeight = 530

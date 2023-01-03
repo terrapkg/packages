@@ -1,5 +1,4 @@
 %define real_name prismlauncher
-%global tomlplusplus_commit 0a90913abf9390b9e08ab6d3b40ac11634553f38
 %bcond_with qt6
 
 # Change this variables if you want to use custom keys
@@ -30,15 +29,13 @@
 %endif
 
 Name:             prismlauncher-qt5
-Version:          5.2
-Release:          3%{?dist}
+Version:          6.1
+Release:          2%{?dist}
 Summary:          Minecraft launcher with ability to manage multiple instances
 License:          GPL-3.0-only
 Group:            Amusements/Games
 URL:              https://prismlauncher.org/
 Source0:          https://github.com/PrismLauncher/PrismLauncher/releases/download/%{version}/%{real_name}-%{version}.tar.gz
-Source1:          https://github.com/marzer/tomlplusplus/archive/%{tomlplusplus_commit}/tomlplusplus-%{tomlplusplus_commit}.tar.gz
-Patch0:           fix-disable-FLOAT16-in-toml.patch
 
 BuildRequires:    cmake >= 3.15
 BuildRequires:    extra-cmake-modules
@@ -68,8 +65,8 @@ Requires(postun): desktop-file-utils
 Requires:         qt%{qt_version}-qtimageformats
 Requires:         qt%{qt_version}-qtsvg
 Requires:         javapackages-filesystem
-Requires:         java-headless >= 17
-Requires:         java-1.8.0-openjdk-headless
+Requires:         java >= 17
+Requires:         java-1.8.0-openjdk
 
 # xrandr needed for LWJGL [2.9.2, 3) https://github.com/LWJGL/lwjgl/issues/128
 Recommends:       xrandr
@@ -86,10 +83,6 @@ multiple installations of Minecraft at once (Fork of MultiMC)
 
 %prep
 %autosetup -n PrismLauncher-%{version}
-
-tar -xzf %{SOURCE1} -C libraries
-rm -rf libraries/tomlplusplus/*
-mv -f libraries/tomlplusplus-%{tomlplusplus_commit}/* libraries/tomlplusplus
 
 # Do not set RPATH
 sed -i "s|\$ORIGIN/||" CMakeLists.txt
@@ -127,6 +120,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.prismlauncher.Pri
 %post
 /usr/bin/update-desktop-database &> /dev/null || :
 /bin/touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
+/bin/touch --no-create %{_datadir}/mime/packages &>/dev/null || :
 
 
 %postun
@@ -134,11 +128,13 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.prismlauncher.Pri
 if [ $1 -eq 0 ] ; then
     /bin/touch --no-create %{_datadir}/icons/hicolor &>/dev/null
     /usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
+    /usr/bin/update-mime-database %{_datadir}/mime &> /dev/null || :
 fi
 
 
 %posttrans
 /usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
+/usr/bin/update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
 
 
 %files
@@ -149,12 +145,19 @@ fi
 %{_datadir}/%{real_name}/NewLaunch.jar
 %{_datadir}/%{real_name}/JavaCheck.jar
 %{_datadir}/applications/org.prismlauncher.PrismLauncher.desktop
-%{_metainfodir}/org.prismlauncher.PrismLauncher.metainfo.xml
 %{_datadir}/icons/hicolor/scalable/apps/org.prismlauncher.PrismLauncher.svg
+%{_datadir}/mime/packages/modrinth-mrpack-mime.xml
 %{_mandir}/man?/prismlauncher.*
+%{_metainfodir}/org.prismlauncher.PrismLauncher.metainfo.xml
 
 
 %changelog
+* Mon Dec 19 2022 seth <getchoo at tuta dot io> - 6.1-2
+- start using non-headless java deps
+
+* Mon Dec 12 2022 seth <getchoo at tuta dot io> - 6.0-1
+- update to 6.0
+
 * Mon Dec 05 2022 seth <getchoo at tuta dot io> - 5.2-3
 - revise file to better follow fedora packaging guidelines and add java 8 as a
   dependency

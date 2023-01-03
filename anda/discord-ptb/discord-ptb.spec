@@ -1,5 +1,5 @@
 Name:           discord-ptb
-Version:        0.0.36
+Version:        0.0.38
 Release:        %autorelease
 Summary:        Free Voice and Text Chat for Gamers.
 URL:            discord.com
