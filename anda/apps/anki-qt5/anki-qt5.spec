@@ -9,7 +9,7 @@ BuildRequires:  python3-distro python3-flask-cors python3-jsonschema python3-req
 BuildRequires:  desktop-file-utils libappstream-glib python3-installer make xdg-utils
 BuildRequires:  cargo git rsync ninja-build libxcrypt-compat nodejs python3.9 python-unversioned-command
 Requires:       hicolor-icon-theme python3-sqlalchemy python3-simplejson python3-matplotlib python3-decorator python3-markdown python3-send2trash
-Requires:	    python3-requests python3-pygame python3-beautifulsoup4 python3-httplib2 python3-pyaudio python3-jsonschema sox libxcrypt-compat
+Requires:       python3-requests python3-pygame python3-beautifulsoup4 python3-httplib2 python3-pyaudio python3-jsonschema sox libxcrypt-compat
 ExclusiveArch:  %{qt5_qtwebengine_arches} noarch
 Patch0:         0001-Force-qt5.patch
 Patch1:         0001-No-update.patch
@@ -47,6 +47,7 @@ sed "s*^#!/usr/bin/python\$*#!/usr/bin/python3*" %{buildroot}/%{_bindir}/anki > 
 %license LICENSE*
 %doc README*
 %{_bindir}/anki
+%{_datadir}/pixmaps/anki.png
 %{_datadir}/applications/anki.desktop
 /usr/lib64/python*/site-packages/aqt/
 /usr/lib64/python*/site-packages/aqt-%{version}.dist-info/
@@ -54,7 +55,6 @@ sed "s*^#!/usr/bin/python\$*#!/usr/bin/python3*" %{buildroot}/%{_bindir}/anki > 
 /usr/lib64/python*/site-packages/_aqt-%{version}.dist-info/
 /usr/lib64/python*/site-packages/anki/
 /usr/lib64/python*/site-packages/anki-%{version}.dist-info/
-/usr/share/pixmaps/anki.png
 
 
 %changelog

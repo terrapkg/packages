@@ -9,7 +9,7 @@ BuildRequires:  python3-distro python3-flask-cors python3-jsonschema python3-req
 BuildRequires:  desktop-file-utils libappstream-glib python3-installer make xdg-utils mold  
 BuildRequires:  cargo git rsync ninja-build libxcrypt-compat nodejs python3.9 python-unversioned-command
 Requires:       hicolor-icon-theme python3-sqlalchemy python3-simplejson python3-matplotlib python3-decorator python3-markdown python3-send2trash
-Requires:	    python3-requests python3-pygame python3-beautifulsoup4 python3-httplib2 python3-pyaudio python3-jsonschema sox libxcrypt-compat
+Requires:       python3-requests python3-pygame python3-beautifulsoup4 python3-httplib2 python3-pyaudio python3-jsonschema sox libxcrypt-compat
 BuildArch:      noarch
 ExclusiveArch:  %{qt6_qtwebengine_arches} noarch
 Conflicts:      anki-qt5
@@ -55,13 +55,13 @@ find %{buildroot} -iname direct_url.json | xargs -r rm -rf
 %doc README*
 %{_bindir}/anki
 %{_datadir}/applications/anki.desktop
+%{_datadir}/pixmaps/anki.png
 /usr/lib64/python*/site-packages/aqt/
 /usr/lib64/python*/site-packages/aqt-%{version}.dist-info/
 /usr/lib64/python*/site-packages/_aqt/
 /usr/lib64/python*/site-packages/_aqt-%{version}.dist-info/
 /usr/lib64/python*/site-packages/anki/
 /usr/lib64/python*/site-packages/anki-%{version}.dist-info/
-/usr/share/pixmaps/anki.png
 
 
 %changelog
