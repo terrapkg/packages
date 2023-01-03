@@ -4,13 +4,12 @@ Release:        %autorelease
 Summary:        Flashcard program for using space repetition learning
 License:        AGPLv3+ and GPLv3+ and LGPLv3 and MIT and BSD and ASL 2.0 and CC-BY-SA and CC-BY
 URL:            https://apps.ankiweb.net/
-BuildRequires:  python3-devel python3-setuptools python3-beautifulsoup4 python3-waitress python3-decorator python3-markdown python3-protobuf python3-pysocks 
-BuildRequires:  python3-distro python3-flask-cors python3-jsonschema python3-requests python3-send2trash python3-certifi python3-pyqt6 python3-simplejson
-BuildRequires:  python3-installer make mold cargo git rsync ninja-build libxcrypt-compat nodejs python3.9 python-unversioned-command
+BuildRequires:  python3-devel python3-setuptools python3-waitress python3-protobuf python3-pysocks 
+BuildRequires:  python3-distro python3-flask-cors python3-jsonschema python3-send2trash python3-certifi python3-simplejson
+BuildRequires:  python3-installer make mold cargo git rsync ninja-build libxcrypt-compat nodejs python3.9 python-unversioned-command gcc
 Requires:       hicolor-icon-theme python3-sqlalchemy python3-simplejson python3-matplotlib python3-decorator python3-markdown python3-send2trash
 Requires:       python3-requests python3-pygame python3-beautifulsoup4 python3-httplib2 python3-pyaudio python3-jsonschema sox libxcrypt-compat
 BuildArch:      noarch
-ExclusiveArch:  %{qt6_qtwebengine_arches} noarch
 Conflicts:      anki-qt5
 Patch0:         0001-No-update.patch
 
@@ -24,15 +23,10 @@ git clone https://github.com/ankitects/anki .
 git checkout %{version}
 %patch0 -p1
 
-cat > .cargo/config.toml << EOF
-[target.x86_64-unknown-linux-gnu]
-rustflags = ["-C", "link-arg=-fuse-ld=/usr/bin/mold"]
-EOF
-
 # See https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=anki
 
 %build
-./tools/build
+mold -run ./tools/build
 
 
 %install
