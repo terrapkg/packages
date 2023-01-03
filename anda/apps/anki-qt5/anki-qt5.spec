@@ -52,7 +52,6 @@ sed "s*^#!/usr/bin/python\$*#!/usr/bin/python3*" %{buildroot}/%{_bindir}/anki > 
 /usr/lib64/python*/site-packages/aqt/
 /usr/lib64/python*/site-packages/aqt-%{version}.dist-info/
 /usr/lib64/python*/site-packages/_aqt/
-/usr/lib64/python*/site-packages/_aqt-%{version}.dist-info/
 /usr/lib64/python*/site-packages/anki/
 /usr/lib64/python*/site-packages/anki-%{version}.dist-info/
 
