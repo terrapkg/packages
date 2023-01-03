@@ -15,7 +15,7 @@ Tectonic is a modernized, complete, self-contained TeX/LaTeX engine, powered by 
 %autosetup -n tectonic-tectonic-%{version}
 
 
-# %build
+%build
 # cargo build --features external-harfbuzz
 
 

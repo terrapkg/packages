@@ -1,12 +1,12 @@
-Name:       mini-wakuwaku-fonts
-Version:    1.0
-Release:    %autorelease
-URL:        http://mini-design.jp/font/mini-wakuwaku.html
-Source0:	http://mini-design.jp/font/img/mini-wakuwaku.zip
-License:    custom
-Summary:    A fat looking, rounded and cute Japanese font
-BuildRequires: unzip
-BuildArch: noarch
+Name:			mini-wakuwaku-fonts
+Version:		1.0
+Release:		%autorelease
+URL:			http://mini-design.jp/font/mini-wakuwaku.html
+Source0:		http://mini-design.jp/font/img/mini-wakuwaku.zip
+License:		custom
+Summary:		A fat looking, rounded and cute Japanese font
+BuildRequires:	unzip
+BuildArch:		noarch
 
 
 %description
@@ -14,8 +14,9 @@ BuildArch: noarch
 
 
 %prep
-%setup -n mini-wakuwaku
+%setup -q -n mini-wakuwaku
 
+%build
 
 %install
 install -D -m644 mini-wakuwaku-maru.otf %{buildroot}/%{_datadir}/fonts/mini-wakuwaku/mini-wakuwaku-maru.otf

@@ -15,6 +15,8 @@ BuildRequires: squashfs-tools
 %prep
 unsquashfs -q -f -d snap %{SOURCE0}
 
+%build
+
 %install
 install -d "%{buildroot}/opt/authy"
 cp -r "snap/." "%{buildroot}/opt/authy"
