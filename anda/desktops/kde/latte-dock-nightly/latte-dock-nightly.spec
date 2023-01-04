@@ -46,9 +46,9 @@ BuildRequires:  wayland-devel
 
 Recommends:     %{name}-lang
 
-Conflicts:       latte-dock
-Provides:       latte-dock
-Provides:       latte-dock%{?_isa}
+Conflicts:      latte-dock
+Provides:       latte-dock = 0.10.0^%{snapshot_info}
+Provides:       latte-dock%{?_isa} = 0.10.0^%{snapshot_info}
 
 %description
 Latte is a dock based on plasma frameworks that provides an elegant and

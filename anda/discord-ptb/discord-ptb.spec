@@ -14,6 +14,7 @@ Imagine a place where you can belong to a school club, a gaming group, or a worl
 %prep
 %autosetup -n DiscordPTB
 
+%build
 
 %install
 rm -rf $RPM_BUILD_ROOT

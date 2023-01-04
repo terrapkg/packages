@@ -2,7 +2,7 @@ Name:       naikai-fonts
 Version:    1.87
 Release:    %autorelease
 URL:        https://github.com/max32002/naikaifont
-Source0:	%{url}/archive/refs/tags/%{version}.tar.gz
+Source0:    %{url}/archive/refs/tags/%{version}.tar.gz
 License:    OFLv1.1
 Summary:    A free font family derived from setofont
 BuildRequires: unzip
@@ -23,8 +23,9 @@ Summary:    A free font family derived from setofont (TW version)
 
 
 %prep
-%setup -n naikaifont-1.87
+%setup -q -n naikaifont-1.87
 
+%build
 
 %install
 mkdir -p %{buildroot}/%{_datadir}/fonts/%{name}-{jp,tw}/

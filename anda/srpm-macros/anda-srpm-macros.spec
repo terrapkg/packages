@@ -12,7 +12,7 @@ Source2:        macros.anda
 Recommends:     rust-packaging
 Requires:       git-core
 Obsoletes:      fyra-srpm-macros < 0.1.1-1
-Provides:       fyra-srpm-macros
+Provides:       fyra-srpm-macros = %{version}-%{release}
 BuildArch:      noarch
 %description
 %{summary}

@@ -1,19 +1,20 @@
-Name:       arphic-ukai-fonts
-Version:    0.2.20080216.2
-Release:    %autorelease
-URL:        https://www.freedesktop.org/wiki/Software/CJKUnifonts
+Name:		arphic-ukai-fonts
+Version:	0.2.20080216.2
+Release:	%autorelease
+URL:		https://www.freedesktop.org/wiki/Software/CJKUnifonts
 Source0:	https://deb.debian.org/debian/pool/main/f/fonts-arphic-ukai/fonts-arphic-ukai_%{version}.orig.tar.bz2
-License:    custom
-Summary:    CJK Unicode font Kaiti style
-BuildArch: noarch
+License:	custom
+Summary:	CJK Unicode font Kaiti style
+BuildArch:	noarch
 
 %description
 %{summary}.
 
 
 %prep
-%setup -n fonts-arphic-ukai-%{version}
+%setup -q -n fonts-arphic-ukai-%{version}
 
+%build
 
 %install
 install -D -m644 ukai.ttc %{buildroot}/%{_datadir}/fonts/arphic-ukai/ukai.ttc

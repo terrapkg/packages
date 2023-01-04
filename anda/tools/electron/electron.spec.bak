@@ -40,34 +40,34 @@ BuildRequires:  python3-httplib2
 BuildRequires:  nodejs
 BuildRequires:  libcxx-devel
 BuildRequires:  libcxxabi-devel
-BuildRequires:	gcc-c++
+BuildRequires:  gcc-c++
 
-BuildRequires:	alsa-lib-devel
-BuildRequires:	atk-devel
-BuildRequires:	bison
-BuildRequires:	cups-devel
-BuildRequires:	dbus-devel
-BuildRequires:	desktop-file-utils
-BuildRequires:	expat-devel
-BuildRequires:	flex
-BuildRequires:	fontconfig-devel
-BuildRequires:	glib2-devel
-BuildRequires:	glibc-devel
-BuildRequires:	gperf
-BuildRequires:	libusb-compat-0.1-devel
-BuildRequires:	libutempter-devel
-BuildRequires:	libXdamage-devel
-BuildRequires:	libXtst-devel
-BuildRequires:	xcb-proto
-BuildRequires:	mesa-libgbm-devel
+BuildRequires:  alsa-lib-devel
+BuildRequires:  atk-devel
+BuildRequires:  bison
+BuildRequires:  cups-devel
+BuildRequires:  dbus-devel
+BuildRequires:  desktop-file-utils
+BuildRequires:  expat-devel
+BuildRequires:  flex
+BuildRequires:  fontconfig-devel
+BuildRequires:  glib2-devel
+BuildRequires:  glibc-devel
+BuildRequires:  gperf
+BuildRequires:  libusb-compat-0.1-devel
+BuildRequires:  libutempter-devel
+BuildRequires:  libXdamage-devel
+BuildRequires:  libXtst-devel
+BuildRequires:  xcb-proto
+BuildRequires:  mesa-libgbm-devel
 
 BuildRequires:  libstdc++-static
-BuildRequires:	libstdc++-devel, openssl-devel
-BuildRequires:	bzip2-devel
-BuildRequires:	dbus-glib-devel
-BuildRequires:	elfutils
-BuildRequires:	elfutils-libelf-devel
-BuildRequires:	flac-devel
+BuildRequires:  libstdc++-devel, openssl-devel
+BuildRequires:  bzip2-devel
+BuildRequires:  dbus-glib-devel
+BuildRequires:  elfutils
+BuildRequires:  elfutils-libelf-devel
+BuildRequires:  flac-devel
 BuildRequires:  libva-devel
 %description
 The Electron framework lets you write cross-platform desktop applications using JavaScript, HTML and CSS. It is based on Node.js and Chromium and is used by the Atom editor and many other apps.

@@ -1,6 +1,6 @@
 project "pkg" {
     rpm {
-        spec = "lorax.spec"
+        spec = ""
         enable_scm = true
 
         scm_opts = {
@@ -9,7 +9,6 @@ project "pkg" {
             branch = "lorax-38.4-1"
             write_tar = "true"
             spec = "lorax.spec"
-        update = ""
             git_get = "git clone https://github.com/weldr/lorax.git"
         }
     }

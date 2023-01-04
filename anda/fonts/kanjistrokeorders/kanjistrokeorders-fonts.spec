@@ -16,6 +16,7 @@ BuildArch: noarch
 curl -L --http1.1 http://www.dropbox.com/s/9jv2pnw4ohxzaml/KanjiStrokeOrders_v%{version}.zip > a.zip
 unzip a.zip
 
+%build
 
 %install
 install -D -m644 KanjiStrokeOrders_v%{version}.ttf %{buildroot}/%{_datadir}/fonts/TTF/KanjiStrokeOrders_v%{version}.ttf

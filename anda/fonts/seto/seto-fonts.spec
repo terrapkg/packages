@@ -1,12 +1,12 @@
-Name:       seto-fonts
-Version:    6.20
-Release:    %autorelease
-URL:        https://setofont.osdn.jp/
+Name:			seto-fonts
+Version:		6.20
+Release:		%autorelease
+URL:			https://setofont.osdn.jp/
 Source0:	https://osdn.net/frs/redir.php?m=nchc&f=setofont%2F61995%2Fsetofont_v_6_20.zip
-License:    OFLv1.1
-Summary:    A handwritten font that contains kanji up to JIS 4th level and difficult kanji
-BuildRequires: unzip
-BuildArch: noarch
+License:		OFLv1.1
+Summary:		A handwritten font that contains kanji up to JIS 4th level and difficult kanji
+BuildRequires:	unzip
+BuildArch:		noarch
 
 
 %description
@@ -14,16 +14,13 @@ BuildArch: noarch
 
 
 %prep
-%setup -n setofont
+%setup -q -n setofont
 
+%build
 
 %install
 mkdir -p $RPM_BUILD_ROOT/%{prefix}/%{name}/
 cp -r *.ttf $RPM_BUILD_ROOT/%{prefix}/%{name}/
-
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 
 %files

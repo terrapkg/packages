@@ -15,7 +15,7 @@ Summary:        AppImageUpdate lets you update AppImages in a decentral way usin
 
 License:        MIT
 URL:            https://github.com/AppImageCommunity/AppImageUpdate
-#Source0:        %{url}/archive/refs/%{libver}.tar.gz
+#Source0:        %%{url}/archive/refs/%%{libver}.tar.gz
 Source0:        %{url}/archive/%{git_commit}.tar.gz
 
 BuildRequires:  make
