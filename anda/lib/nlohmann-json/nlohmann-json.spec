@@ -87,7 +87,7 @@ This package contains the single header C++ file and CMake dependency files.
 
 * Tue Mar 31 2020 Paul Wolneykien <manowar@altlinux.org> 3.7.2-alt1
 - Upstream version 3.7.2.
-- Also install %_includedir/nlohmann/json.hpp symlink.
+- Also install %%_includedir/nlohmann/json.hpp symlink.
 
 * Mon Nov 26 2018 Pavel Vainerman <pv@altlinux.ru> 3.4.0-alt1
 - new version

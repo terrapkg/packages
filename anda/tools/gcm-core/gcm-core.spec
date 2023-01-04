@@ -45,7 +45,7 @@ install -D -m 755 out/linux/Packaging.Linux/payload/Release/%{long_name}-core %{
 
 
 %changelog
-* Tue Dec 06 2022 root - Packaging variables read or set by %forgemeta
+* Tue Dec 06 2022 root - Packaging variables read or set by %%forgemeta
 - new version
 
 * Sat Oct 22 2022 Cappy Ishihara <cappy@cappuchino.xyz>

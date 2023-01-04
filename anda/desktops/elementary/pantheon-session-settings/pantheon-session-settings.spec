@@ -48,6 +48,7 @@ Configuration files and settings overrides for the Pantheon desktop session.
 %prep
 %autosetup -n %{srcname}-%{version} -p1
 
+%build
 
 %install
 # copy / create autostart entries for the Pantheon session

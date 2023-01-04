@@ -15,7 +15,7 @@ BuildRequires:  git-core
 BuildRequires:  docker
 Requires:       docker
 Provides:       docker-compose = %{version}-%{release}
-Provides:       docker-compose-cli
+Provides:       docker-compose-cli = %{version}-%{release}
 
 %description
 
