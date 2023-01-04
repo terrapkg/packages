@@ -1,0 +1,18 @@
+Name:		bibata-cursor-theme
+Version:	2.0.3
+Release:	%autorelease
+URL:		https://github.com/ful1e5/Bibata_Cursor
+Source0:	%{url}/releases/download/v%{version}/Bibata.tar.gz
+License:	GPLv3
+Summary:	Open source, compact, and material designed cursor set. 
+BuildArch:	noarch
+
+%description
+Bibata is an open source, compact, and material designed cursor set that
+aims to improve the cursor experience for users. It is one of the most
+popular cursor sets in the Linux community and is now available for free
+on Windows as well, with multiple color and size options. Its goal is to
+offer personalized cursors to users.
+
+%prep
+%autosetup -n 
