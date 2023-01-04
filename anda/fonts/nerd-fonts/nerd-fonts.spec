@@ -44,9 +44,12 @@ search() {
 			mv $folder/complete/* $folder/
 			rmdir $folder/complete
 		else
-			[[ -d $folder ]] && search $folder
+			if [[ -d $folder ]]; then
+				search $folder
+			fi
 		fi
 	done
+	return 0
 }
 search patched-fonts
 
