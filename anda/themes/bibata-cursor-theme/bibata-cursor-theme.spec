@@ -3,6 +3,8 @@ Version:	2.0.3
 Release:	%autorelease
 URL:		https://github.com/ful1e5/Bibata_Cursor
 Source0:	%{url}/releases/download/v%{version}/Bibata.tar.gz
+Source1:    https://raw.githubusercontent.com/ful1e5/Bibata_Cursor/v%{version}/README.md
+Source2:    https://raw.githubusercontent.com/ful1e5/Bibata_Cursor/v%{version}/LICENSE
 License:	GPLv3
 Summary:	Open source, compact, and material designed cursor set. 
 BuildArch:	noarch
@@ -15,4 +17,22 @@ on Windows as well, with multiple color and size options. Its goal is to
 offer personalized cursors to users.
 
 %prep
-%autosetup -n 
+tar xf %{SOURCE0}
+
+%build
+
+%install
+mkdir -p %{buildroot}/%{_datadir}/icons/
+mv Bibata-* %{buildroot}/%{_datadir}/icons/
+mkdir -p %{buildroot}/%{_datadir}/{doc,licenses}/%{name}/
+cp %{SOURCE1} %{buildroot}/%{_datadir}/doc/%{name}/README.md
+cp %{SOURCE2} %{buildroot}/%{_datadir}/licenses/%{name}/LICENSE
+
+%files
+%doc README.md
+%license LICENSE
+%{_datadir}/icons/Bibata-*
+
+%changelog
+* Wed Jan 4 2023 windowsboy111 <windowsboy111@fyralabs.com>
+- Initial package
