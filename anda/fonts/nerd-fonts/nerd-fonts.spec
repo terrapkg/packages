@@ -67,7 +67,7 @@ for font in (rpm.expand("%{flist}")):gmatch("[^ ]+") do
 	print("%files -n "..font:lower().."-nerd-fonts\n")
 	print("%doc readme.md\n")
 	print("%license LICENSE\n")
-	print("%/usr/share/fonts/nerd-fonts/"..font.."\n")
+	print("/usr/share/fonts/nerd-fonts/"..font.."\n")
 end
 }
 
