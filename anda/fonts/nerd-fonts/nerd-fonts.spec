@@ -31,7 +31,7 @@ end
 }
 
 %prep
-%autosetup -n %{name}-v%{version}
+%autosetup -n %{name}-%{version}
 
 %build
 find patched-fonts -name "* Windows Compatible.*" -delete
