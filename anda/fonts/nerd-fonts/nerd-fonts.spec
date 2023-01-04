@@ -30,6 +30,8 @@ for font in (rpm.expand("%{flist}")):gmatch("[^ ]+") do
 end
 }
 
+%global debug_package %{nil}
+
 %prep
 %autosetup -n %{name}-%{version}
 

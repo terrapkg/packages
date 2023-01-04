@@ -165,6 +165,8 @@ use the "starship-battery" feature of the "%{crate}" crate.
 %files       -n %{name}+starship-battery-devel
 %ghost %{crate_instdir}/Cargo.toml
 
+%global debug_package %{nil}
+
 %prep
 %autosetup -n %{crate}-%{version_no_tilde} -p1
 %cargo_prep_online
