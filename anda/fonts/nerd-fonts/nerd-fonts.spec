@@ -55,7 +55,7 @@ search patched-fonts
 
 %install
 mkdir -p %{buildroot}/%{_datadir}/fonts/nerd-fonts/ 
-cp patched-fonts/* %{buildroot}/%{_datadir}/fonts/nerd-fonts/
+cp -r patched-fonts/* %{buildroot}/%{_datadir}/fonts/nerd-fonts/
 
 
 %files
