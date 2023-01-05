@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:           moby-compose
-Version:        2.14.2
+Version:        2.15.0
 Release:        1%{?dist}
 Summary:        Define and run multi-container applications with Docker
 
