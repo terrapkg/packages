@@ -15,8 +15,6 @@ License:        GPLv3+
 URL:            https://github.com/elementary/switchboard-plug-keyboard
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 
-Patch0:         https://github.com/elementary/switchboard-plug-keyboard/pull/427.patch
-
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
