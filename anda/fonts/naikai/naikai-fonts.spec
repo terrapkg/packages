@@ -1,5 +1,5 @@
 Name:       naikai-fonts
-Version:    1.87
+Version:    1.89
 Release:    %autorelease
 URL:        https://github.com/max32002/naikaifont
 Source0:    %{url}/archive/refs/tags/%{version}.tar.gz
