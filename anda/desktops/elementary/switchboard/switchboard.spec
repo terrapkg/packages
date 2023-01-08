@@ -86,7 +86,6 @@ appstream-util validate-relax --nonet \
 
 %{_datadir}/applications/%{appname}.desktop
 %{_datadir}/glib-2.0/schemas/%{appname}.gschema.xml
-%{_datadir}/icons/hicolor/*/apps/%{appname}.svg
 %{_datadir}/metainfo/%{appname}.appdata.xml
 
 %files libs
