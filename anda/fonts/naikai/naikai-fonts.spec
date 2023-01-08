@@ -23,7 +23,7 @@ Summary:    A free font family derived from setofont (TW version)
 
 
 %prep
-%setup -q -n naikaifont-1.87
+%setup -q -n naikaifont-%{version}
 
 %build
 
