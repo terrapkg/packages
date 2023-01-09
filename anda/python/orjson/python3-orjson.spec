@@ -6,7 +6,7 @@ License:		MIT or APACHE-2.0
 URL:			https://github.com/ijl/orjson
 Source0:		%{url}/archive/refs/tags/%{version}.tar.gz
 BuildArch:		noarch
-BuildRequires:	maturin cargo
+BuildRequires:	maturin cargo python3.11
 Requires:		libc
 
 %description
