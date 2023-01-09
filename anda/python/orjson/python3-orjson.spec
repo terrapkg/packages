@@ -6,7 +6,7 @@ License:		MIT or APACHE-2.0
 URL:			https://github.com/ijl/orjson
 Source0:		%{url}/archive/refs/tags/%{version}.tar.gz
 BuildArch:		noarch
-BuildRequires:	maturin rust >= 1.60
+BuildRequires:	maturin cargo
 Requires:		libc
 
 %description
