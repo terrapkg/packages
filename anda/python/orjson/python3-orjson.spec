@@ -15,7 +15,7 @@ for JSON and is more correct than the standard json library or other third-party
 serializes dataclass, datetime, numpy, and UUID instances natively.
 
 %prep
-%autosetup -n %{name}-%{version}
+%autosetup -n orjson-%{version}
 
 %build
 maturin build --release --strip
