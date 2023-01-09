@@ -14,7 +14,6 @@ Source3:		nimble.1
 Source4:		nimsuggest.1
 BuildRequires:	gcc mold git gcc-c++ nodejs openssl-devel pkgconfig(bash-completion) gc-devel
 Requires:		redhat-rpm-config gcc
-ExclusiveArch:	x86_64
 Conflicts:		choosenim
 
 
@@ -59,7 +58,7 @@ export PATH="$(pwd):$(pwd)/bin:${PATH}"
 mold -run nim c -d:danger koch.nim
 mold -run koch boot -d:useLinenoise
 
-koch docs &
+mold -run koch docs &
 (cd lib; mold -run nim c --app:lib -d:danger -d:createNimRtl nimrtl.nim) &
 mold -run koch tools -d:release &
 mold -run nim c -d:danger nimsuggest/nimsuggest.nim &
@@ -81,7 +80,6 @@ mkdir -p %{buildroot}%{_docdir}/%{name}/html
 cp -a doc/html/*.html %{buildroot}%{_docdir}/%{name}/html/
 mkdir -p %{buildroot}%{_docdir}/%{name}/html/
 cp tools/dochack/dochack.js %{buildroot}%{_docdir}/%{name}/
-%dnf ln -sr %{buildroot}%{_docdir}/%{name}/html/{overview,index}.html
 
 %check
 export PATH=$PATH:$(realpath ./bin)
