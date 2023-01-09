@@ -81,7 +81,7 @@ mkdir -p %{buildroot}%{_docdir}/%{name}/html
 cp -a doc/html/*.html %{buildroot}%{_docdir}/%{name}/html/
 mkdir -p %{buildroot}%{_docdir}/%{name}/html/
 cp tools/dochack/dochack.js %{buildroot}%{_docdir}/%{name}/
-ln -sr %{buildroot}%{_docdir}/%{name}/html/{overview,index}.html
+%dnf ln -sr %{buildroot}%{_docdir}/%{name}/html/{overview,index}.html
 
 %check
 export PATH=$PATH:$(realpath ./bin)
