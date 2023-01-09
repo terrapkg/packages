@@ -1,5 +1,5 @@
 Name:           anki
-Version:        2.1.55
+Version:        2.1.56
 Release:        %autorelease
 Summary:        Flashcard program for using space repetition learning
 License:        AGPLv3+ and GPLv3+ and LGPLv3 and MIT and BSD and ASL 2.0 and CC-BY-SA and CC-BY
