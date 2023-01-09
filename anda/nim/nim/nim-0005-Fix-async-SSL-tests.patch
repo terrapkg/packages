@@ -1,0 +1,29 @@
+From 91a2ad76034d7c1d6b340e15e5badb745002631d Mon Sep 17 00:00:00 2001
+From: Sergey Avseyev <sergey.avseyev@gmail.com>
+Date: Mon, 3 Sep 2018 00:24:10 +0300
+Subject: [PATCH 5/5] Fix async SSL tests
+
+Ensure that all messages has been send by client
+---
+ tests/async/tasyncssl.nim | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/tests/async/tasyncssl.nim b/tests/async/tasyncssl.nim
+index 88a5eb32e..af9ae4839 100644
+--- a/tests/async/tasyncssl.nim
++++ b/tests/async/tasyncssl.nim
+@@ -20,8 +20,10 @@ when defined(ssl):
+   var clientCount = 0
+ 
+   proc sendMessages(client: AsyncSocket) {.async.} =
++    var sendFutures: seq[Future[void]] = @[]
+     for i in 0 ..< messagesToSend:
+-      await send(client, "Message " & $i & "\c\L")
++      add(sendFutures, send(client, "Message " & $i & "\r\L"))
++    await all(sendFutures)
+ 
+   proc launchSwarm(port: Port) {.async.} =
+     for i in 0 ..< swarmSize:
+-- 
+2.23.0
+

@@ -1,0 +1,25 @@
+From 3fae75e980793248fca34ca198edd8b6b39476df Mon Sep 17 00:00:00 2001
+From: Sergey Avseyev <sergey.avseyev@gmail.com>
+Date: Fri, 28 Sep 2018 17:11:09 +0300
+Subject: [PATCH 3/5] use versioned source links in docs
+
+---
+ compiler/docgen.nim | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/compiler/docgen.nim b/compiler/docgen.nim
+index 1b51988b8..07ba81fb4 100644
+--- a/compiler/docgen.nim
++++ b/compiler/docgen.nim
+@@ -686,7 +686,7 @@ proc genItem(d: PDoc, n, nameNode: PNode, k: TSymKind) =
+       let defaultBranch =
+         if NimPatch mod 2 == 1: "devel"
+         else: "version-$1-$2" % [$NimMajor, $NimMinor]
+-      let commit = getConfigVar(d.conf, "git.commit", defaultBranch)
++      let commit = getConfigVar(d.conf, "git.commit", "v" & NimVersion)
+       let develBranch = getConfigVar(d.conf, "git.devel", "devel")
+       dispA(d.conf, seeSrcRope, "$1", "", [ropeFormatNamedVars(d.conf, docItemSeeSrc,
+           ["path", "line", "url", "commit", "devel"], [rope path.string,
+-- 
+2.23.0
+
