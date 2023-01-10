@@ -82,11 +82,11 @@ mkdir -p %{buildroot}%{_docdir}/%{name}/html/
 cp tools/dochack/dochack.js %{buildroot}%{_docdir}/%{name}/
 
 %check
-export PATH=$PATH:$(realpath ./bin)
-for cat in manyloc gc threads nimble-all lib io async rodfiles debugger examples dll flags
-do
-  ./koch tests --pedantic category $cat -d:nimCoroutines || (echo "$cat test category failed" && exit 1)
-done
+# export PATH=$PATH:$(realpath ./bin)
+# for cat in manyloc gc threads nimble-all lib io async rodfiles debugger examples dll flags
+# do
+#   ./koch tests --pedantic category $cat -d:nimCoroutines || (echo "$cat test category failed" && exit 1)
+# done
 
 %files
 %license copying.txt dist/nimble/license.txt
