@@ -1,6 +1,5 @@
 project "pkg" {
     rpm {
         spec = "wingpanel-indicator-sound.spec"
-        update = ""
     }
 }
