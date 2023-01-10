@@ -38,7 +38,7 @@ install -pm 0644 %SOURCE1 licenses/LICENSE
  
 %changelog
 * Tue Jan 10 2023 Cappy Ishihara <cappy@cappuchino.xyz> - 1-3
-- 
+- Ported from tauOS
 
 
 * Sat May 14 2022 Jamie Murphy <jamie@fyralabs.com> - 1-1
