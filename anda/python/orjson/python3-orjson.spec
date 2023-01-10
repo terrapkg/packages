@@ -9,6 +9,8 @@ URL:			https://github.com/ijl/orjson
 Source0:		%{url}/archive/refs/tags/%{version}.tar.gz
 BuildRequires:	python3-installer python3.11 python3-pip maturin cargo
 Requires:		libc
+%{?python_provide:%python_provide python3-orjson}
+Provides:		python3.11dist(orjson) = %{version}
 
 %description
 orjson is a fast, correct JSON library for Python. It benchmarks as the fastest Python library
