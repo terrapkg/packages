@@ -7,7 +7,7 @@ Release:        1%{?dist}
 Summary:        Protocol Buffers
 
 License:        New BSD License
-URL:            http://code.google.com/p/protobuf/
+URL:            https://developers.google.com/protocol-buffers/
 Source0:        %{pypi_source}
 BuildArch:      noarch
 
