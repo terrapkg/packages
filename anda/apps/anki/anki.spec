@@ -38,7 +38,9 @@ done
 install -Dm644 qt/bundle/lin/anki.desktop %{buildroot}/%{_datadir}/applications/anki.desktop
 install -Dm644 qt/bundle/lin/anki.png %{buildroot}/%{_datadir}/pixmaps/anki.png
 
-sed "s*^#!/usr/bin/python\$*#!/usr/bin/python3*" %{buildroot}/%{_bindir}/anki > %{buildroot}/%{_bindir}/anki
+sed "s*^#!/usr/bin/python\$*#!/usr/bin/python3*" %{buildroot}/%{_bindir}/anki > %{buildroot}/%{_bindir}/anki1
+rm %{buildroot}/%{_bindir}/anki
+mv %{buildroot}/%{_bindir}/anki1 %{buildroot}/%{_bindir}/anki
 
 find %{buildroot} -iname __pycache__ | xargs -r rm -rf
 find %{buildroot} -iname direct_url.json | xargs -r rm -rf
