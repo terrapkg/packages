@@ -8,6 +8,7 @@ URL:		https://nerdfonts.com/
 Source0:	https://github.com/ryanoasis/nerd-fonts/archive/refs/tags/v%{version}.tar.gz
 License:	OFLv1.1
 Summary:	All packaged Nerd fonts
+BuildArch: noarch
 Requires:	%{lua:
 local x = ""
 local ver = rpm.expand("%{version}")
@@ -56,7 +57,7 @@ search() {
 search patched-fonts
 
 %install
-mkdir -p %{buildroot}/%{_datadir}/fonts/nerd-fonts/ 
+mkdir -p %{buildroot}/%{_datadir}/fonts/nerd-fonts/
 cp -r patched-fonts/* %{buildroot}/%{_datadir}/fonts/nerd-fonts/
 
 
