@@ -45,6 +45,8 @@ mv %{buildroot}/%{_bindir}/anki1 %{buildroot}/%{_bindir}/anki
 find %{buildroot} -iname __pycache__ | xargs -r rm -rf
 find %{buildroot} -iname direct_url.json | xargs -r rm -rf
 
+chmod 755 %{buildroot}%{_bindir}/anki
+
 
 %files
 %license LICENSE*
