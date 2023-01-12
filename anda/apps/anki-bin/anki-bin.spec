@@ -1,12 +1,13 @@
 Name:			anki-bin
 Version:		2.1.56
-Release:		2%{?dist}
+Release:		3%{?dist}
 Summary:		Flashcard program for using space repetition learning (Installed with wheel)
 License:		AGPLv3+ and GPLv3+ and LGPLv3 and MIT and BSD and ASL 2.0 and CC-BY-SA and CC-BY
 URL:			https://apps.ankiweb.net/
 BuildRequires:	python3-installer python3.11
 Requires:		hicolor-icon-theme python3-sqlalchemy python3-simplejson python3-matplotlib python3-decorator python3-markdown python3-send2trash
 Requires:		python3-requests python3-pygame python3-beautifulsoup4 python3-httplib2 python3-pyaudio python3-jsonschema sox libxcrypt-compat
+Requires:		python3-flask-cors python3-protobuf python3-requests python3-waitress
 BuildArch:		noarch
 Conflicts:		anki
 Source0:		https://files.pythonhosted.org/packages/cp39/a/anki/anki-%{version}-cp39-abi3-manylinux_2_28_%{_arch}.whl
