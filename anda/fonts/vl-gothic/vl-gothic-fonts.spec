@@ -16,7 +16,6 @@
 Version: 20220612
 Release: 2%{?dist}
 URL:     http://dicey.org/vlgothic
-BuildArch: noarch
 
 # The following declarations will be aliased to [variable]0 and reused for all
 # generated *-fonts packages unless overriden by a specific [variable][number]
