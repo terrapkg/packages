@@ -1,6 +1,6 @@
 Name:           anki-qt5
 Version:        2.1.56
-Release:        %autorelease
+Release:        2%{?dist}
 Summary:        Flashcard program for using space repetition learning
 License:        AGPLv3+ and GPLv3+ and LGPLv3 and MIT and BSD and ASL 2.0 and CC-BY-SA and CC-BY
 URL:            https://apps.ankiweb.net/
@@ -38,21 +38,26 @@ done
 install -Dm644 qt/bundle/lin/anki.desktop %{buildroot}/%{_datadir}/applications/anki.desktop
 install -Dm644 qt/bundle/lin/anki.png %{buildroot}/%{_datadir}/pixmaps/anki.png
 
-sed "s*^#!/usr/bin/python\$*#!/usr/bin/python3*" %{buildroot}/%{_bindir}/anki > %{buildroot}/%{_bindir}/anki
+sed "s*^#!/usr/bin/python\$*#!/usr/bin/python3*" %{buildroot}/%{_bindir}/anki > %{buildroot}/%{_bindir}/anki1
+rm %{buildroot}/%{_bindir}/anki
+mv %{buildroot}/%{_bindir}/anki1 %{buildroot}/%{_bindir}/anki
+chmod 755 %{buildroot}%{_bindir}/anki
+
+find %{buildroot} -iname __pycache__ | xargs -r rm -rf
+find %{buildroot} -iname direct_url.json | xargs -r rm -rf
 
 
 %files
 %license LICENSE*
 %doc README*
 %{_bindir}/anki
-%{_datadir}/pixmaps/anki.png
 %{_datadir}/applications/anki.desktop
+%{_datadir}/pixmaps/anki.png
 /usr/lib64/python*/site-packages/aqt/
 /usr/lib64/python*/site-packages/aqt-%{version}.dist-info/
 /usr/lib64/python*/site-packages/_aqt/
 /usr/lib64/python*/site-packages/anki/
 /usr/lib64/python*/site-packages/anki-%{version}.dist-info/
-
 
 %changelog
 * Tue Jan 3 2023 windowsboy111 <windowsboy111@fyralabs.com>
