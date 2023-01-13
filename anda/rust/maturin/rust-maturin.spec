@@ -2,7 +2,7 @@
 %global crate maturin
 
 Name:           rust-maturin
-Version:        0.14.9
+Version:        0.14.10
 Release:        %autorelease
 Summary:        Build and publish crates with pyo3, rust-cpython and cffi bindings as well as rust binaries as python packages
 
