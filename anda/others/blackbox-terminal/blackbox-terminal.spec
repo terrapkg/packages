@@ -1,5 +1,5 @@
 Name:           blackbox-terminal
-Version:        0.12.2
+Version:        0.13.0
 Release:        %autorelease
 Summary:        A beautiful GTK 4 terminal
 License:        GPLv3
