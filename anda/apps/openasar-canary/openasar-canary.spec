@@ -1,4 +1,4 @@
-%define commit c2cd5449bda3492c2be7909013761a9f3efb9869
+%define commit 40b27dd1b8dd48277207db1b165c220c3441484c
 
 Name:           openasar-canary
 Version:        nightly.%{autogitdate}
