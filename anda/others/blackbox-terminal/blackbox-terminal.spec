@@ -15,6 +15,7 @@ BuildRequires:  pkgconfig(libxml-2.0) >= 2.9.12
 BuildRequires:  pkgconfig(librsvg-2.0) >= 2.54.0
 BuildRequires:  pkgconfig(libpcre2-8)
 BuildRequires:  pkgconfig(graphene-gobject-1.0)
+BuildRequires:  pkgconfig(gee-0.8)
 Source0:        %{url}/-/archive/v%{version}/blackbox-v%{version}.tar.gz
 
 %description
