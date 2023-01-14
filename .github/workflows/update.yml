@@ -11,15 +11,9 @@ jobs:
   autoupdate:
     runs-on: ubuntu-latest
     container:
-      image: registry.fedoraproject.org/fedora:37
+      image: ghcr.io/terrapkg/builder:nightly
       options: --cap-add=SYS_ADMIN --privileged
     steps:
-      - name: Install packages
-        run: |
-          sudo dnf install -y dnf-plugins-core
-          sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic-repos/raw/main/terra37.repo
-          dnf install -y rpmdevtools git python anda
-
       - name: Checkout
         uses: actions/checkout@v3
         with:

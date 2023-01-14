@@ -6,11 +6,9 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     container:
-      image: registry.fedoraproject.org/fedora:37
+      image: ghcr.io/terrapkg/builder:nightly
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Install dependencies
-        run: dnf install -y rpmlint
       - name: Lint spec files
         run: rpmlint $(find anda -type f -name "*.spec" -type f)
