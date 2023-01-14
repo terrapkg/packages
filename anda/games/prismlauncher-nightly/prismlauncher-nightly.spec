@@ -69,6 +69,7 @@ BuildRequires:    cmake(Qt%{qt_version}Xml) >= %{min_qt_version}
 BuildRequires:    cmake(Qt6Core5Compat)
 %endif
 
+BuildRequires:    pkgconfig(libcmark)
 BuildRequires:    pkgconfig(scdoc)
 BuildRequires:    pkgconfig(zlib)
 
@@ -177,6 +178,9 @@ fi
 
 
 %changelog
+* Fri Jan 13 2023 seth <getchoo at tuta dot io> - 7.0^20230113.3de681d-1
+- add cmark as a build dep
+
 * Tue Jan 03 2023 seth <getchoo at tuta dot io> - 7.0^20230102.4b12c85-1
 - add qlogging categories
 
