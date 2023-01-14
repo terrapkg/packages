@@ -1,3 +1,5 @@
+%define debug_package %{nil}
+
 Name:           discord-canary
 Version:        0.0.146
 Release:        1%{?dist}
