@@ -40,7 +40,7 @@ jobs:
     #if: ${{ matrix.changed_folders != '' }}
     runs-on: ${{ matrix.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
     container:
-      image: ghcr.io/terrapkg/builder:nightly
+      image: ghcr.io/terrapkg/builder:main
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Checkout
