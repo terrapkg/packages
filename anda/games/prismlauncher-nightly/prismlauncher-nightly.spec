@@ -49,6 +49,7 @@ Source0:          https://github.com/PrismLauncher/PrismLauncher/archive/%{commi
 Source1:          https://github.com/PrismLauncher/libnbtplusplus/archive/%{libnbtplusplus_commit}/libnbtplusplus-%{libnbtplusplus_commit}.tar.gz
 Source2:          https://github.com/stachenov/quazip/archive/%{quazip_commit}/quazip-%{quazip_commit}.tar.gz
 Source3:          https://github.com/marzer/tomlplusplus/archive/%{tomlplusplus_commit}/tomlplusplus-%{tomlplusplus_commit}.tar.gz
+Patch0:           0001-find-cmark-with-pkgconfig.patch
 
 BuildRequires:    cmake >= 3.15
 BuildRequires:    extra-cmake-modules
@@ -97,7 +98,7 @@ multiple installations of Minecraft at once (Fork of MultiMC)
 
 
 %prep
-%autosetup -n PrismLauncher-%{commit}
+%autosetup -p1 -n PrismLauncher-%{commit}
 
 tar -xzf %{SOURCE1} -C libraries
 tar -xvf %{SOURCE2} -C libraries
@@ -178,6 +179,9 @@ fi
 
 
 %changelog
+* Sun Jan 15 2023 seth <getchoo at tuta dot io> - 7.0^20230115.f1247d2-1
+- add 0001-find-cmark-with-pkgconfig.patch
+
 * Fri Jan 13 2023 seth <getchoo at tuta dot io> - 7.0^20230113.3de681d-1
 - add cmark as a build dep
 
