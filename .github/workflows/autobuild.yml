@@ -17,7 +17,7 @@ jobs:
     outputs:
       build_matrix: ${{ steps.generate_build_matrix.outputs.build_matrix }}
     container:
-      image: ghcr.io/terrapkg/builder:nightly
+      image: ghcr.io/terrapkg/builder:main
       options: --cap-add=SYS_ADMIN --privileged
     # check out the repo
     steps:
@@ -61,7 +61,7 @@ jobs:
     #if: ${{ matrix.changed_folders != '' }}
     runs-on: ${{ matrix.pkg.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
     container:
-      image: ghcr.io/terrapkg/builder:nightly
+      image: ghcr.io/terrapkg/builder:main
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - uses: terrapkg/anda-build@main
