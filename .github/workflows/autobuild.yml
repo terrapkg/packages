@@ -21,6 +21,8 @@ jobs:
       options: --cap-add=SYS_ADMIN --privileged
     # check out the repo
     steps:
+      - name: Set workspace as safe
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Checkout
         uses: actions/checkout@v3
         with:
