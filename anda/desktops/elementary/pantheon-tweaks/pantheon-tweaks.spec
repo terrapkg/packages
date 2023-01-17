@@ -7,7 +7,7 @@ URL:			https://github.com/pantheon-tweaks/pantheon-tweaks
 Source0:		%{url}/archive/refs/tags/%{version}.tar.gz
 BuildRequires:	vala switchboard-devel pkgconfig(gee-0.8) pkgconfig(glib-2.0)
 BuildRequires:	granite-devel >= 6.0.0 pkgconfig(gtk+-3.0) meson vala
-Requires:		glib2 gtk3 libgee granite granite-devel switchboard-devel
+Requires:		glib2 gtk3 libgee granite
 
 %description
 A system settings panel for the Pantheon Desktop that
