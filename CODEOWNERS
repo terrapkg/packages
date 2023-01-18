@@ -9,8 +9,6 @@
 /SECURITY.md @lleyton 
 /anda.hcl @lleyton 
 /comps.xml @lleyton 
-/requirements.txt @windowsboy111 
-/update.sh @windowsboy111 
 
 # Package maintainers
 /anda/lib/libbismuth @lainsce
