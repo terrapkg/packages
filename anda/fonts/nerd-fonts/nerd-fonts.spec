@@ -2,7 +2,7 @@
 %global desc Nerd Fonts is a project that patches developer targeted fonts with a high number of glyphs (icons).
 
 Name:		nerd-fonts
-Version:	2.2.2
+Version:	2.3.0
 Release:	%autorelease
 URL:		https://nerdfonts.com/
 Source0:	https://github.com/ryanoasis/nerd-fonts/archive/refs/tags/v%{version}.tar.gz
