@@ -1,6 +1,6 @@
 project "pkg" {
     rpm {
-        spec = "openasar-canary.spec"
+        spec = "discord-canary-openasar.spec"
         update = ""
     }
 }
