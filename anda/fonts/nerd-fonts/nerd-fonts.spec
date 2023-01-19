@@ -45,7 +45,6 @@ end
 
 %prep
 mkdir fonts
-unzip *.zip -d fonts
 %{lua:
 local n = 2;
 for font in (rpm.expand("%{flist}")):gmatch("[^ ]+") do
