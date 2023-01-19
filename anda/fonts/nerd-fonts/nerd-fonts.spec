@@ -65,7 +65,7 @@ find %{buildroot}/usr/share/fonts/nerd-fonts/ -name "*.txt" -delete &
 cd %{buildroot}/usr/share/fonts/nerd-fonts/
 for folder in *; do
 	a=`echo $folder | sed 's/./\L&/g'`
-	mkdir %{buildroot}/usr/share/{doc,licenses}/"${folder,,}"
+	mkdir -p %{buildroot}/usr/share/{doc,licenses}/"${folder,,}"
 	(cd $folder && install -Dm644 readme.md %{buildroot}/usr/share/doc/$a)
 	(cd $folder && install -Dm644 *.txt %{buildroot}/usr/share/licenses/$a)
 done
