@@ -44,6 +44,10 @@ end
 %global debug_package %{nil}
 
 %prep
+
+%build
+
+%install
 mkdir -p %{buildroot}/usr/share/fonts/nerd-fonts/
 %{lua:
 local dest = rpm.expand("%{buildroot}/usr/share/fonts/nerd-fonts/");
@@ -56,13 +60,12 @@ end
 }
 wait
 
-%build
 find %{buildroot}/usr/share/fonts/nerd-fonts/ -name "* Windows Compatible.*" -delete &
 find %{buildroot}/usr/share/fonts/nerd-fonts/ -name "*.txt" -delete &
 find %{buildroot}/usr/share/fonts/nerd-fonts/ -name "readme.md" -delete &
 wait
 
-%install
+mkdir -p %{buildroot}/usr/share/{doc,licenses}/%{name}/
 install -Dm644 %{SOURCE0} %{buildroot}/usr/share/doc/%{name}/
 install -Dm644 %{SOURCE1} %{buildroot}/usr/share/licenses/%{name}/
 
