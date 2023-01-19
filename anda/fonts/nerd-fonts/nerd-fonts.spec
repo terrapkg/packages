@@ -62,7 +62,11 @@ wait
 
 find %{buildroot}/usr/share/fonts/nerd-fonts/ -name "* Windows Compatible.*" -delete &
 find %{buildroot}/usr/share/fonts/nerd-fonts/ -name "*.txt" -delete &
-find %{buildroot}/usr/share/fonts/nerd-fonts/ -name "readme.md" -delete &
+for folder in %{buildroot}/usr/share/fonts/nerd-fonts/*; do
+	mkdir %{buildroot}/usr/share/{doc,licenses}/"${folder,,}"
+	(cd $folder && install -Dm644 readme.md %{buildroot}/usr/share/doc/"${folder,,}")
+	(cd $folder && install -Dm644 *.txt %{buildroot}/usr/share/licenses/"${folder,,}")
+done
 wait
 
 mkdir -p %{buildroot}/usr/share/{doc,licenses}/%{name}/
