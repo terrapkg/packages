@@ -67,7 +67,7 @@ for folder in *; do
 	a=`echo $folder | sed 's/./\L&/g'`
 	mkdir -p %{buildroot}/usr/share/{doc,licenses}/"${folder,,}"
 	(cd $folder && install -Dm644 readme.md %{buildroot}/usr/share/doc/$a)
-	(cd $folder && install -Dm644 *.txt %{buildroot}/usr/share/licenses/$a)
+	install -Dm644 %{SOURCE1} %{buildroot}/usr/share/licenses/$a
 done
 wait
 
