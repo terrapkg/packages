@@ -49,7 +49,7 @@ mkdir fonts
 local n = 2;
 for font in (rpm.expand("%{flist}")):gmatch("[^ ]+") do
 	local src = rpm.expand("%{SOURCE"..n.."}")
-	print("unzip "..src.." -d fonts\n")
+	print("unzip "..src.." -d fonts/"..font.."\n")
 	n = n + 1
 end
 }
@@ -66,7 +66,7 @@ find fonts -name "readme.md" -delete
 %{lua:
 local dir = rpm.expand("%{buildroot}/%{_datadir}/fonts/nerd-fonts/");
 for font in (rpm.expand("%{flist}")):gmatch("[^ ]+") do
-	print("mv "..font.." "..dir)
+	print("mv fonts/"..font.." "..dir)
 end
 }
 install -Dm644 %{SOURCE0} "%{buildroot}/%{_datadir}/doc/%{name}/README.md"
