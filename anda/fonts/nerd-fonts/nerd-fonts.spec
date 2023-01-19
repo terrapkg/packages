@@ -44,6 +44,8 @@ end
 %global debug_package %{nil}
 
 %prep
+cp %{SOURCE0} .
+cp %{SOURCE1} .
 
 %build
 
@@ -62,18 +64,8 @@ wait
 
 find %{buildroot}/usr/share/fonts/nerd-fonts/ -name "* Windows Compatible.*" -delete &
 find %{buildroot}/usr/share/fonts/nerd-fonts/ -name "*.txt" -delete &
-cd %{buildroot}/usr/share/fonts/nerd-fonts/
-for folder in *; do
-	a=`echo $folder | sed 's/./\L&/g'`
-	mkdir -p %{buildroot}/usr/share/{doc,licenses}/"${folder,,}"
-	(cd $folder && install -Dm644 readme.md %{buildroot}/usr/share/doc/$a)
-	install -Dm644 %{SOURCE1} %{buildroot}/usr/share/licenses/$a
-done
+find %{buildroot}/usr/share/fonts/nerd-fonts/ -name "readme.md" -delete &
 wait
-
-mkdir -p %{buildroot}/usr/share/{doc,licenses}/%{name}/
-install -Dm644 %{SOURCE0} %{buildroot}/usr/share/doc/%{name}/
-install -Dm644 %{SOURCE1} %{buildroot}/usr/share/licenses/%{name}/
 
 
 %files
