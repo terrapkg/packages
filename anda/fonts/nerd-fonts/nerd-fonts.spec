@@ -5,11 +5,10 @@ Name:		nerd-fonts
 Version:	2.3.1
 Release:	%autorelease
 URL:		https://nerdfonts.com/
-Source0:	https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v%{version}/readme.md
-Source1:	https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v%{version}/LICENSE
+Source0:	https://github.com/ryanoasis/nerd-fonts/archive/refs/tags/v%{version}.tar.gz
 License:	OFLv1.1
 Summary:	All packaged Nerd fonts
-BuildArch:	noarch
+BuildArch: noarch
 Requires:	%{lua:
 local x = ""
 local ver = rpm.expand("%{version}")
@@ -17,15 +16,6 @@ for font in (rpm.expand("%{flist}")):gmatch("[^ ]+") do
 	x = x .. font:lower().."="..ver.." "
 end
 print(x)
-}
-BuildRequires:	unzip
-%{lua:
-local url = rpm.expand(": https://github.com/ryanoasis/nerd-fonts/releases/download/v%{version}/");
-local n = 2;
-for font in (rpm.expand("%{flist}")):gmatch("[^ ]+") do
-	print("Source"..n..url..font..".zip\n")
-	n = n + 1
-end
 }
 
 %description
@@ -44,27 +34,31 @@ end
 %global debug_package %{nil}
 
 %prep
-mkdir -p %{buildroot}/usr/share/fonts/nerd-fonts/
-%{lua:
-local dest = rpm.expand("%{buildroot}/usr/share/fonts/nerd-fonts/");
-local n = 2;
-for font in (rpm.expand("%{flist}")):gmatch("[^ ]+") do
-	local src = rpm.expand("%{SOURCE"..n.."}")
-	print("unzip "..src.." -d "..dest..font.." &\n")
-	n = n + 1
-end
-}
-wait
+%autosetup -n %{name}-%{version}
 
 %build
-find %{buildroot}/usr/share/fonts/nerd-fonts/ -name "* Windows Compatible.*" -delete &
-find %{buildroot}/usr/share/fonts/nerd-fonts/ -name "*.txt" -delete &
-find %{buildroot}/usr/share/fonts/nerd-fonts/ -name "readme.md" -delete &
-wait
+find patched-fonts -name "* Windows Compatible.*" -delete
+find patched-fonts -name "font-info.md" -delete
+find patched-fonts -name "readme.md" -delete
+
+search() {
+	for folder in $1/*; do
+		if [[ -d "$folder/complete" ]]; then
+			mv $folder/complete/* $folder/
+			rmdir $folder/complete
+		else
+			if [[ -d $folder ]]; then
+				search $folder
+			fi
+		fi
+	done
+	return 0
+}
+search patched-fonts
 
 %install
-install -Dm644 %{SOURCE0} %{buildroot}/usr/share/doc/%{name}/
-install -Dm644 %{SOURCE1} %{buildroot}/usr/share/licenses/%{name}/
+mkdir -p %{buildroot}/%{_datadir}/fonts/nerd-fonts/
+cp -r patched-fonts/* %{buildroot}/%{_datadir}/fonts/nerd-fonts/
 
 
 %files
