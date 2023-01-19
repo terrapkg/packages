@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 %define commit 40b27dd1b8dd48277207db1b165c220c3441484c
 
-Name:           openasar-canary
+Name:           discord-canary-openasar
 Version:        0.0.146
 Release:        1%{?dist}
 Summary:        OpenAsar is a rewrite of part of Discord's desktop code, making it snappier and include more features like further customization and theming
