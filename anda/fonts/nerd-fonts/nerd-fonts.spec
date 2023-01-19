@@ -63,8 +63,8 @@ find %{buildroot}/usr/share/fonts/nerd-fonts/ -name "readme.md" -delete &
 wait
 
 %install
-install -Dm644 %{SOURCE0} "%{buildroot}/usr/share/doc/%{name}/readme.md"
-install -Dm644 %{SOURCE1} "%{buildroot}/usr/share/licenses/%{name}/LICENSE"
+install -Dm644 %{SOURCE0} %{buildroot}/usr/share/doc/%{name}/
+install -Dm644 %{SOURCE1} %{buildroot}/usr/share/licenses/%{name}/
 
 
 %files
