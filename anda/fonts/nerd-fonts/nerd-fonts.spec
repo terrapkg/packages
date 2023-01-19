@@ -44,30 +44,27 @@ end
 %global debug_package %{nil}
 
 %prep
-mkdir fonts
+mkdir -p %{buildroot}/usr/share/fonts/nerd-fonts/
 %{lua:
+local dest = rpm.expand("%{buildroot}/usr/share/fonts/nerd-fonts/");
 local n = 2;
 for font in (rpm.expand("%{flist}")):gmatch("[^ ]+") do
 	local src = rpm.expand("%{SOURCE"..n.."}")
-	print("unzip "..src.." -d fonts/"..font.."\n")
+	print("unzip "..src.." -d "..dest..font.." &\n")
 	n = n + 1
 end
 }
+wait
 
 %build
-find fonts -name "* Windows Compatible.*" -delete
-find fonts -name "*.txt" -delete
-find fonts -name "readme.md" -delete
+find %{buildroot}/usr/share/fonts/nerd-fonts/ -name "* Windows Compatible.*" -delete &
+find %{buildroot}/usr/share/fonts/nerd-fonts/ -name "*.txt" -delete &
+find %{buildroot}/usr/share/fonts/nerd-fonts/ -name "readme.md" -delete &
+wait
 
 %install
-%{lua:
-local dir = rpm.expand("%{buildroot}/%{_datadir}/fonts/nerd-fonts/");
-for font in (rpm.expand("%{flist}")):gmatch("[^ ]+") do
-	print("mv fonts/"..font.." "..dir.."\n")
-end
-}
-install -Dm644 %{SOURCE0} "%{buildroot}/%{_datadir}/doc/%{name}/README.md"
-install -Dm644 %{SOURCE1} "%{buildroot}/%{_datadir}/licenses/%{name}/LICENSE"
+install -Dm644 %{SOURCE0} "%{buildroot}/usr/share/doc/%{name}/README.md"
+install -Dm644 %{SOURCE1} "%{buildroot}/usr/share/licenses/%{name}/LICENSE"
 
 
 %files
