@@ -5,10 +5,11 @@ Name:		nerd-fonts
 Version:	2.3.1
 Release:	%autorelease
 URL:		https://nerdfonts.com/
-Source0:	https://github.com/ryanoasis/nerd-fonts/archive/refs/tags/v%{version}.tar.gz
+Source0:	https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v%{version}/readme.md
+Source1:	https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v%{version}/LICENSE
 License:	OFLv1.1
 Summary:	All packaged Nerd fonts
-BuildArch: noarch
+BuildArch:	noarch
 Requires:	%{lua:
 local x = ""
 local ver = rpm.expand("%{version}")
@@ -16,6 +17,15 @@ for font in (rpm.expand("%{flist}")):gmatch("[^ ]+") do
 	x = x .. font:lower().."="..ver.." "
 end
 print(x)
+}
+BuildRequires:	unzip
+%{lua:
+local url = rpm.expand(": https://github.com/ryanoasis/nerd-fonts/releases/download/v%{version}/");
+local n = 2;
+for font in (rpm.expand("%{flist}")):gmatch("[^ ]+") do
+	print("Source"..n..url..font..".zip\n")
+	n = n + 1
+end
 }
 
 %description
@@ -34,31 +44,23 @@ end
 %global debug_package %{nil}
 
 %prep
-%autosetup -n %{name}-%{version}
+mkdir fonts
+unzip *.zip -d fonts
 
 %build
-find patched-fonts -name "* Windows Compatible.*" -delete
-find patched-fonts -name "font-info.md" -delete
-find patched-fonts -name "readme.md" -delete
-
-search() {
-	for folder in $1/*; do
-		if [[ -d "$folder/complete" ]]; then
-			mv $folder/complete/* $folder/
-			rmdir $folder/complete
-		else
-			if [[ -d $folder ]]; then
-				search $folder
-			fi
-		fi
-	done
-	return 0
-}
-search patched-fonts
+find fonts -name "* Windows Compatible.*" -delete
+find fonts -name "*.txt" -delete
+find fonts -name "readme.md" -delete
 
 %install
-mkdir -p %{buildroot}/%{_datadir}/fonts/nerd-fonts/
-cp -r patched-fonts/* %{buildroot}/%{_datadir}/fonts/nerd-fonts/
+%{lua:
+local dir = rpm.expand("%{buildroot}/%{_datadir}/fonts/nerd-fonts/");
+for font in (rpm.expand("%{flist}")):gmatch("[^ ]+") do
+	print("mv "..font.." "..dir)
+end
+}
+install -Dm644 %{SOURCE0} "%{buildroot}/%{_datadir}/doc/%{name}/README.md"
+install -Dm644 %{SOURCE1} "%{buildroot}/%{_datadir}/licenses/%{name}/LICENSE"
 
 
 %files
