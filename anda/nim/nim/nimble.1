@@ -1,0 +1,97 @@
+.TH NIMBLE 1 "SEPTEMBER 2017" Linux "User Manuals"
+.SH NAME
+.PP
+nimble \- package manager for the Nim programming language.
+.SH SYNOPSIS
+.PP
+\fB\fCnimble\fR \fIcommand\fP [\fIcommand\-options\fP]
+.SH COMMANDS
+.PP
+\fB\fCinstall\fR [\fB\fC\-d\fR, \fB\fC\-\-depsOnly\fR] [\fIpkgname\fP, \fI\&...\fP]
+    Install a list of packages (\fB\fC\-d\fR switch for only dependencies).
+.PP
+\fB\fCdevelop\fR [\fIpkgname\fP, \fI\&...\fP]
+    Clone a list of packages for development. Symlinks the cloned packages or any package in the current working directory.
+.PP
+\fB\fCcheck\fR
+    Verify the validity of a package in the current working directory.
+.PP
+\fB\fCinit\fR [\fIpkgname\fP]
+    Initialize a new Nimble project.
+.PP
+\fB\fCpublish\fR
+    Publish a package on nim\-lang/packages. The current working directory needs to be the toplevel directory of the Nimble package.
+.PP
+\fB\fCuninstall\fR [\fIpkgname\fP, \fI\&...\fP]
+    Uninstall a list of packages.
+.PP
+\fB\fCbuild\fR
+    Build a package.
+.PP
+\fB\fCc\fR [\fIoptions\fP, \fI\&...\fP] \fIfile.nim\fP
+    Build a file inside a package using \fB\fCC\fR backend.
+.PP
+\fB\fCcc\fR [\fIoptions\fP, \fI\&...\fP] \fIfile.nim\fP
+    Build a file inside a package using \fB\fCC++\fR backend.
+.PP
+\fB\fCjs\fR [\fIoptions\fP, \fI\&...\fP] \fIfile.nim\fP
+    Build a file inside a package using \fB\fCJavascript\fR backend.
+.PP
+\fB\fCtest\fR
+    Compile and execute tests
+.PP
+\fB\fCdoc\fR [\fIoptions\fP, \fI\&...\fP] \fIfile.nim\fP
+    Build documentation for a file inside a package.
+.PP
+\fB\fCdoc2\fR [\fIoptions\fP, \fI\&...\fP] \fIfile.nim\fP
+    Build documentation with semantic checking for a file inside a package.
+.PP
+\fB\fCrefresh\fR [\fIurl\fP]
+    Refresh the package list. A package list URL can be optionally specified.
+.PP
+\fB\fCsearch\fR [\fB\fC\-\-ver\fR] \fIpkg\fP/\fItag\fP
+    Search for a specified package by tag and by name. With \fB\fC\-\-ver\fR remote server will be asked for package versions.
+.PP
+\fB\fClist\fR [\fB\fC\-\-ver\fR]
+    List all packages. With \fB\fC\-\-ver\fR remote server will be asked for package versions. With \fB\fC\-i\fR results will be limited to locally installed packages.
+.PP
+\fB\fCtasks\fR
+    List the tasks specified in the Nimble package's Nimble file.
+.PP
+\fB\fCpath\fR \fIpkgname\fP \fI\&...\fP
+    Shows absolute path to the installed packages specified.
+.PP
+\fB\fCdump\fR [\fIpkgname\fP]
+    Outputs Nimble package information for external tools. The argument can be a .nimble file, a project directory or the name of an installed package.
+.SH OPTIONS
+.PP
+\fB\fC\-h\fR, \fB\fC\-\-help\fR
+    Print this help message.
+.PP
+\fB\fC\-v\fR, \fB\fC\-\-version\fR
+    Print version information.
+.PP
+\fB\fC\-y\fR, \fB\fC\-\-accept\fR
+    Accept all interactive prompts.
+.PP
+\fB\fC\-n\fR, \fB\fC\-\-reject\fR
+    Reject all interactive prompts.
+.PP
+\fB\fC\-\-ver\fR
+    Query remote server for package version information when searching or listing packages
+.PP
+\fB\fC\-\-nimbleDir\fR:\fIdirname\fP
+    Set the Nimble directory.
+.PP
+\fB\fC\-\-verbose\fR
+    Show all non\-debug output.
+.PP
+\fB\fC\-\-debug\fR
+    Show all output including debug messages.
+.PP
+\fB\fC\-\-noColor\fR
+    Don't colorise output.
+.SH SEE ALSO
+.PP
+.BR nim (1), 
+README \[la]https://github.com/nim-lang/nimble#readme\[ra]

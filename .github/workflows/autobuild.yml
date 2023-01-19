@@ -17,17 +17,12 @@ jobs:
     outputs:
       build_matrix: ${{ steps.generate_build_matrix.outputs.build_matrix }}
     container:
-      image: registry.fedoraproject.org/fedora:37
+      image: ghcr.io/terrapkg/builder:main
       options: --cap-add=SYS_ADMIN --privileged
     # check out the repo
     steps:
-      - name: Set up dependencies
-        run: |
-          sudo dnf install -y dnf-plugins-core
-          sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic-repos/raw/main/terra37.repo
-          sudo dnf install -y anda mock rpm-build git-core
-          # add to safe directory
-          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - name: Set workspace as safe
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Checkout
         uses: actions/checkout@v3
         with:
@@ -68,15 +63,9 @@ jobs:
     #if: ${{ matrix.changed_folders != '' }}
     runs-on: ${{ matrix.pkg.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
     container:
-      image: registry.fedoraproject.org/fedora:37
+      image: ghcr.io/terrapkg/builder:main
       options: --cap-add=SYS_ADMIN --privileged
     steps:
-      - name: Install repositories
-        run: |
-          sudo dnf install -y dnf-plugins-core
-          sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic-repos/raw/main/terra${{ matrix.version }}.repo
-          sudo dnf install -y anda-mock-configs subatomic-cli anda mock rpm-build mock-scm
-
       - uses: terrapkg/anda-build@main
         with:
           name: "${{ matrix.pkg.pkg }}"
@@ -84,12 +73,9 @@ jobs:
           extraArgs: -D "sccache_bucket ${{secrets.SCCACHE_BUCKET}}" -D "sccache_endpoint ${{secrets.SCCACHE_ENDPOINT}}" -D "sccache_secret ${{secrets.SCCACHE_SECRET}}" -D "sccache_accesskey ${{secrets.SCCACHE_ACCESSKEY}}"
           andaRepo: https://github.com/terrapkg/subatomic-repos/raw/main/terra${{ matrix.version }}.repo
 
-      - name: Install Subatomic client
-        run: sudo dnf install -y subatomic-cli
-
       - name: Upload packages to subatomic
         run: |
           subatomic-cli upload --prune \
             --server https://subatomic.fyralabs.com \
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
-            terra${{ matrix.version }} anda-build/rpm/rpms/*
+            terra${{ matrix.version }} anda-build/rpm/{rpms,srpm}/*

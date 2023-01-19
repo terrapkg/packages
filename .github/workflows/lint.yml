@@ -1,0 +1,14 @@
+name: Lint
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/terrapkg/builder:main
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Lint spec files
+        run: rpmlint $(find anda -type f -name "*.spec" -type f)

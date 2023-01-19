@@ -8,7 +8,7 @@ Name:       distrho
 Version:    0
 Release:    0.1.%{rel_tag}%{?dist}
 Summary:    Linux audio plugins ports
-URL:		https://distrho.sourceforge.io/ports.php
+URL:        https://distrho.sourceforge.io/ports.php
 License:    GPLv2 and GPLv3 and MIT
 
 Source0:    https://github.com/DISTRHO/DISTRHO-Ports/archive/refs/tags/2021-03-15.tar.gz
@@ -29,7 +29,7 @@ Misc audio production plugins ported to linux lv2 plugins by DISTRHO
 # Dexed
 
 %package dexed
-Summary:	Dexed is a multi platform, multi format plugin synth that is closely modeled on the Yamaha DX7
+Summary:    Dexed is a multi platform, multi format plugin synth that is closely modeled on the Yamaha DX7
 
 %description dexed
 Dexed is a multi platform, multi format plugin synth that is closely modeled on the Yamaha DX7.
@@ -38,15 +38,15 @@ Dexed is also a midi cartridge librarian/manager for the DX7
 # Vitalium
 
 %package vitalium
-Summary:	vitalium is a spectral warping wavetable synthesizer
-Provides:    vitalium-vst
-Provides:    vitalium-lv2
-Provides:    vitalium
+Summary:    vitalium is a spectral warping wavetable synthesizer
+Provides:   vitalium-vst = %{version}-%{release}
+Provides:   vitalium-lv2 = %{version}-%{release}
+Provides:   vitalium = %{version}-%{release}
 %description vitalium
 vitalium is the Open Source version of the Vital spectral warping wavetable synthesizer
 
 %package TAL
-Summary:	Misc Plugins for TAL (tal-filter, tal-filter-2, tal-noisemaker, tal-reverb, tal-reverb-2, tal-reverb-3, tal-vocoder-2)
+Summary:    Misc Plugins for TAL (tal-filter, tal-filter-2, tal-noisemaker, tal-reverb, tal-reverb-2, tal-reverb-3, tal-vocoder-2)
 
 # TAL
 
@@ -54,7 +54,7 @@ Summary:	Misc Plugins for TAL (tal-filter, tal-filter-2, tal-noisemaker, tal-rev
 Misc Plugins for TAL (tal-filter, tal-filter-2, tal-noisemaker, tal-reverb, tal-reverb-2, tal-reverb-3, tal-vocoder-2)
 
 %package dRowAudio
-Summary:	Plugins from dRowAudio (distortion, distortionshaper, flanger, reverb, tremolo)
+Summary:    Plugins from dRowAudio (distortion, distortionshaper, flanger, reverb, tremolo)
 
 # dRowAudio
 
@@ -63,7 +63,7 @@ Plugins from dRowAudio (distortion, distortionshaper, flanger, reverb, tremolo)
 
 
 %package Arctican
-Summary:	Arctican lv2 plugins
+Summary:    Arctican lv2 plugins
 
 %description Arctican
 Plugins from Arctican (The Functiom & The Pilgrim)
@@ -71,7 +71,7 @@ Plugins from Arctican (The Functiom & The Pilgrim)
 # LUFS
 
 %package LUFS
-Summary:	Klangfreund metering plugins (Multimeter + LUFS Meter)
+Summary:    Klangfreund metering plugins (Multimeter + LUFS Meter)
 
 %description LUFS
 Klangfreund metering plugins (Multimeter + LUFS Meter)
@@ -79,7 +79,7 @@ Klangfreund metering plugins (Multimeter + LUFS Meter)
 # EasySSP
 
 %package EasySSP
-Summary:	Easy Sound Space Perception is a small and lightweight audio visualization tool
+Summary:    Easy Sound Space Perception is a small and lightweight audio visualization tool
 
 %description EasySSP
 Easy Sound Space Perception is a small and lightweight audio visualization tool, which currently provides spectrometer and goniometer views.
@@ -87,7 +87,7 @@ Easy Sound Space Perception is a small and lightweight audio visualization tool,
 # JuceOPL
 
 %package JuceOPL
-Summary:	Classic game sounds in Plugin form, as heard in late 80s / early 90s sound cards
+Summary:    Classic game sounds in Plugin form, as heard in late 80s / early 90s sound cards
 
 %description JuceOPL
 Classic game sounds in Plugin form, as heard in late 80s / early 90s sound cards.
@@ -95,7 +95,7 @@ Classic game sounds in Plugin form, as heard in late 80s / early 90s sound cards
 # KlangFalter
 
 %package KlangFalter
-Summary:	KlangFalter is a convolution audio plugin
+Summary:    KlangFalter is a convolution audio plugin
 
 %description KlangFalter
 KlangFalter is a convolution audio plugin
@@ -103,7 +103,7 @@ KlangFalter is a convolution audio plugin
 # Luftikus
 
 %package Luftikus
-Summary:	Luftikus plugin
+Summary:    Luftikus plugin
 
 %description Luftikus
 Luftikus is a digital adaptation of an analog EQ with fixed half-octave bands and additional high frequency boost.
@@ -112,7 +112,7 @@ As an improvement to the hardware it allows deeper cuts and supports a keep-gain
 # Obxd
 
 %package Obxd
-Summary:	Obxd is emulation of famous ob-x, ob-xa and ob8 synths
+Summary:    Obxd is emulation of famous ob-x, ob-xa and ob8 synths
 
 %description Obxd
 Obxd is emulation of famous ob-x, ob-xa and ob8 synths.
@@ -120,7 +120,7 @@ Obxd is emulation of famous ob-x, ob-xa and ob8 synths.
 # Refine
 
 %package ReFine
-Summary:	ReFine plugin
+Summary:    ReFine plugin
 
 %description ReFine
 ReFine is a plugin that allows to add a final polishing to your tracks, busses and masters.
@@ -129,7 +129,7 @@ It extracts psycho-acoustic parameters from the source and thus allows to add wa
 # Wolpertinger
 
 %package Wolpertinger
-Summary:	Wolpertinger is a subtractive, antialiased polyphonic software synthesizer
+Summary:    Wolpertinger is a subtractive, antialiased polyphonic software synthesizer
 
 %description Wolpertinger
 Wolpertinger is a subtractive, antialiased polyphonic software synthesizer.
@@ -137,14 +137,14 @@ Wolpertinger is a subtractive, antialiased polyphonic software synthesizer.
 # Vex
 
 %package Vex
-Summary:	Vex is a 3 oscillator subtractive waverom synth
+Summary:    Vex is a 3 oscillator subtractive waverom synth
 
 %description Vex
 Vex is a 3 oscillator subtractive waverom synth
 
 # Temper
 %package Temper
-Summary:	Temper is a modern digital distortion plugin
+Summary:    Temper is a modern digital distortion plugin
 
 %description Temper
 Temper is a modern digital distortion plugin featuring a rich saturation stage and a unique phase distortion.
@@ -153,7 +153,7 @@ Temper also features a simple resonant lowpass filter and a feedback path to dri
 
 # SwankyAmp
 %package SwankyAmp
-Summary:	Swanky Amp is a tube amplifier emulation plug-in
+Summary:    Swanky Amp is a tube amplifier emulation plug-in
 
 %description SwankyAmp
 Swanky Amp is a tube amplifier emulation plug-in which is based on detailed simulations of tube amplification.
@@ -161,14 +161,14 @@ Discover new tones effortlessly with intuitive controls, harnessing the coveted 
 
 # PitchedDelay
 %package PitchedDelay
-Summary:	PitchedDelay is a delay that allows the pitching the delayed signal
+Summary:    PitchedDelay is a delay that allows the pitching the delayed signal
 
 %description PitchedDelay
 PitchedDelay is a delay that allows the pitching the delayed signal, within or outside the feedback loop.
 
 # StereoSourceSeparation
 %package StereoSourceSeparation
-Summary:	Stereo Source Separation plugin
+Summary:    Stereo Source Separation plugin
 
 %description StereoSourceSeparation
 This is a plugin that uses the spatial information hidden in the stereo signal to accomplish source separation.
@@ -176,21 +176,21 @@ This is a plugin that uses the spatial information hidden in the stereo signal t
 # HiReSam
 
 %package HiReSam
-Summary:	Klangfreund High Resolution Spectrum Analyse Meter
+Summary:    Klangfreund High Resolution Spectrum Analyse Meter
 
 %description HiReSam
 Klangfreund High Resolution Spectrum Analyse Meter
 
 # eqinox
 %package eqinox
-Summary:	EQinox equaliser plugin
+Summary:    EQinox equaliser plugin
 
 %description eqinox
 EQinox equaliser plugin
 
 # drumsynth
 %package drumsynth
-Summary:	drumsynth plugin
+Summary:    drumsynth plugin
 
 %description drumsynth
 drumsynth plugin

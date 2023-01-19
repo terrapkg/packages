@@ -1,5 +1,5 @@
 Name: dart
-Version: 2.18.5
+Version: 2.18.7
 Release: 1%{?dist}
 Summary: The Dart Language
 License: BSD-3-Clause
@@ -21,7 +21,9 @@ Source0: https://storage.googleapis.com/dart-archive/channels/stable/release/%{v
 Dart is a client-optimized language for fast apps on any platform. This package contains the SDK used to develop and compile Dart applications.
 
 %prep
-%setup -n dart-sdk
+%setup -q -n dart-sdk
+
+%build
 
 %install
 # install the folders inside

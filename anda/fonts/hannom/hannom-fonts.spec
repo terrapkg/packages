@@ -15,6 +15,7 @@ BuildArch: noarch
 %prep
 unzip %{SOURCE0}
 
+%build
 
 %install
 install -D -m644 'HAN NOM A.ttf' "%{buildroot}/%{_datadir}/fonts/hannom/HAN NOM A.ttf"
@@ -22,7 +23,7 @@ install -D -m644 'HAN NOM B.ttf' "%{buildroot}/%{_datadir}/fonts/hannom/HAN NOM 
 
 
 %files
-# %license %{SOURCE1}
+%license %{SOURCE1}
 %defattr(-,root,root,0755)
 /%{_datadir}/fonts/hannom/
 

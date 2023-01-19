@@ -1,6 +1,6 @@
 %define _disable_source_fetch 0
 %bcond_without check
-#%global debug_package %{nil}
+#%%global debug_package %%{nil}
 
 %global crate pop-launcher
 

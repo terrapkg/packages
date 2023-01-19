@@ -1,19 +1,20 @@
-Name:       arphic-uming-fonts
-Version:    0.2.20080216.2
-Release:    %autorelease
-URL:        https://www.freedesktop.org/wiki/Software/CJKUnifonts
+Name:		arphic-uming-fonts
+Version:	0.2.20080216.2
+Release:	%autorelease
+URL:		https://www.freedesktop.org/wiki/Software/CJKUnifonts
 Source0:	https://deb.debian.org/debian/pool/main/f/fonts-arphic-uming/fonts-arphic-uming_%{version}.orig.tar.bz2
-License:    custom
-Summary:    CJK Unicode font Ming style
-BuildArch: noarch
+License:	custom
+Summary:	CJK Unicode font Ming style
+BuildArch:	noarch
 
 %description
 %{summary}.
 
 
 %prep
-%setup -n ttf-arphic-uming-%{version}
+%setup -q -n ttf-arphic-uming-%{version}
 
+%build
 
 %install
 install -D -m644 uming.ttc %{buildroot}/%{_datadir}/fonts/arphic-uming/uming.ttc

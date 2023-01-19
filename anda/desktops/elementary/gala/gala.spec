@@ -2,7 +2,7 @@
 
 Name:           gala
 Summary:        Gala window manager
-Version:        6.3.3
+Version:        7.0.0
 Release:        %autorelease
 License:        GPLv3+
 
@@ -92,7 +92,7 @@ desktop-file-validate \
     %{buildroot}/%{_datadir}/applications/gala*.desktop
 
 #appstream-util validate-relax --nonet \
-#    %{buildroot}/%{_datadir}/metainfo/%{name}.appdata.xml
+#    %%{buildroot}/%%{_datadir}/metainfo/%%{name}.appdata.xml
 
 
 %files -f gala.lang

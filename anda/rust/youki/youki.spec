@@ -1,5 +1,5 @@
 Name:           youki
-Version:        0.0.3
+Version:        0.0.4
 Release:        2%{?dist}
 Summary:        A container runtime written in Rust
 
@@ -47,10 +47,6 @@ pushd crates/
 
 
 %install
-# install -D -m 0755 youki %{buildroot}%{_bindir}/youki
-
-
-pushd crates/
 install -D -m 0755 target/release/youki %{buildroot}%{_bindir}/youki
 
 %files
