@@ -1,6 +1,6 @@
 Summary:        tauOS GTK/GNOME Shell Themes
 Name:           tau-helium
-Version:        1.1.54
+Version:        1.1.55
 Release:        1%{?dist}
 License:        GPLv3
 URL:            https://github.com/tau-OS/tau-helium
