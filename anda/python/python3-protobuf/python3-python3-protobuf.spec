@@ -32,8 +32,8 @@ sed "s@\t@    @g" google/protobuf/internal/cpp_message.py > google/protobuf/inte
 %install
 %py3_install
 
-#%check
-#%{__python3} setup.py test
+%dnl %check
+%dnl %{__python3} setup.py test
 
 %files
 %doc README.txt
