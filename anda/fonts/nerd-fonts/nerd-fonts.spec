@@ -66,7 +66,7 @@ find fonts -name "readme.md" -delete
 %{lua:
 local dir = rpm.expand("%{buildroot}/%{_datadir}/fonts/nerd-fonts/");
 for font in (rpm.expand("%{flist}")):gmatch("[^ ]+") do
-	print("mv fonts/"..font.." "..dir)
+	print("mv fonts/"..font.." "..dir.."\n")
 end
 }
 install -Dm644 %{SOURCE0} "%{buildroot}/%{_datadir}/doc/%{name}/README.md"
