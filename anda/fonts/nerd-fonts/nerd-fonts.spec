@@ -46,6 +46,14 @@ end
 %prep
 mkdir fonts
 unzip *.zip -d fonts
+%{lua:
+local n = 2;
+for font in (rpm.expand("%{flist}")):gmatch("[^ ]+") do
+	local src = rpm.expand("%{SOURCE"..n.."}")
+	print("unzip "..src.." -d fonts\n")
+	n = n + 1
+end
+}
 
 %build
 echo "==========================================="
