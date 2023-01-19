@@ -48,6 +48,9 @@ mkdir fonts
 unzip *.zip -d fonts
 
 %build
+echo "==========================================="
+ls fonts
+echo "==========================================="
 find fonts -name "* Windows Compatible.*" -delete
 find fonts -name "*.txt" -delete
 find fonts -name "readme.md" -delete
