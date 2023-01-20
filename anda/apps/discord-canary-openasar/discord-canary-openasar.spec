@@ -3,7 +3,7 @@
 
 Name:           discord-canary-openasar
 Version:        0.0.146
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        OpenAsar is a rewrite of part of Discord's desktop code, making it snappier and include more features like further customization and theming
 License:        MIT and https://discord.com/terms
 URL:            https://github.com/GooseMod/OpenAsar
@@ -19,7 +19,7 @@ ExclusiveArch:  x86_64
 %autosetup -n DiscordCanary
 
 %build
-sed "s@/usr/share/discord-canary/@/usr/share/discord-canary-openasar@g" discord-canary.desktop > a
+sed "s@discord-canary@discord-canary-openasar@g" discord-canary.desktop > a
 sed "s@Discord Canary@Discord Canary OpenAsar@g" a > discord-canary.desktop
 
 %install
