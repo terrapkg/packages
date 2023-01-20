@@ -3,4 +3,5 @@ if filters.contains("nightly") {
 	req.head("Authorization", `Bearer ${env("GITHUB_TOKEN")}`);
 	let sha = json(req.get()).sha;
 	rpm.global("commit", sha);
+	rpm.release();
 }
