@@ -14,7 +14,7 @@ Requires:	%{lua:
 local x = ""
 local ver = rpm.expand("%{version}")
 for font in (rpm.expand("%{flist}")):gmatch("[^ ]+") do
-	x = x .. font:lower().."="..ver.." "
+	x = x .. font:lower().."-nerd-fonts".."="..ver.." "
 end
 print(x)
 }
