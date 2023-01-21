@@ -12,16 +12,9 @@ jobs:
   update-comps:
     runs-on: ubuntu-latest
     container:
-      image: fedora:37
+      image: ghcr.io/terrapkg/builder:main
     steps:
       - uses: actions/checkout@v3
-      - name: Install repositories
-        run: |
-          sudo dnf install -y dnf-plugins-core
-          sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic-repos/raw/main/terra37.repo
-      - name: Install dependencies
-        run: |
-          sudo dnf install -y subatomic-cli
       - name: Push to subatomic
         run: |
           subatomic-cli upload-comps \

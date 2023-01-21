@@ -1,5 +1,5 @@
 %global csrc_commit 561b417c65791cd8356b5f73620914ceff845d10
-%global         debug_package %{nil}
+%global debug_package %{nil}
 
 Name:			nim
 Version:		1.6.10
@@ -68,10 +68,10 @@ sed -i '/<link.*fonts.googleapis.com/d' doc/html/*.html
 
 
 %install
-sh install.sh %{buildroot}usr/bin # %{buildroot}%{bashcompdir}/nim %{buildroot}%{bashcompdir}/nimble %{buildroot}%{_mandir}/man1
+sh install.sh %{buildroot}usr/bin
 
 mkdir -p %{buildroot}/%{_bindir} 
-install -Dp -m755 bin/nim{ble,grep,suggest,pretty} %{buildroot}/%{_bindir}
+install -Dp -m755 bin/nim{,ble,grep,suggest,pretty} %{buildroot}/%{_bindir}
 install -Dp -m644 tools/nim.bash-completion %{buildroot}%{bashcompdir}/nim
 install -Dp -m644 dist/nimble/nimble.bash-completion %{buildroot}%{bashcompdir}/nimble
 install -Dp -m644 -t%{buildroot}%{_mandir}/man1 %SOURCE1 %SOURCE2 %SOURCE3 %SOURCE4

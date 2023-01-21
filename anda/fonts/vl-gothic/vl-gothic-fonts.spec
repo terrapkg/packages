@@ -20,7 +20,7 @@ URL:     http://dicey.org/vlgothic
 # The following declarations will be aliased to [variable]0 and reused for all
 # generated *-fonts packages unless overriden by a specific [variable][number]
 # declaration.
-%global foundry           VL  
+%global foundry           VL
 %global fontlicense       mplus and BSD
 %global fontlicenses      LICENSE_J.mplus LICENSE_E.mplus LICENSE LICENSE.en
 %global fontdocs          README README_J.mplus README.sazanami README_E.mplus

@@ -7,7 +7,7 @@ Release:        1%{?dist}
 Summary:        Protocol Buffers
 
 License:        New BSD License
-URL:            http://code.google.com/p/protobuf/
+URL:            https://developers.google.com/protocol-buffers/
 Source0:        %{pypi_source}
 BuildArch:      noarch
 
@@ -32,8 +32,8 @@ sed "s@\t@    @g" google/protobuf/internal/cpp_message.py > google/protobuf/inte
 %install
 %py3_install
 
-#%check
-#%{__python3} setup.py test
+%dnl %check
+%dnl %{__python3} setup.py test
 
 %files
 %doc README.txt

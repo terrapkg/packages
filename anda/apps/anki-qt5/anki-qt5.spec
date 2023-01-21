@@ -1,6 +1,6 @@
 Name:           anki-qt5
 Version:        2.1.56
-Release:        %autorelease
+Release:        2%{?dist}
 Summary:        Flashcard program for using space repetition learning
 License:        AGPLv3+ and GPLv3+ and LGPLv3 and MIT and BSD and ASL 2.0 and CC-BY-SA and CC-BY
 URL:            https://apps.ankiweb.net/
@@ -9,7 +9,6 @@ BuildRequires:  python3-distro python3-flask-cors python3-jsonschema python3-sen
 BuildRequires:  python3-installer make mold cargo git rsync ninja-build libxcrypt-compat nodejs python3.9 python-unversioned-command gcc
 Requires:       hicolor-icon-theme python3-sqlalchemy python3-simplejson python3-matplotlib python3-decorator python3-markdown python3-send2trash
 Requires:       python3-requests python3-pygame python3-beautifulsoup4 python3-httplib2 python3-pyaudio python3-jsonschema sox libxcrypt-compat
-Obsoletes:      anki <= 2.1.15
 BuildArch:      noarch
 Conflicts:      anki
 Patch0:         0001-No-update.patch
@@ -39,21 +38,26 @@ done
 install -Dm644 qt/bundle/lin/anki.desktop %{buildroot}/%{_datadir}/applications/anki.desktop
 install -Dm644 qt/bundle/lin/anki.png %{buildroot}/%{_datadir}/pixmaps/anki.png
 
-sed "s*^#!/usr/bin/python\$*#!/usr/bin/python3*" %{buildroot}/%{_bindir}/anki > %{buildroot}/%{_bindir}/anki
+sed "s*^#!/usr/bin/python\$*#!/usr/bin/python3*" %{buildroot}/%{_bindir}/anki > %{buildroot}/%{_bindir}/anki1
+rm %{buildroot}/%{_bindir}/anki
+mv %{buildroot}/%{_bindir}/anki1 %{buildroot}/%{_bindir}/anki
+chmod 755 %{buildroot}%{_bindir}/anki
+
+find %{buildroot} -iname __pycache__ | xargs -r rm -rf
+find %{buildroot} -iname direct_url.json | xargs -r rm -rf
 
 
 %files
 %license LICENSE*
 %doc README*
 %{_bindir}/anki
-%{_datadir}/pixmaps/anki.png
 %{_datadir}/applications/anki.desktop
+%{_datadir}/pixmaps/anki.png
 /usr/lib64/python*/site-packages/aqt/
 /usr/lib64/python*/site-packages/aqt-%{version}.dist-info/
 /usr/lib64/python*/site-packages/_aqt/
 /usr/lib64/python*/site-packages/anki/
 /usr/lib64/python*/site-packages/anki-%{version}.dist-info/
-
 
 %changelog
 * Tue Jan 3 2023 windowsboy111 <windowsboy111@fyralabs.com>

@@ -11,27 +11,21 @@ jobs:
   autoupdate:
     runs-on: ubuntu-latest
     container:
-      image: registry.fedoraproject.org/fedora:37
+      image: ghcr.io/terrapkg/builder:main
       options: --cap-add=SYS_ADMIN --privileged
     steps:
-      - name: Install packages
-        run: |
-          sudo dnf install -y dnf-plugins-core
-          sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic-repos/raw/main/terra37.repo
-          dnf install -y rpmdevtools git python anda
-
       - name: Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 2
           ssh-key: ${{ secrets.SSH_AUTHENTICATION_KEY }}
-    
+
       - name: Install SSH signing key
         run: |
           mkdir -p ${{ runner.temp }}
           echo "${{ secrets.SSH_SIGNING_KEY }}" > ${{ runner.temp }}/signing_key
           chmod 0700 ${{ runner.temp }}/signing_key
-      
+
       - name: Run Update (anda)
         run: anda update -vv
         env:
