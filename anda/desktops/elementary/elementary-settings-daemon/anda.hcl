@@ -1,4 +1,4 @@
-project "pkg" {
+project pkg {
     rpm {
         spec = "elementary-settings-daemon.spec"
     }

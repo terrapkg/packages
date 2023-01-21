@@ -1,4 +1,4 @@
-project "pkg" {
+project pkg {
     rpm {
         spec = "naikai-fonts.spec"
     }
