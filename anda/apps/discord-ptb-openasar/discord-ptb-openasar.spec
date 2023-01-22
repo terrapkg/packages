@@ -16,7 +16,7 @@ ExclusiveArch:  x86_64
 %{summary}.
 
 %prep
-%autosetup -n DiscordPtb
+%autosetup -n DiscordPTB
 
 %build
 sed "s@discord-ptb@discord-ptb-openasar@g" discord-ptb.desktop > a
