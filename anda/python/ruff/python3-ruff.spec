@@ -1,3 +1,5 @@
+%define debug_package %{nil}
+
 Name:			python3-ruff
 Version:		0.0.229
 Release:		%autorelease
@@ -27,12 +29,13 @@ rm -rf %{python3_sitelib}/ruff/__pycache__
 /usr/lib64/python*/site-packages/ruff-%{version}.dist-info/METADATA
 /usr/lib64/python*/site-packages/ruff-%{version}.dist-info/RECORD
 /usr/lib64/python*/site-packages/ruff-%{version}.dist-info/WHEEL
-/usr/lib64/python*/site-packages/ruff/__init__.py
-/usr/lib64/python*/site-packages/ruff/__init__.pyi
 /usr/lib64/python*/site-packages/ruff/__pycache__/__init__.cpython-*.pyc
-/usr/lib64/python*/site-packages/ruff/ruff.cpython-*-linux-gnu.so
-/usr/lib64/python*/site-packages/ruff/py.typed
-
+/usr/lib64/python*/site-packages/ruff-%{version}.dist-info/license_files/LICENSE
+/usr/lib64/python*/site-packages/ruff/__init__.py
+/usr/lib64/python*/site-packages/ruff/__main__.py
+/usr/lib64/python*/site-packages/ruff/__pycache__/__main__.cpython-*.opt-1.pyc
+/usr/lib64/python*/site-packages/ruff/__pycache__/__main__.cpython-*.pyc
+/usr/bin/ruff
 
 %changelog
 * Mon Jan 23 2023 windowsboy111 <wboy111@outlook.com> - 0.0.229
