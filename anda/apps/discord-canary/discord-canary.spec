@@ -5,7 +5,7 @@ Version:        0.0.146
 Release:        1%{?dist}
 Summary:        Free Voice and Text Chat for Gamers.
 URL:            discord.com
-Source0:        https://dl.discordapp.net/apps/linux/%{version}/discord-canary-%{version}.tar.gz
+Source0:        https://dl-canary.discordapp.net/apps/linux/%{version}/discord-canary-%{version}.tar.gz
 License:        https://discord.com/terms
 Requires:       libatomic, glibc, alsa-lib, GConf2, libnotify, nspr >= 4.13, nss >= 3.27, libstdc++, libX11 >= 1.6, libXtst >= 1.2, libappindicator, libcxx, libXScrnSaver
 Group:          Applications/Internet

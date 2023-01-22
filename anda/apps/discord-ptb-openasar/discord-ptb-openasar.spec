@@ -6,7 +6,7 @@ Release:        4%{?dist}
 Summary:        OpenAsar is a rewrite of part of Discord's desktop code, making it snappier and include more features like further customization and theming
 License:        MIT and https://discord.com/terms
 URL:            https://github.com/GooseMod/OpenAsar
-Source0:        https://dl.discordapp.net/apps/linux/%{version}/discord-ptb-%{version}.tar.gz
+Source0:        https://dl-ptb.discordapp.net/apps/linux/%{version}/discord-ptb-%{version}.tar.gz
 Source1:        %{url}/releases/download/nightly/app.asar
 Group:          Applications/Internet
 Requires:       libatomic, glibc, alsa-lib, GConf2, libnotify, nspr >= 4.13, nss >= 3.27, libstdc++, libX11 >= 1.6, libXtst >= 1.2, libappindicator, libcxx, libXScrnSaver
@@ -16,7 +16,7 @@ ExclusiveArch:  x86_64
 %{summary}.
 
 %prep
-%autosetup -n DiscordPtb
+%autosetup -n DiscordPTB
 
 %build
 sed "s@discord-ptb@discord-ptb-openasar@g" discord-ptb.desktop > a
