@@ -1,5 +1,4 @@
 %define debug_package %{nil}
-%define commit 40b27dd1b8dd48277207db1b165c220c3441484c
 
 Name:           discord-canary-openasar
 Version:        0.0.146
@@ -7,8 +6,9 @@ Release:        4%{?dist}
 Summary:        OpenAsar is a rewrite of part of Discord's desktop code, making it snappier and include more features like further customization and theming
 License:        MIT and https://discord.com/terms
 URL:            https://github.com/GooseMod/OpenAsar
-Source0:        https://dl-canary.discordapp.net/apps/linux/%{version}/discord-canary-%{version}.tar.gz
+Source0:        https://dl.discordapp.net/apps/linux/%{version}/discord-canary-%{version}.tar.gz
 Source1:        %{url}/releases/download/nightly/app.asar
+Group:          Applications/Internet
 Requires:       libatomic, glibc, alsa-lib, GConf2, libnotify, nspr >= 4.13, nss >= 3.27, libstdc++, libX11 >= 1.6, libXtst >= 1.2, libappindicator, libcxx, libXScrnSaver
 ExclusiveArch:  x86_64
 
@@ -31,6 +31,7 @@ mkdir -p %{buildroot}%{_datadir}/pixmaps
 install discord-canary.desktop %{buildroot}%{_datadir}/applications/discord-canary-openasar.desktop
 install discord.png %{buildroot}%{_datadir}/pixmaps/discord-canary-openasar.png
 cp -v %{SOURCE1} %{buildroot}%{_datadir}/discord-canary-openasar/resources/app.asar
+chmod o+w %{buildroot}%{_datadir}/discord-canary-openasar/resources -R
 
 
 %files
