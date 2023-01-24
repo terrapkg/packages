@@ -1,0 +1,11 @@
+--- zoxide-0.9.0/Cargo.toml	1970-01-01T00:00:01+00:00
++++ zoxide-0.9.0/Cargo.toml	1970-01-01T00:00:01+00:00
+@@ -147,8 +147,5 @@
+ ]
+ default-features = false
+ 
+-[target."cfg(windows)".dependencies.which]
+-version = "4.2.5"
+-
+ [badges.maintenance]
+ status = "actively-developed"
