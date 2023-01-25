@@ -1,5 +1,5 @@
 Name: dart
-Version: 2.18.7
+Version: 2.19.0
 Release: 1%{?dist}
 Summary: The Dart Language
 License: BSD-3-Clause
