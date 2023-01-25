@@ -1,10 +1,7 @@
-# for each folder in ultramarine/
-# if there is chkupdate.py
-# run it every 2 hours
-name: Automatically check for updates
+name: Automatic Nightly Update
 on:
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "@daily"
   workflow_dispatch:
 
 jobs:
@@ -26,8 +23,8 @@ jobs:
           echo "${{ secrets.SSH_SIGNING_KEY }}" > ${{ runner.temp }}/signing_key
           chmod 0700 ${{ runner.temp }}/signing_key
 
-      - name: Run Update
-        run: anda update -vv
+      - name: Run Nightly Update
+        run: anda update -vv --filters nightly=1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
