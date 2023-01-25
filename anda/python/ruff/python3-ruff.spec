@@ -1,9 +1,8 @@
 %define debug_package %{nil}
 
 Name:			python3-ruff
-Version:		0.0.229
-Release:		%autorelease
-Summary:		An extremely fast Python linter, written in Rust
+Version:		0.0.233
+Release:		1%{?dist}Summary:		An extremely fast Python linter, written in Rust
 License:		MIT
 URL:			https://github.com/charliermarsh/ruff
 Source0:		%{url}/archive/refs/tags/v%{version}.tar.gz
