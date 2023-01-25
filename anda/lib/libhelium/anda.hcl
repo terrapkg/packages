@@ -1,6 +1,5 @@
-project "pkg" {
+project pkg {
     rpm {
         spec = "libhelium.spec"
-        update = ""
     }
 }

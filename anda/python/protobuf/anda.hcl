@@ -1,6 +1,5 @@
-project "pkg" {
+project pkg {
     rpm {
         spec = "python3-protobuf.spec"
-        update = ""
     }
 }

@@ -1,6 +1,5 @@
-project "pkg" {
+project pkg {
     rpm {
         spec = "discord-canary.spec"
-        update = ""
     }
 }

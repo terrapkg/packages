@@ -1,6 +1,8 @@
-project "pkg" {
+project pkg {
     rpm {
         spec = "prismlauncher-nightly.spec"
-        update = ""
+    }
+    labels {
+        nightly = "1"
     }
 }

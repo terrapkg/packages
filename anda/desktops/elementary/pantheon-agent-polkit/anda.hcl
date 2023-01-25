@@ -1,6 +1,5 @@
-project "pkg" {
+project pkg {
     rpm {
         spec = "pantheon-agent-polkit.spec"
-        update = ""
     }
 }

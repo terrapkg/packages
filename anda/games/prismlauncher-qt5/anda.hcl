@@ -1,6 +1,5 @@
-project "pkg" {
+project pkg {
     rpm {
         spec = "prismlauncher-qt5.spec"
-        update = ""
     }
 }

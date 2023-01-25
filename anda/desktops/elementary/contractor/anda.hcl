@@ -1,6 +1,5 @@
-project "pkg" {
+project pkg {
     rpm {
         spec = "contractor.spec"
-        update = ""
     }
 }

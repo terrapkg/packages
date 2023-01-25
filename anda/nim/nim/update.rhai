@@ -1,1 +1,1 @@
-rpm.version(gh("nim-lang/Nim"));
+rpm.version(gh_tag("nim-lang/Nim"));

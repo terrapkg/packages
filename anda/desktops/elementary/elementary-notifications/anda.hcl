@@ -1,6 +1,5 @@
-project "pkg" {
+project pkg {
     rpm {
         spec = "elementary-notifications.spec"
-        update = ""
     }
 }
