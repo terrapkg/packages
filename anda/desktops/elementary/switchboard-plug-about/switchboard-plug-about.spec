@@ -30,6 +30,7 @@ BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(libgtop-2.0)
 BuildRequires:  pkgconfig(libhandy-1)
 BuildRequires:  pkgconfig(switchboard-2.0)
+BuildRequires:  pkgconfig(gudev-1.0)
 
 Requires:       switchboard%{?_isa}
 Supplements:    switchboard%{?_isa}
