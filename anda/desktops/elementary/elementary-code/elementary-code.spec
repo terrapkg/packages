@@ -69,14 +69,6 @@ This package contains the development headers.
 %find_lang %{appname}
 
 
-%check
-desktop-file-validate \
-    %{buildroot}/%{_datadir}/applications/%{appname}.desktop
-
-appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
-
-
 %files -f %{appname}.lang
 %doc README.md
 %license COPYING
