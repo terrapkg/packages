@@ -83,7 +83,9 @@ This package contains the development headers.
 %{_datadir}/glib-2.0/schemas/%{appname}*.gschema.xml
 %{_datadir}/icons/hicolor/*/apps/%{appname}.svg
 %{_datadir}/%{appname}/
-%{_datadir}/metainfo/%{appname}.appdata.xml
+%{_datadir}/gtksourceview-4/styles/elementary-dark.xml
+%{_datadir}/gtksourceview-4/styles/elementary-light.xml
+%{_datadir}/metainfo/io.elementary.code.metainfo.xml
 %{_datadir}/polkit-1/actions/%{appname}.policy
 
 %files devel
