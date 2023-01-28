@@ -60,7 +60,6 @@ jobs:
         if: steps.check_files.outputs.EXISTS == 'true'
         with:
           name: "${{ matrix.pkg }}pkg"
-          mockConfig: anda-38-${{ matrix.arch }}
           extraArgs: -D "sccache_bucket ${{secrets.SCCACHE_BUCKET}}" -D "sccache_endpoint ${{secrets.SCCACHE_ENDPOINT}}" -D "sccache_secret ${{secrets.SCCACHE_SECRET}}" -D "sccache_accesskey ${{secrets.SCCACHE_ACCESSKEY}}"
           andaRepo: https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
 

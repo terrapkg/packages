@@ -1,4 +1,4 @@
-name: Bootstrap subatomic
+name: Bootstrap Andaman and Subatomic
 
 on:
   workflow_dispatch:
@@ -15,11 +15,6 @@ jobs:
       image: fedora:38
       options: --cap-add=SYS_ADMIN --privileged
     steps:
-      # - name: Run shell commands
-      #   run: |
-      #     git config --global url.https://github.com/.insteadOf git://github.com/
-      #     git clone https://github.com/FyraLabs/anda.git
-
       - uses: actions/setup-go@v3
         with:
           go-version: "^1.19"
@@ -28,15 +23,11 @@ jobs:
         run: |
           sudo dnf install -y dnf-plugins-core
           sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic-repos/raw/main/terra${{ matrix.version }}.repo
-      - run: sudo dnf install -y mock createrepo_c rpm-build anda-mock-configs gcc curl wget git-core openssl-devel
+          sudo dnf install -y mock createrepo_c rpm-build anda-mock-configs gcc curl wget git-core openssl-devel
       - uses: actions/checkout@v3
         with:
           repository: FyraLabs/subatomic
-          set-safe-directory: true
-          fetch-depth: 1
-      - name: Set up git repository
-        run: |
-          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          ref: bootstrap
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
@@ -46,12 +37,20 @@ jobs:
           command: install
           args: anda
 
-      - name: Install Subatomic
-        run: go install github.com/FyraLabs/subatomic/subatomic-cli@latest
-
-      - name: Build
+      - name: Build Subatomic
         run: anda build -c anda-38-${{ matrix.arch }} subatomic -p rpm
-      - run: |
+      - name: Install Subatomic
+        run: sudo dnf install -y ./anda-build/rpm/rpms/subatomic-*.rpm
+
+      - uses: actions/checkout@v3
+        with:
+          repository: FyraLabs/anda
+
+      - name: Build Andaman
+        run: anda build -c anda-38-${{ matrix.arch }} anda -p rpm
+
+      - name: Upload to Subatomic
+        run: |
           subatomic-cli upload --prune \
             --server https://subatomic.fyralabs.com \
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
