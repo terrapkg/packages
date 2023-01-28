@@ -7,12 +7,12 @@ jobs:
   bootstrap:
     strategy:
       matrix:
-        version: ["37"]
+        version: ["38"]
         arch: ["x86_64", "aarch64"]
       fail-fast: true
     runs-on: ${{ matrix.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
     container:
-      image: fedora:37
+      image: fedora:38
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - uses: actions/checkout@v3
@@ -45,7 +45,7 @@ jobs:
         run: go install github.com/FyraLabs/subatomic/subatomic-cli@latest
 
       - name: Build
-        run: anda build -c anda-37-${{ matrix.arch }} anda -p rpm
+        run: anda build -c anda-38-${{ matrix.arch }} anda -p rpm
 
       - run: |
           subatomic-cli upload --prune \

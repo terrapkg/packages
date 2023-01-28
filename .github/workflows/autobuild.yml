@@ -58,7 +58,7 @@ jobs:
     strategy:
       matrix:
         pkg: ${{ fromJson(needs.manifest.outputs.build_matrix) }}
-        version: ["37"]
+        version: ["38"]
       fail-fast: false
     #if: ${{ matrix.changed_folders != '' }}
     runs-on: ${{ matrix.pkg.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}

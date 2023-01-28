@@ -20,4 +20,4 @@ jobs:
           subatomic-cli upload-comps \
             --server https://subatomic.fyralabs.com \
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
-            terra37 comps.xml
+            terra38 comps.xml

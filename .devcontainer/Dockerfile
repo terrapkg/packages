@@ -1,4 +1,4 @@
-ARG VARIANT="37"
+ARG VARIANT="38"
 FROM fedora:${VARIANT}
 
 RUN useradd -m vscode
