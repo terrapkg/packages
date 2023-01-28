@@ -6,7 +6,7 @@ on:
     paths:
       - anda/**
     branches:
-      - main
+      - f38
   workflow_dispatch:
   workflow_call:
 
@@ -17,9 +17,8 @@ jobs:
     outputs:
       build_matrix: ${{ steps.generate_build_matrix.outputs.build_matrix }}
     container:
-      image: ghcr.io/terrapkg/builder:main
+      image: ghcr.io/terrapkg/builder:f38
       options: --cap-add=SYS_ADMIN --privileged
-    # check out the repo
     steps:
       - name: Set workspace as safe
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
@@ -28,27 +27,6 @@ jobs:
         with:
           fetch-depth: 2
       - run: git pull
-      #- run: git checkout HEAD^
-
-      # - name: Generate Build matrix
-      #   id: generate_build_matrix
-      #   # generate build matrix by checking out changes in anda/
-      #   run: |
-      #     # get the list of changed folders in the current commit, including subfolders
-      #     changed_folders=$(git diff --name-only HEAD^ | grep -oP 'anda\/(.+)(\/|\$)' | sort -u )
-      #     echo "Changed folders: $changed_folders"
-      #     # if changed_folders is empty then set is empty to true
-      #     if [ -z "$changed_folders" ]; then
-      #       echo "::set-output name=is_empty::true"
-      #     else
-      #       echo "::set-output name=is_empty::false"
-      #     fi
-      #     # turn it into a json array
-      #     build_matrix=$(echo "$changed_folders" | jq -R . | jq -s . | jq -c .)
-
-      #     echo "::set-output name=build_matrix::$build_matrix"
-      #     #echo "::set-output name=build_matrix::$build_matrix"
-
       - name: Generate build matrix
         id: generate_build_matrix
         run: |
@@ -60,7 +38,6 @@ jobs:
         pkg: ${{ fromJson(needs.manifest.outputs.build_matrix) }}
         version: ["38"]
       fail-fast: false
-    #if: ${{ matrix.changed_folders != '' }}
     runs-on: ${{ matrix.pkg.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
     container:
       image: ghcr.io/terrapkg/builder:main
