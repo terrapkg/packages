@@ -27,8 +27,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           repository: FyraLabs/subatomic
-          # ref: bootstrap
-          # fetch-depth: 2
+          set-safe-directory: true
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
