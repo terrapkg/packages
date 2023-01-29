@@ -39,7 +39,7 @@ jobs:
           args: anda
 
       - name: Build Subatomic
-        run: anda build -c anda-38-${{ matrix.arch }} subatomic -p rpm -D "autogitcommit $(git rev-parse HEAD)"
+        run: anda build -c anda-38-${{ matrix.arch }} subatomic -p rpm -D "autogitcommit $(git log -1 --format='%H')"
       - name: Install Subatomic
         run: sudo dnf install -y ./anda-build/rpm/rpms/subatomic-*.rpm
 
