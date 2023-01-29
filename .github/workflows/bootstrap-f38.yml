@@ -28,6 +28,7 @@ jobs:
         with:
           repository: FyraLabs/subatomic
           ref: bootstrap
+          fetch-depth: 2
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
