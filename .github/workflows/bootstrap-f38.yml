@@ -27,7 +27,6 @@ jobs:
           sudo dnf install -y dnf-plugins-core
           sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic-repos/raw/main/terra${{ matrix.version }}.repo
           sudo dnf install -y mock createrepo_c rpm-build anda-mock-configs gcc curl wget git-core openssl-devel
-          git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
       - uses: actions-rs/toolchain@v1
         with:
@@ -39,7 +38,7 @@ jobs:
           args: anda
 
       - name: Build Subatomic
-        run: git log -1 --format='%H'; anda build -c anda-38-${{ matrix.arch }} subatomic -p rpm -D "autogitcommit $(git log -1 --format='%H')"
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"; git log -1 --format='%H'; anda build -c anda-38-${{ matrix.arch }} subatomic -p rpm -D "autogitcommit $(git log -1 --format='%H')"
       - name: Install Subatomic
         run: sudo dnf install -y ./anda-build/rpm/rpms/subatomic-*.rpm
 
