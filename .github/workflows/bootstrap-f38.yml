@@ -27,7 +27,7 @@ jobs:
           sudo dnf install -y dnf-plugins-core
           sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic-repos/raw/main/terra${{ matrix.version }}.repo
           sudo dnf install -y mock createrepo_c rpm-build anda-mock-configs gcc curl wget git-core openssl-devel
-          git config --global --add safe.directory /__w/packages/packages
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
       - uses: actions-rs/toolchain@v1
         with:
