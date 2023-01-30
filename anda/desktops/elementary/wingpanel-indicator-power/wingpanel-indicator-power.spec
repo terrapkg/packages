@@ -52,9 +52,9 @@ A power indicator for wingpanel.
 sed -i '/icon type="stock"/d' %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
 
 
-%dnf %check
-%dnf appstream-util validate-relax --nonet \
-%dnf     %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
+%dnl %check
+%dnl appstream-util validate-relax --nonet \
+%dnl     %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
 
 
 %files -f power-indicator.lang
