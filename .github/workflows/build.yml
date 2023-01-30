@@ -3,14 +3,14 @@ on:
   workflow_dispatch:
     inputs:
       packages:
-        description: "Packages to Build"
+        description: Packages to Build
         required: true
 
 jobs:
   parse:
     outputs:
       pkgs: ${{ steps.parsing.outputs.pkgs }}
-    runs-on: "ubuntu-latest"
+    runs-on: ubuntu-latest
     steps:
       - name: Parse Input
         id: parsing
@@ -28,13 +28,16 @@ jobs:
       image: ghcr.io/terrapkg/builder:f38
       options: --cap-add=SYS_ADMIN --privileged
     steps:
-      - uses: terrapkg/anda-build@main
+      - uses: actions/checkout@v3
         with:
-          name: "${{ matrix.pkg }}pkg"
-          extraArgs: -D "sccache_bucket ${{secrets.SCCACHE_BUCKET}}" -D "sccache_endpoint ${{secrets.SCCACHE_ENDPOINT}}" -D "sccache_secret ${{secrets.SCCACHE_SECRET}}" -D "sccache_accesskey ${{secrets.SCCACHE_ACCESSKEY}}"
-          mockConfig: anda-${{ matrix.version }}-${{ matrix.pkg.arch }}
-          andaRepo: https://github.com/terrapkg/subatomic-repos/raw/main/terra38.repo
-
+          submodules: recursive
+          fetch-depth: 1
+      - name: Set up git repository
+        shell: bash
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - name: Build with Anda
+        shell: bash
+        run: anda build "${{ matrix.pkg }}pkg" --package rpm -c anda-${{ matrix.version }}-${{ matrix.pkg.arch }} -D "sccache_bucket ${{secrets.SCCACHE_BUCKET}}" -D "sccache_endpoint ${{secrets.SCCACHE_ENDPOINT}}" -D "sccache_secret ${{secrets.SCCACHE_SECRET}}" -D "sccache_accesskey ${{secrets.SCCACHE_ACCESSKEY}}"
       - name: Upload packages to subatomic
         run: |
           subatomic-cli upload --prune \
