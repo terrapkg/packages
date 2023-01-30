@@ -1,3 +1,5 @@
+%define debug_package %{nil}
+
 Name:           tectonic
 Version:        0.12.0
 Release:        %autorelease

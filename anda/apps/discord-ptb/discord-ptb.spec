@@ -1,3 +1,5 @@
+%define debug_package %{nil}
+
 Name:           discord-ptb
 Version:        0.0.38
 Release:        %autorelease
