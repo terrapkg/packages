@@ -1,3 +1,5 @@
+%define debug_package %{nil}
+
 Name: dart
 Version: 2.19.0
 Release: 1%{?dist}

@@ -1,6 +1,8 @@
+%define debug_package %{nil}
+
 Name:           tectonic
 Version:        0.12.0
-Release:        %autorelease
+Release:        2%{?dist}
 Summary:        A modernized, complete, self-contained TeX/LaTeX engine, powered by XeTeX and TeXLive
 URL:            https://github.com/tectonic-typesetting/tectonic
 License:        MIT
