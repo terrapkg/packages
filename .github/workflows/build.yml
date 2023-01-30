@@ -32,7 +32,8 @@ jobs:
         with:
           name: "${{ matrix.pkg }}pkg"
           extraArgs: -D "sccache_bucket ${{secrets.SCCACHE_BUCKET}}" -D "sccache_endpoint ${{secrets.SCCACHE_ENDPOINT}}" -D "sccache_secret ${{secrets.SCCACHE_SECRET}}" -D "sccache_accesskey ${{secrets.SCCACHE_ACCESSKEY}}"
-          andaRepo: https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
+          mockConfig: anda-${{ matrix.version }}-${{ matrix.pkg.arch }}
+          andaRepo: https://github.com/terrapkg/subatomic-repos/raw/main/terra38.repo
 
       - name: Upload packages to subatomic
         run: |
