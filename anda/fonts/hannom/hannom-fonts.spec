@@ -1,6 +1,6 @@
 Name:       hannom-fonts
 Version:    2005
-Release:    %autorelease
+Release:    2%{?dist}
 URL:        https://vietunicode.sourceforge.net/fonts/fonts_hannom.html
 Source0:    https://downloads.sourceforge.net/project/vietunicode/hannom/hannom%20v%{version}/hannomH.zip
 Source1:    COPYING
@@ -18,12 +18,13 @@ unzip %{SOURCE0}
 %build
 
 %install
-install -D -m644 'HAN NOM A.ttf' "%{buildroot}/%{_datadir}/fonts/hannom/HAN NOM A.ttf"
-install -D -m644 'HAN NOM B.ttf' "%{buildroot}/%{_datadir}/fonts/hannom/HAN NOM B.ttf"
+install -Dm644 'HAN NOM A.ttf' "%{buildroot}/%{_datadir}/fonts/hannom/HAN NOM A.ttf"
+install -Dm644 'HAN NOM B.ttf' "%{buildroot}/%{_datadir}/fonts/hannom/HAN NOM B.ttf"
+install -Dm644 %{SOURCE1} "%{buildroot}/%{_datadir}/licenses/%{name}/COPYING"
 
 
 %files
-%license %{SOURCE1}
+%license COPYING
 %defattr(-,root,root,0755)
 /%{_datadir}/fonts/hannom/
 
