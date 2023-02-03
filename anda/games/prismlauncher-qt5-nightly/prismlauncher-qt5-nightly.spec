@@ -126,6 +126,7 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
   %if "%{curseforge_key}" != "default"
   -DLauncher_CURSEFORGE_API_KEY="%{curseforge_key}" \
   %endif
+  -DBUILD_TESTING=OFF
 
 %cmake_build
 
