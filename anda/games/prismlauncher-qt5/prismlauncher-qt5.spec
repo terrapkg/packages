@@ -29,7 +29,7 @@
 %endif
 
 Name:             prismlauncher-qt5
-Version:          6.1
+Version:          6.3
 Release:          1%{?dist}
 Summary:          Minecraft launcher with ability to manage multiple instances
 License:          GPL-3.0-only
