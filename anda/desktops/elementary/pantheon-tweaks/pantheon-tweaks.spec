@@ -1,6 +1,6 @@
 Name:			pantheon-tweaks
-Version:		1.0.4
-Release:		%autorelease
+Version:		1.1.0
+Release:		1%{?dist}
 Summary:		A system settings panel for the Pantheon desktop environment
 License:		GPL-3.0
 URL:			https://github.com/pantheon-tweaks/pantheon-tweaks
