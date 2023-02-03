@@ -11,7 +11,7 @@ jobs:
   autoupdate:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/terrapkg/builder:main
+      image: ghcr.io/terrapkg/builder:f38
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Checkout
@@ -40,5 +40,5 @@ jobs:
             git config gpg.format "ssh"
             git config user.signingkey "${{ runner.temp }}/signing_key"
             git commit -S -a -m "Automatic Update: $(git status | grep modified | sed -r 's@.+/([^/]+)/[^/]+\n?@\1 @g' | tr -d '\n')"
-            git push -u origin main
+            git push -u origin f38
           fi
