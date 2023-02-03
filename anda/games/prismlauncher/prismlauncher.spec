@@ -28,7 +28,7 @@
 %endif
 
 Name:             prismlauncher
-Version:          6.2
+Version:          6.1
 Release:          1%{?dist}
 Summary:          Minecraft launcher with ability to manage multiple instances
 License:          GPL-3.0-only
