@@ -1,6 +1,6 @@
 %global real_name prismlauncher
 
-%global commit 58d9ceda4bf4c78d62d4ed4ee4242147dda9d910
+%global commit c392db7e0df2e07633283efc23f2fb079ac4192d
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global libnbtplusplus_commit 2203af7eeb48c45398139b583615134efd8d407f
 %global quazip_commit 6117161af08e366c37499895b00ef62f93adc345
