@@ -6,12 +6,13 @@ URL:		https://groovy-lang.org/
 License:	Apache-2.0
 BuildArch:	noarch
 Source0:	https://groovy.jfrog.io/artifactory/dist-release-local/groovy-zips/apache-groovy-docs-%{version}.zip
+BuildRequires: unzip
 
 %description
 %{summary}.
 
 %prep
-tar xf %{SOURCE0}
+unzip %{SOURCE0}
 find . -type f -exec chmod -x {} \;
 
 %build
