@@ -9,6 +9,7 @@ Source3:	https://raw.githubusercontent.com/itdelatrisu/opsu/%{version}/README.md
 License:	GPLv3
 Summary:	An open source osu!-client written in Java
 Requires:	java-latest-openjdk hicolor-icon-theme xrandr
+Recommends:	ffmpeg
 BuildArch:	noarch
 
 
