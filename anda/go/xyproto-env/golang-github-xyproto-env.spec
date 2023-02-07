@@ -24,7 +24,7 @@ Provide default values when fetching environment variables.}
 %global golicenses      LICENSE
 %global godocs          README.md
 
-Name:           %{goname}
+Name:           golang-%{goname}
 Release:        %autorelease
 Summary:        Provide default values when fetching environment variables
 

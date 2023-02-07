@@ -26,7 +26,7 @@ of information.}
 %global golicenses      LICENSE
 %global godocs          README.md
 
-Name:           %{goname}
+Name:           gendesk
 Release:        %autorelease
 Summary:        :herb: Generate .desktop files and download .png icons by specifying a minimum of information
 

@@ -24,7 +24,7 @@ A simple, higher level interface for Go web scraping.}
 %global golicenses      LICENSE
 %global godocs          example README.md
 
-Name:           %{goname}
+Name:           golang-%{goname}
 Version:        0
 Release:        %autorelease -p
 Summary:        A simple, higher level interface for Go web scraping
