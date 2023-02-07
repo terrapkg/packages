@@ -1,12 +1,11 @@
 Name:			gradle
-Version:		7.6
+Version:		7.6.0
 Release:		1%{?dist}
 Summary:		Powerful build system for the JVM
 URL:			https://gradle.org/
-Source0:		https://services.gradle.org/distributions/gradle-%{version}-src.zip
-Source1:		https://services.gradle.org/distributions/gradle-%{version}-all.zip
-Source2:		https://raw.githubusercontent.com/gradle/gradle/%{version}/LICENSE
-Source3:		https://raw.githubusercontent.com/gradle/gradle/%{version}/README.md
+Source0:		https://github.com/gradle/gradle/archive/refs/tags/v%{version}.tar.gz
+Source2:		https://raw.githubusercontent.com/gradle/gradle/v%{version}/LICENSE
+Source3:		https://raw.githubusercontent.com/gradle/gradle/v%{version}/README.md
 License:		Apache-2.0
 Requires:		java-latest-openjdk coreutils findutils sed which bash
 BuildRequires:	java-11-openjdk asciidoc xmlto groovy
