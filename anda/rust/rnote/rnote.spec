@@ -1,6 +1,6 @@
 Name:           rnote
-Version:        0.5.12
-Release:        %autorelease
+Version:        0.5.13
+Release:        1%{?dist}
 Summary:        Sketch and take handwritten notes.
 License:        GPLv3
 URL:            https://github.com/flxzt/rnote

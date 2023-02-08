@@ -1,4 +1,4 @@
-name: Bootstrap Andaman and Subatomic
+name: Bootstrap Andaman and Subatomic (Fedora 38)
 
 on:
   workflow_dispatch:
@@ -43,7 +43,6 @@ jobs:
       - name: Build Subatomic
         run: |
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
-          git log -1 --format='%H'
           anda build -c anda-38-${{ matrix.arch }} subatomic -p rpm -D "autogitcommit $(git log -1 --format='%H')"
       - name: Install Subatomic
         run: sudo dnf install -y ./anda-build/rpm/rpms/subatomic-*.rpm

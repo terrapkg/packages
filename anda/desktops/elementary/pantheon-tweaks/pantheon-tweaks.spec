@@ -31,7 +31,7 @@ lets you easily and safely customise your desktop's appearance.
 /usr/lib64/switchboard/personal/libpantheon-tweaks.so
 %{_datadir}/icons/hicolor/32x32/categories/preferences-desktop-tweaks.svg
 %{_datadir}/locale/*/LC_MESSAGES/pantheon-tweaks-plug.mo
-%{_datadir}/metainfo/pantheon-tweaks.appdata.xml
+%{_datadir}/metainfo/pantheon-tweaks.metainfo.xml
 
 
 %changelog

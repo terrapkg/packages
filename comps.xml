@@ -60,6 +60,7 @@
       <packagereq type="default">switchboard-plug-printers</packagereq>
       <packagereq type="default">switchboard-plug-sharing</packagereq>
       <packagereq type="default">switchboard-plug-sound</packagereq>
+      <packagereq type="default">pantheon-tweaks</packagereq>
     </packagelist>
   </group>
 </comps>
