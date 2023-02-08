@@ -13,7 +13,7 @@ BuildRequires: unzip
 
 %prep
 unzip %{SOURCE0}
-find . -type f -exec chmod -x {} \;
+find groovy-%{version} -type f -exec chmod -x {} \;
 
 %build
 
@@ -22,8 +22,8 @@ install -d %{buildroot}/usr/share/doc/groovy-%{version}
 cp -r groovy-%{version} %{buildroot}/usr/share/doc/
 
 %files
-%doc README.md
-%license LICENSE
+%doc groovy-%{version}/NOTICE
+%license groovy-%{version}/LICENSE
 /usr/share/doc/groovy-%{version}
 
 %changelog

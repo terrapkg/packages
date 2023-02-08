@@ -15,6 +15,7 @@ Apache Groovy is a powerful, optionally typed and dynamic language, with static-
 
 %prep
 unzip %{SOURCE0}
+cd %{name}-%{version}
 gendesk -f -n --pkgname %{name} --pkgdesc 'Groovy programming language' --exec groovyConsole --name 'Groovy Console'
 
 for f in bin/*; do
@@ -24,6 +25,7 @@ done
 %build
 
 %install
+cd %{name}-%{version}
 # Create the directories and package the files
 install -d %{buildroot}/usr/share/groovy %{buildroot}/usr/bin
 cp -r lib conf %{buildroot}/usr/share/groovy
@@ -39,3 +41,28 @@ install -Dm644 LICENSE -t %{buildroot}/usr/share/licenses/%{name}
 
 # Package the desktop shortcut for Groovy Console
 install -Dm644 %{name}.desktop -t %{buildroot}/usr/share/applications
+
+%files
+%license LICENSE
+/usr/bin/grape
+/usr/bin/groovy
+/usr/bin/groovy.ico
+/usr/bin/groovyConsole
+/usr/bin/groovyc
+/usr/bin/groovydoc
+/usr/bin/groovysh
+/usr/bin/java2groovy
+/usr/bin/startGroovy
+/usr/share/groovy
+/usr/share/applications/groovy.desktop
+/usr/share/bash-completion/completions/grape_completion
+/usr/share/bash-completion/completions/groovyConsole_completion
+/usr/share/bash-completion/completions/groovy_completion
+/usr/share/bash-completion/completions/groovyc_completion
+/usr/share/bash-completion/completions/groovydoc_completion
+/usr/share/bash-completion/completions/groovysh_completion
+
+
+%changelog
+* Wed Feb 8 2023 windowsboy111 <windowsboy111@fyralabs.com>
+- Initial package
