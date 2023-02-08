@@ -38,7 +38,7 @@ cd %{name}-%{version}
 
 cat <<EOF > dist/gradle.sh
 #!/bin/sh
-export GRADLE_HOME=%{buildroot}/usr/share/java/gradle
+export GRADLE_HOME=/usr/share/java/gradle
 EOF
 
 # remove ADOPTIUM contraint from all build related files

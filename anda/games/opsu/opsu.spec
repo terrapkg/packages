@@ -12,9 +12,10 @@ Requires:	java-latest-openjdk hicolor-icon-theme xrandr
 Recommends:	ffmpeg
 BuildArch:	noarch
 
-
 %description
 opsu! is an unofficial open-source client for the rhythm game osu!, written in Java using Slick2D and LWJGL (wrappers around OpenGL and OpenAL).
+
+%prep
 
 %build
 cat <<EOF > %{name}.sh

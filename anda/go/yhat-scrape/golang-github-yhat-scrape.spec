@@ -43,6 +43,8 @@ Source:         %{gosource}
 %generate_buildrequires
 %go_generate_buildrequires
 
+%build
+
 %install
 %gopkginstall
 
