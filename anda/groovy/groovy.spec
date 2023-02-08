@@ -15,6 +15,9 @@ Apache Groovy is a powerful, optionally typed and dynamic language, with static-
 
 %prep
 %autosetup
+
+cd %{name}-%{version}
+
 gendesk -f -n --pkgname %{name} --pkgdesc 'Groovy programming language' --exec groovyConsole --name 'Groovy Console'
 
 for f in bin/*; do
