@@ -1,7 +1,7 @@
 ---
 name: Bug report
 about: Report an issue with a package (or Terra itsself)
-title: ''
+title: '[BUG] '
 labels: bug
 assignees: ''
 
