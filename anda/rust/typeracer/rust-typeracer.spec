@@ -12,7 +12,7 @@ License:        GPL-3.0
 URL:            https://crates.io/crates/typeracer
 Source:         %{crates_source}
 
-BuildRequires:  openssl-devel anda-srpm-macros rust-packaging >= 21
+BuildRequires:  perl openssl-devel anda-srpm-macros rust-packaging >= 21
 
 %global _description %{expand:
 Terminal typing game. Race to see the fastest time you can get!.}
