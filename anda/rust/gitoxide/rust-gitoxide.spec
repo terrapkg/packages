@@ -12,7 +12,7 @@ License:        MIT OR Apache-2.0
 URL:            https://crates.io/crates/gitoxide
 Source:         %{crates_source}
 
-BuildRequires:  cmake anda-srpm-macros rust-packaging >= 21
+BuildRequires:  openssl-devel cmake anda-srpm-macros rust-packaging >= 21
 
 %global _description %{expand:
 Command-line application for interacting with git repositories.}
