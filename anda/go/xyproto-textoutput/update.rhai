@@ -1,1 +1,1 @@
-rpm.version(gh("xyproto/textoutput"));
+rpm.version(gh_tag("xyproto/textoutput"));

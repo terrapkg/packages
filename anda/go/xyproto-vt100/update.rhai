@@ -1,1 +1,1 @@
-rpm.version(gh("xyproto/vt100"));
+rpm.version(gh_tag("xyproto/vt100"));
