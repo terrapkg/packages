@@ -1,0 +1,25 @@
+--- hyperfine-1.15.0/Cargo.toml	1970-01-01T00:00:01+00:00
++++ hyperfine-1.15.0/Cargo.toml	1970-01-01T00:00:01+00:00
+@@ -96,9 +96,6 @@
+ [features]
+ windows_process_extensions_main_thread_handle = []
+ 
+-[target."cfg(all(windows, not(windows_process_extensions_main_thread_handle)))".dependencies.once_cell]
+-version = "1.14"
+-
+ [target."cfg(not(windows))".dependencies.libc]
+ version = "0.2"
+ 
+@@ -106,12 +103,3 @@
+ version = "0.25.0"
+ features = ["zerocopy"]
+ 
+-[target."cfg(windows)".dependencies.winapi]
+-version = "0.3"
+-features = [
+-    "processthreadsapi",
+-    "minwindef",
+-    "winnt",
+-    "jobapi2",
+-    "tlhelp32",
+-]
