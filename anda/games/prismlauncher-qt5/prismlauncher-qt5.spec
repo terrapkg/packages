@@ -113,7 +113,7 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 
 %check
 ## disabled due to inconsistent results in copr builds that are not reproducible locally
-# %ctest
+%dnl %ctest
 
 %if 0%{?fedora} > 35
 appstream-util validate-relax --nonet \
