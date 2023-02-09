@@ -1,0 +1,12 @@
+--- ouch-0.4.1/Cargo.toml	1970-01-01T00:00:01+00:00
++++ ouch-0.4.1/Cargo.toml	1970-01-01T00:00:01+00:00
+@@ -155,9 +155,6 @@
+     "zstd/thin",
+ ]
+ 
+-[target."cfg(not(unix))".dependencies.is_executable]
+-version = "1.0.1"
+-
+ [target."cfg(unix)".dependencies.time]
+ version = "0.3.17"
+ default-features = false
