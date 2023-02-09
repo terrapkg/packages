@@ -12,7 +12,7 @@ License:        MPL-2.0
 URL:            https://crates.io/crates/imager
 Source:         %{crates_source}
 
-BuildRequires:  libwebp-devel clang-devel llvm-devel openssl-devel anda-srpm-macros rust-packaging >= 21
+BuildRequires:  libwebp clang-devel llvm-devel openssl-devel anda-srpm-macros rust-packaging >= 21
 
 %global _description %{expand:
 Automated image compression; optimizes the compression using various
