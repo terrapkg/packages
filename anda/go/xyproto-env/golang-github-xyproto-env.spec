@@ -4,7 +4,7 @@
 
 # https://github.com/xyproto/env
 %global goipath         github.com/xyproto/env
-Version:                1.8.0
+Version:                1.9.1
 
 # REMOVE BEFORE SUBMITTING THIS FOR REVIEW
 # ---
@@ -25,7 +25,7 @@ Provide default values when fetching environment variables.}
 %global godocs          README.md
 
 Name:           golang-%{goname}
-Release:        %autorelease
+Release:        1%{?dist}
 Summary:        Provide default values when fetching environment variables
 
 License:        BSD-3-Clause
@@ -41,6 +41,8 @@ Source:         %{gosource}
 
 %generate_buildrequires
 %go_generate_buildrequires
+
+%build
 
 %install
 %gopkginstall

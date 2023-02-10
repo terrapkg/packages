@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:			python3-orjson
-Version:		3.8.5
-Release:		2%{?dist}
+Version:		3.8.6
+Release:		1%{?dist}
 Summary:		Fast, correct Python JSON library supporting dataclasses, datetimes, and numpy
 License:		MIT or APACHE-2.0
 URL:			https://github.com/ijl/orjson

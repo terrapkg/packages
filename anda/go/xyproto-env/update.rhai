@@ -1,1 +1,1 @@
-rpm.version(gh("xyproto/env"));
+rpm.version(gh_tag("xyproto/env"));
