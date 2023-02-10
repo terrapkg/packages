@@ -12,7 +12,7 @@ License:        MPL-2.0
 URL:            https://crates.io/crates/imager
 Source:         %{crates_source}
 
-BuildRequires:  libwebp clang-devel llvm-devel openssl-devel anda-srpm-macros rust-packaging >= 21
+BuildRequires:  clang mold libjpeg-devel libpng-devel libtiff-devel libwebp-devel clang-devel llvm-devel openssl-devel anda-srpm-macros rust-packaging >= 21
 
 %global _description %{expand:
 Automated image compression; optimizes the compression using various
@@ -73,6 +73,12 @@ use the "buildtype-docs-only" feature of the "%{crate}" crate.
 %cargo_prep_online
 
 %build
+cat <<EOF >> .cargo/config
+[target.x86_64-unknown-linux-gnu]
+linker = "/usr/bin/clang"
+rustflags = ["-C", "link-arg=--ld-path=/usr/bin/mold"]
+EOF
+
 %cargo_build
 
 %install
