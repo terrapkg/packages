@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="application/x-osu-beatmap">
+    <glob pattern="*.osu"/>
+    <sub-class-of type="text/plain"/>
+    <magic priority="60">
+        <match type="string" offset="0" value="osu file format v"/>
+    </magic>
+    <icon name="osu!"/>
+    <comment>osu! beatmap</comment>
+  </mime-type>
+  <mime-type type="application/x-osu-storyboard">
+    <glob pattern="*.osb"/>
+    <sub-class-of type="text/plain"/>
+    <icon name="osu!"/>
+    <comment>osu! storyboard</comment>
+  </mime-type>
+  <mime-type type="application/x-osu-skin-archive">
+    <glob pattern="*.osk"/>
+    <sub-class-of type="application/zip"/>
+    <icon name="osu!"/>
+    <comment>osu! skin archive</comment>
+  </mime-type>
+  <mime-type type="application/x-osu-replay">
+    <glob pattern="*.osr"/>
+    <sub-class-of type="application/octet-stream"/>
+    <icon name="osu!"/>
+    <comment>osu! replay</comment>
+  </mime-type>
+  <mime-type type="application/x-osu-beatmap-archive">
+    <glob pattern="*.osz"/>
+    <sub-class-of type="application/zip"/>
+    <icon name="osu!"/>
+    <comment>osu! beatmap archive</comment>
+  </mime-type>
+  <mime-type type="application/x-osu-beatmap-archive">
+    <glob pattern="*.osz2"/>
+    <sub-class-of type="application/zip"/>
+    <icon name="osu!"/>
+    <comment>osu! beatmap archive</comment>
+  </mime-type>
+</mime-info>
