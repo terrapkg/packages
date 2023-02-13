@@ -1,15 +1,15 @@
-Name:           osu-mime
-Version:        0.1
-Release:        1%{?dist}
-Summary:        Provides MIME types for osu! file formats
-BuildArch:      noarch
-License:        AGPLv3
-Requires:       xdg-utils shared-mime-info desktop-file-utils
-BuildRequires:  librsvg2-tools ImageMagick
-Recommends:     osu-handler
-Source0:        https://raw.githubusercontent.com/ppy/osu-web/master/public/images/layout/osu-logo-triangles.svg
-Source1:        https://raw.githubusercontent.com/ppy/osu-web/master/public/images/layout/osu-logo-white.svg
-Source2:        osu-file-extensions.xml
+Name:			osu-mime
+Version:		0.1
+Release:		1%{?dist}
+Summary:		Provides MIME types for osu! file formats
+BuildArch:		noarch
+License:		AGPLv3
+Requires:		xdg-utils shared-mime-info desktop-file-utils
+BuildRequires:	librsvg2-tools ImageMagick
+Recommends:		osu-handler
+Source0:		https://raw.githubusercontent.com/ppy/osu-web/master/public/images/layout/osu-logo-triangles.svg
+Source1:		https://raw.githubusercontent.com/ppy/osu-web/master/public/images/layout/osu-logo-white.svg
+Source2:		osu-file-extensions.xml
 
 %description
 %{summary}.
