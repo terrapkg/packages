@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+NoDisplay=true
+Name=osu!lazer - uri handler
+MimeType=x-scheme-handler/osu;
+Icon=/usr/share/pixmaps/osu-lazer.png
+Comment=Open source free-to-win rhythm game
+Exec=/usr/bin/osu-lazer %u
+Categories=Game;
