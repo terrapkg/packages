@@ -10,7 +10,7 @@ License:        MIT OR Apache-2.0
 URL:            https://crates.io/crates/maturin
 Source:         %{crates_source}
 
-BuildRequires:  pkgconfig anda-srpm-macros rust-packaging >= 21
+BuildRequires:  pkgconfig anda-srpm-macros rust-packaging >= 23
 
 %global _description %{expand:
 Build and publish crates with pyo3, rust-cpython and cffi bindings as well as
