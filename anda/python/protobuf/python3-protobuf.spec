@@ -2,7 +2,7 @@
 %global pypi_name protobuf
 
 Name:           python-%{pypi_name}
-Version:        4.21.12
+Version:        4.22.0
 Release:        1%{?dist}
 Summary:        Protocol Buffers
 
