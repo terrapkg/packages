@@ -30,6 +30,7 @@ jobs:
         run: anda update -vv
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUST_BACKTRACE: full
 
       - name: Save
         run: |
