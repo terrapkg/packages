@@ -5,7 +5,7 @@
 %global crate pop-launcher
 
 Name:           %{crate}
-Version:        1.2.0
+Version:        1.2.1
 Release:        1%{?dist}
 Summary:        Library for writing plugins and frontends for pop-launcher
 
