@@ -4,7 +4,7 @@
 Name:           switchboard
 Summary:        Modular Desktop Settings Hub
 Version:        6.0.2
-Release:        2%{?dist}
+Release:        1%{?dist}
 License:        LGPLv2+
 
 URL:            https://github.com/elementary/%{name}

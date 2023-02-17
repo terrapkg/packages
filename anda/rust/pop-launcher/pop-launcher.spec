@@ -1,12 +1,13 @@
 %global debug_package %{nil}
 %define _disable_source_fetch 0
 %bcond_without check
+%global debug_package %{nil}
 
 %global crate pop-launcher
 
 Name:           %{crate}
 Version:        1.2.1
-Release:        %autorelease
+Release:        1%{?dist}
 Summary:        Library for writing plugins and frontends for pop-launcher
 
 # Upstream license specification: MPL-2.0

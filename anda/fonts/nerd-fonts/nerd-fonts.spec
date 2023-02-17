@@ -3,7 +3,7 @@
 
 Name:		nerd-fonts
 Version:	2.3.3
-Release:	%autorelease
+Release:	2%{?dist}
 URL:		https://nerdfonts.com/
 Source0:	https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v%{version}/readme.md
 Source1:	https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v%{version}/LICENSE
@@ -14,7 +14,7 @@ Requires:	%{lua:
 local x = ""
 local ver = rpm.expand("%{version}")
 for font in (rpm.expand("%{flist}")):gmatch("[^ ]+") do
-	x = x .. font:lower().."-nerd-fonts".."="..ver.." "
+	x = x .. font:lower().."-nerd-fonts-"..ver.." "
 end
 print(x)
 }

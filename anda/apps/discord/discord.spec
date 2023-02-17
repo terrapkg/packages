@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:			discord
-Version:		0.0.24
+Version:		0.0.25
 Release:		1%{?dist}
 Summary:		Free Voice and Text Chat for Gamers.
 URL:			discord.com

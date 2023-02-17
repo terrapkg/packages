@@ -4,7 +4,7 @@
 
 # https://github.com/xyproto/env
 %global goipath         github.com/xyproto/env
-Version:                1.9.1
+Version:                2.0.0
 
 # REMOVE BEFORE SUBMITTING THIS FOR REVIEW
 # ---

@@ -2,7 +2,7 @@
 %global pypi_name protobuf
 
 Name:           python-%{pypi_name}
-Version:        4.21.12
+Version:        4.22.0
 Release:        1%{?dist}
 Summary:        Protocol Buffers
 
@@ -11,7 +11,7 @@ URL:            https://developers.google.com/protocol-buffers/
 Source0:        %{pypi_source}
 BuildArch:      noarch
 
-BuildRequires:  python3-devel
+BuildRequires:  python3-devel gcc
 BuildRequires:  python3dist(setuptools)
 
 %description
