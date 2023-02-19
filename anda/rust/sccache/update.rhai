@@ -1,1 +1,1 @@
-rpm.version(crates("mozilla/sccache"));
+rpm.version(crates("sccache"));
