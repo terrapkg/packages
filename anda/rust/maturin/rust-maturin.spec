@@ -247,6 +247,7 @@ use the "ureq" feature of the "%{crate}" crate.
 %cargo_prep_online
 
 %build
+cargo add time -F macros
 %cargo_build
 
 %install
