@@ -42,6 +42,7 @@ Summary:        %{summary}
 
 %install
 %cargo_install
+rm %{buildroot}/.cargo -rf
 
 %if %{with check}
 %check
