@@ -12,7 +12,7 @@ License:        MIT
 URL:            https://crates.io/crates/kondo-ui
 Source:         %{crates_source}
 
-BuildRequires:  rust-packaging >= 21
+BuildRequires:  anda-srpm-macros rust-packaging >= 21
 
 %global _description %{expand:
 Filesystem cleaning tool that recursively searches directories for known
@@ -32,10 +32,7 @@ Summary:        %{summary}
 
 %prep
 %autosetup -n %{crate}-%{version_no_tilde} -p1
-%cargo_prep
-
-%generate_buildrequires
-%cargo_generate_buildrequires
+%cargo_prep_online
 
 %build
 %cargo_build
