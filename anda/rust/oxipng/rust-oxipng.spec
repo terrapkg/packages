@@ -12,7 +12,7 @@ License:        MIT
 URL:            https://crates.io/crates/oxipng
 Source:         %{crates_source}
 
-BuildRequires:  rust-packaging >= 21
+BuildRequires:  anda-srpm-macros rust-packaging >= 21
 
 %global _description %{expand:
 Lossless PNG compression optimizer.}
@@ -169,10 +169,7 @@ use the "zopfli" feature of the "%{crate}" crate.
 
 %prep
 %autosetup -n %{crate}-%{version_no_tilde} -p1
-%cargo_prep
-
-%generate_buildrequires
-%cargo_generate_buildrequires
+%cargo_prep_online
 
 %build
 %cargo_build
