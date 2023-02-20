@@ -10,7 +10,7 @@ License:        MIT
 URL:            https://crates.io/crates/kondo-ui
 Source:         %{crates_source}
 
-BuildRequires:  anda-srpm-macros rust-packaging >= 21
+BuildRequires:  pkgconfig(glib-2.0) anda-srpm-macros rust-packaging >= 21
 
 %global _description %{expand:
 Filesystem cleaning tool that recursively searches directories for known
