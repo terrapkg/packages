@@ -4,7 +4,7 @@
 %global crate kondo
 
 Name:           rust-kondo
-Version:        0.4.0
+Version:        0.5
 Release:        %autorelease
 Summary:        Filesystem cleaning tool that recursively searches directories for known project structures and determines how much space you could save by deleting the unnecessary files
 

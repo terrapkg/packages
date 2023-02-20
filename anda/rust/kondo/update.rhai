@@ -1,1 +1,1 @@
-rpm.version(crates("kondo"));
+rpm.version(gh("tbillington/kondo"));
