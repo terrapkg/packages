@@ -4,13 +4,15 @@
 %global crate kondo
 
 Name:           rust-kondo
-Version:        0.4.0
+Version:        0.5
 Release:        %autorelease
 Summary:        Filesystem cleaning tool that recursively searches directories for known project structures and determines how much space you could save by deleting the unnecessary files
 
 License:        MIT
 URL:            https://crates.io/crates/kondo
-Source:         %{crates_source}
+Source0:        https://github.com/tbillington/kondo/releases/download/v%{version}/kondo-x86_64-unknown-linux-gnu.tar.gz
+Source1:        https://github.com/tbillington/kondo/blob/v%{version}/LICENSE
+ExclusiveArch:  x86_64
 
 BuildRequires:  anda-srpm-macros rust-packaging >= 21
 
@@ -27,23 +29,17 @@ Summary:        %{summary}
 %description -n %{crate} %{_description}
 
 %files       -n %{crate}
-# FIXME: no license files detected
-%{_bindir}/kondo
+%license LICENSE
+/usr/bin/kondo
 
 %prep
-%autosetup -n %{crate}-%{version_no_tilde} -p1
-%cargo_prep_online
+tar xf %{SOURCE0}
 
 %build
-%cargo_build
 
 %install
-%cargo_install
-
-%if %{with check}
-%check
-%cargo_test
-%endif
+install -Dm755 kondo %{buildroot}/usr/bin/kondo
+install -Dm644 %{SOURCE1} %{buildroot}/%{_datadir}/licenses/%{crate}/LICENSE
 
 %changelog
 %autochangelog
