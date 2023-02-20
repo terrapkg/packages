@@ -12,7 +12,7 @@ License:        MIT
 URL:            https://crates.io/crates/detox
 Source:         %{crates_source}
 
-BuildRequires:  rust-packaging >= 21
+BuildRequires:  anda-srpm-macros rust-packaging >= 21
 
 %global _description %{expand:
 Quickly clean up your development directories on disk.}
@@ -31,10 +31,7 @@ Summary:        %{summary}
 
 %prep
 %autosetup -n %{crate}-%{version_no_tilde} -p1
-%cargo_prep
-
-%generate_buildrequires
-%cargo_generate_buildrequires
+%cargo_prep_online
 
 %build
 %cargo_build
