@@ -1,1 +1,1 @@
-rpm.version(gh("charliermarsh/ruff"));
+rpm.version(pypi("ruff"));
