@@ -3,7 +3,7 @@
 
 Name:           rust-maturin
 Version:        0.14.13
-Release:        1%{?dist}
+Release:        %autorelease
 Summary:        Build and publish crates with pyo3, rust-cpython and cffi bindings as well as rust binaries as python packages
 
 License:        MIT OR Apache-2.0
@@ -240,12 +240,12 @@ use the "ureq" feature of the "%{crate}" crate.
 %files       -n %{name}+ureq-devel
 %ghost %{crate_instdir}/Cargo.toml
 
-
 %prep
 %autosetup -n %{crate}-%{version_no_tilde} -p1
 %cargo_prep_online
 
 %build
+cargo add time -F macros
 %cargo_build
 
 %install
