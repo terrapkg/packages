@@ -10,7 +10,8 @@ License:        MIT
 URL:            https://crates.io/crates/kondo-ui
 Source:         %{crates_source}
 
-BuildRequires:  pkgconfig(glib-2.0) pkgconfig(cairo) pkgconfig(cairo-gobject) pkgconfig(gdk-pixbuf-2.0) >= 2.30 pkgconfig(pango) >= 1.36 anda-srpm-macros rust-packaging >= 21
+BuildRequires:  pkgconfig(glib-2.0) pkgconfig(cairo) pkgconfig(cairo-gobject) pkgconfig(gdk-pixbuf-2.0) >= 2.30 pkgconfig(pango) >= 1.36 pkgconfig(atk) >= 2.14
+BuildRequires:  anda-srpm-macros rust-packaging >= 21
 
 %global _description %{expand:
 Filesystem cleaning tool that recursively searches directories for known
