@@ -246,7 +246,7 @@ use the "ureq" feature of the "%{crate}" crate.
 %cargo_prep_online
 
 %build
-%cargo_build
+%cargo_build --locked
 
 %install
 %cargo_install
