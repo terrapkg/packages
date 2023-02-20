@@ -43,6 +43,7 @@ Summary:        %{summary}
 %install
 %cargo_install
 rm %{buildroot}/.cargo -rf
+chmod -x %{buildroot}/.cargo/registry/src/github.com-1ecc6299db9ec823/crossterm-0.17.7/src/lib.rs
 
 %if %{with check}
 %check
