@@ -9,7 +9,6 @@ Summary:        Protocol Buffers
 License:        BSD-3-Clause
 URL:            https://developers.google.com/protocol-buffers/
 Source0:        %{pypi_source}
-BuildArch:      noarch
 
 BuildRequires:  python3-devel gcc
 BuildRequires:  python3dist(setuptools)
