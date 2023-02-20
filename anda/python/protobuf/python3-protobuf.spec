@@ -9,7 +9,6 @@ Summary:        Protocol Buffers
 License:        BSD-3-Clause
 URL:            https://developers.google.com/protocol-buffers/
 Source0:        %{pypi_source}
-BuildArch:      noarch
 
 BuildRequires:  python3-devel gcc
 BuildRequires:  python3dist(setuptools)
@@ -40,6 +39,7 @@ rm -rf %{pypi_name}.egg-info
 %doc README.md
 %{python3_sitearch}/google
 %{python3_sitearch}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitearch}/%{pypi_name}-%{version}-py%{python3_version}-nspkg.pth
 
 %changelog
 * Sun Feb 19 2023 windowsboy111 <wboy111@outlook.com> - 4.22.0-1

@@ -30,18 +30,17 @@ Secure, cross-platform Git credential storage with authentication to GitHub, Azu
 %prep
 %forgesetup
 
-
 %build
 dotnet build -c LinuxRelease
 
-
 %install
-install -D -m 755 out/linux/Packaging.Linux/payload/Release/%{long_name}-core %{buildroot}%{_bindir}/%{long_name}-core
+ls out/linux/Packaging.Linux/Release/payload -alh
+install -Dm755 out/linux/Packaging.Linux/Release/payload/%{long_name} %{buildroot}%{_bindir}/%{long_name}
 
 
 %files
 %license LICENSE
-
+/usr/bin/git-credential-manager
 
 
 %changelog
