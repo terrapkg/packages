@@ -1,6 +1,6 @@
 
 Name:		budgie-extras
-Version:	1.5.0
+Version:	1.5.90
 Release:	1%{dist}
 
 License:	GPLv3
@@ -335,8 +335,15 @@ rm -f %{buildroot}%{_bindir}/quickchar
 
 %files -n budgie-applet-hotcorners
 %{_libdir}/budgie-desktop/plugins/budgie-hotcorners
-%{_datadir}/glib-2.0/schemas/org.ubuntubudgie.plugins.budgie-hotcorners.gschema.xml
+%{_sysconfdir}/xdg/autostart/org.ubuntubudgie.budgie-extras.HotCorners-autostart.desktop
+%{_datadir}/glib-2.0/schemas/org.ubuntubudgie.budgie-extras.HotCorners.gschema.xml
+%{_datadir}/applications/org.ubuntubudgie.budgie-extras.HotCorners.desktop
+%{_datadir}/budgie-hotcorners
+/usr/libexec/budgie-hotcorners/
+
 %{_datadir}/pixmaps/budgie-hotcorners-symbolic.svg
+%{_datadir}/pixmaps/budgie-hotcgui-*.svg
+%{_datadir}/icons/hicolor/scalable/apps/org.ubuntubudgie.budgie-extras.hotcorners.svg
 
 %files -n budgie-applet-kangaroo
 %{_libdir}/budgie-desktop/plugins/budgie-kangaroo
@@ -407,6 +414,7 @@ rm -f %{buildroot}%{_bindir}/quickchar
 
 %files -n budgie-applet-window-shuffler
 %{_sysconfdir}/xdg/autostart/layoutspopup-autostart.desktop
+%{_sysconfdir}/xdg/autostart/dragsnap-autostart.desktop
 %{_sysconfdir}/xdg/autostart/shuffler*.desktop
 %{_libdir}/budgie-window-shuffler
 %{_datadir}/applications/org.ubuntubudgie.shufflercontrol.desktop
@@ -415,6 +423,7 @@ rm -f %{buildroot}%{_bindir}/quickchar
 %{_datadir}/glib-2.0/schemas/org.ubuntubudgie.plugins.budgie-shufflerapplet.gschema.xml
 %{_datadir}/pixmaps/shuffler-*.svg
 %{_datadir}/pixmaps/shufflerapplet-*.svg
+%{_datadir}/pixmaps/dragsnapimg*.svg
 %{_libdir}/budgie-desktop/plugins/budgie-window-shuffler/ShufflerAPplet.plugin
 %{_libdir}/budgie-desktop/plugins/budgie-window-shuffler/libshufflerapplet.so
 %{_datadir}/metainfo/org.ubuntubudgie.shufflercontrol.metainfo.xml
@@ -441,7 +450,6 @@ rm -f %{buildroot}%{_bindir}/quickchar
 * Thu Jun 09 2022 Cappy Ishihara <cappy@cappuchino.xyz> - 1.4.0-1
 - Updated to 1.4.0
 - Added requirements for Workspace Overview
-
 
 * Fri Apr 16 2021 Thomas Batten <stenstorpmc@gmail.com> - 1.2.0-1
 - Initial Build
