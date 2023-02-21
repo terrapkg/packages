@@ -1,1 +1,1 @@
-rpm.version(gh("UbuntuBudgie/budgie-extras"));
+rpm.version(gh_tag("UbuntuBudgie/budgie-extras"));
