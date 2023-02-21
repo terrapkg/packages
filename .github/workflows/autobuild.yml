@@ -7,6 +7,9 @@ on:
       - anda/**
     branches:
       - main
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
   workflow_call:
 
@@ -73,7 +76,13 @@ jobs:
           extraArgs: -D "sccache_bucket ${{secrets.SCCACHE_BUCKET}}" -D "sccache_endpoint ${{secrets.SCCACHE_ENDPOINT}}" -D "sccache_secret ${{secrets.SCCACHE_SECRET}}" -D "sccache_accesskey ${{secrets.SCCACHE_ACCESSKEY}}"
           andaRepo: https://github.com/terrapkg/subatomic-repos/raw/main/terra${{ matrix.version }}.repo
 
+      - uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.pkg.pkg }}-${{ matrix.pkg.arch }}-${{ matrix.version }}
+          path: anda-build/rpm/rpms/*
+
       - name: Upload packages to subatomic
+        if: github.event_name != 'pull_request'
         run: |
           subatomic-cli upload --prune \
             --server https://subatomic.fyralabs.com \
