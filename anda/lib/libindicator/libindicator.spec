@@ -16,6 +16,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	dbus-glib-devel
 BuildRequires:	gtk2-devel
 BuildRequires:	gtk3-devel
+BuildRequires:  systemd-rpm-macros
 #Requires:       ido-devel
 BuildRequires:	gnome-common
 BuildRequires:  make
