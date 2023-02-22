@@ -13,6 +13,7 @@ BuildRequires:	chrpath
 BuildRequires:	gtk-doc
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
+BuildRequires:  pkgconfig(systemd)
 BuildRequires:	dbus-glib-devel
 BuildRequires:	gtk2-devel
 BuildRequires:	gtk3-devel
