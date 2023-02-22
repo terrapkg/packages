@@ -1,5 +1,5 @@
 Name:			anki-bin
-Version:		2.1.59
+Version:		2.1.60
 Release:		1%{?dist}
 Summary:		Flashcard program for using space repetition learning (Installed with wheel)
 License:		AGPLv3+ and GPLv3+ and LGPLv3 and MIT and BSD and ASL 2.0 and CC-BY-SA and CC-BY
