@@ -1,5 +1,5 @@
 Name:			marble-gtk
-Version:		1.3.0
+Version:		v1.3.0
 Release:		1%{?dist}
 Summary:		My GTK library
 License:		GPLv3
