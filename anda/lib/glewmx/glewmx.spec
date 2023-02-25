@@ -50,9 +50,9 @@ sed -i 's:includedir=${prefix}/include:includedir=${prefix}/include/glewmx-%{ver
 %{_libdir}/libGLEWmx.so.*
 
 %files devel
-%dir %{_includedir}/glewmx-1.13.0
-%dir %{_includedir}/glewmx-1.13.0/GL
-%{_includedir}/glewmx-1.13.0/GL/*.h
+%dir %{_includedir}/glewmx-%version
+%dir %{_includedir}/glewmx-%version/GL
+%{_includedir}/glewmx-%version/GL/*.h
 %{_libdir}/libGLEWmx.a
 %{_libdir}/libGLEWmx.so
 %{_libdir}/pkgconfig/glewmx.pc
