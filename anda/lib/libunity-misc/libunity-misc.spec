@@ -1,9 +1,9 @@
-Name:           libunity-misc-devel
+Name:           libunity-misc
 Version:        1.4
 Release:        %autorelease
 Summary:        Misc Unity shell libs
 
-License:        LGPLv2+
+License:        LGPLv2 AND LGPLv2 AND GPLv2
 URL:            https://launchpad.net/libunity-misc
 Source0:        http://archive.ubuntu.com/ubuntu/pool/universe/libu/libunity-misc/libunity-misc_4.0.5+14.04.20140115.orig.tar.gz
 
@@ -16,14 +16,20 @@ BuildRequires:  gtk-doc
 BuildRequires:  libX11-devel
 BuildRequires:  gtk3-devel
 BuildRequires:  glib2-devel
-Requires:       gtk3
-Requires:       libX11
 
 %description
 A simple library that implements a subset of the XPath spec to allow selecting nodes in an object tree
 
+%package devel
+Summary:	Development files for %{name}
+Requires:	%{name}%{?_isa} = %{version}-%{release}
+
+%description devel
+The %{name}-devel package contains libraries and header files for
+developing applications that use %{name}.
+
 %prep
-%setup -q -n libunity-misc-4.0.5+14.04.20140115
+%autosetup -n libunity-misc-4.0.5+14.04.20140115
 find ./ -type f -exec sed -i 's/-Werror//' {} \;
 NOCONFIGURE=1 \
 ./autogen.sh
@@ -40,15 +46,15 @@ rm -fv %{buildroot}%{_libdir}/lib*.la
 %ldconfig_post
 
 %files
+%license COPYING COPYING.GPL COPYING.LGPL-2
+%{_libdir}/libunity-misc.so.*
+
+%files devel
 %{_libdir}/libunity-misc.so
-%{_libdir}/libunity-misc.so.4
-%{_libdir}/libunity-misc.so.4.1.0
 %{_libdir}/pkgconfig/unity-misc.pc
-%{_includedir}/unity-misc/unity-misc/na-tray.h
-%{_includedir}/unity-misc/unity-misc/na-marshal.h
-%{_includedir}/unity-misc/unity-misc/na-tray-manager.h
-%{_includedir}/unity-misc/unity-misc/na-tray-child.h
-%{_includedir}/unity-misc/unity-misc/gnome-bg-slideshow.h
+%dir %{_includedir}/unity-misc
+%dir %{_includedir}/unity-misc/unity-misc
+%{_includedir}/unity-misc/unity-misc/*.h
 
 %changelog
 %autochangelog
