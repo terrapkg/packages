@@ -1,11 +1,11 @@
 Name:           libunity-misc
-Version:        1.4
+Version:        4.0.5
 Release:        %autorelease
 Summary:        Misc Unity shell libs
 
 License:        LGPLv2 AND LGPLv2 AND GPLv2
 URL:            https://launchpad.net/libunity-misc
-Source0:        http://archive.ubuntu.com/ubuntu/pool/universe/libu/libunity-misc/libunity-misc_4.0.5+14.04.20140115.orig.tar.gz
+Source0:        http://archive.ubuntu.com/ubuntu/pool/universe/libu/libunity-misc/libunity-misc_%{version}+14.04.20140115.orig.tar.gz
 
 BuildRequires:  make
 BuildRequires:  g++
@@ -29,7 +29,7 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %prep
-%autosetup -n libunity-misc-4.0.5+14.04.20140115
+%autosetup -n libunity-misc-%{version}+14.04.20140115
 find ./ -type f -exec sed -i 's/-Werror//' {} \;
 NOCONFIGURE=1 \
 ./autogen.sh
