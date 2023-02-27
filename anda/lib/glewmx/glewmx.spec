@@ -42,12 +42,12 @@ sed -i 's:$(GLEW_DEST)/include/GL:$(GLEW_DEST)/include/glewmx-%{version}/GL:' Ma
 
 %build
 # This doesn't get actually installed but is to change glewmx.pc before installation
-%make_build
+%make_build LIBDIR="%{_libdir}"
 sed -i 's:includedir=${prefix}/include:includedir=${prefix}/include/glewmx-%{version}:' glewmx.pc
 
 %install
 # Only MX is installed
-%make_build DESTDIR=%{buildroot} INSTALL="/usr/bin/install -p" install.mx
+%make_build DESTDIR=%{buildroot} INSTALL="/usr/bin/install -p" LIBDIR="%{_libdir}" install.mx
 
 %files
 %license LICENSE.txt
