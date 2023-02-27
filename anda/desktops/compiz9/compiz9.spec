@@ -38,21 +38,17 @@ BuildRequires: libwnck3-devel
 BuildRequires: cmake
 BuildRequires: gcc
 BuildRequires: g++
-BuildRequires: make
 BuildRequires: glibmm24-devel
-BuildRequires: lcov
 BuildRequires: python3-devel
+BuildRequires: python3-setuptools
 BuildRequires: boost-devel
 BuildRequires: libnotify-devel
 BuildRequires: python3-Cython
-BuildRequires: glibc-headers-x86
 BuildRequires: metacity-devel
 BuildRequires: libglvnd-devel
-BuildRequires: gcovr
 BuildRequires: mesa-libEGL-devel
 BuildRequires: glib2-devel
 BuildRequires: xorg-x11-server-devel
-Requires:      glib2
 Requires:      xorg-x11-server-Xorg
 Requires:      metacity
 Requires:      glx-utils
@@ -119,10 +115,21 @@ categories},22x22/{categories,devices,mimetypes}}
 %dir %{_libdir}/compizconfig
 %dir %{_libdir}/compizconfig/backends
 %{_libdir}/compizconfig/backends/*.so
-%{python3_sitearch}/compizconfig.cpython*.so
-%{python3_sitearch}/compizconfig_python*.egg-info/
+%{python3_sitearch}/*
 %{_datadir}/applications/compiz.desktop
-#{_datadir}/compiz/
+%dir %{_datadir}/compiz
+%{_datadir}/compiz/*.xml
+%{_datadir}/compiz/*.png
+%{_datadir}/compiz/colorfilter/
+%{_datadir}/compiz/cube/
+%{_datadir}/compiz/cubeaddon/
+%{_datadir}/compiz/icons/
+%{_datadir}/compiz/mag/
+%{_datadir}/compiz/notification/
+%{_datadir}/compiz/scale/
+%{_datadir}/compiz/showmouse/
+%{_datadir}/compiz/splash/
+%{_datadir}/compiz/xslt/
 %{_datadir}/glib-2.0/schemas/org.compiz*.gschema.xml
 %{_datadir}/gnome-control-center/keybindings/50-compiz-*.xml
 
@@ -134,6 +141,7 @@ categories},22x22/{categories,devices,mimetypes}}
 %{_libdir}/libcompiz_core.so
 %{_libdir}/libdecoration.so
 %{_libdir}/pkgconfig/*.pc
+%{_datadir}/compiz/cmake/
 %{_datadir}/cmake/Modules/*.cmake
 
 %files -n python3-ccsm -f ccsm.lang

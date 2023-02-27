@@ -1,1 +1,1 @@
-rpm.version(gh("starship/starship"));
+rpm.version(crates("starship"));
