@@ -33,6 +33,10 @@ developing applications that use %{name}.
 %autosetup -n glew-%{version}
 tar -x -I 'xz -d -T0 -k' -f '%{SOURCE1}'
 
+# Fix aarch64
+sed -i 's!LDFLAGS.EXTRA = -L/usr/X11R6/lib -L/usr/lib!LDFLAGS.EXTRA = -L/usr/X11R6/lib64 -L/usr/lib64!' debian/patches/0001-Fix_FTBFS_on_kFreeBSD.patch
+sed -i ':a;N;$!ba;s!LIBDIR = $(GLEW_DEST)/lib!LIBDIR = $(GLEW_DEST)/lib64!2' debian/patches/0001-Fix_FTBFS_on_kFreeBSD.patch
+
 for i in debian/patches/*.patch; do patch -p1 < $i; done
 sed -i 's:$(GLEW_DEST)/include/GL:$(GLEW_DEST)/include/glewmx-%{version}/GL:' Makefile
 
