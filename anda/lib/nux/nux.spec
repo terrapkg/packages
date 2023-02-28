@@ -38,6 +38,7 @@ BuildRequires: pciutils-devel
 BuildRequires: glib2-devel
 BuildRequires: ibus-devel
 BuildRequires: boost-devel
+BuildRequires: geis-devel
 BuildRequires: glewmx-devel
 BuildRequires: pkgconfig(pango)
 BuildRequires: pkgconfig(pangocairo)
