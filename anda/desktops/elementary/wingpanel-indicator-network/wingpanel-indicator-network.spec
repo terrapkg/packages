@@ -5,7 +5,7 @@
 
 Name:           wingpanel-indicator-network
 Summary:        Network Indicator for wingpanel
-Version:        2.3.4
+Version:        7.0.0
 Release:        1%{?dist}
 License:        GPLv3+
 
