@@ -76,6 +76,8 @@ This package contains the development headers.
 %{_libdir}/girepository-1.0/Granite-7.0.typelib
 
 %{_datadir}/metainfo/granite-7.appdata.xml
+%{_datadir}/icons/hicolor/*/apps/io.elementary.granite-7.svg
+
 
 %files devel
 %{_bindir}/granite-7-demo
