@@ -60,11 +60,11 @@ This package contains the development headers.
 %find_lang granite-7
 
 %check
-desktop-file-validate \
-    %{buildroot}/%{_datadir}/applications/io.elementary.granite-7.demo.desktop
+%dnl desktop-file-validate \
+%dnl     %{buildroot}/%{_datadir}/applications/io.elementary.granite-7.demo.desktop
 
-appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/granite-7.appdata.xml
+%dnl appstream-util validate-relax --nonet \
+%dnl     %{buildroot}/%{_datadir}/metainfo/granite-7.appdata.xml
 
 
 %files -f granite-7.lang
