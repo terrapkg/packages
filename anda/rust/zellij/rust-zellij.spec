@@ -46,8 +46,8 @@ EOF\
 %global crate zellij
 
 Name:           rust-zellij
-Version:        0.34.4
-Release:        %autorelease
+Version:        0.35.0
+Release:        1%{?dist}
 Summary:        Terminal workspace with batteries included
 
 License:        MIT
