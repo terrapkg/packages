@@ -57,7 +57,6 @@ sed -i 's?lib/${CMAKE_LIBRARY_ARCHITECTURE}?%{_lib}?' CMakeLists.txt
 %{_libdir}/liblomiri-api.so.*
 
 %files devel
-%license COPYING
 %{_libdir}/liblomiri-api.so
 %{_libdir}/pkgconfig/*.pc
 %dir %{_includedir}/lomiri
