@@ -6,6 +6,7 @@ Summary:	Shared functions for Ayatana indicators
 License:	GPLv3
 URL:		https://launchpad.net/libindicator
 Source0:	http://archive.ubuntu.com/ubuntu/pool/universe/libi/libindicator/libindicator_16.10.0+18.04.20180321.1.orig.tar.gz
+Source1:        https://raw.githubusercontent.com/ubports/libindicator/097906132ffb479205be15a92cae97e5daf4e154/data/indicators.target
 # From GLib 2.62
 Patch1:	        http://archive.ubuntu.com/ubuntu/pool/universe/libi/libindicator/libindicator_16.10.0+18.04.20180321.1-0ubuntu5.diff.gz
 
@@ -135,6 +136,9 @@ popd
 # Remove libtool files
 find %{buildroot} -type f -name '*.la' -delete
 
+# Lomiri compatability
+install -Dm644 %{SOURCE1} %{buildroot}%{_userunitdir}/
+
 %ldconfig_scriptlets
 %ldconfig_scriptlets gtk3
 
@@ -146,6 +150,7 @@ find %{buildroot} -type f -name '*.la' -delete
 %dir %{_datadir}/libindicator/
 %dir %{_datadir}/libindicator/icons/
 %{_userunitdir}/indicators-pre.target
+%{_userunitdir}/indicators.target
 
 %files devel
 %dir %{_includedir}/libindicator-0.4/
