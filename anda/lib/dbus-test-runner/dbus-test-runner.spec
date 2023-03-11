@@ -1,5 +1,3 @@
-%global source_date_epoch_from_changelog 0
-
 Name:           dbus-test-runner
 Version:        19.04.0
 Release:        %autorelease
