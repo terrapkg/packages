@@ -24,10 +24,13 @@ jobs:
           sudo dnf install -y dnf-plugins-core
           sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic-repos/raw/main/terra${{ matrix.version }}.repo
           sudo dnf install -y mock createrepo_c rpm-build anda-mock-configs gcc curl wget git-core openssl-devel
+
       - uses: actions/checkout@v3
         with:
           repository: FyraLabs/subatomic
-          ref: bootstrap
+          set-safe-directory: true
+          fetch-depth: 1
+
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
@@ -38,7 +41,9 @@ jobs:
           args: anda
 
       - name: Build Subatomic
-        run: anda build -c anda-37-${{ matrix.arch }} subatomic -p rpm
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          anda build -c anda-37-${{ matrix.arch }} subatomic -p rpm -D "autogitcommit $(git log -1 --format='%H')"
       - name: Install Subatomic
         run: sudo dnf install -y ./anda-build/rpm/rpms/subatomic-*.rpm
 
@@ -48,6 +53,13 @@ jobs:
 
       - name: Build Andaman
         run: anda build -c anda-37-${{ matrix.arch }} anda -p rpm
+
+      - name: Upload to Subatomic
+        run: |
+          subatomic-cli upload --prune \
+            --server https://subatomic.fyralabs.com \
+            --token ${{ secrets.SUBATOMIC_TOKEN }} \
+            terra${{ matrix.version }} anda-build/rpm/rpms/*
 
       - name: Upload to Subatomic
         run: |
