@@ -4,8 +4,8 @@
 %global crate hyperfine
 
 Name:           rust-hyperfine
-Version:        1.15.0
-Release:        %autorelease
+Version:        1.16.0
+Release:        1%{?dist}
 Summary:        Command-line benchmarking tool
 
 # Upstream license specification: MIT/Apache-2.0
