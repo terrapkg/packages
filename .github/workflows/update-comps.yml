@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - f38
     paths:
       - comps.xml
   workflow_dispatch:
