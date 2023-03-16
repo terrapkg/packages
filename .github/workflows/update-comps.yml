@@ -3,6 +3,7 @@ name: Push comps updates
 on:
   push:
     branches:
+      - main
       - f38
     paths:
       - comps.xml
@@ -12,7 +13,7 @@ jobs:
   update-comps:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/terrapkg/builder:f38
+      image: ghcr.io/terrapkg/builder:main
     steps:
       - uses: actions/checkout@v3
       - name: Push to subatomic
@@ -20,4 +21,4 @@ jobs:
           subatomic-cli upload-comps \
             --server https://subatomic.fyralabs.com \
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
-            terra38 comps.xml
+            terra37 comps.xml

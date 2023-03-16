@@ -1,4 +1,4 @@
-name: Bootstrap Andaman and Subatomic (Fedora 37)
+name: Bootstrap Andaman and Subatomic
 
 on:
   workflow_dispatch:
@@ -7,12 +7,12 @@ jobs:
   bootstrap:
     strategy:
       matrix:
-        version: ["37"]
+        version: ["38"]
         arch: ["x86_64", "aarch64"]
       fail-fast: true
     runs-on: ${{ matrix.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
     container:
-      image: fedora:37
+      image: fedora:38
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - uses: actions/setup-go@v3
@@ -43,7 +43,7 @@ jobs:
       - name: Build Subatomic
         run: |
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
-          anda build -c anda-37-${{ matrix.arch }} subatomic -p rpm -D "autogitcommit $(git log -1 --format='%H')"
+          anda build -c anda-${{ matrix.version }}-${{ matrix.arch }} subatomic -p rpm -D "autogitcommit $(git log -1 --format='%H')"
       - name: Install Subatomic
         run: sudo dnf install -y ./anda-build/rpm/rpms/subatomic-*.rpm
 
@@ -52,14 +52,7 @@ jobs:
           repository: FyraLabs/anda
 
       - name: Build Andaman
-        run: anda build -c anda-37-${{ matrix.arch }} anda -p rpm
-
-      - name: Upload to Subatomic
-        run: |
-          subatomic-cli upload --prune \
-            --server https://subatomic.fyralabs.com \
-            --token ${{ secrets.SUBATOMIC_TOKEN }} \
-            terra${{ matrix.version }} anda-build/rpm/rpms/*
+        run: anda build -c anda-${{ matrix.version }}-${{ matrix.arch }} anda -p rpm
 
       - name: Upload to Subatomic
         run: |
