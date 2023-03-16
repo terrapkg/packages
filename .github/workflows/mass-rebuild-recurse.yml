@@ -3,6 +3,10 @@
 name: Mass Rebuild
 on:
   workflow_dispatch:
+    inputs:
+      packages:
+        description: Packages to Build (JSON)
+        required: true
 
 jobs:
   manifest:
@@ -16,18 +20,10 @@ jobs:
       options: --cap-add=SYS_ADMIN --privileged
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - run: git fetch
-
       - name: Generate Build matrix
         id: generate_build_matrix
         run: |
-          git checkout -b mass-rebuild $(git rev-list HEAD | tail -n 1)
-          git merge --squash $(git branch --show-current)
-          anda ci > x.py
+          echo "build_matrix=${{ inputs.packages }}" > x.py
           cat <<EOF > x.py
           import json
           if len(build_matrix) > 255:
