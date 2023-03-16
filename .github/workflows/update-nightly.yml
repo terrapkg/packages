@@ -36,6 +36,12 @@ jobs:
             git config user.email "raboneko@fyralabs.com"
             git config gpg.format "ssh"
             git config user.signingkey "${{ runner.temp }}/signing_key"
-            git commit -S -a -m "Automatic Update: $(git status | grep modified | sed -r 's@.+/([^/]+)/[^/]+\n?@\1 @g' | tr -d '\n')"
-            git push -u origin main
+            msg="bump(nightly): $(git status | grep modified | sed -r 's@.+/([^/]+)/[^/]+\n?@\1 @g' | tr -d '\n')"
+            git commit -S -a -m $msg
+            git format-patch HEAD^
+            git checkout f38
+            git apply *.patch
+            rm *.patch
+            git commit -S -a -m $msg
+            git push -u origin f38
           fi
