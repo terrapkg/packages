@@ -8,6 +8,8 @@ jobs:
 
     outputs:
       build_matrix: ${{ steps.generate_build_matrix.outputs.build_matrix }}
+      recurse: ${{ steps.generate_build_matrix.outputs.recurse }}
+      recurse_matrix: ${{ steps.generate_build_matrix.outputs.recurse_matrix }}
 
     container:
       image: ghcr.io/terrapkg/builder:main
@@ -39,11 +41,13 @@ jobs:
           EOF
           python x.py >> $GITHUB_OUTPUT
 
-      - name: Recurse builds
-        if: steps.generate_build_matrix.outputs.recurse == 1
-        uses: terrapkg/packages/.github/workflows/mass-rebuild-recurse.yml@f38
-        with:
-          packages: ${{ steps.generate_build_matrix.outputs.recurse_matrix }}
+  recurse:
+    needs: manifest
+    if: needs.manifest.outputs.recurse == 1
+    uses: terrapkg/packages/.github/workflows/mass-rebuild-recurse.yml@f38
+    with:
+      packages: ${{ needs.manifest.outputs.recurse_matrix }}
+
   build:
     needs: manifest
     strategy:
