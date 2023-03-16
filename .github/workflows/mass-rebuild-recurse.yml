@@ -1,5 +1,11 @@
 name: Mass Rebuild (Recurse)
 on:
+  workflow_call:
+    inputs:
+      packages:
+        description: Packages to Build (JSON)
+        required: true
+        type: string
   workflow_dispatch:
     inputs:
       packages:
