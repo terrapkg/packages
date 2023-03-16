@@ -22,6 +22,7 @@ BuildRequires: pkgconfig(x11)
 BuildRequires: pkgconfig(xext)
 BuildRequires: vala
 BuildRequires: unity-settings-daemon-devel
+Requires:      unity-shell
 Requires:      unity-settings-daemon
 Requires:      lightdm%{?_isa}
 
