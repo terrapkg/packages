@@ -3,7 +3,7 @@
 %forgemeta
 
 Name:           lomiri-app-launch
-Version:        0.1.1
+Version:        0.1.6
 Release:        %autorelease
 Summary:        Provides the Lomiri App Launch user space daemon
 License:        GPLv3
