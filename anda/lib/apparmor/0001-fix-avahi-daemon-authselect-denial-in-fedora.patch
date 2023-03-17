@@ -1,0 +1,27 @@
+From 334e335909b8faab63bf9289e63f9dc1a3c82a83 Mon Sep 17 00:00:00 2001
+From: Thomas Crider <gloriouseggroll@gmail.com>
+Date: Thu, 17 Nov 2022 22:46:54 -0500
+Subject: [PATCH] fix avahi-daemon authselect denial in fedora
+
+Fixes this denial:
+
+type=AVC msg=audit(1668734812.755:243): apparmor="DENIED" operation="open" profile="avahi-daemon" name="/etc/authselect/nsswitch.conf" pid=1418 comm="avahi-daemon" requested_mask="r" denied_mask="r" fsuid=0 ouid=0FSUID="root" OUID="root"
+---
+ profiles/apparmor.d/usr.sbin.avahi-daemon | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/profiles/apparmor.d/usr.sbin.avahi-daemon b/profiles/apparmor.d/usr.sbin.avahi-daemon
+index 010b385..da69072 100644
+--- a/profiles/apparmor.d/usr.sbin.avahi-daemon
++++ b/profiles/apparmor.d/usr.sbin.avahi-daemon
+@@ -21,6 +21,7 @@ profile avahi-daemon /usr/{bin,sbin}/avahi-daemon {
+   /etc/avahi/hosts r,
+   /etc/avahi/services/ r,
+   /etc/avahi/services/*.service r,
++  /etc/authselect/nsswitch.conf r,
+   @{PROC}/@{pid}/fd/ r,
+   @{PROC}/1/environ r,
+   @{PROC}/cmdline r,
+-- 
+2.38.1
+
