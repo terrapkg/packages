@@ -1,0 +1,48 @@
+From 092ccc544c66f2a233bb074a5b3f9d9edcad2716 Mon Sep 17 00:00:00 2001
+From: Thomas Crider <gloriouseggroll@gmail.com>
+Date: Thu, 17 Nov 2022 23:46:54 -0500
+Subject: [PATCH] All current versions of RHEL and Fedora that are not EOL (End
+ of Life) or ELS (Extended Lifecycle Support) currently only support systemd.
+ Legacy init scripts are not supported. Standard systemd installation should
+ be used.
+
+---
+ parser/Makefile | 13 +++++--------
+ 1 file changed, 5 insertions(+), 8 deletions(-)
+
+diff --git a/parser/Makefile b/parser/Makefile
+index 15f9d97..64f5db6 100644
+--- a/parser/Makefile
++++ b/parser/Makefile
+@@ -352,13 +352,10 @@ tests: apparmor_parser ${TESTS}
+ $(AAREOBJECT): FORCE
+ 	$(MAKE) -C $(AAREDIR) CFLAGS="$(EXTRA_CXXFLAGS)"
+ 
+-.PHONY: install-rhel4
+-install-rhel4: install-redhat
+-
+ .PHONY: install-redhat
+-install-redhat:
+-	install -m 755 -d $(DESTDIR)/etc/init.d
+-	install -m 755 rc.apparmor.$(subst install-,,$@) $(DESTDIR)/etc/init.d/apparmor
++install-redhat: install-systemd
++	install -m 755 -d $(SBINDIR)
++	ln -sf service $(SBINDIR)/rcapparmor
+ 
+ .PHONY: install-suse
+ install-suse: install-systemd
+@@ -389,9 +386,9 @@ DISTRO=$(shell if [ -f /etc/slackware-version ] ; then \
+ 	         if [ "$$(rpm --eval '0%{?suse_version}')" != "0" ] ; then \
+ 	             echo suse ;\
+ 	         elif [ "$$(rpm --eval '%{_host_vendor}')" = redhat ] ; then \
+-	            echo rhel4 ;\
++	            echo redhat ;\
+ 	         elif [ "$$(rpm --eval '0%{?fedora}')" != "0" ] ; then \
+-	            echo rhel4 ;\
++	            echo redhat ;\
+ 	         else \
+ 	            echo unknown ;\
+ 	         fi ;\
+-- 
+2.38.1
+
