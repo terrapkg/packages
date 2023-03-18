@@ -1,4 +1,4 @@
-name: Bootstrap Andaman and Subatomic (Fedora 38)
+name: Bootstrap Andaman and Subatomic
 
 on:
   workflow_dispatch:
@@ -7,12 +7,12 @@ jobs:
   bootstrap:
     strategy:
       matrix:
-        version: ["38"]
+        version: ["37"]
         arch: ["x86_64", "aarch64"]
       fail-fast: true
     runs-on: ${{ matrix.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
     container:
-      image: fedora:38
+      image: fedora:37
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - uses: actions/setup-go@v3
@@ -24,10 +24,13 @@ jobs:
           sudo dnf install -y dnf-plugins-core
           sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic-repos/raw/main/terra${{ matrix.version }}.repo
           sudo dnf install -y mock createrepo_c rpm-build anda-mock-configs gcc curl wget git-core openssl-devel
+
       - uses: actions/checkout@v3
         with:
           repository: FyraLabs/subatomic
-          ref: bootstrap
+          set-safe-directory: true
+          fetch-depth: 1
+
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
@@ -38,7 +41,9 @@ jobs:
           args: anda
 
       - name: Build Subatomic
-        run: anda build -c anda-38-${{ matrix.arch }} subatomic -p rpm
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          anda build -c anda-${{ matrix.version }}-${{ matrix.arch }} subatomic -p rpm -D "autogitcommit $(git log -1 --format='%H')"
       - name: Install Subatomic
         run: sudo dnf install -y ./anda-build/rpm/rpms/subatomic-*.rpm
 
@@ -47,7 +52,7 @@ jobs:
           repository: FyraLabs/anda
 
       - name: Build Andaman
-        run: anda build -c anda-38-${{ matrix.arch }} anda -p rpm
+        run: anda build -c anda-${{ matrix.version }}-${{ matrix.arch }} anda -p rpm
 
       - name: Upload to Subatomic
         run: |

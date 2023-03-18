@@ -1,4 +1,5 @@
 %define _ubuntu_rel 22.10.20220822-0ubuntu1
+%global _hardened_build 0
 
 Name:           compiz9
 Version:        0.9.14.2
@@ -9,6 +10,8 @@ License:        GPLv2+ AND LGPLv2+ AND MIT
 URL:            https://launchpad.net/compiz
 Source0:        http://archive.ubuntu.com/ubuntu/pool/universe/c/compiz/compiz_%{version}+%{_ubuntu_rel}.tar.xz
 Patch0:         https://raw.githubusercontent.com/cat-master21/unityDE-specs/main/patches/compiz-cmake-install-path.patch
+Patch1:         gtk-extents.patch
+Patch2:         focus-prevention-disable.patch
 
 Conflicts:     compiz
 BuildRequires: libX11-devel
@@ -77,7 +80,7 @@ Compiz 9 branch, which is newer then what Fedora packages and required by Unity 
 %build
 # The driver blacklist hack is obselete
 sed -i 's/(nouveau|Intel).*Mesa 8.0//' plugins/opengl/opengl.xml.in
-%cmake -DCOMPIZ_DISABLE_GS_SCHEMAS_INSTALL=OFF -DBUILD_GTK=ON -DBUILD_METACITY=ON -DCOMPIZ_BUILD_TESTING=OFF -DBUILD_GLES=ON -DCOMPIZ_PACKAGING_ENABLED=TRUE -DBUILD_XORG_GTEST=OFF -DCOMPIZ_BUILD_WITH_RPATH=FALSE -DCOMPIZ_WERROR=OFF
+%cmake -DCOMPIZ_DISABLE_GS_SCHEMAS_INSTALL=OFF -DBUILD_GTK=ON -DBUILD_METACITY=ON -DCOMPIZ_BUILD_TESTING=OFF -DBUILD_GLES=OFF -DCOMPIZ_PACKAGING_ENABLED=TRUE -DBUILD_XORG_GTEST=OFF -DCOMPIZ_BUILD_WITH_RPATH=FALSE -DCOMPIZ_WERROR=OFF
 %cmake_build
 
 %install

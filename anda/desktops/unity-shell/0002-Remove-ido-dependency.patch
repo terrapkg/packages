@@ -1,0 +1,32 @@
+diff --git a/services/CMakeLists.txt b/services/CMakeLists.txt
+index 2829cd2..4ec220d 100644
+--- a/services/CMakeLists.txt
++++ b/services/CMakeLists.txt
+@@ -11,7 +11,6 @@ set(UNITY_PANEL_SERVICE_DEPS
+     gtk+-3.0>=3.3
+     indicator3-0.4>=12.10.2
+     x11
+-    libido3-0.1>=13.0.0
+ )
+ 
+ pkg_check_modules(SERVICE_DEPS REQUIRED ${UNITY_PANEL_SERVICE_DEPS})
+diff --git a/services/panel-main.c b/services/panel-main.c
+index f6488ba..d3dc59b 100644
+--- a/services/panel-main.c
++++ b/services/panel-main.c
+@@ -22,7 +22,6 @@
+ #include <glib-unix.h>
+ #include <gio/gio.h>
+ #include <gtk/gtk.h>
+-#include <libido/libido.h>
+ 
+ #include "config.h"
+ #include "panel-a11y.h"
+@@ -466,7 +465,6 @@ main (gint argc, gchar **argv)
+ 
+   gtk_init (&argc, &argv);
+   gtk_icon_theme_append_search_path (gtk_icon_theme_get_default(), INDICATORICONDIR);
+-  ido_init ();
+ 
+   context = g_option_context_new ("- Unity Panel Service");
+   g_option_context_add_main_entries (context, entries, GETTEXT_PACKAGE);

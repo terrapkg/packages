@@ -1,8 +1,8 @@
-%define osuresver 2023.202.0
+%define osuresver 2023.317.1
 %global debug_package %{nil}
 
 Name:			osu-lazer
-Version:		2023.207.0
+Version:		2023.305.0
 Release:		1%{?dist}
 Summary:		The future of osu! and the beginning of an open era! Commonly known by the codename osu!lazer. Pew pew.
 ExclusiveArch:	x86_64

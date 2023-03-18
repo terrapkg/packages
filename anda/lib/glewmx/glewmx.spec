@@ -33,17 +33,21 @@ developing applications that use %{name}.
 %autosetup -n glew-%{version}
 tar -x -I 'xz -d -T0 -k' -f '%{SOURCE1}'
 
+# Fix aarch64
+sed -i 's!LDFLAGS.EXTRA = -L/usr/X11R6/lib -L/usr/lib!LDFLAGS.EXTRA = -L/usr/X11R6/lib64 -L/usr/lib64!' debian/patches/0001-Fix_FTBFS_on_kFreeBSD.patch
+sed -i ':a;N;$!ba;s!LIBDIR = $(GLEW_DEST)/lib!LIBDIR = $(GLEW_DEST)/lib64!2' debian/patches/0001-Fix_FTBFS_on_kFreeBSD.patch
+
 for i in debian/patches/*.patch; do patch -p1 < $i; done
 sed -i 's:$(GLEW_DEST)/include/GL:$(GLEW_DEST)/include/glewmx-%{version}/GL:' Makefile
 
 %build
 # This doesn't get actually installed but is to change glewmx.pc before installation
-%make_build
+%make_build LIBDIR="%{_libdir}"
 sed -i 's:includedir=${prefix}/include:includedir=${prefix}/include/glewmx-%{version}:' glewmx.pc
 
 %install
 # Only MX is installed
-%make_build DESTDIR=%{buildroot} INSTALL="/usr/bin/install -p" install.mx
+%make_build DESTDIR=%{buildroot} INSTALL="/usr/bin/install -p" LIBDIR="%{_libdir}" install.mx
 
 %files
 %license LICENSE.txt

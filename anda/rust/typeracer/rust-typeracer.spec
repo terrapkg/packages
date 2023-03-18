@@ -6,8 +6,8 @@
 %global crate typeracer
 
 Name:           rust-typeracer
-Version:        2.1.2
-Release:        %autorelease
+Version:        2.1.3
+Release:        1%{?dist}
 Summary:        Terminal typing game
 
 License:        GPL-3.0

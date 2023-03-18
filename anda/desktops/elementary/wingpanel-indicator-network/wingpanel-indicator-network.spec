@@ -5,7 +5,7 @@
 
 Name:           wingpanel-indicator-network
 Summary:        Network Indicator for wingpanel
-Version:        2.3.4
+Version:        7.0.1
 Release:        1%{?dist}
 License:        GPLv3+
 
@@ -51,7 +51,7 @@ A network indicator for wingpanel.
 
 %check
 appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
+    %{buildroot}/%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %files -f network-indicator.lang
@@ -60,7 +60,7 @@ appstream-util validate-relax --nonet \
 
 %{_libdir}/wingpanel/libnetwork.so
 
-%{_datadir}/metainfo/%{appname}.appdata.xml
+%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %changelog

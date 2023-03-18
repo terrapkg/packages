@@ -22,7 +22,6 @@ jobs:
     container:
       image: ghcr.io/terrapkg/builder:main
       options: --cap-add=SYS_ADMIN --privileged
-    # check out the repo
     steps:
       - name: Set workspace as safe
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
@@ -50,7 +49,6 @@ jobs:
 
       #     echo "::set-output name=build_matrix::$build_matrix"
       #     #echo "::set-output name=build_matrix::$build_matrix"
-
       - name: Generate build matrix
         id: generate_build_matrix
         run: |
@@ -62,7 +60,6 @@ jobs:
         pkg: ${{ fromJson(needs.manifest.outputs.build_matrix) }}
         version: ["37"]
       fail-fast: false
-    #if: ${{ matrix.changed_folders != '' }}
     runs-on: ${{ matrix.pkg.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
     container:
       image: ghcr.io/terrapkg/builder:main
