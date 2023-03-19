@@ -80,4 +80,4 @@ developing applications that use %{name}.
 
 %changelog
 * Tue Oct 25 2022 Cappy Ishihara <cappy@cappuchino.xyz>
-- 
+- Initial package.

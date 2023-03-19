@@ -1,2 +1,0 @@
-let v = gh("AppImageCommunity/libappimage");
-rpm.f = sub("%global libver(\\s+)(.+)", `%global libver$1${v}`, rpm.f);
