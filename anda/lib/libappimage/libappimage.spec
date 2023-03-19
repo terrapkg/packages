@@ -13,7 +13,6 @@ Summary:        Implements functionality for dealing with AppImage files
 License:        MIT
 URL:            https://github.com/AppImageCommunity/libappimage
 Source0:        %{url}/archive/refs/tags/v%{libver}.tar.gz
-Patch0:         0001-fix-missing-import.patch
 
 BuildRequires:  make
 BuildRequires:  cmake
@@ -43,6 +42,9 @@ developing applications that use %{name}.
 
 %prep
 %autosetup -n %{name}-%{libver}
+echo "#include <cstdint>" > a.h
+cat src/libappimage/utils/hashlib.h >> a.h
+mv a.h src/libappimage/utils/hashlib.h
 
 
 %build
