@@ -42,6 +42,9 @@ developing applications that use %{name}.
 
 %prep
 %autosetup -n %{name}-%{libver}
+echo "#include <cstdint>" > a.h
+cat src/libappimage/utils/hashlib.h >> a.h
+mv a.h src/libappimage/utils/hashlib.h
 
 
 %build
