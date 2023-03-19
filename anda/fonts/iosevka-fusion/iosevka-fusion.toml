@@ -16,7 +16,7 @@ cv09 = 1    # I cap long serifs
 cv10 = 2    # J cap serified
 cv11 = 2    # K cap curly
 cv12 = 1    # L cap serifless
-cv13 = 3    # M cap short middle leg slanted sides
+cv13 = 1    # M cap short middle leg
 cv14 = 1    # N cap symmetric
 cv15 = 1    # P cap straight
 cv16 = 4    # Q cap crossing tail
@@ -63,12 +63,11 @@ cv91 = 2    # $ dollar strike through
 cv92 = 2    # ¢ cent strike through
 cv93 = 1    # % percent dots
 cv94 = 1    # | bar natural slope
-cv95 = 2    # ≥ equal-or-{higher,lower} slanted
-cv96 = 1    # ' single quote straight
-cv97 = 1    # ` grave/backtick straight
-cv98 = 1    # ? smooth
-cv99 = 2    # .:; square punctuation marks
-VXDD = 2    # ijäöü square diacretics
+cv95 = 1    # ' single quote straight
+cv96 = 1    # ` grave/backtick straight
+cv97 = 1    # ? smooth
+cv98 = 2    # .:; square punctuation marks
+cv99 = 2    # ijäöü square diacretics
 
 [buildPlans.iosevka-fusion.variants.upright]
 cv26 = 3    # a double storey rounded
