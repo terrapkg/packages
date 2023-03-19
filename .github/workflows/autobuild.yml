@@ -72,9 +72,15 @@ jobs:
           extraArgs: -D "sccache_bucket ${{secrets.SCCACHE_BUCKET}}" -D "sccache_endpoint ${{secrets.SCCACHE_ENDPOINT}}" -D "sccache_secret ${{secrets.SCCACHE_SECRET}}" -D "sccache_accesskey ${{secrets.SCCACHE_ACCESSKEY}}"
           andaRepo: https://github.com/terrapkg/subatomic-repos/raw/main/terra${{ matrix.version }}.repo
 
+      - id: art
+        run: |
+          NAME=${{ matrix.pkg.pkg }}-${{ matrix.pkg.arch }}-${{ matrix.version }}
+          x=${NAME//\//@}
+          echo "name=$x" >> $GITHUB_OUTPUT
+
       - uses: actions/upload-artifact@v3
         with:
-          name: ${{ matrix.pkg.pkg }}-${{ matrix.pkg.arch }}-${{ matrix.version }}
+          name: ${{ steps.art.outputs.name }}
           path: anda-build/rpm/rpms/*
 
       - name: Upload packages to subatomic
