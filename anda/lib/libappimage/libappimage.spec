@@ -42,6 +42,9 @@ developing applications that use %{name}.
 
 %prep
 %autosetup -n %{name}-%{libver}
+echo "#include <cstdint>" > a.h
+cat src/libappimage/utils/hashlib.h >> a.h
+mv a.h src/libappimage/utils/hashlib.h
 
 
 %build
@@ -80,4 +83,4 @@ developing applications that use %{name}.
 
 %changelog
 * Tue Oct 25 2022 Cappy Ishihara <cappy@cappuchino.xyz>
-- 
+- Initial package.
