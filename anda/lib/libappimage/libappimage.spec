@@ -13,6 +13,7 @@ Summary:        Implements functionality for dealing with AppImage files
 License:        MIT
 URL:            https://github.com/AppImageCommunity/libappimage
 Source0:        %{url}/archive/refs/tags/v%{libver}.tar.gz
+Patch0:         0001-fix-missing-import.patch
 
 BuildRequires:  make
 BuildRequires:  cmake
