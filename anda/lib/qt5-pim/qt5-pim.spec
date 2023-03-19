@@ -115,6 +115,8 @@ mkdir -p %{buildroot}%{_qt5_docdir}/html/ %{buildroot}%{_qt5_docdir}/qch/
 mv doc/*.qch %{buildroot}%{_qt5_docdir}/qch/
 cp -a doc/* %{buildroot}%{_qt5_docdir}/html/
 
+cp -a ./include/* %{buildroot}%{_qt5_includedir}
+
 %files
 %license LICENSE.GPL2 LICENSE.GPL3 LICENSE.GPL3-EXCEPT
 %{_libdir}/libQt5Contacts.so.*
