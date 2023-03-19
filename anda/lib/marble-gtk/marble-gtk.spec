@@ -8,7 +8,9 @@ BuildRequires:	vala pkgconfig(gtk4) meson >= 0.50.0
 BuildRequires:	pkgconfig(gtk+-3.0) >= 3.24
 BuildRequires:	pkgconfig(gio-2.0) >= 2.50
 
-Source0:        %{url}/-/archive/v%{version}/marble-v%{version}.tar.gz
+Provides:		pkgconfig(marble) = 42
+
+Source0:		%{url}/-/archive/v%{version}/marble-v%{version}.tar.gz
 
 %description
 %summary.
