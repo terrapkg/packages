@@ -87,6 +87,8 @@ Requires:         java-1.8.0-openjdk
 
 # xrandr needed for LWJGL [2.9.2, 3) https://github.com/LWJGL/lwjgl/issues/128
 Recommends:       xrandr
+# libflite needed for using narrator in minecraft
+Recommends:       flite
 # Prism supports enabling gamemode
 Suggests:         gamemode
 
@@ -184,6 +186,9 @@ fi
 
 
 %changelog
+* Mon Mar 20 2023 seth <getchoo at tuta dot io> - 7.0^20230319.6dcf34a-1
+- recommend flite to support narrator in minecraft
+
 * Fri Feb 03 2023 seth flynn <getchoo at tuta dot io> - 7.0^20230203.58d9ced-1
 - disable tests and explicitly require cmark
 

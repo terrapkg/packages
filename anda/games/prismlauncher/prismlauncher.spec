@@ -29,7 +29,7 @@
 
 Name:             prismlauncher
 Version:          6.3
-Release:          1%{?dist}
+Release:          2%{?dist}
 Summary:          Minecraft launcher with ability to manage multiple instances
 License:          GPL-3.0-only
 Group:            Amusements/Games
@@ -73,6 +73,8 @@ Requires:         java-1.8.0-openjdk
 
 # xrandr needed for LWJGL [2.9.2, 3) https://github.com/LWJGL/lwjgl/issues/128
 Recommends:       xrandr
+# libflite needed for using narrator in minecraft
+Recommends:       flite
 # Prism supports enabling gamemode
 Suggests:         gamemode
 
@@ -156,6 +158,9 @@ fi
 
 
 %changelog
+* Mon Mar 20 2023 seth <getchoo at tuta dot io> - 6.3-2
+- recommend flite to support narrator in minecraft
+
 * Sat Feb 04 2023 seth <getchoo at tuta dot io> - 6.3-1
 - update to 6.3
 
