@@ -11,21 +11,23 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-      - name: Setup Git
+      - name: Install SSH key
         run: |
           mkdir -p ${{ runner.temp }}
           echo "${{ secrets.SSH_SIGNING_KEY }}" > ${{ runner.temp }}/signing_key
           chmod 0700 ${{ runner.temp }}/signing_key
-          git config --global --add safe.directory "$GITHUB_WORKSPACE"
-          git config user.name "Raboneko"
-          git config user.email "raboneko@fyralabs.com"
-          git config gpg.format "ssh"
-          git config user.signingkey "${{ runner.temp }}/signing_key"
       - name: Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
           ssh-key: ${{ secrets.SSH_AUTHENTICATION_KEY }}
+      - name: Setup Git
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git config user.name "Raboneko"
+          git config user.email "raboneko@fyralabs.com"
+          git config gpg.format "ssh"
+          git config user.signingkey "${{ runner.temp }}/signing_key"
       - name: Download patches
         run: |
           curl https://github.com/terrapkg/packages/pull/${{ github.event.pull_request.number }}.patch > pr.patch
