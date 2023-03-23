@@ -3,7 +3,7 @@
 %forgemeta
 
 Name:           lomiri-url-dispatcher
-Version:        0.1.0
+Version:        0.1.2
 Release:        %autorelease
 Summary:        A small library for handling URLs over dbus
 
