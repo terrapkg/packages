@@ -431,7 +431,8 @@ use the "webdav" feature of the "%{crate}" crate.
 %install
 %cargo_install
 
-rm -rf %{buildroot}/usr/share/cargo/registry/
+# honestly this is nonsense
+mv '%{buildroot}/usr/share/cargo/registry/***-%{version}' %{buildroot}/usr/share/cargo/registry/%{crate}-%{version}
 
 %if %{with check}
 %check
