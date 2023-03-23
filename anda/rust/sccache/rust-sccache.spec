@@ -32,7 +32,6 @@ Summary:        %{summary}
 %doc CODE_OF_CONDUCT.md
 %doc README.md
 %{_bindir}/sccache
-%{_bindir}/sccache-dist
 
 %package        devel
 Summary:        %{summary}
