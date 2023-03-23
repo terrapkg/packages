@@ -5,8 +5,8 @@ Summary:        Touch Frame Library
 
 License:        GPLv3 AND LGPLv3
 URL:            https://launchpad.net/frame
-Source0:        http://archive.ubuntu.com/ubuntu/pool/universe/f/frame/frame_2.5.0daily13.06.05+16.10.20160809.orig.tar.gz
-Patch0:         http://archive.ubuntu.com/ubuntu/pool/universe/f/frame/frame_2.5.0daily13.06.05+16.10.20160809-0ubuntu3.diff.gz
+Source0:        http://archive.ubuntu.com/ubuntu/pool/universe/f/frame/frame_%{version}daily13.06.05+16.10.20160809.orig.tar.gz
+Patch0:         http://archive.ubuntu.com/ubuntu/pool/universe/f/frame/frame_%{version}daily13.06.05+16.10.20160809-0ubuntu3.diff.gz
 
 BuildRequires: automake libtool gnome-common
 BuildRequires: intltool
