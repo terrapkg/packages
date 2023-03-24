@@ -21,7 +21,7 @@ BuildRequires: intltool
 Configuration schemas for lomiri desktop enviroment.
 
 %prep
-%autosetup -n %name-%commit
+%autosetup -n %{name}-%commit
 
 %build
 %cmake -DCMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT=true
