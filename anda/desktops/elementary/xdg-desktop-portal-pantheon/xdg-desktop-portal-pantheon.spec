@@ -6,7 +6,7 @@ License:		GPL-3.0
 URL:			https://github.com/elementary/portals
 Source0:		%url/archive/refs/tags/%version.tar.gz
 Requires:		gtk4 glib2 granite-7 libX11
-BuildRequires:	ninja vala meson glib2-devel pkgconfig(granite-7) gtk4-devel pkgconfig(x11)
+BuildRequires:	ninja-build vala meson glib2-devel pkgconfig(granite-7) gtk4-devel pkgconfig(x11)
 
 %description
 Backend implementation for xdg-desktop-portal for the Pantheon desktop environment
