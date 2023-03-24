@@ -3,7 +3,7 @@
 %forgemeta
 
 Name:          process-cpp
-Version:       3.0.2
+Version:       3.0.1
 Release:       %autorelease
 Summary:       A simple convenience library for handling processes in C++
 
