@@ -3,7 +3,7 @@
 %forgemeta
 
 Name:       gsettings-qt
-Version:    0.3
+Version:    0.2
 Release:    %autorelease
 Summary:    QML Bindings for GSettings
 License:    LGPLv3
