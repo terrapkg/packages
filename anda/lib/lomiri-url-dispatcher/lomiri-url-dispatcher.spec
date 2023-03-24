@@ -3,7 +3,7 @@
 %forgemeta
 
 Name:           lomiri-url-dispatcher
-Version:        0.1.0
+Version:        0.1.2
 Release:        %autorelease
 Summary:        A small library for handling URLs over dbus
 
@@ -26,6 +26,7 @@ BuildRequires: pkgconfig(sqlite3)
 BuildRequires: pkgconfig(systemd)
 BuildRequires: pkgconfig(libapparmor)
 Requires:      lomiri-ui-toolkit
+ExclusiveArch: x86_64
 
 %description
 Lomiri-url-dispatcher is a small handler to take URLs and do what is appropriate with them.

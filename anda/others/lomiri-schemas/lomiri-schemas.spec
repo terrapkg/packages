@@ -8,7 +8,7 @@ Release:    %autorelease
 Summary:    Configuration schemas for lomiri
 License:    LGPLv2+
 URL:        https://gitlab.com/ubports/development/core/lomiri-schemas
-Source0:    %{url}/-/archive/%commit/lomiri-schemas-%commit.tar.gz
+Source0:    %url/-/archive/%commit/lomiri-schemas-%commit.tar.gz
 BuildArch:  noarch
 
 BuildRequires: cmake
