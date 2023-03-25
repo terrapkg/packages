@@ -20,7 +20,6 @@ meson build --prefix=/usr
 %install
 cd build
 ninja install
-/usr/libexec/xdg-desktop-portal-pantheon -r
 
 %check
 cd build
