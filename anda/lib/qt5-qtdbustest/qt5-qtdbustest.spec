@@ -1,11 +1,14 @@
+%global forgeurl https://gitlab.com/ubports/development/core/libqtdbustest
+%global commit f204bb8d7e9a2ffcd159d2f51f47257a715bbd62
+%forgemeta
+
 Name:       qt5-qtdbustest
-Version:    0.2+bzr42
+Version:    0.3
 Release:    %autorelease
 Summary:    Library for testing DBus interactions using Qt5
 License:    LGPLv3
-URL:        https://launchpad.net/libqtdbustest
-Source0:    http://deb.debian.org/debian/pool/main/libq/libqtdbustest/libqtdbustest_0.2+bzr42+repack1.orig.tar.xz
-Source1:    https://salsa.debian.org/debian-ayatana-team/libqtdbustest/-/archive/master/libqtdbustest-master.tar.gz
+URL:        https://gitlab.com/ubports/development/core/libqtdbustest
+Source0:    %{url}/-/archive/%commit/qtdbustest-%commit.tar.gz
 
 BuildRequires: cmake
 BuildRequires: cmake-extras
@@ -29,10 +32,7 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 developing applications that use %{name}.
 
 %prep
-%autosetup -n libqtdbustest-%{version}
-# Apply fixes
-tar -xf '%{SOURCE1}'
-for i in $(cat libqtdbustest-master/debian/patches/series); do patch -p1 < libqtdbustest-master/debian/patches/$i; done
+%autosetup -n libqtdbustest-%commit
 
 %build
 %cmake
@@ -51,7 +51,6 @@ for i in $(cat libqtdbustest-master/debian/patches/series); do patch -p1 < libqt
 %{_datadir}/libqtdbustest/*.conf
 
 %files devel
-%license COPYING
 %dir %{_includedir}/libqtdbustest-1
 %dir %{_includedir}/libqtdbustest-1/libqtdbustest
 %{_includedir}/libqtdbustest-1/libqtdbustest/*.h
