@@ -1,5 +1,5 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-ui-toolkit
-%global commit 57b9c01a64b06ee57a0c73657e5a61f369911954
+%global commit b996aa8e9d5add6e9d55f9a44a9fafc548d819c1
 %forgemeta
 
 Name:           lomiri-ui-toolkit
@@ -20,7 +20,7 @@ BuildRequires: gcc
 BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig(dbus-1)
 BuildRequires: libXi-devel
-Buildrequires: lttng-ust-devel
+BuildRequires: lttng-ust-devel
 BuildRequires: qt5-doctools
 BuildRequires: qt5-rpm-macros
 BuildRequires: qt5-qtdeclarative
