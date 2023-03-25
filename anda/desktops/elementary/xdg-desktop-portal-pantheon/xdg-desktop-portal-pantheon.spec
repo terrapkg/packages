@@ -22,12 +22,10 @@ Backend implementation for xdg-desktop-portal for the Pantheon desktop environme
 
 %install
 %meson_install
-#cd build
-#ninja install
 
 %check
-cd build
-ninja test
+%meson_test
+
 
 %files
 %doc README.md
