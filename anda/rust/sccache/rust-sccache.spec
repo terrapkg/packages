@@ -12,7 +12,7 @@ Source:         %{crates_source}
 # Automatically generated patch to strip foreign dependencies
 Patch:          sccache-fix-metadata-auto.diff
 
-BuildRequires:  anda-srpm-macros cargo-rpm-macros >= 24 openssl-devel
+BuildRequires:  anda-srpm-macros cargo-rpm-macros >= 24 openssl-devel pkg-config
 
 %global _description %{expand:
 Sccache is a ccache-like tool. It is used as a compiler wrapper and
