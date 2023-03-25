@@ -28,7 +28,6 @@ ninja test
 %files
 %doc README.md
 %license COPYING
-/usr/libexec/xdg-desktop-portal-pantheon
 
 %changelog
 * Sat Mar 25 2023 windowsboy111 <windowsboy111@fyralabs.com>
