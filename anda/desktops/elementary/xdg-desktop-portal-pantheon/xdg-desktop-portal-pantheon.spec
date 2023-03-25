@@ -1,3 +1,5 @@
+%define debug_package %{nil}
+
 Name:			xdg-desktop-portal-pantheon
 Version:		7.0.0
 Release:		%?dist
@@ -28,6 +30,11 @@ ninja test
 %files
 %doc README.md
 %license COPYING
+/usr/share/xdg-desktop-portal/portals/pantheon.portal
+/usr/share/dbus-1/services/org.freedesktop.impl.portal.desktop.pantheon.service
+/usr/lib/systemd/user/xdg-desktop-portal-pantheon.service
+/usr/libexec/xdg-desktop-portal-pantheon
+/usr/share/metainfo/io.elementary.portals.metainfo.xml
 
 %changelog
 * Sat Mar 25 2023 windowsboy111 <windowsboy111@fyralabs.com>
