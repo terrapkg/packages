@@ -20,7 +20,7 @@ BuildRequires: gcc
 BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig(dbus-1)
 BuildRequires: libXi-devel
-Buildrequires: lttng-ust-devel
+BuildRequires: lttng-ust-devel
 BuildRequires: qt5-doctools
 BuildRequires: qt5-rpm-macros
 BuildRequires: qt5-qtdeclarative
