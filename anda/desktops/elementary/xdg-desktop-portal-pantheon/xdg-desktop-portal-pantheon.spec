@@ -17,11 +17,13 @@ Backend implementation for xdg-desktop-portal for the Pantheon desktop environme
 %autosetup -n portals-%version
 
 %build
-meson build --prefix=/usr
+%meson --prefix=/usr
+%meson_build
 
 %install
-cd build
-ninja install
+%meson_install
+#cd build
+#ninja install
 
 %check
 cd build
