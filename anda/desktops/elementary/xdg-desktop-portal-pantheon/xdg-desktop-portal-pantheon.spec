@@ -18,6 +18,7 @@ Backend implementation for xdg-desktop-portal for the Pantheon desktop environme
 meson build --prefix=/usr
 
 %install
+cd build
 ninja install
 /usr/libexec/xdg-desktop-portal-pantheon -r
 
