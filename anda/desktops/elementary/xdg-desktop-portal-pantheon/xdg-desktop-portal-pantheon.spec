@@ -35,6 +35,7 @@ Backend implementation for xdg-desktop-portal for the Pantheon desktop environme
 /usr/lib/systemd/user/xdg-desktop-portal-pantheon.service
 /usr/libexec/xdg-desktop-portal-pantheon
 /usr/share/metainfo/io.elementary.portals.metainfo.xml
+/usr/share/locale/*/LC_MESSAGES/xdg-desktop-portal-pantheon.mo
 
 %changelog
 * Sat Mar 25 2023 windowsboy111 <windowsboy111@fyralabs.com>
