@@ -427,10 +427,10 @@ use the "webdav" feature of the "%{crate}" crate.
 %cargo_prep_online
 
 %build
-%cargo_build --all-features
+%cargo_build -a
 
 %install
-%cargo_install --all-features
+%cargo_install -a
 
 %if %{with check}
 %check
