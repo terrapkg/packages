@@ -31,7 +31,7 @@ BuildRequires: pkgconfig(x11)
 BuildRequires: pkgconfig(dbusmenu-glib-0.4)
 BuildRequires: pkgconfig(vala-panel)
 BuildRequires: pkgconfig(libmatepanelapplet-4.0)
-Provides:      vala-panel-appmenu-plugin
+Provides:      vala-panel-appmenu-plugin = %{version}
 Requires:      unity-gtk3-module
 Requires:      unity-gtk2-module
 Requires:      bamf-daemon

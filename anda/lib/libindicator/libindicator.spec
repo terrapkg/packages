@@ -1,27 +1,26 @@
-Name:		libindicator
-Version:	16.10.0
-Release:	%autorelease
-Summary:	Shared functions for Ayatana indicators
+Name:			libindicator
+Version:		16.10.0
+Release:		%autorelease
+Summary:		Shared functions for Ayatana indicators
 
-License:	GPLv3
-URL:		https://launchpad.net/libindicator
-Source0:	http://archive.ubuntu.com/ubuntu/pool/universe/libi/libindicator/libindicator_16.10.0+18.04.20180321.1.orig.tar.gz
-Source1:        https://raw.githubusercontent.com/ubports/libindicator/097906132ffb479205be15a92cae97e5daf4e154/data/indicators.target
+License:		GPL-3.0
+URL:			https://launchpad.net/libindicator
+Source0:		http://archive.ubuntu.com/ubuntu/pool/universe/libi/libindicator/libindicator_16.10.0+18.04.20180321.1.orig.tar.gz
+Source1:		https://raw.githubusercontent.com/ubports/libindicator/097906132ffb479205be15a92cae97e5daf4e154/data/indicators.target
 # From GLib 2.62
-Patch1:	        http://archive.ubuntu.com/ubuntu/pool/universe/libi/libindicator/libindicator_16.10.0+18.04.20180321.1-0ubuntu5.diff.gz
+Patch1:			http://archive.ubuntu.com/ubuntu/pool/universe/libi/libindicator/libindicator_16.10.0+18.04.20180321.1-0ubuntu5.diff.gz
 
 BuildRequires:	chrpath
 BuildRequires:	gtk-doc
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
-BuildRequires:  pkgconfig(systemd)
+BuildRequires:	pkgconfig(systemd)
 BuildRequires:	dbus-glib-devel
 BuildRequires:	gtk2-devel
 BuildRequires:	gtk3-devel
-BuildRequires:  systemd-rpm-macros
-#Requires:       ido-devel
+BuildRequires:	systemd-rpm-macros
 BuildRequires:	gnome-common
-BuildRequires:  make
+BuildRequires:	make
 
 %description
 A set of symbols and convenience functions that all Ayatana indicators are
@@ -39,7 +38,7 @@ developing applications that use %{name}.
 
 %package gtk3
 Summary:	GTK+3 build of %{name}
-Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:	%{name}%{?_isa} = %{version}-%{release}
 
 %description gtk3
 A set of symbols and convenience functions that all Ayatana indicators
@@ -80,7 +79,7 @@ mkdir build-gtk2 build-gtk3
 
 pushd build-gtk2
 export CFLAGS="%{optflags} -Wno-error=deprecated-declarations"
-%configure --with-gtk=2 --disable-tests --disable-static --disable-silent-rules
+%configure --with-gtk=2 --disable-tests --disable-static --disable-silent-rules --libdir=%{_libdir}
 sed -i -e 's! -shared ! -Wl,--as-needed\0!g' libtool
 sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
 sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
@@ -89,7 +88,7 @@ popd
 
 pushd build-gtk3
 export CFLAGS="%{optflags} -Wno-error=deprecated-declarations"
-%configure --with-gtk=3 --disable-tests --disable-static --disable-silent-rules
+%configure --with-gtk=3 --disable-tests --disable-static --disable-silent-rules --libdir=%{_libdir}
 sed -i -e 's! -shared ! -Wl,--as-needed\0!g' libtool
 sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
 sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
@@ -131,7 +130,7 @@ popd
 )
 
 # Ubuntu doesn't package the dummy indicator
-#rm -f %{buildroot}%{_libdir}/libdummy-indicator*.so
+%dnl rm -f %{buildroot}%{_libdir}/libdummy-indicator*.so
 
 # Remove libtool files
 find %{buildroot} -type f -name '*.la' -delete

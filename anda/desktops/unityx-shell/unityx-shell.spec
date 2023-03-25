@@ -84,20 +84,20 @@ Requires:	%{name}%{?_isa} = %{version}-%{release}
 This package contains the core library needed for Unity and Unity 2D.
 
 %package devel
-Summary:	Development files for the core Unity library
-Requires:	%{name}%{?_isa} = %{version}-%{release}
-Requires:	pkgconfig(dee-1.0)
-Requires:	pkgconfig(glib-2.0)
-Requires:	pkgconfig(sigc++-2.0)
-Requires:	pkgconfig(unity)
-Requires:	pkgconfig(nux-4.0)
+Summary:  Development files for the core Unity library
+Requires: %{name}%{?_isa} = %{version}-%{release}
+Requires: pkgconfig(dee-1.0)
+Requires: pkgconfig(glib-2.0)
+Requires: pkgconfig(sigc++-2.0)
+Requires: pkgconfig(unity)
+Requires: pkgconfig(nux-4.0)
 
 %description devel
 This package contains the development files the core Unity library.
 
 %package -n plotinus
-Summary:	Automatic testing for Unity
-Requires:	%{name}%{?_isa} = %{version}-%{release}
+Summary:  Automatic testing for Unity
+Requires: %{name}%{?_isa} = %{version}-%{release}
 
 %description -n plotinus
 This package contains the autopilot framework, which allows for triggering

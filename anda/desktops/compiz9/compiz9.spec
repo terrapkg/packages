@@ -57,8 +57,8 @@ Requires:      metacity
 Requires:      glx-utils
 
 %package devel
-Summary:	Development files for %{name}
-Requires:	%{name}%{?_isa} = %{version}-%{release}
+Summary:    Development files for %{name}
+Requires:   %{name}%{?_isa} = %{version}-%{release}
 
 %description devel
 This package contains the development files for %{name}.

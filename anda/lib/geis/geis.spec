@@ -28,8 +28,8 @@ Requires:      python3
 An implementation of the GEIS (Gesture Engine Interface and Support) interface.
 
 %package devel
-Summary:	Development files for %{name}
-Requires:	%{name}%{?_isa} = %{version}-%{release}
+Summary:  Development files for %{name}
+Requires: %{name}%{?_isa} = %{version}-%{release}
 
 %description devel
 The %{name}-devel package contains libraries and header files for

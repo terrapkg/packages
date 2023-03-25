@@ -2,57 +2,57 @@
 %global commit 0ba4fbaa112a37e7756c64f339f0569483d1e52f
 %forgemeta
 
-Name:           unity-shell
-Version:        1.7.7
-Release:        %autorelease
-Summary:        Unity is a shell that sings
+Name:			unity-shell
+Version:		1.7.7
+Release:		%autorelease
+Summary:		Unity is a shell that sings
 
-License:        GPLv3+
+License:		GPLv3+
 # forgeurl doesn't really work with spectool, tries https://gitlab.com/ubuntu-unity/unity instead of https://gitlab.com/ubuntu-unity/unity/unity
-URL:            https://gitlab.com/ubuntu-unity/unity/unity
-Source0:        %{url}/-/archive/%commit/unity-%commit.tar.bz2
-Patch0:         0001-Remove-xpathselect-dependency.patch
-Patch1:         0002-Remove-ido-dependency.patch
-Patch2:         0003-Remove-social-scope.patch
+URL:			https://gitlab.com/ubuntu-unity/unity/unity
+Source0:		%{url}/-/archive/%commit/unity-%commit.tar.bz2
+Patch0:			0001-Remove-xpathselect-dependency.patch
+Patch1:			0002-Remove-ido-dependency.patch
+Patch2:			0003-Remove-social-scope.patch
 
-BuildRequires: cmake
-BuildRequires: g++
-BuildRequires: gcc
-BuildRequires: dee-devel
-BuildRequires: gnome-desktop3-devel
-BuildRequires: pkgconfig(zeitgeist-2.0)
-BuildRequires: libappstream-glib-devel
-BuildRequires: libdbusmenu-devel
-BuildRequires: bamf-devel
-BuildRequires: libindicator-gtk3-devel
-BuildRequires: json-glib-devel
-BuildRequires: libnotify-devel
-BuildRequires: libsigc++20-devel
-BuildRequires: libunity-devel
-BuildRequires: doxygen
-BuildRequires: pam-devel
-BuildRequires: boost-devel
-BuildRequires: python3-devel
-BuildRequires: python3-setuptools
-BuildRequires: pkgconfig(libstartup-notification-1.0)
-BuildRequires: pkgconfig(nux-4.0)
-BuildRequires: compiz9-devel
-BuildRequires: pkgconfig(unity-misc)
-BuildRequires: chrpath
-BuildRequires: systemd-rpm-macros
-BuildRequires: pkgconfig(libunity-settings-daemon)
-Requires:      python3-gobject
-Requires:      dconf
-Requires:      gsettings-ubuntu-touch-schemas
-Requires:      %{name}-data = %{version}-%{release}
-Requires:      %{name}-core%{?_isa} = %{version}-%{release}
-Requires:      pam
-Requires:      bamf-daemon
-Requires:      unity-gtk-module-common
-Requires:      compiz9
-Requires:      libindicator-gtk3
-Recommends:    unity-greeter
-Recommends:    unity-scope-home
+BuildRequires:	cmake
+BuildRequires:	g++
+BuildRequires:	gcc
+BuildRequires:	dee-devel
+BuildRequires:	gnome-desktop3-devel
+BuildRequires:	pkgconfig(zeitgeist-2.0)
+BuildRequires:	libappstream-glib-devel
+BuildRequires:	libdbusmenu-devel
+BuildRequires:	bamf-devel
+BuildRequires:	libindicator-gtk3-devel
+BuildRequires:	json-glib-devel
+BuildRequires:	libnotify-devel
+BuildRequires:	libsigc++20-devel
+BuildRequires:	libunity-devel
+BuildRequires:	doxygen
+BuildRequires:	pam-devel
+BuildRequires:	boost-devel
+BuildRequires:	python3-devel
+BuildRequires:	python3-setuptools
+BuildRequires:	pkgconfig(libstartup-notification-1.0)
+BuildRequires:	pkgconfig(nux-4.0)
+BuildRequires:	compiz9-devel
+BuildRequires:	pkgconfig(unity-misc)
+BuildRequires:	chrpath
+BuildRequires:	systemd-rpm-macros
+BuildRequires:	pkgconfig(libunity-settings-daemon)
+Requires:		python3-gobject
+Requires:		dconf
+Requires:		gsettings-ubuntu-touch-schemas
+Requires:		%{name}-data = %{version}-%{release}
+Requires:		%{name}-core%{?_isa} = %{version}-%{release}
+Requires:		pam
+Requires:		bamf-daemon
+Requires:		unity-gtk-module-common
+Requires:		compiz9
+Requires:		libindicator-gtk3
+Recommends:		unity-greeter
+Recommends:		unity-scope-home
 
 %description
 Unity is a desktop experience that sings. Designed by Canonical and the Ayatana
@@ -89,10 +89,10 @@ This package contains the development files the core Unity library.
 
 %package data
 Summary:	Common files for the Unity shell
-BuildArch:      noarch
+BuildArch:	noarch
 Group:		User Interface/Desktops
 # For /usr/etc/pam.d/unity
-Recommends:     gnome-keyring-pam
+Recommends:	gnome-keyring-pam
 Requires:	%{name} = %{version}-%{release}
 
 %description data
@@ -149,7 +149,7 @@ chrpath --delete $RPM_BUILD_ROOT%{_libdir}/libunity-core-6.0.so.9.0.0
 
 %postun
 if [ ${1} -eq 0 ]; then
-  glib-compile-schemas %{_datadir}/glib-2.0/schemas &>/dev/null || :
+	glib-compile-schemas %{_datadir}/glib-2.0/schemas &>/dev/null || :
 fi
 
 %posttrans
