@@ -2,7 +2,7 @@ Name:    unity-scope-home
 Summary: Home scope that aggregates results from multiple scopes
 Version: 19.04.20190412
 Release: %autorelease
-License: GPLv3
+License: GPL-3.0
 URL:     https://launchpad.net/unity-scope-home
 Source0: http://archive.ubuntu.com/ubuntu/pool/universe/u/unity-scope-home/unity-scope-home_6.8.2+%{version}.orig.tar.gz
 Patch0:  https://gitlab.com/unity-for-arch/unity-scope-home/-/raw/main/fix-vala-0.56-errors.patch

@@ -4,7 +4,7 @@ Release:        %autorelease
 Summary:        Shared GSettings schemas for Ubuntu touch and Unity
 BuildArch:      noarch
 
-License:        GPLv2 AND LGPLv2
+License:        GPL-2.0 AND LGPL-2.0
 URL:            https://launchpad.net/gsettings-ubuntu-touch-schemas
 Source0:        http://archive.ubuntu.com/ubuntu/pool/main/g/gsettings-ubuntu-touch-schemas/gsettings-ubuntu-touch-schemas_%{version}.orig.tar.gz
 

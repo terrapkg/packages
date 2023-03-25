@@ -2,7 +2,7 @@ Name:           blackbox-terminal
 Version:        0.13.2
 Release:        %autorelease
 Summary:        A beautiful GTK 4 terminal
-License:        GPLv3
+License:        GPL-3.0
 URL:            https://gitlab.gnome.org/raggesilver/blackbox
 BuildRequires:  vala meson gettext 
 BuildRequires:  pkgconfig(gtk4) >= 4.6.2

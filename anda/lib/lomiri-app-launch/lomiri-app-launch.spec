@@ -6,7 +6,7 @@ Name:           lomiri-app-launch
 Version:        0.1.6
 Release:        %autorelease
 Summary:        Provides the Lomiri App Launch user space daemon
-License:        GPLv3
+License:        GPL-3.0
 URL:            https://gitlab.com/ubports/development/core/lomiri-app-launch
 Source0:        %{url}/-/archive/%commit/lomiri-app-launch-%commit.tar.gz
 

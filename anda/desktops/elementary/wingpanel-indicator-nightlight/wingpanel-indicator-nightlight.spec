@@ -7,7 +7,7 @@ Name:           wingpanel-indicator-nightlight
 Summary:        Night Light Indicator for wingpanel
 Version:        2.1.1
 Release:        1%{?dist}
-License:        GPLv2+
+License:        GPL-2.0-or-later
 
 URL:            https://github.com/elementary/wingpanel-indicator-nightlight
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz

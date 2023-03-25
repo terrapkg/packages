@@ -9,7 +9,7 @@ Version:       1.7.7
 Release:       %autorelease
 Summary:       UnityX is a smaller shell based on Unity7
 
-License:       GPLv3 AND LGPLv3
+License:       GPL-3.0 AND LGPL-3.0
 URL:           https://gitlab.com/ubuntu-unity/unity-x/unityx
 Source0:       %{url}/-/archive/%commit/unityx-%commit.tar.bz2
 Source2:       https://gitlab.xfce.org/panel-plugins/xfce4-windowck-plugin/-/commit/dee596492f006d02e2b39abd072ddd7b37fefe82.diff

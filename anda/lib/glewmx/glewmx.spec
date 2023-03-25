@@ -6,7 +6,7 @@ Version:		1.13.0.
 Release:		1%{?dist}
 Summary:		OpenGL Extension Wrangler MX
 
-License:		GPLv3+
+License:		GPL-3.0-or-later
 URL:			https://launchpad.net/ubuntu/+source/glewmx
 Source0:		http://archive.ubuntu.com/ubuntu/pool/universe/g/glewmx/glewmx_%{version}.orig.tar.gz
 Source1:		http://archive.ubuntu.com/ubuntu/pool/universe/g/glewmx/glewmx_%{version}-5.debian.tar.xz

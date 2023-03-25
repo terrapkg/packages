@@ -3,7 +3,7 @@ Version:		0.1
 Release:		1%{?dist}
 Summary:		Provides MIME types for osu! file formats
 BuildArch:		noarch
-License:		AGPLv3
+License:		AGPL-3.0
 Requires:		xdg-utils shared-mime-info desktop-file-utils
 BuildRequires:	librsvg2-tools ImageMagick
 Recommends:		osu-handler

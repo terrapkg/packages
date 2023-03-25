@@ -3,7 +3,7 @@ Version:		4.0.5
 Release:		%autorelease
 Summary:		Misc Unity shell libs
 
-License:		LGPLv2 AND LGPLv2 AND GPLv2
+License:		LGPL-2.0 AND LGPL-2.0 AND GPL-2.0
 URL:			https://launchpad.net/libunity-misc
 Source0:		http://archive.ubuntu.com/ubuntu/pool/universe/libu/libunity-misc/libunity-misc_%{version}+14.04.20140115.orig.tar.gz
 

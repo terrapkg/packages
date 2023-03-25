@@ -7,7 +7,7 @@ Version:       3.0.1
 Release:       %autorelease
 Summary:       A simple convenience library for handling processes in C++
 
-License:       LGPLv3+
+License:       LGPL-3.0-or-later
 URL:           https://gitlab.com/ubports/development/core/lib-cpp/process-cpp
 Source0:       %{url}/-/archive/%commit/process-cpp-%commit.tar.gz
 Patch0:        https://sources.debian.org/data/main/p/process-cpp/3.0.1-9/debian/patches/2001-Don-t-run-tests.patch

@@ -6,7 +6,7 @@ Name:           click
 Version:        0.5.0
 Release:        %autorelease
 Summary:        Click is a app building method
-License:        LGPLv3
+License:        LGPL-3.0
 URL:            https://gitlab.com/ubports/development/core/click
 Source0:        %{url}/-/archive/%commit/click-%commit.tar.gz
 

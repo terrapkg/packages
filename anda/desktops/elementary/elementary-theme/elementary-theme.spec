@@ -5,7 +5,7 @@ Name:           elementary-theme
 Summary:        elementary GTK+ Stylesheet
 Version:        7.1.0
 Release:        1%{?dist}
-License:        GPLv3
+License:        GPL-3.0
 
 URL:            https://github.com/elementary/stylesheet
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz

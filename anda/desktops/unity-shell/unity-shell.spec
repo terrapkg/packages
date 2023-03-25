@@ -7,7 +7,7 @@ Version:		1.7.7
 Release:		%autorelease
 Summary:		Unity is a shell that sings
 
-License:		GPLv3+
+License:		GPL-3.0-or-later
 # forgeurl doesn't really work with spectool, tries https://gitlab.com/ubuntu-unity/unity instead of https://gitlab.com/ubuntu-unity/unity/unity
 URL:			https://gitlab.com/ubuntu-unity/unity/unity
 Source0:		%{url}/-/archive/%commit/unity-%commit.tar.bz2

@@ -10,7 +10,7 @@ Name:           switchboard-plug-display
 Summary:        Switchboard Display plug
 Version:        2.3.3
 Release:        1%{?dist}
-License:        GPLv3+
+License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/switchboard-plug-display
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz

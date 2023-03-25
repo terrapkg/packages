@@ -7,7 +7,7 @@ Name:           elementary-photos
 Summary:        Photo manager and viewer from elementary
 Version:        2.8.0
 Release:        %autorelease
-License:        LGPLv2+
+License:        LGPL-2.0-or-later
 
 URL:            https://github.com/elementary/photos
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
