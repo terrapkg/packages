@@ -79,7 +79,7 @@ mkdir build-gtk2 build-gtk3
 
 pushd build-gtk2
 export CFLAGS="%{optflags} -Wno-error=deprecated-declarations"
-%configure --with-gtk=2 --disable-tests --disable-static --disable-silent-rules --libdir=%{_libdir}
+%configure --with-gtk=2 --disable-tests --disable-static --disable-silent-rules
 sed -i -e 's! -shared ! -Wl,--as-needed\0!g' libtool
 sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
 sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
@@ -88,7 +88,7 @@ popd
 
 pushd build-gtk3
 export CFLAGS="%{optflags} -Wno-error=deprecated-declarations"
-%configure --with-gtk=3 --disable-tests --disable-static --disable-silent-rules --libdir=%{_libdir}
+%configure --with-gtk=3 --disable-tests --disable-static --disable-silent-rules
 sed -i -e 's! -shared ! -Wl,--as-needed\0!g' libtool
 sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
 sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool

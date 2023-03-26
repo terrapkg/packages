@@ -62,5 +62,5 @@ chmod 755 %{buildroot}%{_bindir}/anki
 
 
 %changelog
-* Tue Jan 3 2023 windowsboy111 <windowsboy111@fyralabs.com>
+* Tue Jan 3 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2.1.60
 - Initial package

@@ -77,8 +77,8 @@ Requires:      xfwm4
 UnityX is a shell based off code from Unity7 with lighter dependencies and more customizability.
 
 %package xfce4-windowck-plugin
-Summary:	Core library for the Unity shell
-Requires:	%{name}%{?_isa} = %{version}-%{release}
+Summary:  Core library for the Unity shell
+Requires: %{name}%{?_isa} = %{version}-%{release}
 
 %description xfce4-windowck-plugin
 This package contains the core library needed for Unity and Unity 2D.
