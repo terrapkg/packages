@@ -4,7 +4,7 @@
 %global crate hyperfine
 
 Name:           rust-hyperfine
-Version:        1.16.0
+Version:        1.16.1
 Release:        1%{?dist}
 Summary:        Command-line benchmarking tool
 

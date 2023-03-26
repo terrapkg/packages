@@ -1,13 +1,13 @@
 %define debug_package %{nil}
 
 Name:           bat-extras
-Version:        2022.07.27
+Version:        2023.03.21
 Release:        1%{?dist}
 Summary:        Bash scripts that integrate bat with various command line tools
 
 License:        MIT
 URL:            https://github.com/eth-p/bat-extras
-Source0:        https://github.com/eth-p/bat-extras/archive/refs/tags/v2022.07.27.tar.gz
+Source0:        https://github.com/eth-p/bat-extras/archive/refs/tags/v%{version}.tar.gz
 
 BuildRequires:  bash
 Requires:       bash
