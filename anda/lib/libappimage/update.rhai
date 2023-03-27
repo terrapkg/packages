@@ -1,2 +1,2 @@
-let v = gh("AppImageCommunity/libappimage");
+let v = gh_tag("AppImageCommunity/libappimage");
 rpm.global("libver", v);
