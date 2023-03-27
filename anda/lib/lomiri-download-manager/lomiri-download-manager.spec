@@ -3,7 +3,7 @@
 %forgemeta
 
 Name:       lomiri-download-manager
-Version:    1.2
+Version:    0.1.2
 Release:    %autorelease
 Summary:    Upload Download Manager for Lomiri
 License:    LGPLv3
