@@ -432,6 +432,9 @@ use the "webdav" feature of the "%{crate}" crate.
 %install
 %cargo_install -f dist-server
 
+# idiotic shebang checks just mess things up
+rm -rf %{buildroot}/usr/share/cargo/registry/*/tests/oauth.rs
+
 %if %{with check}
 %check
 %cargo_test -f dist-server
