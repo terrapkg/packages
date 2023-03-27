@@ -66,10 +66,18 @@ jobs:
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - uses: terrapkg/anda-build@main
+        if: github.event_name == 'pull_request'
         with:
           name: "${{ matrix.pkg.pkg }}"
           mockConfig: anda-${{ matrix.version }}-${{ matrix.pkg.arch }}
-          extraArgs: ${{ github.event_name != 'pull_request' && '-D "sccache_bucket ${{secrets.SCCACHE_BUCKET}}" -D "sccache_endpoint ${{secrets.SCCACHE_ENDPOINT}}" -D "sccache_secret ${{secrets.SCCACHE_SECRET}}" -D "sccache_accesskey ${{secrets.SCCACHE_ACCESSKEY}}"' || '' }}
+          andaRepo: https://github.com/terrapkg/subatomic-repos/raw/main/terra${{ matrix.version }}.repo
+
+      - uses: terrapkg/anda-build@main
+        if: github.event_name != 'pull_request'
+        with:
+          name: "${{ matrix.pkg.pkg }}"
+          mockConfig: anda-${{ matrix.version }}-${{ matrix.pkg.arch }}
+          extraArgs: -D "sccache_bucket ${{secrets.SCCACHE_BUCKET}}" -D "sccache_endpoint ${{secrets.SCCACHE_ENDPOINT}}" -D "sccache_secret ${{secrets.SCCACHE_SECRET}}" -D "sccache_accesskey ${{secrets.SCCACHE_ACCESSKEY}}"
           andaRepo: https://github.com/terrapkg/subatomic-repos/raw/main/terra${{ matrix.version }}.repo
 
       - id: art
