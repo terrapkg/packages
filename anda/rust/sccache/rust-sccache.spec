@@ -424,10 +424,7 @@ use the "webdav" feature of the "%{crate}" crate.
 
 %prep
 %autosetup -n %{crate}-%{version_no_tilde} -p1
-%cargo_prep
-
-%generate_buildrequires
-%cargo_generate_buildrequires -f dist-server
+%cargo_prep_online
 
 %build
 %cargo_build -f dist-server
