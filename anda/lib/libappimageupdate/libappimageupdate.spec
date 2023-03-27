@@ -10,7 +10,7 @@
 Name:           libappimageupdate
 
 Version:        %{libver_format}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        AppImageUpdate lets you update AppImages in a decentral way using information embedded in the AppImage itself.
 
 License:        MIT
@@ -76,10 +76,11 @@ git submodule update --init --recursive
 %exclude %{_bindir}/zsyncmake2
 
 %files devel
-%{_includedir}/*
+%{_includedir}/{appimage,cpr,zs*.h}
+%exclude %{_includedir}/z{conf,lib}.h
+%exclude %{_includedir}/curl/
 %{_prefix}/lib/cmake/AppImageUpdate/
 /usr/lib/debug/usr/bin/zsync*.debug
-/usr/lib/debug/usr/bin/zsyncmake*.debug
 /usr/lib64/cmake/CURL/CURLConfig.cmake
 /usr/lib64/cmake/CURL/CURLConfigVersion.cmake
 /usr/lib64/cmake/CURL/CURLTargets-debug.cmake
@@ -89,8 +90,8 @@ git submodule update --init --recursive
 /usr/lib64/cmake/zsync2/zsync2Targets-debug.cmake
 /usr/lib64/cmake/zsync2/zsync2Targets.cmake
 /usr/lib64/pkgconfig/args.pc
-/usr/lib64/pkgconfig/libcurl.pc
-/usr/lib64/pkgconfig/zlib.pc
+%exclude /usr/lib64/pkgconfig/libcurl.pc
+%exclude /usr/lib64/pkgconfig/zlib.pc
 
 %changelog
 * Tue Oct 25 2022 Cappy Ishihara <cappy@cappuchino.xyz>

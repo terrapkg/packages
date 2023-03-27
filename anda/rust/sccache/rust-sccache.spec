@@ -6,7 +6,7 @@
 %global crate sccache
 
 Name:           rust-sccache
-Version:        0.3.3
+Version:        0.4.0
 Release:        1%{?dist}
 Summary:        Ccache-like tool
 
