@@ -3,7 +3,7 @@
 
 # https://github.com/xyproto/vt100
 %global goipath         github.com/xyproto/vt100
-Version:                1.11.3
+Version:                1.11.4
 
 # REMOVE BEFORE SUBMITTING THIS FOR REVIEW
 # ---
@@ -24,7 +24,7 @@ Version:                1.11.3
 %global godocs          TODO.md README.md cmd/widget/README.md
 
 Name:           golang-%{goname}
-Release:        %autorelease
+Release:        1%{?dist}
 Summary:        :computer: VT100 Terminal Package
 
 License:        # FIXME
