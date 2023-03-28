@@ -7,7 +7,7 @@ Name:           wingpanel-indicator-network
 Summary:        Network Indicator for wingpanel
 Version:        7.0.1
 Release:        1%{?dist}
-License:        GPLv3+
+License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/wingpanel-indicator-network
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz

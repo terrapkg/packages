@@ -1,22 +1,22 @@
-Name:          grail
-Version:       3.1.1
-Release:       %autorelease
-Summary:       Gesture Recognition And Instantiation Library
+Name:			grail
+Version:		3.1.1
+Release:		%autorelease
+Summary:		Gesture Recognition And Instantiation Library
 
-License:       GPLv3 AND LGPLv3
-URL:           https://launchpad.net/grail
-Source0:       http://archive.ubuntu.com/ubuntu/pool/universe/g/grail/grail_%{version}.orig.tar.bz2
+License:		GPL-3.0 AND LGPL-3.0-or-later
+URL:			https://launchpad.net/grail
+Source0:		http://archive.ubuntu.com/ubuntu/pool/universe/g/grail/grail_%{version}.orig.tar.bz2
 
-BuildRequires: automake libtool gnome-common
-BuildRequires: intltool
-BuildRequires: make
-BuildRequires: gcc
-BuildRequires: g++
-BuildRequires: libX11-devel
-BuildRequires: libXi-devel
-BuildRequires: libXext-devel
-BuildRequires: xorg-x11-server-devel
-BuildRequires: frame-devel
+BuildRequires:	automake libtool gnome-common
+BuildRequires:	intltool
+BuildRequires:	make
+BuildRequires:	gcc
+BuildRequires:	g++
+BuildRequires:	libX11-devel
+BuildRequires:	libXi-devel
+BuildRequires:	libXext-devel
+BuildRequires:	xorg-x11-server-devel
+BuildRequires:	frame-devel
 
 %description
 Grail consists of an interface and tools for handling gesture recognition and gesture instantiation.
@@ -40,10 +40,10 @@ PYTHON=%{__python3}
 export PYTHON
 
 %configure \
-  --disable-integration-tests \
-  --disable-silent-rules \
-  --with-x11 \
-  --disable-static
+	--disable-integration-tests \
+	--disable-silent-rules \
+	--with-x11 \
+	--disable-static
 
 %make_build
 

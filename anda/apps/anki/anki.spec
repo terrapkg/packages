@@ -2,7 +2,7 @@ Name:           anki
 Version:        2.1.60
 Release:        1%{?dist}
 Summary:        Flashcard program for using space repetition learning
-License:        AGPLv3+ and GPLv3+ and LGPLv3 and MIT and BSD and ASL 2.0 and CC-BY-SA and CC-BY
+License:        AGPL-3.0-or-later AND GPL-3.0-or-later AND LGPL-3.0-or-later AND MIT AND BSD-3-Clause AND CC-BY-SA-3.0 AND CC-BY-3.0 AND Apache-2.0 AND CC-BY-2.5
 URL:            https://apps.ankiweb.net/
 BuildRequires:  python3-devel python3-setuptools python3-waitress python3-protobuf python3-pysocks 
 BuildRequires:  python3-distro python3-flask-cors python3-jsonschema python3-send2trash python3-certifi python3-simplejson
@@ -62,5 +62,5 @@ chmod 755 %{buildroot}%{_bindir}/anki
 
 
 %changelog
-* Tue Jan 3 2023 windowsboy111 <windowsboy111@fyralabs.com>
+* Tue Jan 3 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2.1.60
 - Initial package

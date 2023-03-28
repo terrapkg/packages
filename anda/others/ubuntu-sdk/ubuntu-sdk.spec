@@ -7,7 +7,7 @@ Summary: Assets and icons for Unity
 Version: 20.04
 Release: %autorelease
 
-License:   GPLv3+
+License:   GPL-3.0-or-later
 URL:       https://gitlab.com/ubports/development/core/ubuntu-touch-meta
 Source0:   %{url}/-/archive/%commit/ubuntu-touch-meta-%commit.tar.gz
 BuildArch: noarch

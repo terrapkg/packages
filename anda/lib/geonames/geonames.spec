@@ -6,7 +6,7 @@ Name:       geonames
 Version:    0.3.0
 Release:    %autorelease
 Summary:    Parse and query the geonames database
-License:    GPLv3
+License:    GPL-3.0
 URL:        https://gitlab.com/ubports/development/core/geonames
 Source0:    %{url}/-/archive/%commit/geonames-%commit.tar.gz
 

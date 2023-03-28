@@ -6,7 +6,7 @@ Name:       gsettings-qt
 Version:    0.2
 Release:    %autorelease
 Summary:    QML Bindings for GSettings
-License:    LGPLv3
+License:    LGPL-3.0
 URL:        https://gitlab.com/ubports/development/core/gsettings-qt
 Source0:    %{url}/-/archive/%commit/gsettings-qt-%commit.tar.gz
 

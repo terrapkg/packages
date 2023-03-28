@@ -5,7 +5,7 @@ URL:		https://github.com/ful1e5/Bibata_Cursor
 Source0:	%{url}/releases/download/v%{version}/Bibata.tar.gz
 Source1:    https://raw.githubusercontent.com/ful1e5/Bibata_Cursor/v%{version}/README.md
 Source2:    https://raw.githubusercontent.com/ful1e5/Bibata_Cursor/v%{version}/LICENSE
-License:	GPLv3
+License:	GPL-3.0
 Summary:	Open source, compact, and material designed cursor set. 
 BuildArch:	noarch
 

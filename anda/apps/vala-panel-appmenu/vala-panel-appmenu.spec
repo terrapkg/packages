@@ -5,7 +5,7 @@
 Name:    vala-panel-appmenu
 Version: 0.7.6
 Release: %autorelease
-License: LGPL-3.0+
+License: LGPL-3.0-or-later
 Summary: This package provides Application Menu plugin for vala-panel
 URL:     %{forgeurl}
 Source:  %{forgesource}
@@ -31,7 +31,7 @@ BuildRequires: pkgconfig(x11)
 BuildRequires: pkgconfig(dbusmenu-glib-0.4)
 BuildRequires: pkgconfig(vala-panel)
 BuildRequires: pkgconfig(libmatepanelapplet-4.0)
-Provides:      vala-panel-appmenu-plugin
+Provides:      vala-panel-appmenu-plugin = %{version}
 Requires:      unity-gtk3-module
 Requires:      unity-gtk2-module
 Requires:      bamf-daemon

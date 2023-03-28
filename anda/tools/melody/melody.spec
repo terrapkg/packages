@@ -6,7 +6,7 @@ Summary:        An advanced rpm-ostree compose system
 Version:        1
 Release:        8%{?dist}
 
-License:        GPLv3+
+License:        GPL-3.0-or-later
 
 URL:            https://github.com/tau-OS/melody
 Source0:        https://github.com/tau-OS/melody/archive/refs/heads/main.zip

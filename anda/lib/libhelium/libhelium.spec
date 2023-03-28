@@ -2,7 +2,7 @@ Summary:        The Application Framework for tauOS apps
 Name:           libhelium
 Version:        1.5.12
 Release:        1%{?dist}
-License:        GPLv3
+License:        GPL-3.0
 URL:            https://github.com/tau-OS/libhelium
 Source0:        https://github.com/tau-OS/libhelium/archive/refs/tags/%{version}.tar.gz
 

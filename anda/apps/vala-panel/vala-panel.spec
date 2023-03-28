@@ -6,7 +6,7 @@
 Name:    vala-panel
 Version: 0.5.0
 Release: %autorelease
-License: LGPL-3.0+
+License: LGPL-3.0-or-later
 Summary: This package provides Application Menu plugin for vala-panel
 URL:     %{forgeurl}
 Source:  %{forgesource}

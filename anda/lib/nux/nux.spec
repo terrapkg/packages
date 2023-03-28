@@ -7,7 +7,7 @@ Version:        4.0.8
 Release:        %autorelease
 Summary:        An OpenGL toolkit
 
-License:        GPLv3+ AND LGPLv3+ AND LGPLv2+
+License:        GPL-3.0-or-later AND LGPL-3.0-or-later AND LGPL-2.0-or-later
 URL:            https://gitlab.com/ubuntu-unity/unity-x/nux
 Source0:        %{url}/-/archive/%commit/nux-%commit.tar.bz2
 Patch0:         https://gitlab.com/cat-master21/nux/-/commit/0e834a556818281b9e023b47f0667e8da0f5cebd.patch

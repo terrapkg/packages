@@ -7,7 +7,7 @@ Version:       0.2.0
 Release:       1%{?dist}
 Summary:       API for Lomiri
 
-License:       LGPLv3+
+License:       LGPL-3.0-or-later
 URL:           https://gitlab.com/ubports/development/core/lomiri-api
 Source0:       %{url}/-/archive/%commit/lomiri-api-%commit.tar.gz
 

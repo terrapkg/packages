@@ -9,7 +9,7 @@ Version:    0
 Release:    0.1.%{rel_tag}%{?dist}
 Summary:    Linux audio plugins ports
 URL:        https://distrho.sourceforge.io/ports.php
-License:    GPLv2 and GPLv3 and MIT
+License:    GPL-2.0 AND GPL-3.0 AND MIT
 
 Source0:    https://github.com/DISTRHO/DISTRHO-Ports/archive/refs/tags/2021-03-15.tar.gz
 

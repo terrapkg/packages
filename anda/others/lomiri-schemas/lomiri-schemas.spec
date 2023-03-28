@@ -6,7 +6,7 @@ Name:       lomiri-schemas
 Version:    0.1.3
 Release:    %autorelease
 Summary:    Configuration schemas for lomiri
-License:    LGPLv2+
+License:    LGPL-2.0-or-later
 URL:        https://gitlab.com/ubports/development/core/lomiri-schemas
 Source0:    %url/-/archive/%commit/lomiri-schemas-%commit.tar.gz
 Patch0:     https://gitlab.com/cat-master21/lomiri-schemas/-/commit/e32de385c858f9096c6014a3749117fa6f94f231.patch

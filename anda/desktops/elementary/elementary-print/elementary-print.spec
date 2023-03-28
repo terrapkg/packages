@@ -5,7 +5,7 @@ Name:           elementary-print
 Summary:        Simple shim for printing support via Contractor
 Version:        0.1.3
 Release:        9%{?dist}
-License:        GPLv3+
+License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/%{srcname}
 Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
