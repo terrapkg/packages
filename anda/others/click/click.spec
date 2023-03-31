@@ -1,5 +1,5 @@
 %global forgeurl https://gitlab.com/ubports/development/core/click
-%global commit ff697fae4259e7b0f4bef27e3817f848bc06233a
+%global commit 5cb9cd655453bb158fc49e5501c98fe4170b25a8
 %forgemeta
 
 Name:           click
@@ -41,9 +41,12 @@ Development files and headers for Click.
 %package -n python3-lomiri-click
 Summary:  Python3 files for Click
 Requires: %{name}%{?_isa} = %{version}-%{release}
+Requires: ubuntu-sdk
+Requires: python3-debian
+Requires: python3-gobject
 
 %description -n python3-lomiri-click
-Python3 files for Click.
+Python3 files and the main interface for Click.
 
 %package doc
 Summary:   Documentation files for Click
@@ -75,9 +78,6 @@ mv _build/html %{buildroot}%_pkgdocdir
 popd
 mv README %{buildroot}%_pkgdocdir
 
-# Debian / debhelper stuff not needed
-rm -rf %{buildroot}%{_bindir}/dh_click %{buildroot}%{_datarootdir}/debhelper %{buildroot}%{_datarootdir}/perl5 %{buildroot}%{_mandir}/man1/dh_click.1
-
 %files
 %license LICENSE
 %{_sysconfdir}/dbus-1/system.d/com.lomiri.click.conf
@@ -103,7 +103,11 @@ rm -rf %{buildroot}%{_bindir}/dh_click %{buildroot}%{_datarootdir}/debhelper %{b
 %dir %{_sysconfdir}/schroot
 %dir %{_sysconfdir}/schroot/click
 %{_sysconfdir}/schroot/click/fstab
+%{_bindir}/dh_click
 %{_bindir}/click
+%{_mandir}/man1/dh_click.1.gz
+%{_datarootdir}/debhelper/
+%{_datarootdir}/perl5/*
 %{_unitdir}/click-system-hooks.service
 %{_userunitdir}/click-user-hooks.service
 %dir %{python3_sitelib}/click_package
