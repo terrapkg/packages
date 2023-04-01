@@ -31,6 +31,7 @@ BuildRequires: pkgconfig(libgmenuharness)
 BuildRequires: pkgconfig(ofono)
 BuildRequires: pkgconfig(qofono-qt5)
 BuildRequires: pkgconfig(lomiri-url-dispatcher)
+Requires:      gmenuharness
 
 %description
 The "Network" indicator for Ubuntu Touch and Lomiri.
