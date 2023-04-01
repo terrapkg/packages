@@ -9,7 +9,6 @@ Summary:    Configuration schemas for lomiri
 License:    LGPL-2.0-or-later
 URL:        https://gitlab.com/ubports/development/core/lomiri-schemas
 Source0:    %url/-/archive/%commit/lomiri-schemas-%commit.tar.gz
-Patch0:     https://gitlab.com/cat-master21/lomiri-schemas/-/commit/e32de385c858f9096c6014a3749117fa6f94f231.patch
 BuildArch:  noarch
 
 BuildRequires: cmake
@@ -22,7 +21,7 @@ BuildRequires: intltool
 Configuration schemas for lomiri desktop enviroment.
 
 %prep
-%autosetup -n %{name}-%commit -p1
+%autosetup -n %{name}-%commit
 
 %build
 %cmake -DCMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT=true
