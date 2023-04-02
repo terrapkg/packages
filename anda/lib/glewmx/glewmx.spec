@@ -2,7 +2,7 @@
 %global debug_package %{nil}
 
 Name:			glewmx
-Version:		1.13.0.
+Version:		1.13.0
 Release:		1%{?dist}
 Summary:		OpenGL Extension Wrangler MX
 
