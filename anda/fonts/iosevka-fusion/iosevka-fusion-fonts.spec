@@ -6,7 +6,7 @@ Version:        22.0.0
 Release:        1%{?dist}
 Summary:        A custom font based on iosevka
 
-License:        SIL Open Font License Version 1.1
+License:        OFL-1.1
 URL:            https://github.com/be5invis/Iosevka
 Source0:        %{url}/archive/v%{version}.tar.gz
 Source1:        iosevka-fusion.toml
@@ -14,7 +14,7 @@ Source1:        iosevka-fusion.toml
 BuildArch:      noarch
 
 BuildRequires:  clang
-BuildRequires:  npm
+BuildRequires:  nodejs-npm
 BuildRequires:  ttfautohint
 
 %description

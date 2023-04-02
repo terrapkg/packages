@@ -3,7 +3,7 @@ Version:    1.89
 Release:    %autorelease
 URL:        https://github.com/max32002/naikaifont
 Source0:    %{url}/archive/refs/tags/%{version}.tar.gz
-License:    OFLv1.1
+License:    OFL-1.1
 Summary:    A free font family derived from setofont
 BuildRequires: unzip
 BuildArch:  noarch

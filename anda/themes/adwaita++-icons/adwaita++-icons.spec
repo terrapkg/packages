@@ -6,7 +6,7 @@ Version:        6.1
 Release:        1%{?dist}
 Summary:         GNOME++, a third-party icons theme, based on new GNOME 3.32's Adwaita
 
-License:        GPLv3 and LGPLv3 and CC-BY-SA
+License:        GPL-3.0 and LGPL-3.0 and CC-BY-SA
 URL:            https://github.com/Bonandry/adwaita-plus
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 BuildArch:      noarch

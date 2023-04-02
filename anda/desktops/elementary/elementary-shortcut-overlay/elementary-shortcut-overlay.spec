@@ -5,7 +5,7 @@ Name:           elementary-shortcut-overlay
 Summary:        Native, OS-wide shortcut overlay
 Version:        2.0.1
 Release:        %autorelease
-License:        GPLv3
+License:        GPL-3.0
 
 URL:            https://github.com/elementary/shortcut-overlay
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz

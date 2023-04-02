@@ -7,7 +7,7 @@ Version:        1.3.5010
 Release:        %autorelease
 Summary:        QML components to ease the creation of beautiful applications in QML for Lomiri
 
-License:        LGPLv3
+License:        LGPL-3.0
 URL:            https://gitlab.com/ubports/development/core/lomiri-ui-toolkit
 Source0:        %{url}/-/archive/%commit/lomiri-ui-toolkit-%commit.tar.gz
 Patch0:         https://sources.debian.org/data/main/l/lomiri-ui-toolkit/1.3.5010%2Bdfsg-1/debian/patches/0002-fix-tests-on-qt-5.15.5.patch
@@ -20,7 +20,7 @@ BuildRequires: gcc
 BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig(dbus-1)
 BuildRequires: libXi-devel
-Buildrequires: lttng-ust-devel
+BuildRequires: lttng-ust-devel
 BuildRequires: qt5-doctools
 BuildRequires: qt5-rpm-macros
 BuildRequires: qt5-qtdeclarative

@@ -7,7 +7,7 @@ Name:           wingpanel-indicator-sound
 Summary:        Sound Indicator for wingpanel
 Version:        6.0.2
 Release:        %autorelease
-License:        GPLv3
+License:        GPL-3.0
 
 URL:            https://github.com/elementary/%{name}
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz

@@ -2,7 +2,7 @@ Name:			marble-gtk
 Version:		1.3.0
 Release:		1%{?dist}
 Summary:		My GTK library
-License:		GPLv3
+License:		GPL-3.0
 URL:			https://gitlab.gnome.org/raggesilver/marble
 BuildRequires:	vala pkgconfig(gtk4) meson >= 0.50.0
 BuildRequires:	pkgconfig(gtk+-3.0) >= 3.24

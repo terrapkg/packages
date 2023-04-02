@@ -7,7 +7,7 @@ Version:        7.0.0
 Release:        1%{?dist}
 
 # License breakdown is available in debian/copyright
-License:        Public Domain
+License:        CC-BY-SA-4.0 AND CC0-1.0 AND Unlicense
 
 URL:            https://github.com/elementary/%{srcname}
 Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz

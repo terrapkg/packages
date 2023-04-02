@@ -3,9 +3,9 @@ Version:        22.04.1
 Release:        %autorelease
 Summary:        Unity Greeter for Lightdm
 
-License:        GPLv3
+License:        GPL-3.0
 URL:            https://launchpad.net/unity-greeter
-Source0:        http://archive.ubuntu.com/ubuntu/pool/universe/u/unity-greeter/unity-greeter_22.04.1-0ubuntu2.tar.xz
+Source0:        http://archive.ubuntu.com/ubuntu/pool/universe/u/unity-greeter/unity-greeter_%{version}-0ubuntu2.tar.xz
 Patch1:         0001-Remove-libido.patch
 
 BuildRequires: automake libtool gnome-common

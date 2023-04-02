@@ -66,6 +66,14 @@ jobs:
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - uses: terrapkg/anda-build@main
+        if: github.event_name == 'pull_request'
+        with:
+          name: "${{ matrix.pkg.pkg }}"
+          mockConfig: anda-${{ matrix.version }}-${{ matrix.pkg.arch }}
+          andaRepo: https://github.com/terrapkg/subatomic-repos/raw/main/terra${{ matrix.version }}.repo
+
+      - uses: terrapkg/anda-build@main
+        if: github.event_name != 'pull_request'
         with:
           name: "${{ matrix.pkg.pkg }}"
           mockConfig: anda-${{ matrix.version }}-${{ matrix.pkg.arch }}

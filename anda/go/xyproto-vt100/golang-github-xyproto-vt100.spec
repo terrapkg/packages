@@ -5,29 +5,19 @@
 %global goipath         github.com/xyproto/vt100
 Version:                1.11.4
 
-# REMOVE BEFORE SUBMITTING THIS FOR REVIEW
-# ---
-# New Fedora packages should use %%gometa -f, which makes the package
-# ExclusiveArch to %%golang_arches_future and thus excludes the package from
-# %%ix86. If the new package is needed as a dependency for another pacage,
-# please consider removing that package from %%ix86 in the same way, instead of
-# building more go packages for i686. If your package is not a leaf package,
-# you'll need to coordinate the removal of the package's dependents first.
-# ---
-# REMOVE BEFORE SUBMITTING THIS FOR REVIEW
 %gometa -f
 
 %global common_description %{expand:
 :computer: VT100 Terminal Package.}
 
 %global golicenses      LICENSE
-%global godocs          TODO.md README.md cmd/widget/README.md
+%global godocs          README.md cmd/widget/README.md
 
 Name:           golang-%{goname}
-Release:        1%{?dist}
-Summary:        :computer: VT100 Terminal Package
+Release:        %autorelease
+Summary:        VT100 Terminal Package
 
-License:        # FIXME
+License:        BSD-3-Clause
 URL:            %{gourl}
 Source:         %{gosource}
 

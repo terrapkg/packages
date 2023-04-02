@@ -2,7 +2,7 @@ Summary:        A modernist sans serif font
 Name:           manrope-fonts
 Version:        1
 Release:        3%{?dist}
-License:        OFL
+License:        OFL-1.1
 URL:            https://manropefont.com/
 
 Source0:        https://manropefont.com/manrope.zip

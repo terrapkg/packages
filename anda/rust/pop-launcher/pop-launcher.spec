@@ -11,7 +11,7 @@ Release:        1%{?dist}
 Summary:        Library for writing plugins and frontends for pop-launcher
 
 # Upstream license specification: MPL-2.0
-License:        MPLv2.0
+License:        MPL-2.0
 URL:            https://github.com/pop-os/launcher/
 Source:         https://github.com/pop-os/launcher/archive/refs/tags/%{version}.tar.gz
 Patch:          0001-Copy-instead-of-symlink.patch

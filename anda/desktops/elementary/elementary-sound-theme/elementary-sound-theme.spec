@@ -4,7 +4,7 @@ Name:           elementary-sound-theme
 Summary:        Set of system sounds for elementary
 Version:        1.1.0
 Release:        %autorelease
-License:        Unlicense and CC-BY
+License:        Unlicense AND CC-BY-4.0
 
 # Unlicense:
 # - audio-volume-change

@@ -7,7 +7,7 @@ Name:           wingpanel-applications-menu
 Summary:        Lightweight and stylish app launcher
 Version:        2.11.1
 Release:        %autorelease
-License:        GPLv3+
+License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/applications-menu
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
