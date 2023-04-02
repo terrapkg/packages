@@ -38,12 +38,5 @@ jobs:
             git config user.signingkey "${{ runner.temp }}/signing_key"
             msg="bump(nightly): $(git status | grep modified | sed -r 's@.+/([^/]+)/[^/]+\n?@\1 @g' | tr -d '\n')"
             git commit -S -a -m "$msg"
-            git format-patch HEAD^
-            git checkout f38
-            for file in *.patch; do
-              git apply $file || true
-            done
-            rm *.patch
-            git commit -S -a -m "$msg"
             git push -u origin --all
           fi

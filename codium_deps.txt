@@ -1,0 +1,3620 @@
+Last metadata expiration check: 0:02:43 ago on Sat 01 Apr 2023 02:02:10 PM HKT.
+alsa-lib-1.2.7.2-2.fc37.x86_64 : The Advanced Linux Sound Architecture (ALSA) library
+Repo        : fedora
+Matched from:
+Provide    : libasound.so.2(ALSA_0.9)(64bit)
+Provide    : libasound.so.2(ALSA_0.9.0rc4)(64bit)
+Provide    : libasound.so.2()(64bit)
+
+alsa-lib-1.2.7.2-2.fc37.x86_64 : The Advanced Linux Sound Architecture (ALSA) library
+Repo        : fedora
+Matched from:
+Provide    : libasound.so.2(ALSA_0.9)(64bit)
+Provide    : libasound.so.2(ALSA_0.9.0rc4)(64bit)
+Provide    : libasound.so.2()(64bit)
+
+alsa-lib-1.2.7.2-2.fc37.x86_64 : The Advanced Linux Sound Architecture (ALSA) library
+Repo        : fedora
+Matched from:
+Provide    : libasound.so.2(ALSA_0.9)(64bit)
+Provide    : libasound.so.2(ALSA_0.9.0rc4)(64bit)
+Provide    : libasound.so.2()(64bit)
+
+alsa-lib-1.2.8-2.fc37.x86_64 : The Advanced Linux Sound Architecture (ALSA) library
+Repo        : @System
+Matched from:
+Provide    : libasound.so.2(ALSA_0.9)(64bit)
+Provide    : libasound.so.2(ALSA_0.9.0rc4)(64bit)
+Provide    : libasound.so.2()(64bit)
+
+alsa-lib-1.2.8-2.fc37.x86_64 : The Advanced Linux Sound Architecture (ALSA) library
+Repo        : updates
+Matched from:
+Provide    : libasound.so.2(ALSA_0.9)(64bit)
+Provide    : libasound.so.2(ALSA_0.9.0rc4)(64bit)
+Provide    : libasound.so.2()(64bit)
+
+alsa-lib-1.2.8-2.fc37.x86_64 : The Advanced Linux Sound Architecture (ALSA) library
+Repo        : @System
+Matched from:
+Provide    : libasound.so.2(ALSA_0.9)(64bit)
+Provide    : libasound.so.2(ALSA_0.9.0rc4)(64bit)
+Provide    : libasound.so.2()(64bit)
+
+alsa-lib-1.2.8-2.fc37.x86_64 : The Advanced Linux Sound Architecture (ALSA) library
+Repo        : updates
+Matched from:
+Provide    : libasound.so.2(ALSA_0.9)(64bit)
+Provide    : libasound.so.2(ALSA_0.9.0rc4)(64bit)
+Provide    : libasound.so.2()(64bit)
+
+alsa-lib-1.2.8-2.fc37.x86_64 : The Advanced Linux Sound Architecture (ALSA) library
+Repo        : @System
+Matched from:
+Provide    : libasound.so.2(ALSA_0.9)(64bit)
+Provide    : libasound.so.2(ALSA_0.9.0rc4)(64bit)
+Provide    : libasound.so.2()(64bit)
+
+alsa-lib-1.2.8-2.fc37.x86_64 : The Advanced Linux Sound Architecture (ALSA) library
+Repo        : updates
+Matched from:
+Provide    : libasound.so.2(ALSA_0.9)(64bit)
+Provide    : libasound.so.2(ALSA_0.9.0rc4)(64bit)
+Provide    : libasound.so.2()(64bit)
+
+at-spi2-atk-2.38.0-5.fc37.x86_64 : A GTK+ module that bridges ATK to D-Bus at-spi
+Repo        : @System
+Matched from:
+Provide    : libatk-bridge-2.0.so.0()(64bit)
+
+at-spi2-atk-2.38.0-5.fc37.x86_64 : A GTK+ module that bridges ATK to D-Bus at-spi
+Repo        : fedora
+Matched from:
+Provide    : libatk-bridge-2.0.so.0()(64bit)
+
+at-spi2-core-2.44.1-2.fc37.x86_64 : Protocol definitions and daemon for D-Bus at-spi
+Repo        : @System
+Matched from:
+Provide    : libatspi.so.0()(64bit)
+
+at-spi2-core-2.44.1-2.fc37.x86_64 : Protocol definitions and daemon for D-Bus at-spi
+Repo        : fedora
+Matched from:
+Provide    : libatspi.so.0()(64bit)
+
+atk-2.38.0-2.fc37.x86_64 : Interfaces for accessibility support
+Repo        : @System
+Matched from:
+Provide    : libatk-1.0.so.0()(64bit)
+
+atk-2.38.0-2.fc37.x86_64 : Interfaces for accessibility support
+Repo        : fedora
+Matched from:
+Provide    : libatk-1.0.so.0()(64bit)
+
+bash-5.1.16-4.fc37.x86_64 : The GNU Bourne Again shell
+Repo        : fedora
+Matched from:
+Provide    : /bin/sh
+
+bash-5.2.15-1.fc37.i686 : The GNU Bourne Again shell
+Repo        : updates
+Matched from:
+Provide    : /bin/sh
+
+bash-5.2.15-1.fc37.x86_64 : The GNU Bourne Again shell
+Repo        : @System
+Matched from:
+Provide    : /bin/sh
+
+bash-5.2.15-1.fc37.x86_64 : The GNU Bourne Again shell
+Repo        : updates
+Matched from:
+Provide    : /bin/sh
+
+ca-certificates-2022.2.54-5.fc37.noarch : The Mozilla CA root certificate bundle
+Repo        : fedora
+Matched from:
+Provide    : ca-certificates = 2022.2.54-5.fc37
+
+ca-certificates-2023.2.60-1.0.fc37.noarch : The Mozilla CA root certificate bundle
+Repo        : @System
+Matched from:
+Provide    : ca-certificates = 2023.2.60-1.0.fc37
+
+ca-certificates-2023.2.60-1.0.fc37.noarch : The Mozilla CA root certificate bundle
+Repo        : updates
+Matched from:
+Provide    : ca-certificates = 2023.2.60-1.0.fc37
+
+cairo-1.17.6-2.fc37.x86_64 : A 2D graphics library
+Repo        : @System
+Matched from:
+Provide    : libcairo.so.2()(64bit)
+
+cairo-1.17.6-2.fc37.x86_64 : A 2D graphics library
+Repo        : fedora
+Matched from:
+Provide    : libcairo.so.2()(64bit)
+
+cups-libs-1:2.4.2-4.fc37.x86_64 : CUPS printing system - libraries
+Repo        : fedora
+Matched from:
+Provide    : libcups.so.2()(64bit)
+
+cups-libs-1:2.4.2-5.fc37.x86_64 : CUPS printing system - libraries
+Repo        : @System
+Matched from:
+Provide    : libcups.so.2()(64bit)
+
+cups-libs-1:2.4.2-10.fc37.x86_64 : CUPS printing system - libraries
+Repo        : @System
+Matched from:
+Provide    : libcups.so.2()(64bit)
+
+cups-libs-1:2.4.2-10.fc37.x86_64 : CUPS printing system - libraries
+Repo        : updates
+Matched from:
+Provide    : libcups.so.2()(64bit)
+
+dbus-libs-1:1.14.2-1.fc37.x86_64 : Libraries for accessing D-BUS
+Repo        : fedora
+Matched from:
+Provide    : libdbus-1.so.3()(64bit)
+
+dbus-libs-1:1.14.6-1.fc37.x86_64 : Libraries for accessing D-BUS
+Repo        : @System
+Matched from:
+Provide    : libdbus-1.so.3()(64bit)
+
+dbus-libs-1:1.14.6-1.fc37.x86_64 : Libraries for accessing D-BUS
+Repo        : updates
+Matched from:
+Provide    : libdbus-1.so.3()(64bit)
+
+expat-2.4.8-2.fc37.x86_64 : An XML parser library
+Repo        : fedora
+Matched from:
+Provide    : libexpat.so.1()(64bit)
+
+expat-2.5.0-1.fc37.x86_64 : An XML parser library
+Repo        : @System
+Matched from:
+Provide    : libexpat.so.1()(64bit)
+
+expat-2.5.0-1.fc37.x86_64 : An XML parser library
+Repo        : updates
+Matched from:
+Provide    : libexpat.so.1()(64bit)
+
+glib2-2.74.1-2.fc37.x86_64 : A library of handy utility functions
+Repo        : fedora
+Matched from:
+Provide    : libglib-2.0.so.0()(64bit)
+Provide    : libgobject-2.0.so.0()(64bit)
+Provide    : libgio-2.0.so.0()(64bit)
+
+glib2-2.74.1-2.fc37.x86_64 : A library of handy utility functions
+Repo        : fedora
+Matched from:
+Provide    : libglib-2.0.so.0()(64bit)
+Provide    : libgobject-2.0.so.0()(64bit)
+Provide    : libgio-2.0.so.0()(64bit)
+
+glib2-2.74.1-2.fc37.x86_64 : A library of handy utility functions
+Repo        : fedora
+Matched from:
+Provide    : libglib-2.0.so.0()(64bit)
+Provide    : libgobject-2.0.so.0()(64bit)
+Provide    : libgio-2.0.so.0()(64bit)
+
+glib2-2.74.6-1.fc37.x86_64 : A library of handy utility functions
+Repo        : @System
+Matched from:
+Provide    : libglib-2.0.so.0()(64bit)
+Provide    : libgobject-2.0.so.0()(64bit)
+Provide    : libgio-2.0.so.0()(64bit)
+
+glib2-2.74.6-1.fc37.x86_64 : A library of handy utility functions
+Repo        : updates
+Matched from:
+Provide    : libglib-2.0.so.0()(64bit)
+Provide    : libgobject-2.0.so.0()(64bit)
+Provide    : libgio-2.0.so.0()(64bit)
+
+glib2-2.74.6-1.fc37.x86_64 : A library of handy utility functions
+Repo        : @System
+Matched from:
+Provide    : libglib-2.0.so.0()(64bit)
+Provide    : libgobject-2.0.so.0()(64bit)
+Provide    : libgio-2.0.so.0()(64bit)
+
+glib2-2.74.6-1.fc37.x86_64 : A library of handy utility functions
+Repo        : updates
+Matched from:
+Provide    : libglib-2.0.so.0()(64bit)
+Provide    : libgobject-2.0.so.0()(64bit)
+Provide    : libgio-2.0.so.0()(64bit)
+
+glib2-2.74.6-1.fc37.x86_64 : A library of handy utility functions
+Repo        : @System
+Matched from:
+Provide    : libglib-2.0.so.0()(64bit)
+Provide    : libgobject-2.0.so.0()(64bit)
+Provide    : libgio-2.0.so.0()(64bit)
+
+glib2-2.74.6-1.fc37.x86_64 : A library of handy utility functions
+Repo        : updates
+Matched from:
+Provide    : libglib-2.0.so.0()(64bit)
+Provide    : libgobject-2.0.so.0()(64bit)
+Provide    : libgio-2.0.so.0()(64bit)
+
+glibc-2.36-7.fc37.i686 : The GNU libc libraries
+Repo        : fedora
+Matched from:
+Provide    : rtld(GNU_HASH)
+
+glibc-2.36-7.fc37.x86_64 : The GNU libc libraries
+Repo        : fedora
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-7.fc37.x86_64 : The GNU libc libraries
+Repo        : fedora
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-7.fc37.x86_64 : The GNU libc libraries
+Repo        : fedora
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-7.fc37.x86_64 : The GNU libc libraries
+Repo        : fedora
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-7.fc37.x86_64 : The GNU libc libraries
+Repo        : fedora
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-7.fc37.x86_64 : The GNU libc libraries
+Repo        : fedora
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-7.fc37.x86_64 : The GNU libc libraries
+Repo        : fedora
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-7.fc37.x86_64 : The GNU libc libraries
+Repo        : fedora
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-7.fc37.x86_64 : The GNU libc libraries
+Repo        : fedora
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-7.fc37.x86_64 : The GNU libc libraries
+Repo        : fedora
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-7.fc37.x86_64 : The GNU libc libraries
+Repo        : fedora
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-7.fc37.x86_64 : The GNU libc libraries
+Repo        : fedora
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-7.fc37.x86_64 : The GNU libc libraries
+Repo        : fedora
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-7.fc37.x86_64 : The GNU libc libraries
+Repo        : fedora
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-7.fc37.x86_64 : The GNU libc libraries
+Repo        : fedora
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-7.fc37.x86_64 : The GNU libc libraries
+Repo        : fedora
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-7.fc37.x86_64 : The GNU libc libraries
+Repo        : fedora
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.i686 : The GNU libc libraries
+Repo        : updates
+Matched from:
+Provide    : rtld(GNU_HASH)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : @System
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : updates
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : @System
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : updates
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : @System
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : updates
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : @System
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : updates
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : @System
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : updates
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : @System
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : updates
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : @System
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : updates
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : @System
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : updates
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : @System
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : updates
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : @System
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : updates
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : @System
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : updates
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : @System
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : updates
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : @System
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : updates
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : @System
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : updates
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : @System
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : updates
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : @System
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : updates
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : @System
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+glibc-2.36-9.fc37.x86_64 : The GNU libc libraries
+Repo        : updates
+Matched from:
+Provide    : libpthread.so.0(GLIBC_2.3.2)(64bit)
+Provide    : rtld(GNU_HASH)
+Provide    : libpthread.so.0(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.3)(64bit)
+Provide    : libdl.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libutil.so.1()(64bit)
+Provide    : libdl.so.2()(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.2.5)(64bit)
+Provide    : libpthread.so.0()(64bit)
+Provide    : ld-linux-x86-64.so.2()(64bit)
+Provide    : libpthread.so.0(GLIBC_2.3.4)(64bit)
+Provide    : libpthread.so.0(GLIBC_2.12)(64bit)
+Provide    : libm.so.6(GLIBC_2.2.5)(64bit)
+Provide    : libc.so.6(GLIBC_2.17)(64bit)
+Provide    : ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+Provide    : libm.so.6()(64bit)
+Provide    : libutil.so.1(GLIBC_2.2.5)(64bit)
+
+gtk3-3.24.34-2.fc37.x86_64 : GTK+ graphical user interface library
+Repo        : fedora
+Matched from:
+Provide    : libgtk-3.so.0()(64bit)
+
+gtk3-3.24.36-1.fc37.x86_64 : GTK+ graphical user interface library
+Repo        : @System
+Matched from:
+Provide    : libgtk-3.so.0()(64bit)
+
+gtk3-3.24.37-1.fc37.x86_64 : GTK+ graphical user interface library
+Repo        : @System
+Matched from:
+Provide    : libgtk-3.so.0()(64bit)
+
+gtk3-3.24.37-1.fc37.x86_64 : GTK+ graphical user interface library
+Repo        : updates
+Matched from:
+Provide    : libgtk-3.so.0()(64bit)
+
+libX11-1.8.1-2.fc37.x86_64 : Core X11 protocol client library
+Repo        : fedora
+Matched from:
+Provide    : libX11.so.6()(64bit)
+
+libX11-1.8.4-1.fc37.x86_64 : Core X11 protocol client library
+Repo        : @System
+Matched from:
+Provide    : libX11.so.6()(64bit)
+
+libX11-1.8.4-1.fc37.x86_64 : Core X11 protocol client library
+Repo        : updates
+Matched from:
+Provide    : libX11.so.6()(64bit)
+
+libXcomposite-0.4.5-8.fc37.x86_64 : X Composite Extension library
+Repo        : @System
+Matched from:
+Provide    : libXcomposite.so.1()(64bit)
+
+libXcomposite-0.4.5-8.fc37.x86_64 : X Composite Extension library
+Repo        : fedora
+Matched from:
+Provide    : libXcomposite.so.1()(64bit)
+
+libXdamage-1.1.5-8.fc37.x86_64 : X Damage extension library
+Repo        : @System
+Matched from:
+Provide    : libXdamage.so.1()(64bit)
+
+libXdamage-1.1.5-8.fc37.x86_64 : X Damage extension library
+Repo        : fedora
+Matched from:
+Provide    : libXdamage.so.1()(64bit)
+
+libXext-1.3.4-9.fc37.x86_64 : X.Org X11 libXext runtime library
+Repo        : @System
+Matched from:
+Provide    : libXext.so.6()(64bit)
+
+libXext-1.3.4-9.fc37.x86_64 : X.Org X11 libXext runtime library
+Repo        : fedora
+Matched from:
+Provide    : libXext.so.6()(64bit)
+
+libXfixes-6.0.0-4.fc37.x86_64 : X Fixes library
+Repo        : @System
+Matched from:
+Provide    : libXfixes.so.3()(64bit)
+
+libXfixes-6.0.0-4.fc37.x86_64 : X Fixes library
+Repo        : fedora
+Matched from:
+Provide    : libXfixes.so.3()(64bit)
+
+libXrandr-1.5.2-9.fc37.x86_64 : X.Org X11 libXrandr runtime library
+Repo        : @System
+Matched from:
+Provide    : libXrandr.so.2()(64bit)
+
+libXrandr-1.5.2-9.fc37.x86_64 : X.Org X11 libXrandr runtime library
+Repo        : fedora
+Matched from:
+Provide    : libXrandr.so.2()(64bit)
+
+libcurl-7.85.0-1.fc37.x86_64 : A library for getting files from web servers
+Repo        : fedora
+Matched from:
+Provide    : libcurl.so.4()(64bit)
+
+libcurl-7.85.0-7.fc37.x86_64 : A library for getting files from web servers
+Repo        : @System
+Matched from:
+Provide    : libcurl.so.4()(64bit)
+
+libcurl-7.85.0-7.fc37.x86_64 : A library for getting files from web servers
+Repo        : updates
+Matched from:
+Provide    : libcurl.so.4()(64bit)
+
+libcurl-minimal-7.85.0-1.fc37.x86_64 : Conservatively configured build of libcurl for minimal installations
+Repo        : fedora
+Matched from:
+Provide    : libcurl.so.4()(64bit)
+
+libcurl-minimal-7.85.0-7.fc37.x86_64 : Conservatively configured build of libcurl for minimal installations
+Repo        : updates
+Matched from:
+Provide    : libcurl.so.4()(64bit)
+
+libdrm-2.4.112-1.fc37.x86_64 : Direct Rendering Manager runtime library
+Repo        : fedora
+Matched from:
+Provide    : libdrm.so.2()(64bit)
+
+libdrm-2.4.114-1.fc37.x86_64 : Direct Rendering Manager runtime library
+Repo        : @System
+Matched from:
+Provide    : libdrm.so.2()(64bit)
+
+libdrm-2.4.114-1.fc37.x86_64 : Direct Rendering Manager runtime library
+Repo        : updates
+Matched from:
+Provide    : libdrm.so.2()(64bit)
+
+libgcc-12.2.1-2.fc37.x86_64 : GCC version 12 shared support library
+Repo        : fedora
+Matched from:
+Provide    : libgcc_s.so.1()(64bit)
+Provide    : libgcc_s.so.1(GCC_3.0)(64bit)
+
+libgcc-12.2.1-2.fc37.x86_64 : GCC version 12 shared support library
+Repo        : fedora
+Matched from:
+Provide    : libgcc_s.so.1()(64bit)
+Provide    : libgcc_s.so.1(GCC_3.0)(64bit)
+
+libgcc-12.2.1-4.fc37.x86_64 : GCC version 12 shared support library
+Repo        : @System
+Matched from:
+Provide    : libgcc_s.so.1()(64bit)
+Provide    : libgcc_s.so.1(GCC_3.0)(64bit)
+
+libgcc-12.2.1-4.fc37.x86_64 : GCC version 12 shared support library
+Repo        : updates
+Matched from:
+Provide    : libgcc_s.so.1()(64bit)
+Provide    : libgcc_s.so.1(GCC_3.0)(64bit)
+
+libgcc-12.2.1-4.fc37.x86_64 : GCC version 12 shared support library
+Repo        : @System
+Matched from:
+Provide    : libgcc_s.so.1()(64bit)
+Provide    : libgcc_s.so.1(GCC_3.0)(64bit)
+
+libgcc-12.2.1-4.fc37.x86_64 : GCC version 12 shared support library
+Repo        : updates
+Matched from:
+Provide    : libgcc_s.so.1()(64bit)
+Provide    : libgcc_s.so.1(GCC_3.0)(64bit)
+
+libsecret-0.20.5-2.fc37.x86_64 : Library for storing and retrieving passwords and other secrets
+Repo        : @System
+Matched from:
+Provide    : libsecret-1.so.0()(64bit)
+
+libsecret-0.20.5-2.fc37.x86_64 : Library for storing and retrieving passwords and other secrets
+Repo        : fedora
+Matched from:
+Provide    : libsecret-1.so.0()(64bit)
+
+libstdc++-12.2.1-2.fc37.x86_64 : GNU Standard C++ Library
+Repo        : fedora
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-2.fc37.x86_64 : GNU Standard C++ Library
+Repo        : fedora
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-2.fc37.x86_64 : GNU Standard C++ Library
+Repo        : fedora
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-2.fc37.x86_64 : GNU Standard C++ Library
+Repo        : fedora
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-2.fc37.x86_64 : GNU Standard C++ Library
+Repo        : fedora
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-2.fc37.x86_64 : GNU Standard C++ Library
+Repo        : fedora
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-2.fc37.x86_64 : GNU Standard C++ Library
+Repo        : fedora
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-2.fc37.x86_64 : GNU Standard C++ Library
+Repo        : fedora
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-2.fc37.x86_64 : GNU Standard C++ Library
+Repo        : fedora
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-2.fc37.x86_64 : GNU Standard C++ Library
+Repo        : fedora
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-2.fc37.x86_64 : GNU Standard C++ Library
+Repo        : fedora
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-2.fc37.x86_64 : GNU Standard C++ Library
+Repo        : fedora
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-2.fc37.x86_64 : GNU Standard C++ Library
+Repo        : fedora
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-2.fc37.x86_64 : GNU Standard C++ Library
+Repo        : fedora
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-2.fc37.x86_64 : GNU Standard C++ Library
+Repo        : fedora
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-2.fc37.x86_64 : GNU Standard C++ Library
+Repo        : fedora
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-4.fc37.x86_64 : GNU Standard C++ Library
+Repo        : @System
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-4.fc37.x86_64 : GNU Standard C++ Library
+Repo        : updates
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-4.fc37.x86_64 : GNU Standard C++ Library
+Repo        : @System
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-4.fc37.x86_64 : GNU Standard C++ Library
+Repo        : updates
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-4.fc37.x86_64 : GNU Standard C++ Library
+Repo        : @System
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-4.fc37.x86_64 : GNU Standard C++ Library
+Repo        : updates
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-4.fc37.x86_64 : GNU Standard C++ Library
+Repo        : @System
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-4.fc37.x86_64 : GNU Standard C++ Library
+Repo        : updates
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-4.fc37.x86_64 : GNU Standard C++ Library
+Repo        : @System
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-4.fc37.x86_64 : GNU Standard C++ Library
+Repo        : updates
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-4.fc37.x86_64 : GNU Standard C++ Library
+Repo        : @System
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-4.fc37.x86_64 : GNU Standard C++ Library
+Repo        : updates
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-4.fc37.x86_64 : GNU Standard C++ Library
+Repo        : @System
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-4.fc37.x86_64 : GNU Standard C++ Library
+Repo        : updates
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-4.fc37.x86_64 : GNU Standard C++ Library
+Repo        : @System
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-4.fc37.x86_64 : GNU Standard C++ Library
+Repo        : updates
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-4.fc37.x86_64 : GNU Standard C++ Library
+Repo        : @System
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-4.fc37.x86_64 : GNU Standard C++ Library
+Repo        : updates
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-4.fc37.x86_64 : GNU Standard C++ Library
+Repo        : @System
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-4.fc37.x86_64 : GNU Standard C++ Library
+Repo        : updates
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-4.fc37.x86_64 : GNU Standard C++ Library
+Repo        : @System
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-4.fc37.x86_64 : GNU Standard C++ Library
+Repo        : updates
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-4.fc37.x86_64 : GNU Standard C++ Library
+Repo        : @System
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-4.fc37.x86_64 : GNU Standard C++ Library
+Repo        : updates
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-4.fc37.x86_64 : GNU Standard C++ Library
+Repo        : @System
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-4.fc37.x86_64 : GNU Standard C++ Library
+Repo        : updates
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-4.fc37.x86_64 : GNU Standard C++ Library
+Repo        : @System
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-4.fc37.x86_64 : GNU Standard C++ Library
+Repo        : updates
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-4.fc37.x86_64 : GNU Standard C++ Library
+Repo        : @System
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-4.fc37.x86_64 : GNU Standard C++ Library
+Repo        : updates
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-4.fc37.x86_64 : GNU Standard C++ Library
+Repo        : @System
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libstdc++-12.2.1-4.fc37.x86_64 : GNU Standard C++ Library
+Repo        : updates
+Matched from:
+Provide    : libstdc++.so.6(GLIBCXX_3.4)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.22)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.9)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.14)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.8)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+Provide    : libstdc++.so.6()(64bit)
+Provide    : libstdc++.so.6(CXXABI_1.3.5)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+Provide    : libstdc++.so.6(GLIBCXX_3.4.19)(64bit)
+
+libxcb-1.13.1-10.fc37.x86_64 : A C binding to the X11 protocol
+Repo        : @System
+Matched from:
+Provide    : libxcb.so.1()(64bit)
+
+libxcb-1.13.1-10.fc37.x86_64 : A C binding to the X11 protocol
+Repo        : fedora
+Matched from:
+Provide    : libxcb.so.1()(64bit)
+
+libxkbcommon-1.4.1-2.fc37.x86_64 : X.Org X11 XKB parsing library
+Repo        : @System
+Matched from:
+Provide    : libxkbcommon.so.0()(64bit)
+
+libxkbcommon-1.4.1-2.fc37.x86_64 : X.Org X11 XKB parsing library
+Repo        : fedora
+Matched from:
+Provide    : libxkbcommon.so.0()(64bit)
+
+libxkbfile-1.1.0-9.fc37.x86_64 : X.Org X11 libxkbfile runtime library
+Repo        : @System
+Matched from:
+Provide    : libxkbfile.so.1()(64bit)
+
+libxkbfile-1.1.0-9.fc37.x86_64 : X.Org X11 libxkbfile runtime library
+Repo        : fedora
+Matched from:
+Provide    : libxkbfile.so.1()(64bit)
+
+mesa-libgbm-22.2.2-1.fc37.x86_64 : Mesa gbm runtime library
+Repo        : fedora
+Matched from:
+Provide    : libgbm.so.1()(64bit)
+
+mesa-libgbm-22.3.6-1.fc37.x86_64 : Mesa gbm runtime library
+Repo        : @System
+Matched from:
+Provide    : libgbm.so.1()(64bit)
+
+mesa-libgbm-22.3.7-1.fc37.x86_64 : Mesa gbm runtime library
+Repo        : @System
+Matched from:
+Provide    : libgbm.so.1()(64bit)
+
+mesa-libgbm-22.3.7-1.fc37.x86_64 : Mesa gbm runtime library
+Repo        : updates
+Matched from:
+Provide    : libgbm.so.1()(64bit)
+
+nspr-4.35.0-1.fc37.x86_64 : Netscape Portable Runtime
+Repo        : fedora
+Matched from:
+Provide    : libnspr4.so()(64bit)
+
+nspr-4.35.0-4.fc37.x86_64 : Netscape Portable Runtime
+Repo        : @System
+Matched from:
+Provide    : libnspr4.so()(64bit)
+
+nspr-4.35.0-5.fc37.x86_64 : Netscape Portable Runtime
+Repo        : @System
+Matched from:
+Provide    : libnspr4.so()(64bit)
+
+nspr-4.35.0-5.fc37.x86_64 : Netscape Portable Runtime
+Repo        : updates
+Matched from:
+Provide    : libnspr4.so()(64bit)
+
+nss-3.83.0-1.fc37.x86_64 : Network Security Services
+Repo        : fedora
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.83.0-1.fc37.x86_64 : Network Security Services
+Repo        : fedora
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.83.0-1.fc37.x86_64 : Network Security Services
+Repo        : fedora
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.83.0-1.fc37.x86_64 : Network Security Services
+Repo        : fedora
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.83.0-1.fc37.x86_64 : Network Security Services
+Repo        : fedora
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.83.0-1.fc37.x86_64 : Network Security Services
+Repo        : fedora
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.83.0-1.fc37.x86_64 : Network Security Services
+Repo        : fedora
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.83.0-1.fc37.x86_64 : Network Security Services
+Repo        : fedora
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.83.0-1.fc37.x86_64 : Network Security Services
+Repo        : fedora
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.83.0-1.fc37.x86_64 : Network Security Services
+Repo        : fedora
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.83.0-1.fc37.x86_64 : Network Security Services
+Repo        : fedora
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.83.0-1.fc37.x86_64 : Network Security Services
+Repo        : fedora
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.83.0-1.fc37.x86_64 : Network Security Services
+Repo        : fedora
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.83.0-1.fc37.x86_64 : Network Security Services
+Repo        : fedora
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.88.1-1.fc37.x86_64 : Network Security Services
+Repo        : @System
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.88.1-1.fc37.x86_64 : Network Security Services
+Repo        : @System
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.88.1-1.fc37.x86_64 : Network Security Services
+Repo        : @System
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.88.1-1.fc37.x86_64 : Network Security Services
+Repo        : @System
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.88.1-1.fc37.x86_64 : Network Security Services
+Repo        : @System
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.88.1-1.fc37.x86_64 : Network Security Services
+Repo        : @System
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.88.1-1.fc37.x86_64 : Network Security Services
+Repo        : @System
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.88.1-1.fc37.x86_64 : Network Security Services
+Repo        : @System
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.88.1-1.fc37.x86_64 : Network Security Services
+Repo        : @System
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.88.1-1.fc37.x86_64 : Network Security Services
+Repo        : @System
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.88.1-1.fc37.x86_64 : Network Security Services
+Repo        : @System
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.88.1-1.fc37.x86_64 : Network Security Services
+Repo        : @System
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.88.1-1.fc37.x86_64 : Network Security Services
+Repo        : @System
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.88.1-1.fc37.x86_64 : Network Security Services
+Repo        : @System
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.89.0-1.fc37.x86_64 : Network Security Services
+Repo        : @System
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.89.0-1.fc37.x86_64 : Network Security Services
+Repo        : updates
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.89.0-1.fc37.x86_64 : Network Security Services
+Repo        : @System
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.89.0-1.fc37.x86_64 : Network Security Services
+Repo        : updates
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.89.0-1.fc37.x86_64 : Network Security Services
+Repo        : @System
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.89.0-1.fc37.x86_64 : Network Security Services
+Repo        : updates
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.89.0-1.fc37.x86_64 : Network Security Services
+Repo        : @System
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.89.0-1.fc37.x86_64 : Network Security Services
+Repo        : updates
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.89.0-1.fc37.x86_64 : Network Security Services
+Repo        : @System
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.89.0-1.fc37.x86_64 : Network Security Services
+Repo        : updates
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.89.0-1.fc37.x86_64 : Network Security Services
+Repo        : @System
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.89.0-1.fc37.x86_64 : Network Security Services
+Repo        : updates
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.89.0-1.fc37.x86_64 : Network Security Services
+Repo        : @System
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.89.0-1.fc37.x86_64 : Network Security Services
+Repo        : updates
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.89.0-1.fc37.x86_64 : Network Security Services
+Repo        : @System
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.89.0-1.fc37.x86_64 : Network Security Services
+Repo        : updates
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.89.0-1.fc37.x86_64 : Network Security Services
+Repo        : @System
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.89.0-1.fc37.x86_64 : Network Security Services
+Repo        : updates
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.89.0-1.fc37.x86_64 : Network Security Services
+Repo        : @System
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.89.0-1.fc37.x86_64 : Network Security Services
+Repo        : updates
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.89.0-1.fc37.x86_64 : Network Security Services
+Repo        : @System
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.89.0-1.fc37.x86_64 : Network Security Services
+Repo        : updates
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.89.0-1.fc37.x86_64 : Network Security Services
+Repo        : @System
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.89.0-1.fc37.x86_64 : Network Security Services
+Repo        : updates
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.89.0-1.fc37.x86_64 : Network Security Services
+Repo        : @System
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.89.0-1.fc37.x86_64 : Network Security Services
+Repo        : updates
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.89.0-1.fc37.x86_64 : Network Security Services
+Repo        : @System
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-3.89.0-1.fc37.x86_64 : Network Security Services
+Repo        : updates
+Matched from:
+Provide    : libnss3.so(NSS_3.12)(64bit)
+Provide    : libsmime3.so()(64bit)
+Provide    : libnss3.so(NSS_3.3)(64bit)
+Provide    : libnss3.so(NSS_3.11)(64bit)
+Provide    : libnss3.so(NSS_3.2)(64bit)
+Provide    : libsmime3.so(NSS_3.2)(64bit)
+Provide    : libnss3.so()(64bit)
+Provide    : libsmime3.so(NSS_3.10)(64bit)
+Provide    : libnss3.so(NSS_3.12.1)(64bit)
+Provide    : libnss3.so(NSS_3.9.2)(64bit)
+Provide    : libnss3.so(NSS_3.22)(64bit)
+Provide    : libssl3.so(NSS_3.28)(64bit)
+Provide    : libnss3.so(NSS_3.5)(64bit)
+Provide    : libnss3.so(NSS_3.4)(64bit)
+
+nss-util-3.83.0-1.fc37.x86_64 : Network Security Services Utilities Library
+Repo        : fedora
+Matched from:
+Provide    : libnssutil3.so(NSSUTIL_3.12.3)(64bit)
+Provide    : libnssutil3.so()(64bit)
+
+nss-util-3.83.0-1.fc37.x86_64 : Network Security Services Utilities Library
+Repo        : fedora
+Matched from:
+Provide    : libnssutil3.so(NSSUTIL_3.12.3)(64bit)
+Provide    : libnssutil3.so()(64bit)
+
+nss-util-3.88.1-1.fc37.x86_64 : Network Security Services Utilities Library
+Repo        : @System
+Matched from:
+Provide    : libnssutil3.so(NSSUTIL_3.12.3)(64bit)
+Provide    : libnssutil3.so()(64bit)
+
+nss-util-3.88.1-1.fc37.x86_64 : Network Security Services Utilities Library
+Repo        : @System
+Matched from:
+Provide    : libnssutil3.so(NSSUTIL_3.12.3)(64bit)
+Provide    : libnssutil3.so()(64bit)
+
+nss-util-3.89.0-1.fc37.x86_64 : Network Security Services Utilities Library
+Repo        : @System
+Matched from:
+Provide    : libnssutil3.so(NSSUTIL_3.12.3)(64bit)
+Provide    : libnssutil3.so()(64bit)
+
+nss-util-3.89.0-1.fc37.x86_64 : Network Security Services Utilities Library
+Repo        : updates
+Matched from:
+Provide    : libnssutil3.so(NSSUTIL_3.12.3)(64bit)
+Provide    : libnssutil3.so()(64bit)
+
+nss-util-3.89.0-1.fc37.x86_64 : Network Security Services Utilities Library
+Repo        : @System
+Matched from:
+Provide    : libnssutil3.so(NSSUTIL_3.12.3)(64bit)
+Provide    : libnssutil3.so()(64bit)
+
+nss-util-3.89.0-1.fc37.x86_64 : Network Security Services Utilities Library
+Repo        : updates
+Matched from:
+Provide    : libnssutil3.so(NSSUTIL_3.12.3)(64bit)
+Provide    : libnssutil3.so()(64bit)
+
+pango-1.50.10-1.fc37.x86_64 : System for layout and rendering of internationalized text
+Repo        : fedora
+Matched from:
+Provide    : libpango-1.0.so.0()(64bit)
+
+pango-1.50.13-1.fc37.x86_64 : System for layout and rendering of internationalized text
+Repo        : @System
+Matched from:
+Provide    : libpango-1.0.so.0()(64bit)
+
+pango-1.50.13-1.fc37.x86_64 : System for layout and rendering of internationalized text
+Repo        : updates
+Matched from:
+Provide    : libpango-1.0.so.0()(64bit)
+
+pango-1.50.14-1.fc37.x86_64 : System for layout and rendering of internationalized text
+Repo        : @System
+Matched from:
+Provide    : libpango-1.0.so.0()(64bit)
+
+xdg-utils-1.1.3-12.fc37.noarch : Basic desktop integration functions
+Repo        : @System
+Matched from:
+Provide    : xdg-utils = 1.1.3-12.fc37
+
+xdg-utils-1.1.3-12.fc37.noarch : Basic desktop integration functions
+Repo        : fedora
+Matched from:
+Provide    : xdg-utils = 1.1.3-12.fc37
+
