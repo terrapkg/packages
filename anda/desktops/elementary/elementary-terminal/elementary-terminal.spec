@@ -3,7 +3,7 @@
 
 Name:           elementary-terminal
 Summary:        The terminal of the 21st century
-Version:        6.1.1
+Version:        6.1.2
 Release:        1%{?dist}
 License:        LGPL-3.0
 
