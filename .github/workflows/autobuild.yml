@@ -74,20 +74,4 @@ jobs:
 
       - name: Notify Madoguchi
         if: always()
-        run: |
-          if ${{ success() }}; then
-            dirs=${{ matrix.pkg.pkg }}
-            dirs=${dirs/\/pkg/}
-            for f in anda-build/rpm/rpms/*; do
-              name=$(lesspipe.sh $f | grep -E "Name\s*: " | sed "s@Name\s*: @@")
-              verl=$(echo ${f/${name}-/} | sed -E 's@\.fc${{ matrix.version }}.+@@')
-              curl -h "Authorization: Bearer " https://madoguchi.fyralabs.com/ci/terra${{ matrix.version }}/add/builds/$name\?verl\=$verl\&arch\=${{ matrix.pkg.arch }}\&dirs\=$dirs\&id\=${{ github.run_id }} &
-            done
-          else
-            for f in anda-build/rpm/rpms/*; do
-              name=$(lesspipe.sh $f | grep -E "Name\s*: " | sed "s@Name\s*: @@")
-              verl=$(echo ${f/${name}-/} | sed -E 's@\.fc${{ matrix.version }}.+@@')
-              curl -h "Authorization: Bearer " https://madoguchi.fyralabs.com/ci/terra${{ matrix.version }}/add/builds/$name\?verl\=$verl\&arch\=${{ matrix.pkg.arch }}\&id\=${{ github.run_id }} &
-            done
-          fi
-          wait
+        run: ./.github/workflows/mg.sh ${{success()}} ${{matrix.pkg.pkg}} ${{matrix.version}} ${{matrix.pkg.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}}
