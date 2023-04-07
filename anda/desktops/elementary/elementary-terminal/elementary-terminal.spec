@@ -10,9 +10,6 @@ License:        LGPL-3.0
 URL:            https://github.com/elementary/%{srcname}
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 
-# drop upstream tests that only validate .desktop and appdata files
-Patch0:         00-drop-upstream-tests.patch
-
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib
