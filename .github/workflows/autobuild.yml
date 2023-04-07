@@ -29,26 +29,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      #- run: git checkout HEAD^
-
-      # - name: Generate Build matrix
-      #   id: generate_build_matrix
-      #   # generate build matrix by checking out changes in anda/
-      #   run: |
-      #     # get the list of changed folders in the current commit, including subfolders
-      #     changed_folders=$(git diff --name-only HEAD^ | grep -oP 'anda\/(.+)(\/|\$)' | sort -u )
-      #     echo "Changed folders: $changed_folders"
-      #     # if changed_folders is empty then set is empty to true
-      #     if [ -z "$changed_folders" ]; then
-      #       echo "::set-output name=is_empty::true"
-      #     else
-      #       echo "::set-output name=is_empty::false"
-      #     fi
-      #     # turn it into a json array
-      #     build_matrix=$(echo "$changed_folders" | jq -R . | jq -s . | jq -c .)
-
-      #     echo "::set-output name=build_matrix::$build_matrix"
-      #     #echo "::set-output name=build_matrix::$build_matrix"
       - name: Generate build matrix
         id: generate_build_matrix
         run: |
@@ -80,7 +60,8 @@ jobs:
           extraArgs: -D "sccache_bucket ${{secrets.SCCACHE_BUCKET}}" -D "sccache_endpoint ${{secrets.SCCACHE_ENDPOINT}}" -D "sccache_secret ${{secrets.SCCACHE_SECRET}}" -D "sccache_accesskey ${{secrets.SCCACHE_ACCESSKEY}}"
           andaRepo: https://github.com/terrapkg/subatomic-repos/raw/main/terra${{ matrix.version }}.repo
 
-      - id: art
+      - name: Generating artifact name
+        id: art
         run: |
           NAME=${{ matrix.pkg.pkg }}-${{ matrix.pkg.arch }}-${{ matrix.version }}
           x=${NAME//\//@}
@@ -98,3 +79,7 @@ jobs:
             --server https://subatomic.fyralabs.com \
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
             terra${{ matrix.version }} anda-build/rpm/rpms/*
+
+      - name: Notify Madoguchi
+        if: always()
+        run: ./.github/workflows/mg.sh ${{success()}} ${{matrix.pkg.pkg}} ${{matrix.version}} ${{matrix.pkg.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}}
