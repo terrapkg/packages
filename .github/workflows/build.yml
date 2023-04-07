@@ -41,3 +41,7 @@ jobs:
             --server https://subatomic.fyralabs.com \
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
             terra${{ matrix.version }} anda-build/rpm/rpms/*
+
+      - name: Notify Madoguchi
+        if: always()
+        run: ./.github/workflows/mg.sh ${{success()}} ${{matrix.pkg.pkg}} ${{matrix.version}} ${{matrix.pkg.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}}
