@@ -1,5 +1,5 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri
-%global commit c6f7dc9dc556cd003144be79259a6fe71cc09a55
+%global commit 49d67f32d4710ce5fb9597fe52b97b6c152d5b4f
 %forgemeta
 
 Name:          lomiri
@@ -65,6 +65,8 @@ Requires:      lomiri-ui-toolkit
 Requires:      lomiri-download-manager
 Requires:      suru-icon-theme
 Requires:      lomiri-schemas
+# For some reason Lomiri `/usr/bin/lomiri` requires it for testability
+Requires: %{name}-tests%{?_isa} = %{version}-%{release}
 
 %description
 Lomiri, Previously Unity8 is a convergent desktop environment built with Qt.
@@ -96,10 +98,18 @@ The %{name}-tests package contains test files for %{name}.
 #cd tests/autopilot && python setup.py install
 %find_lang %{name}
 
+mkdir -m 0755 -p %{buildroot}%{_sysconfdir}/lomiri %{buildroot}%{_sysconfdir}/lomirisensors
+install -Dm644 data/devices.conf %{buildroot}%{_sysconfdir}/lomiri
+install -Dm644 data/test.sensors %{buildroot}%{_sysconfdir}/lomirisensors
+
 %ldconfig_scriptlets
 
 %files -f %{name}.lang
 %license COPYING COPYING.LGPL
+%dir %{_sysconfdir}/lomiri
+%{_sysconfdir}/lomiri/devices.conf
+%dir %{_sysconfdir}/lomirisensors
+%{_sysconfdir}/lomirisensors/test.sensors
 %{_bindir}/indicators-client
 %{_bindir}/lomiri
 %{_userunitdir}/*.service
