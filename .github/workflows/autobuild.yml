@@ -80,6 +80,9 @@ jobs:
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
             terra${{ matrix.version }} anda-build/rpm/rpms/*
 
-      - name: Notify Madoguchi
-        if: always()
-        run: ./.github/workflows/mg.sh ${{success()}} ${{matrix.pkg.pkg}} ${{matrix.version}} ${{matrix.pkg.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}}
+      - name: Notify Madoguchi (Success)
+        if: success()
+        run: ./.github/workflows/mg.sh true ${{matrix.pkg.pkg}} ${{matrix.version}} ${{matrix.pkg.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}}
+      - name: Notify Madoguchi (Failure)
+        if: !success()
+        run: ./.github/workflows/mg.sh false ${{matrix.pkg.pkg}} ${{matrix.version}} ${{matrix.pkg.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}}
