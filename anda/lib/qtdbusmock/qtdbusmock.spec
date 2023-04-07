@@ -17,6 +17,7 @@ BuildRequires: pkgconfig(libqtdbustest-1)
 BuildRequires: pkgconfig(libnm)
 BuildRequires: pkgconfig(gmock)
 BuildRequires: pkgconfig(gtest)
+Requires:      qt5-qtdbustest
 
 %description
 A simple library for mocking DBus services with a Qt API.
