@@ -46,10 +46,11 @@ jobs:
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - uses: terrapkg/anda-build@main
+        if: github.event_name != 'pull_request'
         with:
           name: "${{ matrix.pkg.pkg }}"
           mockConfig: anda-${{ matrix.version }}-${{ matrix.pkg.arch }}
-          extraArgs: ${{ github.event_name != 'pull_request' && '-D "sccache_bucket ${{secrets.SCCACHE_BUCKET}}" -D "sccache_endpoint ${{secrets.SCCACHE_ENDPOINT}}" -D "sccache_secret ${{secrets.SCCACHE_SECRET}}" -D "sccache_accesskey ${{secrets.SCCACHE_ACCESSKEY}}"' || "" }}
+          extraArgs: -D "sccache_bucket ${{secrets.SCCACHE_BUCKET}}" -D "sccache_endpoint ${{secrets.SCCACHE_ENDPOINT}}" -D "sccache_secret ${{secrets.SCCACHE_SECRET}}" -D "sccache_accesskey ${{secrets.SCCACHE_ACCESSKEY}}"
           andaRepo: https://github.com/terrapkg/subatomic-repos/raw/main/terra${{ matrix.version }}.repo
 
       - name: Generating artifact name
@@ -72,6 +73,9 @@ jobs:
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
             terra${{ matrix.version }} anda-build/rpm/rpms/*
 
-      - name: Notify Madoguchi
-        if: always()
-        run: ./.github/workflows/mg.sh ${{success()}} ${{matrix.pkg.pkg}} ${{matrix.version}} ${{matrix.pkg.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}}
+      - name: Notify Madoguchi (Success)
+        if: success()
+        run: ./.github/workflows/mg.sh true ${{matrix.pkg.pkg}} ${{matrix.version}} ${{matrix.pkg.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}}
+      - name: Notify Madoguchi (Failure)
+        if: !success()
+        run: ./.github/workflows/mg.sh false ${{matrix.pkg.pkg}} ${{matrix.version}} ${{matrix.pkg.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}}

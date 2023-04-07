@@ -6,7 +6,7 @@
 
 Name:           switchboard-plug-onlineaccounts
 Summary:        Switchboard Online Accounts plug
-Version:        6.5.1
+Version:        6.5.2
 Release:        1%{?dist}
 License:        GPL-3.0-or-later
 
@@ -17,8 +17,6 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala
-
-Patch0: b60f0458a23a2f76ad14d399f145e150e1ab82d3.patch
 
 BuildRequires:  pkgconfig(camel-1.2)
 BuildRequires:  pkgconfig(glib-2.0)
@@ -71,8 +69,8 @@ appstream-util validate-relax --nonet \
 
 
 %changelog
-* Thu Nov 17 2022 windowsboy111 <wboy111@outlook.com> - 6.5.1-1
-- new version
+* Thu Nov 17 2022 windowsboy111 <windowsboy111@fyralabs.com> - 6.5.1-1
+- New version
 
 * Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
 - Repackaged for Terra

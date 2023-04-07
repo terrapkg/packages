@@ -30,8 +30,8 @@ mkdir -m 0755 -p %{buildroot}%{_datadir}/ubports/changelogs %{buildroot}%{_datad
 install -Dm644 changelogs/* %{buildroot}%{_datadir}/ubports/changelogs
 install -Dm644 frameworks/* %{buildroot}%{_datadir}/click/frameworks
 
-ln -s %{buildroot}%{_datadir}/click/frameworks/ubuntu-sdk-%{version}.framework %{buildroot}%{_datadir}/click/frameworks/current
-ln -s %{buildroot}%{_datadir}/ubports/changelogs/%{version} %{buildroot}%{_datadir}/ubports/changelogs/current
+ln -s %{_datadir}/click/frameworks/ubuntu-sdk-%{version}.framework %{buildroot}%{_datadir}/click/frameworks/current
+ln -s %{_datadir}/ubports/changelogs/%{version} %{buildroot}%{_datadir}/ubports/changelogs/current
 
 %files
 %license COPYING
