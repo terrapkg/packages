@@ -10,7 +10,7 @@ Name:           switchboard-plug-keyboard
 Summary:        Switchboard Keyboard plug
 Version:        3.1.1
 Release:        %autorelease
-License:        GPLv3+
+License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/switchboard-plug-keyboard
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz

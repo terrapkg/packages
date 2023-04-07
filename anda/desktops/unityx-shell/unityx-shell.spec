@@ -9,7 +9,7 @@ Version:       1.7.7
 Release:       %autorelease
 Summary:       UnityX is a smaller shell based on Unity7
 
-License:       GPLv3 AND LGPLv3
+License:       GPL-3.0 AND LGPL-3.0
 URL:           https://gitlab.com/ubuntu-unity/unity-x/unityx
 Source0:       %{url}/-/archive/%commit/unityx-%commit.tar.bz2
 Source2:       https://gitlab.xfce.org/panel-plugins/xfce4-windowck-plugin/-/commit/dee596492f006d02e2b39abd072ddd7b37fefe82.diff
@@ -77,27 +77,27 @@ Requires:      xfwm4
 UnityX is a shell based off code from Unity7 with lighter dependencies and more customizability.
 
 %package xfce4-windowck-plugin
-Summary:	Core library for the Unity shell
-Requires:	%{name}%{?_isa} = %{version}-%{release}
+Summary:  Core library for the Unity shell
+Requires: %{name}%{?_isa} = %{version}-%{release}
 
 %description xfce4-windowck-plugin
 This package contains the core library needed for Unity and Unity 2D.
 
 %package devel
-Summary:	Development files for the core Unity library
-Requires:	%{name}%{?_isa} = %{version}-%{release}
-Requires:	pkgconfig(dee-1.0)
-Requires:	pkgconfig(glib-2.0)
-Requires:	pkgconfig(sigc++-2.0)
-Requires:	pkgconfig(unity)
-Requires:	pkgconfig(nux-4.0)
+Summary:  Development files for the core Unity library
+Requires: %{name}%{?_isa} = %{version}-%{release}
+Requires: pkgconfig(dee-1.0)
+Requires: pkgconfig(glib-2.0)
+Requires: pkgconfig(sigc++-2.0)
+Requires: pkgconfig(unity)
+Requires: pkgconfig(nux-4.0)
 
 %description devel
 This package contains the development files the core Unity library.
 
 %package -n plotinus
-Summary:	Automatic testing for Unity
-Requires:	%{name}%{?_isa} = %{version}-%{release}
+Summary:  Automatic testing for Unity
+Requires: %{name}%{?_isa} = %{version}-%{release}
 
 %description -n plotinus
 This package contains the autopilot framework, which allows for triggering

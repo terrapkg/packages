@@ -6,7 +6,7 @@ Name:       qt5-qtdbustest
 Version:    0.3.0
 Release:    %autorelease
 Summary:    Library for testing DBus interactions using Qt5
-License:    LGPLv3
+License:    LGPL-3.0
 URL:        https://gitlab.com/ubports/development/core/libqtdbustest
 Source0:    %url/-/archive/%version/qtdbustest-%version.tar.gz
 

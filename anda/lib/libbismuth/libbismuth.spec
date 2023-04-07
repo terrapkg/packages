@@ -2,7 +2,7 @@ Summary:        libadwaita responsive widgets, without all the baggage.
 Name:           libbismuth
 Version:        1.0.4
 Release:        1%{?dist}
-License:        LGPL-2.1+
+License:        LGPL-2.1-or-later
 URL:            https://github.com/tau-OS/libbismuth
 Source0:        https://github.com/tau-OS/libbismuth/archive/refs/tags/%{version}.tar.gz
 

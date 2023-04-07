@@ -11,7 +11,7 @@ Version:  0.10.0^%{snapshot_info}
 %forgemeta
 Release:  1%{?dist}
 Summary:  Latte is a dock based on plasma frameworks
-License:  GPLv2+
+License:  GPL-2.0-or-later
 
 URL:      %{forgeurl}
 Source0:  https://github.com/KDE/latte-dock/archive/%{commit}.tar.gz

@@ -2,7 +2,7 @@ Name:           dbus-test-runner
 Version:        19.04.0
 Release:        %autorelease
 Summary:        A small utility to run executables under a new DBus session for testing
-License:        GPLv3
+License:        GPL-3.0
 URL:            https://launchpad.net/dbus-test-runner
 Source0:        %{url}/19.04/%{version}/+download/dbus-test-runner-%{version}.tar.gz
 Source1:        https://salsa.debian.org/debian/dbus-test-runner/-/raw/debian/sid/debian/man/dbus-test-runner.1

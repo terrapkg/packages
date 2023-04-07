@@ -5,7 +5,7 @@ Name:           elementary-onboarding
 Summary:        Onboarding app for new users
 Version:        7.0.1
 Release:        %autorelease
-License:        GPLv3+
+License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/onboarding
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz

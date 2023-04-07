@@ -10,7 +10,7 @@ Name:           switchboard-plug-mouse-touchpad
 Summary:        Switchboard Mouse and Touchpad plug
 Version:        7.0.0
 Release:        1%{?dist}
-License:        GPLv3+
+License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/switchboard-plug-mouse-touchpad
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz

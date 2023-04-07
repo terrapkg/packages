@@ -1,21 +1,21 @@
-Name:           libunity-misc
-Version:        4.0.5
-Release:        %autorelease
-Summary:        Misc Unity shell libs
+Name:			libunity-misc
+Version:		4.0.5
+Release:		%autorelease
+Summary:		Misc Unity shell libs
 
-License:        LGPLv2 AND LGPLv2 AND GPLv2
-URL:            https://launchpad.net/libunity-misc
-Source0:        http://archive.ubuntu.com/ubuntu/pool/universe/libu/libunity-misc/libunity-misc_%{version}+14.04.20140115.orig.tar.gz
+License:		LGPL-2.0 AND LGPL-2.0 AND GPL-2.0
+URL:			https://launchpad.net/libunity-misc
+Source0:		http://archive.ubuntu.com/ubuntu/pool/universe/libu/libunity-misc/libunity-misc_%{version}+14.04.20140115.orig.tar.gz
 
-BuildRequires:  make
-BuildRequires:  g++
-BuildRequires:  gcc
-BuildRequires:  libX11-devel
-BuildRequires:  gnome-common
-BuildRequires:  gtk-doc
-BuildRequires:  libX11-devel
-BuildRequires:  gtk3-devel
-BuildRequires:  glib2-devel
+BuildRequires:	make
+BuildRequires:	g++
+BuildRequires:	gcc
+BuildRequires:	libX11-devel
+BuildRequires:	gnome-common
+BuildRequires:	gtk-doc
+BuildRequires:	libX11-devel
+BuildRequires:	gtk3-devel
+BuildRequires:	glib2-devel
 
 %description
 A simple library that implements a subset of the XPath spec to allow selecting nodes in an object tree
@@ -36,8 +36,8 @@ NOCONFIGURE=1 \
 
 %build
 %configure \
-  --disable-silent-rules \
-  --disable-static
+	--disable-silent-rules \
+	--disable-static
 %make_build
 
 %install
