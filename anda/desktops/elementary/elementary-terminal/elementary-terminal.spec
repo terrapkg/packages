@@ -11,7 +11,7 @@ URL:            https://github.com/elementary/%{srcname}
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 
 BuildRequires:  desktop-file-utils
-BuildRequires:  gettext
+BuildRequires:  gettext xorg-x11-server-Xvfb
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala >= 0.40.0
