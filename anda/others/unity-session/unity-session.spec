@@ -5,7 +5,7 @@ Summary: Lightdm profile for Unity 7
 Version: 43.0
 Release: %autorelease
 
-License:   GPLv2
+License:   GPL-2.0
 URL:       https://packages.ubuntu.com/jammy/unity-session
 Source0:   http://archive.ubuntu.com/ubuntu/pool/universe/g/gnome-session/unity-session_%{version}-%{_ubuntu_rel}_all.deb
 Source1:   https://salsa.debian.org/gnome-team/gnome-session/-/raw/ubuntu/master/debian/data/run-systemd-session

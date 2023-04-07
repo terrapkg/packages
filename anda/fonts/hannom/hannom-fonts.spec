@@ -4,7 +4,7 @@ Release:    2%{?dist}
 URL:        https://vietunicode.sourceforge.net/fonts/fonts_hannom.html
 Source0:    https://downloads.sourceforge.net/project/vietunicode/hannom/hannom%20v%{version}/hannomH.zip
 Source1:    COPYING
-License:    custom
+License:    Unlicense
 Summary:    Chinese and Vietnamese TrueType fonts
 BuildRequires: unzip
 BuildArch: noarch

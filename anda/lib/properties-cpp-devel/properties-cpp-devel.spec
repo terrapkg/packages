@@ -8,7 +8,7 @@ Version:        0.0.2
 Release:        %autorelease
 Summary:        A very simple convenience library for handling properties and signals in C++11
 
-License:        LGPLv3
+License:        LGPL-3.0
 URL:            https://gitlab.com/ubports/development/core/lib-cpp/properties-cpp
 Source0:        %{url}/-/archive/%commit/properties-cpp-%commit.tar.gz
 

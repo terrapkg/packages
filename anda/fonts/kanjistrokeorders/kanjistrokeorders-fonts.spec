@@ -2,7 +2,7 @@ Name:       kanjistrokeorders-fonts
 Version:    4.004
 Release:    %autorelease
 URL:        https://sites.google.com/site/nihilistorguk
-License:    custom
+License:    BSD-3-Clause
 Summary:    Kanji stroke order font
 BuildRequires: unzip
 BuildArch: noarch

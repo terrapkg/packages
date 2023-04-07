@@ -6,7 +6,7 @@ Version:        0.9.14.2
 Release:        %autorelease
 Summary:        OpenGL window and compositing manager 0.9.X.X series
 
-License:        GPLv2+ AND LGPLv2+ AND MIT
+License:        GPL-2.0-or-later AND LGPL-2.0-or-later AND MIT
 URL:            https://launchpad.net/compiz
 Source0:        http://archive.ubuntu.com/ubuntu/pool/universe/c/compiz/compiz_%{version}+%{_ubuntu_rel}.tar.xz
 Patch0:         https://raw.githubusercontent.com/cat-master21/unityDE-specs/main/patches/compiz-cmake-install-path.patch
@@ -57,8 +57,8 @@ Requires:      metacity
 Requires:      glx-utils
 
 %package devel
-Summary:	Development files for %{name}
-Requires:	%{name}%{?_isa} = %{version}-%{release}
+Summary:    Development files for %{name}
+Requires:   %{name}%{?_isa} = %{version}-%{release}
 
 %description devel
 This package contains the development files for %{name}.

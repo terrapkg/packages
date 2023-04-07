@@ -3,7 +3,7 @@ Version:        2.2.17
 Release:        %autorelease
 Summary:        An implementation of the GEIS interface
 
-License:        GPLv3 AND LGPLv3
+License:        GPL-3.0 AND LGPL-3.0
 URL:            https://launchpad.net/geis
 Source0:        http://archive.ubuntu.com/ubuntu/pool/universe/g/geis/geis_%{version}+16.04.20160126.orig.tar.gz
 Patch0:         http://archive.ubuntu.com/ubuntu/pool/universe/g/geis/geis_%{version}+16.04.20160126-0ubuntu8.diff.gz
@@ -28,8 +28,8 @@ Requires:      python3
 An implementation of the GEIS (Gesture Engine Interface and Support) interface.
 
 %package devel
-Summary:	Development files for %{name}
-Requires:	%{name}%{?_isa} = %{version}-%{release}
+Summary:  Development files for %{name}
+Requires: %{name}%{?_isa} = %{version}-%{release}
 
 %description devel
 The %{name}-devel package contains libraries and header files for

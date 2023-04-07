@@ -10,7 +10,7 @@ Name:           switchboard-plug-sound
 Summary:        Switchboard Sound Plug
 Version:        2.3.2
 Release:        %autorelease
-License:        LGPLv2+
+License:        LGPL-2.0-or-later
 
 URL:            https://github.com/elementary/switchboard-plug-sound
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz

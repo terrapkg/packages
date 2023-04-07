@@ -7,7 +7,7 @@ Version:        6.0.3
 Release:        1%{?dist}
 Summary:        GTK Notification server for Pantheon
 
-License:        GPLv3
+License:        GPL-3.0
 URL:            https://github.com/elementary/%{srcname}
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 

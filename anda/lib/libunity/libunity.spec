@@ -3,7 +3,7 @@ Summary: Supporting library for Unity shell
 Version: 7.1.4+19.04
 Release: %autorelease
 
-License: GPLv3+ AND LGPLv3+
+License: GPL-3.0-or-later AND LGPL-3.0-or-later
 URL:     https://launchpad.net/libunity
 # same sources as shipped in ubuntu packages
 Source0: http://archive.ubuntu.com/ubuntu/pool/main/libu/libunity/libunity_7.1.4+19.04.20190319.orig.tar.gz

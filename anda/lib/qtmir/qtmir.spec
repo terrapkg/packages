@@ -54,6 +54,7 @@ BuildRequires: qt5-qtdeclarative-devel
 BuildRequires: glm-devel
 BuildRequires: boost-devel
 
+Requires:      process-cpp
 Requires:      xorg-x11-server-Xwayland
 
 %description

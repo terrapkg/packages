@@ -7,7 +7,7 @@ Release:	2%{?dist}
 URL:		https://nerdfonts.com/
 Source0:	https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v%{version}/readme.md
 Source1:	https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v%{version}/LICENSE
-License:	OFLv1.1
+License:	OFL-1.1
 Summary:	All packaged Nerd fonts
 BuildArch:	noarch
 Requires:	%{lua:

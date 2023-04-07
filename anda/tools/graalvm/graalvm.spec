@@ -11,7 +11,7 @@ Version:	22.3.1
 Release:	1%{?dist}
 URL:		https://www.graalvm.org/
 Summary:	%{gsummary}
-License:	GPLv2
+License:	GPL-2.0
 
 %description
 %{desc}

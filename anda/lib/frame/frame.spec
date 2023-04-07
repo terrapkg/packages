@@ -3,7 +3,7 @@ Version:        2.5.0
 Release:        %autorelease
 Summary:        Touch Frame Library
 
-License:        GPLv3 AND LGPLv3
+License:        GPL-3.0 AND LGPL-3.0
 URL:            https://launchpad.net/frame
 Source0:        http://archive.ubuntu.com/ubuntu/pool/universe/f/frame/frame_%{version}daily13.06.05+16.10.20160809.orig.tar.gz
 Patch0:         http://archive.ubuntu.com/ubuntu/pool/universe/f/frame/frame_%{version}daily13.06.05+16.10.20160809-0ubuntu3.diff.gz
@@ -23,8 +23,8 @@ BuildRequires: asciidoc
 Frame handles the buildup and synchronization of a set of simultaneous touches.
 
 %package devel
-Summary:	Development files for %{name}
-Requires:	%{name}%{?_isa} = %{version}-%{release}
+Summary:  Development files for %{name}
+Requires: %{name}%{?_isa} = %{version}-%{release}
 
 %description devel
 The %{name}-devel package contains libraries and header files for

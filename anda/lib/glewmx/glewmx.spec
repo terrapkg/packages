@@ -1,22 +1,22 @@
 # Can not find libraries for some reason
 %global debug_package %{nil}
 
-Name:           glewmx
-Version:        1.13.0.
-Release:        1%{?dist}
-Summary:        OpenGL Extension Wrangler MX
+Name:			glewmx
+Version:		1.13.0
+Release:		1%{?dist}
+Summary:		OpenGL Extension Wrangler MX
 
-License:        GPLv3+
-URL:            https://launchpad.net/ubuntu/+source/glewmx
-Source0:        http://archive.ubuntu.com/ubuntu/pool/universe/g/glewmx/glewmx_%{version}.orig.tar.gz
-Source1:        http://archive.ubuntu.com/ubuntu/pool/universe/g/glewmx/glewmx_%{version}-5.debian.tar.xz
+License:		GPL-3.0-or-later
+URL:			https://launchpad.net/ubuntu/+source/glewmx
+Source0:		http://archive.ubuntu.com/ubuntu/pool/universe/g/glewmx/glewmx_%{version}.orig.tar.gz
+Source1:		http://archive.ubuntu.com/ubuntu/pool/universe/g/glewmx/glewmx_%{version}-5.debian.tar.xz
 
-BuildRequires: make
-BuildRequires: gcc
-BuildRequires: mesa-libGLU-devel
-BuildRequires: pkgconfig(glu)
-BuildRequires: libXmu-devel
-BuildRequires: libXi-devel
+BuildRequires:	make
+BuildRequires:	gcc
+BuildRequires:	mesa-libGLU-devel
+BuildRequires:	pkgconfig(glu)
+BuildRequires:	libXmu-devel
+BuildRequires:	libXi-devel
 
 %description
 OpenGL Extension Wrangler MX. The MX version is discountinued but is maintained in Ubuntu.

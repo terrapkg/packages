@@ -2,7 +2,7 @@ Name:           rnote
 Version:        0.5.18
 Release:        1%{?dist}
 Summary:        Sketch and take handwritten notes.
-License:        GPLv3
+License:        GPL-3.0
 URL:            https://github.com/flxzt/rnote
 Source0:        %{url}/releases/download/v%{version}/rnote-%{version}.tar.xz
 Requires:       libadwaita poppler-glib glib2 gtk4

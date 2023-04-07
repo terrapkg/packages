@@ -1,8 +1,8 @@
 Name:			anki-bin
-Version:		2.1.60
+Version:		2.1.61
 Release:		1%{?dist}
 Summary:		Flashcard program for using space repetition learning (Installed with wheel)
-License:		AGPLv3+ and GPLv3+ and LGPLv3 and MIT and BSD and ASL 2.0 and CC-BY-SA and CC-BY
+License:		AGPL-3.0-or-later AND GPL-3.0-or-later AND LGPL-3.0-or-later AND MIT AND BSD-3-Clause AND CC-BY-SA-3.0 AND CC-BY-3.0 AND Apache-2.0 AND CC-BY-2.5
 URL:			https://apps.ankiweb.net/
 BuildRequires:	python3-installer python3.11
 Requires:		hicolor-icon-theme python3-sqlalchemy python3-simplejson python3-matplotlib python3-decorator python3-markdown python3-send2trash

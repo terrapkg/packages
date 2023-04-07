@@ -5,9 +5,9 @@
 
 Name:           elementary-files
 Summary:        File manager from elementary
-Version:        6.3.0
+Version:        6.3.1
 Release:        1%{?dist}
-License:        GPLv3
+License:        GPL-3.0
 
 URL:            https://github.com/elementary/%{srcname}
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz

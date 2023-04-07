@@ -6,9 +6,9 @@
 
 Name:           switchboard-plug-onlineaccounts
 Summary:        Switchboard Online Accounts plug
-Version:        6.5.1
+Version:        6.5.2
 Release:        1%{?dist}
-License:        GPLv3+
+License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/switchboard-plug-onlineaccounts
 Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
