@@ -5,7 +5,7 @@ Name:           elementary-icon-theme
 Summary:        Icons from the Elementary Project
 Version:        7.2.0
 Release:        1%{?dist}
-License:        GPLv3+
+License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/icons
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz

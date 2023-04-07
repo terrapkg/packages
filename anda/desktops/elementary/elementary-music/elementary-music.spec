@@ -12,7 +12,7 @@ Name:           elementary-music
 Summary:        Music player and library from elementary
 Version:        7.0.1
 Release:        2%{?dist}
-License:        LGPLv2+
+License:        LGPL-2.0-or-later
 
 URL:            https://github.com/elementary/%{srcname}
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz

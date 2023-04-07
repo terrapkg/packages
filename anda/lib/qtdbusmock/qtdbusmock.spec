@@ -6,7 +6,7 @@ Name:       qtdbusmock
 Version:    0.9.0
 Release:    %autorelease
 Summary:    Library for mocking DBus interactions using Qt
-License:    LGPLv3
+License:    LGPL-3.0
 URL:        https://gitlab.com/ubports/development/core/libqtdbusmock
 Source0:    %{url}/-/archive/%commit/libqtdbusmock-%commit.tar.gz
 
@@ -17,6 +17,7 @@ BuildRequires: pkgconfig(libqtdbustest-1)
 BuildRequires: pkgconfig(libnm)
 BuildRequires: pkgconfig(gmock)
 BuildRequires: pkgconfig(gtest)
+Requires:      qt5-qtdbustest
 
 %description
 A simple library for mocking DBus services with a Qt API.

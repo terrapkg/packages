@@ -3,7 +3,7 @@ Version:	0.2.20080216.2
 Release:	%autorelease
 URL:		https://www.freedesktop.org/wiki/Software/CJKUnifonts
 Source0:	https://deb.debian.org/debian/pool/main/f/fonts-arphic-ukai/fonts-arphic-ukai_%{version}.orig.tar.bz2
-License:	custom
+License:	Arphic-1999
 Summary:	CJK Unicode font Kaiti style
 BuildArch:	noarch
 

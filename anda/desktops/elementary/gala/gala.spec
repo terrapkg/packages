@@ -2,9 +2,9 @@
 
 Name:           gala
 Summary:        Gala window manager
-Version:        7.0.1
+Version:        7.0.2
 Release:        1%{?dist}
-License:        GPLv3+
+License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/gala
 Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz

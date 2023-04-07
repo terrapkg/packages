@@ -7,7 +7,7 @@ Name:           elementary-code
 Summary:        Code editor from elementary
 Version:        7.0.0
 Release:        2%{?dist}
-License:        GPLv3
+License:        GPL-3.0
 
 URL:            https://github.com/elementary/%{srcname}
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz

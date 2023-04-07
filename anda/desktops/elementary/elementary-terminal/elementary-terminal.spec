@@ -3,9 +3,9 @@
 
 Name:           elementary-terminal
 Summary:        The terminal of the 21st century
-Version:        6.1.1
+Version:        6.1.2
 Release:        1%{?dist}
-License:        LGPLv3
+License:        LGPL-3.0
 
 URL:            https://github.com/elementary/%{srcname}
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz

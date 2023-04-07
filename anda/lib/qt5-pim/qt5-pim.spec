@@ -3,7 +3,7 @@ Summary: Qt5 PIM Framework
 Version: 5.15
 Release: %autorelease
 
-License: GPLv3
+License: GPL-3.0
 URL:     https://invent.kde.org/qt/qt/qtpim
 Source0: %{url}/-/archive/kde/5.15/qtpim-kde-%{version}.tar.gz
 Source1: https://salsa.debian.org/qt-kde-team/qt/qtpim/-/archive/master/qtpim-master.tar.gz
