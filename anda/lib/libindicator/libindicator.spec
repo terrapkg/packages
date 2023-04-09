@@ -73,7 +73,7 @@ NOCONFIGURE=1 \
 	sh autogen.sh
 
 %build
-%global _configure NOCONFIGURE=1 ../configure
+%global _configure ../configure --libdir=%{_libdir}
 rm -rf build-gtk2 build-gtk3
 mkdir build-gtk2 build-gtk3
 
