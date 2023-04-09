@@ -50,10 +50,10 @@ fun main(args: Array<String>) {
     println("Hello, world!")
 }
 EOT
-kotlinc test.kt && %{buildroot}%{_bindir}/kotlin TestKt
-%{buildroot}%{_bindir}/kotlinc test.kt -include-runtime -d test.jar
-%{buildroot}%{_bindir}/kotlinc-js test.kt -output test.js
-%{buildroot}%{_bindir}/kotlinc-jvm test.kt -include-runtime -d test.jar
+kotlinc test.kt && kotlin TestKt
+kotlinc test.kt -include-runtime -d test.jar
+kotlinc-js test.kt -output test.js
+kotlinc-jvm test.kt -include-runtime -d test.jar
 
 
 %files
