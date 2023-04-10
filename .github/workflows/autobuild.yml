@@ -45,6 +45,11 @@ jobs:
       image: ghcr.io/terrapkg/builder:main
       options: --cap-add=SYS_ADMIN --privileged
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
       - uses: terrapkg/anda-build@main
         if: github.event_name == 'pull_request'
         with:
@@ -80,10 +85,6 @@ jobs:
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
             terra${{ matrix.version }} anda-build/rpm/rpms/*
 
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
       - name: Notify Madoguchi (Success)
         if: success() && github.event_name != 'pull_request'
         run: ./.github/workflows/mg.sh true ${{matrix.pkg.pkg}} ${{matrix.version}} ${{matrix.pkg.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}}
