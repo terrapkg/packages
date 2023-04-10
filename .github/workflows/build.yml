@@ -28,12 +28,29 @@ jobs:
       image: ghcr.io/terrapkg/builder:main
       options: --cap-add=SYS_ADMIN --privileged
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
       - uses: terrapkg/anda-build@main
         with:
           name: "${{ matrix.pkg }}pkg"
           mockConfig: anda-37-${{ matrix.arch }}
           extraArgs: -D "sccache_bucket ${{secrets.SCCACHE_BUCKET}}" -D "sccache_endpoint ${{secrets.SCCACHE_ENDPOINT}}" -D "sccache_secret ${{secrets.SCCACHE_SECRET}}" -D "sccache_accesskey ${{secrets.SCCACHE_ACCESSKEY}}"
           andaRepo: https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
+
+      - name: Generating artifact name
+        id: art
+        run: |
+          NAME=${{ matrix.pkg.pkg }}-${{ matrix.pkg.arch }}-${{ matrix.version }}
+          x=${NAME//\//@}
+          echo "name=$x" >> $GITHUB_OUTPUT
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: ${{ steps.art.outputs.name }}
+          path: anda-build/rpm/rpms/*
 
       - name: Upload packages to subatomic
         run: |
@@ -42,13 +59,9 @@ jobs:
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
             terra${{ matrix.version }} anda-build/rpm/rpms/*
 
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
       - name: Notify Madoguchi (Success)
         if: success()
-        run: ./.github/workflows/mg.sh true ${{matrix.pkg.pkg}} ${{matrix.version}} ${{matrix.pkg.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}}
+        run: ./.github/workflows/mg.sh true ${{matrix.pkg}} ${{matrix.version}} ${{matrix.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}}
       - name: Notify Madoguchi (Failure)
         if: cancelled() || failure()
-        run: ./.github/workflows/mg.sh false ${{matrix.pkg.pkg}} ${{matrix.version}} ${{matrix.pkg.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}}
+        run: ./.github/workflows/mg.sh false ${{matrix.pkg}} ${{matrix.version}} ${{matrix.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}}
