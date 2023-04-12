@@ -3,7 +3,6 @@ set -x
 dirs=$2
 dirs=${dirs/\/pkg/}
 export p="{\"id\":\"$5\",\"ver\":\"%v\",\"rel\":\"%r\",\"arch\":\"$4\",\"dirs\":\"$dirs\",\"succ\":$1}"
-
 for f in anda-build/rpm/rpms/*; do
 	n=$(lesspipe.sh $f | grep -E "Name\s*: " | sed "s@Name\s*: @@")
 	v=$(lesspipe.sh $f | grep -E "Version\s*: " | sed "s@Version\s*: @@")

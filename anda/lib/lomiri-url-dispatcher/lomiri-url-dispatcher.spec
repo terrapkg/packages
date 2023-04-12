@@ -26,7 +26,7 @@ BuildRequires: pkgconfig(sqlite3)
 BuildRequires: pkgconfig(systemd)
 BuildRequires: pkgconfig(libapparmor)
 Requires:      lomiri-ui-toolkit
-ExclusiveArch: x86_64
+ExclusiveArch: x86_64 aarch64
 
 %description
 Lomiri-url-dispatcher is a small handler to take URLs and do what is appropriate with them.

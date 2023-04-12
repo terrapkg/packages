@@ -10,7 +10,7 @@ Summary:        An OpenGL toolkit
 License:        GPL-3.0-or-later AND LGPL-3.0-or-later AND LGPL-2.0-or-later
 URL:            https://gitlab.com/ubuntu-unity/unity-x/nux
 Source0:        %{url}/-/archive/%commit/nux-%commit.tar.bz2
-Patch0:         https://gitlab.com/cat-master21/nux/-/commit/0e834a556818281b9e023b47f0667e8da0f5cebd.patch
+Source1:         https://gitlab.com/cat-master21/nux/-/commit/0e834a556818281b9e023b47f0667e8da0f5cebd.patch
 
 BuildRequires: automake libtool gnome-common
 BuildRequires: intltool
@@ -54,7 +54,7 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 
 %prep
 %autosetup -n nux-%commit -N
-git apply %{PATCH0}
+git apply %{SOURCE1}
 
 %build
 NOCONFIGURE=1 \
