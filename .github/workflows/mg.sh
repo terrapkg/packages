@@ -1,12 +1,17 @@
+set -x
+
 if $1; then
-	dirs=${$2/\/pkg/}
-	export p="{\"id\":\"$5\",\"verl\":\"%v\",\"arch\":\"$4\",\"dirs\":\"$dirs\"}"
+	dirs=$2
+	dirs=${dirs/\/pkg/}
+	export p="{\"id\":\"$5\",\"ver\":\"%v\",\"rel\":\"%r\",\"arch\":\"$4\",\"dirs\":\"$dirs\"}"
 else
-	export p="{\"id\":\"$5\",\"verl\":\"%v\",\"arch\":\"$4\"}"
+	export p="{\"id\":\"$5\",\"ver\":\"%v\",\"rel\":\"%r\",\"arch\":\"$4\"}"
 fi
 for f in anda-build/rpm/rpms/*; do
 	n=$(lesspipe.sh $f | grep -E "Name\s*: " | sed "s@Name\s*: @@")
-	v=$(echo ${f/${n}-/} | sed -E "s@\.fc$3.+@@")
-	curl -H "Authorization: Bearer $6" https://madoguchi.fyralabs.com/ci/terra$3/builds/$n -X PUT -H "Content-Type: application/json" -d ${p/%v/$v} --fail-with-body &
+	v=$(lesspipe.sh $f | grep -E "Version\s*: " | sed "s@Version\s*: @@")
+	r=$(lesspipe.sh $f | grep -E "Release\s*: " | sed "s@Release\s*: @@")
+	d=${p/\%v/$v}
+	d=${d/\%r/$r}
+	curl -H "Authorization: Bearer $6" https://madoguchi.fyralabs.com/ci/terra$3/builds/$n -X PUT -H "Content-Type: application/json" -d $d --fail-with-body
 done
-wait
