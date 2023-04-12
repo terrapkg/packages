@@ -61,7 +61,7 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 
 # Requires internet so manually installing manpage
 rm -rf man
-sed -i '/man\/Makefile/d' "configure.ac"
+sed -i '/man\/Makefile/d' ./configure.ac
 sed -i '/man/d' Makefile.am
 
 %build
