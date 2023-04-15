@@ -40,13 +40,6 @@ Requires:   %{name}%{?_isa} = %{version}-%{release}
 %description devel
 This package contains the development header files for %{name}.
 
-%package doc
-Summary:   Documentation for %{name}
-BuildArch: noarch
-
-%description doc
-This package contains documentation files for %{name}.
-
 %prep
 %autosetup -n %{name}-%{version}
 
