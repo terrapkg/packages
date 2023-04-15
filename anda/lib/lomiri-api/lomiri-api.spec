@@ -1,10 +1,10 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-api
-%global commit 30860779881a2a235ba454ac37a06e349af05eb3
+%global commit fb0956064460cb8b9e98cf8f450ddfad0326bfec
 %forgemeta
 
 Name:          lomiri-api
 Version:       0.2.0
-Release:       1%{?dist}
+Release:       %autorelease
 Summary:       API for Lomiri
 
 License:       LGPL-3.0-or-later
