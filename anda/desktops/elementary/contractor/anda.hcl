@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "contractor.spec"
-    }
+	rpm {
+		spec = "contractor.spec"
+	}
 }

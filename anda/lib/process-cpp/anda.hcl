@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "process-cpp.spec"
-    }
+	rpm {
+		spec = "process-cpp.spec"
+	}
 }

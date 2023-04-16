@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "unity-shell.spec"
-    }
+	rpm {
+		spec = "unity-shell.spec"
+	}
 }

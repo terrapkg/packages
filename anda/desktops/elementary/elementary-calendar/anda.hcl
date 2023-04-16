@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "elementary-calendar.spec"
-    }
+	rpm {
+		spec = "elementary-calendar.spec"
+	}
 }

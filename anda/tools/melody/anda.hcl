@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "melody.spec"
-    }
+	rpm {
+		spec = "melody.spec"
+	}
 }

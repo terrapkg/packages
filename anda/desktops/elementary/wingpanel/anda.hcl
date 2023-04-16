@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "wingpanel.spec"
-    }
+	rpm {
+		spec = "wingpanel.spec"
+	}
 }

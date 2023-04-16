@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "python3-orjson.spec"
-    }
+	rpm {
+		spec = "python3-orjson.spec"
+	}
 }

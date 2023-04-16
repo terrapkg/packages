@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "libhelium.spec"
-    }
+	rpm {
+		spec = "libhelium.spec"
+	}
 }

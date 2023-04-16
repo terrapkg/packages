@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "rust-sccache.spec"
-    }
+	rpm {
+		spec = "rust-sccache.spec"
+	}
 }

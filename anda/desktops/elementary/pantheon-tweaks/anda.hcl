@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "pantheon-tweaks.spec"
-    }
+	rpm {
+		spec = "pantheon-tweaks.spec"
+	}
 }

@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "geis.spec"
-    }
+	rpm {
+		spec = "geis.spec"
+	}
 }

@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "cmake-extras.spec"
-    }
+	rpm {
+		spec = "cmake-extras.spec"
+	}
 }

@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "unity-greeter.spec"
-    }
+	rpm {
+		spec = "unity-greeter.spec"
+	}
 }

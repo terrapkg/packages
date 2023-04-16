@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "vl-gothic-fonts.spec"
-    }
+	rpm {
+		spec = "vl-gothic-fonts.spec"
+	}
 }

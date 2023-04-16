@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "wingpanel-indicator-datetime.spec"
-    }
+	rpm {
+		spec = "wingpanel-indicator-datetime.spec"
+	}
 }

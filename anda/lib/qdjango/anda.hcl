@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "qdjango.spec"
-    }
+	rpm {
+		spec = "qdjango.spec"
+	}
 }

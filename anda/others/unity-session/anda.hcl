@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "unity-session.spec"
-    }
+	rpm {
+		spec = "unity-session.spec"
+	}
 }

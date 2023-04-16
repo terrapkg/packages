@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "choosenim.spec"
-    }
+	rpm {
+		spec = "choosenim.spec"
+	}
 }

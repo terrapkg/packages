@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "kotlin.spec"
-    }
+	rpm {
+		spec = "kotlin.spec"
+	}
 }

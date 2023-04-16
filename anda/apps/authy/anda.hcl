@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "authy.spec"
-    }
+	rpm {
+		spec = "authy.spec"
+	}
 }

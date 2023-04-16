@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "rust-joshuto.spec"
-    }
+	rpm {
+		spec = "rust-joshuto.spec"
+	}
 }

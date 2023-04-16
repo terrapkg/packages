@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "vala-lint-nightly.spec"
-    }
+	rpm {
+		spec = "vala-lint-nightly.spec"
+	}
 }

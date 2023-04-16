@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "qtdbusmock.spec"
-    }
+	rpm {
+		spec = "qtdbusmock.spec"
+	}
 }

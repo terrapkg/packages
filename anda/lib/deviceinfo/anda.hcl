@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "deviceinfo.spec"
-    }
+	rpm {
+		spec = "deviceinfo.spec"
+	}
 }

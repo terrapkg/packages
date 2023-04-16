@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "elementary-shortcut-overlay.spec"
-    }
+	rpm {
+		spec = "elementary-shortcut-overlay.spec"
+	}
 }

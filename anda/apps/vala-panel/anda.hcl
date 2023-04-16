@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "vala-panel.spec"
-    }
+	rpm {
+		spec = "vala-panel.spec"
+	}
 }

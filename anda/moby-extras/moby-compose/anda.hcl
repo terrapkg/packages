@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "moby-compose.spec"
-    }
+	rpm {
+		spec = "moby-compose.spec"
+	}
 }

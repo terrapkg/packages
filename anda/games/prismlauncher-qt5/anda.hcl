@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "prismlauncher-qt5.spec"
-    }
+	rpm {
+		spec = "prismlauncher-qt5.spec"
+	}
 }

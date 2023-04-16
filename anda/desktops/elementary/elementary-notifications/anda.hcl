@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "elementary-notifications.spec"
-    }
+	rpm {
+		spec = "elementary-notifications.spec"
+	}
 }

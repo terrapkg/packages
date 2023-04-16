@@ -1,5 +1,6 @@
 project pkg {
-    rpm {
-        spec = "discord-canary.spec"
-    }
+	arches = ["x86_64"]
+	rpm {
+		spec = "discord-canary.spec"
+	}
 }

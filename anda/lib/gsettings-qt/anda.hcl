@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "gsettings-qt.spec"
-    }
+	rpm {
+		spec = "gsettings-qt.spec"
+	}
 }

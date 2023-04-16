@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "arphic-uming-fonts.spec"
-    }
+	rpm {
+		spec = "arphic-uming-fonts.spec"
+	}
 }

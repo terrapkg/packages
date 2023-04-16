@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "nim.spec"
-    }
+	rpm {
+		spec = "nim.spec"
+	}
 }

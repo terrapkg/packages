@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "elementary-calculator.spec"
-    }
+	rpm {
+		spec = "elementary-calculator.spec"
+	}
 }

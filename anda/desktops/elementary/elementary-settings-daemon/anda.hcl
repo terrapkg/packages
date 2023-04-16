@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "elementary-settings-daemon.spec"
-    }
+	rpm {
+		spec = "elementary-settings-daemon.spec"
+	}
 }

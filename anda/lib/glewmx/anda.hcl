@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "glewmx.spec"
-    }
+	rpm {
+		spec = "glewmx.spec"
+	}
 }
