@@ -8,6 +8,7 @@ License:		BSD-2-Clause
 URL:			https://blahaj.queer.software
 Source0:		https://github.com/GeopJr/BLAHAJ/archive/refs/tags/v%version.tar.gz
 BuildRequires:	crystal make gcc libyaml-devel pcre-devel
+ExclusiveArch:	x86_64
 
 %description
 Apart from a cute cuddly shark plushie from IKEA, BLÅHAJ is a lolcat-like CLI tool that colorizes your input, shows flags and prints colorful sharks!
