@@ -14,7 +14,12 @@ jobs:
     steps:
       - name: Parse Input
         id: parsing
-        run: echo "${{ inputs.packages }}" | sed 's/ /\n/g' | sed 's/$/\//g' | jq -R . | jq -s . | jq -c . | sed 's/^/pkgs=/' >> $GITHUB_OUTPUT
+        run: |
+          if [[ ${{ inputs.packages }} == build_matrix* ]]; then
+            echo ${{ inputs.packages }} >> $GITHUB_OUTPUT
+          else
+            echo "${{ inputs.packages }}" | sed 's/ /\n/g' | sed 's/$/\//g' | jq -R . | jq -s . | jq -c . | sed 's/^/pkgs=/' >> $GITHUB_OUTPUT
+          fi
   build:
     needs: parse
     strategy:
