@@ -9,6 +9,7 @@ Source0:    %{url}/archive/refs/tags/%{version}.tar.gz
 BuildRequires:  cmake
 BuildRequires:  cmake-extras
 BuildRequires:  systemd-rpm-macros
+BuildRequires:  pkgconfig(systemd)
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(libayatana-common)
 BuildRequires:  pkgconfig(libnotify)
