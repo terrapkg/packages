@@ -44,7 +44,7 @@ jobs:
       - name: Generating artifact name
         id: art
         run: |
-          NAME=${{ matrix.pkg.pkg }}-${{ matrix.pkg.arch }}-${{ matrix.version }}
+          NAME=${{ matrix.pkg }}-${{ matrix.arch }}-${{ matrix.version }}
           x=${NAME//\//@}
           echo "name=$x" >> $GITHUB_OUTPUT
 
