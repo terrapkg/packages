@@ -4,7 +4,7 @@ dirs=$2
 dirs=${dirs/\/pkg/}
 export p="{\"id\":\"$5\",\"ver\":\"%v\",\"rel\":\"%r\",\"arch\":\"$4\",\"dirs\":\"$dirs\",\"succ\":$1}"
 
-if [[ $succ == false ]]; then
+if [[ $1 == false ]]; then
 	d=${p/\%v/?}
 	d=${d/\%r/?}
 	curl -H "Authorization: Bearer $6" https://madoguchi.fyralabs.com/ci/terra$3/builds/$n -X PUT -H "Content-Type: application/json" -d $d --fail-with-body
