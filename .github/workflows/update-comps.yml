@@ -3,8 +3,9 @@ name: Push comps updates
 on:
   push:
     branches:
-      - main
+      - f39
       - f38
+      - f37
     paths:
       - comps.xml
   workflow_dispatch:

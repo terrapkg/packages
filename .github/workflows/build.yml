@@ -25,7 +25,7 @@ jobs:
       fail-fast: false
     runs-on: ${{ matrix.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
     container:
-      image: ghcr.io/terrapkg/builder:main
+      image: ghcr.io/terrapkg/builder:37
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Checkout
@@ -36,7 +36,7 @@ jobs:
       - uses: terrapkg/anda-build@main
         with:
           name: "${{ matrix.pkg }}pkg"
-          mockConfig: anda-37-${{ matrix.arch }}
+          mockConfig: anda-${{ matrix.version }}-${{ matrix.arch }}
           extraArgs: -D "sccache_bucket ${{secrets.SCCACHE_BUCKET}}" -D "sccache_endpoint ${{secrets.SCCACHE_ENDPOINT}}" -D "sccache_secret ${{secrets.SCCACHE_SECRET}}" -D "sccache_accesskey ${{secrets.SCCACHE_ACCESSKEY}}"
           andaRepo: https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
 

@@ -6,10 +6,10 @@ on:
     paths:
       - anda/**
     branches:
-      - main
+      - f37
   pull_request:
     branches:
-      - main
+      - f37
   workflow_dispatch:
   workflow_call:
 
@@ -20,7 +20,7 @@ jobs:
     outputs:
       build_matrix: ${{ steps.generate_build_matrix.outputs.build_matrix }}
     container:
-      image: ghcr.io/terrapkg/builder:main
+      image: ghcr.io/terrapkg/builder:37
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Set workspace as safe
@@ -42,7 +42,7 @@ jobs:
       fail-fast: false
     runs-on: ${{ matrix.pkg.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
     container:
-      image: ghcr.io/terrapkg/builder:main
+      image: ghcr.io/terrapkg/builder:37
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Checkout
