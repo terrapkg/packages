@@ -1,4 +1,4 @@
-name: Build Packages
+name: Build Packages (JSON)
 on:
   workflow_dispatch:
     inputs:
@@ -7,20 +7,11 @@ on:
         required: true
 
 jobs:
-  parse:
-    outputs:
-      pkgs: ${{ steps.parsing.outputs.pkgs }}
-    runs-on: "ubuntu-latest"
-    steps:
-      - name: Parse Input
-        id: parsing
-        run: echo "${{ inputs.packages }}" | sed 's/ /\n/g' | sed 's/$/\//g' | jq -R . | jq -s . | jq -c . | sed 's/^/pkgs=/' >> $GITHUB_OUTPUT
-
   build:
     needs: parse
     strategy:
       matrix:
-        pkg: ${{ fromJson(needs.parse.outputs.pkgs) }}
+        pkg: ${{ fromJson(inputs.packages) }}
         version: ["38"]
         arch: ["x86_64", "aarch64"]
       fail-fast: false
