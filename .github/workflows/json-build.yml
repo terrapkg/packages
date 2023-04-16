@@ -12,7 +12,6 @@ jobs:
       matrix:
         pkg: ${{ fromJson(inputs.packages) }}
         version: ["39"]
-        arch: ["x86_64", "aarch64"]
       fail-fast: false
     runs-on: ${{ matrix.pkg.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
     container:
