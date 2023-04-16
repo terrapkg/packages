@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "arphic-ukai-fonts.spec"
-    }
+	rpm {
+		spec = "arphic-ukai-fonts.spec"
+	}
 }

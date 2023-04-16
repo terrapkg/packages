@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "elementary-camera.spec"
-    }
+	rpm {
+		spec = "elementary-camera.spec"
+	}
 }

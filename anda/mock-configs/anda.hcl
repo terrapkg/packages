@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "anda-mock-configs.spec"
-    }
+	rpm {
+		spec = "anda-mock-configs.spec"
+	}
 }

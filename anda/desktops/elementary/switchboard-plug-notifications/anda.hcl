@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "switchboard-plug-notifications.spec"
-    }
+	rpm {
+		spec = "switchboard-plug-notifications.spec"
+	}
 }

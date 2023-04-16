@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "hannom-fonts.spec"
-    }
+	rpm {
+		spec = "hannom-fonts.spec"
+	}
 }

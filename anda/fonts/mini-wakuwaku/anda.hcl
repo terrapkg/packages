@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "mini-wakuwaku-fonts.spec"
-    }
+	rpm {
+		spec = "mini-wakuwaku-fonts.spec"
+	}
 }

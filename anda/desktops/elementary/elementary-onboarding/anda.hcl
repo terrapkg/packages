@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "elementary-onboarding.spec"
-    }
+	rpm {
+		spec = "elementary-onboarding.spec"
+	}
 }

@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "tau-helium.spec"
-    }
+	rpm {
+		spec = "tau-helium.spec"
+	}
 }

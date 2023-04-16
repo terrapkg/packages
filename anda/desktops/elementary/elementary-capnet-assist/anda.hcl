@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "elementary-capnet-assist.spec"
-    }
+	rpm {
+		spec = "elementary-capnet-assist.spec"
+	}
 }

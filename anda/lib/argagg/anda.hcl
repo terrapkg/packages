@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "argagg.spec"
-    }
+	rpm {
+		spec = "argagg.spec"
+	}
 }

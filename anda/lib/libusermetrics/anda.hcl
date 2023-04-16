@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "libusermetrics.spec"
-    }
+	rpm {
+		spec = "libusermetrics.spec"
+	}
 }

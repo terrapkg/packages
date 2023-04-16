@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "distrho.spec"
-    }
+	rpm {
+		spec = "distrho.spec"
+	}
 }

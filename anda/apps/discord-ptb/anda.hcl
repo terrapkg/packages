@@ -1,5 +1,6 @@
 project pkg {
-    rpm {
-        spec = "discord-ptb.spec"
-    }
+	arches = ["x86_64"]
+	rpm {
+		spec = "discord-ptb.spec"
+	}
 }

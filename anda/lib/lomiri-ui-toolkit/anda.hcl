@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "lomiri-ui-toolkit.spec"
-    }
+	rpm {
+		spec = "lomiri-ui-toolkit.spec"
+	}
 }

@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "libappimageupdate.spec"
-    }
+	rpm {
+		spec = "libappimageupdate.spec"
+	}
 }

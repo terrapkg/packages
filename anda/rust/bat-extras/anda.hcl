@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "bat-extras.spec"
-    }
+	rpm {
+		spec = "bat-extras.spec"
+	}
 }

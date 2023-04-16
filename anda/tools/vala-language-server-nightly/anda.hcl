@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "vala-language-server-nightly.spec"
-    }
+	rpm {
+		spec = "vala-language-server-nightly.spec"
+	}
 }

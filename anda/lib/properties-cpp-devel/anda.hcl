@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "properties-cpp-devel.spec"
-    }
+	rpm {
+		spec = "properties-cpp-devel.spec"
+	}
 }

@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "kanjistrokeorders-fonts.spec"
-    }
+	rpm {
+		spec = "kanjistrokeorders-fonts.spec"
+	}
 }

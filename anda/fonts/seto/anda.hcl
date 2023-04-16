@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "seto-fonts.spec"
-    }
+	rpm {
+		spec = "seto-fonts.spec"
+	}
 }

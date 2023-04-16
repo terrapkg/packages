@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "apparmor.spec"
-    }
+	rpm {
+		spec = "apparmor.spec"
+	}
 }

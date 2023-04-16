@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "lomiri-schemas.spec"
-    }
+	rpm {
+		spec = "lomiri-schemas.spec"
+	}
 }

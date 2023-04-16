@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "appimagelauncher.spec"
-    }
+	rpm {
+		spec = "appimagelauncher.spec"
+	}
 }

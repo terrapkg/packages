@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "tau-hydrogen.spec"
-    }
+	rpm {
+		spec = "tau-hydrogen.spec"
+	}
 }

@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "switchboard.spec"
-    }
+	rpm {
+		spec = "switchboard.spec"
+	}
 }

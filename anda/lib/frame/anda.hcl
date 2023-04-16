@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "frame.spec"
-    }
+	rpm {
+		spec = "frame.spec"
+	}
 }

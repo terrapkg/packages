@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "elementary-sideload.spec"
-    }
+	rpm {
+		spec = "elementary-sideload.spec"
+	}
 }

@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "nerd-fonts.spec"
-    }
+	rpm {
+		spec = "nerd-fonts.spec"
+	}
 }

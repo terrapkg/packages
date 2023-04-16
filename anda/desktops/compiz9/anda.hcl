@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "compiz9.spec"
-    }
+	rpm {
+		spec = "compiz9.spec"
+	}
 }

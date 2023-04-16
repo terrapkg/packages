@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "qmenumodel.spec"
-    }
+	rpm {
+		spec = "qmenumodel.spec"
+	}
 }

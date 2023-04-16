@@ -1,6 +1,6 @@
 project pkg {
-    rpm {
-        spec = "discord-ptb-openasar.spec"
-        update = ""
-    }
+	arches = ["x86_64"]
+	rpm {
+		spec = "discord-ptb-openasar.spec"
+	}
 }

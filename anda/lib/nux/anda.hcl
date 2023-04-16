@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "nux.spec"
-    }
+	rpm {
+		spec = "nux.spec"
+	}
 }

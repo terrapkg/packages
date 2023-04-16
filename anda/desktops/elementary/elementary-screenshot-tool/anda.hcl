@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "elementary-screenshot-tool.spec"
-    }
+	rpm {
+		spec = "elementary-screenshot-tool.spec"
+	}
 }

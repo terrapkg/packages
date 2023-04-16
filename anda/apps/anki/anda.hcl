@@ -1,5 +1,6 @@
 project pkg {
-    rpm {
-        spec = "anki.spec"
-    }
+	arches = ["x86_64"]
+	rpm {
+		spec = "anki.spec"
+	}
 }

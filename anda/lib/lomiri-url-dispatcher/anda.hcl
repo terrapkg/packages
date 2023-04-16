@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "lomiri-url-dispatcher.spec"
-    }
+	rpm {
+		spec = "lomiri-url-dispatcher.spec"
+	}
 }

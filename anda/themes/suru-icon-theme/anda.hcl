@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "suru-icon-theme.spec"
-    }
+	rpm {
+		spec = "suru-icon-theme.spec"
+	}
 }
