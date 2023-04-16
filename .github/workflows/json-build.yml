@@ -15,7 +15,7 @@ jobs:
       fail-fast: false
     runs-on: ${{ matrix.pkg.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
     container:
-      image: ghcr.io/terrapkg/builder:39
+      image: ghcr.io/terrapkg/builder:f39
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Checkout
