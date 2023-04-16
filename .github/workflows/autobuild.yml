@@ -20,7 +20,7 @@ jobs:
     outputs:
       build_matrix: ${{ steps.generate_build_matrix.outputs.build_matrix }}
     container:
-      image: ghcr.io/terrapkg/builder:f38
+      image: ghcr.io/terrapkg/builder:38
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Set workspace as safe
@@ -42,13 +42,20 @@ jobs:
       fail-fast: false
     runs-on: ${{ matrix.pkg.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
     container:
-      image: ghcr.io/terrapkg/builder:f38
+      image: ghcr.io/terrapkg/builder:38
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
+      - uses: terrapkg/anda-build@main
+        if: github.event_name == 'pull_request'
+        with:
+          name: "${{ matrix.pkg.pkg }}"
+          mockConfig: anda-${{ matrix.version }}-${{ matrix.pkg.arch }}
+          andaRepo: https://github.com/terrapkg/subatomic-repos/raw/main/terra${{ matrix.version }}.repo
 
       - uses: terrapkg/anda-build@main
         if: github.event_name != 'pull_request'
