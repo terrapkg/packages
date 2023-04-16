@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "wingpanel-applications-menu.spec"
-    }
+	rpm {
+		spec = "wingpanel-applications-menu.spec"
+	}
 }

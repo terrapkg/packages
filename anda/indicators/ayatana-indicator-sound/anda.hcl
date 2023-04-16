@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "ayatana-indicator-sound.spec"
-    }
+	rpm {
+		spec = "ayatana-indicator-sound.spec"
+	}
 }

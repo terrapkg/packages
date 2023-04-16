@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "ubuntu-sdk.spec"
-    }
+	rpm {
+		spec = "ubuntu-sdk.spec"
+	}
 }

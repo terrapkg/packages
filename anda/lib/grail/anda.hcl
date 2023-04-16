@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "grail.spec"
-    }
+	rpm {
+		spec = "grail.spec"
+	}
 }

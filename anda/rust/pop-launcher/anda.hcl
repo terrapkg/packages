@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "pop-launcher.spec"
-    }
+	rpm {
+		spec = "pop-launcher.spec"
+	}
 }

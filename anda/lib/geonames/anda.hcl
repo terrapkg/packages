@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "geonames.spec"
-    }
+	rpm {
+		spec = "geonames.spec"
+	}
 }

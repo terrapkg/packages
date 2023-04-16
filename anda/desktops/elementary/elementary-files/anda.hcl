@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "elementary-files.spec"
-    }
+	rpm {
+		spec = "elementary-files.spec"
+	}
 }

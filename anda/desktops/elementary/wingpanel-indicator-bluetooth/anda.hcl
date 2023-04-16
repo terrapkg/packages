@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "wingpanel-indicator-bluetooth.spec"
-    }
+	rpm {
+		spec = "wingpanel-indicator-bluetooth.spec"
+	}
 }

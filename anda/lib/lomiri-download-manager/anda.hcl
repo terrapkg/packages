@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "lomiri-download-manager.spec"
-    }
+	rpm {
+		spec = "lomiri-download-manager.spec"
+	}
 }

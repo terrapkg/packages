@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "pantheon-session-settings.spec"
-    }
+	rpm {
+		spec = "pantheon-session-settings.spec"
+	}
 }

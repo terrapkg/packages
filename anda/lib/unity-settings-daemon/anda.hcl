@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "unity-settings-daemon.spec"
-    }
+	rpm {
+		spec = "unity-settings-daemon.spec"
+	}
 }

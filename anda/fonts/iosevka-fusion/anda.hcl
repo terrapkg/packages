@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "iosevka-fusion-fonts.spec"
-    }
+	rpm {
+		spec = "iosevka-fusion-fonts.spec"
+	}
 }

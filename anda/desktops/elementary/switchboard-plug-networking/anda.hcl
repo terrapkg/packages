@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "switchboard-plug-networking.spec"
-    }
+	rpm {
+		spec = "switchboard-plug-networking.spec"
+	}
 }

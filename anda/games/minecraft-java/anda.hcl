@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "minecraft-java.spec"
-    }
+	rpm {
+		spec = "minecraft-java.spec"
+	}
 }

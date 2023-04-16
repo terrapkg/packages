@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "pantheon-agent-polkit.spec"
-    }
+	rpm {
+		spec = "pantheon-agent-polkit.spec"
+	}
 }

@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "wingpanel-indicator-power.spec"
-    }
+	rpm {
+		spec = "wingpanel-indicator-power.spec"
+	}
 }

@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "switchboard-plug-applications.spec"
-    }
+	rpm {
+		spec = "switchboard-plug-applications.spec"
+	}
 }

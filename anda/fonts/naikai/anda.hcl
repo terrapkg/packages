@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "naikai-fonts.spec"
-    }
+	rpm {
+		spec = "naikai-fonts.spec"
+	}
 }

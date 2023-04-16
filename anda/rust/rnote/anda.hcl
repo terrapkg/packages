@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "rnote.spec"
-    }
+	rpm {
+		spec = "rnote.spec"
+	}
 }

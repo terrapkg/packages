@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "anda-srpm-macros.spec"
-    }
+	rpm {
+		spec = "anda-srpm-macros.spec"
+	}
 }

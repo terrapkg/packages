@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "osu-mime.spec"
-    }
+	rpm {
+		spec = "osu-mime.spec"
+	}
 }

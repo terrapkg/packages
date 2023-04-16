@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "libbismuth.spec"
-    }
+	rpm {
+		spec = "libbismuth.spec"
+	}
 }

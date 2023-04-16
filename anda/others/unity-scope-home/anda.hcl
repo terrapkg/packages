@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "unity-scope-home.spec"
-    }
+	rpm {
+		spec = "unity-scope-home.spec"
+	}
 }

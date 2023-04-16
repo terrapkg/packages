@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "moby-buildx.spec"
-    }
+	rpm {
+		spec = "moby-buildx.spec"
+	}
 }

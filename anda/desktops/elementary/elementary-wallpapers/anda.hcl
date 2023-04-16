@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "elementary-wallpapers.spec"
-    }
+	rpm {
+		spec = "elementary-wallpapers.spec"
+	}
 }

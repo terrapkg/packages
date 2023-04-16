@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "elementary-sound-theme.spec"
-    }
+	rpm {
+		spec = "elementary-sound-theme.spec"
+	}
 }

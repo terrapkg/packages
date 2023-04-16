@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "gcm-core.spec"
-    }
+	rpm {
+		spec = "gcm-core.spec"
+	}
 }

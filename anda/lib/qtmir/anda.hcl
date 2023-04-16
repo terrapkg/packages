@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "qtmir.spec"
-    }
+	rpm {
+		spec = "qtmir.spec"
+	}
 }

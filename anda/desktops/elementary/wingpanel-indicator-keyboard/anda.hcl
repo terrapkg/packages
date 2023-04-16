@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "wingpanel-indicator-keyboard.spec"
-    }
+	rpm {
+		spec = "wingpanel-indicator-keyboard.spec"
+	}
 }

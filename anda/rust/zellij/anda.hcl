@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "rust-zellij.spec"
-    }
+	rpm {
+		spec = "rust-zellij.spec"
+	}
 }

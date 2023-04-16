@@ -1,5 +1,5 @@
 project pkg {
-    rpm {
-        spec = "golang-github-xyproto-textoutput.spec"
-    }
+	rpm {
+		spec = "golang-github-xyproto-textoutput.spec"
+	}
 }

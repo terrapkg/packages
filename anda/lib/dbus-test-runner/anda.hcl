@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "dbus-test-runner.spec"
-    }
+	rpm {
+		spec = "dbus-test-runner.spec"
+	}
 }

@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "unity-asset-pool.spec"
-    }
+	rpm {
+		spec = "unity-asset-pool.spec"
+	}
 }

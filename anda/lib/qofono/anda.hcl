@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "qofono.spec"
-    }
+	rpm {
+		spec = "qofono.spec"
+	}
 }

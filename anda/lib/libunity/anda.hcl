@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "libunity.spec"
-    }
+	rpm {
+		spec = "libunity.spec"
+	}
 }

@@ -1,5 +1,5 @@
 project "pkg" {
-    rpm {
-        spec = "lomiri-settings-components.spec"
-    }
+	rpm {
+		spec = "lomiri-settings-components.spec"
+	}
 }
