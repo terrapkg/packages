@@ -1,6 +1,6 @@
 %define debug_package %{nil}
 %define _build_id_links none
-%global commit cd0f01fb84cd701cf615aa9c11222e7977164936
+%global commit 048dc6e6d82f4a38a5a84f579cd8b5956cec009e
 
 Name:           subatomic
 Version:        0.1.0.%{commit}

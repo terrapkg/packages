@@ -11,6 +11,7 @@ Summary:        A very simple convenience library for handling properties and si
 License:        LGPL-3.0
 URL:            https://gitlab.com/ubports/development/core/lib-cpp/properties-cpp
 Source0:        %{url}/-/archive/%commit/properties-cpp-%commit.tar.gz
+Patch0:         https://gitlab.com/ubports/development/core/lib-cpp/properties-cpp/-/commit/21b42a02ccf5346e158c5202b858eaa0e8e0a0f0.patch
 
 BuildRequires: cmake
 BuildRequires: pkgconfig
@@ -31,7 +32,7 @@ BuildArch: noarch
 This package contains documentation files for properties-cpp-devel.
 
 %prep
-%autosetup -n properties-cpp-%commit
+%autosetup -n properties-cpp-%commit -p1
 
 %build
 %cmake
