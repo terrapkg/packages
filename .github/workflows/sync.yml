@@ -32,5 +32,6 @@ jobs:
           git config user.signingkey "${{ runner.temp }}/signing_key"
       - name: Apply patches and Push
         run: |
-          git am -S --keep-cr --signoff <(curl https://github.com/terrapkg/packages/pull/${{ github.event.pull_request.number }}.patch)
+          curl https://github.com/terrapkg/packages/pull/${{ github.event.pull_request.number }}.patch > pr.patch
+          git am -S --keep-cr --signoff < pr.patch
           git push -u origin --all
