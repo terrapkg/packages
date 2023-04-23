@@ -8,7 +8,7 @@ jobs:
   autoupdate:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/terrapkg/builder:main
+      image: ghcr.io/terrapkg/builder:38
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Checkout
@@ -40,13 +40,9 @@ jobs:
             msg="bump: $(git status | grep modified | sed -r 's@.+/([^/]+)/[^/]+\n?@\1 @g' | tr -d '\n')"
             git commit -S -a -m "$msg"
             git format-patch HEAD^
-            git checkout f38
-            git apply *.patch || true
-            git add anda
-            git commit -S -a -m "$msg"
             git checkout f37
             git apply *.patch || true
-            git add anda
+            git add *
             git commit -S -a -m "$msg"
             git push -u origin --all
           fi
