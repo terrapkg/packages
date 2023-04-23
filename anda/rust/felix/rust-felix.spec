@@ -2,8 +2,8 @@
 %global crate felix
 
 Name:           rust-felix
-Version:        2.2.5
-Release:        %autorelease
+Version:        2.2.6
+Release:        1%{?dist}
 Summary:        Tui file manager with vim-like key mapping
 
 License:        MIT
