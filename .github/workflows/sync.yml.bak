@@ -4,13 +4,14 @@ on:
     types:
       - closed
     branches:
-      - f39
+      - f38
 
 jobs:
   sync:
     strategy:
       matrix:
-        branch: ["f37", "f38"]
+        branch: ["f37"]
+      fail-fast: false
     if: github.event.pull_request.merged == true && !contains(github.event.pull_request.labels.*.name, 'nosync')
     runs-on: ubuntu-latest
     steps:

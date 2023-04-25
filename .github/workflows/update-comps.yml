@@ -3,7 +3,6 @@ name: Push comps updates
 on:
   push:
     branches:
-      - f39
       - f38
       - f37
     paths:
@@ -14,7 +13,7 @@ jobs:
   update-comps:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/terrapkg/builder:main
+      image: ghcr.io/terrapkg/builder:38
     steps:
       - uses: actions/checkout@v3
       - id: get-branch
