@@ -7,8 +7,6 @@ Terra is a rolling-release Fedora repository for all the software you need.
 With Terra, you can install the latest packages knowing that quality and security are assured.
 [Contributions](https://github.com/terrapkg/packages/wiki/Contribute) are always welcome, but please read our [documentation](https://github.com/terrapkg/packages/wiki) first.
 
-> Note: we are having an [experimental devdocs](http://developer.fyralabs.com/terra/).
-
 This monorepo contains the package manifests for all packages in Terra.
 
 ## Installation
@@ -18,6 +16,8 @@ sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic-repos/r
 
 ## Documentation
 Our documentation can be found on our [GitHub Wiki](https://github.com/terrapkg/packages/wiki).
+
+> Note: you can also take a look at our [devdocs](http://developer.fyralabs.com/terra/).
 
 ## Questions?
 Feel free to reach out on [Discord](https://discord.gg/5fdPuxTg5Q). We're always happy to help!
