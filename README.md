@@ -17,7 +17,7 @@ sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic-repos/r
 ## Documentation
 Our documentation can be found on our [GitHub Wiki](https://github.com/terrapkg/packages/wiki).
 
-> Note: you can also take a look at our [devdocs](http://developer.fyralabs.com/terra/).
+> Note: you can also take a look at our [devdocs](https://developer.fyralabs.com/terra/).
 
 ## Questions?
 Feel free to reach out on [Discord](https://discord.gg/5fdPuxTg5Q). We're always happy to help!
