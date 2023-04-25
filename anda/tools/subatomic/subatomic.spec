@@ -1,15 +1,14 @@
 %define debug_package %{nil}
 %define _build_id_links none
-%global commit c0fab8253dfc8b89baab59bb472bd030ac29a585
 
 Name:           subatomic
-Version:        0.1.0.%{commit}
+Version:        0.2.3
 Release:        1%{?dist}
 Summary:        A modern package delivery system
 
 License:        MIT
 URL:            https://github.com/FyraLabs/subatomic
-Source0:        https://github.com/FyraLabs/subatomic/archive/%{commit}.zip
+Source0:        %url/archive/refs/tags/v%version.tar.gz
 
 BuildRequires:  go-rpm-macros
 BuildRequires:  git-core
@@ -31,7 +30,7 @@ Client for Subatomic repo manager
 %{_bindir}/subatomic-cli
 
 %prep
-%autosetup -n subatomic-%{commit}
+%autosetup
 
 
 %build
