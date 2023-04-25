@@ -9,7 +9,7 @@ Summary:        Render rich text, tables, progress bars, syntax highlighting, ma
 
 License:        None
 URL:            https://github.com/Textualize/rich
-Source0:        %{pypi_source}
+Source0:        https://github.com/Textualize/rich/archive/refs/tags/v%version.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
