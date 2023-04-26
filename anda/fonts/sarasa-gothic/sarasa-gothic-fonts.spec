@@ -59,5 +59,5 @@ install -Dm644 %SOURCE3 %buildroot/%_datadir/doc/sarasa-gothic-super-fonts/
 /%{_datadir}/fonts/sarasa-gothic-super/
 
 %changelog
-* Mon Nov 21 2022 windowsboy111 <windowsboy111@fyralabs.com> - 4.004
+* Wed Apr 26 2023 windowsboy111 <windowsboy111@fyralabs.com> - 0.40.6
 - Initial package
