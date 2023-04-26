@@ -33,7 +33,7 @@ cd super
 %build
 
 %install
-mkdir %buildroot/%_datadir/{fonts/sarasa-gothic{,-super},{licenses,doc}/sarasa-gothic{,-super}-fonts}
+mkdir -p %buildroot/%_datadir/{fonts/sarasa-gothic{,-super},{licenses,doc}/sarasa-gothic{,-super}-fonts}
 cd ttc
 install -Dm644 *.ttc %buildroot/%_datadir/fonts/sarasa-gothic/
 cd ..
