@@ -9,7 +9,7 @@ Source3:	https://raw.githubusercontent.com/be5invis/Sarasa-Gothic/v%version/READ
 License:	OFL-1.1
 Summary:	Sarasa Gothic / 更纱黑体 / 更紗黑體 / 更紗ゴシック / 사라사 고딕
 BuildArch:	noarch
-BuildRequires:	p2zip-plugins
+BuildRequires:	p7zip-plugins
 
 %description
 A CJK programming font based on Iosevka and Source Han Sans.
