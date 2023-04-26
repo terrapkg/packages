@@ -34,8 +34,6 @@ sed -i "s|\(KONAN_HOME *= *\).*|\1%{_datadir}/%{name}|" bin/*
 
 
 %build
-true
-
 
 %install
 rm -rf %{buildroot} && mkdir -p %{buildroot}%{_bindir}/ && cd kotlin-native-linux-x86_64-%{version}

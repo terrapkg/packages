@@ -5,10 +5,11 @@
 
 %global commit_date %(date '+%Y%m%d')
 %global snapshot_info %{commit_date}.%{shortcommit}
+%global verrel 0.48.7
 
 Name:           vala-language-server-nightly
 Summary:        Language server for the Vala programming language
-Version:        0.48.5^%{snapshot_info}
+Version:        0.48.7^%{snapshot_info}
 Release:        1%{?dist}
 # The entire source is LGPLv2+, except plugins/gnome-builder/vala_langserv.py, which is GPLv3+.
 # It is not installed when the "plugins" meson option is set to false.
@@ -21,9 +22,10 @@ Source0:        https://github.com/vala-lang/vala-language-server/archive/%{comm
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  meson
+BuildRequires:  vala
 BuildRequires:  ninja-build
-BuildRequires:  vala                        >= 0.48.12
-BuildRequires:  vala-devel                  >= 0.48.12
+BuildRequires:  vala		= 0.56.4
+BuildRequires:  vala-devel	= 0.56.4
 
 BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  pkgconfig(gio-2.0)
@@ -38,15 +40,15 @@ Requires:       glib2-static%{?_isa}
 Requires:       json-glib%{?_isa}
 Requires:       jsonrpc-glib%{?_isa}
 Requires:       libgee%{?_isa}
-Requires:       libvala%{?_isa}             >= 0.48.12
+Requires:       libvala%{?_isa}             = 0.56.4
 
 Recommends:     gobject-introspection-devel
 
 Suggests:       gnome-builder
 
 Conflicts:      vala-language-server
-Provides:       vala-language-server = 0.48.5^%{snapshot_info}
-Provides:       vala-language-server%{?_isa} = 0.48.5^%{snapshot_info}
+Provides:       vala-language-server = %version
+Provides:       vala-language-server%{?_isa} = %version
 
 %description
 Provides code intelligence for Vala (and also Genie).

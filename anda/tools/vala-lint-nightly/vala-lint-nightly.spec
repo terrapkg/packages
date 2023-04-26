@@ -19,8 +19,8 @@ BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  meson
 BuildRequires:  ninja-build
-BuildRequires:  vala                        >= 0.48.12
-BuildRequires:  vala-devel                  >= 0.48.12
+BuildRequires:  vala		= 0.56.4
+BuildRequires:  vala-devel	= 0.56.4
 
 %description
 Small command line tool and library for checking Vala code files for code-style errors.

@@ -29,8 +29,6 @@ sed -i "s|\(KOTLIN_HOME *= *\).*|\1%{_datadir}/%{name}|" bin/*
 
 
 %build
-true
-
 
 %install
 rm -rf %{buildroot} && mkdir -p %{buildroot}%{_bindir}/ && cd kotlinc

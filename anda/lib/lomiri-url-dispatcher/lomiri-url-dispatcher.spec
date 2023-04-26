@@ -26,7 +26,6 @@ BuildRequires: pkgconfig(sqlite3)
 BuildRequires: pkgconfig(systemd)
 BuildRequires: pkgconfig(libapparmor)
 Requires:      lomiri-ui-toolkit
-Requires:      lomiri-api
 ExclusiveArch: x86_64 aarch64
 
 %description
@@ -40,7 +39,6 @@ type operation.
 %package devel
 Summary:  Lomiri-url-dispatcher development files
 Requires: %{name}%{?_isa} = %{version}-%{release}
-Requires: lomiri-api-devel
 
 %description devel
 This package contains development files needed for lomiri-url-dispatcher.

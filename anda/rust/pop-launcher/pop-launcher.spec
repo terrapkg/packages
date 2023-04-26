@@ -1,3 +1,4 @@
+%global debug_package %{nil}
 %define _disable_source_fetch 0
 %bcond_without check
 %global debug_package %{nil}
