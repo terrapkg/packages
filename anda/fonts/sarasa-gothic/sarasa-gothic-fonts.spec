@@ -47,13 +47,13 @@ install -Dm644 %SOURCE3 %buildroot/%_datadir/doc/sarasa-gothic-super-fonts/
 
 
 %files
-%doc README
+%doc README.md
 %license LICENSE
 %defattr(-,root,root,0755)
 /%{_datadir}/fonts/sarasa-gothic/
 
 %files -n sarasa-gothic-super-fonts
-%doc README
+%doc README.md
 %license LICENSE
 %defattr(-,root,root,0755)
 /%{_datadir}/fonts/sarasa-gothic-super/
