@@ -19,6 +19,7 @@ BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  meson
 BuildRequires:  ninja-build
+BuildRequires:  vala
 BuildRequires:  vala-devel                  >= 0.48.12
 
 %description

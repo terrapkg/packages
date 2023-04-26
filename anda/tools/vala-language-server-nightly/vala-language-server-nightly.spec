@@ -21,6 +21,7 @@ Source0:        https://github.com/vala-lang/vala-language-server/archive/%{comm
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  meson
+BuildRequires:  vala
 BuildRequires:  ninja-build
 BuildRequires:  vala-devel                  >= 0.48.12
 

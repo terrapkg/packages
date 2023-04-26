@@ -44,7 +44,7 @@ rm -rf %{python3_sitelib}/*/__pycache__
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{pypi_version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}*
 
 %changelog
 * Sun Mar 19 2023 windowsboy111 <wboy111@outlook.com> - 13.3.2-1
