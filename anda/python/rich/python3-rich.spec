@@ -12,7 +12,7 @@ URL:            https://github.com/Textualize/rich
 Source0:        https://github.com/Textualize/rich/archive/refs/tags/v%version.tar.gz
 BuildArch:      noarch
 
-BuildRequires:  python3-devel
+BuildRequires:  python3-devel poetry python3-installer
 BuildRequires:  python3dist(setuptools)
 
 %description
@@ -34,16 +34,17 @@ Requires:       (python3dist(typing-extensions) >= 4 with python3dist(typing-ext
 %autosetup -n %{pypi_name}-%{pypi_version}
 
 %build
-%py3_build
+poetry build
 
 %install
-%py3_install
+python3.11 -m installer --destdir="%{buildroot}" dist/*.whl
+rm -rf %{python3_sitelib}/*/__pycache__
 
 %files -n python3-%{pypi_name}
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{pypi_version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}*
 
 %changelog
 * Sun Mar 19 2023 windowsboy111 <wboy111@outlook.com> - 13.3.2-1
