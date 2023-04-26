@@ -22,7 +22,6 @@ BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  meson
 BuildRequires:  ninja-build
-BuildRequires:  vala                        >= 0.48.12
 BuildRequires:  vala-devel                  >= 0.48.12
 
 BuildRequires:  pkgconfig(gee-0.8)
