@@ -11,8 +11,6 @@ Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
 
 # patch some default settings to better match Fedora
 Patch0:         0000-Modify-default-settings-for-Fedora.patch
-# mutter-12 stuff
-Patch1:         https://github.com/elementary/gala/compare/d52b2ae43fb3ef8fc6f308a795b1d2f4cda1f5a8...f6180279ee3af4200daaad78b92f26ecc47468b6.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
