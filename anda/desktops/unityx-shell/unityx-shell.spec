@@ -97,7 +97,6 @@ This package contains the development files the core Unity library.
 
 %package -n plotinus
 Summary:  Automatic testing for Unity
-Requires: %{name}%{?_isa} = %{version}-%{release}
 
 %description -n plotinus
 This package contains the autopilot framework, which allows for triggering
