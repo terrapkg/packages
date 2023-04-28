@@ -26,7 +26,7 @@ language that supports GObject introspection files (Python, Vala, etc).
 %meson_install
 
 %check
-ninja -C build test
+ninja test
 
 %files
 %doc README.md
