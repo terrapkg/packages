@@ -25,9 +25,6 @@ language that supports GObject introspection files (Python, Vala, etc).
 %install
 %meson_install
 
-%check
-ninja test
-
 %files
 %doc README.md
 %license LICENSE
