@@ -6,7 +6,7 @@ License:		MIT
 URL:			https://github.com/wmww/gtk4-layer-shell
 Source0:		%url/archive/refs/tags/v%version.tar.gz
 BuildRequires:	meson ninja-build mold python3.11 vala
-BuildRequires:	libwayland-client gtk4 gobject-introspection gtk-doc
+BuildRequires:	libwayland-client gtk4-devel gobject-introspection gtk-doc
 
 %description
 A library for using the Layer Shell Wayland protocol with GTK4. With this library
