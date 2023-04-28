@@ -1,4 +1,5 @@
 %global debug_package %nil
+%define _python_dist_allow_version_zero # upstream issue?
 
 Name:			python3-ops2deb
 Version:		2.4.1
