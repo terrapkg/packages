@@ -181,7 +181,7 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &>/dev/null || :
 %{_libdir}/libunityx-core-6.0.so.*
 %{_datadir}/glib-2.0/schemas/org.unityd.UnityX.gschema.xml
 %{_datadir}/glib-2.0/schemas/org.unityd.UnityX.user-interface.gschema.xml
-%{_datadir}/unityx/
+%{_datadir}/unityx
 %{_datadir}/xsessions/unityx.desktop
 
 %files -n plotinus
