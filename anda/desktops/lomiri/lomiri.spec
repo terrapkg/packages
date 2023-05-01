@@ -1,5 +1,5 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri
-%global commit 49d67f32d4710ce5fb9597fe52b97b6c152d5b4f
+%global commit a1a1b1f25714a0f5cddf3905edc38dc6e6b49228
 %forgemeta
 
 Name:          lomiri
@@ -58,8 +58,11 @@ Recommends:    lomiri-session
 Requires:      lomiri-system-settings
 Requires:      qmenumodel
 Requires:      xorg-x11-server-Xwayland
+Requires:      ayatana-indicator-sound
 Requires:      ayatana-indicator-messages
 Requires:      ayatana-indicator-datetime
+Requires:      ayatana-indicator-notifications
+Requires:      ayatana-indicator-session
 Requires:      lomiri-sounds
 Requires:      lomiri-ui-toolkit
 Requires:      lomiri-download-manager
