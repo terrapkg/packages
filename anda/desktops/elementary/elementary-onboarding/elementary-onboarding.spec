@@ -77,6 +77,7 @@ appstream-util validate-relax --nonet \
 %{_datadir}/glib-2.0/schemas/%{appname}.gschema.xml
 %{_datadir}/metainfo/%{appname}.metainfo.xml
 %{_datadir}/icons/hicolor/*/apps/%{appname}.svg
+/etc/guest-session/prefs.sh
 
 
 %changelog
