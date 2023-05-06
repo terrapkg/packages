@@ -26,7 +26,7 @@ while keeping everything lightweight.
 %prep
 %autosetup -n %src
 
-cat <<EOF > armcord.desktop
+cat <<EOF > .armcord.desktop
 [Desktop Entry]
 Name=ArmCord
 Comment=%summary
@@ -42,12 +42,12 @@ EOF
 %build
 
 %install
-install -d %buildroot/opt/armcord
+mkdir -p %buildroot/usr/bin %buildroot/usr/share/applications %buildroot/usr/share/pixmaps %buildroot/opt/armcord
 cp -a * %buildroot/opt/armcord
 ln -s %buildroot/opt/armcord/armcord %buildroot/usr/bin/armcord
 chmod +x -R %buildroot/opt/armcord/*
 chmod 755 %buildroot/opt/armcord/armcord
-install -Dm644 armcord.desktop %buildroot/usr/share/applications/ArmCord.desktop
+install -Dm644 .armcord.desktop %buildroot/usr/share/applications/ArmCord.desktop
 install -Dm644 %SOURCE1 %buildroot/usr/share/pixmaps/armcord.png
 
 %files
