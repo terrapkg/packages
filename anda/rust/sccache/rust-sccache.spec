@@ -85,18 +85,6 @@ use the "azure" feature of the "%{crate}" crate.
 %files       -n %{name}+azure-devel
 %ghost %{crate_instdir}/Cargo.toml
 
-%package     -n %{name}+crossbeam-utils-devel
-Summary:        %{summary}
-BuildArch:      noarch
-
-%description -n %{name}+crossbeam-utils-devel %{_description}
-
-This package contains library source intended for building other packages which
-use the "crossbeam-utils" feature of the "%{crate}" crate.
-
-%files       -n %{name}+crossbeam-utils-devel
-%ghost %{crate_instdir}/Cargo.toml
-
 %package     -n %{name}+dist-client-devel
 Summary:        %{summary}
 BuildArch:      noarch
@@ -181,16 +169,16 @@ use the "hyper" feature of the "%{crate}" crate.
 %files       -n %{name}+hyper-devel
 %ghost %{crate_instdir}/Cargo.toml
 
-%package     -n %{name}+jsonwebtoken-devel
+%package     -n %{name}+jwt-devel
 Summary:        %{summary}
 BuildArch:      noarch
 
-%description -n %{name}+jsonwebtoken-devel %{_description}
+%description -n %{name}+jwt-devel %{_description}
 
 This package contains library source intended for building other packages which
-use the "jsonwebtoken" feature of the "%{crate}" crate.
+use the "jwt" feature of the "%{crate}" crate.
 
-%files       -n %{name}+jsonwebtoken-devel
+%files       -n %{name}+jwt-devel
 %ghost %{crate_instdir}/Cargo.toml
 
 %package     -n %{name}+libmount-devel
