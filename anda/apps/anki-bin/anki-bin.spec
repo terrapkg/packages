@@ -19,9 +19,9 @@ Source5:		https://raw.githubusercontent.com/ankitects/anki/%{version}/LICENSE
 Source6:		https://raw.githubusercontent.com/ankitects/anki/%{version}/README.md
 
 %description
-Anki is a program designed to help you remember facts (such as words
-and phrases in a foreign language) as easily, quickly and efficiently
-as possible. Anki is based on a theory called spaced repetition.
+Anki is a program designed to help you remember facts (such as words and
+phrases in a foreign language) as easily, quickly and efficiently as possible.
+Anki is based on a theory called spaced repetition.
 
 %prep
 

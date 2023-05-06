@@ -6,29 +6,29 @@
 %global commit_date %(date '+%Y%m%d')
 %global snapshot_info %{commit_date}.%{shortcommit}
 
-Name:           vala-lint-nightly
-Summary:        Check Vala code files for code-style errors
-Version:        0.1.0^%{snapshot_info}
-Release:        1%{?dist}
-License:        GPL-2.0-or-later
+Name:			vala-lint-nightly
+Summary:		Check Vala code files for code-style errors
+Version:		0.1.0^%{snapshot_info}
+Release:		1%{?dist}
+License:		GPL-2.0-or-later
 
-URL:            https://github.com/vala-lang/vala-lint
-Source0:        https://github.com/vala-lang/vala-lint/archive/%{commit}/%{real_name}-%{shortcommit}.tar.gz
+URL:			https://github.com/vala-lang/vala-lint
+Source0:		https://github.com/vala-lang/vala-lint/archive/%{commit}/%{real_name}-%{shortcommit}.tar.gz
 
-BuildRequires:  cmake
-BuildRequires:  gcc
-BuildRequires:  meson
-BuildRequires:  ninja-build
-BuildRequires:  vala		= 0.56.4
-BuildRequires:  vala-devel	= 0.56.4
+BuildRequires:	cmake
+BuildRequires:	gcc
+BuildRequires:	meson
+BuildRequires:	ninja-build
+BuildRequires:	vala		= 0.56.4
+BuildRequires:	vala-devel	= 0.56.4
 
 %description
 Small command line tool and library for checking Vala code files for code-style errors.
 Based on the elementary Code-Style guidelines.
 
 %package devel
-Summary:        Development files for vala-lint
-Requires:       vala-lint-nightly = %{version}-%{release}
+Summary:	Development files for vala-lint
+Requires:	vala-lint-nightly = %{version}-%{release}
 
 %description devel
 This package contains the libraries and header files that are needed
