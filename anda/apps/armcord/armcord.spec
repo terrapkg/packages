@@ -1,3 +1,5 @@
+%define debug_package %nil
+
 Name:			armcord
 Version:		3.1.7
 Release:		1%?dist
@@ -33,7 +35,7 @@ EOF
 
 
 %build
-npx pnpm@6.0 install --frozen-lockfile --ignore-scripts
+npx pnpm@7 install --frozen-lockfile --ignore-scripts
 npm run packageQuick
 
 
