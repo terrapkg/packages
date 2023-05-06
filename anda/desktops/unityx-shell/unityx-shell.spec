@@ -97,7 +97,6 @@ This package contains the development files the core Unity library.
 
 %package -n plotinus
 Summary:  Automatic testing for Unity
-Requires: %{name}%{?_isa} = %{version}-%{release}
 
 %description -n plotinus
 This package contains the autopilot framework, which allows for triggering
@@ -157,6 +156,8 @@ chrpath --delete %{buildroot}%{_libdir}/libunityx-core-6.0.so.9.0.0
 
 pushd %{buildroot}
 ln -s %{_libdir}/unity .%{_libdir}/unityx
+rm -rf .%{_datadir}/unityx
+ln -s %{_datadir}/unity .%{_datadir}/unityx
 popd
 
 %find_lang unityx
@@ -180,14 +181,7 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &>/dev/null || :
 %{_libdir}/libunityx-core-6.0.so.*
 %{_datadir}/glib-2.0/schemas/org.unityd.UnityX.gschema.xml
 %{_datadir}/glib-2.0/schemas/org.unityd.UnityX.user-interface.gschema.xml
-%dir %{_datadir}/unityx
-%dir %{_datadir}/unityx/icons
-%{_datadir}/unityx/icons/dash-widgets.json
-%{_datadir}/unityx/icons/*.png
-%{_datadir}/unityx/icons/*.svg
-%{_datadir}/unityx/icons/searchingthedashlegalnotice.html
-%dir %{_datadir}/unityx/themes/
-%{_datadir}/unityx/themes/dash-widgets.json
+%{_datadir}/unityx
 %{_datadir}/xsessions/unityx.desktop
 
 %files -n plotinus
