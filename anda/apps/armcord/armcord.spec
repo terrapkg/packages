@@ -33,7 +33,7 @@ EOF
 
 
 %build
-npx pnpm install --frozen-lockfile --ignore-scripts
+npx pnpm@6.0 install --frozen-lockfile --ignore-scripts
 npm run packageQuick
 
 
