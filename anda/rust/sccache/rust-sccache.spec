@@ -11,6 +11,7 @@ Summary:        Ccache-like tool
 
 License:        Apache-2.0
 URL:            https://crates.io/crates/sccache
+Group:          Development/Languages/Rust
 Source:         %{crates_source}
 # Automatically generated patch to strip foreign dependencies
 Patch:          sccache-fix-metadata-auto.diff
