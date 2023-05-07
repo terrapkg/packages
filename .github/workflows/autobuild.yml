@@ -54,14 +54,14 @@ jobs:
           fetch-depth: 0
 
       - uses: terrapkg/anda-build@main
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' || github.event_name == 'merge_group'
         with:
           name: "${{ matrix.pkg.pkg }}"
           mockConfig: anda-${{ matrix.version }}-${{ matrix.pkg.arch }}
           andaRepo: https://github.com/terrapkg/subatomic-repos/raw/main/terra${{ matrix.version }}.repo
 
       - uses: terrapkg/anda-build@main
-        if: github.event_name != 'pull_request'
+        if: github.event_name == 'push'
         with:
           name: "${{ matrix.pkg.pkg }}"
           mockConfig: anda-${{ matrix.version }}-${{ matrix.pkg.arch }}
@@ -81,7 +81,7 @@ jobs:
           path: anda-build/rpm/rpms/*
 
       - name: Upload packages to subatomic
-        if: github.event_name != 'pull_request'
+        if: github.event_name == 'push'
         run: |
           subatomic-cli upload --prune \
             --server https://subatomic.fyralabs.com \
@@ -89,8 +89,8 @@ jobs:
             terra${{ matrix.version }} anda-build/rpm/rpms/*
 
       - name: Notify Madoguchi (Success)
-        if: success() && github.event_name != 'pull_request'
+        if: success() && github.event_name == 'push'
         run: ./.github/workflows/mg.sh true ${{matrix.pkg.pkg}} ${{matrix.version}} ${{matrix.pkg.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}}
       - name: Notify Madoguchi (Failure)
-        if: ( cancelled() || failure() ) && github.event_name != 'pull_request'
+        if: ( cancelled() || failure() ) && github.event_name == 'push'
         run: ./.github/workflows/mg.sh false ${{matrix.pkg.pkg}} ${{matrix.version}} ${{matrix.pkg.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}}
