@@ -1,7 +1,15 @@
 name: Lint
 
-on: [push, pull_request, merge_group]
-
+on:
+  push:
+    branches:
+      - f38
+  pull_request:
+    branches:
+      - f38
+  merge_group:
+    branches:
+      - f38
 jobs:
   lint:
     runs-on: ubuntu-latest
