@@ -232,5 +232,5 @@ export -n VALAFLAGS
 
 
 %changelog
-* Wed Apr 19 2023 David King <amigadave@amigadave.com> - 0.56.7-1
-- Update to 0.56.7
+* Wed May 10 2023 Lleyton Gray <lleyton@fyralabs.com> - 0.58.0
+- Initial Package
