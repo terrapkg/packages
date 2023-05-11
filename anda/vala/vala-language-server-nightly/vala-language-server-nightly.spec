@@ -24,8 +24,8 @@ BuildRequires:	gcc
 BuildRequires:	meson
 BuildRequires:	vala
 BuildRequires:	ninja-build
-BuildRequires:	vala		= 0.56.4
-BuildRequires:	vala-devel	= 0.56.4
+BuildRequires:	vala
+BuildRequires:	vala-devel
 
 BuildRequires:	pkgconfig(gee-0.8)
 BuildRequires:	pkgconfig(gio-2.0)
@@ -36,11 +36,11 @@ BuildRequires:	pkgconfig(json-glib-1.0)	>= 1.4.4
 BuildRequires:	pkgconfig(jsonrpc-glib-1.0)	>= 3.28
 BuildRequires:	pkgconfig(scdoc)
 
-Requires:		glib2-static%{?_isa}
-Requires:		json-glib%{?_isa}
-Requires:		jsonrpc-glib%{?_isa}
-Requires:		libgee%{?_isa}
-Requires:		libvala%{?_isa} = 0.56.4
+Requires:       glib2-static%{?_isa}
+Requires:       json-glib%{?_isa}
+Requires:       jsonrpc-glib%{?_isa}
+Requires:       libgee%{?_isa}
+Requires:       libvala%{?_isa}
 
 Recommends:		gobject-introspection-devel
 

@@ -63,7 +63,7 @@ desktop settings such as the panel, app launcher, and window manager.
 
 %check
 appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
+    %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
 
 %files -f %{plug_name}-plug.lang
@@ -75,7 +75,7 @@ appstream-util validate-relax --nonet \
 %{_libexecdir}/io.elementary.contract.set-wallpaper
 
 %{_datadir}/contractor/set-wallpaper.contract
-%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
+%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
 
 %changelog

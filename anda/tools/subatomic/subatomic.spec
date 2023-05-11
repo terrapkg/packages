@@ -2,7 +2,7 @@
 %define _build_id_links none
 
 Name:           subatomic
-Version:        0.2.3
+Version:        0.2.5
 Release:        1%{?dist}
 Summary:        A modern package delivery system
 
