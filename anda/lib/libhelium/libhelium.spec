@@ -39,7 +39,7 @@ for writing applications with libhelium.
 %build
 %meson \
     -Ddemo=false \
-    -Ddocumentation=false \
+    -Dvaladoc=false \
     --wrap-mode=default
 %meson_build
 
