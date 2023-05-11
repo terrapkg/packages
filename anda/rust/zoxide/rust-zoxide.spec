@@ -3,8 +3,8 @@
 %global crate zoxide
 
 Name:           rust-zoxide
-Version:        0.9.0
-Release:        %autorelease
+Version:        0.9.1
+Release:        1%{?dist}
 Summary:        Smarter cd command for your terminal
 
 License:        MIT

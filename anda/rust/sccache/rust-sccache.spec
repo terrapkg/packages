@@ -6,7 +6,7 @@
 
 Name:           rust-sccache
 Version:        0.4.2
-Release:        1%{?dist}
+Release:        %autorelease
 Summary:        Ccache-like tool
 
 License:        Apache-2.0
@@ -418,7 +418,6 @@ use the "webdav" feature of the "%{crate}" crate.
 
 %install
 %cargo_install -f dist-server
-
 
 %if %{with check}
 %check
