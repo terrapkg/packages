@@ -7,10 +7,10 @@
 %global snapshot_info %{commit_date}.%{shortcommit}
 %global verrel 0.48.7
 
-Name:           vala-language-server-nightly
-Summary:        Language server for the Vala programming language
-Version:        0.48.7^%{snapshot_info}
-Release:        1%{?dist}
+Name:			vala-language-server-nightly
+Summary:		Language server for the Vala programming language
+Version:		0.48.7^%{snapshot_info}
+Release:		1%{?dist}
 # The entire source is LGPLv2+, except plugins/gnome-builder/vala_langserv.py, which is GPLv3+.
 # It is not installed when the "plugins" meson option is set to false.
 # Since GNOME Builder 41, the VLS the plugin has been included.
@@ -41,9 +41,9 @@ Requires:       jsonrpc-glib%{?_isa}
 Requires:       libgee%{?_isa}
 Requires:       libvala%{?_isa}
 
-Recommends:     gobject-introspection-devel
+Recommends:		gobject-introspection-devel
 
-Suggests:       gnome-builder
+Suggests:		gnome-builder
 
 Conflicts:      vala-language-server
 

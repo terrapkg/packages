@@ -15,14 +15,14 @@ Conflicts:      anki-qt5
 Patch0:         0001-No-update.patch
 
 %description
-Anki is a program designed to help you remember facts (such as words
-and phrases in a foreign language) as easily, quickly and efficiently
-as possible. Anki is based on a theory called spaced repetition.
+Anki is a program designed to help you remember facts (such as words and
+phrases in a foreign language) as easily, quickly and efficiently as possible.
+Anki is based on a theory called spaced repetition.
 
 %prep
 git clone https://github.com/ankitects/anki .
 git checkout %{version}
-%patch0 -p1
+%patch 0 -p1
 
 # See https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=anki
 
