@@ -14,27 +14,26 @@ Release:		1%{?dist}
 # The entire source is LGPLv2+, except plugins/gnome-builder/vala_langserv.py, which is GPLv3+.
 # It is not installed when the "plugins" meson option is set to false.
 # Since GNOME Builder 41, the VLS the plugin has been included.
-License:		LGPL-2.0+
+License:        LGPL-2.0+
 
-URL:			https://github.com/vala-lang/vala-language-server
-Source0:		https://github.com/vala-lang/vala-language-server/archive/%{commit}/%{real_name}-%{shortcommit}.tar.gz
+URL:            https://github.com/vala-lang/vala-language-server
+Source0:        https://github.com/vala-lang/vala-language-server/archive/%{commit}/%{real_name}-%{shortcommit}.tar.gz
 
-BuildRequires:	cmake
-BuildRequires:	gcc
-BuildRequires:	meson
-BuildRequires:	vala
-BuildRequires:	ninja-build
-BuildRequires:	vala
-BuildRequires:	vala-devel
+BuildRequires:  cmake
+BuildRequires:  gcc
+BuildRequires:  meson
+BuildRequires:  ninja-build
+BuildRequires:  vala		= 0.56.4
+BuildRequires:  vala-devel	= 0.56.4
 
-BuildRequires:	pkgconfig(gee-0.8)
-BuildRequires:	pkgconfig(gio-2.0)
-BuildRequires:	pkgconfig(gio-unix-2.0)
-BuildRequires:	pkgconfig(glib-2.0)
-BuildRequires:	pkgconfig(gobject-2.0)
-BuildRequires:	pkgconfig(json-glib-1.0)	>= 1.4.4
-BuildRequires:	pkgconfig(jsonrpc-glib-1.0)	>= 3.28
-BuildRequires:	pkgconfig(scdoc)
+BuildRequires:  pkgconfig(gee-0.8)
+BuildRequires:  pkgconfig(gio-2.0)
+BuildRequires:  pkgconfig(gio-unix-2.0)
+BuildRequires:  pkgconfig(glib-2.0)
+BuildRequires:  pkgconfig(gobject-2.0)
+BuildRequires:  pkgconfig(json-glib-1.0)    >= 1.4.4
+BuildRequires:  pkgconfig(jsonrpc-glib-1.0) >= 3.28
+BuildRequires:  pkgconfig(scdoc)
 
 Requires:       glib2-static%{?_isa}
 Requires:       json-glib%{?_isa}
