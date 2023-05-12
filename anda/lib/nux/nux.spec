@@ -1,21 +1,16 @@
-%global forgeurl https://gitlab.com/ubuntu-unity/unity-x/nux
-%global commit a1cd0bd379000ab8aa159aec48dfae87edb6ad9f
-%forgemeta
-
 Name:           nux
 Version:        4.0.8
 Release:        %autorelease
 Summary:        An OpenGL toolkit
 
 License:        GPL-3.0-or-later AND LGPL-3.0-or-later AND LGPL-2.0-or-later
-URL:            https://gitlab.com/ubuntu-unity/unity-x/nux
-Source0:        %{url}/-/archive/%commit/nux-%commit.tar.bz2
-Source1:         https://gitlab.com/cat-master21/nux/-/commit/0e834a556818281b9e023b47f0667e8da0f5cebd.patch
+URL:            https://launchpad.net/nux
+Source0:        %{url}/4.0/%{version}/+download/nux-%{version}.tar.gz
+Patch0:         http://archive.ubuntu.com/ubuntu/pool/universe/n/nux/nux_%{version}+18.10.20180623-0ubuntu4.diff.gz
 
 BuildRequires: automake libtool gnome-common
 BuildRequires: intltool
 BuildRequires: make
-BuildRequires: git
 BuildRequires: gcc
 BuildRequires: g++
 BuildRequires: libX11-devel
@@ -53,15 +48,12 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 %{summary}.
 
 %prep
-%autosetup -n nux-%commit -N
-git apply %{SOURCE1}
+%autosetup -n nux-%{version} -p1
+for i in debian/patches/*.patch; do patch -p1 < $i; done
 
 %build
 NOCONFIGURE=1 \
 ./autogen.sh
-
-PYTHON=%{__python3}
-export PYTHON
 
 %configure \
   --enable-documentation=no \
