@@ -22,10 +22,9 @@ Source0:        https://github.com/vala-lang/vala-language-server/archive/%{comm
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  meson
-BuildRequires:  vala
 BuildRequires:  ninja-build
-BuildRequires:  vala		= 0.56.4
-BuildRequires:  vala-devel	= 0.56.4
+BuildRequires:  vala
+BuildRequires:  vala-devel
 
 BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  pkgconfig(gio-2.0)
@@ -40,15 +39,13 @@ Requires:       glib2-static%{?_isa}
 Requires:       json-glib%{?_isa}
 Requires:       jsonrpc-glib%{?_isa}
 Requires:       libgee%{?_isa}
-Requires:       libvala%{?_isa}             = 0.56.4
+Requires:       libvala%{?_isa}
 
 Recommends:     gobject-introspection-devel
 
 Suggests:       gnome-builder
 
 Conflicts:      vala-language-server
-Provides:       vala-language-server = %version
-Provides:       vala-language-server%{?_isa} = %version
 
 %description
 Provides code intelligence for Vala (and also Genie).

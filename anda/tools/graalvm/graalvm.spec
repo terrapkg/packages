@@ -27,15 +27,15 @@ JDK Version: %1
 
 %_p 11
 %_p 17
-%_p 19
+%dnl %_p 19
 
 %prep
 tar -xzf %{SOURCE11}
 tar -xzf %{SOURCE17}
-tar -xzf %{SOURCE19}
+#tar -xzf %{SOURCE19}
 ls
 
-mv graalvm-ce-java11-%{version}/GRAALVM-README.md .
+mv graalvm-ce-java11-%version/GRAALVM-README.md .
 
 
 %build
@@ -50,7 +50,7 @@ mv graalvm-ce-java11-%{version}/GRAALVM-README.md .
 }
 %_i 11
 %_i 17
-%_i 19
+#%_i 19
 
 %files jdk11
 %doc GRAALVM-README.md
@@ -62,11 +62,14 @@ mv graalvm-ce-java11-%{version}/GRAALVM-README.md .
 %license LICENSE
 /usr/lib/jvm/java-17-graalvm/
 
-%files jdk19
-%doc GRAALVM-README.md
-%license LICENSE
-/usr/lib/jvm/java-19-graalvm/
+#%files jdk19
+#%doc GRAALVM-README.md
+#%license LICENSE
+#/usr/lib/jvm/java-19-graalvm/
 
 %changelog
-* Thu Feb 9 2023 windowsboy111 <windowsboy111@fyralabs.com>
+* Thu May 11 2023 windowsboy111 <windowsboy111@fyralabs.com> - 22.3.2-1
+- Remove jdk19
+    
+* Thu Feb 9 2023 windowsboy111 <windowsboy111@fyralabs.com> - 22.3.1-1
 - Initial package
