@@ -46,9 +46,7 @@ Recommends:		gobject-introspection-devel
 
 Suggests:		gnome-builder
 
-Conflicts:		vala-language-server
-Provides:		vala-language-server = %version
-Provides:		vala-language-server%{?_isa} = %version
+Conflicts:      vala-language-server
 
 %description
 Provides code intelligence for Vala (and also Genie).

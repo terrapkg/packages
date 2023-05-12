@@ -39,11 +39,7 @@ Requires: libvala%{?_isa} = %{version}-%{release}
 # For GLib-2.0 and GObject-2.0 .gir files
 Requires: gobject-introspection-devel
 
-Provides: vala(api) = %{api_ver}
-
 Conflicts:      vala
-Provides:       vala = %version
-Provides:       vala%{?_isa} = %version
 
 %description
 Vala is a new programming language that aims to bring modern programming
@@ -65,8 +61,6 @@ type system.
 Summary:        Vala compiler library
 
 Conflicts:      libvala
-Provides:       libvala = %version
-Provides:       libvala%{?_isa} = %version
 
 %description -n libvala-nightly
 Vala is a new programming language that aims to bring modern programming
@@ -82,8 +76,6 @@ Summary:        Development files for libvala
 Requires:       libvala%{?_isa} = %{version}-%{release}
 
 Conflicts:      libvala-devel
-Provides:       libvala-devel = %version
-Provides:       libvala-devel%{?_isa} = %version
 
 %description -n libvala-nightly-devel
 Vala is a new programming language that aims to bring modern programming
@@ -102,7 +94,6 @@ Requires:       %{name} = %{version}-%{release}
 Requires:       devhelp
 
 Conflicts:      vala-doc
-Provides:       vala-doc = %version
 
 %description    doc
 Vala is a new programming language that aims to bring modern programming
@@ -118,8 +109,6 @@ Summary:        Vala documentation generator
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 Conflicts:      valadoc
-Provides:       valadoc = %version
-Provides:       valadoc%{?_isa} = %version
 
 %description -n valadoc-nightly
 Valadoc is a documentation generator for generating API documentation from Vala
@@ -131,8 +120,6 @@ Summary:        Development files for valadoc
 Requires:       valadoc%{?_isa} = %{version}-%{release}
 
 Conflicts:      valadoc-devel
-Provides:       valadoc-devel = %version
-Provides:       valadoc-devel%{?_isa} = %version
 
 %description -n valadoc-nightly-devel
 Valadoc is a documentation generator for generating API documentation from Vala

@@ -6,11 +6,12 @@
 
 Name:           rust-sccache
 Version:        0.4.2
-Release:        1%{?dist}
+Release:        %autorelease
 Summary:        Ccache-like tool
 
 License:        Apache-2.0
 URL:            https://crates.io/crates/sccache
+Group:          Development/Languages/Rust
 Source:         %{crates_source}
 # Automatically generated patch to strip foreign dependencies
 Patch:          sccache-fix-metadata-auto.diff
@@ -82,18 +83,6 @@ This package contains library source intended for building other packages which
 use the "azure" feature of the "%{crate}" crate.
 
 %files       -n %{name}+azure-devel
-%ghost %{crate_instdir}/Cargo.toml
-
-%package     -n %{name}+crossbeam-utils-devel
-Summary:        %{summary}
-BuildArch:      noarch
-
-%description -n %{name}+crossbeam-utils-devel %{_description}
-
-This package contains library source intended for building other packages which
-use the "crossbeam-utils" feature of the "%{crate}" crate.
-
-%files       -n %{name}+crossbeam-utils-devel
 %ghost %{crate_instdir}/Cargo.toml
 
 %package     -n %{name}+dist-client-devel
@@ -180,16 +169,16 @@ use the "hyper" feature of the "%{crate}" crate.
 %files       -n %{name}+hyper-devel
 %ghost %{crate_instdir}/Cargo.toml
 
-%package     -n %{name}+jsonwebtoken-devel
+%package     -n %{name}+jwt-devel
 Summary:        %{summary}
 BuildArch:      noarch
 
-%description -n %{name}+jsonwebtoken-devel %{_description}
+%description -n %{name}+jwt-devel %{_description}
 
 This package contains library source intended for building other packages which
-use the "jsonwebtoken" feature of the "%{crate}" crate.
+use the "jwt" feature of the "%{crate}" crate.
 
-%files       -n %{name}+jsonwebtoken-devel
+%files       -n %{name}+jwt-devel
 %ghost %{crate_instdir}/Cargo.toml
 
 %package     -n %{name}+libmount-devel
@@ -429,7 +418,6 @@ use the "webdav" feature of the "%{crate}" crate.
 
 %install
 %cargo_install -f dist-server
-
 
 %if %{with check}
 %check
