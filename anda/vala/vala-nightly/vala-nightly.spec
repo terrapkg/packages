@@ -34,7 +34,7 @@ BuildRequires:  vala
 # for tests
 BuildRequires:  dbus-x11
 
-Requires: libvala%{?_isa} = %{version}-%{release}
+Requires: libvala-nightly%{?_isa} = %{version}-%{release}
 
 # For GLib-2.0 and GObject-2.0 .gir files
 Requires: gobject-introspection-devel
