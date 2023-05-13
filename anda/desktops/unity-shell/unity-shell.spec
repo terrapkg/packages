@@ -1,19 +1,14 @@
-%global forgeurl https://gitlab.com/ubuntu-unity/unity/unity
-%global commit 0ba4fbaa112a37e7756c64f339f0569483d1e52f
-%forgemeta
+Name:		unity-shell
+Version:	7.7.0
+Release:	%autorelease
+Summary:	Unity is a shell that sings
 
-Name:			unity-shell
-Version:		1.7.7
-Release:		%autorelease
-Summary:		Unity is a shell that sings
-
-License:		GPL-3.0-or-later
-# forgeurl doesn't really work with spectool, tries https://gitlab.com/ubuntu-unity/unity instead of https://gitlab.com/ubuntu-unity/unity/unity
-URL:			https://gitlab.com/ubuntu-unity/unity/unity
-Source0:		%{url}/-/archive/%commit/unity-%commit.tar.bz2
-Patch0:			0001-Remove-xpathselect-dependency.patch
-Patch1:			0002-Remove-ido-dependency.patch
-Patch2:			0003-Remove-social-scope.patch
+License:	GPL-3.0-or-later
+URL:		https://launchpad.net/unity
+Source0:	http://archive.ubuntu.com/ubuntu/pool/universe/u/unity/unity_%{version}+23.04.20230222.2-0ubuntu2.tar.xz
+Patch0:		0001-Remove-xpathselect-dependency.patch
+Patch1:		0002-Remove-ido-dependency.patch
+Patch2:		0003-Remove-social-scope.patch
 
 BuildRequires:	cmake
 BuildRequires:	g++
@@ -41,18 +36,18 @@ BuildRequires:	pkgconfig(unity-misc)
 BuildRequires:	chrpath
 BuildRequires:	systemd-rpm-macros
 BuildRequires:	pkgconfig(libunity-settings-daemon)
-Requires:		python3-gobject
-Requires:		dconf
-Requires:		gsettings-ubuntu-touch-schemas
-Requires:		%{name}-data = %{version}-%{release}
-Requires:		%{name}-core%{?_isa} = %{version}-%{release}
-Requires:		pam
-Requires:		bamf-daemon
-Requires:		unity-gtk-module-common
-Requires:		compiz9
-Requires:		libindicator-gtk3
-Recommends:		unity-greeter
-Recommends:		unity-scope-home
+Requires:	python3-gobject
+Requires:	dconf
+Requires:	gsettings-ubuntu-touch-schemas
+Requires:	%{name}-data = %{version}-%{release}
+Requires:	%{name}-core%{?_isa} = %{version}-%{release}
+Requires:	pam
+Requires:	bamf-daemon
+Requires:	unity-gtk-module-common
+Requires:	compiz9
+Requires:	libindicator-gtk3
+Recommends:	unity-greeter
+Recommends:	unity-scope-home
 
 %description
 Unity is a desktop experience that sings. Designed by Canonical and the Ayatana
@@ -106,7 +101,7 @@ Requires:	%{name} = %{version}-%{release}
 This package contains support for widgets for Unity7, based on Blighty.
 
 %prep
-%autosetup -n unity-%commit -p1
+%autosetup -n unity-%{version}+23.04.20230222.2 -p1
 # Correct/not use ubuntu's API
 sed -i 's/ubuntu-lock-on-suspend/lock-enabled/' lockscreen/LockScreenSettings.cpp
 # Not actually needed for Unity itself
@@ -199,6 +194,7 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &>/dev/null || :
 %{_datadir}/unity/icons/dash-widgets.json
 %{_datadir}/unity/icons/*.png
 %{_datadir}/unity/icons/*.svg
+%{_datadir}/unity/icons/*.svg.save
 %{_datadir}/unity/icons/searchingthedashlegalnotice.html
 %dir %{_datadir}/unity/themes/
 %{_datadir}/unity/themes/dash-widgets.json
@@ -216,7 +212,7 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &>/dev/null || :
 
 %files -n python3-uwidgets
 %doc AUTHORS ChangeLog HACKING README
-%license uwidgets/LICENSE.md
+%license uwidgets/LICENCE
 %{_bindir}/uwidgets-runner
 %{python3_sitearch}/uwidgets-*.egg-info/
 %{python3_sitearch}/uwidgets/

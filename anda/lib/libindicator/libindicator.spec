@@ -57,7 +57,7 @@ developing applications that use %{name}-gtk3.
 
 %prep
 %setup -q -c
-%patch1 -p1 -b .orig
+%patch 1 -p1 -b .orig
 # Remove all IDO references
 # This is only needed for tools/indicator-loader.c
 sed -i '6d' ./Makefile.am

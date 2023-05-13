@@ -10,11 +10,14 @@ URL:			https://github.com/upciti/ops2deb
 Source0:		%url/archive/refs/tags/%version.tar.gz
 BuildRequires:	python3-devel poetry python3.10
 BuildRequires:	python3dist(setuptools)
+BuildArch:		noarch
 
 %description
-ops2deb is designed to generate Debian packages for common devops tools, but can be used to package any portable application.
-It consumes a configuration file and outputs .deb packages. ops2deb can also track new releases of upstream applications and
-automatically bump application versions in its configuration file.
+ops2deb is designed to generate Debian packages for common devops tools, but
+can be used to package any portable application. It consumes a configuration
+file and outputs .deb packages. ops2deb can also track new releases of upstream
+applications and automatically bump application versions in its configuration
+file.
 
 
 %prep
