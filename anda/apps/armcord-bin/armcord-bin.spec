@@ -9,8 +9,8 @@
 %endif
 
 Name:			armcord-bin
-Version:		3.1.7
-Release:		1%?dist
+Version:		3.2.0
+Release:		1%{?dist}
 License:		OSL-3.0
 Summary:		Custom lightweight Discord client designed to enhance your experience
 URL:			https://github.com/ArmCord/ArmCord
