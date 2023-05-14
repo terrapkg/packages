@@ -180,11 +180,15 @@ fi
 %{_metainfodir}/org.prismlauncher.PrismLauncher.metainfo.xml
 %{_datadir}/icons/hicolor/scalable/apps/org.prismlauncher.PrismLauncher.svg
 %{_datadir}/mime/packages/modrinth-mrpack-mime.xml
+%{_datadir}/PrismLauncher/qtlogging.ini
 %{_datadir}/qlogging-categories%{qt_version}/prismlauncher.categories
 %{_mandir}/man?/prismlauncher.*
 
 
 %changelog
+* Sun May 14 2023 seth <getchoo at tuta dot io> - 7.0^20230513.c5aff7c-1
+- add qtlogging.ini to files list
+
 * Mon Mar 20 2023 seth <getchoo at tuta dot io> - 7.0^20230319.6dcf34a-1
 - recommend flite to support narrator in minecraft
 
