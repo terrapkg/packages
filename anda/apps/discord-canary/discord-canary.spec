@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:           discord-canary
-Version:        0.0.151
+Version:        0.0.152
 Release:        1%{?dist}
 Summary:        Free Voice and Text Chat for Gamers.
 URL:            discord.com
