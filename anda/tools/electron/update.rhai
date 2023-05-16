@@ -1,1 +1,1 @@
-print(gh("electron/electron"));
+rpm.version(gh("electron/electron"));
