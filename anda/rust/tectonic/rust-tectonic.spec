@@ -4,8 +4,8 @@
 %global crate tectonic
 
 Name:           rust-tectonic
-Version:        0.12.0
-Release:        3%{?dist}
+Version:        0.13.0
+Release:        1%{?dist}
 Summary:        Modernized, complete, embeddable TeX/LaTeX engine
 
 License:        MIT
