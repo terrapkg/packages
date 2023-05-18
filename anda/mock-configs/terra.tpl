@@ -1,4 +1,4 @@
-config_opts['root'] = 'anda-{{ releasever }}-{{ target_arch }}'
+config_opts['root'] = 'terra-{{ releasever }}-{{ target_arch }}'
 config_opts['dist'] = 'fc{{ releasever }}'  # only useful for --resultdir variable subst
 config_opts['macros']['%dist'] = '.fc{{ releasever }}'
 config_opts['chroot_setup_cmd'] = 'install @buildsys-build'
@@ -10,7 +10,7 @@ config_opts['dnf.conf'] = """
 
 [main]
 keepcache=1
-debuglevel=2
+debuglevel=2a
 reposdir=/dev/null
 logfile=/var/log/yum.log
 retries=20
@@ -36,30 +36,6 @@ gpgkey=https://repos.fyralabs.com/terra$releasever/key.asc
 enabled=1
 enabled_metadata=1
 metadata_expire=4h
-
-[rpmfusion-free]
-name=RPM Fusion for Fedora $releasever - Free
-#baseurl=http://download1.rpmfusion.org/free/fedora/releases/$releasever/Everything/$basearch/os/
-metalink=https://mirrors.rpmfusion.org/metalink?repo=free-fedora-$releasever&arch=$basearch
-enabled=1
-metadata_expire=14d
-type=rpm-md
-gpgcheck=1
-repo_gpgcheck=0
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-$releasever
-
-[rpmfusion-nonfree]
-name=RPM Fusion for Fedora $releasever - Nonfree
-#baseurl=http://download1.rpmfusion.org/nonfree/fedora/releases/$releasever/Everything/$basearch/os/
-metalink=https://mirrors.rpmfusion.org/metalink?repo=nonfree-fedora-$releasever&arch=$basearch
-enabled=0
-enabled_metadata=1
-metadata_expire=14d
-type=rpm-md
-gpgcheck=1
-repo_gpgcheck=0
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora-$releasever
-
 
 [local]
 name=local

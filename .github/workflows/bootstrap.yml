@@ -23,7 +23,7 @@ jobs:
         run: |
           sudo dnf install -y dnf-plugins-core
           sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic-repos/raw/main/terra${{ matrix.version }}.repo
-          sudo dnf install -y mock createrepo_c rpm-build anda-mock-configs gcc curl wget git-core openssl-devel
+          sudo dnf install -y mock createrepo_c rpm-build terra-mock-configs gcc curl wget git-core openssl-devel
 
       - uses: actions/checkout@v3
         with:
