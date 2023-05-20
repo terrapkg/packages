@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:           discord-canary-openasar
-Version:        0.0.152
+Version:        0.0.153
 Release:        1%{?dist}
 Summary:        OpenAsar is a rewrite of part of Discord's desktop code, making it snappier and include more features like further customization and theming
 License:        MIT AND https://discord.com/terms
