@@ -142,8 +142,8 @@ chrpath --delete $RPM_BUILD_ROOT%{_libdir}/libunity-core-6.0.so.9.0.0
 
 # For some reason prefix is not set and causes linkage issues
 sed -i 's!prefix=!prefix=%{_prefix}!' %{buildroot}%{_libdir}/pkgconfig/unity-core-6.0.pc
-sed -i 's!exec_prefix=libexec!exec_prefix=%{_prefix}!'%{buildroot}%{_libdir}/pkgconfig/unity-core-6.0.pc
-sed -i 's!libdir=%{_lib}!libdir=%{_libdir}!'%{buildroot}%{_libdir}/pkgconfig/unity-core-6.0.pc
+sed -i 's!exec_prefix=libexec!exec_prefix=%{_prefix}!' %{buildroot}%{_libdir}/pkgconfig/unity-core-6.0.pc
+sed -i 's!libdir=%{_lib}!libdir=%{_libdir}!' %{buildroot}%{_libdir}/pkgconfig/unity-core-6.0.pc
 sed -i 's!includedir=include!includedir=%{_prefix}/include!' %{buildroot}%{_libdir}/pkgconfig/unity-core-6.0.pc
 
 %ldconfig_post
