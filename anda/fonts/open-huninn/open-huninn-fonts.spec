@@ -23,7 +23,7 @@ install -Dm644 font/jf-openhuninn-%version.ttf %buildroot/%_datadir/fonts/open-h
 
 %files
 %doc README.md
-%license LICENSE
+%license license.txt
 %defattr(-,root,root,0755)
 /%{_datadir}/fonts/open-huninn/
 
