@@ -1,4 +1,4 @@
-Name:		open-hunnin-fonts
+Name:		open-huninn-fonts
 Version:	2.0
 Release:	1%?dist
 URL:		https://github.com/justfont/open-huninn-font
@@ -8,7 +8,7 @@ Summary:	Chinese (Taiwan) font based on Kosugi Maru
 BuildArch:	noarch
 
 %description
-Open-hunnin (jf open 粉圓) is an open source Chinese font family
+Open-huninn (jf open 粉圓) is an open source Chinese font family
 derived from Kosugi Maru for daily use in Taiwan.
 
 %prep
@@ -17,15 +17,15 @@ derived from Kosugi Maru for daily use in Taiwan.
 %build
 
 %install
-mkdir -p %buildroot/%_datadir/fonts/open-hunnin
-install -Dm644 font/jf-openhunnin-%version.ttf %buildroot/%_datadir/fonts/open-hunnin/
+mkdir -p %buildroot/%_datadir/fonts/open-huninn
+install -Dm644 font/jf-openhuninn-%version.ttf %buildroot/%_datadir/fonts/open-huninn/
 
 
 %files
 %doc README.md
 %license LICENSE
 %defattr(-,root,root,0755)
-/%{_datadir}/fonts/open-hunnin/
+/%{_datadir}/fonts/open-huninn/
 
 
 %changelog
