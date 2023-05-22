@@ -2,7 +2,7 @@ Name:		open-hunnin-fonts
 Version:	2.0
 Release:	1%?dist
 URL:		https://github.com/justfont/open-huninn-font
-Source0:	%url/archive/refs/tags/%version.tar.gz
+Source0:	%url/archive/refs/tags/v%version.tar.gz
 License:	OFL-1.1
 Summary:	Chinese (Taiwan) font based on Kosugi Maru
 BuildArch:	noarch
