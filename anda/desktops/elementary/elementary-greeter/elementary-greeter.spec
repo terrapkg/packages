@@ -103,6 +103,7 @@ appstream-util validate-relax --nonet \
 
 %{_datadir}/xgreeters/%{appname}.desktop
 %{_datadir}/metainfo/%{appname}.appdata.xml
+%{_datadir}/lightdm/lightdm.conf.d/40-%appname.conf
 
 
 %changelog
