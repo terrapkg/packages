@@ -2,7 +2,7 @@ Name:		fakepearl-fonts
 Version:	1.1
 Release:	1%?dist
 URL:		https://github.com/max32002/FakePearl
-Source0:	%url/archive/refs/tags/v%version.tar.gz
+Source0:	%url/archive/refs/tags/%version.tar.gz
 License:	OFL-1.1
 Summary:	A free font family derived from open-huninn-font
 BuildArch:	noarch
