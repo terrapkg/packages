@@ -38,7 +38,7 @@ This package contains the kmod module for v4l2loopback.
 # print kmodtool output for debugging purposes:
 kmodtool --target %_target_cpu --repo rpmfusion --kmodname v4l2loopback %{?buildforkernels:--%buildforkernels} %{?kernels:--for-kernels "%?kernels"} 2>/dev/null
 
-%autosetup
+%autosetup -n v4l2loopback-%version
 
 for kernel_version in %?kernel_versions ; do
 	cp -a v4l2loopback-%version _kmod_build_${kernel_version%%___*}
