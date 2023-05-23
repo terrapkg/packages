@@ -25,6 +25,12 @@ level input primitives (evdev, uinput).
 %files
 %doc README.md
 %license LICENSE
+/usr/bin/keyd
+/usr/bin/keyd-application-mapper
+/usr/share/doc/keyd/
+/usr/share/keyd
+/usr/share/man/man1/keyd-application-mapper.1.gz
+/usr/share/man/man1/kyed.1.gz
 
 %changelog
 * Tue May 23 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2.4.3-1
