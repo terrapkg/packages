@@ -125,7 +125,6 @@ sed -e '/-Werror/d' -i cmake/Modules/CompilerConfig.cmake
 
 %build
 %cmake -B build -S obs-studio-%version \
-	-DCMAKE_INSTALL_PREFIX="%buildroot/usr" \
 	-DUNIX_STRUCTURE=1 -GNinja \
 	-DCMAKE_SKIP_RPATH=1 \
 	-DBUILD_BROWSER=OFF \

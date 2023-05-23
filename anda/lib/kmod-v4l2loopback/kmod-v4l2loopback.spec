@@ -16,7 +16,7 @@ Source0:		%url/archive/v%version/v4l2loopback-%version.tar.gz
 BuildRequires:	gcc
 BuildRequires:	elfutils-libelf-devel
 BuildRequires:	kmodtool
-BuildRequires:  mold
+BuildRequires:	mold
 %{!?kernels:BuildRequires: buildsys-build-rpmfusion-kerneldevpkgs-%{?buildforkernels:%buildforkernels}%!?buildforkernels:current-%_target_cpu}
 
 # kmodtool does its magic here
