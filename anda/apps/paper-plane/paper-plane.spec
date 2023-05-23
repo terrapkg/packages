@@ -1,7 +1,7 @@
 %global ver 0.1.0-beta.1
 
 Name:			paper-plane
-Version:		%(echo %ver | sed 's/-/~')
+Version:		%(echo %ver | sed 's/-/~/g')
 Release:		1%?dist
 Summary:		Alternative Telegram client in GTK4 and Rust
 License:		GPL-3.0
