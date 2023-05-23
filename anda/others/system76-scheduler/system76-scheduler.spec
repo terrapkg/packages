@@ -1,3 +1,5 @@
+%define debug_package %nil
+
 Name:			system76-scheduler
 Version:		2.0.1
 Release:		1%?dist
