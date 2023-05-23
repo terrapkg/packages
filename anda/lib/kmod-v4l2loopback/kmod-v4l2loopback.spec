@@ -4,7 +4,7 @@
 %global debug_package %nil
 %endif
 
-Name:			v4l2loopback-kmod
+Name:			kmod-v4l2loopback
 Summary:		v4l2-loopback kernel module
 Version:		0.12.7
 Release:		1%?dist
