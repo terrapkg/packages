@@ -385,18 +385,6 @@ use the "version-compare" feature of the "%{crate}" crate.
 %files       -n %{name}+version-compare-devel
 %ghost %{crate_instdir}/Cargo.toml
 
-%package     -n %{name}+void-devel
-Summary:        %{summary}
-BuildArch:      noarch
-
-%description -n %{name}+void-devel %{_description}
-
-This package contains library source intended for building other packages which
-use the "void" feature of the "%{crate}" crate.
-
-%files       -n %{name}+void-devel
-%ghost %{crate_instdir}/Cargo.toml
-
 %package     -n %{name}+webdav-devel
 Summary:        %{summary}
 BuildArch:      noarch

@@ -1,12 +1,9 @@
---- sccache-0.4.2/Cargo.toml	1970-01-01T00:00:01+00:00
-+++ sccache-0.4.2/Cargo.toml	2023-05-10T14:25:40.783197+00:00
-@@ -362,14 +362,3 @@
+--- sccache-0.5.0/Cargo.toml	1970-01-01T00:00:01+00:00
++++ sccache-0.5.0/Cargo.toml	2023-05-23T11:47:04.499465+00:00
+@@ -354,11 +354,3 @@
  [target."cfg(unix)".dependencies.daemonize]
  version = "0.5"
  
--[target."cfg(windows)".dependencies.parity-tokio-ipc]
--version = "0.9"
--
 -[target."cfg(windows)".dependencies.winapi]
 -version = "0.3"
 -features = [
