@@ -1,5 +1,5 @@
 project pkg {
 	rpm {
-		spec = "kmod-v4l2loopback.spec"
+		spec = "v4l2loopback-kmod.spec"
 	}
 }
