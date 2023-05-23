@@ -9,6 +9,11 @@ URL:			https://obsproject.com/
 Source0:		https://github.com/obsproject/obs-studio/archive/refs/tags/%version.tar.gz
 Source1:		https://github.com/obsproject/obs-websocket/archive/%obswebsocketver/obs-websocket-%obswebsocketver.tar.gz
 
+Patch1:			0001-UI-Consistently-reference-the-software-H264-encoder-.patch
+Patch2:			0002-obs-ffmpeg-Add-initial-support-for-the-OpenH264-H.26.patch
+Patch3:			0003-UI-Add-support-for-OpenH264-as-the-worst-case-fallba.patch
+Patch11:		obs-studio-websocket-use-system-qrcodegencpp.patch
+
 BuildRequires:	gcc
 BuildRequires:	cmake >= 3.16
 BuildRequires:	ninja-build
@@ -54,15 +59,20 @@ BuildRequires:	swig
 BuildRequires:	systemd-devel
 BuildRequires:	wayland-devel
 BuildRequires:	websocketpp-devel
+BuildRequires:	x264-devel
+BuildRequires:	vlc-devel
 
 # Ensure QtWayland is installed when libwayland-client is installed
 Requires:		(qt6-qtwayland%{?_isa} if libwayland-client%{?_isa})
 # For icon folder heirarchy
 Requires:		hicolor-icon-theme
 # Virtual camera support
-Recommends:		kmod-v4l2loopback  # TODO Terra package
+Recommends:		kmod-v4l2loopback
 # NVIDIA Hardware accelerated encoding: CUDA
 Suggests:		xorg-x11-drv-nvidia-cuda
+# obs-studio-plugin-vlc-video
+# We dlopen() libvlc
+Requires:		libvlc.so.%{libvlc_soversion}%{?lib64_suffix}
 
 
 # These are modified sources that can't be easily unbundled
@@ -98,52 +108,20 @@ Provides:		bundled(intel-mediasdk)
 Open Broadcaster Software is free and open source
 software for video recording and live streaming.
 
-%package -n obs-studio-plugin-x264
-Summary:		Open Broadcaster Software Studio - x264 encoding plugin
-License:		GPL-2.0-or-later
-BuildRequires:	x264-devel
-Requires:		obs-studio%{?_isa} >= %{version}
-Supplements:	obs-studio%{?_isa}
-
-%description -n obs-studio-plugin-x264
-Open Broadcaster Software is free and open source software
-for video recording and live streaming.
-
-This package contains the plugin for using the x264 encoder for
-streaming or recording AVC/H.264 video.
-
-%files -n obs-studio-plugin-x264
-%license COPYING
-%{_libdir}/obs-plugins/obs-x264.so
-%{_datadir}/obs/obs-plugins/obs-x264/
-
-
-%package -n obs-studio-plugin-vlc-video
-Summary:		Open Broadcaster Software Studio - VLC-based video plugin
-License:		GPL-2.0-or-later
-BuildRequires:	vlc-devel
-# We dlopen() libvlc
-Requires:		libvlc.so.%{libvlc_soversion}%{?lib64_suffix}
-Requires:		obs-studio%{?_isa} >= %{version}
-Supplements:	obs-studio%{?_isa}
-
-
-%description -n obs-studio-plugin-vlc-video
-Open Broadcaster Software is free and open source software
-for video recording and live streaming.
-
-This package contains the plugin for using VLC to embed video
-as an overlay in a video stream or recording.
-
-%files -n obs-studio-plugin-vlc-video
-%license COPYING
-%{_libdir}/obs-plugins/vlc-video.so
-%{_datadir}/obs/obs-plugins/vlc-video/
-
 
 %prep
-%autosetup
-# TODO
+%autosetup -p1 -n obs-studio-%{?snapdate:%{commit}}%{!?snapdate:%{version_no_tilde}}
+# Prepare plugins/obs-websocket
+tar -xf %SOURCE1 -C plugins/obs-websocket --strip-components=1
+sed -e 's|OBS_MULTIARCH_SUFFIX|LIB_SUFFIX|g' -i cmake/Modules/ObsHelpers.cmake
+# Kill rpath settings
+sed -e '\|set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${OBS_LIBRARY_DESTINATION}")|d' -i cmake/Modules/ObsHelpers_Linux.cmake
+# touch the missing submodules
+touch plugins/obs-browser/CMakeLists.txt
+# remove -Werror flag to mitigate FTBFS with ffmpeg 5.1
+sed -e 's|-Werror-implicit-function-declaration||g' -i cmake/Modules/CompilerConfig.cmake
+sed -e '/-Werror/d' -i cmake/Modules/CompilerConfig.cmake
+
 
 %build
 %cmake -B build -S obs-studio-%version \
@@ -163,3 +141,14 @@ as an overlay in a video stream or recording.
 %install
 %cmake_install
 
+
+%files
+%doc README.rst
+%license COPYING plugins/{{enc-amf,obs-websocket}/LICENSE,obs-{browser,filters,outputs}/COPYING}
+
+
+%changelog
+* Tue May 23 2023 windowsboy111 <windowsboy111@fyralabs.com> - 29.1.1-1
+- Initial package
+- Ref: https://pkgs.rpmfusion.org/cgit/free/obs-studio-freeworld.git/tree/obs-studio-freeworld.spec
+- Ref: https://gitlab.archlinux.org/archlinux/packaging/packages/obs-studio/-/blob/main/PKGBUILD
