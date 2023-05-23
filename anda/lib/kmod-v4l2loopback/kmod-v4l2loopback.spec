@@ -1,7 +1,7 @@
 # https://github.com/rpmfusion/v4l2loopback-kmod/blob/el7/v4l2loopback-kmod.spec
 %if 0%{?fedora}
 %global buildforkernels akmod
-%global debug_package %{nil}
+%global debug_package %nil
 %endif
 
 Name:			v4l2loopback-kmod
@@ -17,10 +17,10 @@ BuildRequires:	gcc
 BuildRequires:	elfutils-libelf-devel
 BuildRequires:	kmodtool
 BuildRequires:	mold
-%{!?kernels:BuildRequires: buildsys-build-rpmfusion-kerneldevpkgs-%{?buildforkernels:%buildforkernels}%!?buildforkernels:current-%_target_cpu}
+# %{!?kernels:BuildRequires: buildsys-build-rpmfusion-kerneldevpkgs-%{?buildforkernels:%buildforkernels}%!?buildforkernels:current-%_target_cpu}
 
 # kmodtool does its magic here
-%{expand:%(kmodtool --target %_target_cpu --repo rpmfusion --kmodname v4l2loopback %{?buildforkernels:--%buildforkernels} %{?kernels:--for-kernels "%?kernels"} 2>/dev/null) }
+%{expand:%(kmodtool --target %_target_cpu --repo terra --kmodname v4l2loopback %{?buildforkernels:--%buildforkernels} %{?kernels:--for-kernels "%?kernels"} 2>/dev/null) }
 
 %description
 This module allows you to create "virtual video devices". Normal (v4l2)
