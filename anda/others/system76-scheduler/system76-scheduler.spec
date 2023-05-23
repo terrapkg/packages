@@ -5,7 +5,7 @@ Summary:		Auto-configure CFS, process priorities for improved DE responsiveness
 License:		MPL-2.0
 URL:			https://github.com/pop-os/system76-scheduler
 Source0:		%url/archive/refs/tags/%version.tar.gz
-BuildRequires:	cargo clang just clang-devel pipewire-devel pkg-config
+BuildRequires:	cargo clang just libclang-dev pipewire-devel pkg-config
 
 %description
 Scheduling service which optimizes Linux's CPU scheduler and automatically
