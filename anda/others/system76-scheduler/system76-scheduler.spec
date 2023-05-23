@@ -30,6 +30,9 @@ just sysconfdir=%buildroot/usr/share install
 %files
 %doc README.md
 %license LICENSE
+/usr/share/dbus-1/system.d/com.system76.Scheduler.conf
+/usr/share/system76-scheduler/config.kdl
+/usr/share/system76-scheduler/process-scheduler/pop_os.kdl
 
 %changelog
 * Tue May 23 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2.0.1-1
