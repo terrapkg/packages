@@ -17,7 +17,7 @@
 %global __provides_exclude_from ^%{_libdir}/gtk-4.0
 
 Name:           terra-gtk4
-Version:        4.5.0
+Version:        4.11.2
 Release:        1%{?dist}
 Summary:        GTK graphical user interface library
 
