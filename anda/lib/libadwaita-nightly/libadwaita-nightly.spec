@@ -78,13 +78,13 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %dir %{_datadir}/gir-1.0
 %{_datadir}/gir-1.0/*-*.gir
 %{_datadir}/vala/vapi/libadwaita*
-%{_includedir}/%{name}-*/
+%{_includedir}/libadwaita-*/
 #%{_libdir}/*-*.so
 %{_libdir}/pkgconfig/*-*.pc
  
 %files doc
 %doc HACKING.md
-%{_docdir}/%name-*/
+%{_docdir}/libadwaita-*/
  
 %files demo
 %{_datadir}/applications/*.desktop
