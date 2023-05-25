@@ -95,7 +95,7 @@ Requires: gdk-pixbuf2-modules%{?_isa}
 # make sure we have a reasonable gsettings backend
 Recommends: dconf%{?_isa}
 
-Provides: gtk4%?_isa = %version
+Provides: gtk4%?_isa = %version-%release
 Conflicts: gtk4
 
 %description
