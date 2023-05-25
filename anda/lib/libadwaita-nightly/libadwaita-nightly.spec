@@ -67,7 +67,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.xml
 desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
  
  
-%files -f %{name}.lang
+%files
 %license COPYING
 %doc README.md AUTHORS NEWS
 %{_bindir}/adwaita-%{apiver}-demo
