@@ -7,42 +7,42 @@ Name:		kde-liquidshell
 Version:	1.8.1
 Release:	%autorelease
 Summary:	Basic desktop shell using QtWidgets
-Provides:       liquidshell
+Provides:	liquidshell = %version
 
 License:	GPL-3.0
 URL:		%{forgeurl}
 Source0:	%{forgeurl}/-/archive/%{commit}/liquidshell-%{commit}.tar.gz
 
-BuildRequires:  cmake
-BuildRequires:  libappstream-glib
-BuildRequires:  pkgconfig(Qt5)
-BuildRequires:  kf5-rpm-macros
-BuildRequires:  extra-cmake-modules
-BuildRequires:  pkgconfig(Qt5X11Extras)
-BuildRequires:  qt5-qtbase-private-devel
-BuildRequires:  qt5-qtbase-static
-BuildRequires:  cmake(KF5WindowSystem)
-BuildRequires:  cmake(KF5WidgetsAddons)
-BuildRequires:  cmake(KF5ConfigWidgets)
-BuildRequires:  cmake(KF5Config)
-BuildRequires:  cmake(KF5KIO)
-BuildRequires:  cmake(KF5IconThemes)
-BuildRequires:  cmake(KF5ItemViews)
-BuildRequires:  cmake(KF5Archive)
-BuildRequires:  cmake(KF5Notifications)
-BuildRequires:  cmake(KF5I18n)
-BuildRequires:  cmake(KF5NetworkManagerQt)
-BuildRequires:  cmake(KF5Service)
-BuildRequires:  cmake(KF5Solid)
-BuildRequires:  cmake(KF5BluezQt)
-BuildRequires:  cmake(KF5KCMUtils)
-BuildRequires:  cmake(KF5Crash)
-BuildRequires:  cmake(KF5DBusAddons)
-BuildRequires:  cmake(KF5NewStuff)
-BuildRequires:  pkgconfig(packagekitqt5)
+BuildRequires:	cmake
+BuildRequires:	libappstream-glib
+BuildRequires:	pkgconfig(Qt5)
+BuildRequires:	kf5-rpm-macros
+BuildRequires:	extra-cmake-modules
+BuildRequires:	pkgconfig(Qt5X11Extras)
+BuildRequires:	qt5-qtbase-private-devel
+BuildRequires:	qt5-qtbase-static
+BuildRequires:	cmake(KF5WindowSystem)
+BuildRequires:	cmake(KF5WidgetsAddons)
+BuildRequires:	cmake(KF5ConfigWidgets)
+BuildRequires:	cmake(KF5Config)
+BuildRequires:	cmake(KF5KIO)
+BuildRequires:	cmake(KF5IconThemes)
+BuildRequires:	cmake(KF5ItemViews)
+BuildRequires:	cmake(KF5Archive)
+BuildRequires:	cmake(KF5Notifications)
+BuildRequires:	cmake(KF5I18n)
+BuildRequires:	cmake(KF5NetworkManagerQt)
+BuildRequires:	cmake(KF5Service)
+BuildRequires:	cmake(KF5Solid)
+BuildRequires:	cmake(KF5BluezQt)
+BuildRequires:	cmake(KF5KCMUtils)
+BuildRequires:	cmake(KF5Crash)
+BuildRequires:	cmake(KF5DBusAddons)
+BuildRequires:	cmake(KF5NewStuff)
+BuildRequires:	pkgconfig(packagekitqt5)
 Requires:	kwin
-Requires:       plasma-workspace-x11
-Requires:       plasma-workspace
+Requires:	plasma-workspace-x11
+Requires:	plasma-workspace
 Recommends:	polkit-kde
 
 %description
