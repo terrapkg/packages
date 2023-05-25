@@ -71,15 +71,16 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %license COPYING
 %doc README.md AUTHORS NEWS
 %{_bindir}/adwaita-*-demo
-#%{_libdir}/*-*.so.0*
+%{_libdir}/libadwaita-*.so.0*
 %{_libdir}/girepository-1.0/*.typelib
+%{_datadir}/locale/*/LC_MESSAGES/libadwaita.mo
  
 %files devel
 %dir %{_datadir}/gir-1.0
 %{_datadir}/gir-1.0/*-*.gir
 %{_datadir}/vala/vapi/libadwaita*
 %{_includedir}/libadwaita-*/
-#%{_libdir}/*-*.so
+%{_libdir}/libadwaita-*.so
 %{_libdir}/pkgconfig/*-*.pc
  
 %files doc
