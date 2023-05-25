@@ -70,21 +70,21 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %files
 %license COPYING
 %doc README.md AUTHORS NEWS
-%{_bindir}/adwaita-%{apiver}-demo
-%{_libdir}/*-%{apiver}.so.0*
+%{_bindir}/adwaita-*-demo
+#%{_libdir}/*-*.so.0*
 %{_libdir}/girepository-1.0/*.typelib
  
 %files devel
 %dir %{_datadir}/gir-1.0
-%{_datadir}/gir-1.0/*-%{apiver}.gir
-%{_datadir}/vala/vapi/%{name}-%{apiver}.*
-%{_includedir}/%{name}-%{apiver}/
-%{_libdir}/*-%{apiver}.so
-%{_libdir}/pkgconfig/*-%{apiver}.pc
+%{_datadir}/gir-1.0/*-*.gir
+%{_datadir}/vala/vapi/libadwaita*
+%{_includedir}/%{name}-*/
+#%{_libdir}/*-*.so
+%{_libdir}/pkgconfig/*-*.pc
  
 %files doc
 %doc HACKING.md
-%{_docdir}/%{name}-%{apiver}/
+%{_docdir}/%name-*/
  
 %files demo
 %{_datadir}/applications/*.desktop
