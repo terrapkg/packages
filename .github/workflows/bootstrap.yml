@@ -43,7 +43,7 @@ jobs:
       - name: Build Subatomic
         run: |
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
-          anda build -c anda-${{ matrix.version }}-${{ matrix.arch }} subatomic -p rpm -D "autogitcommit $(git log -1 --format='%H')"
+          anda build -c terra-${{ matrix.version }}-${{ matrix.arch }} subatomic -p rpm -D "autogitcommit $(git log -1 --format='%H')"
       - name: Install Subatomic
         run: sudo dnf install -y ./anda-build/rpm/rpms/subatomic-*.rpm
 
@@ -52,7 +52,7 @@ jobs:
           repository: FyraLabs/anda
 
       - name: Build Andaman
-        run: anda build -c anda-${{ matrix.version }}-${{ matrix.arch }} anda -p rpm
+        run: anda build -c terra-${{ matrix.version }}-${{ matrix.arch }} anda -p rpm
 
       - name: Upload to Subatomic
         run: |
