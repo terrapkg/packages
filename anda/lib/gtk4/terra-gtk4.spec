@@ -111,7 +111,7 @@ This package contains latest version 4 of GTK as tracked in Terra.
 Summary: Development files for GTK
 Requires: terra-gtk4%?_isa = %version-%release
 Provides: pkgconfig(gtk4) = %version-%release
-Provides: pkgconfig(terra-gtk4) = %version-release
+Provides: pkgconfig(terra-gtk4) = %version-%release
 
 %description devel
 This package contains the libraries and header files that are needed
