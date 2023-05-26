@@ -4,12 +4,13 @@
 Name:           elementary-greeter
 Summary:        LightDM Login Screen for the elementary desktop
 Version:        6.1.1
-Release:        %autorelease
+Release:        2%{?dist}
 License:        GPL-3.0
 
 URL:            https://github.com/elementary/greeter
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 Source1:        40-%{appname}.conf
+Patch0:         https://github.com/elementary/greeter/compare/93bbca3..1b3879d.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
@@ -33,9 +34,9 @@ BuildRequires:  pkgconfig(granite) >= 5.0
 BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(libhandy-1)
 BuildRequires:  pkgconfig(liblightdm-gobject-1)
-BuildRequires:  pkgconfig(mutter-clutter-11)
-BuildRequires:  pkgconfig(mutter-cogl-11)
-BuildRequires:  pkgconfig(mutter-cogl-pango-11)
+BuildRequires:  pkgconfig(mutter-clutter-12)
+BuildRequires:  pkgconfig(mutter-cogl-12)
+BuildRequires:  pkgconfig(mutter-cogl-pango-12)
 BuildRequires:  pkgconfig(x11)
 
 Provides:       pantheon-greeter = %{version}-%{release}
@@ -102,6 +103,7 @@ appstream-util validate-relax --nonet \
 
 %{_datadir}/xgreeters/%{appname}.desktop
 %{_datadir}/metainfo/%{appname}.appdata.xml
+%{_datadir}/lightdm/lightdm.conf.d/40-%appname.conf
 
 
 %changelog
