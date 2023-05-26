@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:           discord-ptb
-Version:        0.0.42
+Version:        0.0.64
 Release:        1%{?dist}
 Summary:        Free Voice and Text Chat for Gamers.
 URL:            discord.com

@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:           discord-openasar
-Version:        0.0.27
+Version:        0.0.311
 Release:        1%{?dist}
 Summary:        OpenAsar is a rewrite of part of Discord's desktop code, making it snappier and include more features like further customization and theming
 License:        MIT AND https://discord.com/terms
