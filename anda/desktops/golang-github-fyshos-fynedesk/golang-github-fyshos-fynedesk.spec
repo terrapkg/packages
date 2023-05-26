@@ -32,6 +32,7 @@ Requires: arandr
 Requires: xbacklight
 Requires: network-manager-applet
 BuildRequires: make
+BuildRequires: git
 
 %prep
 %goprep
