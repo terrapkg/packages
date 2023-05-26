@@ -18,7 +18,7 @@
 
 Name:           terra-gtk4
 Version:        4.11.2
-Release:        %?dist
+Release:        1%{?dist}
 Summary:        GTK graphical user interface library
 
 License:        LGPL-2.0-or-later
