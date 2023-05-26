@@ -9,7 +9,7 @@ License:		LGPL-2.1+
 URL:			https://gnome.pages.gitlab.gnome.org/libadwaita/
 Source0:		https://gitlab.gnome.org/GNOME/libadwaita/-/archive/%commit/libadwaita-%commit.tar.gz
 BuildRequires:	meson vala cmake gi-docgen git gobject-introspection sassc terra-gtk4-devel appstream-devel desktop-file-utils libappstream-glib
-Requires:		gtk4
+Requires:		terra-gtk4
 
 %description
 %summary.
