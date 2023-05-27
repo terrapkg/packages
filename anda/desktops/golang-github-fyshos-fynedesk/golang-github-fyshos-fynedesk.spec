@@ -33,6 +33,8 @@ Requires: xbacklight
 Requires: network-manager-applet
 BuildRequires: make
 BuildRequires: git
+BuildRequires: git-core
+BuildRequires: /usr/bin/git
 
 %prep
 %goprep
@@ -42,6 +44,7 @@ BuildRequires: git
 #%%go_generate_buildrequires
 
 %build
+git --help
 %make_build
 
 %install
