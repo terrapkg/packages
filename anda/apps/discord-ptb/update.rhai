@@ -1,3 +1,3 @@
-let txt = get("https://discordapp.com/api/updates/ptb/RELEASES");
-let v = find("DiscordPTB-([\\d\\.]+)-", txt, 1);
-rpm.version(v);
+let html = get("https://discordapp.com/api/download/ptb?platform=linux&format=tar.gz");
+let newver = find("https://dl-ptb\\.discordapp\\.net/apps/linux/([\\.\\d]+)/", html, 1);
+rpm.version(newver);
