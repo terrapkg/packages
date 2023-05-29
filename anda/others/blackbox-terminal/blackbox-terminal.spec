@@ -8,7 +8,7 @@ BuildRequires:  vala meson gettext
 BuildRequires:  pkgconfig(gtk4) >= 4.6.2
 BuildRequires:  pkgconfig(gio-2.0) >= 2.50
 BuildRequires:  pkgconfig(libadwaita-1) >= 1.1
-BuildRequires:  marble-gtk
+BuildRequires:  pkgconfig(marble) >= 42
 BuildRequires:  pkgconfig(vte-2.91-gtk4) >= 0.69.0
 BuildRequires:  pkgconfig(json-glib-1.0) >= 1.4.4
 BuildRequires:  pkgconfig(libxml-2.0) >= 2.9.12
@@ -17,12 +17,13 @@ BuildRequires:  pkgconfig(libpcre2-8)
 BuildRequires:  pkgconfig(graphene-gobject-1.0)
 BuildRequires:  pkgconfig(gee-0.8)
 Source0:        %{url}/-/archive/v%{version}/blackbox-v%{version}.tar.gz
+Patch0:         0001-fix-pkgconfig-marble-version.patch
 
 %description
 %{summary}.
 
 %prep
-%autosetup -n blackbox-v%{version}
+%autosetup -p1 -n blackbox-v%version
 
 %build
 %meson
