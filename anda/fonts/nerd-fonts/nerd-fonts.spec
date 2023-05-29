@@ -10,7 +10,7 @@ Source1:	https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v%version/LICENS
 License:	OFL-1.1
 Summary:	All packaged Nerd fonts
 BuildArch:	noarch
-Requires:	%{lua:
+Recommends:	%{lua:
 local x = ""
 local ver = rpm.expand("%version-%release")
 for font in (rpm.expand("%flist")):gmatch("[^ ]+") do
