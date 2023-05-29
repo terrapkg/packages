@@ -3,7 +3,7 @@
 
 Name:           appimagelauncher
 Version:        2.2.0
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Helper application for Linux distributions serving as a kind of "entry point" for running and integrating AppImages
 
 License:        MIT
