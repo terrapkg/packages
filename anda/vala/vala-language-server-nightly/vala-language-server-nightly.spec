@@ -1,6 +1,6 @@
 %global real_name vala-language-server
 
-%global commit 7577ffb269cd31da8815b7eadd72867965a2c742
+%global commit 3b5fe941bea6ecd5c8fcb84930c40b8582eea165
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %global commit_date %(date '+%Y%m%d')
