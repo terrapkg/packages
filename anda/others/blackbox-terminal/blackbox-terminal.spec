@@ -10,7 +10,7 @@ BuildRequires:  pkgconfig(gio-2.0) >= 2.50
 BuildRequires:  libadwaita-devel >= 1.1
 BuildRequires:  pkgconfig(marble) >= 42
 BuildRequires:  pkgconfig(vte-2.91-gtk4) >= 0.69.0
-#BuildRequires:  pkgconfig(json-glib-1.0) >= 1.4.4
+BuildRequires:  pkgconfig(json-glib-1.0) >= 1.4.4
 BuildRequires:  pkgconfig(libxml-2.0) >= 2.9.12
 BuildRequires:  pkgconfig(librsvg-2.0) >= 2.54.0
 BuildRequires:  pkgconfig(libpcre2-8)
