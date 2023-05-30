@@ -6,7 +6,7 @@ License:        GPL-3.0
 URL:            https://gitlab.gnome.org/raggesilver/blackbox
 BuildRequires:  vala meson gettext 
 BuildRequires:  pkgconfig(gtk4) >= 4.6.2
-#BuildRequires:  pkgconfig(gio-2.0) >= 2.50
+BuildRequires:  pkgconfig(gio-2.0) >= 2.50
 BuildRequires:  libadwaita-devel >= 1.1
 BuildRequires:  pkgconfig(marble) >= 42
 BuildRequires:  pkgconfig(vte-2.91-gtk4) >= 0.69.0
@@ -15,7 +15,7 @@ BuildRequires:  pkgconfig(libxml-2.0) >= 2.9.12
 BuildRequires:  pkgconfig(librsvg-2.0) >= 2.54.0
 BuildRequires:  pkgconfig(libpcre2-8)
 BuildRequires:  pkgconfig(graphene-gobject-1.0)
-BuildRequires:  pkgconfig(gee-0.8)
+#BuildRequires:  pkgconfig(gee-0.8)
 Source0:        %{url}/-/archive/v%{version}/blackbox-v%{version}.tar.gz
 Patch0:         0001-fix-pkgconfig-marble-version.patch
 
