@@ -14,9 +14,10 @@ BuildRequires:  pkgconfig(json-glib-1.0) >= 1.4.4
 BuildRequires:  pkgconfig(libxml-2.0) >= 2.9.12
 BuildRequires:  pkgconfig(librsvg-2.0) >= 2.54.0
 BuildRequires:  pkgconfig(libpcre2-8)
-BuildRequires:  pkgconfig(graphene-gobject-1.0)
-#BuildRequires:  pkgconfig(gee-0.8)
-Source0:        %{url}/-/archive/v%{version}/blackbox-v%{version}.tar.gz
+#BuildRequires:  pkgconfig(graphene-gobject-1.0)
+BuildRequires:  pkgconfig(gee-0.8)
+BuildRequires:  desktop-file-utils libappstream-glib cmake
+Source0:        %url/-/archive/v%version/blackbox-v%version.tar.gz
 Patch0:         0001-fix-pkgconfig-marble-version.patch
 
 %description
