@@ -7,7 +7,7 @@ URL:            https://gitlab.gnome.org/raggesilver/blackbox
 BuildRequires:  vala meson gettext 
 BuildRequires:  pkgconfig(gtk4) >= 4.6.2
 BuildRequires:  pkgconfig(gio-2.0) >= 2.50
-BuildRequires:  pkgconfig(libadwaita-1) >= 1.1
+BuildRequires:  libadwaita-devel >= 1.1
 BuildRequires:  pkgconfig(marble) >= 42
 BuildRequires:  pkgconfig(vte-2.91-gtk4) >= 0.69.0
 BuildRequires:  pkgconfig(json-glib-1.0) >= 1.4.4
