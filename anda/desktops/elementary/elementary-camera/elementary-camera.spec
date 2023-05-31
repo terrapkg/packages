@@ -3,7 +3,7 @@
 
 Name:           elementary-camera
 Summary:        Camera app designed for elementary
-Version:        6.2.1
+Version:        6.2.2
 Release:        1%{?dist}
 License:        GPL-3.0
 
