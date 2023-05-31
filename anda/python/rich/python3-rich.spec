@@ -1,6 +1,6 @@
 # Created by pyp2rpm-3.3.8
 %global pypi_name rich
-%global pypi_version 13.3.5
+%global pypi_version 13.4.0
 
 Name:           python-%{pypi_name}
 Version:        %{pypi_version}
