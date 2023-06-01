@@ -5,7 +5,7 @@ Version:        20221215
 Release:        1%{?dist}
 Summary:        Fluent is a Fluent design theme for GNOME/GTK based desktop environments.
 
-License:        GPLv3
+License:        GPL-3.0
 URL:            https://github.com/vinceliuice/Fluent-gtk-theme
 Source0:        https://github.com/vinceliuice/Fluent-gtk-theme/archive/refs/tags/%{tag}.tar.gz
 
