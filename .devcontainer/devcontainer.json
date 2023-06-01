@@ -4,8 +4,15 @@
     "dockerfile": "Dockerfile",
     "args": { "VARIANT": "38" }
   },
-  "settings": {},
-  "extensions": [],
   "remoteUser": "vscode",
-  "runArgs": ["--privileged"]
+  "runArgs": [
+    "--privileged"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "rhaiscript.vscode-rhai"
+      ]
+    }
+  }
 }
