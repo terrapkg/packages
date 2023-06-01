@@ -13,7 +13,7 @@ License:		MIT
 URL:			https://electronjs.org/
 Source0:		https://github.com/electron/electron/releases/download/v%{version}/chromedriver-v%{version}-linux-%{garch}.zip
 Source1:		https://github.com/electron/electron/releases/download/v%{version}/electron-v%{version}-linux-%{garch}.zip
-Requires:		c-ares ffmpeg gtk3 libevent libxslt minizip nss re2
+Requires:		c-ares ffmpeg-free gtk3 libevent libxslt minizip nss re2
 BuildRequires:	unzip
 
 %description
