@@ -2,7 +2,7 @@
 
 Name:			system76-scheduler
 Version:		2.0.1
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Auto-configure CFS, process priorities for improved DE responsiveness
 License:		MPL-2.0
 URL:			https://github.com/pop-os/system76-scheduler
@@ -25,14 +25,16 @@ process priority.
 just execsnoop=$(which execsnoop-bpfcc) build-release
 
 %install
-just sysconfdir=%buildroot/usr/share install
+just rootdir=%buildroot unitdir=%_unitdir sysconfdir=%_sysconfdir install
 
 %files
 %doc README.md
 %license LICENSE
+%_bindir/system76-scheduler
 /usr/share/dbus-1/system.d/com.system76.Scheduler.conf
 /usr/share/system76-scheduler/config.kdl
 /usr/share/system76-scheduler/process-scheduler/pop_os.kdl
+%{_unitdir}/com.system76.Scheduler.service
 
 %changelog
 * Tue May 23 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2.0.1-1
