@@ -25,7 +25,7 @@ process priority.
 just execsnoop=$(which execsnoop-bpfcc) build-release
 
 %install
-just rootdir=%buildroot sysconfdir=%buildroot/%_sysconfdir install
+just rootdir=%buildroot sysconfdir=%_sysconfdir install
 
 
 %post
