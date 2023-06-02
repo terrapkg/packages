@@ -11,6 +11,7 @@ URL:            https://crates.io/crates/maturin
 Source:         %{crates_source}
 
 BuildRequires:  pkgconfig anda-srpm-macros cargo-rpm-macros >= 24
+Conflicts:      rust-maturin
 
 %global _description %{expand:
 Build and publish crates with pyo3, rust-cpython and cffi bindings as
@@ -20,6 +21,7 @@ well as rust binaries as python packages.}
 
 %package     -n terra-%{crate}
 Summary:        %{summary}
+Conflicts:      %crate
 
 %description -n terra-%{crate} %{_description}
 
@@ -34,6 +36,7 @@ Summary:        %{summary}
 %package        devel
 Summary:        %{summary}
 BuildArch:      noarch
+Conflicts:      %crate-devel
 
 %description    devel %{_description}
 
