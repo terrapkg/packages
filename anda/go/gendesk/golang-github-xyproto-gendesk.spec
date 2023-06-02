@@ -3,7 +3,7 @@
 
 # https://github.com/xyproto/gendesk
 %global goipath         github.com/xyproto/gendesk
-Version:                1.0.9
+Version:                1.0.8
 %global tag             1.0.9
 %global commit          7ac050a54c2f771ce41da2a38f633cefc3353383
 
@@ -17,7 +17,7 @@ of information.}
 %global godocs          README.md
 
 Name:           gendesk
-Release:        %autorelease
+Release:        1%{?dist}
 Summary:        :herb: Generate .desktop files and download .png icons by specifying a minimum of information
 
 License:        BSD-3-Clause
