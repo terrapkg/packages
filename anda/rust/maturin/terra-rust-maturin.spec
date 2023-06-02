@@ -44,11 +44,6 @@ This package contains library source intended for building other packages which
 use the "%{crate}" crate.
 
 %files          devel
-%license %{crate_instdir}/license-apache
-%license %{crate_instdir}/license-mit
-%doc %{crate_instdir}/Changelog.md
-%doc %{crate_instdir}/Code-of-Conduct.md
-%doc %{crate_instdir}/README.md
 %{crate_instdir}/
 
 %package     -n %{name}+default-devel
