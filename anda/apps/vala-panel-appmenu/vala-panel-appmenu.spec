@@ -32,12 +32,8 @@ BuildRequires: pkgconfig(dbusmenu-glib-0.4)
 BuildRequires: pkgconfig(vala-panel)
 BuildRequires: pkgconfig(libmatepanelapplet-4.0)
 Provides:      vala-panel-appmenu-plugin = %{version}
-Requires:      unity-gtk3-module
-Requires:      unity-gtk2-module
 Requires:      bamf-daemon
 Requires:      libdbusmenu
-Requires:      libdbusmenu-gtk2
-Requires:      libdbusmenu-gtk3
 
 %description
 Vala Panel Application Menu is a Global Menu applet for use with Vala Panel, xfce4-panel and mate-panel (Budgie 10.x is also planned).
@@ -80,7 +76,6 @@ Header files, libraries, and other files for developing %{name}.
 
 %package -n vala-panel-appmenu-gtk-module
 Summary:    Gtk3MenuShell D-Bus exporter
-Requires:   %{name}%{?_isa} = %{version}-%{release}
 
 %description -n vala-panel-appmenu-gtk-module
 GTK (2, 3) module that exports GtkMenuShells over D-Bus.

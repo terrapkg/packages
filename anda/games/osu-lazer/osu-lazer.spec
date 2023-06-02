@@ -1,4 +1,4 @@
-%define osuresver 2023.510.0
+%define osuresver 2023.602.0
 %global debug_package %{nil}
 
 Name:			osu-lazer

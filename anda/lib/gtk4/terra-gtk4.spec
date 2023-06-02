@@ -81,21 +81,22 @@ Requires: hicolor-icon-theme
 # split out in a subpackage
 Requires: gtk-update-icon-cache
 
-Requires: cairo%{?_isa} >= %{cairo_version}
-Requires: cairo-gobject%{?_isa} >= %{cairo_version}
-Requires: glib2%{?_isa} >= %{glib2_version}
-Requires: libepoxy%{?_isa} >= %{epoxy_version}
-Requires: libwayland-client%{?_isa} >= %{wayland_version}
-Requires: libwayland-cursor%{?_isa} >= %{wayland_version}
-Requires: pango%{?_isa} >= %{pango_version}
+Requires: cairo%?_isa >= %{cairo_version}
+Requires: cairo-gobject%?_isa >= %{cairo_version}
+Requires: glib2%?_isa >= %{glib2_version}
+Requires: libepoxy%?_isa >= %{epoxy_version}
+Requires: libwayland-client%?_isa >= %{wayland_version}
+Requires: libwayland-cursor%?_isa >= %{wayland_version}
+Requires: pango%?_isa >= %{pango_version}
 
 # required to support all the different image formats
-Requires: gdk-pixbuf2-modules%{?_isa}
+Requires: gdk-pixbuf2-modules%?_isa
 
 # make sure we have a reasonable gsettings backend
-Recommends: dconf%{?_isa}
+Recommends: dconf%?_isa
 
 Provides: gtk4%?_isa = %version-%release
+Provides: terra-gtk4%?_isa = %version-%release
 Conflicts: gtk4
 
 %description
@@ -108,7 +109,9 @@ This package contains latest version 4 of GTK as tracked in Terra.
 
 %package devel
 Summary: Development files for GTK
-Requires: terra-gtk4%{?_isa} = %{version}-%{release}
+Requires: terra-gtk4%?_isa = %version-%release
+Provides: pkgconfig(gtk4) = %version-%release
+Provides: pkgconfig(terra-gtk4) = %version-%release
 
 %description devel
 This package contains the libraries and header files that are needed
@@ -117,7 +120,7 @@ for writing applications with version 4 of the GTK widget toolkit.
 %package devel-docs
 Summary: Developer documentation for GTK
 BuildArch: noarch
-Requires: terra-gtk4 = %{version}-%{release}
+Requires: terra-gtk4 = %version-%release
 
 %description devel-docs
 This package contains developer documentation for version 4 of the GTK
@@ -125,13 +128,13 @@ widget toolkit.
 
 %package devel-tools
 Summary: Developer tools for GTK
-Requires: terra-gtk4%{?_isa} = %{version}-%{release}
+Requires: terra-gtk4%?_isa = %version-%release
 
 %description devel-tools
 This package contains helpful applications for developers using GTK.
 
 %prep
-%autosetup -p1 -n gtk-%{version}
+%autosetup -p1 -n gtk-%version
 
 %build
 export CFLAGS='-fno-strict-aliasing -DG_DISABLE_CAST_CHECKS -DG_DISABLE_ASSERT %optflags'

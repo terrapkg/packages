@@ -3,8 +3,8 @@
 
 Name:           elementary-calculator
 Summary:        Calculator app designed for elementary
-Version:        2.0.1
-Release:        %autorelease
+Version:        2.0.2
+Release:        1%{?dist}
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/%{srcname}
