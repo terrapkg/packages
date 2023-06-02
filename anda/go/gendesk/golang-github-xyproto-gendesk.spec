@@ -3,7 +3,7 @@
 
 # https://github.com/xyproto/gendesk
 %global goipath         github.com/xyproto/gendesk
-Version:                1.0.8
+Version:                1.0.9
 %global tag             1.0.9
 %global commit          7ac050a54c2f771ce41da2a38f633cefc3353383
 
