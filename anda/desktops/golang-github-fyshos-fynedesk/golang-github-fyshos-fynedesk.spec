@@ -32,9 +32,7 @@ Requires: arandr
 Requires: xbacklight
 Requires: network-manager-applet
 BuildRequires: make
-BuildRequires: git
-BuildRequires: git-core
-BuildRequires: /usr/bin/git
+BuildRequires: golang
 
 %prep
 %goprep
@@ -43,8 +41,7 @@ BuildRequires: /usr/bin/git
 %generate_buildrequires
 #%%go_generate_buildrequires
 
-%build
-git --help
+%build 
 %make_build
 
 %install
