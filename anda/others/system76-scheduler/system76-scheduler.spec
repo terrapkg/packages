@@ -31,9 +31,9 @@ just rootdir=%buildroot sysconfdir=%buildroot/%_sysconfdir install
 %doc README.md
 %license LICENSE
 %_bindir/system76-scheduler
-#/usr/share/dbus-1/system.d/com.system76.Scheduler.conf
-#/usr/share/system76-scheduler/config.kdl
-#/usr/share/system76-scheduler/process-scheduler/pop_os.kdl
+%_sysconfdir/dbus-1/system.d/com.system76.Scheduler.conf
+%_sysconfdir/system76-scheduler/config.kdl
+%_sysconfdir/system76-scheduler/process-scheduler/pop_os.kdl
 %{_unitdir}/com.system76.Scheduler.service
 
 %changelog
