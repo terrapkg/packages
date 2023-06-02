@@ -2,7 +2,7 @@
 %global commit d5e002d7e0bce46c315bcc99a44a8bd51f49f488
 %forgemeta
 
-Name:       gsettings-qt
+Name:       gsettings-qt-lomiri
 Version:    0.2
 Release:    %autorelease
 Summary:    QML Bindings for GSettings
