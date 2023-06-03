@@ -2,12 +2,12 @@
 
 Name:			system76-scheduler
 Version:		2.0.1
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Auto-configure CFS, process priorities for improved DE responsiveness
 License:		MPL-2.0
 URL:			https://github.com/pop-os/system76-scheduler
 Source0:		%url/archive/refs/tags/%version.tar.gz
-BuildRequires:	cargo clang just clang-devel pipewire-devel pkg-config
+BuildRequires:	cargo clang just clang-devel pipewire-devel pkg-config systemd-rpm-macros
 
 %description
 Scheduling service which optimizes Linux's CPU scheduler and automatically
@@ -25,14 +25,29 @@ process priority.
 just execsnoop=$(which execsnoop-bpfcc) build-release
 
 %install
-just sysconfdir=%buildroot/usr/share install
+just rootdir=%buildroot sysconfdir=%_sysconfdir install
+
+
+%post
+%systemd_post com.system76.Scheduler.service
+
+
+%preun
+%systemd_preun com.system76.Scheduler.service
+
+
+%postun
+%systemd_postun_with_restart com.system76.Scheduler.service
+
 
 %files
 %doc README.md
 %license LICENSE
-/usr/share/dbus-1/system.d/com.system76.Scheduler.conf
-/usr/share/system76-scheduler/config.kdl
-/usr/share/system76-scheduler/process-scheduler/pop_os.kdl
+%_bindir/system76-scheduler
+/etc/dbus-1/system.d/com.system76.Scheduler.conf
+/etc/system76-scheduler/config.kdl
+/etc/system76-scheduler/process-scheduler/pop_os.kdl
+%{_unitdir}/com.system76.Scheduler.service
 
 %changelog
 * Tue May 23 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2.0.1-1
