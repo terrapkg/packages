@@ -31,9 +31,10 @@ BuildRequires:  git
 
 %prep
 %goprep
+go mod download
 
 %build
-go build -o %{gobuilddir}/bin/gendesk %goipath
+%gobuild -o %{gobuilddir}/bin/gendesk .
 
 %install
 %gopkginstall
