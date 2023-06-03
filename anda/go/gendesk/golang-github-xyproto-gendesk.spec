@@ -26,6 +26,8 @@ Source:         %{gosource}
 
 %description %{common_description}
 
+%gopkg
+
 %prep
 %goprep
 
