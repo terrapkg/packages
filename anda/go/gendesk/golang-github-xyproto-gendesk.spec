@@ -26,13 +26,8 @@ Source:         %{gosource}
 
 %description %{common_description}
 
-%gopkg
-
 %prep
 %goprep
-
-%generate_buildrequires
-%go_generate_buildrequires
 
 %build
 %gobuild -o %{gobuilddir}/bin/gendesk %{goipath}
