@@ -30,6 +30,7 @@ Source:         %{gosource}
 
 %prep
 %goprep
+go mod download
 
 %build
 %gobuild -o %{gobuilddir}/bin/gendesk %{goipath}
