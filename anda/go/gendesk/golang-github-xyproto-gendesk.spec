@@ -34,7 +34,7 @@ BuildRequires:  git
 go mod download
 
 %build
-%gobuild -o %{gobuilddir}/bin/gendesk %{goipath}
+go build -o %{gobuilddir}/bin/gendesk %{goipath}
 
 %install
 %gopkginstall
