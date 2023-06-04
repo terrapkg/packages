@@ -6,7 +6,7 @@
 
 Name:           rust-sccache
 Version:        0.5.3
-Release:        %autorelease
+Release:        1%{?dist}
 Summary:        Ccache-like tool
 
 License:        Apache-2.0

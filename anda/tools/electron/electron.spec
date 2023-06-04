@@ -6,14 +6,14 @@
 %endif
 
 Name:			electron
-Version:		24.3.1
+Version:		25.0.1
 Release:		1%{?dist}
 Summary:		Build cross platform desktop apps with web technologies
 License:		MIT
 URL:			https://electronjs.org/
 Source0:		https://github.com/electron/electron/releases/download/v%{version}/chromedriver-v%{version}-linux-%{garch}.zip
 Source1:		https://github.com/electron/electron/releases/download/v%{version}/electron-v%{version}-linux-%{garch}.zip
-Requires:		c-ares ffmpeg gtk3 libevent libxslt minizip nss re2
+Requires:		c-ares ffmpeg-free gtk3 libevent libxslt minizip nss re2
 BuildRequires:	unzip
 
 %description
