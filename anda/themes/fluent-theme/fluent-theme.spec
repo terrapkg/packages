@@ -25,7 +25,8 @@ Fluent is a Fluent design theme for GNOME/GTK based desktop environments.
 
 %install
 mkdir -p %{buildroot}%{_datadir}/themes
-./install.sh --tweaks round -d %{buildroot}%{_datadir}/themes
+./install.sh -i simple -t all -d %{buildroot}%{_datadir}/themes
+./install.sh -i simple -t all --tweaks round float -d %{buildroot}%{_datadir}/themes
 
 %files
 %license COPYING
