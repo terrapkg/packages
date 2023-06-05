@@ -26,7 +26,7 @@ BuildRequires: zeitgeist-devel
 BuildRequires: libappstream-glib-devel
 BuildRequires: libdbusmenu-devel
 BuildRequires: bamf-devel
-BuildRequires: libindicator-gtk3-devel
+BuildRequires: newer-libindicator-gtk3-devel
 BuildRequires: json-glib-devel
 BuildRequires: libnotify-devel
 BuildRequires: libsigc++20-devel
@@ -61,7 +61,7 @@ Requires:      geis-devel
 Requires:      unity-settings-daemon
 Requires:      unity-gtk3-module
 Requires:      unity-gtk2-module
-Requires:      libindicator-gtk3
+Requires:      newer-libindicator-gtk3
 Requires:      plotinus%{?_isa} = %{version}-%{release}
 Requires:      bamf-daemon
 Requires:      xbindkeys

@@ -19,7 +19,7 @@ BuildRequires:	pkgconfig(zeitgeist-2.0)
 BuildRequires:	libappstream-glib-devel
 BuildRequires:	libdbusmenu-devel
 BuildRequires:	bamf-devel
-BuildRequires:	libindicator-gtk3-devel
+BuildRequires:	newer-libindicator-gtk3-devel
 BuildRequires:	json-glib-devel
 BuildRequires:	libnotify-devel
 BuildRequires:	libsigc++20-devel
@@ -45,7 +45,7 @@ Requires:	pam
 Requires:	bamf-daemon
 Requires:	unity-gtk-module-common
 Requires:	compiz9
-Requires:	libindicator-gtk3
+Requires:	newer-libindicator-gtk3
 Recommends:	unity-greeter
 Recommends:	unity-scope-home
 

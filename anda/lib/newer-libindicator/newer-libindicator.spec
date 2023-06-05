@@ -1,4 +1,4 @@
-Name:			libindicator
+Name:			newer-libindicator
 Version:		16.10.0
 Release:		%autorelease
 Summary:		Shared functions for Ayatana indicators
