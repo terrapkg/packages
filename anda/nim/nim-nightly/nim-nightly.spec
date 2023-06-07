@@ -57,6 +57,9 @@ export FCFLAGS="${FCFLAGS} -Ofast"
 
 export PATH="$(pwd):$(pwd)/bin:${PATH}"
 
+. ci/funs.sh
+nimBuildCsourcesIfNeeded
+
 mold -run nim c -d:danger koch.nim
 mold -run koch boot -d:useLinenoise
 
