@@ -47,7 +47,7 @@ This package provides documentation and reference manual for the language
 and its standard library.
 
 %prep
-%autosetup -n nim
+%autosetup -n nim-%commit
 
 %build
 export CFLAGS="${CFLAGS} -Ofast"
