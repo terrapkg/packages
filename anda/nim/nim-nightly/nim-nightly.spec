@@ -1,7 +1,7 @@
 %global csrc_commit 561b417c65791cd8356b5f73620914ceff845d10
 %global commit fcc383d89994241f1b73fe4f85ef38528c135e2e
 %global ver 1.9.3
-%global debug_package %{nil}
+%global debug_package %nil
 
 Name:			nim-nighlty
 Version:		%ver^%commit
@@ -74,18 +74,18 @@ sed -i '/<link.*fonts.googleapis.com/d' doc/html/*.html
 
 
 %install
-sh install.sh %{buildroot}usr/bin
+sh %SOURCE5 %buildroot/usr/bin
 
-mkdir -p %{buildroot}/%{_bindir} 
-install -Dp -m755 bin/nim{,ble,grep,suggest,pretty} %{buildroot}/%{_bindir}
-install -Dp -m644 tools/nim.bash-completion %{buildroot}%{bashcompdir}/nim
-install -Dp -m644 dist/nimble/nimble.bash-completion %{buildroot}%{bashcompdir}/nimble
-install -Dp -m644 -t%{buildroot}%{_mandir}/man1 %SOURCE1 %SOURCE2 %SOURCE3 %SOURCE4
+mkdir -p %buildroot/%_bindir
+install -Dpm755 bin/nim{,ble,grep,suggest,pretty} %buildroot/%_bindir
+install -Dpm644 tools/nim.bash-completion %buildroot/%bashcompdir/nim
+install -Dpm644 dist/nimble/nimble.bash-completion %buildroot/%bashcompdir/nimble
+install -Dpm644 -t%buildroot/%_mandir/man1 %SOURCE1 %SOURCE2 %SOURCE3 %SOURCE4
 
-mkdir -p %{buildroot}%{_docdir}/%{name}/html
-cp -a doc/html/*.html %{buildroot}%{_docdir}/%{name}/html/
-mkdir -p %{buildroot}%{_docdir}/%{name}/html/
-cp tools/dochack/dochack.js %{buildroot}%{_docdir}/%{name}/
+mkdir -p %buildroot/%_docdir/%name/html
+cp -a doc/html/*.html %buildroot/%_docdir/%name/html/
+mkdir -p %buildroot/%_docdir/%name/html/
+cp tools/dochack/dochack.js %buildroot/%_docdir/%name/
 
 %check
 # export PATH=$PATH:$(realpath ./bin)
@@ -97,18 +97,18 @@ cp tools/dochack/dochack.js %{buildroot}%{_docdir}/%{name}/
 %files
 %license copying.txt dist/nimble/license.txt
 %doc doc/readme.txt
-%{_bindir}/nim{,ble}
-%{_mandir}/man1/nim{,ble}.1*
+%_bindir/nim{,ble}
+%_mandir/man1/nim{,ble}.1*
 
 %files tools
 %license copying.txt
-%{_bindir}/nim{grep,suggest,pretty}
-%{_mandir}/man1/nim{grep,suggest}.1*
+%_bindir/nim{grep,suggest,pretty}
+%_mandir/man1/nim{grep,suggest}.1*
 
-%%files doc
-%doc %{_docdir}/nim
+%files doc
+%doc %_docdir/nim
 
 
 %changelog
-* Mon Jan 9 2023 windowsboy111 <windowsboy111@fyralabs.com> - 0.8.4
+* Mon Jan 9 2023 windowsboy111 <windowsboy111@fyralabs.com> - 1.9.3^fcc383d89994241f1b73fe4f85ef38528c135e2e-1
 - Initial Package.
