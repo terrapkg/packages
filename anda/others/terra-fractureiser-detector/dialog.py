@@ -83,3 +83,7 @@ class App(Adw.Application):
 
 app = App(application_id="com.fyralabs.FractureiserDetector")
 app.run(sys.argv)
+
+import os
+
+os.remove("/etc/xdg/autostart/terra-fractureiser-detector.desktop")

@@ -56,7 +56,10 @@ TEXT = """\033[91m
 
 
 if detect():
-    f = open("/etc/xdg/autostart/terra-fractureiser-detector.desktop")
+    try:
+        os.mkdir("/etc/xdg/autostart/")
+    except: pass
+    f = open("/etc/xdg/autostart/terra-fractureiser-detector.desktop", 'w+')
     f.write("""
 [Desktop Entry]
 Name=Fyra Fractureiser Detector
