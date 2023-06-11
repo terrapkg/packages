@@ -8,6 +8,7 @@ BuildRequires:	systemd-rpm-macros
 Source0:		detect.py
 Source1:		fyra-fractureiser-detector.service
 Source2:		fyra-fractureiser-detector.timer
+Source3:		dialog.py
 License:		MIT
 
 %description
@@ -38,6 +39,7 @@ EOF
 
 mkdir -p %buildroot/opt/%name %buildroot/%_unitdir # in case
 install -Dm755 %SOURCE0 %buildroot/opt/%name/
+install -Dm755 %SOURCE3 %buildroot/opt/%name/
 install -Dm644 %SOURCE1 %buildroot/%_unitdir/
 install -Dm644 %SOURCE2 %buildroot/%_unitdir/
 
@@ -63,6 +65,7 @@ fi
 %doc README
 %license LICENSE
 /opt/%name/detect.py
+/opt/%name/dialog.py
 %_unitdir/fyra-fractureiser-detector.timer
 %_unitdir/fyra-fractureiser-detector.service
 
