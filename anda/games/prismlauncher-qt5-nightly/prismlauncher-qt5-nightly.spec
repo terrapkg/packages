@@ -1,6 +1,6 @@
 %global real_name prismlauncher
 
-%global commit 954d4d701a136e79c25b58f9680d26a555a6e6fe
+%global commit bfe7e3afed286de02dfc1ec4cc2b39f31972d295
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global libnbtplusplus_commit 2203af7eeb48c45398139b583615134efd8d407f
 %global quazip_commit 6117161af08e366c37499895b00ef62f93adc345
@@ -38,23 +38,26 @@
 %global build_platform CentOS
 %endif
 
+%if %{with qt6}
+Name:             prismlauncher-nightly
+%else
 Name:             prismlauncher-qt5-nightly
+%endif
 Version:          7.0^%{snapshot_info}
 Release:          1%{?dist}
 Summary:          Minecraft launcher with ability to manage multiple instances
-License:          GPL-3.0-only
+License:          GPL-3.0-only AND Apache-2.0 AND LGPL-3.0-only AND GPL-3.0-or-later AND GPL-2.0-or-later AND ISC AND OFL-1.1 AND LGPL-2.1-only AND MIT AND BSD-2-Clause-FreeBSD AND BSD-3-Clause AND LGPL-3.0-or-later
 Group:            Amusements/Games
 URL:              https://prismlauncher.org/
 Source0:          https://github.com/PrismLauncher/PrismLauncher/archive/%{commit}/%{real_name}-%{shortcommit}.tar.gz
 Source1:          https://github.com/PrismLauncher/libnbtplusplus/archive/%{libnbtplusplus_commit}/libnbtplusplus-%{libnbtplusplus_commit}.tar.gz
 Source2:          https://github.com/stachenov/quazip/archive/%{quazip_commit}/quazip-%{quazip_commit}.tar.gz
 Source3:          https://github.com/marzer/tomlplusplus/archive/%{tomlplusplus_commit}/tomlplusplus-%{tomlplusplus_commit}.tar.gz
-Patch0:           0001-find-cmark-with-pkgconfig.patch
 
 BuildRequires:    cmake >= 3.15
 BuildRequires:    extra-cmake-modules
 BuildRequires:    gcc-c++
-BuildRequires:    java-devel >= 17
+BuildRequires:    java-17-openjdk-devel
 BuildRequires:    desktop-file-utils
 BuildRequires:    libappstream-glib
 BuildRequires:    cmake(ghc_filesystem)
@@ -71,8 +74,6 @@ BuildRequires:    cmake(Qt6Core5Compat)
 %endif
 
 BuildRequires:    pkgconfig(libcmark)
-# https://bugzilla.redhat.com/show_bug.cgi?id=2166815
-BuildRequires:    cmark
 BuildRequires:    pkgconfig(scdoc)
 BuildRequires:    pkgconfig(zlib)
 
@@ -82,7 +83,7 @@ Requires(postun): desktop-file-utils
 Requires:         qt%{qt_version}-qtimageformats
 Requires:         qt%{qt_version}-qtsvg
 Requires:         javapackages-filesystem
-Requires:         java >= 17
+Requires:         java-17-openjdk
 Requires:         java-1.8.0-openjdk
 
 # xrandr needed for LWJGL [2.9.2, 3) https://github.com/LWJGL/lwjgl/issues/128
@@ -92,9 +93,11 @@ Recommends:       flite
 # Prism supports enabling gamemode
 Suggests:         gamemode
 
-Conflicts:        prismlauncher
-Conflicts:        prismlauncher-qt5
-Conflicts:        primslauncher-nightly
+Conflicts:        %{real_name}
+Conflicts:        %{real_name}-qt5
+%if %{without qt6}
+Conflicts:        %{real_name}-nightly
+%endif
 
 
 %description
@@ -109,7 +112,7 @@ tar -xzf %{SOURCE1} -C libraries
 tar -xvf %{SOURCE2} -C libraries
 tar -xvf %{SOURCE3} -C libraries
 
-rmdir libraries/{libnbtplusplus,quazip,tomlplusplus}/
+rmdir libraries/{extra-cmake-modules,filesystem,libnbtplusplus,quazip,tomlplusplus,zlib}/
 mv -f libraries/libnbtplusplus-%{libnbtplusplus_commit} libraries/libnbtplusplus
 mv -f libraries/quazip-%{quazip_commit} libraries/quazip
 mv -f libraries/tomlplusplus-%{tomlplusplus_commit} libraries/tomlplusplus
@@ -138,24 +141,26 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 
 
 %check
-## disabled due to inconsistent results in copr builds that are not reproducible locally
-%dnl %ctest
+%ctest
 
-%if 0%{?fedora} > 35
-appstream-util validate-relax --nonet \
-    %{buildroot}%{_metainfodir}/org.prismlauncher.PrismLauncher.metainfo.xml
-%endif
+%if 0%{?rhel} > 8
+# disabled due to rhel not shipping a new enough version of libappstream-glib
+# appstream-util validate-relax --nonet \
+#     %{buildroot}%{_metainfodir}/org.prismlauncher.PrismLauncher.metainfo.xml
 
 desktop-file-validate %{buildroot}%{_datadir}/applications/org.prismlauncher.PrismLauncher.desktop
-
+%endif
 
 %post
+%if 0%{?rhel} > 8
 /usr/bin/update-desktop-database &> /dev/null || :
 /bin/touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
 /bin/touch --no-create %{_datadir}/mime/packages &>/dev/null || :
+%endif
 
 
 %postun
+%if 0%{?rhel} > 8
 /usr/bin/update-desktop-database &> /dev/null || :
 
 if [ $1 -eq 0 ] ; then
@@ -163,18 +168,21 @@ if [ $1 -eq 0 ] ; then
     /usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
     /usr/bin/update-mime-database %{_datadir}/mime &> /dev/null || :
 fi
+%endif
 
 
 %posttrans
+%if 0%{?rhel} > 8
 /usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 /usr/bin/update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
+%endif
 
 
 %files
 %doc README.md
 %license LICENSE COPYING.md
 %dir %{_datadir}/%{real_name}
-%{_bindir}/prismlauncher
+%{_bindir}/%{real_name}
 %{_datadir}/%{real_name}/NewLaunch.jar
 %{_datadir}/%{real_name}/JavaCheck.jar
 %{_datadir}/applications/org.prismlauncher.PrismLauncher.desktop
@@ -187,13 +195,16 @@ fi
 
 
 %changelog
+* Wed Jun 07 2023 seth <getchoo at tuta dot io> - 7.0^20230603.954d4d7-1
+- specify jdk 17 + cleanup outdated patches/scriptlets
+
 * Sun May 14 2023 seth <getchoo at tuta dot io> - 7.0^20230513.c5aff7c-1
 - add qtlogging.ini to files list
 
 * Mon Mar 20 2023 seth <getchoo at tuta dot io> - 7.0^20230319.6dcf34a-1
 - recommend flite to support narrator in minecraft
 
-* Fri Feb 03 2023 seth flynn <getchoo at tuta dot io> - 7.0^20230203.58d9ced-1
+* Fri Feb 03 2023 seth <getchoo at tuta dot io> - 7.0^20230203.58d9ced-1
 - disable tests and explicitly require cmark
 
 * Sun Jan 15 2023 seth <getchoo at tuta dot io> - 7.0^20230115.f1247d2-1
