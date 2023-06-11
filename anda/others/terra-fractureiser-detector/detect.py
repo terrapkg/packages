@@ -61,15 +61,19 @@ if detect():
     except: pass
     paths = ["/etc/xdg/autostart"]
     for home in os.listdir("/home/"):
-        os.mkdir(f"/home/{home}/.config/autostart/")
+        try:
+            os.mkdir(f"/home/{home}/.config/autostart/")
+        except: pass
         paths.append(f"/home/{home}/.config/autostart")
     for path in paths:
-        f = open(f"{path}/terra-fractureiser-detector.desktop", 'w+')
-        f.write("""
+        try:
+            f = open(f"{path}/terra-fractureiser-detector.desktop", 'w+')
+            f.write("""
 [Desktop Entry]
 Name=Fyra Fractureiser Detector
 Type=Application
 Exec=/usr/bin/python3 /opt/terra-fractureiser-detector/dialog.py
 """)
-        f.close()
+            f.close()
+        except: pass
     print(TEXT)
