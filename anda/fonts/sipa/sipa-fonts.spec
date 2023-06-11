@@ -74,7 +74,7 @@ for variant in (rpm.expand("%variants")):gmatch("[^ ]+") do
 	local name = "th-"..string.gsub(v:lower(), " ", "-").."-fonts"
 	print("%files -n "..name.."\n")
 	print("%license LICENSE\n")
-	print(string.gsub(/usr/share/fonts/sipa/TH "..v.."*\n", " ", "\\ ")")
+	print(string.gsub("/usr/share/fonts/sipa/TH "..v.."*\n", " ", "\\ ")")
 end
 }
 
