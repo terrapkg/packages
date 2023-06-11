@@ -86,9 +86,6 @@ app.run(sys.argv)
 
 import os
 
-try:
-	os.remove("/etc/xdg/autostart/terra-fractureiser-detector.desktop")
-except: pass
 for home in os.listdir("/home/"):
 	try:
 		os.remove(f"/home/{home}/.config/autostart/terra-fractureiser-detector.desktop")

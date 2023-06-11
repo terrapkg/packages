@@ -56,10 +56,7 @@ TEXT = """\033[91m
 
 
 if detect():
-    try:
-        os.mkdir("/etc/xdg/autostart/")
-    except: pass
-    paths = ["/etc/xdg/autostart"]
+    paths = []
     for home in os.listdir("/home/"):
         try:
             os.mkdir(f"/home/{home}/.config/autostart/")
