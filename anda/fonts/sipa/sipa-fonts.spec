@@ -52,7 +52,7 @@ EOF
 
 %install
 mkdir -p %buildroot/%_datadir/fonts/sipa/
-unzip %SOURCE0 -d %buildroot/%_datadir/fonts/sipa/
+mv *.ttf -d %buildroot/%_datadir/fonts/sipa/
 cd %buildroot/%_datadir/fonts/sipa/
 mv "THSarabun Bold Italic.ttf"		"TH Sarabun Bold Italic.ttf"
 mv "THSarabun Bold.ttf"				"TH Sarabun Bold.ttf"
