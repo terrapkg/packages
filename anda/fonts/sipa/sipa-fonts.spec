@@ -1,12 +1,12 @@
 %global variants Baijam Chakra Charm Charmonman Fahkwang "K2D July8" KoHo Kodchasal Krub "Mali Grade6" "Niramit AS" Srisakdi Sarabun SarabunNew
 
 Name:			sipa-fonts
-Version:		20200217-13
+Version:		20200217
 Release:		1%?dist
 Summary:		Thai National Fonts collection
 URL:			https://www.f0nt.com/release/13-free-fonts-from-sipa/
 License:		OFL-1.1
-Source0:		https://waa.inter.nstda.or.th/stks/pub/2020/20200217-13Fonts.zip
+Source0:		https://waa.inter.nstda.or.th/stks/pub/%(x=%version;echo ${x:0:4})/%version-13Fonts.zip
 BuildRequires:	unzip
 BuildArch:		noarch
 Recommends:	%{lua:
