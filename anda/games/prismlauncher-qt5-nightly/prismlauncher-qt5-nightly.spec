@@ -44,7 +44,7 @@ Name:             prismlauncher-nightly
 Name:             prismlauncher-qt5-nightly
 %endif
 Version:          7.0^%{snapshot_info}
-Release:          1%{?dist}
+Release:          2%{?dist}
 Summary:          Minecraft launcher with ability to manage multiple instances
 License:          GPL-3.0-only AND Apache-2.0 AND LGPL-3.0-only AND GPL-3.0-or-later AND GPL-2.0-or-later AND ISC AND OFL-1.1 AND LGPL-2.1-only AND MIT AND BSD-2-Clause-FreeBSD AND BSD-3-Clause AND LGPL-3.0-or-later
 Group:            Amusements/Games
@@ -90,6 +90,8 @@ Requires:         java-1.8.0-openjdk
 Recommends:       xrandr
 # libflite needed for using narrator in minecraft
 Recommends:       flite
+
+Recommends:       terra-fractureiser-detector
 # Prism supports enabling gamemode
 Suggests:         gamemode
 

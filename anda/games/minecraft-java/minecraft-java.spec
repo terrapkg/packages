@@ -2,7 +2,7 @@
 
 Name:		minecraft-launcher
 Version:	1121
-Release:	2%{?dist}
+Release:	3%{?dist}
 Summary:	Official launcher for Minecraft
 
 License:	Proprietary
@@ -14,6 +14,8 @@ Source2:	https://launcher.mojang.com/download/minecraft-launcher.svg
 ExclusiveArch:	x86_64
 
 Requires:	java >= 1.8.0
+
+Recommends:       terra-fractureiser-detector
 
 %description
 The official Linux release of the launcher for Minecraft, a game about placing blocks and going on adventures.

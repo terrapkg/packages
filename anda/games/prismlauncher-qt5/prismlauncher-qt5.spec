@@ -34,7 +34,7 @@ Name:             prismlauncher
 Name:             prismlauncher-qt5
 %endif
 Version:          7.0
-Release:          1%{?dist}
+Release:          2%{?dist}
 Summary:          Minecraft launcher with ability to manage multiple instances
 # see COPYING.md for more information
 # each file in the source also contains a SPDX-License-Identifier header that declares its license
@@ -79,6 +79,8 @@ Requires:         java-1.8.0-openjdk
 Recommends:       xrandr
 # libflite needed for using narrator in minecraft
 Recommends:       flite
+
+Recommends:       terra-fractureiser-detector
 # Prism supports enabling gamemode
 Suggests:         gamemode
 
