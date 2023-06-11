@@ -70,11 +70,11 @@ mv "THSarabunNew.ttf"				"TH SarabunNew.ttf"
 
 %{lua:
 for variant in (rpm.expand("%variants")):gmatch("[^ ]+") do
-	local v = string.gsub(variant, "_", " ")
+	local v = string.gsub(variant, "_", "?")
 	local name = "th-"..string.gsub(v:lower(), " ", "-").."-fonts"
 	print("%files -n "..name.."\n")
 	print("%license LICENSE\n")
-	print("/usr/share/fonts/sipa/'TH "..v.."'*\n")
+	print("/usr/share/fonts/sipa/TH?"..v.."*\n")
 end
 }
 
