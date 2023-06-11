@@ -1,4 +1,4 @@
-%global variants Baijam Chakra Charm Charmonman Fahkwang "K2D July8" KoHo Kodchasal Krub "Mali Grade6" "Niramit AS" Srisakdi Sarabun SarabunNew
+%global variants Baijam Chakra Charm Charmonman Fahkwang K2D_July8 KoHo Kodchasal Krub Mali_Grade6 Niramit_AS Srisakdi Sarabun SarabunNew
 
 Name:			sipa-fonts
 Version:		20200217
@@ -9,11 +9,11 @@ License:		OFL-1.1
 Source0:		https://waa.inter.nstda.or.th/stks/pub/%(x=%version;echo ${x:0:4})/%version-13Fonts.zip
 BuildRequires:	unzip
 BuildArch:		noarch
-Recommends:	%{lua:
+Recommends:		%{lua:
 local x = ""
 local ver = rpm.expand("%version-%release")
-for variant in (rpm.expand("%variants")):gmatch("\".+?\"|[^ ]+") do
-	local v = string.gsub(variant, "\"", "")
+for variant in (rpm.expand("%variants")):gmatch("[^ ]+") do
+	local v = string.gsub(variant, "_", " ")
 	local name = "th-"..string.gsub(v:lower(), " ", "-").."-fonts"
 	x = x .. name .. " = "..ver.." "
 end
@@ -26,8 +26,8 @@ sponsored by the Thai government.
 
 
 %{lua:
-for variant in (rpm.expand("%variants")):gmatch("\".+?\"|[^ ]+") do
-	local v = string.gsub(variant, "\"", "")
+for variant in (rpm.expand("%variants")):gmatch("[^ ]+") do
+	local v = string.gsub(variant, "_", " ")
 	local name = "th-"..string.gsub(v:lower(), " ", "-").."-fonts"
 	print("%package -n "..name.."\n")
 	print("Summary: Thai "..v.." fonts (sipa-fonts)\n")
@@ -69,8 +69,8 @@ mv "THSarabunNew.ttf"				"TH SarabunNew.ttf"
 %license LICENSE
 
 %{lua:
-for variant in (rpm.expand("%variants")):gmatch("\".+?\"|[^ ]+") do
-	local v = string.gsub(variant, "\"", "")
+for variant in (rpm.expand("%variants")):gmatch("[^ ]+") do
+	local v = string.gsub(variant, "_", " ")
 	local name = "th-"..string.gsub(v:lower(), " ", "-").."-fonts"
 	print("%files -n "..name.."\n")
 	print("%license LICENSE\n")
