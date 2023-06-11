@@ -4,7 +4,10 @@ Release:		1%?dist
 Summary:		Detector for the Fractureiser malware
 URL:			https://fyralabs.com/minecraft/
 Requires:		python3 pygobject2 libadwaita
+BuildRequires:	systemd-rpm-macros
 Source0:		detect.py
+Source1:		fyra-fractureiser-detector.service
+Source2:		fyra-fractureiser-detector.timer
 License:		MIT
 
 %description
@@ -33,17 +36,26 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 EOF
 
-mkdir -p %buildroot/opt/%name
+mkdir -p %buildroot/opt/%name %buildroot/%_unitdir # in case
 install -Dm755 %SOURCE0 %buildroot/opt/%name/
+install -Dm644 %SOURCE1 %buildroot/%_unitdir/
+install -Dm644 %SOURCE2 %buildroot/%_unitdir/
 
-%posttrans
-/usr/bin/python3 /opt/%name/detect.py
+%post
+%systemd_post fyra-fractureiser-detector.timer
 
+%preun
+%systemd_preun fyra-fractureiser-detector.timer
+
+%postun
+%systemd_postun_with_restart fyra-fractureiser-detector.timer
 
 %files
 %doc README
 %license LICENSE
 /opt/%name/detect.py
+%_unitdir/fyra-fractureiser-detector.timer
+%_unitdir/fyra-fractureiser-detector.service
 
 %changelog
 * Fri Jun 9 2023 windowsboy111 <windowsboy111@fyralabs.com> - 0-1
