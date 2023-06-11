@@ -1,5 +1,5 @@
 project pkg {
 	rpm {
-		spec = "terra-mock-configs.spec"
+		spec = "anda-mock-configs.spec"
 	}
 }
