@@ -43,12 +43,21 @@ install -Dm644 %SOURCE2 %buildroot/%_unitdir/
 
 %post
 %systemd_post fyra-fractureiser-detector.timer
+%systemd_post fyra-fractureiser-detector.service
+if [ $1 -eq 1 ]; then
+	systemctl enable --now fyra-fractureiser-detector.timer
+fi
 
 %preun
 %systemd_preun fyra-fractureiser-detector.timer
+%systemd_preun fyra-fractureiser-detector.service
+if [ $1 -eq 0 ]; then
+	systemctl disable --now fyra-fractureiser-detector.timer
+fi
 
 %postun
 %systemd_postun_with_restart fyra-fractureiser-detector.timer
+%systemd_postun_with_restart fyra-fractureiser-detector.service
 
 %files
 %doc README
