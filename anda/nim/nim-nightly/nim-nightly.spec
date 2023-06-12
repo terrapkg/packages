@@ -71,7 +71,9 @@ wait
 
 sed -i '/<link.*fonts.googleapis.com/d' doc/html/*.html
 
-nim cc -r tools/niminst/niminst --var:version=%ver --main:compiler/nim.nim --var:mingw=none scripts compiler/installer.ini
+# we hope
+tools/niminst/niminst --var:version=%ver --main:compiler/nim.nim --var:mingw=none scripts compiler/installer.ini || true
+bin/niminst --var:version=%ver --main:compiler/nim.nim --var:mingw=none scripts compiler/installer.ini || true
 
 %install
 sh install.sh %buildroot/usr/bin
