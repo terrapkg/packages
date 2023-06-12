@@ -31,6 +31,7 @@ BuildRequires:  kf5-kdeclarative-devel
 BuildRequires:  kf5-knewstuff-devel
 BuildRequires:  kf5-knotifications-devel
 BuildRequires:  kf5-kiconthemes-devel
+BuildRequires:  kf5-kitemmodels-devel
 BuildRequires:  kf5-ki18n-devel
 BuildRequires:  kf5-kpackage-devel
 BuildRequires:  kf5-plasma-devel
@@ -43,6 +44,7 @@ BuildRequires:  kf5-kcrash-devel
 BuildRequires:  qt5-qtwayland-devel
 BuildRequires:  plasma-wayland-protocols-devel
 BuildRequires:  wayland-devel
+BuildRequires:  plasma-workspace-devel
 
 Recommends:     %{name}-lang
 
