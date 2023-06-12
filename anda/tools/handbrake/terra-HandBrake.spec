@@ -7,7 +7,7 @@
 
 # Build with "--without ffmpeg" or enable this to use bundled libAV
 # instead of system FFMpeg libraries.
-%global _without_ffmpeg 1
+#global _without_ffmpeg 1
 
 %ifarch i686 x86_64
 %global _with_asm 1
