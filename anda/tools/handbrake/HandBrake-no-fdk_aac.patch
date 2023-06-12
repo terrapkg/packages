@@ -1,0 +1,14 @@
+diff -up HandBrake-1.6.0/gtk/configure.ac.fdk HandBrake-1.6.0/gtk/configure.ac
+--- HandBrake-1.6.0/gtk/configure.ac.fdk	2022-12-28 09:43:46.000000000 +0100
++++ HandBrake-1.6.0/gtk/configure.ac	2023-01-23 20:50:40.075455676 +0100
+@@ -215,10 +215,6 @@ else
+ 	HB_LIBS="$HB_LIBS -lx264"
+ fi
+ 
+-if test "x$use_fdk_aac" = "xyes" ; then
+-	HB_LIBS="$HB_LIBS -lfdk-aac"
+-fi
+-
+ if test "x$use_x265" = "xyes" ; then
+ 	HB_LIBS="$HB_LIBS -lx265"
+ fi
