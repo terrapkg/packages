@@ -72,6 +72,8 @@ wait
 sed -i '/<link.*fonts.googleapis.com/d' doc/html/*.html
 
 %install
+export PATH="$(pwd):$(pwd)/bin:${PATH}"
+
 mold -run koch install %buildroot/usr/bin
 
 mkdir -p %buildroot/%_bindir
