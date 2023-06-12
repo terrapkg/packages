@@ -86,7 +86,7 @@ app.run(sys.argv)
 
 import os
 
-for home in os.listdir("/home/"):
-	try:
-		os.remove(f"/home/{home}/.config/autostart/terra-fractureiser-detector.desktop")
-	except: pass
+try:
+	home = os.environ["HOME_DIR"]
+	os.remove(f"{home}/.config/autostart/terra-fractureiser-detector.desktop")
+except: pass
