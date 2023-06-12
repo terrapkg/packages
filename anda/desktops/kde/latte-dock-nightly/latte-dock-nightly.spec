@@ -43,7 +43,7 @@ BuildRequires:  kf5-kcrash-devel
 BuildRequires:  qt5-qtwayland-devel
 BuildRequires:  plasma-wayland-protocols-devel
 BuildRequires:  wayland-devel
-BuildRequires:  plasma-workspace-libs
+BuildRequires:  plasma-workspace-devel
 
 Recommends:     %{name}-lang
 
