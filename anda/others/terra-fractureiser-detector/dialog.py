@@ -87,6 +87,6 @@ app.run(sys.argv)
 import os
 
 try:
-	home = os.environ["HOME_DIR"]
+	home = os.path.expanduser('~')
 	os.remove(f"{home}/.config/autostart/terra-fractureiser-detector.desktop")
 except: pass
