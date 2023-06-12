@@ -31,6 +31,7 @@ BuildRequires:  kf5-kdeclarative-devel
 BuildRequires:  kf5-knewstuff-devel
 BuildRequires:  kf5-knotifications-devel
 BuildRequires:  kf5-kiconthemes-devel
+BuildRequires:  kf5-kitemmodels-devel
 BuildRequires:  kf5-ki18n-devel
 BuildRequires:  kf5-kpackage-devel
 BuildRequires:  kf5-plasma-devel
