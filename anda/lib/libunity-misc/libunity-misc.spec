@@ -1,7 +1,7 @@
 Name:			libunity-misc
 Version:		4.0.5
 Release:		%autorelease
-Summary:		Misc Unity shell libs
+Summary:		Misc Unity shell libraries
 
 License:		LGPL-2.0 AND LGPL-2.0 AND GPL-2.0
 URL:			https://launchpad.net/libunity-misc
