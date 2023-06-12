@@ -14,7 +14,6 @@ Source1:		nim.1
 Source2:		nimgrep.1
 Source3:		nimble.1
 Source4:		nimsuggest.1
-Source5:		install.sh
 BuildRequires:	gcc mold git gcc-c++ nodejs openssl-devel pkgconfig(bash-completion) gc-devel pcre pcre-devel
 Requires:		redhat-rpm-config gcc
 Conflicts:		choosenim
@@ -72,9 +71,10 @@ wait
 
 sed -i '/<link.*fonts.googleapis.com/d' doc/html/*.html
 
+nim cc -r tools/niminst/niminst --var:version=%ver --main:compiler/nim.nim --var:mingw=none scripts compiler/installer.ini
 
 %install
-sh %SOURCE5 %buildroot/usr/bin
+sh install.sh %buildroot/usr/bin
 
 mkdir -p %buildroot/%_bindir
 install -Dpm755 bin/nim{,ble,grep,suggest,pretty} %buildroot/%_bindir
