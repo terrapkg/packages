@@ -23,7 +23,6 @@ Summary:        :herb: Generate .desktop files and download .png icons by specif
 License:        BSD-3-Clause
 URL:            https://gendesk.roboticoverlords.org
 Source:         %{gosource}
-BuildRequires:  git
 
 %description %{common_description}
 
@@ -31,10 +30,12 @@ BuildRequires:  git
 
 %prep
 %goprep
-go mod download
+
+%generate_buildrequires
+%go_generate_buildrequires
 
 %build
-%gobuild -o %{gobuilddir}/bin/gendesk .
+%gobuild -o %{gobuilddir}/bin/gendesk %{goipath}
 
 %install
 %gopkginstall
