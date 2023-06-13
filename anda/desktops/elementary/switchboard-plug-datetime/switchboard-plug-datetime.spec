@@ -20,7 +20,7 @@ BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala
 
-BuildRequires:  pkgconfig(granite-7)
+BuildRequires:  pkgconfig(granite)
 BuildRequires:  pkgconfig(libadwaita-1)
 BuildRequires:  switchboard-devel
 
