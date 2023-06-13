@@ -26,6 +26,7 @@ Source:         %{gosource}
 BuildRequires:  git
 BuildRequires:  libX11-devel
 BuildRequires:  libXcursor-devel
+BuildRequires:  libXi-devel
 BuildRequires:  libXinerama-devel
 BuildRequires:  libXrandr-devel
 BuildRequires:  pkgconfig(gl)
