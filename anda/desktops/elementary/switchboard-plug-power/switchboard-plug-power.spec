@@ -21,7 +21,7 @@ BuildRequires:  meson
 BuildRequires:  vala
 
 BuildRequires:  pkgconfig(dbus-1)
-BuildRequires:  pkgconfig(granite-7)
+BuildRequires:  pkgconfig(granite)
 BuildRequires:  pkgconfig(polkit-gobject-1)
 BuildRequires:  polkit-devel
 BuildRequires:  switchboard-devel
