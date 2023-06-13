@@ -1,0 +1,10 @@
+[Unit]
+Description=Timer for Fyra Fractureiser Detector
+
+[Timer]
+OnCalendar=daily
+Unit=fyra-fractureiser-detector.service
+Persistent=true
+
+[Install]
+WantedBy=default.target

@@ -2,7 +2,7 @@
 
 Name:           fluent-theme
 Version:        20221215
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Fluent is a Fluent design theme for GNOME/GTK based desktop environments.
 
 License:        GPL-3.0
@@ -25,7 +25,8 @@ Fluent is a Fluent design theme for GNOME/GTK based desktop environments.
 
 %install
 mkdir -p %{buildroot}%{_datadir}/themes
-./install.sh --tweaks round -d %{buildroot}%{_datadir}/themes
+./install.sh -i simple -t all -d %{buildroot}%{_datadir}/themes
+./install.sh -i simple -t all --tweaks round float -d %{buildroot}%{_datadir}/themes
 
 %files
 %license COPYING
@@ -34,5 +35,8 @@ mkdir -p %{buildroot}%{_datadir}/themes
 %{_datadir}/themes/Fluent*/
 
 %changelog
+* Sun Jun 05 2023 Dipta Biswas <dabiswas112@gmail.com@> - 20221215-2
+- Included both regular and round variant
+
 * Thu Jun 01 2023 Lleyton Gray <lleyton@fyralabs.com> - 20221215-1
 - Initial Package

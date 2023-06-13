@@ -3,7 +3,7 @@
 %forgemeta
 
 Name:       deviceinfo
-Version:    0.1.1
+Version:    0.2.0
 Release:    %autorelease
 Summary:    Library to detect and configure devices
 License:    GPLv3+

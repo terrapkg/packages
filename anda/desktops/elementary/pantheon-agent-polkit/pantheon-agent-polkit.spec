@@ -4,7 +4,7 @@
 Name:           pantheon-agent-polkit
 Summary:        Pantheon Polkit Agent
 Version:        1.0.5
-Release:        2%{?dist}
+Release:        1%{?dist}
 License:        LGPL-2.0-or-later
 
 URL:            https://github.com/elementary/%{name}

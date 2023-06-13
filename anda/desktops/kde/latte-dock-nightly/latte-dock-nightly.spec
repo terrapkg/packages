@@ -1,6 +1,6 @@
 %global forgeurl https://github.com/KDE/latte-dock/
 
-%global commit 6263a6560694f4164d4af321c0095a5fbf00bab1
+%global commit 515238b4b9f414e2b05b1c418c9ba2b774a1fa53
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global commit_date %(date '+%Y%m%d')
 %global snapshot_info %{commit_date}.%{shortcommit}
@@ -31,6 +31,7 @@ BuildRequires:  kf5-kdeclarative-devel
 BuildRequires:  kf5-knewstuff-devel
 BuildRequires:  kf5-knotifications-devel
 BuildRequires:  kf5-kiconthemes-devel
+BuildRequires:  kf5-kitemmodels-devel
 BuildRequires:  kf5-ki18n-devel
 BuildRequires:  kf5-kpackage-devel
 BuildRequires:  kf5-plasma-devel
@@ -43,6 +44,7 @@ BuildRequires:  kf5-kcrash-devel
 BuildRequires:  qt5-qtwayland-devel
 BuildRequires:  plasma-wayland-protocols-devel
 BuildRequires:  wayland-devel
+BuildRequires:  plasma-workspace-devel
 
 Recommends:     %{name}-lang
 
