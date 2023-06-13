@@ -80,7 +80,7 @@ mold -run bin/nim cc -d:nimCallDepthLimit=10000 -r tools/niminst/niminst --var:v
 sh ./install.sh %buildroot/usr/bin
 
 mkdir -p %buildroot/%_bindir
-#install -Dpm755 bin/nim{ble,grep,suggest,pretty} %%buildroot/%%_bindir
+install -Dpm755 bin/nim{grep,suggest,pretty} %buildroot/%_bindir
 install -Dpm644 tools/nim.bash-completion %buildroot/%bashcompdir/nim
 install -Dpm644 dist/nimble/nimble.bash-completion %buildroot/%bashcompdir/nimble
 install -Dpm644 -t%buildroot/%_mandir/man1 %SOURCE1 %SOURCE2 %SOURCE3 %SOURCE4
