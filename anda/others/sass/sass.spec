@@ -22,7 +22,7 @@ Dart Sass is the primary implementation of Sass, which means it gets new feature
 /usr/bin/dart pub get
 
 %build
-npm install @bufbuild/buf
+npm install -g @bufbuild/buf
 dart run grinder protobuf
 dart compile exe ./bin/sass.dart -o sass
 
