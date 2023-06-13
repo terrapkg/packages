@@ -15,13 +15,16 @@ License:        GPL-3.0-or-later
 URL:            https://github.com/elementary/%name
 Source0:        %url/archive/%version/%srcname-%version.tar.gz
 
+BuildRequires:  gettext
+BuildRequires:  libappstream-glib
+BuildRequires:  vala
+
 BuildRequires:  granite-devel
 BuildRequires:  pkgconfig(polkit-gobject-1)
 BuildRequires:  pkgconfig(switchboard-2.0)
 BuildRequires:  pkgconfig(zeitgeist-2.0)
 BuildRequires:  meson >= 0.46.1
 BuildRequires:  polkit-devel
-BuildRequires:  valac
 
 Requires:       switchboard%{?_isa}
 
