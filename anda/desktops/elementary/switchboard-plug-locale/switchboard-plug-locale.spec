@@ -10,7 +10,7 @@ Name:           switchboard-plug-locale
 Summary:        Switchboard Locale Plug
 Version:        2.5.9
 Release:        1%?dist
-License:        GPL-3.0-or-later
+License:        LGPL-3.0-or-later
 
 URL:            https://github.com/elementary/%name
 Source0:        %url/archive/%version/%srcname-%version.tar.gz
