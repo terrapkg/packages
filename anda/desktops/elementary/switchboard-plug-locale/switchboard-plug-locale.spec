@@ -22,7 +22,7 @@ BuildRequires:  vala
 
 BuildRequires:  pkgconfig(accountsservice)
 BuildRequires:  pkgconfig(ibus-1.0)
-BuildRequires:  pkgconfig(gnome-desktop-4)
+BuildRequires:  pkgconfig(gnome-desktop-3.0)
 BuildRequires:  pkgconfig(granite-7)
 BuildRequires:  polkit-devel
 BuildRequires:  switchboard-devel
