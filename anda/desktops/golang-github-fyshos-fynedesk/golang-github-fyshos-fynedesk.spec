@@ -29,6 +29,7 @@ BuildRequires:  libXcursor-devel
 BuildRequires:  libXi-devel
 BuildRequires:  libXinerama-devel
 BuildRequires:  libXrandr-devel
+BuildRequires:  xorg-x11-server-devel
 BuildRequires:  pkgconfig(gl)
 
 %description %{common_description}
