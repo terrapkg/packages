@@ -23,6 +23,7 @@ Summary:        A full desktop environment for Linux/Unix using Fyne
 License:        BSD-3-Clause
 URL:            %{gourl}
 Source:         %{gosource}
+BuildRequires:  git
 
 %description %{common_description}
 
