@@ -60,12 +60,12 @@ export PATH="$(pwd):$(pwd)/bin:${PATH}"
 . ci/funs.sh
 nimBuildCsourcesIfNeeded
 
-mold -run nim c -d:danger koch.nim
-mold -run koch boot -d:useLinenoise
+mold -run nim c --noNimblePath --skipUserCfg --skipParentCfg --hints:off -d:danger koch.nim
+mold -run koch boot -d:release -d:nimStrictMode --lib:lib
 
 mold -run koch docs &
 (cd lib; mold -run nim c --app:lib -d:danger -d:createNimRtl nimrtl.nim) &
-mold -run koch tools -d:release &
+mold -run koch tools --skipUserCfg --skipParentCfg --hints:off -d:release &
 mold -run nim c -d:danger nimsuggest/nimsuggest.nim &
 wait
 
