@@ -10,7 +10,7 @@ Name:           switchboard-plug-security-privacy
 Summary:        Switchboard Security & Privacy Plug
 Version:        7.0.0
 Release:        1%?dist
-License:        GPL-3.0-or-later
+License:        LGPL-3.0-or-later
 
 URL:            https://github.com/elementary/%name
 Source0:        %url/archive/%version/%srcname-%version.tar.gz
