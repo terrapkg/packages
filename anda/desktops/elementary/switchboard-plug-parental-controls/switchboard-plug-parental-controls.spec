@@ -69,6 +69,14 @@ appstream-util validate-relax --nonet \
 
 %{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
 
+%_sysconfdir/pantheon-parental-controls/daemon.conf
+%_bindir/pantheon-parental-controls-daemon
+%_libexecdir/pantheon-parental-controls-client
+%_datadir/applications/pantheon-parental-controls-client.desktop
+%_datadir/dbus-1/system-services/org.pantheon.ParentalControls.service
+%_datadir/dbus-1/system.d/org.pantheon.ParentalControls.conf
+%_datadir/polkit-1/actions/io.elementary.switchboard.screentime-limits.policy
+/usr/lib/systemd/system/pantheon-parental-controls.service
 
 %changelog
 * Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
