@@ -62,7 +62,10 @@ appstream-util validate-relax --nonet \
 
 %{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
+%_libdir/switchboard/personal/security-privacy-plug-helper
+%_datadir/glib-2.0/schemas/%plug_rdnn.gschema.xml
+%_datadir/polkit-1/actions/%plug_rdnn.policy
 
 %changelog
-* Tue Jun 13 2023 windowsboy111 <windowsboy111@fyralabs.com>
+* Tue Jun 13 2023 windowsboy111 <windowsboy111@fyralabs.com> - 7.0.0-1
 - Initial package.
