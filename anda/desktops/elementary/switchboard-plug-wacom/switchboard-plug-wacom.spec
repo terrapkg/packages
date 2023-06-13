@@ -62,5 +62,5 @@ appstream-util validate-relax --nonet \
 %{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
 
 %changelog
-* Tue Jun 13 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2.4.3-1
+* Tue Jun 13 2023 windowsboy111 <windowsboy111@fyralabs.com> - 1.0.1-1
 - Initial package.
