@@ -50,6 +50,10 @@ Manage Payment Methods and related settings.
 %doc README.md
 %license COPYING
 
+%_libdir/switchboard/%plug_type/lib%plug_rdnn.so
+%_datadir/icons/hicolor/*/apps/%plug_rdnn.svg
+%_datadir/locale/*/LC_MESSAGES/%plug_rdnn.mo
+
 
 %changelog
 * Tue Jun 13 2023 windowsboy111 <windowsboy111@fyralabs.com> - bfe73dfb95d9b46a0a34e0db35a178233c8552b0-1
