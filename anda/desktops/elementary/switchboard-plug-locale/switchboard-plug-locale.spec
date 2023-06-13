@@ -53,11 +53,15 @@ appstream-util validate-relax --nonet \
     %buildroot/%_datadir/metainfo/%plug_rdnn.appdata.xml
 
 
-%files -f %{plug_name}-plug.lang
+%files -f %plug_name-plug.lang
 %doc README.md
 %license COPYING
 
-#_libdir/switchboard/%plug_type/lib%%plug_name.so
+%_libdir/switchboard/%plug_type/lib%plug_name-plug.so
+%_libdir/switchboard/personal/pantheon-locale/languagelist
+%_libdir/switchboard/personal/pantheon-locale/packages_blacklist
+%_datadir/glib-2.0/schemas/%plug_rdnn.gschema.xml
+%_datadir/polkit-1/actions/%plug_rdnn.policy
 
 %_datadir/metainfo/%plug_rdnn.appdata.xml
 
