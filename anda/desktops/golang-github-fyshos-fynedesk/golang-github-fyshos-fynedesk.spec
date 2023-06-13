@@ -30,6 +30,7 @@ BuildRequires:  libXi-devel
 BuildRequires:  libXinerama-devel
 BuildRequires:  libXrandr-devel
 BuildRequires:  xorg-x11-server-devel
+BuildRequires:  libXxf86vm-devel
 BuildRequires:  pkgconfig(gl)
 
 %description %{common_description}
