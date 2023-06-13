@@ -109,7 +109,7 @@ cp tools/dochack/dochack.js %buildroot/%_docdir/%name/
 %_mandir/man1/nim{grep,suggest}.1*
 
 %files doc
-%doc %_docdir/nim
+#doc %%_docdir/nim
 
 
 %changelog
