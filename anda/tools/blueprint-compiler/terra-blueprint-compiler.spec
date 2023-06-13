@@ -4,7 +4,7 @@ Release:		1%?dist
 License:		LGPL-3.0-or-later
 Summary:		Markup language for GTK user interfaces
 URL:			https://jwestman.pages.gitlab.gnome.org/blueprint-compiler/
-Source0:		httphttps://gitlab.gnome.org/jwestman/blueprint-compiler/-/archive/v%version/blueprint-compiler-v%version.tar.gz
+Source0:		https://gitlab.gnome.org/jwestman/blueprint-compiler/-/archive/v%version/blueprint-compiler-v%version.tar.gz
 BuildArch:		noarch
 BuildRequires:	meson gtk4-devel python3-devel python3-gobject-devel
 Requires:		python3-gobject-devel
