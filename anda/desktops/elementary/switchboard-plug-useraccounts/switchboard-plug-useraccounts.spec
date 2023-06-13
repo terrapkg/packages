@@ -31,8 +31,8 @@ BuildRequires:  polkit-devel
 BuildRequires:  gtk3-devel
 BuildRequires:  switchboard-devel
 
-Requires:       switchboard%{?_isa}
-Supplements:    switchboard%{?_isa}
+Requires:       switchboard%?_isa
+Supplements:    switchboard%?_isa
 
 %description
 %summary.
@@ -49,14 +49,22 @@ Supplements:    switchboard%{?_isa}
 %install
 %meson_install
 
-%find_lang %{plug_name}-plug
+%find_lang %plug_name-plug
 
 
-%files -f %{plug_name}-plug.lang
+%check
+appstream-util validate-relax --nonet \
+    %buildroot/%_datadir/metainfo/%plug_rdnn.appdata.xml
+
+
+%files -f %plug_name-plug.lang
 %doc README.md
 %license COPYING
 
-%{_libdir}/switchboard/%{plug_type}/lib%{plug_name}.so
+%_libdir/switchboard/%plug_type/lib%plug_name.so
+%_libdir/switchboard/system/pantheon-useraccounts/guest-session-toggle
+%_datadir/metainfo/%plug_rdnn.appdata.xml
+%_datadir/polkit-1/actions/%plug_rdnn.policy
 
 
 %changelog
