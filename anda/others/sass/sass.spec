@@ -25,6 +25,7 @@ Dart Sass is the primary implementation of Sass, which means it gets new feature
 # first install `buf`
 curl -sSL "https://github.com/bufbuild/buf/releases/download/v1.21.0/buf-$(uname -s)-$(uname -m)" -o buf
 chmod +x buf
+cp buf /bin/ # this is stupid but maybe it works and I can finally die "piecefully"
 
 dart run grinder protobuf
 dart compile exe ./bin/sass.dart -o sass
