@@ -10,7 +10,7 @@ License:		GPL-3.0
 URL:			https://github.com/paper-plane-developers/paper-plane
 Source0:		%url/archive/%commit.tar.gz
 Source1:		https://gitlab.gnome.org/GNOME/libadwaita/-/archive/%adw/libadwaita-%adw.tar.gz
-BuildRequires:	meson cargo terra-gtk4-devel >= 4.10 tdlib-nightly-devel libappstream-glib desktop-file-utils terra-blueprint-compiler
+BuildRequires:	meson cargo terra-gtk4-devel >= 4.10 tdlib-nightly-devel libappstream-glib desktop-file-utils terra-blueprint-compiler sassc
 Requires:		terra-gtk4 >= 4.10 gstreamer1-plugin-libav gstreamer1-plugins-good
 
 %description
