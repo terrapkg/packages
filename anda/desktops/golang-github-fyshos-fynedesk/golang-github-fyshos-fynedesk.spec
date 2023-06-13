@@ -43,8 +43,7 @@ BuildRequires: golang
 #%%go_generate_buildrequires
 
 %build
-go build -v -o %{name}
-#%%make_build
+%make_build
 
 %install
 %gopkginstall
