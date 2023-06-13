@@ -74,7 +74,8 @@ sed -i '/<link.*fonts.googleapis.com/d' doc/html/*.html
 %install
 export PATH="$(pwd):$(pwd)/bin:${PATH}"
 
-mold -run koch install %buildroot/usr/bin
+mold -run koch geninstall -d:nimCallDepthLimit=10000
+sh ./install.sh %buildroot/usr/bin
 
 mkdir -p %buildroot/%_bindir
 install -Dpm755 bin/nim{,ble,grep,suggest,pretty} %buildroot/%_bindir
