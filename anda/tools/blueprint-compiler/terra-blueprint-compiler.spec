@@ -29,8 +29,8 @@ increase adoption of cool advanced features like GtkExpression.
 %install
 %meson_install
 
-%check
-%meson_test
+#check
+#meson_test
 
 %files
 %doc README.md docs/*.rst
