@@ -1,1 +1,1 @@
-rpm.version("elementary/switchboard-plug-datetime");
+rpm.version(gh("elementary/switchboard-plug-datetime"));
