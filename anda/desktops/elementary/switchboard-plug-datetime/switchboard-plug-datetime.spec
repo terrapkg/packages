@@ -21,7 +21,7 @@ BuildRequires:  meson
 BuildRequires:  vala
 
 BuildRequires:  pkgconfig(granite-7)
-BuildRequires:  pkgconfig(adwaita-1)
+BuildRequires:  pkgconfig(libadwaita-1)
 BuildRequires:  switchboard-devel
 
 Requires:       switchboard%{?_isa}
