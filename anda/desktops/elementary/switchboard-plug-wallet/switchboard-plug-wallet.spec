@@ -6,9 +6,11 @@
 %global plug_name wallet
 %global plug_rdnn io.elementary.switchboard.wallet
 
+%global commit bfe73dfb95d9b46a0a34e0db35a178233c8552b0
+
 Name:           switchboard-plug-wallet
 Summary:        Switchboard Wallet Plug
-Version:        bfe73df
+Version:        %(c=%commit; echo ${c:0:7})
 Release:        1%?dist
 License:        GPL-3.0-or-later
 
@@ -33,7 +35,7 @@ Manage Payment Methods and related settings.
 
 
 %prep
-%autosetup -n %{srcname}-%{version} -p1
+%autosetup -n %srcname-%commit -p1
 
 
 %build
