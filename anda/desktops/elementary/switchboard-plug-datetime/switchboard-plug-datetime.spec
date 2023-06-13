@@ -64,5 +64,5 @@ appstream-util validate-relax --nonet \
 
 
 %changelog
-* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
+* Tue Jun 13 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2.2.0-1
 - Initial package.
