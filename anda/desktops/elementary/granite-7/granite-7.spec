@@ -26,6 +26,7 @@ BuildRequires:  pkgconfig(gobject-2.0) >= 2.50
 BuildRequires:  pkgconfig(gtk+-3.0) >= 3.22
 BuildRequires:  pkgconfig(gobject-introspection-1.0)
 BuildRequires:  pkgconfig(gtk4) >= 4.4
+BuildRequires:  sassc
 
 # granite relies on org.gnome.desktop.interface for the clock-format setting
 Requires:       gsettings-desktop-schemas
