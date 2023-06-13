@@ -1,6 +1,6 @@
 %global real_name prismlauncher
 
-%global commit bfe7e3afed286de02dfc1ec4cc2b39f31972d295
+%global commit b174f8226132a5484aa3b1421352a929372ed2b0
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global libnbtplusplus_commit 2203af7eeb48c45398139b583615134efd8d407f
 %global quazip_commit 6117161af08e366c37499895b00ef62f93adc345
@@ -90,6 +90,8 @@ Requires:         java-1.8.0-openjdk
 Recommends:       xrandr
 # libflite needed for using narrator in minecraft
 Recommends:       flite
+
+Recommends:       terra-fractureiser-detector
 # Prism supports enabling gamemode
 Suggests:         gamemode
 
