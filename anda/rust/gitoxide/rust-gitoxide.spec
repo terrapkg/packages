@@ -5,7 +5,7 @@
 
 Name:           rust-gitoxide
 Version:        0.26.0
-Release:        1%{?dist}
+Release:        %autorelease
 Summary:        Command-line application for interacting with git repositories
 
 License:        MIT OR Apache-2.0

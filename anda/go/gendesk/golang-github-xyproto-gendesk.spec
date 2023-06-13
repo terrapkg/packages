@@ -17,7 +17,7 @@ of information.}
 %global godocs          README.md
 
 Name:           gendesk
-Release:        %autorelease
+Release:        1%{?dist}
 Summary:        :herb: Generate .desktop files and download .png icons by specifying a minimum of information
 
 License:        BSD-3-Clause
