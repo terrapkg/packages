@@ -24,6 +24,8 @@ License:        BSD-3-Clause
 URL:            %{gourl}
 Source:         %{gosource}
 BuildRequires:  git
+BuildRequires:  libX11-devel
+BuildRequires:  pkgconfig(gl)
 
 %description %{common_description}
 
