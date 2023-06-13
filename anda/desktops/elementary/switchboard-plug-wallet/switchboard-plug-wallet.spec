@@ -17,7 +17,6 @@ License:        GPL-3.0-or-later
 URL:            https://github.com/elementary/%name
 Source0:        %url/archive/%version/%srcname-%version.tar.gz
 
-BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala
@@ -46,10 +45,8 @@ Manage Payment Methods and related settings.
 %install
 %meson_install
 
-%find_lang %{plug_name}-plug
 
-
-%files -f %{plug_name}-plug.lang
+%files
 %doc README.md
 %license COPYING
 
