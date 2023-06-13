@@ -55,7 +55,6 @@ jobs:
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
       - name: Build with Anda
-        if: github.event_name != 'push'
         run: anda build ${{ matrix.pkg.pkg }} --package rpm -c terra-${{ matrix.version }}-${{ matrix.pkg.arch }}
 
       - name: Generating artifact name
