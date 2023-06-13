@@ -63,6 +63,12 @@ appstream-util validate-relax --nonet \
 
 %_datadir/metainfo/%plug_rdnn.appdata.xml
 
+%_libexecdir/io.elementary.logind.helper
+%_datadir/dbus-1/system-services/io.elementary.logind.helper.service
+%_datadir/dbus-1/system.d/io.elementary.logind.helper.conf
+%_datadir/polkit-1/actions/%plug_rdnn.policy
+
+
 %changelog
 * Tue Jun 13 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2.7.0-1
 - Initial package.
