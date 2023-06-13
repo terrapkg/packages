@@ -12,7 +12,7 @@ URL: https://sass-lang.com/dart-sass
 
 Source0: https://github.com/sass/dart-sass/archive/refs/tags/%{version}.tar.gz
 
-BuildRequires: dart git nodejs-npm
+BuildRequires: dart git
 
 %description
 Dart Sass is the primary implementation of Sass, which means it gets new features before any other implementation. It's fast, easy to install, and it compiles to pure JavaScript which makes it easy to integrate into modern web development workflows.
@@ -22,7 +22,14 @@ Dart Sass is the primary implementation of Sass, which means it gets new feature
 /usr/bin/dart pub get
 
 %build
-npm install -g @bufbuild/buf
+# first install `buf`
+BIN="/usr/local/bin" && \
+VERSION="1.21.0" && \
+curl -sSL \
+"https://github.com/bufbuild/buf/releases/download/v${VERSION}/buf-$(uname -s)-$(uname -m)" \
+-o "${BIN}/buf" && \
+chmod +x "${BIN}/buf"
+
 dart run grinder protobuf
 dart compile exe ./bin/sass.dart -o sass
 
