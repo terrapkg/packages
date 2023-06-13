@@ -79,5 +79,5 @@ appstream-util validate-relax --nonet \
 /usr/lib/systemd/system/pantheon-parental-controls.service
 
 %changelog
-* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
+* Tue Jun 13 2023 windowsboy111 <windowsboy111@fyralabs.com> - 6.0.1-1
 - Initial package.
