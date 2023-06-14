@@ -8,7 +8,7 @@ Release:    %autorelease
 Summary:    Library for testing DBus interactions using Qt5
 License:    LGPL-3.0
 URL:        https://gitlab.com/ubports/development/core/libqtdbustest
-Source0:    %url/-/archive/%version/libqtdbustest-%version.tar.gz
+Source0:    %url/-/archive/%commit/libqtdbustest-%commit.tar.gz
 
 BuildRequires: cmake
 BuildRequires: cmake-extras
@@ -32,7 +32,7 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 developing applications that use %{name}.
 
 %prep
-%autosetup -n libqtdbustest-%version
+%autosetup -n libqtdbustest-%commit
 
 %build
 %cmake
