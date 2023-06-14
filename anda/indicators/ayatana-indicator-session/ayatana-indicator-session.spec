@@ -1,8 +1,8 @@
 Name:       ayatana-indicator-session
 Summary:    Ayatana Indicator Session Applet
-Version:    22.9.1
+Version:    22.9.2
 Release:    %autorelease
-License:    GPLv3
+License:    GPL-3.0
 URL:        https://github.com/AyatanaIndicators/ayatana-indicator-session
 Source0:    %{url}/archive/refs/tags/%{version}.tar.gz
 
