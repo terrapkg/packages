@@ -31,8 +31,7 @@ jobs:
           fetch-depth: 0
       - name: Generate build matrix
         id: generate_build_matrix
-        run: |
-          anda ci >> $GITHUB_OUTPUT
+        run: anda ci >> $GITHUB_OUTPUT
   build:
     needs: manifest
     strategy:
@@ -49,21 +48,11 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+      - name: Set up git repository
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
-      - uses: terrapkg/anda-build@main
-        if: github.event_name == 'pull_request'
-        with:
-          name: "${{ matrix.pkg.pkg }}"
-          mockConfig: anda-${{ matrix.version }}-${{ matrix.pkg.arch }}
-          andaRepo: https://github.com/terrapkg/subatomic-repos/raw/main/terra${{ matrix.version }}.repo
-
-      - uses: terrapkg/anda-build@main
-        if: github.event_name != 'pull_request'
-        with:
-          name: "${{ matrix.pkg.pkg }}"
-          mockConfig: anda-${{ matrix.version }}-${{ matrix.pkg.arch }}
-          extraArgs: -D "sccache_bucket ${{secrets.SCCACHE_BUCKET}}" -D "sccache_endpoint ${{secrets.SCCACHE_ENDPOINT}}" -D "sccache_secret ${{secrets.SCCACHE_SECRET}}" -D "sccache_accesskey ${{secrets.SCCACHE_ACCESSKEY}}"
-          andaRepo: https://github.com/terrapkg/subatomic-repos/raw/main/terra${{ matrix.version }}.repo
+      - name: Build with Anda
+        run: anda build ${{ matrix.pkg.pkg }} --package rpm -c terra-${{ matrix.version }}-${{ matrix.pkg.arch }}
 
       - name: Generating artifact name
         id: art
