@@ -1,5 +1,5 @@
 %global forgeurl https://gitlab.com/ubports/development/core/libqtdbustest
-%global commit f204bb8d7e9a2ffcd159d2f51f47257a715bbd62
+%global commit 58990d63f2327d285d6ead430d03b02558257291
 %forgemeta
 
 Name:       qt5-qtdbustest
