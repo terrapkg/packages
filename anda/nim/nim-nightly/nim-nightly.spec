@@ -79,10 +79,10 @@ mold -run bin/nim cc -d:nimCallDepthLimit=10000 -r tools/niminst/niminst --var:v
 
 sh ./install.sh %buildroot/usr/bin
 
-mkdir -p %buildroot/%_bindir
+mkdir -p %buildroot/%_bindir %buildroot/%_datadir/bash-completion/completions
 install -Dpm755 bin/nim{grep,suggest,pretty} %buildroot/%_bindir
-install -Dpm644 tools/nim.bash-completion %buildroot/%bashcompdir/nim
-install -Dpm644 dist/nimble/nimble.bash-completion %buildroot/%bashcompdir/nimble
+install -Dpm644 tools/nim.bash-completion %buildroot/%_datadir/bash-completion/completions/nim
+install -Dpm644 dist/nimble/nimble.bash-completion %buildroot/%_datadir/bash-completion/completions/nimble
 install -Dpm644 -t%buildroot/%_mandir/man1 %SOURCE1 %SOURCE2 %SOURCE3 %SOURCE4
 
 mkdir -p %buildroot/%_docdir/%name/html
@@ -102,6 +102,7 @@ cp tools/dochack/dochack.js %buildroot/%_docdir/%name/
 %doc doc/readme.txt
 %_bindir/nim{,ble}
 %_mandir/man1/nim{,ble}.1*
+%_datadir/bash-completion/completions/nim{,ble}
 
 %files tools
 %license copying.txt
@@ -109,7 +110,7 @@ cp tools/dochack/dochack.js %buildroot/%_docdir/%name/
 %_mandir/man1/nim{grep,suggest}.1*
 
 %files doc
-#doc %%_docdir/nim
+%doc %_docdir/%name
 
 
 %changelog
