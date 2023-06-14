@@ -80,13 +80,13 @@ mv README %{buildroot}%_pkgdocdir
 
 %files
 %license LICENSE
-%{_sysconfdir}/dbus-1/system.d/com.lomiri.click.conf
+#{_sysconfdir}/dbus-1/system.d/com.lomiri.click.conf
 %{_libdir}/libclick-0.4.so.*
 %dir %{_libdir}/click
 %{_libdir}/click/libclickpreload.so
-%dir %{_libexecdir}/click
-%{_libexecdir}/click/click-service
-%{_datadir}/dbus-1/system-services/com.lomiri.click.service
+#dir %%{_libexecdir}/click
+#{_libexecdir}/click/click-service
+#{_datadir}/dbus-1/system-services/com.lomiri.click.service
 %{_libdir}/girepository-1.0/Click-0.4.typelib
 
 %files devel
