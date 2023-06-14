@@ -26,6 +26,7 @@ BuildRequires:  pkgconfig(gobject-2.0) >= 2.50
 BuildRequires:  pkgconfig(gtk+-3.0) >= 3.22
 BuildRequires:  pkgconfig(gobject-introspection-1.0)
 BuildRequires:  pkgconfig(gtk4) >= 4.4
+BuildRequires:  sassc
 
 # granite relies on org.gnome.desktop.interface for the clock-format setting
 Requires:       gsettings-desktop-schemas
@@ -64,7 +65,7 @@ This package contains the development headers.
 %dnl     %{buildroot}/%{_datadir}/applications/io.elementary.granite-7.demo.desktop
 
 %dnl appstream-util validate-relax --nonet \
-%dnl     %{buildroot}/%{_datadir}/metainfo/granite-7.appdata.xml
+%dnl     %{buildroot}/%{_datadir}/metainfo/granite-7.metainfo.xml
 
 
 %files -f granite-7.lang
@@ -75,7 +76,7 @@ This package contains the development headers.
 %{_libdir}/libgranite-7.so.7.*
 %{_libdir}/girepository-1.0/Granite-7.0.typelib
 
-%{_datadir}/metainfo/granite-7.appdata.xml
+%{_datadir}/metainfo/granite-7.metainfo.xml
 %{_datadir}/icons/hicolor/*/apps/io.elementary.granite-7.svg
 
 
