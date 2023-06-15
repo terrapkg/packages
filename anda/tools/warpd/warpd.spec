@@ -25,6 +25,7 @@ warpd is a modal keyboard driven interface for mouse manipulation.
 %make_build
 
 %install
+mkdir -p %buildroot%_mandir/man1/
 %make_install
 install -Dm755 %buildroot/usr/local/bin/warpd %buildroot%_bindir
 install -Dm644 %buildroot/usr/local/share/man/man1/warpd* %buildroot%_mandir/man1/
