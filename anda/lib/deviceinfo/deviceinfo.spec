@@ -53,6 +53,7 @@ install -Dm644 '%{SOURCE1}' %{buildroot}%{_mandir}/man1/device-info.1
 %files devel
 %dir %{_includedir}/deviceinfo
 %{_includedir}/deviceinfo/deviceinfo.h
+/usr/include/deviceinfo/deviceinfo_c_api.h
 %{_libdir}/libdeviceinfo.so
 %{_libdir}/pkgconfig/deviceinfo.pc
 
