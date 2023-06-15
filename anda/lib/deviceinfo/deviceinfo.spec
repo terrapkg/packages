@@ -1,5 +1,5 @@
 %global forgeurl https://gitlab.com/ubports/development/core/deviceinfo
-%global commit fe939f071aafa47f631caec55a4e8420b3eb4a12
+%global commit 5dada778683ef8a1da13d0459768d8048429a646
 %forgemeta
 
 Name:       deviceinfo
