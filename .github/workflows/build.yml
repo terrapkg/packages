@@ -37,7 +37,7 @@ jobs:
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
       - name: Build with Anda
-        run: anda build ${{ matrix.pkg }}pkg --package rpm -c terra-${{ matrix.version }}-${{ matrix.arch }}
+        run: anda build ${{ matrix.pkg }}pkg --package rpm -c anda-${{ matrix.version }}-${{ matrix.arch }}
 
       - name: Generating artifact name
         id: art
