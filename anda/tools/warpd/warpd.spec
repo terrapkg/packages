@@ -29,8 +29,8 @@ PREFIX=%buildroot%_prefix
 %make_install
 
 %files
-/usr/bin/warpd
-/usr/share/man/man1/warpd*
+%_bindir/warpd
+%_mandir/man1/warpd*
 
 %changelog
 * Thu Jun 15 2023 windowsboy111 <windowsboy111@fyralabs.com> - 1.3.5-1
