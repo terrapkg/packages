@@ -1,5 +1,5 @@
 %global forgeurl https://gitlab.com/ubports/development/core/libqtdbustest
-%global commit f204bb8d7e9a2ffcd159d2f51f47257a715bbd62
+%global commit 58990d63f2327d285d6ead430d03b02558257291
 %forgemeta
 
 Name:       qt5-qtdbustest
@@ -8,7 +8,7 @@ Release:    %autorelease
 Summary:    Library for testing DBus interactions using Qt5
 License:    LGPL-3.0
 URL:        https://gitlab.com/ubports/development/core/libqtdbustest
-Source0:    %url/-/archive/%version/libqtdbustest-%version.tar.gz
+Source0:    %url/-/archive/%commit/libqtdbustest-%commit.tar.gz
 
 BuildRequires: cmake
 BuildRequires: cmake-extras
@@ -32,7 +32,7 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 developing applications that use %{name}.
 
 %prep
-%autosetup -n libqtdbustest-%version
+%autosetup -n libqtdbustest-%commit
 
 %build
 %cmake
