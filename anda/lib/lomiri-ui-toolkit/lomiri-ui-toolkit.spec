@@ -138,8 +138,7 @@ rm -rf %{buildroot}%{_datadir}/lomiri-ui-toolkit/doc/html
 %files doc
 %license COPYING.CC-BY-SA-3.0
 %{_qt5_docdir}/*.qch
-%dir %{_datadir}/lomiri-ui-toolkit
-%{_datadir}/lomiri-ui-toolkit/doc/
+%{_datadir}/doc/lomiri-ui-toolkit/doc/
 
 %files examples -f %{name}-gallery.lang
 %dir %{_qt5_examplesdir}/lomiri-ui-toolkit
