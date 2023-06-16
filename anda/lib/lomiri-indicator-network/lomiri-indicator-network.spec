@@ -74,6 +74,7 @@ The %{name}-doc package contains documentation files for %{name}.
 %{_qt5_qmldir}/Ubuntu/Connectivity/qmldir
 %dir %{_libexecdir}/lomiri-indicator-network
 %{_libexecdir}/lomiri-indicator-network/lomiri-indicator-network-*
+%{_datadir}/dbus-1/services/com.lomiri.connectivity1.service
 %{_datadir}/glib-2.0/schemas/com.lomiri.indicator.network.gschema.xml
 %{_datadir}/unity/indicators/com.lomiri.indicator.network
 
