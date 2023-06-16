@@ -4,7 +4,7 @@ Release:        1%{?dist}
 Summary:        Sketch and take handwritten notes.
 License:        GPL-3.0
 URL:            https://github.com/flxzt/rnote
-Source0:        %{url}/releases/download/v%{version}/rnote-%{version}.tar.xz
+Source0:        %{url}/releases/download/v%version/v%{version}.tar.gz
 Requires:       libadwaita poppler-glib glib2 gtk4
 BuildRequires:  cargo meson cmake libappstream-glib gcc-c++ pkgconfig(alsa) alsa-lib clang-devel python
 BuildRequires:  pkgconfig(glib-2.0) >= 2.66
