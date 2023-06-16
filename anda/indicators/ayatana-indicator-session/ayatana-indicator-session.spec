@@ -1,10 +1,11 @@
 Name:       ayatana-indicator-session
 Summary:    Ayatana Indicator Session Applet
-Version:    upstream.0.2.7
+Version:    22.9.2
 Release:    1%{?dist}
 License:    GPL-3.0
 URL:        https://github.com/AyatanaIndicators/ayatana-indicator-session
 Source0:    %{url}/archive/refs/tags/%{version}.tar.gz
+Patch0:     0001-fix-tests-import-cstdint.patch
 
 BuildRequires:  cmake
 BuildRequires:  cmake-extras
@@ -30,7 +31,7 @@ Requires:   %{name}%{?_isa} = %{version}-%{release}
 This package contains the development header files for %{name}.
 
 %prep
-%autosetup -n %{name}-%{version}
+%autosetup -n %{name}-%{version} -p1
 
 %build
 %cmake -DENABLE_TESTS=ON \
@@ -44,7 +45,7 @@ This package contains the development header files for %{name}.
 %files -f %{name}.lang
 %license COPYING
 %{_sysconfdir}/xdg/autostart/ayatana-indicator-session.desktop
-%{_userunitdir}/ayatana-indicator-session.service
+#{_userunitdir}/ayatana-indicator-session.service
 %dir %{_libexecdir}/ayatana-indicator-session
 %{_libexecdir}/ayatana-indicator-session/ayatana-indicator-session-service
 %{_datadir}/ayatana/indicators/org.ayatana.indicator.session
