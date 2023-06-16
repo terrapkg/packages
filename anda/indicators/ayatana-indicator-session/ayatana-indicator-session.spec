@@ -31,7 +31,7 @@ Requires:   %{name}%{?_isa} = %{version}-%{release}
 This package contains the development header files for %{name}.
 
 %prep
-%autosetup -n %{name}-%{version}
+%autosetup -n %{name}-%{version} -p1
 
 %build
 %cmake -DENABLE_TESTS=ON \
