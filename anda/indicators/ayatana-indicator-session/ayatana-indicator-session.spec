@@ -5,6 +5,7 @@ Release:    1%{?dist}
 License:    GPL-3.0
 URL:        https://github.com/AyatanaIndicators/ayatana-indicator-session
 Source0:    %{url}/archive/refs/tags/%{version}.tar.gz
+Patch0:     0001-fix-tests-import-cstdint.patch
 
 BuildRequires:  cmake
 BuildRequires:  cmake-extras
