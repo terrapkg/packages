@@ -76,7 +76,6 @@ This package contains development files needed for qtmir.
 
 %prep
 %autosetup -n qtmir-%commit -p1
-#sed -i ''
 
 %build
 %cmake -DWerror=OFF -DWITH_MIR2=on -DWITH_CONTENTHUB=OFF
