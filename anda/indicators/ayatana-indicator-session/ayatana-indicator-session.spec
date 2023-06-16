@@ -45,7 +45,7 @@ This package contains the development header files for %{name}.
 %files -f %{name}.lang
 %license COPYING
 %{_sysconfdir}/xdg/autostart/ayatana-indicator-session.desktop
-%{_userunitdir}/ayatana-indicator-session.service
+#{_userunitdir}/ayatana-indicator-session.service
 %dir %{_libexecdir}/ayatana-indicator-session
 %{_libexecdir}/ayatana-indicator-session/ayatana-indicator-session-service
 %{_datadir}/ayatana/indicators/org.ayatana.indicator.session
