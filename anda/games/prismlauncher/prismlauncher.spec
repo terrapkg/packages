@@ -33,8 +33,8 @@ Name:             prismlauncher
 %else
 Name:             prismlauncher-qt5
 %endif
-Version:          7.0
-Release:          2%{?dist}
+Version:          7.1
+Release:          1%{?dist}
 Summary:          Minecraft launcher with ability to manage multiple instances
 # see COPYING.md for more information
 # each file in the source also contains a SPDX-License-Identifier header that declares its license
