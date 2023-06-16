@@ -71,6 +71,7 @@ sed -e "s/-Werror//g" -i CMakeLists.txt
 %{_qt5_qmldir}/Ubuntu/
 %{_datadir}/dbus-1/services/*.service
 %{_datadir}/dbus-1/system-services/*.service
+%{_mandir}/man1/*.gz
 
 %files devel
 %dir %{_includedir}/lomiri/download_manager
