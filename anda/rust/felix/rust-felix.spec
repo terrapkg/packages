@@ -2,7 +2,7 @@
 %global crate felix
 
 Name:           rust-felix
-Version:        2.3.0
+Version:        2.4.0
 Release:        1%{?dist}
 Summary:        Tui file manager with vim-like key mapping
 
