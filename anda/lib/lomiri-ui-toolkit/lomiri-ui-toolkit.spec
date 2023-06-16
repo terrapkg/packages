@@ -87,8 +87,6 @@ Examples for Lomiri-ui-toolkit.
 %make_install INSTALL_ROOT=%{buildroot} STRIP=/bin/true
 # Used by apicheck during tests only
 rm -rf %{buildroot}%{_qt5_qmldir}/Extinct
-# Has various issues
-rm -rf %{buildroot}%{_datadir}/lomiri-ui-toolkit/doc/html
 
 %find_lang %{name}
 %find_lang %{name}-gallery
@@ -138,7 +136,7 @@ rm -rf %{buildroot}%{_datadir}/lomiri-ui-toolkit/doc/html
 %files doc
 %license COPYING.CC-BY-SA-3.0
 %{_qt5_docdir}/*.qch
-%{_datadir}/doc/lomiri-ui-toolkit/doc/
+%{_datadir}/doc/lomiri-ui-toolkit/
 
 %files examples -f %{name}-gallery.lang
 %dir %{_qt5_examplesdir}/lomiri-ui-toolkit
