@@ -11,7 +11,6 @@ URL:        https://gitlab.com/ubports/development/core/lomiri-system-settings
 Source0:    %{url}/-/archive/%commit/lomiri-system-settings-%commit.tar.gz
 Patch0:     https://sources.debian.org/data/main/l/lomiri-system-settings/1.0.1-2/debian/patches/1001_use-maliit-keyboard-for-language-plugin.patch
 Patch1:     https://sources.debian.org/data/main/l/lomiri-system-settings/1.0.1-2/debian/patches/2001_disable-current-language-switching.patch
-Patch2:     https://sources.debian.org/data/main/l/lomiri-system-settings/1.0.1-2/debian/patches/2002_use-Noto-font-instead-of-Ubuntu-font.patch
 
 BuildRequires: cmake
 BuildRequires: gcc-c++
