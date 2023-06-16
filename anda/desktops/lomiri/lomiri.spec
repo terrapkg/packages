@@ -55,6 +55,7 @@ BuildRequires: qt5-qtbase-private-devel
 BuildRequires: qt5-qtdeclarative-devel
 BuildRequires: systemd-rpm-macros
 Recommends:    lomiri-session
+Requires:      deviceinfo
 Requires:      lomiri-system-settings
 Requires:      qmenumodel
 Requires:      xorg-x11-server-Xwayland
