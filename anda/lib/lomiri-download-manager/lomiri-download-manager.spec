@@ -1,5 +1,5 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-download-manager
-%global commit 86d086292db613df0b0cbc5fc2cfcdc33c3315bb
+%global commit 2c7d6921ac56862c197958f4e5c31aa76a1a50e1
 %forgemeta
 
 Name:       lomiri-download-manager
@@ -46,7 +46,6 @@ BuildArch: noarch
 %prep
 %autosetup -n lomiri-download-manager-%commit
 sed -e "s/-Werror//g" -i CMakeLists.txt
-sed -i 's/ -qt=qt5//' docs/qml/CMakeLists.txt
 
 %build
 %cmake -DCMAKE_INSTALL_LIBEXECDIR=%{_libdir} -DENABLE_UBUNTU_COMPAT=ON
