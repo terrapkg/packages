@@ -78,7 +78,6 @@ developing applications that use %{name}.
 %{_datadir}/lomiri-system-settings/icons/*.svg
 %{_datadir}/lomiri-system-settings/qml-plugins/
 %{_datadir}/lomiri-url-dispatcher/urls/lomiri-system-settings.url-dispatcher
-%{_mandir}/man1/*.gz
 
 %files devel
 %dir %{_includedir}/LomiriSystemSettings
