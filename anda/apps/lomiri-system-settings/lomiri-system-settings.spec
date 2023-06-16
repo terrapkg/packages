@@ -58,6 +58,7 @@ developing applications that use %{name}.
 %find_lang %{name}
 
 %files -f %{name}.lang
+%doc README.md
 %license COPYING
 %{_bindir}/lomiri-system-settings
 %{_libdir}/libLomiriSystemSettings.so.*
