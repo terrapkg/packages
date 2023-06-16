@@ -41,6 +41,7 @@ developing applications that use %{name}.
 %cmake_install
 
 %files
+%doc README.md
 %license COPYING
 %{_libdir}/libqtdbusmock.so.*
 %dir %{_datadir}/libqtdbusmock

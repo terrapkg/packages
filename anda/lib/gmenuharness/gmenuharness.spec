@@ -42,6 +42,7 @@ developing applications that use %{name}.
 %cmake_install
 
 %files
+%doc README
 %license COPYING
 %{_libdir}/libgmenuharness.so.*
 
