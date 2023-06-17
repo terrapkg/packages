@@ -12,7 +12,6 @@ URL:			%forgeurl
 Source0:		%forgesource
 
 BuildRequires:	make gcc libXi-devel libXinerama-devel libXft-devel libXfixes-devel libXtst-devel libX11-devel cairo-devel libxkbcommon-devel wayland-devel
-Requires:		libXi libXinerama libXft libXfixes libXtst libX11
 Recommends:		libwayland-client cairo libxkbcommon
 
 %description

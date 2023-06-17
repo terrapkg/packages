@@ -23,6 +23,7 @@ BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig(properties-cpp)
 #BuildRequires: pkgconfig(Backtrace)
 BuildRequires: doxygen
+BuildRequires: fdupes
 
 %description
 A simple convenience library for handling processes in C++11.
@@ -52,8 +53,10 @@ sed -i '/find_package(PkgConfig REQUIRED)/a set(THREADS_PREFER_PTHREAD_FLAG ON)'
 
 %install
 %cmake_install
+%fdupes %buildroot%_docdir/%name/html/
 
 %files
+%doc README.md
 %license COPYING
 %{_libdir}/libprocess-cpp.so.*
 

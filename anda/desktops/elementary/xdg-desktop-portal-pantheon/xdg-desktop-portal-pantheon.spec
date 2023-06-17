@@ -2,7 +2,7 @@
 
 Name:			xdg-desktop-portal-pantheon
 Version:		7.0.0
-Release:		%?dist
+Release:		1%?dist
 Summary:		Pantheon XDG Desktop Portals
 License:		GPL-3.0
 URL:			https://github.com/elementary/portals
@@ -11,8 +11,7 @@ Requires:		gtk4 granite-7
 BuildRequires:	ninja-build vala meson glib2-devel pkgconfig(granite-7) gtk4-devel pkgconfig(x11) pkgconfig(systemd)
 
 %description
-Backend implementation for xdg-desktop-portal for the Pantheon desktop 
-environment
+Backend implementation for xdg-desktop-portal for Pantheon desktop environment.
 
 %prep
 %autosetup -n portals-%version
@@ -39,5 +38,5 @@ environment
 /usr/share/locale/*/LC_MESSAGES/xdg-desktop-portal-pantheon.mo
 
 %changelog
-* Sat Mar 25 2023 windowsboy111 <windowsboy111@fyralabs.com> 7.0.0-1
+* Sat Mar 25 2023 windowsboy111 <windowsboy111@fyralabs.com> - 7.0.0-1
 - Initial package

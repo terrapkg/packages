@@ -7,7 +7,7 @@ Name:           libappimage
 
 
 Version:        %{libver_format}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Implements functionality for dealing with AppImage files
 
 License:        MIT
@@ -29,7 +29,8 @@ BuildRequires:  boost-devel
 
 
 %description
-Implements functionality for dealing with AppImage files. It is written in C++ and is using Boost.
+Implements functionality for dealing with AppImage files.
+It is written in C++ and is using Boost.
 
 %package        devel
 Summary:        Development files for %{name}
@@ -59,6 +60,7 @@ mv a.h src/libappimage/utils/hashlib.h
 
 %install
 %cmake_install
+rm %buildroot%_docdir/libappimage/docs/{make.bat,.gitignore}
 #find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
@@ -69,7 +71,6 @@ mv a.h src/libappimage/utils/hashlib.h
 %license LICENSE
 %doc docs
 %{_libdir}/*.so.*
-%{_libdir}/*.a
 
 %files devel
 %doc docs
@@ -77,10 +78,9 @@ mv a.h src/libappimage/utils/hashlib.h
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*.pc
 %{_libdir}/cmake/%{name}/*.cmake
-
-
+%{_libdir}/*.a
 
 
 %changelog
-* Tue Oct 25 2022 Cappy Ishihara <cappy@cappuchino.xyz>
+* Tue Oct 25 2022 Cappy Ishihara <cappy@cappuchino.xyz> - 1.0.4~5-1
 - Initial package.

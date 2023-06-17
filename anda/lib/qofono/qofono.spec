@@ -58,6 +58,7 @@ export QT_SELECT=5
 %postun -p /sbin/ldconfig
 
 %files
+%doc README
 %license COPYING
 %{_libdir}/libqofono-qt5.so.*
 %{_qt5_qmldir}/QOfono/

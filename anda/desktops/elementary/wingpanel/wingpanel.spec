@@ -113,6 +113,8 @@ appstream-util validate-relax --nonet \
 %{_libdir}/libwingpanel.so.3.*
 
 %files devel
+%license COPYING
+%doc README.md
 %{_includedir}/wingpanel/
 
 %{_libdir}/libwingpanel.so
@@ -123,5 +125,5 @@ appstream-util validate-relax --nonet \
 
 
 %changelog
-* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com> 3.0.3-1
+* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com> - 3.0.2-1
 - Repackaged for Terra

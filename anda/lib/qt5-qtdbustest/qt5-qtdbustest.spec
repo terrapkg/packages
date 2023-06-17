@@ -42,6 +42,7 @@ developing applications that use %{name}.
 %cmake_install
 
 %files
+%doc README.md
 %license COPYING
 %{_bindir}/qdbus-simple-test-runner
 %{_libdir}/libqtdbustest.so.*

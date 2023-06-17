@@ -3,7 +3,7 @@
 
 Name:           subatomic
 Version:        0.2.6
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A modern package delivery system
 
 License:        MIT
@@ -18,7 +18,8 @@ Requires:       createrepo_c
 
 %description
 Subatomic is a package delivery system which supports multiple package formats.
-It manages a repository of packages, handling updating, signing, and other tasks.
+It manages a repository of packages, handling updating, signing, and other
+tasks.
 
 %package cli
 Summary:        Client for Subatomic repo manager
@@ -34,10 +35,9 @@ Client for Subatomic repo manager
 
 
 %build
-
 mkdir -p build/bin
-go build -v -o build/bin/subatomic-cli ./subatomic-cli
-go build -v -o build/bin/subatomic ./server
+go build -ldflags '-linkmode external -s -w -extldflags "--static-pie"' -buildmode=pie -tags 'osusergo,netgo,static_build' -v -o build/bin/subatomic-cli ./subatomic-cli
+go build -ldflags '-linkmode external -s -w -extldflags "--static-pie"' -buildmode=pie -tags 'osusergo,netgo,static_build' -v -o build/bin/subatomic ./server
 
 
 %install
@@ -52,5 +52,5 @@ install -pm 755 build/bin/subatomic %{buildroot}%{_bindir}/
 
 
 %changelog
-* Fri Sep 30 2022 Cappy Ishihara <cappy@cappuchino.xyz>
+* Fri Sep 30 2022 Cappy Ishihara <cappy@cappuchino.xyz> - 0.1.0.200283ccd3cf7c90b6a9be565ce6ff52bdec977e-1
 - Intial release

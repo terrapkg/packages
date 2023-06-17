@@ -5,7 +5,7 @@
 Name:    ubuntu-sdk
 Summary: Assets and icons for Unity
 Version: 20.04
-Release: %autorelease
+Release: 2%?dist
 
 License:   GPL-3.0-or-later
 URL:       https://gitlab.com/ubports/development/core/ubuntu-touch-meta
@@ -13,6 +13,7 @@ Source0:   %{url}/-/archive/%commit/ubuntu-touch-meta-%commit.tar.gz
 BuildArch: noarch
 
 BuildRequires: binutils
+BuildRequires: fdupes
 Recommends:    python3-lomiri-click
 
 %description
@@ -32,6 +33,8 @@ install -Dm644 frameworks/* %{buildroot}%{_datadir}/click/frameworks
 
 ln -s %{_datadir}/click/frameworks/ubuntu-sdk-%{version}.framework %{buildroot}%{_datadir}/click/frameworks/current
 ln -s %{_datadir}/ubports/changelogs/%{version} %{buildroot}%{_datadir}/ubports/changelogs/current
+
+%fdupes %buildroot%_datadir/click/frameworks/
 
 %files
 %license COPYING

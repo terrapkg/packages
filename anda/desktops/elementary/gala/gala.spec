@@ -3,7 +3,7 @@
 Name:           gala
 Summary:        Gala window manager
 Version:        7.0.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/gala
@@ -96,6 +96,8 @@ desktop-file-validate \
 
 
 %files -f gala.lang
+%doc README.md
+%license COPYING
 %config(noreplace) %{_sysconfdir}/xdg/autostart/gala-daemon.desktop
 
 %{_bindir}/gala
@@ -128,8 +130,8 @@ desktop-file-validate \
 
 
 %changelog
-* Wed Nov 09 2022 Cappy Ishihara <cappy@cappuchino.xyz>
+* Wed Nov 09 2022 Cappy Ishihara <cappy@cappuchino.xyz> - 6.3.3-1
 - Rebuild
 
-* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
+* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com> - 6.3.1-1
 - Repackaged for Terra

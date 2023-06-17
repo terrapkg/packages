@@ -45,10 +45,7 @@ wallpapers show up in gnome-control-center.
 %prep
 %autosetup -n %{srcname}-%{version}
 
-
 %build
-# Nothing to do
-
 
 %install
 cd backgrounds
@@ -73,6 +70,8 @@ cp -pav %{SOURCE1} %{buildroot}/%{_datadir}/gnome-background-properties/
 
 
 %files gnome
+%license LICENSE.md
+%doc README.md
 %{_datadir}/gnome-background-properties/elementary-wallpapers.xml
 
 

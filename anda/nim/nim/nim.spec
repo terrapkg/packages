@@ -56,12 +56,12 @@ export FCFLAGS="${FCFLAGS} -Ofast"
 export PATH="$(pwd):$(pwd)/bin:${PATH}"
 
 mold -run nim c -d:danger koch.nim
-mold -run koch boot -d:useLinenoise
+mold -run koch boot -d:useLinenoise -t:-fPIE -l:-pie
 
 mold -run koch docs &
-(cd lib; mold -run nim c --app:lib -d:danger -d:createNimRtl nimrtl.nim) &
-mold -run koch tools -d:release &
-mold -run nim c -d:danger nimsuggest/nimsuggest.nim &
+(cd lib; mold -run nim c --app:lib -d:danger -d:createNimRtl -t:-fPIE -l:-pie nimrtl.nim) &
+mold -run koch tools -t:-fPIE -l:-pie &
+mold -run nim c -t:-fPIE -l:-pie -d:danger nimsuggest/nimsuggest.nim &
 wait
 
 sed -i '/<link.*fonts.googleapis.com/d' doc/html/*.html

@@ -23,6 +23,7 @@ BuildRequires: qt5-qtdeclarative-devel
 BuildRequires: pkgconfig(dbus-1)
 BuildRequires: pkgconfig(libglog)
 BuildRequires: pkgconfig(liblomiri-api)
+BuildRequires: fdupes
 
 %description
 Upload Download Manager performs uploads and downloads from a centralized
@@ -33,15 +34,16 @@ Summary: Development files for %{name}
 Requires: %{name}%{?_isa} = %{version}-%{release}
 
 %description devel
-The %{name}-devel package contains libraries and header files for
-developing applications that use %{name}.
+The %name-devel package contains libraries and header files
+for developing applications that use %{name}.
 
 %package doc
 Summary: Documentation files for %{name}
 BuildArch: noarch
 
 %description doc
-%{name}-doc contains documentation for %{name}-devel.
+The %name-doc package contains documentation for
+%{name}-devel.
 
 %prep
 %autosetup -n lomiri-download-manager-%commit
@@ -53,11 +55,12 @@ sed -e "s/-Werror//g" -i CMakeLists.txt
 
 %install
 %cmake_install
+%fdupes %buildroot%_docdir/%name/cpp/html/
 %find_lang %{name}
 
 %files -f %{name}.lang
 %license COPYING
-%{_sysconfdir}/dbus-1/system.d/*.conf
+%config %{_sysconfdir}/dbus-1/system.d/*.conf
 %{_bindir}/lomiri-*
 %{_userunitdir}/*.service
 %{_libdir}/liblomiri-download-manager-client.so.*

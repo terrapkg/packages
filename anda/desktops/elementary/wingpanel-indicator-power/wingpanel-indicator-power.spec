@@ -6,7 +6,7 @@
 Name:           wingpanel-indicator-power
 Summary:        Power indicator for wingpanel
 Version:        6.2.0
-Release:        %autorelease
+Release:        2%?dist
 License:        GPL-2.0-or-later
 
 URL:            https://github.com/elementary/wingpanel-indicator-power
@@ -16,6 +16,7 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala >= 0.22.0
+BuildRequires:  fdupes
 
 BuildRequires:  fdupes
 BuildRequires:  pkgconfig(glib-2.0)
@@ -46,8 +47,7 @@ A power indicator for wingpanel.
 
 %install
 %meson_install
-%fdupes %buildroot/usr/share/locale
-
+%fdupes %buildroot%_datadir/locale/
 %find_lang power-indicator
 
 # remove the specified stock icon from appdata (invalid in libappstream-glib)
@@ -70,5 +70,5 @@ sed -i '/icon type="stock"/d' %{buildroot}/%{_datadir}/metainfo/%{appname}.appda
 
 
 %changelog
-* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com> 6.2.0-1
+* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com> - 6.1.0-1
 - Repackaged for Terra

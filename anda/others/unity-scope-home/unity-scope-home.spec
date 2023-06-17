@@ -26,6 +26,7 @@ BuildRequires: pkgconfig(unity-protocol-private)
 BuildRequires: pkgconfig(unity-extras)
 
 %description
+%summary.
 Theme and icons for Unity.
 
 %prep

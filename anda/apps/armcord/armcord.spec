@@ -2,16 +2,17 @@
 
 Name:			armcord
 Version:		3.2.0
-Release:		1%{?dist}
+Release:		2%{?dist}
 License:		OSL-3.0
 Summary:		Custom lightweight Discord client designed to enhance your experience
 URL:			https://github.com/ArmCord/ArmCord
 Group:			Applications/Internet
 Source0:		%url/archive/refs/tags/v%version.tar.gz
 Source1:		launch.sh
-Requires:		electron libnotify xdg-utils
-BuildRequires:	nodejs-npm
+Requires:		electron xdg-utils
+BuildRequires:	nodejs-npm desktop-file-utils
 Conflicts:		armcord-bin
+BuildArch:		noarch
 
 %description
 ArmCord is a custom client designed to enhance your Discord experience
@@ -28,7 +29,7 @@ GenericName=Internet Messenger
 Type=Application
 Exec=/usr/bin/armcord
 Icon=armcord
-Categories=Internet;Network;InstantMessaging;
+Categories=Network;InstantMessaging;
 StartupWMClass=armcord
 Keywords=discord;armcord;vencord;shelter;electron;
 EOF
@@ -55,6 +56,11 @@ install -Dm644 build/icon.png %buildroot/usr/share/pixmaps/armcord.png
 /usr/share/armcord/app.asar
 
 %changelog
-* Sat May 6 2023 windowsboy111 <windowsboy111@fyralabs.com>
+* Sat Jun 17 2023 windowsboy111 <windowsboy111@fyralabs.com> - 3.2.0-2
+- Remove libnotify dependency.
+- Fix desktop entry.
+- Set as noarch package because there are not binary files.
+
+* Sat May 6 2023 windowsboy111 <windowsboy111@fyralabs.com> - 3.1.7-1
 - Initial package
 

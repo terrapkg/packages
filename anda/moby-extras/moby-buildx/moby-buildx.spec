@@ -1,8 +1,6 @@
-%define debug_package %{nil}
-
 Name:           moby-buildx
 Version:        0.11.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Docker CLI plugin for extended build capabilities with BuildKit
 
 License:        Apache-2.0
@@ -14,9 +12,8 @@ BuildRequires:  git-core
 Requires:       docker
 Provides:       docker-buildx = %{version}-%{release}
 
-
-
 %description
+buildx is a Docker CLI plugin for extended build capabilities with BuildKit.
 
 
 %prep
@@ -24,7 +21,7 @@ Provides:       docker-buildx = %{version}-%{release}
 
 
 %build
-go build -v -o docker-buildx ./cmd/buildx
+go build -ldflags '-linkmode external -s -w -extldflags "--static-pie"' -buildmode=pie -tags 'osusergo,netgo,static_build' -v -o docker-buildx ./cmd/buildx
 
 
 %install
@@ -38,5 +35,5 @@ install -D -m 0755 docker-buildx %{buildroot}%{_libexecdir}/docker/cli-plugins/d
 
 
 %changelog
-* Wed Oct 05 2022 Cappy Ishihara <cappy@cappuchino.xyz>
+* Wed Oct 05 2022 Cappy Ishihara <cappy@cappuchino.xyz> - 0.9.1-1
 - Initial Release

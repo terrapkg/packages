@@ -6,7 +6,7 @@
 Name:           wingpanel-indicator-session
 Summary:        Session Indicator for wingpanel
 Version:        2.3.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPL-2.0-or-later
 
 URL:            https://github.com/elementary/wingpanel-indicator-session
@@ -16,6 +16,7 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala >= 0.22.0
+BuildRequires:  fdupes
 
 BuildRequires:  fdupes
 BuildRequires:  pkgconfig(accountsservice)
@@ -44,8 +45,7 @@ A session Indicator for wingpanel.
 
 %install
 %meson_install
-%fdupes %buildroot/usr/share/locale/
-
+%fdupes %buildroot%_datadir/locale/
 %find_lang session-indicator
 
 

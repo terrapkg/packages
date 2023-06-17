@@ -6,7 +6,7 @@
 Name:           rust-kondo
 Version:        0.6
 Release:        1%{?dist}
-Summary:        Filesystem cleaning tool that recursively searches directories for known project structures and determines how much space you could save by deleting the unnecessary files
+Summary:        Filesystem cleaning tool for projects
 
 License:        MIT
 URL:            https://crates.io/crates/kondo
@@ -29,6 +29,7 @@ Summary:        %{summary}
 %description -n %{crate} %{_description}
 
 %files       -n %{crate}
+%doc README.md
 %license LICENSE
 /usr/bin/kondo
 

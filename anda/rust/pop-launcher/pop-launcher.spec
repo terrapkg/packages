@@ -24,6 +24,7 @@ ExclusiveArch:  %{rust_arches}
 BuildRequires:  rust-packaging >= 21
 BuildRequires:  external:crate:just
 BuildRequires:  anda-srpm-macros
+BuildRequires:  fdupes
 
 %global _description %{expand:
 Library for writing plugins and frontends for pop-launcher.}
@@ -36,11 +37,13 @@ Library for writing plugins and frontends for pop-launcher.}
 %cargo_prep_online
 
 %build
-
 just
 
 %install
 just rootdir=%{buildroot} install
+chmod +x %_prefix/lib/pop-launcher/scripts/{session,system76-power}/*.sh
+
+%fdupes %buildroot%_prefix/
 
 %if %{with check}
 %check
@@ -49,6 +52,8 @@ just rootdir=%{buildroot} install
 
 
 %files
+%doc README.md
+%license LICENSE
 %{_bindir}/pop-launcher
 %{_prefix}/lib/pop-launcher/
 

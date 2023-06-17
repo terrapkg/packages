@@ -4,7 +4,7 @@
 
 Name:           lomiri-ui-toolkit
 Version:        1.3.5010
-Release:        %autorelease
+Release:        2%?dist
 Summary:        QML components to ease the creation of beautiful applications in QML for Lomiri
 
 License:        LGPL-3.0
@@ -33,6 +33,7 @@ BuildRequires: qt5-qtdeclarative-devel
 BuildRequires: qt5-pim-devel
 BuildRequires: python3-rpm-macros
 BuildRequires: qt5-qtsvg-devel
+BuildRequires: fdupes
 Requires:      qt5-qtgraphicaleffects
 Requires:      qt5-qtfeedback
 
@@ -57,6 +58,7 @@ This package contains development files needed for lomiri-ui-toolkit.
 %package -n python3-lomiriuitoolkit
 Summary: Python3 files for Lomiri-ui-toolkit
 Requires: %{name}%{?_isa} = %{version}-%{release}
+BuildArch: noarch
 
 %description -n python3-lomiriuitoolkit
 Python3 files for Lomiri-ui-toolkit.
@@ -87,11 +89,14 @@ Examples for Lomiri-ui-toolkit.
 %make_install INSTALL_ROOT=%{buildroot} STRIP=/bin/true
 # Used by apicheck during tests only
 rm -rf %{buildroot}%{_qt5_qmldir}/Extinct
+%fdupes %buildroot%_libdir/qt5/qml/Lomiri/Components/
+%fdupes %buildroot%_libdir/qt5/examples/%name/examples/
 
 %find_lang %{name}
 %find_lang %{name}-gallery
 
 %files -f %{name}.lang
+%doc README.md
 %license COPYING
 %{_libdir}/libLomiriGestures.so.*
 %{_libdir}/libLomiriMetrics.so.*
@@ -127,6 +132,7 @@ rm -rf %{buildroot}%{_qt5_qmldir}/Extinct
 %{_qt5_includedir}/LomiriToolkit/
 
 %files -n python3-lomiriuitoolkit
+%doc README.md
 %dir %{python3_sitelib}/lomiriuitoolkit
 %{python3_sitelib}/lomiriuitoolkit/*.py
 %{python3_sitelib}/lomiriuitoolkit/_custom_proxy_objects/

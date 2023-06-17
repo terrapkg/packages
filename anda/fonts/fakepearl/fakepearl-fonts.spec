@@ -1,6 +1,6 @@
 Name:		fakepearl-fonts
 Version:	1.1
-Release:	1%?dist
+Release:	2%?dist
 URL:		https://github.com/max32002/FakePearl
 Source0:	%url/archive/refs/tags/%version.tar.gz
 License:	OFL-1.1
@@ -24,7 +24,6 @@ install -Dm644 tw/*.ttf %buildroot/%_datadir/fonts/fakepearl/
 %files
 %doc README.md
 %license SIL_Open_Font_License_1.1.txt
-%defattr(-,root,root,0755)
 /%{_datadir}/fonts/fakepearl/
 
 

@@ -1,6 +1,6 @@
 Name:			groovy
 Version:		4.0.12
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		A multi-faceted language for the Java platform
 BuildArch:		noarch
 URL:			https://groovy-lang.org/
@@ -30,8 +30,8 @@ cd %{name}-%{version}
 install -d %{buildroot}/usr/share/groovy %{buildroot}/usr/bin
 cp -r lib conf %{buildroot}/usr/share/groovy
 cp bin/* %{buildroot}/usr/bin
-rm %{buildroot}/usr/bin/*completion
-install -Dm644 bin/*completion -t %{buildroot}/usr/share/bash-completion/completions
+rm %{buildroot}/usr/bin/*completion %{buildroot}/groovy.ico
+install -Dm755 bin/*completion -t %{buildroot}/usr/share/bash-completion/completions
 
 # Remove all DOS/Windows batch files
 find %{buildroot} -name '*.bat' -exec rm {} \;
@@ -64,5 +64,5 @@ install -Dm644 %{name}.desktop -t %{buildroot}/usr/share/applications
 
 
 %changelog
-* Wed Feb 8 2023 windowsboy111 <windowsboy111@fyralabs.com>
+* Wed Feb 8 2023 windowsboy111 <windowsboy111@fyralabs.com> - 4.0.12-1
 - Initial package

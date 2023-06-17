@@ -2,7 +2,7 @@
 
 Name:			fuc
 Version:		1.1.7
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Modern, performance focused unix commands
 URL:			https://github.com/SUPERCILEX/fuc
 Source0:		https://raw.githubusercontent.com/SUPERCILEX/fuc/%{version}/README.md
@@ -48,11 +48,15 @@ install -Dm755 %{SOURCE3} %{buildroot}/usr/bin/cpz
 %license LICENSE
 
 %files -n rmz
+%doc README.md
+%license LICENSE
 /usr/bin/rmz
 
 %files -n cpz
+%doc README.md
+%license LICENSE
 /usr/bin/cpz
 
 %changelog
-* Wed Jan 18 2023 windowsboy111 <windowsboy111@fyralabs.com>
+* Wed Jan 18 2023 windowsboy111 <windowsboy111@fyralabs.com> - 1.1.3-1
 - Initial package
