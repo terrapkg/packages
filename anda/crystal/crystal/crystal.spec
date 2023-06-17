@@ -16,7 +16,7 @@ BuildRequires:	rpm_macro(fdupes)
 %package devel
 Summary:	Development files for the crystal package
 
-%description
+%description devel
 %summary.
 
 %prep

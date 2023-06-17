@@ -20,7 +20,7 @@ and reusable widgets.
 %package devel
 Summary: Development files for marble-gtk
 
-%description
+%description devel
 %summary.
 
 
