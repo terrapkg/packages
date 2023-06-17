@@ -1,6 +1,6 @@
 %global csrc_commit 561b417c65791cd8356b5f73620914ceff845d10
-%global commit 0a19d78b228a2d2e7b5e2341edf45b5ee669196a
-%global ver 1.9.3
+%global commit e8d0f1c3aedd8290cc972e3d06f642e88dbe783e
+%global ver 1.9.5
 %global debug_package %nil
 
 Name:			nim-nighlty
