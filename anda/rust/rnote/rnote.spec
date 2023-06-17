@@ -32,16 +32,16 @@ Rnote is an open-source vector-based drawing app for sketching, handwritten note
 %doc README.md
 %license LICENSE
 
-/usr/bin/rnote
-/usr/lib/debug/usr/bin/rnote-*.debug
-/usr/share/applications/com.github.flxzt.rnote.desktop
-/usr/share/glib-2.0/schemas/com.github.flxzt.rnote.gschema.xml
-/usr/share/icons/hicolor/scalable/apps/com.github.flxzt.rnote.svg
-/usr/share/icons/hicolor/symbolic/apps/com.github.flxzt.rnote-symbolic.svg
-/usr/share/locale/*/LC_MESSAGES/rnote.mo
-/usr/share/metainfo/com.github.flxzt.rnote.metainfo.xml
-/usr/share/mime/packages/com.github.flxzt.rnote.xml
-/usr/share/rnote/*
+%_bindir/rnote
+%_datadir/applications/com.github.flxzt.rnote.desktop
+%_datadir/glib-2.0/schemas/com.github.flxzt.rnote.gschema.xml
+%_datadir/icons/hicolor/scalable/apps/com.github.flxzt.rnote.svg
+%_datadir/icons/hicolor/scalable/mimetypes/application-rnote.svg
+%_datadir/icons/hicolor/symbolic/apps/com.github.flxzt.rnote-symbolic.svg
+%_datadir/locale/*/LC_MESSAGES/rnote.mo
+%_datadir/metainfo/com.github.flxzt.rnote.metainfo.xml
+%_datadir/mime/packages/com.github.flxzt.rnote.xml
+%_datadir/rnote/
 
 
 %changelog
