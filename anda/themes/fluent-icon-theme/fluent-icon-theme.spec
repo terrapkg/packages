@@ -18,6 +18,8 @@ Fluent icon theme for linux desktops.
 %prep
 %autosetup -n Fluent-icon-theme-%{tag}
 
+%build
+
 %install
 mkdir -p %{buildroot}%{_datadir}/themes
 ./install.sh -r -a -d %{buildroot}%{_datadir}/icons

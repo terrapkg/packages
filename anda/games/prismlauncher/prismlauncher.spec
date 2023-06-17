@@ -124,13 +124,8 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 %check
 %ctest
 
-%if 0%{?rhel} > 8
-# disabled due to rhel not shipping a new enough version of libappstream-glib
-# appstream-util validate-relax --nonet \
-#     %{buildroot}%{_metainfodir}/org.prismlauncher.PrismLauncher.metainfo.xml
-
+appstream-util validate-relax --nonet %buildroot%_metainfodir/org.prismlauncher.PrismLauncher.metainfo.xml
 desktop-file-validate %{buildroot}%{_datadir}/applications/org.prismlauncher.PrismLauncher.desktop
-%endif
 
 
 %post
