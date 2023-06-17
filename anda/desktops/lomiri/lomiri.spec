@@ -1,5 +1,5 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri
-%global commit a1a1b1f25714a0f5cddf3905edc38dc6e6b49228
+%global commit 8a2f908c306ec63a7a0f14c247fa1676c655c7ce
 %forgemeta
 
 Name:          lomiri
@@ -55,6 +55,7 @@ BuildRequires: qt5-qtbase-private-devel
 BuildRequires: qt5-qtdeclarative-devel
 BuildRequires: systemd-rpm-macros
 Recommends:    lomiri-session
+Requires:      deviceinfo
 Requires:      lomiri-system-settings
 Requires:      qmenumodel
 Requires:      xorg-x11-server-Xwayland

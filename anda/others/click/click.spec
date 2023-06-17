@@ -1,5 +1,5 @@
 %global forgeurl https://gitlab.com/ubports/development/core/click
-%global commit ff697fae4259e7b0f4bef27e3817f848bc06233a
+%global commit 0de0e0748ecfdf29997e6167f71fca0e2b03151b
 %forgemeta
 
 Name:           click

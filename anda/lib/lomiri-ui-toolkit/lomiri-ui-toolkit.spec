@@ -1,5 +1,5 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-ui-toolkit
-%global commit b996aa8e9d5add6e9d55f9a44a9fafc548d819c1
+%global commit 7df579c068335df31a704307d2bd20542233e5d2
 %forgemeta
 
 Name:           lomiri-ui-toolkit
@@ -87,8 +87,6 @@ Examples for Lomiri-ui-toolkit.
 %make_install INSTALL_ROOT=%{buildroot} STRIP=/bin/true
 # Used by apicheck during tests only
 rm -rf %{buildroot}%{_qt5_qmldir}/Extinct
-# Has various issues
-rm -rf %{buildroot}%{_datadir}/lomiri-ui-toolkit/doc/html
 
 %find_lang %{name}
 %find_lang %{name}-gallery
@@ -138,8 +136,7 @@ rm -rf %{buildroot}%{_datadir}/lomiri-ui-toolkit/doc/html
 %files doc
 %license COPYING.CC-BY-SA-3.0
 %{_qt5_docdir}/*.qch
-%dir %{_datadir}/lomiri-ui-toolkit
-%{_datadir}/lomiri-ui-toolkit/doc/
+%{_datadir}/doc/lomiri-ui-toolkit/
 
 %files examples -f %{name}-gallery.lang
 %dir %{_qt5_examplesdir}/lomiri-ui-toolkit
