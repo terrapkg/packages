@@ -17,6 +17,7 @@ BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala >= 0.22.0
 
+BuildRequires:  fdupes
 BuildRequires:  pkgconfig(accountsservice)
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(granite) >= 5.3.0
@@ -43,6 +44,7 @@ A session Indicator for wingpanel.
 
 %install
 %meson_install
+%fdupes %buildroot/usr/share/locale/
 
 %find_lang session-indicator
 
