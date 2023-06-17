@@ -44,9 +44,7 @@ rm -rf %{buildroot}/usr/tests
 
 %files
 %license COPYING
-%{_libdir}/libgsettings-qt.so.1
-%{_libdir}/libgsettings-qt.so.1.0
-%{_libdir}/libgsettings-qt.so.1.0.0
+%{_libdir}/libgsettings-qt.so.*
 %dir %{_libdir}/qt5/qml/GSettings.1.0
 %{_libdir}/qt5/qml/GSettings.1.0/libGSettingsQmlPlugin.so
 %{_libdir}/qt5/qml/GSettings.1.0/plugins.qmltypes

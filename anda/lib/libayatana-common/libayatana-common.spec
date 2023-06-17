@@ -2,7 +2,7 @@ Name:       libayatana-common
 Summary:    Common functions for Ayatana System Indicators
 Version:    0.9.8
 Release:    %autorelease
-License:    GPLv3
+License:    GPL-3.0
 URL:        https://github.com/AyatanaIndicators/libayatana-common
 Source0:    %{url}/archive/refs/tags/%{version}.tar.gz
 
@@ -15,7 +15,7 @@ BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(gio-unix-2.0)
 BuildRequires:  pkgconfig(gobject-introspection-1.0)
 BuildRequires:  vala-devel
-Buildrequires:  vala
+BuildRequires:  vala
 BuildRequires:  intltool
 
 %description

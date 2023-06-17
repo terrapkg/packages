@@ -15,7 +15,7 @@ ExclusiveArch:	x86_64
 
 Requires:	java >= 1.8.0
 
-Recommends:       terra-fractureiser-detector
+Recommends:	terra-fractureiser-detector
 
 %description
 The official Linux release of the launcher for Minecraft, a game about placing blocks and going on adventures.
@@ -42,7 +42,7 @@ install -Dm644 %{SOURCE2} %{buildroot}/%{_datadir}/icons/hicolor/symbolic/apps/m
 %{_datadir}/icons/hicolor/symbolic/apps/minecraft-launcher.svg
 
 %changelog
-* Tue Mar 08 2022 Thomas Batten stenstorpmc@gmail.com> - 1121-2
+* Tue Mar 08 2022 Thomas Batten <stenstorpmc@gmail.com> - 1121-2
 - Moved minecraft-launcher into bindir
 
 * Mon Mar 07 2022 Thomas Batten <stenstorpmc@gmail.com> - 1121-1

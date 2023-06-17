@@ -5,6 +5,7 @@ Summary:    Qt5 renderer for Ayatana Indicators
 License:    LGPLv3
 URL:        https://github.com/AyatanaIndicators/qmenumodel
 Source0:    https://releases.ayatana-indicators.org/source/qmenumodel/qmenumodel-%{version}.tar.gz
+Patch0:     https://gitlab.com/ubports/development/core/packaging/qmenumodel/-/raw/9062c3a3da87d6fd887c41a67dec6f8d5f34baa8/debian/patches/1001-ayatanamenumodel-add-support-for-u-int-of-all-sizes.patch
 
 BuildRequires: cmake
 BuildRequires: cmake-extras
@@ -30,7 +31,7 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %prep
-%autosetup -n qmenumodel-%{version}
+%autosetup -n qmenumodel-%{version} -p1
 
 %build
 %cmake -DENABLE_TESTS=ON -DENABLE_COVERAGE=ON -DGENERATE_DOC=ON

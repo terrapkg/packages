@@ -1,15 +1,14 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-indicator-network
-%global commit f4610298aa91b17161b5bc65b232228bf0fcab47
+%global commit ac0ae8ec8968c934f81c2664879ab10f76ab0fc2
 %forgemeta
 
 Name:       lomiri-indicator-network
 Version:    1.0.0
 Release:    %autorelease
 Summary:    The Network indicator for Ubuntu Touch
-License:    GPLv3 AND LGPLv3
+License:    GPL-3.0 AND LGPL-3.0
 URL:        https://gitlab.com/ubports/development/core/lomiri-indicator-network
 Source0:    %{url}/-/archive/%commit/lomiri-indicator-network-%commit.tar.gz
-Patch0:     https://sources.debian.org/data/main/l/lomiri-indicator-network/1.0.0-1/debian/patches/1003_no-abs-paths-in-documentation.patch
 
 BuildRequires: systemd-rpm-macros
 BuildRequires: qt-devel
@@ -52,7 +51,7 @@ BuildArch: noarch
 The %{name}-doc package contains documentation files for %{name}.
 
 %prep
-%autosetup -n lomiri-indicator-network-%commit -p1
+%autosetup -n lomiri-indicator-network-%commit
 
 %build
 %cmake -DENABLE_COVERAGE=OFF -DENABLE_UBUNTU_COMPAT=ON
@@ -75,6 +74,7 @@ The %{name}-doc package contains documentation files for %{name}.
 %{_qt5_qmldir}/Ubuntu/Connectivity/qmldir
 %dir %{_libexecdir}/lomiri-indicator-network
 %{_libexecdir}/lomiri-indicator-network/lomiri-indicator-network-*
+%{_datadir}/dbus-1/services/com.lomiri.connectivity1.service
 %{_datadir}/glib-2.0/schemas/com.lomiri.indicator.network.gschema.xml
 %{_datadir}/unity/indicators/com.lomiri.indicator.network
 

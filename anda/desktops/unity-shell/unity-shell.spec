@@ -1,3 +1,5 @@
+%define archive unity_7.7.0+23.04.20230222.2-0ubuntu2.tar.xz
+
 Name:		unity-shell
 Version:	7.7.0
 Release:	%autorelease
@@ -5,7 +7,7 @@ Summary:	Unity is a shell that sings
 
 License:	GPL-3.0-or-later
 URL:		https://launchpad.net/unity
-Source0:	http://archive.ubuntu.com/ubuntu/pool/universe/u/unity/unity_%{version}+23.04.20230222.2-0ubuntu2.tar.xz
+Source0:	http://archive.ubuntu.com/ubuntu/pool/universe/u/unity/%archive
 Patch0:		0001-Remove-xpathselect-dependency.patch
 Patch1:		0002-Remove-ido-dependency.patch
 Patch2:		0003-Remove-social-scope.patch
