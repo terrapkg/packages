@@ -87,14 +87,13 @@ install -Dpm644 tools/nim.bash-completion %buildroot/%_datadir/bash-completion/c
 install -Dpm644 dist/nimble/nimble.bash-completion %buildroot/%_datadir/bash-completion/completions/nimble
 install -Dpm644 -t%buildroot/%_mandir/man1 %SOURCE1 %SOURCE2 %SOURCE3 %SOURCE4
 
-mkdir -p %buildroot/%_docdir/%name/html
+mkdir -p %buildroot/%_docdir/%name/html %buildroot/usr/lib/nim
 cp -a doc/html/*.html %buildroot/%_docdir/%name/html/
-mkdir -p %buildroot/%_docdir/%name/html/
 cp tools/dochack/dochack.js %buildroot/%_docdir/%name/
 
-cp -r lib %buildroot%_prefix/lib/nim/
+cp -r lib/* %buildroot%_prefix/lib/nim/
 
-%check
+#check
 # export PATH=$PATH:$(realpath ./bin)
 # for cat in manyloc gc threads nimble-all lib io async rodfiles debugger examples dll flags
 # do

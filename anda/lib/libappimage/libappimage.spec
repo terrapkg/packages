@@ -63,8 +63,9 @@ mv a.h src/libappimage/utils/hashlib.h
 
 %install
 %cmake_install
-rm %buildroot%_docdir/libappimage/docs/{make.bat,.gitignore}
-#find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
+find %buildroot -name '*.bat' -exec rm -f {} ';' &
+find %buildroot -name '.gitignore' -exec rm -f {} ';' &
+wait
 
 
 %{?ldconfig_scriptlets}
