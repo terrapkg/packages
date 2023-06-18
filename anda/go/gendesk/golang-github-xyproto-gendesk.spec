@@ -32,12 +32,12 @@ Source:         %{gosource}
 %prep
 %goprep
 %autopatch -p1
-
-%generate_buildrequires
-%go_generate_buildrequires
+go mod download
 
 %build
-%gobuild -o %{gobuilddir}/bin/gendesk %{goipath}
+go mod tidy
+go build -ldflags '-linkmode external -s -w -extldflags "--static-pie"' -buildmode=pie -tags 'osusergo,netgo,static_build' -v -o %{gobuilddir}/bin/gendesk .
+# or goipath macro?
 
 %install
 %gopkginstall
