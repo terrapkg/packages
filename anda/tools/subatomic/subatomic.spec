@@ -1,5 +1,4 @@
 %define debug_package %{nil}
-%define _build_id_links none
 
 Name:           subatomic
 Version:        0.2.6
@@ -38,12 +37,8 @@ go mod download
 
 %build
 mkdir -p build/bin
-go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w -extldflags '--static-pie'" \
-	-buildmode=pie -tags 'osusergo,netgo,static_build' -v -x \
-	-o build/bin/subatomic-cli ./subatomic-cli
-go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w -extldflags '--static-pie'" \
-	-buildmode=pie -tags 'osusergo,netgo,static_build' -v -x \
-	-o build/bin/subatomic ./server
+go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w" -buildmode=pie -o build/bin/subatomic-cli ./subatomic-cli
+go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w" -buildmode=pie	-o build/bin/subatomic ./server
 
 
 %install

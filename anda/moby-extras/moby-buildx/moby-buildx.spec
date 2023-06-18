@@ -1,3 +1,5 @@
+%define debug_package %nil
+
 Name:           moby-buildx
 Version:        0.11.0
 Release:        2%{?dist}
