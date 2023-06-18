@@ -46,6 +46,7 @@ GOARCH=amd64
 GOARCH=arm64
 %endif
 go build -ldflags '-s -w -extldflags "--static-pie"' -buildmode=pie -tags 'osusergo,netgo,static_build' -v -o %{gobuilddir}/bin/gendesk .
+go tool buildid -w %{gobuilddir}/bin/gendesk
 
 %install
 %gopkginstall
