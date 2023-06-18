@@ -21,6 +21,7 @@ buildx is a Docker CLI plugin for extended build capabilities with BuildKit.
 
 
 %build
+go mod tidy
 go build -ldflags '-linkmode external -s -w -extldflags "--static-pie"' -buildmode=pie -tags 'osusergo,netgo,static_build' -v -o docker-buildx ./cmd/buildx
 
 

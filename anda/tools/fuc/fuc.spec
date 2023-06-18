@@ -40,6 +40,10 @@ Summary: Fast `cp` command from the FUC project
 %install
 install -Dm644 %{SOURCE0} "%{buildroot}/%{_datadir}/doc/%{name}/README.md"
 install -Dm644 %{SOURCE1} "%{buildroot}/%{_datadir}/licenses/%{name}/LICENSE"
+install -Dm644 %{SOURCE0} "%{buildroot}/%{_datadir}/doc/rmz/README.md"
+install -Dm644 %{SOURCE1} "%{buildroot}/%{_datadir}/licenses/rmz/LICENSE"
+install -Dm644 %{SOURCE0} "%{buildroot}/%{_datadir}/doc/cpz/README.md"
+install -Dm644 %{SOURCE1} "%{buildroot}/%{_datadir}/licenses/cpz/LICENSE"
 install -Dm755 %{SOURCE2} %{buildroot}/usr/bin/rmz
 install -Dm755 %{SOURCE3} %{buildroot}/usr/bin/cpz
 

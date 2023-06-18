@@ -11,7 +11,7 @@ Summary:        Filesystem cleaning tool for projects
 License:        MIT
 URL:            https://crates.io/crates/kondo
 Source0:        https://github.com/tbillington/kondo/releases/download/v%{version}/kondo-x86_64-unknown-linux-gnu.tar.gz
-Source1:        https://github.com/tbillington/kondo/blob/v%{version}/LICENSE
+Source1:        https://raw.githubusercontent.com/tbillington/kondo/v%version/LICENSE
 ExclusiveArch:  x86_64
 
 BuildRequires:  anda-srpm-macros rust-packaging >= 21

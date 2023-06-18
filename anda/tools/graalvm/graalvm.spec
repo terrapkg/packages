@@ -65,7 +65,7 @@ chmod +x %buildroot/usr/lib/jvm/java-*-graalvm/lib/*.so
 
 %files jdk11
 %doc GRAALVM-README.md
-%license LICENSE THIRD_PARTY_LICENSE.txt
+%license LICENSE
 /usr/lib/jvm/java-11-graalvm/
 %ghost /usr/lib/jvm/java-11-graalvm/include/
 %ghost /usr/lib/jvm/java-11-graalvm/languages/nfi/include/
@@ -89,7 +89,7 @@ chmod +x %buildroot/usr/lib/jvm/java-*-graalvm/lib/*.so
 /usr/lib/jvm/java-11-graalvm/languages/nfi/include/
 /usr/lib/jvm/java-11-graalvm/lib/polyglot/polyglot_types.h
 
-%files jdk11-devel
+%files jdk17-devel
 /usr/lib/jvm/java-17-graalvm/include/
 /usr/lib/jvm/java-17-graalvm/languages/nfi/include/
 /usr/lib/jvm/java-17-graalvm/lib/polyglot/polyglot_types.h

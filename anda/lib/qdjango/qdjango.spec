@@ -13,6 +13,7 @@ BuildRequires: qt5-qtbase-devel
 BuildRequires: cmake
 BuildRequires: gcc-c++
 BuildRequires: doxygen
+BuildRequires: fdupes
 
 %description
 QDjango is a web framework written in C++ and built on top of the Qt library.

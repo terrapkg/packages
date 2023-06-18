@@ -54,7 +54,7 @@ ln -sf %{_bindir}/io.elementary.vala-lint %{buildroot}%{_bindir}/vala-lint
 
 %files devel
 %doc README.md
-%licenses COPYING
+%license COPYING
 %{_includedir}/vala-linter-1.0/vala-linter.h
 %{_libdir}/pkgconfig/vala-linter-1.pc
 %{_libdir}/libvala-linter-1.0.so

@@ -93,6 +93,7 @@ cp tools/dochack/dochack.js %{buildroot}%{_docdir}/%{name}/
 %doc doc/readme.txt
 %{_bindir}/nim{,ble}
 %{_mandir}/man1/nim{,ble}.1*
+%_prefix/lib/nim/
 
 %files tools
 %license copying.txt

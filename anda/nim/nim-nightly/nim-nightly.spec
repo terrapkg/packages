@@ -58,7 +58,7 @@ export FCFLAGS="${FCFLAGS} -Ofast"
 export PATH="$(pwd):$(pwd)/bin:${PATH}"
 
 . ci/funs.sh
-nimBuildCsourcesIfNeeded -t:-fPIE -l:-pie
+nimBuildCsourcesIfNeeded CFLAGS="-Ic_code -w -O3 -fno-strict-aliasing -fPIE" LDFLAGS="-pie"
 
 mold -run nim c --noNimblePath --skipUserCfg --skipParentCfg --hints:off -d:danger koch.nim
 mold -run koch boot -d:release -d:nimStrictMode --lib:lib
@@ -103,6 +103,7 @@ cp tools/dochack/dochack.js %buildroot/%_docdir/%name/
 %_bindir/nim{,ble}
 %_mandir/man1/nim{,ble}.1*
 %_datadir/bash-completion/completions/nim{,ble}
+%_prefix/lib/nim/
 
 %files tools
 %license copying.txt

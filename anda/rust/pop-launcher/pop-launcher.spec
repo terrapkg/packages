@@ -41,7 +41,7 @@ just
 
 %install
 just rootdir=%{buildroot} install
-chmod +x %_prefix/lib/pop-launcher/scripts/{session,system76-power}/*.sh
+chmod +x %buildroot%_prefix/lib/pop-launcher/scripts/{session,system76-power}/*.sh
 
 %fdupes %buildroot%_prefix/
 
