@@ -31,7 +31,7 @@ install -d %buildroot%_bindir
 ln -s %_datadir/authy/authy %buildroot%_bindir
 
 %check
-desktop-file-validate %buildroot%_datadir/authy/meta/gui/authy.desktop
+desktop-file-validate %buildroot%_datadir/applications/authy.desktop
 
 %files
 %_datadir/authy/

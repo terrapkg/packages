@@ -46,7 +46,6 @@ install -Dm644 %{name}.desktop -t %{buildroot}/usr/share/applications
 %license LICENSE
 /usr/bin/grape
 /usr/bin/groovy
-/usr/bin/groovy.ico
 /usr/bin/groovyConsole
 /usr/bin/groovyc
 /usr/bin/groovydoc

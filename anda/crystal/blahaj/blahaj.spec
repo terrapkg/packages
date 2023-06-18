@@ -20,7 +20,7 @@ size to whether to colorize by line, word or character.
 %autosetup -n BLAHAJ-%{version}
 
 %build
-shards build --production --release -D -fPIE '--link-flags' -l '-pie'
+shards build --production --release -D "-fPIE" --link-flags "-pie"
 
 %install
 install -Dm755 bin/blahaj %buildroot%_bindir

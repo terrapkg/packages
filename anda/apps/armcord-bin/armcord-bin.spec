@@ -45,7 +45,7 @@ EOF
 %build
 
 %install
-mkdir -p %buildroot%_bindir %buildroot%_datadir/applications %buildroot%_datadir/pixmaps %buildroot%_datadir/armcord
+mkdir -p %buildroot%_bindir %buildroot%_datadir/applications %buildroot%_datadir/pixmaps %buildroot%_datadir/armcord %buildroot%_docdir/%name
 cp -a * %buildroot%_datadir/armcord/
 ln -s %_datadir/armcord/armcord %buildroot%_bindir/armcord
 chmod +x -R %buildroot%_datadir/armcord/*
