@@ -56,7 +56,7 @@ desktop-file-validate %name.desktop
 %doc README.*
 %_bindir/%name
 %_datadir/applications/%name.desktop
-%_mandir/man1/uxplay.1
+%_mandir/man1/*
 
 %changelog
 %autochangelog
