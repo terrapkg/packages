@@ -5,7 +5,7 @@ Summary:		AirPlay Unix mirroring server
 License:		GPL-3.0
 URL:			https://github.com/FDH2/UxPlay
 Source0:		%url/archive/refs/tags/v%version.tar.gz
-Requires:		openssl libplist avahi gstreamer1-plugin-libav gstreamer1-plugins-bad-free
+Requires:		openssl libplist avahi gstreamer1-plugin-libav gstreamer1-plugins-bad-free gstreamer1-plugins-good gstreamer1-plugins-base
 Recommends:		gstreamer1-vaapi
 BuildRequires:	cmake desktop-file-utils systemd-rpm-macros gcc gcc-c++ openssl-devel avahi-compat-libdns_sd-devel
 BuildRequires:	pkgconfig(gstreamer-1.0) pkgconfig(gstreamer-sdp-1.0) pkgconfig(gstreamer-video-1.0) pkgconfig(gstreamer-app-1.0) pkgconfig(libplist-2.0)
