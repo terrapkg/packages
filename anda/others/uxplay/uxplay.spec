@@ -29,8 +29,7 @@ Comment=%summary
 EOF
 
 %build
-export CFLAGS="$CFLAGS -DNO_MARCH_NATIVE=ON"
-%cmake .
+%cmake . -DNO_MARCH_NATIVE=ON
 %cmake_build --config Release
 
 
