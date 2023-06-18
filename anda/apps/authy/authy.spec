@@ -26,7 +26,7 @@ cp -r snap/. %buildroot%_datadir/authy
 
 sed -i 's|${SNAP}/meta/gui/icon.png|authy|g' %buildroot%_datadir/authy/meta/gui/authy.desktop
 install -Dm644 %buildroot%_datadir/authy/meta/gui/authy.desktop -t %buildroot%_datadir/applications
-install -Dm644 %buildroot%_datadir/meta/gui/icon.png %buildroot%_datadir/pixmaps/authy.png
+install -Dm644 %buildroot%_datadir/authy/meta/gui/icon.png %buildroot%_datadir/pixmaps/authy.png
 
 rm -rf %buildroot%_datadir/authy/{data-dir,gnome-platform,lib,meta,scripts,usr,*.sh}
 

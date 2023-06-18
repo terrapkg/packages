@@ -17,6 +17,7 @@ URL:			https://github.com/ArmCord/ArmCord
 Group:			Applications/Internet
 Source0:		%url/releases/download/v%version/%src.tar.gz
 Source1:		armcord.png
+Source2:		https://raw.githubusercontent.com/ArmCord/ArmCord/v%version/README.md
 Requires:		electron xdg-utils
 ExclusiveArch:	x86_64 aarch64 armv7l
 Conflicts:		armcord
@@ -51,6 +52,7 @@ chmod +x -R %buildroot%_datadir/armcord/*
 chmod 755 %buildroot%_datadir/armcord/armcord
 install -Dm644 .armcord.desktop %buildroot%_datadir/applications/ArmCord.desktop
 install -Dm644 %SOURCE1 %buildroot%_datadir/pixmaps/armcord.png
+install -Dm644 %SOURCE2 %buildroot%_docdir/%name/
 
 %files
 %doc README.md

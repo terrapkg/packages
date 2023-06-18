@@ -7,7 +7,7 @@ Summary:		Gay sharks at your local terminal - lolcat-like CLI tool
 License:		BSD-2-Clause
 URL:			https://blahaj.queer.software
 Source0:		https://github.com/GeopJr/BLAHAJ/archive/refs/tags/v%version.tar.gz
-BuildRequires:	crystal make gcc libyaml-devel pcre-devel
+BuildRequires:	crystal gcc libyaml-devel pcre-devel
 ExclusiveArch:	x86_64
 
 %description
@@ -20,13 +20,13 @@ size to whether to colorize by line, word or character.
 %autosetup -n BLAHAJ-%{version}
 
 %build
-%make_build -fpie
+shards build --production --release -D -fPIE '--link-flags' -l '-pie'
 
 %install
-%make_install
+install -Dm755 bin/blahaj %buildroot%_bindir
 
 %check
-make test_mt
+crystal spec --order random -Dpreview_mt
 
 %files
 %doc README.md
