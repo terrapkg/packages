@@ -35,6 +35,7 @@ Client for Subatomic repo manager
 
 
 %build
+export CGO_ENABLED=1
 mkdir -p build/bin
 go build -ldflags '-linkmode external -s -w -extldflags "--static-pie"' -buildmode=pie -tags 'osusergo,netgo,static_build' -v -o build/bin/subatomic-cli ./subatomic-cli
 go build -ldflags '-linkmode external -s -w -extldflags "--static-pie"' -buildmode=pie -tags 'osusergo,netgo,static_build' -v -o build/bin/subatomic ./server

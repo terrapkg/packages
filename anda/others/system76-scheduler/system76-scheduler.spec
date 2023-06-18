@@ -22,7 +22,7 @@ process priority.
 %autosetup
 
 %build
-export execsnoop=$(which execsnoop-bpfcc)
+export EXECSNOOP_PATH=$(which execsnoop-bpfcc)
 %cargo_build
 
 %install

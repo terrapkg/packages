@@ -27,6 +27,7 @@ BuildRequires:  git-core
 BuildRequires:  librsvg2-devel
 BuildRequires:  boost-devel
 BuildRequires:  wget
+BuildRequires:  xxd
 
 
 %description

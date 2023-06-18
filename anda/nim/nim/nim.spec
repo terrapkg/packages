@@ -12,7 +12,7 @@ Source1:		nim.1
 Source2:		nimgrep.1
 Source3:		nimble.1
 Source4:		nimsuggest.1
-BuildRequires:	gcc mold git gcc-c++ nodejs openssl-devel pkgconfig(bash-completion) gc-devel
+BuildRequires:	gcc mold git gcc-c++ nodejs openssl-devel pkgconfig(bash-completion) gc-devel pcre-devel
 Requires:		redhat-rpm-config gcc
 Conflicts:		choosenim
 
@@ -80,6 +80,8 @@ mkdir -p %{buildroot}%{_docdir}/%{name}/html
 cp -a doc/html/*.html %{buildroot}%{_docdir}/%{name}/html/
 mkdir -p %{buildroot}%{_docdir}/%{name}/html/
 cp tools/dochack/dochack.js %{buildroot}%{_docdir}/%{name}/
+
+cp -r lib %buildroot%_prefix/lib/nim/
 
 %check
 # export PATH=$PATH:$(realpath ./bin)
