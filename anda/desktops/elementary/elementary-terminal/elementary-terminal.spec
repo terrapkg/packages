@@ -93,7 +93,7 @@ appstream-util validate-relax --nonet \
 
 %files fish
 %doc README.md
-%license LICENSE
+%license COPYING
 %{_datadir}/fish/vendor_conf.d/pantheon_terminal_process_completion_notifications.fish
 
 
