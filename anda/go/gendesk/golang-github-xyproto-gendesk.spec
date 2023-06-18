@@ -38,14 +38,6 @@ BuildRequires:  git gcc
 go mod download
 
 %build
-go mod tidy
-CGO_ENABLED=0
-GOOS=linux
-%ifarch x86_64
-GOARCH=amd64
-%elifarch aarch64
-GOARCH=arm64
-%endif
 go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w -extldflags '--static-pie'" -buildmode=pie -tags 'osusergo,netgo,static_build' -v -x -o %{gobuilddir}/bin/gendesk .
 go tool buildid -w %{gobuilddir}/bin/gendesk
 
