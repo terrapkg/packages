@@ -4,7 +4,7 @@
 Name:           pantheon-agent-geoclue2
 Summary:        Pantheon Geoclue2 Agent
 Version:        1.0.6
-Release:        %autorelease
+Release:        2%?dist
 License:        GPL-3.0
 
 URL:            https://github.com/elementary/pantheon-agent-geoclue2

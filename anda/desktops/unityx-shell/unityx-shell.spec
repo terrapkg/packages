@@ -6,7 +6,7 @@
 
 Name:          unityx-shell
 Version:       1.7.7
-Release:       2%?DIST
+Release:       2%?dist
 Summary:       UnityX is a smaller shell based on Unity7
 
 License:       GPL-3.0 AND LGPL-3.0
@@ -15,7 +15,7 @@ Source0:       %{url}/-/archive/%commit/unityx-%commit.tar.bz2
 Source2:       https://gitlab.xfce.org/panel-plugins/xfce4-windowck-plugin/-/commit/dee596492f006d02e2b39abd072ddd7b37fefe82.diff
 Patch0:        0001-Remove-social-scope.patch
 
-BuildRequires: FDUPES
+BuildRequires: fdupes
 BuildRequires: cmake
 BuildRequires: g++
 BuildRequires: gcc

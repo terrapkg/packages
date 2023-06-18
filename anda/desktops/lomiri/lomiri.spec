@@ -4,7 +4,7 @@
 
 Name:          lomiri
 Version:       0.1.2
-Release:       %autorelease
+Release:       2%?dist
 Summary:       A convergent desktop environment by Ubports
 
 License:       GPLv3 AND LGPLv3
