@@ -4,7 +4,7 @@
 Name:           elementary-terminal
 Summary:        The terminal of the 21st century
 Version:        6.1.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        LGPL-3.0
 
 URL:            https://github.com/elementary/%{srcname}
@@ -15,6 +15,7 @@ BuildRequires:  gettext xorg-x11-server-Xvfb
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala >= 0.40.0
+BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  pkgconfig(glib-2.0) >= 2.39
@@ -63,6 +64,7 @@ notifications when using the fish shell.
 %install
 %meson_install
 
+%fdupes %buildroot%_datadir/locale/
 %find_lang %{appname}
 
 
@@ -90,6 +92,8 @@ appstream-util validate-relax --nonet \
 %{_datadir}/metainfo/%{appname}.appdata.xml
 
 %files fish
+%doc README.md
+%license COPYING
 %{_datadir}/fish/vendor_conf.d/pantheon_terminal_process_completion_notifications.fish
 
 

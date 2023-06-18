@@ -9,7 +9,7 @@
 Name:           switchboard-plug-printers
 Summary:        Switchboard Printers Plug
 Version:        2.2.1
-Release:        1%{?dist}
+Release:        2%?dist
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/switchboard-plug-printers
@@ -19,6 +19,7 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala >= 0.22.0
+BuildRequires:  fdupes
 
 BuildRequires:  cups-devel
 
@@ -47,7 +48,7 @@ A printers plug for Switchboard.
 
 %install
 %meson_install
-
+%fdupes %buildroot%_datadir/locale/
 %find_lang %{plug_name}-plug
 
 

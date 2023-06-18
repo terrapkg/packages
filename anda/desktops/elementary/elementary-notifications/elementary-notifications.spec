@@ -4,7 +4,7 @@
 
 Name:           elementary-notifications
 Version:        6.0.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        GTK Notification server for Pantheon
 
 License:        GPL-3.0
@@ -26,6 +26,7 @@ Provides:      %{name} = %{version}-%{release}
 
 
 %description
+%summary.
 
 
 %prep
@@ -49,11 +50,11 @@ Provides:      %{name} = %{version}-%{release}
 %{_bindir}/%{appname}.demo
 %{_datadir}/applications/%{appname}.demo.desktop
 
-%{_sysconfdir}/xdg/autostart/%{appname}.desktop
+%config %{_sysconfdir}/xdg/autostart/%{appname}.desktop
 %{_datadir}/glib-2.0/schemas/%{appname}.gschema.xml
 %{_metainfodir}/%{appname}.appdata.xml
 
 
 %changelog
-* Wed Nov 09 2022 Cappy Ishihara <cappy@cappuchino.xyz>
+* Wed Nov 09 2022 Cappy Ishihara <cappy@cappuchino.xyz> - 6.0.3-1
 - Packaged

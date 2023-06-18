@@ -11,7 +11,7 @@
 Name:           switchboard-plug-wallet
 Summary:        Switchboard Wallet Plug
 Version:        %(c=%commit; echo ${c:0:7})
-Release:        1%?dist
+Release:        2%?dist
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/%name
@@ -20,6 +20,7 @@ Source0:        %url/archive/%version/%srcname-%version.tar.gz
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala
+BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(granite) >= 0.5
 BuildRequires:  gtk3-devel
@@ -44,6 +45,7 @@ Manage Payment Methods and related settings.
 
 %install
 %meson_install
+%fdupes %buildroot%_datadir/icons/hicolor
 
 
 %files

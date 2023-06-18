@@ -3,7 +3,7 @@
 Name:           elementary-sound-theme
 Summary:        Set of system sounds for elementary
 Version:        1.1.0
-Release:        %autorelease
+Release:        2%?dist
 License:        Unlicense AND CC-BY-4.0
 
 # Unlicense:
@@ -18,6 +18,7 @@ URL:            https://github.com/elementary/%{srcname}
 Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires:  meson
+BuildRequires:  fdupes
 
 BuildArch:      noarch
 
@@ -37,6 +38,8 @@ physical, and pleasant.
 
 %install
 %meson_install
+
+%fdupes %buildroot%_datadir/sounds/elementary/stereo/
 
 
 %files
