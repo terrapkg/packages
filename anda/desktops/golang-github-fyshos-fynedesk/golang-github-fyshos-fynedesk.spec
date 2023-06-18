@@ -52,8 +52,8 @@ BuildRequires: golang
 #%%go_generate_buildrequires
 
 %build
-go buildgo build -ldflags '-linkmode external -s -w -extldflags "--static-pie"' -buildmode=pie -tags 'osusergo,netgo,static_build' ./cmd/fynedesk_runner
-go buildgo build -ldflags '-linkmode external -s -w -extldflags "--static-pie"' -buildmode=pie -tags 'osusergo,netgo,static_build' ./cmd/fynedesk
+go build -ldflags '-linkmode external -s -w -extldflags "--static-pie"' -buildmode=pie -tags 'osusergo,netgo,static_build' ./cmd/fynedesk_runner
+go build -ldflags '-linkmode external -s -w -extldflags "--static-pie"' -buildmode=pie -tags 'osusergo,netgo,static_build' ./cmd/fynedesk
 
 %install
 %gopkginstall

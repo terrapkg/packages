@@ -58,9 +58,12 @@ Requires:      unity-scope-home
 Requires:      python3-pydbus
 Requires:      python3-psutil
 Requires:      unity-asset-pool
+Requires:      libunity-misc-devel
+Requires:      geis-devel
 Requires:      unity-settings-daemon
 Requires:      unity-gtk3-module
 Requires:      unity-gtk2-module
+Requires:      terra-libindicator-gtk3
 Requires:      plotinus%{?_isa} = %{version}-%{release}
 Requires:      bamf-daemon
 Requires:      xbindkeys
