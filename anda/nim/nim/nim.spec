@@ -76,11 +76,9 @@ install -Dp -m644 tools/nim.bash-completion %{buildroot}%{bashcompdir}/nim
 install -Dp -m644 dist/nimble/nimble.bash-completion %{buildroot}%{bashcompdir}/nimble
 install -Dp -m644 -t%{buildroot}%{_mandir}/man1 %SOURCE1 %SOURCE2 %SOURCE3 %SOURCE4
 
-mkdir -p %{buildroot}%{_docdir}/%{name}/html
+mkdir -p %{buildroot}%{_docdir}/%{name}/html %buildroot%_prefix/lib/nim
 cp -a doc/html/*.html %{buildroot}%{_docdir}/%{name}/html/
-mkdir -p %{buildroot}%{_docdir}/%{name}/html/
 cp tools/dochack/dochack.js %{buildroot}%{_docdir}/%{name}/
-
 cp -r lib %buildroot%_prefix/lib/nim/
 
 %check
