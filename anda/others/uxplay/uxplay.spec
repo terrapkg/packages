@@ -37,7 +37,7 @@ mkdir -p %buildroot%_bindir %buildroot%_datadir/applications %buildroot%_mandir/
 install -Dm755 redhat-linux-build/%name %buildroot%_bindir/
 install -Dm644 %name.desktop %buildroot%_datadir/applications/
 
-install -Dm644 %name.1 %buildroot%_mandir/man1/%name.1
+install -Dm644 %name.1 %buildroot%_mandir/man1/uxplay.1
 
 %post
 %systemd_post avahi-daemon.service
@@ -56,7 +56,7 @@ desktop-file-validate %name.desktop
 %doc README.*
 %_bindir/%name
 %_datadir/applications/%name.desktop
-%_mandir/man1/%name.1
+%_mandir/man1/uxplay.1
 
 %changelog
 %autochangelog
