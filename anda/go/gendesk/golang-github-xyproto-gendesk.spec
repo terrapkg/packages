@@ -24,7 +24,7 @@ Summary:        :herb: Generate .desktop files and download .png icons by specif
 License:        BSD-3-Clause
 URL:            %{gourl}
 Source:         %{gosource}
-BuildRequires:  git
+BuildRequires:  git gcc
 
 %description %{common_description}
 
@@ -37,6 +37,13 @@ go mod download
 
 %build
 go mod tidy
+CGO_ENABLED=0
+GOOS=linux
+%ifarch x86_64
+GOARCH=amd64
+%elifarch aarch64
+GOARCH=arm64
+%endif
 go build -ldflags '-linkmode external -s -w -extldflags "--static-pie"' -buildmode=pie -tags 'osusergo,netgo,static_build' -v -o %{gobuilddir}/bin/gendesk .
 # or goipath macro?
 
