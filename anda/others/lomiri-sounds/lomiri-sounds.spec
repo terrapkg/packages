@@ -9,7 +9,7 @@ Release:    %autorelease
 License:    CC-BY-SA-3.0
 URL:        https://gitlab.com/ubports/development/core/lomiri-sounds
 Source0:    %{url}/-/archive/%commit/lomiri-sounds-%commit.tar.gz
-BuildArch:  noarch
+BuildArch: noarch
 
 BuildRequires:  cmake
 BuildRequires:  gcc
