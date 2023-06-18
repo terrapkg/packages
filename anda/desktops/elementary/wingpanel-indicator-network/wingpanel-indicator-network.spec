@@ -6,7 +6,7 @@
 Name:           wingpanel-indicator-network
 Summary:        Network Indicator for wingpanel
 Version:        7.0.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/wingpanel-indicator-network
@@ -23,6 +23,7 @@ BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(libnm)
 BuildRequires:  pkgconfig(libnma)
 BuildRequires:  pkgconfig(wingpanel) >= 3.0.0
+BuildRequires:  fdupes
 
 Requires:       network-manager-applet%{?_isa}
 Requires:       wingpanel%{?_isa}
@@ -45,7 +46,7 @@ A network indicator for wingpanel.
 
 %install
 %meson_install
-
+%fdupes %buildroot%_datadir/locale/
 %find_lang network-indicator
 
 

@@ -4,7 +4,7 @@
 Name:           elementary-capnet-assist
 Summary:        Captive Portal Assistant for elementary
 Version:        2.4.4
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/capnet-assist
@@ -25,6 +25,7 @@ BuildRequires:  pkgconfig(granite)
 BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(libhandy-1) >= 1.0.0
 BuildRequires:  pkgconfig(webkit2gtk-4.1)
+BuildRequires:  fdupes
 
 Requires:       NetworkManager
 Requires:       hicolor-icon-theme
@@ -54,6 +55,8 @@ Written in Vala and using WebkitGtk+.
 
 %find_lang %{appname}
 
+%fdupes %buildroot%_datadir/icons/hicolor/
+
 
 %check
 desktop-file-validate \
@@ -76,5 +79,5 @@ appstream-util validate-relax --nonet \
 
 
 %changelog
-* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
+* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com> - 2.4.2-1
 - Repackaged for Terra

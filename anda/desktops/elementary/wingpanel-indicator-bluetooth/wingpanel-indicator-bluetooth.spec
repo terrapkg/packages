@@ -6,7 +6,7 @@
 Name:           wingpanel-indicator-bluetooth
 Summary:        Bluetooth Indicator for wingpanel
 Version:        2.1.8
-Release:        3%{?dist}
+Release:        4%{?dist}
 License:        LGPL-2.0-or-later
 
 URL:            https://github.com/elementary/%{name}
@@ -16,6 +16,7 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala >= 0.22.0
+BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(glib-2.0) >= 2.32
 BuildRequires:  pkgconfig(granite) >= 6.0.0
@@ -44,7 +45,7 @@ A bluetooth indicator for wingpanel.
 
 %install
 %meson_install
-
+%fdupes %buildroot%_datadir/locale/
 %find_lang bluetooth-indicator
 
 # remove the specified stock icon from appdata (invalid in libappstream-glib)
@@ -67,5 +68,5 @@ appstream-util validate-relax --nonet \
 
 
 %changelog
-* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
+* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com> - 2.1.0-1
 - Repackaged for Terra
