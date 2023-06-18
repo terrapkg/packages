@@ -39,6 +39,7 @@ BuildRequires: boost-devel
 BuildRequires: pkgconfig(nux-4.0)
 BuildRequires: pkgconfig(libstartup-notification-1.0)
 BuildRequires: pkgconfig(unity-protocol-private)
+BuildRequires: libunity libunity-devel
 # unityx-shell-xfce4-windowck-plugin
 BuildRequires: pkgconfig(libwnck-3.0)
 BuildRequires: pkgconfig(libxfconf-0)
