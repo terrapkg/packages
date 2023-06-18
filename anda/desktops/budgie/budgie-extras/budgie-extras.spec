@@ -1,3 +1,4 @@
+
 Name:		budgie-extras
 Version:	1.6.0
 Release:	1%{?dist}
@@ -9,7 +10,6 @@ URL:		https://ubuntubudgie.org/
 Source0:	https://github.com/UbuntuBudgie/budgie-extras/releases/download/v%{version}/budgie-extras-%{version}.tar.xz
 Patch0: 0001-fix-weathershow-desktop-widget-icon-path.patch
 
-BuildRequires:	rpm_macro(fdupes)
 BuildRequires:	cmake
 BuildRequires:	meson
 BuildRequires:	vala
@@ -69,7 +69,6 @@ The applets can be used individually or as a set.
 %package	common
 Requires:	budgie-desktop
 Summary:	Shared component of budgie-extras applets
-BuildArch:	noarch
 %description	common
 The shared component provides for capabilities that are utilised between
 budgie-extra applets.
@@ -283,8 +282,6 @@ workspaces.
 # Remove absolute symlink and replace with relative symlink
 rm -f %{buildroot}%{_bindir}/quickchar
 
-%fdupes %_libdir/budgie-desktop/plugins/budgie-weathershow/weather_icons
-
 %post
 
 %{__ln_s} -fv %{_bindir}/quickchar %{_libdir}/quickchar/quickchar
@@ -297,7 +294,7 @@ rm -f %{buildroot}%{_bindir}/quickchar
 %{_datadir}/glib-2.0/schemas/20_budgie-extras.gschema.override
 
 %files daemon
-%config %{_sysconfdir}/xdg/autostart/budgie-extras-daemon.desktop
+%{_sysconfdir}/xdg/autostart/budgie-extras-daemon.desktop
 %{_bindir}/budgie-extras-daemon
 %{_libdir}/budgie-extras-daemon/invoke.py
 %{_datadir}/budgie-desktop/layouts/*.layout
@@ -338,7 +335,7 @@ rm -f %{buildroot}%{_bindir}/quickchar
 
 %files -n budgie-applet-hotcorners
 %{_libdir}/budgie-desktop/plugins/budgie-hotcorners
-%config %{_sysconfdir}/xdg/autostart/org.ubuntubudgie.budgie-extras.HotCorners-autostart.desktop
+%{_sysconfdir}/xdg/autostart/org.ubuntubudgie.budgie-extras.HotCorners-autostart.desktop
 %{_datadir}/glib-2.0/schemas/org.ubuntubudgie.budgie-extras.HotCorners.gschema.xml
 %{_datadir}/applications/org.ubuntubudgie.budgie-extras.HotCorners.desktop
 %{_datadir}/budgie-hotcorners
@@ -360,7 +357,7 @@ rm -f %{buildroot}%{_bindir}/quickchar
 %{_libdir}/budgie-desktop/plugins/budgie-network-manager
 
 %files -n budgie-applet-quickchar
-%config %{_sysconfdir}/xdg/autostart/quickchar-autostart.desktop
+%{_sysconfdir}/xdg/autostart/quickchar-autostart.desktop
 %ghost %{_bindir}/quickchar
 %{_libdir}/quickchar
 %{_datadir}/applications/org.ubuntubudgie.quickchar.desktop
@@ -397,13 +394,13 @@ rm -f %{buildroot}%{_bindir}/quickchar
 %{_libdir}/budgie-desktop/plugins/budgie-trash
 
 %files -n budgie-applet-visualspace
-%config %{_sysconfdir}/xdg/autostart/visualspace-autostart.desktop
+%{_sysconfdir}/xdg/autostart/visualspace-autostart.desktop
 %{_libdir}/budgie-desktop/plugins/budgie-visualspace
 %{_datadir}/glib-2.0/schemas/org.ubuntubudgie.plugins.budgie-visualspace.gschema.xml
 %{_datadir}/pixmaps/visualspace-symbolic.svg
 
 %files -n budgie-applet-wallstreet
-%config %{_sysconfdir}/xdg/autostart/wallstreet-autostart.desktop
+%{_sysconfdir}/xdg/autostart/wallstreet-autostart.desktop
 %{_libdir}/budgie-wallstreet/wallstreet*
 %{_datadir}/applications/org.ubuntubudgie.wallstreetcontrol.desktop
 %{_datadir}/glib-2.0/schemas/org.ubuntubudgie.budgie-wallstreet.gschema.xml
@@ -416,9 +413,9 @@ rm -f %{buildroot}%{_bindir}/quickchar
 %{_datadir}/pixmaps/budgie-wticon-symbolic.svg
 
 %files -n budgie-applet-window-shuffler
-%config %{_sysconfdir}/xdg/autostart/layoutspopup-autostart.desktop
-%config %{_sysconfdir}/xdg/autostart/dragsnap-autostart.desktop
-%config %{_sysconfdir}/xdg/autostart/shuffler*.desktop
+%{_sysconfdir}/xdg/autostart/layoutspopup-autostart.desktop
+%{_sysconfdir}/xdg/autostart/dragsnap-autostart.desktop
+%{_sysconfdir}/xdg/autostart/shuffler*.desktop
 %{_libdir}/budgie-window-shuffler
 %{_datadir}/applications/org.ubuntubudgie.shufflercontrol.desktop
 %{_datadir}/icons/hicolor/scalable/apps/org.ubuntubudgie.shuffler-control.svg
@@ -436,7 +433,7 @@ rm -f %{buildroot}%{_bindir}/quickchar
 %{_datadir}/pixmaps/budgie-wstopwatch-symbolic.svg
 
 %files -n budgie-applet-wpreviews
-%config %{_sysconfdir}/xdg/autostart/previews-*.desktop
+%{_sysconfdir}/xdg/autostart/previews-*.desktop
 %{_libdir}/budgie-previews
 %{_datadir}/applications/org.ubuntubudgie.previewscontrols.desktop
 %{_datadir}/metainfo/org.ubuntubudgie.previewscontrols.metainfo.xml

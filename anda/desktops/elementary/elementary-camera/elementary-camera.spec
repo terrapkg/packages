@@ -4,7 +4,7 @@
 Name:           elementary-camera
 Summary:        Camera app designed for elementary
 Version:        6.2.2
-Release:        2%{?dist}
+Release:        1%{?dist}
 License:        GPL-3.0
 
 URL:            https://github.com/elementary/camera
@@ -15,7 +15,6 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson >= 0.46
 BuildRequires:  vala
-BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  pkgconfig(gio-2.0)
@@ -46,9 +45,6 @@ Camera is a simple app to take photos with a webcam.
 %meson_install
 
 %find_lang %{appname}
-
-%fdupes %buildroot/%_datadir/icons/hicolor
-
 
 
 %check

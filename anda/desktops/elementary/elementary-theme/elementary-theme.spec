@@ -2,9 +2,9 @@
 %global appname io.elementary.stylesheet
 
 Name:           elementary-theme
-Summary:        Elementary GTK+ Stylesheet
+Summary:        elementary GTK+ Stylesheet
 Version:        7.2.0
-Release:        2%{?dist}
+Release:        1%{?dist}
 License:        GPL-3.0
 
 URL:            https://github.com/elementary/stylesheet
@@ -16,7 +16,6 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  sassc
-BuildRequires:  fdupes
 
 # gtk-version-specific subpackages were dropped in Fedora 34
 Obsoletes:      %{name}-gtk2 < 5.4.2-4.20210216.gitf0c3b7f
@@ -29,7 +28,7 @@ and its desktop environment: Pantheon.
 
 
 %package        plank
-Summary:        Elementary GTK+ Stylesheet for plank
+Summary:        elementary GTK+ Stylesheet for plank
 
 Requires:       %{name} = %{version}-%{release}
 Requires:       plank
@@ -55,8 +54,6 @@ This package contains the plank theme.
 %install
 %meson_install
 
-%fdupes %buildroot%_datadir/themes/
-
 
 %check
 appstream-util validate-relax --nonet \
@@ -73,9 +70,7 @@ appstream-util validate-relax --nonet \
 
 %{_datadir}/metainfo/%{appname}.appdata.xml
 
-%files plank
-%doc README.md
-%license COPYING
+%files          plank
 %{_datadir}/themes/%{appname}.*/plank/
 %{_datadir}/themes/%{appname}.*/plank-dark/
 

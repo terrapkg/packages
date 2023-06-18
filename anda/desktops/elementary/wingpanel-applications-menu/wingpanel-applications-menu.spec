@@ -6,7 +6,7 @@
 Name:           wingpanel-applications-menu
 Summary:        Lightweight and stylish app launcher
 Version:        2.11.1
-Release:        2%?dist
+Release:        %autorelease
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/applications-menu
@@ -16,7 +16,6 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala >= 0.32.1
-BuildRequires:  fdupes
 
 BuildRequires:  appstream-vala
 
@@ -52,7 +51,7 @@ The lightweight and stylish app launcher from elementary.
 
 %install
 %meson_install
-%fdupes %buildroot%_datadir/locale/
+
 %find_lang slingshot
 
 

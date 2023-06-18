@@ -4,7 +4,7 @@
 Name:           elementary-greeter
 Summary:        LightDM Login Screen for the elementary desktop
 Version:        6.1.1
-Release:        3%{?dist}
+Release:        2%{?dist}
 License:        GPL-3.0
 
 URL:            https://github.com/elementary/greeter
@@ -17,7 +17,6 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala
-BuildRequires:  fdupes
 
 BuildRequires:  mesa-libEGL-devel
 
@@ -82,8 +81,6 @@ The elementary Greeter is a styled Login Screen for LightDM.
 
 %find_lang %{appname}
 
-%fdupes %buildroot%_datadir/icons/hicolor/
-
 # install LightDM configuration file
 mkdir -p %{buildroot}%{_sysconfdir}/lightdm/lightdm.conf.d
 install -pm 0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/lightdm/lightdm.conf.d/
@@ -110,5 +107,5 @@ appstream-util validate-relax --nonet \
 
 
 %changelog
-* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com> - 6.1.0-1
+* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
 - Repackaged for Terra

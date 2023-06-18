@@ -212,14 +212,14 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &>/dev/null || :
 %dir %{_datadir}/compiz/unitymtgrabhandles/images/
 %{_datadir}/compiz/unitymtgrabhandles/images/handle-*.png
 %{_datadir}/gnome-control-center/keybindings/50-unity-launchers.xml
+%{_sysconfdir}/pam.d/unity
 %{_datadir}/compizconfig/upgrades/*.upgrade
-%config %{_sysconfdir}/pam.d/unity
-%config %{_sysconfdir}/compizconfig/unity*
+%{_sysconfdir}/compizconfig/unity*
 %{_userunitdir}/unity*.service
 %{_userunitdir}/unity*.target
 
 %files -n python3-uwidgets
-%doc README
+%doc AUTHORS ChangeLog HACKING README
 %license uwidgets/LICENCE
 %{_bindir}/uwidgets-runner
 %{python3_sitearch}/uwidgets-*.egg-info/

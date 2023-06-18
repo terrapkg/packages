@@ -15,7 +15,6 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala >= 0.34.1
-BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(gio-unix-2.0)
 BuildRequires:  pkgconfig(glib-2.0) >= 2.32.0
@@ -40,7 +39,7 @@ requests access to location services.
 
 %install
 %meson_install
-%fdupes %buildroot%_datadir/locale/
+
 %find_lang %{name}
 
 
@@ -66,5 +65,5 @@ appstream-util validate-relax --nonet \
 
 
 %changelog
-* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com> - 1.0.5-1
+* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
 - Repackaged for Terra

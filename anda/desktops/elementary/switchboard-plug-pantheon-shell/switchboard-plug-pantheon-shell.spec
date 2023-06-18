@@ -9,7 +9,7 @@
 Name:           switchboard-plug-pantheon-shell
 Summary:        Switchboard Pantheon Shell plug
 Version:        6.4.0
-Release:        2%{?dist}
+Release:        1%{?dist}
 License:        GPL-3.0
 
 URL:            https://github.com/elementary/switchboard-plug-pantheon-shell
@@ -19,7 +19,6 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala >= 0.22.0
-BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(gexiv2)
 BuildRequires:  pkgconfig(gio-2.0)
@@ -58,7 +57,7 @@ desktop settings such as the panel, app launcher, and window manager.
 
 %install
 %meson_install
-%fdupes %buildroot%_datadir/locale/
+
 %find_lang %{plug_name}-plug
 
 

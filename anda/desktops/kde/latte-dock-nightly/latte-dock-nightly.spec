@@ -62,7 +62,6 @@ using parabolic zoom effect and tries to be there only when it is needed.
 %package lang
 Summary: Translation files for latte-dock
 Requires: %{name} = %{version}-%{release}
-BuildArch: noarch
 %description lang
 %{summary}.
 
@@ -81,8 +80,6 @@ BuildArch: noarch
 %find_lang %{name} --all-name
 
 %files
-%doc README.md
-%license LICENSES/*
 %{_bindir}/latte-dock
 %{_datadir}/metainfo/org.kde.latte-dock.appdata.xml
 %{_datadir}/metainfo/org.kde.latte.plasmoid.appdata.xml
@@ -106,8 +103,8 @@ BuildArch: noarch
 %files lang -f %{name}.lang
 
 %changelog
-* Sun Dec 25 2022 lleyton <lleyton@fyralabs.com> - 0.10.0^20221226.93c50a7-1
+* Sun Dec 25 2022 lleyton <lleyton@fyralabs.com>
 - Comply with packaging policy
-* Sun Dec 25 2022 windowsboy111 <windowsboy111@fyralabs.com> - 0.10.9-1
+* Sun Dec 25 2022 windowsboy111 <windowsboy111@fyralabs.com>
 - Initial package
 

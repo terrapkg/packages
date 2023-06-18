@@ -9,7 +9,7 @@
 Name:           switchboard-plug-locale
 Summary:        Switchboard Locale Plug
 Version:        2.5.9
-Release:        2%?dist
+Release:        1%?dist
 License:        LGPL-3.0-or-later
 
 URL:            https://github.com/elementary/%name
@@ -19,7 +19,6 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson >= 0.46.1
 BuildRequires:  vala
-BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(accountsservice)
 BuildRequires:  pkgconfig(ibus-1.0)
@@ -45,7 +44,7 @@ Supplements:    switchboard%?_isa
 
 %install
 %meson_install
-%fdupes %buildroot%_datadir/locale/
+
 %find_lang %plug_name-plug
 
 

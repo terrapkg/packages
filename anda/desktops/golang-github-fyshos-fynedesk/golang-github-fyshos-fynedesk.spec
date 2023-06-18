@@ -33,16 +33,15 @@ BuildRequires:  xorg-x11-server-devel
 BuildRequires:  libXxf86vm-devel
 BuildRequires:  pkgconfig(gl)
 
+%description %{common_description}
+
+%gopkg
+
 Requires: arandr
 Requires: xbacklight
 Requires: network-manager-applet
 BuildRequires: make
 BuildRequires: golang
-
-%description %{common_description}
-
-%gopkg
-
 
 %prep
 %goprep
@@ -58,7 +57,6 @@ BuildRequires: golang
 %gopkginstall
 install -m 0755 -vd %{buildroot}%{_bindir}
 %make_install
-rm %buildroot%_datadir/gocode/src/github.com/FyshOS/fynedesk/{CHANGELOG.md,README.md,.goipath}
 
 %if %{with check}
 %check

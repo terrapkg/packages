@@ -4,7 +4,7 @@
 Name:           elementary-calculator
 Summary:        Calculator app designed for elementary
 Version:        2.0.2
-Release:        2%{?dist}
+Release:        1%{?dist}
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/%{srcname}
@@ -18,7 +18,6 @@ BuildRequires:  vala
 
 BuildRequires:  pkgconfig(granite-7) >= 7.0.0
 BuildRequires:  pkgconfig(gtk4)
-BuildRequires:  fdupes
 
 Requires:       hicolor-icon-theme
 
@@ -46,8 +45,6 @@ functions (sin, cos, and tan).
 
 %find_lang %{appname}
 
-%fdupes %buildroot/%_datadir/icons/hicolor
-
 
 %check
 desktop-file-validate \
@@ -70,5 +67,5 @@ appstream-util validate-relax --nonet \
 
 
 %changelog
-* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com> - 1.7.2-1
+* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
 - Repackaged for Terra

@@ -109,12 +109,11 @@ install -Dm644 data/test.sensors %{buildroot}%{_sysconfdir}/lomirisensors
 %ldconfig_scriptlets
 
 %files -f %{name}.lang
-%doc README.md
 %license COPYING COPYING.LGPL
 %dir %{_sysconfdir}/lomiri
-%config %{_sysconfdir}/lomiri/devices.conf
+%{_sysconfdir}/lomiri/devices.conf
 %dir %{_sysconfdir}/lomirisensors
-%config %{_sysconfdir}/lomirisensors/test.sensors
+%{_sysconfdir}/lomirisensors/test.sensors
 %{_bindir}/indicators-client
 %{_bindir}/lomiri
 %{_userunitdir}/*.service

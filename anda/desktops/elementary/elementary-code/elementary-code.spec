@@ -6,7 +6,7 @@
 Name:           elementary-code
 Summary:        Code editor from elementary
 Version:        7.0.0
-Release:        3%{?dist}
+Release:        2%{?dist}
 License:        GPL-3.0
 
 URL:            https://github.com/elementary/%{srcname}
@@ -38,7 +38,6 @@ BuildRequires:  pkgconfig(libpeas-gtk-1.0)
 BuildRequires:  pkgconfig(libsoup-2.4)
 BuildRequires:  pkgconfig(pangoft2)
 BuildRequires:  pkgconfig(vte-2.91)
-BuildRequires:  fdupes
 
 Requires:       hicolor-icon-theme
 
@@ -68,8 +67,6 @@ This package contains the development headers.
 %meson_install
 
 %find_lang %{appname}
-
-%fdupes %buildroot%_datadir/icons/hicolor/
 
 
 %files -f %{appname}.lang
@@ -102,5 +99,5 @@ This package contains the development headers.
 
 
 %changelog
-* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com> - 6.2.0-1
+* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
 - Repackaged for Terra

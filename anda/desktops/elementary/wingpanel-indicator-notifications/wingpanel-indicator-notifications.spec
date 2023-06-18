@@ -6,7 +6,7 @@
 Name:           wingpanel-indicator-notifications
 Summary:        Notifications Indicator for wingpanel
 Version:        6.0.7
-Release:        2%{?dist}
+Release:        1%{?dist}
 License:        LGPL-2.0-or-later
 
 URL:            https://github.com/elementary/wingpanel-indicator-notifications
@@ -16,7 +16,6 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala >= 0.22.0
-BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(gdk-pixbuf-2.0)
 BuildRequires:  pkgconfig(gio-2.0)
@@ -46,7 +45,7 @@ A notifications indicator for wingpanel.
 
 %install
 %meson_install
-%fdupes %buildroot%_datadir/locale/
+
 %find_lang notifications-indicator
 
 

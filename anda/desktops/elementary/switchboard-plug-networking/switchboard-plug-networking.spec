@@ -9,7 +9,7 @@
 Name:           switchboard-plug-networking
 Summary:        Switchboard Networking plug
 Version:        2.4.4
-Release:        2%{?dist}
+Release:        1%{?dist}
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/switchboard-plug-network
@@ -19,7 +19,6 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala >= 0.22.0
-BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(glib-2.0) >= 2.32
 BuildRequires:  pkgconfig(granite)
@@ -51,7 +50,7 @@ A switchboard plug for configuring available networks.
 
 %install
 %meson_install
-%fdupes %buildroot%_datadir/locale/
+
 %find_lang %{plug_name}-plug
 
 

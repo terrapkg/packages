@@ -3,7 +3,7 @@
 
 Name:           compiz9
 Version:        0.9.14.2
-Release:        3%?dist
+Release:        2%?dist
 Summary:        OpenGL window and compositing manager 0.9.X.X series
 
 License:        GPL-2.0-or-later AND LGPL-2.0-or-later AND MIT
@@ -14,7 +14,6 @@ Patch1:         gtk-extents.patch
 Patch2:         focus-prevention-disable.patch
 
 Conflicts:     compiz
-BuildRequires: rpm_macro(fdupes)
 BuildRequires: libX11-devel
 BuildRequires: libdrm-devel
 BuildRequires: libXcursor-devel
@@ -67,7 +66,6 @@ This package contains the development files for %{name}.
 %package -n python3-ccsm
 Summary: Compiz Config Manager
 Conflicts: ccsm
-BuildArch: noarch
 Requires: %{name}%{?_isa}
 
 %description -n python3-ccsm
@@ -104,14 +102,10 @@ find %{buildroot} -name '*.la' -exec rm -f {} ';'
 mkdir -p %{buildroot}%{_datadir}/compiz/icons/hicolor/{scalable/{apps,\
 categories},22x22/{categories,devices,mimetypes}}
 
-%fdupes %buildroot%_datadir/glib-2.0/schemas/
-%fdupes %buildroot%_datadir/ccsm/icons/hicolor/scalable/apps/
-
-
 %files -f compiz.lang
-%doc AUTHORS README NEWS
+%doc AUTHORS README INSTALL NEWS
 %license COPYING COPYING.GPL COPYING.LGPL COPYING.MIT
-%config(noreplace) %{_sysconfdir}/compizconfig/config.conf
+%config %{_sysconfdir}/compizconfig/config.conf
 %{_bindir}/compiz
 %{_bindir}/compiz-decorator
 %{_bindir}/gtk-window-decorator

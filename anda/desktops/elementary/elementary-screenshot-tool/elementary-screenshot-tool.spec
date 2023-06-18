@@ -4,7 +4,7 @@
 Name:           elementary-screenshot-tool
 Summary:        Screenshot tool designed for elementary
 Version:        6.0.4
-Release:        2%{?dist}
+Release:        1%{?dist}
 License:        LGPL-3.0
 
 URL:            https://github.com/elementary/screenshot
@@ -18,7 +18,6 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson >= 0.46
 BuildRequires:  vala >= 0.24
-BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(gdk-pixbuf-2.0)
 BuildRequires:  pkgconfig(glib-2.0)
@@ -44,8 +43,6 @@ Screenshot tool designed for elementary.
 %install
 %meson_install
 
-%fdupes %buildroot%_datadir/icons/hicolor/
-%fdupes %buildroot%_datadir/locale
 %find_lang %{appname}
 
 
@@ -73,5 +70,5 @@ appstream-util validate-relax --nonet \
 * Fri Dec 02 2022 root - 6.0.3-1
 - new version
 
-* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com> - 6.0.2-1
+* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
 - Repackaged for Terra

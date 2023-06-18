@@ -6,7 +6,7 @@
 
 Name:          unityx-shell
 Version:       1.7.7
-Release:       2%?DIST
+Release:       %autorelease
 Summary:       UnityX is a smaller shell based on Unity7
 
 License:       GPL-3.0 AND LGPL-3.0
@@ -15,7 +15,6 @@ Source0:       %{url}/-/archive/%commit/unityx-%commit.tar.bz2
 Source2:       https://gitlab.xfce.org/panel-plugins/xfce4-windowck-plugin/-/commit/dee596492f006d02e2b39abd072ddd7b37fefe82.diff
 Patch0:        0001-Remove-social-scope.patch
 
-BuildRequires: FDUPES
 BuildRequires: cmake
 BuildRequires: g++
 BuildRequires: gcc
@@ -57,9 +56,12 @@ Requires:      unity-scope-home
 Requires:      python3-pydbus
 Requires:      python3-psutil
 Requires:      unity-asset-pool
+Requires:      libunity-misc-devel
+Requires:      geis-devel
 Requires:      unity-settings-daemon
 Requires:      unity-gtk3-module
 Requires:      unity-gtk2-module
+Requires:      terra-libindicator-gtk3
 Requires:      plotinus%{?_isa} = %{version}-%{release}
 Requires:      bamf-daemon
 Requires:      xbindkeys
@@ -72,8 +74,7 @@ Requires:      xfce4-vala-panel-appmenu-plugin
 Requires:      xfwm4
 
 %description
-UnityX is a shell based off code from Unity7 with lighter dependencies and more
-customizability.
+UnityX is a shell based off code from Unity7 with lighter dependencies and more customizability.
 
 %package xfce4-windowck-plugin
 Summary:  Core library for the Unity shell
@@ -159,8 +160,6 @@ rm -rf .%{_datadir}/unityx
 ln -s %{_datadir}/unity .%{_datadir}/unityx
 popd
 
-%fdupes %buildroot%_datadir/themes/
-
 %find_lang unityx
 %find_lang xfce4-windowck-plugin
 
@@ -175,7 +174,7 @@ fi
 glib-compile-schemas %{_datadir}/glib-2.0/schemas &>/dev/null || :
 
 %files -f unityx.lang
-%doc AUTHORS ChangeLog README.md
+%doc AUTHORS ChangeLog INSTALL README.md
 %license COPYING COPYING.LGPL
 %{_bindir}/unityx*
 %{_libdir}/unityx

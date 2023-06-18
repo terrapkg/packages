@@ -4,7 +4,7 @@
 Name:           switchboard
 Summary:        Modular Desktop Settings Hub
 Version:        6.0.2
-Release:        2%{?dist}
+Release:        1%{?dist}
 License:        LGPL-2.0-or-later
 
 URL:            https://github.com/elementary/%{name}
@@ -21,7 +21,6 @@ BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(granite) >= 5.4.0
 BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(libhandy-1) >= 0.83.0
-BuildRequires:  fdupes
 
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 
@@ -73,9 +72,6 @@ mkdir -p %{buildroot}/%{_libdir}/%{name}/network
 mkdir -p %{buildroot}/%{_libdir}/%{name}/personal
 mkdir -p %{buildroot}/%{_libdir}/%{name}/system
 
-%fdupes %buildroot%_datadir/locale/
-%fdupes %buildroot%_datadir/icons/hicolor/
-
 
 %check
 desktop-file-validate \
@@ -86,8 +82,6 @@ appstream-util validate-relax --nonet \
 
 
 %files -f %{appname}.lang
-%doc README.md
-%license COPYING
 %{_bindir}/%{appname}
 
 %{_datadir}/applications/%{appname}.desktop
@@ -116,5 +110,5 @@ appstream-util validate-relax --nonet \
 
 
 %changelog
-* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com> - 6.0.2-1
+* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
 - Repackaged for Terra

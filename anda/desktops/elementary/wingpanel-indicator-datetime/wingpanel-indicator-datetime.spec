@@ -6,7 +6,7 @@
 Name:           wingpanel-indicator-datetime
 Summary:        Datetime Indicator for wingpanel
 Version:        2.4.1
-Release:        2%{?dist}
+Release:        1%{?dist}
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/wingpanel-indicator-datetime
@@ -16,7 +16,6 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala >= 0.22.0
-BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(glib-2.0) >= 2.32
 BuildRequires:  pkgconfig(granite) >= 6.0.0
@@ -45,7 +44,7 @@ A datetime indicator for wingpanel.
 
 %install
 %meson_install
-%fdupes %buildroot%_datadir/locale/
+
 %find_lang datetime-indicator
 
 # remove the specified stock icon from appdata (invalid in libappstream-glib)

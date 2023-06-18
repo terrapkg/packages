@@ -9,7 +9,7 @@
 Name:           switchboard-plug-a11y
 Summary:        Switchboard Accessibility plug
 Version:        2.3.0
-Release:        5%{?dist}
+Release:        4%{?dist}
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/switchboard-plug-a11y
@@ -19,7 +19,6 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala
-BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(granite)
@@ -49,7 +48,7 @@ that allows the user to manage accessibility settings.
 
 %install
 %meson_install
-%fdupes %buildroot%_datadir/locale/
+
 %find_lang %{plug_name}-plug
 
 
