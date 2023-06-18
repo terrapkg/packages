@@ -55,6 +55,8 @@ BuildRequires: qt5-qtbase-private-devel
 BuildRequires: qt5-qtdeclarative-devel
 BuildRequires: systemd-rpm-macros
 Recommends:    lomiri-session
+# Most of these are for other libs that rpm doesn't find
+Requires:      libusermetrics
 Requires:      deviceinfo
 Requires:      lomiri-system-settings
 Requires:      qmenumodel
