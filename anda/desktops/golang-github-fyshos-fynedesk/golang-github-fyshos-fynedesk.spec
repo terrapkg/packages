@@ -51,21 +51,13 @@ BuildRequires: golang
 %generate_buildrequires
 
 %build
-CGO_ENABLED=0
-GOOS=linux
-%ifarch x86_64
-GOARCH=amd64
-%elifarch aarch64
-GOARCH=arm64
-%endif
-go build -ldflags '-linkmode external -s -w -extldflags "--static-pie"' -buildmode=pie -tags 'osusergo,netgo,static_build' ./cmd/fynedesk_runner
-go build -ldflags '-linkmode external -s -w -extldflags "--static-pie"' -buildmode=pie -tags 'osusergo,netgo,static_build' ./cmd/fynedesk
+go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w" -buildmode=pie ./cmd/fynedesk_runner
+go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w" -buildmode=pie ./cmd/fynedesk
 
 %install
 %gopkginstall
 install -m 0755 -vd %{buildroot}%{_bindir}
 %make_install
-rm %buildroot%_datadir/gocode/src/github.com/FyshOS/fynedesk/{CHANGELOG.md,README.md,.goipath}
 
 %if %{with check}
 %check
@@ -75,7 +67,6 @@ rm %buildroot%_datadir/gocode/src/github.com/FyshOS/fynedesk/{CHANGELOG.md,READM
 %files
 %license LICENSE
 %doc AUTHORS README.md CHANGELOG.md
-%ghost %_datadir/gocode/src/github.com/FyshOS/fynedesk/{CHANGELOG.md,README.md,.goipath}
 %{_bindir}/*
 %{_datadir}/xsessions/fynedesk.desktop
 
