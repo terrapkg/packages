@@ -36,7 +36,13 @@ Client for Subatomic repo manager
 
 
 %build
-export CGO_ENABLED=1
+CGO_ENABLED=0
+GOOS=linux
+%ifarch x86_64
+GOARCH=amd64
+%elifarch aarch64
+GOARCH=arm64
+%endif
 mkdir -p build/bin
 go build -ldflags '-linkmode external -s -w -extldflags "--static-pie"' -buildmode=pie -tags 'osusergo,netgo,static_build' -v -o build/bin/subatomic-cli ./subatomic-cli
 go build -ldflags '-linkmode external -s -w -extldflags "--static-pie"' -buildmode=pie -tags 'osusergo,netgo,static_build' -v -o build/bin/subatomic ./server
