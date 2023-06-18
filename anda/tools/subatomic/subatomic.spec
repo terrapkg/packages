@@ -13,6 +13,7 @@ Source0:        %url/archive/refs/tags/v%version.tar.gz
 BuildRequires:  go-rpm-macros
 BuildRequires:  git-core
 BuildRequires:  ostree-devel
+BuildRequires:  gcc
 Requires:       ostree
 Requires:       createrepo_c
 
