@@ -23,7 +23,8 @@ size to whether to colorize by line, word or character.
 shards build --production --release -D "-fPIE" --link-flags "-pie"
 
 %install
-install -Dm755 bin/blahaj %buildroot%_bindir
+mkdir -p %buildroot%_bindir
+install -Dm755 bin/blahaj %buildroot%_bindir/
 
 %check
 crystal spec --order random -Dpreview_mt
@@ -31,7 +32,7 @@ crystal spec --order random -Dpreview_mt
 %files
 %doc README.md
 %license LICENSE
-/usr/bin/blahaj
+%_bindir/blahaj
 
 %changelog
 * Sat Apr 15 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2.0.1-1
