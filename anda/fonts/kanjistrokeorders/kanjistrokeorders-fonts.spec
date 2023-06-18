@@ -5,7 +5,7 @@ URL:        https://sites.google.com/site/nihilistorguk
 License:    BSD-3-Clause
 Summary:    Kanji stroke order font
 BuildRequires: unzip
-BuildArch: noarch
+BuildArch:  noarch
 
 
 %description
