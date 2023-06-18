@@ -44,9 +44,7 @@ GOARCH=amd64
 %elifarch aarch64
 GOARCH=arm64
 %endif
-# -linkmode external -s -w ?
-go build -ldflags '-extldflags "--static-pie"' -buildmode=pie -tags 'osusergo,netgo,static_build' -v -o %{gobuilddir}/bin/gendesk .
-# or goipath macro?
+go build -ldflags '-s -w -extldflags "--static-pie"' -buildmode=pie -tags 'osusergo,netgo,static_build' -v -o %{gobuilddir}/bin/gendesk .
 
 %install
 %gopkginstall
