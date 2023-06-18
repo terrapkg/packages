@@ -60,7 +60,7 @@ export FCFLAGS="${FCFLAGS} -Ofast"
 export PATH="$(pwd):$(pwd)/bin:${PATH}"
 
 . ci/funs.sh
-nimBuildCsourcesIfNeeded CFLAGS="${CFLAGS} -Ic_code -w -O3 -fno-strict-aliasing -fPIE" LDFLAGS="${LDFLAGS} -pie"
+nimBuildCsourcesIfNeeded CFLAGS="${CFLAGS} -Ic_code -w -O3 -fno-strict-aliasing -fPIE" LDFLAGS="-ldl -lm -lrt -pie"
 
 nim c --noNimblePath --skipUserCfg --skipParentCfg --hints:off -d:danger koch.nim
 koch boot -d:release -d:nimStrictMode --lib:lib

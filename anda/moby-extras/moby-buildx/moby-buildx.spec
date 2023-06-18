@@ -9,6 +9,7 @@ Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 
 BuildRequires:  go-rpm-macros
 BuildRequires:  git-core
+BuildRequires:  gcc
 Requires:       docker
 Provides:       docker-buildx = %{version}-%{release}
 
