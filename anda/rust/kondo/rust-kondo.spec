@@ -40,7 +40,8 @@ tar xf %{SOURCE0}
 
 %install
 install -Dm755 kondo %{buildroot}/usr/bin/kondo
-install -Dm644 %{SOURCE1} %{buildroot}/%{_datadir}/licenses/%{crate}/LICENSE
+install -Dm644 %{SOURCE1} %{buildroot}/%_docdir/kondo/README.md
+install -Dm644 %{SOURCE1} %{buildroot}/%{_datadir}/licenses/kondo/LICENSE
 
 %changelog
 %autochangelog
