@@ -19,11 +19,14 @@ buildx is a Docker CLI plugin for extended build capabilities with BuildKit.
 
 %prep
 %autosetup -n buildx-%{version}
+go mod download
 
 
 %build
 export CGO_ENABLED=1
-go build -ldflags '-linkmode external -s -w -extldflags "--static-pie"' -buildmode=pie -tags 'osusergo,netgo,static_build' -v -o docker-buildx ./cmd/buildx
+go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w -extldflags '--static-pie'" \
+	-buildmode=pie -tags 'osusergo,netgo,static_build' -v -x \
+	-o docker-buildx ./cmd/buildx
 
 
 %install

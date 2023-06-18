@@ -33,19 +33,17 @@ Client for Subatomic repo manager
 
 %prep
 %autosetup
+go mod download
 
 
 %build
-CGO_ENABLED=0
-GOOS=linux
-%ifarch x86_64
-GOARCH=amd64
-%elifarch aarch64
-GOARCH=arm64
-%endif
 mkdir -p build/bin
-go build -ldflags '-linkmode external -s -w -extldflags "--static-pie"' -buildmode=pie -tags 'osusergo,netgo,static_build' -v -o build/bin/subatomic-cli ./subatomic-cli
-go build -ldflags '-linkmode external -s -w -extldflags "--static-pie"' -buildmode=pie -tags 'osusergo,netgo,static_build' -v -o build/bin/subatomic ./server
+go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w -extldflags '--static-pie'" \
+	-buildmode=pie -tags 'osusergo,netgo,static_build' -v -x \
+	-o build/bin/subatomic-cli ./subatomic-cli
+go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w -extldflags '--static-pie'" \
+	-buildmode=pie -tags 'osusergo,netgo,static_build' -v -x \
+	-o build/bin/subatomic ./server
 
 
 %install
@@ -56,7 +54,6 @@ install -pm 755 build/bin/subatomic %{buildroot}%{_bindir}/
 
 %files
 %{_bindir}/subatomic
-
 
 
 %changelog
