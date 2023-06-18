@@ -55,7 +55,7 @@ This package contains the development header files for %{name}.
 %find_lang %{name}
 
 %files -f %{name}.lang
-%doc READMD.md
+%doc README.md
 %license COPYING
 %config %{_sysconfdir}/xdg/autostart/ayatana-indicator-sound.desktop
 %{_userunitdir}/ayatana-indicator-sound.service

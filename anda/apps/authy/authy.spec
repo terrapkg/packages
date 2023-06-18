@@ -17,9 +17,6 @@ unsquashfs -q -f -d snap %{SOURCE0}
 
 %build
 
-%check
-desktop-file-validate %buildroot%_datadir/authy/meta/gui/authy.desktop
-
 %install
 install -d %buildroot%_datadir/authy
 cp -r snap/. %buildroot%_datadir/authy
@@ -32,6 +29,9 @@ rm -rf %buildroot%_datadir/authy/{data-dir,gnome-platform,lib,meta,scripts,usr,*
 
 install -d %buildroot%_bindir
 ln -s %_datadir/authy/authy %buildroot%_bindir
+
+%check
+desktop-file-validate %buildroot%_datadir/authy/meta/gui/authy.desktop
 
 %files
 %_datadir/authy/

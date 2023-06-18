@@ -10,7 +10,7 @@ Group:			Applications/Internet
 Source0:		%url/archive/refs/tags/v%version.tar.gz
 Source1:		launch.sh
 Requires:		electron xdg-utils
-BuildRequires:	nodejs-npm desktop-file-utils
+BuildRequires:	nodejs-npm
 Conflicts:		armcord-bin
 BuildArch:		noarch
 

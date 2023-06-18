@@ -26,6 +26,7 @@ BuildRequires:  squashfuse-devel
 BuildRequires:  git-core
 BuildRequires:  librsvg2-devel
 BuildRequires:  boost-devel
+BuildRequires:  wget
 
 
 %description

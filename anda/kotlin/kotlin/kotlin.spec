@@ -45,6 +45,7 @@ mkdir -p %{buildroot}%{_datadir}/%{name}/lib/
 install -m 0644 lib/* %{buildroot}%{_datadir}/%{name}/lib/
 mkdir -p %{buildroot}%{_datadir}/licenses/%{name}/
 cd license/ && find * -type f -exec install -Dm 0644 {} %{buildroot}%{_datadir}/licenses/%{name}/{} \;
+mkdir -p %buildroot%_docdir/%name
 install -Dm644 %SOURCE1 %buildroot%_docdir/%name/
 
 %fdupes %buildroot/%_datadir/licenses/%name/

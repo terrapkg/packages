@@ -6,7 +6,7 @@ Release: %autorelease
 License: GPL-3.0
 URL:     https://invent.kde.org/qt/qt/qtpim
 Source0: %{url}/-/archive/kde/5.15/qtpim-kde-%{version}.tar.gz
-Source1: https://salsa.debian.org/qt-kde-team/qt/qtpim/-/archive/5.15/qtpim-master.tar.gz
+Source1: https://salsa.debian.org/qt-kde-team/qt/qtpim/-/archive/master/qtpim-master.tar.gz
 
 BuildRequires: make
 BuildRequires: gcc-c++

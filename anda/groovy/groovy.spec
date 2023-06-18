@@ -30,11 +30,11 @@ cd %{name}-%{version}
 install -d %{buildroot}/usr/share/groovy %{buildroot}/usr/bin
 cp -r lib conf %{buildroot}/usr/share/groovy
 cp bin/* %{buildroot}/usr/bin
-rm %{buildroot}/usr/bin/*completion %{buildroot}/groovy.ico
+rm %{buildroot}/usr/bin/*completion %{buildroot}%_bindir/groovy.ico
 install -Dm755 bin/*completion -t %{buildroot}/usr/share/bash-completion/completions
 
 # Remove all DOS/Windows batch files
-find %{buildroot} -name '*.bat' -exec rm {} \;
+find %buildroot%_bindir -name '*.bat' -exec rm {} \;
 
 # Package the license file
 install -Dm644 LICENSE -t %{buildroot}/usr/share/licenses/%{name}
