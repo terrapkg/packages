@@ -52,7 +52,8 @@ BuildRequires: golang
 #%%go_generate_buildrequires
 
 %build
-%make_build
+go buildgo build -ldflags '-linkmode external -s -w -extldflags "--static-pie"' -buildmode=pie -tags 'osusergo,netgo,static_build' ./cmd/fynedesk_runner
+go buildgo build -ldflags '-linkmode external -s -w -extldflags "--static-pie"' -buildmode=pie -tags 'osusergo,netgo,static_build' ./cmd/fynedesk
 
 %install
 %gopkginstall
@@ -68,6 +69,7 @@ rm %buildroot%_datadir/gocode/src/github.com/FyshOS/fynedesk/{CHANGELOG.md,READM
 %files
 %license LICENSE
 %doc AUTHORS README.md CHANGELOG.md
+%ghost %_datadir/gocode/src/github.com/FyshOS/fynedesk/{CHANGELOG.md,README.md,.goipath}
 %{_bindir}/*
 %{_datadir}/xsessions/fynedesk.desktop
 
