@@ -49,9 +49,15 @@ BuildRequires: golang
 %autopatch -p1
 
 %generate_buildrequires
-#%%go_generate_buildrequires
 
 %build
+CGO_ENABLED=0
+GOOS=linux
+%ifarch x86_64
+GOARCH=amd64
+%elifarch aarch64
+GOARCH=arm64
+%endif
 go build -ldflags '-linkmode external -s -w -extldflags "--static-pie"' -buildmode=pie -tags 'osusergo,netgo,static_build' ./cmd/fynedesk_runner
 go build -ldflags '-linkmode external -s -w -extldflags "--static-pie"' -buildmode=pie -tags 'osusergo,netgo,static_build' ./cmd/fynedesk
 
