@@ -24,6 +24,7 @@ Summary:        :herb: Generate .desktop files and download .png icons by specif
 License:        BSD-3-Clause
 URL:            %{gourl}
 Source:         %{gosource}
+BuildRequires:  git
 
 %description %{common_description}
 
