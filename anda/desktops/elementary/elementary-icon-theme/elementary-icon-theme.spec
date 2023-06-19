@@ -4,7 +4,7 @@
 Name:           elementary-icon-theme
 Summary:        Icons from the Elementary Project
 Version:        7.3.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/icons
@@ -18,6 +18,7 @@ BuildRequires:  libappstream-glib
 BuildRequires:  librsvg2-tools
 BuildRequires:  meson
 BuildRequires:  xcursorgen
+BuildRequires:  fdupes
 
 %description
 This is an icon theme designed to be smooth, sexy, clear, and efficient.
@@ -64,6 +65,8 @@ done
 
 # Create icon cache file
 touch %{buildroot}/%{_datadir}/icons/elementary/icon-theme.cache
+
+%fdupes %buildroot%_datadir/icons/elementary/
 
 
 %check

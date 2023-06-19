@@ -1,1 +1,1 @@
-rpm.version(gh("AyatanaIndicators/ayatana-indicator-datetime"));
+rpm.version(gh_tag("AyatanaIndicators/ayatana-indicator-datetime"));

@@ -33,25 +33,26 @@ BuildRequires:  xorg-x11-server-devel
 BuildRequires:  libXxf86vm-devel
 BuildRequires:  pkgconfig(gl)
 
-%description %{common_description}
-
-%gopkg
-
 Requires: arandr
 Requires: xbacklight
 Requires: network-manager-applet
 BuildRequires: make
 BuildRequires: golang
 
+%description %{common_description}
+
+%gopkg
+
+
 %prep
 %goprep
 %autopatch -p1
 
 %generate_buildrequires
-#%%go_generate_buildrequires
 
 %build
-%make_build
+go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w" -buildmode=pie ./cmd/fynedesk_runner
+go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w" -buildmode=pie ./cmd/fynedesk
 
 %install
 %gopkginstall
