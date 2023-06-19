@@ -109,7 +109,7 @@ jobs:
           for f in anda-build/rpm/rpms/*.rpm; do
             dnf in --downloadonly $f &> $f.dnfout.txt || fail=1
             if [[ $fail -eq 1 ]]; then
-              x="$x### $f\n```\n$(cat $f.dnfout.txt)```\n"
+              x="$x### $f\n\`\`\`\n$(cat $f.dnfout.txt)\`\`\`\n"
             fi
           done
           EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
