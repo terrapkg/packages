@@ -91,6 +91,9 @@ jobs:
           rpmlint anda-build/ > rpmlint.txt || f=1
           if [[ $f -eq 1 ]]; then
             EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+            echo "esc_lint_out<<$EOF" >> $GITHUB_ENV
+            cat rpmlint.txt | sed 's/`/\\`/g' >> $GITHUB_ENV
+            echo $EOF >> $GITHUB_ENV
             echo "lint_out<<$EOF" >> $GITHUB_ENV
             cat rpmlint.txt >> $GITHUB_ENV
             echo $EOF >> $GITHUB_ENV
@@ -108,6 +111,9 @@ jobs:
             fi
           done
           EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+          echo "esc_dnf_out<<$EOF" >> $GITHUB_ENV
+          echo $x | sed 's/`/\\`/g' >> $GITHUB_ENV
+          echo $EOF >> $GITHUB_ENV
           echo "dnf_out<<$EOF" >> $GITHUB_ENV
           echo $x >> $GITHUB_ENV
           echo $EOF >> $GITHUB_ENV
@@ -118,12 +124,13 @@ jobs:
         with:
           script: |
             let out = "";
-            if ("${{ env.lint_out }}".trim() != "") {
+            if (`${{ env.esc_lint_out }}`.trim() != "") {
               out += "## 🔨 Lint: [${{matrix.pkg.pkg}} (${{matrix.pkg.arch}})](https://github.com/terrapkg/packages/actions/runs/${{github.run_id}})\n";
-              out += "```\n${{ env.lint_out }}```\n";
+              out += `\`\`\`\n${{ env.esc_lint_out }}\`\`\`\n`;
             }
-            if ("${{ env.dnf_out }}".trim() != "") {
-              out += "## ❌ DNF: [${{matrix.pkg.pkg}} (${{matrix.pkg.arch}})](https://github.com/terrapkg/packages/actions/runs/${{github.run_id}})\n${{ env.dnf_out }}\n";
+            if (`${{ env.esc_dnf_out }}`.trim() != "") {
+              out += "## ❌ DNF: [${{matrix.pkg.pkg}} (${{matrix.pkg.arch}})](https://github.com/terrapkg/packages/actions/runs/${{github.run_id}})\n";
+              out += `${{ env.esc_dnf_out }}`;
             }
             if (out != "") {
               github.rest.issues.createComment({
