@@ -135,7 +135,7 @@ jobs:
             }
 
       - name: Create commit comment
-        if: success() && github.event_name != 'pull_request'
+        if: success()
         uses: peter-evans/commit-comment@v1
         with:
           body: |
