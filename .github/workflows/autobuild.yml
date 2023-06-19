@@ -78,19 +78,21 @@ jobs:
             terra${{ matrix.version }} anda-build/rpm/rpms/*
 
       - name: Notify Madoguchi
+        if: always()
         run: ./.github/workflows/mg.sh ${{success()}} ${{matrix.pkg}} ${{matrix.version}} ${{matrix.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}}
 
       - name: Lint RPMs and SRPMs
         id: lint
         if: success()
         run: |
-          rpmlint anda-build/ > rpmlint.txt || true
+          rpmlint anda-build/ > rpmlint.txt
           if [[ $? -ne 0 ]]; then
             EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
             echo "lint_out<<$EOF" >> $GITHUB_ENV
             cat rpmlint.txt >> $GITHUB_ENV
             echo $EOF >> $GITHUB_ENV
           fi
+          true
 
       - name: Try to install package
         id: dnf
@@ -98,10 +100,11 @@ jobs:
         run: |
           x=""
           for f in anda-build/rpm/rpms/*.rpm; do
-            dnf in --downloadonly $f > "$f.dnfout.txt"
+            dnf in --downloadonly $f 2>&1 > $f.dnfout.txt
             if [[ $? -ne 0 ]]; then
               x="$x### $f\n```\n$(cat $f.dnfout.txt)```\n"
             fi
+            true
           done
           EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
           echo "dnf_out<<$EOF\n$x\n$EOF" >> $GITHUB_ENV

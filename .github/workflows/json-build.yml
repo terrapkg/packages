@@ -48,4 +48,5 @@ jobs:
             terra${{ matrix.version }} anda-build/rpm/rpms/*
 
       - name: Notify Madoguchi
+        if: always()
         run: ./.github/workflows/mg.sh ${{success()}} ${{matrix.pkg}} ${{matrix.version}} ${{matrix.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}}
