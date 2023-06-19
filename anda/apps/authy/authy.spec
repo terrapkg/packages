@@ -1,13 +1,13 @@
 Name: authy
 Version: 2.3.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Two factor authentication desktop application
 License: Unlicense
 URL: https://authy.com/
 Source0: https://api.snapcraft.io/api/v1/snaps/download/H8ZpNgIoPyvmkgxOWw5MSzsXK1wRZiHn_19.snap
 Requires: gtk3
 Requires: nss
-BuildRequires: squashfs-tools
+BuildRequires: squashfs-tools desktop-file-utils
 
 %description
 %{summary}.
@@ -18,24 +18,30 @@ unsquashfs -q -f -d snap %{SOURCE0}
 %build
 
 %install
-install -d "%{buildroot}/opt/authy"
-cp -r "snap/." "%{buildroot}/opt/authy"
+install -d %buildroot%_datadir/authy
+cp -r snap/. %buildroot%_datadir/authy
 
-sed -i 's|${SNAP}/meta/gui/icon.png|authy|g' "%{buildroot}/opt/authy/meta/gui/authy.desktop"
-install -Dm644 "%{buildroot}/opt/authy/meta/gui/authy.desktop" -t "%{buildroot}/usr/share/applications"
-install -Dm644 "%{buildroot}/opt/authy/meta/gui/icon.png" "%{buildroot}/usr/share/pixmaps/authy.png"
+sed -i 's|${SNAP}/meta/gui/icon.png|authy|g' %buildroot%_datadir/authy/meta/gui/authy.desktop
+install -Dm644 %buildroot%_datadir/authy/meta/gui/authy.desktop -t %buildroot%_datadir/applications
+install -Dm644 %buildroot%_datadir/authy/meta/gui/icon.png %buildroot%_datadir/pixmaps/authy.png
 
-rm -rf "%{buildroot}/opt/authy"/{data-dir,gnome-platform,lib,meta,scripts,usr,*.sh}
+rm -rf %buildroot%_datadir/authy/{data-dir,gnome-platform,lib,meta,scripts,usr,*.sh}
 
-install -d "%{buildroot}/usr/bin"
-ln -s "/opt/authy/authy" "%{buildroot}/usr/bin"
+install -d %buildroot%_bindir
+ln -s %_datadir/authy/authy %buildroot%_bindir
+
+%check
+desktop-file-validate %buildroot%_datadir/applications/authy.desktop
 
 %files
-/opt/authy/
-/usr/bin/authy
-/usr/share/applications/authy.desktop
-/usr/share/pixmaps/authy.png
+%_datadir/authy/
+%_bindir/authy
+%_datadir/applications/authy.desktop
+%_datadir/pixmaps/authy.png
 
 %changelog
-* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
+* Sat Jun 17 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2.3.0-2
+- Use /usr/share/ instead of /opt/
+
+* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com> - 2.2.1-2
 - Initial release

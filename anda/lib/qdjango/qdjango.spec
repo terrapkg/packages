@@ -13,6 +13,7 @@ BuildRequires: qt5-qtbase-devel
 BuildRequires: cmake
 BuildRequires: gcc-c++
 BuildRequires: doxygen
+BuildRequires: fdupes
 
 %description
 QDjango is a web framework written in C++ and built on top of the Qt library.
@@ -45,8 +46,10 @@ The %{name}-doc contains documentation for %{name}.
 %make_install INSTALL_ROOT=%{buildroot}
 # Aren't needed and already ran plus contain rpaths in every single file underneath
 rm -rf %{buildroot}%{_prefix}/tests
+%fdupes %buildroot/%_docdir/%name/html/search/
 
 %files
+%doc README.md
 %license LICENSE.LGPL
 %{_libdir}/libqdjango-db.so.*
 %{_libdir}/libqdjango-http.so.*

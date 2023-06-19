@@ -10,6 +10,7 @@ Source1:		fyra-fractureiser-detector.service
 Source2:		fyra-fractureiser-detector.timer
 Source3:		dialog.py
 License:		MIT
+BuildArch:		noarch
 
 %description
 This is a rapid security response for the detection of the Fractureiser malware.

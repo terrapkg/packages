@@ -29,7 +29,8 @@ Requires:      unity-settings-daemon
 Requires:      lightdm%{?_isa}
 
 %description
-The greeter (login screen) application for Unity. It is implemented as a LightDM greeter.
+The greeter (login screen) application for Unity.
+It is implemented as a LightDM greeter.
 
 %prep
 %autosetup -p1

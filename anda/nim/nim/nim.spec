@@ -12,7 +12,7 @@ Source1:		nim.1
 Source2:		nimgrep.1
 Source3:		nimble.1
 Source4:		nimsuggest.1
-BuildRequires:	gcc mold git gcc-c++ nodejs openssl-devel pkgconfig(bash-completion) gc-devel
+BuildRequires:	gcc mold git gcc-c++ nodejs openssl-devel pkgconfig(bash-completion) gc-devel pcre-devel
 Requires:		redhat-rpm-config gcc
 Conflicts:		choosenim
 
@@ -56,12 +56,12 @@ export FCFLAGS="${FCFLAGS} -Ofast"
 export PATH="$(pwd):$(pwd)/bin:${PATH}"
 
 mold -run nim c -d:danger koch.nim
-mold -run koch boot -d:useLinenoise
+mold -run koch boot -d:useLinenoise -t:-fPIE -l:-pie
 
 mold -run koch docs &
-(cd lib; mold -run nim c --app:lib -d:danger -d:createNimRtl nimrtl.nim) &
-mold -run koch tools -d:release &
-mold -run nim c -d:danger nimsuggest/nimsuggest.nim &
+(cd lib; mold -run nim c --app:lib -d:danger -d:createNimRtl -t:-fPIE -l:-pie nimrtl.nim) &
+mold -run koch tools -t:-fPIE -l:-pie &
+mold -run nim c -t:-fPIE -l:-pie -d:danger nimsuggest/nimsuggest.nim &
 wait
 
 sed -i '/<link.*fonts.googleapis.com/d' doc/html/*.html
@@ -76,10 +76,10 @@ install -Dp -m644 tools/nim.bash-completion %{buildroot}%{bashcompdir}/nim
 install -Dp -m644 dist/nimble/nimble.bash-completion %{buildroot}%{bashcompdir}/nimble
 install -Dp -m644 -t%{buildroot}%{_mandir}/man1 %SOURCE1 %SOURCE2 %SOURCE3 %SOURCE4
 
-mkdir -p %{buildroot}%{_docdir}/%{name}/html
+mkdir -p %{buildroot}%{_docdir}/%{name}/html %buildroot%_prefix/lib/nim
 cp -a doc/html/*.html %{buildroot}%{_docdir}/%{name}/html/
-mkdir -p %{buildroot}%{_docdir}/%{name}/html/
 cp tools/dochack/dochack.js %{buildroot}%{_docdir}/%{name}/
+cp -r lib %buildroot%_prefix/lib/nim/
 
 %check
 # export PATH=$PATH:$(realpath ./bin)
@@ -93,6 +93,7 @@ cp tools/dochack/dochack.js %{buildroot}%{_docdir}/%{name}/
 %doc doc/readme.txt
 %{_bindir}/nim{,ble}
 %{_mandir}/man1/nim{,ble}.1*
+%_prefix/lib/nim/
 
 %files tools
 %license copying.txt

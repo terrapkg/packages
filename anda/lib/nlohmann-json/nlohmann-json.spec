@@ -7,12 +7,12 @@ Release: 1%{?dist}
 Summary: JSON for Modern C++ (c++11) ("single header file")
 
 
-%define desc %{expand:There are myriads of JSON libraries out there, and each may even have its reason to exist. 
-Our class had these design goals:
+%define desc %{expand:
+There are myriads of JSON libraries out there, and each may even have its
+reason to exist. Our class had these design goals:
 - intuitive syntax.
 - Trivial integration.
-- Serious testing
-}
+- Serious testing}
 
 License: MIT
 Url: https://github.com/nlohmann/json
@@ -44,6 +44,8 @@ This package contains the single header C++ file and CMake dependency files.
 %cmake_install
 
 %files devel
+%doc README.md
+%license LICENSE.MIT
 %{_includedir}/nlohmann
 %{_datadir}/cmake/nlohmann_json/
 %{_datadir}/pkgconfig/nlohmann_json.pc

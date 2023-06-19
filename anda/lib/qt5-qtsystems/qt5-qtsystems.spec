@@ -46,11 +46,11 @@ Provides: %{name}-systeminfo = %{version}-%{release}
 Provides: %{name}-versit = %{version}-%{release}
 
 %description
-Qt5 Mobility Project delivers a set of new APIs to Qt with features that are well
-known from the mobile device world, in particular phones. However, these APIs
-allow the developer to use these features with ease from one framework and apply
-them to phones, netbooks and non-mobile personal computers. The framework not
-only improves many aspects of a mobile experience, because it improves the use
+Qt5 Mobility Project delivers a set of new APIs to Qt with features that are
+well known from the mobile device world, in particular phones. However, these
+APIs allow the developer to use these features with ease from one framework and
+apply them to phones, netbooks and non-mobile personal computers. The framework
+not only improves many aspects of a mobile experience, as it improves the use
 of these technologies, but has applicability beyond the mobile device arena.
 
 %package devel

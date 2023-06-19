@@ -4,13 +4,13 @@ Release:        1%{?dist}
 Summary:        Flashcard program for using space repetition learning
 License:        AGPL-3.0-or-later AND GPL-3.0-or-later AND LGPL-3.0-or-later AND MIT AND BSD-3-Clause AND CC-BY-SA-3.0 AND CC-BY-3.0 AND Apache-2.0 AND CC-BY-2.5
 URL:            https://apps.ankiweb.net/
-BuildRequires:  python3-devel python3-setuptools python3-waitress python3-protobuf python3-pysocks 
+BuildRequires:  python3-devel python3-setuptools python3-waitress python3-protobuf python3-pysocks rpm_macro(fdupes)
 BuildRequires:  python3-distro python3-flask-cors python3-jsonschema python3-send2trash python3-certifi python3-simplejson
-BuildRequires:  python3-installer make mold cargo git rsync ninja-build libxcrypt-compat nodejs python3.9 python-unversioned-command gcc
+BuildRequires:  python3-installer make mold cargo git rsync ninja-build libxcrypt-compat nodejs python3.9 python-unversioned-command gcc python3-pyqt6-devel python3-pyqt6
 Requires:       hicolor-icon-theme python3-sqlalchemy python3-simplejson python3-matplotlib python3-decorator python3-markdown python3-send2trash
-Requires:       python3-requests python3-pygame python3-beautifulsoup4 python3-httplib2 python3-pyaudio python3-jsonschema sox libxcrypt-compat python3-qt5-webengine
+Requires:       python3-requests python3-pygame python3-beautifulsoup4 python3-httplib2 python3-pyaudio python3-jsonschema sox libxcrypt-compat python3-qt5-webengine python3-pyqt6
+Recommends:     mpv
 Obsoletes:      anki <= 2.1.15
-BuildArch:      noarch
 Conflicts:      anki-qt5
 Patch0:         0001-No-update.patch
 
@@ -27,6 +27,8 @@ git checkout %{version}
 # See https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=anki
 
 %build
+export RELEASE=1
+export PYTHONPATH=%_libdir/python3/dist-packages
 mold -run ./tools/build
 
 
@@ -47,6 +49,8 @@ find %{buildroot} -iname direct_url.json | xargs -r rm -rf
 
 chmod 755 %{buildroot}%{_bindir}/anki
 
+%fdupes %_libdir/python*/site-packages/_aqt/data/
+
 
 %files
 %license LICENSE*
@@ -54,11 +58,11 @@ chmod 755 %{buildroot}%{_bindir}/anki
 %{_bindir}/anki
 %{_datadir}/applications/anki.desktop
 %{_datadir}/pixmaps/anki.png
-/usr/lib64/python*/site-packages/aqt/
-/usr/lib64/python*/site-packages/aqt-%{version}.dist-info/
-/usr/lib64/python*/site-packages/_aqt/
-/usr/lib64/python*/site-packages/anki/
-/usr/lib64/python*/site-packages/anki-%{version}.dist-info/
+%_libdir/python*/site-packages/aqt/
+%_libdir/python*/site-packages/aqt-%{version}.dist-info/
+%_libdir/python*/site-packages/_aqt/
+%_libdir/python*/site-packages/anki/
+%_libdir/python*/site-packages/anki-%{version}.dist-info/
 
 
 %changelog

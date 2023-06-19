@@ -21,8 +21,9 @@ BuildRequires:  vala-devel
 BuildRequires:  intltool
 
 %description
-The Ayatana Indicators project is the continuation of Application Indicators and System Indicators, 
-two technologies developed by Canonical Ltd. for the Unity7 desktop and Lomiri desktop.
+The Ayatana Indicators project is the continuation of Application Indicators
+and System Indicators, two technologies developed by Canonical Ltd. for the
+Unity7 desktop and Lomiri desktop.
 
 %package devel
 Summary:    Development files for %{name}
@@ -52,8 +53,9 @@ This package contains documentation files for %{name}.
 %find_lang %{name}
 
 %files -f %{name}.lang
+%doc README.md
 %license COPYING
-%{_sysconfdir}/xdg/autostart/ayatana-indicator-messages.desktop
+%config %{_sysconfdir}/xdg/autostart/ayatana-indicator-messages.desktop
 %{_userunitdir}/ayatana-indicator-messages.service
 %{_libdir}/libmessaging-menu.so.*
 %{_libdir}/girepository-1.0/MessagingMenu-1.0.typelib

@@ -4,7 +4,7 @@
 
 Name:       geonames
 Version:    0.3.0
-Release:    %autorelease
+Release:    2%?dist
 Summary:    Parse and query the geonames database
 License:    GPL-3.0
 URL:        https://gitlab.com/ubports/development/core/geonames
@@ -15,6 +15,7 @@ BuildRequires: gcc-c++
 BuildRequires: glib2-devel
 BuildRequires: gtk-doc
 BuildRequires: gettext
+BuildRequires: fdupes
 
 %description
 A library for parsing and querying a local copy of the geonames.org database.
@@ -43,9 +44,11 @@ The %{name}-doc package contains documenation for %{name}.
 
 %install
 %cmake_install
+%fdupes %buildroot%_datadir/locale
 %find_lang %{name}
 
 %files -f %{name}.lang
+%doc doc/reference/geonames-docs.xml.in
 %license COPYING COPYING.data
 %{_libdir}/libgeonames.so.*
 

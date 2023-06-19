@@ -14,12 +14,14 @@ BuildArch:  noarch
 %package jp
 Summary:    A free font family derived from setofont (JP version)
 %description jp
-%{summary}. 瀬戸フォントに由来、たくさん中国語文字を加えた無料なフォント
+%{summary}.
+瀬戸フォントに由来、たくさん中国語文字を加えた無料なフォント。
 
 %package tw
 Summary:    A free font family derived from setofont (TW version)
 %description tw
-%{summary}. 瀨戶字體的繁體中文補字計畫
+%{summary}.
+瀨戶字體的繁體中文補字計畫。
 
 
 %prep
@@ -29,20 +31,18 @@ Summary:    A free font family derived from setofont (TW version)
 
 %install
 mkdir -p %{buildroot}/%{_datadir}/fonts/%{name}-{jp,tw}/
-install -D -m644 jp/*.ttf %{buildroot}/%{_datadir}/fonts/%{name}-jp/
-install -D -m644 tw/*.ttf %{buildroot}/%{_datadir}/fonts/%{name}-tw/
+install -Dm644 jp/*.ttf %{buildroot}/%{_datadir}/fonts/%{name}-jp/
+install -Dm644 tw/*.ttf %{buildroot}/%{_datadir}/fonts/%{name}-tw/
 
 
 %files jp
 %doc README.md
 %license SIL_Open_Font_License_1.1.txt
-%defattr(-,root,root,0755)
 /%{_datadir}/fonts/%{name}-jp
 
 %files tw
 %doc README.md
 %license SIL_Open_Font_License_1.1.txt
-%defattr(-,root,root,0755)
 /%{_datadir}/fonts/%{name}-tw
 
 %changelog
