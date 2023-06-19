@@ -40,10 +40,11 @@ npm run electron:build
 
 %install
 rm dist_electron/linux-unpacked/README.txt # dummy
-mkdir -p %buildroot{{%_docdir,%_datadir}/%name,%_bindir}
+mkdir -p %buildroot%_datadir/%name %buildroot%_bindir %buildroot%_docdir/%name/res
 mv dist_electron/linux-unpacked/* %buildroot%_datadir/%name/
 ln -s %_datadir/%name/%name %buildroot%_bindir/%name
-install -Dm644 docs/* %buildroot%_docdir/%name/
+install -Dm644 docs/*.md %buildroot%_docdir/%name/
+install -Dm644 docs/res/*.md %buildroot%_docdir/%name/res/
 
 %files
 %doc README.md
