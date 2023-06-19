@@ -105,24 +105,24 @@ jobs:
         id: dnf
         if: success()
         run: |
-
+          touch out
           for f in anda-build/rpm/rpms/*.rpm; do
             dnf in --downloadonly -y $f > $f.dnfout.txt 2>&1 || fail=1
             if [[ $fail -eq 1 ]]; then
-              echo "### $f" >> $x
-              echo '```' >> $x
-              cat $f.dnfout.txt >> $x
-              echo '```' >> $x
-              echo >> $x
+              echo "### $f" >> out
+              echo '```' >> out
+              cat $f.dnfout.txt >> out
+              echo '```' >> out
+              echo >> out
             fi
           done
-          echo $x
+          cat out
           EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
           echo "esc_dnf_out<<$EOF" >> $GITHUB_ENV
-          echo $x | sed 's/`/\\`/g' >> $GITHUB_ENV
+          cat out | sed 's/`/\\`/g' >> $GITHUB_ENV
           echo $EOF >> $GITHUB_ENV
           echo "dnf_out<<$EOF" >> $GITHUB_ENV
-          echo $x >> $GITHUB_ENV
+          cat out >> $GITHUB_ENV
           echo $EOF >> $GITHUB_ENV
 
       - name: Comment RPMLint/DNF output (PR)
