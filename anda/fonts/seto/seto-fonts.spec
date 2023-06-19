@@ -7,11 +7,10 @@ License:		OFL-1.1
 Summary:		A handwritten font that contains kanji up to JIS 4th level and difficult kanji
 BuildRequires:	unzip
 BuildArch:		noarch
-Requires:		bad-dep
 
 
 %description
-#summary.
+%summary.
 
 
 %prep
