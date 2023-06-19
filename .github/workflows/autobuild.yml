@@ -88,6 +88,7 @@ jobs:
         id: lint
         if: success()
         run: |
+          echo 'err=false' >> $GITHUB_ENV
           rpmlint anda-build/ > rpmlint.txt || f=1
           if [[ $f -eq 1 ]]; then
             EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
@@ -99,6 +100,7 @@ jobs:
             cat rpmlint.txt >> $GITHUB_ENV
             echo '```' >> $GITHUB_ENV
             echo $EOF >> $GITHUB_ENV
+            echo 'err=true' >> $GITHUB_ENV
           fi
 
       - name: Try to install package
@@ -114,6 +116,7 @@ jobs:
               cat $f.dnfout.txt >> out
               echo '```' >> out
               echo >> out
+              echo 'err=true' >> $GITHUB_ENV
             fi
           done
           cat out
@@ -149,7 +152,7 @@ jobs:
             }
 
       - name: Create commit comment
-        if: success()
+        if: success() && env.err
         uses: peter-evans/commit-comment@v1
         with:
           body: |
