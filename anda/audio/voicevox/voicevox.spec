@@ -44,7 +44,7 @@ mkdir -p %buildroot%_datadir/%name %buildroot%_bindir %buildroot%_docdir/%name/r
 mv dist_electron/linux-unpacked/* %buildroot%_datadir/%name/
 ln -s %_datadir/%name/%name %buildroot%_bindir/%name
 install -Dm644 docs/*.md %buildroot%_docdir/%name/
-install -Dm644 docs/res/*.md %buildroot%_docdir/%name/res/
+install -Dm644 docs/res/* %buildroot%_docdir/%name/res/
 
 %files
 %doc README.md
