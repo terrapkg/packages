@@ -152,7 +152,7 @@ jobs:
             }
 
       - name: Create commit comment
-        if: success() && env.err
+        if: success() && env.err == 'true'
         uses: peter-evans/commit-comment@v1
         with:
           body: |
