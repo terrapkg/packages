@@ -1,7 +1,0 @@
-build/
-*.tar.*
-*.zip
-*.crate
-*.deb
-*.rpm
-anda-build/
