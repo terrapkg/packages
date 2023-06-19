@@ -95,9 +95,9 @@ jobs:
             cat rpmlint.txt | sed 's/`/\\`/g' >> $GITHUB_ENV
             echo $EOF >> $GITHUB_ENV
             echo "lint_out<<$EOF" >> $GITHUB_ENV
-            echo "```" >> $GITHUB_ENV
+            echo '```' >> $GITHUB_ENV
             cat rpmlint.txt >> $GITHUB_ENV
-            echo "```" >> $GITHUB_ENV
+            echo '```' >> $GITHUB_ENV
             echo $EOF >> $GITHUB_ENV
           fi
 
