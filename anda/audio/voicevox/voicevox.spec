@@ -1,5 +1,6 @@
 %global nodev 16.20.0
 %global npmv 8.11.0
+%define debug_package %nil
 
 Name:			voicevox
 Version:		0.14.7
