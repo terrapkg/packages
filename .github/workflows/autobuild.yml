@@ -105,13 +105,18 @@ jobs:
         id: dnf
         if: success()
         run: |
-          x=""
+
           for f in anda-build/rpm/rpms/*.rpm; do
             dnf in --downloadonly -y $f > $f.dnfout.txt 2>&1 || fail=1
             if [[ $fail -eq 1 ]]; then
-              x="$x### $f\n\`\`\`\n$(cat $f.dnfout.txt)\`\`\`\n"
+              echo "### $f" >> $x
+              echo '```' >> $x
+              cat $f.dnfout.txt >> $x
+              echo '```' >> $x
+              echo >> $x
             fi
           done
+          echo $x
           EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
           echo "esc_dnf_out<<$EOF" >> $GITHUB_ENV
           echo $x | sed 's/`/\\`/g' >> $GITHUB_ENV
