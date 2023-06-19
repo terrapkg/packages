@@ -6,7 +6,7 @@
 Name:           wingpanel-indicator-nightlight
 Summary:        Night Light Indicator for wingpanel
 Version:        2.1.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPL-2.0-or-later
 
 URL:            https://github.com/elementary/wingpanel-indicator-nightlight
@@ -16,6 +16,7 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala >= 0.22.0
+BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(glib-2.0) >= 2.32
 BuildRequires:  pkgconfig(gobject-2.0)
@@ -42,7 +43,7 @@ A wingpanel indicator for Night Light.
 
 %install
 %meson_install
-
+%fdupes %buildroot%_datadir/locale/
 %find_lang nightlight-indicator
 
 

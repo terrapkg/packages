@@ -9,7 +9,7 @@
 Name:           switchboard-plug-parental-controls
 Summary:        Switchboard Screen Time & Limits Plug
 Version:        6.0.1
-Release:        1%?dist
+Release:        2%?dist
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/%name
@@ -19,6 +19,7 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson >= 0.46.1
 BuildRequires:  vala
+BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(accountsservice)
 BuildRequires:  pkgconfig(dbus-1)
@@ -49,7 +50,7 @@ Supplements:    switchboard%{?_isa}
 
 %install
 %meson_install
-
+%fdupes %buildroot%_datadir/locale/
 %find_lang %{plug_name}-plug
 
 # remove the specified stock icon from appdata (invalid in libappstream-glib)
