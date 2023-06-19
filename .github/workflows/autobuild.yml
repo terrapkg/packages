@@ -108,7 +108,9 @@ jobs:
             fi
           done
           EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
-          echo "dnf_out<<$EOF\n$x\n$EOF" >> $GITHUB_ENV
+          echo "dnf_out<<$EOF" >> $GITHUB_ENV
+          echo $x >> $GITHUB_ENV
+          echo $EOF >> $GITHUB_ENV
 
       - name: Comment RPMLint/DNF output (PR)
         if: success() && github.event_name == 'pull_request'
