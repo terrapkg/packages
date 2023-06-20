@@ -1,5 +1,7 @@
 %global flist 3270 Agave AnonymousPro Arimo AurulentSansMono BigBlueTerminal BitstreamVeraSansMono CascadiaCode CodeNewRoman Cousine DaddyTimeMono DejaVuSansMono DroidSansMono FantasqueSansMono FiraCode FiraMono Go-Mono Gohu Hack Hasklig HeavyData Hermit IBMPlexMono Inconsolata InconsolataGo InconsolataLGC Iosevka JetBrainsMono Lekton LiberationMono Lilex MPlus Meslo Monofur Monoid Mononoki NerdFontsSymbolsOnly Noto OpenDyslexic Overpass ProFont ProggyClean RobotoMono ShareTechMono SourceCodePro SpaceMono Terminus Tinos Ubuntu UbuntuMono VictorMono iA-Writer
-%global desc Nerd Fonts is a project that patches developer targeted fonts with a high number of glyphs (icons).
+%global desc %{expand:
+Nerd Fonts is a project that patches developer targeted fonts with a high
+number of glyphs (icons).}
 
 Name:		nerd-fonts
 Version:	3.0.2
@@ -33,11 +35,12 @@ end
 'iconic fonts' such as Font Awesome, Devicons, Octicons, and others.
 
 %{lua:
+local desc = rpm.expand("%desc")
 for font in (rpm.expand("%flist")):gmatch("[^ ]+") do
 	print("%package -n "..font:lower().."-nerd-fonts\n")
 	print("Summary:\tPatched Nerd fonts: "..font)
 	print("\n%description -n "..font:lower().."-nerd-fonts\n")
-	print("%{desc}. The package contains the patched version of "..font..".\n")
+	print(desc..". The package contains the patched version of "..font..".\n")
 end
 }
 
@@ -83,5 +86,5 @@ end
 
 
 %changelog
-* Wed Jan 4 2023 windowsboy111 <windowsboy111@fyralabs.com>
+* Wed Jan 4 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2.2.2-1
 - Initial package

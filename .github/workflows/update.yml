@@ -1,4 +1,4 @@
-name: Automatically check for updates
+name: Update
 on:
   schedule:
     - cron: "*/30 * * * *"

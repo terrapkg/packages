@@ -21,8 +21,9 @@ BuildRequires:  pkgconfig(systemd)
 BuildRequires:  intltool
 
 %description
-The Ayatana Indicators project is the continuation of Application Indicators and System Indicators, 
-two technologies developed by Canonical Ltd. for the Unity7 desktop and Lomiri desktop.
+The Ayatana Indicators project is the continuation of Application Indicators
+and System Indicators, two technologies developed by Canonical Ltd. for the
+Unity7 desktop and Lomiri desktop.
 
 %package devel
 Summary:    Development files for %{name}
@@ -44,8 +45,9 @@ This package contains the development header files for %{name}.
 %find_lang %{name}
 
 %files -f %{name}.lang
+%doc README.md
 %license COPYING
-%{_sysconfdir}/xdg/autostart/ayatana-indicator-session.desktop
+%config %{_sysconfdir}/xdg/autostart/ayatana-indicator-session.desktop
 %{_userunitdir}/ayatana-indicator-session.service
 %dir %{_libexecdir}/ayatana-indicator-session
 %{_libexecdir}/ayatana-indicator-session/ayatana-indicator-session-service

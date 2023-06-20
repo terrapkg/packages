@@ -1,4 +1,4 @@
-name: Automatic Nightly Update
+name: Nightly Update
 on:
   schedule:
     - cron: "0 0 * * *"

@@ -18,7 +18,8 @@ BuildRequires:	gtk3-devel
 BuildRequires:	glib2-devel
 
 %description
-A simple library that implements a subset of the XPath spec to allow selecting nodes in an object tree
+A simple library that implements a subset of the XPath spec to allow selecting
+nodes in an object tree.
 
 %package devel
 Summary:	Development files for %{name}

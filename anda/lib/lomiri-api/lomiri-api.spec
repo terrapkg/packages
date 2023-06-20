@@ -4,7 +4,7 @@
 
 Name:          lomiri-api
 Version:       0.2.1
-Release:       1%{?dist}
+Release:       2%{?dist}
 Summary:       API for Lomiri
 
 License:       LGPL-3.0-or-later
@@ -20,6 +20,7 @@ BuildRequires: pkgconfig(Qt5Core)
 BuildRequires: pkgconfig(Qt5Quick)
 BuildRequires: cppcheck
 BuildRequires: doxygen
+BuildRequires: fdupes
 
 %description
 API to interface with the Lomiri desktop environment.
@@ -51,8 +52,10 @@ sed -i 's?lib/${CMAKE_LIBRARY_ARCHITECTURE}?%{_lib}?' CMakeLists.txt
 
 %install
 %cmake_install
+%fdupes %buildroot%_docdir/liblomiri-api
 
 %files
+%doc README
 %license COPYING
 %{_libdir}/liblomiri-api.so.*
 

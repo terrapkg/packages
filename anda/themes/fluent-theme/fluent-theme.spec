@@ -1,21 +1,21 @@
-%global tag 2022-12-15
+%global tag 2023-06-20
 
 Name:           fluent-theme
-Version:        20221215
-Release:        2%{?dist}
-Summary:        Fluent is a Fluent design theme for GNOME/GTK based desktop environments.
+Version:        20230620
+Release:        1%{?dist}
+Summary:        Fluent design theme for GNOME/GTK based desktop environments
 
 License:        GPL-3.0
 URL:            https://github.com/vinceliuice/Fluent-gtk-theme
 Source0:        https://github.com/vinceliuice/Fluent-gtk-theme/archive/refs/tags/%{tag}.tar.gz
 
 BuildArch:      noarch
-BuildRequires:  sassc
+BuildRequires:  sassc fdupes
 
 Requires:       gtk-murrine-engine
 
 %description
-Fluent is a Fluent design theme for GNOME/GTK based desktop environments.
+Fluent is a %summary.
 
 %prep
 %autosetup -n Fluent-gtk-theme-%{tag}
@@ -27,6 +27,8 @@ Fluent is a Fluent design theme for GNOME/GTK based desktop environments.
 mkdir -p %{buildroot}%{_datadir}/themes
 ./install.sh -i simple -t all -d %{buildroot}%{_datadir}/themes
 ./install.sh -i simple -t all --tweaks round float -d %{buildroot}%{_datadir}/themes
+
+%fdupes %buildroot%_datadir
 
 %files
 %license COPYING

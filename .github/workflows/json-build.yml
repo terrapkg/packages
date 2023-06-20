@@ -1,4 +1,4 @@
-name: Build Packages (JSON)
+name: JSON Build
 on:
   workflow_dispatch:
     inputs:
