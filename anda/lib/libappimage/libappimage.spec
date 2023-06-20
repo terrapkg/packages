@@ -81,5 +81,5 @@ rm docs/{make.bat,.gitignore}
 
 
 %changelog
-* Tue Oct 25 2022 Cappy Ishihara <cappy@cappuchino.xyz> - 1.0.4-5
+* Tue Oct 25 2022 Cappy Ishihara <cappy@cappuchino.xyz> - 1.0.4~5-1
 - Initial package.
