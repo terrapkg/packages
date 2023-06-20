@@ -1,5 +1,5 @@
 project pkg {
 	rpm {
-		spec = "anki.spec"
+		spec = "voicevox.spec"
 	}
 }

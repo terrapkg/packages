@@ -124,39 +124,8 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 %check
 %ctest
 
-%if 0%{?rhel} > 8
-# disabled due to rhel not shipping a new enough version of libappstream-glib
-# appstream-util validate-relax --nonet \
-#     %{buildroot}%{_metainfodir}/org.prismlauncher.PrismLauncher.metainfo.xml
-
+appstream-util validate-relax --nonet %buildroot%_metainfodir/org.prismlauncher.PrismLauncher.metainfo.xml
 desktop-file-validate %{buildroot}%{_datadir}/applications/org.prismlauncher.PrismLauncher.desktop
-%endif
-
-
-%post
-%if 0%{?rhel} > 8
-/usr/bin/update-desktop-database &> /dev/null || :
-/bin/touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
-/bin/touch --no-create %{_datadir}/mime/packages &>/dev/null || :
-%endif
-
-
-%postun
-%if 0%{?rhel} > 8
-/usr/bin/update-desktop-database &> /dev/null || :
-if [ $1 -eq 0 ] ; then
-    /bin/touch --no-create %{_datadir}/icons/hicolor &>/dev/null
-    /usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
-    /usr/bin/update-mime-database %{_datadir}/mime &> /dev/null || :
-fi
-%endif
-
-
-%posttrans
-%if 0%{?rhel} > 8
-/usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
-/usr/bin/update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
-%endif
 
 
 %files

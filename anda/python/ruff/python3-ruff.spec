@@ -11,7 +11,8 @@ BuildRequires:	python3-installer python3.11 python3-pip maturin cargo
 Provides:		python3.11dist(ruff) = %{version}
 
 %description
-Ruff aims to be orders of magnitude faster than alternative tools while integrating more functionality behind a single, common interface.
+Ruff aims to be orders of magnitude faster than alternative tools while
+integrating more functionality behind a single, common interface.
 
 %prep
 %autosetup -n ruff-%{version}

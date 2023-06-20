@@ -1,13 +1,12 @@
 Name:			keyd
 Version:		2.4.3
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Key remapping daemon for linux
 URL:			https://github.com/rvaiya/keyd
 License:		MIT
 Source0:		%url/archive/refs/tags/v%version.tar.gz
 Suggests:		python3 python3-xlib
-Requires:		kernel-headers
-BuildRequires:	gcc mold make
+BuildRequires:	gcc mold make kernel-headers
 
 %description
 keyd provides a flexible system wide daemon which remaps keys using kernel

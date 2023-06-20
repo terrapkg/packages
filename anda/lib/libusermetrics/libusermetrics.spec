@@ -4,7 +4,7 @@
 
 Name:       libusermetrics
 Version:    1.3.0
-Release:    %autorelease
+Release:    2%?dist
 Summary:    library for retrieving anonymous metrics about users
 License:    GPLv3 AND LGPLv3 AND LGPLv2
 URL:        https://gitlab.com/ubports/development/core/libusermetrics
@@ -23,6 +23,7 @@ BuildRequires: pkgconfig(click-0.4)
 BuildRequires: pkgconfig(libqtdbustest-1)
 BuildRequires: pkgconfig(libapparmor)
 BuildRequires: qdjango-devel
+BuildRequires: fdupes
 
 %description
 library for retrieving anonymous metrics about users
@@ -52,6 +53,7 @@ The %{name}-doc contains documentation for %{name}.
 
 %install
 %cmake_install
+%fdupes %buildroot%_docdir/libusermetrics-doc/html/
 %find_lang %{name}
 
 %files -f %{name}.lang

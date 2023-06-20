@@ -20,8 +20,8 @@ of information.}
 %global godocs          README.md
 
 Name:           %{goname}
-Release:        %autorelease
-Summary:        :herb: Generate .desktop files and download .png icons by specifying a minimum of information
+Release:        2%{?dist}
+Summary:        Generate .desktop files and download .png icons
 
 License:        BSD-3-Clause
 URL:            %{gourl}

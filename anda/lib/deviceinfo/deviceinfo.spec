@@ -41,11 +41,11 @@ install -Dm644 '%{SOURCE1}' %{buildroot}%{_mandir}/man1/device-info.1
 %files
 %license LICENSE
 %dir %{_sysconfdir}/deviceinfo
-%{_sysconfdir}/deviceinfo/default.yaml
+%config %{_sysconfdir}/deviceinfo/default.yaml
 %dir %{_sysconfdir}/deviceinfo/devices
-%{_sysconfdir}/deviceinfo/devices/*.yaml
+%config %{_sysconfdir}/deviceinfo/devices/*.yaml
 %dir %{_sysconfdir}/deviceinfo/sensorfw
-%{_sysconfdir}/deviceinfo/sensorfw/*.conf
+%config %{_sysconfdir}/deviceinfo/sensorfw/*.conf
 %{_bindir}/device-info
 %{_mandir}/man1/device-info.1.gz
 %{_libdir}/libdeviceinfo.so.*

@@ -43,6 +43,8 @@ Summary:        %{summary}
 
 
 %files
+%license LICENSE
+%doc README.md
 %{_bindir}/melody
 
 

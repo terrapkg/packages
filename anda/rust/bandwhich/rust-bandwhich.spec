@@ -4,8 +4,7 @@
 Name:           rust-bandwhich
 Version:        0.20.0
 Release:        %autorelease
-Summary:        Display current network utilization by process, connection and remote IP/hostname
-
+Summary:        Show network utilization by process/connection/hostname/IP
 License:        MIT
 URL:            https://crates.io/crates/bandwhich
 Source:         %{crates_source}
