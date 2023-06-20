@@ -25,7 +25,8 @@ Requires:       dotnet-runtime-6.0
 
 
 %description
-Secure, cross-platform Git credential storage with authentication to GitHub, Azure Repos, and other popular Git hosting services.
+Secure, cross-platform Git credential storage with authentication to GitHub,
+Azure Repos, and other popular Git hosting services.
 
 %prep
 %forgesetup
@@ -39,13 +40,11 @@ install -Dm755 out/linux/Packaging.Linux/Release/payload/%{long_name} %{buildroo
 
 
 %files
+%doc README.md
 %license LICENSE
 /usr/bin/git-credential-manager
 
 
 %changelog
-* Tue Dec 06 2022 root - Packaging variables read or set by %%forgemeta
-- new version
-
-* Sat Oct 22 2022 Cappy Ishihara <cappy@cappuchino.xyz>
-- 
+* Sat Oct 22 2022 Cappy Ishihara <cappy@cappuchino.xyz> - 2.0.785-1
+- Initial package.

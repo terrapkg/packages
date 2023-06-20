@@ -87,6 +87,7 @@ sed -i 's!X-Ubuntu-Touch=true!X-Lomiri-Splash-Show=false!' data/xwayland.qtmir.d
 %cmake_install
 
 %files
+%doc README
 %license COPYING COPYING.LESSER
 %{_libdir}/libqtmirserver.so.*
 %{_qt5_plugindir}/platforms/libqpa-mirserver.so

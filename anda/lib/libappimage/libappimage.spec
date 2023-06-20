@@ -7,7 +7,7 @@ Name:           libappimage
 
 
 Version:        %{libver_format}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Implements functionality for dealing with AppImage files
 
 License:        MIT
@@ -26,10 +26,14 @@ BuildRequires:  squashfuse-devel
 BuildRequires:  git-core
 BuildRequires:  librsvg2-devel
 BuildRequires:  boost-devel
+BuildRequires:  wget
+BuildRequires:  xxd
+BuildRequires:  desktop-file-utils
 
 
 %description
-Implements functionality for dealing with AppImage files. It is written in C++ and is using Boost.
+Implements functionality for dealing with AppImage files.
+It is written in C++ and is using Boost.
 
 %package        devel
 Summary:        Development files for %{name}
@@ -60,7 +64,9 @@ rm docs/{make.bat,.gitignore}
 
 %install
 %cmake_install
-#find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
+find %buildroot -name '*.bat' -exec rm -f {} ';' &
+find %buildroot -name '.gitignore' -exec rm -f {} ';' &
+wait
 
 
 %{?ldconfig_scriptlets}
@@ -70,7 +76,6 @@ rm docs/{make.bat,.gitignore}
 %license LICENSE
 %doc docs
 %{_libdir}/*.so.*
-%{_libdir}/*.a
 
 %files devel
 %doc docs
@@ -78,6 +83,7 @@ rm docs/{make.bat,.gitignore}
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*.pc
 %{_libdir}/cmake/%{name}/*.cmake
+%{_libdir}/*.a
 
 
 %changelog

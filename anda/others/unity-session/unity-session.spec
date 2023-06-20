@@ -41,7 +41,7 @@ install -p -m755 %{SOURCE1} %{buildroot}%{_libexecdir}/run-systemd-session
 
 %files
 %license COPYING
-%{_sysconfdir}/xdg/autostart/nemo-unity-autostart.desktop
+%config %{_sysconfdir}/xdg/autostart/nemo-unity-autostart.desktop
 %{_userunitdir}/gnome-session.service
 %{_userunitdir}/unity-session.target
 %{_libexecdir}/run-systemd-session

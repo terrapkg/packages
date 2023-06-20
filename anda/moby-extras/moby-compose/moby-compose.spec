@@ -18,6 +18,7 @@ Provides:       docker-compose = %{version}-%{release}
 Provides:       docker-compose-cli = %{version}-%{release}
 
 %description
+A tool for running multi-container applications using the Compose file format.
 
 
 %prep

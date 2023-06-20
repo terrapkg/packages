@@ -29,12 +29,12 @@ Requires:      lomiri-ui-toolkit
 ExclusiveArch: x86_64 aarch64
 
 %description
-Lomiri-url-dispatcher is a small handler to take URLs and do what is appropriate with them.
-That could be anything from launching a web browser to just starting an
-application.  This is done over DBus because application confinement doesn't
-allow for doing it from a confined application otherwise.  It's important
-the that applications can't know about each other, so this is a fire and forget
-type operation.
+Lomiri-url-dispatcher is a small handler to take URLs and do what is
+appropriate with them. That could be anything from launching a web browser to
+just starting an application.  This is done over DBus because application
+confinement doesn't allow for doing it from a confined application otherwise.
+It's important the that applications can't know about each other, so this is a
+fire and forget type operation.
 
 %package devel
 Summary:  Lomiri-url-dispatcher development files

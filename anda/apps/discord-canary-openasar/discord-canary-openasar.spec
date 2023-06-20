@@ -2,18 +2,23 @@
 
 Name:           discord-canary-openasar
 Version:        0.0.160
-Release:        1%{?dist}
-Summary:        OpenAsar is a rewrite of part of Discord's desktop code, making it snappier and include more features like further customization and theming
+Release:        2%{?dist}
+Summary:        A snappier Discord rewrite with features like further customization and theming
 License:        MIT AND https://discord.com/terms
 URL:            https://github.com/GooseMod/OpenAsar
 Source0:        https://dl-canary.discordapp.net/apps/linux/%{version}/discord-canary-%{version}.tar.gz
 Source1:        %{url}/releases/download/nightly/app.asar
 Group:          Applications/Internet
-Requires:       libatomic, glibc, alsa-lib, GConf2, libnotify, nspr >= 4.13, nss >= 3.27, libstdc++, libX11 >= 1.6, libXtst >= 1.2, libappindicator, libcxx, libXScrnSaver
+Requires:       glibc GConf2
+Requires:       nspr >= 4.13
+Requires:       nss >= 3.27
+Requires:       libX11 >= 1.6
+Requires:       libXtst >= 1.2
 ExclusiveArch:  x86_64
 
 %description
-%{summary}.
+OpenAsar is a rewrite of part of Discord's desktop code, making it snappier and
+include more features like further customization and theming.
 
 %prep
 %autosetup -n DiscordCanary
@@ -28,8 +33,8 @@ mkdir -p %{buildroot}%{_datadir}/discord-canary-openasar
 cp -rv * %{buildroot}%{_datadir}/discord-canary-openasar
 mkdir -p %{buildroot}%{_datadir}/applications/
 mkdir -p %{buildroot}%{_datadir}/pixmaps
-install discord-canary.desktop %{buildroot}%{_datadir}/applications/discord-canary-openasar.desktop
-install discord.png %{buildroot}%{_datadir}/pixmaps/discord-canary-openasar.png
+ln -s %_datadir/discord-canary-openasar/discord-canary.desktop %{buildroot}%{_datadir}/applications/discord-canary-openasar.desktop
+ln -s %_datadir/discord-canary-openasar/discord.png %{buildroot}%{_datadir}/pixmaps/discord-canary-openasar.png
 cp -v %{SOURCE1} %{buildroot}%{_datadir}/discord-canary-openasar/resources/app.asar
 chmod o+w %{buildroot}%{_datadir}/discord-canary-openasar/resources -R
 

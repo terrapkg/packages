@@ -2,7 +2,7 @@
 
 Name:			sipa-fonts
 Version:		20200217
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Thai National Fonts collection
 URL:			https://www.f0nt.com/release/13-free-fonts-from-sipa/
 License:		OFL-1.1
@@ -21,18 +21,19 @@ print(x)
 }
 
 %description
-Thai National Fonts collection, freely-licensed computer fonts for the Thai script
-sponsored by the Thai government.
+Thai National Fonts collection, freely-licensed computer fonts for the Thai
+script sponsored by the Thai government.
 
 
 %{lua:
+local summary = rpm.expand("%summary.\n");
 for variant in (rpm.expand("%variants")):gmatch("[^ ]+") do
 	local v = string.gsub(variant, "_", " ")
 	local name = "th-"..string.gsub(v:lower(), " ", "-").."-fonts"
 	print("%package -n "..name.."\n")
 	print("Summary: Thai "..v.." fonts (sipa-fonts)\n")
 	print("%description -n "..name.."\n")
-	print("%summary.\n")
+	print(summary)
 end
 }
 
@@ -79,5 +80,5 @@ end
 }
 
 %changelog
-* Sun Jun 11 2023 windowsboy111 <windowsboy111@fyralabs.com>
+* Sun Jun 11 2023 windowsboy111 <windowsboy111@fyralabs.com> - 20200217-1
 - Initial package

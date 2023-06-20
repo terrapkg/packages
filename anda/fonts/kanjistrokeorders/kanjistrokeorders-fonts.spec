@@ -1,11 +1,11 @@
 Name:       kanjistrokeorders-fonts
 Version:    4.004
-Release:    %autorelease
+Release:    2%?dist
 URL:        https://sites.google.com/site/nihilistorguk
 License:    BSD-3-Clause
 Summary:    Kanji stroke order font
 BuildRequires: unzip
-BuildArch: noarch
+BuildArch:  noarch
 
 
 %description
@@ -23,7 +23,6 @@ install -D -m644 KanjiStrokeOrders_v%{version}.ttf %{buildroot}/%{_datadir}/font
 
 
 %files
-%defattr(-,root,root,0755)
 /%{_datadir}/fonts/TTF/KanjiStrokeOrders_v%{version}.ttf
 
 %changelog

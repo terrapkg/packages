@@ -22,10 +22,11 @@ BuildRequires: pkgconfig(json-glib-1.0)
 BuildRequires: pkgconfig(libsoup-gnome-2.4)
 BuildRequires: pkgconfig(uuid)
 BuildRequires: pkgconfig(unity)
-BuildRequires: pkgconfig(unity-protocol-private)
+BuildRequires: pkgconfig(unity-protocol-private) libunity
 BuildRequires: pkgconfig(unity-extras)
 
 %description
+%summary.
 Theme and icons for Unity.
 
 %prep

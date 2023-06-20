@@ -1,5 +1,5 @@
 %global csrc_commit 561b417c65791cd8356b5f73620914ceff845d10
-%global commit 6d2163724550ed3a115d22e00f9d40150534a8b9
+%global commit 2054f1c3a9c78ac13593e90845807e9e64f22553
 %global ver 1.9.5
 %global debug_package %nil
 
@@ -48,6 +48,8 @@ and its standard library.
 
 %prep
 %autosetup -n Nim-%commit
+# hack
+cp /usr/bin/mold /usr/bin/ld
 
 %build
 export CFLAGS="${CFLAGS} -Ofast"
@@ -58,15 +60,15 @@ export FCFLAGS="${FCFLAGS} -Ofast"
 export PATH="$(pwd):$(pwd)/bin:${PATH}"
 
 . ci/funs.sh
-nimBuildCsourcesIfNeeded
+nimBuildCsourcesIfNeeded CFLAGS="${CFLAGS} -Ic_code -w -O3 -fno-strict-aliasing -fPIE" LDFLAGS="-ldl -lm -lrt -pie"
 
-mold -run nim c --noNimblePath --skipUserCfg --skipParentCfg --hints:off -d:danger koch.nim
-mold -run koch boot -d:release -d:nimStrictMode --lib:lib
+nim c --noNimblePath --skipUserCfg --skipParentCfg --hints:off -d:danger koch.nim
+koch boot -d:release -d:nimStrictMode --lib:lib
 
-mold -run koch docs &
-(cd lib; mold -run nim c --app:lib -d:danger -d:createNimRtl nimrtl.nim) &
-mold -run koch tools --skipUserCfg --skipParentCfg --hints:off -d:release &
-mold -run nim c -d:danger nimsuggest/nimsuggest.nim &
+koch docs &
+(cd lib; nim c --app:lib -d:danger -d:createNimRtl -t:-fPIE -l:-pie nimrtl.nim) &
+koch tools --skipUserCfg --skipParentCfg --hints:off -d:release -t:-fPIE -l:-pie &
+nim c -d:danger -t:-fPIE -l:-pie nimsuggest/nimsuggest.nim &
 wait
 
 sed -i '/<link.*fonts.googleapis.com/d' doc/html/*.html
@@ -85,12 +87,13 @@ install -Dpm644 tools/nim.bash-completion %buildroot/%_datadir/bash-completion/c
 install -Dpm644 dist/nimble/nimble.bash-completion %buildroot/%_datadir/bash-completion/completions/nimble
 install -Dpm644 -t%buildroot/%_mandir/man1 %SOURCE1 %SOURCE2 %SOURCE3 %SOURCE4
 
-mkdir -p %buildroot/%_docdir/%name/html
+mkdir -p %buildroot/%_docdir/%name/html %buildroot/usr/lib/nim
 cp -a doc/html/*.html %buildroot/%_docdir/%name/html/
-mkdir -p %buildroot/%_docdir/%name/html/
 cp tools/dochack/dochack.js %buildroot/%_docdir/%name/
 
-%check
+cp -r lib/* %buildroot%_prefix/lib/nim/
+
+#check
 # export PATH=$PATH:$(realpath ./bin)
 # for cat in manyloc gc threads nimble-all lib io async rodfiles debugger examples dll flags
 # do
@@ -103,6 +106,7 @@ cp tools/dochack/dochack.js %buildroot/%_docdir/%name/
 %_bindir/nim{,ble}
 %_mandir/man1/nim{,ble}.1*
 %_datadir/bash-completion/completions/nim{,ble}
+%_prefix/lib/nim/
 
 %files tools
 %license copying.txt
