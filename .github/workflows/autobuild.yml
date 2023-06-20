@@ -80,3 +80,82 @@ jobs:
       - name: Notify Madoguchi (Failure)
         if: ( cancelled() || failure() ) && github.event_name != 'pull_request'
         run: ./.github/workflows/mg.sh false ${{matrix.pkg.pkg}} ${{matrix.version}} ${{matrix.pkg.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}}
+
+      - name: Lint RPMs and SRPMs
+        id: lint
+        if: success()
+        run: |
+          echo 'err=false' >> $GITHUB_ENV
+          rpmlint anda-build/ > rpmlint.txt || f=1
+          if [[ $f -eq 1 ]]; then
+            EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+            echo "esc_lint_out<<$EOF" >> $GITHUB_ENV
+            cat rpmlint.txt | sed 's/`/\\`/g' >> $GITHUB_ENV
+            echo $EOF >> $GITHUB_ENV
+            echo "lint_out<<$EOF" >> $GITHUB_ENV
+            echo '```' >> $GITHUB_ENV
+            cat rpmlint.txt >> $GITHUB_ENV
+            echo '```' >> $GITHUB_ENV
+            echo $EOF >> $GITHUB_ENV
+            echo 'err=true' >> $GITHUB_ENV
+          fi
+      - name: Try to install package
+        id: dnf
+        if: success()
+        run: |
+          touch out
+          for f in anda-build/rpm/rpms/*.rpm; do
+            dnf in --downloadonly -y $f > $f.dnfout.txt 2>&1 || fail=1
+            if [[ $fail -eq 1 ]]; then
+              echo "### $f" >> out
+              echo '```' >> out
+              cat $f.dnfout.txt >> out
+              echo '```' >> out
+              echo >> out
+              echo 'err=true' >> $GITHUB_ENV
+            fi
+          done
+          cat out
+          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+          echo "esc_dnf_out<<$EOF" >> $GITHUB_ENV
+          cat out | sed 's/`/\\`/g' >> $GITHUB_ENV
+          echo $EOF >> $GITHUB_ENV
+          echo "dnf_out<<$EOF" >> $GITHUB_ENV
+          cat out >> $GITHUB_ENV
+          echo $EOF >> $GITHUB_ENV
+      - name: Comment RPMLint/DNF output (PR)
+        if: success() && github.event_name == 'pull_request'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            let out = "";
+            if (`${{ env.esc_lint_out }}`.trim() != "") {
+              out += "## 🔨 Lint: [${{matrix.pkg.pkg}} (${{matrix.pkg.arch}})](https://github.com/terrapkg/packages/actions/runs/${{github.run_id}})\n";
+              out += `\`\`\`\n${{ env.esc_lint_out }}\n\`\`\`\n`;
+            }
+            if (`${{ env.esc_dnf_out }}`.trim() != "") {
+              out += "## ❌ DNF: [${{matrix.pkg.pkg}} (${{matrix.pkg.arch}})](https://github.com/terrapkg/packages/actions/runs/${{github.run_id}})\n";
+              out += `${{ env.esc_dnf_out }}`;
+            }
+            if (out != "") {
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: out,
+              });
+            }
+      - name: Create commit comment
+        if: success() && env.err == 'true'
+        uses: peter-evans/commit-comment@v1
+        with:
+          body: |
+            <sub>[run_id: ${{github.run_id}}](https://github.com/terrapkg/packages/actions/runs/${{github.run_id}})</sub>
+            # Built RPM: ${{matrix.pkg.pkg}} (${{matrix.pkg.arch}}.fc${{matrix.version}})
+            ## Lint
+            If you see anything below, RPMLint returned with a non-zero exit code.
+            ${{ env.lint_out }}
+            ## DNF
+            Output of `dnf in --downloadonly ...`.
+            If you see anything below, DNF returned with a non-zero exit code.
+            ${{ env.dnf_out }}
