@@ -45,6 +45,7 @@ developing applications that use %{name}.
 echo "#include <cstdint>" > a.h
 cat src/libappimage/utils/hashlib.h >> a.h
 mv a.h src/libappimage/utils/hashlib.h
+rm docs/{make.bat,.gitignore}
 
 
 %build
@@ -79,8 +80,6 @@ mv a.h src/libappimage/utils/hashlib.h
 %{_libdir}/cmake/%{name}/*.cmake
 
 
-
-
 %changelog
-* Tue Oct 25 2022 Cappy Ishihara <cappy@cappuchino.xyz>
+* Tue Oct 25 2022 Cappy Ishihara <cappy@cappuchino.xyz> - 1.0.4-5
 - Initial package.
