@@ -1,4 +1,4 @@
-%global libver  1.0.4
+%global libver  1.0.4-5
 
 # replace - with ~
 %global libver_format %(v=%{libver}; sed -e 's/-/~/' <<< $v)
