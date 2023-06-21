@@ -61,6 +61,10 @@ jobs:
           path: /var/cache
           key: ${{ runner.os }}-br-${{ matrix.version }}-${{ matrix.pkg.arch }}
 
+      - name: Include custom build template instead of package default
+        run: |
+          cp -v anda/mock-configs/terra.tpl /etc/mock/templates/terra.tpl
+
       - name: Build with Andaman
         run: anda build ${{ matrix.pkg.pkg }} --package rpm -c anda/mock-configs/terra-${{ matrix.version }}-${{ matrix.pkg.arch }}.cfg
 
