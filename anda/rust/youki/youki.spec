@@ -50,7 +50,6 @@ pushd crates/
 %install
 install -D -m 0755 target/release/youki %{buildroot}%{_bindir}/youki
 %fdupes %buildroot/usr/share/doc/youki/docs
-rm %buildroot/usr/share/doc/youki/docs/.gitignore
 
 %files
 %license LICENSE
