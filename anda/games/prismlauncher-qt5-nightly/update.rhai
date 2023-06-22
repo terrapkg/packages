@@ -4,4 +4,5 @@ if filters.contains("nightly") {
 	let sha = req.get().json().sha;
 	rpm.global("commit", sha);
 	rpm.release();
+	rpm.version(`${gh("PrismLauncher/PrismLauncher")}^%{snapshot_info}`);
 }

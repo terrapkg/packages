@@ -143,7 +143,7 @@ install -Dm644 %{SOURCE1} %{buildroot}%{_userunitdir}/
 
 %files
 %license COPYING
-%doc AUTHORS COPYING NEWS ChangeLog
+%doc AUTHORS COPYING NEWS ChangeLog README
 %{_libdir}/libindicator.so.*
 %{_prefix}/lib/indicators/
 %dir %{_datadir}/libindicator/
@@ -159,13 +159,16 @@ install -Dm644 %{SOURCE1} %{buildroot}%{_userunitdir}/
 %{_libdir}/pkgconfig/indicator-0.4.pc
 
 %files gtk3
-%doc AUTHORS COPYING NEWS ChangeLog
+%doc AUTHORS COPYING NEWS ChangeLog README
+%license COPYING
 %{_libdir}/libindicator3.so.*
 %{_prefix}/lib/indicators3/
 %dir %{_datadir}/libindicator/
 %dir %{_datadir}/libindicator/icons/
 
 %files gtk3-devel
+%doc README
+%license COPYING
 %dir %{_includedir}/libindicator3-0.4/
 %dir %{_includedir}/libindicator3-0.4/libindicator/
 %{_includedir}/libindicator3-0.4/libindicator/*.h

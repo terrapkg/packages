@@ -1,0 +1,42 @@
+.TH NIMSUGGEST 1 "SEPTEMBER 2017" Linux "User Manuals"
+.SH NAME
+.PP
+nimsuggest \- tool to give every editor IDE like capabilities for Nim
+.SH SYNOPSIS
+.PP
+\fB\fCnimsuggest\fR [\fIoptions\fP] \fIprojectfile.nim\fP
+.SH OPTIONS
+.PP
+\fB\fC\-\-port\fR:\fIPORT\fP
+    port, by default 6000
+.PP
+\fB\fC\-\-address\fR:\fIHOST\fP
+    binds to that address, by default ""
+.PP
+\fB\fC\-\-stdin\fR
+    read commands from stdin and write results to stdout instead of using sockets
+.PP
+\fB\fC\-\-epc\fR
+    use emacs epc mode
+.PP
+\fB\fC\-\-debug\fR
+    enable debug output
+.PP
+\fB\fC\-\-log\fR
+    enable verbose logging to \fB\fCnimsuggest.log\fR file
+.PP
+\fB\fC\-\-v1\fR
+    use version 1 of the protocol; for backwards compatibility
+.PP
+\fB\fC\-\-refresh\fR
+    perform automatic refreshes to keep the analysis precise
+.PP
+\fB\fC\-\-maxresults\fR:\fIN\fP
+    limit the number of suggestions to N
+.PP
+\fB\fC\-\-tester\fR
+    implies \fB\fC\-\-stdin\fR and outputs a line \fB\fC\&'!EOF!'\fR for the tester
+.SH SEE ALSO
+.PP
+.BR nim (1), 
+Official documentation \[la]https://nim-lang.org/docs/nimsuggest.html\[ra]

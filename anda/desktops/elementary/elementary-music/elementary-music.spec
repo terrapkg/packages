@@ -11,7 +11,7 @@ utilizes Granite for a consistent and slick UI.}
 Name:           elementary-music
 Summary:        Music player and library from elementary
 Version:        7.1.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        LGPL-2.0-or-later
 
 URL:            https://github.com/elementary/%{srcname}
@@ -23,6 +23,7 @@ BuildRequires:  gettext
 BuildRequires:  meson
 BuildRequires:  libappstream-glib
 BuildRequires:  vala >= 0.26
+BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  pkgconfig(gio-2.0)
@@ -76,6 +77,8 @@ This package contains files needed for developing with Music.
 %install
 %meson_install
 %find_lang %{appname}
+
+%fdupes %buildroot%_datadir/icons/hicolor/
 
 
 %check

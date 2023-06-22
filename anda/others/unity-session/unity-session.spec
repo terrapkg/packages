@@ -1,9 +1,9 @@
-%define _ubuntu_rel 1ubuntu2
+%define _ubuntu_rel 1ubuntu1
 
 Name:    unity-session
 Summary: Lightdm profile for Unity 7
-Version: 43.0
-Release: %autorelease
+Version: 44.0
+Release: 1%{?dist}
 
 License:   GPL-2.0
 URL:       https://packages.ubuntu.com/jammy/unity-session
@@ -41,7 +41,7 @@ install -p -m755 %{SOURCE1} %{buildroot}%{_libexecdir}/run-systemd-session
 
 %files
 %license COPYING
-%{_sysconfdir}/xdg/autostart/nemo-unity-autostart.desktop
+%config %{_sysconfdir}/xdg/autostart/nemo-unity-autostart.desktop
 %{_userunitdir}/gnome-session.service
 %{_userunitdir}/unity-session.target
 %{_libexecdir}/run-systemd-session

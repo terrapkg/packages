@@ -6,10 +6,10 @@ Name:       lomiri-sounds
 Summary:    Ring-tones and notification tones included with Ubuntu Touch
 Version:    22.02
 Release:    %autorelease
-License:    CC-BY-SA-3.0
+License:    CC-BY-SA-3.0 AND CC-BY-4.0 AND CC0-1.0 AND CC-BY-3.0
 URL:        https://gitlab.com/ubports/development/core/lomiri-sounds
 Source0:    %{url}/-/archive/%commit/lomiri-sounds-%commit.tar.gz
-BuildArch: noarch
+BuildArch:  noarch
 
 BuildRequires:  cmake
 BuildRequires:  gcc
@@ -29,6 +29,8 @@ Lomiri sounds contains the ringtones and notification tones recommended for the 
 %cmake_install
 
 %files
+%doc README.md 
+%license debian/copyright
 %{_datadir}/pkgconfig/lomiri-sounds.pc
 %dir %{_datadir}/sounds/lomiri
 %{_datadir}/sounds/lomiri/camera/

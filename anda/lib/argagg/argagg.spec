@@ -34,6 +34,7 @@ that use %{name}.
 
 %package        doc
 Summary:        Developer documentation for %{name}
+BuildRequires:  rpm_macro(fdupes)
 
 %description    doc
 The %{name}-doc package contains the documentation for developing applications
@@ -55,7 +56,8 @@ popd
 %install
 %cmake_install
 
-ls -la redhat-linux-build/share
+#ls -la redhat-linux-build/share
+%fdupes %_datadir/doc/%name/html/search
 
 %files
 
@@ -66,19 +68,19 @@ ls -la redhat-linux-build/share
 %doc %{_datadir}/doc/%{name}
 
 %changelog
-* Fri May 26 2017 Viet The Nguyen <vietjtnguyen@gmail.com>
+* Fri May 26 2017 Viet The Nguyen <vietjtnguyen@gmail.com> - 0.4.6-1
 - Updated version to 0.4.6
 
-* Fri Apr 28 2017 Viet The Nguyen <vietjtnguyen@gmail.com>
+* Fri Apr 28 2017 Viet The Nguyen <vietjtnguyen@gmail.com> - 0.4.5-1
 - Updated version to 0.4.5
 
-* Tue Apr 25 2017 Viet The Nguyen <vietjtnguyen@gmail.com>
+* Tue Apr 25 2017 Viet The Nguyen <vietjtnguyen@gmail.com> - 0.4.4-1
 - Updated version to 0.4.4
 
-* Tue Apr 25 2017 Viet The Nguyen <vietjtnguyen@gmail.com>
+* Tue Apr 25 2017 Viet The Nguyen <vietjtnguyen@gmail.com> - 0.4.3-1
 - Updated version to 0.4.3
 
-* Tue Apr 25 2017 Viet The Nguyen <vietjtnguyen@gmail.com>
+* Tue Apr 25 2017 Viet The Nguyen <vietjtnguyen@gmail.com> - 0.4.2-1
 - Updated version to 0.4.2
 
 * Sun Mar 05 2017 Viet The Nguyen <vietjtnguyen@gmail.com>
@@ -91,13 +93,13 @@ ls -la redhat-linux-build/share
 * Mon Feb 13 2017 Viet The Nguyen <vietjtnguyen@gmail.com>
 - Fixed License field and doc subpackage description typo
 
-* Sat Feb 11 2017 Viet The Nguyen <vietjtnguyen@gmail.com>
+* Sat Feb 11 2017 Viet The Nguyen <vietjtnguyen@gmail.com> - 0.2.2-1
 - Updated version to 0.2.2
 
-* Fri Feb 10 2017 Viet The Nguyen <vietjtnguyen@gmail.com>
+* Fri Feb 10 2017 Viet The Nguyen <vietjtnguyen@gmail.com> - 0.2.1-2
 - Separated documentation into a separate package
 
-* Fri Feb 10 2017 Viet The Nguyen <vietjtnguyen@gmail.com>
+* Fri Feb 10 2017 Viet The Nguyen <vietjtnguyen@gmail.com> - 0.2.1-1
 - Packaged version 0.2.1
 
 * Mon Jan 30 2017 Viet The Nguyen <vietjtnguyen@gmail.com>

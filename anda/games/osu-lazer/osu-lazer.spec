@@ -2,13 +2,13 @@
 %global debug_package %{nil}
 
 Name:			osu-lazer
-Version:		2023.610.0
+Version:		2023.617.0
 Release:		1%{?dist}
 Summary:		The future of osu! and the beginning of an open era! Commonly known by the codename osu!lazer. Pew pew.
 ExclusiveArch:	x86_64
 URL:			https://osu.ppy.sh/
 License:		MIT AND CC-BY-NC-4.0
-Requires:		zlib osu-mime fuse
+Requires:		osu-mime fuse
 Source0:		https://github.com/ppy/osu/releases/download/%{version}/osu.AppImage
 Source1:		https://raw.githubusercontent.com/ppy/osu/%{version}/assets/lazer.png
 Source2:		https://raw.githubusercontent.com/ppy/osu-resources/%{osuresver}/LICENCE.md
@@ -47,5 +47,5 @@ install -Dm644 -t %{buildroot}/usr/share/applications %{SOURCE4}
 
 
 %changelog
-* Mon Feb 13 2023 windowsboy111 <windowsboy111@fyralabs.com>
+* Mon Feb 13 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2023.207.0-1
 - Initial package

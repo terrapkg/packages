@@ -1,6 +1,6 @@
 %global real_name prismlauncher
 
-%global commit bfe7e3afed286de02dfc1ec4cc2b39f31972d295
+%global commit 12cd8a7bea991c2a8d4b59b1cfc9f7c246819fc9
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global libnbtplusplus_commit 2203af7eeb48c45398139b583615134efd8d407f
 %global quazip_commit 6117161af08e366c37499895b00ef62f93adc345
@@ -43,7 +43,7 @@ Name:             prismlauncher-nightly
 %else
 Name:             prismlauncher-qt5-nightly
 %endif
-Version:          7.0^%{snapshot_info}
+Version:          7.1^%{snapshot_info}
 Release:          1%{?dist}
 Summary:          Minecraft launcher with ability to manage multiple instances
 License:          GPL-3.0-only AND Apache-2.0 AND LGPL-3.0-only AND GPL-3.0-or-later AND GPL-2.0-or-later AND ISC AND OFL-1.1 AND LGPL-2.1-only AND MIT AND BSD-2-Clause-FreeBSD AND BSD-3-Clause AND LGPL-3.0-or-later
@@ -92,6 +92,8 @@ Recommends:       xrandr
 Recommends:       flite
 # Prism supports enabling gamemode
 Suggests:         gamemode
+
+Recommends:       terra-fractureiser-detector
 
 Conflicts:        %{real_name}
 Conflicts:        %{real_name}-qt5
@@ -143,39 +145,8 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 %check
 %ctest
 
-%if 0%{?rhel} > 8
-# disabled due to rhel not shipping a new enough version of libappstream-glib
-# appstream-util validate-relax --nonet \
-#     %{buildroot}%{_metainfodir}/org.prismlauncher.PrismLauncher.metainfo.xml
-
+appstream-util validate-relax --nonet %buildroot%_metainfodir/org.prismlauncher.PrismLauncher.metainfo.xml
 desktop-file-validate %{buildroot}%{_datadir}/applications/org.prismlauncher.PrismLauncher.desktop
-%endif
-
-%post
-%if 0%{?rhel} > 8
-/usr/bin/update-desktop-database &> /dev/null || :
-/bin/touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
-/bin/touch --no-create %{_datadir}/mime/packages &>/dev/null || :
-%endif
-
-
-%postun
-%if 0%{?rhel} > 8
-/usr/bin/update-desktop-database &> /dev/null || :
-
-if [ $1 -eq 0 ] ; then
-    /bin/touch --no-create %{_datadir}/icons/hicolor &>/dev/null
-    /usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
-    /usr/bin/update-mime-database %{_datadir}/mime &> /dev/null || :
-fi
-%endif
-
-
-%posttrans
-%if 0%{?rhel} > 8
-/usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
-/usr/bin/update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
-%endif
 
 
 %files

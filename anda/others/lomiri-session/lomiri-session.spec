@@ -1,5 +1,5 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-session
-%global commit 94a0d8d12e63fd4a298fb4cdce5f11e0a20bdb8c
+%global commit d33d5b666d5c18150ce216cc838713f18d84385c
 %forgemeta
 
 Name:       lomiri-session
@@ -9,11 +9,6 @@ Summary:    Configuration schemas for lomiri
 License:    LGPLv3
 URL:        https://gitlab.com/ubports/development/core/lomiri-session
 Source0:    %{url}/-/archive/%commit/lomiri-desktop-session-%commit.tar.gz
-Patch0:     https://sources.debian.org/data/main/l/lomiri-session/0.2-3/debian/patches/0001_desktop-dm-lomiri-session-Drop-old-wizard-has-run-ch.patch
-Patch1:     https://sources.debian.org/data/main/l/lomiri-session/0.2-3/debian/patches/0002_lomiri-session-Put-evaluation-of-ps-call-in-quotes.patch
-Patch2:     https://sources.debian.org/data/main/l/lomiri-session/0.2-3/debian/patches/0003_lomiri-session-Properly-differentiate-between-Ubuntu.patch
-Patch3:     https://sources.debian.org/data/main/l/lomiri-session/0.2-3/debian/patches/0004_lomiri-session-Check-for-presence-of-Xwayland-use-th.patch
-Patch4:     https://sources.debian.org/data/main/l/lomiri-session/0.2-3/debian/patches/0005_systemd-lomiri.service-Drop-Before-and-Wants-for-ind.patch
 BuildArch:  noarch
 
 BuildRequires: cmake
@@ -31,7 +26,7 @@ Requires:      lomiri
 Configuration schemas for lomiri.
 
 %prep
-%autosetup -n %{name}-%commit -p1
+%autosetup -n %{name}-%commit
 
 %build
 %cmake -DENABLE_TOUCH_SESSION=OFF

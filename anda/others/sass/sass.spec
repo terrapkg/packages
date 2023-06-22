@@ -4,7 +4,7 @@
 %define _build_id_links none
 
 Name: sass
-Version: 1.63.3
+Version: 1.63.4
 Release: 1%{?dist}
 Summary: The reference implementation of Sass, written in Dart
 License: MIT
@@ -12,16 +12,25 @@ URL: https://sass-lang.com/dart-sass
 
 Source0: https://github.com/sass/dart-sass/archive/refs/tags/%{version}.tar.gz
 
-BuildRequires: dart
+BuildRequires: dart git
 
 %description
-Dart Sass is the primary implementation of Sass, which means it gets new features before any other implementation. It's fast, easy to install, and it compiles to pure JavaScript which makes it easy to integrate into modern web development workflows.
+Dart Sass is the primary implementation of Sass, which means it gets new
+features before any other implementation. It's fast, easy to install, and it
+compiles to pure JavaScript which makes it easy to integrate into modern web
+development workflows.
 
 %prep
 %setup -q -n dart-sass-%{version}
 /usr/bin/dart pub get
 
 %build
+# first install `buf`
+curl -sSL "https://github.com/bufbuild/buf/releases/download/v1.21.0/buf-$(uname -s)-$(uname -m)" -o buf
+chmod +x buf
+cp buf /bin/ # this is stupid but maybe it works and I can finally die "piecefully"
+
+dart run grinder protobuf
 dart compile exe ./bin/sass.dart -o sass
 
 %install

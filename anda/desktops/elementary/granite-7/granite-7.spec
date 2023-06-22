@@ -4,9 +4,9 @@ provides complex widgets and convenience functions designed for use in
 apps built for elementary.}
 
 Name:           granite-7
-Summary:        elementary companion library for GTK+ and GLib
-Version:        7.2.0
-Release:        1%{?dist}
+Summary:        Elementary companion library for GTK+ and GLib
+Version:        7.3.0
+Release:        2%{?dist}
 License:        LGPL-3.0-or-later
 
 URL:            https://github.com/elementary/granite
@@ -17,6 +17,7 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson >= 0.48.2
 BuildRequires:  vala >= 0.48
+BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  pkgconfig(gio-2.0) >= 2.50
@@ -26,6 +27,7 @@ BuildRequires:  pkgconfig(gobject-2.0) >= 2.50
 BuildRequires:  pkgconfig(gtk+-3.0) >= 3.22
 BuildRequires:  pkgconfig(gobject-introspection-1.0)
 BuildRequires:  pkgconfig(gtk4) >= 4.4
+BuildRequires:  sassc
 
 # granite relies on org.gnome.desktop.interface for the clock-format setting
 Requires:       gsettings-desktop-schemas
@@ -57,14 +59,17 @@ This package contains the development headers.
 %install
 %meson_install
 
+%fdupes %buildroot%_datadir/icons/hicolor/
+%fdupes %buildroot%_datadir/locale/
+
 %find_lang granite-7
 
 %check
-%dnl desktop-file-validate \
-%dnl     %{buildroot}/%{_datadir}/applications/io.elementary.granite-7.demo.desktop
+desktop-file-validate \
+    %{buildroot}/%{_datadir}/applications/io.elementary.granite-7.demo.desktop
 
 %dnl appstream-util validate-relax --nonet \
-%dnl     %{buildroot}/%{_datadir}/metainfo/granite-7.appdata.xml
+%dnl     %{buildroot}/%{_datadir}/metainfo/granite-7.metainfo.xml
 
 
 %files -f granite-7.lang
@@ -75,11 +80,13 @@ This package contains the development headers.
 %{_libdir}/libgranite-7.so.7.*
 %{_libdir}/girepository-1.0/Granite-7.0.typelib
 
-%{_datadir}/metainfo/granite-7.appdata.xml
+%{_datadir}/metainfo/granite-7.metainfo.xml
 %{_datadir}/icons/hicolor/*/apps/io.elementary.granite-7.svg
 
 
 %files devel
+%doc README.md
+%license COPYING
 %{_bindir}/granite-7-demo
 
 %{_libdir}/libgranite-7.so

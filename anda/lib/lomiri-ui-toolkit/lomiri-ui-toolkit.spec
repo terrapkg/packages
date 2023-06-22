@@ -1,10 +1,10 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-ui-toolkit
-%global commit b996aa8e9d5add6e9d55f9a44a9fafc548d819c1
+%global commit 7df579c068335df31a704307d2bd20542233e5d2
 %forgemeta
 
 Name:           lomiri-ui-toolkit
 Version:        1.3.5010
-Release:        %autorelease
+Release:        2%?dist
 Summary:        QML components to ease the creation of beautiful applications in QML for Lomiri
 
 License:        LGPL-3.0
@@ -33,6 +33,7 @@ BuildRequires: qt5-qtdeclarative-devel
 BuildRequires: qt5-pim-devel
 BuildRequires: python3-rpm-macros
 BuildRequires: qt5-qtsvg-devel
+BuildRequires: fdupes
 Requires:      qt5-qtgraphicaleffects
 Requires:      qt5-qtfeedback
 
@@ -57,6 +58,7 @@ This package contains development files needed for lomiri-ui-toolkit.
 %package -n python3-lomiriuitoolkit
 Summary: Python3 files for Lomiri-ui-toolkit
 Requires: %{name}%{?_isa} = %{version}-%{release}
+BuildArch: noarch
 
 %description -n python3-lomiriuitoolkit
 Python3 files for Lomiri-ui-toolkit.
@@ -87,13 +89,14 @@ Examples for Lomiri-ui-toolkit.
 %make_install INSTALL_ROOT=%{buildroot} STRIP=/bin/true
 # Used by apicheck during tests only
 rm -rf %{buildroot}%{_qt5_qmldir}/Extinct
-# Has various issues
-rm -rf %{buildroot}%{_datadir}/lomiri-ui-toolkit/doc/html
+%fdupes %buildroot%_libdir/qt5/qml/Lomiri/Components/
+%fdupes %buildroot%_libdir/qt5/examples/%name/examples/
 
 %find_lang %{name}
 %find_lang %{name}-gallery
 
 %files -f %{name}.lang
+%doc README.md
 %license COPYING
 %{_libdir}/libLomiriGestures.so.*
 %{_libdir}/libLomiriMetrics.so.*
@@ -129,6 +132,7 @@ rm -rf %{buildroot}%{_datadir}/lomiri-ui-toolkit/doc/html
 %{_qt5_includedir}/LomiriToolkit/
 
 %files -n python3-lomiriuitoolkit
+%doc README.md
 %dir %{python3_sitelib}/lomiriuitoolkit
 %{python3_sitelib}/lomiriuitoolkit/*.py
 %{python3_sitelib}/lomiriuitoolkit/_custom_proxy_objects/
@@ -138,8 +142,7 @@ rm -rf %{buildroot}%{_datadir}/lomiri-ui-toolkit/doc/html
 %files doc
 %license COPYING.CC-BY-SA-3.0
 %{_qt5_docdir}/*.qch
-%dir %{_datadir}/lomiri-ui-toolkit
-%{_datadir}/lomiri-ui-toolkit/doc/
+%{_datadir}/doc/lomiri-ui-toolkit/
 
 %files examples -f %{name}-gallery.lang
 %dir %{_qt5_examplesdir}/lomiri-ui-toolkit

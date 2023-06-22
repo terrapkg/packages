@@ -66,7 +66,7 @@ sed -i '/man/d' Makefile.am
 
 %build
 # Some flag fixes an issue
-export LDFLAGS='-Wl,-O1 -Wl,-z,defs -Wl,--warn-unresolved-symbols -Wl,--as-needed'
+export LDFLAGS="$LDFLAGS -Wl,-O1 -Wl,-z,defs -Wl,--warn-unresolved-symbols -Wl,--as-needed"
 
 NOCONFIGURE=1 \
 ./autogen.sh
@@ -99,7 +99,7 @@ rename 61-gnome-settings-daemon-rfkill.rules 60-gnome-settings-daemon-rfkill.rul
 
 %files -f %{name}.lang
 %license COPYING COPYING.LIB
-%{_sysconfdir}/xdg/autostart/*.desktop
+%config %{_sysconfdir}/xdg/autostart/*.desktop
 %{_bindir}/unity-settings-daemon
 %{_prefix}/lib/udev/rules.d/60-gnome-settings-daemon-rfkill.rules
 %{_userunitdir}/unity-settings-daemon.service

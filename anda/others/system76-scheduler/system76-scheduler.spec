@@ -7,7 +7,7 @@ Summary:		Auto-configure CFS, process priorities for improved DE responsiveness
 License:		MPL-2.0
 URL:			https://github.com/pop-os/system76-scheduler
 Source0:		%url/archive/refs/tags/%version.tar.gz
-BuildRequires:	cargo clang just clang-devel pipewire-devel pkg-config systemd-rpm-macros
+BuildRequires:	cargo clang clang-devel pipewire-devel pkg-config systemd-rpm-macros rust-packaging just
 
 %description
 Scheduling service which optimizes Linux's CPU scheduler and automatically
@@ -22,7 +22,8 @@ process priority.
 %autosetup
 
 %build
-just execsnoop=$(which execsnoop-bpfcc) build-release
+export EXECSNOOP_PATH=$(which execsnoop-bpfcc)
+%cargo_build
 
 %install
 just rootdir=%buildroot sysconfdir=%_sysconfdir install
@@ -44,10 +45,10 @@ just rootdir=%buildroot sysconfdir=%_sysconfdir install
 %doc README.md
 %license LICENSE
 %_bindir/system76-scheduler
-/etc/dbus-1/system.d/com.system76.Scheduler.conf
-/etc/system76-scheduler/config.kdl
-/etc/system76-scheduler/process-scheduler/pop_os.kdl
-%{_unitdir}/com.system76.Scheduler.service
+%config %_sysconfdir/dbus-1/system.d/com.system76.Scheduler.conf
+%config %_sysconfdir/system76-scheduler/config.kdl
+%config %_sysconfdir/system76-scheduler/process-scheduler/pop_os.kdl
+%_unitdir/com.system76.Scheduler.service
 
 %changelog
 * Tue May 23 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2.0.1-1

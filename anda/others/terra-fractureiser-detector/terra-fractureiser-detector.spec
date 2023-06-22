@@ -1,6 +1,6 @@
 Name:			terra-fractureiser-detector
 Version:		0
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Detector for the Fractureiser malware
 URL:			https://fyralabs.com/minecraft/
 Requires:		python3 pygobject2 libadwaita
@@ -10,6 +10,7 @@ Source1:		fyra-fractureiser-detector.service
 Source2:		fyra-fractureiser-detector.timer
 Source3:		dialog.py
 License:		MIT
+BuildArch:		noarch
 
 %description
 This is a rapid security response for the detection of the Fractureiser malware.
