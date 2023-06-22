@@ -139,43 +139,13 @@ jobs:
           cat out >> $GITHUB_ENV
           echo $EOF >> $GITHUB_ENV
 
-      - name: Comment RPMLint/DNF output (PR)
-        if: success() && github.event_name == 'pull_request'
-        uses: actions/github-script@v6
-        with:
-          script: |
-            let out = "";
-            if (`${{ env.esc_lint_out }}`.trim() != "") {
-              out += "## 🔨 Lint: [${{matrix.pkg.pkg}} (${{matrix.pkg.arch}})](https://github.com/terrapkg/packages/actions/runs/${{github.run_id}})\n";
-              out += `\`\`\`\n${{ env.esc_lint_out }}\n\`\`\`\n`;
-            }
-            if (`${{ env.esc_dnf_out }}`.trim() != "") {
-              out += "## ❌ DNF: [${{matrix.pkg.pkg}} (${{matrix.pkg.arch}})](https://github.com/terrapkg/packages/actions/runs/${{github.run_id}})\n";
-              out += `${{ env.esc_dnf_out }}`;
-            }
-            if (out != "") {
-              github.rest.issues.createComment({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: out,
-              });
-            }
+      - name: Generate RPMLint/DNF summary
+        if: success()
+        run: |
+          if [[ $err == "true" ]]; then
+            echo "## 🔨 Lint: [${{matrix.pkg.pkg}} (${{matrix.pkg.arch}})](https://github.com/terrapkg/packages/actions/runs/${{github.run_id}})\n" >> $GITHUB_STEP_SUMMARY
+            echo "```\n${{ env.esc_lint_out }}\n```\n";
 
-      - name: Create commit comment
-        if: success() && env.err == 'true'
-        uses: peter-evans/commit-comment@v2
-        with:
-          body: |
-            <sub>[run_id: ${{github.run_id}}](https://github.com/terrapkg/packages/actions/runs/${{github.run_id}})</sub>
-            # Built RPM: ${{matrix.pkg.pkg}} (${{matrix.pkg.arch}}.fc${{matrix.version}})
-            ## Lint
-            If you see anything below, RPMLint returned with a non-zero exit code.
-
-            ${{ env.lint_out }}
-
-            ## DNF
-            Output of `dnf in --downloadonly ...`.
-            If you see anything below, DNF returned with a non-zero exit code.
-
-            ${{ env.dnf_out }}
+            echo "## ❌ DNF: [${{matrix.pkg.pkg}} (${{matrix.pkg.arch}})](https://github.com/terrapkg/packages/actions/runs/${{github.run_id}})\n" >> $GITHUB_STEP_SUMMARY
+            echo "${{ env.esc_dnf_out }}" >> $GITHUB_STEP_SUMMARY
+          fi
