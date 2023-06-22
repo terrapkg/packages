@@ -1,0 +1,12 @@
+diff --git a/platform/build-scripts/src/org/jetbrains/intellij/build/LinuxDistributionCustomizer.kt b/platform/build-scripts/src/org/jetbrains/intellij/build/LinuxDistributionCustomizer.kt
+--- a/platform/build-scripts/src/org/jetbrains/intellij/build/LinuxDistributionCustomizer.kt	(revision 7e0cfee10427cc87a372ef23d6bf083cc35fdb5e)
++++ b/platform/build-scripts/src/org/jetbrains/intellij/build/LinuxDistributionCustomizer.kt	(date 1670176639293)
+@@ -24,7 +24,7 @@
+   /**
+    * If {@code true} a separate *-no-jbr.tar.gz artifact without runtime will be produced.
+    */
+-  var buildTarGzWithoutBundledRuntime = false
++  var buildTarGzWithoutBundledRuntime = true
+ 
+   /**
+    * If {@code true}, the only *-no-jbr.tar.gz will be produced, no other binaries for Linux will be built.
