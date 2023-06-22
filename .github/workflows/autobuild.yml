@@ -143,12 +143,14 @@ jobs:
       - name: Generate RPMLint/DNF summary
         if: success()
         run: |
+          # Remind me to make all of this not weird later ~ lleyton
+
           if [[ $LINT_ERR == "true" ]]; then
-            echo "## ❌ Lint: [${{matrix.pkg.pkg}} (${{matrix.pkg.arch}})](https://github.com/terrapkg/packages/actions/runs/${{github.run_id}})\n" >> $GITHUB_STEP_SUMMARY
-            echo "```\n${{ env.ESC_LINT_OUT }}\n```\n";
+            echo -e "## ❌ Lint: [${{matrix.pkg.pkg}} (${{matrix.pkg.arch}})](https://github.com/terrapkg/packages/actions/runs/${{github.run_id}})\n" >> $GITHUB_STEP_SUMMARY
+            echo -e "```\n${{ env.ESC_LINT_OUT }}\n```\n" >> $GITHUB_STEP_SUMMARY
           fi
 
           if [[ $INSTALL_ERR == "true" ]]; then
-            echo "## ❌ DNF: [${{matrix.pkg.pkg}} (${{matrix.pkg.arch}})](https://github.com/terrapkg/packages/actions/runs/${{github.run_id}})\n" >> $GITHUB_STEP_SUMMARY
+            echo -e "## ❌ DNF: [${{matrix.pkg.pkg}} (${{matrix.pkg.arch}})](https://github.com/terrapkg/packages/actions/runs/${{github.run_id}})\n" >> $GITHUB_STEP_SUMMARY
             echo "${{ env.ESC_DNF_OUT }}" >> $GITHUB_STEP_SUMMARY
           fi
