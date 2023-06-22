@@ -17,13 +17,13 @@ git checkout %{version}
 %make_build
 
 %install
-make install DESTDIR=%{?buildroot}/usr
-mkdir %{?buildroot}/usr/lib64
-mv %{?buildroot}/usr/lib/libfetch.so %{?buildroot}/usr/lib64/libfetch.so
-rm -rf %{?buildroot}/usr/include
+make install DESTDIR=%{?buildroot}%{_prefix}
+mkdir %{?buildroot}%{_libdir}
+mv %{?buildroot}%{_prefix}/lib/libfetch.so %{?buildroot}%{_libdir}/libfetch.so
+rm -rf %{?buildroot}%{_includedir}
 
 %files
-%{_libdir}/uwufetch/*
+%{_prefix}/lib/uwufetch/*
 %{_libdir}/libfetch.so
 %{_mandir}/man1/uwufetch.1.gz
 %{_bindir}/uwufetch
