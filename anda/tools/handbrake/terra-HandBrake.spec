@@ -54,7 +54,7 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  gnupg2
 %endif
 BuildRequires:  libappstream-glib
-%{!?_without_ffmpeg:BuildRequires:  ffmpeg-devel >= 3.5}
+%{!?_without_ffmpeg:BuildRequires:  ffmpeg-free-devel >= 3.5}
 # Should be >= 2.6:
 BuildRequires:  freetype-devel >= 2.4.11
 # Should be >= 0.19.7:
