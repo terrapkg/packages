@@ -53,7 +53,7 @@ EOF
 
 
 %build
-export MAVEN_REPOSITORY=%_sourcedir/.m2/repository
+export MAVEN_REPOSITORY=%HOME/.m2/repository
 mvn install:install-file -Dfile=%SOURCE2 -DgroupId=junit -DartifactId=junit -Dversion=3.8.1 -Dpackaging=jar -DgeneratePom=true
 
 export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
