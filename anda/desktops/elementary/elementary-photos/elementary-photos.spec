@@ -6,7 +6,7 @@
 Name:           elementary-photos
 Summary:        Photo manager and viewer from elementary
 Version:        2.8.0
-Release:        %autorelease
+Release:        2%?dist
 License:        LGPL-2.0-or-later
 
 URL:            https://github.com/elementary/photos
@@ -17,6 +17,7 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson >= 0.46.0
 BuildRequires:  vala
+BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(gee-0.8) >= 0.8.5
 BuildRequires:  pkgconfig(geocode-glib-1.0)
@@ -65,6 +66,9 @@ Foundation.
 
 %find_lang %{appname}
 
+%fdupes %buildroot%_datadir/icons/hicolor/
+%fdupes %buildroot%_datadir/locale/
+
 
 %check
 desktop-file-validate \
@@ -97,5 +101,5 @@ appstream-util validate-relax --nonet \
 
 
 %changelog
-* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
+* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com> - 2.7.5-1
 - Repackaged for Terra

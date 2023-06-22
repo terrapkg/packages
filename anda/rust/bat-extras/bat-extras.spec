@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:           bat-extras
-Version:        2023.03.21
+Version:        2023.06.15
 Release:        1%{?dist}
 Summary:        Bash scripts that integrate bat with various command line tools
 
@@ -11,6 +11,7 @@ Source0:        https://github.com/eth-p/bat-extras/archive/refs/tags/v%{version
 
 BuildRequires:  bash
 Requires:       bash
+BuildArch:      noarch
 
 %description
 %{summary}.
@@ -29,6 +30,8 @@ Requires:       bash
 mkdir -p %{buildroot}%{_mandir}/man1/
 cp -v man/* %{buildroot}%{_mandir}/man1/
 
+chmod -x %_mandir/man1/*
+
 
 %files
 %license LICENSE.md
@@ -38,5 +41,5 @@ cp -v man/* %{buildroot}%{_mandir}/man1/
 %{_mandir}/man1/*
 
 %changelog
-* Mon Oct 03 2022 Cappy Ishihara <cappy@cappuchino.xyz>
+* Mon Oct 03 2022 Cappy Ishihara <cappy@cappuchino.xyz> - 2022.07.27-1
 - Initial release

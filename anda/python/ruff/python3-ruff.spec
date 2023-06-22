@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:			python3-ruff
-Version:		0.0.269
+Version:		0.0.272
 Release:		1%{?dist}
 Summary:		An extremely fast Python linter, written in Rust
 License:		MIT
@@ -11,7 +11,8 @@ BuildRequires:	python3-installer python3.11 python3-pip maturin cargo
 Provides:		python3.11dist(ruff) = %{version}
 
 %description
-Ruff aims to be orders of magnitude faster than alternative tools while integrating more functionality behind a single, common interface.
+Ruff aims to be orders of magnitude faster than alternative tools while
+integrating more functionality behind a single, common interface.
 
 %prep
 %autosetup -n ruff-%{version}

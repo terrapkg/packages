@@ -1,11 +1,11 @@
 %global forgeurl https://gitlab.com/ubports/development/core/click
-%global commit ff697fae4259e7b0f4bef27e3817f848bc06233a
+%global commit 0de0e0748ecfdf29997e6167f71fca0e2b03151b
 %forgemeta
 
 Name:           click
 Version:        0.5.0
-Release:        %autorelease
-Summary:        Click is a app building method
+Release:        2%?dist
+Summary:        An app building method
 License:        LGPL-3.0
 URL:            https://gitlab.com/ubports/development/core/click
 Source0:        %{url}/-/archive/%commit/click-%commit.tar.gz
@@ -44,6 +44,7 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 Requires: ubuntu-sdk
 Requires: python3-debian
 Requires: python3-gobject
+BuildArch: noarch
 
 %description -n python3-lomiri-click
 Python3 files and the main interface for Click.
@@ -79,8 +80,9 @@ popd
 mv README %{buildroot}%_pkgdocdir
 
 %files
+%doc doc/index.rst
 %license LICENSE
-%{_sysconfdir}/dbus-1/system.d/com.lomiri.click.conf
+%config %{_sysconfdir}/dbus-1/system.d/com.lomiri.click.conf
 %{_libdir}/libclick-0.4.so.*
 %dir %{_libdir}/click
 %{_libdir}/click/libclickpreload.so
@@ -99,7 +101,7 @@ mv README %{buildroot}%_pkgdocdir
 %files -n python3-lomiri-click
 %dir %{_sysconfdir}/click
 %dir %{_sysconfdir}/click/databases
-%{_sysconfdir}/click/databases/*.conf
+%config %{_sysconfdir}/click/databases/*.conf
 %dir %{_sysconfdir}/schroot
 %dir %{_sysconfdir}/schroot/click
 %{_sysconfdir}/schroot/click/fstab

@@ -3,8 +3,8 @@
 
 Name:           elementary-screenshot-tool
 Summary:        Screenshot tool designed for elementary
-Version:        6.0.3
-Release:        1%{?dist}
+Version:        6.0.4
+Release:        2%{?dist}
 License:        LGPL-3.0
 
 URL:            https://github.com/elementary/screenshot
@@ -18,6 +18,7 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson >= 0.46
 BuildRequires:  vala >= 0.24
+BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(gdk-pixbuf-2.0)
 BuildRequires:  pkgconfig(glib-2.0)
@@ -43,6 +44,8 @@ Screenshot tool designed for elementary.
 %install
 %meson_install
 
+%fdupes %buildroot%_datadir/icons/hicolor/
+%fdupes %buildroot%_datadir/locale
 %find_lang %{appname}
 
 
@@ -51,7 +54,7 @@ desktop-file-validate \
     %{buildroot}/%{_datadir}/applications/%{appname}.desktop
 
 appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
+    %{buildroot}/%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %files -f %{appname}.lang
@@ -63,12 +66,12 @@ appstream-util validate-relax --nonet \
 %{_datadir}/applications/%{appname}.desktop
 %{_datadir}/glib-2.0/schemas/%{appname}.gschema.xml
 %{_datadir}/icons/hicolor/*/apps/%{appname}.svg
-%{_datadir}/metainfo/%{appname}.appdata.xml
+%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %changelog
 * Fri Dec 02 2022 root - 6.0.3-1
 - new version
 
-* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
+* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com> - 6.0.2-1
 - Repackaged for Terra

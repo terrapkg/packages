@@ -3,8 +3,8 @@
 %bcond_with tests
 
 Name:           apparmor
-Version:        3.1.3
-Release:        %autorelease
+Version:        3.1.5
+Release:        1%{?dist}
 Summary:        AppArmor userspace components
 
 %define baseversion %(echo %{version} | cut -d. -f-2)
@@ -218,10 +218,12 @@ make -C utils check
 %{_mandir}/man3/aa_*.3.gz
 
 %files -n python3-apparmor
+%doc README.md
 %{python3_sitelib}/apparmor
 %{python3_sitelib}/apparmor-*.egg-info
 
 %files -n python3-LibAppArmor
+%doc README.md
 %{python3_sitearch}/LibAppArmor
 %{python3_sitearch}/LibAppArmor-*.egg-info
 
@@ -330,6 +332,7 @@ make -C utils check
 %{_mandir}/man8/apparmor_status.8.gz
 
 %files -n pam_apparmor
+%doc README.md
 %{_libdir}/security/pam_apparmor.so
 
 %files -n mod_apparmor

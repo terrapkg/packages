@@ -1,4 +1,4 @@
-name: Build Packages
+name: Manual Builds
 on:
   workflow_dispatch:
     inputs:
@@ -33,13 +33,11 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+      - name: Set up git repository
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
-      - uses: terrapkg/anda-build@main
-        with:
-          name: "${{ matrix.pkg }}pkg"
-          mockConfig: anda-${{ matrix.version }}-${{ matrix.arch }}
-          extraArgs: -D "sccache_bucket ${{secrets.SCCACHE_BUCKET}}" -D "sccache_endpoint ${{secrets.SCCACHE_ENDPOINT}}" -D "sccache_secret ${{secrets.SCCACHE_SECRET}}" -D "sccache_accesskey ${{secrets.SCCACHE_ACCESSKEY}}"
-          andaRepo: https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
+      - name: Build with Anda
+        run: anda build ${{ matrix.pkg }}pkg --package rpm -c terra-${{ matrix.version }}-${{ matrix.arch }}
 
       - name: Generating artifact name
         id: art
@@ -61,8 +59,8 @@ jobs:
             terra${{ matrix.version }} anda-build/rpm/rpms/*
 
       - name: Notify Madoguchi (Success)
-        if: success()
+        if: success() && github.event_name == 'push'
         run: ./.github/workflows/mg.sh true ${{matrix.pkg}} ${{matrix.version}} ${{matrix.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}}
       - name: Notify Madoguchi (Failure)
-        if: cancelled() || failure()
-        run: ./.github/workflows/mg.sh false ${{matrix.pkg}} ${{matrix.version}} ${{matrix.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}}
+        if: ( cancelled() || failure() ) && github.event_name == 'push'
+        run: ./.github/workflows/mg.sh true ${{matrix.pkg}} ${{matrix.version}} ${{matrix.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}}

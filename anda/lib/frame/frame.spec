@@ -1,6 +1,6 @@
 Name:           frame
 Version:        2.5.0
-Release:        %autorelease
+Release:        2%?dist
 Summary:        Touch Frame Library
 
 License:        GPL-3.0 AND LGPL-3.0
@@ -51,6 +51,7 @@ export PYTHON
 rm -fv %{buildroot}%{_libdir}/*.la
 
 %files
+%doc README
 %license COPYING COPYING.GPL3
 %{_libdir}/libframe.so.*
 

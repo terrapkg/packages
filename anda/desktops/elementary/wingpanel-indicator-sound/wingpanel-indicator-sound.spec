@@ -6,7 +6,7 @@
 Name:           wingpanel-indicator-sound
 Summary:        Sound Indicator for wingpanel
 Version:        6.0.2
-Release:        %autorelease
+Release:        2%?dist
 License:        GPL-3.0
 
 URL:            https://github.com/elementary/%{name}
@@ -16,6 +16,7 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala >= 0.22.0
+BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(granite)
@@ -45,7 +46,7 @@ A sound indicator for wingpanel.
 
 %install
 %meson_install
-
+%fdupes %buildroot%_datadir/locale/
 %find_lang sound-indicator
 
 # remove the specified stock icon from appdata (invalid in libappstream-glib)
@@ -68,5 +69,5 @@ appstream-util validate-relax --nonet \
 
 
 %changelog
-* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
+* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com> 6.0.2-1
 - Repackaged for Terra

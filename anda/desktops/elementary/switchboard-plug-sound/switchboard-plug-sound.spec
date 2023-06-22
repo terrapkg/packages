@@ -9,7 +9,7 @@
 Name:           switchboard-plug-sound
 Summary:        Switchboard Sound Plug
 Version:        2.3.2
-Release:        %autorelease
+Release:        2%?dist
 License:        LGPL-2.0-or-later
 
 URL:            https://github.com/elementary/switchboard-plug-sound
@@ -19,6 +19,7 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala >= 0.34.1
+BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(granite)
@@ -47,7 +48,7 @@ A sound plug for Switchboard.
 
 %install
 %meson_install
-
+%fdupes %buildroot%_datadir/locale/
 %find_lang %{plug_name}-plug
 
 # remove the specified stock icon from appdata (invalid in libappstream-glib)

@@ -1,5 +1,5 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-download-manager
-%global commit 86d086292db613df0b0cbc5fc2cfcdc33c3315bb
+%global commit 2c7d6921ac56862c197958f4e5c31aa76a1a50e1
 %forgemeta
 
 Name:       lomiri-download-manager
@@ -23,6 +23,7 @@ BuildRequires: qt5-qtdeclarative-devel
 BuildRequires: pkgconfig(dbus-1)
 BuildRequires: pkgconfig(libglog)
 BuildRequires: pkgconfig(liblomiri-api)
+BuildRequires: fdupes
 
 %description
 Upload Download Manager performs uploads and downloads from a centralized
@@ -33,20 +34,20 @@ Summary: Development files for %{name}
 Requires: %{name}%{?_isa} = %{version}-%{release}
 
 %description devel
-The %{name}-devel package contains libraries and header files for
-developing applications that use %{name}.
+The %name-devel package contains libraries and header files
+for developing applications that use %{name}.
 
 %package doc
 Summary: Documentation files for %{name}
 BuildArch: noarch
 
 %description doc
-%{name}-doc contains documentation for %{name}-devel.
+The %name-doc package contains documentation for
+%{name}-devel.
 
 %prep
 %autosetup -n lomiri-download-manager-%commit
 sed -e "s/-Werror//g" -i CMakeLists.txt
-sed -i 's/ -qt=qt5//' docs/qml/CMakeLists.txt
 
 %build
 %cmake -DCMAKE_INSTALL_LIBEXECDIR=%{_libdir} -DENABLE_UBUNTU_COMPAT=ON
@@ -54,11 +55,12 @@ sed -i 's/ -qt=qt5//' docs/qml/CMakeLists.txt
 
 %install
 %cmake_install
+%fdupes %buildroot%_docdir/%name/cpp/html/
 %find_lang %{name}
 
 %files -f %{name}.lang
 %license COPYING
-%{_sysconfdir}/dbus-1/system.d/*.conf
+%config %{_sysconfdir}/dbus-1/system.d/*.conf
 %{_bindir}/lomiri-*
 %{_userunitdir}/*.service
 %{_libdir}/liblomiri-download-manager-client.so.*
@@ -72,6 +74,7 @@ sed -i 's/ -qt=qt5//' docs/qml/CMakeLists.txt
 %{_qt5_qmldir}/Ubuntu/
 %{_datadir}/dbus-1/services/*.service
 %{_datadir}/dbus-1/system-services/*.service
+%{_mandir}/man1/*.gz
 
 %files devel
 %dir %{_includedir}/lomiri/download_manager

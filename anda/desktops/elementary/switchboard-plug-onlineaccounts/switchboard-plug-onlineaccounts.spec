@@ -7,7 +7,7 @@
 Name:           switchboard-plug-onlineaccounts
 Summary:        Switchboard Online Accounts plug
 Version:        6.5.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/switchboard-plug-onlineaccounts
@@ -17,6 +17,7 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala
+BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(camel-1.2)
 BuildRequires:  pkgconfig(glib-2.0)
@@ -48,7 +49,7 @@ Manage online accounts and connected applications.
 
 %install
 %meson_install
-
+%fdupes %buildroot%_datadir/locale/
 %find_lang %{plug_name}-plug
 
 # remove the specified stock icon from appdata (invalid in libappstream-glib)

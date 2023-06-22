@@ -3,7 +3,7 @@
 
 Name:           elementary-videos
 Summary:        Video player and library app from elementary
-Version:        2.9.0
+Version:        2.9.1
 Release:        2%{?dist}
 License:        GPL-3.0-or-later
 
@@ -15,6 +15,7 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala
+BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(clutter-gst-3.0)
 BuildRequires:  pkgconfig(clutter-gtk-1.0)
@@ -48,6 +49,8 @@ to the desktop.
 %install
 %meson_install
 
+%fdupes %buildroot%_datadir/icons/hicolor/
+%fdupes %buildroot%_datadir/locale/
 %find_lang %{appname}
 
 
@@ -56,7 +59,7 @@ desktop-file-validate \
     %{buildroot}/%{_datadir}/applications/%{appname}.desktop
 
 appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
+    %{buildroot}/%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %files -f %{appname}.lang
@@ -68,9 +71,9 @@ appstream-util validate-relax --nonet \
 %{_datadir}/applications/%{appname}.desktop
 %{_datadir}/glib-2.0/schemas/%{appname}.gschema.xml
 %{_datadir}/icons/hicolor/*/apps/%{appname}.svg
-%{_datadir}/metainfo/%{appname}.appdata.xml
+%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %changelog
-* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
+* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com> - 2.8.4-1
 - Repackaged for Terra

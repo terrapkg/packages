@@ -9,7 +9,7 @@
 Name:           switchboard-plug-applications
 Summary:        Switchboard Applications plug
 Version:        6.0.1
-Release:        3%{?dist}
+Release:        4%{?dist}
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/switchboard-plug-applications
@@ -19,6 +19,7 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala >= 0.22.0
+BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(flatpak) >= 1.1.2
 BuildRequires:  pkgconfig(glib-2.0) >= 2.34
@@ -45,7 +46,7 @@ that allows the user to manage application settings.
 
 %install
 %meson_install
-
+%fdupes %buildroot%_datadir/locale/
 %find_lang %{plug_name}-plug
 
 # remove the specified stock icon from appdata (invalid in libappstream-glib)
