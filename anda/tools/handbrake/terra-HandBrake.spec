@@ -166,9 +166,6 @@ echo "TAG=%version" >> version.txt
 echo "TAG_HASH=%commit0" >> version.txt
 %endif
 
-# This makes build stop if any download is attempted
-export http_proxy=http://127.0.0.1
-
 # By default the project is built with optimizations for speed and no debug.
 # Override configure settings by passing RPM_OPT_FLAGS and disabling preset
 # debug options.
