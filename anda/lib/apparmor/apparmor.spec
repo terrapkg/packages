@@ -3,7 +3,7 @@
 %bcond_with tests
 
 Name:           apparmor
-Version:        3.1.5
+Version:        3.1.6
 Release:        1%{?dist}
 Summary:        AppArmor userspace components
 
