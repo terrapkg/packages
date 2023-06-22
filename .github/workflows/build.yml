@@ -41,7 +41,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /var/cache
-          key: ${{ runner.os }}-br-${{ matrix.version }}-${{ matrix.pkg.arch }}
+          key: ${{ runner.os }}-br-${{ matrix.version }}-${{ matrix.pkg.arch }}-${{ matrix.pkg.pkg }}
 
       - name: Build with Andaman
         run: anda build ${{ matrix.pkg.pkg }} --package rpm -c anda/mock-configs/terra-${{ matrix.version }}-${{ matrix.pkg.arch }}.cfg
