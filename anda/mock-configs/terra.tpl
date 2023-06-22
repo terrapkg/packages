@@ -11,7 +11,7 @@ config_opts['plugin_conf']['yum_cache_enable'] = True
 config_opts['plugin_conf']['ccache_enable'] = True
 config_opts['plugin_conf']['ccache_opts']['compress'] = 'on'
 # repos
-config_opts['dnf.conf'] = """
+dnf_conf = """
 
 [main]
 keepcache=1
@@ -219,3 +219,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
 skip_if_unavailable=False
 {% endif %}
 """
+
+
+config_opts['dnf.conf'] = dnf_conf
+config_opts['dnf5.conf'] = dnf_conf
