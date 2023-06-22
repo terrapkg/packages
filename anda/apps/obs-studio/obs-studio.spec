@@ -23,8 +23,6 @@ BuildRequires:	desktop-file-utils
 BuildRequires:	alsa-lib-devel
 BuildRequires:	asio-devel
 BuildRequires:	fdk-aac-free-devel
-# ffmpeg-devel is only in RPM Fusion
-BuildRequires:	ffmpeg-free-devel
 BuildRequires:	fontconfig-devel
 BuildRequires:	freetype-devel
 BuildRequires:	jansson-devel >= 2.5
@@ -60,7 +58,7 @@ BuildRequires:	swig
 BuildRequires:	systemd-devel
 BuildRequires:	wayland-devel
 BuildRequires:	websocketpp-devel
-# RPM Fusion only:
+BuildRequires:	ffmpeg-devel
 BuildRequires:	x264-devel
 BuildRequires:	vlc-devel
 
