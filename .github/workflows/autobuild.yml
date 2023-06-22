@@ -54,8 +54,19 @@ jobs:
       - name: Set up git repository
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
-      - name: Build with Anda
-        run: anda build ${{ matrix.pkg.pkg }} --package rpm -c terra-${{ matrix.version }}-${{ matrix.pkg.arch }}
+      - name: Cache buildroot
+        id: br-cache
+        uses: actions/cache@v3
+        with:
+          path: /var/cache
+          key: ${{ runner.os }}-br-${{ matrix.version }}-${{ matrix.pkg.arch }}-${{ matrix.pkg.pkg }}
+
+      - name: Include custom build template instead of package default
+        run: |
+          cp -v anda/mock-configs/terra.tpl /etc/mock/templates/terra.tpl
+
+      - name: Build with Andaman
+        run: anda build ${{ matrix.pkg.pkg }} --package rpm -c anda/mock-configs/terra-${{ matrix.version }}-${{ matrix.pkg.arch }}.cfg
 
       - name: Generating artifact name
         id: art
