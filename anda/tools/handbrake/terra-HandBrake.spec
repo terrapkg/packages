@@ -140,7 +140,7 @@ This package contains the main program with a graphical interface.
 %if 0%{?tag:1}
 gpgv2 --keyring %{S:2} %{S:1} %{S:0}
 %endif
-%setup -q %{!?tag:-n %pkg-%commit0}
+%setup -q %{!?tag:-n HandBrake-%commit0}%{?tag:-n HandBrake-%version}
 %patch -P0 -p1
 %if 0%!?_with_vpl
 %patch -P1 -p1
