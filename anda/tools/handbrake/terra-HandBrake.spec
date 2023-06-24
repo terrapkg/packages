@@ -143,6 +143,7 @@ This package contains the main program with a graphical interface.
 %endif
 #setup -q %%{!?tag:-n HandBrake-%commit0}%%{?tag:-n HandBrake-%version}
 git clone https://github.com/%pkg/%pkg
+cd %pkg
 git checkout %{!?tag:%commit0}%%{?tag:%version}
 %patch -P0 -p1
 %if 0%!?_with_vpl
@@ -161,6 +162,7 @@ done
 sed -i -e 's/%desktop_id.svg/%desktop_id/g' gtk/src/%desktop_id.desktop
 
 %build
+cd %pkg
 echo "HASH=%commit0" > version.txt
 echo "SHORTHASH=%shortcommit0" >> version.txt
 echo "DATE=$(date "+%Y-%m-%d %T" -d %date)" >> version.txt
@@ -194,6 +196,7 @@ echo "GCC.args.g.none = " >> custom.defs
 %make_build -C build V=1
 
 %install
+cd %pkg
 %make_install -C build
 
 # Desktop file, icons and AppStream metadata from FlatPak build (more complete)
