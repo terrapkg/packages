@@ -103,6 +103,7 @@ BuildRequires:  x264-devel >= 0.148
 BuildRequires:  x265-devel >= 1.9
 BuildRequires:  xz-devel
 BuildRequires:  zimg-devel
+BuildRequires:  git
 
 Requires:       hicolor-icon-theme
 # needed for reading encrypted DVDs
@@ -222,3 +223,4 @@ appstream-util validate-relax --nonet %buildroot%_metainfodir/%desktop_id.metain
 %_bindir/HandBrakeCLI
 
 %changelog
+%autochangelog
