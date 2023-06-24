@@ -144,7 +144,7 @@ This package contains the main program with a graphical interface.
 #setup -q %%{!?tag:-n HandBrake-%commit0}%%{?tag:-n HandBrake-%version}
 git clone https://github.com/%pkg/%pkg
 cd %pkg
-git checkout %{!?tag:%commit0}%%{?tag:%version}
+git checkout %{!?tag:%commit0}%{?tag:%version}
 %patch -P0 -p1
 %if 0%!?_with_vpl
 %patch -P1 -p1
