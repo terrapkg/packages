@@ -58,7 +58,7 @@ BuildRequires:	swig
 BuildRequires:	systemd-devel
 BuildRequires:	wayland-devel
 BuildRequires:	websocketpp-devel
-BuildRequires:	ffmpeg-devel
+BuildRequires:	ffmpeg-free-devel
 BuildRequires:	x264-devel
 BuildRequires:	vlc-devel
 
