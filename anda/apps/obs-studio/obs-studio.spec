@@ -9,11 +9,6 @@ URL:			https://obsproject.com/
 Source0:		https://github.com/obsproject/obs-studio/archive/refs/tags/%version.tar.gz
 Source1:		https://github.com/obsproject/obs-websocket/archive/%obswebsocketver/obs-websocket-%obswebsocketver.tar.gz
 
-Patch1:			0001-UI-Consistently-reference-the-software-H264-encoder-.patch
-Patch2:			0002-obs-ffmpeg-Add-initial-support-for-the-OpenH264-H.26.patch
-Patch3:			0003-UI-Add-support-for-OpenH264-as-the-worst-case-fallba.patch
-Patch11:		obs-studio-websocket-use-system-qrcodegencpp.patch
-
 BuildRequires:	gcc
 BuildRequires:	cmake >= 3.16
 BuildRequires:	ninja-build
