@@ -36,8 +36,15 @@ jobs:
       - name: Set up git repository
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
-      - name: Build with Anda
-        run: anda build ${{ matrix.pkg }}pkg --package rpm -c terra-${{ matrix.version }}-${{ matrix.arch }}
+      - name: Cache buildroot
+        id: br-cache
+        uses: actions/cache@v3
+        with:
+          path: /var/cache
+          key: ${{ runner.os }}-br-${{ matrix.version }}-${{ matrix.pkg.arch }}-${{ matrix.pkg.pkg }}
+
+      - name: Build with Andaman
+        run: anda build ${{ matrix.pkg.pkg }} --package rpm -c anda/mock-configs/terra-${{ matrix.version }}-${{ matrix.pkg.arch }}.cfg
 
       - name: Generating artifact name
         id: art
@@ -63,4 +70,4 @@ jobs:
         run: ./.github/workflows/mg.sh true ${{matrix.pkg}} ${{matrix.version}} ${{matrix.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}}
       - name: Notify Madoguchi (Failure)
         if: ( cancelled() || failure() ) && github.event_name == 'push'
-        run: ./.github/workflows/mg.sh true ${{matrix.pkg}} ${{matrix.version}} ${{matrix.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}}
+        run: ./.github/workflows/mg.sh false ${{matrix.pkg}} ${{matrix.version}} ${{matrix.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}}
