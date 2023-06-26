@@ -4,7 +4,7 @@
 
 Name:           click
 Version:        0.5.0
-Release:        2%?dist
+Release:        %autorelease
 Summary:        An app building method
 License:        LGPL-3.0
 URL:            https://gitlab.com/ubports/development/core/click
