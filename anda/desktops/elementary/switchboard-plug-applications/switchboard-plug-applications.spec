@@ -25,7 +25,7 @@ BuildRequires:  pkgconfig(flatpak) >= 1.1.2
 BuildRequires:  pkgconfig(glib-2.0) >= 2.34
 BuildRequires:  pkgconfig(granite)
 BuildRequires:  pkgconfig(gtk+-3.0)
-BuildRequires:  pkgconfig(pkgconfig)
+BuildRequires:  pkgconfig(libhandy-1)
 BuildRequires:  pkgconfig(switchboard-2.0)
 
 Requires:       switchboard%{?_isa}
