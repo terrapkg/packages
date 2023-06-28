@@ -51,7 +51,7 @@ that allows the user to manage application settings.
 %find_lang %{plug_name}-plug
 
 # remove the specified stock icon from appdata (invalid in libappstream-glib)
-sed -i '/icon type="stock"/d' %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
+sed -i '/icon type="stock"/d' %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
 
 %check
