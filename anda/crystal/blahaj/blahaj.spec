@@ -1,7 +1,7 @@
 %define debug_package %nil
 
 Name:			blahaj
-Version:		2.0.2
+Version:		2.1.0
 Release:		1%{?dist}
 Summary:		Gay sharks at your local terminal - lolcat-like CLI tool
 License:		BSD-2-Clause
