@@ -52,12 +52,12 @@ mv %buildroot%_datadir/metainfo/%plug_rdnn.appdata.xml %buildroot%_datadir/metai
 %find_lang %{plug_name}-plug
 
 # remove the specified stock icon from appdata (invalid in libappstream-glib)
-sed -i '/icon type="stock"/d' %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
+sed -i '/icon type="stock"/d' %{buildroot}%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
 
 %check
 appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
+    %{buildroot}%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
 
 %files -f %{plug_name}-plug.lang
@@ -67,7 +67,7 @@ appstream-util validate-relax --nonet \
 %{_libdir}/switchboard/%{plug_type}/lib%{plug_name}.so
 
 %{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
-%{_datadir}/icons/hicolor/*/apps/%{plug_rdnn}.svg
+%{_datadir}/icons/hicolor/*/apps/io.elementary.settings.applications.svg
 
 
 %changelog
