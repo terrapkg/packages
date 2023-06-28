@@ -219,7 +219,6 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &>/dev/null || :
 %{_userunitdir}/unity*.target
 
 %files -n python3-uwidgets
-%doc README
 %license uwidgets/LICENCE
 %{_bindir}/uwidgets-runner
 %{python3_sitearch}/uwidgets-*.egg-info/
