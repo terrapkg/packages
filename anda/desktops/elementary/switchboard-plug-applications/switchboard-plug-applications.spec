@@ -67,6 +67,7 @@ appstream-util validate-relax --nonet \
 %{_libdir}/switchboard/%{plug_type}/lib%{plug_name}.so
 
 %{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
+%{_datadir}/icons/hicolor/*/apps/%{plug_rdnn}.svg
 
 
 %changelog
