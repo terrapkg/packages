@@ -108,7 +108,7 @@ desktop-file-validate \
 %{_datadir}/applications/gala*.desktop
 %{_datadir}/glib-2.0/schemas/20_elementary.pantheon.wm.gschema.override
 %{_datadir}/glib-2.0/schemas/org.pantheon.desktop.gala.gschema.xml
-%{_datadir}/metainfo/%{name}.appdata.xml
+%{_datadir}/metainfo/%{name}.metainfo.xml
 
 %files libs
 %doc AUTHORS README.md

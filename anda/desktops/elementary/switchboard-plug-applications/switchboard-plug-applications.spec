@@ -26,6 +26,7 @@ BuildRequires:  pkgconfig(glib-2.0) >= 2.34
 BuildRequires:  pkgconfig(granite)
 BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(switchboard-2.0)
+BuildRequires:  pkgconfig(libhandy-1)
 
 Requires:       switchboard%{?_isa}
 Supplements:    switchboard%{?_isa}
