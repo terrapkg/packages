@@ -48,13 +48,13 @@ A bluetooth indicator for wingpanel.
 %fdupes %buildroot%_datadir/locale/
 %find_lang bluetooth-indicator
 
-# remove the specified stock icon from appdata (invalid in libappstream-glib)
-sed -i '/icon type="stock"/d' %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
+# remove the specified stock icon from metainfo (invalid in libappstream-glib)
+sed -i '/icon type="stock"/d' %{buildroot}/%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %check
 appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
+    %{buildroot}/%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %files -f bluetooth-indicator.lang

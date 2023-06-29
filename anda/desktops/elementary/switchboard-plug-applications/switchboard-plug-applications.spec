@@ -27,6 +27,7 @@ BuildRequires:  pkgconfig(granite)
 BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(libhandy-1)
 BuildRequires:  pkgconfig(switchboard-2.0)
+BuildRequires:  pkgconfig(libhandy-1)
 
 Requires:       switchboard%{?_isa}
 Supplements:    switchboard%{?_isa}
