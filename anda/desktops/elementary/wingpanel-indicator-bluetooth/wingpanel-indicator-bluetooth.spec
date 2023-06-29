@@ -64,7 +64,7 @@ appstream-util validate-relax --nonet \
 %{_libdir}/wingpanel/libbluetooth.so
 
 %{_datadir}/glib-2.0/schemas/io.elementary.desktop.wingpanel.bluetooth.gschema.xml
-%{_datadir}/metainfo/%{appname}.appdata.xml
+%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %changelog
