@@ -200,6 +200,8 @@ echo "GCC.args.g.none = " >> custom.defs
 cd %pkg
 %make_install -C build
 
+cp *.markdown COPYING ..
+
 # Desktop file, icons and AppStream metadata from FlatPak build (more complete)
 rm -f %buildroot%_datadir/applications/ghb.desktop \
     %buildroot%_datadir/icons/hicolor/scalable/apps/hb-icon.svg
