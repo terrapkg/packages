@@ -63,10 +63,10 @@ jobs:
 
       - name: Include custom build template instead of package default
         run: |
-          cp -v anda/mock-configs/terra.tpl /etc/mock/templates/terra.tpl
+          cp -v anda/mock-configs/anda.tpl /etc/mock/templates/anda.tpl
 
       - name: Build with Andaman
-        run: anda build ${{ matrix.pkg.pkg }} --package rpm -c anda/mock-configs/terra-${{ matrix.version }}-${{ matrix.pkg.arch }}.cfg
+        run: anda build ${{ matrix.pkg.pkg }} --package rpm -c anda/mock-configs/anda-${{ matrix.version }}-${{ matrix.pkg.arch }}.cfg
 
       - name: Generating artifact name
         id: art
