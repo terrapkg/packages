@@ -104,6 +104,7 @@ BuildRequires:  x265-devel >= 1.9
 BuildRequires:  xz-devel
 BuildRequires:  zimg-devel
 BuildRequires:  git
+BuildRequires:  vulkan-loader
 
 Requires:       hicolor-icon-theme
 # needed for reading encrypted DVDs
