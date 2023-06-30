@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:           discord-canary-openasar
-Version:        0.0.161
+Version:        0.0.162
 Release:        1%{?dist}
 Summary:        A snappier Discord rewrite with features like further customization and theming
 License:        MIT AND https://discord.com/terms
