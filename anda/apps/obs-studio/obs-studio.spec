@@ -56,6 +56,8 @@ BuildRequires:	websocketpp-devel
 BuildRequires:	ffmpeg-free-devel
 BuildRequires:	x264-devel
 BuildRequires:	vlc-devel
+# websocket deps
+BuildRequires:	nlohmann-json-devel websocketpp-devel asio-devel
 
 # Ensure QtWayland is installed when libwayland-client is installed
 Requires:		(qt6-qtwayland%{?_isa} if libwayland-client%{?_isa})
