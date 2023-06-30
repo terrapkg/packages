@@ -49,6 +49,7 @@ developing applications that use %{name}.
 echo "#include <cstdint>" > a.h
 cat src/libappimage/utils/hashlib.h >> a.h
 mv a.h src/libappimage/utils/hashlib.h
+rm docs/{make.bat,.gitignore}
 
 
 %build
