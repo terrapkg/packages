@@ -65,7 +65,7 @@ jobs:
         run: cp -v anda/mock-configs/anda.tpl /etc/mock/templates/anda.tpl
 
       - name: Build with Andaman
-        run: anda build ${{ matrix.pkg.pkg }} --package rpm -c anda-${{ matrix.version }}-${{ matrix.pkg.arch }}.cfg
+        run: anda build ${{ matrix.pkg.pkg }} --package rpm -c anda-${{ matrix.version }}-${{ matrix.pkg.arch }}
 
       - name: Generating artifact name
         id: art
