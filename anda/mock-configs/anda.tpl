@@ -5,12 +5,16 @@ config_opts['chroot_setup_cmd'] = 'install @buildsys-build'
 config_opts['package_manager'] = 'dnf'
 config_opts['extra_chroot_dirs'] = [ '/run/lock', ]
 config_opts['mirrored'] = True
+config_opts['plugin_conf']['root_cache_enable'] = True
+config_opts['plugin_conf']['yum_cache_enable'] = True
+config_opts['plugin_conf']['ccache_enable'] = True
+config_opts['plugin_conf']['ccache_opts']['compress'] = 'on'
 # repos
-config_opts['dnf.conf'] = """
+dnf_conf = """
 
 [main]
 keepcache=1
-debuglevel=2
+debuglevel=2a
 reposdir=/dev/null
 logfile=/var/log/yum.log
 retries=20
@@ -37,6 +41,9 @@ enabled=1
 enabled_metadata=1
 metadata_expire=4h
 
+# RPMFusion
+# We do not check GPG keys, because I can't find a direct link to the GPG key
+
 [rpmfusion-free]
 name=RPM Fusion for Fedora $releasever - Free
 #baseurl=http://download1.rpmfusion.org/free/fedora/releases/$releasever/Everything/$basearch/os/
@@ -44,30 +51,40 @@ metalink=https://mirrors.rpmfusion.org/metalink?repo=free-fedora-$releasever&arc
 enabled=1
 metadata_expire=14d
 type=rpm-md
-gpgcheck=1
+gpgcheck=0
 repo_gpgcheck=0
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-$releasever
+
+[rpmfusion-free-updates]
+name=RPM Fusion for Fedora $releasever - Free - Updates
+#baseurl=http://download1.rpmfusion.org/free/fedora/updates/$releasever/$basearch/
+metalink=https://mirrors.rpmfusion.org/metalink?repo=free-fedora-updates-released-$releasever&arch=$basearch
+enabled=1
+enabled_metadata=1
+type=rpm-md
+gpgcheck=0
+repo_gpgcheck=0
 
 [rpmfusion-nonfree]
 name=RPM Fusion for Fedora $releasever - Nonfree
 #baseurl=http://download1.rpmfusion.org/nonfree/fedora/releases/$releasever/Everything/$basearch/os/
 metalink=https://mirrors.rpmfusion.org/metalink?repo=nonfree-fedora-$releasever&arch=$basearch
-enabled=0
+enabled=1
 enabled_metadata=1
 metadata_expire=14d
 type=rpm-md
-gpgcheck=1
+gpgcheck=0
 repo_gpgcheck=0
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora-$releasever
 
+[rpmfusion-nonfree-updates]
+name=RPM Fusion for Fedora $releasever - Nonfree - Updates
+#baseurl=http://download1.rpmfusion.org/nonfree/fedora/updates/$releasever/$basearch/
+metalink=https://mirrors.rpmfusion.org/metalink?repo=nonfree-fedora-updates-released-$releasever&arch=$basearch
+enabled=1
+enabled_metadata=1
+type=rpm-md
+gpgcheck=0
+repo_gpgcheck=0
 
-[local]
-name=local
-baseurl=https://lapis.ultramarine-linux.org/kojifiles/repos/um{{ releasever }}-build/latest/$basearch/
-cost=2000
-enabled={{ not mirrored }}
-skip_if_unavailable=False
-assumeyes=True
 
 {% if mirrored %}
 [fedora]
@@ -201,3 +218,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
 skip_if_unavailable=False
 {% endif %}
 """
+
+
+config_opts['dnf.conf'] = dnf_conf
+config_opts['dnf5.conf'] = dnf_conf
