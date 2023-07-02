@@ -63,7 +63,8 @@ Requires: gtk4-layer-shell
 /usr/share/gir-1.0/Gtk4LayerShell-1.0.gir
 
 %files doc
-/usr/share/gtk-doc/html/gtk-layer-shell
+/usr/share/gtk-doc/html/gtk4-layer-shell/
+
 
 %files vapi
 /usr/share/vala/vapi/gtk4-layer-shell-0.deps
