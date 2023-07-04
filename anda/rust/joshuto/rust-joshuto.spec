@@ -4,8 +4,8 @@
 %global crate joshuto
 
 Name:           rust-joshuto
-Version:        0.9.4
-Release:        %autorelease
+Version:        0.9.5
+Release:        1%{?dist}
 Summary:        Terminal file manager inspired by ranger
 
 License:        LGPL-3.0
