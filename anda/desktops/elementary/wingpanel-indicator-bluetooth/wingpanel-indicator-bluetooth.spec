@@ -5,7 +5,7 @@
 
 Name:           wingpanel-indicator-bluetooth
 Summary:        Bluetooth Indicator for wingpanel
-Version:        7.0.0
+Version:        7.0.1
 Release:        1%{?dist}
 License:        LGPL-2.0-or-later
 
@@ -48,13 +48,13 @@ A bluetooth indicator for wingpanel.
 %fdupes %buildroot%_datadir/locale/
 %find_lang bluetooth-indicator
 
-# remove the specified stock icon from appdata (invalid in libappstream-glib)
-sed -i '/icon type="stock"/d' %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
+# remove the specified stock icon from metainfo (invalid in libappstream-glib)
+sed -i '/icon type="stock"/d' %{buildroot}/%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %check
 appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
+    %{buildroot}/%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %files -f bluetooth-indicator.lang
@@ -63,8 +63,11 @@ appstream-util validate-relax --nonet \
 
 %{_libdir}/wingpanel/libbluetooth.so
 
+%_bindir/io.elementary.bluetooth
 %{_datadir}/glib-2.0/schemas/io.elementary.desktop.wingpanel.bluetooth.gschema.xml
-%{_datadir}/metainfo/%{appname}.appdata.xml
+%{_datadir}/applications/io.elementary.bluetooth.desktop
+%{_datadir}/metainfo/%{appname}.metainfo.xml
+%_sysconfdir/xdg/autostart/io.elementary.bluetooth-daemon.desktop
 
 
 %changelog

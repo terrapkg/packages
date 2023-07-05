@@ -52,7 +52,7 @@ A notifications indicator for wingpanel.
 
 %check
 appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
+    %{buildroot}/%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %files -f notifications-indicator.lang
@@ -61,7 +61,7 @@ appstream-util validate-relax --nonet \
 
 %{_libdir}/wingpanel/libnotifications.so
 
-%{_datadir}/metainfo/%{appname}.appdata.xml
+%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %changelog

@@ -104,7 +104,7 @@ jobs:
           if [[ $f -eq 1 ]]; then
             EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
             echo "ESC_LINT_OUT<<$EOF" >> $GITHUB_ENV
-            cat rpmlint.txt | sed 's/`/\\`/g' >> $GITHUB_ENV
+            cat rpmlint.txt | sed 's/`/\\`/g' | sed 's/"/\"/g' >> $GITHUB_ENV
             echo $EOF >> $GITHUB_ENV
             echo "lint_out<<$EOF" >> $GITHUB_ENV
             echo '```' >> $GITHUB_ENV
@@ -134,7 +134,7 @@ jobs:
           cat out
           EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
           echo "ESC_DNF_OUT<<$EOF" >> $GITHUB_ENV
-          cat out | sed 's/`/\\`/g' >> $GITHUB_ENV
+          cat out | sed 's/`/\\`/g' | sed 's/"/\"/g' >> $GITHUB_ENV
           echo $EOF >> $GITHUB_ENV
           echo "dnf_out<<$EOF" >> $GITHUB_ENV
           cat out >> $GITHUB_ENV

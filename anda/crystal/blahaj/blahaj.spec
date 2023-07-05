@@ -1,13 +1,13 @@
 %define debug_package %nil
 
 Name:			blahaj
-Version:		2.0.2
+Version:		2.1.0
 Release:		1%{?dist}
 Summary:		Gay sharks at your local terminal - lolcat-like CLI tool
 License:		BSD-2-Clause
 URL:			https://blahaj.queer.software
 Source0:		https://github.com/GeopJr/BLAHAJ/archive/refs/tags/v%version.tar.gz
-BuildRequires:	crystal gcc libyaml-devel pcre-devel
+BuildRequires:	crystal gcc libyaml-devel pcre-devel libgc-devel libevent-devel
 ExclusiveArch:	x86_64
 
 %description
