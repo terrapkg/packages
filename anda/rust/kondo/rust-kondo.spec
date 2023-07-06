@@ -4,7 +4,7 @@
 %global crate kondo
 
 Name:           rust-kondo
-Version:        0.6
+Version:        0.7
 Release:        1%{?dist}
 Summary:        Filesystem cleaning tool for projects
 
