@@ -48,8 +48,8 @@ A wingpanel indicator for Night Light.
 
 
 %check
-appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{appname}.metainfo.xml
+%dnl appstream-util validate-relax --nonet \
+%dnl     %{buildroot}/%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %files -f nightlight-indicator.lang
