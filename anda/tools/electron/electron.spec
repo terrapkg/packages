@@ -6,7 +6,7 @@
 %endif
 
 Name:			electron
-Version:		25.2.0
+Version:		25.2.1
 Release:		1%{?dist}
 Summary:		Build cross platform desktop apps with web technologies
 License:		MIT
