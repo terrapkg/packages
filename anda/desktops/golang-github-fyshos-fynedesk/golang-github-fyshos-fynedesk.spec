@@ -17,7 +17,7 @@ A full desktop environment for Linux/Unix using Fyne.}
 %global godocs          AUTHORS README.md CHANGELOG.md
 
 Name:           %{goname}
-Release:        %autorelease
+Release:        1%{?dist}
 Summary:        A full desktop environment for Linux/Unix using Fyne
 
 License:        BSD-3-Clause

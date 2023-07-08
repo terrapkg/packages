@@ -5,7 +5,7 @@
 
 Name:     xpadneo
 Version:  0.9.5
-Release:  1%?dist
+Release:  1%{?dist}
 Summary:  Advanced Linux Driver for Xbox One Wireless Gamepad
 Group:    System Environment/Kernel
 License:  GPL-3.0

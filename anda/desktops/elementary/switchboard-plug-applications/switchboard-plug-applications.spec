@@ -8,8 +8,8 @@
 
 Name:           switchboard-plug-applications
 Summary:        Switchboard Applications plug
-Version:        6.0.1
-Release:        4%{?dist}
+Version:        7.0.0
+Release:        1%{?dist}
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/switchboard-plug-applications
@@ -25,7 +25,9 @@ BuildRequires:  pkgconfig(flatpak) >= 1.1.2
 BuildRequires:  pkgconfig(glib-2.0) >= 2.34
 BuildRequires:  pkgconfig(granite)
 BuildRequires:  pkgconfig(gtk+-3.0)
+BuildRequires:  pkgconfig(libhandy-1)
 BuildRequires:  pkgconfig(switchboard-2.0)
+BuildRequires:  pkgconfig(libhandy-1)
 
 Requires:       switchboard%{?_isa}
 Supplements:    switchboard%{?_isa}
@@ -47,15 +49,16 @@ that allows the user to manage application settings.
 %install
 %meson_install
 %fdupes %buildroot%_datadir/locale/
+mv %buildroot%_datadir/metainfo/%plug_rdnn.appdata.xml %buildroot%_datadir/metainfo/%plug_rdnn.metainfo.xml || true
 %find_lang %{plug_name}-plug
 
 # remove the specified stock icon from appdata (invalid in libappstream-glib)
-sed -i '/icon type="stock"/d' %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
+sed -i '/icon type="stock"/d' %{buildroot}%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
 
 %check
 appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
+    %{buildroot}%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
 
 %files -f %{plug_name}-plug.lang
@@ -64,7 +67,8 @@ appstream-util validate-relax --nonet \
 
 %{_libdir}/switchboard/%{plug_type}/lib%{plug_name}.so
 
-%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
+%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
+%{_datadir}/icons/hicolor/*/apps/io.elementary.settings.applications.svg
 
 
 %changelog
