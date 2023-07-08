@@ -222,6 +222,8 @@ appstream-util validate-relax --nonet %buildroot%_metainfodir/%desktop_id.metain
 %_metainfodir/%desktop_id.metainfo.xml
 %_datadir/applications/%desktop_id.desktop
 %_datadir/icons/hicolor/scalable/apps/%desktop_id.svg
+%_datadir/locale/*/LC_MESSAGES/ghb.mo
+
 
 %files
 %license COPYING
