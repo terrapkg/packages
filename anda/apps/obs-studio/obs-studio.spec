@@ -109,7 +109,8 @@ software for video recording and live streaming.
 %prep
 %autosetup -p1 -n obs-studio-%{?snapdate:%{commit}}%{!?snapdate:%{version_no_tilde}}
 # Prepare plugins/obs-websocket
-tar -xf %SOURCE1 -C plugins/obs-websocket --strip-components=1
+tar -xf %SOURCE1 -C plugins/obs-websocket #--strip-components=1
+ls plugins/obs-websocket
 sed -e 's|OBS_MULTIARCH_SUFFIX|LIB_SUFFIX|g' -i cmake/Modules/ObsHelpers.cmake
 # Kill rpath settings
 sed -e '\|set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${OBS_LIBRARY_DESTINATION}")|d' -i cmake/Modules/ObsHelpers_Linux.cmake
