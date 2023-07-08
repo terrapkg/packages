@@ -2,8 +2,8 @@
 
 Name:           gala
 Summary:        Gala window manager
-Version:        7.0.3
-Release:        2%{?dist}
+Version:        7.1.1
+Release:        1%{?dist}
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/gala
@@ -92,7 +92,7 @@ desktop-file-validate \
     %{buildroot}/%{_datadir}/applications/gala*.desktop
 
 #appstream-util validate-relax --nonet \
-#    %%{buildroot}/%%{_datadir}/metainfo/%%{name}.appdata.xml
+#    %%{buildroot}/%%{_datadir}/metainfo/%%{name}.metainfo.xml
 
 
 %files -f gala.lang
@@ -108,7 +108,7 @@ desktop-file-validate \
 %{_datadir}/applications/gala*.desktop
 %{_datadir}/glib-2.0/schemas/20_elementary.pantheon.wm.gschema.override
 %{_datadir}/glib-2.0/schemas/org.pantheon.desktop.gala.gschema.xml
-%{_datadir}/metainfo/%{name}.appdata.xml
+%{_datadir}/metainfo/%{name}.metainfo.xml
 
 %files libs
 %doc AUTHORS README.md

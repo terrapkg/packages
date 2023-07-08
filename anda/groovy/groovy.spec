@@ -1,6 +1,6 @@
 Name:			groovy
-Version:		4.0.12
-Release:		2%{?dist}
+Version:		4.0.13
+Release:		1%{?dist}
 Summary:		A multi-faceted language for the Java platform
 BuildArch:		noarch
 URL:			https://groovy-lang.org/
