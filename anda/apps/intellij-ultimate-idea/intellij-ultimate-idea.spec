@@ -36,6 +36,7 @@ advanced refactoring features.
 
 %prep
 %autosetup -n idea-IU-%buildver
+tar xf %SOURCE2
 
 # https://youtrack.jetbrains.com/articles/IDEA-A-48/JetBrains-IDEs-on-AArch64#linux
 %ifarch aarch64
@@ -43,8 +44,6 @@ advanced refactoring features.
 	cp -f fsnotifier bin/fsnotifier
 	chmod +x bin/fsnotifier
 	rm -rf jbr
-%else
-	mv idea-IU-*/jbr jbr
 %endif
 
 
