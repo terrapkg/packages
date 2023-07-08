@@ -140,9 +140,7 @@ This package contains the main program with a graphical interface.
 
 %prep
 %if 0%{?tag:1}
-#gpgv2 --keyring %{S:2} %{S:1} %{S:0}
 %endif
-#setup -q %%{!?tag:-n HandBrake-%commit0}%%{?tag:-n HandBrake-%version}
 git clone https://github.com/%pkg/%pkg
 cd %pkg
 git checkout %{!?tag:%commit0}%{?tag:%version}
@@ -217,7 +215,7 @@ install -Dpm644 gtk/src/%desktop_id.svg \
 desktop-file-validate %buildroot%_datadir/applications/%desktop_id.desktop
 appstream-util validate-relax --nonet %buildroot%_metainfodir/%desktop_id.metainfo.xml
 
-%files -f ghb.lang gui
+%files gui
 %license COPYING
 %doc AUTHORS.markdown NEWS.markdown README.markdown THANKS.markdown
 %_bindir/ghb
