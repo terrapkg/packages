@@ -110,7 +110,7 @@ sed -i 's/ubuntu-lock-on-suspend/lock-enabled/' lockscreen/LockScreenSettings.cp
 sed -i '/libgeis/d' CMakeLists.txt
 
 %build
-%cmake -DUNITY_PROTOCOL_PRIVATE_LIB=%{_libdir}/libunity/libunity-protocol-private.so.0.0.0 -DCOMPIZ_BUILD_WITH_RPATH=FALSE -DCOMPIZ_PACKAGING_ENABLED=TRUE -DCOMPIZ_PLUGIN_INSTALL_TYPE=package -DUSE_GSETTINGS=TRUE -DENABLE_UNIT_TESTS=FALSE
+%cmake -DCOMPIZ_BUILD_WITH_RPATH=FALSE -DCOMPIZ_PACKAGING_ENABLED=TRUE -DCOMPIZ_PLUGIN_INSTALL_TYPE=package -DUSE_GSETTINGS=TRUE -DENABLE_UNIT_TESTS=FALSE
 
 %cmake_build
 
