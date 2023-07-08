@@ -1,5 +1,5 @@
 %global csrc_commit 561b417c65791cd8356b5f73620914ceff845d10
-%global commit a15db5d60b39a24886c692bc9a4e2cb3d5d33ef2
+%global commit 6ec10a4c9182c513fecd17fde4a81a3a007bb2e9
 %global ver 1.9.5
 %global debug_package %nil
 
