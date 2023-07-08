@@ -44,7 +44,7 @@ advanced refactoring features.
 	chmod +x bin/fsnotifier
 	rm -rf jbr
 %else
-	mv idea-IU-%buildver/jbr jbr
+	mv idea-IU-*/jbr jbr
 %endif
 
 
