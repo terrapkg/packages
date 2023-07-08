@@ -17,7 +17,7 @@ advanced refactoring features.
 
 %prep
 %autosetup -p1
-tar xvf %SOURCE1
+tar xf %SOURCE1
 
 cat<<EOF > idea.desktop
 [Desktop Entry]
