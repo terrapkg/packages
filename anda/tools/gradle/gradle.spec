@@ -43,8 +43,8 @@ sed -i '/JvmVendorSpec.ADOPTIUM/d' \
 	subprojects/docs/src/snippets/java/toolchain-filters/kotlin/build.gradle.kts \
 	build-logic-commons/commons/build.gradle.kts
 # inhibit automatic download of binary gradle
-sed -i "s#distributionUrl=.*#distributionUrl=file\:%{SOURCE0}#" \
-	gradle/wrapper/gradle-wrapper.properties
+#sed -i "s#distributionUrl=.*#distributionUrl=file\:%%{SOURCE0}#" \
+#	gradle/wrapper/gradle-wrapper.properties
 
 
 %build
