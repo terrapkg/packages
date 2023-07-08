@@ -30,7 +30,7 @@ Sources for gradle, a powerful build system for the JVM.
 %prep
 %autosetup
 
-cat <<EOF > dist/gradle.sh
+cat <<EOF > gradle.sh
 #!/bin/sh
 export GRADLE_HOME=/usr/share/java/gradle
 EOF
@@ -59,7 +59,7 @@ export PATH="/usr/lib/jvm/java-11-openjdk/bin:${PATH}"
 cd dist
 
 # install profile.d script
-install -Dm755 gradle.sh %{buildroot}/etc/profile.d/
+install -Dm755 ../gradle.sh %{buildroot}/etc/profile.d/
 
 # create the necessary directory structure
 install -d "%{buildroot}/usr/share/java/%{name}/bin"
