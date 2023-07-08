@@ -3,8 +3,7 @@ Version:		8.2.0
 Release:		1%{?dist}
 Summary:		Powerful build system for the JVM
 URL:			https://gradle.org/
-Source0:		https://services.gradle.org/distributions/%{name}-%{version}-src.zip
-Source1:		https://services.gradle.org/distributions/%{name}-%{version}-all.zip
+Source0:		https://github.com/gradle/gradle/archive/refs/tags/v%version.tar.gz
 License:		Apache-2.0
 Requires:		java-latest-openjdk coreutils findutils sed which bash
 BuildRequires:	java-11-openjdk-devel asciidoc xmlto groovy unzip git
@@ -29,12 +28,7 @@ Sources for gradle, a powerful build system for the JVM.
 # See PKGBUILD on Arch Linux
 
 %prep
-unzip %{SOURCE1} %{name}-%{version}/{README,LICENSE}
-mv %{name}-%{version}/README .
-mv %{name}-%{version}/LICENSE .
-rmdir %{name}-%{version}
-unzip %{SOURCE0}
-cd %{name}-%{version}
+%autosetup
 
 cat <<EOF > dist/gradle.sh
 #!/bin/sh
@@ -53,7 +47,6 @@ sed -i "s#distributionUrl=.*#distributionUrl=file\:%{SOURCE1}#" \
 
 
 %build
-cd %{name}-%{version}
 export PATH="/usr/lib/jvm/java-11-openjdk/bin:${PATH}"
 ./gradlew installAll \
 	-Porg.gradle.java.installations.auto-download=false \
@@ -63,7 +56,7 @@ export PATH="/usr/lib/jvm/java-11-openjdk/bin:${PATH}"
 
 
 %install
-cd %{name}-%{version}/dist
+cd dist
 
 # install profile.d script
 install -Dm755 gradle.sh %{buildroot}/etc/profile.d/
