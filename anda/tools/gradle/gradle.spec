@@ -3,9 +3,9 @@ Version:		8.2.0
 Release:		1%{?dist}
 Summary:		Powerful build system for the JVM
 URL:			https://gradle.org/
-Source0:		https://github.com/gradle/gradle/archive/refs/tags/v%version.tar.gz
+Source0:		https://github.com/gradle/gradle/archive/refs/tags/v%version.zip
 License:		Apache-2.0
-Requires:		java-latest-openjdk coreutils findutils sed which bash
+Requires:		java-latest-openjdk coreutils findutils sed which bash unzip
 BuildRequires:	java-11-openjdk-devel asciidoc xmlto groovy unzip git
 BuildArch:		noarch
 Recommends:		gradle-doc gradle-src
@@ -28,7 +28,8 @@ Sources for gradle, a powerful build system for the JVM.
 # See PKGBUILD on Arch Linux
 
 %prep
-%autosetup
+unzip %SOURCE0
+mv gradle*/* .
 
 cat <<EOF > gradle.sh
 #!/bin/sh
