@@ -29,7 +29,6 @@ Sources for gradle, a powerful build system for the JVM.
 %prep
 git clone https://github.com/gradle/gradle/ .
 git checkout v%version
-mv gradle*/* .
 
 cat <<EOF > gradle.sh
 #!/bin/sh
@@ -49,6 +48,7 @@ sed -i '/JvmVendorSpec.ADOPTIUM/d' \
 
 %build
 export PATH="/usr/lib/jvm/java-11-openjdk/bin:${PATH}"
+%dnl gradle wrapper --gradle-version %version --distribution-type all
 ./gradlew installAll \
 	-Porg.gradle.java.installations.auto-download=false \
 	-PfinalRelease=true \
