@@ -67,6 +67,7 @@ mv * %buildroot%_datadir/%name
 # https://youtrack.jetbrains.com/issue/IDEA-185828
 chmod +x %buildroot%_datadir/%name/plugins/maven/lib/maven3/bin/mvn
 ln -s %_datadir/%name/bin/idea.sh %buildroot%_bindir/%name
+mkdir -p %buildroot%_datadir/applications %buildroot%_datadir/pixmaps
 install -Dm644 jetbrains-idea.desktop %buildroot%_datadir/applications/jetbrains-idea.desktop
 install -Dm644 %buildroot%_datadir/%name/bin/idea.svg %buildroot%_datadir/pixmaps/%name.svg
 
