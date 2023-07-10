@@ -5,7 +5,7 @@ Summary:		Powerful build system for the JVM
 URL:			https://gradle.org/
 License:		Apache-2.0
 Requires:		java-latest-openjdk coreutils findutils sed which bash unzip
-BuildRequires:	java-1.8.0-openjdk-devel asciidoc xmlto groovy unzip git
+BuildRequires:	java-11-openjdk-devel asciidoc xmlto groovy unzip git
 BuildArch:		noarch
 Recommends:		gradle-doc gradle-src
 
