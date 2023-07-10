@@ -86,12 +86,12 @@ cv46 = 1    # v straight
 cv47 = 1    # w straight
 cv48 = 1    # x straight
 cv50 = 1    # z straight
-cv72 = 3    # 1 serified with base
-cv73 = 1    # 2 straight
-cv75 = 3    # 4 semi-open contour
-cv77 = 3    # 6 straight
-cv80 = 3    # 9 straight
-cv89 = 2    # & et open top (ampersand)
+cv78 = 3    # 1 serified with base
+cv79 = 1    # 2 straight
+cv81 = 3    # 4 semi-open contour
+cv83 = 3    # 6 straight
+cv86 = 3    # 9 straight
+cv96 = 2    # & et open top (ampersand)
 
 [buildPlans.iosevka-fusion.variants.italic]
 cv26 = 1    # a double storey straight
@@ -110,12 +110,12 @@ cv46 = 2    # v curly
 cv47 = 2    # w curly short middle top
 cv48 = 2    # x curly
 cv50 = 4    # z curly
-cv72 = 2    # 1 serified no base
-cv73 = 2    # 2 curly
-cv75 = 1    # 4 closed contour crossing
-cv77 = 1    # 6 closed contour
-cv80 = 1    # 9 closed contour
-cv89 = 4    # & et open top toothed (ampersand)
+cv78 = 2    # 1 serified no base
+cv79 = 2    # 2 curly
+cv81 = 1    # 4 closed contour crossing
+cv83 = 1    # 6 closed contour
+cv86 = 1    # 9 closed contour
+cv96 = 4    # & et open top toothed (ampersand)
 
 [buildPlans.iosevka-fusion.weights.thin]
 shape = 100
