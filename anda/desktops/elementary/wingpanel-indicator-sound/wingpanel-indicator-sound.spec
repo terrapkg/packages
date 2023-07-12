@@ -50,12 +50,12 @@ A sound indicator for wingpanel.
 %find_lang sound-indicator
 
 # remove the specified stock icon from appdata (invalid in libappstream-glib)
-sed -i '/icon type="stock"/d' %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
+sed -i '/icon type="stock"/d' %{buildroot}/%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %check
 appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
+    %{buildroot}/%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %files -f sound-indicator.lang
@@ -65,7 +65,7 @@ appstream-util validate-relax --nonet \
 %{_libdir}/wingpanel/libsound.so
 
 %{_datadir}/glib-2.0/schemas/io.elementary.desktop.wingpanel.sound.gschema.xml
-%{_datadir}/metainfo/%{appname}.appdata.xml
+%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %changelog
