@@ -7,7 +7,6 @@ License:		OSL-3.0
 Summary:		Custom lightweight Discord client designed to enhance your experience
 URL:			https://github.com/ArmCord/ArmCord
 Group:			Applications/Internet
-Source0:		%url/archive/refs/tags/v%version.tar.gz
 Source1:		launch.sh
 Requires:		electron xdg-utils
 BuildRequires:	nodejs-npm git
@@ -19,7 +18,8 @@ ArmCord is a custom client designed to enhance your Discord experience
 while keeping everything lightweight.
 
 %prep
-%autosetup -n ArmCord-%version
+git clone %url .
+git checkout v%version
 
 cat <<EOF > armcord.desktop
 [Desktop Entry]
