@@ -30,17 +30,17 @@ cd graal
 git checkout vm-ce-%version
 cd ..
 tar xf %SOURCE1
-# tar xf %SOURCE2
+%dnl tar xf %SOURCE2
 
 
 %build
 PATH="$PATH:$PWD/mx-%mxver"
-# JAVA_HOME=$PWD/openjdk1.8.0_302-jvmci-%jvmci-fastdebug
+%dnl JAVA_HOME=$PWD/openjdk1.8.0_302-jvmci-%jvmci-fastdebug
 cd graal/vm
-JAVA_HOME=%buildroot/usr/lib/jvm/$(alternatives --list | grep jre_1.8.0_openjdk | sed -E 's@.+?/@/@g') mx --env ce build &
-JAVA_HOME=%buildroot/usr/lib/jvm/$(alternatives --list | grep jre_11_openjdk | sed -E 's@.+?/@/@g') mx --env ce build &
-JAVA_HOME=%buildroot/usr/lib/jvm/$(alternatives --list | grep jre_17_openjdk | sed -E 's@.+?/@/@g') mx --env ce build &
-JAVA_HOME=%buildroot/usr/lib/jvm/$(alternatives --list | grep jre_20_openjdk | sed -E 's@.+?/@/@g') mx --env ce build &
+JAVA_HOME=/usr/lib/jvm/$(alternatives --list | grep jre_1.8.0_openjdk | sed -E 's@.+?/@/@g') mx --env ce build &
+JAVA_HOME=/usr/lib/jvm/$(alternatives --list | grep jre_11_openjdk | sed -E 's@.+?/@/@g') mx --env ce build &
+JAVA_HOME=/usr/lib/jvm/$(alternatives --list | grep jre_17_openjdk | sed -E 's@.+?/@/@g') mx --env ce build &
+JAVA_HOME=/usr/lib/jvm/$(alternatives --list | grep jre_20_openjdk | sed -E 's@.+?/@/@g') mx --env ce build &
 
 wait
 
