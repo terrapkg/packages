@@ -37,7 +37,7 @@ tar xf %SOURCE2
 PATH="$PATH:$PWD/mx-%mxver"
 JAVA_HOME=$PWD/openjdk1.8.0_302-jvmci-%jvmci-fastdebug
 cd graal/vm
-mx --env ce build
+mx --java-home $JAVA_HOME --env ce build
 
 %install
 ls -alh graal/vm
