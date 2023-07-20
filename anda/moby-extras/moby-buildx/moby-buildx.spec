@@ -1,8 +1,8 @@
 %define debug_package %nil
 
 Name:           moby-buildx
-Version:        0.11.0
-Release:        2%{?dist}
+Version:        0.11.2
+Release:        1%{?dist}
 Summary:        Docker CLI plugin for extended build capabilities with BuildKit
 
 License:        Apache-2.0

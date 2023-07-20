@@ -1,6 +1,7 @@
 %global real_name prismlauncher
+%global nice_name PrismLauncher
 
-%global commit 12cd8a7bea991c2a8d4b59b1cfc9f7c246819fc9
+%global commit 593f45298614843c14acb11994320f90a474c750
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global libnbtplusplus_commit 2203af7eeb48c45398139b583615134efd8d407f
 %global quazip_commit 6117161af08e366c37499895b00ef62f93adc345
@@ -152,15 +153,15 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.prismlauncher.Pri
 %files
 %doc README.md
 %license LICENSE COPYING.md
-%dir %{_datadir}/%{real_name}
+%dir %{_datadir}/%{nice_name}
 %{_bindir}/%{real_name}
-%{_datadir}/%{real_name}/NewLaunch.jar
-%{_datadir}/%{real_name}/JavaCheck.jar
+%{_datadir}/%{nice_name}/NewLaunch.jar
+%{_datadir}/%{nice_name}/JavaCheck.jar
+%{_datadir}/%{nice_name}/qtlogging.ini
 %{_datadir}/applications/org.prismlauncher.PrismLauncher.desktop
 %{_metainfodir}/org.prismlauncher.PrismLauncher.metainfo.xml
 %{_datadir}/icons/hicolor/scalable/apps/org.prismlauncher.PrismLauncher.svg
 %{_datadir}/mime/packages/modrinth-mrpack-mime.xml
-%{_datadir}/PrismLauncher/qtlogging.ini
 %{_datadir}/qlogging-categories%{qt_version}/prismlauncher.categories
 %{_mandir}/man?/prismlauncher.*
 

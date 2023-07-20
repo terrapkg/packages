@@ -41,10 +41,10 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /var/cache
-          key: ${{ runner.os }}-br-${{ matrix.version }}-${{ matrix.pkg.arch }}-${{ matrix.pkg.pkg }}
+          key: ${{ runner.os }}-br-${{ matrix.version }}-${{ matrix.arch }}-${{ matrix.pkg }}
 
       - name: Build with Andaman
-        run: anda build ${{ matrix.pkg.pkg }} --package rpm -c anda/mock-configs/terra-${{ matrix.version }}-${{ matrix.pkg.arch }}.cfg
+        run: anda build anda/${{ matrix.pkg }}pkg --package rpm -c anda/mock-configs/terra-${{ matrix.version }}-${{ matrix.arch }}.cfg
 
       - name: Generating artifact name
         id: art
