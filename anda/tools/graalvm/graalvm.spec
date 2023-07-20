@@ -18,7 +18,8 @@ License:	GPL-2.0
 Requires:	python3.10
 BuildRequires:	fdupes
 # https://mail.openjdk.org/pipermail/graal-dev/2015-December/004050.html
-BuildRequires:	libstdc++-static hg ant gcc-c++ java-1.8.0-openjdk-devel java-11-openjdk-devel java-17-openjdk-devel java-latest-openjdk-devel make cmake git
+BuildRequires:	libstdc++-static hg ant gcc-c++ make cmake git
+# java-1.8.0-openjdk-devel java-11-openjdk-devel java-17-openjdk-devel java-latest-openjdk-devel
 
 %description
 %{desc}
