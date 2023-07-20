@@ -6,19 +6,19 @@ GraalVM is a high-performance JDK distribution designed to accelerate the
 execution of applications written in Java and other JVM languages along with
 support for JavaScript, Ruby, Python, and a number of other popular languages.}
 
-Name:			graalvm
-Version:		23.0.0
-Release:		1%{?dist}
-URL:			https://www.graalvm.org/
-Source0:		https://github.com/oracle/graal/archive/refs/tags/vm-ce-%version.tar.gz
-Source1:		https://github.com/graalvm/mx/archive/refs/tags/%mxver.tar.gz
-Source2:		https://github.com/graalvm/graal-jvmci-8/releases/download/jvmci-%jvmci/openjdk-8u302+06-jvmci-%jvmci-fastdebug-linux-amd64.tar.gz
-Summary:		%gsummary
-License:		GPL-2.0
-Requires:		python3.10
+Name:		graalvm
+Version:	23.0.0
+Release:	1%{?dist}
+URL:		https://www.graalvm.org/
+Source0:	https://github.com/oracle/graal/archive/refs/tags/vm-ce-%version.tar.gz
+Source1:	https://github.com/graalvm/mx/archive/refs/tags/%mxver.tar.gz
+Source2:	https://github.com/graalvm/graal-jvmci-8/releases/download/jvmci-%jvmci/openjdk-8u302+06-jvmci-%jvmci-fastdebug-linux-amd64.tar.gz
+Summary:	%gsummary
+License:	GPL-2.0
+Requires:	python3.10
 BuildRequires:	fdupes
 # https://mail.openjdk.org/pipermail/graal-dev/2015-December/004050.html
-BuildRequires:	libstdc++-static hg ant gcc-c++ java-1.8.0-openjdk java-11-openjdk java-17-openjdk java-latest-openjdk make cmake
+BuildRequires:	libstdc++-static hg ant gcc-c++ java-1.8.0-openjdk java-11-openjdk java-17-openjdk java-latest-openjdk make cmake git
 
 %description
 %{desc}
