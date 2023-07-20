@@ -39,7 +39,7 @@ PATH="$PATH:$PWD/mx-%mxver"
 %dnl JAVA_HOME=$PWD/openjdk1.8.0_302-jvmci-%jvmci-fastdebug
 cd graal/vm
 # we can only access macro buildroot in install section
-%define javahome() JAVA_HOME=%buildroot/usr/lib/jvm$(alternatives --list | grep jre_%1 | sed -E 's@.+?/@/@g' | grep -)
+%define javahome() JAVA_HOME=%buildroot/usr/lib/jvm$(alternatives --list | grep jre_%1 | sed -E 's@.+?/@/@g' | grep java-)
 %{javahome 1.8.0} mx --env ce build &
 %{javahome 11} mx --env ce build &
 %{javahome 17} mx --env ce build &
