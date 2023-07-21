@@ -48,7 +48,7 @@ Requires:       xdg-desktop-portal
 
 %check
 desktop-file-validate \
-    %{buildroot}/%{_sysconfdir}/xdg/autostart/%{appname}.desktop
+    %{buildroot}/%{_datadir}/applications/%{appname}.desktop
 
 appstream-util validate-relax --nonet \
     %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
@@ -66,7 +66,7 @@ appstream-util validate-relax --nonet \
 %license LICENSE
 %doc README.md
 
-%config(noreplace) %{_sysconfdir}/xdg/autostart/%{appname}.desktop
+%config(noreplace) %{_datadir}/applications/%{appname}.desktop
 
 %{_bindir}/%{appname}
 
