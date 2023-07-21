@@ -56,10 +56,12 @@ appstream-util validate-relax --nonet \
 
 %post
 %systemd_user_post %{appname}.xdg-desktop-portal.service
+%systemd_post %{appname}.check-for-firmware-updates.timer
 
 
 %preun
 %systemd_user_preun %{appname}.xdg-desktop-portal.service
+%systemd_preun %{appname}.check-for-firmware-updates.timer
 
 
 %files
@@ -80,6 +82,12 @@ appstream-util validate-relax --nonet \
 %{_datadir}/xdg-desktop-portal/portals/%{appname}.portal
 
 %{_userunitdir}/%{appname}.xdg-desktop-portal.service
+%{_unitdir}/%{appname}.check-for-firmware-updates.service
+%{_unitdir}/%{appname}.check-for-firmware-updates.timer
+
+%{_sysconfdir}/xdg/autostart/%appname.desktop
+
+%{_datadir}/icons/hicolor/*/apps/%{appname}.svg
 
 
 %changelog
