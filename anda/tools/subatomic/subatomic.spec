@@ -38,7 +38,7 @@ go mod download
 %build
 mkdir -p build/bin
 go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w" -buildmode=pie -o build/bin/subatomic-cli ./subatomic-cli
-go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w" -buildmode=pie	-o build/bin/subatomic ./server
+go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w" -buildmode=pie -o build/bin/subatomic ./server
 
 
 %install

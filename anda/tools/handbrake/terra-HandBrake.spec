@@ -24,13 +24,13 @@ License:        GPL-2.0-or-later
 URL:            https://handbrake.fr/
 
 %if 0%{?tag:1}
-#Source0:        https://github.com/%pkg/%pkg/releases/download/%version/%pkg-%version-source.tar.bz2
+%dnl Source0:        https://github.com/%pkg/%pkg/releases/download/%version/%pkg-%version-source.tar.bz2
 Source1:        https://github.com/%pkg/%pkg/releases/download/%version/%pkg-%version-source.tar.bz2.sig
 # import from https://handbrake.fr/openpgp.php or https://github.com/HandBrake/HandBrake/wiki/OpenPGP
 # gpg2 --export --export-options export-minimal 1629C061B3DDE7EB4AE34B81021DB8B44E4A8645 > gpg-keyring-1629C061B3DDE7EB4AE34B81021DB8B44E4A8645.gpg
 Source2:        gpg-keyring-1629C061B3DDE7EB4AE34B81021DB8B44E4A8645.gpg
 %else
-#Source0:        https://github.com/%pkg/%pkg/archive/%commit0.tar.gz#/%{name}-%{shortcommit0}.tar.gz
+%dnl Source0:        https://github.com/%pkg/%pkg/archive/%commit0.tar.gz#/%{name}-%{shortcommit0}.tar.gz
 %endif
 
 %{?_without_ffmpeg:Source10:       https://libav.org/releases/libav-12.tar.gz}
