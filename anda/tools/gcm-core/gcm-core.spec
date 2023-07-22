@@ -1,4 +1,5 @@
 %global     debug_package %{nil}
+%define __os_install_post %{nil}
 
 %global long_name git-credential-manager
 
@@ -35,6 +36,7 @@ Azure Repos, and other popular Git hosting services.
 dotnet build -c LinuxRelease
 
 %install
+export DONT_STRIP=1
 ls out/linux/Packaging.Linux/Release/payload -alh
 install -Dm755 out/linux/Packaging.Linux/Release/payload/%{long_name} %{buildroot}%{_bindir}/%{long_name}
 
