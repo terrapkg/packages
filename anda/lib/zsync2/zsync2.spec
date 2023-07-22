@@ -44,7 +44,7 @@ developing applications that use %{name}.
 
 
 %prep
-%autosetup -n zsync2-%{git_commit} -p1
+%setup -q -n zsync2-%{git_commit}
 
 git init .
 git remote add origin %{url}
@@ -52,6 +52,8 @@ git fetch origin
 git checkout %{git_commit} --force
 git pull origin %{git_commit} --force
 git submodule update --init --recursive
+
+git apply %PATCH0
 
 
 %build
