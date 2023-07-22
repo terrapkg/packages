@@ -68,7 +68,6 @@ developing applications that use %{name}.
 /usr/lib/debug/usr/bin/zsync*.debug
 /usr/lib64/cmake/zsync2/zsync2Config.cmake
 /usr/lib64/cmake/zsync2/zsync2ConfigVersion.cmake
-/usr/lib64/cmake/zsync2/zsync2Targets-debug.cmake
 /usr/lib64/cmake/zsync2/zsync2Targets.cmake
 
 %changelog
