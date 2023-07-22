@@ -44,17 +44,7 @@ developing applications that use %{name}.
 
 
 %prep
-%setup -q -n zsync2-%{git_commit}
-
-git init .
-git remote add origin %{url}
-git fetch origin
-git checkout %{git_commit} --force
-git pull origin %{git_commit} --force
-git submodule update --init --recursive
-
-git apply %PATCH0
-
+%autosetup -n zsync2-%{git_commit} -p1
 
 %build
 %cmake -DCPR_FORCE_USE_SYSTEM_CURL=ON \
@@ -71,7 +61,7 @@ git apply %PATCH0
 
 %files
 %{_libdir}/*.so
-#{_libdir}/*.a
+%{_libdir}/*.a
 
 
 %files devel
