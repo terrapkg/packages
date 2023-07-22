@@ -42,6 +42,7 @@ make installman DESTDIR=%buildroot%_prefix
 
 %files doc
 %_mandir/man3/args*
+%_mandir/man3/DoublesReader.3.gz
 %_mandir/man3/StringAssignable.3.gz
 %_mandir/man3/ToLowerReader.3.gz
 %_mandir/man3/conanfile_ArgsConan.3.gz
