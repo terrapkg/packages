@@ -5,7 +5,7 @@ Summary:	A simple header-only C++ argument parser library
 License:	MIT
 URL:		https://github.com/Taywee/args
 Source0:	%url/archive/refs/tags/%version.tar.gz
-BuildRequires:	make doxygen
+BuildRequires:	make doxygen gcc-c++
 
 %description
 A simple header-only C++ argument parser library. Supposed to be flexible and
