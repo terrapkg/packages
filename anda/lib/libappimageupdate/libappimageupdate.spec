@@ -20,6 +20,7 @@ Source0:        %{url}/archive/%{git_commit}.tar.gz
 
 BuildRequires:  make
 BuildRequires:  cmake3
+BuildRequires:  cpr-devel
 BuildRequires:  gcc-c++
 BuildRequires:  libappimage-devel curl-devel libX11-devel zlib-devel fuse-devel librsvg2-devel cairo-devel git-core
 BuildRequires:  nlohmann-json-devel
@@ -29,6 +30,7 @@ BuildRequires:  pkgconfig(Qt5)
 BuildRequires:  openssl-devel
 BuildRequires:  inotify-tools-devel
 BuildRequires:  argagg-devel
+BuildRequires:  zsync2-devel
 
 %description
 Implements functionality for dealing with AppImage files. It is written in C++ and is using Boost.
@@ -45,18 +47,14 @@ developing applications that use %{name}.
 %prep
 %autosetup -n AppImageUpdate-%{git_commit}
 
-git init .
-git remote add origin %{url}
-git fetch origin
-git checkout %{git_commit} --force
-git pull origin %{git_commit} --force
-git submodule update --init --recursive
-
 %build
 # add include path for argagg
 %cmake -DBUILD_QT_UI=ON \
     -DBUILD_LIBAPPIMAGEUPDATE_ONLY=ON \
-    -DUSE_SYSTEM_LIBAPPIMAGE=ON
+    -DUSE_SYSTEM_LIBAPPIMAGE=ON \
+    -DUSE_SYSTEM_ZSYNC2=ON \
+    -DCPR_FORCE_USE_SYSTEM_CURL=ON \
+    -DUSE_SYSTEM_CPR=ON
 %cmake_build
 
 
@@ -71,27 +69,11 @@ git submodule update --init --recursive
 %{_libdir}/*.a
 # what is this?
 %exclude %{_bindir}/validate
-%exclude %{_bindir}/curl-config
-%exclude %{_bindir}/zsync2
-%exclude %{_bindir}/zsyncmake2
+
 
 %files devel
 %{_includedir}/{appimage,cpr,zs*.h}
-%exclude %{_includedir}/z{conf,lib}.h
-%exclude %{_includedir}/curl/
 %{_prefix}/lib/cmake/AppImageUpdate/
-/usr/lib/debug/usr/bin/zsync*.debug
-/usr/lib64/cmake/CURL/CURLConfig.cmake
-/usr/lib64/cmake/CURL/CURLConfigVersion.cmake
-/usr/lib64/cmake/CURL/CURLTargets-debug.cmake
-/usr/lib64/cmake/CURL/CURLTargets.cmake
-/usr/lib64/cmake/zsync2/zsync2Config.cmake
-/usr/lib64/cmake/zsync2/zsync2ConfigVersion.cmake
-/usr/lib64/cmake/zsync2/zsync2Targets-debug.cmake
-/usr/lib64/cmake/zsync2/zsync2Targets.cmake
-/usr/lib64/pkgconfig/args.pc
-%exclude /usr/lib64/pkgconfig/libcurl.pc
-%exclude /usr/lib64/pkgconfig/zlib.pc
 
 %changelog
 * Tue Oct 25 2022 Cappy Ishihara <cappy@cappuchino.xyz>
