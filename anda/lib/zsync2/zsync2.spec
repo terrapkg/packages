@@ -60,15 +60,21 @@ developing applications that use %{name}.
 
 
 %files
-%{_libdir}/*.so
-%{_libdir}/*.a
+%license COPYING
+%doc README.md
+%{_bindir}/zsync2
+%{_bindir}/zsyncmake2
+%{_libdir}/*.so*
 
 
 %files devel
-/usr/lib/debug/usr/bin/zsync*.debug
-/usr/lib64/cmake/zsync2/zsync2Config.cmake
-/usr/lib64/cmake/zsync2/zsync2ConfigVersion.cmake
-/usr/lib64/cmake/zsync2/zsync2Targets.cmake
+%{_includedir}/*.h
+# cmake
+%{_libdir}/cmake/zsync2*
+# will be packaged separately
+%exclude %{_libdir}/pkgconfig/args.pc
+
+
 
 %changelog
 * Sat Jul 22 2023 Cappy Ishihara <cappy@cappuchino.xyz>
