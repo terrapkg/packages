@@ -1,5 +1,5 @@
 Name:			uxplay
-Version:		1.65.1
+Version:		1.65.2
 Release:		1%{?dist}
 Summary:		AirPlay Unix mirroring server
 License:		GPL-3.0
