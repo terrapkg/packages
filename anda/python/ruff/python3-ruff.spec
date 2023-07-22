@@ -2,11 +2,11 @@
 
 Name:			python3-ruff
 Version:		0.0.280
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		An extremely fast Python linter, written in Rust
 License:		MIT
-URL:			https://github.com/charliermarsh/ruff
-Source0:		%{url}/archive/refs/tags/v%{version}.tar.gz
+URL:			https://beta.ruff.rs/
+Source0:		https://github.com/astral-sh/ruff/archive/refs/tags/v%{version}.tar.gz
 BuildRequires:	python3-installer python3.11 python3-pip maturin cargo
 Provides:		python3.11dist(ruff) = %{version}
 
