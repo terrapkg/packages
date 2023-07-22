@@ -20,6 +20,7 @@ Source0:        %{url}/archive/%{git_commit}.tar.gz
 
 BuildRequires:  make
 BuildRequires:  cmake3
+BuildRequires:  cpr-devel
 BuildRequires:  gcc-c++
 BuildRequires:  libappimage-devel curl-devel libX11-devel zlib-devel fuse-devel librsvg2-devel cairo-devel git-core
 BuildRequires:  nlohmann-json-devel
@@ -29,6 +30,7 @@ BuildRequires:  pkgconfig(Qt5)
 BuildRequires:  openssl-devel
 BuildRequires:  inotify-tools-devel
 BuildRequires:  argagg-devel
+BuildRequires:  zsync2-devel
 
 %description
 Implements functionality for dealing with AppImage files. It is written in C++ and is using Boost.
@@ -56,7 +58,10 @@ git submodule update --init --recursive
 # add include path for argagg
 %cmake -DBUILD_QT_UI=ON \
     -DBUILD_LIBAPPIMAGEUPDATE_ONLY=ON \
-    -DUSE_SYSTEM_LIBAPPIMAGE=ON
+    -DUSE_SYSTEM_LIBAPPIMAGE=ON \
+    -DUSE_SYSTEM_ZSYNC2=ON \
+    -DCPR_FORCE_USE_SYSTEM_CURL=ON \
+    -DUSE_SYSTEM_CPR=ON
 %cmake_build
 
 
