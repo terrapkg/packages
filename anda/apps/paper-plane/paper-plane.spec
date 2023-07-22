@@ -1,6 +1,5 @@
 %global ver 0.1.0
-%global commit 21bdaacae32b16ea40a0e0fbddaa984f01b3a985
-%global adw 9c2d9426b0772787796009f03f0eab06612c4a96
+%global commit 4a9945429cdc446b323e390e8c1163944582051e
 
 Name:			paper-plane
 Version:		%ver~%commit
@@ -19,7 +18,6 @@ interface and strives to meet the design principles of the GNOME desktop.
 
 %prep
 %autosetup -n %name-%commit -p1
-tar xf %SOURCE1
 
 %build
 # https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=paper-plane
