@@ -52,8 +52,9 @@ git checkout %{git_commit} --force
 git pull origin %{git_commit} --force
 git submodule update --init --recursive
 
-%build
+sed -i '1i#include <cstdint>' src/make_main.cpp
 
+%build
 %cmake -DCPR_FORCE_USE_SYSTEM_CURL=ON \
     -DUSE_SYSTEM_CURL=ON \
     -DUSE_SYSTEM_CPR=ON
