@@ -60,6 +60,14 @@
       <packagereq type="default">switchboard-plug-printers</packagereq>
       <packagereq type="default">switchboard-plug-sharing</packagereq>
       <packagereq type="default">switchboard-plug-sound</packagereq>
+      <packagereq type="default">switchboard-plug-security-privacy</packagereq>
+      <packagereq type="default">switchboard-plug-datetime</packagereq>
+      <packagereq type="default">switchboard-plug-parental-controls</packagereq>
+      <packagereq type="default">switchboard-plug-wallet</packagereq>
+      <packagereq type="default">switchboard-plug-useraccounts</packagereq>
+      <packagereq type="default">switchboard-plug-wacom</packagereq>
+      <packagereq type="default">switchboard-plug-locale</packagereq>
+      <packagereq type="default">switchboard-plug-power</packagereq>
       <packagereq type="default">pantheon-tweaks</packagereq>
     </packagelist>
   </group>

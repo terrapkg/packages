@@ -1,14 +1,14 @@
 Name:			anki-bin
-Version:		2.1.64
+Version:		2.1.65
 Release:		1%{?dist}
 Summary:		Flashcard program for using space repetition learning (Installed with wheel)
 License:		AGPL-3.0-or-later AND GPL-3.0-or-later AND LGPL-3.0-or-later AND MIT AND BSD-3-Clause AND CC-BY-SA-3.0 AND CC-BY-3.0 AND Apache-2.0 AND CC-BY-2.5
 URL:			https://apps.ankiweb.net/
-BuildRequires:	python3-installer python3.11
+BuildRequires:	python3-installer python3.11 rpm_macro(fdupes)
 Requires:		hicolor-icon-theme python3-sqlalchemy python3-simplejson python3-matplotlib python3-decorator python3-markdown python3-send2trash
 Requires:		python3-requests python3-pygame python3-beautifulsoup4 python3-httplib2 python3-pyaudio python3-jsonschema sox libxcrypt-compat
 Requires:		python3-flask-cors python3-protobuf python3-requests python3-waitress
-BuildArch:		noarch
+ExclusiveArch:	x86_64
 Conflicts:		anki
 Source0:		https://files.pythonhosted.org/packages/cp39/a/anki/anki-%{version}-cp39-abi3-manylinux_2_28_%{_arch}.whl
 Source1:		https://files.pythonhosted.org/packages/py3/a/aqt/aqt-%{version}-py3-none-any.whl
@@ -36,6 +36,8 @@ install -Dm644 %{SOURCE4} "%{buildroot}/usr/share/pixmaps/anki.png"
 install -Dm644 %{SOURCE5} "%{buildroot}/%{_datadir}/licenses/%{name}/LICENSE"
 install -Dm644 %{SOURCE6} "%{buildroot}/%{_datadir}/doc/%{name}/README.md"
 
+%fdupes %_libdir/python*/site-packages/_aqt/data/
+
 
 %files
 %license LICENSE
@@ -50,5 +52,5 @@ install -Dm644 %{SOURCE6} "%{buildroot}/%{_datadir}/doc/%{name}/README.md"
 /usr/share/pixmaps/anki.png
 
 %changelog
-* Wed Jan 11 2023 windowsboy111 <windowsboy111@fyralabs.com>
+* Wed Jan 11 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2.1.60
 - Initial package

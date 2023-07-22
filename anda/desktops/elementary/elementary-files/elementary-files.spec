@@ -5,7 +5,7 @@
 
 Name:           elementary-files
 Summary:        File manager from elementary
-Version:        6.3.1
+Version:        6.4.1
 Release:        1%{?dist}
 License:        GPL-3.0
 
@@ -21,6 +21,7 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson >= 0.50.0
 BuildRequires:  vala >= 0.48.2
+BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(cloudproviders) >= 0.3.0
 BuildRequires:  pkgconfig(gdk-x11-3.0)
@@ -84,6 +85,8 @@ This package contains the development headers.
 
 %find_lang %{appname}
 
+%fdupes %buildroot%_datadir/icons/hicolor/
+
 # remove unused pixmaps
 rm -r %{buildroot}/%{_datadir}/pixmaps
 
@@ -98,7 +101,7 @@ desktop-file-validate \
     %{buildroot}/%{_datadir}/applications/%{appname}.desktop
 
 appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
+    %{buildroot}/%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %post portal
@@ -124,7 +127,7 @@ appstream-util validate-relax --nonet \
 %{_datadir}/dbus-1/services/%{appname}.service
 %{_datadir}/dbus-1/services/%{appname}.Filemanager1.service
 %{_datadir}/glib-2.0/schemas/%{appname}.gschema.xml
-%{_datadir}/metainfo/%{appname}.appdata.xml
+%{_datadir}/metainfo/%{appname}.metainfo.xml
 %{_datadir}/polkit-1/actions/%{appname}.policy
 
 %files portal

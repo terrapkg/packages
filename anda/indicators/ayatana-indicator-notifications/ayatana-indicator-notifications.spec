@@ -2,7 +2,7 @@ Name:       ayatana-indicator-notifications
 Summary:    Ayatana Indicator Notifications Applet
 Version:    22.9.0
 Release:    %autorelease
-License:    GPLv3
+License:    GPL-3.0
 URL:        https://github.com/AyatanaIndicators/ayatana-indicator-notifications
 Source0:    %{url}/archive/refs/tags/%{version}.tar.gz
 
@@ -21,8 +21,9 @@ BuildRequires:  pkgconfig(libxml-2.0)
 BuildRequires:  intltool
 
 %description
-The Ayatana Indicators project is the continuation of Application Indicators and System Indicators, 
-two technologies developed by Canonical Ltd. for the Unity7 desktop and Lomiri desktop.
+The Ayatana Indicators project is the continuation of Application Indicators
+and System Indicators, two technologies developed by Canonical Ltd. for the
+Unity7 desktop and Lomiri desktop.
 
 %package devel
 Summary:    Development files for %{name}
@@ -35,8 +36,7 @@ This package contains the development header files for %{name}.
 %autosetup -n %{name}-%{version}
 
 %build
-%cmake -DENABLE_TESTS=ON \
-       -DENABLE_COVERAGE=OFF
+%cmake -DENABLE_TESTS=ON -DENABLE_COVERAGE=OFF
 %cmake_build
 
 %install
@@ -44,8 +44,9 @@ This package contains the development header files for %{name}.
 %find_lang %{name}
 
 %files -f %{name}.lang
+%doc README.md
 %license COPYING
-%{_sysconfdir}/xdg/autostart/ayatana-indicator-notifications.desktop
+%config %{_sysconfdir}/xdg/autostart/ayatana-indicator-notifications.desktop
 %{_userunitdir}/ayatana-indicator-notifications.service
 %dir %{_libexecdir}/ayatana-indicator-notifications
 %{_libexecdir}/ayatana-indicator-notifications/ayatana-indicator-notifications-service

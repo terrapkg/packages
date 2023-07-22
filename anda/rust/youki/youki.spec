@@ -1,5 +1,5 @@
 Name:           youki
-Version:        0.0.5
+Version:        0.1.0
 Release:        1%{?dist}
 Summary:        A container runtime written in Rust
 
@@ -16,6 +16,7 @@ BuildRequires:  dbus-devel
 BuildRequires:  libseccomp-devel
 BuildRequires:  elfutils-libelf-devel
 BuildRequires:  binutils
+BuildRequires:  fdupes
 
 %description
 youki is an implementation of the OCI runtime-spec in Rust, similar to runc.
@@ -48,6 +49,7 @@ pushd crates/
 
 %install
 install -D -m 0755 target/release/youki %{buildroot}%{_bindir}/youki
+%fdupes docs/
 
 %files
 %license LICENSE
@@ -56,5 +58,5 @@ install -D -m 0755 target/release/youki %{buildroot}%{_bindir}/youki
 
 
 %changelog
-* Wed Oct 05 2022 Cappy Ishihara <cappy@cappuchino.xyz>
+* Wed Oct 05 2022 Cappy Ishihara <cappy@cappuchino.xyz> - 0.0.5-1
 - Initial Release

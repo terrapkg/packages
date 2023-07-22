@@ -1,6 +1,6 @@
 Name:           dbus-test-runner
 Version:        19.04.0
-Release:        %autorelease
+Release:        2%?dist
 Summary:        A small utility to run executables under a new DBus session for testing
 License:        GPL-3.0
 URL:            https://launchpad.net/dbus-test-runner
@@ -19,10 +19,11 @@ BuildRequires: pkgconfig(gio-unix-2.0)
 BuildRequires: pkgconfig(dbus-glib-1)
 
 %description
-A small little utility to run a couple of executables under a new DBus session for testing.
+A small little utility to run a couple of executables under a new DBus session
+for testing.
 
 %package devel
-Summary:  dbus-test-runner development files
+Summary:  Development files for dbus-test-runner
 Requires: %{name}%{?_isa} = %{version}-%{release}
 
 %description devel
@@ -52,6 +53,7 @@ install -dm755 %{buildroot}%{_mandir}/man1/
 install -Dm644 %{SOURCE1} %{buildroot}%{_mandir}/man1/
 
 %files
+%doc README
 %license COPYING
 %{_libdir}/libdbustest.so.*
 %dir %{_libexecdir}/dbus-test-runner
@@ -63,6 +65,7 @@ install -Dm644 %{SOURCE1} %{buildroot}%{_mandir}/man1/
 %{_datadir}/dbus-test-runner/dbus-test-bustle-handler
 
 %files devel
+%doc README
 %license COPYING
 %dir %{_includedir}/libdbustest-1
 %dir %{_includedir}/libdbustest-1/libdbustest

@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:           moby-compose
-Version:        2.18.1
+Version:        2.20.2
 Release:        1%{?dist}
 Summary:        Define and run multi-container applications with Docker
 
@@ -18,6 +18,7 @@ Provides:       docker-compose = %{version}-%{release}
 Provides:       docker-compose-cli = %{version}-%{release}
 
 %description
+A tool for running multi-container applications using the Compose file format.
 
 
 %prep

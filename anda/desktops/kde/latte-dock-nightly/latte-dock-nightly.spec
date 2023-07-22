@@ -1,6 +1,6 @@
 %global forgeurl https://github.com/KDE/latte-dock/
 
-%global commit 819720a9e642449143dc56f8e34ee053bf03f32c
+%global commit 459f0d54ffe2a8d1b7597a70112b164fb9319760
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global commit_date %(date '+%Y%m%d')
 %global snapshot_info %{commit_date}.%{shortcommit}
@@ -31,6 +31,7 @@ BuildRequires:  kf5-kdeclarative-devel
 BuildRequires:  kf5-knewstuff-devel
 BuildRequires:  kf5-knotifications-devel
 BuildRequires:  kf5-kiconthemes-devel
+BuildRequires:  kf5-kitemmodels-devel
 BuildRequires:  kf5-ki18n-devel
 BuildRequires:  kf5-kpackage-devel
 BuildRequires:  kf5-plasma-devel
@@ -43,6 +44,7 @@ BuildRequires:  kf5-kcrash-devel
 BuildRequires:  qt5-qtwayland-devel
 BuildRequires:  plasma-wayland-protocols-devel
 BuildRequires:  wayland-devel
+BuildRequires:  plasma-workspace-devel
 
 Recommends:     %{name}-lang
 
@@ -60,6 +62,7 @@ using parabolic zoom effect and tries to be there only when it is needed.
 %package lang
 Summary: Translation files for latte-dock
 Requires: %{name} = %{version}-%{release}
+BuildArch: noarch
 %description lang
 %{summary}.
 
@@ -78,6 +81,8 @@ Requires: %{name} = %{version}-%{release}
 %find_lang %{name} --all-name
 
 %files
+%doc README.md
+%license LICENSES/*
 %{_bindir}/latte-dock
 %{_datadir}/metainfo/org.kde.latte-dock.appdata.xml
 %{_datadir}/metainfo/org.kde.latte.plasmoid.appdata.xml
@@ -101,8 +106,8 @@ Requires: %{name} = %{version}-%{release}
 %files lang -f %{name}.lang
 
 %changelog
-* Sun Dec 25 2022 lleyton <lleyton@fyralabs.com>
+* Sun Dec 25 2022 lleyton <lleyton@fyralabs.com> - 0.10.0^20221226.93c50a7-1
 - Comply with packaging policy
-* Sun Dec 25 2022 windowsboy111 <windowsboy111@fyralabs.com>
+* Sun Dec 25 2022 windowsboy111 <windowsboy111@fyralabs.com> - 0.10.9-1
 - Initial package
 

@@ -4,7 +4,7 @@
 Name:           pantheon-agent-polkit
 Summary:        Pantheon Polkit Agent
 Version:        1.0.5
-Release:        2%{?dist}
+Release:        1%{?dist}
 License:        LGPL-2.0-or-later
 
 URL:            https://github.com/elementary/%{name}
@@ -15,6 +15,7 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala >= 0.34.1
+BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(glib-2.0) >= 2.32.0
 BuildRequires:  pkgconfig(granite) >= 6.0.0
@@ -37,7 +38,7 @@ An agent for Polkit authorization designed for Pantheon.
 
 %install
 %meson_install
-
+%fdupes %buildroot/%_datadir/locale/
 %find_lang %{appname}
 
 

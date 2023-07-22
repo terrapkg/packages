@@ -1,3 +1,5 @@
+%define maj_min 0.8
+
 Name:    unity-asset-pool
 Summary: Assets and icons for Unity
 Version: 0.8.24
@@ -5,7 +7,7 @@ Release: %autorelease
 
 License:   CC-BY-SA
 URL:       https://launchpad.net/unity-asset-pool
-Source0:   %{url}/0.8/%{version}/+download/unity-asset-pool-%{version}.tar.gz
+Source0:   %{url}/%maj_min/%{version}/+download/unity-asset-pool-%{version}.tar.gz
 BuildArch: noarch
 
 BuildRequires: binutils

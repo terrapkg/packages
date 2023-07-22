@@ -47,6 +47,7 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %endif
 
 %files
+%doc README.md
 %license LICENSE
 %doc README.md
 %{_bindir}/curlie
