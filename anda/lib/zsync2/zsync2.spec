@@ -71,7 +71,7 @@ git apply %PATCH0
 
 %files
 %{_libdir}/*.so
-%{_libdir}/*.a
+#{_libdir}/*.a
 
 
 %files devel
