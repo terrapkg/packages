@@ -17,6 +17,7 @@ License:        Artistic-2.0
 URL:            https://github.com/AppImageCommunity/zsync2
 #Source0:        %%{url}/archive/refs/%%{libver}.tar.gz
 Source0:        %{url}/archive/%{git_commit}.tar.gz
+Patch0:         https://github.com/AppImageCommunity/zsync2/commit/e57e1fce68194fa920542fd334488de5123e4832.patch
 
 BuildRequires:  make
 BuildRequires:  cmake3
@@ -43,7 +44,7 @@ developing applications that use %{name}.
 
 
 %prep
-%autosetup -n zsync2-%{git_commit}
+%autosetup -n zsync2-%{git_commit} -p1
 
 git init .
 git remote add origin %{url}
@@ -52,7 +53,6 @@ git checkout %{git_commit} --force
 git pull origin %{git_commit} --force
 git submodule update --init --recursive
 
-sed -i '1i#include <cstdint>' src/make_main.cpp
 
 %build
 %cmake -DCPR_FORCE_USE_SYSTEM_CURL=ON \
