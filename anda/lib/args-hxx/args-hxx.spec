@@ -1,3 +1,5 @@
+%define debug_package %nil
+
 Name:		args-hxx
 Version:	6.4.6
 Release:	1%?dist
