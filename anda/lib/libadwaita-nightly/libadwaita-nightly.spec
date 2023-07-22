@@ -61,9 +61,7 @@ Demo files for %{name}.
 
 %install
 %meson_install
-ls %buildroot%_libdir/pkgconfig/ -alh
-sed -i 's@libadwaita-1@libadwaita-nightly@g' %buildroot%_libdir/pkgconfig/libadwaita*.pc
-cat %buildroot%_libdir/pkgconfig/libadwaita*.pc
+mv %buildroot%_libdir/pkgconfig/libadwaita-1.pc %buildroot%_libdir/pkgconfig/libadwaita-nightly.pc
 
 %check
 appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.xml
