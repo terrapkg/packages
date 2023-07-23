@@ -1,11 +1,11 @@
 %global real_name prismlauncher
 %global nice_name PrismLauncher
 
-%global commit 821dd8400b1a27ab1f932200bfa77d7a04edef5d
+%global commit 273d75fd515cc72299b92ddf4718e8e7fd34d2d0
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global libnbtplusplus_commit 2203af7eeb48c45398139b583615134efd8d407f
+%global libnbtplusplus_commit a5e8fd52b8bf4ab5d5bcc042b2a247867589985f
 %global quazip_commit 6117161af08e366c37499895b00ef62f93adc345
-%global tomlplusplus_commit 0a90913abf9390b9e08ab6d3b40ac11634553f38
+%global tomlplusplus_commit 7eb2ffcc09f8e9890dc0b77ff8ab00fc53b1f2b8
 
 %global commit_date %(date '+%Y%m%d')
 %global snapshot_info %{commit_date}.%{shortcommit}
@@ -44,8 +44,8 @@ Name:             prismlauncher-nightly
 %else
 Name:             prismlauncher-qt5-nightly
 %endif
-Version:          7.1^%{snapshot_info}
-Release:          1%{?dist}
+Version:          8.0^%{snapshot_info}
+Release:          %autorelease
 Summary:          Minecraft launcher with ability to manage multiple instances
 License:          GPL-3.0-only AND Apache-2.0 AND LGPL-3.0-only AND GPL-3.0-or-later AND GPL-2.0-or-later AND ISC AND OFL-1.1 AND LGPL-2.1-only AND MIT AND BSD-2-Clause-FreeBSD AND BSD-3-Clause AND LGPL-3.0-or-later
 Group:            Amusements/Games
@@ -167,6 +167,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.prismlauncher.Pri
 
 
 %changelog
+* Sun Jul 23 2023 seth <getchoo at tuta dot io> - 8.0^20230722.273d75f-1
+- update submodules, version, & use autorelease
+
 * Wed Jun 07 2023 seth <getchoo at tuta dot io> - 7.0^20230603.954d4d7-1
 - specify jdk 17 + cleanup outdated patches/scriptlets
 
