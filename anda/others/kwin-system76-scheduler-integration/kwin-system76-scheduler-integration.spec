@@ -32,11 +32,11 @@ mkdir -p %buildroot%_datadir/kwin-system76-scheduler-integration
 cp -r $HOME/.local/share/kwin-system76-scheduler-integration %buildroot%_datadir/kwin-system76-scheduler-integration
 
 %post
-%systemd_user_post
+%systemd_user_post com.system76.Scheduler.dbusproxy.service
 
 
 %preun
-%systemd_user_preun
+%systemd_user_preun com.system76.Scheduler.dbusproxy.service
 
 
 %files
