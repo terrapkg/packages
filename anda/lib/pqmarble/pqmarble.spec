@@ -38,15 +38,15 @@ Summary: Development files for marble-gtk
 %files
 %doc README.md
 %license COPYING
-#_libdir/girepository-1.0/Marble-*.typelib
-#_libdir/libmarble.so.*
-#_datadir/vala/vapi/marble.*
+%_libdir/girepository-1.0/PQMarble-*.typelib
+%_libdir/libpqmarble.so.*
+%_datadir/vala/vapi/pqmarble.deps
 
 %files devel
-#_prefix/include/marble.h
-#_libdir/libmarble.so
-#_libdir/pkgconfig/marble.pc
-#_datadir/gir-1.0/Marble-*.gir
+%_prefix/include/pqmarble.h
+%_libdir/libpqmarble.so
+%_libdir/pkgconfig/pqmarble.pc
+%_datadir/gir-1.0/PQMarble-*.gir
 
 %changelog
 %autochangelog
