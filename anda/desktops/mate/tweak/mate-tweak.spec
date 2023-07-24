@@ -14,7 +14,7 @@ This is MATE Tweak, a fork of mintDesktop.
 %autosetup
 
 %build
-python setup.py install
+python3 setup.py install
 
 %install
 
