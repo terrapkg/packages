@@ -1,5 +1,5 @@
-%global commit 8517026
-%global ver 1.8.14
+%global commit 451c5595393076e51ad238bf51ba941093fdbef5
+%global ver 1.8.15
 Name: tdlib-nightly
 Version: %ver^%commit
 Release: 1%{?dist}
