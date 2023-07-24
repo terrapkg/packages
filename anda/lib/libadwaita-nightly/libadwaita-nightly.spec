@@ -1,9 +1,9 @@
 %global ver 1.4
-%global commit 9c2d9426b0772787796009f03f0eab06612c4a96
+%global commit 69b0818d31b632b88ae6e974c90364b2891e96e8
 
 Name:			libadwaita-nightly
 Version:		%ver^%commit
-Release:		2%?dist
+Release:		1%?dist
 Summary:		Building blocks for modern GNOME applications
 License:		LGPL-2.1+
 URL:			https://gnome.pages.gitlab.gnome.org/libadwaita/
