@@ -1,6 +1,6 @@
-%global commit 451c5595393076e51ad238bf51ba941093fdbef5
-%global ver 1.8.15
-Name: tdlib-nightly
+%global commit 8517026415e75a8eec567774072cbbbbb52376c1
+%global ver 1.8.14
+Name: tdlib-paper-plane
 Version: %ver^%commit
 Release: 1%{?dist}
 
