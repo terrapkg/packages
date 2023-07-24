@@ -1,4 +1,4 @@
-%global commit 8517026
+%global commit 8517026415e75a8eec567774072cbbbbb52376c1
 %global ver 1.8.14
 Name: tdlib-paper-plane
 Version: %ver^%commit
