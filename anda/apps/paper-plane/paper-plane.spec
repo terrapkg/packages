@@ -9,8 +9,8 @@ License:		GPL-3.0
 URL:			https://github.com/paper-plane-developers/paper-plane
 Source0:		%url/archive/%commit.tar.gz
 Patch0:			0001-remove-libadwaita-dependency.patch
-BuildRequires:	meson cargo terra-gtk4-devel >= 4.10 tdlib-nightly-devel libappstream-glib desktop-file-utils terra-blueprint-compiler sassc pkgconfig(appstream) vala pkgconfig(libadwaita-nightly)
-Requires:		terra-gtk4 >= 4.10 gstreamer1-plugin-libav gstreamer1-plugins-good libadwaita-nightly
+BuildRequires:	meson cargo terra-gtk4-devel >= 4.10 tdlib-paper-plane-devel libappstream-glib desktop-file-utils terra-blueprint-compiler sassc pkgconfig(appstream) vala pkgconfig(libadwaita-nightly)
+Requires:		terra-gtk4 >= 4.10 gstreamer1-plugin-libav gstreamer1-plugins-good libadwaita-nightly tdlib-paper-plane
 
 %description
 Paper Plane is an alternative Telegram client. It uses libadwaita for its user
