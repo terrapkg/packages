@@ -26,7 +26,7 @@ Summary: Development files for marble-gtk
 
 %prep
 %autosetup -n marble-%{commit}
-sed -i "s@version: '2.0.0'@version: '42'" meson.build
+sed -i "s@version: '2.0.0'@version: '42'@g" meson.build
 
 %build
 %meson
