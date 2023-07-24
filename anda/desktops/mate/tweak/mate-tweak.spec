@@ -5,7 +5,7 @@ Summary:	Tweak tool for the MATE Desktop
 License:	GPL-2.0
 URL:		https://github.com/ubuntu-mate/mate-tweak
 Source0:	%url/archive/refs/tags/%version.tar.gz
-Requires:	python3
+Requires:	python3.11
 
 %description
 This is MATE Tweak, a fork of mintDesktop.
@@ -14,7 +14,7 @@ This is MATE Tweak, a fork of mintDesktop.
 %autosetup
 
 %build
-python3 setup.py install
+python3.11 setup.py install
 
 %install
 
