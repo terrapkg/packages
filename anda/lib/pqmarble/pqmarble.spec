@@ -38,9 +38,9 @@ sed -i "s@version: '2.0.0'@version: '42'@g" meson.build
 %files
 %doc README.md
 %license COPYING
-%_libdir/girepository-1.0/Marble-*.typelib
-%_libdir/libmarble.so.*
-%_datadir/vala/vapi/marble.*
+#_libdir/girepository-1.0/Marble-*.typelib
+#_libdir/libmarble.so.*
+#_datadir/vala/vapi/marble.*
 
 %files devel
 %_prefix/include/marble.h
