@@ -2,7 +2,7 @@
 %global crate kondo-ui
 
 Name:           rust-kondo-ui
-Version:        0.6.0
+Version:        0.7.0
 Release:        1%{?dist}
 Summary:        Filesystem cleaning tool that recursively searches directories for known project structures and allows you to clean them of unnecessary files like build artifacts
 

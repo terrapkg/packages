@@ -8,8 +8,8 @@
 
 Name:           switchboard-plug-display
 Summary:        Switchboard Display plug
-Version:        2.3.3
-Release:        2%{?dist}
+Version:        7.0.0
+Release:        1%{?dist}
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/switchboard-plug-display
@@ -52,7 +52,7 @@ them.
 
 %check
 appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
+    %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
 
 %files -f %{plug_name}-plug.lang
@@ -61,7 +61,7 @@ appstream-util validate-relax --nonet \
 
 %{_libdir}/switchboard/%{plug_type}/lib%{plug_name}.so
 
-%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
+%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
 
 %changelog

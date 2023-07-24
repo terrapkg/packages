@@ -5,8 +5,8 @@
 
 Name:           wingpanel-indicator-notifications
 Summary:        Notifications Indicator for wingpanel
-Version:        6.0.7
-Release:        2%{?dist}
+Version:        7.0.0
+Release:        1%{?dist}
 License:        LGPL-2.0-or-later
 
 URL:            https://github.com/elementary/wingpanel-indicator-notifications
@@ -52,7 +52,7 @@ A notifications indicator for wingpanel.
 
 %check
 appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
+    %{buildroot}/%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %files -f notifications-indicator.lang
@@ -61,7 +61,7 @@ appstream-util validate-relax --nonet \
 
 %{_libdir}/wingpanel/libnotifications.so
 
-%{_datadir}/metainfo/%{appname}.appdata.xml
+%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %changelog

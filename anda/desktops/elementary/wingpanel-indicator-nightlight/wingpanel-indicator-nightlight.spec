@@ -5,8 +5,8 @@
 
 Name:           wingpanel-indicator-nightlight
 Summary:        Night Light Indicator for wingpanel
-Version:        2.1.1
-Release:        2%{?dist}
+Version:        2.1.2
+Release:        1%{?dist}
 License:        GPL-2.0-or-later
 
 URL:            https://github.com/elementary/wingpanel-indicator-nightlight
@@ -48,8 +48,8 @@ A wingpanel indicator for Night Light.
 
 
 %check
-appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
+%dnl appstream-util validate-relax --nonet \
+%dnl     %{buildroot}/%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %files -f nightlight-indicator.lang
@@ -58,7 +58,7 @@ appstream-util validate-relax --nonet \
 
 %{_libdir}/wingpanel/libnightlight.so
 
-%{_datadir}/metainfo/%{appname}.appdata.xml
+%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %changelog

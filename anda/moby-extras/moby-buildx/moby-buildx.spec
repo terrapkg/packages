@@ -1,8 +1,8 @@
 %define debug_package %nil
 
 Name:           moby-buildx
-Version:        0.11.0
-Release:        2%{?dist}
+Version:        0.11.2
+Release:        1%{?dist}
 Summary:        Docker CLI plugin for extended build capabilities with BuildKit
 
 License:        Apache-2.0
@@ -27,8 +27,8 @@ go mod download
 %build
 export CGO_ENABLED=1
 go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w -extldflags '--static-pie'" \
-	-buildmode=pie -tags 'osusergo,netgo,static_build' -v -x \
-	-o docker-buildx ./cmd/buildx
+  -buildmode=pie -tags 'osusergo,netgo,static_build' -v -x \
+  -o docker-buildx ./cmd/buildx
 
 
 %install

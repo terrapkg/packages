@@ -1,8 +1,8 @@
 %define debug_package %{nil}
 
 Name:			discord
-Version:		0.0.27
-Release:		2%{?dist}
+Version:		0.0.28
+Release:		1%{?dist}
 Summary:		Free Voice and Text Chat for Gamers
 URL:			https://discord.com
 Source0:		https://dl.discordapp.net/apps/linux/%{version}/discord-%{version}.tar.gz

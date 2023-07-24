@@ -1,10 +1,11 @@
 %global real_name prismlauncher
+%global nice_name PrismLauncher
 
-%global commit 12cd8a7bea991c2a8d4b59b1cfc9f7c246819fc9
+%global commit 684c2ec47a4b91c57461284f9a8bffa25ce6d05d
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global libnbtplusplus_commit 2203af7eeb48c45398139b583615134efd8d407f
+%global libnbtplusplus_commit a5e8fd52b8bf4ab5d5bcc042b2a247867589985f
 %global quazip_commit 6117161af08e366c37499895b00ef62f93adc345
-%global tomlplusplus_commit 0a90913abf9390b9e08ab6d3b40ac11634553f38
+%global tomlplusplus_commit 7eb2ffcc09f8e9890dc0b77ff8ab00fc53b1f2b8
 
 %global commit_date %(date '+%Y%m%d')
 %global snapshot_info %{commit_date}.%{shortcommit}
@@ -152,20 +153,23 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.prismlauncher.Pri
 %files
 %doc README.md
 %license LICENSE COPYING.md
-%dir %{_datadir}/%{real_name}
+%dir %{_datadir}/%{nice_name}
 %{_bindir}/%{real_name}
-%{_datadir}/%{real_name}/NewLaunch.jar
-%{_datadir}/%{real_name}/JavaCheck.jar
+%{_datadir}/%{nice_name}/NewLaunch.jar
+%{_datadir}/%{nice_name}/JavaCheck.jar
+%{_datadir}/%{nice_name}/qtlogging.ini
 %{_datadir}/applications/org.prismlauncher.PrismLauncher.desktop
 %{_metainfodir}/org.prismlauncher.PrismLauncher.metainfo.xml
 %{_datadir}/icons/hicolor/scalable/apps/org.prismlauncher.PrismLauncher.svg
 %{_datadir}/mime/packages/modrinth-mrpack-mime.xml
-%{_datadir}/PrismLauncher/qtlogging.ini
 %{_datadir}/qlogging-categories%{qt_version}/prismlauncher.categories
 %{_mandir}/man?/prismlauncher.*
 
 
 %changelog
+* Sun Jul 23 2023 seth <getchoo at tuta dot io> - 8.0^20230722.273d75f-1
+- update submodules, version, & use autorelease
+
 * Wed Jun 07 2023 seth <getchoo at tuta dot io> - 7.0^20230603.954d4d7-1
 - specify jdk 17 + cleanup outdated patches/scriptlets
 

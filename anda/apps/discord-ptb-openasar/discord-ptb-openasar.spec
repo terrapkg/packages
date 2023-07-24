@@ -1,8 +1,8 @@
 %define debug_package %{nil}
 
 Name:           discord-ptb-openasar
-Version:        0.0.42
-Release:        2%{?dist}
+Version:        0.0.44
+Release:        1%{?dist}
 Summary:        A snappier Discord rewrite with features like further customization and theming
 License:        MIT AND https://discord.com/terms
 URL:            https://github.com/GooseMod/OpenAsar
