@@ -41,6 +41,7 @@ Summary: Development files for marble-gtk
 %_libdir/girepository-1.0/PQMarble-*.typelib
 %_libdir/libpqmarble.so.*
 %_datadir/vala/vapi/pqmarble.deps
+%_datadir/vala/vapi/pqmarble.vapi
 
 %files devel
 %_prefix/include/pqmarble.h
