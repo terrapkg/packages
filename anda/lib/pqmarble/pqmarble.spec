@@ -1,7 +1,8 @@
 %global commit f240b2ec7d5cdacb8fdcc553703420dc5101ffdb
+%global ver 2.0.0
 
 Name:			pqmarble
-Version:		42^%commit
+Version:		%ver^%commit
 Release:		1%{?dist}
 Summary:		My GTK library
 License:		GPL-3.0
@@ -26,7 +27,6 @@ Summary: Development files for marble-gtk
 
 %prep
 %autosetup -n marble-%{commit}
-sed -i "s@version: '2.0.0'@version: '42'@g" meson.build
 
 %build
 %meson
