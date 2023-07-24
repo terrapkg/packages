@@ -43,10 +43,10 @@ Summary: Development files for marble-gtk
 #_datadir/vala/vapi/marble.*
 
 %files devel
-%_prefix/include/marble.h
-%_libdir/libmarble.so
-%_libdir/pkgconfig/marble.pc
-%_datadir/gir-1.0/Marble-*.gir
+#_prefix/include/marble.h
+#_libdir/libmarble.so
+#_libdir/pkgconfig/marble.pc
+#_datadir/gir-1.0/Marble-*.gir
 
 %changelog
 %autochangelog
