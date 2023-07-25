@@ -9,7 +9,7 @@ Summary:		Alternative Telegram client in GTK4 and Rust
 License:		GPL-3.0
 URL:			https://github.com/paper-plane-developers/paper-plane
 Source0:		%url/archive/%commit.tar.gz
-BuildRequires:	meson cargo terra-gtk4-devel tdlib-paper-plane-devel libappstream-glib desktop-file-utils terra-blueprint-compiler sassc pkgconfig(appstream) vala libadwaita-nightly-devel rlottie-devel clang-devel desktop-file-utils
+BuildRequires:	meson cargo terra-gtk4-devel tdlib-paper-plane-devel libappstream-glib desktop-file-utils terra-blueprint-compiler sassc pkgconfig(appstream) vala libadwaita-nightly-devel rlottie-devel clang-devel desktop-file-utils libappstream-glib
 Requires:		terra-gtk4 >= 4.10 gstreamer1-plugin-libav gstreamer1-plugins-good libadwaita-nightly tdlib-paper-plane
 
 %description
@@ -29,7 +29,8 @@ cp /%_libdir/pkgconfig/libadwaita-nightly.pc /%_libdir/pkgconfig/libadwaita-1.pc
 %meson_install
 
 %check
-desktop-file-validate %_datadir/metainfo/app.drey.PaperPlane.metainfo.xml
+appstream-util validate-relax --nonet %_datadir/metainfo/app.drey.PaperPlane.metainfo.xml
+desktop-file-validate %_datadir/applications/app.drey.PaperPlane.desktop
 
 %files
 %doc README.md
