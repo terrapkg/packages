@@ -8,7 +8,7 @@ BuildRequires:  vala meson gettext
 BuildRequires:  pkgconfig(gtk4) >= 4.6.2
 BuildRequires:  pkgconfig(gio-2.0) >= 2.50
 BuildRequires:  libadwaita-devel >= 1.1
-BuildRequires:  pkgconfig(marble) >= 42
+BuildRequires:  pkgconfig(pqmarble) >= 2.0.0
 BuildRequires:  pkgconfig(vte-2.91-gtk4) >= 0.69.0
 BuildRequires:  pkgconfig(json-glib-1.0) >= 1.4.4
 BuildRequires:  pkgconfig(libxml-2.0) >= 2.9.12
