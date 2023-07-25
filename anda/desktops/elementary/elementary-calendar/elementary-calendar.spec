@@ -12,8 +12,6 @@ License:        GPL-3.0-or-later
 URL:            https://github.com/elementary/calendar
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 
-Patch0:         https://patch-diff.githubusercontent.com/raw/elementary/calendar/pull/758.patch
-
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib
