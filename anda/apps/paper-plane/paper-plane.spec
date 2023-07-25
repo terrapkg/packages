@@ -29,8 +29,8 @@ cp /%_libdir/pkgconfig/libadwaita-nightly.pc /%_libdir/pkgconfig/libadwaita-1.pc
 %meson_install
 
 %check
-appstream-util validate-relax --nonet %_datadir/metainfo/app.drey.PaperPlane.metainfo.xml
-desktop-file-validate %_datadir/applications/app.drey.PaperPlane.desktop
+appstream-util validate-relax --nonet %buildroot%_datadir/metainfo/app.drey.PaperPlane.metainfo.xml
+desktop-file-validate %buildroot%_datadir/applications/app.drey.PaperPlane.desktop
 
 %files
 %doc README.md
