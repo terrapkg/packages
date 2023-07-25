@@ -27,7 +27,7 @@ python3 -m pip install distutils-extra-python
 rm -rf %buildroot%python3_sitearch/__pycache__
 
 %check
-desktop-file-validate %buildroot%_datadir/applications/macro-{glx,no-composite,xr_glx_hybrid,xrender}.desktop
+desktop-file-validate %buildroot%_datadir/applications/*.desktop
 
 %files
 %doc README.md
