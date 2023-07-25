@@ -24,34 +24,22 @@ python3 -m pip install distutils-extra-python
 %install
 %py3_install
 
-rm -rf %buildroot%python3_sitearch/__pycache__
-
 %check
 desktop-file-validate %buildroot%_datadir/applications/*.desktop
 
 %files
 %doc README.md
 %license COPYING
+%ghost %python3_sitearch/{__pycache__,setup.py}
 %_bindir/%name
-%dnl %_bindir/macro-xrender
-%dnl %_bindir/macro-picom
-%dnl %_bindir/macro-glx
-%dnl %_bindir/macro-compton
-%dnl %_bindir/macro-xr_glx_hybrid
-%dnl %_bindir/macro-no-composite
+%_bindir/marco-{compton,xrender,picom,glx,xr_glx_hybrid,no-composite}
 %_prefix/lib/%name/
-%dnl %python3_sitearch/%name-%version-py%python3_version.egg-info
+%python3_sitearch/mate_tweak-%version-py%python3_version.egg-info
 %_datadir/locale/*/LC_MESSAGES/%name.mo
-%dnl %_mandir/man1/macro-glx.1
-%dnl %_mandir/man1/macro-no-composite.1
-%dnl %_mandir/man1/macro-xr_glx_hybrid.1
-%dnl %_mandir/man1/macro-xrender.1
-%dnl %_mandir/man1/%name.1
+%_mandir/man1/marco-{glx,no-composite,xr_glx_hybrid,xrender}.1.gz
+%_mandir/man1/%name.1.gz
 %_datadir/applications/%name.desktop
-%dnl %_datadir/applications/macro-glx.desktop
-%dnl %_datadir/applications/macro-no-composite.desktop
-%dnl %_datadir/applications/macro-xr_glx_hybrid.desktop
-%dnl %_datadir/applications/macro-xrender.desktop
+%_datadir/applications/marco-{glx,no-composite,xr_glx_hybrid,xrender}.desktop
 %_datadir/polkit-1/actions/org.mate.%name.policy
 
 %changelog
