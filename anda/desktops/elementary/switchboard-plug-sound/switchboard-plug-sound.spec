@@ -52,11 +52,12 @@ A sound plug for Switchboard.
 %find_lang %{plug_name}-plug
 
 # remove the specified stock icon from appdata (invalid in libappstream-glib)
-sed -i '/icon type="stock"/d' %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
+sed -i '/icon type="stock"/d' %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
 
 
 %check
-appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
+appstream-util validate-relax --nonet \
+    %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
 
 
 %files -f %{plug_name}-plug.lang
@@ -65,7 +66,7 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/%{plug_r
 
 %{_libdir}/switchboard/%{plug_type}/lib%{plug_name}.so
 
-%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
+%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
 
 
 %changelog
