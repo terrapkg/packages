@@ -34,7 +34,6 @@ desktop-file-validate %buildroot%_datadir/applications/*.desktop
 %_bindir/%name
 %_bindir/marco-{compton,xrender,picom,glx,xr_glx_hybrid,no-composite}
 %_prefix/lib/%name/
-%python3_sitearch/mate_tweak-*.egg-info
 %_datadir/locale/*/LC_MESSAGES/%name.mo
 %_mandir/man1/marco-{glx,no-composite,xr_glx_hybrid,xrender}.1.gz
 %_mandir/man1/%name.1.gz
