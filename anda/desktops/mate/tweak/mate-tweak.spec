@@ -33,12 +33,12 @@ desktop-file-validate %buildroot%_datadir/applications/*.desktop
 %doc README.md
 %license COPYING
 %_bindir/%name
-%_bindir/macro-xrender
-%_bindir/macro-picom
-%_bindir/macro-glx
-%_bindir/macro-compton
-%_bindir/macro-xr_glx_hybrid
-%_bindir/macro-no-composite
+%dnl %_bindir/macro-xrender
+%dnl %_bindir/macro-picom
+%dnl %_bindir/macro-glx
+%dnl %_bindir/macro-compton
+%dnl %_bindir/macro-xr_glx_hybrid
+%dnl %_bindir/macro-no-composite
 %_prefix/lib/%name/
 %dnl %python3_sitearch/%name-%version-py%python3_version.egg-info
 %_datadir/locale/*/LC_MESSAGES/%name.mo
