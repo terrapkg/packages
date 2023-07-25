@@ -33,14 +33,25 @@ desktop-file-validate %buildroot%_datadir/applications/*.desktop
 %doc README.md
 %license COPYING
 %_bindir/%name
-%_bindir/macro-{xrender,picom,glx,compton,xr_glx_hybrid,no-composite}
+%_bindir/macro-xrender
+%_bindir/macro-picom
+%_bindir/macro-glx
+%_bindir/macro-compton
+%_bindir/macro-xr_glx_hybrid
+%_bindir/macro-no-composite
 %_prefix/lib/%name/
-%python3_sitearch/%name-%version-py%python3_version.egg-info
+%dnl %python3_sitearch/%name-%version-py%python3_version.egg-info
 %_datadir/locale/*/LC_MESSAGES/%name.mo
-%_mandir/man1/macro-{glx,no-composite,xr_glx_hybrid,xrender}.1
-%_mandir/man1/%name.1
+%dnl %_mandir/man1/macro-glx.1
+%dnl %_mandir/man1/macro-no-composite.1
+%dnl %_mandir/man1/macro-xr_glx_hybrid.1
+%dnl %_mandir/man1/macro-xrender.1
+%dnl %_mandir/man1/%name.1
 %_datadir/applications/%name.desktop
-%_datadir/applications/macro-{glx,no-composite,xr_glx_hybrid,xrender}.desktop
+%dnl %_datadir/applications/macro-glx.desktop
+%dnl %_datadir/applications/macro-no-composite.desktop
+%dnl %_datadir/applications/macro-xr_glx_hybrid.desktop
+%dnl %_datadir/applications/macro-xrender.desktop
 %_datadir/polkit-1/actions/org.mate.%name.policy
 
 %changelog
