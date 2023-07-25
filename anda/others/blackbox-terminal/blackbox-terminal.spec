@@ -8,7 +8,7 @@ BuildRequires:  vala meson gettext
 BuildRequires:  pkgconfig(gtk4) >= 4.6.2
 BuildRequires:  pkgconfig(gio-2.0) >= 2.50
 BuildRequires:  libadwaita-devel >= 1.1
-BuildRequires:  pkgconfig(pqmarble) >= 2.0.0
+BuildRequires:  pkgconfig(pqmarble) >= 2
 BuildRequires:  pkgconfig(vte-2.91-gtk4) >= 0.69.0
 BuildRequires:  pkgconfig(json-glib-1.0) >= 1.4.4
 BuildRequires:  pkgconfig(libxml-2.0) >= 2.9.12
@@ -18,7 +18,6 @@ BuildRequires:  pkgconfig(graphene-gobject-1.0)
 BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  desktop-file-utils libappstream-glib cmake
 Source0:        %url/-/archive/v%version/blackbox-v%version.tar.gz
-Patch0:         0001-fix-pkgconfig-marble-version.patch
 
 %description
 %{summary}.
@@ -36,18 +35,17 @@ Patch0:         0001-fix-pkgconfig-marble-version.patch
 %files
 %doc README.md
 %license COPYING
-/usr/bin/blackbox
-/usr/lib/debug/*
-/usr/share/applications/com.raggesilver.BlackBox.desktop
-/usr/share/appdata/com.raggesilver.BlackBox.appdata.xml
-/usr/share/blackbox/*
-/usr/share/glib-2.0/schemas/com.raggesilver.BlackBox.gschema.xml
-/usr/share/icons/hicolor/scalable/actions/com.raggesilver.BlackBox-fullscreen-symbolic.svg
-/usr/share/icons/hicolor/scalable/actions/com.raggesilver.BlackBox-show-headerbar-symbolic.svg
-/usr/share/icons/hicolor/scalable/actions/external-link-symbolic.svg
-/usr/share/icons/hicolor/scalable/actions/settings-symbolic.svg
-/usr/share/icons/hicolor/scalable/apps/com.raggesilver.BlackBox.svg
-/usr/share/locale/*/LC_MESSAGES/blackbox.mo
+%_bindir/blackbox
+%_datadir/applications/com.raggesilver.BlackBox.desktop
+%_datadir/appdata/com.raggesilver.BlackBox.appdata.xml
+%_datadir/blackbox/*
+%_datadir/glib-2.0/schemas/com.raggesilver.BlackBox.gschema.xml
+%_datadir/icons/hicolor/scalable/actions/com.raggesilver.BlackBox-fullscreen-symbolic.svg
+%_datadir/icons/hicolor/scalable/actions/com.raggesilver.BlackBox-show-headerbar-symbolic.svg
+%_datadir/icons/hicolor/scalable/actions/external-link-symbolic.svg
+%_datadir/icons/hicolor/scalable/actions/settings-symbolic.svg
+%_datadir/icons/hicolor/scalable/apps/com.raggesilver.BlackBox.svg
+%_datadir/locale/*/LC_MESSAGES/blackbox.mo
 
 
 %changelog
