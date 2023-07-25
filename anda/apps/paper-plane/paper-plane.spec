@@ -18,6 +18,7 @@ interface and strives to meet the design principles of the GNOME desktop.
 %prep
 %autosetup -n %name-%commit
 sed -i 's@libadwaita-1@libadwaita-nightly@g' meson.build
+cp %buildroot/usr/share/pkgconfig/libadwaita-nightly.pc %buildroot/usr/share/pkgconfig/libadwaita-1.pc
 
 %build
 # https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=paper-plane
