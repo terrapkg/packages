@@ -27,6 +27,7 @@ BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(libcanberra)
 BuildRequires:  pkgconfig(libcanberra-gtk)
 BuildRequires:  pkgconfig(libpulse)
+BuildRequires:  pkgconfig(libhandy-1)
 BuildRequires:  pkgconfig(libpulse-mainloop-glib)
 BuildRequires:  pkgconfig(switchboard-2.0)
 
