@@ -1,3 +1,4 @@
+%define debug_package %nil
 %global ver 0.1.0
 %global commit 4a9945429cdc446b323e390e8c1163944582051e
 
