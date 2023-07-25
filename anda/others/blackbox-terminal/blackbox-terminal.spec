@@ -32,13 +32,16 @@ Source0:        %url/-/archive/v%version/blackbox-v%version.tar.gz
 %install
 %meson_install
 
+%check
+%dnl appstream-util validate-relax --nonet %buildroot/%_datadir/metainfo/%{appname}.metainfo.xml
+
 %files
 %doc README.md
 %license COPYING
 %_bindir/blackbox
 %_datadir/applications/com.raggesilver.BlackBox.desktop
-%_datadir/appdata/com.raggesilver.BlackBox.appdata.xml
-%_datadir/blackbox/*
+#_datadir/appdata/com.raggesilver.BlackBox.metainfo.xml
+%_datadir/blackbox/
 %_datadir/glib-2.0/schemas/com.raggesilver.BlackBox.gschema.xml
 %_datadir/icons/hicolor/scalable/actions/com.raggesilver.BlackBox-fullscreen-symbolic.svg
 %_datadir/icons/hicolor/scalable/actions/com.raggesilver.BlackBox-show-headerbar-symbolic.svg
