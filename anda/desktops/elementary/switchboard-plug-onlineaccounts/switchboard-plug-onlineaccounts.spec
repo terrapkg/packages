@@ -6,7 +6,7 @@
 
 Name:           switchboard-plug-onlineaccounts
 Summary:        Switchboard Online Accounts plug
-Version:        6.5.2
+Version:        6.5.3
 Release:        1%{?dist}
 License:        GPL-3.0-or-later
 
@@ -17,6 +17,7 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala
+BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(camel-1.2)
 BuildRequires:  pkgconfig(glib-2.0)
@@ -48,23 +49,23 @@ Manage online accounts and connected applications.
 
 %install
 %meson_install
-
+%fdupes %buildroot%_datadir/locale/
 %find_lang %{plug_name}-plug
 
 # remove the specified stock icon from appdata (invalid in libappstream-glib)
-sed -i '/icon type="stock"/d' %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
+sed -i '/icon type="stock"/d' %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
 
 %check
 appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
+    %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
 
 %files -f %{plug_name}-plug.lang
 %license LICENSE
 %doc README.md
 
-%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
+%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 %{_libdir}/switchboard/%{plug_type}/lib%{plug_name}.so
 
 

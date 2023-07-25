@@ -76,7 +76,7 @@ This package contains development files needed for qtmir.
 
 %prep
 %autosetup -n qtmir-%commit -p1
-#sed -i ''
+sed -i 's!X-Ubuntu-Touch=true!X-Lomiri-Splash-Show=false!' data/xwayland.qtmir.desktop
 
 %build
 %cmake -DWerror=OFF -DWITH_MIR2=on -DWITH_CONTENTHUB=OFF
@@ -87,6 +87,7 @@ This package contains development files needed for qtmir.
 %cmake_install
 
 %files
+%doc README
 %license COPYING COPYING.LESSER
 %{_libdir}/libqtmirserver.so.*
 %{_qt5_plugindir}/platforms/libqpa-mirserver.so

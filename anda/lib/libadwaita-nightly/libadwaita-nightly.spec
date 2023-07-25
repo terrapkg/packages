@@ -1,5 +1,5 @@
 %global ver 1.4
-%global commit 9c2d9426b0772787796009f03f0eab06612c4a96
+%global commit 69b0818d31b632b88ae6e974c90364b2891e96e8
 
 Name:			libadwaita-nightly
 Version:		%ver^%commit
@@ -10,6 +10,7 @@ URL:			https://gnome.pages.gitlab.gnome.org/libadwaita/
 Source0:		https://gitlab.gnome.org/GNOME/libadwaita/-/archive/%commit/libadwaita-%commit.tar.gz
 BuildRequires:	meson vala cmake gi-docgen git gobject-introspection sassc terra-gtk4-devel appstream-devel desktop-file-utils libappstream-glib
 Requires:		terra-gtk4
+Conflicts:		libadwaita
 
 %description
 %summary.
@@ -60,7 +61,7 @@ Demo files for %{name}.
 
 %install
 %meson_install
-
+mv %buildroot%_libdir/pkgconfig/libadwaita-1.pc %buildroot%_libdir/pkgconfig/libadwaita-nightly.pc
 
 %check
 appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.xml

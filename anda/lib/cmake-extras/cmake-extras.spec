@@ -21,7 +21,8 @@ Requires:      lcov
 Requires:      qt5-qtdeclarative-devel
 
 %description
-A collection of add-ons for the CMake build tool used to build lomiri and other applications. 
+A collection of add-ons for the CMake build tool used to build lomiri and other
+applications.
 
 %prep
 %autosetup -n cmake-extras-%commit

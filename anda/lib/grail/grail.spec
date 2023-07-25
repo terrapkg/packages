@@ -19,9 +19,13 @@ BuildRequires:	xorg-x11-server-devel
 BuildRequires:	frame-devel
 
 %description
-Grail consists of an interface and tools for handling gesture recognition and gesture instantiation.
+Grail consists of an interface and tools for handling gesture recognition and
+gesture instantiation.
 
-When a multitouch gesture is performed on a device, the recognizer emits one or several possible gestures. Once the context of the gesture is known, i.e., in what window the touches land and what gestures the clients of that window listen to, the instantiator delivers the matching set of gestures.
+When a multitouch gesture is performed on a device, the recognizer emits one or
+several possible gestures. Once the context of the gesture is known, i.e., in
+what window the touches land and what gestures the clients of that window
+listen to, the instantiator delivers the matching set of gestures.
 
 %package devel
 Summary:	Development files for %{name}
@@ -52,6 +56,7 @@ export PYTHON
 rm -fv %{buildroot}%{_libdir}/*.la
 
 %files
+%doc README
 %license COPYING COPYING.GPL3
 %{_libdir}/libgrail.so.*
 

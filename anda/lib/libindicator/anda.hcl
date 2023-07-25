@@ -1,5 +1,5 @@
 project pkg {
 	rpm {
-		spec = "libindicator.spec"
+		spec = "terra-libindicator.spec"
 	}
 }

@@ -30,8 +30,9 @@ BuildRequires:  intltool
 Suggests:       accountsservice
 
 %description
-The Ayatana Indicators project is the continuation of Application Indicators and System Indicators, 
-two technologies developed by Canonical Ltd. for the Unity7 desktop and Lomiri desktop.
+The Ayatana Indicators project is the continuation of Application Indicators
+and System Indicators, two technologies developed by Canonical Ltd. for the
+Unity7 desktop and Lomiri desktop.
 
 %package devel
 Summary:    Development files for %{name}
@@ -54,8 +55,9 @@ This package contains the development header files for %{name}.
 %find_lang %{name}
 
 %files -f %{name}.lang
+%doc README.md
 %license COPYING
-%{_sysconfdir}/xdg/autostart/ayatana-indicator-sound.desktop
+%config %{_sysconfdir}/xdg/autostart/ayatana-indicator-sound.desktop
 %{_userunitdir}/ayatana-indicator-sound.service
 %dir %{_libexecdir}/ayatana-indicator-sound
 %{_libexecdir}/ayatana-indicator-sound/ayatana-indicator-sound-service

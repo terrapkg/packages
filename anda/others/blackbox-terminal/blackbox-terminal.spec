@@ -1,6 +1,6 @@
 Name:           blackbox-terminal
-Version:        0.13.2
-Release:        %autorelease
+Version:        0.14.0
+Release:        1%{?dist}
 Summary:        A beautiful GTK 4 terminal
 License:        GPL-3.0
 URL:            https://gitlab.gnome.org/raggesilver/blackbox

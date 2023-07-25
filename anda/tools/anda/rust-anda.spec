@@ -5,7 +5,7 @@
 %global crate anda
 
 Name:           rust-anda
-Version:        0.1.17
+Version:        0.1.18
 Release:        1%{?dist}
 Summary:        Andaman Build toolchain
 
@@ -37,9 +37,10 @@ Summary:        %{summary}
 %files       -n %{crate}
 %{_bindir}/anda
 %{_mandir}/man1/anda*.1*
-%{_sysconfdir}/bash_completion.d/anda.bash
+%config %{_sysconfdir}/bash_completion.d/anda.bash
 %{_datadir}/zsh/site-functions/_anda
 %{_datadir}/fish/completions/anda.fish
+
 %prep
 %autosetup -n %{crate}-%{version_no_tilde} -p1
 %cargo_prep_online

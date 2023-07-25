@@ -5,8 +5,8 @@
 
 Name:           wingpanel-indicator-sound
 Summary:        Sound Indicator for wingpanel
-Version:        6.0.2
-Release:        %autorelease
+Version:        7.0.0
+Release:        1%{?dist}
 License:        GPL-3.0
 
 URL:            https://github.com/elementary/%{name}
@@ -16,6 +16,7 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala >= 0.22.0
+BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(granite)
@@ -45,16 +46,16 @@ A sound indicator for wingpanel.
 
 %install
 %meson_install
-
+%fdupes %buildroot%_datadir/locale/
 %find_lang sound-indicator
 
 # remove the specified stock icon from appdata (invalid in libappstream-glib)
-sed -i '/icon type="stock"/d' %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
+sed -i '/icon type="stock"/d' %{buildroot}/%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %check
 appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
+    %{buildroot}/%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %files -f sound-indicator.lang
@@ -64,9 +65,9 @@ appstream-util validate-relax --nonet \
 %{_libdir}/wingpanel/libsound.so
 
 %{_datadir}/glib-2.0/schemas/io.elementary.desktop.wingpanel.sound.gschema.xml
-%{_datadir}/metainfo/%{appname}.appdata.xml
+%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %changelog
-* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
+* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com> 6.0.2-1
 - Repackaged for Terra

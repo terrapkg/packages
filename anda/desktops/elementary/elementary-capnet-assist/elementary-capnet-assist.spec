@@ -3,7 +3,7 @@
 
 Name:           elementary-capnet-assist
 Summary:        Captive Portal Assistant for elementary
-Version:        2.4.3
+Version:        2.4.4
 Release:        2%{?dist}
 License:        GPL-3.0-or-later
 
@@ -25,6 +25,7 @@ BuildRequires:  pkgconfig(granite)
 BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(libhandy-1) >= 1.0.0
 BuildRequires:  pkgconfig(webkit2gtk-4.1)
+BuildRequires:  fdupes
 
 Requires:       NetworkManager
 Requires:       hicolor-icon-theme
@@ -54,13 +55,15 @@ Written in Vala and using WebkitGtk+.
 
 %find_lang %{appname}
 
+%fdupes %buildroot%_datadir/icons/hicolor/
+
 
 %check
 desktop-file-validate \
     %{buildroot}/%{_datadir}/applications/%{appname}.desktop
 
 appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
+    %{buildroot}/%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %files -f %{appname}.lang
@@ -72,9 +75,9 @@ appstream-util validate-relax --nonet \
 %{_datadir}/applications/%{appname}.desktop
 %{_datadir}/glib-2.0/schemas/%{appname}.gschema.xml
 %{_datadir}/icons/hicolor/*/apps/%{appname}.svg
-%{_datadir}/metainfo/%{appname}.appdata.xml
+%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %changelog
-* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
+* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com> - 2.4.2-1
 - Repackaged for Terra

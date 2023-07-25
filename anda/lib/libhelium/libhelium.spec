@@ -54,10 +54,11 @@ rm -rf %{buildroot}%{_datadir}/themes/*
 %files
 %license COPYING
 %doc README.md
-%{_libdir}/libhelium-1.so*
+%{_libdir}/libhelium-1.so.*
 %{_libdir}/girepository-1.0
 
 %files devel
+%{_libdir}/libhelium-1.so
 %{_includedir}/*
 %{_datadir}/gir-1.0/*
 %{_libdir}/pkgconfig/*

@@ -8,7 +8,7 @@
 
 Name:           switchboard-plug-display
 Summary:        Switchboard Display plug
-Version:        2.3.3
+Version:        7.0.0
 Release:        1%{?dist}
 License:        GPL-3.0-or-later
 
@@ -19,6 +19,7 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala >= 0.22.0
+BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(glib-2.0) >= 2.32
 BuildRequires:  pkgconfig(granite)
@@ -45,13 +46,13 @@ them.
 
 %install
 %meson_install
-
+%fdupes %buildroot%_datadir/locale/
 %find_lang %{plug_name}-plug
 
 
 %check
 appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
+    %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
 
 %files -f %{plug_name}-plug.lang
@@ -60,7 +61,7 @@ appstream-util validate-relax --nonet \
 
 %{_libdir}/switchboard/%{plug_type}/lib%{plug_name}.so
 
-%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
+%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
 
 %changelog

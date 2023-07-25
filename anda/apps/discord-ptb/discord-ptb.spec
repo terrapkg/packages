@@ -1,17 +1,23 @@
 %define debug_package %{nil}
 
 Name:           discord-ptb
-Version:        0.0.42
+Version:        0.0.44
 Release:        1%{?dist}
 Summary:        Free Voice and Text Chat for Gamers.
-URL:            discord.com
+URL:            https://discord.com
 Source0:        https://dl-ptb.discordapp.net/apps/linux/%{version}/discord-ptb-%{version}.tar.gz
 License:        https://discord.com/terms
-Requires:       libatomic, glibc, alsa-lib, GConf2, libnotify, nspr >= 4.13, nss >= 3.27, libstdc++, libX11 >= 1.6, libXtst >= 1.2, libappindicator, libcxx, libXScrnSaver
+Requires:       glibc GConf2
+Requires:       nspr >= 4.13
+Requires:       nss >= 3.27
+Requires:       libX11 >= 1.6
+Requires:       libXtst >= 1.2
 Group:          Applications/Internet
 ExclusiveArch:  x86_64
 %description
-Imagine a place where you can belong to a school club, a gaming group, or a worldwide art community. Where just you and a handful of friends can spend time together. A place that makes it easy to talk every day and hang out more often.
+Imagine a place where you can belong to a school club, a gaming group, or a
+worldwide art community. Where just you and a handful of friends can spend time
+together. A place that makes it easy to talk every day and hang out more often.
 
 %prep
 %autosetup -n DiscordPTB
@@ -24,8 +30,8 @@ mkdir -p %{buildroot}%{_datadir}/discord-ptb
 cp -rv * %{buildroot}%{_datadir}/discord-ptb
 mkdir -p %{buildroot}%{_datadir}/applications/
 mkdir -p %{buildroot}%{_datadir}/pixmaps
-install discord-ptb.desktop %{buildroot}%{_datadir}/applications/discord-ptb.desktop
-install discord.png %{buildroot}%{_datadir}/pixmaps/discord-ptb.png
+ln -s %_datadir/discord-ptb/discord-ptb.desktop %{buildroot}%{_datadir}/applications/
+ln -s %_datadir/discord-ptb/discord.png %{buildroot}%{_datadir}/pixmaps/discord-ptb.png
 
 %files
 %{_datadir}/discord-ptb/

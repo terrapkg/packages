@@ -1,7 +1,7 @@
 Name:			libunity-misc
 Version:		4.0.5
 Release:		%autorelease
-Summary:		Misc Unity shell libs
+Summary:		Misc Unity shell libraries
 
 License:		LGPL-2.0 AND LGPL-2.0 AND GPL-2.0
 URL:			https://launchpad.net/libunity-misc
@@ -18,7 +18,8 @@ BuildRequires:	gtk3-devel
 BuildRequires:	glib2-devel
 
 %description
-A simple library that implements a subset of the XPath spec to allow selecting nodes in an object tree
+A simple library that implements a subset of the XPath spec to allow selecting
+nodes in an object tree.
 
 %package devel
 Summary:	Development files for %{name}

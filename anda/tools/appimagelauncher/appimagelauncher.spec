@@ -3,7 +3,7 @@
 
 Name:           appimagelauncher
 Version:        2.2.0
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Helper application for Linux distributions serving as a kind of "entry point" for running and integrating AppImages
 
 License:        MIT
@@ -27,6 +27,7 @@ BuildRequires:  libappimage-devel
 BuildRequires:  libappimageupdate-devel
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  librsvg2-devel
+BuildRequires:  libqtxdg-devel
 
 
 %description
@@ -43,12 +44,8 @@ BuildRequires:  librsvg2-devel
  -DUSE_SYSTEM_SQUASHFUSE=ON \
  -DUSE_SYSTEM_BOOST=ON \
  -DUSE_SYSTEM_CURL=ON \
- -DUSE_SYSTEM_XDGUTILS=OFF \
+ -DUSE_SYSTEM_XDGUTILS=ON \
  -DUSE_SYSTEM_LIBAPPIMAGE=ON
-
-pushd redhat-linux-build
-#make libappimageupdate libappimageupdate-qt
-popd
 
 %cmake_build
 

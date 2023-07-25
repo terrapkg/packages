@@ -5,12 +5,13 @@
 
 Name:    vala-panel
 Version: 0.5.0
-Release: %autorelease
+Release: 2%?dist
 License: LGPL-3.0-or-later
 Summary: This package provides Application Menu plugin for vala-panel
 URL:     %{forgeurl}
 Source:  %{forgesource}
 
+BuildRequires: fdupes
 BuildRequires: meson
 BuildRequires: vala
 BuildRequires: desktop-file-utils
@@ -42,18 +43,20 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 
 %install
 %meson_install
+%fdupes %buildroot%_datadir/locale/
 %find_lang %{name}
 # Already packaged
 rm -rf %{buildroot}%{_datadir}/vala-panel/doc
 
+%check
 desktop-file-validate %{buildroot}%{_datadir}/applications/org.valapanel.application.desktop
 # Seems to succeed with other appstream checkers and works but fails
 #appstream-util validate-relax --nonet {buildroot}{_datadir}/appdata/org.valapanel.application.appdata.xml
 
 %files -f %{name}.lang
-%doc README.md LICENSE
+%doc README.md
 %license LICENSE
-%{_sysconfdir}/xdg/vala-panel/
+%config %{_sysconfdir}/xdg/vala-panel/
 %{_bindir}/vala-*
 %{_libdir}/libvalapanel.so.*
 %dir %{_libdir}/vala-panel
@@ -72,6 +75,8 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.valapanel.applica
 %{_datadir}/vala-panel/images/background.png
 
 %files devel
+%doc README.md
+%license LICENSE
 %dir %{_includedir}/vala-panel
 %{_includedir}/vala-panel/*.h
 %{_libdir}/libvalapanel.so

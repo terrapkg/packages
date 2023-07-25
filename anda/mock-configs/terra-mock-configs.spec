@@ -39,12 +39,12 @@ ln -s %{_sysconfdir}/mock/terra-38-x86_64.cfg %{buildroot}%{_sysconfdir}/mock/an
 ln -s %{_sysconfdir}/mock/terra-38-aarch64.cfg %{buildroot}%{_sysconfdir}/mock/anda-38-aarch64.cfg
 
 %files
-%{_sysconfdir}/mock/templates/terra.tpl
-%{_sysconfdir}/mock/terra-38-x86_64.cfg
-%{_sysconfdir}/mock/terra-38-aarch64.cfg
-%{_sysconfdir}/mock/templates/anda.tpl
-%{_sysconfdir}/mock/anda-38-x86_64.cfg
-%{_sysconfdir}/mock/anda-38-aarch64.cfg
+%config %{_sysconfdir}/mock/templates/terra.tpl
+%config %{_sysconfdir}/mock/terra-38-x86_64.cfg
+%config %{_sysconfdir}/mock/terra-38-aarch64.cfg
+%config %{_sysconfdir}/mock/templates/anda.tpl
+%config %{_sysconfdir}/mock/anda-38-x86_64.cfg
+%config %{_sysconfdir}/mock/anda-38-aarch64.cfg
 
 %changelog
 * Thu May 18 2023 Lleyton Gray <lleyton@fyralabs.com>

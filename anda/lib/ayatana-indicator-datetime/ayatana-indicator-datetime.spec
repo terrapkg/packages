@@ -1,8 +1,8 @@
 Name:       ayatana-indicator-datetime
 Summary:    A GTK implementation of the StatusNotifierItem Specification
-Version:    22.9.1
+Version:    23.6.0
 Release:    %autorelease
-License:    GPLv3
+License:    GPL-3.0
 URL:        https://github.com/AyatanaIndicators/ayatana-indicator-datetime
 Source0:    %{url}/archive/refs/tags/%{version}.tar.gz
 
@@ -29,8 +29,9 @@ BuildRequires:  pkgconfig(dbustest-1)
 BuildRequires:  pkgconfig(systemd)
 
 %description
-The Ayatana Indicators project is the continuation of Application Indicators and System Indicators, 
-two technologies developed by Canonical Ltd. for the Unity7 desktop and Lomiri desktop.
+The Ayatana Indicators project is the continuation of Application Indicators
+and System Indicators, two technologies developed by Canonical Ltd. for the
+Unity7 desktop and Lomiri desktop.
 
 %prep
 %autosetup -n %{name}-%{version}
@@ -46,8 +47,9 @@ two technologies developed by Canonical Ltd. for the Unity7 desktop and Lomiri d
 %find_lang %{name}
 
 %files -f %{name}.lang
+%doc README.md
 %license COPYING
-%{_sysconfdir}/xdg/autostart
+%config %{_sysconfdir}/xdg/autostart/ayatana-indicator-datetime.desktop
 %{_userunitdir}/ayatana-indicator-datetime.service
 %dir %{_libexecdir}/ayatana-indicator-datetime
 %{_libexecdir}/ayatana-indicator-datetime/ayatana-indicator-datetime-service

@@ -71,8 +71,9 @@ install -m 0644 debian/50_check_unity_support -t %{buildroot}%{_sysconfdir}/X11/
 rm -rf %{buildroot}%{_datadir}/nux/gputests
 
 %files
+%doc README
 %license COPYING COPYING.gpl COPYING.lgpl-v2.1
-%{_sysconfdir}/X11/Xsession.d/50_check_unity_support
+%config %{_sysconfdir}/X11/Xsession.d/50_check_unity_support
 %{_libdir}/libnux-4.0.so.*
 %{_libdir}/libnux-core-4.0.so.*
 %{_libdir}/libnux-graphics-4.0.so.*

@@ -5,7 +5,7 @@
 
 Name:           elementary-calendar
 Summary:        Desktop calendar app designed for elementary
-Version:        6.1.2
+Version:        7.0.0
 Release:        1%{?dist}
 License:        GPL-3.0-or-later
 
@@ -32,6 +32,7 @@ BuildRequires:  libhandy >= 0.90.0
 BuildRequires:  meson
 BuildRequires:  vala
 BuildRequires:  evolution-data-server-devel
+BuildRequires:  fdupes
 
 Requires:       hicolor-icon-theme
 
@@ -63,6 +64,8 @@ This package contains the development files.
 %meson_install
 
 %find_lang %{appname}
+
+%fdupes %buildroot/%_datadir/icons/hicolor
 
 
 %check

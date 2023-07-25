@@ -1,3 +1,5 @@
+%define archive unity_7.7.0+23.04.20230222.2-0ubuntu2.tar.xz
+
 Name:		unity-shell
 Version:	7.7.0
 Release:	%autorelease
@@ -5,7 +7,7 @@ Summary:	Unity is a shell that sings
 
 License:	GPL-3.0-or-later
 URL:		https://launchpad.net/unity
-Source0:	http://archive.ubuntu.com/ubuntu/pool/universe/u/unity/unity_%{version}+23.04.20230222.2-0ubuntu2.tar.xz
+Source0:	http://archive.ubuntu.com/ubuntu/pool/universe/u/unity/%archive
 Patch0:		0001-Remove-xpathselect-dependency.patch
 Patch1:		0002-Remove-ido-dependency.patch
 Patch2:		0003-Remove-social-scope.patch
@@ -19,7 +21,7 @@ BuildRequires:	pkgconfig(zeitgeist-2.0)
 BuildRequires:	libappstream-glib-devel
 BuildRequires:	libdbusmenu-devel
 BuildRequires:	bamf-devel
-BuildRequires:	libindicator-gtk3-devel
+BuildRequires:	terra-libindicator-gtk3-devel
 BuildRequires:	json-glib-devel
 BuildRequires:	libnotify-devel
 BuildRequires:	libsigc++20-devel
@@ -45,7 +47,7 @@ Requires:	pam
 Requires:	bamf-daemon
 Requires:	unity-gtk-module-common
 Requires:	compiz9
-Requires:	libindicator-gtk3
+Requires:	terra-libindicator-gtk3
 Recommends:	unity-greeter
 Recommends:	unity-scope-home
 
@@ -210,14 +212,14 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &>/dev/null || :
 %dir %{_datadir}/compiz/unitymtgrabhandles/images/
 %{_datadir}/compiz/unitymtgrabhandles/images/handle-*.png
 %{_datadir}/gnome-control-center/keybindings/50-unity-launchers.xml
-%{_sysconfdir}/pam.d/unity
 %{_datadir}/compizconfig/upgrades/*.upgrade
-%{_sysconfdir}/compizconfig/unity*
+%config %{_sysconfdir}/pam.d/unity
+%config %{_sysconfdir}/compizconfig/unity*
 %{_userunitdir}/unity*.service
 %{_userunitdir}/unity*.target
 
 %files -n python3-uwidgets
-%doc AUTHORS ChangeLog HACKING README
+%doc README
 %license uwidgets/LICENCE
 %{_bindir}/uwidgets-runner
 %{python3_sitearch}/uwidgets-*.egg-info/

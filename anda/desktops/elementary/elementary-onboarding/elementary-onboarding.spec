@@ -4,7 +4,7 @@
 Name:           elementary-onboarding
 Summary:        Onboarding app for new users
 Version:        7.1.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/onboarding
@@ -77,9 +77,9 @@ appstream-util validate-relax --nonet \
 %{_datadir}/glib-2.0/schemas/%{appname}.gschema.xml
 %{_datadir}/metainfo/%{appname}.metainfo.xml
 %{_datadir}/icons/hicolor/*/apps/%{appname}.svg
-/etc/guest-session/prefs.sh
+%config %_sysconfdir/guest-session/prefs.sh
 
 
 %changelog
-* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
+* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com> - 6.1.0-1
 - Repackaged for Terra

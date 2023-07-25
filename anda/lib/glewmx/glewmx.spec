@@ -19,7 +19,8 @@ BuildRequires:	libXmu-devel
 BuildRequires:	libXi-devel
 
 %description
-OpenGL Extension Wrangler MX. The MX version is discountinued but is maintained in Ubuntu.
+OpenGL Extension Wrangler MX. The MX version is discountinued but is maintained
+in Ubuntu.
 
 %package devel
 Summary:	Development files for %{name}
@@ -48,8 +49,10 @@ sed -i 's:includedir=${prefix}/include:includedir=${prefix}/include/glewmx-%{ver
 %install
 # Only MX is installed
 %make_build DESTDIR=%{buildroot} INSTALL="/usr/bin/install -p" LIBDIR="%{_libdir}" install.mx
+chmod +x %buildroot%_libdir/libGLEWmx.so.*
 
 %files
+%doc README.txt
 %license LICENSE.txt
 %{_libdir}/libGLEWmx.so.*
 

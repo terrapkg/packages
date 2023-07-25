@@ -8,8 +8,8 @@
 
 Name:           switchboard-plug-keyboard
 Summary:        Switchboard Keyboard plug
-Version:        3.1.1
-Release:        %autorelease
+Version:        3.2.0
+Release:        1%{?dist}
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/switchboard-plug-keyboard
@@ -19,6 +19,7 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala >= 0.22.0
+BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(glib-2.0) >= 2.32
 BuildRequires:  pkgconfig(granite) >= 6.0.0
@@ -52,7 +53,7 @@ same time. Keyboard shortcuts are also part of this plug.
 
 %install
 %meson_install
-
+%fdupes %buildroot%_datadir/locale/
 %find_lang %{plug_name}-plug
 
 
@@ -71,5 +72,5 @@ appstream-util validate-relax --nonet \
 
 
 %changelog
-* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
+* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com> - 2.7.0-1
 - Repackaged for Terra
