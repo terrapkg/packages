@@ -33,7 +33,7 @@ Source0:        %url/-/archive/v%version/blackbox-v%version.tar.gz
 %meson_install
 
 %check
-appstream-util validate-relax --nonet %buildroot/%_datadir/metainfo/%appname.metainfo.xml
+appstream-util validate-relax --nonet %buildroot/%_datadir/metainfo/com.raggesilver.BlackBox.metainfo.xml
 
 %files
 %doc README.md
