@@ -1,3 +1,5 @@
+%define debug_package %nil
+
 Name:		mate-tweak
 Version:	22.10.0
 Release:	1%?dist
