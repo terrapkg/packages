@@ -17,7 +17,7 @@ interface and strives to meet the design principles of the GNOME desktop.
 
 %prep
 %autosetup -n %name-%commit
-cp ../usr/share/pkgconfig/libadwaita-nightly.pc ../usr/share/pkgconfig/libadwaita-1.pc
+cp /%_libdir/pkgconfig/libadwaita-nightly.pc /%_libdir/pkgconfig/libadwaita-1.pc
 
 %build
 # https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=paper-plane
