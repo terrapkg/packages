@@ -19,7 +19,8 @@ BuildRequires:  pkgconfig(champlain-0.12)
 BuildRequires:  pkgconfig(libecal-2.0)
 BuildRequires:  pkgconfig(granite)
 BuildRequires:  pkgconfig(libhandy-1)
-BuildRequires:  pkgconfig(libportal)
+# BuildRequires:  pkgconfig(libportal)
+BuildRequires:  pkgconfig(libportal-gtk3)
 BuildRequires:  folks-devel
 BuildRequires:  libgee-devel
 BuildRequires:  pkgconfig(geocode-glib-2.0)
