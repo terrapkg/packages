@@ -30,7 +30,6 @@ desktop-file-validate %buildroot%_datadir/applications/*.desktop
 %files
 %doc README.md
 %license COPYING
-%ghost %python3_sitearch/{__pycache__,setup.py}
 %_bindir/%name
 %_bindir/marco-{compton,xrender,picom,glx,xr_glx_hybrid,no-composite}
 %_prefix/lib/%name/
@@ -40,6 +39,9 @@ desktop-file-validate %buildroot%_datadir/applications/*.desktop
 %_datadir/applications/%name.desktop
 %_datadir/applications/marco-{glx,no-composite,xr_glx_hybrid,xrender}.desktop
 %_datadir/polkit-1/actions/org.mate.%name.policy
+%ghost %_prefix/lib/python3.11/site-packages/__pycache__
+%ghost %_prefix/lib/python3.11/site-packages/setup.py
+%ghost %_prefix/lib/python3.11/site-packages/mate_tweak-%version-py%python3_version.egg-info/
 
 %changelog
 %autochangelog
