@@ -72,7 +72,7 @@ This package contains the development files.
 %dnl desktop-file-validate %{buildroot}/%{_sysconfdir}/xdg/autostart/%{appname}-daemon.desktop
 desktop-file-validate %{buildroot}/%{_datadir}/applications/%{appname}.desktop
 
-appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
+appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %files -f %{appname}.lang
@@ -89,7 +89,7 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/%{appnam
 %{_datadir}/applications/%{appname}.desktop
 %{_datadir}/glib-2.0/schemas/%{appname}.gschema.xml
 %{_datadir}/icons/hicolor/*/apps/%{appname}.svg
-%{_datadir}/metainfo/%{appname}.appdata.xml
+%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 %files devel
 %{_includedir}/%{name}/
