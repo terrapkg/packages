@@ -13,6 +13,8 @@ This is MATE Tweak, a fork of mintDesktop.
 
 %prep
 %autosetup
+python3 -m ensurepip
+python3 -m pip install distutils-extra-python
 
 %build
 %py3_build
