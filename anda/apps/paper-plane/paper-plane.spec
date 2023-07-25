@@ -9,7 +9,7 @@ Summary:		Alternative Telegram client in GTK4 and Rust
 License:		GPL-3.0
 URL:			https://github.com/paper-plane-developers/paper-plane
 Source0:		%url/archive/%commit.tar.gz
-BuildRequires:	meson cargo terra-gtk4-devel >= 4.10 tdlib-paper-plane-devel libappstream-glib desktop-file-utils terra-blueprint-compiler sassc pkgconfig(appstream) vala libadwaita-nightly-devel rlottie-devel clang-devel
+BuildRequires:	meson cargo terra-gtk4-devel tdlib-paper-plane-devel libappstream-glib desktop-file-utils terra-blueprint-compiler sassc pkgconfig(appstream) vala libadwaita-nightly-devel rlottie-devel clang-devel desktop-file-utils
 Requires:		terra-gtk4 >= 4.10 gstreamer1-plugin-libav gstreamer1-plugins-good libadwaita-nightly tdlib-paper-plane
 
 %description
@@ -28,9 +28,20 @@ cp /%_libdir/pkgconfig/libadwaita-nightly.pc /%_libdir/pkgconfig/libadwaita-1.pc
 %install
 %meson_install
 
+%check
+desktop-file-validate %_datadir/metainfo/app.drey.PaperPlane.metainfo.xml
+
 %files
 %doc README.md
 %license COPYING
+%_bindir/paper-plane
+%_datadir/applications/app.drey.PaperPlane.desktop
+%_datadir/glib-2.0/schemas/app.drey.PaperPlane.gschema.xml
+%_datadir/icons/hicolor/scalable/apps/app.drey.PaperPlane.svg
+%_datadir/icons/hicolor/symbolic/apps/app.drey.PaperPlane-symbolic.svg
+%_datadir/locale/*/LC_MESSAGES/paper-plane.mo
+%_datadir/metainfo/app.drey.PaperPlane.metainfo.xml
+%_datadir/paper-plane/resources.gresource
 
 %changelog
 * Tue May 23 2023 windowsboy111 <windowsboy111@fyralabs.com> - 0.1.0-beta.1
