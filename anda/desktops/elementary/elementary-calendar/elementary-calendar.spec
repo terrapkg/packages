@@ -12,8 +12,6 @@ License:        GPL-3.0-or-later
 URL:            https://github.com/elementary/calendar
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 
-Patch0:         https://patch-diff.githubusercontent.com/raw/elementary/calendar/pull/758.patch
-
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib
@@ -21,6 +19,8 @@ BuildRequires:  pkgconfig(champlain-0.12)
 BuildRequires:  pkgconfig(libecal-2.0)
 BuildRequires:  pkgconfig(granite)
 BuildRequires:  pkgconfig(libhandy-1)
+# BuildRequires:  pkgconfig(libportal)
+BuildRequires:  pkgconfig(libportal-gtk3)
 BuildRequires:  folks-devel
 BuildRequires:  libgee-devel
 BuildRequires:  pkgconfig(geocode-glib-2.0)
@@ -69,20 +69,17 @@ This package contains the development files.
 
 
 %check
-desktop-file-validate \
-    %{buildroot}/%{_sysconfdir}/xdg/autostart/%{appname}-daemon.desktop
-desktop-file-validate \
-    %{buildroot}/%{_datadir}/applications/%{appname}.desktop
+%dnl desktop-file-validate %{buildroot}/%{_sysconfdir}/xdg/autostart/%{appname}-daemon.desktop
+desktop-file-validate %{buildroot}/%{_datadir}/applications/%{appname}.desktop
 
-appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
+appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %files -f %{appname}.lang
 %doc README.md
 %license COPYING
 
-%config(noreplace) %{_sysconfdir}/xdg/autostart/%{appname}-daemon.desktop
+%dnl %config(noreplace) %{_sysconfdir}/xdg/autostart/%{appname}-daemon.desktop
 
 %{_bindir}/%{appname}
 
@@ -92,7 +89,7 @@ appstream-util validate-relax --nonet \
 %{_datadir}/applications/%{appname}.desktop
 %{_datadir}/glib-2.0/schemas/%{appname}.gschema.xml
 %{_datadir}/icons/hicolor/*/apps/%{appname}.svg
-%{_datadir}/metainfo/%{appname}.appdata.xml
+%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 %files devel
 %{_includedir}/%{name}/
