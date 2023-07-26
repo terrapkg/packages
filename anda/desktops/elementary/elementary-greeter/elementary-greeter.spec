@@ -89,8 +89,7 @@ install -pm 0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/lightdm/lightdm.conf.d/
 
 
 %check
-appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
+appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %files -f %{appname}.lang
@@ -104,7 +103,7 @@ appstream-util validate-relax --nonet \
 %{_sbindir}/%{appname}
 
 %{_datadir}/xgreeters/%{appname}.desktop
-%{_datadir}/metainfo/%{appname}.appdata.xml
+%{_datadir}/metainfo/%{appname}.metainfo.xml
 %{_datadir}/lightdm/lightdm.conf.d/40-%appname.conf
 
 
