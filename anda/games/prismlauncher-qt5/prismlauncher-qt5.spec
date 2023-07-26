@@ -103,6 +103,7 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 
 
 %build
+export Launcher_BUILD_PLATFORM=terra
 %cmake \
   -DLauncher_QT_VERSION_MAJOR="%{qt_version}" \
   -DLauncher_BUILD_PLATFORM="%{build_platform}" \
@@ -131,10 +132,10 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.prismlauncher.Pri
 %files
 %doc README.md
 %license LICENSE COPYING.md
-%dir %{_datadir}/%{real_name}
+%dir %{_datadir}/PrismLauncher
 %{_bindir}/prismlauncher
-%{_datadir}/%{real_name}/NewLaunch.jar
-%{_datadir}/%{real_name}/JavaCheck.jar
+%{_datadir}/PrismLauncher/NewLaunch.jar
+%{_datadir}/PrismLauncher/JavaCheck.jar
 %{_datadir}/applications/org.prismlauncher.PrismLauncher.desktop
 %{_datadir}/icons/hicolor/scalable/apps/org.prismlauncher.PrismLauncher.svg
 %{_datadir}/mime/packages/modrinth-mrpack-mime.xml
