@@ -125,6 +125,7 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 
 
 %build
+export Launcher_BUILD_PLATFORM=terra
 %cmake \
   -DLauncher_QT_VERSION_MAJOR="%{qt_version}" \
   -DLauncher_BUILD_PLATFORM="%{build_platform}" \
