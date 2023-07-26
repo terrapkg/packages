@@ -10,7 +10,6 @@ License:        GPL-3.0
 URL:            https://github.com/elementary/greeter
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 Source1:        40-%{appname}.conf
-Patch0:         https://github.com/elementary/greeter/compare/93bbca3..1b3879d.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
@@ -69,7 +68,7 @@ The elementary Greeter is a styled Login Screen for LightDM.
 
 
 %prep
-%autosetup -n %{srcname}-%{version} -p1
+%autosetup -n %{srcname}-%{version}
 
 
 %build
@@ -90,8 +89,7 @@ install -pm 0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/lightdm/lightdm.conf.d/
 
 
 %check
-appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
+appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %files -f %{appname}.lang
@@ -105,7 +103,7 @@ appstream-util validate-relax --nonet \
 %{_sbindir}/%{appname}
 
 %{_datadir}/xgreeters/%{appname}.desktop
-%{_datadir}/metainfo/%{appname}.appdata.xml
+%{_datadir}/metainfo/%{appname}.metainfo.xml
 %{_datadir}/lightdm/lightdm.conf.d/40-%appname.conf
 
 
