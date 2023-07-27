@@ -22,8 +22,12 @@ the reference implementation for the Limine boot protocol.
 %make_install
 
 %files
-%doc README.md
+%doc README.md CONFIG.md PHILOSOPHY.md PROTOCOL.md LICENSE
 %license LICENSE
+%_bindir/limine
+%_includedir/limine.h
+%_datadir/limine/
+%_mandir/man1/limine.1.gz
 
 %changelog
 %autochangelog
