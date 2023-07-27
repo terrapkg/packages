@@ -1,9 +1,9 @@
 %global ver 1.4
-%global commit 9c2d9426b0772787796009f03f0eab06612c4a96
+%global commit 631673f7789c789b38d48da0c8340e247fdc3c74
 
 Name:			libadwaita-nightly
 Version:		%ver^%commit
-Release:		2%?dist
+Release:		1%?dist
 Summary:		Building blocks for modern GNOME applications
 License:		LGPL-2.1+
 URL:			https://gnome.pages.gitlab.gnome.org/libadwaita/
@@ -61,7 +61,7 @@ Demo files for %{name}.
 
 %install
 %meson_install
-
+mv %buildroot%_libdir/pkgconfig/libadwaita-1.pc %buildroot%_libdir/pkgconfig/libadwaita-nightly.pc
 
 %check
 appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.xml
