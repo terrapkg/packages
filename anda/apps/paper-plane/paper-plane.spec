@@ -1,14 +1,13 @@
 %define debug_package %nil
-%global ver 0.1.0
-%global commit 4a9945429cdc446b323e390e8c1163944582051e
+%global ver 0.1.0-beta.3
 
 Name:			paper-plane
-Version:		%ver~%commit
+Version:		0.1.0~beta.3
 Release:		1%?dist
 Summary:		Alternative Telegram client in GTK4 and Rust
 License:		GPL-3.0
 URL:			https://github.com/paper-plane-developers/paper-plane
-Source0:		%url/archive/%commit.tar.gz
+Source0:		%url/archive/v%ver.tar.gz
 BuildRequires:	meson cargo terra-gtk4-devel tdlib-paper-plane-devel libappstream-glib desktop-file-utils terra-blueprint-compiler sassc pkgconfig(appstream) vala libadwaita-nightly-devel rlottie-devel clang-devel desktop-file-utils libappstream-glib
 Requires:		terra-gtk4 >= 4.10 gstreamer1-plugin-libav gstreamer1-plugins-good libadwaita-nightly tdlib-paper-plane
 
@@ -17,7 +16,7 @@ Paper Plane is an alternative Telegram client. It uses libadwaita for its user
 interface and strives to meet the design principles of the GNOME desktop.
 
 %prep
-%autosetup -n %name-%commit
+%autosetup -n %name-%ver
 cp /%_libdir/pkgconfig/libadwaita-nightly.pc /%_libdir/pkgconfig/libadwaita-1.pc
 
 %build
