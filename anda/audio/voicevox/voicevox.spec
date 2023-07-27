@@ -1,9 +1,10 @@
 %global nodev 16.17.0
 %global npmv 8.11.0
+%global ver 0.14.7
 %define debug_package %nil
 
 Name:			voicevox
-Version:		0.14.7
+Version:		%ver
 Release:		1%?dist
 Summary:		Free Japanese text-to-speech editor
 License:		LGPL-3.0
