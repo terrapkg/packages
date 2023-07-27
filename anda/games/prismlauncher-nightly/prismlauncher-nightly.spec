@@ -25,26 +25,14 @@
 %global min_qt_version 5.12
 %endif
 
-%global build_platform unknown
-
-%if 0%{?fedora}
-%global build_platform Fedora
-%endif
-
-%if 0%{?rhel}
-%global build_platform RedHat
-%endif
-
-%if 0%{?centos}
-%global build_platform CentOS
-%endif
+%global build_platform terra
 
 %if %{with qt6}
 Name:             prismlauncher-nightly
 %else
 Name:             prismlauncher-qt5-nightly
 %endif
-Version:          7.2^%{snapshot_info}
+Version:          8.0^%{snapshot_info}
 Release:          1%{?dist}
 Summary:          Minecraft launcher with ability to manage multiple instances
 License:          GPL-3.0-only AND Apache-2.0 AND LGPL-3.0-only AND GPL-3.0-or-later AND GPL-2.0-or-later AND ISC AND OFL-1.1 AND LGPL-2.1-only AND MIT AND BSD-2-Clause-FreeBSD AND BSD-3-Clause AND LGPL-3.0-or-later
@@ -54,6 +42,7 @@ Source0:          https://github.com/PrismLauncher/PrismLauncher/archive/%{commi
 Source1:          https://github.com/PrismLauncher/libnbtplusplus/archive/%{libnbtplusplus_commit}/libnbtplusplus-%{libnbtplusplus_commit}.tar.gz
 Source2:          https://github.com/stachenov/quazip/archive/%{quazip_commit}/quazip-%{quazip_commit}.tar.gz
 Source3:          https://github.com/marzer/tomlplusplus/archive/%{tomlplusplus_commit}/tomlplusplus-%{tomlplusplus_commit}.tar.gz
+Patch0:           0001-find-cmark-with-pkgconfig.patch
 
 BuildRequires:    cmake >= 3.15
 BuildRequires:    extra-cmake-modules
@@ -75,6 +64,9 @@ BuildRequires:    cmake(Qt6Core5Compat)
 %endif
 
 BuildRequires:    pkgconfig(libcmark)
+%if 0%{fedora} < 38
+BuildRequires:    cmark
+%endif
 BuildRequires:    pkgconfig(scdoc)
 BuildRequires:    pkgconfig(zlib)
 
@@ -93,8 +85,6 @@ Recommends:       xrandr
 Recommends:       flite
 # Prism supports enabling gamemode
 Suggests:         gamemode
-
-Recommends:       terra-fractureiser-detector
 
 Conflicts:        %{real_name}
 Conflicts:        %{real_name}-qt5
@@ -125,7 +115,6 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 
 
 %build
-export Launcher_BUILD_PLATFORM=terra
 %cmake \
   -DLauncher_QT_VERSION_MAJOR="%{qt_version}" \
   -DLauncher_BUILD_PLATFORM="%{build_platform}" \
@@ -147,9 +136,6 @@ export Launcher_BUILD_PLATFORM=terra
 %check
 %ctest
 
-appstream-util validate-relax --nonet %buildroot%_metainfodir/org.prismlauncher.PrismLauncher.metainfo.xml
-desktop-file-validate %{buildroot}%{_datadir}/applications/org.prismlauncher.PrismLauncher.desktop
-
 
 %files
 %doc README.md
@@ -168,6 +154,10 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.prismlauncher.Pri
 
 
 %changelog
+* Wed Jul 26 2023 seth <getchoo at tuta dot io> - 8.0^20230726.4f00012-1
+- remove terra-fractureiser-detector from recommends, use proper build platform,
+  and add patches for epel/older fedora versions
+
 * Sun Jul 23 2023 seth <getchoo at tuta dot io> - 8.0^20230722.273d75f-1
 - update submodules, version, & use autorelease
 

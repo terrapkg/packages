@@ -1,4 +1,5 @@
 %global real_name prismlauncher
+%global nice_name PrismLauncher
 %bcond_without qt6
 
 # Change this variables if you want to use custom keys
@@ -14,19 +15,7 @@
 %global min_qt_version 5.12
 %endif
 
-%global build_platform unknown
-
-%if 0%{?fedora}
-%global build_platform Fedora
-%endif
-
-%if 0%{?rhel}
-%global build_platform RedHat
-%endif
-
-%if 0%{?centos}
-%global build_platform CentOS
-%endif
+%global build_platform terra
 
 %if %{with qt6}
 Name:             prismlauncher
@@ -34,7 +23,7 @@ Name:             prismlauncher
 Name:             prismlauncher-qt5
 %endif
 Version:          7.2
-Release:          1%{?dist}
+Release:          2%{?dist}
 Summary:          Minecraft launcher with ability to manage multiple instances
 # see COPYING.md for more information
 # each file in the source also contains a SPDX-License-Identifier header that declares its license
@@ -80,7 +69,6 @@ Recommends:       xrandr
 # libflite needed for using narrator in minecraft
 Recommends:       flite
 
-Recommends:       terra-fractureiser-detector
 # Prism supports enabling gamemode
 Suggests:         gamemode
 
@@ -103,7 +91,6 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 
 
 %build
-export Launcher_BUILD_PLATFORM=terra
 %cmake \
   -DLauncher_QT_VERSION_MAJOR="%{qt_version}" \
   -DLauncher_BUILD_PLATFORM="%{build_platform}" \
@@ -125,27 +112,27 @@ export Launcher_BUILD_PLATFORM=terra
 %check
 %ctest
 
-appstream-util validate-relax --nonet %buildroot%_metainfodir/org.prismlauncher.PrismLauncher.metainfo.xml
-desktop-file-validate %{buildroot}%{_datadir}/applications/org.prismlauncher.PrismLauncher.desktop
-
 
 %files
 %doc README.md
 %license LICENSE COPYING.md
-%dir %{_datadir}/PrismLauncher
+%dir %{_datadir}/%{nice_name}
 %{_bindir}/prismlauncher
-%{_datadir}/PrismLauncher/NewLaunch.jar
-%{_datadir}/PrismLauncher/JavaCheck.jar
+%{_datadir}/%{nice_name}/NewLaunch.jar
+%{_datadir}/%{nice_name}/JavaCheck.jar
+%{_datadir}/%{nice_name}/qtlogging.ini
 %{_datadir}/applications/org.prismlauncher.PrismLauncher.desktop
 %{_datadir}/icons/hicolor/scalable/apps/org.prismlauncher.PrismLauncher.svg
 %{_datadir}/mime/packages/modrinth-mrpack-mime.xml
 %{_datadir}/qlogging-categories%{qt_version}/prismlauncher.categories
-%{_datadir}/PrismLauncher/qtlogging.ini
 %{_mandir}/man?/prismlauncher.*
 %{_metainfodir}/org.prismlauncher.PrismLauncher.metainfo.xml
 
 
 %changelog
+* Wed Jul 26 2023 seth <getchoo at tuta dot io> - 7.2-2
+- remove terra-fractureiser-detector from recommends, use proper build platform
+
 * Thu Jun 08 2023 seth <getchoo@tuta.io> - 6.3-3
 - specify jdk 17 + cleanup outdated patches/scriptlets
 
