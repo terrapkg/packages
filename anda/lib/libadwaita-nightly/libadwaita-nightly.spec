@@ -62,36 +62,38 @@ Demo files for %{name}.
 %install
 %meson_install
 mv %buildroot%_libdir/pkgconfig/libadwaita-1.pc %buildroot%_libdir/pkgconfig/libadwaita-nightly.pc
+cat %buildroot%_libdir/pkgconfig/libadwaita-nightly.pc
+
 
 %check
 appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.xml
 desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
- 
- 
+
+
 %files
 %license COPYING
 %doc README.md AUTHORS NEWS
-%{_bindir}/adwaita-*-demo
-%{_libdir}/libadwaita-*.so.0*
-%{_libdir}/girepository-1.0/*.typelib
-%{_datadir}/locale/*/LC_MESSAGES/libadwaita.mo
- 
+%dnl %{_bindir}/adwaita-nightly-demo
+%dnl %{_libdir}/libadwaita-nightly.so.0*
+%dnl %{_libdir}/girepository-1.0/*.typelib
+%dnl %{_datadir}/locale/*/LC_MESSAGES/libadwaita.mo
+
 %files devel
-%dir %{_datadir}/gir-1.0
-%{_datadir}/gir-1.0/*-*.gir
-%{_datadir}/vala/vapi/libadwaita*
-%{_includedir}/libadwaita-*/
-%{_libdir}/libadwaita-*.so
-%{_libdir}/pkgconfig/*-*.pc
- 
+%dnl %dir %{_datadir}/gir-1.0
+%dnl %{_datadir}/gir-1.0/*-*.gir
+%dnl %{_datadir}/vala/vapi/libadwaita*
+%dnl %{_includedir}/libadwaita-*/
+%dnl %{_libdir}/libadwaita-*.so
+%dnl %{_libdir}/pkgconfig/*-*.pc
+
 %files doc
 %doc HACKING.md
-%{_docdir}/libadwaita-*/
- 
+%dnl %{_docdir}/libadwaita-*/
+
 %files demo
-%{_datadir}/applications/*.desktop
-%{_datadir}/icons/hicolor/*/apps/*.svg
-%{_metainfodir}/*.metainfo.xml
+%dnl %{_datadir}/applications/*.desktop
+%dnl %{_datadir}/icons/hicolor/*/apps/*.svg
+%dnl %{_metainfodir}/*.metainfo.xml
 
 
 %changelog
