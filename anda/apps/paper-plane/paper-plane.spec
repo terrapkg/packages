@@ -3,8 +3,8 @@
 %global commit 4a9945429cdc446b323e390e8c1163944582051e
 
 Name:			paper-plane
-Version:		%ver~%commit
-Release:		1%?dist
+Version:		0.1.0.beta.3
+Release:		1%{?dist}
 Summary:		Alternative Telegram client in GTK4 and Rust
 License:		GPL-3.0
 URL:			https://github.com/paper-plane-developers/paper-plane
