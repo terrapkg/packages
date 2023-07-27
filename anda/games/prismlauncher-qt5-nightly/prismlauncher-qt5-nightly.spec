@@ -1,10 +1,11 @@
 %global real_name prismlauncher
+%global nice_name PrismLauncher
 
-%global commit 12cd8a7bea991c2a8d4b59b1cfc9f7c246819fc9
+%global commit 928e18b66dbee8ea4b245416206a9e73427ce0f1
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global libnbtplusplus_commit 2203af7eeb48c45398139b583615134efd8d407f
+%global libnbtplusplus_commit a5e8fd52b8bf4ab5d5bcc042b2a247867589985f
 %global quazip_commit 6117161af08e366c37499895b00ef62f93adc345
-%global tomlplusplus_commit 0a90913abf9390b9e08ab6d3b40ac11634553f38
+%global tomlplusplus_commit 7eb2ffcc09f8e9890dc0b77ff8ab00fc53b1f2b8
 
 %global commit_date %(date '+%Y%m%d')
 %global snapshot_info %{commit_date}.%{shortcommit}
@@ -24,26 +25,14 @@
 %global min_qt_version 5.12
 %endif
 
-%global build_platform unknown
-
-%if 0%{?fedora}
-%global build_platform Fedora
-%endif
-
-%if 0%{?rhel}
-%global build_platform RedHat
-%endif
-
-%if 0%{?centos}
-%global build_platform CentOS
-%endif
+%global build_platform terra
 
 %if %{with qt6}
 Name:             prismlauncher-nightly
 %else
 Name:             prismlauncher-qt5-nightly
 %endif
-Version:          7.1^%{snapshot_info}
+Version:          8.0^%{snapshot_info}
 Release:          1%{?dist}
 Summary:          Minecraft launcher with ability to manage multiple instances
 License:          GPL-3.0-only AND Apache-2.0 AND LGPL-3.0-only AND GPL-3.0-or-later AND GPL-2.0-or-later AND ISC AND OFL-1.1 AND LGPL-2.1-only AND MIT AND BSD-2-Clause-FreeBSD AND BSD-3-Clause AND LGPL-3.0-or-later
@@ -53,6 +42,7 @@ Source0:          https://github.com/PrismLauncher/PrismLauncher/archive/%{commi
 Source1:          https://github.com/PrismLauncher/libnbtplusplus/archive/%{libnbtplusplus_commit}/libnbtplusplus-%{libnbtplusplus_commit}.tar.gz
 Source2:          https://github.com/stachenov/quazip/archive/%{quazip_commit}/quazip-%{quazip_commit}.tar.gz
 Source3:          https://github.com/marzer/tomlplusplus/archive/%{tomlplusplus_commit}/tomlplusplus-%{tomlplusplus_commit}.tar.gz
+Patch0:           0001-find-cmark-with-pkgconfig.patch
 
 BuildRequires:    cmake >= 3.15
 BuildRequires:    extra-cmake-modules
@@ -74,6 +64,9 @@ BuildRequires:    cmake(Qt6Core5Compat)
 %endif
 
 BuildRequires:    pkgconfig(libcmark)
+%if 0%{fedora} < 38
+BuildRequires:    cmark
+%endif
 BuildRequires:    pkgconfig(scdoc)
 BuildRequires:    pkgconfig(zlib)
 
@@ -90,8 +83,6 @@ Requires:         java-1.8.0-openjdk
 Recommends:       xrandr
 # libflite needed for using narrator in minecraft
 Recommends:       flite
-
-Recommends:       terra-fractureiser-detector
 # Prism supports enabling gamemode
 Suggests:         gamemode
 
@@ -145,27 +136,31 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 %check
 %ctest
 
-appstream-util validate-relax --nonet %buildroot%_metainfodir/org.prismlauncher.PrismLauncher.metainfo.xml
-desktop-file-validate %{buildroot}%{_datadir}/applications/org.prismlauncher.PrismLauncher.desktop
-
 
 %files
 %doc README.md
 %license LICENSE COPYING.md
-%dir %{_datadir}/%{real_name}
+%dir %{_datadir}/%{nice_name}
 %{_bindir}/%{real_name}
-%{_datadir}/%{real_name}/NewLaunch.jar
-%{_datadir}/%{real_name}/JavaCheck.jar
+%{_datadir}/%{nice_name}/NewLaunch.jar
+%{_datadir}/%{nice_name}/JavaCheck.jar
+%{_datadir}/%{nice_name}/qtlogging.ini
 %{_datadir}/applications/org.prismlauncher.PrismLauncher.desktop
 %{_metainfodir}/org.prismlauncher.PrismLauncher.metainfo.xml
 %{_datadir}/icons/hicolor/scalable/apps/org.prismlauncher.PrismLauncher.svg
 %{_datadir}/mime/packages/modrinth-mrpack-mime.xml
-%{_datadir}/PrismLauncher/qtlogging.ini
 %{_datadir}/qlogging-categories%{qt_version}/prismlauncher.categories
 %{_mandir}/man?/prismlauncher.*
 
 
 %changelog
+* Wed Jul 26 2023 seth <getchoo at tuta dot io> - 8.0^20230726.4f00012-1
+- remove terra-fractureiser-detector from recommends, use proper build platform,
+  and add patches for epel/older fedora versions
+
+* Sun Jul 23 2023 seth <getchoo at tuta dot io> - 8.0^20230722.273d75f-1
+- update submodules, version, & use autorelease
+
 * Wed Jun 07 2023 seth <getchoo at tuta dot io> - 7.0^20230603.954d4d7-1
 - specify jdk 17 + cleanup outdated patches/scriptlets
 
