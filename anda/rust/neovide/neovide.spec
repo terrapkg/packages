@@ -8,8 +8,9 @@ License:	MIT
 URL:		https://neovide.dev/
 Source0:	https://github.com/neovide/neovide/archive/refs/tags/%version.tar.gz
 Requires:	neovim fontconfig freetype libglvnd
-BuildRequires:	anda-srpm-macros cargo-rpm-macros >= 24 cmake gtk3 python3 SDL2 ninja-build
+BuildRequires:	anda-srpm-macros cargo-rpm-macros >= 24 cmake gtk3 python3 SDL2
 BuildRequires:	fontconfig-devel freetype-devel libX11-xcb libX11-devel libstdc++-static libstdc++-devel
+ExclusiveArch:	x86_64
 
 %description
 This is a simple graphical user interface for Neovim.
