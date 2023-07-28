@@ -1,3 +1,5 @@
+%define debug_package %nil
+
 Name:		neovide
 Version:	0.10.4
 Release:	1%?dist
