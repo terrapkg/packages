@@ -27,7 +27,7 @@ but functionally it should act like the terminal UI.
 %cargo_install
 
 install -Dm755 -t %buildroot%_bindir target/release/%name
-install -Dm644 -t %buidroot%_datadir/applications/ assets/%name.desktop
+install -Dm644 -t %buildroot%_datadir/applications/ assets/%name.desktop
 for px in 16 32 48 256; do
 	install -Dm644 assets/%name-${px}x${px}.png %buildroot%_datadir/icons/hicolor/${px}x${px}/apps/%name.png
 done
@@ -35,6 +35,10 @@ done
 %files
 %doc README.md
 %license LICENSE
+%_bindir/%name
+%_datadir/icons/hicolor/*/apps/%name.png
+%_datadir/applications/%name.desktop
+
 
 %changelog
 %autochangelog
