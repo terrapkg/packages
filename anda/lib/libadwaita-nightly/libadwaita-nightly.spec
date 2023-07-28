@@ -1,5 +1,5 @@
 %global ver 1.4
-%global commit 631673f7789c789b38d48da0c8340e247fdc3c74
+%global commit 3879b1c51c6e43b88648398db2f92f23f93acf9b
 
 Name:			libadwaita-nightly
 Version:		%ver^%commit
