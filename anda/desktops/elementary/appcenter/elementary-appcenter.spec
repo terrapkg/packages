@@ -9,10 +9,6 @@ License:        GPL-3.0
 URL:            https://github.com/elementary/appcenter
 Source0:        %url/archive/%{version}/appcenter-%{version}.tar.gz
 
-Patch1:         0001-hard-code-Fedora-instead-of-ubuntu-repository-names.patch
-# We need this since the version of appstream in Fedora has depricated some properties
-Patch2:         https://github.com/elementary/appcenter/commit/8e437af11cd59094f7164c3b6c93849f6ad403db.patch
-
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib
