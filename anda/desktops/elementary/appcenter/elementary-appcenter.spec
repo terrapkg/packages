@@ -58,7 +58,7 @@ This package contains the gnome-shell search provider.
 
 
 %prep
-%autosetup -p1
+%autosetup -p1 -n appcenter-%version
 
 
 %build
