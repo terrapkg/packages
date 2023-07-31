@@ -2,7 +2,7 @@
 
 
 Name:           adwaita++-icons
-Version:        6.1
+Version:        6.0
 Release:        1%{?dist}
 Summary:        GNOME++, a third-party icons theme, based on new GNOME 3.32's Adwaita
 
