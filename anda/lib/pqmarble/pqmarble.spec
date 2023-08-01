@@ -1,4 +1,4 @@
-%global commit 69e59d15b6909b5689ab3f81844898bf77d2c42f
+%global commit f240b2ec7d5cdacb8fdcc553703420dc5101ffdb
 %global ver 2.0.0
 
 Name:			pqmarble
