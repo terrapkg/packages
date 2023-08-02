@@ -4,5 +4,8 @@ if filters.contains("nightly") {
 	let sha = req.get().json().sha;
 	rpm.global("commit", sha);
 	rpm.release();
-	// rpm.version(`${gh("PrismLauncher/PrismLauncher")}^%{snapshot_info}`);
+	let cmake = get("https://raw.githubusercontent.com/PrismLauncher/PrismLauncher/develop/CMakeLists.txt");
+	let maj = find("set\\(Launcher_VERSION_MAJOR\\s+(\\d+)\\)", cmake, 1);
+	let min = find("set\\(Launcher_VERSION_MINOR\\s+(\\d+)\\)", cmake, 1);
+	rpm.version(`${maj}.${min}^%{snapshot_info}`);
 }
