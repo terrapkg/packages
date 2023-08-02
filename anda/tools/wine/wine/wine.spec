@@ -763,8 +763,8 @@ tar -xzf %{SOURCE21}
 
 cd src
 # in src create a worktree from the wine-git mirror
-git clone /builddir/build/BUILD/wine-tkg-git/wine-tkg-git/wine-git
-git clone /builddir/build/BUILD/wine-tkg-git/wine-tkg-git/wine-staging-git
+git clone ../wine-wine-%version
+git clone ../wine-staging-v%version-*
 cd ..
 
 mv customization.cfg customization.cfg.org
@@ -803,7 +803,7 @@ sed -i -e's|true|YES_I_WANT_STEAM|' wine-tkg-patches/misc/steam/steam
 
 popd
 
-pushd wine-tkg-git/src/wine-git
+pushd wine-tkg-git/src/wine-wine-%version
 
 # git commit
 echo "wine-tkg: commit wine-tkg changes by prepare.sh and extra patches"
