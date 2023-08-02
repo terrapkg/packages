@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Wine Boot
+Comment=Simulate restart
+Name[ar]=إقلاع واين
+Comment[ar]=محاكاة إعادة التشغيل لواين
+Exec=wineboot
+Icon=wine
+Terminal=false
+Type=Application
+Categories=X-Wine;

@@ -1,0 +1,19 @@
+= wine-tahoma-fonts =
+Wine provides the wine tahoma font family. In fedora embedded bitmaps are
+turned off per default (/etc/fonts/conf.d/20-wine-tahoma-nobitmaps.conf) as
+this will provide smoother letters for most users.
+
+If you do not like the wine tahoma font experience but want to keep it
+installed you can turn it of by adding the following to ~/.fonts.conf or by
+adding a file containing the following to ~/.fonts.conf.d/:
+
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+<!-- Reject wine-tahoma-fonts -->
+<selectfont>
+<rejectfont>
+<glob>*/wine-tahoma-fonts/*</glob>
+</rejectfont>
+</selectfont>
+</fontconfig>

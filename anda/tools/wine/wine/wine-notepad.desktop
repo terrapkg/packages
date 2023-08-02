@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Notepad
+Comment=Text Editor
+Name[ar]=مفكرة
+Comment[ar]=محرر النّصوص مفكرة واين
+Exec=notepad
+Icon=notepad
+Terminal=false
+Type=Application
+StartupNotify=true
+StartupWMClass=notepad.exe
+Categories=X-Wine;

@@ -1,0 +1,5 @@
+# Pre-PE Windows Executables
+:windows:M::MZ::/usr/bin/wine:
+
+# PE Windows Executables
+:windowsPE:M::PE::/usr/bin/wine:

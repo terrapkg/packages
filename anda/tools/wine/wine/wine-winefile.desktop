@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Wine File
+Comment=Wine File Browser
+Name[ar]=مدير ملفات واين
+Comment[ar]=إدارة الملفات بطريقة واين
+Exec=winefile
+Icon=winefile
+Terminal=false
+Type=Application
+Categories=X-Wine;

@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Wine Wordpad
+Comment=Text Editor
+Name[ar]=دفتر واين
+Comment[ar]=محرر النّصوص دفتر واين
+Exec=wine wordpad.exe
+Icon=wordpad
+Terminal=false
+Type=Application
+StartupNotify=true
+StartupWMClass=wordpad.exe
+Categories=X-Wine;

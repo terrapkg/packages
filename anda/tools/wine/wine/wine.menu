@@ -1,0 +1,13 @@
+<!DOCTYPE Menu
+  PUBLIC '-//freedesktop//DTD Menu 1.0//EN'
+  'http://standards.freedesktop.org/menu-spec/menu-1.0.dtd'>
+<Menu>
+	<Name>Applications</Name>
+	<Menu>
+		<Name>wine-wine</Name>
+		<Directory>Wine.directory</Directory>
+		<Include>
+			<Category>X-Wine</Category>
+		</Include>
+	</Menu>
+</Menu>

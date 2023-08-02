@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Windows Installer File
+Name[ar]=مثبت حزم واين
+Exec=wine %f
+MimeType=application/x-ole-storage;text/mspg-legacyinfo;
+Hidden=true
+StartupNotify=true
+StartupWMClass=msiexec.exe

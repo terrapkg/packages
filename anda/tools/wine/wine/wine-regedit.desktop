@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Regedit
+Comment=Wine registry editor
+Name[ar]=محرر السّجل
+Comment[ar]=محرر لسجلات واين
+Exec=regedit
+Icon=regedit
+Terminal=false
+Type=Application
+StartupNotify=true
+StartupWMClass=regedit.exe
+Categories=X-Wine;

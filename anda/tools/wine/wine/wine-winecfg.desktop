@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Wine Configuration
+Comment=Interface to set wine parameters
+Name[ar]=إعدادات واين
+Comment[ar]=لوحة تحكم بمنظومة واين
+Exec=winecfg
+Icon=winecfg
+Terminal=false
+Type=Application
+StartupNotify=true
+StartupWMClass=winecfg.exe
+Categories=X-Wine;

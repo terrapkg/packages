@@ -1,0 +1,44 @@
+Wine directory structure used in Fedora Linux:
+==============================================
+
+${HOME}/.wine/drive_c is the root directory (aka C: drive) wine looks for 
+by default. It is created with (empty) C:\windows and C:\windows\system
+directories, needed to operate Wine without an existing Windows
+installation, if it does not already exist.
+
+If you want to use Wine with an existing Windows installation that is
+mounted, for example, in /mnt/windows-c, change the symlink
+${HOME}/.wine/dosdevices/c: to point to /mnt/windows-c instead of the
+defaults set by installation.
+
+If you do this, you can safely remove ${HOME}/.wine/drive_c.
+(Alternatively, just mount your Windows partition to ${HOME}/.wine/drive_c.)
+
+Wine bugs:
+==========
+If you find a bug, please take the time to move your ${HOME}/.wine directory
+someplace and try with a fresh version (like mv ${HOME}/.wine{,-save}). If the
+bug is still there look through https://bugzilla.redhat.com and see if the bug
+has already been reported. In case it was not please report it.
+
+CJK support:
+============
+Fedora carries a modified wine.inf file with support for cjk complying to the
+fedora default fonts (see
+http://tagoh.fedorapeople.org/fonts/fedora-current-defaultfonts.html)
+
+wine does _not_ pull in the cjk font packages automatically. The following
+font packages may need to be installed depending on your locale:
+
+zh_CN:
+wqy-microhei
+
+jp:
+vlgothic-fonts
+vlgothic-p-fonts
+ipa-mincho-fonts
+ipa-pmincho-fonts
+
+ko:
+nhn-nanum-gothic-fonts
+nhn-nanum-myeongjo-fonts.noarch

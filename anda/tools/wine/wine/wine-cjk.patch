@@ -1,0 +1,22 @@
+Index: wine-1.7.22/loader/wine.inf.in
+===================================================================
+--- wine-1.7.22.orig/loader/wine.inf.in
++++ wine-1.7.22/loader/wine.inf.in
+@@ -568,6 +568,17 @@ HKLM,%FontSubStr%,"Times New Roman CE,23
+ HKLM,%FontSubStr%,"Times New Roman CYR,204",,"Times New Roman,204"
+ HKLM,%FontSubStr%,"Times New Roman Greek,161",,"Times New Roman,161"
+ HKLM,%FontSubStr%,"Times New Roman TUR,162",,"Times New Roman,162"
++HKCU,Software\Wine\Fonts\Replacements,"SimSun",,"WenQuanYi Zen Hei Sharp"
++HKCU,Software\Wine\Fonts\Replacements,"PMingLiU",,"WenQuanYi Zen Hei Sharp"
++HKCU,Software\Wine\Fonts\Replacements,"MS Gothic",,"VL Gothic"
++HKCU,Software\Wine\Fonts\Replacements,"MS PGothic",,"VL PGothic"
++HKCU,Software\Wine\Fonts\Replacements,"MS UI Gothic",,"VL Gothic"
++HKCU,Software\Wine\Fonts\Replacements,"MS Mincho",,"IPAMincho"
++HKCU,Software\Wine\Fonts\Replacements,"MS PMincho",,"IPAPMincho"
++HKCU,Software\Wine\Fonts\Replacements,"Batang",,"NanumMyeongjo"
++HKCU,Software\Wine\Fonts\Replacements,"Dotum",,"NanumGothic"
++HKCU,Software\Wine\Fonts\Replacements,"Gulim",,"NanumGothic"
++HKCU,Software\Wine\Fonts\Replacements,"Arial Unicode MS",,"Droid Sans Fallback"
+ HKLM,System\CurrentControlSet\Hardware Profiles\Current\Software\Fonts,"LogPixels",0x10003,0x00000060
+ 
+ [MCI]

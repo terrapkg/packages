@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Wine Software Uninstaller
+Comment=Interface to uninstall software
+Name[ar]=مزيل التطبيقات من واين
+Comment[ar]=واجهة إزالة التّطبيقات من واين
+Exec=wine uninstaller.exe
+Icon=msiexec
+Terminal=false
+Type=Application
+StartupNotify=true
+StartupWMClass=uninstaller.exe
+Categories=X-Wine;

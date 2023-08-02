@@ -1,0 +1,35 @@
+From 710eec8fac7952679e2ddb4eba54367b50c47930 Mon Sep 17 00:00:00 2001
+From: Tim Clem <tclem@codeweavers.com>
+Date: Thu, 13 Jul 2023 10:27:20 -0700
+Subject: [PATCH] shell32: Don't fall back to $HOME for missing user special
+ folders.
+
+Fall through in create_link and allow SHGetFolderPathAndSubDirW to
+create an empty folder in place if the alternatives are not available.
+
+Creating a link back to $HOME makes a recursive directory structure,
+which results in crashes in programs that naively search %USERPROFILE%
+(e.g. Quicken).
+---
+ dlls/shell32/shellpath.c | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
+
+diff --git a/dlls/shell32/shellpath.c b/dlls/shell32/shellpath.c
+index 5dd9f4b6310..8328477fc2c 100644
+--- a/dlls/shell32/shellpath.c
++++ b/dlls/shell32/shellpath.c
+@@ -2767,10 +2767,7 @@ static void create_link( const WCHAR *path, const char *xdg_name, const char *de
+     {
+         if (link_folder( mgr, &nt_name, target )) goto done;
+     }
+-    if (link_folder( mgr, &nt_name, default_name )) goto done;
+-
+-    /* fall back to HOME */
+-    link_folder( mgr, &nt_name, "$HOME" );
++    link_folder( mgr, &nt_name, default_name );
+ 
+ done:
+     RtlFreeUnicodeString( &nt_name );
+-- 
+GitLab
+

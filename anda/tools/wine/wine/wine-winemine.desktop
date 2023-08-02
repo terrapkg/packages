@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=WineMine
+Comment=Wine Minesweeper
+Name[ar]=كانسة ألغام واين
+Comment[ar]=لعبة كانسة ألغام واين
+Exec=winemine
+Icon=winemine
+Terminal=false
+Type=Application
+StartupNotify=true
+StartupWMClass=winemine.exe
+Categories=Game;LogicGame;
