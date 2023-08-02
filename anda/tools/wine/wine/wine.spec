@@ -65,8 +65,8 @@ URL:            https://www.winehq.org/
 %if 0%{?tkg_use_tag}
 Source0:        https://github.com/Frogging-Family/wine-tkg-git/archive/refs/tags/%tkg_version.tar.gz
 %endif
-Source20:       https://gitlab.winehq.org/wine/wine/-/archive/wine-%version/wine-wine-%version.tar.bz2
-Source21:       https://gitlab.winehq.org/wine/wine-staging/-/archive/v%staging_version/wine-staging-%staging_version.tar.bz2
+Source20:       https://gitlab.winehq.org/wine/wine/-/archive/wine-%version/wine-wine-%version.tar.gz
+Source21:       https://gitlab.winehq.org/wine/wine-staging/-/archive/v%staging_version/wine-staging-%staging_version.tar.gz
 # wine_tkg customization.cfg prepared for this version
 Source22:       customization.cfg
 # else regular wine source
