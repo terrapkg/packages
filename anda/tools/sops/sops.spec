@@ -1,3 +1,4 @@
+%define debug_package %nil
 Name:			sops
 Version:		3.7.3
 Release:		1%?dist
