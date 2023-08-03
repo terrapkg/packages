@@ -800,6 +800,7 @@ rm -v wine-tkg-patches/hotfixes/NosTale/nostale_mouse_fix.mypatch || true
 sed -i -e's|true|YES_I_WANT_STEAM|' wine-tkg-patches/misc/steam/steam
 
 # run non-makepkg-build.sh which applies all patches
+sed -i 's@( time ( schedtool -B@( time $( schedtool -B@g' non-makepkg-build.sh
 ./non-makepkg-build.sh
 
 popd
