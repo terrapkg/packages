@@ -795,8 +795,8 @@ sed -i -e's|_patchmsg="|_patchmsg="${_patchname} - |g' wine-tkg-scripts/prepare.
 sed -i -e's|nonuser_patcher|nonuser_patcher \&\& git commit -a -m"\${_patchmsg}"|g' wine-tkg-scripts/prepare.sh
 
 # remove game-related hotfixes
-rm -v wine-tkg-patches/hotfixes/GetMappedFileName/Return_nt_filename_and_resolve_DOS_drive_path.mypatch
-rm -v wine-tkg-patches/hotfixes/NosTale/nostale_mouse_fix.mypatch
+rm -v wine-tkg-patches/hotfixes/GetMappedFileName/Return_nt_filename_and_resolve_DOS_drive_path.mypatch || true
+rm -v wine-tkg-patches/hotfixes/NosTale/nostale_mouse_fix.mypatch || true
 sed -i -e's|true|YES_I_WANT_STEAM|' wine-tkg-patches/misc/steam/steam
 
 # run non-makepkg-build.sh which applies all patches
