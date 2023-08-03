@@ -763,8 +763,8 @@ tar -xzf %{SOURCE21}
 
 cd src
 # in src create a worktree from the wine-git mirror
-git clone ../wine-wine-%version
-git clone ../wine-staging-v%version-*
+git clone ../wine-*
+# git clone ../wine-staging-v@version-*
 cd ..
 
 mv customization.cfg customization.cfg.org
