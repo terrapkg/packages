@@ -15,7 +15,7 @@ formats and encrypts with AWS KMS, GCP KMS, Azure Key Vault, age, and PGP.
 %autosetup
 
 %build
-go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w" -buildmode=pie -o build/bin/sops ./sops
+go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w" -buildmode=pie -o build/bin/sops .
 
 %install
 mkdir -p %buildroot%_bindir
