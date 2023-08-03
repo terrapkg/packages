@@ -750,10 +750,10 @@ git config --global user.name "Patrick Laimbock"
 
 # prevent git errors
 git config --global --add safe.directory .
-git config --global --add safe.directory /builddir/build/BUILD/wine-tkg-git/wine-tkg-git/wine-git
-git config --global --add safe.directory /builddir/build/BUILD/wine-tkg-git/wine-tkg-git/wine-staging-git
-git config --global --add safe.directory /builddir/build/BUILD/wine-tkg-git/wine-tkg-git/src/wine-git
-git config --global --add safe.directory /builddir/build/BUILD/wine-tkg-git/wine-tkg-git/src/wine-staging-git
+git config --global --add safe.directory /builddir/build/BUILD/wine-tkg-git/wine-tkg-git/wine-wine
+git config --global --add safe.directory /builddir/build/BUILD/wine-tkg-git/wine-tkg-git/wine-staging
+git config --global --add safe.directory /builddir/build/BUILD/wine-tkg-git/wine-tkg-git/src/wine-wine
+git config --global --add safe.directory /builddir/build/BUILD/wine-tkg-git/wine-tkg-git/src/wine-staging
 
 mkdir -p wine-tkg-git/src
 
@@ -762,10 +762,10 @@ tar -xzf %{SOURCE20}
 tar -xzf %{SOURCE21}
 
 cd src
-# in src create a worktree from the wine-git mirror
-git clone ../wine-wine-*
-git clone ../wine-staging-*
-# git clone ../wine-staging-v@version-*
+cp -r ../wine-wine-* wine-wine
+(cd wine-wine && git init)
+cp -r ../wine-staging-* wine-staging
+(cd wine-staging && git init)
 cd ..
 
 mv customization.cfg customization.cfg.org
@@ -804,7 +804,7 @@ sed -i -e's|true|YES_I_WANT_STEAM|' wine-tkg-patches/misc/steam/steam
 
 popd
 
-pushd wine-tkg-git/src/wine-wine-%version
+pushd wine-tkg-git/src/wine-wine
 
 # git commit
 echo "wine-tkg: commit wine-tkg changes by prepare.sh and extra patches"
@@ -813,7 +813,7 @@ git add . && git commit -a -m "Commit wine-tkg changes by prepare.sh and extra p
 popd
 
 # link the wine-tkg patched src to the root dir for easier access
-ln -s wine-tkg-git/src/wine-git wine-tkg-src
+ln -s wine-tkg-git/src/wine-wine wine-tkg-src
 
 %endif
 # 0%%{?wine_tkg}
