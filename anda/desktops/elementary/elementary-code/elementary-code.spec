@@ -90,6 +90,7 @@ This package contains the development headers.
 %{_datadir}/gtksourceview-4/styles/elementary-light.xml
 %{_datadir}/metainfo/io.elementary.code.metainfo.xml
 %{_datadir}/polkit-1/actions/%{appname}.policy
+%{_mandir}/man1/%{appname}.1.gz
 
 %files devel
 %{_includedir}/codecore.h
