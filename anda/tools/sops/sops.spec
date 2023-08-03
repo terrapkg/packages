@@ -5,7 +5,7 @@ Summary:		Simple and flexible tool for managing secrets
 License:		MPL-2.0
 URL:			https://github.com/getsops/sops
 Source0:		%url/archive/refs/tags/v%version.tar.gz
-BuildRequires:	go
+BuildRequires:	go git
 
 %description
 An editor of encrypted files that supports YAML, JSON, ENV, INI and BINARY
