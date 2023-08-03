@@ -16,7 +16,7 @@ formats and encrypts with AWS KMS, GCP KMS, Azure Key Vault, age, and PGP.
 go mod download
 
 %build
-mkdir build/bin
+mkdir -p build/bin
 go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w" -buildmode=pie -o build/bin/sops .
 
 %install
