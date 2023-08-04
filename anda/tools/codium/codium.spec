@@ -5,7 +5,7 @@
 %endif
 
 Name:			codium
-Version:		1.80.2.23209
+Version:		1.81.0.23216
 Release:		1%{?dist}
 Summary:		Code editing. Redefined.
 License:		MIT
