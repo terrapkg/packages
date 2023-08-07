@@ -6,7 +6,7 @@
 %global forgeurl https://github.com/GitCredentialManager/git-credential-manager
 
 Name:           gcm-core
-Version:        2.2.2
+Version:        2.3.0
 %forgemeta
 Release:        1%{?dist}
 Summary:        Secure, cross-platform Git credential storage
