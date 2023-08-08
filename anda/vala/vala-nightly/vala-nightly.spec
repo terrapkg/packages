@@ -3,7 +3,7 @@
 %global priority 90
 
 %global real_name vala
-%global commit a693ed070f507e1f07660d42c40aa7b0b505c38b
+%global commit dab83b728cca9f3538a98cc87b8241a327d40c15
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global repo https://gitlab.gnome.org/GNOME/%{real_name}.git
 
