@@ -32,6 +32,7 @@
       <packagereq type="mandatory">wingpanel-indicator-power</packagereq>
       <packagereq type="mandatory">wingpanel-indicator-session</packagereq>
       <packagereq type="mandatory">wingpanel-indicator-sound</packagereq>
+      <packagereq type="mandatory">xdg-desktop-portal-pantheon</packagereq>
       <packagereq type="default">elementary-appcenter</packagereq>
       <packagereq type="default">elementary-calculator</packagereq>
       <packagereq type="default">elementary-calendar</packagereq>
@@ -70,7 +71,6 @@
       <packagereq type="default">switchboard-plug-locale</packagereq>
       <packagereq type="default">switchboard-plug-power</packagereq>
       <packagereq type="default">pantheon-tweaks</packagereq>
-      <packagereq type="default">xdg-desktop-portal-pantheon</packagereq
     </packagelist>
   </group>
 </comps>
