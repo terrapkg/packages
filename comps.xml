@@ -69,6 +69,7 @@
       <packagereq type="default">switchboard-plug-locale</packagereq>
       <packagereq type="default">switchboard-plug-power</packagereq>
       <packagereq type="default">pantheon-tweaks</packagereq>
+      <packagereq type="default">xdg-desktop-portal-pantheon</packagereq
     </packagelist>
   </group>
 </comps>
