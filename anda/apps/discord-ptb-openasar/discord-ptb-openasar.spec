@@ -2,11 +2,11 @@
 
 # Exclude private libraries
 %global __requires_exclude %{_datadir}/%{name}/.*\\.so
-%global __provides_exclude_from %{_datafir}/%{name}/.*\\.so
+%global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 Name:           discord-ptb-openasar
 Version:        0.0.44
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A snappier Discord rewrite with features like further customization and theming
 License:        MIT AND https://discord.com/terms
 URL:            https://github.com/GooseMod/OpenAsar

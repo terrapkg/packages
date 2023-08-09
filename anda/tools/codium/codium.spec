@@ -2,7 +2,7 @@
 
 # Exclude private libraries
 %global __requires_exclude %{_datadir}/%{name}/.*\\.so
-%global __provides_exclude_from %{_datafir}/%{name}/.*\\.so
+%global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 %ifarch x86_64
 %define a x64
@@ -12,7 +12,7 @@
 
 Name:			codium
 Version:		1.81.0.23216
-Release:		2%{?dist}
+Release:		3%{?dist}
 Summary:		Code editing. Redefined.
 License:		MIT
 URL:			https://vscodium.com/
