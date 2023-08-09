@@ -5,11 +5,11 @@
 
 # Exclude private libraries
 %global __requires_exclude %{_datadir}/%{name}/.*\\.so
-%global __provides_exclude_from %{_datafir}/%{name}/.*\\.so
+%global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 Name:			voicevox
 Version:		%ver
-Release:		2%?dist
+Release:		3%?dist
 Summary:		Free Japanese text-to-speech editor
 License:		LGPL-3.0
 URL:			https://voicevox.hiroshiba.jp

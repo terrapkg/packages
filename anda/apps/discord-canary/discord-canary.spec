@@ -2,11 +2,11 @@
 
 # Exclude private libraries
 %global __requires_exclude %{_datadir}/%{name}/.*\\.so
-%global __provides_exclude_from %{_datafir}/%{name}/.*\\.so
+%global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 Name:           discord-canary
 Version:        0.0.163
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Free Voice and Text Chat for Gamers
 URL:            discord.com
 Source0:        https://dl-canary.discordapp.net/apps/linux/%{version}/discord-canary-%{version}.tar.gz

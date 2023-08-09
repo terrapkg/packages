@@ -2,11 +2,11 @@
 
 # Exclude private libraries
 %global __requires_exclude %{_datadir}/%{name}/.*\\.so
-%global __provides_exclude_from %{_datafir}/%{name}/.*\\.so
+%global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 Name:           discord-ptb
 Version:        0.0.44
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Free Voice and Text Chat for Gamers.
 URL:            https://discord.com
 Source0:        https://dl-ptb.discordapp.net/apps/linux/%{version}/discord-ptb-%{version}.tar.gz

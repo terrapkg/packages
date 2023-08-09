@@ -2,11 +2,11 @@
 
 # Exclude private libraries
 %global __requires_exclude %{_datadir}/%{name}/.*\\.so
-%global __provides_exclude_from %{_datafir}/%{name}/.*\\.so
+%global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 Name: authy
 Version: 2.4.0
-Release: 2%{?dist}
+Release: 3%{?dist}
 Summary: Two factor authentication desktop application
 License: Unlicense
 URL: https://authy.com/
