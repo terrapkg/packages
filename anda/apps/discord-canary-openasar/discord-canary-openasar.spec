@@ -1,8 +1,12 @@
 %define debug_package %{nil}
 
+# Exclude private libraries
+%global __requires_exclude %{_datadir}/%{name}/.*\\.so
+%global __provides_exclude_from %{_datafir}/%{name}/.*\\.so
+
 Name:           discord-canary-openasar
 Version:        0.0.163
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A snappier Discord rewrite with features like further customization and theming
 License:        MIT AND https://discord.com/terms
 URL:            https://github.com/GooseMod/OpenAsar
@@ -52,4 +56,4 @@ chmod o+w %{buildroot}%{_datadir}/discord-canary-openasar/resources -R
 - Bundle discord-canary
 
 * Thu Oct 20 2022 Cappy Ishihara <cappy@cappuchino.xyz>
-- 
+-
