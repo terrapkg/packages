@@ -16,11 +16,9 @@ jobs:
       image: ghcr.io/terrapkg/builder:38
     steps:
       - uses: actions/checkout@v3
-      - id: get-branch
-        uses: grandmasterdev/github-action-get-branch@latest
       - name: Push to subatomic
         run: |
-          branch=${{steps.get-branch.outputs.branch-name}}
+          branch=${{ github.ref_name }}
           ver=${branch/f/}
           subatomic-cli upload-comps \
             --server https://subatomic.fyralabs.com \
