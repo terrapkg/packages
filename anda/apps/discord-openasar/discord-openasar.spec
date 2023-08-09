@@ -1,12 +1,13 @@
 %define debug_package %{nil}
+%global _build_id_links none
 
 # Exclude private libraries
-%global __requires_exclude %{_datadir}/%{name}/.*\\.so
+%global __requires_exclude libffmpeg.so
 %global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 Name:           discord-openasar
 Version:        0.0.28
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        A snappier Discord rewrite with features like further customization and theming
 License:        MIT AND https://discord.com/terms
 URL:            https://github.com/GooseMod/OpenAsar

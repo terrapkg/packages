@@ -1,7 +1,8 @@
 %define debug_package %nil
+%global _build_id_links none
 
 # Exclude private libraries
-%global __requires_exclude %{_datadir}/%{name}/.*\\.so
+%global __requires_exclude libffmpeg.so
 %global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 %ifarch x86_64
@@ -12,7 +13,7 @@
 
 Name:			codium
 Version:		1.81.0.23216
-Release:		3%{?dist}
+Release:		4%{?dist}
 Summary:		Code editing. Redefined.
 License:		MIT
 URL:			https://vscodium.com/
