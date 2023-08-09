@@ -1,8 +1,12 @@
 %define debug_package %{nil}
 
+# Exclude private libraries
+%global __requires_exclude %{_datadir}/%{name}/.*\\.so
+%global __provides_exclude_from %{_datafir}/%{name}/.*\\.so
+
 Name:			discord
 Version:		0.0.28
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Free Voice and Text Chat for Gamers
 URL:			https://discord.com
 Source0:		https://dl.discordapp.net/apps/linux/%{version}/discord-%{version}.tar.gz
