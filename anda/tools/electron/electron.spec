@@ -1,4 +1,6 @@
 %define debug_package %{nil}
+%global _build_id_links none
+
 %ifarch x86_64
 %global garch x64
 %elifarch aarch64
@@ -6,12 +8,12 @@
 %endif
 
 # Exclude private libraries
-%global __requires_exclude %{_libdir}/%{name}/.*\\.so
+%global __requires_exclude libffmpeg.so
 %global __provides_exclude_from %{_libdir}/%{name}/.*\\.so
 
 Name:			electron
 Version:		25.4.0
-Release:		3%{?dist}
+Release:		4%{?dist}
 Summary:		Build cross platform desktop apps with web technologies
 License:		MIT
 URL:			https://electronjs.org/
