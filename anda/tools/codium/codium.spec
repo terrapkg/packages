@@ -1,3 +1,9 @@
+%define debug_package %nil
+
+# Exclude private libraries
+%global __requires_exclude %{_datadir}/%{name}/.*\\.so
+%global __provides_exclude_from %{_datafir}/%{name}/.*\\.so
+
 %ifarch x86_64
 %define a x64
 %elifarch aarch64
@@ -6,7 +12,7 @@
 
 Name:			codium
 Version:		1.81.0.23216
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Code editing. Redefined.
 License:		MIT
 URL:			https://vscodium.com/
