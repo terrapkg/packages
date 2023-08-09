@@ -5,9 +5,13 @@
 %global garch arm64
 %endif
 
+# Exclude private libraries
+%global __requires_exclude %{_libdir}/%{name}/.*\\.so
+%global __provides_exclude_from %{_libdir}/%{name}/.*\\.so
+
 Name:			electron
 Version:		25.4.0
-Release:		2%{?dist}
+Release:		3%{?dist}
 Summary:		Build cross platform desktop apps with web technologies
 License:		MIT
 URL:			https://electronjs.org/
@@ -15,7 +19,6 @@ Source0:		https://github.com/electron/electron/releases/download/v%{version}/chr
 Source1:		https://github.com/electron/electron/releases/download/v%{version}/electron-v%{version}-linux-%{garch}.zip
 Source2:		https://raw.githubusercontent.com/electron/electron/v%version/README.md
 Requires:		c-ares gtk3 minizip nss re2
-Requires:		(ffmpeg-free or ffmpeg)
 BuildRequires:	unzip
 
 %description
