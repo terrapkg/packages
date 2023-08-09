@@ -12,8 +12,8 @@
 %global __provides_exclude_from %{_libdir}/%{name}/.*\\.so
 
 Name:			electron
-Version:		25.4.0
-Release:		4%{?dist}
+Version:		25.5.0
+Release:		1%{?dist}
 Summary:		Build cross platform desktop apps with web technologies
 License:		MIT
 URL:			https://electronjs.org/
