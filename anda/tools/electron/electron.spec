@@ -7,7 +7,7 @@
 
 Name:			electron
 Version:		25.4.0
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Build cross platform desktop apps with web technologies
 License:		MIT
 URL:			https://electronjs.org/
@@ -30,17 +30,17 @@ unzip -o %{SOURCE1}
 %build
 
 %install
-install -dm755 %{buildroot}/usr/lib/%{name}/
-find . -mindepth 1 -maxdepth 1 -type f ! -name "*.zip" ! -name "LICENSE*" -exec cp -r --no-preserve=ownership --preserve=mode -t %{buildroot}/usr/lib/%{name}/. {} +
+install -dm755 %buildroot%_libdir/%name/
+find . -mindepth 1 -maxdepth 1 -type f ! -name "*.zip" ! -name "LICENSE*" -exec cp -r --no-preserve=ownership --preserve=mode -t %buildroot%_libdir/%name/. {} +
 
 for _folder in 'locales' 'resources'; do
 	cp -r --no-preserve=ownership --preserve=mode "${_folder}/" %{buildroot}/usr/lib/%{name}/${_folder}/
 done
 
-chmod 0755 %buildroot/usr/lib/%name/chrome-sandbox
+chmod 0755 %buildroot%_libdir/%name/chrome-sandbox
 
-install -dm755 %{buildroot}/usr/bin
-ln -nfs /usr/lib/%{name}/%{name} %{buildroot}/usr/bin/%{name}
+install -dm755 %buildroot%_bindir
+ln -nfs %_libdir/%name/%name %buildroot%_bindir/%name
 mkdir -p %buildroot%_docdir/%name/
 install -Dm644 %SOURCE2 %buildroot%_docdir/%name/
 
@@ -49,8 +49,8 @@ install -Dm644 %SOURCE2 %buildroot%_docdir/%name/
 %doc README.md
 %license LICENSE
 %license LICENSES.chromium.html
-/usr/lib/electron
-/usr/bin/electron
+%_libdir/%name
+%_bindir/%name
 
 
 %changelog
