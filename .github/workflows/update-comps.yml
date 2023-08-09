@@ -13,7 +13,7 @@ jobs:
   update-comps:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/terrapkg/builder:38
+      image: ghcr.io/terrapkg/builder:f38
     steps:
       - uses: actions/checkout@v3
       - name: Push to subatomic
