@@ -43,6 +43,9 @@ AppCenter is a native Gtk+ app store built on AppStream and Packagekit.
 %package        gnome-shell-search-provider
 Summary:        Software Center from elementary (gnome-shell search provider)
 
+Provides:       appcenter-gnome-shell-search-provider = %{version}-%{release}
+Obsoletes:      appcenter-gnome-shell-search-provider < 7.2.1-2
+
 BuildArch:      noarch
 
 Requires:       %{name} = %{version}-%{release}
