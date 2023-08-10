@@ -6,6 +6,9 @@ Version:        7.3.0
 Release:        1%{?dist}
 License:        GPL-3.0
 
+Provides:       appcenter = %{version}-%{release}
+Obsoletes:      appcenter < 7.2.1-2
+
 URL:            https://github.com/elementary/appcenter
 Source0:        %url/archive/%{version}/appcenter-%{version}.tar.gz
 
