@@ -12,8 +12,8 @@
 %endif
 
 Name:			codium
-Version:		1.81.0.23216
-Release:		4%{?dist}
+Version:		1.81.1.23222
+Release:		1%{?dist}
 Summary:		Code editing. Redefined.
 License:		MIT
 URL:			https://vscodium.com/
