@@ -72,7 +72,7 @@ touch %{buildroot}/%{_datadir}/icons/elementary/icon-theme.cache
 %check
 # ignore validation until appstream-glib knows the "icon-theme" component type
 appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml || :
+    %{buildroot}/%{_datadir}/metainfo/%{appname}.metainfo.xml || :
 
 
 %transfiletriggerin -- %{_datadir}/icons/elementary
@@ -96,7 +96,7 @@ gtk-update-icon-cache --force %{_datadir}/icons/elementary &>/dev/null || :
 %{_datadir}/icons/elementary/cursor.theme
 %{_datadir}/icons/elementary/index.theme
 
-%{_datadir}/metainfo/%{appname}.appdata.xml
+%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 %files gimp-palette
 %{_datadir}/gimp/2.0/palettes/elementary.gpl
