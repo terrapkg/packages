@@ -29,7 +29,6 @@ Conflicts:      %crate
 %license license-apache
 %license license-mit
 %doc Changelog.md
-%doc Code-of-Conduct.md
 %doc README.md
 %{_bindir}/maturin
 
