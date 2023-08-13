@@ -44,7 +44,7 @@ jobs:
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           anda build -c fedora-${{ matrix.version }}-${{ matrix.arch }} anda/mock-configs/pkg -p rpm
       - name: Install terra-mock-configs
-        run: sudo dnf install -y terra-mock-configs 
+        run: sudo dnf install -y anda-build/rpm/rpms/terra-mock-configs*.rpm
 
       - uses: actions/checkout@v3
         with:
