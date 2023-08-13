@@ -23,13 +23,7 @@ jobs:
         run: |
           sudo dnf install -y dnf-plugins-core
           sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic-repos/raw/main/terra${{ matrix.version }}.repo
-          sudo dnf install -y mock createrepo_c rpm-build terra-mock-configs gcc curl wget git-core openssl-devel
-
-      - uses: actions/checkout@v3
-        with:
-          repository: FyraLabs/subatomic
-          set-safe-directory: true
-          fetch-depth: 1
+          sudo dnf install -y mock createrepo_c rpm-build gcc curl wget git-core openssl-devel
 
       - uses: actions-rs/toolchain@v1
         with:
@@ -40,6 +34,23 @@ jobs:
           command: install
           args: anda
 
+
+      - uses: actions/checkout@v3
+        with:
+          ref: f${{ matrix.version} }}
+          fetch-depth: 1
+      - name: Build terra-mock-configs
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          anda build -c fedora-${{ matrix.version }}-${{ matrix.arch }} anda/mock-configs/pkg -p rpm
+
+
+      - uses: actions/checkout@v3
+        with:
+          repository: FyraLabs/subatomic
+          set-safe-directory: true
+          fetch-depth: 1
+      
       - name: Build Subatomic
         run: |
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
@@ -47,12 +58,15 @@ jobs:
       - name: Install Subatomic
         run: sudo dnf install -y ./anda-build/rpm/rpms/subatomic-*.rpm
 
+
       - uses: actions/checkout@v3
         with:
           repository: FyraLabs/anda
+          fetch-depth: 1
 
       - name: Build Andaman
         run: anda build -c terra-${{ matrix.version }}-${{ matrix.arch }} anda -p rpm
+
 
       - name: Upload to Subatomic
         run: |
