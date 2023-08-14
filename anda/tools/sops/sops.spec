@@ -1,7 +1,7 @@
 %define debug_package %nil
 Name:			sops
 Version:		3.7.3
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Simple and flexible tool for managing secrets
 License:		MPL-2.0
 URL:			https://github.com/getsops/sops
@@ -18,7 +18,7 @@ go mod download
 
 %build
 mkdir -p build/bin
-go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w" -buildmode=pie -o build/bin/sops .
+go build -buildmode=pie -o build/bin/sops .
 
 %install
 mkdir -p %buildroot%_bindir
