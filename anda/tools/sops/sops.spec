@@ -1,4 +1,3 @@
-%define debug_package %nil
 Name:			sops
 Version:		3.7.3
 Release:		2%?dist
@@ -14,11 +13,11 @@ formats and encrypts with AWS KMS, GCP KMS, Azure Key Vault, age, and PGP.
 
 %prep
 %autosetup
-go mod download
+go mod download -x
 
 %build
 mkdir -p build/bin
-go build -buildmode=pie -o build/bin/sops .
+go build -v -x -buildmode=pie -o build/bin/sops .
 
 %install
 mkdir -p %buildroot%_bindir
