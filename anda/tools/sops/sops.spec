@@ -1,3 +1,4 @@
+%define debug_package %nil
 Name:			sops
 Version:		3.7.3
 Release:		2%?dist
@@ -17,7 +18,7 @@ go mod download -x
 
 %build
 mkdir -p build/bin
-go build -v -x -buildmode=pie -o build/bin/sops .
+go build -ldflags "-s -w" -v -x -buildmode=pie -o build/bin/sops ./cmd/sops
 
 %install
 mkdir -p %buildroot%_bindir
