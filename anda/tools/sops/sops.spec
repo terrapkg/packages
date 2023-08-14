@@ -1,7 +1,7 @@
 %define debug_package %nil
 Name:			sops
 Version:		3.7.3
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Simple and flexible tool for managing secrets
 License:		MPL-2.0
 URL:			https://github.com/getsops/sops
@@ -14,11 +14,11 @@ formats and encrypts with AWS KMS, GCP KMS, Azure Key Vault, age, and PGP.
 
 %prep
 %autosetup
-go mod download
+go mod download -x
 
 %build
 mkdir -p build/bin
-go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w" -buildmode=pie -o build/bin/sops .
+go build -ldflags "-s -w" -v -x -buildmode=pie -o build/bin/sops ./cmd/sops
 
 %install
 mkdir -p %buildroot%_bindir
