@@ -6,12 +6,12 @@
 %global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 Name: authy
-Version: 2.4.0
-Release: 4%{?dist}
+Version: 2.4.1
+Release: 1%{?dist}
 Summary: Two factor authentication desktop application
 License: Unlicense
 URL: https://authy.com/
-Source0: https://api.snapcraft.io/api/v1/snaps/download/H8ZpNgIoPyvmkgxOWw5MSzsXK1wRZiHn_20.snap
+Source0: https://api.snapcraft.io/api/v1/snaps/download/H8ZpNgIoPyvmkgxOWw5MSzsXK1wRZiHn_21.snap
 Requires: gtk3
 Requires: nss
 BuildRequires: squashfs-tools desktop-file-utils
