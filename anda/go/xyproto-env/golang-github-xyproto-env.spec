@@ -4,7 +4,7 @@
 
 # https://github.com/xyproto/env
 %global goipath         github.com/xyproto/env
-Version:                2.1.0
+Version:                2.2.0
 
 %gometa -f
 
