@@ -16,19 +16,14 @@ jobs:
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Install repositories
-        run: dnf install -y mock createrepo_c rpm-build gcc curl wget git-core openssl-devel which bash
+        run: dnf install -y mock createrepo_c rpm-build gcc curl wget git-core openssl-devel which bash cargo rust
 
       - uses: actions/setup-go@v3
         with:
           go-version: "^1.19"
 
-      - uses: dtolnay/rust-toolchain@stable
       - name: Install Anda
-        uses: actions-rs/cargo@v1
-        with:
-          command: install
-          args: anda
-
+        run: cargo install anda
 
       - uses: actions/checkout@v3
         with:
