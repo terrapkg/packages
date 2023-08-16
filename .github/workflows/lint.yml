@@ -3,18 +3,18 @@ name: Lint
 on:
   push:
     branches:
-      - f38
+      - f39
   pull_request:
     branches:
-      - f38
+      - f39
   merge_group:
     branches:
-      - f38
+      - f39
 jobs:
   lint:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/terrapkg/builder:f38
+      image: ghcr.io/terrapkg/builder:f39
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
