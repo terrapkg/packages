@@ -12,11 +12,11 @@ jobs:
       fail-fast: true
     runs-on: ${{ matrix.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
     container:
-      image: registry.fedoraproject.org/fedora:${{ matrix.version }}
+      image: registry.fedoraproject.org/fedora-minimal:${{ matrix.version }}
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Install repositories
-        run: dnf install -y mock createrepo_c rpm-build gcc curl wget git-core openssl-devel which bash cargo rust go
+        run: dnf5 install -y --setopt=install_weak_deps=False mock createrepo_c rpm-build gcc curl wget git-core openssl-devel which bash cargo rust go
 
       - name: Install Anda
         run: cargo install anda
@@ -30,7 +30,7 @@ jobs:
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           anda build -c fedora-${{ matrix.version }}-${{ matrix.arch }} anda/mock-configs/pkg -p rpm
       - name: Install terra-mock-configs
-        run: dnf install -y anda-build/rpm/rpms/terra-mock-configs*.rpm
+        run: dnf5 install -y anda-build/rpm/rpms/terra-mock-configs*.rpm
 
 
       - uses: actions/checkout@v3
@@ -44,7 +44,7 @@ jobs:
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           anda build -c terra-${{ matrix.version }}-${{ matrix.arch }} subatomic -p rpm -D "autogitcommit $(git log -1 --format='%H')"
       - name: Install Subatomic
-        run: dnf install -y ./anda-build/rpm/rpms/subatomic-*.rpm
+        run: dnf5 install -y ./anda-build/rpm/rpms/subatomic-*.rpm
 
 
       - uses: actions/checkout@v3
