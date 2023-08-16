@@ -32,6 +32,8 @@ Client for Subatomic repo manager
 
 %prep
 %autosetup
+go env -w GOPROXY=proxy.golang.org,direct
+go env GOPROXY
 go mod download
 
 
