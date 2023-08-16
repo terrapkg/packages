@@ -34,18 +34,16 @@ jobs:
       - name: Install terra-mock-configs
         run: dnf5 install -y anda-build/rpm/rpms/terra-mock-configs*.rpm
 
-      
+      - name: Build anda-srpm-macros
+        run: anda build -c terra-${{ matrix.version }}-${{ matrix.arch }} anda/srpm-macros/pkg
+
       - name: Build Subatomic
-        run: |
-          git config --global --add safe.directory "$GITHUB_WORKSPACE"
-          anda build -c terra-${{ matrix.version }}-${{ matrix.arch }} anda/tools/subatomic/pkg
+        run: anda build -c terra-${{ matrix.version }}-${{ matrix.arch }} anda/tools/subatomic/pkg
       - name: Install Subatomic
         run: dnf5 install -y ./anda-build/rpm/rpms/subatomic-*.rpm
 
-
       - name: Build Andaman
         run: anda build -c terra-${{ matrix.version }}-${{ matrix.arch }} anda/tools/anda/pkg
-
 
       - name: Upload to Subatomic
         run: |
