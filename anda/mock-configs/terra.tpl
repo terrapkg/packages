@@ -41,50 +41,6 @@ enabled=1
 enabled_metadata=1
 metadata_expire=4h
 
-# RPMFusion
-# We do not check GPG keys, because I can't find a direct link to the GPG key
-
-[rpmfusion-free]
-name=RPM Fusion for Fedora $releasever - Free
-#baseurl=http://download1.rpmfusion.org/free/fedora/releases/$releasever/Everything/$basearch/os/
-metalink=https://mirrors.rpmfusion.org/metalink?repo=free-fedora-$releasever&arch=$basearch
-enabled=1
-metadata_expire=14d
-type=rpm-md
-gpgcheck=0
-repo_gpgcheck=0
-
-[rpmfusion-free-updates]
-name=RPM Fusion for Fedora $releasever - Free - Updates
-#baseurl=http://download1.rpmfusion.org/free/fedora/updates/$releasever/$basearch/
-metalink=https://mirrors.rpmfusion.org/metalink?repo=free-fedora-updates-released-$releasever&arch=$basearch
-enabled=1
-enabled_metadata=1
-type=rpm-md
-gpgcheck=0
-repo_gpgcheck=0
-
-[rpmfusion-nonfree]
-name=RPM Fusion for Fedora $releasever - Nonfree
-#baseurl=http://download1.rpmfusion.org/nonfree/fedora/releases/$releasever/Everything/$basearch/os/
-metalink=https://mirrors.rpmfusion.org/metalink?repo=nonfree-fedora-$releasever&arch=$basearch
-enabled=1
-enabled_metadata=1
-metadata_expire=14d
-type=rpm-md
-gpgcheck=0
-repo_gpgcheck=0
-
-[rpmfusion-nonfree-updates]
-name=RPM Fusion for Fedora $releasever - Nonfree - Updates
-#baseurl=http://download1.rpmfusion.org/nonfree/fedora/updates/$releasever/$basearch/
-metalink=https://mirrors.rpmfusion.org/metalink?repo=nonfree-fedora-updates-released-$releasever&arch=$basearch
-enabled=1
-enabled_metadata=1
-type=rpm-md
-gpgcheck=0
-repo_gpgcheck=0
-
 
 {% if mirrored %}
 [fedora]
