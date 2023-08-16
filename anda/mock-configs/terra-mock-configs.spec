@@ -1,5 +1,5 @@
 Name:           terra-mock-configs
-Version:        5
+Version:        6
 Release:        1%{?dist}
 Summary:        Mock configs for Terra repos
 
@@ -53,7 +53,10 @@ ln -s %{_sysconfdir}/mock/terra-38-aarch64.cfg %{buildroot}%{_sysconfdir}/mock/a
 %config %{_sysconfdir}/mock/anda-38-aarch64.cfg
 
 %changelog
-* Wed Sug 16 2023 Lleyton Gray <lleyton@fyralabs.com> - 5-1
+* Wed Aug 16 2023 madonuko <mado@fyralabs.com> - 6-1
+- Remove RPM Fusion
+
+* Wed Aug 16 2023 Lleyton Gray <lleyton@fyralabs.com> - 5-1
 - Update for Terra 39
 
 * Thu May 18 2023 Lleyton Gray <lleyton@fyralabs.com>
