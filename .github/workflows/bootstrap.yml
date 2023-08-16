@@ -21,6 +21,7 @@ jobs:
 
       - name: Install repositories
         run: dnf install -y mock createrepo_c rpm-build gcc curl wget git-core openssl-devel dnf5
+        shell: bash
 
       - uses: actions-rs/toolchain@v1
         with:
