@@ -15,13 +15,12 @@ jobs:
       image: registry.fedoraproject.org/fedora-minimal:${{ matrix.version }}
       options: --cap-add=SYS_ADMIN --privileged
     steps:
+      - name: Install repositories
+        run: dnf install -y mock createrepo_c rpm-build gcc curl wget git-core openssl-devel dnf5
+
       - uses: actions/setup-go@v3
         with:
           go-version: "^1.19"
-
-      - name: Install repositories
-        run: dnf install -y mock createrepo_c rpm-build gcc curl wget git-core openssl-devel dnf5
-        shell: bash
 
       - uses: actions-rs/toolchain@v1
         with:
