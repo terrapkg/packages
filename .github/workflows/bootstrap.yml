@@ -20,7 +20,7 @@ jobs:
           go-version: "^1.19"
 
       - name: Install repositories
-        run: sudo dnf5 install -y mock createrepo_c rpm-build gcc curl wget git-core openssl-devel
+        run: sudo dnf install -y mock createrepo_c rpm-build gcc curl wget git-core openssl-devel dnf5
 
       - uses: actions-rs/toolchain@v1
         with:
