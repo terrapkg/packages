@@ -66,8 +66,8 @@ jobs:
             terra${{ matrix.version }} anda-build/rpm/rpms/*
 
       - name: Notify Madoguchi (Success)
-        if: success() && github.event_name == 'push'
+        if: success()
         run: ./.github/workflows/mg.sh true ${{matrix.pkg}} ${{matrix.version}} ${{matrix.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}}
       - name: Notify Madoguchi (Failure)
-        if: ( cancelled() || failure() ) && github.event_name == 'push'
+        if: cancelled() || failure()
         run: ./.github/workflows/mg.sh false ${{matrix.pkg}} ${{matrix.version}} ${{matrix.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}}
