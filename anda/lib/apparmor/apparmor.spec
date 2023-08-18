@@ -230,6 +230,7 @@ make -C utils check
 %files profiles
 %dir %{_sysconfdir}/apparmor.d/
 %dir %{_sysconfdir}/apparmor.d/abi
+%config(noreplace) %{_sysconfdir}/apparmor.d/abi/3.0
 %config(noreplace) %{_sysconfdir}/apparmor.d/abi/4.0
 %config(noreplace) %{_sysconfdir}/apparmor.d/abi/kernel-5.4-outoftree-network
 %config(noreplace) %{_sysconfdir}/apparmor.d/abi/kernel-5.4-vanilla
