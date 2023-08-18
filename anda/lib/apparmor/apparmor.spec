@@ -230,7 +230,7 @@ make -C utils check
 %files profiles
 %dir %{_sysconfdir}/apparmor.d/
 %dir %{_sysconfdir}/apparmor.d/abi
-%config(noreplace) %{_sysconfdir}/apparmor.d/abi/3.0
+%config(noreplace) %{_sysconfdir}/apparmor.d/abi/4.0
 %config(noreplace) %{_sysconfdir}/apparmor.d/abi/kernel-5.4-outoftree-network
 %config(noreplace) %{_sysconfdir}/apparmor.d/abi/kernel-5.4-vanilla
 %config(noreplace) %{_sysconfdir}/apparmor.d/php-fpm
@@ -267,6 +267,7 @@ make -C utils check
 %{_bindir}/aa-enabled
 %{_bindir}/aa-exec
 %{_bindir}/aa-features-abi
+%{_sbindir}/aa-load
 %{_sbindir}/aa-teardown
 %{_sbindir}/rcapparmor
 %{_unitdir}/apparmor.service
