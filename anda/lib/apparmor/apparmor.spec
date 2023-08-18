@@ -3,7 +3,7 @@
 %bcond_with tests
 
 Name:           apparmor
-Version:        4.0.0-alpha2
+Version:        4.0.0
 Release:        1%{?dist}
 Summary:        AppArmor userspace components
 
@@ -11,7 +11,7 @@ Summary:        AppArmor userspace components
 
 License:        GPL-2.0
 URL:            https://launchpad.net/apparmor
-Source0:        %{url}/%{baseversion}/%{version}/+download/%{name}-%{version}.tar.gz
+Source0:        %{url}/%{baseversion}/%{version}-alpha2/+download/%{name}-%{version}~alpha2.tar.gz
 Source1:        apparmor.preset
 Patch01:        0001-fix-avahi-daemon-authselect-denial-in-fedora.patch
 Patch02:        0001-All-current-versions-of-RHEL-and-Fedora-that-are-not.patch
@@ -138,7 +138,7 @@ confinement policies when running virtual hosts in the webserver by using the
 changehat abilities exposed through libapparmor.
 
 %prep
-%autosetup -p1
+%autosetup -p1 -n %{name}-%{version}~alpha2
 
 %build
 export PYTHON=%{__python3}
