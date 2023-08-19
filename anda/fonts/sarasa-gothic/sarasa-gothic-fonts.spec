@@ -1,5 +1,5 @@
 Name:		sarasa-gothic-fonts
-Version:	0.41.6
+Version:	0.41.7
 Release:	1%{?dist}
 URL:		https://github.com/be5invis/Sarasa-Gothic
 Source0:	%url/releases/download/v%version/sarasa-gothic-ttc-%version.7z
