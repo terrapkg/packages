@@ -3,7 +3,7 @@
 
 
 Name:           elementary-notifications
-Version:        7.0.0
+Version:        7.0.1
 Release:        1%{?dist}
 Summary:        GTK Notification server for Pantheon
 
