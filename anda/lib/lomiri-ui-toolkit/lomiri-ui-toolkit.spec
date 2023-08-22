@@ -1,5 +1,5 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-ui-toolkit
-%global commit d689f48e13ec0ccbe9d7e317c6696f618fe460d8
+%global commit dcc08cc8aa26a294f8dda586f8576d1068a3a288
 %forgemeta
 
 Name:           lomiri-ui-toolkit
