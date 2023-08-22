@@ -52,7 +52,7 @@ Provides:      %{name} = %{version}-%{release}
 
 %config %{_sysconfdir}/xdg/autostart/%{appname}.desktop
 %{_datadir}/glib-2.0/schemas/%{appname}.gschema.xml
-%{_metainfodir}/%{appname}.appdata.xml
+%{_metainfodir}/%{appname}.metainfo.xml
 
 
 %changelog
