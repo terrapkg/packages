@@ -1,7 +1,7 @@
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
 Name:           kotlin
-Version:        1.9.0
+Version:        1.9.10
 Release:        1%{?dist}
 Summary:        Statically typed programming language
 
