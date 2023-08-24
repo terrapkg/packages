@@ -42,6 +42,10 @@ Provides:      %{name} = %{version}-%{release}
 %meson_install
 
 
+%check
+appstream-util validate-relax --nonet %buildroot%_datadir/metainfo/%appname.metainfo.xml
+
+
 %files
 %license LICENSE
 %doc README.md
