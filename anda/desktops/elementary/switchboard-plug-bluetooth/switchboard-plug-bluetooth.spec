@@ -8,8 +8,8 @@
 
 Name:           switchboard-plug-bluetooth
 Summary:        Switchboard Bluetooth plug
-Version:        2.3.6
-Release:        4%{?dist}
+Version:        2.3.5
+Release:        1%{?dist}
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/switchboard-plug-bluetooth
