@@ -87,6 +87,7 @@ Lomiri, Previously Unity8 is a convergent desktop environment built with Qt.
 
 %package tests
 Summary: Test files for %{name}
+Requires: dbus-test-runner
 Requires: %{name}%{?_isa} = %{version}-%{release}
 
 %description tests
