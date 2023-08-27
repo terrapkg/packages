@@ -97,7 +97,7 @@ The %{name}-tests package contains test files for %{name}.
 %autosetup -n lomiri-%commit -p1
 # Ubuntu specific, may have to be updated every background image change on Gnome or Ubuntu
 for i in $(grep -rl warty-final-ubuntu); do
-sed -i 's!warty-final-ubuntu.png!adwaita-l.webp!' $i
+sed -i 's!warty-final-ubuntu.png!f38/default/f38-01-day.png!' $i
 done
 
 %build
