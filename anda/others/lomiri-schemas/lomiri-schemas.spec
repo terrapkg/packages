@@ -9,6 +9,7 @@ Summary:    Configuration schemas for lomiri
 License:    LGPL-2.0-or-later
 URL:        https://gitlab.com/ubports/development/core/lomiri-schemas
 Source0:    %url/-/archive/%commit/lomiri-schemas-%commit.tar.gz
+Source1:    com.lomiri.Shell.gschema.xml
 BuildArch:  noarch
 
 BuildRequires: cmake
@@ -29,6 +30,8 @@ Configuration schemas for lomiri desktop enviroment.
 
 %install
 %cmake_install
+rm -f %{buildroot}%{_datadir}/glib-2.0/schemas/%{SOURCE1}
+cp %{SOURCE1} %{buildroot}%{_datadir}/glib-2.0/schemas/
 
 %files
 %{_datadir}/accountsservice/interfaces/*.xml
