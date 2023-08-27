@@ -95,6 +95,10 @@ The %{name}-tests package contains test files for %{name}.
 
 %prep
 %autosetup -n lomiri-%commit -p1
+# Ubuntu specific, may have to be updated every background image change on Gnome or Ubuntu
+for i in $(grep -rl warty-final-ubuntu); do
+sed -i 's!warty-final-ubuntu.png!f38/default/f38-01-day.png!' $i
+done
 
 %build
 %cmake -DWerror=OFF -DDEB_HOST_MULTIARCH=%{_arch} -DCMAKE_INSTALL_LOCALSTATEDIR="%{_localstatedir}" -DDISPLAYED_DISTRO_NAME="Fedora" -DUSE_MIROIL=1
