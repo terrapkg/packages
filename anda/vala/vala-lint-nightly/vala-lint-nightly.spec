@@ -1,6 +1,6 @@
 %global real_name vala-lint
 
-%global commit 6c4eda0ccc040eb950eedc532607903cc7f9e2b7
+%global commit 965e4774db0063e949d58ebd872678446a7ce209
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %global commit_date %(date '+%Y%m%d')
