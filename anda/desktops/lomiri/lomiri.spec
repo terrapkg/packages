@@ -135,6 +135,8 @@ install -Dm644 data/test.sensors %{buildroot}%{_sysconfdir}/lomirisensors
 %{_libdir}/lomiri/qml/LightDM/
 %{_libdir}/lomiri/qml/Lomiri/
 %{_libdir}/lomiri/qml/Powerd/
+%{_libdir}/lomiri/qml/ProcessControl/libProcessControl-qml.so
+%{_libdir}/lomiri/qml/ProcessControl/qmldir
 %{_libdir}/lomiri/qml/ScreenshotDirectory/
 %{_libdir}/lomiri/qml/SessionBroadcast/
 %{_libdir}/lomiri/qml/UInput/
@@ -146,6 +148,7 @@ install -Dm644 data/test.sensors %{buildroot}%{_sysconfdir}/lomirisensors
 %{_datadir}/accountsservice/interfaces/com.lomiri.shell.AccountsService.xml
 %{_datadir}/applications/*.desktop
 %{_datadir}/dbus-1/interfaces/com.lomiri.shell.AccountsService.xml
+%{_datadir}/dbus-1/interfaces/com.lomiri.ProcessControl.xml
 %{_datadir}/lightdm/greeters/lomiri-greeter.desktop
 %{_datadir}/lightdm/lightdm.conf.d/51-lomiri-greeter.conf
 %dir %{_datadir}/lomiri
@@ -166,6 +169,7 @@ install -Dm644 data/test.sensors %{buildroot}%{_sysconfdir}/lomirisensors
 %dir %{_sharedstatedir}/lomiri
 %{_sharedstatedir}/lomiri/version
 %{_sharedstatedir}/polkit-1/localauthority/10-vendor.d/50-com.lomiri.wizard.pkla
+
 
 %files tests
 %{_bindir}/lomiri-mock-indicator-service
