@@ -11,7 +11,7 @@ Summary:        AppArmor userspace components
 
 License:        GPL-2.0
 URL:            https://launchpad.net/apparmor
-Source0:        %{url}/%{baseversion}/%{version}/+download/%{name}-%{version}.tar.gz
+Source0:        %{url}/%{baseversion}/%{version}-alpha2/+download/%{name}-%{version}~alpha2.tar.gz
 Source1:        apparmor.preset
 Patch01:        0001-fix-avahi-daemon-authselect-denial-in-fedora.patch
 Patch02:        0001-All-current-versions-of-RHEL-and-Fedora-that-are-not.patch
@@ -138,7 +138,7 @@ confinement policies when running virtual hosts in the webserver by using the
 changehat abilities exposed through libapparmor.
 
 %prep
-%autosetup -p1
+%autosetup -p1 -n %{name}-%{version}~alpha2
 
 %build
 export PYTHON=%{__python3}
@@ -231,6 +231,7 @@ make -C utils check
 %dir %{_sysconfdir}/apparmor.d/
 %dir %{_sysconfdir}/apparmor.d/abi
 %config(noreplace) %{_sysconfdir}/apparmor.d/abi/3.0
+%config(noreplace) %{_sysconfdir}/apparmor.d/abi/4.0
 %config(noreplace) %{_sysconfdir}/apparmor.d/abi/kernel-5.4-outoftree-network
 %config(noreplace) %{_sysconfdir}/apparmor.d/abi/kernel-5.4-vanilla
 %config(noreplace) %{_sysconfdir}/apparmor.d/php-fpm
@@ -267,6 +268,7 @@ make -C utils check
 %{_bindir}/aa-enabled
 %{_bindir}/aa-exec
 %{_bindir}/aa-features-abi
+%{_sbindir}/aa-load
 %{_sbindir}/aa-teardown
 %{_sbindir}/rcapparmor
 %{_unitdir}/apparmor.service

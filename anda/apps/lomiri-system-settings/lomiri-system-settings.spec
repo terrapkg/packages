@@ -1,5 +1,5 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-system-settings
-%global commit 720b1dc059678e8f23fa3f1a8028c3f0aaf732a1
+%global commit 579794e97e815507396b2331187ffb0e974c0e64
 %forgemeta
 
 Name:       lomiri-system-settings
@@ -20,6 +20,7 @@ BuildRequires: pkgconfig(geonames)
 BuildRequires: pkgconfig(icu-i18n)
 #BuildRequires: pkgconfig(libandroid-properties)
 BuildRequires: pkgconfig(click-0.4)
+BuildRequires: pkgconfig(deviceinfo)
 BuildRequires: pkgconfig(gsettings-qt)
 BuildRequires: pkgconfig(QtGui)
 BuildRequires: pkgconfig(gnome-desktop-3.0)

@@ -8,7 +8,7 @@
 
 Name:           switchboard-plug-keyboard
 Summary:        Switchboard Keyboard plug
-Version:        3.2.0
+Version:        3.2.1
 Release:        1%{?dist}
 License:        GPL-3.0-or-later
 
@@ -67,7 +67,7 @@ appstream-util validate-relax --nonet \
 %license COPYING
 
 %{_libdir}/switchboard/%{plug_type}/lib%{plug_name}.so
-
+%{_datadir}/glib-2.0/schemas/keyboard.gschema.xml
 %{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
 
