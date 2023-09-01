@@ -1,0 +1,23 @@
+From ba841d4ea8b7087841fbb583de86a4579cb7e831 Mon Sep 17 00:00:00 2001
+From: Raboneko <raboneko@fyralabs.com>
+Date: Fri, 1 Sep 2023 11:36:45 +0000
+Subject: [PATCH] bump: youki
+
+---
+ anda/rust/youki/youki.spec | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/anda/rust/youki/youki.spec b/anda/rust/youki/youki.spec
+index 0c55cdce..87e7081e 100644
+--- a/anda/rust/youki/youki.spec
++++ b/anda/rust/youki/youki.spec
+@@ -1,5 +1,5 @@
+ Name:           youki
+-Version:        0.1.0
++Version:        0.2.0
+ Release:        1%{?dist}
+ Summary:        A container runtime written in Rust
+ 
+-- 
+2.41.0
+
