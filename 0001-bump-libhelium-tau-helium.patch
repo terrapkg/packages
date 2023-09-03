@@ -1,0 +1,37 @@
+From ab76f9551c20e38f86b30f78515a5041fb509353 Mon Sep 17 00:00:00 2001
+From: Raboneko <raboneko@fyralabs.com>
+Date: Sun, 3 Sep 2023 01:03:46 +0000
+Subject: [PATCH] bump: libhelium tau-helium
+
+---
+ anda/lib/libhelium/libhelium.spec      | 2 +-
+ anda/others/tau-helium/tau-helium.spec | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/anda/lib/libhelium/libhelium.spec b/anda/lib/libhelium/libhelium.spec
+index 5132c941..88dfb9d7 100644
+--- a/anda/lib/libhelium/libhelium.spec
++++ b/anda/lib/libhelium/libhelium.spec
+@@ -1,6 +1,6 @@
+ Summary:        The Application Framework for tauOS apps
+ Name:           libhelium
+-Version:        1.7.4
++Version:        1.7.5
+ Release:        1%{?dist}
+ License:        GPL-3.0
+ URL:            https://github.com/tau-OS/libhelium
+diff --git a/anda/others/tau-helium/tau-helium.spec b/anda/others/tau-helium/tau-helium.spec
+index 07a44c2b..e85f1913 100644
+--- a/anda/others/tau-helium/tau-helium.spec
++++ b/anda/others/tau-helium/tau-helium.spec
+@@ -1,6 +1,6 @@
+ Summary:        tauOS GTK/GNOME Shell Themes
+ Name:           tau-helium
+-Version:        1.5.6
++Version:        1.5.7
+ Release:        1%{?dist}
+ License:        GPL-3.0
+ URL:            https://github.com/tau-OS/tau-helium
+-- 
+2.41.0
+
