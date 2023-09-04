@@ -1,0 +1,23 @@
+From 5ae665a9bbb5916feba533c305a571a6cafa62ba Mon Sep 17 00:00:00 2001
+From: Raboneko <raboneko@fyralabs.com>
+Date: Mon, 4 Sep 2023 13:17:47 +0000
+Subject: [PATCH] bump: sarasa-gothic
+
+---
+ anda/fonts/sarasa-gothic/sarasa-gothic-fonts.spec | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/anda/fonts/sarasa-gothic/sarasa-gothic-fonts.spec b/anda/fonts/sarasa-gothic/sarasa-gothic-fonts.spec
+index 96095921..af609e92 100644
+--- a/anda/fonts/sarasa-gothic/sarasa-gothic-fonts.spec
++++ b/anda/fonts/sarasa-gothic/sarasa-gothic-fonts.spec
+@@ -1,5 +1,5 @@
+ Name:		sarasa-gothic-fonts
+-Version:	0.41.8
++Version:	0.41.9
+ Release:	1%{?dist}
+ URL:		https://github.com/be5invis/Sarasa-Gothic
+ Source0:	%url/releases/download/v%version/sarasa-gothic-ttc-%version.7z
+-- 
+2.41.0
+
