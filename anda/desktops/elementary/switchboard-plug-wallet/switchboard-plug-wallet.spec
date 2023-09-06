@@ -6,7 +6,7 @@
 %global plug_name wallet
 %global plug_rdnn io.elementary.switchboard.wallet
 
-%global commit bfe73dfb95d9b46a0a34e0db35a178233c8552b0
+%global commit 50582fc7ee43a4b47647d04786dcf1d0eb45af36
 
 Name:           switchboard-plug-wallet
 Summary:        Switchboard Wallet Plug
