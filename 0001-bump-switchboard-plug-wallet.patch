@@ -1,0 +1,25 @@
+From b664aee9db063208d837d601a3d28e37a727a47e Mon Sep 17 00:00:00 2001
+From: Raboneko <raboneko@fyralabs.com>
+Date: Wed, 6 Sep 2023 11:36:35 +0000
+Subject: [PATCH] bump: switchboard-plug-wallet
+
+---
+ .../switchboard-plug-wallet/switchboard-plug-wallet.spec        | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/anda/desktops/elementary/switchboard-plug-wallet/switchboard-plug-wallet.spec b/anda/desktops/elementary/switchboard-plug-wallet/switchboard-plug-wallet.spec
+index b5032c5c..89e765f4 100644
+--- a/anda/desktops/elementary/switchboard-plug-wallet/switchboard-plug-wallet.spec
++++ b/anda/desktops/elementary/switchboard-plug-wallet/switchboard-plug-wallet.spec
+@@ -6,7 +6,7 @@
+ %global plug_name wallet
+ %global plug_rdnn io.elementary.switchboard.wallet
+ 
+-%global commit bfe73dfb95d9b46a0a34e0db35a178233c8552b0
++%global commit 50582fc7ee43a4b47647d04786dcf1d0eb45af36
+ 
+ Name:           switchboard-plug-wallet
+ Summary:        Switchboard Wallet Plug
+-- 
+2.41.0
+
