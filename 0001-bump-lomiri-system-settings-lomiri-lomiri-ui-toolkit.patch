@@ -1,0 +1,60 @@
+From f92830dd3ed26fc924f5a7d22d66cbcfa89793a6 Mon Sep 17 00:00:00 2001
+From: Raboneko <raboneko@fyralabs.com>
+Date: Thu, 7 Sep 2023 05:13:03 +0000
+Subject: [PATCH] bump: lomiri-system-settings lomiri lomiri-ui-toolkit
+ lomiri-url-dispatcher
+
+---
+ anda/apps/lomiri-system-settings/lomiri-system-settings.spec | 2 +-
+ anda/desktops/lomiri/lomiri.spec                             | 2 +-
+ anda/lib/lomiri-ui-toolkit/lomiri-ui-toolkit.spec            | 2 +-
+ anda/lib/lomiri-url-dispatcher/lomiri-url-dispatcher.spec    | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/anda/apps/lomiri-system-settings/lomiri-system-settings.spec b/anda/apps/lomiri-system-settings/lomiri-system-settings.spec
+index 20e337b7..18a1c568 100644
+--- a/anda/apps/lomiri-system-settings/lomiri-system-settings.spec
++++ b/anda/apps/lomiri-system-settings/lomiri-system-settings.spec
+@@ -1,5 +1,5 @@
+ %global forgeurl https://gitlab.com/ubports/development/core/lomiri-system-settings
+-%global commit 579794e97e815507396b2331187ffb0e974c0e64
++%global commit 1740517c501b58ae78e1c8d3a51af3545e998d14
+ %forgemeta
+ 
+ Name:       lomiri-system-settings
+diff --git a/anda/desktops/lomiri/lomiri.spec b/anda/desktops/lomiri/lomiri.spec
+index c1a13715..235d9d36 100644
+--- a/anda/desktops/lomiri/lomiri.spec
++++ b/anda/desktops/lomiri/lomiri.spec
+@@ -1,5 +1,5 @@
+ %global forgeurl https://gitlab.com/ubports/development/core/lomiri
+-%global commit 0cf45bf15e76fe62a99710c85c406596d4c7117e
++%global commit cb614060a2f76f783ff7651a10e6173d2b70e464
+ %forgemeta
+ 
+ Name:          lomiri
+diff --git a/anda/lib/lomiri-ui-toolkit/lomiri-ui-toolkit.spec b/anda/lib/lomiri-ui-toolkit/lomiri-ui-toolkit.spec
+index a4062657..c7b16dce 100644
+--- a/anda/lib/lomiri-ui-toolkit/lomiri-ui-toolkit.spec
++++ b/anda/lib/lomiri-ui-toolkit/lomiri-ui-toolkit.spec
+@@ -1,5 +1,5 @@
+ %global forgeurl https://gitlab.com/ubports/development/core/lomiri-ui-toolkit
+-%global commit 65fdf8cf67896a9f27d8c571c20fc673aa4de889
++%global commit 38dff614e8037eba6e3f52d141e6f665c7857aef
+ %forgemeta
+ 
+ Name:           lomiri-ui-toolkit
+diff --git a/anda/lib/lomiri-url-dispatcher/lomiri-url-dispatcher.spec b/anda/lib/lomiri-url-dispatcher/lomiri-url-dispatcher.spec
+index 97c7e52c..d66b8869 100644
+--- a/anda/lib/lomiri-url-dispatcher/lomiri-url-dispatcher.spec
++++ b/anda/lib/lomiri-url-dispatcher/lomiri-url-dispatcher.spec
+@@ -1,5 +1,5 @@
+ %global forgeurl https://gitlab.com/ubports/development/core/lomiri-url-dispatcher
+-%global commit f09038cd77550210fed2b20c1c086f5bf79c777e
++%global commit e5bae41a5ad7fda9474bebe2508347665fb77065
+ %forgemeta
+ 
+ Name:           lomiri-url-dispatcher
+-- 
+2.41.0
+
