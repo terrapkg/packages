@@ -1,0 +1,25 @@
+From baa35d46f8bf64eb074b46b38e4eb68a7509a50e Mon Sep 17 00:00:00 2001
+From: Raboneko <raboneko@fyralabs.com>
+Date: Thu, 7 Sep 2023 03:13:59 +0000
+Subject: [PATCH] bump: electron
+
+---
+ anda/tools/electron/electron.spec | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/anda/tools/electron/electron.spec b/anda/tools/electron/electron.spec
+index f7f1c96c..4f089d44 100644
+--- a/anda/tools/electron/electron.spec
++++ b/anda/tools/electron/electron.spec
+@@ -12,7 +12,7 @@
+ %global __provides_exclude_from %{_libdir}/%{name}/.*\\.so
+ 
+ Name:			electron
+-Version:		26.1.0
++Version:		26.2.0
+ Release:		1%{?dist}
+ Summary:		Build cross platform desktop apps with web technologies
+ License:		MIT
+-- 
+2.41.0
+
