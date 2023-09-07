@@ -1,0 +1,25 @@
+From 9c11ec354695c34639ebaeab66d9b1aa34ba0758 Mon Sep 17 00:00:00 2001
+From: Raboneko <raboneko@fyralabs.com>
+Date: Thu, 7 Sep 2023 14:13:07 +0000
+Subject: [PATCH] bump: dart
+
+---
+ anda/dart/dart.spec | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/anda/dart/dart.spec b/anda/dart/dart.spec
+index 819630e0..f94af7d0 100644
+--- a/anda/dart/dart.spec
++++ b/anda/dart/dart.spec
+@@ -1,7 +1,7 @@
+ %define debug_package %{nil}
+ 
+ Name: dart
+-Version: 3.1.0
++Version: 3.1.1
+ Release: 1%{?dist}
+ Summary: The Dart Language
+ License: BSD-3-Clause
+-- 
+2.41.0
+
