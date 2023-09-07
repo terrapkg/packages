@@ -1,5 +1,5 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-url-dispatcher
-%global commit f09038cd77550210fed2b20c1c086f5bf79c777e
+%global commit e5bae41a5ad7fda9474bebe2508347665fb77065
 %forgemeta
 
 Name:           lomiri-url-dispatcher
