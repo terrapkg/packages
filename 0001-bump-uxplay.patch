@@ -1,0 +1,23 @@
+From f366c309d8c010ad77ed1ab2102a6d5d0ceef02f Mon Sep 17 00:00:00 2001
+From: Raboneko <raboneko@fyralabs.com>
+Date: Thu, 7 Sep 2023 17:12:05 +0000
+Subject: [PATCH] bump: uxplay
+
+---
+ anda/others/uxplay/uxplay.spec | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/anda/others/uxplay/uxplay.spec b/anda/others/uxplay/uxplay.spec
+index 6ccf6e9f..98e2bdf9 100644
+--- a/anda/others/uxplay/uxplay.spec
++++ b/anda/others/uxplay/uxplay.spec
+@@ -1,5 +1,5 @@
+ Name:			uxplay
+-Version:		1.65.3
++Version:		1.66
+ Release:		1%{?dist}
+ Summary:		AirPlay Unix mirroring server
+ License:		GPL-3.0
+-- 
+2.41.0
+
