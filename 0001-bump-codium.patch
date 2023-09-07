@@ -1,0 +1,25 @@
+From 43c27a5b4b139330ef189a0087db685cb238e487 Mon Sep 17 00:00:00 2001
+From: Raboneko <raboneko@fyralabs.com>
+Date: Thu, 7 Sep 2023 19:11:03 +0000
+Subject: [PATCH] bump: codium
+
+---
+ anda/tools/codium/codium.spec | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/anda/tools/codium/codium.spec b/anda/tools/codium/codium.spec
+index a1a8c1cd..0b6144d5 100644
+--- a/anda/tools/codium/codium.spec
++++ b/anda/tools/codium/codium.spec
+@@ -12,7 +12,7 @@
+ %endif
+ 
+ Name:			codium
+-Version:		1.81.1.23222
++Version:		1.82.0.23250
+ Release:		1%{?dist}
+ Summary:		Code editing. Redefined.
+ License:		MIT
+-- 
+2.41.0
+
