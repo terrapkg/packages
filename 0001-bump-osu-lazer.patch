@@ -1,0 +1,25 @@
+From 779a20774da1ab6d78c56db905bcc836321e6ab6 Mon Sep 17 00:00:00 2001
+From: Raboneko <raboneko@fyralabs.com>
+Date: Fri, 8 Sep 2023 07:12:34 +0000
+Subject: [PATCH] bump: osu-lazer
+
+---
+ anda/games/osu-lazer/osu-lazer.spec | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/anda/games/osu-lazer/osu-lazer.spec b/anda/games/osu-lazer/osu-lazer.spec
+index 31eb5481..f97da7f5 100644
+--- a/anda/games/osu-lazer/osu-lazer.spec
++++ b/anda/games/osu-lazer/osu-lazer.spec
+@@ -2,7 +2,7 @@
+ %global debug_package %{nil}
+ 
+ Name:			osu-lazer
+-Version:		2023.815.0
++Version:		2023.908.0
+ Release:		1%{?dist}
+ Summary:		The future of osu! and the beginning of an open era! Commonly known by the codename osu!lazer. Pew pew.
+ ExclusiveArch:	x86_64
+-- 
+2.41.0
+
