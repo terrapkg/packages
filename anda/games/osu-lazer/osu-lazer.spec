@@ -2,7 +2,7 @@
 %global debug_package %{nil}
 
 Name:			osu-lazer
-Version:		2023.908.0
+Version:		2023.908.1
 Release:		1%{?dist}
 Summary:		The future of osu! and the beginning of an open era! Commonly known by the codename osu!lazer. Pew pew.
 ExclusiveArch:	x86_64
