@@ -1,0 +1,48 @@
+From 7cab5381289b8011aa4ad35eb76a2699ab42e228 Mon Sep 17 00:00:00 2001
+From: Raboneko <raboneko@fyralabs.com>
+Date: Fri, 8 Sep 2023 01:06:51 +0000
+Subject: [PATCH] bump(nightly): tdlib nim-nightly vala-nightly
+
+---
+ anda/lib/tdlib/tdlib-nightly.spec        | 2 +-
+ anda/nim/nim-nightly/nim-nightly.spec    | 2 +-
+ anda/vala/vala-nightly/vala-nightly.spec | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/anda/lib/tdlib/tdlib-nightly.spec b/anda/lib/tdlib/tdlib-nightly.spec
+index 84ae109e..6e0ac038 100644
+--- a/anda/lib/tdlib/tdlib-nightly.spec
++++ b/anda/lib/tdlib/tdlib-nightly.spec
+@@ -1,4 +1,4 @@
+-%global commit edc528457f109c188a909ffa07ad73539d3cbf02
++%global commit 00258ccb4cef19e4d6b4392082c68755887d9c2f
+ %global ver 1.8.17
+ Name: tdlib-nightly
+ Version: %ver^%commit
+diff --git a/anda/nim/nim-nightly/nim-nightly.spec b/anda/nim/nim-nightly/nim-nightly.spec
+index 070ad2a5..e6e56636 100644
+--- a/anda/nim/nim-nightly/nim-nightly.spec
++++ b/anda/nim/nim-nightly/nim-nightly.spec
+@@ -1,5 +1,5 @@
+ %global csrc_commit 561b417c65791cd8356b5f73620914ceff845d10
+-%global commit b9f039e0c39c8f4e10ebdbe77e9a91f2595e1cbe
++%global commit ee4a219012ca1fcb2cfb2cce4e87ff6774009d86
+ %global ver 2.1.1
+ %global debug_package %nil
+ 
+diff --git a/anda/vala/vala-nightly/vala-nightly.spec b/anda/vala/vala-nightly/vala-nightly.spec
+index 80d7eb5c..be3510a2 100644
+--- a/anda/vala/vala-nightly/vala-nightly.spec
++++ b/anda/vala/vala-nightly/vala-nightly.spec
+@@ -3,7 +3,7 @@
+ %global priority 90
+ 
+ %global real_name vala
+-%global commit bb63ee745d5c0d17e54bd1ff9364f9c63eebc2bd
++%global commit 711effb805913f791aefe63139684d4b6febc0f3
+ %global shortcommit %(c=%{commit}; echo ${c:0:7})
+ %global repo https://gitlab.gnome.org/GNOME/%{real_name}.git
+ 
+-- 
+2.41.0
+
