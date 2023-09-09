@@ -1,0 +1,23 @@
+From afe0affe5ef1acebd2aadaf74eccac017b5a3268 Mon Sep 17 00:00:00 2001
+From: Raboneko <raboneko@fyralabs.com>
+Date: Sat, 9 Sep 2023 21:36:25 +0000
+Subject: [PATCH] bump: limine
+
+---
+ anda/tools/limine/limine.spec | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/anda/tools/limine/limine.spec b/anda/tools/limine/limine.spec
+index 74a2a206..da383f39 100644
+--- a/anda/tools/limine/limine.spec
++++ b/anda/tools/limine/limine.spec
+@@ -1,5 +1,5 @@
+ Name:		limine
+-Version:	5.20230830.0
++Version:	5.20230909.0
+ Release:	1%{?dist}
+ Summary:	Modern, advanced, portable, multiprotocol bootloader
+ License:	BSD-2-Clause
+-- 
+2.41.0
+
