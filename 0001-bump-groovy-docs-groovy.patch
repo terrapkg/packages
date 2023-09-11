@@ -1,0 +1,35 @@
+From 73ce1fb7fe0fcf07345514a9a396aac8f87bf70b Mon Sep 17 00:00:00 2001
+From: Raboneko <raboneko@fyralabs.com>
+Date: Mon, 11 Sep 2023 08:37:01 +0000
+Subject: [PATCH] bump: groovy-docs groovy
+
+---
+ anda/groovy/groovy-docs/groovy-docs.spec | 2 +-
+ anda/groovy/groovy.spec                  | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/anda/groovy/groovy-docs/groovy-docs.spec b/anda/groovy/groovy-docs/groovy-docs.spec
+index ebd0ac12..cfc8ffb6 100644
+--- a/anda/groovy/groovy-docs/groovy-docs.spec
++++ b/anda/groovy/groovy-docs/groovy-docs.spec
+@@ -1,5 +1,5 @@
+ Name:		groovy-docs
+-Version:	5.0.0.ALPHA.1
++Version:	5.0.0.ALPHA.2
+ Release:	1%{?dist}
+ Summary:	Documentation for the Groovy programming language
+ URL:		https://groovy-lang.org/
+diff --git a/anda/groovy/groovy.spec b/anda/groovy/groovy.spec
+index 5b2db270..66333d43 100644
+--- a/anda/groovy/groovy.spec
++++ b/anda/groovy/groovy.spec
+@@ -1,5 +1,5 @@
+ Name:			groovy
+-Version:		5.0.0.ALPHA.1
++Version:		5.0.0.ALPHA.2
+ Release:		1%{?dist}
+ Summary:		A multi-faceted language for the Java platform
+ BuildArch:		noarch
+-- 
+2.41.0
+
