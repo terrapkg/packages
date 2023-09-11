@@ -1,0 +1,25 @@
+From d47b8f45917617b6f536c99d3c275ed356fb1495 Mon Sep 17 00:00:00 2001
+From: Raboneko <raboneko@fyralabs.com>
+Date: Mon, 11 Sep 2023 15:14:38 +0000
+Subject: [PATCH] bump: switchboard-plug-mouse-touchpad
+
+---
+ .../switchboard-plug-mouse-touchpad.spec                        | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/anda/desktops/elementary/switchboard-plug-mouse-touchpad/switchboard-plug-mouse-touchpad.spec b/anda/desktops/elementary/switchboard-plug-mouse-touchpad/switchboard-plug-mouse-touchpad.spec
+index 242152e3..cb76c04b 100644
+--- a/anda/desktops/elementary/switchboard-plug-mouse-touchpad/switchboard-plug-mouse-touchpad.spec
++++ b/anda/desktops/elementary/switchboard-plug-mouse-touchpad/switchboard-plug-mouse-touchpad.spec
+@@ -8,7 +8,7 @@
+ 
+ Name:           switchboard-plug-mouse-touchpad
+ Summary:        Switchboard Mouse and Touchpad plug
+-Version:        7.0.0
++Version:        6.1.0
+ Release:        1%{?dist}
+ License:        GPL-3.0-or-later
+ 
+-- 
+2.41.0
+
