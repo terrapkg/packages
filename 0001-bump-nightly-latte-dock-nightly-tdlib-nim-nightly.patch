@@ -1,0 +1,49 @@
+From e3b219bf2d121246fdc501b947863fb0be1a66ee Mon Sep 17 00:00:00 2001
+From: Raboneko <raboneko@fyralabs.com>
+Date: Thu, 14 Sep 2023 01:05:54 +0000
+Subject: [PATCH] bump(nightly): latte-dock-nightly tdlib nim-nightly
+
+---
+ anda/desktops/kde/latte-dock-nightly/latte-dock-nightly.spec | 2 +-
+ anda/lib/tdlib/tdlib-nightly.spec                            | 4 ++--
+ anda/nim/nim-nightly/nim-nightly.spec                        | 2 +-
+ 3 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/anda/desktops/kde/latte-dock-nightly/latte-dock-nightly.spec b/anda/desktops/kde/latte-dock-nightly/latte-dock-nightly.spec
+index 7e832ccf..82cd1ae2 100644
+--- a/anda/desktops/kde/latte-dock-nightly/latte-dock-nightly.spec
++++ b/anda/desktops/kde/latte-dock-nightly/latte-dock-nightly.spec
+@@ -1,6 +1,6 @@
+ %global forgeurl https://github.com/KDE/latte-dock/
+ 
+-%global commit 0423fd4259198f7496d6275f5e7889d2db57ea02
++%global commit 5dc506b49f84827086605613f05ec9b4c3ddc734
+ %global shortcommit %(c=%{commit}; echo ${c:0:7})
+ %global commit_date %(date '+%Y%m%d')
+ %global snapshot_info %{commit_date}.%{shortcommit}
+diff --git a/anda/lib/tdlib/tdlib-nightly.spec b/anda/lib/tdlib/tdlib-nightly.spec
+index 28b91449..7b612db9 100644
+--- a/anda/lib/tdlib/tdlib-nightly.spec
++++ b/anda/lib/tdlib/tdlib-nightly.spec
+@@ -1,5 +1,5 @@
+-%global commit 0ada45c3618108a62806ce7d9ab435a18dac1aab
+-%global ver 1.8.17
++%global commit e79f5409378e3e4b56d870619f3154ba2842a996
++%global ver 1.8.18
+ Name: tdlib-nightly
+ Version: %ver^%commit
+ Release: 1%{?dist}
+diff --git a/anda/nim/nim-nightly/nim-nightly.spec b/anda/nim/nim-nightly/nim-nightly.spec
+index f424da95..5c37f520 100644
+--- a/anda/nim/nim-nightly/nim-nightly.spec
++++ b/anda/nim/nim-nightly/nim-nightly.spec
+@@ -1,5 +1,5 @@
+ %global csrc_commit 561b417c65791cd8356b5f73620914ceff845d10
+-%global commit 8f5b90f886501862bd27d4e0e8244e2f7f0ebc2a
++%global commit 325341866f6b82cba5d81db8e39ca98b0d96fd4d
+ %global ver 2.1.1
+ %global debug_package %nil
+ 
+-- 
+2.41.0
+
