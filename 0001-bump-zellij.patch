@@ -1,0 +1,25 @@
+From 1eb16cae4c1c79f2149864004a0bf289e91bea04 Mon Sep 17 00:00:00 2001
+From: Raboneko <raboneko@fyralabs.com>
+Date: Fri, 15 Sep 2023 16:18:02 +0000
+Subject: [PATCH] bump: zellij
+
+---
+ anda/rust/zellij/rust-zellij.spec | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/anda/rust/zellij/rust-zellij.spec b/anda/rust/zellij/rust-zellij.spec
+index b34fedde..eded8137 100644
+--- a/anda/rust/zellij/rust-zellij.spec
++++ b/anda/rust/zellij/rust-zellij.spec
+@@ -5,7 +5,7 @@
+ %global crate zellij
+ 
+ Name:           rust-zellij
+-Version:        0.38.1
++Version:        0.38.2
+ Release:        1%{?dist}
+ Summary:        Terminal workspace with batteries included
+ 
+-- 
+2.41.0
+
