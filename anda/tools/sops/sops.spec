@@ -1,7 +1,7 @@
 %define debug_package %nil
 Name:			sops
-Version:		3.7.3
-Release:		2%?dist
+Version:		3.8.0
+Release:		1%{?dist}
 Summary:		Simple and flexible tool for managing secrets
 License:		MPL-2.0
 URL:			https://github.com/getsops/sops
