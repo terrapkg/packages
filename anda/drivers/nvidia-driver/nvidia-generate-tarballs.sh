@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e
 
+cd anda/drivers/nvidia-driver/ || true
+
 VERSION=${VERSION:-535.104.05}
 DL_SITE=${DL_SITE:-http://us.download.nvidia.com/XFree86}
 TEMP_UNPACK=${TEMP_UNPACK:-temp}
