@@ -183,16 +183,16 @@ mv libnvidia-vulkan-producer.so.%{version} libnvidia-vulkan-producer.so
 # Nothing to build
 
 %install
-
-# EGL loader
-install -p -m 0644 -D 10_nvidia.json %{buildroot}%{_datadir}/glvnd/egl_vendor.d/10_nvidia.json
-
 # Unique libraries
 mkdir -p %{buildroot}%{_libdir}/vdpau/
 cp -a lib*GL*_nvidia.so* libcuda*.so* libnv*.so* %{buildroot}%{_libdir}/
 cp -a libvdpau_nvidia.so* %{buildroot}%{_libdir}/vdpau/
 
 %ifarch x86_64
+
+## Maybe exclusive?
+# EGL loader
+install -p -m 0644 -D 10_nvidia.json %{buildroot}%{_datadir}/glvnd/egl_vendor.d/10_nvidia.json
 
 # Empty?
 mkdir -p %{buildroot}%{_sysconfdir}/nvidia/
