@@ -5,7 +5,7 @@
 
 Name:           wingpanel-indicator-notifications
 Summary:        Notifications Indicator for wingpanel
-Version:        7.0.0
+Version:        7.1.0
 Release:        1%{?dist}
 License:        LGPL-2.0-or-later
 
