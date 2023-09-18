@@ -1,1 +1,3 @@
-project pkg { }
+project pkg {
+  scripts = ["pre.rhai"]
+}
