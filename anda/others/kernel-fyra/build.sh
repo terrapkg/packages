@@ -4,7 +4,7 @@
 export KERNEL_ARK_REV='200'
 
 # Set the Fyra kernel overlay version
-export FYRA_KERNELOVERLAY_VER='2'
+export FYRA_KERNELOVERLAY_VER='3'
 
 # Fetch the patches
 git clone https://github.com/FyraLabs/linux-kernel-patches.git patches
@@ -13,13 +13,13 @@ git clone https://github.com/FyraLabs/linux-kernel-patches.git patches
 pushd patches
 
 # Acquire the latest supported kernel-ark branch
-export BRANCH="$(readlink current)"
+export BRANCH="$(cat current/commit)"
 
 # Move out from the patches' directory
 popd
 
 # Fetch the source
-git clone -b ${BRANCH} https://gitlab.com/cki-project/kernel-ark.git source
+git clone -b ${COMMIT} https://gitlab.com/cki-project/kernel-ark.git source
 
 # Move into the source directory
 pushd source
@@ -28,7 +28,7 @@ pushd source
 git config user.name 'Terra' ; git config user.email 'mail@example.com'
 
 # Apply all patches
-for patch in ../patches/${BRANCH}/*.patch
+for patch in ../patches/${BRANCH}/patches/*.patch
     do git am $patch
 done
 
