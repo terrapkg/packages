@@ -1,0 +1,27 @@
+From 171596c2137013d657e00b3f6e58af3cf0783457 Mon Sep 17 00:00:00 2001
+From: Raboneko <raboneko@fyralabs.com>
+Date: Tue, 19 Sep 2023 11:11:30 +0000
+Subject: [PATCH] bump: bandwhich
+
+---
+ anda/rust/bandwhich/rust-bandwhich.spec | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/anda/rust/bandwhich/rust-bandwhich.spec b/anda/rust/bandwhich/rust-bandwhich.spec
+index 7a46df52..957ac5c1 100644
+--- a/anda/rust/bandwhich/rust-bandwhich.spec
++++ b/anda/rust/bandwhich/rust-bandwhich.spec
+@@ -2,8 +2,8 @@
+ %global crate bandwhich
+ 
+ Name:           rust-bandwhich
+-Version:        0.20.0
+-Release:        %autorelease
++Version:        0.21.0
++Release:        1%{?dist}
+ Summary:        Show network utilization by process/connection/hostname/IP
+ License:        MIT
+ URL:            https://crates.io/crates/bandwhich
+-- 
+2.41.0
+
