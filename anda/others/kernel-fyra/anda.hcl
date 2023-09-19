@@ -1,5 +1,1 @@
-project pkg {
-  rpm {
-    spec = "dummy.spec"
-  }
-}
+project pkg { }
