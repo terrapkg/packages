@@ -4,7 +4,7 @@
 export KERNEL_ARK_REV='200'
 
 # Set the Fyra kernel overlay version
-export FYRA_KERNELOVERLAY_VER='3'
+export FYRA_KERNELOVERLAY_VER=$(cat version.txt)
 
 # Fetch the patches
 git clone https://github.com/FyraLabs/linux-kernel-patches.git patches
