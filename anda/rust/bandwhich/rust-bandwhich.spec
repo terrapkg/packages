@@ -14,7 +14,7 @@ Source:         %{crates_source}
 # Automatically generated patch to strip foreign dependencies
 Patch:          bandwhich-fix-metadata-auto.diff
 
-BuildRequires:  rust-packaging >= 23
+BuildRequires:  anda-srpm-macros rust-packaging >= 23
 
 %global _description %{expand:
 Display current network utilization by process, connection and remote
