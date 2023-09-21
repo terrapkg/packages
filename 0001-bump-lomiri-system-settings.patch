@@ -1,0 +1,23 @@
+From c2d9dd3a8e087956963db6991c38f1866f9d4965 Mon Sep 17 00:00:00 2001
+From: Raboneko <raboneko@fyralabs.com>
+Date: Thu, 21 Sep 2023 14:36:38 +0000
+Subject: [PATCH] bump: lomiri-system-settings
+
+---
+ anda/apps/lomiri-system-settings/lomiri-system-settings.spec | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/anda/apps/lomiri-system-settings/lomiri-system-settings.spec b/anda/apps/lomiri-system-settings/lomiri-system-settings.spec
+index 18a1c568..6f1d8838 100644
+--- a/anda/apps/lomiri-system-settings/lomiri-system-settings.spec
++++ b/anda/apps/lomiri-system-settings/lomiri-system-settings.spec
+@@ -1,5 +1,5 @@
+ %global forgeurl https://gitlab.com/ubports/development/core/lomiri-system-settings
+-%global commit 1740517c501b58ae78e1c8d3a51af3545e998d14
++%global commit 9a077c9089c4c631444cf736c27a701f03e48f4a
+ %forgemeta
+ 
+ Name:       lomiri-system-settings
+-- 
+2.41.0
+
