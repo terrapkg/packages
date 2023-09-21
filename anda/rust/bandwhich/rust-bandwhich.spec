@@ -24,9 +24,7 @@ IP/hostname.}
 
 %package     -n %{crate}
 Summary:        %{summary}
-# FIXME: paste output of %%cargo_license_summary here
-License:        # FIXME
-# LICENSE.dependencies contains a full license breakdown
+License:        MIT
 
 %description -n %{crate} %{_description}
 
