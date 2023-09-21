@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Set the kernel-ark release build rev number
-export KERNEL_ARK_REV='200'
+export KERNEL_ARK_REV='500'
 
 # Set the Fyra kernel overlay version
 export FYRA_KERNELOVERLAY_VER=$(cat version.txt)
@@ -52,7 +52,9 @@ for file in redhat/rpm/RPMS/*.rpm
 done
 
 # Also move the SRPM package file
-mv -v redhat/rpm/SRPMS/*.src.rpm ../anda-build/rpm/srpms/
+for file in redhat/rpm/SRPMS/*.src.rpm
+    do mv -v $file ../anda-build/rpm/srpms/
+done
 
 # We're done here
 exit 0
