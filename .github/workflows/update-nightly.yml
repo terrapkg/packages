@@ -42,6 +42,7 @@ jobs:
               git format-patch HEAD^
               git checkout $1
               git apply *.patch || true
+              rm *.patch
               git add *
               git commit -S -a -m "$msg"
             }
