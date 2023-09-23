@@ -2,7 +2,7 @@
 
 Name:    unity-session
 Summary: Lightdm profile for Unity 7
-Version: 44.0
+Version: 45.0
 Release: 1%{?dist}
 
 License:   GPL-2.0
