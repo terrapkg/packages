@@ -2,8 +2,8 @@
 %global crate bandwhich
 
 Name:           rust-bandwhich
-Version:        0.20.0
-Release:        %autorelease
+Version:        0.21.0
+Release:        1%{?dist}
 Summary:        Show network utilization by process/connection/hostname/IP
 License:        MIT
 URL:            https://crates.io/crates/bandwhich

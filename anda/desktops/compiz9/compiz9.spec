@@ -1,4 +1,4 @@
-%define _ubuntu_rel 22.10.20220822-0ubuntu3
+%define _ubuntu_rel 22.10.20220822-0ubuntu4
 %global _hardened_build 0
 
 Name:           compiz9
