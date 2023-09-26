@@ -11,6 +11,7 @@ Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
 
 # patch some default settings to better match Fedora
 Patch0:         0000-Modify-default-settings-for-Fedora.patch
+Patch1:         https://github.com/elementary/gala/commit/151e5f01750e9471cceac48f1999ac5e81f625b5.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
@@ -31,9 +32,9 @@ BuildRequires:  pkgconfig(granite) >= 5.4.0
 BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(libbamf3)
 BuildRequires:  pkgconfig(libcanberra)
-BuildRequires:  pkgconfig(mutter-clutter-12)
-BuildRequires:  pkgconfig(mutter-cogl-12)
-BuildRequires:  pkgconfig(mutter-cogl-pango-12)
+BuildRequires:  pkgconfig(mutter-clutter-13)
+BuildRequires:  pkgconfig(mutter-cogl-13)
+BuildRequires:  pkgconfig(mutter-cogl-pango-13)
 
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 
