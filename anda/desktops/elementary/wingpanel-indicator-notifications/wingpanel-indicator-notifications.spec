@@ -62,6 +62,7 @@ appstream-util validate-relax --nonet \
 %{_libdir}/wingpanel/libnotifications.so
 
 %{_datadir}/metainfo/%{appname}.metainfo.xml
+%{_datadir}/glib-2.0/schemas/%{appname}.gschema.xml
 
 
 %changelog
