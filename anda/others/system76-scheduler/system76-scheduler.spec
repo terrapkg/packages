@@ -58,6 +58,7 @@ just rootdir=%buildroot sysconfdir=%_datadir install
 %changelog
 * Tue Sep 26 2023 Cappy Ishihara <cappy@cappuchino.xyz> - 2.0.1-2
 - Move default configurations to /usr/share/system76-scheduler
+- Add Requires: bcc-tools so execsnoop is available
 
 * Tue May 23 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2.0.1-1
 - Initial package.
