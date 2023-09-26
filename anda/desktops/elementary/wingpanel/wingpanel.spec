@@ -12,7 +12,7 @@ License:        GPL-2.0-or-later
 
 URL:            https://github.com/elementary/wingpanel
 Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
-Patch0:         https://github.com/elementary/wingpanel/compare/f8b98a5..0cbf289.patch
+Patch0:         https://github.com/elementary/wingpanel/commit/d6009d9f0d5c7479172093447ccceccba86ff1f3.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
@@ -28,9 +28,9 @@ BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  pkgconfig(glib-2.0) >= 2.32
 BuildRequires:  pkgconfig(granite) >= 5.4.0
 BuildRequires:  pkgconfig(gtk+-3.0) >= 3.10
-BuildRequires:  pkgconfig(mutter-clutter-12)
-BuildRequires:  pkgconfig(mutter-cogl-12)
-BuildRequires:  pkgconfig(mutter-cogl-pango-12)
+BuildRequires:  pkgconfig(mutter-clutter-13)
+BuildRequires:  pkgconfig(mutter-cogl-13)
+BuildRequires:  pkgconfig(mutter-cogl-pango-13)
 
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 
