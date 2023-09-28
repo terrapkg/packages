@@ -64,6 +64,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 %{_datadir}/knotifications5/liquidshell.notifyrc
 %{_metainfodir}/org.kde.liquidshell.appdata.xml
 %{_datadir}/xsessions/liquidshell-session.desktop
+%{_datadir}/locale/*/LC_MESSAGES/liquidshell.mo
 
 %changelog
 %autochangelog
