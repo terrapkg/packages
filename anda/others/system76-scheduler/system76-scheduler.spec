@@ -8,6 +8,8 @@ License:		MPL-2.0
 URL:			https://github.com/pop-os/system76-scheduler
 Source0:		%url/archive/refs/tags/%version.tar.gz
 BuildRequires:	cargo clang clang-devel pipewire-devel pkg-config systemd-rpm-macros rust-packaging just
+BuildRequires:  bcc-tools
+Requires:       bcc-tools
 
 %description
 Scheduling service which optimizes Linux's CPU scheduler and automatically
@@ -22,11 +24,11 @@ process priority.
 %autosetup
 
 %build
-export EXECSNOOP_PATH=$(which execsnoop-bpfcc)
+export EXECSNOOP_PATH=/usr/share/bcc/tools/execsnoop
 %cargo_build
 
 %install
-just rootdir=%buildroot sysconfdir=%_sysconfdir install
+just rootdir=%buildroot sysconfdir=%_datadir install
 
 
 %post
@@ -45,11 +47,18 @@ just rootdir=%buildroot sysconfdir=%_sysconfdir install
 %doc README.md
 %license LICENSE
 %_bindir/system76-scheduler
-%config %_sysconfdir/dbus-1/system.d/com.system76.Scheduler.conf
-%config %_sysconfdir/system76-scheduler/config.kdl
-%config %_sysconfdir/system76-scheduler/process-scheduler/pop_os.kdl
+%config %ghost %_sysconfdir/dbus-1/system.d/com.system76.Scheduler.conf
+%config %ghost %_sysconfdir/system76-scheduler/config.kdl
+%config %ghost %_sysconfdir/system76-scheduler/process-scheduler/pop_os.kdl
+%_datadir/dbus-1/system.d/com.system76.Scheduler.conf
+%_datadir/system76-scheduler/config.kdl
+%_datadir/system76-scheduler/process-scheduler/pop_os.kdl
 %_unitdir/com.system76.Scheduler.service
 
 %changelog
+* Tue Sep 26 2023 Cappy Ishihara <cappy@cappuchino.xyz> - 2.0.1-2
+- Move default configurations to /usr/share/system76-scheduler
+- Add Requires: bcc-tools so execsnoop is available
+
 * Tue May 23 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2.0.1-1
 - Initial package.
