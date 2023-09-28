@@ -46,8 +46,9 @@ Summary:        %{summary}
 %cargo_prep_online
 
 %build
-cargo run -p xtask -- manpage
-cargo run -p xtask -- completion
+%cargo_build
+cargo run --release -p xtask -- manpage
+cargo run --release -p xtask -- completion
 
 %install
 %cargo_install
