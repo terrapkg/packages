@@ -21,7 +21,7 @@ integrating more functionality behind a single, common interface.
 maturin build --release --strip --locked --all-features
 
 %install
-python3.11 -m installer --destdir="%{buildroot}" target/wheels/*.whl
+python3 -m installer --destdir="%{buildroot}" target/wheels/*.whl
 rm -rf %{python3_sitelib}/ruff/__pycache__
 
 %files
