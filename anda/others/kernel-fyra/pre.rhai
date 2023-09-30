@@ -10,6 +10,12 @@ print(sh("sudo dnf5 -y install git").sh_stdout());
 
 // Run the actual build script
 print(" $ ./build.sh");
-print(sh("bash ./build.sh").sh_stdout());
+let cmd = sh("bash ./build.sh");
+print(cmd.sh_stdout());
+let err = cmd.sh_stderr():
+if !err.is_empty() {
+  print("STDERR:");
+  print(err);
+}
 
 print("kernel-fyra: finished running pre.rhai");
