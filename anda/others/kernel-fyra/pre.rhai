@@ -12,7 +12,7 @@ print(sh("sudo dnf5 -y install git").sh_stdout());
 print(" $ ./build.sh");
 let cmd = sh("bash ./build.sh");
 print(cmd.sh_stdout());
-let err = cmd.sh_stderr():
+let err = cmd.sh_stderr();
 if !err.is_empty() {
   print("STDERR:");
   print(err);
