@@ -19,6 +19,8 @@ pushd patches
 # Acquire the latest supported kernel-ark branch
 export BRANCH="$(cat current/commit)"
 
+cat branch: $BRANCH
+
 # Move out from the patches' directory
 popd
 
