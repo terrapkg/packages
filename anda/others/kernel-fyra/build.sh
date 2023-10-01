@@ -19,13 +19,13 @@ pushd patches
 # Acquire the latest supported kernel-ark branch
 export BRANCH="$(cat current/commit)"
 
-cat branch: $BRANCH
+echo branch: $BRANCH
 
 # Move out from the patches' directory
 popd
 
 # Fetch the source
-git clone -b ${COMMIT} https://gitlab.com/cki-project/kernel-ark.git source
+git clone -b ${BRANCH} https://gitlab.com/cki-project/kernel-ark.git source
 
 # Move into the source directory
 pushd source
