@@ -1,10 +1,14 @@
 #!/bin/sh
 
+pwd
+
 # Set the kernel-ark release build rev number
 export KERNEL_ARK_REV='500'
 
 # Set the Fyra kernel overlay version
 export FYRA_KERNELOVERLAY_VER=$(cat version.txt)
+
+rm -rf patches source || true
 
 # Fetch the patches
 git clone https://github.com/FyraLabs/linux-kernel-patches.git patches
