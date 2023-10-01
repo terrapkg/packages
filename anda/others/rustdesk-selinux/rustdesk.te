@@ -1,0 +1,44 @@
+module rustdesk 1.0;
+
+require {
+        type xdm_t;
+        type sudo_exec_t;
+        type cache_home_t;
+        type chronyc_t;
+        type xserver_misc_device_t;
+        type xserver_t;
+        type chronyd_restricted_t;
+        type device_t;
+        type unreserved_port_t;
+        type xserver_port_t;
+        type event_device_t;
+        type init_t;
+        type speech_dispatcher_t;
+        class capability dac_override;
+        class dir create;
+        class unix_dgram_socket sendto;
+        class unix_stream_socket connectto;
+        class tcp_socket name_connect;
+        class chr_file { getattr open read write };
+        class file execute;
+}
+
+#============= chronyc_t ==============
+allow chronyc_t chronyd_restricted_t:unix_dgram_socket sendto;
+
+#============= init_t ==============
+allow init_t event_device_t:chr_file open;
+allow init_t sudo_exec_t:file execute;
+
+#!!!! This avc can be allowed using the boolean 'nis_enabled'
+allow init_t unreserved_port_t:tcp_socket name_connect;
+allow init_t xserver_misc_device_t:chr_file { read write };
+allow init_t xserver_port_t:tcp_socket name_connect;
+allow init_t xserver_t:unix_stream_socket connectto;
+
+#============= speech_dispatcher_t ==============
+allow speech_dispatcher_t cache_home_t:dir create;
+allow speech_dispatcher_t self:capability dac_override;
+
+#============= xdm_t ==============
+allow xdm_t device_t:chr_file getattr;
