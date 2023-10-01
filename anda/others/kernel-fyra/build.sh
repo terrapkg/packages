@@ -25,10 +25,11 @@ echo branch: $BRANCH
 popd
 
 # Fetch the source
-git clone -b ${BRANCH} https://gitlab.com/cki-project/kernel-ark.git source
+git clone https://gitlab.com/cki-project/kernel-ark.git source
 
 # Move into the source directory
 pushd source
+git checkout $BRANCH
 
 # Set proper user name for commits
 git config user.name 'Terra' ; git config user.email 'mail@example.com'
