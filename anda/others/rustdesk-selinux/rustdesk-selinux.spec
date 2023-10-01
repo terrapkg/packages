@@ -18,6 +18,7 @@ URL:		http://rustdesk.com
 Source0:	rustdesk.te
 
 Requires: policycoreutils, libselinux-utils
+BuildRequires: policycoreutils, libselinux-utils, checkpolicy
 Supplements: rustdesk
 Enhances: rustdesk
 Requires(post): selinux-policy-base >= %{selinux_policyver}, policycoreutils
