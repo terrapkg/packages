@@ -10,7 +10,7 @@ print(sh("sudo dnf5 -y install git").sh_stdout());
 
 // Run the actual build script
 print(" $ ./build.sh");
-let cmd = sh("bash anda/others/kernel-fyra/build.sh");
+let cmd = sh("bash build.sh", "anda/others/kernel-fyra/");
 print(cmd.sh_stdout());
 let err = cmd.sh_stderr();
 if !err.is_empty() {
