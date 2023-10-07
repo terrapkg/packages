@@ -1,7 +1,12 @@
 %define debug_package %{nil}
+%global _build_id_links none
+
+# Exclude private libraries
+%global __requires_exclude libffmpeg.so
+%global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 Name:           discord-openasar
-Version:        0.0.28
+Version:        0.0.31
 Release:        1%{?dist}
 Summary:        A snappier Discord rewrite with features like further customization and theming
 License:        MIT AND https://discord.com/terms

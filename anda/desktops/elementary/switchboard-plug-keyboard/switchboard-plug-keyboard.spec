@@ -67,7 +67,7 @@ appstream-util validate-relax --nonet \
 %license COPYING
 
 %{_libdir}/switchboard/%{plug_type}/lib%{plug_name}.so
-
+%{_datadir}/glib-2.0/schemas/keyboard.gschema.xml
 %{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
 

@@ -1,17 +1,12 @@
-%global forgeurl https://invent.kde.org/system/liquidshell
-%global commit 9b14b9766f5d8db2b81c9bc7d4163dc07534402c
-%global scm git
-%forgemeta
-
 Name:		kde-liquidshell
-Version:	1.8.1
+Version:	1.9.0
 Release:	%autorelease
 Summary:	Basic desktop shell using QtWidgets
 Provides:	liquidshell = %version
 
 License:	GPL-3.0
-URL:		%{forgeurl}
-Source0:	%{forgeurl}/-/archive/%{commit}/liquidshell-%{commit}.tar.gz
+URL:		https://invent.kde.org/system/liquidshell
+Source0:	https://download.kde.org/stable/liquidshell/liquidshell-%version.tar.xz
 
 BuildRequires:	cmake
 BuildRequires:	libappstream-glib
@@ -49,7 +44,7 @@ Recommends:	polkit-kde
 liquidshell is a basic Desktop Shell implemented using QtWidgets.
 
 %prep
-%autosetup -n liquidshell-%{commit}
+%autosetup -n liquidshell-%version
 
 %build
 %cmake_kf5 -DWITH_PACKAGEKIT=true
@@ -69,6 +64,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 %{_datadir}/knotifications5/liquidshell.notifyrc
 %{_metainfodir}/org.kde.liquidshell.appdata.xml
 %{_datadir}/xsessions/liquidshell-session.desktop
+%{_datadir}/locale/*/LC_MESSAGES/liquidshell.mo
 
 %changelog
 %autochangelog

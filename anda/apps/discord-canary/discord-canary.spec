@@ -1,7 +1,12 @@
 %define debug_package %{nil}
+%global _build_id_links none
+
+# Exclude private libraries
+%global __requires_exclude libffmpeg.so
+%global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 Name:           discord-canary
-Version:        0.0.163
+Version:        0.0.170
 Release:        1%{?dist}
 Summary:        Free Voice and Text Chat for Gamers
 URL:            discord.com

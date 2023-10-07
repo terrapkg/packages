@@ -45,6 +45,7 @@ import/export, an infinite canvas and an adaptive UI for big and small screens.
 %_datadir/metainfo/com.github.flxzt.rnote.metainfo.xml
 %_datadir/mime/packages/com.github.flxzt.rnote.xml
 %_datadir/rnote/
+%_datadir/fonts/rnote-fonts/
 
 
 %changelog
