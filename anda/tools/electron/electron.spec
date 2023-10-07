@@ -1,12 +1,18 @@
 %define debug_package %{nil}
+%global _build_id_links none
+
 %ifarch x86_64
 %global garch x64
 %elifarch aarch64
 %global garch arm64
 %endif
 
+# Exclude private libraries
+%global __requires_exclude libffmpeg.so
+%global __provides_exclude_from %{_libdir}/%{name}/.*\\.so
+
 Name:			electron
-Version:		25.4.0
+Version:		26.3.0
 Release:		1%{?dist}
 Summary:		Build cross platform desktop apps with web technologies
 License:		MIT
@@ -15,7 +21,6 @@ Source0:		https://github.com/electron/electron/releases/download/v%{version}/chr
 Source1:		https://github.com/electron/electron/releases/download/v%{version}/electron-v%{version}-linux-%{garch}.zip
 Source2:		https://raw.githubusercontent.com/electron/electron/v%version/README.md
 Requires:		c-ares gtk3 minizip nss re2
-Requires:		(ffmpeg-free or ffmpeg)
 BuildRequires:	unzip
 
 %description
@@ -30,17 +35,17 @@ unzip -o %{SOURCE1}
 %build
 
 %install
-install -dm755 %{buildroot}/usr/lib/%{name}/
-find . -mindepth 1 -maxdepth 1 -type f ! -name "*.zip" ! -name "LICENSE*" -exec cp -r --no-preserve=ownership --preserve=mode -t %{buildroot}/usr/lib/%{name}/. {} +
+install -dm755 %buildroot%_libdir/%name/
+find . -mindepth 1 -maxdepth 1 -type f ! -name "*.zip" ! -name "LICENSE*" -exec cp -r --no-preserve=ownership --preserve=mode -t %buildroot%_libdir/%name/. {} +
 
 for _folder in 'locales' 'resources'; do
-	cp -r --no-preserve=ownership --preserve=mode "${_folder}/" %{buildroot}/usr/lib/%{name}/${_folder}/
+	cp -r --no-preserve=ownership --preserve=mode "${_folder}/" %buildroot%_libdir/%name/${_folder}/
 done
 
-chmod 0755 %buildroot/usr/lib/%name/chrome-sandbox
+chmod 0755 %buildroot%_libdir/%name/chrome-sandbox
 
-install -dm755 %{buildroot}/usr/bin
-ln -nfs /usr/lib/%{name}/%{name} %{buildroot}/usr/bin/%{name}
+install -dm755 %buildroot%_bindir
+ln -nfs %_libdir/%name/%name %buildroot%_bindir/%name
 mkdir -p %buildroot%_docdir/%name/
 install -Dm644 %SOURCE2 %buildroot%_docdir/%name/
 
@@ -49,8 +54,8 @@ install -Dm644 %SOURCE2 %buildroot%_docdir/%name/
 %doc README.md
 %license LICENSE
 %license LICENSES.chromium.html
-/usr/lib/electron
-/usr/bin/electron
+%_libdir/%name
+%_bindir/%name
 
 
 %changelog
