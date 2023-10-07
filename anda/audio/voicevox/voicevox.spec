@@ -1,6 +1,6 @@
 %global nodev 16.17.0
 %global npmv 8.11.0
-%global ver 0.14.7
+%global ver 0.14.8
 %define debug_package %nil
 %global _build_id_links none
 
