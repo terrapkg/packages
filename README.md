@@ -1,7 +1,7 @@
 # Terra Sources
 
-[![Repository status](https://repology.org/badge/repository-big/terra_37.svg?header=Terra+37)](https://repology.org/repository/terra_37)
 [![Repository status](https://repology.org/badge/repository-big/terra_38.svg?header=Terra+38)](https://repology.org/repository/terra_38)
+[![Repository status](https://repology.org/badge/repository-big/terra_39.svg?header=Terra+39)](https://repology.org/repository/terra_39)
 
 Terra is a rolling-release Fedora repository for all the software you need.
 With Terra, you can install the latest packages knowing that quality and security are assured.
