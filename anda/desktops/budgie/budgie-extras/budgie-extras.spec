@@ -51,7 +51,6 @@ Requires:	budgie-applet-recentlyused
 Requires:	budgie-applet-rotation-lock
 Requires:	budgie-applet-showtime
 Requires:	budgie-applet-takeabreak
-Requires:	budgie-applet-trash
 Requires:	budgie-applet-visualspace
 Requires:	budgie-applet-wallstreet
 Requires:	budgie-applet-window-shuffler
