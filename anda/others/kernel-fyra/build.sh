@@ -1,6 +1,10 @@
-#!/bin/sh -x
+#!/bin/sh
+
+set -x
 
 pwd
+
+export ANDA_BUILD_DIR="$PWD/../../../anda-build/rpm"
 
 # Set the kernel-ark release build rev number
 export KERNEL_ARK_REV='500'
@@ -8,7 +12,7 @@ export KERNEL_ARK_REV='500'
 # Set the Fyra kernel overlay version
 export FYRA_KERNELOVERLAY_VER=$(cat version.txt)
 
-rm -rf patches source || true
+# rm -rf patches source || true
 
 # Fetch the patches
 git clone https://github.com/FyraLabs/linux-kernel-patches.git patches
@@ -47,6 +51,12 @@ make \
     DISTLOCALVERSION=".fyra${FYRA_KERNELOVERLAY_VER}" \
     dist-srpm -j$(nproc)
 
+#sudo dnf builddep -y source/redhat/rpm/SRPMS/kernel-fyra-*.src.rpm
+
+
+mkdir -p $ANDA_BUILD_DIR/rpms
+mkdir -p $ANDA_BUILD_DIR/srpms
+
 # Build the resulting SRPM
 rpmbuild -rb \
     --without=debug \
@@ -55,12 +65,12 @@ rpmbuild -rb \
 
 # Move the resulting RPM files into the target directory
 for file in redhat/rpm/RPMS/*.rpm
-    do mv -v $file ../anda-build/rpm/rpms/
+    do mv -v $file $ANDA_BUILD_DIR/rpms/
 done
 
 # Also move the SRPM package file
 for file in redhat/rpm/SRPMS/*.src.rpm
-    do mv -v $file ../anda-build/rpm/srpms/
+    do mv -v $file $ANDA_BUILD_DIR/srpms/
 done
 
 # We're done here
