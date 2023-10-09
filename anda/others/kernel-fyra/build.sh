@@ -70,7 +70,7 @@ mkdir -p $ANDA_BUILD_DIR/srpms
 rpmbuild -rb \
     --without=debug \
     --without=configchecks \
-    redhat/rpm/SRPMS/kernel-fyra-*.src.rpm
+    redhat/rpm/SRPMS/kernel-fyra-*.src.rpm || exit 1
 
 # Move the resulting RPM files into the target directory
 for file in redhat/rpm/RPMS/*.rpm
@@ -83,4 +83,4 @@ for file in redhat/rpm/SRPMS/*.src.rpm
 done
 
 # We're done here
-exit 0
+# exit 0
