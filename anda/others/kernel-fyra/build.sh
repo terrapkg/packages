@@ -55,7 +55,12 @@ make \
     DISTLOCALVERSION=".fyra${FYRA_KERNELOVERLAY_VER}" \
     dist-srpm -j$(nproc)
 
-sudo dnf builddep -y source/redhat/rpm/SRPMS/kernel-fyra-*.src.rpm
+
+# find srpm in source/redhat/rpm/SRPMS
+
+find redhat/rpm -type f
+
+sudo dnf builddep -y redhat/rpm/SPECS/kernel-fyra.spec
 sudo dnf in -y bison flex
 
 mkdir -p $ANDA_BUILD_DIR/rpms
