@@ -39,7 +39,7 @@ git checkout $BRANCH
 git config user.name 'Terra' ; git config user.email 'mail@example.com'
 
 # Apply all patches
-for patch in ../patches/${BRANCH}/patches/*.patch
+for patch in ../patches/current/patches/*.patch
     do git am $patch
 done
 
