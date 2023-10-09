@@ -2,6 +2,8 @@
 
 set -x
 
+: "${DELETE_SOURCES:=1}"
+
 pwd
 
 export ANDA_BUILD_DIR="$PWD/../../../anda-build/rpm"
@@ -12,7 +14,9 @@ export KERNEL_ARK_REV='500'
 # Set the Fyra kernel overlay version
 export FYRA_KERNELOVERLAY_VER=$(cat version.txt)
 
-# rm -rf patches source || true
+if [ "$DELETE_SOURCES" = "1" ]; then
+    rm -rf source patches
+fi
 
 # Fetch the patches
 git clone https://github.com/FyraLabs/linux-kernel-patches.git patches
