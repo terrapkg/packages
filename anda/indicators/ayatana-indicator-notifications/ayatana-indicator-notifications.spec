@@ -1,7 +1,7 @@
 Name:       ayatana-indicator-notifications
 Summary:    Ayatana Indicator Notifications Applet
-Version:    22.9.0
-Release:    %autorelease
+Version:    23.10.0
+Release:    1%{?dist}
 License:    GPL-3.0
 URL:        https://github.com/AyatanaIndicators/ayatana-indicator-notifications
 Source0:    %{url}/archive/refs/tags/%{version}.tar.gz
