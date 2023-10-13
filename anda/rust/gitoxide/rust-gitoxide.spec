@@ -4,7 +4,7 @@
 %global crate gitoxide
 
 Name:           rust-gitoxide
-Version:        0.31.0
+Version:        0.31.1
 Release:        1%{?dist}
 Summary:        Command-line application for interacting with git repositories
 
