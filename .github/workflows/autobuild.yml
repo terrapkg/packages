@@ -59,7 +59,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /var/cache
-          key: ${{ runner.os }}-br-${{ matrix.version }}-${{ matrix.pkg.arch }}-${{ matrix.pkg.pkg }}
+          key: ${{ runner.os }}-br-${{ matrix.version }}-${{ matrix.pkg.arch }}
 
       - name: Include custom build template instead of package default
         run: |
