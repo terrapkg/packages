@@ -60,6 +60,10 @@ jobs:
         with:
           path: /var/cache
           key: ${{ runner.os }}-br-${{ matrix.version }}-${{ matrix.pkg.arch }}
+          restore-keys: |
+            ${{ runner.os }}-br-${{ matrix.version }}-${{ matrix.pkg.arch }}
+            ${{ runner.os }}-br-${{ matrix.version }}
+            ${{ runner.os }}-br
 
       - name: Include custom build template instead of package default
         run: cp -v anda/mock-configs/anda.tpl /etc/mock/templates/anda.tpl
