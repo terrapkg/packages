@@ -1,5 +1,5 @@
 Name:           youki
-Version:        0.2.0
+Version:        0.3.0
 Release:        1%{?dist}
 Summary:        A container runtime written in Rust
 
