@@ -4,8 +4,8 @@
 %global crate bandwhich
 
 Name:           rust-bandwhich
-Version:        0.21.0
-Release:        %autorelease
+Version:        0.21.1
+Release:        1%{?dist}
 Summary:        Display current network utilization by process, connection and remote IP/hostname
 
 License:        MIT
