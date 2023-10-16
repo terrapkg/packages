@@ -201,7 +201,7 @@ export -n VALAFLAGS
 %{_libdir}/pkgconfig/libvala-%{api_ver}.pc
 
 %files doc
-%doc %{_datadir}/devhelp/books/vala-%{api_ver}
+%doc %{_libdir}/valadoc-%{api_ver}/doclets/devhelp
 
 %files -n valadoc-nightly
 %{_bindir}/valadoc
