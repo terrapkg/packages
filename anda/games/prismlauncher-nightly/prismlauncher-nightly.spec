@@ -145,6 +145,7 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 %{_datadir}/%{nice_name}/NewLaunch.jar
 %{_datadir}/%{nice_name}/JavaCheck.jar
 %{_datadir}/%{nice_name}/qtlogging.ini
+%{_datadir}/%{nice_name}/NewLaunchLegacy.jar
 %{_datadir}/applications/org.prismlauncher.PrismLauncher.desktop
 %{_metainfodir}/org.prismlauncher.PrismLauncher.metainfo.xml
 %{_datadir}/icons/hicolor/scalable/apps/org.prismlauncher.PrismLauncher.svg
