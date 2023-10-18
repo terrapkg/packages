@@ -3,7 +3,7 @@
 %global priority 90
 
 %global real_name vala
-%global commit b19a389577698a2778bf3c782b04ef34a3c9a961
+%global commit 4c00ab4c4592955c3dee15d2b6a5fa7deea73057
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global repo https://gitlab.gnome.org/GNOME/%{real_name}.git
 
@@ -201,7 +201,7 @@ export -n VALAFLAGS
 %{_libdir}/pkgconfig/libvala-%{api_ver}.pc
 
 %files doc
-%doc %{_datadir}/devhelp/books/vala-%{api_ver}
+%doc %{_libdir}/valadoc-%{api_ver}/doclets/devhelp
 
 %files -n valadoc-nightly
 %{_bindir}/valadoc

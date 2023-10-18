@@ -8,8 +8,8 @@
 
 Name:           switchboard-plug-keyboard
 Summary:        Switchboard Keyboard plug
-Version:        3.1.1
-Release:        2%?dist
+Version:        3.2.1
+Release:        1%{?dist}
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/switchboard-plug-keyboard
@@ -59,7 +59,7 @@ same time. Keyboard shortcuts are also part of this plug.
 
 %check
 appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
+    %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
 
 %files -f %{plug_name}-plug.lang
@@ -67,8 +67,8 @@ appstream-util validate-relax --nonet \
 %license COPYING
 
 %{_libdir}/switchboard/%{plug_type}/lib%{plug_name}.so
-
-%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
+%{_datadir}/glib-2.0/schemas/keyboard.gschema.xml
+%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
 
 %changelog

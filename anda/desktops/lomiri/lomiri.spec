@@ -1,10 +1,10 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri
-%global commit ced1769bb4984465a51c2f45c2bee5c05fb52987
+%global commit 402d8d3e887daddab1876900839dd646b69a9b1b
 %forgemeta
 
 Name:          lomiri
-Version:       0.1.2
-Release:       2%?dist
+Version:       0.1.4
+Release:       1%{?dist}
 Summary:       A convergent desktop environment by Ubports
 
 License:       GPLv3 AND LGPLv3
@@ -87,6 +87,7 @@ Lomiri, Previously Unity8 is a convergent desktop environment built with Qt.
 
 %package tests
 Summary: Test files for %{name}
+Requires: dbus-test-runner
 Requires: %{name}%{?_isa} = %{version}-%{release}
 
 %description tests
@@ -94,6 +95,10 @@ The %{name}-tests package contains test files for %{name}.
 
 %prep
 %autosetup -n lomiri-%commit -p1
+# Ubuntu specific, may have to be updated every background image change on Gnome or Ubuntu
+for i in $(grep -rl warty-final-ubuntu); do
+sed -i 's!warty-final-ubuntu.png!f38/default/f38-01-day.png!' $i
+done
 
 %build
 %cmake -DWerror=OFF -DDEB_HOST_MULTIARCH=%{_arch} -DCMAKE_INSTALL_LOCALSTATEDIR="%{_localstatedir}" -DDISPLAYED_DISTRO_NAME="Fedora" -DUSE_MIROIL=1
@@ -130,6 +135,8 @@ install -Dm644 data/test.sensors %{buildroot}%{_sysconfdir}/lomirisensors
 %{_libdir}/lomiri/qml/LightDM/
 %{_libdir}/lomiri/qml/Lomiri/
 %{_libdir}/lomiri/qml/Powerd/
+%{_libdir}/lomiri/qml/ProcessControl/libProcessControl-qml.so
+%{_libdir}/lomiri/qml/ProcessControl/qmldir
 %{_libdir}/lomiri/qml/ScreenshotDirectory/
 %{_libdir}/lomiri/qml/SessionBroadcast/
 %{_libdir}/lomiri/qml/UInput/
@@ -141,6 +148,7 @@ install -Dm644 data/test.sensors %{buildroot}%{_sysconfdir}/lomirisensors
 %{_datadir}/accountsservice/interfaces/com.lomiri.shell.AccountsService.xml
 %{_datadir}/applications/*.desktop
 %{_datadir}/dbus-1/interfaces/com.lomiri.shell.AccountsService.xml
+%{_datadir}/dbus-1/interfaces/com.lomiri.ProcessControl.xml
 %{_datadir}/lightdm/greeters/lomiri-greeter.desktop
 %{_datadir}/lightdm/lightdm.conf.d/51-lomiri-greeter.conf
 %dir %{_datadir}/lomiri
@@ -161,6 +169,7 @@ install -Dm644 data/test.sensors %{buildroot}%{_sysconfdir}/lomirisensors
 %dir %{_sharedstatedir}/lomiri
 %{_sharedstatedir}/lomiri/version
 %{_sharedstatedir}/polkit-1/localauthority/10-vendor.d/50-com.lomiri.wizard.pkla
+
 
 %files tests
 %{_bindir}/lomiri-mock-indicator-service

@@ -5,8 +5,8 @@
 
 Name:           elementary-code
 Summary:        Code editor from elementary
-Version:        7.0.0
-Release:        3%{?dist}
+Version:        7.1.0
+Release:        1%{?dist}
 License:        GPL-3.0
 
 URL:            https://github.com/elementary/%{srcname}
@@ -90,6 +90,7 @@ This package contains the development headers.
 %{_datadir}/gtksourceview-4/styles/elementary-light.xml
 %{_datadir}/metainfo/io.elementary.code.metainfo.xml
 %{_datadir}/polkit-1/actions/%{appname}.policy
+%{_mandir}/man1/%{appname}.1.gz
 
 %files devel
 %{_includedir}/codecore.h

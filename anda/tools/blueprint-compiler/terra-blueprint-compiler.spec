@@ -1,5 +1,5 @@
 Name:			terra-blueprint-compiler
-Version:		0.8.1
+Version:		0.10.0
 Release:		1%{?dist}
 License:		LGPL-3.0-or-later
 Summary:		Markup language for GTK user interfaces

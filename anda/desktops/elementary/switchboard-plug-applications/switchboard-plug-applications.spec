@@ -8,7 +8,7 @@
 
 Name:           switchboard-plug-applications
 Summary:        Switchboard Applications plug
-Version:        7.0.0
+Version:        7.0.1
 Release:        1%{?dist}
 License:        GPL-3.0-or-later
 

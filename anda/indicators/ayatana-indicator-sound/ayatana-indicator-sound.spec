@@ -1,7 +1,7 @@
 Name:       ayatana-indicator-sound
 Summary:    Ayatana Indicator Sound Applet
-Version:    22.9.2
-Release:    %autorelease
+Version:    23.10.0
+Release:    1%{?dist}
 License:    GPLv3
 URL:        https://github.com/AyatanaIndicators/ayatana-indicator-sound
 Source0:    %{url}/archive/refs/tags/%{version}.tar.gz
@@ -66,6 +66,7 @@ This package contains the development header files for %{name}.
 %{_datadir}/dbus-1/interfaces/org.ayatana.indicator.sound.AccountsService.xml
 %{_datadir}/glib-2.0/schemas/org.ayatana.indicator.sound.gschema.xml
 %{_datadir}/polkit-1/actions/org.ayatana.indicator.sound.AccountsService.policy
+%{_datadir}/polkit-1/rules.d/50-org.ayatana.indicator.sound.AccountsService.rules
 %{_sharedstatedir}/polkit-1/localauthority/10-vendor.d/50-org.ayatana.indicator.sound.AccountsService.pkla
 
 %changelog

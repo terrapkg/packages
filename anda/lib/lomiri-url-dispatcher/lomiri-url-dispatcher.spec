@@ -1,10 +1,10 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-url-dispatcher
-%global commit 9c203c675ef15eeef365b72f7843cf35a4237129
+%global commit 1ac312239a088e5a797b786a22bec42cb0037039
 %forgemeta
 
 Name:           lomiri-url-dispatcher
-Version:        0.1.2
-Release:        %autorelease
+Version:        0.1.3
+Release:        1%{?dist}
 Summary:        A small library for handling URLs over dbus
 
 License:        LGPL-3.0

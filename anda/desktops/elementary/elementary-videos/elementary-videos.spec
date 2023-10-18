@@ -3,8 +3,8 @@
 
 Name:           elementary-videos
 Summary:        Video player and library app from elementary
-Version:        2.9.1
-Release:        2%{?dist}
+Version:        3.0.0
+Release:        1%{?dist}
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/%{srcname}

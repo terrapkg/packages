@@ -1,10 +1,10 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-system-settings
-%global commit 42b4b88db8f6ce1ef1cf085e8fd8de6d4484f5d4
+%global commit d3f6014276c63639c850c6fae4175e34de21d33a
 %forgemeta
 
 Name:       lomiri-system-settings
-Version:    1.0.1
-Release:    %autorelease
+Version:    1.0.2
+Release:    1%{?dist}
 Summary:    The system settings application for Lomiri
 License:    GPLv3
 URL:        https://gitlab.com/ubports/development/core/lomiri-system-settings
@@ -20,6 +20,7 @@ BuildRequires: pkgconfig(geonames)
 BuildRequires: pkgconfig(icu-i18n)
 #BuildRequires: pkgconfig(libandroid-properties)
 BuildRequires: pkgconfig(click-0.4)
+BuildRequires: pkgconfig(deviceinfo)
 BuildRequires: pkgconfig(gsettings-qt)
 BuildRequires: pkgconfig(QtGui)
 BuildRequires: pkgconfig(gnome-desktop-3.0)

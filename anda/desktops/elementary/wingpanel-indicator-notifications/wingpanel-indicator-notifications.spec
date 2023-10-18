@@ -5,7 +5,7 @@
 
 Name:           wingpanel-indicator-notifications
 Summary:        Notifications Indicator for wingpanel
-Version:        7.0.0
+Version:        7.1.0
 Release:        1%{?dist}
 License:        LGPL-2.0-or-later
 
@@ -62,6 +62,7 @@ appstream-util validate-relax --nonet \
 %{_libdir}/wingpanel/libnotifications.so
 
 %{_datadir}/metainfo/%{appname}.metainfo.xml
+%{_datadir}/glib-2.0/schemas/%{appname}.gschema.xml
 
 
 %changelog
