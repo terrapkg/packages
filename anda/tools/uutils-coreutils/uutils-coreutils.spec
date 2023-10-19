@@ -23,7 +23,7 @@ behavior might be experienced.
 %make_install PREFIX=%buildroot%_prefix MANDIR=%buildroot%_mandir/man1 PROFILE=release MULTICALL=y
 
 %files
-%doc README
+%doc README.md
 %license LICENSE
 
 %changelog
