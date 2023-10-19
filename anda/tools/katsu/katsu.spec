@@ -24,7 +24,7 @@ fast, and easy to use while still providing many output formats.
 
 %install
 export CARGO_INSTALL_ROOT=%buildroot
-%(echo "%{cargo_install}" | sed "s@--profile rpm@--profile release@g")
+cargo install
 ls -alh
 ls -alh %buildroot
 
