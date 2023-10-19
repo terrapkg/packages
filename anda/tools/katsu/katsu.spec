@@ -21,7 +21,7 @@ fast, and easy to use while still providing many output formats.
 %(echo "%{cargo_build}" | sed "s@--profile rpm@--profile release@g" | sed "s@-j @@")
 
 %install
-%cargo_install
+%(echo "%{cargo_install}" | sed "s@--profile rpm@--profile release@g")
 
 %files
 %doc README.md
