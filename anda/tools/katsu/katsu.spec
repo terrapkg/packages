@@ -18,7 +18,7 @@ fast, and easy to use while still providing many output formats.
 %autosetup
 
 %build
-%(echo "%{cargo_build}" | sed 's@--profile rpm@--profile release@g' | sed 's@-Z avoid-dev-deps @@g')
+%(echo "%{cargo_build}" | sed "s@--profile rpm@--profile release@g" | sed "s@-j @-j%4 @")'
 
 %install
 %cargo_install
