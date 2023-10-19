@@ -7,6 +7,8 @@ URL:			https://github.com/uutils/coreutils
 Source0:		%url/archive/refs/tags/%version.tar.gz
 Requires:		glibc gcc-devel
 BuildRequires:	cargo make gcc-c++
+Conflicts:		coreutils
+Provides:		coreutils
 
 %description
 uutils coreutils is a cross-platform reimplementation of the GNU coreutils in Rust.
