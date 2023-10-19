@@ -7,7 +7,7 @@ URL:			https://github.com/FyraLabs/katsu
 Source0:		%url/archive/refs/tags/%version.tar.gz
 Requires:		xorriso clang-devel dracut limine grub2 systemd-devel squashfs-tools
 Requires:		dracut-live dracut-config-generic dracut-config-rescue grub2-tools-extra dracut-squash
-BuildRequires:	cargo
+BuildRequires:	cargo rust-packaging
 
 %description
 Katsu is a tool for building bootable images from RPM based systems.
@@ -27,3 +27,6 @@ fast, and easy to use while still providing many output formats.
 %doc README
 %license LICENSE
 %_bindir/katsu
+
+%changelog
+%autochangelog
