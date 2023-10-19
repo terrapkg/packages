@@ -24,7 +24,7 @@ fast, and easy to use while still providing many output formats.
 %cargo_install
 
 %files
-%doc README
+%doc README.md
 %license LICENSE
 %_bindir/katsu
 
