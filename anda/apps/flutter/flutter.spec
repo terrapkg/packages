@@ -18,7 +18,7 @@ tar xf %SOURCE0
 %build
 
 %install
-mkdir -p %buildroot%_datadir
+mkdir -p %buildroot%_datadir %buildroot%_bindir
 mv %name/ %buildroot%_datadir/
 ln -s %_datadir/%name/bin/%name %buildroot%_bindir/%name
 
