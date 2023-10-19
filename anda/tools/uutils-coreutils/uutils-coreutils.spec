@@ -14,7 +14,7 @@ While all programs have been implemented, some options might be missing or diffe
 behavior might be experienced.
 
 %prep
-%autosetup
+%autosetup -n coreutils-%version
 
 %build
 %make_build PROFILE=release
