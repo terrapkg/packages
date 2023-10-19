@@ -23,14 +23,14 @@ fast, and easy to use while still providing many output formats.
 %(echo "%{cargo_build}" | sed "s@--profile rpm@--profile release@g" | sed "s@-j @@")
 
 %install
-export CARGO_INSTALL_ROOT=%buildroot
+export CARGO_INSTALL_ROOT=%buildroot%_prefix
 cargo install --path .
-ls -alh
-ls -alh %buildroot
+rm %buildroot%_prefix/.crates.toml %buildroot%_prefix/.crates2.json
 
 %files
 %doc README.md
 %license LICENSE
+%_bindir/katsu
 
 
 %changelog
