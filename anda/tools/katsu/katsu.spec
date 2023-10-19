@@ -24,7 +24,7 @@ fast, and easy to use while still providing many output formats.
 
 %install
 export CARGO_INSTALL_ROOT=%buildroot
-cargo install
+cargo install --path .
 ls -alh
 ls -alh %buildroot
 
