@@ -24,7 +24,7 @@ behavior might be experienced.
 %install
 %make_install PREFIX=%buildroot%_prefix MANDIR=%buildroot%_mandir/man1 PROFILE=release MULTICALL=y PROG_PREFIX=uu-
 
-%define cmds() $(echo %1{arch,base{32,64,name,nc},cat,ch{grp,mod,own,root},cksum,comm,coreutils,cp,csplit,cut,date,dd,df,dir{,colors,name},du,echo,env,expand,expr,factor,false,fmt,fold,groups,hashsum,head,host{id,name},id,install,join,kill,link,ln,logname,ls,mk{dir,fifo,nod,temp},more,mv,nice,nl,nohup,nproc,numfmt,od,paste,pathchk,pinky,pr,printenv,printf,ptx,pwd,readlink,realpath,rm{,dir},seq,shred,shuf,sleep,sort,split,stat,stdbuf,sum,sync,tac,tail,tee,test,timeout,touch,tr,true,truncate,tsort,tty,uname,un{expand,iq,link},uptime,users,vdir,wc,who{,ami},yes}%2 | tr " " "\n")
+%define cmds() $(echo %1{arch,base{32,64,name,nc},cat,ch{grp,mod,own,root},cksum,comm,coreutils,cp,csplit,cut,date,dd,df,dir{,colors,name},du,echo,env,expand,expr,factor,false,fmt,fold,groups,hashsum,head,host{id,name},id,install,join,kill,link,ln,logname,ls,mk{dir,fifo,nod,temp},more,mv,nice,nl,nohup,nproc,numfmt,od,paste,pathchk,pinky,pr,printenv,printf,ptx,pwd,readlink,realpath,rm{,dir},seq,shred,shuf,sleep,sort,split,stat,stdbuf,sum,sync,tac,tail,tee,test,timeout,touch,tr,true,truncate,tsort,tty,uname,un{expand,iq,link},uptime,users,vdir,wc,who{,ami},yes}%2)
 cat <<EOF > files.txt
 %cmds %_bindir/uu- ""
 "%_bindir/uu-["
@@ -33,7 +33,7 @@ cat <<EOF > files.txt
 %cmds %_mandir/man1/ .1
 %cmds %_datadir/zsh/site-functions/_ ""
 EOF
-
+sed -i 's@ @\n@g' files.txt
 
 %files -f files.txt
 %doc README.md
