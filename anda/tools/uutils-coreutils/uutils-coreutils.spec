@@ -33,12 +33,13 @@ cat <<EOF > files.txt
 "%_bindir/uu-["
 %cmds %_datadir/bash-completion/completions/uu- ""
 %cmds %_datadir/fish/vendor_completions.d/uu- .fish
-%cmds %_mandir/man1/uu- .1
+%dnl %cmds %_mandir/man1/uu- .1
 %cmds %_datadir/zsh/site-functions/_uu- ""
 EOF
 sed -i 's@ @\n@g' files.txt
 # remove buildroot from paths in files.txt
-sed -i "s@%buildroot@@g" files.txt
+sed -i "s@%buildroot@/@g" files.txt
+cat files.txt
 
 %files -f files.txt
 %doc README.md
