@@ -5,7 +5,7 @@ Summary:		Cross-platform Rust rewrite of the GNU coreutils
 License:		MIT
 URL:			https://github.com/uutils/coreutils
 Source0:		%url/archive/refs/tags/%version.tar.gz
-Requires:		glibc gcc-devel
+Requires:		glibc
 BuildRequires:	cargo make gcc-c++
 #Conflicts:		coreutils
 #Provides:		coreutils
