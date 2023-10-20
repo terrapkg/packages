@@ -37,6 +37,8 @@ cat <<EOF > files.txt
 %cmds %_datadir/zsh/site-functions/_uu- ""
 EOF
 sed -i 's@ @\n@g' files.txt
+# remove buildroot from paths in files.txt
+sed -i "s@%buildroot@@g" files.txt
 
 %files -f files.txt
 %doc README.md
