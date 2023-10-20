@@ -11,6 +11,7 @@ BuildRequires:	cargo make gcc-c++
 #Provides:		coreutils
 BuildRequires:  libselinux-devel
 BuildRequires:  selinux-policy-devel
+BuildRequires:  clang-devel
 
 %description
 uutils coreutils is a cross-platform reimplementation of the GNU coreutils in Rust.
@@ -37,7 +38,7 @@ behavior might be experienced.
 %dnl EOF
 %dnl sed -i 's@ @\n@g' files.txt
 
-%files #-f files.txt
+%files -f files.txt
 %doc README.md
 %license LICENSE
 
