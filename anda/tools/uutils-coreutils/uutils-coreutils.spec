@@ -41,12 +41,7 @@ sed -i 's@ @\n@g' files.txt
 sed -i "s@%buildroot@/@g" files.txt
 cat files.txt
 
-%{lua:
-files = rpm.expand("%(cat files.txt)")
-}
-
-%files
-%{lua:print(files)}
+%files -f files.txt
 %doc README.md
 %license LICENSE
 
