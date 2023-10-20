@@ -33,7 +33,7 @@ cat <<EOF > files.txt
 %_bindir/uu-[
 %cmds %_datadir/bash-completion/completions/uu- ""
 %cmds %_datadir/fish/vendor_completions.d/uu- .fish
-%cmds %_mandir/man1/uu- .1
+%cmds %_mandir/man1/uu- .1.gz
 %cmds %_datadir/zsh/site-functions/_uu- ""
 EOF
 sed -i 's@ @\n@g' files.txt
