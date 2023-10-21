@@ -68,7 +68,7 @@ sed -i "s@%buildroot@/@g" files-replace.txt
 %doc README.md
 %license LICENSE
 
-%files replace -f files.txt
+%files replace -f files-replace.txt
 %doc README.md
 %license LICENSE
 
