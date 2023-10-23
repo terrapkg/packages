@@ -3,7 +3,7 @@
 Name:			katsu-systemd-sysusers-presets
 Version:		1.0
 Release:		%autorelease
-Summary:		A set of systemd system user presets to supplement Fedora's defaults
+Summary:		A set of systemd system user presets to supplement Fedora's defaults, used by Katsu
 License:		GPLv3+
 Source0:		polkit.conf
 Source1:		rpcbind.conf
