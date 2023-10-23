@@ -49,9 +49,10 @@ install res/128x128@2x.png %{buildroot}/usr/share/icons/hicolor/256x256/apps/rus
 install res/scalable.svg %{buildroot}/usr/share/icons/hicolor/scalable/apps/rustdesk.svg
 install res/rustdesk.desktop %{buildroot}/usr/share/rustdesk/files/
 install res/rustdesk-link.desktop %{buildroot}/usr/share/rustdesk/files/
-
+install -d %{buildroot}/usr/share/applications/
 install res/rustdesk.desktop %{buildroot}/usr/share/applications/
 install res/rustdesk-link.desktop %{buildroot}/usr/share/applications/
+install -d %{buildroot}/etc/systemd/system/
 install res/rustdesk.service %{buildroot}/etc/systemd/system/rustdesk.service
 
 %files
