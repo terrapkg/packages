@@ -51,6 +51,8 @@ install res/rustdesk.desktop %{buildroot}/usr/share/rustdesk/files/
 install res/rustdesk-link.desktop %{buildroot}/usr/share/rustdesk/files/
 
 install res/rustdesk.desktop %{buildroot}/usr/share/applications/
+install res/rustdesk-link.desktop %{buildroot}/usr/share/applications/
+install res/rustdesk.service %{buildroot}/etc/systemd/system/rustdesk.service
 
 %files
 /usr/bin/rustdesk
@@ -62,7 +64,8 @@ install res/rustdesk.desktop %{buildroot}/usr/share/applications/
 /usr/share/rustdesk/files/rustdesk-link.desktop
 
 /usr/share/applications/rustdesk.desktop
-
+/usr/share/applications/rustdesk-link.desktop
+/etc/systemd/system/rustdesk.service
 
 
 %pre
@@ -78,9 +81,6 @@ case "$1" in
 esac
 
 %post
-cp /usr/share/rustdesk/files/rustdesk.service /etc/systemd/system/rustdesk.service
-cp /usr/share/rustdesk/files/rustdesk.desktop /usr/share/applications/
-cp /usr/share/rustdesk/files/rustdesk-link.desktop /usr/share/applications/
 systemctl daemon-reload
 systemctl enable rustdesk
 systemctl start rustdesk
@@ -92,7 +92,6 @@ case "$1" in
     # for uninstall
     systemctl stop rustdesk || true
     systemctl disable rustdesk || true
-    rm /etc/systemd/system/rustdesk.service || true
   ;;
   1)
     # for upgrade
@@ -103,8 +102,6 @@ esac
 case "$1" in
   0)
     # for uninstall
-    rm /usr/share/applications/rustdesk.desktop || true
-    rm /usr/share/applications/rustdesk-link.desktop || true
     update-desktop-database
   ;;
   1)
