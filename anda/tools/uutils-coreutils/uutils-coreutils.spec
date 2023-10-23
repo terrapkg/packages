@@ -21,6 +21,7 @@ behavior might be experienced.
 Summary:		Cross-platform Rust replacement of the GNU coreutils
 Conflicts:		coreutils
 Provides:       coreutils
+Provides:       coreutils(%arch)
 
 %description replace
 uutils coreutils is a cross-platform reimplementation of the GNU coreutils in Rust.
