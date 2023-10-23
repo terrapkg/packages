@@ -18,7 +18,7 @@ Source0:	https://github.com/rustdesk/rustdesk/archive/refs/tags/%{version}.tar.g
 Source1:    https://github.com/c-smile/sciter-sdk/raw/master/bin.lnx/%{scarch}/libsciter-gtk.so
 
 BuildRequires:  rustc cargo anda-srpm-macros gcc-c++ git curl wget nasm yasm gcc gtk3-devel clang libxcb-devel libxdo-devel libXfixes-devel pulseaudio-libs-devel cmake alsa-lib-devel
-BuildRequires:  gstreamer1-devel
+BuildRequires:  gstreamer1-devel rust-gstreamer-devel pkgconfig(gstreamer-app-1.0)
 BuildRequires:  libvpx-devel
 Requires:   gtk3 libxcb libxdo libXfixes alsa-lib libappindicator libvdpau1 libva2 pam gstreamer1-plugins-base
 
