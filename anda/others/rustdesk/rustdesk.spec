@@ -32,12 +32,11 @@ The best open-source remote desktop client software, written in Rust.
 
 
 %build
-cargo build -F linux-pkg-config --release --all-features
+cargo build -F linux-pkg-config --release
 %global __python %{__python3}
 
 
 %install
-%cargo_install
 mkdir -p %{buildroot}/usr/bin/
 mkdir -p %{buildroot}/usr/lib/rustdesk/
 mkdir -p %{buildroot}/usr/share/rustdesk/files/
