@@ -1,6 +1,6 @@
 %define debug_package %nil
 
-Name:			systemd-sysusers-presets
+Name:			katsu-systemd-sysusers-presets
 Version:		1.0
 Release:		%autorelease
 Summary:		A set of systemd system user presets to supplement Fedora's defaults
@@ -18,6 +18,8 @@ post-install script, this package is a no-op on its own. It is intended to be
 used as a dependency for other packages that need to create system users.
 For example, Polkit needs to create the polkitd system user, so this package
 generates the polkitd system user for Polkit to use properly.
+
+Katsu uses this package to fix Fedora's default system user presets, which
 
 %package polkit
 Summary:		Polkit system user
@@ -40,8 +42,8 @@ RPC bind system user preset
 %prep
 
 %install
-install -D %{SOURCE0} %{buildroot}%{_sysusersdir}/polkit.conf
-install -D %{SOURCE1} %{buildroot}%{_sysusersdir}/rpcbind.conf
+install -D %{SOURCE0} %{buildroot}%{_sysusersdir}/katsu-polkit.conf
+install -D %{SOURCE1} %{buildroot}%{_sysusersdir}/katsu-rpcbind.conf
 
 %post polkit
 systemd-sysusers %{_sysusersdir}/polkit.conf
@@ -51,9 +53,9 @@ systemd-sysusers %{_sysusersdir}/rpcbind.conf
 
 
 %files polkit
-%{_sysusersdir}/polkit.conf
+%{_sysusersdir}/katsu-polkit.conf
 %files rpcbind
-%{_sysusersdir}/rpcbind.conf
+%{_sysusersdir}/katsu-rpcbind.conf
 
 %changelog
 %autochangelog
