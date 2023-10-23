@@ -50,6 +50,8 @@ install res/scalable.svg %{buildroot}/usr/share/icons/hicolor/scalable/apps/rust
 install res/rustdesk.desktop %{buildroot}/usr/share/rustdesk/files/
 install res/rustdesk-link.desktop %{buildroot}/usr/share/rustdesk/files/
 
+install res/rustdesk.desktop %{buildroot}/usr/share/applications/
+
 %files
 /usr/bin/rustdesk
 /usr/lib/rustdesk/libsciter-gtk.so
@@ -58,7 +60,8 @@ install res/rustdesk-link.desktop %{buildroot}/usr/share/rustdesk/files/
 /usr/share/icons/hicolor/scalable/apps/rustdesk.svg
 /usr/share/rustdesk/files/rustdesk.desktop
 /usr/share/rustdesk/files/rustdesk-link.desktop
-/usr/share/rustdesk/files/__pycache__/*
+
+/usr/share/applications/rustdesk.desktop
 
 
 
