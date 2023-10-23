@@ -24,7 +24,11 @@ Katsu uses this package to fix Fedora's default system user presets, which
 %package polkit
 Summary:		Polkit system user
 Requires:       rpcbind
-%systemd_requires
+
+Requires(post): systemd
+Requires(preun): systemd
+Requires(postun): systemd 
+
 Supplements:    polkit
 
 %description polkit
@@ -33,7 +37,11 @@ Polkit system user preset
 %package rpcbind
 Summary:		RPC bind system user
 Requires:       rpcbind
-%systemd_requires
+
+Requires(post): systemd
+Requires(preun): systemd
+Requires(postun): systemd
+
 Supplements:    rpcbind
 
 %description rpcbind
