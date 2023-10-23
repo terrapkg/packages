@@ -22,6 +22,7 @@ For example, Polkit needs to create the polkitd system user, so this package
 generates the polkitd system user for Polkit to use properly.
 
 Katsu uses this package to fix Fedora's default system user presets, which
+fails to add the system users for Polkit and rpcbind.
 
 %package polkit
 Summary:		Polkit system user
