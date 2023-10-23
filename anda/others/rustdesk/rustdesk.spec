@@ -32,7 +32,7 @@ The best open-source remote desktop client software, written in Rust.
 
 
 %build
-cargo build -F linux-pkg-config --release
+cargo build -F linux-pkg-config --release --all-features
 %global __python %{__python3}
 
 
