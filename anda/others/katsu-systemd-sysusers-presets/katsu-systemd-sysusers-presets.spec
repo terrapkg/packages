@@ -56,10 +56,10 @@ install -D %{SOURCE0} %{buildroot}%{_sysusersdir}/katsu-polkit.conf
 install -D %{SOURCE1} %{buildroot}%{_sysusersdir}/katsu-rpcbind.conf
 
 %post polkit
-systemd-sysusers %{_sysusersdir}/polkit.conf
+systemd-sysusers %{_sysusersdir}/katsu-polkit.conf
 
 %post rpcbind
-systemd-sysusers %{_sysusersdir}/rpcbind.conf
+systemd-sysusers %{_sysusersdir}/katsu-rpcbind.conf
 
 
 %files polkit
