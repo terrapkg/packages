@@ -8,7 +8,9 @@ License:		GPLv3+
 Source0:		polkit.conf
 Source1:		rpcbind.conf
 BuildRequires:  systemd-rpm-macros
-%systemd_requires
+Requires(post): systemd
+Requires(preun): systemd
+Requires(postun): systemd 
 
 
 %description
