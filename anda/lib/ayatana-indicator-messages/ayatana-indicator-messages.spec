@@ -1,6 +1,6 @@
 Name:       ayatana-indicator-messages
 Summary:    Ayatana Indicator Messages Applet
-Version:    22.9.0
+Version:    23.10.0
 Release:    %autorelease
 License:    GPLv3
 URL:        https://github.com/AyatanaIndicators/ayatana-indicator-messages

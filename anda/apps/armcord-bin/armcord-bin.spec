@@ -1,4 +1,5 @@
 %define debug_package %nil
+%global _build_id_links none
 
 %ifarch x86_64
 %global src ArmCord-%version
@@ -8,8 +9,12 @@
 %global src ArmCord-%version-armv7l
 %endif
 
+# Exclude private libraries
+%global __requires_exclude libffmpeg.so
+%global __provides_exclude_from %{_datadir}/armcord/.*\\.so
+
 Name:			armcord-bin
-Version:		3.2.3
+Version:		3.2.5
 Release:		1%{?dist}
 License:		OSL-3.0
 Summary:		Custom lightweight Discord client designed to enhance your experience
