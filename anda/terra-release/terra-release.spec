@@ -1,5 +1,5 @@
 Name:           terra-release
-Version:        37
+Version:        38
 Release:        1
 Summary:        Release package for Terra
 
@@ -24,8 +24,5 @@ install -D -p -m 0644 -t %{buildroot}%{_sysconfdir}/yum.repos.d %{SOURCE0}
 %config(noreplace) %{_sysconfdir}/yum.repos.d/terra.repo
 
 %changelog
-* Sat May 13 2023 windowsboy111 <windowsboy111@fyralabs.com> - 37-1
-- Ported to Terra 37
-
 * Sat May 6 2023 Lleyton Gray <lleyton@fyralabs.com> - 38-1
 - Initial package
