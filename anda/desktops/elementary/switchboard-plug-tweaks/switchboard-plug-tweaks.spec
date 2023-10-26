@@ -5,7 +5,7 @@
 
 Name:           switchboard-plug-tweaks
 Summary:        Switchboard Tweaks Plug
-Version:        1.1.0
+Version:        1.1.1
 Release:        1%{?dist}
 License:        GPL-3.0-or-later
 
