@@ -1,5 +1,6 @@
 project pkg {
+	arches = ["x86_64"]
 	rpm {
-		spec = "anda-mock-configs.spec"
+		spec = "terra-mock-configs.spec"
 	}
 }
