@@ -30,6 +30,7 @@ autoreconf -vfi
 %_includedir/rda/
 %_libdir/girepository-1.0/rda-*.typelib
 %_libdir/librda.so*
+%_libdir/pkgconfig/rda.pc
 %_datadir/gir-1.0/rda-*.gir
 %_datadir/locale/*/LC_MESSAGES/librda.mo
 %_mandir/man1/rdacheck.1.gz
