@@ -32,7 +32,7 @@ autoreconf -vfi
 %_libdir/librda.so*
 %_datadir/gir-1.0/rda-*.gir
 %_datadir/locale/*/LC_MESSAGES/librda.mo
-%_mandir/man/man1/rdacheck.1.gz
+%_mandir/man1/rdacheck.1.gz
 
 %changelog
 %autochangelog
