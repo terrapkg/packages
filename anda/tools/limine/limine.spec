@@ -22,7 +22,7 @@ the reference implementation for the Limine boot protocol.
 %make_install
 
 %files
-%doc README.md CONFIG.md PHILOSOPHY.md PROTOCOL.md
+%doc README.md CONFIG.md PHILOSOPHY.md PROTOCOL.md COPYING
 %license COPYING
 %_bindir/limine
 %_includedir/limine.h
