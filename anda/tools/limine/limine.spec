@@ -1,5 +1,5 @@
 Name:		limine
-Version:	5.20231006.0
+Version:	5.20231028.0
 Release:	1%{?dist}
 Summary:	Modern, advanced, portable, multiprotocol bootloader
 License:	BSD-2-Clause
@@ -22,8 +22,8 @@ the reference implementation for the Limine boot protocol.
 %make_install
 
 %files
-%doc README.md CONFIG.md PHILOSOPHY.md PROTOCOL.md LICENSE
-%license LICENSE
+%doc README.md CONFIG.md PHILOSOPHY.md PROTOCOL.md COPYING
+%license COPYING
 %_bindir/limine
 %_includedir/limine.h
 %_datadir/limine/

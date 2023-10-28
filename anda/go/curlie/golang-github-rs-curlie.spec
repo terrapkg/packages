@@ -3,7 +3,7 @@
 
 # https://github.com/rs/curlie
 %global goipath         github.com/rs/curlie
-Version:                1.7.1
+Version:                1.7.2
 
 %gometa -f
 
