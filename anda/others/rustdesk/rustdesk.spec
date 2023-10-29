@@ -1,3 +1,8 @@
+%global pamsys_ver v1.0.0-alpha4
+%global pamsys 1.0.0-alpha4
+%global pam_ver v0.7.0
+%global pam 0.7.0
+
 %ifarch x86_64
 %global scarch x64
 %else
@@ -11,15 +16,20 @@ Version:	1.2.3
 Release:	1%{?dist}
 Summary:	An open-source remote desktop, and alternative to TeamViewer.
 
-Group:	    System Environment/Base		
+Group:	    System Environment/Base
 License:	GPLv2+	
 URL:		http://rustdesk.com
 Source0:	https://github.com/rustdesk/rustdesk/archive/refs/tags/%{version}.tar.gz
 Source1:    https://github.com/c-smile/sciter-sdk/raw/master/bin.lnx/%{scarch}/libsciter-gtk.so
+Source2:    https://github.com/1wilkens/pam/archive/refs/tags/%{pam_ver}.tar.gz
+Source3:    https://github.com/1wilkens/pam-sys/archive/refs/tags/%{pamsys_ver}.tar.gz
+Patch0:     pam-deps.diff
+Patch1:     pam-sys-build.patch
+Patch2:     rustdesk-deps.diff
 
-BuildRequires:  rustc cargo anda-srpm-macros gcc-c++ git curl wget nasm yasm gcc gtk3-devel clang libxcb-devel libxdo-devel libXfixes-devel pulseaudio-libs-devel cmake alsa-lib-devel
+BuildRequires:  rust-packaging anda-srpm-macros gcc-c++ git curl wget nasm yasm gcc gtk3-devel clang libxcb-devel libxdo-devel libXfixes-devel pulseaudio-libs-devel cmake alsa-lib-devel
 BuildRequires:  gstreamer1-devel rust-gstreamer-devel pkgconfig(gstreamer-app-1.0)
-BuildRequires:  libvpx-devel opus-devel libyuv-devel libaom-devel git-core pam-devel
+BuildRequires:  libvpx-devel opus-devel libyuv-devel libaom-devel pam-devel
 Requires:   gtk3 libxcb libxdo libXfixes alsa-lib libappindicator libvdpau1 libva2 pam gstreamer1-plugins-base
 
 
@@ -28,45 +38,54 @@ Requires:   gtk3 libxcb libxdo libXfixes alsa-lib libappindicator libvdpau1 libv
 The best open-source remote desktop client software, written in Rust.
 
 %prep
-%autosetup -n rustdesk-%{version}
+%setup -q -n rustdesk-%version
+%patch 2 -p1
+tar xf %SOURCE2
+mv pam-%pam pam
+cd pam
+git apply %PATCH0
+tar xf %SOURCE3
+mv pam-sys-%pamsys pam-sys
+cd pam-sys
+git apply %PATCH1
+cd ../..
+%cargo_prep_online
 
 
 %build
-cargo build -F linux-pkg-config --release
+%cargo_build -f linux-pkg-config
 %global __python %{__python3}
 
 
 %install
-mkdir -p %{buildroot}/usr/bin/
-mkdir -p %{buildroot}/usr/lib/rustdesk/
-mkdir -p %{buildroot}/usr/share/rustdesk/files/
-mkdir -p %{buildroot}/usr/share/icons/hicolor/256x256/apps/
-mkdir -p %{buildroot}/usr/share/icons/hicolor/scalable/apps/
-install -m 755 target/release/rustdesk %{buildroot}/usr/bin/rustdesk
-install %{SOURCE1} %{buildroot}/usr/lib/rustdesk/libsciter-gtk.so
-install res/rustdesk.service %{buildroot}/usr/share/rustdesk/files/
-install res/128x128@2x.png %{buildroot}/usr/share/icons/hicolor/256x256/apps/rustdesk.png
-install res/scalable.svg %{buildroot}/usr/share/icons/hicolor/scalable/apps/rustdesk.svg
-install res/rustdesk.desktop %{buildroot}/usr/share/rustdesk/files/
-install res/rustdesk-link.desktop %{buildroot}/usr/share/rustdesk/files/
-install -d %{buildroot}/usr/share/applications/
-install res/rustdesk.desktop %{buildroot}/usr/share/applications/
-install res/rustdesk-link.desktop %{buildroot}/usr/share/applications/
-install -d %{buildroot}/etc/systemd/system/
-install res/rustdesk.service %{buildroot}/etc/systemd/system/rustdesk.service
+%cargo_install -f linux-pkg-config
+mkdir -p %buildroot/usr/lib/rustdesk/
+mkdir -p %buildroot%_datadir/rustdesk/files/
+mkdir -p %buildroot%_datadir/icons/hicolor/{256x256,scalable}/apps/
+install %SOURCE1 %buildroot/usr/lib/rustdesk/libsciter-gtk.so
+install res/rustdesk.service %buildroot%_datadir/rustdesk/files/
+install res/128x128@2x.png %buildroot%_datadir/icons/hicolor/256x256/apps/rustdesk.png
+install res/scalable.svg %buildroot%_datadir/icons/hicolor/scalable/apps/rustdesk.svg
+install res/rustdesk.desktop %buildroot%_datadir/rustdesk/files/
+install res/rustdesk-link.desktop %buildroot%_datadir/rustdesk/files/
+install -d %buildroot%_datadir/applications/
+install res/rustdesk.desktop %buildroot%_datadir/applications/
+install res/rustdesk-link.desktop %buildroot%_datadir/applications/
+install -d %buildroot%_unitdir
+install res/rustdesk.service %buildroot%_unitdir/rustdesk.service
 
 %files
-/usr/bin/rustdesk
+%_bindir/rustdesk
 /usr/lib/rustdesk/libsciter-gtk.so
-/usr/share/rustdesk/files/rustdesk.service
-/usr/share/icons/hicolor/256x256/apps/rustdesk.png
-/usr/share/icons/hicolor/scalable/apps/rustdesk.svg
-/usr/share/rustdesk/files/rustdesk.desktop
-/usr/share/rustdesk/files/rustdesk-link.desktop
+%_datadir/rustdesk/files/rustdesk.service
+%_datadir/icons/hicolor/256x256/apps/rustdesk.png
+%_datadir/icons/hicolor/scalable/apps/rustdesk.svg
+%_datadir/rustdesk/files/rustdesk.desktop
+%_datadir/rustdesk/files/rustdesk-link.desktop
 
-/usr/share/applications/rustdesk.desktop
-/usr/share/applications/rustdesk-link.desktop
-/etc/systemd/system/rustdesk.service
+%_datadir/applications/rustdesk.desktop
+%_datadir/applications/rustdesk-link.desktop
+%_unitdir/rustdesk.service
 
 
 %pre

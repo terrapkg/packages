@@ -1,0 +1,23 @@
+From df8080b8b813f33963e8a169f157bff1607d54f4 Mon Sep 17 00:00:00 2001
+From: David Johnson <davidjohnson@rivosinc.com>
+Date: Tue, 5 Sep 2023 10:29:20 -0700
+Subject: [PATCH] Added __gnuc_va_list to the list of blocked types since this
+ type exists on at least some Linux platforms, and prevents pam-sys from
+ compiling without this exclusion.
+
+---
+ build.rs | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/build.rs b/build.rs
+index 7ac5cf3..cf44cde 100644
+--- a/build.rs
++++ b/build.rs
+@@ -29,6 +29,7 @@ fn main() {
+         .blocklist_type("va_list")
+         .blocklist_type("__va_list")
+         .blocklist_type("__builtin_va_list")
++        .blocklist_type("__gnuc_va_list")
+         .blocklist_type("__va_list_tag")
+         .blocklist_function("pam_v.*")
+         .blocklist_function("pam_syslog")
