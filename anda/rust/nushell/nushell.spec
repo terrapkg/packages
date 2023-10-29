@@ -5,7 +5,7 @@ Summary:		A new type of shell
 License:		MIT
 URL:			https://www.nushell.sh/
 Source0:		https://github.com/nushell/nushell/archive/refs/tags/%version.tar.gz
-BuildRequires:	cargo
+BuildRequires:	cargo openssl-devel
 Requires:		glibc gcc-libs openssl zlib
 
 %description
