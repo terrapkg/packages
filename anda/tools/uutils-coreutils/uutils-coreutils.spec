@@ -67,8 +67,11 @@ sed -i 's@ @\n@g' files-replace.txt
 # remove buildroot from paths in files.txt
 sed -i "s@%buildroot@/@g" files-replace.txt
 
+ln -r -s %buildroot/%_bindir/chroot %buildroot/usr/sbin/chroot
+
 
 %files -f files.txt
+/usr/sbin/chroot
 %doc README.md
 %license LICENSE
 
