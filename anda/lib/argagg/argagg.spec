@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           argagg
-Version:        0.4.6
+Version:        0.4.7
 Release:        1%{?dist}
 Summary:        Simple C++ command line argument/option parser
 
