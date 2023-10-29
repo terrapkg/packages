@@ -3,11 +3,11 @@
 %forgemeta
 
 Name:       deviceinfo
-Version:    0.2.0
+Version:    0.2.1
 Release:    %autorelease
 Summary:    Library to detect and configure devices
 License:    GPLv3+
-URL:        https://gitlab.com/ubports/development/core/deviceinfo
+URL:        %forgeurl
 Source0:    %{url}/-/archive/%commit/deviceinfo-%commit.tar.gz
 Source1:    https://salsa.debian.org/ubports-team/deviceinfo/-/raw/master/debian/device-info.1
 
