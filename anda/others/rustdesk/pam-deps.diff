@@ -1,0 +1,13 @@
+diff --git a/Cargo.toml b/Cargo.toml
+index be7e2aef..1f0c1eac 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -17,7 +17,7 @@ travis-ci = { repository = "1wilkens/pam" }
+ 
+ [dependencies]
+ libc    = "^0.2"
+-pam-sys = "^0.5"
++pam-sys = { version = "1.0.0-alpha4", path = "./pam-sys" }
+ users   = "^0.8"
+ 
+ [dev-dependencies]
