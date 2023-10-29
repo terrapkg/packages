@@ -66,7 +66,7 @@ export CARGOFLAGS="-vv --verbose"
 wait
 
 %define cmds() $(echo %1{runcon,arch,base{32,64,name,nc},cat,ch{grp,mod,own,root,con},cksum,comm,cp,csplit,cut,date,dd,df,dir{,colors,name},du,echo,env,expand,expr,factor,false,fmt,fold,groups,hashsum,head,host{id},id,install,join,link,ln,logname,ls,mk{dir,fifo,nod,temp},mv,nice,nl,nohup,nproc,numfmt,od,paste,pathchk,pinky,pr,printenv,printf,ptx,pwd,readlink,realpath,rm{,dir},seq,shred,shuf,sleep,sort,split,stat,stdbuf,sum,sync,tac,tail,tee,test,timeout,touch,tr,true,truncate,tsort,tty,uname,un{expand,iq,link},users,vdir,wc,who{,ami},yes}%2)
-%define excludes() $(echo %ghost %1{hostname,kill,more,uptime}%2)
+%define excludes() $(echo %1{hostname,kill,more,uptime}%2)
 cat <<EOF > files.txt
 %cmds %_bindir/uu- ""
 %_bindir/uu-[
@@ -74,14 +74,27 @@ cat <<EOF > files.txt
 %cmds %_datadir/fish/vendor_completions.d/uu- .fish
 %cmds %_mandir/man1/uu- .1.gz
 %cmds %_datadir/zsh/site-functions/_uu- ""
+EOF
+sed -i 's@ @\n@g' files.txt
+
+cat <<EOF > files-exclude.txt
 %excludes %_datadir/bash-completion/completions/uu- ""
 %excludes %_datadir/fish/vendor_completions.d/uu- .fish
 %excludes %_mandir/man1/uu- .1.gz
 %excludes %_datadir/zsh/site-functions/_uu- ""
 EOF
-sed -i 's@ @\n@g' files.txt
+
+sed -i 's@ @\n@g' files-exclude.txt
+# for each line, prepend %exclude
+sed -i 's@^@%ghost @g' files-exclude.txt
+
+# add contents of files-exclude.txt to files.txt
+cat files-exclude.txt >> files.txt
+
 # remove buildroot from paths in files.txt
 sed -i "s@%buildroot@/@g" files.txt
+
+### files-replace
 
 cat <<EOF > files-replace.txt
 %cmds %_bindir/ ""
@@ -96,10 +109,29 @@ cat <<EOF > files-replace.txt
 %excludes %_datadir/zsh/site-functions/_ ""
 EOF
 sed -i 's@ @\n@g' files-replace.txt
+
+cat <<EOF > files-replace-exclude.txt
+%excludes %_datadir/bash-completion/completions/ ""
+%excludes %_datadir/fish/vendor_completions.d/ .fish
+%excludes %_mandir/man1/ .1.gz
+%excludes %_datadir/zsh/site-functions/_ ""
+EOF
+
+sed -i 's@ @\n@g' files-replace-exclude.txt
+# for each line, prepend %exclude
+sed -i 's@^@%ghost @g' files-replace-exclude.txt
+
+# add contents of files-exclude.txt to files.txt
+
+cat files-replace-exclude.txt >> files-replace.txt
+
 # remove buildroot from paths in files.txt
 sed -i "s@%buildroot@/@g" files-replace.txt
 
 
+
+cat files.txt
+cat files-replace.txt
 
 %files -f files.txt
 %doc README.md
