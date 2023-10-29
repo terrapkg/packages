@@ -1,3 +1,5 @@
+%global coreutils_ver 9.3
+
 Name:			uutils-coreutils
 Version:		0.0.22
 Release:		1%?dist
@@ -19,7 +21,7 @@ behavior might be experienced.
 
 %package replace
 Summary:		Cross-platform Rust replacement of the GNU coreutils
-Provides:       coreutils
+Provides:       coreutils = %coreutils_ver
 Provides:       coreutils(%arch)
 Provides:       coreutils-full
 Provides:       coreutils-single
@@ -35,6 +37,7 @@ This package removes the `uu-` prefixes.
 %autosetup -n coreutils-%version
 
 %build
+export CARGOFLAGS="-vv --verbose"
 %make_build PROFILE=release SELINUX_ENABLED=1
 
 %install
