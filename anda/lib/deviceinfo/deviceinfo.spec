@@ -1,9 +1,9 @@
 %global forgeurl https://gitlab.com/ubports/development/core/deviceinfo
-%global commit 5dada778683ef8a1da13d0459768d8048429a646
+%global commit 7e819c16e28b785f1ea1a2cf85b4d1376cc79f19
 %forgemeta
 
 Name:       deviceinfo
-Version:    0.2.0
+Version:    0.2.1
 Release:    %autorelease
 Summary:    Library to detect and configure devices
 License:    GPLv3+
