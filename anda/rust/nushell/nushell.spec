@@ -5,7 +5,7 @@ Summary:		A new type of shell
 License:		MIT
 URL:			https://www.nushell.sh/
 Source0:		https://github.com/nushell/nushell/archive/refs/tags/%version.tar.gz
-BuildRequires:	cargo openssl-devel
+BuildRequires:	anda-srpm-macros rust-packaging openssl-devel
 Requires:		glibc gcc-libs openssl zlib
 
 %description
@@ -13,10 +13,10 @@ Requires:		glibc gcc-libs openssl zlib
 
 %prep
 %autosetup
+%cargo_prep_online
 
 %build
-CFLAGS+=" -ffat-lto-objects"
-cargo build --release --workspace --features=extra,dataframe
+%{cargo_build -f extra,dataframe} --workspace
 
 %install
 find target/release -maxdepth 1 -executable -type f -name "nu*" -exec install -vDm755 -t %buildroot%_bindir "{}" +
