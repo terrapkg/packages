@@ -19,7 +19,7 @@ Requires:		glibc gcc-libs openssl zlib
 %{cargo_build -f extra,dataframe} --workspace
 
 %install
-find target/release -maxdepth 1 -executable -type f -name "nu*" -exec install -vDm755 -t %buildroot%_bindir "{}" +
+%cargo_install -f extra,dataframe
 
 %files
 %doc README.md
