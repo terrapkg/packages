@@ -172,10 +172,11 @@ use the "zopfli" feature of the "%{crate}" crate.
 %cargo_prep_online
 
 %build
-%cargo_build
+%(echo "%{cargo_build}" | sed "s@--profile rpm@--profile release@g" | sed "s@-j @@")
 
 %install
-%cargo_install
+export CARGO_INSTALL_ROOT=%buildroot%_prefix
+cargo install --path .
 
 %if %{with check}
 %check
