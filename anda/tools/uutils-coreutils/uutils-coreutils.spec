@@ -19,7 +19,6 @@ behavior might be experienced.
 
 %package replace
 Summary:		Cross-platform Rust replacement of the GNU coreutils
-Conflicts:		coreutils
 Provides:       coreutils
 Provides:       coreutils(%arch)
 Provides:       coreutils-full
