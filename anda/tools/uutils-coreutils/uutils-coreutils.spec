@@ -71,8 +71,12 @@ rm_filelist() {
     local filelist=$1
     
     for file in $(cat $filelist); do
+        echo "Removing $file"
         if [ -f "$file" ]; then
             rm -vf "$file"
+        elif [ -f "%buildroot/$file" ]; then
+            echo "Removing %buildroot/$file"
+            rm -vf "%buildroot/$file"
         fi
     done
 }
@@ -97,11 +101,6 @@ cat <<EOF > files-exclude.txt
 EOF
 
 sed -i 's@ @\n@g' files-exclude.txt
-# for each line, prepend %exclude
-sed -i 's@^@%ghost @g' files-exclude.txt
-
-# add contents of files-exclude.txt to files.txt
-cat files-exclude.txt >> files.txt
 
 # remove buildroot from paths in files.txt
 sed -i "s@%buildroot@/@g" files.txt
@@ -130,12 +129,6 @@ cat <<EOF > files-replace-exclude.txt
 EOF
 
 sed -i 's@ @\n@g' files-replace-exclude.txt
-# for each line, prepend %exclude
-sed -i 's@^@%ghost @g' files-replace-exclude.txt
-
-# add contents of files-exclude.txt to files.txt
-
-cat files-replace-exclude.txt >> files-replace.txt
 
 # remove buildroot from paths in files.txt
 sed -i "s@%buildroot@/@g" files-replace.txt
@@ -144,6 +137,8 @@ sed -i "s@%buildroot@/@g" files-replace.txt
 
 cat files.txt
 cat files-replace.txt
+
+echo "Removing files"
 
 rm_filelist files-exclude.txt
 rm_filelist files-replace-exclude.txt
