@@ -76,6 +76,7 @@ install res/rustdesk.service %buildroot%_unitdir/rustdesk.service
 
 %files
 %_bindir/rustdesk
+%_bindir/naming
 /usr/lib/rustdesk/libsciter-gtk.so
 %_datadir/rustdesk/files/rustdesk.service
 %_datadir/icons/hicolor/256x256/apps/rustdesk.png
