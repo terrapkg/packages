@@ -20,6 +20,7 @@ Requires:		glibc gcc-libs openssl zlib
 
 %install
 %cargo_install -f extra,dataframe
+rm -rf .cargo
 
 %files
 %doc README.md
