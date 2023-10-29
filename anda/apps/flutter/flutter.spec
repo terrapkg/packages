@@ -1,6 +1,6 @@
 Name:			flutter
-Version:		3.13.8
-Release:		1%?dist
+Version:		3.13.9
+Release:		1%{?dist}
 Summary:		SDK for crafting beautiful, fast user experiences from a single codebase
 License:		BSD-3-Clause
 URL:			https://flutter.dev
