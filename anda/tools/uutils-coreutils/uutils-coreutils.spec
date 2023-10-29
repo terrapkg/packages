@@ -24,7 +24,6 @@ Summary:		Cross-platform Rust replacement of the GNU coreutils
 Provides:       coreutils = %coreutils_ver
 Provides:       coreutils(%arch)
 Provides:       coreutils-full
-Provides:       coreutils-single
 
 %description replace
 uutils coreutils is a cross-platform reimplementation of the GNU coreutils in Rust.
@@ -32,6 +31,27 @@ While all programs have been implemented, some options might be missing or diffe
 behavior might be experienced.
 
 This package removes the `uu-` prefixes.
+
+%package single
+Summary:		uutils-coreutils single binary
+%description single
+uutils coreutils is a cross-platform reimplementation of the GNU coreutils in Rust.
+While all programs have been implemented, some options might be missing or different
+behavior might be experienced.
+
+This package provides a single binary with all commands.
+
+%package single
+Summary:		uutils-coreutils single binary, replaces coreutils
+Provides:       coreutils-single = %coreutils_ver
+Provides:       coreutils-single(%arch)
+
+%description single-replace
+uutils coreutils is a cross-platform reimplementation of the GNU coreutils in Rust.
+While all programs have been implemented, some options might be missing or different
+behavior might be experienced.
+
+This package provides a single binary with all commands, and replaces the GNU coreutils.
 
 %prep
 %autosetup -n coreutils-%version
@@ -45,7 +65,7 @@ export CARGOFLAGS="-vv --verbose"
 %make_install PROFILE=release MULTICALL=y DESTDIR=%buildroot PREFIX=%_prefix SELINUX_ENABLED=1 &
 wait
 
-%define cmds() $(echo %1{runcon,arch,base{32,64,name,nc},cat,ch{grp,mod,own,root,con},cksum,comm,coreutils,cp,csplit,cut,date,dd,df,dir{,colors,name},du,echo,env,expand,expr,factor,false,fmt,fold,groups,hashsum,head,host{id},id,install,join,link,ln,logname,ls,mk{dir,fifo,nod,temp},mv,nice,nl,nohup,nproc,numfmt,od,paste,pathchk,pinky,pr,printenv,printf,ptx,pwd,readlink,realpath,rm{,dir},seq,shred,shuf,sleep,sort,split,stat,stdbuf,sum,sync,tac,tail,tee,test,timeout,touch,tr,true,truncate,tsort,tty,uname,un{expand,iq,link},users,vdir,wc,who{,ami},yes}%2)
+%define cmds() $(echo %1{runcon,arch,base{32,64,name,nc},cat,ch{grp,mod,own,root,con},cksum,comm,cp,csplit,cut,date,dd,df,dir{,colors,name},du,echo,env,expand,expr,factor,false,fmt,fold,groups,hashsum,head,host{id},id,install,join,link,ln,logname,ls,mk{dir,fifo,nod,temp},mv,nice,nl,nohup,nproc,numfmt,od,paste,pathchk,pinky,pr,printenv,printf,ptx,pwd,readlink,realpath,rm{,dir},seq,shred,shuf,sleep,sort,split,stat,stdbuf,sum,sync,tac,tail,tee,test,timeout,touch,tr,true,truncate,tsort,tty,uname,un{expand,iq,link},users,vdir,wc,who{,ami},yes}%2)
 cat <<EOF > files.txt
 %cmds %_bindir/uu- ""
 %_bindir/uu-[
@@ -78,6 +98,15 @@ sed -i "s@%buildroot@/@g" files-replace.txt
 %files replace -f files-replace.txt
 %doc README.md
 %license LICENSE
+
+%files single
+%_bindir/uu-coreutils
+%doc README.md
+%license LICENSE
+
+%files single-replace
+%_bindir/coreutils
+%doc README.md
 
 %changelog
 %autochangelog
