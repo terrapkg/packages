@@ -143,11 +143,20 @@ cat files-replace.txt
 
 %files single
 %_bindir/uu-coreutils
+%_datadir/bash-completion/completions/uu-coreutils
+%_datadir/fish/vendor_completions.d/uu-coreutils.fish
+%_datadir/zsh/site-functions/_uu-coreutils
+%_mandir/man1/uu-coreutils.1.gz
+
 %doc README.md
 %license LICENSE
 
 %files single-replace
 %_bindir/coreutils
+%_datadir/bash-completion/completions/coreutils
+%_datadir/fish/vendor_completions.d/coreutils.fish
+%_datadir/zsh/site-functions/_coreutils
+%_mandir/man1/coreutils.1.gz
 %doc README.md
 
 %changelog
