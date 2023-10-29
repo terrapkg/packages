@@ -2,6 +2,13 @@
 set -eu \
 %{__mkdir} -p .cargo \
 cat > .cargo/config << EOF \
+[profile.rpm]\
+inherits = "release"\
+opt-level = 3\
+codegen-units = 1\
+debug = 2\
+strip = "none"\
+\
 [build]\
 rustc = "%{__rustc}"\
 rustdoc = "%{__rustdoc}"\
