@@ -74,14 +74,25 @@ cat <<EOF > files.txt
 %cmds %_datadir/fish/vendor_completions.d/uu- .fish
 %cmds %_mandir/man1/uu- .1.gz
 %cmds %_datadir/zsh/site-functions/_uu- ""
+EOF
+sed -i 's@ @\n@g' files.txt
+# remove buildroot from paths in files.txt
+sed -i "s@%buildroot@/@g" files.txt
+
+cat <<EOF > files-exclude.txt
 %excludes %_datadir/bash-completion/completions/uu- ""
 %excludes %_datadir/fish/vendor_completions.d/uu- .fish
 %excludes %_mandir/man1/uu- .1.gz
 %excludes %_datadir/zsh/site-functions/_uu- ""
 EOF
-sed -i 's@ @\n@g' files.txt
-# remove buildroot from paths in files.txt
-sed -i "s@%buildroot@/@g" files.txt
+sed -i 's@ @\n@g' files-exclude.txt
+# remove the excluded files
+
+for i in $(cat files-exclude.txt); do
+    ls $i
+    rm -vf $i
+done
+
 
 cat <<EOF > files-replace.txt
 %cmds %_bindir/ ""
@@ -90,15 +101,23 @@ cat <<EOF > files-replace.txt
 %cmds %_datadir/fish/vendor_completions.d/ .fish
 %cmds %_mandir/man1/ .1.gz
 %cmds %_datadir/zsh/site-functions/_ ""
-%excludes %_datadir/bash-completion/completions/ ""
-%excludes %_datadir/fish/vendor_completions.d/ .fish
-%excludes %_mandir/man1/ .1.gz
-%excludes %_datadir/zsh/site-functions/_ ""
 EOF
 sed -i 's@ @\n@g' files-replace.txt
 # remove buildroot from paths in files.txt
 sed -i "s@%buildroot@/@g" files-replace.txt
 
+cat <<EOF > files-remove-replace.txt
+%excludes %_datadir/bash-completion/completions/ ""
+%excludes %_datadir/fish/vendor_completions.d/ .fish
+%excludes %_mandir/man1/ .1.gz
+%excludes %_datadir/zsh/site-functions/_ ""
+EOF
+sed -i 's@ @\n@g' files-remove-replace.txt
+# remove the excluded files
+for i in $(cat files-remove-replace.txt); do
+    ls $i
+    rm -vf $i
+done
 
 
 %files -f files.txt
