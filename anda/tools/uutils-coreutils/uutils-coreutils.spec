@@ -41,7 +41,7 @@ behavior might be experienced.
 
 This package provides a single binary with all commands.
 
-%package single
+%package single-replace
 Summary:		uutils-coreutils single binary, replaces coreutils
 Provides:       coreutils-single = %coreutils_ver
 Provides:       coreutils-single(%arch)
