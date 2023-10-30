@@ -30,7 +30,7 @@ License:        MIT
 
 %files       -n %{crate}
 %license LICENSE.md
-%license LICENSE.dependencies
+#license LICENSE.dependencies
 %doc CHANGELOG.md
 %doc CODE_OF_CONDUCT.md
 %doc CONTRIBUTING.md
@@ -43,8 +43,8 @@ License:        MIT
 
 %build
 %cargo_build
-%{cargo_license_summary}
-%{cargo_license} > LICENSE.dependencies
+#{cargo_license_summary}
+#{cargo_license} > LICENSE.dependencies
 
 %install
 %cargo_install
