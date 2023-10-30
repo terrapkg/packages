@@ -114,10 +114,6 @@ cat <<EOF > files-replace.txt
 %cmds %_datadir/fish/vendor_completions.d/ .fish
 %cmds %_mandir/man1/ .1.gz
 %cmds %_datadir/zsh/site-functions/_ ""
-%excludes %_datadir/bash-completion/completions/ ""
-%excludes %_datadir/fish/vendor_completions.d/ .fish
-%excludes %_mandir/man1/ .1.gz
-%excludes %_datadir/zsh/site-functions/_ ""
 EOF
 sed -i 's@ @\n@g' files-replace.txt
 
