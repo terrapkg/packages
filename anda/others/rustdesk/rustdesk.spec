@@ -58,7 +58,7 @@ cd ../..
 
 
 %install
-%cargo_install -all-features
+%cargo_install --all-features
 mkdir -p %buildroot/usr/lib/rustdesk/
 mkdir -p %buildroot%_datadir/rustdesk/files/
 mkdir -p %buildroot%_datadir/icons/hicolor/{256x256,scalable}/apps/
