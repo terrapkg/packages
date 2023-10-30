@@ -19,6 +19,7 @@ BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  pkgconfig(libxml-2.0)
 BuildRequires:  pkgconfig(systemd)
 BuildRequires:  intltool
+BuildRequires:  librda-devel
 
 %description
 The Ayatana Indicators project is the continuation of Application Indicators
