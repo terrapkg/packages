@@ -31,7 +31,7 @@ License:        # FIXME
 
 %files       -n %{crate}
 %license LICENSE
-%license LICENSE.dependencies
+#license LICENSE.dependencies
 %doc CHANGELOG.md
 %doc MANUAL.txt
 %doc README.md
@@ -203,8 +203,8 @@ use the "zopfli" feature of the "%{crate}" crate.
 
 %build
 %cargo_build
-%{cargo_license_summary}
-%{cargo_license} > LICENSE.dependencies
+#{cargo_license_summary}
+#{cargo_license} > LICENSE.dependencies
 
 %install
 %cargo_install
