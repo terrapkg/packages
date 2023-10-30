@@ -11,6 +11,9 @@ Summary:        Command-line utility for easily compressing and decompressing fi
 License:        MIT
 URL:            https://crates.io/crates/ouch
 Source:         %{crates_source}
+# Automatically generated patch to strip foreign dependencies
+Patch:          ouch-fix-metadata-auto.diff
+
 BuildRequires:  anda-srpm-macros rust-packaging >= 21
 
 %global _description %{expand:
