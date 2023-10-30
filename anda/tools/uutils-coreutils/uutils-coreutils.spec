@@ -53,6 +53,30 @@ behavior might be experienced.
 
 This package provides a single binary with all commands, and replaces the GNU coreutils.
 
+
+%package util-linux
+Summary:		uutil-coreutils single binary, with util-linux commands
+Requires:		uutils-coreutils
+
+%description util-linux
+uutils coreutils is a cross-platform reimplementation of the GNU coreutils in Rust.
+While all programs have been implemented, some options might be missing or different
+behavior might be experienced.
+
+This package provides a single binary with commands for util-linux with the `uu-` prefix.
+
+%package util-linux-replace
+Summary:		uutils-coreutils single-binary, replaces coreutils and util-linux
+Provides:		util-linux
+
+%description util-linux-replace
+uutils coreutils is a cross-platform reimplementation of the GNU coreutils in Rust.
+While all programs have been implemented, some options might be missing or different
+behavior might be experienced.
+
+This package provides a single binary with all commands, and replaces the GNU coreutils and util-linux commands.
+
+
 %prep
 %autosetup -n coreutils-%version
 
@@ -71,11 +95,11 @@ rm_filelist() {
     local filelist=$1
     
     for file in $(cat $filelist); do
-        echo "Removing $file"
+        echo "::  -->  $file"
         if [ -f "$file" ]; then
             rm -vf "$file"
-        elif [ -f "%buildroot/$file" ]; then
-            echo "Removing %buildroot/$file"
+        fi
+        if [ -f "%buildroot/$file" ]; then
             rm -vf "%buildroot/$file"
         fi
     done
@@ -98,6 +122,7 @@ cat <<EOF > files-exclude.txt
 %excludes %_datadir/fish/vendor_completions.d/uu- .fish
 %excludes %_mandir/man1/uu- .1.gz
 %excludes %_datadir/zsh/site-functions/_uu- ""
+%excludes %_bindir/uu- ""
 EOF
 
 sed -i 's@ @\n@g' files-exclude.txt
@@ -122,6 +147,7 @@ cat <<EOF > files-replace-exclude.txt
 %excludes %_datadir/fish/vendor_completions.d/ .fish
 %excludes %_mandir/man1/ .1.gz
 %excludes %_datadir/zsh/site-functions/_ ""
+%excludes %_bindir/ ""
 EOF
 
 sed -i 's@ @\n@g' files-replace-exclude.txt
@@ -130,14 +156,15 @@ sed -i 's@ @\n@g' files-replace-exclude.txt
 sed -i "s@%buildroot@/@g" files-replace.txt
 
 
-
+echo "=== Files ==="
 cat files.txt
+echo "=== Files (Replace) ==="
 cat files-replace.txt
 
-echo "Removing files"
+#echo "=== Removing files ==="
 
-rm_filelist files-exclude.txt
-rm_filelist files-replace-exclude.txt
+#rm_filelist files-exclude.txt
+#rm_filelist files-replace-exclude.txt
 
 %files -f files.txt
 %doc README.md
@@ -164,6 +191,10 @@ rm_filelist files-replace-exclude.txt
 %_datadir/zsh/site-functions/_coreutils
 %_mandir/man1/coreutils.1.gz
 %doc README.md
+
+%files util-linux -f files-exclude.txt
+
+%files util-linux-replace -f files-replace-exclude.txt
 
 %changelog
 %autochangelog
