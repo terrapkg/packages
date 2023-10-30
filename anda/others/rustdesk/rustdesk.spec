@@ -53,12 +53,12 @@ cd ../..
 
 
 %build
-%cargo_build -f linux-pkg-config
+%cargo_build --all-features
 %global __python %{__python3}
 
 
 %install
-%cargo_install -f linux-pkg-config
+%cargo_install -all-features
 mkdir -p %buildroot/usr/lib/rustdesk/
 mkdir -p %buildroot%_datadir/rustdesk/files/
 mkdir -p %buildroot%_datadir/icons/hicolor/{256x256,scalable}/apps/
