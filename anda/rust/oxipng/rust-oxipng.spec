@@ -28,7 +28,6 @@ Summary:        %{summary}
 %license LICENSE
 %doc CHANGELOG.md
 %doc README.md
-%doc README.template.md
 %{_bindir}/oxipng
 
 %package        devel
@@ -44,7 +43,6 @@ use the "%{crate}" crate.
 %license %{crate_instdir}/LICENSE
 %doc %{crate_instdir}/CHANGELOG.md
 %doc %{crate_instdir}/README.md
-%doc %{crate_instdir}/README.template.md
 %{crate_instdir}/
 
 %package     -n %{name}+default-devel
