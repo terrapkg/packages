@@ -1,0 +1,25 @@
+--- oxipng-9.0.0/Cargo.toml	1970-01-01T00:00:01+00:00
++++ oxipng-9.0.0/Cargo.toml	2023-10-30T06:36:01.294365+00:00
+@@ -116,7 +116,6 @@
+ [features]
+ binary = [
+     "clap",
+-    "glob",
+     "env_logger",
+ ]
+ default = [
+@@ -133,13 +132,10 @@
+ ]
+ sanity-checks = ["image"]
+ 
+-[target."cfg(windows)".dependencies.glob]
+-version = "0.3.1"
+-optional = true
+-
+ [badges.maintenance]
+ status = "actively-developed"
+ 
+ [badges.travis-ci]
+ branch = "master"
+ repository = "shssoichiro/oxipng"
++
