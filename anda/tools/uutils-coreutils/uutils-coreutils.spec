@@ -32,32 +32,6 @@ behavior might be experienced.
 
 This package removes the `uu-` prefixes.
 
-%package single
-Summary:		uutils-coreutils single binary
-%description single
-uutils coreutils is a cross-platform reimplementation of the GNU coreutils in Rust.
-While all programs have been implemented, some options might be missing or different
-behavior might be experienced.
-
-This package provides a single binary with all commands.
-
-%package single-replace
-Summary:		uutils-coreutils single binary, replaces coreutils
-Provides:       coreutils-single = %coreutils_ver
-Provides:       coreutils-single(%arch)
-
-%description single-replace
-uutils coreutils is a cross-platform reimplementation of the GNU coreutils in Rust.
-While all programs have been implemented, some options might be missing or different
-behavior might be experienced.
-
-This package provides a single binary with all commands, and replaces the GNU coreutils.
-
-
-%package util-linux
-Summary:		uutil-coreutils single binary, with util-linux commands
-Requires:		uutils-coreutils
-
 %description util-linux
 uutils coreutils is a cross-platform reimplementation of the GNU coreutils in Rust.
 While all programs have been implemented, some options might be missing or different
@@ -85,8 +59,8 @@ export CARGOFLAGS="-vv --verbose"
 %make_build PROFILE=release SELINUX_ENABLED=1
 
 %install
-%make_install PROFILE=release MULTICALL=y DESTDIR=%buildroot PREFIX=%_prefix SELINUX_ENABLED=1 PROG_PREFIX=uu- &
-%make_install PROFILE=release MULTICALL=y DESTDIR=%buildroot PREFIX=%_prefix SELINUX_ENABLED=1 &
+%make_install PROFILE=release MULTICALL=n DESTDIR=%buildroot PREFIX=%_prefix SELINUX_ENABLED=1 PROG_PREFIX=uu- &
+%make_install PROFILE=release MULTICALL=n DESTDIR=%buildroot PREFIX=%_prefix SELINUX_ENABLED=1 &
 wait
 
 # function to remove files from a file list (used below for excludes)
@@ -173,24 +147,6 @@ cat files-replace.txt
 %files replace -f files-replace.txt
 %doc README.md
 %license LICENSE
-
-%files single
-%_bindir/uu-coreutils
-%_datadir/bash-completion/completions/uu-coreutils
-%_datadir/fish/vendor_completions.d/uu-coreutils.fish
-%_datadir/zsh/site-functions/_uu-coreutils
-%_mandir/man1/uu-coreutils.1.gz
-
-%doc README.md
-%license LICENSE
-
-%files single-replace
-%_bindir/coreutils
-%_datadir/bash-completion/completions/coreutils
-%_datadir/fish/vendor_completions.d/coreutils.fish
-%_datadir/zsh/site-functions/_coreutils
-%_mandir/man1/coreutils.1.gz
-%doc README.md
 
 %files util-linux -f files-exclude.txt
 
