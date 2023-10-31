@@ -63,8 +63,8 @@ export CARGOFLAGS="-vv --verbose"
 %make_build PROFILE=release SELINUX_ENABLED=1
 
 %install
-%make_install PROFILE=release MULTICALL=y DESTDIR=%buildroot PREFIX=%_prefix SELINUX_ENABLED=1 PROG_PREFIX=uu- &
-%make_install PROFILE=release MULTICALL=y DESTDIR=%buildroot PREFIX=%_prefix SELINUX_ENABLED=1 &
+%make_install PROFILE=release MULTICALL=n DESTDIR=%buildroot PREFIX=%_prefix SELINUX_ENABLED=1 PROG_PREFIX=uu- &
+%make_install PROFILE=release MULTICALL=n DESTDIR=%buildroot PREFIX=%_prefix SELINUX_ENABLED=1 &
 wait
 
 # function to remove files from a file list (used below for excludes)
