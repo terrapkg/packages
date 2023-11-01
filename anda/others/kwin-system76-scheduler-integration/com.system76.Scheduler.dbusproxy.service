@@ -1,5 +1,7 @@
 [Unit]
 Description=Forward com.system76.Scheduler session DBus messages to the system bus
+StartLimitIntervalSec=60
+StartLimitBurst=5
 
 [Service]
 ExecStart=/usr/local/bin/system76-scheduler-dbus-proxy.sh

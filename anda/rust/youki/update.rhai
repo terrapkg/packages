@@ -1,1 +1,1 @@
-rpm.version(crates("youki"));
+rpm.version(gh("containers/youki"));

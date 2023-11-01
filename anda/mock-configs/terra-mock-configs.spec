@@ -1,10 +1,10 @@
 Name:           terra-mock-configs
 Version:        6
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Mock configs for Terra repos
 
 License:        MIT
-URL:            https://terra.fyralabs.com
+URL:            http://terra.fyralabs.com
 Source0:        terra.tpl
 Source1:        terra-38-x86_64.cfg
 Source2:        terra-38-aarch64.cfg
@@ -19,11 +19,12 @@ Provides: anda-mock-configs = %{version}-%{release}
 Obsoletes: anda-mock-configs < 3-2%{?dist}
 
 %description
-%{summary}.
+%{summary}
 
 %prep
 
 %build
+
 
 %install
 mkdir -p %{buildroot}%{_sysusersdir}

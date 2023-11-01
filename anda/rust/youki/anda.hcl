@@ -1,6 +1,6 @@
 project pkg {
 	rpm {
-		spec = "rust-youki.spec"
+		spec = "youki.spec"
 
 		// enable_scm = true
 
