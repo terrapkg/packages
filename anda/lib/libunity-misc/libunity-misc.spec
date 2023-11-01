@@ -16,6 +16,7 @@ BuildRequires:	gtk-doc
 BuildRequires:	libX11-devel
 BuildRequires:	gtk3-devel
 BuildRequires:	glib2-devel
+Requires:       libunity
 
 %description
 A simple library that implements a subset of the XPath spec to allow selecting
@@ -44,11 +45,15 @@ NOCONFIGURE=1 \
 %install
 %make_install
 rm -fv %{buildroot}%{_libdir}/lib*.la
+# Is done for unity-shell and other Unity packages to build
+ln -sf %{_libdir}/libunity/libunity-protocol-private.so.0.0.0 %{buildroot}%{_libdir}/libunity-protocol-private.so
+
 %ldconfig_post
 
 %files
 %license COPYING COPYING.GPL COPYING.LGPL-2
 %{_libdir}/libunity-misc.so.*
+%{_libdir}/libunity-protocol-private.so
 
 %files devel
 %{_libdir}/libunity-misc.so

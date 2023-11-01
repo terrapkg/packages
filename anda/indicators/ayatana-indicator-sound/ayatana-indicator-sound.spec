@@ -66,6 +66,7 @@ This package contains the development header files for %{name}.
 %{_datadir}/dbus-1/interfaces/org.ayatana.indicator.sound.AccountsService.xml
 %{_datadir}/glib-2.0/schemas/org.ayatana.indicator.sound.gschema.xml
 %{_datadir}/polkit-1/actions/org.ayatana.indicator.sound.AccountsService.policy
+%{_datadir}/polkit-1/rules.d/50-org.ayatana.indicator.sound.AccountsService.rules
 %{_sharedstatedir}/polkit-1/localauthority/10-vendor.d/50-org.ayatana.indicator.sound.AccountsService.pkla
 
 %changelog
