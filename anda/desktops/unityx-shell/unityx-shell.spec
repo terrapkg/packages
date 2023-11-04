@@ -6,7 +6,7 @@
 
 Name:          unityx-shell
 Version:       1.7.7
-Release:       2%?dist
+Release:       1%?dist
 Summary:       UnityX is a smaller shell based on Unity7
 
 License:       GPL-3.0 AND LGPL-3.0
