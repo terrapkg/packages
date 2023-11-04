@@ -5,7 +5,7 @@
 
 Name:          qtmir
 Version:       0.8.0
-Release:       %autorelease
+Release:       1%?dist
 Summary:       Mir backed compositor using Qt
 
 License:       LGPLv3+ AND GPLv3+
