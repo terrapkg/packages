@@ -28,6 +28,7 @@ Anki is based on a theory called spaced repetition.
 %build
 
 %install
+python3.11 -m ensurepip
 python3.11 -m pip install PyInstaller==3.5
 python3.11 -m installer --destdir="%{buildroot}" %{SOURCE0}
 python3.11 -m installer --destdir="%{buildroot}" %{SOURCE1}
