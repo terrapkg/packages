@@ -4,7 +4,7 @@
 
 Name:    vala-panel-appmenu
 Version: 0.7.6
-Release: 2%?dist
+Release: 1%?dist
 License: LGPL-3.0-or-later
 Summary: Application Menu plugin for vala-panel
 URL:     %{forgeurl}
