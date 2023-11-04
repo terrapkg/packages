@@ -1,6 +1,6 @@
 Name:			librda
 Version:		0.0.5
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Remote Desktop Awareness Shared Library
 Group:			System Environment/Libraries
 License:		LGPL2.1+ or GPL3+
