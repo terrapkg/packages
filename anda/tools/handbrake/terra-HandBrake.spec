@@ -18,7 +18,7 @@
 
 Name:           terra-HandBrake
 Version:        1.6.1
-Release:        1%?dist
+Release:        2%?dist
 Summary:        An open-source multiplatform video transcoder
 License:        GPL-2.0-or-later
 URL:            https://handbrake.fr/
