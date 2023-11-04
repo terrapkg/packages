@@ -3,7 +3,7 @@
 
 Name:			pqmarble
 Version:		%ver^%commit
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		My GTK library
 License:		GPL-3.0
 URL:			https://gitlab.gnome.org/raggesilver/marble
