@@ -4,7 +4,7 @@
 
 Name:       lomiri-session
 Version:    0.2
-Release:    %autorelease
+Release:    1%?dist
 Summary:    Configuration schemas for lomiri
 License:    LGPLv3
 URL:        https://gitlab.com/ubports/development/core/lomiri-session
