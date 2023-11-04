@@ -29,9 +29,12 @@ Anki is based on a theory called spaced repetition.
 
 %install
 python3.11 -m ensurepip
-python3.11 -m pip install PyInstaller==3.5
-python3.11 -m installer --destdir="%{buildroot}" %{SOURCE0}
-python3.11 -m installer --destdir="%{buildroot}" %{SOURCE1}
+python3.11 -m venv .
+source ./bin/activate
+
+pip install PyInstaller==3.5
+python -m installer --destdir="%{buildroot}" %{SOURCE0}
+python -m installer --destdir="%{buildroot}" %{SOURCE1}
 install -Dm755 %{SOURCE2} "%{buildroot}/usr/bin/anki"
 install -Dm644 %{SOURCE3} "%{buildroot}/usr/share/applications/anki.desktop"
 install -Dm644 %{SOURCE4} "%{buildroot}/usr/share/pixmaps/anki.png"
