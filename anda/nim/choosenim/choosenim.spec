@@ -1,6 +1,6 @@
 Name:			choosenim
 Version:		0.8.4
-Release:		3%{?dist}
+Release:		1%{?dist}
 Summary:		Easily install and manage multiple versions of the Nim programming language
 License:		BSD-3-Clause
 URL:			https://github.com/dom96/choosenim
