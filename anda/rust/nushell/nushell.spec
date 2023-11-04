@@ -22,6 +22,22 @@ Requires:		glibc gcc-libs openssl zlib
 %cargo_install -f extra,dataframe
 rm -rf .cargo
 
+%post
+if [ "$1" = 1 ]; then
+  if [ ! -f %{_sysconfdir}/shells ] ; then
+    echo "%{_bindir}/nu" > %{_sysconfdir}/shells
+    echo "/bin/nu" >> %{_sysconfdir}/shells
+  else
+    grep -q "^%{_bindir}/nu$" %{_sysconfdir}/shells || echo "%{_bindir}/nu" >> %{_sysconfdir}/shells
+    grep -q "^/bin/nu$" %{_sysconfdir}/shells || echo "/bin/nu" >> %{_sysconfdir}/shells
+fi
+
+%postun
+if [ "$1" = 0 ] && [ -f %{_sysconfdir}/shells ] ; then
+  sed -i '\!^%{_bindir}/nu$!d' %{_sysconfdir}/shells
+  sed -i '\!^/bin/nu$!d' %{_sysconfdir}/shells
+fi
+
 %files
 %doc README.md
 %license LICENSE
