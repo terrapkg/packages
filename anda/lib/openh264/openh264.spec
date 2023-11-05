@@ -3,12 +3,12 @@
 %global shortcommit1 %(c=%{commit1}; echo ${c:0:7})
 
 %global openh264_version 2.3.1
-%global gst_version 1.22.6
+%global gst_version 1.22.5
 
 Name:           openh264
 Version:        %{openh264_version}
 # Also bump the Release tag for gstreamer1-plugin-openh264 down below
-Release:        3%{?dist}
+Release:        1%{?dist}
 Summary:        H.264 codec library
 
 License:        BSD
@@ -210,105 +210,4 @@ popd
 
 
 %changelog
-* Thu Aug 17 2023 Dominik Mierzejewski <dominik@greysector.net> - 2.3.1-3
-- Add Mozilla plugin path to MOZ_GMP_PATH instead of overriding unconditionally
-- Resolves: rhbz#2225112
-
-* Mon Mar 13 2023 Kalev Lember <klember@redhat.com> - 2.3.1-2
-- Update gstreamer plugin to 1.22.1
-
-* Thu Sep 29 2022 Kalev Lember <klember@redhat.com> - 2.3.1-1
-- Update to 2.3.1
-
-* Wed Aug 10 2022 Kalev Lember <klember@redhat.com> - 2.3.0-2
-- Rebuild
-
-* Mon Aug 01 2022 Kalev Lember <klember@redhat.com> - 2.3.0-1
-- Update to 2.3.0
-- Update gstreamer plugin to 1.20.3
-
-* Wed Mar 16 2022 David King <amigadave@amigadave.com> - 2.2.0-1
-- Update to 2.2.0
-- Update gstreamer plugin to 1.20.0
-
-* Tue Sep 07 2021 Kalev Lember <klember@redhat.com> - 2.1.1-3
-- Update gstreamer plugin to 1.19.1
-
-* Thu Feb 11 2021 Kalev Lember <klember@redhat.com> - 2.1.1-2
-- Update gstreamer plugin to 1.18.2
-- Remove totem supplements as totem has recommends on
-  gstreamer1-plugin-openh264 instead
-
-* Fri May 22 2020 Kalev Lember <klember@redhat.com> - 2.1.1-1
-- Update to 2.1.1
-- Add totem supplements to gstreamer1-plugin-openh264
-
-* Tue Mar 10 2020 Kalev Lember <klember@redhat.com> - 2.1.0-1
-- Update to 2.1.0
-- Update gstreamer plugin to 1.16.2
-
-* Mon Jun 17 2019 Kalev Lember <klember@redhat.com> - 2.0.0-1
-- Update openh264 to 2.0.0
-- Update gstreamer plugin to 1.16.0
-
-* Fri Feb 22 2019 Kalev Lember <klember@redhat.com> - 1.8.0-3
-- Update gstreamer plugin to 1.15.1
-
-* Wed Sep 12 2018 Kalev Lember <klember@redhat.com> - 1.8.0-2
-- Update gstreamer plugin to 1.14.2
-
-* Wed Jun 27 2018 Kalev Lember <klember@redhat.com> - 1.8.0-1
-- Update openh264 to 1.8.0
-- Update gstreamer plugin to 1.14.1
-
-* Tue Mar 06 2018 Kalev Lember <klember@redhat.com> - 1.7.0-6
-- Update gstreamer plugin to 1.13.90
-
-* Sat Dec 16 2017 Kalev Lember <klember@redhat.com> - 1.7.0-5
-- Update gstreamer plugin to 1.12.4
-
-* Tue Sep 19 2017 Kalev Lember <klember@redhat.com> - 1.7.0-4
-- Update gstreamer plugin to 1.12.3
-
-* Thu Jul 20 2017 Kalev Lember <klember@redhat.com> - 1.7.0-3
-- Update gstreamer plugin to 1.12.2
-
-* Tue Jun 20 2017 Kalev Lember <klember@redhat.com> - 1.7.0-2
-- Update gstreamer plugin to 1.12.1
-
-* Fri Jun 16 2017 Kalev Lember <klember@redhat.com> - 1.7.0-1
-- Update openh264 to 1.7.0
-- Update gstreamer plugin to 1.12.0
-
-* Mon Mar 06 2017 Kalev Lember <klember@redhat.com> - 1.6.0-5
-- Update gstreamer plugin to 1.10.4
-
-* Mon Jan 30 2017 Kalev Lember <klember@redhat.com> - 1.6.0-4
-- Update gstreamer plugin to 1.10.3
-
-* Mon Dec 05 2016 Kalev Lember <klember@redhat.com> - 1.6.0-3
-- Update gstreamer plugin to 1.10.2
-
-* Fri Sep 02 2016 Kalev Lember <klember@redhat.com> - 1.6.0-2
-- Update gstreamer plugin to 1.9.2
-
-* Thu Aug 25 2016 Kalev Lember <klember@redhat.com> - 1.6.0-1
-- Update openh264 to 1.6.0
-- Update gstreamer plugin to 1.8.3
-
-* Thu Apr 28 2016 Kalev Lember <klember@redhat.com> - 1.5.3-0.1.git2706e36
-- Update openh264 to 1.5.3 git snapshot
-- Update gstreamer plugin to 1.8.1
-
-* Mon Mar 21 2016 Dennis Gilmore <dennis@ausil.us> - 1.5.2-0.4.git21e44bd
-- move the mozila-openh264 definition before gstreamer1-plugin-openh264
-- gstreamer1-plugin-openh264 redefines version and release messing up requires
-
-* Mon Nov 30 2015 Kalev Lember <klember@redhat.com> - 1.5.2-0.3.git21e44bd
-- Include the gstreamer plugin in gstreamer1-plugin-openh264 subpackage
-
-* Thu Nov 26 2015 Kalev Lember <klember@redhat.com> - 1.5.2-0.2.git21e44bd
-- Pass Fedora LDFLAGS to the build to get full relro (#1285338)
-
-* Tue Nov 24 2015 Kalev Lember <klember@redhat.com> - 1.5.2-0.1.git21e44bd
-- Initial Fedora packaging
+%autochangelog
