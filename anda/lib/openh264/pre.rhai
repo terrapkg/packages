@@ -1,6 +1,6 @@
 let cwd = "anda/lib/openh264";
-let html = get("https://gstreamer.freedesktop.org/src/gst-plugins-bad/?C=N;O=D");
-let gst = find("gst-plugins-bad-([\\d.]+).tar.xz", html, 1);
+let spec = open_file("anda/lib/openh264/openh264.spec").read_string();
+let gst = find("%global gst_version ([\\d.]+)", spec, 1);
 print(`:: found gst version ${gst}`);
 let out = sh(`wget https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-${gst}.tar.xz`, cwd);
 print(":: wget stdout below");
