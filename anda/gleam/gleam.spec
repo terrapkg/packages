@@ -20,7 +20,7 @@ It compiles to Erlang (or JavaScript) and has straightforward interop with other
 %cargo_build
 
 %install
-%cargo_install
+install -Dm755 target/rpm/gleam %buildroot%_bindir/gleam
 
 %files
 %_bindir/gleam
