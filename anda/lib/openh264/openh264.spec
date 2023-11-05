@@ -1,9 +1,9 @@
 # ref: https://src.fedoraproject.org/rpms/openh264
-%global commit1 3a01c086d1b0394238ff1b5ad22e76022830625a
+%global commit1 e7d30b921df736a1121a0c8e0cf3ab1ce5b8a4b7
 %global shortcommit1 %(c=%{commit1}; echo ${c:0:7})
 
-%global openh264_version 2.3.1
-%global gst_version 1.22.5
+%global openh264_version v2.3.1
+%global gst_version 1.22.6
 
 Name:           openh264
 Version:        %{openh264_version}
