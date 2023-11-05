@@ -1,3 +1,5 @@
+%undefine __brp_mangle_shebangs
+
 Name:			gleam
 Version:		0.32.2
 Release:		1%?dist
