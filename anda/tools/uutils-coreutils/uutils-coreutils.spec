@@ -82,6 +82,24 @@ export SKIP_UTILS=%skip_utils
 %install
 export CARGOFLAGS=%cargo_flags
 export SKIP_UTILS=%skip_utils
+sums=( 
+    md5sum
+    sha1sum
+    sha224sum
+    sha256sum
+    sha384sum
+    sha512sum
+    b2sum
+    b3sum
+    sha3sum
+    sha3sum
+    sha3-224sum
+    sha3-256sum
+    sha3-384sum
+    sha3-512sum
+    shake128sum
+    shake256sum
+)
 
 %define cmds() $(echo %1{runcon,arch,base{32,64,name,nc},cat,ch{grp,mod,own,root,con},cksum,comm,cp,csplit,cut,date,dd,df,dir{,colors,name},du,echo,env,expand,expr,factor,false,fmt,fold,groups,hashsum,head,host{id},id,install,join,link,ln,logname,ls,mk{dir,fifo,nod,temp},mv,nice,nl,nohup,nproc,numfmt,od,paste,pathchk,pinky,pr,printenv,printf,ptx,pwd,readlink,realpath,rm{,dir},seq,shred,shuf,sleep,sort,split,stat,stdbuf,sum,sync,tac,tail,tee,test,timeout,touch,tr,true,truncate,tsort,tty,uname,un{expand,iq,link},users,vdir,wc,who{,ami},yes}%2)
 
@@ -108,6 +126,10 @@ sed -i 's@ @\n@g' files-replace-bash-completion.txt
 # remove buildroot from paths in files.txt
 sed -i "s@%buildroot@/@g" files-replace.txt
 
+for sum in "${sums[@]}"; do
+    ln -srv uu-hashsum "$RPM_BUILD_ROOT/%_bindir/$sum"
+    echo "%_bindir/$sum" >> files-replace.txt
+done
 
 echo "=== Files (Replace) ==="
 cat files-replace.txt
@@ -136,6 +158,12 @@ cat <<EOF > files.txt
 %cmds %_datadir/zsh/site-functions/_uu- ""
 EOF
 sed -i 's@ @\n@g' files.txt
+
+# okay, let's symlink some hashsum binaries
+for sum in "${sums[@]}"; do
+    ln -srv uu-hashsum "$RPM_BUILD_ROOT/%_bindir/$sum"
+    echo "%_bindir/$sum" >> files.txt
+done
 
 # remove buildroot from paths in files.txt
 sed -i "s@%buildroot@/@g" files.txt
