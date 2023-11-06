@@ -100,6 +100,9 @@ sed -i 's@ @\n@g' files-replace.txt
 cat <<EOF > files-replace-bash-completion.txt
 %cmds %_datadir/bash-completion/completions/ ""
 EOF
+sed -i "s@%buildroot@/@g" files-replace-bash-completion.txt
+sed -i 's@ @\n@g' files-replace-bash-completion.txt
+
 
 
 # remove buildroot from paths in files.txt
