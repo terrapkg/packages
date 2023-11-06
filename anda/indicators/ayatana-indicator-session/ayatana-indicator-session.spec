@@ -18,6 +18,7 @@ BuildRequires:  pkgconfig(dbustest-1)
 BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  pkgconfig(libxml-2.0)
 BuildRequires:  pkgconfig(systemd)
+BuildRequires:  pkgconfig(rda)
 BuildRequires:  intltool
 
 %description
