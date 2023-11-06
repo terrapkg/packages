@@ -73,15 +73,15 @@ This package provides a single binary symlinked to replace all coreutils.
 %prep
 %autosetup -n coreutils-%version
 %global skip_utils "hostname kill more uptime"
-%global cargo_flags "--verbose --features feat_selinux"
+%global cargo_flags "--verbose -F feat_selinux"
 %build
 export CARGOFLAGS=%cargo_flags
 export SKIP_UTILS=%skip_utils
 %make_build PROFILE=release SELINUX_ENABLED=1
 
 %install
-export CARGOFLAGS="%cargo_flags"
-export SKIP_UTILS="%skip_utils"
+export CARGOFLAGS=%cargo_flags
+export SKIP_UTILS=%skip_utils
 
 %define cmds() $(echo %1{runcon,arch,base{32,64,name,nc},cat,ch{grp,mod,own,root,con},cksum,comm,cp,csplit,cut,date,dd,df,dir{,colors,name},du,echo,env,expand,expr,factor,false,fmt,fold,groups,hashsum,head,host{id},id,install,join,link,ln,logname,ls,mk{dir,fifo,nod,temp},mv,nice,nl,nohup,nproc,numfmt,od,paste,pathchk,pinky,pr,printenv,printf,ptx,pwd,readlink,realpath,rm{,dir},seq,shred,shuf,sleep,sort,split,stat,stdbuf,sum,sync,tac,tail,tee,test,timeout,touch,tr,true,truncate,tsort,tty,uname,un{expand,iq,link},users,vdir,wc,who{,ami},yes}%2)
 
