@@ -35,6 +35,7 @@ Exec=/usr/bin/vencorddesktop
 Icon=vesktop
 Categories=Network;InstantMessaging;
 StartupWMClass=VencordDesktop
+
 Keywords=discord;vesktop;vencord;shelter;armcord;electron;
 EOF
 
