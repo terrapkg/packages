@@ -126,17 +126,6 @@ sed -i 's@ @\n@g' files-replace-bash-completion.txt
 # remove buildroot from paths in files.txt
 sed -i "s@%buildroot@/@g" files-replace.txt
 
-for sum in "${sums[@]}"; do
-    ln -srvf %_bindir/hashsum "$RPM_BUILD_ROOT/%_bindir/$sum"
-    echo "%_bindir/$sum" >> files-replace.txt
-done
-
-echo "=== Files (Replace) ==="
-cat files-replace.txt
-
-
-
-
 
 %if %{with single}
 %make_install PROFILE=release MULTICALL=y DESTDIR=%buildroot PREFIX=%_prefix SELINUX_ENABLED=1 &
@@ -145,6 +134,13 @@ cat files-replace.txt
 %if %{with replace}
 %make_install PROFILE=release MULTICALL=n DESTDIR=%buildroot PREFIX=%_prefix SELINUX_ENABLED=1 &
 %endif
+
+for sum in "${sums[@]}"; do
+    mkdir -p "$RPM_BUILD_ROOT/%_bindir"
+    ln -srvf %_bindir/hashsum "$RPM_BUILD_ROOT/%_bindir/$sum"
+    echo "%_bindir/$sum" >> files-replace.txt
+done
+
 
 ## normal binary
 %make_install PROFILE=release MULTICALL=n DESTDIR=%buildroot PREFIX=%_prefix SELINUX_ENABLED=1 PROG_PREFIX=uu- &
@@ -171,6 +167,8 @@ sed -i "s@%buildroot@/@g" files.txt
 echo "=== Files ==="
 cat files.txt
 
+echo "=== Files (Replace) ==="
+cat files-replace.txt
 ####
 
 
