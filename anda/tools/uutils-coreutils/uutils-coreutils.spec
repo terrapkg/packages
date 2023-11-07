@@ -1,8 +1,13 @@
+%bcond_without single
+
+%bcond_without replace
+
+
 %global coreutils_ver 9.3
 
 Name:			uutils-coreutils
 Version:		0.0.22
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Cross-platform Rust rewrite of the GNU coreutils
 License:		MIT
 URL:			https://github.com/uutils/coreutils
@@ -14,16 +19,20 @@ BuildRequires:  libselinux-devel
 BuildRequires:  selinux-policy-devel
 BuildRequires:  clang-devel
 
+
 %description
 uutils coreutils is a cross-platform reimplementation of the GNU coreutils in Rust.
 While all programs have been implemented, some options might be missing or different
 behavior might be experienced.
+
+%if %{with replace}
 
 %package replace
 Summary:		Cross-platform Rust replacement of the GNU coreutils
 Provides:       coreutils = %coreutils_ver
 Provides:       coreutils(%arch)
 Provides:       coreutils-full
+Suggests:       uutils-coreutils-replace-bash-completion = %version-%release
 
 %description replace
 uutils coreutils is a cross-platform reimplementation of the GNU coreutils in Rust.
@@ -32,58 +41,109 @@ behavior might be experienced.
 
 This package removes the `uu-` prefixes.
 
-%package util-linux
-Summary:		uutil-coreutils single binary, with util-linux commands
-Requires:		uutils-coreutils
+%package replace-bash-completion
+Summary:		Bash completion for uutils coreutils
+Requires:		uutils-coreutils = %version-%release
+Provides:       bash-completion
 
-%description util-linux
+%description replace-bash-completion
+Bash completion for uutils coreutils
+
+%endif
+
+%if %{with single}
+
+%package single
+Summary:		Cross-platform Rust replacement of the GNU coreutils
+Provides:       coreutils = %coreutils_ver
+Provides:       coreutils(%arch)
+Provides:       coreutils-full
+Provides:       coreutils-single
+Suggests:       bash-completion
+
+%description single
 uutils coreutils is a cross-platform reimplementation of the GNU coreutils in Rust.
 While all programs have been implemented, some options might be missing or different
 behavior might be experienced.
 
-This package provides a single binary with commands for util-linux with the `uu-` prefix.
+This package provides a single binary symlinked to replace all coreutils.
 
-%package util-linux-replace
-Summary:		uutils-coreutils single-binary, replaces coreutils and util-linux
-Provides:		util-linux
-
-%description util-linux-replace
-uutils coreutils is a cross-platform reimplementation of the GNU coreutils in Rust.
-While all programs have been implemented, some options might be missing or different
-behavior might be experienced.
-
-This package provides a single binary with all commands, and replaces the GNU coreutils and util-linux commands.
-
+%endif
 
 %prep
 %autosetup -n coreutils-%version
-
+%global skip_utils "hostname kill more uptime"
+%global cargo_flags "--verbose -F feat_selinux"
 %build
-export CARGOFLAGS="-vv --verbose"
+export CARGOFLAGS=%cargo_flags
+export SKIP_UTILS=%skip_utils
 %make_build PROFILE=release SELINUX_ENABLED=1
 
 %install
-%make_install PROFILE=release MULTICALL=n DESTDIR=%buildroot PREFIX=%_prefix SELINUX_ENABLED=1 PROG_PREFIX=uu- &
-%make_install PROFILE=release MULTICALL=n DESTDIR=%buildroot PREFIX=%_prefix SELINUX_ENABLED=1 &
-wait
-
-# function to remove files from a file list (used below for excludes)
-
-rm_filelist() {
-    local filelist=$1
-    
-    for file in $(cat $filelist); do
-        echo "::  -->  $file"
-        if [ -f "$file" ]; then
-            rm -vf "$file"
-        fi
-        if [ -f "%buildroot/$file" ]; then
-            rm -vf "%buildroot/$file"
-        fi
-    done
-}
+export CARGOFLAGS=%cargo_flags
+export SKIP_UTILS=%skip_utils
+sums=( 
+    md5sum
+    sha1sum
+    sha224sum
+    sha256sum
+    sha384sum
+    sha512sum
+    b2sum
+    b3sum
+    sha3sum
+    sha3sum
+    sha3-224sum
+    sha3-256sum
+    sha3-384sum
+    sha3-512sum
+    shake128sum
+    shake256sum
+)
 
 %define cmds() $(echo %1{runcon,arch,base{32,64,name,nc},cat,ch{grp,mod,own,root,con},cksum,comm,cp,csplit,cut,date,dd,df,dir{,colors,name},du,echo,env,expand,expr,factor,false,fmt,fold,groups,hashsum,head,host{id},id,install,join,link,ln,logname,ls,mk{dir,fifo,nod,temp},mv,nice,nl,nohup,nproc,numfmt,od,paste,pathchk,pinky,pr,printenv,printf,ptx,pwd,readlink,realpath,rm{,dir},seq,shred,shuf,sleep,sort,split,stat,stdbuf,sum,sync,tac,tail,tee,test,timeout,touch,tr,true,truncate,tsort,tty,uname,un{expand,iq,link},users,vdir,wc,who{,ami},yes}%2)
+
+
+### files-replace
+
+cat <<EOF > files-replace.txt
+%cmds %_bindir/ ""
+%_bindir/[
+%cmds %_datadir/fish/vendor_completions.d/ .fish
+%cmds %_mandir/man1/ .1.gz
+%cmds %_datadir/zsh/site-functions/_ ""
+EOF
+sed -i 's@ @\n@g' files-replace.txt
+
+cat <<EOF > files-replace-bash-completion.txt
+%cmds %_datadir/bash-completion/completions/ ""
+EOF
+sed -i "s@%buildroot@/@g" files-replace-bash-completion.txt
+sed -i 's@ @\n@g' files-replace-bash-completion.txt
+
+
+
+# remove buildroot from paths in files.txt
+sed -i "s@%buildroot@/@g" files-replace.txt
+
+
+%if %{with single}
+%make_install PROFILE=release MULTICALL=y DESTDIR=%buildroot PREFIX=%_prefix SELINUX_ENABLED=1 &
+%endif
+
+%if %{with replace}
+%make_install PROFILE=release MULTICALL=n DESTDIR=%buildroot PREFIX=%_prefix SELINUX_ENABLED=1 &
+%endif
+
+for sum in "${sums[@]}"; do
+    mkdir -p "$RPM_BUILD_ROOT/%_bindir"
+    ln -svf %_bindir/hashsum "$RPM_BUILD_ROOT/%_bindir/$sum"
+    echo "%_bindir/$sum" >> files-replace.txt
+done
+
+
+## normal binary
+%make_install PROFILE=release MULTICALL=n DESTDIR=%buildroot PREFIX=%_prefix SELINUX_ENABLED=1 PROG_PREFIX=uu- &
 %define excludes() $(echo %1{hostname,kill,more,uptime}%2)
 cat <<EOF > files.txt
 %cmds %_bindir/uu- ""
@@ -95,49 +155,30 @@ cat <<EOF > files.txt
 EOF
 sed -i 's@ @\n@g' files.txt
 
-cat <<EOF > files-exclude.txt
-%excludes %_datadir/bash-completion/completions/uu- ""
-%excludes %_datadir/fish/vendor_completions.d/uu- .fish
-%excludes %_mandir/man1/uu- .1.gz
-%excludes %_datadir/zsh/site-functions/_uu- ""
-%excludes %_bindir/uu- ""
-EOF
-
-sed -i 's@ @\n@g' files-exclude.txt
+# okay, let's symlink some hashsum binaries
+for sum in "${sums[@]}"; do
+    ln -svf %_bindir/uu-hashsum "$RPM_BUILD_ROOT/%_bindir/uu-$sum"
+    echo "%_bindir/uu-$sum" >> files.txt
+done
 
 # remove buildroot from paths in files.txt
 sed -i "s@%buildroot@/@g" files.txt
 
-### files-replace
-
-cat <<EOF > files-replace.txt
-%cmds %_bindir/ ""
-%_bindir/[
-%cmds %_datadir/bash-completion/completions/ ""
-%cmds %_datadir/fish/vendor_completions.d/ .fish
-%cmds %_mandir/man1/ .1.gz
-%cmds %_datadir/zsh/site-functions/_ ""
-EOF
-sed -i 's@ @\n@g' files-replace.txt
-
-cat <<EOF > files-replace-exclude.txt
-%excludes %_datadir/bash-completion/completions/ ""
-%excludes %_datadir/fish/vendor_completions.d/ .fish
-%excludes %_mandir/man1/ .1.gz
-%excludes %_datadir/zsh/site-functions/_ ""
-%excludes %_bindir/ ""
-EOF
-
-sed -i 's@ @\n@g' files-replace-exclude.txt
-
-# remove buildroot from paths in files.txt
-sed -i "s@%buildroot@/@g" files-replace.txt
-
-
 echo "=== Files ==="
 cat files.txt
+
 echo "=== Files (Replace) ==="
 cat files-replace.txt
+####
+
+
+wait
+
+
+
+
+
+
 
 #echo "=== Removing files ==="
 
@@ -148,13 +189,26 @@ cat files-replace.txt
 %doc README.md
 %license LICENSE
 
+%if %{with single}
+%files single -f files.txt
+/usr/bin/coreutils
+/usr/share/bash-completion/completions/coreutils
+/usr/share/fish/vendor_completions.d/coreutils.fish
+/usr/share/man/man1/coreutils.1.gz
+/usr/share/zsh/site-functions/_coreutils
+%doc README.md
+%license LICENSE
+%endif
+
+%if %{with replace}
 %files replace -f files-replace.txt
 %doc README.md
 %license LICENSE
 
-%files util-linux -f files-exclude.txt
+%files replace-bash-completion -f files-replace-bash-completion.txt
 
-%files util-linux-replace -f files-replace-exclude.txt
+%endif
+
 
 %changelog
 %autochangelog
