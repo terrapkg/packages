@@ -127,7 +127,7 @@ sed -i 's@ @\n@g' files-replace-bash-completion.txt
 sed -i "s@%buildroot@/@g" files-replace.txt
 
 for sum in "${sums[@]}"; do
-    ln -srv uu-hashsum "$RPM_BUILD_ROOT/%_bindir/$sum"
+    ln -srvf %_bindir/hashsum "$RPM_BUILD_ROOT/%_bindir/$sum"
     echo "%_bindir/$sum" >> files-replace.txt
 done
 
