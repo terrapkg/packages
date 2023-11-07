@@ -157,8 +157,8 @@ sed -i 's@ @\n@g' files.txt
 
 # okay, let's symlink some hashsum binaries
 for sum in "${sums[@]}"; do
-    ln -srvf uu-hashsum "$RPM_BUILD_ROOT/%_bindir/$sum"
-    echo "%_bindir/$sum" >> files.txt
+    ln -srvf uu-hashsum "$RPM_BUILD_ROOT/%_bindir/uu-$sum"
+    echo "%_bindir/uu-$sum" >> files.txt
 done
 
 # remove buildroot from paths in files.txt
