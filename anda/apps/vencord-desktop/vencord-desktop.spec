@@ -1,6 +1,7 @@
 %define debug_package %nil
 
-Name:		vesktop
+Name:		vencord-desktop
+Provides:   VencordDesktop = %{version}-%{release}
 Version:	0.4.3
 Release:	1%{?dist}
 License:	GPL-3.0
@@ -9,7 +10,7 @@ URL:		https://github.com/Vencord/Vesktop
 Group:		Applications/Internet
 #Source1:	launch.sh
 Source0:    https://github.com/Vencord/Vesktop/archive/refs/tags/v%{version}.tar.gz
-Requires:	electron xdg-utils
+Requires:   xdg-utils
 BuildRequires:	nodejs-npm git
 # Conflicts:	vesktop-bin
 
@@ -46,7 +47,7 @@ npx pnpm@8 package:dir
 %install
 
 mkdir -p %buildroot/usr/share/vesktop
-cp -r dist/*-unpacked %buildroot/usr/share/vesktop
+cp -r dist/*-unpacked/. %buildroot/usr/share/vesktop/.
 
 install -Dm755 dist/*-unpacked/vencorddesktop %buildroot/usr/bin/vencorddesktop
 ln -sf /usr/share/vesktop/vencorddesktop %buildroot/usr/bin/vencorddesktop
