@@ -137,7 +137,7 @@ sed -i "s@%buildroot@/@g" files-replace.txt
 
 for sum in "${sums[@]}"; do
     mkdir -p "$RPM_BUILD_ROOT/%_bindir"
-    ln -srvf %_bindir/hashsum "$RPM_BUILD_ROOT/%_bindir/$sum"
+    ln -svf %_bindir/hashsum "$RPM_BUILD_ROOT/%_bindir/$sum"
     echo "%_bindir/$sum" >> files-replace.txt
 done
 
@@ -157,7 +157,7 @@ sed -i 's@ @\n@g' files.txt
 
 # okay, let's symlink some hashsum binaries
 for sum in "${sums[@]}"; do
-    ln -srvf uu-hashsum "$RPM_BUILD_ROOT/%_bindir/uu-$sum"
+    ln -svf %_bindir/uu-hashsum "$RPM_BUILD_ROOT/%_bindir/uu-$sum"
     echo "%_bindir/uu-$sum" >> files.txt
 done
 
