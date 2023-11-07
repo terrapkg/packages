@@ -191,6 +191,11 @@ wait
 
 %if %{with single}
 %files single -f files.txt
+/usr/bin/coreutils
+/usr/share/bash-completion/completions/coreutils
+/usr/share/fish/vendor_completions.d/coreutils.fish
+/usr/share/man/man1/coreutils.1.gz
+/usr/share/zsh/site-functions/_coreutils
 %doc README.md
 %license LICENSE
 %endif
