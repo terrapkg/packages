@@ -38,6 +38,19 @@ mkdir -p %{buildroot}%{_datadir}/pixmaps
 ln -s %_datadir/discord/discord.desktop %{buildroot}%{_datadir}/applications/discord.desktop
 ln -s %_datadir/discord/discord.png %{buildroot}%{_datadir}/pixmaps/discord.png
 
+%pretrans
+app=discord
+# Check for installed client mods
+# check if %{_datadir}/discord/app.asar is a folder,
+# if it is, then it's a modded client (vencord)
+
+if [ -d %{_datadir}/${app}/app.asar ]; then
+    echo "Seems like you have a modded client like Vencord installed, Removing it..."
+    echo "You will need to reinstall Vencord after updating!"
+    rm -rf %{_datadir}/${app}/resources/app.asar
+    rm -rf %{_datadir}/${app}/resources/_app.asar
+fi
+
 %files
 %{_datadir}/discord/
 %{_datadir}/applications/discord.desktop
