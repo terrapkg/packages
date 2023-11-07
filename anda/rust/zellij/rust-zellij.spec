@@ -5,7 +5,7 @@
 %global crate zellij
 
 Name:           rust-zellij
-Version:        0.38.2
+Version:        0.39.0
 Release:        1%{?dist}
 Summary:        Terminal workspace with batteries included
 
