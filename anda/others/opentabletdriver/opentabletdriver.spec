@@ -8,7 +8,7 @@
 
 Name: opentabletdriver
 Version: 0.6.3.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: A cross-platform open source tablet driver
 License: LGPLv3
 URL: https://github.com/OpenTabletDriver/OpenTabletDriver
@@ -44,9 +44,6 @@ rm -rf ./dist
 mkdir -p "%{buildroot}/%{_prefix}/lib/"
 cp -r bin "%{buildroot}/%{_prefix}/lib/opentabletdriver"
 
-%post -f eng/linux/Generic/postinst
-
-%postun -f eng/linux/Generic/postrm
 
 %files
 %defattr(-,root,root)
