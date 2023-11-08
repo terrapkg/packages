@@ -11,7 +11,7 @@ Requires:       hicolor-icon-theme python3-sqlalchemy python3-simplejson python3
 Requires:       python3-requests python3-pygame python3-beautifulsoup4 python3-httplib2 python3-pyaudio python3-jsonschema sox libxcrypt-compat python3-pyqt5-sip
 ExclusiveArch:  x86_64
 Conflicts:      anki
-Patch0:         0001-No-update.patch
+#Patch0:         0001-No-update.patch
 Patch1:         0001-Force-qt5.patch
 
 %description
