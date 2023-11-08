@@ -1,9 +1,13 @@
 %define debug_package %nil
 
+# Exclude private libraries
+%global __requires_exclude libffmpeg.so
+%global __provides_exclude_from %{_datadir}/vesktop/.*\\.so
+
 Name:		vencord-desktop
 Provides:   VencordDesktop = %{version}-%{release}
 Version:	0.4.3
-Release:	2%{?dist}
+Release:	3%{?dist}
 License:	GPL-3.0
 Summary:	Vesktop is a cross platform desktop app aiming to give you a snappier Discord experience with Vencord pre-installed
 URL:		https://github.com/Vencord/Vesktop
