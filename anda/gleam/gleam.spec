@@ -1,7 +1,7 @@
 %undefine __brp_mangle_shebangs
 
 Name:			gleam
-Version:		0.32.3
+Version:		0.32.4
 Release:		1%{?dist}
 Summary:		A friendly language for building type-safe, scalable systems
 License:		Apache-2.0
