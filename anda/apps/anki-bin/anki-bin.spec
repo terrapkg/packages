@@ -1,13 +1,14 @@
 Name:			anki-bin
 Version:		23.10
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Flashcard program for using space repetition learning (Installed with wheel)
 License:		AGPL-3.0-or-later AND GPL-3.0-or-later AND LGPL-3.0-or-later AND MIT AND BSD-3-Clause AND CC-BY-SA-3.0 AND CC-BY-3.0 AND Apache-2.0 AND CC-BY-2.5
 URL:			https://apps.ankiweb.net/
 BuildRequires:	python3-installer python3.11 rpm_macro(fdupes)
-Requires:		hicolor-icon-theme python3-sqlalchemy python3-simplejson python3-matplotlib python3-decorator python3-markdown python3-send2trash
-Requires:		python3-requests python3-pygame python3-beautifulsoup4 python3-httplib2 python3-pyaudio python3-jsonschema sox libxcrypt-compat
-Requires:		python3-flask-cors python3-protobuf python3-requests python3-waitress python3-pyqt6-webengine
+Requires:		python3-sqlalchemy python3-simplejson python3-matplotlib python3-decorator python3-markdown python3-orjson
+Requires:		python3-requests python3-pygame python3-beautifulsoup4 python3-httplib2 python3-pyaudio python3-jsonschema
+Requires:		python3-flask-cors python3-protobuf python3-requests python3-waitress python3-pyqt6-webengine python3-send2trash
+Requires:   libxcrypt-compat hicolor-icon-theme sox mpv 
 ExclusiveArch:	x86_64
 Conflicts:		anki
 Source0:		https://files.pythonhosted.org/packages/cp39/a/anki/anki-%{version}-cp39-abi3-manylinux_2_28_%{_arch}.whl
@@ -52,5 +53,8 @@ install -Dm644 %{SOURCE6} "%{buildroot}/%{_datadir}/doc/%{name}/README.md"
 /usr/share/pixmaps/anki.png
 
 %changelog
+* Fri Nov 10 2023 hazel-bunny <dabiswas112@gmail.com> - 23.10-2
+- Add python3-orjson and mpv as dependencies
+
 * Wed Jan 11 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2.1.60
 - Initial package
