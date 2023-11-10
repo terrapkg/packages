@@ -1,12 +1,12 @@
 # Created by pyp2rpm-3.3.10
 %global pypi_name umstellar
-%global pypi_version 0.0.2
+%global pypi_version 0.0.3
 
 Name:           python-%{pypi_name}
 Version:        %{pypi_version}
 Provides:       python3-%{pypi_name} = %{version}-%{release}
 Provides:       %{pypi_name} = %{version}-%{release}
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Ultramarine Quickstart Tool
 
 License:        None
