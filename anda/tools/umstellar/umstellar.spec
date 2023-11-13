@@ -3,7 +3,7 @@
 %global pypi_version 0.0.3
 
 Name:           python-%{pypi_name}
-Version:        %{pypi_version}
+Version:        0.0.3
 Provides:       python3-%{pypi_name} = %{version}-%{release}
 Provides:       %{pypi_name} = %{version}-%{release}
 Release:        1%{?dist}
