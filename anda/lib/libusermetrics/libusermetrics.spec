@@ -4,7 +4,7 @@
 
 Name:       libusermetrics
 Version:    1.3.0
-Release:    1%?dist
+Release:    2%?dist
 Summary:    library for retrieving anonymous metrics about users
 License:    GPLv3 AND LGPLv3 AND LGPLv2
 URL:        https://gitlab.com/ubports/development/core/libusermetrics

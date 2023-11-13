@@ -1,1 +1,1 @@
-rpm.version(gh("ArcticaProject/librda"));
+rpm.version(gh_tag("ArcticaProject/librda"));

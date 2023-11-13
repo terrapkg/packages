@@ -5,7 +5,7 @@
 
 Name:           rust-joshuto
 Version:        0.9.5
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Terminal file manager inspired by ranger
 
 License:        LGPL-3.0

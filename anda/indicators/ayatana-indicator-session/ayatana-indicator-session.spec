@@ -1,7 +1,7 @@
 Name:       ayatana-indicator-session
 Summary:    Ayatana Indicator Session Applet
-Version:    23.10.0
-Release:    1%?dist
+Version:    23.10.1
+Release:    1%{?dist}
 License:    GPL-3.0
 URL:        https://github.com/AyatanaIndicators/ayatana-indicator-session
 Source0:    %{url}/archive/refs/tags/%{version}.tar.gz
@@ -18,7 +18,6 @@ BuildRequires:  pkgconfig(dbustest-1)
 BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  pkgconfig(libxml-2.0)
 BuildRequires:  pkgconfig(systemd)
-BuildRequires:  pkgconfig(rda)
 BuildRequires:  intltool
 
 %description
