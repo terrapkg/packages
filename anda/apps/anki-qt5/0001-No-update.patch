@@ -1,17 +1,13 @@
-diff -uNr anki-2.1.55.old/qt/aqt/profiles.py anki-2.1.55/qt/aqt/profiles.py
---- anki-2.1.55.old/qt/aqt/profiles.py	2023-01-02 18:35:44.574467892 +0800
-+++ anki-2.1.55/qt/aqt/profiles.py	2023-01-02 18:34:00.412033736 +0800
-@@ -77,11 +77,11 @@
+diff --git a/qt/aqt/update.py b/qt/aqt/update.py
+index 212ddf93d..6f716cc04 100644
+--- a/qt/aqt/update.py
++++ b/qt/aqt/update.py
+@@ -11,6 +11,8 @@ from aqt.utils import openLink, show_warning, showText, tr
  
- metaConf = dict(
-     ver=0,
--    updates=True,
-+    updates=False,
-     created=int_time(),
-     id=random.randrange(0, 2**63),
-     lastMsg=-1,
--    suppressUpdate=False,
-+    suppressUpdate=True,
-     firstRun=True,
-     defaultLang=None,
- )
+ 
+ def check_for_update() -> None:
++    return
++
+     from aqt import mw
+ 
+     def do_check(_col: Collection) -> CheckForUpdateResponse:
