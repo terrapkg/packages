@@ -4,7 +4,7 @@
 
 Name:       lomiri-indicator-network
 Version:    1.0.0
-Release:    1%?dist
+Release:    %autorelease
 Summary:    The Network indicator for Ubuntu Touch
 License:    GPL-3.0 AND LGPL-3.0
 URL:        https://gitlab.com/ubports/development/core/lomiri-indicator-network

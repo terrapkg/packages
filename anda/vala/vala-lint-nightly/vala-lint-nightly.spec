@@ -9,7 +9,7 @@
 Name:			vala-lint-nightly
 Summary:		Check Vala code files for code-style errors
 Version:		0.1.0^%{snapshot_info}
-Release:		2%{?dist}
+Release:		1%{?dist}
 License:		GPL-2.0-or-later
 
 URL:			https://github.com/vala-lang/vala-lint

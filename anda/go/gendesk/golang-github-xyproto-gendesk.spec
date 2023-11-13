@@ -20,7 +20,7 @@ of information.}
 %global godocs          README.md
 
 Name:           %{goname}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Generate .desktop files and download .png icons
 
 License:        BSD-3-Clause

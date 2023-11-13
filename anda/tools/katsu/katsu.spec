@@ -6,7 +6,7 @@ Release:		1%{?dist}
 Summary:		The vicious image builder
 License:		MIT
 URL:			https://github.com/FyraLabs/katsu
-Source0:		%url/archive/refs/tags/v%version.tar.gz
+Source0:		%url/archive/refs/tags/%version.tar.gz
 Requires:		xorriso dracut limine grub2 systemd-devel squashfs-tools
 Requires:		dracut-live dracut-config-generic dracut-config-rescue grub2-tools-extra dracut-squash
 BuildRequires:	cargo rust-packaging pkgconfig(libudev) clang-devel

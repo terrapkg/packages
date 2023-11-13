@@ -6,6 +6,7 @@ Summary:        A container runtime written in Rust
 License:        Apache-2.0
 URL:            https://github.com/containers/youki
 Source0:        https://github.com/containers/youki/archive/refs/tags/v%{version}.tar.gz
+Patch0:         dep-protobuf.diff
 
 BuildRequires:  pkg-config
 BuildRequires:  rust-packaging
@@ -22,10 +23,15 @@ BuildRequires:  fdupes
 youki is an implementation of the OCI runtime-spec in Rust, similar to runc.
 
 %prep
-%autosetup -n youki-%{version} -S git -v -p0
+%setup -q -n youki-%{version}
 
+git init .
 git remote add origin https://github.com/containers/youki
 git fetch origin
+git config user.name "username"
+git config user.email "dunno@idk.com"
+git add * .*
+git commit -a -m "idk"
 git checkout v%{version}
 
 # add host key for github
@@ -38,17 +44,17 @@ git submodule sync
 # download git submodules
 git submodule update --init --recursive
 
+%patch 0 -p1
 %cargo_prep_online
 
 
 %build
-
-pushd crates/
 %cargo_build
 
 
 %install
-install -D -m 0755 target/release/youki %{buildroot}%{_bindir}/youki
+ls target/*
+install -D -m 0755 target/rpm/youki %{buildroot}%{_bindir}/youki
 %fdupes docs/
 
 %files

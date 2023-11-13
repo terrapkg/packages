@@ -12,7 +12,7 @@ Requires:       python3-requests python3-pygame python3-beautifulsoup4 python3-h
 Recommends:     mpv
 Obsoletes:      anki <= 2.1.15
 Conflicts:      anki-qt5
-#Patch0:         0001-No-update.patch
+Patch0:         0001-No-update.patch
 
 %description
 Anki is a program designed to help you remember facts (such as words and
