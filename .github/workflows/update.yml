@@ -26,7 +26,7 @@ jobs:
       - name: Run Update
         run: anda update -vv
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.AUTOUPDATE_GH_TOKEN }}
           RUST_BACKTRACE: full
 
       - name: Save
