@@ -4,7 +4,7 @@ Release:        1%{?dist}
 Summary:        Mock configs for Terra repos
 
 License:        MIT
-URL:            http://terra.fyralabs.com
+URL:            https://terra.fyralabs.com
 Source0:        terra.tpl
 Source1:        terra-38-x86_64.cfg
 Source2:        terra-38-aarch64.cfg
