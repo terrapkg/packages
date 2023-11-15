@@ -1,9 +1,9 @@
 %global forgeurl https://gitlab.com/ubports/development/core/click
-%global commit 0de0e0748ecfdf29997e6167f71fca0e2b03151b
+%global commit 6ab489306b1d76628a1bcf413debba1c238ec703
 %forgemeta
 
 Name:           click
-Version:        0.5.0
+Version:        0.5.1
 Release:        %autorelease
 Summary:        An app building method
 License:        LGPL-3.0
