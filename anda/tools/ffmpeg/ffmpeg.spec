@@ -73,9 +73,9 @@
 %endif
 
 # Disable nvenc when not relevant
-%ifnarch %{cuda_arches} aarch64
+#ifnarch %{cuda_arches} aarch64
 %global _without_nvenc    1
-%endif
+#endif
 
 # extras flags
 %if 0%{!?_cuda_version:1}
