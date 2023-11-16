@@ -1,8 +1,8 @@
 %define debug_package %{nil}
 
 Name:           subatomic
-Version:        0.2.6
-Release:        2%{?dist}
+Version:        0.3.0
+Release:        1%{?dist}
 Summary:        A modern package delivery system
 
 License:        MIT
