@@ -78,7 +78,9 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: ${{ steps.art.outputs.name }}
-          path: anda-build/rpm/rpms/*
+          path: |
+            anda-build/rpm/rpms/*
+            anda-build/rpm/srpm/*
 
       - name: Upload packages to subatomic
         if: github.event_name == 'push'
@@ -87,6 +89,14 @@ jobs:
             --server https://subatomic.fyralabs.com \
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
             terra${{ matrix.version }} anda-build/rpm/rpms/*
+
+      - name: Upload source packages to subatomic
+        if: github.event_name == 'push'
+        run: |
+          subatomic-cli upload --prune \
+            --server https://subatomic.fyralabs.com \
+            --token ${{ secrets.SUBATOMIC_TOKEN }} \
+            terra${{ matrix.version }}-source anda-build/rpm/srpm/*
 
       - name: Notify Madoguchi (Success)
         if: success() && github.event_name == 'push'
