@@ -1,4 +1,4 @@
-%global commit 6ee64289f3666774fb694c9d33f83ed8bd52b60c
+%global commit aefbf0327f65d23557d02e86cbd5d9abee5d1ce8
 %global ver 1.8.21
 Name: tdlib-nightly
 Version: %ver^%commit
