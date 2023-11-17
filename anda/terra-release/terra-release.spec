@@ -1,6 +1,6 @@
 Name:           terra-release
 Version:        39
-Release:        1
+Release:        2
 Summary:        Release package for Terra
 
 License:        MIT
@@ -24,6 +24,9 @@ install -D -p -m 0644 -t %{buildroot}%{_sysconfdir}/yum.repos.d %{SOURCE0}
 %config(noreplace) %{_sysconfdir}/yum.repos.d/terra.repo
 
 %changelog
+* Thu Nov 16 2023 Lleyton Gray <lleyton@fyralabs.com> - 39-2
+- Add source repository
+
 * Wed Aug 16 2023 Lleyton Gray <lleyton@fyralabs.com> - 39-1
 - Update for Terra 39
 
