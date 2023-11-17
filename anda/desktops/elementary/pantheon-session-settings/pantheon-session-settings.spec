@@ -41,6 +41,8 @@ Requires:       elementary-sound-theme
 Requires:       elementary-theme
 Requires:       open-sans-fonts
 
+Source1:        https://github.com/elementary/default-settings/raw/master/xdg-desktop-portal/pantheon-portals.conf
+
 %description
 Configuration files and settings overrides for the Pantheon desktop session.
 
@@ -84,6 +86,9 @@ mkdir -p %{buildroot}/%{_datadir}/accountsservice/interfaces
 ln -s ../../dbus-1/interfaces/io.elementary.pantheon.AccountsService.xml \
     %{buildroot}/%{_datadir}/accountsservice/interfaces/io.elementary.pantheon.AccountsService.xml
 
+mkdir -p %{buildroot}/%{_datadir}/xdg-desktop-portal
+install -m 644 %{SOURCE1} %{buildroot}/%{_datadir}/xdg-desktop-portal/
+
 
 # these scriptlets are apparently still necessary, because
 # .override files don't seem to trigger schema recompilation
@@ -109,6 +114,7 @@ fi
 %{_datadir}/gnome-session/sessions/pantheon.session
 %{_datadir}/polkit-1/actions/io.elementary.pantheon.AccountsService.policy
 %{_datadir}/xsessions/pantheon.desktop
+%{_datadir}/xdg-desktop-portal/pantheon-portals.conf
 
 
 %changelog
