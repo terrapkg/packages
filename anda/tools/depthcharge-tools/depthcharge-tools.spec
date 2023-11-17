@@ -6,7 +6,7 @@ License:		GPL-2.0-or-later
 URL:			https://github.com/alpernebbi/depthcharge-tools
 Source0:		%url/archive/v%version/v%version.tar.gz
 Requires:		vboot-utils dtc gzip lz4 python3-setuptools uboot-tools vboot-utils xz
-BuildRequires:	python3-setuptools
+BuildRequires:	python3-setuptools python3-rpm-macros
 BuildArch:		noarch
 
 %description
