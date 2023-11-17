@@ -25,6 +25,10 @@ python3 setup.py install --skip-build --root=%buildroot
 %files
 %doc README.rst
 %license LICENSE
+%_bindir/depthchargectl
+%_bindir/mkdepthcharge
+%python3_sitearch/%name-%version-py%python3_version.egg-info/
+%python3_sitearch/depthcharge_tools/
 
 %changelog
 %autochangelog
