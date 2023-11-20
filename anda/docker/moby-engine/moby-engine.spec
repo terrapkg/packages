@@ -24,7 +24,7 @@
 %global commit_tini 0b44d3665869e46ccbac7414241b8256d6234dc4
 %global shortcommit_tini %(c=%{commit_tini}; echo ${c:0:7})
 
-%global anda_go_build go build -buildmode=pie -tags 'osusergo,netgo' -v -x
+%global anda_go_build go build -buildmode=pie -v -x
 
 Name:           moby-engine
 Version:        24.0.5
