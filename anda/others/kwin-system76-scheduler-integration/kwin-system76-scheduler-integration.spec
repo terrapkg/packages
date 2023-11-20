@@ -33,6 +33,25 @@ install -Dm644 metadata.desktop %buildroot%_datadir/kservices5/kwin-system76-sch
 
 %post
 %systemd_user_post com.system76.Scheduler.dbusproxy.service
+if [ $1 -eq 1 ]; then
+  if [ -f "%_datadir/kde-settings/kde-profile/default/share/config/kwinrc" ]; then
+    grep '^kwin-system76-scheduler-integrationEnabled=true$' %_datadir/kde-settings/kde-profile/default/share/config/kwinrc > /dev/null
+    if [ $? -eq 0 ]; then exit; fi # already enabled
+    if grep -q '^\[Plugins\]$' %_datadir/kde-settings/kde-profile/default/share/config/kwinrc; then
+      sed -i '/^\[Plugins\]$/a kwin-system76-scheduler-integrationEnabled=true' %_datadir/kde-settings/kde-profile/default/share/config/kwinrc
+    else
+      cat <<EOF >> %_datadir/kde-settings/kde-profile/default/share/config/kwinrc
+[Plugins]
+kwin-system76-scheduler-integrationEnabled=true
+EOF
+    fi
+  else
+    cat <<EOF > %_datadir/kde-settings/kde-profile/default/share/config/kwinrc
+[Plugins]
+kwin-system76-scheduler-integrationEnabled=true
+EOF
+  fi
+fi
 
 
 %preun
