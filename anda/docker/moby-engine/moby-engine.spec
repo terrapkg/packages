@@ -4,6 +4,9 @@
 # SPDX-FileCopyrightText: 2022 Maxwell G <gotmax@e.email>
 # See %%{name}.spec.license for the full license text.
 
+# disable debuginfo for now
+%global debug_package %{nil}
+
 # moby
 %global goipath_moby github.com/docker/docker
 %global git_moby https://%%{goipath_moby}
@@ -21,7 +24,7 @@
 %global commit_tini 0b44d3665869e46ccbac7414241b8256d6234dc4
 %global shortcommit_tini %(c=%{commit_tini}; echo ${c:0:7})
 
-%global anda_go_build go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w -extldflags '--static-pie'" -buildmode=pie -tags 'osusergo,netgo,static_build' -v -x
+%global anda_go_build go build -buildmode=pie -tags 'osusergo,netgo' -v -x
 
 Name:           moby-engine
 Version:        24.0.5
@@ -130,9 +133,9 @@ This package installs %{summary}.
 %prep
 %setup -q -a 1 -a 2 -n moby-%{version}
 ln -s vendor.mod go.mod
-export GOPATH="$PWD/vendor"
-go get -x
-go mod vendor
+#export GOPATH="$PWD"
+#go get -x
+#go mod vendor
 # correct rpmlint errors for bash completion
 sed -i '/env bash/d' cli-%{version}/contrib/completion/bash/docker
 cp %{SOURCE6} cli-%{version}/scripts/docs/generate-man.sh
@@ -140,13 +143,18 @@ cp %{SOURCE6} cli-%{version}/scripts/docs/generate-man.sh
 mkdir -p _build/bin
 export CGO_ENABLED=1
 
+export DISABLE_WARN_OUTSIDE_CONTAINER=1
+
+#go mod download
+
+
 # build docker-proxy / libnetwork
 (
 
-        # Build binary using `golang-github-docker-libnetwork-devel`
-        # (github.com/docker/libnetwork) installed in system GOPATH.
-        #export GOPATH="$PWD/vendor"
-        go build -o _build/bin/docker-proxy github.com/moby/moby/cmd/docker-proxy
+        # Link source and vendored deps into local GOPATH.
+        #ln -fns ../../.. src/%{goipath_moby}
+        #export GOPATH="${PWD}"
+        %anda_go_build -o _build/bin/docker-proxy github.com/docker/docker/cmd/docker-proxy
 )
 
 # build tini (installed as docker-init)
