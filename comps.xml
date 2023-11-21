@@ -33,6 +33,7 @@
       <packagereq type="mandatory">wingpanel-indicator-session</packagereq>
       <packagereq type="mandatory">wingpanel-indicator-sound</packagereq>
       <packagereq type="mandatory">xdg-desktop-portal-pantheon</packagereq>
+      <packagereq type="mandatory">elementary-files-portal</packagereq>
       <packagereq type="default">elementary-appcenter</packagereq>
       <packagereq type="default">elementary-calculator</packagereq>
       <packagereq type="default">elementary-calendar</packagereq>
