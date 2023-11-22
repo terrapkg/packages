@@ -3,7 +3,7 @@ Description=Enable kwin-system76-scheduler-integration
 After=network.target
 
 [Service]
-Type=simple
+Type=oneshot
 ExecStart=/usr/bin/sh -c "kwriteconfig5 --file ~/.config/kwinrc --group Plugins --key kwin-system76-scheduler-integrationEnabled true && systemctl disable --user enable-kwin-system76-scheduler-integration"
 
 [Install]
