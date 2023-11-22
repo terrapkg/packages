@@ -16,8 +16,8 @@ Requires:       gala
 #Requires:       gnome-disk-utility
 #Requires:       gnome-keyring
 Requires:       gnome-session
-Requires:       gnome-session-xsession
-#Requires:       gnome-settings-daemon
+#Requires:       gnome-session-xsession  # this pulls in gnome-shell
+Requires:       gnome-settings-daemon
 Requires:       orca
 Requires:       pantheon-agent-geoclue2
 Requires:       pantheon-agent-polkit
