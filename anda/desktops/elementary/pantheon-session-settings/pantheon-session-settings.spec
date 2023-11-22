@@ -13,7 +13,8 @@ BuildArch:      noarch
 
 Requires:       elementary-settings-daemon
 Requires:       gala
-#Requires:       gnome-disk-utility
+# Gala has a hard runtime dependency on... GNOME Disks' DBus service!?!
+Requires:       gnome-disk-utility
 Requires:       gnome-keyring
 Requires:       gnome-session
 #Requires:       gnome-session-xsession  # this pulls in gnome-shell
