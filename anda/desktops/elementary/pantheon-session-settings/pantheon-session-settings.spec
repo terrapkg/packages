@@ -14,7 +14,7 @@ BuildArch:      noarch
 Requires:       elementary-settings-daemon
 Requires:       gala
 #Requires:       gnome-disk-utility
-#Requires:       gnome-keyring
+Requires:       gnome-keyring
 Requires:       gnome-session
 #Requires:       gnome-session-xsession  # this pulls in gnome-shell
 Requires:       gnome-settings-daemon
