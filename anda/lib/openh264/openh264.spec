@@ -2,7 +2,7 @@
 %global commit1 e7d30b921df736a1121a0c8e0cf3ab1ce5b8a4b7
 %global shortcommit1 %(c=%{commit1}; echo ${c:0:7})
 
-%global openh264_version 2.3.1
+%global openh264_version 2.4.0
 %global gst_version 1.22.7
 
 Name:           openh264
