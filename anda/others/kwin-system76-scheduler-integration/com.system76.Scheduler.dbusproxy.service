@@ -4,7 +4,7 @@ StartLimitIntervalSec=60
 StartLimitBurst=5
 
 [Service]
-ExecStart=/usr/bin/system76-scheduler-dbus-proxy.sh
+ExecStart=/usr/libexec/system76-scheduler-dbus-proxy.sh
 
 [Install]
 WantedBy=default.target

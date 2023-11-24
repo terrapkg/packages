@@ -27,7 +27,7 @@ via D-Bus, so it is prioritized.
 %install
 mkdir -p %buildroot%_datadir/kwin/scripts/kwin-system76-scheduler-integration/
 cp -r * %buildroot%_datadir/kwin/scripts/kwin-system76-scheduler-integration/
-install -Dm755 %SOURCE1 %buildroot%_bindir/system76-scheduler-dbus-proxy.sh
+install -Dm755 %SOURCE1 %buildroot%_libexecdir/system76-scheduler-dbus-proxy.sh
 install -Dm644 %SOURCE2 %buildroot%_userunitdir/com.system76.Scheduler.dbusproxy.service
 install -Dm644 metadata.desktop %buildroot%_datadir/kservices5/kwin-system76-scheduler-integration.desktop
 
@@ -41,7 +41,7 @@ install -Dm644 metadata.desktop %buildroot%_datadir/kservices5/kwin-system76-sch
 
 %files
 %config %_userunitdir/com.system76.Scheduler.dbusproxy.service
-%_bindir/system76-scheduler-dbus-proxy.sh
+%_libexecdir/system76-scheduler-dbus-proxy.sh
 %_datadir/kwin/scripts/kwin-system76-scheduler-integration/
 %_datadir/kservices5/kwin-system76-scheduler-integration.desktop
 
