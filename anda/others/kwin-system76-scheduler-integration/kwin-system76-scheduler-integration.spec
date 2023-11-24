@@ -2,10 +2,10 @@
 
 Name:			kwin-system76-scheduler-integration
 Version:		0.1
-Release:		2%?dist
+Release:		3%?dist
 Summary:		Notify the System76 Scheduler which app has focus so it can be prioritized
 License:		MIT
-URL:			https://github.com/maxiberta/kwin-system76-scheduler-integration
+URL:			  https://github.com/maxiberta/kwin-system76-scheduler-integration
 Source0:		%url/archive/refs/tags/%version.tar.gz
 Source1:		system76-scheduler-dbus-proxy.sh
 Source2:		com.system76.Scheduler.dbusproxy.service
@@ -27,7 +27,7 @@ via D-Bus, so it is prioritized.
 %install
 mkdir -p %buildroot%_datadir/kwin/scripts/kwin-system76-scheduler-integration/
 cp -r * %buildroot%_datadir/kwin/scripts/kwin-system76-scheduler-integration/
-install -Dm755 %SOURCE1 %buildroot/usr/local/bin/system76-scheduler-dbus-proxy.sh
+install -Dm755 %SOURCE1 %buildroot%_libexecdir/system76-scheduler-dbus-proxy.sh
 install -Dm644 %SOURCE2 %buildroot%_userunitdir/com.system76.Scheduler.dbusproxy.service
 install -Dm644 metadata.desktop %buildroot%_datadir/kservices5/kwin-system76-scheduler-integration.desktop
 
@@ -41,7 +41,7 @@ install -Dm644 metadata.desktop %buildroot%_datadir/kservices5/kwin-system76-sch
 
 %files
 %config %_userunitdir/com.system76.Scheduler.dbusproxy.service
-/usr/local/bin/system76-scheduler-dbus-proxy.sh
+%_libexecdir/system76-scheduler-dbus-proxy.sh
 %_datadir/kwin/scripts/kwin-system76-scheduler-integration/
 %_datadir/kservices5/kwin-system76-scheduler-integration.desktop
 
