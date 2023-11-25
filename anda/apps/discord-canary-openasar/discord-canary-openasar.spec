@@ -12,7 +12,7 @@ Summary:        A snappier Discord rewrite with features like further customizat
 License:        MIT AND https://discord.com/terms
 URL:            https://github.com/GooseMod/OpenAsar
 Source0:        https://dl-canary.discordapp.net/apps/linux/%{version}/discord-canary-%{version}.tar.gz
-Source1:        %{url}/releases/download/main/app.asar
+Source1:        %url/releases/download/nightly/app.asar
 Group:          Applications/Internet
 Requires:       glibc GConf2
 Requires:       nspr >= 4.13
