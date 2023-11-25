@@ -12,7 +12,7 @@ Summary:        A snappier Discord rewrite with features like further customizat
 License:        MIT AND https://discord.com/terms
 URL:            https://github.com/GooseMod/OpenAsar
 Source0:        https://dl-ptb.discordapp.net/apps/linux/%{version}/discord-ptb-%{version}.tar.gz
-Source1:        %{url}/releases/download/nightly/app.asar
+Source1:        %{url}/releases/download/main/app.asar
 Group:          Applications/Internet
 Requires:       glibc GConf2
 Requires:       nspr >= 4.13
