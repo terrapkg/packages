@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name: nlohmann-json
-Version: 3.11.2
+Version: 3.11.3
 Release: 1%{?dist}
 
 Summary: JSON for Modern C++ (c++11) ("single header file")
