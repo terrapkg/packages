@@ -16,13 +16,12 @@ Source0:		https://github.com/WeirdTreeThing/alsa-ucm-conf-cros/archive/refs/tags
 
 %install
 mkdir -p %buildroot%_datadir/alsa
-cp -r ucm2/. %buildroot%_datadir/alsa/
-ls -alh ucm2/
+cp -r ucm2 %buildroot%_datadir/alsa/
 
 %files
 %doc README.md
 %license LICENSE
-%_datadir/alsa/ucm2/*
+%_datadir/alsa/ucm2/
 
 %changelog
 %autochangelog
