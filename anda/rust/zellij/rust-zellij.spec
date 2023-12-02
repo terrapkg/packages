@@ -19,6 +19,7 @@ BuildRequires:  anda-srpm-macros
 BuildRequires:  rust-packaging
 BuildRequires:  openssl-devel
 BuildRequires:  gcc
+BuildRequires:  perl
 
 #BuildRequires:  external:crate:sccache
 
