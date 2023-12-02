@@ -1,3 +1,5 @@
+%define debug_package %nil
+
 Name:			alsa-ucm-cros
 Version:		0.3
 Release:		1%?dist
