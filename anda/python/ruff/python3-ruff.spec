@@ -36,8 +36,8 @@ rm -rf %{python3_sitelib}/ruff/__pycache__
 /usr/lib64/python*/site-packages/ruff-%{version}.dist-info/license_files/LICENSE
 /usr/lib64/python*/site-packages/ruff/__init__.py
 /usr/lib64/python*/site-packages/ruff/__main__.py
-/usr/lib64/python*/site-packages/ruff/__pycache__/__main__.cpython-*.opt-1.pyc
-/usr/lib64/python*/site-packages/ruff/__pycache__/__main__.cpython-*.pyc
+/usr/lib64/python*/site-packages/ruff/__pycache__/*.cpython-*.opt-1.pyc
+/usr/lib64/python*/site-packages/ruff/__pycache__/*.cpython-*.pyc
 /usr/bin/ruff
 
 %changelog
