@@ -15,6 +15,7 @@ Source:         %{crates_source}
 Patch:          ouch-fix-metadata-auto.diff
 
 BuildRequires:  anda-srpm-macros rust-packaging >= 21
+BuildRequires:  gcc-c++
 
 %global _description %{expand:
 A command-line utility for easily compressing and decompressing files
