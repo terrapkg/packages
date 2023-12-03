@@ -7,7 +7,7 @@ Summary:		An extremely fast Python linter, written in Rust
 License:		MIT
 URL:			https://beta.ruff.rs/
 Source0:		https://github.com/astral-sh/ruff/archive/refs/tags/v%{version}.tar.gz
-BuildRequires:	python3-installer python3.11 python3-pip maturin cargo
+BuildRequires:	python3-installer python3-pip maturin cargo
 Provides:		python3.11dist(ruff) = %{version}
 
 %description
@@ -21,7 +21,7 @@ integrating more functionality behind a single, common interface.
 maturin build --release --strip --locked --all-features
 
 %install
-python3.11 -m installer --destdir="%{buildroot}" target/wheels/*.whl
+pip3 install --root=%{buildroot} target/wheels/*.whl
 rm -rf %{python3_sitelib}/ruff/__pycache__
 
 %files
@@ -30,12 +30,14 @@ rm -rf %{python3_sitelib}/ruff/__pycache__
 /usr/lib64/python*/site-packages/ruff-%{version}.dist-info/METADATA
 /usr/lib64/python*/site-packages/ruff-%{version}.dist-info/RECORD
 /usr/lib64/python*/site-packages/ruff-%{version}.dist-info/WHEEL
-/usr/lib64/python*/site-packages/ruff/__pycache__/__init__.cpython-*.pyc
+/usr/lib64/python*/site-packages/ruff-%{version}.dist-info/INSTALLER
+/usr/lib64/python*/site-packages/ruff-%{version}.dist-info/REQUESTED
+/usr/lib64/python*/site-packages/ruff-%{version}.dist-info/direct_url.json
 /usr/lib64/python*/site-packages/ruff-%{version}.dist-info/license_files/LICENSE
 /usr/lib64/python*/site-packages/ruff/__init__.py
 /usr/lib64/python*/site-packages/ruff/__main__.py
-/usr/lib64/python*/site-packages/ruff/__pycache__/__main__.cpython-*.opt-1.pyc
-/usr/lib64/python*/site-packages/ruff/__pycache__/__main__.cpython-*.pyc
+/usr/lib64/python*/site-packages/ruff/__pycache__/*.cpython-*.opt-1.pyc
+/usr/lib64/python*/site-packages/ruff/__pycache__/*.cpython-*.pyc
 /usr/bin/ruff
 
 %changelog
