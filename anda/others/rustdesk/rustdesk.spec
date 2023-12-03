@@ -1,7 +1,7 @@
-%global pamsys_ver v1.0.0-alpha4
-%global pamsys 1.0.0-alpha4
-%global pam_ver v0.7.0
-%global pam 0.7.0
+%global pamsys_ver v1.0.0-alpha5
+%global pamsys 1.0.0-alpha5
+%global pam_ver v0.8.0
+%global pam 0.8.0
 
 %ifarch x86_64
 %global scarch x64
