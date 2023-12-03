@@ -1,7 +1,7 @@
-%global pamsys_ver v1.0.0-alpha5
-%global pamsys 1.0.0-alpha5
-%global pam_ver v0.7.0
-%global pam 0.7.0
+#global pamsys_ver v1.0.0-alpha5
+#global pamsys 1.0.0-alpha5
+#global pam_ver v0.7.0
+#global pam 0.7.0
 
 %ifarch x86_64
 %global scarch x64
@@ -21,11 +21,11 @@ License:	GPLv2+
 URL:		http://rustdesk.com
 Source0:	https://github.com/rustdesk/rustdesk/archive/refs/tags/%{version}.tar.gz
 Source1:    https://github.com/c-smile/sciter-sdk/raw/master/bin.lnx/%{scarch}/libsciter-gtk.so
-Source2:    https://github.com/fufesou/pam/archive/refs/tags/%{pam_ver}.tar.gz
-Source3:    https://github.com/1wilkens/pam-sys/archive/refs/tags/%{pamsys_ver}.tar.gz
-Patch0:     pam-deps.diff
-Patch1:     pam-sys-build.patch
-Patch2:     rustdesk-deps.diff
+%dnl Source2:    https://github.com/fufesou/pam/archive/refs/tags/%{pam_ver}.tar.gz
+%dnl Source3:    https://github.com/1wilkens/pam-sys/archive/refs/tags/%{pamsys_ver}.tar.gz
+%dnl Patch0:     pam-deps.diff
+%dnl Patch1:     pam-sys-build.patch
+%dnl Patch2:     rustdesk-deps.diff
 
 BuildRequires:  rust-packaging anda-srpm-macros gcc-c++ git curl wget nasm yasm gcc gtk3-devel clang libxcb-devel libxdo-devel libXfixes-devel pulseaudio-libs-devel cmake alsa-lib-devel
 BuildRequires:  gstreamer1-devel rust-gstreamer-devel pkgconfig(gstreamer-app-1.0)
@@ -39,6 +39,7 @@ The best open-source remote desktop client software, written in Rust.
 
 %prep
 %setup -q -n rustdesk-%version
+%{dnl:
 %patch 2 -p1
 tar xf %SOURCE2
 mv pam-%pam pam
@@ -49,6 +50,7 @@ mv pam-sys-%pamsys pam-sys
 cd pam-sys
 git apply %PATCH1
 cd ../..
+}
 %cargo_prep_online
 
 
