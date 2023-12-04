@@ -36,7 +36,9 @@ install -Dm644 %{SOURCE4} "%{buildroot}/usr/share/pixmaps/anki.png"
 install -Dm644 %{SOURCE5} "%{buildroot}/%{_datadir}/licenses/%{name}/LICENSE"
 install -Dm644 %{SOURCE6} "%{buildroot}/%{_datadir}/doc/%{name}/README.md"
 
-rm -rf %buildroot%_libdir/python3*/site-packages/google/*
+cp -r %buildroot%_libdir/python3*/site-packages/{_aqt,anki*,aqt*} .
+rm -rf %buildroot%_libdir/python3*/site-packages/*
+cp -r ./{_aqt,anki*,aqt*} %buildroot%_libdir/python3*/site-packages/
 
 %fdupes %buildroot%_libdir/python*/site-packages/_aqt/data/
 
