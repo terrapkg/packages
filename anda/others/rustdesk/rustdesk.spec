@@ -29,7 +29,7 @@ Source1:    https://github.com/c-smile/sciter-sdk/raw/master/bin.lnx/%{scarch}/l
 
 BuildRequires:  rust-packaging anda-srpm-macros gcc-c++ git curl wget nasm yasm gcc gtk3-devel clang libxcb-devel libxdo-devel libXfixes-devel pulseaudio-libs-devel cmake alsa-lib-devel
 BuildRequires:  gstreamer1-devel rust-gstreamer-devel pkgconfig(gstreamer-app-1.0)
-BuildRequires:  libvpx-devel opus-devel libyuv-devel libaom-devel pam-devel
+BuildRequires:  libvpx-devel opus-devel libyuv-devel libaom-devel pam-devel clang-devel
 Requires:   gtk3 libxcb libxdo libXfixes alsa-lib libappindicator libvdpau1 libva2 pam gstreamer1-plugins-base
 
 
