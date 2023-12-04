@@ -40,6 +40,8 @@ cp -r %buildroot%_libdir/python3*/site-packages/{_aqt,anki*,aqt*} .
 rm -rf %buildroot{%_libdir,/usr/lib}/python3*/site-packages/*
 cp -r ./{_aqt,anki*,aqt*} %buildroot/usr/lib/python3*/site-packages/
 
+rm -rf %buildroot%_bindir/{distro,flask,jsonschema,markdown_py,normalizer,send2trash,waitress-serve}
+
 %fdupes %buildroot%_libdir/python*/site-packages/_aqt/data/
 
 
