@@ -38,7 +38,7 @@ install -Dm644 %{SOURCE6} "%{buildroot}/%{_datadir}/doc/%{name}/README.md"
 
 rm -rf %buildroot%_libdir/python3*/site-packages/google/*
 
-%fdupes %_libdir/python*/site-packages/_aqt/data/
+%fdupes %buildroot%_libdir/python*/site-packages/_aqt/data/
 
 
 %files
