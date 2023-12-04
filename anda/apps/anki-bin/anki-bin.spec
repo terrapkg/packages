@@ -36,7 +36,7 @@ install -Dm644 %{SOURCE4} "%{buildroot}/usr/share/pixmaps/anki.png"
 install -Dm644 %{SOURCE5} "%{buildroot}/%{_datadir}/licenses/%{name}/LICENSE"
 install -Dm644 %{SOURCE6} "%{buildroot}/%{_datadir}/doc/%{name}/README.md"
 
-rm -rf /usr/lib64/python*/site-packages/google/*
+rm -rf %buildroot%_libdir/python3*/site-packages/google/*
 
 %fdupes %_libdir/python*/site-packages/_aqt/data/
 
@@ -44,14 +44,14 @@ rm -rf /usr/lib64/python*/site-packages/google/*
 %files
 %license LICENSE
 %doc README.md
-/usr/bin/anki
-/usr/lib64/python*/site-packages/_aqt/
-/usr/lib64/python*/site-packages/anki-%{version}.dist-info/
-/usr/lib64/python*/site-packages/anki/
-/usr/lib64/python*/site-packages/aqt-%{version}.dist-info/
-/usr/lib64/python*/site-packages/aqt/
-/usr/share/applications/anki.desktop
-/usr/share/pixmaps/anki.png
+%_bindir/anki
+%_libdir/python*/site-packages/_aqt/
+%_libdir/python*/site-packages/anki-%{version}.dist-info/
+%_libdir/python*/site-packages/anki/
+%_libdir/python*/site-packages/aqt-%{version}.dist-info/
+%_libdir/python*/site-packages/aqt/
+%_datadir/applications/anki.desktop
+%_datadir/pixmaps/anki.png
 
 %changelog
 * Fri Nov 10 2023 hazel-bunny <dabiswas112@gmail.com> - 23.10-2
