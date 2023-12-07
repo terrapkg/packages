@@ -27,7 +27,6 @@ Summary:        %{summary}
 %files       -n %{crate}
 %license LICENSE-APACHE
 %license LICENSE-MIT
-%doc CHANGELOG.md
 %doc README.md
 %{_bindir}/ein
 %{_bindir}/gix
@@ -44,7 +43,6 @@ use the "%{crate}" crate.
 %files          devel
 %license %{crate_instdir}/LICENSE-APACHE
 %license %{crate_instdir}/LICENSE-MIT
-%doc %{crate_instdir}/CHANGELOG.md
 %doc %{crate_instdir}/README.md
 %{crate_instdir}/
 
