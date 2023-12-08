@@ -7,7 +7,7 @@
 
 # https://github.com/containerd/containerd
 %global goipath         github.com/containerd/containerd
-Version:                1.7.10
+Version:                1.7.11
 
 %gometa
 
@@ -26,7 +26,7 @@ low-level storage and network attachments, etc.}
                         BUILDING.md README.md RELEASES.md
 
 Name:           %{goname}
-Release:        %autorelease
+Release:        1%{?dist}
 Summary:        Open and reliable container runtime
 
 License:        Apache-2.0
