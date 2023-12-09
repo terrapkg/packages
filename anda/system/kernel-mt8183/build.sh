@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -x
+set -eux -o pipefail
 
 : "${DELETE_SOURCES:=1}"
 
@@ -51,6 +51,9 @@ git config user.name 'Terra' ; git config user.email 'mail@example.com'
 for patch in ../patches/*.patch
     do git am $patch
 done
+
+# Install dependencies
+sudo dnf in -y make
 
 # Build the SRPM
 make \
