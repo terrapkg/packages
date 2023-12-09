@@ -7,6 +7,7 @@ Version: 0.7.6
 Release: 2%?dist
 License: LGPL-3.0-or-later
 Summary: Application Menu plugin for vala-panel
+Group:   System/GUI/Other
 URL:     %{forgeurl}
 Source:  %{forgesource}
 
