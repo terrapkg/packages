@@ -304,16 +304,16 @@ Source43: %{name}-aarch64-64k-debug-rhel.config
 Source50:	%ark/redhat/fedora_files/x509.genkey.fedora
 Source51:	%ark/redhat/fedora_files/mod-extra.list.fedora
 #! WHERE ARE THESE .config FILES FROM???
-Source52:	%ark/redhat/fedora_files/%{name}-aarch64-fedora.config
-Source53:	%ark/redhat/fedora_files/%{name}-aarch64-debug-fedora.config
-Source54:	%ark/redhat/fedora_files/%{name}-aarch64-16k-fedora.config
-Source55:	%ark/redhat/fedora_files/%{name}-aarch64-16k-debug-fedora.config
-Source63:	%ark/redhat/fedora_files/filter-aarch64.sh.fedora
-Source66:	%ark/redhat/fedora_files/filter-modules.sh.fedora
+# Source52:	%ark/redhat/fedora_files/%{name}-aarch64-fedora.config
+# Source53:	%ark/redhat/fedora_files/%{name}-aarch64-debug-fedora.config
+# Source54:	%ark/redhat/fedora_files/%{name}-aarch64-16k-fedora.config
+# Source55:	%ark/redhat/fedora_files/%{name}-aarch64-16k-debug-fedora.config
+# Source63:	%ark/redhat/fedora_files/filter-aarch64.sh.fedora
+# Source66:	%ark/redhat/fedora_files/filter-modules.sh.fedora
 
 #! ok what about you two
-Source70: partial-kgcov-snip.config
-Source71: partial-kgcov-debug-snip.config
+# Source70: partial-kgcov-snip.config
+# Source71: partial-kgcov-debug-snip.config
 Source80:	%ark/redhat/configs/generate_all_configs.sh
 Source81:	%ark/redhat/configs/process_configs.sh
 
