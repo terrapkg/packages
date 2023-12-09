@@ -37,6 +37,9 @@ git config user.name 'Terra' ; git config user.email 'mail@example.com'
 # Apply patches from elly's tree
 curl https://github.com/ellyq/linux/compare/torvalds%3Alinux%3Amaster...master.patch | git am
 
+# Copy the kernel config
+cp ../config .config
+
 # Install dependencies
 sudo dnf in -y make gcc
 
