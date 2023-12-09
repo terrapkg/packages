@@ -1,4 +1,4 @@
-ARG VARIANT="38"
+ARG VARIANT="39"
 FROM fedora:${VARIANT}
 
 RUN useradd -m vscode
@@ -7,4 +7,4 @@ RUN usermod -aG mock vscode
 RUN echo vscode ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/vscode
 RUN dnf -y install git 'dnf-command(config-manager)' mock createrepo_c
 RUN dnf config-manager --add-repo='https://raw.githubusercontent.com/terrapkg/subatomic-repos/main/terra.repo'
-RUN dnf -y install anda terra-mock-configs
+RUN dnf -y install anda terra-mock-configs btop
