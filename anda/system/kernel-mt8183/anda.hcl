@@ -3,4 +3,7 @@ project pkg {
 	rpm {
 		spec = "kernel-mt8183.spec"
 	}
+	labels {
+		nightly = "1"
+	}
 }

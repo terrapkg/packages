@@ -2,6 +2,8 @@
 ## Comments starting with `##`, `#*` and `#?` originate in here.
 #? ref [1]: https://gitlab.com/cki-project/kernel-ark/-/blob/de84ac61/redhat/kernel.spec.template
 
+%global commit      db47012e1cf3c952cc4b642da4b115cf054657ca
+%global shortcommit %{lua:print(macros.commit:sub(1,7))}
 %global ver 6.7.0-rc4
 %global ark https://gitlab.com/cki-project/kernel-ark/-/raw/de84ac61/
 
@@ -14,7 +16,7 @@
 
 
 Name:			kernel-mt8183
-Version:		%(echo %ver | sed 's/-/~/g')
+Version:		%(echo %ver | sed 's/-/~/g')^%{shortcommit}
 Release:		1%?dist
 Summary:		Linux kernel for MT8183-based Chromebooks (Google/Kukui)
 ## kill me for this chaos??
@@ -22,7 +24,7 @@ Summary:		Linux kernel for MT8183-based Chromebooks (Google/Kukui)
 License:		((GPL-2.0-only WITH Linux-syscall-note) OR BSD-2-Clause) AND ((GPL-2.0-only WITH Linux-syscall-note) OR BSD-3-Clause) AND ((GPL-2.0-only WITH Linux-syscall-note) OR CDDL-1.0) AND ((GPL-2.0-only WITH Linux-syscall-note) OR Linux-OpenIB) AND ((GPL-2.0-only WITH Linux-syscall-note) OR MIT) AND ((GPL-2.0-or-later WITH Linux-syscall-note) OR BSD-3-Clause) AND ((GPL-2.0-or-later WITH Linux-syscall-note) OR MIT) AND BSD-2-Clause AND BSD-3-Clause AND BSD-3-Clause-Clear AND GFDL-1.1-no-invariants-or-later AND GPL-1.0-or-later AND (GPL-1.0-or-later OR BSD-3-Clause) AND (GPL-1.0-or-later WITH Linux-syscall-note) AND GPL-2.0-only AND (GPL-2.0-only OR Apache-2.0) AND (GPL-2.0-only OR BSD-2-Clause) AND (GPL-2.0-only OR BSD-3-Clause) AND (GPL-2.0-only OR CDDL-1.0) AND (GPL-2.0-only OR GFDL-1.1-no-invariants-or-later) AND (GPL-2.0-only OR GFDL-1.2-no-invariants-only) AND (GPL-2.0-only WITH Linux-syscall-note) AND GPL-2.0-or-later AND (GPL-2.0-or-later OR BSD-2-Clause) AND (GPL-2.0-or-later OR BSD-3-Clause) AND (GPL-2.0-or-later OR CC-BY-4.0) AND (GPL-2.0-or-later WITH GCC-exception-2.0) AND (GPL-2.0-or-later WITH Linux-syscall-note) AND ISC AND LGPL-2.0-or-later AND (LGPL-2.0-or-later OR BSD-2-Clause) AND (LGPL-2.0-or-later WITH Linux-syscall-note) AND LGPL-2.1-only AND (LGPL-2.1-only OR BSD-2-Clause) AND (LGPL-2.1-only WITH Linux-syscall-note) AND LGPL-2.1-or-later AND (LGPL-2.1-or-later WITH Linux-syscall-note) AND (Linux-OpenIB OR GPL-2.0-only) AND (Linux-OpenIB OR GPL-2.0-only OR BSD-2-Clause) AND Linux-man-pages-copyleft AND MIT AND (MIT OR Apache-2.0) AND (MIT OR GPL-2.0-only) AND (MIT OR GPL-2.0-or-later) AND (MIT OR LGPL-2.1-only) AND (MPL-1.1 OR GPL-2.0-only) AND (X11 OR GPL-2.0-only) AND (X11 OR GPL-2.0-or-later) AND Zlib AND (copyleft-next-0.3.1 OR GPL-2.0-or-later)
 URL:			https://github.com/ellyq/linux/
 Group:			System Environment/Kernel
-Source0:		%url/archive/refs/tags/%ver.tar.gz
+Source0:		%url/archive/%{commit}/linux-%{shortcommit}.tar.gz
 Source99999:	KRNLCFG.env
 ExclusiveArch:	aarch64
 
@@ -33,7 +35,7 @@ ExclusiveArch:	aarch64
 #
 # genspec.sh variables
 #
- 
+
 %global package_name kernel-mt8183
 %global gemini 0
 %global include_fedora 1
@@ -620,9 +622,9 @@ Requires(pre): systemd >= 254-1\
 
 #*
 #* ╔═════════════╗
-#* ║ Subpackages ╟─╮ 
+#* ║ Subpackages ╟─╮
 #* ╚═════════════╝ ╰── A lot.
-#* 
+#*
 ## > Gosh, finally…
 ## > … Uh oh, this is worse.
 ## Nope. I stripped all of them.
