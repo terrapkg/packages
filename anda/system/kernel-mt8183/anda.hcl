@@ -1,6 +1,6 @@
 project pkg {
 	arches = ["aarch64"]
-	labels {
-		nightly = "1"
-	}
+	// labels {
+	// 	nightly = "1"
+	// }
 }
