@@ -149,7 +149,7 @@ ExclusiveArch:	aarch64
 %define make_opts			-s
 %define make_target			bzImage
 %define image_install_path	boot
-%define KVERREL				%ver-%{release}.%{_target_cpu}
+%define KVERREL				%(echo %ver | sed 's/-/~/g')-%{release}.%{_target_cpu}
 %define KVERREL_RE			%(echo %KVERREL | sed 's/+/[+]/g')
 
 %define debuginfodir /usr/lib/debug
