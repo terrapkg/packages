@@ -19,7 +19,7 @@ if [ "$DELETE_SOURCES" = "1" ]; then
 fi
 
 # Fetch Elly's tree
-git clone https://github.com/ellyq/linux.git source-elly
+git clone --filter=tree:0 https://github.com/ellyq/linux.git source-elly
 
 # Move into elly's tree
 pushd source-elly
@@ -38,7 +38,7 @@ git format-patch 33cc938e65a98f1d29d0a18403dbbee050dcad9a..HEAD -o ../patches
 popd
 
 # Fetch the source
-git clone https://gitlab.com/cki-project/kernel-ark.git source
+git clone -b $BRANCH --filter=tree:0 https://gitlab.com/cki-project/kernel-ark.git source
 
 # Move into the source directory
 pushd source
@@ -53,7 +53,7 @@ for patch in ../patches/*.patch
 done
 
 # Install dependencies
-sudo dnf in -y make
+sudo dnf in -y make gcc
 
 # Build the SRPM
 make \
