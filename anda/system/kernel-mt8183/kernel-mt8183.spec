@@ -277,7 +277,7 @@ Source23: x509.genkey.rhel
 
 Source24: %{name}-aarch64-rhel.config
 Source25: %{name}-aarch64-debug-rhel.config
-Source26:	%ark/redhat/rhel-files/mod-extra.list.rhel
+Source26:	%ark/redhat/rhel_files/mod-extra.list.rhel
 
 Source27: %{name}-ppc64le-rhel.config
 Source28: %{name}-ppc64le-debug-rhel.config
@@ -287,13 +287,13 @@ Source31: %{name}-s390x-zfcpdump-rhel.config
 Source32: %{name}-x86_64-rhel.config
 Source33: %{name}-x86_64-debug-rhel.config
 
-Source34: %ark/redhat/rhel-files/filter-x86_64.sh.rhel
-Source35: %ark/redhat/rhel-files/filter-aarch64.sh.rhel
-Source36: %ark/redhat/rhel-files/filter-ppc64le.sh.rhel
-Source37: %ark/redhat/rhel-files/filter-s390x.sh.rhel
-Source38: %ark/redhat/rhel-files/filter-modules.sh.rhel
+Source34: %ark/redhat/rhel_files/filter-x86_64.sh.rhel
+Source35: %ark/redhat/rhel_files/filter-aarch64.sh.rhel
+Source36: %ark/redhat/rhel_files/filter-ppc64le.sh.rhel
+Source37: %ark/redhat/rhel_files/filter-s390x.sh.rhel
+Source38: %ark/redhat/rhel_files/filter-modules.sh.rhel
 
-Source41: %ark/redhat/rhel-files/x509.genkey.centos
+Source41: %ark/redhat/rhel_files/x509.genkey.centos
 # ARM64 64K page-size kernel config
 Source42: %{name}-aarch64-64k-rhel.config
 Source43: %{name}-aarch64-64k-debug-rhel.config
