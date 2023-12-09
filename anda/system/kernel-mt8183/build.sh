@@ -41,7 +41,7 @@ curl https://github.com/ellyq/linux/compare/torvalds%3Alinux%3Amaster...master.p
 cp ../config .config
 
 # Install dependencies
-sudo dnf in -y make gcc
+sudo dnf in -y make gcc bison flex
 
 # Build the SRPM
 make \
@@ -57,7 +57,6 @@ make \
 find redhat/rpm -type f
 
 sudo dnf builddep -y redhat/rpm/SPECS/kernel-mt8183.spec
-sudo dnf in -y bison flex
 
 mkdir -p $ANDA_BUILD_DIR/rpms
 mkdir -p $ANDA_BUILD_DIR/srpms
