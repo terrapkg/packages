@@ -16,7 +16,7 @@
 
 
 Name:			kernel-mt8183
-Version:		%(echo %ver | sed 's/-/~/g')^%{shortcommit}
+Version:		%(echo %ver | sed 's/-/_/g')^%{shortcommit}
 Release:		1%?dist
 Summary:		Linux kernel for MT8183-based Chromebooks (Google/Kukui)
 ## kill me for this chaos??
@@ -149,7 +149,7 @@ ExclusiveArch:	aarch64
 %define make_opts			-s
 %define make_target			bzImage
 %define image_install_path	boot
-%define KVERREL				%(echo %ver | sed 's/-/~/g')-%{release}.%{_target_cpu}
+%define KVERREL				%(echo %ver | sed 's/-/_/g')-%{release}.%{_target_cpu}
 %define KVERREL_RE			%(echo %KVERREL | sed 's/+/[+]/g')
 
 %define debuginfodir /usr/lib/debug
