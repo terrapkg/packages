@@ -15,19 +15,24 @@ export KERNEL_ARK_REV='500'
 export FYRA_KERNELOVERLAY_VER=$(cat version.txt)
 
 if [ "$DELETE_SOURCES" = "1" ]; then
-    rm -rf source patches
+    rm -rf source source-elly
 fi
 
-# Fetch the patches
-git clone https://github.com/FyraLabs/linux-kernel-patches.git patches
+# Fetch Elly's tree
+git clone https://github.com/ellyq/linux.git source-elly
 
-# Move into the patches' directory
-pushd patches
+# Move into elly's tree
+pushd source-elly
 
 # Acquire the latest supported kernel-ark branch
-export BRANCH="$(cat current/commit)"
+# Normally, this would be configured from the downstream repo, see kernel-fyra, but this is a temporary package anyways
+export BRANCH="fedora-6.6"
 
 echo branch: $BRANCH
+
+# Generate patches
+
+git format-patch 33cc938e65a98f1d29d0a18403dbbee050dcad9a..HEAD -o ../patches
 
 # Move out from the patches' directory
 popd
@@ -43,7 +48,7 @@ git checkout $BRANCH
 git config user.name 'Terra' ; git config user.email 'mail@example.com'
 
 # Apply all patches
-for patch in ../patches/current/patches/*.patch
+for patch in ../patches/*.patch
     do git am $patch
 done
 
