@@ -70,6 +70,8 @@ mkdir -p $ANDA_BUILD_DIR/srpms
 rpmbuild -rb \
     --without=debug \
     --without=configchecks \
+    --with=toolchain_clang \
+    --with=clang_lto \
     redhat/rpm/SRPMS/kernel-fyra-*.src.rpm || exit 1
 
 # Move the resulting RPM files into the target directory
