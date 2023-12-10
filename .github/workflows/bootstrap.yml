@@ -35,7 +35,7 @@ jobs:
         run: dnf5 install -y anda-build/rpm/rpms/terra-mock-configs*.rpm
 
       - name: Build anda-srpm-macros
-        run: anda build -c terra-${{ matrix.version }}-${{ matrix.arch }} anda/terra/rpm-macros/pkg
+        run: anda build -c terra-${{ matrix.version }}-${{ matrix.arch }} anda/terra/srpm-macros/pkg
 
       - name: Build Subatomic
         run: anda build -c terra-${{ matrix.version }}-${{ matrix.arch }} anda/tools/buildsys/subatomic/pkg
