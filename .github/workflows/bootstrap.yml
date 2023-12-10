@@ -30,20 +30,20 @@ jobs:
           echo "PATH=$PATH:/github/home/.cargo/bin" >> $GITHUB_ENV
           export PATH=$PATH:/github/home/.cargo/bin
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
-          anda build -c fedora-${{ matrix.version }}-${{ matrix.arch }} anda/mock-configs/pkg -p rpm
+          anda build -c fedora-${{ matrix.version }}-${{ matrix.arch }} anda/terra/mock-configs/pkg -p rpm
       - name: Install terra-mock-configs
         run: dnf5 install -y anda-build/rpm/rpms/terra-mock-configs*.rpm
 
       - name: Build anda-srpm-macros
-        run: anda build -c terra-${{ matrix.version }}-${{ matrix.arch }} anda/srpm-macros/pkg
+        run: anda build -c terra-${{ matrix.version }}-${{ matrix.arch }} anda/terra/rpm-macros/pkg
 
       - name: Build Subatomic
-        run: anda build -c terra-${{ matrix.version }}-${{ matrix.arch }} anda/tools/subatomic/pkg
+        run: anda build -c terra-${{ matrix.version }}-${{ matrix.arch }} anda/tools/buildsys/subatomic/pkg
       - name: Install Subatomic
         run: dnf5 install -y ./anda-build/rpm/rpms/subatomic-*.rpm
 
       - name: Build Andaman
-        run: anda build -c terra-${{ matrix.version }}-${{ matrix.arch }} anda/tools/anda/pkg
+        run: anda build -c terra-${{ matrix.version }}-${{ matrix.arch }} anda/tools/buildsys/anda/pkg
 
       - name: Upload packages to subatomic
         run: |
