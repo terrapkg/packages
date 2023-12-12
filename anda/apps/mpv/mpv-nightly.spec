@@ -44,7 +44,7 @@ BuildRequires:  pkgconfig(libcdio_paranoia)
 BuildRequires:  pkgconfig(libdrm)
 BuildRequires:  pkgconfig(libjpeg)
 BuildRequires:  pkgconfig(libpipewire-0.3) >= 0.3.19
-BuildRequires:  pkgconfig(libplacebo) >= 5.264.1
+BuildRequires:  pkgconfig(libplacebo) >= 6.338.0
 BuildRequires:  pkgconfig(libpulse)
 BuildRequires:  pkgconfig(libswresample) >= 3.9.100
 BuildRequires:  pkgconfig(libswscale) >= 5.9.100
