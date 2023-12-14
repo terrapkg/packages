@@ -30,7 +30,6 @@ Summary:        %{summary}
 
 %files       -n %{crate}
 %license LICENSE
-%license LICENSE.dependencies
 %doc CHANGELOG.md
 %doc CONTRIBUTING.md
 %doc README.md
@@ -42,8 +41,6 @@ Summary:        %{summary}
 
 %build
 %cargo_build
-%{cargo_license_summary}
-%{cargo_license} > LICENSE.dependencies
 
 %install
 %cargo_install
