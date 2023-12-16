@@ -3,7 +3,7 @@
 
 # https://github.com/xyproto/vt100
 %global goipath         github.com/xyproto/vt100
-Version:                1.12.10
+Version:                1.13.0
 
 %gometa -f
 
