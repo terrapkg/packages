@@ -35,7 +35,7 @@ git checkout $BRANCH
 git config user.name 'Terra' ; git config user.email 'mail@example.com'
 
 # Apply patches from elly's tree
-curl https://github.com/ellyq/linux/compare/torvalds%3Alinux%3Amaster...master.patch | git am
+curl https://raw.githubusercontent.com/ellyq/board-google-kukui/main/linux/patches/mt8183-6.7-rc6.patch | git apply
 
 # Copy the kernel config
 cp ../config .config
