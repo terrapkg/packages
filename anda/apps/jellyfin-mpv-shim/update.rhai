@@ -1,1 +1,1 @@
-rpm.version(pypi("jellyfin-mpv-shim"));
+rpm.global("pypi_version", pypi("jellyfin-mpv-shim"));
