@@ -1,5 +1,6 @@
 # Created by pyp2rpm-3.3.10
 %global pypi_name jellyfin-mpv-shim
+%global module_name jellyfin_mpv_shim
 %global pypi_version 2.6.0
 
 Name:           python-%{pypi_name}
@@ -56,12 +57,31 @@ rm -rf %{pypi_name}.egg-info
 %install
 %py3_install
 
+mkdir -p %{buildroot}%{_datadir}/applications/
+# metainfo
+mkdir -p %{buildroot}%{_datadir}/metainfo/
+
+cp -v %{module_name}/integration/*.desktop %{buildroot}%{_datadir}/applications/
+cp -v %{module_name}/integration/*.appdata.xml %{buildroot}%{_datadir}/metainfo/
+
+# add icons
+
+mkdir -p %{buildroot}%{_datadir}/icons/hicolor/{16x16,32x32,48x48,64x64,128x128,256x256}/apps/
+
+for s in 16 32 48 64 128 256; do
+    cp -v %{module_name}/integration/jellyfin-${s}.png %{buildroot}%{_datadir}/icons/hicolor/${s}x${s}/apps/com.github.iwalton3.jellyfin-mpv-shim.png
+done
+
+
 %files -n python3-%{pypi_name}
 %license jellyfin_mpv_shim/default_shader_pack/LICENSE.md
 %doc README.md jellyfin_mpv_shim/default_shader_pack/README.md
 %{_bindir}/jellyfin-mpv-shim
 %{python3_sitelib}/jellyfin_mpv_shim
 %{python3_sitelib}/jellyfin_mpv_shim-%{pypi_version}-py%{python3_version}.egg-info
+%{_datadir}/applications/com.github.iwalton3.jellyfin-mpv-shim.desktop
+%{_datadir}/metainfo/com.github.iwalton3.jellyfin-mpv-shim.appdata.xml
+%{_datadir}/icons/hicolor/*/apps/com.github.iwalton3.jellyfin-mpv-shim.png
 
 %changelog
 * Sun Dec 17 2023 Cappy Ishihara <cappy@cappuchino.xyz> - 2.6.0-1
