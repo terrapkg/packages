@@ -33,7 +33,7 @@ Requires:       python3dist(pypresence)
 Requires:       python3dist(pypresence)
 Requires:       python3dist(pystray)
 Requires:       python3dist(pystray)
-Requires:       python3dist(tkinter)
+Requires:       python3-tkinter
 Requires:       python3dist(python-mpv)
 Requires:       python3dist(python-mpv-jsonipc) >= 1.2
 Requires:       python3dist(pywebview) >= 3.3.1
