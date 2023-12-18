@@ -78,7 +78,6 @@ License:        # FIXME
 
 %files       -n %{crate}
 %license LICENSE
-%license LICENSE.dependencies
 %doc CODE_OF_CONDUCT.md
 %doc README.md
 %{_bindir}/sccache
@@ -602,8 +601,7 @@ use the "webdav" feature of the "%{crate}" crate.
 
 %build
 %cargo_build -f dist-server
-%{cargo_license_summary -f dist-server}
-%{cargo_license -f dist-server} > LICENSE.dependencies
+
 
 %install
 %cargo_install -f dist-server
