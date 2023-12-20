@@ -172,7 +172,7 @@ use the "dist-tests" feature of the "%{crate}" crate.
 
 %files       -n %{name}+dist-tests-devel
 %ghost %{crate_instdir}/Cargo.toml
-
+%endif
 %package     -n %{name}+flate2-devel
 Summary:        %{summary}
 BuildArch:      noarch
@@ -181,7 +181,7 @@ Requires:       (crate(flate2) >= 1.0.0 with crate(flate2) < 2.0.0~)
 Requires:       (crate(flate2/rust_backend) >= 1.0.0 with crate(flate2/rust_backend) < 2.0.0~)
 Requires:       cargo
 Requires:       crate(sccache) = 0.7.4
-%endif
+
 %description -n %{name}+flate2-devel %{_description}
 
 This package contains library source intended for building other packages which
