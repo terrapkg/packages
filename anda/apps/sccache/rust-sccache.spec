@@ -52,7 +52,9 @@ License:        # FIXME
 %doc CODE_OF_CONDUCT.md
 %doc README.md
 %{_bindir}/sccache
+%if %{with dist_server}
 %{_bindir}/sccache-dist
+%endif
 
 %package        devel
 Summary:        %{summary}
