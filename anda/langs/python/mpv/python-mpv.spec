@@ -32,7 +32,7 @@ EOL
 
 %files
 %doc README.rst
-%license LICENSE LICENSE.LGPL
+%license LICENSE.GPL LICENSE.LGPL
 
 %changelog
 %autochangelog
