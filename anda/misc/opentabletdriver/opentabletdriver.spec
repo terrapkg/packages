@@ -7,8 +7,8 @@
 %global __os_install_post %{nil}
 
 Name: opentabletdriver
-Version: 0.6.3.0
-Release: 2%{?dist}
+Version: 0.6.4.0
+Release: 1%{?dist}
 Summary: A cross-platform open source tablet driver
 License: LGPLv3
 URL: https://github.com/OpenTabletDriver/OpenTabletDriver
