@@ -5,8 +5,8 @@
 
 Name:           wingpanel-indicator-session
 Summary:        Session Indicator for wingpanel
-Version:        2.3.1
-Release:        2%{?dist}
+Version:        2.3.0
+Release:        1%{?dist}
 License:        GPL-2.0-or-later
 
 URL:            https://github.com/elementary/wingpanel-indicator-session
