@@ -1,6 +1,6 @@
 Name:       libayatana-common
 Summary:    Common functions for Ayatana System Indicators
-Version:    0.9.9
+Version:    0.9.10
 Release:    1%{?dist}
 License:    GPL-3.0
 URL:        https://github.com/AyatanaIndicators/libayatana-common
