@@ -1,3 +1,6 @@
+%define debug_package %nil
+%define _ttfontsdir %{_datadir}/fonts/maple
+
 Name:           maple-fonts
 Version:        6.4
 Release:        %autorelease
@@ -8,7 +11,7 @@ Source0:        %{url}/releases/download/v%{version}/MapleMono-SC-NF.zip
 Source1:        %{url}/releases/download/v%{version}/MapleMono-ttf.zip
 Source2:        %{url}/releases/download/v%{version}/MapleMono-NF.zip
 Source3:        https://raw.githubusercontent.com/subframe7536/maple-font/main/OFL.txt
-BuildRequires:  fontpackages-devel
+
 BuildRequires:  unzip
  
 %description
@@ -19,7 +22,6 @@ BuildRequires:  unzip
 unzip %{S:1}
 unzip %{S:2}
 cp %{S:3} .
-%define _ttfontsdir %{_datadir}/fonts/maple
  
 %build
  
