@@ -11,7 +11,7 @@ Source0:        %{url}/releases/download/v%{version}/MapleMono-SC-NF.zip
 Source1:        %{url}/releases/download/v%{version}/MapleMono-ttf.zip
 Source2:        %{url}/releases/download/v%{version}/MapleMono-NF.zip
 Source3:        https://raw.githubusercontent.com/subframe7536/maple-font/main/OFL.txt
-
+BuildArch:      noarch
 BuildRequires:  unzip
  
 %description
