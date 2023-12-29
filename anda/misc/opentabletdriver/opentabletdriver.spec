@@ -12,7 +12,6 @@ Release: 1%{?dist}
 Summary: A cross-platform open source tablet driver
 License: LGPLv3
 URL: https://github.com/OpenTabletDriver/OpenTabletDriver
-Source0: %{url}/archive/refs/tags/v%{version}.tar.gz
 %define otddir OpenTabletDriver-%{version}
 
 BuildRequires: dotnet-sdk-6.0 git jq
@@ -30,7 +29,8 @@ Suggests: libXrandr
 OpenTabletDriver is an open source, cross platform, user mode tablet driver. The goal of OpenTabletDriver is to be cross platform as possible with the highest compatibility in an easily configurable graphical user interface.
 
 %prep
-%autosetup -n %{otddir}
+git clone %url .
+git checkout v%version
 
 %build
 ./eng/linux/package.sh --output bin
