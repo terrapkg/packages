@@ -2,8 +2,8 @@ Name:		sarasa-gothic-fonts
 Version:	1.0.0
 Release:	1%{?dist}
 URL:		https://github.com/be5invis/Sarasa-Gothic
-Source0:	%url/releases/download/v%version/sarasa-gothic-ttc-%version.7z
-Source1:	%url/releases/download/v%version/sarasa-gothic-super-ttc-%version.7z
+Source0:	%url/releases/download/v%version/Sarasa-TTC-%version.7z
+Source1:	%url/releases/download/v%version/Sarasa-SuperTTC-%version.7z
 Source2:	https://raw.githubusercontent.com/be5invis/Sarasa-Gothic/v%version/LICENSE
 Source3:	https://raw.githubusercontent.com/be5invis/Sarasa-Gothic/v%version/README.md
 License:	OFL-1.1
@@ -57,5 +57,4 @@ install -Dm644 %SOURCE3 %buildroot/%_datadir/doc/sarasa-gothic-super-fonts/
 /%{_datadir}/fonts/sarasa-gothic-super/
 
 %changelog
-* Wed Apr 26 2023 windowsboy111 <windowsboy111@fyralabs.com> - 0.40.6-1
-- Initial package
+%autochangelog
