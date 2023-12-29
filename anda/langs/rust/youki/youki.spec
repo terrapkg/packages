@@ -6,7 +6,6 @@ Summary:        A container runtime written in Rust
 License:        Apache-2.0
 URL:            https://github.com/containers/youki
 Source0:        https://github.com/containers/youki/archive/refs/tags/v%{version}.tar.gz
-Patch0:         dep-protobuf.diff
 
 BuildRequires:  pkg-config
 BuildRequires:  rust-packaging
@@ -38,13 +37,12 @@ git checkout v%{version}
 # mkdir -p ~/.ssh
 # ssh-keyscan github.com >> ~/.ssh/known_hosts
 
-git submodule set-url integration_tests/oci-runtime-tests https://github.com/opencontainers/runtime-tools
-git submodule sync
+#git submodule set-url integration_tests/oci-runtime-tests https://github.com/opencontainers/runtime-tools
+#git submodule sync
 
 # download git submodules
 git submodule update --init --recursive
 
-%patch 0 -p1
 %cargo_prep_online
 
 
