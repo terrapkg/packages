@@ -38,8 +38,8 @@ git checkout v%{version}
 # mkdir -p ~/.ssh
 # ssh-keyscan github.com >> ~/.ssh/known_hosts
 
-git submodule set-url integration_tests/oci-runtime-tests https://github.com/opencontainers/runtime-tools
-git submodule sync
+#git submodule set-url integration_tests/oci-runtime-tests https://github.com/opencontainers/runtime-tools
+#git submodule sync
 
 # download git submodules
 git submodule update --init --recursive
