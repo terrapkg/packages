@@ -1,4 +1,4 @@
-%define debug_package %{nil}
+%define debug_package %nil
 
 Name:			python3-mpv
 Version:		1.0.5
@@ -30,9 +30,13 @@ EOL
 %install
 %py3_install
 
+rm -rf %buildroot%python3_sitelib/__pycache__
+
 %files
 %doc README.rst
 %license LICENSE.GPL LICENSE.LGPL
+%python3_sitelib/mpv-%version-py%python3_version.egg-info/
+%python3_sitelib/mpv.py
 
 %changelog
 %autochangelog
