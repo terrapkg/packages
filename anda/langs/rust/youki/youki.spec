@@ -43,7 +43,6 @@ git checkout v%{version}
 # download git submodules
 git submodule update --init --recursive
 
-%patch 0 -p1
 %cargo_prep_online
 
 
