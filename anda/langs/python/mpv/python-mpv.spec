@@ -30,11 +30,10 @@ EOL
 %install
 %py3_install
 
-rm -rf %buildroot%python3_sitelib/__pycache__
-
 %files
 %doc README.rst
 %license LICENSE.GPL LICENSE.LGPL
+%ghost %python3_sitelib/__pycache__/mpv.cpython-*.pyc
 %python3_sitelib/mpv-%version-py%python3_version.egg-info/
 %python3_sitelib/mpv.py
 
