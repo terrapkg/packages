@@ -6,7 +6,6 @@ Summary:        A container runtime written in Rust
 License:        Apache-2.0
 URL:            https://github.com/containers/youki
 Source0:        https://github.com/containers/youki/archive/refs/tags/v%{version}.tar.gz
-Patch0:         dep-protobuf.diff
 
 BuildRequires:  pkg-config
 BuildRequires:  rust-packaging
