@@ -21,7 +21,7 @@ Requires: libevdev.so.2()(64bit)
 Requires: gtk3
 Requires: gtk3
 Requires: udev
-Requires(post): grep
+Requires(post): systemd-rpm-macros grep
 Suggests: libX11
 Suggests: libXrandr
 
@@ -43,6 +43,11 @@ rm -rf ./dist
 mkdir -p "%{buildroot}/%{_prefix}/lib/"
 cp -r bin "%{buildroot}/%{_prefix}/lib/opentabletdriver"
 
+%post
+%systemd_user_post opentabletdriver.service
+
+%preun
+%systemd_user_preun opentabletdriver.service
 
 %files
 %defattr(-,root,root)
