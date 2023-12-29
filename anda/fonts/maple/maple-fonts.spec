@@ -29,11 +29,7 @@ cp %{S:3} .
 install -d %{buildroot}%{_ttfontsdir}
 # by default install command uses 755 umask
 install -m 644 *.ttf %{buildroot}%{_ttfontsdir}
- 
-%post
- 
-%postun
- 
+
 %files
 %license OFL.txt
 %dir %{_ttfontsdir}
