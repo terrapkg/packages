@@ -1,5 +1,5 @@
 # saves time so we don't have to download the thing manually
-%undefine _disable_source_fetch
+#undefine _disable_source_fetch
 # We don't have debug symbols, because .NET
 %define debug_package %{nil}
 # We aren't using Mono but RPM expected Mono
@@ -12,10 +12,9 @@ Release: 1%{?dist}
 Summary: A cross-platform open source tablet driver
 License: LGPLv3
 URL: https://github.com/OpenTabletDriver/OpenTabletDriver
-Source0: %{url}/archive/refs/tags/v%{version}.tar.gz
 %define otddir OpenTabletDriver-%{version}
 
-BuildRequires: dotnet-sdk-6.0
+BuildRequires: dotnet-sdk-6.0 git jq
 
 Requires: dotnet-runtime-6.0
 Requires: libevdev.so.2()(64bit)
@@ -30,7 +29,7 @@ Suggests: libXrandr
 OpenTabletDriver is an open source, cross platform, user mode tablet driver. The goal of OpenTabletDriver is to be cross platform as possible with the highest compatibility in an easily configurable graphical user interface.
 
 %prep
-%autosetup -n %{otddir}
+git clone -b v%version %url .
 
 %build
 ./eng/linux/package.sh --output bin
