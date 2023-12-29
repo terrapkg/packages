@@ -18,7 +18,7 @@ BuildRequires:  unzip
 %summary
 
 %prep
-%setup -c -n %{name}-%{version}
+%setup -q -c -n %{name}-%{version}
 unzip %{S:1}
 unzip %{S:2}
 cp %{S:3} .
