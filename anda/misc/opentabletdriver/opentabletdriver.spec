@@ -15,7 +15,7 @@ URL: https://github.com/OpenTabletDriver/OpenTabletDriver
 Source0: %{url}/archive/refs/tags/v%{version}.tar.gz
 %define otddir OpenTabletDriver-%{version}
 
-BuildRequires: dotnet-sdk-6.0
+BuildRequires: dotnet-sdk-6.0 git
 
 Requires: dotnet-runtime-6.0
 Requires: libevdev.so.2()(64bit)
