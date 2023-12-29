@@ -1,5 +1,5 @@
 # saves time so we don't have to download the thing manually
-%undefine _disable_source_fetch
+#undefine _disable_source_fetch
 # We don't have debug symbols, because .NET
 %define debug_package %{nil}
 # We aren't using Mono but RPM expected Mono
