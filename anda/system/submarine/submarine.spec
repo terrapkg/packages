@@ -28,8 +28,8 @@ git clone --recurse-submodules --shallow-submodules -b v%version %url .
 %install
 mkdir -p %buildroot/boot %buildroot%_datadir/submarine
 install -Dm644 build/submarine-*.kpart %buildroot/boot/
-install -Dm644 build/submarine.bin %buildroot%_datadir/submarine/
+install -Dm644 build/submarine-*.bin %buildroot%_datadir/submarine/
 
 %files
 /boot/submarine-*.kpart
-%_datadir/submarine/submarine.bin
+%_datadir/submarine/submarine-*.bin
