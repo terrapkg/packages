@@ -11,7 +11,7 @@ Summary:		Experimental bootloader for ChomeOS's depthcharge
 License:		GPL-3.0
 URL:			https://github.com/FyraLabs/submarine
 Source0:        %url/archive/refs/tags/v%version.tar.gz
-BuildRequires:	make gcc flex bison elfutils-devel parted vboot-utils golang xz bc openssl-devel git
+BuildRequires:	make gcc flex bison elfutils-devel parted vboot-utils golang xz bc openssl-devel git golang-github-u-root
 
 %description
 An experimental bootloader for ChomeOS's depthcharge.
@@ -22,8 +22,6 @@ Submarine provides a minimal Linux environmemt that lives in a small partition
 
 %prep
 %autosetup
-
-go install github.com/u-root/u-root@latest
 
 %build
 %make_build %arch
