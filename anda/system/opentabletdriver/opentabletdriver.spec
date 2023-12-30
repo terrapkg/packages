@@ -44,10 +44,10 @@ mkdir -p "%{buildroot}/%{_prefix}/lib/"
 cp -r bin "%{buildroot}/%{_prefix}/lib/opentabletdriver"
 
 %post
-%systemd_user_post opentabletdriver.service
+%systemd_user_post %name.service
 
 %preun
-%systemd_user_preun opentabletdriver.service
+%systemd_user_preun %name.service
 
 %files
 %defattr(-,root,root)
