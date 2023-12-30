@@ -1,13 +1,11 @@
-# todo: set up rhai update script
 %global debug_package %{nil}
-%global commit e875f95560faeefc9ab1dc2eb9d8ac48817d5294
+%global commit 564c0661a942f7163cb2cfa6cb1b14b4bcff3a30
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date %(date '+%Y%m%d')
 
 
 %global patches %{_datadir}/src/nvidia-patch
 Name:           nvidia-patch
-Version:        0%{commit_date}.git%{shortcommit}
+Version:        0^%{shortcommit}
 Release:        1%{?dist}
 Summary:        NVENC and NvFBC patches for NVIDIA drivers
 
