@@ -16,8 +16,6 @@ It gives you more or less full control of all features of the player, just as th
 
 %prep
 %autosetup -n python-mpv-%version
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 cat<<EOL > setup.py
 from setuptools import setup
 
