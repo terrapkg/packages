@@ -21,7 +21,7 @@ Requires: libevdev.so.2()(64bit)
 Requires: gtk3
 Requires: gtk3
 Requires: udev
-Requires(post): systemd-rpm-macros grep
+Requires(post): systemd-rpm-macros
 Requires(preun): systemd-rpm-macros
 Suggests: libX11
 Suggests: libXrandr
