@@ -22,6 +22,7 @@ Requires: gtk3
 Requires: gtk3
 Requires: udev
 Requires(post): systemd-rpm-macros grep
+Requires(preun): systemd-rpm-macros
 Suggests: libX11
 Suggests: libXrandr
 
