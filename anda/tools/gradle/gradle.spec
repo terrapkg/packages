@@ -3,10 +3,8 @@ Version:		8.5.0
 Release:		1%{?dist}
 Summary:		Powerful build system for the JVM
 URL:			https://gradle.org/
-Source0:		https://services.gradle.org/distributions/%{name}-%{version}-src.zip
-Source1:		https://services.gradle.org/distributions/%{name}-%{version}-all.zip
 License:		Apache-2.0
-Requires:		java-latest-openjdk coreutils findutils sed which bash
+Requires:		java-latest-openjdk coreutils findutils sed which bash unzip
 BuildRequires:	java-11-openjdk-devel asciidoc xmlto groovy unzip git
 BuildArch:		noarch
 Recommends:		gradle-doc gradle-src
@@ -29,14 +27,10 @@ Sources for gradle, a powerful build system for the JVM.
 # See PKGBUILD on Arch Linux
 
 %prep
-unzip %{SOURCE1} %{name}-%{version}/{README,LICENSE}
-mv %{name}-%{version}/README .
-mv %{name}-%{version}/LICENSE .
-rmdir %{name}-%{version}
-unzip %{SOURCE0}
-cd %{name}-%{version}
+git clone https://github.com/gradle/gradle/ .
+git checkout v%version
 
-cat <<EOF > dist/gradle.sh
+cat <<EOF > gradle.sh
 #!/bin/sh
 export GRADLE_HOME=/usr/share/java/gradle
 EOF
@@ -46,15 +40,15 @@ sed -i '/JvmVendorSpec.ADOPTIUM/d' \
 	build-logic/jvm/src/main/kotlin/gradlebuild.unittest-and-compile.gradle.kts \
 	subprojects/docs/src/snippets/java/toolchain-filters/groovy/build.gradle \
 	subprojects/docs/src/snippets/java/toolchain-filters/kotlin/build.gradle.kts \
-	build-logic-commons/gradle-plugin/src/main/kotlin/common.kt
+	build-logic-commons/commons/build.gradle.kts
 # inhibit automatic download of binary gradle
-sed -i "s#distributionUrl=.*#distributionUrl=file\:%{SOURCE1}#" \
-	gradle/wrapper/gradle-wrapper.properties
+#sed -i "s#distributionUrl=.*#distributionUrl=file\:%%{SOURCE0}#" \
+#	gradle/wrapper/gradle-wrapper.properties
 
 
 %build
-cd %{name}-%{version}
 export PATH="/usr/lib/jvm/java-11-openjdk/bin:${PATH}"
+%dnl gradle wrapper --gradle-version %version --distribution-type all
 ./gradlew installAll \
 	-Porg.gradle.java.installations.auto-download=false \
 	-PfinalRelease=true \
@@ -63,10 +57,10 @@ export PATH="/usr/lib/jvm/java-11-openjdk/bin:${PATH}"
 
 
 %install
-cd %{name}-%{version}/dist
+cd dist
 
 # install profile.d script
-install -Dm755 gradle.sh %{buildroot}/etc/profile.d/
+install -Dm755 ../gradle.sh %{buildroot}/etc/profile.d/
 
 # create the necessary directory structure
 install -d "%{buildroot}/usr/share/java/%{name}/bin"
