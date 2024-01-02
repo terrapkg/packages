@@ -7,6 +7,7 @@ Summary:		Python interface to the awesome mpv media player
 License:		GPL-2.0+ OR LGPL-2.1+
 URL:			https://github.com/jaseg/python-mpv
 Source0:		https://github.com/jaseg/python-mpv/archive/refs/tags/v%version.tar.gz
+Requires:       mpv-devel
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(setuptools)
 
