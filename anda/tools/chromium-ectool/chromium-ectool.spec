@@ -20,7 +20,7 @@ A tool to query and send commands to ChromiumOS EC from userspace.
 %autosetup -n chrome-ec-release-R100-14526.B-main
 
 %build
-BOARD=host make -j$(nproc) utils-host
+BOARD=host %make_build utils-host
 
 %install
 install -Dm755 build/host/util/ectool %{buildroot}%{_bindir}/ectool
