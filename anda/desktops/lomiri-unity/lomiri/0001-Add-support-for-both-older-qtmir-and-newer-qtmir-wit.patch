@@ -1,0 +1,196 @@
+From f97954332706aad8b615637a8ccfa63f3683e16c Mon Sep 17 00:00:00 2001
+From: cat-master21 <96554164+cat-master21@users.noreply.github.com>
+Date: Wed, 29 Mar 2023 17:01:45 -0700
+Subject: [PATCH] Add support for both older qtmir and newer qtmir with miroil
+
+Signed-off-by: cat-master21 <96554164+cat-master21@users.noreply.github.com>
+---
+ CMakeLists.txt                            |  8 ++++++++
+ plugins/WindowManager/CMakeLists.txt      |  1 +
+ src/CMakeLists.txt                        |  2 ++
+ src/DisplayConfigurationStorage.cpp       | 12 ++++++++----
+ src/DisplayConfigurationStorage.h         | 11 ++++++++---
+ tests/mocks/WindowManager/CMakeLists.txt  |  1 +
+ tests/mocks/WindowManager/MockScreens.cpp | 10 +++++++---
+ 7 files changed, 35 insertions(+), 10 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 16243ffcf..2546dda37 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -97,6 +97,14 @@ pkg_check_modules(MIRAL REQUIRED miral)
+ pkg_check_modules(DEVICEINFO REQUIRED deviceinfo)
+ pkg_check_modules(LOMIRISCHEMA REQUIRED lomiri-schemas>=0.1.3)
+ 
++if (QTMIRSERVER_VERSION VERSION_GREATER_EQUAL 0.8.0)
++    message("Bulding with miroil")
++    pkg_check_modules(MIROIL REQUIRED miroil)
++    add_definitions(-DUSE_MIROIL=1)
++else()
++    message("Bulding without miroil")
++endif()
++
+ ### Check LomiriGestures private headers. No pkg-config (.pc) file is provided for them
+ find_path(LOMIRIGESTUREPRIV
+     NAMES LomiriGestures/private/damper_p.h LomiriGestures/private/ucswipearea_p.h LomiriGestures/private/ucswipearea_p_p.h
+diff --git a/plugins/WindowManager/CMakeLists.txt b/plugins/WindowManager/CMakeLists.txt
+index 4519fd789..02a504891 100644
+--- a/plugins/WindowManager/CMakeLists.txt
++++ b/plugins/WindowManager/CMakeLists.txt
+@@ -2,6 +2,7 @@ include_directories(
+     SYSTEM
+     ${QTMIRSERVER_INCLUDE_DIRS}
+     ${Qt5Gui_PRIVATE_INCLUDE_DIRS}
++    ${MIROIL_INCLUDE_DIRS}
+ )
+ 
+ include_directories(
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index ac03204b6..2f64d64cc 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -10,6 +10,7 @@ include_directories(
+     ${GSETTINGS_QT_INCLUDE_DIRS}
+     ${CONNECTIVITY_INCLUDE_DIRS}
+     ${QTMIRSERVER_INCLUDE_DIRS}
++    ${MIROIL_INCLUDE_DIRS}
+ )
+ 
+ include_directories(
+@@ -56,6 +57,7 @@ target_link_libraries(${SHELL_APP}
+     ${GSETTINGS_QT_LDFLAGS}
+     ${QTMIRSERVER_LDFLAGS}
+     ${SYSTEMD_LDFLAGS}
++    ${MIROIL_LDFLAGS}
+     LomiriGestures
+     lomiri-connectivity-qt1
+     lomiri-private
+diff --git a/src/DisplayConfigurationStorage.cpp b/src/DisplayConfigurationStorage.cpp
+index 6cfc478a3..69f73bad1 100644
+--- a/src/DisplayConfigurationStorage.cpp
++++ b/src/DisplayConfigurationStorage.cpp
+@@ -23,7 +23,11 @@
+ 
+ namespace {
+ 
+-inline QString stringFromEdid(const miral::Edid& edid)
++#ifndef USE_MIROIL
++namespace miroil = miral;
++#endif
++
++inline QString stringFromEdid(const miroil::Edid& edid)
+ {
+     QString str;
+     str += QString::fromStdString(edid.vendor);
+@@ -41,7 +45,7 @@ DisplayConfigurationStorage::DisplayConfigurationStorage()
+ {
+ }
+ 
+-void DisplayConfigurationStorage::save(const miral::DisplayId &displayId, const miral::DisplayConfigurationOptions &options)
++void DisplayConfigurationStorage::save(const miroil::DisplayId &displayId, const miroil::DisplayConfigurationOptions &options)
+ {
+     const QString dbPath = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QStringLiteral("/lomiri/");
+     QFile f(dbPath + stringFromEdid(displayId.edid) + ".edid");
+@@ -69,7 +73,7 @@ void DisplayConfigurationStorage::save(const miral::DisplayId &displayId, const
+     }
+ }
+ 
+-bool DisplayConfigurationStorage::load(const miral::DisplayId &displayId, miral::DisplayConfigurationOptions &options) const
++bool DisplayConfigurationStorage::load(const miroil::DisplayId &displayId, miroil::DisplayConfigurationOptions &options) const
+ {
+     const QString dbPath = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QStringLiteral("/lomiri/");
+     QFile f(dbPath + stringFromEdid(displayId.edid) + ".edid");
+@@ -92,7 +96,7 @@ bool DisplayConfigurationStorage::load(const miral::DisplayId &displayId, miral:
+                 QStringList geo = sz.split("x", QString::SkipEmptyParts);
+ #endif
+                 if (geo.count() == 2) {
+-                    miral::DisplayConfigurationOptions::DisplayMode mode;
++                    miroil::DisplayConfigurationOptions::DisplayMode mode;
+                     mode.size = mir::geometry::Size(geo[0].toInt(), geo[1].toInt());
+                     mode.refresh_rate = jsonMode["refresh_rate"].toDouble();
+                     options.mode = mode;
+diff --git a/src/DisplayConfigurationStorage.h b/src/DisplayConfigurationStorage.h
+index bd6a9e479..ab91b372f 100644
+--- a/src/DisplayConfigurationStorage.h
++++ b/src/DisplayConfigurationStorage.h
+@@ -17,15 +17,20 @@
+ #ifndef LOMIRI_DISPLAYCONFIGURATIONSTORAGE_H
+ #define LOMIRI_DISPLAYCONFIGURATIONSTORAGE_H
+ 
++#ifndef USE_MIROIL
+ #include <qtmir/miral/display_configuration_storage.h>
++namespace miroil = miral;
++#else
++#include <miroil/display_configuration_storage.h>
++#endif
+ 
+-class DisplayConfigurationStorage : public miral::DisplayConfigurationStorage
++class DisplayConfigurationStorage : public miroil::DisplayConfigurationStorage
+ {
+ public:
+     DisplayConfigurationStorage();
+ 
+-    void save(const miral::DisplayId& displayId, const miral::DisplayConfigurationOptions& options) override;
+-    bool load(const miral::DisplayId& displayId, miral::DisplayConfigurationOptions& options) const override;
++    void save(const miroil::DisplayId& displayId, const miroil::DisplayConfigurationOptions& options) override;
++    bool load(const miroil::DisplayId& displayId, miroil::DisplayConfigurationOptions& options) const override;
+ };
+ 
+ #endif // LOMIRI_DISPLAYCONFIGURATIONSTORAGE_H
+diff --git a/tests/mocks/WindowManager/CMakeLists.txt b/tests/mocks/WindowManager/CMakeLists.txt
+index 419f7c3d8..6d48450d3 100644
+--- a/tests/mocks/WindowManager/CMakeLists.txt
++++ b/tests/mocks/WindowManager/CMakeLists.txt
+@@ -9,6 +9,7 @@ include_directories(
+     ${CMAKE_CURRENT_BINARY_DIR}
+     ${CMAKE_SOURCE_DIR}/plugins/WindowManager
+     ${liblomiri-private_SOURCE_DIR}
++    ${MIROIL_INCLUDE_DIRS}
+ )
+ 
+ add_library(mockwindowmanagmentpolicy SHARED
+diff --git a/tests/mocks/WindowManager/MockScreens.cpp b/tests/mocks/WindowManager/MockScreens.cpp
+index 35ab3f9df..e96b604e8 100644
+--- a/tests/mocks/WindowManager/MockScreens.cpp
++++ b/tests/mocks/WindowManager/MockScreens.cpp
+@@ -26,6 +26,10 @@
+ 
+ namespace {
+ 
++#ifndef USE_MIROIL
++namespace miroil = miral;
++#endif
++
+ QWeakPointer<MockScreens> m_screens;
+ 
+ class MockScreen : public qtmir::Screen
+@@ -82,7 +86,7 @@ public:
+         }
+     }
+ 
+-    miral::DisplayId displayId() const override { return m_id; }
++    miroil::DisplayId displayId() const override { return m_id; }
+     bool used() const override { return m_used; }
+     QString name() const override { return m_name; }
+     float scale() const override { return m_scale; }
+@@ -141,7 +145,7 @@ Q_SIGNALS:
+     void outputTypeNameChanged();
+ 
+ public:
+-    miral::DisplayId m_id;
++    miroil::DisplayId m_id;
+     bool m_active{false};
+     bool m_used{true};
+     QString m_name;
+@@ -167,7 +171,7 @@ MockScreens::MockScreens()
+     QPoint lastPoint(0,0);
+     for (int i = 0; i < screenCount; ++i) {
+         auto screen = new MockScreen();
+-        screen->m_id.output_id = miral::OutputId{i};
++        screen->m_id.output_id = miroil::OutputId{i};
+         screen->m_active = i == 0;
+         screen->m_name = QString("Monitor %1").arg(i);
+         screen->m_position = QPoint(lastPoint.x(), lastPoint.y());
+-- 
+2.39.2
+

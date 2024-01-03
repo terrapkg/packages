@@ -1,0 +1,649 @@
+.TH NIM 1 "SEPTEMBER 2017" Linux "User Manuals"
+.SH NAME
+.PP
+nim \- Nim compiler
+.SH SYNOPSIS
+.PP
+\fB\fCnim\fR \fB\fCcommand\fR [\fIoptions\fP] [\fIprojectfile\fP] [\fIarguments\fP]
+.SH COMMANDS
+.PP
+Basic commands
+.PP
+\fB\fCcompile\fR, \fB\fCc\fR
+    compile project with default code generator (C)
+.PP
+\fB\fCdoc\fR
+    generate the documentation for inputfile
+.PP
+\fB\fCdoc2\fR
+    generate the documentation for the whole project
+.SH OPTIONS
+.PP
+\fB\fC\-p\fR, \fB\fC\-\-path\fR:\fIPATH\fP
+    add path to search paths
+.PP
+\fB\fC\-d\fR, \fB\fC\-\-define\fR:\fISYMBOL\fP(:\fIVAL\fP)
+    define a conditional symbol (optionally: define the value for that symbol)
+.PP
+\fB\fC\-u\fR, \fB\fC\-\-undef\fR:\fISYMBOL\fP
+    undefine a conditional symbol
+.PP
+\fB\fC\-f\fR, \fB\fC\-\-forceBuild\fR
+    force rebuilding of all modules
+.PP
+\fB\fC\-\-stackTrace\fR:\fIon\fP|\fIoff\fP
+    turn stack tracing on|off
+.PP
+\fB\fC\-\-lineTrace\fR:\fIon\fP|\fIoff\fP
+    turn line tracing on|off
+.PP
+\fB\fC\-\-threads\fR:\fIon\fP|\fIoff\fP
+    turn support for multi\-threading on|off
+.PP
+\fB\fC\-x\fR, \fB\fC\-\-checks\fR:\fIon\fP|\fIoff\fP
+    turn all runtime checks on|off
+.PP
+\fB\fC\-\-objChecks\fR:\fIon\fP|\fIoff\fP
+    turn obj conversion checks on|off
+.PP
+\fB\fC\-\-fieldChecks\fR:\fIon\fP|\fIoff\fP
+    turn case variant field checks on|off
+.PP
+\fB\fC\-\-rangeChecks\fR:\fIon\fP|\fIoff\fP
+    turn range checks on|off
+.PP
+\fB\fC\-\-boundChecks\fR:\fIon\fP|\fIoff\fP
+    turn bound checks on|off
+.PP
+\fB\fC\-\-overflowChecks\fR:\fIon\fP|\fIoff\fP
+    turn int over\-/underflow checks on|off
+.PP
+\fB\fC\-a\fR, \fB\fC\-\-assertions\fR:\fIon\fP|\fIoff\fP
+    turn assertions on|off
+.PP
+\fB\fC\-\-floatChecks\fR:\fIon\fP|\fIoff\fP
+    turn all floating point (NaN/Inf) checks on|off
+.PP
+\fB\fC\-\-nanChecks\fR:\fIon\fP|\fIoff\fP
+    turn NaN checks on|off
+.PP
+\fB\fC\-\-infChecks\fR:\fIon\fP|\fIoff\fP
+    turn Inf checks on|off
+.PP
+\fB\fC\-\-deadCodeElim\fR:\fIon\fP|\fIoff\fP
+    whole program dead code elimination on|off
+.PP
+\fB\fC\-\-opt\fR:\fInone\fP|\fIspeed|size\fP
+    optimize not at all or for speed|size. Note: use \fB\fC\-d:release\fR for a release build!
+.PP
+\fB\fC\-\-debugger\fR:native|endb*
+    use native debugger (gdb) | ENDB (experimental)
+.PP
+\fB\fC\-\-app\fR:\fIconsole\fP|\fIgui\fP|\fIlib\fP|\fIstaticlib\fP
+    generate a console app, GUI app, DLL, or static library
+.PP
+\fB\fC\-r\fR, \fB\fC\-\-run\fR
+    run the compiled program with given arguments
+.PP
+\fB\fC\-\-advanced\fR
+    show advanced command line switches
+.PP
+\fB\fC\-h\fR, \fB\fC\-\-help\fR
+    show this help
+.SH ADVANCED COMMANDS
+.PP
+\fB\fCcompileToC\fR, \fB\fCcc\fR
+    compile project with C code generator
+.PP
+\fB\fCcompileToCpp\fR, \fB\fCcpp\fR
+    compile project to C++ code
+.PP
+\fB\fCcompileToOC\fR, \fB\fCobjc\fR
+    compile project to Objective C code
+.PP
+\fB\fCjs\fR
+    compile project to Javascript
+.PP
+\fB\fCe\fR
+    run a Nimscript file
+.PP
+\fB\fCrst2html\fR
+    convert a reStructuredText file to HTML
+.PP
+\fB\fCrst2tex\fR
+    convert a reStructuredText file to TeX
+.PP
+\fB\fCjsondoc\fR
+    extract the documentation to a json file
+.PP
+\fB\fCjsondoc2\fR
+    extract documentation to a json file (uses doc2)
+.PP
+\fB\fCbuildIndex\fR
+    build an index for the whole documentation
+.PP
+\fB\fCrun\fR
+    run the project (with Tiny C backend; buggy!)
+.PP
+\fB\fCgenDepend\fR
+    generate a DOT file containing the module dependency graph
+.PP
+\fB\fCdump\fR
+    dump all defined conditionals and search paths
+.PP
+\fB\fCcheck\fR
+    checks the project for syntax and semantic
+.SH ADVANCED OPTIONS
+.PP
+\fB\fC\-o\fR:\fIFILE\fP, \fB\fC\-\-out\fR:\fIFILE\fP
+    set the output filename
+.PP
+\fB\fC\-\-stdout\fR
+    output to stdout
+.PP
+\fB\fC\-\-colors\fR:\fIon\fP|\fIoff\fP
+    turn compiler messages coloring on|off
+.PP
+\fB\fC\-\-listFullPaths\fR
+    list full paths in messages
+.PP
+\fB\fC\-w\fR:\fIon\fP|\fIoff\fP|\fIlist\fP, \fB\fC\-\-warnings\fR:\fIon\fP|\fIoff\fP|\fIlist\fP
+    turn all warnings on|off or list all available
+.PP
+\fB\fC\-\-warning[X]\fR:\fIon\fP|\fIoff\fP
+    turn specific warning X on|off
+.PP
+\fB\fC\-\-hints\fR:\fIon\fP|\fIoff\fP|\fIlist\fP
+    turn all hints on|off or list all available
+.PP
+\fB\fC\-\-hint[X]\fR:\fIon\fP|\fIoff\fP
+    turn specific hint X on|off
+.PP
+\fB\fC\-\-lib\fR:\fIPATH\fP
+    set the system library path
+.PP
+\fB\fC\-\-import\fR:\fIPATH\fP
+    add an automatically imported module
+.PP
+\fB\fC\-\-include\fR:\fIPATH\fP
+    add an automatically included module
+.PP
+\fB\fC\-\-nimcache\fR:\fIPATH\fP
+    set the path used for generated files
+.PP
+\fB\fC\-\-header\fR:\fIFILE\fP
+    the compiler should produce a .h file (FILE is optional)
+.PP
+\fB\fC\-c\fR, \fB\fC\-\-compileOnly\fR
+    compile only; do not assemble or link
+.PP
+\fB\fC\-\-noLinking\fR
+    compile but do not link
+.PP
+\fB\fC\-\-noMain\fR
+    do not generate a main procedure
+.PP
+\fB\fC\-\-genScript\fR
+    generate a compile script (in the 'nimcache' subdirectory named 'compile_$project$scriptext')
+.PP
+\fB\fC\-\-os\fR:\fISYMBOL\fP
+    set the target operating system (cross\-compilation)
+.PP
+\fB\fC\-\-cpu\fR:\fISYMBOL\fP
+    set the target processor (cross\-compilation)
+.PP
+\fB\fC\-\-debuginfo\fR
+    enables debug information
+.PP
+\fB\fC\-t\fR, \fB\fC\-\-passC\fR:\fIOPTION\fP
+    pass an option to the C compiler
+.PP
+\fB\fC\-l\fR, \fB\fC\-\-passL\fR:\fIOPTION\fP
+    pass an option to the linker
+.PP
+\fB\fC\-\-cincludes\fR:\fIDIR\fP
+    modify the C compiler header search path
+.PP
+\fB\fC\-\-clibdir\fR:\fIDIR\fP
+    modify the linker library search path
+.PP
+\fB\fC\-\-clib\fR:\fILIBNAME\fP
+    link an additional C library (you should omit platform\-specific extensions)
+.PP
+\fB\fC\-\-genMapping\fR
+    generate a mapping file containing (Nim, mangled) identifier pairs
+.PP
+\fB\fC\-\-project\fR
+    document the whole project (doc2)
+.PP
+\fB\fC\-\-docSeeSrcUrl\fR:\fIurl\fP
+    activate 'see source' for doc and doc2 commands (see doc.item.seesrc in config/nimdoc.cfg)
+.PP
+\fB\fC\-\-lineDir\fR:\fIon\fP|\fIoff\fP
+    generation of #line directive on|off
+.PP
+\fB\fC\-\-embedsrc\fR
+    embeds the original source code as comments in the generated output
+.PP
+\fB\fC\-\-threadanalysis\fR:\fIon\fP|\fIoff\fP
+    turn thread analysis on|off
+.PP
+\fB\fC\-\-tlsEmulation\fR:\fIon\fP|\fIoff\fP
+    turn thread local storage emulation on|off
+.PP
+\fB\fC\-\-taintMode\fR:\fIon\fP|\fIoff\fP
+    turn taint mode on|off
+.PP
+\fB\fC\-\-implicitStatic\fR:\fIon\fP|\fIoff\fP
+    turn implicit compile time evaluation on|off
+.PP
+\fB\fC\-\-patterns\fR:\fIon\fP|\fIoff\fP
+    turn pattern matching on|off
+.PP
+\fB\fC\-\-memTracker\fR:\fIon\fP|\fIoff\fP
+    turn memory tracker on|off
+.PP
+\fB\fC\-\-excessiveStackTrace\fR:\fIon\fP|\fIoff\fP
+    stack traces use full file paths
+.PP
+\fB\fC\-\-skipCfg\fR
+    do not read the general configuration file
+.PP
+\fB\fC\-\-skipUserCfg\fR
+    do not read the user's configuration file
+.PP
+\fB\fC\-\-skipParentCfg\fR
+    do not read the parent dirs' configuration files
+.PP
+\fB\fC\-\-skipProjCfg\fR
+    do not read the project's configuration file
+.PP
+\fB\fC\-\-gc\fR:\fIrefc\fP|\fIv2\fP|\fImarkAndSweep\fP|\fIboehm\fP|\fIgo|none\fP|\fIregions\fP
+    select the GC to use; default is \fB\fCrefc\fR
+.PP
+\fB\fC\-\-index\fR:\fIon\fP|\fIoff\fP
+    turn index file generation on|off
+.PP
+\fB\fC\-\-putenv\fR:\fIkey\fP=\fIvalue\fP
+    set an environment variable
+.PP
+\fB\fC\-\-NimblePath\fR:\fIPATH\fP
+    add a path for Nimble support
+.PP
+\fB\fC\-\-noNimblePath\fR
+    deactivate the Nimble path
+.PP
+\fB\fC\-\-noCppExceptions\fR
+    use default exception handling with C++ backend
+.PP
+\fB\fC\-\-excludePath\fR:\fIPATH\fP
+    exclude a path from the list of search paths
+.PP
+\fB\fC\-\-dynlibOverride\fR:\fISYMBOL\fP
+    marks SYMBOL so that dynlib:SYMBOL has no effect and can be statically linked instead; symbol matching is fuzzy so that \fB\fC\-\-dynlibOverride:lua\fR matches dynlib: "liblua.so.3"
+.PP
+\fB\fC\-\-listCmd\fR
+    list the commands used to execute external programs
+.PP
+\fB\fC\-\-parallelBuild\fR:\fI0\fP|\fI1\fP|\fI\&...\fP
+    perform a parallel build value = number of processors (0 for auto\-detect)
+.PP
+\fB\fC\-\-verbosity\fR:\fI0\fP|\fI1\fP|\fI2\fP|\fI3\fP
+    set Nim's verbosity level (1 is default)
+.PP
+\fB\fC\-\-experimental\fR
+    enable experimental language features
+.PP
+\fB\fC\-v\fR, \fB\fC\-\-version\fR
+    show detailed version information
+.SH LIST OF WARNINGS
+.PP
+Each warning can be activated individually with \fB\fC\-\-warning[NAME]\fR:\fIon\fP|\fIoff\fP or in a \fB\fCpush\fR pragma.
+.TS
+allbox;
+cb cb
+l l
+l l
+l l
+l l
+l l
+l l
+l l
+l l
+.
+Name	Description
+CannotOpenFile	Some file not essential for the compiler's working could not be opened.
+OctalEscape	The code contains an unsupported octal sequence.
+Deprecated	The code uses a deprecated symbol.
+ConfigDeprecated	The project makes use of a deprecated config file.
+SmallLshouldNotBeUsed	The letter 'l' should not be used as an identifier.
+EachIdentIsTuple	The code contains a confusing var declaration.
+ShadowIdent	A local variable shadows another local variable of an outer scope.
+User	Some user defined warning.
+.TE
+.SH VERBOSITY LEVELS
+.PP
+\fB\fC0\fR:
+    Minimal output level for the compiler.
+.PP
+\fB\fC1\fR:
+    Displays compilation of all the compiled files, including those imported by other modules or through the compile pragma \[la]https://nim-lang.org/docs/nimc.html#compile-pragma\[ra]\&. This is the default level.
+.PP
+\fB\fC2\fR:
+    Displays compilation statistics, enumerates the dynamic libraries that will be loaded by the final binary and dumps to standard output the result of applying a filter to the source code \[la]https://nim-lang.org/docs/filters.html\[ra] if any filter was used during compilation.
+.PP
+\fB\fC3\fR:
+    In addition to the previous levels dumps a debug stack trace for compiler developers.
+.SH COMPILE TIME SYMBOLS
+.PP
+Through the \fB\fC\-d\fR:\fIx\fP or \fB\fC\-\-define\fR:\fIx\fP switch you can define compile time symbols for conditional compilation. The defined switches can be checked in source code with the when statement and defined proc. The typical use of this switch is to enable builds in release mode (\fB\fC\-d:release\fR) where certain safety checks are omitted for better performance. Another common use is the \fB\fC\-d:ssl\fR switch to activate SSL sockets.
+.PP
+Additionally, you may pass a value along with the symbol: \fB\fC\-d\fR:\fIx=y\fP which may be used in conjunction with the compile time define pragmas to override symbols during build time.
+.SH CONFIGURATION FILES
+.PP
+\fINote\fP: The project file name is the name of the \fB\fC\&.nim\fR file that is passed as a command line argument to the compiler.
+.PP
+The \fB\fCnim\fR executable processes configuration files in the following directories (in this order; later files overwrite previous settings):
+.nr step0 0 1
+.RS
+.IP \n+[step0]
+\fB\fC$nim/config/nim.cfg\fR, \fB\fC/etc/nim.cfg\fR (UNIX) or \fB\fC%NIMROD%/config/nim.cfg\fR (Windows). This file can be skipped with the \-\-skipCfg command line option.
+.IP \n+[step0]
+\fB\fC/home/$user/.config/nim.cfg\fR (UNIX) or \fB\fC%APPDATA%/nim.cfg\fR (Windows). This file can be skipped with the \fB\fC\-\-skipUserCfg\fR command line option.
+.IP \n+[step0]
+\fB\fC$parentDir/nim.cfg\fR where \fB\fC$parentDir\fR stands for any parent directory of the project file's path. These files can be skipped with the \fB\fC\-\-skipParentCfg\fR command line option.
+.IP \n+[step0]
+\fB\fC$projectDir/nim.cfg\fR where \fB\fC$projectDir\fR stands for the project file's path. This file can be skipped with the \fB\fC\-\-skipProjCfg\fR command line option.
+.IP \n+[step0]
+A project can also have a project specific configuration file named \fB\fC$project.nim.cfg\fR that resides in the same directory as \fB\fC$project.nim\fR\&. This file can be skipped with the \fB\fC\-\-skipProjCfg\fR command line option.
+Command line settings have priority over configuration file settings.
+.RE
+.PP
+The default build of a project is a debug build. To compile a release build define the \fB\fCrelease\fR symbol:
+.PP
+.RS
+.nf
+nim c \-d:release myproject.nim
+.fi
+.RE
+.SH SEARCH PATH HANDLING
+.PP
+Nim has the concept of a global search path (PATH) that is queried to determine where to find imported modules or include files. If multiple files are found an ambiguity error is produced.
+.PP
+\fB\fCnim dump\fR shows the contents of the PATH.
+.PP
+However before the PATH is used the current directory is checked for the file's existence. So if PATH contains  $lib and $lib/bar and the directory structure looks like this:
+.PP
+.RS
+.nf
+$lib/x.nim
+$lib/bar/x.nim
+foo/x.nim
+foo/main.nim
+other.nim
+.fi
+.RE
+.PP
+And \fB\fCmain\fR imports \fB\fCx\fR, \fB\fCfoo/x\fR is imported. If \fB\fCother\fR imports \fB\fCx\fR then both \fB\fC$lib/x.nim\fR and \fB\fC$lib/bar/x.nim\fR match and so the compiler should reject it. Currently however this check is not implemented and instead the first matching file is used.
+.SH GENERATED C CODE DIRECTORY
+.PP
+The generated files that Nim produces all go into a subdirectory called \fB\fCnimcache\fR in your project directory. This makes it easy to delete all generated files. Files generated in this directory follow a naming logic which you can read about in the Nim Backend Integration document \[la]https://nim-lang.org/docs/backends.html#nimcache-naming-logic\[ra]\&.
+.PP
+However, the generated C code is not platform independent. C code generated for Linux does not compile on Windows, for instance. The comment on top of the C file lists the OS, CPU and CC the file has been compiled for.
+.SH COMPILATION CACHE
+.PP
+\fIWarning\fP: The compilation cache is still highly experimental!
+.PP
+The \fB\fCnimcache\fR directory may also contain so called rod or symbol files. These files are pre\-compiled modules that are used by the compiler to perform incremental compilation. This means that only modules that have changed since the last compilation (or the modules depending on them etc.) are re\-compiled. However, per default no symbol files are generated; use the \fB\fC\-\-symbolFiles:on\fR command line switch to activate them.
+.PP
+Unfortunately due to technical reasons the \fB\fC\-\-symbolFiles:on\fR needs to aggregate some generated C code. This means that the resulting executable might contain some cruft even when dead code elimination is turned on. So the final release build should be done with \fB\fC\-\-symbolFiles:off\fR\&.
+.PP
+Due to the aggregation of C code it is also recommended that each project resides in its own directory so that the generated \fB\fCnimcache\fR directory is not shared between different projects.
+.SH COMPILER SELECTION
+.PP
+To change the compiler from the default compiler (at the command line):
+.PP
+.RS
+.nf
+nim c \-\-cc:llvm_gcc \-\-compile_only myfile.nim
+.fi
+.RE
+.PP
+This uses the configuration defined in \fB\fCconfig\\nim.cfg\fR for \fB\fCllvm_gcc\fR\&.
+.PP
+If \fB\fCnimcache\fR already contains compiled code from a different compiler for the same project, add the \fB\fC\-f\fR flag to force all files to be recompiled.
+.PP
+The default compiler is defined at the top of \fB\fCconfig\\nim.cfg\fR\&. Changing this setting affects the compiler used by \fB\fCkoch\fR to (re)build Nim.
+.SH CROSS COMPILATION
+.PP
+To cross compile, use for example:
+.PP
+.RS
+.nf
+nim c \-\-cpu:i386 \-\-os:linux \-\-compileOnly \-\-genScript myproject.nim
+.fi
+.RE
+.PP
+Then move the C code and the compile script \fB\fCcompile_myproject.sh\fR to your Linux i386 machine and run the script.
+.PP
+Another way is to make Nim invoke a cross compiler toolchain:
+.PP
+.RS
+.nf
+nim c \-\-cpu:arm \-\-os:linux myproject.nim
+.fi
+.RE
+.PP
+For cross compilation, the compiler invokes a C compiler named like \fB\fC$cpu.$os.$cc\fR (for example \fB\fCarm.linux.gcc\fR) and the configuration system is used to provide meaningful defaults. For example for \fIARM\fP your configuration file should contain something like:
+.PP
+.RS
+.nf
+arm.linux.gcc.path = "/usr/bin"
+arm.linux.gcc.exe = "arm\-linux\-gcc"
+arm.linux.gcc.linkerexe = "arm\-linux\-gcc"
+.fi
+.RE
+.PP
+DLL GENERATION
+.PP
+Nim supports the generation of DLLs. However, there must be only one instance of the GC per process/address space. This instance is contained in \fB\fCnimrtl.dll\fR\&. This means that every generated Nim DLL depends on \fB\fCnimrtl.dll\fR\&. To generate the "nimrtl.dll" file, use the command:
+.PP
+.RS
+.nf
+nim c \-d:release lib/nimrtl.nim
+.fi
+.RE
+.PP
+To link against nimrtl.dll use the command:
+.PP
+.RS
+.nf
+nim c \-d:useNimRtl myprog.nim
+.fi
+.RE
+.PP
+\fINote\fP: Currently the creation of \fB\fCnimrtl.dll\fR with thread support has never been tested and is unlikely to work!
+.SH ADDITIONAL COMPILATION SWITCHES
+.PP
+The standard library supports a growing number of \fB\fCuseX\fR conditional defines affecting how some features are implemented. This section tries to give a complete list.
+.PP
+\fB\fC\-d:release\fR
+    Turns off runtime checks and turns on the optimizer.
+.PP
+\fB\fC\-d:useWinAnsi\fR
+    Modules like \fB\fCos\fR and \fB\fCosproc\fR use the ANSI versions of the Windows API. The default build uses the Unicode version.
+.PP
+\fB\fC\-d:useFork\fR
+    Makes \fB\fCosproc\fR use \fB\fCfork\fR instead of \fB\fCposix_spawn\fR\&.
+.PP
+\fB\fC\-d:useNimRtl\fR
+    Compile and link against \fB\fCnimrtl.dll\fR\&.
+.PP
+\fB\fC\-d:useMalloc\fR
+    Makes Nim use C's malloc instead of Nim's own memory manager, ableit prefixing each allocation with its size to support clearing memory on reallocation. This only works with \fB\fCgc:none\fR\&.
+.PP
+\fB\fC\-d:useRealtimeGC\fR
+    Enables support of Nim's GC for soft realtime systems. See the documentation of the gc \[la]https://nim-lang.org/docs/gc.html\[ra] for further information.
+.PP
+\fB\fC\-d:nodejs\fR
+    The JS target is actually \fB\fCnode.js\fR\&.
+.PP
+\fB\fC\-d:ssl\fR
+    Enables OpenSSL support for the sockets module.
+.PP
+\fB\fC\-d:memProfiler\fR
+    Enables memory profiling for the native GC.
+.PP
+\fB\fC\-d:uClibc\fR
+    Use uClibc instead of libc. (Relevant for Unix\-like OSes)
+.PP
+\fB\fC\-d:checkAbi\fR
+    When using types from C headers, add checks that compare what's in the Nim file with what's in the C header (requires a C compiler with \fIStatic\fPassert support, like any C11 compiler)
+.PP
+\fB\fC\-d:tempDir\fR:\fIPATH\fP
+    This symbol takes a string as its value, like \fB\fC\-\-define:tempDir:/some/temp/path\fR to override the temporary directory returned by \fB\fCos.getTempDir()\fR\&. The value should end with a directory separator character. (Relevant for the Android platform)
+.PP
+\fB\fC\-d:useShPath\fR:\fIPATH\fP
+    This symbol takes a string as its value, like \fB\fC\-\-define:useShPath:/opt/sh/bin/sh\fR to override the path for the \fB\fCsh\fR binary, in cases where it is not located in the default location \fB\fC/bin/sh\fR\&.
+.SH ADDITIONAL FEATURES
+.PP
+This section describes Nim's additional features that are not listed in the Nim manual. Some of the features here only make sense for the C code generator and are subject to change.
+.PP
+\fILineDir option\fP
+    The \fB\fClineDir\fR option can be turned on or off. If turned on the generated C code contains \fB\fC#line\fR directives. This may be helpful for debugging with GDB.
+.PP
+\fIStackTrace option\fP
+    If the \fB\fCstackTrace\fR option is turned on, the generated C contains code to ensure that proper stack traces are given if the program crashes or an uncaught exception is raised.
+.PP
+\fILineTrace option\fP
+    The \fB\fClineTrace\fR option implies the \fB\fCstackTrace\fR option. If turned on, the generated C contains code to ensure that proper stack traces with line number information are given if the program crashes or an uncaught exception is raised.
+.PP
+\fIDebugger option\fP
+    The \fB\fCdebugger\fR option enables or disables the \fIEmbedded Nim Debugger\fP\&. See the documentation of endb \[la]https://nim-lang.org/docs/endb.html\[ra] for further information.
+.PP
+\fIBreakpoint pragma\fP
+    The breakpoint pragma was specially added for the sake of debugging with ENDB. See the documentation of endb \[la]https://nim-lang.org/docs/endb.html\[ra] for further information.
+.SH DynlibOverride
+.PP
+By default Nim's \fB\fCdynlib\fR pragma causes the compiler to generate \fB\fCGetProcAddress\fR (or their Unix counterparts) calls to bind to a DLL. With the \fB\fCdynlibOverride\fR command line switch this can be prevented and then via \fB\fC\-\-passL\fR the static library can be linked against. For instance, to link statically against Lua this command might work on Linux:
+.PP
+.RS
+.nf
+nim c \-\-dynlibOverride:lua \-\-passL:liblua.lib program.nim
+.fi
+.RE
+.SH BACKEND LANGUAGE OPTIONS
+.PP
+The typical compiler usage involves using the \fB\fCcompile\fR or \fB\fCc\fR command to transform a \fB\fC\&.nim\fR file into one or more \fB\fC\&.c\fR files which are then compiled with the platform's C compiler into a static binary. However there are other commands to compile to C++, Objective\-C or Javascript. More details can be read in the Nim Backend Integration document \[la]https://nim-lang.org/docs/backends.html\[ra]\&.
+.SH NIM DOCUMENTATION TOOLS
+.PP
+Nim provides the \fB\fCdoc\fR and \fB\fCdoc2\fR commands to generate HTML documentation from \fB\fC\&.nim\fR source files. Only exported symbols will appear in the output. For more details see the docgen documentation \[la]https://nim-lang.org/docs/docgen.html\[ra]\&.
+.SH NIM IDETOOLS INTEGRATION
+.PP
+Nim provides language integration with external IDEs through the \fB\fCidetools\fR command. See the documentation of idetools \[la]https://nim-lang.org/docs/idetools.html\[ra] for further information.
+.SH NIM FOR EMBEDDED SYSTEMS
+.PP
+The standard library can be avoided to a point where C code generation for 16bit micro controllers is feasible. Use the standalone target (\fB\fC\-\-os:standalone\fR) for a bare bones standard library that lacks any OS features.
+.PP
+To make the compiler output code for a 16bit target use the \fB\fC\-\-cpu:avr\fR target.
+.PP
+For example, to generate code for an AVR processor use this command:
+.PP
+.RS
+.nf
+nim c \-\-cpu:avr \-\-os:standalone \-\-deadCodeElim:on \-\-genScript x.nim
+.fi
+.RE
+.PP
+For the \fB\fCstandalone\fR target one needs to provide a file \fB\fCpanicoverride.nim\fR\&. See  \fB\fCtests/manyloc/standalone/panicoverride.nim\fR for an example implementation. Additionally, users should specify the amount of heap space to use with the \fB\fC\-d:StandaloneHeapSize\fR=\fISIZE\fP command line switch. Note that the total heap size will be \fB\fCSIZE * sizeof(float64)\fR\&.
+.SH NIM FOR REALTIME SYSTEMS
+.PP
+See the documentation of Nim's soft realtime GC \[la]https://nim-lang.org/docs/gc.html\[ra] for further information.
+.SH DEBUGGING WITH NIM
+.PP
+Nim comes with its own \fIEmbedded Nim Debugger\fP\&. See the documentation of endb \[la]https://nim-lang.org/docs/endb.html\[ra] for further information.
+.SH OPTIMIZING FOR NIM
+.PP
+Nim has no separate optimizer, but the C code that is produced is very efficient. Most C compilers have excellent optimizers, so usually it is not needed to optimize one's code. Nim has been designed to encourage efficient code: The most readable code in Nim is often the most efficient too.
+.PP
+However, sometimes one has to optimize. Do it in the following order:
+.nr step1 0 1
+.RS
+.IP \n+[step1]
+switch off the embedded debugger (it is slow!)
+.IP \n+[step1]
+turn on the optimizer and turn off runtime checks
+.IP \n+[step1]
+profile your code to find where the bottlenecks are
+.IP \n+[step1]
+try to find a better algorithm
+.IP \n+[step1]
+do low\-level optimizations
+.RE
+.PP
+This section can only help you with the last item.
+.PP
+\fIOptimizing string handling\fP
+.PP
+String assignments are sometimes expensive in Nim: They are required to copy the whole string. However, the compiler is often smart enough to not copy strings. Due to the argument passing semantics, strings are never copied when passed to subroutines. The compiler does not copy strings that are a result from a procedure call, because the callee returns a new string anyway. Thus it is efficient to do:
+.PP
+.RS
+.nf
+var s = procA() # assignment will not copy the string; procA allocates a new
+                # string already
+.fi
+.RE
+.PP
+However it is not efficient to do:
+.PP
+.RS
+.nf
+var s = varA    # assignment has to copy the whole string into a new buffer!
+.fi
+.RE
+.PP
+For \fB\fClet\fR symbols a copy is not always necessary:
+.PP
+.RS
+.nf
+let s = varA    # may only copy a pointer if it safe to do so
+.fi
+.RE
+.PP
+If you know what you're doing, you can also mark single string (or sequence) objects as shallow:
+.PP
+.RS
+.nf
+var s = "abc"
+shallow(s) # mark 's' as shallow string
+var x = s  # now might not copy the string!
+.fi
+.RE
+.PP
+Usage of \fB\fCshallow\fR is always safe once you know the string won't be modified anymore, similar to Ruby's freeze.
+.PP
+The compiler optimizes string case statements: A hashing scheme is used for them if several different string constants are used. So code like this is reasonably efficient:
+.PP
+.RS
+.nf
+case normalize(k.key)
+of "name": c.name = v
+of "displayname": c.displayName = v
+of "version": c.version = v
+of "os": c.oses = split(v, {';'})
+of "cpu": c.cpus = split(v, {';'})
+of "authors": c.authors = split(v, {';'})
+of "description": c.description = v
+of "app":
+  case normalize(v)
+  of "console": c.app = appConsole
+  of "gui": c.app = appGUI
+  else: quit(errorStr(p, "expected: console or gui"))
+of "license": c.license = UnixToNativePath(k.value)
+else: quit(errorStr(p, "unknown variable: " & k.key))
+.fi
+.RE
+.SH SEE ALSO
+.PP
+Official documentation \[la]https://nim-lang.org/documentation.html\[ra], 
+.BR nimgrep (1)

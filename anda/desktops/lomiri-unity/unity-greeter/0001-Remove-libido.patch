@@ -1,0 +1,37 @@
+diff --git a/configure.ac b/configure.ac
+index bd71aa5..92995f8 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -21,7 +21,6 @@ PKG_CHECK_MODULES(UNITY_GREETER, [
+     gtk+-3.0
+     gdk-x11-3.0
+     indicator3-0.4
+-    libido3-0.1 >= 13.10.0
+     liblightdm-gobject-1 >= 1.12.0
+     freetype2
+     cairo-ft
+diff --git a/src/indicator.vapi b/src/indicator.vapi
+index 9b28c72..d3d1eff 100644
+--- a/src/indicator.vapi
++++ b/src/indicator.vapi
+@@ -158,8 +158,3 @@ namespace Indicator {
+ 	[CCode (cheader_filename = "gtk/gtk.h,libindicator/indicator.h,libindicator/indicator-desktop-shortcuts.h,libindicator/indicator-image-helper.h,libindicator/indicator-object.h,libindicator/indicator-service.h,libindicator/indicator-service-manager.h")]
+ 	public static void image_helper_update (Gtk.Image image, string name);
+ }
+-
+-[CCode (cheader_filename="libido/libido.h", lower_case_cprefix = "ido_")]
+-namespace Ido {
+-	public void init ();
+-}
+diff --git a/src/unity-greeter.vala b/src/unity-greeter.vala
+index 929fa2c..2ac649a 100644
+--- a/src/unity-greeter.vala
++++ b/src/unity-greeter.vala
+@@ -554,7 +554,6 @@ public class UnityGreeter
+         Environment.set_variable ("GTK_MODULES", "atk-bridge", false);
+ 
+         Gtk.init (ref args);
+-        Ido.init ();
+ 
+         log_timer = new Timer ();
+         Log.set_default_handler (log_cb);

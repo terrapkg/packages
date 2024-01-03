@@ -1,0 +1,87 @@
+'\" t
+.\"     Title: unity-settings-daemon
+.\"    Author: Bastien Nocera <hadess@hadess.net>
+.\" Generator: DocBook XSL Stylesheets vsnapshot <http://docbook.sf.net/>
+.\"      Date: 02/08/2023
+.\"    Manual: User Commands
+.\"    Source: Unity
+.\"  Language: English
+.\"
+.TH "UNITY\-SETTINGS\-DAE" "1" "" "Unity" "User Commands"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+unity-settings-daemon \- Unity settings daemon
+.SH "SYNOPSIS"
+.HP \w'\fBunity\-settings\-daemon\ \fR\fB[OPTION...]\fR\ 'u
+\fBunity\-settings\-daemon \fR\fB[OPTION...]\fR
+.SH "DESCRIPTION"
+.PP
+\fBunity\-settings\-daemon\fR
+provides many session\-wide services and functions that require a long\-running process\&. Among the services implemented by unity\-settings\-daemon are an XSettings manager, which provides theming, font and other settings to GTK+ applications, and a clipboard manager, which preserves clipboard contents when an application exits\&. Many user interface elements of
+\fBunity\fR
+and
+\fBunity\-control\-center\fR
+rely on unity\-settings\-daemon for their functionality\&.
+.PP
+The internal architecture of unity\-settings\-daemon consists of a number of plugins, which provide functionality such as printer notifications, software update monitoring, background changing, etc\&. For debugging purposes, these plugins can be individually disabled by changing the gsettings key
+org\&.gnome\&.settings\-daemon\&.plugins\&.\fIplugin\-name\fR\&.active, where
+\fIplugin\-name\fR
+is the name of the plugin\&. To see a list of all plugins, use the command
+\fB gsettings list\-children org\&.gnome\&.settings\-daemon\&.plugins \fR
+.PP
+unity\-settings\-daemon takes the name org\&.gnome\&.SettingsDaemon on the session bus to ensure that only one instance is running\&. Some plugins export objects under this name to make their functionality available to other applications\&. The interfaces of these objects should generally be considered private and unstable\&.
+.PP
+unity\-settings\-daemon is a required component of the Unity desktop, i\&.e\&. it is listed in the RequiredComponents field of
+/usr/share/gnome\-session/sessions/gnome\&.session\&. It is started in the initialization phase of the session, and
+\fBgnome\-session\fR
+will restart it if it crashes\&.
+.SH "OPTIONS"
+.PP
+\fB\-h\fR, \fB\-\-help\fR
+.RS 4
+Prints a short help text and exits\&.
+.RE
+.PP
+\fB\-\-debug\fR
+.RS 4
+Enables debugging code\&.
+.RE
+.PP
+\fB\-\-timed\-exit\fR
+.RS 4
+Exits after a timeout (30 seconds) for debugging\&.
+.RE
+.SH "FILES"
+.PP
+/usr/share/gnome\-session/sessions/ubuntu\&.session
+.RS 4
+Unity session definition file where unity\-settings\-daemon is listed as a required component\&.
+.RE
+.PP
+/etc/xdg/autostart/unity\-settings\-daemon\&.desktop
+.RS 4
+Autostart file for unity\-settings\-daemon, where its autostart phase is set\&.
+.RE
+.SH "SEE ALSO"
+.PP
+\fBunity\fR(1),
+\fBunity-control-center\fR(1),
+\fBgnome-session\fR(1)
