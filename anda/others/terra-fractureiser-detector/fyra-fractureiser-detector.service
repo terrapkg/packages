@@ -1,6 +1,0 @@
-[Unit]
-Description=Fyra Fractureiser Detector
-
-[Service]
-Type=oneshot
-ExecStart=/usr/bin/python3 /opt/terra-fractureiser-detector/detect.py

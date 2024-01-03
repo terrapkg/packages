@@ -1,0 +1,14 @@
+--- sccache-0.7.4/Cargo.toml	1970-01-01T00:00:01+00:00
++++ sccache-0.7.4/Cargo.toml	2023-12-18T06:08:52.420382+00:00
+@@ -384,11 +384,3 @@
+ [target."cfg(unix)".dependencies.daemonize]
+ version = "0.5"
+ 
+-[target."cfg(windows)".dependencies.winapi]
+-version = "0.3"
+-features = [
+-    "fileapi",
+-    "handleapi",
+-    "stringapiset",
+-    "winnls",
+-]

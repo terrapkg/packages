@@ -2,7 +2,7 @@
 
 Name:		mate-tweak
 Version:	22.10.0
-Release:	1%?dist
+Release:	2%?dist
 Summary:	Tweak tool for the MATE Desktop
 License:	GPL-2.0
 URL:		https://github.com/ubuntu-mate/mate-tweak
@@ -39,9 +39,9 @@ desktop-file-validate %buildroot%_datadir/applications/*.desktop
 %_datadir/applications/%name.desktop
 %_datadir/applications/marco-{glx,no-composite,xr_glx_hybrid,xrender}.desktop
 %_datadir/polkit-1/actions/org.mate.%name.policy
-%ghost %_prefix/lib/python3.11/site-packages/__pycache__
-%ghost %_prefix/lib/python3.11/site-packages/setup.py
-%ghost %_prefix/lib/python3.11/site-packages/mate_tweak-%version-py%python3_version.egg-info/
+%ghost %_prefix/lib/python3.*/site-packages/__pycache__
+%ghost %_prefix/lib/python3.*/site-packages/setup.py
+%ghost %_prefix/lib/python3.*/site-packages/mate_tweak-%version-py3.*.egg-info/
 
 %changelog
 %autochangelog
