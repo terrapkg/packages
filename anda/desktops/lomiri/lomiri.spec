@@ -1,5 +1,5 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri
-%global commit de472d04a682e1dc3d317c94b08a14facdf673e7
+%global commit ecd34e0588e7a69e1de19f66e261484803abb205
 %forgemeta
 
 Name:          lomiri
