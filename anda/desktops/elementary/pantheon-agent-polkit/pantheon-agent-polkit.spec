@@ -3,7 +3,7 @@
 
 Name:           pantheon-agent-polkit
 Summary:        Pantheon Polkit Agent
-Version:        1.0.5
+Version:        1.0.4
 Release:        1%{?dist}
 License:        LGPL-2.0-or-later
 
