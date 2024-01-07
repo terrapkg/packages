@@ -4,7 +4,7 @@
 Name:           elementary-icon-theme
 Summary:        Icons from the Elementary Project
 Version:        7.3.1
-Release:        2%{?dist}
+Release:        1%{?dist}
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/icons
@@ -89,7 +89,9 @@ gtk-update-icon-cache --force %{_datadir}/icons/elementary &>/dev/null || :
 %dir %{_datadir}/icons/elementary
 %ghost %{_datadir}/icons/elementary/icon-theme.cache
 
-%{_datadir}/icons/elementary/*
+%{_datadir}/icons/elementary/*/
+%{_datadir}/icons/elementary/*@2x
+%{_datadir}/icons/elementary/*@3x
 
 %{_datadir}/icons/elementary/cursor.theme
 %{_datadir}/icons/elementary/index.theme

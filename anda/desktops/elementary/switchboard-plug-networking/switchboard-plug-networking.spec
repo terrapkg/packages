@@ -15,8 +15,6 @@ License:        GPL-3.0-or-later
 URL:            https://github.com/elementary/switchboard-plug-network
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 
-Patch0:         https://github.com/elementary/switchboard-plug-network/pull/357.patch
-
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
