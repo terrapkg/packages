@@ -25,7 +25,8 @@ process priority.
 
 %build
 export EXECSNOOP_PATH=/usr/share/bcc/tools/execsnoop
-%cargo_build
+# We don't use our macro since one of the dependencies fails to build with our profile :/
+%(echo "%{cargo_build}" | sed "s@--profile rpm@--profile release@g" | sed "s@-j @@")
 
 %install
 just rootdir=%buildroot sysconfdir=%_datadir install
