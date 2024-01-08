@@ -1,5 +1,5 @@
 Name:           terra-mock-configs
-Version:        6
+Version:        7
 Release:        1%{?dist}
 Summary:        Mock configs for Terra repos
 
@@ -53,6 +53,9 @@ ln -s %{_sysconfdir}/mock/terra-38-aarch64.cfg %{buildroot}%{_sysconfdir}/mock/a
 %config %{_sysconfdir}/mock/anda-38-aarch64.cfg
 
 %changelog
+* Mon Jan 08 2024 Lleyton Gray <lleyton@fyralabs.com> - 7-1
+- Bump ccache max size to 10G
+
 * Wed Aug 16 2023 madonuko <mado@fyralabs.com> - 6-1
 - Remove RPM Fusion
 
