@@ -25,6 +25,7 @@ jobs:
         with:
           ref: f${{ matrix.version }}
           fetch-depth: 1
+          lfs: true
       - name: Build terra-mock-configs
         run: |
           echo "PATH=$PATH:/github/home/.cargo/bin" >> $GITHUB_ENV

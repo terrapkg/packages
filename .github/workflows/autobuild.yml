@@ -32,6 +32,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          lfs: true
       - name: Generate build matrix
         id: generate_build_matrix
         run: anda ci >> $GITHUB_OUTPUT
@@ -51,6 +52,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          lfs: true
       - name: Set up git repository
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 

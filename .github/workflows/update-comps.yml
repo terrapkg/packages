@@ -17,6 +17,8 @@ jobs:
       image: ghcr.io/terrapkg/builder:f39
     steps:
       - uses: actions/checkout@v3
+        with:
+          lfs: true
       - name: Push to subatomic
         run: |
           branch=${{ github.ref_name }}
