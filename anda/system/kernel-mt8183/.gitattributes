@@ -1,1 +1,2 @@
 linux-6.7-rc8-119-g1f874787ed9a.tar.xz filter=lfs diff=lfs merge=lfs -text
+linux-6.7.tar.xz filter=lfs diff=lfs merge=lfs -text
