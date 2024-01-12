@@ -86,22 +86,24 @@ applications and libraries written in C.
 This package contains development files for libvala. This is not
 necessary for using the %{name} compiler.
 
+# TODO: currently the docs aren't included in the default build (they were before, even with sphinx installed)
+# I think this is because they recently changed to using sphinx, which they're still working on
+# I'll try to get this working again, but for now I'll just disable it until they're ready
+# %package        doc
+# Summary:        Documentation for %{name}
+# BuildArch:      noarch
+# Requires:       %{name} = %{version}-%{release}
+# Requires:       devhelp
 
-%package        doc
-Summary:        Documentation for %{name}
-BuildArch:      noarch
-Requires:       %{name} = %{version}-%{release}
-Requires:       devhelp
+# Conflicts:      vala-doc
 
-Conflicts:      vala-doc
+# %description    doc
+# Vala is a new programming language that aims to bring modern programming
+# language features to GNOME developers without imposing any additional
+# runtime requirements and without using a different ABI compared to
+# applications and libraries written in C.
 
-%description    doc
-Vala is a new programming language that aims to bring modern programming
-language features to GNOME developers without imposing any additional
-runtime requirements and without using a different ABI compared to
-applications and libraries written in C.
-
-This package contains documentation in a devhelp HTML book.
+# This package contains documentation in a devhelp HTML book.
 
 
 %package -n     valadoc-nightly
@@ -200,8 +202,8 @@ export -n VALAFLAGS
 %{_libdir}/libvala-%{api_ver}.so
 %{_libdir}/pkgconfig/libvala-%{api_ver}.pc
 
-%files doc
-%doc %{_libdir}/valadoc-%{api_ver}/doclets/devhelp
+# %files doc
+# %doc %{_datadir}/devhelp/books/vala-%{api_ver}
 
 %files -n valadoc-nightly
 %{_bindir}/valadoc
