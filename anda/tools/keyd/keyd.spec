@@ -6,7 +6,7 @@ URL:			https://github.com/rvaiya/keyd
 License:		MIT
 Source0:		%url/archive/refs/tags/v%version.tar.gz
 Suggests:		python3 python3-xlib
-BuildRequires:	gcc mold make kernel-headers
+BuildRequires:	gcc mold make kernel-headers systemd-rpm-macros
 
 %description
 keyd provides a flexible system wide daemon which remaps keys using kernel
@@ -21,6 +21,15 @@ level input primitives (evdev, uinput).
 %install
 %make_install
 install -Dm644 keyd.service %buildroot%_unitdir/keyd.service
+
+%post
+%systemd_post keyd.service
+
+%preun
+%systemd_preun keyd.service
+
+%postun
+%systemd_postun keyd.service
 
 %files
 %doc README.md /usr/share/doc/keyd/
