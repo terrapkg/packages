@@ -32,12 +32,13 @@ install -Dm644 keyd.service %buildroot%_unitdir/keyd.service
 %systemd_postun keyd.service
 
 %files
-%doc README.md /usr/share/doc/keyd/
+%doc README.md
 %license LICENSE
 %_unitdir/keyd.service
 %_bindir/keyd
 %_bindir/keyd-application-mapper
 %_datadir/keyd
+%_datadir/doc/keyd/
 %_mandir/man1/keyd-application-mapper.1.gz
 %_mandir/man1/keyd.1.gz
 
