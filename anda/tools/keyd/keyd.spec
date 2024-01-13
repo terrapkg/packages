@@ -20,16 +20,17 @@ level input primitives (evdev, uinput).
 
 %install
 %make_install
+install -Dm644 keyd.service %buildroot%_unitdir/keyd.service
 
 %files
-%doc README.md
+%doc README.md /usr/share/doc/keyd/
 %license LICENSE
-/usr/bin/keyd
-/usr/bin/keyd-application-mapper
-/usr/share/doc/keyd/
-/usr/share/keyd
-/usr/share/man/man1/keyd-application-mapper.1.gz
-/usr/share/man/man1/keyd.1.gz
+%_unitdir/keyd.service
+%_bindir/keyd
+%_bindir/keyd-application-mapper
+%_datadir/keyd
+%_mandir/man1/keyd-application-mapper.1.gz
+%_mandir/man1/keyd.1.gz
 
 %changelog
 * Tue May 23 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2.4.3-1
