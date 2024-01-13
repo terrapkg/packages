@@ -29,7 +29,7 @@ install -Dm644 keyd.service %buildroot%_unitdir/keyd.service
 %systemd_preun keyd.service
 
 %postun
-%systemd_postun keyd.service
+%systemd_postun_with_restart keyd.service
 
 %files
 %doc README.md
