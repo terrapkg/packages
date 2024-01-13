@@ -8,8 +8,7 @@ License:		GPLv3+
 Source0:		polkit.conf
 Source1:		rpcbind.conf
 BuildRequires:  systemd-rpm-macros
-%systemd_requires
-
+%{?systemd_requires}
 
 %description
 A set of systemd system user presets to supplement Fedora's defaults,
@@ -22,7 +21,7 @@ generates the polkitd system user for Polkit to use properly.
 %package polkit
 Summary:		Polkit system user
 Requires:       rpcbind
-%systemd_requires
+%{?systemd_requires}
 Supplements:    polkit
 
 %description polkit
@@ -31,7 +30,7 @@ Polkit system user preset
 %package rpcbind
 Summary:		RPC bind system user
 Requires:       rpcbind
-%systemd_requires
+%{?systemd_requires}
 Supplements:    rpcbind
 
 %description rpcbind
