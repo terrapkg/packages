@@ -1,0 +1,34 @@
+From 3f8b19139bf3f13b4285fd9d949cb5460a0909df Mon Sep 17 00:00:00 2001
+From: Carl George <carl@george.computer>
+Date: Fri, 25 Jun 2021 22:26:50 -0500
+Subject: [PATCH] Remove schema handling from transpile.sh
+
+---
+ scripts/transpile.sh | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/scripts/transpile.sh b/scripts/transpile.sh
+index e619a8c..8977c29 100755
+--- a/scripts/transpile.sh
++++ b/scripts/transpile.sh
+@@ -15,8 +15,6 @@ transpile() {
+ 
+ rm -rf _build
+ 
+-glib-compile-schemas schemas &
+-
+ # Transpile to JavaScript
+ 
+ for proj in ${PROJECTS}; do
+@@ -30,7 +28,7 @@ wait
+ 
+ # Convert JS to GJS-compatible scripts
+ 
+-cp -r metadata.json icons schemas *.css _build &
++cp -r metadata.json icons *.css _build &
+ 
+ for src in $(find target -name '*.js'); do
+     dest=$(echo "$src" | sed s#target#_build#g)
+-- 
+2.31.1
+
