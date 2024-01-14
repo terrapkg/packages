@@ -1,6 +1,6 @@
 %global forgeurl https://github.com/KDE/latte-dock/
 
-%global commit df36844edd1924d835d414f4a61102677dc7187e
+%global commit 110adba6c2d5d5b1927ae64aef370fa2db31205a
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global commit_date %(date '+%Y%m%d')
 %global snapshot_info %{commit_date}.%{shortcommit}
