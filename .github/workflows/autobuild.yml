@@ -6,13 +6,13 @@ on:
     paths:
       - anda/**
     branches:
-      - f39
+      - frawhide
   pull_request:
     branches:
-      - f39
+      - frawhide
   merge_group:
     branches:
-      - f39
+      - frawhide
   workflow_dispatch:
   workflow_call:
 
@@ -23,7 +23,7 @@ jobs:
     outputs:
       build_matrix: ${{ steps.generate_build_matrix.outputs.build_matrix }}
     container:
-      image: ghcr.io/terrapkg/builder:f39
+      image: ghcr.io/terrapkg/builder:frawhide
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Set workspace as safe
@@ -40,7 +40,7 @@ jobs:
     strategy:
       matrix:
         pkg: ${{ fromJson(needs.manifest.outputs.build_matrix) }}
-        version: ["39"]
+        version: ["rawhide"]
       fail-fast: false
     runs-on: ${{ matrix.pkg.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
     container:

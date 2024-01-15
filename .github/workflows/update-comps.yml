@@ -3,6 +3,7 @@ name: Push comps updates
 on:
   push:
     branches:
+      - frawhide
       - f39
       - f38
       - f37
@@ -14,7 +15,7 @@ jobs:
   update-comps:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/terrapkg/builder:f39
+      image: ghcr.io/terrapkg/builder:frawhide
     steps:
       - uses: actions/checkout@v3
       - name: Push to subatomic

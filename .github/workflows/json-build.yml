@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         pkg: ${{ fromJson(inputs.packages) }}
-        version: ["39"]
+        version: ["rawhide"]
       fail-fast: false
     runs-on: ${{ matrix.pkg.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
     container:
