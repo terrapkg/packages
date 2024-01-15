@@ -38,6 +38,8 @@ cp -v %{SOURCE1} %{buildroot}%{_sysconfdir}/mock/
 cp -v %{SOURCE2} %{buildroot}%{_sysconfdir}/mock/
 cp -v %{SOURCE3} %{buildroot}%{_sysconfdir}/mock/
 cp -v %{SOURCE4} %{buildroot}%{_sysconfdir}/mock/
+cp -v %{SOURCE5} %{buildroot}%{_sysconfdir}/mock/
+cp -v %{SOURCE6} %{buildroot}%{_sysconfdir}/mock/
 
 # For legacy compatibility, only while Terra 38 is still alive
 ln -s %{_sysconfdir}/mock/templates/terra.tpl %{buildroot}%{_sysconfdir}/mock/templates/anda.tpl
