@@ -1,5 +1,5 @@
 Name:           terra-mock-configs
-Version:        7
+Version:        8
 Release:        1%{?dist}
 Summary:        Mock configs for Terra repos
 
@@ -10,6 +10,8 @@ Source1:        terra-38-x86_64.cfg
 Source2:        terra-38-aarch64.cfg
 Source3:        terra-39-x86_64.cfg
 Source4:        terra-39-aarch64.cfg
+Source5:        terra-rawhide-x86_64.cfg
+Source6:        terra-rawhide-aarch64.cfg
 
 BuildRequires:  mock-core-configs
 Requires:       mock-core-configs
@@ -44,6 +46,8 @@ ln -s %{_sysconfdir}/mock/terra-38-aarch64.cfg %{buildroot}%{_sysconfdir}/mock/a
 
 %files
 %config %{_sysconfdir}/mock/templates/terra.tpl
+%config %{_sysconfdir}/mock/terra-rawhide-x86_64.cfg
+%config %{_sysconfdir}/mock/terra-rawhide-aarch64.cfg
 %config %{_sysconfdir}/mock/terra-39-x86_64.cfg
 %config %{_sysconfdir}/mock/terra-39-aarch64.cfg
 %config %{_sysconfdir}/mock/terra-38-x86_64.cfg
@@ -53,6 +57,9 @@ ln -s %{_sysconfdir}/mock/terra-38-aarch64.cfg %{buildroot}%{_sysconfdir}/mock/a
 %config %{_sysconfdir}/mock/anda-38-aarch64.cfg
 
 %changelog
+* Mon Jan 15 2024 madonuko <mado@fyralabs.com> - 9.1
+- Update for Terra rawhide
+
 * Mon Jan 08 2024 Lleyton Gray <lleyton@fyralabs.com> - 7-1
 - Bump ccache max size to 10G
 
