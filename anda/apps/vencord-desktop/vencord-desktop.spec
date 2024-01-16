@@ -6,7 +6,7 @@
 
 Name:		vencord-desktop
 Provides:   VencordDesktop = %{version}-%{release}
-Version:	0.4.4
+Version:	1.5.0
 Release:	1%{?dist}
 License:	GPL-3.0
 Summary:	Vesktop is a cross platform desktop app aiming to give you a snappier Discord experience with Vencord pre-installed
