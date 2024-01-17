@@ -29,7 +29,7 @@ It consists of:
 * rgbgfx (PNG‐to‐2bpp graphics converter)
 
 %prep
-%autosetup -S git
+%autosetup -S git -n rgbds-%version
 
 %build
 %make_build Q="" CFLAGS="%{optflags}" VERSION_STRING=""
