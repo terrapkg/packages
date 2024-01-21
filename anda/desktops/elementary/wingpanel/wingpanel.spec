@@ -42,6 +42,8 @@ Obsoletes:      wingpanel-indicator-ayatana < 2.0.3-11
 
 %package        libs
 Summary:        Stylish top panel (shared library)
+Enhances:       %{name} = %{version}-%{release}
+Enhances:       %{name}-devel = %{version}-%{release}
 
 %description    libs %{common_description}
 
