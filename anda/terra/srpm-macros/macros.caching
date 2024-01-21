@@ -3,8 +3,8 @@
 %_sccache %{_bindir}/sccache
 
 %sccache_prep (\
-export CC="%{_sccache} gcc" \
-export CXX="%{_sccache} g++" \
+export CC="%{_sccache} $CC" \
+export CXX="%{_sccache} $CXX" \
 export RUSTC_WRAPPER="sccache" \
 \
 export SCCACHE_BUCKET=%{?sccache_bucket}\

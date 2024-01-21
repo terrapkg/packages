@@ -1,7 +1,7 @@
 %define debug_package %nil
 
 Name:			crystal
-Version:		1.10.1
+Version:		1.11.2
 Release:		1%{?dist}
 Summary:		The Crystal Programming Language
 License:		Apache-2.0

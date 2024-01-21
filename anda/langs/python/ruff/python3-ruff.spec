@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:			python3-ruff
-Version:		0.1.7
+Version:		0.1.14
 Release:		1%{?dist}
 Summary:		An extremely fast Python linter, written in Rust
 License:		MIT
@@ -18,7 +18,7 @@ integrating more functionality behind a single, common interface.
 %autosetup -n ruff-%{version}
 
 %build
-maturin build --release --strip --locked --all-features
+maturin build --release --strip --all-features # --locked
 
 %install
 pip3 install --root=%{buildroot} target/wheels/*.whl

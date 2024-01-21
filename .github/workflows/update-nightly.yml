@@ -8,7 +8,7 @@ jobs:
   autoupdate:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/terrapkg/builder:f38
+      image: ghcr.io/terrapkg/builder:f39
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Checkout
@@ -38,13 +38,16 @@ jobs:
             git config user.signingkey "${{ runner.temp }}/signing_key"
             msg="bump(nightly): $(git status | grep modified | sed -r 's@.+/([^/]+)/[^/]+\n?@\1 @g' | tr -d '\n')"
             git commit -S -a -m "$msg"
-            f37 () {
+            copy_over () {
               git format-patch HEAD^
-              git checkout f37
+              git checkout $1
               git apply *.patch || true
+              rm *.patch
               git add *
               git commit -S -a -m "$msg"
             }
-            f37 || true
+            copy_over f37 || true
+            copy_over f38 || true
+            copy_over frawhide || true
             git push -u origin --all
           fi

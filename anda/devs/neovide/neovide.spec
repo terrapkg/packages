@@ -1,7 +1,7 @@
 %define debug_package %nil
 
 Name:		neovide
-Version:	0.11.2
+Version:	0.12.1
 Release:	1%{?dist}
 Summary:	No Nonsense Neovim Client in Rust
 License:	MIT
@@ -27,7 +27,7 @@ but functionally it should act like the terminal UI.
 %install
 %cargo_install
 
-install -Dm755 -t %buildroot%_bindir target/release/%name
+%dnl install -Dm755 -t %buildroot%_bindir target/rpm/%name
 install -Dm644 -t %buildroot%_datadir/applications/ assets/%name.desktop
 for px in 16 32 48 256; do
 	install -Dm644 assets/%name-${px}x${px}.png %buildroot%_datadir/icons/hicolor/${px}x${px}/apps/%name.png

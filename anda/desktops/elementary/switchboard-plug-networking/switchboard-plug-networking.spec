@@ -8,8 +8,8 @@
 
 Name:           switchboard-plug-networking
 Summary:        Switchboard Networking plug
-Version:        2.4.4
-Release:        2%{?dist}
+Version:        2.5.0
+Release:        1%{?dist}
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/switchboard-plug-network

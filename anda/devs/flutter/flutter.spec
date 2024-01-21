@@ -1,12 +1,12 @@
 Name:			flutter
-Version:		3.16.3
+Version:		3.19.0.0.2.pre
 Release:		1%{?dist}
 Summary:		SDK for crafting beautiful, fast user experiences from a single codebase
 License:		BSD-3-Clause
 URL:			https://flutter.dev
 Group:			Development/Building
 Source0:		https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_%version-stable.tar.xz
-Requires:		bash curl git file which zip xz-utils
+Requires:		bash curl git file which zip xz
 Recommends:		mesa-libGLU
 
 %description

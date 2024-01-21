@@ -1,9 +1,9 @@
 %global forgeurl https://gitlab.com/ubports/development/core/ubuntu-touch-meta
-%global commit d1dc3b7f6c508cc2e803db3b72fcf1dc0a019afa
+%global commit 0d9120ed8ac9ec156a1d9dd00a6651613b6e6941
 %forgemeta
 
 Name:    ubuntu-sdk
-Summary: Assets and icons for Unity
+Summary: Ubuntu Touch Metapackages for Click
 Version: 20.04
 Release: 2%?dist
 
@@ -17,7 +17,7 @@ BuildRequires: fdupes
 Recommends:    python3-lomiri-click
 
 %description
-Theme and icons for Unity.
+Ubuntu Touch Metapackages for Click.
 
 %prep
 %autosetup -n ubuntu-touch-meta-%commit

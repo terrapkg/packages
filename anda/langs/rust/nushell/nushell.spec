@@ -1,12 +1,12 @@
 Name:			nushell
-Version:		0.87.1
+Version:		0.89.0
 Release:		1%{?dist}
 Summary:		A new type of shell
 License:		MIT
 URL:			https://www.nushell.sh/
 Source0:		https://github.com/nushell/nushell/archive/refs/tags/%version.tar.gz
 BuildRequires:	anda-srpm-macros rust-packaging openssl-devel
-Requires:		glibc gcc-libs openssl zlib
+Requires:		glibc openssl zlib
 
 %description
 %summary.
@@ -30,6 +30,7 @@ if [ "$1" = 1 ]; then
   else
     grep -q "^%{_bindir}/nu$" %{_sysconfdir}/shells || echo "%{_bindir}/nu" >> %{_sysconfdir}/shells
     grep -q "^/bin/nu$" %{_sysconfdir}/shells || echo "/bin/nu" >> %{_sysconfdir}/shells
+  fi
 fi
 
 %postun
