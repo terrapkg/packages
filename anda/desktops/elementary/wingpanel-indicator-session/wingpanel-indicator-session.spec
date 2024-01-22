@@ -5,7 +5,7 @@
 
 Name:           wingpanel-indicator-session
 Summary:        Session Indicator for wingpanel
-Version:        2.3.0
+Version:        2.3.1
 Release:        1%{?dist}
 License:        GPL-2.0-or-later
 
