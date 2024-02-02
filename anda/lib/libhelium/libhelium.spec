@@ -56,6 +56,7 @@ rm -rf %{buildroot}%{_datadir}/themes/*
 %doc README.md
 %{_libdir}/libhelium-1.so.*
 %{_libdir}/girepository-1.0
+%{_datadir}/glib-2.0/schemas/com.fyralabs.desktop.appearance.gschema.xml
 
 %files devel
 %{_libdir}/libhelium-1.so
