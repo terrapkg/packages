@@ -42,9 +42,7 @@ options, or alternatively, in local storage.}
 
 %package     -n %{crate}
 Summary:        %{summary}
-# FIXME: paste output of %%cargo_license_summary here
-License:        # FIXME
-# LICENSE.dependencies contains a full license breakdown
+License:        MIT
 
 %description -n %{crate} %{_description}
 
@@ -70,9 +68,6 @@ This package contains library source intended for building other packages which
 use the "%{crate}" crate.
 
 %files          devel
-%license %{crate_instdir}/LICENSE
-%doc %{crate_instdir}/CODE_OF_CONDUCT.md
-%doc %{crate_instdir}/README.md
 %{crate_instdir}/
 
 %package     -n %{name}+default-devel
