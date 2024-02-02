@@ -12,6 +12,7 @@ License:        GPL-2.0-or-later
 
 URL:            https://github.com/elementary/wingpanel
 Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
+Pathc0:         https://github.com/elementary/wingpanel/commit/d6009d9f0d5c7479172093447ccceccba86ff1f3.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
