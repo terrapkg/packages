@@ -41,7 +41,7 @@ BuildArch: noarch
 The %{name}-doc contains documentation for %{name}.
 
 %prep
-%autosetup -n libusermetrics-%commit
+%autosetup -n libusermetrics-%version
 
 %build
 %cmake -DENABLE_TESTS=ON
