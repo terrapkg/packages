@@ -1,14 +1,10 @@
-%global forgeurl https://gitlab.com/ubports/development/core/libusermetrics
-%global commit bce6f62b8472bf35bb746b9fcb92aecfe3295c36
-%forgemeta
-
 Name:       libusermetrics
 Version:    1.3.2
-Release:    2%?dist
+Release:    1%?dist
 Summary:    library for retrieving anonymous metrics about users
 License:    GPLv3 AND LGPLv3 AND LGPLv2
 URL:        https://gitlab.com/ubports/development/core/libusermetrics
-Source0:    %{url}/-/archive/%commit/libusermetrics-%commit.tar.gz
+Source0:    %url/-/archive/%version/libusermetrics-%version.tar.gz
 
 BuildRequires: cmake
 BuildRequires: cmake-extras
