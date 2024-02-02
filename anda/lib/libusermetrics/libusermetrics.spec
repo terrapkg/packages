@@ -55,7 +55,7 @@ The %{name}-doc contains documentation for %{name}.
 %files -f %{name}.lang
 %doc ChangeLog
 %license LGPL_EXCEPTION.txt LICENSE.GPL LICENSE.LGPL LICENSE.LGPL-3
-#{_sysconfdir}/dbus-1/system.d/com.lomiri.UserMetrics.conf
+/usr/etc/dbus-1/system.d/com.lomiri.UserMetrics.conf
 %{_bindir}/usermetricsinput
 %{_bindir}/usermetricsinput-increment
 %{_libdir}/libusermetricsinput.so.*
