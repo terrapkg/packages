@@ -470,6 +470,7 @@ use the "syslog" feature of the "%{crate}" crate.
 %files       -n %{name}+syslog-devel
 %ghost %{crate_instdir}/Cargo.toml
 
+%{dnl ## BEGIN: multiline comment
 %package     -n %{name}+trust-dns-resolver-devel
 Summary:        %{summary}
 BuildArch:      noarch
@@ -484,6 +485,7 @@ use the "trust-dns-resolver" feature of the "%{crate}" crate.
 
 %files       -n %{name}+trust-dns-resolver-devel
 %ghost %{crate_instdir}/Cargo.toml
+}    ## END OF multiline comment
 
 %package     -n %{name}+unstable-devel
 Summary:        %{summary}
