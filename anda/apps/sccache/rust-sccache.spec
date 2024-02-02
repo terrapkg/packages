@@ -13,8 +13,8 @@
 %global crate sccache
 
 Name:           rust-sccache
-Version:        0.7.4
-Release:        1%{?dist}
+Version:        0.7.6
+Release:        %autorelease
 Summary:        Ccache-like tool
 
 License:        Apache-2.0
@@ -34,8 +34,9 @@ BuildRequires:  rust-packaging
 
 %global _description %{expand:
 Sccache is a ccache-like tool. It is used as a compiler wrapper and
-avoids compilation when possible, storing a cache in a remote storage
-using various cloud storage.}
+avoids compilation when possible. Sccache has the capability to utilize
+caching in remote storage environments, including various cloud storage
+options, or alternatively, in local storage.}
 
 %description %{_description}
 
