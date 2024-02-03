@@ -1,6 +1,6 @@
 Name:           contractor
 Version:        0.3.5
-Release:        %autorelease
+Release:        1%{?dist}
 Summary:        Desktop-wide extension service
 
 License:        GPL-3.0-or-later

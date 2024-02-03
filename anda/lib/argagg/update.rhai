@@ -1,1 +1,1 @@
-rpm.version(gh("vietjtnguyen/argagg"));
+rpm.version(gh_tag("vietjtnguyen/argagg"));

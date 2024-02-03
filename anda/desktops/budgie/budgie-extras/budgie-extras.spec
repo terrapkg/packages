@@ -1,5 +1,5 @@
 Name:		budgie-extras
-Version:	1.7.0
+Version:	1.7.1
 Release:	1%{?dist}
 
 License:	GPL-3.0
@@ -51,7 +51,6 @@ Requires:	budgie-applet-recentlyused
 Requires:	budgie-applet-rotation-lock
 Requires:	budgie-applet-showtime
 Requires:	budgie-applet-takeabreak
-Requires:	budgie-applet-trash
 Requires:	budgie-applet-visualspace
 Requires:	budgie-applet-wallstreet
 Requires:	budgie-applet-window-shuffler
@@ -207,14 +206,6 @@ breaks from working. Options from Budgie Settings include turning the screen
 upside down, dim the screen, lock screen or show a countdown message on break
 time. The applet can be accessed quickly from the panel to temporarily switch
 it off.
-
-%package -n	budgie-applet-trash
-Requires:	budgie-extras-common
-Summary:	Applet allows access to trash capabilities for the Budgie Desktop
-%description -n	budgie-applet-trash
-The trash applet allows the user access the desktop trash capabilities
-from the panel including the ability to delete and restore files stored
-in the trash folder.
 
 %package -n	budgie-applet-visualspace
 Requires:	budgie-extras-common
@@ -392,9 +383,6 @@ rm -f %{buildroot}%{_bindir}/quickchar
 %{_libdir}/budgie-desktop/plugins/budgie-takeabreak
 %{_datadir}/glib-2.0/schemas/org.ubuntubudgie.plugins.takeabreak.gschema.xml
 %{_datadir}/pixmaps/takeabreak*.svg
-
-%files -n budgie-applet-trash
-%{_libdir}/budgie-desktop/plugins/budgie-trash
 
 %files -n budgie-applet-visualspace
 %config %{_sysconfdir}/xdg/autostart/visualspace-autostart.desktop

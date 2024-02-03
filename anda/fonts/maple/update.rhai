@@ -1,0 +1,1 @@
+rpm.version(gh("subframe7536/Maple-font"));
