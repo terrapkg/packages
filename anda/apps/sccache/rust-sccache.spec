@@ -13,8 +13,8 @@
 %global crate sccache
 
 Name:           rust-sccache
-Version:        0.7.4
-Release:        1%{?dist}
+Version:        0.7.6
+Release:        %autorelease
 Summary:        Ccache-like tool
 
 License:        Apache-2.0
@@ -34,16 +34,15 @@ BuildRequires:  rust-packaging
 
 %global _description %{expand:
 Sccache is a ccache-like tool. It is used as a compiler wrapper and
-avoids compilation when possible, storing a cache in a remote storage
-using various cloud storage.}
+avoids compilation when possible. Sccache has the capability to utilize
+caching in remote storage environments, including various cloud storage
+options, or alternatively, in local storage.}
 
 %description %{_description}
 
 %package     -n %{crate}
 Summary:        %{summary}
-# FIXME: paste output of %%cargo_license_summary here
-License:        # FIXME
-# LICENSE.dependencies contains a full license breakdown
+License:        MIT
 
 %description -n %{crate} %{_description}
 
@@ -69,9 +68,6 @@ This package contains library source intended for building other packages which
 use the "%{crate}" crate.
 
 %files          devel
-%license %{crate_instdir}/LICENSE
-%doc %{crate_instdir}/CODE_OF_CONDUCT.md
-%doc %{crate_instdir}/README.md
 %{crate_instdir}/
 
 %package     -n %{name}+default-devel
@@ -474,6 +470,7 @@ use the "syslog" feature of the "%{crate}" crate.
 %files       -n %{name}+syslog-devel
 %ghost %{crate_instdir}/Cargo.toml
 
+%{dnl ## BEGIN: multiline comment
 %package     -n %{name}+trust-dns-resolver-devel
 Summary:        %{summary}
 BuildArch:      noarch
@@ -488,6 +485,7 @@ use the "trust-dns-resolver" feature of the "%{crate}" crate.
 
 %files       -n %{name}+trust-dns-resolver-devel
 %ghost %{crate_instdir}/Cargo.toml
+}    ## END OF multiline comment
 
 %package     -n %{name}+unstable-devel
 Summary:        %{summary}
