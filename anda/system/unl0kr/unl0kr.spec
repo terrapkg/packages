@@ -5,6 +5,7 @@ Summary:        Disk unlocker for the initramfs based on LVGL.
 
 License:        GPL-v3.0
 URL:            https://gitlab.com/postmarketOS/buffybox
+Source0:        90unl0kr
 
 BuildRequires:  pkgconfig(inih) pkgconfig(libinput) pkgconfig(libudev) pkgconfig(xkbcommon) pkgconfig(libdrm) pkgconfig(scdoc) git meson gcc
 Requires:       inih libxkbcommon libinput systemd libdrm cryptsetup
@@ -24,6 +25,8 @@ git clone --recursive --shallow-submodules --branch unl0kr-%version %url.git .
 
 %install
 %meson_install
+mkdir -p "%{buildroot}%{_prefix}/lib/dracut/modules.d"
+install -Dm755 "%{SOURCE0}/*" "%{buildroot}%{_prefix}/lib/dracut/modules.d/90unl0kr/"
 
 
 %check
@@ -37,6 +40,7 @@ git clone --recursive --shallow-submodules --branch unl0kr-%version %url.git .
 %{_sysconfdir}/unl0kr.conf
 %{_mandir}/man1/unl0kr.1.gz
 %{_mandir}/man5/unl0kr.conf.5.gz
+%{_prefix}/lib/dracut/modules.d/90unl0kr
 
 
 %changelog
