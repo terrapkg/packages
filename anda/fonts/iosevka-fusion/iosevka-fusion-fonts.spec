@@ -2,7 +2,7 @@
 %global         debug_package %{nil}
 
 Name:           iosevka-fusion-fonts
-Version:        28.0.7
+Version:        28.1.0
 Release:        1%{?dist}
 Summary:        A custom font based on iosevka
 
