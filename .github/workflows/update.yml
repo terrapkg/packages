@@ -50,5 +50,16 @@ jobs:
             copy_over f37 || true
             copy_over f38 || true
             copy_over frawhide || true
+            git remote add raboneko git@github.com:raboneko/packages.git
             git push -u origin --all
+
+            gh pr create --title "$msg" --body "Automatic update from Raboneko!" --label "auto-update" --base "f37" --head "raboneko:f37"
+            gh pr create --title "$msg" --body "Automatic update from Raboneko!" --label "auto-update" --base "f38" --head "raboneko:f38"
+            gh pr create --title "$msg" --body "Automatic update from Raboneko!" --label "auto-update" --base "frawhide" --head "raboneko:frawhide"
+            gh pr create --title "$msg" --body "Automatic update from Raboneko!" --label "auto-update" --base "f39" --head "raboneko:f39"
+
+            gh pr merge --auto --squash raboneko:f37
+            gh pr merge --auto --squash raboneko:f38
+            gh pr merge --auto --squash raboneko:frawhide
+            gh pr merge --auto --squash raboneko:f39
           fi
