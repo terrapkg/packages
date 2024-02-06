@@ -25,11 +25,11 @@ that let you easily copy data between the clipboard and Unix pipes, sockets, fil
 %meson_install
 
 %files
-%_bindir/wl-{copy,paste)
-%bash_completions_dir/wl-{copy,paste}
-%fish_completions_dir/wl-{copy,paste}
-%zsh_completions_dir/_wl-{copy,paste}
-%_mandir/man1/wl-{clipboard,copy,paste}.1.gz
+%_bindir/wl-*
+%bash_completions_dir/wl-*
+%fish_completions_dir/wl-*
+%zsh_completions_dir/_wl-*
+%_mandir/man1/wl-*.1.gz
 
 %changelog
 %autochangelog
