@@ -21,8 +21,8 @@ allowing small and simple mods or plugins. arRPC is experimental and a work in p
 %prep
 %autosetup -n arrpc-%commit
 # patch for using esbuild
-sed "s@const server = await new Server();@async function main() {(await new Server()).on('activity', data => Bridge.send(data))}@" -i src/index.js
-sed "s@server.on('activity', data => Bridge.send(data));@main();@" -i src/index.js
+sed 's@const server = await new Server\(\);@async function main() {\0@' -i src/index.js
+sed 's@server.on\(.+\);@\0}\nmain();@' -i src/index.js
 
 %build
 npm i esbuild pkg
