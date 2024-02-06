@@ -28,7 +28,7 @@ EOF
 %build
 npm i --legacy-peer-deps
 # npm run postinstall
-npm audit fix
+npm audit fix --force
 npm i update-browserslist-db@latest
 npx update-browserslist-db@latest
 npm run build
