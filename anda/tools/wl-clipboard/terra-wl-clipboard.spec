@@ -14,7 +14,7 @@ This project implements two command-line Wayland clipboard utilities, wl-copy an
 that let you easily copy data between the clipboard and Unix pipes, sockets, files and so on.
 
 %prep
-%autosetup
+%autosetup -n wl-clipboard-%version
 
 %build
 %meson
