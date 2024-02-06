@@ -93,9 +93,9 @@ The %{name}-doc package contains documentation files for %{name}.
 
 %files doc
 %dir %{_docdir}/lomiri-connectivity-doc
-%{_docdir}/lomiri-connectivity-doc/cpp/
-%{_docdir}/lomiri-connectivity-doc/dbus/
-%{_docdir}/lomiri-connectivity-doc/qml/
+#{_docdir}/lomiri-connectivity-doc/cpp/
+#{_docdir}/lomiri-connectivity-doc/dbus/
+#{_docdir}/lomiri-connectivity-doc/qml/
 
 %changelog
 %autochangelog
