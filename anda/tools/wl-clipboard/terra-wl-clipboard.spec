@@ -8,6 +8,7 @@ Source0:		%url/archive/refs/tags/v%version.tar.gz
 Requires:		xdg-utils mailcap
 #? Requires: wayland
 BuildRequires:	git-core meson wayland-protocols-devel
+Provides:		wl-clipboard = %version
 
 %description
 This project implements two command-line Wayland clipboard utilities, wl-copy and wl-paste,
