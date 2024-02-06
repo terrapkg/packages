@@ -61,7 +61,7 @@ sed -e "s/-Werror//g" -i CMakeLists.txt
 
 %files -f %{name}.lang
 %license COPYING
-%config %{_sysconfdir}/dbus-1/system.d/*.conf
+#config #{_sysconfdir}/dbus-1/system.d/*.conf
 %{_bindir}/lomiri-*
 %{_userunitdir}/*.service
 %{_libdir}/liblomiri-download-manager-client.so.*
