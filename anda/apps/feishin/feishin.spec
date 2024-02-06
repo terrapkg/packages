@@ -27,9 +27,8 @@ EOF
 
 %build
 npm i --legacy-peer-deps
-# npm run postinstall
-npm audit fix --force
 npm i update-browserslist-db@latest
+npm audit fix --force
 npx update-browserslist-db@latest
 npm run build
 %ifarch x86_64
@@ -39,7 +38,7 @@ npm run build
 %define a arm64
 %endif
 
-npm exec electron-builder -- --%a
+npx electron-builder -- --%a
 
 %install
 mkdir -p %buildroot%_datadir/{feishin,pixmaps,applications} %buildroot%_bindir
