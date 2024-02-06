@@ -24,6 +24,7 @@ rustup default nightly
 pnpm install
 
 %build
+source $HOME/.cargo/env
 export CARGO_TARGET_DIR=target
 export RUSTUP_TOOLCHAIN=1.73
 
