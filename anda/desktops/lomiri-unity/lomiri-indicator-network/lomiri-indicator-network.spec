@@ -65,7 +65,7 @@ The %{name}-doc package contains documentation files for %{name}.
 %files -f %{name}.lang
 %doc README.md
 %license COPYING COPYING.LGPL
-%config %{_sysconfdir}/xdg/autostart/lomiri-indicator-network.desktop
+#config #{_sysconfdir}/xdg/autostart/lomiri-indicator-network.desktop
 %{_userunitdir}/*.service
 %{_libdir}/liblomiri-connectivity-qt1.so.*
 %dir %{_qt5_qmldir}/Lomiri/Connectivity
