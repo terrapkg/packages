@@ -7,7 +7,7 @@ URL:			https://github.com/bugaevc/wl-clipboard
 Source0:		%url/archive/refs/tags/v%version.tar.gz
 Requires:		xdg-utils mailcap
 #? Requires: wayland
-BuildRequires:	git-core meson wayland-protocols-devel gcc pkgconfig(wayland-client)
+BuildRequires:	git-core meson wayland-protocols-devel gcc pkgconfig(wayland-client) redhat-rpm-config
 Provides:		wl-clipboard = %version
 
 %description
@@ -25,6 +25,11 @@ that let you easily copy data between the clipboard and Unix pipes, sockets, fil
 %meson_install
 
 %files
+%_bindir/wl-{copy,paste)
+%bash_completions_dir/wl-{copy,paste}
+%fish_completions_dir/wl-{copy,paste}
+%zsh_completions_dir/_wl-{copy,paste}
+%_mandir/man1/wl-{clipboard,copy,paste}.1.gz
 
 %changelog
 %autochangelog
