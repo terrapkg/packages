@@ -29,12 +29,10 @@ Source:         %{gosource}
 %prep
 %goprep
 %autopatch -p1
-
-%generate_buildrequires
-%go_generate_buildrequires
+go mod download
 
 %build
-%gobuild -o %{gobuilddir}/bin/glow %{goipath}
+go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w" -buildmode=pie -o %{gobuilddir}/bin/glow %{goipath}
 
 %install
 %gopkginstall
