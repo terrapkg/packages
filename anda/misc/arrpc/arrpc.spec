@@ -20,8 +20,7 @@ server which messages the JSON of exactly what to dispatch with in the client wi
 allowing small and simple mods or plugins. arRPC is experimental and a work in progress, so expect bugs, etc.
 
 %prep
-%autosetup -n -p1 arrpc-%commit
-%patch 0
+%autosetup -p1 -n arrpc-%commit
 
 %build
 npm i esbuild pkg
