@@ -21,6 +21,7 @@ Summary:        Render markdown on the CLI, with pizzazz! 💅🏻
 License:        MIT
 URL:            %{gourl}
 Source:         %{gosource}
+BuildRequires:  git-core
 
 %description %{common_description}
 
