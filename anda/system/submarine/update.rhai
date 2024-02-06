@@ -1,1 +1,1 @@
-rpm.version(gh("FyraLabs/submarine"));
+rpm.version(gh_tag("FyraLabs/submarine"));
