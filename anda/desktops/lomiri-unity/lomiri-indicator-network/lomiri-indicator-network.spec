@@ -92,7 +92,7 @@ The %{name}-doc package contains documentation files for %{name}.
 %{_libdir}/pkgconfig/lomiri-connectivity-qt1.pc
 
 %files doc
-%dir %{_docdir}/lomiri-connectivity-doc
+#dir #{_docdir}/lomiri-connectivity-doc
 #{_docdir}/lomiri-connectivity-doc/cpp/
 #{_docdir}/lomiri-connectivity-doc/dbus/
 #{_docdir}/lomiri-connectivity-doc/qml/
