@@ -7,7 +7,7 @@ URL:			https://github.com/bugaevc/wl-clipboard
 Source0:		%url/archive/refs/tags/v%version.tar.gz
 Requires:		xdg-utils mailcap
 #? Requires: wayland
-BuildRequires:	git-core meson wayland-protocols-devel gcc
+BuildRequires:	git-core meson wayland-protocols-devel gcc pkgconfig(wayland-client)
 Provides:		wl-clipboard = %version
 
 %description
