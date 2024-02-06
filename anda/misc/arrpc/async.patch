@@ -1,0 +1,15 @@
+--- index.js	2023-03-10 18:32:51.934337975 -0500
++++ index.js	2023-03-10 18:34:27.619332243 -0500
+@@ -6,6 +6,9 @@
+ import * as Bridge from './bridge.js';
+ import Server from './server.js';
+ 
+-const server = await new Server();
++async function main() {
++    const server = await new Server();
++    server.on('activity', data => Bridge.send(data));
++}
+ 
+-server.on('activity', data => Bridge.send(data));
+\ No newline at end of file
++main();
