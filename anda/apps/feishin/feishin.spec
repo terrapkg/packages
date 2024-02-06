@@ -13,6 +13,9 @@ BuildRequires:	nodejs-npm mpv
 %prep
 %autosetup
 
+cat package.json | jq '.author += { "email": "jeffvictorli@gmail.com" }' > a
+mv a package.json
+
 cat<<EOF > feishin.desktop
 [Desktop Entry]
 Type=Application
