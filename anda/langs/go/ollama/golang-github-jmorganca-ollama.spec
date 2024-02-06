@@ -23,6 +23,7 @@ Summary:        Get up and running with Llama 2, Mistral, and other large langua
 License:        MIT AND Apache-2.0
 URL:            %{gourl}
 Source:         %{gosource}
+BuildRequires:  git-core
 
 %description %{common_description}
 
