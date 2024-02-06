@@ -5,7 +5,7 @@
 %global goipath         github.com/charmbracelet/glow
 Version:                1.5.1
 
-gometa -f
+%gometa -f
 
 
 %global common_description %{expand:
