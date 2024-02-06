@@ -1,5 +1,5 @@
 project pkg {
   rpm {
-	spec = "wl-clipboard.spec"
+	spec = "terra-wl-clipboard.spec"
   }
 }

@@ -1,4 +1,4 @@
-Name:			wl-clipboard
+Name:			terra-wl-clipboard
 Version:		2.2.1
 Release:		1%?dist
 Summary:		Command-line copy/paste utilities for Wayland
