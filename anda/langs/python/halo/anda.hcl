@@ -1,5 +1,5 @@
 project pkg {
   rpm {
-	spec = "halo.spec"
+	spec = "python-halo.spec"
   }
 }
