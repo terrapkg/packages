@@ -1,1 +1,1 @@
-update.rhai("spacedriveapp/spacedrive");
+rpm.version(gh("spacedriveapp/spacedrive"));
