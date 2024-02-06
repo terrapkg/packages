@@ -30,6 +30,7 @@ BuildRequires: pkgconfig(libgmenuharness)
 BuildRequires: pkgconfig(ofono)
 BuildRequires: pkgconfig(qofono-qt5)
 BuildRequires: pkgconfig(lomiri-url-dispatcher)
+BuildRequires: pkgconfig(systemd)
 Requires:      gmenuharness
 
 %description
