@@ -1,3 +1,4 @@
+%define debug_package %nil
 %global commit c6e23e7eb733ad396d3eebc328404cc656fed581
 
 Name:			arrpc
