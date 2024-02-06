@@ -23,6 +23,7 @@ BuildRequires: qt5-qtdeclarative-devel
 BuildRequires: pkgconfig(dbus-1)
 BuildRequires: pkgconfig(libglog)
 BuildRequires: pkgconfig(liblomiri-api)
+BuildRequires: pkgconfig(systemd)
 BuildRequires: fdupes
 
 %description
