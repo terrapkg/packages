@@ -15,6 +15,7 @@ BuildRequires:	nodejs-npm mpv jq
 
 cat package.json | jq '.author += { "email": "jeffvictorli@gmail.com" }' > a
 mv a package.json
+cat package.json
 
 cat<<EOF > feishin.desktop
 [Desktop Entry]
