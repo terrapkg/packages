@@ -17,7 +17,8 @@ Spacedrive is an open source cross-platform file manager, powered by a virtual d
 # we need nightly cargo
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -o rustup.sh
 chmod +x ./rustup.sh
-./rustup.sh -y
+./rustup.sh -y -t nightly --profile minimal
+source "$HOME/.cargo/env"
 rustup default nightly
 
 pnpm install
