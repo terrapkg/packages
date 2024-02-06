@@ -21,8 +21,8 @@ allowing small and simple mods or plugins. arRPC is experimental and a work in p
 %prep
 %autosetup -n arrpc-%commit
 # patch for using esbuild
-sed 's@const \N+;@async function main() {\0@' -i src/index.js
-sed 's@server\.on\N+;@\0}\nmain();@' -i src/index.js
+sed -iE 's@const server[^\n]+;@async function main() {\0@' src/index.js
+sed -iE 's@server\.on[^\n]+;@\0}\nmain();@' src/index.js
 
 %build
 npm i esbuild pkg
