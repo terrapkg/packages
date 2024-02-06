@@ -8,7 +8,6 @@ License:		MIT
 URL:			https://arrpc.openasar.dev
 Source0:		https://github.com/OpenAsar/arrpc/archive/%commit.tar.gz
 Source1:		arrpc.service
-Patch0:			async.patch
 Requires:		gcc-libs glibc
 BuildRequires:	nodejs-npm
 
@@ -20,7 +19,10 @@ server which messages the JSON of exactly what to dispatch with in the client wi
 allowing small and simple mods or plugins. arRPC is experimental and a work in progress, so expect bugs, etc.
 
 %prep
-%autosetup -p0 -n arrpc-%commit
+%autosetup -n arrpc-%commit
+# patch for using esbuild
+sed "s@const server = await new Server();@async function main() {(await new Server()).on('activity', data => Bridge.send(data))}@" -i index.js
+sed "s@server.on('activity', data => Bridge.send(data));@main();@" -i index.js
 
 %build
 npm i esbuild pkg
