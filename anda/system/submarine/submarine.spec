@@ -21,6 +21,7 @@ Submarine provides a minimal Linux environmemt that lives in a small partition
 
 %prep
 go install github.com/u-root/u-root@v0.11.0
+export PATH=$PATH:$HOME/go/bin
 git clone --recurse-submodules --shallow-submodules -b v%version %url .
 
 %build
