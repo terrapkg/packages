@@ -1,0 +1,2 @@
+let md = get("https://raw.githubusercontent.com/OpenAsar/arrpc/main/changelog.md");
+rpm.version(find("(?m)^## v([\\d.]+)", md, 1));
