@@ -8,7 +8,7 @@ License:		GPL-3.0
 URL:			https://github.com/jeffvli/feishin
 Source0:		%url/archive/refs/tags/v%version.tar.gz
 Requires:		fuse mpv
-BuildRequires:	nodejs-npm jq libxcrypt-compat
+BuildRequires:	nodejs-npm jq libxcrypt-compat glibc-devel
 
 %description
 %summary.
