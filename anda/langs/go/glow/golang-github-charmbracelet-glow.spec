@@ -3,7 +3,7 @@
 
 # https://github.com/charmbracelet/glow
 %global goipath         github.com/charmbracelet/glow
-Version:                charmbracelet/glow
+Version:                1.5.1
 
 %gometa -f
 
