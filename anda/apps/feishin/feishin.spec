@@ -1,3 +1,5 @@
+%define debug_package %nil
+
 Name:			feishin
 Version:		0.5.3
 Release:		1%?dist
