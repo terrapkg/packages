@@ -1,1 +1,1 @@
-rpm.version("charmbracelet/glow");
+rpm.version(gh("charmbracelet/glow"));
