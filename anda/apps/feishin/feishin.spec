@@ -13,7 +13,7 @@ BuildRequires:	nodejs-npm mpv jq
 %prep
 %autosetup
 
-cat package.json | jq '.author += { "email": "jeffvictorli@gmail.com" }' > a
+cat package.json | jq '.author += { "email": "jeffvictorli@gmail.com" }' | jq '.build.linux += { "maintainer": "mado@fyralabs.com", "vendor": "Fyra Labs Terra" }' > a
 mv a package.json
 cat package.json
 
