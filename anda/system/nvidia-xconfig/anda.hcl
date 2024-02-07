@@ -5,7 +5,7 @@ project pkg {
 
         scm_opts = {
             method = "git"
-            package = "nvidia-xconfig"
+            package = "terra-nvidia-xconfig"
             branch = "fedora-39"
             write_tar = "true"
             spec = "nvidia-xconfig.spec"
