@@ -65,11 +65,9 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %doc docs examples AUTHORS SECURITY.md tricksandtips.md CONTRIBUTING.md
 %doc README.md roadmap.md cmds/core/tail/test_samples/read_backwards.txt
 %doc cmds/core/tail/test_samples/read_from_beginning.txt
-%doc configs/README.md
+%doc configs/README.md tools/golang_patched_dce/README.md
 %doc configs/amd64_config.txt configs/arm_config.txt configs/generic_config.txt
 %doc integration/README.md pkg/boot/systembooter/README.md pkg/smbios/README.md
-%doc pkg/tarutil/test2.txt pkg/tarutil/test0/a.txt pkg/tarutil/test0/dir/b.txt
-%doc pkg/tarutil/test1/a1.txt tools/golang_patched_dce/README.md
 %{_bindir}/*
 
 %gopkgfiles
