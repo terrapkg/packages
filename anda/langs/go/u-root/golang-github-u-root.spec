@@ -4,7 +4,7 @@
 
 # https://github.com/u-root/u-root
 %global goipath         github.com/u-root/u-root
-Version:                0.12.0
+Version:                0.13.0
 
 %gometa -f
 
