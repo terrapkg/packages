@@ -34,6 +34,12 @@ npx pkg -t node18-linux-x64 -o arrpc  ./dist/index.js
 install -D -m755 arrpc %buildroot%_bindir/arrpc
 install -D -m644 %SOURCE1 %buildroot%_userunitdir/arrpc.service
 
+%post
+%systemd_user_post arrpc.service
+
+%preun
+%systemd_user_preun arrpc.service
+
 %files
 %doc README.md
 %license LICENSE
