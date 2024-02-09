@@ -1,5 +1,6 @@
 project pkg {
+  arches = ["x86_64"]
   rpm {
-	spec = "feishin.spec"
+    spec = "feishin.spec"
   }
 }
