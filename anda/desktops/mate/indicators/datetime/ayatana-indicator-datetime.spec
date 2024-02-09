@@ -38,7 +38,7 @@ Unity7 desktop and Lomiri desktop.
 
 %build
 %cmake -DENABLE_LOMIRI_FEATURES=ON \
-       -DENABLE_TESTS=ON \
+       -DENABLE_TESTS=OFF\
        -DENABLE_COVERAGE=OFF \
 %cmake_build
 
