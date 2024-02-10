@@ -1,0 +1,13 @@
+diff --git a/data/com.canonical.Unity.gschema.xml b/data/com.canonical.Unity.gschema.xml
+index 787c048..e81adcc 100644
+--- a/data/com.canonical.Unity.gschema.xml
++++ b/data/com.canonical.Unity.gschema.xml
+@@ -187,7 +187,7 @@
+   </schema>
+   <schema path="/com/canonical/unity/dash/" id="com.canonical.Unity.Dash" gettext-domain="unity">
+     <key type="as" name="scopes">
+-      <default>[ 'home.scope', 'applications.scope', 'files.scope', 'video.scope', 'music.scope', 'photos.scope', 'social.scope' ]</default>
++      <default>[ 'home.scope', 'applications.scope', 'files.scope', 'video.scope', 'music.scope', 'photos.scope' ]</default>
+       <summary>List of scope ids specifying which scopes should be created and the order to display them in.</summary>
+       <description>The scopes listed in the scope bar will be ordered according to this list.</description>
+     </key>

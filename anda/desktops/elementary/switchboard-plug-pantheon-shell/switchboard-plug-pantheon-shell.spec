@@ -14,7 +14,6 @@ License:        GPL-3.0
 
 URL:            https://github.com/elementary/switchboard-plug-pantheon-shell
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
-Patch0:         dark-theme-wallpaper.patch
 
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib
