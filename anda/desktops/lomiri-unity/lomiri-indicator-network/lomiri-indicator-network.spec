@@ -1,10 +1,10 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-indicator-network
-%global commit 7d0fd44108cfb74da3fcb26e7de07f7610302f5c
+%global commit a4522caf548d7e7f63f98f9e5c98314ee8d4c8fb
 %forgemeta
 
 Name:       lomiri-indicator-network
-Version:    1.0.1
-Release:    %autorelease
+Version:    1.0.2
+Release:    1%{?dist}
 Summary:    The Network indicator for Ubuntu Touch
 License:    GPL-3.0 AND LGPL-3.0
 URL:        https://gitlab.com/ubports/development/core/lomiri-indicator-network
@@ -30,6 +30,7 @@ BuildRequires: pkgconfig(libgmenuharness)
 BuildRequires: pkgconfig(ofono)
 BuildRequires: pkgconfig(qofono-qt5)
 BuildRequires: pkgconfig(lomiri-url-dispatcher)
+BuildRequires: pkgconfig(systemd)
 Requires:      gmenuharness
 
 %description
@@ -64,7 +65,7 @@ The %{name}-doc package contains documentation files for %{name}.
 %files -f %{name}.lang
 %doc README.md
 %license COPYING COPYING.LGPL
-%config %{_sysconfdir}/xdg/autostart/lomiri-indicator-network.desktop
+%config /usr/etc/xdg/autostart/lomiri-indicator-network.desktop
 %{_userunitdir}/*.service
 %{_libdir}/liblomiri-connectivity-qt1.so.*
 %dir %{_qt5_qmldir}/Lomiri/Connectivity
@@ -91,10 +92,7 @@ The %{name}-doc package contains documentation files for %{name}.
 %{_libdir}/pkgconfig/lomiri-connectivity-qt1.pc
 
 %files doc
-%dir %{_docdir}/lomiri-connectivity-doc
-%{_docdir}/lomiri-connectivity-doc/cpp/
-%{_docdir}/lomiri-connectivity-doc/dbus/
-%{_docdir}/lomiri-connectivity-doc/qml/
+%{_docdir}/lomiri-indicator-network
 
 %changelog
 %autochangelog

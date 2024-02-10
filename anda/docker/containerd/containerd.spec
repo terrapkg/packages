@@ -7,7 +7,7 @@
 
 # https://github.com/containerd/containerd
 %global goipath         github.com/containerd/containerd
-Version:                1.6.27
+Version:                1.7.13
 
 %gometa
 

@@ -1,10 +1,10 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-settings-components
-%global commit a2ce1155d385218a4b493f801867a45d2a41df02
+%global commit 2bd84b9a59563dce7a791e0c882e2533ecdd4812
 %forgemeta
 
 Name:       lomiri-settings-components
-Version:    1.1.0
-Release:    %autorelease
+Version:    1.1.1
+Release:    1%{?dist}
 Summary:    The system settings components for Lomiri
 License:    GPLv3 AND LGPLv3
 URL:        https://gitlab.com/ubports/development/core/lomiri-settings-components

@@ -12,6 +12,7 @@ License:        GPL-2.0-or-later
 
 URL:            https://github.com/elementary/wingpanel
 Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
+Patch0:         https://github.com/elementary/wingpanel/commit/d6009d9f0d5c7479172093447ccceccba86ff1f3.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
@@ -42,6 +43,8 @@ Obsoletes:      wingpanel-indicator-ayatana < 2.0.3-11
 
 %package        libs
 Summary:        Stylish top panel (shared library)
+Enhances:       %{name} = %{version}-%{release}
+Enhances:       %{name}-devel = %{version}-%{release}
 
 %description    libs %{common_description}
 
