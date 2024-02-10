@@ -10,8 +10,8 @@ execution of applications written in Java and other JVM languages along with
 support for JavaScript, Ruby, Python, and a number of other popular languages.}
 
 Name:		graalvm
-Version:	22.3.3
-Release:	1%{?dist}
+Version:	22.3.2
+Release:	2%{?dist}
 URL:		https://www.graalvm.org/
 Summary:	%{gsummary}
 License:	GPL-2.0
