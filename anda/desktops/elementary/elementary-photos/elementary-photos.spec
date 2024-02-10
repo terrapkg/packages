@@ -12,15 +12,19 @@ License:        LGPL-2.0-or-later
 URL:            https://github.com/elementary/photos
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 
+# RIP the publishing plugins (sorry for the "wide" patch, having issues with just the relevant commits)
+Patch0:         https://github.com/elementary/photos/compare/7261606a05d1f41116aba5c86b62d1f739419ed1..09e55943b266bc2861b913251cb834169d81743e.patch
+
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson >= 0.46.0
 BuildRequires:  vala
 BuildRequires:  fdupes
+BuildRequires:  git-core
 
 BuildRequires:  pkgconfig(gee-0.8) >= 0.8.5
-BuildRequires:  pkgconfig(geocode-glib-1.0)
+BuildRequires:  pkgconfig(geocode-glib-2.0)
 BuildRequires:  pkgconfig(gexiv2) >= 0.4.90
 BuildRequires:  pkgconfig(gio-2.0) >= 2.20
 BuildRequires:  pkgconfig(gio-unix-2.0) >= 2.20
@@ -33,17 +37,12 @@ BuildRequires:  pkgconfig(gstreamer-plugins-base-1.0) >= 1.0.0
 BuildRequires:  pkgconfig(gstreamer-pbutils-1.0) >= 1.0.0
 BuildRequires:  pkgconfig(gtk+-3.0) >= 3.6.0
 BuildRequires:  pkgconfig(gudev-1.0) >= 145
-BuildRequires:  pkgconfig(json-glib-1.0)
 BuildRequires:  pkgconfig(libexif) >= 0.6.16
 BuildRequires:  pkgconfig(libgphoto2) >= 2.4.2
 BuildRequires:  pkgconfig(libhandy-1)
 BuildRequires:  pkgconfig(libraw) >= 0.13.2
-BuildRequires:  pkgconfig(libsoup-2.4) >= 2.26.0
 BuildRequires:  pkgconfig(libwebp) >= 0.4.4
-BuildRequires:  pkgconfig(libxml-2.0) >= 2.6.32
-BuildRequires:  pkgconfig(rest-0.7) >= 0.7
 BuildRequires:  pkgconfig(sqlite3) >= 3.5.9
-BuildRequires:  pkgconfig(webkit2gtk-4.0) >= 2.0.0
 
 Requires:       hicolor-icon-theme
 
@@ -53,7 +52,8 @@ Foundation.
 
 
 %prep
-%autosetup -n %{srcname}-%{version} -p1
+%autosetup -n %{srcname}-%{version} -N
+git apply %PATCH0 # The .patch file has Git binary patches, so we need to apply it manually with Git
 
 
 %build
@@ -94,7 +94,6 @@ appstream-util validate-relax --nonet \
 %{_datadir}/applications/%{appname}.desktop
 %{_datadir}/applications/%{appname}-viewer.desktop
 %{_datadir}/glib-2.0/schemas/%{appname}.gschema.xml
-%{_datadir}/glib-2.0/schemas/%{appname}-extras.gschema.xml
 %{_datadir}/icons/hicolor/*/apps/%{appname}.svg
 %{_datadir}/icons/hicolor/*/apps/%{appname}-viewer.svg
 %{_datadir}/metainfo/%{appname}.appdata.xml

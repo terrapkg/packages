@@ -1,6 +1,6 @@
 Name:           terra-libplacebo
-Version:        6.338.1
-Release:        %autorelease
+Version:        6.338.2
+Release:        1%{?dist}
 Summary:        Reusable library for GPU-accelerated video/image rendering primitives
 
 License:        LGPLv2+
