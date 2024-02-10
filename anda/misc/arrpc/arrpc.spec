@@ -9,7 +9,7 @@ License:		MIT
 URL:			https://arrpc.openasar.dev
 Source0:		https://github.com/OpenAsar/arrpc/archive/%commit.tar.gz
 Source1:		arrpc.service
-Requires:		gcc-libs glibc
+Requires:		gcc glibc
 BuildRequires:	nodejs-npm systemd-rpm-macros
 
 %description
