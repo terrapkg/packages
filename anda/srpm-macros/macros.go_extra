@@ -1,6 +1,0 @@
-%go_prep_online() (cd %{?1}%{!?1:.} && go mod download)
-
-%go_build_online() mkdir -p build/bin && \
-	go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w" -buildmode=pie \
-	-o %{?2}%{!?2:build/bin/%{?1}%{!?1:%name}} \
-	%{?1}%{!?1:.}

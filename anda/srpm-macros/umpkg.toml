@@ -1,6 +1,0 @@
-[fyra-srpm-macros]
-spec = "fyra-srpm-macros.spec"
-build_script = ""
-build_method = "mock"
-owner = "cappy"
-git_repo = "https://github.com/ultramarine-linux/pkg-fyra-srpm-macros"
