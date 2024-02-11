@@ -1,9 +1,14 @@
 %define debug_package %nil
+%global _build_id_links none
+
+# Exclude private libraries
+%global __requires_exclude libffmpeg.so
+%global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 Name:			feishin
 Version:		0.5.3
 Release:		1%?dist
-Summary:		A modern self-hosted music player 
+Summary:		A modern self-hosted music player
 License:		GPL-3.0
 URL:			https://github.com/jeffvli/feishin
 Source0:		%url/archive/refs/tags/v%version.tar.gz
@@ -44,11 +49,11 @@ npm run build
 %define a arm64
 %endif
 
-npx electron-builder -- --%a
+npx electron-builder --linux dir --%a
 
 %install
-mkdir -p %buildroot%_datadir/{feishin,pixmaps,applications} %buildroot%_bindir
-tar xf release/build/Feishin-*.tar.xz -C %buildroot%_datadir/feishin/ --strip-components=1
+mkdir -p %buildroot%_datadir/{pixmaps,applications} %buildroot%_bindir
+mv release/build/linux-%{a}-unpacked %buildroot%_datadir/feishin
 install -Dm644 assets/icons/icon.png %buildroot%_datadir/pixmaps/feishin.png
 ln -s %_datadir/feishin/feishin %buildroot%_bindir/feishin
 install -Dm644 feishin.desktop %buildroot%_datadir/applications/
