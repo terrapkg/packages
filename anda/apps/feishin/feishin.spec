@@ -53,7 +53,7 @@ npx electron-builder --linux dir --%a
 
 %install
 mkdir -p %buildroot%_datadir/{pixmaps,applications} %buildroot%_bindir
-mv release/build/linux-*-unpacked %buildroot%_datadir/feishin
+mv release/build/*-unpacked %buildroot%_datadir/feishin
 install -Dm644 assets/icons/icon.png %buildroot%_datadir/pixmaps/feishin.png
 ln -s %_datadir/feishin/feishin %buildroot%_bindir/feishin
 install -Dm644 feishin.desktop %buildroot%_datadir/applications/
