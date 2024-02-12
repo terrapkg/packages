@@ -69,7 +69,7 @@ sed -i '/<link.*fonts.googleapis.com/d' doc/html/*.html
 
 %install
 export PATH="$(pwd):$(pwd)/bin:${PATH}"
-koch install %buildroot
+sh install.sh %{buildroot}usr/bin
 
 mkdir -p %buildroot{%_bindir,%_docdir/%name/html,%_prefix/lib/nim}
 install -Dp -m755 bin/nim{,ble,grep,suggest,pretty} %buildroot/%_bindir
@@ -88,20 +88,24 @@ cp tools/dochack/dochack.js %{buildroot}%{_docdir}/%{name}/
 cp -a lib %buildroot%_prefix/lib/nim
 cp -a compiler %buildroot%_prefix/lib/nim
 install -Dm644 nim.nimble %buildroot%_prefix/lib/nim/compiler
-ls lib/*
+ls build/*
+ls %buildroot%_prefix/lib/nim/*
 # install -m755 lib/*nimrtl.so %buildroot%_prefix/lib/libnimrtl.so
 
 install -Dm644 config/* -t %buildroot/etc/nim
 install -Dm755 bin/* -t %buildroot%_bindir
 
 install -d %buildroot%_includedir
-cp -a %buildroot%_prefix/lib/nim/*.h %buildroot%_includedir
+cp -a %buildroot%_prefix/lib/nim/lib/*.h %buildroot%_includedir
 
 ln -s %_datadir/nim/doc %buildroot%_prefix/lib/nim/doc
 install -d %buildroot%_datadir/nim/doc
 cp -a doc/* %buildroot%_datadir/nim/doc
 
 ln -s %_prefix/lib/nim %buildroot%_prefix/lib/nim/lib
+
+rm -rf %buildroot/nim || true
+rm %buildroot%_bindir/*.bat || true
 
 %check
 # export PATH=$PATH:$(realpath ./bin)
