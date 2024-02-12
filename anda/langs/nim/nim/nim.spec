@@ -59,7 +59,7 @@ mold -run nim c -d:danger koch.nim
 mold -run koch boot -d:useLinenoise -t:-fPIE -l:-pie -d:release -d:nativeStacktrace -d:useGnuReadline
 
 mold -run koch docs &
-(cd lib; nim c --app:lib -d:release -d:createNimRtl -t:-fPIE -l:-pie nimrtl.nim) &
+(cd lib; nim c -d:release -d:createNimRtl -t:-fPIE -l:-pie nimrtl.nim) &
 mold -run koch tools -t:-fPIE -l:-pie &
 mold -run nim c -t:-fPIE -l:-pie -d:release nimsuggest/nimsuggest.nim &
 wait
