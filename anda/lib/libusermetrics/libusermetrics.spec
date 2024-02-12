@@ -1,14 +1,10 @@
-%global forgeurl https://gitlab.com/ubports/development/core/libusermetrics
-%global commit bce6f62b8472bf35bb746b9fcb92aecfe3295c36
-%forgemeta
-
 Name:       libusermetrics
-Version:    1.3.0
-Release:    2%?dist
+Version:    1.3.2
+Release:    1%?dist
 Summary:    library for retrieving anonymous metrics about users
 License:    GPLv3 AND LGPLv3 AND LGPLv2
 URL:        https://gitlab.com/ubports/development/core/libusermetrics
-Source0:    %{url}/-/archive/%commit/libusermetrics-%commit.tar.gz
+Source0:    %url/-/archive/%version/libusermetrics-%version.tar.gz
 
 BuildRequires: cmake
 BuildRequires: cmake-extras
@@ -45,7 +41,7 @@ BuildArch: noarch
 The %{name}-doc contains documentation for %{name}.
 
 %prep
-%autosetup -n libusermetrics-%commit
+%autosetup -n libusermetrics-%version
 
 %build
 %cmake -DENABLE_TESTS=ON
@@ -59,7 +55,7 @@ The %{name}-doc contains documentation for %{name}.
 %files -f %{name}.lang
 %doc ChangeLog
 %license LGPL_EXCEPTION.txt LICENSE.GPL LICENSE.LGPL LICENSE.LGPL-3
-%{_sysconfdir}/dbus-1/system.d/com.lomiri.UserMetrics.conf
+/usr/etc/dbus-1/system.d/com.lomiri.UserMetrics.conf
 %{_bindir}/usermetricsinput
 %{_bindir}/usermetricsinput-increment
 %{_libdir}/libusermetricsinput.so.*
