@@ -14,15 +14,13 @@ License: LGPLv3
 URL: https://github.com/OpenTabletDriver/OpenTabletDriver
 %define otddir OpenTabletDriver-%{version}
 
-BuildRequires: dotnet-sdk-6.0 git jq
+BuildRequires: dotnet-sdk-6.0 git jq systemd-rpm-macros
 
 Requires: dotnet-runtime-6.0
 Requires: libevdev.so.2()(64bit)
 Requires: gtk3
 Requires: gtk3
 Requires: udev
-Requires(post): systemd-rpm-macros
-Requires(preun): systemd-rpm-macros
 Suggests: libX11
 Suggests: libXrandr
 
