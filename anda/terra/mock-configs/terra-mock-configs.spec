@@ -1,5 +1,5 @@
 Name:           terra-mock-configs
-Version:        7
+Version:        8
 Release:        1%{?dist}
 Summary:        Mock configs for Terra repos
 
@@ -10,6 +10,8 @@ Source1:        terra-38-x86_64.cfg
 Source2:        terra-38-aarch64.cfg
 Source3:        terra-39-x86_64.cfg
 Source4:        terra-39-aarch64.cfg
+Source5:		terra-40-x86_64.cfg
+Source6:		terra-40-aarch64.cfg
 
 BuildRequires:  mock-core-configs
 Requires:       mock-core-configs
@@ -36,6 +38,8 @@ cp -v %{SOURCE1} %{buildroot}%{_sysconfdir}/mock/
 cp -v %{SOURCE2} %{buildroot}%{_sysconfdir}/mock/
 cp -v %{SOURCE3} %{buildroot}%{_sysconfdir}/mock/
 cp -v %{SOURCE4} %{buildroot}%{_sysconfdir}/mock/
+cp -v %{SOURCE5} %{buildroot}%{_sysconfdir}/mock/
+cp -v %{SOURCE6} %{buildroot}%{_sysconfdir}/mock/
 
 # For legacy compatibility, only while Terra 38 is still alive
 ln -s %{_sysconfdir}/mock/templates/terra.tpl %{buildroot}%{_sysconfdir}/mock/templates/anda.tpl
@@ -44,6 +48,8 @@ ln -s %{_sysconfdir}/mock/terra-38-aarch64.cfg %{buildroot}%{_sysconfdir}/mock/a
 
 %files
 %config %{_sysconfdir}/mock/templates/terra.tpl
+%config %{_sysconfdir}/mock/terra-40-x86_64.cfg
+%config %{_sysconfdir}/mock/terra-40-aarch64.cfg
 %config %{_sysconfdir}/mock/terra-39-x86_64.cfg
 %config %{_sysconfdir}/mock/terra-39-aarch64.cfg
 %config %{_sysconfdir}/mock/terra-38-x86_64.cfg
@@ -53,6 +59,9 @@ ln -s %{_sysconfdir}/mock/terra-38-aarch64.cfg %{buildroot}%{_sysconfdir}/mock/a
 %config %{_sysconfdir}/mock/anda-38-aarch64.cfg
 
 %changelog
+* Tue Feb 13 2024 madonuko <mado@fyralabs.com> - 8-1
+- Update for Terra 40
+
 * Mon Jan 08 2024 Lleyton Gray <lleyton@fyralabs.com> - 7-1
 - Bump ccache max size to 10G
 
