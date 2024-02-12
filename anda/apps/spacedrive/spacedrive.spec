@@ -6,8 +6,8 @@ License:		AGPL-3.0
 URL:			https://spacedrive.com
 Source0:		https://github.com/spacedriveapp/spacedrive/archive/refs/tags/%version.tar.gz
 Requires:		ffmpeg libheif gtk3 webkit2gtk4.1 pango gdk-pixbuf2 cairo libsoup glib2
-BuildRequires:	pnpm clang git-core perl gcc
-BuildRequires:  pkgconfig(libsoup-2.4) glib2-devel gtk3-devel openssl openssl-devel pkgconfig(zlib) 
+BuildRequires:	pnpm clang git-core perl gcc javascriptcoregtk4.0-devel
+BuildRequires:  pkgconfig(libsoup-2.4) glib2-devel gtk3-devel openssl openssl-devel pkgconfig(zlib)
 
 %description
 Spacedrive is an open source cross-platform file manager, powered by a virtual distributed filesystem (VDFS) written in Rust. 
