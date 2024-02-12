@@ -88,7 +88,7 @@ cp tools/dochack/dochack.js %{buildroot}%{_docdir}/%{name}/
 cp -a lib %buildroot%_prefix/lib/nim
 cp -a compiler %buildroot%_prefix/lib/nim
 install -Dm644 nim.nimble %buildroot%_prefix/lib/nim/compiler
-ls build/*
+ls **
 ls %buildroot%_prefix/lib/nim/*
 # install -m755 lib/*nimrtl.so %buildroot%_prefix/lib/libnimrtl.so
 
