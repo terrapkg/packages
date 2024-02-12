@@ -8,7 +8,7 @@ jobs:
   autoupdate:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/terrapkg/builder:f39
+      image: ghcr.io/terrapkg/builder:f40
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Checkout
@@ -47,6 +47,7 @@ jobs:
               git add *
               git commit -S -a -m "$msg"
             }
+            copy_over f39 || true
             copy_over f37 || true
             copy_over f38 || true
             copy_over frawhide || true
