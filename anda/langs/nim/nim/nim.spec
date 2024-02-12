@@ -121,6 +121,7 @@ rm %buildroot%_bindir/*.bat || true
 %_bindir/nim-gdb
 %_bindir/testament
 %_prefix/lib/nim/
+%_prefix/lib/libnimrtl.so
 %{_bindir}/nim{,ble}
 %{_mandir}/man1/nim{,ble}.1*
 %_includedir/cycle.h
