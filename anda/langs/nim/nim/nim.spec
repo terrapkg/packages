@@ -70,7 +70,7 @@ sed -i '/<link.*fonts.googleapis.com/d' doc/html/*.html
 %install
 sh install.sh %{buildroot}usr/bin
 
-mkdir -p %{buildroot}/%{_bindir} 
+mkdir -p %{buildroot}/%{_bindir}
 install -Dp -m755 bin/nim{,ble,grep,suggest,pretty} %{buildroot}/%{_bindir}
 install -Dp -m644 tools/nim.bash-completion %{buildroot}%{bashcompdir}/nim
 install -Dp -m644 dist/nimble/nimble.bash-completion %{buildroot}%{bashcompdir}/nimble
@@ -79,7 +79,22 @@ install -Dp -m644 -t%{buildroot}%{_mandir}/man1 %SOURCE1 %SOURCE2 %SOURCE3 %SOUR
 mkdir -p %{buildroot}%{_docdir}/%{name}/html %buildroot%_prefix/lib/nim
 cp -a doc/html/*.html %{buildroot}%{_docdir}/%{name}/html/
 cp tools/dochack/dochack.js %{buildroot}%{_docdir}/%{name}/
-cp -r lib %buildroot%_prefix/lib/nim/
+cp -a lib %buildroot%_prefix/lib/nim
+cp -a compiler %buildroot%_prefix/lib/nim
+install -Dm644 nim.nimble %buildroot%_prefix/lib/nim/compiler
+insatll -m755 lib/libnimrtl.so %buildroot%_prefix/lib/libnimrtl.so
+
+install -Dm644 config/* -t %buildroot/etc/nim
+install -Dm755 bin/* -t %buildroot%_bindir
+
+install -d %buildroot%_includedir
+cp -a %buildroot%_prefix/lib/nim/*.h %buildroot%_includedir
+
+ln -s %_datadir/nim/doc %buildroot%_prefix/lib/nim/doc
+install -d %buildroot%_datadir/nim/doc
+cp -a doc/* %buildroot%_datadir/nim/doc
+
+ln -s %_prefix/lib/nim %buildroot%_prefix/lib/nim/lib
 
 %check
 # export PATH=$PATH:$(realpath ./bin)
@@ -91,19 +106,18 @@ cp -r lib %buildroot%_prefix/lib/nim/
 %files
 %license copying.txt dist/nimble/license.txt
 %doc doc/readme.txt
+%_prefix/lib/nim/
 %{_bindir}/nim{,ble}
 %{_mandir}/man1/nim{,ble}.1*
-%_prefix/lib/nim/
 
 %files tools
+%_prefix/lib/nim/
 %license copying.txt
 %{_bindir}/nim{grep,suggest,pretty}
 %{_mandir}/man1/nim{grep,suggest}.1*
 
-%%files doc
+%files doc
 %doc %{_docdir}/nim
 
-
 %changelog
-* Mon Jan 9 2023 windowsboy111 <windowsboy111@fyralabs.com> - 0.8.4
-- Initial Package.
+%autochangelog
