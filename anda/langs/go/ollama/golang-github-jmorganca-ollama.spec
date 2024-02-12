@@ -22,8 +22,12 @@ Summary:        Get up and running with Llama 2, Mistral, and other large langua
 
 License:        MIT AND Apache-2.0
 URL:            %{gourl}
-Source:         %{gosource}
-BuildRequires:  git-core
+Source0:        %{gosource}
+Source1:        https://github.com/ggerganov/llama.cpp/archive/f57fadc009cbff741a1961cb7896c47d73978d2c.tar.gz
+Source2:        ollama.service
+Source3:        sysusers.conf
+Source4:        tmpfiles.d
+BuildRequires:  git-core systemd-rpm-macros
 
 %description %{common_description}
 
@@ -31,31 +35,47 @@ BuildRequires:  git-core
 
 %prep
 %goprep
+rm -frv llm/llama.cpp
+pushd llm/
+tar xf %SOURCE1
+popd
+# Turn LTO on and set the build type to Release
+sed -i 's,T_CODE=on,T_CODE=on -D LLAMA_LTO=on -D CMAKE_BUILD_TYPE=Release,g' llm/generate/gen_linux.sh
+# Display a more helpful error message
+sed -i "s|could not connect to ollama server, run 'ollama serve' to start it|ollama is not running, try 'systemctl start ollama'|g" cmd/cmd.go
 %autopatch -p1
 go mod download
 
 %build
-for cmd in cmd/* ; do
-  go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w -extldflags '--static-pie'" -buildmode=pie -tags 'osusergo,netgo,static_build' -v -x -o %{gobuilddir}/bin/$(basename $cmd) .
-  go tool buildid -w %{gobuilddir}/bin/$(basename $cmd)
-done
-go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w -extldflags '--static-pie'" -buildmode=pie -tags 'osusergo,netgo,static_build' -v -x -o %{gobuilddir}/bin/ollama .
-go tool buildid -w %{gobuilddir}/bin/ollama
+export CGO_CFLAGS="$CFLAGS" CGO_CPPFLAGS="$CPPFLAGS" CGO_CXXFLAGS="$CXXFLAGS" CGO_LDFLAGS="$LDFLAGS"
+go generate ./...
+go build -buildmode=pie -trimpath -mod=readonly -modcacherw -ldflags=-linkmode=external \
+  -ldflags=-buildid='' -ldflags="-X=github.com/jmorganca/ollama/version.Version=%version"
 
 %install
-%gopkginstall
-install -m 0755 -vd                     %{buildroot}%{_bindir}
-install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
+install -Dm755 ollama/ollama %buildroot%_bindir/ollama
+install -dm755 %buildroot/var/lib/ollama
+install -Dm644 %SOURCE2 %buildroot%_unitdir/ollama.service
+install -Dm644 %SOURCE3 %buildroot/usr/lib/sysusers.d/ollama.conf
+install -Dm644 %SOURCE4 %buildroot/usr/lib/tmpfiles.d/ollama.conf
 
-%if %{with check}
-%check
-%gocheck
-%endif
+%post
+%systemd_post ollama.service
+
+%preun
+%systemd_preun ollama.service
+
+%postun
+%systemd_postun_with_restart ollama.service
 
 %files
 %license LICENSE
 %doc docs examples README.md app/README.md llm/ext_server/README.md
 %{_bindir}/*
+/var/lib/ollama
+%_unitdir/ollama.service
+/usr/lib/sysusers.d/ollama.conf
+/usr/lib/tmpfiles.d/ollama.conf
 
 %gopkgfiles
 
