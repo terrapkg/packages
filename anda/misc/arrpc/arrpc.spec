@@ -40,6 +40,9 @@ install -D -m644 %SOURCE1 %buildroot%_userunitdir/arrpc.service
 %preun
 %systemd_user_preun arrpc.service
 
+%postun
+%systemd_user_postun_with_restart arrpc.service
+
 %files
 %doc README.md
 %license LICENSE
