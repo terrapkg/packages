@@ -3,7 +3,7 @@
 
 Name:			nim
 Version:		2.0.2
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Imperative, multi-paradigm, compiled programming language
 License:		MIT and BSD
 URL:			https://nim-lang.org
@@ -56,33 +56,40 @@ export FCFLAGS="${FCFLAGS} -Ofast"
 export PATH="$(pwd):$(pwd)/bin:${PATH}"
 
 mold -run nim c -d:danger koch.nim
-mold -run koch boot -d:useLinenoise -t:-fPIE -l:-pie
+mold -run koch boot -d:useLinenoise -t:-fPIE -l:-pie -d:release -d:nativeStacktrace -d:useGnuReadline
 
 mold -run koch docs &
-(cd lib; mold -run nim c --app:lib -d:danger -d:createNimRtl -t:-fPIE -l:-pie nimrtl.nim) &
+(cd lib; mold -run nim c --app:lib -d:release -d:createNimRtl -t:-fPIE -l:-pie nimrtl.nim) &
 mold -run koch tools -t:-fPIE -l:-pie &
-mold -run nim c -t:-fPIE -l:-pie -d:danger nimsuggest/nimsuggest.nim &
+mold -run nim c -t:-fPIE -l:-pie -d:release nimsuggest/nimsuggest.nim &
 wait
 
 sed -i '/<link.*fonts.googleapis.com/d' doc/html/*.html
 
 
 %install
-sh install.sh %{buildroot}usr/bin
+export PATH="$(pwd):$(pwd)/bin:${PATH}"
+koch install %buildroot
 
-mkdir -p %{buildroot}/%{_bindir}
-install -Dp -m755 bin/nim{,ble,grep,suggest,pretty} %{buildroot}/%{_bindir}
-install -Dp -m644 tools/nim.bash-completion %{buildroot}%{bashcompdir}/nim
+mkdir -p %buildroot{%_bindir,%_docdir/%name/html,%_prefix/lib/nim}
+install -Dp -m755 bin/nim{,ble,grep,suggest,pretty} %buildroot/%_bindir
 install -Dp -m644 dist/nimble/nimble.bash-completion %{buildroot}%{bashcompdir}/nimble
 install -Dp -m644 -t%{buildroot}%{_mandir}/man1 %SOURCE1 %SOURCE2 %SOURCE3 %SOURCE4
+# completions
+for comp in tools/*.bash-completion; do
+	install -Dm644 $comp %bashcompdir/$(basename "${comp/.bash-completion}")
+done
+for comp in tools/*.zsh-completion; do
+	install -Dm644 $comp %zshcompdir/_$(basename "${comp/.zsh-completion}")
+done
 
-mkdir -p %{buildroot}%{_docdir}/%{name}/html %buildroot%_prefix/lib/nim
-cp -a doc/html/*.html %{buildroot}%{_docdir}/%{name}/html/
+cp -a doc/html/*.html %buildroot%_docdir/%name/html/
 cp tools/dochack/dochack.js %{buildroot}%{_docdir}/%{name}/
 cp -a lib %buildroot%_prefix/lib/nim
 cp -a compiler %buildroot%_prefix/lib/nim
 install -Dm644 nim.nimble %buildroot%_prefix/lib/nim/compiler
-install -m755 lib/libnimrtl.so %buildroot%_prefix/lib/libnimrtl.so
+ls lib/*
+# install -m755 lib/*nimrtl.so %buildroot%_prefix/lib/libnimrtl.so
 
 install -Dm644 config/* -t %buildroot/etc/nim
 install -Dm755 bin/* -t %buildroot%_bindir
