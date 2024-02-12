@@ -59,7 +59,7 @@ mold -run nim c -d:danger koch.nim
 mold -run koch boot -d:useLinenoise -t:-fPIE -l:-pie -d:release -d:nativeStacktrace -d:useGnuReadline
 
 mold -run koch docs &
-(cd lib; mold -run nim c --app:lib -d:release -d:createNimRtl -t:-fPIE -l:-pie nimrtl.nim) &
+(cd lib; nim c --app:lib -d:release -d:createNimRtl -t:-fPIE -l:-pie nimrtl.nim) &
 mold -run koch tools -t:-fPIE -l:-pie &
 mold -run nim c -t:-fPIE -l:-pie -d:release nimsuggest/nimsuggest.nim &
 wait
@@ -90,7 +90,7 @@ cp -a compiler %buildroot%_prefix/lib/nim
 install -Dm644 nim.nimble %buildroot%_prefix/lib/nim/compiler
 ls **
 ls %buildroot%_prefix/lib/nim/*
-# install -m755 lib/*nimrtl.so %buildroot%_prefix/lib/libnimrtl.so
+install -m755 lib/libnimrtl.so %buildroot%_prefix/lib/libnimrtl.so
 
 install -Dm644 config/* -t %buildroot/etc/nim
 install -Dm755 bin/* -t %buildroot%_bindir
@@ -99,8 +99,6 @@ install -d %buildroot%_includedir
 cp -a %buildroot%_prefix/lib/nim/lib/*.h %buildroot%_includedir
 
 ln -s %_datadir/nim/doc %buildroot%_prefix/lib/nim/doc
-install -d %buildroot%_datadir/nim/doc
-cp -a doc/* %buildroot%_datadir/nim/doc
 
 ln -s %_prefix/lib/nim %buildroot%_prefix/lib/nim/lib
 
@@ -117,13 +115,20 @@ rm %buildroot%_bindir/*.bat || true
 %files
 %license copying.txt dist/nimble/license.txt
 %doc doc/readme.txt
+/etc/nim/
+%_bindir/atlas
+%_bindir/nim_dbg
+%_bindir/nim-gdb
+%_bindir/testament
 %_prefix/lib/nim/
 %{_bindir}/nim{,ble}
 %{_mandir}/man1/nim{,ble}.1*
+%_includedir/cycle.h
+%_includedir/nimbase.h
 
 %files tools
-%_prefix/lib/nim/
 %license copying.txt
+%_prefix/lib/nim/
 %{_bindir}/nim{grep,suggest,pretty}
 %{_mandir}/man1/nim{grep,suggest}.1*
 
