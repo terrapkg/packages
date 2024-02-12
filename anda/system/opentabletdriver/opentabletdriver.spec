@@ -50,6 +50,9 @@ cp -r bin "%{buildroot}/%{_prefix}/lib/opentabletdriver"
 %preun
 %systemd_user_preun %name.service
 
+%postun
+%systemd_user_postun_with_restart %name.service
+
 %files
 %defattr(-,root,root)
 %dir %{_prefix}/lib/opentabletdriver
