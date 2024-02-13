@@ -4,7 +4,7 @@ Release:		1%{?dist}
 Summary:		Easily install and manage multiple versions of the Nim programming language
 License:		BSD-3-Clause
 URL:			https://github.com/dom96/choosenim
-BuildRequires:	nim mold git
+BuildRequires:	nim git
 
 %description
 choosenim installs the Nim programming language from official downloads and
@@ -15,10 +15,10 @@ git clone https://github.com/dom96/choosenim .
 git checkout v%version
 
 %build
-mold -run nimble build -y -t:-fPIE -l:-pie choosenim.nimble
+nimble build -y -t:-fPIE -l:-pie choosenim.nimble
 
 %install
-mold -run nimble install -y -t:-fPIE -l:-pie choosenim.nimble
+nimble install -y -t:-fPIE -l:-pie choosenim.nimble
 
 
 %files
