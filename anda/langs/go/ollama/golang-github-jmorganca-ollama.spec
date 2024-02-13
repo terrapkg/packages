@@ -23,7 +23,6 @@ Summary:        Get up and running with Llama 2, Mistral, and other large langua
 License:        MIT AND Apache-2.0
 URL:            %{gourl}
 Source0:        %{gosource}
-Source1:        https://github.com/ggerganov/llama.cpp/archive/f57fadc009cbff741a1961cb7896c47d73978d2c.tar.gz
 Source2:        ollama.service
 Source3:        sysusers.conf
 Source4:        tmpfiles.d
@@ -35,9 +34,10 @@ BuildRequires:  git-core systemd-rpm-macros
 
 %prep
 %goprep
+git init .
 rm -frv llm/llama.cpp
 pushd llm/
-tar xf %SOURCE1
+git clone --depth=1 --branch f57fadc009cbff741a1961cb7896c47d73978d2c https://github.com/ggerganov/llama.cpp
 popd
 # Turn LTO on and set the build type to Release
 sed -i 's,T_CODE=on,T_CODE=on -D LLAMA_LTO=on -D CMAKE_BUILD_TYPE=Release,g' llm/generate/gen_linux.sh
