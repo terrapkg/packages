@@ -17,7 +17,7 @@ sources, enabling you to easily switch between stable and development compilers.
 %build
 
 %install
-mold -run nimble build -t:-fPIE -l:-pie
+mold -run nimble build -y -t:-fPIE -l:-pie
 
 
 %files
