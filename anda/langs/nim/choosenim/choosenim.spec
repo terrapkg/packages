@@ -15,10 +15,11 @@ git clone https://github.com/dom96/choosenim .
 git checkout v%version
 
 %build
-nimble build -y -t:-fPIE -l:-pie choosenim.nimble
+nimble setup -y
+nim c -t:-fPIE -l:-pie -d:release src/choosenim
 
 %install
-nimble install -y -t:-fPIE -l:-pie choosenim.nimble
+install -Dm755 src/choosenim %buildroot%_bindir/choosenim
 
 
 %files
