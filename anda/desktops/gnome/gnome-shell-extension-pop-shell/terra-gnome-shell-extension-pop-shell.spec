@@ -1,7 +1,7 @@
 # from Fedora upstream
 %global extension   pop-shell
 %global uuid        %{extension}@system76.com
-%global commit      cf3c932b55d5c247906efe9d81f988ee092d9f51
+%global commit      9a30c5bd49c373896410852d6477596ac4c43bd3
 %global shortcommit %{lua:print(macros.commit:sub(1,7))}
 %global ver         1.2.0
 
