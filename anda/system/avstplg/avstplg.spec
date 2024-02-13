@@ -1,4 +1,4 @@
-%global commit 999b25e3f0d7d7d7dbe4eb2496953d08779c2bff
+%global commit 7cb289b6466b662fdf9f7d7ccc9f3c08a7dc0cac
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global debug_package %{nil}
 %define __os_install_post %{nil}
