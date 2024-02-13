@@ -5,7 +5,7 @@ Summary:		Easily install and manage multiple versions of the Nim programming lan
 License:		BSD-3-Clause
 URL:			https://github.com/dom96/choosenim
 Source0:		%url/archive/refs/tags/v%version.tar.gz
-BuildRequires:	nim mold
+BuildRequires:	nim mold git
 
 %description
 choosenim installs the Nim programming language from official downloads and
