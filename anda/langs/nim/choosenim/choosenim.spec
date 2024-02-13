@@ -15,10 +15,10 @@ git clone https://github.com/dom96/choosenim .
 git checkout v%version
 
 %build
-mold -run nimble build -y -t:-fPIE -l:-pie
+mold -run nimble build -y -t:-fPIE -l:-pie choosenim.nimble
 
 %install
-mold -run nimble install -y -t:-fPIE -l:-pie
+mold -run nimble install -y -t:-fPIE -l:-pie choosenim.nimble
 
 
 %files
