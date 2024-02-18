@@ -2,7 +2,7 @@
 %global commit c6e23e7eb733ad396d3eebc328404cc656fed581
 
 Name:			arrpc
-Version:		3.3.0
+Version:		3.3.1
 Release:		1%?dist
 Summary:		Open Discord RPC server for atypical setups
 License:		MIT

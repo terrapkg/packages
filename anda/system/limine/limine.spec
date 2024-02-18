@@ -1,6 +1,6 @@
 Name:		limine
-Version:	7.0.3
-Release:	1%{?dist}
+Version:	7.0.5
+Release:	1%?dist
 Summary:	Modern, advanced, portable, multiprotocol bootloader
 License:	BSD-2-Clause
 URL:		https://limine-bootloader.org
