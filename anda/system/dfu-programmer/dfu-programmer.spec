@@ -29,7 +29,7 @@ autoreconf -fiv
 
 %files
 %license COPYING
-%doc AUTHORS ChangeLog NEWS README
+%doc AUTHORS ChangeLog NEWS README.md
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1*
 
