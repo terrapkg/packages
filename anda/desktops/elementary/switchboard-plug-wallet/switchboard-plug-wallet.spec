@@ -16,7 +16,7 @@ Release:        2%?dist
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/%name
-Source0:        %url/archive/%version/%srcname-%commit.tar.gz
+Source0:        %url/archive/%commit/%srcname-%commit.tar.gz
 
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
