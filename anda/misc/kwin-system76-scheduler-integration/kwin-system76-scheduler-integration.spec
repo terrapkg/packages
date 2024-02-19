@@ -2,7 +2,7 @@
 
 Name:			kwin-system76-scheduler-integration
 Version:		0.1
-Release:		3%?dist
+Release:		4%?dist
 Summary:		Notify the System76 Scheduler which app has focus so it can be prioritized
 License:		MIT
 URL:			  https://github.com/maxiberta/kwin-system76-scheduler-integration
@@ -38,6 +38,8 @@ install -Dm644 metadata.desktop %buildroot%_datadir/kservices5/kwin-system76-sch
 %preun
 %systemd_user_preun com.system76.Scheduler.dbusproxy.service
 
+%postun
+%systemd_user_postun_with_restart com.system76.Scheduler.dbusproxy.service
 
 %files
 %config %_userunitdir/com.system76.Scheduler.dbusproxy.service
