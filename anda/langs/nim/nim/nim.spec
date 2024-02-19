@@ -3,7 +3,7 @@
 
 Name:			nim
 Version:		2.0.2
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Imperative, multi-paradigm, compiled programming language
 License:		MIT and BSD
 URL:			https://nim-lang.org
@@ -56,30 +56,54 @@ export FCFLAGS="${FCFLAGS} -Ofast"
 export PATH="$(pwd):$(pwd)/bin:${PATH}"
 
 mold -run nim c -d:danger koch.nim
-mold -run koch boot -d:useLinenoise -t:-fPIE -l:-pie
+mold -run koch boot -d:useLinenoise -t:-fPIE -l:-pie -d:release -d:nativeStacktrace -d:useGnuReadline
 
 mold -run koch docs &
-(cd lib; mold -run nim c --app:lib -d:danger -d:createNimRtl -t:-fPIE -l:-pie nimrtl.nim) &
+(cd lib && nim c --app:lib -d:createNimRtl -d:release nimrtl.nim) &
 mold -run koch tools -t:-fPIE -l:-pie &
-mold -run nim c -t:-fPIE -l:-pie -d:danger nimsuggest/nimsuggest.nim &
+mold -run nim c -t:-fPIE -l:-pie -d:release nimsuggest/nimsuggest.nim &
 wait
 
 sed -i '/<link.*fonts.googleapis.com/d' doc/html/*.html
 
 
 %install
+export PATH="$(pwd):$(pwd)/bin:${PATH}"
 sh install.sh %{buildroot}usr/bin
 
-mkdir -p %{buildroot}/%{_bindir} 
-install -Dp -m755 bin/nim{,ble,grep,suggest,pretty} %{buildroot}/%{_bindir}
-install -Dp -m644 tools/nim.bash-completion %{buildroot}%{bashcompdir}/nim
+mkdir -p %buildroot{%_bindir,%_docdir/%name/html,%_prefix/lib/nim}
+install -Dp -m755 bin/nim{,ble,grep,suggest,pretty} %buildroot/%_bindir
 install -Dp -m644 dist/nimble/nimble.bash-completion %{buildroot}%{bashcompdir}/nimble
 install -Dp -m644 -t%{buildroot}%{_mandir}/man1 %SOURCE1 %SOURCE2 %SOURCE3 %SOURCE4
+# completions
+for comp in tools/*.bash-completion; do
+	install -Dm644 $comp %bashcompdir/$(basename "${comp/.bash-completion}")
+done
+for comp in tools/*.zsh-completion; do
+	install -Dm644 $comp %zshcompdir/_$(basename "${comp/.zsh-completion}")
+done
 
-mkdir -p %{buildroot}%{_docdir}/%{name}/html %buildroot%_prefix/lib/nim
-cp -a doc/html/*.html %{buildroot}%{_docdir}/%{name}/html/
+cp -a doc/html/*.html %buildroot%_docdir/%name/html/
 cp tools/dochack/dochack.js %{buildroot}%{_docdir}/%{name}/
-cp -r lib %buildroot%_prefix/lib/nim/
+cp -a lib %buildroot%_prefix/lib/nim
+cp -a compiler %buildroot%_prefix/lib/nim
+install -Dm644 nim.nimble %buildroot%_prefix/lib/nim/compiler
+ls **
+ls %buildroot%_prefix/lib/nim/*
+install -m755 lib/libnimrtl.so %buildroot%_prefix/lib/libnimrtl.so
+
+install -Dm644 config/* -t %buildroot/etc/nim
+install -Dm755 bin/* -t %buildroot%_bindir
+
+install -d %buildroot%_includedir
+cp -a %buildroot%_prefix/lib/nim/lib/*.h %buildroot%_includedir
+
+ln -s %_datadir/nim/doc %buildroot%_prefix/lib/nim/doc
+
+ln -s %_prefix/lib/nim %buildroot%_prefix/lib/nim/lib
+
+rm -rf %buildroot/nim || true
+rm %buildroot%_bindir/*.bat || true
 
 %check
 # export PATH=$PATH:$(realpath ./bin)
@@ -91,19 +115,26 @@ cp -r lib %buildroot%_prefix/lib/nim/
 %files
 %license copying.txt dist/nimble/license.txt
 %doc doc/readme.txt
+/etc/nim/
+%_bindir/atlas
+%_bindir/nim_dbg
+%_bindir/nim-gdb
+%_bindir/testament
+%_prefix/lib/nim/
+%_prefix/lib/libnimrtl.so
 %{_bindir}/nim{,ble}
 %{_mandir}/man1/nim{,ble}.1*
-%_prefix/lib/nim/
+%_includedir/cycle.h
+%_includedir/nimbase.h
 
 %files tools
 %license copying.txt
+%_prefix/lib/nim/
 %{_bindir}/nim{grep,suggest,pretty}
 %{_mandir}/man1/nim{grep,suggest}.1*
 
-%%files doc
+%files doc
 %doc %{_docdir}/nim
 
-
 %changelog
-* Mon Jan 9 2023 windowsboy111 <windowsboy111@fyralabs.com> - 0.8.4
-- Initial Package.
+%autochangelog
