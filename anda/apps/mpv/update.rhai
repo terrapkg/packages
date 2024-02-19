@@ -1,6 +1,8 @@
 if filters.contains("nightly") {
-	let o = req("https://api.github.com/repos/mpv-player/mpv/commits/HEAD").json();
-	rpm.global("commit", o.sha);
-	rpm.global("ver", gh("mpv-player/mpv"));
-	rpm.release();
+	rpm.global("commit", gh_commit("mpv-player/mpv"));
+	if rpm.changed() {
+		rpm.global("ver", gh("mpv-player/mpv"));
+		rpm.global("commit_date", date());
+		rpm.release();
+	}
 }

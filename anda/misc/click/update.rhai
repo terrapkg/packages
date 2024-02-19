@@ -1,7 +1,5 @@
 let o = get("https://gitlab.com/api/v4/projects/25034025/repository/tags").json_arr()[0];
-let f = rpm.f;
 rpm.version(o.name);
-// check if changed
-if rpm.f != f {
+if rpm.changed() {
 	rpm.global("commit", o.commit.id);
 }
