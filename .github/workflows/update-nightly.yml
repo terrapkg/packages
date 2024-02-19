@@ -46,7 +46,6 @@ jobs:
               git add *
               git commit -S -a -m "$msg"
             }
-            copy_over f37 || true
             copy_over f38 || true
             copy_over f40 || true
             copy_over frawhide || true
