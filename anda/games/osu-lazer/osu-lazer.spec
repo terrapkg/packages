@@ -2,8 +2,8 @@
 %global debug_package %{nil}
 
 Name:			osu-lazer
-Version:		2024.131.0
-Release:		1%{?dist}
+Version:		2024.219.0
+Release:		1%?dist
 Summary:		The future of osu! and the beginning of an open era! Commonly known by the codename osu!lazer. Pew pew.
 ExclusiveArch:	x86_64
 URL:			https://osu.ppy.sh/
