@@ -3,6 +3,7 @@
 %global uuid        %{extension}@system76.com
 %global commit      9a30c5bd49c373896410852d6477596ac4c43bd3
 %global shortcommit %{lua:print(macros.commit:sub(1,7))}
+%global commit_date 240218
 %global ver         1.2.0
 
 Name:           terra-gnome-shell-extension-%{extension}
