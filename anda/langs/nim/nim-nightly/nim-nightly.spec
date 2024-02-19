@@ -1,11 +1,11 @@
 %global csrc_commit 561b417c65791cd8356b5f73620914ceff845d10
-%global commit a8c168c1688f64e8bd3acba9afee9d02bb03c649
+%global commit 92c8c6d5f4e5a96b71bf4eca5f6a136410f97d6e
 %global ver 2.1.1
 %global debug_package %nil
 
 Name:			nim-nighlty
 Version:		%ver^%commit
-Release:		1%{?dist}
+Release:		1%?dist
 Summary:		Imperative, multi-paradigm, compiled programming language
 License:		MIT and BSD
 URL:			https://nim-lang.org

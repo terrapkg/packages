@@ -5,7 +5,7 @@
 
 Name:           avstplg 
 Version:        %shortcommit
-Release:        1%{?dist}
+Release:        1%?dist
 
 License:        Apache-2.0
 Summary:        Set of tools designed to help develop and debug software and firmware on Intel platforms with AudioDSP onboard.
