@@ -7,7 +7,7 @@ URL:            https://github.com/dfu-programmer/dfu-programmer
 Source0:        %url/archive/refs/tags/v%version.tar.gz
 Patch0:         dfu-programmer-c99.patch
 BuildRequires:  pkgconfig(libusb-1.0) >= 1.0.0
-BuildRequires: 	make gcc autoconf
+BuildRequires: 	make gcc autoconf automake
 
 %description 
 A linux based command-line programmer for Atmel chips with a USB
