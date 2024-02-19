@@ -1,7 +1,8 @@
 if filters.contains("nightly") {
-	let req = new_req("https://api.github.com/repos/vala-lang/vala-language-server/commits/HEAD");
-	req.head("Authorization", `Bearer ${env("GITHUB_TOKEN")}`);
-	rpm.global("commit", json(req.get()).sha);
-	rpm.global("verrel", gh("vala-lang/vala-language-server"));
-	rpm.release();
+	rpm.global("commit", gh_commit("vala-lang/vala-language-server"));
+	if rpm.changed() {
+		rpm.global("commit_date", date());
+		rpm.global("verrel", gh("vala-lang/vala-language-server"));
+		rpm.release();
+	}
 }
