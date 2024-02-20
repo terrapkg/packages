@@ -36,9 +36,9 @@ BuildRequires:  pkgconfig(granite) >= 5.0
 BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(libhandy-1)
 BuildRequires:  pkgconfig(liblightdm-gobject-1)
-BuildRequires:  pkgconfig(mutter-clutter-14)
-BuildRequires:  pkgconfig(mutter-cogl-14)
-BuildRequires:  pkgconfig(mutter-cogl-pango-14)
+BuildRequires:  pkgconfig(mutter-clutter-13)
+BuildRequires:  pkgconfig(mutter-cogl-13)
+BuildRequires:  pkgconfig(mutter-cogl-pango-13)
 BuildRequires:  pkgconfig(x11)
 
 Provides:       pantheon-greeter = %{version}-%{release}

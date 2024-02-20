@@ -1,3 +1,4 @@
-let req = new_req("https://api.github.com/repos/elementary/switchboard-plug-wallet/commits/HEAD");
-req.head("Authorization", `Bearer ${env("GITHUB_TOKEN")}`);
-rpm.global("commit", json(req.get()).sha);
+rpm.global("commit", gh_commit("elementary/switchboard-plug-wallet"));
+if rpm.changed() {
+	rpm.global("commit_date", date());
+}
