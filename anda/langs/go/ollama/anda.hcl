@@ -1,5 +1,5 @@
 project pkg {
   rpm {
-	spec = "golang-github-jmorganca-ollama.spec"
+	spec = "golang-github-ollama-ollama.spec"
   }
 }
