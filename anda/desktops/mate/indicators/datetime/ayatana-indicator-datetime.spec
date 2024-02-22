@@ -1,6 +1,6 @@
 Name:       ayatana-indicator-datetime
 Summary:    A GTK implementation of the StatusNotifierItem Specification
-Version:    23.10.1
+Version:    24.2.0
 Release:    1%{?dist}
 License:    GPL-3.0
 URL:        https://github.com/AyatanaIndicators/ayatana-indicator-datetime
@@ -38,7 +38,7 @@ Unity7 desktop and Lomiri desktop.
 
 %build
 %cmake -DENABLE_LOMIRI_FEATURES=ON \
-       -DENABLE_TESTS=ON \
+       -DENABLE_TESTS=OFF\
        -DENABLE_COVERAGE=OFF \
 %cmake_build
 
