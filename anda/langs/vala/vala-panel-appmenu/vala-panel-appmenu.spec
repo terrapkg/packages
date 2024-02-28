@@ -109,6 +109,11 @@ GTK (2, 3) module that exports GtkMenuShells over D-Bus.
 %{_datadir}/dbus-1/services/com.canonical.AppMenu.Registrar.service
 %{_datadir}/glib-2.0/schemas/org.valapanel.appmenu.gschema.xml
 %{_datadir}/vala-panel/applets/org.valapanel.appmenu.plugin
+%{_datadir}/vala/vapi/appmenu-glib-translator.*
+%{_datadir}/gir-1.0/AppmenuGLibTranslator-%version.gir
+%{_includedir}/appmenu-glib-translator/importer.h
+%{_libdir}/girepository-1.0/AppmenuGLibTranslator-%version.typelib
+%{_libdir}/libappmenu-glib-translator.*
 
 %files -n vala-panel-appmenu-gtk-module
 %{_userunitdir}/appmenu-gtk-module.service
