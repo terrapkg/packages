@@ -9,6 +9,8 @@ Source0:        prime-run.sh
 
 # Bash script
 Requires:       bash
+BuildArch:      noarch
+Supplements:    nvidia-driver
 
 %description
 A simple Bash script to force an application to run with PRIME GPU offloading. This is useful for
