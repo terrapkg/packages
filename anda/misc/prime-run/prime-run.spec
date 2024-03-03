@@ -1,5 +1,5 @@
 Name:           prime-run
-Version:        0.0.1
+Version:        1.0.0
 Release:        1%{?dist}
 Summary:        A simple script to run an application with NVIDIA PRIME GPU offloading
 
@@ -10,7 +10,6 @@ Source0:        prime-run.sh
 # Bash script
 Requires:       bash
 BuildArch:      noarch
-Supplements:    nvidia-driver
 
 %description
 A simple Bash script to force an application to run with PRIME GPU offloading. This is useful for
