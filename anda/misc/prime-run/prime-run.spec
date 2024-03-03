@@ -25,11 +25,11 @@ specific applications using the prime-run script.
 
 
 %install
-install -Dm755 %{SOURCE0} %{buildroot}%{_datadir}/prime-run
+install -Dm755 %{SOURCE0} %{buildroot}%{_bindir}/prime-run
 
 
 %files
-%{_datadir}/prime-run
+%{_bindir}/prime-run
 
 
 
