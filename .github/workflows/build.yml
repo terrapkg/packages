@@ -68,7 +68,6 @@ jobs:
             terra${{ matrix.version }} anda-build/rpm/rpms/*
 
       - name: Upload source packages to subatomic
-        if: github.event_name == 'push'
         run: |
           subatomic-cli upload --prune \
             --server https://subatomic.fyralabs.com \
