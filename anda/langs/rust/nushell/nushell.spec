@@ -1,6 +1,6 @@
 Name:			nushell
-Version:		0.90.1
-Release:		1%{?dist}
+Version:		0.91.0
+Release:		1%?dist
 Summary:		A new type of shell
 License:		MIT
 URL:			https://www.nushell.sh/
