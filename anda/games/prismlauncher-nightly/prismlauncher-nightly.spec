@@ -7,7 +7,7 @@
 %global quazip_commit 6117161af08e366c37499895b00ef62f93adc345
 %global tomlplusplus_commit 7eb2ffcc09f8e9890dc0b77ff8ab00fc53b1f2b8
 
-%global commit_date %(date '+%Y%m%d')
+%global commit_date 20240309
 %global snapshot_info %{commit_date}.%{shortcommit}
 
 %bcond_without qt6
