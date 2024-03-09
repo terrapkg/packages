@@ -1,6 +1,6 @@
 Name:           terra-release
-Version:        39
-Release:        3
+Version:        40
+Release:        1
 Summary:        Release package for Terra
 
 License:        MIT
