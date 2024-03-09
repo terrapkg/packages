@@ -1,7 +1,7 @@
 %global real_name prismlauncher
 %global nice_name PrismLauncher
 
-%global commit a0311780c171c1c264401a3fac6a23afe6de249d
+%global commit 51443fce8be28a841a0ce83786fa6fa554cc0f17
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global libnbtplusplus_commit a5e8fd52b8bf4ab5d5bcc042b2a247867589985f
 %global quazip_commit 6117161af08e366c37499895b00ef62f93adc345
@@ -32,7 +32,7 @@ Name:             prismlauncher-nightly
 %else
 Name:             prismlauncher-qt5-nightly
 %endif
-Version:          9.0^20240307.%{snapshot_info}
+Version:          9.0^20240309.%{snapshot_info}
 Release:          1%?dist
 Summary:          Minecraft launcher with ability to manage multiple instances
 License:          GPL-3.0-only AND Apache-2.0 AND LGPL-3.0-only AND GPL-3.0-or-later AND GPL-2.0-or-later AND ISC AND OFL-1.1 AND LGPL-2.1-only AND MIT AND BSD-2-Clause-FreeBSD AND BSD-3-Clause AND LGPL-3.0-or-later
