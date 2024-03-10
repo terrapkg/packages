@@ -93,7 +93,7 @@ make yt-dlp.1 completion-bash completion-zsh completion-fish
 %check
 %if %{with tests}
 # See https://github.com/yt-dlp/yt-dlp/blob/master/devscripts/run_tests.sh
-%pytest -k "not download"
+%pytest
 %endif
 
 %files -f %{pyproject_files}
