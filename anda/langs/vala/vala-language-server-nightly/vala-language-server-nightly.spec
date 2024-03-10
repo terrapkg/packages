@@ -3,7 +3,7 @@
 %global commit 3b5fe941bea6ecd5c8fcb84930c40b8582eea165
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
-%global commit_date 240218
+%global commit_date 20240218
 %global snapshot_info %{commit_date}.%{shortcommit}
 %global verrel 0.48.7
 
