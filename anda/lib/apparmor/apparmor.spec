@@ -269,7 +269,6 @@ make -C utils check
 %{_bindir}/aa-features-abi
 %{_sbindir}/aa-load
 %{_sbindir}/aa-teardown
-%{_sbindir}/rcapparmor
 %{_unitdir}/apparmor.service
 %{_presetdir}/70-apparmor.preset
 %{_prefix}/lib/apparmor
