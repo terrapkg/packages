@@ -32,6 +32,9 @@ BuildRequires:  make
 Recommends:     /usr/bin/ffmpeg
 Recommends:     /usr/bin/ffprobe
 
+Provides:       yt-dlp
+Conflicts:      yt-dlp
+
 Suggests:       python3dist(keyring)
 
 %global _description %{expand:
