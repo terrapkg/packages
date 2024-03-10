@@ -14,7 +14,6 @@ URL:            https://launchpad.net/apparmor
 Source0:        %{url}/%{baseversion}/%(echo %version | sed 's/~/-/')/+download/%{name}-%{version}.tar.gz
 Source1:        apparmor.preset
 Patch01:        0001-fix-avahi-daemon-authselect-denial-in-fedora.patch
-Patch02:        0001-All-current-versions-of-RHEL-and-Fedora-that-are-not.patch
 
 BuildRequires:  gcc
 BuildRequires:  automake
