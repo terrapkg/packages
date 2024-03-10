@@ -1,4 +1,4 @@
-%bcond_without tests
+#bcond_without tests
 %global commit 263a4b55ac17a796e8991ca8d2d86a3c349f8a60
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global commit_date 20240310
