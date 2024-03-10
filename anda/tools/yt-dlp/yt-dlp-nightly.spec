@@ -74,7 +74,7 @@ Fish command line completion support for %{name}.
 # Remove unnecessary shebangs
 find -type f ! -executable -name '*.py' -print -exec sed -i -e '1{\@^#!.*@d}' '{}' +
 # Relax version constraints
-sed -i 's@^\(requests\|urllib3\|websockets\)>=.*@\1@' requirements.txt
+sed -i 's@"\(requests\|urllib3\|websockets\)>=.*"@"\1"@' pyproject.toml
 
 %generate_buildrequires
 %pyproject_buildrequires -r
