@@ -13,7 +13,7 @@ License:        Unlicense
 URL:            https://github.com/yt-dlp/yt-dlp
 Source:         %url/archive/%commit.tar.gz
 # License of the specfile
-Source:         yt-dlp.spec.license
+Source:         https://src.fedoraproject.org/rpms/yt-dlp/raw/rawhide/f/yt-dlp.spec.license
 
 BuildArch:      noarch
 
