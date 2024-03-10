@@ -1,6 +1,6 @@
 project pkg {
 	rpm {
-		spec = "yt-dlp.spec"
+		spec = "yt-dlp-nightly.spec"
 	}
 	labels {
 		nightly = "1"
