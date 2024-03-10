@@ -38,9 +38,8 @@ Keywords=Music;Jellyfin;Audio;Stream;Sonixd
 EOF
 
 %build
-npm i --legacy-peer-deps update-browserslist-db@latest
-npm audit fix --force
-npx update-browserslist-db@latest
+npm install --legacy-peer-deps
+npm run postinstall
 npm run build
 %ifarch x86_64
 
