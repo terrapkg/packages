@@ -6,7 +6,7 @@ Name:           python-%{pypi_name}
 Version:        0.0.3
 Provides:       python3-%{pypi_name} = %{version}-%{release}
 Provides:       %{pypi_name} = %{version}-%{release}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Ultramarine Quickstart Tool
 
 License:        None
@@ -31,7 +31,6 @@ Summary:        %{summary}
 
 Requires:       python3dist(requests)
 Requires:       python3dist(setuptools)
-Requires:       python3dist(setuptools) = 67.7.2
 Requires:       anaconda-core
 %description -n python3-%{pypi_name}
 
