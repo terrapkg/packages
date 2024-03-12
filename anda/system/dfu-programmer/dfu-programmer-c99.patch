@@ -1,0 +1,16 @@
+Include <stdlib.h> for the malloc function.
+
+Submitted upstream: <https://github.com/dfu-programmer/dfu-programmer/pull/76>
+
+diff --git a/src/atmel.c b/src/atmel.c
+index 4ea794d17f65d8d0..491bbb16706e65a8 100644
+--- a/src/atmel.c
++++ b/src/atmel.c
+@@ -19,6 +19,7 @@
+  */
+ 
+ #include <stdio.h>
++#include <stdlib.h>
+ #include <stdarg.h>
+ #include <stdint.h>
+ #include <string.h>
