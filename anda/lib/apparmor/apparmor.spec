@@ -141,6 +141,7 @@ changehat abilities exposed through libapparmor.
 
 ver="%(echo %version | sed 's@~alpha@a@')"
 sed -i "s/@VERSION@/$ver/g" libraries/libapparmor/swig/python/setup.py.in
+sed -i 's/${PYTHON} ${PYSETUP} install --prefix=${PYPREFIX} --root=${DESTDIR} --version=${VERSION}/${PYTHON} ${PYSETUP} install --prefix=${PYPREFIX} --root=${DESTDIR} --version="'$ver'"/' ./utils/Makefile
 
 %build
 export PYTHON=%{__python3}
