@@ -32,7 +32,7 @@ order of priority).
 
 This package provides various tools, which help Nim programmers.
 
-
+%ifarch x86_64
 %package doc
 Summary:	Documentation for Nim programming language
 BuildArch:	noarch
@@ -43,6 +43,7 @@ order of priority).
 
 This package provides documentation and reference manual for the language
 and its standard library.
+%endif
 
 %prep
 %autosetup -n nim-%{version}
@@ -58,20 +59,24 @@ export PATH="$(pwd):$(pwd)/bin:${PATH}"
 mold -run nim c -d:danger koch.nim
 mold -run koch boot -d:useLinenoise -t:-fPIE -l:-pie -d:release -d:nativeStacktrace -d:useGnuReadline
 
+%ifarch x86_64
 mold -run koch docs &
+%endif
 (cd lib && nim c --app:lib -d:createNimRtl -d:release nimrtl.nim) &
 mold -run koch tools -t:-fPIE -l:-pie &
 mold -run nim c -t:-fPIE -l:-pie -d:release nimsuggest/nimsuggest.nim &
 wait
 
+%ifarch x86_64
 sed -i '/<link.*fonts.googleapis.com/d' doc/html/*.html
+%endif
 
 
 %install
 export PATH="$(pwd):$(pwd)/bin:${PATH}"
 sh install.sh %{buildroot}usr/bin
 
-mkdir -p %buildroot{%_bindir,%_docdir/%name/html,%_prefix/lib/nim}
+mkdir -p %buildroot{%_bindir,%_prefix/lib/nim}
 install -Dp -m755 bin/nim{,ble,grep,suggest,pretty} %buildroot/%_bindir
 install -Dp -m644 dist/nimble/nimble.bash-completion %{buildroot}%{bashcompdir}/nimble
 install -Dp -m644 -t%{buildroot}%{_mandir}/man1 %SOURCE1 %SOURCE2 %SOURCE3 %SOURCE4
@@ -83,8 +88,12 @@ for comp in tools/*.zsh-completion; do
 	install -Dm644 $comp %zshcompdir/_$(basename "${comp/.zsh-completion}")
 done
 
+%ifarch x86_64
+mkdir -p %buildroot%_docdir/%name/html
 cp -a doc/html/*.html %buildroot%_docdir/%name/html/
 cp tools/dochack/dochack.js %{buildroot}%{_docdir}/%{name}/
+ln -s %_datadir/nim/doc %buildroot%_prefix/lib/nim/doc
+%endif
 cp -a lib %buildroot%_prefix/lib/nim
 cp -a compiler %buildroot%_prefix/lib/nim
 install -Dm644 nim.nimble %buildroot%_prefix/lib/nim/compiler
@@ -97,8 +106,6 @@ install -Dm755 bin/* -t %buildroot%_bindir
 
 install -d %buildroot%_includedir
 cp -a %buildroot%_prefix/lib/nim/lib/*.h %buildroot%_includedir
-
-ln -s %_datadir/nim/doc %buildroot%_prefix/lib/nim/doc
 
 ln -s %_prefix/lib/nim %buildroot%_prefix/lib/nim/lib
 
@@ -133,8 +140,10 @@ rm %buildroot%_bindir/*.bat || true
 %{_bindir}/nim{grep,suggest,pretty}
 %{_mandir}/man1/nim{grep,suggest}.1*
 
+%ifarch x86_64
 %files doc
 %doc %{_docdir}/nim
+%endif
 
 %changelog
 %autochangelog

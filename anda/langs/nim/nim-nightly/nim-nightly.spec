@@ -36,6 +36,7 @@ order of priority).
 This package provides various tools, which help Nim programmers.
 
 
+%ifarch x86_64
 %package doc
 Summary:	Documentation for Nim programming language
 BuildArch:	noarch
@@ -46,6 +47,7 @@ order of priority).
 
 This package provides documentation and reference manual for the language
 and its standard library.
+%endif
 
 %prep
 %autosetup -n Nim-%commit
@@ -66,13 +68,17 @@ nimBuildCsourcesIfNeeded CFLAGS="${CFLAGS} -Ic_code -w -O3 -fno-strict-aliasing 
 nim c --noNimblePath --skipUserCfg --skipParentCfg --hints:off -d:danger koch.nim
 koch boot -d:release -d:nimStrictMode --lib:lib
 
+%ifarch x86_64
 koch docs &
+%endif
 (cd lib; nim c --app:lib -d:danger -d:createNimRtl -t:-fPIE -l:-pie nimrtl.nim) &
 koch tools --skipUserCfg --skipParentCfg --hints:off -d:release -t:-fPIE -l:-pie &
 nim c -d:danger -t:-fPIE -l:-pie nimsuggest/nimsuggest.nim &
 wait
 
+%ifarch x86_64
 sed -i '/<link.*fonts.googleapis.com/d' doc/html/*.html
+%endif
 
 %install
 export PATH="$(pwd):$(pwd)/bin:${PATH}"
@@ -82,24 +88,19 @@ mold -run bin/nim cc -d:nimCallDepthLimit=10000 -r tools/niminst/niminst --var:v
 
 sh ./install.sh %buildroot/usr/bin
 
-mkdir -p %buildroot/%_bindir %buildroot/%_datadir/bash-completion/completions
+mkdir -p %buildroot/%_bindir %buildroot/%_datadir/bash-completion/completions %buildroot/usr/lib/nim
 install -Dpm755 bin/nim{grep,suggest,pretty} %buildroot/%_bindir
 install -Dpm644 tools/nim.bash-completion %buildroot/%_datadir/bash-completion/completions/nim
 install -Dpm644 dist/nimble/nimble.bash-completion %buildroot/%_datadir/bash-completion/completions/nimble
 install -Dpm644 -t%buildroot/%_mandir/man1 %SOURCE1 %SOURCE2 %SOURCE3 %SOURCE4
 
-mkdir -p %buildroot/%_docdir/%name/html %buildroot/usr/lib/nim
+%ifarch x86_64
+mkdir -p %buildroot/%_docdir/%name/html
 cp -a doc/html/*.html %buildroot/%_docdir/%name/html/
 cp tools/dochack/dochack.js %buildroot/%_docdir/%name/
+%endif
 
 cp -r lib/* %buildroot%_prefix/lib/nim/
-
-#check
-# export PATH=$PATH:$(realpath ./bin)
-# for cat in manyloc gc threads nimble-all lib io async rodfiles debugger examples dll flags
-# do
-#   ./koch tests --pedantic category $cat -d:nimCoroutines || (echo "$cat test category failed" && exit 1)
-# done
 
 %files
 %license copying.txt dist/nimble/license.txt
@@ -114,8 +115,10 @@ cp -r lib/* %buildroot%_prefix/lib/nim/
 %_bindir/nim{grep,suggest,pretty}
 %_mandir/man1/nim{grep,suggest}.1*
 
+%ifarch x86_64
 %files doc
 %doc %_docdir/%name
+%endif
 
 
 %changelog
