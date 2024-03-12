@@ -50,6 +50,9 @@ Requires:       %{name} = %{version}-%{release}
 Requires:       bash-completion
 Supplements:    (%{name} and bash-completion)
 
+Provides:       yt-dlp-bash-completion
+Conflicts:      yt-dlp-bash-completion
+
 %description bash-completion
 Bash command line completion support for %{name}.
 
@@ -59,6 +62,9 @@ Requires:       %{name} = %{version}-%{release}
 Requires:       zsh
 Supplements:    (%{name} and zsh)
 
+Provides:       yt-dlp-zsh-completion
+Conflicts:      yt-dlp-zsh-completion
+
 %description zsh-completion
 Zsh command line completion support for %{name}.
 
@@ -67,6 +73,9 @@ Summary:        Fish completion for %{name}
 Requires:       %{name} = %{version}-%{release}
 Requires:       fish
 Supplements:    (%{name} and fish)
+
+Provides:       yt-dlp-fish-completion
+Conflicts:      yt-dlp-fish-completion
 
 %description fish-completion
 Fish command line completion support for %{name}.
