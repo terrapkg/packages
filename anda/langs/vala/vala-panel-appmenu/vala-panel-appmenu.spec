@@ -19,6 +19,7 @@ BuildRequires: gettext
 BuildRequires: cmake
 BuildRequires: vala
 BuildRequires: systemd-rpm-macros
+BuildRequires: java-17-openjdk-devel
 BuildRequires: pkgconfig(libxfce4panel-2.0)
 BuildRequires: pkgconfig(gtk+-2.0)
 BuildRequires: pkgconfig(gtk+-3.0)
