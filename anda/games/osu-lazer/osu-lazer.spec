@@ -3,8 +3,8 @@
 %define __strip /bin/true
 
 Name:			osu-lazer
-Version:		2024.302.1
-Release:		2%?dist
+Version:		2024.312.1
+Release:		1%?dist
 Summary:		The future of osu! and the beginning of an open era! Commonly known by the codename osu!lazer. Pew pew.
 ExclusiveArch:	x86_64
 URL:			https://osu.ppy.sh/
