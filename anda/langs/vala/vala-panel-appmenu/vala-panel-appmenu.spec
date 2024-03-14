@@ -21,6 +21,7 @@ BuildRequires: vala
 BuildRequires: systemd-rpm-macros
 BuildRequires: pkgconfig(libxfce4panel-2.0)
 BuildRequires: pkgconfig(gtk+-2.0)
+BuildRequires: java-devel
 BuildRequires: pkgconfig(gtk+-3.0)
 BuildRequires: pkgconfig(libxfconf-0)
 BuildRequires: pkgconfig(budgie-1.0)
