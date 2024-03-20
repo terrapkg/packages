@@ -122,6 +122,7 @@ rm %buildroot%_bindir/*.bat || true
 %_mandir/man1/nim{,ble}.1*
 %_datadir/bash-completion/completions/nim{,ble}
 %_prefix/lib/nim/
+%_sysconfdir/nim/
 
 %files tools
 %license copying.txt
