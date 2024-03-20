@@ -108,7 +108,7 @@ cp -r lib/* %buildroot%_prefix/lib/nim/
 cp -a compiler %buildroot%_prefix/lib/nim/
 install -Dm644 nim.nimble %buildroot%_prefix/lib/nim/compiler
 install -Dm644 config/* -t %buildroot/etc/nim
-cp bin/* %buildroot%_bindir/
+cp --remove-destination bin/* %buildroot%_bindir/
 chmod 755 %buildroot%_bindir/*
 install -d %buildroot%_includedir
 cp -a %buildroot%_prefix/lib/nim/lib/*.h %buildroot%_includedir
