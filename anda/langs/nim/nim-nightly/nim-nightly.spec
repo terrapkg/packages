@@ -107,7 +107,6 @@ cp tools/dochack/dochack.js %buildroot/%_docdir/%name/
 cp -r lib/* %buildroot%_prefix/lib/nim/
 cp -a compiler %buildroot%_prefix/lib/nim/
 install -Dm644 nim.nimble %buildroot%_prefix/lib/nim/compiler
-install -m755 lib/libnimrtl.so %buildroot%_prefix/lib/libnimrtl.so
 install -Dm644 config/* -t %buildroot/etc/nim
 install -Dm755 bin/* -t %buildroot%_bindir
 install -d %buildroot%_includedir
