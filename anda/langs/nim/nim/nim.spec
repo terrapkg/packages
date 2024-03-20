@@ -13,8 +13,7 @@ Source2:		nimgrep.1
 Source3:		nimble.1
 Source4:		nimsuggest.1
 BuildRequires:	gcc mold git gcc-c++ nodejs openssl-devel pkgconfig(bash-completion) gc-devel pcre-devel
-Requires:		redhat-rpm-config gcc
-Conflicts:		choosenim
+Requires:		gcc
 
 
 %description
@@ -45,8 +44,10 @@ This package provides documentation and reference manual for the language
 and its standard library.
 %endif
 
+
 %prep
 %autosetup -n nim-%{version}
+
 
 %build
 export CFLAGS="${CFLAGS} -Ofast"
@@ -94,30 +95,21 @@ cp -a doc/html/*.html %buildroot%_docdir/%name/html/
 cp tools/dochack/dochack.js %{buildroot}%{_docdir}/%{name}/
 ln -s %_datadir/nim/doc %buildroot%_prefix/lib/nim/doc
 %endif
-cp -a lib %buildroot%_prefix/lib/nim
+
+cp -a lib %buildroot%_prefix/lib/
+mv %buildroot%_prefix/lib/{lib,nim}
 cp -a compiler %buildroot%_prefix/lib/nim
 install -Dm644 nim.nimble %buildroot%_prefix/lib/nim/compiler
-ls **
-ls %buildroot%_prefix/lib/nim/*
-install -m755 lib/libnimrtl.so %buildroot%_prefix/lib/libnimrtl.so
-
+install -m755 lib/libnimrtl.so %buildroot%_prefix/lib/libnimrtl.so  # compiler needs
 install -Dm644 config/* -t %buildroot/etc/nim
 install -Dm755 bin/* -t %buildroot%_bindir
-
 install -d %buildroot%_includedir
 cp -a %buildroot%_prefix/lib/nim/lib/*.h %buildroot%_includedir
-
-ln -s %_prefix/lib/nim %buildroot%_prefix/lib/nim/lib
-
+ln -s %_prefix/lib/nim %buildroot%_prefix/lib/nim/lib  # compiler needs lib from here
+ln -s %_prefix/lib/nim/system.nim %_prefix/lib/system.nim  # nimsuggest bug
 rm -rf %buildroot/nim || true
 rm %buildroot%_bindir/*.bat || true
 
-%check
-# export PATH=$PATH:$(realpath ./bin)
-# for cat in manyloc gc threads nimble-all lib io async rodfiles debugger examples dll flags
-# do
-#   ./koch tests --pedantic category $cat -d:nimCoroutines || (echo "$cat test category failed" && exit 1)
-# done
 
 %files
 %license copying.txt dist/nimble/license.txt

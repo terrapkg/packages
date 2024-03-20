@@ -50,10 +50,12 @@ This package provides documentation and reference manual for the language
 and its standard library.
 %endif
 
+
 %prep
 %autosetup -n Nim-%commit
 # hack
 cp /usr/bin/mold /usr/bin/ld
+
 
 %build
 export CFLAGS="${CFLAGS} -Ofast"
@@ -81,6 +83,7 @@ wait
 sed -i '/<link.*fonts.googleapis.com/d' doc/html/*.html
 %endif
 
+
 %install
 export PATH="$(pwd):$(pwd)/bin:${PATH}"
 
@@ -102,6 +105,17 @@ cp tools/dochack/dochack.js %buildroot/%_docdir/%name/
 %endif
 
 cp -r lib/* %buildroot%_prefix/lib/nim/
+cp -a compiler %buildroot%_prefix/lib/nim/
+install -Dm644 nim.nimble %buildroot%_prefix/lib/nim/compiler
+install -m755 lib/libnimrtl.so %buildroot%_prefix/lib/libnimrtl.so
+install -Dm644 config/* -t %buildroot/etc/nim
+install -Dm755 bin/* -t %buildroot%_bindir
+install -d %buildroot%_includedir
+cp -a %buildroot%_prefix/lib/nim/lib/*.h %buildroot%_includedir
+ln -s %_prefix/lib/nim %buildroot%_prefix/lib/nim/lib
+rm -rf %buildroot/nim || true
+rm %buildroot%_bindir/*.bat || true
+
 
 %files
 %license copying.txt dist/nimble/license.txt
@@ -121,7 +135,5 @@ cp -r lib/* %buildroot%_prefix/lib/nim/
 %doc %_docdir/%name
 %endif
 
-
 %changelog
-* Mon Jan 9 2023 windowsboy111 <windowsboy111@fyralabs.com> - 1.9.3^fcc383d89994241f1b73fe4f85ef38528c135e2e-1
-- Initial Package.
+%autochangelog
