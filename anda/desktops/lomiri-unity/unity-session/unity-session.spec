@@ -2,8 +2,8 @@
 
 Name:    unity-session
 Summary: Lightdm profile for Unity 7
-Version: 45.0
-Release: 1%{?dist}
+Version: 46.0
+Release: 1%?dist
 
 License:   GPL-2.0
 URL:       https://packages.ubuntu.com/jammy/unity-session
