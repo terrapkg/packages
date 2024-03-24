@@ -1,4 +1,4 @@
-%global rn 2
+%global rn 3
 
 Name:           unity-greeter
 Version:        23.10.1
