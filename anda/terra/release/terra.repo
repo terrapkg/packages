@@ -1,5 +1,5 @@
 [terra]
-name=Terra Packages $releasever
+name=Terra $releasever
 metalink=https://tetsudou.fyralabs.workers.dev/metalink?repo=terra$releasever&arch=$basearch
 metadata_expire=6h
 type=rpm
