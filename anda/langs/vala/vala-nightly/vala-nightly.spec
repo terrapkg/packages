@@ -7,7 +7,7 @@
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global repo https://gitlab.gnome.org/GNOME/%{real_name}.git
 
-%global commit_date 240218
+%global commit_date 20240218
 %global snapshot_info %{commit_date}.%{shortcommit}
 
 Name:           vala-nightly

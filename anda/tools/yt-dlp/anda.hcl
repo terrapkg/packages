@@ -1,6 +1,6 @@
 project pkg {
 	rpm {
-		spec = "pqmarble.spec"
+		spec = "yt-dlp-nightly.spec"
 	}
 	labels {
 		nightly = "1"
