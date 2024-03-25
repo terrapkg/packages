@@ -107,7 +107,6 @@ BuildArch:  noarch
 # and add that version without using a dist tag.
 # This allows a rebuild with a bumped Release: to be installed.
 
-# Remove in 43
 %obsolete_ticket https://github.com/terrapkg/packages/pull/994
 %obsolete switchboard-plug-wallet 50582fc-3
 
