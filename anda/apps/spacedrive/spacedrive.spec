@@ -8,7 +8,7 @@ Source0:		https://github.com/spacedriveapp/spacedrive/archive/refs/tags/%version
 Requires:		ffmpeg libheif gtk3 webkit2gtk4.1 pango gdk-pixbuf2 cairo libsoup glib2 openssl
 BuildRequires:	pnpm git-core perl gcc javascriptcoregtk4.0-devel pkgconfig(webkit2gtk-4.0)
 BuildRequires:  pkgconfig(libsoup-2.4) glib2-devel gtk3-devel openssl-devel pkgconfig(zlib)
-BuildRequires:  openssl
+BuildRequires:  openssl clang-devel
 
 %description
 Spacedrive is an open source cross-platform file manager, powered by a virtual distributed filesystem (VDFS) written in Rust. 
