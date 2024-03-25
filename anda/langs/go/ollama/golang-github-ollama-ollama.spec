@@ -37,7 +37,7 @@ BuildRequires:  git-core systemd-rpm-macros
 git init .
 rm -frv llm/llama.cpp
 pushd llm/
-git clone --depth=1 --branch f57fadc009cbff741a1961cb7896c47d73978d2c https://github.com/ggerganov/llama.cpp
+git clone --depth=1 --branch b2527 https://github.com/ggerganov/llama.cpp
 popd
 # Turn LTO on and set the build type to Release
 sed -i 's,T_CODE=on,T_CODE=on -D LLAMA_LTO=on -D CMAKE_BUILD_TYPE=Release,g' llm/generate/gen_linux.sh
