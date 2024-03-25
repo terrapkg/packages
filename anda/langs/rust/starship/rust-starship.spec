@@ -13,7 +13,7 @@ URL:            https://crates.io/crates/starship
 Source:         %{crates_source}
 # Automatically generated patch to strip dependencies and normalize metadata
 #Patch0:         starship-fix-metadata-auto.diff
-Patch1:         https://github.com/starship/starship/pull/5878.patch
+Patch1:         https://github.com/starship/starship/compare/413364ed2ad04cf625c26a0cce61fcfd84261639..eb80dbab99e38b5018aa3fb70b06ae9e4d793b24.patch
 
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros
