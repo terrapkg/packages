@@ -48,7 +48,7 @@ go mod download
 
 %build
 export CGO_CFLAGS="$CFLAGS" CGO_CPPFLAGS="$CPPFLAGS" CGO_CXXFLAGS="$CXXFLAGS" CGO_LDFLAGS="$LDFLAGS"
-go generate ./...
+#go generate ./...
 go build -buildmode=pie -trimpath -mod=readonly -modcacherw -ldflags=-linkmode=external \
   -ldflags=-buildid='' -ldflags="-X=github.com/jmorganca/ollama/version.Version=%version"
 
