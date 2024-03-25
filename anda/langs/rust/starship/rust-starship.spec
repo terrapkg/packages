@@ -4,7 +4,7 @@
 %global crate starship
 
 Name:           rust-starship
-Version:        1.18.2
+Version:        1.18.1
 Release:        %autorelease
 Summary:        Minimal, blazing-fast, and infinitely customizable prompt for any shell! ☄🌌️
 
@@ -12,7 +12,8 @@ License:        ISC
 URL:            https://crates.io/crates/starship
 Source:         %{crates_source}
 # Automatically generated patch to strip dependencies and normalize metadata
-Patch:          starship-fix-metadata-auto.diff
+Patch0:         starship-fix-metadata-auto.diff
+Patch1:         https://github.com/starship/starship/pull/5878.patch
 
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros
