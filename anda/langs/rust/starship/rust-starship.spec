@@ -176,10 +176,10 @@ use the "starship-battery" feature of the "%{crate}" crate.
 %cargo_prep_online
 
 %build
-%{cargo_build} --locked
+%{cargo_build}
 
 %install
-%{cargo_install} --locked
+%{cargo_install}
 
 %if %{with check}
 %check
