@@ -1,0 +1,1 @@
+rpm.version(gh("OpenTabletDriver/OpenTabletDriver"));
