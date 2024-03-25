@@ -12,8 +12,8 @@ License:        ISC
 URL:            https://crates.io/crates/starship
 Source:         %{crates_source}
 # Automatically generated patch to strip dependencies and normalize metadata
-#Patch0:         starship-fix-metadata-auto.diff
-Patch1:         https://github.com/starship/starship/commit/eb80dbab99e38b5018aa3fb70b06ae9e4d793b24.patch
+Patch0:         starship-fix-metadata-auto.diff
+Patch1:         0001-gix-0.61.1-0.61.0.patch
 
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros
