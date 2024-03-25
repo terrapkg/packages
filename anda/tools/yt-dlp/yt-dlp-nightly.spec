@@ -1,12 +1,12 @@
 #bcond_without tests
-%global commit 263a4b55ac17a796e8991ca8d2d86a3c349f8a60
+%global commit e5d4f11104ce7ea1717a90eea82c0f7d230ea5d5
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20240310
-%global ver 2023.12.30
+%global commit_date 20240325
+%global ver 2024.03.10
 
 Name:           yt-dlp-nightly
 Version:        %ver^%commit_date.%shortcommit
-Release:        1%{?dist}
+Release:        1%?dist
 Summary:        A command-line program to download videos from online video platforms
 
 License:        Unlicense
