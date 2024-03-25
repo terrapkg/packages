@@ -110,6 +110,14 @@ BuildArch:  noarch
 %obsolete_ticket https://github.com/terrapkg/packages/pull/994
 %obsolete switchboard-plug-wallet 50582fc-3
 
+%obsolete_ticket TBD
+%obsolete systemd-sysusers-presets 1.0-2
+%obsolete systemd-sysusers-presets-polkit 1.0-2
+%obsolete systemd-sysusers-presets-rpcbind 1.0-2
+%obsolete katsu-systemd-sysusers-presets 1.0-2
+%obsolete katsu-systemd-sysusers-presets-polkit 1.0-2
+%obsolete katsu-systemd-sysusers-presets-rpcbind 1.0-2
+
 %description
 
 Currently obsoleted packages:
