@@ -72,6 +72,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.valapanel.applica
 %{_datadir}/vala-panel/applets/*.plugin
 %dir %{_datadir}/vala-panel/images
 %{_datadir}/vala-panel/images/background.png
+%{_libdir}/girepository-1.0/ValaPanel-%version.typelib
 
 %files devel
 %doc README.md
@@ -81,6 +82,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.valapanel.applica
 %{_libdir}/libvalapanel.so
 %{_libdir}/pkgconfig/vala-panel.pc
 %{_datadir}/vala/vapi/vala-panel.*
+%{_datadir}/gir-1.0/ValaPanel-%version.gir
 
 %changelog
 %autochangelog
