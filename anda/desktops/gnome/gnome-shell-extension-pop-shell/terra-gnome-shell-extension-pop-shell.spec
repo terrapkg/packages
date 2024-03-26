@@ -1,9 +1,9 @@
 # from Fedora upstream
 %global extension   pop-shell
 %global uuid        %{extension}@system76.com
-%global commit      9a30c5bd49c373896410852d6477596ac4c43bd3
+%global commit      fd30fe9121000064e3f29db1de02e2fbebbf98a9
 %global shortcommit %{lua:print(macros.commit:sub(1,7))}
-%global commit_date 20240218
+%global commit_date 20240326
 %global ver         1.2.0
 
 Name:           terra-gnome-shell-extension-%{extension}
