@@ -1,10 +1,9 @@
+Name:    vala-panel
+Version: 24.03
 %global forgeurl https://gitlab.com/vala-panel-project/vala-panel
-%global commit ead4e7a36b0e4b0a2ac43c5d9ca17eb753461afe
 %forgemeta
 
-Name:    vala-panel
-Version: 0.5.0
-Release: 2%?dist
+Release: 1%?dist
 License: LGPL-3.0-or-later
 Summary: This package provides Application Menu plugin for vala-panel
 Group:   System/GUI/Other
