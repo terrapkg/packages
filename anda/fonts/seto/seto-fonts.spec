@@ -13,7 +13,7 @@ BuildArch:		noarch
 
 
 %prep
-%setup -q -n setofont
+%setup -q -n pkg-seto-fonts-%version
 
 %build
 
