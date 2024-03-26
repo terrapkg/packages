@@ -37,7 +37,7 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 %forgeautosetup
 
 %build
-%meson -Dwnck=enabled -Dplatforms='layer-shell,x11'
+%meson -Dwnck=enabled -Dplatforms='wayland,x11'
 %meson_build
 
 %install
