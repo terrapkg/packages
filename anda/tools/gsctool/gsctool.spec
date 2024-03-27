@@ -37,4 +37,4 @@ install -D -m 755 gsctool %{buildroot}%{_bindir}/gsctool
 
 %changelog
 * Wed Mar 27 2024 Cappy Ishihara <cappy@cappuchino.xyz>
-- 
+- initial release
