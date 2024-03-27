@@ -66,7 +66,6 @@
       <packagereq type="default">switchboard-plug-security-privacy</packagereq>
       <packagereq type="default">switchboard-plug-datetime</packagereq>
       <packagereq type="default">switchboard-plug-parental-controls</packagereq>
-      <packagereq type="default">switchboard-plug-wallet</packagereq>
       <packagereq type="default">switchboard-plug-useraccounts</packagereq>
       <packagereq type="default">switchboard-plug-wacom</packagereq>
       <packagereq type="default">switchboard-plug-locale</packagereq>

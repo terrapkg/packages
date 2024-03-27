@@ -1,5 +1,5 @@
 %global forgeurl https://gitlab.com/vala-panel-project/vala-panel-appmenu
-%global commit 1d641f6e2b1a7f6cf4c241ca4f2fc7f547016ab4
+%global commit 49aa4247d155fa98b306063782b718ef846c78e7
 %forgemeta
 
 Name:    vala-panel-appmenu
@@ -22,6 +22,7 @@ BuildRequires: systemd-rpm-macros
 BuildRequires: java-17-openjdk-devel
 BuildRequires: pkgconfig(libxfce4panel-2.0)
 BuildRequires: pkgconfig(gtk+-2.0)
+BuildRequires: java-devel
 BuildRequires: pkgconfig(gtk+-3.0)
 BuildRequires: pkgconfig(libxfconf-0)
 BuildRequires: pkgconfig(budgie-1.0)
@@ -83,6 +84,13 @@ Summary:    Gtk3MenuShell D-Bus exporter
 %description -n vala-panel-appmenu-gtk-module
 GTK (2, 3) module that exports GtkMenuShells over D-Bus.
 
+
+%package -n vala-panel-appmenu-jayatana-module
+Summary:    Vala appmenu support for Java Swing applications
+
+%description -n vala-panel-appmenu-jayatana-module
+Vala appmenu support for Java Swing applications.
+
 %prep
 %forgeautosetup
 
@@ -123,6 +131,11 @@ GTK (2, 3) module that exports GtkMenuShells over D-Bus.
 %{_libdir}/gtk-2.0/modules/libappmenu-gtk-module.so
 %{_libdir}/gtk-3.0/modules/libappmenu-gtk-module.so
 %{_datadir}/glib-2.0/schemas/org.appmenu.gtk-module.gschema.xml
+
+%files -n vala-panel-appmenu-jayatana-module
+%{_datadir}/java/*.jar
+%dir %{_libdir}/jayatana
+%{_libdir}/jayatana/*.so
 
 %files -n xfce4-vala-panel-appmenu-plugin
 %{_libdir}/xfce4/panel/plugins/libappmenu-xfce.so
