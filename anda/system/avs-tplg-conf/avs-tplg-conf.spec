@@ -1,6 +1,6 @@
 %global debug_package %{nil}
 
-Name:           chromebook-avs-topology-config
+Name:           avs-tplg-conf
 Version:        2024.02
 Release:        1%?dist
 
