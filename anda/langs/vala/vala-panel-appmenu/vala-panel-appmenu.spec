@@ -147,7 +147,7 @@ Vala appmenu support for Java Swing applications.
 
 %files -n budgie-vala-panel-appmenu-plugin
 %dir %{_libdir}/budgie-desktop/plugins/budgie-appmenu-plugin
-%{_libdir}/budgie-desktop/plugins/budgie-appmenu-plugin/appmenu-budgie.plugin
+#{_libdir}/budgie-desktop/plugins/budgie-appmenu-plugin/appmenu-budgie.plugin
 %{_libdir}/budgie-desktop/plugins/budgie-appmenu-plugin/libappmenu-budgie.so
 
 %files devel
