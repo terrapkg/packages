@@ -1,6 +1,6 @@
-%global commit 3e42139e138a8cbb67a756dab2d6eaeb2a115223
+%global commit a46ce9e28cd97f7280c085649a79f85aa1d0fe70
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20240227
+%global commit_date 20240325
 %global ver v0.37.0
 
 Name:           mpv-nightly
