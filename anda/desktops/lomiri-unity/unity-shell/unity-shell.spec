@@ -227,3 +227,4 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &>/dev/null || :
 
 %changelog
 %autochangelog
+

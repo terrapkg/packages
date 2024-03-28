@@ -28,9 +28,9 @@ BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  pkgconfig(glib-2.0) >= 2.32
 BuildRequires:  pkgconfig(granite) >= 5.4.0
 BuildRequires:  pkgconfig(gtk+-3.0) >= 3.10
-BuildRequires:  pkgconfig(mutter-clutter-13)
-BuildRequires:  pkgconfig(mutter-cogl-13)
-BuildRequires:  pkgconfig(mutter-cogl-pango-13)
+BuildRequires:  pkgconfig(mutter-clutter-14)
+BuildRequires:  pkgconfig(mutter-cogl-14)
+BuildRequires:  pkgconfig(mutter-cogl-pango-14)
 
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 
@@ -127,5 +127,4 @@ appstream-util validate-relax --nonet \
 
 
 %changelog
-* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com> - 3.0.2-1
-- Repackaged for Terra
+%autochangelog

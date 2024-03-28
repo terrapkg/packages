@@ -3,7 +3,7 @@
 Name:           gala
 Summary:        Gala window manager
 Version:        7.1.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/gala
@@ -31,9 +31,9 @@ BuildRequires:  pkgconfig(granite) >= 5.4.0
 BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(libbamf3)
 BuildRequires:  pkgconfig(libcanberra)
-BuildRequires:  pkgconfig(mutter-clutter-13)
-BuildRequires:  pkgconfig(mutter-cogl-13)
-BuildRequires:  pkgconfig(mutter-cogl-pango-13)
+BuildRequires:  pkgconfig(mutter-clutter-14)
+BuildRequires:  pkgconfig(mutter-cogl-14)
+BuildRequires:  pkgconfig(mutter-cogl-pango-14)
 
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 
