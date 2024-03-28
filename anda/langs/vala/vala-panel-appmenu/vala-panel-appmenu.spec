@@ -117,7 +117,7 @@ Vala appmenu support for Java Swing applications.
 %{_datadir}/licenses/appmenu-gtk-module/LICENSE
 %{_datadir}/dbus-1/services/com.canonical.AppMenu.Registrar.service
 %{_datadir}/glib-2.0/schemas/org.valapanel.appmenu.gschema.xml
-%{_datadir}/vala-panel/applets/org.valapanel.appmenu.plugin
+#{_datadir}/vala-panel/applets/org.valapanel.appmenu.plugin
 %{_datadir}/vala/vapi/appmenu-glib-translator.*
 %{_datadir}/gir-1.0/AppmenuGLibTranslator-%version.gir
 %{_includedir}/appmenu-glib-translator/importer.h
@@ -147,7 +147,7 @@ Vala appmenu support for Java Swing applications.
 
 %files -n budgie-vala-panel-appmenu-plugin
 %dir %{_libdir}/budgie-desktop/plugins/budgie-appmenu-plugin
-#{_libdir}/budgie-desktop/plugins/budgie-appmenu-plugin/appmenu-budgie.plugin
+%{_libdir}/budgie-desktop/plugins/budgie-appmenu-plugin/appmenu-budgie.plugin
 %{_libdir}/budgie-desktop/plugins/budgie-appmenu-plugin/libappmenu-budgie.so
 
 %files devel
