@@ -70,5 +70,4 @@ sed -i '/icon type="stock"/d' %{buildroot}/%{_datadir}/metainfo/%{appname}.appda
 
 
 %changelog
-* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com> - 6.1.0-1
-- Repackaged for Terra
+%autochangelog

@@ -158,3 +158,4 @@ Vala appmenu support for Java Swing applications.
 
 %changelog
 %autochangelog
+

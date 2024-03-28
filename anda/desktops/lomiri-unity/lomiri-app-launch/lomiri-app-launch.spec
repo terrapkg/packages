@@ -78,3 +78,4 @@ cmake -DLOMIRI_APP_LAUNCH_ARCH=%{_arch} -DENABLE_COVERAGE=OFF -DENABLE_TESTS=OFF
 
 %changelog
 %autochangelog
+

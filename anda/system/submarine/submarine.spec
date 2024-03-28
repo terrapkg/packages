@@ -35,3 +35,6 @@ install -Dm644 build/submarine-*.bin %buildroot%_datadir/submarine/
 %files
 %_datadir/submarine/submarine-*.kpart
 %_datadir/submarine/submarine-*.bin
+
+%changelog
+%autochangelog
