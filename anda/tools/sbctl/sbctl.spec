@@ -6,8 +6,10 @@ Summary:        Secure Boot key manager
 License:        MIT
 URL:            https://github.com/Foxboron/sbctl
 Source0:        https://github.com/Foxboron/sbctl/releases/download/%{version}/sbctl-%{version}.tar.gz
+
 # Fixes https://github.com/Foxboron/sbctl/issues/293, allowing kernel-install to work properly with Fedora
 Patch1:         https://patch-diff.githubusercontent.com/raw/Foxboron/sbctl/pull/294.patch
+
 
 ExclusiveArch:  %{golang_arches}
 
@@ -28,6 +30,7 @@ needs to be signed in the boot chain.
 
 %prep
 %autosetup -p1
+
 sed -i '/go build/d' Makefile
 
 
