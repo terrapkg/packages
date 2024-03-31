@@ -27,8 +27,8 @@ sed -i -E 's@server\.on[^\n]+;@\0}\nmain();@' src/index.js
 
 %build
 npm i esbuild pkg
-npx esbuild --bundle --platform=node --target=node18 --outdir=dist ./src/index.js
-npx pkg -t node18-linux-x64 -o arrpc  ./dist/index.js
+npx esbuild --bundle --platform=node --target=node18 --outfile=bundle.js ./src/index.js
+npx pkg -t node18-linux-x64 -o arrpc bundle.js
 
 %install
 install -D -m755 arrpc %buildroot%_bindir/arrpc
