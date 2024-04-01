@@ -1,1 +1,1 @@
-rpm.version(gh("Ultramarine-Linux/stellar"));
+rpm.version("pypi_version", gh("Ultramarine-Linux/stellar"));
