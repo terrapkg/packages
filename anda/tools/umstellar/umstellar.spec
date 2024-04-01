@@ -4,10 +4,11 @@
 
 Name:           python-%{pypi_name}
 Version:        %{pypi_version}
-Provides:       python3-%{pypi_name} = %{version}-%{release}
-Provides:       %{pypi_name} = %{version}-%{release}
 Release:        1%{?dist}
 Summary:        Ultramarine Quickstart Tool
+
+Provides:       python3-%{pypi_name} = %{version}-%{release}
+Provides:       %{pypi_name} = %{version}-%{release}
 
 License:        None
 URL:            https://github.com/Ultramarine-Linux/stellar
