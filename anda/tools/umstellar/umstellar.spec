@@ -12,7 +12,7 @@ Provides:       %{pypi_name} = %{version}-%{release}
 
 License:        GPL-3.0
 URL:            https://github.com/Ultramarine-Linux/stellar
-Source0:        %{pypi_name}-%{pypi_version}.tar.gz
+Source0:        %{url}/archive/v%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
