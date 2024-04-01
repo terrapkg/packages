@@ -1,17 +1,17 @@
 # Created by pyp2rpm-3.3.10
 %global pypi_name umstellar
-%global pypi_version 0.0.3
+%global pypi_version 0.2.0
 
 Name:           python-%{pypi_name}
-Version:        0.2.0
+Version:        %{pypi_version}
 Provides:       python3-%{pypi_name} = %{version}-%{release}
 Provides:       %{pypi_name} = %{version}-%{release}
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Ultramarine Quickstart Tool
 
 License:        None
 URL:            https://github.com/Ultramarine-Linux/stellar
-Source0:        %{url}/archive/v%{version}.tar.gz
+Source0:        %{pypi_name}-%{pypi_version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
@@ -30,8 +30,7 @@ Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 Requires:       python3dist(requests)
-Requires:       python3dist(setuptools)
-Requires:       python3dist(setuptools) = 67.7.2
+Requires:       python3dist(pygobject)
 Requires:       anaconda-core
 %description -n python3-%{pypi_name}
 
@@ -54,10 +53,13 @@ install -D -m 644 example.ks %{buildroot}%{_datadir}/anaconda/post-scripts/stell
 %files -n python3-%{pypi_name}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/umstellar
+%{python3_sitelib}/%{pypi_name}
 %{python3_sitelib}/%{pypi_name}-%{pypi_version}-py%{python3_version}.egg-info
 %{_datadir}/anaconda/post-scripts/stellar.ks
 
 %changelog
+* Mon Apr 1 2024 Lleyton Gray <lleyton@fyralabs.com> - 0.2.0-1
+- Bump version with various fixes
+
 * Fri Nov 10 2023 Cappy Ishihara <cappy@cappuchino.xyz> - 0.0.1-1
 - Initial package.
