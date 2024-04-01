@@ -3,10 +3,10 @@
 %global pypi_version 0.0.3
 
 Name:           python-%{pypi_name}
-Version:        0.0.3
+Version:        0.1.0
 Provides:       python3-%{pypi_name} = %{version}-%{release}
 Provides:       %{pypi_name} = %{version}-%{release}
-Release:        1%{?dist}
+Release:        1%?dist
 Summary:        Ultramarine Quickstart Tool
 
 License:        None
