@@ -10,7 +10,7 @@ Summary:        Ultramarine Quickstart Tool
 Provides:       python3-%{pypi_name} = %{version}-%{release}
 Provides:       %{pypi_name} = %{version}-%{release}
 
-License:        None
+License:        GPL-3.0
 URL:            https://github.com/Ultramarine-Linux/stellar
 Source0:        %{pypi_name}-%{pypi_version}.tar.gz
 BuildArch:      noarch
