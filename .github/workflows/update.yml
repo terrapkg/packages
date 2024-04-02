@@ -8,11 +8,11 @@ jobs:
   autoupdate:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/terrapkg/builder:f39
+      image: ghcr.io/terrapkg/builder:frawhide
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           ssh-key: ${{ secrets.SSH_AUTHENTICATION_KEY }}
@@ -47,7 +47,8 @@ jobs:
               git add *
               git commit -S -a -m "$msg"
             }
-            copy_over f37 || true
             copy_over f38 || true
+            copy_over f39 || true
+            copy_over f40 || true
             git push -u origin --all
           fi
