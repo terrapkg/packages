@@ -3,7 +3,7 @@
 ## Our Process
 
 Fyra Labs is committed to ensuring user security and privacy.
-As such, we constantly try our best to ensure that our infrastructure and process are secure, which you may read about in our [FAQ](https://github.com/terrapkg/packages/wiki/FAQ#technical-details).
+As such, we constantly try our best to ensure that our infrastructure and process are secure, which you may read about in our [FAQ](https://developer.fyralabs.com/terra/faq#technical-details).
 
 As a part of Fyra Labs's transparency measures, we will publicize details of any known breaches. This information will include, but will not be limited to:
 * Affected users, infrastructure, and data.
@@ -11,7 +11,7 @@ As a part of Fyra Labs's transparency measures, we will publicize details of any
 * An in-depth explanation of how the breach occurred, including relevant security vulnerabilities.
 * How Fyra Labs will better protect user data in the future, ensuring our commitment to security and privacy.
 
-We will publish these updates on our [Twitter](https://twitter.com/TeamFyraLabs) and [Discord](https://discord.gg/5fdPuxTg5Q).
+We will publish these updates on our [Twitter](https://twitter.com/TeamFyraLabs), [Fedi](https://fedi.fyralabs.com/@hq), and [Discord](https://discord.gg/5fdPuxTg5Q).
 
 ## Reporting a Vulnerability
 
