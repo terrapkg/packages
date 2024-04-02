@@ -3,7 +3,6 @@ name: Push comps updates
 on:
   push:
     branches:
-      - frawhide
       - f39
       - f38
       - f37
@@ -17,7 +16,7 @@ jobs:
     container:
       image: ghcr.io/terrapkg/builder:frawhide
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Push to subatomic
         run: |
           branch=${{ github.ref_name }}
