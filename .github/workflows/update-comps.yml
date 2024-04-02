@@ -3,6 +3,7 @@ name: Push comps updates
 on:
   push:
     branches:
+      - frawhide
       - f39
       - f38
       - f37
