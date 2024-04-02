@@ -4,7 +4,7 @@ Version:    38
 # The dist number is the version here, it is intentionally not repeated in the release
 %global dist %nil
 
-Release:    %autorelease
+Release:    2
 Summary:    A package to obsolete retired packages, based on Fedora's equivalent package
 
 License:    LicenseRef-Fedora-Public-Domain
