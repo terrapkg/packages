@@ -9,10 +9,6 @@ Source0: %url/archive/refs/tags/v%{version}.tar.gz
 
 BuildArch: noarch
 
-BuildRequires: zsh
-
-Requires: zsh
-
 %description
 Feature-rich Syntax Highlighting for Zsh.
 
