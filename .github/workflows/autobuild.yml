@@ -40,7 +40,7 @@ jobs:
     strategy:
       matrix:
         pkg: ${{ fromJson(needs.manifest.outputs.build_matrix) }}
-        version: ["39"]
+        version: ["rawhide"]
       fail-fast: false
     runs-on: ${{ matrix.pkg.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
     container:
