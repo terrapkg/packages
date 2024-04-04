@@ -11,7 +11,7 @@ Requires: m4
 # Derived from RPMSphere's packaging
 
 %description
-CTWM is a window manager based on TWM (with virtual workspaces added)
+CTWM is a window manager based on TWM (with virtual workspaces added.)
 
 %prep
 %setup -q
@@ -24,11 +24,8 @@ CTWM is a window manager based on TWM (with virtual workspaces added)
 %cmake_install
 %{__install} -Dm644 %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/xsessions/%{name}.desktop
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %files
-%doc README.md CHANGES.md COPYRIGHT
+%doc README.md CHANGES.md
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}*
 %{_datadir}/xsessions/%{name}.desktop
