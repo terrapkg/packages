@@ -119,7 +119,7 @@ BuildArch:  noarch
 %obsolete katsu-systemd-sysusers-presets-rpcbind 1.0-2
 
 %obsolete_ticket https://github.com/terrapkg/packages/issues/991
-%obsolete iosevka-fusion-fonts
+%obsolete iosevka-fusion-fonts 25.1.1-2
 
 
 %description
