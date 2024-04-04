@@ -1,0 +1,24 @@
+name: Automatic backport/sync action
+
+on:
+  pull_request_target:
+    types: ["labeled", "closed"]
+
+jobs:
+  backport:
+    name: Backport/sync PR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Backport Action
+        uses: sorenlouv/backport-github-action@v9.3.0
+        with:
+          github_token: ${{ secrets.RABONEKO_BACKPORT_GITHUB_TOKEN }}
+          auto_backport_label_prefix: sync-
+
+      - name: Info log
+        if: ${{ success() }}
+        run: cat ~/.backport/backport.info.log
+
+      - name: Debug log
+        if: ${{ failure() }}
+        run: cat ~/.backport/backport.debug.log
