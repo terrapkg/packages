@@ -8,6 +8,7 @@ jobs:
   backport:
     name: Backport/sync PR
     runs-on: ubuntu-latest
+    if: github.event.pull_request.merged
     steps:
       - name: Backport Action
         uses: sorenlouv/backport-github-action@v9.3.0
