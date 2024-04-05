@@ -8,6 +8,7 @@ jobs:
   backport:
     name: Backport/sync PR
     runs-on: ubuntu-latest
+    if: github.event.pull_request.merged
     steps:
       - name: Install SSH signing key
         run: |
