@@ -12,7 +12,7 @@ URL:            https://gitlab.com/alelec/pip-system-certs
 Source0:        https://files.pythonhosted.org/packages/source/p/%{pypi_name}/pip_system_certs-%{pypi_version}.tar.gz
 BuildArch:      noarch
 
-BuildRequires:  python3-devel python3-pip python3dist(setuptools) python3dist(wheel)
+BuildRequires:  python3-devel python3-pip python3dist(setuptools) python3dist(wheel) git
 
 
 %description
