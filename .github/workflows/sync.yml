@@ -9,6 +9,18 @@ jobs:
     name: Backport/sync PR
     runs-on: ubuntu-latest
     steps:
+      - name: Install SSH signing key
+        run: |
+          mkdir -p ${{ runner.temp }}
+          echo "${{ secrets.SSH_SIGNING_KEY }}" > ${{ runner.temp }}/signing_key
+          chmod 0700 ${{ runner.temp }}/signing_key
+
+      - name: Setup Raboneko Signing
+        run: |
+          git config --global gpg.format "ssh"
+          git config --global user.signingkey "${{ runner.temp }}/signing_key"
+          git config --global commit.gpgsign true
+
       - name: Backport Action
         uses: sorenlouv/backport-github-action@v9.3.0
         with:
