@@ -5,9 +5,9 @@
 %global commit_date 20240404
 %global debug_package %nil
 
-Name:			nim-nighlty
+Name:			nim-nightly
 Version:		%ver^%commit_date.%shortcommit
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Imperative, multi-paradigm, compiled programming language
 License:		MIT and BSD
 URL:			https://nim-lang.org
@@ -19,6 +19,8 @@ Source4:		nimsuggest.1
 BuildRequires:	gcc mold git gcc-c++ nodejs openssl-devel pkgconfig(bash-completion) gc-devel pcre pcre-devel
 Requires:		redhat-rpm-config gcc
 Conflicts:		choosenim
+# somehow wrong name and never noticed
+Obsoletes:      nim-nighlty < 2.1.1^20240404.9e1b170-1%?dist
 
 
 %description
