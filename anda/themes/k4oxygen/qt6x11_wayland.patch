@@ -1,0 +1,277 @@
+From 6a60f887f76c714d9a2c0f4c1a4d2ec36fd47617 Mon Sep 17 00:00:00 2001
+From: Ruslan Kabatsayev <b7.10110111@gmail.com>
+Date: Sat, 13 May 2023 00:36:57 +0400
+Subject: [PATCH] Add support for X11-based tricks in Qt6
+ 
+---
+ CMakeLists.txt                | 11 ++--------
+ libs/oxygenhelper.cpp         |  2 +-
+ style/oxygenargbhelper.cpp    |  1 -
+ style/oxygenargbhelper.h      |  5 +----
+ style/oxygenblurhelper.cpp    |  9 +++++++-
+ style/oxygenblurhelper.h      |  4 +---
+ style/oxygenshadowhelper.cpp  |  9 ++++++--
+ style/oxygenshadowhelper.h    |  2 +-
+ style/oxygenstylehelper.h     |  6 +-----
+ style/oxygenwindowmanager.cpp |  4 ++--
+ style/oxygenx11.h             | 39 +++++++++++++++++++++++++++++++++++
+ 11 files changed, 63 insertions(+), 29 deletions(-)
+ create mode 100644 style/oxygenx11.h
+ 
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index e65b7ea..c3cf481 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -8,17 +8,10 @@ if(NOT DEFINED QT_VERSION)
+ endif()
+ if("${QT_VERSION}" STREQUAL 6)
+     message("++ Compiling style for Qt 6")
+-    find_package(Qt6 6.0 COMPONENTS Core X11Extras QUIET)
++    find_package(Qt6 6.0 COMPONENTS Core QUIET)
+     find_package(Qt6 6.0 REQUIRED Core DBus Gui Widgets)
+     set(QT_LIBRARIES Qt6::Core Qt6::DBus Qt6::Gui Qt6::Widgets)
+-    if(Qt6X11Extras_FOUND)
+-        list(APPEND QT_LIBRARIES Qt6::X11Extras)
+-        set(X11_FOUND TRUE)
+-    else()
+-        if(UNIX AND NOT APPLE)
+-            message(WARNING "QtX11Extras package wasn't found. Shadows and smooth corners of menus and tooltips, as well as dragging by empty areas, won't be supported.")
+-        endif()
+-    endif()
++    set(X11_FOUND TRUE) # FIXME: determine it correctly here
+     if(NOT DEFINED PLUGIN_INSTALL_DIR)
+         get_target_property(libQtCorePath Qt6::Core LOCATION)
+         get_filename_component(libQtCoreDir "${libQtCorePath}" DIRECTORY)
+diff --git a/libs/oxygenhelper.cpp b/libs/oxygenhelper.cpp
+index 83caf6b..bd195f6 100644
+--- a/libs/oxygenhelper.cpp
++++ b/libs/oxygenhelper.cpp
+@@ -34,7 +34,7 @@
+ #include <cstring>
+ 
++#include "oxygenx11.h"
+ #if HAVE_X11
+-#include <QX11Info>
+ #include <X11/Xlib.h>
+ #include <X11/Xatom.h>
+ #include "fixx11h.h"
+diff --git a/style/oxygenargbhelper.cpp b/style/oxygenargbhelper.cpp
+index 2379674..fd88602 100644
+--- a/style/oxygenargbhelper.cpp
++++ b/style/oxygenargbhelper.cpp
+@@ -38,7 +38,6 @@
+ #endif
+ 
+ #if HAVE_X11
+-#include <QX11Info>
+ #include <X11/Xlib.h>
+ #include <X11/Xatom.h>
+ #endif
+diff --git a/style/oxygenargbhelper.h b/style/oxygenargbhelper.h
+index 3fa3ab6..b417e38 100644
+--- a/style/oxygenargbhelper.h
++++ b/style/oxygenargbhelper.h
+@@ -31,6 +31,7 @@
+ //////////////////////////////////////////////////////////////////////////////
+ 
+ #include "oxygenstylehelper.h"
++#include "oxygenx11.h"
+ 
+ #include <QtCore/QObject>
+ #include <QtCore/QSet>
+@@ -38,10 +39,6 @@
+ #include <QApplication>
+ #include <QWidget>
+ 
+-#if HAVE_X11
+-#include <X11/Xdefs.h>
+-#endif
+-
+ namespace Oxygen
+ {
+     class ArgbHelper: public QObject
+diff --git a/style/oxygenblurhelper.cpp b/style/oxygenblurhelper.cpp
+index b9e7f2f..c78ff35 100644
+--- a/style/oxygenblurhelper.cpp
++++ b/style/oxygenblurhelper.cpp
+@@ -38,7 +38,6 @@
+ #include <QPushButton>
+ 
+ #if HAVE_X11
+-#include <QX11Info>
+ #include <X11/Xlib.h>
+ #include <X11/Xatom.h>
+ #endif
+@@ -236,7 +235,11 @@ namespace Oxygen
+         } else {
+ 
+             QVector<unsigned long> data;
++#if QT_VERSION_CHECK(5,8,0)
++            for(const auto& rect : blurRegion)
++#else
+             foreach( const QRect& rect, blurRegion.rects() )
++#endif
+             { data << rect.x() << rect.y() << rect.width() << rect.height(); }
+ 
+             XChangeProperty(
+@@ -246,7 +249,11 @@ namespace Oxygen
+             if( ! widget->inherits( "Konsole::MainWindow" ) )
+             {
+                 data.clear();
++#if QT_VERSION_CHECK(5,8,0)
++                for(const auto& rect : opaqueRegion)
++#else
+                 foreach( const QRect& rect, opaqueRegion.rects() )
++#endif
+                 { data << rect.x() << rect.y() << rect.width() << rect.height(); }
+ 
+                 XChangeProperty(
+diff --git a/style/oxygenblurhelper.h b/style/oxygenblurhelper.h
+index 8df097c..2670f8d 100644
+--- a/style/oxygenblurhelper.h
++++ b/style/oxygenblurhelper.h
+@@ -44,9 +44,7 @@
+ #include <QtGui/QRegion>
+ #include <QToolBar>
+ 
+-#if HAVE_X11
+-#include <X11/Xdefs.h>
+-#endif
++#include "oxygenx11.h"
+ 
+ namespace Oxygen
+ {
+diff --git a/style/oxygenshadowhelper.cpp b/style/oxygenshadowhelper.cpp
+index 3ee1cfb..33bbd77 100644
+--- a/style/oxygenshadowhelper.cpp
++++ b/style/oxygenshadowhelper.cpp
+@@ -36,7 +36,6 @@
+ #include <QtCore/QEvent>
+ 
+ #if HAVE_X11
+-#include <QX11Info>
+ #include <X11/Xlib.h>
+ #include <X11/Xatom.h>
+ #include <X11/Xlib-xcb.h>
+@@ -339,7 +338,7 @@ namespace Oxygen
+         QImage image=source.toImage();
+         xcb_put_image(xcbc,XCB_IMAGE_FORMAT_Z_PIXMAP,pixmap,gc_,
+                         image.width(),image.height(),0,0,
+-                        0,32,image.byteCount(),image.constBits());
++                        0,32,image.sizeInBytes(),image.constBits());
+ 
+         return pixmap;
+         #else
+@@ -397,7 +396,13 @@ namespace Oxygen
+                 // balloon tip needs special margins to deal with the arrow
+                 int top = 0;
+                 int bottom = 0;
++#if QT_VERSION_CHECK(6,0,0)
++                const auto margins = widget->contentsMargins();
++                top = margins.top();
++                bottom = margins.bottom();
++#else
+                 widget->getContentsMargins(NULL, &top, NULL, &bottom );
++#endif
+ 
+                 // also need to decrement default size further due to extra hard coded round corner
+                 const int size = _size - 2;
+diff --git a/style/oxygenshadowhelper.h b/style/oxygenshadowhelper.h
+index 580a171..508907d 100644
+--- a/style/oxygenshadowhelper.h
++++ b/style/oxygenshadowhelper.h
+@@ -35,8 +35,8 @@
+ 
+ #include <stdint.h>
+ 
++#include "oxygenx11.h"
+ #if HAVE_X11
+-#include <X11/Xdefs.h>
+ #include <xcb/xcb.h>
+ #endif
+ 
+diff --git a/style/oxygenstylehelper.h b/style/oxygenstylehelper.h
+index 9e88b09..78672cb 100644
+--- a/style/oxygenstylehelper.h
++++ b/style/oxygenstylehelper.h
+@@ -24,11 +24,7 @@
+ 
+ #include "oxygenhelper.h"
+ #include "oxygenanimationmodes.h"
+-
+-#if HAVE_X11
+-#include <QX11Info>
+-#include <X11/Xdefs.h>
+-#endif
++#include "oxygenx11.h"
+ 
+ //! helper class
+ /*! contains utility functions used at multiple places in oxygen style */
+diff --git a/style/oxygenwindowmanager.cpp b/style/oxygenwindowmanager.cpp
+index a5e8752..28d021f 100644
+--- a/style/oxygenwindowmanager.cpp
++++ b/style/oxygenwindowmanager.cpp
+@@ -60,8 +60,8 @@
+ 
+ #include "oxygenconfig.h"
+ 
++#include "oxygenx11.h"
+ #if HAVE_X11
+-#include <QX11Info>
+ #include "oxygennetrootinfo.h"
+ #endif
+ 
+@@ -620,7 +620,7 @@ namespace Oxygen
+         {
+ 
+             #if HAVE_X11
+-            XUngrabPointer(QX11Info::display(), QX11Info::appTime());
++            XUngrabPointer(QX11Info::display(), CurrentTime);
+             NETRootInfo rootInfo(QX11Info::display(), NET::WMMoveResize);
+             rootInfo.moveResizeRequest( widget->window()->winId(), position.x(), position.y(), NET::Move);
+             #endif
+diff --git a/style/oxygenx11.h b/style/oxygenx11.h
+new file mode 100644
+index 0000000..797da0b
+--- /dev/null
++++ b/style/oxygenx11.h
+@@ -0,0 +1,39 @@
++#ifndef INCLUDE_ONCE_B863251D_0A4C_4B6F_9A58_2E13272D9A5A
++#define INCLUDE_ONCE_B863251D_0A4C_4B6F_9A58_2E13272D9A5A
++
++#include <QtGlobal>
++#include <QGuiApplication>
++
++#if HAVE_X11
++# if QT_VERSION_CHECK(6,0,0)
++#  include <X11/Xlib.h>
++class QX11Info
++{
++public:
++    static Display* display()
++    {
++        const auto x11app = qGuiApp->nativeInterface<QNativeInterface::QX11Application>();
++        if(!x11app) return nullptr;
++        return reinterpret_cast<Display*>(x11app->display());
++    }
++    static Window appRootWindow() { return DefaultRootWindow(display()); }
++};
++# else
++#  include <X11/Xdefs.h>
++#  include <QX11Info>
++# endif
++
++// Fix stupid #defines in <X11/Xlib.h>
++# undef Bool
++typedef int Bool;
++# undef None
++# undef CursorShape
++enum
++{
++    None = 0,
++    CursorShape = 0,
++};
++
++#endif
++
++#endif
