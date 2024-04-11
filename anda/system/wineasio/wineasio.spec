@@ -25,7 +25,7 @@ BuildRequires:  gcc-c++
 BuildRequires:  gcc
 BuildRequires:  pkgconfig(jack)
 BuildRequires:  wine-devel
-BuildArch:      x86_64
+ExclusiveArch:  x86_64
 
 %description
 WineASIO provides an ASIO to JACK driver for WINE.
