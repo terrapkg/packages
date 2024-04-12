@@ -1,11 +1,12 @@
 %global debug_package %nil
 
-%global forgeurl https://github.com/maxiberta/kwin-system76-scheduler-integration
+Name:			  kwin-system76-scheduler-integration
+
+%global forgeurl https://github.com/maxiberta/%{name}
 %global commit 093a269670275feaa240d02c712f1ec8b812fd80
 %global date 20240320
 %forgemeta
 
-Name:			  kwin-system76-scheduler-integration
 Version:		0.1
 Release:		5%?dist
 Summary:		Notify the System76 Scheduler which app has focus so it can be prioritized
@@ -29,9 +30,9 @@ via D-Bus, so it is prioritized.
 %build
 
 %install
-mkdir -p %buildroot%_datadir/kwin/scripts/kwin-system76-scheduler-integration/
-cp -r contents %buildroot%_datadir/kwin/scripts/kwin-system76-scheduler-integration/
-cp -r metadata.json %buildroot%_datadir/kwin/scripts/kwin-system76-scheduler-integration/
+mkdir -p %buildroot%_datadir/kwin/scripts/%{name}/
+cp -r contents %buildroot%_datadir/kwin/scripts/%{name}/
+cp -r metadata.json %buildroot%_datadir/kwin/scripts/%{name}/
 cp -r system76-scheduler-dbus-proxy.sh %buildroot%_libexecdir/
 install -Dm644 %SOURCE1 %buildroot%_userunitdir/com.system76.Scheduler.dbusproxy.service
 
@@ -49,7 +50,7 @@ install -Dm644 %SOURCE1 %buildroot%_userunitdir/com.system76.Scheduler.dbusproxy
 %doc README.md
 %config %_userunitdir/com.system76.Scheduler.dbusproxy.service
 %_libexecdir/system76-scheduler-dbus-proxy.sh
-%_datadir/kwin/scripts/kwin-system76-scheduler-integration/
+%_datadir/kwin/scripts/%{name}/
 
 %changelog
 %autochangelog
