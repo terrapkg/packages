@@ -130,33 +130,26 @@ This package contains the Qt6 style.
 %global _vpath_builddir %{_target_platform}-qt4
 %cmake -DQT_VERSION=4 -B %{_vpath_builddir}
 %cmake_build
-%undefine _vpath_builddir
  
 # Build for Qt 5
 %global _vpath_builddir %{_target_platform}-qt5
 %cmake -DQT_VERSION=5 -B %{_vpath_builddir}
 %cmake_build
-%undefine _vpath_builddir
  
 # Build for Qt 6
 /usr/bin/patch -p1 -s < %{_sourcedir}/qt6x11_wayland.patch
 %global _vpath_builddir %{_target_platform}-qt6
 %cmake -DQT_VERSION=6 -B %{_vpath_builddir}
 %cmake_build
-%undefine _vpath_builddir
  
 %install
-%global _vpath_builddir %{_target_platform}-qt4
 %cmake_install
 %undefine _vpath_builddir
  
-%global _vpath_builddir %{_target_platform}-qt5
 %cmake_install
 %undefine _vpath_builddir
- 
-%global _vpath_builddir %{_target_platform}-qt6
+
 %cmake_install
-%undefine _vpath_builddir
  
 %changelog
 %autochangelog
