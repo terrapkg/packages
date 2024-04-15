@@ -53,7 +53,7 @@ A web UI is provided to allow configuration, and client pairing, from your favor
 Pair from the local server or any mobile device.
 
 %prep
-%autosetup
+%autosetup -n Sunshine-%{version}
 
 
 %build
