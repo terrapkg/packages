@@ -40,7 +40,7 @@ jobs:
     strategy:
       matrix:
         pkg: ${{ fromJson(needs.manifest.outputs.build_matrix) }}
-        version: ["39"]
+        version: ["rawhide"]
       fail-fast: false
     runs-on: ${{ matrix.pkg.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
     container:
@@ -53,13 +53,6 @@ jobs:
           fetch-depth: 0
       - name: Set up git repository
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
-
-      - name: Cache buildroot
-        id: br-cache
-        uses: actions/cache@v4
-        with:
-          path: /var/cache
-          key: ${{ runner.os }}-br-${{ matrix.version }}-${{ matrix.pkg.arch }}
 
       - name: Include custom build template instead of package default
         run: |
