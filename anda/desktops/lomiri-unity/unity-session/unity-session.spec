@@ -1,4 +1,4 @@
-%define _ubuntu_rel 1ubuntu3
+%define _ubuntu_rel 1ubuntu4
 
 Name:    unity-session
 Summary: Lightdm profile for Unity 7
