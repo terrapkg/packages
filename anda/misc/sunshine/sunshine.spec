@@ -40,6 +40,7 @@ BuildRequires:  numactl-devel
 BuildRequires:  openssl-devel
 BuildRequires:  opus-devel
 BuildRequires:  pulseaudio-libs-devel
+BuildRequires:  wayland-devel
 
 # TODO: Add CUDA support before merging PR
 # blocker: nvidia-driver
