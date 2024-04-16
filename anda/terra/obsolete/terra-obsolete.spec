@@ -4,7 +4,7 @@ Version:    40
 # The dist number is the version here, it is intentionally not repeated in the release
 %global dist %nil
 
-Release:    2
+Release:    3
 Summary:    A package to obsolete retired packages, based on Fedora's equivalent package
 
 License:    LicenseRef-Fedora-Public-Domain
@@ -118,8 +118,11 @@ BuildArch:  noarch
 %obsolete katsu-systemd-sysusers-presets-polkit 1.0-2
 %obsolete katsu-systemd-sysusers-presets-rpcbind 1.0-2
 
-%description
+%obsolete_ticket https://github.com/terrapkg/packages/issues/991
+%obsolete iosevka-fusion-fonts 25.1.1-2
 
+
+%description
 Currently obsoleted packages:
 
 %list_obsoletes
