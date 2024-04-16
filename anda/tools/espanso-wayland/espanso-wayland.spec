@@ -24,9 +24,11 @@ This package includes the Wayland version of espanso.
 
 %prep
 %autosetup -n espanso-%version
+cd espanso
 %cargo_prep_online
 
 %build
+cd espanso
 %cargo_build -n -f vendored-tls -f wayland
 
 %install
