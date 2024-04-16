@@ -1,8 +1,8 @@
 %global csrc_commit 561b417c65791cd8356b5f73620914ceff845d10
-%global commit bcc935ae6a2fe4748241c0f0f01df611981a94a8
+%global commit 549ef24f35213302ba66e9e786c18ab9146940ee
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global ver 2.1.1
-%global commit_date 20240414
+%global commit_date 20240416
 %global debug_package %nil
 
 Name:			nim-nighlty
