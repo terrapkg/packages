@@ -5,7 +5,7 @@ Summary:		Cross-platform Text Expander written in Rust for Wayland
 License:		GPL-3.0
 URL:			https://espanso.org
 Source0:		https://github.com/espanso/espanso/archive/refs/tags/v%version.tar.gz
-Requires:		libxkbcommon wl-clipboard
+Requires:		libxkbcommon dbus libnotify wxGTK wl-clipboard
 Conflicts:		espanso-x11
 BuildRequires:	anda-srpm-macros cargo-rpm-macros gcc gcc-c++
 BuildRequires:	pkgconfig(x11)
@@ -30,6 +30,7 @@ This package includes the Wayland version of espanso.
 %cargo_build -n -f vendored-tls -f wayland
 
 %install
+cd espanso
 %cargo_install -n -f vendored-tls -f wayland
 
 %files

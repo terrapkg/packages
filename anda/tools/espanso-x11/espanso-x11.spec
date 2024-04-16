@@ -5,7 +5,7 @@ Summary:		Cross-platform Text Expander written in Rust for X11
 License:		GPL-3.0
 URL:			https://espanso.org
 Source0:		https://github.com/espanso/espanso/archive/refs/tags/v%version.tar.gz
-Requires:		xdotool xclip libxkbcommon
+Requires:		libxkbcommon dbus libnotify wxGTK xdotool xclip libxcb
 Conflicts:		espanso-wayland
 BuildRequires:	anda-srpm-macros cargo-rpm-macros gcc gcc-c++
 BuildRequires:	pkgconfig(x11)
