@@ -29,7 +29,7 @@ cd espanso
 
 %build
 cd espanso
-%cargo_build -n -f vendored-tls -f wayland
+#cargo_build -n -f vendored-tls -f wayland
 
 %install
 cd espanso
