@@ -21,7 +21,7 @@ Requires:		redhat-rpm-config gcc
 Conflicts:		choosenim
 # somehow wrong name and never noticed
 Provides:		nim-nightly = %version-%release
-Obsoletes:		nim-nighlty < 2.1.1^20240404.9e1b170-1
+Obsoletes:		nim-nighlty < 2.1.1^20240404.9e1b170-2
 
 
 %description
@@ -33,7 +33,7 @@ order of priority).
 %package tools
 Summary:	Tools for Nim programming language
 Provides:	nim-nightly-tools = %version-%release
-Obsoletes:	nim-nighlty-tools < 2.1.1^20240404.9e1b170-1
+Obsoletes:	nim-nighlty-tools < 2.1.1^20240404.9e1b170-2
 
 %description tools
 Nim is a compiled, garbage-collected systems programming language with a
@@ -48,7 +48,7 @@ This package provides various tools, which help Nim programmers.
 Summary:	Documentation for Nim programming language
 BuildArch:	noarch
 Provides:	nim-nightly-doc = %version-%release
-Obsoletes:	nim-nighlty-doc < 2.1.1^20240404.9e1b170-1
+Obsoletes:	nim-nighlty-doc < 2.1.1^20240404.9e1b170-2
 %description doc
 Nim is a compiled, garbage-collected systems programming language with a
 design that focuses on efficiency, expressiveness, and elegance (in that
