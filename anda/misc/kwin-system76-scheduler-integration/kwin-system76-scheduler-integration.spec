@@ -25,7 +25,7 @@ This KWin Script interactively notifies System76 Scheduler which app has focus
 via D-Bus, so it is prioritized.
 
 %prep
-%autosetup
+%forgeautosetup
 
 %build
 
@@ -47,10 +47,11 @@ install -Dm644 metadata.desktop %buildroot%_datadir/kservices5/kwin-system76-sch
 %systemd_user_postun_with_restart com.system76.Scheduler.dbusproxy.service
 
 %files
+%license LICENSE
+%doc README.md
 %config %_userunitdir/com.system76.Scheduler.dbusproxy.service
 %_libexecdir/system76-scheduler-dbus-proxy.sh
-%_datadir/kwin/scripts/kwin-system76-scheduler-integration/
-%_datadir/kservices5/kwin-system76-scheduler-integration.desktop
+%_datadir/kwin/scripts/%{name}/
 
 %changelog
 %autochangelog
