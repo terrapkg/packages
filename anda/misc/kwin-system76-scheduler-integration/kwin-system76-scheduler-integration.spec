@@ -1,15 +1,20 @@
 %global debug_package %nil
 
-Name:			kwin-system76-scheduler-integration
-Version:		0.1
-Release:		4%?dist
-Summary:		Notify the System76 Scheduler which app has focus so it can be prioritized
-License:		MIT
-URL:			  https://github.com/maxiberta/kwin-system76-scheduler-integration
-Source0:		%url/archive/refs/tags/%version.tar.gz
-Source1:		system76-scheduler-dbus-proxy.sh
-Source2:		com.system76.Scheduler.dbusproxy.service
-Requires:		bash dbus-tools system76-scheduler kde-cli-tools systemd kf5-kconfig-core qt
+Name:       kwin-system76-scheduler-integration
+
+%global forgeurl https://github.com/maxiberta/%{name}
+%global commit 093a269670275feaa240d02c712f1ec8b812fd80
+%global date 20240320
+%forgemeta
+
+Version:    0.1
+Release:    6%?dist
+Summary:    Notify the System76 Scheduler which app has focus so it can be prioritized
+License:    MIT
+URL:        %forgeurl
+Source0:    %forgesource
+Source1:    com.system76.Scheduler.dbusproxy.service
+Requires:   bash dbus-tools system76-scheduler kde-cli-tools systemd kf6-kconfig
 BuildRequires: systemd-rpm-macros
 
 %description
