@@ -31,6 +31,8 @@ order of priority).
 
 %package tools
 Summary:	Tools for Nim programming language
+Obsoletes:	nim-nighlty-tools < 2.1.1^20240404.9e1b170-1%?dist
+
 %description tools
 Nim is a compiled, garbage-collected systems programming language with a
 design that focuses on efficiency, expressiveness, and elegance (in that
@@ -43,6 +45,7 @@ This package provides various tools, which help Nim programmers.
 %package doc
 Summary:	Documentation for Nim programming language
 BuildArch:	noarch
+Obsoletes:	nim-nighlty-doc < 2.1.1^20240404.9e1b170-1%?dist
 %description doc
 Nim is a compiled, garbage-collected systems programming language with a
 design that focuses on efficiency, expressiveness, and elegance (in that
