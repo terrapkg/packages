@@ -1,6 +1,6 @@
 Name:			uxplay
-Version:		1.68.2
-Release:		1%{?dist}
+Version:		1.68.3
+Release:		1%?dist
 Summary:		AirPlay Unix mirroring server
 License:		GPL-3.0
 URL:			https://github.com/FDH2/UxPlay
