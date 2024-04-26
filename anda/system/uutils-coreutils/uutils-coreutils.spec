@@ -1,7 +1,7 @@
 %global coreutils_ver 9.3
 
 Name:			uutils-coreutils
-Version:		0.0.25
+Version:		0.0.26
 Release:		1%?dist
 Summary:		Cross-platform Rust rewrite of the GNU coreutils
 License:		MIT
