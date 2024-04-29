@@ -88,8 +88,8 @@ This package contains the development headers.
 
 
 %check
-desktop-file-validate \
-    %{buildroot}/%{_sysconfdir}/xdg/autostart/gala-daemon.desktop
+%dnl desktop-file-validate \
+%dnl    %{buildroot}/%{_sysconfdir}/xdg/autostart/gala-daemon.desktop
 
 desktop-file-validate \
     %{buildroot}/%{_datadir}/applications/gala*.desktop
@@ -101,7 +101,7 @@ desktop-file-validate \
 %files -f gala.lang
 %doc README.md
 %license COPYING
-%config(noreplace) %{_sysconfdir}/xdg/autostart/gala-daemon.desktop
+%dnl %config(noreplace) %{_sysconfdir}/xdg/autostart/gala-daemon.desktop
 
 %{_bindir}/gala
 %{_bindir}/gala-daemon
