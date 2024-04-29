@@ -13,6 +13,7 @@ BuildRequires:	pkgconfig(xtst)
 BuildRequires:	pkgconfig(xkbcommon)
 BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	wxGTK-devel
+BuildRequires:	openssl-devel
 
 %description
 A cross-platform Text Expander written in Rust. A text expander is a program
@@ -29,7 +30,7 @@ cd espanso
 
 %build
 cd espanso
-%cargo_build -n -f vendored-tls -- --package={espanso,espanso-clipboard,espanso-config,espanso-detect,espanso-engine,espanso-info,espanso-inject,espanso-ipc,espanso-kvs,espanso-mac-utils,espanso-match,espanso-migrate,espanso-modulo,espanso-package,espanso-path,espanso-render,espanso-ui}
+%cargo_build -n -f vendored-tls,"default" -- --package={espanso,espanso-clipboard,espanso-config,espanso-detect,espanso-engine,espanso-info,espanso-inject,espanso-ipc,espanso-kvs,espanso-mac-utils,espanso-match,espanso-migrate,espanso-modulo,espanso-package,espanso-path,espanso-render,espanso-ui}
 
 %install
 mkdir -p %buildroot%_bindir
