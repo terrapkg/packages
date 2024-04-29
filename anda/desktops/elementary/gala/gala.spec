@@ -32,6 +32,7 @@ BuildRequires:  pkgconfig(granite) >= 5.4.0
 BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(libbamf3)
 BuildRequires:  pkgconfig(libcanberra)
+BuildRequires:  pkgconfig(libhandy-1)
 BuildRequires:  pkgconfig(mutter-clutter-14)
 BuildRequires:  pkgconfig(mutter-cogl-14)
 BuildRequires:  pkgconfig(mutter-cogl-pango-14)
