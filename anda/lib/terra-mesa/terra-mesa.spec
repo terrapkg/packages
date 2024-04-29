@@ -422,7 +422,7 @@ export MESON_PACKAGE_CACHE_DIR="%{cargo_registry}/"
 %if 0%{?with_opencl}
   -Dgallium-rusticl=true \
 %endif
-  -D=h264dec,h264enc,video-codecsh265dec,h265enc,vc1dec,av1dec,av1enc,vp9dec \
+  -Dvideo-codecs=h264dec,h264enc,h265dec,h265enc,vc1dec,av1dec,av1enc,vp9dec \
   -Dvulkan-drivers=%{?vulkan_drivers} \
   -Dvulkan-layers=device-select \
   -Dshared-glapi=enabled \
