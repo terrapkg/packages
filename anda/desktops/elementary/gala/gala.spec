@@ -3,7 +3,7 @@
 Name:           gala
 Summary:        Gala window manager
 Version:        7.1.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/gala
@@ -11,6 +11,7 @@ Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
 
 # patch some default settings to better match Fedora
 Patch0:         0000-Modify-default-settings-for-Fedora.patch
+Patch:          https://github.com/elementary/gala/compare/7.1.3..43d1e6a01b56a84a4e752e1970a35c19402941eb.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
