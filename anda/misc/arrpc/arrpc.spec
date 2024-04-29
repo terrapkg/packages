@@ -4,7 +4,7 @@
 
 Name:			arrpc
 Version:		3.4.0
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Open Discord RPC server for atypical setups
 License:		MIT
 URL:			https://arrpc.openasar.dev
