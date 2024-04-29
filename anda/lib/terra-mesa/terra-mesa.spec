@@ -227,7 +227,7 @@ Provides:       %{srcname}-libEGL-devel = %{?epoch:%{epoch}:}%{version}-%{releas
 Summary:        Mesa libEGL development package
 Requires:       %{name}-libEGL%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       libglvnd-devel%{?_isa} >= 1:1.3.2
-Requires:       %{name}-khr-devel%{?_isa}
+Requires:       %{srcname}-khr-devel%{?_isa}
 Provides:       libEGL-devel
 Provides:       libEGL-devel%{?_isa}
 
