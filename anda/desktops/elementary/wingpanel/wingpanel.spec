@@ -9,6 +9,7 @@ Summary:        Stylish top panel
 Version:        3.0.5
 Release:        1%{?dist}
 License:        GPL-2.0-or-later
+Epoch:          1
 
 URL:            https://github.com/elementary/wingpanel
 Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
