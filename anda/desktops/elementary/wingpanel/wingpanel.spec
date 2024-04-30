@@ -18,7 +18,7 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
-BuildRequires:  vala-nightly
+BuildRequires:  vala >= 0.24.0
 
 BuildRequires:  mesa-libEGL-devel
 
