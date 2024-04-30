@@ -33,7 +33,7 @@ BuildRequires:  pkgconfig(mutter-clutter-14)
 BuildRequires:  pkgconfig(mutter-cogl-14)
 BuildRequires:  pkgconfig(mutter-cogl-pango-14)
 
-Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
+Requires:       %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 
 # wingpanel ayatana appindicator support was abandoned by upstream
 # wingpanel-indicator-ayatana-2.0.3-10.fc32 retired for fedora 33+
@@ -44,8 +44,8 @@ Obsoletes:      wingpanel-indicator-ayatana < 2.0.3-11
 
 %package        libs
 Summary:        Stylish top panel (shared library)
-Enhances:       %{name} = %{version}-%{release}
-Enhances:       %{name}-devel = %{version}-%{release}
+Enhances:       %{name} = %{epoch}:%{version}-%{release}
+Enhances:       %{name}-devel = %{epoch}:%{version}-%{release}
 
 %description    libs %{common_description}
 
@@ -54,7 +54,7 @@ This package contains the shared library.
 
 %package        devel
 Summary:        Stylish top panel (development files)
-Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
+Requires:       %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 
 %description    devel %{common_description}
 
