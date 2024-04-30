@@ -5,12 +5,14 @@ Summary:        Gala window manager
 Version:        7.1.3
 Release:        1%{?dist}
 License:        GPL-3.0-or-later
+Epoch:          1
 
 URL:            https://github.com/elementary/gala
 Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
 
 # patch some default settings to better match Fedora
 Patch0:         0000-Modify-default-settings-for-Fedora.patch
+Patch:          https://github.com/elementary/gala/compare/7.1.3..43d1e6a01b56a84a4e752e1970a35c19402941eb.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
@@ -31,9 +33,11 @@ BuildRequires:  pkgconfig(granite) >= 5.4.0
 BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(libbamf3)
 BuildRequires:  pkgconfig(libcanberra)
-BuildRequires:  pkgconfig(mutter-clutter-13)
-BuildRequires:  pkgconfig(mutter-cogl-13)
-BuildRequires:  pkgconfig(mutter-cogl-pango-13)
+BuildRequires:  pkgconfig(libhandy-1)
+BuildRequires:  pkgconfig(sqlite3)
+BuildRequires:  pkgconfig(mutter-clutter-14)
+BuildRequires:  pkgconfig(mutter-cogl-14)
+BuildRequires:  pkgconfig(mutter-cogl-pango-14)
 
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 
@@ -85,8 +89,8 @@ This package contains the development headers.
 
 
 %check
-desktop-file-validate \
-    %{buildroot}/%{_sysconfdir}/xdg/autostart/gala-daemon.desktop
+%dnl desktop-file-validate \
+%dnl    %{buildroot}/%{_sysconfdir}/xdg/autostart/gala-daemon.desktop
 
 desktop-file-validate \
     %{buildroot}/%{_datadir}/applications/gala*.desktop
@@ -98,7 +102,7 @@ desktop-file-validate \
 %files -f gala.lang
 %doc README.md
 %license COPYING
-%config(noreplace) %{_sysconfdir}/xdg/autostart/gala-daemon.desktop
+%dnl %config(noreplace) %{_sysconfdir}/xdg/autostart/gala-daemon.desktop
 
 %{_bindir}/gala
 %{_bindir}/gala-daemon
