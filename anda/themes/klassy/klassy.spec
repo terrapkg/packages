@@ -112,6 +112,7 @@ Klassy (formerly ClassiK/ClassikStyles) is a highly customizable binary Window D
 %{_datadir}/icons/hicolor/
 %{_datadir}/icons/%{name}/
 %{_datadir}/icons/%{name}-dark/
+%{_datadir}/plasma/desktoptheme/%{name}/
 
 %{_kf6_datadir}/kstyle/themes/%{name}.themerc
 
