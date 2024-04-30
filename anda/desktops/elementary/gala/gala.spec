@@ -61,7 +61,7 @@ This package contains the shared libraries.
 
 %package        devel
 Summary:        Gala window manager development files
-Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
+Requires:       %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 
 %description    devel
 Gala is Pantheon's Window Manager, part of the elementary project.
