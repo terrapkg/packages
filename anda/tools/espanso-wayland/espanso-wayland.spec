@@ -1,6 +1,6 @@
 Name:			espanso-wayland
 Version: 		2.2.1
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Cross-platform Text Expander written in Rust for Wayland
 License:		GPL-3.0
 URL:			https://espanso.org
@@ -13,6 +13,7 @@ BuildRequires:	pkgconfig(xtst)
 BuildRequires:	pkgconfig(xkbcommon)
 BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	wxGTK-devel
+BuildRequires:	openssl-devel
 
 %description
 A cross-platform Text Expander written in Rust. A text expander is a program
@@ -29,14 +30,14 @@ cd espanso
 
 %build
 cd espanso
-#cargo_build -n -f vendored-tls -f wayland
+%cargo_build -n -f vendored-tls,"wayland" -- --package={espanso,espanso-clipboard,espanso-config,espanso-detect,espanso-engine,espanso-info,espanso-inject,espanso-ipc,espanso-kvs,espanso-mac-utils,espanso-match,espanso-migrate,espanso-modulo,espanso-package,espanso-path,espanso-render,espanso-ui}
 
 %install
-cd espanso
-%cargo_install -n -f vendored-tls -f wayland
+mkdir -p %buildroot%_bindir
+install -Dm755 target/rpm/espanso %buildroot%_bindir
 
 %files
-%_bindir/espanso
+%caps(cap_dac_override=pe) %_bindir/espanso
 
 %changelog
 %autochangelog
