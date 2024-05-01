@@ -27,6 +27,7 @@
 %ifarch %{ix86} x86_64
 %global with_crocus 1
 %global with_i915   1
+%global with_xe     1
 %if !0%{?rhel}
 %global with_intel_clc 1
 %endif
@@ -452,6 +453,9 @@ export MESON_PACKAGE_CACHE_DIR="%{cargo_registry}/"
   -Dopengl=true \
   -Dgbm=enabled \
   -Dglx=dri \
+%if 0%{?with_xe}
+  -D intel-xe-kmd=enabled \
+%endif
   -Degl=enabled \
   -Dglvnd=true \
 %if 0%{?with_intel_clc}
