@@ -10,7 +10,7 @@
 Name:           libappimageupdate
 
 Version:        %{libver_format}
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        AppImageUpdate lets you update AppImages in a decentral way using information embedded in the AppImage itself.
 
 License:        MIT
