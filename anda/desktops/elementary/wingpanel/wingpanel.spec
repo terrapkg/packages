@@ -13,7 +13,7 @@ Epoch:          1
 
 URL:            https://github.com/elementary/wingpanel
 Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
-Patch0:         https://github.com/elementary/wingpanel/compare/23a3eb7c2448b4f35398116df7d01b075361ef1f..5d22d436b45decfb2a50d9a7c27f2c961f1dd39f.patch
+Patch0:         https://github.com/elementary/wingpanel/compare/3.0.5..5d22d436b45decfb2a50d9a7c27f2c961f1dd39f.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
@@ -23,7 +23,7 @@ BuildRequires:  vala >= 0.24.0
 
 BuildRequires:  mesa-libEGL-devel
 
-BuildRequires:  pkgconfig(gala)
+BuildRequires:  pkgconfig(gala) >= 7.1.3-2
 BuildRequires:  pkgconfig(gdk-x11-3.0)
 BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  pkgconfig(glib-2.0) >= 2.32
