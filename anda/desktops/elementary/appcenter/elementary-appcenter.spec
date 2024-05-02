@@ -12,6 +12,8 @@ Obsoletes:      appcenter < 7.2.1-2
 URL:            https://github.com/elementary/appcenter
 Source0:        %url/archive/%{version}/appcenter-%{version}.tar.gz
 
+Patch0:         pr2099.patch
+
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib

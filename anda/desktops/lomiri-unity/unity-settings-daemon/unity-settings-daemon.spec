@@ -134,4 +134,3 @@ rename 61-gnome-settings-daemon-rfkill.rules 60-gnome-settings-daemon-rfkill.rul
 
 %changelog
 %autochangelog
-

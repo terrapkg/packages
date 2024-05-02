@@ -65,4 +65,8 @@ appstream-util validate-relax --nonet \
 
 
 %changelog
-%autochangelog
+* Thu Oct 20 2022 windowsboy111 <wboy111@outlook.com> - 2.3.4-1
+- new version
+
+* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
+- Repackaged for Terra

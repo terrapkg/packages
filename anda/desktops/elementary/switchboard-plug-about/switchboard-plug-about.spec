@@ -9,11 +9,13 @@
 Name:           switchboard-plug-about
 Summary:        Switchboard System Information plug
 Version:        6.2.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/switchboard-plug-about
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
+
+Patch0:         https://github.com/elementary/switchboard-plug-about/compare/6.2.0..72d7da13da2824812908276751fd3024db2dd0f8.patch
 
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib
@@ -78,4 +80,3 @@ appstream-util validate-relax --nonet \
 %changelog
 * Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com> - 6.1.0-1
 - Repackaged for Terra
-

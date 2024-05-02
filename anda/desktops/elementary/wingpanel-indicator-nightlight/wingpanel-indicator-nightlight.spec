@@ -62,4 +62,8 @@ A wingpanel indicator for Night Light.
 
 
 %changelog
-%autochangelog
+* Thu Oct 20 2022 windowsboy111 <wboy111@outlook.com> - 2.1.1-1
+- new version
+
+* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
+- Repackaged for Terra

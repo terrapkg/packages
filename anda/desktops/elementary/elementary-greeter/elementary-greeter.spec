@@ -4,14 +4,14 @@
 Name:           elementary-greeter
 Summary:        LightDM Login Screen for the elementary desktop
 Version:        7.0.0
-Release:        2%{?dist}
+Release:        1%{?dist}
 License:        GPL-3.0
 
 URL:            https://github.com/elementary/greeter
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 Source1:        40-%{appname}.conf
 
-Patch0:         https://github.com/elementary/greeter/commit/dbd9b6f9701f5992c3b3257c025b9cd80d041cc8.patch
+Patch0:         https://github.com/elementary/greeter/compare/7.0.0..42320c266395606b0c20782603e7407124c3f7a4.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext

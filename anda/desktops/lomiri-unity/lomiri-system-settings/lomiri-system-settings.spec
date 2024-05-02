@@ -1,5 +1,5 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-system-settings
-%global commit bac3baa2876c61fe2963ad5e861f574d4b9c4402
+%global commit 10d7151a3e4ea08b92e85be7e6e631c48219feaf
 %forgemeta
 
 Name:       lomiri-system-settings
@@ -10,6 +10,7 @@ License:    GPLv3
 URL:        https://gitlab.com/ubports/development/core/lomiri-system-settings
 Source0:    %{url}/-/archive/%commit/lomiri-system-settings-%commit.tar.gz
 Patch0:     https://sources.debian.org/data/main/l/lomiri-system-settings/1.0.1-2/debian/patches/1001_use-maliit-keyboard-for-language-plugin.patch
+Patch1:     https://sources.debian.org/data/main/l/lomiri-system-settings/1.0.1-2/debian/patches/2001_disable-current-language-switching.patch
 
 BuildRequires: cmake
 BuildRequires: gcc-c++
@@ -92,4 +93,3 @@ developing applications that use %{name}.
 
 %changelog
 %autochangelog
-

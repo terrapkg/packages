@@ -1,4 +1,4 @@
-%define archive unity_7.7.0+23.04.20230222.2-0ubuntu6.tar.xz
+%define archive unity_7.7.0+23.04.20230222.2-0ubuntu7.tar.xz
 
 Name:		unity-shell
 Version:	7.7.0
@@ -227,4 +227,3 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &>/dev/null || :
 
 %changelog
 %autochangelog
-

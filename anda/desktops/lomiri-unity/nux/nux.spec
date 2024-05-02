@@ -96,4 +96,3 @@ rm -rf %{buildroot}%{_datadir}/nux/gputests
 
 %changelog
 %autochangelog
-

@@ -9,10 +9,11 @@ Summary:        Stylish top panel
 Version:        3.0.5
 Release:        1%{?dist}
 License:        GPL-2.0-or-later
+Epoch:          1
 
 URL:            https://github.com/elementary/wingpanel
 Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
-Patch0:         https://github.com/elementary/wingpanel/commit/d6009d9f0d5c7479172093447ccceccba86ff1f3.patch
+Patch0:         https://github.com/elementary/wingpanel/compare/23a3eb7c2448b4f35398116df7d01b075361ef1f..5d22d436b45decfb2a50d9a7c27f2c961f1dd39f.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
@@ -32,7 +33,7 @@ BuildRequires:  pkgconfig(mutter-clutter-14)
 BuildRequires:  pkgconfig(mutter-cogl-14)
 BuildRequires:  pkgconfig(mutter-cogl-pango-14)
 
-Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
+Requires:       %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 
 # wingpanel ayatana appindicator support was abandoned by upstream
 # wingpanel-indicator-ayatana-2.0.3-10.fc32 retired for fedora 33+
@@ -43,8 +44,8 @@ Obsoletes:      wingpanel-indicator-ayatana < 2.0.3-11
 
 %package        libs
 Summary:        Stylish top panel (shared library)
-Enhances:       %{name} = %{version}-%{release}
-Enhances:       %{name}-devel = %{version}-%{release}
+Enhances:       %{name} = %{epoch}:%{version}-%{release}
+Enhances:       %{name}-devel = %{epoch}:%{version}-%{release}
 
 %description    libs %{common_description}
 
@@ -53,7 +54,7 @@ This package contains the shared library.
 
 %package        devel
 Summary:        Stylish top panel (development files)
-Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
+Requires:       %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 
 %description    devel %{common_description}
 
@@ -127,4 +128,5 @@ appstream-util validate-relax --nonet \
 
 
 %changelog
-%autochangelog
+* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com> - 3.0.2-1
+- Repackaged for Terra

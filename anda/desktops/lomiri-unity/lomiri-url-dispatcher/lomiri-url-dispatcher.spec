@@ -87,4 +87,3 @@ sed -i '/add_subdirectory(tests)/d' ./CMakeLists.txt
 
 %changelog
 %autochangelog
-

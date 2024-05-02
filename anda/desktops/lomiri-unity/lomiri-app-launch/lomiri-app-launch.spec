@@ -1,5 +1,5 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-app-launch
-%global commit 0011f74e9377fcde3166374b05301444131ac0e5
+%global commit 99fa99c6e8af868f64dbfdb973eebeb2ca3ad14a
 %forgemeta
 
 Name:           lomiri-app-launch
@@ -78,4 +78,3 @@ cmake -DLOMIRI_APP_LAUNCH_ARCH=%{_arch} -DENABLE_COVERAGE=OFF -DENABLE_TESTS=OFF
 
 %changelog
 %autochangelog
-

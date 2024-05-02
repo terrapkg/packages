@@ -1,13 +1,13 @@
 %global real_name prismlauncher
 %global nice_name PrismLauncher
 
-%global commit 2012b2c243dcfad8860847c0d85f184b6dd24504
+%global commit bfac12604e9cd0884987ca89f34a455cf16c543c
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global libnbtplusplus_commit a5e8fd52b8bf4ab5d5bcc042b2a247867589985f
 %global quazip_commit 6117161af08e366c37499895b00ef62f93adc345
 %global tomlplusplus_commit 7eb2ffcc09f8e9890dc0b77ff8ab00fc53b1f2b8
 
-%global commit_date 20240329
+%global commit_date 20240501
 %global snapshot_info %{commit_date}.%{shortcommit}
 
 %bcond_without qt6
@@ -76,8 +76,9 @@ Requires(postun): desktop-file-utils
 Requires:         qt%{qt_version}-qtimageformats
 Requires:         qt%{qt_version}-qtsvg
 Requires:         javapackages-filesystem
-Requires:         java-17-openjdk
-Requires:         java-1.8.0-openjdk
+Recommends:       java-21-openjdk
+Recommends:       java-17-openjdk
+Suggests:         java-1.8.0-openjdk
 
 # xrandr needed for LWJGL [2.9.2, 3) https://github.com/LWJGL/lwjgl/issues/128
 Recommends:       xrandr

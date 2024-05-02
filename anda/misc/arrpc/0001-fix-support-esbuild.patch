@@ -1,0 +1,31 @@
+From db29e1ce9f1a2b6b2ac3ef9df8b8b8524ab895f9 Mon Sep 17 00:00:00 2001
+From: madomado <madonuko@outlook.com>
+Date: Mon, 29 Apr 2024 21:29:01 +0800
+Subject: [PATCH] fix: support esbuild
+
+---
+ src/process/index.js | 8 +-------
+ 1 file changed, 1 insertion(+), 7 deletions(-)
+
+diff --git a/src/process/index.js b/src/process/index.js
+index 97ea651..f5486ca 100644
+--- a/src/process/index.js
++++ b/src/process/index.js
+@@ -1,13 +1,7 @@
+ const rgb = (r, g, b, msg) => `\x1b[38;2;${r};${g};${b}m${msg}\x1b[0m`;
+ const log = (...args) => console.log(`[${rgb(88, 101, 242, 'arRPC')} > ${rgb(237, 66, 69, 'process')}]`, ...args);
+ 
+-import fs from 'node:fs';
+-import { dirname, join } from 'path';
+-import { fileURLToPath } from 'url';
+-
+-const __dirname = dirname(fileURLToPath(import.meta.url));
+-const DetectableDB = JSON.parse(fs.readFileSync(join(__dirname, 'detectable.json'), 'utf8'));
+-
++import DetectableDB from './detectable.json' with { type: "json" };
+ import * as Natives from './native/index.js';
+ const Native = Natives[process.platform];
+ 
+-- 
+2.44.0
+
