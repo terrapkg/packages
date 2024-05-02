@@ -140,6 +140,7 @@ changehat abilities exposed through libapparmor.
 %autosetup -p1 -n %{name}-%{version}
 
 %build
+%define version %(echo %version | sed 's/~/-/')
 export PYTHON=%{__python3}
 export PYTHON_VERSION=3
 export PYTHON_VERSIONS=python3
