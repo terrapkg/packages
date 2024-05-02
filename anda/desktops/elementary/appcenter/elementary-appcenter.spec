@@ -3,7 +3,7 @@
 Name:           elementary-appcenter
 Summary:        Software Center from elementary
 Version:        7.4.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPL-3.0
 
 Provides:       appcenter = %{version}-%{release}
@@ -11,6 +11,8 @@ Obsoletes:      appcenter < 7.2.1-2
 
 URL:            https://github.com/elementary/appcenter
 Source0:        %url/archive/%{version}/appcenter-%{version}.tar.gz
+
+Patch0:         pr2099.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
