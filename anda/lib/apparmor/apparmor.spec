@@ -8,10 +8,11 @@ Release:        2%{?dist}
 Summary:        AppArmor userspace components
 
 %define baseversion %(echo %{version} | cut -d. -f-2)
+%global normver %(echo %version | sed 's/~/-/')
 
 License:        GPL-2.0
 URL:            https://launchpad.net/apparmor
-Source0:        %{url}/%{baseversion}/%(echo %version | sed 's/~/-/')/+download/%{name}-%{version}.tar.gz
+Source0:        %{url}/%{baseversion}/%normver/+download/%{name}-%{version}.tar.gz
 Source1:        apparmor.preset
 Patch01:        0001-fix-avahi-daemon-authselect-denial-in-fedora.patch
 
@@ -140,7 +141,7 @@ changehat abilities exposed through libapparmor.
 %autosetup -p1 -n %{name}-%{version}
 
 %build
-%define version %(echo %version | sed 's/~/-/')
+%define version %normver
 export PYTHON=%{__python3}
 export PYTHON_VERSION=3
 export PYTHON_VERSIONS=python3
