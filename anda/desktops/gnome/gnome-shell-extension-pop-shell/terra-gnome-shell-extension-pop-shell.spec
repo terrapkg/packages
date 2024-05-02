@@ -8,7 +8,7 @@
 
 Name:           terra-gnome-shell-extension-%{extension}
 Version:        %{ver}^%{shortcommit}
-Release:        1%?dist
+Release:        2%?dist
 Summary:        GNOME Shell extension for advanced tiling window management
 License:        GPL-3.0-only
 URL:            https://github.com/pop-os/shell
