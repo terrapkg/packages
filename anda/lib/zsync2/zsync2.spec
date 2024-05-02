@@ -2,7 +2,8 @@
 
 %global commit_short %(c=%{git_commit}; echo ${c:0:7})
 
-%global libver  2.0.0-alpha-1-20220304.git%{commit_short}
+%global ver     2.0.0-alpha-1-20230304
+%global libver  %ver.git%{commit_short}
 
 # replace - with ~
 %global libver_format %(v=%{libver}; sed 's/-/~/g' <<< $v)
