@@ -10,7 +10,7 @@
 Name:           zsync2
 
 Version:        %{libver_format}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A rewrite of the advanced file download/sync tool zsync.
 
 License:        Artistic-2.0
