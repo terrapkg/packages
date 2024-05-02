@@ -19,7 +19,8 @@ Requires:		glibc openssl zlib
 %{cargo_build -f extra,dataframe} --workspace
 
 %install
-%cargo_install -f extra,dataframe
+mkdir -p %buildroot%_bindir
+cp target/rpm/nu* %buildroot%_bindir/
 rm -rf .cargo
 
 %post
