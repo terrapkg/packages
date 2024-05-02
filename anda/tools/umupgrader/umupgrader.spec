@@ -14,7 +14,7 @@ BuildRequires:  nim pkgconfig(gtk4) pkgconfig(libadwaita-1)
 %autosetup
 
 %build
-nimble build -d:release -t %nim_tflags -l %nim_lflags
+nimble build -y -d:release -t %nim_tflags -l %nim_lflags
 
 %install
 mkdir -p %buildroot%_bindir %buildroot%_datadir/polkit-1/actions
