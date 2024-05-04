@@ -4,14 +4,15 @@
 
 Name:           apparmor
 Version:        4.0.0~alpha3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        AppArmor userspace components
 
 %define baseversion %(echo %{version} | cut -d. -f-2)
+%global normver %(echo %version | sed 's/~/-/')
 
 License:        GPL-2.0
 URL:            https://launchpad.net/apparmor
-Source0:        %{url}/%{baseversion}/%(echo %version | sed 's/~/-/')/+download/%{name}-%{version}.tar.gz
+Source0:        %{url}/%{baseversion}/%normver/+download/%{name}-%{version}.tar.gz
 Source1:        apparmor.preset
 Patch01:        0001-fix-avahi-daemon-authselect-denial-in-fedora.patch
 
@@ -138,6 +139,8 @@ changehat abilities exposed through libapparmor.
 
 %prep
 %autosetup -p1 -n %{name}-%{version}
+sed -i 's/@VERSION@/%normver/g' libraries/libapparmor/swig/python/setup.py.in
+sed -i 's/${VERSION}/%normver/g' utils/Makefile
 
 %build
 export PYTHON=%{__python3}
@@ -149,7 +152,7 @@ pushd libraries/libapparmor
 %configure \
     --with-python \
 
-%make_build
+%make_build VERSION=%normver
 popd
 
 %make_build -C binutils
