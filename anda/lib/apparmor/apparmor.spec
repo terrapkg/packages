@@ -151,7 +151,7 @@ pushd libraries/libapparmor
 %configure \
     --with-python \
 
-%make_build
+%make_build VERSION=%normver
 popd
 
 %make_build -C binutils
