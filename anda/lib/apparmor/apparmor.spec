@@ -139,9 +139,9 @@ changehat abilities exposed through libapparmor.
 
 %prep
 %autosetup -p1 -n %{name}-%{version}
+sed -i 's/@VERSION@/%normver/g' libraries/libapparmor/swig/python/setup.py.in
 
 %build
-%define version %normver
 export PYTHON=%{__python3}
 export PYTHON_VERSION=3
 export PYTHON_VERSIONS=python3
