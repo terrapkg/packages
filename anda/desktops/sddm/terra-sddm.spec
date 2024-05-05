@@ -155,7 +155,7 @@ A collection of sddm themes, including: elarun, maldives, maya
 
 
 %prep
-%autosetup -p1 %{?commitdate:-n sddm-%{commit}}
+%autosetup -p1 %{?commitdate:-n sddm-%{commit}} -n sddm-%version
 
 %if 0%{?fedora}
 #FIXME/TODO: use version on filesystem instead of using a bundled copy
