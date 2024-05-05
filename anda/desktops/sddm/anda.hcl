@@ -1,5 +1,5 @@
 project pkg {
   rpm {
-    spec = "sddm.spec"
+    spec = "terra-sddm.spec"
   }
 }

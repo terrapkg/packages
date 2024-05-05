@@ -1,14 +1,15 @@
 # Disable X11 for RHEL 10+
 %bcond x11 %[%{undefined rhel} || 0%{?rhel} < 10]
 
-Name:           sddm
+Name:           terra-sddm
 Version:        0.21.0
 Release:        5%{?dist}
 License:        GPL-2.0-or-later
 Summary:        QML based desktop and login manager
+Provides:       sddm = %version-%release
 
 URL:            https://github.com/sddm/sddm
-Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
+Source0:        %{url}/archive/v%{version}/sddm-%{version}.tar.gz
 
 ## upstream patches
 # Port all themes to Qt 6
@@ -154,7 +155,7 @@ A collection of sddm themes, including: elarun, maldives, maya
 
 
 %prep
-%autosetup -p1 %{?commitdate:-n %{name}-%{commit}}
+%autosetup -p1 %{?commitdate:-n sddm-%{commit}}
 
 %if 0%{?fedora}
 #FIXME/TODO: use version on filesystem instead of using a bundled copy
