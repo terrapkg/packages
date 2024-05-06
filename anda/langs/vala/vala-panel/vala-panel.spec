@@ -1,5 +1,5 @@
 Name:    vala-panel
-Version: 24.03
+Version: 24.05
 %global forgeurl https://gitlab.com/vala-panel-project/vala-panel
 %forgemeta
 
