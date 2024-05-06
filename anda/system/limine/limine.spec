@@ -24,7 +24,7 @@ cp %SOURCE1 .
 %make_install
 
 %files
-%doc README.md CONFIG.md PHILOSOPHY.md PROTOCOL.md COPYING
+%doc README.md CONFIG.md PHILOSOPHY.md PROTOCOL.md COPYING USAGE.md
 %license COPYING
 %_bindir/limine
 %_includedir/limine.h
