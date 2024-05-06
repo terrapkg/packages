@@ -82,7 +82,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.valapanel.applica
 %{_libdir}/libvalapanel.so
 %{_libdir}/pkgconfig/vala-panel.pc
 %{_datadir}/vala/vapi/vala-panel.*
-%{_datadir}/gir-1.0/ValaPanel-%version.gir
+%dnl %{_datadir}/gir-1.0/ValaPanel-%version.gir
 
 %changelog
 %autochangelog
