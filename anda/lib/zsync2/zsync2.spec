@@ -1,8 +1,9 @@
-%global git_commit 1608115705047d6826bcd7b35a6988deaf3dbfec
+%global git_commit 87fb5a0f3c14d3cf35aa6547cc60d099c89ca532
 
 %global commit_short %(c=%{git_commit}; echo ${c:0:7})
 
-%global libver  2.0.0-alpha-1-20220304.git%{commit_short}
+%global ver     2.0.0-alpha-1-20230304
+%global libver  %ver.git%{commit_short}
 
 # replace - with ~
 %global libver_format %(v=%{libver}; sed 's/-/~/g' <<< $v)
@@ -17,7 +18,6 @@ License:        Artistic-2.0
 URL:            https://github.com/AppImageCommunity/zsync2
 #Source0:        %%{url}/archive/refs/%%{libver}.tar.gz
 Source0:        %{url}/archive/%{git_commit}.tar.gz
-Patch0:         https://github.com/AppImageCommunity/zsync2/commit/e57e1fce68194fa920542fd334488de5123e4832.patch
 
 BuildRequires:  make
 BuildRequires:  cmake3
@@ -47,6 +47,7 @@ developing applications that use %{name}.
 %autosetup -n zsync2-%{git_commit} -p1
 
 %build
+export CFLAGS="$CFLAGS -Wno-incompatible-pointer-types"
 %cmake -DCPR_FORCE_USE_SYSTEM_CURL=ON \
     -DUSE_SYSTEM_CURL=ON \
     -DUSE_SYSTEM_CPR=ON
