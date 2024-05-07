@@ -29,6 +29,8 @@ BuildRequires:  libappimageupdate-devel
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  librsvg2-devel
 BuildRequires:  libqtxdg-devel
+BuildRequires:  /usr/bin/ranlib
+BuildRequires:  /usr/bin/ar
 
 
 %description
@@ -39,9 +41,8 @@ BuildRequires:  libqtxdg-devel
 
 
 %build
-export CXX="${CXX:clang++}"
-%cmake -DBUILD_SHARED_LIBS:BOOL=OFF \
- -DUSE_SYSTEM_LIBARCHIVE=ON \
+%define __cxx clang++
+%cmake -DBUILD_SHARED_LIBS:BOOL=OFF \ -DUSE_SYSTEM_LIBARCHIVE=ON \
  -DUSE_SYSTEM_LIBCURL=ON \
  -DUSE_SYSTEM_SQUASHFUSE=ON \
  -DUSE_SYSTEM_BOOST=ON \
