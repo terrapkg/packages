@@ -13,6 +13,7 @@ Patch0:         use-fedora-qtlinguist.patch
 
 
 BuildRequires:  make
+BuildRequires:  mold
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  glib2-devel
@@ -47,7 +48,7 @@ BuildRequires:  libqtxdg-devel
  -DUSE_SYSTEM_XDGUTILS=ON \
  -DUSE_SYSTEM_LIBAPPIMAGE=ON
 
-%cmake_build
+mold -run %cmake_build
 
 
 %install
