@@ -47,6 +47,7 @@ developing applications that use %{name}.
 %autosetup -n zsync2-%{git_commit} -p1
 
 %build
+export CFLAGS="$CFLAGS -Wno-incompatible-pointer-types"
 %cmake -DCPR_FORCE_USE_SYSTEM_CURL=ON \
     -DUSE_SYSTEM_CURL=ON \
     -DUSE_SYSTEM_CPR=ON
