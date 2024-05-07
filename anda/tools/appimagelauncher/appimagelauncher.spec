@@ -15,7 +15,7 @@ Patch0:         use-fedora-qtlinguist.patch
 BuildRequires:  make
 BuildRequires:  mold
 BuildRequires:  cmake
-BuildRequires:  gcc-c++
+BuildRequires:  clang++
 BuildRequires:  glib2-devel
 BuildRequires:  cairo-devel
 BuildRequires:  fuse-devel
@@ -39,6 +39,7 @@ BuildRequires:  libqtxdg-devel
 
 
 %build
+export CXX="${CXX:clang++}"
 %cmake -DBUILD_SHARED_LIBS:BOOL=OFF \
  -DUSE_SYSTEM_LIBARCHIVE=ON \
  -DUSE_SYSTEM_LIBCURL=ON \
