@@ -48,8 +48,11 @@ BuildRequires:  libqtxdg-devel
  -DUSE_SYSTEM_XDGUTILS=ON \
  -DUSE_SYSTEM_LIBAPPIMAGE=ON
 
-mold -run %cmake_build
-
+cat<<EOF > build.sh
+%cmake_build
+EOF
+chmod +x build.sh
+mold -run ./build.sh
 
 %install
 %cmake_install
