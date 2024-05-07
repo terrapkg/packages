@@ -15,7 +15,7 @@ Patch0:         use-fedora-qtlinguist.patch
 BuildRequires:  make
 BuildRequires:  mold
 BuildRequires:  cmake
-BuildRequires:  clang++
+BuildRequires:  clang
 BuildRequires:  glib2-devel
 BuildRequires:  cairo-devel
 BuildRequires:  fuse-devel
