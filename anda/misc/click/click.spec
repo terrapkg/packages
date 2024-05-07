@@ -11,7 +11,6 @@ URL:            https://gitlab.com/ubports/development/core/click
 Source0:        %{url}/-/archive/%commit/click-%commit.tar.gz
 
 BuildRequires: automake libtool
-BuildRequires: pkgconfig
 BuildRequires: make
 BuildRequires: g++
 BuildRequires: gcc
@@ -63,6 +62,7 @@ Provides HTML and Manpage (documentation) for Click.
 NOCONFIGURE=1 \
 ./autogen.sh
 
+export CFLAGS="$CFLAGS -Wno-implicit-function-declaration"
 %configure
 %make_build
 
