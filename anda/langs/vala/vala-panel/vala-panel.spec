@@ -1,10 +1,9 @@
+Name:    vala-panel
+Version: 24.03
 %global forgeurl https://gitlab.com/vala-panel-project/vala-panel
-%global commit ead4e7a36b0e4b0a2ac43c5d9ca17eb753461afe
 %forgemeta
 
-Name:    vala-panel
-Version: 0.5.0
-Release: 2%?dist
+Release: 1%?dist
 License: LGPL-3.0-or-later
 Summary: This package provides Application Menu plugin for vala-panel
 Group:   System/GUI/Other
@@ -38,7 +37,7 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 %forgeautosetup
 
 %build
-%meson -Dwnck=enabled -Dplatforms='layer-shell,x11'
+%meson -Dwnck=enabled -Dplatforms='wayland,x11'
 %meson_build
 
 %install
@@ -73,6 +72,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.valapanel.applica
 %{_datadir}/vala-panel/applets/*.plugin
 %dir %{_datadir}/vala-panel/images
 %{_datadir}/vala-panel/images/background.png
+%{_libdir}/girepository-1.0/ValaPanel-*.typelib
 
 %files devel
 %doc README.md
@@ -82,6 +82,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.valapanel.applica
 %{_libdir}/libvalapanel.so
 %{_libdir}/pkgconfig/vala-panel.pc
 %{_datadir}/vala/vapi/vala-panel.*
+%{_datadir}/gir-1.0/ValaPanel-*.gir
 
 %changelog
 %autochangelog
