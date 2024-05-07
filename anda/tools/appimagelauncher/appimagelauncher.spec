@@ -13,9 +13,8 @@ Patch0:         use-fedora-qtlinguist.patch
 
 
 BuildRequires:  make
-BuildRequires:  mold
 BuildRequires:  cmake
-BuildRequires:  clang
+BuildRequires:  gcc-c++
 BuildRequires:  glib2-devel
 BuildRequires:  cairo-devel
 BuildRequires:  fuse-devel
@@ -41,7 +40,6 @@ BuildRequires:  /usr/bin/ar
 
 
 %build
-%define __cxx clang++
 %cmake -DBUILD_SHARED_LIBS:BOOL=OFF \ -DUSE_SYSTEM_LIBARCHIVE=ON \
  -DUSE_SYSTEM_LIBCURL=ON \
  -DUSE_SYSTEM_SQUASHFUSE=ON \
@@ -49,12 +47,7 @@ BuildRequires:  /usr/bin/ar
  -DUSE_SYSTEM_CURL=ON \
  -DUSE_SYSTEM_XDGUTILS=ON \
  -DUSE_SYSTEM_LIBAPPIMAGE=ON
-
-cat<<EOF > build.sh
 %cmake_build
-EOF
-chmod +x build.sh
-mold -run ./build.sh
 
 %install
 %cmake_install
