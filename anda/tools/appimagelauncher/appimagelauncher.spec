@@ -40,14 +40,22 @@ BuildRequires:  /usr/bin/ar
 
 
 %build
-%cmake -DBUILD_SHARED_LIBS:BOOL=OFF \ -DUSE_SYSTEM_LIBARCHIVE=ON \
+%cmake \
+ -DBUILD_SHARED_LIBS:BOOL=OFF \
+ -DUSE_SYSTEM_LIBARCHIVE=ON \
  -DUSE_SYSTEM_LIBCURL=ON \
  -DUSE_SYSTEM_SQUASHFUSE=ON \
  -DUSE_SYSTEM_BOOST=ON \
  -DUSE_SYSTEM_CURL=ON \
  -DUSE_SYSTEM_XDGUTILS=ON \
- -DUSE_SYSTEM_LIBAPPIMAGE=ON
+ -DUSE_SYSTEM_LIBAPPIMAGE=ON \
+ -DBUILD_TESTING='OFF' \
+ -Wno-dev
+
+make libappimageupdate libappimageupdate-qt
 %cmake_build
+make
+
 
 %install
 %cmake_install
