@@ -81,6 +81,7 @@ Examples for Lomiri-ui-toolkit.
 
 %build
 %{qmake_qt5} 'CONFIG+=ubuntu-uitk-compat' 'CONFIG+=test'
+export CXXFLAGS="$CXXFLAGS -Wno-template-id-cdtor"
 
 %make_build
 
