@@ -7,7 +7,7 @@ Name:           libappimage
 
 
 Version:        %{libver_format}
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Implements functionality for dealing with AppImage files
 
 License:        MIT

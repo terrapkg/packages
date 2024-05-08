@@ -18,7 +18,7 @@ Source0:        %{forgesource}
 Provides:       %{long_name} = %{version}-%{release}
 Provides:       %{long_name}-core = %{version}-%{release}
 
-BuildRequires:  dotnet-sdk-7.0
+BuildRequires:  dotnet-sdk-8.0
 # Require DPKG, so that we can use the `dpkg-architecture` command. which makes the build script happy.
 # TODO: Better solution: Patch out the debian-specific packaging code.
 BuildRequires:  dpkg-dev

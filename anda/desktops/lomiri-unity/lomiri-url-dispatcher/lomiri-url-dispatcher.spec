@@ -4,7 +4,7 @@
 
 Name:           lomiri-url-dispatcher
 Version:        0.1.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A small library for handling URLs over dbus
 
 License:        LGPL-3.0

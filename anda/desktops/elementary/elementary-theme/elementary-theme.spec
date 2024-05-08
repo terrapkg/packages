@@ -3,8 +3,8 @@
 
 Name:           elementary-theme
 Summary:        Elementary GTK+ Stylesheet
-Version:        7.3.0
-Release:        1%{?dist}
+Version:        8.0.0
+Release:        1%?dist
 License:        GPL-3.0
 
 URL:            https://github.com/elementary/stylesheet
