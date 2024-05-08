@@ -82,6 +82,7 @@ desktop-file-validate \
 
 %{_datadir}/metainfo/granite-7.metainfo.xml
 %{_datadir}/icons/hicolor/*/apps/io.elementary.granite-7.svg
+%{_datadir}/themes/Granite/
 
 
 %files devel
