@@ -100,11 +100,13 @@ mold -run bin/nim cc -d:nimCallDepthLimit=10000 -r tools/niminst/niminst --var:v
 
 sh ./install.sh %buildroot/usr/bin
 
-mkdir -p %buildroot/%_bindir %buildroot/%_datadir/bash-completion/completions %buildroot/usr/lib/nim
+mkdir -p %buildroot/%_bindir %buildroot/%_datadir/bash-completion/completions %buildroot/usr/lib/nim %buildroot%_datadir
 install -Dpm755 bin/nim{grep,suggest,pretty} %buildroot/%_bindir
 install -Dpm644 tools/nim.bash-completion %buildroot/%_datadir/bash-completion/completions/nim
 install -Dpm644 dist/nimble/nimble.bash-completion %buildroot/%_datadir/bash-completion/completions/nimble
 install -Dpm644 -t%buildroot/%_mandir/man1 %SOURCE1 %SOURCE2 %SOURCE3 %SOURCE4
+mv %buildroot%_bindir/nim %buildroot%_datadir/
+ln -s %_datadir/nim/bin/nim %buildroot%_bindir/nim
 
 %ifarch x86_64
 mkdir -p %buildroot/%_docdir/%name/html
@@ -129,6 +131,7 @@ rm %buildroot%_bindir/*.bat || true
 %_bindir/nim{,ble}
 %_mandir/man1/nim{,ble}.1*
 %_datadir/bash-completion/completions/nim{,ble}
+%_datadir/nim/
 %_prefix/lib/nim/
 %_sysconfdir/nim/
 
