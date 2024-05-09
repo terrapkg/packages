@@ -13,7 +13,7 @@ enabled_metadata=1
 [terra-source]
 name=Terra $releasever - Source
 #baseurl=https://repos.fyralabs.com/terra$releasever-source
-metalink=https://tetsudou.fyralabs.com/metalink?repo=terra$releasever&arch=$basearch
+metalink=https://tetsudou.fyralabs.com/metalink?repo=terra$releasever-source&arch=$basearch
 metadata_expire=6h
 type=rpm
 gpgcheck=1
