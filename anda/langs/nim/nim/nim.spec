@@ -24,6 +24,7 @@ order of priority).
 
 %package tools
 Summary:	Tools for Nim programming language
+Requires:	nim = %version-%release
 %description tools
 Nim is a compiled, garbage-collected systems programming language with a
 design that focuses on efficiency, expressiveness, and elegance (in that

@@ -17,8 +17,11 @@ Source2:		nimgrep.1
 Source3:		nimble.1
 Source4:		nimsuggest.1
 BuildRequires:	gcc mold git gcc-c++ nodejs openssl-devel pkgconfig(bash-completion) gc-devel pcre pcre-devel
-Requires:		redhat-rpm-config gcc
+Requires:		gcc
+# for some absurd reason this doesn't come with nimble, so…
+Requires:       nimble
 Conflicts:		choosenim
+Conflicts:      nim
 # somehow wrong name and never noticed
 Provides:		nim-nightly = %version-%release
 Obsoletes:		nim-nighlty < 2.1.1^20240404.9e1b170-2
@@ -32,6 +35,7 @@ order of priority).
 
 %package tools
 Summary:	Tools for Nim programming language
+Requires:   nim-nightly = %version-%release
 Provides:	nim-nightly-tools = %version-%release
 Obsoletes:	nim-nighlty-tools < 2.1.1^20240404.9e1b170-2
 
@@ -61,9 +65,6 @@ and its standard library.
 
 %prep
 %autosetup -n Nim-%commit
-# hack
-cp /usr/bin/mold /usr/bin/ld
-
 
 %build
 export CFLAGS="${CFLAGS} -Ofast"
@@ -74,17 +75,18 @@ export FCFLAGS="${FCFLAGS} -Ofast"
 export PATH="$(pwd):$(pwd)/bin:${PATH}"
 
 . ci/funs.sh
+cp /usr/bin/mold ld
 nimBuildCsourcesIfNeeded CFLAGS="${CFLAGS} -Ic_code -w -O3 -fno-strict-aliasing -fPIE" LDFLAGS="-ldl -lm -lrt -pie"
 
-nim c --noNimblePath --skipUserCfg --skipParentCfg --hints:off -d:danger koch.nim
-koch boot -d:release -d:nimStrictMode --lib:lib
+mold -run nim c --noNimblePath --skipUserCfg --skipParentCfg --hints:off -d:danger koch.nim
+mold -run koch boot -d:release -d:nimStrictMode --lib:lib
 
 %ifarch x86_64
-koch docs &
+mold -run koch docs &
 %endif
-(cd lib; nim c --app:lib -d:danger -d:createNimRtl -t:-fPIE -l:-pie nimrtl.nim) &
-koch tools --skipUserCfg --skipParentCfg --hints:off -d:release -t:-fPIE -l:-pie &
-nim c -d:danger -t:-fPIE -l:-pie nimsuggest/nimsuggest.nim &
+(cd lib; mold -run nim c --app:lib -d:danger -d:createNimRtl -t:-fPIE -l:-pie nimrtl.nim) &
+mold -run koch tools --skipUserCfg --skipParentCfg --hints:off -d:release -t:-fPIE -l:-pie &
+mold -run nim c -d:danger -t:-fPIE -l:-pie nimsuggest/nimsuggest.nim &
 wait
 
 %ifarch x86_64
@@ -103,7 +105,6 @@ sh ./install.sh %buildroot/usr/bin
 mkdir -p %buildroot/%_bindir %buildroot/%_datadir/bash-completion/completions %buildroot/usr/lib/nim %buildroot%_datadir
 install -Dpm755 bin/nim{grep,suggest,pretty} %buildroot/%_bindir
 install -Dpm644 tools/nim.bash-completion %buildroot/%_datadir/bash-completion/completions/nim
-install -Dpm644 dist/nimble/nimble.bash-completion %buildroot/%_datadir/bash-completion/completions/nimble
 install -Dpm644 -t%buildroot/%_mandir/man1 %SOURCE1 %SOURCE2 %SOURCE3 %SOURCE4
 mv %buildroot%_bindir/nim %buildroot%_datadir/
 ln -s %_datadir/nim/bin/nim %buildroot%_bindir/nim
@@ -128,17 +129,22 @@ rm %buildroot%_bindir/*.bat || true
 %files
 %license copying.txt dist/nimble/license.txt
 %doc doc/readme.txt
-%_bindir/nim{,ble}
-%_mandir/man1/nim{,ble}.1*
-%_datadir/bash-completion/completions/nim{,ble}
+%_bindir/nim
+%dnl %_bindir/nimble
+%_mandir/man1/nim.1*
+%_mandir/man1/nimble.1*
+%_datadir/bash-completion/completions/nim
 %_datadir/nim/
 %_prefix/lib/nim/
 %_sysconfdir/nim/
 
 %files tools
 %license copying.txt
-%_bindir/nim{grep,suggest,pretty}
-%_mandir/man1/nim{grep,suggest}.1*
+%_bindir/nimgrep
+%_bindir/nimsuggest
+%_bindir/nimpretty
+%_mandir/man1/nimgrep.1*
+%_mandir/man1/nimsuggest.1*
 
 %ifarch x86_64
 %files doc
