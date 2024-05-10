@@ -18,7 +18,7 @@ git checkout v%version
 
 %build
 nimble setup -y
-nim c %nim_c src/nimble
+nimble build %nim_c src/nimble
 
 %install
 install -Dpm755 src/nimble %buildroot%_bindir/nimble
