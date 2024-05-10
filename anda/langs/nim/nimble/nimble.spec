@@ -4,17 +4,17 @@ Release:        1%?dist
 Summary:        Package manager for the Nim programming language
 License:        BSD
 URL:            https://github.com/nim-lang/nimble
-Source0:        %url/archive/refs/tags/v%version.tar.gz
 Source1:        nimble.1
 # We use `nim` to get `nimble`… to build `nimble`
-BuildRequires:  nim anda-srpm-macros
+BuildRequires:  nim anda-srpm-macros git-core
 Conflicts:      nim
 
 %description
 %summary.
 
 %prep
-%autosetup
+git clone %url .
+git checkout v%version
 
 %build
 nimble setup -y
