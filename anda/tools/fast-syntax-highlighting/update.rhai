@@ -1,1 +1,1 @@
-rpm.version(gh("z-shell/F-Sy-H"));
+rpm.version(gh("zdharma-continuum/fast-syntax-highlighting"));
