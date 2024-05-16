@@ -15,6 +15,10 @@ Source:         %{crates_source}
 Patch:          starship-fix-metadata-auto.diff
 
 BuildRequires:  cargo-rpm-macros >= 24
+BuildRequires:  anda-srpm-macros
+BuildRequires:  cmake
+BuildRequires:  pkgconfig
+BuildRequires:  git-core
 
 %global _description %{expand:
 The minimal, blazing-fast, and infinitely customizable prompt for any
