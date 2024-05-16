@@ -5,20 +5,16 @@
 
 Name:           rust-starship
 Version:        1.19.0
-Release:        1%?dist
+Release:        %autorelease
 Summary:        Minimal, blazing-fast, and infinitely customizable prompt for any shell! ☄🌌️
 
 License:        ISC
 URL:            https://crates.io/crates/starship
 Source:         %{crates_source}
 # Automatically generated patch to strip dependencies and normalize metadata
-Patch0:         starship-fix-metadata-auto.diff
+Patch:          starship-fix-metadata-auto.diff
 
 BuildRequires:  cargo-rpm-macros >= 24
-BuildRequires:  anda-srpm-macros
-BuildRequires:  cmake
-BuildRequires:  pkgconfig
-BuildRequires:  git-core
 
 %global _description %{expand:
 The minimal, blazing-fast, and infinitely customizable prompt for any
@@ -175,10 +171,10 @@ use the "starship-battery" feature of the "%{crate}" crate.
 %cargo_prep_online
 
 %build
-%{cargo_build}
+%cargo_build
 
 %install
-%{cargo_install}
+%cargo_install
 
 %if %{with check}
 %check
