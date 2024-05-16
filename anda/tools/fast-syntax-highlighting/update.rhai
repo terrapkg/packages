@@ -1,1 +1,1 @@
-rpm.version(gh("zdharma-continuum/fast-syntax-highlighting"));
+rpm.version(gh_tag("zdharma-continuum/fast-syntax-highlighting"));
