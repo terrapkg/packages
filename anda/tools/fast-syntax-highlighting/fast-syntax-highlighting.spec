@@ -1,5 +1,5 @@
 Name: fast-syntax-highlighting
-Version: 1.67
+Version: 1.55
 Release: 1%?dist
 
 Summary: Feature-rich Syntax Highlighting for Zsh
