@@ -15,6 +15,7 @@ URL:            https://github.com/electron/asar
 Source0:        %url/archive/refs/tags/v%version.tar.gz
 Requires:       nodejs
 BuildRequires:  nodejs-npm
+BuildArch:      noarch
 
 %description
 Asar is a simple extensive archive format, it works like `tar` that concatenates all files
