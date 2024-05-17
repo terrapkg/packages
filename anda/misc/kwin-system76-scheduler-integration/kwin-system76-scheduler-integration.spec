@@ -8,7 +8,7 @@ Name:       kwin-system76-scheduler-integration
 %forgemeta
 
 Version:    0.1
-Release:    1%?dist
+Release:    2%?dist
 Summary:    Notify the System76 Scheduler which app has focus so it can be prioritized
 License:    MIT
 URL:        %forgeurl
@@ -16,7 +16,8 @@ Source0:    %forgesource
 Source1:    com.system76.Scheduler.dbusproxy.service
 Requires:   bash dbus-tools system76-scheduler kde-cli-tools systemd kf6-kconfig
 BuildRequires: systemd-rpm-macros
-
+# We require the Qt 4 package to provide the `qdbus` command
+Requires:   qt
 %description
 System76 Scheduler is a service which optimizes Linux's CPU scheduler and
 automatically assigns process priorities for improved desktop responsiveness.
