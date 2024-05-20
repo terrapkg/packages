@@ -3,7 +3,7 @@
 
 # https://github.com/xyproto/textoutput
 %global goipath         github.com/xyproto/textoutput
-Version:                1.16.3
+Version:                1.16.4
 
 %gometa -f
 
