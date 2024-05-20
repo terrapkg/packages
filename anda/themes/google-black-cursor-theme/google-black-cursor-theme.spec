@@ -32,5 +32,5 @@ cp %{SOURCE2} %{buildroot}/%{_datadir}/licenses/%{name}/LICENSE
 %{_datadir}/icons/Google*
 
 %changelog
-* Tue May 21 2024 matteodev <me@matteodev.xyz> - 2.0.0
+* Tue May 21 2024 matteodev8 <me@matteodev.xyz> - 2.0.0
 - Initial package (mostly copied from bibata-cursor-theme)
