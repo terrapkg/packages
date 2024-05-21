@@ -6,6 +6,7 @@ License:        MIT
 URL:            https://www.usebruno.com
 Source0:        https://github.com/usebruno/bruno/archive/refs/tags/v%version.tar.gz
 Source1:        com.usebruno.app.Bruno.desktop
+Source2:        bruno.sh
 Requires:       electron alsa-lib
 BuildRequires:  nodejs-npm asar electron
 
