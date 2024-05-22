@@ -109,9 +109,9 @@ mv %buildroot%_bindir/nim %buildroot%_datadir/
 ln -s %_datadir/nim/bin/nim %buildroot%_bindir/nim
 
 %ifarch x86_64
-mkdir -p %buildroot/%_docdir/%name/html
-cp -a doc/html/*.html %buildroot/%_docdir/%name/html/
-cp tools/dochack/dochack.js %buildroot/%_docdir/%name/
+mkdir -p %buildroot/%_docdir/%name/html || true
+cp -a doc/html/*.html %buildroot/%_docdir/%name/html/ || true
+cp tools/dochack/dochack.js %buildroot/%_docdir/%name/ || true
 %endif
 
 cp -r lib/* %buildroot%_prefix/lib/nim/
