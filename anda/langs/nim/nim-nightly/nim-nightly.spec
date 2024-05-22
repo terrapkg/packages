@@ -107,9 +107,9 @@ install -Dpm644 dist/nimble/nimble.bash-completion %buildroot/%_datadir/bash-com
 install -Dpm644 -t%buildroot/%_mandir/man1 %SOURCE1 %SOURCE2 %SOURCE3 %SOURCE4
 
 %ifarch x86_64
-mkdir -p %buildroot/%_docdir/%name/html
-cp -a doc/html/*.html %buildroot/%_docdir/%name/html/
-cp tools/dochack/dochack.js %buildroot/%_docdir/%name/
+mkdir -p %buildroot/%_docdir/%name/html || true
+cp -a doc/html/*.html %buildroot/%_docdir/%name/html/ || true
+cp tools/dochack/dochack.js %buildroot/%_docdir/%name/ || true
 %endif
 
 cp -r lib/* %buildroot%_prefix/lib/nim/
