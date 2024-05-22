@@ -1,7 +1,7 @@
 Name:       ayatana-indicator-datetime
 Summary:    A GTK implementation of the StatusNotifierItem Specification
-Version:    24.2.0
-Release:    1%{?dist}
+Version:    24.5.0
+Release:    1%?dist
 License:    GPL-3.0
 URL:        https://github.com/AyatanaIndicators/ayatana-indicator-datetime
 Source0:    %{url}/archive/refs/tags/%{version}.tar.gz
