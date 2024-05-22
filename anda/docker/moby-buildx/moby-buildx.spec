@@ -1,7 +1,7 @@
 %define debug_package %nil
 
 Name:           moby-buildx
-Version:        0.14.0
+Version:        0.14.1
 Release:        1%?dist
 Summary:        Docker CLI plugin for extended build capabilities with BuildKit
 
