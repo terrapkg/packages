@@ -1,5 +1,5 @@
 Name:			pantheon-tweaks
-Version:		2.0.1
+Version:		2.0.2
 Release:		1%?dist
 Summary:		A system settings panel for the Pantheon desktop environment
 License:		GPL-3.0
