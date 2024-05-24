@@ -1,8 +1,8 @@
 %define debug_package %nil
 
 Name:		neovide
-Version:	0.13.0
-Release:	2%?dist
+Version:	0.13.1
+Release:	1%?dist
 Summary:	No Nonsense Neovim Client in Rust
 License:	MIT
 URL:		https://neovide.dev/
