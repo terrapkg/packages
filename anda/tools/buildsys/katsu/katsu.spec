@@ -1,8 +1,8 @@
 %define debug_package %nil
 
 Name:			katsu
-Version:		0.4.0
-Release:		2%?dist
+Version:		0.5.0
+Release:		1%?dist
 Summary:		The vicious image builder
 License:		MIT
 URL:			https://github.com/FyraLabs/katsu
