@@ -23,7 +23,7 @@ BuildRequires:  cmake3
 BuildRequires:  cpr-devel
 BuildRequires:  gcc-c++
 BuildRequires:  libappimage-devel curl-devel libX11-devel zlib-devel fuse-devel librsvg2-devel cairo-devel git-core
-BuildRequires:  nlohmann-json-devel
+BuildRequires:  json-devel
 BuildRequires:  pkgconfig(libgcrypt)
 BuildRequires:  pkgconfig(gpgme)
 BuildRequires:  pkgconfig(Qt5)
