@@ -1,5 +1,5 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-system-settings
-%global commit a60ae1f97d82f69642a82b9b27925969190a5a62
+%global commit 7b09d061ff035d98be3ea202dc5b4a73ee8a61b3
 %forgemeta
 
 Name:       lomiri-system-settings
