@@ -2,7 +2,7 @@
   "repoOwner": "terrapkg",
   "repoName": "packages",
   "resetAuthor": true,
-  "targetBranchChoices": ["f38", "f39", "f40", "frawhide"],
+  "targetBranchChoices": ["f39", "f40", "frawhide"],
   "branchLabelMapping": {
     "^sync-(.+)$": "$1"
   }
