@@ -21,7 +21,7 @@ nimble setup -y
 nim c %nim_c src/dive
 
 %install
-install -Dpm755 dive %buildroot%_bindir/dive
+install -Dpm755 src/dive %buildroot%_bindir/dive
 
 %files
 %doc README.md
