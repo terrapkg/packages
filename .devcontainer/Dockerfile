@@ -1,4 +1,4 @@
-ARG VARIANT="38"
+ARG VARIANT="rawhide"
 FROM fedora:${VARIANT}
 
 RUN useradd -m vscode
