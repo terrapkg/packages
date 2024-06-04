@@ -18,6 +18,7 @@ ArmCord is a custom client designed to enhance your Discord experience
 while keeping everything lightweight.
 
 %prep
+rm -rf *
 git clone %url .
 git checkout v%version
 
