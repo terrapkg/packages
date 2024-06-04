@@ -2,8 +2,8 @@
 %global crate maturin
 
 Name:           rust-terra-maturin
-Version:        1.5.1
-Release:        %autorelease
+Version:        1.6.0
+Release:        1%?dist
 Summary:        Build and publish crates with pyo3, rust-cpython and cffi bindings as well as rust binaries as python packages
 
 License:        MIT OR Apache-2.0
