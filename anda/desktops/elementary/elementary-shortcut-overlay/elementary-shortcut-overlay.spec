@@ -3,8 +3,8 @@
 
 Name:           elementary-shortcut-overlay
 Summary:        Native, OS-wide shortcut overlay
-Version:        2.0.1
-Release:        %autorelease
+Version:        8.0.0
+Release:        1%?dist
 License:        GPL-3.0
 
 URL:            https://github.com/elementary/shortcut-overlay
