@@ -18,10 +18,12 @@ BuildRequires:  vala >= 0.34.1
 BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(glib-2.0) >= 2.32.0
-BuildRequires:  pkgconfig(granite) >= 6.0.0
-BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(polkit-agent-1)
 BuildRequires:  pkgconfig(polkit-gobject-1)
+BuildRequires:  pkgconfig(libadwaita-1)
+BuildRequires:  pkgconfig(gobject-2.0)
+BuildRequires:  pkgconfig(granite-7)
+BuildRequires:  pkgconfig(gtk4)
 
 %description
 An agent for Polkit authorization designed for Pantheon.
@@ -50,7 +52,7 @@ desktop-file-validate \
     %{buildroot}/%{_datadir}/applications/%{appname}.desktop
 
 appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
+    %{buildroot}/%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %files -f %{appname}.lang
@@ -62,7 +64,7 @@ appstream-util validate-relax --nonet \
 %{_libexecdir}/policykit-1-pantheon/
 
 %{_datadir}/applications/%{appname}.desktop
-%{_datadir}/metainfo/%{appname}.appdata.xml
+%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %changelog
