@@ -51,8 +51,8 @@ desktop-file-validate \
 desktop-file-validate \
     %{buildroot}/%{_datadir}/applications/%{appname}.desktop
 
-%dnl appstream-util validate-relax --nonet \
-%dnl    %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
+appstream-util validate-relax --nonet \
+    %{buildroot}/%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %files -f %{appname}.lang
@@ -64,7 +64,7 @@ desktop-file-validate \
 %{_libexecdir}/policykit-1-pantheon/
 
 %{_datadir}/applications/%{appname}.desktop
-%dnl %{_datadir}/metainfo/%{appname}.appdata.xml
+%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %changelog
