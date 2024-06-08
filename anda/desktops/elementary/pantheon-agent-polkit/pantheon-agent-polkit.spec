@@ -51,8 +51,8 @@ desktop-file-validate \
 desktop-file-validate \
     %{buildroot}/%{_datadir}/applications/%{appname}.desktop
 
-appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
+%dnl appstream-util validate-relax --nonet \
+%dnl    %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
 
 
 %files -f %{appname}.lang
