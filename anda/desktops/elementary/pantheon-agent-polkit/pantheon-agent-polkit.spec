@@ -64,7 +64,7 @@ desktop-file-validate \
 %{_libexecdir}/policykit-1-pantheon/
 
 %{_datadir}/applications/%{appname}.desktop
-%{_datadir}/metainfo/%{appname}.appdata.xml
+%dnl %{_datadir}/metainfo/%{appname}.appdata.xml
 
 
 %changelog
