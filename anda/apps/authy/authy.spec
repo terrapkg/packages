@@ -7,11 +7,11 @@
 
 Name: authy
 Version: 2.5.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Two factor authentication desktop application
 License: Unlicense
 URL: https://authy.com/
-Source0: https://api.snapcraft.io/api/v1/snaps/download/H8ZpNgIoPyvmkgxOWw5MSzsXK1wRZiHn_23.snap
+Source0: https://github.com/terrapkg/pkg-authy/raw/%version/H8ZpNgIoPyvmkgxOWw5MSzsXK1wRZiHn_23.snap
 Requires: gtk3
 Requires: nss
 BuildRequires: squashfs-tools desktop-file-utils
