@@ -50,7 +50,6 @@ Foundation.
 
 %prep
 %autosetup -n %{srcname}-%{version} -N
-git apply %PATCH0 # The .patch file has Git binary patches, so we need to apply it manually with Git
 
 
 %build
