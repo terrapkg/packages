@@ -12,9 +12,6 @@ License:        LGPL-2.0-or-later
 URL:            https://github.com/elementary/photos
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 
-# RIP the publishing plugins (sorry for the "wide" patch, having issues with just the relevant commits)
-Patch0:         https://github.com/elementary/photos/compare/7261606a05d1f41116aba5c86b62d1f739419ed1..09e55943b266bc2861b913251cb834169d81743e.patch
-
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib
