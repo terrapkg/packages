@@ -19,6 +19,7 @@ BuildRequires:  meson >= 0.46.0
 BuildRequires:  vala
 BuildRequires:  fdupes
 BuildRequires:  git-core
+BuildRequires:  cmake
 
 BuildRequires:  pkgconfig(gee-0.8) >= 0.8.5
 BuildRequires:  pkgconfig(geocode-glib-2.0)
@@ -41,6 +42,7 @@ BuildRequires:  pkgconfig(libraw) >= 0.13.2
 BuildRequires:  pkgconfig(libwebp) >= 0.4.4
 BuildRequires:  pkgconfig(sqlite3) >= 3.5.9
 BuildRequires:  pkgconfig(libportal)
+BuildRequires:  pkgconfig(libportal-gtk3)
 
 Requires:       hicolor-icon-theme
 
