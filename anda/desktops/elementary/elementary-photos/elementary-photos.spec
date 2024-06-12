@@ -73,8 +73,8 @@ Foundation.
 desktop-file-validate \
     %{buildroot}/%{_datadir}/applications/%{appname}.desktop
 
-desktop-file-validate \
-    %{buildroot}/%{_datadir}/applications/%{appname}-viewer.desktop
+%dnl desktop-file-validate \
+%dnl     %{buildroot}/%{_datadir}/applications/%{appname}-viewer.desktop
 
 appstream-util validate-relax --nonet \
     %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
@@ -91,7 +91,7 @@ appstream-util validate-relax --nonet \
 %{_libexecdir}/%{appname}/
 
 %{_datadir}/applications/%{appname}.desktop
-%{_datadir}/applications/%{appname}-viewer.desktop
+%dnl %{_datadir}/applications/%{appname}-viewer.desktop
 %{_datadir}/glib-2.0/schemas/%{appname}.gschema.xml
 %{_datadir}/icons/hicolor/*/apps/%{appname}.svg
 %{_datadir}/icons/hicolor/*/apps/%{appname}-viewer.svg
