@@ -94,7 +94,7 @@ appstream-util validate-relax --nonet \
 %dnl %{_datadir}/applications/%{appname}-viewer.desktop
 %{_datadir}/glib-2.0/schemas/%{appname}.gschema.xml
 %{_datadir}/icons/hicolor/*/apps/%{appname}.svg
-%{_datadir}/icons/hicolor/*/apps/%{appname}-viewer.svg
+%dnl %{_datadir}/icons/hicolor/*/apps/%{appname}-viewer.svg
 %{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
