@@ -40,6 +40,7 @@ BuildRequires:  pkgconfig(libhandy-1)
 BuildRequires:  pkgconfig(libraw) >= 0.13.2
 BuildRequires:  pkgconfig(libwebp) >= 0.4.4
 BuildRequires:  pkgconfig(sqlite3) >= 3.5.9
+BuildRequires:  pkgconfig(libportal)
 
 Requires:       hicolor-icon-theme
 
