@@ -15,6 +15,7 @@ BuildRequires:  pkgconfig(gio-2.0) >= 2.66
 BuildRequires:  pkgconfig(gtk4) >= 4.10.0
 BuildRequires:  pkgconfig(vte-2.91-gtk4) >= 0.72.0
 BuildRequires:  pkgconfig(libadwaita-1)
+BuildRequires:  pkgconfig(libusb-1.0)
 BuildRequires:  openssl-devel
 BuildRequires:  libappstream-glib
 BuildRequires:  desktop-file-utils
