@@ -25,6 +25,7 @@ BuildRequires:  pkgconfig(granite)
 BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(libhandy-1) >= 1.0.0
 BuildRequires:  pkgconfig(webkit2gtk-4.1)
+BuildRequires:  pkgconfig(gcr-4)
 BuildRequires:  fdupes
 
 Requires:       NetworkManager
