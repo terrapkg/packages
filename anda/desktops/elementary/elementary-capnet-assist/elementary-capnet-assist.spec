@@ -27,6 +27,7 @@ BuildRequires:  pkgconfig(libhandy-1) >= 1.0.0
 BuildRequires:  pkgconfig(webkit2gtk-4.1)
 BuildRequires:  pkgconfig(gcr-4)
 BuildRequires:  pkgconfig(libadwaita-1)
+BuildRequires:  pkgconfig(webkitgtk-6.0)
 BuildRequires:  fdupes
 
 Requires:       NetworkManager
