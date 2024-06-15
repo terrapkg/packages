@@ -38,3 +38,9 @@ Recommends:     android-tools
 %files
 %doc README.md
 %license LICENSE
+%_bindir/envision
+%_datadir/applications/org.gabmus.envision.desktop
+%_datadir/envision/
+%_iconsdir/hicolor/scalable/apps/org.gabmus.envision.svg
+%_iconsdir/hicolor/symbolic/apps/org.gabmus.envision-symbolic.svg
+%_metainfodir/org.gabmus.envision.appdata.xml
