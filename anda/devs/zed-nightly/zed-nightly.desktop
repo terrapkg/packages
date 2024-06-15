@@ -1,0 +1,14 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Zed Nightly
+GenericName=Text Editor
+Comment=A high-performance, multiplayer code editor.
+TryExec=/usr/bin/zed
+StartupNotify=true
+StartupWMClass=dev.zed.Zed-Nightly
+Exec=/usr/bin/zed %F
+Icon=zed-nightly
+Categories=Utility;TextEditor;Development;IDE;
+Keywords=zed;
+MimeType=text/plain;inode/directory;
