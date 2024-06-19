@@ -1,5 +1,5 @@
-%global commit 4257a341bd08c1fa4d5329b7ecc75cf15563aa23
-%global ver 1.8.30
+%global commit 8f19c751dc296cedb9a921badb7a02a8c0cb1aeb
+%global ver 1.8.31
 %global commit_date 20240219
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
