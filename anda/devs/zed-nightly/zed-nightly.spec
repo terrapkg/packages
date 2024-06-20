@@ -68,7 +68,7 @@ export ZED_UPDATE_EXPLANATION="Run dnf up to update Zed Nightly from Terra."
 
 echo "nightly" > crates/zed/RELEASE_CHANNEL
 
-cargo build --release --frozen --package zed --package cli
+cargo build --release --package zed --package cli
 script/generate-licenses
 
 %install
