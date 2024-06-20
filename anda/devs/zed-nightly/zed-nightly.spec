@@ -1,7 +1,7 @@
-%global commit 64bb79b71dc2b70b627a264c9b63ea1a8c8dc524
+%global commit 0129d4e2506d5ec5e50ef0968382770b9abec390
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20240613
-%global ver v0.56.0
+%global commit_date 20240619
+%global ver v0.142.0
 
 %bcond_without check
 %global debug_package %{nil}
@@ -17,7 +17,6 @@ Summary:        Zed is a high-performance, multiplayer code editor
 License:        MIT
 URL:            https://zed.dev/
 Source0:        https://github.com/zed-industries/zed/archive/%{commit}.zip
-# Source1:        zed-nightly.desktop
 
 Conflicts:      zed
 Provides:       zed
