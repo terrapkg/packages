@@ -1,7 +1,7 @@
 project pkg {
-	rpm {
-		spec = "zed-nightly.spec"
-	}
+  rpm {
+    spec = "zed-nightly.spec"
+  }
   labels {
     nightly = 1
   }
