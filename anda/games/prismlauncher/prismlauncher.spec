@@ -23,7 +23,7 @@ Name:             prismlauncher
 Name:             prismlauncher-qt5
 %endif
 Version:          8.4
-Release:          1%?dist
+Release:          2%?dist
 Summary:          Minecraft launcher with ability to manage multiple instances
 # see COPYING.md for more information
 # each file in the source also contains a SPDX-License-Identifier header that declares its license
@@ -46,10 +46,15 @@ BuildRequires:    cmake(Qt%{qt_version}Network) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Test) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Widgets) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Xml) >= %{min_qt_version}
+BuildRequires:    tomlplusplus-devel
 
 %if %{with qt6}
 BuildRequires:    cmake(Qt6Core5Compat)
+BuildRequires:    quazip-qt6-devel
+%else
+BuildRequires:    quazip-qt5-devel
 %endif
+
 
 BuildRequires:    pkgconfig(libcmark)
 BuildRequires:    pkgconfig(scdoc)
@@ -132,6 +137,9 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 
 
 %changelog
+* Sun Jun 23 2024 Trung Lê <8@tle.id.au> - 8.2-2
+- update to 8.4. Add quazip-qt deps
+
 * Wed Apr 03 2024 seth <getchoo at tuta dot io> - 8.2-2
 - move JREs to weak deps, add java 21 for snapshots
 
