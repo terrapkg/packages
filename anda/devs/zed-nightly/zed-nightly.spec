@@ -64,7 +64,6 @@ envsubst < "crates/zed/resources/flatpak/zed.metainfo.xml.in" > $APP_ID.metainfo
 
 %build
 export ZED_UPDATE_EXPLANATION="Run dnf up to update Zed Nightly from Terra."
-export CARGO_BUILD_JOBS=4 # Slow down build to avoid OOM
 echo "nightly" > crates/zed/RELEASE_CHANNEL
 
 cargo build --release --package zed --package cli
