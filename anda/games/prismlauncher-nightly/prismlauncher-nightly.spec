@@ -1,13 +1,11 @@
 %global real_name prismlauncher
 %global nice_name PrismLauncher
 
-%global commit 3ef5cd20f4fa8456d581ab6c00664cf7288014fc
+%global commit 98d68bafeb66bbe519bf6cfbcd6689ab8d30ff36
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global libnbtplusplus_commit a5e8fd52b8bf4ab5d5bcc042b2a247867589985f
-%global quazip_commit 6117161af08e366c37499895b00ef62f93adc345
-%global tomlplusplus_commit 7eb2ffcc09f8e9890dc0b77ff8ab00fc53b1f2b8
 
-%global commit_date 20240608
+%global commit_date 20240624
 %global snapshot_info %{commit_date}.%{shortcommit}
 
 %bcond_without qt6
@@ -40,8 +38,6 @@ Group:            Amusements/Games
 URL:              https://prismlauncher.org/
 Source0:          https://github.com/PrismLauncher/PrismLauncher/archive/%{commit}/%{real_name}-%{shortcommit}.tar.gz
 Source1:          https://github.com/PrismLauncher/libnbtplusplus/archive/%{libnbtplusplus_commit}/libnbtplusplus-%{libnbtplusplus_commit}.tar.gz
-Source2:          https://github.com/stachenov/quazip/archive/%{quazip_commit}/quazip-%{quazip_commit}.tar.gz
-Source3:          https://github.com/marzer/tomlplusplus/archive/%{tomlplusplus_commit}/tomlplusplus-%{tomlplusplus_commit}.tar.gz
 Patch0:           0001-find-cmark-with-pkgconfig.patch
 
 BuildRequires:    cmake >= 3.15
@@ -50,6 +46,7 @@ BuildRequires:    gcc-c++
 BuildRequires:    java-17-openjdk-devel
 BuildRequires:    desktop-file-utils
 BuildRequires:    libappstream-glib
+BuildRequires:    tomlplusplus-devel
 BuildRequires:    cmake(ghc_filesystem)
 BuildRequires:    cmake(Qt%{qt_version}Concurrent) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Core) >= %{min_qt_version}
@@ -58,9 +55,13 @@ BuildRequires:    cmake(Qt%{qt_version}Network) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Test) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Widgets) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Xml) >= %{min_qt_version}
+BuildRequires:    cmake(Qt%{qt_version}NetworkAuth) >= %{min_qt_version}
 
 %if %{with qt6}
 BuildRequires:    cmake(Qt6Core5Compat)
+BuildRequires:    quazip-qt6-devel
+%else
+BuildRequires:    quazip-qt5-devel
 %endif
 
 BuildRequires:    pkgconfig(libcmark)
@@ -103,13 +104,9 @@ multiple installations of Minecraft at once (Fork of MultiMC)
 %autosetup -p1 -n PrismLauncher-%{commit}
 
 tar -xzf %{SOURCE1} -C libraries
-tar -xvf %{SOURCE2} -C libraries
-tar -xvf %{SOURCE3} -C libraries
 
-rmdir libraries/{extra-cmake-modules,filesystem,libnbtplusplus,quazip,tomlplusplus,zlib}/
+rmdir libraries/{extra-cmake-modules,filesystem,libnbtplusplus,zlib}/
 mv -f libraries/libnbtplusplus-%{libnbtplusplus_commit} libraries/libnbtplusplus
-mv -f libraries/quazip-%{quazip_commit} libraries/quazip
-mv -f libraries/tomlplusplus-%{tomlplusplus_commit} libraries/tomlplusplus
 
 # Do not set RPATH
 sed -i "s|\$ORIGIN/||" CMakeLists.txt
@@ -156,6 +153,9 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 
 
 %changelog
+* Wed Jun 19 2024 Trung Lê <8 at tle dot id dot au> - 9.0^20240619.8014283-1
+- use system quazip-qt and tomlplusplus
+
 * Wed Jul 26 2023 seth <getchoo at tuta dot io> - 8.0^20230726.4f00012-1
 - remove terra-fractureiser-detector from recommends, use proper build platform,
   and add patches for epel/older fedora versions
