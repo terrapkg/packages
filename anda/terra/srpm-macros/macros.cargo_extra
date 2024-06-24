@@ -30,7 +30,6 @@ verbose = true\
 directory = "%{cargo_registry}"\
 \
 EOF\
-%{__rm} -f Cargo.lock \
 %{__rm} -f Cargo.toml.orig \
 )
 

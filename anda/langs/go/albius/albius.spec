@@ -4,7 +4,7 @@
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           albius
-Version:        %date.%shortcommit
+Version:        %commit_date.%shortcommit
 Release:        1%?dist
 Summary:        A Linux installer backend with support for SquashFS and OCI installations
 License:        GPL-3.0

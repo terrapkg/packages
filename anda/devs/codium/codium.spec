@@ -12,7 +12,7 @@
 %endif
 
 Name:			codium
-Version:		1.90.1.24165
+Version:		1.90.2.24171
 Release:		1%?dist
 Summary:		Code editing. Redefined.
 License:		MIT
@@ -28,6 +28,8 @@ VSCodium is a new choice of tool that combines the simplicity of a code editor
 with what developers need for the core edit-build-debug cycle.
 
 %prep
+mkdir stuff
+cd stuff
 tar xf %SOURCE0
 
 cat <<EOF > vscodium-bin-uri-handler.desktop
@@ -70,6 +72,7 @@ EOF
 %build
 
 %install
+cd stuff
 mkdir -p %buildroot%_datadir/doc/%name/ %buildroot%_datadir/licenses/%name
 install -Dm644 %SOURCE1 %buildroot%_docdir/%name/
 install -Dm644 %SOURCE2 %buildroot%_datadir/licenses/%name/
