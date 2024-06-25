@@ -77,7 +77,7 @@ mv gmp-api-%{commit1} gmp-api
 # Extract gst-plugins-bad-free archive
 tar -xf %{S:2}
 pushd gst-plugins-bad-%{gst_version}
-%patch2 -p1
+%patch 2 -p1
 popd
 
 
