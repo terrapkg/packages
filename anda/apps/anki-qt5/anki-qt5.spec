@@ -22,7 +22,7 @@ Anki is based on a theory called spaced repetition.
 %prep
 git clone https://github.com/ankitects/anki .
 git checkout %version
-%patch1 -p1
+%patch 1 -p1
 
 # See https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=anki-qt5
 
