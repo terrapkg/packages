@@ -3,7 +3,7 @@
 
 Name:           python-%{pypi_name}
 Version:        5.27.1
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Protocol Buffers
 
 License:        BSD-3-Clause
