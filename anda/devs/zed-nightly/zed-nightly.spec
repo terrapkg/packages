@@ -45,7 +45,6 @@ Code at the speed of thought - Zed is a high-performance, multiplayer code edito
 
 %prep
 %autosetup -n %{crate}-%{commit} -p1
-%cargo_prep_online
 
 export DO_STARTUP_NOTIFY="true"
 export APP_ID="%app_id"
