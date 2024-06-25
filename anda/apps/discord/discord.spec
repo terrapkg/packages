@@ -6,7 +6,7 @@
 %global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 Name:			discord
-Version:		0.0.57
+Version:		0.0.58
 Release:		1%?dist
 Summary:		Free Voice and Text Chat for Gamers
 URL:			https://discord.com
