@@ -4,7 +4,7 @@
 %endif
 
 Name:     xpadneo
-Version:  0.9.5
+Version:  0.9.6
 Release:  1%{?dist}
 Summary:  Advanced Linux Driver for Xbox One Wireless Gamepad
 Group:    System Environment/Kernel
@@ -12,6 +12,7 @@ License:  GPL-3.0
 URL:      https://github.com/atar-axis/xpadneo
 Source0:  %url/archive/v%version/%name-%version.tar.gz
 Source1:  modules-load-d-xpadneo.conf
+Source2:  io.github.xpadneo.metainfo.xml
 
 %global   srcname hid-%name
 
@@ -69,6 +70,7 @@ done
 install -Dm644 hid-xpadneo/etc-modprobe.d/xpadneo.conf %{buildroot}%{_modprobedir}/60-xpadneo.conf
 install -Dm644 %{SOURCE1} %{buildroot}%{_modulesloaddir}/xpadneo.conf
 install -Dm644 hid-xpadneo/etc-udev-rules.d/60-xpadneo.rules %{buildroot}%{_udevrulesdir}/60-xpadneo.rules
+install -Dm644 %{SOURCE2} %{buildroot}%{_datadir}/metainfo/io.github.xpadneo.metainfo.xml
 
 %files
 %doc NEWS.md docs/README.md docs/CONFIGURATION.md
@@ -76,6 +78,7 @@ install -Dm644 hid-xpadneo/etc-udev-rules.d/60-xpadneo.rules %{buildroot}%{_udev
 %{_modprobedir}/60-xpadneo.conf
 %{_modulesloaddir}/xpadneo.conf
 %{_udevrulesdir}/60-xpadneo.rules
+%{_datadir}/metainfo/io.github.xpadneo.metainfo.xml
 
 %changelog
 * Wed Oct 12 2022 Jan DrÃ¶gehoff <sentrycraft123@gmail.com> - 0.9.5-1

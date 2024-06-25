@@ -4,8 +4,8 @@
 %global crate gping
 
 Name:           rust-gping
-Version:        1.16.0
-Release:        1%{?dist}
+Version:        1.16.1
+Release:        1%?dist
 Summary:        Ping, but with a graph
 
 License:        MIT

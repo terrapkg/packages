@@ -29,7 +29,7 @@ jobs:
       - name: Set workspace as safe
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Generate build matrix
@@ -48,18 +48,11 @@ jobs:
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Set up git repository
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
-
-      - name: Cache buildroot
-        id: br-cache
-        uses: actions/cache@v3
-        with:
-          path: /var/cache
-          key: ${{ runner.os }}-br-${{ matrix.version }}-${{ matrix.pkg.arch }}
 
       - name: Include custom build template instead of package default
         run: |
@@ -75,9 +68,10 @@ jobs:
           x=${NAME//\//@}
           echo "name=$x" >> $GITHUB_OUTPUT
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: ${{ steps.art.outputs.name }}
+          compression-level: 0 # The RPMs are already compressed :p
           path: |
             anda-build/rpm/rpms/*
             anda-build/rpm/srpm/*

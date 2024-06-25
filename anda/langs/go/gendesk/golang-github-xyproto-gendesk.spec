@@ -5,7 +5,7 @@
 
 # https://github.com/xyproto/gendesk
 %global goipath         github.com/xyproto/gendesk
-Version:                1.0.9
+Version:                1.0.10
 %global tag             1.0.9
 %global commit          f074161864697100fdc21a99e09b567e82aeb1b9
 
@@ -20,7 +20,7 @@ of information.}
 %global godocs          README.md
 
 Name:           %{goname}
-Release:        2%{?dist}
+Release:        1%?dist
 Summary:        Generate .desktop files and download .png icons
 
 License:        BSD-3-Clause

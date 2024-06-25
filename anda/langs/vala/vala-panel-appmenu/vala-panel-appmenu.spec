@@ -1,10 +1,10 @@
 %global forgeurl https://gitlab.com/vala-panel-project/vala-panel-appmenu
-%global commit 7abc96e774fb7bc00318d834ad988dd229655c34
+%global commit 7631683adb35cd4fae387abf7ff1552aab4d2249
 %forgemeta
 
 Name:    vala-panel-appmenu
-Version: 0.7.6
-Release: 2%?dist
+Version: 24.05
+Release: 1%?dist
 License: LGPL-3.0-or-later
 Summary: Application Menu plugin for vala-panel
 Group:   System/GUI/Other
@@ -21,6 +21,7 @@ BuildRequires: vala
 BuildRequires: systemd-rpm-macros
 BuildRequires: pkgconfig(libxfce4panel-2.0)
 BuildRequires: pkgconfig(gtk+-2.0)
+BuildRequires: java-devel
 BuildRequires: pkgconfig(gtk+-3.0)
 BuildRequires: pkgconfig(libxfconf-0)
 BuildRequires: pkgconfig(budgie-1.0)
@@ -82,6 +83,13 @@ Summary:    Gtk3MenuShell D-Bus exporter
 %description -n vala-panel-appmenu-gtk-module
 GTK (2, 3) module that exports GtkMenuShells over D-Bus.
 
+
+%package -n vala-panel-appmenu-jayatana-module
+Summary:    Vala appmenu support for Java Swing applications
+
+%description -n vala-panel-appmenu-jayatana-module
+Vala appmenu support for Java Swing applications.
+
 %prep
 %forgeautosetup
 
@@ -109,6 +117,11 @@ GTK (2, 3) module that exports GtkMenuShells over D-Bus.
 %{_datadir}/dbus-1/services/com.canonical.AppMenu.Registrar.service
 %{_datadir}/glib-2.0/schemas/org.valapanel.appmenu.gschema.xml
 %{_datadir}/vala-panel/applets/org.valapanel.appmenu.plugin
+%{_datadir}/vala/vapi/appmenu-glib-translator.*
+%{_datadir}/gir-1.0/AppmenuGLibTranslator-*.gir
+%{_includedir}/appmenu-glib-translator/importer.h
+%{_libdir}/girepository-1.0/AppmenuGLibTranslator-*.typelib
+%{_libdir}/libappmenu-glib-translator.*
 
 %files -n vala-panel-appmenu-gtk-module
 %{_userunitdir}/appmenu-gtk-module.service
@@ -117,6 +130,11 @@ GTK (2, 3) module that exports GtkMenuShells over D-Bus.
 %{_libdir}/gtk-2.0/modules/libappmenu-gtk-module.so
 %{_libdir}/gtk-3.0/modules/libappmenu-gtk-module.so
 %{_datadir}/glib-2.0/schemas/org.appmenu.gtk-module.gschema.xml
+
+%files -n vala-panel-appmenu-jayatana-module
+%{_datadir}/java/*.jar
+%dir %{_libdir}/jayatana
+%{_libdir}/jayatana/*.so
 
 %files -n xfce4-vala-panel-appmenu-plugin
 %{_libdir}/xfce4/panel/plugins/libappmenu-xfce.so

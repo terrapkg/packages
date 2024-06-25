@@ -1,7 +1,7 @@
 Name:       ayatana-indicator-sound
 Summary:    Ayatana Indicator Sound Applet
-Version:    23.10.3
-Release:    1%{?dist}
+Version:    24.5.0
+Release:    1%?dist
 License:    GPLv3
 URL:        https://github.com/AyatanaIndicators/ayatana-indicator-sound
 Source0:    %{url}/archive/refs/tags/%{version}.tar.gz

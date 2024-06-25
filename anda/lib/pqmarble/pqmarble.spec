@@ -1,8 +1,10 @@
 %global commit f240b2ec7d5cdacb8fdcc553703420dc5101ffdb
+%global shortcommit %(c=%{commit}; echo ${c:0:7})
+%global commit_date 20240310
 %global ver 2.0.0
 
 Name:			pqmarble
-Version:		%ver^%commit
+Version:		%ver^%commit_date.%shortcommit
 Release:		1%{?dist}
 Summary:		My GTK library
 License:		GPL-3.0

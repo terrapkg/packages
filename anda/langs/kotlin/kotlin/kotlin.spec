@@ -1,8 +1,8 @@
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
 Name:           kotlin
-Version:        1.9.22
-Release:        1%{?dist}
+Version:        2.0.0
+Release:        1%?dist
 Summary:        Statically typed programming language
 
 License:        Apache-2.0

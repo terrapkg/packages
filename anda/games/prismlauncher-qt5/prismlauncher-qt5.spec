@@ -22,8 +22,8 @@ Name:             prismlauncher
 %else
 Name:             prismlauncher-qt5
 %endif
-Version:          8.0
-Release:          1%{?dist}
+Version:          8.2
+Release:          2%?dist
 Summary:          Minecraft launcher with ability to manage multiple instances
 # see COPYING.md for more information
 # each file in the source also contains a SPDX-License-Identifier header that declares its license
@@ -61,8 +61,9 @@ Requires(postun): desktop-file-utils
 Requires:         qt%{qt_version}-qtimageformats
 Requires:         qt%{qt_version}-qtsvg
 Requires:         javapackages-filesystem
-Requires:         java-17-openjdk
-Requires:         java-1.8.0-openjdk
+Recommends:       java-21-openjdk
+Recommends:       java-17-openjdk
+Suggests:         java-1.8.0-openjdk
 
 # xrandr needed for LWJGL [2.9.2, 3) https://github.com/LWJGL/lwjgl/issues/128
 Recommends:       xrandr
@@ -131,6 +132,9 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 
 
 %changelog
+* Wed Apr 03 2024 seth <getchoo at tuta dot io> - 8.2-2
+- move JREs to weak deps, add java 21 for snapshots
+
 * Wed Jul 26 2023 seth <getchoo at tuta dot io> - 7.2-2
 - remove terra-fractureiser-detector from recommends, use proper build platform
 

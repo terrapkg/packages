@@ -1,12 +1,13 @@
 # from Fedora upstream
 %global extension   pop-shell
 %global uuid        %{extension}@system76.com
-%global commit      cf3c932b55d5c247906efe9d81f988ee092d9f51
+%global commit      9418d0a9af7c9b30b61ac3eeb5ca432a3ad3e651
 %global shortcommit %{lua:print(macros.commit:sub(1,7))}
+%global commit_date 20240401
 %global ver         1.2.0
 
 Name:           terra-gnome-shell-extension-%{extension}
-Version:        %{ver}^%{shortcommit}
+Version:        %{ver}^%commit_date.%{shortcommit}
 Release:        1%?dist
 Summary:        GNOME Shell extension for advanced tiling window management
 License:        GPL-3.0-only

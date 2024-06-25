@@ -1,8 +1,8 @@
 %define debug_package %nil
 
 Name:			python3-mpv
-Version:		1.0.5
-Release:		1%{?dist}
+Version:		1.0.7
+Release:		1%?dist
 Summary:		Python interface to the awesome mpv media player
 License:		GPL-2.0+ OR LGPL-2.1+
 URL:			https://github.com/jaseg/python-mpv

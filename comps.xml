@@ -66,12 +66,23 @@
       <packagereq type="default">switchboard-plug-security-privacy</packagereq>
       <packagereq type="default">switchboard-plug-datetime</packagereq>
       <packagereq type="default">switchboard-plug-parental-controls</packagereq>
-      <packagereq type="default">switchboard-plug-wallet</packagereq>
       <packagereq type="default">switchboard-plug-useraccounts</packagereq>
       <packagereq type="default">switchboard-plug-wacom</packagereq>
       <packagereq type="default">switchboard-plug-locale</packagereq>
       <packagereq type="default">switchboard-plug-power</packagereq>
       <packagereq type="default">pantheon-tweaks</packagereq>
+    </packagelist>
+  </group>
+  <group>
+    <id>helium</id>
+    <name>Helium Theme and libhelium</name>
+    <description>The Application Framework and Theme for tauOS.</description>
+    <default>false</default>
+    <uservisible>true</uservisible>
+    <packagelist>
+      <packagereq type="default">libhelium</packagereq>
+      <packagereq type="default">tau-helium</packagereq>
+      <packagereq type="default">tau-hydrogen</packagereq>
     </packagelist>
   </group>
 </comps>

@@ -1,0 +1,5 @@
+%nim_tflags %(echo "%?build_cflags -fPIE" | sed "s/-O2/-Ofast/g" | sed "s/-Wall//g")
+
+%nim_lflags %?build_ldflags -pie
+
+%nim_c -d:release -t:"%nim_tflags" -l:"%nim_lflags"

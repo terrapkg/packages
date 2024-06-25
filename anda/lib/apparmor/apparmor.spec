@@ -3,18 +3,18 @@
 %bcond_with tests
 
 Name:           apparmor
-Version:        4.0.0
-Release:        1%{?dist}
+Version:        4.0.0~alpha3
+Release:        2%{?dist}
 Summary:        AppArmor userspace components
 
 %define baseversion %(echo %{version} | cut -d. -f-2)
+%global normver %(echo %version | sed 's/~/-/')
 
 License:        GPL-2.0
 URL:            https://launchpad.net/apparmor
-Source0:        %{url}/%{baseversion}/%{version}-alpha2/+download/%{name}-%{version}~alpha2.tar.gz
+Source0:        %{url}/%{baseversion}/%normver/+download/%{name}-%{version}.tar.gz
 Source1:        apparmor.preset
 Patch01:        0001-fix-avahi-daemon-authselect-denial-in-fedora.patch
-Patch02:        0001-All-current-versions-of-RHEL-and-Fedora-that-are-not.patch
 
 BuildRequires:  gcc
 BuildRequires:  automake
@@ -138,7 +138,9 @@ confinement policies when running virtual hosts in the webserver by using the
 changehat abilities exposed through libapparmor.
 
 %prep
-%autosetup -p1 -n %{name}-%{version}~alpha2
+%autosetup -p1 -n %{name}-%{version}
+sed -i 's/@VERSION@/%normver/g' libraries/libapparmor/swig/python/setup.py.in
+sed -i 's/${VERSION}/%normver/g' utils/Makefile
 
 %build
 export PYTHON=%{__python3}
@@ -150,7 +152,7 @@ pushd libraries/libapparmor
 %configure \
     --with-python \
 
-%make_build
+%make_build VERSION=%normver
 popd
 
 %make_build -C binutils
@@ -270,7 +272,6 @@ make -C utils check
 %{_bindir}/aa-features-abi
 %{_sbindir}/aa-load
 %{_sbindir}/aa-teardown
-%{_sbindir}/rcapparmor
 %{_unitdir}/apparmor.service
 %{_presetdir}/70-apparmor.preset
 %{_prefix}/lib/apparmor

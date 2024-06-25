@@ -1,13 +1,13 @@
 %global real_name prismlauncher
 %global nice_name PrismLauncher
 
-%global commit 6935c0dc3ba6463b95c66c12ff2e2e0de1fa5ec0
+%global commit a2d28f6872841d047ce3854365c595ebf941b848
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global libnbtplusplus_commit a5e8fd52b8bf4ab5d5bcc042b2a247867589985f
 %global quazip_commit 6117161af08e366c37499895b00ef62f93adc345
 %global tomlplusplus_commit 7eb2ffcc09f8e9890dc0b77ff8ab00fc53b1f2b8
 
-%global commit_date %(date '+%Y%m%d')
+%global commit_date 20240401
 %global snapshot_info %{commit_date}.%{shortcommit}
 
 %bcond_with qt6
@@ -32,8 +32,8 @@ Name:             prismlauncher-nightly
 %else
 Name:             prismlauncher-qt5-nightly
 %endif
-Version:          8.0^%{snapshot_info}
-Release:          1%{?dist}
+Version:          9.0^%{snapshot_info}
+Release:          1%?dist
 Summary:          Minecraft launcher with ability to manage multiple instances
 License:          GPL-3.0-only AND Apache-2.0 AND LGPL-3.0-only AND GPL-3.0-or-later AND GPL-2.0-or-later AND ISC AND OFL-1.1 AND LGPL-2.1-only AND MIT AND BSD-2-Clause-FreeBSD AND BSD-3-Clause AND LGPL-3.0-or-later
 Group:            Amusements/Games
@@ -76,8 +76,9 @@ Requires(postun): desktop-file-utils
 Requires:         qt%{qt_version}-qtimageformats
 Requires:         qt%{qt_version}-qtsvg
 Requires:         javapackages-filesystem
-Requires:         java-17-openjdk
-Requires:         java-1.8.0-openjdk
+Recommends:       java-21-openjdk
+Recommends:       java-17-openjdk
+Suggests:         java-1.8.0-openjdk
 
 # xrandr needed for LWJGL [2.9.2, 3) https://github.com/LWJGL/lwjgl/issues/128
 Recommends:       xrandr

@@ -1,8 +1,8 @@
 %define debug_package %{nil}
 
 Name:           moby-compose
-Version:        2.24.5
-Release:        1%{?dist}
+Version:        2.28.1
+Release:        1%?dist
 Summary:        Define and run multi-container applications with Docker
 
 License:        Apache-2.0

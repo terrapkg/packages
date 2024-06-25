@@ -3,8 +3,9 @@
 Name:           gala
 Summary:        Gala window manager
 Version:        7.1.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPL-3.0-or-later
+Epoch:          1
 
 URL:            https://github.com/elementary/gala
 Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
@@ -35,7 +36,7 @@ BuildRequires:  pkgconfig(mutter-clutter-13)
 BuildRequires:  pkgconfig(mutter-cogl-13)
 BuildRequires:  pkgconfig(mutter-cogl-pango-13)
 
-Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
+Requires:       %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 
 # gala provides a generic icon (apps/multitasking-view)
 Requires:       hicolor-icon-theme
@@ -61,7 +62,7 @@ This package contains the shared libraries.
 
 %package        devel
 Summary:        Gala window manager development files
-Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
+Requires:       %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 
 %description    devel
 Gala is Pantheon's Window Manager, part of the elementary project.

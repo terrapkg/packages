@@ -6,9 +6,9 @@
 %global forgeurl https://github.com/GitCredentialManager/git-credential-manager
 
 Name:           gcm-core
-Version:        2.4.1
+Version:        2.5.0
 %forgemeta
-Release:        1%{?dist}
+Release:        1%?dist
 Summary:        Secure, cross-platform Git credential storage
 
 License:        MIT
@@ -18,7 +18,7 @@ Source0:        %{forgesource}
 Provides:       %{long_name} = %{version}-%{release}
 Provides:       %{long_name}-core = %{version}-%{release}
 
-BuildRequires:  dotnet-sdk-7.0
+BuildRequires:  dotnet-sdk-8.0
 # Require DPKG, so that we can use the `dpkg-architecture` command. which makes the build script happy.
 # TODO: Better solution: Patch out the debian-specific packaging code.
 BuildRequires:  dpkg-dev

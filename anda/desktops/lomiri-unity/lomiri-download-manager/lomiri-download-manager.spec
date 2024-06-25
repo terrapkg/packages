@@ -1,10 +1,10 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-download-manager
-%global commit 2c7d6921ac56862c197958f4e5c31aa76a1a50e1
+%global commit 682c4928a91da598767e0be2496d9c35af7db035
 %forgemeta
 
 Name:       lomiri-download-manager
-Version:    0.1.2
-Release:    %autorelease
+Version:    0.1.3
+Release:    1%{?dist}
 Summary:    Upload Download Manager for Lomiri
 License:    LGPLv3
 URL:        https://gitlab.com/ubports/development/core/lomiri-download-manager
@@ -23,6 +23,7 @@ BuildRequires: qt5-qtdeclarative-devel
 BuildRequires: pkgconfig(dbus-1)
 BuildRequires: pkgconfig(libglog)
 BuildRequires: pkgconfig(liblomiri-api)
+BuildRequires: pkgconfig(systemd)
 BuildRequires: fdupes
 
 %description
@@ -60,7 +61,7 @@ sed -e "s/-Werror//g" -i CMakeLists.txt
 
 %files -f %{name}.lang
 %license COPYING
-%config %{_sysconfdir}/dbus-1/system.d/*.conf
+%config /usr/etc/dbus-1/system.d/*.conf
 %{_bindir}/lomiri-*
 %{_userunitdir}/*.service
 %{_libdir}/liblomiri-download-manager-client.so.*

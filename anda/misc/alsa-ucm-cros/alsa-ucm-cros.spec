@@ -1,7 +1,7 @@
 %define debug_package %nil
 
 Name:			alsa-ucm-cros
-Version:		0.3
+Version:		0.5
 Release:		1%?dist
 Summary:		ALSA Use Case Manager configuration
 License:		BSD-3-Clause

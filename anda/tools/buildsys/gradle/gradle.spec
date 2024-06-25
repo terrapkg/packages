@@ -1,6 +1,6 @@
 Name:			gradle
-Version:		8.6.0
-Release:		1%{?dist}
+Version:		8.8.0
+Release:		1%?dist
 Summary:		Powerful build system for the JVM
 URL:			https://gradle.org/
 Source0:		https://services.gradle.org/distributions/%{name}-%{version}-src.zip

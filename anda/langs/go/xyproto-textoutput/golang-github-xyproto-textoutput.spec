@@ -3,7 +3,7 @@
 
 # https://github.com/xyproto/textoutput
 %global goipath         github.com/xyproto/textoutput
-Version:                1.16.2
+Version:                1.16.4
 
 %gometa -f
 
@@ -14,7 +14,7 @@ Version:                1.16.2
 %global godocs          README.md
 
 Name:           golang-%{goname}
-Release:        1%{?dist}
+Release:        1%?dist
 Summary:        :a: Output text, with and without colors
 
 License:        BSD-3-Clause

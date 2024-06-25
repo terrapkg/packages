@@ -3,7 +3,7 @@
 
 # https://github.com/xyproto/vt100
 %global goipath         github.com/xyproto/vt100
-Version:                1.14.2
+Version:                1.14.4
 
 %gometa -f
 
@@ -14,7 +14,7 @@ Version:                1.14.2
 %global godocs          README.md cmd/widget/README.md
 
 Name:           golang-%{goname}
-Release:        1%{?dist}
+Release:        1%?dist
 Summary:        VT100 Terminal Package
 
 License:        BSD-3-Clause

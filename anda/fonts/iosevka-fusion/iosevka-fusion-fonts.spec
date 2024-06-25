@@ -2,8 +2,8 @@
 %global         debug_package %{nil}
 
 Name:           iosevka-fusion-fonts
-Version:        28.1.0
-Release:        1%{?dist}
+Version:        29.2.0
+Release:        1%?dist
 Summary:        A custom font based on iosevka
 
 License:        OFL-1.1
