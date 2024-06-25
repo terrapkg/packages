@@ -45,6 +45,7 @@ Code at the speed of thought - Zed is a high-performance, multiplayer code edito
 
 %prep
 %autosetup -n %{crate}-%{commit} -p1
+%cargo_prep_online
 
 export DO_STARTUP_NOTIFY="true"
 export APP_ID="%app_id"
@@ -65,7 +66,7 @@ envsubst < "crates/zed/resources/flatpak/zed.metainfo.xml.in" > $APP_ID.metainfo
 export ZED_UPDATE_EXPLANATION="Run dnf up to update Zed Nightly from Terra."
 echo "nightly" > crates/zed/RELEASE_CHANNEL
 
-cargo build --release --package zed --package cli
+%cargo_build -- --package zed --package cli
 script/generate-licenses
 
 %install
