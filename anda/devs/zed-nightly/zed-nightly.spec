@@ -1,7 +1,7 @@
 %global commit 0129d4e2506d5ec5e50ef0968382770b9abec390
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global commit_date 20240619
-%global ver v0.142.0
+%global ver 0.142.0
 
 %bcond_without check
 %global debug_package %{nil}
