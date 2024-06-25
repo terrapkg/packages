@@ -2,11 +2,8 @@
 %global commit1 e7d30b921df736a1121a0c8e0cf3ab1ce5b8a4b7
 %global shortcommit1 %(c=%{commit1}; echo ${c:0:7})
 
-%global openh264_version 2.4.1
-%global gst_version 1.24.5
-
 Name:           openh264
-Version:        %{openh264_version}
+Version:        2.4.1
 # Also bump the Release tag for gstreamer1-plugin-openh264 down below
 Release:        1%{?dist}
 Summary:        H.264 codec library
@@ -15,14 +12,6 @@ License:        BSD
 URL:            https://www.openh264.org/
 Source0:        https://github.com/cisco/openh264/archive/v%{openh264_version}/openh264-%{openh264_version}.tar.gz
 Source1:        https://github.com/mozilla/gmp-api/archive/%{commit1}/gmp-api-%{shortcommit1}.tar.gz
-# The source is:
-# http://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-%%{gst_version}.tar.xz
-# modified with gst-p-bad-cleanup.sh from SOURCE3
-Source2:        gst-plugins-bad-openh264-%{gst_version}.tar.xz
-Source3:        gst-p-bad-cleanup.sh
-
-# Don't use pkg-config for finding openh264 as we are building against an in-tree copy
-Patch2:         hardcode-openh264-dep.patch
 
 BuildRequires:  gcc-c++
 BuildRequires:  gstreamer1-devel >= %{gst_version}
@@ -73,12 +62,6 @@ This package contains the H.264 plugin.
 # Extract gmp-api archive
 tar -xf %{S:1}
 mv gmp-api-%{commit1} gmp-api
-
-# Extract gst-plugins-bad-free archive
-tar -xf %{S:2}
-pushd gst-plugins-bad-%{gst_version}
-%patch2 -p1
-popd
 
 
 %build
