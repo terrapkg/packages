@@ -42,7 +42,7 @@ jobs:
         pkg: ${{ fromJson(needs.manifest.outputs.build_matrix) }}
         version: ["39"]
       fail-fast: false
-    runs-on: ${{ matrix.pkg.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
+    runs-on: ${{ matrix.pkg.arch == 'aarch64' && 'ARM64' || matrix.pkg.labels['large'] && 'x86-64-lg' || 'ubuntu-latest' }}
     container:
       image: ghcr.io/terrapkg/builder:f${{ matrix.version}}
       options: --cap-add=SYS_ADMIN --privileged
