@@ -1,0 +1,106 @@
+From 1e2fc3ade587a7a7c24e4238996ca382c4c0f719 Mon Sep 17 00:00:00 2001
+From: Neal Gompa <ngompa@fedoraproject.org>
+Date: Tue, 27 Dec 2022 09:15:08 -0500
+Subject: [PATCH] CMake: Use the system version of QRCodeGenCPP dependency
+
+---
+ CMakeLists.txt            |  9 +++++++--
+ cmake/legacy.cmake        | 12 ++++++++----
+ src/forms/ConnectInfo.cpp |  2 +-
+ 3 files changed, 16 insertions(+), 7 deletions(-)
+
+diff --git a/plugins/obs-websocket/CMakeLists.txt b/plugins/obs-websocket/CMakeLists.txt
+index 871f92b..288cc87 100644
+--- a/plugins/obs-websocket/CMakeLists.txt
++++ b/plugins/obs-websocket/CMakeLists.txt
+@@ -13,7 +13,7 @@ endif()
+ 
+ # Submodule deps check
+ if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/deps/qr/cpp/QrCode.hpp")
+-  message(FATAL_ERROR "obs-websocket submodule deps not available.")
++  message(INFO "obs-websocket submodule deps not available.")
+ endif()
+ 
+ # Find Qt
+@@ -22,6 +22,9 @@ find_qt(COMPONENTS Core Widgets Svg Network)
+ # Find nlohmann JSON
+ find_package(nlohmann_json 3 REQUIRED)
+ 
++# Find qrcodegencpp
++find_package(qrcodegencpp REQUIRED)
++
+ # Find WebSocket++
+ find_package(Websocketpp 0.8 REQUIRED)
+ 
+@@ -157,7 +160,9 @@ target_link_libraries(
+           Qt::Network
+           nlohmann_json::nlohmann_json
+           Websocketpp::Websocketpp
+-          Asio::Asio)
++          Asio::Asio
++          qrcodegencpp
++          )
+ 
+ set_target_properties_obs(
+   obs-websocket
+diff --git a/plugins/obs-websocket/cmake/legacy.cmake b/plugins/obs-websocket/cmake/legacy.cmake
+index ab25ec7..98ca704 100644
+--- a/plugins/obs-websocket/cmake/legacy.cmake
++++ b/plugins/obs-websocket/cmake/legacy.cmake
+@@ -10,7 +10,7 @@ endif()
+ 
+ # Submodule deps check
+ if(NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/deps/qr/cpp/QrCode.hpp)
+-  obs_status(FATAL_ERROR "obs-websocket submodule deps not available.")
++  obs_status(INFO "obs-websocket submodule deps not available.")
+ endif()
+ 
+ # Plugin tests flag
+@@ -22,6 +22,9 @@ find_qt(COMPONENTS Core Widgets Svg Network)
+ # Find nlohmann JSON
+ find_package(nlohmann_json 3 REQUIRED)
+ 
++# Find qrcodegencpp
++find_package(qrcodegencpp REQUIRED)
++
+ # Find WebSocket++
+ find_package(Websocketpp 0.8 REQUIRED)
+ 
+@@ -129,8 +132,7 @@ target_sources(
+           src/utils/Compat.cpp
+           src/utils/Compat.h
+           src/utils/Utils.h
+-          deps/qr/cpp/QrCode.cpp
+-          deps/qr/cpp/QrCode.hpp)
++          )
+ 
+ target_link_libraries(
+   obs-websocket
+@@ -142,7 +144,9 @@ target_link_libraries(
+           Qt::Network
+           nlohmann_json::nlohmann_json
+           Websocketpp::Websocketpp
+-          Asio::Asio)
++          Asio::Asio
++          qrcodegencpp
++          )
+ 
+ target_compile_features(obs-websocket PRIVATE cxx_std_17)
+ 
+diff --git a/plugins/obs-websocket/src/forms/ConnectInfo.cpp b/plugins/obs-websocket/src/forms/ConnectInfo.cpp
+index ddb979d..89a04c4 100644
+--- a/plugins/obs-websocket/src/forms/ConnectInfo.cpp
++++ b/plugins/obs-websocket/src/forms/ConnectInfo.cpp
+@@ -21,9 +21,9 @@ with this program. If not, see <https://www.gnu.org/licenses/>
+ #include <QPainter>
+ #include <QUrl>
+ #include <obs-module.h>
++#include <qrcodegencpp/QrCode.hpp>
+ 
+ #include "ConnectInfo.h"
+-#include "../../deps/qr/cpp/QrCode.hpp"
+ #include "../obs-websocket.h"
+ #include "../Config.h"
+ #include "../utils/Platform.h"
+-- 
+2.39.2

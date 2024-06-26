@@ -1,0 +1,544 @@
+From 30f84455969071ff9aa826a44438a0402dd15123 Mon Sep 17 00:00:00 2001
+From: Neal Gompa <neal@gompa.dev>
+Date: Tue, 28 Mar 2023 05:08:49 -0400
+Subject: [PATCH 3/3] UI: Add support for OpenH264 as the worst-case fallback
+
+OpenH264 exists as the codec of last resort, so it is implemented
+such that it is only used as the software codec if x264 is not
+available.
+---
+ UI/data/locale/en-US.ini             |  1 +
+ UI/window-basic-auto-config-test.cpp | 50 +++++++++++++++++++---------
+ UI/window-basic-auto-config.cpp      | 15 ++++++++-
+ UI/window-basic-auto-config.hpp      |  3 ++
+ UI/window-basic-main-outputs.cpp     |  6 ++--
+ UI/window-basic-main-profiles.cpp    | 34 +++++++++++--------
+ UI/window-basic-main.cpp             | 20 +++++++----
+ UI/window-basic-main.hpp             |  3 +-
+ UI/window-basic-settings-stream.cpp  | 16 ++++++---
+ UI/window-basic-settings.cpp         | 23 ++++++++++---
+ 10 files changed, 123 insertions(+), 48 deletions(-)
+
+diff --git a/UI/data/locale/en-US.ini b/UI/data/locale/en-US.ini
+index e44d99660..a5ba5d661 100644
+--- a/UI/data/locale/en-US.ini
++++ b/UI/data/locale/en-US.ini
+@@ -980,6 +980,7 @@ Basic.Settings.Output.Simple.Warn.Encoder="Warning: Recording with a software en
+ Basic.Settings.Output.Simple.Warn.Lossless="Warning: Lossless quality generates tremendously large file sizes! Lossless quality can use upward of 7 gigabytes of disk space per minute at high resolutions and framerates. Lossless is not recommended for long recordings unless you have a very large amount of disk space available."
+ Basic.Settings.Output.Simple.Warn.Lossless.Msg="Are you sure you want to use lossless quality?"
+ Basic.Settings.Output.Simple.Warn.Lossless.Title="Lossless quality warning!"
++Basic.Settings.Output.Simple.Encoder.Software.OpenH264.H264="Software (OpenH264)"
+ Basic.Settings.Output.Simple.Encoder.Software.X264.H264="Software (x264)"
+ Basic.Settings.Output.Simple.Encoder.Hardware.QSV.H264="Hardware (QSV, H.264)"
+ Basic.Settings.Output.Simple.Encoder.Hardware.QSV.AV1="Hardware (QSV, AV1)"
+diff --git a/UI/window-basic-auto-config-test.cpp b/UI/window-basic-auto-config-test.cpp
+index 09979c031..c791c8b8b 100644
+--- a/UI/window-basic-auto-config-test.cpp
++++ b/UI/window-basic-auto-config-test.cpp
+@@ -199,7 +199,8 @@ void AutoConfigTestPage::TestBandwidthThread()
+ 						   : "rtmp_common";
+ 
+ 	OBSEncoderAutoRelease vencoder = obs_video_encoder_create(
+-		"obs_x264", "test_x264", nullptr, nullptr);
++		(wiz->x264Available ? "obs_x264" : "ffmpeg_openh264"),
++		"test_h264", nullptr, nullptr);
+ 	OBSEncoderAutoRelease aencoder = obs_audio_encoder_create(
+ 		"ffmpeg_aac", "test_aac", nullptr, 0, nullptr);
+ 	OBSServiceAutoRelease service = obs_service_create(
+@@ -238,10 +239,11 @@ void AutoConfigTestPage::TestBandwidthThread()
+ 	obs_data_set_string(service_settings, "key", key.c_str());
+ 
+ 	obs_data_set_int(vencoder_settings, "bitrate", wiz->startingBitrate);
+-	obs_data_set_string(vencoder_settings, "rate_control", "CBR");
+-	obs_data_set_string(vencoder_settings, "preset", "veryfast");
+-	obs_data_set_int(vencoder_settings, "keyint_sec", 2);
+-
++	if (wiz->x264Available) {
++		obs_data_set_string(vencoder_settings, "rate_control", "CBR");
++		obs_data_set_string(vencoder_settings, "preset", "veryfast");
++		obs_data_set_int(vencoder_settings, "keyint_sec", 2);
++	}
+ 	obs_data_set_int(aencoder_settings, "bitrate", 32);
+ 
+ 	OBSBasic *main = reinterpret_cast<OBSBasic *>(App()->GetMainWindow());
+@@ -567,7 +569,8 @@ bool AutoConfigTestPage::TestSoftwareEncoding()
+ 	/* create obs objects                 */
+ 
+ 	OBSEncoderAutoRelease vencoder = obs_video_encoder_create(
+-		"obs_x264", "test_x264", nullptr, nullptr);
++		(wiz->x264Available ? "obs_x264" : "ffmpeg_openh264"),
++		"test_h264", nullptr, nullptr);
+ 	OBSEncoderAutoRelease aencoder = obs_audio_encoder_create(
+ 		"ffmpeg_aac", "test_aac", nullptr, 0, nullptr);
+ 	OBSOutputAutoRelease output =
+@@ -581,17 +584,25 @@ bool AutoConfigTestPage::TestSoftwareEncoding()
+ 	obs_data_set_int(aencoder_settings, "bitrate", 32);
+ 
+ 	if (wiz->type != AutoConfig::Type::Recording) {
+-		obs_data_set_int(vencoder_settings, "keyint_sec", 2);
++		if (wiz->x264Available) {
++			obs_data_set_int(vencoder_settings, "keyint_sec", 2);
++			obs_data_set_string(vencoder_settings, "rate_control",
++					    "CBR");
++			obs_data_set_string(vencoder_settings, "preset",
++					    "veryfast");
++		}
+ 		obs_data_set_int(vencoder_settings, "bitrate",
+ 				 wiz->idealBitrate);
+-		obs_data_set_string(vencoder_settings, "rate_control", "CBR");
+ 		obs_data_set_string(vencoder_settings, "profile", "main");
+-		obs_data_set_string(vencoder_settings, "preset", "veryfast");
+ 	} else {
+-		obs_data_set_int(vencoder_settings, "crf", 20);
+-		obs_data_set_string(vencoder_settings, "rate_control", "CRF");
++		if (wiz->x264Available) {
++			obs_data_set_int(vencoder_settings, "crf", 20);
++			obs_data_set_string(vencoder_settings, "rate_control",
++					    "CRF");
++			obs_data_set_string(vencoder_settings, "preset",
++					    "veryfast");
++		}
+ 		obs_data_set_string(vencoder_settings, "profile", "high");
+-		obs_data_set_string(vencoder_settings, "preset", "veryfast");
+ 	}
+ 
+ 	/* -----------------------------------*/
+@@ -944,7 +955,10 @@ void AutoConfigTestPage::TestStreamEncoderThread()
+ 		else
+ 			wiz->streamingEncoder = AutoConfig::Encoder::AMD;
+ 	} else {
+-		wiz->streamingEncoder = AutoConfig::Encoder::x264;
++		if (wiz->x264Available)
++			wiz->streamingEncoder = AutoConfig::Encoder::x264;
++		else
++			wiz->streamingEncoder = AutoConfig::Encoder::OpenH264;
+ 	}
+ 
+ 	if (preferHardware && !softwareTested && wiz->hardwareEncodingAvailable)
+@@ -979,7 +993,10 @@ void AutoConfigTestPage::TestRecordingEncoderThread()
+ 		else
+ 			wiz->recordingEncoder = AutoConfig::Encoder::AMD;
+ 	} else {
+-		wiz->recordingEncoder = AutoConfig::Encoder::x264;
++		if (wiz->x264Available)
++			wiz->streamingEncoder = AutoConfig::Encoder::x264;
++		else
++			wiz->streamingEncoder = AutoConfig::Encoder::OpenH264;
+ 	}
+ 
+ 	if (wiz->recordingEncoder != AutoConfig::Encoder::NVENC) {
+@@ -993,6 +1010,7 @@ void AutoConfigTestPage::TestRecordingEncoderThread()
+ }
+ 
+ #define ENCODER_TEXT(x) "Basic.Settings.Output.Simple.Encoder." x
++#define ENCODER_OPENH264 ENCODER_TEXT("Software.OpenH264.H264")
+ #define ENCODER_X264 ENCODER_TEXT("Software.X264.H264")
+ #define ENCODER_NVENC ENCODER_TEXT("Hardware.NVENC.H264")
+ #define ENCODER_QSV ENCODER_TEXT("Hardware.QSV.H264")
+@@ -1032,6 +1050,8 @@ void AutoConfigTestPage::FinalizeResults()
+ 
+ 	auto encName = [](AutoConfig::Encoder enc) -> QString {
+ 		switch (enc) {
++		case AutoConfig::Encoder::OpenH264:
++			return QTStr(ENCODER_OPENH264);
+ 		case AutoConfig::Encoder::x264:
+ 			return QTStr(ENCODER_X264);
+ 		case AutoConfig::Encoder::NVENC:
+@@ -1046,7 +1066,7 @@ void AutoConfigTestPage::FinalizeResults()
+ 			return QTStr(QUALITY_SAME);
+ 		}
+ 
+-		return QTStr(ENCODER_X264);
++		return QTStr(ENCODER_OPENH264);
+ 	};
+ 
+ 	auto newLabel = [this](const char *str) -> QLabel * {
+diff --git a/UI/window-basic-auto-config.cpp b/UI/window-basic-auto-config.cpp
+index 3e9c36685..eace18067 100644
+--- a/UI/window-basic-auto-config.cpp
++++ b/UI/window-basic-auto-config.cpp
+@@ -961,6 +961,7 @@ AutoConfig::AutoConfig(QWidget *parent) : QWizard(parent)
+ 	streamPage->ui->bitrate->setValue(bitrate);
+ 	streamPage->ServiceChanged();
+ 
++	TestSoftwareEncoding();
+ 	TestHardwareEncoding();
+ 	if (!hardwareEncodingAvailable) {
+ 		delete streamPage->ui->preferHardware;
+@@ -989,6 +990,16 @@ AutoConfig::~AutoConfig()
+ 	EnableThreadedMessageBoxes(false);
+ }
+ 
++void AutoConfig::TestSoftwareEncoding()
++{
++	size_t idx = 0;
++	const char *id;
++	while (obs_enum_encoder_types(idx++, &id)) {
++		if (strcmp(id, "obs_x264") == 0)
++			x264Available = true;
++	}
++}
++
+ void AutoConfig::TestHardwareEncoding()
+ {
+ 	size_t idx = 0;
+@@ -1061,8 +1072,10 @@ inline const char *AutoConfig::GetEncoderId(Encoder enc)
+ 		return SIMPLE_ENCODER_AMD;
+ 	case Encoder::Apple:
+ 		return SIMPLE_ENCODER_APPLE_H264;
+-	default:
++	case Encoder::x264:
+ 		return SIMPLE_ENCODER_X264;
++	default:
++		return SIMPLE_ENCODER_OPENH264;
+ 	}
+ };
+ 
+diff --git a/UI/window-basic-auto-config.hpp b/UI/window-basic-auto-config.hpp
+index eb50701ff..e581791dd 100644
+--- a/UI/window-basic-auto-config.hpp
++++ b/UI/window-basic-auto-config.hpp
+@@ -43,6 +43,7 @@ class AutoConfig : public QWizard {
+ 	};
+ 
+ 	enum class Encoder {
++		OpenH264,
+ 		x264,
+ 		NVENC,
+ 		QSV,
+@@ -91,6 +92,7 @@ class AutoConfig : public QWizard {
+ 	bool qsvAvailable = false;
+ 	bool vceAvailable = false;
+ 	bool appleAvailable = false;
++	bool x264Available = false;
+ 
+ 	int startingBitrate = 2500;
+ 	bool customServer = false;
+@@ -106,6 +108,7 @@ class AutoConfig : public QWizard {
+ 	int specificFPSNum = 0;
+ 	int specificFPSDen = 0;
+ 
++	void TestSoftwareEncoding();
+ 	void TestHardwareEncoding();
+ 	bool CanTestServer(const char *server);
+ 
+diff --git a/UI/window-basic-main-outputs.cpp b/UI/window-basic-main-outputs.cpp
+index 737ab966d..a4df630c4 100644
+--- a/UI/window-basic-main-outputs.cpp
++++ b/UI/window-basic-main-outputs.cpp
+@@ -515,7 +515,9 @@ void SimpleOutput::LoadStreamingPreset_Lossy(const char *encoderId)
+ /* mistakes have been made to lead us to this. */
+ const char *get_simple_output_encoder(const char *encoder)
+ {
+-	if (strcmp(encoder, SIMPLE_ENCODER_X264) == 0) {
++	if (strcmp(encoder, SIMPLE_ENCODER_OPENH264) == 0) {
++		return "ffmpeg_openh264";
++	} else if (strcmp(encoder, SIMPLE_ENCODER_X264) == 0) {
+ 		return "obs_x264";
+ 	} else if (strcmp(encoder, SIMPLE_ENCODER_X264_LOWCPU) == 0) {
+ 		return "obs_x264";
+@@ -549,7 +551,7 @@ const char *get_simple_output_encoder(const char *encoder)
+ #endif
+ 	}
+ 
+-	return "obs_x264";
++	return "ffmpeg_openh264";
+ }
+ 
+ void SimpleOutput::LoadRecordingPreset()
+diff --git a/UI/window-basic-main-profiles.cpp b/UI/window-basic-main-profiles.cpp
+index 4941359ea..1f3ffdc1d 100644
+--- a/UI/window-basic-main-profiles.cpp
++++ b/UI/window-basic-main-profiles.cpp
+@@ -794,7 +794,7 @@ void OBSBasic::ChangeProfile()
+ 
+ 	Auth::Load();
+ 
+-	CheckForSimpleModeX264Fallback();
++	CheckForSimpleModeH264Fallback();
+ 
+ 	blog(LOG_INFO, "Switched to profile '%s' (%s)", newName, newDir);
+ 	blog(LOG_INFO, "------------------------------------------------");
+@@ -815,12 +815,13 @@ void OBSBasic::ChangeProfile()
+ 	}
+ }
+ 
+-void OBSBasic::CheckForSimpleModeX264Fallback()
++void OBSBasic::CheckForSimpleModeH264Fallback()
+ {
+ 	const char *curStreamEncoder =
+ 		config_get_string(basicConfig, "SimpleOutput", "StreamEncoder");
+ 	const char *curRecEncoder =
+ 		config_get_string(basicConfig, "SimpleOutput", "RecEncoder");
++	bool x264_supported = false;
+ 	bool qsv_supported = false;
+ 	bool qsv_av1_supported = false;
+ 	bool amd_supported = false;
+@@ -837,7 +838,9 @@ void OBSBasic::CheckForSimpleModeX264Fallback()
+ 	const char *id;
+ 
+ 	while (obs_enum_encoder_types(idx++, &id)) {
+-		if (strcmp(id, "amd_amf_h264") == 0)
++		if (strcmp(id, "obs_x264") == 0)
++			x264_supported = true;
++		else if (strcmp(id, "amd_amf_h264") == 0)
+ 			amd_supported = true;
+ 		else if (strcmp(id, "obs_qsv11") == 0)
+ 			qsv_supported = true;
+@@ -865,68 +868,73 @@ void OBSBasic::CheckForSimpleModeX264Fallback()
+ #endif
+ 	}
+ 
++	// Check to see whether x264 is available
++	const char *fallback_encoder_name = (x264_supported
++						     ? SIMPLE_ENCODER_X264
++						     : SIMPLE_ENCODER_OPENH264);
++
+ 	auto CheckEncoder = [&](const char *&name) {
+ 		if (strcmp(name, SIMPLE_ENCODER_QSV) == 0) {
+ 			if (!qsv_supported) {
+ 				changed = true;
+-				name = SIMPLE_ENCODER_X264;
++				name = fallback_encoder_name;
+ 				return false;
+ 			}
+ 		} else if (strcmp(name, SIMPLE_ENCODER_QSV_AV1) == 0) {
+ 			if (!qsv_av1_supported) {
+ 				changed = true;
+-				name = SIMPLE_ENCODER_X264;
++				name = fallback_encoder_name;
+ 				return false;
+ 			}
+ 		} else if (strcmp(name, SIMPLE_ENCODER_NVENC) == 0) {
+ 			if (!nve_supported) {
+ 				changed = true;
+-				name = SIMPLE_ENCODER_X264;
++				name = fallback_encoder_name;
+ 				return false;
+ 			}
+ 		} else if (strcmp(name, SIMPLE_ENCODER_NVENC_AV1) == 0) {
+ 			if (!nve_supported) {
+ 				changed = true;
+-				name = SIMPLE_ENCODER_X264;
++				name = fallback_encoder_name;
+ 				return false;
+ 			}
+ #ifdef ENABLE_HEVC
+ 		} else if (strcmp(name, SIMPLE_ENCODER_AMD_HEVC) == 0) {
+ 			if (!amd_hevc_supported) {
+ 				changed = true;
+-				name = SIMPLE_ENCODER_X264;
++				name = fallback_encoder_name;
+ 				return false;
+ 			}
+ 		} else if (strcmp(name, SIMPLE_ENCODER_NVENC_HEVC) == 0) {
+ 			if (!nve_hevc_supported) {
+ 				changed = true;
+-				name = SIMPLE_ENCODER_X264;
++				name = fallback_encoder_name;
+ 				return false;
+ 			}
+ #endif
+ 		} else if (strcmp(name, SIMPLE_ENCODER_AMD) == 0) {
+ 			if (!amd_supported) {
+ 				changed = true;
+-				name = SIMPLE_ENCODER_X264;
++				name = fallback_encoder_name;
+ 				return false;
+ 			}
+ 		} else if (strcmp(name, SIMPLE_ENCODER_AMD_AV1) == 0) {
+ 			if (!amd_av1_supported) {
+ 				changed = true;
+-				name = SIMPLE_ENCODER_X264;
++				name = fallback_encoder_name;
+ 				return false;
+ 			}
+ 		} else if (strcmp(name, SIMPLE_ENCODER_APPLE_H264) == 0) {
+ 			if (!apple_supported) {
+ 				changed = true;
+-				name = SIMPLE_ENCODER_X264;
++				name = fallback_encoder_name;
+ 				return false;
+ 			}
+ #ifdef ENABLE_HEVC
+ 		} else if (strcmp(name, SIMPLE_ENCODER_APPLE_HEVC) == 0) {
+ 			if (!apple_hevc_supported) {
+ 				changed = true;
+-				name = SIMPLE_ENCODER_X264;
++				name = fallback_encoder_name;
+ 				return false;
+ 			}
+ #endif
+diff --git a/UI/window-basic-main.cpp b/UI/window-basic-main.cpp
+index 6d9375eb4..c6aae8c7b 100644
+--- a/UI/window-basic-main.cpp
++++ b/UI/window-basic-main.cpp
+@@ -1379,6 +1379,8 @@ extern void CheckExistingCookieId();
+ #define DEFAULT_CONTAINER "fragmented_mp4"
+ #endif
+ 
++extern bool EncoderAvailable(const char *encoder);
++
+ bool OBSBasic::InitBasicConfigDefaults()
+ {
+ 	QList<QScreen *> screens = QGuiApplication::screens();
+@@ -1549,7 +1551,10 @@ bool OBSBasic::InitBasicConfigDefaults()
+ 	config_set_default_bool(basicConfig, "AdvOut", "UseRescale", false);
+ 	config_set_default_uint(basicConfig, "AdvOut", "TrackIndex", 1);
+ 	config_set_default_uint(basicConfig, "AdvOut", "VodTrackIndex", 2);
+-	config_set_default_string(basicConfig, "AdvOut", "Encoder", "obs_x264");
++
++	bool useX264 = EncoderAvailable("obs_x264");
++	config_set_default_string(basicConfig, "AdvOut", "Encoder",
++				  (useX264 ? "obs_x264" : "ffmpeg_openh264"));
+ 
+ 	config_set_default_string(basicConfig, "AdvOut", "RecType", "Standard");
+ 
+@@ -1672,7 +1677,6 @@ bool OBSBasic::InitBasicConfigDefaults()
+ 	return true;
+ }
+ 
+-extern bool EncoderAvailable(const char *encoder);
+ extern bool update_nvenc_presets(ConfigFile &config);
+ 
+ void OBSBasic::InitBasicConfigDefaults2()
+@@ -1681,12 +1685,14 @@ void OBSBasic::InitBasicConfigDefaults2()
+ 					      "Pre23Defaults");
+ 	bool useNV = EncoderAvailable("ffmpeg_nvenc") && !oldEncDefaults;
+ 
++	bool useX264 = EncoderAvailable("obs_x264");
++	const char *h264_fallback =
++		(useX264 ? SIMPLE_ENCODER_X264 : SIMPLE_ENCODER_OPENH264);
++
+ 	config_set_default_string(basicConfig, "SimpleOutput", "StreamEncoder",
+-				  useNV ? SIMPLE_ENCODER_NVENC
+-					: SIMPLE_ENCODER_X264);
++				  useNV ? SIMPLE_ENCODER_NVENC : h264_fallback);
+ 	config_set_default_string(basicConfig, "SimpleOutput", "RecEncoder",
+-				  useNV ? SIMPLE_ENCODER_NVENC
+-					: SIMPLE_ENCODER_X264);
++				  useNV ? SIMPLE_ENCODER_NVENC : h264_fallback);
+ 
+ 	const char *aac_default = "ffmpeg_aac";
+ 	if (EncoderAvailable("CoreAudio_AAC"))
+@@ -1967,7 +1973,7 @@ void OBSBasic::OBSInit()
+ 
+ 	InitBasicConfigDefaults2();
+ 
+-	CheckForSimpleModeX264Fallback();
++	CheckForSimpleModeH264Fallback();
+ 
+ 	blog(LOG_INFO, STARTUP_SEPARATOR);
+ 
+diff --git a/UI/window-basic-main.hpp b/UI/window-basic-main.hpp
+index cbce69832..74c6eb144 100644
+--- a/UI/window-basic-main.hpp
++++ b/UI/window-basic-main.hpp
+@@ -66,6 +66,7 @@ class OBSBasicVCamConfig;
+ 
+ #define SIMPLE_ENCODER_X264 "x264"
+ #define SIMPLE_ENCODER_X264_LOWCPU "x264_lowcpu"
++#define SIMPLE_ENCODER_OPENH264 "ffmpeg_openh264"
+ #define SIMPLE_ENCODER_QSV "qsv"
+ #define SIMPLE_ENCODER_QSV_AV1 "qsv_av1"
+ #define SIMPLE_ENCODER_NVENC "nvenc"
+@@ -434,7 +435,7 @@ private:
+ 	void DeleteProfile(const char *profile_name, const char *profile_dir);
+ 	void RefreshProfiles();
+ 	void ChangeProfile();
+-	void CheckForSimpleModeX264Fallback();
++	void CheckForSimpleModeH264Fallback();
+ 
+ 	void SaveProjectNow();
+ 
+diff --git a/UI/window-basic-settings-stream.cpp b/UI/window-basic-settings-stream.cpp
+index b056938e7..548e5f45f 100644
+--- a/UI/window-basic-settings-stream.cpp
++++ b/UI/window-basic-settings-stream.cpp
+@@ -1362,7 +1362,9 @@ static QString get_adv_fallback(const QString &enc)
+ 		return "com.apple.videotoolbox.videoencoder.ave.avc";
+ 	if (enc == "obs_qsv11_av1")
+ 		return "obs_qsv11";
+-	return "obs_x264";
++	if (EncoderAvailable("obs_x264"))
++		return "obs_x264";
++	return "ffmpeg_openh264";
+ }
+ 
+ static QString get_adv_audio_fallback(const QString &enc)
+@@ -1391,7 +1393,9 @@ static QString get_simple_fallback(const QString &enc)
+ 		return SIMPLE_ENCODER_APPLE_H264;
+ 	if (enc == SIMPLE_ENCODER_QSV_AV1)
+ 		return SIMPLE_ENCODER_QSV;
+-	return SIMPLE_ENCODER_X264;
++	if (EncoderAvailable("obs_x264"))
++		return SIMPLE_ENCODER_X264;
++	return SIMPLE_ENCODER_OPENH264;
+ }
+ 
+ bool OBSBasicSettings::ServiceSupportsCodecCheck()
+@@ -1585,8 +1589,12 @@ void OBSBasicSettings::ResetEncoders(bool streamOnly)
+ 
+ #define ENCODER_STR(str) QTStr("Basic.Settings.Output.Simple.Encoder." str)
+ 
+-	ui->simpleOutStrEncoder->addItem(ENCODER_STR("Software.X264.H264"),
+-					 QString(SIMPLE_ENCODER_X264));
++	ui->simpleOutStrEncoder->addItem(ENCODER_STR("Software.OpenH264.H264"),
++					 QString(SIMPLE_ENCODER_OPENH264));
++	if (service_supports_encoder(vcodecs, "obs_x264"))
++		ui->simpleOutStrEncoder->addItem(
++			ENCODER_STR("Software.X264.H264"),
++			QString(SIMPLE_ENCODER_X264));
+ 	if (service_supports_encoder(vcodecs, "obs_qsv11"))
+ 		ui->simpleOutStrEncoder->addItem(
+ 			ENCODER_STR("Hardware.QSV.H264"),
+diff --git a/UI/window-basic-settings.cpp b/UI/window-basic-settings.cpp
+index 48bb4bac6..51fe280db 100644
+--- a/UI/window-basic-settings.cpp
++++ b/UI/window-basic-settings.cpp
+@@ -3831,6 +3831,11 @@ void OBSBasicSettings::SaveOutputSettings()
+          do. This only exists to make sure that the x264 preset doesn't
+          get overwritten with empty data. */
+ 		presetType = "ApplePreset";
++	else if (encoder == SIMPLE_ENCODER_OPENH264)
++		/* The OpenH264 encoder does not have presets like the other encoders
++         do. This only exists to make sure that the x264 preset doesn't
++         get overwritten with empty data. */
++		presetType = "OpenH264Preset";
+ 	else
+ 		presetType = "Preset";
+ 
+@@ -5286,11 +5291,16 @@ void OBSBasicSettings::FillSimpleRecordingValues()
+ 	ADD_QUALITY("HQ");
+ 	ADD_QUALITY("Lossless");
+ 
+-	ui->simpleOutRecEncoder->addItem(ENCODER_STR("Software.X264.H264"),
+-					 QString(SIMPLE_ENCODER_X264));
+-	ui->simpleOutRecEncoder->addItem(
+-		ENCODER_STR("SoftwareLowCPU.X264.H264"),
+-		QString(SIMPLE_ENCODER_X264_LOWCPU));
++	ui->simpleOutRecEncoder->addItem(ENCODER_STR("Software.OpenH264.H264"),
++					 QString(SIMPLE_ENCODER_OPENH264));
++	if (EncoderAvailable("obs_x264")) {
++		ui->simpleOutRecEncoder->addItem(
++			ENCODER_STR("Software.X264.H264"),
++			QString(SIMPLE_ENCODER_X264));
++		ui->simpleOutRecEncoder->addItem(
++			ENCODER_STR("SoftwareLowCPU.X264.H264"),
++			QString(SIMPLE_ENCODER_X264_LOWCPU));
++	}
+ 	if (EncoderAvailable("obs_qsv11"))
+ 		ui->simpleOutRecEncoder->addItem(
+ 			ENCODER_STR("Hardware.QSV.H264"),
+@@ -5463,6 +5473,9 @@ void OBSBasicSettings::SimpleStreamingEncoderChanged()
+ 
+ 		defaultPreset = "balanced";
+ 		preset = curAMDAV1Preset;
++	} else if (encoder == SIMPLE_ENCODER_OPENH264) {
++		ui->simpleOutPreset->setVisible(false);
++		ui->simpleOutPresetLabel->setVisible(false);
+ 	} else {
+ 
+ #define PRESET_STR(val) \
+-- 
+2.39.2
