@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="driver">
+  <id>com.nvidia.driver</id>
+  <suggests>
+    <id>nvidia-settings.desktop</id>
+  </suggests>
+  <name>NVIDIA Graphics Driver</name>
+  <summary>NVIDIA Accelerated Graphics Driver</summary>
+  <developer_name>NVIDIA Corporation</developer_name>
+  <description><p>The NVIDIA Accelerated Linux Graphics Driver brings accelerated 2D functionality and high-performance OpenGL support to Linux with the use of NVIDIA graphics processing units.</p><p>These drivers provide optimized hardware acceleration for OpenGL and X applications and support nearly all recent NVIDIA GPU products. The NVIDIA graphics driver uses a Unified Driver Architecture: the single graphics driver supports all modern NVIDIA GPUs.</p></description>
+  <keywords>
+    <keyword>CUDA</keyword>
+    <keyword>GeForce</keyword>
+    <keyword>NVIDIA</keyword>
+    <keyword>OpenGL</keyword>
+    <keyword>Quadro</keyword>
+    <keyword>Tesla</keyword>
+    <keyword>Video</keyword>
+    <keyword>Vulkan</keyword>
+    <keyword>av1</keyword>
+    <keyword>avc</keyword>
+    <keyword>driver</keyword>
+    <keyword>h264</keyword>
+    <keyword>h265</keyword>
+    <keyword>hevc</keyword>
+    <keyword>jpeg</keyword>
+    <keyword>mpeg2</keyword>
+    <keyword>vaapi</keyword>
+    <keyword>vc-1</keyword>
+    <keyword>vp8</keyword>
+    <keyword>vp9</keyword>
+  </keywords>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>LicenseRef-proprietary:NVIDIA</project_license>
+  <url type="homepage">http://www.nvidia.com/</url>
+  <update_contact>negativo17@gmail.com</update_contact>
+</component>
