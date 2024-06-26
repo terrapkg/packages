@@ -4,7 +4,6 @@
 %global ver 0.142.0
 
 %bcond_without check
-%global debug_package %{nil}
 
 %global crate zed
 %global app_id dev.zed.Zed-Nightly
