@@ -69,7 +69,8 @@ echo "nightly" > crates/zed/RELEASE_CHANNEL
 script/generate-licenses
 
 %install
-%cargo_install
+install -Dm755 target/rpm/zed %{buildroot}%{_libexecdir}/zed-editor
+install -Dm755 target/rpm/cli %{buildroot}%{_bindir}/zed
 
 install -Dm644 %app_id.desktop %{buildroot}%{_datadir}/applications/%app_id.desktop
 install -Dm644 crates/zed/resources/app-icon-nightly.png %{buildroot}%{_datadir}/pixmaps/%app_id.png
