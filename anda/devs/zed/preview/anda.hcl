@@ -3,7 +3,6 @@ project pkg {
     spec = "zed-preview.spec"
   }
   labels {
-    nightly = 1
     large = 1
   }
 }
