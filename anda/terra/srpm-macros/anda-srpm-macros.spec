@@ -12,6 +12,7 @@ Source3:        macros.go_extra
 Source4:        macros.nim_extra
 
 Recommends:     rust-packaging
+Recommends:     mold
 Requires:       git-core
 Obsoletes:      fyra-srpm-macros < 0.1.1-1
 Provides:       fyra-srpm-macros = %{version}-%{release}

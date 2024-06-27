@@ -9,9 +9,13 @@ codegen-units = 1\
 debug = 2\
 strip = "none"\
 \
+\
 [build]\
 rustc = "%{__rustc}"\
 rustdoc = "%{__rustdoc}"\
+%if %{with mold}\
+rustflags = ["-C", "link-arg=-fuse-ld=mold"]\
+%endif\
 \
 [env]\
 CFLAGS = "%{build_cflags}"\
