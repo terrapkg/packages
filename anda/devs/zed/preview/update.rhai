@@ -1,9 +1,10 @@
-if filters.contains("nightly") {
-  rpm.global("commit", gh_commit("zed-industries/zed"));
-  if rpm.changed() {
-    let v = find("(\\d+\\.\\d+\\d+\\.\\d+)", find("\nversion = \"(\\d+\\.\\d+\\d+\\.\\d+)\"\n", gh_rawfile("zed-industries/zed", "main", "crates/zed/Cargo.toml"), 1), 1);
-    rpm.global("ver", v);
-    rpm.global("commit_date", date());
-    rpm.release();
+let releases = "https://api.github.com/repos/zed-industries/zed/releases".get().json_arr();
+for release in releases {
+  if !release.prerelease {
+    continue;
   }
+  let tag = release.tag_name;
+  tag.pop(4); // remove the "-pre" suffix
+  rpm.global("ver", tag);
+  terminate();
 }
