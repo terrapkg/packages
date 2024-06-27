@@ -4,7 +4,9 @@
 %global ver 0.142.0
 
 %bcond_without check
-%global debug_package %{nil}
+
+# Exclude input files from mangling
+%global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 %global crate zed
 %global app_id dev.zed.Zed-Nightly
