@@ -36,7 +36,7 @@ CTWM is a window manager based on TWM (with virtual workspaces added.)
 %{_datadir}/examples/ctwm/system.ctwmrc
 
 %changelog
-* Thu June 27 2024 Jaiden Riordan <jade@fyralabs.com> - 4.1.0
+* Thu Jun 27 2024 Jaiden Riordan <jade@fyralabs.com> - 4.1.0
 - Rewrite for Terra, Thanks RPMSphere
 * Tue Dec 24 2019 Wei-Lun Chao <bluebat@member.fsf.org> - 4.0.3
 - Rebuilt for Fedora
