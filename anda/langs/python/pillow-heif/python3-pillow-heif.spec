@@ -72,6 +72,7 @@ Documentation for %{srcname}.
 
 
 %build
+export PILLOW_HEIF_VERSION=%version
 # Native build
 %py3_build
 
@@ -83,6 +84,7 @@ rm -f docs/_build_py3/html/.buildinfo
 
 
 %install
+export PILLOW_HEIF_VERSION=%version
 # Native build
 %py3_install
 
