@@ -27,7 +27,7 @@ index b3bf0ce..e5365b0 100644
 -    version_file = "pillow_heif/_version.py"
 -    exec(compile(Path(version_file).read_text(encoding="utf-8"), version_file, "exec"))  # pylint: disable=exec-used
 -    return locals()["__version__"]
-+    os.environ("PILLOW_HEIF_VERSION")
++    os.environ["PILLOW_HEIF_VERSION"]
  
  
  def _cmd_exists(cmd: str) -> bool:
