@@ -88,6 +88,9 @@ export PILLOW_HEIF_VERSION=%version
 # Native build
 %py3_install
 
+# hack…? but how did this even happen in the first place
+mv %buildroot%python3_sitearch/pillow_heif-0.0.0-py%python3_version.egg-info %buildroot%python3_sitearch/pillow_heif-%version-py%python3_version.egg-info || true
+
 %check
 # Check Python 3 modules
 cp %{SOURCE1} $(echo $PWD/build/lib.linux-*)/
