@@ -1,0 +1,263 @@
+diff -up openssh-8.6p1/log.c.log-in-chroot openssh-8.6p1/log.c
+--- openssh-8.6p1/log.c.log-in-chroot	2021-04-16 05:55:25.000000000 +0200
++++ openssh-8.6p1/log.c	2021-04-19 14:43:08.544843434 +0200
+@@ -194,6 +194,11 @@ void
+ log_init(const char *av0, LogLevel level, SyslogFacility facility,
+     int on_stderr)
+ {
++	log_init_handler(av0, level, facility, on_stderr, 1);
++}
++
++void
++log_init_handler(const char *av0, LogLevel level, SyslogFacility facility, int on_stderr, int reset_handler) {
+ #if defined(HAVE_OPENLOG_R) && defined(SYSLOG_DATA_INIT)
+ 	struct syslog_data sdata = SYSLOG_DATA_INIT;
+ #endif
+@@ -206,8 +211,10 @@ log_init(const char *av0, LogLevel level
+ 		exit(1);
+ 	}
+ 
+-	log_handler = NULL;
+-	log_handler_ctx = NULL;
++	if (reset_handler) {
++		log_handler = NULL;
++		log_handler_ctx = NULL;
++	}
+ 
+ 	log_on_stderr = on_stderr;
+ 	if (on_stderr)
+diff -up openssh-8.6p1/log.h.log-in-chroot openssh-8.6p1/log.h
+--- openssh-8.6p1/log.h.log-in-chroot	2021-04-19 14:43:08.544843434 +0200
++++ openssh-8.6p1/log.h	2021-04-19 14:56:46.931042176 +0200
+@@ -52,6 +52,7 @@ typedef enum {
+ typedef void (log_handler_fn)(LogLevel, int, const char *, void *);
+ 
+ void     log_init(const char *, LogLevel, SyslogFacility, int);
++void     log_init_handler(const char *, LogLevel, SyslogFacility, int, int);
+ LogLevel log_level_get(void);
+ int      log_change_level(LogLevel);
+ int      log_is_on_stderr(void);
+diff -up openssh-8.6p1/monitor.c.log-in-chroot openssh-8.6p1/monitor.c
+--- openssh-8.6p1/monitor.c.log-in-chroot	2021-04-19 14:43:08.526843298 +0200
++++ openssh-8.6p1/monitor.c	2021-04-19 14:55:25.286424043 +0200
+@@ -297,6 +297,8 @@ monitor_child_preauth(struct ssh *ssh, s
+ 		close(pmonitor->m_log_sendfd);
+ 	pmonitor->m_log_sendfd = pmonitor->m_recvfd = -1;
+ 
++	pmonitor->m_state = "preauth";
++
+ 	authctxt = (Authctxt *)ssh->authctxt;
+ 	memset(authctxt, 0, sizeof(*authctxt));
+ 	ssh->authctxt = authctxt;
+@@ -408,6 +410,8 @@ monitor_child_postauth(struct ssh *ssh,
+ 	close(pmonitor->m_recvfd);
+ 	pmonitor->m_recvfd = -1;
+ 
++	pmonitor->m_state = "postauth";
++
+ 	monitor_set_child_handler(pmonitor->m_pid);
+ 	ssh_signal(SIGHUP, &monitor_child_handler);
+ 	ssh_signal(SIGTERM, &monitor_child_handler);
+@@ -480,7 +484,7 @@ monitor_read_log(struct monitor *pmonito
+ 	/* Log it */
+ 	if (log_level_name(level) == NULL)
+ 		fatal_f("invalid log level %u (corrupted message?)", level);
+-	sshlogdirect(level, forced, "%s [preauth]", msg);
++	sshlogdirect(level, forced, "%s [%s]", msg, pmonitor->m_state);
+ 
+ 	sshbuf_free(logmsg);
+ 	free(msg);
+@@ -1868,13 +1872,28 @@ monitor_init(void)
+ 	mon = xcalloc(1, sizeof(*mon));
+ 	monitor_openfds(mon, 1);
+ 
++	mon->m_state = "";
++
+ 	return mon;
+ }
+ 
+ void
+-monitor_reinit(struct monitor *mon)
++monitor_reinit(struct monitor *mon, const char *chroot_dir)
+ {
+-	monitor_openfds(mon, 0);
++	struct stat dev_log_stat;
++	char *dev_log_path;
++	int do_logfds = 0;
++
++	if (chroot_dir != NULL) {
++		xasprintf(&dev_log_path, "%s/dev/log", chroot_dir);
++
++		if (stat(dev_log_path, &dev_log_stat) != 0) {
++			debug_f("/dev/log doesn't exist in %s chroot - will try to log via monitor using [postauth] suffix", chroot_dir);
++			do_logfds = 1;
++		}
++		free(dev_log_path);
++	}
++	monitor_openfds(mon, do_logfds);
+ }
+ 
+ #ifdef GSSAPI
+diff -up openssh-8.6p1/monitor.h.log-in-chroot openssh-8.6p1/monitor.h
+--- openssh-8.6p1/monitor.h.log-in-chroot	2021-04-19 14:43:08.527843305 +0200
++++ openssh-8.6p1/monitor.h	2021-04-19 14:43:08.545843441 +0200
+@@ -80,10 +80,11 @@ struct monitor {
+ 	int			 m_log_sendfd;
+ 	struct kex		**m_pkex;
+ 	pid_t			 m_pid;
++	char		*m_state;
+ };
+ 
+ struct monitor *monitor_init(void);
+-void monitor_reinit(struct monitor *);
++void monitor_reinit(struct monitor *, const char *);
+ 
+ struct Authctxt;
+ void monitor_child_preauth(struct ssh *, struct monitor *);
+diff -up openssh-8.6p1/session.c.log-in-chroot openssh-8.6p1/session.c
+--- openssh-8.6p1/session.c.log-in-chroot	2021-04-19 14:43:08.534843358 +0200
++++ openssh-8.6p1/session.c	2021-04-19 14:43:08.545843441 +0200
+@@ -160,6 +160,7 @@ login_cap_t *lc;
+ 
+ static int is_child = 0;
+ static int in_chroot = 0;
++static int have_dev_log = 1;
+ 
+ /* File containing userauth info, if ExposeAuthInfo set */
+ static char *auth_info_file = NULL;
+@@ -661,6 +662,7 @@ do_exec(struct ssh *ssh, Session *s, con
+ 	int ret;
+ 	const char *forced = NULL, *tty = NULL;
+ 	char session_type[1024];
++	struct stat dev_log_stat;
+ 
+ 	if (options.adm_forced_command) {
+ 		original_command = command;
+@@ -720,6 +722,10 @@ do_exec(struct ssh *ssh, Session *s, con
+ 			tty += 5;
+ 	}
+ 
++	if (lstat("/dev/log", &dev_log_stat) != 0) {
++		have_dev_log = 0;
++	}
++
+ 	verbose("Starting session: %s%s%s for %s from %.200s port %d id %d",
+ 	    session_type,
+ 	    tty == NULL ? "" : " on ",
+@@ -1524,14 +1530,6 @@ child_close_fds(struct ssh *ssh)
+ 
+ 	/* Stop directing logs to a high-numbered fd before we close it */
+ 	log_redirect_stderr_to(NULL);
+-
+-	/*
+-	 * Close any extra open file descriptors so that we don't have them
+-	 * hanging around in clients.  Note that we want to do this after
+-	 * initgroups, because at least on Solaris 2.3 it leaves file
+-	 * descriptors open.
+-	 */
+-	closefrom(STDERR_FILENO + 1);
+ }
+ 
+ /*
+@@ -1665,8 +1663,6 @@ do_child(struct ssh *ssh, Session *s, co
+ 			exit(1);
+ 	}
+ 
+-	closefrom(STDERR_FILENO + 1);
+-
+ 	do_rc_files(ssh, s, shell);
+ 
+ 	/* restore SIGPIPE for child */
+@@ -1691,9 +1687,17 @@ do_child(struct ssh *ssh, Session *s, co
+ 		argv[i] = NULL;
+ 		optind = optreset = 1;
+ 		__progname = argv[0];
+-		exit(sftp_server_main(i, argv, s->pw));
++		exit(sftp_server_main(i, argv, s->pw, have_dev_log));
+ 	}
+ 
++	/*
++	 * Close any extra open file descriptors so that we don't have them
++	 * hanging around in clients.  Note that we want to do this after
++	 * initgroups, because at least on Solaris 2.3 it leaves file
++	 * descriptors open.
++	 */
++	closefrom(STDERR_FILENO + 1);
++
+ 	fflush(NULL);
+ 
+ 	/* Get the last component of the shell name. */
+diff -up openssh-8.6p1/sftp.h.log-in-chroot openssh-8.6p1/sftp.h
+--- openssh-8.6p1/sftp.h.log-in-chroot	2021-04-16 05:55:25.000000000 +0200
++++ openssh-8.6p1/sftp.h	2021-04-19 14:43:08.545843441 +0200
+@@ -97,5 +97,5 @@
+ 
+ struct passwd;
+ 
+-int	sftp_server_main(int, char **, struct passwd *);
++int	sftp_server_main(int, char **, struct passwd *, int);
+ void	sftp_server_cleanup_exit(int) __attribute__((noreturn));
+diff -up openssh-8.6p1/sftp-server.c.log-in-chroot openssh-8.6p1/sftp-server.c
+--- openssh-8.6p1/sftp-server.c.log-in-chroot	2021-04-16 05:55:25.000000000 +0200
++++ openssh-8.6p1/sftp-server.c	2021-04-19 14:43:08.545843441 +0200
+@@ -1644,7 +1644,7 @@ sftp_server_usage(void)
+ }
+ 
+ int
+-sftp_server_main(int argc, char **argv, struct passwd *user_pw)
++sftp_server_main(int argc, char **argv, struct passwd *user_pw, int reset_handler)
+ {
+	int i, r, in, out, ch, skipargs = 0, log_stderr = 0;
+	ssize_t len, olen;
+@@ -1657,7 +1657,7 @@ sftp_server_main(int argc, char **argv,
+ 	extern char *__progname;
+ 
+ 	__progname = ssh_get_progname(argv[0]);
+-	log_init(__progname, log_level, log_facility, log_stderr);
++	log_init_handler(__progname, log_level, log_facility, log_stderr, reset_handler);
+ 
+ 	pw = pwcopy(user_pw);
+ 
+@@ -1730,7 +1730,7 @@ sftp_server_main(int argc, char **argv,
+ 		}
+ 	}
+ 
+-	log_init(__progname, log_level, log_facility, log_stderr);
++	log_init_handler(__progname, log_level, log_facility, log_stderr, reset_handler);
+ 
+ 	/*
+ 	 * On platforms where we can, avoid making /proc/self/{mem,maps}
+diff -up openssh-8.6p1/sftp-server-main.c.log-in-chroot openssh-8.6p1/sftp-server-main.c
+--- openssh-8.6p1/sftp-server-main.c.log-in-chroot	2021-04-16 05:55:25.000000000 +0200
++++ openssh-8.6p1/sftp-server-main.c	2021-04-19 14:43:08.545843441 +0200
+@@ -50,5 +50,5 @@ main(int argc, char **argv)
+ 		return 1;
+ 	}
+ 
+-	return (sftp_server_main(argc, argv, user_pw));
++	return (sftp_server_main(argc, argv, user_pw, 0));
+ }
+diff -up openssh-8.6p1/sshd.c.log-in-chroot openssh-8.6p1/sshd.c
+--- openssh-8.6p1/sshd.c.log-in-chroot	2021-04-19 14:43:08.543843426 +0200
++++ openssh-8.6p1/sshd.c	2021-04-19 14:43:08.545843441 +0200
+@@ -559,7 +559,7 @@ privsep_postauth(struct ssh *ssh, Authct
+ 	}
+ 
+ 	/* New socket pair */
+-	monitor_reinit(pmonitor);
++	monitor_reinit(pmonitor, options.chroot_directory);
+ 
+ 	pmonitor->m_pid = fork();
+ 	if (pmonitor->m_pid == -1)
+@@ -578,6 +578,11 @@ privsep_postauth(struct ssh *ssh, Authct
+ 
+ 	close(pmonitor->m_sendfd);
+ 	pmonitor->m_sendfd = -1;
++	close(pmonitor->m_log_recvfd);
++	pmonitor->m_log_recvfd = -1;
++
++	if (pmonitor->m_log_sendfd != -1)
++		set_log_handler(mm_log_handler, pmonitor);
+ 
+ 	/* Demote the private keys to public keys. */
+ 	demote_sensitive_data();

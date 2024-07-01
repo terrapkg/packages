@@ -1,0 +1,283 @@
+diff -up openssh/auth2-pubkey.c.refactor openssh/auth2-pubkey.c
+--- openssh/auth2-pubkey.c.refactor	2019-04-04 13:19:12.188821236 +0200
++++ openssh/auth2-pubkey.c	2019-04-04 13:19:12.276822078 +0200
+@@ -72,6 +72,9 @@
+ 
+ /* import */
+ extern ServerOptions options;
++extern int inetd_flag;
++extern int rexeced_flag;
++extern Authctxt *the_authctxt;
+ 
+ static char *
+ format_key(const struct sshkey *key)
+@@ -511,7 +514,8 @@ match_principals_command(struct ssh *ssh
+ 	if ((pid = subprocess("AuthorizedPrincipalsCommand", command,
+ 	    ac, av, &f,
+ 	    SSH_SUBPROCESS_STDOUT_CAPTURE|SSH_SUBPROCESS_STDERR_DISCARD,
+-	    runas_pw, temporarily_use_uid, restore_uid)) == 0)
++	    runas_pw, temporarily_use_uid, restore_uid,
++	    (inetd_flag && !rexeced_flag), the_authctxt)) == 0)
+ 		goto out;
+ 
+ 	uid_swapped = 1;
+@@ -981,7 +985,8 @@ user_key_command_allowed2(struct ssh *ss
+ 	if ((pid = subprocess("AuthorizedKeysCommand", command,
+ 	    ac, av, &f,
+	    SSH_SUBPROCESS_STDOUT_CAPTURE|SSH_SUBPROCESS_STDERR_DISCARD,
+-	    runas_pw, temporarily_use_uid, restore_uid)) == 0)
++	    runas_pw, temporarily_use_uid, restore_uid,
++	    (inetd_flag && !rexeced_flag), the_authctxt)) == 0)
+ 		goto out;
+ 
+ 	uid_swapped = 1;
+diff -up openssh/misc.c.refactor openssh/misc.c
+--- openssh/misc.c.refactor	2019-04-04 13:19:12.235821686 +0200
++++ openssh/misc.c	2019-04-04 13:19:12.276822078 +0200
+@@ -756,7 +756,8 @@ auth_get_canonical_hostname(struct ssh *
+ pid_t
+ subprocess(const char *tag, const char *command,
+     int ac, char **av, FILE **child, u_int flags,
+-    struct passwd *pw, privdrop_fn *drop_privs, privrestore_fn *restore_privs)
++    struct passwd *pw, privdrop_fn *drop_privs,
++    privrestore_fn *restore_privs, int inetd, void *the_authctxt)
+ {
+ 	FILE *f = NULL;
+ 	struct stat st;
+@@ -872,7 +873,7 @@ subprocess(const char *tag, struct passw
+ 			_exit(1);
+ 		}
+ #ifdef WITH_SELINUX
+-		if (sshd_selinux_setup_env_variables() < 0) {
++		if (sshd_selinux_setup_env_variables(inetd, the_authctxt) < 0) {
+ 			error ("failed to copy environment:  %s",
+ 			    strerror(errno));
+ 			_exit(127);
+diff -up openssh/misc.h.refactor openssh/misc.h
+--- openssh/misc.h.refactor	2019-04-04 13:19:12.251821839 +0200
++++ openssh/misc.h	2019-04-04 13:19:12.276822078 +0200
+@@ -235,7 +235,7 @@ struct passwd *fakepw(void);
+ #define	SSH_SUBPROCESS_UNSAFE_PATH	(1<<3)	/* Don't check for safe cmd */
+ #define	SSH_SUBPROCESS_PRESERVE_ENV	(1<<4)	/* Keep parent environment */
+ pid_t subprocess(const char *, const char *, int, char **, FILE **, u_int,
+-    struct passwd *, privdrop_fn *, privrestore_fn *);
++    struct passwd *, privdrop_fn *, privrestore_fn *, int, void *);
+ 
+ typedef struct arglist arglist;
+ struct arglist {
+diff -up openssh/openbsd-compat/port-linux.h.refactor openssh/openbsd-compat/port-linux.h
+--- openssh/openbsd-compat/port-linux.h.refactor	2019-04-04 13:19:12.256821887 +0200
++++ openssh/openbsd-compat/port-linux.h	2019-04-04 13:19:12.276822078 +0200
+@@ -26,8 +26,8 @@ void ssh_selinux_setfscreatecon(const ch
+ 
+ int sshd_selinux_enabled(void);
+ void sshd_selinux_copy_context(void);
+-void sshd_selinux_setup_exec_context(char *);
+-int sshd_selinux_setup_env_variables(void);
++void sshd_selinux_setup_exec_context(char *, int, int(char *, const char *), void *, int);
++int sshd_selinux_setup_env_variables(int inetd, void *);
+ void sshd_selinux_change_privsep_preauth_context(void);
+ #endif
+ 
+diff -up openssh/openbsd-compat/port-linux-sshd.c.refactor openssh/openbsd-compat/port-linux-sshd.c
+--- openssh/openbsd-compat/port-linux-sshd.c.refactor	2019-04-04 13:19:12.256821887 +0200
++++ openssh/openbsd-compat/port-linux-sshd.c	2019-04-04 13:19:12.276822078 +0200
+@@ -49,11 +49,6 @@
+ #include <unistd.h>
+ #endif
+ 
+-extern ServerOptions options;
+-extern Authctxt *the_authctxt;
+-extern int inetd_flag;
+-extern int rexeced_flag;
+-
+ /* Wrapper around is_selinux_enabled() to log its return value once only */
+ int
+ sshd_selinux_enabled(void)
+@@ -223,7 +218,8 @@ get_user_context(const char *sename, con
+ }
+ 
+ static void
+-ssh_selinux_get_role_level(char **role, const char **level)
++ssh_selinux_get_role_level(char **role, const char **level,
++    Authctxt *the_authctxt)
+ {
+ 	*role = NULL;
+ 	*level = NULL;
+@@ -241,8 +237,8 @@ ssh_selinux_get_role_level(char **role,
+ 
+ /* Return the default security context for the given username */
+ static int
+-sshd_selinux_getctxbyname(char *pwname,
+-	security_context_t *default_sc, security_context_t *user_sc)
++sshd_selinux_getctxbyname(char *pwname, security_context_t *default_sc,
++    security_context_t *user_sc, int inetd, Authctxt *the_authctxt)
+ {
+ 	char *sename, *lvl;
+ 	char *role;
+@@ -250,7 +246,7 @@ sshd_selinux_getctxbyname(char *pwname,
+ 	int r = 0;
+ 	context_t con = NULL;
+ 
+-	ssh_selinux_get_role_level(&role, &reqlvl);
++	ssh_selinux_get_role_level(&role, &reqlvl, the_authctxt);
+ 
+ #ifdef HAVE_GETSEUSERBYNAME
+ 	if ((r=getseuserbyname(pwname, &sename, &lvl)) != 0) {
+@@ -272,7 +268,7 @@ sshd_selinux_getctxbyname(char *pwname,
+ 
+ 	if (r == 0) {
+ 		/* If launched from xinetd, we must use current level */
+-		if (inetd_flag && !rexeced_flag) {
++		if (inetd) {
+ 			security_context_t sshdsc=NULL;
+ 
+ 			if (getcon_raw(&sshdsc) < 0)
+@@ -333,7 +329,8 @@ sshd_selinux_getctxbyname(char *pwname,
+ 
+ /* Setup environment variables for pam_selinux */
+ static int
+-sshd_selinux_setup_variables(int(*set_it)(char *, const char *))
++sshd_selinux_setup_variables(int(*set_it)(char *, const char *), int inetd,
++    Authctxt *the_authctxt)
+ {
+ 	const char *reqlvl;
+ 	char *role;
+@@ -342,11 +339,11 @@ sshd_selinux_setup_variables(int(*set_it
+ 
+ 	debug3_f("setting execution context");
+ 
+-	ssh_selinux_get_role_level(&role, &reqlvl);
++	ssh_selinux_get_role_level(&role, &reqlvl, the_authctxt);
+ 
+ 	rv = set_it("SELINUX_ROLE_REQUESTED", role ? role : "");
+ 
+-	if (inetd_flag && !rexeced_flag) {
++	if (inetd) {
+ 		use_current = "1";
+ 	} else {
+ 		use_current = "";
+@@ -362,9 +359,10 @@ sshd_selinux_setup_variables(int(*set_it
+ }
+ 
+ static int
+-sshd_selinux_setup_pam_variables(void)
++sshd_selinux_setup_pam_variables(int inetd,
++    int(pam_setenv)(char *, const char *), Authctxt *the_authctxt)
+ {
+-	return sshd_selinux_setup_variables(do_pam_putenv);
++	return sshd_selinux_setup_variables(pam_setenv, inetd, the_authctxt);
+ }
+ 
+ static int
+@@ -374,25 +372,28 @@ do_setenv(char *name, const char *value)
+ }
+ 
+ int
+-sshd_selinux_setup_env_variables(void)
++sshd_selinux_setup_env_variables(int inetd, void *the_authctxt)
+ {
+-	return sshd_selinux_setup_variables(do_setenv);
++	Authctxt *authctxt = (Authctxt *) the_authctxt;
++	return sshd_selinux_setup_variables(do_setenv, inetd, authctxt);
+ }
+ 
+ /* Set the execution context to the default for the specified user */
+ void
+-sshd_selinux_setup_exec_context(char *pwname)
++sshd_selinux_setup_exec_context(char *pwname, int inetd,
++    int(pam_setenv)(char *, const char *), void *the_authctxt, int use_pam)
+ {
+ 	security_context_t user_ctx = NULL;
+ 	int r = 0;
+ 	security_context_t default_ctx = NULL;
++	Authctxt *authctxt = (Authctxt *) the_authctxt;
+ 
+ 	if (!sshd_selinux_enabled())
+ 		return;
+ 
+-	if (options.use_pam) {
++	if (use_pam) {
+ 		/* do not compute context, just setup environment for pam_selinux */
+-		if (sshd_selinux_setup_pam_variables()) {
++		if (sshd_selinux_setup_pam_variables(inetd, pam_setenv, authctxt)) {
+ 			switch (security_getenforce()) {
+ 			case -1:
+ 				fatal_f("security_getenforce() failed");
+@@ -410,7 +411,7 @@ sshd_selinux_setup_exec_context(char *pw
+ 
+ 	debug3_f("setting execution context");
+ 
+-	r = sshd_selinux_getctxbyname(pwname, &default_ctx, &user_ctx);
++	r = sshd_selinux_getctxbyname(pwname, &default_ctx, &user_ctx, inetd, authctxt);
+ 	if (r >= 0) {
+ 		r = setexeccon(user_ctx);
+ 		if (r < 0) {
+diff -up openssh/platform.c.refactor openssh/platform.c
+--- openssh/platform.c.refactor	2019-04-04 13:19:12.204821389 +0200
++++ openssh/platform.c	2019-04-04 13:19:12.277822088 +0200
+@@ -32,6 +32,9 @@
+ 
+ extern int use_privsep;
+ extern ServerOptions options;
++extern int inetd_flag;
++extern int rexeced_flag;
++extern Authctxt *the_authctxt;
+ 
+ void
+ platform_pre_listen(void)
+@@ -183,7 +186,9 @@ platform_setusercontext_post_groups(stru
+ 	}
+ #endif /* HAVE_SETPCRED */
+ #ifdef WITH_SELINUX
+-	sshd_selinux_setup_exec_context(pw->pw_name);
++	sshd_selinux_setup_exec_context(pw->pw_name,
++	    (inetd_flag && !rexeced_flag), do_pam_putenv, the_authctxt,
++	    options.use_pam);
+ #endif
+ }
+ 
+diff -up openssh/sshd.c.refactor openssh/sshd.c
+--- openssh/sshd.c.refactor	2019-04-04 13:19:12.275822068 +0200
++++ openssh/sshd.c	2019-04-04 13:19:51.270195262 +0200
+@@ -158,7 +158,7 @@ int debug_flag = 0;
+ static int test_flag = 0;
+ 
+ /* Flag indicating that the daemon is being started from inetd. */
+-static int inetd_flag = 0;
++int inetd_flag = 0;
+ 
+ /* Flag indicating that sshd should not detach and become a daemon. */
+ static int no_daemon_flag = 0;
+@@ -171,7 +171,7 @@ static char **saved_argv;
+ static int saved_argc;
+ 
+ /* re-exec */
+-static int rexeced_flag = 0;
++int rexeced_flag = 0;
+ static int rexec_flag = 1;
+ static int rexec_argc = 0;
+ static char **rexec_argv;
+@@ -2192,7 +2192,9 @@ main(int ac, char **av)
+ 	}
+ #endif
+ #ifdef WITH_SELINUX
+-	sshd_selinux_setup_exec_context(authctxt->pw->pw_name);
++	sshd_selinux_setup_exec_context(authctxt->pw->pw_name,
++	    (inetd_flag && !rexeced_flag), do_pam_putenv, the_authctxt,
++	    options.use_pam);
+ #endif
+ #ifdef USE_PAM
+ 	if (options.use_pam) {
+diff -up openssh/sshconnect.c.refactor openssh/sshconnect.c
+--- openssh/sshconnect.c.refactor	2021-02-24 00:12:03.065325046 +0100
++++ openssh/sshconnect.c	2021-02-24 00:12:12.126449544 +0100
+@@ -892,7 +892,7 @@ load_hostkeys_command(struct hostkeys *h
+ 
+ 	if ((pid = subprocess(tag, command, ac, av, &f,
+ 	    SSH_SUBPROCESS_STDOUT_CAPTURE|SSH_SUBPROCESS_UNSAFE_PATH|
+-	    SSH_SUBPROCESS_PRESERVE_ENV, NULL, NULL, NULL)) == 0)
++	    SSH_SUBPROCESS_PRESERVE_ENV, NULL, NULL, NULL, 0, NULL)) == 0)
+ 		goto out;
+ 
+ 	load_hostkeys_file(hostkeys, hostfile_hostname, tag, f, 1);

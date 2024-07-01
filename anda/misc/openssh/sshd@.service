@@ -1,0 +1,13 @@
+[Unit]
+Description=OpenSSH per-connection server daemon
+Documentation=man:sshd(8) man:sshd_config(5)
+Wants=sshd-keygen.target
+After=sshd-keygen.target
+# Migration for Fedora 38 change to remove group ownership for standard host keys
+# See https://fedoraproject.org/wiki/Changes/SSHKeySignSuidBit
+Wants=ssh-host-keys-migration.service
+
+[Service]
+EnvironmentFile=-/etc/sysconfig/sshd
+ExecStart=-/usr/sbin/sshd -i $OPTIONS
+StandardInput=socket

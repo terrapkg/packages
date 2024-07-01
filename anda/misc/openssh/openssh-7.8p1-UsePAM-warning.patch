@@ -1,0 +1,26 @@
+diff -up openssh-8.6p1/sshd.c.log-usepam-no openssh-8.6p1/sshd.c
+--- openssh-8.6p1/sshd.c.log-usepam-no	2021-04-19 14:00:45.099735129 +0200
++++ openssh-8.6p1/sshd.c	2021-04-19 14:03:21.140920974 +0200
+@@ -1749,6 +1749,10 @@ main(int ac, char **av)
+ 	parse_server_config(&options, rexeced_flag ? "rexec" : config_file_name,
+ 	    cfg, &includes, NULL, rexeced_flag);
+ 
++	/* 'UsePAM no' is not supported in Fedora */
++	if (! options.use_pam)
++		logit("WARNING: 'UsePAM no' is not supported in Fedora and may cause several problems.");
++
+ #ifdef WITH_OPENSSL
+ 	if (options.moduli_file != NULL)
+ 		dh_set_moduli_file(options.moduli_file);
+diff -up openssh-8.6p1/sshd_config.log-usepam-no openssh-8.6p1/sshd_config
+--- openssh-8.6p1/sshd_config.log-usepam-no	2021-04-19 14:00:45.098735121 +0200
++++ openssh-8.6p1/sshd_config	2021-04-19 14:00:45.099735129 +0200
+@@ -87,6 +87,8 @@ AuthorizedKeysFile	.ssh/authorized_keys
+ # If you just want the PAM account and session checks to run without
+ # PAM authentication, then enable this but set PasswordAuthentication
+ # and KbdInteractiveAuthentication to 'no'.
++# WARNING: 'UsePAM no' is not supported in Fedora and may cause several
++# problems.
+ #UsePAM no
+ 
+ #AllowAgentForwarding yes

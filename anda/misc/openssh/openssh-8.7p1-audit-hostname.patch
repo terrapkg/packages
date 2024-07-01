@@ -1,0 +1,106 @@
+diff --color -ruNp a/audit-linux.c b/audit-linux.c
+--- a/audit-linux.c	2024-05-09 12:38:08.843017319 +0200
++++ b/audit-linux.c	2024-05-09 12:47:05.162267634 +0200
+@@ -52,7 +52,7 @@ extern u_int utmp_len;
+ const char *audit_username(void);
+ 
+ static void
+-linux_audit_user_logxxx(int uid, const char *username,
++linux_audit_user_logxxx(int uid, const char *username, const char *hostname,
+     const char *ip, const char *ttyn, int success, int event)
+ {
+ 	int audit_fd, rc, saved_errno;
+@@ -66,7 +66,7 @@ linux_audit_user_logxxx(int uid, const c
+ 	}
+ 	rc = audit_log_acct_message(audit_fd, event,
+ 	    NULL, "login", username ? username : "(unknown)",
+-	    username == NULL ? uid : -1, NULL, ip, ttyn, success);
++	    username == NULL ? uid : -1, hostname, ip, ttyn, success);
+ 	saved_errno = errno;
+ 	close(audit_fd);
+ 
+@@ -181,9 +181,11 @@ audit_run_command(struct ssh *ssh, const
+ {
+ 	if (!user_login_count++)
+ 		linux_audit_user_logxxx(the_authctxt->pw->pw_uid, NULL,
++		    options.use_dns ? remote_hostname(ssh) : NULL,
+ 		    ssh_remote_ipaddr(ssh),
+ 		    "ssh", 1, AUDIT_USER_LOGIN);
+ 	linux_audit_user_logxxx(the_authctxt->pw->pw_uid, NULL,
++	    options.use_dns ? remote_hostname(ssh) : NULL,
+ 	    ssh_remote_ipaddr(ssh),
+ 	    "ssh", 1, AUDIT_USER_START);
+ 	return 0;
+@@ -193,10 +195,12 @@ void
+ audit_end_command(struct ssh *ssh, int handle, const char *command)
+ {
+ 	linux_audit_user_logxxx(the_authctxt->pw->pw_uid, NULL,
++	    options.use_dns ? remote_hostname(ssh) : NULL,
+ 	    ssh_remote_ipaddr(ssh),
+ 	    "ssh", 1, AUDIT_USER_END);
+ 	if (user_login_count && !--user_login_count)
+ 		linux_audit_user_logxxx(the_authctxt->pw->pw_uid, NULL,
++		    options.use_dns ? remote_hostname(ssh) : NULL,
+ 		    ssh_remote_ipaddr(ssh),
+ 		    "ssh", 1, AUDIT_USER_LOGOUT);
+ }
+@@ -211,19 +215,27 @@ void
+ audit_session_open(struct logininfo *li)
+ {
+ 	if (!user_login_count++)
+-		linux_audit_user_logxxx(li->uid, NULL, li->hostname,
++		linux_audit_user_logxxx(li->uid, NULL,
++		    options.use_dns ? li->hostname : NULL,
++		    options.use_dns ? NULL : li->hostname,
+ 		    li->line, 1, AUDIT_USER_LOGIN);
+-	linux_audit_user_logxxx(li->uid, NULL, li->hostname,
++	linux_audit_user_logxxx(li->uid, NULL,
++	    options.use_dns ? li->hostname : NULL,
++	    options.use_dns ? NULL : li->hostname,
+ 	    li->line, 1, AUDIT_USER_START);
+ }
+ 
+ void
+ audit_session_close(struct logininfo *li)
+ {
+-	linux_audit_user_logxxx(li->uid, NULL, li->hostname,
++	linux_audit_user_logxxx(li->uid, NULL,
++	    options.use_dns ? li->hostname : NULL,
++	    options.use_dns ? NULL : li->hostname,
+ 	    li->line, 1, AUDIT_USER_END);
+ 	if (user_login_count && !--user_login_count)
+-		linux_audit_user_logxxx(li->uid, NULL, li->hostname,
++		linux_audit_user_logxxx(li->uid, NULL,
++		    options.use_dns ? li->hostname : NULL,
++		    options.use_dns ? NULL : li->hostname,
+ 		    li->line, 1, AUDIT_USER_LOGOUT);
+ }
+ 
+@@ -236,6 +248,7 @@ audit_event(struct ssh *ssh, ssh_audit_e
+ 		linux_audit_user_auth(-1, audit_username(),
+ 			ssh_remote_ipaddr(ssh), "ssh", 0, event);
+ 		linux_audit_user_logxxx(-1, audit_username(),
++			options.use_dns ? remote_hostname(ssh) : NULL,
+ 			ssh_remote_ipaddr(ssh), "ssh", 0, AUDIT_USER_LOGIN);
+ 		break;
+ 	case SSH_AUTH_FAIL_PASSWD:
+@@ -254,9 +267,11 @@ audit_event(struct ssh *ssh, ssh_audit_e
+ 		if (user_login_count) {
+ 			while (user_login_count--)
+ 				linux_audit_user_logxxx(the_authctxt->pw->pw_uid, NULL,
++				    options.use_dns ? remote_hostname(ssh) : NULL,
+ 				    ssh_remote_ipaddr(ssh),
+ 				    "ssh", 1, AUDIT_USER_END);
+ 			linux_audit_user_logxxx(the_authctxt->pw->pw_uid, NULL,
++			    options.use_dns ? remote_hostname(ssh) : NULL,
+ 			    ssh_remote_ipaddr(ssh),
+ 			    "ssh", 1, AUDIT_USER_LOGOUT);
+ 		}
+@@ -265,6 +280,7 @@ audit_event(struct ssh *ssh, ssh_audit_e
+ 	case SSH_CONNECTION_ABANDON:
+ 	case SSH_INVALID_USER:
+ 		linux_audit_user_logxxx(-1, audit_username(),
++			options.use_dns ? remote_hostname(ssh) : NULL,
+ 			ssh_remote_ipaddr(ssh), "ssh", 0, AUDIT_USER_LOGIN);
+ 		break;
+ 	default:

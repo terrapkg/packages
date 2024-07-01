@@ -1,0 +1,87 @@
+diff --git a/auth-krb5.c b/auth-krb5.c
+index 2b02a04..19b9364 100644
+--- a/auth-krb5.c
++++ b/auth-krb5.c
+@@ -375,5 +375,21 @@ cleanup:
+ 		return (krb5_cc_resolve(ctx, ccname, ccache));
+ 	}
+ }
++
++/*
++ * Reads  k5login_directory  option from the  krb5.conf
++ */
++krb5_error_code
++ssh_krb5_get_k5login_directory(krb5_context ctx, char **k5login_directory) {
++	profile_t p;
++	int ret = 0;
++
++	ret = krb5_get_profile(ctx, &p);
++	if (ret)
++		return ret;
++
++	return profile_get_string(p, "libdefaults", "k5login_directory", NULL, NULL,
++		k5login_directory);
++}
+ #endif /* !HEIMDAL */
+ #endif /* KRB5 */
+diff --git a/auth.h b/auth.h
+index f9d191c..c432d2f 100644
+--- a/auth.h
++++ b/auth.h
+@@ -222,6 +222,8 @@ int	 sys_auth_passwd(Authctxt *, const char *);
+ 
+ #if defined(KRB5) && !defined(HEIMDAL)
+ krb5_error_code ssh_krb5_cc_new_unique(krb5_context, krb5_ccache *, int *);
++krb5_error_code ssh_krb5_get_k5login_directory(krb5_context ctx,
++	char **k5login_directory);
+ #endif
+ 
+ #endif /* AUTH_H */
+diff --git a/gss-serv-krb5.c b/gss-serv-krb5.c
+index a7c0c5f..df8cc9a 100644
+--- a/gss-serv-krb5.c
++++ b/gss-serv-krb5.c
+@@ -244,8 +244,27 @@ ssh_gssapi_k5login_exists()
+ {
+ 	char file[MAXPATHLEN];
+ 	struct passwd *pw = the_authctxt->pw;
++	char *k5login_directory = NULL;
++	int ret = 0;
++
++	ret = ssh_krb5_get_k5login_directory(krb_context, &k5login_directory);
++	debug3_f("k5login_directory = %s (rv=%d)", k5login_directory, ret);
++	if (k5login_directory == NULL || ret != 0) {
++		/* If not set, the library will look for  k5login
++		 * files in the user's home directory, with the filename  .k5login.
++		 */
++		snprintf(file, sizeof(file), "%s/.k5login", pw->pw_dir);
++	} else {
++		/* If set, the library will look for a local user's k5login file
++		 * within the named directory, with a filename corresponding to the
++		 * local username.
++		 */
++		snprintf(file, sizeof(file), "%s%s%s", k5login_directory, 
++			k5login_directory[strlen(k5login_directory)-1] != '/' ? "/" : "",
++			pw->pw_name);
++	}
++	debug_f("Checking existence of file %s", file);
+ 
+-	snprintf(file, sizeof(file), "%s/.k5login", pw->pw_dir);
+ 	return access(file, F_OK) == 0;
+ }
+ 
+diff --git a/sshd.8 b/sshd.8
+index 5c4f15b..135e290 100644
+--- a/sshd.8
++++ b/sshd.8
+@@ -806,6 +806,10 @@ rlogin/rsh.
+ These files enforce GSSAPI/Kerberos authentication access control.
+ Further details are described in
+ .Xr ksu 1 .
++The location of the k5login file depends on the configuration option
++.Cm k5login_directory
++in the
++.Xr krb5.conf 5 .
+ .Pp
+ .It Pa ~/.ssh/
+ This directory is the default location for all user-specific configuration

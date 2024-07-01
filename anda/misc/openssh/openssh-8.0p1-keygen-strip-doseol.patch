@@ -1,0 +1,12 @@
+diff -up openssh-8.0p1/ssh-keygen.c.strip-doseol openssh-8.0p1/ssh-keygen.c
+--- openssh-8.0p1/ssh-keygen.c.strip-doseol	2021-03-18 17:41:34.472404994 +0100
++++ openssh-8.0p1/ssh-keygen.c	2021-03-18 17:41:55.255538761 +0100
+@@ -901,7 +901,7 @@ do_fingerprint(struct passwd *pw)
+ 	while (getline(&line, &linesize, f) != -1) {
+ 		lnum++;
+ 		cp = line;
+-		cp[strcspn(cp, "\n")] = '\0';
++		cp[strcspn(cp, "\r\n")] = '\0';
+ 		/* Trim leading space and comments */
+ 		cp = line + strspn(line, " \t");
+ 		if (*cp == '#' || *cp == '\0')

@@ -1,0 +1,44 @@
+diff -up openssh-8.0p1/auth-pam.c.preserve-pam-errors openssh-8.0p1/auth-pam.c
+--- openssh-8.0p1/auth-pam.c.preserve-pam-errors	2021-03-31 17:03:15.618592347 +0200
++++ openssh-8.0p1/auth-pam.c	2021-03-31 17:06:58.115220014 +0200
+@@ -511,7 +511,11 @@ sshpam_thread(void *ctxtp)
+ 		goto auth_fail;
+ 
+ 	if (!do_pam_account()) {
+-		sshpam_err = PAM_ACCT_EXPIRED;
++		/* Preserve PAM_PERM_DENIED and PAM_USER_UNKNOWN.
++		 * Backward compatibility for other errors. */
++		if (sshpam_err != PAM_PERM_DENIED
++			&& sshpam_err != PAM_USER_UNKNOWN)
++			sshpam_err = PAM_ACCT_EXPIRED;
+ 		goto auth_fail;
+ 	}
+ 	if (sshpam_authctxt->force_pwchange) {
+@@ -568,8 +572,10 @@ sshpam_thread(void *ctxtp)
+ 	    pam_strerror(sshpam_handle, sshpam_err))) != 0)
+ 		fatal("%s: buffer error: %s", __func__, ssh_err(r));
+ 	/* XXX - can't do much about an error here */
+-	if (sshpam_err == PAM_ACCT_EXPIRED)
+-		ssh_msg_send(ctxt->pam_csock, PAM_ACCT_EXPIRED, buffer);
++	if (sshpam_err == PAM_PERM_DENIED
++		|| sshpam_err == PAM_USER_UNKNOWN
++		|| sshpam_err == PAM_ACCT_EXPIRED)
++		ssh_msg_send(ctxt->pam_csock, sshpam_err, buffer);
+ 	else if (sshpam_maxtries_reached)
+ 		ssh_msg_send(ctxt->pam_csock, PAM_MAXTRIES, buffer);
+ 	else
+@@ -856,10 +862,12 @@ sshpam_query(void *ctx, char **name, cha
+ 			plen++;
+ 			free(msg);
+ 			break;
++		case PAM_USER_UNKNOWN:
++		case PAM_PERM_DENIED:
+ 		case PAM_ACCT_EXPIRED:
++			sshpam_account_status = 0;
++			/* FALLTHROUGH */
+ 		case PAM_MAXTRIES:
+-			if (type == PAM_ACCT_EXPIRED)
+-				sshpam_account_status = 0;
+ 			if (type == PAM_MAXTRIES)
+ 				sshpam_set_maxtries_reached(1);
+ 			/* FALLTHROUGH */

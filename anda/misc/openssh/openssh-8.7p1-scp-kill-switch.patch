@@ -1,0 +1,46 @@
+diff -up openssh-8.7p1/pathnames.h.kill-scp openssh-8.7p1/pathnames.h
+--- openssh-8.7p1/pathnames.h.kill-scp	2021-09-16 11:37:57.240171687 +0200
++++ openssh-8.7p1/pathnames.h	2021-09-16 11:42:29.183427917 +0200
+@@ -42,6 +42,7 @@
+ #define _PATH_HOST_XMSS_KEY_FILE	SSHDIR "/ssh_host_xmss_key"
+ #define _PATH_HOST_RSA_KEY_FILE		SSHDIR "/ssh_host_rsa_key"
+ #define _PATH_DH_MODULI			SSHDIR "/moduli"
++#define _PATH_SCP_KILL_SWITCH		SSHDIR "/disable_scp"
+ 
+ #ifndef _PATH_SSH_PROGRAM
+ #define _PATH_SSH_PROGRAM		"/usr/bin/ssh"
+diff -up openssh-8.7p1/scp.1.kill-scp openssh-8.7p1/scp.1
+--- openssh-8.7p1/scp.1.kill-scp	2021-09-16 12:09:02.646714578 +0200
++++ openssh-8.7p1/scp.1	2021-09-16 12:26:49.978628226 +0200
+@@ -278,6 +278,13 @@ to print debugging messages about their
+ By default a 32KB buffer is used.
+ .El
+ .El
++.Pp
++Usage of SCP protocol can be blocked by creating a world-readable
++.Ar /etc/ssh/disable_scp
++file. If this file exists, when SCP protocol is in use (either remotely or 
++via the
++.Fl O
++option), the program will exit.
+ .Sh EXIT STATUS
+ .Ex -std scp
+ .Sh SEE ALSO
+diff -up openssh-8.7p1/scp.c.kill-scp openssh-8.7p1/scp.c
+--- openssh-8.7p1/scp.c.kill-scp	2021-09-16 11:42:56.013650519 +0200
++++ openssh-8.7p1/scp.c	2021-09-16 11:53:03.249713836 +0200
+@@ -596,6 +596,14 @@ main(int argc, char **argv)
+ 	if (iamremote)
+ 		mode = MODE_SCP;
+ 
++	if (mode == MODE_SCP) {
++		FILE *f = fopen(_PATH_SCP_KILL_SWITCH, "r");
++		if (f != NULL) {
++			fclose(f);
++			fatal("SCP protocol is forbidden via %s", _PATH_SCP_KILL_SWITCH);
++		}
++	}
++
+ 	if ((pwd = getpwuid(userid = getuid())) == NULL)
+ 		fatal("unknown user %u", (u_int) userid);
+ 

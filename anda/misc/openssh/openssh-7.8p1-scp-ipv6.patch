@@ -1,0 +1,16 @@
+diff --git a/scp.c b/scp.c
+index 60682c68..9344806e 100644
+--- a/scp.c
++++ b/scp.c
+@@ -714,7 +714,9 @@ toremote(int argc, char **argv)
+ 			addargs(&alist, "%s", host);
+ 			addargs(&alist, "%s", cmd);
+ 			addargs(&alist, "%s", src);
+-			addargs(&alist, "%s%s%s:%s",
++			addargs(&alist,
++			    /* IPv6 address needs to be enclosed with sqare brackets */
++			    strchr(host, ':') != NULL ? "%s%s[%s]:%s" : "%s%s%s:%s",
+ 			    tuser ? tuser : "", tuser ? "@" : "",
+ 			    thost, targ);
+ 			if (do_local_cmd(&alist) != 0)
+

@@ -1,0 +1,119 @@
+diff -up openssh-9.0p1/audit-bsm.c.patch openssh-9.0p1/audit-bsm.c
+--- openssh-9.0p1/audit-bsm.c.patch	2022-10-24 15:02:16.544858331 +0200
++++ openssh-9.0p1/audit-bsm.c	2022-10-24 14:51:43.685766639 +0200
+@@ -405,7 +405,7 @@ audit_session_close(struct logininfo *li
+ }
+ 
+ int
+-audit_keyusage(struct ssh *ssh, int host_user, char *fp, int rv)
++audit_keyusage(struct ssh *ssh, int host_user, char *key_fp, const struct sshkey_cert *cert, const char *issuer_fp, int rv)
+ {
+ 	/* not implemented */
+ }
+diff -up openssh-9.0p1/audit.c.patch openssh-9.0p1/audit.c
+--- openssh-9.0p1/audit.c.patch	2022-10-24 15:02:16.544858331 +0200
++++ openssh-9.0p1/audit.c	2022-10-24 15:20:38.854548226 +0200
+@@ -116,12 +116,22 @@ audit_event_lookup(ssh_audit_event_t ev)
+ void
+ audit_key(struct ssh *ssh, int host_user, int *rv, const struct sshkey *key)
+ {
+-	char *fp;
++	char *key_fp = NULL;
++	char *issuer_fp = NULL;
++	struct sshkey_cert *cert = NULL;
+ 
+-	fp = sshkey_fingerprint(key, options.fingerprint_hash, SSH_FP_HEX);
+-	if (audit_keyusage(ssh, host_user, fp, (*rv == 0)) == 0)
++	key_fp = sshkey_fingerprint(key, options.fingerprint_hash, SSH_FP_HEX);
++	if (sshkey_is_cert(key) && key->cert != NULL && key->cert->signature_key != NULL) {
++		cert = key->cert;
++		issuer_fp = sshkey_fingerprint(cert->signature_key,
++										options.fingerprint_hash, SSH_FP_DEFAULT);
++	}
++	if (audit_keyusage(ssh, host_user, key_fp, cert, issuer_fp, (*rv == 0)) == 0)
+ 		*rv = -SSH_ERR_INTERNAL_ERROR;
+-	free(fp);
++	if (key_fp)
++		free(key_fp);
++	if (issuer_fp)
++		free(issuer_fp);
+ }
+ 
+ void
+diff -up openssh-9.0p1/audit.h.patch openssh-9.0p1/audit.h
+--- openssh-9.0p1/audit.h.patch	2022-10-24 15:02:16.544858331 +0200
++++ openssh-9.0p1/audit.h	2022-10-24 14:58:20.887565518 +0200
+@@ -64,7 +64,7 @@ void	audit_session_close(struct logininf
+ int	audit_run_command(struct ssh *, const char *);
+ void 	audit_end_command(struct ssh *, int, const char *);
+ ssh_audit_event_t audit_classify_auth(const char *);
+-int	audit_keyusage(struct ssh *, int, char *, int);
++int	audit_keyusage(struct ssh *, int, const char *, const struct sshkey_cert *, const char *, int);
+ void	audit_key(struct ssh *, int, int *, const struct sshkey *);
+ void	audit_unsupported(struct ssh *, int);
+ void	audit_kex(struct ssh *, int, char *, char *, char *, char *);
+diff -up openssh-9.0p1/audit-linux.c.patch openssh-9.0p1/audit-linux.c
+--- openssh-9.0p1/audit-linux.c.patch	2022-10-24 15:02:16.544858331 +0200
++++ openssh-9.0p1/audit-linux.c	2022-10-24 15:21:58.165303951 +0200
+@@ -137,10 +137,12 @@ fatal_report:
+ }
+ 
+ int
+-audit_keyusage(struct ssh *ssh, int host_user, char *fp, int rv)
++audit_keyusage(struct ssh *ssh, int host_user, const char *key_fp, const struct sshkey_cert *cert, const char *issuer_fp, int rv)
+ {
+ 	char buf[AUDIT_LOG_SIZE];
+ 	int audit_fd, rc, saved_errno;
++	const char *rip;
++	u_int i;
+ 
+ 	audit_fd = audit_open();
+ 	if (audit_fd < 0) {
+@@ -150,14 +152,44 @@ audit_keyusage(struct ssh *ssh, int host
+ 		else
+ 			return 0; /* Must prevent login */
+ 	}
++	rip = ssh_remote_ipaddr(ssh);
+ 	snprintf(buf, sizeof(buf), "%s_auth grantors=auth-key", host_user ? "pubkey" : "hostbased");
+ 	rc = audit_log_acct_message(audit_fd, AUDIT_USER_AUTH, NULL,
+-		buf, audit_username(), -1, NULL, ssh_remote_ipaddr(ssh), NULL, rv);
++		buf, audit_username(), -1, NULL, rip, NULL, rv);
+ 	if ((rc < 0) && ((rc != -1) || (getuid() == 0)))
+ 		goto out;
+-	snprintf(buf, sizeof(buf), "op=negotiate kind=auth-key fp=%s", fp);
++	snprintf(buf, sizeof(buf), "op=negotiate kind=auth-key fp=%s", key_fp);
+ 	rc = audit_log_user_message(audit_fd, AUDIT_CRYPTO_KEY_USER, buf, NULL,
+-		ssh_remote_ipaddr(ssh), NULL, rv);
++		rip, NULL, rv);
++	if ((rc < 0) && ((rc != -1) || (getuid() == 0)))
++		goto out;
++
++	if (cert) {
++		char *pbuf;
++
++		pbuf = audit_encode_nv_string("key_id", cert->key_id, 0);
++		if (pbuf == NULL)
++			goto out;
++		snprintf(buf, sizeof(buf), "cert %s cert_serial=%llu cert_issuer_alg=\"%s\" cert_issuer_fp=\"%s\"",
++			pbuf, (unsigned long long)cert->serial, sshkey_type(cert->signature_key), issuer_fp);
++		free(pbuf);
++		rc = audit_log_acct_message(audit_fd, AUDIT_USER_AUTH, NULL,
++			buf, audit_username(), -1, NULL, rip, NULL, rv);
++		if ((rc < 0) && ((rc != -1) || (getuid() == 0)))
++			goto out;
++
++		for (i = 0; cert->principals != NULL && i < cert->nprincipals; i++) {
++			pbuf = audit_encode_nv_string("cert_principal", cert->principals[i], 0);
++			if (pbuf == NULL)
++				goto out;
++			snprintf(buf, sizeof(buf), "principal %s", pbuf);
++			free(pbuf);
++			rc = audit_log_acct_message(audit_fd, AUDIT_USER_AUTH, NULL,
++				buf, audit_username(), -1, NULL, rip, NULL, rv);
++			if ((rc < 0) && ((rc != -1) || (getuid() == 0)))
++				goto out;
++		}
++	}
+ out:
+ 	saved_errno = errno;
+ 	audit_close(audit_fd);

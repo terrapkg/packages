@@ -1,0 +1,53 @@
+diff --color -ru a/ssh.1 b/ssh.1
+--- a/ssh.1	2022-07-12 11:47:51.307295880 +0200
++++ b/ssh.1	2022-07-12 11:50:28.793363263 +0200
+@@ -493,6 +493,7 @@
+ .It AddressFamily
+ .It BatchMode
+ .It BindAddress
++.It BindInterface
+ .It CanonicalDomains
+ .It CanonicalizeFallbackLocal
+ .It CanonicalizeHostname
+@@ -510,6 +511,7 @@
+ .It ControlPath
+ .It ControlPersist
+ .It DynamicForward
++.It EnableSSHKeysign
+ .It EnableEscapeCommandline
+ .It EscapeChar
+ .It ExitOnForwardFailure
+@@ -538,6 +540,8 @@
+ .It IdentitiesOnly
+ .It IdentityAgent
+ .It IdentityFile
++.It IgnoreUnknown
++.It Include
+ .It IPQoS
+ .It KbdInteractiveAuthentication
+ .It KbdInteractiveDevices
+@@ -546,6 +550,7 @@
+ .It LocalCommand
+ .It LocalForward
+ .It LogLevel
++.It LogVerbose
+ .It MACs
+ .It Match
+ .It NoHostAuthenticationForLocalhost
+@@ -566,6 +571,8 @@
+ .It RemoteCommand
+ .It RemoteForward
+ .It RequestTTY
++.It RevokedHostKeys
++.It SecurityKeyProvider
+ .It RequiredRSASize
+ .It SendEnv
+ .It ServerAliveInterval
+@@ -575,6 +582,7 @@
+ .It StreamLocalBindMask
+ .It StreamLocalBindUnlink
+ .It StrictHostKeyChecking
++.It SyslogFacility
+ .It TCPKeepAlive
+ .It Tunnel
+ .It TunnelDevice

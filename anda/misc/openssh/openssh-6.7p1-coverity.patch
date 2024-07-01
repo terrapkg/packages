@@ -1,0 +1,264 @@
+diff -up openssh-8.5p1/auth-krb5.c.coverity openssh-8.5p1/auth-krb5.c
+--- openssh-8.5p1/auth-krb5.c.coverity	2021-03-24 12:03:33.724967756 +0100
++++ openssh-8.5p1/auth-krb5.c	2021-03-24 12:03:33.782968159 +0100
+@@ -426,6 +426,7 @@ ssh_krb5_cc_new_unique(krb5_context ctx,
+ 		umask(old_umask);
+ 		if (tmpfd == -1) {
+ 			logit("mkstemp(): %.100s", strerror(oerrno));
++			free(ccname);
+ 			return oerrno;
+ 		}
+ 
+@@ -433,6 +434,7 @@ ssh_krb5_cc_new_unique(krb5_context ctx,
+ 			oerrno = errno;
+ 			logit("fchmod(): %.100s", strerror(oerrno));
+ 			close(tmpfd);
++			free(ccname);
+ 			return oerrno;
+ 		}
+ 		/* make sure the KRB5CCNAME is set for non-standard location */
+diff -up openssh-8.5p1/gss-genr.c.coverity openssh-8.5p1/gss-genr.c
+--- openssh-8.5p1/gss-genr.c.coverity	2021-03-26 11:52:46.613942552 +0100
++++ openssh-8.5p1/gss-genr.c	2021-03-26 11:54:37.881726318 +0100
+@@ -167,8 +167,9 @@ ssh_gssapi_kex_mechs(gss_OID_set gss_sup
+ 			enclen = __b64_ntop(digest,
+ 			    ssh_digest_bytes(SSH_DIGEST_MD5), encoded,
+ 			    ssh_digest_bytes(SSH_DIGEST_MD5) * 2);
+-
++#pragma GCC diagnostic ignored "-Wstringop-overflow"
+ 			cp = strncpy(s, kex, strlen(kex));
++#pragma pop
+ 			for ((p = strsep(&cp, ",")); p && *p != '\0';
+ 				(p = strsep(&cp, ","))) {
+ 				if (sshbuf_len(buf) != 0 &&
+diff -up openssh-8.5p1/krl.c.coverity openssh-8.5p1/krl.c
+--- openssh-8.5p1/krl.c.coverity	2021-03-02 11:31:47.000000000 +0100
++++ openssh-8.5p1/krl.c	2021-03-24 12:03:33.783968166 +0100
+@@ -1261,6 +1262,7 @@ is_key_revoked(struct ssh_krl *krl, cons
+ 		return r;
+ 	erb = RB_FIND(revoked_blob_tree, &krl->revoked_sha1s, &rb);
+ 	free(rb.blob);
++	rb.blob = NULL; /* make coverity happy */
+ 	if (erb != NULL) {
+ 		KRL_DBG(("revoked by key SHA1"));
+ 		return SSH_ERR_KEY_REVOKED;
+@@ -1271,6 +1273,7 @@ is_key_revoked(struct ssh_krl *krl, cons
+ 		return r;
+ 	erb = RB_FIND(revoked_blob_tree, &krl->revoked_sha256s, &rb);
+ 	free(rb.blob);
++	rb.blob = NULL; /* make coverity happy */
+ 	if (erb != NULL) {
+ 		KRL_DBG(("revoked by key SHA256"));
+ 		return SSH_ERR_KEY_REVOKED;
+@@ -1282,6 +1285,7 @@ is_key_revoked(struct ssh_krl *krl, cons
+ 		return r;
+ 	erb = RB_FIND(revoked_blob_tree, &krl->revoked_keys, &rb);
+ 	free(rb.blob);
++	rb.blob = NULL; /* make coverity happy */
+ 	if (erb != NULL) {
+ 		KRL_DBG(("revoked by explicit key"));
+ 		return SSH_ERR_KEY_REVOKED;
+diff -up openssh-8.5p1/loginrec.c.coverity openssh-8.5p1/loginrec.c
+--- openssh-8.5p1/loginrec.c.coverity	2021-03-24 13:18:53.793225885 +0100
++++ openssh-8.5p1/loginrec.c	2021-03-24 13:21:27.948404751 +0100
+@@ -690,9 +690,11 @@ construct_utmp(struct logininfo *li,
+ 	 */
+ 
+ 	/* Use strncpy because we don't necessarily want null termination */
++	/* coverity[buffer_size_warning : FALSE] */
+ 	strncpy(ut->ut_name, li->username,
+ 	    MIN_SIZEOF(ut->ut_name, li->username));
+ # ifdef HAVE_HOST_IN_UTMP
++	/* coverity[buffer_size_warning : FALSE] */
+ 	strncpy(ut->ut_host, li->hostname,
+ 	    MIN_SIZEOF(ut->ut_host, li->hostname));
+ # endif
+@@ -1690,6 +1692,7 @@ record_failed_login(struct ssh *ssh, con
+ 
+ 	memset(&ut, 0, sizeof(ut));
+ 	/* strncpy because we don't necessarily want nul termination */
++	/* coverity[buffer_size_warning : FALSE] */
+ 	strncpy(ut.ut_user, username, sizeof(ut.ut_user));
+ 	strlcpy(ut.ut_line, "ssh:notty", sizeof(ut.ut_line));
+ 
+@@ -1699,6 +1702,7 @@ record_failed_login(struct ssh *ssh, con
+ 	ut.ut_pid = getpid();
+ 
+ 	/* strncpy because we don't necessarily want nul termination */
++	/* coverity[buffer_size_warning : FALSE] */
+ 	strncpy(ut.ut_host, hostname, sizeof(ut.ut_host));
+ 
+ 	if (ssh_packet_connection_is_on_socket(ssh) &&
+diff -up openssh-8.5p1/misc.c.coverity openssh-8.5p1/misc.c
+--- openssh-8.5p1/misc.c.coverity	2021-03-24 12:03:33.745967902 +0100
++++ openssh-8.5p1/misc.c	2021-03-24 13:31:47.037079617 +0100
+@@ -1425,6 +1425,8 @@ sanitise_stdfd(void)
+ 	}
+ 	if (nullfd > STDERR_FILENO)
+ 		close(nullfd);
++	/* coverity[leaked_handle : FALSE]*/
++	/* coverity[leaked_handle : FALSE]*/
+ }
+ 
+ char *
+@@ -2511,6 +2513,7 @@ stdfd_devnull(int do_stdin, int do_stdou
+ 	}
+ 	if (devnull > STDERR_FILENO)
+ 		close(devnull);
++	/* coverity[leaked_handle : FALSE]*/
+ 	return ret;
+ }
+ 
+diff -up openssh-7.4p1/monitor.c.coverity openssh-7.4p1/monitor.c
+--- openssh-7.4p1/monitor.c.coverity	2016-12-23 16:40:26.888788688 +0100
++++ openssh-7.4p1/monitor.c	2016-12-23 16:40:26.900788691 +0100
+@@ -411,7 +411,7 @@ monitor_child_preauth(Authctxt *_authctx
+ 	mm_get_keystate(ssh, pmonitor);
+ 
+ 	/* Drain any buffered messages from the child */
+-	while (pmonitor->m_log_recvfd != -1 && monitor_read_log(pmonitor) == 0)
++	while (pmonitor->m_log_recvfd >= 0 && monitor_read_log(pmonitor) == 0)
+ 		;
+ 
+ 	if (pmonitor->m_recvfd >= 0)
+@@ -1678,7 +1678,7 @@ mm_answer_pty(struct ssh *ssh, int sock,
+ 	s->ptymaster = s->ptyfd;
+ 
+ 	debug3_f("tty %s ptyfd %d", s->tty, s->ttyfd);
+-
++	/* coverity[leaked_handle : FALSE] */
+ 	return (0);
+ 
+  error:
+diff -up openssh-7.4p1/openbsd-compat/bindresvport.c.coverity openssh-7.4p1/openbsd-compat/bindresvport.c
+--- openssh-7.4p1/openbsd-compat/bindresvport.c.coverity	2016-12-19 05:59:41.000000000 +0100
++++ openssh-7.4p1/openbsd-compat/bindresvport.c	2016-12-23 16:40:26.901788691 +0100
+@@ -58,7 +58,7 @@ bindresvport_sa(int sd, struct sockaddr
+ 	struct sockaddr_in6 *in6;
+ 	u_int16_t *portp;
+ 	u_int16_t port;
+-	socklen_t salen;
++	socklen_t salen = sizeof(struct sockaddr_storage);
+ 	int i;
+ 
+ 	if (sa == NULL) {
+diff -up openssh-8.7p1/openbsd-compat/bsd-pselect.c.coverity openssh-8.7p1/openbsd-compat/bsd-pselect.c
+--- openssh-8.7p1/openbsd-compat/bsd-pselect.c.coverity	2021-08-30 16:36:11.357288009 +0200
++++ openssh-8.7p1/openbsd-compat/bsd-pselect.c	2021-08-30 16:37:21.791897976 +0200
+@@ -113,13 +113,13 @@ pselect_notify_setup(void)
+ static void
+ pselect_notify_parent(void)
+ {
+-	if (notify_pipe[1] != -1)
++	if (notify_pipe[1] >= 0)
+ 		(void)write(notify_pipe[1], "", 1);
+ }
+ static void
+ pselect_notify_prepare(fd_set *readset)
+ {
+-	if (notify_pipe[0] != -1)
++	if (notify_pipe[0] >= 0)
+ 		FD_SET(notify_pipe[0], readset);
+ }
+ static void
+@@ -127,8 +127,8 @@ pselect_notify_done(fd_set *readset)
+ {
+ 	char c;
+ 
+-	if (notify_pipe[0] != -1 && FD_ISSET(notify_pipe[0], readset)) {
+-		while (read(notify_pipe[0], &c, 1) != -1)
++	if (notify_pipe[0] >= 0 && FD_ISSET(notify_pipe[0], readset)) {
++		while (read(notify_pipe[0], &c, 1) >= 0)
+ 			debug2_f("reading");
+ 		FD_CLR(notify_pipe[0], readset);
+ 	}
+diff -up openssh-8.5p1/readconf.c.coverity openssh-8.5p1/readconf.c
+--- openssh-8.5p1/readconf.c.coverity	2021-03-24 12:03:33.778968131 +0100
++++ openssh-8.5p1/readconf.c	2021-03-24 12:03:33.785968180 +0100
+@@ -1847,6 +1847,7 @@ parse_pubkey_algos:
+ 			} else if (r != 0) {
+ 				error("%.200s line %d: glob failed for %s.",
+ 				    filename, linenum, arg2);
++				free(arg2);
+ 				goto out;
+ 			}
+ 			free(arg2);
+diff -up openssh-7.4p1/servconf.c.coverity openssh-7.4p1/servconf.c
+--- openssh-7.4p1/servconf.c.coverity	2016-12-23 16:40:26.896788690 +0100
++++ openssh-7.4p1/servconf.c	2016-12-23 16:40:26.901788691 +0100
+@@ -1638,8 +1638,9 @@ process_server_config_line(ServerOptions
+ 		if (*activep && *charptr == NULL) {
+ 			*charptr = tilde_expand_filename(arg, getuid());
+ 			/* increase optional counter */
+-			if (intptr != NULL)
+-				*intptr = *intptr + 1;
++			/* DEAD CODE intptr is still NULL ;)
++  			 if (intptr != NULL)
++				*intptr = *intptr + 1; */
+ 		}
+ 		break;
+ 
+diff -up openssh-8.7p1/serverloop.c.coverity openssh-8.7p1/serverloop.c
+--- openssh-8.7p1/serverloop.c.coverity	2021-08-20 06:03:49.000000000 +0200
++++ openssh-8.7p1/serverloop.c	2021-08-30 16:28:22.416226981 +0200
+@@ -547,7 +547,7 @@ server_request_tun(struct ssh *ssh)
+ 		debug_f("invalid tun");
+ 		goto done;
+ 	}
+-	if (auth_opts->force_tun_device != -1) {
++	if (auth_opts->force_tun_device >= 0) {
+ 		if (tun != SSH_TUNID_ANY &&
+ 		    auth_opts->force_tun_device != (int)tun)
+ 			goto done;
+diff -up openssh-7.4p1/ssh-agent.c.coverity openssh-7.4p1/ssh-agent.c
+--- openssh-7.4p1/ssh-agent.c.coverity	2016-12-19 05:59:41.000000000 +0100
++++ openssh-7.4p1/ssh-agent.c	2016-12-23 16:40:26.903788691 +0100
+@@ -869,6 +869,7 @@ sanitize_pkcs11_provider(const char *pro
+ 
+ 		if (pkcs11_uri_parse(provider, uri) != 0) {
+ 			error("Failed to parse PKCS#11 URI");
++			pkcs11_uri_cleanup(uri);
+ 			return NULL;
+ 		}
+ 		/* validate also provider from URI */
+diff -up openssh-7.4p1/sshd.c.coverity openssh-7.4p1/sshd.c
+--- openssh-7.4p1/sshd.c.coverity	2016-12-23 16:40:26.897788690 +0100
++++ openssh-7.4p1/sshd.c	2016-12-23 16:40:26.904788692 +0100
+@@ -691,8 +691,10 @@ privsep_preauth(Authctxt *authctxt)
+ 
+ 		privsep_preauth_child(ssh);
+ 		setproctitle("%s", "[net]");
+-		if (box != NULL)
++		if (box != NULL) {
+ 			ssh_sandbox_child(box);
++			free(box);
++		}
+ 
+ 		return 0;
+ 	}
+@@ -2519,8 +2524,11 @@ do_ssh2_kex(struct ssh *ssh)
+ 
+ 	if (newstr)
+ 		myproposal[PROPOSAL_KEX_ALGS] = newstr;
+-	else
++	else {
+ 		fatal("No supported key exchange algorithms");
++		free(gss);
++	     }
++	     /* coverity[leaked_storage: FALSE]*/
+ 	}
+ #endif
+ 
+diff -up openssh-8.5p1/ssh-keygen.c.coverity openssh-8.5p1/ssh-keygen.c
+--- openssh-8.5p1/ssh-keygen.c.coverity	2021-03-24 12:03:33.780968145 +0100
++++ openssh-8.5p1/ssh-keygen.c	2021-03-24 12:03:33.787968194 +0100
+@@ -2332,6 +2332,9 @@ update_krl_from_file(struct passwd *pw,
+ 			r = ssh_krl_revoke_key_sha256(krl, blob, blen);
+ 			if (r != 0)
+ 				fatal_fr(r, "revoke key failed");
++			freezero(blob, blen);
++			blob = NULL;
++			blen = 0;
+ 		} else {
+ 			if (strncasecmp(cp, "key:", 4) == 0) {
+ 				cp += 4;

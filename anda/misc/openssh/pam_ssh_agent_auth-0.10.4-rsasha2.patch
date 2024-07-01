@@ -1,0 +1,19 @@
+diff -up openssh-8.7p1/pam_ssh_agent_auth-pam_ssh_agent_auth-0.10.4/userauth_pubkey_from_id.c.rsasha2 openssh-8.7p1/pam_ssh_agent_auth-pam_ssh_agent_auth-0.10.4/userauth_pubkey_from_id.c
+--- openssh-8.7p1/pam_ssh_agent_auth-pam_ssh_agent_auth-0.10.4/userauth_pubkey_from_id.c.rsasha2	2022-07-15 15:08:12.865585410 +0200
++++ openssh-8.7p1/pam_ssh_agent_auth-pam_ssh_agent_auth-0.10.4/userauth_pubkey_from_id.c	2022-07-15 15:16:25.164282372 +0200
+@@ -87,8 +87,13 @@ userauth_pubkey_from_id(const char *ruse
+         (r = sshbuf_put_string(b, pkblob, blen)) != 0)
+         fatal("%s: buffer error: %s", __func__, ssh_err(r));
+ 
+-    if (ssh_agent_sign(id->ac->fd, id->key, &sig, &slen, sshbuf_ptr(b), sshbuf_len(b), NULL, 0) != 0)
+-        goto user_auth_clean_exit;
++    if (sshkey_type_plain(id->key->type) == KEY_RSA
++	&& ssh_agent_sign(id->ac->fd, id->key, &sig, &slen, sshbuf_ptr(b), sshbuf_len(b), "rsa-sha2-256", 0) == 0) {
++	/* Do nothing */
++    } else {
++        if (ssh_agent_sign(id->ac->fd, id->key, &sig, &slen, sshbuf_ptr(b), sshbuf_len(b), NULL, 0) != 0)
++            goto user_auth_clean_exit;
++    }
+ 
+     /* test for correct signature */
+     if (sshkey_verify(id->key, sig, slen, sshbuf_ptr(b), sshbuf_len(b), NULL, 0, NULL) == 0)

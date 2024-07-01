@@ -1,0 +1,20 @@
+# I do not know about any better place where to put profile files
+addFilter(r'openssh-askpass.x86_64: W: non-conffile-in-etc /etc/profile.d/gnome-ssh-askpass.c?sh')
+
+# The ssh-keysign is not supposed to have standard permissions
+addFilter(r'openssh.x86_64: E: non-standard-executable-perm /usr/libexec/openssh/ssh-keysign 2555')
+addFilter(r'openssh.x86_64: E: setgid-binary /usr/libexec/openssh/ssh-keysign ssh_keys 2555')
+addFilter(r'openssh.x86_64: W: non-standard-gid /usr/libexec/openssh/ssh-keysign ssh_keys')
+
+# The -cavs subpackage is internal without documentation
+# The -askpass is not intended to be used directly so it is missing documentation
+addFilter(r'openssh-(askpass|cavs).x86_64: W: no-documentation')
+
+# sshd config and sysconfig is not supposed to be world readable
+addFilter(r'non-readable /etc/(ssh/sshd_config|sysconfig/sshd)')
+
+# /usr/share/empty.sshd is required to have the given permissions
+addFilter(r'non-standard-dir-perm /usr/share/empty.sshd 711')
+
+# Spelling false-positives
+addFilter(r'spelling-error (Summary\(en_US\)|.* en_US) (mls|su|sudo|rlogin|rsh|untrusted) ')

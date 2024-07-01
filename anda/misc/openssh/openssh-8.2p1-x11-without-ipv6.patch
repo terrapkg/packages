@@ -1,0 +1,30 @@
+diff --git a/channels.c b/channels.c
+--- a/channels.c
++++ b/channels.c
+@@ -3933,16 +3933,26 @@ x11_create_display_inet(int x11_display_
+ 			if (ai->ai_family == AF_INET6)
+ 				sock_set_v6only(sock);
+ 			if (x11_use_localhost)
+ 				set_reuseaddr(sock);
+ 			if (bind(sock, ai->ai_addr, ai->ai_addrlen) == -1) {
+ 				debug2_f("bind port %d: %.100s", port,
+ 				    strerror(errno));
+ 				close(sock);
++
++				/* do not remove successfully opened
++				 * sockets if the request failed because
++				 * the protocol IPv4/6 is not available
++				 * (e.g. IPv6 may be disabled while being
++				 * supported)
++				 */
++				if (EADDRNOTAVAIL == errno)
++    					continue;
++
+ 				for (n = 0; n < num_socks; n++)
+ 					close(socks[n]);
+ 				num_socks = 0;
+ 				break;
+ 			}
+ 			socks[num_socks++] = sock;
+ 			if (num_socks == NUM_SOCKS)
+ 				break;
