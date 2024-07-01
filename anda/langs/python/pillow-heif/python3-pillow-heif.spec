@@ -72,6 +72,7 @@ Documentation for %{srcname}.
 
 
 %build
+export SETUPTOOLS_SCM_PRETEND_VERSION=%version
 export PILLOW_HEIF_VERSION=%version
 # Native build
 %py3_build
@@ -84,12 +85,13 @@ rm -f docs/_build_py3/html/.buildinfo
 
 
 %install
+export SETUPTOOLS_SCM_PRETEND_VERSION=%version
 export PILLOW_HEIF_VERSION=%version
 # Native build
 %py3_install
 
 # hack…? but how did this even happen in the first place
-mv %buildroot%python3_sitearch/pillow_heif-0.0.0-py%python3_version.egg-info %buildroot%python3_sitearch/pillow_heif-%version-py%python3_version.egg-info || true
+%dnl mv %buildroot%python3_sitearch/pillow_heif-0.0.0-py%python3_version.egg-info %buildroot%python3_sitearch/pillow_heif-%version-py%python3_version.egg-info || true
 
 %check
 # Check Python 3 modules
