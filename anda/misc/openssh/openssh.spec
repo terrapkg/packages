@@ -57,8 +57,8 @@ Version: %{openssh_ver}
 Release: %{openssh_rel}%{?dist}.10
 URL: http://www.openssh.com/portable.html
 #URL1: https://github.com/jbeverly/pam_ssh_agent_auth/
-Source0: ftp://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-%{version}.tar.gz
-Source1: ftp://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-%{version}.tar.gz.asc
+Source0: openssh-%{version}.tar.gz
+Source1: openssh-%{version}.tar.gz.asc
 Source2: sshd.pam
 Source3: gpgkey-736060BA.gpg
 Source4: https://github.com/jbeverly/pam_ssh_agent_auth/archive/pam_ssh_agent_auth-%{pam_ssh_agent_ver}.tar.gz

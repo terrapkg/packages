@@ -1,0 +1,2 @@
+sh("wget ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-9.8p1.tar.gz", #{ cwd: "anda/misc/openssh/" });
+sh("wget ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-9.8p1.tar.gz.asc", #{ cwd: "anda/misc/openssh/" });
