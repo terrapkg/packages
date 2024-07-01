@@ -14,6 +14,7 @@ License:        BSD-3-Clause
 URL:            https://github.com/bigcat88/pillow_heif
 Source0:        https://github.com/bigcat88/pillow_heif/archive/refs/tags/v%{version}/pillow-heif-%{version}.tar.gz
 Source1:        test.py
+Patch0:         0001-Use-env-var-PILLOW_HEIF_VERSION-to-get-version.patch
 
 BuildRequires:  gcc
 BuildRequires:  python%{python3_pkgversion}-pytest
