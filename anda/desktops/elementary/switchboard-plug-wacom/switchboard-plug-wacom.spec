@@ -25,7 +25,7 @@ BuildRequires:  pkgconfig(libwacom)
 BuildRequires:  pkgconfig(gudev-1.0)
 BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(xi)
-BuildRequires:  switchboard-devel
+BuildRequires:  pkgconfig(switchboard-3)
 
 Requires:       switchboard%{?_isa}
 Supplements:    switchboard%{?_isa}
