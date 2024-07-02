@@ -8,7 +8,7 @@
 
 Name:           switchboard-plug-wacom
 Summary:        Switchboard Wacom Plug
-Version:        1.0.1
+Version:        8.0.0
 Release:        1%?dist
 License:        GPL-3.0-or-later
 
