@@ -68,7 +68,7 @@ developing applications that use %{name}.
 %files
 %license LICENSE
 %doc README.md
-%{_libdir}/libplacebo.so.338
+%{_libdir}/libplacebo.so.*
 
 %files devel
 %{_includedir}/*
