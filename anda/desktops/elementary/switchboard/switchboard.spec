@@ -1,5 +1,5 @@
 %global srcname switchboard
-%global appname io.elementary.switchboard
+%global appname io.elementary.settings
 
 Name:           switchboard
 Summary:        Modular Desktop Settings Hub
@@ -65,7 +65,7 @@ switchboard.
 %install
 %meson_install
 
-%dnl %find_lang %{appname}
+%find_lang %{appname}
 
 # create plug directories
 mkdir -p %{buildroot}/%{_libdir}/%{name}
@@ -80,8 +80,37 @@ mkdir -p %{buildroot}/%{_libdir}/%{name}/system
 
 
 %check
-%dnl desktop-file-validate \
-%dnl     %{buildroot}/%{_datadir}/applications/%{appname}.desktop
+desktop-file-validate \
+    %{buildroot}/%{_datadir}/applications/%{appname}.desktop
 
-%dnl appstream-util validate-relax --nonet \
-%dnl     %{buildroot}/%{_datadir}/metainfo/%{appname}.metainfo.xml
+appstream-util validate-relax --nonet \
+    %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
+
+%files
+%doc README.md
+%license COPYING
+%{_bindir}/%{appname}
+
+%{_datadir}/applications/%{appname}.desktop
+%{_datadir}/glib-2.0/schemas/%{appname}.gschema.xml
+%{_iconsdir}/hicolor/*/apps/%{appname}.svg
+%{_datadir}/metainfo/%{appname}.appdata.xml
+
+%files libs
+%doc README.md
+%license COPYING
+
+%dir %{_libdir}/%{name}
+%dir %{_libdir}/%{name}/*
+
+%{_libdir}/lib%{name}-3.so.0
+%{_libdir}/lib%{name}-3.so.2.0
+
+%files devel
+%{_includedir}/%{name}-3/
+
+%{_libdir}/lib%{name}-3.so
+%{_libdir}/pkgconfig/%{name}-3.pc
+
+%{_datadir}/vala/vapi/%{name}-3.deps
+%{_datadir}/vala/vapi/%{name}-3.vapi
