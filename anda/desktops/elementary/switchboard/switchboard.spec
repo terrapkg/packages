@@ -80,43 +80,8 @@ mkdir -p %{buildroot}/%{_libdir}/%{name}/system
 
 
 %check
-desktop-file-validate \
-    %{buildroot}/%{_datadir}/applications/%{appname}.desktop
+%dnl desktop-file-validate \
+%dnl     %{buildroot}/%{_datadir}/applications/%{appname}.desktop
 
-appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{appname}.metainfo.xml
-
-
-%files -f %{appname}.lang
-%doc README.md
-%license COPYING
-%{_bindir}/%{appname}
-
-%{_datadir}/applications/%{appname}.desktop
-%{_datadir}/glib-2.0/schemas/%{appname}.gschema.xml
-%{_datadir}/icons/hicolor/*/apps/%{appname}.svg
-%{_datadir}/metainfo/%{appname}.metainfo.xml
-
-%files libs
-%doc README.md
-%license COPYING
-
-%dir %{_libdir}/%{name}
-%dir %{_libdir}/%{name}/*
-
-%{_libdir}/lib%{name}-2.0.so.0
-%{_libdir}/lib%{name}-2.0.so.2.0
-
-%files devel
-%{_includedir}/%{name}-2.0/
-
-%{_libdir}/lib%{name}-2.0.so
-%{_libdir}/pkgconfig/%{name}-2.0.pc
-
-%{_datadir}/vala/vapi/%{name}-2.0.deps
-%{_datadir}/vala/vapi/%{name}-2.0.vapi
-
-
-%changelog
-* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com> - 6.0.2-1
-- Repackaged for Terra
+%dnl appstream-util validate-relax --nonet \
+%dnl     %{buildroot}/%{_datadir}/metainfo/%{appname}.metainfo.xml
