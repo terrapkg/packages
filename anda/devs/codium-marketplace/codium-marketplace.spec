@@ -13,6 +13,10 @@ Requires:   codium sed
 This package replaces the default marketplace (https://open-vsx.org/)
 to the official one used by vscode.
 
+%install
+touch dummy
+install -Dm644 dummy %buildroot/tmp/terra-codium-marketplace-dummy-file
+
 %posttrans
 if [ $1 -gt 1 ]; then  # update/install
   sed -i -e 's/^[[:blank:]]*"serviceUrl":.*/    "serviceUrl": "https:\/\/marketplace.visualstudio.com\/_apis\/public\/gallery",/' \
@@ -38,3 +42,6 @@ sed -i -e 's/^[[:blank:]]*"serviceUrl":.*/    "serviceUrl": "https:\/\/marketpla
   -e 's/^[[:blank:]]*"itemUrl":.*/    "itemUrl": "https:\/\/marketplace.visualstudio.com\/items"/' \
   -e '/^[[:blank:]]*"linkProtectionTrustedDomains/d' \
   /usr/share/codium/resources/app/product.json || true
+
+%files
+/tmp/terra-codium-marketplace-dummy-file
