@@ -23,7 +23,7 @@ BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(libhandy-1) >= 0.83.0
 BuildRequires:  pkgconfig(gtk4)
 BuildRequires:  pkgconfig(libadwaita-1)
-BuildRequires:  fdupes
+BuildRequires:  fdupes sassc
 
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 
