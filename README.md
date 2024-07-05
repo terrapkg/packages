@@ -11,7 +11,7 @@ This monorepo contains the package manifests for all packages in Terra.
 
 ## Installation
 ```bash
-sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
+sudo dnf install --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' --setopt='terra.gpgkey=https://repos.fyralabs.com/terra$releasever/key.asc' terra-release
 ```
 You should also install the `terra-release` package so that when our infrastructure has any migrations, you can be assured that your Terra installation will still work as-is.
 
