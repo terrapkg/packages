@@ -47,7 +47,6 @@ jobs:
               git add *
               git commit -S -a -m "$msg"
             }
-            copy_over f38 || true
             copy_over f39 || true
             copy_over f40 || true
             git push -u origin --all

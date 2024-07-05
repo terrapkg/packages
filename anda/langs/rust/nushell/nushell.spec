@@ -1,5 +1,5 @@
 Name:			nushell
-Version:		0.93.0
+Version:		0.95.0
 Release:		1%?dist
 Summary:		A new type of shell
 License:		MIT
@@ -16,7 +16,7 @@ Requires:		glibc openssl zlib
 %cargo_prep_online
 
 %build
-%{cargo_build -f extra,dataframe} --workspace
+%{cargo_build -f extra} --workspace
 
 %install
 mkdir -p %buildroot%_bindir

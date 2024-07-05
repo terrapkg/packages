@@ -2,7 +2,7 @@
   "name": "Fedora",
   "build": {
     "dockerfile": "Dockerfile",
-    "args": { "VARIANT": "38" }
+    "args": { "VARIANT": "rawhide" }
   },
   "remoteUser": "vscode",
   "runArgs": [

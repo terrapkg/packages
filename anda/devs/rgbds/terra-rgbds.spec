@@ -1,6 +1,6 @@
 Name:		terra-rgbds
-Version:	0.7.0
-Release:	1%{?dist}
+Version:	0.8.0
+Release:	1%?dist
 Summary:	A development package for the Game Boy, including an assembler
 
 # See LICENSE for details

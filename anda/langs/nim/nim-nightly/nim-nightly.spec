@@ -1,8 +1,8 @@
 %global csrc_commit 561b417c65791cd8356b5f73620914ceff845d10
-%global commit b3b26b2e56df580b1a4190fb28ef4e05f0cff514
+%global commit 05df263b84de9008266b3d53e2c28b009890ca61
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global ver 2.1.1
-%global commit_date 20240518
+%global commit_date 20240704
 %global debug_package %nil
 
 Name:			nim-nightly
@@ -109,9 +109,9 @@ mv %buildroot%_bindir/nim %buildroot%_datadir/
 ln -s %_datadir/nim/bin/nim %buildroot%_bindir/nim
 
 %ifarch x86_64
-mkdir -p %buildroot/%_docdir/%name/html
-cp -a doc/html/*.html %buildroot/%_docdir/%name/html/
-cp tools/dochack/dochack.js %buildroot/%_docdir/%name/
+mkdir -p %buildroot/%_docdir/%name/html || true
+cp -a doc/html/*.html %buildroot/%_docdir/%name/html/ || true
+cp tools/dochack/dochack.js %buildroot/%_docdir/%name/ || true
 %endif
 
 cp -r lib/* %buildroot%_prefix/lib/nim/

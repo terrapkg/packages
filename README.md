@@ -1,6 +1,5 @@
 # Terra Sources
 
-[![Repository status](https://repology.org/badge/repository-big/terra_38.svg?header=Terra+38)](https://repology.org/repository/terra_38)
 [![Repository status](https://repology.org/badge/repository-big/terra_39.svg?header=Terra+39)](https://repology.org/repository/terra_39)
 [![Repository status](https://repology.org/badge/repository-big/terra_40.svg?header=Terra+40)](https://repology.org/repository/terra_40)
 [![Repository status](https://repology.org/badge/repository-big/terra_rawhide.svg?header=Terra+Rawhide)](https://repology.org/repository/terra_rawhide)
@@ -12,7 +11,7 @@ This monorepo contains the package manifests for all packages in Terra.
 
 ## Installation
 ```bash
-sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
+sudo dnf install --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' --setopt='terra.gpgkey=https://repos.fyralabs.com/terra$releasever/key.asc' terra-release
 ```
 You should also install the `terra-release` package so that when our infrastructure has any migrations, you can be assured that your Terra installation will still work as-is.
 
