@@ -3,6 +3,10 @@
 %elifarch aarch64
 %global arch arm64
 %endif
+# do not strip binaries
+%global __os_install_post %{nil}
+%define debug_package %{nil}
+
 
 Name:			submarine
 Version:		0.2.1
