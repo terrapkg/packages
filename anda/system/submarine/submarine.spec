@@ -4,7 +4,7 @@
 %global arch arm64
 %endif
 # do not strip binaries
-%global __os_install_post %{nil}
+%define __strip /bin/true
 %define debug_package %{nil}
 
 
