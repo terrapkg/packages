@@ -12,7 +12,7 @@ Patch:          https://github.com/wolfpld/tracy/commit/1a971d867d6fa5bf6dc57d70
 %A real time, nanosecond resolution, remote telemetry, hybrid frame and sampling profiler for games and other applications.
 
 %prep
-%autosetup -n tracy
+%autosetup -n tracy-0.10
 
 %build
 %make_build -C capture/build/unix release
