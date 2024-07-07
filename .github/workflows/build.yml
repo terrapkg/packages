@@ -5,11 +5,16 @@ on:
       packages:
         description: "Packages to Build"
         required: true
+      custom_builder:
+        description: "Custom Builder"
+        required: false
+        default: ""
 
 jobs:
   parse:
     outputs:
       pkgs: ${{ steps.parsing.outputs.pkgs }}
+      builder: ${{ inputs.custom_builder }}
     runs-on: "ubuntu-latest"
     steps:
       - name: Parse Input
@@ -22,9 +27,9 @@ jobs:
       matrix:
         pkg: ${{ fromJson(needs.parse.outputs.pkgs) }}
         version: ["rawhide"]
-        arch: ["x86_64", "aarch64"]
+        arch: ${{ output.builder == "x86-64-lg" && ["x86_64"] || ["x86_64", "aarch64"] }}
       fail-fast: false
-    runs-on: ${{ matrix.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
+    runs-on: ${{ matrix.arch == 'aarch64' && 'ARM64' || output.builder && output.builder || 'ubuntu-latest' }}
     container:
       image: ghcr.io/terrapkg/builder:f${{ matrix.version }}
       options: --cap-add=SYS_ADMIN --privileged
