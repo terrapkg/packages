@@ -22,6 +22,7 @@ jobs:
     outputs:
       pkgs: ${{ steps.parsing.outputs.pkgs }}
       builder: ${{ inputs.custom_builder }}
+      arch: ${{ steps.parsing.outputs.arch }}
     runs-on: "ubuntu-latest"
     steps:
       - name: Parse Input
