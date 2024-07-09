@@ -35,6 +35,11 @@
 %global intel_platform_vulkan ,intel,intel_hasvk
 %endif
 
+	
+%ifarch x86_64
+%global with_intel_vk_rt 1
+%endif
+
 %ifarch aarch64 x86_64 %{ix86}
 %if !0%{?rhel}
 %global with_lima      1
@@ -461,6 +466,7 @@ export MESON_PACKAGE_CACHE_DIR="%{cargo_registry}/"
 %if 0%{?with_intel_clc}
   -Dintel-clc=enabled \
 %endif
+  -Dintel-rt=%{?with_intel_vk_rt:enabled}%{!?with_intel_vk_rt:disabled} \
   -Dmicrosoft-clc=disabled \
   -Dllvm=enabled \
   -Dshared-llvm=enabled \
