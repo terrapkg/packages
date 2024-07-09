@@ -70,7 +70,7 @@
 %bcond_with valgrind
 %endif
 
-%global vulkan_drivers swrast%{?base_vulkan}%{?intel_platform_vulkan}%{?extra_platform_vulkan}%{?with_nvk:,nouveau-experimental}
+%global vulkan_drivers swrast%{?base_vulkan}%{?intel_platform_vulkan}%{?extra_platform_vulkan}%{?with_nvk:,nouveau}
 
 Name:           terra-%{srcname}
 Summary:        Mesa graphics libraries
@@ -88,9 +88,9 @@ Source1:        Mesa-MLAA-License-Clarification-Email.txt
 
 Patch10:        https://src.fedoraproject.org/rpms/mesa/raw/e89544b7a4d811a64ca23b402add29524cc6f704/f/gnome-shell-glthread-disable.patch
 # Patch11:        https://src.fedoraproject.org/rpms/mesa/raw/e89544b7a4d811a64ca23b402add29524cc6f704/f/0001-llvmpipe-Init-eglQueryDmaBufModifiersEXT-num_modifie.patch
-# Patch12:        https://src.fedoraproject.org/rpms/mesa/raw/e89544b7a4d811a64ca23b402add29524cc6f704/f/0001-Revert-ac-radeonsi-remove-has_syncobj-has_fence_to_h.patch
+Patch12:        https://src.fedoraproject.org/rpms/mesa/raw/e89544b7a4d811a64ca23b402add29524cc6f704/f/0001-Revert-ac-radeonsi-remove-has_syncobj-has_fence_to_h.patch
 # s390x: fix build
-Patch100:       https://src.fedoraproject.org/rpms/mesa/raw/e89544b7a4d811a64ca23b402add29524cc6f704/f/fix-egl-on-s390x.patch
+# Patch100:       https://src.fedoraproject.org/rpms/mesa/raw/e89544b7a4d811a64ca23b402add29524cc6f704/f/fix-egl-on-s390x.patch
 
 BuildRequires:  meson >= 1.3.0
 BuildRequires:  gcc
@@ -159,6 +159,8 @@ BuildRequires:  pkgconfig(SPIRV-Tools)
 BuildRequires:  pkgconfig(LLVMSPIRVLib)
 %endif
 %if 0%{?with_nvk}
+BuildRequires:  cbindgen
+BuildRequires:  (crate(paste) >= 1.0.14 with crate(paste) < 2)
 BuildRequires:  (crate(proc-macro2) >= 1.0.56 with crate(proc-macro2) < 2)
 BuildRequires:  (crate(quote) >= 1.0.25 with crate(quote) < 2)
 BuildRequires:  (crate(syn/clone-impls) >= 2.0.15 with crate(syn/clone-impls) < 3)
@@ -172,6 +174,7 @@ BuildRequires:  python3-mako
 %if 0%{?with_intel_clc}
 BuildRequires:  python3-ply
 %endif
+BuildRequires:  python3-pycparser
 BuildRequires:  vulkan-headers
 BuildRequires:  glslang
 %if 0%{?with_vulkan_hw}
@@ -418,6 +421,7 @@ export MESON_PACKAGE_CACHE_DIR="%{cargo_registry}/"
 %rewrite_wrap_file quote
 %rewrite_wrap_file syn
 %rewrite_wrap_file unicode-ident
+%rewrite_wrap_file paste
 %endif
 
 # We've gotten a report that enabling LTO for mesa breaks some games. See
