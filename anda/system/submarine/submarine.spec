@@ -24,6 +24,7 @@ Submarine provides a minimal Linux environmemt that lives in a small partition
 (or a different system if you're brave.)
 
 %prep
+ls -la .
 git clone --recurse-submodules --shallow-submodules -b v%version %url .
 
 pushd u-root
