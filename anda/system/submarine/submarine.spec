@@ -24,18 +24,21 @@ Submarine provides a minimal Linux environmemt that lives in a small partition
 (or a different system if you're brave.)
 
 %prep
-ls -la .
-git clone --recurse-submodules --shallow-submodules -b v%version %url .
+git clone --recurse-submodules --shallow-submodules -b v%version %url %{name}-build
 
-pushd u-root
+pushd %{name}-build/u-root
 go install
+popd
 popd
 
 %build
+pushd %{name}-build
 export PATH=$PATH:$HOME/go/bin
 %make_build %arch
+popd
 
 %install
+pushd %{name}-build
 mkdir -p %buildroot/boot %buildroot%_datadir/submarine
 install -Dm644 build/submarine-*.kpart %buildroot%_datadir/submarine/
 # Symlink the installed kpart to just submarine.kpart
@@ -44,6 +47,8 @@ find . -name 'submarine-*.kpart' -exec ln -srf {} submarine.kpart \;
 popd
 
 install -Dm644 build/submarine-*.bin %buildroot%_datadir/submarine/
+
+popd
 
 %files
 %_datadir/submarine/submarine-*.kpart
