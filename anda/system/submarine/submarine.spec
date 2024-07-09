@@ -29,7 +29,7 @@ git clone --recurse-submodules --shallow-submodules -b v%version %url %{name}-bu
 pushd %{name}-build/u-root
 go install
 popd
-popd
+
 
 %build
 pushd %{name}-build
