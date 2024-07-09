@@ -86,11 +86,11 @@ Source0:        https://archive.mesa3d.org/%{srcname}-%{ver}.tar.xz
 # Fedora opts to ignore the optional part of clause 2 and treat that code as 2 clause BSD.
 Source1:        Mesa-MLAA-License-Clarification-Email.txt
 
-Patch10:        gnome-shell-glthread-disable.patch
-# Work around for the meson bug until an upstream fix lands
-# https://bugzilla.redhat.com/show_bug.cgi?id=2277018
-# https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/28923
-Patch11:        mesa-28923.patch
+Patch10:        https://src.fedoraproject.org/rpms/mesa/raw/e89544b7a4d811a64ca23b402add29524cc6f704/f/gnome-shell-glthread-disable.patch
+Patch11:        https://src.fedoraproject.org/rpms/mesa/raw/e89544b7a4d811a64ca23b402add29524cc6f704/f/0001-llvmpipe-Init-eglQueryDmaBufModifiersEXT-num_modifie.patch
+Patch12:        https://src.fedoraproject.org/rpms/mesa/raw/e89544b7a4d811a64ca23b402add29524cc6f704/f/0001-Revert-ac-radeonsi-remove-has_syncobj-has_fence_to_h.patch
+# s390x: fix build
+Patch100:       https://src.fedoraproject.org/rpms/mesa/raw/e89544b7a4d811a64ca23b402add29524cc6f704/f/fix-egl-on-s390x.patch
 
 BuildRequires:  meson >= 1.3.0
 BuildRequires:  gcc
