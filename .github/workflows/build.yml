@@ -27,7 +27,7 @@ jobs:
       matrix:
         pkg: ${{ fromJson(needs.parse.outputs.pkgs) }}
         version: ["rawhide"]
-        arch: ${{ needs.parse.outputs.builder == "x86-64-lg" && ["x86_64"] || ["x86_64", "aarch64"] }}
+        arch: ${{ needs.parse.outputs.builder == 'x86-64-lg' && ["x86_64"] || ["x86_64", "aarch64"] }}
       fail-fast: false
     runs-on: ${{ matrix.arch == 'aarch64' && 'ARM64' || needs.parse.outputs.builder && needs.parse.outputs.builder || 'ubuntu-latest' }}
     container:
