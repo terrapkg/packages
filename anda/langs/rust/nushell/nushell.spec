@@ -12,7 +12,7 @@ Requires:		glibc openssl zlib
 
 %prep
 rm -rf ./*
-git clone https://github.com/nushell/nushell -b %version --depth 0 .
+git clone https://github.com/nushell/nushell -b %version --depth 1 .
 %cargo_prep_online
 
 %build
