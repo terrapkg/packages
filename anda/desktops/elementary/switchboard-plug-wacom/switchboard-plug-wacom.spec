@@ -45,7 +45,7 @@ Supplements:    switchboard%{?_isa}
 %install
 %meson_install
 
-%find_lang %{plug_name}-plug
+%find_lang %{plug_rdnn}
 
 
 %check
