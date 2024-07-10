@@ -63,7 +63,7 @@ de trabalho.
 %install
 %meson_install
 
-%find_lang %{plug_name}-plug
+%find_lang %{plug_name}
 
 # remove the specified stock icon from metainfo (invalid in libappstream-glib)
 sed -i '/icon type="stock"/d' %{buildroot}/%{_datadir}/metainfo/%{plug_name}.metainfo.xml
