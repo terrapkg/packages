@@ -3,7 +3,7 @@
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           envision
-Version:        %commit_date.%commit
+Version:        %commit_date.%shortcommit
 Release:        1%?dist
 Summary:        UI for building, configuring and running Monado, the open source OpenXR runtime
 License:        AGPL-3.0-or-later
