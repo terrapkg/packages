@@ -57,6 +57,6 @@ appstream-util validate-relax --nonet \
 %doc README.md
 %license COPYING
 
-%{_libdir}/switchboard-3/hardware/%{plug_type}/lib%{plug_name}.so
+%{_libdir}/switchboard-3/%{plug_type}/lib%{plug_name}.so
 
 %{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
