@@ -4,7 +4,8 @@ Release:		1%?dist
 Summary:		A new type of shell
 License:		MIT
 URL:			https://www.nushell.sh/
-BuildRequires:	anda-srpm-macros rust-packaging openssl-devel git-core
+BuildRequires:	anda-srpm-macros rust-packaging git-core
+BuildRequires:  openssl-devel-engine
 Requires:		glibc openssl zlib
 
 %description
