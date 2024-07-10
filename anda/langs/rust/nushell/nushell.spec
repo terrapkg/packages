@@ -16,7 +16,7 @@ Requires:		glibc openssl zlib
 %cargo_prep_online
 
 %build
-%cargo_build --workspace
+%{cargo_build} --workspace
 
 %install
 mkdir -p %buildroot%_bindir
