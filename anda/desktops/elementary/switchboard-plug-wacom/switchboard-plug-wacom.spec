@@ -50,7 +50,7 @@ Supplements:    switchboard%{?_isa}
 
 %check
 appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
+    %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
 
 %files -f %{plug_name}-plug.lang
@@ -59,7 +59,7 @@ appstream-util validate-relax --nonet \
 
 %{_libdir}/switchboard/%{plug_type}/lib%{plug_name}.so
 
-%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
+%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
 %changelog
 * Tue Jun 13 2023 windowsboy111 <windowsboy111@fyralabs.com> - 1.0.1-1
