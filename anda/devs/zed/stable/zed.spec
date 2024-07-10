@@ -36,6 +36,7 @@ BuildRequires:  perl-File-Compare
 BuildRequires:  perl-File-Copy
 BuildRequires:  perl-lib
 BuildRequires:  vulkan-loader
+BuildRequires:  libcurl-devel
 
 %description
 Code at the speed of thought - Zed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter.
