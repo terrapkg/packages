@@ -57,10 +57,6 @@ appstream-util validate-relax --nonet \
 %doc README.md
 %license COPYING
 
-%{_libdir}/switchboard/%{plug_type}/lib%{plug_name}.so
+%dnl %{_libdir}/switchboard/%{plug_type}/lib%{plug_name}.so
 
 %{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
-
-%changelog
-* Tue Jun 13 2023 windowsboy111 <windowsboy111@fyralabs.com> - 1.0.1-1
-- Initial package.
