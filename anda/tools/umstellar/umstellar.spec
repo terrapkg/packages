@@ -1,6 +1,6 @@
 # Created by pyp2rpm-3.3.10
 %global pypi_name umstellar
-%global pypi_version 0.2.0
+%global pypi_version v0.2.0
 
 Name:           python-%{pypi_name}
 Version:        %{pypi_version}
