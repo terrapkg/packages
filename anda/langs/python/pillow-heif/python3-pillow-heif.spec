@@ -6,8 +6,8 @@
 %bcond_with doc
 
 Name:           python-%{srcname}
-Version:        0.16.0
-Release:        1%{?dist}
+Version:        0.17.0
+Release:        0%{?dist}
 Summary:        Python library for working with HEIF images and plugin for Pillow
 
 License:        BSD-3-Clause
@@ -108,5 +108,8 @@ popd
 %endif
 
 %changelog
+* Wed Jul 10 2024 Trung Lê <8@tle.id.au> - 0.17.0-0
+- New upstream release
+
 * Thu Jun 27 2024 Trung Lê <8@tle.id.au> - 0.16.0-1
 - Initial RPM package
