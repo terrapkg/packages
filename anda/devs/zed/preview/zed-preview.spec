@@ -1,6 +1,6 @@
 %bcond_without check
 %global debug_package %{nil}
-%global ver v0.143.6
+%global ver 0.143.6
 
 %global crate zed
 %global app_id dev.zed.Zed-Preview
