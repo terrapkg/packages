@@ -4,7 +4,7 @@
 
 %global plug_type hardware
 %global plug_name wacom
-%global plug_rdnn io.elementary.switchboard.wacom
+%global plug_rdnn io.elementary.settings.wacom
 
 Name:           switchboard-plug-wacom
 Summary:        Switchboard Wacom Plug
