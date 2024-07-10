@@ -13,19 +13,21 @@ URL:            https://github.com/bluesabre/mugshot
 Source0:        %url/archive/refs/tags/mugshot-%version.tar.gz
 BuildArch:      noarch
 BuildRequires:  python3-devel
+BuildRequires:  python3-pip
+BuildRequires:  python3-distutils-extra
+BuildRequires:  python3-wheel
+BuildRequires:  python3-setuptools
 BuildRequires:  glib2
 BuildRequires:  desktop-file-utils
 BuildRequires:  libappstream-glib
-BuildRequires:  python3-distutils-extra
-BuildRequires:  python3-wheel
 
 %description %_description
 
 %package -n mugshot
 Requires:       util-linux-user
 Requires:       python3-cairo
-Requires:       python3-gi
 Requires:       python3-pexpect
+Requires:       python3-gobject
 Summary:        User Management Utility for Linux
 
 %description -n mugshot %_description
