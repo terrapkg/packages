@@ -41,7 +41,6 @@ cp -v %{SOURCE6} %{buildroot}%{_sysconfdir}/mock/
 %config %{_sysconfdir}/mock/templates/terra.tpl
 %config %{_sysconfdir}/mock/terra-*-x86_64.cfg
 %config %{_sysconfdir}/mock/terra-*-aarch64.cfg
-%config %{_sysconfdir}/mock/templates/anda.tpl
 
 
 %changelog
