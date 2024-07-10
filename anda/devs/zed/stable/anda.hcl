@@ -1,6 +1,6 @@
 project pkg {
   rpm {
-    spec = "zed-nightly.spec"
+    spec = "zed.spec"
   }
   labels {
     large = 1
