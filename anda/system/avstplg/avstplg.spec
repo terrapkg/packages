@@ -13,8 +13,8 @@ Summary:        Set of tools designed to help develop and debug software and fir
 URL:            https://github.com/thesofproject/avsdk
 Source0:        https://github.com/thesofproject/avsdk/archive/%commit/avsdk-%commit.tar.gz
 
-Requires:       dotnet-runtime-6.0
-BuildRequires:  dotnet-sdk-6.0 make
+Requires:       dotnet-runtime-8.0
+BuildRequires:  dotnet-sdk-8.0 make
 
 %description
 Set of tools designed to help develop and debug software and firmware on Intel platforms with AudioDSP onboard.
