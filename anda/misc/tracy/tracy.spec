@@ -5,7 +5,7 @@ Summary:		A real time, nanosecond resolution, remote telemetry, hybrid frame and
 License:		BSD-3-Clause
 URL:			https://github.com/wolfpld/tracy
 Source0:		https://github.com/wolfpld/tracy/archive/refs/tags/v%version.tar.gz
-BuildRequires:  cmake meson gcc libxkbcommon libglvnd pkgconfig(glfw) pkgconfig(freetype) pkgconfig(capstone) pkgconfig(dbus) pkgconfig(libunwind) pkgconfig(libdebuginfod) pkgconfig(tbb)
+BuildRequires:  cmake meson gcc libxkbcommon dbus-devel libglvnd pkgconfig(glfw) pkgconfig(freetype) pkgconfig(capstone) pkgconfig(libunwind) pkgconfig(libdebuginfod) pkgconfig(tbb)
 Patch:          https://github.com/wolfpld/tracy/commit/1a971d867d6fa5bf6dc57d705dcbbc6020031e7a.patch
 
 %description
