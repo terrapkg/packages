@@ -20,7 +20,7 @@ phrases in a foreign language) as easily, quickly and efficiently as possible.
 Anki is based on a theory called spaced repetition.
 
 %prep
-rm -rf .
+rm -rf ./*
 git clone https://github.com/ankitects/anki .
 git checkout %version
 %patch 1 -p1
