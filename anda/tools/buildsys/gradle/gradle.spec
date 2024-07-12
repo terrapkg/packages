@@ -36,9 +36,8 @@ mv %{name}-%_ver/README .
 mv %{name}-%_ver/LICENSE .
 rmdir %{name}-%_ver
 unzip %{SOURCE0}
-cd %{name}-%_ver
 
-cat <<EOF > dist/gradle.sh
+cat <<EOF > gradle.sh
 #!/bin/sh
 export GRADLE_HOME=/usr/share/java/gradle
 EOF
@@ -68,7 +67,7 @@ export PATH="/usr/lib/jvm/java-11-openjdk/bin:${PATH}"
 cd %{name}-%_ver/dist
 
 # install profile.d script
-install -Dm755 gradle.sh %{buildroot}/etc/profile.d/
+install -Dm755 ../../gradle.sh %{buildroot}/etc/profile.d/
 
 # create the necessary directory structure
 install -d "%{buildroot}/usr/share/java/%{name}/bin"
