@@ -1,10 +1,12 @@
+%global _ver 8.9
+
 Name:			gradle
 Version:		8.9.0
 Release:		1%?dist
 Summary:		Powerful build system for the JVM
 URL:			https://gradle.org/
-Source0:		https://services.gradle.org/distributions/%{name}-8.9-src.zip
-Source1:		https://services.gradle.org/distributions/%{name}-8.9-all.zip
+Source0:		https://services.gradle.org/distributions/%{name}-%_ver-src.zip
+Source1:		https://services.gradle.org/distributions/%{name}-%_ver-all.zip
 License:		Apache-2.0
 Requires:		java-latest-openjdk coreutils findutils sed which bash
 BuildRequires:	java-11-openjdk-devel asciidoc xmlto groovy unzip git
@@ -29,12 +31,12 @@ Sources for gradle, a powerful build system for the JVM.
 # See PKGBUILD on Arch Linux
 
 %prep
-unzip %{SOURCE1} %{name}-%{version}/{README,LICENSE}
-mv %{name}-%{version}/README .
-mv %{name}-%{version}/LICENSE .
-rmdir %{name}-%{version}
+unzip %{SOURCE1} %{name}-%_ver/{README,LICENSE}
+mv %{name}-%_ver/README .
+mv %{name}-%_ver/LICENSE .
+rmdir %{name}-%_ver
 unzip %{SOURCE0}
-cd %{name}-%{version}
+cd %{name}-%_ver
 
 cat <<EOF > dist/gradle.sh
 #!/bin/sh
@@ -53,7 +55,7 @@ sed -i "s#distributionUrl=.*#distributionUrl=file\:%{SOURCE1}#" \
 
 
 %build
-cd %{name}-%{version}
+cd %{name}-%_ver
 export PATH="/usr/lib/jvm/java-11-openjdk/bin:${PATH}"
 ./gradlew installAll \
 	-Porg.gradle.java.installations.auto-download=false \
@@ -63,7 +65,7 @@ export PATH="/usr/lib/jvm/java-11-openjdk/bin:${PATH}"
 
 
 %install
-cd %{name}-%{version}/dist
+cd %{name}-%_ver/dist
 
 # install profile.d script
 install -Dm755 gradle.sh %{buildroot}/etc/profile.d/
