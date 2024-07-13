@@ -1,16 +1,16 @@
---- oxipng-9.0.0/Cargo.toml	1970-01-01T00:00:01+00:00
-+++ oxipng-9.0.0/Cargo.toml	2023-10-30T06:36:01.294365+00:00
-@@ -116,7 +116,6 @@
+--- oxipng-9.1.2/Cargo.toml	1970-01-01T00:00:01+00:00
++++ oxipng-9.1.2/Cargo.toml	2024-07-13T07:08:09.478330+00:00
+@@ -150,7 +150,6 @@
  [features]
  binary = [
-     "clap",
--    "glob",
-     "env_logger",
+     "dep:clap",
+-    "dep:glob",
+     "dep:env_logger",
  ]
  default = [
-@@ -133,13 +132,10 @@
- ]
- sanity-checks = ["image"]
+@@ -169,13 +168,10 @@
+ sanity-checks = ["dep:image"]
+ zopfli = ["dep:zopfli"]
  
 -[target."cfg(windows)".dependencies.glob]
 -version = "0.3.1"
