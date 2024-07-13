@@ -1,3 +1,7 @@
+%global xurl https://files.pythonhosted.org/packages/51/5f/6f52b958fe38a36a0799c01fbd56a742ebdfcf41f89438dbee998b8ce692/anki-24.06.3-cp39-abi3-manylinux_2_28_x86_64.whl
+%global aurl https://files.pythonhosted.org/packages/df/bb/b0bfbc6a06a598b0b614d18dd8c4f40827828649f9742f1f44a4e44d6a2c/anki-24.06.3-cp39-abi3-manylinux_2_31_aarch64.whl
+%global qurl https://files.pythonhosted.org/packages/21/2a/d8e22a9521be04ef29a30d21a2c3008783ab03b6f07cc14696a040f747a4/aqt-24.06.3-py3-none-any.whl
+
 Name:			anki-bin
 Version:		24.06.3
 Release:		1%?dist
@@ -11,8 +15,12 @@ Requires:		python3-flask-cors python3-protobuf python3-requests python3-waitress
 Requires:       libxcrypt-compat hicolor-icon-theme sox mpv 
 ExclusiveArch:	x86_64
 Conflicts:		anki
-Source0:		https://files.pythonhosted.org/packages/cp39/a/anki/anki-%{version}-cp39-abi3-manylinux_2_28_%{_arch}.whl
-Source1:		https://files.pythonhosted.org/packages/py3/a/aqt/aqt-%{version}-py3-none-any.whl
+%ifarch x86_64
+Source0:		%xurl
+%elifarch aarch64
+Source0:        %aurl
+%endif
+Source1:		%qurl
 Source2:		https://raw.githubusercontent.com/ankitects/anki/%{version}/qt/runanki.py
 Source3:		https://raw.githubusercontent.com/ankitects/anki/%{version}/qt/bundle/lin/anki.desktop
 Source4:		https://raw.githubusercontent.com/ankitects/anki/%{version}/qt/bundle/lin/anki.png
