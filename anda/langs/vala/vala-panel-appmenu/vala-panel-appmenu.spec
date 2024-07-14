@@ -1,9 +1,9 @@
 %global forgeurl https://gitlab.com/vala-panel-project/vala-panel-appmenu
-%global commit bada552e3eb595d7205d3ec69ea2e0162b9cca12
+%global commit 7631683adb35cd4fae387abf7ff1552aab4d2249
 %forgemeta
 
 Name:    vala-panel-appmenu
-Version: 24.02
+Version: 24.05
 Release: 1%?dist
 License: LGPL-3.0-or-later
 Summary: Application Menu plugin for vala-panel
@@ -118,9 +118,9 @@ Vala appmenu support for Java Swing applications.
 %{_datadir}/glib-2.0/schemas/org.valapanel.appmenu.gschema.xml
 %{_datadir}/vala-panel/applets/org.valapanel.appmenu.plugin
 %{_datadir}/vala/vapi/appmenu-glib-translator.*
-%{_datadir}/gir-1.0/AppmenuGLibTranslator-%version.gir
+%{_datadir}/gir-1.0/AppmenuGLibTranslator-*.gir
 %{_includedir}/appmenu-glib-translator/importer.h
-%{_libdir}/girepository-1.0/AppmenuGLibTranslator-%version.typelib
+%{_libdir}/girepository-1.0/AppmenuGLibTranslator-*.typelib
 %{_libdir}/libappmenu-glib-translator.*
 
 %files -n vala-panel-appmenu-gtk-module

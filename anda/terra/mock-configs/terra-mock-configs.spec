@@ -1,5 +1,5 @@
 Name:           terra-mock-configs
-Version:        8
+Version:        9
 Release:        1%{?dist}
 Summary:        Mock configs for Terra repos
 

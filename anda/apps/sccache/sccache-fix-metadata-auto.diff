@@ -1,6 +1,6 @@
---- sccache-0.7.6/Cargo.toml	1970-01-01T00:00:01+00:00
-+++ sccache-0.7.6/Cargo.toml	2024-02-02T06:05:53.548100+00:00
-@@ -378,11 +378,3 @@
+--- sccache-0.8.1/Cargo.toml	1970-01-01T00:00:01+00:00
++++ sccache-0.8.1/Cargo.toml	2024-07-10T16:31:31.705674+00:00
+@@ -403,13 +403,3 @@
  [target."cfg(unix)".dependencies.daemonize]
  version = "0.5"
  
@@ -11,4 +11,6 @@
 -    "handleapi",
 -    "stringapiset",
 -    "winnls",
+-    "processenv",
+-    "std",
 -]

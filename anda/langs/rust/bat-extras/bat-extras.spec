@@ -1,8 +1,8 @@
 %define debug_package %{nil}
 
 Name:           bat-extras
-Version:        2024.02.12
-Release:        1%{?dist}
+Version:        2024.07.10
+Release:        1%?dist
 Summary:        Bash scripts that integrate bat with various command line tools
 
 License:        MIT

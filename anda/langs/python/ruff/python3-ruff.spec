@@ -1,12 +1,12 @@
 %define debug_package %{nil}
 
 Name:			python3-ruff
-Version:		0.4.4
+Version:		0.5.1
 Release:		1%?dist
 Summary:		An extremely fast Python linter, written in Rust
 License:		MIT
 URL:			https://beta.ruff.rs/
-Source0:		https://github.com/astral-sh/ruff/archive/refs/tags/v%{version}.tar.gz
+Source0:		https://github.com/astral-sh/ruff/archive/refs/tags/%{version}.tar.gz
 BuildRequires:	python3-installer python3-pip maturin cargo
 Provides:		python3.11dist(ruff) = %{version}
 

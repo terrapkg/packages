@@ -1,13 +1,14 @@
 %define debug_package %nil
 
 Name:		neovide
-Version:	0.13.0
+Version:	0.13.2
 Release:	1%?dist
 Summary:	No Nonsense Neovim Client in Rust
 License:	MIT
 URL:		https://neovide.dev/
 Source0:	https://github.com/neovide/neovide/archive/refs/tags/%version.tar.gz
-Requires:	neovim fontconfig freetype libglvnd
+Requires:	fontconfig freetype libglvnd
+Requires:	neovim > 0.9.5
 BuildRequires:	anda-srpm-macros cargo-rpm-macros >= 24 cmake gtk3 python3 SDL2
 BuildRequires:	fontconfig-devel freetype-devel libX11-xcb libX11-devel libstdc++-static libstdc++-devel
 ExclusiveArch:	x86_64
