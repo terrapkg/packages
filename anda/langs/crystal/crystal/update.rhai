@@ -3,7 +3,7 @@ let url = `https://github.com/crystal-lang/crystal/releases/download/${v}/crysta
 try {
   find(url, get(`https://github.com/crystal-lang/crystal/releases/tag/${v}`), 0);
   rpm.version(v);
-} except {
+} catch {
   print(`crystal: ${v} (waiting for bundle)`);
   terminate();
 }
