@@ -46,7 +46,7 @@ and its standard library.
 
 
 %prep
-%autosetup -n Nim-%commit
+%autosetup -n Nim-%version
 # hack
 cp /usr/bin/mold /usr/bin/ld
 
