@@ -151,7 +151,12 @@ BuildRequires:  pkgconfig(libomxil-bellagio)
 BuildRequires:  pkgconfig(libelf)
 BuildRequires:  pkgconfig(libglvnd) >= 1.3.2
 BuildRequires:  llvm-devel >= 7.0.0
-%if 0%{?with_opencl} || 0%{?with_nvk}
+%if 0%{?with_teflon}
+BuildRequires:  flatbuffers-devel
+BuildRequires:  flatbuffers-compiler
+BuildRequires:  xtensor-devel
+%endif
+%if 0%{?with_opencl} || 0%{?with_nvk} || 0%{?with_intel_clc}
 BuildRequires:  clang-devel
 BuildRequires:  bindgen
 BuildRequires:  rust-packaging
@@ -159,7 +164,7 @@ BuildRequires:  pkgconfig(libclc)
 BuildRequires:  pkgconfig(SPIRV-Tools)
 BuildRequires:  pkgconfig(LLVMSPIRVLib)
 %endif
-%if 0%{?with_nvk}
+%if 0%{?with_opencl} || 0%{?with_nvk}
 BuildRequires:  cbindgen
 BuildRequires:  (crate(paste) >= 1.0.14 with crate(paste) < 2)
 BuildRequires:  (crate(proc-macro2) >= 1.0.56 with crate(proc-macro2) < 2)
@@ -375,6 +380,16 @@ Summary:        Mesa OpenCL development package
 Requires:       %{name}-libOpenCL%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description libOpenCL-devel
+%{summary}.
+%endif
+
+%if 0%{?with_teflon}
+%package libTeflon
+Summary:        Mesa TensorFlow Lite delegate
+Provides:       %{srcname}-libTeflon = %{?epoch:%{epoch}:}%{version}-%{release}
+
+
+%description libTeflon
 %{summary}.
 %endif
 
