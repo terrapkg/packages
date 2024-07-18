@@ -70,7 +70,7 @@ koch boot -d:release -d:nimStrictMode --lib:lib
 %ifarch x86_64
 koch docs &
 %endif
-(cd lib; nim c --app:lib -d:danger -d:createNimRtl -t:-fPIE -l:-pie nimrtl.nim) &
+(cd lib && nim c --app:lib -d:createNimRtl -d:release nimrtl.nim) &
 koch tools -t:-fPIE -l:-pie &
 nim c -d:danger -t:-fPIE -l:-pie nimsuggest/nimsuggest.nim &
 wait
