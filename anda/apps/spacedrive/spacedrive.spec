@@ -31,8 +31,11 @@ $HOME/.local/share/pnpm/pnpm store prune # GH workers running out of disk spaceâ
 
 %build
 source $HOME/.cargo/env
+source $HOME/.bashrc
 export CARGO_TARGET_DIR=target
-#export RUSTUP_TOOLCHAIN=1.73
+
+# hack
+cp $HOME/.local/share/pnpm/pnpm %_bindir/pnpm
 
 $HOME/.local/share/pnpm/pnpm prep
 $HOME/.local/share/pnpm/pnpm tauri build --bundles app -- --no-default-features
