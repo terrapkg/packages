@@ -90,16 +90,9 @@ appstream-util validate-relax --nonet \
 %{_datadir}/glib-2.0/schemas/%{appname}.gschema.xml
 %{_datadir}/%{appname}/
 %{_datadir}/metainfo/%{appname}.appdata.xml
+%{_mandir}/man1/%{appname}.1.gz
 
 %files fish
 %doc README.md
 %license COPYING
 %{_datadir}/fish/vendor_conf.d/pantheon_terminal_process_completion_notifications.fish
-
-
-%changelog
-* Thu Nov 17 2022 windowsboy111 <wboy111@outlook.com> - 6.1.1-1
-- new version
-
-* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
-- Repackaged for Terra
