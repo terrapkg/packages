@@ -12,6 +12,7 @@ Source2:		nimgrep.1
 Source3:		nimble.1
 Source4:		nimsuggest.1
 BuildRequires:	gcc mold git-core gcc-c++ nodejs openssl-devel pkgconfig(bash-completion) gc-devel pcre-devel
+BuildRequires:  redhat-rpm-config
 Requires:		gcc
 
 
@@ -136,8 +137,8 @@ rm -rf %buildroot%_bindir/empty.txt
 %_includedir/cycle.h
 %_includedir/nimbase.h
 %_datadir/nim
-%bash_completion_dir/nim
-%bash_completion_dir/nimble
+%bash_completions_dir/nim
+%bash_completions_dir/nimble
 
 %files tools
 %license copying.txt
