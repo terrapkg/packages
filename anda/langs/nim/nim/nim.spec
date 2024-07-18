@@ -112,23 +112,30 @@ rm %buildroot%_bindir/*.bat || true
 
 
 %files
+%files
 %license copying.txt dist/nimble/license.txt
 %doc doc/readme.txt
-%_bindir/nim{,ble}
-%_mandir/man1/nim{,ble}.1*
-%_datadir/bash-completion/completions/nim{,ble}
-%_datadir/nim/
+/etc/nim/
+%_bindir/atlas
+%_bindir/nim_dbg
+%_bindir/nim-gdb
+%_bindir/testament
 %_prefix/lib/nim/
-%_sysconfdir/nim/
+%_prefix/lib/libnimrtl.so
+%{_bindir}/nim{,ble}
+%{_mandir}/man1/nim{,ble}.1*
+%_includedir/cycle.h
+%_includedir/nimbase.h
 
 %files tools
 %license copying.txt
-%_bindir/nim{grep,suggest,pretty}
-%_mandir/man1/nim{grep,suggest}.1*
+%_prefix/lib/nim/
+%{_bindir}/nim{grep,suggest,pretty}
+%{_mandir}/man1/nim{grep,suggest}.1*
 
 %ifarch x86_64
 %files doc
-%doc %_docdir/%name
+%doc %{_docdir}/nim
 %endif
 
 %changelog
