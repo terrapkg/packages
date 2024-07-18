@@ -7,7 +7,7 @@ Release:		1%?dist
 Summary:		Imperative, multi-paradigm, compiled programming language
 License:		MIT and BSD
 URL:			https://nim-lang.org
-Source0:		https://nim-lang.org/download/nim-%{version}-linux_x64.tar.xz
+Source0:		https://github.com/nim-lang/Nim/archive/refs/tags/v%version.tar.gz
 Source1:		nim.1
 Source2:		nimgrep.1
 Source3:		nimble.1
@@ -46,7 +46,7 @@ and its standard library.
 
 
 %prep
-%autosetup -n nim-%{version}
+%autosetup -n Nim-%{version}
 
 
 %build
