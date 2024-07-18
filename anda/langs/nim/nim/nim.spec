@@ -69,7 +69,7 @@ koch boot -d:release -d:nimStrictMode --lib:lib
 koch docs &
 %endif
 (cd lib; nim c --app:lib -d:danger -d:createNimRtl -t:-fPIE -l:-pie nimrtl.nim) &
-koch tools --skipUserCfg --skipParentCfg --hints:off -d:release -t:-fPIE -l:-pie &
+koch tools -t:-fPIE -l:-pie &
 nim c -d:danger -t:-fPIE -l:-pie nimsuggest/nimsuggest.nim &
 wait
 
@@ -82,7 +82,7 @@ sed -i '/<link.*fonts.googleapis.com/d' doc/html/*.html
 export PATH="$(pwd):$(pwd)/bin:${PATH}"
 
 # --main:compiler/nim.nim
-mold -run bin/nim cc -d:nimCallDepthLimit=10000 -r tools/niminst/niminst --var:version=%ver --var:mingw=none scripts compiler/installer.ini
+bin/nim cc -d:nimCallDepthLimit=10000 -r tools/niminst/niminst --var:version=%ver --var:mingw=none scripts compiler/installer.ini
 
 sh ./install.sh %buildroot/usr/bin
 
@@ -98,15 +98,20 @@ ln -s %_datadir/nim/bin/nim %buildroot%_bindir/nim
 mkdir -p %buildroot/%_docdir/%name/html || true
 cp -a doc/html/*.html %buildroot/%_docdir/%name/html/ || true
 cp tools/dochack/dochack.js %buildroot/%_docdir/%name/ || true
+ln -s %_datadir/nim/doc %buildroot%_prefix/lib/nim/doc
 %endif
 
-cp -r lib/* %buildroot%_prefix/lib/nim/
-cp -a compiler %buildroot%_prefix/lib/nim/
+cp -a lib %buildroot%_prefix/lib/
+mv %buildroot%_prefix/lib/{lib,nim}
+cp -a compiler %buildroot%_prefix/lib/nim
 install -Dm644 nim.nimble %buildroot%_prefix/lib/nim/compiler
+install -m755 lib/libnimrtl.so %buildroot%_prefix/lib/libnimrtl.so  # compiler needs
 install -Dm644 config/* -t %buildroot/etc/nim
-install -d %buildroot%_includedir || true
-cp -a %buildroot%_prefix/lib/nim/lib/*.h %buildroot%_includedir || true
-ln -s %_prefix/lib/nim %buildroot%_prefix/lib/nim/lib || true
+install -Dm755 bin/* -t %buildroot%_bindir
+install -d %buildroot%_includedir
+cp -a %buildroot%_prefix/lib/nim/lib/*.h %buildroot%_includedir
+ln -s %_prefix/lib/nim %buildroot%_prefix/lib/nim/lib  # compiler needs lib from here
+ln -s %_prefix/lib/nim/system.nim %_prefix/lib/system.nim  # nimsuggest bug
 rm -rf %buildroot/nim || true
 rm %buildroot%_bindir/*.bat || true
 
