@@ -128,7 +128,7 @@ rm -rf %buildroot%_bindir/empty.txt
 %_bindir/testament
 %_bindir/nim
 %_bindir/nimble
-%_bindir/nim_csources_86742fb02c6606ab01a532a0085784effb2e753e
+%_bindir/nim_csources_*
 %_mandir/man1/nim.1*
 %_mandir/man1/nimble.1*
 %_prefix/lib/nim/
@@ -141,13 +141,15 @@ rm -rf %buildroot%_bindir/empty.txt
 
 %files tools
 %license copying.txt
-%_prefix/lib/nim/
-%{_bindir}/nim{grep,suggest,pretty}
-%{_mandir}/man1/nim{grep,suggest}.1*
+%_bindir/nimgrep
+%_bindir/nimsuggest
+%_bindir/nimpretty
+%_mandir/man1/nimgrep.1*
+%_mandir/man1/nimsuggest.1*
 
 %ifarch x86_64
 %files doc
-%doc %{_docdir}/nim
+%doc %_docdir/nim
 %endif
 
 %changelog
