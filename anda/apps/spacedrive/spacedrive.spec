@@ -24,18 +24,18 @@ source "$HOME/.cargo/env"
 rm rustup.sh %SOURCE0
 
 pnpm setup
-pnpm i -g pnpm
 source $HOME/.bashrc
-pnpm install
-pnpm store prune # GH workers running out of disk space… oh well
+pnpm i -g pnpm
+$HOME/.local/share/pnpm/pnpm install
+$HOME/.local/share/pnpm/pnpm store prune # GH workers running out of disk space… oh well
 
 %build
 source $HOME/.cargo/env
 export CARGO_TARGET_DIR=target
 #export RUSTUP_TOOLCHAIN=1.73
 
-pnpm prep
-pnpm tauri build --bundles app -- --no-default-features
+$HOME/.local/share/pnpm/pnpm prep
+$HOME/.local/share/pnpm/pnpm tauri build --bundles app -- --no-default-features
 
 %install
 install -Dm755 -t %buildroot%_bindir apps/desktop/src-tauri/target/release/spacedrive
