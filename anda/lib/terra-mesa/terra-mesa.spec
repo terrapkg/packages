@@ -75,7 +75,7 @@
 %global vulkan_drivers swrast%{?base_vulkan}%{?intel_platform_vulkan}%{?extra_platform_vulkan}%{?with_nvk:,nouveau}
 Name:           terra-%{srcname}
 Summary:        Mesa graphics libraries
-%global ver 24.1.3
+%global ver 24.1.4
 Version:        %{lua:ver = string.gsub(rpm.expand("%{ver}"), "-", "~"); print(ver)}
 Release:        %autorelease
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0
