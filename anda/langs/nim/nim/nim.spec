@@ -46,6 +46,7 @@ and its standard library.
 
 
 %prep
+rm -rf .
 # using git clone to include submodules
 git clone --recurse-submodules -j8 https://github.com/nim-lang/Nim -b v%version --depth 1 .
 # hack
