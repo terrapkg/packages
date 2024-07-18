@@ -24,8 +24,8 @@ source "$HOME/.cargo/env"
 rm rustup.sh %SOURCE0
 
 pnpm setup
-source $HOME/.bashrc
 pnpm i -g pnpm
+source $HOME/.bashrc
 pnpm install
 pnpm store prune # GH workers running out of disk space… oh well
 
