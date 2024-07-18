@@ -7,7 +7,6 @@ Release:		1%?dist
 Summary:		Imperative, multi-paradigm, compiled programming language
 License:		MIT and BSD
 URL:			https://nim-lang.org
-#Source0:		https://github.com/nim-lang/Nim/archive/refs/tags/v%version.tar.gz
 Source1:		nim.1
 Source2:		nimgrep.1
 Source3:		nimble.1
@@ -116,22 +115,29 @@ ln -s %_prefix/lib/nim %buildroot%_prefix/lib/nim/lib  # compiler needs lib from
 ln -s %_prefix/lib/nim/system.nim %_prefix/lib/system.nim  # nimsuggest bug
 rm -rf %buildroot/nim || true
 rm %buildroot%_bindir/*.bat || true
+rm -rf %buildroot%_bindir/empty.txt
 
 
 %files
 %license copying.txt dist/nimble/license.txt
 %doc doc/readme.txt
-/etc/nim/
+%_sysconfdir/nim/
 %_bindir/atlas
 %_bindir/nim_dbg
 %_bindir/nim-gdb
 %_bindir/testament
+%_bindir/nim
+%_bindir/nimble
+%_bindir/nim_csources_86742fb02c6606ab01a532a0085784effb2e753e
+%_mandir/man1/nim.1*
+%_mandir/man1/nimble.1*
 %_prefix/lib/nim/
 %_prefix/lib/libnimrtl.so
-%{_bindir}/nim{,ble}
-%{_mandir}/man1/nim{,ble}.1*
 %_includedir/cycle.h
 %_includedir/nimbase.h
+%_datadir/nim
+%bash_completion_dir/nim
+%bash_completion_dir/nimble
 
 %files tools
 %license copying.txt
