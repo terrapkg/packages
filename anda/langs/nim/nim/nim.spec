@@ -2,7 +2,7 @@
 %global debug_package %{nil}
 
 Name:			nim
-Version:		2.0.8
+Version:		2.0.10
 Release:		1%?dist
 Summary:		Imperative, multi-paradigm, compiled programming language
 License:		MIT and BSD
