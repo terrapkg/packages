@@ -112,7 +112,6 @@ rm %buildroot%_bindir/*.bat || true
 
 
 %files
-%files
 %license copying.txt dist/nimble/license.txt
 %doc doc/readme.txt
 /etc/nim/
