@@ -46,7 +46,9 @@ and its standard library.
 
 
 %prep
-%autosetup -n Nim-%{version}
+%autosetup -n Nim-%commit
+# hack
+cp /usr/bin/mold /usr/bin/ld
 
 
 %build
@@ -57,15 +59,18 @@ export FCFLAGS="${FCFLAGS} -Ofast"
 
 export PATH="$(pwd):$(pwd)/bin:${PATH}"
 
-mold -run nim c -d:danger koch.nim
-mold -run koch boot -d:useLinenoise -t:-fPIE -l:-pie -d:release -d:nativeStacktrace -d:useGnuReadline
+. ci/funs.sh
+nimBuildCsourcesIfNeeded CFLAGS="${CFLAGS} -Ic_code -w -O3 -fno-strict-aliasing -fPIE" LDFLAGS="-ldl -lm -lrt -pie"
+
+nim c --noNimblePath --skipUserCfg --skipParentCfg --hints:off -d:danger koch.nim
+koch boot -d:release -d:nimStrictMode --lib:lib
 
 %ifarch x86_64
-mold -run koch docs &
+koch docs &
 %endif
-(cd lib && nim c --app:lib -d:createNimRtl -d:release nimrtl.nim) &
-mold -run koch tools -t:-fPIE -l:-pie &
-mold -run nim c -t:-fPIE -l:-pie -d:release nimsuggest/nimsuggest.nim &
+(cd lib; nim c --app:lib -d:danger -d:createNimRtl -t:-fPIE -l:-pie nimrtl.nim) &
+koch tools --skipUserCfg --skipParentCfg --hints:off -d:release -t:-fPIE -l:-pie &
+nim c -d:danger -t:-fPIE -l:-pie nimsuggest/nimsuggest.nim &
 wait
 
 %ifarch x86_64
@@ -75,38 +80,33 @@ sed -i '/<link.*fonts.googleapis.com/d' doc/html/*.html
 
 %install
 export PATH="$(pwd):$(pwd)/bin:${PATH}"
-sh install.sh %{buildroot}usr/bin
 
-mkdir -p %buildroot{%_bindir,%_prefix/lib/nim}
-install -Dp -m755 bin/nim{,ble,grep,suggest,pretty} %buildroot/%_bindir
-install -Dp -m644 dist/nimble/nimble.bash-completion %{buildroot}%{bashcompdir}/nimble
-install -Dp -m644 -t%{buildroot}%{_mandir}/man1 %SOURCE1 %SOURCE2 %SOURCE3 %SOURCE4
-# completions
-for comp in tools/*.bash-completion; do
-	install -Dm644 $comp %bashcompdir/$(basename "${comp/.bash-completion}")
-done
-for comp in tools/*.zsh-completion; do
-	install -Dm644 $comp %zshcompdir/_$(basename "${comp/.zsh-completion}")
-done
+# --main:compiler/nim.nim
+mold -run bin/nim cc -d:nimCallDepthLimit=10000 -r tools/niminst/niminst --var:version=%ver --var:mingw=none scripts compiler/installer.ini
+
+sh ./install.sh %buildroot/usr/bin
+
+mkdir -p %buildroot/%_bindir %buildroot/%_datadir/bash-completion/completions %buildroot/usr/lib/nim %buildroot%_datadir
+install -Dpm755 bin/nim{grep,suggest,pretty} %buildroot/%_bindir
+install -Dpm644 tools/nim.bash-completion %buildroot/%_datadir/bash-completion/completions/nim
+install -Dpm644 dist/nimble/nimble.bash-completion %buildroot/%_datadir/bash-completion/completions/nimble
+install -Dpm644 -t%buildroot/%_mandir/man1 %SOURCE1 %SOURCE2 %SOURCE3 %SOURCE4
+mv %buildroot%_bindir/nim %buildroot%_datadir/
+ln -s %_datadir/nim/bin/nim %buildroot%_bindir/nim
 
 %ifarch x86_64
-mkdir -p %buildroot%_docdir/%name/html
-cp -a doc/html/*.html %buildroot%_docdir/%name/html/
-cp tools/dochack/dochack.js %{buildroot}%{_docdir}/%{name}/
-ln -s %_datadir/nim/doc %buildroot%_prefix/lib/nim/doc
+mkdir -p %buildroot/%_docdir/%name/html || true
+cp -a doc/html/*.html %buildroot/%_docdir/%name/html/ || true
+cp tools/dochack/dochack.js %buildroot/%_docdir/%name/ || true
 %endif
 
-cp -a lib %buildroot%_prefix/lib/
-mv %buildroot%_prefix/lib/{lib,nim}
-cp -a compiler %buildroot%_prefix/lib/nim
+cp -r lib/* %buildroot%_prefix/lib/nim/
+cp -a compiler %buildroot%_prefix/lib/nim/
 install -Dm644 nim.nimble %buildroot%_prefix/lib/nim/compiler
-install -m755 lib/libnimrtl.so %buildroot%_prefix/lib/libnimrtl.so  # compiler needs
 install -Dm644 config/* -t %buildroot/etc/nim
-install -Dm755 bin/* -t %buildroot%_bindir
-install -d %buildroot%_includedir
-cp -a %buildroot%_prefix/lib/nim/lib/*.h %buildroot%_includedir
-ln -s %_prefix/lib/nim %buildroot%_prefix/lib/nim/lib  # compiler needs lib from here
-ln -s %_prefix/lib/nim/system.nim %_prefix/lib/system.nim  # nimsuggest bug
+install -d %buildroot%_includedir || true
+cp -a %buildroot%_prefix/lib/nim/lib/*.h %buildroot%_includedir || true
+ln -s %_prefix/lib/nim %buildroot%_prefix/lib/nim/lib || true
 rm -rf %buildroot/nim || true
 rm %buildroot%_bindir/*.bat || true
 
@@ -114,27 +114,21 @@ rm %buildroot%_bindir/*.bat || true
 %files
 %license copying.txt dist/nimble/license.txt
 %doc doc/readme.txt
-/etc/nim/
-%_bindir/atlas
-%_bindir/nim_dbg
-%_bindir/nim-gdb
-%_bindir/testament
+%_bindir/nim{,ble}
+%_mandir/man1/nim{,ble}.1*
+%_datadir/bash-completion/completions/nim{,ble}
+%_datadir/nim/
 %_prefix/lib/nim/
-%_prefix/lib/libnimrtl.so
-%{_bindir}/nim{,ble}
-%{_mandir}/man1/nim{,ble}.1*
-%_includedir/cycle.h
-%_includedir/nimbase.h
+%_sysconfdir/nim/
 
 %files tools
 %license copying.txt
-%_prefix/lib/nim/
-%{_bindir}/nim{grep,suggest,pretty}
-%{_mandir}/man1/nim{grep,suggest}.1*
+%_bindir/nim{grep,suggest,pretty}
+%_mandir/man1/nim{grep,suggest}.1*
 
 %ifarch x86_64
 %files doc
-%doc %{_docdir}/nim
+%doc %_docdir/%name
 %endif
 
 %changelog
