@@ -44,12 +44,24 @@ enabled_metadata=1
 metadata_expire=4h
 
 # Only used for multilib builds, pulls straight from fedora koji
-[local]
+# Use /rawhide/latest instead of /f{{ releasever }}-build/latest for rawhide
+[local-f{{ releasever }}-build]
 name=local
 baseurl=https://kojipkgs.fedoraproject.org/repos/f{{ releasever }}-build/latest/$basearch/
 cost=2000
-enabled={{ not mirrored }}
+# enabled only if not mirrored, and not rawhide
+enabled={% if not mirrored and releasever != 'rawhide' %}1{% else %}0{% endif %}
 skip_if_unavailable=False
+
+[local-rawhide-build]
+name=local-rawhide
+baseurl=https://kojipkgs.fedoraproject.org/repos/rawhide/latest/$basearch/
+cost=2000
+# enabled only if not mirrored, and rawhide
+enabled={% if not mirrored and releasever == 'rawhide' %}1{% else %}0{% endif %}
+skip_if_unavailable=False
+
+
 
 
 {% if mirrored %}
