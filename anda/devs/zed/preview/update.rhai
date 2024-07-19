@@ -5,6 +5,10 @@ for release in releases {
   }
   let tag = release.tag_name;
   tag.pop(4); // remove the "-pre" suffix
+  tag.crop(1); // remove "v"
   rpm.global("ver", tag);
-  terminate();
+  break;
+  if rpm.changed() {
+    rpm.release();
+  }
 }

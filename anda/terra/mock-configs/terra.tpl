@@ -1,10 +1,11 @@
 config_opts['root'] = 'terra-{{ releasever }}-{{ target_arch }}'
 config_opts['dist'] = 'fc{{ releasever }}'  # only useful for --resultdir variable subst
 config_opts['macros']['%dist'] = '.fc{{ releasever }}'
-config_opts['chroot_setup_cmd'] = 'install @buildsys-build'
 config_opts['package_manager'] = 'dnf5'
 config_opts['extra_chroot_dirs'] = [ '/run/lock', ]
-config_opts['mirrored'] = True
+config_opts['bootstrap_image'] = 'registry.fedoraproject.org/fedora:{{ releasever }}'
+config_opts['mirrored'] = config_opts['target_arch'] != 'i686'
+config_opts['chroot_setup_cmd'] = 'install @{% if mirrored %}buildsys-{% endif %}build'
 config_opts['plugin_conf']['root_cache_enable'] = True
 config_opts['plugin_conf']['yum_cache_enable'] = True
 config_opts['plugin_conf']['ccache_enable'] = True
@@ -41,6 +42,26 @@ gpgkey=https://repos.fyralabs.com/terra$releasever/key.asc
 enabled=1
 enabled_metadata=1
 metadata_expire=4h
+
+# Only used for multilib builds, pulls straight from fedora koji
+# Use /rawhide/latest instead of /f{{ releasever }}-build/latest for rawhide
+[local-f{{ releasever }}-build]
+name=local
+baseurl=https://kojipkgs.fedoraproject.org/repos/f{{ releasever }}-build/latest/$basearch/
+cost=2000
+# enabled only if not mirrored, and not rawhide
+enabled={% if not mirrored and releasever != 'rawhide' %}1{% else %}0{% endif %}
+skip_if_unavailable=False
+
+[local-rawhide-build]
+name=local-rawhide
+baseurl=https://kojipkgs.fedoraproject.org/repos/rawhide/latest/$basearch/
+cost=2000
+# enabled only if not mirrored, and rawhide
+enabled={% if not mirrored and releasever == 'rawhide' %}1{% else %}0{% endif %}
+skip_if_unavailable=False
+
+
 
 
 {% if mirrored %}

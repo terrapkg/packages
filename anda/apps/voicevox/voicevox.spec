@@ -1,6 +1,3 @@
-%global nodev 20.12.2
-%global npmv 10.5.0
-%global ver 0.19.2
 %define debug_package %nil
 %global _build_id_links none
 
@@ -9,20 +6,16 @@
 %global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 Name:			voicevox
-Version:		%ver
+Version:		0.19.2
 Release:		4%?dist
 Summary:		Free Japanese text-to-speech editor
 License:		LGPL-3.0
 URL:			https://voicevox.hiroshiba.jp
-Source0:		https://github.com/VOICEVOX/voicevox/archive/refs/tags/%version.tar.gz
-# requires specific node and npm version
-%ifarch x86_64
-%global a x64
-%elifarch aarch64
-%global a arm64
-%endif
-Source1:		https://nodejs.org/download/release/v%nodev/node-v%nodev-linux-%a.tar.xz
-Patch0:			0001-feat-add-repository-entry-in-package.json.patch
+Source0:        https://github.com/VOICEVOX/voicevox/releases/download/%version/VOICEVOX.AppImage.7z.001
+Source1:        https://github.com/VOICEVOX/voicevox/releases/download/%version/VOICEVOX.AppImage.7z.002
+Source2:        https://github.com/VOICEVOX/voicevox/releases/download/%version/VOICEVOX.AppImage.7z.003
+BuildRequires:  p7zip-plugins
+ExclusiveArch:  x86_64
 
 %description
 VOICEVOX is a free Japanese text-to-speech software with medium output quality.
@@ -34,33 +27,28 @@ Summary: Documentation files for voicevox (Japanese)
 %summary.
 
 %prep
-%autosetup -p1
-tar xf %SOURCE1
-PATH="$PATH:$PWD/node-v%nodev-linux-%a/bin/"
-npx npm@%npmv i
+cat<<EOF > voicevox.sh
+#!/bin/sh
+/usr/share/voicevox/VOICEVOX.AppImage
+EOF
+7z x %SOURCE0
+chmod a+x VOICEVOX.AppImage
+
+./VOICEVOX.AppImage --appimage-extract '*.desktop'
+./VOICEVOX.AppImage --appimage-extract 'usr/share/icons/**'
+
+sed -i "s|Exec=.*|Exec=/usr/share/voicevox/VOICEVOX.AppImage|" squashfs-root/voicevox.desktop
 
 %build
-PATH="$PATH:$PWD/node-v%nodev-linux-%a/bin/"
-npx browserslist@latest --update-db
-PATH="$PATH:$PWD/node-v%nodev-linux-%a/bin/"
-npm run electron:build
 
 %install
-rm dist_electron/linux-unpacked/README.txt # dummy
-mkdir -p %buildroot%_datadir/%name %buildroot%_bindir %buildroot%_docdir/%name/res
-mv dist_electron/linux-unpacked/* %buildroot%_datadir/%name/
-ln -s %_datadir/%name/%name %buildroot%_bindir/%name
-install -Dm644 docs/*.md %buildroot%_docdir/%name/
-install -Dm644 docs/res/* %buildroot%_docdir/%name/res/
+install -Dm755 VOICEVOX.AppImage %buildroot%_datadir/voicevox/VOICEVOX.AppImage
+install -Dm755 voicevox.sh %buildroot%_bindir/voicevox
+install -Dm644 squashfs-root%_iconsdir/hicolor/0x0/apps/voicevox.png %buildroot%_iconsdir/hicolor/256x256/apps/voicevox.png
+install -Dm644 squashfs-root/voicevox.desktop %buildroot%_datadir/applications/voicevox.desktop
 
 %files
-%doc README.md
-%license LICENSE LGPL_LICENSE
-%_bindir/%name
-%_datadir/%name/
-
-%files doc
-%doc %_docdir/%name/
-
-%changelog
-%autochangelog
+%_bindir/voicevox
+%_datadir/applications/voicevox.desktop
+%_datadir/voicevox/VOICEVOX.AppImage
+%_iconsdir/hicolor/256x256/apps/voicevox.png

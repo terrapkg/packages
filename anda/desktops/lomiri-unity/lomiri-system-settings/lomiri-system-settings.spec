@@ -1,9 +1,9 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-system-settings
-%global commit 1a80200cd84b1b71715f91bf9e278ef46a8cbb6b
+%global commit 1530c1fcfd8b8b7eec3a30e2db20cfc9946fa34a
 %forgemeta
 
 Name:       lomiri-system-settings
-Version:    1.1.0
+Version:    1.2.0
 Release:    1%?dist
 Summary:    The system settings application for Lomiri
 License:    GPLv3

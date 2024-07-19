@@ -5,16 +5,39 @@ on:
       packages:
         description: "Packages to Build"
         required: true
+      custom_builder:
+        description: "Custom Builder"
+        required: false
+        default: ""
+      architecture:
+        description: "Architecture"
+        required: false
+        default: all
+        type: string
 
 jobs:
   parse:
     outputs:
       pkgs: ${{ steps.parsing.outputs.pkgs }}
+      builder: ${{ inputs.custom_builder }}
+      arch: ${{ steps.parsing.outputs.arch }}
     runs-on: "ubuntu-latest"
     steps:
       - name: Parse Input
         id: parsing
-        run: echo "${{ inputs.packages }}" | sed 's/ /\n/g' | sed 's/$/\//g' | jq -R . | jq -s . | jq -c . | sed 's/^/pkgs=/' >> $GITHUB_OUTPUT
+        run: |
+          echo "${{ inputs.packages }}" | sed 's/ /\n/g' | sed 's/$/\//g' | jq -R . | jq -s . | jq -c . | sed 's/^/pkgs=/' >> $GITHUB_OUTPUT
+          echo "builder=${{ inputs.custom_builder }}" >> $GITHUB_OUTPUT
+          arch="${{ inputs.architecture }}"
+          # Convert to json array using jq
+          # if arch is not all, convert to array
+          if [ "$arch" != "all" ]; then
+            # jq, array with single element as string
+             arch=$(echo $arch | sed 's/,/\n/g')
+             echo "arch=$(echo $arch | jq -Rs 'split("\n")' | jq 'map(select(length > 0))' | jq -c .)" >> $GITHUB_OUTPUT
+          else
+             echo "arch=$(echo '["aarch64", "x86_64"]' | jq -c .)" >> $GITHUB_OUTPUT
+          fi
 
   build:
     needs: parse
@@ -22,9 +45,9 @@ jobs:
       matrix:
         pkg: ${{ fromJson(needs.parse.outputs.pkgs) }}
         version: ["rawhide"]
-        arch: ["x86_64", "aarch64"]
+        arch: ${{ fromJson(needs.parse.outputs.arch) }}
       fail-fast: false
-    runs-on: ${{ matrix.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
+    runs-on: ${{ matrix.arch == 'aarch64' && 'ARM64' || needs.parse.outputs.builder && needs.parse.outputs.builder || 'ubuntu-latest' }}
     container:
       image: ghcr.io/terrapkg/builder:f${{ matrix.version }}
       options: --cap-add=SYS_ADMIN --privileged
@@ -77,7 +100,7 @@ jobs:
 
       - name: Notify Madoguchi (Success)
         if: success()
-        run: ./.github/workflows/mg.sh true ${{matrix.pkg}} ${{matrix.version}} ${{matrix.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}}
+        run: ./.github/workflows/mg.sh true ${{matrix.pkg}} ${{matrix.version}} ${{matrix.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}} ${{github.sha}}
       - name: Notify Madoguchi (Failure)
         if: cancelled() || failure()
-        run: ./.github/workflows/mg.sh false ${{matrix.pkg}} ${{matrix.version}} ${{matrix.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}}
+        run: ./.github/workflows/mg.sh false ${{matrix.pkg}} ${{matrix.version}} ${{matrix.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}} ${{github.sha}}
