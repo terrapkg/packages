@@ -28,7 +28,7 @@ Kotlin compiler and native implementation of the Kotlin standard library.
 
 
 %prep
-tar -xf %{SOURCE0} && cd kotlin-native-prebuilt-linux-x86_64-%{version}
+tar -xf %{SOURCE0} && cd kotlin-native-linux-x86_64-%{version}
 sed -i "s|\(DIR *= *\).*|\1%{_bindir}|" bin/*
 sed -i "s|\(KONAN_HOME *= *\).*|\1%{_datadir}/%{name}|" bin/*
 
