@@ -81,15 +81,25 @@ Release:        %autorelease
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0
 URL:            http://www.mesa3d.org
 
+# define macro for providing srcname and ver
+# %replace_pkg subpackage
+%define replace_pkg() \
+Provides:       %{srcname}-%1 =  %{?epoch:%{epoch}:}%{version}-%{release} \
+Provides:       %{srcname}-%1%{?_isa} =  %{?epoch:%{epoch}:}%{version}-%{release} \
+Conflicts:      %{srcname}-%1 <  %{?epoch:%{epoch}:}%{version}-%{release} \
+Conflicts:      %{srcname}-%1%{?_isa} <  %{?epoch:%{epoch}:}%{version}-%{release}
+
+
+
 Source0:        https://archive.mesa3d.org/%{srcname}-%{ver}.tar.xz
 # src/gallium/auxiliary/postprocess/pp_mlaa* have an ... interestingly worded license.
 # Source1 contains email correspondence clarifying the license terms.
 # Fedora opts to ignore the optional part of clause 2 and treat that code as 2 clause BSD.
 Source1:        Mesa-MLAA-License-Clarification-Email.txt
 
-Patch10:        https://src.fedoraproject.org/rpms/mesa/raw/e89544b7a4d811a64ca23b402add29524cc6f704/f/gnome-shell-glthread-disable.patch
+#Patch10:        https://src.fedoraproject.org/rpms/mesa/raw/e89544b7a4d811a64ca23b402add29524cc6f704/f/gnome-shell-glthread-disable.patch
 # Patch11:        https://src.fedoraproject.org/rpms/mesa/raw/e89544b7a4d811a64ca23b402add29524cc6f704/f/0001-llvmpipe-Init-eglQueryDmaBufModifiersEXT-num_modifie.patch
-Patch12:        https://src.fedoraproject.org/rpms/mesa/raw/e89544b7a4d811a64ca23b402add29524cc6f704/f/0001-Revert-ac-radeonsi-remove-has_syncobj-has_fence_to_h.patch
+#Patch12:        https://src.fedoraproject.org/rpms/mesa/raw/e89544b7a4d811a64ca23b402add29524cc6f704/f/0001-Revert-ac-radeonsi-remove-has_syncobj-has_fence_to_h.patch
 # s390x: fix build
 # Patch100:       https://src.fedoraproject.org/rpms/mesa/raw/e89544b7a4d811a64ca23b402add29524cc6f704/f/fix-egl-on-s390x.patch
 
@@ -191,7 +201,7 @@ BuildRequires:  pkgconfig(vulkan)
 %{summary}.
 
 %package filesystem
-Provides:       %{srcname}-filesystem = %{?epoch:%{epoch}:}%{version}-%{release}
+%replace_pkg filesystem
 Summary:        Mesa driver filesystem
 Provides:       mesa-dri-filesystem = %{?epoch:%{epoch}:}%{version}-%{release}
 
@@ -199,7 +209,7 @@ Provides:       mesa-dri-filesystem = %{?epoch:%{epoch}:}%{version}-%{release}
 %{summary}.
 
 %package libGL
-Provides:       %{srcname}-libGL = %{?epoch:%{epoch}:}%{version}-%{release}
+%replace_pkg libGL
 Summary:        Mesa libGL runtime libraries
 Requires:       %{name}-libglapi%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       libglvnd-glx%{?_isa} >= 1:1.3.2
@@ -209,10 +219,9 @@ Recommends:     %{name}-dri-drivers%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{re
 %{summary}.
 
 %package libGL-devel
-Provides:       %{srcname}-libGL-devel = %{?epoch:%{epoch}:}%{version}-%{release}
+%replace_pkg libGL-devel
 Summary:        Mesa libGL development package
 Requires:       %{name}-libGL%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-Provides:       %{srcname}-libGL-devel%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       libglvnd-devel%{?_isa} >= 1:1.3.2
 Provides:       libGL-devel
 Provides:       libGL-devel%{?_isa}
@@ -222,7 +231,7 @@ Recommends:     gl-manpages
 %{summary}.
 
 %package libEGL
-Provides:       %{srcname}-libEGL = %{?epoch:%{epoch}:}%{version}-%{release}
+%replace_pkg libEGL
 Summary:        Mesa libEGL runtime libraries
 Requires:       libglvnd-egl%{?_isa} >= 1:1.3.2
 Requires:       %{name}-libgbm%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
@@ -232,7 +241,7 @@ Recommends:     %{name}-dri-drivers%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{re
 %{summary}.
 
 %package libEGL-devel
-Provides:       %{srcname}-libEGL-devel = %{?epoch:%{epoch}:}%{version}-%{release}
+%replace_pkg libEGL-devel
 Summary:        Mesa libEGL development package
 Requires:       %{name}-libEGL%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       libglvnd-devel%{?_isa} >= 1:1.3.2
@@ -244,7 +253,7 @@ Provides:       libEGL-devel%{?_isa}
 %{summary}.
 
 %package dri-drivers
-Provides:       %{srcname}-dri-drivers = %{?epoch:%{epoch}:}%{version}-%{release}
+%replace_pkg dri-drivers
 Summary:        Mesa-based DRI drivers
 Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       %{name}-libglapi%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
@@ -257,7 +266,7 @@ Recommends:     %{name}-va-drivers%{?_isa}
 
 %if 0%{?with_omx}
 %package omx-drivers
-Provides:       %{srcname}-omx-drivers = %{?epoch:%{epoch}:}%{version}-%{release}
+%replace_pkg omx-drivers
 Summary:        Mesa-based OMX drivers
 Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 
@@ -267,6 +276,7 @@ Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{rel
 
 %if 0%{?with_va}
 %package        va-drivers
+%replace_pkg va-drivers
 Provides:       %{srcname}-va-drivers = %{?epoch:%{epoch}:}%{version}-%{release}
 Summary:        Mesa-based VA-API video acceleration drivers
 Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
@@ -278,7 +288,7 @@ Obsoletes:      %{name}-vaapi-drivers < 22.2.0-5
 
 %if 0%{?with_vdpau}
 %package        vdpau-drivers
-Provides:       %{srcname}-vdpau-drivers = %{?epoch:%{epoch}:}%{version}-%{release}
+%replace_pkg vdpau-drivers
 Summary:        Mesa-based VDPAU drivers
 Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 
@@ -287,7 +297,7 @@ Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{rel
 %endif
 
 %package libOSMesa
-Provides:       %{srcname}-libOSMesa = %{?epoch:%{epoch}:}%{version}-%{release}
+%replace_pkg libOSMesa
 Summary:        Mesa offscreen rendering libraries
 Requires:       %{name}-libglapi%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:       libOSMesa
@@ -297,7 +307,7 @@ Provides:       libOSMesa%{?_isa}
 %{summary}.
 
 %package libOSMesa-devel
-Provides:       %{srcname}-libOSMesa-devel = %{?epoch:%{epoch}:}%{version}-%{release}
+%replace_pkg libOSMesa-devel
 Summary:        Mesa offscreen rendering development package
 Requires:       %{name}-libOSMesa%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 
@@ -305,7 +315,7 @@ Requires:       %{name}-libOSMesa%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{rele
 %{summary}.
 
 %package libgbm
-Provides:       %{srcname}-libgbm = %{?epoch:%{epoch}:}%{version}-%{release}
+%replace_pkg libgbm
 Summary:        Mesa gbm runtime library
 Provides:       libgbm
 Provides:       libgbm%{?_isa}
@@ -319,7 +329,7 @@ Requires:       (%{name}-dri-drivers%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{r
 %{summary}.
 
 %package libgbm-devel
-Provides:       %{srcname}-libgbm-devel = %{?epoch:%{epoch}:}%{version}-%{release}
+%replace_pkg libgbm-devel
 Summary:        Mesa libgbm development package
 Requires:       %{name}-libgbm%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:       libgbm-devel
@@ -330,7 +340,7 @@ Provides:       libgbm-devel%{?_isa}
 
 %if 0%{?with_xa}
 %package libxatracker
-Provides:       %{srcname}-libxatracker = %{?epoch:%{epoch}:}%{version}-%{release}
+%replace_pkg libxatracker
 Summary:        Mesa XA state tracker
 Provides:       libxatracker
 Provides:       libxatracker%{?_isa}
@@ -339,7 +349,7 @@ Provides:       libxatracker%{?_isa}
 %{summary}.
 
 %package libxatracker-devel
-Provides:       %{srcname}-libxatracker-devel = %{?epoch:%{epoch}:}%{version}-%{release}
+%replace_pkg libxatracker-devel
 Summary:        Mesa XA state tracker development package
 Requires:       %{name}-libxatracker%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:       libxatracker-devel
@@ -350,7 +360,7 @@ Provides:       libxatracker-devel%{?_isa}
 %endif
 
 %package libglapi
-Provides:       %{srcname}-libglapi = %{?epoch:%{epoch}:}%{version}-%{release}
+%replace_pkg libglapi
 Summary:        Mesa shared glapi
 Provides:       libglapi
 Provides:       libglapi%{?_isa}
@@ -364,7 +374,7 @@ Requires:       (%{name}-dri-drivers%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{r
 
 %if 0%{?with_opencl}
 %package libOpenCL
-Provides:       %{srcname}-libOpenCL = %{?epoch:%{epoch}:}%{version}-%{release}
+%replace_pkg libOpenCL
 Summary:        Mesa OpenCL runtime library
 Requires:       ocl-icd%{?_isa}
 Requires:       libclc%{?_isa}
@@ -375,7 +385,7 @@ Requires:       opencl-filesystem
 %{summary}.
 
 %package libOpenCL-devel
-Provides:       %{srcname}-libOpenCL-devel = %{?epoch:%{epoch}:}%{version}-%{release}
+%replace_pkg libOpenCL-devel
 Summary:        Mesa OpenCL development package
 Requires:       %{name}-libOpenCL%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 
@@ -385,8 +395,8 @@ Requires:       %{name}-libOpenCL%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{rele
 
 %if 0%{?with_teflon}
 %package libTeflon
+%replace_pkg libTeflon
 Summary:        Mesa TensorFlow Lite delegate
-Provides:       %{srcname}-libTeflon = %{?epoch:%{epoch}:}%{version}-%{release}
 
 
 %description libTeflon
@@ -395,14 +405,14 @@ Provides:       %{srcname}-libTeflon = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %if 0%{?with_nine}
 %package libd3d
-Provides:       %{srcname}-libd3d = %{?epoch:%{epoch}:}%{version}-%{release}
+%replace_pkg libd3d
 Summary:        Mesa Direct3D9 state tracker
 
 %description libd3d
 %{summary}.
 
 %package libd3d-devel
-Provides:       %{srcname}-libd3d-devel = %{?epoch:%{epoch}:}%{version}-%{release}
+%replace_pkg libd3d-devel
 Summary:        Mesa Direct3D9 state tracker development package
 Requires:       %{name}-libd3d%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 
@@ -411,7 +421,7 @@ Requires:       %{name}-libd3d%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release
 %endif
 
 %package vulkan-drivers
-Provides:       %{srcname}-vulkan-drivers = %{?epoch:%{epoch}:}%{version}-%{release}
+%replace_pkg vulkan-drivers
 Summary:        Mesa Vulkan drivers
 Requires:       vulkan%{_isa}
 Obsoletes:      mesa-vulkan-devel < %{?epoch:%{epoch}:}%{version}-%{release}
