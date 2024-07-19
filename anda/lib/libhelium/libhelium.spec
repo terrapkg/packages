@@ -2,7 +2,7 @@ Summary:        The Application Framework for tauOS apps
 Name:           libhelium
 Version:        1.8.12.7
 
-%global realver %(echo %version | sed -E 's/([0-9]+)\.([0-9]+)\.([0-9]+)\.([0-9]+)/\1.\2.\3-\4/')
+%global realver %(echo %version | sed -E 's/([0-9]+)\.([0-9]+)\.([0-9]+)\.([0-9]+)/\\1.\\2.\\3-\\4/')
 
 Release:        1%?dist
 License:        GPL-3.0
