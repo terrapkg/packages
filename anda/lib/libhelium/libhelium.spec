@@ -1,10 +1,14 @@
+
 Summary:        The Application Framework for tauOS apps
 Name:           libhelium
 Version:        1.8.12.7
+
+%global realver %(echo %version | sed -E 's/([0-9]+)\.([0-9]+)\.([0-9]+)\.([0-9]+)/\1.\2.\3-\4/')
+
 Release:        1%?dist
 License:        GPL-3.0
 URL:            https://github.com/tau-OS/libhelium
-Source0:        https://github.com/tau-OS/libhelium/archive/refs/tags/%{version}.tar.gz
+Source0:        https://github.com/tau-OS/libhelium/archive/refs/tags/%realver.tar.gz
 
 BuildRequires:  sass
 BuildRequires:  meson
@@ -34,7 +38,7 @@ This package contains the libraries and header files that are needed
 for writing applications with libhelium.
 
 %prep
-%autosetup -n libhelium-%{version}
+%autosetup -n libhelium-%realver
 
 %build
 %meson \
