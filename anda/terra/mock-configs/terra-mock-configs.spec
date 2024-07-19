@@ -55,7 +55,7 @@ cp -v %{SOURCE11} %{buildroot}%{_sysconfdir}/mock/
 
 
 %changelog
-* Wed Jul 18 2024 Cappy Ishihara <cappy@fyralabs.com> - 11-1
+* Thu Jul 18 2024 Cappy Ishihara <cappy@fyralabs.com> - 11-1
 - Include multilib mock files for x86-based systems (backwards compatibility)
 
 * Wed Jul 10 2024 madonuko <mado@fyralabs.com> - 10-1
