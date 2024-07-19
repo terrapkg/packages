@@ -1,6 +1,6 @@
 Name:           terra-mock-configs
 Version:        11
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Mock configs for Terra repos
 
 License:        MIT
@@ -16,7 +16,6 @@ Source9:        terra-rawhide-x86_64.cfg
 Source10:       terra-rawhide-aarch64.cfg
 Source11:       terra-rawhide-i386.cfg
 
-
 BuildRequires:  mock-core-configs
 Requires:       mock-core-configs
 BuildArch:      noarch
@@ -30,6 +29,7 @@ Obsoletes: anda-mock-configs < 3-2%{?dist}
 %prep
 
 %build
+
 
 %install
 mkdir -p %{buildroot}%{_sysusersdir}
@@ -55,7 +55,7 @@ cp -v %{SOURCE11} %{buildroot}%{_sysconfdir}/mock/
 
 
 %changelog
-* Wed Jul 18 2024 Cappy Ishihara <cappy@fyralabs.com> - 11-1
+* Thu Jul 18 2024 Cappy Ishihara <cappy@fyralabs.com> - 11-1
 - Include multilib mock files for x86-based systems (backwards compatibility)
 
 * Wed Jul 10 2024 madonuko <mado@fyralabs.com> - 10-1
