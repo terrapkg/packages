@@ -1,6 +1,6 @@
 Name:           terra-mock-configs
 Version:        11
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Mock configs for Terra repos
 
 License:        MIT
