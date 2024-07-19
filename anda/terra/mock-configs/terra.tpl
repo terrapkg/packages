@@ -1,11 +1,11 @@
 config_opts['root'] = 'terra-{{ releasever }}-{{ target_arch }}'
 config_opts['dist'] = 'fc{{ releasever }}'  # only useful for --resultdir variable subst
 config_opts['macros']['%dist'] = '.fc{{ releasever }}'
-config_opts['chroot_setup_cmd'] = 'install @buildsys-build'
 config_opts['package_manager'] = 'dnf5'
 config_opts['extra_chroot_dirs'] = [ '/run/lock', ]
 config_opts['bootstrap_image'] = 'registry.fedoraproject.org/fedora:{{ releasever }}'
 config_opts['mirrored'] = config_opts['target_arch'] != 'i686'
+config_opts['chroot_setup_cmd'] = 'install @{% if mirrored %}buildsys-{% endif %}build'
 config_opts['plugin_conf']['root_cache_enable'] = True
 config_opts['plugin_conf']['yum_cache_enable'] = True
 config_opts['plugin_conf']['ccache_enable'] = True
