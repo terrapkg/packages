@@ -209,7 +209,7 @@ Provides:       mesa-dri-filesystem = %{?epoch:%{epoch}:}%{version}-%{release}
 %{summary}.
 
 %package libGL
-Provides:       %{srcname}-libGL = %{?epoch:%{epoch}:}%{version}-%{release}
+%replace_pkg libGL
 Summary:        Mesa libGL runtime libraries
 Requires:       %{name}-libglapi%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       libglvnd-glx%{?_isa} >= 1:1.3.2
