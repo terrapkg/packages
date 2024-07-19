@@ -12,28 +12,16 @@ Patch:          https://github.com/wolfpld/tracy/commit/1a971d867d6fa5bf6dc57d70
 A real time, nanosecond resolution, remote telemetry, hybrid frame and sampling profiler for games and other applications.
 
 %prep
-%autosetup
+%autosetup -p1
 
 %build
-%make_build -C capture/build/unix release
-%make_build -C csvexport/build/unix release
-%make_build -C import-chrome/build/unix release
-%make_build -C library/unix release
-%make_build -C profiler/build/unix release
-%make_build -C update/build/unix release
+%meson
+%meson_build
 
 %install
-mkdir -p %{buildroot}/usr/bin/
-install -m 755 Tracy-release %{buildroot}/usr/bin/Tracy-release
+%meson_install
 
 %files
-
 %license LICENSE
 %doc README.*
 %{_datadir}/tracy
-
-%changelog
-* Thu Jul 10 2024 Owen Zimmerman
-- Initial package.
-
-%autosetup -n tracy-0.10 -p1
