@@ -27,7 +27,7 @@ This package contains the development files for the tracy package.
 
 
 %build
-export CXX='g++ -fPIE'
+export CXX='g++ -fPIE -I/usr/include/freetype2/'
 %meson
 %meson_build
 %make_build -C capture/build/unix release
