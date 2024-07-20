@@ -1,3 +1,5 @@
+%define debug_package %nil
+
 Name:			tracy
 Version:		0.10
 Release:		1%?dist
@@ -24,4 +26,3 @@ A real time, nanosecond resolution, remote telemetry, hybrid frame and sampling 
 %files
 %license LICENSE
 %doc README.*
-%dnl %{_datadir}/tracy
