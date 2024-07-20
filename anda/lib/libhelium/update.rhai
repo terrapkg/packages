@@ -1,1 +1,1 @@
-rpm.version(gh("tau-OS/libhelium"));
+rpm.global("ver",gh("tau-OS/libhelium"));
