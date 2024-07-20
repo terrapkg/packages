@@ -89,8 +89,10 @@ BuildRequires:  git
 # libliftoff hasn't bumped soname, but API/ABI has changed for 0.2.0 release
 Requires:       libliftoff%{?_isa} >= %{libliftoff_minver}
 Requires:       xorg-x11-server-Xwayland
-Requires:       gamescope-libs = %{version}-%{release}
-Requires:       gamescope-libs(x86-32) = %{version}-%{release}
+Requires:       %{name}-libs = %{version}-%{release}
+%ifarch %{ix86}
+Requires:       %{name}-libs(x86-32) = %{version}-%{release}
+%endif
 Recommends:     mesa-dri-drivers
 Recommends:     mesa-vulkan-drivers
 
