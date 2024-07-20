@@ -1,4 +1,5 @@
 %global _desc Tracy is a real time, nanosecond resolution, remote telemetry, hybrid frame and sampling profiler for games and other applications.
+%define debug_package %nil
 
 Name:			tracy
 Version:		0.10
@@ -7,8 +8,10 @@ Summary:		A real time, nanosecond resolution, remote telemetry, hybrid frame and
 License:		BSD-3-Clause
 URL:			https://github.com/wolfpld/tracy
 Source0:		https://github.com/wolfpld/tracy/archive/refs/tags/v%version.tar.gz
-BuildRequires:  cmake meson gcc gcc-c++ libxkbcommon dbus-devel libglvnd glfw-devel freetype-devel pkgconfig(capstone) pkgconfig(libunwind) pkgconfig(libdebuginfod) pkgconfig(tbb)
+BuildRequires:  libxkbcommon dbus-devel libglvnd glfw-devel freetype-devel pkgconfig(capstone) pkgconfig(libunwind) pkgconfig(libdebuginfod) pkgconfig(tbb)
 BuildRequires:  wayland-devel
+BuildRequires:  capstone-devel
+BuildRequires:  cmake meson gcc gcc-c++ mold
 Patch:          https://github.com/wolfpld/tracy/commit/1a971d867d6fa5bf6dc57d705dcbbc6020031e7a.patch
 
 %description
@@ -28,7 +31,8 @@ This package contains the development files for the tracy package.
 
 
 %build
-export CXX='g++ -fPIE -I/usr/include/freetype2/'
+export CXX="g++ -fPIE -I/usr/include/freetype2/ $CXXFLAGS"
+export LD="mold $LDFLAGS"
 %meson
 %meson_build
 %make_build -C capture/build/unix release
