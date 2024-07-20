@@ -24,4 +24,4 @@ A real time, nanosecond resolution, remote telemetry, hybrid frame and sampling 
 %files
 %license LICENSE
 %doc README.*
-%{_datadir}/tracy
+%dnl %{_datadir}/tracy
