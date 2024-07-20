@@ -1,4 +1,4 @@
-%global ver 1.8.12-5
+%global ver 1.8.12-10
 
 Summary:        tauOS GTK/GNOME Shell Themes
 Name:           tau-helium
