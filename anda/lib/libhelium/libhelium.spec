@@ -21,6 +21,7 @@ Requires: gtk4 >= 4.4
 Requires: glib2 >= 2.66.0
 Requires: libgee >= 0.20
 Requires: tau-helium >= 1.1.25
+Requires: tau-hydrogen
 
 %description
 The Application Framework for tauOS apps
