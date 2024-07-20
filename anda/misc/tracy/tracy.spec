@@ -28,6 +28,7 @@ This package contains the development files for the tracy package.
 
 %build
 export CFLAGS="$CFLAGS -fPIE"
+export CXXFLAGS="$CFLAGS -fPIE"
 %meson
 %meson_build
 %make_build -C capture/build/unix release
