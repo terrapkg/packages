@@ -61,6 +61,11 @@ jobs:
       - name: Build with Andaman
         run: anda build ${{ matrix.pkg.pkg }} --package rpm -c anda/terra/mock-configs/terra-${{ matrix.version }}-${{ matrix.pkg.arch }}.cfg
 
+      - name: Build with Andaman (alternate arch)
+        if: |
+          matrix.pkg.arch == 'x86_64' && matrix.pkg.labels['multilib']
+        run: anda build ${{ matrix.pkg.pkg }} --package rpm -c anda/terra/mock-configs/terra-${{ matrix.version }}-i386.cfg
+
       - name: Generating artifact name
         id: art
         run: |
