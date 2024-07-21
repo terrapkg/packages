@@ -31,7 +31,7 @@ This package contains the development files for the tracy package.
 
 
 %build
-export CXX="g++ -fPIE -I/usr/include/freetype2/ $CXXFLAGS"
+export CXX="g++ -fPIE -I/usr/include/freetype2/ -I/usr/include/capstone/ $CXXFLAGS"
 export LD="mold $LDFLAGS"
 %meson
 %meson_build
