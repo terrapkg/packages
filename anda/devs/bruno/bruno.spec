@@ -8,8 +8,9 @@ Source0:        https://github.com/usebruno/bruno/archive/refs/tags/v%version.ta
 Source1:        com.usebruno.app.Bruno.desktop
 Source2:        bruno.sh
 Requires:       electron alsa-lib
-BuildRequires:  nodejs-npm asar electron
+BuildRequires:  asar electron pnpm
 BuildRequires:  pkgconfig(pixman-1)
+BuildRequires:  pkgconfig(cairo)
 
 %description
 Bruno is a new and innovative API client, aimed at revolutionizing the status quo represented by Postman and similar tools out there.
@@ -26,6 +27,7 @@ sed -i -e 's/"husky":.*//g' -e 's/"husky install"/"true"/g' package.json
 export NODE_ENV=production
 export NODE_OPTIONS=--openssl-legacy-provider
 export PATH="$PATH:$HOME/.bun/bin/"
+
 
 bun i
 bun run build:bruno-query
