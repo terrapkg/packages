@@ -8,7 +8,7 @@ Source0:        https://github.com/usebruno/bruno/archive/refs/tags/v%version.ta
 Source1:        com.usebruno.app.Bruno.desktop
 Source2:        bruno.sh
 Requires:       electron alsa-lib
-BuildRequires:  asar electron pnpm
+BuildRequires:  asar electron pnpm gcc
 BuildRequires:  pkgconfig(pixman-1)
 BuildRequires:  pkgconfig(cairo)
 
