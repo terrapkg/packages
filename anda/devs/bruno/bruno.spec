@@ -15,6 +15,7 @@ Bruno is a new and innovative API client, aimed at revolutionizing the status qu
 
 %prep
 %autosetup
+curl -fsSL https://bun.sh/install | bash
 
 # ref aur
 # disabling husky however I can since I'm not in a git repository
@@ -23,18 +24,19 @@ sed -i -e 's/"husky":.*//g' -e 's/"husky install"/"true"/g' package.json
 %build
 export NODE_ENV=production
 export NODE_OPTIONS=--openssl-legacy-provider
+export PATH="$PATH:$HOME/.bun/bin/bun"
 
-npm i --include=dev
-npm run build:bruno-query
-npm run build:bruno-common
-npm run build:graphql-docs
-npm run build:web
+bun i
+bun run build:bruno-query
+bun run build:bruno-common
+bun run build:graphql-docs
+bun run build:web
 
 electronDist="%_libdir/electron"
 electronVer="$(cat ${electronDist}/version)"
 sed -i -e "s~\"dist:linux\":.*~\"dist:linux\": \"electron-builder --linux --x64 --dir --config electron-builder-config.js -c.electronDist=${electronDist} -c.electronVersion=${electronVer}\",~g" packages/bruno-electron/package.json
 
-npm run build:electron:linux
+bun run build:electron:linux
 
 %install
 mkdir -p %buildroot%_datadir/applications/
