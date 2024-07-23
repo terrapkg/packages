@@ -24,7 +24,7 @@ sed -i -e 's/"husky":.*//g' -e 's/"husky install"/"true"/g' package.json
 %build
 export NODE_ENV=production
 export NODE_OPTIONS=--openssl-legacy-provider
-export PATH="$PATH:$HOME/.bun/bin/bun"
+export PATH="$PATH:$HOME/.bun/bin/"
 
 bun i
 bun run build:bruno-query
