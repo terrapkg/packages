@@ -1,6 +1,6 @@
 %bcond_without check
 %global debug_package %{nil}
-%global ver 0.144.2
+%global ver 0.145.1
 
 %global crate zed
 %global app_id dev.zed.Zed-Preview
@@ -48,6 +48,8 @@ export APP_ID="%app_id"
 export APP_ICON="%app_id"
 export APP_NAME="Zed Preview"
 export APP_CLI="zed"
+export APP="%{_libexecdir}/zed-editor"
+export APP_ARGS="%U"
 export ZED_UPDATE_EXPLANATION="Run dnf up to update Zed Preview from Terra."
 export ZED_RELEASE_CHANNEL=preview
 export BRANDING_LIGHT="#99c1f1"
