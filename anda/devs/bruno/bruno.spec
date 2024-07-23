@@ -11,6 +11,7 @@ Requires:       electron alsa-lib
 BuildRequires:  asar electron pnpm gcc
 BuildRequires:  pkgconfig(pixman-1)
 BuildRequires:  pkgconfig(cairo)
+BuildRequires:  pkgconfig(pangocairo)
 
 %description
 Bruno is a new and innovative API client, aimed at revolutionizing the status quo represented by Postman and similar tools out there.
