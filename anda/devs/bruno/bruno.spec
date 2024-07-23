@@ -9,6 +9,7 @@ Source1:        com.usebruno.app.Bruno.desktop
 Source2:        bruno.sh
 Requires:       electron alsa-lib
 BuildRequires:  nodejs-npm asar electron
+BuildRequires:  pkgconfig(pixman-1)
 
 %description
 Bruno is a new and innovative API client, aimed at revolutionizing the status quo represented by Postman and similar tools out there.
