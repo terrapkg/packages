@@ -37,18 +37,18 @@ for lib in `pkg-config --list-all | sed -E 's/ .+$//'`; do pkg-config --libs $li
 cflags=$(cat cflags | tr -s '\n' | tr '\n' ' ')
 lflags=$(cat lflags | tr -s '\n' | tr '\n' ' ')
 export CC="gcc -fuse-ld=mold"
-export CXX="g++ -fuse-ld=mold -fPIE $CXXFLAGS $cflags"
+export CXX="g++ -fuse-ld=mold $CXXFLAGS $cflags"
 export LD="mold $LDFLAGS $lflags"
 export CFLAGS="$CFLAGS -fuse-ld=mold"
 export CXXFLAGS="$CXXFLAGS -fuse-ld=mold"
 %meson
 %meson_build
-%make_build CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" -C capture/build/unix       release &
-%make_build CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" -C csvexport/build/unix     release &
-%make_build CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" -C import-chrome/build/unix release &
-%make_build CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" -C library/unix             release &
-%make_build CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" -C profiler/build/unix      release &
-%make_build CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" -C update/build/unix        release &
+%make_build CFLAGS="$CFLAGS -fPIE" CXXFLAGS="$CXXFLAGS -fPIE" -C capture/build/unix       release &
+%make_build CFLAGS="$CFLAGS -fPIE" CXXFLAGS="$CXXFLAGS -fPIE" -C csvexport/build/unix     release &
+%make_build CFLAGS="$CFLAGS -fPIE" CXXFLAGS="$CXXFLAGS -fPIE" -C import-chrome/build/unix release &
+%make_build CFLAGS="$CFLAGS -fPIC" CXXFLAGS="$CXXFLAGS -fPIC" -C library/unix             release &
+%make_build CFLAGS="$CFLAGS -fPIE" CXXFLAGS="$CXXFLAGS -fPIE" -C profiler/build/unix      release &
+%make_build CFLAGS="$CFLAGS -fPIE" CXXFLAGS="$CXXFLAGS -fPIE" -C update/build/unix        release &
 wait
 
 %install
