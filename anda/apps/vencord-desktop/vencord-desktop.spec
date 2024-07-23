@@ -56,18 +56,20 @@ cp -r dist/*-unpacked/. %buildroot/usr/share/vesktop/.
 
 ls -alh dist/*
 
-install -Dm755 dist/*-unpacked/vencorddesktop %buildroot/usr/bin/vencorddesktop
-ln -sf /usr/share/vesktop/vencorddesktop %buildroot/usr/bin/vencorddesktop
-install -Dm644 vesktop.desktop %buildroot/usr/share/applications/vesktop.desktop
-install -Dm644 build/icon.png %buildroot/usr/share/pixmaps/vesktop.png
+install -Dm755 dist/*-unpacked/vesktop %buildroot%_bindir/vencorddesktop
+ln -sf /usr/share/vesktop/vesktop %buildroot%_bindir/vencorddesktop
+ln -sf /usr/share/vesktop/vesktop %buildroot%_bindir/vesktop
+install -Dm644 vesktop.desktop %buildroot%_datadir/applications/vesktop.desktop
+install -Dm644 build/icon.png %buildroot%_datadir/pixmaps/vesktop.png
 
 %files
 %doc README.md
 %license LICENSE
-/usr/bin/vencorddesktop
-/usr/share/applications/vesktop.desktop
-/usr/share/pixmaps/vesktop.png
-/usr/share/vesktop/*
+%_bindir/vencorddesktop
+%_bindir/vesktop
+%_datadir/applications/vesktop.desktop
+%_datadir/pixmaps/vesktop.png
+%_datadir/vesktop/*
 
 %changelog
 * Tue Nov 07 2023 Cappy Ishihara <cappy@cappuchino.xyz> - 0.4.3-1
