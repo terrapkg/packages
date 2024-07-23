@@ -45,7 +45,7 @@ EOF
 
 
 %build
-pnpm install --no-frozen-lockfile
+pnpm install
 pnpm package:dir
 
 
