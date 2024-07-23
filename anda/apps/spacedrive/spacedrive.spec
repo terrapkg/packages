@@ -1,5 +1,5 @@
 Name:			spacedrive
-Version:		0.3.1
+Version:		0.4.0
 Release:		1%?dist
 Summary:		An open source cross-platform file explorer
 License:		AGPL-3.0
