@@ -15,6 +15,7 @@ Source:         %{crates_source}
 Patch:          onefetch-fix-metadata-auto.diff
 
 BuildRequires:  anda-srpm-macros cargo-rpm-macros >= 24
+BuildRequires:  cmake
 
 %global _description %{expand:
 Command-line Git information tool.}
