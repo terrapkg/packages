@@ -15,7 +15,7 @@ Group:		Applications/Internet
 #Source1:	launch.sh
 Source0:    https://github.com/Vencord/Vesktop/archive/refs/tags/v%{version}.tar.gz
 Requires:   xdg-utils
-BuildRequires:	nodejs-npm git
+BuildRequires:	pnpm git
 # Conflicts:	vesktop-bin
 
 %description
@@ -45,8 +45,8 @@ EOF
 
 
 %build
-npx pnpm@8 install --no-frozen-lockfile
-npx pnpm@8 package:dir
+pnpm install --no-frozen-lockfile
+pnpm package:dir
 
 
 %install
