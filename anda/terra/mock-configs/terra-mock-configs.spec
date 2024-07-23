@@ -37,7 +37,7 @@ cp -v *.cfg %{buildroot}%{_sysconfdir}/mock/
 %config %{_sysconfdir}/mock/terra-*-i386.cfg
 
 %changelog
-* Mon Jul 22 2024 Cappy Ishihara <cappy@fyralabs.com> - 1:1.0.0-1
+* Mon Jul 22 2024 Lleyton Gray <lleyton@fyralabs.com> - 1:1.0.0-1
 - Migrate to pulling configs from an external repository
 
 * Thu Jul 18 2024 Cappy Ishihara <cappy@fyralabs.com> - 11-1
