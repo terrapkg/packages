@@ -31,8 +31,12 @@ This package contains the development files for the tracy package.
 
 
 %build
-export CXX="g++ -fPIE -I/usr/include/freetype2/ -I/usr/include/capstone/ $CXXFLAGS"
-export LD="mold $LDFLAGS"
+for lib in `pkg-config --list-all | sed -E 's/ .+$//'`; do pkg-config --cflags-only-I $lib >> cflags;done
+for lib in `pkg-config --list-all | sed -E 's/ .+$//'`; do pkg-config --libs $lib >> lflags;done
+cflags=$(cat cflags | tr -s '\n' | tr '\n' ' ')
+lflags=$(cat lflags | tr -s '\n' | tr '\n' ' ')
+export CXX="g++ -fuse-ld=mold -fPIE $CXXFLAGS $cflags"
+export LD="mold $LDFLAGS $lflags"
 %meson
 %meson_build
 %make_build -C capture/build/unix release
