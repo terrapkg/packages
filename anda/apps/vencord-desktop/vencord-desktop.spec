@@ -54,6 +54,8 @@ npx pnpm@8 package:dir
 mkdir -p %buildroot/usr/share/vesktop
 cp -r dist/*-unpacked/. %buildroot/usr/share/vesktop/.
 
+ls -alh dist/*
+
 install -Dm755 dist/*-unpacked/vencorddesktop %buildroot/usr/bin/vencorddesktop
 ln -sf /usr/share/vesktop/vencorddesktop %buildroot/usr/bin/vencorddesktop
 install -Dm644 vesktop.desktop %buildroot/usr/share/applications/vesktop.desktop
