@@ -1,51 +1,34 @@
 Name:           terra-mock-configs
-Version:        11
+Version:        1.0.0
 Release:        1%{?dist}
+Epoch:          1
 Summary:        Mock configs for Terra repos
 
 License:        MIT
-URL:            https://terra.fyralabs.com
-Source0:        terra.tpl
-Source3:        terra-39-x86_64.cfg
-Source4:        terra-39-aarch64.cfg
-Source5:        terra-40-x86_64.cfg
-Source6:        terra-40-aarch64.cfg
-Source7:        terra-40-i386.cfg
-Source8:        terra-39-i386.cfg
-Source9:        terra-rawhide-x86_64.cfg
-Source10:       terra-rawhide-aarch64.cfg
-Source11:       terra-rawhide-i386.cfg
+URL:            https://github.com/terrapkg/mock-configs
+Source0:        %url/archive/refs/tags/v%version.tar.gz
 
 BuildRequires:  mock-core-configs
 Requires:       mock-core-configs
 BuildArch:      noarch
 
-Provides: anda-mock-configs = %{version}-%{release}
+Provides: anda-mock-configs = %{epoch}:%{version}-%{release}
 Obsoletes: anda-mock-configs < 3-2%{?dist}
 
 %description
 %{summary}
 
 %prep
+%autosetup -n mock-configs-%version
 
 %build
-
 
 %install
 mkdir -p %{buildroot}%{_sysusersdir}
 mkdir -p %{buildroot}%{_sysconfdir}/mock/templates
 
-cp -v %{SOURCE0} %{buildroot}%{_sysconfdir}/mock/templates/
-cp -v %{SOURCE3} %{buildroot}%{_sysconfdir}/mock/
-cp -v %{SOURCE4} %{buildroot}%{_sysconfdir}/mock/
-cp -v %{SOURCE5} %{buildroot}%{_sysconfdir}/mock/
-cp -v %{SOURCE6} %{buildroot}%{_sysconfdir}/mock/
-cp -v %{SOURCE7} %{buildroot}%{_sysconfdir}/mock/
-cp -v %{SOURCE8} %{buildroot}%{_sysconfdir}/mock/
-cp -v %{SOURCE9} %{buildroot}%{_sysconfdir}/mock/
-cp -v %{SOURCE10} %{buildroot}%{_sysconfdir}/mock/
-cp -v %{SOURCE11} %{buildroot}%{_sysconfdir}/mock/
-
+cp -v terra.tpl %{buildroot}%{_sysconfdir}/mock/templates/
+cp -v *.cfg %{buildroot}%{_sysconfdir}/mock/
 
 %files
 %config %{_sysconfdir}/mock/templates/terra.tpl
@@ -53,8 +36,10 @@ cp -v %{SOURCE11} %{buildroot}%{_sysconfdir}/mock/
 %config %{_sysconfdir}/mock/terra-*-aarch64.cfg
 %config %{_sysconfdir}/mock/terra-*-i386.cfg
 
-
 %changelog
+* Mon Jul 22 2024 Cappy Ishihara <cappy@fyralabs.com> - 1:1.0.0-1
+- Migrate to pulling configs from an external repository
+
 * Thu Jul 18 2024 Cappy Ishihara <cappy@fyralabs.com> - 11-1
 - Include multilib mock files for x86-based systems (backwards compatibility)
 

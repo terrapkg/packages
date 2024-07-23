@@ -67,7 +67,7 @@ jobs:
           key: ${{ runner.os }}-br-${{ matrix.version }}-${{ matrix.arch }}-${{ matrix.pkg }}
 
       - name: Build with Andaman
-        run: anda build anda/${{ matrix.pkg }}pkg --package rpm -c anda/terra/mock-configs/terra-${{ matrix.version }}-${{ matrix.arch }}.cfg
+        run: anda build anda/${{ matrix.pkg }}pkg --package rpm -c terra-${{ matrix.version }}-${{ matrix.arch }}
 
       - name: Generating artifact name
         id: art
