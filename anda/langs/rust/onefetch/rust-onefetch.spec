@@ -85,7 +85,6 @@ use the "fail-on-deprecated" feature of the "%{crate}" crate.
 %cargo_prep_online
 
 %build
-%cargo_build
 cat<<EOF > license.sh
 %{cargo_license} > LICENSE.dependencies
 EOF
