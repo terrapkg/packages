@@ -1,0 +1,11 @@
+--- onefetch-2.21.0/Cargo.toml	1970-01-01T00:00:01+00:00
++++ onefetch-2.21.0/Cargo.toml	2024-07-23T17:12:11.234589+00:00
+@@ -164,8 +164,3 @@
+ [features]
+ fail-on-deprecated = []
+ 
+-[target."cfg(windows)".dependencies.enable-ansi-support]
+-version = "0.2.1"
+-
+-[target."cfg(windows)".build-dependencies.winres]
+-version = "0.1"
