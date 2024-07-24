@@ -3,8 +3,8 @@
 %bcond_with tests
 
 Name:           apparmor
-Version:        4.0.1
-Release:        2%{?dist}
+Version:        4.0.2
+Release:        1%?dist
 Summary:        AppArmor userspace components
 
 %define baseversion %(echo %{version} | cut -d. -f-2)
