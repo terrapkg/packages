@@ -71,7 +71,7 @@ jobs:
 
       - name: Notify Madoguchi (Success)
         if: success()
-        run: ./.github/workflows/mg.sh true ${{matrix.pkg.pkg}} ${{matrix.version}} ${{matrix.pkg.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}} ${{github.sha}}
+        run: ./.github/workflows/mg.sh true ${{matrix.pkg.pkg}} ${{matrix.version}} ${{matrix.pkg.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}} $GITHUB_SHA
       - name: Notify Madoguchi (Failure)
         if: cancelled() || failure()
-        run: ./.github/workflows/mg.sh false ${{matrix.pkg.pkg}} ${{matrix.version}} ${{matrix.pkg.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}} ${{github.sha}}
+        run: ./.github/workflows/mg.sh false ${{matrix.pkg.pkg}} ${{matrix.version}} ${{matrix.pkg.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}} $GITHUB_SHA
