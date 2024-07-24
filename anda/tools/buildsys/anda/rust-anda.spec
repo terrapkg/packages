@@ -17,7 +17,7 @@ ExclusiveArch:  %{rust_arches}
 
 BuildRequires:  rust-packaging >= 21
 BuildRequires:  anda-srpm-macros
-BuildRequires:  openssl-devel
+BuildRequires:  openssl-devel-engine
 BuildRequires:  git-core
 BuildRequires:  libgit2-devel
 BuildRequires:  libssh2-devel

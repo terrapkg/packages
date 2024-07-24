@@ -1,7 +1,7 @@
-%global commit 0129d4e2506d5ec5e50ef0968382770b9abec390
+%global commit edf7f6defec20d378c49374e038f0ab8961a7ba2
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20240619
-%global ver 0.142.0
+%global commit_date 20240724
+%global ver 0.146.0
 
 %bcond_without check
 
@@ -33,7 +33,7 @@ BuildRequires:  alsa-lib-devel
 BuildRequires:  fontconfig-devel
 BuildRequires:  wayland-devel
 BuildRequires:  libxkbcommon-x11-devel
-BuildRequires:  openssl-devel
+BuildRequires:  openssl-devel-engine
 BuildRequires:  libzstd-devel
 BuildRequires:  perl-FindBin
 BuildRequires:  perl-IPC-Cmd
