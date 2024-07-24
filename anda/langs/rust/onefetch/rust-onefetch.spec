@@ -93,7 +93,7 @@ sed -i "s/--offline//g" license.sh
 bash license.sh
 
 %install
-install -Dm755 target/rpm/onefetch %buildroot%_bindir/onefetch
+%cargo_install
 
 %if %{with check}
 %check
