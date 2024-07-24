@@ -2,7 +2,7 @@
 %define debug_package %nil
 
 Name:			tracy
-Version:		0.10
+Version:		0.11
 Release:		1%?dist
 Summary:		A real time, nanosecond resolution, remote telemetry, hybrid frame and sampling profiler for games and other applications.
 License:		BSD-3-Clause
@@ -91,5 +91,5 @@ install -Dm644 icon/application-tracy.svg %buildroot%_iconsdir/hicolor/scalable/
 %_libdir/libtracy.a
 
 %changelog
-* Wed Jul 10 2024 Owen Zimmerman <owen@fyralabs.com> - 0.10-1
+* Wed Jul 24 2024 Owen Zimmerman <owen@fyralabs.com> - 0.11-1
 - Initial package.
