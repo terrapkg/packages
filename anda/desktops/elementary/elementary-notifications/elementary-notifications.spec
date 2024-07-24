@@ -54,7 +54,6 @@ appstream-util validate-relax --nonet %buildroot%_datadir/metainfo/%appname.meta
 %{_bindir}/%{appname}.demo
 %{_datadir}/applications/%{appname}.demo.desktop
 
-%dnl %config %{_sysconfdir}/xdg/autostart/%{appname}.desktop
 %{_datadir}/glib-2.0/schemas/%{appname}.gschema.xml
 %{_metainfodir}/%{appname}.metainfo.xml
 
