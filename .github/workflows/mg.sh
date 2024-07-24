@@ -2,7 +2,7 @@ set -x
 
 dirs=$2
 dirs=${dirs/\/pkg/}
-export p="{\"id\":\"$5\",\"ver\":\"%v\",\"rel\":\"%r\",\"arch\":\"$4\",\"dirs\":\"$dirs\",\"succ\":$1,\"commit\":\"$6\"}"
+export p="{\"id\":\"$5\",\"ver\":\"%v\",\"rel\":\"%r\",\"arch\":\"$4\",\"dirs\":\"$dirs\",\"succ\":$1,\"commit\":\"$7\"}"
 
 if [[ $1 == false ]]; then
 	d=${p/\%v/?}
