@@ -10,8 +10,8 @@ utilizes Granite for a consistent and slick UI.}
 
 Name:           elementary-music
 Summary:        Music player and library from elementary
-Version:        7.1.0
-Release:        2%{?dist}
+Version:        8.0.0
+Release:        1%?dist
 License:        LGPL-2.0-or-later
 
 URL:            https://github.com/elementary/%{srcname}
