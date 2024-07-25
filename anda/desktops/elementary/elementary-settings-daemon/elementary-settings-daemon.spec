@@ -3,8 +3,8 @@
 %global iface   io.elementary.SettingsDaemon.AccountsService
 
 Name:           elementary-settings-daemon
-Version:        1.3.1
-Release:        1%{?dist}
+Version:        8.0.0
+Release:        1%?dist
 Summary:        Settings Daemon and Portal for Pantheon
 License:        GPL-3.0-or-later
 
