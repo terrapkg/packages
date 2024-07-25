@@ -13,7 +13,6 @@ BuildRequires:  wayland-devel
 BuildRequires:  capstone-devel
 BuildRequires:  libxkbcommon-devel
 BuildRequires:  cmake meson gcc gcc-c++ mold
-Patch:          https://github.com/wolfpld/tracy/commit/1a971d867d6fa5bf6dc57d705dcbbc6020031e7a.patch
 
 %description
 %_desc
