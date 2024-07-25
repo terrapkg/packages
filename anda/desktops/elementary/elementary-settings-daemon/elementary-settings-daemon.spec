@@ -26,6 +26,7 @@ BuildRequires:  pkgconfig(granite) >= 5.3.0
 BuildRequires:  pkgconfig(libgeoclue-2.0)
 BuildRequires:  pkgconfig(systemd)
 BuildRequires:  pkgconfig(fwupd)
+BuildRequires:  pkgconfig(gexiv2)
 
 Requires:       xdg-desktop-portal
 
