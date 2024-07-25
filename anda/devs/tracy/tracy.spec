@@ -2,7 +2,7 @@
 %define debug_package %nil
 
 Name:			tracy
-Version:		0.11
+Version:		0.11.0
 Release:		1%?dist
 Summary:		A real time, nanosecond resolution, remote telemetry, hybrid frame and sampling profiler for games and other applications.
 License:		BSD-3-Clause
