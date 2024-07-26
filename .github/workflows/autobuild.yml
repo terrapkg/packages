@@ -6,13 +6,13 @@ on:
     paths:
       - anda/**
     branches:
-      - frawhide
+      - el9
   pull_request:
     branches:
-      - frawhide
+      - el9
   merge_group:
     branches:
-      - frawhide
+      - el9
   workflow_dispatch:
   workflow_call:
 
@@ -23,7 +23,7 @@ jobs:
     outputs:
       build_matrix: ${{ steps.generate_build_matrix.outputs.build_matrix }}
     container:
-      image: ghcr.io/terrapkg/builder:frawhide
+      image: ghcr.io/terrapkg/builder:el9
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Set workspace as safe
@@ -40,11 +40,11 @@ jobs:
     strategy:
       matrix:
         pkg: ${{ fromJson(needs.manifest.outputs.build_matrix) }}
-        version: ["rawhide"]
+        version: ["9"]
       fail-fast: false
     runs-on: ${{ matrix.pkg.arch == 'aarch64' && 'ARM64' || matrix.pkg.labels['large'] && 'x86-64-lg' || 'ubuntu-latest' }}
     container:
-      image: ghcr.io/terrapkg/builder:f${{ matrix.version}}
+      image: ghcr.io/terrapkg/builder:el${{ matrix.version }}
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Checkout
@@ -63,15 +63,16 @@ jobs:
 
       - name: Include custom build template instead of package default
         run: |
-          cp -v mock-configs/terra.tpl /etc/mock/templates/terra.tpl
+          cp -v mock-configs/el9.tpl /etc/mock/templates/
+          cp -v mock-configs/epel9.tpl /etc/mock/templates/
 
       - name: Build with Andaman
-        run: anda build ${{ matrix.pkg.pkg }} --package rpm -c mock-configs/terra-${{ matrix.version }}-${{ matrix.pkg.arch }}.cfg
+        run: anda build ${{ matrix.pkg.pkg }} --package rpm -c mock-configs/terra-el${{ matrix.version }}+epel-${{ matrix.pkg.arch }}.cfg
 
       - name: Build with Andaman (alternate arch)
         if: |
           matrix.pkg.arch == 'x86_64' && matrix.pkg.labels['multilib']
-        run: anda build ${{ matrix.pkg.pkg }} --package rpm -c mock-configs/terra-${{ matrix.version }}-i386.cfg
+        run: anda build ${{ matrix.pkg.pkg }} --package rpm -c mock-configs/terra-el${{ matrix.version }}+epel-i386.cfg
 
       - name: Generating artifact name
         id: art
@@ -94,7 +95,7 @@ jobs:
           subatomic-cli upload --prune \
             --server https://subatomic.fyralabs.com \
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
-            terra${{ matrix.version }} anda-build/rpm/rpms/*
+            terra-el${{ matrix.version }} anda-build/rpm/rpms/*
 
       - name: Upload source packages to subatomic
         if: github.event_name == 'push'
@@ -102,7 +103,7 @@ jobs:
           subatomic-cli upload --prune \
             --server https://subatomic.fyralabs.com \
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
-            terra${{ matrix.version }}-source anda-build/rpm/srpm/*
+            terra-el${{ matrix.version }}-source anda-build/rpm/srpm/*
 
       - name: Notify Madoguchi (Success)
         if: success() && github.event_name == 'push'

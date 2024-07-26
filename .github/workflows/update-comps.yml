@@ -3,9 +3,7 @@ name: Push comps updates
 on:
   push:
     branches:
-      - frawhide
-      - f40
-      - f39
+      - el9
     paths:
       - comps.xml
   workflow_dispatch:
@@ -20,8 +18,7 @@ jobs:
       - name: Push to subatomic
         run: |
           branch=${{ github.ref_name }}
-          ver=${branch/f/}
           subatomic-cli upload-comps \
             --server https://subatomic.fyralabs.com \
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
-            "terra${ver}" comps.xml
+            "terra-${branch}" comps.xml
