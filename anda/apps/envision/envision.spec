@@ -17,6 +17,7 @@ BuildRequires:  pkgconfig(vte-2.91-gtk4) >= 0.72.0
 BuildRequires:  pkgconfig(libadwaita-1)
 BuildRequires:  pkgconfig(libusb-1.0)
 BuildRequires:  openssl-devel-engine
+BuildRequires:  openxr-devel
 BuildRequires:  libappstream-glib
 BuildRequires:  desktop-file-utils
 BuildRequires:  glib2-devel
