@@ -37,6 +37,9 @@ cp -v *.cfg %{buildroot}%{_sysconfdir}/mock/
 %config %{_sysconfdir}/mock/terra-*-i386.cfg
 
 %changelog
+* Fri Jul 26 2024 madonuko <mado@fyralabs.com> - 1:1.1.0-1
+- Include mock files for Terra 41
+
 * Mon Jul 22 2024 Lleyton Gray <lleyton@fyralabs.com> - 1:1.0.0-1
 - Migrate to pulling configs from an external repository
 
