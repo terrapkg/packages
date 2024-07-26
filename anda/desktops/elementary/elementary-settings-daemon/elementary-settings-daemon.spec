@@ -27,6 +27,7 @@ BuildRequires:  pkgconfig(libgeoclue-2.0)
 BuildRequires:  pkgconfig(systemd)
 BuildRequires:  pkgconfig(fwupd)
 BuildRequires:  pkgconfig(gexiv2)
+BuildRequires:  pkgconfig(packagekit-glib2)
 
 Requires:       xdg-desktop-portal
 
