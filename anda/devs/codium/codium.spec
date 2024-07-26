@@ -6,9 +6,9 @@
 %global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 %ifarch x86_64
-%define a x64
+%define _aaa x64
 %elifarch aarch64
-%define a arm64
+%define _aaa arm64
 %endif
 
 Name:			codium
@@ -17,11 +17,10 @@ Release:		1%?dist
 Summary:		Code editing. Redefined.
 License:		MIT
 URL:			https://vscodium.com/
-Source0:		https://github.com/VSCodium/vscodium/releases/download/%version/VSCodium-linux-%a-%version.tar.gz
+Source0:		https://github.com/VSCodium/vscodium/releases/download/%version/VSCodium-linux-%_aaa-%version.tar.gz
 Source1:		https://raw.githubusercontent.com/VSCodium/vscodium/%version/README.md
 Source2:		https://raw.githubusercontent.com/VSCodium/vscodium/%version/LICENSE
 Requires:		at-spi2-atk cairo expat gtk3 xrandr mesa-libgbm nspr nss nss-util xdg-utils
-BuildRequires:	rpm_macro(fdupes)
 
 %description
 VSCodium is a new choice of tool that combines the simplicity of a code editor
@@ -92,8 +91,6 @@ install -dm755 %buildroot%_datadir/zsh/site-functions
 install -dm755 %buildroot%_datadir/bash-completion/completions
 ln -s %_datadir/%name/resources/completions/zsh/_codium %buildroot%_datadir/zsh/site-functions
 ln -s %_datadir/%name/resources/completions/bash/codium %buildroot%_datadir/bash-completion/completions
-
-%fdupes %_datadir/%name/resources/app/extensions/
 
 
 %files
