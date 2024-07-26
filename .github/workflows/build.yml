@@ -44,7 +44,7 @@ jobs:
     strategy:
       matrix:
         pkg: ${{ fromJson(needs.parse.outputs.pkgs) }}
-        version: ["rawhide"]
+        version: ["41"]
         arch: ${{ fromJson(needs.parse.outputs.arch) }}
       fail-fast: false
     runs-on: ${{ matrix.arch == 'aarch64' && 'ARM64' || needs.parse.outputs.builder && needs.parse.outputs.builder || 'ubuntu-latest' }}

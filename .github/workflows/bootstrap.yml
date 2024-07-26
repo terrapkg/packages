@@ -7,7 +7,7 @@ jobs:
   bootstrap:
     strategy:
       matrix:
-        version: ["rawhide"]
+        version: ["41"]
         arch: ["x86_64", "aarch64"]
       fail-fast: true
     runs-on: ${{ matrix.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
