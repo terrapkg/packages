@@ -47,6 +47,8 @@ Requires:       xdg-desktop-portal
 %install
 %meson_install
 
+%find_lang %appname
+
 
 %check
 desktop-file-validate \
@@ -66,7 +68,7 @@ appstream-util validate-relax --nonet \
 %systemd_preun %{appname}.check-for-firmware-updates.timer
 
 
-%files
+%files -f %appname.lang
 %license LICENSE
 %doc README.md
 
@@ -88,8 +90,6 @@ appstream-util validate-relax --nonet \
 %{_unitdir}/%{appname}.check-for-firmware-updates.timer
 
 %{_sysconfdir}/xdg/autostart/%appname.desktop
-
-%{_datadir}/icons/hicolor/*/apps/%{appname}.svg
 
 
 %changelog
