@@ -8,8 +8,8 @@
 
 Name:           switchboard-plug-sharing
 Summary:        Switchboard Sharing Plug
-Version:        2.1.6
-Release:        1%{?dist}
+Version:        8.0.0
+Release:        1%?dist
 License:        GPL-3.0
 
 URL:            https://github.com/elementary/switchboard-plug-sharing
