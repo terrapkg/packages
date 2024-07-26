@@ -18,7 +18,6 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala
-BuildRequires:  fdupes
 
 BuildRequires:  mesa-libEGL-devel
 
@@ -82,8 +81,6 @@ The elementary Greeter is a styled Login Screen for LightDM.
 %meson_install
 
 %find_lang %{appname}
-
-%fdupes %buildroot%_datadir/icons/hicolor/
 
 # install LightDM configuration file
 mkdir -p %{buildroot}%{_sysconfdir}/lightdm/lightdm.conf.d

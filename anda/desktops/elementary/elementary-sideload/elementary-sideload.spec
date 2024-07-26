@@ -15,7 +15,6 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala
-BuildRequires:  fdupes
  
 BuildRequires:  pkgconfig(flatpak)
 BuildRequires:  pkgconfig(glib-2.0)
@@ -42,7 +41,6 @@ Pantheon without needing to use a command line application.
 %install
 %meson_install
 
-%fdupes %buildroot%_datadir/icons/hicolor/
 %find_lang %{appname}
 
 

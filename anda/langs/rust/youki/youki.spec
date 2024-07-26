@@ -16,7 +16,7 @@ BuildRequires:  dbus-devel
 BuildRequires:  libseccomp-devel
 BuildRequires:  elfutils-libelf-devel
 BuildRequires:  binutils
-BuildRequires:  fdupes
+
 
 %description
 youki is an implementation of the OCI runtime-spec in Rust, similar to runc.
@@ -53,7 +53,6 @@ git submodule update --init --recursive
 %install
 ls target/*
 install -D -m 0755 target/rpm/youki %{buildroot}%{_bindir}/youki
-%fdupes docs/
 
 %files
 %license LICENSE

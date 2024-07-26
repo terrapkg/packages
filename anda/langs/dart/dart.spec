@@ -18,7 +18,7 @@ URL: https://dart.dev/
 %endif
 
 Source0: https://storage.googleapis.com/dart-archive/channels/stable/release/%{version}/sdk/dartsdk-linux-%{arch}-release.zip
-BuildRequires: fdupes
+
 
 %description
 Dart is a client-optimized language for fast apps on any platform.
@@ -39,7 +39,6 @@ cp -rv ./* %{buildroot}%{_libdir}/dart
 ln -sf %{_libdir}/dart/bin/dart %{buildroot}%{_bindir}/dart
 ln -sf %{_libdir}/dart/bin/dartaotruntime %{buildroot}%{_bindir}/dartaotruntime
 
-%fdupes %buildroot%_libdir/dart/bin/
 
 %files
 %{_libdir}/dart/

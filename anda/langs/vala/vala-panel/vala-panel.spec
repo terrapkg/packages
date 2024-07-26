@@ -10,7 +10,7 @@ Group:   System/GUI/Other
 URL:     %{forgeurl}
 Source:  %{forgesource}
 
-BuildRequires: fdupes
+
 BuildRequires: meson
 BuildRequires: vala
 BuildRequires: desktop-file-utils
@@ -42,7 +42,6 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 
 %install
 %meson_install
-%fdupes %buildroot%_datadir/locale/
 %find_lang %{name}
 # Already packaged
 rm -rf %{buildroot}%{_datadir}/vala-panel/doc

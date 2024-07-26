@@ -8,7 +8,6 @@ Source2:	https://raw.githubusercontent.com/ful1e5/Bibata_Cursor/v%{version}/LICE
 License:	GPL-3.0
 Summary:	Open source, compact, and material designed cursor set
 BuildArch:	noarch
-BuildRequires:	rpm_macro(fdupes)
 
 %description
 Bibata is an open source, compact, and material designed cursor set that
@@ -28,7 +27,6 @@ mv Bibata-* %{buildroot}/%{_datadir}/icons/
 mkdir -p %{buildroot}/%{_datadir}/{doc,licenses}/%{name}/
 cp %{SOURCE1} %{buildroot}/%{_datadir}/doc/%{name}/README.md
 cp %{SOURCE2} %{buildroot}/%{_datadir}/licenses/%{name}/LICENSE
-%fdupes %buildroot%_datadir/icons/
 
 %files
 %doc README.md

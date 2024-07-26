@@ -19,7 +19,6 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson >= 0.46.1
 BuildRequires:  vala
-BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(accountsservice)
 BuildRequires:  pkgconfig(dbus-1)
@@ -50,7 +49,6 @@ Supplements:    switchboard%{?_isa}
 
 %install
 %meson_install
-%fdupes %buildroot%_datadir/locale/
 %find_lang %{plug_name}-plug
 
 # remove the specified stock icon from appdata (invalid in libappstream-glib)

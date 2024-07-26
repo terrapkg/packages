@@ -19,7 +19,6 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala >= 0.22.0
-BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(flatpak) >= 1.1.2
 BuildRequires:  pkgconfig(glib-2.0) >= 2.34
@@ -48,7 +47,6 @@ that allows the user to manage application settings.
 
 %install
 %meson_install
-%fdupes %buildroot%_datadir/locale/
 mv %buildroot%_datadir/metainfo/%plug_rdnn.appdata.xml %buildroot%_datadir/metainfo/%plug_rdnn.metainfo.xml || true
 %find_lang %{plug_name}-plug
 

@@ -15,7 +15,6 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala >= 0.34.1
-BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(glib-2.0) >= 2.32.0
 BuildRequires:  pkgconfig(polkit-agent-1)
@@ -40,7 +39,6 @@ An agent for Polkit authorization designed for Pantheon.
 
 %install
 %meson_install
-%fdupes %buildroot/%_datadir/locale/
 %find_lang %{appname}
 
 

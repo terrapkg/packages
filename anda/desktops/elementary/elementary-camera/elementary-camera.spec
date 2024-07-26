@@ -15,7 +15,6 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson >= 0.46
 BuildRequires:  vala
-BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  pkgconfig(gio-2.0)
@@ -47,7 +46,7 @@ Camera is a simple app to take photos with a webcam.
 
 %find_lang %{appname}
 
-%fdupes %buildroot/%_datadir/icons/hicolor
+
 
 
 

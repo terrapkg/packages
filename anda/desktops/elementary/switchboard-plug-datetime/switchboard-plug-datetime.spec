@@ -19,7 +19,6 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala
-BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(granite)
 BuildRequires:  pkgconfig(libadwaita-1)
@@ -43,7 +42,6 @@ Supplements:    switchboard%{?_isa}
 
 %install
 %meson_install
-%fdupes %buildroot%_datadir/locale/
 %find_lang %{plug_name}-plug
 
 # remove the specified stock icon from appdata (invalid in libappstream-glib)

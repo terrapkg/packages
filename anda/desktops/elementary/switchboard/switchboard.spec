@@ -19,7 +19,7 @@ BuildRequires:  vala
 BuildRequires:  pkgconfig(granite-7)
 BuildRequires:  pkgconfig(gtk4)
 BuildRequires:  pkgconfig(libadwaita-1)
-BuildRequires:  fdupes sassc
+BuildRequires:  sassc
 
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 
@@ -70,9 +70,6 @@ mkdir -p %{buildroot}/%{_libdir}/%{name}/hardware
 mkdir -p %{buildroot}/%{_libdir}/%{name}/network
 mkdir -p %{buildroot}/%{_libdir}/%{name}/personal
 mkdir -p %{buildroot}/%{_libdir}/%{name}/system
-
-%fdupes %buildroot%_datadir/locale/
-%fdupes %buildroot%_datadir/icons/hicolor/
 
 
 %check

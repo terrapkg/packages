@@ -10,7 +10,7 @@ BuildRequires:  meson
 BuildRequires:  ninja-build
 BuildRequires:  librsvg2-tools
 BuildRequires:  xcursorgen
-BuildRequires:  fdupes
+
 
 %description
 Hydrogen is the default icon theme in tauOS
@@ -26,7 +26,6 @@ Hydrogen is the default icon theme in tauOS
 # Install licenses
 mkdir -p licenses
 %meson_install
-%fdupes %buildroot%_datadir
 
 %files
 %license LICENSE

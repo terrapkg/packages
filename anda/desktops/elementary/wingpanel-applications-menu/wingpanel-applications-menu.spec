@@ -16,7 +16,7 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala >= 0.32.1
-BuildRequires:  fdupes
+
 
 BuildRequires:  appstream-vala
 
@@ -52,7 +52,6 @@ The lightweight and stylish app launcher from elementary.
 
 %install
 %meson_install
-%fdupes %buildroot%_datadir/locale/
 %find_lang slingshot
 
 

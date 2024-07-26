@@ -18,7 +18,6 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson >= 0.46
 BuildRequires:  vala >= 0.24
-BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(gdk-pixbuf-2.0)
 BuildRequires:  pkgconfig(glib-2.0)
@@ -44,8 +43,6 @@ Screenshot tool designed for elementary.
 %install
 %meson_install
 
-%fdupes %buildroot%_datadir/icons/hicolor/
-%fdupes %buildroot%_datadir/locale
 %find_lang %{appname}
 
 

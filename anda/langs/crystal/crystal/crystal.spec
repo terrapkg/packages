@@ -8,7 +8,6 @@ License:		Apache-2.0
 URL:			https://crystal-lang.org/
 Source0:		https://github.com/crystal-lang/crystal/releases/download/%version/crystal-%version-1-linux-x86_64-bundled.tar.gz
 ExclusiveArch:	x86_64
-BuildRequires:	rpm_macro(fdupes)
 
 %description
 %summary.
@@ -31,8 +30,6 @@ mkdir -p %buildroot/usr/lib/crystal
 install -Dm755 bin/* %buildroot/usr/bin/
 cp -r share/* %buildroot/usr/share/
 cp -r lib/crystal/* %buildroot/usr/lib/crystal/
-
-%fdupes %buildroot%_datadir/crystal/src/lib_c/
 
 
 %files

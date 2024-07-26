@@ -8,7 +8,6 @@ Source2:	https://raw.githubusercontent.com/ful1e5/Google_Cursor/v%{version}/LICE
 License:	GPL-3.0
 Summary:	An opensource cursor theme inspired by Google. 
 BuildArch:	noarch
-BuildRequires:	rpm_macro(fdupes)
 
 %description
 An opensource cursor theme inspired by Google.
@@ -24,7 +23,6 @@ mv Google* %{buildroot}/%{_datadir}/icons/
 mkdir -p %{buildroot}/%{_datadir}/{doc,licenses}/%{name}/
 cp %{SOURCE1} %{buildroot}/%{_datadir}/doc/%{name}/README.md
 cp %{SOURCE2} %{buildroot}/%{_datadir}/licenses/%{name}/LICENSE
-%fdupes %buildroot%_datadir/icons/
 
 %files
 %doc README.md

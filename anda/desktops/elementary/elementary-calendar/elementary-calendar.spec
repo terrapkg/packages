@@ -32,7 +32,6 @@ BuildRequires:  libhandy >= 0.90.0
 BuildRequires:  meson
 BuildRequires:  vala
 BuildRequires:  evolution-data-server-devel
-BuildRequires:  fdupes
 
 Requires:       hicolor-icon-theme
 
@@ -64,8 +63,6 @@ This package contains the development files.
 %meson_install
 
 %find_lang %{appname}
-
-%fdupes %buildroot/%_datadir/icons/hicolor
 
 
 %check

@@ -38,7 +38,6 @@ BuildRequires:  pkgconfig(libpeas-gtk-1.0)
 BuildRequires:  pkgconfig(libsoup-2.4)
 BuildRequires:  pkgconfig(pangoft2)
 BuildRequires:  pkgconfig(vte-2.91)
-BuildRequires:  fdupes
 
 Requires:       hicolor-icon-theme
 
@@ -68,8 +67,6 @@ This package contains the development headers.
 %meson_install
 
 %find_lang %{appname}
-
-%fdupes %buildroot%_datadir/icons/hicolor/
 
 
 %files -f %{appname}.lang

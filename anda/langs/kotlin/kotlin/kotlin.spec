@@ -15,7 +15,7 @@ BuildRequires:  sed
 BuildRequires:  bash
 BuildRequires:  (java-headless >= 1:1.8.0 or java >= 1.8.0)
 Requires:       (java-headless >= 1:1.8.0 or java >= 1.8.0)
-BuildRequires:  fdupes
+
 
 
 %description
@@ -48,7 +48,6 @@ cd license/ && find * -type f -exec install -Dm 0644 {} %{buildroot}%{_datadir}/
 mkdir -p %buildroot%_docdir/%name
 install -Dm644 %SOURCE1 %buildroot%_docdir/%name/
 
-%fdupes %buildroot/%_datadir/licenses/%name/
 
 
 %verifyscript

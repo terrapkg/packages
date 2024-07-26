@@ -19,7 +19,7 @@ BuildRequires: pkgconfig(click-0.4)
 BuildRequires: pkgconfig(libqtdbustest-1)
 BuildRequires: pkgconfig(libapparmor)
 BuildRequires: qdjango-devel
-BuildRequires: fdupes
+
 
 %description
 library for retrieving anonymous metrics about users
@@ -49,7 +49,6 @@ The %{name}-doc contains documentation for %{name}.
 
 %install
 %cmake_install
-%fdupes %buildroot%_docdir/libusermetrics-doc/html/
 %find_lang %{name}
 
 %files -f %{name}.lang

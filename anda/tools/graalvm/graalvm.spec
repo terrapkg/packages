@@ -15,7 +15,6 @@ Release:	1%{?dist}
 URL:		https://www.graalvm.org/
 Summary:	%{gsummary}
 License:	GPL-2.0
-BuildRequires:	fdupes
 
 %description
 %{desc}
@@ -55,7 +54,6 @@ mv graalvm-ce-java11-%version/GRAALVM-README.md .
 	mkdir -p %{buildroot}/usr/lib/jvm/java-%1-graalvm/ %{buildroot}/usr/share/licenses/%{name}-jdk%1
 	cp -a -t %{buildroot}/usr/lib/jvm/java-%1-graalvm/ *
 	install -DTm644 LICENSE.txt %{buildroot}/usr/share/licenses/%{name}-jdk%1/LICENSE
-	%fdupes %buildroot/usr/lib/jvm/java-%1-graalvm/
 	cd ..
 }
 %_i 11

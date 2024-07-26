@@ -20,7 +20,7 @@ BuildRequires: gcc
 BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: doxygen
 BuildRequires: cmake-extras
-BuildRequires: fdupes
+
 
 %description
 A very simple convenience library for handling properties and signals in C++11.
@@ -42,7 +42,6 @@ This package contains documentation files for properties-cpp-devel.
 
 %install
 %cmake_install
-%fdupes %buildroot%_docdir/%name/html/
 
 %files
 %doc README.md

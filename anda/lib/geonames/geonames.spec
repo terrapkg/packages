@@ -15,7 +15,7 @@ BuildRequires: gcc-c++
 BuildRequires: glib2-devel
 BuildRequires: gtk-doc
 BuildRequires: gettext
-BuildRequires: fdupes
+
 
 %description
 A library for parsing and querying a local copy of the geonames.org database.
@@ -44,7 +44,6 @@ The %{name}-doc package contains documenation for %{name}.
 
 %install
 %cmake_install
-%fdupes %buildroot%_datadir/locale
 %find_lang %{name}
 
 %files -f %{name}.lang

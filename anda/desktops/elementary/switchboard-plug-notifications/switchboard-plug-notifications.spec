@@ -19,7 +19,6 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala >= 0.22.0
-BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(glib-2.0) >= 2.32
 BuildRequires:  pkgconfig(granite)
@@ -49,7 +48,6 @@ related to the Notifications plugin for Gala.
 
 %install
 %meson_install
-%fdupes %buildroot%_datadir/locale/
 %find_lang %{plug_name}-plug
 
 

@@ -20,7 +20,7 @@ BuildRequires: pkgconfig(Qt5Core)
 BuildRequires: pkgconfig(Qt5Quick)
 BuildRequires: cppcheck
 BuildRequires: doxygen
-BuildRequires: fdupes
+
 
 %description
 API to interface with the Lomiri desktop environment.
@@ -52,7 +52,6 @@ sed -i 's?lib/${CMAKE_LIBRARY_ARCHITECTURE}?%{_lib}?' CMakeLists.txt
 
 %install
 %cmake_install
-%fdupes %buildroot%_docdir/liblomiri-api
 
 %files
 %doc README

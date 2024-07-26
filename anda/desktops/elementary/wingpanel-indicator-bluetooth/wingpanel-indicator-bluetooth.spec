@@ -16,7 +16,7 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala >= 0.22.0
-BuildRequires:  fdupes
+
 
 BuildRequires:  pkgconfig(glib-2.0) >= 2.32
 BuildRequires:  pkgconfig(granite) >= 6.0.0
@@ -45,7 +45,6 @@ A bluetooth indicator for wingpanel.
 
 %install
 %meson_install
-%fdupes %buildroot%_datadir/locale/
 %find_lang bluetooth-indicator
 
 # remove the specified stock icon from metainfo (invalid in libappstream-glib)

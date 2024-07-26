@@ -34,7 +34,6 @@ that use %{name}.
 
 %package        doc
 Summary:        Developer documentation for %{name}
-BuildRequires:  rpm_macro(fdupes)
 
 %description    doc
 The %{name}-doc package contains the documentation for developing applications
@@ -57,7 +56,6 @@ popd
 %cmake_install
 
 #ls -la redhat-linux-build/share
-%fdupes %_datadir/doc/%name/html/search
 
 %files
 

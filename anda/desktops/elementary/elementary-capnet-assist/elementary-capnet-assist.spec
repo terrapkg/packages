@@ -28,7 +28,6 @@ BuildRequires:  pkgconfig(webkit2gtk-4.1)
 BuildRequires:  pkgconfig(gcr-4)
 BuildRequires:  pkgconfig(libadwaita-1)
 BuildRequires:  pkgconfig(webkitgtk-6.0)
-BuildRequires:  fdupes
 
 Requires:       NetworkManager
 Requires:       hicolor-icon-theme
@@ -57,8 +56,6 @@ Written in Vala and using WebkitGtk+.
 %meson_install
 
 %find_lang %{appname}
-
-%fdupes %buildroot%_datadir/icons/hicolor/
 
 
 %check

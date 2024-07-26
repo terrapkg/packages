@@ -15,7 +15,6 @@ BuildRequires:  gettext xorg-x11-server-Xvfb
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala >= 0.40.0
-BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  pkgconfig(glib-2.0) >= 2.39
@@ -64,7 +63,6 @@ notifications when using the fish shell.
 %install
 %meson_install
 
-%fdupes %buildroot%_datadir/locale/
 %find_lang %{appname}
 
 

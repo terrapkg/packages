@@ -15,7 +15,6 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala
-BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(clutter-gst-3.0)
 BuildRequires:  pkgconfig(clutter-gtk-1.0)
@@ -50,8 +49,6 @@ to the desktop.
 %install
 %meson_install
 
-%fdupes %buildroot%_datadir/icons/hicolor/
-%fdupes %buildroot%_datadir/locale/
 %find_lang %{appname}
 
 

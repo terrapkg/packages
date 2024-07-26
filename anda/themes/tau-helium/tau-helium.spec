@@ -11,7 +11,7 @@ BuildArch:      noarch
 BuildRequires:  sass
 BuildRequires:  meson
 BuildRequires:  ninja-build
-BuildRequires:  fdupes
+
 
 %description
 A set of GTK/GNOME Shell Themes for tauOS
@@ -27,7 +27,6 @@ A set of GTK/GNOME Shell Themes for tauOS
 # Install licenses
 mkdir -p licenses
 %meson_install
-%fdupes %buildroot%_datadir/themes/
 
 %files
 %license LICENSE

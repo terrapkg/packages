@@ -18,7 +18,6 @@ URL:            https://github.com/elementary/%{srcname}
 Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires:  meson
-BuildRequires:  fdupes
 
 BuildArch:      noarch
 
@@ -39,7 +38,6 @@ physical, and pleasant.
 %install
 %meson_install
 
-%fdupes %buildroot%_datadir/sounds/elementary/stereo/
 
 
 %files

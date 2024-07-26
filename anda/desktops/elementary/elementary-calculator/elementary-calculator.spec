@@ -18,7 +18,6 @@ BuildRequires:  vala
 
 BuildRequires:  pkgconfig(granite-7) >= 7.0.0
 BuildRequires:  pkgconfig(gtk4)
-BuildRequires:  fdupes
 
 Requires:       hicolor-icon-theme
 
@@ -45,8 +44,6 @@ functions (sin, cos, and tan).
 %meson_install
 
 %find_lang %{appname}
-
-%fdupes %buildroot/%_datadir/icons/hicolor
 
 
 %check

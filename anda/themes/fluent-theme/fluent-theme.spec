@@ -10,7 +10,7 @@ URL:            https://github.com/vinceliuice/Fluent-gtk-theme
 Source0:        https://github.com/vinceliuice/Fluent-gtk-theme/archive/refs/tags/%{tag}.tar.gz
 
 BuildArch:      noarch
-BuildRequires:  sassc fdupes
+BuildRequires:  sassc
 
 Requires:       gtk-murrine-engine
 
@@ -27,8 +27,6 @@ Fluent is a %summary.
 mkdir -p %{buildroot}%{_datadir}/themes
 ./install.sh -i simple -t all -d %{buildroot}%{_datadir}/themes
 ./install.sh -i simple -t all --tweaks round float -d %{buildroot}%{_datadir}/themes
-
-%fdupes %buildroot%_datadir
 
 %files
 %license COPYING

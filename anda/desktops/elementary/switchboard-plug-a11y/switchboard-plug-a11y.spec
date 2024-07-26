@@ -19,7 +19,6 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala
-BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(granite)
@@ -49,7 +48,6 @@ that allows the user to manage accessibility settings.
 
 %install
 %meson_install
-%fdupes %buildroot%_datadir/locale/
 %find_lang %{plug_name}-plug
 
 

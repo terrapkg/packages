@@ -16,7 +16,6 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  sassc
-BuildRequires:  fdupes
 
 # gtk-version-specific subpackages were dropped in Fedora 34
 Obsoletes:      %{name}-gtk2 < 5.4.2-4.20210216.gitf0c3b7f
@@ -54,8 +53,6 @@ This package contains the plank theme.
 
 %install
 %meson_install
-
-%fdupes %buildroot%_datadir/themes/
 
 
 %check

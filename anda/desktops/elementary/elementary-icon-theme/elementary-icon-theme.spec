@@ -18,7 +18,6 @@ BuildRequires:  libappstream-glib
 BuildRequires:  librsvg2-tools
 BuildRequires:  meson
 BuildRequires:  xcursorgen
-BuildRequires:  fdupes
 
 %description
 This is an icon theme designed to be smooth, sexy, clear, and efficient.
@@ -65,8 +64,6 @@ done
 
 # Create icon cache file
 touch %{buildroot}/%{_datadir}/icons/elementary/icon-theme.cache
-
-%fdupes %buildroot%_datadir/icons/elementary/
 
 
 %check

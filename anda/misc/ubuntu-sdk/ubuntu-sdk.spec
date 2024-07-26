@@ -13,7 +13,7 @@ Source0:   %{url}/-/archive/%commit/ubuntu-touch-meta-%commit.tar.gz
 BuildArch: noarch
 
 BuildRequires: binutils
-BuildRequires: fdupes
+
 Recommends:    python3-lomiri-click
 
 %description
@@ -33,8 +33,6 @@ install -Dm644 frameworks/* %{buildroot}%{_datadir}/click/frameworks
 
 ln -s %{_datadir}/click/frameworks/ubuntu-sdk-%{version}.framework %{buildroot}%{_datadir}/click/frameworks/current
 ln -s %{_datadir}/ubports/changelogs/%{version} %{buildroot}%{_datadir}/ubports/changelogs/current
-
-%fdupes %buildroot%_datadir/click/frameworks/
 
 %files
 %license COPYING

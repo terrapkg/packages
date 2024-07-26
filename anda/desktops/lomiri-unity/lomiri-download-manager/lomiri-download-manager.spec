@@ -24,7 +24,7 @@ BuildRequires: pkgconfig(dbus-1)
 BuildRequires: pkgconfig(libglog)
 BuildRequires: pkgconfig(liblomiri-api)
 BuildRequires: pkgconfig(systemd)
-BuildRequires: fdupes
+
 
 %description
 Upload Download Manager performs uploads and downloads from a centralized
@@ -56,7 +56,6 @@ sed -e "s/-Werror//g" -i CMakeLists.txt
 
 %install
 %cmake_install
-%fdupes %buildroot%_docdir/%name/cpp/html/
 %find_lang %{name}
 
 %files -f %{name}.lang

@@ -17,7 +17,6 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson >= 0.46.0
 BuildRequires:  vala
-BuildRequires:  fdupes
 BuildRequires:  git-core
 BuildRequires:  cmake
 
@@ -64,10 +63,6 @@ Foundation.
 %meson_install
 
 %find_lang %{appname}
-
-%fdupes %buildroot%_datadir/icons/hicolor/
-%fdupes %buildroot%_datadir/locale/
-
 
 %check
 desktop-file-validate \

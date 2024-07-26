@@ -17,7 +17,6 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson >= 0.48.2
 BuildRequires:  vala >= 0.48
-BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  pkgconfig(gio-2.0) >= 2.50
@@ -59,8 +58,6 @@ This package contains the development headers.
 %install
 %meson_install
 
-%fdupes %buildroot%_datadir/icons/hicolor/
-%fdupes %buildroot%_datadir/locale/
 
 %find_lang granite-7
 

@@ -9,7 +9,6 @@ URL:		https://ubuntubudgie.org/
 Source0:	https://github.com/UbuntuBudgie/budgie-extras/releases/download/v%{version}/budgie-extras-%{version}.tar.xz
 Patch0: 0001-fix-weathershow-desktop-widget-icon-path.patch
 
-BuildRequires:	rpm_macro(fdupes)
 BuildRequires:	cmake
 BuildRequires:	meson
 BuildRequires:	vala
@@ -273,8 +272,6 @@ workspaces.
 
 # Remove absolute symlink and replace with relative symlink
 rm -f %{buildroot}%{_bindir}/quickchar
-
-%fdupes %_libdir/budgie-desktop/plugins/budgie-weathershow/weather_icons
 
 %post
 

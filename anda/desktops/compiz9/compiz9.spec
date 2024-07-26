@@ -14,7 +14,6 @@ Patch1:         gtk-extents.patch
 Patch2:         focus-prevention-disable.patch
 
 Conflicts:     compiz
-BuildRequires: rpm_macro(fdupes)
 BuildRequires: libX11-devel
 BuildRequires: libdrm-devel
 BuildRequires: libXcursor-devel
@@ -103,9 +102,6 @@ find %{buildroot} -name '*.la' -exec rm -f {} ';'
 # placeholder for local icons
 mkdir -p %{buildroot}%{_datadir}/compiz/icons/hicolor/{scalable/{apps,\
 categories},22x22/{categories,devices,mimetypes}}
-
-%fdupes %buildroot%_datadir/glib-2.0/schemas/
-%fdupes %buildroot%_datadir/ccsm/icons/hicolor/scalable/apps/
 
 
 %files -f compiz.lang

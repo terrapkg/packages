@@ -15,7 +15,7 @@ Source0:       %{url}/-/archive/%commit/unityx-%commit.tar.bz2
 Source2:       https://gitlab.xfce.org/panel-plugins/xfce4-windowck-plugin/-/commit/dee596492f006d02e2b39abd072ddd7b37fefe82.diff
 Patch0:        0001-Remove-social-scope.patch
 
-BuildRequires: fdupes
+
 BuildRequires: cmake
 BuildRequires: g++
 BuildRequires: gcc
@@ -162,8 +162,6 @@ ln -s %{_libdir}/unity .%{_libdir}/unityx
 rm -rf .%{_datadir}/unityx
 ln -s %{_datadir}/unity .%{_datadir}/unityx
 popd
-
-%fdupes %buildroot%_datadir/themes/
 
 %find_lang unityx
 %find_lang xfce4-windowck-plugin

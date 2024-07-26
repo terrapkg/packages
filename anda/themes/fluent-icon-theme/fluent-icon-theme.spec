@@ -10,7 +10,7 @@ URL:            https://github.com/vinceliuice/Fluent-icon-theme/
 Source0:        %{url}/archive/refs/tags/%{tag}.tar.gz
 
 BuildArch:      noarch
-BuildRequires:  gtk-update-icon-cache fdupes
+BuildRequires:  gtk-update-icon-cache
 
 %description
 Fluent icon theme for linux desktops.
@@ -23,8 +23,6 @@ Fluent icon theme for linux desktops.
 %install
 mkdir -p %{buildroot}%{_datadir}/themes
 ./install.sh -r -a -d %{buildroot}%{_datadir}/icons
-
-%fdupes %buildroot%_datadir/icons/
 
 %files
 %license COPYING

@@ -21,7 +21,6 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson >= 0.50.0
 BuildRequires:  vala >= 0.48.2
-BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(cloudproviders) >= 0.3.0
 BuildRequires:  pkgconfig(gdk-x11-3.0)
@@ -84,8 +83,6 @@ This package contains the development headers.
 %meson_install
 
 %find_lang %{appname}
-
-%fdupes %buildroot%_datadir/icons/hicolor/
 
 # remove unused pixmaps
 rm -r %{buildroot}/%{_datadir}/pixmaps

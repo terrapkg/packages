@@ -11,7 +11,7 @@ Group:   System/GUI/Other
 URL:     %{forgeurl}
 Source:  %{forgesource}
 
-BuildRequires: fdupes
+
 BuildRequires: bamf-daemon
 BuildRequires: meson
 BuildRequires: ninja-build
@@ -100,7 +100,6 @@ Vala appmenu support for Java Swing applications.
 
 %install
 %meson_install
-%fdupes %buildroot%_datadir/locale/
 %find_lang vala-panel-appmenu
 
 %files -f vala-panel-appmenu.lang

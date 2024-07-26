@@ -33,7 +33,7 @@ BuildRequires: qt5-qtdeclarative-devel
 BuildRequires: qt5-pim-devel
 BuildRequires: python3-rpm-macros
 BuildRequires: qt5-qtsvg-devel
-BuildRequires: fdupes
+
 Requires:      qt5-qtgraphicaleffects
 Requires:      qt5-qtfeedback
 
@@ -89,9 +89,6 @@ Examples for Lomiri-ui-toolkit.
 %make_install INSTALL_ROOT=%{buildroot} STRIP=/bin/true
 # Used by apicheck during tests only
 rm -rf %{buildroot}%{_qt5_qmldir}/Extinct
-%fdupes %buildroot%_libdir/qt5/qml/Lomiri/Components/
-%fdupes %buildroot%_libdir/qt5/examples/%name/examples/
-
 %find_lang %{name}
 %find_lang %{name}-gallery
 

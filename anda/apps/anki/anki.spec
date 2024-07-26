@@ -4,7 +4,7 @@ Release:        1%?dist
 Summary:        Flashcard program for using space repetition learning
 License:        AGPL-3.0-or-later AND GPL-3.0-or-later AND LGPL-3.0-or-later AND MIT AND BSD-3-Clause AND CC-BY-SA-3.0 AND CC-BY-3.0 AND Apache-2.0 AND CC-BY-2.5
 URL:            https://apps.ankiweb.net/
-BuildRequires:  python3-devel python3-setuptools python3-waitress python3-protobuf python3-pysocks rpm_macro(fdupes)
+BuildRequires:  python3-devel python3-setuptools python3-waitress python3-protobuf python3-pysocks
 BuildRequires:  python3-distro python3-flask-cors python3-jsonschema python3-send2trash python3-certifi python3-simplejson
 BuildRequires:  python3-installer make mold cargo git rsync ninja-build libxcrypt-compat nodejs python3.9 python-unversioned-command gcc python3-pyqt6-webengine
 Requires:       hicolor-icon-theme python3-sqlalchemy python3-simplejson python3-matplotlib python3-decorator python3-markdown python3-send2trash
@@ -49,9 +49,6 @@ find %{buildroot} -iname __pycache__ | xargs -r rm -rf
 find %{buildroot} -iname direct_url.json | xargs -r rm -rf
 
 chmod 755 %{buildroot}%{_bindir}/anki
-
-%fdupes %_libdir/python*/site-packages/_aqt/data/
-
 
 %files
 %license LICENSE*
