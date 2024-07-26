@@ -41,6 +41,7 @@ BuildRequires:  pkgconfig(libpeas-1.0)
 BuildRequires:  pkgconfig(libpeas-gtk-1.0)
 BuildRequires:  pkgconfig(taglib_c)
 BuildRequires:  pkgconfig(zeitgeist-2.0)
+BuildRequires:  pkgconfig(libadwaita-1)
 
 Requires:       hicolor-icon-theme
 
@@ -99,7 +100,6 @@ appstream-util validate-relax --nonet \
 %{_datadir}/glib-2.0/schemas/%{appname}.gschema.xml
 %{_datadir}/icons/hicolor/*/apps/%{appname}.svg
 %{_datadir}/metainfo/%{appname}.metainfo.xml
-%{_datadir}/locale/*/LC_MESSAGES/%{appname}.mo
 
 %files devel
 
