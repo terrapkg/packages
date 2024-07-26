@@ -16,7 +16,7 @@ jobs:
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Install repositories
-        run: dnf5 install -y --setopt=install_weak_deps=False mock curl wget git-core openssl-devel cargo podman fuse-overlayfs
+        run: dnf5 install -y --setopt=install_weak_deps=False mock curl wget git-core openssl-devel-engine cargo podman fuse-overlayfs
 
       - name: Install Anda
         run: cargo install anda
