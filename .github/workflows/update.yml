@@ -49,5 +49,6 @@ jobs:
             }
             copy_over f39 || true
             copy_over f40 || true
+            copy_over f41 || true
             git push -u origin --all
           fi
