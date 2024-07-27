@@ -21,7 +21,7 @@ BuildRequires:  meson
 #BuildRequires:  vala
 BuildRequires:  fdupes
 
-#BuildRequires:  pkgconfig(dbus-1)
+BuildRequires:  pkgconfig(dbus-1)
 #BuildRequires:  pkgconfig(granite)
 #BuildRequires:  pkgconfig(polkit-gobject-1)
 #BuildRequires:  polkit-devel
