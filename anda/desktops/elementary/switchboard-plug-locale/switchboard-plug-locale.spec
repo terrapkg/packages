@@ -4,7 +4,7 @@
 
 %global plug_type personal
 %global plug_name locale
-%global plug_rdnn io.elementary.switchboard.locale
+%global plug_rdnn io.elementary.settings.locale
 
 Name:           switchboard-plug-locale
 Summary:        Switchboard Locale Plug
@@ -23,9 +23,9 @@ BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(accountsservice)
 BuildRequires:  pkgconfig(ibus-1.0)
-BuildRequires:  pkgconfig(gnome-desktop-3.0)
-BuildRequires:  pkgconfig(granite)
-BuildRequires:  polkit-devel
+#BuildRequires:  pkgconfig(gnome-desktop-3.0)
+#BuildRequires:  pkgconfig(granite)
+#BuildRequires:  polkit-devel
 BuildRequires:  switchboard-devel
 
 Requires:       switchboard%?_isa
@@ -46,7 +46,7 @@ Supplements:    switchboard%?_isa
 %install
 %meson_install
 %fdupes %buildroot%_datadir/locale/
-%find_lang %plug_name-plug
+%find_lang %plug_rdnn
 
 
 %check
@@ -54,13 +54,13 @@ appstream-util validate-relax --nonet \
     %buildroot/%_datadir/metainfo/%plug_rdnn.appdata.xml
 
 
-%files -f %plug_name-plug.lang
+%files -f %plug_rdnn.lang
 %doc README.md
 %license COPYING
 
-%_libdir/switchboard/%plug_type/lib%plug_name-plug.so
-%_libdir/switchboard/personal/pantheon-locale/languagelist
-%_libdir/switchboard/personal/pantheon-locale/packages_blacklist
+%_libdir/switchboard-3/%plug_type/lib%plug_rdnn.so
+%_libdir/switchboard-3/%plug_type/pantheon-locale/languagelist
+%_libdir/switchboard-3/%plug_type/pantheon-locale/packages_blocklist
 %_datadir/glib-2.0/schemas/%plug_rdnn.gschema.xml
 %_datadir/polkit-1/actions/%plug_rdnn.policy
 
