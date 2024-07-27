@@ -18,11 +18,8 @@ Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
-#BuildRequires:  vala
 BuildRequires:  fdupes
 
-#BuildRequires:  pkgconfig(granite)
-#BuildRequires:  pkgconfig(libadwaita-1)
 BuildRequires:  switchboard-devel
 
 Requires:       switchboard%{?_isa}
