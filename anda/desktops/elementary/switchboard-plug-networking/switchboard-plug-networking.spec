@@ -4,7 +4,7 @@
 
 %global plug_type network
 %global plug_name networking
-%global plug_rdnn io.elementary.switchboard.network
+%global plug_rdnn io.elementary.settings.network
 
 Name:           switchboard-plug-networking
 Summary:        Switchboard Networking plug
@@ -22,13 +22,9 @@ BuildRequires:  vala >= 0.22.0
 BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(glib-2.0) >= 2.32
-BuildRequires:  pkgconfig(granite)
-BuildRequires:  pkgconfig(gthread-2.0)
-BuildRequires:  pkgconfig(gtk+-3.0)
-BuildRequires:  pkgconfig(libnm) >= 1.20.6
-BuildRequires:  pkgconfig(libnma)
-BuildRequires:  pkgconfig(polkit-gobject-1)
-BuildRequires:  pkgconfig(switchboard-2.0)
+BuildRequires:  pkgconfig(libnm)
+BuildRequires:  pkgconfig(libnma-gtk4)
+BuildRequires:  pkgconfig(switchboard-3)
 
 Requires:       network-manager-applet%{?_isa}
 Requires:       switchboard%{?_isa}
@@ -52,21 +48,21 @@ A switchboard plug for configuring available networks.
 %install
 %meson_install
 %fdupes %buildroot%_datadir/locale/
-%find_lang %{plug_name}-plug
+%find_lang %{plug_rdnn}
 
 
 %check
 appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
+    %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
 
-%files -f %{plug_name}-plug.lang
+%files -f %{plug_rdnn}.lang
 %doc README.md
 %license COPYING
 
-%{_libdir}/switchboard/%{plug_type}/lib%{plug_name}.so
+%{_libdir}/switchboard-3/%{plug_type}/libnetwork.so
 
-%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
+%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
 
 %changelog
