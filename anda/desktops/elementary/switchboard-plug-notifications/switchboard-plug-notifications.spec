@@ -4,7 +4,7 @@
 
 %global plug_type personal
 %global plug_name notifications
-%global plug_rdnn io.elementary.switchboard.notifications
+%global plug_rdnn io.elementary.settings.notifications
 
 Name:           switchboard-plug-notifications
 Summary:        Switchboard Notifications plug
@@ -18,13 +18,13 @@ Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
-BuildRequires:  vala >= 0.22.0
+#BuildRequires:  vala >= 0.22.0
 BuildRequires:  fdupes
 
-BuildRequires:  pkgconfig(glib-2.0) >= 2.32
-BuildRequires:  pkgconfig(granite)
-BuildRequires:  pkgconfig(gtk+-3.0) >= 3.12
-BuildRequires:  pkgconfig(switchboard-2.0)
+BuildRequires:  pkgconfig(glib-2.0)
+#BuildRequires:  pkgconfig(granite)
+#BuildRequires:  pkgconfig(gtk+-3.0) >= 3.12
+BuildRequires:  pkgconfig(switchboard-3)
 
 Requires:       gala%{?_isa}
 Requires:       switchboard%{?_isa}
@@ -50,21 +50,21 @@ related to the Notifications plugin for Gala.
 %install
 %meson_install
 %fdupes %buildroot%_datadir/locale/
-%find_lang %{plug_name}-plug
+%find_lang %{plug_rdnn}
 
 
 %check
 appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
+    %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
 
-%files -f %{plug_name}-plug.lang
+%files -f %{plug_rdnn}.lang
 %doc README.md
 %license COPYING
 
-%{_libdir}/switchboard/%{plug_type}/lib%{plug_name}.so
+%{_libdir}/switchboard-3/%{plug_type}/lib%{plug_name}.so
 
-%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
+%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
 
 %changelog
