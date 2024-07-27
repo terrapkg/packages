@@ -4,7 +4,7 @@
 
 %global plug_type hardware
 %global plug_name keyboard
-%global plug_rdnn io.elementary.switchboard.keyboard
+%global plug_rdnn io.elementary.settings.keyboard
 
 Name:           switchboard-plug-keyboard
 Summary:        Switchboard Keyboard plug
@@ -21,14 +21,8 @@ BuildRequires:  meson
 BuildRequires:  vala >= 0.22.0
 BuildRequires:  fdupes
 
-BuildRequires:  pkgconfig(glib-2.0) >= 2.32
-BuildRequires:  pkgconfig(granite) >= 6.0.0
-BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(ibus-1.0) >= 1.5.19
-BuildRequires:  pkgconfig(libgnomekbd)
-BuildRequires:  pkgconfig(libgnomekbdui)
-BuildRequires:  pkgconfig(libhandy-1) >= 0.90.0
-BuildRequires:  pkgconfig(switchboard-2.0)
+BuildRequires:  pkgconfig(switchboard-3)
 BuildRequires:  pkgconfig(xkeyboard-config)
 
 Requires:       gala
@@ -54,7 +48,7 @@ same time. Keyboard shortcuts are also part of this plug.
 %install
 %meson_install
 %fdupes %buildroot%_datadir/locale/
-%find_lang %{plug_name}-plug
+%find_lang %{plug_rdnn}
 
 
 %check
@@ -62,12 +56,12 @@ appstream-util validate-relax --nonet \
     %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
 
-%files -f %{plug_name}-plug.lang
+%files -f %{plug_rdnn}.lang
 %doc README.md
 %license COPYING
 
-%{_libdir}/switchboard/%{plug_type}/lib%{plug_name}.so
-%{_datadir}/glib-2.0/schemas/keyboard.gschema.xml
+%{_libdir}/switchboard-3/%{plug_type}/lib%{plug_name}.so
+%{_datadir}/glib-2.0/schemas/%{plug_rdnn}.gschema.xml
 %{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
 
