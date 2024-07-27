@@ -8,8 +8,8 @@
 
 Name:           switchboard-plug-datetime
 Summary:        Switchboard Date & Time Plug
-Version:        2.2.0
-Release:        1%{?dist}
+Version:        8.0.0
+Release:        1%?dist
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/switchboard-plug-datetime

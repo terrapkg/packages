@@ -1,4 +1,4 @@
-%global commit ce805c6b729ae4681fe83edc9e17ba19f437b195
+%global commit c58d9560e729216a15be11624c9f615626386514
 %global commit_date 20240726
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
@@ -17,6 +17,7 @@ BuildRequires:  pkgconfig(vte-2.91-gtk4) >= 0.72.0
 BuildRequires:  pkgconfig(libadwaita-1)
 BuildRequires:  pkgconfig(libusb-1.0)
 BuildRequires:  openssl-devel-engine
+BuildRequires:  openxr-devel
 BuildRequires:  libappstream-glib
 BuildRequires:  desktop-file-utils
 BuildRequires:  glib2-devel
