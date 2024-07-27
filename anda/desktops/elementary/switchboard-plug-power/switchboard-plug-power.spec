@@ -4,7 +4,7 @@
 
 %global plug_type hardware
 %global plug_name power
-%global plug_rdnn io.elementary.switchboard.power
+%global plug_rdnn io.elementary.settings.power
 
 Name:           switchboard-plug-power
 Summary:        Switchboard Power Plug
@@ -18,12 +18,9 @@ Source0:        %url/archive/%version/%srcname-%version.tar.gz
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
-BuildRequires:  vala
 
 BuildRequires:  pkgconfig(dbus-1)
-BuildRequires:  pkgconfig(granite)
 BuildRequires:  pkgconfig(polkit-gobject-1)
-BuildRequires:  polkit-devel
 BuildRequires:  switchboard-devel
 
 Requires:       switchboard%?_isa
@@ -43,24 +40,24 @@ Supplements:    switchboard%?_isa
 
 %install
 %meson_install
-%find_lang %plug_name-plug
+%find_lang %plug_rdnn
 
-# remove the specified stock icon from appdata (invalid in libappstream-glib)
-sed -i '/icon type="stock"/d' %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
+# remove the specified stock icon from metainfo (invalid in libappstream-glib)
+sed -i '/icon type="stock"/d' %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
 
 %check
 appstream-util validate-relax --nonet \
-    %buildroot/%_datadir/metainfo/%plug_rdnn.appdata.xml
+    %buildroot/%_datadir/metainfo/%plug_rdnn.metainfo.xml
 
 
-%files -f %plug_name-plug.lang
+%files -f %plug_rdnn.lang
 %doc README.md
 %license COPYING
 
-%_libdir/switchboard/%plug_type/lib%plug_name.so
+%_libdir/switchboard-3/%plug_type/lib%plug_name.so
 
-%_datadir/metainfo/%plug_rdnn.appdata.xml
+%_datadir/metainfo/%plug_rdnn.metainfo.xml
 
 %_libexecdir/io.elementary.logind.helper
 %_datadir/dbus-1/system-services/io.elementary.logind.helper.service
