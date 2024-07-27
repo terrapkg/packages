@@ -23,7 +23,7 @@ BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(accountsservice)
 #BuildRequires:  gobject-introspection-devel
-#BuildRequires:  gnome-desktop3-devel
+BuildRequires:  pkgconfig(gnome-desktop4)
 #BuildRequires:  pkgconfig(granite) >= 0.5
 #BuildRequires:  pkgconfig(libhandy-1) >= 0.90.0
 #BuildRequires:  pkgconfig(polkit-gobject-1)
