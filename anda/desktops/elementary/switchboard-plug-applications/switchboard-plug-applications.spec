@@ -21,7 +21,7 @@ BuildRequires:  meson
 #BuildRequires:  vala >= 0.22.0
 BuildRequires:  fdupes
 
-#BuildRequires:  pkgconfig(flatpak) >= 1.1.2
+BuildRequires:  pkgconfig(flatpak)
 BuildRequires:  pkgconfig(glib-2.0) >= 2.34
 #BuildRequires:  pkgconfig(granite)
 #BuildRequires:  pkgconfig(gtk+-3.0)
