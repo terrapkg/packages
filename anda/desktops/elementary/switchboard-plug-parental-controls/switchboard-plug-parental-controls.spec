@@ -22,7 +22,7 @@ BuildRequires:  vala
 BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(accountsservice)
-#BuildRequires:  pkgconfig(dbus-1)
+BuildRequires:  pkgconfig(dbus-1)
 BuildRequires:  pkgconfig(flatpak)
 BuildRequires:  pkgconfig(glib-2.0)
 #BuildRequires:  pkgconfig(granite)
