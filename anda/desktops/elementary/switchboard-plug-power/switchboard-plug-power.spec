@@ -18,13 +18,10 @@ Source0:        %url/archive/%version/%srcname-%version.tar.gz
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
-#BuildRequires:  vala
 BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(dbus-1)
-#BuildRequires:  pkgconfig(granite)
 BuildRequires:  pkgconfig(polkit-gobject-1)
-#BuildRequires:  polkit-devel
 BuildRequires:  switchboard-devel
 
 Requires:       switchboard%?_isa
