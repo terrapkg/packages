@@ -25,11 +25,6 @@ BuildRequires:  pkgconfig(accountsservice)
 BuildRequires:  pkgconfig(dbus-1)
 BuildRequires:  pkgconfig(flatpak)
 BuildRequires:  pkgconfig(glib-2.0)
-#BuildRequires:  pkgconfig(granite)
-#BuildRequires:  pkgconfig(libhandy-1) >= 0.90.0
-#BuildRequires:  pkgconfig(malcontent-0)
-#BuildRequires:  pkgconfig(polkit-gobject-1)
-#BuildRequires:  polkit-devel
 BuildRequires:  switchboard-devel
 BuildRequires:  rpm_macro(_unitdir)
 
