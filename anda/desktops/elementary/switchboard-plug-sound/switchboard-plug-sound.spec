@@ -18,17 +18,11 @@ Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
-#BuildRequires:  vala >= 0.34.1
 BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(glib-2.0)
-#BuildRequires:  pkgconfig(granite)
-#BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(libcanberra)
-#BuildRequires:  pkgconfig(libcanberra-gtk)
 BuildRequires:  pkgconfig(libpulse)
-#BuildRequires:  pkgconfig(libhandy-1)
-#BuildRequires:  pkgconfig(libpulse-mainloop-glib)
 BuildRequires:  pkgconfig(switchboard-3)
 
 Requires:       switchboard%{?_isa}
