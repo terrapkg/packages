@@ -1,6 +1,10 @@
 %bcond_without check
-%global debug_package %{nil}
+
 %global ver 0.146.1
+# Exclude input files from mangling
+%global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
+# Use Mold as the linker
+%global build_rustflags %build_rustflags -C link-arg=-fuse-ld=mold
 
 %global crate zed
 %global app_id dev.zed.Zed-Preview
