@@ -4,7 +4,7 @@
 
 %global plug_type network
 %global plug_name sharing
-%global plug_rdnn io.elementary.switchboard.sharing
+%global plug_rdnn io.elementary.settings.sharing
 
 Name:           switchboard-plug-sharing
 Summary:        Switchboard Sharing Plug
@@ -18,12 +18,12 @@ Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
-BuildRequires:  vala >= 0.22.0
+#BuildRequires:  vala >= 0.22.0
 
-BuildRequires:  pkgconfig(glib-2.0) >= 2.32
-BuildRequires:  pkgconfig(granite)
-BuildRequires:  pkgconfig(gtk+-3.0)
-BuildRequires:  pkgconfig(switchboard-2.0)
+BuildRequires:  pkgconfig(glib-2.0)
+#BuildRequires:  pkgconfig(granite)
+#BuildRequires:  pkgconfig(gtk+-3.0)
+BuildRequires:  pkgconfig(switchboard-3)
 
 Requires:       rygel
 Requires:       switchboard%{?_isa}
@@ -46,21 +46,21 @@ Configure the sharing of system services.
 %install
 %meson_install
 
-%find_lang %{plug_name}-plug
+%find_lang %{plug_rdnn}
 
 
 %check
 appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
+    %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
 
-%files -f %{plug_name}-plug.lang
+%files -f %{plug_rdnn}.lang
 %doc README.md
 %license COPYING
 
-%{_libdir}/switchboard/%{plug_type}/lib%{plug_name}.so
+%{_libdir}/switchboard-3/%{plug_type}/lib%{plug_rdnn}.so
 
-%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
+%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
 
 %changelog
