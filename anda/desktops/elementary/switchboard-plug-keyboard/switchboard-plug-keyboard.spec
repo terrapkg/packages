@@ -21,13 +21,7 @@ BuildRequires:  meson
 BuildRequires:  vala >= 0.22.0
 BuildRequires:  fdupes
 
-%dnl BuildRequires:  pkgconfig(glib-2.0) >= 2.32
-%dnl BuildRequires:  pkgconfig(granite-7) >= 6.0.0
-%dnl BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(ibus-1.0) >= 1.5.19
-%dnl BuildRequires:  pkgconfig(libgnomekbd)
-%dnl BuildRequires:  pkgconfig(libgnomekbdui)
-%dnl BuildRequires:  pkgconfig(libhandy-1) >= 0.90.0
 BuildRequires:  pkgconfig(switchboard-3)
 BuildRequires:  pkgconfig(xkeyboard-config)
 
