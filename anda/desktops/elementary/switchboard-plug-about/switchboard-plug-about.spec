@@ -22,7 +22,7 @@ BuildRequires:  meson
 BuildRequires:  fdupes
 
 #BuildRequires:  pkgconfig(appstream) >= 0.12.10
-#BuildRequires:  pkgconfig(fwupd)
+BuildRequires:  pkgconfig(fwupd)
 #BuildRequires:  pkgconfig(gio-2.0)
 BuildRequires:  pkgconfig(glib-2.0)
 #BuildRequires:  pkgconfig(gobject-2.0)
