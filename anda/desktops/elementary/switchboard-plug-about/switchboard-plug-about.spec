@@ -18,20 +18,12 @@ Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
-#BuildRequires:  vala >= 0.22.0
 BuildRequires:  fdupes
 
-#BuildRequires:  pkgconfig(appstream) >= 0.12.10
 BuildRequires:  pkgconfig(fwupd)
-#BuildRequires:  pkgconfig(gio-2.0)
 BuildRequires:  pkgconfig(glib-2.0)
-#BuildRequires:  pkgconfig(gobject-2.0)
-#BuildRequires:  pkgconfig(granite)
-#BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(libgtop-2.0)
-#BuildRequires:  pkgconfig(libhandy-1)
 BuildRequires:  pkgconfig(switchboard-3)
-#BuildRequires:  pkgconfig(gudev-1.0)
 BuildRequires:  pkgconfig(udisks2)
 BuildRequires:  pkgconfig(packagekit-glib2)
 
