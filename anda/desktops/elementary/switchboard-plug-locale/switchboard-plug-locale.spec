@@ -24,8 +24,6 @@ BuildRequires:  fdupes
 BuildRequires:  pkgconfig(accountsservice)
 BuildRequires:  pkgconfig(ibus-1.0)
 BuildRequires:  pkgconfig(gnome-desktop-4)
-#BuildRequires:  pkgconfig(granite)
-#BuildRequires:  polkit-devel
 BuildRequires:  switchboard-devel
 
 Requires:       switchboard%?_isa
