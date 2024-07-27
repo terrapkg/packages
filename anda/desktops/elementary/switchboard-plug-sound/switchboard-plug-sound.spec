@@ -8,8 +8,8 @@
 
 Name:           switchboard-plug-sound
 Summary:        Switchboard Sound Plug
-Version:        2.3.3
-Release:        1%{?dist}
+Version:        8.0.0
+Release:        1%?dist
 License:        LGPL-2.0-or-later
 
 URL:            https://github.com/elementary/switchboard-plug-sound

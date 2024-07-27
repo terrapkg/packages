@@ -8,8 +8,8 @@
 
 Name:           switchboard-plug-parental-controls
 Summary:        Switchboard Screen Time & Limits Plug
-Version:        6.0.1
-Release:        2%?dist
+Version:        8.0.0
+Release:        1%?dist
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/%name
