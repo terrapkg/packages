@@ -4,7 +4,7 @@
 
 %global plug_type system
 %global plug_name useraccounts
-%global plug_rdnn io.elementary.switchboard.useraccounts
+%global plug_rdnn io.elementary.settings.useraccounts
 
 Name:           switchboard-plug-useraccounts
 Summary:        Switchboard User Accounts Plug
@@ -18,18 +18,18 @@ Source0:        %url/archive/%version/%srcname-%version.tar.gz
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson >= 0.46.1
-BuildRequires:  vala
+#BuildRequires:  vala
 BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(accountsservice)
-BuildRequires:  gobject-introspection-devel
-BuildRequires:  gnome-desktop3-devel
-BuildRequires:  pkgconfig(granite) >= 0.5
-BuildRequires:  pkgconfig(libhandy-1) >= 0.90.0
-BuildRequires:  pkgconfig(polkit-gobject-1)
+#BuildRequires:  gobject-introspection-devel
+#BuildRequires:  gnome-desktop3-devel
+#BuildRequires:  pkgconfig(granite) >= 0.5
+#BuildRequires:  pkgconfig(libhandy-1) >= 0.90.0
+#BuildRequires:  pkgconfig(polkit-gobject-1)
 BuildRequires:  pkgconfig(pwquality)
-BuildRequires:  polkit-devel
-BuildRequires:  gtk3-devel
+#BuildRequires:  polkit-devel
+#BuildRequires:  gtk3-devel
 BuildRequires:  switchboard-devel
 
 Requires:       switchboard%?_isa
@@ -50,21 +50,21 @@ Supplements:    switchboard%?_isa
 %install
 %meson_install
 %fdupes %buildroot%_datadir/locale/
-%find_lang %plug_name-plug
+%find_lang %plug_rdnn
 
 
 %check
 appstream-util validate-relax --nonet \
-    %buildroot/%_datadir/metainfo/%plug_rdnn.appdata.xml
+    %buildroot/%_datadir/metainfo/%plug_rdnn.metainfo.xml
 
 
-%files -f %plug_name-plug.lang
+%files -f %plug_rdnn.lang
 %doc README.md
 %license COPYING
 
-%_libdir/switchboard/%plug_type/lib%plug_name.so
-%_libdir/switchboard/system/pantheon-useraccounts/guest-session-toggle
-%_datadir/metainfo/%plug_rdnn.appdata.xml
+%_libdir/switchboard-3/%plug_type/lib%plug_name.so
+%_libdir/switchboard-3/system/useraccounts/guest-session-toggle
+%_datadir/metainfo/%plug_rdnn.metainfo.xml
 %_datadir/polkit-1/actions/%plug_rdnn.policy
 
 
