@@ -18,18 +18,11 @@ Source0:        %url/archive/%version/%srcname-%version.tar.gz
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson >= 0.46.1
-#BuildRequires:  vala
 BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(accountsservice)
-#BuildRequires:  gobject-introspection-devel
 BuildRequires:  pkgconfig(gnome-desktop-4)
-#BuildRequires:  pkgconfig(granite) >= 0.5
-#BuildRequires:  pkgconfig(libhandy-1) >= 0.90.0
-#BuildRequires:  pkgconfig(polkit-gobject-1)
 BuildRequires:  pkgconfig(pwquality)
-#BuildRequires:  polkit-devel
-#BuildRequires:  gtk3-devel
 BuildRequires:  switchboard-devel
 
 Requires:       switchboard%?_isa
