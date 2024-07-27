@@ -22,12 +22,8 @@ BuildRequires:  vala >= 0.22.0
 BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(glib-2.0) >= 2.32
-#BuildRequires:  pkgconfig(granite)
-#BuildRequires:  pkgconfig(gthread-2.0)
-#BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(libnm)
 BuildRequires:  pkgconfig(libnma-gtk4)
-#BuildRequires:  pkgconfig(polkit-gobject-1)
 BuildRequires:  pkgconfig(switchboard-3)
 
 Requires:       network-manager-applet%{?_isa}
