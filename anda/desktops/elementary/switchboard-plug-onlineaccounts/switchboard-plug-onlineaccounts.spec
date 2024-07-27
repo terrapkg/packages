@@ -1,8 +1,8 @@
 %global __provides_exclude_from ^%{_libdir}/switchboard/.*\\.so$
 
 %global plug_type network
-%global plug_name online-accounts
-%global plug_rdnn io.elementary.switchboard.onlineaccounts
+%global plug_name onlineaccounts
+%global plug_rdnn io.elementary.settings.onlineaccounts
 
 Name:           switchboard-plug-onlineaccounts
 Summary:        Switchboard Online Accounts plug
@@ -20,13 +20,13 @@ BuildRequires:  vala
 BuildRequires:  fdupes
 
 BuildRequires:  pkgconfig(camel-1.2)
-BuildRequires:  pkgconfig(glib-2.0)
-BuildRequires:  pkgconfig(gobject-2.0)
-BuildRequires:  pkgconfig(granite) >= 6.0.0
-BuildRequires:  pkgconfig(gtk+-3.0)
-BuildRequires:  evolution-data-server-devel 
-BuildRequires:  pkgconfig(libhandy-1) >= 1.0.0
-BuildRequires:  pkgconfig(switchboard-2.0)
+#BuildRequires:  pkgconfig(glib-2.0)
+#BuildRequires:  pkgconfig(gobject-2.0)
+#BuildRequires:  pkgconfig(granite) >= 6.0.0
+#BuildRequires:  pkgconfig(gtk+-3.0)
+#BuildRequires:  evolution-data-server-devel 
+#BuildRequires:  pkgconfig(libhandy-1) >= 1.0.0
+BuildRequires:  pkgconfig(switchboard-3)
 
 Requires:       switchboard%{?_isa}
 Supplements:    switchboard%{?_isa}
@@ -50,7 +50,7 @@ Manage online accounts and connected applications.
 %install
 %meson_install
 %fdupes %buildroot%_datadir/locale/
-%find_lang %{plug_name}-plug
+%find_lang %{plug_rdnn}
 
 # remove the specified stock icon from appdata (invalid in libappstream-glib)
 sed -i '/icon type="stock"/d' %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
@@ -61,12 +61,12 @@ appstream-util validate-relax --nonet \
     %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
 
-%files -f %{plug_name}-plug.lang
+%files -f %{plug_rdnn}.lang
 %license LICENSE
 %doc README.md
-
+%{_iconsdir}/hicolor/*/apps/%{plug_rdnn}.svg
 %{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
-%{_libdir}/switchboard/%{plug_type}/lib%{plug_name}.so
+%{_libdir}/switchboard-3/%{plug_type}/lib%{plug_name}.so
 
 
 %changelog
