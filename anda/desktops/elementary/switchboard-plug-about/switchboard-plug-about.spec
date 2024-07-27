@@ -25,6 +25,7 @@ BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(libgtop-2.0)
 BuildRequires:  pkgconfig(switchboard-3)
 BuildRequires:  pkgconfig(udisks2)
+BuildRequires:  pkgconfig(gudev-1.0)
 BuildRequires:  pkgconfig(packagekit-glib2)
 
 Requires:       switchboard%{?_isa}
