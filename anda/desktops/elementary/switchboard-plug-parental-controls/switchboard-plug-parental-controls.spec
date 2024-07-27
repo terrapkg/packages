@@ -21,7 +21,7 @@ BuildRequires:  meson >= 0.46.1
 BuildRequires:  vala
 BuildRequires:  fdupes
 
-#BuildRequires:  pkgconfig(accountsservice)
+BuildRequires:  pkgconfig(accountsservice)
 #BuildRequires:  pkgconfig(dbus-1)
 BuildRequires:  pkgconfig(flatpak)
 BuildRequires:  pkgconfig(glib-2.0)
