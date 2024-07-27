@@ -18,13 +18,9 @@ Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
-#BuildRequires:  vala >= 0.22.0
 
 BuildRequires:  pkgconfig(glib-2.0)
-#BuildRequires:  pkgconfig(granite)
-#BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(switchboard-3)
-#BuildRequires:  pkgconfig(libxml-2.0)
 
 Requires:       switchboard%{?_isa}
 Supplements:    switchboard%{?_isa}
