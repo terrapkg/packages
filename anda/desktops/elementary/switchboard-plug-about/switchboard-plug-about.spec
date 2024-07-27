@@ -27,6 +27,7 @@ BuildRequires:  pkgconfig(switchboard-3)
 BuildRequires:  pkgconfig(udisks2)
 BuildRequires:  pkgconfig(gudev-1.0)
 BuildRequires:  pkgconfig(packagekit-glib2)
+BuildRequires:  pkgconfig(polkit-gobject-1)
 
 Requires:       switchboard%{?_isa}
 Supplements:    switchboard%{?_isa}
