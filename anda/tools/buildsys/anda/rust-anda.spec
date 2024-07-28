@@ -5,7 +5,7 @@
 %global crate anda
 
 Name:           rust-anda
-Version:        0.3.0
+Version:        0.3.1
 Release:        1%?dist
 Summary:        Andaman Build toolchain
 
