@@ -34,6 +34,7 @@ sed "s@Discord Canary@Discord Canary OpenAsar@g" a > discord-canary.desktop
 
 %install
 rm -rf $RPM_BUILD_ROOT
+mkdir -p %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_datadir}/discord-canary-openasar
 cp -rv * %{buildroot}%{_datadir}/discord-canary-openasar
 mkdir -p %{buildroot}%{_datadir}/applications/

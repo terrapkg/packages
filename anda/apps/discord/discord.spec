@@ -30,6 +30,7 @@ both your desktop and phone.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+mkdir -p %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_datadir}/discord
 cp -rv * %{buildroot}%{_datadir}/discord
 mkdir -p %{buildroot}%{_datadir}/applications/

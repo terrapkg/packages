@@ -26,6 +26,7 @@ both your desktop and phone.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+mkdir -p %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_datadir}/discord-canary
 cp -rv * %{buildroot}%{_datadir}/discord-canary
 mkdir -p %{buildroot}%{_datadir}/applications/

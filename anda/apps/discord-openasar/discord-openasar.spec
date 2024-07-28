@@ -34,6 +34,7 @@ sed "s@Discord@Discord OpenAsar@g" a > discord.desktop
 
 %install
 rm -rf $RPM_BUILD_ROOT
+mkdir -p %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_datadir}/discord-openasar
 cp -rv * %{buildroot}%{_datadir}/discord-openasar
 mkdir -p %{buildroot}%{_datadir}/applications/

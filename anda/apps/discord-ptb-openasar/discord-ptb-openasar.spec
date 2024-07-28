@@ -34,6 +34,7 @@ sed "s@Discord Ptb@Discord Ptb OpenAsar@g" a > discord-ptb.desktop
 
 %install
 rm -rf $RPM_BUILD_ROOT
+mkdir -p %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_datadir}/discord-ptb-openasar
 cp -rv * %{buildroot}%{_datadir}/discord-ptb-openasar
 mkdir -p %{buildroot}%{_datadir}/applications/
