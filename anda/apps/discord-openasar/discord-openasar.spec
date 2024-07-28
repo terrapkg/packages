@@ -42,9 +42,11 @@ ln -s %_datadir/discord-openasar/discord.desktop %{buildroot}%{_datadir}/applica
 ln -s %_datadir/discord-openasar/discord.png %{buildroot}%{_datadir}/pixmaps/discord-openasar.png
 cp -v %{SOURCE1} %{buildroot}%{_datadir}/discord-openasar/resources/app.asar
 chmod o+w %{buildroot}%{_datadir}/discord-openasar/resources -R
+ln -s %_datadir/discord-openasar/Discord %buildroot%_bindir/discord-openasar
 
 
 %files
+%_bindir/discord-openasar
 %{_datadir}/discord-openasar/
 %{_datadir}/applications/discord-openasar.desktop
 %{_datadir}/pixmaps/discord-openasar.png

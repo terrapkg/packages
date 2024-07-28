@@ -16,9 +16,8 @@ Requires:       glibc GConf2 nspr >= 4.13 nss >= 3.27 libX11 >= 1.6 libXtst >= 1
 Group:          Applications/Internet
 ExclusiveArch:  x86_64
 %description
-Imagine a place where you can belong to a school club, a gaming group, or a
-worldwide art community. Where just you and a handful of friends can spend time
-together. A place that makes it easy to talk every day and hang out more often.
+All-in-one voice and text chat for gamers that's free, secure, and works on
+both your desktop and phone.
 
 %prep
 %autosetup -n DiscordCanary
@@ -33,8 +32,10 @@ mkdir -p %{buildroot}%{_datadir}/applications/
 mkdir -p %{buildroot}%{_datadir}/pixmaps
 ln -s %_datadir/discord-canary/discord-canary.desktop %{buildroot}%{_datadir}/applications/
 ln -s %_datadir/discord-canary/discord.png %{buildroot}%{_datadir}/pixmaps/discord-canary.png
+ln -s %_datadir/discord/DiscordCanary %buildroot%_bindir/discord-canary
 
 %files
+%_bindir/discord-canary
 %{_datadir}/discord-canary/
 %{_datadir}/applications/discord-canary.desktop
 %{_datadir}/pixmaps/discord-canary.png
