@@ -8,8 +8,8 @@
 
 Name:           switchboard-plug-locale
 Summary:        Switchboard Locale Plug
-Version:        2.5.9
-Release:        2%?dist
+Version:        8.0.0
+Release:        1%?dist
 License:        LGPL-3.0-or-later
 
 URL:            https://github.com/elementary/%name
