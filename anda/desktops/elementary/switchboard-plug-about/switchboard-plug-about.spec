@@ -8,8 +8,8 @@
 
 Name:           switchboard-plug-about
 Summary:        Switchboard System Information plug
-Version:        6.2.0
-Release:        2%{?dist}
+Version:        8.0.0
+Release:        1%?dist
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/switchboard-plug-about
