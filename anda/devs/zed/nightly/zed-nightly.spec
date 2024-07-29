@@ -1,6 +1,6 @@
-%global commit fee49fcf657e2514b02b6e9f81003ea48206c231
+%global commit a875dd153d12362a933941eef06b3e35c160d18d
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20240728
+%global commit_date 20240729
 %global ver 0.147.0
 
 %bcond_without check
