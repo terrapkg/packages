@@ -35,21 +35,6 @@ Packager:       madonuko <mado@fyralabs.com>
 %_datadir/applications/ruffle_desktop.desktop
 %_iconsdir/hicolor/scalable/apps/ruffle_desktop.svg
 
-%package        devel
-Summary:        %{summary}
-BuildArch:      noarch
-
-%description    devel %{_description}
-
-This package contains library source intended for building other packages which
-use the "%{crate}" crate.
-
-%files          devel
-%license %{crate_instdir}/LICENSE.md
-%doc %{crate_instdir}/CONTRIBUTING.md
-%doc %{crate_instdir}/README.md
-%{crate_instdir}/
-
 %prep
 %autosetup -n ruffle-nightly-%ver
 %cargo_prep_online
