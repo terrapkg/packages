@@ -30,6 +30,7 @@ cp -r usr %buildroot/
 %license LICENSE
 %_bindir/export-gpu
 %_bindir/gamescope-session-plus
+%_libexecdir/gamescope-sdl-workaround
 %_userunitdir/gamescope-session-plus@.service
 %_datadir/gamescope-session-plus/device-quirks
 %_datadir/gamescope-session-plus/gamescope-session-plus
