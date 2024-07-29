@@ -22,7 +22,7 @@ BuildRequires:  libappstream-glib
 #BuildRequires:  granite-devel
 #BuildRequires:  pkgconfig(polkit-gobject-1)
 BuildRequires:  pkgconfig(switchboard-3)
-#BuildRequires:  pkgconfig(zeitgeist-2.0)
+BuildRequires:  pkgconfig(zeitgeist-2.0)
 BuildRequires:  meson >= 0.46.1
 BuildRequires:  polkit-devel
 
