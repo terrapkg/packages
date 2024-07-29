@@ -8,8 +8,8 @@
 
 Name:           switchboard-plug-power
 Summary:        Switchboard Power Plug
-Version:        2.7.0
-Release:        2%?dist
+Version:        8.0.0
+Release:        1%?dist
 License:        GPL-2.0-or-later
 
 URL:            https://github.com/elementary/%name
