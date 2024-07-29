@@ -25,7 +25,7 @@ jobs:
           dnf install -y 'dnf-command(config-manager)'
           dnf config-manager --set-enabled crb
           dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-${{ matrix.version }}.noarch.rpm
-          dnf install -y mock wget git-core openssl-devel cargo podman fuse-overlayfs
+          dnf install -y mock wget git-core openssl-devel cargo podman fuse-overlayfs rpmbuild mock
           dnf builddep -y anda/{terra/{mock-configs,srpm-macros},tools/buildsys/subatomic}/*.spec
 
       - name: Install Anda
