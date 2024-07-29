@@ -13,9 +13,6 @@ strip = "none"\
 [build]\
 rustc = "%{__rustc}"\
 rustdoc = "%{__rustdoc}"\
-%if %{with mold}\
-rustflags = ["-C", "link-arg=-fuse-ld=mold"]\
-%endif\
 \
 [env]\
 CFLAGS = "%{build_cflags}"\
@@ -35,6 +32,9 @@ directory = "%{cargo_registry}"\
 \
 EOF\
 %{__rm} -f Cargo.toml.orig \
+%if %{with mold}\
+%global build_rustflags %build_rustflags -C link-arg=-fuse-ld=mold\
+%endif\
 )
 
 
