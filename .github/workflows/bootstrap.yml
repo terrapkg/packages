@@ -26,7 +26,7 @@ jobs:
           dnf config-manager --set-enabled crb
           dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-${{ matrix.version }}.noarch.rpm
           dnf install -y mock wget git-core openssl-devel cargo podman fuse-overlayfs
-          dnf builddep -y anda/{terra/{mock-configs,srpm-macros},tools/buildsys/{subatomic,anda}}/*.spec
+          dnf builddep -y anda/{terra/{mock-configs,srpm-macros},tools/buildsys/subatomic}/*.spec
 
       - name: Install Anda
         run: cargo install anda
@@ -38,7 +38,7 @@ jobs:
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           anda build -c almalinux-${{ matrix.version }}-${{ matrix.arch }} anda/terra/mock-configs/pkg --rpm-builder=rpmbuild
       - name: Install terra-mock-configs
-        run: dnf5 install -y anda-build/rpm/rpms/terra-mock-configs*.rpm
+        run: dnf install -y anda-build/rpm/rpms/terra-mock-configs*.rpm
 
       - name: Build anda-srpm-macros
         run: anda build -c terra-el${{ matrix.version }}+epel-${{ matrix.arch }}.cfg anda/terra/srpm-macros/pkg --rpm-builder=rpmbuild
@@ -46,8 +46,10 @@ jobs:
       - name: Build Subatomic
         run: anda build -c terra-el${{ matrix.version }}+epel-${{ matrix.arch }}.cfg anda/tools/buildsys/subatomic/pkg --rpm-builder=rpmbuild
       - name: Install Subatomic
-        run: dnf5 install -y ./anda-build/rpm/rpms/subatomic-*.rpm
+        run: dnf install -y ./anda-build/rpm/rpms/subatomic-*.rpm
 
+      - name: Install Build Dependencies for Andaman
+        run: dnf builddep -y anda/tools/buildsys/anda/*.spec
       - name: Build Andaman
         run: anda build -c terra-el${{ matrix.version }}+epel-${{ matrix.arch }} anda/tools/buildsys/anda/pkg --rpm-builder=rpmbuild
 
