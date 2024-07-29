@@ -20,9 +20,8 @@ Requires:		libXtst >= 1.2
 Group:			Applications/Internet
 ExclusiveArch:	x86_64
 %description
-Imagine a place where you can belong to a school club, a gaming group, or a
-worldwide art community. Where just you and a handful of friends can spend time
-together. A place that makes it easy to talk every day and hang out more often.
+All-in-one voice and text chat for gamers that's free, secure, and works on
+both your desktop and phone.
 
 %prep
 %autosetup -n Discord
@@ -31,14 +30,17 @@ together. A place that makes it easy to talk every day and hang out more often.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+mkdir -p %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_datadir}/discord
 cp -rv * %{buildroot}%{_datadir}/discord
 mkdir -p %{buildroot}%{_datadir}/applications/
 mkdir -p %{buildroot}%{_datadir}/pixmaps
 ln -s %_datadir/discord/discord.desktop %{buildroot}%{_datadir}/applications/discord.desktop
 ln -s %_datadir/discord/discord.png %{buildroot}%{_datadir}/pixmaps/discord.png
+ln -s %_datadir/discord/Discord %buildroot%_bindir/discord
 
 %files
+%_bindir/discord
 %{_datadir}/discord/
 %{_datadir}/applications/discord.desktop
 %{_datadir}/pixmaps/discord.png
