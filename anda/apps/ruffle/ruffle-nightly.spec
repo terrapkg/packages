@@ -32,6 +32,8 @@ Packager:       madonuko <mado@fyralabs.com>
 %license LICENSE.md
 %license LICENSE.dependencies
 %_bindir/ruffle_desktop
+%_datadir/applications/ruffle_desktop.desktop
+%_iconsdir/hicolor/scalable/apps/ruffle_desktop.svg
 
 %package        devel
 Summary:        %{summary}
@@ -52,12 +54,28 @@ use the "%{crate}" crate.
 %autosetup -n ruffle-nightly-%ver
 %cargo_prep_online
 
+cat<<EOF > ruffle_desktop.desktop
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Ruffle Desktop
+Comment=%summary
+Exec=%_bindir/ruffle_desktop
+Icon=ruffle_desktop
+Terminal=false
+StartupNotify=false
+Categories=Application;
+MimeType=application/x-shockwave-flash;
+EOF
+
 %build
 %{cargo_license_online} > LICENSE.dependencies
 
 %install
 cd desktop
 %cargo_install
+install -Dm644 assets/logo.svg %buildroot%_iconsdir/hicolor/scalable/apps/ruffle_desktop.svg
+install -Dm644 ../ruffle_desktop.desktop %buildroot%_datadir/applications/ruffle_desktop.desktop
 
 %changelog
 * Mon Jul 29 2024 madonuko <mado@fyralabs.com>
