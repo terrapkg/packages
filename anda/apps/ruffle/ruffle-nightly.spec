@@ -21,7 +21,7 @@ BuildRequires:  gcc-c++ cmake java
 BuildRequires:  java-latest-openjdk-headless
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(gtk+-3.0)
-BuildRequires:  pkgconfig(udev)
+BuildRequires:  pkgconfig(libudev)
 BuildRequires:  pkgconfig(xcb-cursor)
 Packager:       madonuko <mado@fyralabs.com>
 
