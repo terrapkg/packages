@@ -31,7 +31,7 @@ Packager:       madonuko <mado@fyralabs.com>
 %doc README.md
 %license LICENSE.md
 %license LICENSE.dependencies
-%_bindir/ruffle
+%_bindir/ruffle_desktop
 
 %package        devel
 Summary:        %{summary}
