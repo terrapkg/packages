@@ -15,6 +15,11 @@ jobs:
       image: docker.io/library/almalinux:${{ matrix.version }}
       options: --cap-add=SYS_ADMIN --privileged
     steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: el${{ matrix.version }}
+          fetch-depth: 1
+
       - name: Install repositories
         run: |
           dnf install -y 'dnf-command(config-manager)'
@@ -26,10 +31,6 @@ jobs:
       - name: Install Anda
         run: cargo install anda
 
-      - uses: actions/checkout@v4
-        with:
-          ref: f${{ matrix.version }}
-          fetch-depth: 1
       - name: Build terra-mock-configs
         run: |
           echo "PATH=$PATH:/github/home/.cargo/bin" >> $GITHUB_ENV
