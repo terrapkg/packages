@@ -4,7 +4,7 @@
 
 %global plug_type personal
 %global plug_name security-privacy
-%global plug_rdnn io.elementary.switchboard.security-privacy
+%global plug_rdnn io.elementary.settings.security-privacy
 
 Name:           switchboard-plug-security-privacy
 Summary:        Switchboard Security & Privacy Plug
@@ -17,11 +17,11 @@ Source0:        %url/archive/%version/%srcname-%version.tar.gz
 
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib
-BuildRequires:  vala
+#BuildRequires:  vala
 
-BuildRequires:  granite-devel
-BuildRequires:  pkgconfig(polkit-gobject-1)
-BuildRequires:  pkgconfig(switchboard-2.0)
+#BuildRequires:  granite-devel
+#BuildRequires:  pkgconfig(polkit-gobject-1)
+BuildRequires:  pkgconfig(switchboard-3)
 BuildRequires:  pkgconfig(zeitgeist-2.0)
 BuildRequires:  meson >= 0.46.1
 BuildRequires:  polkit-devel
@@ -46,7 +46,7 @@ Supplements:    switchboard%{?_isa}
 %install
 %meson_install
 
-%find_lang %{plug_name}-plug
+%find_lang %{plug_rdnn}
 
 
 %check
@@ -54,15 +54,15 @@ appstream-util validate-relax --nonet \
     %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
 
-%files -f %{plug_name}-plug.lang
+%files -f %{plug_rdnn}.lang
 %doc README.md
 %license COPYING
 
-%{_libdir}/switchboard/%{plug_type}/lib%{plug_name}.so
+%{_libdir}/switchboard-3/%{plug_type}/lib%{plug_name}.so
 
 %{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
-%_libdir/switchboard/personal/security-privacy-plug-helper
+%_libdir/switchboard-3/personal/security-privacy-plug-helper
 %_datadir/glib-2.0/schemas/%plug_rdnn.gschema.xml
 %_datadir/polkit-1/actions/%plug_rdnn.policy
 
