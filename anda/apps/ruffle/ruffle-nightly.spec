@@ -32,25 +32,26 @@ Packager:       madonuko <mado@fyralabs.com>
 %license LICENSE.md
 %license LICENSE.dependencies
 %_bindir/ruffle_desktop
-
-%package        devel
-Summary:        %{summary}
-BuildArch:      noarch
-
-%description    devel %{_description}
-
-This package contains library source intended for building other packages which
-use the "%{crate}" crate.
-
-%files          devel
-%license %{crate_instdir}/LICENSE.md
-%doc %{crate_instdir}/CONTRIBUTING.md
-%doc %{crate_instdir}/README.md
-%{crate_instdir}/
+%_datadir/applications/ruffle_desktop.desktop
+%_iconsdir/hicolor/scalable/apps/ruffle_desktop.svg
 
 %prep
 %autosetup -n ruffle-nightly-%ver
 %cargo_prep_online
+
+cat<<EOF > ruffle_desktop.desktop
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Ruffle Desktop
+Comment=%summary
+Exec=%_bindir/ruffle_desktop
+Icon=ruffle_desktop
+Terminal=false
+StartupNotify=false
+Categories=Application;
+MimeType=application/x-shockwave-flash;
+EOF
 
 %build
 %{cargo_license_online} > LICENSE.dependencies
@@ -58,6 +59,8 @@ use the "%{crate}" crate.
 %install
 cd desktop
 %cargo_install
+install -Dm644 assets/logo.svg %buildroot%_iconsdir/hicolor/scalable/apps/ruffle_desktop.svg
+install -Dm644 ../ruffle_desktop.desktop %buildroot%_datadir/applications/ruffle_desktop.desktop
 
 %changelog
 * Mon Jul 29 2024 madonuko <mado@fyralabs.com>
