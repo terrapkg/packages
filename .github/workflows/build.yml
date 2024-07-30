@@ -71,7 +71,7 @@ jobs:
           cp -v mock-configs/terra.tpl /etc/mock/templates/terra.tpl
 
       - name: Build with Andaman
-        run: anda build anda/${{ matrix.pkg }}pkg --package rpm -c mock-configs/terra-${{ matrix.version }}-${{ matrix.arch }}.pkg
+        run: anda build anda/${{ matrix.pkg }}pkg --package rpm -c mock-configs/terra-${{ matrix.version }}-${{ matrix.arch }}.cfg
 
       - name: Generating artifact name
         id: art
