@@ -1,4 +1,4 @@
-%global ver 1.8.13
+%global ver 1.8.14
 
 Summary:        tauOS GTK/GNOME Shell Themes
 Name:           tau-helium
