@@ -8,8 +8,8 @@
 
 Name:           switchboard-plug-pantheon-shell
 Summary:        Switchboard Pantheon Shell plug
-Version:        6.5.0
-Release:        1%{?dist}
+Version:        8.0.0
+Release:        1%?dist
 License:        GPL-3.0
 
 URL:            https://github.com/elementary/switchboard-plug-pantheon-shell
