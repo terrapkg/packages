@@ -19,9 +19,9 @@ Patch0:         chimeraos.patch
 # https://hhd.dev/
 Patch1:         disable-steam-touch-click-atom.patch
 # https://github.com/ValveSoftware/gamescope/pull/1281
-Patch2:         deckhd.patch
+# Patch2:         deckhd.patch
 # https://github.com/ValveSoftware/gamescope/issues/1398
-# Patch3:         drm-Separate-BOE-and-SDC-OLED-Deck-panel-rates.patch
+Patch3:         drm-Separate-BOE-and-SDC-OLED-Deck-panel-rates.patch
 # https://github.com/ValveSoftware/gamescope/issues/1369
 Patch4:         revert-299bc34.patch
 # https://github.com/ValveSoftware/gamescope/pull/1231
