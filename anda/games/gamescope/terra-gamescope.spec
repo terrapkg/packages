@@ -19,7 +19,7 @@ Patch0:         chimeraos.patch
 # https://hhd.dev/
 Patch1:         disable-steam-touch-click-atom.patch
 # https://github.com/ValveSoftware/gamescope/pull/1281
-Patch2:         deckhd.patch
+# Patch2:         deckhd.patch
 # https://github.com/ValveSoftware/gamescope/issues/1398
 Patch3:         drm-Separate-BOE-and-SDC-OLED-Deck-panel-rates.patch
 # https://github.com/ValveSoftware/gamescope/issues/1369
@@ -68,6 +68,7 @@ BuildRequires:  pkgconfig(libseat)
 BuildRequires:  pkgconfig(libinput)
 BuildRequires:  xcb-util-wm-devel
 BuildRequires:  pkgconfig(xcb-errors)
+BuildRequires:  pkgconfig(lcms2)
 BuildRequires:  spirv-headers-devel
 # Enforce the the minimum EVR to contain fixes for all of:
 # CVE-2021-28021 CVE-2021-42715 CVE-2021-42716 CVE-2022-28041 CVE-2023-43898
