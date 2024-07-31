@@ -1,5 +1,5 @@
 Name:           sbctl
-Version:        0.14
+Version:        0.15
 Release:        1%?dist
 Summary:        Secure Boot key manager
 
