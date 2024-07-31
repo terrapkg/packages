@@ -54,6 +54,7 @@ fi
 %{_bindir}/sbctl
 %{_prefix}/lib/kernel/install.d/91-sbctl.install
 %{_mandir}/man8/sbctl.8*
+%{_mandir}/man5/sbctl.conf.5*
 %{_datadir}/bash-completion/completions/sbctl
 %{_datadir}/fish/vendor_completions.d/sbctl.fish
 %{_datadir}/zsh/site-functions/_sbctl
