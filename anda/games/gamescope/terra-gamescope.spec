@@ -68,6 +68,7 @@ BuildRequires:  pkgconfig(libseat)
 BuildRequires:  pkgconfig(libinput)
 BuildRequires:  xcb-util-wm-devel
 BuildRequires:  pkgconfig(xcb-errors)
+BuildRequires:  pkgconfig(lcms2)
 BuildRequires:  spirv-headers-devel
 # Enforce the the minimum EVR to contain fixes for all of:
 # CVE-2021-28021 CVE-2021-42715 CVE-2021-42716 CVE-2022-28041 CVE-2023-43898
