@@ -1,4 +1,4 @@
-%bcond_without check
+%bcond_with check
 
 %global ver 0.1
 # Exclude input files from mangling

@@ -1,4 +1,4 @@
-%bcond_without check
+%bcond_with check
 
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
