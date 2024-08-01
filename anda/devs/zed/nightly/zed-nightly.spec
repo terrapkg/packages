@@ -3,7 +3,7 @@
 %global commit_date 20240726
 %global ver 0.147.0
 
-%bcond_without check
+%bcond_with check
 
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
