@@ -1,6 +1,6 @@
 project pkg {
     rpm {
-        spec = "envision.spec"
+        spec = "flow-control-nightly.spec"
     }
     labels {
         nightly = 1
