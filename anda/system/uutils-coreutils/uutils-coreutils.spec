@@ -2,7 +2,7 @@
 
 Name:			uutils-coreutils
 Version:		0.0.27
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Cross-platform Rust rewrite of the GNU coreutils
 License:		MIT
 URL:			https://github.com/uutils/coreutils
