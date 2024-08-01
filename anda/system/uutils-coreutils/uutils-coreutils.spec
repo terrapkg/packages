@@ -24,6 +24,10 @@ Summary:		Cross-platform Rust replacement of the GNU coreutils
 Provides:       coreutils = %coreutils_ver
 Provides:       coreutils(%arch)
 Provides:       coreutils-full
+Provides:       bash-completion
+Conflicts:      bash-completion
+Conflicts:      coreutils-common
+Conflicts:      coreutils
 
 %description replace
 uutils coreutils is a cross-platform reimplementation of the GNU coreutils in Rust.
@@ -46,6 +50,9 @@ This package provides a single binary with commands for util-linux with the `uu-
 %package util-linux-replace
 Summary:		uutils-coreutils single-binary, replaces coreutils and util-linux
 Provides:		util-linux
+Conflicts:      util-linux
+Conflicts:      /usr/bin/uptime
+Conflicts:      /usr/bin/hostname
 
 %description util-linux-replace
 uutils coreutils is a cross-platform reimplementation of the GNU coreutils in Rust.
