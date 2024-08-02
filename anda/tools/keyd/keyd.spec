@@ -20,7 +20,7 @@ git clone --depth 1 -b v%version %url .
 %make_build
 
 %install
-%make_install PREFIX=%buildroot%_prefix
+%make_install PREFIX=%_prefix
 install -Dm644 keyd.service %buildroot%_unitdir/keyd.service
 
 %post
@@ -36,12 +36,12 @@ install -Dm644 keyd.service %buildroot%_unitdir/keyd.service
 %doc README.md
 %license LICENSE
 %_unitdir/keyd.service
-%dnl %_bindir/keyd
-%dnl %_bindir/keyd-application-mapper
-%dnl %_datadir/keyd
-%dnl %_datadir/doc/keyd/
-%dnl %_mandir/man1/keyd-application-mapper.1.gz
-%dnl %_mandir/man1/keyd.1.gz
+%_bindir/keyd
+%_bindir/keyd-application-mapper
+%_datadir/keyd
+%_datadir/doc/keyd/
+%_mandir/man1/keyd-application-mapper.1.gz
+%_mandir/man1/keyd.1.gz
 
 %changelog
 * Tue May 23 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2.4.3-1
