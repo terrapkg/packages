@@ -1,5 +1,5 @@
-%global commit 56f2e0b0d6378fcf31d43d349c1e5ff57b6eb985
-%global commit_date 20240729
+%global commit 5eb42335e0ccbf3558b1d285348d7c02906c931d
+%global commit_date 20240801
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           envision
@@ -17,6 +17,7 @@ BuildRequires:  pkgconfig(vte-2.91-gtk4) >= 0.72.0
 BuildRequires:  pkgconfig(libadwaita-1)
 BuildRequires:  pkgconfig(libusb-1.0)
 BuildRequires:  openssl-devel
+BuildRequires:  openxr-devel
 BuildRequires:  libappstream-glib
 BuildRequires:  desktop-file-utils
 BuildRequires:  glib2-devel
