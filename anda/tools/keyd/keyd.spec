@@ -5,8 +5,7 @@ Summary:		Key remapping daemon for linux
 URL:			https://github.com/rvaiya/keyd
 License:		MIT
 Suggests:		python3 python3-xlib
-BuildRequires:	gcc mold make kernel-headers systemd-rpm-macros
-BuildRequires:  systemd git-core
+BuildRequires:	gcc mold make kernel-headers systemd-rpm-macros git-core
 
 %description
 keyd provides a flexible system wide daemon which remaps keys using kernel
