@@ -30,12 +30,16 @@ Suggests: libXrandr
 OpenTabletDriver is an open source, cross platform, user mode tablet driver. The goal of OpenTabletDriver is to be cross platform as possible with the highest compatibility in an easily configurable graphical user interface.
 
 %prep
+mkdir -p %{otddir}
+cd %{otddir}
 git clone -b v%version %url .
 
 %build
+cd %{otddir}
 ./eng/linux/package.sh --output bin
 
 %install
+cd %{otddir}
 export DONT_STRIP=1
 PREFIX="%{_prefix}" ./eng/linux/package.sh --package Generic --build false
 mkdir -p "%{buildroot}"
