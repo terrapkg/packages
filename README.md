@@ -31,3 +31,7 @@ Our documentation can be found on our [Devdocs](https://developer.fyralabs.com/t
 ## Questions?
 
 Feel free to reach out by [joining our community](https://wiki.ultramarine-linux.org/en/community/community/). We're always happy to help!
+
+- [Contribution Guide](https://developer.fyralabs.com/terra/contributing)
+- [FAQ](https://developer.fyralabs.com/terra/faq)
+- [Policy](https://developer.fyralabs.com/terra/policy)
