@@ -1,9 +1,10 @@
-%global commit         2259fd10affd19be60400a1ac2c86b920f2c64c2
-%global shortcommit    %(c=%{commit}; echo ${c:0:7})
-%global compiledate    %(date "+%%B %%d, %%Y")
-
+# https://github.com/zyedidia/micro
 %global goipath        github.com/zyedidia/micro
-%global tag            nightly
+%global commit         2259fd10affd19be60400a1ac2c86b920f2c64c2
+
+%global shortcommit    %(c=%{commit}; echo ${c:0:7})
+%global commit_date    20240731
+%global compiledate    %(date "+%%B %%d, %%Y")
 
 %gometa -f
 
@@ -16,7 +17,7 @@ Micro is a terminal-based text editor that aims to be easy to use and intuitive,
 %global godocs         README.md
 
 Name:           %{goname}-%{tag}
-Version:        2.0.14~dev
+Version:        2.0.14~dev^%{commit_date}g%{shortcommit}
 Release:        %autorelease
 Summary:        A modern and intuitive terminal-based text editor
 License:        MIT AND Apache-2.0 AND MPL-2.0
