@@ -1,5 +1,5 @@
 Name:			keyd
-Version:		2.4.3
+Version:		2.5.0
 Release:		3%?dist
 Summary:		Key remapping daemon for linux
 URL:			https://github.com/rvaiya/keyd
