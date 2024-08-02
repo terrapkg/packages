@@ -20,7 +20,7 @@ git clone --depth 1 -b v%version %url .
 %make_build
 
 %install
-%make_install
+%make_install PREFIX=%buildroot%_prefix
 install -Dm644 keyd.service %buildroot%_unitdir/keyd.service
 
 %post
