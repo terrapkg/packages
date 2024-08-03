@@ -17,7 +17,8 @@ URL:            https://github.com/th-ch/youtube-music
 BuildRequires:  nodejs
 BuildRequires:  npm
 BuildRequires:  git-core gcc make
-BuildRequires:  python3 gcc-c++ # Required for usocket native module built with node-gyp
+# Required for usocket native module built with node-gyp
+BuildRequires:  python3 gcc-c++
 
 %description
 YouTube Music Desktop App bundled with custom plugins (and built-in ad blocker / downloader)
