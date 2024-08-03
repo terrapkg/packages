@@ -1,4 +1,3 @@
-%global pnpm_version 9
 %define debug_package %nil
 
 
@@ -14,8 +13,8 @@ License:        MIT
 URL:            https://github.com/th-ch/youtube-music
 
 
-BuildRequires:  nodejs22
-BuildRequires:  nodejs22-npm
+BuildRequires:  nodejs
+BuildRequires:  nodejs-npm pnpm
 BuildRequires:  git-core gcc make
 # Required for usocket native module built with node-gyp
 BuildRequires:  python3 gcc-c++
@@ -32,9 +31,9 @@ git checkout v%{version}
 
 
 %build
-%pnpm install --no-frozen-lockfile
-%pnpm build
-%pnpm electron-builder --linux --dir
+pnpm install --no-frozen-lockfile
+pnpm build
+pnpm electron-builder --linux --dir
 
 
 
