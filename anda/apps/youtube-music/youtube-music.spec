@@ -71,6 +71,7 @@ install -D -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/applications/youtube-music
 %{_bindir}/youtube-music
 %{_datadir}/youtube-music
 %{_datadir}/icons/hicolor/*/apps/youtube-music*
+%{_datadir}/applications/youtube-music.desktop
 
 
 
