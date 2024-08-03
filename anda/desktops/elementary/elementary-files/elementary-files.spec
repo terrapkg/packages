@@ -43,6 +43,7 @@ BuildRequires:  pkgconfig(plank) >= 0.10.9
 BuildRequires:  pkgconfig(sqlite3)
 BuildRequires:  pkgconfig(systemd) >= 206
 BuildRequires:  pkgconfig(libportal)
+BuildRequires:  pkgconfig(libportal-gtk3)
 
 Requires:       contractor
 Requires:       file-roller
