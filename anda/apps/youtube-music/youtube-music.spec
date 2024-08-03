@@ -13,8 +13,8 @@ License:        MIT
 URL:            https://github.com/th-ch/youtube-music
 
 
-BuildRequires:  nodejs
-BuildRequires:  nodejs-npm pnpm
+BuildRequires:  nodejs18
+BuildRequires:  nodejs18-npm pnpm
 BuildRequires:  git-core gcc make
 # Required for usocket native module built with node-gyp
 BuildRequires:  python3 gcc-c++
