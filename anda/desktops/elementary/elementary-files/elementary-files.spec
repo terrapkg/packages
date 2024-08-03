@@ -42,6 +42,7 @@ BuildRequires:  pkgconfig(pango) >= 1.1.2
 BuildRequires:  pkgconfig(plank) >= 0.10.9
 BuildRequires:  pkgconfig(sqlite3)
 BuildRequires:  pkgconfig(systemd) >= 206
+BuildRequires:  pkgconfig(libportal)
 
 Requires:       contractor
 Requires:       file-roller
