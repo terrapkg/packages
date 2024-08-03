@@ -1,4 +1,4 @@
-%global pnpm_version 8
+%global pnpm_version 9
 %define debug_package %nil
 
 
