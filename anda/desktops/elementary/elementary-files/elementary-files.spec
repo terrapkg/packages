@@ -88,11 +88,6 @@ CFLAGS="$CFLAGS -Wno-implicit-function-declaration"
 
 %find_lang %{appname}
 
-%fdupes %buildroot%_datadir/icons/hicolor/
-
-# remove unused pixmaps
-rm -r %{buildroot}/%{_datadir}/pixmaps
-
 # install file-roller contracts
 mkdir -p %{buildroot}/%{_datadir}/contractor
 cp -pav %{SOURCE1} %{buildroot}/%{_datadir}/contractor/
