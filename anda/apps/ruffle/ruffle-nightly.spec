@@ -59,7 +59,7 @@ EOF
 %install
 cd desktop
 %cargo_install
-install -Dm644 assets/logo.svg %buildroot%_iconsdir/hicolor/scalable/apps/ruffle_desktop.svg
+install -Dm644 assets/icon.svg %buildroot%_iconsdir/hicolor/scalable/apps/ruffle_desktop.svg
 install -Dm644 ../ruffle_desktop.desktop %buildroot%_datadir/applications/ruffle_desktop.desktop
 
 %changelog
