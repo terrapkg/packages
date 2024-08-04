@@ -118,7 +118,7 @@ appstream-util validate-relax --nonet \
 %{_bindir}/%{appname}-pkexec
 
 %{_libdir}/%{appname}/
-%dnl %{_libdir}/libpantheon-files-core.so.6*
+%{_libdir}/libpantheon-files-core.so.*
 
 %{_datadir}/applications/%{appname}.desktop
 %{_datadir}/contractor/*.contract
@@ -137,7 +137,7 @@ appstream-util validate-relax --nonet \
 %files devel
 %{_includedir}/pantheon-files-core/
 
-%dnl %{_libdir}/libpantheon-files-core.so
+%{_libdir}/libpantheon-files-core.so
 %{_libdir}/pkgconfig/pantheon-files-core.pc
 
 %{_datadir}/vala/vapi/pantheon-files-core.vapi
