@@ -42,6 +42,8 @@ BuildRequires:  pkgconfig(pango) >= 1.1.2
 BuildRequires:  pkgconfig(plank) >= 0.10.9
 BuildRequires:  pkgconfig(sqlite3)
 BuildRequires:  pkgconfig(systemd) >= 206
+BuildRequires:  pkgconfig(libportal)
+BuildRequires:  pkgconfig(libportal-gtk3)
 
 Requires:       contractor
 Requires:       file-roller
@@ -76,6 +78,7 @@ This package contains the development headers.
 
 
 %build
+CFLAGS="$CFLAGS -Wno-implicit-function-declaration"
 %meson -Dwith-zeitgeist=disabled
 %meson_build
 
@@ -84,11 +87,6 @@ This package contains the development headers.
 %meson_install
 
 %find_lang %{appname}
-
-%fdupes %buildroot%_datadir/icons/hicolor/
-
-# remove unused pixmaps
-rm -r %{buildroot}/%{_datadir}/pixmaps
 
 # install file-roller contracts
 mkdir -p %{buildroot}/%{_datadir}/contractor
@@ -120,7 +118,7 @@ appstream-util validate-relax --nonet \
 %{_bindir}/%{appname}-pkexec
 
 %{_libdir}/%{appname}/
-%{_libdir}/libpantheon-files-core.so.6*
+%{_libdir}/libpantheon-files-core.so.*
 
 %{_datadir}/applications/%{appname}.desktop
 %{_datadir}/contractor/*.contract
