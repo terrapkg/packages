@@ -78,6 +78,7 @@ This package contains the development headers.
 
 
 %build
+CFLAGS="$CFLAGS -Wno-implicit-function-declaration"
 %meson -Dwith-zeitgeist=disabled
 %meson_build
 
