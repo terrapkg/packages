@@ -17,7 +17,7 @@ Source0:        stb.pc
 # https://github.com/ChimeraOS/gamescope
 #Patch0:         chimeraos.patch
 # https://hhd.dev/
-Patch1:         disable-steam-touch-click-atom.patch
+#Patch1:         disable-steam-touch-click-atom.patch
 # https://github.com/ValveSoftware/gamescope/pull/1281
 # Patch2:         deckhd.patch
 # https://github.com/ValveSoftware/gamescope/issues/1398
