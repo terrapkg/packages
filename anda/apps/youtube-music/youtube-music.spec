@@ -12,13 +12,15 @@ Source1:        youtube-music.desktop
 License:        MIT
 URL:            https://github.com/th-ch/youtube-music
 
+# For some unknown reason, PNPM is not working with Node.js 22 on Aarch64 devices.
+# todo: investigate why
+#ExclusiveArch: x86_64
 
 BuildRequires:  nodejs18
 BuildRequires:  nodejs18-npm pnpm
 BuildRequires:  git-core gcc make
 # Required for usocket native module built with node-gyp
 BuildRequires:  python3 gcc-c++
-BuildConflicts: nodejs >= 22
 
 %description
 YouTube Music Desktop App bundled with custom plugins (and built-in ad blocker / downloader)
@@ -32,7 +34,7 @@ git checkout v%{version}
 
 
 %build
-pnpm install --no-frozen-lockfile
+pnpm install
 pnpm build
 pnpm electron-builder --linux --dir
 
