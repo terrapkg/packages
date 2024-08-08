@@ -1,5 +1,5 @@
 %define debug_package %nil
-%define pnpm_version 9
+
 
 # macro shorthand for calling pnpm
 %global pnpm npx pnpm@%{pnpm_version}
@@ -17,7 +17,7 @@ URL:            https://github.com/th-ch/youtube-music
 #ExclusiveArch: x86_64
 
 BuildRequires:  nodejs18
-BuildRequires:  nodejs18-npm
+BuildRequires:  nodejs18-npm pnpm
 BuildRequires:  git-core gcc make
 # Required for usocket native module built with node-gyp
 BuildRequires:  python3 gcc-c++
@@ -34,9 +34,9 @@ git checkout v%{version}
 
 
 %build
-%pnpm install
-%pnpm build
-%pnpm electron-builder --linux --dir
+pnpm install
+pnpm build
+pnpm electron-builder --linux --dir
 
 
 
