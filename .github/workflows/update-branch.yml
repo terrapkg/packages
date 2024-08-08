@@ -1,12 +1,20 @@
-name: Update
+name: Update per branch
 on:
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "*/30 * * * *"
   workflow_dispatch:
 
 jobs:
   autoupdate:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        branch:
+          - frawhide
+          - f39
+          - f40
+          - f41
+          - el9
     container:
       image: ghcr.io/terrapkg/builder:frawhide
       options: --cap-add=SYS_ADMIN --privileged
@@ -14,6 +22,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          ref: ${{ matrix.branch }}
           fetch-depth: 0
           ssh-key: ${{ secrets.SSH_AUTHENTICATION_KEY }}
 
@@ -25,9 +34,9 @@ jobs:
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
       - name: Run Update
-        run: anda update -vv --excludes nightly=1 --excludes updbranch=1
+        run: anda update -vv --filters updbranch=1 --labels branch=${{ matrix.branch }}
         env:
-          GITHUB_TOKEN: ${{ secrets.AUTOUPDATE_GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RUST_BACKTRACE: full
 
       - name: Save
@@ -37,18 +46,7 @@ jobs:
             git config user.email "raboneko@fyralabs.com"
             git config gpg.format "ssh"
             git config user.signingkey "${{ runner.temp }}/signing_key"
-            msg="bump: $(git status | grep modified | sed -r 's@.+/([^/]+)/[^/]+\n?@\1 @g' | tr -d '\n')"
+            msg="bump(branch): $(git status | grep modified | sed -r 's@.+/([^/]+)/[^/]+\n?@\1 @g' | tr -d '\n')"
             git commit -S -a -m "$msg"
-            copy_over () {
-              git format-patch HEAD^
-              git checkout $1
-              git apply *.patch || true
-              rm *.patch
-              git add *
-              git commit -S -a -m "$msg"
-            }
-            copy_over f39 || true
-            copy_over f40 || true
-            copy_over f41 || true
             git push -u origin --all
           fi
