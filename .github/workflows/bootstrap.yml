@@ -28,6 +28,13 @@ jobs:
           dnf install -y mock wget git-core openssl-devel cargo podman fuse-overlayfs rpm-build mock
           dnf builddep -y anda/{terra/{mock-configs,srpm-macros},tools/buildsys/subatomic}/*.spec
 
+      - name: Vendor Go
+        run: |
+          dnf remove -y golang
+          curl https://go.dev/dl/go1.22.6.linux-${{ matrix.arch == 'aarch64' && 'arm64' || 'amd64' }}.tar.gz -o go.tar.gz
+          tar xf go.tar.gz go/bin/go
+          cp go/bin/go /usr/local/bin/
+
       - name: Install Anda
         run: cargo install anda
 
