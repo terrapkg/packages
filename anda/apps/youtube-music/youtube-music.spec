@@ -11,6 +11,7 @@ Summary:        YouTube Music Desktop App bundled with custom plugins (and built
 Source1:        youtube-music.desktop
 License:        MIT
 URL:            https://github.com/th-ch/youtube-music
+Packager:       Cappy Ishihara <cappy@fyralabs.com>
 
 # For some unknown reason, PNPM is not working with Node.js 22 on Aarch64 devices.
 # todo: investigate why
