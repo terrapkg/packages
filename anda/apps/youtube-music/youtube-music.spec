@@ -79,4 +79,4 @@ install -D -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/applications/youtube-music
 
 %changelog
 * Sat Aug 03 2024 Cappy Ishihara <cappy@cappuchino.xyz>
-- 
+- Initial Release
