@@ -4,6 +4,10 @@
 # do not strip binaries
 %define __strip /bin/true
 
+# do not perform compression in cpio
+%define _source_payload w0.ufdio
+%define _binary_payload w0.ufdio
+
 # Exclude private libraries
 %global __requires_exclude libffmpeg.so
 %global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
