@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=YouTube Music
+Exec=/usr/bin/youtube-music --no-sandbox %U
+TryExec=/usr/bin/youtube-music
+Icon=youtube-music
+Terminal=false
+Type=Application
+StartupWMClass=YouTube Music
+Comment=YouTube Music Desktop App - including custom plugins
+Categories=AudioVideo;
