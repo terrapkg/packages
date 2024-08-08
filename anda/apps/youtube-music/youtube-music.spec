@@ -51,6 +51,7 @@ install -d -m 0755 %{buildroot}%{_datadir}/icons/hicolor/1024x1024/apps
 install -d -m 0755 %{buildroot}%{_datadir}/icons/hicolor/scalable/apps
 
 # Copy icon files
+ls -laR pack
 pushd pack/linux-unpacked/resources/app.asar.unpacked/assets
 install -m 0644 youtube-music.png %{buildroot}%{_datadir}/icons/hicolor/1024x1024/apps/youtube-music.png
 install -m 0644 youtube-music.svg %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/youtube-music.svg
