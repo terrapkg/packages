@@ -17,6 +17,7 @@ URL:			https://voicevox.hiroshiba.jp
 Source0:        https://github.com/VOICEVOX/voicevox/releases/download/%version/VOICEVOX.AppImage.7z.001
 Source1:        https://github.com/VOICEVOX/voicevox/releases/download/%version/VOICEVOX.AppImage.7z.002
 Source2:        https://github.com/VOICEVOX/voicevox/releases/download/%version/VOICEVOX.AppImage.7z.003
+Packager:       madonuko <mado@fyralabs.com>
 BuildRequires:  p7zip-plugins
 ExclusiveArch:  x86_64
 
