@@ -31,7 +31,7 @@ jobs:
       - name: Vendor Go
         run: |
           dnf remove -y golang
-          curl https://go.dev/dl/go1.22.6.linux-${{ matrix.arch == 'aarch64' && 'arm64' || 'amd64' }}.tar.gz -o go.tar.gz
+          curl -L https://go.dev/dl/go1.22.6.linux-${{ matrix.arch == 'aarch64' && 'arm64' || 'amd64' }}.tar.gz -o go.tar.gz
           tar xf go.tar.gz go/bin/go
           cp go/bin/go /usr/local/bin/
 
