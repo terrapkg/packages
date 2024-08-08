@@ -3,4 +3,7 @@ project pkg {
 	rpm {
 		spec = "voicevox.spec"
 	}
+	labels {
+		large = 1
+	}
 }
