@@ -52,7 +52,11 @@ install -d -m 0755 %{buildroot}%{_datadir}/icons/hicolor/scalable/apps
 
 # Copy icon files
 ls -laR pack
+%ifarch aarch64
+pushd pack/linux-arm64-unpacked/resources/app.asar.unpacked/assets
+%else
 pushd pack/linux-unpacked/resources/app.asar.unpacked/assets
+%endif
 install -m 0644 youtube-music.png %{buildroot}%{_datadir}/icons/hicolor/1024x1024/apps/youtube-music.png
 install -m 0644 youtube-music.svg %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/youtube-music.svg
 install -m 0644 youtube-music-tray-paused.png %{buildroot}%{_datadir}/icons/hicolor/1024x1024/apps/youtube-music-tray-paused.png
@@ -63,8 +67,8 @@ popd
 
 install -d -m 0755 %{buildroot}%{_datadir}/youtube-music
 # Delete unpacked asar files before copying
-rm -rfv pack/linux-unpacked/resources/app.asar.unpacked
-cp -rv pack/linux-unpacked/* %{buildroot}%{_datadir}/youtube-music
+rm -rfv pack/linux*-unpacked/resources/app.asar.unpacked
+cp -rv pack/linux*-unpacked/* %{buildroot}%{_datadir}/youtube-music
 install -d -m 0755 %{buildroot}%{_bindir}
 ln -svf %{_datadir}/youtube-music/youtube-music %{buildroot}%{_bindir}/youtube-music
 
