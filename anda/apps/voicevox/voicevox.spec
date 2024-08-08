@@ -1,6 +1,9 @@
 %define debug_package %nil
 %global _build_id_links none
 
+# do not strip binaries
+%define __strip /bin/true
+
 # Exclude private libraries
 %global __requires_exclude libffmpeg.so
 %global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
@@ -28,7 +31,7 @@ Summary: Documentation files for voicevox (Japanese)
 
 %prep
 cat<<EOF > voicevox.sh
-#!/bin/sh
+#!/usr/bin/sh
 /usr/share/voicevox/VOICEVOX.AppImage
 EOF
 7z x %SOURCE0
