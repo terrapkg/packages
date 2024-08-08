@@ -1,6 +1,9 @@
 %define debug_package %nil
 %global _build_id_links none
 
+# do not strip binaries
+%define __strip /bin/true
+
 # Exclude private libraries
 %global __requires_exclude libffmpeg.so
 %global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
@@ -14,6 +17,7 @@ URL:			https://voicevox.hiroshiba.jp
 Source0:        https://github.com/VOICEVOX/voicevox/releases/download/%version/VOICEVOX.AppImage.7z.001
 Source1:        https://github.com/VOICEVOX/voicevox/releases/download/%version/VOICEVOX.AppImage.7z.002
 Source2:        https://github.com/VOICEVOX/voicevox/releases/download/%version/VOICEVOX.AppImage.7z.003
+Packager:       madonuko <mado@fyralabs.com>
 BuildRequires:  p7zip-plugins
 ExclusiveArch:  x86_64
 
@@ -28,7 +32,7 @@ Summary: Documentation files for voicevox (Japanese)
 
 %prep
 cat<<EOF > voicevox.sh
-#!/bin/sh
+#!/usr/bin/sh
 /usr/share/voicevox/VOICEVOX.AppImage
 EOF
 7z x %SOURCE0
