@@ -52,7 +52,7 @@ cat <<EOF > vscodium-bin.desktop
 Name=VSCodium
 Comment=Code Editing. Redefined.
 GenericName=Text Editor
-Exec=/usr/bin/codium --no-sandbox --unity-launch %F
+Exec=/usr/bin/codium --no-sandbox %F
 Icon=vscodium
 Type=Application
 StartupNotify=false
