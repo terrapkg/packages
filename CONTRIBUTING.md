@@ -1,6 +1,6 @@
 # Contributing
 
-First of all, thanks for being interested in contributing to Terra! If you have any questions about contributing, please [contact us](https://wiki.ultramarine-linux.org/en/community/community/).
+First of all, thanks for being interested in contributing to Terra! If you have any questions about contributing, please [join our chats](https://wiki.ultramarine-linux.org/en/community/community/).
 
 - [Contribution Guide](https://developer.fyralabs.com/terra/contributing)
 - [FAQ](https://developer.fyralabs.com/terra/faq)
