@@ -1,7 +1,7 @@
 %define debug_package %nil
 
 Name:			katsu
-Version:		0.7.0
+Version:		0.7.1
 Release:		1%?dist
 Summary:		The vicious image builder
 License:		MIT
