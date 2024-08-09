@@ -1,7 +1,7 @@
 %global libliftoff_minver 0.4.1
 
 %global _default_patch_fuzz 2
-%global gamescope_tag 3.14.28
+%global gamescope_tag 3.14.29
 
 Name:           terra-gamescope
 Version:        100.%{gamescope_tag}
