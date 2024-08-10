@@ -312,6 +312,11 @@ rm -fr %{buildroot}%{_libdir}/dri/*_dri.so
 rm -fr %{buildroot}%{_libdir}/libvulkan*.so
 rm -fr %{buildroot}%{_libdir}/libVkLayer_MESA_device_select.so
 
+%if 0%{?with_vdpau}
+%else
+rm %buildroot%_datadir/metainfo/org.mesa3d.vdpau.freeworld.metainfo.xml
+%endif
+
 %if 0%{?with_va}
 %files -n %{srcname}-va-drivers-freeworld
 %{_libdir}/dri/nouveau_drv_video.so
