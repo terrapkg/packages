@@ -14,7 +14,7 @@ Patch0:         libaudec.patch
 BuildRequires:  cmake meson ninja-build
 BuildRequires:  pkgconfig(samplerate)
 BuildRequires:  pkgconfig(sndfile)
-BuildRequires:  ffmpeg-devel
+BuildRequires:  ffmpeg-free-devel
 
 %description %_desc
 
