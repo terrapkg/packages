@@ -19,9 +19,8 @@ This library provides set of functions that perform SIMD-optimized
 computing on several hardware architectures.
 
 %package        devel
-Summary:        DSP library for signal processing (development files)
-Group:          Development/Libraries/C and C++
-Requires:	    %name = %version
+Summary:        Development files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %description devel
 DSP library for digital signal processing (and more).
@@ -29,7 +28,7 @@ DSP library for digital signal processing (and more).
 This library provides set of functions that perform SIMD-optimized 
 computing on several hardware architectures.
 
-These are the development files for lsp-dsp-lib.
+This package contains the development files for the %name package.
 
 %prep
 rm -rf * .*
