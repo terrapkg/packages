@@ -40,6 +40,8 @@ rm -r tests
 %meson_install
 
 %files
+%doc README.md
+%license COPYING COPYING.GPL3
 %_bindir/audec
 
 %files devel
