@@ -11,7 +11,7 @@ License:        AGPL-3.0-or-later
 URL:            https://git.sr.ht/~alextee/libaudec
 Source0:        %url/archive/v%version.tar.gz
 Patch0:         libaudec.patch
-BuildRequires:  cmake meson ninja-build
+BuildRequires:  cmake meson ninja-build gcc
 BuildRequires:  pkgconfig(samplerate)
 BuildRequires:  pkgconfig(sndfile)
 BuildRequires:  ffmpeg-free-devel
