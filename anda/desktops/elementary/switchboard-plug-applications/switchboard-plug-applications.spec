@@ -4,7 +4,7 @@
 
 %global plug_type personal
 %global plug_name applications
-%global plug_rdnn io.elementary.switchboard.%{plug_name}
+%global plug_rdnn io.elementary.settings.%{plug_name}
 
 Name:           switchboard-plug-applications
 Summary:        Switchboard Applications plug
@@ -18,15 +18,10 @@ Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 BuildRequires:  meson
-BuildRequires:  vala >= 0.22.0
 
-BuildRequires:  pkgconfig(flatpak) >= 1.1.2
+BuildRequires:  pkgconfig(flatpak)
 BuildRequires:  pkgconfig(glib-2.0) >= 2.34
-BuildRequires:  pkgconfig(granite)
-BuildRequires:  pkgconfig(gtk+-3.0)
-BuildRequires:  pkgconfig(libhandy-1)
-BuildRequires:  pkgconfig(switchboard-2.0)
-BuildRequires:  pkgconfig(libhandy-1)
+BuildRequires:  pkgconfig(switchboard-3)
 
 Requires:       switchboard%{?_isa}
 Supplements:    switchboard%{?_isa}
@@ -47,10 +42,10 @@ that allows the user to manage application settings.
 
 %install
 %meson_install
-mv %buildroot%_datadir/metainfo/%plug_rdnn.appdata.xml %buildroot%_datadir/metainfo/%plug_rdnn.metainfo.xml || true
-%find_lang %{plug_name}-plug
+mv %buildroot%_datadir/metainfo/%plug_rdnn.metainfo.xml %buildroot%_datadir/metainfo/%plug_rdnn.metainfo.xml || true
+%find_lang %{plug_rdnn}
 
-# remove the specified stock icon from appdata (invalid in libappstream-glib)
+# remove the specified stock icon from metainfo (invalid in libappstream-glib)
 sed -i '/icon type="stock"/d' %{buildroot}%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
 
@@ -59,11 +54,11 @@ appstream-util validate-relax --nonet \
     %{buildroot}%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
 
-%files -f %{plug_name}-plug.lang
+%files -f %{plug_rdnn}.lang
 %doc README.md
 %license COPYING
 
-%{_libdir}/switchboard/%{plug_type}/lib%{plug_name}.so
+%{_libdir}/switchboard-3/%{plug_type}/lib%{plug_name}.so
 
 %{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 %{_datadir}/icons/hicolor/*/apps/io.elementary.settings.applications.svg
