@@ -1,10 +1,11 @@
 Name:           kvrocks
 Version:        2.9.0
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Distributed key value NoSQL database that uses RocksDB
 License:        Apache-2.0
 URL:            https://kvrocks.apache.org/
 Source0:        https://github.com/apache/kvrocks/archive/refs/tags/v%version.tar.gz
+Patch0:         0001-Change-path-in-systemd-service-to-use-package-binary.patch
 Requires:       openssl
 BuildRequires:  autoconf
 BuildRequires:  cmake
@@ -19,7 +20,7 @@ Apache Kvrocks is a distributed key value NoSQL database that uses RocksDB as st
 engine and is compatible with Redis protocol.
 
 %prep
-%autosetup
+%autosetup -p1
 
 %build
 unset LDFLAGS
