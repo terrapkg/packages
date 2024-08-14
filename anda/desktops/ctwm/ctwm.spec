@@ -1,7 +1,7 @@
 Summary: Lightweight window manager with virtual workspaces
 Name: ctwm
 Version: 4.1.0
-Release: 1
+Release: 1%?dist
 URL: https://ctwm.org
 BuildRequires: libx11-devel libjpg-devel libxt-devel libxext-devel libxmu-devel libxpm-devel cmake
 Source0: https://www.ctwm.org/dist/%{name}-%{version}.tar.gz
