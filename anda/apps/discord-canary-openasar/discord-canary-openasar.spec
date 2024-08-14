@@ -6,7 +6,7 @@
 %global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 Name:           discord-canary-openasar
-Version:        0.0.396
+Version:        0.0.471
 Release:        1%?dist
 Summary:        A snappier Discord rewrite with features like further customization and theming
 License:        MIT AND https://discord.com/terms
@@ -34,6 +34,7 @@ sed "s@Discord Canary@Discord Canary OpenAsar@g" a > discord-canary.desktop
 
 %install
 rm -rf $RPM_BUILD_ROOT
+mkdir -p %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_datadir}/discord-canary-openasar
 cp -rv * %{buildroot}%{_datadir}/discord-canary-openasar
 mkdir -p %{buildroot}%{_datadir}/applications/
@@ -42,9 +43,11 @@ ln -s %_datadir/discord-canary-openasar/discord-canary.desktop %{buildroot}%{_da
 ln -s %_datadir/discord-canary-openasar/discord.png %{buildroot}%{_datadir}/pixmaps/discord-canary-openasar.png
 cp -v %{SOURCE1} %{buildroot}%{_datadir}/discord-canary-openasar/resources/app.asar
 chmod o+w %{buildroot}%{_datadir}/discord-canary-openasar/resources -R
+ln -s %_datadir/discord-canary-openasar/DiscordCanary %buildroot%_bindir/discord-canary-openasar
 
 
 %files
+%_bindir/discord-canary-openasar
 %{_datadir}/discord-canary-openasar/
 %{_datadir}/applications/discord-canary-openasar.desktop
 %{_datadir}/pixmaps/discord-canary-openasar.png

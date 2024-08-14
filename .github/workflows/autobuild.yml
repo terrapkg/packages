@@ -42,7 +42,7 @@ jobs:
         pkg: ${{ fromJson(needs.manifest.outputs.build_matrix) }}
         version: ["rawhide"]
       fail-fast: false
-    runs-on: ${{ matrix.pkg.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
+    runs-on: ${{ matrix.pkg.arch == 'aarch64' && 'ARM64' || matrix.pkg.labels['large'] && 'x86-64-lg' || 'ubuntu-latest' }}
     container:
       image: ghcr.io/terrapkg/builder:f${{ matrix.version}}
       options: --cap-add=SYS_ADMIN --privileged
@@ -51,15 +51,27 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Checkout latest Mock configs
+        uses: actions/checkout@v4
+        with:
+          repository: terrapkg/mock-configs
+          path: mock-configs
+
       - name: Set up git repository
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
       - name: Include custom build template instead of package default
         run: |
-          cp -v anda/terra/mock-configs/terra.tpl /etc/mock/templates/terra.tpl
+          cp -v mock-configs/terra.tpl /etc/mock/templates/terra.tpl
 
       - name: Build with Andaman
-        run: anda build ${{ matrix.pkg.pkg }} --package rpm -c anda/terra/mock-configs/terra-${{ matrix.version }}-${{ matrix.pkg.arch }}.cfg
+        run: anda build ${{ matrix.pkg.pkg }} --package rpm -c mock-configs/terra-${{ matrix.version }}-${{ matrix.pkg.arch }}.cfg
+
+      - name: Build with Andaman (alternate arch)
+        if: |
+          matrix.pkg.arch == 'x86_64' && matrix.pkg.labels['multilib']
+        run: anda build ${{ matrix.pkg.pkg }} --package rpm -c mock-configs/terra-${{ matrix.version }}-i386.cfg
 
       - name: Generating artifact name
         id: art
@@ -94,7 +106,7 @@ jobs:
 
       - name: Notify Madoguchi (Success)
         if: success() && github.event_name == 'push'
-        run: ./.github/workflows/mg.sh true ${{matrix.pkg.pkg}} ${{matrix.version}} ${{matrix.pkg.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}}
+        run: ./.github/workflows/mg.sh true ${{matrix.pkg.pkg}} ${{matrix.version}} ${{matrix.pkg.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}} $GITHUB_SHA
       - name: Notify Madoguchi (Failure)
         if: ( cancelled() || failure() ) && github.event_name == 'push'
-        run: ./.github/workflows/mg.sh false ${{matrix.pkg.pkg}} ${{matrix.version}} ${{matrix.pkg.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}}
+        run: ./.github/workflows/mg.sh false ${{matrix.pkg.pkg}} ${{matrix.version}} ${{matrix.pkg.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}} $GITHUB_SHA

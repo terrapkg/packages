@@ -8,8 +8,8 @@
 
 Name:           switchboard-plug-printers
 Summary:        Switchboard Printers Plug
-Version:        2.2.1
-Release:        2%?dist
+Version:        8.0.0
+Release:        1%?dist
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/switchboard-plug-printers

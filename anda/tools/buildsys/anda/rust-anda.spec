@@ -5,7 +5,7 @@
 %global crate anda
 
 Name:           rust-anda
-Version:        0.1.28
+Version:        0.3.3
 Release:        1%?dist
 Summary:        Andaman Build toolchain
 
@@ -17,8 +17,10 @@ ExclusiveArch:  %{rust_arches}
 
 BuildRequires:  rust-packaging >= 21
 BuildRequires:  anda-srpm-macros
-BuildRequires:  openssl-devel
+BuildRequires:  openssl-devel-engine
 BuildRequires:  git-core
+BuildRequires:  libgit2-devel
+BuildRequires:  libssh2-devel
 
 Requires:       mock
 Requires:       rpm-build

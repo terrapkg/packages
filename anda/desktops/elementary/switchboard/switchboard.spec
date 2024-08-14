@@ -1,10 +1,10 @@
 %global srcname switchboard
-%global appname io.elementary.switchboard
+%global appname io.elementary.settings
 
 Name:           switchboard
 Summary:        Modular Desktop Settings Hub
-Version:        6.0.2
-Release:        1%{?dist}
+Version:        8.0.0
+Release:        1%?dist
 License:        LGPL-2.0-or-later
 
 URL:            https://github.com/elementary/%{name}
@@ -16,12 +16,10 @@ BuildRequires:  libappstream-glib
 BuildRequires:  meson
 BuildRequires:  vala
 
-BuildRequires:  pkgconfig(gee-0.8)
-BuildRequires:  pkgconfig(glib-2.0)
-BuildRequires:  pkgconfig(granite) >= 5.4.0
-BuildRequires:  pkgconfig(gtk+-3.0)
-BuildRequires:  pkgconfig(libhandy-1) >= 0.83.0
-BuildRequires:  fdupes
+BuildRequires:  pkgconfig(granite-7)
+BuildRequires:  pkgconfig(gtk4)
+BuildRequires:  pkgconfig(libadwaita-1)
+BuildRequires:  fdupes sassc
 
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 
@@ -92,7 +90,7 @@ appstream-util validate-relax --nonet \
 
 %{_datadir}/applications/%{appname}.desktop
 %{_datadir}/glib-2.0/schemas/%{appname}.gschema.xml
-%{_datadir}/icons/hicolor/*/apps/%{appname}.svg
+%{_iconsdir}/hicolor/*/apps/%{appname}.svg
 %{_datadir}/metainfo/%{appname}.appdata.xml
 
 %files libs
@@ -102,19 +100,14 @@ appstream-util validate-relax --nonet \
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/*
 
-%{_libdir}/lib%{name}-2.0.so.0
-%{_libdir}/lib%{name}-2.0.so.2.0
+%{_libdir}/lib%{name}-3.so.0
+%{_libdir}/lib%{name}-3.so.2.0
 
 %files devel
-%{_includedir}/%{name}-2.0/
+%{_includedir}/%{name}-3/
 
-%{_libdir}/lib%{name}-2.0.so
-%{_libdir}/pkgconfig/%{name}-2.0.pc
+%{_libdir}/lib%{name}-3.so
+%{_libdir}/pkgconfig/%{name}-3.pc
 
-%{_datadir}/vala/vapi/%{name}-2.0.deps
-%{_datadir}/vala/vapi/%{name}-2.0.vapi
-
-
-%changelog
-* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com> - 6.0.2-1
-- Repackaged for Terra
+%{_datadir}/vala/vapi/%{name}-3.deps
+%{_datadir}/vala/vapi/%{name}-3.vapi

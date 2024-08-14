@@ -1,6 +1,6 @@
 Name:       ayatana-indicator-session
 Summary:    Ayatana Indicator Session Applet
-Version:    24.2.0
+Version:    24.5.0
 Release:    1%?dist
 License:    GPL-3.0
 URL:        https://github.com/AyatanaIndicators/ayatana-indicator-session

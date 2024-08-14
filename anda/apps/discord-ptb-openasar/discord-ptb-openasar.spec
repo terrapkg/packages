@@ -6,7 +6,7 @@
 %global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 Name:           discord-ptb-openasar
-Version:        0.0.85
+Version:        0.0.99
 Release:        1%?dist
 Summary:        A snappier Discord rewrite with features like further customization and theming
 License:        MIT AND https://discord.com/terms
@@ -34,6 +34,7 @@ sed "s@Discord Ptb@Discord Ptb OpenAsar@g" a > discord-ptb.desktop
 
 %install
 rm -rf $RPM_BUILD_ROOT
+mkdir -p %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_datadir}/discord-ptb-openasar
 cp -rv * %{buildroot}%{_datadir}/discord-ptb-openasar
 mkdir -p %{buildroot}%{_datadir}/applications/
@@ -44,9 +45,11 @@ install discord-ptb.desktop %{buildroot}%{_datadir}/applications/discord-ptb-ope
 install discord.png %{buildroot}%{_datadir}/pixmaps/discord-ptb-openasar.png
 cp -v %{SOURCE1} %{buildroot}%{_datadir}/discord-ptb-openasar/resources/app.asar
 chmod o+w %{buildroot}%{_datadir}/discord-ptb-openasar/resources -R
+ln -s %_datadir/discord-ptb-openasar/Discord %buildroot%_bindir/discord-ptb-openasar
 
 
 %files
+%_bindir/discord-ptb-openasar
 %{_datadir}/discord-ptb-openasar/
 %{_datadir}/applications/discord-ptb-openasar.desktop
 %{_datadir}/pixmaps/discord-ptb-openasar.png

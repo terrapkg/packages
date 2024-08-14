@@ -4,9 +4,8 @@ on:
   push:
     branches:
       - frawhide
+      - f40
       - f39
-      - f38
-      - f37
     paths:
       - comps.xml
   workflow_dispatch:

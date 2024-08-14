@@ -3,8 +3,8 @@
 %global iface   io.elementary.SettingsDaemon.AccountsService
 
 Name:           elementary-settings-daemon
-Version:        1.3.1
-Release:        1%{?dist}
+Version:        8.0.0
+Release:        1%?dist
 Summary:        Settings Daemon and Portal for Pantheon
 License:        GPL-3.0-or-later
 
@@ -26,6 +26,8 @@ BuildRequires:  pkgconfig(granite) >= 5.3.0
 BuildRequires:  pkgconfig(libgeoclue-2.0)
 BuildRequires:  pkgconfig(systemd)
 BuildRequires:  pkgconfig(fwupd)
+BuildRequires:  pkgconfig(gexiv2)
+BuildRequires:  pkgconfig(packagekit-glib2)
 
 Requires:       xdg-desktop-portal
 
@@ -44,6 +46,8 @@ Requires:       xdg-desktop-portal
 
 %install
 %meson_install
+
+%find_lang %appname
 
 
 %check
@@ -64,7 +68,7 @@ appstream-util validate-relax --nonet \
 %systemd_preun %{appname}.check-for-firmware-updates.timer
 
 
-%files
+%files -f %appname.lang
 %license LICENSE
 %doc README.md
 
@@ -86,8 +90,6 @@ appstream-util validate-relax --nonet \
 %{_unitdir}/%{appname}.check-for-firmware-updates.timer
 
 %{_sysconfdir}/xdg/autostart/%appname.desktop
-
-%{_datadir}/icons/hicolor/*/apps/%{appname}.svg
 
 
 %changelog

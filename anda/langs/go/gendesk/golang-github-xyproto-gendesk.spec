@@ -27,6 +27,7 @@ License:        BSD-3-Clause
 URL:            %{gourl}
 Source:         %{gosource}
 BuildRequires:  git-core gcc
+Provides:       gendesk
 
 %description %{common_description}
 

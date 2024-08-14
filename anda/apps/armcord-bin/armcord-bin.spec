@@ -14,7 +14,7 @@
 %global __provides_exclude_from %{_datadir}/armcord/.*\\.so
 
 Name:			armcord-bin
-Version:		3.2.7
+Version:		3.2.8
 Release:		1%?dist
 License:		OSL-3.0
 Summary:		Custom lightweight Discord client designed to enhance your experience
@@ -26,6 +26,7 @@ Source2:		https://raw.githubusercontent.com/ArmCord/ArmCord/v%version/README.md
 Requires:		electron xdg-utils
 ExclusiveArch:	x86_64 aarch64 armv7l
 Conflicts:		armcord
+BuildRequires:	add-determinism
 
 %description
 ArmCord is a custom client designed to enhance your Discord experience

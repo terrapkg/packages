@@ -1,0 +1,52 @@
+name: Update per branch
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+jobs:
+  autoupdate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        branch:
+          - frawhide
+          - f39
+          - f40
+          - f41
+          - el9
+    container:
+      image: ghcr.io/terrapkg/builder:frawhide
+      options: --cap-add=SYS_ADMIN --privileged
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.branch }}
+          fetch-depth: 0
+          ssh-key: ${{ secrets.SSH_AUTHENTICATION_KEY }}
+
+      - name: Install SSH signing key & Set up git repository
+        run: |
+          mkdir -p ${{ runner.temp }}
+          echo "${{ secrets.SSH_SIGNING_KEY }}" > ${{ runner.temp }}/signing_key
+          chmod 0700 ${{ runner.temp }}/signing_key
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - name: Run Update
+        run: anda update -vv --filters updbranch=1 --labels branch=${{ matrix.branch }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUST_BACKTRACE: full
+
+      - name: Save
+        run: |
+          if [[ `git status --porcelain` ]]; then
+            git config user.name "Raboneko"
+            git config user.email "raboneko@fyralabs.com"
+            git config gpg.format "ssh"
+            git config user.signingkey "${{ runner.temp }}/signing_key"
+            msg="bump(branch): $(git status | grep modified | sed -r 's@.+/([^/]+)/[^/]+\n?@\1 @g' | tr -d '\n')"
+            git commit -S -a -m "$msg"
+            git push -u origin --all
+          fi
