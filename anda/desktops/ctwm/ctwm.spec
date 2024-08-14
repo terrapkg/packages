@@ -26,7 +26,6 @@ CTWM is a window manager based on TWM (with virtual workspaces added.)
 
 %files
 %doc README.md CHANGES.md
-%doc README.md CHANGES.md
 %license COPYRIGHT
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}*
