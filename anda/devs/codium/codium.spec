@@ -12,7 +12,7 @@
 %endif
 
 Name:			codium
-Version:		1.91.1.24193
+Version:		1.92.1.24225
 Release:		1%?dist
 Summary:		Code editing. Redefined.
 License:		MIT
@@ -52,7 +52,7 @@ cat <<EOF > vscodium-bin.desktop
 Name=VSCodium
 Comment=Code Editing. Redefined.
 GenericName=Text Editor
-Exec=/usr/bin/codium --no-sandbox --unity-launch %F
+Exec=/usr/bin/codium --no-sandbox %F
 Icon=vscodium
 Type=Application
 StartupNotify=false

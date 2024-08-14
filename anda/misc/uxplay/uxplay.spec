@@ -1,10 +1,10 @@
 Name:			uxplay
-Version:		1.68.3
+Version:		1.69
 Release:		1%?dist
 Summary:		AirPlay Unix mirroring server
 License:		GPL-3.0
 URL:			https://github.com/FDH2/UxPlay
-Source0:		%url/archive/refs/tags/v%version.tar.gz
+Source0:		%url/archive/refs/tags/%version.tar.gz
 Requires:		openssl libplist avahi gstreamer1-plugin-libav gstreamer1-plugins-bad-free gstreamer1-plugins-good gstreamer1-plugins-base
 Recommends:		gstreamer1-vaapi
 BuildRequires:	cmake desktop-file-utils systemd-rpm-macros gcc gcc-c++ openssl-devel avahi-compat-libdns_sd-devel
