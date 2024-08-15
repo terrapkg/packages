@@ -12,7 +12,7 @@ Summary:        AppArmor userspace components
 
 License:        GPL-2.0
 URL:            https://gitlab.com/apparmor/apparmor
-Source0:        %url/-/archive/v%version/apparmor-v%version.tar.gz
+Source0:        %url/-/archive/v%normver/apparmor-v%normver.tar.gz
 Source1:        apparmor.preset
 Patch01:        0001-fix-avahi-daemon-authselect-denial-in-fedora.patch
 
