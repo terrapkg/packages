@@ -26,6 +26,7 @@ new VPKs.
 
 
 %prep
+rm -rf ./*
 git clone %url . --depth 1 --recursive --branch v%version
 git checkout v%version
 
