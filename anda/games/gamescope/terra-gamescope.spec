@@ -19,6 +19,7 @@ URL:            https://github.com/ValveSoftware/gamescope
 
 # Create stb.pc to satisfy dependency('stb')
 Source0:        stb.pc
+Source1:        gamescope-legacy.sh
 
 Patch0:         0001-cstdint.patch
 
@@ -97,6 +98,9 @@ Requires:       gamescope-libs(x86-32) = %{version}-%{release}
 Recommends:     mesa-dri-drivers
 Recommends:     mesa-vulkan-drivers
 
+Provides:       gamescope-legacy
+Obsoletes:      gamescope-legacy < 3.14.2
+
 %description
 Gamescope is the micro-compositor optimized for running video games on Wayland.
 
@@ -131,14 +135,24 @@ export PKG_CONFIG_PATH=pkgconfig
 cd gamescope
 %meson_install --skip-subprojects
 
+%if %{__isa_bits} == 64
+install -Dm755 %{SOURCE1} %{buildroot}%{_bindir}/gamescope-legacy
+%endif
+
 %files
 %license gamescope/LICENSE
 %doc gamescope/README.md
+%if %{__isa_bits} == 64
 %caps(cap_sys_nice=eip) %{_bindir}/gamescope
 %{_bindir}/gamescopectl
 %{_bindir}/gamescopestream
 %{_bindir}/gamescopereaper
+%{_bindir}/gamescope-legacy
+%endif
 
 %files libs
 %{_libdir}/libVkLayer_FROG_gamescope_wsi_*.so
 %{_datadir}/vulkan/implicit_layer.d/VkLayer_FROG_gamescope_wsi.*.json
+
+%changelog
+%autochangelog
