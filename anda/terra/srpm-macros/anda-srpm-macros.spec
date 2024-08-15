@@ -27,7 +27,11 @@ for file in ./*; do
 done
 
 %files
-%{_rpmmacrodir}/macros.*
+%{_rpmmacrodir}/macros.anda
+%{_rpmmacrodir}/macros.caching
+%{_rpmmacrodir}/macros.cargo_extra
+%{_rpmmacrodir}/macros.go_extra
+%{_rpmmacrodir}/macros.nim_extra
 
 
 %changelog
