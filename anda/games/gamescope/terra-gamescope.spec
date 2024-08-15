@@ -4,8 +4,10 @@
 %global libliftoff_minver 0.4.1
 %endif
 
+%global toolchain clang
 %global _default_patch_fuzz 2
 %global gamescope_tag 3.14.29
+
 
 Name:           terra-gamescope
 Version:        100.%{gamescope_tag}
@@ -18,18 +20,16 @@ URL:            https://github.com/ValveSoftware/gamescope
 # Create stb.pc to satisfy dependency('stb')
 Source0:        stb.pc
 
+Patch0:         0001-cstdint.patch
+
 # https://github.com/ChimeraOS/gamescope
-#Patch0:         chimeraos.patch
+Patch1:         chimeraos.patch
 # https://hhd.dev/
-#Patch1:         disable-steam-touch-click-atom.patch
-# https://github.com/ValveSoftware/gamescope/pull/1281
-# Patch2:         deckhd.patch
-# https://github.com/ValveSoftware/gamescope/issues/1398
-Patch3:         drm-Separate-BOE-and-SDC-OLED-Deck-panel-rates.patch
+Patch2:         disable-steam-touch-click-atom.patch
+Patch3:         v2-0001-always-send-ctrl-1-2-to-steam-s-wayland-session.patch
 # https://github.com/ValveSoftware/gamescope/issues/1369
 Patch4:         revert-299bc34.patch
-# https://github.com/ValveSoftware/gamescope/pull/1231
-Patch5:         1231.patch
+
 # Set default backend to SDL instead of Wayland, to avoid issues with GPUs that do not support
 # Vulkan DRM modifiers.
 # See also: gamescope-legacy package
@@ -39,8 +39,7 @@ Patch6:         sdl-backend.patch
 BuildRequires:  meson >= 0.54.0
 BuildRequires:  ninja-build
 BuildRequires:  cmake
-BuildRequires:  gcc
-BuildRequires:  gcc-c++
+BuildRequires:  clang
 BuildRequires:  glm-devel
 BuildRequires:  google-benchmark-devel
 BuildRequires:  libXmu-devel
@@ -61,22 +60,16 @@ BuildRequires:  pkgconfig(xres)
 BuildRequires:  pkgconfig(libdrm)
 BuildRequires:  pkgconfig(vulkan)
 BuildRequires:  pkgconfig(wayland-scanner)
-BuildRequires:  pkgconfig(wayland-server)
+BuildRequires:  pkgconfig(wayland-server) >= 1.23.0
 BuildRequires:  pkgconfig(wayland-protocols) >= 1.17
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  pkgconfig(sdl2)
 BuildRequires:  pkgconfig(libpipewire-0.3)
 BuildRequires:  pkgconfig(libavif)
-#BuildRequires:  (pkgconfig(wlroots) >= 0.18.0 with pkgconfig(wlroots) < 0.19.0)
-#BuildRequires:  (pkgconfig(libliftoff) >= 0.4.1 with pkgconfig(libliftoff) < 0.5)
-BuildRequires:  pkgconfig(libliftoff)
+BuildRequires:  pkgconfig(wlroots)
+BuildRequires:  pkgconfig(libliftoff) >= 0.4.1
 BuildRequires:  pkgconfig(libcap)
 BuildRequires:  pkgconfig(hwdata)
-BuildRequires:  pkgconfig(libudev)
-BuildRequires:  pkgconfig(libseat)
-BuildRequires:  pkgconfig(libinput)
-BuildRequires:  xcb-util-wm-devel
-BuildRequires:  pkgconfig(xcb-errors)
 BuildRequires:  pkgconfig(lcms2)
 BuildRequires:  spirv-headers-devel
 # Enforce the the minimum EVR to contain fixes for all of:
@@ -99,10 +92,8 @@ BuildRequires:  git
 # libliftoff hasn't bumped soname, but API/ABI has changed for 0.2.0 release
 Requires:       libliftoff%{?_isa} >= %{libliftoff_minver}
 Requires:       xorg-x11-server-Xwayland
-Requires:       %{name}-libs = %{version}-%{release}
-%ifarch %{ix86}
-Requires:       %{name}-libs(x86-32) = %{version}-%{release}
-%endif
+Requires:       gamescope-libs = %{version}-%{release}
+Requires:       gamescope-libs(x86-32) = %{version}-%{release}
 Recommends:     mesa-dri-drivers
 Recommends:     mesa-vulkan-drivers
 
@@ -129,7 +120,11 @@ sed -i 's^../thirdparty/SPIRV-Headers/include/spirv/^/usr/include/spirv/^' src/m
 %build
 cd gamescope
 export PKG_CONFIG_PATH=pkgconfig
-%meson -Dpipewire=enabled -Dinput_emulation=enabled -Ddrm_backend=enabled -Drt_cap=enabled -Davif_screenshots=enabled -Dsdl2_backend=enabled
+%if %{__isa_bits} == 64
+%meson --auto-features=enabled -Dforce_fallback_for=vkroots,wlroots,libliftoff
+%else
+%meson -Denable_gamescope=false -Denable_gamescope_wsi_layer=true
+%endif
 %meson_build
 
 %install
