@@ -1,4 +1,8 @@
+%if 0%{?fedora} >= 41
+%global libliftoff_minver 0.5.0
+%else
 %global libliftoff_minver 0.4.1
+%endif
 %global reshade_commit 4245743a8c41abbe3dc73980c1810fe449359bf1
 %global reshade_shortcommit %(c=%{reshade_commit}; echo ${c:0:7})
 %global _default_patch_fuzz 2
@@ -22,12 +26,9 @@ Summary:        Legacy builds of gamescope, a micro-compositor for video games o
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
 License:        BSD
 URL:            https://github.com/ValveSoftware/gamescope
-Source0:        %{url}/archive/%{version}/gamescope-%{version}.tar.gz
+
 # Create stb.pc to satisfy dependency('stb')
 Source1:        stb.pc
-Source2:        https://github.com/Joshua-Ashton/reshade/archive/%{reshade_commit}/reshade-%{reshade_shortcommit}.tar.gz
-
-Patch0:         0001-cstdint.patch
 
 # https://hhd.dev/
 Patch1:         v2-0001-always-send-ctrl-1-2-to-steam-s-wayland-session.patch
@@ -35,6 +36,9 @@ Patch1:         v2-0001-always-send-ctrl-1-2-to-steam-s-wayland-session.patch
 # ChimeraOS
 Patch2:         legacy-720p.patch
 
+# System wlroots
+Patch4:         wlroots-pc.patch
+BuildRequires:  git-core
 BuildRequires:  meson >= 0.54.0
 BuildRequires:  ninja-build
 BuildRequires:  cmake
@@ -64,7 +68,7 @@ BuildRequires:  pkgconfig(sdl2)
 BuildRequires:  pkgconfig(libpipewire-0.3)
 BuildRequires:  pkgconfig(libavif)
 BuildRequires:  (pkgconfig(wlroots) >= 0.17.0 with pkgconfig(wlroots) < 0.18)
-BuildRequires:  (pkgconfig(libliftoff) >= 0.4.1 with pkgconfig(libliftoff) < 0.5)
+BuildRequires:  (pkgconfig(libliftoff) >= %{libliftoff_minver} with pkgconfig(libliftoff) < 0.6)
 BuildRequires:  pkgconfig(libcap)
 BuildRequires:  pkgconfig(hwdata)
 BuildRequires:  spirv-headers-devel
@@ -96,7 +100,9 @@ Recommends:     mesa-vulkan-drivers
 %{name} is the micro-compositor optimized for running video games on Wayland. This is a legacy build primarily intended for use by Polaris GPUs.
 
 %prep
-%autosetup -p1 -a2 -N -n gamescope-%{version}
+git clone --depth 1 --branch %{version} %{url}.git gamescope
+cd gamescope
+git submodule update --init --recursive
 # Install stub pkgconfig file
 mkdir -p pkgconfig
 cp %{SOURCE1} pkgconfig/stb.pc
@@ -104,17 +110,17 @@ cp %{SOURCE1} pkgconfig/stb.pc
 # Replace spirv-headers include with the system directory
 sed -i 's^../thirdparty/SPIRV-Headers/include/spirv/^/usr/include/spirv/^' src/meson.build
 
-# Push in reshade from sources instead of submodule
-rm -rf src/reshade && mv reshade-%{reshade_commit} src/reshade
 
 %autopatch -p1
 
 %build
+cd gamescope
 export PKG_CONFIG_PATH=pkgconfig
 %meson -Dpipewire=enabled -Denable_gamescope_wsi_layer=false -Denable_openvr_support=false -Dforce_fallback_for=[]
 %meson_build
 
 %install
+cd gamescope
 %meson_install
 # Rename to not conflict with the base package
 mv %{buildroot}%{_bindir}/gamescope %{buildroot}%{_bindir}/gamescope-legacy
