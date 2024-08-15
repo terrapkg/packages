@@ -29,6 +29,9 @@ URL:            https://github.com/ValveSoftware/gamescope
 
 # Create stb.pc to satisfy dependency('stb')
 Source1:        stb.pc
+Source2:        https://github.com/Joshua-Ashton/reshade/archive/%{reshade_commit}/reshade-%{reshade_shortcommit}.tar.gz
+
+Patch0:         0001-cstdint.patch
 
 # https://hhd.dev/
 Patch1:         v2-0001-always-send-ctrl-1-2-to-steam-s-wayland-session.patch
@@ -110,6 +113,10 @@ cp %{SOURCE1} pkgconfig/stb.pc
 # Replace spirv-headers include with the system directory
 sed -i 's^../thirdparty/SPIRV-Headers/include/spirv/^/usr/include/spirv/^' src/meson.build
 
+tar -xvf %{SOURCE2}
+
+# Push in reshade from sources instead of submodule
+rm -rf src/reshade && mv reshade-%{reshade_commit} src/reshade
 
 %autopatch -p1
 
