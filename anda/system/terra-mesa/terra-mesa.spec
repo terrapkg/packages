@@ -1,11 +1,6 @@
 %global srcname mesa
 %global ver 24.2.0
 
-# define macro for providing srcname and ver
-# %replace_pkg subpackage
-%define replace_pkg() \
-Provides:       %{srcname}-%1 \
-Provides:       %{srcname}-%1%{?_isa}
 Source0:        https://archive.mesa3d.org/%{srcname}-%{ver}.tar.xz
 
 ## START: Set by rpmautospec
@@ -87,9 +82,19 @@ Source0:        https://archive.mesa3d.org/%{srcname}-%{ver}.tar.xz
 Name:           terra-%{srcname}
 Summary:        Mesa graphics libraries
 Version:        %{lua:ver = string.gsub(rpm.expand("%{ver}"), "-", "~"); print(ver)}
-Release:        %autorelease
+Release:        1.terra%{?dist}
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0
 URL:            http://www.mesa3d.org
+
+
+# define macro for providing srcname and ver
+# %replace_pkg subpackage
+%define replace_pkg() \
+Requires:       terra-mesa-filesystem = %{version}-%{release} \
+Provides:       %{srcname}-%1 \
+Provides:       %{srcname}-%1%{?_isa} \
+Conflicts:      %{srcname}-%1
+
 
 # src/gallium/auxiliary/postprocess/pp_mlaa* have an ... interestingly worded license.
 # Source1 contains email correspondence clarifying the license terms.
