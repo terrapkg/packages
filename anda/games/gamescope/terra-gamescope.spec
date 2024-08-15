@@ -1,4 +1,8 @@
+%if 0%{?fedora} >= 41
+%global libliftoff_minver 0.5.0
+%else
 %global libliftoff_minver 0.4.1
+%endif
 
 %global _default_patch_fuzz 2
 %global gamescope_tag 3.14.29
@@ -26,6 +30,11 @@ Patch3:         drm-Separate-BOE-and-SDC-OLED-Deck-panel-rates.patch
 Patch4:         revert-299bc34.patch
 # https://github.com/ValveSoftware/gamescope/pull/1231
 Patch5:         1231.patch
+# Set default backend to SDL instead of Wayland, to avoid issues with GPUs that do not support
+# Vulkan DRM modifiers.
+# See also: gamescope-legacy package
+# https://github.com/ValveSoftware/gamescope/issues/1218#issuecomment-2123801764
+Patch6:         sdl-backend.patch
 
 BuildRequires:  meson >= 0.54.0
 BuildRequires:  ninja-build
