@@ -552,6 +552,7 @@ popd
 %endif
 %files dri-drivers
 %dir %{_datadir}/drirc.d
+%{_libdir}/libgallium*.so
 %{_datadir}/drirc.d/00-mesa-defaults.conf
 %{_libdir}/dri/kms_swrast_dri.so
 %{_libdir}/dri/swrast_dri.so
