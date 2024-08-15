@@ -139,7 +139,7 @@ confinement policies when running virtual hosts in the webserver by using the
 changehat abilities exposed through libapparmor.
 
 %prep
-%autosetup -p1 -n %name-v%version
+%autosetup -p1 -n apparmor-v%normver
 sed -i 's/@VERSION@/%normver/g' libraries/libapparmor/swig/python/setup.py.in
 sed -i 's/${VERSION}/%normver/g' utils/Makefile
 
