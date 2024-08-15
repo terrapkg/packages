@@ -1,1 +1,1 @@
-rpm.version(gitlab_tag("4484878"));
+rpm.global("normver", gitlab_tag("4484878"));
