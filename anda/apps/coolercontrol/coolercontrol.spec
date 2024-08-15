@@ -13,7 +13,7 @@ URL:            https://gitlab.com/coolercontrol/coolercontrol
 Source0:		%url/-/archive/%version/coolercontrol-%version.tar.gz
 Packager:       madonuko <mado@fyralabs.com>
 BuildRequires:  git-core make python3 nodejs-npm libdrm-devel
-BuildRequires:  anda-srpm-macros cargo >= 1.75.0
+BuildRequires:  anda-srpm-macros cargo >= 1.75.0 cargo-rpm-macros
 BuildRequires:  webkit2gtk4.1-devel openssl-devel curl wget file libappindicator-gtk3-devel librsvg2-devel
 %description %_desc
 
