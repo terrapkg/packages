@@ -1,14 +1,14 @@
 %{?python_enable_dependency_generator}
 
 %bcond_with tests
+%global normver 4.1.0-beta1
 
 Name:           apparmor
-Version:        4.1.0.beta1
+Version:        %(echo %normver | sed 's/-/~/')
 Release:        1%?dist
 Summary:        AppArmor userspace components
 
-%define baseversion %(echo %{version} | cut -d. -f-2)
-%global normver %(echo %version | sed 's/~/-/')
+%define baseversion %(echo %{normver} | cut -d. -f-2)
 
 License:        GPL-2.0
 URL:            https://gitlab.com/apparmor/apparmor
