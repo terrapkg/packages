@@ -1,15 +1,11 @@
 Name:           anda-srpm-macros
 Version:        0.1.7
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        SRPM macros for extra Fedora packages
 
 License:        MIT
-# URL:
-Source0:        macros.cargo_extra
-Source1:        macros.caching
-Source2:        macros.anda
-Source3:        macros.go_extra
-Source4:        macros.nim_extra
+URL:            https://github.com/terrapkg/srpm-macros
+Source0:        %url/archive/refs/tags/v%{version}.tar.gz
 
 Recommends:     rust-packaging
 Requires:       git-core
@@ -21,25 +17,27 @@ BuildArch:      noarch
 %{summary}
 
 %prep
+%autosetup -n srpm-macros-%version
 
 %build
 
 %install
-install -D -p -m 0644 -t %{buildroot}%{_rpmmacrodir} %{SOURCE0}
-install -D -p -m 0644 -t %{buildroot}%{_rpmmacrodir} %{SOURCE1}
-install -D -p -m 0644 -t %{buildroot}%{_rpmmacrodir} %{SOURCE2}
-install -D -p -m 0644 -t %{buildroot}%{_rpmmacrodir} %{SOURCE3}
-install -D -p -m 0644 -t %{buildroot}%{_rpmmacrodir} %{SOURCE4}
+for file in ./macros.*; do
+    install -Dpm644 -t %buildroot%_rpmmacrodir $file
+done
 
 %files
-%{_rpmmacrodir}/macros.cargo_extra
-%{_rpmmacrodir}/macros.caching
 %{_rpmmacrodir}/macros.anda
+%{_rpmmacrodir}/macros.caching
+%{_rpmmacrodir}/macros.cargo_extra
 %{_rpmmacrodir}/macros.go_extra
 %{_rpmmacrodir}/macros.nim_extra
 
 
 %changelog
+* Wed Aug 14 2024 madonuko <mado@fyralabs.com> - 0.1.7-2
+- Move sources outside of packages repo
+
 * Wed Mar 13 2024 madonuko <mado@fyralabs.com> - 0.1.6-1
 - Add nim_c, nim_tflags and nim_lflags
 
