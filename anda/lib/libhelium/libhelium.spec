@@ -1,10 +1,12 @@
+%global ver 1.8.15-2
+%global sanitized_ver %(echo %{ver} | sed -E 's/-/~/g')
 Summary:        The Application Framework for tauOS apps
 Name:           libhelium
-Version:        1.8.11.1
+Version:        %{sanitized_ver}
 Release:        1%?dist
 License:        GPL-3.0
 URL:            https://github.com/tau-OS/libhelium
-Source0:        https://github.com/tau-OS/libhelium/archive/refs/tags/%{version}.tar.gz
+Source0:        https://github.com/tau-OS/libhelium/archive/refs/tags/%{ver}.tar.gz
 
 BuildRequires:  sass
 BuildRequires:  meson
@@ -21,6 +23,7 @@ Requires: gtk4 >= 4.4
 Requires: glib2 >= 2.66.0
 Requires: libgee >= 0.20
 Requires: tau-helium >= 1.1.25
+Requires: tau-hydrogen
 
 %description
 The Application Framework for tauOS apps
@@ -34,7 +37,7 @@ This package contains the libraries and header files that are needed
 for writing applications with libhelium.
 
 %prep
-%autosetup -n libhelium-%{version}
+%autosetup -n libhelium-%{ver}
 
 %build
 %meson \

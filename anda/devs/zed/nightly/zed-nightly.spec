@@ -1,12 +1,14 @@
-%global commit 0129d4e2506d5ec5e50ef0968382770b9abec390
+%global commit 09b6e3f2a6a3b422d04934c5c0fc88ad8dc72741
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20240619
-%global ver 0.142.0
+%global commit_date 20240816
+%global ver 0.150.0
 
-%bcond_without check
+%bcond_with check
 
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
+# Use Mold as the linker
+%global build_rustflags %build_rustflags -C link-arg=-fuse-ld=mold
 
 %global crate zed
 %global app_id dev.zed.Zed-Nightly
@@ -33,7 +35,7 @@ BuildRequires:  alsa-lib-devel
 BuildRequires:  fontconfig-devel
 BuildRequires:  wayland-devel
 BuildRequires:  libxkbcommon-x11-devel
-BuildRequires:  openssl-devel
+BuildRequires:  openssl-devel-engine
 BuildRequires:  libzstd-devel
 BuildRequires:  perl-FindBin
 BuildRequires:  perl-IPC-Cmd
@@ -54,6 +56,8 @@ export APP_ID="%app_id"
 export APP_ICON="%app_id"
 export APP_NAME="Zed Nightly"
 export APP_CLI="zed"
+export APP="%{_libexecdir}/zed-editor"
+export APP_ARGS="%U"
 export ZED_UPDATE_EXPLANATION="Run dnf up to update Zed Nightly from Terra."
 export ZED_RELEASE_CHANNEL=nightly
 export BRANDING_LIGHT="#e9aa6a"
@@ -74,6 +78,8 @@ script/generate-licenses
 %install
 install -Dm755 target/rpm/zed %{buildroot}%{_libexecdir}/zed-editor
 install -Dm755 target/rpm/cli %{buildroot}%{_bindir}/zed
+
+%__cargo clean
 
 install -Dm644 %app_id.desktop %{buildroot}%{_datadir}/applications/%app_id.desktop
 install -Dm644 crates/zed/resources/app-icon-nightly.png %{buildroot}%{_datadir}/pixmaps/%app_id.png

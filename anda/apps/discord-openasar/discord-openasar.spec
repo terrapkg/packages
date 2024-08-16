@@ -6,7 +6,7 @@
 %global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 Name:           discord-openasar
-Version:        0.0.58
+Version:        0.0.64
 Release:        1%?dist
 Summary:        A snappier Discord rewrite with features like further customization and theming
 License:        MIT AND https://discord.com/terms
@@ -34,6 +34,7 @@ sed "s@Discord@Discord OpenAsar@g" a > discord.desktop
 
 %install
 rm -rf $RPM_BUILD_ROOT
+mkdir -p %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_datadir}/discord-openasar
 cp -rv * %{buildroot}%{_datadir}/discord-openasar
 mkdir -p %{buildroot}%{_datadir}/applications/
@@ -42,9 +43,11 @@ ln -s %_datadir/discord-openasar/discord.desktop %{buildroot}%{_datadir}/applica
 ln -s %_datadir/discord-openasar/discord.png %{buildroot}%{_datadir}/pixmaps/discord-openasar.png
 cp -v %{SOURCE1} %{buildroot}%{_datadir}/discord-openasar/resources/app.asar
 chmod o+w %{buildroot}%{_datadir}/discord-openasar/resources -R
+ln -s %_datadir/discord-openasar/Discord %buildroot%_bindir/discord-openasar
 
 
 %files
+%_bindir/discord-openasar
 %{_datadir}/discord-openasar/
 %{_datadir}/applications/discord-openasar.desktop
 %{_datadir}/pixmaps/discord-openasar.png

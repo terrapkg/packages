@@ -1,6 +1,6 @@
 %define debug_package %nil
-%global commit 688ca6ae29de89174794a48be61ecd0fb1111c96
-%global commit_date 20240430
+%global commit f7a1c8106dbc70020aa9e9df27efef81ed394139
+%global commit_date 20240811
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           albius

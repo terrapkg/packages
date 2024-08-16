@@ -2,8 +2,8 @@
 
 Name:           elementary-appcenter
 Summary:        Software Center from elementary
-Version:        7.4.0
-Release:        2%{?dist}
+Version:        8.0.0
+Release:        1%?dist
 License:        GPL-3.0
 
 Provides:       appcenter = %{version}-%{release}

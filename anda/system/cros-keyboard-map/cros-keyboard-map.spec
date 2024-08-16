@@ -1,5 +1,5 @@
-%global commit 1889baff16c08ddf2382d95ca18caa37001d5971
-%global commit_date 20240418
+%global commit b2e69368f96bdf7562dc1a95a0d863c794756842
+%global commit_date 20240814
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global debug_package %{nil}
 %define __os_install_post %{nil}
@@ -15,7 +15,7 @@ Source0:        https://github.com/WeirdTreeThing/cros-keyboard-map/archive/%com
 
 %{?systemd_requires}
 BuildRequires:  systemd-rpm-macros
-Requires:       keyd python3
+Requires:       keyd python3 python3-libfdt
 
 %description
 Set of tools designed to help develop and debug software and firmware on Intel platforms with AudioDSP onboard.

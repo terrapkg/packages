@@ -1,9 +1,9 @@
-%global commit b594f75778961c281daca398011914e9ac14b753
-%global commit_date 20240625
+%global commit be6c9b3abe71167584ed5c9a9a2e6386df5090a1
+%global commit_date 20240816
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           envision
-Version:        %commit_date.%commit
+Version:        %commit_date.%shortcommit
 Release:        1%?dist
 Summary:        UI for building, configuring and running Monado, the open source OpenXR runtime
 License:        AGPL-3.0-or-later
@@ -16,7 +16,8 @@ BuildRequires:  pkgconfig(gtk4) >= 4.10.0
 BuildRequires:  pkgconfig(vte-2.91-gtk4) >= 0.72.0
 BuildRequires:  pkgconfig(libadwaita-1)
 BuildRequires:  pkgconfig(libusb-1.0)
-BuildRequires:  openssl-devel
+BuildRequires:  openssl-devel-engine
+BuildRequires:  openxr-devel
 BuildRequires:  libappstream-glib
 BuildRequires:  desktop-file-utils
 BuildRequires:  glib2-devel
