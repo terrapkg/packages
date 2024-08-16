@@ -16,7 +16,7 @@ Summary:        Zed is a high-performance, multiplayer code editor
 
 License:        MIT
 URL:            https://zed.dev/
-Source0:        https://github.com/zed-industries/zed/archive/refs/tags/v%{ver}-pre.tar.gz
+Source0:        https://github.com/zed-industries/zed/archive/refs/tags/v%{ver}.tar.gz
 
 Conflicts:      zed
 Provides:       zed
