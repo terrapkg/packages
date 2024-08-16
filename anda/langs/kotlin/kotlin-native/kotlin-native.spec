@@ -9,7 +9,7 @@ ExclusiveArch:  x86_64
 
 License:        ASL 2.0
 URL:            https://kotlinlang.org/docs/reference/native-overview.html
-Source0:        https://github.com/JetBrains/kotlin/releases/download/v%version/kotlin-native-linux-x86_64-%version.tar.gz
+Source0:        https://github.com/JetBrains/kotlin/releases/download/v%version/kotlin-native-prebuilt-linux-x86_64-%version.tar.gz
 
 BuildRequires:  tar
 BuildRequires:  sed
@@ -28,7 +28,7 @@ Kotlin compiler and native implementation of the Kotlin standard library.
 
 
 %prep
-tar -xf %{SOURCE0} && cd kotlin-native-linux-x86_64-%{version}
+tar -xf %{SOURCE0} && cd kotlin-native-prebuilt-linux-x86_64-%{version}
 sed -i "s|\(DIR *= *\).*|\1%{_bindir}|" bin/*
 sed -i "s|\(KONAN_HOME *= *\).*|\1%{_datadir}/%{name}|" bin/*
 
@@ -36,7 +36,7 @@ sed -i "s|\(KONAN_HOME *= *\).*|\1%{_datadir}/%{name}|" bin/*
 %build
 
 %install
-rm -rf %{buildroot} && mkdir -p %{buildroot}%{_bindir}/ && cd kotlin-native-linux-x86_64-%{version}
+rm -rf %{buildroot} && mkdir -p %{buildroot}%{_bindir}/ && cd kotlin-native-prebuilt-linux-x86_64-%{version}
 install -m 0755 bin/cinterop %{buildroot}%{_bindir}/
 install -m 0755 bin/generate-platform %{buildroot}%{_bindir}/
 install -m 0755 bin/jsinterop %{buildroot}%{_bindir}/
