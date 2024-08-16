@@ -1,6 +1,9 @@
 %global srcname mesa
 %global _description These drivers contains video acceleration codecs for decoding/encoding H.264 and H.265 \
 algorithms and decoding only VC1 algorithm.
+# terra specific configs
+%global with_kmsro 0
+#
 %ifnarch s390x
 %global with_hardware 1
 %global with_radeonsi 1
