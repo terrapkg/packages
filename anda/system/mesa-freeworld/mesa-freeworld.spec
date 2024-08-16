@@ -1,9 +1,6 @@
 %global srcname mesa
 %global _description These drivers contains video acceleration codecs for decoding/encoding H.264 and H.265 \
 algorithms and decoding only VC1 algorithm.
-# terra specific configs
-%global with_kmsro 0
-#
 %ifnarch s390x
 %global with_hardware 1
 %global with_radeonsi 1
@@ -67,6 +64,10 @@ algorithms and decoding only VC1 algorithm.
 %else
 %bcond_with valgrind
 %endif
+
+# terra specific configs
+%global with_kmsro 0
+#
 
 #%%global vulkan_drivers swrast%%{?base_vulkan}%%{?intel_platform_vulkan}%%{?extra_platform_vulkan}%%{?with_nvk:,nouveau}
 
