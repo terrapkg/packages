@@ -9,6 +9,7 @@ codegen-units = 1\
 debug = 2\
 strip = "none"\
 \
+\
 [build]\
 rustc = "%{__rustc}"\
 rustdoc = "%{__rustdoc}"\
@@ -31,6 +32,9 @@ directory = "%{cargo_registry}"\
 \
 EOF\
 %{__rm} -f Cargo.toml.orig \
+%if %{with mold}\
+%global build_rustflags %build_rustflags -C link-arg=-fuse-ld=mold\
+%endif\
 )
 
 

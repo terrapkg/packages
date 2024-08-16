@@ -1,3 +1,7 @@
+# by default, add a bcond_without for a mold linker
+# https://rpm-software-management.github.io/rpm/manual/conditionalbuilds.html
+%with_mold 1
+
 %git_clone(Rc) %{lua:
         local dir = rpm.expand("%{_builddir}/%{name}-%{version}")
         -- if dir exists, remove it

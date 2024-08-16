@@ -1,6 +1,6 @@
 Name:           anda-srpm-macros
 Version:        0.1.7
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        SRPM macros for extra Fedora packages
 
 License:        MIT
@@ -12,6 +12,7 @@ Source3:        macros.go_extra
 Source4:        macros.nim_extra
 
 Recommends:     rust-packaging
+Recommends:     mold
 Requires:       git-core
 Obsoletes:      fyra-srpm-macros < 0.1.1-1
 Provides:       fyra-srpm-macros = %{version}-%{release}
