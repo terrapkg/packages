@@ -22,7 +22,7 @@ BuildArch:      noarch
 %build
 
 %install
-for file in ./*; do
+for file in ./macros.*; do
     install -Dpm644 -t %buildroot%_rpmmacrodir $file
 done
 
