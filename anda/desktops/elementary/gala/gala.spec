@@ -35,9 +35,9 @@ BuildRequires:  pkgconfig(libbamf3)
 BuildRequires:  pkgconfig(libcanberra)
 BuildRequires:  pkgconfig(libhandy-1)
 BuildRequires:  pkgconfig(sqlite3)
-BuildRequires:  pkgconfig(mutter-clutter-14)
-BuildRequires:  pkgconfig(mutter-cogl-14)
-BuildRequires:  pkgconfig(mutter-cogl-pango-14)
+BuildRequires:  pkgconfig(mutter-clutter-15)
+BuildRequires:  pkgconfig(mutter-cogl-15)
+BuildRequires:  pkgconfig(mutter-cogl-pango-15)
 
 Requires:       %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 
