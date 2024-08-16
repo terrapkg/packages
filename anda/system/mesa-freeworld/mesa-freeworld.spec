@@ -130,6 +130,7 @@ BuildRequires:  pkgconfig(xcb-randr)
 BuildRequires:  pkgconfig(xrandr) >= 1.3
 BuildRequires:  bison
 BuildRequires:  flex
+BuildRequires:  python3-pyyaml
 %if 0%{?with_lmsensors}
 BuildRequires:  lm_sensors-devel
 %endif
