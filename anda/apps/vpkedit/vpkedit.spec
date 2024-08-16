@@ -32,7 +32,7 @@ git checkout v%version
 
 
 %build
-%cmake# -DVPKEDIT_BUILD_LIBC=ON
+%cmake # -DVPKEDIT_BUILD_LIBC=ON
 %cmake_build
 
 
