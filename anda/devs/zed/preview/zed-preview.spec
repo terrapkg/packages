@@ -10,7 +10,7 @@
 %global app_id dev.zed.Zed-Preview
 
 Name:           zed-preview
-Version:        %(echo %ver | sed 's/-/~')
+Version:        %(echo %ver | sed 's/-/~/')
 Release:        pre1%?dist
 Summary:        Zed is a high-performance, multiplayer code editor
 
