@@ -66,7 +66,7 @@ algorithms and decoding only VC1 algorithm.
 %endif
 
 # terra specific configs
-%global with_kmsro 0
+%undefine with_kmsro
 #
 
 #%%global vulkan_drivers swrast%%{?base_vulkan}%%{?intel_platform_vulkan}%%{?extra_platform_vulkan}%%{?with_nvk:,nouveau}
