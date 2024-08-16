@@ -81,7 +81,7 @@ popd
 
 pushd coolercontrol-ui
 %make_install
-install -Dpm644 LICENSE.dependencies %buildroot%_datadir/licenses/%name/LICENSE.dependencies
+install -Dpm644 src-tauri/LICENSE.dependencies %buildroot%_datadir/licenses/%name/LICENSE.dependencies
 popd
 
 # this already handles liqctld
