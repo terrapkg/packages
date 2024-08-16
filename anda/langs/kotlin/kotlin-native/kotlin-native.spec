@@ -9,7 +9,7 @@ ExclusiveArch:  x86_64
 
 License:        ASL 2.0
 URL:            https://kotlinlang.org/docs/reference/native-overview.html
-Source0:        https://github.com/JetBrains/kotlin/releases/download/v%version/kotlin-native-linux-x86_64-%version.tar.gz
+Source0:        https://github.com/JetBrains/kotlin/releases/download/v%version/kotlin-native-prebuilt-linux-x86_64-%version.tar.gz
 
 BuildRequires:  tar
 BuildRequires:  sed
