@@ -1,6 +1,6 @@
 Name:           terra-release
-Version:        41
-Release:        2
+Version:        42
+Release:        1
 Summary:        Release package for Terra
 
 License:        MIT
@@ -8,7 +8,8 @@ URL:            https://terra.fyralabs.com
 Source0:        terra.repo
 BuildArch:      noarch
 
-Requires:       system-release(%{version})
+%dnl We probably shouldn't do this in Rawhide!
+%dnl Requires:       system-release(%{version})
 
 %description
 Release package for Terra, containing the Terra repository configuration.
