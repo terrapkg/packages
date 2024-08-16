@@ -12,7 +12,7 @@
 Name:           terra-gamescope
 Version:        100.%{gamescope_tag}
 Release:        1%?dist
-Summary:        Micro-compositor for video games on Wayland
+Summary:        Micro-compositor for video games on Wayland - Terra patch, please read the full description
 
 License:        BSD
 URL:            https://github.com/ValveSoftware/gamescope
@@ -103,6 +103,10 @@ Obsoletes:      gamescope-legacy < 3.14.2
 
 %description
 Gamescope is the micro-compositor optimized for running video games on Wayland.
+
+This specific build of Gamescope is patched to use SDL as the default backend instead of Wayland, and
+includes a legacy wrapper script for older GPUs and extra configuration options. Please see
+https://developer.fyralabs.com/terra/gamescope for more information.
 
 %package libs
 Summary:	libs for Gamescope
