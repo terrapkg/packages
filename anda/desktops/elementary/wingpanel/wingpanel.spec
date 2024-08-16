@@ -29,9 +29,9 @@ BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  pkgconfig(glib-2.0) >= 2.32
 BuildRequires:  pkgconfig(granite) >= 5.4.0
 BuildRequires:  pkgconfig(gtk+-3.0) >= 3.10
-BuildRequires:  pkgconfig(mutter-clutter-14)
-BuildRequires:  pkgconfig(mutter-cogl-14)
-BuildRequires:  pkgconfig(mutter-cogl-pango-14)
+BuildRequires:  pkgconfig(mutter-clutter-15)
+BuildRequires:  pkgconfig(mutter-cogl-15)
+BuildRequires:  pkgconfig(mutter-cogl-pango-15)
 
 Requires:       %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 
