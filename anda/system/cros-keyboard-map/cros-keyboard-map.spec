@@ -63,11 +63,6 @@ ExecStartPost=+/usr/bin/systemctl restart keyd.service
 [Install]
 WantedBy=multi-user.target
 EOF
-mkdir -p %buildroot/etc/systemd/system-preset
-tee %buildroot/etc/systemd/system-preset/00-cros-keyboard-map.preset <<EOF
-enable cros-keyboard-map.service
-enable keyd.service
-EOF
 chmod +x %buildroot/usr/bin/um-generate-cros-keymap
 
 %post
@@ -87,7 +82,6 @@ chmod +x %buildroot/usr/bin/um-generate-cros-keymap
 %license LICENSE
 /etc/cros-keyboard-map/*
 /etc/systemd/system/cros-keyboard-map.service
-/etc/systemd/system-preset/00-cros-keyboard-map.preset
 /usr/bin/um-generate-cros-keymap
 
 %changelog
