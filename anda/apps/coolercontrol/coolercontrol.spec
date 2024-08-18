@@ -4,6 +4,8 @@ CoolerControl is a feature-rich cooling device control application for Linux. It
 for background device management, as well as a GUI to expertly customize your settings.
 }
 %global rdnn org.coolercontrol.CoolerControl
+# Don't mangle shebangs
+%global __brp_mangle_shebangs %{nil}
 
 Name:           coolercontrol
 Version:        1.4.0
