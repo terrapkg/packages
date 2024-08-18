@@ -12,7 +12,7 @@ BuildArch:      noarch
 
 Source0:        https://github.com/fthx/appmenu-is-back/archive/refs/tags/v%{version}.tar.gz
 
-Requires:       (gnome-shell >= 45~ with gnome-shell < 46~)
+Requires:       (gnome-shell >= 46~ with gnome-shell < 47~)
 Recommends:     gnome-extensions-app
 
 %description
