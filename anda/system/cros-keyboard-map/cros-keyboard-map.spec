@@ -6,7 +6,7 @@
 
 Name:           cros-keyboard-map
 Version:        %commit_date.%shortcommit
-Release:        1%?dist
+Release:        2%?dist
 
 License:        BSD-3-Clause
 Summary:        Utility to generate keyd configurations for use on Chromebooks
@@ -59,9 +59,15 @@ After=tmp.mount
 [Service]
 Type=oneshot
 ExecStart=/bin/bash /usr/bin/um-generate-cros-keymap
+ExecStartPost=+/usr/bin/systemctl restart keyd.service
 
 [Install]
-WantedBy=sysinit.target
+WantedBy=multi-user.target
+EOF
+mkdir -p %buildroot/etc/systemd/system-preset
+tee %buildroot/etc/systemd/system-preset/00-cros-keyboard-map.preset <<EOF
+enable cros-keyboard-map.service
+enable keyd.service
 EOF
 chmod +x %buildroot/usr/bin/um-generate-cros-keymap
 
@@ -82,6 +88,7 @@ chmod +x %buildroot/usr/bin/um-generate-cros-keymap
 %license LICENSE
 /etc/cros-keyboard-map/*
 /etc/systemd/system/cros-keyboard-map.service
+/etc/systemd/system-preset/00-cros-keyboard-map.preset
 /usr/bin/um-generate-cros-keymap
 
 %changelog
