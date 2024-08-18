@@ -53,7 +53,6 @@ mkdir -p %buildroot/etc/systemd/system
 tee %buildroot/etc/systemd/system/cros-keyboard-map.service <<EOF
 [Unit]
 Description=Generate chromebook keyboard layout
-Before=keyd.service
 After=tmp.mount
 
 [Service]
