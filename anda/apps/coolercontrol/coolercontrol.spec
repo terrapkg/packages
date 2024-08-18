@@ -102,7 +102,7 @@ install -Dpm755 target/rpm/coolercontrol %buildroot%_bindir/coolercontrol
 install -Dpm644 LICENSE.dependencies %buildroot%_datadir/licenses/%name/LICENSE.dependencies
 popd
 
-install -Dpm644 packaging/systemd/coolercontrol-liqctld.service %buildroot%_unitdir
+install -Dpm644 packaging/systemd/coolercontrol-liqctld.service %buildroot%_unitdir/coolercontrol-liqctld.service
 desktop-file-install --dir=%buildroot%_datadir/applications packaging/metadata/%rdnn.desktop
 install -Dpm644 packaging/metadata/%rdnn.svg %buildroot%_iconsdir/hicolor/scalable/apps/%rdnn.svg
 install -Dpm644 packaging/metadata/%rdnn.png %buildroot%_iconsdir/hicolor/256x256/apps/%rdnn.svg
