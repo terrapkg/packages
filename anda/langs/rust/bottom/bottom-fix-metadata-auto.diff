@@ -1,0 +1,48 @@
+--- bottom-0.10.2/Cargo.toml	1970-01-01T00:00:01+00:00
++++ bottom-0.10.2/Cargo.toml	2024-08-18T14:28:49.594610+00:00
+@@ -354,15 +354,6 @@
+ [target.'cfg(all(target_arch = "x86_64", target_os = "linux"))'.dev-dependencies.portable-pty]
+ version = "0.8.1"
+ 
+-[target.'cfg(target_os = "freebsd")'.dependencies.filedescriptor]
+-version = "0.8.2"
+-
+-[target.'cfg(target_os = "freebsd")'.dependencies.serde_json]
+-version = "1.0.120"
+-
+-[target.'cfg(target_os = "freebsd")'.dependencies.sysctl]
+-version = "0.5.5"
+-
+ [target.'cfg(target_os = "linux")'.dependencies.rustix]
+ version = "0.38.34"
+ features = [
+@@ -370,24 +361,6 @@
+     "param",
+ ]
+ 
+-[target.'cfg(target_os = "macos")'.dependencies.core-foundation]
+-version = "0.9.4"
+-
+-[target.'cfg(target_os = "macos")'.dependencies.mach2]
+-version = "0.4.2"
+-
+-[target.'cfg(target_os = "windows")'.dependencies.windows]
+-version = "0.58.0"
+-features = [
+-    "Win32_Foundation",
+-    "Win32_Security",
+-    "Win32_Storage_FileSystem",
+-    "Win32_System_IO",
+-    "Win32_System_Ioctl",
+-    "Win32_System_ProcessStatus",
+-    "Win32_System_Threading",
+-]
+-
+ [target."cfg(unix)".dependencies.libc]
+ version = "0.2.155"
+ 
+@@ -402,3 +375,4 @@
+ [lints.rustdoc]
+ broken_intra_doc_links = "deny"
+ missing_crate_level_docs = "deny"
++
