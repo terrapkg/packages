@@ -28,7 +28,7 @@ License:        (0BSD OR MIT OR Apache-2.0) AND Apache-2.0 AND (Apache-2.0 OR BS
 URL:            https://github.com/FyraLabs/katsu
 Source0:		%url/archive/refs/tags/v%version.tar.gz
 
-BuildRequires:  cargo-rpm-macros >= 26
+BuildRequires:  anda-srpm-macros cargo-rpm-macros >= 26
 
 %description
 Katsu is a tool for building bootable images from RPM based systems.
