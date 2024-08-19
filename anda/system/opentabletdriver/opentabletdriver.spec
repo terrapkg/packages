@@ -5,19 +5,24 @@
 # We aren't using Mono but RPM expected Mono
 %global __requires_exclude_from ^/usr/lib/opentabletdriver/.*$
 %global __os_install_post %{nil}
-%global dotnet_runtime_version 8.0
+%global dotnet_sdk_version 8.0
+%global dotnet_runtime_version 6.0
 
 Name: opentabletdriver
 Version: 0.6.4.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: A cross-platform open source tablet driver
 License: LGPLv3
 URL: https://github.com/OpenTabletDriver/OpenTabletDriver
 Packager: Cappy Ishihara <cappy@fyralabs.com>
 %define otddir OpenTabletDriver-%{version}
 
-BuildRequires: dotnet-sdk-%{dotnet_runtime_version}
+
+# This package can be built using a newer .NET SDK version, but you
+# specifically need .NET 6.0 to run it.
+BuildRequires: dotnet-sdk-%{dotnet_sdk_version}
 BuildRequires: git jq systemd-rpm-macros
+BuildRequires: gtk3-devel
 
 Requires: dotnet-runtime-%{dotnet_runtime_version}
 Requires: libevdev.so.2()(64bit)
