@@ -9,7 +9,7 @@ URL:		https://github.com/ArmCord/ArmCord
 Group:		Applications/Internet
 Source1:	launch.sh
 Requires:	electron xdg-utils
-BuildRequires:	nodejs-npm git
+BuildRequires:	nodejs-npm git add-determinism
 Conflicts:	armcord-bin
 BuildArch:	noarch
 
