@@ -8,7 +8,6 @@
 %global _default_patch_fuzz 2
 %global gamescope_tag 3.15.0
 
-
 Name:           terra-gamescope
 Version:        100.%{gamescope_tag}
 Release:        1%?dist

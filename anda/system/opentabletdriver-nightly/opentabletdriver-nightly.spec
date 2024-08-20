@@ -1,28 +1,27 @@
-# saves time so we don't have to download the thing manually
-#undefine _disable_source_fetch
-# We don't have debug symbols, because .NET
-%define debug_package %{nil}
+%global commit a60fa0cfd06148fc0c62c12fc11d9b55e15cb656
+%global shortcommit %(c=%{commit}; echo ${c:0:7})
+%global commit_date 20240819
+%global ver 0.6.4.0
+
 # We aren't using Mono but RPM expected Mono
 %global __requires_exclude_from ^/usr/lib/opentabletdriver/.*$
 %global __os_install_post %{nil}
-%global dotnet_sdk_version 8.0
-%global dotnet_runtime_version 6.0
+%define debug_package %nil
+%global dotnet_runtime_version 8.0
 
-Name: opentabletdriver
-Version: 0.6.4.0
-Release: 2%{?dist}
-Summary: A cross-platform open source tablet driver
-License: LGPLv3
-URL: https://github.com/OpenTabletDriver/OpenTabletDriver
-Packager: Cappy Ishihara <cappy@fyralabs.com>
-%define otddir OpenTabletDriver-%{version}
+Name:           opentabletdriver-nightly
+Version:        %ver^%commit_date.git~%shortcommit
+Release:        1%?dist
+Summary:        Open source, cross-platform, user-mode tablet driver
+License:        LGPL-3.0-or-later
+Conflicts:      opentabletdriver
 
+URL:            https://github.com/OpenTabletDriver/OpenTabletDriver
+Source:         %url/archive/%commit.tar.gz
+Packager:       madonuko <mado@fyralabs.com>
 
-# This package can be built using a newer .NET SDK version, but you
-# specifically need .NET 6.0 to run it.
-BuildRequires: dotnet-sdk-%{dotnet_sdk_version}
-BuildRequires: git jq systemd-rpm-macros
-BuildRequires: gtk3-devel
+BuildRequires: dotnet-sdk-%{dotnet_runtime_version}
+BuildRequires: git-core jq systemd-rpm-macros
 
 Requires: dotnet-runtime-%{dotnet_runtime_version}
 Requires: libevdev.so.2()(64bit)
@@ -35,16 +34,12 @@ Suggests: libXrandr
 OpenTabletDriver is an open source, cross platform, user mode tablet driver. The goal of OpenTabletDriver is to be cross platform as possible with the highest compatibility in an easily configurable graphical user interface.
 
 %prep
-mkdir -p %{otddir}
-cd %{otddir}
-git clone -b v%version %url .
+%autosetup -n OpenTabletDriver-%commit
 
 %build
-cd %{otddir}
 ./eng/linux/package.sh --output bin
 
 %install
-cd %{otddir}
 export DONT_STRIP=1
 PREFIX="%{_prefix}" ./eng/linux/package.sh --package Generic --build false
 mkdir -p "%{buildroot}"
