@@ -1,4 +1,4 @@
-From 2f696dea3d637fbe20ae435bbc3bb50b36219435 Mon Sep 17 00:00:00 2001
+From ca58cb2453e6d9ef44d799e394ee9950b7a35b30 Mon Sep 17 00:00:00 2001
 From: Cappy Ishihara <cappy@cappuchino.xyz>
 Date: Wed, 21 Aug 2024 03:56:53 +0700
 Subject: [PATCH] Check if current GPU supports Vulkan DRM modifiers when
@@ -8,26 +8,27 @@ This works around #1218 by making use of the new backend option added in #1321,
 but adds a check to automatically fall back to the SDL backend if the current
 GPU does not support Vulkan DRM modifiers.
 ---
- src/main.cpp | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+ src/main.cpp | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
 
 diff --git a/src/main.cpp b/src/main.cpp
-index ca4001249..7c019b560 100644
+index ca4001249..bc6b16904 100644
 --- a/src/main.cpp
 +++ b/src/main.cpp
-@@ -817,7 +817,14 @@ int main(int argc, char **argv)
+@@ -817,9 +817,13 @@ int main(int argc, char **argv)
  	if ( eCurrentBackend == gamescope::GamescopeBackend::Auto )
  	{
  		if ( g_pOriginalWaylandDisplay != NULL )
 -			eCurrentBackend = gamescope::GamescopeBackend::Wayland;
-+		    // Additional check if the current GPU supports Vulkan DRM modifiers
-+            // Fallback to SDL if not supported (e.g Older AMD GPUs like Polaris 10/20)
-+            if (vulkan_supports_modifiers()) {
-+                eCurrentBackend = gamescope::GamescopeBackend::Wayland;
-+            }
-+            else {
-+                eCurrentBackend = gamescope::GamescopeBackend::SDL;
-+            }
- 		else if ( g_pOriginalDisplay != NULL )
- 			eCurrentBackend = gamescope::GamescopeBackend::SDL;
+-		else if ( g_pOriginalDisplay != NULL )
+-			eCurrentBackend = gamescope::GamescopeBackend::SDL;
++			// Additional check if the current GPU supports Vulkan DRM modifiers
++			// Fallback to SDL if not supported (e.g Older AMD GPUs like Polaris 10/20)
++			if ( vulkan_supports_modifiers() ) 
++				eCurrentBackend = gamescope::GamescopeBackend::Wayland;
++			else
++				eCurrentBackend = gamescope::GamescopeBackend::SDL;
++
  		else
+ 			eCurrentBackend = gamescope::GamescopeBackend::DRM;
+ 	}
