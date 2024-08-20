@@ -1,4 +1,4 @@
-From 920fbf15f534ae3772807cbfaf0e6c3896441a8a Mon Sep 17 00:00:00 2001
+From 2f696dea3d637fbe20ae435bbc3bb50b36219435 Mon Sep 17 00:00:00 2001
 From: Cappy Ishihara <cappy@cappuchino.xyz>
 Date: Wed, 21 Aug 2024 03:56:53 +0700
 Subject: [PATCH] Check if current GPU supports Vulkan DRM modifiers when
@@ -12,7 +12,7 @@ GPU does not support Vulkan DRM modifiers.
  1 file changed, 8 insertions(+), 1 deletion(-)
 
 diff --git a/src/main.cpp b/src/main.cpp
-index 96484dc..e3e694d 100644
+index ca4001249..7c019b560 100644
 --- a/src/main.cpp
 +++ b/src/main.cpp
 @@ -817,7 +817,14 @@ int main(int argc, char **argv)
@@ -31,6 +31,3 @@ index 96484dc..e3e694d 100644
  		else if ( g_pOriginalDisplay != NULL )
  			eCurrentBackend = gamescope::GamescopeBackend::SDL;
  		else
--- 
-2.46.0
-
