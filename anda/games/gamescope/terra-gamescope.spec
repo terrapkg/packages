@@ -32,7 +32,7 @@ Patch3:         v2-0001-always-send-ctrl-1-2-to-steam-s-wayland-session.patch
 # Vulkan DRM modifiers.
 # See also: gamescope-legacy package
 # https://github.com/ValveSoftware/gamescope/issues/1218#issuecomment-2123801764
-Patch6:         sdl-backend.patch
+Patch6:         1483.patch
 
 BuildRequires:  meson >= 0.54.0
 BuildRequires:  ninja-build
