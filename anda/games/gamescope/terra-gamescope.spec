@@ -6,7 +6,7 @@
 
 %global toolchain clang
 %global _default_patch_fuzz 2
-%global gamescope_tag 3.14.29
+%global gamescope_tag 3.15.0
 
 
 Name:           terra-gamescope
@@ -27,9 +27,7 @@ Patch0:         0001-cstdint.patch
 Patch1:         chimeraos.patch
 # https://hhd.dev/
 Patch2:         disable-steam-touch-click-atom.patch
-#Patch3:         v2-0001-always-send-ctrl-1-2-to-steam-s-wayland-session.patch
-# https://github.com/ValveSoftware/gamescope/issues/1369
-Patch4:         revert-299bc34.patch
+Patch3:         v2-0001-always-send-ctrl-1-2-to-steam-s-wayland-session.patch
 
 # Set default backend to SDL instead of Wayland, to avoid issues with GPUs that do not support
 # Vulkan DRM modifiers.
