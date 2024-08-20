@@ -68,6 +68,7 @@ algorithms and decoding only VC1 algorithm.
 # todo: set to 1 when mesa 24.2 gets in the repos
 %global with_gallium_video 1
 
+
 #%%global vulkan_drivers swrast%%{?base_vulkan}%%{?intel_platform_vulkan}%%{?extra_platform_vulkan}%%{?with_nvk:,nouveau}
 
 Name:           %{srcname}-freeworld
