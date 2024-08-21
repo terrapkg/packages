@@ -5,8 +5,8 @@
 
 Name:           wingpanel-indicator-keyboard
 Summary:        Keyboard Indicator for wingpanel
-Version:        2.4.1
-Release:        2%{?dist}
+Version:        2.4.2
+Release:        1%?dist
 License:        LGPL-2.0-or-later
 
 URL:            https://github.com/elementary/%{name}

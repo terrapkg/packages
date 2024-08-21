@@ -5,8 +5,8 @@
 
 Name:           wingpanel-indicator-notifications
 Summary:        Notifications Indicator for wingpanel
-Version:        7.1.0
-Release:        1%{?dist}
+Version:        7.1.1
+Release:        1%?dist
 License:        LGPL-2.0-or-later
 
 URL:            https://github.com/elementary/wingpanel-indicator-notifications
