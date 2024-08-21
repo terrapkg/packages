@@ -65,6 +65,9 @@ algorithms and decoding only VC1 algorithm.
 %bcond_with valgrind
 %endif
 
+# todo: set to 1 when mesa 24.2 gets in the repos
+%global with_gallium_video 1
+
 #%%global vulkan_drivers swrast%%{?base_vulkan}%%{?intel_platform_vulkan}%%{?extra_platform_vulkan}%%{?with_nvk:,nouveau}
 
 Name:           %{srcname}-freeworld
@@ -314,6 +317,10 @@ rm -fr %{buildroot}%{_libdir}/dri/*_dri.so
 rm -fr %{buildroot}%{_libdir}/libvulkan*.so
 rm -fr %{buildroot}%{_libdir}/libVkLayer_MESA_device_select.so
 
+%if %{with_gallium_video} == 0
+rm -fr %{buildroot}%{_libdir}/dri/libgallium_drv_video.so
+%endif
+
 %if 0%{?with_va}
 %files -n %{srcname}-va-drivers-freeworld
 %{_libdir}/dri/nouveau_drv_video.so
@@ -323,7 +330,12 @@ rm -fr %{buildroot}%{_libdir}/libVkLayer_MESA_device_select.so
 %if 0%{?with_radeonsi}
 %{_libdir}/dri/radeonsi_drv_video.so
 %endif
+
+
+%if %{with_gallium_video} == 1
 %{_libdir}/dri/libgallium_drv_video.so
+%endif
+
 %{_libdir}/dri/virtio_gpu_drv_video.so
 %{_metainfodir}/org.mesa3d.vaapi.freeworld.metainfo.xml
 %license docs/license.rst
@@ -338,7 +350,9 @@ rm -fr %{buildroot}%{_libdir}/libVkLayer_MESA_device_select.so
 %if 0%{?with_radeonsi}
 %{_libdir}/vdpau/libvdpau_radeonsi.so.1*
 %endif
+%if 0%{?with_gallium_video} == 1
 %{_libdir}/vdpau/libvdpau_gallium.so.1*
+%endif
 %{_libdir}/vdpau/libvdpau_virtio_gpu.so.1*
 %{_metainfodir}/org.mesa3d.vdpau.freeworld.metainfo.xml
 %license docs/license.rst
