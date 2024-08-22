@@ -1,8 +1,8 @@
 %define debug_package %nil
 
 Name:			system76-scheduler
-Version:		2.0.1
-Release:		2%?dist
+Version:		2.0.2
+Release:		1%?dist
 Summary:		Auto-configure CFS, process priorities for improved DE responsiveness
 License:		MPL-2.0
 URL:			https://github.com/pop-os/system76-scheduler
