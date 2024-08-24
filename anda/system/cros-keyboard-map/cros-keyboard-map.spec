@@ -58,7 +58,7 @@ After=tmp.mount
 [Service]
 Type=oneshot
 ExecStart=/bin/bash /usr/bin/um-generate-cros-keymap
-ExecStartPost=+/usr/bin/systemctl restart keyd.service
+ExecStartPost=+/usr/bin/keyd reload
 
 [Install]
 WantedBy=multi-user.target
