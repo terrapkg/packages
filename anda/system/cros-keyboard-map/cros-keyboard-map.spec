@@ -13,7 +13,7 @@ Name:           cros-keyboard-map
 Version:        %tree_commit_date.%tree_shortcommit.%um_commit_date.%um_shortcommit
 Release:        1%?dist
 
-License:        BSD-3-Clause
+License:        BSD-3-Clause and GPLv3
 Summary:        Utility to generate keyd configurations for use on Chromebooks
 URL:            https://github.com/Ultramarine-Linux/cros-keyboard-map
 Source0:        https://github.com/WeirdTreeThing/cros-keyboard-map/archive/%{tree_commit}/cros-keyboard-map-%{tree_commit}.tar.gz
