@@ -8,6 +8,7 @@ Summary:	Custom lightweight Discord client designed to enhance your experience
 URL:		https://github.com/ArmCord/ArmCord
 Group:		Applications/Internet
 Source1:	launch.sh
+Packager: madonuko <mado@fyralabs.com>
 Requires:	electron xdg-utils
 BuildRequires:	git-core add-determinism pnpm
 Conflicts:	armcord-bin
@@ -57,6 +58,9 @@ install -Dm644 build/icon.png %buildroot/usr/share/pixmaps/armcord.png
 /usr/share/armcord/app.asar
 
 %changelog
+* Mon Aug 26 2024 madonuko <mado@fyralabs.com> - 3.3.0-1
+- Update to license.txt
+
 * Sat Jun 17 2023 windowsboy111 <windowsboy111@fyralabs.com> - 3.2.0-2
 - Remove libnotify dependency.
 - Fix desktop entry.
@@ -64,4 +68,3 @@ install -Dm644 build/icon.png %buildroot/usr/share/pixmaps/armcord.png
 
 * Sat May 6 2023 windowsboy111 <windowsboy111@fyralabs.com> - 3.1.7-1
 - Initial package
-
