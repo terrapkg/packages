@@ -9,7 +9,7 @@ URL:		https://github.com/ArmCord/ArmCord
 Group:		Applications/Internet
 Source1:	launch.sh
 Requires:	electron xdg-utils
-BuildRequires:	nodejs-npm git add-determinism
+BuildRequires:	git-core add-determinism pnpm
 Conflicts:	armcord-bin
 BuildArch:	noarch
 
@@ -37,8 +37,8 @@ EOF
 
 
 %build
-npx pnpm@9 install --no-frozen-lockfile
-npm run packageQuick
+pnpm install --no-frozen-lockfile
+pnpm run packageQuick
 
 
 %install
