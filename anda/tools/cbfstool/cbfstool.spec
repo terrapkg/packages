@@ -16,7 +16,7 @@ Management utility for CBFS formatted ROM images.
 %autosetup -n coreboot-%version
  
 %build
-make -C coreboot/util/cbfstool
+make -C util/cbfstool
  
 %install
 install -Dm 777 cbfstool %buildroot%_bindir/cbfstool
