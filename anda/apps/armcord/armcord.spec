@@ -8,7 +8,7 @@ Summary:	Custom lightweight Discord client designed to enhance your experience
 URL:		https://github.com/ArmCord/ArmCord
 Group:		Applications/Internet
 Source1:	launch.sh
-Packager: madonuko <mado@fyralabs.com>
+Packager:	madonuko <mado@fyralabs.com>
 Requires:	electron xdg-utils
 BuildRequires:	git-core add-determinism pnpm
 Conflicts:	armcord-bin
