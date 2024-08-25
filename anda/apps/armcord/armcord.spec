@@ -50,7 +50,7 @@ install -Dm644 build/icon.png %buildroot/usr/share/pixmaps/armcord.png
 
 %files
 %doc README.md
-%license LICENSE
+%license license.txt
 /usr/bin/armcord
 /usr/share/applications/ArmCord.desktop
 /usr/share/pixmaps/armcord.png
