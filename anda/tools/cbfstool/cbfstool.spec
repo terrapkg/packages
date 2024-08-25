@@ -13,7 +13,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 Management utility for CBFS formatted ROM images.
  
 %prep
-%autosetup -n coreboot-%Version
+%autosetup -n coreboot-%version
  
 %build
 make -C corebook/util/cbfstool
@@ -22,7 +22,7 @@ make -C corebook/util/cbfstool
 install -Dm 777 cbfstool %buildroot%_bindir/cbfstool
 
 %files
-/usr/bin/cbfstool-binary
+/usr/bin/cbfstool
 
 %changelog
 * Sat Aug 24 2024 Owen Zimmerman <owen@fyralabs.com>
