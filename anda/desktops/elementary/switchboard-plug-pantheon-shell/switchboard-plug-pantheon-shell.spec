@@ -8,7 +8,7 @@
 
 Name:           switchboard-plug-pantheon-shell
 Summary:        Switchboard Pantheon Shell plug
-Version:        8.0.0
+Version:        8.0.1
 Release:        1%?dist
 License:        GPL-3.0
 
