@@ -3,7 +3,6 @@ if filters.contains("nightly") {
   rpm.global("commit", gh_commit("WeirdTreeThing/cros-keyboard-map"));
   if rpm.changed() {
     rpm.release();
-    rpm.global("tree_commit_date", date());
-    rpm.global("um_commit_date", date());
+    rpm.global("commit_date", date());
   }
 }

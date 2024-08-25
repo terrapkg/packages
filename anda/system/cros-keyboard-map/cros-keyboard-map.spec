@@ -1,16 +1,16 @@
+%global commit_date 20240824
+
 %global tree_commit b2e69368f96bdf7562dc1a95a0d863c794756842
-%global tree_commit_date 20240814
 %global tree_shortcommit %(c=%{tree_commit}; echo ${c:0:7})
 
 %global um_commit 46892acafb2fff3f3ace425d4694382c92645feb
-%global um_commit_date 20240824
 %global um_shortcommit %(c=%{um_commit}; echo ${c:0:7})
 
 %global debug_package %{nil}
 %define __os_install_post %{nil}
 
 Name:           cros-keyboard-map
-Version:        %tree_commit_date.%tree_shortcommit.%um_commit_date.%um_shortcommit
+Version:        %commit_date.%tree_shortcommit.%um_shortcommit
 Release:        1%?dist
 
 License:        BSD-3-Clause and GPLv3
