@@ -3,27 +3,26 @@ Version:        24.08
 Release:        1%?dist
 Summary:        Management utility for CBFS formatted ROM images
 URL:            https://doc.coreboot.org/lib/fw_config.html#cbfs
-Source0:        https://github.com/coreboot/coreboot/archive/%{version}.tar.gz
 License:        GPLv2
 BuildRequires:  gcc g++ gcc-gnat make cmake ncurses-devel iasl git
 Requires:       glibc
 Packager:       Owen Zimmerman <owen@fyralabs.com>
- 
+
 %description
 Management utility for CBFS formatted ROM images.
- 
+
 %prep
-%autosetup -n coreboot-%version
- 
+git clone https://review.coreboot.org/coreboot.git -b %version
+
 %build
-make -C util/cbfstool
- 
+make -C coreboot/util/cbfstool
+
 %install
-install -Dm 777 cbfstool %buildroot%_bindir/cbfstool
+install -Dm 777 coreboot/util/cbfstool/cbfstool %buildroot%_bindir/cbfstool
 
 %files
 /usr/bin/cbfstool
 
 %changelog
-* Sat Aug 24 2024 Owen Zimmerman <owen@fyralabs.com>
+* Sun Aug 25 2024 Owen Zimmerman <owen@fyralabs.com>
 - Initial Package
