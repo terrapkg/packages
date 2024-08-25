@@ -5,7 +5,7 @@ Summary:        Management utility for CBFS formatted ROM images
 URL:            https://doc.coreboot.org/lib/fw_config.html#cbfs
 Source0:        https://github.com/coreboot/coreboot/archive/%{version}.tar.gz
 License:        GPLv2
-BuildRequires:  gcc g++ gnat make cmake ncurses-dev iasl 
+BuildRequires:  gcc g++ gcc-gnat make cmake ncurses-devel iasl 
 Requires:       glibc
 Packager:       Owen Zimmerman <owen@fyralabs.com>
  
