@@ -10,7 +10,7 @@ Group:		Applications/Internet
 Source1:	launch.sh
 Packager:	madonuko <mado@fyralabs.com>
 Requires:	electron xdg-utils
-BuildRequires:	git-core add-determinism pnpm
+BuildRequires:	git-core pnpm
 Conflicts:	armcord-bin
 BuildArch:	noarch
 
