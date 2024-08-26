@@ -2,11 +2,11 @@
 %global _build_id_links none
 
 %ifarch x86_64
-%global src ArmCord-%version
+%global src ArmCord-%version-linux-x64
 %elifarch aarch64
-%global src ArmCord-%version-arm64
+%global src ArmCord-%version-linux-arm64
 %elifarch armv7l
-%global src ArmCord-%version-armv7l
+%global src ArmCord-%version-linux-armv7l
 %endif
 
 # Exclude private libraries
@@ -26,7 +26,6 @@ Source2:		https://raw.githubusercontent.com/ArmCord/ArmCord/v%version/README.md
 Requires:		electron xdg-utils
 ExclusiveArch:	x86_64 aarch64 armv7l
 Conflicts:		armcord
-BuildRequires:	add-determinism
 
 %description
 ArmCord is a custom client designed to enhance your Discord experience
