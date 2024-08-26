@@ -2,11 +2,11 @@
 %global _build_id_links none
 
 %ifarch x86_64
-%global src ArmCord-%version
+%global src ArmCord-%version-linux-x64
 %elifarch aarch64
-%global src ArmCord-%version-arm64
+%global src ArmCord-%version-linux-arm64
 %elifarch armv7l
-%global src ArmCord-%version-armv7l
+%global src ArmCord-%version-linux-armv7l
 %endif
 
 # Exclude private libraries
