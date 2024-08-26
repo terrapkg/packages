@@ -1,7 +1,7 @@
 #%global debug_package %{nil}
 
 Name:           open-in-mpv
-Version:        2.2.2
+Version:        2.3.0
 Release:        1%?dist
 Summary:        CLI component of open-in-mpv browser extension
 
