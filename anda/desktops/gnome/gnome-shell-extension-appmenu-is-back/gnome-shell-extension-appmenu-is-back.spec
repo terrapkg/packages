@@ -20,7 +20,7 @@ Recommends:     gnome-extensions-app
 This extension brings back the app menu in the top panel, for GNOME 45 and later.
 
 %prep
-%autosetup -n appmenu-is-back-%{version}
+%autosetup -n appmenu-is-back-%{version} -p1
 
 %install
 install -Dm644 metadata.json %{buildroot}%{_datadir}/gnome-shell/extensions/%{uuid}/metadata.json
