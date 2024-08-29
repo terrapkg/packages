@@ -1,5 +1,5 @@
 Name:			keyd
-Version:		2.5.0
+Version:		2.4.3
 Release:		1%?dist
 Summary:		Key remapping daemon for linux
 URL:			https://github.com/rvaiya/keyd
@@ -21,6 +21,7 @@ git clone --depth 1 -b v%version %url .
 %install
 %make_install PREFIX=%_prefix
 install -Dm644 keyd.service %buildroot%_unitdir/keyd.service
+sed -i 's@local/@@g' %buildroot%_unitdir/keyd.service
 
 %post
 %systemd_post keyd.service

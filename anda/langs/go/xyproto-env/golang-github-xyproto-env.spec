@@ -4,7 +4,7 @@
 
 # https://github.com/xyproto/env
 %global goipath         github.com/xyproto/env
-Version:                2.2.5
+Version:                2.5.0
 
 %gometa -f
 
@@ -15,7 +15,7 @@ Provide default values when fetching environment variables.}
 %global godocs          README.md
 
 Name:           golang-%{goname}
-Release:        1%{?dist}
+Release:        1%?dist
 Summary:        Provide default values when fetching environment variables
 
 License:        BSD-3-Clause

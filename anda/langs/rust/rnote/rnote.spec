@@ -1,3 +1,5 @@
+%global build_rustflags %build_rustflags -C link-arg=-fuse-ld=mold
+
 Name:           rnote
 Version:        0.11.0
 Release:        1%?dist
@@ -6,7 +8,7 @@ License:        GPL-3.0
 URL:            https://github.com/flxzt/rnote
 Source0:        %{url}/archive/refs/tags/v%version.tar.gz
 Requires:       gtk4
-BuildRequires:  cargo meson cmake libappstream-glib gcc-c++ pkgconfig(alsa) alsa-lib clang-devel python desktop-file-utils
+BuildRequires:  cargo meson cmake libappstream-glib gcc-c++ pkgconfig(alsa) alsa-lib clang-devel python desktop-file-utils mold
 BuildRequires:  pkgconfig(glib-2.0) >= 2.66
 BuildRequires:  pkgconfig(gtk4) >= 4.7
 BuildRequires:  pkgconfig(libadwaita-1) >= 1.2
