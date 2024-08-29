@@ -1,5 +1,5 @@
-%global commit 56f2e0b0d6378fcf31d43d349c1e5ff57b6eb985
-%global commit_date 20240729
+%global commit 17554fa2dcd15adaf9f0554df83e956e969ee747
+%global commit_date 20240829
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           envision
@@ -9,7 +9,7 @@ Summary:        UI for building, configuring and running Monado, the open source
 License:        AGPL-3.0-or-later
 URL:            https://gitlab.com/gabmus/envision/
 Source0:        %url/-/archive/%commit/envision-%commit.tar.gz
-BuildRequires:  meson ninja-build cargo
+BuildRequires:  meson ninja-build cargo 
 BuildRequires:  pkgconfig(glib-2.0) >= 2.66
 BuildRequires:  pkgconfig(gio-2.0) >= 2.66
 BuildRequires:  pkgconfig(gtk4) >= 4.10.0
