@@ -3,8 +3,9 @@ Version:		0.8.5
 Release:		1%?dist
 Summary:		Easily install and manage multiple versions of the Nim programming language
 License:		BSD-3-Clause
-URL:			https://github.com/dom96/choosenim
+URL:			https://github.com/nim-lang/choosenim
 Source0:		%url/archive/refs/tags/v%version.tar.gz
+Packager:		madonuko <mado@fyralabs.com>
 BuildRequires:	nim git
 
 %description
