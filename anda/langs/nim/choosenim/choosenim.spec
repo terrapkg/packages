@@ -23,7 +23,7 @@ tar xf %SOURCE1
 pushd Nim-%nimver
 nim c koch
 popd
-./Nim-%nimver/koch tools
+./Nim-%nimver/koch checksums
 
 %build
 nimble setup -y
