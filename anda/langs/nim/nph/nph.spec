@@ -1,5 +1,3 @@
-%define debug_package %nil
-
 Name:           nph
 Version:        0.6.0
 Release:        1%?dist
@@ -20,10 +18,10 @@ nph is an opinionated source code formatter for the Nim language, aiming to take
 %nim_prep -t:"%nim_tflags" -l:"%nim_lflags"
 
 %build
-nimble build -d:release -t:"%nim_tflags" -l:"%nim_lflags"
+nimble c -d:release -t:"%nim_tflags" -l:"%nim_lflags" src/nph
 
 %install
-install -Dpm755 nph %buildroot%_bindir/nph
+install -Dpm755 src/nph %buildroot%_bindir/nph
 
 %files
 %_bindir/nph
