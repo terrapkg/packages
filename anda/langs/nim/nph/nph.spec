@@ -27,3 +27,5 @@ install -Dpm755 nph %buildroot%_bindir/nph
 
 %files
 %_bindir/nph
+%license copying.txt
+%doc README.md
