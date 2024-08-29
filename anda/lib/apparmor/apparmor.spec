@@ -171,6 +171,7 @@ popd
     APPARMOR_BIN_PREFIX=%{buildroot}%{_prefix}/lib/apparmor \
     SBINDIR=%{buildroot}%{_sbindir}
 %make_install -C profiles
+mkdir -p %buildroot%_datadir/polkit-1/actions/
 %make_install -C utils
 %make_install -C changehat/pam_apparmor \
     SECDIR=%{buildroot}%{_libdir}/security
