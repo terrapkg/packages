@@ -17,7 +17,7 @@ sources, enabling you to easily switch between stable and development compilers.
 
 %build
 nimble setup -y
-nim c -t:-fPIE -l:-pie -d:release -t:"$CFLAGS" -l:"$LDFLAGS" src/choosenim
+nimble c -t:-fPIE -l:-pie -d:release -t:"$CFLAGS" -l:"$LDFLAGS" src/choosenim
 
 %install
 install -Dm755 src/choosenim %buildroot%_bindir/choosenim
