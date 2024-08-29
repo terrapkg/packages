@@ -1,3 +1,5 @@
+%define debug_package %nil
+
 Name:           nph
 Version:        0.6.0
 Release:        1%?dist
