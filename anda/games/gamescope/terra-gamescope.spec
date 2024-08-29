@@ -6,7 +6,7 @@
 
 %global toolchain clang
 %global _default_patch_fuzz 2
-%global gamescope_tag 3.15.3
+%global gamescope_tag 3.15.4-beta-for-steamos-main
 
 Name:           terra-gamescope
 Version:        100.%{gamescope_tag}
