@@ -22,8 +22,10 @@ tar xf %SOURCE1
 # bootstrap koch
 pushd Nim-%nimver
 nim c koch
+./koch checksums
+ls -alh
+mv dist ../../
 popd
-./Nim-%nimver/koch checksums
 
 %build
 nimble setup -y
