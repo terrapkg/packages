@@ -23,8 +23,8 @@ tar xf %SOURCE1
 pushd Nim-%nimver
 nim c koch
 ./koch checksums
-ls -alh
-mv dist ../../
+mkdir -p ../nimble/
+mv dist ../nimble/
 popd
 
 %build
