@@ -1,3 +1,5 @@
+%global nimver 2.0.8
+
 Name:			choosenim
 Version:		0.8.5
 Release:		1%?dist
@@ -5,6 +7,7 @@ Summary:		Easily install and manage multiple versions of the Nim programming lan
 License:		BSD-3-Clause
 URL:			https://github.com/nim-lang/choosenim
 Source0:		%url/archive/refs/tags/v%version.tar.gz
+Source1:		https://github.com/nim-lang/Nim/archive/refs/tags/v%nimver.tar.gz
 Packager:		madonuko <mado@fyralabs.com>
 BuildRequires:	nim git
 
@@ -14,6 +17,13 @@ sources, enabling you to easily switch between stable and development compilers.
 
 %prep
 %autosetup
+tar xf %SOURCE1
+
+# bootstrap koch
+pushd Nim-%nimver
+nim c koch
+popd
+./Nim-%nimver/koch tools
 
 %build
 nimble setup -y
