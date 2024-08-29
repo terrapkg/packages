@@ -8,7 +8,7 @@ Source0:        %url/archive/refs/tags/v%version.tar.gz
 SourceLicense:  MIT
 Packager:       madonuko <mado@fyralabs.com>
 BuildRequires:  anda-srpm-macros
-#Buildrequires:  nim
+BuildRequires:  nim
 
 %description
 nph is an opinionated source code formatter for the Nim language, aiming to take the drudgery of manual formatting out of your coding day.
