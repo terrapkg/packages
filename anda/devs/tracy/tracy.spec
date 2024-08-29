@@ -27,7 +27,7 @@ This package contains the development files for the tracy package.
 %meson
 %meson_build
 
-for project in capture csvexport import-chrome import-fuchsia update profiler
+for project in capture csvexport import update profiler
 do
     pushd $project
     %cmake -DDOWNLOAD_CAPSTONE=0
