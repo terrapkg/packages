@@ -27,7 +27,7 @@ This package contains the development files for the tracy package.
 %meson
 %meson_build
 
-for project in capture csvexport import-chrome import-fuchsia update profiler
+for project in capture csvexport import update profiler
 do
     pushd $project
     %cmake -DDOWNLOAD_CAPSTONE=0
@@ -41,8 +41,8 @@ done
 # NOTE: the subprojects don't have install targets so we do it manually
 install -Dm755 capture/%__cmake_builddir/tracy-capture %buildroot%_bindir/tracy-capture
 install -Dm755 csvexport/%__cmake_builddir/tracy-csvexport %buildroot%_bindir/tracy-csvexport
-install -Dm755 import-chrome/%__cmake_builddir/tracy-import-chrome %buildroot%_bindir/tracy-import-chrome
-install -Dm755 import-fuchsia/%__cmake_builddir/tracy-import-fuchsia %buildroot%_bindir/tracy-import-fuchsia
+install -Dm755 import/%__cmake_builddir/tracy-import-chrome %buildroot%_bindir/tracy-import-chrome
+install -Dm755 import/%__cmake_builddir/tracy-import-fuchsia %buildroot%_bindir/tracy-import-fuchsia
 install -Dm755 update/%__cmake_builddir/tracy-update %buildroot%_bindir/tracy-update
 install -Dm755 profiler/%__cmake_builddir/tracy-profiler %buildroot%_bindir/tracy
 
