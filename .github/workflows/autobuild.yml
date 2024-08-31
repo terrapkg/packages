@@ -94,7 +94,7 @@ jobs:
           subatomic-cli upload --prune \
             --server https://subatomic.fyralabs.com \
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
-            terra${{ matrix.version }} anda-build/rpm/rpms/*
+            terra${{ matrix.pkg.labels['extra'] && '-extra' }}${{ matrix.version }} anda-build/rpm/rpms/*
 
       - name: Upload source packages to subatomic
         if: github.event_name == 'push'
