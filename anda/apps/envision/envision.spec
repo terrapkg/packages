@@ -21,6 +21,7 @@ BuildRequires:  openxr-devel
 BuildRequires:  libappstream-glib
 BuildRequires:  desktop-file-utils
 BuildRequires:  glib2-devel
+BuildRequires:  git-core
 Recommends:     android-tools
 
 %description
