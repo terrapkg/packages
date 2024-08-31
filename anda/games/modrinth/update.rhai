@@ -1,0 +1,1 @@
+rpm.version(find(`https://launcher-files.modrinth.com/versions/([/d/.]+)/linux/Modrinth%20App_.+?_amd64.AppImage`, get("https://modrinth.com/app"), 1));
