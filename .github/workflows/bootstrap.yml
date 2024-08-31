@@ -7,50 +7,65 @@ jobs:
   bootstrap:
     strategy:
       matrix:
-        version: ["40"]
+        version: ["10"]
         arch: ["x86_64", "aarch64"]
       fail-fast: true
     runs-on: ${{ matrix.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
     container:
-      image: registry.fedoraproject.org/fedora-minimal:${{ matrix.version }}
+      image: docker.io/library/almalinux:${{ matrix.version }}
       options: --cap-add=SYS_ADMIN --privileged
     steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: el${{ matrix.version }}
+          fetch-depth: 1
+
       - name: Install repositories
-        run: dnf5 install -y --setopt=install_weak_deps=False mock curl wget git-core openssl-devel cargo podman fuse-overlayfs
+        run: |
+          dnf install -y 'dnf-command(config-manager)'
+          dnf config-manager --set-enabled crb
+          dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-${{ matrix.version }}.noarch.rpm
+          dnf install -y mock wget git-core openssl-devel cargo podman fuse-overlayfs rpm-build mock
+          dnf builddep -y anda/{terra/{mock-configs,srpm-macros},tools/buildsys/subatomic}/*.spec
+
+      - name: Vendor Go
+        run: |
+          rm /usr/bin/go
+          curl -L https://go.dev/dl/go1.22.6.linux-${{ matrix.arch == 'aarch64' && 'arm64' || 'amd64' }}.tar.gz -o go.tar.gz
+          tar xf go.tar.gz go/bin/go
+          cp go/bin/go /usr/local/bin/
 
       - name: Install Anda
         run: cargo install anda
 
-      - uses: actions/checkout@v4
-        with:
-          ref: f${{ matrix.version }}
-          fetch-depth: 1
       - name: Build terra-mock-configs
         run: |
           echo "PATH=$PATH:/github/home/.cargo/bin" >> $GITHUB_ENV
           export PATH=$PATH:/github/home/.cargo/bin
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
-          anda build -c fedora-${{ matrix.version }}-${{ matrix.arch }} anda/terra/mock-configs/pkg -p rpm
+          anda build -c almalinux-${{ matrix.version }}-${{ matrix.arch }} anda/terra/mock-configs/pkg --rpm-builder=rpmbuild
       - name: Install terra-mock-configs
-        run: dnf5 install -y anda-build/rpm/rpms/terra-mock-configs*.rpm
+        run: dnf install -y anda-build/rpm/rpms/terra-mock-configs*.rpm
 
       - name: Build anda-srpm-macros
-        run: anda build -c terra-${{ matrix.version }}-${{ matrix.arch }} anda/terra/srpm-macros/pkg
+        run: anda build -c terra-el${{ matrix.version }}+epel-${{ matrix.arch }}.cfg anda/terra/srpm-macros/pkg --rpm-builder=rpmbuild
 
       - name: Build Subatomic
-        run: anda build -c terra-${{ matrix.version }}-${{ matrix.arch }} anda/tools/buildsys/subatomic/pkg
+        run: anda build -c terra-el${{ matrix.version }}+epel-${{ matrix.arch }}.cfg anda/tools/buildsys/subatomic/pkg --rpm-builder=rpmbuild
       - name: Install Subatomic
-        run: dnf5 install -y ./anda-build/rpm/rpms/subatomic-*.rpm
+        run: dnf install -y ./anda-build/rpm/rpms/subatomic-*.rpm
 
+      - name: Install Build Dependencies for Andaman
+        run: dnf builddep -y anda/tools/buildsys/anda/*.spec
       - name: Build Andaman
-        run: anda build -c terra-${{ matrix.version }}-${{ matrix.arch }} anda/tools/buildsys/anda/pkg
+        run: anda build -c terra-el${{ matrix.version }}+epel-${{ matrix.arch }} anda/tools/buildsys/anda/pkg --rpm-builder=rpmbuild
 
       - name: Upload packages to subatomic
         run: |
           subatomic-cli upload --prune \
             --server https://subatomic.fyralabs.com \
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
-            terra${{ matrix.version }} anda-build/rpm/rpms/*
+            terra-el${{ matrix.version }} anda-build/rpm/rpms/*
 
       - name: Upload source packages to subatomic
         if: github.event_name == 'push'
@@ -58,4 +73,4 @@ jobs:
           subatomic-cli upload --prune \
             --server https://subatomic.fyralabs.com \
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
-            terra${{ matrix.version }}-source anda-build/rpm/srpm/*
+            terra-el${{ matrix.version }}-source anda-build/rpm/srpm/*

@@ -8,7 +8,7 @@ jobs:
   autoupdate:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/terrapkg/builder:f40
+      image: ghcr.io/terrapkg/builder:frawhide
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Checkout
@@ -17,11 +17,12 @@ jobs:
           fetch-depth: 0
           ssh-key: ${{ secrets.SSH_AUTHENTICATION_KEY }}
 
-      - name: Install SSH signing key
+      - name: Install SSH signing key & Set up git repository
         run: |
           mkdir -p ${{ runner.temp }}
           echo "${{ secrets.SSH_SIGNING_KEY }}" > ${{ runner.temp }}/signing_key
           chmod 0700 ${{ runner.temp }}/signing_key
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
       - name: Run Nightly Update
         run: anda update -vv --filters nightly=1
@@ -30,7 +31,6 @@ jobs:
 
       - name: Save
         run: |
-          git config --global --add safe.directory "*"
           if [[ `git status --porcelain` ]]; then
             git config user.name "Raboneko"
             git config user.email "raboneko@fyralabs.com"
@@ -46,8 +46,8 @@ jobs:
               git add *
               git commit -S -a -m "$msg"
             }
-            copy_over f37 || true
-            copy_over f38 || true
-            copy_over frawhide || true
+            copy_over f39 || true
+            copy_over f40 || true
+            copy_over f41 || true
             git push -u origin --all
           fi

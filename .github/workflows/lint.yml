@@ -3,18 +3,18 @@ name: Lint
 on:
   push:
     branches:
-      - f40
+      - frawhide
   pull_request:
     branches:
-      - f40
+      - frawhide
   merge_group:
     branches:
-      - f40
+      - frawhide
 jobs:
   lint:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/terrapkg/builder:f40
+      image: ghcr.io/terrapkg/builder:frawhide
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
