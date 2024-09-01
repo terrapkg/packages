@@ -102,7 +102,7 @@ jobs:
           subatomic-cli upload --prune \
             --server https://subatomic.fyralabs.com \
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
-            terra${{ matrix.pkg.labels['extra'] && '-extra' }}${{ matrix.version }}-source anda-build/rpm/rpms/*
+            terra${{ matrix.pkg.labels['extra'] && '-extra' }}${{ matrix.version }}-source anda-build/rpm/srpm/*
 
       - name: Notify Madoguchi (Success)
         if: success() && github.event_name == 'push'
