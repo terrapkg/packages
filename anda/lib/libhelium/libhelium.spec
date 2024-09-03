@@ -1,4 +1,4 @@
-%global ver 1.8.21
+%global ver 1.8.22
 %global sanitized_ver %(echo %{ver} | sed -E 's/-/~/g')
 Summary:        The Application Framework for tauOS apps
 Name:           libhelium
