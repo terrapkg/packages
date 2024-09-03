@@ -6,7 +6,7 @@
 %global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 Name:			feishin
-Version:		0.7.3
+Version:		0.8.0
 Release:		1%?dist
 Summary:		A modern self-hosted music player
 License:		GPL-3.0
