@@ -15,7 +15,7 @@ Source0:        %{crates_source}
 Source1:        https://raw.githubusercontent.com/Radiicall/jellyfin-rpc/%version/LICENSE
 Packager:       madonuko <mado@fyralabs.com>
 
-BuildRequires:  cargo-rpm-macros >= 24
+BuildRequires:  anda-srpm-macros cargo-rpm-macros >= 24
 
 %global _description %{expand:
 Displays the content you're currently watching on Discord!.}
