@@ -30,7 +30,7 @@ Provides:       jellyfin-rpc
 %description -n %{crate} %{_description}
 
 %files       -n %{crate}
-%license LICENSE
+%license %_datadir/licenses/%name/LICENSE
 %license LICENSE.dependencies
 %doc README.md
 %{_bindir}/jellyfin-rpc
