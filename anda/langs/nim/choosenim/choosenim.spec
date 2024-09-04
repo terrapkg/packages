@@ -18,12 +18,11 @@ sources, enabling you to easily switch between stable and development compilers.
 %prep
 %autosetup
 tar xf %SOURCE1
-ls -alh nim-%nimver/
 
 
 %build
-nimble setup -y
-nimble c -t:-fPIE -l:-pie -d:release -t:"$CFLAGS" -l:"$LDFLAGS" src/choosenim --path:nim-%nimver/bin
+nimble setup -y -p:nim-%nimver/bin
+nimble c -t:-fPIE -l:-pie -d:release -t:"$CFLAGS" -l:"$LDFLAGS" src/choosenim -p:nim-%nimver/bin
 
 
 %install
