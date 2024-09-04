@@ -45,4 +45,4 @@ Recommends:     android-tools
 %_datadir/envision/
 %_iconsdir/hicolor/scalable/apps/org.gabmus.envision.Devel.svg
 %_iconsdir/hicolor/symbolic/apps/org.gabmus.envision.Devel-symbolic.svg
-%_metainfodir/org.gabmus.envision.appdata.xml
+%_metainfodir/org.gabmus.envision.metainfo.xml
