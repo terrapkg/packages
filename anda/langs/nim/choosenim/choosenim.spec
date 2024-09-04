@@ -21,7 +21,7 @@ tar xf %SOURCE1
 
 
 %build
-nimble setup -y -p:nim-%nimver/bin
+nimble install -y
 nimble c -t:-fPIE -l:-pie -d:release -t:"$CFLAGS" -l:"$LDFLAGS" src/choosenim -p:nim-%nimver/bin
 
 
