@@ -7,7 +7,7 @@ Summary:		Easily install and manage multiple versions of the Nim programming lan
 License:		BSD-3-Clause
 URL:			https://github.com/nim-lang/choosenim
 Source0:		%url/archive/refs/tags/v%version.tar.gz
-Source1:		https://nim-lang.org/download/nim-$nimver-linux_x64.tar.xz
+Source1:		https://nim-lang.org/download/nim-%nimver-linux_x64.tar.xz
 Packager:		madonuko <mado@fyralabs.com>
 BuildRequires:	nim git
 
