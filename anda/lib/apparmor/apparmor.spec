@@ -1,18 +1,18 @@
 %{?python_enable_dependency_generator}
 
 %bcond_with tests
+%global normver 4.1.0-beta1
 
 Name:           apparmor
-Version:        4.1.0.beta1
+Version:        %(echo %normver | sed 's/-/~/')
 Release:        1%?dist
 Summary:        AppArmor userspace components
 
-%define baseversion %(echo %{version} | cut -d. -f-2)
-%global normver %(echo %version | sed 's/~/-/')
+%define baseversion %(echo %{normver} | cut -d. -f-2)
 
 License:        GPL-2.0
 URL:            https://gitlab.com/apparmor/apparmor
-Source0:        %url/-/archive/v%version/apparmor-v%version.tar.gz
+Source0:        %url/-/archive/v%normver/apparmor-v%normver.tar.gz
 Source1:        apparmor.preset
 Patch01:        0001-fix-avahi-daemon-authselect-denial-in-fedora.patch
 
@@ -139,7 +139,7 @@ confinement policies when running virtual hosts in the webserver by using the
 changehat abilities exposed through libapparmor.
 
 %prep
-%autosetup -p1 -n %name-v%version
+%autosetup -p1 -n apparmor-v%normver
 sed -i 's/@VERSION@/%normver/g' libraries/libapparmor/swig/python/setup.py.in
 sed -i 's/${VERSION}/%normver/g' utils/Makefile
 
@@ -171,6 +171,7 @@ popd
     APPARMOR_BIN_PREFIX=%{buildroot}%{_prefix}/lib/apparmor \
     SBINDIR=%{buildroot}%{_sbindir}
 %make_install -C profiles
+mkdir -p %buildroot%_datadir/polkit-1/actions/
 %make_install -C utils
 %make_install -C changehat/pam_apparmor \
     SECDIR=%{buildroot}%{_libdir}/security
