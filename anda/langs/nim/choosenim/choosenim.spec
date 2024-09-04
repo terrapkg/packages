@@ -23,13 +23,11 @@ tar xf %SOURCE1
 pushd Nim-%nimver
 nim c koch
 ./koch checksums
-mkdir -p ../nimble/
-mv dist ../nimble/
 popd
 
 %build
 nimble setup -y
-nimble c -t:-fPIE -l:-pie -d:release -t:"$CFLAGS" -l:"$LDFLAGS" src/choosenim
+nimble c -t:-fPIE -l:-pie -d:release -t:"$CFLAGS" -l:"$LDFLAGS" src/choosenim --path:Nim-%nimver
 
 %install
 install -Dm755 src/choosenim %buildroot%_bindir/choosenim
