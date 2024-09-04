@@ -18,6 +18,7 @@ sources, enabling you to easily switch between stable and development compilers.
 %prep
 %autosetup
 tar xf %SOURCE1
+ls -alh nim-%nimver/
 
 
 %build
