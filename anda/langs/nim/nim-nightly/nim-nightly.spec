@@ -1,8 +1,8 @@
 %global csrc_commit 561b417c65791cd8356b5f73620914ceff845d10
-%global commit 99f4cfa43850f4927aee329af6a461a22f483de2
+%global commit d91297a330a4cccc4d82c06d4c33b16544b0c1bb
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global ver 2.1.99
-%global commit_date 20240905
+%global commit_date 20240906
 %global debug_package %nil
 
 Name:			nim-nightly
