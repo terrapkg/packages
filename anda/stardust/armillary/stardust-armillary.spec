@@ -21,7 +21,7 @@ Conflicts:      armillary
 A model viewer for Stardust XR which works great for hand tracking, pointers, and controllers.
 
 %prep
-%autosetup -n flatland-%commit
+%autosetup -n armillary-%commit
 %cargo_prep_online
 
 %build
@@ -31,7 +31,7 @@ A model viewer for Stardust XR which works great for hand tracking, pointers, an
 %cargo_install
 
 %files
-%_bindir/flatland
+%_bindir/armillary
 %license LICENSE
 %doc README.md
 
