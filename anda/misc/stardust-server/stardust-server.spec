@@ -5,8 +5,19 @@ Summary:        Usable Linux display server that reinvents human-computer intera
 URL:            https://github.com/StardustXR/server
 Source0:        %url/archive/refs/tags/0.44.1.tar.gz
 License:        GPLv2
-BuildRequires:  cargo cmake anda-srpm-macros rust-srpm-macros
-Requires:       libxkbcommon libstdc++ openxr-libs libX11 libXfixes libglvnd-egl mesa-libgbm fontconfig libgcc glibc jsoncpp libxcb libglvnd libwayland-server libdrm expat libxcb freetype libxml2 libXau libXau libffi zlib-ng-compat bzip2-libs libpng harfbuzz libbrotli xz-libs glib2 graphite2 libbrotli pcre2
+
+BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold g++
+BuildRequires:  glx-utils fontconfig-devel glibc libxcb-devel wayland-devel
+BuildRequires:  openxr-devel libglvnd-devel libglvnd-gles mesa-libgbm-devel
+BuildRequires:  libwayland-egl libX11-devel libXfixes-devel lld clang
+BuildRequires:  mesa-libEGL-devel libxkbcommon-devel
+
+Requires:       libxkbcommon libstdc++ openxr-libs libX11 libXfixes
+Requires:       libglvnd-egl mesa-libgbm fontconfig libgcc glibc jsoncpp libxcb libglvnd
+Requires:       libwayland-server libdrm expat libxcb freetype libxml2 libXau libXau
+Requires:       libffi zlib-ng-compat bzip2-libs libpng harfbuzz libbrotli xz-libs
+Requires:       glib2 graphite2 libbrotli pcre2
+
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
@@ -28,5 +39,8 @@ Usable Linux display server that reinvents human-computer interaction for all ki
 %doc README.md
 
 %changelog
+* Sat Sep 7 2024 june-fish <june@fyralabs.com>
+- Add missing build dependencies
+
 * Sat Sep 7 2024 Owen-sz <owen@fyralabs.com>
 - Package StardustXR Server
