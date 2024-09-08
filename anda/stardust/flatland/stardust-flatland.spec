@@ -1,8 +1,8 @@
 %global commit b83f2eced868fe71248ba7681df978698eb978f0
 %global commit_date 20240824
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global debug_package %{nil}
-%define __os_install_post %{nil}
+# Exclude input files from mangling
+%global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-flatland
 Version:        %commit_date.%shortcommit
