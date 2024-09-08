@@ -15,7 +15,6 @@ BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold
 Requires:       libgcc glibc
 
 Provides:       armillary
-Conflicts:      armillary
 
 %description
 A model viewer for Stardust XR which works great for hand tracking, pointers, and controllers.
