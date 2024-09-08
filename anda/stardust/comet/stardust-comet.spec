@@ -1,8 +1,8 @@
 %global commit afbf6109398794791ffb30317712d742143fd08a
 %global commit_date 20240831
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global debug_package %{nil}
-%define __os_install_post %{nil}
+# Exclude input files from mangling
+%global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-comet
 Version:        %commit_date.%shortcommit
