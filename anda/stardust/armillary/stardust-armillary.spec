@@ -1,8 +1,8 @@
 %global commit 8ad02b636690170adbd4279fe3fc8265088cbcc2
 %global commit_date 20240726
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global debug_package %{nil}
-%define __os_install_post %{nil}
+# Exclude input files from mangling
+%global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-armillary
 Version:        %commit_date.%shortcommit
