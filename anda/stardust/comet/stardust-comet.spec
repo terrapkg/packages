@@ -15,7 +15,6 @@ BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold
 Requires:       libgcc glibc
 
 Provides:       comet
-Conflicts:      comet
 
 %description
 Annotate things in Stardust
