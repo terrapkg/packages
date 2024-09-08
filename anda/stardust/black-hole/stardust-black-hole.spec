@@ -1,8 +1,7 @@
 %global commit 0b847b6ddc383bfcc1e133a2238a37ce8202fe95
 %global commit_date 20240824
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global debug_package %{nil}
-%define __os_install_post %{nil}
+%global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-black-hole
 Version:        %commit_date.%shortcommit
@@ -36,5 +35,5 @@ Spatial storage for stardust xr
 %doc README.md
 
 %changelog
-* Sat Sep 7 2024 Owen-sz <owen@fyralabs.com>
+* Sat Sep 8 2024 Owen-sz <owen@fyralabs.com>
 - Package StardustXR black-hole
