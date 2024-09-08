@@ -12,7 +12,7 @@ URL:            https://github.com/StardustXR/black-hole
 Source0:        https://github.com/StardustXR/black-hole/archive/%commit/black-hole-%commit.tar.gz
 License:        MIT
 BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold
-Requires:       libgcc glibc glibm
+Requires:       libgcc musl glibm
 
 Provides:       black-hole
 Conflicts:      black-hole
