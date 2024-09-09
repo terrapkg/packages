@@ -1,5 +1,5 @@
 Name:		limine
-Version:	8.0.9
+Version:	8.0.10
 Release:	1%?dist
 Summary:	Modern, advanced, portable, multiprotocol bootloader
 License:	BSD-2-Clause
