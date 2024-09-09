@@ -1,8 +1,8 @@
-%global rn 4
+%global rn 1
 
 Name:           unity-greeter
-Version:        23.10.1
-Release:        %autorelease
+Version:        24.10.1
+Release:        1%?dist
 Summary:        Unity Greeter for Lightdm
 
 License:        GPL-3.0
