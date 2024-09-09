@@ -9,7 +9,7 @@ Version:        %commit_date.%shortcommit
 Release:        1%?dist
 Summary:        Model viewer for Stardust XR.
 URL:            https://github.com/StardustXR/armillary
-Source0:        https://github.com/StardustXR/armillary/archive/%commit/armillary-%commit.tar.gz
+Source0:        %url/archive/%commit/armillary-%commit.tar.gz
 License:        MIT
 BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold
 Requires:       libgcc glibc
