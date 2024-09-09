@@ -15,6 +15,7 @@ BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold
 Requires:       libgcc glibc
 
 Provides:       black-hole
+Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
 Spatial storage for stardust xr
