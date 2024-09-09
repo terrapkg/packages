@@ -17,7 +17,7 @@ Requires:       libgcc glibc
 Provides:       flatland
 
 %description
-Flatland for StardustXR.
+%summary
 
 %prep
 %autosetup -n flatland-%commit
