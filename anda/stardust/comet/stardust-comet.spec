@@ -9,7 +9,7 @@ Version:        %commit_date.%shortcommit
 Release:        1%?dist
 Summary:        Annotate things in Stardust.
 URL:            https://github.com/StardustXR/comet
-Source0:        https://github.com/StardustXR/comet/archive/%commit/comet-%commit.tar.gz
+Source0:        %url/archive/%commit/comet-%commit.tar.gz
 License:        MIT
 BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold
 Requires:       libgcc glibc
@@ -24,7 +24,6 @@ Annotate things in Stardust
 %cargo_prep_online
 
 %build
-%cargo_build
 
 %install
 %cargo_install
