@@ -23,7 +23,6 @@ Spatial storage for stardust xr
 %cargo_prep_online
 
 %build
-%cargo_build
 
 %install
 %cargo_install
