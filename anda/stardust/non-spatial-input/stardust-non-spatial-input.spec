@@ -15,6 +15,7 @@ BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold libudev-devel
 Requires:       libgcc glibc 
 
 Provides:       non-spatial-input
+Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
 Tools you can easily snap together to get non-spatial input into stardust.
