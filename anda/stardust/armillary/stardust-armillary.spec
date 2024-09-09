@@ -24,7 +24,6 @@ A model viewer for Stardust XR which works great for hand tracking, pointers, an
 %cargo_prep_online
 
 %build
-%cargo_build
 
 %install
 %cargo_install
