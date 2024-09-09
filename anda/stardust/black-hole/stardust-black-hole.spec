@@ -9,7 +9,7 @@ Version:        %commit_date.%shortcommit
 Release:        1%?dist
 Summary:        Spatial storage for stardust xr.
 URL:            https://github.com/StardustXR/black-hole
-Source0:        https://github.com/StardustXR/black-hole/archive/%commit/black-hole-%commit.tar.gz
+Source0:        %url/archive/%commit/black-hole-%commit.tar.gz
 License:        MIT
 BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold
 Requires:       libgcc glibc
@@ -24,7 +24,6 @@ Spatial storage for stardust xr
 %cargo_prep_online
 
 %build
-%cargo_build
 
 %install
 %cargo_install
