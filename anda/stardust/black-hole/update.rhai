@@ -5,3 +5,4 @@ if filters.contains("nightly") {
       rpm.global("commit_date", date());
     }
   }
+}
