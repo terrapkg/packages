@@ -12,7 +12,6 @@ URL:            https://github.com/StardustXR/protostar
 Source0:        %url/archive/%commit/protostar-%commit.tar.gz
 License:        MIT
 BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold libudev-devel g++ libinput-devel libxkbcommon-x11-devel
-Requires:       libgcc glibc 
 
 Provides:       protostar
 Packager:       Owen Zimmerman <owen@fyralabs.com>
