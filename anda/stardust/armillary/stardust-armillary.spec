@@ -12,7 +12,6 @@ URL:            https://github.com/StardustXR/armillary
 Source0:        %url/archive/%commit/armillary-%commit.tar.gz
 License:        MIT
 BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold
-Requires:       libgcc glibc
 
 Provides:       armillary
 Packager:       Owen Zimmerman <owen@fyralabs.com>
