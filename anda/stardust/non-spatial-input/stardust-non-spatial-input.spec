@@ -9,7 +9,7 @@ Version:        %commit_date.%shortcommit
 Release:        1%?dist
 Summary:        Tools you can easily snap together to get non-spatial input into stardust.
 URL:            https://github.com/StardustXR/non-spatial-input
-Source0:        https://github.com/StardustXR/non-spatial-input/archive/%commit/non-spatial-input-%commit.tar.gz
+Source0:        %url/archive/%commit/non-spatial-input-%commit.tar.gz
 License:        MIT
 BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold libudev-devel g++ libinput-devel libxkbcommon-x11-devel
 Requires:       libgcc glibc 
