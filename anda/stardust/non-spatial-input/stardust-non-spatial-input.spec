@@ -1,8 +1,8 @@
 %global commit 5ac7f04f6876097aa8c3cf9af033d609a8a49944
 %global commit_date 20240824
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global debug_package %{nil}
-%define __os_install_post %{nil}
+# Exclude input files from mangling
+%global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-non-spatial-input
 Version:        %commit_date.%shortcommit
