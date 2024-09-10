@@ -14,6 +14,7 @@ License:        MIT
 BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold
 
 Provides:       flatland
+Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
 %summary
