@@ -4,7 +4,7 @@
 
 Name:       lomiri-download-manager
 Version:    0.1.3
-Release:    1%{?dist}
+Release:    1%?dist
 Summary:    Upload Download Manager for Lomiri
 License:    LGPLv3
 URL:        https://gitlab.com/ubports/development/core/lomiri-download-manager

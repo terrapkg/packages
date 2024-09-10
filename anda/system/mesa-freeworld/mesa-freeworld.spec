@@ -66,13 +66,13 @@ algorithms and decoding only VC1 algorithm.
 %endif
 
 # todo: set to 1 when mesa 24.2 gets in the repos
-%global with_gallium_video 0
+%global with_gallium_video 1
 
 #%%global vulkan_drivers swrast%%{?base_vulkan}%%{?intel_platform_vulkan}%%{?extra_platform_vulkan}%%{?with_nvk:,nouveau}
 
 Name:           %{srcname}-freeworld
 Summary:        Mesa graphics libraries
-%global ver 24.1.7
+%global ver 24.2.2
 Version:        %{lua:ver = string.gsub(rpm.expand("%{ver}"), "-", "~"); print(ver)}
 Release:        1%{?dist}
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0
