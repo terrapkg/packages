@@ -24,7 +24,7 @@ jobs:
         run: |
           dnf install -y 'dnf-command(config-manager)'
           dnf config-manager --set-enabled crb
-          dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-${{ matrix.version }}.noarch.rpm
+          dnf install -y https://dl.fedoraproject.org/pub/epel/${{ matrix.version }}/Everything/${{ matrix.arch }}/os/Packages/e/epel-release-${{ matrix.version }}-1.el${{ matrix.version }}_0.noarch.rpm
           dnf install -y mock wget git-core openssl-devel cargo podman fuse-overlayfs rpm-build mock
           dnf builddep -y anda/{terra/{mock-configs,srpm-macros},tools/buildsys/subatomic}/*.spec
 
