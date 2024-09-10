@@ -1,6 +1,6 @@
 project pkg {
 	rpm {
-		spec = "stardust-black-hole.spec"
+		spec = "stardust-server.spec"
 	}
 	labels {
 	   nightly = 1
