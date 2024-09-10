@@ -12,7 +12,6 @@ URL:            https://github.com/StardustXR/flatland
 Source0:        %url/archive/%commit/flatland-%commit.tar.gz
 License:        MIT
 BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold
-Requires:       libgcc glibc
 
 Provides:       flatland
 
