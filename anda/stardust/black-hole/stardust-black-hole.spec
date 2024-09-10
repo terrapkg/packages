@@ -1,26 +1,19 @@
-%global commit 0b847b6ddc383bfcc1e133a2238a37ce8202fe95
-%global commit_date 20240824
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
-# Exclude input files from mangling
-%global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
-
-Name:           stardust-black-hole
-Version:        %commit_date.%shortcommit
+Name:           stardust-server
+Version:        0.44.1
 Release:        1%?dist
-Summary:        Spatial storage for stardust xr.
-URL:            https://github.com/StardustXR/black-hole
-Source0:        %url/archive/%commit/black-hole-%commit.tar.gz
-License:        MIT
-BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold
-
-Provides:       black-hole
+Summary:        Usable Linux display server that reinvents human-computer interaction for all kinds of XR.
+URL:            https://github.com/StardustXR/server
+Source0:        %url/archive/refs/tags/0.44.1.tar.gz
+License:        GPLv2
+BuildRequires:  cargo cmake anda-srpm-macros rust-srpm-macros
+Requires:       libxkbcommon libstdc++ openxr-libs libX11 libXfixes libglvnd-egl mesa-libgbm fontconfig libgcc glibc jsoncpp libxcb libglvnd libwayland-server libdrm expat libxcb freetype libxml2 libXau libXau libffi zlib-ng-compat bzip2-libs libpng harfbuzz libbrotli xz-libs glib2 graphite2 libbrotli pcre2
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
-Spatial storage for stardust xr
+Usable Linux display server that reinvents human-computer interaction for all kinds of XR, from putting 2D/XR apps into various 3D shells for varying uses to SDF-based interaction.
 
 %prep
-%autosetup -n black-hole-%commit
+%autosetup -n server-%version
 %cargo_prep_online
 
 %build
@@ -29,10 +22,10 @@ Spatial storage for stardust xr
 %cargo_install
 
 %files
-%_bindir/black-hole
+/usr/bin/stardust-xr-server
 %license LICENSE
 %doc README.md
 
 %changelog
-* Sat Sep 7 2024 Owen-sz <owen@fyralabs.com>
-- Package StardustXR black-hole
+* Tue Sep 10 2024 Owen-sz <owen@fyralabs.com>
+- Package StardustXR Server
