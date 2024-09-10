@@ -12,7 +12,7 @@ jobs:
       fail-fast: true
     runs-on: ${{ matrix.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
     container:
-      image: docker.io/library/almalinux:${{ matrix.version }}
+      image: quay.io/centos/centos:stream${{ matrix.version }}-development
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - uses: actions/checkout@v4
@@ -28,13 +28,6 @@ jobs:
           dnf install -y mock wget git-core openssl-devel cargo podman fuse-overlayfs rpm-build mock
           dnf builddep -y anda/{terra/{mock-configs,srpm-macros},tools/buildsys/subatomic}/*.spec
 
-      - name: Vendor Go
-        run: |
-          rm /usr/bin/go
-          curl -L https://go.dev/dl/go1.22.6.linux-${{ matrix.arch == 'aarch64' && 'arm64' || 'amd64' }}.tar.gz -o go.tar.gz
-          tar xf go.tar.gz go/bin/go
-          cp go/bin/go /usr/local/bin/
-
       - name: Install Anda
         run: cargo install anda
 
@@ -48,24 +41,24 @@ jobs:
         run: dnf install -y anda-build/rpm/rpms/terra-mock-configs*.rpm
 
       - name: Build anda-srpm-macros
-        run: anda build -c terra-el${{ matrix.version }}+epel-${{ matrix.arch }}.cfg anda/terra/srpm-macros/pkg --rpm-builder=rpmbuild
+        run: anda build -c terra-el${{ matrix.version }}-dev-${{ matrix.arch }}.cfg anda/terra/srpm-macros/pkg --rpm-builder=rpmbuild
 
       - name: Build Subatomic
-        run: anda build -c terra-el${{ matrix.version }}+epel-${{ matrix.arch }}.cfg anda/tools/buildsys/subatomic/pkg --rpm-builder=rpmbuild
+        run: anda build -c terra-el${{ matrix.version }}-dev-${{ matrix.arch }}.cfg anda/tools/buildsys/subatomic/pkg --rpm-builder=rpmbuild
       - name: Install Subatomic
         run: dnf install -y ./anda-build/rpm/rpms/subatomic-*.rpm
 
       - name: Install Build Dependencies for Andaman
         run: dnf builddep -y anda/tools/buildsys/anda/*.spec
       - name: Build Andaman
-        run: anda build -c terra-el${{ matrix.version }}+epel-${{ matrix.arch }} anda/tools/buildsys/anda/pkg --rpm-builder=rpmbuild
+        run: anda build -c terra-el${{ matrix.version }}-dev-${{ matrix.arch }} anda/tools/buildsys/anda/pkg --rpm-builder=rpmbuild
 
       - name: Upload packages to subatomic
         run: |
           subatomic-cli upload --prune \
             --server https://subatomic.fyralabs.com \
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
-            terra-el${{ matrix.version }} anda-build/rpm/rpms/*
+            terrael${{ matrix.version }} anda-build/rpm/rpms/*
 
       - name: Upload source packages to subatomic
         if: github.event_name == 'push'
@@ -73,4 +66,4 @@ jobs:
           subatomic-cli upload --prune \
             --server https://subatomic.fyralabs.com \
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
-            terra-el${{ matrix.version }}-source anda-build/rpm/srpm/*
+            terrael${{ matrix.version }}-source anda-build/rpm/srpm/*
