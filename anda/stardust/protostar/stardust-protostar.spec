@@ -26,6 +26,7 @@ Tools you can easily snap together to get non-spatial input into stardust.
 %build
 
 %install
+cd protostar
 %cargo_install
 
 %files
