@@ -12,7 +12,6 @@ URL:            https://github.com/StardustXR/non-spatial-input
 Source0:        %url/archive/%commit/non-spatial-input-%commit.tar.gz
 License:        MIT
 BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold libudev-devel g++ libinput-devel libxkbcommon-x11-devel
-Requires:       libgcc glibc 
 
 Provides:       non-spatial-input
 Packager:       Owen Zimmerman <owen@fyralabs.com>
