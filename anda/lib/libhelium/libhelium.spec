@@ -22,7 +22,7 @@ BuildRequires:  pkgconfig(gtk4) >= 4.4
 Requires: gtk4 >= 4.4
 Requires: glib2 >= 2.66.0
 Requires: libgee >= 0.20
-Requires: helium-gtk-theme >= 1.1.25
+Requires: helium-gtk-theme
 Requires: hydrogen-icon-theme
 
 %description
