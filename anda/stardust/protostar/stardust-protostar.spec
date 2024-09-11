@@ -12,7 +12,6 @@ URL:            https://github.com/StardustXR/protostar
 Source0:        %url/archive/%commit/protostar-%commit.tar.gz
 License:        MIT
 BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold libudev-devel g++ libinput-devel libxkbcommon-x11-devel
-Requires:       libgcc glibc 
 
 Provides:       protostar
 Packager:       Owen Zimmerman <owen@fyralabs.com>
@@ -35,5 +34,5 @@ Tools you can easily snap together to get non-spatial input into stardust.
 %doc README.md
 
 %changelog
-* Mon Sep 9 2024 Owen-sz <owen@fyralabs.com>
+* Tue Sep 10 2024 Owen-sz <owen@fyralabs.com>
 - Package StardustXR protostar
