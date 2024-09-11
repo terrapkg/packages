@@ -3,7 +3,7 @@ Version:        0.44.1
 Release:        1%?dist
 Summary:        Usable Linux display server that reinvents human-computer interaction for all kinds of XR.
 URL:            https://github.com/StardustXR/server
-Source0:        %url/archive/refs/tags/0.44.1.tar.gz
+Source0:        %url/archive/refs/tags/%version.tar.gz
 License:        GPLv2
 
 BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold g++
