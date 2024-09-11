@@ -24,9 +24,9 @@ Tools you can easily snap together to get non-spatial input into stardust.
 %cargo_prep_online
 
 %build
-%cargo_build
 
 %install
+cd non-spatial-input
 %cargo_install
 
 %files
