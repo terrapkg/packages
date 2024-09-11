@@ -26,7 +26,13 @@ Tools you can easily snap together to get non-spatial input into stardust.
 %build
 
 %install
-%cargo_install
+(cd azimuth && %cargo_install -- &)
+(cd eclipse && %cargo_install -- &)
+(cd manifold && %cargo_install -- &)
+(cd simular && %cargo_install -- &)
+(cd display && %cargo_install -- &)
+
+wait
 
 %files
 %_bindir/non-spatial-input
