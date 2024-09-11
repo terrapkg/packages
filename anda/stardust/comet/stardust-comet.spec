@@ -12,7 +12,6 @@ URL:            https://github.com/StardustXR/comet
 Source0:        %url/archive/%commit/comet-%commit.tar.gz
 License:        MIT
 BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold
-Requires:       libgcc glibc
 
 Provides:       comet
 Packager:       Owen Zimmerman <owen@fyralabs.com>
