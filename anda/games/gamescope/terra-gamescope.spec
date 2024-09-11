@@ -6,7 +6,7 @@
 
 %global toolchain clang
 %global _default_patch_fuzz 2
-%global gamescope_tag 3.15.8
+%global gamescope_tag 3.15.9
 
 Name:           terra-gamescope
 Version:        100.%{gamescope_tag}
