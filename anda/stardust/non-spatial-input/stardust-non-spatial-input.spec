@@ -26,12 +26,7 @@ Tools you can easily snap together to get non-spatial input into stardust.
 %build
 
 %install
-(cd app_grid && %cargo_install -- &)
-(cd hexagon_launcher && %cargo_install -- &)
-(cd single && %cargo_install -- &)
-(cd sirius && %cargo_install -- &)
-
-wait
+%cargo_install
 
 %files
 %_bindir/non-spatial-input
