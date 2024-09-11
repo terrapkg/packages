@@ -13,7 +13,7 @@ BuildRequires:  meson
 BuildRequires:  ninja-build
 BuildRequires:  fdupes
 Provides: tau-helium = %{version}-%{release}
-Obsoletes: tau-helium < 1.8.23-1
+Obsoletes: tau-helium < 1.8.23-2
 
 %description
 A set of GTK/GNOME Shell Themes for tauOS
