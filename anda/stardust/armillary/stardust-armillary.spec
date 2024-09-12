@@ -26,6 +26,7 @@ A model viewer for Stardust XR which works great for hand tracking, pointers, an
 %build
 
 %install
+%define __cargo_common_opts %{?_smp_mflags} -Z avoid-dev-deps --locked
 %cargo_install
 
 %files
