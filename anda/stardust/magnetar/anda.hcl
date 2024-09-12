@@ -1,4 +1,3 @@
-
 project pkg {
     rpm {
         spec = "stardust-magnetar.spec"
