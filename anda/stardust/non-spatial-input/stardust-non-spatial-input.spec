@@ -26,20 +26,20 @@ Tools you can easily snap together to get non-spatial input into stardust.
 %build
 
 %install
-(cd azimuth && %cargo_install -- &)
-(cd eclipse && %cargo_install -- &)
-(cd manifold && %cargo_install -- &)
-(cd simular && %cargo_install -- &)
-(cd display && %cargo_install -- &)
+(cd azimuth && %cargo_install) &
+(cd eclipse && %cargo_install) &
+(cd manifold && %cargo_install) &
+(cd simular && %cargo_install) &
+(cd display && %cargo_install) &
 
 wait
 
 %files
-(%_bindir/azimuth --&)
-(%_bindir/eclipse --&)
-(%_bindir/manifold --&)
-(%_bindir/simular --&)
-(%_bindir/display --&)
+%_bindir/azimuth
+%_bindir/eclipse
+%_bindir/manifold
+%_bindir/simular
+%_bindir/display
 %license LICENSE
 %doc README.md
 
