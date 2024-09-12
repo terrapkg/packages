@@ -1,6 +1,6 @@
 project pkg {
 	arches = ["x86_64"]
 	rpm {
-		spec = "tau-helium.spec"
+		spec = "helium-gtk-theme.spec"
 	}
 }
