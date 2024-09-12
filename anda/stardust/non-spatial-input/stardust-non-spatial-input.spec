@@ -26,6 +26,7 @@ Tools you can easily snap together to get non-spatial input into stardust.
 %build
 
 %install
+%define __cargo_common_opts %__cargo_common_opts --locked
 (cd azimuth && %cargo_install) &
 (cd eclipse && %cargo_install) &
 (cd manifold && %cargo_install) &
