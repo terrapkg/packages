@@ -1,7 +1,6 @@
-
 project pkg {
     rpm {
-        spec = "stardust-magnetar.spec"
+        spec = "stardust-gravity.spec"
     }
     labels {
        nightly = 1
