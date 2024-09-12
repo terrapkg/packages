@@ -1,6 +1,6 @@
-%global commit bf3fe5f2bad97341bd7c1a9e6ed9d372358cf347
+%global commit 07e3df4cd929098404ec807013d9f12ec0770ecd
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20240911
+%global commit_date 20240912
 
 Name:           flow-control-nightly
 Version:        %commit_date.%shortcommit
