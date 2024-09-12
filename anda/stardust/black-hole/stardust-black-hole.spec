@@ -26,6 +26,7 @@ Spatial storage for stardust xr
 %build
 
 %install
+%define __cargo_common_opts %{?_smp_mflags} -Z avoid-dev-deps --locked
 %cargo_install
 
 %files
