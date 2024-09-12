@@ -1,7 +1,7 @@
 Summary:        tauOS Icon Theme
-Name:           tau-hydrogen
+Name:           hydrogen-icon-theme
 Version:        1.0.16
-Release:        1%?dist
+Release:        2%?dist
 License:        GPL-3.0
 URL:            https://github.com/tau-OS/tau-hydrogen
 Source0:        https://github.com/tau-OS/tau-hydrogen/archive/refs/tags/%{version}.tar.gz
@@ -11,6 +11,8 @@ BuildRequires:  ninja-build
 BuildRequires:  librsvg2-tools
 BuildRequires:  xcursorgen
 BuildRequires:  fdupes
+Provides: tau-hydrogen = %{version}-%{release}
+Obsoletes: tau-hydrogen < 1.0.16-2
 
 %description
 Hydrogen is the default icon theme in tauOS

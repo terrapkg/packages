@@ -3,7 +3,7 @@
 Summary:        The Application Framework for tauOS apps
 Name:           libhelium
 Version:        %{sanitized_ver}
-Release:        1%?dist
+Release:        2%?dist
 License:        GPL-3.0
 URL:            https://github.com/tau-OS/libhelium
 Source0:        https://github.com/tau-OS/libhelium/archive/refs/tags/%{ver}.tar.gz
@@ -22,8 +22,8 @@ BuildRequires:  pkgconfig(gtk4) >= 4.4
 Requires: gtk4 >= 4.4
 Requires: glib2 >= 2.66.0
 Requires: libgee >= 0.20
-Requires: tau-helium >= 1.1.25
-Requires: tau-hydrogen
+Requires: helium-gtk-theme
+Requires: hydrogen-icon-theme
 
 %description
 The Application Framework for tauOS apps
