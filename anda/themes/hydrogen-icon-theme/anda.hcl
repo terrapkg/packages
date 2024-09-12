@@ -1,6 +1,6 @@
 project pkg {
 	arches = ["x86_64"]
 	rpm {
-		spec = "tau-hydrogen.spec"
+		spec = "hydrogen-icon-theme.spec"
 	}
 }
