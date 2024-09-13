@@ -17,7 +17,7 @@ Provides:       comet
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
-Annotate things in Stardust
+%summary
 
 %prep
 %autosetup -n comet-%commit
