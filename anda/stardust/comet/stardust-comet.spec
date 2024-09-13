@@ -7,7 +7,7 @@
 Name:           stardust-comet
 Version:        %commit_date.%shortcommit
 Release:        1%?dist
-Summary:        Annotate things in Stardust.
+Summary:        Annotate things in Stardust XR.
 URL:            https://github.com/StardustXR/comet
 Source0:        %url/archive/%commit/comet-%commit.tar.gz
 License:        MIT
