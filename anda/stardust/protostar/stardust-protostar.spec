@@ -7,7 +7,7 @@
 Name:           stardust-protostar
 Version:        %commit_date.%shortcommit
 Release:        1%?dist
-Summary:        Tools you can easily snap together to get non-spatial input into stardust.
+Summary:        Prototype application launcher for StardustXR.
 URL:            https://github.com/StardustXR/protostar
 Source0:        %url/archive/%commit/protostar-%commit.tar.gz
 License:        MIT
@@ -17,7 +17,7 @@ Provides:       protostar
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
-Tools you can easily snap together to get non-spatial input into stardust.
+Prototype application launcher for StardustXR, providing an easy to use crate to write applications launchers.
 
 %prep
 %autosetup -n protostar-%commit
