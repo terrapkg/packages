@@ -17,7 +17,7 @@ Provides:       black-hole
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
-Spatial storage for stardust xr
+%summary
 
 %prep
 %autosetup -n black-hole-%commit
