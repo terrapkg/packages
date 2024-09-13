@@ -7,7 +7,7 @@
 Name:           stardust-flatland
 Version:        %commit_date.%shortcommit
 Release:        1%?dist
-Summary:        Flatland for StardustXR.
+Summary:        Flatland for Stardust XR.
 URL:            https://github.com/StardustXR/flatland
 Source0:        %url/archive/%commit/flatland-%commit.tar.gz
 License:        MIT
