@@ -1,3 +1,5 @@
+%global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
+
 Name:           stardust-server
 Version:        0.44.1
 Release:        1%?dist
