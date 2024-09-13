@@ -36,7 +36,7 @@ Usable Linux display server that reinvents human-computer interaction for all ki
 %cargo_install
 
 %files
-/usr/bin/stardust-xr-server
+%_bindir/stardust-xr-server
 %license LICENSE
 %doc README.md
 
