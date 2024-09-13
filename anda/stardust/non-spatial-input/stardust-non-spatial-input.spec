@@ -7,7 +7,7 @@
 Name:           stardust-non-spatial-input
 Version:        %commit_date.%shortcommit
 Release:        1%?dist
-Summary:        Tools you can easily snap together to get non-spatial input into stardust.
+Summary:        Tools you can easily snap together to get non-spatial input into Stardust XR.
 URL:            https://github.com/StardustXR/non-spatial-input
 Source0:        %url/archive/%commit/non-spatial-input-%commit.tar.gz
 License:        MIT
