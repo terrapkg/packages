@@ -7,7 +7,7 @@
 Name:           stardust-magnetar
 Version:        %commit_date.%shortcommit
 Release:        1%?dist
-Summary:        Workspaces client for Stardust.
+Summary:        Workspaces client for Stardust XR.
 URL:            https://github.com/StardustXR/magnetar
 Source0:        %url/archive/%commit/magnetar-%commit.tar.gz
 License:        MIT
