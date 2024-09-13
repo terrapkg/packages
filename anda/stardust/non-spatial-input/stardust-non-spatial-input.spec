@@ -17,7 +17,7 @@ Provides:       non-spatial-input
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
-Tools you can easily snap together to get non-spatial input into stardust.
+%summary
 
 %prep
 %autosetup -n non-spatial-input-%commit
