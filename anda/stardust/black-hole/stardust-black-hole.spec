@@ -7,7 +7,7 @@
 Name:           stardust-black-hole
 Version:        %commit_date.%shortcommit
 Release:        1%?dist
-Summary:        Spatial storage for stardust xr.
+Summary:        Spatial storage for Stardust XR.
 URL:            https://github.com/StardustXR/black-hole
 Source0:        %url/archive/%commit/black-hole-%commit.tar.gz
 License:        MIT
