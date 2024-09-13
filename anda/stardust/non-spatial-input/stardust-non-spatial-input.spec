@@ -31,7 +31,6 @@ Tools you can easily snap together to get non-spatial input into stardust.
 (cd eclipse && %cargo_install) &
 (cd manifold && %cargo_install) &
 (cd simular && %cargo_install) &
-(cd display && %cargo_install) &
 
 wait
 
@@ -40,7 +39,6 @@ wait
 %_bindir/eclipse
 %_bindir/manifold
 %_bindir/simular
-%_bindir/display
 %license LICENSE
 %doc README.md
 
