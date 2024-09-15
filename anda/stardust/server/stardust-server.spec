@@ -1,7 +1,7 @@
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-server
-Version:        0.44.1
+Version:        0.45.0
 Release:        1%?dist
 Summary:        Usable Linux display server that reinvents human-computer interaction for all kinds of XR.
 URL:            https://github.com/StardustXR/server
@@ -41,5 +41,5 @@ Usable Linux display server that reinvents human-computer interaction for all ki
 %doc README.md
 
 %changelog
-* Tue Sep 10 2024 Owen-sz <owen@fyralabs.com>
+* Sat Sep 14 2024 Owen-sz <owen@fyralabs.com>
 - Package StardustXR Server
