@@ -27,6 +27,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %install
 %define __cargo_common_opts %{?_smp_mflags} -Z avoid-dev-deps --locked
+STARDUST_RES_PREFIXES=%_datadir
 %cargo_install
 
 %files
