@@ -5,7 +5,7 @@
 %global pure_protobuf_version 2.0.0
 
 Name:           komikku
-Version:        1.57.0
+Version:        1.58.0
 %forgemeta
 Release:        1%?dist
 Summary:        A manga reader for GNOME
