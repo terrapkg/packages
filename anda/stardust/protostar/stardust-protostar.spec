@@ -27,6 +27,7 @@ Prototype application launcher for StardustXR, providing an easy to use crate to
 
 %install
 %define __cargo_common_opts %{?_smp_mflags} -Z avoid-dev-deps --locked
+STARDUST_RES_PREFIXES=%_datadir
 (cd app_grid && %cargo_install) &
 (cd hexagon_launcher && %cargo_install) &
 (cd single && %cargo_install) &
