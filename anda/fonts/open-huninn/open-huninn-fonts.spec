@@ -1,6 +1,6 @@
 Name:		open-huninn-fonts
-Version:	2.0
-Release:	2%?dist
+Version:	2.1
+Release:	1%?dist
 URL:		https://github.com/justfont/open-huninn-font
 Source0:	%url/archive/refs/tags/v%version.tar.gz
 License:	OFL-1.1
