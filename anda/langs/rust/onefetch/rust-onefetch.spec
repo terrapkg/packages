@@ -4,8 +4,8 @@
 %global crate onefetch
 
 Name:           rust-onefetch
-Version:        2.21.0
-Release:        %autorelease
+Version:        2.22.0
+Release:        1%?dist
 Summary:        Command-line Git information tool
 
 License:        MIT
