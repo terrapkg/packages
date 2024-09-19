@@ -1,5 +1,5 @@
 Name:			nushell
-Version:		0.97.1
+Version:		0.98.0
 Release:		1%?dist
 Summary:		A new type of shell
 License:		MIT
