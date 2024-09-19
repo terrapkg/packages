@@ -1,5 +1,5 @@
-%global commit 6ff4bc2cd57628c95aacd2f5a07305fd83e197e4
-%global commit_date 20240820
+%global commit 1f0dfbd6944fb49f751462b898a7934f27e4b6d2
+%global commit_date 20240915
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           envision
@@ -16,11 +16,12 @@ BuildRequires:  pkgconfig(gtk4) >= 4.10.0
 BuildRequires:  pkgconfig(vte-2.91-gtk4) >= 0.72.0
 BuildRequires:  pkgconfig(libadwaita-1)
 BuildRequires:  pkgconfig(libusb-1.0)
-BuildRequires:  openssl-devel
+BuildRequires:  openssl-devel-engine
 BuildRequires:  openxr-devel
 BuildRequires:  libappstream-glib
 BuildRequires:  desktop-file-utils
 BuildRequires:  glib2-devel
+BuildRequires:  git-core
 Recommends:     android-tools
 
 %description
@@ -40,8 +41,8 @@ Recommends:     android-tools
 %doc README.md
 %license LICENSE
 %_bindir/envision
-%_datadir/applications/org.gabmus.envision.desktop
+%_datadir/applications/org.gabmus.envision.Devel.desktop
 %_datadir/envision/
-%_iconsdir/hicolor/scalable/apps/org.gabmus.envision.svg
-%_iconsdir/hicolor/symbolic/apps/org.gabmus.envision-symbolic.svg
-%_metainfodir/org.gabmus.envision.appdata.xml
+%_iconsdir/hicolor/scalable/apps/org.gabmus.envision.Devel.svg
+%_iconsdir/hicolor/symbolic/apps/org.gabmus.envision.Devel-symbolic.svg
+%_metainfodir/org.gabmus.envision.Devel.appdata.xml
