@@ -1,5 +1,5 @@
-%global commit e3ee44b1c4c9dbf141ffc5fddfbfda2473adcf00
-%global commit_date 20240828
+%global commit 1f0dfbd6944fb49f751462b898a7934f27e4b6d2
+%global commit_date 20240915
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           envision
@@ -21,6 +21,7 @@ BuildRequires:  openxr-devel
 BuildRequires:  libappstream-glib
 BuildRequires:  desktop-file-utils
 BuildRequires:  glib2-devel
+BuildRequires:  git-core
 Recommends:     android-tools
 
 %description
@@ -40,8 +41,8 @@ Recommends:     android-tools
 %doc README.md
 %license LICENSE
 %_bindir/envision
-%_datadir/applications/org.gabmus.envision.desktop
+%_datadir/applications/org.gabmus.envision.Devel.desktop
 %_datadir/envision/
-%_iconsdir/hicolor/scalable/apps/org.gabmus.envision.svg
-%_iconsdir/hicolor/symbolic/apps/org.gabmus.envision-symbolic.svg
-%_metainfodir/org.gabmus.envision.appdata.xml
+%_iconsdir/hicolor/scalable/apps/org.gabmus.envision.Devel.svg
+%_iconsdir/hicolor/symbolic/apps/org.gabmus.envision.Devel-symbolic.svg
+%_metainfodir/org.gabmus.envision.Devel.appdata.xml
