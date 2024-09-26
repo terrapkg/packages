@@ -19,6 +19,7 @@ BuildRequires: gettext
 BuildRequires: cmake
 BuildRequires: vala
 BuildRequires: systemd-rpm-macros
+BuildRequires: java-17-openjdk-devel
 BuildRequires: pkgconfig(libxfce4panel-2.0)
 BuildRequires: pkgconfig(gtk+-2.0)
 BuildRequires: java-devel
@@ -116,7 +117,7 @@ Vala appmenu support for Java Swing applications.
 %{_datadir}/licenses/appmenu-gtk-module/LICENSE
 %{_datadir}/dbus-1/services/com.canonical.AppMenu.Registrar.service
 %{_datadir}/glib-2.0/schemas/org.valapanel.appmenu.gschema.xml
-%{_datadir}/vala-panel/applets/org.valapanel.appmenu.plugin
+#{_datadir}/vala-panel/applets/org.valapanel.appmenu.plugin
 %{_datadir}/vala/vapi/appmenu-glib-translator.*
 %{_datadir}/gir-1.0/AppmenuGLibTranslator-*.gir
 %{_includedir}/appmenu-glib-translator/importer.h
