@@ -20,6 +20,7 @@ BuildRequires:  anda-srpm-macros
 BuildRequires:  openssl-devel
 BuildRequires:  git-core
 BuildRequires:  libgit2-devel
+BuildRequires:  mold
 
 Requires:       mock
 Requires:       rpm-build
