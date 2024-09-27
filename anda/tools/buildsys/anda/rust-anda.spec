@@ -54,6 +54,7 @@ cargo run --release -p xtask -- manpage
 cargo run --release -p xtask -- completion
 
 %install
+export RUSTFLAGS=$(echo "%build_rustflags" | sed 's@-C link-arg=-fuse-ld=mold@@')
 %cargo_install
 
 mkdir -p %{buildroot}%{_mandir}/man1/
