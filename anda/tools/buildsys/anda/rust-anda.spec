@@ -49,12 +49,13 @@ Summary:        %{summary}
 %cargo_prep_online
 
 %build
+%define __cargo /usr/bin/env CARGO_HOME=.cargo RUSTC_BOOTSTRAP=1 RUSTFLAGS='-Copt-level=3 -Cdebuginfo=2 -Ccodegen-units=1 -Cstrip=none -Clink-arg=-specs=/usr/lib/rpm/redhat/redhat-package-notes --cap-lints=warn' /usr/bin/cargo
 %cargo_build
 cargo run --release -p xtask -- manpage
 cargo run --release -p xtask -- completion
 
 %install
-%build_rustflags" | sed 's@-C link-arg=-fuse-ld=mold@@'
+%define __cargo /usr/bin/env CARGO_HOME=.cargo RUSTC_BOOTSTRAP=1 RUSTFLAGS='-Copt-level=3 -Cdebuginfo=2 -Ccodegen-units=1 -Cstrip=none -Clink-arg=-specs=/usr/lib/rpm/redhat/redhat-package-notes --cap-lints=warn' /usr/bin/cargo
 %cargo_install
 
 mkdir -p %{buildroot}%{_mandir}/man1/
