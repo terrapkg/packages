@@ -48,6 +48,7 @@ Summary:        %{summary}
 %cargo_prep_online
 
 %build
+export RUSTFLAGS="%build_rustflags"
 %cargo_build
 cargo run --release -p xtask -- manpage
 cargo run --release -p xtask -- completion
