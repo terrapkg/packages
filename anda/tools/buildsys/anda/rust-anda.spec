@@ -48,7 +48,7 @@ Summary:        %{summary}
 %cargo_prep_online
 
 %build
-export RUSTFLAGS="%build_rustflags"
+export RUSTFLAGS=$(echo "%build_rustflags" | sed 's@-C link-arg=-fuse-ld=mold@@')
 %cargo_build
 cargo run --release -p xtask -- manpage
 cargo run --release -p xtask -- completion
