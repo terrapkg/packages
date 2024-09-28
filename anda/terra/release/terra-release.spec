@@ -25,5 +25,5 @@ install -D -p -m 0644 -t %{buildroot}%{_sysconfdir}/yum.repos.d %{SOURCE0}
 %config(noreplace) %{_sysconfdir}/yum.repos.d/terra.repo
 
 %changelog
-* Wed Sep 10 2024 madonuko <mado@fyralabs.com> - 10-1
+* Tue Sep 10 2024 madonuko <mado@fyralabs.com> - 10-1
 - Update for Terra EL 10
