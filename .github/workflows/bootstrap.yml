@@ -38,12 +38,13 @@ jobs:
           echo "PATH=$PATH:/github/home/.cargo/bin" >> $GITHUB_ENV
           export PATH=$PATH:/github/home/.cargo/bin
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
-          anda build -c almalinux-${{ matrix.version }}-${{ matrix.arch }} anda/terra/mock-configs/pkg --rpm-builder=rpmbuild
-      - name: Install terra-mock-configs
-        run: dnf install -y anda-build/rpm/rpms/terra-mock-configs*.rpm
+          anda build anda/terra/mock-configs/pkg --rpm-builder=rpmbuild
 
       - name: Build anda-srpm-macros
-        run: anda build -c terra-el${{ matrix.version }}-dev-${{ matrix.arch }}.cfg anda/terra/srpm-macros/pkg --rpm-builder=rpmbuild
+        run: anda build anda/terra/srpm-macros/pkg --rpm-builder=rpmbuild
+
+      - name: Build terra-release
+        run: anda build anda/terra/release/pkg --rpm-builder=rpmbuild
 
       - name: Build Subatomic
         run: anda build -c terra-el${{ matrix.version }}-dev-${{ matrix.arch }}.cfg anda/tools/buildsys/subatomic/pkg --rpm-builder=rpmbuild
