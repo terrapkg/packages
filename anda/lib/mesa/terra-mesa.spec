@@ -431,7 +431,7 @@ Obsoletes:      mesa-vulkan-devel < %{?epoch:%{epoch}:}%{version}-%{release}
 The drivers with support for the Vulkan API.
 
 %prep
-%autosetup -n %{srcname}-%{ver} -p1
+%autosetup -n %{name}-%{ver} -p1
 cp %{SOURCE1} docs/
 
 %build
@@ -466,7 +466,6 @@ export MESON_PACKAGE_CACHE_DIR="%{cargo_registry}/"
   -Dgallium-drivers=swrast,virgl \
 %endif
   -Dgallium-vdpau=%{?with_vdpau:enabled}%{!?with_vdpau:disabled} \
-  -Dgallium-omx=%{?with_omx:bellagio}%{!?with_omx:disabled} \
   -Dgallium-va=%{?with_va:enabled}%{!?with_va:disabled} \
   -Dgallium-xa=%{?with_xa:enabled}%{!?with_xa:disabled} \
   -Dgallium-nine=%{?with_nine:true}%{!?with_nine:false} \
@@ -475,7 +474,6 @@ export MESON_PACKAGE_CACHE_DIR="%{cargo_registry}/"
 %if 0%{?with_opencl}
   -Dgallium-rusticl=true \
 %endif
-  -Dvideo-codecs=h264dec,h264enc,h265dec,h265enc,vc1dec,av1dec,av1enc,vp9dec \
   -Dvulkan-drivers=%{?vulkan_drivers} \
   -Dvulkan-layers=device-select \
   -Dshared-glapi=enabled \
@@ -508,7 +506,6 @@ export MESON_PACKAGE_CACHE_DIR="%{cargo_registry}/"
 %endif
   %{nil}
 %meson_build
-
 
 %install
 %meson_install
