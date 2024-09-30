@@ -182,7 +182,6 @@ sed -e "s|/usr/local/etc|%{_sysconfdir}/mpv|" -i etc/mpv.conf
     -Dvdpau-gl-x11=enabled \
     -Dvdpau=enabled \
     -Dvector=enabled \
-    -Dvulkan-interop=disabled \
     -Dvulkan=enabled \
     -Dwayland=enabled \
     -Dwerror=false \
