@@ -31,6 +31,7 @@ BuildRequires:  gcc
 BuildRequires:  g++
 BuildRequires:  clang
 BuildRequires:  mold
+BuildRequires:  cmake
 BuildRequires:  alsa-lib-devel
 BuildRequires:  fontconfig-devel
 BuildRequires:  wayland-devel
