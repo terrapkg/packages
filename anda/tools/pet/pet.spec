@@ -17,7 +17,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
  
 %build
 %global debug_package %{nil}
-go build -gcflags "all=-N -l" -ldflags "-linkmode=external -extldflags=-Wl,--build-id" -o pet
+go build -o pet
 
 %install
 install -Dm755 pet %{buildroot}%{_bindir}/pet
