@@ -32,8 +32,9 @@ Packager:       madonuko <mado@fyralabs.com>
 %license LICENSE.md
 %license LICENSE.dependencies
 %_bindir/ruffle_desktop
-%_datadir/applications/ruffle_desktop.desktop
-%_iconsdir/hicolor/scalable/apps/ruffle_desktop.svg
+%_datadir/applications/rs.ruffle.Ruffle.desktop
+%_iconsdir/hicolor/scalable/apps/rs.ruffle.Ruffle.svg
+%_metainfodir/rs.ruffle.Ruffle.metainfo.xml
 
 %prep
 %autosetup -n ruffle-nightly-%ver
