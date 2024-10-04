@@ -3,7 +3,7 @@
 
 Name:			nim
 Version:		2.2.0
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Imperative, multi-paradigm, compiled programming language
 License:		MIT and BSD
 URL:			https://nim-lang.org
@@ -118,7 +118,7 @@ rm -rf %buildroot/nim || true
 rm %buildroot%_bindir/*.bat || true
 rm -rf %buildroot%_bindir/empty.txt
 
-cp dist %_datadir/nim/
+cp -r dist %_datadir/nim/
 
 
 %files
