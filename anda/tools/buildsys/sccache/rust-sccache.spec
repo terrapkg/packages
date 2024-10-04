@@ -29,6 +29,7 @@ BuildRequires:  openssl-devel
 BuildRequires:  gcc
 BuildRequires:  perl
 BuildRequires:  rust-packaging
+BuildRequires:  mold
 
 %global _description %{expand:
 Sccache is a ccache-like tool. It is used as a compiler wrapper and
