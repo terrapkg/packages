@@ -1,3 +1,4 @@
+%define debug_package %nil
 %global srcname mesa
 %global _description These drivers contains video acceleration codecs for decoding/encoding H.264 and H.265 \
 algorithms and decoding only VC1 algorithm.
@@ -333,7 +334,7 @@ rm -fr %{buildroot}%{_libdir}/dri/libgallium_drv_video.so
 
 
 %if %{with_gallium_video} == 1
-%{_libdir}/dri/libgallium_drv_video.so
+%dnl %{_libdir}/dri/libgallium_drv_video.so
 %endif
 
 %{_libdir}/dri/virtio_gpu_drv_video.so
@@ -351,7 +352,7 @@ rm -fr %{buildroot}%{_libdir}/dri/libgallium_drv_video.so
 %{_libdir}/vdpau/libvdpau_radeonsi.so.1*
 %endif
 %if 0%{?with_gallium_video} == 1
-%{_libdir}/vdpau/libvdpau_gallium.so.1*
+%dnl %{_libdir}/vdpau/libvdpau_gallium.so.1*
 %endif
 %{_libdir}/vdpau/libvdpau_virtio_gpu.so.1*
 %{_metainfodir}/org.mesa3d.vdpau.freeworld.metainfo.xml
