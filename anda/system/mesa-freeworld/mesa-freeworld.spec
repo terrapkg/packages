@@ -1,3 +1,4 @@
+%define debug_package %nil
 %global srcname mesa
 %global _description These drivers contains video acceleration codecs for decoding/encoding H.264 and H.265 \
 algorithms and decoding only VC1 algorithm.
