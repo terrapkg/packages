@@ -165,6 +165,7 @@ popd
 %make_build -C utils/vim
 
 %install
+mkdir -p %buildroot%_datadir/polkit-1/actions/
 %make_install -C libraries/libapparmor
 %make_install -C binutils
 %make_install -C parser \
