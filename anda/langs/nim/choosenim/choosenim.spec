@@ -1,7 +1,7 @@
 %global nimver %(curl -sSL https://nim-lang.org/channels/stable | xargs)
 
 Name:			choosenim
-Version:		0.8.5
+Version:		0.8.9
 Release:		1%?dist
 Summary:		Easily install and manage multiple versions of the Nim programming language
 License:		BSD-3-Clause
