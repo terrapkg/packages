@@ -23,7 +23,6 @@ NIMPATH=`pwd`/nim-%nimver/bin
 PATH=$PATH:$NIMPATH
 # compile choosenim
 ls -lah
-cd choosenim
 nimble install -y
 %nim_c --path:$NIMPATH
 # nimble build --path:$NIMPATH -d:release
