@@ -23,14 +23,13 @@ Source:         %{crates_source}
 # Automatically generated patch to strip dependencies and normalize metadata
 Patch:          sccache-fix-metadata-auto.diff
 
-ExclusiveArch:  %{rust_arches}
-
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros
 BuildRequires:  openssl-devel
 BuildRequires:  gcc
 BuildRequires:  perl
 BuildRequires:  rust-packaging
+BuildRequires:  mold
 
 %global _description %{expand:
 Sccache is a ccache-like tool. It is used as a compiler wrapper and
@@ -48,6 +47,7 @@ License:        MIT
 
 %files       -n %{crate}
 %license LICENSE
+#license LICENSE.dependencies
 %doc CODE_OF_CONDUCT.md
 %doc README.md
 %{_bindir}/sccache
@@ -68,6 +68,9 @@ This package contains library source intended for building other packages which
 use the "%{crate}" crate.
 
 %files          devel
+%license %{crate_instdir}/LICENSE
+%doc %{crate_instdir}/CODE_OF_CONDUCT.md
+%doc %{crate_instdir}/README.md
 %{crate_instdir}/
 
 %package     -n %{name}+default-devel
@@ -471,6 +474,7 @@ use the "webdav" feature of the "%{crate}" crate.
 %endif
 
 %install
+rm -rf .git || true
 %if %{with dist_server}
 %cargo_install -f dist-server
 %else
