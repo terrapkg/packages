@@ -12,8 +12,11 @@ Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 BuildRequires:  go-rpm-macros
 BuildRequires:  git-core
 BuildRequires:  gcc
-Requires:       docker
+BuildRequires:  anda-srpm-macros
+
 Provides:       docker-buildx = %{version}-%{release}
+Provides:       docker-buildx-cli = %{version}-%{release}
+
 
 %description
 buildx is a Docker CLI plugin for extended build capabilities with BuildKit.
@@ -21,18 +24,15 @@ buildx is a Docker CLI plugin for extended build capabilities with BuildKit.
 
 %prep
 %autosetup -n buildx-%{version}
-go mod download
 
 
 %build
 export CGO_ENABLED=1
-go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w -extldflags '--static-pie'" \
-  -buildmode=pie -tags 'osusergo,netgo,static_build' -v -x \
-  -o docker-buildx ./cmd/buildx
+%go_build_online ./cmd/buildx
 
 
 %install
-install -D -m 0755 docker-buildx %{buildroot}%{_libexecdir}/docker/cli-plugins/docker-buildx
+install -D -m 0755 build/bin/cmd/buildx %{buildroot}%{_libexecdir}/docker/cli-plugins/docker-buildx
 
 
 %files

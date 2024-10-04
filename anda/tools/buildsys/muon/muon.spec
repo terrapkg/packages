@@ -1,6 +1,6 @@
 Name:           muon
-Version:        0.2.0
-Release:        1%{?dist}
+Version:        0.4.0
+Release:        1%?dist
 Summary:        A meson-compatible build system
 
 # muon is licensed under the GPL version 3 (see LICENSE). Tests under tests/project were copied from the meson project tests and are licensed under Apache 2.0.
