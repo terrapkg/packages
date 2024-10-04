@@ -351,7 +351,7 @@ rm -fr %{buildroot}%{_libdir}/dri/libgallium_drv_video.so
 %{_libdir}/vdpau/libvdpau_radeonsi.so.1*
 %endif
 %if 0%{?with_gallium_video} == 1
-%{_libdir}/vdpau/libvdpau_gallium.so.1*
+%dnl %{_libdir}/vdpau/libvdpau_gallium.so.1*
 %endif
 %{_libdir}/vdpau/libvdpau_virtio_gpu.so.1*
 %{_metainfodir}/org.mesa3d.vdpau.freeworld.metainfo.xml
