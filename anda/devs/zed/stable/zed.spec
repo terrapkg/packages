@@ -25,6 +25,7 @@ BuildRequires:  anda-srpm-macros
 BuildRequires:  gcc
 BuildRequires:  g++
 BuildRequires:  clang
+BuildRequires:  cmake
 BuildRequires:  mold
 BuildRequires:  alsa-lib-devel
 BuildRequires:  fontconfig-devel
