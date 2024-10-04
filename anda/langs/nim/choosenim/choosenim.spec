@@ -23,9 +23,9 @@ NIMPATH=`pwd`/nim-%nimver/bin
 PATH=$PATH:$NIMPATH
 # compile choosenim
 ls -lah
-nimble install -y
-%dnl %nim_c --path:$NIMPATH
-nimble build --path:$NIMPATH -d:release
+nimble install --path $NIMPATH -y
+%nim_c --path:$NIMPATH
+#nimble build --path:$NIMPATH -d:release
 
 %install
 install -Dm755 src/choosenim %buildroot%_bindir/choosenim
