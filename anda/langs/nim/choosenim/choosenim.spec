@@ -8,7 +8,7 @@ License:		BSD-3-Clause
 URL:			https://github.com/nim-lang/choosenim
 Source1:		https://nim-lang.org/download/nim-%nimver-linux_x64.tar.xz
 Packager:		madonuko <mado@fyralabs.com>
-BuildRequires:	nim git curl tar anda-srpm-macros
+BuildRequires:	git-core curl tar anda-srpm-macros
 
 %description
 choosenim installs the Nim programming language from official downloads and
