@@ -186,6 +186,8 @@ find %{buildroot} \( -name "*.a" -o -name "*.la" \) -delete
 %find_lang apparmor-parser
 %find_lang apparmor-utils
 
+mv $RPM_BUILD_ROOT%_datadir/polkit-1/actions/com.ubuntu.pkexec.aa-notify.policy %buildroot%_datadir/
+
 %if %{with tests}
 %check
 make -C libraries/libapparmor check
