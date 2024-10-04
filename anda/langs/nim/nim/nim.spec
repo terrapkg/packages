@@ -118,6 +118,8 @@ rm -rf %buildroot/nim || true
 rm %buildroot%_bindir/*.bat || true
 rm -rf %buildroot%_bindir/empty.txt
 
+cp dist %_datadir/nim/
+
 
 %files
 %license copying.txt dist/nimble/license.txt

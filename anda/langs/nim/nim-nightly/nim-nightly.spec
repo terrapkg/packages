@@ -124,6 +124,8 @@ ln -s %_prefix/lib/nim %buildroot%_prefix/lib/nim/lib || true
 rm -rf %buildroot/nim || true
 rm %buildroot%_bindir/*.bat || true
 
+cp dist %_datadir/nim/
+
 
 %files
 %license copying.txt dist/nimble/license.txt
