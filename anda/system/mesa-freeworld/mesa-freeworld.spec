@@ -333,7 +333,7 @@ rm -fr %{buildroot}%{_libdir}/dri/libgallium_drv_video.so
 
 
 %if %{with_gallium_video} == 1
-%{_libdir}/dri/libgallium_drv_video.so
+%dnl %{_libdir}/dri/libgallium_drv_video.so
 %endif
 
 %{_libdir}/dri/virtio_gpu_drv_video.so
