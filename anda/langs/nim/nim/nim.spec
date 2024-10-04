@@ -118,7 +118,7 @@ rm -rf %buildroot/nim || true
 rm %buildroot%_bindir/*.bat || true
 rm -rf %buildroot%_bindir/empty.txt
 
-cp -r dist %_datadir/nim/
+cp -r dist %buildroot%_datadir/nim/
 
 
 %files
