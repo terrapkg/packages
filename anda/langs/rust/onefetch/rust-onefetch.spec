@@ -4,8 +4,8 @@
 %global crate onefetch
 
 Name:           rust-onefetch
-Version:        2.21.0
-Release:        %autorelease
+Version:        2.22.0
+Release:        1%?dist
 Summary:        Command-line Git information tool
 
 License:        MIT
@@ -15,7 +15,7 @@ Source:         %{crates_source}
 Patch:          onefetch-fix-metadata-auto.diff
 
 BuildRequires:  anda-srpm-macros cargo-rpm-macros >= 24
-BuildRequires:  cmake
+BuildRequires:  cmake mold
 
 %global _description %{expand:
 Command-line Git information tool.}

@@ -1,3 +1,1 @@
-let html = get("https://discordapp.com/api/download/ptb?platform=linux&format=tar.gz");
-let newver = find("https://dl-ptb\\.discordapp\\.net/apps/linux/([\\.\\d]+)/", html, 1);
-rpm.version(newver);
+rpm.version(get("https://discord.com/api/ptb/updates?platform=linux").json().name);

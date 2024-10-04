@@ -9,7 +9,7 @@
 %global app_id dev.zed.Zed
 
 Name:           zed
-Version:        0.150.4
+Version:        0.155.2
 Release:        1%?dist
 Summary:        Zed is a high-performance, multiplayer code editor
 
@@ -25,6 +25,7 @@ BuildRequires:  anda-srpm-macros
 BuildRequires:  gcc
 BuildRequires:  g++
 BuildRequires:  clang
+BuildRequires:  cmake
 BuildRequires:  mold
 BuildRequires:  alsa-lib-devel
 BuildRequires:  fontconfig-devel

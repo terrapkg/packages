@@ -1,7 +1,7 @@
 %define debug_package %nil
 
 Name:		armcord
-Version:	3.3.0
+Version:	3.3.1
 Release:	1%?dist
 License:	OSL-3.0
 Summary:	Custom lightweight Discord client designed to enhance your experience

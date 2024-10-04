@@ -1,7 +1,7 @@
-%global commit e8d14cd3142b117eabf23df026ee946cfded6424
+%global commit 216abbc12149668c71e400c19d1f60a507fb68c8
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20240829
-%global ver 0.38.0
+%global commit_date 20241004
+%global ver 0.39.0
 
 Name:           mpv-nightly
 Version:        %ver^%commit_date.%shortcommit
@@ -182,7 +182,6 @@ sed -e "s|/usr/local/etc|%{_sysconfdir}/mpv|" -i etc/mpv.conf
     -Dvdpau-gl-x11=enabled \
     -Dvdpau=enabled \
     -Dvector=enabled \
-    -Dvulkan-interop=disabled \
     -Dvulkan=enabled \
     -Dwayland=enabled \
     -Dwerror=false \

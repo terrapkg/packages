@@ -1,11 +1,11 @@
 Name:			nushell
-Version:		0.97.1
+Version:		0.98.0
 Release:		1%?dist
 Summary:		A new type of shell
 License:		MIT
 URL:			https://www.nushell.sh/
 BuildRequires:	anda-srpm-macros rust-packaging git-core
-BuildRequires:  openssl-devel-engine
+BuildRequires:  openssl-devel-engine mold
 Requires:		glibc openssl zlib
 
 %description

@@ -1,7 +1,7 @@
-%global commit 1eec601afb8cb0b2eafe111de1a505049202e19f
+%global commit 6635758009842dcf901fe341082e496549cb8577
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20240829
-%global ver 0.152.0
+%global commit_date 20241004
+%global ver 0.157.0
 
 %bcond_with check
 
@@ -31,6 +31,7 @@ BuildRequires:  gcc
 BuildRequires:  g++
 BuildRequires:  clang
 BuildRequires:  mold
+BuildRequires:  cmake
 BuildRequires:  alsa-lib-devel
 BuildRequires:  fontconfig-devel
 BuildRequires:  wayland-devel

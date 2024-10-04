@@ -1,4 +1,4 @@
-%global ver 2024-08-28
+%global ver 2024-10-04
 %global goodver %(echo %ver | sed 's/-//g')
 %global __brp_mangle_shebangs %{nil}
 %bcond_without mold
@@ -16,7 +16,7 @@ URL:            https://ruffle.rs/
 Source0:        https://github.com/ruffle-rs/ruffle/archive/refs/tags/nightly-%ver.tar.gz
 Provides:       ruffle
 BuildRequires:  cargo-rpm-macros >= 24
-BuildRequires:  anda-srpm-macros
+BuildRequires:  anda-srpm-macros mold
 BuildRequires:  gcc-c++ cmake java
 BuildRequires:  java-latest-openjdk-headless
 BuildRequires:  pkgconfig(alsa)
@@ -32,26 +32,13 @@ Packager:       madonuko <mado@fyralabs.com>
 %license LICENSE.md
 %license LICENSE.dependencies
 %_bindir/ruffle_desktop
-%_datadir/applications/ruffle_desktop.desktop
-%_iconsdir/hicolor/scalable/apps/ruffle_desktop.svg
+%_datadir/applications/rs.ruffle.Ruffle.desktop
+%_iconsdir/hicolor/scalable/apps/rs.ruffle.Ruffle.svg
+%_metainfodir/rs.ruffle.Ruffle.metainfo.xml
 
 %prep
 %autosetup -n ruffle-nightly-%ver
 %cargo_prep_online
-
-cat<<EOF > ruffle_desktop.desktop
-[Desktop Entry]
-Version=1.0
-Type=Application
-Name=Ruffle Desktop
-Comment=%summary
-Exec=%_bindir/ruffle_desktop
-Icon=ruffle_desktop
-Terminal=false
-StartupNotify=false
-Categories=Application;
-MimeType=application/x-shockwave-flash;
-EOF
 
 %build
 %{cargo_license_online} > LICENSE.dependencies
@@ -59,8 +46,9 @@ EOF
 %install
 cd desktop
 %cargo_install
-install -Dm644 assets/icon.svg %buildroot%_iconsdir/hicolor/scalable/apps/ruffle_desktop.svg
-install -Dm644 ../ruffle_desktop.desktop %buildroot%_datadir/applications/ruffle_desktop.desktop
+install -Dm644 packages/linux/rs.ruffle.Ruffle.svg %buildroot%_iconsdir/hicolor/scalable/apps/rs.ruffle.Ruffle.svg
+install -Dm644 packages/linux/rs.ruffle.Ruffle.desktop %buildroot%_datadir/applications/rs.ruffle.Ruffle.desktop
+install -Dm644 packages/linux/rs.ruffle.Ruffle.metainfo.xml %buildroot%_metainfodir/rs.ruffle.Ruffle.metainfo.xml
 
 %changelog
 * Mon Jul 29 2024 madonuko <mado@fyralabs.com>

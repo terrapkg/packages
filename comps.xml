@@ -81,8 +81,8 @@
     <uservisible>true</uservisible>
     <packagelist>
       <packagereq type="default">libhelium</packagereq>
-      <packagereq type="default">tau-helium</packagereq>
-      <packagereq type="default">tau-hydrogen</packagereq>
+      <packagereq type="default">helium-gtk-theme</packagereq>
+      <packagereq type="default">hydrogen-icon-theme</packagereq>
     </packagelist>
   </group>
 </comps>

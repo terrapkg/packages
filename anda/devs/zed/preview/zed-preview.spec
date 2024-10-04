@@ -1,6 +1,6 @@
 %bcond_with check
 
-%global ver 0.151.0-pre
+%global ver 0.156.0-pre
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 # Use Mold as the linker
@@ -26,6 +26,7 @@ BuildRequires:  anda-srpm-macros
 BuildRequires:  gcc
 BuildRequires:  g++
 BuildRequires:  clang
+BuildRequires:  cmake
 BuildRequires:  mold
 BuildRequires:  alsa-lib-devel
 BuildRequires:  fontconfig-devel

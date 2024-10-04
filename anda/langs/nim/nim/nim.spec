@@ -2,8 +2,8 @@
 %global debug_package %{nil}
 
 Name:			nim
-Version:		2.0.8
-Release:		1%?dist
+Version:		2.2.0
+Release:		2%?dist
 Summary:		Imperative, multi-paradigm, compiled programming language
 License:		MIT and BSD
 URL:			https://nim-lang.org
@@ -117,6 +117,8 @@ ln -s %_prefix/lib/nim/system.nim %_prefix/lib/system.nim  # nimsuggest bug
 rm -rf %buildroot/nim || true
 rm %buildroot%_bindir/*.bat || true
 rm -rf %buildroot%_bindir/empty.txt
+
+cp -r dist %_datadir/nim/
 
 
 %files
