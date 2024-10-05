@@ -12,7 +12,7 @@ Source2:		nimgrep.1
 Source3:		nimble.1
 Source4:		nimsuggest.1
 BuildRequires:	gcc mold git-core gcc-c++ nodejs openssl-devel pkgconfig(bash-completion) gc-devel pcre-devel
-BuildRequires:  redhat-rpm-config
+BuildRequires:  redhat-rpm-config anda-srpm-macros
 Requires:		gcc
 
 
