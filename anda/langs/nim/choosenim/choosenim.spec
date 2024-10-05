@@ -16,7 +16,6 @@ sources, enabling you to easily switch between stable and development compilers.
 
 %prep
 %autosetup
-%nim_prep
 
 %build
 %nim_c src/choosenim
