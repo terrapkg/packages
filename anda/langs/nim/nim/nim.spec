@@ -3,7 +3,7 @@
 
 Name:			nim
 Version:		2.2.0
-Release:		2%?dist
+Release:		3%?dist
 Summary:		Imperative, multi-paradigm, compiled programming language
 License:		MIT and BSD
 URL:			https://nim-lang.org
@@ -46,18 +46,14 @@ and its standard library.
 
 
 %prep
-rm -rf ./*
-# using git clone to include submodules
-git clone --recurse-submodules -j8 https://github.com/nim-lang/Nim -b v%version --depth 1 .
-# hack
-cp /usr/bin/mold /usr/bin/ld
+%git_clone https://github.com/nim-lang/Nim v%version
 
 
 %build
-export CFLAGS="${CFLAGS} -Ofast"
-export CXXFLAGS="${CXXFLAGS} -Ofast"
-export FFLAGS="${FFLAGS} -Ofast"
-export FCFLAGS="${FCFLAGS} -Ofast"
+export CFLAGS="${CFLAGS} -Ofast -fuse-ld=mold"
+export CXXFLAGS="${CXXFLAGS} -Ofast -fuse-ld=mold"
+export FFLAGS="${FFLAGS} -Ofast -fuse-ld=mold"
+export FCFLAGS="${FCFLAGS} -Ofast -fuse-ld=mold"
 
 export PATH="$(pwd):$(pwd)/bin:${PATH}"
 
@@ -81,6 +77,11 @@ sed -i '/<link.*fonts.googleapis.com/d' doc/html/*.html
 
 
 %install
+export CFLAGS="${CFLAGS} -Ofast -fuse-ld=mold"
+export CXXFLAGS="${CXXFLAGS} -Ofast -fuse-ld=mold"
+export FFLAGS="${FFLAGS} -Ofast -fuse-ld=mold"
+export FCFLAGS="${FCFLAGS} -Ofast -fuse-ld=mold"
+
 export PATH="$(pwd):$(pwd)/bin:${PATH}"
 
 # --main:compiler/nim.nim
@@ -113,12 +114,13 @@ install -Dm755 bin/* -t %buildroot%_bindir
 install -d %buildroot%_includedir
 cp -a %buildroot%_prefix/lib/nim/lib/*.h %buildroot%_includedir
 ln -s %_prefix/lib/nim %buildroot%_prefix/lib/nim/lib  # compiler needs lib from here
-ln -s %_prefix/lib/nim/system.nim %_prefix/lib/system.nim  # nimsuggest bug
+#ln -s %_prefix/lib/nim/system.nim %buildroot%_prefix/lib/system.nim  # nimsuggest bug
 rm -rf %buildroot/nim || true
 rm %buildroot%_bindir/*.bat || true
 rm -rf %buildroot%_bindir/empty.txt
 
-cp -r dist %buildroot%_datadir/nim/
+cp -r dist %buildroot%_prefix/lib/nim/
+ln -s %_prefix/lib/nim/dist %buildroot%_datadir/nim/dist
 
 
 %files
