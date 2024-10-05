@@ -13,7 +13,6 @@ Source0:        %{url}archive/refs/tags/v%{version}.tar.gz
 BuildRequires:  go-rpm-macros
 BuildRequires:  git-core
 BuildRequires:  docker
-Requires:       docker
 Provides:       docker-compose = %{version}-%{release}
 Provides:       docker-compose-cli = %{version}-%{release}
 

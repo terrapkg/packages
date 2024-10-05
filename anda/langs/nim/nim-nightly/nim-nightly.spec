@@ -124,7 +124,7 @@ ln -s %_prefix/lib/nim %buildroot%_prefix/lib/nim/lib || true
 rm -rf %buildroot/nim || true
 rm %buildroot%_bindir/*.bat || true
 
-cp -r dist %_datadir/nim/
+cp -r dist %buildroot%_datadir/nim/
 
 
 %files
