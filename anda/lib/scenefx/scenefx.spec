@@ -31,7 +31,7 @@ BuildRequires:  pkgconfig(wayland-scanner)
 BuildRequires:  pkgconfig(wayland-server) >= 1.22
 
 
-Packager:       Atmois atmois@atmois.com
+Packager:       Atmois <atmois@atmois.com>
  
 %description
 %{summary}
