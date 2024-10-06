@@ -20,11 +20,7 @@ lack of driver-support on the Surface Book 1. This may change in the future.
 
 %build
 export CARGO_TARGET_DIR="$PWD/target"
-export CARGO_INCREMENTAL=0
-
-cargo build --release --locked
-strip --strip-all "target/release/surface-dtx-daemon"
-strip --strip-all "target/release/surface-dtx-userd"
+%cargo_build -- --locked
 
 %install
 
