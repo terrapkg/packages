@@ -1,14 +1,14 @@
 %global debug_package %{nil}
+%global ver 0.3.8-1
 
 Name:           surface-dtx-daemon
-Version:        0.3.8
+Version:        %(echo %ver | sed 's/-/~/g')
 Release:        1%{?dist}
 Summary:        Surface Detachment System (DTX) Daemon
 License:        MIT
 URL:            https://github.com/linux-surface/surface-dtx-daemon
-Source:         %url/archive/refs/tags/v%version.tar.gz
-Requires:       dbus libgcc
-BuildRequires:  rust cargo dbus-devel
+Source:         %url/archive/refs/tags/v%ver.tar.gz
+BuildRequires:  rust cargo dbus-devel anda-srpm-macros
 
 %description
 Linux User-Space Detachment System (DTX) Daemon for the Surface ACPI Driver
@@ -16,7 +16,7 @@ Linux User-Space Detachment System (DTX) Daemon for the Surface ACPI Driver
 lack of driver-support on the Surface Book 1. This may change in the future.
 
 %prep
-%autosetup -n %name-%version
+%autosetup -n %name-%ver
 
 %build
 export CARGO_TARGET_DIR="$PWD/target"
