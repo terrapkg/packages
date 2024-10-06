@@ -1,6 +1,4 @@
 %global scenefxVersion 0.1
-# Version of the .so library
-%global abi_ver 1
 
 Name:           scenefx
 Version:        %{scenefxVersion}
