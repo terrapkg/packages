@@ -71,7 +71,7 @@ MESON_OPTIONS=(
 %files
 %license LICENSE
 %doc README.md
-%{_libdir}/lib%{name}.so.%{abi_ver}{,.*}
+%{_libdir}/lib%{name}.so.*
 
 
 %files  devel
