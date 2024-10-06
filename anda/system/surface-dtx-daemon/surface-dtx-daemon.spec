@@ -9,6 +9,7 @@ License:        MIT
 URL:            https://github.com/linux-surface/surface-dtx-daemon
 Source:         %url/archive/refs/tags/v%ver.tar.gz
 BuildRequires:  rust cargo dbus-devel anda-srpm-macros
+Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
 Linux User-Space Detachment System (DTX) Daemon for the Surface ACPI Driver
