@@ -17,6 +17,7 @@ lack of driver-support on the Surface Book 1. This may change in the future.
 
 %prep
 %autosetup -n %name-%ver
+%cargo_prep_online
 
 %build
 export CARGO_TARGET_DIR="$PWD/target"
