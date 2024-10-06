@@ -1,1 +1,1 @@
-rpm.version(gh("linux-surface/surface-dtx-daemon"));
+rpm.global("ver", gh("linux-surface/surface-dtx-daemon"));
