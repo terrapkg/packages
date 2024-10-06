@@ -26,8 +26,8 @@ export CARGO_TARGET_DIR="$PWD/target"
 %install
 
 # binary files
-install -D -m755 "target/release/surface-dtx-daemon" "%{buildroot}/usr/bin/surface-dtx-daemon"
-install -D -m755 "target/release/surface-dtx-userd" "%{buildroot}/usr/bin/surface-dtx-userd"
+install -D -m755 "target/rpm/surface-dtx-daemon" "%buildroot%_bindir/surface-dtx-daemon"
+install -D -m755 "target/rpm/surface-dtx-userd" "%buildroot%_bindir/surface-dtx-userd"
 
 # application files
 install -D -m644 "target/etc/dtx/surface-dtx-daemon.conf" "%{buildroot}/etc/surface-dtx/surface-dtx-daemon.conf"
