@@ -1,0 +1,1 @@
+rpm.version(gh("linux-surface/surface-dtx-daemon"));
