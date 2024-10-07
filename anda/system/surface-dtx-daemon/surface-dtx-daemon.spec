@@ -2,7 +2,7 @@
 %global ver 0.3.8-1
 
 Name:           surface-dtx-daemon
-Version:        %(echo %ver | sed 's/-/~/g')
+Version:        $(echo %ver | sed 's/-/~/g')
 Release:        1%{?dist}
 Summary:        Surface Detachment System (DTX) Daemon
 License:        MIT
