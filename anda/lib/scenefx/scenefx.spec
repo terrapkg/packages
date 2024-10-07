@@ -1,14 +1,12 @@
-%global scenefxVersion 0.1
-
 Name:           scenefx
-Version:        %{scenefxVersion}
+Version:        0.1
 Release:        1%{?dist}
 
 Summary:        A drop-in replacement for the wlroots scene API that allows wayland compositors to render surfaces with eye-candy effects
 URL:            https://github.com/wlrfx/scenefx
 License:        MIT
 
-Source0:        %{url}/archive/refs/tags/%{scenefxVersion}.tar.gz
+Source0:        %{url}/archive/refs/tags/%version.tar.gz
 
 
 BuildRequires:  gcc
