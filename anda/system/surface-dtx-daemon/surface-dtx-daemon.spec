@@ -2,7 +2,7 @@
 %global ver 0.3.8-1
 
 Name:           surface-dtx-daemon
-Version:        $(echo %ver | sed 's/-/~/g')
+Version:        %(echo %ver | sed 's/-/~/g')
 Release:        1%{?dist}
 Summary:        Surface Detachment System (DTX) Daemon
 License:        MIT
@@ -17,7 +17,7 @@ Linux User-Space Detachment System (DTX) Daemon for the Surface ACPI Driver
 lack of driver-support on the Surface Book 1. This may change in the future.
 
 %prep
-%autosetup -n %name-%ver
+%autosetup -n %{name}-%{ver}
 %cargo_prep_online
 
 %build
@@ -27,8 +27,8 @@ export CARGO_TARGET_DIR="$PWD/target"
 %install
 
 # binary files
-install -D -m755 "target/rpm/surface-dtx-daemon" "%buildroot%_bindir/surface-dtx-daemon"
-install -D -m755 "target/rpm/surface-dtx-userd" "%buildroot%_bindir/surface-dtx-userd"
+install -D -m755 "target/rpm/surface-dtx-daemon" "%{buildroot}%{_bindir}/surface-dtx-daemon"
+install -D -m755 "target/rpm/surface-dtx-userd" "%{buildroot}%{_bindir}/surface-dtx-userd"
 
 # application files
 install -D -m644 "target/etc/dtx/surface-dtx-daemon.conf" "%{buildroot}/etc/surface-dtx/surface-dtx-daemon.conf"
