@@ -43,7 +43,6 @@ install -Dm755 chromebook-usbc.service %buildroot%{_unitdir}/chromebook-usbc.ser
 %license LICENSE
 %{_sysconfdir}/chromebook-usbc-fix/*
 %{_unitdir}/chromebook-usbc.service
-%{_bindir}/chromebook-usbc-fix
 
 %changelog
 * Sat Oct 5 2024 Owen-sz <owen@fyralabs.com>
