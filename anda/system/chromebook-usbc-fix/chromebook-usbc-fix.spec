@@ -14,6 +14,7 @@ License:        CCO
 Summary:        Fixes usbc on TigerLake and AlderLake Chromebooks
 URL:            https://github.com/Ultramarine-Linux/chromebook-usbc-fix
 Source:         %url/archive/%{commit}/chromebook-usbc-fix-%{commit}.tar.gz
+Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %{?systemd_requires}
 BuildRequires:  systemd-rpm-macros
