@@ -1,0 +1,12 @@
+diff --git a/meson.build b/meson.build
+index 4784ac2..2348b13 100644
+--- a/meson.build
++++ b/meson.build
+@@ -13,4 +13,5 @@ executable(
+         dependency('cairomm-1.0'),
+         dependency('freetype2'),
+     ],
+-)
+\ No newline at end of file
++    install: true
++)
