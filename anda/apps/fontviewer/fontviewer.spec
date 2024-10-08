@@ -1,8 +1,9 @@
-%global commit 8ae77393a936818ba511ba55237ec422508c802f
+%global commit dc5cd1490235f8c19424b3345a89727199c86df3
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
+%global commit_date 20241003
 
 Name:           fontviewer
-Version:        0^1.git%{shortcommit}
+Version:        %{commit_date}.git~%{shortcommit}
 Release:        1%{?dist}
 Summary:        View and install fonts
 
@@ -20,6 +21,8 @@ BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(gtkmm-3.0)
 
 Requires:       gtk3 fontconfig
+
+Packager:       sadlerm <sad_lerm@hotmail.com>
 
 %description
 A platform-agnostic GTK+ 3 alternative to GNOME's Font Viewer
@@ -42,7 +45,3 @@ install -m 0755 -vp data/%{name}.desktop %{buildroot}%{_datadir}/applications/
 %doc README.md
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
-
-%changelog
-* Wed Oct  2 2024 sadlerm
-- Initial package
