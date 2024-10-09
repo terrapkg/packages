@@ -13,11 +13,6 @@ Requires: %1.i686 \
 Requires: %1 \
 %endif
 
-%define 32bit_dep() \
-%ifarch x86_64 \
-Requires: %1.i686 \
-%else \
-Requires: %1
 
 
 
@@ -67,7 +62,7 @@ Patch0:         https://github.com/terrapkg/pkg-steam/raw/refs/heads/main/steam-
 # Do not try to copy steam.desktop to the user's desktop from lib/steam
 Patch1:         https://github.com/terrapkg/pkg-steam/raw/refs/heads/main/steam-no-icon-on-desktop.patch
 
-BuildRequires:  desktop-file-utils.
+BuildRequires:  desktop-file-utils
 BuildRequires:  libappstream-glib
 BuildRequires:  make
 BuildRequires:  systemd
@@ -216,7 +211,11 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%{appstream_id
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
 %{_datadir}/pixmaps/%{name}.png
 %{_datadir}/pixmaps/%{name}_tray_mono.png
+%ifarch x86_64
+%{_prefix}/lib/%{name}/
+%else
 %{_libdir}/%{name}/
+%endif
 %{_mandir}/man6/%{name}.*
 %{_metainfodir}/%{appstream_id}.metainfo.xml
 %config(noreplace) %{_sysconfdir}/profile.d/%{name}.*sh
