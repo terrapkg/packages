@@ -1,0 +1,25 @@
+diff -Naur steam-launcher.old/Makefile steam-launcher/Makefile
+--- steam-launcher.old/Makefile	2021-11-20 09:53:46.869376047 +0100
++++ steam-launcher/Makefile	2021-11-20 09:54:01.568630510 +0100
+@@ -3,7 +3,7 @@
+ all:
+ 	@echo 'Run steam with "./steam" or install it with "sudo make install"'
+ 
+-install: install-bin install-docs install-icons install-bootstrap install-desktop install-appdata install-apt-source
++install: install-bin install-docs install-icons install-bootstrap install-desktop install-appdata
+ 
+ install-bin:
+ 	install -d -m 755 $(DESTDIR)$(PREFIX)/bin/
+@@ -43,12 +43,7 @@
+ install-desktop:
+ 	install -d -m 755 $(DESTDIR)$(PREFIX)/share/applications/
+ 	install -d -m 755 $(DESTDIR)$(pkglibdir)/
+-	# If we create a desktop symlink in $(datadir)/applications/, the md5sum deb file
+-	# will not contain an entry for it and appstream-generator will complain that
+-	# the package is missing the desktop file. Instead we place the real file in
+-	# $(datadir)/applications/ and create a symlink in $(pkglibdir)
+ 	install -p -m 644 $(PACKAGE).desktop $(DESTDIR)$(datadir)/applications/
+-	ln -fns $(datadir)/applications/$(PACKAGE).desktop $(DESTDIR)$(pkglibdir)/
+ 
+ install-appdata:
+ 	install -d -m 755 $(DESTDIR)$(PREFIX)/share/metainfo/

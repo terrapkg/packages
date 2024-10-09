@@ -1,0 +1,108 @@
+Moving the Steam client installation
+====================================
+
+I often poke around with the client, check folder sizes in my home folder, etc.
+Running a du -hs * in my home folder to check how much space my Pictures or
+Music folder take it’s very fast. But since the Steam client is installed in a
+hidden subdirectory it’s not really clear how much space it does take,
+especially when it reached nearly 70% of my whole drive.
+
+To move the Steam installation (for example in your home folder), simply issue
+the following command:
+
+ $ mv ~/.local/share/Steam ~/Steam
+
+And launch the client again, it will adjust all the symlinks for folders, saves,
+etc. by itself. Even the desktop / system shortcuts for the games work because
+they launch Steam (which is in the path) with the appropriate Steam game ID.
+
+Steam Remote Play (hardware decoding/encoding)
+==============================================
+
+Steam Remote Play hardware decoding and encoding are exposed through different
+backends, depending on the hardware you are running. These are detected at
+runtime, and are all 32 bit libraries also on 64 bit systems, as the client is
+32 bit only.
+
++--------+---------+-------------+--------------+
+| Vendor | Driver  | Encoding    | Decoding     |
++--------+---------+-------------+--------------+
+| Intel  | intel   | VA-API      | VA-API       |
++--------+---------+-------------+--------------+
+| Nvidia | nvidia  | NVENC/NVFBC | NVDEC/VDPAU  |
++--------+---------+-------------+--------------+
+| AMD    | radeon  | VA-API      | VA-API/VDPAU |
++--------+---------+-------------+--------------+
+| Nvidia | nouveau | -           | VA-API/VDPAU |
++--------+---------+-------------+--------------+
+| AMD    | amdgpu  | VA-API      | VA-API/VDPAU |
++--------+---------+-------------+--------------+
+
+Steam Remote Play configuration
+===============================
+
+Valve has supported Steam Remote Play (both as a server and as a client) in
+Linux for quite some time. According to the documentation, streaming in the same
+network segment uses UDP ports 27031 to 27036 and TCP ports 27036 and 27037.
+
+If you have installed a default desktop, FirewallD should be your firewall
+solution. To make sure that Steam can listen on the required ports through your
+firewall software, execute the following commands as root.
+
+You should be able to see the word “steam” by running:
+
+ # firewall-cmd --get-services | grep steam
+
+Then get the firewall zone you are in, and enable the service for it. For
+example, on my system, to get the firewall zone I’m using:
+
+ # firewall-cmd --get-active-zones 
+ public
+   interfaces: em1
+
+You may want to set up a home or other trusted zone in your firewall. This will
+help protect your system from unauthorized remote access over the internet.
+This is out of scope for this help text, but this tutorial will guide
+you through the process:
+
+  https://ctrl.blog/entry/how-to-firewalld-zone-by-ip
+
+Then enable the Steam service permanently (i.e. at reboot) on the public or
+your preferred zone immediately with these commands:
+
+ # firewall-cmd --zone=public --add-service=steam-streaming --permanent
+ # firewall-cmd --zone=public --add-service=steam-streaming
+
+Now start up two Steam clients with your user on the same network, and you
+should see games installed on both systems as available for playing in both
+Steam clients.
+
+For Steam Remote Play outside of your network, there is no need to open any
+additional inbound ports.
+
+Joysticks, keyboards and game pads
+==================================
+
+The package contains the UDEV rules for lots of gamepads as presented in the
+Steam devices repository (https://github.com/ValveSoftware/steam-devices).
+Also it contains additional UDEV rules to make sure some multimedia keyboards
+and tablet devices are properly detected as game pads and not mouses.
+
+Steam Controller
+================
+
+To use the Steam Controller as a normal gamepad you require the Steam client to
+be running and the user requiring Gamepad emulation needs to be in the 'input'
+group.
+
+Regular firmware updates will go through regular USB hid reports and can be
+performed wired or wirelessly. Valve will also sometimes be releasing infrequent
+bootloader firmware updates; these updates are different and can only work when
+wired.
+
+When Steam asks you to plug in the controller to start the update, the
+controller will change from a HID device to a mass storage device with an
+identifier of 'CRP DISABLED'. Steam will then wait for that device to become
+mounted somewhere so that it can copy the firmware file into the controller.
+If you don't auto-mount mass storage devices by default, you need to mount it
+manually when the Steam client is waiting for the volume to get mounted.
