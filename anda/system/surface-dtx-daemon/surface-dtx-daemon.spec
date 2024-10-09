@@ -1,5 +1,5 @@
 %global debug_package %{nil}
-%global ver 0.3.8-1
+%global ver v0.3.8-1
 
 Name:           surface-dtx-daemon
 Version:        %(echo %ver | sed 's/-/~/g')
