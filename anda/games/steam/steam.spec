@@ -3,6 +3,34 @@
 
 %global appstream_id com.valvesoftware.Steam
 
+# If current arch is x86_64, then add the same dependency for i686
+
+%define arch_dep() \
+%ifarch x86_64 \
+Requires: %1 \
+Requires: %1.i686 \
+%else \
+Requires: %1 \
+%endif
+
+%define 32bit_dep() \
+%ifarch x86_64 \
+Requires: %1.i686 \
+%else \
+Requires: %1
+
+
+
+%define arch_recommends() \
+%ifarch x86_64 \
+Recommends: %1 \
+Recommends: %1.i686 \
+%else \
+Recommends: %1 \
+%endif
+
+
+
 Name:           steam
 Version:        1.0.0.81
 Release:        1%{?dist}
@@ -10,13 +38,13 @@ Summary:        Installer for the Steam software distribution service
 # Redistribution and repackaging for Linux is allowed, see license file. udev rules are MIT.
 License:        Steam License Agreement and MIT
 URL:            http://www.steampowered.com/
-ExclusiveArch:  i686
+ExclusiveArch:  x86_64
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
 
 Source0:        https://repo.steampowered.com/%{name}/archive/beta/%{name}_%{version}.tar.gz
-Source1:        %{name}.sh
-Source2:        %{name}.csh
-Source5:        README.Fedora
+Source1:        https://github.com/terrapkg/pkg-steam/raw/refs/heads/main/steam.sh
+Source2:        https://github.com/terrapkg/pkg-steam/raw/refs/heads/main/steam.csh
+Source5:        https://github.com/terrapkg/pkg-steam/raw/refs/heads/main/README.Fedora
 
 # Ghost touches in Big Picture mode:
 # https://github.com/ValveSoftware/steam-for-linux/issues/3384
@@ -25,21 +53,21 @@ Source5:        README.Fedora
 # https://github.com/systemd/systemd/issues/32773
 
 # Input devices seen as joysticks:
-Source6:        61-these-are-not-joystick.hwdb
+Source6:        https://github.com/terrapkg/pkg-steam/raw/refs/heads/main/61-these-are-not-joystick.hwdb
 
 # Configure limits in systemd
-Source7:        01-steam.conf
+Source7:        https://github.com/terrapkg/pkg-steam/raw/refs/heads/main/01-steam.conf
 
 # Newer udev rules than what is bundled in the tarball
 Source8:        https://raw.githubusercontent.com/ValveSoftware/steam-devices/master/60-steam-input.rules
 Source9:        https://raw.githubusercontent.com/ValveSoftware/steam-devices/master/60-steam-vr.rules
 
 # Do not install desktop file in lib/steam, do not install apt sources
-Patch0:         %{name}-makefile.patch
+Patch0:         https://github.com/terrapkg/pkg-steam/raw/refs/heads/main/steam-makefile.patch
 # Do not try to copy steam.desktop to the user's desktop from lib/steam
-Patch1:         %{name}-no-icon-on-desktop.patch
+Patch1:         https://github.com/terrapkg/pkg-steam/raw/refs/heads/main/steam-no-icon-on-desktop.patch
 
-BuildRequires:  desktop-file-utils
+BuildRequires:  desktop-file-utils.
 BuildRequires:  libappstream-glib
 BuildRequires:  make
 BuildRequires:  systemd
@@ -54,12 +82,9 @@ Requires:       zenity
 # native arch drivers as well, by not specifying _isa macro, native arch
 # packages are preferred. This will make sure people have all necessary drivers
 # for both i686 and x86_64 games.
-Requires:       mesa-dri-drivers%{?_isa}
-Requires:       mesa-dri-drivers
-Requires:       mesa-vulkan-drivers%{?_isa}
-Requires:       mesa-vulkan-drivers
-Requires:       vulkan-loader%{?_isa}
-Requires:       vulkan-loader
+%arch_dep mesa-dri-drivers
+%arch_dep mesa-vulkan-drivers
+%arch_dep vulkan-loader
 
 # Minimum requirements for starting the steam client using system libraries
 Requires:       alsa-lib%{?_isa}
@@ -79,11 +104,11 @@ Requires:       nss%{?_isa}
 Requires:       pulseaudio-libs%{?_isa}
 
 # Required for sending out crash reports to Valve
-Requires:       libcurl%{?_isa}
+Requires:       libcurl
 
 # Workaround for mesa-libGL dependency bug:
 # https://bugzilla.redhat.com/show_bug.cgi?id=1168475
-Requires:       systemd-libs%{?_isa}
+Requires:       systemd-libs
 
 # Required for the firewall rules
 # http://fedoraproject.org/wiki/PackagingDrafts/ScriptletSnippets/Firewalld
@@ -91,11 +116,11 @@ Requires:       firewalld-filesystem
 Requires(post): firewalld-filesystem
 
 # Required for hardware encoding/decoding during Remote Play (intel/radeon/amdgpu/nouveau)
-Requires:       libva%{?_isa}
-Requires:       libvdpau%{?_isa}
+Requires:       libva
+Requires:       libvdpau
 
 # Required by Feral interactive games
-Requires:       libatomic%{?_isa}
+Requires:       libatomic
 
 # Required by Shank
 Requires:       (alsa-plugins-pulseaudio%{?_isa} if pulseaudio)
@@ -109,8 +134,8 @@ Requires:       SDL2%{?_isa}
 %endif
 
 # Game performance is increased with gamemode (for games that support it)
-Recommends:     gamemode
-Recommends:     gamemode%{?_isa}
+%arch_recommends gamemode
+
 Recommends:     (gnome-shell-extension-appindicator if gnome-shell)
 
 # Proton uses xdg-desktop-portal to open URLs from inside a container
