@@ -26,7 +26,6 @@ BuildRequires:  systemd-rpm-macros
 %autosetup -n chromebook-usbc-fix-%commit
 
 %install
-mkdir -p %buildroot%{_sysconfdir}/chromebook-usbc-fix/
 install -Dm755 chromebook-usbc.service %buildroot%{_unitdir}/chromebook-usbc.service
 
 %post
@@ -41,7 +40,6 @@ install -Dm755 chromebook-usbc.service %buildroot%{_unitdir}/chromebook-usbc.ser
 %files
 %doc README.md
 %license LICENSE
-%{_sysconfdir}/chromebook-usbc-fix/*
 %{_unitdir}/chromebook-usbc.service
 
 %changelog
