@@ -1,1 +1,1 @@
-rpm.version(gh("wlrfx/scenefx));
+rpm.version(gh("wlrfx/scenefx"));
