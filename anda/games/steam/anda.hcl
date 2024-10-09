@@ -3,7 +3,7 @@ project pkg {
 		spec = "steam.spec"
 	}
     // todo: force-arches macro?
-    labels {
-        multilib = 1
-    }
+    // labels {
+    //     multilib = 1
+    // }
 }
