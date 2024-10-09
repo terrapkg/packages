@@ -1,1 +1,8 @@
-*.tar.gz
+# We're gonna do a whitelist approach here because
+# inline sources are now allowed
+
+*
+!.gitignore
+!anda.hcl
+!steam.spec
+!update.rhai
