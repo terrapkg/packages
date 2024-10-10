@@ -9,7 +9,7 @@
 %global gver .%{gitdate}git%{gitversion}
 %global branch stable
 
-#global _with_bootstrap 1
+%global _with_bootstrap 1
 
 %{?_with_bootstrap:
 %global _without_gpac 1
@@ -33,12 +33,12 @@
 %endif
 
 Summary: H264/AVC video streams encoder
-Name: x264
-Version: 0.%{api}
+Name: x264-bootstrap
+Version: 0.0.%{api}
 Release: 15%{?gver}%{?_with_bootstrap:_bootstrap}%{?dist}
 License: GPLv2+
 URL: https://www.videolan.org/developers/x264.html
-Source0: %{name}-0.%{api}-%{snapshot}.tar.bz2
+Source0: https://code.videolan.org/videolan/x264/-/archive/%gitversion.tar.bz2
 Source1: https://raw.githubusercontent.com/rpmfusion/x264/%fusionsrc_commit/x264-snapshot.sh
 Source2: https://raw.githubusercontent.com/rpmfusion/x264/%fusionsrc_commit/version.h
 
@@ -108,7 +108,8 @@ This package contains the development files.
     --enable-pic
 
 %prep
-%setup -q -c -n %{name}-0.%{api}-%{snapshot}
+%setup -q -c -n x264-%gitversion
+mv x264-%gitversion x264-0.%api-%snapshot
 pushd %{name}-0.%{api}-%{snapshot}
 cp %{SOURCE2} .
 %patch -P0 -p1 -b .nover
