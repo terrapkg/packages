@@ -1,0 +1,8 @@
+# We're gonna do a whitelist approach here because
+# inline sources are not allowed
+
+*
+!.gitignore
+!anda.hcl
+!steam.spec
+!update.rhai
