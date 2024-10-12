@@ -109,14 +109,11 @@ This package contains the development files.
 
 %prep
 %setup -q -c -n x264-%gitversion
-mv x264-%gitversion x264-0.%api-%snapshot
-pushd %{name}-0.%{api}-%{snapshot}
 cp %{SOURCE2} .
 %patch -P0 -p1 -b .nover
 %patch -P1 -p1 -b .10b
 %patch -P2 -p1 -b .ptr
 %patch -P11 -p1 -b .opencl
-popd
 
 for variant in generic generic10 ; do
   rm -rf ${variant}
