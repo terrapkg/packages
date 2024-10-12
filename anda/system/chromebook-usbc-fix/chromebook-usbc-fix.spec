@@ -29,13 +29,13 @@ BuildRequires:  systemd-rpm-macros
 install -Dm755 chromebook-usbc.service %buildroot%{_unitdir}/chromebook-usbc.service
 
 %post
-%systemd_post chromebook-usbc.service
+%systemd_post 88-ultramarine-chromebook-default.preset
 
 %preun
-%systemd_preun chromebook-usbc.service
+%systemd_preun 88-ultramarine-chromebook-default.preset
 
 %postun
-%systemd_postun_with_restart chromebook-usbc.service
+%systemd_postun_with_restart 88-ultramarine-chromebook-default.preset
 
 %files
 %doc README.md
@@ -43,5 +43,7 @@ install -Dm755 chromebook-usbc.service %buildroot%{_unitdir}/chromebook-usbc.ser
 %{_unitdir}/chromebook-usbc.service
 
 %changelog
+* Sat Oct 12 2024 Owen-sz <owen@fyralabs.com>
+- Fix the systemd preset application
 * Sat Oct 5 2024 Owen-sz <owen@fyralabs.com>
 - Initial package.
