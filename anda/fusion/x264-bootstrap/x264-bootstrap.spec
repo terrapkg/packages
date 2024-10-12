@@ -4,6 +4,7 @@
 %global api 164
 %global gitdate 20231001
 %global gitversion 31e19f92
+%global gitlongver 31e19f92f00c7003fa115047ce50978bc98c3a0d
 
 %global snapshot %{gitdate}git%{gitversion}
 %global gver .%{gitdate}git%{gitversion}
@@ -108,7 +109,7 @@ This package contains the development files.
     --enable-pic
 
 %prep
-%setup -q -c -n x264-%gitversion
+%autosetup -n x264-%gitlongver
 cp %{SOURCE2} .
 %patch -P0 -p1 -b .nover
 %patch -P1 -p1 -b .10b
