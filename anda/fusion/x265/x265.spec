@@ -7,8 +7,8 @@
 
 Summary:    H.265/HEVC encoder
 Name:       x265
-Version:    4.0
-Release:    1%{?dist}
+Version:    1.5
+Release:    1%?dist
 URL:        http://x265.org/
 # source/Lib/TLibCommon - BSD
 # source/Lib/TLibEncoder - BSD
