@@ -51,6 +51,7 @@ Patch1: https://raw.githubusercontent.com/rpmfusion/x264/%fusionsrc_commit/x264-
 Patch2: https://raw.githubusercontent.com/rpmfusion/x264/%fusionsrc_commit/x264-altivec-incompatible-pointer-type.patch
 Patch11: https://raw.githubusercontent.com/rpmfusion/x264/%fusionsrc_commit/x264-opencl.patch
 
+BuildRequires: anda-srpm-macros git-core
 BuildRequires: gcc
 %{!?_without_gpac:BuildRequires: gpac-static >= 1.0.1 zlib-devel openssl-devel libpng-devel libjpeg-devel xz-devel libglvnd-devel mesa-libGLU-devel faad2-devel libmad-devel xvidcore-devel a52dec-devel libvorbis-devel libtheora-devel openjpeg2-devel }
 %{!?_without_libavformat:BuildRequires: ffmpeg-devel}
@@ -109,16 +110,26 @@ This package contains the development files.
     --enable-pic
 
 %prep
-%autosetup -n x264-%gitlongver
+%setup -q -n x264-%gitversion-%gitlongver
+
+mkdir x264-0.%{api}-%{snapshot}
+pushd x264-0.%{api}-%{snapshot}
+git init
+git remote add origin https://code.videolan.org/videolan/x264.git
+git fetch --depth 1 origin %gitlongver
+git checkout FETCH_HEAD
+sh version.sh > ./version.h
+
 cp %{SOURCE2} .
 %patch -P0 -p1 -b .nover
 %patch -P1 -p1 -b .10b
 %patch -P2 -p1 -b .ptr
 %patch -P11 -p1 -b .opencl
+popd
 
 for variant in generic generic10 ; do
   rm -rf ${variant}
-  cp -pr %{name}-0.%{api}-%{snapshot} ${variant}
+  cp -pr x264-0.%{api}-%{snapshot} ${variant}
 done
 
 
@@ -183,7 +194,7 @@ install -pm644 generic/{AUTHORS,COPYING} %{buildroot}%{_pkgdocdir}/
 %{_includedir}/x264_config.h
 %{_libdir}/libx264.so
 %{_libdir}/libx26410b.so
-%{_libdir}/pkgconfig/%{name}.pc
+%{_libdir}/pkgconfig/x264.pc
 
 %changelog
 * Tue Oct 08 2024 Nicolas Chauvet <kwizart@gmail.com> - 0.164-15.20231001git31e19f92
