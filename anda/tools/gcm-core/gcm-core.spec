@@ -8,7 +8,7 @@
 Name:           gcm-core
 Version:        2.6.0
 %forgemeta
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Secure, cross-platform Git credential storage
 
 License:        MIT
