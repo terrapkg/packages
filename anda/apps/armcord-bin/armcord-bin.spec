@@ -14,7 +14,7 @@
 %global __provides_exclude_from %{_datadir}/armcord/.*\\.so
 
 Name:			armcord-bin
-Version:		1.0.1
+Version:		1.0.0
 Release:		1%?dist
 License:		OSL-3.0
 Summary:		Custom lightweight Discord client designed to enhance your experience
