@@ -10,6 +10,7 @@ Source0:        %url/archive/refs/tags/v%version.tar.gz
 Source1:        https://nim-lang.org/download/nim-%nimver-linux_x64.tar.xz
 Packager:		madonuko <mado@fyralabs.com>
 BuildRequires:	git-core anda-srpm-macros
+BuildConflicts: nim nim-tools
 #BuildRequires:  nim nim-tools
 
 %description
