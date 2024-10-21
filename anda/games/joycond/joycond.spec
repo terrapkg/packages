@@ -23,10 +23,11 @@ joycond is a linux daemon which uses the evdev devices provided by hid-nintendo
 %install
 cd redhat-linux-build/
 cp joycond ..
-%make_install
+%make_install 
 
-mkdir -p %buildroot%_unitdir
+mkdir -p %buildroot%_unitdir %buildroot%_prefix
 mv %buildroot%_sysconfdir/systemd/system/joycond.service %buildroot%_unitdir/joycond.service
+mv %buildroot/lib/udev/ %buildroot%_prefix/lib/
 
 %post
 %systemd_post joycond.service
