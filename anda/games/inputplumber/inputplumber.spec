@@ -9,6 +9,7 @@ BuildRequires:  libevdev-devel libiio-devel git make cargo libudev-devel llvm-de
 BuildRequires:  rust-packaging cargo-rpm-macros mold
 Requires:       libevdev libiio
 Recommends:     steam gamescope-session linuxconsoletools
+Packager:       madonuko <mado@fyralabs.com>
 Provides:       inputplumber
 Conflicts:      hhd
 
