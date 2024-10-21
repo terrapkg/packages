@@ -7,7 +7,7 @@ Summary:        Application dock for the MATE panel
 License:        GPL-3.0-or-later
 URL:            https://github.com/ubuntu-mate/mate-dock-applet
 Source0:        %url/archive/refs/tags/%version.tar.gz
-BuildRequires:  automake make
+BuildRequires:  automake make gcc
 BuildRequires:  python3 python3-xlib python3-pillow glib2-devel python3-cairo bamf-daemon bamf python3-distro gettext-devel
 Requires:       bamf libnotify mate-panel python3-cairo python3-dbus python3-gobject python3-pillow python3-xdg python3-xlib
 Packager:       madonuko <mado@fyralabs.com>
