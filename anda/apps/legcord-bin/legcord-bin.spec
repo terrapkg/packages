@@ -34,6 +34,8 @@ LegCord is a custom client designed to enhance your Discord experience
 while keeping everything lightweight.
 
 %prep
+mkdir legcord
+cd legcord
 unzip %SOURCE0
 
 cat <<EOF > .legcord.desktop
@@ -45,13 +47,14 @@ Type=Application
 Exec=%_bindir/legcord
 Icon=legcord
 Categories=Network;InstantMessaging;
-StartupWMClass=armcord
+StartupWMClass=legcord
 Keywords=discord;armcord;legcord;vencord;shelter;electron;
 EOF
 
 %build
 
 %install
+cd legcord
 mkdir -p %buildroot%_bindir %buildroot%_datadir/applications %buildroot%_datadir/pixmaps %buildroot%_datadir/legcord %buildroot%_docdir/%name
 cp -a * %buildroot%_datadir/legcord/
 ln -s %_datadir/legcord/legcord %buildroot%_bindir/legcord
