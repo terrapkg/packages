@@ -24,6 +24,7 @@ Source0:		%url/releases/download/v%version/%src.zip
 Source1:		legcord.png
 Source2:		https://raw.githubusercontent.com/LegCord/LegCord/v%version/README.md
 Requires:		electron xdg-utils
+BuildRequires:  unzip
 ExclusiveArch:	x86_64 aarch64 armv7l
 Conflicts:		legcord
 BuildRequires:	add-determinism
@@ -33,7 +34,7 @@ LegCord is a custom client designed to enhance your Discord experience
 while keeping everything lightweight.
 
 %prep
-%autosetup -n %src
+unzip %SOURCE0
 
 cat <<EOF > .legcord.desktop
 [Desktop Entry]
