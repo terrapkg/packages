@@ -38,7 +38,7 @@ A platform-agnostic GTK+ 3 alternative to GNOME's Font Viewer
 %meson_install
 
 install -m 0755 -vd %{buildroot}%{_datadir}/applications
-install -m 0755 -vp data/%{name}.desktop %{buildroot}%{_datadir}/applications/
+install -m 0644 -vp data/%{name}.desktop %{buildroot}%{_datadir}/applications/
 
 %files
 %license LICENSE
