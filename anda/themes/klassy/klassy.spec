@@ -101,7 +101,7 @@ Klassy (formerly ClassiK/ClassikStyles) is a highly customizable binary Window D
 %{_kf6_qtplugindir}/kstyle_config/klassystyleconfig.so
 %{_kf6_qtplugindir}/org.kde.kdecoration2/org.kde.klassy.so
 %{_kf6_qtplugindir}/org.kde.kdecoration2.kcm/kcm_klassydecoration.so
-%{_kf6_qtplugindir}/org.kde.kdecoration2.kcm/klassydecoration/presets/
+%dnl %{_kf6_qtplugindir}/org.kde.kdecoration2.kcm/klassydecoration/presets/
 
 %{_kf6_datadir}/applications/kcm_klassydecoration.desktop
 %{_kf6_datadir}/applications/klassystyleconfig.desktop
