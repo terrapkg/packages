@@ -20,7 +20,7 @@ License:		OSL-3.0
 Summary:		Custom lightweight Discord client designed to enhance your experience
 URL:			https://github.com/LegCord/LegCord
 Group:			Applications/Internet
-Source0:		%url/releases/download/v%version/%src.tar.gz
+Source0:		%url/releases/download/v%version/%src.zip
 Source1:		legcord.png
 Source2:		https://raw.githubusercontent.com/LegCord/LegCord/v%version/README.md
 Requires:		electron xdg-utils
