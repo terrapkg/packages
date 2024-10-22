@@ -1,4 +1,5 @@
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
+%define __strip /bin/true
 
 Name:           stardust-server
 Version:        0.45.1
