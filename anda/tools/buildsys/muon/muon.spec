@@ -15,6 +15,7 @@ BuildRequires:  libcurl-devel
 BuildRequires:  libarchive-devel
 BuildRequires:  libpkgconf-devel
 BuildRequires:  scdoc
+BuildRequires:  american-fuzzy-lop
 
 %description
 An implementation of the meson build system in c99 with minimal dependencies.
