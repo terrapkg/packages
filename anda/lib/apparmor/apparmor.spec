@@ -3,7 +3,7 @@
 %bcond_with tests
 
 Name:           apparmor
-Version:        4.1.0.beta1
+Version:        4.1.0~beta1
 Release:        1%?dist
 Summary:        AppArmor userspace components
 
@@ -12,7 +12,7 @@ Summary:        AppArmor userspace components
 
 License:        GPL-2.0
 URL:            https://gitlab.com/apparmor/apparmor
-Source0:        %url/-/archive/v%version/apparmor-v%version.tar.gz
+Source0:        %url/-/archive/v%normver/apparmor-v%normver.tar.gz
 Source1:        apparmor.preset
 Patch01:        0001-fix-avahi-daemon-authselect-denial-in-fedora.patch
 
@@ -139,7 +139,7 @@ confinement policies when running virtual hosts in the webserver by using the
 changehat abilities exposed through libapparmor.
 
 %prep
-%autosetup -p1 -n %name-v%version
+%autosetup -p1 -n %name-v%normver
 sed -i 's/@VERSION@/%normver/g' libraries/libapparmor/swig/python/setup.py.in
 sed -i 's/${VERSION}/%normver/g' utils/Makefile
 
@@ -165,6 +165,7 @@ popd
 %make_build -C utils/vim
 
 %install
+mkdir -p %buildroot%_datadir/polkit-1/actions/
 %make_install -C libraries/libapparmor
 %make_install -C binutils
 %make_install -C parser \
@@ -184,6 +185,8 @@ find %{buildroot} \( -name "*.a" -o -name "*.la" \) -delete
 %find_lang aa-binutils
 %find_lang apparmor-parser
 %find_lang apparmor-utils
+
+mv $RPM_BUILD_ROOT%_datadir/polkit-1/actions/com.ubuntu.pkexec.aa-notify.policy %buildroot%_datadir/
 
 %if %{with tests}
 %check
