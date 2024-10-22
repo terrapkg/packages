@@ -46,6 +46,7 @@ BuildRequires:    cmake(Qt%{qt_version}Network) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Test) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Widgets) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Xml) >= %{min_qt_version}
+BuildRequires:    cmake(Qt%{qt_version}NetworkAuth) >= %{min_qt_version}
 BuildRequires:    tomlplusplus-devel
 
 %if %{with qt6}
