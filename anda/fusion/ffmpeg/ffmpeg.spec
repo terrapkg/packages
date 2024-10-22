@@ -116,7 +116,7 @@ Source1:        https://ffmpeg.org/releases/ffmpeg-%{version}.tar.xz.asc
 Source2:        https://ffmpeg.org/ffmpeg-devel.asc
 %endif
 # We don't endorse adding this patch but fedora insists on breaking the ffmpeg ABI
-Patch0:         https://raw.githubusercontent.com/terrapkg/pkg-ffmpeg/%terrasrc_commit/ffmpeg-chromium.patch
+#Patch0:         https://raw.githubusercontent.com/terrapkg/pkg-ffmpeg/%terrasrc_commit/ffmpeg-chromium.patch
 Conflicts:      %{name}-free
 Provides:       %{name}-bin = %{version}-%{release}
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
