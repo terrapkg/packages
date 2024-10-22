@@ -35,6 +35,8 @@ cargo install --path . --root %buildroot%_prefix --locked
 
 %files
 %_bindir/stardust-xr-server
+%_usr/.crates.toml
+%_usr/.crates2.json
 %license LICENSE
 %doc README.md
 
