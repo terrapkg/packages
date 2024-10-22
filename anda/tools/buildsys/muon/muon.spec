@@ -6,7 +6,7 @@ Summary:        A meson-compatible build system
 # muon is licensed under the GPL version 3 (see LICENSE). Tests under tests/project were copied from the meson project tests and are licensed under Apache 2.0.
 License:        GPL-3.0 AND Apache-2.0
 URL:            https://muon.build/
-Source:         https://git.sr.ht/~lattis/muon/archive/%{version}.tar.gz
+Source:         https://muon.build/releases/v%version/muon-v%version.tar.gz
 
 BuildRequires:  meson
 BuildRequires:  gcc
