@@ -24,10 +24,15 @@ An implementation of the meson build system in c99 with minimal dependencies.
 %autosetup
 
 %build
-%meson -Dtracy=disabled
+./bootstrap.sh build-stage1
+build-stage1/muon setup build-stage2
+ninja -C build-stage2
+%define __meson build-stage2/muon
+%meson
 %meson_build
 
 %install
+%define __meson build-stage2/muon
 %meson_install
 
 %files
