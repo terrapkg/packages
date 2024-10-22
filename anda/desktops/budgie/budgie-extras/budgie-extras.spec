@@ -163,6 +163,7 @@ Summary:	A fork of Wingpanel Network Indicator, ported to budgie desktop
 
 %package -n	budgie-applet-quickchar
 Requires:	budgie-extras-common
+Requires: budgie-extras-daemon
 Summary:	A mini-app to quickly choose and insert equivalents of ascii characters
 %description -n	budgie-applet-quickchar
 QuickChar is a mini-app to quickly choose and insert equivalents of ascii
@@ -230,6 +231,7 @@ forecasts on both the desktop and a Popover.
 
 %package -n	budgie-applet-window-shuffler
 Requires:	budgie-extras-common
+Requires: budgie-extras-daemon
 Summary:	Budgie Window Shuffler
 %description -n	budgie-applet-window-shuffler
 %{summary}
@@ -247,12 +249,14 @@ during suspend is automatically retracted from a workspace' time.
 
 %package -n	budgie-applet-wpreviews
 Requires:	budgie-extras-common
+Requires: budgie-extras-daemon
 Summary:	Applet providing window previews capabilities for the Budgie Desktop
 %description -n	budgie-applet-wpreviews
 The Previews applet shows an overview of windows in an expose like way.
 
 %package -n	budgie-applet-wswitcher
 Requires:	budgie-extras-common
+Requires: budgie-extras-daemon
 Summary:	An applet to show a different wallpaper on each of the workspaces
 %description -n	budgie-applet-wswitcher
 Budgie Wallpaper Workspace Switcher is an application (applet) to show a
