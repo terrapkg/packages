@@ -67,6 +67,7 @@ BuildRequires: pkgconfig(bash-completion)
 # we need to enforce the exact EVR for an ISA - not only the same ABI
 Requires: %{name}-libs%{?_isa} = %{version}-%{release}
 Requires: ffmpeg-libs%{?_isa}
+Provides: x264 = %version-%release
 
 %description
 x264 is a free library for encoding H264/AVC video streams, written from
@@ -77,6 +78,7 @@ This package contains the frontend.
 %package libs
 Summary: Library for encoding H264/AVC video streams
 Recommends: %{_libdir}/libOpenCL.so.1
+Provides: x264-libs = %version-%release
 
 %description libs
 x264 is a free library for encoding H264/AVC video streams, written from
@@ -86,6 +88,7 @@ scratch.
 Summary: Development files for the x264 library
 Requires: %{name}-libs%{?_isa} = %{version}-%{release}
 Requires: pkgconfig
+Provides: x264-devel = %version-%release
 
 %description devel
 x264 is a free library for encoding H264/AVC video streams, written from
