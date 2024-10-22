@@ -1,5 +1,4 @@
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
-%define __strip /bin/true
 
 Name:           stardust-server
 Version:        0.45.1
@@ -28,13 +27,12 @@ Usable Linux display server that reinvents human-computer interaction for all ki
 
 %prep
 %autosetup -n server-%version
-%cargo_prep_online
 
 %build
 
 %install
 %define __cargo_common_opts %{?_smp_mflags} -Z avoid-dev-deps --locked
-%cargo_install
+cargo install
 
 %files
 %_bindir/stardust-xr-server
