@@ -1,6 +1,6 @@
-%global commit_date 20240824
+%global commit_date 20241020
 
-%global tree_commit b2e69368f96bdf7562dc1a95a0d863c794756842
+%global tree_commit 0dcdc343618e786d39e02ec5297c146075c3b162
 %global tree_shortcommit %(c=%{tree_commit}; echo ${c:0:7})
 
 %global um_commit 46892acafb2fff3f3ace425d4694382c92645feb
@@ -42,16 +42,13 @@ install -Dm644 cros-keyboard-map.service %{buildroot}%{_unitdir}/cros-keyboard-m
 chmod +x %buildroot%{_bindir}/um-generate-cros-keymap
 
 %post
-%systemd_post cros-keyboard-map.service
-%systemd_post keyd.service
+%systemd_post 88-ultramarine-chromebook-default.preset
 
 %preun
-%systemd_preun cros-keyboard-map.service
-%systemd_preun keyd.service
+%systemd_preun 88-ultramarine-chromebook-default.preset
 
 %postun
-%systemd_postun_with_restart cros-keyboard-map.service
-%systemd_postun_with_restart keyd.service
+%systemd_postun_with_restart 88-ultramarine-chromebook-default.preset
 
 %files
 %doc README.md
@@ -61,6 +58,8 @@ chmod +x %buildroot%{_bindir}/um-generate-cros-keymap
 %{_bindir}/um-generate-cros-keymap
 
 %changelog
+* Sat Oct 12 2024 Owen-sz <owen@fyralabs.com>
+- Fix the systemd preset application
 * Sat Aug 24 2024 junefish <june@fyralabs.com>
 - Split off into seperate git repo.
 * Sat May 4 2024 Owen-sz <owen@fyralabs.com>

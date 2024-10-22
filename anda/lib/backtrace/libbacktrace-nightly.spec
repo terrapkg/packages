@@ -1,8 +1,8 @@
 %global debug_package %nil
 
-%global commit 86885d14049fab06ef8a33aac51664230ca09200
+%global commit 531aec7c52b66cd750a28a698f3c060f279b18b0
 %global shortcommit %(c=%commit; echo ${c:0:7})
-%global commit_date 20240806
+%global commit_date 20241021
 
 %global _desc %{expand:
 A C library that may be linked into a C/C++ program to produce symbolic backtraces.

@@ -1,8 +1,8 @@
 Name:           klassy
 
 %global forgeurl https://github.com/paulmcauley/%{name}
-%global tag 6.1.breeze6.0.3
-%global date 20240411
+%global tag 6.2.breeze6.2.1
+%global date 20241018
 %forgemeta
 
 Version:        %{tag}
@@ -101,7 +101,7 @@ Klassy (formerly ClassiK/ClassikStyles) is a highly customizable binary Window D
 %{_kf6_qtplugindir}/kstyle_config/klassystyleconfig.so
 %{_kf6_qtplugindir}/org.kde.kdecoration2/org.kde.klassy.so
 %{_kf6_qtplugindir}/org.kde.kdecoration2.kcm/kcm_klassydecoration.so
-%{_kf6_qtplugindir}/org.kde.kdecoration2.kcm/klassydecoration/presets/
+%{_kf6_qtplugindir}/org.kde.kdecoration2.kcm/klassydecoration/presets/*
 
 %{_kf6_datadir}/applications/kcm_klassydecoration.desktop
 %{_kf6_datadir}/applications/klassystyleconfig.desktop
