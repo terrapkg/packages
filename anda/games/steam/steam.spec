@@ -8,7 +8,7 @@
 %define arch_dep() \
 %ifarch x86_64 \
 Requires: %1 \
-Requires: %1.i686 \
+Requires: %1(x86-32) \
 %else \
 Requires: %1 \
 %endif
@@ -19,7 +19,7 @@ Requires: %1 \
 %define arch_recommends() \
 %ifarch x86_64 \
 Recommends: %1 \
-Recommends: %1.i686 \
+Recommends: %1(x86-32) \
 %else \
 Recommends: %1 \
 %endif
