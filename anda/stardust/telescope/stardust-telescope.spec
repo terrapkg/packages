@@ -1,6 +1,6 @@
 %define debug_package %nil
 
-%global commit 7846913e5068591973d479464f21cfa6b82bb2fd
+%global commit ec4218fb938b0a098285c4a97af45493d22673fa
 %global commit_date 20241023
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
@@ -10,7 +10,7 @@ Release:        1%?dist
 Summary:        See the stars! Easy stardust setups to run on your computer. 
 License:        MIT
 URL:            https://github.com/StardustXR/telescope
-Source0:		%url/archive/%commit.tar.gz
+Source0:		      %url/archive/%commit.tar.gz
 Requires:       bash
 Requires:       stardust-server
 Requires:       stardust-gravity
