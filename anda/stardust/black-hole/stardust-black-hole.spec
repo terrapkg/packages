@@ -30,6 +30,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 export STARDUST_RES_PREFIXES=%_datadir
 %cargo_install
 
+mkdir -p %buildroot%_datadir
 cp -r res/* %buildroot%_datadir/
 
 %files
