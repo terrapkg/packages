@@ -28,7 +28,7 @@ An implementation of the meson build system in c99 with minimal dependencies.
 ./bootstrap.sh build
 
 %global __meson ./build/muon
-%meson
+%meson -Dtracy=disabled -Dmeson_tests_repo=disabled
 %meson_build
 
 %install
