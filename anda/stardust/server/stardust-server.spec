@@ -1,4 +1,7 @@
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
+#global build_rustflags -Copt-level=3 -Cdebuginfo=2 -Ccodegen-units=1 -Cstrip=none -Cforce-frame-pointers=yes --cap-lints=warn -Cdebug-assertions=true
+%define __strip /bin/true
+%global debug_package %{nil}
 
 Name:           stardust-server
 Version:        0.45.1
@@ -6,19 +9,13 @@ Release:        1%?dist
 Summary:        Usable Linux display server that reinvents human-computer interaction for all kinds of XR.
 URL:            https://github.com/StardustXR/server
 Source0:        %url/archive/refs/tags/%version.tar.gz
-License:        GPLv2
+License:        GPL-2.0-only
 
-BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold g++
+BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros gcc-c++
 BuildRequires:  glx-utils fontconfig-devel glibc libxcb-devel wayland-devel
 BuildRequires:  openxr-devel libglvnd-devel libglvnd-gles mesa-libgbm-devel
-BuildRequires:  libwayland-egl libX11-devel libXfixes-devel lld clang
+BuildRequires:  libwayland-egl libX11-devel libXfixes-devel
 BuildRequires:  mesa-libEGL-devel libxkbcommon-devel
-
-Requires:       libxkbcommon libstdc++ openxr-libs libX11 libXfixes
-Requires:       libglvnd-egl mesa-libgbm fontconfig libgcc glibc jsoncpp libxcb libglvnd
-Requires:       libwayland-server libdrm expat libxcb freetype libxml2 libXau libXau
-Requires:       libffi zlib-ng-compat bzip2-libs libpng harfbuzz libbrotli xz-libs
-Requires:       glib2 graphite2 libbrotli pcre2
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
@@ -29,14 +26,14 @@ Usable Linux display server that reinvents human-computer interaction for all ki
 %autosetup -n server-%version
 
 %build
+LDFLAGS="" RUSTFLAGS="" CXXFLAGS="" CFLAGS="" cargo build --release --locked
 
 %install
-cargo install --path . --root %buildroot%_prefix --locked
+install -Dm755 target/release/stardust-xr-server %buildroot%_bindir/stardust-xr-server
+
 
 %files
 %_bindir/stardust-xr-server
-%_usr/.crates.toml
-%_usr/.crates2.json
 %license LICENSE
 %doc README.md
 
