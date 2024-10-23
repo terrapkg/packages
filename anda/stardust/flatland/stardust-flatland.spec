@@ -6,7 +6,7 @@
 
 Name:           stardust-flatland
 Version:        %commit_date.%shortcommit
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Flatland for Stardust XR.
 URL:            https://github.com/StardustXR/flatland
 Source0:        %url/archive/%commit/flatland-%commit.tar.gz
@@ -24,15 +24,19 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %cargo_prep_online
 
 %build
-STARDUST_RES_PREFIXES=/usr/share
 
 %install
 %define __cargo_common_opts %{?_smp_mflags} -Z avoid-dev-deps --locked
-STARDUST_RES_PREFIXES=%_datadir
+export STARDUST_RES_PREFIXES=%_datadir
 %cargo_install
+
+mkdir -p %buildroot%_datadir
+cp -r res/* %buildroot%_datadir/
+
 
 %files
 %_bindir/flatland
+%_datadir/flatland/
 %license LICENSE
 %doc README.md
 
