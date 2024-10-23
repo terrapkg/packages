@@ -30,14 +30,14 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 export STARDUST_RES_PREFIXES=%_datadir
 %cargo_install
 
-mkdir -p %buildroot%_datadir/black_hole
-cp -r res/* %buildroot%_datadir/black_hole/
+mkdir -p %buildroot%_datadir
+cp -r res/* %buildroot%_datadir/
 
 %files
 %doc README.md
 %license LICENSE
-%_bindir/
-%_datadir/
+%_bindir/black_hole
+%_datadirblack_hole/black_hole/
 
 %changelog
 * Sat Sep 8 2024 Owen-sz <owen@fyralabs.com>
