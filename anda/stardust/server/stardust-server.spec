@@ -17,7 +17,7 @@ BuildRequires:  glx-utils fontconfig-devel glibc libxcb-devel wayland-devel
 BuildRequires:  openxr-devel libglvnd-devel libglvnd-gles mesa-libgbm-devel
 BuildRequires:  libwayland-egl libX11-devel libXfixes-devel
 BuildRequires:  mesa-libEGL-devel libxkbcommon-devel
-
+Provides:       stardust-xr-server
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
