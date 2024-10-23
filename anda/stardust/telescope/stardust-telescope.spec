@@ -10,7 +10,7 @@ Release:        1%?dist
 Summary:        See the stars! Easy stardust setups to run on your computer. 
 License:        MIT
 URL:            https://github.com/StardustXR/telescope
-Source0:		      %url/archive/%commit.tar.gz
+Source0:        %url/archive/%commit.tar.gz
 Requires:       bash
 Requires:       stardust-server
 Requires:       stardust-gravity
