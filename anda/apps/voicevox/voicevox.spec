@@ -6,7 +6,7 @@
 
 # do not perform compression in cpio
 %define _source_payload w0.ufdio
-%define _binary_payload w0.gzdio
+%define _binary_payload w5.gzdio
 
 # Exclude private libraries
 %global __requires_exclude libffmpeg.so
