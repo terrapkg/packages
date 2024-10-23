@@ -1,20 +1,20 @@
---- bandwhich-0.23.0/Cargo.toml	1970-01-01T00:00:01+00:00
-+++ bandwhich-0.23.0/Cargo.toml	2024-08-18T04:14:50.797745+00:00
+--- bandwhich-0.23.1/Cargo.toml	1970-01-01T00:00:01+00:00
++++ bandwhich-0.23.1/Cargo.toml	2024-10-23T16:32:56.825747+00:00
 @@ -165,17 +165,3 @@
  [target.'cfg(any(target_os = "android", target_os = "linux"))'.dependencies.procfs]
- version = "0.16.0"
+ version = "0.17.0"
  
 -[target.'cfg(any(target_os = "macos", target_os = "freebsd"))'.dependencies.regex]
--version = "1.10.5"
+-version = "1.11.0"
 -
 -[target.'cfg(target_os = "windows")'.dependencies.netstat2]
 -version = "0.9.1"
 -
 -[target.'cfg(target_os = "windows")'.dependencies.sysinfo]
--version = "0.31.0"
+-version = "0.32.0"
 -
 -[target.'cfg(target_os = "windows")'.build-dependencies.http_req]
--version = "0.11.1"
+-version = "0.12.0"
 -
 -[target.'cfg(target_os = "windows")'.build-dependencies.zip]
--version = "2.1.6"
+-version = "2.2.0"
