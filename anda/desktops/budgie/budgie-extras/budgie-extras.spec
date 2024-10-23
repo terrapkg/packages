@@ -199,7 +199,7 @@ separately from the applet's menu
 
 %package -n	budgie-applet-takeabreak
 Requires:       budgie-extras-common
-Summary:m       A pomodoro-like applet, to make sure to take regular breaks from working
+Summary:        A pomodoro-like applet, to make sure to take regular breaks from working
 %description -n	budgie-applet-takeabreak
 Budgie TakeaBreak is a pomodoro- like applet, to make sure to take regular
 breaks from working. Options from Budgie Settings include turning the screen
