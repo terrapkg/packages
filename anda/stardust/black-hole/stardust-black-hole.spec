@@ -27,13 +27,16 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %install
 %define __cargo_common_opts %{?_smp_mflags} -Z avoid-dev-deps --locked
-STARDUST_RES_PREFIXES=%_datadir
+export STARDUST_RES_PREFIXES=%_datadir
 %cargo_install
 
+cp -r res/* %buildroot%_datadir/
+
 %files
-%_bindir/black-hole
-%license LICENSE
 %doc README.md
+%license LICENSE
+%_bindir/black-hole
+%_datadir/black_hole/
 
 %changelog
 * Sat Sep 8 2024 Owen-sz <owen@fyralabs.com>
