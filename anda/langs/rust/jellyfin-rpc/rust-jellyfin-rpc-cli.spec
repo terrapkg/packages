@@ -5,7 +5,7 @@
 %global crate jellyfin-rpc-cli
 
 Name:           rust-jellyfin-rpc-cli
-Version:        1.2.2
+Version:        1.3.0
 Release:        %autorelease
 Summary:        Displays the content you're currently watching on Discord!
 
