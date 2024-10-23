@@ -1,3 +1,5 @@
+%define debug_package %nil
+
 %global commit 2482ed8d8f5bed37b3ad54f766b0df7157646ef1
 %global commit_date 20240719
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
@@ -20,7 +22,7 @@ Requires:       xwayland-satellite
 See the stars! Easy stardust setups to run on your computer.
 
 %prep
-%autosetup
+%autosetup -n telescope-%commit
 
 %build
 
