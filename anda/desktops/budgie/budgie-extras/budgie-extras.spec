@@ -1,115 +1,114 @@
-Name:		budgie-extras
-Version:	1.8.0
-Release:	1%{?dist}
+Name:           budgie-extras
+Version:        1.8.0
+Release:        2%{?dist}
 
-License:	GPL-3.0
-Summary:	Additional Budgie Desktop enhancements for user experience
-URL:		https://ubuntubudgie.org/
+License:        GPL-3.0
+Summary:        Additional Budgie Desktop enhancements for user experience
+URL:            https://ubuntubudgie.org/
 
-Source0:	https://github.com/UbuntuBudgie/budgie-extras/releases/download/v%{version}/budgie-extras-%{version}.tar.xz
-Patch0: 0001-fix-weathershow-desktop-widget-icon-path.patch
+Source0:        https://github.com/UbuntuBudgie/budgie-extras/releases/download/v%{version}/budgie-extras-%{version}.tar.xz
+Patch0:         0001-fix-weathershow-desktop-widget-icon-path.patch
 
-BuildRequires:	rpm_macro(fdupes)
-BuildRequires:	cmake
-BuildRequires:	meson
-BuildRequires:	vala
-BuildRequires:	intltool
+BuildRequires:  rpm_macro(fdupes)
+BuildRequires:  cmake
+BuildRequires:  meson
+BuildRequires:  vala
+BuildRequires:  intltool
 
-BuildRequires:	pkgconfig(budgie-1.0)
-BuildRequires:	pkgconfig(gee-0.8)
-BuildRequires:	pkgconfig(gnome-settings-daemon)
-BuildRequires:	pkgconfig(json-glib-1.0)
-BuildRequires:	pkgconfig(keybinder-3.0)
-BuildRequires:	pkgconfig(libgnome-menu-3.0)
-BuildRequires:	pkgconfig(libnm)
-BuildRequires:	pkgconfig(libnma)
-BuildRequires:	pkgconfig(libnotify)
-BuildRequires:	pkgconfig(libsoup-2.4)
-BuildRequires:	pkgconfig(libwnck-3.0)
+BuildRequires:  pkgconfig(budgie-1.0)
+BuildRequires:  pkgconfig(gee-0.8)
+BuildRequires:  pkgconfig(gnome-settings-daemon)
+BuildRequires:  pkgconfig(json-glib-1.0)
+BuildRequires:  pkgconfig(keybinder-3.0)
+BuildRequires:  pkgconfig(libgnome-menu-3.0)
+BuildRequires:  pkgconfig(libnm)
+BuildRequires:  pkgconfig(libnma)
+BuildRequires:  pkgconfig(libnotify)
+BuildRequires:  pkgconfig(libsoup-2.4)
+BuildRequires:  pkgconfig(libwnck-3.0)
 
-BuildRequires:	pkgconfig(appstream)
-BuildRequires:	pkgconfig(granite)
-BuildRequires:	pkgconfig(libhandy-1)
-BuildRequires:	pkgconfig(zeitgeist-2.0)
+BuildRequires:  pkgconfig(appstream)
+BuildRequires:  pkgconfig(granite)
+BuildRequires:  pkgconfig(libhandy-1)
+BuildRequires:  pkgconfig(zeitgeist-2.0)
 
-Requires:	budgie-applet-applications-menu
-Requires:	budgie-applet-weathershow
-
-Requires:	budgie-applet-app-launcher
-Requires:	budgie-applet-brightness-controller
-Requires:	budgie-applet-clockworks
-Requires:	budgie-applet-countdown
-Requires:	budgie-applet-dropby
-Requires:	budgie-applet-fuzzyclock
-Requires:	budgie-applet-hotcorners
-Requires:	budgie-applet-kangaroo
-Requires:	budgie-applet-keyboard-autoswitch
-Requires:	budgie-applet-network-manager
-Requires:	budgie-applet-quickchar
-Requires:	budgie-applet-quicknote
-Requires:	budgie-applet-recentlyused
-Requires:	budgie-applet-rotation-lock
-Requires:	budgie-applet-showtime
-Requires:	budgie-applet-takeabreak
-Requires:	budgie-applet-visualspace
-Requires:	budgie-applet-wallstreet
-Requires:	budgie-applet-window-shuffler
-Requires:	budgie-applet-workspace-stopwatch
-Requires:	budgie-applet-wpreviews
-Requires:	budgie-applet-wswitcher
+Requires:       budgie-applet-app-launcher
+Requires:       budgie-applet-applications-menu
+Requires:       budgie-applet-brightness-controller
+Requires:       budgie-applet-clockworks
+Requires:       budgie-applet-countdown
+Requires:       budgie-applet-dropby
+Requires:       budgie-applet-fuzzyclock
+Requires:       budgie-applet-hotcorners
+Requires:       budgie-applet-kangaroo
+Requires:       budgie-applet-keyboard-autoswitch
+Requires:       budgie-applet-network-manager
+Requires:       budgie-applet-quickchar
+Requires:       budgie-applet-quicknote
+Requires:       budgie-applet-recentlyused
+Requires:       budgie-applet-rotation-lock
+Requires:       budgie-applet-showtime
+Requires:       budgie-applet-takeabreak
+Requires:       budgie-applet-visualspace
+Requires:       budgie-applet-wallstreet
+Requires:       budgie-applet-weathershow
+Requires:       budgie-applet-window-shuffler
+Requires:       budgie-applet-workspace-stopwatch
+Requires:       budgie-applet-wpreviews
+Requires:       budgie-applet-wswitcher
 # Fix for https://github.com/UbuntuBudgie/budgie-extras/issues/233, don't know how stenstorp did not notice this
-Requires:   xinput
+Requires:       xinput
 
 %description
 This is part of a suite of python3 and Vala based applets for the Budgie
 Desktop that provide additional user orientated capabilities.
 The applets can be used individually or as a set.
 
-%package	common
-Requires:	budgie-desktop
-Summary:	Shared component of budgie-extras applets
-BuildArch:	noarch
-%description	common
+%package        common
+Requires:       budgie-desktop
+Summary:        Shared component of budgie-extras applets
+BuildArch:      noarch
+%description	  common
 The shared component provides for capabilities that are utilised between
 budgie-extra applets.
 
-%package	daemon
-Summary:	Manages keyboard shortcuts
-Requires:	budgie-extras-common
-%description	daemon
+%package        daemon
+Summary:        Manages keyboard shortcuts
+Requires:       budgie-extras-common
+%description    daemon
 This on logon process manages keyboard shortcuts delivered via .bde files for
 various extras-plugins.
 
 %package -n	budgie-applet-app-launcher
-Requires:	budgie-extras-common
-Summary:	Applet to provide an alternative means to launch applications
+Requires:       budgie-extras-common
+Summary:        Applet to provide an alternative means to launch applications
 %description -n	budgie-applet-app-launcher
 The app-launcher applet allows the ability to add favorite apps to the
 panel as well as finding and launching applications.  The list of
 applications listed can be easily configured to be visible or hidden.
 
 %package -n	budgie-applet-applications-menu
-Requires:	budgie-extras-common
-Summary:	Lightweight and stylish app launcher
+Requires:       budgie-extras-common
+Summary:        Lightweight and stylish app launcher
 %description -n	budgie-applet-applications-menu
 %{summary}
 
 %package -n	budgie-applet-brightness-controller
-Requires:	budgie-extras-common
-Summary:	A Budgie Desktop applet for productivity
+Requires:       budgie-extras-common
+Summary:        A Budgie Desktop applet for productivity
 %description -n	budgie-applet-brightness-controller
 %{summary}
 
 %package -n	budgie-applet-clockworks
-Requires:	budgie-extras-common
-Summary:	Applet to display clock across multiple time zones
+Requires:       budgie-extras-common
+Summary:        Applet to display clock across multiple time zones
 %description -n	budgie-applet-clockworks
 The Clockworks applet displays the current time across multiple
 time zones.
 
 %package -n	budgie-applet-countdown
-Requires:	budgie-extras-common
-Summary:	Applet providing a countdown capability on the Budgie Desktop
+Requires:       budgie-extras-common
+Summary:        Applet providing a countdown capability on the Budgie Desktop
 %description -n	budgie-applet-countdown
 The Countdown applet provides the user the ability to start an
 action when the countdown reaches 0 seconds. Actions include flashing
@@ -117,8 +116,8 @@ an icon in the panel, opening a notification window, sounding a
 bell or running a custom command.
 
 %package -n	budgie-applet-dropby
-Requires:	budgie-extras-common
-Summary:	Applet to popup when a USB device is connected
+Requires:       budgie-extras-common
+Summary:        Applet to popup when a USB device is connected
 %description -n	budgie-applet-dropby
 The DropBy applet pops up in the panel when connecting a usb device.
 The applet subsequently offers the option(s) to mount, unmount/eject
@@ -126,29 +125,29 @@ and in case of a flash drive, to make a local copy of the drive's
 content. The info shows the free space on the volume.
 
 %package -n	budgie-applet-fuzzyclock
-Requires:	budgie-extras-common
-Summary:	Shows the time in a Fuzzy Way
+Requires:       budgie-extras-common
+Summary:        Shows the time in a Fuzzy Way
 %description -n	budgie-applet-fuzzyclock
 %{summary}
 
 %package -n	budgie-applet-hotcorners
-Requires:	budgie-extras-common
-Summary:	Applet providing hotcorners capabilities for the Budgie Desktop
+Requires:       budgie-extras-common
+Summary:        Applet providing hotcorners capabilities for the Budgie Desktop
 %description -n	budgie-applet-hotcorners
 The hotcorners applet allow user defined commands to be executed
 when the mouse cursor is pushed into a corner of the main desktop.
 
 %package -n	budgie-applet-kangaroo
-Requires:	budgie-extras-common
-Summary:	Applet to allow quick file-browsing
+Requires:       budgie-extras-common
+Summary:        Applet to allow quick file-browsing
 %description -n	budgie-applet-kangaroo
 The kangaroo applet allows for quick & easy browsing, across
 (possibly) many directory layers, without having to do a single mouse
 click.
 
 %package -n	budgie-applet-keyboard-autoswitch
-Requires:	budgie-extras-common
-Summary:	Applet adding the ability to set a different keyboard layout per application
+Requires:       budgie-extras-common
+Summary:        Applet adding the ability to set a different keyboard layout per application
 %description -n	budgie-applet-keyboard-autoswitch
 The Keyboard Auto Switcher applet provides the user the ability to set
 a different keyboard layout per application. Exceptions to the default
@@ -156,50 +155,51 @@ layout can be set by simply choosing a different layout using the
 Keyboard Layout applet.
 
 %package -n	budgie-applet-network-manager
-Requires:	budgie-extras-common
-Summary:	A fork of Wingpanel Network Indicator, ported to budgie desktop
+Requires:       budgie-extras-common
+Summary:        A fork of Wingpanel Network Indicator, ported to budgie desktop
 %description -n	budgie-applet-network-manager
 %{summary}
 
 %package -n	budgie-applet-quickchar
-Requires:	budgie-extras-common
-Summary:	A mini-app to quickly choose and insert equivalents of ascii characters
+Requires:       budgie-extras-common
+Requires:       budgie-extras-daemon
+Summary:        A mini-app to quickly choose and insert equivalents of ascii characters
 %description -n	budgie-applet-quickchar
 QuickChar is a mini-app to quickly choose and insert equivalents of ascii
 characters. QuickChar is activated via the Budgie Menu.
 
 %package -n	budgie-applet-quicknote
-Requires:	budgie-extras-common
-Summary:	Applet providing simple notes capability for the Budgie Desktop
+Requires:       budgie-extras-common
+Summary:        Applet providing simple notes capability for the Budgie Desktop
 %description -n	budgie-applet-quicknote
 The quicknote applet allows a user to record a text based note.
 The applet supports multiple undo and redo capabilities.
 
 %package -n	budgie-applet-recentlyused
-Requires:	budgie-extras-common
-Summary:	Applet displays files recently accessed for the Budgie Desktop
+Requires:       budgie-extras-common
+Summary:        Applet displays files recently accessed for the Budgie Desktop
 %description -n	budgie-applet-recentlyused
 The recentlyused applet displays the users files that have been opened
 or created within a configurable period of time.
 
 %package -n	budgie-applet-rotation-lock
-Requires:	budgie-extras-common
-Summary:	Applet to lock or unlock the screen rotation
+Requires:       budgie-extras-common
+Summary:        Applet to lock or unlock the screen rotation
 %description -n	budgie-applet-rotation-lock
 The Rotation Lock applet provides the user an easy way to lock or
 unlock the screen rotation.
 
 %package -n	budgie-applet-showtime
-Requires:	budgie-extras-common
-Summary:	Applet displaying date and time on the Budgie Desktop
+Requires:       budgie-extras-common
+Summary:        Applet displaying date and time on the Budgie Desktop
 %description -n	budgie-applet-showtime
 The ShowTime applet is a digital desktop clock, showing time and/or
 date.  Text color of both the displayed time and date can be set
 separately from the applet's menu
 
 %package -n	budgie-applet-takeabreak
-Requires:	budgie-extras-common
-Summary:	A pomodoro-like applet, to make sure to take regular breaks from working
+Requires:       budgie-extras-common
+Summary:        A pomodoro-like applet, to make sure to take regular breaks from working
 %description -n	budgie-applet-takeabreak
 Budgie TakeaBreak is a pomodoro- like applet, to make sure to take regular
 breaks from working. Options from Budgie Settings include turning the screen
@@ -208,35 +208,36 @@ time. The applet can be accessed quickly from the panel to temporarily switch
 it off.
 
 %package -n	budgie-applet-visualspace
-Requires:	budgie-extras-common
-Summary:	Shows the current workspace(s), as bullet(s)
+Requires:       budgie-extras-common
+Summary:        Shows the current workspace(s), as bullet(s)
 %description -n	budgie-applet-visualspace
 Budgie VisualSpace shows the current workspace(s), as bullet(s). The applet
 includes a menu to navigate to either one of the windows or their
 corresponding workspace.
 
 %package -n	budgie-applet-wallstreet
-Requires:	budgie-extras-common
-Summary:	A mini-app to switch wallpapers on regular intervalls
+Requires:       budgie-extras-common
+Summary:        A mini-app to switch wallpapers on regular intervalls
 %description -n	budgie-applet-wallstreet
 Budgie WallStreet is a mini-app to switch wallpapers on regular intervalls.
 
 %package -n	budgie-applet-weathershow
-Requires:	budgie-extras-common
-Summary:	Applet to display the weather and forecast
+Requires:       budgie-extras-common
+Summary:        Applet to display the weather and forecast
 %description -n	budgie-applet-weathershow
 The weathershow applet displays daily and three hourly weather
 forecasts on both the desktop and a Popover.
 
 %package -n	budgie-applet-window-shuffler
-Requires:	budgie-extras-common
-Summary:	Budgie Window Shuffler
+Requires:       budgie-extras-common
+Requires:       budgie-extras-daemon
+Summary:        Budgie Window Shuffler
 %description -n	budgie-applet-window-shuffler
 %{summary}
 
 %package -n	budgie-applet-workspace-stopwatch
-Requires:	budgie-extras-common
-Summary:	An applet to keep track of usage per workspace
+Requires:       budgie-extras-common
+Summary:        An applet to keep track of usage per workspace
 %description -n	budgie-applet-workspace-stopwatch
 Workspace Timer Applet is an applet to keep track of usage per workspace, e.g.
 to find out how much minutes/hours were actually spent on a job. Workspaces can
@@ -246,14 +247,16 @@ onworkspace switch/clicking the icon for popup or else every 30 seconds. Time
 during suspend is automatically retracted from a workspace' time.
 
 %package -n	budgie-applet-wpreviews
-Requires:	budgie-extras-common
+Requires:       budgie-extras-common
+Requires:       budgie-extras-daemon
 Summary:	Applet providing window previews capabilities for the Budgie Desktop
 %description -n	budgie-applet-wpreviews
 The Previews applet shows an overview of windows in an expose like way.
 
 %package -n	budgie-applet-wswitcher
-Requires:	budgie-extras-common
-Summary:	An applet to show a different wallpaper on each of the workspaces
+Requires:       budgie-extras-common
+Requires:       budgie-extras-daemon
+Summary:        An applet to show a different wallpaper on each of the workspaces
 %description -n	budgie-applet-wswitcher
 Budgie Wallpaper Workspace Switcher is an application (applet) to show a
 different wallpaper on each of the workspaces. Usage is simple: add the applet
