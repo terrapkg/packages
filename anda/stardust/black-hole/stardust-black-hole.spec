@@ -37,7 +37,7 @@ cp -r res/* %buildroot%_datadir/
 %doc README.md
 %license LICENSE
 %_bindir/black_hole
-%_datadirblack_hole/black_hole/
+%_datadir/black_hole/
 
 %changelog
 * Sat Sep 8 2024 Owen-sz <owen@fyralabs.com>
