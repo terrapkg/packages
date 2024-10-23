@@ -1,1 +1,1 @@
-rpm.version(gh("dom96/choosenim"));
+rpm.version(gh("nim-lang/choosenim"));
