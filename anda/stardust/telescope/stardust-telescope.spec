@@ -17,6 +17,7 @@ Requires:       stardust-gravity
 Requires:       stardust-black-hole
 Requires:       stardust-protostar
 Requires:       xwayland-satellite
+BuildArch:      noarch
 
 %description
 See the stars! Easy stardust setups to run on your computer.
