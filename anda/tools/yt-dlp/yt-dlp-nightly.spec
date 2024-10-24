@@ -5,7 +5,8 @@
 %global ver 2024.10.22
 
 Name:           yt-dlp-nightly
-Version:        %ver^%commit_date.%shortcommit
+Version:        %commit_date.git~%shortcommit
+Provides:       yt-dlp-nightly = %ver^%version
 Release:        1%?dist
 Summary:        A command-line program to download videos from online video platforms
 
