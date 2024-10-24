@@ -1,6 +1,6 @@
 %bcond_with check
 
-%global ver 0.158.1
+%global ver 0.159.0-pre
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 # Use Mold as the linker
