@@ -45,7 +45,7 @@ Recommends:	polkit-kde
 liquidshell is a basic Desktop Shell implemented using QtWidgets.
 
 %prep
-%autosetup -n liquidshell-%version
+%autosetup -n liquidshell-v%version
 
 %build
 %cmake_kf5 -DWITH_PACKAGEKIT=true
