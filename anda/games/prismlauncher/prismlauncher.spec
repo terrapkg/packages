@@ -22,7 +22,7 @@ Name:             prismlauncher
 %else
 Name:             prismlauncher-qt5
 %endif
-Version:          9.0
+Version:          9.1
 Release:          1%?dist
 Summary:          Minecraft launcher with ability to manage multiple instances
 # see COPYING.md for more information
