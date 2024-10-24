@@ -1,12 +1,13 @@
 Name:		kde-liquidshell
-Version:	1.9.0
+Version:	1.10.0
 Release:	%autorelease
 Summary:	Basic desktop shell using QtWidgets
 Provides:	liquidshell = %version
 
 License:	GPL-3.0
 URL:		https://invent.kde.org/system/liquidshell
-Source0:	https://download.kde.org/stable/liquidshell/liquidshell-%version.tar.xz
+#Source0:	https://download.kde.org/stable/liquidshell/liquidshell-%version.tar.xz
+Source0:    %url/-/archive/v%version/liquidshell-v%version.tar.gz
 
 BuildRequires:	cmake
 BuildRequires:	libappstream-glib
