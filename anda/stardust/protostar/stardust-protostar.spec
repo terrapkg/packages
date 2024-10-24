@@ -35,8 +35,8 @@ export STARDUST_RES_PREFIXES=%_datadir
 
 wait
 
-mkdir -p %buildroot%_datadir/protostar
-cp -r res/* %buildroot%_datadir/protostar/
+mkdir -p %buildroot%_datadir
+cp -r res/* %buildroot%_datadir/
 
 %files
 %doc README.md
