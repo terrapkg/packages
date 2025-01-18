@@ -9,6 +9,7 @@ URL:			https://github.com/uutils/coreutils
 Source0:		%url/archive/refs/tags/%version.tar.gz
 Requires:		glibc
 BuildRequires:	cargo make gcc-c++
+BuildRequires:  rustfmt
 Conflicts:		uutils-coreutils-replace
 BuildRequires:  libselinux-devel
 BuildRequires:  selinux-policy-devel
