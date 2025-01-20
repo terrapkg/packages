@@ -48,6 +48,7 @@ fi
 if rpm -q --quiet containerd; then
    nvidia-ctk runtime configure --runtime=containerd
     systemctl restart containerd || :
+fi
 if rpm -q --quiet cri-o; then
     nvidia-ctk runtime configure --runtime=crio
      systemctl restart crio || :
