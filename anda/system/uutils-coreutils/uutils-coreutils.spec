@@ -12,8 +12,6 @@ Source0:		%url/archive/refs/tags/%version.tar.gz
 Patch0:         coreutils-fix-metadata.diff
 Patch1:         coreutils-fix-seq-neg-num-tests.diff
 Requires:		glibc
-BuildRequires:  anda-srpm-macros
-BuildRequires:  cargo-rpm-macros
 BuildRequires:	cargo make gcc-c++
 BuildRequires:  rustfmt
 Conflicts:		uutils-coreutils-replace
