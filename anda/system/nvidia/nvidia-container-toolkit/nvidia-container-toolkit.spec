@@ -42,15 +42,29 @@ mkdir -p %{buildroot}%{_sysconfdir}/nvidia-container-runtime
 
 %post
 if rpm -q --quiet moby-engine; then
-    nvidia-ctk runtime configure --runtime=docker
-     systemctl restart docker || systemctl --user restart docker && nvidia-ctk config --set nvidia-container-cli.no-cgroups --in-place || :
-fi
-if rpm -q --quiet containerd; then
+    if 'docker info -f "{{println .SecurityOptions}}" | grep rootless'; then
+      nvidia-ctk runtime configure --runtime=docker --config="$HOME"/.config/docker/daemon.json
+        if systemctl --user is-running docker >/dev/null; then
+            systemctl --user restart docker
+        fi
+       nvidia-ctk config --set nvidia-container-cli.no-cgroups --in-place
+    else nvidia-ctk runtime configure --runtime=docker
+        if systemctl is-running docker >/dev/null; then
+            systemctl restart docker
+        fi
+    fi
+elif rpm -q --quiet containerd; then
    nvidia-ctk runtime configure --runtime=containerd
-    systemctl restart containerd || :
-if rpm -q --quiet cri-o; then
+    if systemctl is-running containerd >/dev/null; then
+        systemctl restart containerd
+    fi
+elif rpm -q --quiet cri-o; then
     nvidia-ctk runtime configure --runtime=crio
-     systemctl restart crio || :
+     if systemctl is-running crio >/dev/null; then
+         systemctl restart crio
+     fi
+ elif rpm -q --quiet podman; then
+     nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml
 fi
 
 %files
