@@ -55,7 +55,7 @@ cd build/linux
 %configure \
     --bit-depth='8' \
     --chroma-format='all' \
-%ifarch aarch64
+%ifarch aarch64 %ix86
     --disable-asm \
 %endif
     --disable-static \
