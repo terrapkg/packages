@@ -1,8 +1,9 @@
 #bcond_without tests
+%global oldpkgname yt-dlp-nightly
 
 Name:           yt-dlp-git
 Version:        2025.01.20.204520
-Release:        1%?dist
+Release:        2%?dist
 Summary:        A command-line program to download videos from online video platforms
 
 License:        Unlicense
@@ -35,16 +36,15 @@ Conflicts:      yt-dlp
 
 Suggests:       python3dist(keyring)
 
-Provides:       yt-dlp-nightly = 1:0-1%?dist
-
-Obsoletes:      yt-dlp-nightly < 0:20250117.git~1643686-2%?dist
+Provides:       %{oldpkgname} = 1:0-1%?dist
+Obsoletes:      %{oldpkgname} < 0:20250117.git~1643686-2%?dist
 
 %global _description %{expand:
 yt-dlp is a command-line program to download videos from many different online
 video platforms, such as youtube.com. The project is a fork of youtube-dl with
 additional features and fixes.}
 
-%description %{_description}. This package is built from the yt-dlp master branch.
+%description %{_description} This package is built from the yt-dlp master branch.
 
 %package bash-completion
 Summary:        Bash completion for yt-dlp
@@ -52,8 +52,9 @@ Requires:       %{name} = %{version}-%{release}
 Requires:       bash-completion
 Supplements:    (%{name} and bash-completion)
 
-Provides:       yt-dlp-bash-completion
 Conflicts:      yt-dlp-bash-completion
+Provides:       %{oldpkgname}-bash-completion = 1:0-1%?dist
+Obsoletes:      %{oldpkgname}-bash-completion < 0:20250117.git~1643686-2%?dist
 
 %description bash-completion
 Bash command line completion support for %{name}.
@@ -64,8 +65,9 @@ Requires:       %{name} = %{version}-%{release}
 Requires:       zsh
 Supplements:    (%{name} and zsh)
 
-Provides:       yt-dlp-zsh-completion
 Conflicts:      yt-dlp-zsh-completion
+Provides:       %{oldpkgname}-zsh-completion = 1:0-1%?dist
+Obsoletes:      %{oldpkgname}-zsh-completion < 0:20250117.git~1643686-2%?dist
 
 %description zsh-completion
 Zsh command line completion support for %{name}.
@@ -76,8 +78,9 @@ Requires:       %{name} = %{version}-%{release}
 Requires:       fish
 Supplements:    (%{name} and fish)
 
-Provides:       yt-dlp-fish-completion
 Conflicts:      yt-dlp-fish-completion
+Provides:       %{oldpkgname}-fish-completion = 1:0-1%?dist
+Obsoletes:      %{oldpkgname}-fish-completion < 0:20250117.git~1643686-2%?dist
 
 %description fish-completion
 Fish command line completion support for %{name}.
