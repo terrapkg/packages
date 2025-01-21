@@ -2,15 +2,13 @@
 %bcond check 0
 %bcond bootstrap 0
 
-%global debug_package %{nil}
-
 %if %{with bootstrap}
 %global __requires_exclude %{?__requires_exclude:%{__requires_exclude}|}^golang\\(.*\\)$
 %endif
 
 # https://github.com/abenz1267/walker
 %global goipath         github.com/abenz1267/walker
-Version:                0.12.5
+Version:                0.12.8
 
 %gometa -f
 
@@ -30,7 +28,7 @@ Source:         %{gosource}
 Provides:       golang-github-abenz1267-walker = %version-%release
 Obsoletes:      golang-github-abenz1267-walker < 0.11.4-2
 Packager:       madonuko <mado@fyralabs.com>
-Conflicts:      gtk4-layer-shell
+Requires:       gtk4-layer-shell
 BuildRequires:  anda-srpm-macros
 BuildRequires:  gtk4-devel
 BuildRequires:  gtk4-layer-shell-devel
@@ -43,18 +41,19 @@ BuildRequires:  pkgconfig(vips)
 
 %prep
 %goprep -A
-%autopatch -p1
 %go_prep_online
+mv {LICENSE,README.md} cmd
+%setup -T -D -n %{name}-%{version}/cmd
 
 
 %build
-%go_build_online cmd/walker.go
+go build -x -o walker
 
 %install
 #gopkginstall
 %if %{without bootstrap}
-install -m 0755 -vd                         %{buildroot}%{_bindir}
-install -m 0755 -vp build/bin/cmd/walker.go %{buildroot}%{_bindir}/walker
+install -m 0755 -vd        %{buildroot}%{_bindir}
+install -m 0755 -vp walker %{buildroot}%{_bindir}/walker
 %endif
 
 %if %{without bootstrap}

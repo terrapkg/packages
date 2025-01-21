@@ -1,10 +1,10 @@
-%global commit 18e5670d90c1277f09705d4c04585078ebff1bf6
-%global commit_date 20250113
+%global commit 160d733054d3a67e051da790f96f89850c8a2ccd
+%global commit_date 20250120
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           envision-nightly
 Version:        %commit_date.%shortcommit
-Release:        2%?dist
+Release:        1%?dist
 Summary:        UI for building, configuring and running Monado, the open source OpenXR runtime
 License:        AGPL-3.0-or-later
 URL:            https://gitlab.com/gabmus/envision/
