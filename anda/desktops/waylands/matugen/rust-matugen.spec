@@ -14,6 +14,8 @@ BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros
 BuildRequires:  mold
 
+Packager:       sadlerm <sad_lerm@hotmail.com>
+
 %global _description %{expand:
 A material you color generation tool with templates.}
 
