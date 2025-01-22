@@ -56,7 +56,6 @@ use the "%{crate}" crate.
 %cargo_prep_online
 
 %build
-%cargo_build
 %{cargo_license_summary_online}
 %{cargo_license} > LICENSE.dependencies
 
