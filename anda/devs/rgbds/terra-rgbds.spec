@@ -1,6 +1,6 @@
 Name:		terra-rgbds
 Version:	0.9.0
-Release:	1%?dist
+Release:	2%?dist
 Summary:	A development package for the Game Boy, including an assembler
 
 # See LICENSE for details
@@ -16,6 +16,8 @@ BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	git-core
 BuildRequires:	pkgconfig(libpng)
+# Conflict with upstream rgbds
+Conflicts:      rgbds
 
 %description
 RGBDS (Rednex Game Boy Development System) is a free assembler/linker package

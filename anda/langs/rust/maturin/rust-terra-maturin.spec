@@ -10,7 +10,7 @@
 
 Name:           rust-terra-maturin
 Version:        1.8.1
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Build and publish Rust crates as Python packages
 
 License:        MIT OR Apache-2.0
@@ -29,6 +29,9 @@ rust binaries as python packages.}
 Summary:        %{summary}
 License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND Unicode-DFS-2016) AND 0BSD AND (0BSD OR MIT OR Apache-2.0) AND Apache-2.0 AND (Apache-2.0 OR BSD-2-Clause) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND BSD-3-Clause AND BSL-1.0 AND (CC0-1.0 OR MIT-0 OR Apache-2.0) AND ISC AND MIT AND (MIT OR Apache-2.0) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR LGPL-3.0-or-later) AND (MIT OR Zlib OR Apache-2.0) AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT)
 # LICENSE.dependencies contains a full license breakdown
+
+# Conflicts with upstream maturin
+Conflicts:      maturin
 
 %description -n terra-%{crate} %{_description}
 

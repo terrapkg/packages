@@ -1,13 +1,15 @@
-Name:			terra-blueprint-compiler
-Version:		0.16.0
-Release:		1%?dist
-License:		LGPL-3.0-or-later
-Summary:		Markup language for GTK user interfaces
-URL:			https://jwestman.pages.gitlab.gnome.org/blueprint-compiler/
-Source0:		https://gitlab.gnome.org/jwestman/blueprint-compiler/-/archive/v%version/blueprint-compiler-v%version.tar.gz
-BuildArch:		noarch
-BuildRequires:	meson gtk4-devel python3-devel python3-gobject-devel
-Requires:		python3-gobject-devel
+Name:           terra-blueprint-compiler
+Version:        0.16.0
+Release:        2%?dist
+License:        LGPL-3.0-or-later
+Summary:        Markup language for GTK user interfaces
+URL:            https://jwestman.pages.gitlab.gnome.org/blueprint-compiler/
+Source0:        https://gitlab.gnome.org/jwestman/blueprint-compiler/-/archive/v%version/blueprint-compiler-v%version.tar.gz
+BuildArch:      noarch
+BuildRequires:  meson gtk4-devel python3-devel python3-gobject-devel
+Requires:       python3-gobject-devel
+# Conflicts with upstream blueprint-compiler
+Conflicts:      blueprint-compiler
 
 %description
 GtkBuilder XML format is quite verbose, and many app developers don't like

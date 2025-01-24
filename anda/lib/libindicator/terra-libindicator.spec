@@ -1,14 +1,14 @@
-Name:			terra-libindicator
-Version:		16.10.0
-Release:		%autorelease
-Summary:		Shared functions for Ayatana indicators
+Name:           terra-libindicator
+Version:        16.10.0
+Release:        2%?dist
+Summary:        Shared functions for Ayatana indicators
 
-License:		GPL-3.0
-URL:			https://launchpad.net/libindicator
-Source0:		http://archive.ubuntu.com/ubuntu/pool/universe/libi/libindicator/libindicator_16.10.0+18.04.20180321.1.orig.tar.gz
-Source1:		https://raw.githubusercontent.com/ubports/libindicator/097906132ffb479205be15a92cae97e5daf4e154/data/indicators.target
+License:        GPL-3.0
+URL:            https://launchpad.net/libindicator
+Source0:        http://archive.ubuntu.com/ubuntu/pool/universe/libi/libindicator/libindicator_16.10.0+18.04.20180321.1.orig.tar.gz
+Source1:        https://raw.githubusercontent.com/ubports/libindicator/097906132ffb479205be15a92cae97e5daf4e154/data/indicators.target
 # From GLib 2.62
-Patch1:			http://archive.ubuntu.com/ubuntu/pool/universe/libi/libindicator/libindicator_16.10.0+18.04.20180321.1-0ubuntu5.diff.gz
+Patch1:         http://archive.ubuntu.com/ubuntu/pool/universe/libi/libindicator/libindicator_16.10.0+18.04.20180321.1-0ubuntu5.diff.gz
 
 BuildRequires:	chrpath
 BuildRequires:	gtk-doc
@@ -21,6 +21,8 @@ BuildRequires:	gtk3-devel
 BuildRequires:	systemd-rpm-macros
 BuildRequires:	gnome-common
 BuildRequires:	make
+# Conflicts with upstream libindicator
+Conflicts:      libindicator
 
 %description
 A set of symbols and convenience functions that all Ayatana indicators are
