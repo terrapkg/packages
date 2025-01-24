@@ -1,10 +1,9 @@
 project pkg {
-    arches = ["x86_64"]
+         arches = ["i386"]
 	rpm {
-		spec = "steam.spec"
+         spec = "steam.spec"
 	}
-    // todo: force-arches macro?
-    // labels {
-    //     multilib = 1
-    // }
+        labels {
+         mock = 1
+     }
 }

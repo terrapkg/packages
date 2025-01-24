@@ -1,4 +1,5 @@
-let txt = get("https://gitlab.gnome.org/api/v4/projects/20397/releases/");
-let ver = txt.json_arr()[0].tag_name;
-ver.crop(1);
-rpm.version(ver);
+rpm.global("commit", gitlab_commit("gitlab.gnome.org", "20397", "main"));
+if rpm.changed {
+    rpm.global("commit_date", date());
+    rpm.release();
+}

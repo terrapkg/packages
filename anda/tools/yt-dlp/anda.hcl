@@ -1,9 +1,8 @@
 project pkg {
 	rpm {
-		spec = "yt-dlp-nightly.spec"
+		spec = "yt-dlp-git.spec"
 	}
 	labels {
-		nightly = "1"
 		mock = 1
 	}
 }
