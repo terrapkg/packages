@@ -3,32 +3,9 @@
 
 %global appstream_id com.valvesoftware.Steam
 
-# If current arch is x86_64, then add the same dependency for i686
-
-%define arch_dep() \
-%ifarch x86_64 \
-Requires: %1 \
-Requires: %1(x86-32) \
-%else \
-Requires: %1 \
-%endif
-
-
-
-
-%define arch_recommends() \
-%ifarch x86_64 \
-Recommends: %1 \
-Recommends: %1(x86-32) \
-%else \
-Recommends: %1 \
-%endif
-
-
-
 Name:           steam
 Version:        1.0.0.82
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Installer for the Steam software distribution service
 # Redistribution and repackaging for Linux is allowed, see license file. udev rules are MIT.
 License:        Steam License Agreement and MIT
@@ -48,7 +25,7 @@ Source5:        https://github.com/terrapkg/pkg-steam/raw/refs/heads/main/README
 # https://github.com/systemd/systemd/issues/32773
 
 # Input devices seen as joysticks:
-Source6:        https://github.com/terrapkg/pkg-steam/raw/refs/heads/main/61-these-are-not-joystick.hwdb
+Source6:        https://raw.githubusercontent.com/denilsonsa/udev-joystick-blacklist/master/after_kernel_4_9/51-these-are-not-joysticks-rm.rules
 
 # Configure limits in systemd
 Source7:        https://github.com/terrapkg/pkg-steam/raw/refs/heads/main/01-steam.conf
@@ -56,6 +33,9 @@ Source7:        https://github.com/terrapkg/pkg-steam/raw/refs/heads/main/01-ste
 # Newer udev rules than what is bundled in the tarball
 Source8:        https://raw.githubusercontent.com/ValveSoftware/steam-devices/master/60-steam-input.rules
 Source9:        https://raw.githubusercontent.com/ValveSoftware/steam-devices/master/60-steam-vr.rules
+
+# Steam restart script
+Source11:       steamrestart.sh
 
 # Do not install desktop file in lib/steam, do not install apt sources
 Patch0:         https://github.com/terrapkg/pkg-steam/raw/refs/heads/main/steam-makefile.patch
@@ -77,9 +57,12 @@ Requires:       zenity
 # native arch drivers as well, by not specifying _isa macro, native arch
 # packages are preferred. This will make sure people have all necessary drivers
 # for both i686 and x86_64 games.
-%arch_dep mesa-dri-drivers
-%arch_dep mesa-vulkan-drivers
-%arch_dep vulkan-loader
+Requires:       mesa-dri-drivers%{?_isa}
+Requires:       mesa-dri-drivers
+Requires:       mesa-vulkan-drivers%{?_isa}
+Requires:       mesa-vulkan-drivers
+Requires:       vulkan-loader%{?_isa}
+Requires:       vulkan-loader
 
 # Minimum requirements for starting the steam client using system libraries
 Requires:       alsa-lib%{?_isa}
@@ -99,11 +82,11 @@ Requires:       nss%{?_isa}
 Requires:       pulseaudio-libs%{?_isa}
 
 # Required for sending out crash reports to Valve
-Requires:       libcurl
+Requires:       libcurl%{?_isa}
 
 # Workaround for mesa-libGL dependency bug:
 # https://bugzilla.redhat.com/show_bug.cgi?id=1168475
-Requires:       systemd-libs
+Requires:       systemd-libs%{?_isa}
 
 # Required for the firewall rules
 # http://fedoraproject.org/wiki/PackagingDrafts/ScriptletSnippets/Firewalld
@@ -111,11 +94,14 @@ Requires:       firewalld-filesystem
 Requires(post): firewalld-filesystem
 
 # Required for hardware encoding/decoding during Remote Play (intel/radeon/amdgpu/nouveau)
-Requires:       libva
-Requires:       libvdpau
+Requires:       libva%{?_isa}
+Requires:       libvdpau%{?_isa}
+
+# Required for having a functioning menu on the tray icon
+Requires:       libdbusmenu-gtk3%{?_isa} >= 16.04.0
 
 # Required by Feral interactive games
-Requires:       libatomic
+Requires:       libatomic%{?_isa}
 
 # Required by Shank
 Requires:       (alsa-plugins-pulseaudio%{?_isa} if pulseaudio)
@@ -129,7 +115,9 @@ Requires:       SDL2%{?_isa}
 %endif
 
 # Game performance is increased with gamemode (for games that support it)
-%arch_recommends gamemode
+Recommends:     gamemode
+Recommends:     gamemode%{?_isa}
+Recommends:     (gnome-shell-extension-appindicator if gnome-shell)
 
 Recommends:     (gnome-shell-extension-appindicator if gnome-shell)
 
@@ -183,11 +171,9 @@ cp %{SOURCE5} .
 rm -fr %{buildroot}%{_docdir}/%{name}/ \
     %{buildroot}%{_bindir}/%{name}deps
 
-mkdir -p %{buildroot}%{_udevhwdbdir}/
-install -m 644 -p %{SOURCE6} %{buildroot}%{_udevhwdbdir}/
-
 mkdir -p %{buildroot}%{_udevrulesdir}/
-install -m 644 -p %{SOURCE8} %{SOURCE9} %{buildroot}%{_udevrulesdir}/
+install -m 644 -p %{SOURCE6} %{SOURCE8} %{SOURCE9} \
+    %{buildroot}%{_udevrulesdir}/
 
 # Environment files
 mkdir -p %{buildroot}%{_sysconfdir}/profile.d
@@ -198,6 +184,7 @@ mkdir -p %{buildroot}%{_prefix}/lib/systemd/system.conf.d/
 mkdir -p %{buildroot}%{_prefix}/lib/systemd/user.conf.d/
 install -m 644 -p %{SOURCE7} %{buildroot}%{_prefix}/lib/systemd/system.conf.d/
 install -m 644 -p %{SOURCE7} %{buildroot}%{_prefix}/lib/systemd/user.conf.d/
+install -m 775 -p %{SOURCE11} %{buildroot}%{_bindir}/steamrestart
 
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
@@ -207,15 +194,13 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%{appstream_id
 %license COPYING steam_subscriber_agreement.txt
 %doc debian/changelog README.Fedora
 %{_bindir}/%{name}
+%{_bindir}/steamrestart
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
 %{_datadir}/pixmaps/%{name}.png
 %{_datadir}/pixmaps/%{name}_tray_mono.png
-%ifarch x86_64
 %{_prefix}/lib/%{name}/
-%else
 %{_libdir}/%{name}/
-%endif
 %{_mandir}/man6/%{name}.*
 %{_metainfodir}/%{appstream_id}.metainfo.xml
 %config(noreplace) %{_sysconfdir}/profile.d/%{name}.*sh
@@ -225,7 +210,6 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%{appstream_id
 %{_prefix}/lib/systemd/user.conf.d/01-steam.conf
 
 %files devices
-%{_udevhwdbdir}/*
 %{_udevrulesdir}/*
 
 %changelog
