@@ -4,26 +4,29 @@
 
 Name:			anki-bin
 Version:		24.11
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Flashcard program for using space repetition learning (Installed with wheel)
 License:		AGPL-3.0-or-later AND GPL-3.0-or-later AND LGPL-3.0-or-later AND MIT AND BSD-3-Clause AND CC-BY-SA-3.0 AND CC-BY-3.0 AND Apache-2.0 AND CC-BY-2.5
 URL:			https://apps.ankiweb.net/
-BuildRequires:	python3-pip rpm_macro(fdupes) cargo
-Requires:		python3-sqlalchemy python3-simplejson python3-matplotlib python3-decorator python3-markdown python3-orjson
-Requires:		python3-requests python3-pygame python3-beautifulsoup4 python3-httplib2 python3-pyaudio python3-jsonschema
-Requires:		python3-flask-cors python3-protobuf python3-requests python3-waitress python3-pyqt6-webengine python3-send2trash
-Requires:       libxcrypt-compat hicolor-icon-theme sox mpv 
-ExclusiveArch:	x86_64
+BuildRequires:          python3-pip rpm_macro(fdupes) cargo
+Requires:               python3-sqlalchemy python3-simplejson python3-matplotlib python3-decorator python3-markdown python3-orjson
+Requires:               python3-requests python3-pygame python3-beautifulsoup4 python3-httplib2 python3-pyaudio python3-jsonschema
+Requires:               python3-flask-cors python3-protobuf python3-requests python3-waitress python3-pyqt6-webengine python3-send2trash
+Requires:               python3-protobuf >= 4.21
+Requires:               libxcrypt-compat hicolor-icon-theme sox
+Requires:               (mpv or mpv-nightly)
+
+ExclusiveArch:	        x86_64
 Conflicts:		anki
 %ifarch x86_64
 Source0:		%xurl
 %elifarch aarch64
-Source0:        %aurl
+Source0:                %aurl
 %endif
 Source1:		%qurl
 Source2:		https://raw.githubusercontent.com/ankitects/anki/%{version}/qt/runanki.py
 Source3:		https://raw.githubusercontent.com/ankitects/anki/%{version}/qt/bundle/lin/anki.desktop
-Source4:		https://raw.githubusercontent.com/ankitects/anki/%{version}/qt/bundle/lin/anki.png
+Source4:                https://raw.githubusercontent.com/ankitects/anki/%{version}/qt/bundle/lin/anki.png
 Source5:		https://raw.githubusercontent.com/ankitects/anki/%{version}/LICENSE
 Source6:		https://raw.githubusercontent.com/ankitects/anki/%{version}/README.md
 

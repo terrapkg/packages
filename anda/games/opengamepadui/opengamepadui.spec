@@ -1,6 +1,6 @@
 Name:           opengamepadui
-Version:        0.34.1
-Release:        1%{?dist}
+Version:        0.35.8
+Release:        1%?dist
 Summary:        Open source gamepad-native game launcher and overlay
 
 License:        GPLv3
@@ -10,6 +10,7 @@ Packager:       Cappy Ishihara <cappy@fyralabs.com>
 BuildRequires:  godot
 BuildRequires:  scons
 BuildRequires:  make
+BuildRequires:  cargo
 BuildRequires:  gcc-c++
 BuildRequires:  pkgconfig
 BuildRequires:  gcc
@@ -67,9 +68,7 @@ cd %{build_dir}
 %license %{build_dir}/LICENSE
 %doc %{build_dir}/docs/
 %{_bindir}/opengamepadui
-%{_datadir}/opengamepadui/*.so
-%{_datadir}/opengamepadui/scripts/*
-%{_datadir}/opengamepadui/opengamepad-ui.*
+%{_datadir}/opengamepadui/
 %{_datadir}/applications/opengamepadui.desktop
 %{_datadir}/icons/hicolor/scalable/apps/opengamepadui.svg
 %{_datadir}/polkit-1/actions/*

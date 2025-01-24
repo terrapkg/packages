@@ -1,5 +1,5 @@
 Name:		terra-rgbds
-Version:	0.8.0
+Version:	0.9.0
 Release:	1%?dist
 Summary:	A development package for the Game Boy, including an assembler
 
@@ -49,10 +49,11 @@ It consists of:
 %{_mandir}/man5/rgbds.5.*
 %{_mandir}/man5/rgbasm.5.*
 %{_mandir}/man5/rgblink.5.*
+%{_mandir}/man5/rgbasm-old.5.gz
 %{_mandir}/man7/rgbds.7.*
 %{_mandir}/man7/gbz80.7.*
 %license LICENSE
-%doc README.rst
+%doc README.md
 
 %changelog
 %autochangelog

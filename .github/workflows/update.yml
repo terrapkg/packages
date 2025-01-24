@@ -6,7 +6,7 @@ on:
 
 jobs:
   autoupdate:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     container:
       image: ghcr.io/terrapkg/builder:frawhide
       options: --cap-add=SYS_ADMIN --privileged
@@ -25,7 +25,7 @@ jobs:
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
       - name: Run Update
-        run: anda update -vv --excludes nightly=1 --excludes updbranch=1
+        run: anda update --excludes nightly=1 --excludes weekly=1 --excludes updbranch=1
         env:
           GITHUB_TOKEN: ${{ secrets.AUTOUPDATE_GH_TOKEN }}
           RUST_BACKTRACE: full
@@ -39,16 +39,15 @@ jobs:
             git config user.signingkey "${{ runner.temp }}/signing_key"
             msg="bump: $(git status | grep modified | sed -r 's@.+/([^/]+)/[^/]+\n?@\1 @g' | tr -d '\n')"
             git commit -S -a -m "$msg"
+            git format-patch HEAD^
             copy_over () {
-              git format-patch HEAD^
               git checkout $1
               git apply *.patch || true
-              rm *.patch
-              git add *
+              git add anda
               git commit -S -a -m "$msg"
             }
-            copy_over f39 || true
             copy_over f40 || true
             copy_over f41 || true
+            copy_over el10 || true
             git push -u origin --all
           fi

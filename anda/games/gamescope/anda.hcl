@@ -1,8 +1,10 @@
 project pkg {
-    rpm {
-        spec = "terra-gamescope.spec"
-    }
-    labels {
-        multilib = 1
-    }
+    arches = ["x86_64", "aarch64", "i386"]
+	rpm {
+		spec = "gamescope.spec"
+	}
+	labels {
+		mock = 1
+		subrepo = "extras"
+	}
 }

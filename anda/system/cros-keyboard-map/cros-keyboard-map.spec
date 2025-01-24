@@ -1,6 +1,6 @@
-%global commit_date 20241129
+%global commit_date 20250123
 
-%global tree_commit 3a1ed2307a0df118e6525f8df75756d2d1694664
+%global tree_commit 4647ce2297a7142dabe3cae1de718a69cb370448
 %global tree_shortcommit %(c=%{tree_commit}; echo ${c:0:7})
 
 %global um_commit 46892acafb2fff3f3ace425d4694382c92645feb
@@ -41,14 +41,15 @@ mkdir -p %buildroot%{_unitdir}
 install -Dm644 cros-keyboard-map.service %{buildroot}%{_unitdir}/cros-keyboard-map.service
 chmod +x %buildroot%{_bindir}/um-generate-cros-keymap
 
+# These systemd services should be included in the preset file for Ultramarine Linux Chromebook images
 %post
-%systemd_post 88-ultramarine-chromebook-default.preset
+%systemd_post cros-keyboard-map.service
 
 %preun
-%systemd_preun 88-ultramarine-chromebook-default.preset
+%systemd_preun cros-keyboard-map.service
 
 %postun
-%systemd_postun_with_restart 88-ultramarine-chromebook-default.preset
+%systemd_postun_with_restart cros-keyboard-map.service
 
 %files
 %doc README.md

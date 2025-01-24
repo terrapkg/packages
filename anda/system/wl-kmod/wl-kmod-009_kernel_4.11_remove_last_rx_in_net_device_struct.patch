@@ -1,0 +1,27 @@
+diff -Naur hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_cfg80211_hybrid.c hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_cfg80211_hybrid.c
+--- hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_cfg80211_hybrid.c	2017-02-08 19:35:44.320100235 +0100
++++ hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_cfg80211_hybrid.c	2017-04-10 14:23:40.909434506 +0200
+@@ -39,6 +39,10 @@
+ #include <proto/802.11.h>
+ #include <wl_cfg80211_hybrid.h>
+ 
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 11, 0)
++#include <linux/sched/signal.h>
++#endif
++
+ #define EVENT_TYPE(e) dtoh32((e)->event_type)
+ #define EVENT_FLAGS(e) dtoh16((e)->flags)
+ #define EVENT_STATUS(e) dtoh32((e)->status)
+diff -Naur hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_linux.c hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_linux.c
+--- hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_linux.c	2016-08-26 08:24:32.558643000 +0200
++++ hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_linux.c	2017-04-10 14:23:40.884434339 +0200
+@@ -2929,7 +2929,9 @@
+ 	if (skb == NULL) return;
+ 
+ 	skb->dev = wl->monitor_dev;
++#if LINUX_VERSION_CODE <= KERNEL_VERSION(4, 10, 0)
+ 	skb->dev->last_rx = jiffies;
++#endif
+ #if LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 22)
+ 	skb_reset_mac_header(skb);
+ #else

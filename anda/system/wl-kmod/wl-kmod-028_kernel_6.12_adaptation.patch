@@ -1,0 +1,32 @@
+From 5f6c5c8b27da17c80ce9bd2d6d714295bd352df5 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Nicolas=20Vi=C3=A9ville?= <nicolas.vieville@uphf.fr>
+Date: Tue, 10 Dec 2024 09:22:46 +0100
+Subject: [PATCH] wl_linux.c: #include <linux/unaligned.h> for kernel >= 6.12.x
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Nicolas Viéville <nicolas.vieville@uphf.fr>
+---
+ src/wl/sys/wl_linux.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/src/wl/sys/wl_linux.c b/src/wl/sys/wl_linux.c
+index 2000f6f..3c25ce4 100644
+--- a/src/wl/sys/wl_linux.c
++++ b/src/wl/sys/wl_linux.c
+@@ -56,7 +56,11 @@
+ #include <asm/irq.h>
+ #include <asm/pgtable.h>
+ #include <asm/uaccess.h>
++#if LINUX_VERSION_CODE < KERNEL_VERSION(6, 12, 0)
+ #include <asm/unaligned.h>
++#else
++#include <linux/unaligned.h>
++#endif
+ 
+ #include <proto/802.1d.h>
+ 
+-- 
+2.47.1
+

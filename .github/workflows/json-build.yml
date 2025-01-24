@@ -13,7 +13,7 @@ jobs:
         pkg: ${{ fromJson(inputs.packages) }}
         version: ["rawhide"]
       fail-fast: false
-    runs-on: ${{ matrix.pkg.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
+    runs-on: ${{ matrix.pkg.arch == 'aarch64' && 'ARM64' || 'ubuntu-22.04' }}
     container:
       image: ghcr.io/terrapkg/builder:f${{ matrix.version }}
       options: --cap-add=SYS_ADMIN --privileged
@@ -23,21 +23,25 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Checkout latest Mock configs
-        uses: actions/checkout@v4
-        with:
-          repository: terrapkg/mock-configs
-          path: mock-configs
-
       - name: Set up git repository
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
-      - name: Include custom build template instead of package default
+      - name: CI Setup Script
+        if: ${{ !contains(matrix.pkg.labels, 'mock') }}
         run: |
-          cp -v mock-configs/terra.tpl /etc/mock/templates/terra.tpl
+          dir=$(dirname ${{ matrix.pkg.pkg }})
+          if [ -f $dir/ci_setup.rhai ]; then
+            anda run $dir/ci_setup.rhai --labels script_path=$dir/ci_setup.rhai
+          fi
+
+      - name: Install Build Dependencies
+        if: ${{ !contains(matrix.pkg.labels, 'mock') }}
+        run: |
+          dir=$(dirname ${{ matrix.pkg.pkg }})
+          dnf5 builddep -y ${dir}/*.spec
 
       - name: Build with Andaman
-        run: anda build ${{ matrix.pkg.pkg }} --package rpm -c mock-configs/terra-${{ matrix.version }}-${{ matrix.pkg.arch }}.cfg
+        run: anda build ${{ matrix.pkg.pkg }} -c terra-${{ matrix.version }}-${{ matrix.pkg.arch }} ${{ contains(matrix.pkg.labels, 'mock') && '' || '-rrpmbuild' }}
 
       - name: Generating artifact name
         id: art
@@ -56,18 +60,19 @@ jobs:
 
       - name: Upload packages to subatomic
         run: |
+          subrepo="${{ matrix.pkg.labels.subrepo }}"
           subatomic-cli upload --prune \
             --server https://subatomic.fyralabs.com \
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
-            terra${{ matrix.version }} anda-build/rpm/rpms/*
+            terra${{ matrix.version }}${{ matrix.pkg.labels['subrepo'] && '-$subrepo' || '' }} anda-build/rpm/rpms/*
 
       - name: Upload source packages to subatomic
-        if: github.event_name == 'push'
         run: |
+          subrepo="${{ matrix.pkg.labels.subrepo }}"
           subatomic-cli upload --prune \
             --server https://subatomic.fyralabs.com \
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
-            terra${{ matrix.version }}-source anda-build/rpm/srpm/*
+            terra${{ matrix.version }}${{ matrix.pkg.labels['subrepo'] && '-$subrepo' || '' }}-source anda-build/rpm/srpm/*
 
       - name: Notify Madoguchi (Success)
         if: success()

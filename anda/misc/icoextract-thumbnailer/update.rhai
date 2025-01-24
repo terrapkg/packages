@@ -1,0 +1,1 @@
+rpm.version(gh_tag("jlu5/icoextract"));

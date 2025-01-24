@@ -1,0 +1,20 @@
+diff -Naur hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/shared/linux_osl.c hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/shared/linux_osl.c
+--- hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/shared/linux_osl.c	2017-11-24 10:45:55.764626000 +0100
++++ hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/shared/linux_osl.c	2019-01-26 19:33:46.518389607 +0100
+@@ -1075,6 +1075,7 @@
+ osl_os_get_image_block(char *buf, int len, void *image)
+ {
+ 	struct file *fp = (struct file *)image;
++	loff_t pos = fp->f_pos;
+ 	int rdlen;
+ 
+ 	if (!image)
+@@ -1085,7 +1086,7 @@
+ #else
+ 	rdlen = kernel_read(fp, fp->f_pos, buf, len);
+ #endif
+-	if (rdlen > 0)
++	if ((rdlen > 0) && (fp->f_pos == pos))
+ 		fp->f_pos += rdlen;
+ 
+ 	return rdlen;

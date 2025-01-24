@@ -1,5 +1,5 @@
 Name:           inputplumber
-Version:        0.39.2
+Version:        0.42.0
 Release:        1%?dist
 Summary:        Open source input router and remapper daemon for Linux
 License:        GPL-3.0-or-later
@@ -42,6 +42,7 @@ keyboards) and translate their input to a variety of virtual device formats.
 %license LICENSE
 %_bindir/inputplumber
 %_unitdir/inputplumber.service
+%_unitdir/inputplumber-suspend.service
 %_udevhwdbdir/59-inputplumber.hwdb
 %_datadir/dbus-1/system.d/org.shadowblip.InputPlumber.conf
 %_datadir/inputplumber/

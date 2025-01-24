@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=CTWM
+Comment=Claude's Tab Window Manager
+TryExec=ctwm
+Exec=ctwm
+Type=Xsession
+Encoding=UTF-8

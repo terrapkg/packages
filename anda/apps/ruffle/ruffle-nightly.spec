@@ -1,4 +1,4 @@
-%global ver 2024-12-06
+%global ver 2025-01-24
 %global goodver %(echo %ver | sed 's/-//g')
 %global __brp_mangle_shebangs %{nil}
 %bcond_without mold
@@ -14,6 +14,7 @@ Summary:        A Flash Player emulator written in Rust
 License:        Apache-2.0 OR MIT
 URL:            https://ruffle.rs/
 Source0:        https://github.com/ruffle-rs/ruffle/archive/refs/tags/nightly-%ver.tar.gz
+Patch0:         desktop_file_patch.diff
 Provides:       ruffle
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros mold
@@ -37,7 +38,7 @@ Packager:       madonuko <mado@fyralabs.com>
 %_metainfodir/rs.ruffle.Ruffle.metainfo.xml
 
 %prep
-%autosetup -n ruffle-nightly-%ver
+%autosetup -n ruffle-nightly-%ver -p1
 %cargo_prep_online
 
 %build

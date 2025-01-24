@@ -1,10 +1,17 @@
+%global commit d5fff0dd5bfb8bda19b050f66610d19370c5fd39
+%global commit_date 20241019
+%global shortcommit %{sub %{commit} 1 7}
+
 Name:           blackbox-terminal
-Version:        0.14.0
+Version:        0.14.0^%{commit_date}.%{shortcommit}
 Release:        1%{?dist}
 Summary:        A beautiful GTK 4 terminal
+
 License:        GPL-3.0
 URL:            https://gitlab.gnome.org/raggesilver/blackbox
-BuildRequires:  vala meson gettext 
+Source0:        %{url}/-/archive/%{commit}/blackbox-%{commit}.tar.gz
+
+BuildRequires:  vala meson gettext
 BuildRequires:  pkgconfig(gtk4) >= 4.6.2
 BuildRequires:  pkgconfig(gio-2.0) >= 2.50
 BuildRequires:  libadwaita-devel >= 1.1
@@ -17,13 +24,12 @@ BuildRequires:  pkgconfig(libpcre2-8)
 BuildRequires:  pkgconfig(graphene-gobject-1.0)
 BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  desktop-file-utils libappstream-glib cmake
-Source0:        %url/-/archive/v%version/blackbox-v%version.tar.gz
 
 %description
-%{summary}.
+An elegant and customizable terminal for GNOME.
 
 %prep
-%autosetup -p1 -n blackbox-v%version
+%autosetup -n blackbox-%{commit}
 
 %build
 %meson
@@ -33,7 +39,7 @@ Source0:        %url/-/archive/v%version/blackbox-v%version.tar.gz
 %meson_install
 
 %check
-appstream-util validate-relax --nonet %buildroot/%_datadir/metainfo/com.raggesilver.BlackBox.metainfo.xml
+appstream-util validate-relax --nonet %buildroot%_datadir/metainfo/com.raggesilver.BlackBox.metainfo.xml
 
 %files
 %doc README.md
@@ -50,7 +56,6 @@ appstream-util validate-relax --nonet %buildroot/%_datadir/metainfo/com.raggesil
 %_datadir/icons/hicolor/scalable/actions/settings-symbolic.svg
 %_datadir/icons/hicolor/scalable/apps/com.raggesilver.BlackBox.svg
 %_datadir/locale/*/LC_MESSAGES/blackbox.mo
-
 
 
 %changelog

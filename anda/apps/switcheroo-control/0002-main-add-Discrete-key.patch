@@ -1,0 +1,379 @@
+From 4f31415cb61a50c2bcba1510a7511518417d0970 Mon Sep 17 00:00:00 2001
+From: Jan200101 <sentrycraft123@gmail.com>
+Date: Mon, 11 Sep 2023 15:21:46 +0200
+Subject: [PATCH 02/10] main: add Discrete key
+
+Signed-off-by: Jan200101 <sentrycraft123@gmail.com>
+---
+ .gitlab-ci.yml                     |   1 +
+ data/30-discrete-gpu.rules.in      |   3 +
+ data/meson.build                   |   7 ++
+ meson.build                        |   9 +++
+ meson_options.txt                  |  24 +++++++
+ src/discrete-detection/amdgpu.c    |  46 +++++++++++++
+ src/discrete-detection/meson.build |  18 +++++
+ src/discrete-detection/nouveau.c   | 105 +++++++++++++++++++++++++++++
+ src/meson.build                    |   4 +-
+ src/switcheroo-control.c           |  16 +++++
+ 10 files changed, 232 insertions(+), 1 deletion(-)
+ create mode 100644 data/30-discrete-gpu.rules.in
+ create mode 100644 src/discrete-detection/amdgpu.c
+ create mode 100644 src/discrete-detection/meson.build
+ create mode 100644 src/discrete-detection/nouveau.c
+
+diff --git a/.gitlab-ci.yml b/.gitlab-ci.yml
+index a6aa3c7..a09fe20 100644
+--- a/.gitlab-ci.yml
++++ b/.gitlab-ci.yml
+@@ -3,6 +3,7 @@ image: fedora:rawhide
+ variables:
+   DEPENDENCIES: glib2-devel
+                 libgudev-devel
++                libdrm-devel
+                 gtk-doc
+                 gcc
+                 gcc-c++
+diff --git a/data/30-discrete-gpu.rules.in b/data/30-discrete-gpu.rules.in
+new file mode 100644
+index 0000000..a803ed4
+--- /dev/null
++++ b/data/30-discrete-gpu.rules.in
+@@ -0,0 +1,3 @@
++DRIVERS=="amdgpu", SUBSYSTEM=="drm", PROGRAM="@libexecdir@/check-discrete-amdgpu $env{DEVNAME}", TAG+="switcheroo-discrete-gpu"
++DRIVERS=="nouveau", SUBSYSTEM=="drm", PROGRAM="@libexecdir@/check-discrete-nouveau $env{DEVNAME}", TAG+="switcheroo-discrete-gpu"
++DRIVERS=="nvidia", TAG+="switcheroo-discrete-gpu"
+diff --git a/data/meson.build b/data/meson.build
+index 85e5c93..38cf96c 100644
+--- a/data/meson.build
++++ b/data/meson.build
+@@ -17,3 +17,10 @@ install_data(
+   '30-pci-intel-gpu.hwdb',
+   install_dir: hwdb_dir,
+ )
++
++configure_file(
++  input: '30-discrete-gpu.rules.in',
++  output: '30-discrete-gpu.rules',
++  configuration: data_conf,
++  install_dir: rules_dir,
++)
+diff --git a/meson.build b/meson.build
+index b8f4bff..b3aaf0c 100644
+--- a/meson.build
++++ b/meson.build
+@@ -20,6 +20,9 @@ gnome = import('gnome')
+ glib = dependency('glib-2.0', version: '>= 2.56.0')
+ gio = dependency('gio-2.0', version: '>= 2.56.0')
+ gudev = dependency('gudev-1.0', version: '>= 232')
++libdrm = dependency('libdrm', version: '>= 2.4.97', required: get_option('libdrm'))
++libdrm_nouveau = dependency('libdrm_nouveau', version: '>= 2.4.97', required: get_option('libdrm_nouveau'))
++libdrm_amdgpu = dependency('libdrm_amdgpu', version: '>= 2.4.97', required: get_option('libdrm_amdgpu'))
+ 
+ systemd_systemunitdir = get_option('systemdsystemunitdir')
+ if systemd_systemunitdir == ''
+@@ -32,6 +35,12 @@ if hwdb_dir == ''
+   hwdb_dir = udevdir / 'hwdb.d'
+ endif
+ 
++rules_dir = get_option('rulesdir')
++if rules_dir == ''
++  udevdir = dependency('udev').get_pkgconfig_variable('udevdir')
++  rules_dir = udevdir / 'rules.d'
++endif
++
+ # Make like license available in the build root for docs
+ configure_file(
+   input: 'COPYING',
+diff --git a/meson_options.txt b/meson_options.txt
+index c8d9619..b8d671a 100644
+--- a/meson_options.txt
++++ b/meson_options.txt
+@@ -10,6 +10,12 @@ option('hwdbdir',
+   description: 'Directory for hwdb files',
+ )
+ 
++option('rulesdir',
++  type: 'string',
++  value: '',
++  description: 'Directory for ruke files',
++)
++
+ option('gtk_doc',
+   type: 'boolean',
+   value: false,
+@@ -21,3 +27,21 @@ option('tests',
+   type: 'boolean',
+   value: false
+ )
++
++option('libdrm',
++  description: 'Whether libdrm should be used to probe GPUs',
++  type: 'feature',
++  value: 'auto'
++)
++
++option('libdrm_nouveau',
++  description: 'Whether libdrm_nouveau should be used to probe Nvidia GPUs',
++  type: 'feature',
++  value: 'auto'
++)
++
++option('libdrm_amdgpu',
++  description: 'Whether libdrm_amdgpu should be used to probe AMD GPUs',
++  type: 'feature',
++  value: 'auto'
++)
+diff --git a/src/discrete-detection/amdgpu.c b/src/discrete-detection/amdgpu.c
+new file mode 100644
+index 0000000..2d9804f
+--- /dev/null
++++ b/src/discrete-detection/amdgpu.c
+@@ -0,0 +1,46 @@
++
++#include <fcntl.h>
++#include <stdlib.h>
++#include <stdio.h>
++#include <gio/gio.h>
++#include <gudev/gudev.h>
++
++#include <amdgpu.h>
++#include <amdgpu_drm.h>
++
++typedef int handle;
++G_DEFINE_AUTO_CLEANUP_FREE_FUNC(handle, close, -1)
++G_DEFINE_AUTOPTR_CLEANUP_FUNC(amdgpu_device_handle, free);
++
++int main(int argc, char** argv)
++{
++	if (argc < 2)
++	{
++		puts ("check-discrete-amdgpu [DEVNAME]");
++		return EXIT_FAILURE;
++	}
++
++	const char *devname;
++	g_auto(handle) fd = -1;
++	g_autoptr(GUdevDevice) parent = NULL;
++	struct drm_amdgpu_info_device device_info = {0};
++	amdgpu_device_handle device = NULL;
++	uint32_t drm_major, drm_minor;
++
++	devname = argv[1];
++	fd = open (devname, O_RDWR);
++	if (fd < 0)
++		return EXIT_FAILURE;
++
++	if (amdgpu_device_initialize (fd, &drm_major, &drm_minor, &device))
++		return EXIT_FAILURE;
++
++	if (amdgpu_query_info (device, AMDGPU_INFO_DEV_INFO, sizeof(device_info), &device_info))
++		return EXIT_FAILURE;
++
++	/* AMDGPU_IDS_FLAGS_FUSION is set for all APUs */
++	if (device_info.ids_flags & AMDGPU_IDS_FLAGS_FUSION)
++		return EXIT_FAILURE;
++
++	return EXIT_SUCCESS;
++}
+diff --git a/src/discrete-detection/meson.build b/src/discrete-detection/meson.build
+new file mode 100644
+index 0000000..3a6c03f
+--- /dev/null
++++ b/src/discrete-detection/meson.build
+@@ -0,0 +1,18 @@
++
++if libdrm_amdgpu.found()
++  executable('check-discrete-amdgpu',
++    files('amdgpu.c'),
++    dependencies: deps,
++    install: true,
++    install_dir: libexecdir,
++  )
++endif
++
++if libdrm.found() and libdrm_nouveau.found()
++  executable('check-discrete-nouveau',
++    files('nouveau.c'),
++    dependencies: deps,
++    install: true,
++    install_dir: libexecdir,
++  )
++endif
+diff --git a/src/discrete-detection/nouveau.c b/src/discrete-detection/nouveau.c
+new file mode 100644
+index 0000000..0a1f220
+--- /dev/null
++++ b/src/discrete-detection/nouveau.c
+@@ -0,0 +1,105 @@
++
++#include <fcntl.h>
++#include <stdlib.h>
++#include <stdio.h>
++#include <gio/gio.h>
++#include <gudev/gudev.h>
++
++#include <xf86drm.h>
++#include <nouveau_drm.h>
++#include <nouveau/nvif/ioctl.h>
++#include <nvif/cl0080.h>
++#include <nvif/class.h>
++
++typedef int handle;
++G_DEFINE_AUTO_CLEANUP_FREE_FUNC(handle, close, -1)
++
++int main(int argc, char** argv)
++{
++	if (argc < 2)
++	{
++		puts ("check-discrete-nouveau [DEVNAME]");
++		return EXIT_FAILURE;
++	}
++
++	const char *devname;
++	g_auto(handle) fd = -1;
++
++	devname = argv[1];
++	fd = open (devname, O_RDWR);
++	if (fd < 0)
++		return EXIT_FAILURE;
++
++	g_autofree void *device = malloc(352);
++
++	/* Init device */
++	{	
++		struct {
++			struct nvif_ioctl_v0 ioctl;
++			struct nvif_ioctl_new_v0 new;
++			struct nv_device_v0 dev;
++		} init_args = {
++		  .ioctl = {
++			 .object = 0,
++			 .owner = NVIF_IOCTL_V0_OWNER_ANY,
++			 .route = 0x00,
++			 .type = NVIF_IOCTL_V0_NEW,
++			 .version = 0,
++		  },
++		  .new = {
++			 .handle = 0,
++			 .object = (uintptr_t)device,
++			 .oclass = NV_DEVICE,
++			 .route = NVIF_IOCTL_V0_ROUTE_NVIF,
++			 .token = (uintptr_t)device,
++			 .version = 0,
++		  },
++		  .dev = {
++			 .device = ~0ULL,
++		  },
++	   };
++
++		if (drmCommandWrite (fd, DRM_NOUVEAU_NVIF, &init_args, sizeof(init_args)))
++			return EXIT_FAILURE;
++	}
++
++	/* Query device info */
++	struct {
++		struct nvif_ioctl_v0 ioctl;
++		struct nvif_ioctl_mthd_v0 mthd;
++		struct nv_device_info_v0 info;
++	} args = {
++		.ioctl = {
++			.object = (uintptr_t)device,
++			.owner = NVIF_IOCTL_V0_OWNER_ANY,
++			.route = 0x00,
++			.type = NVIF_IOCTL_V0_MTHD,
++			.version = 0,
++		},
++		.mthd = {
++			.method = NV_DEVICE_V0_INFO,
++			.version = 0,
++		},
++		.info = {
++			.version = 0,
++		},
++	};
++
++	if (drmCommandWriteRead (fd, DRM_NOUVEAU_NVIF, &args, sizeof(args)))
++		return EXIT_FAILURE;
++
++
++	switch (args.info.platform)
++	{
++		case NV_DEVICE_INFO_V0_IGP:
++		case NV_DEVICE_INFO_V0_SOC:
++			return EXIT_FAILURE;
++
++		case NV_DEVICE_INFO_V0_PCI:
++		case NV_DEVICE_INFO_V0_AGP:
++		case NV_DEVICE_INFO_V0_PCIE:
++		default:
++			return EXIT_SUCCESS;
++	}
++	return EXIT_FAILURE;
++}
+diff --git a/src/meson.build b/src/meson.build
+index ab3a77d..da4267f 100644
+--- a/src/meson.build
++++ b/src/meson.build
+@@ -1,4 +1,4 @@
+-deps = [glib, gio, gudev]
++deps = [glib, gio, gudev, libdrm, libdrm_nouveau, libdrm_amdgpu]
+ 
+ sources = [
+   'info-cleanup.c',
+@@ -34,3 +34,5 @@ configure_file(
+   configuration: switcherooctl_conf,
+   install_dir: get_option('bindir')
+ )
++
++subdir('discrete-detection')
+diff --git a/src/switcheroo-control.c b/src/switcheroo-control.c
+index abd8154..e407bfb 100644
+--- a/src/switcheroo-control.c
++++ b/src/switcheroo-control.c
+@@ -31,6 +31,7 @@ typedef struct {
+ 	char *name;
+ 	GPtrArray *env;
+ 	gboolean is_default;
++	gboolean is_discrete;
+ } CardData;
+ 
+ typedef struct {
+@@ -94,6 +95,8 @@ build_gpus_variant (ControlData *data)
+ 				       g_variant_new_strv ((const gchar * const *) card->env->pdata, card->env->len));
+ 		g_variant_builder_add (&asv_builder, "{sv}", "Default",
+ 				       g_variant_new_boolean (card->is_default));
++		g_variant_builder_add (&asv_builder, "{sv}", "Discrete",
++				       g_variant_new_boolean (card->is_discrete));
+ 
+ 		g_variant_builder_add (&builder, "a{sv}", &asv_builder);
+ 	}
+@@ -312,6 +315,18 @@ get_card_is_default (GUdevDevice *d)
+ 	return g_udev_device_get_sysfs_attr_as_boolean (parent, "boot_vga");
+ }
+ 
++static gboolean
++get_card_is_discrete (GUdevDevice *d)
++{
++	const char * const * tags;
++	g_autoptr (GUdevDevice) platform_device = NULL;
++
++	tags = g_udev_device_get_tags (d);
++	if (tags && g_strv_contains (tags, "switcheroo-discrete-gpu"))
++		return TRUE;
++	return FALSE;
++}
++
+ static CardData *
+ get_card_data (GUdevClient *client,
+ 	       GUdevDevice *d)
+@@ -328,6 +343,7 @@ get_card_data (GUdevClient *client,
+ 	data->name = get_card_name (d);
+ 	data->env = env;
+ 	data->is_default = get_card_is_default (d);
++	data->is_discrete = get_card_is_discrete (d);
+ 
+ 	return data;
+ }
+-- 
+2.46.0
+

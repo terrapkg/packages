@@ -1,0 +1,180 @@
+diff -Naur hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_cfg80211_hybrid.c hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_cfg80211_hybrid.c
+--- hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_cfg80211_hybrid.c	2019-10-16 16:33:57.319456000 +0200
++++ hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_cfg80211_hybrid.c	2020-12-29 21:44:24.206777104 +0100
+@@ -38,6 +38,9 @@
+ #include <wlioctl.h>
+ #include <proto/802.11.h>
+ #include <wl_cfg80211_hybrid.h>
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 10, 0)
++#include <wl_linux.h>
++#endif
+ 
+ #if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 11, 0)
+ #include <linux/sched/signal.h>
+@@ -475,13 +478,16 @@
+ static s32
+ wl_dev_ioctl(struct net_device *dev, u32 cmd, void *arg, u32 len)
+ {
++#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 10, 0)
+ 	struct ifreq ifr;
+ 	struct wl_ioctl ioc;
+ 	mm_segment_t fs;
+ 	s32 err = 0;
++#endif
+ 
+ 	BUG_ON(len < sizeof(int));
+ 
++#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 10, 0)
+ 	memset(&ioc, 0, sizeof(ioc));
+ 	ioc.cmd = cmd;
+ 	ioc.buf = arg;
+@@ -503,6 +509,9 @@
+ 	set_fs(fs);
+ 
+ 	return err;
++#else
++	return wlc_ioctl_internal(dev, cmd, arg, len);
++#endif
+ }
+ 
+ static s32
+diff -Naur hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wlc_pub.h hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wlc_pub.h
+--- hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wlc_pub.h	2017-06-03 15:26:57.095475000 +0200
++++ hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wlc_pub.h	2020-12-29 21:55:44.922067533 +0100
+@@ -24,6 +24,9 @@
+ 
+ #include <wlc_types.h>
+ #include <wlc_utils.h>
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 10, 0)
++#include <siutils.h>
++#endif
+ #include "proto/802.11.h"
+ #include "proto/bcmevent.h"
+ 
+diff -Naur hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_iw.c hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_iw.c
+--- hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_iw.c	2019-05-30 01:32:34.421426000 +0200
++++ hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_iw.c	2020-12-29 21:47:36.457836102 +0100
+@@ -37,6 +37,9 @@
+ 
+ #include <wl_dbg.h>
+ #include <wl_iw.h>
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 10, 0)
++#include <wl_linux.h>
++#endif
+ 
+ extern bool wl_iw_conn_status_str(uint32 event_type, uint32 status,
+ 	uint32 reason, char* stringBuf, uint buflen);
+@@ -103,6 +106,7 @@
+ 	int len
+ )
+ {
++#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 10, 0)
+ 	struct ifreq ifr;
+ 	wl_ioctl_t ioc;
+ 	mm_segment_t fs;
+@@ -130,6 +134,9 @@
+ 	set_fs(fs);
+ 
+ 	return ret;
++#else
++	return wlc_ioctl_internal(dev, cmd, arg, len);
++#endif
+ }
+ 
+ static int
+diff -Naur hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_linux.c hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_linux.c
+--- hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_linux.c	2020-11-11 13:39:00.579562572 +0100
++++ hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_linux.c	2020-12-29 21:55:44.899067286 +0100
+@@ -1659,6 +1659,7 @@
+ 		goto done2;
+ 	}
+ 
++#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 10, 0)
+ #if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 9, 0)
+ 	if (uaccess_kernel())
+ #else
+@@ -1667,6 +1668,9 @@
+ 		buf = ioc.buf;
+ 
+ 	else if (ioc.buf) {
++#else
++	if (ioc.buf) {
++#endif
+ 		if (!(buf = (void *) MALLOC(wl->osh, MAX(ioc.len, WLC_IOCTL_MAXLEN)))) {
+ 			bcmerror = BCME_NORESOURCE;
+ 			goto done2;
+@@ -1687,7 +1691,11 @@
+ 	WL_UNLOCK(wl);
+ 
+ done1:
++#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 10, 0)
+ 	if (ioc.buf && (ioc.buf != buf)) {
++#else
++	if (ioc.buf) {
++#endif
+ 		if (copy_to_user(ioc.buf, buf, ioc.len))
+ 			bcmerror = BCME_BADADDR;
+ 		MFREE(wl->osh, buf, MAX(ioc.len, WLC_IOCTL_MAXLEN));
+@@ -1697,6 +1705,39 @@
+ 	ASSERT(VALID_BCMERROR(bcmerror));
+ 	if (bcmerror != 0)
+ 		wl->pub->bcmerror = bcmerror;
++	return (OSL_ERROR(bcmerror));
++}
++
++int
++wlc_ioctl_internal(struct net_device *dev, int cmd, void *buf, int len)
++{
++	wl_info_t *wl;
++	wl_if_t *wlif;
++	int bcmerror;
++
++	if (!dev)
++		return -ENETDOWN;
++
++	wl = WL_INFO(dev);
++	wlif = WL_DEV_IF(dev);
++	if (wlif == NULL || wl == NULL || wl->dev == NULL)
++		return -ENETDOWN;
++
++	bcmerror = 0;
++
++	WL_TRACE(("wl%d: wlc_ioctl_internal: cmd 0x%x\n", wl->pub->unit, cmd));
++
++	WL_LOCK(wl);
++	if (!capable(CAP_NET_ADMIN)) {
++		bcmerror = BCME_EPERM;
++	} else {
++		bcmerror = wlc_ioctl(wl->wlc, cmd, buf, len, wlif->wlcif);
++	}
++	WL_UNLOCK(wl);
++
++	ASSERT(VALID_BCMERROR(bcmerror));
++	if (bcmerror != 0)
++		wl->pub->bcmerror = bcmerror;
+ 	return (OSL_ERROR(bcmerror));
+ }
+ 
+diff -Naur hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_linux.h hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_linux.h
+--- hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_linux.h	2017-06-03 15:26:57.095475000 +0200
++++ hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_linux.h	2020-12-29 21:55:44.953067865 +0100
+@@ -22,6 +22,9 @@
+ #define _wl_linux_h_
+ 
+ #include <wlc_types.h>
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 10, 0)
++#include <wlc_pub.h>
++#endif
+ 
+ typedef struct wl_timer {
+ 	struct timer_list 	timer;
+@@ -187,6 +190,9 @@
+ extern int __devinit wl_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent);
+ extern void wl_free(wl_info_t *wl);
+ extern int  wl_ioctl(struct net_device *dev, struct ifreq *ifr, int cmd);
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 10, 0)
++extern int  wlc_ioctl_internal(struct net_device *dev, int cmd, void *buf, int len);
++#endif 
+ extern struct net_device * wl_netdev_get(wl_info_t *wl);
+ 
+ #endif 

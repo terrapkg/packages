@@ -1,5 +1,5 @@
-%global commit c85b20a41a9d2d18abf340bed98daa3079641643
-%global ver 1.8.41
+%global commit 2be9e799a2bc523550d4f83f4d2d66d41c9573b9
+%global ver 1.8.42
 %global commit_date 20240219
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
@@ -49,6 +49,7 @@ Requires: %name-devel%?_isa = %{?epoch:%epoch:}%version-%release
 
 %prep
 %autosetup -n td-%commit -p1
+rm %SOURCE0
 sed -e 's/"DEFAULT"/"PROFILE=SYSTEM"/g' -i tdnet/td/net/SslStream.cpp
 
 %build
@@ -61,6 +62,10 @@ sed -e 's/"DEFAULT"/"PROFILE=SYSTEM"/g' -i tdnet/td/net/SslStream.cpp
 
 %install
 %cmake_install
+
+mv LICENSE_1_0.txt *.md ..
+rm -rf *
+mv ../LICENSE_1_0.txt ../*.md .
 
 %files
 %license LICENSE_1_0.txt

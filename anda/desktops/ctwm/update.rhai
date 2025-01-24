@@ -1,0 +1,1 @@
+rpm.version(find("<p>Current release: ([\\d.]+)</p>", get("https://www.ctwm.org/download.html"), 1));

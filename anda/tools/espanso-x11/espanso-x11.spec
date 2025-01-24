@@ -1,6 +1,6 @@
 Name:			espanso-x11
-Version: 		2.2.1
-Release:		2%?dist
+Version: 		2.2.2
+Release:		1%?dist
 Summary:		Cross-platform Text Expander written in Rust for X11
 License:		GPL-3.0
 URL:			https://espanso.org
@@ -14,6 +14,7 @@ BuildRequires:	pkgconfig(xkbcommon)
 BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	wxGTK-devel
 BuildRequires:	openssl-devel
+BuildRequires:  mold
 
 %description
 A cross-platform Text Expander written in Rust. A text expander is a program

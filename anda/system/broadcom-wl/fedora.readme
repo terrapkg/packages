@@ -1,0 +1,66 @@
+This file provides some basic information about Broadcom STA wireless driver configuration files on Fedora with packages provided by Terra.
+------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+Table of content
+  0. Caution
+  1. Initramfs configuration file usage
+  3. NetworkManager configuration file usage
+  4. Support
+------------------------------------------------------------------------
+
+
+0. Caution
+===========
+
+The files mentioned in this document should not be used in systems with working Wi-Fi. Only systems failing to connect should use these solutions.
+
+Use them at your own risk and only if your system's Broadcom device doesn't work properly.
+
+
+1. Initramfs configuration
+==========================
+
+Please read comments in /etc/dracut.conf.d/20-wl.conf file in order to configure loading modules needed by the Broadcom STA wireless driver in your kernel's initramfs.
+
+Edit the /etc/dracut.conf.d/20-wl.conf file and comment/uncomment the one line "add_drivers+=" directive depending on your needs.
+
+For example by CLI with Nano:
+sudo nano /etc/dracut.conf.d/20-wl.conf
+
+Ctrl+O will save the file, and Ctrl+X will quit Nano.
+
+NOTE: Any CLI or GUI text editor is fine, this is purely an example.
+
+Then use Dracut to rebuild your current initramfs:
+sudo dracut -f
+
+
+3. NetworkManager configuration file usage
+==========================================
+
+To try to fix issues noted in RHBZ#1703745 and RFBZ#5245 the usr/lib/NetworkManager/conf.d/90-broadcom-wl.conf file is provided.
+
+This file disables MAC address randomization for Broadcom devices using this driver while scanning for a wireless access point.
+
+It prevents "CTRL-EVENT-SCAN-FAILED ret=-22 retry=1" messages in logs and the inability to connect to a wireless access point.
+
+The tradeoff of this setting is that scanning for wireless access point uses only the real MAC address of the device and produces is less anonymous.
+
+To disable this setting, reate an empty file with the exact same name in /etc/NetworkManager/conf.d
+
+In a terminal, type:
+sudo touch /etc/NetworkManager/conf.d/90-broadcom-wl.conf
+
+To re-enable this setting, remove the file.
+
+In a terminal, type:
+sudo rm -f /etc/NetworkManager/conf.d/90-broadcom-wl.conf
+
+
+4. Support
+==========
+
+Support about these configuration files will only be provided on one of the methods of contact listed here:
+
+https://fyralabs.com/contact

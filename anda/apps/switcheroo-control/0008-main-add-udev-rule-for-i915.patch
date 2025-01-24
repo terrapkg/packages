@@ -1,0 +1,25 @@
+From 462b09f02de37dfd2965d23cc7c4137bcf45a4ae Mon Sep 17 00:00:00 2001
+From: Jan200101 <sentrycraft123@gmail.com>
+Date: Wed, 14 Feb 2024 20:25:42 +0100
+Subject: [PATCH 08/10] main: add udev rule for i915 checking a lot of systems
+ has shown that the intel iGPU will always be available at `0000:00:02.0`.
+ Using ID_PATH would have been cleaner, but I couldn't get it to work.
+
+Signed-off-by: Jan200101 <sentrycraft123@gmail.com>
+---
+ data/30-discrete-gpu.rules.in | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/data/30-discrete-gpu.rules.in b/data/30-discrete-gpu.rules.in
+index a803ed4..f30f315 100644
+--- a/data/30-discrete-gpu.rules.in
++++ b/data/30-discrete-gpu.rules.in
+@@ -1,3 +1,4 @@
+ DRIVERS=="amdgpu", SUBSYSTEM=="drm", PROGRAM="@libexecdir@/check-discrete-amdgpu $env{DEVNAME}", TAG+="switcheroo-discrete-gpu"
+ DRIVERS=="nouveau", SUBSYSTEM=="drm", PROGRAM="@libexecdir@/check-discrete-nouveau $env{DEVNAME}", TAG+="switcheroo-discrete-gpu"
+-DRIVERS=="nvidia", TAG+="switcheroo-discrete-gpu"
++DRIVERS=="nvidia", SUBSYSTEM=="drm", TAG+="switcheroo-discrete-gpu"
++DRIVERS=="i915", SUBSYSTEM=="drm", DEVPATH!="/devices/pci0000:00/0000:00:02.0/drm/*", TAG+="switcheroo-discrete-gpu"
+-- 
+2.46.0
+

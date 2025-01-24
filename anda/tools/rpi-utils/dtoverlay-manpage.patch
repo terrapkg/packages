@@ -1,0 +1,12 @@
+diff --git a/dtmerge/CMakeLists.txt b/dtmerge/CMakeLists.txt
+index 7e2702e..9b101c4 100644
+--- a/dtmerge/CMakeLists.txt
++++ b/dtmerge/CMakeLists.txt
+@@ -23,6 +23,7 @@ add_executable(dtoverlay dtoverlay_main.c utils.c)
+ target_link_libraries(dtoverlay dtovl)
+ install(TARGETS dtoverlay RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+ install(FILES dtoverlay.1 DESTINATION ${CMAKE_INSTALL_MANDIR}/man1)
++install(FILES dtoverlay.2 DESTINATION ${CMAKE_INSTALL_MANDIR}/man2)
+ 
+ add_custom_command(TARGET dtoverlay POST_BUILD COMMAND ln;-sf;dtoverlay;dtparam)
+ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/dtparam DESTINATION ${CMAKE_INSTALL_BINDIR})

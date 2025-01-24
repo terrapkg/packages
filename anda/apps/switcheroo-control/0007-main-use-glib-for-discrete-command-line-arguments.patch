@@ -1,0 +1,137 @@
+From d2ecc29469d5572fd171926c9d1dbb1b851c7b09 Mon Sep 17 00:00:00 2001
+From: Jan200101 <sentrycraft123@gmail.com>
+Date: Tue, 12 Sep 2023 17:12:00 +0200
+Subject: [PATCH 07/10] main: use glib for discrete command-line arguments
+
+Signed-off-by: Jan200101 <sentrycraft123@gmail.com>
+---
+ src/discrete-detection/amdgpu.c  | 29 ++++++++++++++++++++---------
+ src/discrete-detection/nouveau.c | 29 ++++++++++++++++++++---------
+ 2 files changed, 40 insertions(+), 18 deletions(-)
+
+diff --git a/src/discrete-detection/amdgpu.c b/src/discrete-detection/amdgpu.c
+index 2d9804f..5a9a4ab 100644
+--- a/src/discrete-detection/amdgpu.c
++++ b/src/discrete-detection/amdgpu.c
+@@ -1,9 +1,10 @@
+-
+ #include <fcntl.h>
+ #include <stdlib.h>
+ #include <stdio.h>
++#include <locale.h>
+ #include <gio/gio.h>
+ #include <gudev/gudev.h>
++#include <glib.h>
+ 
+ #include <amdgpu.h>
+ #include <amdgpu_drm.h>
+@@ -12,22 +13,32 @@ typedef int handle;
+ G_DEFINE_AUTO_CLEANUP_FREE_FUNC(handle, close, -1)
+ G_DEFINE_AUTOPTR_CLEANUP_FUNC(amdgpu_device_handle, free);
+ 
+-int main(int argc, char** argv)
++int main (int argc, char** argv)
+ {
+-	if (argc < 2)
+-	{
+-		puts ("check-discrete-amdgpu [DEVNAME]");
+-		return EXIT_FAILURE;
+-	}
+-
+ 	const char *devname;
+ 	g_auto(handle) fd = -1;
+-	g_autoptr(GUdevDevice) parent = NULL;
+ 	struct drm_amdgpu_info_device device_info = {0};
+ 	amdgpu_device_handle device = NULL;
+ 	uint32_t drm_major, drm_minor;
++	g_autoptr(GOptionContext) option_context = NULL;
++	g_autoptr(GError) error = NULL;
+ 
++	setlocale (LC_ALL, "");
++	option_context = g_option_context_new ("");
++
++	if (!g_option_context_parse (option_context, &argc, &argv, &error)) {
++		g_print ("Failed to parse arguments: %s\n", error->message);
++		return EXIT_FAILURE;
++	}
++
++	if (argc < 2)
++	{
++		g_print ("%s\n", g_option_context_get_help (option_context, TRUE, NULL));
++		return EXIT_FAILURE;
++	}
+ 	devname = argv[1];
++;
++
+ 	fd = open (devname, O_RDWR);
+ 	if (fd < 0)
+ 		return EXIT_FAILURE;
+diff --git a/src/discrete-detection/nouveau.c b/src/discrete-detection/nouveau.c
+index 0a1f220..1d61cbb 100644
+--- a/src/discrete-detection/nouveau.c
++++ b/src/discrete-detection/nouveau.c
+@@ -1,9 +1,10 @@
+-
+ #include <fcntl.h>
+ #include <stdlib.h>
+ #include <stdio.h>
++#include <locale.h>
+ #include <gio/gio.h>
+ #include <gudev/gudev.h>
++#include <glib.h>
+ 
+ #include <xf86drm.h>
+ #include <nouveau_drm.h>
+@@ -14,23 +15,34 @@
+ typedef int handle;
+ G_DEFINE_AUTO_CLEANUP_FREE_FUNC(handle, close, -1)
+ 
+-int main(int argc, char** argv)
++int main (int argc, char** argv)
+ {
++	const gchar *devname = NULL;
++	g_auto(handle) fd = -1;
++	g_autofree void *device = NULL;
++	g_autoptr(GOptionContext) option_context = NULL;
++	g_autoptr(GError) error = NULL;
++
++	setlocale (LC_ALL, "");
++	option_context = g_option_context_new ("");
++
++	if (!g_option_context_parse (option_context, &argc, &argv, &error)) {
++		g_print ("Failed to parse arguments: %s\n", error->message);
++		return EXIT_FAILURE;
++	}
++
+ 	if (argc < 2)
+ 	{
+-		puts ("check-discrete-nouveau [DEVNAME]");
++		g_print ("%s\n", g_option_context_get_help (option_context, TRUE, NULL));
+ 		return EXIT_FAILURE;
+ 	}
+-
+-	const char *devname;
+-	g_auto(handle) fd = -1;
+-
+ 	devname = argv[1];
++
+ 	fd = open (devname, O_RDWR);
+ 	if (fd < 0)
+ 		return EXIT_FAILURE;
+ 
+-	g_autofree void *device = malloc(352);
++	device = malloc(352);
+ 
+ 	/* Init device */
+ 	{	
+@@ -88,7 +100,6 @@ int main(int argc, char** argv)
+ 	if (drmCommandWriteRead (fd, DRM_NOUVEAU_NVIF, &args, sizeof(args)))
+ 		return EXIT_FAILURE;
+ 
+-
+ 	switch (args.info.platform)
+ 	{
+ 		case NV_DEVICE_INFO_V0_IGP:
+-- 
+2.46.0
+

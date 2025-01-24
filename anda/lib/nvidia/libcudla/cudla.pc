@@ -1,0 +1,8 @@
+libdir=LIBDIR
+includedir=INCLUDE_DIR
+
+Name: cublas
+Description: CUDA Deep Learning Accelerator (DLA) engines driver
+Version: CUDA_VERSION
+Libs: -L${libdir} -lcudla
+Cflags: -I${includedir}

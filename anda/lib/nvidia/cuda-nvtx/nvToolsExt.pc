@@ -1,0 +1,8 @@
+libdir=LIBDIR
+includedir=INCLUDE_DIR
+
+Name: nvToolsExt
+Description: NVIDIA Tools Extension
+Version: CUDA_VERSION
+Libs: -L${libdir} -lnvToolsExt
+Cflags: -I${includedir}

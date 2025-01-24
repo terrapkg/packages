@@ -1,0 +1,8 @@
+libdir=LIBDIR
+includedir=INCLUDE_DIR
+
+Name: cudart
+Description: CUDA Runtime Library
+Version: CUDA_VERSION
+Libs: -L${libdir} -lcudart
+Cflags: -I${includedir}

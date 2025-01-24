@@ -1,7 +1,7 @@
 %define debug_package %nil
 
-%global commit 77e95c0c67ff7143366a4ef1be731819382cfa8e
-%global commit_date 20241102
+%global commit 31aaa1d6a3c1cbf1795981432c9ec2cbcc142ba9
+%global commit_date 20250121
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           stardust-xr-telescope

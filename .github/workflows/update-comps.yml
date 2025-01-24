@@ -4,15 +4,16 @@ on:
   push:
     branches:
       - frawhide
+      - f41
       - f40
-      - f39
+      - el10
     paths:
       - comps.xml
   workflow_dispatch:
 
 jobs:
   update-comps:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     container:
       image: ghcr.io/terrapkg/builder:frawhide
     steps:

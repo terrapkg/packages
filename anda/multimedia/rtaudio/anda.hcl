@@ -4,6 +4,6 @@ project pkg {
     }
     labels {
         nightly = 1
-        extra = 1
+        subrepo = "extras"
     }
 }

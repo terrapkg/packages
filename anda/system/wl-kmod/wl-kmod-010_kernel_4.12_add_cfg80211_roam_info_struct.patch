@@ -1,0 +1,70 @@
+diff -Naur hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_cfg80211_hybrid.c hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_cfg80211_hybrid.c
+--- hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_cfg80211_hybrid.c	2017-04-10 14:23:40.909434506 +0200
++++ hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_cfg80211_hybrid.c	2017-07-03 11:32:04.271398087 +0200
+@@ -54,7 +54,11 @@
+ #endif
+ 
+ static s32 wl_cfg80211_change_iface(struct wiphy *wiphy, struct net_device *ndev,
+-           enum nl80211_iftype type, u32 *flags, struct vif_params *params);
++           enum nl80211_iftype type, 
++#if LINUX_VERSION_CODE < KERNEL_VERSION(4, 12, 0)
++           u32 *flags, 
++#endif
++           struct vif_params *params);
+ #if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 6, 0)
+ static s32
+ wl_cfg80211_scan(struct wiphy *wiphy,
+@@ -499,8 +503,11 @@
+ 
+ static s32
+ wl_cfg80211_change_iface(struct wiphy *wiphy, struct net_device *ndev,
+-                         enum nl80211_iftype type, u32 *flags,
+-   struct vif_params *params)
++                         enum nl80211_iftype type,
++#if LINUX_VERSION_CODE < KERNEL_VERSION(4, 12, 0)
++                         u32 *flags,
++#endif
++                         struct vif_params *params)
+ {
+ 	struct wl_cfg80211_priv *wl = wiphy_to_wl(wiphy);
+ 	struct wireless_dev *wdev;
+@@ -2440,6 +2447,9 @@
+                     const wl_event_msg_t *e, void *data)
+ {
+ 	struct wl_cfg80211_connect_info *conn_info = wl_to_conn(wl);
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 12, 0)
++	struct cfg80211_roam_info roam_info = {};
++#endif
+ 	s32 err = 0;
+ 
+ 	err = wl_get_assoc_ies(wl);
+@@ -2453,13 +2463,28 @@
+ 	if (err)
+ 		return err;
+ 
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 12, 0)
++	roam_info.channel = &wl->conf->channel;
++	roam_info.bssid = (u8*)&wl->bssid;
++	roam_info.req_ie = conn_info->req_ie;
++	roam_info.req_ie_len = conn_info->req_ie_len;
++	roam_info.resp_ie = conn_info->resp_ie;
++	roam_info.resp_ie_len = conn_info->resp_ie_len;
++#endif
++
+ 	cfg80211_roamed(ndev,
++#if LINUX_VERSION_CODE < KERNEL_VERSION(4, 12, 0)
+ #if LINUX_VERSION_CODE > KERNEL_VERSION(2, 6, 39)
+ 			&wl->conf->channel,	 
+ #endif
+ 			(u8 *)&wl->bssid,
+ 			conn_info->req_ie, conn_info->req_ie_len,
+-			conn_info->resp_ie, conn_info->resp_ie_len, GFP_KERNEL);
++			conn_info->resp_ie, conn_info->resp_ie_len, 
++#else
++			&roam_info,
++#endif
++			GFP_KERNEL);
++
+ 	WL_DBG(("Report roaming result\n"));
+ 
+ 	set_bit(WL_STATUS_CONNECTED, &wl->status);

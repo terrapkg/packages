@@ -1,0 +1,22 @@
+--- topgrade-16.0.2/Cargo.toml	1970-01-01T00:00:01+00:00
++++ topgrade-16.0.2/Cargo.toml	2025-01-03T04:51:04.571554+00:00
+@@ -204,19 +204,3 @@
+ default-features = false
+ package = "self_update"
+ 
+-[target."cfg(windows)".dependencies.parselnk]
+-version = "~0.1"
+-
+-[target."cfg(windows)".dependencies.self_update_crate]
+-version = "~0.40"
+-features = [
+-    "archive-zip",
+-    "compression-zip-deflate",
+-    "rustls",
+-]
+-optional = true
+-default-features = false
+-package = "self_update"
+-
+-[target."cfg(windows)".dependencies.winapi]
+-version = "~0.3"

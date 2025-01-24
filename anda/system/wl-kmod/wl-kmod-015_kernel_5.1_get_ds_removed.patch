@@ -1,0 +1,30 @@
+diff -Naur hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_cfg80211_hybrid.c hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_cfg80211_hybrid.c
+--- hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_cfg80211_hybrid.c	2017-07-03 11:32:04.271398000 +0200
++++ hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_cfg80211_hybrid.c	2019-04-14 17:35:23.565460847 +0200
+@@ -490,7 +490,11 @@
+ 	ifr.ifr_data = (caddr_t)&ioc;
+ 
+ 	fs = get_fs();
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 1, 0)
++	set_fs(KERNEL_DS);
++#else
+ 	set_fs(get_ds());
++#endif
+ #if defined(WL_USE_NETDEV_OPS)
+ 	err = dev->netdev_ops->ndo_do_ioctl(dev, &ifr, SIOCDEVPRIVATE);
+ #else
+diff -Naur hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_iw.c hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_iw.c
+--- hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_iw.c	2017-06-03 15:26:57.095475000 +0200
++++ hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_iw.c	2019-05-30 01:29:32.766280636 +0200
+@@ -117,7 +117,11 @@
+ 	ifr.ifr_data = (caddr_t) &ioc;
+ 
+ 	fs = get_fs();
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 1, 0)
++	set_fs(KERNEL_DS);
++#else
+ 	set_fs(get_ds());
++#endif
+ #if defined(WL_USE_NETDEV_OPS)
+ 	ret = dev->netdev_ops->ndo_do_ioctl(dev, &ifr, SIOCDEVPRIVATE);
+ #else

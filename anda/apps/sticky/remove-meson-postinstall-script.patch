@@ -1,0 +1,9 @@
+diff --git a/meson.build b/meson.build
+index b25d642..435a6f0 100644
+--- a/meson.build
++++ b/meson.build
+@@ -17,4 +17,3 @@ subdir('po')
+ install_subdir('etc', install_dir: sysconfdir, strip_directory: true)
+ install_subdir('usr', install_dir: prefix, strip_directory: true)
+ 
+-meson.add_install_script('meson/meson-postinstall.sh')

@@ -1,7 +1,7 @@
 #%global debug_package %{nil}
 
 Name:           open-in-mpv
-Version:        2.3.0
+Version:        2.4.3
 Release:        1%?dist
 Summary:        CLI component of open-in-mpv browser extension
 
@@ -12,6 +12,7 @@ Source0:        https://github.com/Baldomo/open-in-mpv/archive/refs/tags/v%{vers
 ExclusiveArch:  %{golang_arches}
 
 BuildRequires:  go-rpm-macros
+BuildRequires:  anda-srpm-macros
 BuildRequires:  git
 BuildRequires:  elfutils
 
@@ -21,13 +22,13 @@ This is a simple web extension (for Chrome and Firefox) which helps open any vid
 The extension itself shares a lot of code with the one from the awesome iina, while the (bare) native binary is written in Go (this is a rewrite from C++).
 
 %prep
-%autosetup -p1
+%git_clone %{url} v%{version}
 
 %build
-make build/linux/open-in-mpv
+make build/%{version}/linux/open-in-mpv
 
 %install
-install -Dm755 build/linux/open-in-mpv %{buildroot}%{_bindir}/open-in-mpv
+install -Dm755 build/%{version}/linux/open-in-mpv %{buildroot}%{_bindir}/open-in-mpv
 install -Dm644 scripts/open-in-mpv.desktop %{buildroot}%{_datarootdir}/applications/open-in-mpv.desktop
 
 %post

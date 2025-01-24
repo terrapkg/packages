@@ -35,7 +35,7 @@ sed -i "s|\(KOTLIN_HOME *= *\).*|\1%{_datadir}/%{name}|" bin/*
 %install
 rm -rf %{buildroot} && mkdir -p %{buildroot}%{_bindir}/ && cd kotlinc
 install -m 0755 bin/kotlin %{buildroot}%{_bindir}/
-install -m 0755 bin/kotlin-dce-js %{buildroot}%{_bindir}/
+install -m 0755 bin/kapt %{buildroot}%{_bindir}/
 install -m 0755 bin/kotlinc %{buildroot}%{_bindir}/
 install -m 0755 bin/kotlinc-js %{buildroot}%{_bindir}/
 install -m 0755 bin/kotlinc-jvm %{buildroot}%{_bindir}/

@@ -13,18 +13,21 @@ Summary:        Library for writing plugins and frontends for pop-launcher
 # Upstream license specification: MPL-2.0
 License:        MPL-2.0
 URL:            https://github.com/pop-os/launcher/
-Source:         https://github.com/pop-os/launcher/archive/refs/tags/%{version}.tar.gz
+Source:         %{url}/archive/refs/tags/%{version}.tar.gz
 Patch:          0001-Copy-instead-of-symlink.patch
-Patch1:         0001-Remove-frozen-lock.patch
 
-Provides:       rust-%{crate} = 1.2.1
+Provides:       rust-%{crate} = 1.2.4
 
 ExclusiveArch:  %{rust_arches}
 
 BuildRequires:  rust-packaging >= 21
-BuildRequires:  external:crate:just
+BuildRequires:  just
 BuildRequires:  anda-srpm-macros
 BuildRequires:  fdupes
+BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:  mold
+
+Requires:       (gnome-shell-extension-pop-shell or cosmic-launcher)
 
 %global _description %{expand:
 Library for writing plugins and frontends for pop-launcher.}
@@ -37,7 +40,8 @@ Library for writing plugins and frontends for pop-launcher.}
 %cargo_prep_online
 
 %build
-just
+%set_build_flags
+just build-release
 
 %install
 just rootdir=%{buildroot} install

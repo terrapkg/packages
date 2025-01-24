@@ -1,0 +1,4 @@
+# Enable persistence state. From:
+# file:///usr/share/doc/nvidia-driver/html/nvidia-persistenced.html
+
+enable nvidia-persistenced.service

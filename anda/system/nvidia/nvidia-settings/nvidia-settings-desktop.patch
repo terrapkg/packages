@@ -1,0 +1,18 @@
+diff -Naur nvidia-settings-530.30.02/doc/nvidia-settings.desktop nvidia-settings-530.30.02.old/doc/nvidia-settings.desktop
+--- nvidia-settings-530.30.02/doc/nvidia-settings.desktop	2023-03-08 13:01:39.749406623 +0100
++++ nvidia-settings-530.30.02.old/doc/nvidia-settings.desktop	2023-03-08 13:02:50.950572460 +0100
+@@ -1,11 +1,11 @@
+ [Desktop Entry]
+ Type=Application
+-Encoding=UTF-8
+ Name=NVIDIA X Server Settings
+ Comment=Configure NVIDIA X Server Settings
+-Exec=__UTILS_PATH__/nvidia-settings
++Exec=nvidia-settings
+ Icon=nvidia-settings
+-Categories=__NVIDIA_SETTINGS_DESKTOP_CATEGORIES__
++Categories=System;Settings
++Keywords=nvidia;vulkan;opengl;driver
+ 
+ # Translation by Marcin Mikołajczak
+ Name[pl]=Ustawienia serwera X NVIDIA

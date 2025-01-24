@@ -1,1 +1,1 @@
-rpm.version(gh("espanso/espanso"));
+rpm.version(gh_tag("espanso/espanso"));

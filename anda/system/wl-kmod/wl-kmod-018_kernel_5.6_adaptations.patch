@@ -1,0 +1,59 @@
+diff -Naur hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/shared/linux_osl.c hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/shared/linux_osl.c
+--- hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/shared/linux_osl.c	2019-01-26 19:33:46.518389000 +0100
++++ hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/shared/linux_osl.c	2020-03-19 10:16:53.597986455 +0100
+@@ -946,7 +946,11 @@
+ void *
+ osl_reg_map(uint32 pa, uint size)
+ {
++#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 6, 0)
+ 	return (ioremap_nocache((unsigned long)pa, (unsigned long)size));
++#else
++	return (ioremap((unsigned long)pa, (unsigned long)size));
++#endif 
+ }
+ 
+ void
+diff -Naur hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_linux.c hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_linux.c
+--- hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_linux.c	2018-04-18 13:53:37.484164000 +0200
++++ hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_linux.c	2020-03-19 10:24:18.154395810 +0100
+@@ -586,7 +586,11 @@
+ 	}
+ 	wl->bcm_bustype = bustype;
+ 
++#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 6, 0)
+ 	if ((wl->regsva = ioremap_nocache(dev->base_addr, PCI_BAR0_WINSZ)) == NULL) {
++#else
++	if ((wl->regsva = ioremap(dev->base_addr, PCI_BAR0_WINSZ)) == NULL) {
++#endif 
+ 		WL_ERROR(("wl%d: ioremap() failed\n", unit));
+ 		goto fail;
+ 	}
+@@ -780,7 +784,11 @@
+ 	if ((val & 0x0000ff00) != 0)
+ 		pci_write_config_dword(pdev, 0x40, val & 0xffff00ff);
+ 	bar1_size = pci_resource_len(pdev, 2);
++#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 6, 0)
+ 	bar1_addr = (uchar *)ioremap_nocache(pci_resource_start(pdev, 2),
++#else
++	bar1_addr = (uchar *)ioremap(pci_resource_start(pdev, 2),
++#endif 
+ 		bar1_size);
+ 	wl = wl_attach(pdev->vendor, pdev->device, pci_resource_start(pdev, 0), PCI_BUS, pdev,
+ 		pdev->irq, bar1_addr, bar1_size);
+@@ -3373,10 +3381,16 @@
+ }
+ 
+ #if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 10, 0)
++#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 6, 0)
+ static const struct file_operations wl_fops = {
+ 	.owner	= THIS_MODULE,
+ 	.read	= wl_proc_read,
+ 	.write	= wl_proc_write,
++#else
++static const struct proc_ops wl_fops = {
++	.proc_read	= wl_proc_read,
++	.proc_write	= wl_proc_write,
++#endif
+ };
+ #endif
+ 

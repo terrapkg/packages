@@ -1,0 +1,57 @@
+From 92a12d8861c51ec2f35aba4c746653fb0e9b7256 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Nicolas=20Vi=C3=A9ville?= <nicolas.vieville@uphf.fr>
+Date: Wed, 21 Aug 2024 19:35:27 +0200
+Subject: [PATCH] =?UTF-8?q?kernel=206.10:=20wl=5Flinux.c:=20fix=20warning?=
+ =?UTF-8?q?=20suggest=20braces=20around=20empty=20body=20in=20an=20?=
+ =?UTF-8?q?=E2=80=98if=E2=80=99=20statement?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Nicolas Viéville <nicolas.vieville@uphf.fr>
+---
+ src/wl/sys/wl_linux.c | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
+
+diff --git a/src/wl/sys/wl_linux.c b/src/wl/sys/wl_linux.c
+index 499752b..2000f6f 100644
+--- a/src/wl/sys/wl_linux.c
++++ b/src/wl/sys/wl_linux.c
+@@ -1100,8 +1100,9 @@ wl_open(struct net_device *dev)
+ 	}
+ 	WL_UNLOCK(wl);
+ 
+-	if (!error)
++	if (!error) {
+ 		OLD_MOD_INC_USE_COUNT;
++	}
+ 
+ #if defined(USE_CFG80211)
+ 	if (wl_cfg80211_up(dev)) {
+@@ -1874,9 +1875,10 @@ wl_set_mac_address(struct net_device *dev, void *addr)
+ 	err = wlc_iovar_op(wl->wlc, "cur_etheraddr", NULL, 0, sa->sa_data, ETHER_ADDR_LEN,
+ 		IOV_SET, (WL_DEV_IF(dev))->wlcif);
+ 	WL_UNLOCK(wl);
+-	if (err)
++	if (err) {
+ 		WL_ERROR(("wl%d: wl_set_mac_address: error setting MAC addr override\n",
+ 			wl->pub->unit));
++	}
+ 	return err;
+ }
+ 
+@@ -2274,9 +2276,10 @@ wl_start(struct sk_buff *skb, struct net_device *dev)
+ 			if (!err) {
+ 				atomic_inc(&wl->callbacks);
+ 				wl->txq_dispatched = TRUE;
+-			} else
++			} else {
+ 				WL_ERROR(("wl%d: wl_start/schedule_work failed\n",
+ 				          wl->pub->unit));
++			}
+ 		}
+ 
+ 		TXQ_UNLOCK(wl);
+-- 
+2.46.0
+

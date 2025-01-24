@@ -1,0 +1,16 @@
+diff -Naur hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_linux.c hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_linux.c
+--- hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_linux.c	2015-10-18 13:28:13.013818000 +0200
++++ hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_linux.c	2016-08-26 08:24:32.558643780 +0200
+@@ -775,9 +775,9 @@
+ 	pci_read_config_dword(pdev, 0x40, &val);
+ 	if ((val & 0x0000ff00) != 0)
+ 		pci_write_config_dword(pdev, 0x40, val & 0xffff00ff);
+-		bar1_size = pci_resource_len(pdev, 2);
+-		bar1_addr = (uchar *)ioremap_nocache(pci_resource_start(pdev, 2),
+-			bar1_size);
++	bar1_size = pci_resource_len(pdev, 2);
++	bar1_addr = (uchar *)ioremap_nocache(pci_resource_start(pdev, 2),
++		bar1_size);
+ 	wl = wl_attach(pdev->vendor, pdev->device, pci_resource_start(pdev, 0), PCI_BUS, pdev,
+ 		pdev->irq, bar1_addr, bar1_size);
+ 

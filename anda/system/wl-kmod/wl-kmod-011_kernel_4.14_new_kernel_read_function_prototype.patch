@@ -1,0 +1,15 @@
+diff -Naur hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/shared/linux_osl.c hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/shared/linux_osl.c
+--- hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/shared/linux_osl.c	2017-06-03 15:26:57.092475595 +0200
++++ hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/shared/linux_osl.c	2017-11-24 10:45:55.764626061 +0100
+@@ -1080,7 +1080,11 @@
+ 	if (!image)
+ 		return 0;
+ 
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 14, 0)
++	rdlen = kernel_read(fp, buf, len, &fp->f_pos);
++#else
+ 	rdlen = kernel_read(fp, fp->f_pos, buf, len);
++#endif
+ 	if (rdlen > 0)
+ 		fp->f_pos += rdlen;
+ 

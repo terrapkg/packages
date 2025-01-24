@@ -1,6 +1,0 @@
-[org.gnome.settings-daemon.plugins.media-keys]
-email = ['<Super>e']
-home = ['<Super>f']
-screensaver = ['<Super>Escape']
-www = ['<Super>b']
-rotate-video-lock-static = ['XF86RotationLockToggle']

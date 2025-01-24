@@ -1,0 +1,29 @@
+diff -Naur hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_linux.c hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_linux.c
+--- hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_linux.c	2015-10-17 18:26:48.174207806 +0200
++++ hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_linux.c	2015-10-18 13:28:13.013818788 +0200
+@@ -724,7 +724,11 @@
+ 		WL_ALL_PASSIVE_ENAB(wl) ?  ", Passive Mode" : "", EPI_VERSION_STR);
+ 
+ #ifdef BCMDBG
++#if __GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ < 9)
+ 	printf(" (Compiled in " SRCBASE " at " __TIME__ " on " __DATE__ ")");
++#else 
++	printf(" (Compiled in " SRCBASE ")");
++#endif 
+ #endif 
+ 	printf("\n");
+ 
+@@ -2053,8 +2057,13 @@
+ void
+ wl_dump_ver(wl_info_t *wl, struct bcmstrbuf *b)
+ {
++#if __GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ < 9)
+ 	bcm_bprintf(b, "wl%d: %s %s version %s\n", wl->pub->unit,
+ 		__DATE__, __TIME__, EPI_VERSION_STR);
++#else
++	bcm_bprintf(b, "wl%d: version %s\n", wl->pub->unit,
++		EPI_VERSION_STR);
++#endif
+ }
+ 
+ #if defined(BCMDBG)

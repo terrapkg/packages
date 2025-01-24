@@ -6,15 +6,14 @@ on:
 
 jobs:
   autoupdate:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
         branch:
           - frawhide
-          - f39
           - f40
           - f41
-          - el9
+          - el10
     container:
       image: ghcr.io/terrapkg/builder:frawhide
       options: --cap-add=SYS_ADMIN --privileged
@@ -37,7 +36,7 @@ jobs:
         run: |
           nbranch="${{ matrix.branch }}"
           [ "$nbranch" = 'frawhide' ] && nbranch='f42'
-          anda update -vv --filters updbranch=1 --labels branch=${{ matrix.branch }},nbranch=$nbranch
+          anda update --filters updbranch=1 --labels branch=${{ matrix.branch }},nbranch=$nbranch
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RUST_BACKTRACE: full

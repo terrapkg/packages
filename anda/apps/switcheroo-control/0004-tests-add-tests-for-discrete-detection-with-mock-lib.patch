@@ -1,0 +1,278 @@
+From d933e96bdb15679ae7653f929461982aa66973ba Mon Sep 17 00:00:00 2001
+From: Jan200101 <sentrycraft123@gmail.com>
+Date: Tue, 12 Sep 2023 15:58:16 +0200
+Subject: [PATCH 04/10] tests: add tests for discrete detection with mock libs
+ Both tests have 4 different ways of testing: - Invalid Device - Unexpected
+ Device - Non Discrete GPU (iGPU/APU) - Discrete GPU
+
+Signed-off-by: Jan200101 <sentrycraft123@gmail.com>
+---
+ src/discrete-detection/meson.build            |  4 +-
+ tests/discrete-detection/libdrm_amdgpu_mock.c | 57 +++++++++++++
+ .../discrete-detection/libdrm_nouveau_mock.c  | 68 ++++++++++++++++
+ tests/discrete-detection/meson.build          | 80 +++++++++++++++++++
+ tests/meson.build                             |  2 +
+ 5 files changed, 209 insertions(+), 2 deletions(-)
+ create mode 100644 tests/discrete-detection/libdrm_amdgpu_mock.c
+ create mode 100644 tests/discrete-detection/libdrm_nouveau_mock.c
+ create mode 100644 tests/discrete-detection/meson.build
+
+diff --git a/src/discrete-detection/meson.build b/src/discrete-detection/meson.build
+index 3a6c03f..8eb8437 100644
+--- a/src/discrete-detection/meson.build
++++ b/src/discrete-detection/meson.build
+@@ -1,6 +1,6 @@
+ 
+ if libdrm_amdgpu.found()
+-  executable('check-discrete-amdgpu',
++  amdgpu_discrete = executable('check-discrete-amdgpu',
+     files('amdgpu.c'),
+     dependencies: deps,
+     install: true,
+@@ -9,7 +9,7 @@ if libdrm_amdgpu.found()
+ endif
+ 
+ if libdrm.found() and libdrm_nouveau.found()
+-  executable('check-discrete-nouveau',
++  nouveau_discrete = executable('check-discrete-nouveau',
+     files('nouveau.c'),
+     dependencies: deps,
+     install: true,
+diff --git a/tests/discrete-detection/libdrm_amdgpu_mock.c b/tests/discrete-detection/libdrm_amdgpu_mock.c
+new file mode 100644
+index 0000000..20fa4aa
+--- /dev/null
++++ b/tests/discrete-detection/libdrm_amdgpu_mock.c
+@@ -0,0 +1,57 @@
++#include <string.h>
++#include <stdint.h>
++#include <stdio.h>
++
++#include <amdgpu_drm.h>
++
++enum {
++	OTHER_GPU,
++	AMD_APU,
++	AMD_GPU,
++};
++
++/* Mock open(2) so we can test multiple devices configurations */
++int open(const char *pathname, int flags)
++{
++	if (!strcmp(pathname, "OTHER_GPU"))
++		return OTHER_GPU;
++	if (!strcmp (pathname, "AMD_APU"))
++		return AMD_APU;
++	if (!strcmp (pathname, "AMD_GPU"))
++		return AMD_GPU;
++
++	return -1;
++}
++
++/* open64 may be used for large file support */
++int open64(const char *pathname, int flags)
++{
++	return open (pathname, flags);
++}
++
++int amdgpu_device_initialize(int fd, uint32_t *major_version, uint32_t *minor_version, int *device_handle)
++{
++	// Store the fd in the device handle for access in query_info
++	*device_handle = fd;
++
++	if (fd != AMD_GPU && fd != AMD_APU)
++		return 1;
++
++	return 0;
++}
++
++int amdgpu_query_info(int device_handle, unsigned info_id, unsigned size, void *value)
++{
++	struct drm_amdgpu_info_device* device_info = value;
++
++	if (device_handle == AMD_GPU) {
++		device_info->ids_flags = 0;
++		return 0;
++	}
++	if (device_handle == AMD_APU) {
++		device_info->ids_flags = AMDGPU_IDS_FLAGS_FUSION;
++		return 0;
++	}
++
++	return 1;
++}
+diff --git a/tests/discrete-detection/libdrm_nouveau_mock.c b/tests/discrete-detection/libdrm_nouveau_mock.c
+new file mode 100644
+index 0000000..cdbfda8
+--- /dev/null
++++ b/tests/discrete-detection/libdrm_nouveau_mock.c
+@@ -0,0 +1,68 @@
++#include <string.h>
++#include <stdint.h>
++#include <stdio.h>
++
++#include <xf86drm.h>
++#include <nouveau_drm.h>
++#include <nouveau/nvif/ioctl.h>
++#include <nvif/cl0080.h>
++#include <nvif/class.h>
++
++enum {
++	OTHER_GPU,
++	NVIDIA_IGPU,
++	NVIDIA_GPU,
++};
++
++/* Mock open(2) so we can test multiple devices configurations */
++int open(const char *pathname, int flags)
++{
++	if (!strcmp(pathname, "OTHER_GPU"))
++		return OTHER_GPU;
++	if (!strcmp (pathname, "NVIDIA_IGPU"))
++		return NVIDIA_IGPU;
++	if (!strcmp (pathname, "NVIDIA_GPU"))
++		return NVIDIA_GPU;
++
++	return -1;
++}
++
++/* open64 may be used for large file support */
++int open64(const char *pathname, int flags)
++{
++	return open (pathname, flags);
++}
++
++int drmCommandWrite(int fd, unsigned long drmCommandIndex, void *data, unsigned long size)
++{
++	if (drmCommandIndex != DRM_NOUVEAU_NVIF)
++		return 1;
++
++	if (fd != NVIDIA_GPU && fd != NVIDIA_IGPU)
++		return 1;
++
++	return 0;
++}
++
++int drmCommandWriteRead(int fd, unsigned long drmCommandIndex, void *data, unsigned long size)
++{
++	if (drmCommandIndex != DRM_NOUVEAU_NVIF)
++		return 1;
++
++	struct {
++		struct nvif_ioctl_v0 ioctl;
++		struct nvif_ioctl_mthd_v0 mthd;
++		struct nv_device_info_v0 info;
++	} *args = data;
++
++	if (fd == NVIDIA_GPU) {
++		args->info.platform = NV_DEVICE_INFO_V0_PCIE;
++		return 0;
++	}
++	if (fd == NVIDIA_IGPU) {
++		args->info.platform = NV_DEVICE_INFO_V0_IGP;
++		return 0;	
++	}
++
++	return 1;
++}
+\ No newline at end of file
+diff --git a/tests/discrete-detection/meson.build b/tests/discrete-detection/meson.build
+new file mode 100644
+index 0000000..f01a014
+--- /dev/null
++++ b/tests/discrete-detection/meson.build
+@@ -0,0 +1,80 @@
++
++if libdrm_amdgpu.found()
++    amdgpu_mock_lib = shared_library(
++        'drm_amdgpu_mock',
++        files('libdrm_amdgpu_mock.c'),
++        dependencies: libdrm_amdgpu
++    )
++
++    test(
++        'test amdgpu detection with invalid device',
++        amdgpu_discrete,
++        args: ['NO_GPU'],
++        env: environment({'LD_PRELOAD': amdgpu_mock_lib.full_path()}),
++        should_fail: true
++    )
++
++    test(
++        'test amdgpu detection with non-AMD GPU',
++        amdgpu_discrete,
++        args: ['OTHER_GPU'],
++        env: environment({'LD_PRELOAD': amdgpu_mock_lib.full_path()}),
++        should_fail: true
++    )
++
++    test(
++        'test amdgpu detection with AMD APU',
++        amdgpu_discrete,
++        args: ['AMD_APU'],
++        env: environment({'LD_PRELOAD': amdgpu_mock_lib.full_path()}),
++        should_fail: true
++    )
++
++    test(
++        'test amdgpu detection with AMD GPU',
++        amdgpu_discrete,
++        args: ['AMD_GPU'],
++        env: environment({'LD_PRELOAD': amdgpu_mock_lib.full_path()}),
++        should_fail: false
++    )
++endif
++
++if libdrm.found() and libdrm_nouveau.found()
++    nouveau_mock_lib = shared_library(
++        'drm_nouveau_mock',
++        files('libdrm_nouveau_mock.c'),
++        dependencies: [libdrm, libdrm_nouveau]
++    )
++
++    test(
++        'test nouveau detection with invalid device',
++        nouveau_discrete,
++        args: ['NO_GPU'],
++        env: environment({'LD_PRELOAD': nouveau_mock_lib.full_path()}),
++        should_fail: true
++    )
++
++    test(
++        'test nouveau detection with non-Nvidia GPU',
++        nouveau_discrete,
++        args: ['OTHER_GPU'],
++        env: environment({'LD_PRELOAD': nouveau_mock_lib.full_path()}),
++        should_fail: true
++    )
++
++    test(
++        'test nouveau detection with Nvidia iGPU',
++        nouveau_discrete,
++        args: ['NVIDIA_IGPU'],
++        env: environment({'LD_PRELOAD': nouveau_mock_lib.full_path()}),
++        should_fail: true
++    )
++
++    test(
++        'test nouveau detection with Nvidia GPU',
++        nouveau_discrete,
++        args: ['NVIDIA_GPU'],
++        env: environment({'LD_PRELOAD': nouveau_mock_lib.full_path()}),
++        should_fail: false
++    )
++endif
+\ No newline at end of file
+diff --git a/tests/meson.build b/tests/meson.build
+index b0b7476..61ef00c 100644
+--- a/tests/meson.build
++++ b/tests/meson.build
+@@ -15,3 +15,5 @@ foreach ut: unit_tests
+          env: envs,
+         )
+ endforeach
++
++subdir('discrete-detection')
+-- 
+2.46.0
+

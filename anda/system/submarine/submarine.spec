@@ -9,8 +9,8 @@
 
 
 Name:			submarine
-Version:		0.2.1
-Release:		2%?dist
+Version:		0.3.0
+Release:		1%?dist
 Summary:		Experimental bootloader for ChomeOS's depthcharge
 License:		GPL-3.0
 URL:			https://github.com/FyraLabs/submarine
