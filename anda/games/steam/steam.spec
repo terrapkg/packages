@@ -135,12 +135,6 @@ Recommends:     gobject-introspection
 
 Requires:       steam-devices = %{?epoch:%{epoch}:}%{version}-%{release}
 
-# Alternative to extest, produces less log spam
-Recommends:     libei
-Recommends:     libei%{?_isa}
-Recommends:     libeis
-Recommends:     libeis%{?_isa}
-
 %description
 Steam is a software distribution service with an online store, automated
 installation, automatic updates, achievements, SteamCloud synchronized savegame
