@@ -73,8 +73,8 @@ find %{buildroot} -name '*.la' -delete
 %{_bindir}/enc265
 %{_bindir}/gen-enc-table
 %{_bindir}/rd-curves
-%ifnarch %ix86
 %{_bindir}/sherlock265
+%ifarch %ix86
 %{_libdir}/debug/usr/bin/sherlock265-%{version}-%{release}%{?dist}%{?_isa}.debug
 %endif
 %{_bindir}/tests
