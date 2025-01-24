@@ -74,9 +74,6 @@ find %{buildroot} -name '*.la' -delete
 %{_bindir}/gen-enc-table
 %{_bindir}/rd-curves
 %{_bindir}/sherlock265
-%ifarch %ix86
-%{_libdir}/debug/usr/bin/sherlock265-%{version}-%{release}%{?dist}.i686.debug
-%endif
 %{_bindir}/tests
 %{_bindir}/yuv-distortion
 
