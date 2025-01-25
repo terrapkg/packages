@@ -5,7 +5,7 @@
 
 Name: tdlib-nightly
 Version: %ver^%commit_date.%shortcommit
-Release: 1%?dist
+Release: 2%?dist
 License: BSL-1.0
 URL: https://github.com/tdlib/td
 Summary: Cross-platform library for building Telegram clients
