@@ -98,7 +98,9 @@ zig build \
     -Dcpu=baseline \
     -Dstrip=false \
     -Dpie=true \
-    -Demit-docs
+    -Demit-docs \
+    -Demit-termcap \
+    -Demit-terminfo
 
 %files
 %doc README.md
