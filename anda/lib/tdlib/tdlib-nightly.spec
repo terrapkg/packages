@@ -49,7 +49,6 @@ Requires: %name-devel%?_isa = %{?epoch:%epoch:}%version-%release
 
 %prep
 %autosetup -n td-%commit -p1
-rm %SOURCE0
 sed -e 's/"DEFAULT"/"PROFILE=SYSTEM"/g' -i tdnet/td/net/SslStream.cpp
 
 %build
