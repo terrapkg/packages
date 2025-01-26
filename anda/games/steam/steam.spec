@@ -5,7 +5,7 @@
 
 Name:           steam
 Version:        1.0.0.82
-Release:        2%?dist
+Release:        3%?dist
 Summary:        Installer for the Steam software distribution service
 # Redistribution and repackaging for Linux is allowed, see license file. udev rules are MIT.
 License:        Steam License Agreement and MIT
@@ -144,9 +144,7 @@ This package contains the installer for the Steam software distribution service.
 
 %package        devices
 Summary:        Permissions required by Steam for gaming devices
-# Until the infra can deal with noarch sub-packages from excludearch/exclusivearch
-# keep the sub-package arched
-#BuildArch:      noarch
+BuildArch:      noarch
 Provides:       steam-devices = %{?epoch:%{epoch}:}%{version}-%{release}
 Obsoletes:      steam-devices < %{?epoch:%{epoch}:}%{version}-%{release}
 
