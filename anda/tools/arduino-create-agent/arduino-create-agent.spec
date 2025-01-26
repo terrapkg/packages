@@ -8,7 +8,7 @@ License:       AGPLv3
 Packager:      Owen Zimmerman <owen@fyralabs.com>
 Url:           https://github.com/arduino/arduino-create-agent
 Source0:       %url/archive/refs/tags/%version.tar.gz
-#Patch:         update.patch
+Patch:         update.patch
 BuildRequires: golang git go-rpm-macros anda-srpm-macros 
 
 %description
