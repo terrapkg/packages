@@ -1,10 +1,10 @@
 Name:       terra-obsolete
 # Please keep the version equal to the targeted Terra release
-Version:    40
+Version:    42
 # The dist number is the version here, it is intentionally not repeated in the release
 %global dist %nil
 
-Release:    3
+Release:    1
 Summary:    A package to obsolete retired packages, based on Fedora's equivalent package
 
 License:    LicenseRef-Fedora-Public-Domain
@@ -121,6 +121,15 @@ BuildArch:  noarch
 %obsolete_ticket https://github.com/terrapkg/packages/issues/991
 %obsolete iosevka-fusion-fonts 25.1.1-2
 
+# obsolete_ticket <github PR URL>
+# %obsolete terra-sddm 0.21.0-6
+# %obsolete terra-rgbds
+# %obsolete terra-libplacebo
+# %obsolete terra-wl-clipboard
+# %obsolete terra-maturin
+# %obsolete terra-libindicator
+# %obsolete terra-blueprint-compiler
+# %obsolete nushell
 
 %description
 Currently obsoleted packages:
