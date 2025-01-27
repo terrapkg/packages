@@ -1,13 +1,13 @@
 %global debug_package %{nil}
 
 Name:		minecraft-launcher
-Version:	1121
+Version:	2.1.3
 Release:	3%{?dist}
 Summary:	Official launcher for Minecraft
 
-License:	Proprietary
+License:	https://www.minecraft.net/en-us/eula
 URL:		https://minecraft.net
-Source0:	https://launcher.mojang.com/download/linux/x86_64/minecraft-launcher_%{version}.tar.gz
+Source0:	https://launcher.mojang.com/download/Minecraft.tar.gz
 Source1:	minecraft-launcher.desktop
 Source2:	https://launcher.mojang.com/download/minecraft-launcher.svg
 
