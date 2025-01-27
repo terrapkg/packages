@@ -48,7 +48,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/com.raggesilver.Black
 %files
 %doc README.md CHANGELOG.md
 %license COPYING
-%{_bindir}/blackbox
+%{_bindir}/blackbox-terminal
 %{_datadir}/applications/com.raggesilver.BlackBox.desktop
 %{_datadir}/metainfo/com.raggesilver.BlackBox.metainfo.xml
 %{_datadir}/blackbox/
