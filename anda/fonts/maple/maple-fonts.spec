@@ -1,6 +1,6 @@
 %define debug_package %nil
 %define _ttfontsdir %{_datadir}/fonts/maple
-%global upstream_version 7.0-beta36
+%define  upstream_version %(echo "$( tr '~' '-' <<< "%{version}" )")
 
 Name:           maple-fonts
 Version:        7.0~beta36
