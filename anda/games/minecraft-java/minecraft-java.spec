@@ -10,6 +10,7 @@ URL:		https://minecraft.net
 Source0:	https://launcher.mojang.com/download/Minecraft.tar.gz
 Source1:	minecraft-launcher.desktop
 Source2:	https://launcher.mojang.com/download/minecraft-launcher.svg
+Packager:   Cappy Ishihara <cappy@fyralabs.com>
 
 ExclusiveArch:	x86_64
 
