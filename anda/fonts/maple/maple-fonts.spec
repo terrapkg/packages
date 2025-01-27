@@ -19,8 +19,7 @@ BuildArch:      noarch
 
 %prep
 %setup -q -c
-%setup -T -D -a 1
-%setup -T -D -a 2
+%setup -T -D -a1 -a2
 
 %build
 
