@@ -137,7 +137,7 @@ Requires:       steam-devices = %{?epoch:%{epoch}:}%{version}-%{release}
 
 # Fix upgrading from old versions
 Provides:       %{name} = %{?epoch:%{epoch}:}%{version}-%{release}.x86_64
-Obsoletes:      %{name} <= %{?epoch:%{epoch}:}%{version}-%{release}.x86_64
+Obsoletes:      %{name} < %{?epoch:%{epoch}:}%{version}-%{release}.x86_64
 
 %description
 Steam is a software distribution service with an online store, automated
@@ -153,7 +153,7 @@ Provides:       steam-devices = %{?epoch:%{epoch}:}%{version}-%{release}
 Obsoletes:      steam-devices < %{?epoch:%{epoch}:}%{version}-%{release}
 # Fix upgrading from old versions
 Provides:       steam-devices = %{?epoch:%{epoch}:}%{version}-%{release}.x86_64
-Obsoletes:      steam-devices <= %{?epoch:%{epoch}:}%{version}-%{release}.x86_64
+Obsoletes:      steam-devices < %{?epoch:%{epoch}:}%{version}-%{release}.x86_64
 
 %description    devices
 Steam is a software distribution service with an online store, automated
