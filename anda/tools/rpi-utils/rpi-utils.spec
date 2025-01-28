@@ -6,7 +6,7 @@
 
 Name:			rpi-utils
 Version:		%{commit_date}.%{shortcommit}
-Release:		1%?dist
+Release:		2%?dist
 Summary:		A collection of scripts and simple applications for Raspberry Pi devices
 License:		BSD-3-Clause
 URL:			https://github.com/raspberrypi/utils
@@ -53,7 +53,7 @@ Summary:        A short script to help with reading and setting the customer OTP
 %{summary}.
 
 %package        overlaycheck
-Requires:       rpi-utils-dtmerge = %{version} 
+Requires:       rpi-utils-dtmerge = %{version}
 Requires:       rpi-utils-ovmerge = %{version}
 Summary:        A tool for validating the overlay files and README in a kernel source tree
 %description    overlaycheck
@@ -152,6 +152,7 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 %{_bindir}/pioseq
 %{_bindir}/piotest
 %{_bindir}/piows2812
+%{_bindir}/quadenc
 %{_bindir}/rp1sm
 
 %files vcgencmd
