@@ -19,7 +19,8 @@ BuildArch:      noarch
 
 %prep
 %setup -q -c
-unzip -u -qq %{SOURCE1} %{SOURCE2}
+unzip -u -qq %{SOURCE1}
+unzip -u -qq %{SOURCE2}
 
 %build
 
