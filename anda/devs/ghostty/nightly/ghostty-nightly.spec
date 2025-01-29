@@ -1,18 +1,20 @@
-%global commit 6265adfcd436bbb9dadb0592fe153ba5b738356f
+%global commit e2e6770ed1ddbc3917bdc3f642b22965c8bda18e
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250122
+%global commit_date 20250125
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
 %global cache_dir %{builddir}/zig-cache
 
 Name:           ghostty-nightly
 Version:        %{commit_date}.%{shortcommit}
-Release:        1%{?dist}
+Release:        1%?dist
 Summary:        A fast, native terminal emulator written in Zig; this is the Tip (nightly) build.
-License:        MIT AND MPL-2.0 AND OFL-1.1
+License:        MIT AND MPL-2.0 AND OFL-1.1 AND (WTFPL OR CC0-1.0) AND Apache-2.0
 URL:            https://ghostty.org/
-Source0:        https://github.com/ghostty-org/ghostty/archive/%{commit}/ghostty-%{commit}.tar.gz
+Source0:        https://github.com/ghostty-org/ghostty/releases/download/tip/ghostty-source.tar.gz
+Source1:        https://github.com/ghostty-org/ghostty/releases/download/tip/ghostty-source.tar.gz.minisig
 BuildRequires:  gtk4-devel
 BuildRequires:  libadwaita-devel
+BuildRequires:  minisign
 BuildRequires:  ncurses
 BuildRequires:  ncurses-devel
 BuildRequires:  pandoc-cli
@@ -76,7 +78,8 @@ Supplements:    %{name}
 %summary.
 
 %prep
-%autosetup -n ghostty-%{commit} -p1
+/usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
+%autosetup -n ghostty-source
 
 # Download everything ahead of time so we can enable system integration mode
 ZIG_GLOBAL_CACHE_DIR="%{cache_dir}" ./nix/build-support/fetch-zig-cache.sh
@@ -107,9 +110,12 @@ zig build \
 %_datadir/bat/syntaxes/ghostty.sublime-syntax
 %_datadir/ghostty/
 %_datadir/kio/servicemenus/com.mitchellh.ghostty.desktop
+%_datadir/nautilus-python/extensions/com.mitchellh.ghostty.py
+%_datadir/nvim/site/compiler/ghostty.vim
 %_datadir/nvim/site/ftdetect/ghostty.vim
 %_datadir/nvim/site/ftplugin/ghostty.vim
 %_datadir/nvim/site/syntax/ghostty.vim
+%_datadir/vim/vimfiles/compiler/ghostty.vim
 %_datadir/vim/vimfiles/ftdetect/ghostty.vim
 %_datadir/vim/vimfiles/ftplugin/ghostty.vim
 %_datadir/vim/vimfiles/syntax/ghostty.vim
