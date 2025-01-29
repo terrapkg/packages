@@ -6,7 +6,7 @@
 
 Name:           ghostty-nightly
 Version:        %{commit_date}.%{shortcommit}
-Release:        1%?dist
+Release:        2%?dist
 Summary:        A fast, native terminal emulator written in Zig; this is the Tip (nightly) build.
 License:        MIT AND MPL-2.0 AND OFL-1.1 AND (WTFPL OR CC0-1.0) AND Apache-2.0
 URL:            https://ghostty.org/
@@ -98,7 +98,9 @@ zig build \
     -Dcpu=baseline \
     -Dstrip=false \
     -Dpie=true \
-    -Demit-docs
+    -Demit-docs \
+    -Demit-termcap \
+    -Demit-terminfo
 
 %files
 %doc README.md
