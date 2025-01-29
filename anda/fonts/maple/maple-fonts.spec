@@ -1,9 +1,10 @@
 %define debug_package %nil
 %define _ttfontsdir %{_datadir}/fonts/maple
-%define  upstream_version %(echo "$( tr '~' '-' <<< "%{version}" )")
+%global upstream_ver 7.0-beta36
+%define sanitized_ver %(echo "$( tr '-' '~' <<< "%{upstream_ver}" )")
 
 Name:           maple-fonts
-Version:        7.0.beta36
+Version:        %{sanitized_ver}
 Release:        1%?dist
 Summary:        Open source monospace & nerd font with round corner and ligatures
 License:        OFL-1.1
