@@ -3,7 +3,7 @@
 %define  upstream_version %(echo "$( tr '~' '-' <<< "%{version}" )")
 
 Name:           maple-fonts
-Version:        7.0~beta36
+Version:        7.0.beta36
 Release:        1%?dist
 Summary:        Open source monospace & nerd font with round corner and ligatures
 License:        OFL-1.1
