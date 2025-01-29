@@ -9,9 +9,9 @@ Release:        1%?dist
 Summary:        Open source monospace & nerd font with round corner and ligatures
 License:        OFL-1.1
 URL:            https://github.com/subframe7536/Maple-font
-Source0:        %{url}/releases/download/v%{upstream_version}/MapleMono-NF-CN.zip
-Source1:        %{url}/releases/download/v%{upstream_version}/MapleMono-TTF.zip
-Source2:        %{url}/releases/download/v%{upstream_version}/MapleMono-NF.zip
+Source0:        %{url}/releases/download/v%{upstream_ver}/MapleMono-NF-CN.zip
+Source1:        %{url}/releases/download/v%{upstream_ver}/MapleMono-TTF.zip
+Source2:        %{url}/releases/download/v%{upstream_ver}/MapleMono-NF.zip
 Source3:        https://raw.githubusercontent.com/subframe7536/maple-font/refs/heads/variable/README.md
 BuildArch:      noarch
 
