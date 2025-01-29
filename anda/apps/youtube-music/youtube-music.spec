@@ -4,6 +4,10 @@
 # macro shorthand for calling pnpm
 %global pnpm npx pnpm@%{pnpm_version}
 
+# Try to vendor PNPM directly from Fedora
+# but if this fails, you can try setting this to 1 to vendor PNPM directly from upstream
+%global vendor_pnpm 0
+
 Name:           youtube-music
 Version:        3.7.2
 Release:        1%?dist
@@ -21,6 +25,10 @@ BuildRequires:  git-core gcc make
 # Required for usocket native module built with node-gyp
 BuildRequires:  python3 gcc-c++
 
+%if !0%{?vendor_pnpm}
+BuildRequires:  pnpm nodejs20
+%endif
+
 %description
 YouTube Music Desktop App bundled with custom plugins (and built-in ad blocker / downloader)
 
@@ -35,9 +43,11 @@ git checkout v%{version}
 %build
 # Vendor PNPM directly instead of installing from packages, because we need to somehow force PNPM to use Node.js 20
 # We are not using Fedora's PNPM because we need to use `pnpm env`, which PNPM does not support when not vendored directly from upstream
+%if 0%{?vendor_pnpm}
 curl -fsSL https://get.pnpm.io/install.sh | sh -
-source /builddir/.bashrc
+source $HOME/.bashrc
 pnpm env use --global 20
+%endif
 pnpm install
 pnpm build
 pnpm electron-builder --linux --dir

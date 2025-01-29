@@ -73,9 +73,7 @@ find %{buildroot} -name '*.la' -delete
 %{_bindir}/enc265
 %{_bindir}/gen-enc-table
 %{_bindir}/rd-curves
-%ifnarch i686
 %{_bindir}/sherlock265
-%endif
 %{_bindir}/tests
 %{_bindir}/yuv-distortion
 
