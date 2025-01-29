@@ -1,7 +1,7 @@
 # Signing key from https://github.com/ghostty-org/ghostty/blob/main/PACKAGING.md
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
 
-%global cache_dir %{builddir}/zig-cache
+%global cache_dir %{_builddir}/zig-cache
 
 Name:           ghostty
 Version:        1.0.1
