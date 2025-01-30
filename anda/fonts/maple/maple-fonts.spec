@@ -1,16 +1,17 @@
 %define debug_package %nil
 %define _ttfontsdir %{_datadir}/fonts/maple
-%define  upstream_version %(echo "$( tr '~' '-' <<< "%{version}" )")
+%global upstream_ver 7.0-beta36
+%define sanitized_ver %(echo "$( tr '-' '~' <<< "%{upstream_ver}" )")
 
 Name:           maple-fonts
-Version:        7.0~beta36
+Version:        %{sanitized_ver}
 Release:        1%?dist
 Summary:        Open source monospace & nerd font with round corner and ligatures
 License:        OFL-1.1
 URL:            https://github.com/subframe7536/Maple-font
-Source0:        %{url}/releases/download/v%{upstream_version}/MapleMono-NF-CN.zip
-Source1:        %{url}/releases/download/v%{upstream_version}/MapleMono-TTF.zip
-Source2:        %{url}/releases/download/v%{upstream_version}/MapleMono-NF.zip
+Source0:        %{url}/releases/download/v%{upstream_ver}/MapleMono-NF-CN.zip
+Source1:        %{url}/releases/download/v%{upstream_ver}/MapleMono-TTF.zip
+Source2:        %{url}/releases/download/v%{upstream_ver}/MapleMono-NF.zip
 Source3:        https://raw.githubusercontent.com/subframe7536/maple-font/refs/heads/variable/README.md
 BuildArch:      noarch
 
@@ -19,7 +20,8 @@ BuildArch:      noarch
 
 %prep
 %setup -q -c
-%setup -T -D -a1 -a2
+unzip -u -qq %{SOURCE1}
+unzip -u -qq %{SOURCE2}
 
 %build
 
