@@ -6,7 +6,6 @@ Summary:        Binfmt wrappers and utilities for Java and Jar files.
 License:        GPL-2.0-or-later AND GPL-3.0-or-later
 BuildRequires:  gcc
 Requires:       java
-Requires:       %{name}-applet
 Packager:       ShinyGil <rockgrub@disroot.org>
 
 %description
