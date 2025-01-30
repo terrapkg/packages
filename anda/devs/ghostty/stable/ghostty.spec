@@ -1,13 +1,16 @@
 # Signing key from https://github.com/ghostty-org/ghostty/blob/main/PACKAGING.md
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
-
+%if 0%{?fedora} <= 40
+%global cache_dir %{_builddir}/zig-cache
+%else
 %global cache_dir %{builddir}/zig-cache
+%endif
 
 Name:           ghostty
 Version:        1.0.1
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        A fast, native terminal emulator written in Zig.
-License:        MIT AND MPL-2.0 AND OFL-1.1
+License:        MIT AND MPL-2.0 AND OFL-1.1 AND (WTFPL OR CC0-1.0) AND Apache-2.0
 URL:            https://ghostty.org/
 Source0:        https://release.files.ghostty.org/%{version}/ghostty-%{version}.tar.gz
 Source1:        https://release.files.ghostty.org/%{version}/ghostty-%{version}.tar.gz.minisig
@@ -152,8 +155,8 @@ zig build \
 %changelog
 * Tue Dec 31 2024 ShinyGil <rockgrub@protonmail.com>
 - Update to 1.0.1
-    * High CVE-2003-0063: Allows execution of arbitrary commands
-    * Medium CVE-2003-0070: Allows execution of arbitrary commands
+ * High CVE-2003-0063: Allows execution of arbitrary commands
+ * Medium CVE-2003-0070: Allows execution of arbitrary commands
 
 * Thu Dec 26 2024 ShinyGil <rockgrub@protonmail.com>
 - Initial package
