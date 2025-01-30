@@ -6,7 +6,7 @@
 
 Name:			rpi-utils
 Version:		%{commit_date}.%{shortcommit}
-Release:		1%?dist
+Release:		2%?dist
 Summary:		A collection of scripts and simple applications for Raspberry Pi devices
 License:		BSD-3-Clause
 URL:			https://github.com/raspberrypi/utils
