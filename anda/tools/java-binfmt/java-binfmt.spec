@@ -254,7 +254,7 @@ cat > jarwrapper << EOF
 #!/bin/bash
 # /usr/bin/jarwrapper - the wrapper for binfmt_misc/jar
 
-# set path to java using JAVA_HOME if available, otherwise assume it's on the PATH
+# set path to system Java installation
 JAVA_PATH=/usr/bin/java
 $JAVA_PATH -jar "$@"
 EOF
@@ -349,7 +349,7 @@ if ! echo $CLASSPATH | grep -q "^\(.*:\)*$CLASSBASE\(:.*\)*"; then
 fi
 
 shift
-# set path to java using JAVA_HOME if available, otherwise assume it's on the PATH
+# set path to system Java installation
 JAVA_PATH=/usr/bin/java
 $JAVA_PATH $FQCLASS "$@"
 EOF
