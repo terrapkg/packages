@@ -1,5 +1,8 @@
 %define debug_package %nil
 
+# Exclude private libraries since this is bundled with electron
+%global __requires_exclude libffmpeg.so
+%global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 # macro shorthand for calling pnpm
 %global pnpm npx pnpm@%{pnpm_version}
@@ -10,7 +13,7 @@
 
 Name:           youtube-music
 Version:        3.7.2
-Release:        1%?dist
+Release:        2%?dist
 Summary:        YouTube Music Desktop App bundled with custom plugins (and built-in ad blocker / downloader)
 Source1:        youtube-music.desktop
 License:        MIT
