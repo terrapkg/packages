@@ -257,7 +257,7 @@ cat > jarwrapper << EOF
 # /usr/bin/jarwrapper - the wrapper for binfmt_misc/jar
 
 # set path to java using JAVA_HOME if available, otherwise assume it's on the PATH
-JAVA_PATH=${JAVA_HOME:+$JAVA_HOME/jre/bin/}java
+JAVA_PATH=/usr/bin/java
 $JAVA_PATH -jar "$@"
 EOF
 
@@ -352,7 +352,7 @@ fi
 
 shift
 # set path to java using JAVA_HOME if available, otherwise assume it's on the PATH
-JAVA_PATH=${JAVA_HOME:+$JAVA_HOME/jre/bin/}java
+JAVA_PATH=/usr/bin/java
 $JAVA_PATH $FQCLASS "$@"
 EOF
 
