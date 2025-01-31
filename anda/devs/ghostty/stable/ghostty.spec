@@ -44,6 +44,7 @@ Packager:       ShinyGil <rockgrub@disroot.org>
 
 %package        bash-completion
 Summary:        Ghostty Bash completion
+Requires:       %{name} = %{version}-%{release}
 Requires:       bash-completion
 Supplements:    (%{name} and bash-completion)
 BuildArch:      noarch
@@ -53,6 +54,7 @@ Bash shell completion for Ghostty.
 
 %package        fish-completion
 Summary:        Ghostty Fish completion
+Requires:       %{name} = %{version}-%{release}
 Requires:       fish
 Supplements:    (%{name} and fish)
 BuildArch:      noarch
@@ -62,6 +64,7 @@ Fish shell completion for Ghostty.
 
 %package        zsh-completion
 Summary:        Ghostty Zsh completion
+Requires:       %{name} = %{version}-%{release}
 Requires:       zsh
 Supplements:    (%{name} and zsh)
 BuildArch:      noarch
