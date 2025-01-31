@@ -4,7 +4,7 @@ Name:           java-binfmt
 Version:        1.0.0
 Release:        1%{?dist}
 Summary:        Binfmt wrappers and utilities for Java and Jar files.
-### Java licenses.
+### License for the C file used in the binary.
 License:        GPL-2.0-or-later AND GPL-3.0-or-later
 Source0:        https://github.com/terrapkg/pkg-java-binfmt/raw/refs/heads/main/javaclassname.c
 Source1:        https://github.com/terrapkg/pkg-java-binfmt/raw/refs/heads/main/javawrapper
