@@ -1,0 +1,27 @@
+Name:           flow-control
+Epoch:          1
+Version:        0.4.0
+Release:        1%?dist
+Summary:        A programmer's text editor
+License:        MIT
+URL:            https://github.com/neurocyte/flow
+Source0:        %url/archive/%version.tar.gz
+BuildRequires:  zig
+Provides:       flow = %epoch:%version-%release
+
+%description
+%summary.
+
+%prep
+%autosetup
+
+%build
+zig build -Doptimize=ReleaseFast --release=fast
+
+%install
+install -Dpm755 zig-out/bin/flow %buildroot%_bindir/flow
+
+%files
+%doc README.md help.md
+%license LICENSE
+%_bindir/flow
