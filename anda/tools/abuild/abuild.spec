@@ -5,7 +5,8 @@ Summary:        coreboot autobuild script builds coreboot images for all availab
 URL:            https://doc.coreboot.org/util/abuild/index.html
 License:        GPLv2
 BuildRequires:  git
-Packager:	Owen Zimmerman <owen@fyralabs.com>
+BuildArch:      noarch
+Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
 %description
 %summary 
