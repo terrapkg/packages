@@ -10,6 +10,7 @@ License:       GPLv3
 Packager:      Owen Zimmerman <owen@fyralabs.com>
 Url:           https://github.com/rainer042/geteltorito
 Source0:       %{url}/archive/%{commit}.tar.gz
+BuildArch:     noarch
 Requires:      perl
 
 %description
