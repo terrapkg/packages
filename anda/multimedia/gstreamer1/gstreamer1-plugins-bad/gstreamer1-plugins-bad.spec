@@ -228,7 +228,6 @@ Obsoletes:      gst-transcoder-devel < 1.16.0-4
 %autosetup -p1 -n gst-plugins-bad-%{version}
 
 %build
-%define buildver %{version}
 %meson \
   -D accurip=enabled \
   -D adpcmdec=enabled \
@@ -449,9 +448,9 @@ Obsoletes:      gst-transcoder-devel < 1.16.0-4
   -D msdk=disabled \
   -D qsv=disabled \
 %endif
-%if %{buildver} < 1.25.1
-  -D asio-sdk-path=enabled \
-%endif
+if [ %{version} -lt 1.25.1 ]; then
+  -D asio-sdk-path=enabled
+fi
 
 %meson_build
 
