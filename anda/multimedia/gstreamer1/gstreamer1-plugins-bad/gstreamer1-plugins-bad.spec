@@ -242,6 +242,10 @@ Obsoletes:      gst-transcoder-devel < 1.16.0-4
   -D applemedia=enabled \
   -D asfmux=enabled \
   -D asio=enabled \
+if [ "%{version}" -lt 1.25.1 ]
+then
+  -D asio-sdk-path=enabled \
+fi
   -D assrender=enabled \
   -D audiobuffersplit=enabled \
   -D audiofxbad=enabled \
@@ -448,9 +452,6 @@ Obsoletes:      gst-transcoder-devel < 1.16.0-4
   -D msdk=disabled \
   -D qsv=disabled \
 %endif
-if [ %{version} -lt 1.25.1 ]; then
-  -D asio-sdk-path=enabled
-fi
 
 %meson_build
 
