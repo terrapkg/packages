@@ -73,7 +73,7 @@ install -Dpm755 %{SOURCE2} %{buildroot}%{_bindir}/jarwrapper
 install -Dpm644 %{SOURCE3} %{buildroot}%{_binfmtdir}/Java.conf
 install -Dpm644 %{SOURCE4} %{buildroot}%{_binfmtdir}/ExecutableJAR.conf
 install -Dpm644 %{SOURCE5} %{buildroot}%{_binfmtdir}/Applet.conf
-install -Dpm644 %{SOURCE5} %{buildroot}%{_binfmtdir}/Applet-lib64.conf
+install -Dpm644 %{SOURCE6} %{buildroot}%{_binfmtdir}/Applet-lib64.conf
 
 %files -n java-jarwrapper
 %{_binfmtdir}/ExecutableJAR.conf
