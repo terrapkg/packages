@@ -89,16 +89,19 @@ install -Dpm644 %{SOURCE5} %{buildroot}%{_binfmtdir}/Applet.conf
 
 %post -n java-jarwrapper
 /bin/systemctl --system try-restart systemd-binfmt.service &>/dev/null || :
+
 %postun -n java-jarwrapper
 /bin/systemctl --system try-restart systemd-binfmt.service &>/dev/null || :
 
 %post -n java-javawrapper
 /bin/systemctl --system try-restart systemd-binfmt.service &>/dev/null || :
+
 %postun -n java-javawrapper
 /bin/systemctl --system try-restart systemd-binfmt.service &>/dev/null || :
 
 %post -n java-applet-binfmt
 /bin/systemctl --system try-restart systemd-binfmt.service &>/dev/null || :
+
 %postun -n java-applet-binfmt
 /bin/systemctl --system try-restart systemd-binfmt.service &>/dev/null || :
 
