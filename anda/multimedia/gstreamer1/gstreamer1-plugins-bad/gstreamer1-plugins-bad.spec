@@ -1,5 +1,4 @@
 %define _legacy_common_support 1
-
 %global         majorminor 1.0
 
 Name:           gstreamer1-plugins-bad
@@ -61,7 +60,6 @@ BuildRequires:  orc-devel >= 0.4.17
 BuildRequires:  srt-devel
 BuildRequires:  vulkan-devel
 BuildRequires:  xvidcore-devel
-
 BuildRequires:  pkgconfig(aom)
 BuildRequires:  pkgconfig(avtp)
 BuildRequires:  pkgconfig(bluez) >= 5.0
@@ -185,7 +183,6 @@ BuildRequires:  pkgconfig(wildmidi) >= 0.4.2
 BuildRequires:  pkgconfig(zbar) >= 0.9
 BuildRequires:  pkgconfig(zvbi-0.2)
 BuildRequires:  pkgconfig(zxing)
-
 %ifarch x86_64
 BuildRequires:  pkgconfig(libmfx) >= 1.0
 BuildRequires:  pkgconfig(libmfx) <= 1.99
@@ -217,9 +214,6 @@ Requires:       gstreamer1-plugins-base-devel
 Obsoletes:      %{name}-free-devel < %{?epoch}:%{version}-%{release}
 Provides:       %{name}-free-devel = %{?epoch}:%{version}-%{release}
 Provides:       %{name}-free-devel%{?_isa} = %{?epoch}:%{version}-%{release}
-# Drop after Fedora 36:
-Provides:       gst-transcoder-devel = 1.16.0-4
-Obsoletes:      gst-transcoder-devel < 1.16.0-4
 
 %description    devel
 %summary.
