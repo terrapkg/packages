@@ -49,7 +49,7 @@ A wrapper for Java functions.
 Summary:          The javaclassname executable
 Requires:         java
 
-%description -n java-javaclassname
+%description -n   java-javaclassname
 The javaclassname executable for use with javawrapper.
 
 %package -n       java-applet-binfmt
@@ -59,7 +59,7 @@ Requires(post):   systemctl
 Requires(postun): systemctl
 BuildArch:        noarch
 
-%description -n java-applet-binfmt
+%description -n   java-applet-binfmt
 This binfmt file runs Java applets in the usual way. This package contains a single file.
 
 %build
