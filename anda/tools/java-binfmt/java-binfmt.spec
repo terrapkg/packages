@@ -8,7 +8,7 @@ Version:        1.0.0^%{commit_date}git%{shortcommit}
 Release:        1%{?dist}
 Summary:        Binfmt wrappers and utilities for Java and Jar files.
 ### License for the C file used in the binary.
-License:        GPL-2.0-or-later AND GPL-3.0-or-later
+License:        GPL-2.0-or-later
 Source0:        https://raw.githubusercontent.com/terrapkg/pkg-java-binfmt/%{commit}/javaclassname.c
 Source1:        https://raw.githubusercontent.com/terrapkg/pkg-java-binfmt/%{commit}/javawrapper
 Source2:        https://raw.githubusercontent.com/terrapkg/pkg-java-binfmt/%{commit}/jarwrapper
@@ -64,7 +64,7 @@ BuildArch:        noarch
 This binfmt file runs Java applets in the usual way. A compatible Java version will need to be manually installed and configured.
 
 %build
-/usr/bin/gcc -o javaclassname %{SOURCE0}
+/usr/bin/gcc $CFLAGS -o javaclassname %{S:0}
 
 install -Dpm755 javaclassname %{buildroot}%{_bindir}/javaclassname
 install -Dpm755 %{SOURCE1} %{buildroot}%{_bindir}/javawrapper
