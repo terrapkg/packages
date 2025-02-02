@@ -9,12 +9,12 @@ Release:        1%{?dist}
 Summary:        Binfmt wrappers and utilities for Java and Jar files.
 ### License for the C file used in the binary.
 License:        GPL-2.0-or-later AND GPL-3.0-or-later
-Source0:        https://github.com/terrapkg/pkg-java-binfmt/raw/refs/heads/main/javaclassname.c
-Source1:        https://github.com/terrapkg/pkg-java-binfmt/raw/refs/heads/main/javawrapper
-Source2:        https://github.com/terrapkg/pkg-java-binfmt/raw/refs/heads/main/jarwrapper
-Source3:        https://github.com/terrapkg/pkg-java-binfmt/raw/refs/heads/main/Java.conf
-Source4:        https://github.com/terrapkg/pkg-java-binfmt/raw/refs/heads/main/ExecutableJAR.conf
-Source5:        https://github.com/terrapkg/pkg-java-binfmt/raw/refs/heads/main/Applet.conf
+Source0:        https://raw.githubusercontent.com/terrapkg/pkg-java-binfmt/%{commit}/javaclassname.c
+Source1:        https://raw.githubusercontent.com/terrapkg/pkg-java-binfmt/%{commit}/javawrapper
+Source2:        https://raw.githubusercontent.com/terrapkg/pkg-java-binfmt/%{commit}/jarwrapper
+Source3:        https://raw.githubusercontent.com/terrapkg/pkg-java-binfmt/%{commit}/Java.conf
+Source4:        https://raw.githubusercontent.com/terrapkg/pkg-java-binfmt/%{commit}/ExecutableJAR.conf
+Source5:        https://raw.githubusercontent.com/terrapkg/pkg-java-binfmt/%{commit}/Applet.conf
 BuildRequires:  gcc
 BuildRequires:  systemd-rpm-macros
 Packager:       ShinyGil <rockgrub@disroot.org>
