@@ -54,13 +54,13 @@ The javaclassname executable for use with javawrapper.
 
 %package -n       java-applet-binfmt
 Summary:          binfmt file for Java applets
-Requires:         java-1.8.0-openjdk-devel
 Requires(post):   systemctl
 Requires(postun): systemctl
+Recommends:       adoptium-temurin-java-repository
 BuildArch:        noarch
 
 %description -n   java-applet-binfmt
-This binfmt file runs Java applets in the usual way. This package contains a single file.
+This binfmt file runs Java applets in the usual way. This package contains a single file. A compatible Java version will need to be manually installed and configured.
 
 %build
 /usr/bin/gcc -o javaclassname %{SOURCE0}
