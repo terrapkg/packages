@@ -449,7 +449,7 @@ Obsoletes:      gst-transcoder-devel < 1.16.0-4
   -D msdk=disabled \
   -D qsv=disabled \
 %endif
-%if %{buildver} <= 1.24.11
+%if %{buildver} < 1.25.1
   -D asio-sdk-path=enabled \
 %endif
 
