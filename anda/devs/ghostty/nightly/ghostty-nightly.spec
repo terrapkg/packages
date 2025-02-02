@@ -1,6 +1,6 @@
-%global commit 71e62f96fa4d286eda835048428d5be96e9f87c1
+%global commit c5508e7d1922842ecd3160ea73b97da1282168b3
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250126
+%global commit_date 20250131
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
 %global cache_dir %{builddir}/zig-cache
 
@@ -98,7 +98,9 @@ zig build \
     -Dcpu=baseline \
     -Dstrip=false \
     -Dpie=true \
-    -Demit-docs
+    -Demit-docs \
+    -Demit-termcap \
+    -Demit-terminfo
 
 %files
 %doc README.md
