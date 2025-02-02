@@ -60,7 +60,7 @@ Recommends:       adoptium-temurin-java-repository
 BuildArch:        noarch
 
 %description -n   java-applet-binfmt
-This binfmt file runs Java applets in the usual way. This package contains a single file. A compatible Java version will need to be manually installed and configured.
+This binfmt file runs Java applets in the usual way. A compatible Java version will need to be manually installed and configured.
 
 %build
 /usr/bin/gcc -o javaclassname %{SOURCE0}
