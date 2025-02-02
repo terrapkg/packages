@@ -1,4 +1,4 @@
-%global commit 6dbe90c7d685087c30c4e691aea304b8d220466a
+%global commit 9b3c3202435720ad5d76928c94c8f1c6e22693b7
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global commit_date 20250131
 %global _binfmtdir %{_exec_prefix}/lib/binfmt.d
@@ -15,6 +15,7 @@ Source2:        https://raw.githubusercontent.com/terrapkg/pkg-java-binfmt/%{com
 Source3:        https://raw.githubusercontent.com/terrapkg/pkg-java-binfmt/%{commit}/Java.conf
 Source4:        https://raw.githubusercontent.com/terrapkg/pkg-java-binfmt/%{commit}/ExecutableJAR.conf
 Source5:        https://raw.githubusercontent.com/terrapkg/pkg-java-binfmt/%{commit}/Applet.conf
+Source6:        https://raw.githubusercontent.com/terrapkg/pkg-java-binfmt/%{commit}/Applet-lib64.conf
 BuildRequires:  gcc
 BuildRequires:  systemd-rpm-macros
 Packager:       ShinyGil <rockgrub@disroot.org>
@@ -72,6 +73,7 @@ install -Dpm755 %{SOURCE2} %{buildroot}%{_bindir}/jarwrapper
 install -Dpm644 %{SOURCE3} %{buildroot}%{_binfmtdir}/Java.conf
 install -Dpm644 %{SOURCE4} %{buildroot}%{_binfmtdir}/ExecutableJAR.conf
 install -Dpm644 %{SOURCE5} %{buildroot}%{_binfmtdir}/Applet.conf
+install -Dpm644 %{SOURCE5} %{buildroot}%{_binfmtdir}/Applet-lib64.conf
 
 %files -n java-jarwrapper
 %{_binfmtdir}/ExecutableJAR.conf
@@ -86,6 +88,7 @@ install -Dpm644 %{SOURCE5} %{buildroot}%{_binfmtdir}/Applet.conf
 
 %files -n java-applet-binfmt
 %{_binfmtdir}/Applet.conf
+%{_binfmtdir}/Applet-lib64.conf
 
 %post -n java-jarwrapper
 /bin/systemctl --system try-restart systemd-binfmt.service &>/dev/null || :
