@@ -1,7 +1,7 @@
 %global commit 6dbe90c7d685087c30c4e691aea304b8d220466a
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global commit_date 20250131
-%global _binfmtdir /usr/lib/binfmt.d
+%global _binfmtdir %{_exec_prefix}/lib/binfmt.d
 
 Name:           java-binfmt
 Version:        1.0.0^%{commit_date}git%{shortcommit}
@@ -22,41 +22,44 @@ Packager:       ShinyGil <rockgrub@disroot.org>
 %description
 This package installs binfmt files for use with Java wrappers.
 
-%package -n          java-jarwrapper
-Summary:             Wrapper to execute Jar files
-Requires:            bash
-Requires:            java
-Requires(posttrans): systemctl
-BuildArch:           noarch
+%package -n       java-jarwrapper
+Summary:          Wrapper to execute Jar files
+Requires:         bash
+Requires:         java
+Requires(post):   systemctl
+Requires(postun): systemctl
+BuildArch:        noarch
 
-%description -n      java-jarwrapper
+%description -n   java-jarwrapper
 A binfmt wrapper to more easily execute Jar files.
 
-%package -n          java-javawrapper
-Summary:             Wrapper for Java
-Requires:            bash
-Requires:            java
-Requires:            java-javaclassname
-Requires(posttrans): systemctl
-BuildArch:           noarch
+%package -n       java-javawrapper
+Summary:          Wrapper for Java
+Requires:         bash
+Requires:         java
+Requires:         java-javaclassname
+Requires(post):   systemctl
+Requires(postun): systemctl
+BuildArch:        noarch
 
-%description -n      java-javawrapper
+%description -n   java-javawrapper
 A wrapper for Java functions.
 
-%package -n          java-javaclassname
-Summary:             The javaclassname executable
-Requires:            java
+%package -n       java-javaclassname
+Summary:          The javaclassname executable
+Requires:         java
 
-%description -n      java-javaclassname
+%description -n java-javaclassname
 The javaclassname executable for use with javawrapper.
 
-%package -n          java-applet-binfmt
-Summary:             binfmt file for Java applets
-Requires:            java-1.8.0-openjdk-devel
-Requires(posttrans): systemctl
-BuildArch:           noarch
+%package -n       java-applet-binfmt
+Summary:          binfmt file for Java applets
+Requires:         java-1.8.0-openjdk-devel
+Requires(post):   systemctl
+Requires(postun): systemctl
+BuildArch:        noarch
 
-%description -n      java-applet-binfmt
+%description -n java-applet-binfmt
 This binfmt file runs Java applets in the usual way. This package contains a single file.
 
 %build
@@ -84,14 +87,20 @@ install -Dpm644 %{SOURCE5} %{buildroot}%{_binfmtdir}/Applet.conf
 %files -n java-applet-binfmt
 %{_binfmtdir}/Applet.conf
 
-%posttrans -n java-jarwrapper
-%binfmt_apply ExecutableJAR.conf
+%post -n java-jarwrapper
+/bin/systemctl --system try-restart systemd-binfmt.service &>/dev/null || :
+%postun -n java-jarwrapper
+/bin/systemctl --system try-restart systemd-binfmt.service &>/dev/null || :
 
-%posttrans -n java-javawrapper
-%binfmt_apply Java.conf
+%post -n java-javawrapper
+/bin/systemctl --system try-restart systemd-binfmt.service &>/dev/null || :
+%postun -n java-javawrapper
+/bin/systemctl --system try-restart systemd-binfmt.service &>/dev/null || :
 
-%posttrans -n java-applet-binfmt
-%binfmt_apply Applet.conf
+%post -n java-applet-binfmt
+/bin/systemctl --system try-restart systemd-binfmt.service &>/dev/null || :
+%postun -n java-applet-binfmt
+/bin/systemctl --system try-restart systemd-binfmt.service &>/dev/null || :
 
 %changelog
 * Thu Jan 30 2025 ShinyGil <rockgrub@disroot.org>
