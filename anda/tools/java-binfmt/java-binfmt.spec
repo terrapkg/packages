@@ -64,7 +64,7 @@ BuildArch:        noarch
 This binfmt file runs Java applets in the usual way. A compatible Java version will need to be manually installed and configured.
 
 %build
-/usr/bin/gcc $CFLAGS -o javaclassname %{S:0}
+/usr/bin/gcc %{optflags} -o javaclassname %{S:0}
 
 install -Dpm755 javaclassname %{buildroot}%{_bindir}/javaclassname
 install -Dpm755 %{SOURCE1} %{buildroot}%{_bindir}/javawrapper
