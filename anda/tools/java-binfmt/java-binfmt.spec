@@ -1,7 +1,10 @@
-%global _binfmtdir %{_sysconfdir}/binfmt.d
+%global commit 6dbe90c7d685087c30c4e691aea304b8d220466a
+%global shortcommit %(c=%{commit}; echo ${c:0:7})
+%global commit_date 20250131
+%global _binfmtdir /usr/lib/binfmt.d
 
 Name:           java-binfmt
-Version:        1.0.0
+Version:        1.0.0^%{commit_date}git%{shortcommit}
 Release:        1%{?dist}
 Summary:        Binfmt wrappers and utilities for Java and Jar files.
 ### License for the C file used in the binary.
@@ -13,47 +16,51 @@ Source3:        https://github.com/terrapkg/pkg-java-binfmt/raw/refs/heads/main/
 Source4:        https://github.com/terrapkg/pkg-java-binfmt/raw/refs/heads/main/ExecutableJAR.conf
 Source5:        https://github.com/terrapkg/pkg-java-binfmt/raw/refs/heads/main/Applet.conf
 BuildRequires:  gcc
+BuildRequires:  systemd-rpm-macros
 Packager:       ShinyGil <rockgrub@disroot.org>
 
 %description
 This package installs binfmt files for use with Java wrappers.
 
-%package -n java-jarwrapper
-Summary:        Wrapper to execute Jar files
-Requires:       bash
-Requires:       java
-BuildArch:      noarch
+%package -n          java-jarwrapper
+Summary:             Wrapper to execute Jar files
+Requires:            bash
+Requires:            java
+Requires(posttrans): systemctl
+BuildArch:           noarch
 
-%description -n java-jarwrapper
+%description -n      java-jarwrapper
 A binfmt wrapper to more easily execute Jar files.
 
-%package -n java-javawrapper
-Summary:       Wrapper for Java
-Requires:      bash
-Requires:      java
-Requires:      java-javaclassname
-BuildArch:     noarch
+%package -n          java-javawrapper
+Summary:             Wrapper for Java
+Requires:            bash
+Requires:            java
+Requires:            java-javaclassname
+Requires(posttrans): systemctl
+BuildArch:           noarch
 
-%description -n java-javawrapper
+%description -n      java-javawrapper
 A wrapper for Java functions.
 
-%package -n java-javaclassname
-Summary:     The javaclassname executable
-Requires:    java
+%package -n          java-javaclassname
+Summary:             The javaclassname executable
+Requires:            java
 
-%description -n java-javaclassname
+%description -n      java-javaclassname
 The javaclassname executable for use with javawrapper.
 
-%package -n java-applet-binfmt
-Summary:      binfmt file for Java applets
-Requires:     java-1.8.0-openjdk-devel
-BuildArch:    noarch
+%package -n          java-applet-binfmt
+Summary:             binfmt file for Java applets
+Requires:            java-1.8.0-openjdk-devel
+Requires(posttrans): systemctl
+BuildArch:           noarch
 
-%description -n java-applet-binfmt
+%description -n      java-applet-binfmt
 This binfmt file runs Java applets in the usual way. This package contains a single file.
 
 %build
-gcc -O2 -o javaclassname %{SOURCE0}
+/usr/bin/gcc -o javaclassname %{SOURCE0}
 
 install -Dpm755 javaclassname %{buildroot}%{_bindir}/javaclassname
 install -Dpm755 %{SOURCE1} %{buildroot}%{_bindir}/javawrapper
@@ -78,13 +85,13 @@ install -Dpm644 %{SOURCE5} %{buildroot}%{_binfmtdir}/Applet.conf
 %{_binfmtdir}/Applet.conf
 
 %posttrans -n java-jarwrapper
-systemctl restart systemd-binfmt.service
+%binfmt_apply ExecutableJAR.conf
 
 %posttrans -n java-javawrapper
-systemctl restart systemd-binfmt.service
+%binfmt_apply Java.conf
 
 %posttrans -n java-applet-binfmt
-systemctl restart systemd-binfmt.service
+%binfmt_apply Applet.conf
 
 %changelog
 * Thu Jan 30 2025 ShinyGil <rockgrub@disroot.org>
