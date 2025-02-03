@@ -1,18 +1,21 @@
-Name:           nvidia-container-toolkit
-Version:        1.17.4
-Release:        2%?dist
-Summary:        NVIDIA Container Toolkit
-License:        Apache-2.0
-Group:          Development/Tools/Other
-URL:            https://github.com/NVIDIA/nvidia-container-toolkit
-Source0:        https://github.com/NVIDIA/%{name}/archive/v%{version}/nvidia-container-toolkit-v%{version}.tar.gz
-BuildRequires:  containers-common
-BuildRequires:  golang >= 1.16
-Requires:       libnvidia-container-tools
-Supplements:    (nvidia-driver and moby-engine)
-Supplements:    (nvidia-driver and cri-o)
-Supplements:    (nvidia-driver and containerd)
-Supplements:    (nvidia-driver and podman)
+Name:             nvidia-container-toolkit
+Version:          1.17.4
+Release:          2%?dist
+Summary:          NVIDIA Container Toolkit
+License:          Apache-2.0
+Group:            Development/Tools/Other
+URL:              https://github.com/NVIDIA/nvidia-container-toolkit
+Source0:          https://github.com/NVIDIA/%{name}/archive/v%{version}/nvidia-container-toolkit-v%{version}.tar.gz
+BuildRequires:    containers-common
+BuildRequires:    golang >= 1.16
+BuildRequires:    systemd-rpm-macros
+Requires:         libnvidia-container-tools
+Requires(post):   systemd
+Requires(postun): systemd
+Supplements:      (nvidia-driver and moby-engine)
+Supplements:      (nvidia-driver and cri-o)
+Supplements:      (nvidia-driver and containerd)
+Supplements:      (nvidia-driver and podman)
 
 
 %description
