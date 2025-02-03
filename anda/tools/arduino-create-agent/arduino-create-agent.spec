@@ -16,7 +16,7 @@ The Arduino Cloud Agent is a single binary that will sit on the traybar and work
 It allows you to use the Arduino Cloud to seamlessly upload code to any USB connected Arduino board (or Yún in LAN) directly from the browser.
 
 %prep
-%autosetup -n arduino-create-agent-%version
+%autosetup -n arduino-create-agent-%version -p1
 
 %build
 %go_build_online
