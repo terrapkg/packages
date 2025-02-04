@@ -1,0 +1,67 @@
+From 1df37f1160a7af89ca3535ff8724455d7a7017db Mon Sep 17 00:00:00 2001
+From: Nicolas Fella <nicolas.fella@gmx.de>
+Date: Tue, 7 Jan 2025 21:23:43 +0100
+Subject: [PATCH] [kfilefiltercombo] Fix 'All supported files' for more than 3
+ filters
+
+Fixes https://bugzilla.redhat.com/show_bug.cgi?id=2336218
+
+Amends 4655b7e8cd0109ac6168c4dd824c179638049511
+---
+ autotests/kfilefiltercombotest.cpp   | 20 ++++++++++++++++++++
+ src/filewidgets/kfilefiltercombo.cpp |  2 +-
+ 2 files changed, 21 insertions(+), 1 deletion(-)
+
+diff --git a/autotests/kfilefiltercombotest.cpp b/autotests/kfilefiltercombotest.cpp
+index 68a493d9f5..be9abe58fc 100644
+--- a/autotests/kfilefiltercombotest.cpp
++++ b/autotests/kfilefiltercombotest.cpp
+@@ -22,6 +22,7 @@ private Q_SLOTS:
+     void testCurrentFilter();
+     void testSetFilterWithDefault();
+     void testAllSupportedFiles();
++    void testAllSupportedFilesMoreThanThree();
+ };
+ 
+ void KFileFilterComboTest::initTestCase()
+@@ -171,5 +172,24 @@ void KFileFilterComboTest::testAllSupportedFiles()
+     QCOMPARE(combo.currentFilter().label(), "C++ Sources, PNG Images, PDF Documents");
+ }
+ 
++void KFileFilterComboTest::testAllSupportedFilesMoreThanThree()
++{
++    KFileFilterCombo combo;
++
++    const KFileFilter cppFilter("C++ Sources", {}, {"text/x-c++src"});
++    const KFileFilter pngFilter("PNG Images", {"*.png"}, {});
++    const KFileFilter pdfFilter("PDF Documents", {"*.pdf"}, {});
++    const KFileFilter gltfFilter("glTF Model", {"*.gltf"}, {});
++
++    combo.setFilters({cppFilter, pngFilter, pdfFilter, gltfFilter});
++
++    // Check that it has the right "All supported types" filter
++    QStringList expectedMimeTypes{"text/x-c++src"};
++    QStringList expectedFileTypes{"*.png", "*.pdf", "*.gltf"};
++    QCOMPARE(combo.currentFilter().mimePatterns(), expectedMimeTypes);
++    QCOMPARE(combo.currentFilter().filePatterns(), expectedFileTypes);
++    QCOMPARE(combo.currentFilter().label(), "All Supported Files");
++}
++
+ QTEST_MAIN(KFileFilterComboTest)
+ #include "kfilefiltercombotest.moc"
+diff --git a/src/filewidgets/kfilefiltercombo.cpp b/src/filewidgets/kfilefiltercombo.cpp
+index 4ec4ca368f..a8c70fe24c 100644
+--- a/src/filewidgets/kfilefiltercombo.cpp
++++ b/src/filewidgets/kfilefiltercombo.cpp
+@@ -159,7 +159,7 @@ void KFileFilterCombo::setFilters(const QList<KFileFilter> &types, const KFileFi
+ 
+             allSupportedFilesFilter = KFileFilter(allComments.join(delim), allFilePatterns, allMimePatterns);
+         } else {
+-            allSupportedFilesFilter = KFileFilter(i18n("All Supported Files"), allMimePatterns, allMimePatterns);
++            allSupportedFilesFilter = KFileFilter(i18n("All Supported Files"), allFilePatterns, allMimePatterns);
+             d->m_hasAllSupportedFiles = true;
+         }
+ 
+-- 
+GitLab
+
