@@ -10,6 +10,8 @@ License:        MIT
 URL:            https://github.com/jirutka/swaylock-effects
 Source0:        %{url}/archive/%{commit}.tar.gz
 
+Packager:       sadlerm <lerm@chromebooks.lol>
+
 BuildRequires:  meson gcc
 BuildRequires:  pam-devel
 BuildRequires:  pkgconfig(cairo)
