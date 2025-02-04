@@ -3,7 +3,7 @@ let json = get(url).json();
 let commit = json.target_commitish;
 rpm.global("commit", commit);
 if rpm.changed() {
-    let date = json.published_at;
+    let date = json.created_at;
     date.truncate(10);
     let html = get(`https://raw.githubusercontent.com/ghostty-org/ghostty/refs/heads/main/build.zig.zon`);
     let ver = find(".version = \"([\\d.]+)\"", html, 1);
