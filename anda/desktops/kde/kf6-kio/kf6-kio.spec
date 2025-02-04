@@ -25,10 +25,6 @@ Patch0:  0001-Give-the-kuriikwsfiltereng_private-a-VERSION-and-SOV.patch
 Patch101: kio-no-help-protocol.patch
 %endif
 
-# https://invent.kde.org/frameworks/kio/-/merge_requests/1779
-# Fix 'All supported files' for more than 3 filters
-Patch200: 1779.patch
-
 # https://invent.kde.org/frameworks/kio/-/merge_requests/1556
 Patch201: 1556.patch
 
