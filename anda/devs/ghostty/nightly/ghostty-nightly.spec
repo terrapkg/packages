@@ -1,12 +1,18 @@
-%global commit 04d36361b1a19a3b78b9cbcea5a233ccd56fb4e8
+%global commit f0d276062b78658fc1f3857e9ea104788f1f4e58
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250130
+%global fulldate 2024-11-29
+%global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
+%global dev_ver 1.1.1
+%if 0%{?fedora} <= 40
 %global cache_dir %{_builddir}/zig-cache
+%else
+%global cache_dir %{builddir}/zig-cache
+%endif
 
 Name:           ghostty-nightly
-Version:        %{commit_date}.%{shortcommit}
-Release:        1%?dist
+Version:        1.1.0
+Release:        1.tip%{dev_ver}^%{commit_date}.%{shortcommit}%{?dist}
 Summary:        A fast, native terminal emulator written in Zig; this is the Tip (nightly) build.
 License:        MIT AND MPL-2.0 AND OFL-1.1 AND (WTFPL OR CC0-1.0) AND Apache-2.0
 URL:            https://ghostty.org/
@@ -14,68 +20,93 @@ Source0:        https://github.com/ghostty-org/ghostty/releases/download/tip/gho
 Source1:        https://github.com/ghostty-org/ghostty/releases/download/tip/ghostty-source.tar.gz.minisig
 BuildRequires:  gtk4-devel
 BuildRequires:  libadwaita-devel
+BuildRequires:  libX11-devel
 BuildRequires:  minisign
 BuildRequires:  ncurses
 BuildRequires:  ncurses-devel
 BuildRequires:  pandoc-cli
 BuildRequires:  zig
-Requires:       %{name}-terminfo = %{version}-%{release}
-Requires:       %{name}-shell-integration = %{version}-%{release}
 BuildRequires:  pkgconfig(bzip2)
 BuildRequires:  pkgconfig(freetype2)
 BuildRequires:  pkgconfig(fontconfig)
-BuildRequires:  pkgconfig(harfbuzz)
-BuildRequires:  pkgconfig(libpng)
-BuildRequires:  pkgconfig(zlib)
-BuildRequires:  pkgconfig(oniguruma)
-BuildRequires:  pkgconfig(libxml-2.0)
 BuildRequires:  pkgconfig(gtk4)
+BuildRequires:  pkgconfig(harfbuzz)
 BuildRequires:  pkgconfig(libadwaita-1)
-BuildRequires:  libX11-devel
+BuildRequires:  pkgconfig(libpng)
+BuildRequires:  pkgconfig(libxml-2.0)
+BuildRequires:  pkgconfig(oniguruma)
+BuildRequires:  pkgconfig(zlib)
+Requires:       %{name}-terminfo = %{version}-%{release}
+Requires:       %{name}-shell-integration = %{version}-%{release}
+Requires:       gtk4
+Requires:       libadwaita
 Conflicts:      ghostty
 Provides:       ghostty-tip = %{version}-%{release}
-Packager:       ShinyGil <rockgrub@protonmail.com>
+Obsoletes:      %{name} <= 20250130.04d3636-1%{?dist}
+Packager:       ShinyGil <rockgrub@disroot.org>
 
 %description
 👻 Ghostty is a fast, feature-rich, and cross-platform terminal emulator that uses platform-native UI and GPU acceleration.
 
 %package        bash-completion
 Summary:        Ghostty Bash completion
+Requires:       %{name} = %{version}-%{release}
 Requires:       bash-completion
 Supplements:    (%{name} and bash-completion)
+Obsoletes:      %{name}-bash-completion <= 20250130.04d3636-1%{?dist}
+BuildArch:      noarch
 
 %description    bash-completion
-%summary.
+Bash shell completion for Ghostty.
 
 %package        fish-completion
 Summary:        Ghostty Fish completion
+Requires:       %{name} = %{version}-%{release}
 Requires:       fish
 Supplements:    (%{name} and fish)
+Obsoletes:      %{name}-fish-completion <= 20250130.04d3636-1%{?dist}
+BuildArch:      noarch
 
 %description    fish-completion
-%summary.
+Fish shell completion for Ghostty.
 
 %package        zsh-completion
 Summary:        Ghostty Zsh completion
+Requires:       %{name} = %{version}-%{release}
 Requires:       zsh
 Supplements:    (%{name} and zsh)
+Obsoletes:      %{name}-zsh-completion <= 20250130.04d3636-1%{?dist}
+BuildArch:      noarch
 
 %description    zsh-completion
-%summary.
+Zsh shell completion for Ghostty.
 
 %package        shell-integration
 Summary:        Ghostty shell integration
 Supplements:    %{name}
+Obsoletes:      %{name}-shell-integration <= 20250130.04d3636-1%{?dist}
+BuildArch:      noarch
 
 %description    shell-integration
-%summary.
+This package contains files allowing Ghostty to integrate with various shells.
 
 %package        terminfo
 Summary:        Ghostty terminfo
 Supplements:    %{name}
+Obsoletes:      %{name}-terminfo <= 20250130.04d3636-1%{?dist}
+BuildArch:      noarch
 
 %description    terminfo
-%summary.
+Ghostty's terminfo. Needed for basic terminal function.
+
+%package        terminfo-source
+Summary:        Source files for Ghostty's terminfo
+Requires:       %{name}
+Requires:       %{name}-terminfo
+BuildArch:      noarch
+
+%description    terminfo-source
+This package contains files for Ghostty's terminfo. Available for debugging use.
 
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
@@ -110,7 +141,7 @@ zig build \
 %_datadir/bat/syntaxes/ghostty.sublime-syntax
 %_datadir/ghostty/
 %_datadir/kio/servicemenus/com.mitchellh.ghostty.desktop
-%_datadir/nautilus-python/extensions/com.mitchellh.ghostty.py
+%_datadir/nautilus-python/extensions/ghostty.py
 %_datadir/nvim/site/compiler/ghostty.vim
 %_datadir/nvim/site/ftdetect/ghostty.vim
 %_datadir/nvim/site/ftplugin/ghostty.vim
@@ -150,16 +181,24 @@ zig build \
 %_datadir/ghostty/shell-integration/zsh/ghostty-integration
 
 %files terminfo
-%_datadir/terminfo/ghostty.termcap
-%_datadir/terminfo/ghostty.terminfo
 %_datadir/terminfo/g/ghostty
 %_datadir/terminfo/x/xterm-ghostty
 
+%files terminfo-source
+%_datadir/terminfo/ghostty.termcap
+%_datadir/terminfo/ghostty.terminfo
+
 %changelog
-* Tue Dec 31 2024 ShinyGil <rockgrub@protonmail.com>
+* Fri Jan 31 2025 ShinyGil <rockgrub@disroot.org>
+- Update to 1.1.1-1%{?dist}.20250131tipc5508e7
+ * Low GHSA-98wc-794w-gjx3: Ghostty leaked file descriptors allowing the shell and any of its child processes to impact other Ghostty terminal instances
+ * Better Git versioning scheme
+ * Ghostty terminfo source files are now a subpackage
+ * Shell integration and completion and terminfo subpackages are now properly noarch
+* Tue Dec 31 2024 ShinyGil <rockgrub@disroot.org>
 - Update to 20241231.3f7c3af
  * High CVE-2003-0063: Allows execution of arbitrary commands
  * Medium CVE-2003-0070: Allows execution of arbitrary commands
 
-* Thu Dec 26 2024 ShinyGil <rockgrub@protonmail.com>
+* Thu Dec 26 2024 ShinyGil <rockgrub@disroot.org>
 - Initial package
