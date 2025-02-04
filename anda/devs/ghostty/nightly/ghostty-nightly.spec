@@ -1,6 +1,7 @@
 %global commit c5508e7d1922842ecd3160ea73b97da1282168b3
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250131
+%global fulldate 2024-11-29
+%global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
 %global dev_ver 1.1.1
 %if 0%{?fedora} <= 40
@@ -140,7 +141,7 @@ zig build \
 %_datadir/bat/syntaxes/ghostty.sublime-syntax
 %_datadir/ghostty/
 %_datadir/kio/servicemenus/com.mitchellh.ghostty.desktop
-%_datadir/nautilus-python/extensions/com.mitchellh.ghostty.py
+%_datadir/nautilus-python/extensions/ghostty.py
 %_datadir/nvim/site/compiler/ghostty.vim
 %_datadir/nvim/site/ftdetect/ghostty.vim
 %_datadir/nvim/site/ftplugin/ghostty.vim
