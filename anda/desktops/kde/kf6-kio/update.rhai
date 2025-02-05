@@ -10,7 +10,7 @@ for entry in get(url).json().updates[0].title.split(' ') {
   if matches.len() == 0 { continue; }
   if matches[0][1].ends_with(".0") {
     rpm.global("majmin_ver_kf6", matches[0][1][0..matches[0][1].len()-2]);
-    rpm.f = sub(`Release:(\s+)(.+?)\n`, "Release:$1" + matches[0][2] + "%{?dist}.switcheroo\n", rpm.f);
+    rpm.f = sub(`Release: (.+?)\n`, "Release: " + matches[0][2] + "%{?dist}.switcheroo\n", rpm.f);
   }
   break;
 }
