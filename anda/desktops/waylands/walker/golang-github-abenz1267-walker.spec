@@ -6,6 +6,10 @@
 %global __requires_exclude %{?__requires_exclude:%{__requires_exclude}|}^golang\\(.*\\)$
 %endif
 
+%if 0%{?fedora} <= 40
+%global debug_package %{nil}
+%endif
+
 # https://github.com/abenz1267/walker
 %global goipath         github.com/abenz1267/walker
 Version:                0.12.14
@@ -19,7 +23,7 @@ Multi-Purpose Launcher with a lot of features. Highly Customizable and fast.}
 %global godocs          README.md cmd/version.txt
 
 Name:           walker
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Multi-Purpose Launcher with a lot of features. Highly Customizable and fast
 
 License:        MIT
