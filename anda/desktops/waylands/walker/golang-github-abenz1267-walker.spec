@@ -23,7 +23,7 @@ Multi-Purpose Launcher with a lot of features. Highly Customizable and fast.}
 %global godocs          README.md cmd/version.txt
 
 Name:           walker
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Multi-Purpose Launcher with a lot of features. Highly Customizable and fast
 
 License:        MIT
