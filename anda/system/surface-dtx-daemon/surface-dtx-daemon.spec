@@ -11,7 +11,7 @@ URL:            https://github.com/linux-surface/surface-dtx-daemon
 Source:         %url/archive/refs/tags/%ver.tar.gz
 BuildRequires:  rust cargo dbus-devel anda-srpm-macros cargo-rpm-macros mold
 Packager:       Owen Zimmerman <owen@fyralabs.com>
-Obsoletes:      surface-dtx-daemon
+Obsoletes:      surface-dtx-daemon < 0.3.8~1-3
 
 %description
 Linux User-Space Detachment System (DTX) Daemon for the Surface ACPI Driver
