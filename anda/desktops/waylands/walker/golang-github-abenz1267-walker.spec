@@ -8,6 +8,10 @@
 %global __requires_exclude %{?__requires_exclude:%{__requires_exclude}|}^golang\\(.*\\)$
 %endif
 
+%if 0%{?fedora} <= 40
+%global debug_package %{nil}
+%endif
+
 # https://github.com/abenz1267/walker
 %global goipath         github.com/abenz1267/walker
 Version:                0.11.4
