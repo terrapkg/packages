@@ -9,6 +9,10 @@
 %global swresample_soversion 5
 %global swscale_soversion 8
 
+%if 0%{?fedora} >= 42
+%global build_cxxflags %{__build_flags_lang_cxx} %{?_distro_extra_cxxflags} -std=c++20 -std=gnu++20
+%endif
+
 Summary:        A complete solution to record, convert and stream audio and video
 Name:           ffmpeg
 Version:        7.1
