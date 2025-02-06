@@ -80,7 +80,7 @@ Compiz 9 branch, which is newer then what Fedora packages and required by Unity 
 %autosetup -p1 -n compiz-%version+%(echo %_ubuntu_rel | sed 's@-0ubuntu.@@')
 
 %build
-# The driver blacklist hack is obselete
+# The driver blacklist hack is obsolete
 sed -i 's/(nouveau|Intel).*Mesa 8.0//' plugins/opengl/opengl.xml.in
 %cmake -DCOMPIZ_DISABLE_GS_SCHEMAS_INSTALL=OFF -DBUILD_GTK=ON -DBUILD_METACITY=ON -DCOMPIZ_BUILD_TESTING=OFF -DBUILD_GLES=OFF -DCOMPIZ_PACKAGING_ENABLED=TRUE -DBUILD_XORG_GTEST=OFF -DCOMPIZ_BUILD_WITH_RPATH=FALSE -DCOMPIZ_WERROR=OFF
 %cmake_build
