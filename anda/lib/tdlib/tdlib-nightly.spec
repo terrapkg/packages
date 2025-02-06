@@ -69,7 +69,8 @@ mv LICENSE_1_0.txt *.md example ..
 rm -rf *
 mv ../LICENSE_1_0.txt ../*.md .
 
-install -Dm644 ../example %buildroot/%_datadir/%{name}/example
+mkdir -p %buildroot%_datadir/%{name}
+cp -r../example %buildroot/%_datadir/%{name}
 
 %files
 %license LICENSE_1_0.txt
