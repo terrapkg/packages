@@ -1,11 +1,11 @@
-%global commit 2be9e799a2bc523550d4f83f4d2d66d41c9573b9
-%global ver 1.8.42
+%global commit 28c6f2e9c045372d50217919bf5768b7fbbe0294
+%global ver 1.8.44
 %global commit_date 20240219
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name: tdlib-nightly
 Version: %ver^%commit_date.%shortcommit
-Release: 1%?dist
+Release: 2%?dist
 License: BSL-1.0
 URL: https://github.com/tdlib/td
 Summary: Cross-platform library for building Telegram clients
@@ -49,7 +49,6 @@ Requires: %name-devel%?_isa = %{?epoch:%epoch:}%version-%release
 
 %prep
 %autosetup -n td-%commit -p1
-rm %SOURCE0
 sed -e 's/"DEFAULT"/"PROFILE=SYSTEM"/g' -i tdnet/td/net/SslStream.cpp
 
 %build

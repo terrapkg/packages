@@ -1,21 +1,23 @@
 %global debug_package %{nil}
 
 Name:		minecraft-launcher
-Version:	1121
-Release:	3%{?dist}
+Version:	2.1.3
+Release:	1%{?dist}
 Summary:	Official launcher for Minecraft
 
-License:	Proprietary
+License:	https://www.minecraft.net/en-us/eula
 URL:		https://minecraft.net
-Source0:	https://launcher.mojang.com/download/linux/x86_64/minecraft-launcher_%{version}.tar.gz
+Source0:	https://launcher.mojang.com/download/Minecraft.tar.gz
 Source1:	minecraft-launcher.desktop
 Source2:	https://launcher.mojang.com/download/minecraft-launcher.svg
+Packager:   Cappy Ishihara <cappy@fyralabs.com>
 
 ExclusiveArch:	x86_64
 
 Requires:	java >= 1.8.0
-
-Recommends:	terra-fractureiser-detector
+Requires:       gtk3
+Requires:       libgpg-error
+Requires:       (gnome-keyring or kwallet)
 
 %description
 The official Linux release of the launcher for Minecraft, a game about placing blocks and going on adventures.
@@ -26,15 +28,15 @@ The official Linux release of the launcher for Minecraft, a game about placing b
 %build
 
 %install
-mkdir -p %{buildroot}/%{_bindir}
-mkdir -p %{buildroot}/%{_datadir}/icons/hicolor/symbolic/apps/
-mkdir -p %{buildroot}/%{_datadir}/applications/
+mkdir -p %{buildroot}%{_bindir}
+mkdir -p %{buildroot}%{_datadir}/icons/hicolor/symbolic/apps/
+mkdir -p %{buildroot}%{_datadir}/applications/
 
-mv %{_builddir}/minecraft-launcher/minecraft-launcher %{buildroot}/%{_bindir}/minecraft-launcher
-chmod 755 %{buildroot}/%{_bindir}/minecraft-launcher
+mv %{_builddir}/minecraft-launcher/minecraft-launcher %{buildroot}%{_bindir}/minecraft-launcher
+chmod 755 %{buildroot}%{_bindir}/minecraft-launcher
 
-install -Dm644 %{SOURCE1} %{buildroot}/%{_datadir}/applications/minecraft-launcher.desktop
-install -Dm644 %{SOURCE2} %{buildroot}/%{_datadir}/icons/hicolor/symbolic/apps/minecraft-launcher.svg
+install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/applications/minecraft-launcher.desktop
+install -Dm644 %{SOURCE2} %{buildroot}%{_datadir}/icons/hicolor/symbolic/apps/minecraft-launcher.svg
 
 %files
 %{_bindir}/minecraft-launcher

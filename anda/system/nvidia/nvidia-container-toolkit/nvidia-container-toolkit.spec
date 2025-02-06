@@ -1,17 +1,21 @@
-Name:           nvidia-container-toolkit
-Version:        1.17.4
-Release:        1%?dist
-Summary:        NVIDIA Container Toolkit
-License:        Apache-2.0
-Group:          Development/Tools/Other
-URL:            https://github.com/NVIDIA/nvidia-container-toolkit
-Source0:        https://github.com/NVIDIA/%{name}/archive/v%{version}/nvidia-container-toolkit-v%{version}.tar.gz
-BuildRequires:  containers-common
-BuildRequires:  golang >= 1.16
-Requires:       libnvidia-container-tools
-Supplements:    (nvidia-driver and moby-engine)
-Supplements:    (nvidia-driver and cri-o)
-Supplements:    (nvidia-driver and containerd)
+Name:             nvidia-container-toolkit
+Version:          1.17.4
+Release:          2%?dist
+Summary:          NVIDIA Container Toolkit
+License:          Apache-2.0
+Group:            Development/Tools/Other
+URL:              https://github.com/NVIDIA/nvidia-container-toolkit
+Source0:          https://github.com/NVIDIA/%{name}/archive/v%{version}/nvidia-container-toolkit-v%{version}.tar.gz
+BuildRequires:    containers-common
+BuildRequires:    golang >= 1.16
+BuildRequires:    systemd-rpm-macros
+Requires:         libnvidia-container-tools
+Requires(post):   systemd
+Requires(postun): systemd
+Supplements:      (nvidia-driver and moby-engine)
+Supplements:      (nvidia-driver and cri-o)
+Supplements:      (nvidia-driver and containerd)
+Supplements:      (nvidia-driver and podman)
 
 
 %description
@@ -42,29 +46,25 @@ mkdir -p %{buildroot}%{_sysconfdir}/nvidia-container-runtime
 
 %post
 if rpm -q --quiet moby-engine; then
-    if 'docker info -f "{{println .SecurityOptions}}" | grep rootless'; then
-      nvidia-ctk runtime configure --runtime=docker --config="$HOME"/.config/docker/daemon.json
-        if systemctl --user is-running docker >/dev/null; then
-            systemctl --user restart docker
-        fi
-       nvidia-ctk config --set nvidia-container-cli.no-cgroups --in-place
-    else nvidia-ctk runtime configure --runtime=docker
-        if systemctl is-running docker >/dev/null; then
-            systemctl restart docker
-        fi
-    fi
+    nvidia-ctk runtime configure --runtime=docker
+      /bin/systemctl --system try-restart docker.service &>/dev/null || :
 elif rpm -q --quiet containerd; then
    nvidia-ctk runtime configure --runtime=containerd
-    if systemctl is-running containerd >/dev/null; then
-        systemctl restart containerd
-    fi
+     /bin/systemctl --system try-restart containerd.service &>/dev/null || :
 elif rpm -q --quiet cri-o; then
     nvidia-ctk runtime configure --runtime=crio
-     if systemctl is-running crio >/dev/null; then
-         systemctl restart crio
-     fi
+      /bin/systemctl --system try-restart crio.service &>/dev/null || :
  elif rpm -q --quiet podman; then
-     nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml
+    nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml
+fi
+
+%postun
+if rpm -q --quiet moby-engine; then
+    /bin/systemctl --system try-restart docker.service &>/dev/null || :
+elif rpm -q --quiet containerd; then
+   /bin/systemctl --system try-restart containerd.service &>/dev/null || :
+elif rpm -q --quiet cri-o; then
+    /bin/systemctl --system try-restart crio.service &>/dev/null || :
 fi
 
 %files
@@ -75,6 +75,7 @@ fi
 %{_bindir}/nvidia-container-runtime-hook
 %dir %{_sysconfdir}/nvidia-container-runtime
 %ghost %config(noreplace) %{_sysconfdir}/nvidia-container-runtime/config.toml
+%ghost %config(noreplace) %{_sysconfdir}/cdi/nvidia.yaml
 
 %changelog
 %autochangelog

@@ -71,7 +71,11 @@
 %global vulkan_drivers swrast%{?base_vulkan}%{?intel_platform_vulkan}%{?extra_platform_vulkan}%{?with_nvk:,nouveau}
 Name:           %{srcname}
 Summary:        Mesa graphics libraries
-%global ver 24.3.4
+# Make the dep solver always prefer our Mesa over the distro's
+# This should not break anything by default as the Mesa stream is ***EXPLICITLY***
+# disabled by default, and has to be enabled manually. See `terra/release/terra-mesa.repo` for details.
+Epoch:          1
+%global ver 25.0.0-rc2
 Version:        %{lua:ver = string.gsub(rpm.expand("%{ver}"), "-", "~"); print(ver)}
 Release:        3%?dist
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0

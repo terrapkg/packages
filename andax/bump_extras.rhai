@@ -6,10 +6,10 @@ fn as_bodhi_ver(branch) {
         }
         return `EPEL-${release}`;
     } else if branch == "frawhide" {
-        return "42";
+        return "F42";
     } else if branch.starts_with("f") {
         branch.crop(1);
-        return branch;
+        return `F${branch}`;
     } else {
         print(`E: unsupported branch: ${labels.branch}`);
         terminate();
@@ -18,5 +18,12 @@ fn as_bodhi_ver(branch) {
 
 fn bodhi(pkg, branch) {
     let url = `https://bodhi.fedoraproject.org/updates/?search=${pkg}&status=stable&releases=${branch}&rows_per_page=1&page=1`;
-    return find(`^${pkg}-([\d.]+)-\d+\.[\w\d]+$`, get(url).json().updates[0].title, 1);
+    for entry in get(url).json().updates[0].title.split(' ') {
+        let matches = find_all(`${pkg}-([\d.]+)-(\d+)\.[\w\d]+$`, entry);
+        //                             ──────── ───── .fc??
+        //                             version  release
+        if matches.len() != 0 {
+            return matches[0][1];
+        }
+    }
 }

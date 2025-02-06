@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2013 Richard Hughes <richard@hughsie.com> -->
+<component type="codec">
+  <id>gstreamer-bad</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <name>GStreamer Multimedia Codecs - Extra</name>
+  <summary>Multimedia playback for AIFF, DVB, GSM, MIDI, MXF and Opus</summary>
+  <description>
+    <p>
+      This addon includes several additional codecs that are missing
+      something - perhaps a good code review, some documentation, a set of
+      tests, a real live maintainer, or some actual wide use.
+      However, they might be good enough to play your media files.
+    </p>
+    <p>
+      These codecs can be used to encode and decode media files where the
+      format is not patent encumbered.
+    </p>
+    <p>
+      A codec decodes audio and video for for playback or editing and is also
+      used for transmission or storage.
+      Different codecs are used in video-conferencing, streaming media and
+      video editing applications.
+    </p>
+  </description>
+  <keywords>
+    <keyword>AIFF</keyword>
+    <keyword>DVB</keyword>
+    <keyword>GSM</keyword>
+    <keyword>MIDI</keyword>
+    <keyword>MXF</keyword>
+    <keyword>Opus</keyword>
+  </keywords>
+  <url type="homepage">http://gstreamer.freedesktop.org/</url>
+  <url type="bugtracker">https://bugzilla.gnome.org/enter_bug.cgi?product=GStreamer</url>
+  <url type="help">http://gstreamer.freedesktop.org/documentation/</url>
+  <url type="donation">http://www.gnome.org/friends/</url>
+  <update_contact><!-- upstream-contact_at_email.com --></update_contact>
+</component>
