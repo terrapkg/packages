@@ -6,7 +6,7 @@
 %global gamescope_commit d3174928d47f7e353e7daca63cf882d65660cc7c
 %define short_commit %(echo %{gamescope_commit} | cut -c1-8)
 
-Name:           terra-extras-gamescope
+Name:           terra-gamescope
 #Version:        100.%{gamescope_tag}
 Version:        104.%{short_commit}
 Release:        1%?dist
@@ -85,8 +85,8 @@ BuildRequires:  git
 # libliftoff hasn't bumped soname, but API/ABI has changed for 0.2.0 release
 Requires:       libliftoff%{?_isa} >= %{libliftoff_minver}
 Requires:       xorg-x11-server-Xwayland
-Requires:       terra-extras-gamescope-libs = %{version}-%{release}
-Requires:       terra-extras-gamescope-libs(x86-32) = %{version}-%{release}
+Requires:       terra-gamescope-libs = %{version}-%{release}
+Requires:       terra-gamescope-libs(x86-32) = %{version}-%{release}
 Recommends:     mesa-dri-drivers
 Recommends:     mesa-vulkan-drivers
 
