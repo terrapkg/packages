@@ -5,7 +5,7 @@
 
 Name:           java-binfmt
 Version:        1.0.0^%{commit_date}git%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Binfmt wrappers and utilities for Java and Jar files.
 ### License for the C file used in the binary.
 License:        GPL-2.0-or-later
@@ -27,8 +27,8 @@ This package installs binfmt files for use with Java wrappers.
 Summary:          Wrapper to execute Jar files
 Requires:         bash
 Requires:         java
-Requires(post):   systemctl
-Requires(postun): systemctl
+Requires(post):   systemd
+Requires(postun): systemd
 BuildArch:        noarch
 
 %description -n   java-jarwrapper
@@ -39,8 +39,8 @@ Summary:          Wrapper for Java
 Requires:         bash
 Requires:         java
 Requires:         java-javaclassname
-Requires(post):   systemctl
-Requires(postun): systemctl
+Requires(post):   systemd
+Requires(postun): systemd
 BuildArch:        noarch
 
 %description -n   java-javawrapper
@@ -55,8 +55,8 @@ The javaclassname executable for use with javawrapper.
 
 %package -n       java-applet-binfmt
 Summary:          binfmt file for Java applets
-Requires(post):   systemctl
-Requires(postun): systemctl
+Requires(post):   systemd
+Requires(postun): systemd
 Recommends:       adoptium-temurin-java-repository
 BuildArch:        noarch
 

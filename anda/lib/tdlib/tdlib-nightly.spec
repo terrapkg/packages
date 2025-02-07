@@ -1,10 +1,9 @@
-%global debug_package %{nil}
-
 %global commit 28c6f2e9c045372d50217919bf5768b7fbbe0294
 %global ver 1.8.44
 %global commit_date 20250125
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
+<<<<<<< HEAD
 Name:          tdlib-nightly
 Version:       %ver^%commit_date.%shortcommit
 Release:       1%?dist
@@ -51,7 +50,6 @@ Requires: %name-devel%?_isa = %{?epoch:%epoch:}%version-%release
 
 %prep
 %autosetup -n td-%commit -p1
-rm %SOURCE0
 sed -e 's/"DEFAULT"/"PROFILE=SYSTEM"/g' -i tdnet/td/net/SslStream.cpp
 
 %build

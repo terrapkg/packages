@@ -75,7 +75,7 @@ Summary:        Mesa graphics libraries
 # This should not break anything by default as the Mesa stream is ***EXPLICITLY***
 # disabled by default, and has to be enabled manually. See `terra/release/terra-mesa.repo` for details.
 Epoch:          1
-%global ver 25.0.0-rc1
+%global ver 25.0.0-rc2
 Version:        %{lua:ver = string.gsub(rpm.expand("%{ver}"), "-", "~"); print(ver)}
 Release:        3%?dist
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0

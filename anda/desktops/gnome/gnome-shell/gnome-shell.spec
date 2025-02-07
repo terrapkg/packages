@@ -1,6 +1,6 @@
 %global tarball_version %%(echo %{version} | tr '~' '.')
 %global major_version 47
-%global minor_version 1
+%global minor_version 3
 
 %if 0%{?rhel}
 %global portal_helper 0
@@ -10,7 +10,7 @@
 
 Name:           gnome-shell
 Version:        %{major_version}.%{minor_version}
-Release:        %autorelease.switcheroo
+Release:        1%{?dist}.switcheroo
 Summary:        Window management and application launching for GNOME
 
 License:        GPL-2.0-or-later
