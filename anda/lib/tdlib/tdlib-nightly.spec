@@ -3,7 +3,6 @@
 %global commit_date 20250125
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
-<<<<<<< HEAD
 Name:          tdlib-nightly
 Version:       %ver^%commit_date.%shortcommit
 Release:       1%?dist
