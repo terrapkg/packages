@@ -67,7 +67,7 @@ rm -rf *
 mv ../LICENSE_1_0.txt ../*.md .
 
 mkdir -p %buildroot%_datadir/%{name}
-cp -r../example %buildroot/%_datadir/%{name}
+cp -r ../example %buildroot%_datadir/%{name}
 
 %files
 %license LICENSE_1_0.txt
