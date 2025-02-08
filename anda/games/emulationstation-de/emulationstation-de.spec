@@ -8,7 +8,7 @@ Summary:        ES-DE is a frontend for browsing and launching games from your m
 
 License:        MIT
 URL:            https://es-de.org/
-Source0:        https://gitlab.com/es-de/emulationstation-de/-/archive/v3.1.1/emulationstation-de-v%{version}.tar.gz
+Source0:        https://gitlab.com/es-de/emulationstation-de/-/archive/v%{version}/emulationstation-de-v%{version}.tar.gz
 
 BuildRequires:  gcc-c++
 BuildRequires:  clang-tools-extra
