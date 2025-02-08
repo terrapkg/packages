@@ -33,6 +33,7 @@ BuildRequires:  alsa-lib-devel
 BuildRequires:  mesa-libGL-devel
 BuildRequires:  poppler-cpp-devel
 
+Provides:       es-de = %{version}-%{release}
 
 %description
 ES-DE (EmulationStation Desktop Edition) is a frontend for browsing and launching games from your multi-platform collection.
@@ -45,7 +46,7 @@ It comes preconfigured for use with a large selection of emulators, game engines
 
 
 %build
-%cmake
+%cmake -DAPPLICATION_UPDATER=off 
 %cmake_build
 
 
@@ -56,6 +57,17 @@ It comes preconfigured for use with a large selection of emulators, game engines
 %files
 %license LICENSE
 %doc README.md FAQ.md CHANGELOG.md THEMES.md USERGUIDE.md
+%{_bindir}/es-de
+%{_bindir}/es-pdf-convert
+%{_datadir}/applications/org.es_de.frontend.desktop
+%{_datadir}/es-de/licenses/*
+%{_datadir}/es-de/resources/*
+%{_datadir}/es-de/themes/*
+%{_datadir}/es-de/LICENSE
+%{_datadir}/icons/hicolor/scalable/apps/org.es_de.frontend.svg
+%{_datadir}/man/man6/es-de.6.gz
+%{_datadir}/metainfo/org.es_de.frontend.appdata.xml
+%{_datadir}/pixmaps/org.es_de.frontend.svg
 
 
 
