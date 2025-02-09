@@ -1,3 +1,4 @@
+%define debug_package %nil
 %ifarch x86_64
 %global a x64
 %elifarch aarch64
