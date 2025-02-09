@@ -57,7 +57,6 @@ It comes preconfigured for use with a large selection of emulators, game engines
 %build
 # Our build environment is pretty similar to Arch's so we can use their build flags
 %cmake -DAPPLICATION_UPDATER=off \
-    -DCMAKE_CXX_STANDARD=17 \
 %if %{with kms}
     -DDEINIT_ON_LAUNCH=on \
 %endif
