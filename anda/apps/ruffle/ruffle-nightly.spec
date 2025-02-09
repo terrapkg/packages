@@ -38,6 +38,8 @@ Packager:       madonuko <mado@fyralabs.com>
 %prep
 %autosetup -n ruffle-nightly-%ver
 %cargo_prep_online
+sed -iE 's@^Exec=ruffle %%u$@Exec=ruffle_desktop %%u@' desktop/packages/linux/rs.ruffle.Ruffle.desktop
+cat desktop/packages/linux/rs.ruffle.Ruffle.desktop
 
 cat<<EOF > ruffle_desktop.desktop
 [Desktop Entry]
