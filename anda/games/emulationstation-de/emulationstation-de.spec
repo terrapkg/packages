@@ -60,7 +60,7 @@ It comes preconfigured for use with a large selection of emulators, game engines
 %if %{with kms}
     -DDEINIT_ON_LAUNCH=on \
 %endif
-    -DAUR_BUILD=on
+
 %cmake_build
 
 
