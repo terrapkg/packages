@@ -1,14 +1,18 @@
+# For some reason, this package simply just doesn't have debugsource
+%global _debugsource_template %{nil}
 # We will enable this in F42 and later for the FFmpeg override
 %bcond_with full_ffmpeg
 Name:           emulationstation-de
 Version:        3.1.1
 Release:        1%{?dist}
 Summary:        ES-DE is a frontend for browsing and launching games from your multi-platform collection.
-
-
+Packager:       Cappy Ishihara <cappy@fyralabs.com>
 License:        MIT
 URL:            https://es-de.org/
 Source0:        https://gitlab.com/es-de/emulationstation-de/-/archive/v%{version}/emulationstation-de-v%{version}.tar.gz
+# Backport a patch to fix a build issue with libgit2
+# This patch should already be included in the next release
+Patch0:         https://gitlab.com/es-de/emulationstation-de/-/commit/3510a09d83949beb765c140041332583b4e70837.patch
 
 BuildRequires:  gcc-c++
 BuildRequires:  clang-tools-extra
@@ -42,25 +46,27 @@ The goal of this project is to make a high quality frontend that is easy to use,
 It comes preconfigured for use with a large selection of emulators, game engines, game managers and gaming services. It can also run locally installed games and applications. It's fully customizable, so you can easily expand it with support for additional systems and applications.
 
 %prep
-%autosetup -n emulationstation-de-v%{version}
+%autosetup -n emulationstation-de-v%{version} -p1
 
 
 %build
-%cmake -DAPPLICATION_UPDATER=off 
+# Our build environment is pretty similar to Arch's so we can use their build flags
+%cmake -DAPPLICATION_UPDATER=off -DDEINIT_ON_LAUNCH=on -DAUR_BUILD=on
 %cmake_build
 
 
 %install
 %cmake_install
 
+# We're going to remove the licenses directory because it's going to be installed in /usr/share/licenses
+rm -rf %{buildroot}%{_datadir}/es-de/licenses
 
 %files
-%license LICENSE
+%license LICENSE licenses/*
 %doc README.md FAQ.md CHANGELOG.md THEMES.md USERGUIDE.md
 %{_bindir}/es-de
 %{_bindir}/es-pdf-convert
 %{_datadir}/applications/org.es_de.frontend.desktop
-%{_datadir}/es-de/licenses/*
 %{_datadir}/es-de/resources/*
 %{_datadir}/es-de/themes/*
 %{_datadir}/es-de/LICENSE
