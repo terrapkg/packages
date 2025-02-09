@@ -14,7 +14,6 @@ Summary:        A Flash Player emulator written in Rust
 License:        Apache-2.0 OR MIT
 URL:            https://ruffle.rs/
 Source0:        https://github.com/ruffle-rs/ruffle/archive/refs/tags/nightly-%ver.tar.gz
-Patch0:         desktop_file_patch.diff
 Provides:       ruffle
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros mold
@@ -40,6 +39,8 @@ Packager:       madonuko <mado@fyralabs.com>
 %prep
 %autosetup -n ruffle-nightly-%ver -p1
 %cargo_prep_online
+sed -iE 's@^Exec=ruffle %%u$@Exec=ruffle_desktop %%u@' desktop/packages/linux/rs.ruffle.Ruffle.desktop
+cat desktop/packages/linux/rs.ruffle.Ruffle.desktop
 
 %build
 %{cargo_license_online} > LICENSE.dependencies
