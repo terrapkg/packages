@@ -13,6 +13,9 @@ URL:			https://bun.sh
 Source0:		https://github.com/oven-sh/bun/releases/download/bun-v%version/bun-linux-%a.zip
 BuildRequires:	unzip
 
+%description
+%summary.
+
 %prep
 unzip %SOURCE0
 %global buildsubdir bun-linux-%a
