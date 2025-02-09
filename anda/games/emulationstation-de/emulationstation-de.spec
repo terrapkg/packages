@@ -2,6 +2,11 @@
 %global _debugsource_template %{nil}
 # We will enable this in F42 and later for the FFmpeg override
 %bcond_with full_ffmpeg
+
+# Optional flag for KMS support, replacing the need for a compositor backend
+# This is disabled by default because it causes issues for users that use a compositor
+%bcond_with kms
+
 Name:           emulationstation-de
 Version:        3.1.1
 Release:        1%{?dist}
@@ -51,7 +56,11 @@ It comes preconfigured for use with a large selection of emulators, game engines
 
 %build
 # Our build environment is pretty similar to Arch's so we can use their build flags
-%cmake -DAPPLICATION_UPDATER=off -DDEINIT_ON_LAUNCH=on -DAUR_BUILD=on
+%cmake -DAPPLICATION_UPDATER=off \
+%if %{with kms}
+    -DDEINIT_ON_LAUNCH=on \
+%endif
+    -DAUR_BUILD=on
 %cmake_build
 
 
