@@ -78,7 +78,6 @@ rm -rf %{buildroot}%{_datadir}/es-de/licenses
 %{_datadir}/applications/org.es_de.frontend.desktop
 %{_datadir}/es-de/resources/*
 %{_datadir}/es-de/themes/*
-%{_datadir}/es-de/LICENSE
 %{_datadir}/icons/hicolor/scalable/apps/org.es_de.frontend.svg
 %{_datadir}/man/man6/es-de.6.gz
 %{_datadir}/metainfo/org.es_de.frontend.appdata.xml
