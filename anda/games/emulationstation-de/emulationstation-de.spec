@@ -68,7 +68,7 @@ It comes preconfigured for use with a large selection of emulators, game engines
 %cmake_install
 
 # We're going to remove the licenses directory because it's going to be installed in /usr/share/licenses
-rm -rf %{buildroot}%{_datadir}/es-de/licenses
+rm -rf %{buildroot}%{_datadir}/es-de/licenses %{buildroot}%{_datadir}/es-de/LICENSE
 
 %files
 %license LICENSE licenses/*
