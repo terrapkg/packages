@@ -1,5 +1,5 @@
-%global commit bfd07df616bb656f4990b15996c7e1c4f5a9ebc6
-%global commit_date 20250130
+%global commit d38a66e98dfa1289b4c0752ef40488aac07c9484
+%global commit_date 20250210
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           spotx-bash
