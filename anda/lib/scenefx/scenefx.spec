@@ -72,4 +72,5 @@ MESON_OPTIONS=(
 
 %files  devel
 %{_includedir}/scenefx
+%{_libdir}/lib%{name}-%{version}.so
 %{_libdir}/pkgconfig/%{name}.pc
