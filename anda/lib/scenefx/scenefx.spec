@@ -68,9 +68,9 @@ MESON_OPTIONS=(
 %files
 %license LICENSE
 %doc README.md
+%{_libdir}/lib%{name}-%{version}.so
 
 
 %files  devel
 %{_includedir}/scenefx
-%{_libdir}/lib%{name}-%{version}.so
 %{_libdir}/pkgconfig/%{name}.pc
