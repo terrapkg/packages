@@ -276,7 +276,7 @@ workspaces.
 # Remove absolute symlink and replace with relative symlink
 rm -f %{buildroot}%{_bindir}/quickchar
 
-%fdupes %_libdir/budgie-desktop/plugins/budgie-weathershow/weather_icons
+%fdupes %{buildroot}%{_datadir}/budgie-desktop/budgie-weathershow/weather_icons
 
 %post
 
@@ -402,6 +402,8 @@ rm -f %{buildroot}%{_bindir}/quickchar
 
 %files -n budgie-applet-weathershow
 %{_libdir}/budgie-desktop/plugins/budgie-weathershow
+%{_datadir}/budgie-desktop/budgie-weathershow/cities
+%{_datadir}/budgie-desktop/budgie-weathershow/weather_icons/*
 %{_datadir}/glib-2.0/schemas/org.ubuntubudgie.plugins.weathershow.gschema.xml
 %{_datadir}/pixmaps/budgie-wticon-symbolic.svg
 
