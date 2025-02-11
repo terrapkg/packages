@@ -14,7 +14,7 @@ BuildRequires:  gcc
 BuildRequires:  glslang
 BuildRequires:  gnupg2
 BuildRequires:  meson >= 0.59.0
-BuildRequires:  wlroots >= 0.18.0
+BuildRequires:  wlroots-devel >= 0.18.0
 
 BuildRequires:  pkgconfig(egl)
 BuildRequires:  pkgconfig(gbm) >= 17.1.0
