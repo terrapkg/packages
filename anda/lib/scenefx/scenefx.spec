@@ -9,12 +9,13 @@ License:        MIT
 Source0:        %{url}/archive/refs/tags/%version.tar.gz
 
 
+BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  glslang
 BuildRequires:  gnupg2
 BuildRequires:  meson >= 0.59.0
 
-BuildRequires:  (pkgconfig(wlroots) >= 0.17.0 with pkgconfig(wlroots) < 0.18)
+BuildRequires:  pkgconfig(wlroots) >= 0.18.0
 BuildRequires:  pkgconfig(egl)
 BuildRequires:  pkgconfig(gbm) >= 17.1.0
 BuildRequires:  pkgconfig(glesv2)
@@ -25,7 +26,6 @@ BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(wayland-protocols) >= 1.32
 BuildRequires:  pkgconfig(wayland-scanner)
 BuildRequires:  pkgconfig(wayland-server) >= 1.22
-BuildRequires:  pkgconfig(wlroots)
 
 
 Packager:       Atmois <atmois@atmois.com>
