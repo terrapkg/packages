@@ -4,7 +4,7 @@ project pkg {
     spec = "gstreamer1-vaapi.spec"
   }
   labels {
-        extra = 1
+        subrepo = "extras"
         mock = 1
     }
 }
