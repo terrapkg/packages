@@ -1,6 +1,6 @@
 Name:           scenefx
-Version:        0.1
-Release:        1%{?dist}
+Version:        0.2
+Release:        2%?dist
 
 Summary:        A drop-in replacement for the wlroots scene API that allows wayland compositors to render surfaces with eye-candy effects
 URL:            https://github.com/wlrfx/scenefx
@@ -9,12 +9,12 @@ License:        MIT
 Source0:        %{url}/archive/refs/tags/%version.tar.gz
 
 
+BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  glslang
 BuildRequires:  gnupg2
 BuildRequires:  meson >= 0.59.0
 
-BuildRequires:  (pkgconfig(wlroots) >= 0.17.0 with pkgconfig(wlroots) < 0.18)
 BuildRequires:  pkgconfig(egl)
 BuildRequires:  pkgconfig(gbm) >= 17.1.0
 BuildRequires:  pkgconfig(glesv2)
@@ -25,6 +25,7 @@ BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(wayland-protocols) >= 1.32
 BuildRequires:  pkgconfig(wayland-scanner)
 BuildRequires:  pkgconfig(wayland-server) >= 1.22
+BuildRequires:  pkgconfig(wlroots-0.18)
 
 
 Packager:       Atmois <atmois@atmois.com>
@@ -67,10 +68,9 @@ MESON_OPTIONS=(
 %files
 %license LICENSE
 %doc README.md
-%{_libdir}/lib%{name}.so.*
+%{_libdir}/lib%{name}-%{version}.so
 
 
 %files  devel
 %{_includedir}/scenefx
-%{_libdir}/lib%{name}.so
 %{_libdir}/pkgconfig/%{name}.pc
