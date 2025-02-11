@@ -68,7 +68,6 @@ MESON_OPTIONS=(
 %files
 %license LICENSE
 %doc README.md
-%{_libdir}/lib%{name}.so.*
 
 
 %files  devel
