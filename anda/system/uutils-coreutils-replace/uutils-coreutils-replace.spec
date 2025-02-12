@@ -45,7 +45,7 @@ sed dircolors.hin \
         -e 's| 01;31$| 00;31|' \
         -e 's| 01;35$| 00;35|' \
         > DIR_COLORS.lightbgcolor
-%autopatch %{SOURCE4} -p1
+%patch %{SOURCE4} -p1
 
 %build
 export CARGOFLAGS="-vv --verbose"
