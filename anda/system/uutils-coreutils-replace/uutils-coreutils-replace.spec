@@ -11,8 +11,8 @@ Summary:        Cross-platform Rust rewrite of the GNU coreutils
 License:        MIT
 URL:            https://github.com/uutils/coreutils
 Source0:        %url/archive/refs/tags/%version.tar.gz
-Source1:        https://src.fedoraproject.org/rpms/coreutils/raw/rawhide/f/coreutils-colorls.sh
-Source2:        https://src.fedoraproject.org/rpms/coreutils/raw/rawhide/f/coreutils-colorls.csh
+Source1:        coreutils-colorls.sh
+Source2:        coreutils-colorls.csh
 Source3:        https://raw.githubusercontent.com/coreutils/coreutils/refs/heads/master/src/dircolors.hin
 Patch0:         coreutils-fix-metadata.diff
 Patch1:         coreutils-fix-seq-neg-num-tests.diff
