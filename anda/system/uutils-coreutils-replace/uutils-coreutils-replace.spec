@@ -14,7 +14,6 @@ Source2:        coreutils-colorls.csh
 Source3:        https://raw.githubusercontent.com/coreutils/coreutils/refs/heads/master/src/dircolors.hin
 Patch0:         coreutils-fix-metadata.diff
 Patch1:         coreutils-fix-seq-neg-num-tests.diff
-Patch3:         https://src.fedoraproject.org/rpms/coreutils/blob/rawhide/f/coreutils-8.32-DIR_COLORS.patch
 BuildRequires:  cargo
 BuildRequires:  clang-devel
 BuildRequires:  gcc-c++
@@ -36,7 +35,7 @@ This package replaces the GNU coreutils commands.
 
 
 %prep
-%autosetup -N
+%autosetup -n coreutils-%version -p1
 cp %{SOURCE3} .
 sed dircolors.hin \
         -e 's| 00;36$| 01;36|' \
@@ -45,7 +44,6 @@ sed dircolors.hin \
         -e 's| 01;31$| 00;31|' \
         -e 's| 01;35$| 00;35|' \
         > DIR_COLORS.lightbgcolor
-%autopatch -p1
 
 %build
 export CARGOFLAGS="-vv --verbose"
@@ -54,9 +52,7 @@ export CARGOFLAGS="-vv --verbose"
 %install
 install -p -c -m644 %SOURCE2 %{buildroot}%{_sysconfdir}/profile.d/colorls.sh
 install -p -c -m644 %SOURCE3 %{buildroot}%{_sysconfdir}/profile.d/colorls.csh
-install -p -c -m644 %SOURCE2 %{buildroot}%{_sysconfdir}/profile.d/colorls.sh
-install -p -c -m644 DIR_COLORS %{buildroot}%{_sysconfdir}/DIR_COLORS
-install -p -c -m644 DIR_COLORS.lightbgcolor %{buildroot}%{_sysconfdir}/DIR_COLORS.lightbgcolor
+install -p -c -m644 DIR_COLORS{,.lightbgcolor} %{buildroot}%{_sysconfdir}
 /usr/bin/rm dircolors.hin DIR_COLORS DIR_COLORS.lightbgcolor
 %make_install PROFILE=release MULTICALL=n DESTDIR=%buildroot PREFIX=%_prefix SELINUX_ENABLED=1 SKIP_UTILS='hostname kill more uptime' &
 wait
