@@ -37,22 +37,18 @@ export CARGOFLAGS="-vv --verbose"
 %install
 %make_install PROFILE=release MULTICALL=n DESTDIR=%buildroot PREFIX=%_prefix SELINUX_ENABLED=1 SKIP_UTILS='hostname kill more uptime sha3-224sum sha3-256sum sha3-384sum sha3-512sum sha3sum shake128sum shake256sum' &
 wait
-
-# function to remove files from a file list (used below for excludes)
-
-rm_filelist() {
-    local filelist=$1
-    
-    for file in $(cat $filelist); do
-        echo "::  -->  $file"
-        if [ -f "$file" ]; then
-            rm -vf "$file"
-        fi
-        if [ -f "%buildroot/$file" ]; then
-            rm -vf "%buildroot/$file"
-        fi
-    done
-}
+ln -sr hashsum %{buildroot}%{_bindir}/sha1sum
+ln -sr hashsum %{buildroot}%{_bindir}/sha224sum
+ln -sr hashsum %{buildroot}%{_bindir}/sha256sum
+ln -sr hashsum %{buildroot}%{_bindir}/sha384sum
+ln -sr hashsum %{buildroot}%{_bindir}/sha512sum
+ln -sr hashsum %{buildroot}%{_bindir}/sha3-224sum
+ln -sr hashsum %{buildroot}%{_bindir}/sha3-256sum
+ln -sr hashsum %{buildroot}%{_bindir}/sha3-384sum
+ln -sr hashsum %{buildroot}%{_bindir}/sha3-512sum
+ln -sr hashsum %{buildroot}%{_bindir}/sha3sum
+ln -sr hashsum %{buildroot}%{_bindir}/shake128sum
+ln -sr hashsum %{buildroot}%{_bindir}/shake256sum
 
 %define cmds() $(echo %1{runcon,arch,base{32,64,name,nc},cat,ch{grp,mod,own,root,con},cksum,comm,cp,csplit,cut,date,dd,df,dir{,colors,name},du,echo,env,expand,expr,factor,false,fmt,fold,groups,hashsum,head,host{id},id,install,join,link,ln,logname,ls,mk{dir,fifo,nod,temp},mv,nice,nl,nohup,nproc,numfmt,od,paste,pathchk,pinky,pr,printenv,printf,ptx,pwd,readlink,realpath,rm{,dir},seq,shred,shuf,sleep,sort,split,stat,stdbuf,sum,sync,tac,tail,tee,test,timeout,touch,tr,true,truncate,tsort,tty,uname,un{expand,iq,link},users,vdir,wc,who{,ami},yes}%2)
 cat <<EOF > files.txt
@@ -75,6 +71,18 @@ cat files.txt
 %files -f files.txt
 %doc README.md
 %license LICENSE
+%{_bindir}/sha1sum
+%{_bindir}/sha224sum
+%{_bindir}/sha256sum
+%{_bindir}/sha384sum
+%{_bindir}/sha512sum
+%{_bindir}/sha3-224sum
+%{_bindir}/sha3-256sum
+%{_bindir}/sha3-384sum
+%{_bindir}/sha3-512sum
+%{_bindir}/sha3sum
+%{_bindir}/shake128sum
+%{_bindir}/shake256sum
 
 
 %changelog
