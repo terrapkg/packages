@@ -2,22 +2,26 @@
 ### Temporary solution, will be fixed on newer Oniguruma releases.
 %global build_cflags %{__build_flags_lang_c} %{?_distro_extra_cflags} -std=c18 -std=gnu18
 
-Name:			uutils-coreutils-replace
-Version:		0.0.29
-Release:		2%?dist
-Summary:		Cross-platform Rust rewrite of the GNU coreutils
-License:		MIT
-URL:			https://github.com/uutils/coreutils
-Source0:		%url/archive/refs/tags/%version.tar.gz
+Name:		uutils-coreutils-replace
+Version:	0.0.29
+Release:	2%?dist
+Summary:	Cross-platform Rust rewrite of the GNU coreutils
+License:	MIT
+URL:		https://github.com/uutils/coreutils
+Source0:	%url/archive/refs/tags/%version.tar.gz
 Patch0:         coreutils-fix-metadata.diff
 Patch1:         coreutils-fix-seq-neg-num-tests.diff
-Requires:		glibc
-BuildRequires:	cargo make gcc-c++
-BuildRequires:  rustfmt
-Conflicts:		uutils-coreutils-replace
-BuildRequires:  libselinux-devel
-BuildRequires:  selinux-policy-devel
+BuildRequires:	cargo
 BuildRequires:  clang-devel
+BuildRequires:	gcc-c++
+BuildRequires:  libselinux-devel
+BuildRequires:	make
+BuildRequires:  rustfmt
+BuildRequires:  selinux-policy-devel
+Requires:	glibc
+Provides:       coreutils
+Provides:       coreutils-common
+Conflicts:      uutils-coreutils
 
 %description
 uutils coreutils is a cross-platform reimplementation of the GNU coreutils in Rust.
