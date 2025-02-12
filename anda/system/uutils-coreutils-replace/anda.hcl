@@ -1,6 +1,6 @@
 project pkg {
 	rpm {
-		spec = "uutils-coreutils.spec"
+		spec = "uutils-coreutils-replace.spec"
 	}
         labels {
                 subrepo = "extras"
