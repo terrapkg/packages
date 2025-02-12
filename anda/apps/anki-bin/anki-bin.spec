@@ -60,6 +60,8 @@ rm -rf %buildroot%_bindir/{distro,flask,jsonschema,markdown_py,normalizer,send2t
 %license LICENSE
 %doc README.md
 %_bindir/anki
+%_bindir/pyuic6
+%_bindir/pylupdate6
 /usr/lib/python*/site-packages/_aqt/
 /usr/lib/python*/site-packages/anki-%{version}.dist-info/
 /usr/lib/python*/site-packages/anki/
