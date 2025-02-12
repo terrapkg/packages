@@ -59,20 +59,20 @@ install -p -c -Dm644 %{SOURCE1} %{buildroot}%{_sysconfdir}/profile.d/colorls.sh
 install -p -c -Dm644 %{SOURCE2} %{buildroot}%{_sysconfdir}/profile.d/colorls.csh
 install -p -c -Dm644 DIR_COLORS{,.lightbgcolor} %{buildroot}%{_sysconfdir}
 /usr/bin/rm dircolors.hin DIR_COLORS DIR_COLORS.lightbgcolor
-%make_install PROFILE_CMD='--profile=rpm' MULTICALL=n DESTDIR=%buildroot BUILDDIR=target/rpm PREFIX=%_prefix SELINUX_ENABLED=1 SKIP_UTILS='hostname kill more uptime' &
+%make_install PROFILE=rpm PROFILE_CMD='--profile=rpm' MULTICALL=n DESTDIR=%buildroot PREFIX=%_prefix SELINUX_ENABLED=1 SKIP_UTILS='hostname kill more uptime' &
 wait
-ln -sr hashsum %{buildroot}%{_bindir}/sha1sum
-ln -sr hashsum %{buildroot}%{_bindir}/sha224sum
-ln -sr hashsum %{buildroot}%{_bindir}/sha256sum
-ln -sr hashsum %{buildroot}%{_bindir}/sha384sum
-ln -sr hashsum %{buildroot}%{_bindir}/sha512sum
-ln -sr hashsum %{buildroot}%{_bindir}/sha3-224sum
-ln -sr hashsum %{buildroot}%{_bindir}/sha3-256sum
-ln -sr hashsum %{buildroot}%{_bindir}/sha3-384sum
-ln -sr hashsum %{buildroot}%{_bindir}/sha3-512sum
-ln -sr hashsum %{buildroot}%{_bindir}/sha3sum
-ln -sr hashsum %{buildroot}%{_bindir}/shake128sum
-ln -sr hashsum %{buildroot}%{_bindir}/shake256sum
+ln -sf hashsum %{buildroot}%{_bindir}/sha1sum
+ln -sf hashsum %{buildroot}%{_bindir}/sha224sum
+ln -sf hashsum %{buildroot}%{_bindir}/sha256sum
+ln -sf hashsum %{buildroot}%{_bindir}/sha384sum
+ln -sf hashsum %{buildroot}%{_bindir}/sha512sum
+ln -sf hashsum %{buildroot}%{_bindir}/sha3-224sum
+ln -sf hashsum %{buildroot}%{_bindir}/sha3-256sum
+ln -sf hashsum %{buildroot}%{_bindir}/sha3-384sum
+ln -sf hashsum %{buildroot}%{_bindir}/sha3-512sum
+ln -sf hashsum %{buildroot}%{_bindir}/sha3sum
+ln -sf hashsum %{buildroot}%{_bindir}/shake128sum
+ln -sf hashsum %{buildroot}%{_bindir}/shake256sum
 
 %define cmds() $(echo %1{runcon,arch,base{32,64,name,nc},cat,ch{grp,mod,own,root,con},cksum,comm,cp,csplit,cut,date,dd,df,dir{,colors,name},du,echo,env,expand,expr,factor,false,fmt,fold,groups,hashsum,head,host{id},id,install,join,link,ln,logname,ls,mk{dir,fifo,nod,temp},mv,nice,nl,nohup,nproc,numfmt,od,paste,pathchk,pinky,pr,printenv,printf,ptx,pwd,readlink,realpath,rm{,dir},seq,shred,shuf,sleep,sort,split,stat,stdbuf,sum,sync,tac,tail,tee,test,timeout,touch,tr,true,truncate,tsort,tty,uname,un{expand,iq,link},users,vdir,wc,who{,ami},yes}%2)
 cat <<EOF > files.txt
