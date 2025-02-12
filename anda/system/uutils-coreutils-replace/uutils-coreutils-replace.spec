@@ -68,13 +68,6 @@ wait
 /usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/sha256sum
 /usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/sha384sum
 /usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/sha512sum
-/usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/sha3-224sum
-/usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/sha3-256sum
-/usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/sha3-384sum
-/usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/sha3-512sum
-/usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/sha3sum
-/usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/shake128sum
-/usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/shake256sum
 
 %define cmds() $(echo %1{runcon,arch,base{32,64,name,nc},cat,ch{grp,mod,own,root,con},cksum,comm,cp,csplit,cut,date,dd,df,dir{,colors,name},du,echo,env,expand,expr,factor,false,fmt,fold,groups,hashsum,head,host{id},id,install,join,link,ln,logname,ls,mk{dir,fifo,nod,temp},mv,nice,nl,nohup,nproc,numfmt,od,paste,pathchk,pinky,pr,printenv,printf,ptx,pwd,readlink,realpath,rm{,dir},seq,shred,shuf,sleep,sort,split,stat,stdbuf,sum,sync,tac,tail,tee,test,timeout,touch,tr,true,truncate,tsort,tty,uname,un{expand,iq,link},users,vdir,wc,who{,ami},yes}%2)
 cat <<EOF > files.txt
@@ -105,13 +98,6 @@ cat files.txt
 %{_bindir}/sha256sum
 %{_bindir}/sha384sum
 %{_bindir}/sha512sum
-%{_bindir}/sha3-224sum
-%{_bindir}/sha3-256sum
-%{_bindir}/sha3-384sum
-%{_bindir}/sha3-512sum
-%{_bindir}/sha3sum
-%{_bindir}/shake128sum
-%{_bindir}/shake256sum
 %config(noreplace) %{_sysconfdir}/DIR_COLORS
 %config(noreplace) %{_sysconfdir}/DIR_COLORS.lightbgcolor
 %{_sysconfdir}/profile.d/colorls.sh
