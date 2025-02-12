@@ -91,7 +91,6 @@ cat files.txt
 %doc README.md
 %license LICENSE
 %{_bindir}/b2sum
-%{_bindir}/b3sum
 %{_bindir}/md5sum
 %{_bindir}/sha1sum
 %{_bindir}/sha224sum
