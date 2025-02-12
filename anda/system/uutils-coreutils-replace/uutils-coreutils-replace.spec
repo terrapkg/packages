@@ -57,7 +57,7 @@ install -p -c -m644 %SOURCE3 %{buildroot}%{_sysconfdir}/profile.d/colorls.csh
 install -p -c -m644 %SOURCE2 %{buildroot}%{_sysconfdir}/profile.d/colorls.sh
 install -p -c -m644 DIR_COLORS %{buildroot}%{_sysconfdir}/DIR_COLORS
 install -p -c -m644 DIR_COLORS.lightbgcolor %{buildroot}%{_sysconfdir}/DIR_COLORS.lightbgcolor
-rm dircolors.hin DIR_COLORS DIR_COLORS.lightbgcolor
+/usr/bin/rm dircolors.hin DIR_COLORS DIR_COLORS.lightbgcolor
 %make_install PROFILE=release MULTICALL=n DESTDIR=%buildroot PREFIX=%_prefix SELINUX_ENABLED=1 SKIP_UTILS='hostname kill more uptime' &
 wait
 ln -sr hashsum %{buildroot}%{_bindir}/sha1sum
@@ -109,8 +109,11 @@ cat files.txt
 %{_bindir}/sha3sum
 %{_bindir}/shake128sum
 %{_bindir}/shake256sum
+%{_sysconfdir}/DIR_COLORS
+%{_sysconfdir}/DIR_COLORS.lightbgcolor
 %{_sysconfdir}/profile.d/colorls.sh
 %{_sysconfdir}/profile.d/colorls.csh
+
 
 
 %changelog
