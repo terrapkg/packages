@@ -56,8 +56,8 @@ export CARGOFLAGS="-vv --verbose"
 %make_build PROFILE=rpm SELINUX_ENABLED=1 SKIP_UTILS='hostname kill more uptime'
 
 %install
-install -p -c -m644 %SOURCE2 %{buildroot}%{_sysconfdir}/profile.d/colorls.sh
-install -p -c -m644 %SOURCE3 %{buildroot}%{_sysconfdir}/profile.d/colorls.csh
+install -p -c -Dm644 %SOURCE2 %{buildroot}%{_sysconfdir}/profile.d/colorls.sh
+install -p -c -Dm644 %SOURCE3 %{buildroot}%{_sysconfdir}/profile.d/colorls.csh
 install -p -c -m644 DIR_COLORS{,.lightbgcolor} %{buildroot}%{_sysconfdir}
 /usr/bin/rm dircolors.hin DIR_COLORS DIR_COLORS.lightbgcolor
 %make_install PROFILE=rpm MULTICALL=n DESTDIR=%buildroot PREFIX=%_prefix SELINUX_ENABLED=1 SKIP_UTILS='hostname kill more uptime' &
