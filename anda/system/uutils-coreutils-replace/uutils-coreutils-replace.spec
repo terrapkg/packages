@@ -38,8 +38,6 @@ This package replaces the GNU coreutils commands.
 %prep
 %autosetup -N coreutils-%version
 cp %{SOURCE3} .
-cp %{SOURCE4} DIR_NAME.patch
-cp %{SOURCE4} DIR_NAME.lightbgcolor.patch
 sed dircolors.hin \
         -e 's| 00;36$| 01;36|' \
         > DIR_COLORS
@@ -47,8 +45,8 @@ sed dircolors.hin \
         -e 's| 01;31$| 00;31|' \
         -e 's| 01;35$| 00;35|' \
         > DIR_COLORS.lightbgcolor
-/usr/bin/patch --fuzz=0 --verbose DIR_NAME.patch DIR_NAME
-/usr/bin/patch --fuzz=0 --verbose DIR_NAME.lightbgcolor.patch DIR_NAME.lightbgcolor
+/usr/bin/patch --fuzz=0 --verbose %{SOURCE4} DIR_NAME
+/usr/bin/patch --fuzz=0 --verbose %{SOURCE4} DIR_NAME.lightbgcolor
 
 %build
 export CARGOFLAGS="-vv --verbose"
