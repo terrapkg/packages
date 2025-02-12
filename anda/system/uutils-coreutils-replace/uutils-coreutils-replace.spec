@@ -6,7 +6,7 @@
 
 Name:           uutils-coreutils-replace
 Version:        0.0.29
-Release:        2%?dist
+Release:        1%?dist
 Summary:        Cross-platform Rust rewrite of the GNU coreutils
 License:        MIT
 URL:            https://github.com/uutils/coreutils
@@ -52,15 +52,13 @@ sed dircolors.hin \
 %autopatch -p1
 
 %build
-export CARGOFLAGS="-vv --verbose"
-%make_build PROFILE=rpm SELINUX_ENABLED=1 SKIP_UTILS='hostname kill more uptime'
 
 %install
 install -p -c -Dm644 %{SOURCE1} %{buildroot}%{_sysconfdir}/profile.d/colorls.sh
 install -p -c -Dm644 %{SOURCE2} %{buildroot}%{_sysconfdir}/profile.d/colorls.csh
 install -p -c -Dm644 DIR_COLORS{,.lightbgcolor} %{buildroot}%{_sysconfdir}
 /usr/bin/rm dircolors.hin DIR_COLORS DIR_COLORS.lightbgcolor
-%make_install PROFILE=rpm MULTICALL=n DESTDIR=%buildroot PREFIX=%_prefix SELINUX_ENABLED=1 SKIP_UTILS='hostname kill more uptime' &
+%make_install PROFILE_CMD='--profile=rpm' MULTICALL=n DESTDIR=%buildroot PREFIX=%_prefix SELINUX_ENABLED=1 SKIP_UTILS='hostname kill more uptime' &
 wait
 ln -sr hashsum %{buildroot}%{_bindir}/sha1sum
 ln -sr hashsum %{buildroot}%{_bindir}/sha224sum
