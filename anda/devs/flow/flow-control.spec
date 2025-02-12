@@ -13,7 +13,7 @@ Provides:       flow = %epoch:%version-%release
 %summary.
 
 %prep
-%autosetup
+%autosetup -n flow-%version
 
 %build
 zig build -Doptimize=ReleaseFast --release=fast
