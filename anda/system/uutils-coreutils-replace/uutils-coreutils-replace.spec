@@ -12,6 +12,7 @@ Source0:        %url/archive/refs/tags/%version.tar.gz
 Source1:        coreutils-colorls.sh
 Source2:        coreutils-colorls.csh
 Source3:        https://raw.githubusercontent.com/coreutils/coreutils/refs/heads/master/src/dircolors.hin
+Source4:        https://src.fedoraproject.org/rpms/coreutils/raw/rawhide/f/coreutils-8.32-DIR_COLORS.patch
 Patch0:         coreutils-fix-metadata.diff
 Patch1:         coreutils-fix-seq-neg-num-tests.diff
 BuildRequires:  cargo
@@ -35,8 +36,10 @@ This package replaces the GNU coreutils commands.
 
 
 %prep
-%autosetup -n coreutils-%version -p1
+%autosetup -N coreutils-%version
 cp %{SOURCE3} .
+cp %{SOURCE4} DIR_NAME.patch
+cp %{SOURCE4} DIR_NAME.lightbgcolor.patch
 sed dircolors.hin \
         -e 's| 00;36$| 01;36|' \
         > DIR_COLORS
@@ -44,6 +47,8 @@ sed dircolors.hin \
         -e 's| 01;31$| 00;31|' \
         -e 's| 01;35$| 00;35|' \
         > DIR_COLORS.lightbgcolor
+/usr/bin/patch --fuzz=0 --verbose DIR_NAME.patch DIR_NAME
+/usr/bin/patch --fuzz=0 --verbose DIR_NAME.lightbgcolor.patch DIR_NAME.lightbgcolor
 
 %build
 export CARGOFLAGS="-vv --verbose"
@@ -105,8 +110,8 @@ cat files.txt
 %{_bindir}/sha3sum
 %{_bindir}/shake128sum
 %{_bindir}/shake256sum
-%{_sysconfdir}/DIR_COLORS
-%{_sysconfdir}/DIR_COLORS.lightbgcolor
+%config(noreplace) %{_sysconfdir}/DIR_COLORS
+%config(noreplace) %{_sysconfdir}/DIR_COLORS.lightbgcolor
 %{_sysconfdir}/profile.d/colorls.sh
 %{_sysconfdir}/profile.d/colorls.csh
 
