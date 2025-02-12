@@ -2,23 +2,25 @@
 ### Temporary solution, will be fixed on newer Oniguruma releases.
 %global build_cflags %{__build_flags_lang_c} %{?_distro_extra_cflags} -std=c18 -std=gnu18
 
-Name:		uutils-coreutils-replace
-Version:	0.0.29
-Release:	2%?dist
-Summary:	Cross-platform Rust rewrite of the GNU coreutils
-License:	MIT
-URL:		https://github.com/uutils/coreutils
-Source0:	%url/archive/refs/tags/%version.tar.gz
+Name:           uutils-coreutils-replace
+Version:        0.0.29
+Release:        2%?dist
+Summary:        Cross-platform Rust rewrite of the GNU coreutils
+License:        MIT
+URL:            https://github.com/uutils/coreutils
+Source0:        %url/archive/refs/tags/%version.tar.gz
+Source1:        coreutils-colorls.sh
+Source2:        coreutils-colorls.csh
 Patch0:         coreutils-fix-metadata.diff
 Patch1:         coreutils-fix-seq-neg-num-tests.diff
-BuildRequires:	cargo
+BuildRequires:  cargo
 BuildRequires:  clang-devel
-BuildRequires:	gcc-c++
+BuildRequires:  gcc-c++
 BuildRequires:  libselinux-devel
-BuildRequires:	make
+BuildRequires:  make
 BuildRequires:  rustfmt
 BuildRequires:  selinux-policy-devel
-Requires:	glibc
+Requires:       glibc
 Provides:       coreutils
 Provides:       coreutils-common
 Conflicts:      uutils-coreutils
@@ -41,6 +43,8 @@ export CARGOFLAGS="-vv --verbose"
 %install
 %make_install PROFILE=release MULTICALL=n DESTDIR=%buildroot PREFIX=%_prefix SELINUX_ENABLED=1 SKIP_UTILS='hostname kill more uptime' &
 wait
+install -p -c -m644 %SOURCE2 %{buildroot}%{_sysconfdir}/profile.d/colorls.sh
+install -p -c -m644 %SOURCE3 %{buildroot}%{_sysconfdir}/profile.d/colorls.csh
 ln -sr hashsum %{buildroot}%{_bindir}/sha1sum
 ln -sr hashsum %{buildroot}%{_bindir}/sha224sum
 ln -sr hashsum %{buildroot}%{_bindir}/sha256sum
@@ -87,6 +91,8 @@ cat files.txt
 %{_bindir}/sha3sum
 %{_bindir}/shake128sum
 %{_bindir}/shake256sum
+%{_sysconfdir}/profile.d/colorls.sh
+%{_sysconfdir}/profile.d/colorls.csh
 
 
 %changelog
