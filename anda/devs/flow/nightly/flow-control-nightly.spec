@@ -3,7 +3,6 @@
 %global commit_date 20250212
 
 Name:           flow-control-nightly
-Epoch:          1
 Version:        %commit_date.%shortcommit
 Release:        1%?dist
 Summary:        A programmer's text editor
@@ -11,7 +10,7 @@ License:        MIT
 URL:            https://github.com/neurocyte/flow
 Source0:        %url/archive/%commit.tar.gz
 BuildRequires:  zig
-Provides:       flow = %epoch:0.3.2^46.g%shortcommit-%release
+Provides:       flow = 1:0.3.2^46.g%shortcommit-%release
 
 %description
 %summary.
