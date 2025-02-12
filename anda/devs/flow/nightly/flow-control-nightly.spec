@@ -1,6 +1,6 @@
-%global commit 952a75530e5163c92f1cda9eb7348b8bf7dfbd82
+%global commit 9f2e3bf4b48767a7c42bc77e609845a7b285b23c
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250131
+%global commit_date 20250212
 
 Name:           flow-control-nightly
 Epoch:          1
@@ -11,7 +11,7 @@ License:        MIT
 URL:            https://github.com/neurocyte/flow
 Source0:        %url/archive/%commit.tar.gz
 BuildRequires:  zig
-Provides:       flow = %epoch:0.3.1^<rev-parse>.g%shortcommit-%release
+Provides:       flow = %epoch:0.3.2^46.g%shortcommit-%release
 
 %description
 %summary.
