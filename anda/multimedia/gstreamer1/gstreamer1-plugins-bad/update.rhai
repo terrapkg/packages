@@ -1,4 +1,11 @@
-let release = labels.branch.to_upper();
-let ver = get(`https://bodhi.fedoraproject.org/updates/?search=gstreamer1-plugins-bad-free&status=stable&releases=${release}&rows_per_page=1&page=1`).json().updates[0].title;
-rpm.version(find(`gstreamer1-plugins-bad-free-([\d.]+)`, ver, 1));
-rpm.release(find(`gstreamer1-plugins-bad-free[\d.]+-([\d.])`, ver, 1));
+import "andax/bump_extras.rhai" as bump;
+
+let bodhi_branch = bump::as_bodhi_ver(labels.branch);
+
+let pkg = "gstreamer1-plugins-bad-free";
+let branch = bump::as_bodhi_ver(labels.branch);
+
+bump::follow_bodhi_vr(rpm, "gstreamer1-plugins-bad-free", branch);
+
+let opencv_ver = bump::bodhi("opencv", bodhi_branch);
+open_file("anda/multimedia/gstreamer1/gstreamer1-plugins-bad/OPENCV_VERSION.txt", "w").write(opencv_ver);
