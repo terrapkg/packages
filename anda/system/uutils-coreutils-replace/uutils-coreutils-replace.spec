@@ -41,7 +41,7 @@ This package replaces the GNU coreutils commands.
 %prep
 %setup -q -n coreutils-%version
 %cargo_prep_online
-cp %{SOURCE3} .
+/usr/bin/cp %{SOURCE3} .
 sed dircolors.hin \
         -e 's| 00;36$| 01;36|' \
         > DIR_COLORS
@@ -60,18 +60,18 @@ install -p -c -Dm644 DIR_COLORS{,.lightbgcolor} %{buildroot}%{_sysconfdir}
 /usr/bin/rm dircolors.hin DIR_COLORS DIR_COLORS.lightbgcolor
 %make_install PROFILE=rpm PROFILE_CMD='--profile=rpm' MULTICALL=n DESTDIR=%buildroot PREFIX=%_prefix SELINUX_ENABLED=1 SKIP_UTILS='hostname kill more uptime' &
 wait
-ln -sf hashsum %{buildroot}%{_bindir}/sha1sum
-ln -sf hashsum %{buildroot}%{_bindir}/sha224sum
-ln -sf hashsum %{buildroot}%{_bindir}/sha256sum
-ln -sf hashsum %{buildroot}%{_bindir}/sha384sum
-ln -sf hashsum %{buildroot}%{_bindir}/sha512sum
-ln -sf hashsum %{buildroot}%{_bindir}/sha3-224sum
-ln -sf hashsum %{buildroot}%{_bindir}/sha3-256sum
-ln -sf hashsum %{buildroot}%{_bindir}/sha3-384sum
-ln -sf hashsum %{buildroot}%{_bindir}/sha3-512sum
-ln -sf hashsum %{buildroot}%{_bindir}/sha3sum
-ln -sf hashsum %{buildroot}%{_bindir}/shake128sum
-ln -sf hashsum %{buildroot}%{_bindir}/shake256sum
+/usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/sha1sum
+/usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/sha224sum
+/usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/sha256sum
+/usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/sha384sum
+/usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/sha512sum
+/usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/sha3-224sum
+/usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/sha3-256sum
+/usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/sha3-384sum
+/usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/sha3-512sum
+/usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/sha3sum
+/usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/shake128sum
+/usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/shake256sum
 
 %define cmds() $(echo %1{runcon,arch,base{32,64,name,nc},cat,ch{grp,mod,own,root,con},cksum,comm,cp,csplit,cut,date,dd,df,dir{,colors,name},du,echo,env,expand,expr,factor,false,fmt,fold,groups,hashsum,head,host{id},id,install,join,link,ln,logname,ls,mk{dir,fifo,nod,temp},mv,nice,nl,nohup,nproc,numfmt,od,paste,pathchk,pinky,pr,printenv,printf,ptx,pwd,readlink,realpath,rm{,dir},seq,shred,shuf,sleep,sort,split,stat,stdbuf,sum,sync,tac,tail,tee,test,timeout,touch,tr,true,truncate,tsort,tty,uname,un{expand,iq,link},users,vdir,wc,who{,ami},yes}%2)
 cat <<EOF > files.txt
