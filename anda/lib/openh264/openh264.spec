@@ -5,7 +5,7 @@
 Name:           openh264
 Version:        2.6.0
 # Also bump the Release tag for gstreamer1-plugin-openh264 down below
-Release:        1%?dist
+Release:        2%?dist
 Summary:        H.264 codec library
 
 License:        BSD
