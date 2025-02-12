@@ -45,8 +45,8 @@ sed dircolors.hin \
         -e 's| 01;31$| 00;31|' \
         -e 's| 01;35$| 00;35|' \
         > DIR_COLORS.lightbgcolor
-/usr/bin/patch --fuzz=0 --verbose %{SOURCE4} DIR_NAME
-/usr/bin/patch --fuzz=0 --verbose %{SOURCE4} DIR_NAME.lightbgcolor
+/usr/bin/patch --fuzz=0 --verbose %{SOURCE4} DIR_COLORS
+/usr/bin/patch --fuzz=0 --verbose %{SOURCE4} DIR_COLORS.lightbgcolor
 
 %build
 export CARGOFLAGS="-vv --verbose"
