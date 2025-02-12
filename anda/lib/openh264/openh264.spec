@@ -5,7 +5,7 @@
 Name:           openh264
 Version:        2.6.0
 # Also bump the Release tag for gstreamer1-plugin-openh264 down below
-Release:        1%?dist
+Release:        2%?dist
 Summary:        H.264 codec library
 
 License:        BSD
@@ -94,7 +94,7 @@ rm $RPM_BUILD_ROOT%{_libdir}/*.a
 %files
 %license LICENSE
 %doc README.md
-%{_libdir}/libopenh264.so.7
+%{_libdir}/libopenh264.so.8
 %{_libdir}/libopenh264.so.%{version}
 
 %files devel
