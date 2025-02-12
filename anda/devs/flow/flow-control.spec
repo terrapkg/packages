@@ -5,7 +5,7 @@ Release:        1%?dist
 Summary:        A programmer's text editor
 License:        MIT
 URL:            https://github.com/neurocyte/flow
-Source0:        %url/archive/%version.tar.gz
+Source0:        %url/archive/v%version.tar.gz
 BuildRequires:  zig
 Provides:       flow = %epoch:%version-%release
 
