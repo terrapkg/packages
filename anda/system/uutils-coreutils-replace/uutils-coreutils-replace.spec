@@ -9,12 +9,12 @@ Summary:        Cross-platform Rust rewrite of the GNU coreutils
 License:        MIT
 URL:            https://github.com/uutils/coreutils
 Source0:        %url/archive/refs/tags/%version.tar.gz
-Source1:        coreutils-colorls.sh
-Source2:        coreutils-colorls.csh
+Source1:        https://src.fedoraproject.org/rpms/coreutils/raw/rawhide/f/coreutils-colorls.sh
+Source2:        https://src.fedoraproject.org/rpms/coreutils/raw/rawhide/f/coreutils-colorls.csh
 Source3:        https://raw.githubusercontent.com/coreutils/coreutils/refs/heads/master/src/dircolors.hin
-Source4:        https://src.fedoraproject.org/rpms/coreutils/raw/rawhide/f/coreutils-8.32-DIR_COLORS.patch
 Patch0:         coreutils-fix-metadata.diff
 Patch1:         coreutils-fix-seq-neg-num-tests.diff
+Patch3:         https://src.fedoraproject.org/rpms/coreutils/raw/rawhide/f/coreutils-8.32-DIR_COLORS.patch
 BuildRequires:  cargo
 BuildRequires:  clang-devel
 BuildRequires:  gcc-c++
@@ -36,7 +36,7 @@ This package replaces the GNU coreutils commands.
 
 
 %prep
-%autosetup -n coreutils-%version -p1
+%setup -n coreutils-%version
 cp %{SOURCE3} .
 sed dircolors.hin \
         -e 's| 00;36$| 01;36|' \
@@ -45,7 +45,7 @@ sed dircolors.hin \
         -e 's| 01;31$| 00;31|' \
         -e 's| 01;35$| 00;35|' \
         > DIR_COLORS.lightbgcolor
-%patch %{SOURCE4} -p1
+%autopatch -p1
 
 %build
 export CARGOFLAGS="-vv --verbose"
