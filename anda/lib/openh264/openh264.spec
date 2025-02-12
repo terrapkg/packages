@@ -94,7 +94,7 @@ rm $RPM_BUILD_ROOT%{_libdir}/*.a
 %files
 %license LICENSE
 %doc README.md
-%{_libdir}/libopenh264.so.7
+%{_libdir}/libopenh264.so.8
 %{_libdir}/libopenh264.so.%{version}
 
 %files devel
