@@ -11,8 +11,8 @@ Summary:        Cross-platform Rust rewrite of the GNU coreutils
 License:        MIT
 URL:            https://github.com/uutils/coreutils
 Source0:        %url/archive/refs/tags/%version.tar.gz
-Source1:        coreutils-colorls.sh
-Source2:        coreutils-colorls.csh
+Source1:        https://src.fedoraproject.org/rpms/coreutils/raw/rawhide/f/coreutils-colorls.sh
+Source2:        https://src.fedoraproject.org/rpms/coreutils/raw/rawhide/f/coreutils-colorls.csh
 Source3:        https://raw.githubusercontent.com/coreutils/coreutils/refs/heads/master/src/dircolors.hin
 Patch0:         coreutils-fix-metadata.diff
 Patch1:         coreutils-fix-seq-neg-num-tests.diff
@@ -56,9 +56,9 @@ export CARGOFLAGS="-vv --verbose"
 %make_build PROFILE=rpm SELINUX_ENABLED=1 SKIP_UTILS='hostname kill more uptime'
 
 %install
-install -p -c -m644 %{SOURCE1} %{buildroot}%{_sysconfdir}/profile.d/colorls.sh
-install -p -c -m644 %{SOURCE2} %{buildroot}%{_sysconfdir}/profile.d/colorls.csh
-install -p -c -m644 DIR_COLORS{,.lightbgcolor} %{buildroot}%{_sysconfdir}
+install -p -c -Dm644 %{SOURCE1} %{buildroot}%{_sysconfdir}/profile.d/colorls.sh
+install -p -c -Dm644 %{SOURCE2} %{buildroot}%{_sysconfdir}/profile.d/colorls.csh
+install -p -c -Dm644 DIR_COLORS{,.lightbgcolor} %{buildroot}%{_sysconfdir}
 /usr/bin/rm dircolors.hin DIR_COLORS DIR_COLORS.lightbgcolor
 %make_install PROFILE=rpm MULTICALL=n DESTDIR=%buildroot PREFIX=%_prefix SELINUX_ENABLED=1 SKIP_UTILS='hostname kill more uptime' &
 wait
