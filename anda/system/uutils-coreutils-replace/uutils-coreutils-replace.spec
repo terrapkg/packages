@@ -36,7 +36,7 @@ This package replaces the GNU coreutils commands.
 
 
 %prep
-%setup -n coreutils-%version
+%setup -q -n coreutils-%version
 cp %{SOURCE3} .
 sed dircolors.hin \
         -e 's| 00;36$| 01;36|' \
