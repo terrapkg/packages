@@ -11,7 +11,7 @@
 
 %if 0%{?fedora} >= 42
 %global build_cflags %{__build_flags_lang_c} %{?_distro_extra_cflags} -std=gnu17
-%global build_cxxflags %{__build_flags_lang_cxx} %{?_distro_extra_cxxflags} -std=gnu++20
+%global build_cxxflags %{__build_flags_lang_cxx} %{?_distro_extra_cxxflags} -std=gnu++17
 %endif
 
 Summary:        A complete solution to record, convert and stream audio and video
