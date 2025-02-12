@@ -11,6 +11,8 @@ URL:            https://github.com/uutils/coreutils
 Source0:        %url/archive/refs/tags/%version.tar.gz
 Source1:        coreutils-colorls.sh
 Source2:        coreutils-colorls.csh
+Source3:        https://raw.githubusercontent.com/coreutils/coreutils/refs/heads/master/src/dircolors.hin
+Source4:        https://src.fedoraproject.org/rpms/coreutils/blob/rawhide/f/coreutils-8.32-DIR_COLORS.patch
 Patch0:         coreutils-fix-metadata.diff
 Patch1:         coreutils-fix-seq-neg-num-tests.diff
 BuildRequires:  cargo
@@ -34,17 +36,30 @@ This package replaces the GNU coreutils commands.
 
 
 %prep
-%autosetup -n coreutils-%version -p1
+%autosetup -N
+cp %{SOURCE3} .
+sed dircolors.hin \
+        -e 's| 00;36$| 01;36|' \
+        > DIR_COLORS
+sed dircolors.hin \
+        -e 's| 01;31$| 00;31|' \
+        -e 's| 01;35$| 00;35|' \
+        > DIR_COLORS.lightbgcolor
+%autopatch -p1
 
 %build
 export CARGOFLAGS="-vv --verbose"
 %make_build PROFILE=release SELINUX_ENABLED=1 SKIP_UTILS='hostname kill more uptime'
 
 %install
-%make_install PROFILE=release MULTICALL=n DESTDIR=%buildroot PREFIX=%_prefix SELINUX_ENABLED=1 SKIP_UTILS='hostname kill more uptime' &
-wait
 install -p -c -m644 %SOURCE2 %{buildroot}%{_sysconfdir}/profile.d/colorls.sh
 install -p -c -m644 %SOURCE3 %{buildroot}%{_sysconfdir}/profile.d/colorls.csh
+install -p -c -m644 %SOURCE2 %{buildroot}%{_sysconfdir}/profile.d/colorls.sh
+install -p -c -m644 DIR_COLORS %{buildroot}%{_sysconfdir}/DIR_COLORS
+install -p -c -m644 DIR_COLORS.lightbgcolor %{buildroot}%{_sysconfdir}/DIR_COLORS.lightbgcolor
+rm dircolors.hin DIR_COLORS DIR_COLORS.lightbgcolor
+%make_install PROFILE=release MULTICALL=n DESTDIR=%buildroot PREFIX=%_prefix SELINUX_ENABLED=1 SKIP_UTILS='hostname kill more uptime' &
+wait
 ln -sr hashsum %{buildroot}%{_bindir}/sha1sum
 ln -sr hashsum %{buildroot}%{_bindir}/sha224sum
 ln -sr hashsum %{buildroot}%{_bindir}/sha256sum

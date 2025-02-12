@@ -1,0 +1,267 @@
+# Configuration file for the color ls utility - modified for lighter backgrounds
+
+# This file goes in the /etc directory, and must be world readable.
+# You can override the system defaults by making a copy of this file
+# as ~/.dir_colors
+
+# Configuration file for dircolors, a utility to help you set the
+# LS_COLORS environment variable used by GNU ls with the --color option.
+
+# Copyright (C) 1996-2024 Free Software Foundation, Inc.
+# Copying and distribution of this file, with or without modification,
+# are permitted provided the copyright notice and this notice are preserved.
+
+#
+# The keywords COLOR, OPTIONS, and EIGHTBIT (honored by the
+# slackware version of dircolors) are recognized but ignored.
+
+# Global config options can be specified before TERM or COLORTERM entries
+
+# For compatibility, the pattern "^COLOR.*none" is recognized as a way to
+# disable colorization.  See https://bugzilla.redhat.com/1349579 for details.
+
+# ===================================================================
+# Terminal filters
+# ===================================================================
+# Below are TERM or COLORTERM entries, which can be glob patterns, which
+# restrict following config to systems with matching environment variables.
+COLORTERM ?*
+TERM Eterm
+TERM ansi
+TERM *color*
+TERM con[0-9]*x[0-9]*
+TERM cons25
+TERM console
+TERM cygwin
+TERM *direct*
+TERM dtterm
+TERM gnome
+TERM hurd
+TERM jfbterm
+TERM konsole
+TERM kterm
+TERM linux
+TERM linux-c
+TERM mlterm
+TERM putty
+TERM rxvt*
+TERM screen*
+TERM st
+TERM terminator
+TERM tmux*
+TERM vt100
+TERM xterm*
+
+# ===================================================================
+# Basic file attributes
+# ===================================================================
+# Below are the color init strings for the basic file types.
+# One can use codes for 256 or more colors supported by modern terminals.
+# The default color codes use the capabilities of an 8 color terminal
+# with some additional attributes as per the following codes:
+# Attribute codes:
+# 00=none 01=bold 04=underscore 05=blink 07=reverse 08=concealed
+# Text color codes:
+# 30=black 31=red 32=green 33=yellow 34=blue 35=magenta 36=cyan 37=white
+# Background color codes:
+# 40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white
+#NORMAL 00	# no color code at all
+#FILE 00	# regular file: use no color at all
+RESET 0		# reset to "normal" color
+DIR 00;34	# directory
+LINK 00;36	# symbolic link.  (If you set this to 'target' instead of a
+                # numerical value, the color is as for the file pointed to.)
+MULTIHARDLINK 00	# regular file with more than one link
+FIFO 40;33	# pipe
+SOCK 00;35	# socket
+DOOR 00;35	# door
+BLK 40;33;01	# block device driver
+CHR 40;33;01	# character device driver
+ORPHAN 40;31;01 # symlink to nonexistent file, or non-stat'able file ...
+MISSING 01;37;41 # ... and the files they point to
+SETUID 37;41	# file that is setuid (u+s)
+SETGID 30;43	# file that is setgid (g+s)
+CAPABILITY 00	# file with capability (very expensive to lookup)
+STICKY_OTHER_WRITABLE 30;42 # dir that is sticky and other-writable (+t,o+w)
+OTHER_WRITABLE 34;42 # dir that is other-writable (o+w) and not sticky
+STICKY 37;44	# dir with the sticky bit set (+t) and not other-writable
+
+# This is for files with execute permission:
+EXEC 00;32
+
+# ===================================================================
+# File extension attributes
+# ===================================================================
+# List any file extensions like '.gz' or '.tar' that you would like ls
+# to color below. Put the suffix, a space, and the color init string.
+# (and any comments you want to add after a '#').
+# Suffixes are matched case insensitively, but if you define different
+# init strings for separate cases, those will be honored.
+#
+
+# If you use DOS-style suffixes, you may want to uncomment the following:
+#.cmd 01;32 # executables (bright green)
+#.exe 01;32
+#.com 01;32
+#.btm 01;32
+#.bat 01;32
+# Or if you want to color scripts even if they do not have the
+# executable bit actually set.
+#.sh  01;32
+#.csh 01;32
+
+# archives or compressed (bright red)
+.7z  00;31
+.ace 00;31
+.alz 00;31
+.apk 00;31
+.arc 00;31
+.arj 00;31
+.bz  00;31
+.bz2 00;31
+.cab 00;31
+.cpio 00;31
+.crate 00;31
+.deb 00;31
+.drpm 00;31
+.dwm 00;31
+.dz  00;31
+.ear 00;31
+.egg 00;31
+.esd 00;31
+.gz  00;31
+.jar 00;31
+.lha 00;31
+.lrz 00;31
+.lz  00;31
+.lz4 00;31
+.lzh 00;31
+.lzma 00;31
+.lzo 00;31
+.pyz 00;31
+.rar 00;31
+.rpm 00;31
+.rz  00;31
+.sar 00;31
+.swm 00;31
+.t7z 00;31
+.tar 00;31
+.taz 00;31
+.tbz 00;31
+.tbz2 00;31
+.tgz 00;31
+.tlz 00;31
+.txz 00;31
+.tz  00;31
+.tzo 00;31
+.tzst 00;31
+.udeb 00;31
+.war 00;31
+.whl 00;31
+.wim 00;31
+.xz  00;31
+.z   00;31
+.zip 00;31
+.zoo 00;31
+.zst 00;31
+
+# image formats
+.avif 00;35
+.jpg 00;35
+.jpeg 00;35
+.mjpg 00;35
+.mjpeg 00;35
+.gif 00;35
+.bmp 00;35
+.pbm 00;35
+.pgm 00;35
+.ppm 00;35
+.tga 00;35
+.xbm 00;35
+.xpm 00;35
+.tif 00;35
+.tiff 00;35
+.png 00;35
+.svg 00;35
+.svgz 00;35
+.mng 00;35
+.pcx 00;35
+.mov 00;35
+.mpg 00;35
+.mpeg 00;35
+.m2v 00;35
+.mkv 00;35
+.webm 00;35
+.webp 00;35
+.ogm 00;35
+.mp4 00;35
+.m4v 00;35
+.mp4v 00;35
+.vob 00;35
+.qt  00;35
+.nuv 00;35
+.wmv 00;35
+.asf 00;35
+.rm  00;35
+.rmvb 00;35
+.flc 00;35
+.avi 00;35
+.fli 00;35
+.flv 00;35
+.gl 00;35
+.dl 00;35
+.xcf 00;35
+.xwd 00;35
+.yuv 00;35
+.cgm 00;35
+.emf 00;35
+
+# https://wiki.xiph.org/MIME_Types_and_File_Extensions
+.ogv 00;35
+.ogx 00;35
+
+# audio formats
+.aac 00;36
+.au 00;36
+.flac 00;36
+.m4a 00;36
+.mid 00;36
+.midi 00;36
+.mka 00;36
+.mp3 00;36
+.mpc 00;36
+.ogg 00;36
+.ra 00;36
+.wav 00;36
+
+# https://wiki.xiph.org/MIME_Types_and_File_Extensions
+.oga 00;36
+.opus 00;36
+.spx 00;36
+.xspf 00;36
+
+# backup files
+*~ 00;90
+*# 00;90
+.bak 00;90
+.crdownload 00;90
+.dpkg-dist 00;90
+.dpkg-new 00;90
+.dpkg-old 00;90
+.dpkg-tmp 00;90
+.old 00;90
+.orig 00;90
+.part 00;90
+.rej 00;90
+.rpmnew 00;90
+.rpmorig 00;90
+.rpmsave 00;90
+.swp 00;90
+.tmp 00;90
+.ucf-dist 00;90
+.ucf-new 00;90
+.ucf-old 00;90
+
+#
+# Subsequent TERM or COLORTERM entries, can be used to add / override
+# config specific to those matching environment variables.
