@@ -12,9 +12,9 @@ Source0:        %url/archive/refs/tags/%version.tar.gz
 Source1:        coreutils-colorls.sh
 Source2:        coreutils-colorls.csh
 Source3:        https://raw.githubusercontent.com/coreutils/coreutils/refs/heads/master/src/dircolors.hin
-Source4:        https://src.fedoraproject.org/rpms/coreutils/blob/rawhide/f/coreutils-8.32-DIR_COLORS.patch
 Patch0:         coreutils-fix-metadata.diff
 Patch1:         coreutils-fix-seq-neg-num-tests.diff
+Patch3:         https://src.fedoraproject.org/rpms/coreutils/blob/rawhide/f/coreutils-8.32-DIR_COLORS.patch
 BuildRequires:  cargo
 BuildRequires:  clang-devel
 BuildRequires:  gcc-c++
