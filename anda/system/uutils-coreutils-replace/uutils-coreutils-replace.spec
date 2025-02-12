@@ -60,6 +60,9 @@ install -p -c -Dm644 DIR_COLORS{,.lightbgcolor} %{buildroot}%{_sysconfdir}
 /usr/bin/rm dircolors.hin DIR_COLORS DIR_COLORS.lightbgcolor
 %make_install PROFILE_CMD='--profile=rpm' MULTICALL=n DESTDIR=%buildroot BUILDDIR=target/rpm PREFIX=%_prefix SELINUX_ENABLED=1 SKIP_UTILS='hostname kill more uptime' &
 wait
+/usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/b2sum
+/usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/b3sum
+/usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/md5sum
 /usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/sha1sum
 /usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/sha224sum
 /usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/sha256sum
@@ -94,6 +97,9 @@ cat files.txt
 %files -f files.txt
 %doc README.md
 %license LICENSE
+%{_bindir}/b2sum
+%{_bindir}/b3sum
+%{_bindir}/md5sum
 %{_bindir}/sha1sum
 %{_bindir}/sha224sum
 %{_bindir}/sha256sum
