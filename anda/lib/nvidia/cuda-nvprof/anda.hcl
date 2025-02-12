@@ -1,7 +1,9 @@
 project pkg {
+        arches = ["x86_64"]
     rpm {
         spec = "cuda-nvprof.spec"
     }
-
-    arches = ["x86_64"]
+    labels {
+	    subrepo = "nvidia"
+    }
 }
