@@ -58,7 +58,7 @@ install -p -c -Dm644 %{SOURCE1} %{buildroot}%{_sysconfdir}/profile.d/colorls.sh
 install -p -c -Dm644 %{SOURCE2} %{buildroot}%{_sysconfdir}/profile.d/colorls.csh
 install -p -c -Dm644 DIR_COLORS{,.lightbgcolor} %{buildroot}%{_sysconfdir}
 /usr/bin/rm dircolors.hin DIR_COLORS DIR_COLORS.lightbgcolor
-%make_install PROFILE=rpm PROFILE_CMD='--profile=rpm' MULTICALL=n DESTDIR=%buildroot PREFIX=%_prefix SELINUX_ENABLED=1 SKIP_UTILS='hostname kill more uptime' &
+%make_install PROFILE_CMD='--profile=rpm' MULTICALL=n DESTDIR=%buildroot BUILDDIR=target/rpm PREFIX=%_prefix SELINUX_ENABLED=1 SKIP_UTILS='hostname kill more uptime' &
 wait
 /usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/sha1sum
 /usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/sha224sum
