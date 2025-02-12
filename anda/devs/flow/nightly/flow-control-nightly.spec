@@ -10,7 +10,7 @@ License:        MIT
 URL:            https://github.com/neurocyte/flow
 Source0:        %url/archive/%commit.tar.gz
 BuildRequires:  zig
-Provides:       flow = 1:0.3.2^46.g%shortcommit-%release
+Provides:       flow = %version-%release
 
 %description
 %summary.

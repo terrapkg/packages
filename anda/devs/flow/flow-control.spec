@@ -8,6 +8,8 @@ URL:            https://github.com/neurocyte/flow
 Source0:        %url/archive/v%version.tar.gz
 BuildRequires:  zig
 Provides:       flow = %epoch:%version-%release
+Obsoletes:      flow-control-nightly < 20250212.9999999
+
 
 %description
 %summary.
