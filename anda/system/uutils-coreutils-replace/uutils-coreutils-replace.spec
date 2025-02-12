@@ -54,7 +54,6 @@ sed dircolors.hin \
 %build
 
 %install
-export CARGOFLAGS="-vv --verbose"
 install -p -c -Dm644 %{SOURCE1} %{buildroot}%{_sysconfdir}/profile.d/colorls.sh
 install -p -c -Dm644 %{SOURCE2} %{buildroot}%{_sysconfdir}/profile.d/colorls.csh
 install -p -c -Dm644 DIR_COLORS{,.lightbgcolor} %{buildroot}%{_sysconfdir}
