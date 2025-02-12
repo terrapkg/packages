@@ -17,6 +17,7 @@ Source3:        https://raw.githubusercontent.com/coreutils/coreutils/refs/heads
 Patch0:         coreutils-fix-metadata.diff
 Patch1:         coreutils-fix-seq-neg-num-tests.diff
 Patch3:         https://src.fedoraproject.org/rpms/coreutils/raw/rawhide/f/coreutils-8.32-DIR_COLORS.patch
+BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo
 BuildRequires:  clang-devel
 BuildRequires:  gcc-c++
@@ -39,6 +40,7 @@ This package replaces the GNU coreutils commands.
 
 %prep
 %setup -q -n coreutils-%version
+%cargo_prep_online
 cp %{SOURCE3} .
 sed dircolors.hin \
         -e 's| 00;36$| 01;36|' \
@@ -51,14 +53,14 @@ sed dircolors.hin \
 
 %build
 export CARGOFLAGS="-vv --verbose"
-%make_build PROFILE=release SELINUX_ENABLED=1 SKIP_UTILS='hostname kill more uptime'
+%make_build PROFILE=rpm SELINUX_ENABLED=1 SKIP_UTILS='hostname kill more uptime'
 
 %install
 install -p -c -m644 %SOURCE2 %{buildroot}%{_sysconfdir}/profile.d/colorls.sh
 install -p -c -m644 %SOURCE3 %{buildroot}%{_sysconfdir}/profile.d/colorls.csh
 install -p -c -m644 DIR_COLORS{,.lightbgcolor} %{buildroot}%{_sysconfdir}
 /usr/bin/rm dircolors.hin DIR_COLORS DIR_COLORS.lightbgcolor
-%make_install PROFILE=release MULTICALL=n DESTDIR=%buildroot PREFIX=%_prefix SELINUX_ENABLED=1 SKIP_UTILS='hostname kill more uptime' &
+%make_install PROFILE=rpm MULTICALL=n DESTDIR=%buildroot PREFIX=%_prefix SELINUX_ENABLED=1 SKIP_UTILS='hostname kill more uptime' &
 wait
 ln -sr hashsum %{buildroot}%{_bindir}/sha1sum
 ln -sr hashsum %{buildroot}%{_bindir}/sha224sum
