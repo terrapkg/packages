@@ -212,6 +212,7 @@ BuildRequires:  openjpeg2-devel
 %{!?_without_pulse:BuildRequires: pulseaudio-libs-devel}
 BuildRequires:  perl(GD::Text)
 BuildRequires:  perl(Pod::Man)
+BuildRequires:  perl(Texinfo::Convert::HTML)
 BuildRequires:  qrencode-devel
 %{?_with_rav1e:BuildRequires: pkgconfig(rav1e)}
 %{!?_without_rubberband:BuildRequires: rubberband-devel}
