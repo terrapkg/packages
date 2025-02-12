@@ -32,7 +32,7 @@ This package replaces the GNU coreutils commands.
 
 %build
 export CARGOFLAGS="-vv --verbose"
-%make_build PROFILE=release SELINUX_ENABLED=1 SKIP_UTILS='hostname kill more uptime sha3-224sum sha3-256sum sha3-384sum sha3-512sum sha3sum shake128sum shake256sum'
+%make_build PROFILE=release SELINUX_ENABLED=1 SKIP_UTILS='hostname kill more uptime'
 
 %install
 %make_install PROFILE=release MULTICALL=n DESTDIR=%buildroot PREFIX=%_prefix SELINUX_ENABLED=1 SKIP_UTILS='hostname kill more uptime sha3-224sum sha3-256sum sha3-384sum sha3-512sum sha3sum shake128sum shake256sum' &
