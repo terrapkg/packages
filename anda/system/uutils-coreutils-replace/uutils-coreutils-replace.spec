@@ -61,7 +61,6 @@ install -p -c -Dm644 DIR_COLORS{,.lightbgcolor} %{buildroot}%{_sysconfdir}
 %make_install PROFILE_CMD='--profile=rpm' MULTICALL=n DESTDIR=%buildroot BUILDDIR=target/rpm PREFIX=%_prefix SELINUX_ENABLED=1 SKIP_UTILS='hostname kill more uptime' &
 wait
 /usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/b2sum
-/usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/b3sum
 /usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/md5sum
 /usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/sha1sum
 /usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/sha224sum
