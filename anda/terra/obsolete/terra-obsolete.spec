@@ -145,7 +145,6 @@ BuildArch:  noarch
 %obsolete switchboard-plug-security-privacy 8.0.0-2
 %obsolete switchboard-plug-useraccounts 8.0.0-2
 %obsolete switchboard-plug-wacom 8.0.0-2
-%obsolete switchboard-plug-wallet 50582fc-3
 
 %description
 Currently obsoleted packages:
