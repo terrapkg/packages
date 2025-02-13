@@ -15,18 +15,23 @@ jobs:
       image: registry.fedoraproject.org/fedora-minimal:${{ matrix.version }}
       options: --cap-add=SYS_ADMIN --privileged
     steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: f${{ matrix.version }}
+          fetch-depth: 1
+
       - name: Install repositories
         run: |
           dnf5 install -y --setopt=install_weak_deps=False curl wget git-core openssl-devel cargo podman fuse-overlayfs dnf5-plugins
           dnf5 builddep -y anda/terra/{mock-configs,srpm-macros}/*.spec anda/tools/buildsys/{anda,subatomic}/*.spec
 
       - name: Install Anda
-        run: cargo install anda
+        run: |
+          mkdir -p anda-build/rpm/rpms
+          rpmbuild -bb anda/tools/buildsys/anda/*.spec
+          mv ~/rpmbuild/RPMS/*/*.rpm anda-build/rpm/rpms/
+          dnf5 install -y ./anda-build/rpm/rpms/anda-*.rpm
 
-      - uses: actions/checkout@v4
-        with:
-          ref: f${{ matrix.version }}
-          fetch-depth: 1
       - name: Build terra-mock-configs
         run: |
           echo "PATH=$PATH:/github/home/.cargo/bin" >> $GITHUB_ENV
@@ -43,9 +48,6 @@ jobs:
         run: anda build -rrpmbuild anda/tools/buildsys/subatomic/pkg
       - name: Install Subatomic
         run: dnf5 install -y ./anda-build/rpm/rpms/subatomic-*.rpm
-
-      - name: Build Andaman
-        run: anda build -rrpmbuild anda/tools/buildsys/anda/pkg
 
       - name: Upload packages to subatomic
         run: |
