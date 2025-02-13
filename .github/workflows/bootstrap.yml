@@ -17,16 +17,30 @@ jobs:
     steps:
       - name: Install repositories
         run: |
-          dnf5 install -y --setopt=install_weak_deps=False curl wget git-core openssl-devel cargo podman fuse-overlayfs
-          dnf5 builddep -y anda/terra/{mock-configs,srpm-macros}/*.spec anda/tools/buildsys/{anda,subatomic}/*.spec
-
-      - name: Install Anda
-        run: cargo install anda
+          dnf5 swap -y --setopt=install_weak_deps=False systemd-standalone-sysusers systemd
+          dnf5 install -y --setopt=install_weak_deps=False curl wget git-core openssl-devel cargo podman fuse-overlayfs dnf5-plugins rpmbuild script
 
       - uses: actions/checkout@v4
         with:
           ref: f${{ matrix.version }}
           fetch-depth: 1
+
+      - name: Build anda-srpm-macros
+        run: |
+          mkdir -p anda-build/rpm/rpms
+          rpmbuild -bb anda/terra/srpm-macros/*.spec --undefine=_disable_source_fetch -D "_sourcedir $(pwd)/anda/terra/srpm-macros/" -D "_rpmdir $(pwd)/anda-build/rpm/rpms/"
+          mv ./anda-build/rpm/rpms/*/anda-*.rpm ./anda-build/rpm/rpms/
+          dnf5 install -y ./anda-build/rpm/rpms/anda-*.rpm
+
+      - name: Install build dependencies
+        run: dnf5 builddep -y anda/terra/{mock-configs,srpm-macros}/*.spec anda/tools/buildsys/{anda,subatomic}/*.spec
+
+      - name: Install Anda
+        run: |
+          rpmbuild -bb anda/tools/buildsys/anda/*.spec --undefine=_disable_source_fetch -D "_sourcedir $(pwd)/anda/tools/buildsys/anda/" -D "_rpmdir $(pwd)/anda-build/rpm/rpms/"
+          mv ./anda-build/rpm/rpms/*/anda-*.rpm ./anda-build/rpm/rpms/
+          dnf5 install -y ./anda-build/rpm/rpms/anda-*.rpm
+
       - name: Build terra-mock-configs
         run: |
           echo "PATH=$PATH:/github/home/.cargo/bin" >> $GITHUB_ENV
@@ -36,16 +50,16 @@ jobs:
       - name: Install terra-mock-configs
         run: dnf5 install -y anda-build/rpm/rpms/terra-mock-configs*.rpm
 
-      - name: Build anda-srpm-macros
-        run: anda build -rrpmbuild anda/terra/srpm-macros/pkg
+      - name: Build trra-release
+        run: anda build -rrpmbuild anda/terra/release/pkg
 
       - name: Build Subatomic
         run: anda build -rrpmbuild anda/tools/buildsys/subatomic/pkg
       - name: Install Subatomic
         run: dnf5 install -y ./anda-build/rpm/rpms/subatomic-*.rpm
 
-      - name: Build Andaman
-        run: anda build -rrpmbuild anda/tools/buildsys/anda/pkg
+      - name: Tidy up output directory
+        run: rmdir anda-build/rpm/rpms/{noarch,aarch64,x86_64} | true
 
       - name: Upload packages to subatomic
         run: |
