@@ -12,7 +12,10 @@
 
 Name:           ghostty-nightly
 Version:        1.1.0
-Release:        1.tip%{dev_ver}^%{commit_date}.%{shortcommit}%{?dist}
+%if 0%{?fedora} <= 41
+Epoch:          1
+%endif
+Release:        2.tip%{dev_ver}^%{commit_date}.%{shortcommit}%{?dist}
 Summary:        A fast, native terminal emulator written in Zig; this is the Tip (nightly) build.
 License:        MIT AND MPL-2.0 AND OFL-1.1 AND (WTFPL OR CC0-1.0) AND Apache-2.0
 URL:            https://ghostty.org/
@@ -113,7 +116,7 @@ This package contains files for Ghostty's terminfo. Available for debugging use.
 %autosetup -n ghostty-source
 
 # Download everything ahead of time so we can enable system integration mode
-ZIG_GLOBAL_CACHE_DIR="%{cache_dir}" ./nix/build-support/fetch-zig-cache.sh
+ZIG_GLOBAL_CACHE_DIR="%{cache_dir}" ./nix/build-support/check-zig-cache.sh
 
 %build
 
