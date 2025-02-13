@@ -4,6 +4,7 @@ project pkg {
 		spec = "terra-gamescope.spec"
 	}
 	labels {
-		extra = 1
+		mock = 1
+		subrepo = "extras"
 	}
 }

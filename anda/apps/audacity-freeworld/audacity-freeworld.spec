@@ -2,8 +2,8 @@
 %global __provides_exclude ^lib-.*.so
 
 Name:    audacity-freeworld
-Version: 3.7.1
-Release: 1%{?dist}
+Version: Audacity.3.7.1
+Release: 1%?dist
 Summary: Multitrack audio editor
 License: GPLv2
 URL:     https://www.audacityteam.org/

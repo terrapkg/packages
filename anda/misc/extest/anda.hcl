@@ -3,4 +3,8 @@ project pkg {
 	rpm {
 		spec = "rust-extest.spec"
 	}
+
+	labels {
+		mock = 1
+	}
 }

@@ -3,6 +3,7 @@ project pkg {
 		spec = "kf6-kio.spec"
 	}
 	labels {
-		extra = 1
+		subrepo = "extras"
+		updbranch = 1
 	}
 }

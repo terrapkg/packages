@@ -3,6 +3,6 @@ project pkg {
 		spec = "switcheroo-control.spec"
 	}
 	labels {
-		extra = 1
+		subrepo = "extras"
 	}
 }

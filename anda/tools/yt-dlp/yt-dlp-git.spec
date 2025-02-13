@@ -37,7 +37,7 @@ Conflicts:      yt-dlp
 Suggests:       python3dist(keyring)
 
 Provides:       %{oldpkgname} = 1:0-1%?dist
-Obsoletes:      %{oldpkgname} < 0:20241226.git~0b6b774-2%?dist
+Obsoletes:      %{oldpkgname} < 0:20250117.git~1643686-2%?dist
 
 %global _description %{expand:
 yt-dlp is a command-line program to download videos from many different online
@@ -54,7 +54,7 @@ Supplements:    (%{name} and bash-completion)
 
 Conflicts:      yt-dlp-bash-completion
 Provides:       %{oldpkgname}-bash-completion = 1:0-1%?dist
-Obsoletes:      %{oldpkgname}-bash-completion < 0:20241226.git~0b6b774-2%?dist
+Obsoletes:      %{oldpkgname}-bash-completion < 0:20250117.git~1643686-2%?dist
 
 %description bash-completion
 Bash command line completion support for %{name}.
@@ -67,7 +67,7 @@ Supplements:    (%{name} and zsh)
 
 Conflicts:      yt-dlp-zsh-completion
 Provides:       %{oldpkgname}-zsh-completion = 1:0-1%?dist
-Obsoletes:      %{oldpkgname}-zsh-completion < 0:20241226.git~0b6b774-2%?dist
+Obsoletes:      %{oldpkgname}-zsh-completion < 0:20250117.git~1643686-2%?dist
 
 %description zsh-completion
 Zsh command line completion support for %{name}.
@@ -80,7 +80,7 @@ Supplements:    (%{name} and fish)
 
 Conflicts:      yt-dlp-fish-completion
 Provides:       %{oldpkgname}-fish-completion = 1:0-1%?dist
-Obsoletes:      %{oldpkgname}-fish-completion < 0:20241226.git~0b6b774-2%?dist
+Obsoletes:      %{oldpkgname}-fish-completion < 0:20250117.git~1643686-2%?dist
 
 %description fish-completion
 Fish command line completion support for %{name}.

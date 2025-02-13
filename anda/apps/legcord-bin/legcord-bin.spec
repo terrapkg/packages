@@ -27,7 +27,6 @@ Requires:		xdg-utils
 BuildRequires:  unzip
 ExclusiveArch:	x86_64 aarch64 armv7l
 Conflicts:		legcord
-Conflicts:		legcord-nightly
 BuildRequires:	add-determinism
 Obsoletes:      armcord < 3.3.2-1
 
