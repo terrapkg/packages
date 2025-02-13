@@ -1,1 +1,1 @@
-rpm.version(gh("audacity/audacity"));
+rpm.version(gh_tag("audacity/audacity"));
