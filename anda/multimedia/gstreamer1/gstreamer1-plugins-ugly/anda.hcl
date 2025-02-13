@@ -4,7 +4,8 @@ project pkg {
     spec = "gstreamer1-plugins-ugly.spec"
   }
   labels {
-        subrepo = "extras"
-        mock = 1
-    }
+    subrepo = "extras"
+    mock = 1
+    updbranch = 1
+  }
 }
