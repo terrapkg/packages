@@ -28,7 +28,7 @@ jobs:
       - name: Build anda-srpm-macros
         run: |
           mkdir -p anda-build/rpm/rpms
-          rpmbuild -bb anda/terra/srpm-macros/*.spec
+          rpmbuild --undefine=_disable_source_fetch --define '_sourcedir .' -bb anda/terra/srpm-macros/*.spec
           mv ~/rpmbuild/RPMS/*/*.rpm anda-build/rpm/rpms/
           dnf5 install -y ./anda-build/rpm/rpms/anda-*.rpm
 
@@ -37,7 +37,7 @@ jobs:
 
       - name: Install Anda
         run: |
-          rpmbuild -bb anda/tools/buildsys/anda/*.spec
+          rpmbuild --undefine=_disable_source_fetch --define '_sourcedir .' -bb anda/tools/buildsys/anda/*.spec
           mv ~/rpmbuild/RPMS/*/*.rpm anda-build/rpm/rpms/
           dnf5 install -y ./anda-build/rpm/rpms/anda-*.rpm
 
