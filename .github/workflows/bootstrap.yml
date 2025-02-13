@@ -25,12 +25,18 @@ jobs:
           ref: f${{ matrix.version }}
           fetch-depth: 1
 
+      - name: Build anda-srpm-macros
+        run: |
+          mkdir -p anda-build/rpm/rpms
+          rpmbuild -bb anda/terra/srpm-macros/*.spec
+          mv ~/rpmbuild/RPMS/*/*.rpm anda-build/rpm/rpms/
+          dnf5 install -y ./anda-build/rpm/rpms/anda-*.rpm
+
       - name: Install build dependencies
         run: dnf5 builddep -y anda/terra/{mock-configs,srpm-macros}/*.spec anda/tools/buildsys/{anda,subatomic}/*.spec
 
       - name: Install Anda
         run: |
-          mkdir -p anda-build/rpm/rpms
           rpmbuild -bb anda/tools/buildsys/anda/*.spec
           mv ~/rpmbuild/RPMS/*/*.rpm anda-build/rpm/rpms/
           dnf5 install -y ./anda-build/rpm/rpms/anda-*.rpm
@@ -43,9 +49,6 @@ jobs:
           anda build -rrpmbuild anda/terra/mock-configs/pkg
       - name: Install terra-mock-configs
         run: dnf5 install -y anda-build/rpm/rpms/terra-mock-configs*.rpm
-
-      - name: Build anda-srpm-macros
-        run: anda build -rrpmbuild anda/terra/srpm-macros/pkg
 
       - name: Build Subatomic
         run: anda build -rrpmbuild anda/tools/buildsys/subatomic/pkg
