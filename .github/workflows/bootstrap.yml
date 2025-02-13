@@ -16,7 +16,9 @@ jobs:
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Install repositories
-        run: dnf5 install -y --setopt=install_weak_deps=False curl wget git-core openssl-devel cargo podman fuse-overlayfs dnf5-plugins
+        run: |
+          dnf5 swap -y --setopt=install_weak_deps=False systemd-standalone-sysusers systemd
+          dnf5 install -y --setopt=install_weak_deps=False curl wget git-core openssl-devel cargo podman fuse-overlayfs dnf5-plugins
 
       - uses: actions/checkout@v4
         with:
