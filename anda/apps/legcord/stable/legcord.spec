@@ -4,25 +4,25 @@
 %global __requires_exclude libffmpeg.so
 %global __provides_exclude_from %{_datadir}/(armcord|legcord)/.*\\.so
 
-Name:		legcord
-Version:	1.1.0
-Release:	1%?dist
-License:	OSL-3.0
-Summary:	Custom lightweight Discord client designed to enhance your experience
-URL:		https://github.com/LegCord/LegCord
-Group:		Applications/Internet
-Source1:	launch.sh
-Packager:	madonuko <mado@fyralabs.com>
-Requires:	electron xdg-utils
-Provides:   armcord
-Obsoletes:  armcord < 3.3.2-1
-Conflicts:	legcord-bin
-Conflicts:	legcord-nightly
-BuildArch:	noarch
+Name:           legcord
+Version:        1.1.0
+Release:        1%?dist
+License:        OSL-3.0
+Summary:        Custom lightweight Discord client designed to enhance your experience
+URL:            https://github.com/Legcord/Legcord
+Group:          Applications/Internet
+Source1:        launch.sh
+Packager:       madonuko <mado@fyralabs.com>
+Requires:       electron xdg-utils
+Provides:       armcord
+Obsoletes:      armcord < 3.3.2-1
+Conflicts:      legcord-bin
+Conflicts:      legcord-nightly
+BuildArch:      noarch
 BuildRequires:  anda-srpm-macros pnpm
 
 %description
-legcord is a custom client designed to enhance your Discord experience
+Legcord is a custom client designed to enhance your Discord experience
 while keeping everything lightweight.
 
 %prep
