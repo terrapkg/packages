@@ -50,6 +50,9 @@ jobs:
       - name: Install terra-mock-configs
         run: dnf5 install -y anda-build/rpm/rpms/terra-mock-configs*.rpm
 
+      - name: Build trra-release
+        run: anda build -rrpmbuild anda/terra/release/pkg
+
       - name: Build Subatomic
         run: anda build -rrpmbuild anda/tools/buildsys/subatomic/pkg
       - name: Install Subatomic
