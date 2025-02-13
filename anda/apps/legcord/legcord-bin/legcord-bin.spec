@@ -53,7 +53,6 @@ EOF
 %build
 
 %install
-cd legcord
 mkdir -p %buildroot%_bindir %buildroot%_datadir/applications %buildroot%_datadir/pixmaps %buildroot%_datadir/legcord %buildroot%_docdir/%name
 cp -a * %buildroot%_datadir/legcord/
 ln -s %_datadir/legcord/legcord %buildroot%_bindir/legcord
