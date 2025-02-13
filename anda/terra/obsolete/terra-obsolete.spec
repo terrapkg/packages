@@ -121,15 +121,31 @@ BuildArch:  noarch
 %obsolete_ticket https://github.com/terrapkg/packages/issues/991
 %obsolete iosevka-fusion-fonts 25.1.1-2
 
-# obsolete_ticket <github PR URL>
-# %obsolete terra-sddm 0.21.0-6
-# %obsolete terra-rgbds
-# %obsolete terra-libplacebo
-# %obsolete terra-wl-clipboard
-# %obsolete terra-maturin
-# %obsolete terra-libindicator
-# %obsolete terra-blueprint-compiler
-# %obsolete nushell
+%obsolete_ticket https://github.com/terrapkg/packages/pull/3138
+%obsolete terra-sddm 0.21.0-6
+%obsolete terra-rgbds 0.9.0-3
+%obsolete terra-libplacebo 7.349.0-3
+%obsolete terra-libplacebo-devel 7.349.0-3
+%obsolete terra-wl-clipboard 2.2.1-2
+%obsolete terra-maturin 1.8.1-3
+%obsolete terra-libindicator 16.10.0-3
+%obsolete terra-libindicator-devel 16.10.0-3
+%obsolete terra-libindicator-gtk3 16.10.0-3
+%obsolete terra-libindicator-gtk3-devel 16.10.0-3
+%obsolete terra-blueprint-compiler 0.16.0-3
+%obsolete nushell 0.101.0-3
+%obsolete uutils-coreutils-util-linux 0.0.29-2
+%obsolete uutils-coreutils-util-linux-replace 0.0.29-2
+# pantheon packages only packaged in terra
+%obsolete elementary-appcenter 7.4.0-3
+%obsolete switchboard-plug-datetime 8.0.0-2
+%obsolete switchboard-plug-locale 8.0.0-2
+%obsolete switchboard-plug-parental-controls 8.0.0-2
+%obsolete switchboard-plug-power 8.0.0-2
+%obsolete switchboard-plug-security-privacy 8.0.0-2
+%obsolete switchboard-plug-useraccounts 8.0.0-2
+%obsolete switchboard-plug-wacom 8.0.0-2
+%obsolete switchboard-plug-wallet 50582fc-3
 
 %description
 Currently obsoleted packages:
