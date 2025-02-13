@@ -7,7 +7,7 @@
 
 Name:           eww
 Version:        %ver^%commit_date.git~%shortcommit
-Release:        %autorelease
+Release:        1%?dist
 Summary:        Widgets for everyone!
 
 SourceLicense:  MIT

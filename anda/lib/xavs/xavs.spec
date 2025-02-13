@@ -4,14 +4,12 @@ Release:        1%{?dist}
 Summary:        AVS1 (First-generation AVS Standards) library
 License:        GPLv2
 URL:            http://xavs.sourceforge.net/
-
-Source0:        https://sourceforge.net/code-snapshots/svn/x/xa/xavs/code/xavs-code-r55-trunk.zip
 Patch0:         %{name}-cflags.patch
-
 BuildRequires:  autoconf
 BuildRequires:  automake
 BuildRequires:  gcc
 BuildRequires:  libtool
+BuildRequires:  subversion
 #BuildRequires:  yasm
 
 %description
@@ -37,7 +35,9 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %prep
-%autosetup -p1 -n xavs-code-r55-trunk
+svn co https://svn.code.sf.net/p/xavs/code/trunk %{name}
+%setup -T -D -n %{name}
+%autopatch -p1
 
 %build
 %configure \
