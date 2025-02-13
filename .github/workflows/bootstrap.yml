@@ -55,6 +55,9 @@ jobs:
       - name: Install Subatomic
         run: dnf5 install -y ./anda-build/rpm/rpms/subatomic-*.rpm
 
+      - name: Tidy up output directory
+        run: rmdir anda-build/rpm/rpms/{noarch,aarch64,x86_64} | true
+
       - name: Upload packages to subatomic
         run: |
           subatomic-cli upload --prune \
