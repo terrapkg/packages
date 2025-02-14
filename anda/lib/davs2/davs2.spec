@@ -9,7 +9,7 @@ Summary:    An open-source decoder of AVS2-P2/IEEE1857.4 video coding standard
 URL:        https://github.com/pkuvcl/%{name}
 License:    GPLv2
 
-%if %{commit0} != %nil
+%if %len %{commit0} != 0
 Source0:    https://github.com/pkuvcl/%{name}/archive/%{commit0}/%{name}-%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
 %else
 Source0:    https://github.com/pkuvcl/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
@@ -44,7 +44,7 @@ This package contains the shared library development files.
 
 %prep
 # Use flat condition or it fails on EPEL 7
-%if %{commit0} != %nil
+%if %len %{commit0} != 0
 %autosetup -n %{name}-%{commit0}
 %else
 %autosetup
