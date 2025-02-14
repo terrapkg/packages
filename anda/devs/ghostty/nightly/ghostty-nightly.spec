@@ -1,9 +1,9 @@
-%global commit 432beac3151d84c78dfe7ab860c1c3f7957f4775
+%global commit 52a5069decb6d698df347e4b46d5f26ebe639ebb
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global fulldate 2025-02-13
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
-%global dev_ver 1.1.1
+%global dev_ver 1.1.3
 %if 0%{?fedora} <= 40
 %global cache_dir %{_builddir}/zig-cache
 %else
@@ -11,7 +11,7 @@
 %endif
 
 Name:           ghostty-nightly
-Version:        1.1.0
+Version:        1.1.2
 %if 0%{?fedora} <= 42
 Epoch:          1
 %endif

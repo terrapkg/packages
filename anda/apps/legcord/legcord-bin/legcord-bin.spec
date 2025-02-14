@@ -2,47 +2,44 @@
 %global _build_id_links none
 
 %ifarch x86_64
-%global src LegCord-%version-linux-x64
+%global src Legcord-%version-linux-x64
 %elifarch aarch64
-%global src LegCord-%version-linux-arm64
+%global src Legcord-%version-linux-arm64
 %elifarch armv7l
-%global src LegCord-%version-linux-armv7l
+%global src Legcord-%version-linux-armv7l
 %endif
 
 # Exclude private libraries
 %global __requires_exclude libffmpeg.so
 %global __provides_exclude_from %{_datadir}/(armcord|legcord)/.*\\.so
 
-Name:			legcord-bin
-Version:		1.0.8
-Release:		1%?dist
-License:		OSL-3.0
-Summary:		Custom lightweight Discord client designed to enhance your experience
-URL:			https://github.com/LegCord/LegCord
-Group:			Applications/Internet
-Source0:		%url/releases/download/v%version/%src.zip
-Source1:		legcord.png
-Source2:		https://raw.githubusercontent.com/LegCord/LegCord/v%version/README.md
-Requires:		xdg-utils
-BuildRequires:  unzip
-ExclusiveArch:	x86_64 aarch64 armv7l
-Conflicts:		legcord
-Conflicts:		legcord-nightly
-BuildRequires:	add-determinism
+Name:           legcord-bin
+Version:        1.1.0
+Release:        1%?dist
+License:        OSL-3.0
+Summary:        Custom lightweight Discord client designed to enhance your experience
+URL:            https://github.com/Legcord/Legcord
+Group:          Applications/Internet
+Source0:        %url/releases/download/v%version/%src.tar.gz
+Source1:        legcord.png
+Source2:        https://raw.githubusercontent.com/Legcord/Legcord/v%version/README.md
+Requires:       xdg-utils
+ExclusiveArch:  x86_64 aarch64 armv7l
+Conflicts:      legcord
+Conflicts:      legcord-nightly
+BuildRequires:  add-determinism
 Obsoletes:      armcord < 3.3.2-1
 
 %description
-LegCord is a custom client designed to enhance your Discord experience
+Legcord is a custom client designed to enhance your Discord experience
 while keeping everything lightweight.
 
 %prep
-mkdir legcord
-cd legcord
-unzip %SOURCE0
+%autosetup -n %src
 
 cat <<EOF > .legcord.desktop
 [Desktop Entry]
-Name=LegCord
+Name=Legcord
 Comment=%summary
 GenericName=Internet Messenger
 Type=Application
@@ -56,7 +53,6 @@ EOF
 %build
 
 %install
-cd legcord
 mkdir -p %buildroot%_bindir %buildroot%_datadir/applications %buildroot%_datadir/pixmaps %buildroot%_datadir/legcord %buildroot%_docdir/%name
 cp -a * %buildroot%_datadir/legcord/
 ln -s %_datadir/legcord/legcord %buildroot%_bindir/legcord

@@ -6,7 +6,7 @@
 
 Name:           uutils-coreutils-replace
 Version:        0.0.29
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Cross-platform Rust rewrite of the GNU coreutils
 License:        MIT
 URL:            https://github.com/uutils/coreutils
@@ -41,7 +41,7 @@ This package replaces the GNU coreutils commands.
 %prep
 %setup -q -n coreutils-%version
 %cargo_prep_online
-cp %{SOURCE3} .
+/usr/bin/cp %{SOURCE3} .
 sed dircolors.hin \
         -e 's| 00;36$| 01;36|' \
         > DIR_COLORS
@@ -54,25 +54,19 @@ sed dircolors.hin \
 %build
 
 %install
-export CARGOFLAGS="-vv --verbose"
 install -p -c -Dm644 %{SOURCE1} %{buildroot}%{_sysconfdir}/profile.d/colorls.sh
 install -p -c -Dm644 %{SOURCE2} %{buildroot}%{_sysconfdir}/profile.d/colorls.csh
 install -p -c -Dm644 DIR_COLORS{,.lightbgcolor} %{buildroot}%{_sysconfdir}
 /usr/bin/rm dircolors.hin DIR_COLORS DIR_COLORS.lightbgcolor
 %make_install PROFILE_CMD='--profile=rpm' MULTICALL=n DESTDIR=%buildroot BUILDDIR=target/rpm PREFIX=%_prefix SELINUX_ENABLED=1 SKIP_UTILS='hostname kill more uptime' &
 wait
-ln -sr hashsum %{buildroot}%{_bindir}/sha1sum
-ln -sr hashsum %{buildroot}%{_bindir}/sha224sum
-ln -sr hashsum %{buildroot}%{_bindir}/sha256sum
-ln -sr hashsum %{buildroot}%{_bindir}/sha384sum
-ln -sr hashsum %{buildroot}%{_bindir}/sha512sum
-ln -sr hashsum %{buildroot}%{_bindir}/sha3-224sum
-ln -sr hashsum %{buildroot}%{_bindir}/sha3-256sum
-ln -sr hashsum %{buildroot}%{_bindir}/sha3-384sum
-ln -sr hashsum %{buildroot}%{_bindir}/sha3-512sum
-ln -sr hashsum %{buildroot}%{_bindir}/sha3sum
-ln -sr hashsum %{buildroot}%{_bindir}/shake128sum
-ln -sr hashsum %{buildroot}%{_bindir}/shake256sum
+/usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/b2sum
+/usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/md5sum
+/usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/sha1sum
+/usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/sha224sum
+/usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/sha256sum
+/usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/sha384sum
+/usr/bin/ln -sf hashsum %{buildroot}%{_bindir}/sha512sum
 
 %define cmds() $(echo %1{runcon,arch,base{32,64,name,nc},cat,ch{grp,mod,own,root,con},cksum,comm,cp,csplit,cut,date,dd,df,dir{,colors,name},du,echo,env,expand,expr,factor,false,fmt,fold,groups,hashsum,head,host{id},id,install,join,link,ln,logname,ls,mk{dir,fifo,nod,temp},mv,nice,nl,nohup,nproc,numfmt,od,paste,pathchk,pinky,pr,printenv,printf,ptx,pwd,readlink,realpath,rm{,dir},seq,shred,shuf,sleep,sort,split,stat,stdbuf,sum,sync,tac,tail,tee,test,timeout,touch,tr,true,truncate,tsort,tty,uname,un{expand,iq,link},users,vdir,wc,who{,ami},yes}%2)
 cat <<EOF > files.txt
@@ -95,18 +89,13 @@ cat files.txt
 %files -f files.txt
 %doc README.md
 %license LICENSE
+%{_bindir}/b2sum
+%{_bindir}/md5sum
 %{_bindir}/sha1sum
 %{_bindir}/sha224sum
 %{_bindir}/sha256sum
 %{_bindir}/sha384sum
 %{_bindir}/sha512sum
-%{_bindir}/sha3-224sum
-%{_bindir}/sha3-256sum
-%{_bindir}/sha3-384sum
-%{_bindir}/sha3-512sum
-%{_bindir}/sha3sum
-%{_bindir}/shake128sum
-%{_bindir}/shake256sum
 %config(noreplace) %{_sysconfdir}/DIR_COLORS
 %config(noreplace) %{_sysconfdir}/DIR_COLORS.lightbgcolor
 %{_sysconfdir}/profile.d/colorls.sh

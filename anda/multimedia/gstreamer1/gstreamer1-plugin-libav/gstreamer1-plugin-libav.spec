@@ -1,6 +1,6 @@
 Name:       gstreamer1-plugin-libav
 Version:    1.24.11
-Release:    1%{?dist}
+Release:    1%?dist
 Summary:    GStreamer Libav plugin
 License:    LGPLv2+
 URL:        https://gstreamer.freedesktop.org/modules/gst-libav.html
