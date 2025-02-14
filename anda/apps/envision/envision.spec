@@ -1,5 +1,5 @@
-%global commit 3680e305a9824f851a441bc96fc7654ef849b01a
-%global commit_date 20250127
+%global commit 1ed031a2bf25c81ba3795e42c5b063779bb391bf
+%global commit_date 20250214
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           envision-nightly
@@ -16,7 +16,7 @@ BuildRequires:  pkgconfig(gtk4) >= 4.10.0
 BuildRequires:  pkgconfig(vte-2.91-gtk4) >= 0.72.0
 BuildRequires:  pkgconfig(libadwaita-1)
 BuildRequires:  pkgconfig(libusb-1.0)
-BuildRequires:  openssl-devel-engine
+BuildRequires:  openssl-devel
 BuildRequires:  openxr-devel
 BuildRequires:  libappstream-glib
 BuildRequires:  desktop-file-utils

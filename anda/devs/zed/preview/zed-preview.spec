@@ -1,6 +1,6 @@
 %bcond_with check
 
-%global ver 0.173.8-pre
+%global ver 0.174.0-pre
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 # Use Mold as the linker
@@ -32,7 +32,7 @@ BuildRequires:  alsa-lib-devel
 BuildRequires:  fontconfig-devel
 BuildRequires:  wayland-devel
 BuildRequires:  libxkbcommon-x11-devel
-BuildRequires:  openssl-devel-engine
+BuildRequires:  openssl-devel
 BuildRequires:  libzstd-devel
 BuildRequires:  perl-FindBin
 BuildRequires:  perl-IPC-Cmd
