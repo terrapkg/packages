@@ -117,8 +117,7 @@ This package contains files for Ghostty's terminfo. Available for debugging use.
 
 ZIG_GLOBAL_CACHE_DIR="%{cache_dir}" \
 zig build \
-    --fetch \
-    --global-cache-dir "%{cache_dir}"
+    --fetch
 
 %build
 
