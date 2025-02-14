@@ -115,16 +115,13 @@ This package contains files for Ghostty's terminfo. Available for debugging use.
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
 %autosetup -n ghostty-source
 
-export ZIG_GLOBAL_CACHE_DIR="%{cache_dir}"
-zig build --fetch
-zig fetch git+https://github.com/zigimg/zigimg#3a667bdb3d7f0955a5a51c8468eac83210c1439e
-zig fetch git+https://github.com/mitchellh/libxev#f6a672a78436d8efee1aa847a43a900ad773618b
-
 %build
 
 %install
 DESTDIR="%{buildroot}" \
 zig build \
+    --fetch \
+    --global-cache-dir "%{cache_dir}" \
     --summary all \
     --release=fast \
     --system "%{cache_dir}/p" \
