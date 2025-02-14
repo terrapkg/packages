@@ -99,7 +99,7 @@ Source files for Ghostty's terminfo. Available for debugging use.
 
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
-%autosetup -p1
+%autosetup
 
 ZIG_GLOBAL_CACHE_DIR="%{cache_dir}" \
 zig build \
