@@ -22,7 +22,7 @@ Fluent icon theme for linux desktops.
 
 %install
 mkdir -p %{buildroot}%{_datadir}/themes
-./install.sh -r -a -d %{buildroot}%{_datadir}/icons
+./install.sh -a -d %{buildroot}%{_datadir}/icons
 
 %fdupes %buildroot%_datadir/icons/
 
