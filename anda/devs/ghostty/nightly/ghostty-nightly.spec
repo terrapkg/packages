@@ -12,7 +12,7 @@
 
 Name:           ghostty-nightly
 Version:        1.1.2
-%if 0%{?fedora} <= 42
+%if 0%{?fedora} <= 41
 Epoch:          1
 %endif
 Release:        2.tip%{dev_ver}^%{commit_date}.%{shortcommit}%{?dist}
