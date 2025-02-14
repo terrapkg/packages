@@ -1,0 +1,39 @@
+From c102b643945dc076d881497dd2ca5865938f7053 Mon Sep 17 00:00:00 2001
+From: Jan200101 <sentrycraft123@gmail.com>
+Date: Tue, 12 Sep 2023 15:57:47 +0200
+Subject: [PATCH 05/10] main: remove leftover and fix typo
+
+Signed-off-by: Jan200101 <sentrycraft123@gmail.com>
+---
+ meson_options.txt        | 2 +-
+ src/switcheroo-control.c | 1 -
+ 2 files changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/meson_options.txt b/meson_options.txt
+index b8d671a..c77fea8 100644
+--- a/meson_options.txt
++++ b/meson_options.txt
+@@ -13,7 +13,7 @@ option('hwdbdir',
+ option('rulesdir',
+   type: 'string',
+   value: '',
+-  description: 'Directory for ruke files',
++  description: 'Directory for rule files',
+ )
+ 
+ option('gtk_doc',
+diff --git a/src/switcheroo-control.c b/src/switcheroo-control.c
+index e407bfb..0f6a548 100644
+--- a/src/switcheroo-control.c
++++ b/src/switcheroo-control.c
+@@ -319,7 +319,6 @@ static gboolean
+ get_card_is_discrete (GUdevDevice *d)
+ {
+ 	const char * const * tags;
+-	g_autoptr (GUdevDevice) platform_device = NULL;
+ 
+ 	tags = g_udev_device_get_tags (d);
+ 	if (tags && g_strv_contains (tags, "switcheroo-discrete-gpu"))
+-- 
+2.46.0
+

@@ -1,0 +1,27 @@
+From 44046bfbcb30a19c45416113a2a82a4d17a1a998 Mon Sep 17 00:00:00 2001
+From: Jan200101 <sentrycraft123@gmail.com>
+Date: Mon, 14 Aug 2023 14:06:45 +0200
+Subject: [PATCH 01/10] main: update GPUs comment for dbus property
+
+Signed-off-by: Jan200101 <sentrycraft123@gmail.com>
+---
+ src/net.hadess.SwitcherooControl.xml | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/src/net.hadess.SwitcherooControl.xml b/src/net.hadess.SwitcherooControl.xml
+index e52bc1a..59a8896 100644
+--- a/src/net.hadess.SwitcherooControl.xml
++++ b/src/net.hadess.SwitcherooControl.xml
+@@ -38,7 +38,8 @@
+         will contain a user-facing name for the GPU, the "Environment" (as) key will
+         contain an array of even number of strings, each being an environment
+         variable to set to use the GPU, followed by its value, the "Default" (b) key
+-        will tag the default (usually integrated) GPU.
++        will tag the default GPU, the "Discrete" (b) key tags if the GPU is a
++        dedicated component.
+     -->
+     <property name="GPUs" type="aa{sv}" access="read"/>
+ 
+-- 
+2.46.0
+

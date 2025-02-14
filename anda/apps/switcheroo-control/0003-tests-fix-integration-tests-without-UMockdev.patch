@@ -1,0 +1,27 @@
+From 1b115ed72e03ff1169cbfddd79ef10890baca133 Mon Sep 17 00:00:00 2001
+From: Jan200101 <sentrycraft123@gmail.com>
+Date: Tue, 12 Sep 2023 15:53:40 +0200
+Subject: [PATCH 03/10] tests: fix integration tests without UMockdev
+ `gi.require_version` throws ValueError if the dependency cannot be found
+
+Signed-off-by: Jan200101 <sentrycraft123@gmail.com>
+---
+ tests/integration-test.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/tests/integration-test.py b/tests/integration-test.py
+index d8dea16..e3dd996 100755
+--- a/tests/integration-test.py
++++ b/tests/integration-test.py
+@@ -37,7 +37,7 @@ except ImportError as e:
+ try:
+     gi.require_version('UMockdev', '1.0')
+     from gi.repository import UMockdev
+-except ImportError:
++except (ImportError, ValueError):
+     sys.stderr.write('Skipping tests, umockdev not available (https://github.com/martinpitt/umockdev)\n')
+     sys.exit(0)
+ 
+-- 
+2.46.0
+

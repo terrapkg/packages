@@ -1,0 +1,290 @@
+From 7b1154d235f752b9fd1797f87861f11ef89d5d7a Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jan=20Dr=C3=B6gehoff?= <sentrycraft123@gmail.com>
+Date: Thu, 15 Feb 2024 14:38:21 +0100
+Subject: [PATCH 1/7] Improve discrete GPU detection using switcheroo-control
+
+---
+ src/gui/gpudetection.cpp | 34 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
+
+diff --git a/src/gui/gpudetection.cpp b/src/gui/gpudetection.cpp
+index ef246d3936..695bf27a1e 100644
+--- a/src/gui/gpudetection.cpp
++++ b/src/gui/gpudetection.cpp
+@@ -62,6 +62,40 @@ static bool checkGpuWithSwitcheroo()
+     QList<QVariantMap> gpus;
+     arg >> gpus;
+ 
++    if (gpus.length() < 2) {
++        // Skip checking for Default or Discrete GPUs when 1 or no GPU is available
++        return false;
++    }
++
++    // Check if the Default GPU is Discrete
++    for (const auto &gpu : gpus) {
++        bool defaultGpu = qvariant_cast<bool>(gpu[QStringLiteral("Default")]);
++        if (defaultGpu) {
++            bool discreteGpu = qvariant_cast<bool>(gpu.value(QStringLiteral("Discrete"), false));
++            if (discreteGpu) {
++                // If the default GPU is Discret there is no need to apply the env vars
++                s_gpuCheck = GpuCheck::Present;
++                return true;
++            }
++            break;
++        }
++    }
++
++    // Find the first Discrete GPU
++    for (const auto &gpu : gpus) {
++        bool discreteGpu = qvariant_cast<bool>(gpu.value(QStringLiteral("Discrete"), false));
++        if (!discreteGpu) {
++            s_gpuCheck = GpuCheck::Present;
++            QStringList envList = qvariant_cast<QStringList>(gpu[QStringLiteral("Environment")]);
++            for (int i = 0; i + 1 < envList.size(); i += 2) {
++                s_gpuEnv.insert(envList[i], envList[i + 1]);
++            }
++            return true;
++        }
++    }
++
++    // fallback to old behavior
++    // find the first non-Default GPU
+     for (const auto &gpu : gpus) {
+         bool defaultGpu = qvariant_cast<bool>(gpu[QStringLiteral("Default")]);
+         if (!defaultGpu) {
+-- 
+GitLab
+
+
+From 29c056a6a71b0de226369c03d02f47ab56a7877a Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jan=20Dr=C3=B6gehoff?= <sentrycraft123@gmail.com>
+Date: Wed, 21 Feb 2024 15:57:28 +0100
+Subject: [PATCH 2/7] make gpus length comparison easier to reade
+
+---
+ src/gui/gpudetection.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/gui/gpudetection.cpp b/src/gui/gpudetection.cpp
+index 695bf27a1e..dfe6a9982b 100644
+--- a/src/gui/gpudetection.cpp
++++ b/src/gui/gpudetection.cpp
+@@ -62,7 +62,7 @@ static bool checkGpuWithSwitcheroo()
+     QList<QVariantMap> gpus;
+     arg >> gpus;
+ 
+-    if (gpus.length() < 2) {
++    if (gpus.length() <= 1) {
+         // Skip checking for Default or Discrete GPUs when 1 or no GPU is available
+         return false;
+     }
+-- 
+GitLab
+
+
+From afc22129301ac2e33673ce9415b1e0d329a57c59 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jan=20Dr=C3=B6gehoff?= <sentrycraft123@gmail.com>
+Date: Wed, 21 Feb 2024 16:27:05 +0100
+Subject: [PATCH 3/7] lookup needed GPU entries in a single loop
+
+---
+ src/gui/gpudetection.cpp | 56 +++++++++++++++++-----------------------
+ 1 file changed, 23 insertions(+), 33 deletions(-)
+
+diff --git a/src/gui/gpudetection.cpp b/src/gui/gpudetection.cpp
+index dfe6a9982b..57436e4789 100644
+--- a/src/gui/gpudetection.cpp
++++ b/src/gui/gpudetection.cpp
+@@ -67,45 +67,35 @@ static bool checkGpuWithSwitcheroo()
+         return false;
+     }
+ 
+-    // Check if the Default GPU is Discrete
+-    for (const auto &gpu : gpus) {
+-        bool defaultGpu = qvariant_cast<bool>(gpu[QStringLiteral("Default")]);
+-        if (defaultGpu) {
+-            bool discreteGpu = qvariant_cast<bool>(gpu.value(QStringLiteral("Discrete"), false));
+-            if (discreteGpu) {
+-                // If the default GPU is Discret there is no need to apply the env vars
+-                s_gpuCheck = GpuCheck::Present;
+-                return true;
+-            }
+-            break;
++    QVariantMap defaultGpu;
++    QVariantMap firstDiscreteGpu;
++    QVariantMap firstNonDefaultGpu;
++
++    for (const auto &gpu : std::as_const(gpus)) {
++        if (defaultGpu.isEmpty() && qvariant_cast<bool>(gpu[QStringLiteral("Default")])) {
++            defaultGpu = gpu;
++        } else if (firstNonDefaultGpu.isEmpty()) {
++            firstNonDefaultGpu = gpu;
++        }
++        if (firstDiscreteGpu.isEmpty() && qvariant_cast<bool>(gpu[QStringLiteral("Discrete")])) {
++            firstDiscreteGpu = gpu;
+         }
+     }
+ 
+-    // Find the first Discrete GPU
+-    for (const auto &gpu : gpus) {
+-        bool discreteGpu = qvariant_cast<bool>(gpu.value(QStringLiteral("Discrete"), false));
+-        if (!discreteGpu) {
+-            s_gpuCheck = GpuCheck::Present;
+-            QStringList envList = qvariant_cast<QStringList>(gpu[QStringLiteral("Environment")]);
+-            for (int i = 0; i + 1 < envList.size(); i += 2) {
+-                s_gpuEnv.insert(envList[i], envList[i + 1]);
+-            }
+-            return true;
+-        }
++    if (!defaultGpu.isEmpty() && defaultGpu[QStringLiteral("Discrete")].toBool()) {
++        // If the default GPU is discrete we don't need to check for another device or apply special env vars
++        s_gpuCheck = GpuCheck::Present;
++        return true;
+     }
+ 
+-    // fallback to old behavior
+-    // find the first non-Default GPU
+-    for (const auto &gpu : gpus) {
+-        bool defaultGpu = qvariant_cast<bool>(gpu[QStringLiteral("Default")]);
+-        if (!defaultGpu) {
+-            s_gpuCheck = GpuCheck::Present;
+-            QStringList envList = qvariant_cast<QStringList>(gpu[QStringLiteral("Environment")]);
+-            for (int i = 0; i + 1 < envList.size(); i += 2) {
+-                s_gpuEnv.insert(envList[i], envList[i + 1]);
+-            }
+-            return true;
++    // Otherwise prefer the discrete GPU over any other random non-default GPU (legacy behavior)
++    for (const auto &gpu : {firstDiscreteGpu, firstNonDefaultGpu}) {
++        s_gpuCheck = GpuCheck::Present;
++        auto envList = qvariant_cast<QStringList>(gpu[QStringLiteral("Environment")]);
++        for (int i = 0; i + 1 < envList.size(); i += 2) {
++            s_gpuEnv.insert(envList[i], envList[i + 1]);
+         }
++        return true;
+     }
+ #endif
+ 
+-- 
+GitLab
+
+
+From d05cabb8e3e4aa60c8453edc0f6231d9bcb6d64e Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jan=20Dr=C3=B6gehoff?= <sentrycraft123@gmail.com>
+Date: Wed, 21 Feb 2024 16:27:25 +0100
+Subject: [PATCH 4/7] correct absent gpu comment
+
+---
+ src/gui/gpudetection.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/gui/gpudetection.cpp b/src/gui/gpudetection.cpp
+index 57436e4789..bbef5ba8f2 100644
+--- a/src/gui/gpudetection.cpp
++++ b/src/gui/gpudetection.cpp
+@@ -99,7 +99,7 @@ static bool checkGpuWithSwitcheroo()
+     }
+ #endif
+ 
+-    // No non-default GPU found
++    // No discrete or non-default GPU found
+     s_gpuCheck = GpuCheck::Absent;
+     return true;
+ }
+-- 
+GitLab
+
+
+From 7f9f76ce9bb472b54bf7297b8b5c078eb0c194c9 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jan=20Dr=C3=B6gehoff?= <sentrycraft123@gmail.com>
+Date: Thu, 22 Feb 2024 08:33:19 +0100
+Subject: [PATCH 5/7] check exact GPU count and fallback to solid when none are
+ found
+
+---
+ src/gui/gpudetection.cpp | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
+
+diff --git a/src/gui/gpudetection.cpp b/src/gui/gpudetection.cpp
+index bbef5ba8f2..d3bf895ea5 100644
+--- a/src/gui/gpudetection.cpp
++++ b/src/gui/gpudetection.cpp
+@@ -62,9 +62,15 @@ static bool checkGpuWithSwitcheroo()
+     QList<QVariantMap> gpus;
+     arg >> gpus;
+ 
+-    if (gpus.length() <= 1) {
+-        // Skip checking for Default or Discrete GPUs when 1 or no GPU is available
++    auto gpu_count = gpus.length();
++
++    if (gpu_count == 0) {
++        // No GPUs? Something might have gone wrong on the other end
+         return false;
++    } else if (gpu_count == 1) {
++        // There is only one GPU, no need to check for others
++        s_gpuCheck = GpuCheck::Absent;
++        return true;
+     }
+ 
+     QVariantMap defaultGpu;
+-- 
+GitLab
+
+
+From 87ca7b125be15963c45867705f4b75e40b379437 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jan=20Dr=C3=B6gehoff?= <sentrycraft123@gmail.com>
+Date: Wed, 4 Sep 2024 23:58:18 +0000
+Subject: [PATCH 6/7] Simplify GPU count check
+
+---
+ src/gui/gpudetection.cpp | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
+
+diff --git a/src/gui/gpudetection.cpp b/src/gui/gpudetection.cpp
+index d3bf895ea5..5e8450f2f9 100644
+--- a/src/gui/gpudetection.cpp
++++ b/src/gui/gpudetection.cpp
+@@ -62,12 +62,10 @@ static bool checkGpuWithSwitcheroo()
+     QList<QVariantMap> gpus;
+     arg >> gpus;
+ 
+-    auto gpu_count = gpus.length();
+-
+-    if (gpu_count == 0) {
++    if (gpus.isEmpty()) {
+         // No GPUs? Something might have gone wrong on the other end
+         return false;
+-    } else if (gpu_count == 1) {
++    } else if (gpus.size() == 1) {
+         // There is only one GPU, no need to check for others
+         s_gpuCheck = GpuCheck::Absent;
+         return true;
+-- 
+GitLab
+
+
+From 1920a2ea3b67331b419fc19a377b57a36466fb9f Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jan=20Dr=C3=B6gehoff?= <sentrycraft123@gmail.com>
+Date: Thu, 5 Sep 2024 02:01:41 +0200
+Subject: [PATCH 7/7] Fix non default GPU fallback
+
+---
+ src/gui/gpudetection.cpp | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/src/gui/gpudetection.cpp b/src/gui/gpudetection.cpp
+index 5e8450f2f9..2f5547ab8f 100644
+--- a/src/gui/gpudetection.cpp
++++ b/src/gui/gpudetection.cpp
+@@ -94,6 +94,9 @@ static bool checkGpuWithSwitcheroo()
+ 
+     // Otherwise prefer the discrete GPU over any other random non-default GPU (legacy behavior)
+     for (const auto &gpu : {firstDiscreteGpu, firstNonDefaultGpu}) {
++        if (gpu.isEmpty()) {
++            continue;
++        }
+         s_gpuCheck = GpuCheck::Present;
+         auto envList = qvariant_cast<QStringList>(gpu[QStringLiteral("Environment")]);
+         for (int i = 0; i + 1 < envList.size(); i += 2) {
+-- 
+GitLab
+

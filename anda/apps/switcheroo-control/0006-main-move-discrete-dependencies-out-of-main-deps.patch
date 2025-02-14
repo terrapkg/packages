@@ -1,0 +1,48 @@
+From f764db4eb565c19ba14155791fbfced3fb5d34c8 Mon Sep 17 00:00:00 2001
+From: Jan200101 <sentrycraft123@gmail.com>
+Date: Tue, 12 Sep 2023 15:58:27 +0200
+Subject: [PATCH 06/10] main: move discrete dependencies out of main deps
+
+Signed-off-by: Jan200101 <sentrycraft123@gmail.com>
+---
+ src/discrete-detection/meson.build | 5 +++--
+ src/meson.build                    | 2 +-
+ 2 files changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/src/discrete-detection/meson.build b/src/discrete-detection/meson.build
+index 8eb8437..353316f 100644
+--- a/src/discrete-detection/meson.build
++++ b/src/discrete-detection/meson.build
+@@ -1,8 +1,9 @@
++discrete_deps = deps + [libdrm, libdrm_nouveau, libdrm_amdgpu]
+ 
+ if libdrm_amdgpu.found()
+   amdgpu_discrete = executable('check-discrete-amdgpu',
+     files('amdgpu.c'),
+-    dependencies: deps,
++    dependencies: discrete_deps,
+     install: true,
+     install_dir: libexecdir,
+   )
+@@ -11,7 +12,7 @@ endif
+ if libdrm.found() and libdrm_nouveau.found()
+   nouveau_discrete = executable('check-discrete-nouveau',
+     files('nouveau.c'),
+-    dependencies: deps,
++    dependencies: discrete_deps,
+     install: true,
+     install_dir: libexecdir,
+   )
+diff --git a/src/meson.build b/src/meson.build
+index da4267f..22d69e7 100644
+--- a/src/meson.build
++++ b/src/meson.build
+@@ -1,4 +1,4 @@
+-deps = [glib, gio, gudev, libdrm, libdrm_nouveau, libdrm_amdgpu]
++deps = [glib, gio, gudev]
+ 
+ sources = [
+   'info-cleanup.c',
+-- 
+2.46.0
+

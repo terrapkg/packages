@@ -1,0 +1,45 @@
+From 4232c75fe41158bb5063d630d36b3ffd6a8a57ec Mon Sep 17 00:00:00 2001
+From: Jan200101 <sentrycraft123@gmail.com>
+Date: Fri, 6 Sep 2024 22:31:56 +0200
+Subject: [PATCH 10/10] main: use new GPU list on uevent the amount of GPUs may
+ still be the same but underlying attributes may have changed On the ASUS TUF
+ Dash F15 running Fedora 40 6.10.7-200.fc40.x86_64 the udev tags are not
+ applied at the time switcheroo-control starts but at a later uevent they are
+ correct. Memory gets allocated anyways to check if the GPU count has changed,
+ so this shouldn't affect memory usage.
+
+Signed-off-by: Jan200101 <sentrycraft123@gmail.com>
+---
+ src/switcheroo-control.c | 16 ++++++----------
+ 1 file changed, 6 insertions(+), 10 deletions(-)
+
+diff --git a/src/switcheroo-control.c b/src/switcheroo-control.c
+index 0f6a548..01954c7 100644
+--- a/src/switcheroo-control.c
++++ b/src/switcheroo-control.c
+@@ -438,16 +438,12 @@ uevent_cb (GUdevClient *client,
+ 
+ 	cards = get_drm_cards (data);
+ 	num_gpus = cards->len;
+-	if (num_gpus != data->num_gpus) {
+-		g_debug ("GPUs added or removed (old: %d new: %d)",
+-			 data->num_gpus, num_gpus);
+-		g_ptr_array_free (data->cards, TRUE);
+-		data->cards = cards;
+-		data->num_gpus = cards->len;
+-		send_dbus_event (data);
+-	} else {
+-		g_ptr_array_free (cards, TRUE);
+-	}
++	g_debug ("GPUs updated (old: %d new: %d)",
++		 data->num_gpus, num_gpus);
++	g_ptr_array_free (data->cards, TRUE);
++	data->cards = cards;
++	data->num_gpus = cards->len;
++	send_dbus_event (data);
+ }
+ 
+ static void
+-- 
+2.46.0
+
