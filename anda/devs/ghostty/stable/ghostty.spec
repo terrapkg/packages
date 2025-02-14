@@ -101,9 +101,7 @@ Source files for Ghostty's terminfo. Available for debugging use.
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
 %autosetup
 
-ZIG_GLOBAL_CACHE_DIR="%{cache_dir}" \
-zig build \
-    --fetch
+ZIG_GLOBAL_CACHE_DIR="%{cache_dir}" ./nix/build-support/fetch-zig-cache.sh
 
 %build
 
