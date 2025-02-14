@@ -15,7 +15,7 @@ git clone %url/coreboot.git -b %version --depth 1
 
 %build
 cd coreboot/util/cbmem
-make
+%make_build
 
 %install
 install -Dm 755 coreboot/util/cbmem/cbmem %buildroot%_bindir/cbmem
