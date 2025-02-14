@@ -2,7 +2,7 @@ Name:           cbmem
 Version:        24.12
 Release:        1%?dist
 Summary:        Prints out coreboot mem table information.
-URL:            https://doc.coreboot.org/lib/fw_config.html
+URL:            https://review.coreboot.org
 License:        GPLv2
 BuildRequires:  gcc g++ gcc-gnat make cmake ncurses-devel iasl git
 Requires:       glibc
@@ -12,7 +12,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 Prints out coreboot mem table information in JSON by default, and also implements the basic cbmem -list and -console commands
 
 %prep
-git clone https://review.coreboot.org/coreboot.git -b %version
+git clone %url/coreboot.git -b %version
 
 %build
 make -C coreboot/util/cbmem
@@ -24,5 +24,5 @@ install -Dm 777 coreboot/util/cbmem/cbmem %buildroot%_bindir/cbmem
 %{_bindir}/cbmem
 
 %changelog
-* Thurs Feb 13 2025 Owen Zimmerman <owen@fyralabs.com>
+* Thu Feb 13 2025 Owen Zimmerman <owen@fyralabs.com>
 - Initial Package
