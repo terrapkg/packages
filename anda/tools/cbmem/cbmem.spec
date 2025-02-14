@@ -12,10 +12,11 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 Prints out coreboot mem table information in JSON by default, and also implements the basic cbmem -list and -console commands
 
 %prep
-git clone %url/coreboot.git -b %version
+git clone %url/coreboot.git -b %version --depth 1
 
 %build
-make -C coreboot/util/cbmem
+cd coreboot/util/cbmem
+make
 
 %install
 install -Dm 777 coreboot/util/cbmem/cbmem %buildroot%_bindir/cbmem
