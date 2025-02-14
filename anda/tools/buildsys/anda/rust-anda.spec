@@ -52,7 +52,7 @@ Summary:        %{summary}
 %cargo_prep_online
 
 %build
-%cargo_build
+# %%cargo_build
 cargo run --release -p xtask -- manpage
 cargo run --release -p xtask -- completion
 
