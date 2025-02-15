@@ -19,6 +19,7 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-build
 BuildRequires:  python3-installer
 BuildRequires:  python3-hatchling
+BuildRequires:  python3-hatch-vcs
 BuildRequires:  python
 BuildRequires:  python3
 
