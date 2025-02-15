@@ -13,7 +13,7 @@ URL:            https://github.com/jakcron/nstool
 
 Packager:       sadlerm <lerm@chromebooks.lol>
 
-BuildRequires:  make gcc gcc-c++ doxygen
+BuildRequires:  make gcc gcc-c++
 BuildRequires:  anda-srpm-macros
 
 %description
