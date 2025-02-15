@@ -10,6 +10,8 @@ License:        MIT
 URL:            https://crates.io/crates/lowfi
 Source:         %{crates_source}
 
+Packager:       sadlerm <lerm@chromebooks.lol>
+
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros
 BuildRequires:  mold
@@ -45,7 +47,3 @@ License:        (Apache-2.0 OR MIT) AND BSD-3-Clause AND (0BSD OR MIT OR Apache-
 
 %install
 install -Dm755 target/rpm/%{crate} %{buildroot}%{_bindir}/%{crate}
-
-%changelog
-* Sun Feb 16 2025 sadlerm4 <sad_lerm@hotmail.com> - 1.5.6-1
-- Initial package
