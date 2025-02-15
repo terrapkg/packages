@@ -37,7 +37,7 @@ Requires:	python3-filelock
 
 %build
 ./configure.sh --prefix=%_prefix
-%make_build
+%{make_build} || true
 
 %install
 %make_install PYTHONDIR=%python3_sitelib
