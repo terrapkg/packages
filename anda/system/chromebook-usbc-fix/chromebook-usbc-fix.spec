@@ -19,6 +19,8 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %{?systemd_requires}
 BuildRequires:  systemd-rpm-macros
 
+ExclusiveArch:  x86_64
+
 %description
 %summary
 
