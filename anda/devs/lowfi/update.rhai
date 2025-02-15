@@ -1,1 +1,1 @@
-rpm.version(crates("lowfi"));`
+rpm.version(crates("lowfi"));
