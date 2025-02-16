@@ -21,7 +21,7 @@ BuildRequires:  help2man
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  kmodtool
 BuildRequires:  systemd-rpm-macros
-Requires:       akmod-%{name} = %{version}-%{release}
+Requires:       akmod-%{name} = %{version}
 Provides:       %{name}-kmod-common = %{version}-%{release}
 # Required for  akmod-v4l2loopback
 Requires:       help2man
