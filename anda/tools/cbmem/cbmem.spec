@@ -5,7 +5,7 @@ Version:        24.12
 Release:        1%?dist
 Summary:        Prints out coreboot mem table information
 URL:            https://review.coreboot.org
-License:        GPLv2
+License:        BSD-3-Clause
 BuildRequires:  gcc g++ gcc-gnat make cmake ncurses-devel iasl git anda-srpm-macros
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
