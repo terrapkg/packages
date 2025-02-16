@@ -17,7 +17,7 @@ Prints out coreboot mem table information in JSON by default, and also implement
 
 %build
 cd util/cbmem
-%make_build
+%make_build -std=c17
 
 %install
 install -Dm 755 util/cbmem/cbmem %buildroot%_bindir/cbmem
