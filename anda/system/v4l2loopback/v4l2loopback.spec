@@ -34,7 +34,7 @@ Obsoletes:      %{name}-utils < 0.12.5-2
 %description
 Allows creation of virtual video devices. Normal (v4l2) applications will read these devices as if they were ordinary video devices.
 
-%package -n kmod
+%package kmod
 Summary:  Kernel module (kmod) for %{name}
 Requires: kernel-devel
 
