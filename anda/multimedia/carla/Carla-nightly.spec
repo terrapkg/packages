@@ -83,7 +83,6 @@ BuildRequires:  python3-magic
 BuildRequires:  python3-rdflib
 BuildRequires:  pkgconfig(liblo)
 BuildRequires:  pkgconfig(zlib)
-Buildrequires:  pkgconfig(libmagic)
 BuildRequires:  (ffmpeg-free-devel or ffmpeg-devel)
 BuildRequires:  desktop-file-utils
 BuildRequires:  make
