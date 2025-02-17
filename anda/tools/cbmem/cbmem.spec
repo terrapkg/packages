@@ -18,12 +18,14 @@ Prints out coreboot mem table information in JSON by default, and also implement
 
 %build
 cd util/cbmem
-%make_build -std=c17
+%make_build
 
 %install
 install -Dm 755 util/cbmem/cbmem %buildroot%_bindir/cbmem
 
 %files
+%doc util/cbmem/description.md
+%license LICENSES/BSD-3-Clause.txt
 %{_bindir}/cbmem
 
 %changelog
