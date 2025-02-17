@@ -1,5 +1,5 @@
 %define debug_package %nil
-%global build_cflags %__build_flags_lang_c %?_distro_extra_cflags -std=c17
+%global build_cflags %{__build_flags_lang_c} %{?_distro_extra_cflags} -std=c17
 
 Name:           cbmem
 Version:        24.12
