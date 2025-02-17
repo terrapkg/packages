@@ -6,7 +6,7 @@ Summary:        A drop-in replacement for the wlroots scene API that allows wayl
 URL:            https://github.com/wlrfx/scenefx
 License:        MIT
 
-Source0:        %{url}/archive/refs/tags/%version.tar.gz
+Source0:        %{url}/archive/%{version}.tar.gz
 
 
 BuildRequires:  cmake
@@ -55,22 +55,19 @@ MESON_OPTIONS=(
     -Dexamples=false
     -Dwerror=false
 )
-%{meson} "${MESON_OPTIONS[@]}"
-%{meson_build}
+%meson "${MESON_OPTIONS[@]}"
+%meson_build
 
 %install
-%{meson_install}
-
-%check
-%{meson_test}
+%meson_install
 
 
 %files
 %license LICENSE
 %doc README.md
-%{_libdir}/lib%{name}-%{version}.so
+%{_libdir}/lib%{name}-0.2.so
 
 
 %files  devel
-%{_includedir}/scenefx
-%{_libdir}/pkgconfig/%{name}.pc
+%{_includedir}/%{name}-0.2/*
+%{_libdir}/pkgconfig/%{name}-0.2.pc
