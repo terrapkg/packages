@@ -79,7 +79,7 @@ BuildRequires:  pkgconfig(mxml)
 BuildRequires:  pkgconfig(gl)
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  python3-qt5-base
-BuildRequires:  python3-magic
+BuildRequires:  python3-file-magic
 BuildRequires:  python3-rdflib
 BuildRequires:  pkgconfig(liblo)
 BuildRequires:  pkgconfig(zlib)
