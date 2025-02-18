@@ -8,7 +8,7 @@
 Name:           v4l2loopback
 Summary:        Utils for V4L2 loopback devices
 Version:        0.13.2
-Release:        2%{?dist}
+Release:        3%{?dist}
 License:        GPLv2+
 URL:            https://github.com/umlaeute/v4l2loopback
 Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
