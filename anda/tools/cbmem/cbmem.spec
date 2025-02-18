@@ -6,7 +6,7 @@ Version:        24.12
 Release:        1%?dist
 Summary:        Prints out coreboot mem table information
 URL:            https://review.coreboot.org
-License:        BSD-3-Clause
+License:        BSD-3-Clause AND Apache-2.0 AND CC-BY-SA-3.0 AND GPL-2.0-only AND GPL-3.0-or-later AND ISC AND BSD-2-Clause-Patent AND BSD-4-Clause-UC AND CC-PDDC AND GPL-2.0-or-later AND HPND-sell-varient AND LGPL-2.1-or-later AND BSD-2-Clause AND CC-BY-4.0 AND GPL-3.0-only AND HPND AND X11 AND MIT 
 BuildRequires:  gcc g++ gcc-gnat make cmake ncurses-devel iasl git anda-srpm-macros
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
