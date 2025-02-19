@@ -12,10 +12,10 @@
 
 Name:           ghostty-nightly
 Version:        1.1.2
+Release:        2.tip%{dev_ver}^%{commit_date}.%{shortcommit}%{?dist}
 %if 0%{?fedora} <= 42
 Epoch:          1
 %endif
-Release:        2.tip%{dev_ver}^%{commit_date}.%{shortcommit}%{?dist}
 Summary:        A fast, native terminal emulator written in Zig; this is the Tip (nightly) build.
 License:        MIT AND MPL-2.0 AND OFL-1.1 AND (WTFPL OR CC0-1.0) AND Apache-2.0
 URL:            https://ghostty.org/
@@ -39,12 +39,15 @@ BuildRequires:  pkgconfig(libpng)
 BuildRequires:  pkgconfig(libxml-2.0)
 BuildRequires:  pkgconfig(oniguruma)
 BuildRequires:  pkgconfig(zlib)
-Requires:       %{name}-terminfo = %{version}-%{release}
-Requires:       %{name}-shell-integration = %{version}-%{release}
+Requires:       %{name}-terminfo
+Requires:       %{name}-shell-integration
 Requires:       gtk4
 Requires:       libadwaita
 Conflicts:      ghostty
 Provides:       ghostty-tip = %{version}-%{release}
+%if 0%{?fedora} <= 41
+Provides:       %{name} = %{commit_date}.%{shortcommit}
+%endif
 Obsoletes:      %{name} = 20250130.04d3636
 Packager:       ShinyGil <rockgrub@disroot.org>
 
@@ -53,10 +56,12 @@ Packager:       ShinyGil <rockgrub@disroot.org>
 
 %package        bash-completion
 Summary:        Ghostty Bash completion
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}
 Requires:       bash-completion
 Supplements:    (%{name} and bash-completion)
-Obsoletes:      %{name}-bash-completion = 20250130.04d3636
+%if 0%{?fedora} <= 41
+Provides:       %{name}-bash-completion = %{commit_date}.%{shortcommit}
+%endif
 BuildArch:      noarch
 
 %description    bash-completion
@@ -64,10 +69,12 @@ Bash shell completion for Ghostty.
 
 %package        fish-completion
 Summary:        Ghostty Fish completion
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}
 Requires:       fish
 Supplements:    (%{name} and fish)
-Obsoletes:      %{name}-fish-completion = 20250130.04d3636
+%if 0%{?fedora} <= 41
+Provides:       %{name}-fish-completion = %{commit_date}.%{shortcommit}
+%endif
 BuildArch:      noarch
 
 %description    fish-completion
@@ -75,10 +82,12 @@ Fish shell completion for Ghostty.
 
 %package        zsh-completion
 Summary:        Ghostty Zsh completion
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}
 Requires:       zsh
 Supplements:    (%{name} and zsh)
-Obsoletes:      %{name}-zsh-completion = 20250130.04d3636
+%if 0%{?fedora} <= 41
+Provides:       %{name}-zsh-completion = %{commit_date}.%{shortcommit}
+%endif
 BuildArch:      noarch
 
 %description    zsh-completion
@@ -87,7 +96,9 @@ Zsh shell completion for Ghostty.
 %package        shell-integration
 Summary:        Ghostty shell integration
 Supplements:    %{name}
-Obsoletes:      %{name}-shell-integration = 20250130.04d3636
+%if 0%{?fedora} <= 41
+Provides:       %{name}-shell-integration = %{commit_date}.%{shortcommit}
+%endif
 BuildArch:      noarch
 
 %description    shell-integration
@@ -96,7 +107,9 @@ This package contains files allowing Ghostty to integrate with various shells.
 %package        terminfo
 Summary:        Ghostty terminfo
 Supplements:    %{name}
-Obsoletes:      %{name}-terminfo = 20250130.04d3636
+%if 0%{?fedora} <= 41
+Provides:       %{name}-terminfo = %{commit_date}.%{shortcommit}
+%endif
 BuildArch:      noarch
 
 %description    terminfo
