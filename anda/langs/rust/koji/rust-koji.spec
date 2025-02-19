@@ -14,6 +14,7 @@ URL:            https://crates.io/crates/koji
 Source:         %{crates_source}
 
 BuildRequires:  cargo-rpm-macros >= 24 anda-srpm-macros
+BuildRequires:  openssl-devel
 
 Conflicts:      koji
 
