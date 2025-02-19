@@ -41,6 +41,7 @@ EOF
 export PATH="$PATH:$(pwd)/bin"
 mkdir bin
 ln -s /usr/bin/node-20 bin/node
+ln -s /usr/bin/npm-20 bin/npm
 npm-20 install --legacy-peer-deps
 npm-20 run postinstall
 npm-20 run build
