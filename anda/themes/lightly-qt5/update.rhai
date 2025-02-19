@@ -1,7 +1,12 @@
-let repos = get("https://repology.org/api/v1/project/qt").json_arr();
-let branch = sh("git rev-parse --abbrev-ref HEAD", #{"stdout": "piped"}).ctx.stdout;
-branch.crop(1);
-branch.trim();
-let vers = repos.filter(|r| r.repo == `fedora_${branch}`).map(|r| [find("^(\\d+)\\.(\\d+)\\..+$", r.version, 1), find("^(\\d+)\\.(\\d+)\\..+$", r.version, 2)]);
-let ver = vers.find(|v| v[0] == "5")[1]; // assume there is only 1 package for v5.x
-open_file("anda/themes/lightly-qt5/VER5.txt").write(`${ver}`); // will trig rebuild when changed
+fn main() {
+    let branch = bump::as_bodhi_ver(labels.branch);
+    let url = `https://bodhi.fedoraproject.org/updates/?search=qt5-5.&status=stable&releases=${branch}&rows_per_page=1&page=1`;
+    for entry in get(url).json().updates[0].title.split(' ') {
+        let matches = find_all(`qt5-([\d.]+)-(\d+)\.[\w\d]+$`, entry);
+        if matches.len() != 0 {
+            return matches[0][1].split(".")[1];
+        }
+    }
+}
+
+open_file("anda/themes/lightly-qt5/VER5.txt").write(`${main()}`); // will trig rebuild when changed
