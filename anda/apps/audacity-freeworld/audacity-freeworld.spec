@@ -5,7 +5,7 @@
 %global sanitized_ver %(echo "$( sed 's/Audacity-//' <<< "%{ver}" )")
 
 Name:    audacity-freeworld
-Version: split.3.0.3
+Version: %{sanitized_ver}
 Release: 1%?dist
 Summary: Multitrack audio editor
 License: GPLv2
