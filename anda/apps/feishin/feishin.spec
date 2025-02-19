@@ -38,6 +38,9 @@ Keywords=Music;Jellyfin;Audio;Stream;Sonixd
 EOF
 
 %build
+export PATH="$PATH:$(pwd)/bin"
+mkdir bin
+ln -s /usr/bin/node-20 bin/node
 npm-20 install --legacy-peer-deps
 npm-20 run postinstall
 npm-20 run build
