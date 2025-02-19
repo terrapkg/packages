@@ -38,9 +38,9 @@ Keywords=Music;Jellyfin;Audio;Stream;Sonixd
 EOF
 
 %build
-npm install --legacy-peer-deps
-npm run postinstall
-npm run build
+npm-20 install --legacy-peer-deps
+npm-20 run postinstall
+npm-20 run build
 %ifarch x86_64
 
 %define a linux
@@ -48,7 +48,7 @@ npm run build
 %define a arm64
 %endif
 
-npx electron-builder --linux dir --%a
+npx-20 electron-builder --linux dir --%a
 
 %install
 mkdir -p %buildroot%_datadir/{pixmaps,applications} %buildroot%_bindir
