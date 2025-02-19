@@ -25,7 +25,7 @@ install -Dm 755 util/cbmem/cbmem %buildroot%_bindir/cbmem
 
 %files
 %doc util/cbmem/description.md
-%license LICENSES/BSD-3-Clause.txt
+%license LICENSES/*
 %{_bindir}/cbmem
 
 %changelog
