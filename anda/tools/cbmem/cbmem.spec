@@ -1,5 +1,5 @@
 %define debug_package %nil
-%global build_cflags %{__build_flags_lang_c} %{?_distro_extra_cflags} -std=c17 -Wno-error
+%global build_cflags %(echo '%{__build_flags_lang_c} %{?_distro_extra_cflags} -std=c17' | sed 's|-Werror||g')
 
 Name:           cbmem
 Version:        24.12
