@@ -11,8 +11,8 @@
 %endif
 
 Name:           ghostty-nightly
-Version:        1.1.2
-Release:        2.tip%{dev_ver}^%{commit_date}.%{shortcommit}%{?dist}
+Version:        %{base_ver}~tip^%{commit_date}git%{shortcommit}
+Release:        2%{?dist}
 %if 0%{?fedora} <= 42
 Epoch:          1
 %endif
@@ -141,6 +141,7 @@ zig build \
     --prefix "%{_prefix}" --prefix-lib-dir "%{_libdir}" \
     --prefix-exe-dir "%{_bindir}" --prefix-include-dir "%{_includedir}" \
     --verbose \
+    -Dversion-string="%{dev_ver}-dev+%{shortcommit}" \
     -Dcpu=baseline \
     -Dstrip=false \
     -Dpie=true \
