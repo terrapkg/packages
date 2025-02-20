@@ -13,7 +13,7 @@
 Name:           ghostty-nightly
 Version:        %{base_ver}~tip^%{commit_date}git%{shortcommit}
 Release:        2%{?dist}
-%if 0%{?fedora} <= 42
+%if 0%{?fedora} <= 41
 Epoch:          1
 %endif
 Summary:        A fast, native terminal emulator written in Zig; this is the Tip (nightly) build.
