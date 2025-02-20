@@ -1,6 +1,6 @@
 %define debug_package %nil
-%global build_cflags %(echo '%{__build_flags_lang_c} %{?_distro_extra_cflags} -std=c17' | sed 's|-Werror||g' | sed 's|-Wall||g')
-%global build_cxxflags %(echo '%{__build_flags_lang_cxx} %{?_distro_extra_cxxflags}' | sed 's|-Werror||g' | sed 's|-Wall||g')
+%global build_cflags %(echo '%{__build_flags_lang_c} %{?_distro_extra_cflags} -std=c17' | sed 's|-Werror||g' | sed 's|-Wall||g' | sed 's|=format-security||g')
+%global build_cxxflags %(echo '%{__build_flags_lang_cxx} %{?_distro_extra_cxxflags}' | sed 's|-Werror||g' | sed 's|-Wall||g' | sed 's|=format-security||g')
 
 Name:           cbmem
 Version:        24.12
