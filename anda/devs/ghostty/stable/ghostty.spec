@@ -8,7 +8,7 @@
 
 Name:           ghostty
 Version:        1.1.2
-Release:        1%?dist
+Release:        2%?dist
 Summary:        A fast, native terminal emulator written in Zig.
 License:        MIT AND MPL-2.0 AND OFL-1.1 AND (WTFPL OR CC0-1.0) AND Apache-2.0
 URL:            https://ghostty.org/
@@ -99,10 +99,12 @@ Source files for Ghostty's terminfo. Available for debugging use.
 
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
-%autosetup -p1
+%autosetup
 
-# Download everything ahead of time so we can enable system integration mode
-ZIG_GLOBAL_CACHE_DIR="%{cache_dir}" ./nix/build-support/fetch-zig-cache.sh
+export ZIG_GLOBAL_CACHE_DIR="%{cache_dir}"
+zig build --fetch
+zig fetch git+https://github.com/zigimg/zigimg#3a667bdb3d7f0955a5a51c8468eac83210c1439e
+zig fetch git+https://github.com/mitchellh/libxev#f6a672a78436d8efee1aa847a43a900ad773618b
 
 %build
 
@@ -131,7 +133,7 @@ zig build \
 %_datadir/bat/syntaxes/ghostty.sublime-syntax
 %_datadir/ghostty/
 %_datadir/kio/servicemenus/com.mitchellh.ghostty.desktop
-%_datadir/nautilus-python/extensions/com.mitchellh.ghostty.py
+%_datadir/nautilus-python/extensions/ghostty.py
 %_datadir/nvim/site/compiler/ghostty.vim
 %_datadir/nvim/site/ftdetect/ghostty.vim
 %_datadir/nvim/site/ftplugin/ghostty.vim

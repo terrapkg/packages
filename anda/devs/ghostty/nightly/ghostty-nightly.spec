@@ -3,6 +3,7 @@
 %global fulldate 2025-02-18
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
+%global base_ver 1.1.2
 %global dev_ver 1.1.3
 %if 0%{?fedora} <= 40
 %global cache_dir %{_builddir}/zig-cache
@@ -11,8 +12,11 @@
 %endif
 
 Name:           ghostty-nightly
-Version:        1.1.2
-Release:        1%?dist
+Version:        %{base_ver}~tip^%{commit_date}git%{shortcommit}
+Release:        2%{?dist}
+%if 0%{?fedora} <= 41
+Epoch:          1
+%endif
 Summary:        A fast, native terminal emulator written in Zig; this is the Tip (nightly) build.
 License:        MIT AND MPL-2.0 AND OFL-1.1 AND (WTFPL OR CC0-1.0) AND Apache-2.0
 URL:            https://ghostty.org/
@@ -36,13 +40,16 @@ BuildRequires:  pkgconfig(libpng)
 BuildRequires:  pkgconfig(libxml-2.0)
 BuildRequires:  pkgconfig(oniguruma)
 BuildRequires:  pkgconfig(zlib)
-Requires:       %{name}-terminfo = %{version}-%{release}
-Requires:       %{name}-shell-integration = %{version}-%{release}
+Requires:       %{name}-terminfo
+Requires:       %{name}-shell-integration
 Requires:       gtk4
 Requires:       libadwaita
 Conflicts:      ghostty
 Provides:       ghostty-tip = %{version}-%{release}
-Obsoletes:      %{name} <= 20250130.04d3636-1%{?dist}
+%if 0%{?fedora} <= 41
+Provides:       %{name} = %{commit_date}.%{shortcommit}
+%endif
+Obsoletes:      %{name} = 20250130.04d3636
 Packager:       ShinyGil <rockgrub@disroot.org>
 
 %description
@@ -50,10 +57,12 @@ Packager:       ShinyGil <rockgrub@disroot.org>
 
 %package        bash-completion
 Summary:        Ghostty Bash completion
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}
 Requires:       bash-completion
 Supplements:    (%{name} and bash-completion)
-Obsoletes:      %{name}-bash-completion <= 20250130.04d3636-1%{?dist}
+%if 0%{?fedora} <= 41
+Provides:       %{name}-bash-completion = %{commit_date}.%{shortcommit}
+%endif
 BuildArch:      noarch
 
 %description    bash-completion
@@ -61,10 +70,12 @@ Bash shell completion for Ghostty.
 
 %package        fish-completion
 Summary:        Ghostty Fish completion
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}
 Requires:       fish
 Supplements:    (%{name} and fish)
-Obsoletes:      %{name}-fish-completion <= 20250130.04d3636-1%{?dist}
+%if 0%{?fedora} <= 41
+Provides:       %{name}-fish-completion = %{commit_date}.%{shortcommit}
+%endif
 BuildArch:      noarch
 
 %description    fish-completion
@@ -72,10 +83,12 @@ Fish shell completion for Ghostty.
 
 %package        zsh-completion
 Summary:        Ghostty Zsh completion
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}
 Requires:       zsh
 Supplements:    (%{name} and zsh)
-Obsoletes:      %{name}-zsh-completion <= 20250130.04d3636-1%{?dist}
+%if 0%{?fedora} <= 41
+Provides:       %{name}-zsh-completion = %{commit_date}.%{shortcommit}
+%endif
 BuildArch:      noarch
 
 %description    zsh-completion
@@ -84,7 +97,9 @@ Zsh shell completion for Ghostty.
 %package        shell-integration
 Summary:        Ghostty shell integration
 Supplements:    %{name}
-Obsoletes:      %{name}-shell-integration <= 20250130.04d3636-1%{?dist}
+%if 0%{?fedora} <= 41
+Provides:       %{name}-shell-integration = %{commit_date}.%{shortcommit}
+%endif
 BuildArch:      noarch
 
 %description    shell-integration
@@ -93,7 +108,9 @@ This package contains files allowing Ghostty to integrate with various shells.
 %package        terminfo
 Summary:        Ghostty terminfo
 Supplements:    %{name}
-Obsoletes:      %{name}-terminfo <= 20250130.04d3636-1%{?dist}
+%if 0%{?fedora} <= 41
+Provides:       %{name}-terminfo = %{commit_date}.%{shortcommit}
+%endif
 BuildArch:      noarch
 
 %description    terminfo
@@ -112,7 +129,6 @@ This package contains files for Ghostty's terminfo. Available for debugging use.
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
 %autosetup -n ghostty-source
 
-# Download everything ahead of time so we can enable system integration mode
 ZIG_GLOBAL_CACHE_DIR="%{cache_dir}" ./nix/build-support/fetch-zig-cache.sh
 
 %build
@@ -126,6 +142,7 @@ zig build \
     --prefix "%{_prefix}" --prefix-lib-dir "%{_libdir}" \
     --prefix-exe-dir "%{_bindir}" --prefix-include-dir "%{_includedir}" \
     --verbose \
+    -Dversion-string="%{dev_ver}-dev+%{shortcommit}" \
     -Dcpu=baseline \
     -Dstrip=false \
     -Dpie=true \
