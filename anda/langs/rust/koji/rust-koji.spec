@@ -16,8 +16,6 @@ Source:         %{crates_source}
 BuildRequires:  cargo-rpm-macros >= 24 anda-srpm-macros
 BuildRequires:  openssl-devel
 
-Conflicts:      koji
-
 %global _description %{expand:
 An interactive CLI for creating conventional commits.}
 
@@ -28,6 +26,7 @@ Summary:        %{summary}
 License:        (Apache-2.0 OR MIT) AND BSD-3-Clause AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND BSD-3-Clause AND CC0-1.0 AND ISC AND MIT AND MIT AND (MIT OR Apache-2.0) AND (MIT OR Apache-2.0) AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT)
 # LICENSE.dependencies contains a full license breakdown
 Provides:       cococonscious-%{crate} = %{version}-%{release}
+Conflicts:      koji
 
 %description -n %{diffname} %{_description}
 
