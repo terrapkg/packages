@@ -1,5 +1,5 @@
 %define debug_package %nil
-%global build_cflags %(echo '%{__build_flags_lang_c} %{?_distro_extra_cflags} -std=c17' | sed 's|-Werror||g')
+%global build_cflags %(echo '%{__build_flags_lang_c} %{?_distro_extra_cflags} -std=c17' | sed 's|-Werror||g' | sed 's|-Wall||g')
 
 Name:           cbmem
 Version:        24.12
@@ -18,7 +18,7 @@ Prints out coreboot mem table information in JSON by default, and also implement
 
 %build
 cd util/cbmem
-%make_build
+%make_build CFLAGS="$CFLAGS"
 
 %install
 install -Dm 755 util/cbmem/cbmem %buildroot%_bindir/cbmem
