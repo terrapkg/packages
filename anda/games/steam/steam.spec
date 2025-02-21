@@ -136,7 +136,7 @@ Recommends:     gobject-introspection
 Requires:       steam-devices = %{?epoch:%{epoch}:}%{version}-%{release}
 
 # Fix upgrading from old versions
-Obsoletes:       %{name} <= %{?epoch:%{epoch}:}1.0.0.82-1%{?dist}.x86_64
+Obsoletes:      %{name} <= %{?epoch:%{epoch}:}1.0.0.82-1%{?dist}.x86_64
 
 %description
 Steam is a software distribution service with an online store, automated
