@@ -5,7 +5,7 @@
 
 Name:           steam
 Version:        1.0.0.82
-Release:        4%?dist
+Release:        5%?dist
 Summary:        Installer for the Steam software distribution service
 # Redistribution and repackaging for Linux is allowed, see license file. udev rules are MIT.
 License:        Steam License Agreement and MIT
@@ -136,8 +136,7 @@ Recommends:     gobject-introspection
 Requires:       steam-devices = %{?epoch:%{epoch}:}%{version}-%{release}
 
 # Fix upgrading from old versions
-Provides:       %{name} = %{?epoch:%{epoch}:}%{version}-%{release}.x86_64
-Obsoletes:      %{name} < %{?epoch:%{epoch}:}%{version}-%{release}.x86_64
+Obsoletes:      %{name} <= %{?epoch:%{epoch}:}1.0.0.82-1%{?dist}.x86_64
 
 %description
 Steam is a software distribution service with an online store, automated
@@ -150,10 +149,10 @@ This package contains the installer for the Steam software distribution service.
 Summary:        Permissions required by Steam for gaming devices
 BuildArch:      noarch
 Provides:       steam-devices = %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes:      steam-devices < %{?epoch:%{epoch}:}%{version}-%{release}
 # Fix upgrading from old versions
-Provides:       steam-devices = %{?epoch:%{epoch}:}%{version}-%{release}.x86_64
-Obsoletes:      steam-devices < %{?epoch:%{epoch}:}%{version}-%{release}.x86_64
+Provides:       steam-devices <= %{?epoch:%{epoch}:}1.0.0.82-1%{?dist}.x86_64
+Obsoletes:      %{name} <= %{?epoch:%{epoch}:}1.0.0.82-1%{?dist}.x86_64
+Requires:       %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description    devices
 Steam is a software distribution service with an online store, automated
