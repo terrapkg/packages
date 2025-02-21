@@ -13,7 +13,7 @@ License:		GPL-3.0
 URL:			https://github.com/jeffvli/feishin
 Source0:		%url/archive/refs/tags/v%version.tar.gz
 Requires:		fuse mpv
-BuildRequires:	nodejs-npm jq libxcrypt-compat
+BuildRequires:	nodejs20-npm jq libxcrypt-compat
 
 %description
 %summary.
@@ -38,9 +38,13 @@ Keywords=Music;Jellyfin;Audio;Stream;Sonixd
 EOF
 
 %build
-npm install --legacy-peer-deps
-npm run postinstall
-npm run build
+export PATH="$PATH:$(pwd)/bin"
+mkdir bin
+ln -s /usr/bin/node-20 bin/node
+ln -s /usr/bin/npm-20 bin/npm
+npm-20 install --legacy-peer-deps
+npm-20 run postinstall
+npm-20 run build
 %ifarch x86_64
 
 %define a linux
@@ -48,7 +52,7 @@ npm run build
 %define a arm64
 %endif
 
-npx electron-builder --linux dir --%a
+npx-20 electron-builder --linux dir --%a
 
 %install
 mkdir -p %buildroot%_datadir/{pixmaps,applications} %buildroot%_bindir
