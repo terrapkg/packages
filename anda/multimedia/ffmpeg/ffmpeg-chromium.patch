@@ -1,0 +1,31 @@
+diff -Naur ffmpeg-7.1.old/libavformat/avformat.h ffmpeg-7.1/libavformat/avformat.h
+--- ffmpeg-7.1.old/libavformat/avformat.h	2024-12-03 14:07:22.816054663 +0100
++++ ffmpeg-7.1/libavformat/avformat.h	2024-12-03 14:07:23.589059301 +0100
+@@ -1202,6 +1202,10 @@
+ 
+ struct AVCodecParserContext *av_stream_get_parser(const AVStream *s);
+ 
++// Chromium: We use the internal field first_dts vvv
++int64_t    av_stream_get_first_dts(const AVStream *st);
++// Chromium: We use the internal field first_dts ^^^
++
+ #define AV_PROGRAM_RUNNING 1
+ 
+ /**
+diff -Naur ffmpeg-7.1.old/libavformat/utils.c ffmpeg-7.1/libavformat/utils.c
+--- ffmpeg-7.1.old/libavformat/utils.c	2024-12-03 14:07:22.818054675 +0100
++++ ffmpeg-7.1/libavformat/utils.c	2024-12-03 14:07:23.589059301 +0100
+@@ -44,6 +44,13 @@
+  * various utility functions for use within FFmpeg
+  */
+ 
++// Chromium: We use the internal field first_dts vvv
++int64_t av_stream_get_first_dts(const AVStream *st)
++{
++  return cffstream(st)->first_dts;
++}
++// Chromium: We use the internal field first_dts ^^^
++
+ /* an arbitrarily chosen "sane" max packet size -- 50M */
+ #define SANE_CHUNK_SIZE (50000000)
+ 
