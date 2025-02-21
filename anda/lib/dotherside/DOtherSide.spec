@@ -13,6 +13,7 @@ BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6QuickControls2)
 BuildRequires:  cmake(Qt6Widgets)
+BuildRequires:  cmake(Qt6XcbQpaPrivate)
 
 %description
 %summary.
