@@ -18,13 +18,20 @@ BuildRequires:  unzip
 BuildRequires:  zlib-ng-compat-devel
 BuildRequires:  zstd libzstd-devel
 
-%description
+%global _description %{expand:
 A special build of curl that can impersonate Chrome, Edge and Safari. curl-impersonate is able to perform TLS and HTTP handshakes that are identical to that of a real browser.
 
-curl-impersonate can be used either as a command line tool, similar to the regular curl, or as a library that can be integrated instead of the regular libcurl.
+curl-impersonate can be used either as a command line tool, similar to the regular curl, or as a library that can be integrated instead of the regular libcurl.}
+
+%description %_description
+
 
 %package -n libs
 Summary:        Shared libraries for %{name}
+Provides:       libcurl-impersonate = %{version}-%{release}
+
+%description -n libs %_description
+This package provides the libcurl-impersonate shared object files, which is libcurl compiled with the same changes as the curl-impersonate binary.
 
 
 %prep
