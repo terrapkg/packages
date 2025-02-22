@@ -1,0 +1,59 @@
+%global build_cxxflags %(echo "%{__build_flags_lang_cxx} %{?_distro_extra_cxxflags}" | sed 's@-Werror=format-security@@')
+
+Name:           curl-impersonate-chrome
+Version:        0.7.0
+Release:        1%{?dist}
+Summary:        A series of patches that make curl requests look like Chrome
+
+License:        MIT
+URL:            https://github.com/lexiforest/curl-impersonate
+Source0:        %{url}/archive/v%{version}.tar.gz
+Patch0:         remove-werror-in-boringssl-build.patch
+Patch1:         install-sh-scripts-to-buildroot.patch
+
+BuildRequires:  autoconf automake make cmake ninja-build
+BuildRequires:  gcc gcc-c++ libtool
+BuildRequires:  golang
+BuildRequires:  unzip
+BuildRequires:  zlib-ng-compat-devel
+BuildRequires:  zstd libzstd-devel
+
+%description
+A special build of curl that can impersonate Chrome, Edge and Safari. curl-impersonate is able to perform TLS and HTTP handshakes that are identical to that of a real browser.
+
+curl-impersonate can be used either as a command line tool, similar to the regular curl, or as a library that can be integrated instead of the regular libcurl.
+
+%package -n libs
+Summary:        Shared libraries for %{name}
+
+
+%prep
+%autosetup -n curl-impersonate-%{version} -p1
+
+%build
+%configure
+%{__make} chrome-build
+
+%check
+%{__make} chrome-checkbuild
+
+%install
+%{__make} DESTDIR=%{buildroot} chrome-install 
+
+%files
+%license LICENSE
+%doc README.md docs/
+%{_bindir}/%{name}
+%{_bindir}/%{name}-config
+%{_bindir}/curl_*
+
+%files -n libs
+%license LICENSE
+%{_libdir}/libcurl-impersonate.so
+%{_libdir}/libcurl-impersonate.so.4
+%{_libdir}/libcurl-impersonate.so.4.[0-9].[0-9]
+
+
+%changelog
+* Sun Feb 23 2025 sadlerm <lerm@chromebooks.lol>
+- Initial package
