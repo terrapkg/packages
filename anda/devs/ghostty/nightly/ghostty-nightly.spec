@@ -12,7 +12,7 @@
 
 Name:           ghostty-nightly
 Version:        %{ver}~tip^%{commit_date}git%{shortcommit}
-Release:        3%{?dist}
+Release:        1%{?dist}
 %if 0%{?fedora} <= 41
 Epoch:          1
 %endif
