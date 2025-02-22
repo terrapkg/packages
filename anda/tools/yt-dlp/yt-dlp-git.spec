@@ -3,19 +3,22 @@
 
 Name:           yt-dlp-git
 Version:        2025.02.20.193351
-Release:        1%?dist
+Release:        2%?dist
 Summary:        A command-line program to download videos from online video platforms
 
 License:        Unlicense
 URL:            https://github.com/yt-dlp/yt-dlp
 # License of the specfile
-Source:         https://src.fedoraproject.org/rpms/yt-dlp/raw/rawhide/f/yt-dlp.spec.license
+Source0:        https://src.fedoraproject.org/rpms/yt-dlp/raw/rawhide/f/yt-dlp.spec.license
+# Downgrade websockets version requirement on <= 41
+Patch1:         https://src.fedoraproject.org/rpms/yt-dlp/raw/6308364583e19fe367ca9be500e8c3a9366ff10c/f/0001-Revert-rh-websockets-Upgrade-websockets-to-13.0-1081.patch
+# Downgrade requests version requirement on 40
+Patch2:         https://src.fedoraproject.org/rpms/yt-dlp/raw/b8d3a225839bf53a4d53cc79ee8cbb0a7640dafd/f/0002-Revert-rh-requests-Bump-minimum-requests-version-to-.patch
 
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(hatchling)
-BuildRequires:  python3dist(pip)
+BuildRequires:  anda-srpm-macros
 
 %if %{with tests}
 # Needed for %%check
@@ -26,7 +29,7 @@ BuildRequires:  %{py3_dist pytest}
 BuildRequires:  pandoc
 BuildRequires:  make
 
-BuildRequires:  anda-srpm-macros
+Requires:       yt-dlp-git+default = %{?epoch:%{epoch}:}%{version}-%{release}
 
 # ffmpeg-free is now available in Fedora.
 Recommends:     /usr/bin/ffmpeg
@@ -90,14 +93,18 @@ Fish command line completion support for %{name}.
 
 # Remove unnecessary shebangs
 find -type f ! -executable -name '*.py' -print -exec sed -i -e '1{\@^#!.*@d}' '{}' +
-# Relax version constraints
-sed -i 's@"\(requests\|urllib3\|websockets\)>=.*"@"\1"@' pyproject.toml
+
+%if 0%{?fedora} <= 41
+%autopatch 1 -p1
+%endif
+%if 0%{?fedora} = 40
+%autopatch 2 -p1
 
 # Update version number
 %{python3} devscripts/update-version.py %{version} -c master -r yt-dlp/yt-dlp-master-builds
 
 %generate_buildrequires
-%pyproject_buildrequires -r
+%pyproject_buildrequires -x default,curl-cffi
 
 %build
 # Docs and shell completions
@@ -119,7 +126,7 @@ make yt-dlp.1 completion-bash completion-zsh completion-fish
 %files -f %{pyproject_files}
 %{_bindir}/yt-dlp
 %{_mandir}/man1/yt-dlp.1*
-%doc README.md
+%doc README.md Changelog.md
 %license LICENSE
 
 %files bash-completion
@@ -130,6 +137,8 @@ make yt-dlp.1 completion-bash completion-zsh completion-fish
 
 %files fish-completion
 %{fish_completions_dir}/yt-dlp.fish
+
+%pyproject_extras_subpkg -n yt-dlp-git default
 
 %changelog
 %autochangelog
