@@ -36,7 +36,7 @@ Linux kernel driver for Xbox One and Xbox Series X|S accessories common files.
 %if 0%{?tag:1}
 %autosetup -p1 -n xone-%{version}
 %else
-%autosetup -p1 -n xone-%{commit0}
+%autosetup -p1 -n xone-%{commit}
 %endif
 
 # Firmware:
