@@ -3,8 +3,7 @@
 %global fulldate 2025-02-22
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
-%global base_ver 1.1.2
-%global dev_ver 1.1.3
+%global ver 1.1.3
 %if 0%{?fedora} <= 40
 %global cache_dir %{_builddir}/zig-cache
 %else
@@ -12,8 +11,8 @@
 %endif
 
 Name:           ghostty-nightly
-Version:        %{base_ver}~tip^%{commit_date}git%{shortcommit}
-Release:        3%{?dist}
+Version:        %{ver}~tip^%{commit_date}git%{shortcommit}
+Release:        1%{?dist}
 %if 0%{?fedora} <= 41
 Epoch:          1
 %endif
@@ -142,7 +141,7 @@ zig build \
     --prefix "%{_prefix}" --prefix-lib-dir "%{_libdir}" \
     --prefix-exe-dir "%{_bindir}" --prefix-include-dir "%{_includedir}" \
     --verbose \
-    -Dversion-string="%{dev_ver}-dev+%{shortcommit}" \
+    -Dversion-string="%{ver}-dev+%{shortcommit}" \
     -Dcpu=baseline \
     -Dstrip=false \
     -Dpie=true \
