@@ -11,6 +11,6 @@ if rpm.changed() {
     base.crop(1);
     rpm.global("base_ver", base);
     rpm.global("fulldate", date);
-    rpm.global("dev_ver", ver)
+    rpm.global("dev_ver", ver);
     rpm.release();
 }
