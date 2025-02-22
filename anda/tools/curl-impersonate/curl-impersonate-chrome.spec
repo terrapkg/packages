@@ -28,10 +28,10 @@ curl-impersonate can be used either as a command line tool, similar to the regul
 
 %package -n libs
 Summary:        Shared libraries for %{name}
-Provides:       libcurl-impersonate = %{version}-%{release}
+Provides:       libcurl-impersonate-chrome = %{version}-%{release}
 
 %description -n libs %_description
-This package provides the libcurl-impersonate shared object files, which is libcurl compiled with the same changes as the curl-impersonate binary.
+This package provides the libcurl-impersonate-chrome shared object files, which is libcurl compiled with the same changes as the curl-impersonate binary.
 
 
 %prep
@@ -56,10 +56,10 @@ This package provides the libcurl-impersonate shared object files, which is libc
 
 %files -n libs
 %license LICENSE
-%{_prefix}/lib/libcurl-impersonate.a
-%{_prefix}/lib/libcurl-impersonate.so
-%{_prefix}/lib/libcurl-impersonate.so.4
-%{_prefix}/lib/libcurl-impersonate.so.4.[0-9].[0-9]
+%{_prefix}/lib/libcurl-impersonate-chrome.a
+%{_prefix}/lib/libcurl-impersonate-chrome.so
+%{_prefix}/lib/libcurl-impersonate-chrome.so.4
+%{_prefix}/lib/libcurl-impersonate-chrome.so.4.[0-9].[0-9]
 
 
 %changelog
