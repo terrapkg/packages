@@ -56,9 +56,10 @@ This package provides the libcurl-impersonate shared object files, which is libc
 
 %files -n libs
 %license LICENSE
-%{_libdir}/libcurl-impersonate.so
-%{_libdir}/libcurl-impersonate.so.4
-%{_libdir}/libcurl-impersonate.so.4.[0-9].[0-9]
+%{_prefix}/lib/libcurl-impersonate.a
+%{_prefix}/lib/libcurl-impersonate.so
+%{_prefix}/lib/libcurl-impersonate.so.4
+%{_prefix}/lib/libcurl-impersonate.so.4.[0-9].[0-9]
 
 
 %changelog
