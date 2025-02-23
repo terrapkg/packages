@@ -1,4 +1,4 @@
-%global commit bdf0f27d1a01322f7abb753658e79c60d39114a0
+%global commit eaeb6a620f3f2ad6cf3d936efd5c0acd84413e6b
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global fulldate 2025-02-23
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
@@ -29,6 +29,7 @@ BuildRequires:  ncurses
 BuildRequires:  ncurses-devel
 BuildRequires:  pandoc-cli
 BuildRequires:  zig
+BuildRequires:  pkgconfig(blueprint-compiler)
 BuildRequires:  pkgconfig(bzip2)
 BuildRequires:  pkgconfig(freetype2)
 BuildRequires:  pkgconfig(fontconfig)
