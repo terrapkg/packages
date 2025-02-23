@@ -11,6 +11,8 @@ Source0:        %{url}/archive/v%{version}.tar.gz
 Patch0:         remove-werror-in-boringssl-build.patch
 Patch1:         install-sh-scripts-to-buildroot.patch
 
+Packager:       sadlerm <lerm@chromebooks.lol>
+
 BuildRequires:  autoconf automake make cmake ninja-build
 BuildRequires:  gcc gcc-c++ libtool
 BuildRequires:  golang
@@ -33,7 +35,16 @@ Provides:       libcurl-impersonate-chrome = %{version}-%{release}
 %description libs
 %_description
 
-This package provides the libcurl-impersonate-chrome shared object files, which is libcurl compiled with the same changes as the curl-impersonate binary.
+This package provides the libcurl-impersonate-chrome shared object file, which is libcurl compiled with the same changes as the curl-impersonate binary.
+
+%package devel
+Summary:        Development files for %{name}
+Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
+
+%description devel
+%_description
+
+This package contains the object files necessary to develop %{name}.
 
 
 %prep
@@ -58,11 +69,12 @@ This package provides the libcurl-impersonate-chrome shared object files, which 
 
 %files libs
 %license LICENSE
-%{_prefix}/lib/libcurl-impersonate-chrome.a
-%{_prefix}/lib/libcurl-impersonate-chrome.so
 %{_prefix}/lib/libcurl-impersonate-chrome.so.4
 %{_prefix}/lib/libcurl-impersonate-chrome.so.4.[0-9].[0-9]
 
+%files devel
+%{_prefix}/lib/libcurl-impersonate-chrome.a
+%{_prefix}/lib/libcurl-impersonate-chrome.so
 
 %changelog
 * Sun Feb 23 2025 sadlerm <lerm@chromebooks.lol>
