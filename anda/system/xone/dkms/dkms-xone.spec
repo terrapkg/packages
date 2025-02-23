@@ -10,7 +10,7 @@ Name:       dkms-%{dkms_name}
 Version:    %{ver}%{!?tag:^%{date}git%{shortcommit}}
 Release:    1%{?dist}
 Summary:    Linux kernel driver for Xbox One and Xbox Series X|S accessories
-License:    GPLv2
+License:    GPL-2.0-or-later
 URL:        https://github.com/dlundqvist/xone
 BuildArch:  noarch
 
