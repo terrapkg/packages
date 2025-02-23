@@ -32,6 +32,7 @@ Source:         %{gosource}
 Provides:       golang-github-aylur-ags = %version-%release
 Packager:       madonuko <mado@fyralabs.com>
 
+BuildDepends:  anda-srpm-macros
 %description %{common_description}
 
 %gopkg
