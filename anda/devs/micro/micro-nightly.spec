@@ -23,12 +23,12 @@ Version:                2.0.14^%{commit_date}git.%{shortcommit}
 %global common_description %{expand:
 micro is a terminal-based text editor that aims to be easy to use and intuitive, while also taking advantage of the capabilities of modern terminals. It strives to be enjoyable as a full-time editor for people who prefer to work in a terminal, or those who regularly edit files over SSH.}
 
-%global golicenses      LICENSE LICENSE-THIRD-PARTY runtime/syntax/LICENSE
-%global godocs          README.md runtime/README.md runtime/help/colors.md\\\
-                        runtime/help/commands.md runtime/help/copypaste.md\\\
-                        runtime/help/defaultkeys.md runtime/help/help.md\\\
-                        runtime/help/keybindings.md runtime/help/options.md\\\
-                        runtime/help/plugins.md runtime/help/tutorial.md
+%global golicenses      LICENSE LICENSE-THIRD-PARTY
+%global godocs          README.md runtime/help/colors.md runtime/help/commands.md\\\
+                        runtime/help/copypaste.md runtime/help/defaultkeys.md\\\
+                        runtime/help/help.md runtime/help/keybindings.md\\\
+                        runtime/help/options.md runtime/help/plugins.md\\\
+                        runtime/help/tutorial.md
 
 Name:           micro.nightly
 Release:        1%{?dist}
@@ -67,7 +67,7 @@ MICRO_DATE=$(date --date=%{commit_date} +"%%B %%d, %%Y")
 go build -buildmode pie -compiler gc -tags="rpm_crashtraceback ${GO_BUILDTAGS-${BUILDTAGS-}}" -a -x \
   -ldflags "-X internal/util.version=${MICRO_VERSION} \
             -X internal/util.hash=%{shortcommit} \
-	    -X 'internal/util.date=${MICRO_DATE}' \
+            -X 'internal/util.date=${MICRO_DATE}' \
             -B 0x$(echo "%{name}-%{version}-%{release}-${SOURCE_DATE_EPOCH:-}" | sha1sum | cut -d ' ' -f1) \
             -compressdwarf=false -linkmode=external \
             -extldflags '-Wl,-z,relro -Wl,--as-needed -Wl,-z,pack-relative-relocs -Wl,-z,now \
@@ -85,6 +85,10 @@ install -m 0755 -vd                                  %{buildroot}%{_bindir} \
 install -m 0755 -vp ./micro                          %{buildroot}%{_bindir}/
 install -m 0644 -vp ./assets/packaging/micro.1       %{buildroot}%{_mandir}/man1/
 install -m 0644 -vp ./assets/packaging/micro.desktop %{buildroot}%{_datadir}/applications/
+
+# for %%doc packaging
+mkdir -v ./help
+mv -v ./runtime/help/* ./help/
 %endif
 
 %if %{without bootstrap}
@@ -96,11 +100,11 @@ install -m 0644 -vp ./assets/packaging/micro.desktop %{buildroot}%{_datadir}/app
 
 %if %{without bootstrap}
 %files
-%license LICENSE LICENSE-THIRD-PARTY runtime/syntax/LICENSE
-%doc README.md runtime/README.md runtime/help/colors.md runtime/help/commands.md
-%doc runtime/help/copypaste.md runtime/help/defaultkeys.md runtime/help/help.md
-%doc runtime/help/keybindings.md runtime/help/options.md runtime/help/plugins.md
-%doc runtime/help/tutorial.md
+%license LICENSE LICENSE-THIRD-PARTY
+%doc README.md ./help/colors.md ./help/commands.md
+%doc ./help/copypaste.md ./help/defaultkeys.md ./help/help.md
+%doc ./help/keybindings.md ./help/options.md ./help/plugins.md
+%doc ./help/tutorial.md
 %{_bindir}/micro
 %{_mandir}/man1/micro.1.gz
 %{_datadir}/applications/micro.desktop
