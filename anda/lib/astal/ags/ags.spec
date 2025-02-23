@@ -29,7 +29,7 @@ Summary:        Scaffolding CLI for Astal+TypeScript
 License:        GPL-3.0-only
 URL:            %{gourl}
 Source:         %{gosource}
-Provides:       golang-github-aylur-ags = %version-5release
+Provides:       golang-github-aylur-ags = %version-%release
 Packager:       madonuko <mado@fyralabs.com>
 
 %description %{common_description}
