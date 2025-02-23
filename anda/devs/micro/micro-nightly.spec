@@ -83,7 +83,7 @@ install -m 0755 -vd                                  %{buildroot}%{_bindir} \
                                                      %{buildroot}%{_datadir}/applications
 
 install -m 0755 -vp ./micro                          %{buildroot}%{_bindir}/
-install -m 0644 -vp ./assets/packaging/micro.1       %{buildroot}%{_datadir}/man1/
+install -m 0644 -vp ./assets/packaging/micro.1       %{buildroot}%{_mandir}/man1/
 install -m 0644 -vp ./assets/packaging/micro.desktop %{buildroot}%{_datadir}/applications/
 %endif
 
