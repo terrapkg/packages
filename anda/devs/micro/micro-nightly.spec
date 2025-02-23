@@ -15,10 +15,11 @@
 %global commit_hash 5a62a8ead4af741e4fc5f850fcb846974859c5a0
 %global commit_date 20250209
 %global shortcommit %{sub %{commit_hash} 1 7}
+%global ver 2.0.14
 
 # https://github.com/zyedidia/micro
 %global goipath         github.com/zyedidia/micro
-Version:                2.0.14^%{commit_date}git.%{shortcommit}
+Version:                %{ver}^%{commit_date}git.%{shortcommit}
 
 %gometa -f
 
@@ -38,6 +39,7 @@ Summary:        A modern and intuitive terminal-based text editor
 
 License:        MIT
 URL:            %{gourl}
+Packager:       sadlerm <lerm@chromebooks.lol>
 
 BuildRequires:  anda-srpm-macros
 
