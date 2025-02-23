@@ -1,0 +1,13 @@
+diff --git a/Makefile.in b/Makefile.in
+index 41d7324..56a029e 100644
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -83,7 +83,7 @@ chrome-install: ## Install the Chrome version of curl-impersonate after build
+ 	cd $(CURL_VERSION)
+ 	$(MAKE) install-exec MAKEFLAGS=
+ 	# Wrapper scripts for the Chrome version (e.g. 'curl_chrome99')
+-	install $(srcdir)/chrome/curl_* @bindir@
++	install $(srcdir)/chrome/curl_* $(DESTDIR)@bindir@
+ .PHONY: chrome-install
+ 
+ chrome-install-strip: ## Like 'chrome-install', but strip binaries for smaller size
