@@ -10,9 +10,11 @@
 %global __requires_exclude %{?__requires_exclude:%{__requires_exclude}|}^golang\\(.*\\)$
 %endif
 
-%global commit 5a62a8ead4af741e4fc5f850fcb846974859c5a0
+# Naming variable as something other than "commit" is necessary
+# to stop %%gometa from putting commit hash in release
+%global commit_hash 5a62a8ead4af741e4fc5f850fcb846974859c5a0
 %global commit_date 20250209
-%global shortcommit %{sub %{commit} 1 7}
+%global shortcommit %{sub %{commit_hash} 1 7}
 
 # https://github.com/zyedidia/micro
 %global goipath         github.com/zyedidia/micro
@@ -48,9 +50,8 @@ Conflicts:      micro
 %gopkg
 
 %prep
-%git_clone %{gourl} master
-
-if ! [ %{shortcommit} = $(git rev-parse --short HEAD) ]; then
+git clone --recurse-submodules -q -j$(nproc) %{gourl} -b master && cd micro
+if ! [ %{shortcommit} = $(git rev-parse --short=7 HEAD) ]; then
   printf "Commit mismatch, exiting..." >&2
   exit 1
 fi
@@ -58,6 +59,7 @@ fi
 %go_prep_online
 
 %build
+cd micro
 %if %{without bootstrap}
 go generate ./runtime
 
@@ -78,33 +80,31 @@ go build -buildmode pie -compiler gc -tags="rpm_crashtraceback ${GO_BUILDTAGS-${
 
 %install
 %if %{without bootstrap}
-install -m 0755 -vd                                  %{buildroot}%{_bindir} \
-                                                     %{buildroot}%{_mandir}/man1 \
-                                                     %{buildroot}%{_datadir}/applications
+install -m 0755 -vd                                        %{buildroot}%{_bindir} \
+                                                           %{buildroot}%{_mandir}/man1 \
+                                                           %{buildroot}%{_datadir}/applications
 
-install -m 0755 -vp ./micro                          %{buildroot}%{_bindir}/
-install -m 0644 -vp ./assets/packaging/micro.1       %{buildroot}%{_mandir}/man1/
-install -m 0644 -vp ./assets/packaging/micro.desktop %{buildroot}%{_datadir}/applications/
+install -m 0755 -vp ./micro/micro                          %{buildroot}%{_bindir}/
+install -m 0644 -vp ./micro/assets/packaging/micro.1       %{buildroot}%{_mandir}/man1/
+install -m 0644 -vp ./micro/assets/packaging/micro.desktop %{buildroot}%{_datadir}/applications/
 
 # for %%doc packaging
-mkdir -v ./help
-mv -v ./runtime/help/* ./help/
+mkdir -v ./micro/help
+mv -v ./micro/runtime/help/* ./micro/help/
 %endif
 
 %if %{without bootstrap}
 %if %{with check}
 %check
+cd micro
 %gotest ./internal/... ./cmd/micro/... 
 %endif
 %endif
 
 %if %{without bootstrap}
 %files
-%license LICENSE LICENSE-THIRD-PARTY
-%doc README.md ./help/colors.md ./help/commands.md
-%doc ./help/copypaste.md ./help/defaultkeys.md ./help/help.md
-%doc ./help/keybindings.md ./help/options.md ./help/plugins.md
-%doc ./help/tutorial.md
+%license micro/LICENSE micro/LICENSE-THIRD-PARTY
+%doc micro/README.md micro/help
 %{_bindir}/micro
 %{_mandir}/man1/micro.1.gz
 %{_datadir}/applications/micro.desktop
