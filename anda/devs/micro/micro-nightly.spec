@@ -65,7 +65,7 @@ MICRO_VERSION=$(go run ./tools/build-version.go)
 MICRO_DATE=$(date --date=%{commit_date} +"%%B %%d, %%Y")
 
 go build -buildmode pie -compiler gc -tags="rpm_crashtraceback ${GO_BUILDTAGS-${BUILDTAGS-}}" -a -x \
-  -ldflags "-X internal/util.version=${VERSION} \
+  -ldflags "-X internal/util.version=${MICRO_VERSION} \
             -X internal/util.hash=%{shortcommit} \
 	    -X 'internal/util.date=${MICRO_DATE}' \
             -B 0x$(echo "%{name}-%{version}-%{release}-${SOURCE_DATE_EPOCH:-}" | sha1sum | cut -d ' ' -f1) \
@@ -80,7 +80,7 @@ go build -buildmode pie -compiler gc -tags="rpm_crashtraceback ${GO_BUILDTAGS-${
 %if %{without bootstrap}
 install -m 0755 -vd                                  %{buildroot}%{_bindir} \
                                                      %{buildroot}%{_mandir}/man1 \
-						     %{buildroot}%{_datadir}/applications
+                                                     %{buildroot}%{_datadir}/applications
 
 install -m 0755 -vp ./micro                          %{buildroot}%{_bindir}/
 install -m 0644 -vp ./assets/packaging/micro.1       %{buildroot}%{_datadir}/man1/
