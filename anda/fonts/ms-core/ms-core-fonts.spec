@@ -81,7 +81,7 @@ http://www.microsoft.com/typography/fontpack.
 Obsoletes: %{name}-common <= 2.2-4
 }
 
-%global fonts6            Impact.ttf
+%global fonts6            Impact.TTF
 %global fontconfs6        %{SOURCE13}
 %global fontdescription6  %{expand:
 %{common_description}
