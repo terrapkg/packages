@@ -12,17 +12,14 @@ License:        GPL-2.0-or-later
 URL:            https://github.com/dlundqvist/xone
 BuildArch:      noarch
 Source0:        %{url}/archive/%{commit}.tar.gz#/xone-%{shortcommit}.tar.gz
-
-
 # Windows driver and firmware file:
 Source1:        http://download.windowsupdate.com/c/msdownload/update/driver/drvs/2017/07/1cd6a87c-623f-4407-a52d-c31be49e925c_e19f60808bdcbfbd3c3df6be3e71ffc52e43261e.cab
-
+# Microsoft TOU copy:
+Source2:        EULA
 BuildRequires:  cabextract
-# UDev rule location (_udevrulesdir) and systemd macros:
 BuildRequires:  systemd-rpm-macros
 
 Requires:       wireless-regdb
-Requires:       %{real_name}-kmod = %{?epoch:%{epoch}:}%{version}
 Provides:       %{real_name}-kmod-common = %{?epoch:%{epoch}:}%{version}
 
 %description
@@ -30,6 +27,7 @@ Linux kernel driver for Xbox One and Xbox Series X|S accessories common files.
  
 %prep
 %autosetup -p1 -n xone-%{commit}
+/usr/bin/cp %{SOURCE2} .
 
 # Firmware:
 cabextract -F FW_ACC_00U.bin %{SOURCE1}
@@ -45,10 +43,14 @@ install -p -m 0644 install/modprobe.conf %{buildroot}%{_prefix}/lib/modprobe.d/x
 install -p -m 0644 -D FW_ACC_00U.bin %{buildroot}%{_prefix}/lib/firmware/xow_dongle.bin
 
 %files
-%license LICENSE
+%license LICENSE EULA
 %doc README.md
 %{_prefix}/lib/modprobe.d/%{real_name}.conf
 %{_prefix}/lib/firmware/xow_dongle.bin
+
+%post
+echo "The firmware for the wireless dongle is subject to Microsoft's Terms of Use:"
+echo 'https://www.microsoft.com/en-us/legal/terms-of-use'
 
 %changelog
 %autochangelog

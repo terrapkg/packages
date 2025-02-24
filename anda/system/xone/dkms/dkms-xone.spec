@@ -16,7 +16,6 @@ BuildArch:  noarch
 Source0:    %{url}/archive/%{commit}.tar.gz#/%{dkms_name}-%{shortcommit}.tar.gz
 Source1:    dkms-no-weak-modules.conf
 BuildRequires:  sed
-Provides:   %{dkms_name}-kmod = %{?epoch:%{epoch}:}%{version}
 Requires:   %{dkms_name}-kmod-common = %{?epoch:%{epoch}:}%{version}
 Requires:   dkms
 
