@@ -1,6 +1,8 @@
 project pkg {
-        arches = ["x86_64"]
+                arches = ["x86_64"]
 	rpm {
 		spec = "ms-core-fonts.spec"
 	}
+        labels {
+                mock =1
 }
