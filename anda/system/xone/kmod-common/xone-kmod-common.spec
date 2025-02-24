@@ -36,9 +36,6 @@ Linux kernel driver for Xbox One and Xbox Series X|S accessories common files.
 %autosetup -p1 -n xone-%{commit}
 %endif
 
-# Firmware:
-cabextract -F FW_ACC_00U.bin %{SOURCE1}
-
 %install
 mkdir -p %{buildroot}%{_udevrulesdir}
 mkdir -p %{buildroot}%{_prefix}/lib/modprobe.d/
