@@ -2,10 +2,7 @@
 %global date 20241223
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global ver 0.3
-
-# Build only the akmod package and no kernel module packages:
 %define buildforkernels akmod
-
 %global debug_package %{nil}
 
 Name:           xone-kmod
@@ -15,11 +12,8 @@ Summary:        Linux kernel driver for Xbox One and Xbox Series X|S accessories
 License:        GPL-2.0-or-later
 URL:            https://github.com/dlundqvist/xone
 Source0:        %{url}/archive/%{commit}.tar.gz#/xone-%{shortcommit}.tar.gz
-
-# Get the needed BuildRequires (in parts depending on what we build for):
 BuildRequires:  kmodtool
 
-# kmodtool does its magic here
 %{expand:%(kmodtool --target %{_target_cpu} --repo terra --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 
 %description
