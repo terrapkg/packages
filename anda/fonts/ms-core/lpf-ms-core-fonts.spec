@@ -1,5 +1,4 @@
-# %%global will not work here, lazy evaluation needed.
-%define         target_pkg %%(t=%%{name}; echo ${t#lpf-})
+%define         target_pkg %(t=%{name}; echo ${t#lpf-})
 
 Name:           lpf-ms-core-fonts
 Version:        2.2
