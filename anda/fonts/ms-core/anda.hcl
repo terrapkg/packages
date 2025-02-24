@@ -3,7 +3,4 @@ project pkg {
 	rpm {
 		spec = "ms-core-fonts.spec"
 	}
-        labels {
-                mock =1
-        }
 }

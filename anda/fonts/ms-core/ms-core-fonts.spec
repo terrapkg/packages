@@ -111,9 +111,9 @@ website.
 Obsoletes: %{name}-common <= 2.2-4
 }
 
-%global fonts9            trebuc*.ttf
-%global fontconfs9        %{SOURCE15}
-%global fontdescription9  %{expand:
+%global fonts8            trebuc*.ttf
+%global fontconfs8        %{SOURCE15}
+%global fontdescription8  %{expand:
 %{common_description}
 Microsoft Trebuchet font for the web that prior to 2002 was available
 from http://www.microsoft.com/typography/fontpack, updated
@@ -121,15 +121,15 @@ in the European Union Expansion Update circa May 2007, still available
 on the Microsoft website.
 }
 
-%global fontfamily10       MS Core Verdana
-%global fontsummary10      Microsoft Verdana TTF font
-%global fontpkgheader10    %{expand:
+%global fontfamily9       MS Core Verdana
+%global fontsummary9      Microsoft Verdana TTF font
+%global fontpkgheader9    %{expand:
 Obsoletes: %{name}-common <= 2.2-4
 }
 
-%global fonts10            Verdana*.ttf
-%global fontconfs10        %{SOURCE16}
-%global fontdescription10  %{expand:
+%global fonts9            Verdana*.ttf
+%global fontconfs9        %{SOURCE16}
+%global fontdescription9  %{expand:
 %{common_description}
 Microsoft Verdana font for the web that prior to 2002 was available from
 http://www.microsoft.com/typography/fontpack/, updated in the European
@@ -137,15 +137,15 @@ Union Expansion Update circa May 2007, still available on the Microsoft
 website.
 }
 
-%global fontfamily11      MS Core Webdings
-%global fontsummary11     Microsoft Verdana TTF font
-%global fontpkgheader11   %{expand:
+%global fontfamily10      MS Core Webdings
+%global fontsummary10     Microsoft Verdana TTF font
+%global fontpkgheader10   %{expand:
 Obsoletes: %{name}-common <= 2.2-4
 }
 
-%global fonts11           Webdings.TTF
-%global fontconfs11       %{SOURCE17}
-%global fontdescription11 %{expand:
+%global fonts10           Webdings.TTF
+%global fontconfs10       %{SOURCE17}
+%global fontdescription10 %{expand:
 %{common_description}
 Webdings font for the web that prior to 2002 was available from
 http://www.microsoft.com/typography/fontpack.
