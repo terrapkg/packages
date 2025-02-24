@@ -7,7 +7,7 @@
 %global dkms_name xpadneo
 
 Name:       dkms-%{dkms_name}
-Version:    %{ver}^%{date}git%{shortcommit}
+Version:    %{ver}^%{date}git.%{shortcommit}
 Release:    1%{?dist}
 Summary:    Advanced Linux Driver for Xbox One Wireless Gamepad
 License:    GPLv3

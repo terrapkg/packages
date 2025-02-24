@@ -6,7 +6,7 @@
 %global real_name xpadneo
 
 Name:           %{real_name}-kmod-common
-Version:        %{ver}^%{date}git%{shortcommit}
+Version:        %{ver}^%{date}git.%{shortcommit}
 Release:        1%{?dist}
 Summary:        Advanced Linux Driver for Xbox One Wireless Gamepad common files
 License:        GPLv3
