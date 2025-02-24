@@ -238,21 +238,4 @@ done
 
 
 %changelog
-* Sun Nov 07 2021 Sérgio Basto <sergio@serjux.com> - 1.0-4
-- Add Obsoletes: old font names
-
-* Sat May 29 2021 Sérgio Basto <sergio@serjux.com> - 1.0-3
-- Rename packages from mscore-fonts ms-core-fonts
-
-* Fri Feb 14 2014 Alec Leamas<leamas.alec@gmail.com> 1.0-2
-- Lower config priority (55 -> 61)
-- New description, downplay fonts usefullness.
-
-* Mon Feb 10 2014  Alec Leamas <leamas@nowhere.net> - 1.0-1
-- Based on previous work available at
-  https://downloads.sourceforge.net/project/mscorefonts2/specs/msttcore-fonts-2.1-2.spec
-- Adapting to lpf, don't download in scriptlets.
-- Fedora GL: package each font in separate sub-package.
-- Fedora GL: Base on font package template
-- Fedora GL: Rename using offical fedora -fonts suffix
-- Purging changelog
+%autochangelog

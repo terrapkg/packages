@@ -53,15 +53,4 @@ ln -s %{_fontconfig_templatedir}/$basename \
 
 
 %changelog
-* Sun Nov 07 2021 Sérgio Basto <sergio@serjux.com> - 1.0-3
-- retag it again
-
-* Sun Nov 07 2021 Sérgio Basto <sergio@serjux.com> - 1.0-2
-- bump
-
-* Fri Feb 14 2014 Alec Leamas <leamas.alec@gmail.com> - 1.0-1
-- Updated description, downplaying usefullness.
-- Lower config file priority (55 -> 61).
-
-* Mon Feb 10 2014 Alec Leamas <leamas@nowhere.net> - 1.0-1
-- Initial release.
+%autochangelog
