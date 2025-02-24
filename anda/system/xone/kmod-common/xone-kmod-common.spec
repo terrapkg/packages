@@ -12,9 +12,10 @@ License:        GPL-2.0-or-later
 URL:            https://github.com/dlundqvist/xone
 BuildArch:      noarch
 Source0:        %{url}/archive/%{commit}.tar.gz#/xone-%{shortcommit}.tar.gz
-# Windows driver and firmware file:
+### Windows driver and firmware file:
+# License: Proprietary
 Source1:        http://download.windowsupdate.com/c/msdownload/update/driver/drvs/2017/07/1cd6a87c-623f-4407-a52d-c31be49e925c_e19f60808bdcbfbd3c3df6be3e71ffc52e43261e.cab
-# Microsoft TOU copy:
+### Microsoft TOU copy:
 Source2:        EULA
 BuildRequires:  cabextract
 BuildRequires:  systemd-rpm-macros
