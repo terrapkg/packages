@@ -1,6 +1,5 @@
 %global fontname ms-core
 %global oldfontname mscore
-# directory to unpack truetype fonts from the cab into
 %global fontdir %{_datadir}/fonts/%{fontname}
 
 %global sf_corefonts http://downloads.sourceforge.net/corefonts/the%20fonts/final
@@ -8,7 +7,7 @@
 Summary:   Microsoft core TrueType fonts for better Windows Compatibility
 Name:      %{fontname}-fonts
 Version:   1.0
-Release:   4%{?dist}
+Release:   1%{?dist}
 
 URL:       http://mscorefonts2.sourceforge.net/
 License:   non-redistributable, no commercial use, no modifications permitted

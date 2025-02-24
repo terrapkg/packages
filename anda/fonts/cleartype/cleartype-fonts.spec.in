@@ -2,8 +2,6 @@
 %global fontname cleartype
 %global fontdir %{_datadir}/fonts/%{fontname}
 
-#%%global foundry           Microsoft
-
 %global fontlicense       non-redistributable, no modifications permitted
 %global fontlicenses      eula.txt
 
@@ -93,7 +91,7 @@ in the PowerPointViewer package, still available on the Microsoft website.
 
 Name:      %{fontname}-fonts
 Version:   1.0
-Release:   5%{?dist}
+Release:   1%{?dist}
 Summary:   Microsoft ClearType fonts for better Windows Compatibility
 
 License:   non-redistributable, no modifications permitted
