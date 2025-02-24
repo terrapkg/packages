@@ -15,7 +15,6 @@ Summary:        Advanced Linux Driver for Xbox One Wireless Gamepad
 License:        GPLv3
 URL:            https://atar-axis.github.io/xpadneo
 Source0:        https://github.com/atar-axis/xpadneo/archive/%{commit}.tar.gz#/xpadneo-%{shortcommit}.tar.gz
-Source1:        io.github.xpadneo.metainfo.xml
 BuildRequires:  kmodtool
 
 # kmodtool does its magic here:
@@ -51,7 +50,6 @@ for kernel_version in %{?kernel_versions}; do
         %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
 done
 %{?akmod_install}
-install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/metainfo/io.github.xpadneo.metainfo.xml
 
 %changelog
 %autochangelog
