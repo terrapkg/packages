@@ -13,17 +13,9 @@ Summary:    Advanced Linux Driver for Xbox One Wireless Gamepad
 License:    GPLv3
 URL:        https://atar-axis.github.io/%{dkms_name}
 BuildArch:  noarch
-
-%if 0%{?tag:1}
-Source0:    https://github.com/atar-axis/%{dkms_name}/archive/v%{version}.tar.gz#/%{dkms_name}-%{version}.tar.gz
-%else
 Source0:    https://github.com/atar-axis/%{dkms_name}/archive/%{commit}.tar.gz#/%{dkms_name}-%{shortcommit}.tar.gz
-%endif
-
 Source1:    %{name}.conf
-
 BuildRequires:  sed
-
 Provides:   %{dkms_name}-kmod = %{?epoch:%{epoch}:}%{version}
 Requires:   %{dkms_name}-kmod-common = %{?epoch:%{epoch}:}%{version}
 Requires:   dkms

@@ -11,14 +11,8 @@ Release:        1%{?dist}
 Summary:        Advanced Linux Driver for Xbox One Wireless Gamepad common files
 License:        GPLv3
 URL:            https://atar-axis.github.io/%{real_name}
-
 BuildArch:      noarch
-
-%if 0%{?tag:1}
-Source0:    https://github.com/atar-axis/%{real_name}/archive/v%{version}.tar.gz#/%{real_name}-%{version}.tar.gz
-%else
 Source0:    https://github.com/atar-axis/%{real_name}/archive/%{commit}.tar.gz#/%{real_name}-%{shortcommit}.tar.gz
-%endif
 
 # UDev rule location (_udevrulesdir) and systemd macros:
 BuildRequires:  systemd-rpm-macros
