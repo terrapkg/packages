@@ -23,7 +23,7 @@ BuildRequires:  systemd-rpm-macros
 
 Requires:       wireless-regdb
 Requires:       %{real_name}-kmod = %{?epoch:%{epoch}:}%{version}
-Requires:       lpf-xone-firmware >= 0.3
+Requires:       lpf-xone-firmware
 Provides:       %{real_name}-kmod-common = %{?epoch:%{epoch}:}%{version}
 
 %description
