@@ -206,7 +206,7 @@ Developer Documentation files for %{name} for use with KDevelop or QtCreator.
 %files core-libs
 %{_kf6_libdir}/libKF6KIOCore.so.*
 
-%files doc -f %{name}.lang
+%files doc -f kf6-kio.lang
 
 %files gui
 %{_kf6_libdir}/libKF6KIOGui.so.*
