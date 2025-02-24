@@ -1,6 +1,5 @@
 %global debug_package     %{nil}
 %global fontname          cleartype
-%global foundry           Microsoft
 %global fontlicense       Microsoft EULA
 %global fontlicenses      EULA eula.txt
 
