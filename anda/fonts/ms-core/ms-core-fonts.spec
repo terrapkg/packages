@@ -182,7 +182,7 @@ BuildRequires:   fontpackages-devel
 Requires:        fontconfig
 Requires:        %{fontname}-andale-fonts
 Requires:        %{fontname}-arial-fonts
-Requires:        %{fontname}-comic--fonts
+Requires:        %{fontname}-comic-fonts
 Requires:        %{fontname}-courier-fonts
 Requires:        %{fontname}-georgia-fonts
 Requires:        %{fontname}-impact-fonts
