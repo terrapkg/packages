@@ -6,7 +6,7 @@ Summary:    Linux driver for the Xbox One wireless dongle.
 Version:    0.3
 
 Release:    1%{?dist}
-License:    GPLv2
+License:    GPL-2.0-or-later
 URL:        https://github.com/medusalix/xone/
 BuildArch:  noarch
 Source0:    xone-firmware.spec.in
