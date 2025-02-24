@@ -5,4 +5,5 @@ project pkg {
 	}
         labels {
                 mock =1
+        }
 }
