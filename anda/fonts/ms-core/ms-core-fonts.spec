@@ -4,7 +4,7 @@
 %global fontlicense       Microsoft EULA
 %global fontlicenses      Licen.TXT
 
-%global fontfamily1       Andale Mono
+%global fontfamily1       MS Core Andale
 %global fontsummary1      Microsoft Andale Mono TTF font
 %global fontpkgheader1    %{expand:
 Obsoletes: %{name}-common <= 2.2-4
@@ -18,7 +18,7 @@ Andale Mono font for the web that prior to 2002 was available from
 http://www.microsoft.com/typography/fontpack.
 }
 
-%global fontfamily2       Arial
+%global fontfamily2       MS Core Arial
 %global fontsummary2      Microsoft Arial TTF font
 %global fontpkgheader2    %{expand:
 Obsoletes: %{name}-common <= 2.2-4
@@ -34,7 +34,7 @@ Union Expansion Update circa May 2007, still available on the Microsoft
 website.
 }
 
-%global fontfamily3       Comic Sans
+%global fontfamily3       MS Core Comic
 %global fontsummary3      Microsoft Comic Sans TTF font
 %global fontpkgheader3    %{expand:
 Obsoletes: %{name}-common <= 2.2-4
@@ -48,7 +48,7 @@ Comic Sans bold and regular font for the web that prior to 2002 was available
 from http://www.microsoft.com/typography/fontpack.
 }
 
-%global fontfamily4       Courier New
+%global fontfamily4       MS Core Courier
 %global fontsummary4      Microsoft Courier New TTF font
 %global fontpkgheader4    %{expand:
 Obsoletes: %{name}-common <= 2.2-4
@@ -62,7 +62,7 @@ Courier New bold, bold italic, italic and regular font for the web that prior
 to 2002 was available from http://www.microsoft.com/typography/fontpack.
 }
 
-%global fontfamily5       Georgia
+%global fontfamily5       MS Core Georgia
 %global fontsummary5      Microsoft Georgia TTF font
 %global fontpkgheader5    %{expand:
 Obsoletes: %{name}-common <= 2.2-4
@@ -76,7 +76,7 @@ Georgia font for the web that prior to 2002 was available from
 http://www.microsoft.com/typography/fontpack.
 }
 
-%global fontfamily6       Impact
+%global fontfamily6       MS Core Impact
 %global fontsummary6      Microsoft Impact TTF font
 %global fontpkgheader6    %{expand:
 Obsoletes: %{name}-common <= 2.2-4
@@ -90,7 +90,7 @@ Impact font for the web that prior to 2002 was available from
 http://www.microsoft.com/typography/fontpack.
 }
 
-%global fontfamily7       Times New Roman
+%global fontfamily7       MS Core Times
 %global fontsummary7      Microsoft Times New Roman TTF font
 %global fontpkgheader7    %{expand:
 Obsoletes: %{name}-common <= 2.2-4
@@ -106,7 +106,7 @@ Union Expansion Update circa May 2007, still available on the Microsoft
 website.
 }
 
-%global fontfamily8       Trebuchet
+%global fontfamily8       MS Core Trebuchet
 %global fontsummary8      Microsoft Trebuchet TTF font
 %global fontpkgheader8    %{expand:
 Obsoletes: %{name}-common <= 2.2-4
@@ -122,7 +122,7 @@ in the European Union Expansion Update circa May 2007, still available
 on the Microsoft website.
 }
 
-%global fontfamily10       Verdana
+%global fontfamily10       MS Core Verdana
 %global fontsummary10      Microsoft Verdana TTF font
 %global fontpkgheader10    %{expand:
 Obsoletes: %{name}-common <= 2.2-4
@@ -138,7 +138,7 @@ Union Expansion Update circa May 2007, still available on the Microsoft
 website.
 }
 
-%global fontfamily11      Webdings
+%global fontfamily11      MS Core Webdings
 %global fontsummary11     Microsoft Verdana TTF font
 %global fontpkgheader11   %{expand:
 Obsoletes: %{name}-common <= 2.2-4
@@ -182,7 +182,7 @@ BuildRequires:   fontpackages-devel
 Requires:        fontconfig
 Requires:        %{fontname}-andale-fonts
 Requires:        %{fontname}-arial-fonts
-Requires:        %{fontname}-comic-fonts
+Requires:        %{fontname}-comic--fonts
 Requires:        %{fontname}-courier-fonts
 Requires:        %{fontname}-georgia-fonts
 Requires:        %{fontname}-impact-fonts
