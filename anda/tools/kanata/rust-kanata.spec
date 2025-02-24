@@ -15,7 +15,7 @@ Source:         %{crates_source}
 Patch:          kanata-fix-metadata-auto.diff
 Packager:       madonuko <mado@fyralabs.com>
 
-BuildRequires:  cargo-rpm-macros >= 24
+BuildRequires:  anda-srpm-macros cargo-rpm-macros >= 24
 
 %global _description %{expand:
 Multi-layer keyboard customization.}
