@@ -9,7 +9,7 @@
 %global debug_package %{nil}
 
 Name:           xone-kmod
-Version:        %{ver}%{!?tag:^%{date}git%{shortcommit}}
+Version:        %{ver}^%{date}git%{shortcommit}
 Release:        1%{?dist}
 Summary:        Linux kernel driver for Xbox One and Xbox Series X|S accessories
 License:        GPL-2.0-or-later

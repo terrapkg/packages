@@ -1,8 +1,3 @@
-rpm.global("commit", gh_commit("dlundqvist/xone"));
-if rpm.changed() {
-    rpm.release();
-    rpm.global("date", date());
-    let ver = gh_tag("dlundqvist/xone");
-    ver.crop(1);
-    rpm.global("ver", ver);
-}
+import "andax/bump_extras.rhai" as bump;
+
+rpm.version(bump::madoguchi("xone-kmod-common", labels.branch));
