@@ -13,17 +13,9 @@ Summary:    Linux kernel driver for Xbox One and Xbox Series X|S accessories
 License:    GPL-2.0-or-later
 URL:        https://github.com/dlundqvist/xone
 BuildArch:  noarch
-
-%if 0%{?tag:1}
-Source0:    %{url}/archive/v%{version}.tar.gz#/%{dkms_name}-%{version}.tar.gz
-%else
 Source0:    %{url}/archive/%{commit}.tar.gz#/%{dkms_name}-%{shortcommit}.tar.gz
-%endif
-
 Source1:    dkms-no-weak-modules.conf
-
 BuildRequires:  sed
-
 Provides:   %{dkms_name}-kmod = %{?epoch:%{epoch}:}%{version}
 Requires:   %{dkms_name}-kmod-common = %{?epoch:%{epoch}:}%{version}
 Requires:   dkms
@@ -32,11 +24,7 @@ Requires:   dkms
 Linux kernel driver for Xbox One and Xbox Series X|S accessories.
 
 %prep
-%if 0%{?tag:1}
-%autosetup -p1 -n %{dkms_name}-%{version}
-%else
 %autosetup -p1 -n %{dkms_name}-%{commit}
-%endif
 
 sed -i \
     -e 's|#VERSION#|%{version}|g' \

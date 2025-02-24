@@ -14,12 +14,7 @@ Release:        1%{?dist}
 Summary:        Linux kernel driver for Xbox One and Xbox Series X|S accessories
 License:        GPL-2.0-or-later
 URL:            https://github.com/dlundqvist/xone
-
-%if 0%{?tag:1}
-Source0:        %{url}/archive/v%{version}.tar.gz#/xone-%{version}.tar.gz
-%else
 Source0:        %{url}/archive/%{commit}.tar.gz#/xone-%{shortcommit}.tar.gz
-%endif
 
 # Get the needed BuildRequires (in parts depending on what we build for):
 BuildRequires:  kmodtool
@@ -36,11 +31,7 @@ Linux kernel driver for Xbox One and Xbox Series X|S accessories.
 # Print kmodtool output for debugging purposes:
 kmodtool  --target %{_target_cpu}  --repo terra --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
-%if 0%{?tag:1}
-%autosetup -p1 -n xone-%{version}
-%else
 %autosetup -p1 -n xone-%{commit}
-%endif
 
 find . -type f -name '*.c' -exec sed -i "s/#VERSION#/%{version}/" {} \;
 
