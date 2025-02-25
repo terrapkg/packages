@@ -7,7 +7,7 @@ Source0:		https://services.gradle.org/distributions/%{name}-%{version}-src.zip
 Source1:		https://services.gradle.org/distributions/%{name}-%{version}-all.zip
 License:		Apache-2.0
 Requires:		java-latest-openjdk coreutils findutils sed which bash
-BuildRequires:	java-11-openjdk-devel asciidoc xmlto groovy unzip git
+BuildRequires:	java-latest-openjdk-devel asciidoc xmlto groovy unzip git
 BuildArch:		noarch
 Recommends:		gradle-doc gradle-src
 
