@@ -27,7 +27,7 @@ Advanced Linux Driver for Xbox One Wireless Gamepad common files.
 install -Dpm644 hid-%{real_name}/etc-modprobe.d/%{real_name}.conf -t %{buildroot}%{_modprobedir}
 
 # UDev rules:
-install -Dpm644 hid-%{real_name}/etc-udev-rules.d/*.rules %{buildroot}%{_udevrulesdir}/
+install -Dpm644 hid-%{real_name}/etc-udev-rules.d/*.rules -t %{buildroot}%{_udevrulesdir}/
 
 # Metadata
 install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/metainfo/io.github.xpadneo.metainfo.xml
