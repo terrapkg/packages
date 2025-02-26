@@ -1,6 +1,6 @@
 # https://github.com/arduino/arduino-create-agent
 %global goipath github.com/arduino/arduino-create-agent
-Version         1.6.1
+Version:        1.6.1
 
 %gometa -f
 
