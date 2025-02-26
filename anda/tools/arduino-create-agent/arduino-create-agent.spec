@@ -19,7 +19,7 @@ License:        AGPL-3.0
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 URL:            %{gourl}
-Source:         %{gosource}
+Source:         %{url}/archive/%{version}.tar.gz
 Patch0:         update.patch
 BuildRequires:  anda-srpm-macros
 
