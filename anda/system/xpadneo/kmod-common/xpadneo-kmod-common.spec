@@ -2,7 +2,6 @@
 %global date 20241224
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global ver 0.9.7
-
 %global real_name xpadneo
 
 Name:           %{real_name}-kmod-common
@@ -24,14 +23,11 @@ Advanced Linux Driver for Xbox One Wireless Gamepad common files.
 %autosetup -p1 -n %{real_name}-%{commit}
 
 %install
-mkdir -p %{buildroot}%{_udevrulesdir}
-mkdir -p %{buildroot}%{_prefix}/lib/modprobe.d/
-
 # Aliases:
-install -p -m 0644 hid-%{real_name}/etc-modprobe.d/%{real_name}.conf %{buildroot}%{_prefix}/lib/modprobe.d/
+install -Dpm644 hid-%{real_name}/etc-modprobe.d/%{real_name}.conf %{buildroot}%{_prefix}/lib/modprobe.d/
 
 # UDev rules:
-install -p -m 644 hid-%{real_name}/etc-udev-rules.d/*.rules %{buildroot}%{_udevrulesdir}/
+install -Dpm644 hid-%{real_name}/etc-udev-rules.d/*.rules %{buildroot}%{_udevrulesdir}/
 
 # Metadata
 install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/metainfo/io.github.xpadneo.metainfo.xml
