@@ -21,7 +21,7 @@ License:        GPL-3.0
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 URL:            %{gourl}
-Source:         %{gosource}
+Source:         %{url}/archive/%{version}.tar.gz
 BuildRequires:  anda-srpm-macros
 
 %description
