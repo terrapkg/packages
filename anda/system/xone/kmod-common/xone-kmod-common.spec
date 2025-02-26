@@ -50,7 +50,7 @@ echo %{firmware_hash} FW_ACC_00U.bin | sha256sum -c
 %install
 # xone-gip-headset module should have the snd-pcm and snd-seq modules be preloaded or it will give errors on boot due to injecting late.
 # It still loads afterwards, but this error is easily fixable by just loading the modules in the initramfs.
-install -Dpm644 %{SOURCE1} %{buildroot}%{_dracutconfdir}/60-snd-preload.conf
+install -Dpm644 %{SOURCE1} %{buildroot}%{_dracutconfdir}/60-xone-snd.conf
 
 # Blacklist:
 install -Dpm644 install/modprobe.conf %{buildroot}%{_modprobedir}/60-%{real_name}.conf
@@ -62,7 +62,7 @@ install -Dpm644 FW_ACC_00U.bin %{buildroot}%{_prefix}/lib/firmware/xow_dongle.bi
 %license LICENSE
 %doc README.md
 %{_modprobedir}/60-%{real_name}.conf
-%{_dracutconfdir}/60-snd-preload.conf
+%{_dracutconfdir}/60-xone-snd.conf
 
 %files -n xone-firmware
 %license terms-of-use
