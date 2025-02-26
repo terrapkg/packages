@@ -2,7 +2,6 @@
 %global date 20241224
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global ver 0.9.7
-
 %global debug_package %{nil}
 %global dkms_name xpadneo
 
@@ -14,6 +13,7 @@ License:        GPL-3.0
 URL:            https://atar-axis.github.io/%{dkms_name}
 Source0:        https://github.com/atar-axis/%{dkms_name}/archive/%{commit}.tar.gz#/%{dkms_name}-%{shortcommit}.tar.gz
 Source1:        %{name}.conf
+Source2:        no-weak-modules.conf
 BuildRequires:  sed
 Requires:       bluez
 Requires:       bluez-tools
@@ -40,6 +40,11 @@ sed -i -e 's/$(VERSION)/v%{version}/g' hid-xpadneo/src/Makefile
 mkdir -p %{buildroot}%{_usrsrc}/%{dkms_name}-%{version}/
 cp -fr hid-xpadneo/src/* %{buildroot}%{_usrsrc}/%{dkms_name}-%{version}/
 
+%if 0%{?fedora}
+# Do not enable weak modules support in Fedora (no kABI):
+install -Dpm644 %{SOURCE2} %{buildroot}%{_sysconfdir}/dkms/%{dkms_name}.conf
+%endif
+
 %post
 dkms add -m %{dkms_name} -v %{version} -q --rpm_safe_upgrade || :
 # Rebuild and make available for the currently running kernel:
@@ -52,6 +57,9 @@ dkms remove -m %{dkms_name} -v %{version} -q --all --rpm_safe_upgrade || :
 
 %files
 %{_usrsrc}/%{dkms_name}-%{version}
+%if 0%{?fedora}
+%{_sysconfdir}/dkms/%{dkms_name}.conf
+%endif
 
 %changelog
 %autochangelog
