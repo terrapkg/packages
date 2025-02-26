@@ -12,7 +12,9 @@ Summary:        Linux kernel driver for Xbox One and Xbox Series X|S accessories
 License:        GPL-2.0-or-later
 URL:            https://github.com/dlundqvist/xone
 Source0:        %{url}/archive/%{commit}.tar.gz#/xone-%{shortcommit}.tar.gz
+Source1:        modules-xone.conf
 BuildRequires:  kmodtool
+BuildRequires:  systemd-rpm-macros
 
 %{expand:%(kmodtool --target %{_target_cpu} --repo terra --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 
@@ -42,12 +44,17 @@ for kernel_version in %{?kernel_versions}; do
 done
 
 %install
+install -Dm644 %{SOURCE1} %{buildroot}%{_modulesloaddir}/%{name}.conf
+
 for kernel_version in %{?kernel_versions}; do
     mkdir -p %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
     install -p -m 0755 _kmod_build_${kernel_version%%___*}/*.ko \
         %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
 done
 %{?akmod_install}
+
+%files
+%{_modulesloaddir}/%{name}.conf
 
 %changelog
 %autochangelog

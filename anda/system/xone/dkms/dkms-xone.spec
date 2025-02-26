@@ -6,18 +6,19 @@
 %global debug_package %{nil}
 %global dkms_name xone
 
-Name:       dkms-%{dkms_name}
-Version:    %{ver}^%{date}git.%{shortcommit}
-Release:    1%{?dist}
-Summary:    Linux kernel driver for Xbox One and Xbox Series X|S accessories
-License:    GPL-2.0-or-later
-URL:        https://github.com/dlundqvist/xone
-BuildArch:  noarch
-Source0:    %{url}/archive/%{commit}.tar.gz#/%{dkms_name}-%{shortcommit}.tar.gz
-Source1:    dkms-no-weak-modules.conf
+Name:           dkms-%{dkms_name}
+Version:        %{ver}^%{date}git.%{shortcommit}
+Release:        1%{?dist}
+Summary:        Linux kernel driver for Xbox One and Xbox Series X|S accessories
+License:        GPL-2.0-or-later
+URL:            https://github.com/dlundqvist/xone
+Source0:        %{url}/archive/%{commit}.tar.gz#/%{dkms_name}-%{shortcommit}.tar.gz
+Source1:        dkms-no-weak-modules.conf
 BuildRequires:  sed
-Requires:   %{dkms_name}-kmod-common = %{?epoch:%{epoch}:}%{version}
-Requires:   dkms
+BuildRequires:  systemd-rpm-macros
+Requires:       %{dkms_name}-kmod-common = %{?epoch:%{epoch}:}%{version}
+Requires:       dkms
+BuildArch:      noarch
 
 %description
 Linux kernel driver for Xbox One and Xbox Series X|S accessories.
@@ -39,7 +40,7 @@ cp -fr auth bus driver transport Kbuild dkms.conf %{buildroot}%{_usrsrc}/%{dkms_
 
 %if 0%{?fedora}
 # Do not enable weak modules support in Fedora (no kABI):
-install -p -m 644 -D %{SOURCE1} %{buildroot}%{_sysconfdir}/dkms/%{dkms_name}.conf
+install -Dpm644 %{SOURCE1} %{buildroot}%{_sysconfdir}/dkms/%{dkms_name}.conf
 %endif
 
 %post
