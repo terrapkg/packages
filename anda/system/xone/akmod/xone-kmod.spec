@@ -44,7 +44,7 @@ for kernel_version in %{?kernel_versions}; do
 done
 
 %install
-install -Dm644 %{SOURCE1} %{buildroot}%{_modulesloaddir}/%{name}.conf
+install -Dm644 %{SOURCE1} %{buildroot}%{_modulesloaddir}/xone.conf
 
 for kernel_version in %{?kernel_versions}; do
     mkdir -p %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
@@ -54,7 +54,7 @@ done
 %{?akmod_install}
 
 %files
-%{_modulesloaddir}/%{name}.conf
+%{_modulesloaddir}/xone.conf
 
 %changelog
 %autochangelog
