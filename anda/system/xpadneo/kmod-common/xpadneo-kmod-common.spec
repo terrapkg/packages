@@ -14,11 +14,7 @@ URL:            https://atar-axis.github.io/%{real_name}
 BuildArch:      noarch
 Source0:        https://github.com/atar-axis/%{real_name}/archive/%{commit}.tar.gz#/%{real_name}-%{shortcommit}.tar.gz
 Source1:        io.github.xpadneo.metainfo.xml
-
-# UDev rule location (_udevrulesdir) and systemd macros:
 BuildRequires:  systemd-rpm-macros
-
-Requires:       %{real_name}-kmod = %{?epoch:%{epoch}:}%{version}
 Provides:       %{real_name}-kmod-common = %{?epoch:%{epoch}:}%{version}
 
 %description
@@ -43,7 +39,7 @@ install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/metainfo/io.github.xpadneo.met
 %files
 %license LICENSE
 %doc docs/*.md
-%{_prefix}/lib/modprobe.d/%{real_name}.conf
+%{_modprobedir}/%{real_name}.conf
 %{_udevrulesdir}/60-%{real_name}.rules
 %{_udevrulesdir}/70-%{real_name}-disable-hidraw.rules
 %{_datadir}/metainfo/io.github.xpadneo.metainfo.xml
