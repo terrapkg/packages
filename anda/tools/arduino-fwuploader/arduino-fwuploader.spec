@@ -35,7 +35,7 @@ BuildRequires:  anda-srpm-macros python3-devel go-task
 %gobuild -o %{gobuilddir}/bin/arduino-fwuploader %{goipath}
 
 %install
-install -Dm755 build/bin/arduino-fwuploader -t %buildroot%{_bindir}
+install -Dm755 %{gobuilddir}/bin/arduino-fwuploader -t %buildroot%{_bindir}
 
 %files
 %license LICENSE.txt
