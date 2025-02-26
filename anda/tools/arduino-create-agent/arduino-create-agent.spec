@@ -7,7 +7,7 @@ Version:        1.6.1
 
 %global common_description %{expand:
 The Arduino Cloud Agent is a single binary that will sit on the traybar and work in the background.
-It allows you to use the Arduino Cloud to seamlessly upload code to any USB connected Arduino board (or Yún in LAN) directly from the browser.
+It allows you to use the Arduino Cloud to seamlessly upload code to any USB connected Arduino board (or Yún in LAN) directly from the browser.}
 
 %global golicenses      LICENSE.txt
 %global godocs          README.md
