@@ -15,6 +15,8 @@ URL:            https://atar-axis.github.io/%{dkms_name}
 Source0:        https://github.com/atar-axis/%{dkms_name}/archive/%{commit}.tar.gz#/%{dkms_name}-%{shortcommit}.tar.gz
 Source1:        %{name}.conf
 BuildRequires:  sed
+Requires:       bluez
+Requires:       bluez-tools
 Requires:       %{dkms_name}-kmod-common = %{?epoch:%{epoch}:}%{version}
 Requires:       dkms
 BuildArch:      noarch
