@@ -4,6 +4,7 @@
 %global ver 0.3
 %global real_name xone
 %global _dracutconfdir %{_prefix}/lib/dracut/dracut.conf.d
+%global firmware_hash 48084d9fa53b9bb04358f3bb127b7495dc8f7bb0b3ca1437bd24ef2b6eabdf66
 
 Name:           %{real_name}-kmod-common
 Version:        %{ver}^%{date}git.%{shortcommit}
@@ -44,6 +45,7 @@ Proprietary firmware for XBox controller dongles.
 
 # Firmware:
 cabextract -F FW_ACC_00U.bin %{SOURCE2}
+echo %{firmware_hash} FW_ACC_00U.bin | sha256sum -c
 
 %install
 # xone-gip-headset module should have the snd-pcm and snd-seq modules be preloaded or it will give errors on boot due to injecting late.
