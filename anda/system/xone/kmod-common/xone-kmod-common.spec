@@ -63,7 +63,7 @@ install -Dpm644 FW_ACC_00U.bin %{buildroot}%{_prefix}/lib/firmware/xow_dongle.bi
 %license LICENSE
 %doc README.md
 %{_modprobedir}/60-%{real_name}.conf
-%{_dracutconfdir}/60-xone-snd.conf
+%{_dracutconfdir}/60-%{real_name}-snd.conf
 
 %files -n xone-firmware
 %license terms-of-use
