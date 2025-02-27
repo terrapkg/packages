@@ -46,7 +46,7 @@ Conflicts:      sway
 Provides:       sway = %{swayVersion}
 
 
-Packager:       Atmois <atmois@atmois.com>
+Packager:       Atmois <info@atmois.com>
  
 %description
 %{summary}
