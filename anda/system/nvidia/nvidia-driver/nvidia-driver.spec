@@ -160,7 +160,7 @@ Conflicts:      xorg-x11-drv-nvidia-470xx
 
 %description -n xorg-x11-nvidia
 The NVIDIA X.org X11 driver and associated components.
-%if 0%{?fedora} || 0%{?rhel} < 10
+%endif
 
 %endif
  
