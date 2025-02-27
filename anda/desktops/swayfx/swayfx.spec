@@ -21,7 +21,7 @@ BuildRequires:  pkgconfig(glesv2)
 BuildRequires:  pkgconfig(json-c) >= 0.13
 BuildRequires:  pkgconfig(libdrm)
 BuildRequires:  pkgconfig(libevdev)
-BuildRequires:  pkgconfig(libinput) >= 1.21.0
+BuildRequires:  pkgconfig(libinput) >= 1.26.0
 BuildRequires:  pkgconfig(libpcre2-8)
 BuildRequires:  pkgconfig(libsystemd) >= 239
 BuildRequires:  pkgconfig(libudev)
@@ -33,8 +33,8 @@ BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(wayland-cursor)
 BuildRequires:  pkgconfig(wayland-server) >= 1.21.0
 BuildRequires:  pkgconfig(wayland-protocols) >= 1.24
-BuildRequires:  (pkgconfig(wlroots) >= 0.17.0 with pkgconfig(wlroots) < 0.18)
-BuildRequires:  (pkgconfig(scenefx) >= 0.1 with pkgconfig(scenefx) < 0.2)
+BuildRequires:  pkgconfig(scenefx-0.2)
+BuildRequires:  pkgconfig(wlroots-0.18)
 BuildRequires:  pkgconfig(xcb)
 BuildRequires:  pkgconfig(xcb-icccm)
 BuildRequires:  pkgconfig(xkbcommon) >= 1.5.0
