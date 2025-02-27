@@ -109,6 +109,8 @@ Wallpaper collection provided with Sway
 %prep
 %autosetup -N -n %{name}-%{version}
 
+%autopatch -p1 -M99
+
 %build
 %meson \
     -Dsd-bus-provider=libsystemd \
