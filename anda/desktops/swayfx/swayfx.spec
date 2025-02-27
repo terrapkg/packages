@@ -2,7 +2,7 @@
 
 Name:           swayfx
 Version:        0.5
-Release:        1%?dist
+Release:        2%?dist
 
 Summary:        SwayFX: Sway, but with eye candy!
 URL:            https://github.com/WillPower3309/swayfx
