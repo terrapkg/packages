@@ -23,9 +23,7 @@ Packager:       ShinyGil <rockgrub@disroot.org>
 Linux kernel driver for Xbox One and Xbox Series X|S accessories.
 
 %prep
-# Error out if there was something wrong with kmodtool:
 %{?kmodtool_check}
-# Print kmodtool output for debugging purposes:
 kmodtool  --target %{_target_cpu}  --repo terra --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
 %autosetup -p1 -n %{real_name}-%{commit}
