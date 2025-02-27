@@ -15,6 +15,7 @@ URL:            https://github.com/dlundqvist/xone
 Source0:        %{url}/archive/%{commit}.tar.gz#/xone-%{shortcommit}.tar.gz
 BuildRequires:  kmodtool
 BuildRequires:  systemd-rpm-macros
+Requires:       %{real_name}-kmod-common = %{?epoch:%{epoch}:}%{version}
 Packager:       ShinyGil <rockgrub@disroot.org>
 
 %{expand:%(kmodtool --target %{_target_cpu} --repo terra --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
