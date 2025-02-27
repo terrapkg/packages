@@ -2,20 +2,17 @@
 %global date 20241224
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global ver 0.9.7
-
-# Build only the akmod package and no kernel module packages:
 %define buildforkernels akmod
-
 %global debug_package %{nil}
+%global real_name xpadneo
 
-Name:           xpadneo-kmod
+Name:           %{real_name}-kmod
 Version:        %{ver}^%{date}git.%{shortcommit}
 Release:        2%{?dist}
 Summary:        Advanced Linux Driver for Xbox One Wireless Gamepad
 License:        GPL-3.0
 URL:            https://atar-axis.github.io/xpadneo
 Source0:        https://github.com/atar-axis/xpadneo/archive/%{commit}.tar.gz#/xpadneo-%{shortcommit}.tar.gz
-Source1:        modules-xpadneo.conf
 BuildRequires:  kmodtool
 BuildRequires:  systemd-rpm-macros
 Requires:       bluez
@@ -34,7 +31,9 @@ Advanced Linux Driver for Xbox One Wireless Gamepad.
 # Print kmodtool output for debugging purposes:
 kmodtool  --target %{_target_cpu}  --repo terra --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
-%autosetup -p1 -n xpadneo-%{commit}
+%autosetup -p1 -n %{real_name}-%{commit}
+
+/usr/bin/sed -nE '/^BUILT_MODULE_NAME/{s@^.+"(.+)"@\1@; s|-|_|g; p}' hid-%{real_name}/dkms.conf.in > %{real_name}.conf
 
 for kernel_version in %{?kernel_versions}; do
     mkdir _kmod_build_${kernel_version%%___*}
@@ -49,7 +48,7 @@ for kernel_version in %{?kernel_versions}; do
 done
 
 %install
-install -Dm644 %{SOURCE1} %{buildroot}%{_modulesloaddir}/xpadneo.conf
+install -Dm644 %{real_name}.conf -t %{buildroot}%{_modulesloaddir}
 
 for kernel_version in %{?kernel_versions}; do
     mkdir -p %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
@@ -59,7 +58,7 @@ done
 %{?akmod_install}
 
 %files
-%{_modulesloaddir}/xpadneo.conf
+%{_modulesloaddir}/%{real_name}.conf
 
 %changelog
 %autochangelog
