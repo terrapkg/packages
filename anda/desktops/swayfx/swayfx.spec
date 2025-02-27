@@ -61,15 +61,6 @@ Provides:       sway-config = %{version}-%{release}
 Conflicts:      sway-config
 
 
-%package        wallpapers
-Summary:        Wallpapers for Sway
-BuildArch:      noarch
-License:        CC0
-
-%description    wallpapers
-Wallpaper collection provided with Sway
-
-
 # Require the wallpaper referenced in the config.
 # Weak dependency here causes a swaynag warning during the configuration load
 Requires:       sway-wallpapers
@@ -105,6 +96,14 @@ Recommends:     (qt6-qtwayland if qt6-qtbase-gui)
 %description    config-upstream
 Upstream configuration for Sway.
 Includes all important dependencies for a typical desktop system with minimal or no divergence from the upstream.
+
+%package        wallpapers
+Summary:        Wallpapers for Sway
+BuildArch:      noarch
+License:        CC0
+
+%description    wallpapers
+Wallpaper collection provided with Sway
 
 
 %prep
