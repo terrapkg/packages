@@ -11,6 +11,8 @@ Summary:        Utility for detecting, reading, writing, verifying and erasing f
 License:        GPL-2.0
 URL:            https://review.sourcearcade.org/flashprog
 
+Packager:       sadlerm <lerm@chromebooks.lol>
+
 BuildRequires:  anda-srpm-macros
 BuildRequires:  make
 BuildRequires:  gcc
