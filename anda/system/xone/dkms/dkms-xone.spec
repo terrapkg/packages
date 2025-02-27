@@ -2,7 +2,6 @@
 %global date 20241223
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global ver 0.3
-
 %global debug_package %{nil}
 %global dkms_name xone
 
@@ -19,6 +18,7 @@ BuildRequires:  systemd-rpm-macros
 Requires:       %{dkms_name}-kmod-common = %{?epoch:%{epoch}:}%{version}
 Requires:       dkms
 BuildArch:      noarch
+Packager:       ShinyGil <rockgrub@disroot.org>
 
 %description
 Linux kernel driver for Xbox One and Xbox Series X|S accessories.
@@ -60,4 +60,5 @@ dkms remove -m %{dkms_name} -v %{version} -q --all --rpm_safe_upgrade || :
 %endif
 
 %changelog
-%autochangelog
+* Thu Feb 27 2025 ShinyGil <rockgrub@disroot.org>
+- Initial package

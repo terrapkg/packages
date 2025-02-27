@@ -15,6 +15,7 @@ Source0:        %{url}/archive/%{commit}.tar.gz#/xone-%{shortcommit}.tar.gz
 Source1:        modules-xone.conf
 BuildRequires:  kmodtool
 BuildRequires:  systemd-rpm-macros
+Packager:       ShinyGil <rockgrub@disroot.org>
 
 %{expand:%(kmodtool --target %{_target_cpu} --repo terra --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 
@@ -57,4 +58,5 @@ done
 %{_modulesloaddir}/xone.conf
 
 %changelog
-%autochangelog
+* Thu Feb 27 2025 ShinyGil <rockgrub@disroot.org>
+- Initial package
