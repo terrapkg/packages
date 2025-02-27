@@ -148,6 +148,7 @@ Conflicts:      xorg-x11-drv-nvidia-470xx-cuda
 %description cuda
 This package provides the CUDA integration components for %{name}.
 
+%if 0%{?fedora} || 0%{?rhel} < 10
 %package -n xorg-x11-nvidia
 Summary:        X.org X11 NVIDIA driver and extensions
 Requires:       %{name}%{?_isa} = %{?epoch:%{epoch}:}%{version}
@@ -159,6 +160,7 @@ Conflicts:      xorg-x11-drv-nvidia-470xx
 
 %description -n xorg-x11-nvidia
 The NVIDIA X.org X11 driver and associated components.
+%if 0%{?fedora} || 0%{?rhel} < 10
 
 %endif
  
@@ -268,10 +270,12 @@ install -p -m 0755 nvidia-{debugdump,smi,cuda-mps-control,cuda-mps-server,bug-re
 mkdir -p %{buildroot}%{_mandir}/man1/
 install -p -m 0644 nvidia-{smi,cuda-mps-control}*.gz %{buildroot}%{_mandir}/man1/
 
+%if 0%{?fedora} || 0%{?rhel} < 10
 # X stuff
 install -p -m 0644 -D %{SOURCE10} %{buildroot}%{_sysconfdir}/X11/xorg.conf.d/10-nvidia.conf
 install -p -m 0755 -D nvidia_drv.so %{buildroot}%{_libdir}/xorg/modules/drivers/nvidia_drv.so
 install -p -m 0755 -D libglxserver_nvidia.so.%{version} %{buildroot}%{_libdir}/xorg/modules/extensions/libglxserver_nvidia.so
+%if 0%{?fedora} || 0%{?rhel} < 10
 
 # NVIDIA specific configuration files
 mkdir -p %{buildroot}%{_datadir}/nvidia/
@@ -332,18 +336,21 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %systemd_post nvidia-powerd.service
 %systemd_post nvidia-resume.service
 %systemd_post nvidia-suspend.service
+%systemd_post nvidia-suspend-then-hibernate.service
 
 %preun
 %systemd_preun nvidia-hibernate.service
 %systemd_preun nvidia-powerd.service
 %systemd_preun nvidia-resume.service
 %systemd_preun nvidia-suspend.service
+%systemd_post nvidia-suspend-then-hibernate.service
 
 %postun
 %systemd_postun nvidia-hibernate.service
 %systemd_postun nvidia-powerd.service
 %systemd_postun nvidia-resume.service
 %systemd_postun nvidia-suspend.service
+%systemd_post nvidia-suspend-then-hibernate.service
 
 %endif
 
@@ -370,15 +377,18 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %{_unitdir}/nvidia-powerd.service
 %{_unitdir}/nvidia-resume.service
 %{_unitdir}/nvidia-suspend.service
+%{_unitdir}/nvidia-suspend-then-hibernate.service
 %if 0%{?fedora} >= 41
 %{_unitdir}/systemd-suspend.service.d/10-nvidia.conf
 %{_unitdir}/systemd-homed.service.d/10-nvidia.conf
 %endif
 
+%if 0%{?fedora} || 0%{?rhel} < 10
 %files -n xorg-x11-nvidia
 %config(noreplace) %{_sysconfdir}/X11/xorg.conf.d/10-nvidia.conf
 %{_libdir}/xorg/modules/extensions/libglxserver_nvidia.so
 %{_libdir}/xorg/modules/drivers/nvidia_drv.so
+%if 0%{?fedora} || 0%{?rhel} < 10
 
 %files -n libnvidia-cfg
 %{_libdir}/libnvidia-cfg.so.1
