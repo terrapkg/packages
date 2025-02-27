@@ -31,7 +31,7 @@ install -Dm755 pokemon-colorscripts.py "%{buildroot}%{_datadir}/%{name}/pokemon-
 install -Dm644 pokemon-colorscripts.1 "%{buildroot}%{_mandir}/man1/pokemon-colorscripts.1"
 # Make name executable
 mkdir -p %{buildroot}%{_bindir}
-ln -sf "%{_datadir}%{name}/pokemon-colorscripts.py" "%{buildroot}%{_bindir}/pokemon-colorscripts"
+ln -sf "%{_datadir}/%{name}/pokemon-colorscripts.py" "%{buildroot}%{_bindir}/pokemon-colorscripts"
 
 %files
 %license LICENSE.txt
