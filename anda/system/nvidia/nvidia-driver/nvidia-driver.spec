@@ -388,7 +388,7 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %config(noreplace) %{_sysconfdir}/X11/xorg.conf.d/10-nvidia.conf
 %{_libdir}/xorg/modules/extensions/libglxserver_nvidia.so
 %{_libdir}/xorg/modules/drivers/nvidia_drv.so
-%if 0%{?fedora} || 0%{?rhel} < 10
+%endif
 
 %files -n libnvidia-cfg
 %{_libdir}/libnvidia-cfg.so.1
