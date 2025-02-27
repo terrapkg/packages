@@ -18,17 +18,15 @@ BuildRequires:  systemd-rpm-macros
 Requires:       bluez
 Requires:       bluez-tools
 Requires:       %{real_name}-kmod-common = %{version}-%{release}
+Packager:       ShinyGil <rockgrub@disroot.org>
 
-# kmodtool does its magic here:
 %{expand:%(kmodtool --target %{_target_cpu} --repo terra --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 
 %description
 Advanced Linux Driver for Xbox One Wireless Gamepad.
 
 %prep
-# Rrror out if there was something wrong with kmodtool:
 %{?kmodtool_check}
-# Print kmodtool output for debugging purposes:
 kmodtool  --target %{_target_cpu}  --repo terra --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
 %autosetup -p1 -n %{real_name}-%{commit}
@@ -61,4 +59,5 @@ done
 %{_modulesloaddir}/%{real_name}.conf
 
 %changelog
-%autochangelog
+* Thu Feb 27 2025 ShinyGil <rockgrub@disroot.org>
+- Package refactoring for alternative DKMS package compatibility
