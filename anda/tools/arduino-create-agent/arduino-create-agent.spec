@@ -1,29 +1,43 @@
-%define debug_package %nil
+# https://github.com/arduino/arduino-create-agent
+%global goipath github.com/arduino/arduino-create-agent
+Version:        1.6.1
 
-Name:          arduino-create-agent
-Version:       1.6.1
-Release:       1%?dist
-Summary:       Arduino Cloud Agent.
-License:       AGPLv3
-Packager:      Owen Zimmerman <owen@fyralabs.com>
-Url:           https://github.com/arduino/arduino-create-agent
-Source0:       %url/archive/refs/tags/%version.tar.gz
-Patch0:        update.patch
-BuildRequires: golang git go-rpm-macros anda-srpm-macros 
+%gometa -f
 
-%description
+
+%global common_description %{expand:
 The Arduino Cloud Agent is a single binary that will sit on the traybar and work in the background.
-It allows you to use the Arduino Cloud to seamlessly upload code to any USB connected Arduino board (or Yún in LAN) directly from the browser.
+It allows you to use the Arduino Cloud to seamlessly upload code to any USB connected Arduino board (or Yún in LAN) directly from the browser.}
+
+%global golicenses      LICENSE.txt
+%global godocs          README.md
+
+Name:           arduino-create-agent
+Release:        2%?dist
+Summary:        Arduino Cloud Agent
+License:        AGPL-3.0
+Packager:       Owen Zimmerman <owen@fyralabs.com>
+
+URL:            %{gourl}
+Source:         %{url}/archive/%{version}.tar.gz
+Patch0:         update.patch
+BuildRequires:  anda-srpm-macros
+
+%description %{common_description}
+
+%gopkg
 
 %prep
-%autosetup -n arduino-create-agent-%version -p1
+%goprep
+%autopatch -p1
+%go_prep_online
 
 %build
-%go_build_online
+%define gomodulesmode GO111MODULE=on
+%gobuild -o %{gobuilddir}/bin/arduino-create-agent %{goipath}
 
 %install
-mkdir -p %{buildroot}%{_bindir}
-install -Dm 755 build/bin/arduino-create-agent %buildroot%{_bindir}/arduino-create-agent
+install -Dm755 %{gobuilddir}/bin/arduino-create-agent -t %buildroot%{_bindir}
 
 %files
 %license LICENSE.txt
@@ -33,3 +47,4 @@ install -Dm 755 build/bin/arduino-create-agent %buildroot%{_bindir}/arduino-crea
 %changelog
 * Sat Jan 25 2025 Owen Zimmerman <owen@fyralabs.com>
 - Package arduino-create-agent
+
