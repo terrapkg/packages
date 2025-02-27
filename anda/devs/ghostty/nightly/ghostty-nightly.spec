@@ -1,10 +1,9 @@
-%global commit 870b74f4da75ef2baa1f430602c901cb1405802e
+%global commit d85ed8275ec529734e9c352e5ff24f0918da5cf8
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global fulldate 2025-02-22
+%global fulldate 2025-02-26
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
-%global base_ver 1.1.2
-%global dev_ver 1.1.3
+%global ver 1.1.3
 %if 0%{?fedora} <= 40
 %global cache_dir %{_builddir}/zig-cache
 %else
@@ -12,8 +11,8 @@
 %endif
 
 Name:           ghostty-nightly
-Version:        %{base_ver}~tip^%{commit_date}git%{shortcommit}
-Release:        3%{?dist}
+Version:        %{ver}~tip^%{commit_date}git%{shortcommit}
+Release:        1%?dist
 %if 0%{?fedora} <= 41
 Epoch:          1
 %endif
@@ -30,6 +29,7 @@ BuildRequires:  ncurses
 BuildRequires:  ncurses-devel
 BuildRequires:  pandoc-cli
 BuildRequires:  zig
+BuildRequires:  pkgconfig(blueprint-compiler)
 BuildRequires:  pkgconfig(bzip2)
 BuildRequires:  pkgconfig(freetype2)
 BuildRequires:  pkgconfig(fontconfig)
@@ -142,7 +142,7 @@ zig build \
     --prefix "%{_prefix}" --prefix-lib-dir "%{_libdir}" \
     --prefix-exe-dir "%{_bindir}" --prefix-include-dir "%{_includedir}" \
     --verbose \
-    -Dversion-string="%{dev_ver}-dev+%{shortcommit}" \
+    -Dversion-string="%{ver}-dev+%{shortcommit}" \
     -Dcpu=baseline \
     -Dstrip=false \
     -Dpie=true \

@@ -47,7 +47,6 @@ fn follow_bodhi_vr(rpm, pkg, branch) {
 
 
 fn madoguchi_json(pkg, branch) {
-    let branch = labels.branch;
     if branch.starts_with("f") {
 	    branch.crop(1);
     }

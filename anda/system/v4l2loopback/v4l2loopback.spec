@@ -5,16 +5,13 @@
 %global commitdate 20230503
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
-
-%global prjname v4l2loopback
-
-Name:           %{prjname}
+Name:           v4l2loopback
 Summary:        Utils for V4L2 loopback devices
 Version:        0.13.2
-Release:        2%{?dist}
+Release:        3%{?dist}
 License:        GPLv2+
 URL:            https://github.com/umlaeute/v4l2loopback
-Source0:        %{url}/archive/v%{version}/%{prjname}-%{version}.tar.gz
+Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 
 Source1:        modprobe-d-98-v4l2loopback.conf
 Source2:        modules-load-d-v4l2loopback.conf
@@ -24,7 +21,7 @@ BuildRequires:  help2man
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  kmodtool
 BuildRequires:  systemd-rpm-macros
-Requires:       kmod-v4l2loopback = %{version}-%{release}
+Requires:       akmod-%{name} = %{version}-%{release}
 Provides:       %{name}-kmod-common = %{version}-%{release}
 # Required for  akmod-v4l2loopback
 Requires:       help2man

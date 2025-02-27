@@ -1,5 +1,5 @@
-%global commit 43db6fd4c772c8d8260676e0410f811d51a50747
-%global commit_date 20250222
+%global commit 978bf4c32d65ae6b8d0ec352c727b6b9a17cc509
+%global commit_date 20250224
 %global shortcommit %{sub %{commit} 1 7 }
 
 Name:           owl

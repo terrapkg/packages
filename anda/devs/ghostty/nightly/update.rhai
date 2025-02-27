@@ -7,10 +7,7 @@ if rpm.changed() {
     date.truncate(10);
     let html = get(`https://raw.githubusercontent.com/ghostty-org/ghostty/refs/heads/main/build.zig.zon`);
     let ver = find(".version = \"([\\d.]+)\"", html, 1);
-    let base = gh_tag("ghostty-org/ghostty");
-    base.crop(1);
-    rpm.global("base_ver", base);
     rpm.global("fulldate", date);
-    rpm.global("dev_ver", ver);
+    rpm.global("ver", ver);
     rpm.release();
 }
