@@ -17,7 +17,7 @@ BuildRequires:  kmodtool
 BuildRequires:  systemd-rpm-macros
 Requires:       bluez
 Requires:       bluez-tools
-Requires:       xpadneo-kmod-common = %{version}-%{release}
+Requires:       %{real_name}-kmod-common = %{version}-%{release}
 
 # kmodtool does its magic here:
 %{expand:%(kmodtool --target %{_target_cpu} --repo terra --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
