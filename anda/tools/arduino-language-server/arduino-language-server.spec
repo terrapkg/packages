@@ -1,28 +1,41 @@
-%define debug_package %nil
+# https://github.com/arduino/arduino-language-server
+%global goipath github.com/arduino/arduino-language-server
+Version:        0.7.6
 
-Name:          arduino-language-server
-Version:       0.7.6
-Release:       1%?dist
-Summary:       Arduino command line tool.
-License:       AGPLv3
-Packager:      Owen Zimmerman <owen@fyralabs.com>
-Url:           https://github.com/arduino/arduino-language-server
-Source0:       %url/archive/refs/tags/%version.tar.gz
-BuildRequires: golang git go-rpm-macros anda-srpm-macros clang arduino-cli
+%gometa -f
+
+
+%global common_description %{expand:
+The Arduino Language Server is the tool that powers the autocompletion of the new Arduino IDE 2. It implements the standard Language Server Protocol so it can be used with other IDEs as well.}
+
+%global golicenses      LICENSE.txt
+%global godocs          README.md
+
+Name:           arduino-language-server
+Release:        2%?dist
+Summary:        An Arduino Language Server based on Clangd for Arduino code autocompletion
+License:        AGPL-3.0
+Packager:       Owen Zimmerman <owen@fyralabs.com>
+
+URL:            %{gourl}
+Source:         %{url}/archive/%{version}.tar.gz
+BuildRequires:  anda-srpm-macros clang
 
 %description
-%summary
+%{common_description}
+
+%gopkg
 
 %prep
-%autosetup -n arduino-language-server-%version
+%goprep
+%go_prep_online
 
 %build
-mkdir -p bin
-%go_build_online
+%define gomodulesmode GO111MODULE=on
+%gobuild -o %{gobuilddir}/bin/arduino-language-server %{goipath}
 
 %install
-mkdir -p %{buildroot}%{_bindir}
-install -Dm 755 build/bin/arduino-language-server %buildroot%{_bindir}/arduino-language-server
+install -Dm755 %{gobuilddir}/bin/arduino-language-server -t %buildroot%{_bindir}
 
 %files
 %license LICENSE.txt
@@ -32,3 +45,4 @@ install -Dm 755 build/bin/arduino-language-server %buildroot%{_bindir}/arduino-l
 %changelog
 * Fri Dec 27 2024 Owen Zimmerman <owen@fyralabs.com>
 - Package arduino-language-server
+
