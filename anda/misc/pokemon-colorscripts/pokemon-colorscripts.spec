@@ -22,10 +22,10 @@ A utility that prints unicode sprites of images of Pokémon to the terminal.
 %build
 
 %install
-install -Ddm644 colorscripts/small/regular "%{buildroot}%{_datadir}%{name}/colorscripts/small/regular"
-install -Ddm644 colorscripts/small/shiny "%{buildroot}%{_datadir}%{name}/colorscripts/small/shiny"
-install -Ddm644 colorscripts/large/regular "%{buildroot}%{_datadir}%{name}/colorscripts/large/regular"
-install -Ddm644 colorscripts/large/shiny "%{buildroot}%{_datadir}%{name}/colorscripts/large/shiny"
+install -Dm644 colorscripts/small/regular/* -t "%{buildroot}%{_datadir}%{name}/colorscripts/small/regular"
+install -Dm644 colorscripts/small/shiny/* -t "%{buildroot}%{_datadir}%{name}/colorscripts/small/shiny"
+install -Dm644 colorscripts/large/regular/* -t "%{buildroot}%{_datadir}%{name}/colorscripts/large/regular"
+install -Dm644 colorscripts/large/shiny/* -t "%{buildroot}%{_datadir}%{name}/colorscripts/large/shiny"
 install -Dm644 pokemon.json "%{buildroot}%{_datadir}%{name}/pokemon.json"
 install -Dm755 pokemon-colorscripts.py "%{buildroot}%{_datadir}%{name}/pokemon-colorscripts.py"
 install -Dm644 pokemon-colorscripts.1 "%{buildroot}%{_mandir}/man1/pokemon-colorscripts.1"
