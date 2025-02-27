@@ -4,15 +4,15 @@
 %global ver 0.3
 %define buildforkernels akmod
 %global debug_package %{nil}
+%global real_name xone
 
-Name:           xone-kmod
+Name:           %{real_name}-kmod
 Version:        %{ver}^%{date}git.%{shortcommit}
 Release:        1%{?dist}
 Summary:        Linux kernel driver for Xbox One and Xbox Series X|S accessories
 License:        GPL-2.0-or-later
 URL:            https://github.com/dlundqvist/xone
 Source0:        %{url}/archive/%{commit}.tar.gz#/xone-%{shortcommit}.tar.gz
-Source1:        modules-xone.conf
 BuildRequires:  kmodtool
 BuildRequires:  systemd-rpm-macros
 Packager:       ShinyGil <rockgrub@disroot.org>
@@ -28,7 +28,9 @@ Linux kernel driver for Xbox One and Xbox Series X|S accessories.
 # Print kmodtool output for debugging purposes:
 kmodtool  --target %{_target_cpu}  --repo terra --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
-%autosetup -p1 -n xone-%{commit}
+%autosetup -p1 -n %{real_name}-%{commit}
+
+/usr/bin/sed -nE '/^BUILT_MODULE_NAME/{s@^.+"(.+)"@\1@; s|-|_|g; p}' dkms.conf > %{real_name}.conf
 
 find . -type f -name '*.c' -exec sed -i "s/#VERSION#/%{version}/" {} \;
 
@@ -45,7 +47,7 @@ for kernel_version in %{?kernel_versions}; do
 done
 
 %install
-install -Dm644 %{SOURCE1} %{buildroot}%{_modulesloaddir}/xone.conf
+install -Dm644 %{real_name}.conf -t %{buildroot}%{_modulesloaddir}
 
 for kernel_version in %{?kernel_versions}; do
     mkdir -p %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
@@ -55,7 +57,7 @@ done
 %{?akmod_install}
 
 %files
-%{_modulesloaddir}/xone.conf
+%{_modulesloaddir}/%{real_name}.conf
 
 %changelog
 * Thu Feb 27 2025 ShinyGil <rockgrub@disroot.org>
