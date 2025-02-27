@@ -1,9 +1,9 @@
 %global commit 5802ff67520be2ff6117a0abc78a08501f6252ad
-%global date 20241018
+%global commit_date 20241018
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:          pokemon-colorscripts
-Version:       0^%{date}git.%{shortcommit}
+Version:       0^%{commit_date}git.%{shortcommit}
 Release:       1%{?dist}
 License:       MIT
 Summary:       CLI utility to print out images of Pokémon to the terminal
