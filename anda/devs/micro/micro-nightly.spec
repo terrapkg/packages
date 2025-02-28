@@ -61,7 +61,7 @@ cd %{builddir}/micro-%{version} && git checkout -q %{commit_hash}
 %go_prep_online
 
 %build
-cd %{builddir}/micro-%{version} 
+cd %{builddir}/micro-%{version}
 %if %{without bootstrap}
 go generate ./runtime
 
@@ -73,7 +73,7 @@ LDFLAGS="-X internal/util.version=${MICRO_VERSION} \
          -X 'internal/util.date=${MICRO_DATE}'"
 
 %define gomodulesmode GO111MODULE=on
-%gobuild -o %{gobuilddir}/bin/micro %{goipath}/v2
+%gobuild -o %{gobuilddir}/bin/micro ./cmd/micro
 %endif
 
 %install
