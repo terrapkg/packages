@@ -3,7 +3,7 @@ Version:       0.3.0
 Release:       1%{?dist}
 SourceLicense: GPL-3.0-or-later
 License:       (MIT OR Apache-2.0) AND GPL-3.0-or-later AND MIT AND (Unlicense OR MIT) AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (Apache-2.0 OR BSL-1.0) AND MPL-2.0 AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT)
-Summary:       Print pokemon sprites in your terminal
+Summary:       Print Pokémon sprites in your terminal
 URL:           https://github.com/yannjor/krabby
 Source0:       %{url}/archive/refs/tags/v%{version}.tar.gz
 BuildRequires: anda-srpm-macros
