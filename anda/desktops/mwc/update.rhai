@@ -3,6 +3,7 @@ if filters.contains("nightly") {
     let v = gh("dqrk0jeste/mwc");
     if rpm.changed() {
         rpm.global("commit_date", date());
-        rpm.global("ver", v.crop(1));
+        v.crop(1);
+        rpm.global("ver", v);
     }
 }
