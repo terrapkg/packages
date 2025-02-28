@@ -98,8 +98,8 @@ cd %{builddir}/micro-%{version}
 
 %if %{without bootstrap}
 %files
-%license LICENSE LICENSE-THIRD-PARTY
-%doc README.md help
+%license micro-%{version}/LICENSE micro-%{version}/LICENSE-THIRD-PARTY
+%doc micro-%{version}/README.md micro-%{version}/help
 %{_bindir}/micro
 %{_mandir}/man1/micro.1.gz
 %{_datadir}/applications/micro.desktop
