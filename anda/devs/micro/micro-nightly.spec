@@ -103,6 +103,7 @@ cd %{builddir}/micro-%{version}
 %{_bindir}/micro
 %{_mandir}/man1/micro.1.gz
 %{_datadir}/applications/micro.desktop
+%{_datadir}/icons/hicolor/scalable/apps/micro.svg
 %endif
 
 %changelog
