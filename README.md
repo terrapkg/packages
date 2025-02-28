@@ -20,8 +20,10 @@ sudo dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/t
 If you are using immutable/atomic editions of Fedora, run the following commands instead:
 
 ```bash
-curl -fsSL https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo | pkexec tee /etc/yum.repos.d/terra.repo
-sudo rpm-ostree install terra-release
+curl -fsSLO https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
+run0 mv terra.repo /etc/yum.repos.d/
+run0 restorecon -RF /etc/yum.repos.d
+rpm-ostree install terra-release
 ```
 
 ## Documentation
