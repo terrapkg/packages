@@ -1,22 +1,25 @@
 %global commit 0b926c4d3e2a719e1b3e2b79265e99c3bf698b2d
 %global commit_date 20250228
 %global shortcommit %{sub %{commit} 1 7 }
+%global ver 0.1.1
 
-Name:           owl
-Version:        0^%{commit_date}.%{shortcommit}
+Name:           mwc
+Version:        %{ver}^%{commit_date}git.%{shortcommit}
 Release:        1%{?dist}
-Summary:        Tiling Wayland compositor based on wlroots
+Summary:        Tiling Wayland compositor based on wlroots and scenefx
 
 License:        MIT
-URL:            https://github.com/dqrk0jeste/owl
+URL:            https://github.com/dqrk0jeste/mwc
 Source0:        %{url}/archive/%{commit}.tar.gz
 
-BuildRequires:  make gcc
+BuildRequires:  meson
+BuildRequires:  gcc
 BuildRequires:  pkgconfig(libinput)
+BuildRequires:  pkgconfig(scenefx-0.2)
+BuildRequires:  pkgconfig(wlroots-0.18)
 BuildRequires:  pkgconfig(wayland-protocols)
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  wayland-devel
-BuildRequires:  wlroots-devel
 
 Requires:       libdrm
 Requires:       libinput
@@ -30,6 +33,9 @@ Recommends:     waybar kitty rofi-wayland
 
 Packager:       sadlerm <lerm@chromebooks.lol>
 
+Provides:       owl = %{version}-%{release}
+Obsoletes:      owl < 0^20250124.9999999
+
 %description
 %{summary}.
 
@@ -37,15 +43,12 @@ Packager:       sadlerm <lerm@chromebooks.lol>
 %autosetup -n %{name}-%{commit}
 
 %build
-%make_build all
+%meson
+%meson_build
 
 %install
-install -Dm755 build/%{name} %{buildroot}%{_bindir}/%{name}
-install -Dm755 build/%{name}-ipc %{buildroot}%{_bindir}/%{name}-ipc
-install -Dm644 default.conf %{buildroot}%{_datadir}/%{name}/default.conf
+%meson_install
 install -Dm644 examples/example.conf %{buildroot}%{_datadir}/%{name}/example.conf
-install -Dm644 %{name}.desktop %{buildroot}%{_datadir}/wayland-sessions/%{name}.desktop
-install -Dm644 %{name}-portals.conf %{buildroot}%{_datadir}/xdg-desktop-portal/%{name}-portals.conf
 
 %files
 %license LICENSE
@@ -59,5 +62,8 @@ install -Dm644 %{name}-portals.conf %{buildroot}%{_datadir}/xdg-desktop-portal/%
 
 
 %changelog
+* Thu Feb 27 2025 sadlerm <lerm@chromebooks.lol>
+- New upstream name
+- Package is now built with meson
 * Fri Jan 31 2025 sadlerm <lerm@chromebooks.lol>
 - Initial package
