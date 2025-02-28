@@ -47,6 +47,9 @@ make %{?_smp_mflags} \
     PREFIX=%{_prefix} \
     STRIP_CMD=true
 
+%if 0%{?fedora} < 42
+mv %{buildroot}%{_bindir} %{buildroot}%{_sbindir}
+%endif
 mkdir -p %{buildroot}%{_sharedstatedir}/%{name}
 
 # Systemd unit files
@@ -64,7 +67,11 @@ install -p -m 644 -D %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 %files
 %license COPYING
 %{_mandir}/man1/%{name}.1.*
+%if 0%{?fedora} < 42
+%{_sbindir}/%{name}
+%else
 %{_bindir}/%{name}
+%endif
 %{_unitdir}/%{name}.service
 %{_sharedstatedir}/%{name}
 
