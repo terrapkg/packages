@@ -55,7 +55,8 @@ Conflicts:      micro
 %gopkg
 
 %prep
-%git_clone %{gourl} %{shortcommit}
+git clone --recurse-submodules -q %{gourl} micro-%{version}
+cd %{builddir}/micro-%{version} && git checkout -q %{commit_hash}
 %gomkdir
 %go_prep_online
 
