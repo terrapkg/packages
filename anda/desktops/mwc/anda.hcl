@@ -1,6 +1,6 @@
 project pkg {
   rpm {
-    spec = "owl.spec"
+    spec = "mwc.spec"
   }
   labels {
     nightly = 1
