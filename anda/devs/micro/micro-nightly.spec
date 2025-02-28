@@ -61,6 +61,7 @@ cd %{builddir}/micro-%{version} && git checkout -q %{commit_hash}
 %go_prep_online
 
 %build
+cd %{builddir}/micro-%{version} 
 %if %{without bootstrap}
 go generate ./runtime
 
@@ -76,6 +77,7 @@ LDFLAGS="-X internal/util.version=${MICRO_VERSION} \
 %endif
 
 %install
+cd %{builddir}/micro-%{version} 
 %if %{without bootstrap}
 install -Dm755 %{gobuilddir}/bin/micro        -t %{buildroot}%{_bindir}
 install -Dm644 assets/packaging/micro.1       -t %{buildroot}%{_mandir}/man1
@@ -89,7 +91,7 @@ mv -v ./runtime/help .
 %if %{without bootstrap}
 %if %{with check}
 %check
-cd micro
+cd %{builddir}/micro-%{version} 
 %gotest ./internal/... ./cmd/micro/...
 %endif
 %endif
