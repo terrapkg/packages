@@ -34,7 +34,7 @@ micro is a terminal-based text editor that aims to be easy to use and intuitive,
                         runtime/help/tutorial.md
 
 Name:           micro.nightly
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A modern and intuitive terminal-based text editor
 
 License:        MIT
@@ -42,6 +42,9 @@ URL:            %{gourl}
 Packager:       sadlerm <lerm@chromebooks.lol>
 
 BuildRequires:  anda-srpm-macros
+
+Recommends:     wl-clipboard
+Recommends:     (xclip or xsel)
 
 Provides:       micro-nightly = %{version}-%{release}
 Provides:       micro
@@ -51,65 +54,55 @@ Conflicts:      micro
 
 %gopkg
 
-%prep
-git clone --recurse-submodules -q -j$(nproc) %{gourl} -b master && cd micro
-if ! [ %{shortcommit} = $(git rev-parse --short=7 HEAD) ]; then
-  printf "Commit mismatch, exiting..." >&2
-  exit 1
-fi
+%global buildsubdir micro-%{version}
 
+%prep
+git clone --recurse-submodules -q %{gourl} micro-%{version}
+cd %{builddir}/micro-%{version} && git checkout -q %{commit_hash}
+%gomkdir
 %go_prep_online
 
 %build
-cd micro
 %if %{without bootstrap}
 go generate ./runtime
 
 MICRO_VERSION=$(go run ./tools/build-version.go)
 MICRO_DATE=$(date --date=%{commit_date} +"%%B %%d, %%Y")
 
-go build -buildmode pie -compiler gc -tags="rpm_crashtraceback ${GO_BUILDTAGS-${BUILDTAGS-}}" -a -x \
-  -ldflags "-X internal/util.version=${MICRO_VERSION} \
-            -X internal/util.hash=%{shortcommit} \
-            -X 'internal/util.date=${MICRO_DATE}' \
-            -B 0x$(echo "%{name}-%{version}-%{release}-${SOURCE_DATE_EPOCH:-}" | sha1sum | cut -d ' ' -f1) \
-            -compressdwarf=false -linkmode=external \
-            -extldflags '-Wl,-z,relro -Wl,--as-needed -Wl,-z,pack-relative-relocs -Wl,-z,now \
-                         -specs=/usr/lib/rpm/redhat/redhat-hardened-ld -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 \
-                         -Wl,--build-id=sha1'" \
-  -o ./micro ./cmd/micro/
+LDFLAGS="-X internal/util.version=${MICRO_VERSION} \
+         -X internal/util.hash=%{shortcommit} \
+         -X 'internal/util.date=${MICRO_DATE}'"
+
+%define gomodulesmode GO111MODULE=on
+%gobuild -o %{gobuilddir}/bin/micro ./cmd/micro
 %endif
 
 %install
 %if %{without bootstrap}
-install -m 0755 -vd                                        %{buildroot}%{_bindir} \
-                                                           %{buildroot}%{_mandir}/man1 \
-                                                           %{buildroot}%{_datadir}/applications
-
-install -m 0755 -vp ./micro/micro                          %{buildroot}%{_bindir}/
-install -m 0644 -vp ./micro/assets/packaging/micro.1       %{buildroot}%{_mandir}/man1/
-install -m 0644 -vp ./micro/assets/packaging/micro.desktop %{buildroot}%{_datadir}/applications/
+install -Dm755 %{gobuilddir}/bin/micro        -t %{buildroot}%{_bindir}
+install -Dm644 assets/packaging/micro.1       -t %{buildroot}%{_mandir}/man1
+install -Dm644 assets/packaging/micro.desktop -t %{buildroot}%{_datadir}/applications
+install -Dm644 assets/micro-logo-mark.svg        %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/micro.svg
 
 # for %%doc packaging
-mkdir -v ./micro/help
-mv -v ./micro/runtime/help/* ./micro/help/
+mv -v ./runtime/help .
 %endif
 
 %if %{without bootstrap}
 %if %{with check}
 %check
-cd micro
-%gotest ./internal/... ./cmd/micro/... 
+%gotest ./internal/... ./cmd/micro/...
 %endif
 %endif
 
 %if %{without bootstrap}
 %files
-%license micro/LICENSE micro/LICENSE-THIRD-PARTY
-%doc micro/README.md micro/help
+%license LICENSE LICENSE-THIRD-PARTY
+%doc README.md help
 %{_bindir}/micro
 %{_mandir}/man1/micro.1.gz
 %{_datadir}/applications/micro.desktop
+%{_datadir}/icons/hicolor/scalable/apps/micro.svg
 %endif
 
 %changelog
