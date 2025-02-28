@@ -54,7 +54,7 @@ Conflicts:      micro
 
 %gopkg
 
-%global buildsubdir %{builddir}/micro-%{version}
+%global buildsubdir micro-%{version}
 
 %prep
 git clone --recurse-submodules -q %{gourl} micro-%{version}
