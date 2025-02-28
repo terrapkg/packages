@@ -73,7 +73,7 @@ LDFLAGS="-X internal/util.version=${MICRO_VERSION} \
          -X 'internal/util.date=${MICRO_DATE}'"
 
 %define gomodulesmode GO111MODULE=on
-%gobuild -o %{gobuilddir}/bin/micro %{goipath}
+%gobuild -o %{gobuilddir}/bin/micro %{goipath}/v2
 %endif
 
 %install
