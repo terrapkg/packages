@@ -10,7 +10,7 @@
 
 Name:       wl-kmod
 Version:    6.30.223.271
-Release:    1%{?dist}
+Release:    2%{?dist}
 Summary:    Kernel module for Broadcom wireless devices
 Group:      System Environment/Kernel
 License:    Redistributable, no modification permitted
