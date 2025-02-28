@@ -1,5 +1,5 @@
 Name:           inputplumber
-Version:        0.48.0
+Version:        0.49.0
 Release:        1%?dist
 Summary:        Open source input router and remapper daemon for Linux
 License:        GPL-3.0-or-later
