@@ -9,7 +9,7 @@
 
 # Try to vendor PNPM directly from Fedora
 # but if this fails, you can try setting this to 1 to vendor PNPM directly from upstream
-%global vendor_pnpm 0
+%global vendor_pnpm 1
 
 Name:           youtube-music
 Version:        3.7.5
