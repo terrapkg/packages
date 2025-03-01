@@ -1,7 +1,7 @@
 %global __brp_mangle_shebangs %{nil}
 
 Name:           inputplumber
-Version:        0.49.1
+Version:        0.49.2
 Release:        2%?dist
 Summary:        Open source input router and remapper daemon for Linux
 License:        GPL-3.0-or-later
