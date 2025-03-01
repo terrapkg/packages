@@ -5,7 +5,7 @@
 %define __strip /bin/true
 
 # do not perform compression in cpio
-%define _source_payload w0.ufdio
+%define _source_payload w19.zstdio
 %define _binary_payload w19.zstdio
 
 # Exclude private libraries
