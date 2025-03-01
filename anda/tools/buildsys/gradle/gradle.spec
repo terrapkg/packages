@@ -36,9 +36,9 @@ unzip %{S:1} %name-%v/{README,LICENSE}
 
 %global buildsubdir %name-%v
 
-mv %name-v/README .
-mv %name-v/LICENSE .
-rmdir %name-v
+mv %name-%v/README .
+mv %name-%v/LICENSE .
+rmdir %name-%v
 unzip %{S:0}
 cd %name-%v
 
