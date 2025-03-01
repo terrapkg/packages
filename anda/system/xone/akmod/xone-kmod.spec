@@ -16,7 +16,7 @@ Source0:        %{url}/archive/%{commit}.tar.gz#/xone-%{shortcommit}.tar.gz
 BuildRequires:  kmodtool
 BuildRequires:  systemd-rpm-macros
 Requires:       %{real_name}-kmod-common = %{?epoch:%{epoch}:}%{version}
-Packager:       ShinyGil <rockgrub@disroot.org>
+Packager:       Gilver E. <rockgrub@disroot.org>
 
 %{expand:%(kmodtool --target %{_target_cpu} --repo terra --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 
@@ -59,5 +59,5 @@ done
 %{_modulesloaddir}/%{real_name}.conf
 
 %changelog
-* Thu Feb 27 2025 ShinyGil <rockgrub@disroot.org>
+* Thu Feb 27 2025 Gilver E. <rockgrub@disroot.org>
 - Initial package

@@ -34,7 +34,7 @@ Requires:      which
 Recommends:    gamemode
 Recommends:    mangohud
 Recommends:    umu-launcher
-Packager:      ShinyGil <rockgrub@disroot.org>
+Packager:      Gilver E. <rockgrub@disroot.org>
 
 %description
 Heroic is a Free and Open Source Epic, GOG, and Amazon Prime Games launcher for Linux, Windows, and macOS.
@@ -87,6 +87,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/heroic.desktop
 %_iconsdir/hicolor/1024x1024/heroic.png
 
 %changelog
-* Thu Jan 30 2025 ShinyGil <rockgrub@disroot.org>
+* Thu Jan 30 2025 Gilver E. <rockgrub@disroot.org>
 - Initial package
 
