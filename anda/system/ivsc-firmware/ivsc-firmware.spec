@@ -1,5 +1,5 @@
 %global debug_package %{nil}
-%global commit 10c214fea5560060d387fbd2fb8a1af329cb6232
+%global commit 74a01d1208a352ed85d76f959c68200af4ead918
 %global commitdate 20230811
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
@@ -7,7 +7,7 @@ Name:           ivsc-firmware
 Summary:        Intel iVSC firmware
 URL:            https://github.com/intel/ivsc-firmware
 Version:        %{commitdate}.%{shortcommit}
-Release:        1%{?dist}
+Release:        1%?dist
 License:        Proprietary
 Source0:        https://github.com/intel/%{name}/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
 Requires:       ipu6-camera-bins

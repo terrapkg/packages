@@ -1,0 +1,16 @@
+# Tiger Lake
+SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{device}=="0x9a19", RUN+="/usr/bin/echo /usr/lib64/ipu_tgl > /etc/ld.so.conf.d/ipu6-x86_64.conf"
+# Alder Lake-N
+SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{device}=="0x465d", RUN+="/usr/bin/echo /usr/lib64/ipu_adl > /etc/ld.so.conf.d/ipu6-x86_64.conf"
+# Alder Lake-P
+SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{device}=="0x462e", RUN+="/usr/bin/echo /usr/lib64/ipu_adl > /etc/ld.so.conf.d/ipu6-x86_64.conf"
+# Raptor Lake-P
+SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{device}=="0xa75d", RUN+="/usr/bin/echo /usr/lib64/ipu_adl > /etc/ld.so.conf.d/ipu6-x86_64.conf"
+# Meteor Lake
+SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{device}=="0x7d19", RUN+="/usr/bin/echo /usr/lib64/ipu_mtl > /etc/ld.so.conf.d/ipu6-x86_64.conf"
+# Lunar Lake
+SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{device}=="0x645d", RUN+="/usr/bin/echo /usr/lib64/ipu_lnl > /etc/ld.so.conf.d/ipu6-x86_64.conf"
+# Jasper Lake
+SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{device}=="0x4e19", RUN+="/usr/bin/echo /usr/lib64/ipu_jsl > /etc/ld.so.conf.d/ipu6-x86_64.conf"
+
+KERNEL=="ipu-psys0", TAG+="uaccess"

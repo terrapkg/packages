@@ -1,23 +1,19 @@
-%global commit d530f26d60dc105e44fdc8ac7f30a2f667bc1e4f
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20241224
-
 Name:           fontviewer
-Version:        %{commit_date}.git~%{shortcommit}
+Epoch:          1
+Version:        1.1.0
 Release:        1%?dist
 Summary:        View and install fonts
 
 License:        GPL-2.0
 URL:            https://github.com/chocolateimage/%{name}
-Source0:        %{url}/archive/%{commit}.tar.gz
+Source0:        %{url}/archive/v%{version}.tar.gz
 
 BuildRequires:  gcc-c++
 BuildRequires:  meson
-BuildRequires:  pkgconfig(cairomm-1.0)
 BuildRequires:  pkgconfig(fontconfig)
-BuildRequires:  pkgconfig(freetype2)
-BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(gtkmm-3.0)
+BuildRequires:  pkgconfig(libcurl)
+BuildRequires:  json-glib-devel
 
 Requires:       gtk3 fontconfig
 
@@ -27,7 +23,7 @@ Packager:       sadlerm <sad_lerm@hotmail.com>
 A platform-agnostic GTK+ 3 alternative to GNOME's Font Viewer
 
 %prep
-%autosetup -n %{name}-%{commit} -p1
+%autosetup
 
 %build
 %meson
@@ -41,3 +37,4 @@ A platform-agnostic GTK+ 3 alternative to GNOME's Font Viewer
 %doc README.md
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
+%{_datadir}/icons/hicolor/scalable/actions/%{name}-google-symbolic.svg

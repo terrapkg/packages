@@ -4,7 +4,7 @@ project pkg {
 		spec = "mesa.spec"
 	}
     labels {
-
+        mock = 1
         subrepo = "mesa"
     }
 }

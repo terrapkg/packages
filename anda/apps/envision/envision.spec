@@ -1,8 +1,8 @@
-%global commit 879637115c4c248e79031da64b916cd748525086
-%global commit_date 20250109
+%global commit 9c6bfe110a50f7f96cd5204205397a9ccd2548d4
+%global commit_date 20250224
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
-Name:           envision
+Name:           envision-nightly
 Version:        %commit_date.%shortcommit
 Release:        1%?dist
 Summary:        UI for building, configuring and running Monado, the open source OpenXR runtime
@@ -23,6 +23,7 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  glib2-devel
 BuildRequires:  git-core
 Recommends:     android-tools
+Conflicts:      envision
 
 %description
 %summary.

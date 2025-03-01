@@ -10,7 +10,7 @@
 
 Name:       wl-kmod
 Version:    6.30.223.271
-Release:    1%{?dist}
+Release:    2%{?dist}
 Summary:    Kernel module for Broadcom wireless devices
 Group:      System Environment/Kernel
 License:    Redistributable, no modification permitted
@@ -45,13 +45,15 @@ Patch23:    wl-kmod-025_kernel_6.5_adaptation.patch
 Patch24:    wl-kmod-026_kernel_6.10_fix_empty_body_in_if_warning.patch
 Patch25:    wl-kmod-027_wpa_supplicant-2.11_add_max_scan_ie_len.patch
 Patch26:    wl-kmod-028_kernel_6.12_adaptation.patch
+Patch27:    wl-kmod-029_kernel_6.13_adaptation.patch
+Patch28:    wl-kmod-030_kernel_6.14_adaptation.patch
 ExclusiveArch:  i686 x86_64
 BuildRequires:  kmodtool
 BuildRequires:  elfutils-libelf-devel
 
 %{!?kernels:BuildRequires: gcc, elfutils-libelf-devel}
 
-%{expand:%(kmodtool --target %{_target_cpu} --repo rpmfusion --kmodname %{name} --filterfile %{SOURCE11} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
+%{expand:%(kmodtool --target %{_target_cpu} --repo terra --kmodname %{name} --filterfile %{SOURCE11} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 
 %description
 These packages contain Broadcom's IEEE 802.11a/b/g/n hybrid Linux device driver for use with Broadcom's BCM4311-, BCM4312-, BCM4313-, BCM4321-, BCM4322-, BCM43142-, BCM43224-, BCM43225-, BCM43227-, BCM43228-, BCM4331-, BCM4360, and -BCM4352-.
@@ -60,7 +62,7 @@ NOTE: Please read the LICENSE.txt file in the docs directory before using this d
 
 %prep
 %{?kmodtool_check}
-kmodtool --target %{_target_cpu}  --repo rpmfusion --kmodname %{name} --filterfile %{SOURCE11} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
+kmodtool --target %{_target_cpu}  --repo terra --kmodname %{name} --filterfile %{SOURCE11} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
 %setup -q -c -T
 mkdir %{name}-%{version}-src
@@ -119,6 +121,8 @@ pushd %{name}-%{version}-src
    %{__sed} -i 's/ >= KERNEL_VERSION(6, [01], 0)/ >= KERNEL_VERSION(5, 14, 0)/g' src/wl/sys/wl_cfg80211_hybrid.c
   %endif
   %if %{kvr} >= 427
+  %endif
+  %if %{kvr} >= 503
   %endif
  %endif
 %endif

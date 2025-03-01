@@ -1,7 +1,7 @@
-%global tag 2024-02-25
+%global tag 2025-02-26
 
 Name:           fluent-icon-theme
-Version:        20240225
+Version:        20250226
 Release:        1%?dist
 Summary:        Fluent icon theme for linux desktops
 
@@ -22,7 +22,7 @@ Fluent icon theme for linux desktops.
 
 %install
 mkdir -p %{buildroot}%{_datadir}/themes
-./install.sh -r -a -d %{buildroot}%{_datadir}/icons
+./install.sh -a -d %{buildroot}%{_datadir}/icons
 
 %fdupes %buildroot%_datadir/icons/
 

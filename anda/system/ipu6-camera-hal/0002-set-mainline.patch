@@ -1,0 +1,20 @@
+--- a/src/v4l2/MediaControl.cpp
++++ b/src/v4l2/MediaControl.cpp
+@@ -886,6 +886,15 @@ int MediaControl::mediaCtlSetup(int cameraId, MediaCtlConf* mc, int width, int h
+                              ivscName.c_str(), link.sinkEntityName.c_str());
+                         link.srcEntity = ivsc->info.id;
+                         link.srcEntityName = ivscName;
++                        /*
++                         * Since mainline kernel commit 48f5fd8967f8 ("media:
++                         * ivsc: csi: Swap SINK and SOURCE pads") the src-pad
++                         * on the mainline ivsc mc-entity is pad 1, where on
++                         * older versions it is pad 0, so this needs to be set
++                         * dynamically.
++                         * The src-pad is the other pad of the found ivsc sink.
++                         */
++                        link.srcPad = !ivsc->links[i].sink->index;
+                         break;
+                     }
+                 }
+
+

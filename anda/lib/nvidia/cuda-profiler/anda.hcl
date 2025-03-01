@@ -3,4 +3,8 @@ project pkg {
     rpm {
         spec = "cuda-profiler.spec"
     }
+    labels {
+        mock = 1
+	    subrepo = "nvidia"
+    }
 }

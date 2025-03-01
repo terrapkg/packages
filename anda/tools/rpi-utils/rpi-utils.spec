@@ -1,5 +1,5 @@
-%global commit 33aa4da93d8da90d5075e8cd48e72cc90048b9f3
-%global commit_date 20250107
+%global commit 61e4becfd5338e3eb2bb8c54cdd0b9b96a8afbf8
+%global commit_date 20250301
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %define _unpackaged_files_terminate_build 0
@@ -53,7 +53,7 @@ Summary:        A short script to help with reading and setting the customer OTP
 %{summary}.
 
 %package        overlaycheck
-Requires:       rpi-utils-dtmerge = %{version} 
+Requires:       rpi-utils-dtmerge = %{version}
 Requires:       rpi-utils-ovmerge = %{version}
 Summary:        A tool for validating the overlay files and README in a kernel source tree
 %description    overlaycheck
@@ -152,6 +152,7 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 %{_bindir}/pioseq
 %{_bindir}/piotest
 %{_bindir}/piows2812
+%{_bindir}/quadenc
 %{_bindir}/rp1sm
 
 %files vcgencmd

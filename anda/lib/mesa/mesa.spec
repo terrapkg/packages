@@ -71,15 +71,18 @@
 %global vulkan_drivers swrast%{?base_vulkan}%{?intel_platform_vulkan}%{?extra_platform_vulkan}%{?with_nvk:,nouveau}
 Name:           %{srcname}
 Summary:        Mesa graphics libraries
-%global ver 24.3.3
-Version:        %{lua:ver = string.gsub(rpm.expand("%{ver}"), "-", "~"); print(ver)}
-Release:        3%?dist
+# Make the dep solver always prefer our Mesa over the distro's
+# This should not break anything by default as the Mesa stream is ***EXPLICITLY***
+# disabled by default, and has to be enabled manually. See `terra/release/terra-mesa.repo` for details.
+Epoch:          1
+Version:        25.0.0
+Release:        1%?dist
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0
 URL:            http://www.mesa3d.org
 
 
 
-Source0:        https://archive.mesa3d.org/%{srcname}-%{ver}.tar.xz
+Source0:        https://archive.mesa3d.org/%{srcname}-%{version}.tar.xz
 # src/gallium/auxiliary/postprocess/pp_mlaa* have an ... interestingly worded license.
 # Source1 contains email correspondence clarifying the license terms.
 # Fedora opts to ignore the optional part of clause 2 and treat that code as 2 clause BSD.
@@ -91,6 +94,10 @@ Source1:        Mesa-MLAA-License-Clarification-Email.txt
 
 # https://gitlab.com/evlaV/mesa/
 Patch20:        valve.patch
+
+# Fix issues with Intel Battlemage under Valve's gamescope in DRM mode
+# https://gitlab.freedesktop.org/mesa/mesa/-/issues/12633
+Patch21:        12633.patch
 
 # s390x: fix build
 #Patch100:       https://src.fedoraproject.org/rpms/mesa/raw/e89544b7a4d811a64ca23b402add29524cc6f704/f/fix-egl-on-s390x.patch
@@ -392,7 +399,7 @@ Obsoletes:      mesa-vulkan-devel < %{?epoch:%{epoch}:}%{version}-%{release}
 The drivers with support for the Vulkan API.
 
 %prep
-%autosetup -n %{srcname}-%{ver} -p1
+%autosetup -n %{srcname}-%{version} -p1
 cp %{SOURCE1} docs/
 
 %build

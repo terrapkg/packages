@@ -3,4 +3,7 @@ project pkg {
         rpm {
 		spec = "compat-nvidia-repo.spec"
 	}
+	labels {
+	   subrepo = "nvidia"
+    }
 }

@@ -1,0 +1,32 @@
+--- ipu6-camera-hal-8863bda8b15bef415f112700d0fb04e00a48dbee.old/cmake/libcamhal.pc.cmakein	2024-08-06 08:24:01.897232057 +0200
++++ ipu6-camera-hal-8863bda8b15bef415f112700d0fb04e00a48dbee/cmake/libcamhal.pc.cmakein	2024-08-06 08:25:08.361731743 +0200
+@@ -1,6 +1,6 @@
+ prefix=@CMAKE_INSTALL_PREFIX@
+ exec_prefix=${prefix}/@CMAKE_INSTALL_SUB_PATH@
+-libdir=${prefix}/lib/@CMAKE_INSTALL_SUB_PATH@
++libdir=${prefix}/lib64/@CMAKE_INSTALL_SUB_PATH@
+ includedir=${prefix}/include/@CMAKE_INSTALL_SUB_PATH@/libcamhal
+ 
+ Name: libcamhal
+--- a/src/hal/hal_adaptor/HalAdaptor.cpp
++++ b/src/hal/hal_adaptor/HalAdaptor.cpp
+@@ -62,7 +62,7 @@ static void load_camera_hal_library() {
+     CheckAndLogError((strlen(pciID) == 0), VOID_VALUE, "%s, Failed to read PCI id. %d", __func__,
+                      ret);
+ 
+-    std::string libName = "/usr/lib/";
++    std::string libName = "/usr/lib64/";
+     if (IPU6_UPSTREAM) {
+         if (strstr(pciID, "0x7d19") != nullptr /* MTL */) {
+             libName += "ipu_mtl_upstream";
+--- ipu6-camera-hal-8863bda8b15bef415f112700d0fb04e00a48dbee.old/src/platformdata/PlatformData.h	2024-08-06 08:24:01.919232222 +0200
++++ ipu6-camera-hal-8863bda8b15bef415f112700d0fb04e00a48dbee/src/platformdata/PlatformData.h	2024-08-06 08:25:08.362731750 +0200
+@@ -89,7 +89,7 @@
+ #define MAX_CAMERA_NUMBER 100
+ // Temporarily using current path to save aiqd file for none CAL platforms.
+ #define CAMERA_CACHE_DIR "./"
+-#define CAMERA_DEFAULT_CFG_PATH "/etc/camera/"
++#define CAMERA_DEFAULT_CFG_PATH "/usr/share/camera/"
+ #define CAMERA_GRAPH_DESCRIPTOR_FILE "gcss/graph_descriptor.xml"
+ #define CAMERA_GRAPH_SETTINGS_DIR "gcss/"
+ #endif

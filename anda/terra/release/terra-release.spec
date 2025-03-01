@@ -1,12 +1,14 @@
 Name:           terra-release
 Version:        42
-Release:        3
+Release:        4
 Summary:        Release package for Terra
 
 License:        MIT
 URL:            https://terra.fyralabs.com
 Source0:        terra.repo
 Source1:        terra-extras.repo
+Source2:        terra-nvidia.repo
+Source3:        terra-mesa.repo
 BuildArch:      noarch
 
 %dnl We probably shouldn't do this in Rawhide!
@@ -31,14 +33,21 @@ conflict with Fedora.
 %install
 install -D -p -m 0644 -t %{buildroot}%{_sysconfdir}/yum.repos.d %{SOURCE0}
 install -Dpm644 -t %buildroot%_sysconfdir/yum.repos.d %SOURCE1
+install -Dpm644 -t %buildroot%_sysconfdir/yum.repos.d %SOURCE2
+install -Dpm644 -t %buildroot%_sysconfdir/yum.repos.d %SOURCE3
 
 %files
 %config(noreplace) %{_sysconfdir}/yum.repos.d/terra.repo
 
 %files extras
 %config(noreplace) %{_sysconfdir}/yum.repos.d/terra-extras.repo
+%config(noreplace) %{_sysconfdir}/yum.repos.d/terra-nvidia.repo
+%config(noreplace) %{_sysconfdir}/yum.repos.d/terra-mesa.repo
 
 %changelog
+* Sun Jan 12 2025 Cappy Ishihara <cappy@cappuchino.xyz> - 42-4
+- Add NVIDIA and Mesa repository streams
+
 * Fri Oct 25 2024 madonuko <mado@fyralabs.com> - 42-2
 - Add terra-release-extra
 

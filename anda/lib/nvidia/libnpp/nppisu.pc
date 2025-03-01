@@ -1,0 +1,8 @@
+libdir=LIBDIR
+includedir=INCLUDE_DIR
+
+Name: nppisu
+Description: NVIDIA Performance Primitives - Image Processing - Support and Data Exchange
+Version: CUDA_VERSION
+Libs: -L${libdir} -lnppisu
+Cflags: -I${includedir}

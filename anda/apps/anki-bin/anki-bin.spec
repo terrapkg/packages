@@ -1,29 +1,32 @@
-%global xurl https://files.pythonhosted.org/packages/ef/fa/6c86371d0e3b71129d2a79e63fc3fdc17733c9ebbf77345c62caad8c9fca/anki-24.11-cp39-abi3-manylinux_2_28_x86_64.whl
-%global aurl https://files.pythonhosted.org/packages/58/6e/9f2d4853a83e57cea48ccae3bc2d887bf7c0550042185e156bab23f524bf/anki-24.11-cp39-abi3-manylinux_2_31_aarch64.whl
-%global qurl https://files.pythonhosted.org/packages/40/3c/b70ef91f1dad8248332971c0cbb2922277512789cadc33cb16233e360a56/aqt-24.11-py3-none-any.whl
+%global xurl https://files.pythonhosted.org/packages/68/9c/7685bd012e597332f8ce379a31b0d58dd4eae960da96ff43e9fcd978c93f/anki-25.02-cp39-abi3-manylinux_2_35_x86_64.whl
+%global aurl https://files.pythonhosted.org/packages/da/36/741cef7b7fce943d187784549fd8de8152986067d9226f384959c07770a7/anki-25.02-cp39-abi3-manylinux_2_35_aarch64.whl
+%global qurl https://files.pythonhosted.org/packages/2c/bc/763589b97aa5c91acf3d834beaa473c25ca7f335c7b40954fd0d5fd41ddc/aqt-25.02-py3-none-any.whl
 
 Name:			anki-bin
-Version:		24.11
+Version:		25.02
 Release:		1%?dist
 Summary:		Flashcard program for using space repetition learning (Installed with wheel)
 License:		AGPL-3.0-or-later AND GPL-3.0-or-later AND LGPL-3.0-or-later AND MIT AND BSD-3-Clause AND CC-BY-SA-3.0 AND CC-BY-3.0 AND Apache-2.0 AND CC-BY-2.5
 URL:			https://apps.ankiweb.net/
-BuildRequires:	python3-pip rpm_macro(fdupes) cargo
-Requires:		python3-sqlalchemy python3-simplejson python3-matplotlib python3-decorator python3-markdown python3-orjson
-Requires:		python3-requests python3-pygame python3-beautifulsoup4 python3-httplib2 python3-pyaudio python3-jsonschema
-Requires:		python3-flask-cors python3-protobuf python3-requests python3-waitress python3-pyqt6-webengine python3-send2trash
-Requires:       libxcrypt-compat hicolor-icon-theme sox mpv 
-ExclusiveArch:	x86_64
+BuildRequires:          python3-pip rpm_macro(fdupes) cargo
+Requires:               python3-sqlalchemy python3-simplejson python3-matplotlib python3-decorator python3-markdown python3-orjson
+Requires:               python3-requests python3-pygame python3-beautifulsoup4 python3-httplib2 python3-pyaudio python3-jsonschema
+Requires:               python3-flask-cors python3-protobuf python3-requests python3-waitress python3-pyqt6-webengine python3-send2trash
+Requires:               python3-protobuf >= 4.21
+Requires:               libxcrypt-compat hicolor-icon-theme sox
+Requires:               (mpv or mpv-nightly)
+
+ExclusiveArch:	        x86_64
 Conflicts:		anki
 %ifarch x86_64
 Source0:		%xurl
 %elifarch aarch64
-Source0:        %aurl
+Source0:                %aurl
 %endif
 Source1:		%qurl
 Source2:		https://raw.githubusercontent.com/ankitects/anki/%{version}/qt/runanki.py
 Source3:		https://raw.githubusercontent.com/ankitects/anki/%{version}/qt/bundle/lin/anki.desktop
-Source4:		https://raw.githubusercontent.com/ankitects/anki/%{version}/qt/bundle/lin/anki.png
+Source4:                https://raw.githubusercontent.com/ankitects/anki/%{version}/qt/bundle/lin/anki.png
 Source5:		https://raw.githubusercontent.com/ankitects/anki/%{version}/LICENSE
 Source6:		https://raw.githubusercontent.com/ankitects/anki/%{version}/README.md
 
@@ -57,6 +60,8 @@ rm -rf %buildroot%_bindir/{distro,flask,jsonschema,markdown_py,normalizer,send2t
 %license LICENSE
 %doc README.md
 %_bindir/anki
+%_bindir/pyuic6
+%_bindir/pylupdate6
 /usr/lib/python*/site-packages/_aqt/
 /usr/lib/python*/site-packages/anki-%{version}.dist-info/
 /usr/lib/python*/site-packages/anki/

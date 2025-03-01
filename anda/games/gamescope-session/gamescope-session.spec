@@ -1,8 +1,8 @@
 %define debug_package %nil
 
-%global commit 2b9525daff0a28a17bc99d3a54998306584f6a86
+%global commit 533e51f2f50aebc4457d04372ab9b05a9c56ac10
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250105
+%global commit_date 20250126
 
 Name:           gamescope-session
 Version:        %commit_date.%shortcommit
@@ -30,7 +30,9 @@ cp -r usr %buildroot/
 %license LICENSE
 %_bindir/export-gpu
 %_bindir/gamescope-session-plus
-%_libexecdir/gamescope-sdl-workaround
 %_userunitdir/gamescope-session-plus@.service
 %_datadir/gamescope-session-plus/device-quirks
 %_datadir/gamescope-session-plus/gamescope-session-plus
+
+%changelog
+%autochangelog
