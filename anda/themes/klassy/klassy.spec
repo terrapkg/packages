@@ -1,17 +1,18 @@
 Name:           klassy
 
 %global forgeurl https://github.com/paulmcauley/%{name}
-%global tag 6.1.breeze6.0.3
-%global date 20240411
+%global tag 6.2.breeze6.2.1
+%global date 20250226
 %forgemeta
 
 Version:        %{tag}
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Window Decoration, Application Style and Global Theme plugin for recent versions of the KDE Plasma desktop.
 License:        GPL-2.0-or-later
 Group:          System/GUI/KDE
 URL:            %{forgeurl}
 Source:         %{forgesource}
+Patch0:         https://github.com/paulmcauley/klassy/pull/178.patch
 
 Obsoletes:      classikstyles <= %{version}
 Obsoletes:      classik <= %{version}
@@ -65,7 +66,7 @@ BuildRequires:  cmake(KF6KirigamiPlatform)
 BuildRequires:  cmake(KF6Package)
 BuildRequires:  cmake(KF6WindowSystem)
 
-BuildRequires:  cmake(KDecoration2)
+BuildRequires:  cmake(KDecoration3)
 BuildRequires:  cmake(Plasma)
 BuildRequires:  cmake(Plasma5Support)
 
@@ -99,8 +100,8 @@ Klassy (formerly ClassiK/ClassikStyles) is a highly customizable binary Window D
 %{_kf6_qtplugindir}/styles/klassy6.so
 
 %{_kf6_qtplugindir}/kstyle_config/klassystyleconfig.so
-%{_kf6_qtplugindir}/org.kde.kdecoration2/org.kde.klassy.so
-%{_kf6_qtplugindir}/org.kde.kdecoration2.kcm/kcm_klassydecoration.so
+%{_kf6_qtplugindir}/org.kde.kdecoration3/org.kde.klassy.so
+%{_kf6_qtplugindir}/org.kde.kdecoration3.kcm/kcm_klassydecoration.so
 %{_kf6_qtplugindir}/org.kde.kdecoration2.kcm/klassydecoration/presets/*
 
 %{_kf6_datadir}/applications/kcm_klassydecoration.desktop
