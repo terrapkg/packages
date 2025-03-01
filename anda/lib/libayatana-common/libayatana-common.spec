@@ -1,7 +1,7 @@
 Name:       libayatana-common
 Summary:    Common functions for Ayatana System Indicators
 Version:    0.9.11
-Release:    1%?dist
+Release:    2%?dist
 License:    GPL-3.0
 URL:        https://github.com/AyatanaIndicators/libayatana-common
 Source0:    %{url}/archive/refs/tags/%{version}.tar.gz
@@ -48,12 +48,12 @@ This package contains the development header files for %{name}.
 %license COPYING
 %{_userunitdir}/ayatana-indicators.target
 %{_libdir}/libayatana-common.so.*
-%{_libdir}/girepository-1.0/AyatanaCommon-0.0.typelib
+%{_libdir}/girepository-1.0/AyatanaCommon-0.*.typelib
 %{_datadir}/glib-2.0/schemas/org.ayatana.common.gschema.xml
 
 %files devel
 %{_libdir}/libayatana-common.so
-%{_datadir}/gir-1.0/AyatanaCommon-0.0.gir
+%{_datadir}/gir-1.0/AyatanaCommon-0.*.gir
 %{_libdir}/pkgconfig/libayatana-common.pc
 %dir %{_includedir}/ayatana
 %dir %{_includedir}/ayatana/common
