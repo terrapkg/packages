@@ -3,8 +3,8 @@ Version:		8.13.0
 Release:		1%?dist
 Summary:		Powerful build system for the JVM
 URL:			https://gradle.org/
-Source0:		https://services.gradle.org/distributions/%{name}-%{version}-src.zip
-Source1:		https://services.gradle.org/distributions/%{name}-%{version}-all.zip
+Source0:		https://services.gradle.org/distributions/%{name}-%(echo %version | sed -E 's@\.0$@@')-src.zip
+Source1:		https://services.gradle.org/distributions/%{name}-%(echo %version | sed -E 's@\.0$@@')-all.zip
 License:		Apache-2.0
 Requires:		java-latest-openjdk coreutils findutils sed which bash
 BuildRequires:	java-latest-openjdk-devel asciidoc xmlto groovy unzip git
