@@ -9,11 +9,11 @@
 
 # Try to vendor PNPM directly from Fedora
 # but if this fails, you can try setting this to 1 to vendor PNPM directly from upstream
-%global vendor_pnpm 0
+%global vendor_pnpm 1
 
 Name:           youtube-music
 Version:        3.7.5
-Release:        1%?dist
+Release:        2%?dist
 Summary:        YouTube Music Desktop App bundled with custom plugins (and built-in ad blocker / downloader)
 Source1:        youtube-music.desktop
 License:        MIT
