@@ -48,19 +48,13 @@ cat <<EOF > dist/gradle.sh
 export GRADLE_HOME=/usr/share/java/gradle
 EOF
 
-# remove ADOPTIUM contraint from all build related files
-sed -i '/JvmVendorSpec.ADOPTIUM/d' \
-	build-logic/jvm/src/main/kotlin/gradlebuild.unittest-and-compile.gradle.kts \
-	subprojects/docs/src/snippets/java/toolchain-filters/groovy/build.gradle \
-	subprojects/docs/src/snippets/java/toolchain-filters/kotlin/build.gradle.kts \
-	build-logic-commons/gradle-plugin/src/main/kotlin/common.kt
 # inhibit automatic download of binary gradle
 sed -i "s#distributionUrl=.*#distributionUrl=file\:%{SOURCE1}#" \
 	gradle/wrapper/gradle-wrapper.properties
 
 
 %build
-export PATH="/usr/lib/jvm/java-11-openjdk/bin:${PATH}"
+export PATH="/usr/lib/jvm/java-latest-openjdk/bin:${PATH}"
 ./gradlew installAll \
 	-Porg.gradle.java.installations.auto-download=false \
 	-PfinalRelease=true \
