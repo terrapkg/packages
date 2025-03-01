@@ -6,7 +6,7 @@
 
 Name:           stardust-xr-server
 Version:        %commit_date.%shortcommit
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Usable Linux display server that reinvents human-computer interaction for all kinds of XR.
 URL:            https://github.com/StardustXR/server
 Source0:        %url/archive/%commit/server-%commit.tar.gz
