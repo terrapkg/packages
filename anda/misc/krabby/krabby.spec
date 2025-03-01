@@ -19,7 +19,6 @@ Krabby is mostly a Rust rewrite of phoney badger's pokemon-colorscripts with som
 %cargo_prep_online
 
 %build
-%cargo_build
 
 %install
 %cargo_install
