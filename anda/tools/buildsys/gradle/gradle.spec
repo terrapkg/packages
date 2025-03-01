@@ -42,6 +42,7 @@ rmdir %name-%v
 unzip %{S:0}
 cd %name-%v
 
+mkdir dist
 cat <<EOF > dist/gradle.sh
 #!/bin/sh
 export GRADLE_HOME=/usr/share/java/gradle
