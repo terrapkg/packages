@@ -1,5 +1,6 @@
 %global debug_package %{nil}
 %global __requires_exclude libffmpeg.so
+%global __requires_exclude ld-linux-aarch64.so.1
 %global __provides_exclude_from %{_datadir}/heroic/.*\\.so
 %global __provides_exclude_from %{_datadir}/heroic/.*\\.so.1
 %define _build_id_links none
