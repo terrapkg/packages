@@ -41,8 +41,8 @@ BuildRequires:  pkgconfig(gdk-3.0)
 BuildRequires:  pkgconfig(javascriptcoregtk-4.1)
 BuildRequires:  pkgconfig(libsoup-3.0)
 BuildRequires:  pkgconfig(webkit2gtk-4.1)
-#BuildRequires:  pkgconfig(appindicator-0.1)
-#BuildRequires:  gdk-pixbuf2-modules-extra
+
+%description desktop %{common_description}
 
 %prep
 #yarn set version 1.22.1
