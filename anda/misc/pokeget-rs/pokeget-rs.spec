@@ -24,7 +24,8 @@ Successor to pokeget, written in Rust.
 
 %prep
 %setup %{SOURCE0} -n %{name}-%{version}
-%setup %{SOURCE1} -n data/%{pname} -T -D -a 1
+%setup %{SOURCE1} -n data/%{pname} -D -b 1
+
 %cargo_prep_online
 
 %build
