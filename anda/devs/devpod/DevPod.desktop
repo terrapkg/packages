@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=DevPod
+Comment=DevPod
+Exec=/usr/bin/DevPod
+Icon=devpod.png
+Terminal=false
+StartupNotify=false
+Categories=Utility;TextEditor;Development;IDE;
+MimeType=text/plain;application/x-zerosize;
