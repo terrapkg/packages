@@ -1,4 +1,4 @@
-A Name:          pokeget-rsu
+Name:          pokeget-rs
 Version:       1.6.3
 Release:       1%{?dist}
 SourceLicense: MIT
