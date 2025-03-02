@@ -8,7 +8,7 @@ Summary:        Watch content on your own terms, ensuring you retain full owners
 License:        SFL-1.1
 URL:            https://grayjay.app/desktop
 Source0:        https://github.com/futo-org/Grayjay.Desktop/archive/refs/tags/%version.tar.gz
-BuildRequires:  npm dotnet-host git-core
+BuildRequires:  npm dotnet-host dotnet-hostfxr-9.0 git-core
 BuildRequires:  anda-srpm-macros
 BuildRequires:  desktop-file-utils
 
