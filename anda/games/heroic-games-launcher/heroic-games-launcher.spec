@@ -1,8 +1,6 @@
 %global debug_package %{nil}
-%global __requires_exclude libffmpeg.so
-%global __requires_exclude ld-linux-*.so.*
-%global __provides_exclude_from %{_datadir}/heroic/.*\\.so
-%global __provides_exclude_from %{_datadir}/heroic/.*\\.so.1
+%global __provides_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*))$
+%global __requires_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*))$
 %define _build_id_links none
 %global git_name HeroicGamesLauncher
 
@@ -27,15 +25,22 @@ BuildRequires: nodejs
 BuildRequires: pnpm
 BuildRequires: python3
 Requires:      alsa-lib
+Requires:      atk
+Requires:      at-spi2-core
 Requires:      gtk3
 Requires:      hicolor-icon-theme
+Requires:      libXext
+Requires:      libXfixes
 Requires:      nss
 Requires:      python3
 Requires:      which
 Recommends:    gamemode
 Recommends:    mangohud
 Recommends:    umu-launcher
+# Woarkaround for GNOME issues with libei
+Recommends:    (extest if gnome-shell)
 ExclusiveArch: x86_64
+AutoReq:       no
 Packager:      Gilver E. <rockgrub@disroot.org>
 
 %description
