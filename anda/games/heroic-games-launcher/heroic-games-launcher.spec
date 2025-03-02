@@ -35,6 +35,7 @@ Requires:      which
 Recommends:    gamemode
 Recommends:    mangohud
 Recommends:    umu-launcher
+ExclusiveArch: x86_64
 Packager:      Gilver E. <rockgrub@disroot.org>
 
 %description
