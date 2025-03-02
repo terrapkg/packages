@@ -1,8 +1,8 @@
-%global swayVersion 1.9
+%global swayVersion 1.10.1
 
 Name:           swayfx
 Version:        0.5
-Release:        1%?dist
+Release:        2%?dist
 
 Summary:        SwayFX: Sway, but with eye candy!
 URL:            https://github.com/WillPower3309/swayfx
@@ -21,7 +21,7 @@ BuildRequires:  pkgconfig(glesv2)
 BuildRequires:  pkgconfig(json-c) >= 0.13
 BuildRequires:  pkgconfig(libdrm)
 BuildRequires:  pkgconfig(libevdev)
-BuildRequires:  pkgconfig(libinput) >= 1.21.0
+BuildRequires:  pkgconfig(libinput) >= 1.26.0
 BuildRequires:  pkgconfig(libpcre2-8)
 BuildRequires:  pkgconfig(libsystemd) >= 239
 BuildRequires:  pkgconfig(libudev)
@@ -33,8 +33,8 @@ BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(wayland-cursor)
 BuildRequires:  pkgconfig(wayland-server) >= 1.21.0
 BuildRequires:  pkgconfig(wayland-protocols) >= 1.24
-BuildRequires:  (pkgconfig(wlroots) >= 0.17.0 with pkgconfig(wlroots) < 0.18)
-BuildRequires:  (pkgconfig(scenefx) >= 0.1 with pkgconfig(scenefx) < 0.2)
+BuildRequires:  pkgconfig(scenefx-0.2)
+BuildRequires:  pkgconfig(wlroots-0.18)
 BuildRequires:  pkgconfig(xcb)
 BuildRequires:  pkgconfig(xcb-icccm)
 BuildRequires:  pkgconfig(xkbcommon) >= 1.5.0
@@ -46,7 +46,7 @@ Conflicts:      sway
 Provides:       sway = %{swayVersion}
 
 
-Packager:       Atmois <atmois@atmois.com>
+Packager:       Atmois <info@atmois.com>
  
 %description
 %{summary}
@@ -59,15 +59,6 @@ BuildArch:      noarch
 Requires:       %{name} = %{version}-%{release}
 Provides:       sway-config = %{version}-%{release}
 Conflicts:      sway-config
-
-
-%package        wallpapers
-Summary:        Wallpapers for Sway
-BuildArch:      noarch
-License:        CC0
-
-%description    wallpapers
-Wallpaper collection provided with Sway
 
 
 # Require the wallpaper referenced in the config.
@@ -106,9 +97,19 @@ Recommends:     (qt6-qtwayland if qt6-qtbase-gui)
 Upstream configuration for Sway.
 Includes all important dependencies for a typical desktop system with minimal or no divergence from the upstream.
 
+%package        wallpapers
+Summary:        Wallpapers for Sway
+BuildArch:      noarch
+License:        CC0
+
+%description    wallpapers
+Wallpaper collection provided with Sway
+
 
 %prep
 %autosetup -N -n %{name}-%{version}
+
+%autopatch -p1 -M99
 
 %build
 %meson \
