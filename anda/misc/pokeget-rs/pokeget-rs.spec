@@ -1,6 +1,7 @@
 %global pname pokesprite
 %global pcommit c5aaa610ff2acdf7fd8e2dccd181bca8be9fcb3e
 %global shortcommit %(c=%{pcommit}; echo ${c:0:7})
+%global pcommit_date 20220622
 
 Name:          pokeget-rs
 Version:       1.6.3
@@ -16,7 +17,7 @@ BuildRequires: cargo-rpm-macros
 BuildRequires: git
 BuildRequires: mold
 Provides:      pokeget = %{version}-%{release}
-Provides:      bundled(%{pname}) = 2.7.0^20220622.dad6114
+Provides:      bundled(%{pname}) = 2.7.0^%{pcommit_date}.%{shortcommit}
 Packager:      Gilver E. <rockgrub@disroot.org>
 
 %description
