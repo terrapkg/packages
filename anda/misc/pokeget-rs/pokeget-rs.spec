@@ -15,8 +15,8 @@ BuildRequires: anda-srpm-macros
 BuildRequires: cargo-rpm-macros
 BuildRequires: git
 BuildRequires: mold
-Provides:      pokeget
-Provides:      bundled(%{pname})
+Provides:      pokeget = %{version}-%{release}
+Provides:      bundled(%{pname}) = 2.7.0^20220622.dad6114
 Packager:      Gilver E. <rockgrub@disroot.org>
 
 %description
@@ -27,8 +27,6 @@ Successor to pokeget, written in Rust.
 mkdir -p data/%{pname}
 cd data/%{pname}
 /usr/bin/gzip -dc %{SOURCE1} | /usr/bin/tar -xvvof - 
-
-
 %cargo_prep_online
 
 %build
