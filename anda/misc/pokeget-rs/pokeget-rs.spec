@@ -23,8 +23,8 @@ Packager:      Gilver E. <rockgrub@disroot.org>
 Successor to pokeget, written in Rust.
 
 %prep
-%setup %{SOURCE0} -n %{name}-%{version}
-%setup %{SOURCE1} -n data/%{pname} -D -b 1
+%setup %{SOURCE0} -T -D -n %{name}-%{version}
+%setup %{SOURCE1} -D -c data/%{pname} -b 1
 
 %cargo_prep_online
 
