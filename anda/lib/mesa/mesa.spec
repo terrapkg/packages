@@ -69,7 +69,7 @@
 
 %global vulkan_drivers swrast,virtio%{?base_vulkan}%{?intel_platform_vulkan}%{?extra_platform_vulkan}%{?with_nvk:,nouveau}
 %global vulkan_drivers swrast%{?base_vulkan}%{?intel_platform_vulkan}%{?extra_platform_vulkan}%{?with_nvk:,nouveau}
-Name:           %{srcname}
+Name:           %{srcname}.full
 Summary:        Mesa graphics libraries
 # Make the dep solver always prefer our Mesa over the distro's
 # This should not break anything by default as the Mesa stream is ***EXPLICITLY***
