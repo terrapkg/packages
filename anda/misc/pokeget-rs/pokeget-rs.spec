@@ -1,3 +1,7 @@
+%global pname pokesprite
+%global pcommit c5aaa610ff2acdf7fd8e2dccd181bca8be9fcb3e
+%global shortcommit %(c=%{pcommit}; echo ${c:0:7})
+
 Name:          pokeget-rs
 Version:       1.6.3
 Release:       1%{?dist}
@@ -6,12 +10,13 @@ License:       MIT AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) A
 Summary:       A better Rust version of pokeget.
 URL:           https://github.com/talwat/%{name}
 Source0:       %{url}/archive/refs/tags/%{version}.tar.gz
+Source1:       https://github.com/msikma/%{pname}/archive/%{pcommit}/%{pname}-%{pcommit}.tar.gz#/%{pname}-%{shortcommit}.tar.gz
 BuildRequires: anda-srpm-macros
 BuildRequires: cargo-rpm-macros
 BuildRequires: git
 BuildRequires: mold
 Provides:      pokeget
-Provides:      bundled(pokesprite)
+Provides:      bundled(%{pname})
 Packager:      Gilver E. <rockgrub@disroot.org>
 
 %description
@@ -19,11 +24,7 @@ Successor to pokeget, written in Rust.
 
 %prep
 %autosetup -n %{name}-%{version}
-git clone https://github.com/msikma/pokesprite.git data/pokesprite
-pushd data/pokesprite
-git checkout c5aaa610ff2acdf7fd8e2dccd181bca8be9fcb3e
-rm -rf .git
-popd
+%setup -n %{pname}-%{pcommit} -c data/%{pname}
 %cargo_prep_online
 
 %build
@@ -34,7 +35,7 @@ install -Dpm755 target/rpm/pokeget %{buildroot}%{_bindir}/%{name}
 %{cargo_license_online} > LICENSE.dependencies
 
 %files
-%license LICENSE LICENSE.dependencies data/pokesprite/license.md
+%license LICENSE LICENSE.dependencies data/%{pname}/license.md
 %doc README.md
 %{_bindir}/%{name}
 
