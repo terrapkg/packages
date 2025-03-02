@@ -1,4 +1,6 @@
 %bcond check 0
+%global __brp_mangle_shebangs %{nil}
+%global __strip /bin/true
 
 # https://github.com/loft-sh/devpod
 %global goipath         github.com/loft-sh/devpod
