@@ -16,7 +16,7 @@ BuildRequires:  systemd-rpm-macros
 Provides:       %{real_name}-kmod-common = %{?epoch:%{epoch}:}%{version}
 Provides:       %{real_name} = %{version}-%{release}
 BuildArch:      noarch
-Packager:       ShinyGil <rockgrub@disroot.org>
+Packager:       Gilver E. <rockgrub@disroot.org>
 
 %description
 Advanced Linux Driver for Xbox One Wireless Gamepad common files.
@@ -43,4 +43,5 @@ install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/metainfo/io.github.xpadneo.met
 %{_datadir}/metainfo/io.github.xpadneo.metainfo.xml
 
 %changelog
-%autochangelog
+* Thu Feb 27 2025 Gilver E. <rockgrub@disroot.org>
+- Initial package

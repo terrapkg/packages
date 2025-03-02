@@ -37,7 +37,7 @@ Requires:       %{name}-shell-integration = %{version}-%{release}
 Requires:       gtk4
 Requires:       libadwaita
 Conflicts:      ghostty-nightly
-Packager:       ShinyGil <rockgrub@disroot.org>
+Packager:       Gilver E. <rockgrub@disroot.org>
 
 %description
 👻 Ghostty is a fast, feature-rich, and cross-platform terminal emulator that uses platform-native UI and GPU acceleration.
@@ -181,15 +181,15 @@ zig build \
 %_datadir/terminfo/ghostty.terminfo
 
 %changelog
-* Fri Jan 31 2025 ShinyGil <rockgrub@disroot.org>
+* Fri Jan 31 2025 Gilver E. <rockgrub@disroot.org>
 - Update to 1.1.0-1%{?dist}
  * Low GHSA-98wc-794w-gjx3: Ghostty leaked file descriptors allowing the shell and any of its child processes to impact other Ghostty terminal instances
  * Ghostty terminfo source files are now a subpackage
  * Shell integration and completion and terminfo subpackages are now properly noarch
-* Tue Dec 31 2024 ShinyGil <rockgrub@disroot.org>
+* Tue Dec 31 2024 Gilver E. <rockgrub@disroot.org>
 - Update to 1.0.1
  * High CVE-2003-0063: Allows execution of arbitrary commands
  * Medium CVE-2003-0070: Allows execution of arbitrary commands
 
-* Thu Dec 26 2024 ShinyGil <rockgrub@disroot.org>
+* Thu Dec 26 2024 Gilver E. <rockgrub@disroot.org>
 - Initial package
