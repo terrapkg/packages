@@ -23,11 +23,10 @@ Packager:      Gilver E. <rockgrub@disroot.org>
 Successor to pokeget, written in Rust.
 
 %prep
-%autosetup -n %{name}-%{version}
+%setup %{SOURCE1} -D -n %{name}-%{version}
 mkdir -p data/%{pname}
-pushd data/%{pname}
-/usr/bin/gzip -dc %{SOURCE1} | /usr/bin/tar -xvvf - 
-popd
+cd data/%{pname}
+%setup -T -D %{SOURCE1} -b 1
 %cargo_prep_online
 
 %build
