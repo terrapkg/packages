@@ -7,8 +7,8 @@ Release:        1%?dist
 Summary:        Watch content on your own terms, ensuring you retain full ownership and control over what you watch
 License:        SFL-1.1
 URL:            https://grayjay.app/desktop
-%dnl Source0:        https://github.com/futo-org/Grayjay.Desktop/archive/refs/tags/%version.tar.gz
-BuildRequires:  npm dotnet-host
+Source0:        https://github.com/futo-org/Grayjay.Desktop/archive/refs/tags/%version.tar.gz
+BuildRequires:  npm dotnet-host git-core
 BuildRequires:  anda-srpm-macros
 BuildRequires:  desktop-file-utils
 
@@ -16,7 +16,10 @@ BuildRequires:  desktop-file-utils
 Grayjay is a multi-platform media application that allows you to watch content from multiple platforms in a single application. Using an extendable plugin system developers can make new integrations with additional platforms. Plugins are cross-compatible between Android and Desktop.
 
 %prep
-%git_clone https://github.com/futo-org/Grayjay.Desktop
+%autosetup -n Grayjay.Desktop-%version
+git init
+git remote set-url origin https://github.com/futo-org/Grayjay.Desktop
+git submodule update --init --recursive %{?_smp_mflags}
 
 %build
 pushd Grayjay.Desktop.Web
