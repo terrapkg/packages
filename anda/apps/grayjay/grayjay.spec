@@ -18,7 +18,7 @@ Grayjay is a multi-platform media application that allows you to watch content f
 %prep
 %autosetup -n Grayjay.Desktop-%version
 git init
-git remote set-url origin https://github.com/futo-org/Grayjay.Desktop
+git remote add origin https://github.com/futo-org/Grayjay.Desktop
 git submodule update --init --recursive %{?_smp_mflags}
 
 %build
