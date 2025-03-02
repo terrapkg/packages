@@ -192,7 +192,7 @@ Requires:        %{fontname}-webdings-fonts
 Requires:        xorg-x11-font-utils
 Requires(post):  fontconfig
 BuildArch:       noarch
-Packager:        ShinyGil <rockgrub@disroot.org>
+Packager:        Gilver E. <rockgrub@disroot.org>
 
 %fontpkg -a
 
@@ -225,5 +225,5 @@ cabextract %{SOURCE0} %{SOURCE1} %{SOURCE2} %{SOURCE3} \
 %files
 
 %changelog
-* Mon Feb 24 2025 ShinyGil <rockgrub@disroot.org>
+* Mon Feb 24 2025 Gilver E. <rockgrub@disroot.org>
 - Initial package

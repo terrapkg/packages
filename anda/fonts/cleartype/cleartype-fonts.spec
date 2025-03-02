@@ -113,7 +113,7 @@ Requires:       %{fontname}-constantia-fonts
 Requires:       %{fontname}-corbel-fonts
 Requires(post): fontconfig
 BuildArch:      noarch
-Packager:       ShinyGil <rockgrub@disroot.org>
+Packager:       Gilver E. <rockgrub@disroot.org>
 
 %fontpkg -a
 
@@ -142,5 +142,5 @@ cabextract ppviewer.cab
 %files
 
 %changelog
-* Mon Feb 24 2025 ShinyGil <rockgrub@disroot.org>
+* Mon Feb 24 2025 Gilver E. <rockgrub@disroot.org>
 - Initial package

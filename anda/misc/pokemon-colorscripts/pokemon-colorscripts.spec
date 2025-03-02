@@ -11,7 +11,7 @@ URL:           https://gitlab.com/phoneybadger/%{name}
 Source0:       %{url}/-/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
 BuildArch:     noarch
 Requires:      python3
-Packager:      ShinyGil <rockgrub@disroot.org>
+Packager:      Gilver E. <rockgrub@disroot.org>
 
 %description
 A utility that prints unicode sprites of images of Pokémon to the terminal.
@@ -42,5 +42,5 @@ ln -sf "%{_datadir}/%{name}/pokemon-colorscripts.py" "%{buildroot}%{_bindir}/pok
 %{_mandir}/man1/pokemon-colorscripts.1.gz
 
 %changelog
-* Thu Feb 27 2025 ShinyGil <rockgrub@disroot.org>
+* Thu Feb 27 2025 Gilver E. <rockgrub@disroot.org>
 - Initial package
