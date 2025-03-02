@@ -14,7 +14,6 @@ Source0:       %{url}/archive/refs/tags/%{version}.tar.gz
 Source1:       https://github.com/msikma/%{pname}/archive/%{pcommit}/%{pname}-%{pcommit}.tar.gz#/%{pname}-%{pshortcommit}.tar.gz
 BuildRequires: anda-srpm-macros
 BuildRequires: cargo-rpm-macros
-BuildRequires: git
 BuildRequires: mold
 Provides:      pokeget = %{version}-%{release}
 Provides:      bundled(%{pname}) = 2.7.0^%{pcommit_date}.%{pshortcommit}
