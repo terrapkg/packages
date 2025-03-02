@@ -6,7 +6,7 @@
 
 Name:           %{real_name}-kmod-common
 Version:        %{ver}^%{date}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Advanced Linux Driver for Xbox One Wireless Gamepad common files
 License:        GPL-3.0
 URL:            https://atar-axis.github.io/%{real_name}
@@ -14,6 +14,7 @@ Source0:        https://github.com/atar-axis/%{real_name}/archive/%{commit}.tar.
 Source1:        io.github.xpadneo.metainfo.xml
 BuildRequires:  systemd-rpm-macros
 Provides:       %{real_name}-kmod-common = %{?epoch:%{epoch}:}%{version}
+Provides:       %{real_name} = %{version}-%{release}
 BuildArch:      noarch
 Packager:       Gilver E. <rockgrub@disroot.org>
 
