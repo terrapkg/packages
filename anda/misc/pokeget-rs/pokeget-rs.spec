@@ -1,4 +1,4 @@
-Name:          pokeget-rs
+A Name:          pokeget-rsu
 Version:       1.6.3
 Release:       1%{?dist}
 SourceLicense: MIT
@@ -18,11 +18,8 @@ Successor to pokeget, written in Rust.
 
 %prep
 %autosetup -n %{name}-%{version}
-git clone https://github.com/msikma/pokesprite.git data/pokesprite
-pushd data/pokesprite
-git checkout c5aaa610ff2acdf7fd8e2dccd181bca8be9fcb3e
-rm -rf .git
-popd
+git clone -b c5aaa610ff2acdf7fd8e2dccd181bca8be9fcb3e https://github.com/msikma/pokesprite.git data/pokesprite
+rm -rf data/pokesprite/.git
 %cargo_prep_online
 
 %build
