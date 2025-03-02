@@ -27,7 +27,7 @@ Successor to pokeget, written in Rust.
 %autosetup -n %{name}-%{version}
 mkdir -p data/%{pname}
 pushd data/%{pname}
-/usr/bin/gzip -dc %{SOURCE1} | /usr/bin/tar -xvvof - 
+%{__rpmuncompress} %{SOURCE1}
 popd
 %cargo_prep_online
 
