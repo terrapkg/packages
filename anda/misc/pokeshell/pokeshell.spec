@@ -56,7 +56,7 @@ Basic Zsh completion support for Pokéshell.
 %prep
 %autosetup -n %{name}-%{commit}
 cp %{SOURCE1} .
-sed -i 's/MY_DIR=.*/\MY_DIR=\/usr\/share\/%{name}/g' bin/pokeshell
+sed -i 's/MY_DIR=.*/MY_DIR=\/usr\/share\/%{name}/g' bin/pokeshell
 sed -i 's/\.\.\/share\///' bin/pokeshell
 
 %build
