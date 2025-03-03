@@ -12,6 +12,7 @@ License:     GPL-3.0-or-later
 URL:         https://github.com/acxz/pokeshell
 Source0:     %{url}/archive/%{commit}.tar.gz#/%{name}-%{shortcommit}.tar.gz
 Source1:     HELPER_ALIASES
+Requires:    bash
 Requires:    jq
 Requires:    ImageMagick
 Requires:    python3
@@ -24,6 +25,7 @@ A featureful shell program to show Pokémon sprites in the terminal.
 
 %package     helper-scripts
 Summary:     This package contains helper scripts for Pokéshell
+Requires:    bash
 Requires:    %{name}
 Requires:    uv
 Recommends:  hyperfine
