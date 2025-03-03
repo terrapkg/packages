@@ -15,7 +15,7 @@
 %global build_rustflags %build_rustflags -C link-arg=-fuse-ld=mold
 
 Name:           extest
-Version:        %commit_date.git~%{shortcommit}
+Version:        %{commit_date}git.%{shortcommit}
 Release:        1%?dist
 Summary:        X11 XTEST reimplementation primarily for Steam Controller on Wayland
 
