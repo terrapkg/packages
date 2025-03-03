@@ -92,9 +92,9 @@ Version:        1.0
 Release:        1%{?dist}
 Summary:        Package containing ClearType fonts.
 License:        LicenseRef-MS-Core-Fonts
-URL:            http://mscorefonts2.sourceforge.net
+URL:            https://mscorefonts2.sourceforge.net
 Group:          User Interface/X
-Source0:        http://sourceforge.net/projects/mscorefonts2/files/cabs/PowerPointViewer.exe
+Source0:        https://sourceforge.net/projects/mscorefonts2/files/cabs/PowerPointViewer.exe
 Source1:        61-%{fontname}-calibri.conf
 Source2:        61-%{fontname}-cambria.conf
 Source3:        61-%{fontname}-candara.conf
