@@ -48,6 +48,7 @@ The %{name}-tools package contains command line encoder and decoder utilities.
 
 %files devel
 %{_includedir}/freeaptx.h
+%{_libdir}/%{name}.a
 %{_libdir}/%{name}.so
 %{_libdir}/pkgconfig/%{name}.pc
 
