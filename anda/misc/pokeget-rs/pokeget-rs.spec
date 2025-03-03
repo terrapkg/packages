@@ -42,6 +42,7 @@ ln -sf %{shortname} %{buildroot}%{_bindir}/%{name}
 %files
 %license LICENSE LICENSE.dependencies data/%{pname}/license.md
 %doc README.md
+%{_bindir}/%{name}
 %{_bindir}/%{shortname}
 
 %changelog
