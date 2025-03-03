@@ -1,13 +1,12 @@
 %global debug_package %{nil}
-%global __requires_exclude libffmpeg.so
-%global __provides_exclude_from %{_datadir}/heroic/.*\\.so
-%global __provides_exclude_from %{_datadir}/heroic/.*\\.so.1
+%global __provides_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*))$
+%global __requires_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*))$
 %define _build_id_links none
 %global git_name HeroicGamesLauncher
 
 Name:          heroic-games-launcher
 Version:       2.16.0
-Release:       1%?dist
+Release:       2%?dist
 Summary:       A games launcher for GOG, Amazon, and Epic Games
 License:       GPL-3.0-only AND MIT AND BSD-3-Clause
 URL:           https://heroicgameslauncher.com
@@ -26,14 +25,25 @@ BuildRequires: nodejs
 BuildRequires: pnpm
 BuildRequires: python3
 Requires:      alsa-lib
+Requires:      atk
+Requires:      at-spi2-core
 Requires:      gtk3
 Requires:      hicolor-icon-theme
+Requires:      libXext
+Requires:      libXfixes
 Requires:      nss
 Requires:      python3
 Requires:      which
 Recommends:    gamemode
 Recommends:    mangohud
 Recommends:    umu-launcher
+# Woarkaround for GNOME issues with libei
+Recommends:    (extest if gnome-shell)
+Provides:      bundled(gogdl)
+Provides:      bundled(legendary)
+Provides:      bundled(nile)
+ExclusiveArch: x86_64
+AutoReq:       no
 Packager:      Gilver E. <rockgrub@disroot.org>
 
 %description
@@ -89,4 +99,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/heroic.desktop
 %changelog
 * Thu Jan 30 2025 Gilver E. <rockgrub@disroot.org>
 - Initial package
+* Sun Mar 02 2025 Gilver E. <rockgrub@disroot.org>
+- Update to 2.16.0
+- Fix incorrect RPM dependencies
 
