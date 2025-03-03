@@ -21,9 +21,9 @@ Version:        1.0
 Release:        1%{?dist}
 Summary:        Microsoft core Tahoma fonts for better Windows compatibility
 License:        LicenseRef-MS-Core-Fonts
-URL:            https://github.com/leamas/lpf
+URL:            https://mscorefonts2.sourceforge.net
 Group:          User Interface/X
-Source0:        http://downloads.sourceforge.net/corefonts/the%%20fonts/final/wd97vwr32.exe
+Source0:        https://downloads.sourceforge.net/corefonts/the%%20fonts/final/wd97vwr32.exe
 Source1:        61-ms-core-tahoma.conf
 BuildRequires:  cabextract
 BuildRequires:  fontpackages-devel
