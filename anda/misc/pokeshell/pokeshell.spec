@@ -6,7 +6,7 @@
 
 Name:        pokeshell
 Version:     %{ver}^%{date}git.%{shortcommit}
-Release:     1%{?dist}
+Release:     2%{?dist}
 Summary:     A shell program to show Pokémon sprites in the terminal.
 License:     GPL-3.0-or-later
 URL:         https://github.com/acxz/pokeshell
@@ -56,6 +56,8 @@ Basic Zsh completion support for Pokéshell.
 %prep
 %autosetup -n %{name}-%{commit}
 cp %{SOURCE1} .
+sed -i 's/\$MY_DIR\/\.\.\/share/\/usr\/share\/%{name}/' bin/pokeshell
+sed -i 's/\$MY_DIR\/imageshell\/imageshell.sh/\/usr\/share\/%{name}\/imageshell\/imageshell.sh/' bin/pokeshell
 
 %build
 
@@ -68,8 +70,6 @@ install -Dm644 scripts/*.sh -t %{buildroot}%{_datadir}/%{name}/scripts
 # Bash and Zsh completion share a single file, Zsh completion is pretty rudimentary
 install -Dm644 share/bash-completion/completions/pokeshell -t %{buildroot}%{bash_completions_dir}
 install -Dm644 share/bash-completion/completions/pokeshell %{buildroot}%{zsh_completions_dir}/_%{name}
-# Keep actual directories out of /usr/bin
-ln -sf %{_datadir}/%{name}/imageshell %{buildroot}%{_bindir}/imageshell
 # Make helper scripts directly executable
 ln -sf %{_datadir}/%{name}/scripts/create_pokemon_identifiers.py %{buildroot}%{_bindir}/create-pokemon-identifiers
 ln -sf %{_datadir}/%{name}/scripts/timing.sh %{buildroot}%{_bindir}/pokeget-timing
@@ -78,7 +78,6 @@ ln -sf %{_datadir}/%{name}/scripts/timing.sh %{buildroot}%{_bindir}/pokeget-timi
 %license LICENSE.md
 %doc README.md
 %{_bindir}/%{name}
-%{_bindir}/imageshell
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/pokemon_identifiers.json
 %dir %{_datadir}/%{name}/imageshell
