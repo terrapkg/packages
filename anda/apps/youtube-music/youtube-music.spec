@@ -1,8 +1,8 @@
 %define debug_package %nil
 
 # Exclude private libraries since this is bundled with electron
-%global __requires_exclude libffmpeg.so
-%global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
+%global __provides_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*))$
+%global __requires_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*))$
 
 # macro shorthand for calling pnpm
 %global pnpm npx pnpm@%{pnpm_version}
@@ -13,7 +13,7 @@
 
 Name:           youtube-music
 Version:        3.7.5
-Release:        2%?dist
+Release:        3%?dist
 Summary:        YouTube Music Desktop App bundled with custom plugins (and built-in ad blocker / downloader)
 Source1:        youtube-music.desktop
 License:        MIT
@@ -31,6 +31,11 @@ BuildRequires:  python3 gcc-c++
 %if !0%{?vendor_pnpm}
 BuildRequires:  pnpm nodejs20
 %endif
+
+Requires:       nss
+Requires:       libXext
+Requires:       libXfixes
+AutoReq:        no
 
 %description
 YouTube Music Desktop App bundled with custom plugins (and built-in ad blocker / downloader)
