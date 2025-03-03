@@ -1,9 +1,10 @@
 %global commit ad6748ac8b2ebbfae7d0c5608434f60592d61edc
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global commit_date 20250303
+%global ver 0.2.1
 
 Name:       libfreeaptx
-Version:    0.1.1.%{commit_date}git%{shortcommit}
+Version:    %{ver}^%{commit_date}git.%{shortcommit}
 Release:    1%?dist
 Summary:    Free implementation of Audio Processing Technology codec (aptX)
 License:    LGPLv2+
@@ -43,7 +44,7 @@ The %{name}-tools package contains command line encoder and decoder utilities.
 %files
 %license COPYING
 %{_libdir}/%{name}.so.0
-%{_libdir}/%{name}.so.0.1.1
+%{_libdir}/%{name}.so.%{ver}
 
 %files devel
 %{_includedir}/freeaptx.h
