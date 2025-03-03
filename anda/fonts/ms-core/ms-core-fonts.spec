@@ -1,5 +1,5 @@
 %global                   fontname ms-core
-%global sf_url      https://downloads.sourceforge.net/corefonts/the%20fonts/final
+%global sf_url            https://downloads.sourceforge.net/corefonts/the%20fonts/final
 %global fontlicense       Microsoft EULA
 %global fontlicenses      Licen.TXT
 
