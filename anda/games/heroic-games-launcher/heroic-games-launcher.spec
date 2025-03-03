@@ -99,4 +99,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/heroic.desktop
 %changelog
 * Thu Jan 30 2025 Gilver E. <rockgrub@disroot.org>
 - Initial package
+* Sun Mar 02 2025 Gilver E. <rockgrub@disroot.org>
+- Update to 2.16.0
+- Fix incorrect RPM dependencies
 
