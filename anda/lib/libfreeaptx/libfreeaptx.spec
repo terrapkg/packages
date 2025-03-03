@@ -5,7 +5,7 @@
 
 Name:       libfreeaptx
 Version:    %{ver}^%{commit_date}git.%{shortcommit}
-Release:    1%?dist
+Release:    2%?dist
 Summary:    Free implementation of Audio Processing Technology codec (aptX)
 License:    LGPLv2+
 URL:        https://github.com/iamthehorker/libfreeaptx
