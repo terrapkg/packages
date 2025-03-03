@@ -4,55 +4,56 @@
 %global date 20241124
 %global ver 1.0.0
 
-Name:        pokeshell
-Version:     %{ver}^%{date}git.%{shortcommit}
-Release:     2%{?dist}
-Summary:     A shell program to show Pokémon sprites in the terminal.
-License:     GPL-3.0-or-later
-URL:         https://github.com/acxz/pokeshell
-Source0:     %{url}/archive/%{commit}.tar.gz#/%{name}-%{shortcommit}.tar.gz
-Source1:     HELPER_ALIASES
-Requires:    bash
-Requires:    jq
-Requires:    ImageMagick
-Requires:    python3
-Requires:    (timg or chafa)
-BuildArch:   noarch
-Packager:    Gilver E. <rockgrub@disroot.org>
+Name:          pokeshell
+Version:       %{ver}^%{date}git.%{shortcommit}
+Release:       2%{?dist}
+Summary:       A shell program to show Pokémon sprites in the terminal.
+License:       GPL-3.0-or-later
+URL:           https://github.com/acxz/pokeshell
+Source0:       %{url}/archive/%{commit}.tar.gz#/%{name}-%{shortcommit}.tar.gz
+Source1:       HELPER_ALIASES
+BuildRequires: sed
+Requires:      bash
+Requires:      jq
+Requires:      ImageMagick
+Requires:      python3
+Requires:      (timg or chafa)
+BuildArch:     noarch
+Packager:      Gilver E. <rockgrub@disroot.org>
 
 %description
 A featureful shell program to show Pokémon sprites in the terminal.
 
-%package     helper-scripts
-Summary:     This package contains helper scripts for Pokéshell
-Requires:    bash
-Requires:    %{name}
-Requires:    uv
-Recommends:  hyperfine
-Recommends:  pokeget-rs
-Recommends:  pokemon-colorscripts
+%package       helper-scripts
+Summary:       This package contains helper scripts for Pokéshell
+Requires:      bash
+Requires:      %{name}
+Requires:      uv
+Recommends:    hyperfine
+Recommends:    pokeget-rs
+Recommends:    pokemon-colorscripts
 
 %description helper-scripts
 Generates pokemon identifiers (such as localized names) using PokeAPI that the sprite backends do not support natively.
 
 See included README for what these scripts can do.
 
-%package     bash-completion
-Summary:     Bash completion for Pokéshell
-Requires:    bash
-Requires:    %{name}
-Supplements: (%{name} and bash)
+%package       bash-completion
+Summary:       Bash completion for Pokéshell
+Requires:      bash
+Requires:      %{name}
+Supplements:   (%{name} and bash)
 
-%description bash-completion
+%description   bash-completion
 Pokéshell Bash completion.
 
-%package     zsh-completion
-Summary:     Zsh completion for Pokéshell
-Requires:    %{name}
-Requires:    zsh
-Supplements: (%{name} and zsh)
+%package       zsh-completion
+Summary:       Zsh completion for Pokéshell
+Requires:      %{name}
+Requires:      zsh
+Supplements:   (%{name} and zsh)
 
-%description zsh-completion
+%description   zsh-completion
 Basic Zsh completion support for Pokéshell.
 
 %prep
