@@ -1,5 +1,5 @@
 project pkg {
 	rpm {
-		spec = "chezmol.spec"
+		spec = "chezmoi.spec"
 	}
 }
