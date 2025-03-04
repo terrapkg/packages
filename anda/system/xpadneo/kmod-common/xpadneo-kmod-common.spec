@@ -17,7 +17,7 @@ Source0:        https://github.com/atar-axis/%{real_name}/archive/%{commit}.tar.
 Source1:        io.github.xpadneo.metainfo.xml
 BuildRequires:  systemd-rpm-macros
 Provides:       %{real_name}-kmod-common = %{?epoch:%{epoch}:}%{version}
-Provides:       %{real_name} = %{?epoch:%{epoch}:}%{version}
+Obsoletes:      %{real_name}
 BuildArch:      noarch
 Packager:       Gilver E. <rockgrub@disroot.org>
 
