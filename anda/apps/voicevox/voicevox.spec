@@ -24,6 +24,7 @@ Source2:        https://github.com/VOICEVOX/voicevox/releases/download/%version/
 Packager:       madonuko <mado@fyralabs.com>
 BuildRequires:  p7zip-plugins
 ExclusiveArch:  x86_64
+AutoReq:        no
 
 %description
 VOICEVOX is a free Japanese text-to-speech software with medium output quality.
