@@ -2,7 +2,7 @@
 Version=1.0
 Type=Application
 Name=DevPod
-Comment=DevPod
+Comment=Codespaces but open-source, client-only and unopinionated: Works with any IDE and lets you use any cloud, kubernetes or just localhost docker
 Exec=/usr/bin/DevPod
 Icon=devpod.png
 Terminal=false
