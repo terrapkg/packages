@@ -136,7 +136,7 @@ Recommends:     gobject-introspection
 Requires:       steam-devices = %{?epoch:%{epoch}:}%{version}-%{release}
 
 # Woarkaround for GNOME issues with libei
-Recommends:     (extest if gnome-shell)
+Recommends:     (extest-%{name} if gnome-shell)
 
 %description
 Steam is a software distribution service with an online store, automated
