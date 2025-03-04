@@ -9,9 +9,6 @@
 Name:           %{real_name}-kmod
 Version:        %{ver}^%{date}git.%{shortcommit}
 Release:        2%?dist
-%if 0%{?fedora} <= 42
-Epoch:          1
-%endif
 Summary:        Advanced Linux Driver for Xbox One Wireless Gamepad
 License:        GPL-3.0
 URL:            https://atar-axis.github.io/xpadneo
