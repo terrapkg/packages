@@ -135,7 +135,7 @@ Recommends:     gobject-introspection
 
 Requires:       steam-devices = %{?epoch:%{epoch}:}%{version}-%{release}
 
-# Woarkaround for GNOME issues with libei
+# Workaround for GNOME issues with libei
 Recommends:     (extest-%{name} if gnome-shell)
 
 %description
