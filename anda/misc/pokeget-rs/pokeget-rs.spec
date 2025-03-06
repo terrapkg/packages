@@ -25,7 +25,7 @@ Successor to pokeget, written in Rust.
 %prep
 %autosetup -n %{name}-%{version}
 pushd data
-%git_clone https://github.com/msikma/%{pname} %{pcommit} data/%{pname}
+%git_clone https://github.com/msikma/%{pname} %{pcommit}
 popd
 %cargo_prep_online
 
