@@ -4,25 +4,25 @@
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
 %global ver 1.1.3
-%global basename ghostty
-%global reverse_dns com.mitchellh.%{basename}
+%global base_name ghostty
+%global reverse_dns com.mitchellh.%{base_name}
 %if 0%{?fedora} <= 40
 %global cache_dir %{_builddir}/zig-cache
 %else
 %global cache_dir %{builddir}/zig-cache
 %endif
 
-Name:           %{basename}-nightly
+Name:           %{base_name}-nightly
 Version:        %{ver}~tip^%{commit_date}git%{shortcommit}
-Release:        2%?dist
+Release:        1%?dist
 %if 0%{?fedora} <= 41
 Epoch:          1
 %endif
 Summary:        A fast, native terminal emulator written in Zig; this is the Tip (nightly) build.
 License:        MIT AND MPL-2.0 AND OFL-1.1 AND (WTFPL OR CC0-1.0) AND Apache-2.0
-URL:            https://%{basename}.org
-Source0:        https://github.com/%{basename}-org/%{basename}/releases/download/tip/%{basename}-source.tar.gz
-Source1:        https://github.com/%{basename}-org/%{basename}/releases/download/tip/%{basename}-source.tar.gz.minisig
+URL:            https://%{base_name}.org
+Source0:        https://github.com/%{base_name}-org/%{base_name}/releases/download/tip/%{base_name}-source.tar.gz
+Source1:        https://github.com/%{base_name}-org/%{base_name}/releases/download/tip/%{base_name}-source.tar.gz.minisig
 BuildRequires:  gettext
 BuildRequires:  gtk4-devel
 BuildRequires:  libadwaita-devel
@@ -47,8 +47,8 @@ Requires:       %{name}-terminfo
 Requires:       %{name}-shell-integration
 Requires:       gtk4
 Requires:       libadwaita
-Conflicts:      %{basename}
-Provides:       %{basename}-tip = %{ver}^%{commit_date}git%{shortcommit}
+Conflicts:      %{base_name}
+Provides:       %{base_name}-tip = %{ver}^%{commit_date}git%{shortcommit}
 %if 0%{?fedora} <= 41
 Provides:       %{name} = %{commit_date}.%{shortcommit}
 %endif
@@ -130,7 +130,7 @@ This package contains files for Ghostty's terminfo. Available for debugging use.
 
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
-%autosetup -n %{basename}-source
+%autosetup -n %{base_name}-source
 
 ZIG_GLOBAL_CACHE_DIR="%{cache_dir}" ./nix/build-support/fetch-zig-cache.sh
 
@@ -158,22 +158,22 @@ zig build \
 %files -f %{reverse_dns}.lang
 %doc README.md
 %license LICENSE
-%{_bindir}/%{basename}
+%{_bindir}/%{base_name}
 %{_datadir}/applications/%{reverse_dns}.desktop
-%{_datadir}/bat/syntaxes/%{basename}.sublime-syntax
-%dir %{_datadir}/%{basename}
-%{_datadir}/%{basename}/doc
-%{_datadir}/%{basename}/themes
+%{_datadir}/bat/syntaxes/%{base_name}.sublime-syntax
+%dir %{_datadir}/%{base_name}
+%{_datadir}/%{base_name}/doc
+%{_datadir}/%{base_name}/themes
 %{_datadir}/kio/servicemenus/%{reverse_dns}.desktop
-%{_datadir}/nautilus-python/extensions/%{basename}.py
-%{_datadir}/nvim/site/compiler/%{basename}.vim
-%{_datadir}/nvim/site/ftdetect/%{basename}.vim
-%{_datadir}/nvim/site/ftplugin/%{basename}.vim
-%{_datadir}/nvim/site/syntax/%{basename}.vim
-%{_datadir}/vim/vimfiles/compiler/%{basename}.vim
-%{_datadir}/vim/vimfiles/ftdetect/%{basename}.vim
-%{_datadir}/vim/vimfiles/ftplugin/%{basename}.vim
-%{_datadir}/vim/vimfiles/syntax/%{basename}.vim
+%{_datadir}/nautilus-python/extensions/%{base_name}.py
+%{_datadir}/nvim/site/compiler/%{base_name}.vim
+%{_datadir}/nvim/site/ftdetect/%{base_name}.vim
+%{_datadir}/nvim/site/ftplugin/%{base_name}.vim
+%{_datadir}/nvim/site/syntax/%{base_name}.vim
+%{_datadir}/vim/vimfiles/compiler/%{base_name}.vim
+%{_datadir}/vim/vimfiles/ftdetect/%{base_name}.vim
+%{_datadir}/vim/vimfiles/ftplugin/%{base_name}.vim
+%{_datadir}/vim/vimfiles/syntax/%{base_name}.vim
 %{_iconsdir}/hicolor/16x16/apps/%{reverse_dns}.png
 %{_iconsdir}/hicolor/16x16@2/apps/%{reverse_dns}.png
 %{_iconsdir}/hicolor/32x32/apps/%{reverse_dns}.png
@@ -184,34 +184,34 @@ zig build \
 %{_iconsdir}/hicolor/256x256@2/apps/%{reverse_dns}.png
 %{_iconsdir}/hicolor/512x512/apps/%{reverse_dns}.png
 %{_iconsdir}/hicolor/1024x1024/apps/%{reverse_dns}.png
-%{_mandir}/man1/%{basename}.1.gz
-%{_mandir}/man5/%{basename}.5.gz
+%{_mandir}/man1/%{base_name}.1.gz
+%{_mandir}/man5/%{base_name}.5.gz
 
 %files bash-completion
-%{bash_completions_dir}/%{basename}.bash
+%{bash_completions_dir}/%{base_name}.bash
 
 %files fish-completion
-%{fish_completions_dir}/%{basename}.fish
+%{fish_completions_dir}/%{base_name}.fish
 
 %files zsh-completion
-%{zsh_completions_dir}/_%{basename}
+%{zsh_completions_dir}/_%{base_name}
 
 %files shell-integration
-%dir %{_datadir}/%{basename}/shell-integration
-%{_datadir}/%{basename}/shell-integration/bash/bash-preexec.sh
-%{_datadir}/%{basename}/shell-integration/bash/%{basename}.bash
-%{_datadir}/%{basename}/shell-integration/elvish/lib/%{basename}-integration.elv
-%{_datadir}/%{basename}/shell-integration/fish/vendor_conf.d/%{basename}-shell-integration.fish
-%{_datadir}/%{basename}/shell-integration/zsh/.zshenv
-%{_datadir}/%{basename}/shell-integration/zsh/%{basename}-integration
+%dir %{_datadir}/%{base_name}/shell-integration
+%{_datadir}/%{base_name}/shell-integration/bash/bash-preexec.sh
+%{_datadir}/%{base_name}/shell-integration/bash/%{base_name}.bash
+%{_datadir}/%{base_name}/shell-integration/elvish/lib/%{base_name}-integration.elv
+%{_datadir}/%{base_name}/shell-integration/fish/vendor_conf.d/%{base_name}-shell-integration.fish
+%{_datadir}/%{base_name}/shell-integration/zsh/.zshenv
+%{_datadir}/%{base_name}/shell-integration/zsh/%{base_name}-integration
 
 %files terminfo
-%{_datadir}/terminfo/g/%{basename}
-%{_datadir}/terminfo/x/xterm-%{basename}
+%{_datadir}/terminfo/g/%{base_name}
+%{_datadir}/terminfo/x/xterm-%{base_name}
 
 %files terminfo-source
-%{_datadir}/terminfo/%{basename}.termcap
-%{_datadir}/terminfo/%{basename}.terminfo
+%{_datadir}/terminfo/%{base_name}.termcap
+%{_datadir}/terminfo/%{base_name}.terminfo
 
 %changelog
 * Wed Mar 05 2025 Gilver E. <rockgrub@disroot.org>
