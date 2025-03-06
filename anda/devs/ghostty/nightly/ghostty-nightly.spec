@@ -146,7 +146,7 @@ zig build \
     --prefix-exe-dir "%{_bindir}" --prefix-include-dir "%{_includedir}" \
     --verbose \
     -Dversion-string="%{ver}-dev+%{shortcommit}" \
-    -Dcpu=basenameline \
+    -Dcpu=baseline \
     -Dstrip=false \
     -Dpie=true \
     -Demit-docs \
