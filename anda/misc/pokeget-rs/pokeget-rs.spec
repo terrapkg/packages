@@ -11,7 +11,6 @@ SourceLicense: MIT
 License:       MIT AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND BSD-2-Clause AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Apache-2.0) AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT)
 Summary:       A better Rust version of pokeget.
 URL:           https://github.com/talwat/%{name}
-Source0:       %{url}/archive/refs/tags/%{version}.tar.gz
 BuildRequires: anda-srpm-macros
 BuildRequires: cargo-rpm-macros
 BuildRequires: mold
@@ -23,10 +22,8 @@ Packager:      Gilver E. <rockgrub@disroot.org>
 Successor to pokeget, written in Rust.
 
 %prep
-%autosetup -n %{name}-%{version}
-pushd data
-%git_clone https://github.com/msikma/%{pname} %{pcommit}
-popd
+rm -rf ./*
+%git_clone https://github.com/talwat/%{name} %{version}
 %cargo_prep_online
 
 %build
