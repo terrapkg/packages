@@ -22,7 +22,6 @@ Packager:      Gilver E. <rockgrub@disroot.org>
 Successor to pokeget, written in Rust.
 
 %prep
-rm -rf ./*
 %git_clone https://github.com/talwat/%{name} %{version}
 %cargo_prep_online
 
