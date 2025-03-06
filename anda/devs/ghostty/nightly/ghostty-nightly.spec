@@ -1,26 +1,29 @@
-%global commit e07b6fdf6ba342eb1fc4321c26fe5a6475be5133
+%global commit 66e8d919572fddc5fd145eb563a555deeb249b35
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global fulldate 2025-03-05
+%global fulldate 2025-03-04
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
 %global ver 1.1.3
+%global basename ghostty
+%global reverse_dns com.mitchellh.%{basename}
 %if 0%{?fedora} <= 40
 %global cache_dir %{_builddir}/zig-cache
 %else
 %global cache_dir %{builddir}/zig-cache
 %endif
 
-Name:           ghostty-nightly
+Name:           %{basename}-nightly
 Version:        %{ver}~tip^%{commit_date}git%{shortcommit}
-Release:        1%?dist
+Release:        2%?dist
 %if 0%{?fedora} <= 41
 Epoch:          1
 %endif
 Summary:        A fast, native terminal emulator written in Zig; this is the Tip (nightly) build.
 License:        MIT AND MPL-2.0 AND OFL-1.1 AND (WTFPL OR CC0-1.0) AND Apache-2.0
-URL:            https://ghostty.org/
-Source0:        https://github.com/ghostty-org/ghostty/releases/download/tip/ghostty-source.tar.gz
-Source1:        https://github.com/ghostty-org/ghostty/releases/download/tip/ghostty-source.tar.gz.minisig
+URL:            https://%{basename}.org
+Source0:        https://github.com/%{basename}-org/%{basename}/releases/download/tip/%{basename}-source.tar.gz
+Source1:        https://github.com/%{basename}-org/%{basename}/releases/download/tip/%{basename}-source.tar.gz.minisig
+BuildRequires:  gettext
 BuildRequires:  gtk4-devel
 BuildRequires:  libadwaita-devel
 BuildRequires:  libX11-devel
@@ -44,8 +47,8 @@ Requires:       %{name}-terminfo
 Requires:       %{name}-shell-integration
 Requires:       gtk4
 Requires:       libadwaita
-Conflicts:      ghostty
-Provides:       ghostty-tip = %{version}-%{release}
+Conflicts:      %{basename}
+Provides:       %{basename}-tip = %{ver}^%{commit_date}git%{shortcommit}
 %if 0%{?fedora} <= 41
 Provides:       %{name} = %{commit_date}.%{shortcommit}
 %endif
@@ -127,7 +130,7 @@ This package contains files for Ghostty's terminfo. Available for debugging use.
 
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
-%autosetup -n ghostty-source
+%autosetup -n %{basename}-source
 
 ZIG_GLOBAL_CACHE_DIR="%{cache_dir}" ./nix/build-support/fetch-zig-cache.sh
 
@@ -143,71 +146,79 @@ zig build \
     --prefix-exe-dir "%{_bindir}" --prefix-include-dir "%{_includedir}" \
     --verbose \
     -Dversion-string="%{ver}-dev+%{shortcommit}" \
-    -Dcpu=baseline \
+    -Dcpu=basenameline \
     -Dstrip=false \
     -Dpie=true \
     -Demit-docs \
     -Demit-termcap \
     -Demit-terminfo
 
-%files
+%find_lang %{reverse_dns}
+
+%files -f %{reverse_dns}.lang
 %doc README.md
 %license LICENSE
-%_bindir/ghostty
-%_datadir/applications/com.mitchellh.ghostty.desktop
-%_datadir/bat/syntaxes/ghostty.sublime-syntax
-%_datadir/ghostty/
-%_datadir/kio/servicemenus/com.mitchellh.ghostty.desktop
-%_datadir/nautilus-python/extensions/ghostty.py
-%_datadir/nvim/site/compiler/ghostty.vim
-%_datadir/nvim/site/ftdetect/ghostty.vim
-%_datadir/nvim/site/ftplugin/ghostty.vim
-%_datadir/nvim/site/syntax/ghostty.vim
-%_datadir/vim/vimfiles/compiler/ghostty.vim
-%_datadir/vim/vimfiles/ftdetect/ghostty.vim
-%_datadir/vim/vimfiles/ftplugin/ghostty.vim
-%_datadir/vim/vimfiles/syntax/ghostty.vim
-%_iconsdir/hicolor/16x16/apps/com.mitchellh.ghostty.png
-%_iconsdir/hicolor/16x16@2/apps/com.mitchellh.ghostty.png
-%_iconsdir/hicolor/32x32/apps/com.mitchellh.ghostty.png
-%_iconsdir/hicolor/32x32@2/apps/com.mitchellh.ghostty.png
-%_iconsdir/hicolor/128x128/apps/com.mitchellh.ghostty.png
-%_iconsdir/hicolor/128x128@2/apps/com.mitchellh.ghostty.png
-%_iconsdir/hicolor/256x256/apps/com.mitchellh.ghostty.png
-%_iconsdir/hicolor/256x256@2/apps/com.mitchellh.ghostty.png
-%_iconsdir/hicolor/512x512/apps/com.mitchellh.ghostty.png
-%_iconsdir/hicolor/1024x1024/apps/com.mitchellh.ghostty.png
-%_mandir/man1/ghostty.1.gz
-%_mandir/man5/ghostty.5.gz
+%{_bindir}/%{basename}
+%{_datadir}/applications/%{reverse_dns}.desktop
+%{_datadir}/bat/syntaxes/%{basename}.sublime-syntax
+%dir %{_datadir}/%{basename}
+%{_datadir}/%{basename}/doc
+%{_datadir}/%{basename}/themes
+%{_datadir}/kio/servicemenus/%{reverse_dns}.desktop
+%{_datadir}/nautilus-python/extensions/%{basename}.py
+%{_datadir}/nvim/site/compiler/%{basename}.vim
+%{_datadir}/nvim/site/ftdetect/%{basename}.vim
+%{_datadir}/nvim/site/ftplugin/%{basename}.vim
+%{_datadir}/nvim/site/syntax/%{basename}.vim
+%{_datadir}/vim/vimfiles/compiler/%{basename}.vim
+%{_datadir}/vim/vimfiles/ftdetect/%{basename}.vim
+%{_datadir}/vim/vimfiles/ftplugin/%{basename}.vim
+%{_datadir}/vim/vimfiles/syntax/%{basename}.vim
+%{_iconsdir}/hicolor/16x16/apps/%{reverse_dns}.png
+%{_iconsdir}/hicolor/16x16@2/apps/%{reverse_dns}.png
+%{_iconsdir}/hicolor/32x32/apps/%{reverse_dns}.png
+%{_iconsdir}/hicolor/32x32@2/apps/%{reverse_dns}.png
+%{_iconsdir}/hicolor/128x128/apps/%{reverse_dns}.png
+%{_iconsdir}/hicolor/128x128@2/apps/%{reverse_dns}.png
+%{_iconsdir}/hicolor/256x256/apps/%{reverse_dns}.png
+%{_iconsdir}/hicolor/256x256@2/apps/%{reverse_dns}.png
+%{_iconsdir}/hicolor/512x512/apps/%{reverse_dns}.png
+%{_iconsdir}/hicolor/1024x1024/apps/%{reverse_dns}.png
+%{_mandir}/man1/%{basename}.1.gz
+%{_mandir}/man5/%{basename}.5.gz
 
 %files bash-completion
-%bash_completions_dir/ghostty.bash
+%{bash_completions_dir}/%{basename}.bash
 
 %files fish-completion
-%fish_completions_dir/ghostty.fish
+%{fish_completions_dir}/%{basename}.fish
 
 %files zsh-completion
-%zsh_completions_dir/_ghostty
+%{zsh_completions_dir}/_%{basename}
 
 %files shell-integration
-%_datadir/ghostty/shell-integration/bash/bash-preexec.sh
-%_datadir/ghostty/shell-integration/bash/ghostty.bash
-%_datadir/ghostty/shell-integration/elvish/lib/ghostty-integration.elv
-%_datadir/ghostty/shell-integration/fish/vendor_conf.d/ghostty-shell-integration.fish
-%_datadir/ghostty/shell-integration/zsh/.zshenv
-%_datadir/ghostty/shell-integration/zsh/ghostty-integration
+%dir %{_datadir}/%{basename}/shell-integration
+%{_datadir}/%{basename}/shell-integration/bash/bash-preexec.sh
+%{_datadir}/%{basename}/shell-integration/bash/%{basename}.bash
+%{_datadir}/%{basename}/shell-integration/elvish/lib/%{basename}-integration.elv
+%{_datadir}/%{basename}/shell-integration/fish/vendor_conf.d/%{basename}-shell-integration.fish
+%{_datadir}/%{basename}/shell-integration/zsh/.zshenv
+%{_datadir}/%{basename}/shell-integration/zsh/%{basename}-integration
 
 %files terminfo
-%_datadir/terminfo/g/ghostty
-%_datadir/terminfo/x/xterm-ghostty
+%{_datadir}/terminfo/g/%{basename}
+%{_datadir}/terminfo/x/xterm-%{basename}
 
 %files terminfo-source
-%_datadir/terminfo/ghostty.termcap
-%_datadir/terminfo/ghostty.terminfo
+%{_datadir}/terminfo/%{basename}.termcap
+%{_datadir}/terminfo/%{basename}.terminfo
 
 %changelog
+* Wed Mar 05 2025 Gilver E. <rockgrub@disroot.org>
+- Update to 1.1.3~tip^20250304git66e8d91-2%{?dist}
+ * Ghostty now has localization support via gettext as well as corresponding localization files
 * Fri Jan 31 2025 Gilver E. <rockgrub@disroot.org>
-- Update to 1.1.1-1%{?dist}.20250131tipc5508e7
+- Update to 1.1.1~tip^20250131git5508e7-1%{?dist}
  * Low GHSA-98wc-794w-gjx3: Ghostty leaked file descriptors allowing the shell and any of its child processes to impact other Ghostty terminal instances
  * Better Git versioning scheme
  * Ghostty terminfo source files are now a subpackage
