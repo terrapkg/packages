@@ -1,6 +1,6 @@
-%global commit 66e8d919572fddc5fd145eb563a555deeb249b35
+%global commit e07b6fdf6ba342eb1fc4321c26fe5a6475be5133
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global fulldate 2025-03-04
+%global fulldate 2025-03-05
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
 %global ver 1.1.3
@@ -215,7 +215,7 @@ zig build \
 
 %changelog
 * Wed Mar 05 2025 Gilver E. <rockgrub@disroot.org>
-- Update to 1.1.3~tip^20250304git66e8d91-2%{?dist}
+- Update to 1.1.3~tip^20250305git66e8d91-2%{?dist}
  * Ghostty now has localization support via gettext as well as corresponding localization files
 * Fri Jan 31 2025 Gilver E. <rockgrub@disroot.org>
 - Update to 1.1.1~tip^20250131git5508e7-1%{?dist}
