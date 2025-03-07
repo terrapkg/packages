@@ -17,6 +17,7 @@ BuildRequires:  sed
 BuildRequires:  systemd-rpm-macros
 Requires:       %{real_name}-kmod-common = %{?epoch:%{epoch}:}%{version}
 Requires:       dkms
+Conflicts:      akmod-%{real_name}
 BuildArch:      noarch
 Packager:       Gilver E. <rockgrub@disroot.org>
 
