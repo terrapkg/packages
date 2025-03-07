@@ -16,6 +16,7 @@ Source0:        %{url}/archive/%{commit}.tar.gz#/%{real_name}-%{shortcommit}.tar
 BuildRequires:  kmodtool
 BuildRequires:  systemd-rpm-macros
 Requires:       %{real_name} = %{?epoch:%{epoch}:}%{version}
+Requires:       akmods
 Packager:       Gilver E. <rockgrub@disroot.org>
 
 %{expand:%(kmodtool --target %{_target_cpu} --repo terra --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
