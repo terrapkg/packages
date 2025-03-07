@@ -1,7 +1,5 @@
 %global pname pokesprite
 %global pcommit c5aaa610ff2acdf7fd8e2dccd181bca8be9fcb3e
-%global pshortcommit %(c=%{pcommit}; echo ${c:0:7})
-%global pcommit_date 20220622
 %global shortname pokeget
 
 Name:          %{shortname}-rs
