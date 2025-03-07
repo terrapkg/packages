@@ -5,5 +5,4 @@ if rpm.changed () {
      let json = get(url).json();
      let c = json.2.sha;
      rpm.global("pcommit", c);
-     rpm.global("pcommit_date", date()); // could potentially result in the wrong date, fix if it becomes a problem
 }
