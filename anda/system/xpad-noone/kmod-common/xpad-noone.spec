@@ -29,7 +29,7 @@ BuildArch:    noarch
 Akmods modules for the akmod-%{name} package.
 
 %prep
-%autosetup -n %{real_name}-%{commit}
+%autosetup -n %{name}-%{commit}
 /usr/bin/sed -nE '/^BUILT_MODULE_NAME/{s@^.+"(.+)"@\1@; s|-|_|g; p}' dkms.conf > %{name}.conf
 
 %build
