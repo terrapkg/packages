@@ -4,7 +4,6 @@ project pkg {
 		spec = "xone.spec"
 	}
 	labels {
-		mock = 1
                 nightly = 1
 	}
 }
