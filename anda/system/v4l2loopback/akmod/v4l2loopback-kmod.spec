@@ -57,10 +57,14 @@ done
 
 %{?akmod_install}
 
+install -D -m 0644 %{SOURCE1} %{buildroot}%{_modprobedir}/98-v4l2loopback.conf
+install -D -m 0644 %{SOURCE2} %{buildroot}%{_modulesloaddir}/v4l2loopback.conf
 
 %files
 %doc README.md AUTHORS NEWS
 %license COPYING
+%{_modprobedir}/98-v4l2loopback.conf
+%{_modulesloaddir}/v4l2loopback.conf
 
 %changelog
 %autochangelog

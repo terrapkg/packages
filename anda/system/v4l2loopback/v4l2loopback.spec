@@ -14,8 +14,6 @@ URL:            https://github.com/umlaeute/v4l2loopback
 Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
 
-Source1:        modprobe-d-98-v4l2loopback.conf
-Source2:        modules-load-d-v4l2loopback.conf
 BuildRequires:  gcc
 BuildRequires:  make
 BuildRequires:  help2man
@@ -51,8 +49,6 @@ Allows you to create "virtual video devices". Normal (v4l2) applications will re
 
 make V=1 %{?_smp_mflags} install-utils DESTDIR=%{buildroot} PREFIX=%{_prefix}
 make V=1 %{?_smp_mflags} install-man DESTDIR=%{buildroot} PREFIX=%{_prefix}
-install -D -m 0644 %{SOURCE1} %{buildroot}%{_modprobedir}/98-v4l2loopback.conf
-install -D -m 0644 %{SOURCE2} %{buildroot}%{_modulesloaddir}/v4l2loopback.conf
 
 
 
