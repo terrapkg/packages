@@ -65,8 +65,8 @@ install -D -m 0644 %{SOURCE2} %{buildroot}%{_modulesloaddir}/v4l2loopback.conf
 %files
 %doc README.md AUTHORS NEWS
 %license COPYING
-%attr(0755,root,root) %{_bindir}/v4l2loopback-ctl
-%attr(0644,root,root) %{_mandir}/man1/v4l2loopback-ctl.1*
+%{_modprobedir}/98-v4l2loopback.conf
+%{_modulesloaddir}/v4l2loopback.conf
 
 %changelog
 %autochangelog

@@ -55,6 +55,9 @@ make V=1 %{?_smp_mflags} install-man DESTDIR=%{buildroot} PREFIX=%{_prefix}
 %files
 %doc README.md AUTHORS NEWS
 %license COPYING
+%attr(0755,root,root) %{_bindir}/v4l2loopback-ctl
+%attr(0644,root,root) %{_mandir}/man1/v4l2loopback-ctl.1*
+
 
 %changelog
 %autochangelog
