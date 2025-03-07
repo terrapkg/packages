@@ -19,6 +19,7 @@ Requires:       akmods
 Requires:       bluez
 Requires:       bluez-tools
 Requires:       %{real_name} = %{?epoch:%{epoch}:}%{version}
+Requires:       %{real_name}-akmod-modules = %{?epoch:%{epoch}:}%{version}
 Conflicts:      dkms-%{real_name}
 Packager:       Gilver E. <rockgrub@disroot.org>
 
