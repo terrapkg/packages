@@ -135,8 +135,13 @@ Recommends:     gobject-introspection
 
 Requires:       steam-devices = %{?epoch:%{epoch}:}%{version}-%{release}
 
+<<<<<<< HEAD
 # Fix upgrading from old versions
 Obsoletes:      %{name} <= %{?epoch:%{epoch}:}1.0.0.82-1%{?dist}.x86_64
+=======
+# Workaround for GNOME issues with libei
+Recommends:     (extest-%{name} if gnome-shell)
+>>>>>>> a380de5a6 (Feat (steam): Better Extest weak dep (#3735))
 
 %description
 Steam is a software distribution service with an online store, automated
