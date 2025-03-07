@@ -4,7 +4,6 @@ project pkg {
 		spec = "xpadneo-kmod-common.spec"
 	}
 	labels {
-		mock = 1
 		nightly = 1
 	}
 }
