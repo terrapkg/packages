@@ -12,6 +12,8 @@ License:       GPL-2.0-or-later
 Summary:       xpad driver with support for XBox One controllers removed
 URL:           https://github.com/medusalix/xpad-noone
 Source0:       %{url}/archive/%{commit}/%{name}-%{commit}.tar.gz#/%{name}-%{shortcommit}.tar.gz
+BuildRequires: sed
+BuildRequires: systemd-rpm-macros
 Provides:      %{name}-kmod-common = %{?epoch:%{epoch}:}%{version}
 Conflicts:     xow <= 0.5
 Obsoletes:     xow <= 0.5
