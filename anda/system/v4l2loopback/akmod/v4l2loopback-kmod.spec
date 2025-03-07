@@ -19,6 +19,8 @@ Release:        2%?dist
 License:        GPLv2+
 URL:            https://github.com/umlaeute/v4l2loopback
 Source0:        %{url}/archive/v%{version}/%{modulename}-%{version}.tar.gz
+Source1:        modprobe-d-98-v4l2loopback.conf
+Source2:        modules-load-d-v4l2loopback.conf
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
 
 BuildRequires:  gcc
@@ -63,8 +65,8 @@ install -D -m 0644 %{SOURCE2} %{buildroot}%{_modulesloaddir}/v4l2loopback.conf
 %files
 %doc README.md AUTHORS NEWS
 %license COPYING
-%{_modprobedir}/98-v4l2loopback.conf
-%{_modulesloaddir}/v4l2loopback.conf
+%attr(0755,root,root) %{_bindir}/v4l2loopback-ctl
+%attr(0644,root,root) %{_mandir}/man1/v4l2loopback-ctl.1*
 
 %changelog
 %autochangelog
