@@ -1,7 +1,7 @@
-%global commit 9b9d4256be440b511e6c37165e01a6c2686e606f
-%global commit_date 20250301
+%global commit be77084627d74f8e84615e9b192dace9649181e2
+%global commit_date 20250307
 %global shortcommit %{sub %{commit} 1 7 }
-%global ver 0.1.2
+%global ver 0.1.3
 
 Name:           mwc
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
