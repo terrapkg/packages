@@ -13,6 +13,7 @@ Source0:        https://github.com/atar-axis/%{name}/archive/%{commit}.tar.gz#/%
 Source1:        io.github.xpadneo.metainfo.xml
 BuildRequires:  sed
 BuildRequires:  systemd-rpm-macros
+Requires:       akmods
 Provides:       %{name}-kmod-common = %{?epoch:%{epoch}:}%{version}
 Obsoletes:      %{name}-kmod-common < %{?epoch:%{epoch}:}%{version}-3%{?dist}
 BuildArch:      noarch
