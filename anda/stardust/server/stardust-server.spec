@@ -6,7 +6,7 @@
 
 Name:           stardust-xr-server
 Version:        %commit_date.%shortcommit
-Release:        2%?dist
+Release:        3%?dist
 Summary:        Usable Linux display server that reinvents human-computer interaction for all kinds of XR.
 URL:            https://github.com/StardustXR/server
 Source0:        %url/archive/%commit/server-%commit.tar.gz
@@ -17,6 +17,11 @@ BuildRequires:  glx-utils fontconfig-devel glibc libxcb-devel wayland-devel
 BuildRequires:  openxr-devel libglvnd-devel libglvnd-gles mesa-libgbm-devel
 BuildRequires:  libwayland-egl libX11-devel libXfixes-devel
 BuildRequires:  mesa-libEGL-devel libxkbcommon-devel
+
+Requires:       libxkbcommon libstdc++ libX11 libXfixes libEGL libgbm fontconfig pcre2
+Requires:       libgcc glibc libxcb libglvnd libdrm expat freetype libxml2 libXau libbrotli
+Requires:       zlib-ng-compat bzip2-libs libpng harfbuzz libbrotli xz-libs glib2 graphite2
+
 Provides:       stardust-server
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
