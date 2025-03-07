@@ -5,7 +5,7 @@
 
 Name:           steam
 Version:        1.0.0.82
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Installer for the Steam software distribution service
 # Redistribution and repackaging for Linux is allowed, see license file. udev rules are MIT.
 License:        Steam License Agreement and MIT
@@ -135,8 +135,8 @@ Recommends:     gobject-introspection
 
 Requires:       steam-devices = %{?epoch:%{epoch}:}%{version}-%{release}
 
-# Woarkaround for GNOME issues with libei
-Recommends:     (extest if gnome-shell)
+# Workaround for GNOME issues with libei
+Recommends:     (extest-%{name} if gnome-shell)
 
 %description
 Steam is a software distribution service with an online store, automated
