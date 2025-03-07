@@ -58,4 +58,5 @@ install -Dm644 %{name}.conf -t %{buildroot}%{_modulesloaddir}
 %{_modulesloaddir}/%{name}.conf
 
 %changelog
-%autochangelog
+* Fri Mar 07 2025 Gilver E. <rockgrub@disroot.org>
+- Package refactoring
