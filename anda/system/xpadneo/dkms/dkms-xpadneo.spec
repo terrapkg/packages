@@ -1,12 +1,12 @@
 %global commit 8d20a23e38883f45c78f48c8574ac93945b4cb03
-%global date 20241224
+%global commit_date 20241224
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global ver 0.9.7
 %global debug_package %{nil}
 %global dkms_name xpadneo
 
 Name:           dkms-%{dkms_name}
-Version:        %{ver}^%{date}git.%{shortcommit}
+Version:        %{ver}^%{commit_date}git.%{shortcommit}
 Release:        1%?dist
 Summary:        Advanced Linux Driver for Xbox One Wireless Gamepad
 License:        GPL-3.0
@@ -17,8 +17,9 @@ Source2:        no-weak-modules.conf
 BuildRequires:  sed
 Requires:       bluez
 Requires:       bluez-tools
-Requires:       %{dkms_name}-kmod-common = %{?epoch:%{epoch}:}%{version}
+Requires:       %{dkms_name} = %{?epoch:%{epoch}:}%{version}
 Requires:       dkms
+Conflicts:      akmod-%{dkms_name}
 BuildArch:      noarch
 Packager:       Gilver E. <rockgrub@disroot.org>
 
