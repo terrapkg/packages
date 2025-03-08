@@ -4,6 +4,7 @@
 %global ver 1.0
 %global modulename xpad-noone
 %global debug_package %{nil}
+%global buildforkernels akmod
 %global _description %{expand:
 This is the original upstream xpad driver from the Linux kernel with support for XBox One controllers removed. If you are running the xone driver you may have to replace the xpad kernel module with this one to retain the functionality of XBox and XBox 360 controllers.}
 
