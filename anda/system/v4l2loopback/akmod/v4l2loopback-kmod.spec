@@ -21,7 +21,7 @@ Summary:        Kernel module (kmod) for V4L2 loopback devices
 Version:        0.14.0
 Release:        2%?dist
 License:        GPLv2+
-URL:            https://github.com/umlaeute/v4l2loopback
+URL:            https://github.com/v4l2loopback/v4l2loopback
 Source0:        %{url}/archive/v%{version}/%{modulename}-%{version}.tar.gz
 BuildRequires:  gcc
 BuildRequires:  make

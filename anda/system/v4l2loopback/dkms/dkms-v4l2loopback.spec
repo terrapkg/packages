@@ -6,12 +6,14 @@ This module allows you to create \"virtual video devices.\" Normal \(v4l2\) appl
 Name:           dkms-%{dkms_name}
 Version:        %{ver}^%{date}git.%{shortcommit}
 Release:        1%?dist
-Summary:        Advanced Linux Driver for Xbox One Wireless Gamepad
+Summary:        Utils for V4L2 loopback devices
+Version:        0.14.0
+Release:        3%?dist
 License:        GPLv2+
-URL:            https://atar-axis.github.io/%{dkms_name}
-Source0:        https://github.com/atar-axis/%{dkms_name}/archive/%{commit}.tar.gz#/%{dkms_name}-%{shortcommit}.tar.gz
-Source1:        %{name}.conf
-Source2:        no-weak-modules.conf
+URL:            https://github.com/v4l2loopback/v4l2loopback
+Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
+Source1:        modprobe-d-98-v4l2loopback.conf
+BuildRequires:  systemd-rpm-macros
 Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
 Requires:       dkms
 Conflicts:      akmod-%{modulename}
