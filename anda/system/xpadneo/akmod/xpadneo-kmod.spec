@@ -4,9 +4,9 @@
 %global ver 0.9.7
 %define buildforkernels akmod
 %global debug_package %{nil}
-%global real_name xpadneo
+%global modulename xpadneo
 
-Name:           %{real_name}-kmod
+Name:           %{modulename}-kmod
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
 Release:        2%?dist
 Summary:        Advanced Linux Driver for Xbox One Wireless Gamepad
@@ -18,9 +18,9 @@ BuildRequires:  systemd-rpm-macros
 Requires:       akmods
 Requires:       bluez
 Requires:       bluez-tools
-Requires:       %{real_name} = %{?epoch:%{epoch}:}%{version}
-Requires:       %{real_name}-akmod-modules = %{?epoch:%{epoch}:}%{version}
-Conflicts:      dkms-%{real_name}
+Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
+Requires:       %{modulename}-akmod-modules = %{?epoch:%{epoch}:}%{version}
+Conflicts:      dkms-%{modulename}
 Packager:       Gilver E. <rockgrub@disroot.org>
 
 %{expand:%(kmodtool --target %{_target_cpu} --repo terra --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
@@ -32,7 +32,7 @@ Advanced Linux Driver for Xbox One Wireless Gamepad.
 %{?kmodtool_check}
 kmodtool  --target %{_target_cpu}  --repo terra --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
-%autosetup -p1 -n %{real_name}-%{commit}
+%autosetup -p1 -n %{modulename}-%{commit}
 
 for kernel_version in %{?kernel_versions}; do
     mkdir _kmod_build_${kernel_version%%___*}
