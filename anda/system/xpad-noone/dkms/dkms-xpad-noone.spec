@@ -16,8 +16,9 @@ Source0:       %{url}/archive/%{commit}/%{modulename}-%{commit}.tar.gz#/%{module
 Source1:       no-weak-modules.conf
 # Extra support for controllers that register as XBox 360 controllers
 Patch0:        0000.patch
-Requires:      %{modulename}-kmod-common = %{?epoch:%{epoch}:}%{version}
+Requires:      %{modulename} = %{?epoch:%{epoch}:}%{version}
 Requires:      dkms
+Conflicts:     akmod-%{modulename}
 BuildArch:     noarch
 Packager:      Gilver E. <rockgrub@disroot.org>
 
