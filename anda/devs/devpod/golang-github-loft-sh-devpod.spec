@@ -82,7 +82,7 @@ popd # desktop
 install -m 0755 -vd                     %{buildroot}%{_bindir}
 install -m 0755 -vp bin/devpod          %{buildroot}%{_bindir}/
 # tauri
-install -Dm755 desktop/src-tauri/target/rpm/DevPod -t %buildroot%_bindir
+install -Dm755 "desktop/src-tauri/target/rpm/DevPod Desktop" %buildroot%_bindir/DevPod-Desktop
 install -Dm644 %{S:1} -t %buildroot%_datadir/applications/
 install -Dm644 desktop/devpod.png -t %buildroot%_datadir/pixmaps/
 
@@ -92,6 +92,6 @@ install -Dm644 desktop/devpod.png -t %buildroot%_datadir/pixmaps/
 %{_bindir}/devpod
 
 %files desktop
-%_bindir/DevPod
+%_bindir/DevPod-Desktop
 %_datadir/applications/DevPod.desktop
 %_datadir/pixmaps/devpod.png
