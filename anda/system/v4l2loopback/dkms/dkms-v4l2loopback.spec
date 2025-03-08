@@ -7,7 +7,7 @@ Name:           dkms-%{dkms_name}
 Version:        %{ver}^%{date}git.%{shortcommit}
 Release:        1%?dist
 Summary:        Advanced Linux Driver for Xbox One Wireless Gamepad
-License:        GPL-3.0
+License:        GPLv2+
 URL:            https://atar-axis.github.io/%{dkms_name}
 Source0:        https://github.com/atar-axis/%{dkms_name}/archive/%{commit}.tar.gz#/%{dkms_name}-%{shortcommit}.tar.gz
 Source1:        %{name}.conf
@@ -16,6 +16,7 @@ Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
 Requires:       dkms
 Conflicts:      akmod-%{modulename}
 BuildArch:      noarch
+Packager:       Gilver E. <rockgrub@disroot.org>
 
 %description %_description
 
@@ -49,4 +50,6 @@ dkms remove -m %{modulename} -v %{version} -q --all --rpm_safe_upgrade || :
 %{_sysconfdir}/dkms/%{modulename}.conf
 %endif
 
-
+%changelog
+* Fri Mar 07 2025 Gilver E. <rockgrub@disroot.org>
+- Initial package
