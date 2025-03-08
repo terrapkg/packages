@@ -33,7 +33,7 @@ Packager:      Gilver E. <rockgrub@disroot.org>
 %prep
 %{?kmodtool_check}
 
-kmodtool --target %{_target_cpu}  --repo terra --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
+kmodtool --target %{_target_cpu} --repo terra --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
 %autosetup -n %{modulename}-%{commit} -p1
 
