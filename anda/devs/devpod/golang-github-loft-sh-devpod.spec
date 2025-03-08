@@ -58,11 +58,13 @@ sed -i '/Comment=/s@DevPod@%summary@' %{S:1}
 %define gomodulesmode GO111MODULE=on
 # just remove -v -x for godsake
 %define gobuild_baseflags %{gocompilerflags} -tags="rpm_crashtraceback ${GO_BUILDTAGS-${BUILDTAGS-}}" -a
+%define gobuild_ldflags -s -w -X github.com/loft-sh/devpod/pkg/version.version="v%version" ${GO_LDFLAGS-${LDFLAGS-}} %{?currentgoldflags} -B 0x$(echo "%{name}-%{version}-%{release}-${SOURCE_DATE_EPOCH:-}" | sha1sum | cut -d ' ' -f1) -compressdwarf=false -linkmode=external -extldflags '%{build_ldflags} %{?__golang_extldflags}'
 %define gobuilddir %_builddir/%buildsubdir
 # build cli
 (%{gobuild -o %{gobuilddir}/bin/devpod .}) &
 
 pushd desktop
+yarn version --new-version %version --no-git-tag-version &
 yarn install &
 pushd src-tauri
 # cargo licenses
