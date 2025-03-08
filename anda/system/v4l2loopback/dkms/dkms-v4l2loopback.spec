@@ -8,7 +8,7 @@ Version:        %{ver}^%{date}git.%{shortcommit}
 Release:        1%?dist
 Summary:        Utils for V4L2 loopback devices
 Version:        0.14.0
-Release:        3%?dist
+Release:        1%?dist
 License:        GPLv2+
 URL:            https://github.com/v4l2loopback/v4l2loopback
 Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
