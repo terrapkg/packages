@@ -35,7 +35,6 @@ BuildRequires:  pnpm nodejs20
 Requires:       nss
 Requires:       libXext
 Requires:       libXfixes
-AutoReq:        no
 
 %description
 YouTube Music Desktop App bundled with custom plugins (and built-in ad blocker / downloader)
