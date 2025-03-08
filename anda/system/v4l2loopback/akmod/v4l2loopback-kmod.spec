@@ -7,7 +7,6 @@
 
 %global buildforkernels akmod
 %global debug_package %{nil}
-
 %global commit 2c9b67072b15d903fecde67c7f269abeafee4c25
 %global commitdate 20230503
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
