@@ -15,6 +15,7 @@ Source0:       %{url}/archive/%{commit}/%{name}-%{commit}.tar.gz#/%{name}-%{shor
 BuildRequires: sed
 BuildRequires: systemd-rpm-macros
 Provides:      %{name}-kmod-common = %{?epoch:%{epoch}:}%{version}
+Requires:      (akmod-%{name} = %{?epoch:%{epoch}:}%{version} or dkms-%{name} = %{?epoch:%{epoch}:}%{version})
 Conflicts:     xow <= 0.5
 Obsoletes:     xow <= 0.5
 BuildArch:     noarch
