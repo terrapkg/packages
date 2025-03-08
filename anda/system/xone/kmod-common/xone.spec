@@ -22,7 +22,7 @@ BuildRequires:  sed
 BuildRequires:  systemd-rpm-macros
 Requires:       wireless-regdb
 Requires:       %{name}-firmware = 1.0.46.1
-Requires:       (akmod-%{name} or dkms-%{name}) = %{?epoch:%{epoch}:}%{version}
+Requires:       (akmod-%{name} = %{?epoch:%{epoch}:}%{version} or dkms-%{name} = %{?epoch:%{epoch}:}%{version})
 Requires(post): dracut
 Provides:       %{name}-kmod-common = %{?epoch:%{epoch}:}%{version}
 Obsoletes:      %{name}-kmod-common < %{?epoch:%{epoch}:}%{version}-2%{?dist}
