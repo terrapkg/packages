@@ -36,7 +36,7 @@ Packager:      Gilver E. <rockgrub@disroot.org>
 %install
 install -Dm755 target/rpm/%{realname} %{buildroot}%{_bindir}/%{realname}
 install -Dm644 misc/%{realname}.desktop %{buildroot}%{_datadir}/applications/%{realname}.desktop
-install -Dm644 misc/logo.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps/%{realname}.svg
+install -Dm644 docs/static/assets/%{realname}-logo.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps/%{realname}.svg
 %{cargo_license_online -a} > LICENSE.dependencies
 
 %files
