@@ -10,7 +10,7 @@ Summary:        Advanced Linux Driver for Xbox One Wireless Gamepad common files
 License:        GPL-3.0
 URL:            https://atar-axis.github.io/%{name}
 Source0:        https://github.com/atar-axis/%{name}/archive/%{commit}.tar.gz#/%{name}-%{shortcommit}.tar.gz
-Source1:        io.github.xpadneo.metainfo.xml
+Source1:        io.github.%{name}.metainfo.xml
 BuildRequires:  sed
 BuildRequires:  systemd-rpm-macros
 Requires:       (akmod-%{name} = %{?epoch:%{epoch}:}%{version} or dkms-%{name} = %{?epoch:%{epoch}:}%{version})
@@ -42,7 +42,7 @@ install -Dpm644 hid-%{name}/etc-modprobe.d/%{name}.conf -t %{buildroot}%{_modpro
 install -Dpm644 hid-%{name}/etc-udev-rules.d/*.rules -t %{buildroot}%{_udevrulesdir}/
 
 # Metadata
-install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/metainfo/io.github.xpadneo.metainfo.xml
+install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/metainfo/io.github.%{name}.metainfo.xml
 
 # Akmods modules
 install -Dm644 %{name}.conf -t %{buildroot}%{_modulesloaddir}
@@ -53,7 +53,7 @@ install -Dm644 %{name}.conf -t %{buildroot}%{_modulesloaddir}
 %{_modprobedir}/%{name}.conf
 %{_udevrulesdir}/60-%{name}.rules
 %{_udevrulesdir}/70-%{name}-disable-hidraw.rules
-%{_datadir}/metainfo/io.github.xpadneo.metainfo.xml
+%{_datadir}/metainfo/io.github.%{name}.metainfo.xml
 
 %files akmod-modules
 %{_modulesloaddir}/%{name}.conf
