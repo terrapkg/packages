@@ -17,7 +17,7 @@ and lets you use any cloud, kubernetes or just localhost docker.}
                         loadtest/README.md
 
 Name:           devpod
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Codespaces but open-source, client-only and unopinionated: Works with any IDE and lets you use any cloud, kubernetes or just localhost docker
 Provides:       golang-github-loft-sh-devpod
 BuildRequires:  anda-srpm-macros mold
@@ -58,11 +58,13 @@ sed -i '/Comment=/s@DevPod@%summary@' %{S:1}
 %define gomodulesmode GO111MODULE=on
 # just remove -v -x for godsake
 %define gobuild_baseflags %{gocompilerflags} -tags="rpm_crashtraceback ${GO_BUILDTAGS-${BUILDTAGS-}}" -a
+%define gobuild_ldflags -s -w -X github.com/loft-sh/devpod/pkg/version.version="v%version" ${GO_LDFLAGS-${LDFLAGS-}} %{?currentgoldflags} -B 0x$(echo "%{name}-%{version}-%{release}-${SOURCE_DATE_EPOCH:-}" | sha1sum | cut -d ' ' -f1) -compressdwarf=false -linkmode=external -extldflags '%{build_ldflags} %{?__golang_extldflags}'
 %define gobuilddir %_builddir/%buildsubdir
 # build cli
 (%{gobuild -o %{gobuilddir}/bin/devpod .}) &
 
 pushd desktop
+yarn version --new-version %version --no-git-tag-version &
 yarn install &
 pushd src-tauri
 # cargo licenses
@@ -82,7 +84,7 @@ popd # desktop
 install -m 0755 -vd                     %{buildroot}%{_bindir}
 install -m 0755 -vp bin/devpod          %{buildroot}%{_bindir}/
 # tauri
-install -Dm755 desktop/src-tauri/target/rpm/DevPod -t %buildroot%_bindir
+install -Dm755 "desktop/src-tauri/target/rpm/DevPod Desktop" %buildroot%_bindir/DevPod-Desktop
 install -Dm644 %{S:1} -t %buildroot%_datadir/applications/
 install -Dm644 desktop/devpod.png -t %buildroot%_datadir/pixmaps/
 
@@ -92,6 +94,6 @@ install -Dm644 desktop/devpod.png -t %buildroot%_datadir/pixmaps/
 %{_bindir}/devpod
 
 %files desktop
-%_bindir/DevPod
+%_bindir/DevPod-Desktop
 %_datadir/applications/DevPod.desktop
 %_datadir/pixmaps/devpod.png
