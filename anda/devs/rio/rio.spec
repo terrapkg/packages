@@ -12,10 +12,15 @@ Source0:       https://github.com/raphamorim/%{name}/archive/refs/tags/v%{versio
 BuildRequires: anda-srpm-macros
 BuildRequires: cargo-rpm-macros
 BuildRequires: freetype-devel
+BuildRequires: cmake
 BuildRequires: gcc-c++
 BuildRequires: libxcb-devel
 BuildRequires: libxkbcommon-devel
 BuildRequires: mold
+Requires:      freetype
+Requires:      fontconfig
+Requires:      hicolor-icon-theme
+Requires:      libgcc
 Packager:      Gilver E. <rockgrub@disroot.org>
 
 %description %_description
