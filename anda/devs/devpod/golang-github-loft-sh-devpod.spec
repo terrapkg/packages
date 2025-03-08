@@ -17,7 +17,7 @@ and lets you use any cloud, kubernetes or just localhost docker.}
                         loadtest/README.md
 
 Name:           devpod
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Codespaces but open-source, client-only and unopinionated: Works with any IDE and lets you use any cloud, kubernetes or just localhost docker
 Provides:       golang-github-loft-sh-devpod
 BuildRequires:  anda-srpm-macros mold
