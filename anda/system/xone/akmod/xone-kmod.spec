@@ -4,21 +4,21 @@
 %global ver 0.3
 %define buildforkernels akmod
 %global debug_package %{nil}
-%global real_name xone
+%global modulename xone
 
-Name:           %{real_name}-kmod
+Name:           %{modulename}-kmod
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
 Release:        1%?dist
 Summary:        Linux kernel driver for Xbox One and Xbox Series X|S accessories
 License:        GPL-2.0-or-later
 URL:            https://github.com/dlundqvist/xone
-Source0:        %{url}/archive/%{commit}.tar.gz#/%{real_name}-%{shortcommit}.tar.gz
+Source0:        %{url}/archive/%{commit}.tar.gz#/%{modulename}-%{shortcommit}.tar.gz
 BuildRequires:  kmodtool
 BuildRequires:  systemd-rpm-macros
-Requires:       %{real_name} = %{?epoch:%{epoch}:}%{version}
-Requires:       %{real_name}-akmod-modules = %{?epoch:%{epoch}:}%{version}
+Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
+Requires:       %{modulename}-akmod-modules = %{?epoch:%{epoch}:}%{version}
 Requires:       akmods
-Conflicts:      dkms-%{real_name}
+Conflicts:      dkms-%{modulename}
 Packager:       Gilver E. <rockgrub@disroot.org>
 
 %{expand:%(kmodtool --target %{_target_cpu} --repo terra --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
@@ -30,7 +30,7 @@ Linux kernel driver for Xbox One and Xbox Series X|S accessories.
 %{?kmodtool_check}
 kmodtool  --target %{_target_cpu}  --repo terra --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
-%autosetup -p1 -n %{real_name}-%{commit}
+%autosetup -p1 -n %{modulename}-%{commit}
 
 find . -type f -name '*.c' -exec sed -i "s/#VERSION#/%{version}/" {} \;
 
