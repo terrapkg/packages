@@ -14,7 +14,7 @@
 
 Name:           %{base_name}-nightly
 Version:        %{ver}~tip^%{commit_date}git%{shortcommit}
-Release:        1%?dist
+Release:        2%?dist
 %if 0%{?fedora} <= 41
 Epoch:          1
 %endif
@@ -37,6 +37,7 @@ BuildRequires:  pkgconfig(bzip2)
 BuildRequires:  pkgconfig(freetype2)
 BuildRequires:  pkgconfig(fontconfig)
 BuildRequires:  pkgconfig(gtk4)
+BuildRequires:  pkgconfig(gtk4-layer-shell-0)
 BuildRequires:  pkgconfig(harfbuzz)
 BuildRequires:  pkgconfig(libadwaita-1)
 BuildRequires:  pkgconfig(libpng)
