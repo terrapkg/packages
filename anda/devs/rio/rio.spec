@@ -21,7 +21,6 @@ Requires:      freetype
 Requires:      fontconfig
 Requires:      hicolor-icon-theme
 Requires:      libgcc
-Conflicts:     python3-rasterio
 Obsoletes:     rioterm < %{version}-%{release}
 Packager:      Gilver E. <rockgrub@disroot.org>
 
@@ -29,13 +28,14 @@ Packager:      Gilver E. <rockgrub@disroot.org>
 
 %prep
 %autosetup -n %{name}-%{version}
+sed -i 's/Exec=.*/Exec=%{name}term/g' misc/%{name}.desktop
 %cargo_prep_online
 
 %build
 %cargo_build -a
 
 %install
-install -Dm755 target/rpm/%{name} %{buildroot}%{_bindir}/%{name}
+install -Dm755 target/rpm/%{name} %{buildroot}%{_bindir}/%{name}term
 install -Dm644 misc/%{name}.desktop %{buildroot}%{_datadir}/applications/%{name}.desktop
 install -Dm644 docs/static/assets/%{name}-logo.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps/%{name}.svg
 %{cargo_license_online -a} > LICENSE.dependencies
@@ -44,7 +44,7 @@ install -Dm644 docs/static/assets/%{name}-logo.svg %{buildroot}%{_iconsdir}/hico
 %doc README.md
 %license LICENSE
 %license LICENSE.dependencies
-%{_bindir}/%{name}
+%{_bindir}/%{name}term
 %{_datadir}/applications/%{name}.desktop
 %{_iconsdir}/hicolor/scalable/apps/%{name}.svg
 
