@@ -1,13 +1,13 @@
 %global commit 6b9d59aed71f6de543c481c33df4705d4a590a31
-%global commit_date 20241223
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
+%global commitdate 20241223
 %global ver 0.3
 %define buildforkernels akmod
 %global debug_package %{nil}
 %global modulename xone
 
 Name:           %{modulename}-kmod
-Version:        %{ver}^%{commit_date}git.%{shortcommit}
+Version:        %{ver}^%{commitdate}git.%{shortcommit}
 Release:        1%?dist
 Summary:        Linux kernel driver for Xbox One and Xbox Series X|S accessories
 License:        GPL-2.0-or-later
