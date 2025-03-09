@@ -5,7 +5,7 @@ if rpm.changed() {
     rpm.release();
     let d = sh("cat anda/system/xone/kmod-common/xone.spec | grep '%global commitdate' | sed -E 's/.+commitdate //'", #{"stdout": "piped"}).ctx.stdout;
     d.pop();
-    rpm.global("commit_date", d);
+    rpm.global("commitdate", d);
     let v = sh("cat anda/system/xone/kmod-common/xone.spec | grep '%global ver' | sed -E 's/.+ver //'", #{"stdout": "piped"}).ctx.stdout;
     v.pop();
     rpm.global("ver", v);
