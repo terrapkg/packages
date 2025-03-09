@@ -1,5 +1,5 @@
 %global                   fontname ms-core
-%global sf_corefonts      http://downloads.sourceforge.net/corefonts/the%20fonts/final
+%global sf_url            https://downloads.sourceforge.net/corefonts/the%20fonts/final
 %global fontlicense       Microsoft EULA
 %global fontlicenses      Licen.TXT
 
@@ -156,16 +156,16 @@ Version:         2.2
 Release:         1%{?dist}
 Summary:         Microsoft core fonts
 License:         LicenseRef-MS-Core-Fonts
-URL:             http://mscorefonts2.sourceforge.net
+URL:             https://mscorefonts2.sourceforge.net
 Group:           User Interface/X
-Source0:         http://sourceforge.net/projects/mscorefonts2/files/cabs/EUupdate.EXE
-Source1:         %{sf_corefonts}/andale32.exe
-Source2:         %{sf_corefonts}/arialb32.exe
-Source3:         %{sf_corefonts}/comic32.exe
-Source4:         %{sf_corefonts}/courie32.exe
-Source5:         %{sf_corefonts}/georgi32.exe
-Source6:         %{sf_corefonts}/impact32.exe
-Source7:         %{sf_corefonts}/webdin32.exe
+Source0:         https://sourceforge.net/projects/mscorefonts2/files/cabs/EUupdate.EXE
+Source1:         %{sf_url}/andale32.exe
+Source2:         %{sf_url}/arialb32.exe
+Source3:         %{sf_url}/comic32.exe
+Source4:         %{sf_url}/courie32.exe
+Source5:         %{sf_url}/georgi32.exe
+Source6:         %{sf_url}/impact32.exe
+Source7:         %{sf_url}/webdin32.exe
 Source8:         61-ms-core-andale.conf
 Source9:         61-ms-core-arial.conf
 Source10:        61-ms-core-comic.conf

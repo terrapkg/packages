@@ -5,7 +5,7 @@
 %define __strip /bin/true
 
 # do not perform compression in cpio
-%define _source_payload w0.ufdio
+%define _source_payload w19.zstdio
 %define _binary_payload w19.zstdio
 
 # Exclude private libraries
@@ -14,7 +14,7 @@
 
 Name:			voicevox
 Version:		0.23.0
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Free Japanese text-to-speech editor
 License:		LGPL-3.0
 URL:			https://voicevox.hiroshiba.jp
@@ -24,6 +24,7 @@ Source2:        https://github.com/VOICEVOX/voicevox/releases/download/%version/
 Packager:       madonuko <mado@fyralabs.com>
 BuildRequires:  p7zip-plugins
 ExclusiveArch:  x86_64
+AutoReq:        no
 
 %description
 VOICEVOX is a free Japanese text-to-speech software with medium output quality.
@@ -52,7 +53,7 @@ sed -i "s|Exec=.*|Exec=/usr/share/voicevox/VOICEVOX.AppImage|" squashfs-root/voi
 %install
 install -Dm755 VOICEVOX.AppImage %buildroot%_datadir/voicevox/VOICEVOX.AppImage
 install -Dm755 voicevox.sh %buildroot%_bindir/voicevox
-install -Dm644 squashfs-root%_iconsdir/hicolor/0x0/apps/voicevox.png %buildroot%_iconsdir/hicolor/256x256/apps/voicevox.png
+install -Dm644 squashfs-root%_iconsdir/hicolor/256x256/apps/voicevox.png %buildroot%_iconsdir/hicolor/256x256/apps/voicevox.png
 install -Dm644 squashfs-root/voicevox.desktop %buildroot%_datadir/applications/voicevox.desktop
 
 %files
