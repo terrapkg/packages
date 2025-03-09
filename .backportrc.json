@@ -2,7 +2,11 @@
   "repoOwner": "terrapkg",
   "repoName": "packages",
   "resetAuthor": true,
+<<<<<<< HEAD
   "targetBranchChoices": ["f39", "f40", "f41", "f42", "frawhide"],
+=======
+  "targetBranchChoices": ["el10", "f40", "f41", "f42", "frawhide"],
+>>>>>>> 77cef2498 (chore(.backportrc.json): Drop F39 since it's EOL, add EL10 and F42 (#3823))
   "branchLabelMapping": {
     "^sync-(.+)$": "$1"
   }
