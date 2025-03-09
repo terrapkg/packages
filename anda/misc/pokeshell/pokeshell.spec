@@ -6,7 +6,7 @@
 
 Name:          pokeshell
 Version:       %{ver}^%{date}git.%{shortcommit}
-Release:       2%{?dist}
+Release:       3%{?dist}
 Summary:       A shell program to show Pokémon sprites in the terminal.
 License:       GPL-3.0-or-later
 URL:           https://github.com/acxz/pokeshell
@@ -17,7 +17,8 @@ Requires:      bash
 Requires:      jq
 Requires:      ImageMagick
 Requires:      python3
-Requires:      (timg or chafa)
+Requires:      chafa
+Recommends:    timg
 BuildArch:     noarch
 Packager:      Gilver E. <rockgrub@disroot.org>
 
