@@ -22,6 +22,7 @@ Requires:      fontconfig
 Requires:      hicolor-icon-theme
 Requires:      libgcc
 Conflicts:     python3-rasterio
+Obsoletes:     rioterm < %{version}-%{release}
 Packager:      Gilver E. <rockgrub@disroot.org>
 
 %description %_description
