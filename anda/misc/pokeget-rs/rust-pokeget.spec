@@ -40,6 +40,7 @@ License:        (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apa
 %doc OTHER_PROJECTS.md
 %doc README.md
 %{_bindir}/pokeget
+%{_bindir}/pokeget-rs
 
 %package        devel
 Summary:        %{summary}
