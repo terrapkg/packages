@@ -1,4 +1,4 @@
-let c = sh("cat anda/system/xpad-noone/kmod-common/xpad-noone.spec | grep '%global commit' | sed -E 's/.+commit //'", #{"stdout": "piped"}).ctx.stdout;
+let c = sh("cat anda/system/xpad-noone/kmod-common/xpad-noone.spec | grep '%global commit ' | sed -E 's/.+commit //'", #{"stdout": "piped"}).ctx.stdout;
 c.pop();
 rpm.global("commit", c);
 if rpm.changed() {
