@@ -76,7 +76,7 @@ Summary:        Mesa graphics libraries
 # disabled by default, and has to be enabled manually. See `terra/release/terra-mesa.repo` for details.
 Epoch:          1
 Version:        25.0.1
-Release:        1%?dist
+Release:        2%?dist
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0
 URL:            http://www.mesa3d.org
 
@@ -264,6 +264,7 @@ Recommends:     %{name}-va-drivers%{?_isa}
 Summary:        Mesa-based VA-API video acceleration drivers
 Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Obsoletes:      %{name}-vaapi-drivers < 22.2.0-5
+Obsoletes:      %{name}-libglapi < 25.0.0~rc2-1
 
 %description va-drivers
 %{summary}.
@@ -334,18 +335,6 @@ Provides:       libxatracker-devel%{?_isa}
 %description libxatracker-devel
 %{summary}.
 %endif
-
-%package libglapi
-Summary:        Mesa shared glapi
-Provides:       libglapi
-Provides:       libglapi%{?_isa}
-# If mesa-dri-drivers are installed, they must match in version. This is here to prevent using
-# older mesa-dri-drivers together with a newer mesa-libglapi or its dependants.
-# See https://bugzilla.redhat.com/show_bug.cgi?id=2193135 .
-Requires:       (%{name}-dri-drivers%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release} if %{name}-dri-drivers%{?_isa})
-
-%description libglapi
-%{summary}.
 
 %if 0%{?with_opencl}
 %package libOpenCL
@@ -510,7 +499,6 @@ popd
 %dir %{_includedir}/GL/internal
 %{_includedir}/GL/internal/dri_interface.h
 %{_libdir}/pkgconfig/dri.pc
-%{_libdir}/libglapi.so
 
 %files libEGL
 %{_datadir}/glvnd/egl_vendor.d/50_mesa.json
@@ -519,10 +507,6 @@ popd
 %dir %{_includedir}/EGL
 %{_includedir}/EGL/eglext_angle.h
 %{_includedir}/EGL/eglmesaext.h
-
-%files libglapi
-%{_libdir}/libglapi.so.0
-%{_libdir}/libglapi.so.0.*
 
 %files libOSMesa
 %{_libdir}/libOSMesa.so.8*
