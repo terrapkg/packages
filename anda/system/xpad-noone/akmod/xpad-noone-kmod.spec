@@ -1,14 +1,7 @@
 %global commit 6970c40930bedd8b58d0764894e0d5f04813b7c5
-%global commit_date 20240109
-%global commit_date 20240109
-%global commit_date 20240109
-%global commit_date 20240109
-%global commit_date 20240109
-%global commit_date 20240109
-%global commit_date 20240109
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20240109
-%global ver 
+%global commitdate 20240109
+%global ver 1.0
 %global modulename xpad-noone
 %global debug_package %{nil}
 %global buildforkernels akmod
@@ -16,7 +9,7 @@
 This is the original upstream xpad driver from the Linux kernel with support for XBox One controllers removed. If you are running the xone driver you may have to replace the xpad kernel module with this one to retain the functionality of XBox and XBox 360 controllers.}
 
 Name:          %{modulename}-kmod
-Version:       %{ver}^%{commit_date}git.%{shortcommit}
+Version:       %{ver}^%{commitdate}git.%{shortcommit}
 Release:       1%?dist
 License:       GPL-2.0-or-later
 Summary:       xpad driver with support for XBox One controllers removed
