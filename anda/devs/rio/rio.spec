@@ -17,6 +17,7 @@ BuildRequires: gcc-c++
 BuildRequires: libxcb-devel
 BuildRequires: libxkbcommon-devel
 BuildRequires: mold
+BuildRequires: sed
 Requires:      freetype
 Requires:      fontconfig
 Requires:      hicolor-icon-theme
