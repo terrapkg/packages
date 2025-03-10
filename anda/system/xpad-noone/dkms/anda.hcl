@@ -1,6 +1,7 @@
 project pkg {
+        arches = ["x86_64"]
 	rpm {
-		spec = "xone-kmod.spec"
+		spec = "dkms-xpad-noone.spec"
 	}
 	labels {
 		mock = 1

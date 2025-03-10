@@ -1,6 +1,6 @@
-%global commit e03e98e106e96d9ceff5a9781b147376eaed0491
+%global commit 480b1a980521b310c777ca393a93f4ff350003fc
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global fulldate 2025-03-07
+%global fulldate 2025-03-10
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
 %global ver 1.1.3
@@ -37,6 +37,7 @@ BuildRequires:  pkgconfig(bzip2)
 BuildRequires:  pkgconfig(freetype2)
 BuildRequires:  pkgconfig(fontconfig)
 BuildRequires:  pkgconfig(gtk4)
+BuildRequires:  pkgconfig(gtk4-layer-shell-0)
 BuildRequires:  pkgconfig(harfbuzz)
 BuildRequires:  pkgconfig(libadwaita-1)
 BuildRequires:  pkgconfig(libpng)
