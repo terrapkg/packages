@@ -13,7 +13,7 @@
 
 Name:           youtube-music
 Version:        3.7.5
-Release:        3%?dist
+Release:        4%?dist
 Summary:        YouTube Music Desktop App bundled with custom plugins (and built-in ad blocker / downloader)
 Source1:        youtube-music.desktop
 License:        MIT
@@ -35,7 +35,6 @@ BuildRequires:  pnpm nodejs20
 Requires:       nss
 Requires:       libXext
 Requires:       libXfixes
-AutoReq:        no
 
 %description
 YouTube Music Desktop App bundled with custom plugins (and built-in ad blocker / downloader)
