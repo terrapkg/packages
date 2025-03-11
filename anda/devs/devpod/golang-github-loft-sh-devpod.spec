@@ -3,7 +3,7 @@
 
 # https://github.com/loft-sh/devpod
 %global goipath         github.com/loft-sh/devpod
-Version:                0.6.14
+Version:                0.6.15
 
 %gometa -f
 
@@ -17,7 +17,7 @@ and lets you use any cloud, kubernetes or just localhost docker.}
                         loadtest/README.md
 
 Name:           devpod
-Release:        2%?dist
+Release:        1%?dist
 Summary:        Codespaces but open-source, client-only and unopinionated: Works with any IDE and lets you use any cloud, kubernetes or just localhost docker
 Provides:       golang-github-loft-sh-devpod
 BuildRequires:  anda-srpm-macros mold
