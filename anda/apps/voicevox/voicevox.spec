@@ -9,8 +9,8 @@
 %define _binary_payload w19.zstdio
 
 # Exclude private libraries
-%global __requires_exclude libffmpeg.so
-%global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
+%global __provides_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*))$
+%global __requires_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*))$
 
 Name:			voicevox
 Version:		0.23.0
