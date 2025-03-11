@@ -38,7 +38,7 @@ jobs:
         if: ${{ !contains(matrix.pkg.labels, 'mock') }}
         run: |
           dir=$(dirname ${{ matrix.pkg.pkg }})
-          dnf5 builddep -y ${dir}/*.spec
+          dnf builddep -y ${dir}/*.spec
 
       - name: Build with Andaman
         run: anda build ${{ matrix.pkg.pkg }} -c terra-el${{ matrix.version }}-dev-${{ matrix.pkg.arch }} ${{ contains(matrix.pkg.labels, 'mock') && '' || '-rrpmbuild' }}
