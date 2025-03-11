@@ -4,6 +4,6 @@ project pkg {
 	}
 	labels {
 		mock = 1
-                updbranch = 1
+		updbranch = 1
 	}
 }
