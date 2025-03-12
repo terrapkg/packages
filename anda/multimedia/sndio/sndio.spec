@@ -1,6 +1,6 @@
 Name:		sndio
 Version:	1.10.0
-Release:	1
+Release:	1%?dist
 Summary:	A sound library
 #Group:		Sound/Utilities
 
@@ -8,9 +8,16 @@ License:	ISC
 URL:		https://www.sndio.org
 Source0:	https://www.sndio.org/%{name}-%{version}.tar.gz
 
+Provides:	%{name}d = %version-%release
+Provides:	%{name}ctl = %version-%release
+Provides:	midicat = %version-%release
+Provides:	aucat = %version-%release
+
+
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:  pkgconfig(libbsd)
 BuildRequires:  systemd-rpm-macros
+BuildRequires:  make
 Requires:	%name-libs = %{version}-%{release}
 
 %description
@@ -32,11 +39,24 @@ This package contains development files for %{name}.
 %prep
 %autosetup
 
+cat<<EOF > sndiod.conf
+u sndiod - "sndio" / /usr/sbin/nologin
+EOF
+
+cat<<EOF > 100-sndio.rules
+polkit.addRule(function(action, subject) {
+    if (subject.isInGroup("sndiod")) {
+        return polkit.Result.YES;
+    }
+});
+EOF
+
 %build
 ./configure \
 	--prefix=%{_prefix} \
 	--libdir=%{_libdir} \
-	--mandir=%{_mandir}
+	--mandir=%{_mandir} \
+	--libbsd=yes
 %make_build
 
 %install
@@ -66,9 +86,11 @@ install -Dpm644 contrib/default.%{name}d %{buildroot}%{_sysconfdir}/default/%{na
 %{_bindir}/midicat
 %{_bindir}/sndiod
 %{_bindir}/sndioctl
+%{_datadir}/polkit-1/rules.d/100-sndio.rules
 %{_mandir}/man*/*
 %{_unitdir}/%{name}d.service
 %{_sysconfdir}/default/%{name}d
+%{_sysusersdir}/%{name}d.conf
 
 %files	libs
 %license LICENSE
