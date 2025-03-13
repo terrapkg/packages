@@ -99,6 +99,10 @@ Patch20:        valve.patch
 # https://gitlab.freedesktop.org/mesa/mesa/-/issues/12633
 Patch21:        12633.patch
 
+# radv/amdgpu: fix device deduplication
+# https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/34005/diffs
+Patch22:        34005.patch
+
 Patch30:        237d8799be3afe9a1e7ca9156a5d44ffe0aae681.patch
 Patch31:        13a3f9a972324a72dd507e09ac975b969e6c88e0.patch
 
