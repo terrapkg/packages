@@ -14,7 +14,7 @@
 
 Name:           %{base_name}-nightly
 Version:        %{ver}~tip^%{commit_date}git%{shortcommit}
-Release:        2%?dist
+Release:        3%?dist
 %if 0%{?fedora} <= 41
 Epoch:          1
 %endif
@@ -47,6 +47,7 @@ BuildRequires:  pkgconfig(zlib)
 Requires:       %{name}-terminfo
 Requires:       %{name}-shell-integration
 Requires:       gtk4
+Requires:       gtk4-layer-shell
 Requires:       libadwaita
 Conflicts:      %{base_name}
 Provides:       %{base_name}-tip = %{ver}^%{commit_date}git%{shortcommit}
