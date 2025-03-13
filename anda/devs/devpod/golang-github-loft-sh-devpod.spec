@@ -17,8 +17,8 @@ and lets you use any cloud, kubernetes or just localhost docker.}
                         loadtest/README.md
 
 Name:           devpod
-Release:        1%?dist
-Summary:        Codespaces but open-source, client-only and unopinionated: Works with any IDE and lets you use any cloud, kubernetes or just localhost docker
+Release:        2%?dist
+Summary:        Spin up dev environments in any infra
 Provides:       golang-github-loft-sh-devpod
 BuildRequires:  anda-srpm-macros mold
 BuildRequires:  yarnpkg rust-packaging
@@ -27,7 +27,7 @@ Recommends:     devpod-desktop
 License:        MPL-2.0
 URL:            https://devpod.sh
 Source:         %{gosource}
-# gendesk --pkgname=DevPod --name=DevPod --exec=/usr/bin/DevPod --icon=devpod.png --categories='Utility;TextEditor;Development;IDE' --mimetypes='text/plain;application/x-zerosize' -n
+# gendesk --pkgname=DevPod --name=DevPod --exec=dev-pod-desktop --icon=dev-pod-desktop --categories='Development' -n
 Source1:        DevPod.desktop
 
 %description %{common_description}
@@ -41,6 +41,7 @@ BuildRequires:  pkgconfig(gdk-3.0)
 BuildRequires:  pkgconfig(javascriptcoregtk-4.1)
 BuildRequires:  pkgconfig(libsoup-3.0)
 BuildRequires:  pkgconfig(webkit2gtk-4.1)
+Requires:       libappindicator-gtk3
 
 %description desktop %{common_description}
 
@@ -82,18 +83,18 @@ popd # desktop
 %install
 # go
 install -m 0755 -vd                     %{buildroot}%{_bindir}
-install -m 0755 -vp bin/devpod          %{buildroot}%{_bindir}/
+install -m 0755 -vp bin/devpod          %{buildroot}%{_bindir}/devpod-cli
 # tauri
-install -Dm755 "desktop/src-tauri/target/rpm/DevPod Desktop" %buildroot%_bindir/DevPod-Desktop
+install -Dm755 "desktop/src-tauri/target/rpm/DevPod Desktop" %buildroot%_bindir/dev-pod-desktop
 install -Dm644 %{S:1} -t %buildroot%_datadir/applications/
-install -Dm644 desktop/devpod.png -t %buildroot%_datadir/pixmaps/
+install -Dm644 desktop/devpod.png %buildroot%_datadir/pixmaps/dev-pod-desktop.png
 
 %files
 %license LICENSE
 %doc README.md SECURITY.md
-%{_bindir}/devpod
+%{_bindir}/devpod-cli
 
 %files desktop
-%_bindir/DevPod-Desktop
+%_bindir/dev-pod-desktop
 %_datadir/applications/DevPod.desktop
-%_datadir/pixmaps/devpod.png
+%_datadir/pixmaps/dev-pod-desktop.png
