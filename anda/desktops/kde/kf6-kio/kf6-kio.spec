@@ -5,7 +5,7 @@
 
 Name:    kf6-%{framework}.switcheroo
 Version: %{majmin_ver_kf6}.0
-Release: 1%{?dist}.switcheroo
+Release: 2%{?dist}.switcheroo
 Summary: KDE Frameworks 6 Tier 3 solution for filesystem abstraction
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only) AND MIT
@@ -109,6 +109,7 @@ Summary:        Documentation files for %{name}
 Requires:       %{name}-core = %{version}-%{release}
 BuildArch:      noarch
 Provides:       kf6-kio-doc = %version-%release
+Obsoletes:      kf6-kio-doc <= %version-%release
 %description    doc
 Documentation for %{name}.
 
@@ -120,6 +121,7 @@ Requires:       %{name}-doc = %{version}-%{release}
 Requires:       kf6-filesystem
 Recommends:     switcheroo-control
 Provides:       kf6-kio-core = %version-%release
+Obsoletes:      kf6-kio-core <= %version-%release
 %description    core
 KIOCore library provides core non-GUI components for working with KIO.
 
@@ -127,6 +129,7 @@ KIOCore library provides core non-GUI components for working with KIO.
 Summary:        Runtime libraries for KIO Core
 Requires:       %{name}-core%{?_isa} = %{version}-%{release}
 Provides:       kf6-kio-core-libs = %version-%release
+Obsoletes:      kf6-kio-core-libs <= %version-%release
 %description    core-libs
 %{summary}.
 
@@ -137,6 +140,7 @@ Summary:        Widgets for KIO Framework
 %{?kf6_kinit_requires}
 Requires:       %{name}-core%{?_isa} = %{version}-%{release}
 Provides:       kf6-kio-widgets = %version-%release
+Obsoletes:      kf6-kio-widgets <= %version-%release
 %description    widgets
 KIOWidgets contains classes that provide generic job control, progress
 reporting, etc.
@@ -145,6 +149,7 @@ reporting, etc.
 Summary:        Runtime libraries for KIO Widgets library
 Requires:       %{name}-widgets%{?_isa} = %{version}-%{release}
 Provides:       kf6-kio-widgets-libs = %version-%release
+Obsoletes:      kf6-kio-widgets-libs <= %version-%release
 %description    widgets-libs
 %{summary}.
 
@@ -152,6 +157,7 @@ Provides:       kf6-kio-widgets-libs = %version-%release
 Summary:        Widgets for file-handling for KIO Framework
 Requires:       %{name}-widgets%{?_isa} = %{version}-%{release}
 Provides:       kf6-kio-file-widgets = %version-%release
+Obsoletes:      kf6-kio-file-widgets <= %version-%release
 %description    file-widgets
 The KIOFileWidgets library provides the file selection dialog and
 its components.
@@ -160,6 +166,7 @@ its components.
 Summary:        Gui components for the KIO Framework
 Requires:       %{name}-core%{?_isa} = %{version}-%{release}
 Provides:       kf6-kio-gui = %version-%release
+Obsoletes:      kf6-kio-gui <= %version-%release
 %description    gui
 %{summary}.
 
@@ -167,6 +174,7 @@ Provides:       kf6-kio-gui = %version-%release
 Summary:        Developer Documentation files for %{name}
 BuildArch:      noarch
 Provides:       kf6-kio-qch-doc = %version-%release
+Obsoletes:      kf6-kio-qch-doc <= %version-%release
 %description    qch-doc
 Developer Documentation files for %{name} for use with KDevelop or QtCreator.
 
