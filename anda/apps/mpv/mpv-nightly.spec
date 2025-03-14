@@ -209,6 +209,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/mpv.desktop
 %dir %{_datadir}/bash-completion/completions/
 %{_datadir}/bash-completion/completions/mpv
 %{_datadir}/icons/hicolor/*/apps/mpv*.*
+%{_datadir}/fish/vendor_completions.d/mpv.fish
 %dir %{_datadir}/zsh/
 %dir %{_datadir}/zsh/site-functions/
 %{_datadir}/zsh/site-functions/_mpv
