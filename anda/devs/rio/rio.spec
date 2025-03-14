@@ -28,6 +28,13 @@ Packager:      Gilver E. <rockgrub@disroot.org>
 
 %description %_description
 
+%package       devel
+Summary:       Development files for Rio
+Requires:      %{name}
+
+%description   devel
+This package contains the development libraries for Rio.
+
 %prep
 %autosetup -n %{name}-%{version}
 sed -i 's/Exec=.*/Exec=%{crate}/g' misc/%{name}.desktop
@@ -38,6 +45,7 @@ sed -i 's/Exec=.*/Exec=%{crate}/g' misc/%{name}.desktop
 
 %install
 install -Dm755 target/rpm/%{name} %{buildroot}%{_bindir}/%{crate}
+install -Dm755 target/rpm/*so -t %{buildroot}%{_libdir}
 install -Dm644 misc/%{name}.desktop %{buildroot}%{_datadir}/applications/%{name}.desktop
 install -Dm644 docs/static/assets/%{name}-logo.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps/%{name}.svg
 %{cargo_license_online -a} > LICENSE.dependencies
@@ -49,6 +57,11 @@ install -Dm644 docs/static/assets/%{name}-logo.svg %{buildroot}%{_iconsdir}/hico
 %{_bindir}/%{crate}
 %{_datadir}/applications/%{name}.desktop
 %{_iconsdir}/hicolor/scalable/apps/%{name}.svg
+
+%files devel
+%{_libdir}/librio_backend.so
+%{_libdir}/librio_proc_macros.so
+%{_libdir}/libsugarloaf.so
 
 %changelog
 * Sat Mar 8 2025 Gilver E. <rockgrub@disroot.org>
