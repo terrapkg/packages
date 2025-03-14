@@ -17,7 +17,7 @@ Provides:	aucat = %version-%release
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:  pkgconfig(libbsd)
 BuildRequires:  systemd-rpm-macros
-BuildRequires:  make
+BuildRequires:  make gcc
 Requires:	%name-libs = %{version}-%{release}
 
 %description
