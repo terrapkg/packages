@@ -30,7 +30,7 @@ Packager:      Gilver E. <rockgrub@disroot.org>
 
 %package       devel
 Summary:       Development files for Rio
-Requires:      %{name}
+Requires:      %{name} = %{version}-%{release}
 
 %description   devel
 This package contains the development libraries for Rio.
