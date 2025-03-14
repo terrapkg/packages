@@ -1,6 +1,6 @@
-%global commit d9cf7a3d395ca160face9fd0c649c7aab274a93a
+%global commit d9dadf07ae9425ad3cc6cc2ee9464038224efdcb
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250309
+%global commit_date 20250314
 %global ver 0.39.0
 
 Name:           mpv-nightly
@@ -209,6 +209,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/mpv.desktop
 %dir %{_datadir}/bash-completion/completions/
 %{_datadir}/bash-completion/completions/mpv
 %{_datadir}/icons/hicolor/*/apps/mpv*.*
+%{_datadir}/fish/vendor_completions.d/mpv.fish
 %dir %{_datadir}/zsh/
 %dir %{_datadir}/zsh/site-functions/
 %{_datadir}/zsh/site-functions/_mpv

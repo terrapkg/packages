@@ -1,6 +1,6 @@
-%global commit d3fd2b02e71f3eaecd310b246ee64a26a59b78e3
+%global commit 73c7943fff38f679a9a434457b5089bc5722411d
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global fulldate 2025-03-08
+%global fulldate 2025-03-13
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
 %global ver 1.1.3
@@ -14,7 +14,7 @@
 
 Name:           %{base_name}-nightly
 Version:        %{ver}~tip^%{commit_date}git%{shortcommit}
-Release:        2%?dist
+Release:        1%?dist
 %if 0%{?fedora} <= 41
 Epoch:          1
 %endif
@@ -47,6 +47,7 @@ BuildRequires:  pkgconfig(zlib)
 Requires:       %{name}-terminfo
 Requires:       %{name}-shell-integration
 Requires:       gtk4
+Requires:       gtk4-layer-shell
 Requires:       libadwaita
 Conflicts:      %{base_name}
 Provides:       %{base_name}-tip = %{ver}^%{commit_date}git%{shortcommit}
