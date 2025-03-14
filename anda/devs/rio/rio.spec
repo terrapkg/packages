@@ -23,7 +23,7 @@ Requires:      freetype
 Requires:      fontconfig
 Requires:      hicolor-icon-theme
 Requires:      libgcc
-Obsoletes:     rioterm < %{version}-%{release}
+Obsoletes:     %{crate} < %{version}-%{release}
 Packager:      Gilver E. <rockgrub@disroot.org>
 
 %description %_description
