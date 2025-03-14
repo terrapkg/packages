@@ -56,7 +56,7 @@ EOF
 	--prefix=%{_prefix} \
 	--libdir=%{_libdir} \
 	--mandir=%{_mandir} \
-	--libbsd=yes
+	--with-libbsd
 %make_build
 
 %install
