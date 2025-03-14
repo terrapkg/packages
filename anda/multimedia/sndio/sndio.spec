@@ -66,6 +66,9 @@ EOF
 install -Dpm755 contrib/%{name}d.service %{buildroot}%{_unitdir}/%{name}d.service
 install -Dpm644 contrib/default.%{name}d %{buildroot}%{_sysconfdir}/default/%{name}d
 
+install -Dpm644 sndiod.conf -t %buildroot%_sysusersdir/
+install -Dpm644 100-sndio.rules -t %buildroot%_datadir/polkit-1/rules.d/
+
 # Fix for installing pkgconfig to correct lib64 dir on 64-bit systems.
 %dnl %ifnarch %ix86
 %dnl %__mkdir_p %{buildroot}%{_libdir}/pkgconfig
