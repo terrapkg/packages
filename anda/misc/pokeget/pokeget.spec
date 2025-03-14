@@ -1,6 +1,7 @@
 %global pname pokesprite
 %global pcommit c5aaa610ff2acdf7fd8e2dccd181bca8be9fcb3e
 %global crate pokeget
+%bcond check 1
 
 Name:          %{crate}
 Version:       1.6.4
@@ -30,6 +31,11 @@ Successor to pokeget, written in Rust.
 %install
 install -Dpm755 target/rpm/%{crate} -t %{buildroot}%{_bindir}
 %{cargo_license_online} > LICENSE.dependencies
+
+%if %{with check}
+%check
+%cargo_test
+%endif
 
 %files
 %license LICENSE
