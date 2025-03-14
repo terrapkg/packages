@@ -1,6 +1,6 @@
+%global crate rioterm
 %global _description %{expand:
 A hardware-accelerated terminal emulator focusing to run in desktops and browsers.}
-%global crate rioterm
 
 Name:          rio
 Version:       0.2.9
