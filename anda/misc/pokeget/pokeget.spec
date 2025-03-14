@@ -16,7 +16,7 @@ BuildRequires: cargo-rpm-macros
 BuildRequires: mold
 Provides:      bundled(%{pname}) = %{pcommit}
 Obsoletes:     %{crate}-rs < %{version}-%{release}
-Packager:      Gilver E. <rockgrub@disroot.org>
+Packager:      Gilver E. <rockgrub@disroot.org>, madonuko <mado@fyralabs.com>
 
 %description
 Successor to pokeget, written in Rust.
