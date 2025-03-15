@@ -15,6 +15,10 @@ BuildRequires: make gcc git anda-srpm-macros
 %description
 A meme system info tool for (almost) all your Linux/Unix-based systems, based on the nyan/UwU trend on r/linuxmasterrace.
 
+%package       devel
+Summary:       Development files for UwUFetch.
+Requires:      %{name}
+
 %prep
 %git_clone %{url} %{commit}
 
@@ -22,14 +26,18 @@ A meme system info tool for (almost) all your Linux/Unix-based systems, based on
 %make_build
 
 %install
-sed -i 's/= lib/= lib64/g' Makefile
-DESTDIR=%{buildroot}%{_prefix} make install
+make install DESTDIR=%{buildroot}%{_prefix}
+mv %{buildroot}%{_prefix}/lib/libfetch.so %{buildroot}%{_libdir}/libfetch.so
 
 %files
-%{_libdir}/uwufetch/*
+%dir %{_prefix}/lib/uwufetch
+%{_prefix}/lib/uwufetch/*
 %{_libdir}/libfetch.so
 %{_mandir}/man1/uwufetch.1.gz
 %{_bindir}/uwufetch
+
+%files devel
+%{_includedir}/
 
 %changelog
 * Thu Jun 22 2023 Alyxia Sother <alyxia@riseup.net>
