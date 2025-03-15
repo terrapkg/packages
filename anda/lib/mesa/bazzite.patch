@@ -554,8 +554,8 @@ Also handle the case of exportable BO with tiling set to VK_IMAGE_TILING_DRM_FOR
 This fixes the gamescope handling of using vulkan allocated images for scanout.
 
 Link: https://gitlab.freedesktop.org/mesa/mesa/-/issues/12633
-Tested-by: Matthew Schwartz <matthew.schwartz@linux.dev>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+Signed-off-by: Matthew Schwartz <matthew.schwartz@linux.dev>
 
 Normalspeak: fixes battlemage iGPUs in gamescope
 ---
