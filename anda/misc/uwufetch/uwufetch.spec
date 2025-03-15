@@ -17,7 +17,7 @@ BuildRequires: make gcc git anda-srpm-macros
 A meme system info tool for (almost) all your Linux/Unix-based systems, based on the nyan/UwU trend on r/linuxmasterrace.
 
 %prep
-%autosetup -n %{name)-%{commit}
+%autosetup -n %{name}-%{commit}
 
 %build
 %make_build
