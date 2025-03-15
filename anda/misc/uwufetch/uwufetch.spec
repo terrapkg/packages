@@ -22,7 +22,8 @@ A meme system info tool for (almost) all your Linux/Unix-based systems, based on
 %make_build
 
 %install
-DESTDIR=%{buildroot}%{_prefix} LIBDIR=%{buildroot}%{_libdir} make install
+sed -i 's/= lib/= lib64/g' Makefile
+DESTDIR=%{buildroot}%{_prefix} make install
 
 %files
 %{_libdir}/uwufetch/*
