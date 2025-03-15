@@ -76,7 +76,7 @@ Summary:        Mesa graphics libraries
 # disabled by default, and has to be enabled manually. See `terra/release/terra-mesa.repo` for details.
 Epoch:          1
 Version:        25.0.1
-Release:        5%?dist
+Release:        6%?dist
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0
 URL:            http://www.mesa3d.org
 
@@ -88,26 +88,8 @@ Source0:        https://archive.mesa3d.org/%{srcname}-%{version}.tar.xz
 # Fedora opts to ignore the optional part of clause 2 and treat that code as 2 clause BSD.
 Source1:        Mesa-MLAA-License-Clarification-Email.txt
 
-#Patch10:        https://src.fedoraproject.org/rpms/mesa/raw/e89544b7a4d811a64ca23b402add29524cc6f704/f/gnome-shell-glthread-disable.patch
-#Patch11:        https://src.fedoraproject.org/rpms/mesa/raw/e89544b7a4d811a64ca23b402add29524cc6f704/f/0001-llvmpipe-Init-eglQueryDmaBufModifiersEXT-num_modifie.patch
-#Patch12:        https://src.fedoraproject.org/rpms/mesa/raw/e89544b7a4d811a64ca23b402add29524cc6f704/f/0001-Revert-ac-radeonsi-remove-has_syncobj-has_fence_to_h.patch
-
-# https://gitlab.com/evlaV/mesa/
-Patch20:        valve.patch
-
-# Fix issues with Intel Battlemage under Valve's gamescope in DRM mode
-# https://gitlab.freedesktop.org/mesa/mesa/-/issues/12633
-Patch21:        12633.patch
-
-# radv/amdgpu: fix device deduplication
-# https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/34005/diffs
-Patch22:        34005.patch
-
-Patch30:        237d8799be3afe9a1e7ca9156a5d44ffe0aae681.patch
-Patch31:        13a3f9a972324a72dd507e09ac975b969e6c88e0.patch
-
-# s390x: fix build
-#Patch100:       https://src.fedoraproject.org/rpms/mesa/raw/e89544b7a4d811a64ca23b402add29524cc6f704/f/fix-egl-on-s390x.patch
+# https://github.com/bazzite-org/mesa
+Patch20:        bazzite.patch
 
 BuildRequires:  meson >= 1.3.0
 BuildRequires:  gcc
