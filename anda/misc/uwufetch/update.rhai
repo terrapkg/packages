@@ -1,1 +1,1 @@
-rpm.version(gh("TheDarkBug/uwufetch"));
+rpm.version(gh("ad-oliviero/uwufetch"));
