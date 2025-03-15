@@ -1,20 +1,20 @@
-%global commit 
+%global commit d6863d970d2686dd6282142af57503e1f2d561dc
+%global shortcommit %(c=%{commit}; echo ${c:0:7})
+%global commit_date 20241119
+%if 0%{?fedora} == 41
+%ifarch %ix86
+%global debug_package %{nil}
+%endif
+%endif
 
+# While there's an upstream version at Supreeeme/extest, we're using
+# the same fork as Bazzite so we can use the same patches.
+# This fork has no tags so we're gonna use the commit hash as the version
 
+# Don't mangle shebangs
+%global __brp_mangle_shebangs %{nil}
 
-
-
-
-
-
-
-
-
-
-
-
-
-d6863d970d2686dd6282142af57503e1f2d561dc
+# Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 # Use Mold as the linker
 %global build_rustflags %build_rustflags -C link-arg=-fuse-ld=mold
@@ -25,7 +25,7 @@ Release:        1%?dist
 Summary:        X11 XTEST reimplementation primarily for Steam Controller on Wayland
 
 License:        MIT
-URL:            https://github.com/bazzite-org/extest
+URL:            https://github.com/KyleGospo/extest
 
 Source0:        %{url}/archive/%{commit}.tar.gz
 
@@ -102,4 +102,3 @@ install -D -p -m 0755 %{SOURCE1} %{buildroot}%{_libexecdir}/extest/override_stea
 
 %changelog
 %autochangelog
-
