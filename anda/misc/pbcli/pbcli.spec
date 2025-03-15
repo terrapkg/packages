@@ -55,5 +55,8 @@ install -Dm644 target/rpm/lib%{name}.a %{buildroot}%{_libdir}/lib%{name}.a
 %{_libdir}/lib%{name}.so
 
 %changelog
+* Sat Mar 14 2025 Gilver E. <rockgrub@disroot.org>
+- Enable uniffi support
+- Package development files
 * Sat Dec 21 2024 Gilver E. <rockgrub@disroot.org>
 - Initial package
