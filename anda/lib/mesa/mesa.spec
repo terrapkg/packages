@@ -109,7 +109,6 @@ Patch31:        13a3f9a972324a72dd507e09ac975b969e6c88e0.patch
 # s390x: fix build
 #Patch100:       https://src.fedoraproject.org/rpms/mesa/raw/e89544b7a4d811a64ca23b402add29524cc6f704/f/fix-egl-on-s390x.patch
 
-BuildRequires:  anda-srpm-macros >= 0.2.8
 BuildRequires:  meson >= 1.3.0
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
