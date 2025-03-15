@@ -153,15 +153,6 @@ index 9061e9755e2..6cc64be298a 100644
 
 
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
-From: Antheas Kapenekakis <git@antheas.dev>
-Date: Sat, 15 Mar 2025 16:39:25 +0100
-Subject: [BEGIN] SteamOS Backports
-
--- 
-2.48.1
-
-
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Samuel Pitoiset <samuel.pitoiset@gmail.com>
 Date: Mon, 24 Feb 2025 17:48:21 +0100
 Subject: radv: stop computing the UUID using the physical device cache key
@@ -214,6 +205,15 @@ index f24203fcccc..b1a742d48ef 100644
     _mesa_sha1_final(&ctx, sha1);
  
     memcpy(uuid, sha1, VK_UUID_SIZE);
+-- 
+2.48.1
+
+
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Antheas Kapenekakis <git@antheas.dev>
+Date: Sat, 15 Mar 2025 16:39:25 +0100
+Subject: [BEGIN] SteamOS Backports
+
 -- 
 2.48.1
 
