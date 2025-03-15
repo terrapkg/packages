@@ -11,6 +11,7 @@ Source0:        %{url}/archive/refs/tags/%{tag}.tar.gz
 
 BuildArch:      noarch
 BuildRequires:  gtk-update-icon-cache fdupes
+Conflicts:      %name
 
 %description
 Fluent icon theme for linux desktops.
