@@ -22,7 +22,7 @@ A meme system info tool for (almost) all your Linux/Unix-based systems, based on
 %make_build
 
 %install
-sed -i 's/DESTDIR=.*/usr/DESTDIR=%{buildroot}%{_prefix}/g' Makefile
+sed -i 's/DESTDIR=.*\/usr/DESTDIR=%(echo %{buildroot}%{_prefix}| sed 's/\//\\\//g')/g' Makefile
 sed -i 's/= lib/= %{_libdir}/g' Makefile
 %make_install
 
