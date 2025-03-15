@@ -1,25 +1,4 @@
 %global commit 6b9d59aed71f6de543c481c33df4705d4a590a31
-%global commitdate 20241223
-%global commitdate 20241223
-%global commitdate 20241223
-%global commitdate 20241223
-%global commitdate 20241223
-%global commitdate 20241223
-%global commitdate 20241223
-%global commitdate 20241223
-%global commitdate 20241223
-%global commitdate 20241223
-%global commitdate 20241223
-%global commitdate 20241223
-%global commitdate 20241223
-%global commitdate 20241223
-%global commitdate 20241223
-%global commitdate 20241223
-%global commitdate 20241223
-%global commitdate 20241223
-%global commitdate 20241223
-%global commitdate 20241223
-%global commitdate 20241223
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global commitdate 20241223
 %global ver 0.3
