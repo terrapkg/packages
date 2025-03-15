@@ -1,7 +1,6 @@
-%global commit 61e4becfd5338e3eb2bb8c54cdd0b9b96a8afbf8
-%global commit_date 20250301
+%global commit 685afa8c0d6f2310eaefe1b528627a8bf3154ca0
+%global commit_date 20250315
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-
 %define _unpackaged_files_terminate_build 0
 
 Name:			rpi-utils

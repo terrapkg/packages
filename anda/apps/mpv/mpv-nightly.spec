@@ -1,11 +1,11 @@
-%global commit d9dadf07ae9425ad3cc6cc2ee9464038224efdcb
+%global commit a8f5beb5a38e0ed169a9fb9faff6c5ca0a43dfee
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250314
+%global commit_date 20250315
 %global ver 0.39.0
 
 Name:           mpv-nightly
 Version:        %ver^%commit_date.%shortcommit
-Release:        2%?dist
+Release:        1%?dist
 
 License:        GPL-2.0-or-later AND LGPL-2.1-or-later
 Summary:        Movie player playing most video formats and DVDs
