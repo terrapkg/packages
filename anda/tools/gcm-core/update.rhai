@@ -1,1 +1,1 @@
-rpm.version(gh("GitCredentialManager/git-credential-manager"));
+rpm.version(gh("git-ecosystem/git-credential-manager"));
