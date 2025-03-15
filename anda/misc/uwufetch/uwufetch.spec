@@ -22,6 +22,7 @@ A meme system info tool for (almost) all your Linux/Unix-based systems, based on
 %make_build
 
 %install
+export DESTDIR=%{buildroot}%{_prefix}
 %make_install
 
 %files
