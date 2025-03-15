@@ -1,7 +1,7 @@
 %global framework kio
 
 %global stable_kf6 stable
-%global majmin_ver_kf6 6.11
+%global majmin_ver_kf6 6.12
 
 Name:    kf6-%{framework}.switcheroo
 Version: %{majmin_ver_kf6}.0
