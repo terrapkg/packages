@@ -22,10 +22,12 @@ A meme system info tool for (almost) all your Linux/Unix-based systems, based on
 %make_build
 
 %install
+export DESTDIR=%{_prefix}
+export LIBDIR=%{_libdir}
 %make_install
 
 %files
-%{_prefix}/lib/uwufetch/*
+%{_libdir}/uwufetch/*
 %{_libdir}/libfetch.so
 %{_mandir}/man1/uwufetch.1.gz
 %{_bindir}/uwufetch
