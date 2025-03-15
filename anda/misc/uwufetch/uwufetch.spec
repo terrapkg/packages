@@ -19,6 +19,9 @@ A meme system info tool for (almost) all your Linux/Unix-based systems, based on
 Summary:       Development files for UwUFetch.
 Requires:      %{name}
 
+%description    devel
+This package contains delevoplent files for UwUFetch.
+
 %prep
 %git_clone %{url} %{commit}
 
