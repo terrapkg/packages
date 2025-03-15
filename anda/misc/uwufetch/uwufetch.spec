@@ -10,8 +10,7 @@ BuildRequires: make gcc git anda-srpm-macros
 A meme system info tool for (almost) all your Linux/Unix-based systems, based on the nyan/UwU trend on r/linuxmasterrace.
 
 %prep
-git clone https://github.com/TheDarkBug/uwufetch.git .
-git checkout %{version}
+%git_clone %{url} %{version}
 
 %build
 %make_build
