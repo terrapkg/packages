@@ -259,7 +259,7 @@ Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{rel
 %if 0%{?with_va}
 Recommends:     %{name}-va-drivers%{?_isa}
 %endif
-Obsoletes:      %{name}-libglapi < 25.0.0~rc2-1
+Obsoletes:      %{name}-libglapi < 1:25.0.0~rc2-1
 
 %description dri-drivers
 %{summary}.
@@ -268,7 +268,7 @@ Obsoletes:      %{name}-libglapi < 25.0.0~rc2-1
 %package        va-drivers
 Summary:        Mesa-based VA-API video acceleration drivers
 Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes:      %{name}-vaapi-drivers < 22.2.0-5
+Obsoletes:      %{name}-vaapi-drivers < 1:22.2.0-5
 
 %description va-drivers
 %{summary}.
