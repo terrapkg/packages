@@ -1,5 +1,10 @@
+%global commit 28b471b813d1c9aab77eeeb61f65304e586fb275
+%global shortcommit %(c=%{commit}; echo ${c:0:7})
+%global commit_date 20240423
+%global ver 2.1
+
 Name:          uwufetch
-Version:       
+Version:       %{ver}^%{commit_date}git.%{shortcommit}
 Release:       1%?dist
 Summary:       A meme system info tool for Linux, based on nyan/uwu trend on r/linuxmasterrace.
 License:       GPL-3.0
@@ -10,7 +15,7 @@ BuildRequires: make gcc git anda-srpm-macros
 A meme system info tool for (almost) all your Linux/Unix-based systems, based on the nyan/UwU trend on r/linuxmasterrace.
 
 %prep
-%git_clone %{url} %{version}
+%git_clone %{url} %{commit}
 
 %build
 %make_build
