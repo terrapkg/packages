@@ -102,4 +102,3 @@ install -D -p -m 0755 %{SOURCE1} %{buildroot}%{_libexecdir}/extest/override_stea
 
 %changelog
 %autochangelog
-
