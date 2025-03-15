@@ -22,10 +22,7 @@ A meme system info tool for (almost) all your Linux/Unix-based systems, based on
 %make_build
 
 %install
-make install DESTDIR=%{?buildroot}%{_prefix}
-mkdir %{?buildroot}%{_libdir}
-mv %{?buildroot}%{_prefix}/lib/libfetch.so %{?buildroot}%{_libdir}/libfetch.so
-rm -rf %{?buildroot}%{_includedir}
+%make_install
 
 %files
 %{_prefix}/lib/uwufetch/*
