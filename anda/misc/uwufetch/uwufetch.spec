@@ -36,11 +36,12 @@ mv %{buildroot}%{_prefix}/lib/libfetch.so %{buildroot}%{_libdir}/libfetch.so
 %files
 %dir %{_prefix}/lib/uwufetch
 %{_prefix}/lib/uwufetch/*
-%{_libdir}/libfetch.so
 %{_mandir}/man1/uwufetch.1.gz
 %{_bindir}/uwufetch
 
 %files devel
+%{_libdir}/libfetch.so
+%{_includedir}/fetch.h
 
 %changelog
 * Thu Jun 22 2023 Alyxia Sother <alyxia@riseup.net>
