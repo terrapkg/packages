@@ -2,6 +2,7 @@
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global commit_date 20240423
 %global ver 2.1
+%global debug_package %{nil}
 
 Name:          uwufetch
 Version:       %{ver}^%{commit_date}git.%{shortcommit}
