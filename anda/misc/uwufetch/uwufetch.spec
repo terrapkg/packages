@@ -38,7 +38,6 @@ mv %{buildroot}%{_prefix}/lib/libfetch.so %{buildroot}%{_libdir}/libfetch.so
 %{_bindir}/uwufetch
 
 %files devel
-%{_includedir}/
 
 %changelog
 * Thu Jun 22 2023 Alyxia Sother <alyxia@riseup.net>
