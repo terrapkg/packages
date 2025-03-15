@@ -27,6 +27,7 @@ Requires:      %{name}
 
 %install
 make install DESTDIR=%{buildroot}%{_prefix}
+mkdir -p %{buildroot}%{_libdir}
 mv %{buildroot}%{_prefix}/lib/libfetch.so %{buildroot}%{_libdir}/libfetch.so
 
 %files
