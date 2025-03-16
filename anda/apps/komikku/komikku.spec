@@ -7,7 +7,7 @@
 Name:           komikku
 Version:        1.72.0
 %forgemeta
-Release:        1%?dist
+Release:        2%?dist
 Summary:        A manga reader for GNOME
 
 BuildArch:      noarch
@@ -92,7 +92,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 
 %files -f %{name}.lang
-%license LICENSE
+%license LICENSES/*
 %doc README.md
 %{_bindir}/%{name}
 %{_datadir}/%{name}/
