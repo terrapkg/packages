@@ -32,11 +32,16 @@ This package contains delevoplent files for UwUFetch.
 %make_build
 
 %install
+mv res/COPYRIGHT.md .
 %make_install DESTDIR=%{buildroot}%{_prefix}
 mkdir -p %{buildroot}%{_libdir}
 mv %{buildroot}%{_prefix}/lib/libfetch.so %{buildroot}%{_libdir}/libfetch.so
 
 %files
+%doc CODE_OF_CONDUCT.md
+%doc README.md
+%license LICENSE
+%license COPYRIGHT.md
 %dir %{_prefix}/lib/uwufetch
 %{_prefix}/lib/uwufetch/*
 %{_mandir}/man1/uwufetch.1.gz
