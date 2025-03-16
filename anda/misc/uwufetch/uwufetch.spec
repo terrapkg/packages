@@ -32,7 +32,7 @@ This package contains delevoplent files for UwUFetch.
 %make_build
 
 %install
-make install DESTDIR=%{buildroot}%{_prefix}
+%make_install DESTDIR=%{buildroot}%{_prefix}
 mkdir -p %{buildroot}%{_libdir}
 mv %{buildroot}%{_prefix}/lib/libfetch.so %{buildroot}%{_libdir}/libfetch.so
 
