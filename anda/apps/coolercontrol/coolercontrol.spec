@@ -59,9 +59,6 @@ popd
 
 pushd coolercontrol-ui
 npm ci --prefer-offline &
-pushd src-tauri
-%cargo_prep_online &
-popd
 popd
 
 wait
