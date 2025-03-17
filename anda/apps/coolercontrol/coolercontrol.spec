@@ -76,11 +76,7 @@ popd
 
 pushd coolercontrol-ui
 npm run build &
-pushd src-tauri
-%{cargo_license_online} > LICENSE.dependencies &
 wait
-%cargo_build -f custom-protocol
-popd
 popd
 
 
