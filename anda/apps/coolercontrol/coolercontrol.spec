@@ -30,6 +30,7 @@ BuildRequires:  python3-devel python3-wheel python3-liquidctl python3-setproctit
 BuildRequires:  libappstream-glib
 BuildRequires:  desktop-file-utils
 BuildRequires:  cmake(Qt6)
+BuildRequires:  cmake(Qt6WebEngineWidgets)
 %description %_desc
 
 %package liqctld
