@@ -52,10 +52,36 @@ RemovePathPostFixes: .qt6
 %description qt6
 Qt6 version of peazip.
 
+
 %package -n pea
 Summary: Engine for PEA file format support
 %description -n pea
 Engine for PEA file format support.
+
+%package -n pea-gtk2
+Summary: GTK2 version of pea
+Requires: pea
+RemovePathPostFixes: .gtk2
+%description -n pea-gtk2
+GTK2 version of pea.
+%package -n pea-gtk3
+Summary: GTK3 version of pea
+Requires: pea
+RemovePathPostFixes: .gtk3
+%description -n pea-gtk3
+GTK3 version of pea.
+%package -n pea-qt5
+Summary: Qt5 version of pea
+Requires: pea
+RemovePathPostFixes: .qt5
+%description -n pea-qt5
+Qt5 version of pea.
+%package -n pea-qt6
+Summary: Qt6 version of pea
+Requires: pea
+RemovePathPostFixes: .qt6
+%description -n pea-qt6
+Qt6 version of pea.
 
 %prep
 %autosetup -n PeaZip-%version
@@ -67,11 +93,14 @@ lazbuild --ws=gtk2 dev/project_peach.lpi && cp dev/peazip ../peazip.gtk2
 lazbuild --ws=gtk3 dev/project_peach.lpi && cp dev/peazip ../peazip.gtk3
 lazbuild --ws=qt5 dev/project_peach.lpi && cp dev/peazip ../peazip.qt5
 lazbuild --ws=qt6 dev/project_peach.lpi && cp dev/peazip ../peazip.qt6
-lazbuild dev/project_pea.lpi && cp dev/pea ../pea
+lazbuild --ws=gtk2 dev/project_pea.lpi && cp dev/pea ../pea.gtk2
+lazbuild --ws=gtk3 dev/project_pea.lpi && cp dev/pea ../pea.gtk3
+lazbuild --ws=qt5 dev/project_pea.lpi && cp dev/pea ../pea.qt5
+lazbuild --ws=qt6 dev/project_pea.lpi && cp dev/pea ../pea.qt6
 
 %install
 install -Dm755 peazip.* -t %buildroot%_bindir
-install -Dm755 pea -t %buildroot%_bindir
+install -Dm755 pea.* -t %buildroot%_bindir
 
 %files
 %doc README.md
@@ -80,7 +109,6 @@ install -Dm755 pea -t %buildroot%_bindir
 %files -n pea
 %doc README.md
 %license LICENSE SECURITY.md
-%_bindir/pea
 
 %files gtk2
 %_bindir/peazip.gtk2
@@ -90,3 +118,12 @@ install -Dm755 pea -t %buildroot%_bindir
 %_bindir/peazip.qt5
 %files qt6
 %_bindir/peazip.qt6
+
+%files -n pea-gtk2
+%_bindir/pea.gtk2
+%files -n pea-gtk3
+%_bindir/pea.gtk3
+%files -n pea-qt5
+%_bindir/pea.qt5
+%files -n pea-qt6
+%_bindir/pea.qt6
