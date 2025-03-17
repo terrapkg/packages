@@ -1,6 +1,7 @@
 %global pkgdir %_datadir/subtitleedit
+%global realname subtitleedit
 
-Name:           subtitleedit
+Name:           %realname.bin
 Version:        4.0.11
 Release:        1%?dist
 Summary:        An advanced subtitle editor and converter
@@ -9,7 +10,9 @@ URL:            https://www.nikse.dk/SubtitleEdit
 Source0:        https://github.com/SubtitleEdit/subtitleedit/releases/download/%version/SE%{gsub %version %. %{quote:}}.zip
 Source1:        https://github.com/SubtitleEdit/subtitleedit/blob/%version/src/libse/Icon.png?raw=true
 Packager:       madonuko <mado@fyralabs.com>
-BuildRequires:  unzip
+Provides:       %realname = %evr
+Conflicts:      %realname
+BuildRequires:  unzip anda-srpm-macros
 Requires:       mono dejavu-fonts
 
 %description
@@ -48,6 +51,6 @@ install -Dm644 %{S:1} %buildroot%_datadir/pixmaps/subtitleedit.png
 
 %files
 %pkgdir
-%_bindir/%name
-%_datadir/applications/%name.desktop
-%_datadir/pixmaps/%name.png
+%_bindir/%realname
+%_datadir/applications/%realname.desktop
+%_datadir/pixmaps/%realname.png
