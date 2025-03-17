@@ -126,7 +126,6 @@ appstream-util validate-relax --nonet %buildroot%_metainfodir/%rdnn.metainfo.xml
 %files
 %doc README.md
 %license LICENSE
-%license LICENSE.dependencies
 %_bindir/coolercontrol
 %_datadir/applications/%rdnn.desktop
 %_datadir/metainfo/%rdnn.metainfo.xml
