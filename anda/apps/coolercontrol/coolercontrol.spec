@@ -23,7 +23,7 @@ Requires:       libappindicator-gtk3
 Requires:       coolercontrold
 BuildRequires:  git-core make nodejs-npm libdrm-devel curl wget file mold
 BuildRequires:  systemd-rpm-macros anda-srpm-macros cargo >= 1.75.0 cargo-rpm-macros
-BuildRequires:  autoconf automake binutils bison flex gcc gcc-c++ gdb libtool pkgconf strace
+BuildRequires:  autoconf automake binutils bison flex gcc gcc-c++ gdb libtool pkgconf strace cmake
 BuildRequires:  pkgconfig(webkit2gtk-4.1) pkgconfig(openssl) pkgconfig(librsvg-2.0)
 BuildRequires:  libappindicator-gtk3-devel
 BuildRequires:  python3-devel python3-wheel python3-liquidctl python3-setproctitle python3-fastapi python3-uvicorn python3-pip
@@ -57,10 +57,6 @@ pushd coolercontrold
 %cargo_prep_online &
 popd
 
-pushd coolercontrol-ui
-npm ci --prefer-offline &
-popd
-
 wait
 
 
@@ -74,8 +70,9 @@ pushd coolercontrol-liqctld
 %pyproject_wheel
 popd
 
-pushd coolercontrol-ui
-npm run build &
+pushd coolercontrol
+%cmake
+%cmake_build
 wait
 popd
 
@@ -92,9 +89,8 @@ install -Dpm755 target/rpm/coolercontrold %buildroot%_bindir/coolercontrold
 install -Dpm644 LICENSE.dependencies %buildroot%_datadir/licenses/coolercontrold/LICENSE.dependencies
 popd
 
-pushd coolercontrol-ui/src-tauri
-install -Dpm755 target/rpm/coolercontrol %buildroot%_bindir/coolercontrol
-install -Dpm644 LICENSE.dependencies %buildroot%_datadir/licenses/%name/LICENSE.dependencies
+pushd coolercontrol/
+%cmake_install
 popd
 
 install -Dpm644 packaging/systemd/coolercontrol-liqctld.service %buildroot%_unitdir/coolercontrol-liqctld.service
