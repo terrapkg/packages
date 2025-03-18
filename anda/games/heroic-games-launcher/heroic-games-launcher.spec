@@ -51,7 +51,6 @@ Packager:      Gilver E. <rockgrub@disroot.org>
 Heroic is a Free and Open Source Epic, GOG, and Amazon Prime Games launcher for Linux, Windows, and macOS.
 
 %prep
-rm -rf ./*
 %git_clone https://github.com/%{org_name}/%{git_name} v%{version}
 sed -i 's/Exec=.*%u/Exec=\/usr\/share\/%{shortname}\/%{shortname} %U/g' flatpak/%{reverse_dns}.desktop
 sed -i 's/Icon=.*/Icon=%{shortname}/g' flatpak/%{reverse_dns}.desktop
