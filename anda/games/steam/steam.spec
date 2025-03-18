@@ -148,9 +148,7 @@ This package contains the installer for the Steam software distribution service.
 Summary:        Fix for keyboard/mouse/tablet being detected as joystick in Linux
 Obsoletes:      steam-devices < %{version}-%{release}
 BuildArch:      noarch
-Provides:       steam-devices = %{?epoch:%{epoch}:}%{version}-%{release}
 # Fix upgrading from old versions
-Provides:       steam-devices <= %{?epoch:%{epoch}:}1.0.0.82-1%{?dist}.x86_64
 Obsoletes:      %{name} <= %{?epoch:%{epoch}:}1.0.0.82-1%{?dist}.x86_64
 Requires:       %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
