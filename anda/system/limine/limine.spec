@@ -27,7 +27,8 @@ cp %SOURCE1 .
 
 %files
 %doc README.md 3RDPARTY.md FAQ.md CONFIG.md PROTOCOL.md COPYING USAGE.md
-%license COPYING LicenseRef-scancode-bsd-nodisclaimer-unmodified.txt
+%doc LICENSES/LicenseRef-scancode-bsd-nodisclaimer-unmodified.txt
+%license COPYING
 %_bindir/limine
 %_includedir/limine.h
 %_datadir/limine/
