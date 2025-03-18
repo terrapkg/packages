@@ -177,7 +177,7 @@ mkdir -p %{buildroot}%{_prefix}/lib/systemd/system.conf.d/
 mkdir -p %{buildroot}%{_prefix}/lib/systemd/user.conf.d/
 install -m 644 -p %{SOURCE7} %{buildroot}%{_prefix}/lib/systemd/system.conf.d/
 install -m 644 -p %{SOURCE7} %{buildroot}%{_prefix}/lib/systemd/user.conf.d/
-install -m 775 -p %{SOURCE11} %{buildroot}%{_bindir}/steamrestart
+install -m 775 -p %{SOURCE9} %{buildroot}%{_bindir}/steamrestart
 
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
