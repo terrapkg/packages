@@ -116,6 +116,9 @@ Supplements:    %{name}
 %if 0%{?fedora} <= 41
 Provides:       %{name}-terminfo = %{commit_date}.%{shortcommit}
 %endif
+%if 0%{?fedora} >= 42
+Requires:       ncurses-term >= 6.5-5.20250125%{?dist}
+%endif
 BuildArch:      noarch
 
 %description    terminfo
