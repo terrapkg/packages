@@ -126,7 +126,7 @@ zig build \
     -Demit-terminfo
 
 #Don't conflict with ncurses-term on F42 and up
-%if 0%{fedora} >= 42
+%if 0%{?fedora} >= 42
 rm -rf %{buildroot}%{_datadir}/terminfo/g/ghostty
 %endif
 
