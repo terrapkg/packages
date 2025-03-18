@@ -83,6 +83,9 @@ This package contains files allowing Ghostty to integrate with various shells.
 %package        terminfo
 Summary:        Ghostty terminfo
 Supplements:    %{name}
+%if 0%{?fedora} >= 42
+Requires:       ncurses-term >= 6.5-5.20250125%{?dist}
+%endif
 BuildArch:      noarch
 
 %description    terminfo
