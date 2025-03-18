@@ -130,7 +130,7 @@ Recommends:     xdg-user-dirs
 Recommends:     gobject-introspection
 
 Requires:       steam-devices
-Requires:       steam-joystick-rules
+Requires:       steam-device-rules
 
 # Workaround for GNOME issues with libei
 Recommends:     (extest-%{name} if gnome-shell)
@@ -142,12 +142,12 @@ and screenshot functionality, and many social features.
 
 This package contains the installer for the Steam software distribution service.
 
-%package        joystick-rules
+%package        device-rules
 Summary:        Fix for keyboard/mouse/tablet being detected as joystick in Linux
 Obsoletes:      steam-devices < %{version}-%{release}
 BuildArch:      noarch
 
-%description    joystick-rules
+%description    device-rules
 This package contains fixes for devices being detected incorrectly by Steam.
 
 %prep
@@ -202,7 +202,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%{appstream_id
 %dir %{_prefix}/lib/systemd/user.conf.d/
 %{_prefix}/lib/systemd/user.conf.d/01-steam.conf
 
-%files joystick-rules
+%files device-rules
 %{_udevrulesdir}/51-these-are-not-joysticks-rm.rules
 
 %changelog
