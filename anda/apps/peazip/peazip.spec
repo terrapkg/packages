@@ -3,7 +3,7 @@
 
 Name:           peazip
 Version:        10.3.0
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Free Zip / Unzip software and Rar file extractor. Cross-platform file and archive manager
 License:        LGPL-3.0-only
 URL:            https://peazip.github.io
@@ -15,7 +15,7 @@ BuildRequires:  lazarus-lcl-gtk3
 BuildRequires:  lazarus-lcl-qt5
 BuildRequires:  lazarus-lcl-qt6
 Requires:       (peazip-gtk2 or peazip-gtk3 or peazip-gtk4 or peazip-qt5 or peazip-qt6)
-Requires:       7zip brotli zstd
+Requires:       p7zip brotli zstd
 Suggests:       (peazip-gtk4 if gtk4)
 Suggests:       (peazip-qt5 if qt5-qtbase)
 Suggests:       (peazip-qt6 if qt6-qtbase)
