@@ -132,9 +132,6 @@ Recommends:     gobject-introspection
 Requires:       steam-devices
 Requires:       steam-device-rules
 
-# https://github.com/ValvePython/steam
-Recommends:     python3-steam
-
 # Workaround for GNOME issues with libei
 Recommends:     (extest-%{name} if gnome-shell)
 
