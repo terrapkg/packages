@@ -8,7 +8,7 @@
 
 Name:           ghostty
 Version:        1.1.2
-Release:        2%?dist
+Release:        3%?dist
 Summary:        A fast, native terminal emulator written in Zig.
 License:        MIT AND MPL-2.0 AND OFL-1.1 AND (WTFPL OR CC0-1.0) AND Apache-2.0
 URL:            https://ghostty.org/
@@ -83,6 +83,9 @@ This package contains files allowing Ghostty to integrate with various shells.
 %package        terminfo
 Summary:        Ghostty terminfo
 Supplements:    %{name}
+%if 0%{?fedora} >= 42
+Requires:       ncurses-term >= 6.5-5.20250125%{?dist}
+%endif
 BuildArch:      noarch
 
 %description    terminfo
@@ -125,60 +128,67 @@ zig build \
     -Demit-termcap \
     -Demit-terminfo
 
+#Don't conflict with ncurses-term on F42 and up
+%if 0%{?fedora} >= 42
+rm -rf %{buildroot}%{_datadir}/terminfo/g/ghostty
+%endif
+
 %files
 %doc README.md
 %license LICENSE
-%_bindir/ghostty
-%_datadir/applications/com.mitchellh.ghostty.desktop
-%_datadir/bat/syntaxes/ghostty.sublime-syntax
-%_datadir/ghostty/
-%_datadir/kio/servicemenus/com.mitchellh.ghostty.desktop
-%_datadir/nautilus-python/extensions/ghostty.py
-%_datadir/nvim/site/compiler/ghostty.vim
-%_datadir/nvim/site/ftdetect/ghostty.vim
-%_datadir/nvim/site/ftplugin/ghostty.vim
-%_datadir/nvim/site/syntax/ghostty.vim
-%_datadir/vim/vimfiles/compiler/ghostty.vim
-%_datadir/vim/vimfiles/ftdetect/ghostty.vim
-%_datadir/vim/vimfiles/ftplugin/ghostty.vim
-%_datadir/vim/vimfiles/syntax/ghostty.vim
-%_iconsdir/hicolor/16x16/apps/com.mitchellh.ghostty.png
-%_iconsdir/hicolor/16x16@2/apps/com.mitchellh.ghostty.png
-%_iconsdir/hicolor/32x32/apps/com.mitchellh.ghostty.png
-%_iconsdir/hicolor/32x32@2/apps/com.mitchellh.ghostty.png
-%_iconsdir/hicolor/128x128/apps/com.mitchellh.ghostty.png
-%_iconsdir/hicolor/128x128@2/apps/com.mitchellh.ghostty.png
-%_iconsdir/hicolor/256x256/apps/com.mitchellh.ghostty.png
-%_iconsdir/hicolor/256x256@2/apps/com.mitchellh.ghostty.png
-%_iconsdir/hicolor/512x512/apps/com.mitchellh.ghostty.png
-%_iconsdir/hicolor/1024x1024/apps/com.mitchellh.ghostty.png
-%_mandir/man1/ghostty.1.gz
-%_mandir/man5/ghostty.5.gz
+%{_bindir}/ghostty
+%{_datadir}/applications/com.mitchellh.ghostty.desktop
+%{_datadir}/bat/syntaxes/ghostty.sublime-syntax
+%{_datadir}/ghostty/
+%{_datadir}/kio/servicemenus/com.mitchellh.ghostty.desktop
+%{_datadir}/nautilus-python/extensions/ghostty.py
+%{_datadir}/nvim/site/compiler/ghostty.vim
+%{_datadir}/nvim/site/ftdetect/ghostty.vim
+%{_datadir}/nvim/site/ftplugin/ghostty.vim
+%{_datadir}/nvim/site/syntax/ghostty.vim
+%{_datadir}/vim/vimfiles/compiler/ghostty.vim
+%{_datadir}/vim/vimfiles/ftdetect/ghostty.vim
+%{_datadir}/vim/vimfiles/ftplugin/ghostty.vim
+%{_datadir}/vim/vimfiles/syntax/ghostty.vim
+%{_iconsdir}/hicolor/16x16/apps/com.mitchellh.ghostty.png
+%{_iconsdir}/hicolor/16x16@2/apps/com.mitchellh.ghostty.png
+%{_iconsdir}/hicolor/32x32/apps/com.mitchellh.ghostty.png
+%{_iconsdir}/hicolor/32x32@2/apps/com.mitchellh.ghostty.png
+%{_iconsdir}/hicolor/128x128/apps/com.mitchellh.ghostty.png
+%{_iconsdir}/hicolor/128x128@2/apps/com.mitchellh.ghostty.png
+%{_iconsdir}/hicolor/256x256/apps/com.mitchellh.ghostty.png
+%{_iconsdir}/hicolor/256x256@2/apps/com.mitchellh.ghostty.png
+%{_iconsdir}/hicolor/512x512/apps/com.mitchellh.ghostty.png
+%{_iconsdir}/hicolor/1024x1024/apps/com.mitchellh.ghostty.png
+%{_mandir}/man1/ghostty.1.gz
+%{_mandir}/man5/ghostty.5.gz
 
 %files bash-completion
-%bash_completions_dir/ghostty.bash
+%{bash_completions_dir}/ghostty.bash
 
 %files fish-completion
-%fish_completions_dir/ghostty.fish
+%{fish_completions_dir}/ghostty.fish
 
 %files zsh-completion
-%zsh_completions_dir/_ghostty
+%{zsh_completions_dir}/_ghostty
 
 %files shell-integration
-%_datadir/ghostty/shell-integration/bash/bash-preexec.sh
-%_datadir/ghostty/shell-integration/bash/ghostty.bash
-%_datadir/ghostty/shell-integration/elvish/lib/ghostty-integration.elv
-%_datadir/ghostty/shell-integration/fish/vendor_conf.d/ghostty-shell-integration.fish
-%_datadir/ghostty/shell-integration/zsh/.zshenv
-%_datadir/ghostty/shell-integration/zsh/ghostty-integration
+%{_datadir}/ghostty/shell-integration/bash/bash-preexec.sh
+%{_datadir}/ghostty/shell-integration/bash/ghostty.bash
+%{_datadir}/ghostty/shell-integration/elvish/lib/ghostty-integration.elv
+%{_datadir}/ghostty/shell-integration/fish/vendor_conf.d/ghostty-shell-integration.fish
+%{_datadir}/ghostty/shell-integration/zsh/.zshenv
+%{_datadir}/ghostty/shell-integration/zsh/ghostty-integration
 
 %files terminfo
-%_datadir/terminfo/g/ghostty
-%_datadir/terminfo/x/xterm-ghostty
+%if 0%{?fedora} < 42
+%{_datadir}/terminfo/g/ghostty
+%endif
+%{_datadir}/terminfo/x/xterm-ghostty
 
 %files terminfo-source
-%_datadir/terminfo/ghostty.termcap
-%_datadir/terminfo/ghostty.terminfo
+%{_datadir}/terminfo/ghostty.termcap
+%{_datadir}/terminfo/ghostty.terminfo
 
 %changelog
 * Fri Jan 31 2025 Gilver E. <rockgrub@disroot.org>
