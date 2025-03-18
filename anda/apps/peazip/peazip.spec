@@ -15,7 +15,7 @@ BuildRequires:  lazarus-lcl-gtk3
 BuildRequires:  lazarus-lcl-qt5
 BuildRequires:  lazarus-lcl-qt6
 Requires:       (peazip-gtk2 or peazip-gtk3 or peazip-gtk4 or peazip-qt5 or peazip-qt6)
-Requires:       7zip brotli zstd
+Requires:       p7zip brotli zstd
 Suggests:       (peazip-gtk4 if gtk4)
 Suggests:       (peazip-qt5 if qt5-qtbase)
 Suggests:       (peazip-qt6 if qt6-qtbase)
