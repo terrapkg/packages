@@ -155,6 +155,11 @@ zig build \
     -Demit-termcap \
     -Demit-terminfo
 
+#Don't conflict with ncurses-term on F42 and up
+%if 0%{?fedora} >= 42
+rm -rf %{buildroot}%{_datadir}/terminfo/g/ghostty
+%endif
+
 %find_lang %{reverse_dns}
 
 %files -f %{reverse_dns}.lang
@@ -208,7 +213,9 @@ zig build \
 %{_datadir}/%{base_name}/shell-integration/zsh/%{base_name}-integration
 
 %files terminfo
+%if 0%{?fedora} < 42
 %{_datadir}/terminfo/g/%{base_name}
+%endif
 %{_datadir}/terminfo/x/xterm-%{base_name}
 
 %files terminfo-source
