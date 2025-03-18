@@ -1,5 +1,4 @@
-let json = gh_rawfile("Heroic-Games-Launcher/HeroicGamesLauncher", "main", "package.json");
-let v = find("\"version\": \"([\\d.]+)\"", json, 1);
+let v = gh_rawfile("Heroic-Games-Launcher/HeroicGamesLauncher", "main", "package.json").json()["version"];
 rpm.version(v);
 // Versions for bundled binaries. Most important for Legendary as Fedora packages this.
 if rpm.changed() {
