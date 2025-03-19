@@ -64,8 +64,8 @@ pnpm dist:linux
 mkdir -p %{buildroot}%{_datadir}/%{shortname}
 mv $(find . -iname "*LICENSE*" -not -path "./node_modules/*" -and -not -path "./public/*") .
 mv LICENSE node-font-list.LICENSE
-rm -rf dist/linux-unpacked/resources/app.asar.unpacked/font-list/libs/darwin
-rm -rf dist/linux-unpacked/resources/app.asar.unpacked/font-list/libs/win32
+rm -rf dist/linux-unpacked/resources/app.asar.unpacked/node_modules/font-list/libs/darwin
+rm -rf dist/linux-unpacked/resources/app.asar.unpacked/node_modules/font-list/libs/win32
 %ifarch aarch64
 ### Needs testing once aarch64 Heroic is complete:
 #rm -rf dist/linux-unpacked/resources/app.asar.unpacked/build/bin/x64
