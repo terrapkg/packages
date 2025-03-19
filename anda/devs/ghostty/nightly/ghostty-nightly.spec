@@ -1,4 +1,4 @@
-%global commit bd7c5cc95f872d241ddc8aea4c81c540c6d9c19f
+%global commit 41130ce25f77d3e8b4e4663ba73426b68fdf5d27
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global fulldate 2025-03-18
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
@@ -135,7 +135,7 @@ This package contains files for Ghostty's terminfo. Available for debugging use.
 
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
-%autosetup -n %{base_name}-source
+%autosetup -n %{base_name}-%{ver}-main+%{shortcommit}
 
 ZIG_GLOBAL_CACHE_DIR="%{cache_dir}" ./nix/build-support/fetch-zig-cache.sh
 
