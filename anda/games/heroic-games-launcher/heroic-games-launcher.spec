@@ -17,7 +17,7 @@
 
 Name:          %{shortname}-games-launcher
 Version:       2.16.1
-Release:       2%?dist
+Release:       3%?dist
 Summary:       A games launcher for GOG, Amazon, and Epic Games
 License:       GPL-3.0-only AND MIT AND BSD-3-Clause
 URL:           https://heroicgameslauncher.com
@@ -63,7 +63,9 @@ pnpm dist:linux
 %install
 mkdir -p %{buildroot}%{_datadir}/%{shortname}
 mv $(find . -iname "*LICENSE*" -not -path "./node_modules/*" -and -not -path "./public/*") .
-mv LICENSE LICENSE.fonts
+mv LICENSE node-font-list.LICENSE
+rm -rf dist/linux-unpacked/resources/app.asar.unpacked/font-list/libs/darwin
+rm -rf dist/linux-unpacked/resources/app.asar.unpacked/font-list/libs/win32
 %ifarch aarch64
 ### Needs testing once aarch64 Heroic is complete:
 #rm -rf dist/linux-unpacked/resources/app.asar.unpacked/build/bin/x64
@@ -96,7 +98,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{shortname}.desktop
 %license legendary.LICENSE
 %license LICENSES.chromium.html
 %license LICENSE.electron.txt
-%license LICENSE.fonts
+%license node-font-list.LICENSE
 %dir %{_datadir}/%{shortname}
 %{_datadir}/%{shortname}/*
 %{_bindir}/%{shortname}
