@@ -86,7 +86,7 @@ install -Dm644 dist/.icon-set/icon_128x128.png %{buildroot}%{_iconsdir}/hicolor/
 install -Dm644 dist/.icon-set/icon_256x256.png %{buildroot}%{_iconsdir}/hicolor/256x256/apps/%{shortname}.png
 install -Dm644 dist/.icon-set/icon_512x512.png %{buildroot}%{_iconsdir}/hicolor/512x512/apps/%{shortname}.png
 install -Dm644 dist/.icon-set/icon_1024.png %{buildroot}%{_iconsdir}/hicolor/1024x1024/apps/%{shortname}.png
-install -Dm644 flatpak/%{reverse_dns}.desktop %{buildroot}%{_datadir}/applications/apps/%{shortname}.desktop
+install -Dm644 flatpak/%{reverse_dns}.desktop %{buildroot}%{_datadir}/applications/%{shortname}.desktop
 
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{shortname}.desktop
