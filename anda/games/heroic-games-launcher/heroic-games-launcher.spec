@@ -63,6 +63,7 @@ pnpm dist:linux
 %install
 mkdir -p %{buildroot}%{_datadir}/%{shortname}
 mv $(find . -iname "*LICENSE*" -not -path "./node_modules/*" -and -not -path "./public/*") .
+mv LICENSE LICENSE.fonts
 %ifarch aarch64
 ### Needs testing once aarch64 Heroic is complete:
 #rm -rf dist/linux-unpacked/resources/app.asar.unpacked/build/bin/x64
@@ -92,10 +93,10 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{shortname}.desktop
 %doc     README.md
 %doc     CODE_OF_CONDUCT.md
 %license COPYING
-%license LICENSE
 %license legendary.LICENSE
-%license LICENSE.electron.txt
 %license LICENSES.chromium.html
+%license LICENSE.electron.txt
+%license LICENSE.fonts
 %dir %{_datadir}/%{shortname}
 %{_datadir}/%{shortname}/*
 %{_bindir}/%{shortname}
