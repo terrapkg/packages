@@ -104,14 +104,14 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{shortname}.desktop
 %{_bindir}/%{shortname}
 %{_bindir}/%{name}
 %{_datadir}/applications/%{shortname}.desktop
-%{_iconsdir}/hicolor/16x16/%{shortname}.png
-%{_iconsdir}/hicolor/32x32/%{shortname}.png
-%{_iconsdir}/hicolor/48x48/%{shortname}.png
-%{_iconsdir}/hicolor/64x64/%{shortname}.png
-%{_iconsdir}/hicolor/128x128/%{shortname}.png
-%{_iconsdir}/hicolor/256x256/%{shortname}.png
-%{_iconsdir}/hicolor/512x512/%{shortname}.png
-%{_iconsdir}/hicolor/1024x1024/%{shortname}.png
+%{_iconsdir}/hicolor/16x16/apps/%{shortname}.png
+%{_iconsdir}/hicolor/32x32/apps/%{shortname}.png
+%{_iconsdir}/hicolor/48x48/apps/%{shortname}.png
+%{_iconsdir}/hicolor/64x64/apps/%{shortname}.png
+%{_iconsdir}/hicolor/128x128/apps/%{shortname}.png
+%{_iconsdir}/hicolor/256x256/apps/%{shortname}.png
+%{_iconsdir}/hicolor/512x512/apps/%{shortname}.png
+%{_iconsdir}/hicolor/1024x1024/apps/%{shortname}.png
 
 %changelog
 * Sun Mar 02 2025 Gilver E. <rockgrub@disroot.org>
