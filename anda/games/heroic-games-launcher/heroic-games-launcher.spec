@@ -78,15 +78,15 @@ mkdir -p %{buildroot}%{_bindir}
 # Make names executable
 ln -sr %{_datadir}/%{shortname}/%{shortname} %{buildroot}%{_bindir}/%{name}
 ln -sr %{_datadir}/%{shortname}/%{shortname} %{buildroot}%{_bindir}/%{shortname}
-install -Dm644 dist/.icon-set/icon_16x16.png %{buildroot}%{_iconsdir}/hicolor/16x16/%{shortname}.png
-install -Dm644 dist/.icon-set/icon_32x32.png %{buildroot}%{_iconsdir}/hicolor/32x32/%{shortname}.png
-install -Dm644 dist/.icon-set/icon_48x48.png %{buildroot}%{_iconsdir}/hicolor/48x48/%{shortname}.png
-install -Dm644 dist/.icon-set/icon_64x64.png %{buildroot}%{_iconsdir}/hicolor/64x64/%{shortname}.png
-install -Dm644 dist/.icon-set/icon_128x128.png %{buildroot}%{_iconsdir}/hicolor/128x128/%{shortname}.png
-install -Dm644 dist/.icon-set/icon_256x256.png %{buildroot}%{_iconsdir}/hicolor/256x256/%{shortname}.png
-install -Dm644 dist/.icon-set/icon_512x512.png %{buildroot}%{_iconsdir}/hicolor/512x512/%{shortname}.png
-install -Dm644 dist/.icon-set/icon_1024.png %{buildroot}%{_iconsdir}/hicolor/1024x1024/%{shortname}.png
-install -Dm644 flatpak/%{reverse_dns}.desktop %{buildroot}%{_datadir}/applications/%{shortname}.desktop
+install -Dm644 dist/.icon-set/icon_16x16.png %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{shortname}.png
+install -Dm644 dist/.icon-set/icon_32x32.png %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{shortname}.png
+install -Dm644 dist/.icon-set/icon_48x48.png %{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{shortname}.png
+install -Dm644 dist/.icon-set/icon_64x64.png %{buildroot}%{_iconsdir}/hicolor/64x64/apps/%{shortname}.png
+install -Dm644 dist/.icon-set/icon_128x128.png %{buildroot}%{_iconsdir}/hicolor/128x128/apps/%{shortname}.png
+install -Dm644 dist/.icon-set/icon_256x256.png %{buildroot}%{_iconsdir}/hicolor/256x256/apps/%{shortname}.png
+install -Dm644 dist/.icon-set/icon_512x512.png %{buildroot}%{_iconsdir}/hicolor/512x512/apps/%{shortname}.png
+install -Dm644 dist/.icon-set/icon_1024.png %{buildroot}%{_iconsdir}/hicolor/1024x1024/apps/%{shortname}.png
+install -Dm644 flatpak/%{reverse_dns}.desktop %{buildroot}%{_datadir}/applications/apps/%{shortname}.desktop
 
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{shortname}.desktop
