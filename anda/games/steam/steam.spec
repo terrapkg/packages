@@ -5,7 +5,7 @@
 
 Name:           steam
 Version:        1.0.0.82
-Release:        2%?dist
+Release:        3%?dist
 Summary:        Installer for the Steam software distribution service
 # Redistribution and repackaging for Linux is allowed, see license file. udev rules are MIT.
 License:        Steam License Agreement and MIT
@@ -30,12 +30,8 @@ Source6:        https://raw.githubusercontent.com/denilsonsa/udev-joystick-black
 # Configure limits in systemd
 Source7:        https://github.com/terrapkg/pkg-steam/raw/refs/heads/main/01-steam.conf
 
-# Newer udev rules than what is bundled in the tarball
-Source8:        https://raw.githubusercontent.com/ValveSoftware/steam-devices/master/60-steam-input.rules
-Source9:        https://raw.githubusercontent.com/ValveSoftware/steam-devices/master/60-steam-vr.rules
-
 # Steam restart script
-Source11:       steamrestart.sh
+Source9:       steamrestart.sh
 
 # Do not install desktop file in lib/steam, do not install apt sources
 Patch0:         https://github.com/terrapkg/pkg-steam/raw/refs/heads/main/steam-makefile.patch
@@ -133,7 +129,8 @@ Recommends:     xdg-user-dirs
 # Allow using Steam Runtime Launch Options
 Recommends:     gobject-introspection
 
-Requires:       steam-devices = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       steam-devices
+Requires:       steam-device-rules
 
 # Workaround for GNOME issues with libei
 Recommends:     (extest-%{name} if gnome-shell)
@@ -145,16 +142,13 @@ and screenshot functionality, and many social features.
 
 This package contains the installer for the Steam software distribution service.
 
-%package        devices
-Summary:        Permissions required by Steam for gaming devices
+%package        device-rules
+Summary:        Fix for keyboard/mouse/tablet being detected as joystick in Linux
+Obsoletes:      steam-devices < %{version}-%{release}
 BuildArch:      noarch
 
-%description    devices
-Steam is a software distribution service with an online store, automated
-installation, automatic updates, achievements, SteamCloud synchronized savegame
-and screenshot functionality, and many social features.
-
-This package contains the necessary permissions for gaming devices.
+%description    device-rules
+This package contains fixes for devices being detected incorrectly by Steam.
 
 %prep
 %autosetup -p1 -n %{name}-launcher
@@ -171,7 +165,7 @@ rm -fr %{buildroot}%{_docdir}/%{name}/ \
     %{buildroot}%{_bindir}/%{name}deps
 
 mkdir -p %{buildroot}%{_udevrulesdir}/
-install -m 644 -p %{SOURCE6} %{SOURCE8} %{SOURCE9} \
+install -m 644 -p %{SOURCE6} \
     %{buildroot}%{_udevrulesdir}/
 
 # Environment files
@@ -183,7 +177,7 @@ mkdir -p %{buildroot}%{_prefix}/lib/systemd/system.conf.d/
 mkdir -p %{buildroot}%{_prefix}/lib/systemd/user.conf.d/
 install -m 644 -p %{SOURCE7} %{buildroot}%{_prefix}/lib/systemd/system.conf.d/
 install -m 644 -p %{SOURCE7} %{buildroot}%{_prefix}/lib/systemd/user.conf.d/
-install -m 775 -p %{SOURCE11} %{buildroot}%{_bindir}/steamrestart
+install -m 775 -p %{SOURCE9} %{buildroot}%{_bindir}/steamrestart
 
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
@@ -208,8 +202,8 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%{appstream_id
 %dir %{_prefix}/lib/systemd/user.conf.d/
 %{_prefix}/lib/systemd/user.conf.d/01-steam.conf
 
-%files devices
-%{_udevrulesdir}/*
+%files device-rules
+%{_udevrulesdir}/51-these-are-not-joysticks-rm.rules
 
 %changelog
 * Sun Sep 01 2024 Simone Caronni <negativo17@gmail.com> - 1.0.0.81-1

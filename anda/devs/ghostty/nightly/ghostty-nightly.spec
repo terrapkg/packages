@@ -1,6 +1,6 @@
-%global commit c344c320eb93d800da36c035790530be0a2d618f
+%global commit bd7c5cc95f872d241ddc8aea4c81c540c6d9c19f
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global fulldate 2025-03-16
+%global fulldate 2025-03-18
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
 %global ver 1.1.3
@@ -116,6 +116,9 @@ Supplements:    %{name}
 %if 0%{?fedora} <= 41
 Provides:       %{name}-terminfo = %{commit_date}.%{shortcommit}
 %endif
+%if 0%{?fedora} >= 42
+Requires:       ncurses-term >= 6.5-5.20250125%{?dist}
+%endif
 BuildArch:      noarch
 
 %description    terminfo
@@ -154,6 +157,11 @@ zig build \
     -Demit-docs \
     -Demit-termcap \
     -Demit-terminfo
+
+#Don't conflict with ncurses-term on F42 and up
+%if 0%{?fedora} >= 42
+rm -rf %{buildroot}%{_datadir}/terminfo/g/ghostty
+%endif
 
 %find_lang %{reverse_dns}
 
@@ -208,7 +216,9 @@ zig build \
 %{_datadir}/%{base_name}/shell-integration/zsh/%{base_name}-integration
 
 %files terminfo
+%if 0%{?fedora} < 42
 %{_datadir}/terminfo/g/%{base_name}
+%endif
 %{_datadir}/terminfo/x/xterm-%{base_name}
 
 %files terminfo-source
