@@ -21,19 +21,19 @@ Requires:       hicolor-icon-theme
 Requires:       webkit2gtk4.1
 Requires:       libappindicator-gtk3
 Requires:       coolercontrold
-BuildRequires:  git-core make nodejs-npm libdrm-devel curl wget file mold
+BuildRequires:  nodejs-npm libdrm-devel curl wget file mold
 BuildRequires:  systemd-rpm-macros anda-srpm-macros cargo >= 1.75.0 cargo-rpm-macros
-BuildRequires:  autoconf automake binutils bison flex gcc gcc-c++ gdb libtool pkgconf strace
-BuildRequires:  pkgconfig(webkit2gtk-4.1) pkgconfig(openssl) pkgconfig(librsvg-2.0)
-BuildRequires:  libappindicator-gtk3-devel
-BuildRequires:  python3-devel python3-wheel python3-liquidctl python3-setproctitle python3-fastapi python3-uvicorn python3-pip
+BuildRequires:  binutils bison cmake flex gcc gcc-c++ libtool strace
 BuildRequires:  libappstream-glib
 BuildRequires:  desktop-file-utils
+BuildRequires:  cmake(Qt6)
+BuildRequires:  cmake(Qt6WebEngineWidgets)
 %description %_desc
 
 %package liqctld
 Summary:        CoolerControl daemon for interacting with liquidctl devices on a system level
 Requires:       coolercontrold
+BuildRequires:  python3-devel python3-wheel python3-liquidctl python3-setproctitle python3-fastapi python3-uvicorn python3-pip
 %description liqctld %_desc
 coolercontrol-liqctld is a CoolerControl daemon for interacting with liquidctl devices on a system level, and is
 installed as the coolercontrol-liqctld application. Its main purpose is to wrap the underlying
@@ -43,6 +43,8 @@ It also enables parallel device communication and access to specific device prop
 %package -n coolercontrold
 Summary:        Monitor and control your cooling devices.
 Requires:       coolercontrol-liqctld
+BuildRequires:  pkgconfig(webkit2gtk-4.1) pkgconfig(openssl) pkgconfig(librsvg-2.0)
+BuildRequires:  libappindicator-gtk3-devel
 %description -n coolercontrold %_desc
 coolercontrold is the main daemon containing the core logic for interfacing with devices, and installed as
 "coolercontrold". It is meant to run in the background as a system daemon. It handles all device
@@ -55,13 +57,6 @@ supported devices. It has an API that services client programs like the coolerco
 
 pushd coolercontrold
 %cargo_prep_online &
-popd
-
-pushd coolercontrol-ui
-npm ci --prefer-offline &
-pushd src-tauri
-%cargo_prep_online &
-popd
 popd
 
 wait
@@ -77,13 +72,10 @@ pushd coolercontrol-liqctld
 %pyproject_wheel
 popd
 
-pushd coolercontrol-ui
-npm run build &
-pushd src-tauri
-%{cargo_license_online} > LICENSE.dependencies &
+pushd coolercontrol
+%cmake
+%cmake_build
 wait
-%cargo_build -f custom-protocol
-popd
 popd
 
 
@@ -99,9 +91,8 @@ install -Dpm755 target/rpm/coolercontrold %buildroot%_bindir/coolercontrold
 install -Dpm644 LICENSE.dependencies %buildroot%_datadir/licenses/coolercontrold/LICENSE.dependencies
 popd
 
-pushd coolercontrol-ui/src-tauri
-install -Dpm755 target/rpm/coolercontrol %buildroot%_bindir/coolercontrol
-install -Dpm644 LICENSE.dependencies %buildroot%_datadir/licenses/%name/LICENSE.dependencies
+pushd coolercontrol/
+%cmake_install
 popd
 
 install -Dpm644 packaging/systemd/coolercontrol-liqctld.service %buildroot%_unitdir/coolercontrol-liqctld.service
@@ -135,7 +126,6 @@ appstream-util validate-relax --nonet %buildroot%_metainfodir/%rdnn.metainfo.xml
 %files
 %doc README.md
 %license LICENSE
-%license LICENSE.dependencies
 %_bindir/coolercontrol
 %_datadir/applications/%rdnn.desktop
 %_datadir/metainfo/%rdnn.metainfo.xml
