@@ -11,7 +11,6 @@ Source0:        https://github.com/NVIDIA/%{name}/archive/v%{version}.tar.gz
 Patch0:         fix-revision.patch
 Patch1:         fix-makefile.patch
 Patch2:         fix-debug-packages.patch
-BuildRequires:  bmake
 BuildRequires:  elfutils-libelf-devel
 BuildRequires:  gcc
 BuildRequires:  git
