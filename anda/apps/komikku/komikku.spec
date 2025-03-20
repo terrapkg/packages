@@ -7,7 +7,7 @@
 Name:           komikku
 Version:        1.73.0
 %forgemeta
-Release:        1%?dist
+Release:        2%?dist
 Summary:        A manga reader for GNOME
 
 BuildArch:      noarch
