@@ -55,7 +55,7 @@ BuildArch:      x86_64
 %{make_build}
 
 %install
-%make_install PYTHONDIR=%python3_sitelib
+%make_install make DESTDIR=%{buildroot} PYTHONDIR=%{python3_sitelib}
 
 %files
 %_bindir/umu-run
