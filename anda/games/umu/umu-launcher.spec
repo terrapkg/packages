@@ -1,6 +1,6 @@
 Name:           umu-launcher
 Version:        1.2.6
-Release:        1%?dist
+Release:        2%?dist
 Summary:        A tool for launching non-steam games with proton
 
 License:        GPL-3.0-only
