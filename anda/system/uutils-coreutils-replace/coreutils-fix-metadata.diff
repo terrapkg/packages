@@ -1,5 +1,5 @@
---- coreutils-*/Cargo.toml	1970-01-01T00:00:01+00:00
-+++ coreutils-*/Cargo.toml	2024-12-05T01:07:05.985631+00:00
+--- coreutils-*/Cargo.toml
++++ coreutils-*/Cargo.toml
 @@ -30,6 +30,7 @@
  categories = ["command-line-utilities"]
  license = "MIT"
