@@ -9,7 +9,7 @@
 
 Name:           rust-gping
 Version:        1.19.0
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Ping, but with a graph
 
 License:        MIT
@@ -64,7 +64,6 @@ use the "default" feature of the "%{crate}" crate.
 %cargo_prep_online
 
 %build
-%cargo_build
 
 %install
 %cargo_install
@@ -73,6 +72,3 @@ use the "default" feature of the "%{crate}" crate.
 %check
 %cargo_test
 %endif
-
-%changelog
-%autochangelog
