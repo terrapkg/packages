@@ -1,5 +1,5 @@
 Name:           opengamepadui
-Version:        0.35.8
+Version:        0.37.0
 Release:        1%?dist
 Summary:        Open source gamepad-native game launcher and overlay
 

@@ -1,6 +1,6 @@
 Name:			keyd
 Version:		2.5.0
-Release:		2%?dist
+Release:		3%?dist
 Summary:		Key remapping daemon for linux
 URL:			https://github.com/rvaiya/keyd
 License:		MIT
@@ -15,7 +15,7 @@ level input primitives (evdev, uinput).
 %prep
 %autosetup
 cat<<EOF > keyd.conf
-g keyd
+g keyd -
 EOF
 
 %build

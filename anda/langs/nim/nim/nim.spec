@@ -71,10 +71,6 @@ koch tools -t:-fPIE -l:-pie &
 nim c -d:danger -t:-fPIE -l:-pie nimsuggest/nimsuggest.nim &
 wait
 
-%ifarch x86_64
-sed -i '/<link.*fonts.googleapis.com/d' doc/html/*.html
-%endif
-
 
 %install
 export CFLAGS="${CFLAGS} -Ofast -fuse-ld=mold"

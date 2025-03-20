@@ -1,0 +1,128 @@
+--- kanata-1.8.0/Cargo.toml	1970-01-01T00:00:01+00:00
++++ kanata-1.8.0/Cargo.toml	2025-02-24T02:18:17.384667+00:00
+@@ -124,23 +124,9 @@
+     "kanata-parser/gui",
+     "win_sendinput_send_scancodes",
+     "win_llhook_read_scancodes",
+-    "muldiv",
+-    "strip-ansi-escapes",
+     "open",
+-    "dep:windows-sys",
+-    "winapi/processthreadsapi",
+-    "native-windows-gui/tray-notification",
+-    "native-windows-gui/message-window",
+-    "native-windows-gui/menu",
+-    "native-windows-gui/cursor",
+-    "native-windows-gui/high-dpi",
+-    "native-windows-gui/embed-resource",
+-    "native-windows-gui/image-decoder",
+-    "native-windows-gui/notice",
+-    "native-windows-gui/animation-timer",
+ ]
+ interception_driver = [
+-    "kanata-interception",
+     "kanata-parser/interception_driver",
+ ]
+ passthru_ahk = [
+@@ -154,9 +140,7 @@
+ wasm = ["instant/wasm-bindgen"]
+ win_llhook_read_scancodes = ["kanata-parser/win_llhook_read_scancodes"]
+ win_manifest = [
+-    "embed-resource",
+     "indoc",
+-    "regex",
+ ]
+ win_sendinput_send_scancodes = ["kanata-parser/win_sendinput_send_scancodes"]
+ zippychord = ["kanata-parser/zippychord"]
+@@ -189,91 +173,3 @@
+ [target.'cfg(target_os = "linux")'.dependencies.signal-hook]
+ version = "0.3.14"
+ 
+-[target.'cfg(target_os = "macos")'.dependencies.core-graphics]
+-version = "0.24.0"
+-
+-[target.'cfg(target_os = "macos")'.dependencies.karabiner-driverkit]
+-version = "0.1.4"
+-
+-[target.'cfg(target_os = "macos")'.dependencies.libc]
+-version = "0.2"
+-
+-[target.'cfg(target_os = "macos")'.dependencies.objc]
+-version = "0.2.7"
+-
+-[target.'cfg(target_os = "macos")'.dependencies.open]
+-version = "5"
+-optional = true
+-
+-[target.'cfg(target_os = "macos")'.dependencies.os_pipe]
+-version = "1.2.1"
+-
+-[target.'cfg(target_os = "windows")'.dependencies.encode_unicode]
+-version = "0.3.6"
+-
+-[target.'cfg(target_os = "windows")'.dependencies.kanata-interception]
+-version = "0.3.0"
+-optional = true
+-
+-[target.'cfg(target_os = "windows")'.dependencies.muldiv]
+-version = "1.0.1"
+-optional = true
+-
+-[target.'cfg(target_os = "windows")'.dependencies.native-windows-gui]
+-version = "1.0.13"
+-default-features = false
+-
+-[target.'cfg(target_os = "windows")'.dependencies.open]
+-version = "5"
+-features = ["shellexecute-on-windows"]
+-optional = true
+-
+-[target.'cfg(target_os = "windows")'.dependencies.regex]
+-version = "1.10.4"
+-optional = true
+-
+-[target.'cfg(target_os = "windows")'.dependencies.strip-ansi-escapes]
+-version = "0.2.0"
+-optional = true
+-
+-[target.'cfg(target_os = "windows")'.dependencies.winapi]
+-version = "0.3.9"
+-features = [
+-    "wincon",
+-    "timeapi",
+-    "mmsystem",
+-]
+-
+-[target.'cfg(target_os = "windows")'.dependencies.windows-sys]
+-version = "0.52.0"
+-features = [
+-    "Win32_Devices_DeviceAndDriverInstallation",
+-    "Win32_Devices_Usb",
+-    "Win32_Foundation",
+-    "Win32_Graphics_Gdi",
+-    "Win32_Security",
+-    "Win32_System_Diagnostics_Debug",
+-    "Win32_System_Registry",
+-    "Win32_System_Threading",
+-    "Win32_UI_Controls",
+-    "Win32_UI_Shell",
+-    "Win32_UI_HiDpi",
+-    "Win32_UI_WindowsAndMessaging",
+-    "Win32_System_SystemInformation",
+-    "Wdk",
+-    "Wdk_System",
+-    "Wdk_System_SystemServices",
+-]
+-optional = true
+-
+-[target.'cfg(target_os = "windows")'.build-dependencies.embed-resource]
+-version = "2.4.2"
+-optional = true
+-
+-[target.'cfg(target_os = "windows")'.build-dependencies.indoc]
+-version = "2.0.4"
+-optional = true
+-
+-[target.'cfg(target_os = "windows")'.build-dependencies.regex]
+-version = "1.10.4"
+-optional = true

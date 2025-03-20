@@ -1,11 +1,11 @@
 %global __requires_exclude ^lib-.*.so            
 %global __provides_exclude ^lib-.*.so
 
-%global ver Audacity-3.7.1
-%global sanitized_ver %(echo "$( sed 's/Audacity-//' <<< "%{ver}" )")
+%global ver Audacity-3.7.3
+%global sanitized_ver %(echo %{ver} | sed 's/Audacity-//g')
 
 Name:    audacity-freeworld
-Version: split.3.0.3
+Version: %{sanitized_ver}
 Release: 1%?dist
 Summary: Multitrack audio editor
 License: GPLv2

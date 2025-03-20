@@ -8,14 +8,15 @@
 %global portal_helper 1
 %endif
 
-Name:           gnome-shell
+Name:           gnome-shell.switcheroo
 Version:        %{major_version}.%{minor_version}
 Release:        1%{?dist}.switcheroo
 Summary:        Window management and application launching for GNOME
 
+Provides:       gnome-shell = %version-%release
 License:        GPL-2.0-or-later
 URL:            https://wiki.gnome.org/Projects/GnomeShell
-Source0:        https://download.gnome.org/sources/gnome-shell/%{major_version}/%{name}-%{tarball_version}.tar.xz
+Source0:        https://download.gnome.org/sources/gnome-shell/%{major_version}/gnome-shell-%{tarball_version}.tar.xz
 
 # Replace Epiphany with Firefox in the default favourite apps list
 Patch: gnome-shell-favourite-apps-firefox.patch
@@ -178,7 +179,7 @@ innovative user interface concepts to provide a visually attractive and
 easy to use experience.
 
 %prep
-%autosetup -S git -n %{name}-%{tarball_version}
+%autosetup -S git -n gnome-shell-%{tarball_version}
 
 %build
 %meson \
@@ -198,7 +199,7 @@ easy to use experience.
 mkdir -p %{buildroot}%{_datadir}/gnome-shell/extensions
 mkdir -p %{buildroot}%{_datadir}/gnome-shell/search-providers
 
-%find_lang %{name}
+%find_lang gnome-shell
 
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/org.gnome.Shell.desktop
@@ -208,7 +209,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.gnome.Shell.Exten
 desktop-file-validate %{buildroot}%{_datadir}/applications/org.gnome.Shell.PortalHelper.desktop
 %endif
 
-%files -f %{name}.lang
+%files -f gnome-shell.lang
 %license COPYING
 %doc NEWS README.md
 %{_bindir}/gnome-shell

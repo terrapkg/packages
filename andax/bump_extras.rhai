@@ -6,7 +6,7 @@ fn as_bodhi_ver(branch) {
         }
         return `EPEL-${release}`;
     } else if branch == "frawhide" {
-        return "F42";
+        return "F43";
     } else if branch.starts_with("f") {
         branch.crop(1);
         return `F${branch}`;
@@ -43,4 +43,16 @@ fn follow_bodhi_vr(rpm, pkg, branch) {
     let vr = bodhi_vr(pkg, branch);
     rpm.version(vr[1]);
     rpm.release(vr[2]);
+}
+
+
+fn madoguchi_json(pkg, branch) {
+    if branch.starts_with("f") {
+	    branch.crop(1);
+    }
+    return get(`https://madoguchi.fyralabs.com/v4/terra${branch}/packages/${pkg}`).json();
+}
+
+fn madoguchi(pkg, branch) {
+    return madoguchi_json(pkg, branch).ver;
 }

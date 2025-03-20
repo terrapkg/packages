@@ -1,0 +1,11 @@
+For ease of use, packaged helper scripts are aliased in /usr/bin.
+
+To use them, run:
+
+uv run create-pokemon-identifier
+
+OR:
+
+pokeget-timing
+
+to run the create_pokemon_identifier or timing scripts, respectively.

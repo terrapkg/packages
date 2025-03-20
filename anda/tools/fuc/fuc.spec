@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:			fuc
-Version:		3.0.0
+Version:		3.0.1
 Release:		1%?dist
 Summary:		Modern, performance focused unix commands
 URL:			https://github.com/SUPERCILEX/fuc
