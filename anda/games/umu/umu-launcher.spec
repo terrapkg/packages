@@ -60,5 +60,4 @@ BuildArch:      x86_64
 %files
 %_bindir/umu-run
 %_mandir/*
-%_datadir/steam/compatibilitytools.d/umu-launcher/
 %python3_sitelib/umu*
