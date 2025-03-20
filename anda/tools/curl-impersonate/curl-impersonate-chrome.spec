@@ -1,7 +1,7 @@
 %global build_cxxflags %(echo "%{__build_flags_lang_cxx} %{?_distro_extra_cxxflags}" | sed 's@-Werror=format-security@@')
 
 Name:           curl-impersonate-chrome
-Version:        0.7.0
+Version:        0.9.5
 Release:        1%{?dist}
 Summary:        A series of patches that make curl requests look like Chrome
 
