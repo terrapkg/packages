@@ -123,10 +123,10 @@ Provides:       %{name}-terminfo = %{commit_date}.%{shortcommit}
 %endif
 Obsoletes:      %{name}-terminfo-source < %{version}-%{release}
 BuildArch:      noarch
-%endif
 
 %description    terminfo
 Ghostty's terminfo. Needed for basic terminal function.
+%endif
 
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
