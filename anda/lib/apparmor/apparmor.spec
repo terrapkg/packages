@@ -323,7 +323,7 @@ make -C utils check
 %dir %{_datadir}/apparmor
 %{_datadir}/apparmor/easyprof
 %{_datadir}/apparmor/apparmor.vim
-%{_datadir}/polkit-1/actions/com.ubuntu.pkexec.aa-notify.policy
+%dnl %{_datadir}/polkit-1/actions/com.ubuntu.pkexec.aa-notify.policy
 %{_mandir}/man5/logprof.conf.5.gz
 %{_mandir}/man8/aa-audit.8.gz
 %{_mandir}/man8/aa-autodep.8.gz
