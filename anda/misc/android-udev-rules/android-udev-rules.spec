@@ -10,6 +10,9 @@ Source1:        https://raw.githubusercontent.com/M0Rf30/android-udev-rules/%ver
 Source2:        https://raw.githubusercontent.com/M0Rf30/android-udev-rules/%version/LICENSE
 Source3:        https://raw.githubusercontent.com/M0Rf30/android-udev-rules/%version/android-udev.conf
 BuildArch:      noarch
+BuildRequires:  rpm_macro(_udevrulesdir)
+BuildRequires:  rpm_macro(udev_rules_update)
+Requires:       systemd-udev
 
 %description
 Android udev rules list aimed to be the most comprehensive on the net.
@@ -20,10 +23,14 @@ the Archlinux and Github Communities.
 cp %{SOURCE0} %{SOURCE1} %{SOURCE2} %{SOURCE3} .
 
 %install
-mkdir -p %{buildroot}/etc/udev/rules.d/.
-install -m 644 51-android.rules %{buildroot}/etc/udev/rules.d/.
-mkdir -p %{buildroot}/usr/lib/sysusers.d/.
-install -m 644 android-udev.conf %{buildroot}/usr/lib/sysusers.d/.
+install -Dm644 51-android.rules -t %buildroot%_udevrulesdir
+install -Dm644 android-udev.conf -t %buildroot%_sysusersdir
+
+%post
+%udev_rules_update
+
+%postun
+%udev_rules_update
 
 %files
 %_udevrulesdir/51-android.rules
