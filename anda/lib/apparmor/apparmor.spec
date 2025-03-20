@@ -1,6 +1,7 @@
 %{?python_enable_dependency_generator}
 
 %global __arch_install_post /bin/true
+%global _sbindir /usr/sbin
 
 %bcond_with tests
 
@@ -291,6 +292,7 @@ make -C utils check
 %{_mandir}/man5/apparmor.vim.5.gz
 %{_mandir}/man7/apparmor.7.gz
 %{_mandir}/man7/apparmor_xattrs.7.gz
+%{_mandir}/man8/aa-load.8.gz
 %{_mandir}/man8/aa-teardown.8.gz
 %{_mandir}/man8/apparmor_parser.8.gz
 
@@ -303,6 +305,7 @@ make -C utils check
 %config(noreplace) %{_sysconfdir}/apparmor/logprof.conf
 %config(noreplace) %{_sysconfdir}/apparmor/notify.conf
 %config(noreplace) %{_sysconfdir}/apparmor/severity.db
+%{_bindir}/aa-easyprof
 %{_sbindir}/aa-audit
 %{_sbindir}/aa-autodep
 %{_sbindir}/aa-cleanprof
@@ -318,11 +321,10 @@ make -C utils check
 %{_sbindir}/aa-status
 %{_sbindir}/aa-unconfined
 %{_sbindir}/apparmor_status
-%{_bindir}/aa-easyprof
 %dir %{_datadir}/apparmor
 %{_datadir}/apparmor/easyprof
 %{_datadir}/apparmor/apparmor.vim
-%{_datadir}/polkit-1/actions/com.ubuntu.pkexec.aa-notify.policy
+%{_datadir}/polkit-1/actions/net.apparmor.pkexec.aa-notify.policy
 %{_mandir}/man5/logprof.conf.5.gz
 %{_mandir}/man8/aa-audit.8.gz
 %{_mandir}/man8/aa-autodep.8.gz
