@@ -1,4 +1,4 @@
-%global commit 88ff566e067682cf7cfd08659173780e6e369212
+%global commit 1980f9aed46e92e8a5ed9df8677ac18635a63dad
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global fulldate 2025-03-19
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
@@ -119,19 +119,11 @@ Provides:       %{name}-terminfo = %{commit_date}.%{shortcommit}
 %if 0%{?fedora} >= 42
 Requires:       ncurses-term >= 6.5-5.20250125%{?dist}
 %endif
+Obsoletes:      %{name}-terminfo-source < %{version}-%{release}
 BuildArch:      noarch
 
 %description    terminfo
 Ghostty's terminfo. Needed for basic terminal function.
-
-%package        terminfo-source
-Summary:        Source files for Ghostty's terminfo
-Requires:       %{name}
-Requires:       %{name}-terminfo
-BuildArch:      noarch
-
-%description    terminfo-source
-This package contains files for Ghostty's terminfo. Available for debugging use.
 
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
@@ -155,12 +147,8 @@ zig build \
     -Dstrip=false \
     -Dpie=true \
     -Demit-docs \
-    -Demit-termcap \
-    -Demit-terminfo
-
-#Don't conflict with ncurses-term on F42 and up
 %if 0%{?fedora} >= 42
-rm -rf %{buildroot}%{_datadir}/terminfo/g/ghostty
+    -Demit-terminfo=false
 %endif
 
 %find_lang %{reverse_dns}
@@ -220,10 +208,6 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/ghostty
 %{_datadir}/terminfo/g/%{base_name}
 %endif
 %{_datadir}/terminfo/x/xterm-%{base_name}
-
-%files terminfo-source
-%{_datadir}/terminfo/%{base_name}.termcap
-%{_datadir}/terminfo/%{base_name}.terminfo
 
 %changelog
 * Wed Mar 05 2025 Gilver E. <rockgrub@disroot.org>
