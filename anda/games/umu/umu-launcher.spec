@@ -1,6 +1,6 @@
 Name:           umu-launcher
-Version:        1.2.3
-Release:        1%?dist
+Version:        1.2.6
+Release:        2%?dist
 Summary:        A tool for launching non-steam games with proton
 
 License:        GPL-3.0-only
@@ -44,10 +44,9 @@ Requires:	python3-filelock
 %{make_build}
 
 %install
-%make_install PYTHONDIR=%python3_sitelib
+%make_install PYTHONDIR=%{python3_sitelib}
 
 %files
 %_bindir/umu-run
 %_mandir/*
-%_datadir/steam/compatibilitytools.d/umu-launcher/
 %python3_sitelib/umu*
