@@ -275,8 +275,8 @@ make -C utils check
 %{_bindir}/aa-enabled
 %{_bindir}/aa-exec
 %{_bindir}/aa-features-abi
-%dnl %{_sbindir}/aa-load
-%dnl %{_sbindir}/aa-teardown
+%{_sbindir}/aa-load
+%{_sbindir}/aa-teardown
 %{_unitdir}/apparmor.service
 %{_presetdir}/70-apparmor.preset
 %{_prefix}/lib/apparmor
@@ -292,6 +292,7 @@ make -C utils check
 %{_mandir}/man5/apparmor.vim.5.gz
 %{_mandir}/man7/apparmor.7.gz
 %{_mandir}/man7/apparmor_xattrs.7.gz
+%{_mandir}/man8/aa-load.8.gz
 %{_mandir}/man8/aa-teardown.8.gz
 %{_mandir}/man8/apparmor_parser.8.gz
 
@@ -323,7 +324,7 @@ make -C utils check
 %dir %{_datadir}/apparmor
 %{_datadir}/apparmor/easyprof
 %{_datadir}/apparmor/apparmor.vim
-%dnl %{_datadir}/polkit-1/actions/com.ubuntu.pkexec.aa-notify.policy
+%{_datadir}/polkit-1/actions/net.apparmor.pkexec.aa-notify.policy
 %{_mandir}/man5/logprof.conf.5.gz
 %{_mandir}/man8/aa-audit.8.gz
 %{_mandir}/man8/aa-autodep.8.gz
