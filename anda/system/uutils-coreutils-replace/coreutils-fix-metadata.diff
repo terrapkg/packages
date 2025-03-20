@@ -1,36 +1,15 @@
 --- coreutils-*/Cargo.toml
 +++ coreutils-*/Cargo.toml
-@@ -30,6 +30,7 @@
+@@ -18,6 +18,7 @@
  categories = ["command-line-utilities"]
- license = "MIT"
- repository = "https://github.com/uutils/coreutils"
+ rust-version = "1.82.0"
+ edition = "2021"
 +autobins = false
  
- [profile.release]
- lto = true
-@@ -47,11 +48,6 @@
- [[bin]]
- name = "coreutils"
- path = "src/bin/coreutils.rs"
--
--[[bin]]
--name = "uudoc"
--path = "src/bin/uudoc.rs"
--required-features = ["uudoc"]
+ build = "build.rs"
  
- [dependencies.arch]
- version = "0.0.27"
-@@ -639,7 +635,7 @@
- version = "1.10.4"
- 
- [dev-dependencies.rstest]
--version = "0.21.0"
-+version = ">=0.21,<0.24"
- 
- [dev-dependencies.sha1]
- version = "0.10.6"
-@@ -673,7 +669,11 @@
- version = "0.11.2"
+@@ -25,7 +26,11 @@
+ all-features = true
  
  [features]
 -default = ["feat_common_core"]
@@ -39,14 +18,39 @@
 +  "feat_common_core",
 +  "feat_selinux",
 +]
- feat_Tier1 = [
-     "feat_common_core",
-     "arch",
-@@ -878,7 +878,7 @@
- version = "0.5.1"
+ ## OS feature shortcodes
+ macos = ["feat_os_macos"]
+ unix = ["feat_os_unix"]
+@@ -325,7 +330,7 @@
+ rand_core = "0.9.0"
+ rayon = "1.10"
+ regex = "1.10.4"
+-rstest = "0.25.0"
++rstest = ">=0.25,<0.28"
+ rust-ini = "0.21.0"
+ same-file = "1.0.6"
+ self_cell = "1.0.4"
+@@ -516,7 +521,7 @@
+ rstest = { workspace = true }
  
- [target."cfg(any(target_os = \"linux\", target_os = \"android\"))".dev-dependencies.procfs]
--version = "0.16"
+ [target.'cfg(any(target_os = "linux", target_os = "android"))'.dev-dependencies]
+-procfs = { version = "0.17", default-features = false }
++procfs = { version = ">=0.17, <0.18", default-features = false }
+ 
+ [target.'cfg(unix)'.dev-dependencies]
+ nix = { workspace = true, features = ["process", "signal", "user", "term"] }
+@@ -538,11 +543,6 @@
+ name = "coreutils"
+ path = "src/bin/coreutils.rs"
+ 
+-[[bin]]
+-name = "uudoc"
+-path = "src/bin/uudoc.rs"
+-required-features = ["uudoc"]
+-
+ # The default release profile. It contains all optimizations, without
+ # sacrificing debug info. With this profile (like in the standard
+ # release profile), the debug info and the stack traces will still be available.
 +version = ">=0.16, <0.18"
  default-features = false
  
