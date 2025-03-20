@@ -1,6 +1,7 @@
 %{?python_enable_dependency_generator}
 
 %global __arch_install_post /bin/true
+%global _sbindir /usr/sbin
 
 %bcond_with tests
 
@@ -304,9 +305,25 @@ make -C utils check
 %config(noreplace) %{_sysconfdir}/apparmor/notify.conf
 %config(noreplace) %{_sysconfdir}/apparmor/severity.db
 %{_bindir}/aa-easyprof
+%{_sbindir}/aa-audit
+%{_sbindir}/aa-autodep
+%{_sbindir}/aa-cleanprof
+%{_sbindir}/aa-complain
+%{_sbindir}/aa-decode
+%{_sbindir}/aa-disable
+%{_sbindir}/aa-enforce
+%{_sbindir}/aa-genprof
+%{_sbindir}/aa-logprof
+%{_sbindir}/aa-mergeprof
+%{_sbindir}/aa-notify
+%{_sbindir}/aa-remove-unknown
+%{_sbindir}/aa-status
+%{_sbindir}/aa-unconfined
+%{_sbindir}/apparmor_status
 %dir %{_datadir}/apparmor
 %{_datadir}/apparmor/easyprof
 %{_datadir}/apparmor/apparmor.vim
+%{_datadir}/polkit-1/actions/com.ubuntu.pkexec.aa-notify.policy
 %{_mandir}/man5/logprof.conf.5.gz
 %{_mandir}/man8/aa-audit.8.gz
 %{_mandir}/man8/aa-autodep.8.gz
