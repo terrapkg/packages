@@ -17,7 +17,7 @@
 
 Name:          %{shortname}-games-launcher
 Version:       2.16.1
-Release:       2%?dist
+Release:       3%?dist
 Summary:       A games launcher for GOG, Amazon, and Epic Games
 License:       GPL-3.0-only AND MIT AND BSD-3-Clause
 URL:           https://heroicgameslauncher.com
@@ -63,7 +63,9 @@ pnpm dist:linux
 %install
 mkdir -p %{buildroot}%{_datadir}/%{shortname}
 mv $(find . -iname "*LICENSE*" -not -path "./node_modules/*" -and -not -path "./public/*") .
-mv LICENSE LICENSE.fonts
+mv LICENSE node-font-list.LICENSE
+rm -rf dist/linux-unpacked/resources/app.asar.unpacked/node_modules/font-list/libs/darwin
+rm -rf dist/linux-unpacked/resources/app.asar.unpacked/node_modules/font-list/libs/win32
 %ifarch aarch64
 ### Needs testing once aarch64 Heroic is complete:
 #rm -rf dist/linux-unpacked/resources/app.asar.unpacked/build/bin/x64
@@ -76,14 +78,14 @@ mkdir -p %{buildroot}%{_bindir}
 # Make names executable
 ln -sr %{_datadir}/%{shortname}/%{shortname} %{buildroot}%{_bindir}/%{name}
 ln -sr %{_datadir}/%{shortname}/%{shortname} %{buildroot}%{_bindir}/%{shortname}
-install -Dm644 dist/.icon-set/icon_16x16.png %{buildroot}%{_iconsdir}/hicolor/16x16/%{shortname}.png
-install -Dm644 dist/.icon-set/icon_32x32.png %{buildroot}%{_iconsdir}/hicolor/32x32/%{shortname}.png
-install -Dm644 dist/.icon-set/icon_48x48.png %{buildroot}%{_iconsdir}/hicolor/48x48/%{shortname}.png
-install -Dm644 dist/.icon-set/icon_64x64.png %{buildroot}%{_iconsdir}/hicolor/64x64/%{shortname}.png
-install -Dm644 dist/.icon-set/icon_128x128.png %{buildroot}%{_iconsdir}/hicolor/128x128/%{shortname}.png
-install -Dm644 dist/.icon-set/icon_256x256.png %{buildroot}%{_iconsdir}/hicolor/256x256/%{shortname}.png
-install -Dm644 dist/.icon-set/icon_512x512.png %{buildroot}%{_iconsdir}/hicolor/512x512/%{shortname}.png
-install -Dm644 dist/.icon-set/icon_1024.png %{buildroot}%{_iconsdir}/hicolor/1024x1024/%{shortname}.png
+install -Dm644 dist/.icon-set/icon_16x16.png %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{shortname}.png
+install -Dm644 dist/.icon-set/icon_32x32.png %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{shortname}.png
+install -Dm644 dist/.icon-set/icon_48x48.png %{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{shortname}.png
+install -Dm644 dist/.icon-set/icon_64x64.png %{buildroot}%{_iconsdir}/hicolor/64x64/apps/%{shortname}.png
+install -Dm644 dist/.icon-set/icon_128x128.png %{buildroot}%{_iconsdir}/hicolor/128x128/apps/%{shortname}.png
+install -Dm644 dist/.icon-set/icon_256x256.png %{buildroot}%{_iconsdir}/hicolor/256x256/apps/%{shortname}.png
+install -Dm644 dist/.icon-set/icon_512x512.png %{buildroot}%{_iconsdir}/hicolor/512x512/apps/%{shortname}.png
+install -Dm644 dist/.icon-set/icon_1024.png %{buildroot}%{_iconsdir}/hicolor/1024x1024/apps/%{shortname}.png
 install -Dm644 flatpak/%{reverse_dns}.desktop %{buildroot}%{_datadir}/applications/%{shortname}.desktop
 
 %check
@@ -96,20 +98,20 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{shortname}.desktop
 %license legendary.LICENSE
 %license LICENSES.chromium.html
 %license LICENSE.electron.txt
-%license LICENSE.fonts
+%license node-font-list.LICENSE
 %dir %{_datadir}/%{shortname}
 %{_datadir}/%{shortname}/*
 %{_bindir}/%{shortname}
 %{_bindir}/%{name}
 %{_datadir}/applications/%{shortname}.desktop
-%{_iconsdir}/hicolor/16x16/%{shortname}.png
-%{_iconsdir}/hicolor/32x32/%{shortname}.png
-%{_iconsdir}/hicolor/48x48/%{shortname}.png
-%{_iconsdir}/hicolor/64x64/%{shortname}.png
-%{_iconsdir}/hicolor/128x128/%{shortname}.png
-%{_iconsdir}/hicolor/256x256/%{shortname}.png
-%{_iconsdir}/hicolor/512x512/%{shortname}.png
-%{_iconsdir}/hicolor/1024x1024/%{shortname}.png
+%{_iconsdir}/hicolor/16x16/apps/%{shortname}.png
+%{_iconsdir}/hicolor/32x32/apps/%{shortname}.png
+%{_iconsdir}/hicolor/48x48/apps/%{shortname}.png
+%{_iconsdir}/hicolor/64x64/apps/%{shortname}.png
+%{_iconsdir}/hicolor/128x128/apps/%{shortname}.png
+%{_iconsdir}/hicolor/256x256/apps/%{shortname}.png
+%{_iconsdir}/hicolor/512x512/apps/%{shortname}.png
+%{_iconsdir}/hicolor/1024x1024/apps/%{shortname}.png
 
 %changelog
 * Sun Mar 02 2025 Gilver E. <rockgrub@disroot.org>
