@@ -6,7 +6,7 @@ fn as_bodhi_ver(branch) {
         }
         return `EPEL-${release}`;
     } else if branch == "frawhide" {
-        return "42";
+        return "F43";
     } else if branch.starts_with("f") {
         branch.crop(1);
         return branch;
