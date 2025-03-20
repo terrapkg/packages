@@ -51,7 +51,3 @@
  # The default release profile. It contains all optimizations, without
  # sacrificing debug info. With this profile (like in the standard
  # release profile), the debug info and the stack traces will still be available.
-+version = ">=0.16, <0.18"
- default-features = false
- 
- [target."cfg(unix)".dev-dependencies.nix]
