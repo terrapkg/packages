@@ -9,7 +9,7 @@ for background device management, as well as a GUI to expertly customize your se
 
 Name:           coolercontrol
 Version:        2.0.1
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Cooling device control for Linux
 License:        GPL-3.0-or-later
 URL:            https://gitlab.com/coolercontrol/coolercontrol
@@ -59,13 +59,16 @@ pushd coolercontrold
 %cargo_prep_online &
 popd
 
+pushd coolercontrol-ui
+npm ci --prefer-offline &
+popd
+
 wait
 
 
 %build
-pushd coolercontrold
-%{cargo_license_online} > LICENSE.dependencies &
-%cargo_build -- &
+pushd coolercontrol-ui
+npm run build-only &
 popd
 
 pushd coolercontrol-liqctld
@@ -74,10 +77,15 @@ popd
 
 pushd coolercontrol
 %cmake
-%cmake_build
-wait
+%cmake_build &
 popd
 
+pushd coolercontrold
+%{cargo_license_online} > LICENSE.dependencies &
+wait
+cp -rfp ../coolercontrol-ui/dist/* resources/app/
+%cargo_build
+popd
 
 %install
 pushd coolercontrol-liqctld
