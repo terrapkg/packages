@@ -102,7 +102,7 @@ lazbuild --ws=qt6 dev/project_pea.lpi && cp dev/pea ../pea.qt6
 install -Dm755 peazip.* -t %buildroot%_bindir
 install -Dm755 pea.* -t %buildroot%_bindir
 install -Dm644 peazip-sources/res/share/batch/freedesktop_integration/peazip.desktop -t %{buildroot}%{_datadir}/applications
-install -Dm644 peazip-sources/res/share/batch/freedesktop_integration/*.png -t %{buildroot}%{_iconsdir}/pixmaps
+install -Dm644 peazip-sources/res/share/batch/freedesktop_integration/*.png -t %{buildroot}%{_datadir}/pixmaps
 install -Dm644 peazip-sources/res/share/batch/freedesktop_integration/KDE-servicemenus/KDE6-dolphin/peazip-kde6.desktop -t %{buildroot}%{_datadir}/kio/servicemenus
 install -Dm644 peazip-sources/res/share/batch/freedesktop_integration/Nautilus-scripts/PeaZip/* -t %{buildroot}%{_datadir}/nautilus/scripts/PeaZip
 
@@ -110,7 +110,7 @@ install -Dm644 peazip-sources/res/share/batch/freedesktop_integration/Nautilus-s
 %doc README.md
 %license LICENSE SECURITY.md
 %{_datadir}/applications/peazip.desktop
-%{_iconsdir}/pixmaps/peazip*.png
+%{_datadir}/pixmaps/peazip*.png
 %{_datadir}/kio/servicemenus/peazip-kde6.desktop
 %dir %{_datadir}/nautilus/scripts/PeaZip
 %{_datadir}/nautilus/scripts/PeaZip/*
