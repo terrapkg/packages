@@ -95,7 +95,9 @@ This package contains the development files for DWARFS.
 %autosetup
 
 %build
-%cmake -GNinja -DWITH_TESTS=ON \
+mkdir build
+cd build
+%cmake .. -GNinja -DWITH_TESTS=ON \
 -DWITH_LIBDWARFS=ON \
 -DWITH_TOOLS=ON \
 -DWITH_FUSE_DRIVER=ON \
