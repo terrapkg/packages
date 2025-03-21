@@ -80,6 +80,7 @@ Requires:      openssl-libs
 Requires:      xxhash-libs
 Requires:      xz-libs
 Requires:      zlib
+Packager:      Gilver E. <rockgrub@disroot.org>
 
 %description %_description
 
@@ -127,5 +128,5 @@ This package contains the development files for DWARFS.
 %{_includedir}/dwarfs/*/*.h
 
 %changelog
-* Fri Jan 12 2024 silentnoodle - 0.7.4-1
+* Thu Mar 20 2025 Gilver E. <rockgrub@disroot.org>
 - Initial package
