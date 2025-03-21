@@ -7,14 +7,14 @@
 Name:           komikku
 Version:        1.73.0
 %forgemeta
-Release:        1%?dist
+Release:        2%?dist
 Summary:        A manga reader for GNOME
 
 BuildArch:      noarch
 
 License:        GPL-3.0-or-later
 URL:            https://valos.gitlab.io/Komikku
-Source0:        https://codeberg.org/valos/%{appname}/archive/v%{version}.tar.gz#/%{name}-v%{version}.tar.gz
+Source0:        https://codeberg.org/valos/%{appname}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  intltool
