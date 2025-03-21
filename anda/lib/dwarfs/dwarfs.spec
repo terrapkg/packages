@@ -101,7 +101,7 @@ This package contains the development files for DWARFS.
 -DWITH_FUSE_DRIVER=ON \
 -DBUILD_SHARED_LIBS=ON \
 -DWITH_MAN_OPTION=OFF \
--DCMAKE_INSTALL_SBINDIR=%{_sbindir} \
+-DCMAKE_INSTALL_SBINDIR=%{_sbindir}
 ninja
 
 %ctest -j
