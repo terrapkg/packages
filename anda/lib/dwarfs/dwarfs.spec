@@ -102,9 +102,10 @@ This package contains the development files for DWARFS.
 -DBUILD_SHARED_LIBS=ON \
 -DWITH_MAN_OPTION=OFF \
 -DCMAKE_INSTALL_SBINDIR=%{_sbindir} \
-%ninja_build
+ninja
 
 %ctest -j
+%cmake_build
 
 %install
 %cmake_install
