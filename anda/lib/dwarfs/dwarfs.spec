@@ -79,7 +79,7 @@ Requires:      lz4-libs
 Requires:      openssl-libs
 Requires:      xxhash-libs
 Requires:      xz-libs
-Requires:      zlib
+Requires:      zlib-ng-compat
 Packager:      Gilver E. <rockgrub@disroot.org>
 
 %description %_description
@@ -95,11 +95,16 @@ This package contains the development files for DWARFS.
 %autosetup
 
 %build
-%cmake -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
+%cmake -GNinja -DWITH_TESTS=ON \
+-DWITH_LIBDWARFS=ON \
+-DWITH_TOOLS=ON \
+-DWITH_FUSE_DRIVER=ON \
 -DBUILD_SHARED_LIBS=ON \
 -DWITH_MAN_OPTION=OFF \
 -DCMAKE_INSTALL_SBINDIR=%{_sbindir} \
-%cmake_build
+%ninja_build
+
+%ctest -j
 
 %install
 %cmake_install
