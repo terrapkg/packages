@@ -59,19 +59,10 @@ BuildRequires: utf8cpp-devel
 BuildRequires: xxhash-devel
 BuildRequires: xz-devel
 Requires:      bzip2-libs
-Requires:      fmt
 Requires:      gflags
-Requires:      glog
-Requires:      jemalloc
-Requires:      libacl
 Requires:      libattr
-Requires:      libstdc++
-Requires:      libunwind
 Requires:      libxml2
 Requires:      libzstd
-Requires:      lz4-libs
-Requires:      xxhash-libs
-Requires:      xz-libs
 Requires:      zlib-ng-compat
 Packager:      Gilver E. <rockgrub@disroot.org>
 
