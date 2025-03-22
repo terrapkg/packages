@@ -1,25 +1,7 @@
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
-From: Antheas Kapenekakis <git@antheas.dev>
-Date: Sat, 15 Mar 2025 16:38:53 +0100
-Subject: [NA] Developer files, readme, etc
-
--- 
-2.48.1
-
-
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
-From: Antheas Kapenekakis <git@antheas.dev>
-Date: Sat, 15 Mar 2025 16:39:08 +0100
-Subject: [BEGIN] SteamOS Changes
-
--- 
-2.48.1
-
-
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From eab8a4f9ad407b8c5c29123855a56b3698399be3 Mon Sep 17 00:00:00 2001
 From: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
 Date: Fri, 14 Jan 2022 15:58:45 +0100
-Subject: STEAMOS: radv: min image count override for FH5
+Subject: [PATCH 1/7] STEAMOS: radv: min image count override for FH5
 
 Otherwise in combination with the vblank time reservation in
 gamescope the game could get stuck in low power states.
@@ -28,10 +10,10 @@ gamescope the game could get stuck in low power states.
  1 file changed, 4 insertions(+)
 
 diff --git a/src/util/00-radv-defaults.conf b/src/util/00-radv-defaults.conf
-index d2dbe4d5e11..1851504036a 100644
+index 72f3438b39d..02d7ada7ad9 100644
 --- a/src/util/00-radv-defaults.conf
 +++ b/src/util/00-radv-defaults.conf
-@@ -220,5 +220,9 @@ Application bugs worked around in this file:
+@@ -221,5 +221,9 @@ Application bugs worked around in this file:
          <application name="Total War: WARHAMMER III" application_name_match="TotalWarhammer3">
              <option name="radv_disable_depth_storage" value="true"/>
          </application>
@@ -42,14 +24,14 @@ index d2dbe4d5e11..1851504036a 100644
      </device>
  </driconf>
 -- 
-2.48.1
+2.49.0
 
 
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From fd1d96636308b7216f246634cb75a20e45a3bd1b Mon Sep 17 00:00:00 2001
 From: Samuel Pitoiset <samuel.pitoiset@gmail.com>
 Date: Thu, 22 Feb 2024 22:32:45 +0100
-Subject: STEAMOS: Dynamic swapchain override for gamescope limiter for DRI3
- only
+Subject: [PATCH 2/7] STEAMOS: Dynamic swapchain override for gamescope limiter
+ for DRI3 only
 
 The original patch (from Bas) contained WSI VK support too but it's
 been removed because the Gamescope WSI layer already handles that.
@@ -149,13 +131,14 @@ index 9061e9755e2..6cc64be298a 100644
     const struct loader_dri3_vtable *vtable;
  
 -- 
-2.48.1
+2.49.0
 
 
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From d2fe7734d135f785d4ac164c8fce779553f3ed19 Mon Sep 17 00:00:00 2001
 From: Samuel Pitoiset <samuel.pitoiset@gmail.com>
 Date: Mon, 24 Feb 2025 17:48:21 +0100
-Subject: radv: stop computing the UUID using the physical device cache key
+Subject: [PATCH 3/7] radv: stop computing the UUID using the physical device
+ cache key
 
 Otherwise, the UUID changes for games that have shader-based drirc
 workarounds and this breaks precompiled shaders on SteamDeck.
@@ -194,10 +177,10 @@ index 2de839e5d6d..da732ae503e 100644
  
  static void
 diff --git a/src/amd/vulkan/radv_physical_device.c b/src/amd/vulkan/radv_physical_device.c
-index f24203fcccc..b1a742d48ef 100644
+index 0d3660e7064..826c23a6c46 100644
 --- a/src/amd/vulkan/radv_physical_device.c
 +++ b/src/amd/vulkan/radv_physical_device.c
-@@ -264,7 +264,6 @@ radv_device_get_cache_uuid(struct radv_physical_device *pdev, void *uuid)
+@@ -206,7 +206,6 @@ radv_device_get_cache_uuid(struct radv_physical_device *pdev, void *uuid)
        return -1;
  #endif
  
@@ -206,22 +189,22 @@ index f24203fcccc..b1a742d48ef 100644
  
     memcpy(uuid, sha1, VK_UUID_SIZE);
 -- 
-2.48.1
+2.49.0
 
 
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From b6b22ad82dcc2dc47b089a7ac018757809fa1a1c Mon Sep 17 00:00:00 2001
 From: Antheas Kapenekakis <git@antheas.dev>
 Date: Sat, 15 Mar 2025 16:39:25 +0100
-Subject: [BEGIN] SteamOS Backports
+Subject: [PATCH 4/7] [BEGIN] SteamOS Backports
 
 -- 
-2.48.1
+2.49.0
 
 
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From 03830a554fe5e0a49c710e1c4b3b14f117325e5c Mon Sep 17 00:00:00 2001
 From: Natalie Vock <natalie.vock@gmx.de>
 Date: Fri, 28 Feb 2025 14:21:57 +0100
-Subject: radv/rt: Limit monolithic pipelines to 50 stages
+Subject: [PATCH 5/7] radv/rt: Limit monolithic pipelines to 50 stages
 
 Beyond that, monolithic pipelines just bloat to incredible sizes,
 destroying compile times for questionable, if any, runtime perf benefit.
@@ -254,298 +237,22 @@ index 5a23dc99cc4..1421688d580 100644
        if (rt_stages[i].shader || rt_stages[i].nir)
           continue;
 -- 
-2.48.1
+2.49.0
 
 
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From b013419f74e43edfe1da225b9641dea132d5897a Mon Sep 17 00:00:00 2001
 From: Antheas Kapenekakis <git@antheas.dev>
 Date: Sat, 15 Mar 2025 16:39:33 +0100
-Subject: [BEGIN] Our Mesa backports
+Subject: [PATCH 6/7] [BEGIN] Our Mesa backports
 
 -- 
-2.48.1
+2.49.0
 
 
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
-From: Rhys Perry <pendingchaos02@gmail.com>
-Date: Tue, 25 Feb 2025 18:07:30 +0000
-Subject: aco: insert dependency waits in certain situations
-
-This seems to fix some artifacts, but we're not sure why, so it might not
-be a correct or optimal solution.
-
-fossil-db (navi31):
-Totals from 28424 (35.81% of 79377) affected shaders:
-Instrs: 30112910 -> 30348977 (+0.78%); split: -0.00%, +0.78%
-CodeSize: 159542980 -> 160485336 (+0.59%); split: -0.00%, +0.59%
-Latency: 221438396 -> 221500856 (+0.03%); split: -0.00%, +0.03%
-InvThroughput: 38154231 -> 38159984 (+0.02%); split: -0.00%, +0.02%
-
-Signed-off-by: Rhys Perry <pendingchaos02@gmail.com>
-Reviewed-by: Georg Lehmann <dadschoorse@gmail.com>
-Backport-to: 25.0
-Part-of: <https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/33853>
----
- src/amd/compiler/aco_insert_NOPs.cpp | 101 +++++++++++++++++++++++----
- 1 file changed, 87 insertions(+), 14 deletions(-)
-
-diff --git a/src/amd/compiler/aco_insert_NOPs.cpp b/src/amd/compiler/aco_insert_NOPs.cpp
-index de062be2c74..1005f82812c 100644
---- a/src/amd/compiler/aco_insert_NOPs.cpp
-+++ b/src/amd/compiler/aco_insert_NOPs.cpp
-@@ -259,6 +259,9 @@ struct NOP_ctx_gfx11 {
-    std::bitset<128> sgpr_read_by_valu_as_lanemask;
-    std::bitset<128> sgpr_read_by_valu_as_lanemask_then_wr_by_salu;
- 
-+   std::bitset<128> sgpr_read_by_valu_as_lanemask2;
-+   std::bitset<128> sgpr_read_by_valu_as_lanemask_then_wr_by_valu;
-+
-    /* WMMAHazards */
-    std::bitset<256> vgpr_written_by_wmma;
- 
-@@ -278,8 +281,11 @@ struct NOP_ctx_gfx11 {
-       valu_since_wr_by_trans.join_min(other.valu_since_wr_by_trans);
-       trans_since_wr_by_trans.join_min(other.trans_since_wr_by_trans);
-       sgpr_read_by_valu_as_lanemask |= other.sgpr_read_by_valu_as_lanemask;
-+      sgpr_read_by_valu_as_lanemask2 |= other.sgpr_read_by_valu_as_lanemask2;
-       sgpr_read_by_valu_as_lanemask_then_wr_by_salu |=
-          other.sgpr_read_by_valu_as_lanemask_then_wr_by_salu;
-+      sgpr_read_by_valu_as_lanemask_then_wr_by_valu |=
-+         other.sgpr_read_by_valu_as_lanemask_then_wr_by_valu;
-       vgpr_written_by_wmma |= other.vgpr_written_by_wmma;
-       sgpr_read_by_valu |= other.sgpr_read_by_valu;
-       sgpr_read_by_valu_then_wr_by_valu |= other.sgpr_read_by_valu_then_wr_by_valu;
-@@ -297,8 +303,11 @@ struct NOP_ctx_gfx11 {
-              valu_since_wr_by_trans == other.valu_since_wr_by_trans &&
-              trans_since_wr_by_trans == other.trans_since_wr_by_trans &&
-              sgpr_read_by_valu_as_lanemask == other.sgpr_read_by_valu_as_lanemask &&
-+             sgpr_read_by_valu_as_lanemask2 == other.sgpr_read_by_valu_as_lanemask2 &&
-              sgpr_read_by_valu_as_lanemask_then_wr_by_salu ==
-                 other.sgpr_read_by_valu_as_lanemask_then_wr_by_salu &&
-+             sgpr_read_by_valu_as_lanemask_then_wr_by_valu ==
-+                other.sgpr_read_by_valu_as_lanemask_then_wr_by_valu &&
-              vgpr_written_by_wmma == other.vgpr_written_by_wmma &&
-              sgpr_read_by_valu == other.sgpr_read_by_valu &&
-              sgpr_read_by_valu_then_wr_by_salu == other.sgpr_read_by_valu_then_wr_by_salu;
-@@ -1377,6 +1386,30 @@ handle_valu_partial_forwarding_hazard(State& state, aco_ptr<Instruction>& instr)
-    return global_state.hazard_found;
- }
- 
-+static bool
-+instr_reads_lanemask(Instruction* instr, Operand* op)
-+{
-+   if (!instr->isVALU())
-+      return false;
-+   if (instr->isVOPD()) {
-+      *op = Operand(vcc, s1);
-+      return instr->opcode == aco_opcode::v_dual_cndmask_b32 ||
-+             instr->vopd().opy == aco_opcode::v_dual_cndmask_b32;
-+   }
-+   switch (instr->opcode) {
-+   case aco_opcode::v_addc_co_u32:
-+   case aco_opcode::v_subb_co_u32:
-+   case aco_opcode::v_subbrev_co_u32:
-+   case aco_opcode::v_cndmask_b16:
-+   case aco_opcode::v_cndmask_b32:
-+   case aco_opcode::v_div_fmas_f32:
-+   case aco_opcode::v_div_fmas_f64:
-+      *op = instr->operands.back();
-+      return !instr->operands.back().isConstant();
-+   default: return false;
-+   }
-+}
-+
- void
- handle_instruction_gfx11(State& state, NOP_ctx_gfx11& ctx, aco_ptr<Instruction>& instr,
-                          std::vector<aco_ptr<Instruction>>& new_instructions)
-@@ -1473,14 +1506,47 @@ handle_instruction_gfx11(State& state, NOP_ctx_gfx11& ctx, aco_ptr<Instruction>&
-          sa_sdst = 0;
-       }
- 
-+      /* VALU reading a SGPR as a lane mask and later written as a lane mask shouldn't be read again
-+       * as a lane mask without a wait.
-+       *
-+       * TODO: this fixes #12623 and #11480, but needs further investigation as to why.
-+       */
-+      Operand lanemask_op;
-+      if (instr_reads_lanemask(instr.get(), &lanemask_op)) {
-+         unsigned reg = lanemask_op.physReg().reg();
-+         if (ctx.sgpr_read_by_valu_as_lanemask_then_wr_by_valu[reg] ||
-+             (state.program->wave_size == 64 &&
-+              ctx.sgpr_read_by_valu_as_lanemask_then_wr_by_valu[reg + 1])) {
-+            bool is_vcc = reg == vcc || reg == vcc_hi;
-+            bld.sopp(aco_opcode::s_waitcnt_depctr, is_vcc ? 0xfffd : 0xf1ff);
-+            if (is_vcc)
-+               wait.va_vcc = 0;
-+            else
-+               wait.va_sdst = 0;
-+         }
-+      }
-+
-       if (va_vdst == 0) {
-          ctx.valu_since_wr_by_trans.reset();
-          ctx.trans_since_wr_by_trans.reset();
-+         ctx.sgpr_read_by_valu_as_lanemask_then_wr_by_valu.reset();
-       }
- 
-       if (sa_sdst == 0)
-          ctx.sgpr_read_by_valu_as_lanemask_then_wr_by_salu.reset();
- 
-+      if (wait.va_sdst == 0) {
-+         std::bitset<128> old = ctx.sgpr_read_by_valu_as_lanemask_then_wr_by_valu;
-+         ctx.sgpr_read_by_valu_as_lanemask_then_wr_by_valu.reset();
-+         ctx.sgpr_read_by_valu_as_lanemask_then_wr_by_valu[vcc] = old[vcc];
-+         ctx.sgpr_read_by_valu_as_lanemask_then_wr_by_valu[vcc_hi] = old[vcc_hi];
-+      }
-+
-+      if (wait.va_vcc == 0) {
-+         ctx.sgpr_read_by_valu_as_lanemask_then_wr_by_valu[vcc] = false;
-+         ctx.sgpr_read_by_valu_as_lanemask_then_wr_by_valu[vcc_hi] = false;
-+      }
-+
-       if (state.program->wave_size == 64 && instr->isSALU() &&
-           check_written_regs(instr, ctx.sgpr_read_by_valu_as_lanemask)) {
-          unsigned reg = instr->definitions[0].physReg().reg();
-@@ -1511,21 +1577,28 @@ handle_instruction_gfx11(State& state, NOP_ctx_gfx11& ctx, aco_ptr<Instruction>&
-                if (!op.isConstant() && op.physReg().reg() < 126)
-                   ctx.sgpr_read_by_valu_as_lanemask.reset();
-             }
--            switch (instr->opcode) {
--            case aco_opcode::v_addc_co_u32:
--            case aco_opcode::v_subb_co_u32:
--            case aco_opcode::v_subbrev_co_u32:
--            case aco_opcode::v_cndmask_b16:
--            case aco_opcode::v_cndmask_b32:
--            case aco_opcode::v_div_fmas_f32:
--            case aco_opcode::v_div_fmas_f64:
--               if (instr->operands.back().physReg() != exec) {
--                  ctx.sgpr_read_by_valu_as_lanemask.set(instr->operands.back().physReg().reg());
--                  ctx.sgpr_read_by_valu_as_lanemask.set(instr->operands.back().physReg().reg() + 1);
--               }
--               break;
--            default: break;
-+         }
-+
-+         if (instr_reads_lanemask(instr.get(), &lanemask_op)) {
-+            unsigned reg = lanemask_op.physReg().reg();
-+            if (state.program->wave_size == 64 && reg != exec) {
-+               ctx.sgpr_read_by_valu_as_lanemask.set(reg);
-+               ctx.sgpr_read_by_valu_as_lanemask.set(reg + 1);
-             }
-+            ctx.sgpr_read_by_valu_as_lanemask2.set(reg);
-+            if (state.program->wave_size == 64)
-+               ctx.sgpr_read_by_valu_as_lanemask2.set(reg + 1);
-+         }
-+
-+         if (instr->opcode != aco_opcode::v_readlane_b32_e64 &&
-+             instr->opcode != aco_opcode::v_readfirstlane_b32 &&
-+             !instr->definitions.empty() &&
-+             instr->definitions.back().getTemp().type() == RegType::sgpr) {
-+            unsigned reg = instr->definitions.back().physReg().reg();
-+            if (ctx.sgpr_read_by_valu_as_lanemask2[reg])
-+               ctx.sgpr_read_by_valu_as_lanemask_then_wr_by_valu[reg] = true;
-+            if (state.program->wave_size == 64 && ctx.sgpr_read_by_valu_as_lanemask2[reg + 1])
-+               ctx.sgpr_read_by_valu_as_lanemask_then_wr_by_valu[reg + 1] = true;
-          }
-       }
-    } else {
--- 
-2.48.1
-
-
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
-From: "Ivan A. Melnikov" <iv@altlinux.org>
-Date: Fri, 7 Mar 2025 19:29:31 +0400
-Subject: gallium/radeon: Make sure radeonsi PCI IDs are also included
-
-When importing libdrm_radeon code [1][2] it was somehow missed
-that what libdrm has in one r600_pci_ids.h, Mesa has split
-into r600_pci_ids.h and radeonsi_pci_ids.h. So, devices
-with ids from radeonsi_pci_ids.h were not considered valid for
-radeon_surface_manager_new.
-
-This commit changes that, thus fixing radeonsi for these
-devices.
-
-[1] commit 1299f5c50a490fadeb60b61677596f13399ee136
-[2] commit 3aa7497cc0bb52c8099fb07b27f9aee5e18e58ca
-
-Fixes: 1299f5c50a490fadeb60b61677596f13399ee136
-Signed-off-by: Ivan A. Melnikov <iv@altlinux.org>
-Part-of: <https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/33940>
----
- src/gallium/winsys/radeon/drm/radeon_surface.c | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/src/gallium/winsys/radeon/drm/radeon_surface.c b/src/gallium/winsys/radeon/drm/radeon_surface.c
-index 8a3302df684..3c469ad0c6e 100644
---- a/src/gallium/winsys/radeon/drm/radeon_surface.c
-+++ b/src/gallium/winsys/radeon/drm/radeon_surface.c
-@@ -132,6 +132,9 @@ static int radeon_get_family(struct radeon_surface_manager *surf_man)
-     switch (surf_man->device_id) {
- #define CHIPSET(pci_id, name, fam) case pci_id: surf_man->family = CHIP_##fam; break;
- #include "pci_ids/r600_pci_ids.h"
-+#undef CHIPSET
-+#define CHIPSET(pci_id, fam) case pci_id: surf_man->family = CHIP_##fam; break;
-+#include "pci_ids/radeonsi_pci_ids.h"
- #undef CHIPSET
-     default:
-         return -EINVAL;
--- 
-2.48.1
-
-
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
-From: Samuel Pitoiset <samuel.pitoiset@gmail.com>
-Date: Tue, 11 Mar 2025 15:29:37 +0100
-Subject: radv/amdgpu: fix device deduplication
-
-To correctly deduplicate device inside the winsys, it should use the
-fd or amdgpu_device_handle. Using the allocated ac_drm_device as key
-is obviously broken.
-
-Not deduplicating devices breaks memory budget and a bunch of games
-were broken.
-
-Closes: https://gitlab.freedesktop.org/mesa/mesa/-/issues/12686
-Closes: https://gitlab.freedesktop.org/mesa/mesa/-/issues/12775
-Fixes: a565f2994fe ("amd: move all uses of libdrm_amdgpu to ac_linux_drm")
-Signed-off-by: Samuel Pitoiset <samuel.pitoiset@gmail.com>
-Part-of: <https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/34005>
----
- src/amd/vulkan/winsys/amdgpu/radv_amdgpu_winsys.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/src/amd/vulkan/winsys/amdgpu/radv_amdgpu_winsys.c b/src/amd/vulkan/winsys/amdgpu/radv_amdgpu_winsys.c
-index be8df8708c8..8b57abeb0b1 100644
---- a/src/amd/vulkan/winsys/amdgpu/radv_amdgpu_winsys.c
-+++ b/src/amd/vulkan/winsys/amdgpu/radv_amdgpu_winsys.c
-@@ -234,7 +234,7 @@ radv_amdgpu_winsys_create(int fd, uint64_t debug_flags, uint64_t perftest_flags,
-       goto fail;
-    }
- 
--   struct hash_entry *entry = _mesa_hash_table_search(winsyses, dev);
-+   struct hash_entry *entry = _mesa_hash_table_search(winsyses, (void *)ac_drm_device_get_cookie(dev));
-    if (entry) {
-       ws = (struct radv_amdgpu_winsys *)entry->data;
-       ++ws->refcount;
-@@ -325,7 +325,7 @@ radv_amdgpu_winsys_create(int fd, uint64_t debug_flags, uint64_t perftest_flags,
-    radv_amdgpu_bo_init_functions(ws);
-    radv_amdgpu_cs_init_functions(ws);
- 
--   _mesa_hash_table_insert(winsyses, dev, ws);
-+   _mesa_hash_table_insert(winsyses, (void *)ac_drm_device_get_cookie(dev), ws);
-    simple_mtx_unlock(&winsys_creation_mutex);
- 
-    return &ws->base;
--- 
-2.48.1
-
-
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From b45f046a4ebbbb1894e945a4cc2457674d9bf5ba Mon Sep 17 00:00:00 2001
 From: Maarten Lankhorst <maarten.lankhorst@intel.com>
 Date: Mon, 17 Feb 2025 14:55:29 -0800
-Subject: anv: Mark images with format modifiers set as scanout.
+Subject: [PATCH 7/7] anv: Mark images with format modifiers set as scanout.
 
 We currently use the presence of struct WSI_IMAGE_CREATE_INFO_MESA.scanout to mark the BO as scanout,
 but this only handles the linear case, and fails when drm format modifiers are used.
@@ -577,5 +284,5 @@ index 1884932bbc7..cbc1b4aad87 100644
            * implicit fencing. This matches the behavior in iris i915_batch
            * submit. An example client is VA-API (iHD), so only dedicated
 -- 
-2.48.1
+2.49.0
 
