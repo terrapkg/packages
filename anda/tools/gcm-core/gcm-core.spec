@@ -11,6 +11,8 @@ Version:        2.6.1
 Release:        1%?dist
 Summary:        Secure, cross-platform Git credential storage
 
+%forgemeta
+
 License:        MIT
 URL:            %{forgeurl}
 Source0:        %{forgesource}
