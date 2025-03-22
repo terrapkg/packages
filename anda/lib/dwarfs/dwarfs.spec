@@ -63,22 +63,6 @@ Requires:      boost-iostreams
 Requires:      boost-program-options
 Requires:      bzip2-libs
 Requires:      double-conversion
-Requires:      fmt
-Requires:      gflags
-Requires:      glog
-Requires:      jemalloc
-Requires:      libacl
-Requires:      libarchive
-Requires:      libattr
-Requires:      libbrotli
-Requires:      libstdc++
-Requires:      libunwind
-Requires:      libxml2
-Requires:      libzstd
-Requires:      lz4-libs
-Requires:      openssl-libs
-Requires:      xxhash-libs
-Requires:      xz-libs
 Requires:      zlib-ng-compat
 Packager:      Gilver E. <rockgrub@disroot.org>
 
