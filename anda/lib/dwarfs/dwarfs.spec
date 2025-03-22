@@ -58,11 +58,6 @@ BuildRequires: rubygem-ronn-ng
 BuildRequires: utf8cpp-devel
 BuildRequires: xxhash-devel
 BuildRequires: xz-devel
-Requires:      boost-chrono
-Requires:      boost-iostreams
-Requires:      boost-program-options
-Requires:      bzip2-libs
-Requires:      double-conversion
 Requires:      zlib-ng-compat
 Packager:      Gilver E. <rockgrub@disroot.org>
 
