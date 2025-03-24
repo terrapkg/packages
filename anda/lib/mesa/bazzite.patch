@@ -1,7 +1,16 @@
-From eab8a4f9ad407b8c5c29123855a56b3698399be3 Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Antheas Kapenekakis <git@antheas.dev>
+Date: Sat, 15 Mar 2025 16:39:08 +0100
+Subject: [BEGIN] SteamOS Changes
+
+-- 
+2.49.0
+
+
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
 Date: Fri, 14 Jan 2022 15:58:45 +0100
-Subject: [PATCH 1/7] STEAMOS: radv: min image count override for FH5
+Subject: STEAMOS: radv: min image count override for FH5
 
 Otherwise in combination with the vblank time reservation in
 gamescope the game could get stuck in low power states.
@@ -27,11 +36,11 @@ index 72f3438b39d..02d7ada7ad9 100644
 2.49.0
 
 
-From fd1d96636308b7216f246634cb75a20e45a3bd1b Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Samuel Pitoiset <samuel.pitoiset@gmail.com>
 Date: Thu, 22 Feb 2024 22:32:45 +0100
-Subject: [PATCH 2/7] STEAMOS: Dynamic swapchain override for gamescope limiter
- for DRI3 only
+Subject: STEAMOS: Dynamic swapchain override for gamescope limiter for DRI3
+ only
 
 The original patch (from Bas) contained WSI VK support too but it's
 been removed because the Gamescope WSI layer already handles that.
@@ -134,11 +143,10 @@ index 9061e9755e2..6cc64be298a 100644
 2.49.0
 
 
-From d2fe7734d135f785d4ac164c8fce779553f3ed19 Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Samuel Pitoiset <samuel.pitoiset@gmail.com>
 Date: Mon, 24 Feb 2025 17:48:21 +0100
-Subject: [PATCH 3/7] radv: stop computing the UUID using the physical device
- cache key
+Subject: radv: stop computing the UUID using the physical device cache key
 
 Otherwise, the UUID changes for games that have shader-based drirc
 workarounds and this breaks precompiled shaders on SteamDeck.
@@ -192,19 +200,19 @@ index 0d3660e7064..826c23a6c46 100644
 2.49.0
 
 
-From b6b22ad82dcc2dc47b089a7ac018757809fa1a1c Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Antheas Kapenekakis <git@antheas.dev>
 Date: Sat, 15 Mar 2025 16:39:25 +0100
-Subject: [PATCH 4/7] [BEGIN] SteamOS Backports
+Subject: [BEGIN] SteamOS Backports
 
 -- 
 2.49.0
 
 
-From 03830a554fe5e0a49c710e1c4b3b14f117325e5c Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Natalie Vock <natalie.vock@gmx.de>
 Date: Fri, 28 Feb 2025 14:21:57 +0100
-Subject: [PATCH 5/7] radv/rt: Limit monolithic pipelines to 50 stages
+Subject: radv/rt: Limit monolithic pipelines to 50 stages
 
 Beyond that, monolithic pipelines just bloat to incredible sizes,
 destroying compile times for questionable, if any, runtime perf benefit.
@@ -240,49 +248,11 @@ index 5a23dc99cc4..1421688d580 100644
 2.49.0
 
 
-From b013419f74e43edfe1da225b9641dea132d5897a Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Antheas Kapenekakis <git@antheas.dev>
 Date: Sat, 15 Mar 2025 16:39:33 +0100
-Subject: [PATCH 6/7] [BEGIN] Our Mesa backports
+Subject: [BEGIN] Our Mesa backports
 
--- 
-2.49.0
-
-
-From b45f046a4ebbbb1894e945a4cc2457674d9bf5ba Mon Sep 17 00:00:00 2001
-From: Maarten Lankhorst <maarten.lankhorst@intel.com>
-Date: Mon, 17 Feb 2025 14:55:29 -0800
-Subject: [PATCH 7/7] anv: Mark images with format modifiers set as scanout.
-
-We currently use the presence of struct WSI_IMAGE_CREATE_INFO_MESA.scanout to mark the BO as scanout,
-but this only handles the linear case, and fails when drm format modifiers are used.
-
-Also handle the case of exportable BO with tiling set to VK_IMAGE_TILING_DRM_FORMAT_MODIFIER_EXT.
-This fixes the gamescope handling of using vulkan allocated images for scanout.
-
-Link: https://gitlab.freedesktop.org/mesa/mesa/-/issues/12633
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-Signed-off-by: Matthew Schwartz <matthew.schwartz@linux.dev>
-
-Normalspeak: fixes battlemage iGPUs in gamescope
----
- src/intel/vulkan/anv_device.c | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/src/intel/vulkan/anv_device.c b/src/intel/vulkan/anv_device.c
-index 1884932bbc7..cbc1b4aad87 100644
---- a/src/intel/vulkan/anv_device.c
-+++ b/src/intel/vulkan/anv_device.c
-@@ -1533,6 +1533,9 @@ VkResult anv_AllocateMemory(
-           dedicated_info->image != VK_NULL_HANDLE) {
-          ANV_FROM_HANDLE(anv_image, image, dedicated_info->image);
- 
-+         if (image->vk.tiling == VK_IMAGE_TILING_DRM_FORMAT_MODIFIER_EXT)
-+            alloc_flags |= ANV_BO_ALLOC_SCANOUT;
-+
-          /* Apply implicit sync to be compatible with clients relying on
-           * implicit fencing. This matches the behavior in iris i915_batch
-           * submit. An example client is VA-API (iHD), so only dedicated
 -- 
 2.49.0
 
