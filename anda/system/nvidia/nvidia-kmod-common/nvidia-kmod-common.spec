@@ -23,7 +23,6 @@ Source19:       nvidia-modeset.conf
 Source20:       nvidia.conf
 Source21:       60-nvidia.rules
 Source24:       99-nvidia.conf
-Source25:       akmod-modules.conf
 
 # UDev rule location (_udevrulesdir) and systemd macros:
 BuildRequires:  systemd-rpm-macros
@@ -38,18 +37,10 @@ Obsoletes:      cuda-nvidia-kmod-common < %{?epoch:%{epoch}:}%{version}
 %description
 This package provides the common files required by all NVIDIA kernel module
 package variants.
-
-%package -n     nvidia-akmod-modules
-Summary:        Modules for the NVIDIA Akmods package
-BuildArch:      noarch
-
-%description -n nvidia-akmod-modules
-Modules needed for the akmod-nvidia package.
  
 %prep
 sh %{SOURCE0} -x --target nvidia-kmod-%{version}-x86_64
 %setup -T -D -n nvidia-kmod-%{version}-x86_64
-
 
 %install
 # Script for post/preun tasks
