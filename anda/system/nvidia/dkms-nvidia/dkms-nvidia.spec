@@ -1,5 +1,6 @@
 ## NVIDIA DKMS package, based on the work of Negativo17 with tweaks for Terra.
 
+%global debug_package %{nil}
 %global modulename nvidia
 
 Name:           dkms-%{modulename}
@@ -29,6 +30,8 @@ sh %{SOURCE0} -x --target dkms-nvidia-%{version}-%{_arch}
 cp -f %{SOURCE1} dkms.conf
 
 sed -i -e 's/__VERSION_STRING/%{version}/g' dkms.conf
+
+%build
 
 %install
 mkdir -p %{buildroot}%{_usrsrc}/%{modulename}-%{version}/
