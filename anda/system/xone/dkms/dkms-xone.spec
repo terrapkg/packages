@@ -1,22 +1,23 @@
-%global commit 6b9d59aed71f6de543c481c33df4705d4a590a31
-%global date 20241223
+%global commit aeb27e6d98f7b22b3672701af6171612254a4d0c
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
+%global commitdate 20250313
 %global ver 0.3
 %global debug_package %{nil}
-%global dkms_name xone
+%global modulename xone
 
-Name:           dkms-%{dkms_name}
-Version:        0.3^20241223git.6b9d59a
+Name:           dkms-%{modulename}
+Version:        %{ver}^%{commitdate}git.%{shortcommit}
 Release:        1%?dist
 Summary:        Linux kernel driver for Xbox One and Xbox Series X|S accessories
 License:        GPL-2.0-or-later
 URL:            https://github.com/dlundqvist/xone
-Source0:        %{url}/archive/%{commit}.tar.gz#/%{dkms_name}-%{shortcommit}.tar.gz
-Source1:        dkms-no-weak-modules.conf
+Source0:        %{url}/archive/%{commit}.tar.gz#/%{modulename}-%{shortcommit}.tar.gz
+Source1:        no-weak-modules.conf
 BuildRequires:  sed
 BuildRequires:  systemd-rpm-macros
-Requires:       %{dkms_name}-kmod-common = %{?epoch:%{epoch}:}%{version}
+Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
 Requires:       dkms
+Conflicts:      akmod-%{modulename}
 BuildArch:      noarch
 Packager:       Gilver E. <rockgrub@disroot.org>
 
@@ -24,7 +25,7 @@ Packager:       Gilver E. <rockgrub@disroot.org>
 Linux kernel driver for Xbox One and Xbox Series X|S accessories.
 
 %prep
-%autosetup -p1 -n %{dkms_name}-%{commit}
+%autosetup -p1 -n %{modulename}-%{commit}
 
 sed -i \
     -e 's|#VERSION#|%{version}|g' \
@@ -35,28 +36,28 @@ find . -type f -name '*.c' -exec sed -i "s/#VERSION#/%{version}/" {} \;
 
 %install
 # Create empty tree:
-mkdir -p %{buildroot}%{_usrsrc}/%{dkms_name}-%{version}/
-cp -fr auth bus driver transport Kbuild dkms.conf %{buildroot}%{_usrsrc}/%{dkms_name}-%{version}/
+mkdir -p %{buildroot}%{_usrsrc}/%{modulename}-%{version}/
+cp -fr auth bus driver transport Kbuild dkms.conf %{buildroot}%{_usrsrc}/%{modulename}-%{version}/
 
 %if 0%{?fedora}
 # Do not enable weak modules support in Fedora (no kABI):
-install -Dpm644 %{SOURCE1} %{buildroot}%{_sysconfdir}/dkms/%{dkms_name}.conf
+install -Dpm644 %{SOURCE1} %{buildroot}%{_sysconfdir}/dkms/%{modulename}.conf
 %endif
 
 %post
-dkms add -m %{dkms_name} -v %{version} -q --rpm_safe_upgrade || :
+dkms add -m %{modulename} -v %{version} -q --rpm_safe_upgrade || :
 # Rebuild and make available for the currently running kernel:
-dkms build -m %{dkms_name} -v %{version} -q || :
-dkms install -m %{dkms_name} -v %{version} -q --force || :
+dkms build -m %{modulename} -v %{version} -q || :
+dkms install -m %{modulename} -v %{version} -q --force || :
 
 %preun
 # Remove all versions from DKMS registry:
-dkms remove -m %{dkms_name} -v %{version} -q --all --rpm_safe_upgrade || :
+dkms remove -m %{modulename} -v %{version} -q --all --rpm_safe_upgrade || :
 
 %files
-%{_usrsrc}/%{dkms_name}-%{version}
+%{_usrsrc}/%{modulename}-%{version}
 %if 0%{?fedora}
-%{_sysconfdir}/dkms/%{dkms_name}.conf
+%{_sysconfdir}/dkms/%{modulename}.conf
 %endif
 
 %changelog
