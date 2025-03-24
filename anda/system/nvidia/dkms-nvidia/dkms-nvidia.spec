@@ -1,6 +1,5 @@
 ## NVIDIA DKMS package, based on the work of Negativo17 with tweaks for Terra.
 
-%global debug_package %{nil}
 %global modulename nvidia
 
 Name:           dkms-%{modulename}
@@ -9,8 +8,8 @@ Release:        1%{?dist}
 Summary:        NVIDIA display driver kernel module
 Epoch:          3
 License:        NVIDIA License
-URL:            http://www.nvidia.com/object/unix.html
-Source0:        http://download.nvidia.com/XFree86/Linux-%{_arch}/%{version}/NVIDIA-Linux-%{_arch}-%{version}.run
+URL:            https://www.nvidia.com/object/unix.html
+Source0:        https://download.nvidia.com/XFree86/Linux-%{_arch}/%{version}/NVIDIA-Linux-%{_arch}-%{version}.run
 Source1:        %{name}.conf
 BuildRequires:  sed
 Provides:       %{modulename}-kmod = %{?epoch:%{epoch}:}%{version}
@@ -30,8 +29,6 @@ sh %{SOURCE0} -x --target dkms-nvidia-%{version}-%{_arch}
 cp -f %{SOURCE1} dkms.conf
 
 sed -i -e 's/__VERSION_STRING/%{version}/g' dkms.conf
-
-%build
 
 %install
 mkdir -p %{buildroot}%{_usrsrc}/%{modulename}-%{version}/
