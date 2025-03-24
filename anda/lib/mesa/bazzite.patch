@@ -256,3 +256,74 @@ Subject: [BEGIN] Our Mesa backports
 -- 
 2.49.0
 
+
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Maarten Lankhorst <maarten.lankhorst@intel.com>
+Date: Mon, 17 Feb 2025 14:55:29 -0800
+Subject: anv: Mark images with format modifiers set as scanout.
+
+We currently use the presence of struct WSI_IMAGE_CREATE_INFO_MESA.scanout to mark the BO as scanout,
+but this only handles the linear case, and fails when drm format modifiers are used.
+
+Also handle the case of exportable BO with tiling set to VK_IMAGE_TILING_DRM_FORMAT_MODIFIER_EXT.
+This fixes the gamescope handling of using vulkan allocated images for scanout.
+
+Link: https://gitlab.freedesktop.org/mesa/mesa/-/issues/12633
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+Signed-off-by: Matthew Schwartz <matthew.schwartz@linux.dev>
+
+Normalspeak: fixes battlemage iGPUs in gamescope
+---
+ src/intel/vulkan/anv_device.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/src/intel/vulkan/anv_device.c b/src/intel/vulkan/anv_device.c
+index 1884932bbc7..cbc1b4aad87 100644
+--- a/src/intel/vulkan/anv_device.c
++++ b/src/intel/vulkan/anv_device.c
+@@ -1533,6 +1533,9 @@ VkResult anv_AllocateMemory(
+           dedicated_info->image != VK_NULL_HANDLE) {
+          ANV_FROM_HANDLE(anv_image, image, dedicated_info->image);
+ 
++         if (image->vk.tiling == VK_IMAGE_TILING_DRM_FORMAT_MODIFIER_EXT)
++            alloc_flags |= ANV_BO_ALLOC_SCANOUT;
++
+          /* Apply implicit sync to be compatible with clients relying on
+           * implicit fencing. This matches the behavior in iris i915_batch
+           * submit. An example client is VA-API (iHD), so only dedicated
+-- 
+2.49.0
+
+
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Antheas Kapenekakis <git@antheas.dev>
+Date: Mon, 24 Mar 2025 19:50:51 +0100
+Subject: Revert "winsys/amdgpu: use VM_ALWAYS_VALID for all VRAM and GTT
+ allocations"
+
+This reverts commit 8c91624614c1f939974fe0d2d1a3baf83335cecb.
+
+Messes with AutoVRAM, who would have thought?
+---
+ src/gallium/winsys/amdgpu/drm/amdgpu_bo.c | 5 -----
+ 1 file changed, 5 deletions(-)
+
+diff --git a/src/gallium/winsys/amdgpu/drm/amdgpu_bo.c b/src/gallium/winsys/amdgpu/drm/amdgpu_bo.c
+index 24ba28827f8..46461f8ee59 100644
+--- a/src/gallium/winsys/amdgpu/drm/amdgpu_bo.c
++++ b/src/gallium/winsys/amdgpu/drm/amdgpu_bo.c
+@@ -618,11 +618,6 @@ static struct amdgpu_winsys_bo *amdgpu_create_bo(struct amdgpu_winsys *aws,
+    if (flags & RADEON_FLAG_GTT_WC)
+       request.flags |= AMDGPU_GEM_CREATE_CPU_GTT_USWC;
+ 
+-   if (aws->info.has_local_buffers &&
+-       initial_domain & (RADEON_DOMAIN_VRAM_GTT | RADEON_DOMAIN_DOORBELL) &&
+-       flags & RADEON_FLAG_NO_INTERPROCESS_SHARING)
+-      request.flags |= AMDGPU_GEM_CREATE_VM_ALWAYS_VALID;
+-
+    if (flags & RADEON_FLAG_DISCARDABLE &&
+        aws->info.drm_minor >= 47)
+       request.flags |= AMDGPU_GEM_CREATE_DISCARDABLE;
+-- 
+2.49.0
+
