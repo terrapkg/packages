@@ -49,8 +49,8 @@ sed -E "/^subdir\('src'\)/d" -i meson.build
 
 %install
 %meson_install
-%{cargo_license_online} > LICENSE.dependencies
 %cargo_install
+%{cargo_license_online} > LICENSE.dependencies
 
 %files
 %doc README.md
