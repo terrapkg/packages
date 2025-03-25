@@ -16,6 +16,7 @@ BuildRequires:  make
 BuildRequires:  help2man
 BuildRequires:  sed
 BuildRequires:  systemd-rpm-macros
+Requires:       (%{name}-kmod = %{?epoch:%{epoch}:}%{version} or dkms-%{name} = %{?epoch:%{epoch}:}%{version})
 Provides:       %{name}-kmod-common = %{?epoch:%{epoch}:}%{version}
 ### For compatibility with older names
 Provides:       %{name}-utils = %{version}-%{release}
