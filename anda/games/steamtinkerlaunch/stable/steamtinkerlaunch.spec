@@ -42,6 +42,7 @@ Recommends:     vkBasalt
 Recommends:     (winehq-staging or wine)
 Recommends:     winetricks
 Recommends:     xdg-utils
+Conflicts:      %{name}-nightly
 BuildArch:      noarch
 Packager:       Gilver E. <rockgrub@disroot.org>
 

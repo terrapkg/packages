@@ -50,6 +50,7 @@ Recommends:     winetricks
 Recommends:     xdg-utils
 # Terra tag policy
 Provides:       %{base_name}.nightly
+Conflicts:      %{base_name}
 BuildArch:      noarch
 Packager:       Gilver E. <rockgrub@disroot.org>
 
