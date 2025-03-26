@@ -6,7 +6,7 @@
 %global _description %{expand:
 Steam Tinker Launch is a Linux wrapper tool for use with the Steam client which allows customizing and start tools and options for games quickly on the fly.}
 
-Name:           %{base_name}-nightly
+Name:           %{base_name}-git
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
 Release:        1%{?dist}
 Summary:        Wrapper tool for use with the Steam client for custom launch options
@@ -19,12 +19,13 @@ Requires:       bash
 Requires:       gawk
 Requires:       git
 Requires:       procps-ng
+Requires:       tar
 Requires:       unzip
+Requires:       vim-common
 Requires:       wget
 Requires:       xdotool
 Requires:       xprop
 Requires:       xrandr
-Requires:       vim-common
 Requires:       xwininfo
 Requires:       xxd
 Requires:       yad >= 7.2
@@ -49,7 +50,7 @@ Recommends:     (winehq-staging or wine)
 Recommends:     winetricks
 Recommends:     xdg-utils
 # Terra tag policy
-Provides:       %{base_name}.nightly
+Provides:       %{base_name}.git
 Conflicts:      %{base_name}
 BuildArch:      noarch
 Packager:       Gilver E. <rockgrub@disroot.org>
@@ -58,14 +59,15 @@ Packager:       Gilver E. <rockgrub@disroot.org>
 
 %prep
 %autosetup -p1 -n %{base_name}-%{commit}
-sed -i 's/$(PREFIX)\//$(BUILDROOT)$(PREFIX)\//g' Makefile
+# We only want the install commands from the Makefile
+sed -i 's/.*sed.*//g' Makefile
 # Let RPM handle the doc files
 sed -i 's/.*doc.*//g' Makefile
 
 %build
 
 %install
-%make_install PREFIX=%{_prefix} BUILDROOT=%{buildroot}
+%make_install PREFIX=%{buildroot}%{_prefix}
 
 %files
 %license LICENSE

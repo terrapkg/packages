@@ -9,16 +9,18 @@ License:        GPL-3.0-or-later
 URL:            https://github.com/sonic2kk/steamtinkerlaunch
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 BuildRequires:  make
+BuildRequires:  sed
 Requires:       bash
 Requires:       gawk
 Requires:       git
 Requires:       procps-ng
+Requires:       tar
 Requires:       unzip
+Requires:       vim-common
 Requires:       wget
 Requires:       xdotool
 Requires:       xprop
 Requires:       xrandr
-Requires:       vim-common
 Requires:       xwininfo
 Requires:       xxd
 Requires:       yad >= 7.2
@@ -42,7 +44,7 @@ Recommends:     vkBasalt
 Recommends:     (winehq-staging or wine)
 Recommends:     winetricks
 Recommends:     xdg-utils
-Conflicts:      %{name}-nightly
+Conflicts:      %{name}-git
 BuildArch:      noarch
 Packager:       Gilver E. <rockgrub@disroot.org>
 
@@ -50,14 +52,15 @@ Packager:       Gilver E. <rockgrub@disroot.org>
 
 %prep
 %autosetup -p1 -n %{name}-%{version}
-sed -i 's/$(PREFIX)\//$(BUILDROOT)$(PREFIX)\//g' Makefile
+# We only want the install commands from the Makefile
+sed -i 's/.*sed.*//g' Makefile
 # Let RPM handle the doc files
 sed -i 's/.*doc.*//g' Makefile
 
 %build
 
 %install
-%make_install PREFIX=%{_prefix} BUILDROOT=%{buildroot}
+%make_install PREFIX=%{buildroot}%{_prefix}
 
 %files
 %license LICENSE
