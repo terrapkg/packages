@@ -58,7 +58,7 @@ Packager:       Gilver E. <rockgrub@disroot.org>
 
 %prep
 %autosetup -p1 -n %{base_name}-%{commit}
-sed -i 's/$(PREFIX)\//$(BUILDROOT)\$(PREFIX)\//g' Makefile
+sed -i 's/$(PREFIX)\//$(BUILDROOT)$(PREFIX)\//g' Makefile
 # Let RPM handle the doc files
 sed -i 's/.*doc.*//g' Makefile
 
