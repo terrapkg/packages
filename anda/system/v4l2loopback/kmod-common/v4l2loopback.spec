@@ -6,7 +6,7 @@
 Name:           v4l2loopback
 Summary:        Utils for V4L2 loopback devices
 Version:        0.14.0
-Release:        3%?dist
+Release:        4%?dist
 License:        GPL-2.0-or-later
 URL:            https://github.com/v4l2loopback/v4l2loopback
 Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
@@ -16,7 +16,7 @@ BuildRequires:  make
 BuildRequires:  help2man
 BuildRequires:  sed
 BuildRequires:  systemd-rpm-macros
-Requires:       (akmod-%{name} = %{?epoch:%{epoch}:}%{version} or dkms-%{name} = %{?epoch:%{epoch}:}%{version})
+Requires:       (%{name}-kmod = %{?epoch:%{epoch}:}%{version} or dkms-%{name} = %{?epoch:%{epoch}:}%{version})
 Provides:       %{name}-kmod-common = %{?epoch:%{epoch}:}%{version}
 ### For compatibility with older names
 Provides:       %{name}-utils = %{version}-%{release}
