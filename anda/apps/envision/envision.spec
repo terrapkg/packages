@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-%global commit 9c6bfe110a50f7f96cd5204205397a9ccd2548d4
-%global commit_date 20250224
-=======
 %global commit db45103d1bc23d56692571d652f56f8866dc956d
 %global commit_date 20250327
->>>>>>> 8edc3518f (bump(nightly): envision mpv nightly nightly prismlauncher-nightly nim-nightly)
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           envision-nightly
