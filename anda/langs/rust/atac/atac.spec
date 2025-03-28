@@ -22,8 +22,7 @@ and account-less.}
 
 %package     -n %{crate}
 Summary:        %{summary}
-# FIXME: paste output of %%cargo_license_summary here
-License:        # FIXME
+License:        MIT
 # LICENSE.dependencies contains a full license breakdown
 
 %description -n %{crate} %{_description}

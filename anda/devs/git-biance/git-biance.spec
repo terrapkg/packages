@@ -33,7 +33,6 @@ in a git repository.
 %cargo_prep_online
 
 %build
-%cargo_build
 %{cargo_license_summary_online}
 %{cargo_license_online} > LICENSE.dependencies
 

@@ -10,27 +10,18 @@
 %global __requires_exclude %{?__requires_exclude:%{__requires_exclude}|}^golang\\(.*\\)$
 %endif
 
-# https://github.com/nektos/act.git
-%global goipath         github.com/nektos/act.git
+# https://github.com/nektos/act
+%global goipath         github.com/nektos/act
 Version:                0.2.75
 
-# REMOVE BEFORE SUBMITTING THIS FOR REVIEW
-# ---
-# New Fedora packages should use %%gometa -f, which makes the package
-# ExclusiveArch to %%golang_arches_future and thus excludes the package from
-# %%ix86. If the new package is needed as a dependency for another package,
-# please consider removing that package from %%ix86 in the same way, instead of
-# building more go packages for i686. If your package is not a leaf package,
-# you'll need to coordinate the removal of the package's dependents first.
-# ---
-# REMOVE BEFORE SUBMITTING THIS FOR REVIEW
-%gometa -L -f
+%gometa -f
 
 %global common_description %{expand:
-# FIXME}
+Run your GitHub Actions locally
+}
 
 %global golicenses      LICENSE pkg/lookpath/LICENSE
-%global godocs          .markdownlint.yml CONTRIBUTING.md IMAGES.md README.md
+%global godocs          README.md
 
 Name:           golang-github-nektos-act
 Release:        %autorelease
@@ -45,7 +36,7 @@ Source:         %{gosource}
 %gopkg
 
 %prep
-%goprep -A
+%goprep
 %autopatch -p1
 
 %if %{without bootstrap}
@@ -55,14 +46,14 @@ Source:         %{gosource}
 
 %if %{without bootstrap}
 %build
+%define gomodulesmode GO111MODULE=on
 for cmd in cmd/* ; do
   %gobuild -o %{gobuilddir}/bin/$(basename $cmd) %{goipath}/$cmd
 done
-%gobuild -o %{gobuilddir}/bin/act.git %{goipath}
+%gobuild -o %{gobuilddir}/bin/act %{goipath}
 %endif
 
 %install
-%gopkginstall
 %if %{without bootstrap}
 install -m 0755 -vd                     %{buildroot}%{_bindir}
 install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
@@ -79,10 +70,8 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %files
 %license LICENSE pkg/lookpath/LICENSE
 %doc .markdownlint.yml CONTRIBUTING.md IMAGES.md README.md
-%{_bindir}/act.git
+%{_bindir}/act
 %endif
-
-%gopkgfiles
 
 %changelog
 %autochangelog
