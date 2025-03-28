@@ -7,7 +7,7 @@
 %global app_id dev.zed.Zed
 
 Name:           zed
-Version:        0.178.5
+Version:        0.179.4
 Release:        2%?dist
 Summary:        Zed is a high-performance, multiplayer code editor
 SourceLicense:  AGPL-3.0-only AND Apache-2.0 AND GPL-3.0-or-later
