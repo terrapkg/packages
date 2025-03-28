@@ -1,5 +1,5 @@
 project pkg {
     rpm {
-        spec = "golang-github-nektos-act.spec"
+        spec = "act.spec"
     }
 }

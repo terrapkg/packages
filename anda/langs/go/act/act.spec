@@ -23,13 +23,14 @@ Run your GitHub Actions locally
 %global golicenses      LICENSE pkg/lookpath/LICENSE
 %global godocs          README.md
 
-Name:           golang-github-nektos-act
+Name:           act
 Release:        %autorelease
 Summary:        None
 
 License:        MIT AND ISC AND BSD-3-Clause AND Apache-2.0 AND BSD-2-Clause
 URL:            %{gourl}
 Source:         %{gosource}
+Packager:       xiaoshihou <xiaoshihou@tutamail.com>
 
 %description %{common_description}
 

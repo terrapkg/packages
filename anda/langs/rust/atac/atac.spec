@@ -3,7 +3,7 @@
 
 %global crate atac
 
-Name:           rust-atac
+Name:           atac
 Version:        0.19.0
 Release:        %autorelease
 Summary:        Arguably a Terminal API Client
@@ -12,6 +12,7 @@ License:        MIT
 URL:            https://crates.io/crates/atac
 Source:         %{crates_source}
 
+Packager:       xiaoshihou <xiaoshihou@tutamail.com>
 BuildRequires:  cargo-rpm-macros >= 24
 
 %global _description %{expand:

@@ -9,6 +9,7 @@ License:        GPL-3.0
 URL:            https://crates.io/crates/git-biance
 Source:         %{crates_source}
 
+Packager:       xiaoshihou <xiaoshihou@tutamail.com>
 BuildRequires:  anda-srpm-macros cargo-rpm-macros mold
 
 %global _description %{expand:
