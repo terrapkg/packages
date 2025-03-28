@@ -51,7 +51,7 @@ Packager:       xiaoshihou <xiaoshihou@tutamail.com>
 for cmd in cmd/* ; do
   %gobuild -o %{gobuilddir}/bin/$(basename $cmd) %{goipath}/$cmd
 done
-%gobuild -o %{gobuilddir}/bin/act %{goipath}
+%go_build_online -o %{gobuilddir}/bin/act %{goipath}
 %endif
 
 %install
