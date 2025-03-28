@@ -15,7 +15,7 @@ BuildArch:      noarch
 
 License:        GPL-3.0-or-later
 URL:            https://valos.gitlab.io/Komikku
-Source0:        https://codeberg.org/valos/%{appname}/archive/v%{raw_ver}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        https://codeberg.org/valos/%{appname}/archive/%{raw_ver}.tar.gz#/%{name}-%{version}.tar.gz
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  intltool
