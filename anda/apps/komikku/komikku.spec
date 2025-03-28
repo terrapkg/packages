@@ -6,7 +6,7 @@
 %global raw_ver v1.74.0
 
 Name:           komikku
-Version:        %(echo %{raw_ver} | sed 's/v//g')
+Version:        1.74.0
 %forgemeta
 Release:        3%?dist
 Summary:        A manga reader for GNOME
