@@ -1,9 +1,9 @@
-%global commit 494279419af16aba382fc0c25d3edb25dbec1d7f
+%global commit 0afb922375b2f8329f1c923cb58df75ddd4a6eb1
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global fulldate 2025-03-26
+%global fulldate 2025-03-27
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
-%global ver 1.1.3
+%global ver 1.1.4
 %global base_name ghostty
 %global reverse_dns com.mitchellh.%{base_name}
 %if 0%{?fedora} <= 40
