@@ -3,7 +3,7 @@
 %global gtk4_version        4.14.4
 %global libadwaita_version  1.5.1
 %global pure_protobuf_version 2.0.0
-%global raw_ver v1.74.0
+%global raw_ver 1.74.0
 
 Name:           komikku
 Version:        %(echo %{raw_ver} | sed 's/v//g')
