@@ -8,7 +8,7 @@
 Name:           komikku
 Version:        %(echo %{raw_ver} | sed 's/v//g')
 %forgemeta
-Release:        2%?dist
+Release:        3%?dist
 Summary:        A manga reader for GNOME
 
 BuildArch:      noarch
@@ -23,6 +23,7 @@ BuildRequires:  libappstream-glib
 BuildRequires:  meson >= 0.59.0
 BuildRequires:  python3-devel >= 3.8
 BuildRequires:  blueprint-compiler
+BuildRequires:  cmake
 
 BuildRequires:  pkgconfig(gobject-introspection-1.0) >= 1.35.9
 BuildRequires:  pkgconfig(gtk4) >= %{gtk4_version}
