@@ -36,15 +36,11 @@ License:        # FIXME
 
 %prep
 %autosetup -n %{crate}-%{version} -p1
-%cargo_prep
-
-%generate_buildrequires
-%cargo_generate_buildrequires
+%cargo_prep_online
 
 %build
-%cargo_build
-%{cargo_license_summary}
-%{cargo_license} > LICENSE.dependencies
+%{cargo_license_summary_online}
+%{cargo_license_online} > LICENSE.dependencies
 
 %install
 %cargo_install
