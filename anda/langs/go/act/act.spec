@@ -37,7 +37,7 @@ Packager:       xiaoshihou <xiaoshihou@tutamail.com>
 %gopkg
 
 %prep
-%goprep
+%go_prep_online
 %autopatch -p1
 
 %if %{without bootstrap}
