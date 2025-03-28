@@ -3,12 +3,12 @@
 %global gtk4_version        4.14.4
 %global libadwaita_version  1.5.1
 %global pure_protobuf_version 2.0.0
-%global raw_ver 1.74.0
+%global raw_ver v1.74.0
 
 Name:           komikku
-Version:        %(echo %{raw_ver} | sed 's/v//g')
+Version:        1.74.0
 %forgemeta
-Release:        2%?dist
+Release:        3%?dist
 Summary:        A manga reader for GNOME
 
 BuildArch:      noarch
@@ -23,6 +23,7 @@ BuildRequires:  libappstream-glib
 BuildRequires:  meson >= 0.59.0
 BuildRequires:  python3-devel >= 3.8
 BuildRequires:  blueprint-compiler
+BuildRequires:  cmake
 
 BuildRequires:  pkgconfig(gobject-introspection-1.0) >= 1.35.9
 BuildRequires:  pkgconfig(gtk4) >= %{gtk4_version}
