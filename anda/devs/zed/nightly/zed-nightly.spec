@@ -16,7 +16,7 @@ Version:        %ver^%commit_date.%shortcommit
 Release:        1%?dist
 Summary:        Zed is a high-performance, multiplayer code editor
 SourceLicense:  AGPL-3.0-only AND Apache-2.0 AND GPL-3.0-or-later
-License:
+License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 AND ISC) AND AGPL-3.0-or-later AND (Apache-2.0 OR BSL-1.0 OR MIT) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception) AND Apache-2.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR MIT OR Apache-2.0) AND BSD-2-Clause AND (CC0-1.0 OR Apache-2.0 OR Apache-2.0 WITH LLVM-exception) AND (CC0-1.0 OR Apache-2.0) AND (CC0-1.0 OR MIT-0 OR Apache-2.0) AND CC0-1.0 AND GPL-3.0-or-later AND (ISC AND (Apache-2.0 OR ISC) AND OpenSSL) AND (ISC AND (Apache-2.0 OR ISC)) AND ISC AND (MIT AND (MIT OR Apache-2.0)) AND (MIT AND BSD-3-Clause) AND (MIT OR Apache-2.0 OR CC0-1.0) AND (MIT OR Apache-2.0 OR NCSA) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MIT AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT) AND Zlib
 URL:            https://zed.dev/
 Source0:        https://github.com/zed-industries/zed/archive/%{commit}.tar.gz
 
@@ -87,7 +87,29 @@ install -Dm644 crates/zed/resources/app-icon-nightly.png %{buildroot}%{_datadir}
 install -Dm644 %app_id.metainfo.xml %{buildroot}%{_metainfodir}/%app_id.metainfo.xml
 
 # The license generation script doesn't generate licenses for ALL compiled dependencies, just direct deps of Zed, and it does not "group" licenses
-%{cargo_license_online} > LICENSE.dependencies
+# There is also some horrible issue with --no-dedupes with Zed so we have to work around this
+%{__cargo} tree                                                 \
+    -Z avoid-dev-deps                                               \
+    --workspace                                                     \
+    --edges no-build,no-dev,no-proc-macro                           \
+    --target all                                                    \
+    %{__cargo_parse_opts %{-n} %{-a} %{-f:-f%{-f*}}}                \
+    --prefix none                                                   \
+    --format "{l}: {p}"                                             \
+    | sed -e "s: ($(pwd)[^)]*)::g" -e "s: / :/:g" -e "s:/: OR :g"   \
+    | sort -u                                                       \
+> LICENSE.dependencies
+# Remove duplicate entries
+sed -i 's/.*(\*).*//g' LICENSE.dependencies
+# Remove GitHub links
+sed -i 's/(https.*//g' LICENSE.dependencies
+# Add license to Microsoft crates hosted on GitHub
+sed -i '/^: pet/ s/./MIT&/' LICENSE.dependencies
+# Remove empty lines
+sed -ir '/^\s*$/d' LICENSE.dependencies
+mv assets/icons/LICENSES LICENSE.icons
+mv assets/themes/LICENSES LICENSE.themes
+mv assets/fonts/plex-mono/license.txt LICENSE.fonts
 
 %if %{with check}
 %check
@@ -95,11 +117,15 @@ install -Dm644 %app_id.metainfo.xml %{buildroot}%{_metainfodir}/%app_id.metainfo
 %endif
 
 %files
+%doc CODE_OF_CONDUCT.md
 %doc README.md
 %license LICENSE-AGPL
 %license LICENSE-APACHE
 %license LICENSE-GPL
 %license LICENSE.dependencies
+%license LICENSE.icons
+%license LICENSE.fonts
+%license LICENSE.themes
 %license assets/licenses.md
 %{_libexecdir}/zed-editor
 %{_bindir}/zed
