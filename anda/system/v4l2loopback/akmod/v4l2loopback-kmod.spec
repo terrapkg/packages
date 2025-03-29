@@ -18,7 +18,7 @@ This module allows you to create \"virtual video devices.\" Normal \(v4l2\) appl
 Name:           %{modulename}-kmod
 Summary:        Kernel module (kmod) for V4L2 loopback devices
 Version:        0.14.0
-Release:        2%?dist
+Release:        3%?dist
 License:        GPL-2.0-or-later
 URL:            https://github.com/v4l2loopback/v4l2loopback
 Source0:        %{url}/archive/v%{version}/%{modulename}-%{version}.tar.gz
@@ -40,25 +40,29 @@ Packager:       Cappy Ishihara <cappy@fyralabs.com>
 
 %prep
 %{?kmodtool_check}
-kmodtool --target %{_target_cpu} --repo terra --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
-%autosetup -p1 -n %{modulename}-%{version}
+kmodtool  --target %{_target_cpu} --repo terra --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
-
-%build
+%setup -q -c
+(cd v4l2loopback-%{version}
+)
 
 for kernel_version  in %{?kernel_versions} ; do
-  make V=1 %{?_smp_mflags} M=${PWD}/_kmod_build_${kernel_version%%___*} VERSION=v%{version} v4l2loopback
+  cp -a v4l2loopback-%{version} _kmod_build_${kernel_version%%___*}
+done
+
+%build
+for kernel_version  in %{?kernel_versions} ; do
+  make V=1 %{?_smp_mflags} -C ${kernel_version##*___} M=${PWD}/_kmod_build_${kernel_version%%___*} modules
 done
 
 
 %install
 for kernel_version in %{?kernel_versions}; do
  mkdir -p %{buildroot}%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
- install -D -m 755 v4l2loopback.ko %{buildroot}%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
+ install -D -m 755 _kmod_build_${kernel_version%%___*}/v4l2loopback.ko %{buildroot}%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
  chmod a+x %{buildroot}%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/*.ko
 done
-
 %{?akmod_install}
 
 %changelog
