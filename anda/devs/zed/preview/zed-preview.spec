@@ -119,8 +119,8 @@ mv assets/fonts/plex-mono/license.txt LICENSE.fonts
 %license LICENSE-APACHE
 %license LICENSE-GPL
 %license LICENSE.dependencies
-%license LICENSE.icons
 %license LICENSE.fonts
+%license LICENSE.icons
 %license LICENSE.themes
 %license assets/licenses.md
 %{_libexecdir}/zed-editor
