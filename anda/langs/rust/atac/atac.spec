@@ -21,11 +21,6 @@ and account-less.}
 
 %description %{_description}
 
-%package     -n %{crate}
-Summary:        %{summary}
-License:        MIT
-# LICENSE.dependencies contains a full license breakdown
-
 %description -n %{crate} %{_description}
 
 %files       -n %{crate}

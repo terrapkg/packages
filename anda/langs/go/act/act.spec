@@ -41,11 +41,6 @@ Packager:       xiaoshihou <xiaoshihou@tutamail.com>
 %go_prep_online
 
 %if %{without bootstrap}
-%generate_buildrequires
-%go_generate_buildrequires
-%endif
-
-%if %{without bootstrap}
 %build
 %define gomodulesmode GO111MODULE=on
 for cmd in cmd/* ; do
