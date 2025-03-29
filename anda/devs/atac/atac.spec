@@ -1,5 +1,9 @@
 %global crate atac
 
+%if 0%{?fedora} >= 42
+%global build_cflags %{__build_flags_lang_c} %{?_distro_extra_cflags} -std=gnu18
+%endif
+
 Name:           atac
 Version:        0.19.0
 Release:        1%?dist
@@ -10,7 +14,7 @@ URL:            https://crates.io/crates/atac
 Source:         %{crates_source}
 
 Packager:       xiaoshihou <xiaoshihou@tutamail.com>
-BuildRequires:  anda-srpm-macros cargo-rpm-macros
+BuildRequires:  anda-srpm-macros cargo-rpm-macros mold
 
 %global _description %{expand:
 Arguably a Terminal API Client. Feature-full, free, open-source, offline
