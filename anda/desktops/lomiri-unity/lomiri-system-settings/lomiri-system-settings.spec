@@ -4,13 +4,12 @@
 
 Name:       lomiri-system-settings
 Version:    1.3.0
-Release:    1%?dist
+Release:    2%?dist
 Summary:    The system settings application for Lomiri
 License:    GPLv3
 URL:        https://gitlab.com/ubports/development/core/lomiri-system-settings
 Source0:    %{url}/-/archive/%commit/lomiri-system-settings-%commit.tar.gz
-Patch0:     https://sources.debian.org/data/main/l/lomiri-system-settings/1.0.1-2/debian/patches/1001_use-maliit-keyboard-for-language-plugin.patch
-Patch1:     https://sources.debian.org/data/main/l/lomiri-system-settings/1.0.1-2/debian/patches/2001_disable-current-language-switching.patch
+Patch0:     https://sources.debian.org/data/main/l/lomiri-system-settings/1.3.0-4/debian/patches/2011_build-without-trust-store.patch
 
 BuildRequires: cmake
 BuildRequires: gcc-c++
