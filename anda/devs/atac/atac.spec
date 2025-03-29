@@ -3,6 +3,7 @@
 %if 0%{?fedora} >= 42
 %global build_cflags %{__build_flags_lang_c} %{?_distro_extra_cflags} -std=gnu18
 %endif
+%global __brp_mangle_shebangs %{nil}
 
 Name:           atac
 Version:        0.19.0
