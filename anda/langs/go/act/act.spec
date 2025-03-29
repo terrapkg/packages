@@ -43,9 +43,7 @@ Packager:       xiaoshihou <xiaoshihou@tutamail.com>
 %if %{without bootstrap}
 %build
 %define gomodulesmode GO111MODULE=on
-for cmd in cmd/* ; do
-  %gobuild -o %{gobuilddir}/bin/$(basename $cmd) %{goipath}/$cmd
-done
+%define __gobuild_extldflags -X main.version=%version
 %gobuild -o %{gobuilddir}/bin/act %{goipath}
 %endif
 
