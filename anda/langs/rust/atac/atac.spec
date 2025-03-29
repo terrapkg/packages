@@ -21,8 +21,6 @@ and account-less.}
 
 %description %{_description}
 
-%description -n %{crate} %{_description}
-
 %files       -n %{crate}
 %license LICENSE
 %license LICENSE.dependencies
