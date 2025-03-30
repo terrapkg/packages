@@ -1,5 +1,5 @@
 Name:           cbfstool
-Version:        24.12
+Version:        25.03
 Release:        1%?dist
 Summary:        Management utility for CBFS formatted ROM images
 URL:            https://doc.coreboot.org/lib/fw_config.html#cbfs
