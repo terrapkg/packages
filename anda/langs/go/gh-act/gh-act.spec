@@ -63,7 +63,7 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %if %{without bootstrap}
 %files
 %license LICENSE pkg/lookpath/LICENSE
-%doc .markdownlint.yml CONTRIBUTING.md IMAGES.md README.md
+%doc CONTRIBUTING.md IMAGES.md README.md
 %{_bindir}/gh-act
 %endif
 
