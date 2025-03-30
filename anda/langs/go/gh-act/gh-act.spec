@@ -37,14 +37,14 @@ Packager:       xiaoshihou <xiaoshihou@tutamail.com>
 %gopkg
 
 %prep
-%autosetup -p1 -n %{name}-%{version}
+%autosetup -p1 -n act-%{version}
 %go_prep_online
 
 %if %{without bootstrap}
 %build
 %define gomodulesmode GO111MODULE=on
 %define __gobuild_extldflags -X main.version=%version
-%gobuild -o %{gobuilddir}/bin/act %{goipath}
+%gobuild -o %{gobuilddir}/bin/gh-act %{goipath}
 %endif
 
 %install
@@ -64,7 +64,7 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %files
 %license LICENSE pkg/lookpath/LICENSE
 %doc .markdownlint.yml CONTRIBUTING.md IMAGES.md README.md
-%{_bindir}/act
+%{_bindir}/gh-act
 %endif
 
 %changelog
