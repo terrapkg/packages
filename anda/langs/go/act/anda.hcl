@@ -1,5 +1,5 @@
 project pkg {
     rpm {
-        spec = "act.spec"
+        spec = "gh-act.spec"
     }
 }

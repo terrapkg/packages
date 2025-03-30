@@ -23,7 +23,7 @@ Run your GitHub Actions locally
 %global golicenses      LICENSE pkg/lookpath/LICENSE
 %global godocs          README.md
 
-Name:           act
+Name:           gh-act
 Release:        %autorelease
 Summary:        None
 
