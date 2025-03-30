@@ -31,6 +31,7 @@ License:        MIT AND ISC AND BSD-3-Clause AND Apache-2.0 AND BSD-2-Clause
 URL:            %{gourl}
 Source:         %{gosource}
 Packager:       xiaoshihou <xiaoshihou@tutamail.com>
+BuildRequires:  anda-srpm-macros
 
 %description %{common_description}
 
