@@ -4,6 +4,6 @@ project pkg {
     spec = "ivsc-firmware.spec"
   }
   labels {
-        weekly = 1
+        nightly = 1
     }
 }
