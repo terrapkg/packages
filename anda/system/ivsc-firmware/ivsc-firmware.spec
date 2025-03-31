@@ -1,6 +1,6 @@
 %global debug_package %{nil}
 %global commit 3377801f46b86e03c464bfb03ca3c486e9b0db00
-%global commitdate 20230811
+%global commit_date 20250326
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           ivsc-firmware
