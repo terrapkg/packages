@@ -3,7 +3,4 @@ project pkg {
   rpm {
     spec = "ivsc-firmware.spec"
   }
-  labels {
-        nightly = 1
-    }
 }
