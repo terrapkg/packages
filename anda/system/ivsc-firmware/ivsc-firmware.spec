@@ -6,7 +6,7 @@
 Name:           ivsc-firmware
 Summary:        Intel iVSC firmware
 URL:            https://github.com/intel/ivsc-firmware
-Version:        %{commitdate}.%{shortcommit}
+Version:        %{commit_date}.%{shortcommit}
 Release:        1%?dist
 License:        Proprietary
 Source0:        https://github.com/intel/%{name}/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
