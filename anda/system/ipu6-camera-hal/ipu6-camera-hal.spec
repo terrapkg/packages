@@ -71,9 +71,6 @@ install -Dpm 0644 %{SOURCE2} %{buildroot}%{_datadir}/defaults/etc/camera/ipu6/v4
 install -Dpm 0644 %{SOURCE3} %{buildroot}%{_datadir}/defaults/etc/camera/ipu6ep/v4l2-relayd
 install -Dpm 0644 %{SOURCE3} %{buildroot}%{_datadir}/defaults/etc/camera/ipu6epmtl/v4l2-relayd
 
-### Make kmod-intel-ipu6 use /dev/video7 leaving /dev/video0 for loopback
-install -Dpm 0644 %{SOURCE4} %{buildroot}%{_modprobedir}/icamera_ipu6_isys.conf
-
 ### Script to switch between proprietary and open IPU6 stacks
 install -Dpm 0755 %{SOURCE4} %{buildroot}%{_bindir}/ipu6-driver-select
 
