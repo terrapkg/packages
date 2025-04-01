@@ -11,6 +11,10 @@ Release:        1%?dist
 License:        Proprietary
 Source0:        https://github.com/intel/%{name}/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
 Requires:       ipu6-camera-bins
+# Fix the stupid issue when changing versioning schemes
+%if 0%{?fedora} <= 42 || 0%{?rhel} <= 10
+Provides:       %{name} = %{commit_date}.%{shortcommit}
+%endif
 ExclusiveArch:  x86_64
 
 %description
