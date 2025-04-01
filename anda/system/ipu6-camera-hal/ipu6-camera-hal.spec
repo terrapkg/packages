@@ -1,4 +1,4 @@
-%global commit 289e645dffbd0ea633f10bb4f93855f1e4429e9a
+%global commit 8346d93d032a33b0db15bba5ad87854308c3dff5
 %global commit_date 20240509
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global build_cflags %{__build_flags_lang_c} %{?_distro_extra_cflags} -Wno-alloc-size-larger-than
