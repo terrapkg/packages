@@ -63,7 +63,7 @@ install -Dm644 lib/pkgconfig/* -t %{buildroot}%{_libdir}/pkgconfig
 %{_libdir}/*.so.*
 
 %files devel
-%{_includedir}/ipu6
+%{_includedir}/ipu6*
 %{_libdir}/pkgconfig/*
 %{_libdir}/*.a
 %dnl %{_libdir}/*.so
