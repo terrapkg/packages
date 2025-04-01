@@ -12,7 +12,7 @@ Version:        %{ver}^%{commit_date}git.%{shortcommit}
 Release:        1%{?dist}
 License:        Apache-2.0
 URL:            https://github.com/intel/ipu6-camera-hal
-Source0:        %url}/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
+Source0:        %{url}/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
 Source1:        60-intel-ipu6.rules
 Source2:        v4l2-relayd-adl
 Source3:        v4l2-relayd-tgl
