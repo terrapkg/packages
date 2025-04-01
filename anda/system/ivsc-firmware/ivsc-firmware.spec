@@ -45,4 +45,3 @@ popd
 * Tue Apr 1 2025 Gilver E. <rockgrub@disroot.org> - 0^20250326git.3377801-2%{?dist} - FINAL
 - Final update as the project is archived
 - Include the doc files
-
