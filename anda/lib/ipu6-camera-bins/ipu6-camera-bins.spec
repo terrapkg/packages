@@ -18,6 +18,7 @@ Requires:       v4l2-relayd
 Requires:       intel-ipu6-kmod
 Requires:       intel-vsc-firmware >= 20240513
 Obsoletes:      ipu6-camera-bins-firmware < 0.0-11
+Obsoletes:      ivsc-firmware < 0^20250326git.3377801-2
 ### For Akmods package
 Provides:       intel-ipu6-kmod-common = %{version}
 # Fix the stupid issue when changing versioning schemes
@@ -30,31 +31,37 @@ Packager:       Gilver E. <rockgrub@disroot.org>
 %description
 Provides binaries for Intel IPU6, including libraries and firmware.
 
-
 %package devel
 Summary:        IPU6 development files
 Requires:       %{name}%{?_isa} = %{version}-%{release}
+BuildArch:      noarch
 
 %description devel
 This provides the header files for IPU6 development.
 
 %prep
-%setup -q -n %{name}-%{commit}
-chrpath --delete lib/*.so.*
-sed -i \
-    -e "s|libdir=\${exec_prefix}/lib|libdir=\${prefix}/%{_lib}|g" \
-    lib/pkgconfig/*.pc
+%autosetup -n %{name}-%{commit}
+chrpath --delete lib/*.so.0
+chmod +x lib/*.so.0
+# The firmware is part of linux-firmware!
+rm -r lib/firmware
 
 %build
 
 %install
 mkdir -p %{buildroot}%{_includedir}/
-mkdir -p %{buildroot}%{_libdir}/
 cp -pr include/* %{buildroot}%{_includedir}/
 install -Dm755 lib/*.so* -t %{buildroot}%{_libdir}
 install -Dm644 lib/*.a -t %{buildroot}%{_libdir}
+pushd %{buildroot}%{_libdir}
+  for i in *.so.0; do
+    ln -s $i `echo $i | sed -e "s|\.so\.0|\.so|"`
+  done
+  for i in pkgconfig/*.pc; do
+    sed -i -e "s|libdir=\${prefix}/lib|libdir=%{_libdir}|g" "$i"
+  done
+popd
 install -Dm644 lib/pkgconfig/* -t %{buildroot}%{_libdir}/pkgconfig
-
 
 %files
 %license LICENSE
@@ -64,9 +71,9 @@ install -Dm644 lib/pkgconfig/* -t %{buildroot}%{_libdir}/pkgconfig
 
 %files devel
 %{_includedir}/ipu6*
-%{_libdir}/pkgconfig/*
+%{_libdir}/pkgconfig/*.pc
 %{_libdir}/*.a
-%dnl %{_libdir}/*.so
+%{_libdir}/*.so
 
 
 %changelog
