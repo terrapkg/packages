@@ -20,13 +20,13 @@ Source4:        icamera_ipu6_isys.conf
 Source5:        ipu6-driver-select.sh
 ### RPM Fusion | [ipu6-camera-hal] Update to the latest commit | MODIFIED
 ## https://lists.rpmfusion.org/archives/list/rpmfusion-commits@lists.rpmfusion.org/thread/O6IPZMHMP7A3LQBDY4AEORTDEX4P6ESY
-Patch00:        0000-lib-path.patch
+Patch0:         0000-lib-path.patch
 ### intel/ipu6-camera-hal | PR #113 | CMakeLists fixes
 ## https://github.com/intel/ipu6-camera-hal/pull/113
-Patch01:        0001-CMakeLists-fixes.patch
+Patch1:         0001-CMakeLists-fixes.patch
 ### intel/ipu6-camera-hal | PR #114 | MediaControl: Dymically set mainline IVSC media-entity src-pad index
 ## https://github.com/intel/ipu6-camera-hal/pull/114
-Patch02:        0002-set-mainline.patch
+Patch2:         0002-set-mainline.patch
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  ipu6-camera-bins-devel >= 0.0-11
 BuildRequires:  cmake
@@ -34,8 +34,12 @@ BuildRequires:  gcc
 BuildRequires:  g++
 BuildRequires:  expat-devel
 BuildRequires:  libdrm-devel
-ExclusiveArch:  x86_64
 Requires:       ipu6-camera-bins >= 0.0-11
+# Fix the stupid issue when changing versioning schemes
+%if 0%{?fedora} <= 42 || 0%{?rhel} <= 10
+Provides:       %{name} = %{commit_date}.%{shortcommit}
+%endif
+ExclusiveArch:  x86_64
 
 %description
 This package provides the basic Hardware Avstraction Layer (HAL) access APIs for IPU6.
