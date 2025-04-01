@@ -18,7 +18,10 @@ Requires:       v4l2-relayd
 Requires:       intel-ipu6-kmod
 Requires:       intel-vsc-firmware >= 20240513
 Obsoletes:      ipu6-camera-bins-firmware < 0.0-11
+# < 6.10 is falling out of third party and official support on Fedora
+%if 0%{?fedora}
 Obsoletes:      ivsc-firmware < 0^20250326git.3377801-2
+%endif
 ### For Akmods package
 Provides:       intel-ipu6-kmod-common = %{version}
 # Fix the stupid issue when changing versioning schemes
