@@ -29,7 +29,7 @@ BuildRequires:  expat-devel
 BuildRequires:  libdrm-devel
 Requires:       ipu6-camera-bins
 # Fix the stupid issue when changing versioning schemes
-%if 0%{?fedora} <= 42 || 0%{?rhel} <= 10
+%if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Provides:       %{name} = %{commit_date}.%{shortcommit}
 %endif
 ExclusiveArch:  x86_64
