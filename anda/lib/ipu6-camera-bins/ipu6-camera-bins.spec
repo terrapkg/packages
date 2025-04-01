@@ -37,7 +37,7 @@ ExclusiveArch:  x86_64
 Packager:       Gilver E. <rockgrub@disroot.org>
 
 %description
-Provides binary libraries for Intel IPU6..
+Provides binary libraries for Intel IPU6.
 
 %package devel
 Summary:        IPU6 development files
