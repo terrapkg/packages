@@ -22,6 +22,10 @@ Obsoletes:      ipu6-camera-bins-firmware < 0.0-11
 %if 0%{?fedora}
 Obsoletes:      ivsc-firmware < 0^20250326git.3377801-2
 %endif
+# Versioning scheme quirk
+%if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
+Obsoletes:      ivsc-firmware < 20250326.3377801-2
+%endif
 ### For Akmods package
 Provides:       intel-ipu6-kmod-common = %{version}
 # Fix the stupid issue when changing versioning schemes
@@ -56,6 +60,7 @@ mkdir -p %{buildroot}%{_includedir}/
 cp -pr include/* %{buildroot}%{_includedir}/
 install -Dm755 lib/*.so* -t %{buildroot}%{_libdir}
 install -Dm644 lib/*.a -t %{buildroot}%{_libdir}
+install -Dm644 lib/pkgconfig/* -t %{buildroot}%{_libdir}/pkgconfig
 pushd %{buildroot}%{_libdir}
   for i in *.so.0; do
     ln -s $i `echo $i | sed -e "s|\.so\.0|\.so|"`
@@ -64,7 +69,6 @@ pushd %{buildroot}%{_libdir}
     sed -i -e "s|libdir=\${prefix}/lib|libdir=%{_libdir}|g" "$i"
   done
 popd
-install -Dm644 lib/pkgconfig/* -t %{buildroot}%{_libdir}/pkgconfig
 
 %files
 %license LICENSE
