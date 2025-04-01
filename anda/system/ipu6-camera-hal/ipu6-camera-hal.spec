@@ -1,17 +1,18 @@
 %global commit 289e645dffbd0ea633f10bb4f93855f1e4429e9a
-%global commitdate 20240509
+%global commit_date 20240509
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global build_cflags %{__build_flags_lang_c} %{?_distro_extra_cflags} -Wno-alloc-size-larger-than
 %global build_cxxflags %{__build_flags_lang_cxx} %{?_distro_extra_cxxflags} -Wno-alloc-size-larger-than
 %global __cmake_in_source_build 1
+%global ver 1.0.0
 
 Name:           ipu6-camera-hal
 Summary:        Hardware abstraction layer for Intel IPU6
-URL:            https://github.com/intel/ipu6-camera-hal
-Version:        %{commitdate}.%{shortcommit}
-Release:        2%{?dist}
+Version:        %{ver}^%{commit_date}git.%{shortcommit}
+Release:        1%{?dist}
 License:        Apache-2.0
-Source0:        https://github.com/intel/%{name}/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
+URL:            https://github.com/intel/ipu6-camera-hal
+Source0:        %url}/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
 Source1:        60-intel-ipu6.rules
 Source2:        v4l2-relayd-adl
 Source3:        v4l2-relayd-tgl
@@ -117,10 +118,6 @@ ln -sf hal_adaptor %{buildroot}%{_includedir}/libcamhal
 ln -sf hal_adaptor.pc %{buildroot}%{_libdir}/pkgconfig/libcamhal.pc
 
 %posttrans
-### Ensure that v4l2-relayd service enabled if ipu6-driver-select is installed
-if [ ! -f /etc/modprobe.d/ipu6-driver-select.conf ]; then
-    /usr/bin/ipu6-driver-select proprietary
-fi
 ### Skip triggering if udevd isn't accessible
 if [ -S /run/udev/control ]; then
     /usr/bin/udevadm control --reload
@@ -129,7 +126,6 @@ fi
 
 %files
 %license LICENSE
-%ghost %{_sysconfdir}/modprobe.d/ipu6-driver-select.conf
 %{_bindir}/ipu6-driver-select
 %{_libdir}/ipu*/libcamhal.so*
 %{_libdir}/libhal_adaptor.so.*
