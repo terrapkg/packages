@@ -42,7 +42,6 @@ Provides binary libraries for Intel IPU6.
 %package devel
 Summary:        IPU6 development files
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-BuildArch:      noarch
 
 %description devel
 This provides the header files for IPU6 development.
