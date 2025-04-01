@@ -5,7 +5,7 @@
 %global ver 1.0.1
 
 Name:           ipu6-camera-bins
-Summary:        Binary libraries for Intel IPU6
+Summary:        Libraries for Intel IPU6
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
 Release:        1%?dist
 License:        Proprietary
@@ -37,7 +37,7 @@ ExclusiveArch:  x86_64
 Packager:       Gilver E. <rockgrub@disroot.org>
 
 %description
-Provides binaries for Intel IPU6, including libraries and firmware.
+Provides binary libraries for Intel IPU6..
 
 %package devel
 Summary:        IPU6 development files
