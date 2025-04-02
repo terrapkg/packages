@@ -7,7 +7,7 @@
 Name:           ipu6-camera-bins
 Summary:        Libraries for Intel IPU6
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
-Release:        1%?dist
+Release:        2%?dist
 License:        Proprietary
 URL:            https://github.com/intel/ipu6-camera-bins
 Source0:        %{url}/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
