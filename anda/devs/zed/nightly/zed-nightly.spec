@@ -12,20 +12,18 @@
 %global app_id dev.zed.Zed-Nightly
 
 # Zed needs a special approach to fetch the dep licenses
-%global zed_license_online %{shrink:                                \
-    %{__cargo} tree                                                 \
-    -Z avoid-dev-deps                                               \
-    --workspace                                                     \
-    --edges no-build,no-dev,no-proc-macro                           \
-    --target all                                                    \
-    %{__cargo_parse_opts %{-n} %{-a} %{-f:-f%{-f*}}}                \
-    --prefix none                                                   \
-    --format "{l}: {p}"                                             \
-    | sed -e "s: ($(pwd)[^)]*)::g" -e "s: / :/:g" -e "s:/: OR :g"   \
-    | sed '/.*(\*).*/d'                                             \
-    | sed 's/(https.*//g'                                           \
-    | sed '/^: pet/ s/./MIT&/'                                      \
-    | sort -u                                                       \
+%global zed_license_online %{shrink:                                        \
+    %{__cargo} tree                                                         \
+    -Z avoid-dev-deps                                                       \
+    --workspace                                                             \
+    --edges no-build,no-dev,no-proc-macro                                   \
+    --target all                                                            \
+    %{__cargo_parse_opts %{-n} %{-a} %{-f:-f%{-f*}}}                        \
+    --prefix none                                                           \
+    --format "{l}: {p}"                                                     \
+    | sed -e "s: ($(pwd)[^)]*)::g" -e "s: / :/:g" -e "/\/.*:/{s/\// OR /}"  \
+    | sed -e '/.*(\*).*/d' -e '/^: pet/ s/./MIT&/'                          \
+    | sort -u                                                               \
 }\
 
 Name:           zed-nightly
