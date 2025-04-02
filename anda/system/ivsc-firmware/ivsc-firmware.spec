@@ -7,7 +7,7 @@ Name:           ivsc-firmware
 Summary:        Intel iVSC firmware
 URL:            https://github.com/intel/ivsc-firmware
 Version:        0^%{commit_date}git.%{shortcommit}
-Release:        1%?dist
+Release:        2%?dist
 License:        Proprietary
 Source0:        https://github.com/intel/%{name}/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
 Requires:       ipu6-camera-bins
@@ -36,8 +36,12 @@ done
 popd
 
 %files
+%doc README.md
+%doc SECURITY.md
 %license LICENSE
 %{_prefix}/lib/firmware/vsc/
 
 %changelog
-%autochangelog
+* Tue Apr 1 2025 Gilver E. <rockgrub@disroot.org> - 0^20250326git.3377801-2%{?dist} - FINAL
+- Final update as the project is archived
+- Include the doc files
