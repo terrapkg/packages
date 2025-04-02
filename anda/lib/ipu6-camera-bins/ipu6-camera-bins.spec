@@ -66,7 +66,7 @@ pushd %{buildroot}%{_libdir}
     ln -s $i `echo $i | sed -e "s|\.so\.0|\.so|"`
   done
   for i in pkgconfig/*.pc; do
-    sed -i -e "s|libdir=\${prefix}/lib|libdir=%{_libdir}|g" "$i"
+    sed -i -e "s|libdir=\${exec_prefix}/lib|libdir=%{_libdir}|g" "$i"
   done
 popd
 
