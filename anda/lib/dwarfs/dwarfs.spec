@@ -4,8 +4,8 @@ The Deduplicating Warp-speed Advanced Read-only File System.
 A fast high compression read-only file system for Linux and Windows.}
 
 Name:          dwarfs
-Version:       0.11.2
-Release:       1%{?dist}
+Version:       0.11.3
+Release:       1%?dist
 Summary:       A fast high compression read-only file system for Linux, Windows and macOS
 License:       GPL-3.0-or-later
 URL:           https://github.com/mhx/%{name}

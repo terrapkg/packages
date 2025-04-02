@@ -1,6 +1,6 @@
 Name:			espanso-wayland
-Version: 		2.2.2
-Release:		2%?dist
+Version: 		2.2.3
+Release:		1%?dist
 Summary:		Cross-platform Text Expander written in Rust for Wayland
 License:		GPL-3.0
 URL:			https://espanso.org
