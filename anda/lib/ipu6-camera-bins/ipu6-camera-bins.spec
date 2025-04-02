@@ -11,13 +11,13 @@ Release:        2%?dist
 License:        Proprietary
 URL:            https://github.com/intel/ipu6-camera-bins
 Source0:        %{url}/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
-BuildRequires:  systemd-rpm-macros
 BuildRequires:  chrpath
 BuildRequires:  sed
+BuildRequires:  systemd-rpm-macros
 Requires:       gstreamer1-plugin-icamerasrc
-Requires:       v4l2-relayd
 Requires:       intel-ipu6-kmod
 Requires:       intel-vsc-firmware >= 20240513
+Requires:       v4l2-relayd
 Obsoletes:      ipu6-camera-bins-firmware < 0.0-11
 # < 6.10 is falling out of third party and official support on Fedora
 %if 0%{?fedora}
