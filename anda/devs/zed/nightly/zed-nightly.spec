@@ -11,6 +11,23 @@
 %global crate zed
 %global app_id dev.zed.Zed-Nightly
 
+# Zed needs a special approach to fetch the dep licenses
+%global zed_license_online %{shrink:                                \
+    %{__cargo} tree                                                 \
+    -Z avoid-dev-deps                                               \
+    --workspace                                                     \
+    --edges no-build,no-dev,no-proc-macro                           \
+    --target all                                                    \
+    %{__cargo_parse_opts %{-n} %{-a} %{-f:-f%{-f*}}}                \
+    --prefix none                                                   \
+    --format "{l}: {p}"                                             \
+    | sed -e "s: ($(pwd)[^)]*)::g" -e "s: / :/:g" -e "s:/: OR :g"   \
+    | sed '/.*(\*).*/d'                                             \
+    | sed 's/(https.*//g'                                           \
+    | sed '/^: pet/ s/./MIT&/'                                      \
+    | sort -u                                                       \
+}\
+
 Name:           zed-nightly
 Version:        %ver^%commit_date.%shortcommit
 Release:        2%?dist
@@ -87,26 +104,7 @@ install -Dm644 crates/zed/resources/app-icon-nightly.png %{buildroot}%{_datadir}
 install -Dm644 %app_id.metainfo.xml %{buildroot}%{_metainfodir}/%app_id.metainfo.xml
 
 # The license generation script doesn't generate licenses for ALL compiled dependencies, just direct deps of Zed, and it does not "group" licenses
-# There is also some horrible issue with --no-dedupes with Zed so we have to work around this
-%{__cargo} tree                                                 \
-    -Z avoid-dev-deps                                               \
-    --workspace                                                     \
-    --edges no-build,no-dev,no-proc-macro                           \
-    --target all                                                    \
-    %{__cargo_parse_opts %{-n} %{-a} %{-f:-f%{-f*}}}                \
-    --prefix none                                                   \
-    --format "{l}: {p}"                                             \
-    | sed -e "s: ($(pwd)[^)]*)::g" -e "s: / :/:g" -e "s:/: OR :g"   \
-    | sort -u                                                       \
-> LICENSE.dependencies
-# Remove duplicate entries
-sed -i 's/.*(\*).*//g' LICENSE.dependencies
-# Remove GitHub links
-sed -i 's/(https.*//g' LICENSE.dependencies
-# Add license to Microsoft crates hosted on GitHub
-sed -i '/^: pet/ s/./MIT&/' LICENSE.dependencies
-# Remove empty lines
-sed -ir '/^\s*$/d' LICENSE.dependencies
+%{zed_license_online} > LICENSE.dependencies
 mv assets/icons/LICENSES LICENSE.icons
 mv assets/themes/LICENSES LICENSE.themes
 mv assets/fonts/plex-mono/license.txt LICENSE.fonts
