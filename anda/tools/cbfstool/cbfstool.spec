@@ -1,6 +1,6 @@
 Name:           cbfstool
 Version:        25.03
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Management utility for CBFS formatted ROM images
 URL:            https://doc.coreboot.org/lib/fw_config.html#cbfs
 License:        GPLv2
@@ -15,7 +15,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 Management utility for CBFS formatted ROM images.
 
 %prep
-%git_clone https://review.coreboot.org/coreboot.git
+%git_clone https://review.coreboot.org/coreboot.git %version
 
 %build
 %if 0%{?fedora} >= 42
