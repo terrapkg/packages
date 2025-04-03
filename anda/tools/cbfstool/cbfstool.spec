@@ -15,7 +15,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 Management utility for CBFS formatted ROM images.
 
 %prep
-%git_clone https://review.coreboot.org/coreboot.git
+%git_clone https://review.coreboot.org/coreboot.git %version
 
 %build
 %if 0%{?fedora} >= 42
