@@ -31,5 +31,7 @@ install -Dm 777 util/cbfstool/cbfstool %buildroot%_bindir/cbfstool
 /usr/bin/cbfstool
 
 %changelog
+* Wed Apr 02 2025 Owen Zimmerman <owen@fyralabs.com>
+- Add macros and specify fedora version release exports
 * Sun Aug 25 2024 Owen Zimmerman <owen@fyralabs.com>
 - Initial Package
