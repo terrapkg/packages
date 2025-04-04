@@ -96,12 +96,9 @@ rm -rf %{buildroot}%{_qt5_qmldir}/Extinct
 %fdupes %buildroot%_libdir/qt5/examples/%name/examples/
 
 pushd tests/autopilot
-cp -r lomiriuitoolkit/{tests,_custom_proxy_objects} %{buildroot}%{python3_sitelib}/lomiriuitoolkit/
-chmod 755 %{buildroot}%{python3_sitelib}/lomiriuitoolkit/{tests,_custom_proxy_objects}
-chmod 755 %{buildroot}%{python3_sitelib}/lomiriuitoolkit/{tests,_custom_proxy_objects}/__pycache__
-chmod 644 %{buildroot}%{python3_sitelib}/lomiriuitoolkit/{tests,_custom_proxy_objects}/*py
-chmod 644 %{buildroot}%{python3_sitelib}/lomiriuitoolkit/{tests,_custom_proxy_objects}/__pycache__/*.pyc
 %py3_install
+mv lomiriuitoolkit/{tests,_custom_proxy_objects} %{buildroot}%{python3_sitelib}/lomiriuitoolkit/
+chmod -R 755 %{buildroot}%{python3_sitelib}/lomiriuitoolkit/{tests,_custom_proxy_objects}
 popd
 
 %find_lang %{name}
