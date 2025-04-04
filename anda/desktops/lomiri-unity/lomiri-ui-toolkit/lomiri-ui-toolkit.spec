@@ -143,9 +143,10 @@ popd
 %files -n python3-lomiriuitoolkit
 %doc README.md
 %dir %{python3_sitelib}/lomiriuitoolkit
+%{python3_sitelib}/lomiriuitoolkit/*.py
 %{python3_sitelib}/lomiriuitoolkit-%{version}-py%{python3_version}.egg-info/
-%{python3_sitelib}/lomiriuitoolkit/*
 %{python3_sitelib}/lomiriuitoolkit/_custom_proxy_objects/
+%{python3_sitelib}/lomiriuitoolkit/__pycache__/
 %{python3_sitelib}/lomiriuitoolkit/tests/
 
 %files doc
