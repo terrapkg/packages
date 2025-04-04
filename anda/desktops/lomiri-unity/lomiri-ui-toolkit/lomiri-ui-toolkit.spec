@@ -12,7 +12,6 @@ URL:            https://gitlab.com/ubports/development/core/lomiri-ui-toolkit
 Source0:        %{url}/-/archive/%commit/lomiri-ui-toolkit-%commit.tar.gz
 Patch0:         https://sources.debian.org/data/main/l/lomiri-ui-toolkit/1.3.5110+dfsg-2/debian/patches/2003_stop-using-Ubuntu-fonts.patch
 
-BuildRequires: debhelper
 BuildRequires: pkgconfig
 BuildRequires: make
 BuildRequires: g++
