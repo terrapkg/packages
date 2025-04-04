@@ -105,7 +105,9 @@ chmod 755 %{buildroot}%{python3_sitelib}/lomiriuitoolkit/_custom_proxy_objects
 chmod 755 %{buildroot}%{python3_sitelib}/lomiriuitoolkit/tests/__pycache__
 chmod 755 %{buildroot}%{python3_sitelib}/lomiriuitoolkit/_custom_proxy_objects/__pycache__
 chmod 644 %{buildroot}%{python3_sitelib}/lomiriuitoolkit/tests/*.py
-chmod 644 "%{buildroot}%{python3_sitelib}/lomiriuitoolkit/{tests,_custom_proxy_objects}/__pycache__/*.pyc"
+chmod 644 %{buildroot}%{python3_sitelib}/lomiriuitoolkit/tests/__pycache__/*.pyc
+chmod 644 %{buildroot}%{python3_sitelib}/lomiriuitoolkit/_custom_proxy_objects/*.py
+chmod 644 %{buildroot}%{python3_sitelib}/lomiriuitoolkit/_custom_proxy_objects/__pycache__/*.pyc
 
 %find_lang %{name}
 %find_lang %{name}-gallery
