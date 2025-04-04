@@ -54,6 +54,14 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 %description devel
 This package contains development files needed for lomiri-ui-toolkit.
 
+%package -n python3-lomiriuitoolkit
+Summary: Python3 files for Lomiri-ui-toolkit
+Requires: %{name}%{?_isa} = %{version}-%{release}
+BuildArch: noarch
+
+%description -n python3-lomiriuitoolkit
+Python3 files for Lomiri-ui-toolkit.
+
 %package doc
 Summary: Documentation for Lomiri-ui-toolkit
 BuildArch: noarch
@@ -121,6 +129,14 @@ rm -rf %{buildroot}%{_qt5_qmldir}/Extinct
 %{_qt5_includedir}/LomiriGestures/
 %{_qt5_includedir}/LomiriMetrics/
 %{_qt5_includedir}/LomiriToolkit/
+
+%files -n python3-lomiriuitoolkit
+%doc README.md
+%dir %{python3_sitelib}/lomiriuitoolkit
+%{python3_sitelib}/lomiriuitoolkit/*.py
+%{python3_sitelib}/lomiriuitoolkit/_custom_proxy_objects/
+%{python3_sitelib}/lomiriuitoolkit/__pycache__/
+%{python3_sitelib}/lomiriuitoolkit/tests/
 
 %files doc
 %license COPYING.CC-BY-SA-3.0
