@@ -98,7 +98,6 @@ rm -rf %{buildroot}%{_qt5_qmldir}/Extinct
 pushd tests/autopilot
 %py3_install
 mv lomiriuitoolkit/{tests,_custom_proxy_objects} %{buildroot}%{python3_sitelib}/lomiriuitoolkit/
-chmod -R 755 %{buildroot}%{python3_sitelib}/lomiriuitoolkit/{tests,_custom_proxy_objects}
 popd
 
 %find_lang %{name}
