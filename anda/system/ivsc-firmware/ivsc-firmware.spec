@@ -13,7 +13,7 @@ Source0:        https://github.com/intel/%{name}/archive/%{commit}/%{name}-%{sho
 Requires:       ipu6-camera-bins
 # Fix the stupid issue when changing versioning schemes
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
-Provides:       %{name} = %{commit_date}.%{shortcommit}
+Provides:       %{name} = %{commit_date}.%{shortcommit}-%{release}
 %endif
 ExclusiveArch:  x86_64
 
