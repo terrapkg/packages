@@ -1,8 +1,6 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-app-launch
 %global commit 3a0dacbbf99b45b67c39bb92449235c576cbf05a
 %forgemeta
-%global build_cflags %{__build_flags_lang_c} %{?_distro_extra_cflags} -std=c11
-%global build_cxxflags %{__build_flags_lang_cxx} %{?_distro_extra_cxxflags} -std=c++11
 
 Name:           lomiri-app-launch
 Version:        0.1.11
@@ -55,7 +53,7 @@ sed -i 's/-Werror//' ./CMakeLists.txt
 
 # For some reason the macro of cmake fails on both clang and gcc
 cmake -DLOMIRI_APP_LAUNCH_ARCH=%{_arch} -DENABLE_COVERAGE=OFF -DENABLE_TESTS=OFF -B redhat-linux-build -DCMAKE_INSTALL_PREFIX:PATH=/usr -DENABLE_MIRCLIENT=off -DUSE_SYSTEMD=ON
-%cmake_build
+%__cmake --build "%{__cmake_builddir}" --verbose
 
 %install
 %cmake_install
