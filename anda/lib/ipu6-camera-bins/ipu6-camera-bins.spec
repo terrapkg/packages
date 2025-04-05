@@ -8,6 +8,9 @@ Name:           ipu6-camera-bins
 Summary:        Libraries for Intel IPU6
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
 Release:        3%?dist
+%if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
+Epoch:          1
+%endif
 License:        Proprietary
 URL:            https://github.com/intel/ipu6-camera-bins
 Source0:        %{url}/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
@@ -31,7 +34,8 @@ Obsoletes:      ivsc-firmware < 0^20250326git.3377801-3
 Provides:       intel-ipu6-kmod-common = %{version}
 # Fix the stupid issue when changing versioning schemes
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
-Provides:       %{name} = %{commit_date}.%{shortcommit}-%{release}
+Provides:       %{name} = %{?epoch:%{epoch}:}%{commit_date}.%{shortcommit}-%{release}
+Obsoletes:      %{name} < %{?epoch:%{epoch}:}%{commit_date}.%{shortcommit}-2
 %endif
 ExclusiveArch:  x86_64
 Packager:       Gilver E. <rockgrub@disroot.org>
@@ -43,7 +47,8 @@ Provides binary libraries for Intel IPU6.
 Summary:        IPU6 development files
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
-Provides:       %{name}-devel = %{commit_date}.%{shortcommit}-%{release}
+Provides:       %{name}-devel = %{?epoch:%{epoch}:}%{commit_date}.%{shortcommit}-%{release}
+Obsoletes:      %{name}-devel < %{?epoch:%{epoch}:}%{commit_date}.%{shortcommit}-2
 %endif
 
 %description devel
