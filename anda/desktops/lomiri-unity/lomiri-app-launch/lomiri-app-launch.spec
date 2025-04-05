@@ -49,6 +49,8 @@ This package contains development files needed for lomiri-app-launch.
 %autosetup -n lomiri-app-launch-%commit
 
 %build
+%configure --enable-compiler-atomic-builtins
+
 sed -i 's/-Werror//' ./CMakeLists.txt
 
 # For some reason the macro of cmake fails on both clang and gcc
