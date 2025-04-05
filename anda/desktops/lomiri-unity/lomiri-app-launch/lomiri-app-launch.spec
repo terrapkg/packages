@@ -10,7 +10,6 @@ License:        GPL-3.0
 URL:            https://gitlab.com/ubports/development/core/lomiri-app-launch
 Source0:        %{url}/-/archive/%commit/lomiri-app-launch-%commit.tar.gz
 
-BuildRequires: clang
 BuildRequires: cmake
 BuildRequires: pkgconfig
 BuildRequires: gcc
@@ -50,8 +49,6 @@ This package contains development files needed for lomiri-app-launch.
 %autosetup -n lomiri-app-launch-%commit
 
 %build
-export CC=clang
-export CXX=clang++
 sed -i 's/-Werror//' ./CMakeLists.txt
 
 # For some reason the macro of cmake fails on both clang and gcc
