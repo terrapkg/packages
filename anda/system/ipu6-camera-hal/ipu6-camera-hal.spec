@@ -21,13 +21,13 @@ Source4:        ipu6-driver-select.sh
 ## https://lists.rpmfusion.org/archives/list/rpmfusion-commits@lists.rpmfusion.org/thread/TDMTM3WHMTHKCIN3XAUVWK3OBARW5SKO
 Patch0:         0001-Drop-Werror.patch
 BuildRequires:  systemd-rpm-macros
-BuildRequires:  ipu6-camera-bins-devel
+BuildRequires:  ipu6-camera-bins-devel >= 0.0-11
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  g++
 BuildRequires:  expat-devel
 BuildRequires:  libdrm-devel
-Requires:       ipu6-camera-bins
+Requires:       ipu6-camera-bins >= 0.0-11
 # Fix the stupid issue when changing versioning schemes
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Provides:       %{name} = %{commit_date}.%{shortcommit}
