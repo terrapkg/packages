@@ -7,7 +7,7 @@
 Name:           ipu6-camera-bins
 Summary:        Libraries for Intel IPU6
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
-Release:        2%?dist
+Release:        3%?dist
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Epoch:          1
 %endif
@@ -17,7 +17,7 @@ Source0:        %{url}/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
 BuildRequires:  chrpath
 BuildRequires:  sed
 BuildRequires:  systemd-rpm-macros
-Requires:       gstreamer1-plugin-icamerasrc
+#Requires:       gstreamer1-plugin-icamerasrc
 Requires:       intel-ipu6-kmod
 Requires:       intel-vsc-firmware >= 20240513
 Requires:       v4l2-relayd
