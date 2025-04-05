@@ -7,13 +7,17 @@ Name:           ivsc-firmware
 Summary:        Intel iVSC firmware
 URL:            https://github.com/intel/ivsc-firmware
 Version:        0^%{commit_date}git.%{shortcommit}
-Release:        2%?dist
+Release:        3%?dist
+%if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
+Epoch:          1
+%endif
 License:        Proprietary
 Source0:        https://github.com/intel/%{name}/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
 Requires:       ipu6-camera-bins
 # Fix the stupid issue when changing versioning schemes
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
-Provides:       %{name} = %{commit_date}.%{shortcommit}
+Provides:       %{name} = %{?epoch:%{epoch}:}%{commit_date}.%{shortcommit}-%{release}
+Obsoletes:      %{name} < %{?epoch:%{epoch}:}20230811.74a01d1-2
 %endif
 ExclusiveArch:  x86_64
 
