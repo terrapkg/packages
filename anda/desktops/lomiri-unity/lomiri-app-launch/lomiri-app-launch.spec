@@ -53,7 +53,7 @@ sed -i 's/-Werror//' ./CMakeLists.txt
 
 # For some reason the macro of cmake fails on both clang and gcc
 cmake -DLOMIRI_APP_LAUNCH_ARCH=%{_arch} -DENABLE_COVERAGE=OFF -DENABLE_TESTS=OFF -B redhat-linux-build -DCMAKE_INSTALL_PREFIX:PATH=/usr -DENABLE_MIRCLIENT=off -DUSE_SYSTEMD=ON
-%__cmake --build "%{__cmake_builddir}" --verbose
+cmake --build "%{__cmake_builddir}" --verbose
 
 %install
 %cmake_install
