@@ -10,14 +10,11 @@ License:        GPL-3.0
 URL:            https://gitlab.com/ubports/development/core/lomiri-app-launch
 Source0:        %{url}/-/archive/%commit/lomiri-app-launch-%commit.tar.gz
 
+BuildRequires: clang
 BuildRequires: cmake
 BuildRequires: pkgconfig
 BuildRequires: gcc
 BuildRequires: gcc-c++
-%if 0%{?fedora} >= 42
-BuildRequires: gcc14
-BuildRequires: gcc14-c++
-%endif
 BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig(gobject-introspection-1.0)
 BuildRequires: pkgconfig(lttng-ust)
@@ -53,10 +50,8 @@ This package contains development files needed for lomiri-app-launch.
 %autosetup -n lomiri-app-launch-%commit
 
 %build
-%if 0%{?fedora} >= 42
-export CC=gcc-14
-export CXX=g++-14
-%endif
+export CC=clang
+export CXX=clang++
 sed -i 's/-Werror//' ./CMakeLists.txt
 
 # For some reason the macro of cmake fails on both clang and gcc
