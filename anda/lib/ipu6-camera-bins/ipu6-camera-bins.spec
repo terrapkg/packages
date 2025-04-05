@@ -1,13 +1,13 @@
 %global debug_package %{nil}
 %global commit 3c1cdd3e634bb4668a900d75efd4d6292b8c7d1d
-%global commit_date 20240507
+%global commit_date 20241127
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global ver 1.0.1
 
 Name:           ipu6-camera-bins
 Summary:        Libraries for Intel IPU6
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
-Release:        4%?dist
+Release:        3%?dist
 License:        Proprietary
 URL:            https://github.com/intel/ipu6-camera-bins
 Source0:        %{url}/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
