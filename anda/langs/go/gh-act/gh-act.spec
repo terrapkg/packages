@@ -12,7 +12,7 @@
 
 # https://github.com/nektos/act
 %global goipath         github.com/nektos/act
-Version:                0.2.75
+Version:                0.2.76
 
 %gometa -f
 
@@ -24,7 +24,7 @@ Run your GitHub Actions locally
 %global godocs          README.md
 
 Name:           gh-act
-Release:        %autorelease
+Release:        1%?dist
 Summary:        None
 
 License:        MIT AND ISC AND BSD-3-Clause AND Apache-2.0 AND BSD-2-Clause
