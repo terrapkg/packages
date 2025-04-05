@@ -7,7 +7,7 @@
 Name:           ipu6-camera-bins
 Summary:        Libraries for Intel IPU6
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
-Release:        1%?dist
+Release:        2%?dist
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Epoch:          1
 %endif
@@ -45,7 +45,7 @@ Provides binary libraries for Intel IPU6.
 
 %package devel
 Summary:        IPU6 development files
-Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Provides:       %{name}-devel = %{?epoch:%{epoch}:}%{commit_date}.%{shortcommit}-%{release}
 Obsoletes:      %{name}-devel < %{?epoch:%{epoch}:}%{commit_date}.%{shortcommit}-2
