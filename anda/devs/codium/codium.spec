@@ -12,7 +12,7 @@
 %endif
 
 Name:			codium
-Version:		1.99.02277
+Version:		1.99.02283
 Release:		1%?dist
 Summary:		Code editing. Redefined.
 License:		MIT
