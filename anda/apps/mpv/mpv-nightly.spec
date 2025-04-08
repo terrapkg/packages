@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 %global commit 4a0684db333247b83eee90cabc00abe08c816fbd
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global commit_date 20250408
-=======
-%global commit b09e06a92041b1031eff69e6807507261244e568
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250407
->>>>>>> 4a5c2bf29 (bump(nightly): envision mpv nightly prismlauncher-nightly spotx-bash)
 %global ver 0.40.0
 
 Name:           mpv-nightly
