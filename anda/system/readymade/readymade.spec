@@ -16,7 +16,7 @@ Requires:  efibootmgr
 %description
 Readymade is a simple Linux Distribution installer.
 
-It is created as a replacement to Red Hat's Anaconda installer for Ultramarine Linux and tauOS after we have heard many complaints about the poor UX design of Anaconda, and the lack of working alternative installers for RPM-based distributions.
+It is created as a replacement to Red Hat's Anaconda installer.
 
 
 %package config-ultramarine
