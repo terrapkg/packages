@@ -1,6 +1,6 @@
-%global commit 4a3a623b5facca8184e9070317fea03adc3a9e8f
+%global commit cd256807c5f916735ae18749c43d5b0bd73240fa
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20250408
+%global commitdate 20250411
 %global ver 0.9.7
 
 Name:           xpadneo
