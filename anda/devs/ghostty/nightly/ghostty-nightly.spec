@@ -1,4 +1,4 @@
-%global commit b16324ef0be8c5eeef4c0eb23b9972fdb2fa50d5
+%global commit 66636195f18d21bd65f8e7ced461f6b6770be189
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global fulldate 2025-04-11
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
