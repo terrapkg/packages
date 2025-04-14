@@ -7,8 +7,21 @@ URL: https://github.com/Mahdi-zarei/nekoray
 License: GPLv3
 
 Source0: https://github.com/Mahdi-zarei/nekoray/releases/download/%{version}/nekoray-%{version}.tar.gz
-Source1: https://github.com/bunzuhbu/nekoray/releases/download/%{version}/vendor-%{version}.tar.gz
-Source2: https://github.com/bunzuhbu/nekoray/releases/download/%{version}/NekoRay-%{version}.Sagernet.SingBox.Version.txt
+
+%if %(test -f %{_sourcedir}/vendor-%{version}.tar.gz; echo $?) == 0
+Source1: vendor-%{version}.tar.gz
+%define fetch_vendor %{_rpmconfigdir}/rpmuncompress -xv %{SOURCE1}
+%else
+%define fetch_vendor go mod vendor
+%endif
+
+%if %(test -f %{_sourcedir}/NekoRay-%{version}.Sagernet.SingBox.Version.txt; echo $?) == 0
+Source2: NekoRay-%{version}.Sagernet.SingBox.Version.txt
+%define singbox_version $(cat %{SOURCE2})
+%else
+%define singbox_version $(curl -s https://api.github.com/repos/sagernet/sing-box/releases/latest | jq -r '.name')
+%endif
+
 Source3: %{name}.desktop
 Source4: %{name}.sh
 #Source100: run.sh
@@ -56,9 +69,8 @@ sed -i 's~ImageFormat::BGRA~ImageFormat::BGR~' 3rdparty/ZxingQtReader.hpp
 %cmake_build
 DEST=$PWD/%{__cmake_builddir}/%{core}
 pushd core/server
-%{_rpmconfigdir}/rpmuncompress -xv %{SOURCE1}
-VERSION_SINGBOX=$(cat %{SOURCE2})
-go build %{gobuildflags} -o $DEST -trimpath -ldflags "-w -s -X 'github.com/sagernet/sing-box/constant.Version=${VERSION_SINGBOX}'" -tags "with_clash_api,with_gvisor,with_quic,with_wireguard,with_utls,with_ech,with_dhcp"
+%{fetch_vendor}
+go build %{gobuildflags} -o $DEST -trimpath -ldflags "-w -s -X 'github.com/sagernet/sing-box/constant.Version=%{singbox_version}'" -tags "with_clash_api,with_gvisor,with_quic,with_wireguard,with_utls,with_ech,with_dhcp"
 popd
 
 %install
