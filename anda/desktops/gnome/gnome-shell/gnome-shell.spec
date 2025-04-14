@@ -25,10 +25,6 @@ Patch: gnome-shell-favourite-apps-firefox.patch
 # downstream patch to stop trying on configuration errors.
 Patch: 0001-gdm-Work-around-failing-fingerprint-auth.patch
 
-Patch: 0001-status-keyboard-Add-a-catch-around-reload-call.patch
-Patch: 0002-status-keyboard-Load-keyboard-from-system-settings-i.patch
-Patch: 0003-status-keyboard-Use-gnome-desktop-API-for-getting-de.patch
-
 # shell-app: improve discrete GPU detection
 # https://gitlab.gnome.org/GNOME/gnome-shell/-/merge_requests/3193
 Patch: 3193.patch
@@ -40,20 +36,21 @@ Patch: 3193.patch
 %define gjs_version 1.73.1
 %define gtk4_version 4.0.0
 %define adwaita_version 1.5.0
-%define mutter_version 47.0
+%define mutter_version 48~rc
 %define polkit_version 0.100
-%define gsettings_desktop_schemas_version 47~alpha
+%define gsettings_desktop_schemas_version 48~rc
 %define ibus_version 1.5.2
 %define gnome_bluetooth_version 1:42.3
 %define gstreamer_version 1.4.5
-%define pipewire_version 0.3.0
+%define pipewire_version 0.3.49
 %define gnome_settings_daemon_version 3.37.1
+
+%define major_version %(c=%{version}; echo $c | cut -d. -f1 | cut -d~ -f1)
 
 BuildRequires:  pkgconfig(bash-completion)
 BuildRequires:  gcc
 BuildRequires:  meson
 BuildRequires:  git
-BuildRequires:  pkgconfig(ibus-1.0) >= %{ibus_version}
 BuildRequires:  desktop-file-utils
 BuildRequires:  pkgconfig(libedataserver-1.2) >= %{eds_version}
 BuildRequires:  pkgconfig(gcr-4)
@@ -88,9 +85,12 @@ BuildRequires:  gnome-bluetooth-libs-devel >= %{gnome_bluetooth_version}
 %endif
 # Bootstrap requirements
 BuildRequires: gtk-doc
+# Handle upgrade path
+Conflicts: %{name} < 48~rc-3
 %ifnarch s390 s390x
 Recommends:     gnome-bluetooth%{?_isa} >= %{gnome_bluetooth_version}
 %endif
+Requires:       %{name}-common = %{version}-%{release}
 Requires:       gnome-desktop3%{?_isa} >= %{gnome_desktop_version}
 Requires:       gcr%{?_isa}
 Requires:       gobject-introspection%{?_isa} >= %{gobject_introspection_version}
@@ -115,7 +115,9 @@ Requires:       xdg-user-dirs-gtk
 # needed for schemas
 Requires:       at-spi2-atk%{?_isa}
 # needed for on-screen keyboard
-Requires:       ibus%{?_isa} >= %{ibus_version}
+Recommends:     ibus%{?_isa} >= %{ibus_version}
+# needed for gobject-introspection typelib
+Requires:       ibus-libs%{?_isa} >= %{ibus_version}
 # needed for "show keyboard layout"
 Requires:       tecla
 # needed for the user menu
@@ -151,6 +153,7 @@ Requires:     webkitgtk6.0%{?_isa}
 ExcludeArch:    %{ix86}
 %endif
 
+Provides:       gnome-shell(api) = %{major_version}
 Provides:       desktop-notification-daemon = %{version}-%{release}
 Provides:       PolicyKit-authentication-agent = %{version}-%{release}
 Provides:       bundled(gvc)
@@ -177,6 +180,14 @@ like switching to windows and launching applications. GNOME Shell takes
 advantage of the capabilities of modern graphics hardware and introduces
 innovative user interface concepts to provide a visually attractive and
 easy to use experience.
+
+%package common
+Summary: Common files used by %{name}
+Conflicts: %{name} < 48~rc-3
+BuildArch: noarch
+
+%description common
+%{summary}
 
 %prep
 %autosetup -S git -n gnome-shell-%{tarball_version}
@@ -216,7 +227,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.gnome.Shell.Porta
 %{_bindir}/gnome-extensions
 %{_bindir}/gnome-shell-extension-tool
 %{_bindir}/gnome-shell-test-tool
-%{_datadir}/glib-2.0/schemas/*.xml
 %{_datadir}/glib-2.0/schemas/00_org.gnome.shell.gschema.override
 %{_datadir}/applications/org.gnome.Shell.Extensions.desktop
 %{_datadir}/applications/org.gnome.Shell.desktop
@@ -236,8 +246,11 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.gnome.Shell.Porta
 %{_datadir}/dbus-1/interfaces/org.gnome.Shell.PadOsd.xml
 %{_datadir}/dbus-1/interfaces/org.gnome.Shell.Screencast.xml
 %{_datadir}/dbus-1/interfaces/org.gnome.Shell.Screenshot.xml
+%{_datadir}/dbus-1/interfaces/org.gnome.Shell.ScreenTime.xml
 %{_datadir}/dbus-1/interfaces/org.gnome.ShellSearchProvider.xml
 %{_datadir}/dbus-1/interfaces/org.gnome.ShellSearchProvider2.xml
+%{_datadir}/desktop-directories/X-GNOME-Shell-System.directory
+%{_datadir}/desktop-directories/X-GNOME-Shell-Utilities.directory
 %{_datadir}/icons/hicolor/scalable/apps/org.gnome.Shell.Extensions.svg
 %{_datadir}/icons/hicolor/symbolic/apps/org.gnome.Shell.Extensions-symbolic.svg
 %{_userunitdir}/org.gnome.Shell-disable-extensions.service
@@ -258,6 +271,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.gnome.Shell.Porta
 %{_datadir}/icons/hicolor/symbolic/apps/org.gnome.Shell.CaptivePortal-symbolic.svg
 %{_libexecdir}/gnome-shell-portal-helper
 %endif
+
+%files common
+%{_datadir}/glib-2.0/schemas/*.xml
 
 %changelog
 %autochangelog
