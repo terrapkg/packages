@@ -1,3 +1,4 @@
+%global gomodulesmode GO111MODULE=on
 Name: nekoray
 Version: 4.3.2
 Release: 0%{?autorelease}
