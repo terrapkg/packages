@@ -1,7 +1,6 @@
 %global tarball_version %%(echo %{version} | tr '~' '.')
 %global major_version 48
 %global minor_version 0
-%global major_version %%(cut -d "." -f 1 <<<%{tarball_version})
 
 %if 0%{?rhel}
 %global portal_helper 0
