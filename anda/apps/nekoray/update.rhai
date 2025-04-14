@@ -1,1 +1,1 @@
-rpm.version(get("https://raw.githubusercontent.com/bunzuhbu/nekoray/refs/heads/main/autoupdate.txt"));
+rpm.version(find(`([\d.]+)-\d+-\d+-\d+`, gh_rawfile("Mahdi-zarei/nekoray", "dev", "nekoray_version.txt"), 1));
