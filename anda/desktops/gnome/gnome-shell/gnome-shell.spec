@@ -13,7 +13,7 @@ Version:        %{major_version}.%{minor_version}
 Release:        2%{?dist}.switcheroo
 Summary:        Window management and application launching for GNOME
 
-Provides:       gnome-shell = %version-%release
+Provides:       gnome-shell.switcheroo = %version-%release
 Obsoletes:      gnome-shell.switcheroo <= 47.3-2
 License:        GPL-2.0-or-later
 URL:            https://wiki.gnome.org/Projects/GnomeShell
