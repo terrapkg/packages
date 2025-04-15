@@ -15,7 +15,7 @@ BuildRequires:  sed
 BuildRequires:  systemd-rpm-macros
 Requires:       (akmod-%{name} = %{?epoch:%{epoch}:}%{version} or dkms-%{name} = %{?epoch:%{epoch}:}%{version})
 Provides:       %{name}-kmod-common = %{?epoch:%{epoch}:}%{version}
-Obsoletes:      %{name}-kmod-common < %{?epoch:%{epoch}:}20241224git.8d20a23-4%{?dist}
+Obsoletes:      %{name}-kmod-common < %{?epoch:%{epoch}:}0.9.7^20241224git.8d20a23-4%{?dist}
 BuildArch:      noarch
 Packager:       Gilver E. <rockgrub@disroot.org>
 
