@@ -1,8 +1,8 @@
 Name:           readymade
-Version:        0.11.2
-Release:        1%?dist
+Version:        0.12.0
+Release:        2%?dist
 Summary:        Install ready-made distribution images!
-License:        MIT
+License:        GPL-3.0-or-later
 URL:            https://github.com/FyraLabs/readymade
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 BuildRequires:	anda-srpm-macros rust-packaging mold
@@ -47,6 +47,7 @@ ln -sf %{_datadir}/applications/com.fyralabs.Readymade.desktop %{buildroot}%{_da
 
 
 %files -f com.fyralabs.Readymade.lang
+%license LICENSE
 %_bindir/readymade
 %_datadir/polkit-1/actions/com.fyralabs.pkexec.readymade.policy
 %_datadir/applications/com.fyralabs.Readymade.desktop
