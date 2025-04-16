@@ -21,7 +21,6 @@ It is created as a replacement to Red Hat's Anaconda installer.
 
 %package config-ultramarine
 Summary:        Readymade Configuration for Ultramarine Linux
-License:        MIT
 Requires:       readymade
 Provides:       readymade-config
 
