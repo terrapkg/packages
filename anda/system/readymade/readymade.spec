@@ -39,13 +39,12 @@ This package contains the configuration files for Readymade to install Ultramari
 ./install.sh %buildroot
 ln -sf %{_datadir}/applications/com.fyralabs.Readymade.desktop %{buildroot}%{_datadir}/applications/liveinst.desktop
 
-%find_lang com.fyralabs.Readymade
 
 %files config-ultramarine
 %_sysconfdir/readymade.toml
 
 
-%files -f com.fyralabs.Readymade.lang
+%files
 %license LICENSE
 %_bindir/readymade
 %_datadir/polkit-1/actions/com.fyralabs.pkexec.readymade.policy
