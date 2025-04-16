@@ -2,7 +2,7 @@ Name:           readymade
 Version:        0.11.2
 Release:        1%?dist
 Summary:        Install ready-made distribution images!
-License:        MIT
+License:        GPL-3.0-or-later
 URL:            https://github.com/FyraLabs/readymade
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 BuildRequires:	anda-srpm-macros rust-packaging mold
@@ -21,7 +21,7 @@ It is created as a replacement to Red Hat's Anaconda installer.
 
 %package config-ultramarine
 Summary:        Readymade Configuration for Ultramarine Linux
-License:        MIT
+License:        GPL-3.0-or-later
 Requires:       readymade
 Provides:       readymade-config
 
