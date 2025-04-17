@@ -73,6 +73,9 @@ Requires:       libglvnd-glx%{?_isa} >= 1.0
 Requires:       libglvnd-opengl%{?_isa} >= 1.0
 Requires:       libnvidia-ml%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       vulkan-loader
+# dlopened
+Requires:       libnvidia-gpucomp%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       libnvidia-ml = %{?epoch:%{epoch}:}%{version}-%{release}
 
 Conflicts:      nvidia-x11-drv-libs
 Conflicts:      nvidia-x11-drv-470xx-libs
@@ -91,6 +94,9 @@ Requires:       libnvidia-ml = %{?epoch:%{epoch}:}%{version}-%{release}
 %ifarch x86_64 aarch64
 Requires:       libnvidia-cfg = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
+# dlopened:
+Requires:       libnvidia-gpucomp%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       libnvidia-ml = %{?epoch:%{epoch}:}%{version}-%{release}
 
 Conflicts:      xorg-x11-drv-nvidia-cuda-libs
 Conflicts:      xorg-x11-drv-nvidia-470xx-cuda-libs
@@ -102,7 +108,7 @@ This package provides the CUDA libraries for %{name}-cuda.
 Summary:        NVIDIA OpenGL-based Framebuffer Capture libraries
 Provides:       nvidia-driver-NvFBCOpenGL = %{?epoch:%{epoch}:}%{version}-%{release}
 Obsoletes:      nvidia-driver-NvFBCOpenGL < %{?epoch:%{epoch}:}%{version}-%{release}
-# Loads libnvidia-encode.so at runtime
+# dlopened:
 Requires:       %{name}-cuda-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description -n libnvidia-fbc
@@ -110,6 +116,13 @@ This library provides a high performance, low latency interface to capture and
 optionally encode the composited framebuffer of an X screen. NvFBC are private
 APIs that are only available to NVIDIA approved partners for use in remote
 graphics scenarios.
+
+%package -n libnvidia-gpucomp
+Summary:        NVIDIA library for shader compilation (nvgpucomp)
+
+%description -n libnvidia-gpucomp
+This package contains the private libnvidia-gpucomp runtime library which is used by
+other driver components.
 
 %package -n libnvidia-ml
 Summary:        NVIDIA Management Library (NVML)
@@ -444,6 +457,7 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %endif
 %ifarch x86_64
 %{_datadir}/vulkansc/icd.d/nvidia_icd.%{_target_cpu}.json
+%{_libdir}/libnvidia-present.so.%{version}
 %{_libdir}/libnvidia-vksc-core.so.1
 %{_libdir}/libnvidia-vksc-core.so.%{version}
 %dir %{_libdir}/nvidia
@@ -472,6 +486,9 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %ifarch x86_64 aarch64
 %{_libdir}/libcudadebugger.so.1
 %{_libdir}/libcudadebugger.so.%{version}
+%{_libdir}/libnvidia-nvvm70.so.4
+%{_libdir}/libnvidia-sandboxutils.so.1
+%{_libdir}/libnvidia-sandboxutils.so.%{version}
 %endif
 %ifarch x86_64
 %if 0%{?rhel} == 8
@@ -486,6 +503,9 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %files -n libnvidia-fbc
 %{_libdir}/libnvidia-fbc.so.1
 %{_libdir}/libnvidia-fbc.so.%{version}
+
+%files -n libnvidia-gpucomp
+%{_libdir}/libnvidia-gpucomp.so.%{version}
 
 %files -n libnvidia-ml
 %{_libdir}/libnvidia-ml.so.1
