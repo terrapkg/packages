@@ -8,19 +8,11 @@ License: GPLv3
 
 Source0: https://github.com/Mahdi-zarei/nekoray/releases/download/%{version}/nekoray-%{version}.tar.gz
 
-%if %(test -f %{_sourcedir}/vendor-%{version}.tar.gz; echo $?) == 0
 Source1: vendor-%{version}.tar.gz
 %define fetch_vendor %{_rpmconfigdir}/rpmuncompress -xv %{SOURCE1}
-%else
-%define fetch_vendor go mod vendor
-%endif
 
-%if %(test -f %{_sourcedir}/NekoRay-%{version}.Sagernet.SingBox.Version.txt; echo $?) == 0
 Source2: NekoRay-%{version}.Sagernet.SingBox.Version.txt
 %define singbox_version $(cat %{SOURCE2})
-%else
-%define singbox_version $(curl -s https://api.github.com/repos/sagernet/sing-box/releases/latest | jq -r '.name')
-%endif
 
 Source3: %{name}.desktop
 Source4: %{name}.sh
