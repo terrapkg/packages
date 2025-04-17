@@ -111,6 +111,13 @@ optionally encode the composited framebuffer of an X screen. NvFBC are private
 APIs that are only available to NVIDIA approved partners for use in remote
 graphics scenarios.
 
+%package -n libnvidia-gpucomp
+Summary:        NVIDIA library for shader compilation (nvgpucomp)
+
+%description -n libnvidia-gpucomp
+This package contains the private libnvidia-gpucomp runtime library which is used by
+other driver components.
+
 %package -n libnvidia-ml
 Summary:        NVIDIA Management Library (NVML)
 Provides:       cuda-nvml%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
@@ -444,6 +451,7 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %endif
 %ifarch x86_64
 %{_datadir}/vulkansc/icd.d/nvidia_icd.%{_target_cpu}.json
+%{_libdir}/libnvidia-present.so.%{version}
 %{_libdir}/libnvidia-vksc-core.so.1
 %{_libdir}/libnvidia-vksc-core.so.%{version}
 %dir %{_libdir}/nvidia
@@ -472,6 +480,9 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %ifarch x86_64 aarch64
 %{_libdir}/libcudadebugger.so.1
 %{_libdir}/libcudadebugger.so.%{version}
+%{_libdir}/libnvidia-nvvm70.so.4
+%{_libdir}/libnvidia-sandboxutils.so.1
+%{_libdir}/libnvidia-sandboxutils.so.%{version}
 %endif
 %ifarch x86_64
 %if 0%{?rhel} == 8
@@ -486,6 +497,9 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %files -n libnvidia-fbc
 %{_libdir}/libnvidia-fbc.so.1
 %{_libdir}/libnvidia-fbc.so.%{version}
+
+%files -n libnvidia-gpucomp
+%{_libdir}/libnvidia-gpucomp.so.%{version}
 
 %files -n libnvidia-ml
 %{_libdir}/libnvidia-ml.so.1
