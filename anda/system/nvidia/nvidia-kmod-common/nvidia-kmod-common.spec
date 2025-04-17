@@ -7,7 +7,7 @@
 %global __strip /bin/true
 
 Name:           nvidia-kmod-common
-Version:        570.133.07
+Version:        575.51.02
 Release:        1%?dist
 Summary:        Common file for NVIDIA's proprietary driver kernel modules
 Epoch:          3

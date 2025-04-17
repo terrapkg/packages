@@ -4,7 +4,7 @@ The Deduplicating Warp-speed Advanced Read-only File System.
 A fast high compression read-only file system for Linux and Windows.}
 
 Name:          dwarfs
-Version:       0.12.1
+Version:       0.12.2
 Release:       1%?dist
 Summary:       A fast high compression read-only file system for Linux, Windows and macOS
 License:       GPL-3.0-or-later

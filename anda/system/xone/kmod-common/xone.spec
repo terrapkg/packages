@@ -1,6 +1,6 @@
-%global commit 5e44361880265bc5b0d9645785d3de65ef0b86cf
+%global commit ffe1251c7c518574bf409f7e915fab8c532544c0
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20250414
+%global commitdate 20250416
 %global ver 0.3
 %global _dracutconfdir %{_prefix}/lib/dracut/dracut.conf.d
 %global firmware_hash 48084d9fa53b9bb04358f3bb127b7495dc8f7bb0b3ca1437bd24ef2b6eabdf66
