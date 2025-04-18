@@ -6,7 +6,7 @@ Summary: Qt based cross-platform GUI proxy configuration manager (backend: sing-
 URL: https://github.com/Mahdi-zarei/nekoray
 License: GPLv3
 
-Source0: https://github.com/Mahdi-zarei/nekoray/releases/download/%{version}/nekoray-%{version}.tar.gz
+Source0: https://github.com/Mahdi-zarei/nekoray/archive/refs/tags/%{version}.tar.gz#/nekoray-%{version}.tar.gz
 
 Source1: vendor-%{version}.tar.gz
 %define fetch_vendor %{_rpmconfigdir}/rpmuncompress -xv %{SOURCE1}
