@@ -1,10 +1,12 @@
 --- a/CMakeLists.txt	2025-04-18 01:46:49.810910663 -0500
-+++ b/CMakeLists.txt	2025-04-18 01:47:55.400663957 -0500
-@@ -78,7 +78,7 @@
++++ b/CMakeLists.txt	2025-04-18 01:55:40.887949610 -0500
+@@ -77,8 +77,8 @@
+ 	-pthread
  )
  
- set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=gnu99")
+-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=gnu99")
 -set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
++set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=gnu11")
 +set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
  
  pkg_check_modules(GLIB2 REQUIRED glib-2.0)
