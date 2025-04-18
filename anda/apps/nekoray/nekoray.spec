@@ -11,8 +11,8 @@ Source0: https://github.com/Mahdi-zarei/nekoray/archive/refs/tags/%{version}.tar
 Source1: vendor-%{version}.tar.gz
 %define fetch_vendor if [[ -f %{SOURCE1} ]]; then %{_rpmconfigdir}/rpmuncompress -xv %{SOURCE1} ; else go mod vendor; fi 
 
-Source2: NekoRay-%{version}.Sagernet.SingBox.Version.txt
-%define singbox_version $(if [[ -f %{SOURCE2} ]]; then cat %{SOURCE2} ; else curl -s https://api.github.com/repos/sagernet/sing-box/releases/latest | jq -r '.name' ; fi)
+Source2: Sagernet.SingBox.Version.txt
+%define singbox_version $(cat %{SOURCE2})
 
 Source3: %{name}.desktop
 Source4: %{name}.sh
