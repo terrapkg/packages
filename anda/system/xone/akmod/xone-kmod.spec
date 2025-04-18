@@ -1,6 +1,6 @@
-%global commit ffe1251c7c518574bf409f7e915fab8c532544c0
+%global commit ecdd59e42560b157de1db69184b2a9002ac21b65
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20250416
+%global commitdate 20250418
 %global ver 0.3
 %define buildforkernels akmod
 %global debug_package %{nil}
