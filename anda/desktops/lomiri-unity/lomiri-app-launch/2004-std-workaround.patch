@@ -1,5 +1,5 @@
---- /home/techa/Downloads/LomiriCMakeLists.txt	2025-04-18 01:46:49.810910663 -0500
-+++ /home/techa/Downloads/LomiriCMakeLists2.txt	2025-04-18 01:47:55.400663957 -0500
+--- CMakeLists.txt	2025-04-18 01:46:49.810910663 -0500
++++ CMakeLists.txt	2025-04-18 01:47:55.400663957 -0500
 @@ -78,7 +78,7 @@
  )
  
