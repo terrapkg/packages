@@ -16,8 +16,6 @@ Source2: Sagernet.SingBox.Version.txt
 
 Source3: %{name}.desktop
 Source4: %{name}.sh
-#Source100: run.sh
-#Source101: _service
 
 BuildRequires: rpm_macro(cmake)
 BuildRequires: rpm_macro(cmake_build)
@@ -55,13 +53,15 @@ Summary: %{summary}
 sed -i 's~find_package(Protobuf CONFIG REQUIRED)~find_package(Protobuf REQUIRED)~' cmake/myproto.cmake
 sed -i 's~add_library(qhotkey 3rdparty/QHotkey/qhotkey.cpp)~add_library(qhotkey STATIC 3rdparty/QHotkey/qhotkey.cpp)~' cmake/QHotkey.cmake
 sed -i 's~ImageFormat::BGRA~ImageFormat::BGR~' 3rdparty/ZxingQtReader.hpp
+pushd core/server
+%{fetch_vendor}
+popd
 
 %build
 %cmake
 %cmake_build
 DEST=$PWD/%{__cmake_builddir}/%{core}
 pushd core/server
-%{fetch_vendor}
 go build %{gobuildflags} -o $DEST -trimpath -ldflags "-w -s -X 'github.com/sagernet/sing-box/constant.Version=%{singbox_version}'" -tags "with_clash_api,with_gvisor,with_quic,with_wireguard,with_utls,with_ech,with_dhcp"
 popd
 
