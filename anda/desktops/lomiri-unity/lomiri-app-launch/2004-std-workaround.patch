@@ -1,0 +1,11 @@
+--- /home/techa/Downloads/LomiriCMakeLists.txt	2025-04-18 01:46:49.810910663 -0500
++++ /home/techa/Downloads/LomiriCMakeLists2.txt	2025-04-18 01:47:55.400663957 -0500
+@@ -78,7 +78,7 @@
+ )
+ 
+ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=gnu99")
+-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
++set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+ 
+ pkg_check_modules(GLIB2 REQUIRED glib-2.0)
+ include_directories(${GLIB2_INCLUDE_DIRS})
