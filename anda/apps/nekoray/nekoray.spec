@@ -7,7 +7,7 @@ URL: https://github.com/Mahdi-zarei/nekoray
 License: GPLv3
 
 Source0: https://github.com/Mahdi-zarei/nekoray/archive/refs/tags/%{version}.tar.gz#/nekoray-%{version}.tar.gz
-#Source1: https://github.com/bunzuhbu/nekoray/releases/download/%{version}/
+Packager: bunzuhbu <g89156436@gmail.com>
 Source1: vendor-%{version}.tar.gz
 %define fetch_vendor %{_rpmconfigdir}/rpmuncompress -xv %{SOURCE1}
 
