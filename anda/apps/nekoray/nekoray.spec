@@ -7,8 +7,8 @@ URL: https://github.com/Mahdi-zarei/nekoray
 License: GPLv3
 
 Source0: https://github.com/Mahdi-zarei/nekoray/archive/refs/tags/%{version}.tar.gz#/nekoray-%{version}.tar.gz
-
-Source1: https://github.com/bunzuhbu/nekoray/releases/download/%{version}/vendor-%{version}.tar.gz
+#Source1: https://github.com/bunzuhbu/nekoray/releases/download/%{version}/
+Source1: vendor-%{version}.tar.gz
 %define fetch_vendor %{_rpmconfigdir}/rpmuncompress -xv %{SOURCE1}
 
 Source2: Sagernet.SingBox.Version.txt
