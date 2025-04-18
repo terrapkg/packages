@@ -113,7 +113,7 @@ echo "The firmware for the wireless dongle is subject to Microsoft's Terms of Us
 echo 'https://www.microsoft.com/en-us/legal/terms-of-use'
 
 %changelog
-* Thu Apr 17 2025 Gilver E. <rockgrub@disroot.org> - 0.3^20250418git.ecdd59e
+* Thu Apr 17 2025 Gilver E. <rockgrub@disroot.org> - 0.3^20250418git.ecdd59e-2%{?dist}
 - Added additional firmware needed for dongle pairing on some controllers
 * Thu Feb 27 2025 Gilver E. <rockgrub@disroot.org>
 - Initial package
