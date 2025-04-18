@@ -2,7 +2,7 @@
 %global commit 3a0dacbbf99b45b67c39bb92449235c576cbf05a
 %forgemeta
 %global build_cflags %{__build_flags_lang_c} %{?_distro_extra_cflags} -std=gnu11
-%global build_cxxflags %{__build_flags_lang_cxx} %{?_distro_extra_cxxflags} -std=g++11
+%global build_cxxflags %{__build_flags_lang_cxx} %{?_distro_extra_cxxflags} -std=gnu++11
 
 Name:           lomiri-app-launch
 Version:        0.1.11
