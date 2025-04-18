@@ -13,9 +13,8 @@ Patch0:         https://sources.debian.org/data/main/l/lomiri-app-launch/0.1.11-
 
 BuildRequires: cmake
 BuildRequires: pkgconfig
-BuildRequires: gcc
-BuildRequires: gcc-c++
-BuildRequires: libatomic
+BuildRequires: gcc14
+BuildRequires: gcc14-c++
 BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig(gobject-introspection-1.0)
 BuildRequires: pkgconfig(lttng-ust)
@@ -51,7 +50,8 @@ This package contains development files needed for lomiri-app-launch.
 %autosetup -n lomiri-app-launch-%commit
 
 %build
-#sed -i 's/-Werror//' ./CMakeLists.txt
+export CC=gcc-14
+export CXX=g++-14
 
 # For some reason the macro of cmake fails on both clang and gcc
 cmake -DLOMIRI_APP_LAUNCH_ARCH=%{_arch} -DENABLE_COVERAGE=OFF -DENABLE_TESTS=OFF -B redhat-linux-build -DCMAKE_INSTALL_PREFIX:PATH=/usr -DENABLE_MIRCLIENT=off -DUSE_SYSTEMD=ON
