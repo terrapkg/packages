@@ -8,7 +8,7 @@
 
 Name:           xone
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        2%?dist
+Release:        3%?dist
 Summary:        Linux kernel driver for Xbox One and Xbox Series X|S accessories common files
 License:        GPL-2.0-or-later
 URL:            https://github.com/dlundqvist/xone
@@ -23,7 +23,7 @@ BuildRequires:  cabextract
 BuildRequires:  sed
 BuildRequires:  systemd-rpm-macros
 Requires:       wireless-regdb
-Requires:       %{name}-firmware = 1.0.46.1
+Requires:       %{name}-firmware = %{version}-%{release}
 Requires:       (akmod-%{name} = %{?epoch:%{epoch}:}%{version} or dkms-%{name} = %{?epoch:%{epoch}:}%{version})
 Requires(post): dracut
 Provides:       %{name}-kmod-common = %{?epoch:%{epoch}:}%{version}
@@ -45,7 +45,6 @@ BuildArch:      noarch
 Akmods modules for the akmod-%{name} package.
 
 %package         firmware
-Version:         1.0.46.1
 Summary:         Firmware for the XBox One controller dongle
 License:         Proprietary
 Requires:        wireless-regdb
