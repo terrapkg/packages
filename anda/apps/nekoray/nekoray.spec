@@ -9,7 +9,7 @@ License: GPLv3
 Source0: https://github.com/Mahdi-zarei/nekoray/archive/refs/tags/%{version}.tar.gz#/nekoray-%{version}.tar.gz
 
 Source1: vendor-%{version}.tar.gz
-%define fetch_vendor if [[ -f %{SOURCE1} ]]; then %{_rpmconfigdir}/rpmuncompress -xv %{SOURCE1} ; else go mod vendor; fi 
+%define fetch_vendor %{_rpmconfigdir}/rpmuncompress -xv %{SOURCE1}
 
 Source2: Sagernet.SingBox.Version.txt
 %define singbox_version $(cat %{SOURCE2})
