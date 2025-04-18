@@ -10,6 +10,7 @@ License:        GPL-3.0
 URL:            https://gitlab.com/ubports/development/core/lomiri-app-launch
 Source0:        %{url}/-/archive/%commit/lomiri-app-launch-%commit.tar.gz
 Patch0:         https://sources.debian.org/data/main/l/lomiri-app-launch/0.1.11-1/debian/patches/2003_remove-werror.patch
+Patch1:         2004-std-workaround.patch
 
 BuildRequires: cmake
 BuildRequires: pkgconfig
