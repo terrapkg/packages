@@ -48,7 +48,7 @@ Akmods modules for the akmod-%{name} package.
 Summary:         Firmware for the XBox One controller dongle
 License:         Proprietary
 Requires:        wireless-regdb
-%if %{?fedora} <= 43 || %{?rhel} <= 10
+%if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Provides:        %{name}-firmware = %{commitdate}.%{shortcommit}-%{release}
 %endif
 BuildArch:       noarch
