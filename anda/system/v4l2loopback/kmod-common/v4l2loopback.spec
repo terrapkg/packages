@@ -43,7 +43,6 @@ Allows you to create "virtual video devices". Normal (v4l2) applications will re
 make V=1 %{?_smp_mflags} install-utils DESTDIR=%{buildroot} PREFIX=%{_prefix}
 make V=1 %{?_smp_mflags} install-man DESTDIR=%{buildroot} PREFIX=%{_prefix}
 install -Dm644 %{SOURCE1} %{buildroot}%{_modprobedir}/98-v4l2loopback.conf
-install -Dm644 %{name}.conf -t %{buildroot}%{_modulesloaddir}
 
 
 %files
