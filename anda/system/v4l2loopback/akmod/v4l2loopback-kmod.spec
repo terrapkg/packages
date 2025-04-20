@@ -18,7 +18,7 @@ This module allows you to create \"virtual video devices.\" Normal \(v4l2\) appl
 Name:           %{modulename}-kmod
 Summary:        Kernel module (kmod) for V4L2 loopback devices
 Version:        0.14.0
-Release:        3%?dist
+Release:        4%?dist
 License:        GPL-2.0-or-later
 URL:            https://github.com/v4l2loopback/v4l2loopback
 Source0:        %{url}/archive/v%{version}/%{modulename}-%{version}.tar.gz
@@ -28,8 +28,7 @@ BuildRequires:  help2man
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  kmodtool
 Requires:       akmods
-Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
-Requires:       %{modulename}-akmod-modules = %{?epoch:%{epoch}:}%{version}
+Requires:       %{modulename}-kmod-common = %{?epoch:%{epoch}:}%{version}
 Requires:       kernel-devel
 Conflicts:      dkms-%{modulename}
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
