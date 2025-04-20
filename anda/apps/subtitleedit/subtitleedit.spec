@@ -13,7 +13,7 @@ Packager:       madonuko <mado@fyralabs.com>
 Provides:       %realname = %evr
 Conflicts:      %realname
 BuildRequires:  unzip anda-srpm-macros
-Requires:       dejavu-sans-mono-fonts
+Requires:       dejavu-sans-mono-fonts mono-core
 
 %description
 %summary.
@@ -33,7 +33,7 @@ EOF
 
 cat<<EOF > subtitleedit
 #!/usr/bin/sh
-exec mono /opt/subtitleedit/SubtitleEdit.exe "$@"
+exec mono /usr/share/subtitleedit/SubtitleEdit.exe "$@"
 EOF
 
 
