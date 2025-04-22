@@ -9,10 +9,12 @@ Summary:       Desktop environment agnostic Flathub software center.
 URL:            https://github.com/gloriouseggroll/flatpost
 Source0:        %{url}/archive/refs/tags/%{tag}.tar.gz#/%{name}-%{tag}.tar.gz
 Source1:        flatpost-mime.xml
+Patch0:         flatpost-desktop-mimetype.patch
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  make
+BuildRequires:  desktop-file-utils
 
 Provides:	nobara-updater
 
@@ -41,11 +43,14 @@ Desktop environment agnostic Flathub software center. Allows for browsing,
 installation, removal, updating, and permission management of flatpak packages and repositories.
 
 %prep
-%autosetup -p 1
+%autosetup -p1
 
 %build
 make all DESTDIR=%{buildroot}
 install -D -m644 %{SOURCE1} %{buildroot}/usr/share/mime/packages/flatpost.xml
+
+%check
+desktop-file-validate %{buildroot}%{_datadir}/applications/com.flatpost.flatpostapp.desktop
 
 %post
 xdg-icon-resource forceupdate --theme hicolor &>/dev/null
