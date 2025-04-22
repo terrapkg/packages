@@ -1,16 +1,8 @@
 %global tag 1.0.5
 
-%global commit 4d3dc59ab28311ff90f640b88c5a156b349cc74b
-
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
-
-%global build_timestamp %(date +"%Y%m%d")
-
-%global rel_build 1.%{build_timestamp}.%{shortcommit}%{?dist}
-
 Name:          flatpost
 Version:       %{tag}
-Release:       %{rel_build}
+Release:       1%?dist
 License:       BSD 2-Clause
 Summary:       Desktop environment agnostic Flathub software center.
 
@@ -38,8 +30,6 @@ Requires: glib2
 Requires: gtk3
 Requires: gtk4
 Requires: xdg-utils
-
-Provides: flatpost
 
 %description
 Desktop environment agnostic Flathub software center. Allows for browsing,
@@ -74,9 +64,3 @@ update-mime-database /usr/share/mime
 %{_datadir}/icons/hicolor/64x64/apps/com.flatpost.flatpostapp.png
 %license %{_datadir}/licenses/flatpost/LICENSE
 
-%clean
-rm -rf %{buildroot}
-
-%changelog
-* Fri Jun 28 2024 Your Name <you@example.com> - 1.0-1
-- Initial package
