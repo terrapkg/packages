@@ -8,6 +8,7 @@ Summary:       Desktop environment agnostic Flathub software center.
 
 URL:            https://github.com/gloriouseggroll/flatpost
 Source0:        %{url}/archive/refs/tags/%{tag}.tar.gz#/%{name}-%{tag}.tar.gz
+Source1:        flatpost-mime.xml
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
@@ -31,6 +32,10 @@ Requires: gtk3
 Requires: gtk4
 Requires: xdg-utils
 
+Requires(post):      shared-mime-info
+Requires(postun):    shared-mime-info
+Requires(posttrans): shared-mime-info
+
 %description
 Desktop environment agnostic Flathub software center. Allows for browsing,
 installation, removal, updating, and permission management of flatpak packages and repositories.
@@ -40,20 +45,22 @@ installation, removal, updating, and permission management of flatpak packages a
 
 %build
 make all DESTDIR=%{buildroot}
+install -D -m644 %{SOURCE1} %{buildroot}/usr/share/mime/packages/flatpost.xml
 
 %post
-#!/bin/bash
+xdg-icon-resource forceupdate --theme hicolor &>/dev/null
+update-mime-database usr/share/mime &>/dev/null
+update-desktop-database -q
 
-# Check if we already have the association
-if [ ! -f /usr/bin/xdg-mime ]; then
-    # If xdg-mime is not available, skip this step
-    exit 0
-fi
+%postun
+xdg-icon-resource forceupdate --theme hicolor &>/dev/null
+update-mime-database usr/share/mime &>/dev/null
+update-desktop-database -q
 
-# Set the default application for .rpm files
-xdg-mime default /usr/share/applications/com.flatpost.flatpostapp.desktop application/vnd.flatpak.ref
-xdg-mime default /usr/share/applications/com.flatpost.flatpostapp.desktop application/vnd.flatpak.repo
-update-mime-database /usr/share/mime
+%posttrans
+xdg-icon-resource forceupdate --theme hicolor &>/dev/null
+update-mime-database usr/share/mime &>/dev/null
+update-desktop-database -q
 
 %files
 %{python3_sitelib}/flatpost/
@@ -62,5 +69,6 @@ update-mime-database /usr/share/mime
 %{_datadir}/flatpost/collections_data.json
 %{_datadir}/icons/hicolor/1024x1024/apps/com.flatpost.flatpostapp.png
 %{_datadir}/icons/hicolor/64x64/apps/com.flatpost.flatpostapp.png
+%{_datadir}/mime/packages/flatpost.xml
 %license %{_datadir}/licenses/flatpost/LICENSE
 
