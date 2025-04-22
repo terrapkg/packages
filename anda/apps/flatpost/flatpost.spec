@@ -3,7 +3,7 @@
 Name:          flatpost
 Version:       %{tag}
 Release:       1%?dist
-License:       BSD 2-Clause
+License:       BSD-2-Clause
 Summary:       Desktop environment agnostic Flathub software center.
 
 URL:            https://github.com/gloriouseggroll/flatpost
