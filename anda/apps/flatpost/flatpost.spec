@@ -1,13 +1,11 @@
-%global tag 1.0.5
-
 Name:          flatpost
-Version:       %{tag}
+Version:       1.0.5
 Release:       1%?dist
 License:       BSD-2-Clause
 Summary:       Desktop environment agnostic Flathub software center.
 
 URL:            https://github.com/gloriouseggroll/flatpost
-Source0:        %{url}/archive/refs/tags/%{tag}.tar.gz#/%{name}-%{tag}.tar.gz
+Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 Source1:        flatpost-mime.xml
 Patch0:         flatpost-desktop-mimetype.patch
 
