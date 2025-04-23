@@ -6,7 +6,7 @@
 
 Name:           rust-jellyfin-rpc-cli
 Version:        1.3.1
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Displays the content you're currently watching on Discord!
 
 License:        GPL-3.0-or-later

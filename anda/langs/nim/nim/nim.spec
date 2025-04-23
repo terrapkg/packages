@@ -2,7 +2,7 @@
 %global debug_package %{nil}
 
 Name:			nim
-Version:		2.2.2
+Version:		2.2.4
 Release:		1%?dist
 Summary:		Imperative, multi-paradigm, compiled programming language
 License:		MIT and BSD
@@ -120,7 +120,8 @@ rm %buildroot%_bindir/*.bat || true
 rm -rf %buildroot%_bindir/empty.txt
 
 cp -r dist %buildroot%_prefix/lib/nim/
-ln -s %_prefix/lib/nim/dist %buildroot%_datadir/nim/dist
+# cannot use `ln` here, possibly a nim bug
+cp -r %buildroot%_prefix/lib/nim/dist %buildroot%_datadir/nim/
 
 
 %files

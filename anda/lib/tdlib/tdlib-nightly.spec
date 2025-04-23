@@ -1,6 +1,6 @@
-%global commit 721300bcb4d0f2114505712f4dc6350af1ce1a09
-%global ver 1.8.45
-%global commit_date 20250212
+%global commit 6e32e56b56699cf91513ef349bab85d5f1450a05
+%global ver 1.8.47
+%global commit_date 20250423
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:          tdlib-nightly

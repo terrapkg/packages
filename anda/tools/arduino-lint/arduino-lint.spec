@@ -1,27 +1,44 @@
-%define debug_package %nil
+# https://github.com/arduino/arduino-lint
+%global goipath github.com/arduino/arduino-lint
+Version:        1.3.0
 
-Name:          arduino-lint
-Version:       1.3.0
-Release:       1%?dist
-Summary:       Tool to check for problems with Arduino projects.
-License:       GPLv3
-Packager:      Owen Zimmerman <owen@fyralabs.com>
-Url:           https://github.com/arduino/arduino-lint
-Source0:       %url/archive/refs/tags/%version.tar.gz
-BuildRequires: golang git go-rpm-macros anda-srpm-macros
+%gometa -f
+
+
+%global common_description %{expand:
+Arduino Lint is a command line tool that checks for common problems in Arduino projects:
+ Sketches
+ Libraries
+ Boards platforms}
+
+%global golicenses      LICENSE.txt
+%global godocs          README.md
+
+Name:           arduino-lint
+Release:        2%?dist
+Summary:        Tool to check for problems with Arduino projects
+License:        GPL-3.0
+Packager:       Owen Zimmerman <owen@fyralabs.com>
+
+URL:            %{gourl}
+Source:         %{url}/archive/%{version}.tar.gz
+BuildRequires:  anda-srpm-macros
 
 %description
-%summary
+%{common_description}
+
+%gopkg
 
 %prep
-%autosetup -n arduino-lint-%version
+%goprep
+%go_prep_online
 
 %build
-go build
+%define gomodulesmode GO111MODULE=on
+%gobuild -o %{gobuilddir}/bin/arduino-lint %{goipath}
 
 %install
-mkdir -p %{buildroot}%{_bindir}
-install -Dm 755 arduino-lint %buildroot%{_bindir}/arduino-lint
+install -Dm755 %{gobuilddir}/bin/arduino-lint -t %buildroot%{_bindir}
 
 %files
 %license LICENSE.txt
@@ -31,3 +48,4 @@ install -Dm 755 arduino-lint %buildroot%{_bindir}/arduino-lint
 %changelog
 * Thu Dec 5 2024 Owen Zimmerman <owen@fyralabs.com>
 - Package arduino-lint
+

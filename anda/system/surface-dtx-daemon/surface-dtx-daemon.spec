@@ -1,5 +1,5 @@
 %global debug_package %{nil}
-%global ver v0.3.8-1
+%global ver v0.3.9-1
 %global ver2 %(echo %{ver} | sed 's/^v//')
 
 Name:           terra-surface-dtx-daemon

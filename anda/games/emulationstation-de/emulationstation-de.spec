@@ -8,8 +8,8 @@
 %bcond_with kms
 
 Name:           emulationstation-de
-Version:        3.1.1
-Release:        1%{?dist}
+Version:        3.2.0
+Release:        1%?dist
 Summary:        ES-DE is a frontend for browsing and launching games from your multi-platform collection.
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
 License:        MIT

@@ -3,7 +3,7 @@
 
 # https://github.com/rs/curlie
 %global goipath         github.com/rs/curlie
-Version:                1.7.2
+Version:                1.8.2
 
 %gometa -f
 
@@ -14,7 +14,7 @@ The power of curl, the ease of use of httpie.}
 %global godocs          README.md
 
 Name:           %{goname}
-Release:        1%{?dist}
+Release:        1%?dist
 Summary:        The power of curl, the ease of use of httpie
 
 License:        MIT

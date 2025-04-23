@@ -4,7 +4,7 @@
 
 # There will probably not be an update script for this package, since this kernel module
 # is kind of dead, I will update them manually when needed.
-%global commit c176fdb0d5bcba6ba2aba99ea36812e40f47751f
+%global commit 138fa0637b46a0b0a087f2ba4e9146d2f9ba2475
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name: %{prjname}
