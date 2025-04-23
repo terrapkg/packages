@@ -1,9 +1,9 @@
-%global commit 4e5e4a7c2fe7ba148566dfb84cf546dfc26980d2
+%global commit f5b5a36835583a89a48713c419235e1c693b794c
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global fulldate 2025-02-25
+%global fulldate 2025-04-22
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
-%global ver 1.1.3
+%global ver 1.1.4
 %global base_name ghostty
 %global reverse_dns com.mitchellh.%{base_name}
 %if 0%{?fedora} <= 40
@@ -14,7 +14,7 @@
 
 Name:           %{base_name}-nightly
 Version:        %{ver}~tip^%{commit_date}git%{shortcommit}
-Release:        2%?dist
+Release:        1%?dist
 %if 0%{?fedora} <= 41
 Epoch:          1
 %endif
@@ -47,6 +47,7 @@ BuildRequires:  pkgconfig(zlib)
 Requires:       %{name}-terminfo
 Requires:       %{name}-shell-integration
 Requires:       gtk4
+Requires:       gtk4-layer-shell
 Requires:       libadwaita
 Conflicts:      %{base_name}
 Provides:       %{base_name}-tip = %{ver}^%{commit_date}git%{shortcommit}
@@ -115,6 +116,9 @@ Supplements:    %{name}
 %if 0%{?fedora} <= 41
 Provides:       %{name}-terminfo = %{commit_date}.%{shortcommit}
 %endif
+%if 0%{?fedora} >= 42
+Requires:       ncurses-term >= 6.5-5.20250125%{?dist}
+%endif
 BuildArch:      noarch
 
 %description    terminfo
@@ -131,7 +135,7 @@ This package contains files for Ghostty's terminfo. Available for debugging use.
 
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
-%autosetup -n %{base_name}-source
+%autosetup -n %{base_name}-%{ver}-main+%{shortcommit}
 
 ZIG_GLOBAL_CACHE_DIR="%{cache_dir}" ./nix/build-support/fetch-zig-cache.sh
 
@@ -153,6 +157,11 @@ zig build \
     -Demit-docs \
     -Demit-termcap \
     -Demit-terminfo
+
+#Don't conflict with ncurses-term on F42 and up
+%if 0%{?fedora} >= 42
+rm -rf %{buildroot}%{_datadir}/terminfo/g/ghostty
+%endif
 
 %find_lang %{reverse_dns}
 
@@ -207,7 +216,9 @@ zig build \
 %{_datadir}/%{base_name}/shell-integration/zsh/%{base_name}-integration
 
 %files terminfo
+%if 0%{?fedora} < 42
 %{_datadir}/terminfo/g/%{base_name}
+%endif
 %{_datadir}/terminfo/x/xterm-%{base_name}
 
 %files terminfo-source

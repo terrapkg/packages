@@ -1,6 +1,6 @@
 %global tarball_version %%(echo %{version} | tr '~' '.')
 %global major_version 47
-%global minor_version 4
+%global minor_version 5
 
 %if 0%{?rhel}
 %global portal_helper 0
@@ -8,12 +8,14 @@
 %global portal_helper 1
 %endif
 
-Name:           gnome-shell.switcheroo
+Name:           gnome-shell
 Version:        %{major_version}.%{minor_version}
 Release:        1%{?dist}.switcheroo
 Summary:        Window management and application launching for GNOME
 
 Provides:       gnome-shell = %version-%release
+Provides:       gnome-shell.switcheroo = %version-%release
+Obsoletes:      gnome-shell.switcheroo <= 47.3-2
 License:        GPL-2.0-or-later
 URL:            https://wiki.gnome.org/Projects/GnomeShell
 Source0:        https://download.gnome.org/sources/gnome-shell/%{major_version}/gnome-shell-%{tarball_version}.tar.xz

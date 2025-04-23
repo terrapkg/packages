@@ -1,5 +1,5 @@
 Name:           kvrocks
-Version:        2.11.1
+Version:        2.12.0
 Release:        1%?dist
 Summary:        Distributed key value NoSQL database that uses RocksDB
 License:        Apache-2.0

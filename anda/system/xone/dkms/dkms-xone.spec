@@ -1,12 +1,12 @@
-%global commit 6b9d59aed71f6de543c481c33df4705d4a590a31
-%global commit_date 20241223
+%global commit c682b0cd4fd56d2d9639b64787034a375535eb4b
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
+%global commitdate 20250419
 %global ver 0.3
 %global debug_package %{nil}
 %global modulename xone
 
 Name:           dkms-%{modulename}
-Version:        %{ver}^%{commit_date}git.%{shortcommit}
+Version:        %{ver}^%{commitdate}git.%{shortcommit}
 Release:        1%?dist
 Summary:        Linux kernel driver for Xbox One and Xbox Series X|S accessories
 License:        GPL-2.0-or-later

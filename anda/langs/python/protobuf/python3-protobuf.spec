@@ -2,8 +2,8 @@
 %global pypi_name protobuf
 
 Name:           python-%{pypi_name}
-Version:        6.30.0
-Release:        1%?dist
+Version:        6.30.1
+Release:        2%?dist
 Summary:        Protocol Buffers
 
 License:        BSD-3-Clause
@@ -39,7 +39,6 @@ rm -rf %{pypi_name}.egg-info
 %doc README.md
 %{python3_sitearch}/google
 %{python3_sitearch}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
-%{python3_sitearch}/%{pypi_name}-%{version}-py%{python3_version}-nspkg.pth
 
 %changelog
 * Sun Feb 19 2023 windowsboy111 <wboy111@outlook.com> - 4.22.0-1

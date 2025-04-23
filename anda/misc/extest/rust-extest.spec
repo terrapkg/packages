@@ -16,16 +16,14 @@
 
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
-# Use Mold as the linker
-%global build_rustflags %build_rustflags -C link-arg=-fuse-ld=mold
 
 Name:           extest
 Version:        %{commit_date}git.%{shortcommit}
-Release:        1%?dist
+Release:        2%?dist
 Summary:        X11 XTEST reimplementation primarily for Steam Controller on Wayland
 
 License:        MIT
-URL:            https://github.com/KyleGospo/extest
+URL:            https://github.com/bazzite-org/extest
 
 Source0:        %{url}/archive/%{commit}.tar.gz
 
@@ -102,4 +100,3 @@ install -D -p -m 0755 %{SOURCE1} %{buildroot}%{_libexecdir}/extest/override_stea
 
 %changelog
 %autochangelog
-

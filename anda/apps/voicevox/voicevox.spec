@@ -9,8 +9,8 @@
 %define _binary_payload w19.zstdio
 
 # Exclude private libraries
-%global __requires_exclude libffmpeg.so
-%global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
+%global __provides_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*))$
+%global __requires_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*))$
 
 Name:			voicevox
 Version:		0.23.0
@@ -24,7 +24,6 @@ Source2:        https://github.com/VOICEVOX/voicevox/releases/download/%version/
 Packager:       madonuko <mado@fyralabs.com>
 BuildRequires:  p7zip-plugins
 ExclusiveArch:  x86_64
-AutoReq:        no
 
 %description
 VOICEVOX is a free Japanese text-to-speech software with medium output quality.

@@ -1,8 +1,8 @@
 %global pkg_name kmonad
 
 Name:           %{pkg_name}
-Version:        0.4.3
-Release:        1%{?dist}
+Version:        0.4.4
+Release:        1%?dist
 Summary:        An advanced keyboard manager
 
 License:        MIT

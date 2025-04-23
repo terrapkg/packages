@@ -1,6 +1,6 @@
 # https://github.com/arduino/arduino-create-agent
 %global goipath github.com/arduino/arduino-create-agent
-Version:        1.6.1
+Version:        1.7.0
 
 %gometa -f
 
@@ -13,7 +13,7 @@ It allows you to use the Arduino Cloud to seamlessly upload code to any USB conn
 %global godocs          README.md
 
 Name:           arduino-create-agent
-Release:        2%?dist
+Release:        1%?dist
 Summary:        Arduino Cloud Agent
 License:        AGPL-3.0
 Packager:       Owen Zimmerman <owen@fyralabs.com>

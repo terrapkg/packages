@@ -1,12 +1,12 @@
-%global commit 8d20a23e38883f45c78f48c8574ac93945b4cb03
-%global commit_date 20241224
+%global commit cd256807c5f916735ae18749c43d5b0bd73240fa
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
+%global commitdate 20250411
 %global ver 0.9.7
 %global debug_package %{nil}
 %global modulename xpadneo
 
 Name:           dkms-%{modulename}
-Version:        %{ver}^%{commit_date}git.%{shortcommit}
+Version:        %{ver}^%{commitdate}git.%{shortcommit}
 Release:        1%?dist
 Summary:        Advanced Linux Driver for Xbox One Wireless Gamepad
 License:        GPL-3.0

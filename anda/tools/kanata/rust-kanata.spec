@@ -4,8 +4,8 @@
 %global crate kanata
 
 Name:           rust-kanata
-Version:        1.8.0
-Release:        %autorelease
+Version:        1.8.1
+Release:        1%?dist
 Summary:        Multi-layer keyboard customization
 
 License:        LGPL-3.0-only

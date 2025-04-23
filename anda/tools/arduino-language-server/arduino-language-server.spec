@@ -1,6 +1,6 @@
 # https://github.com/arduino/arduino-language-server
 %global goipath github.com/arduino/arduino-language-server
-Version:        0.7.6
+Version:        0.7.7
 
 %gometa -f
 
@@ -12,7 +12,7 @@ The Arduino Language Server is the tool that powers the autocompletion of the ne
 %global godocs          README.md
 
 Name:           arduino-language-server
-Release:        2%?dist
+Release:        1%?dist
 Summary:        An Arduino Language Server based on Clangd for Arduino code autocompletion
 License:        AGPL-3.0
 Packager:       Owen Zimmerman <owen@fyralabs.com>
