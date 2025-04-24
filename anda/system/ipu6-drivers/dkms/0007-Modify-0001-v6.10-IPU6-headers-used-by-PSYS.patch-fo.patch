@@ -1,0 +1,49 @@
+From 32ce53b82bef51479d49d7d68794e2b801367dd6 Mon Sep 17 00:00:00 2001
+From: Hans de Goede <hdegoede@redhat.com>
+Date: Thu, 30 Jan 2025 22:20:16 +0100
+Subject: [PATCH 7/9] Modify 0001-v6.10-IPU6-headers-used-by-PSYS.patch for
+ v6.13
+
+Modify 0001-v6.10-IPU6-headers-used-by-PSYS.patch so that it also works
+with 6.13 kernels.
+
+Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+---
+ patches/0001-v6.10-IPU6-headers-used-by-PSYS.patch | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/patches/0001-v6.10-IPU6-headers-used-by-PSYS.patch b/patches/0001-v6.10-IPU6-headers-used-by-PSYS.patch
+index 00fb961d2..6a465a924 100644
+--- a/patches/0001-v6.10-IPU6-headers-used-by-PSYS.patch
++++ b/patches/0001-v6.10-IPU6-headers-used-by-PSYS.patch
+@@ -52,7 +52,7 @@ index 000000000..b26c6aee1
+ +
+ +struct ipu6_bus_device {
+ +	struct auxiliary_device auxdev;
+-+	struct auxiliary_driver *auxdrv;
+++	const struct auxiliary_driver *auxdrv;
+ +	const struct ipu6_auxdrv_data *auxdrv_data;
+ +	struct list_head list;
+ +	void *pdata;
+@@ -92,7 +92,7 @@ new file mode 100644
+ index 000000000..9b6f56958
+ --- /dev/null
+ +++ b/drivers/media/pci/intel/ipu6/ipu6-buttress.h
+-@@ -0,0 +1,92 @@
++@@ -0,0 +1,94 @@
+ +/* SPDX-License-Identifier: GPL-2.0-only */
+ +/* Copyright (C) 2013--2024 Intel Corporation */
+ +
+@@ -141,7 +141,9 @@ index 000000000..9b6f56958
+ +struct ipu6_buttress {
+ +	struct mutex power_mutex, auth_mutex, cons_mutex, ipc_mutex;
+ +	struct ipu6_buttress_ipc cse;
+++#if LINUX_VERSION_CODE < KERNEL_VERSION(6, 13, 0)
+ +	struct ipu6_buttress_ipc ish;
+++#endif
+ +	struct list_head constraints;
+ +	u32 wdt_cached_value;
+ +	bool force_suspend;
+-- 
+2.48.1
+

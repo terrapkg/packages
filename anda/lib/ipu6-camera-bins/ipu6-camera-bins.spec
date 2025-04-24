@@ -30,8 +30,6 @@ Obsoletes:      ivsc-firmware < 20250326.3377801-3
 %endif
 Obsoletes:      ivsc-firmware < 0^20250326git.3377801-3
 %endif
-### For Akmods package
-Provides:       intel-ipu6-kmod-common = %{version}
 # Fix the stupid issue when changing versioning schemes
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Provides:       %{name} = %{?epoch:%{epoch}:}%{commit_date}.%{shortcommit}-%{release}

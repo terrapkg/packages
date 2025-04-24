@@ -1,0 +1,54 @@
+From 580d73c387405534bdef7911e0616ad66953f7ce Mon Sep 17 00:00:00 2001
+From: Hans de Goede <hdegoede@redhat.com>
+Date: Mon, 13 Jan 2025 13:11:00 +0100
+Subject: [PATCH 3/9] Makefile: Do not build hi556 driver with kernels >= 6.10
+
+The mainline kernel hi556 driver has ACPI enumeration, GPIO and clk support
+since kernel 6.10, so it can be used instead of the out of tree driver.
+
+Add a new KV_HI556 variable and stop building the hi556 driver on
+kernels >= 6.10.
+
+Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+---
+ Makefile | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index 58bc10aed..472fdec22 100644
+--- a/Makefile
++++ b/Makefile
+@@ -24,6 +24,7 @@ KV_IVSC := 6.6.0
+ KV_IPU_BRIDGE := 6.6.0
+ KV_OV2740 := 6.8.0
+ KV_OV05C10 := 6.8.0
++KV_HI556 := 6.10
+ KV_IPU6_ISYS := 6.10.0
+ 
+ KERNEL_SRC ?= /lib/modules/$(KERNELRELEASE)/build
+@@ -88,17 +89,21 @@ export CONFIG_ICAMERA_OV02C10 = m
+ export CONFIG_ICAMERA_OV02E10 = m
+ export CONFIG_ICAMERA_HM2170 = m
+ export CONFIG_ICAMERA_HM2172 = m
+-export CONFIG_ICAMERA_HI556 = m
+ export CONFIG_ICAMERA_GC5035 = m
+ 
+ ifeq ($(call version_lt,$(KERNEL_VERSION),$(KV_OV2740)),true)
+ export CONFIG_ICAMERA_OV2740 = m
+ endif
+ 
++# Note OV05C10 check is reversed, it is not build on too old kernels
+ ifeq ($(call version_lt,$(KERNEL_VERSION),$(KV_OV05C10)),false)
+ export CONFIG_ICAMERA_OV05C10 = m
+ endif
+ 
++ifeq ($(call version_lt,$(KERNEL_VERSION),$(KV_HI556)),true)
++export CONFIG_ICAMERA_HI556 = m
++endif
++
+ obj-y += drivers/media/i2c/
+ 
+ ifeq ($(call version_lt,$(KERNEL_VERSION),$(KV_IVSC)),true)
+-- 
+2.48.1
+
