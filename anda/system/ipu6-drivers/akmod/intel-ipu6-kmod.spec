@@ -49,8 +49,8 @@ BuildRequires:  kmodtool
 Requires:       %{modulename}-kmod-common = %{?epoch:%{epoch}:}%{version}
 Requires:       akmods
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
-Provides:       %{name} = %{commit_date}.%{ipu6_shortcommit}-%{release}
-Provides:       akmod-%{modulename} = %{commit_date}.%{ipu6_shortcommit}-%{release}
+Provides:       %{name} = %{ipu6_commitdate}.%{ipu6_shortcommit}-%{release}
+Provides:       akmod-%{modulename} = %{ipu6_commitdate}.%{ipu6_shortcommit}-%{release}
 %endif
 
 %{expand:%(kmodtool --target %{_target_cpu} --repo terra --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
