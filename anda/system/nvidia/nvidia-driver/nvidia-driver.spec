@@ -1,5 +1,5 @@
 %global debug_package %{nil}
-%global __strip /bin/true
+%global __strip %{nil}
 %global __brp_ldconfig %{nil}
 %define _build_id_links none
 
@@ -10,7 +10,7 @@
 
 Name:           nvidia-driver
 Version:        575.51.02
-Release:        1%?dist
+Release:        2%?dist
 Summary:        NVIDIA's proprietary display driver for NVIDIA graphic cards
 Epoch:          3
 License:        NVIDIA License
@@ -180,6 +180,11 @@ The NVIDIA X.org X11 driver and associated components.
 %prep
 source %{SOURCE99}
 export VERSION=%{version}
+%ifarch %ix86
+export ARCH=x86_64
+%else
+export ARCH=%{_arch}
+%endif
 
 unpack() {
   set_vars
@@ -189,23 +194,8 @@ unpack() {
   create_tarball
 }
 
-%ifarch %{ix86}
-export ARCH=x86_64
 unpack
-%setup -D -T -n %{name}-%{version}-i386
-%endif
-
-%ifarch x86_64
-export ARCH=x86_64
-unpack
-%setup -D -T -n %{name}-%{version}-x86_64
-%endif
-
-%ifarch aarch64
-export ARCH=aarch64
-unpack
-%setup -D -T -n %{name}-%{version}-aarch64
-%endif
+%setup -D -T -n %{name}-%{version}-%{_arch}
 
 %ifarch x86_64
 %if 0%{?rhel} == 8
@@ -335,6 +325,17 @@ install -p -m 0644 -D %{SOURCE40} %{buildroot}%{_metainfodir}/com.nvidia.driver.
 mkdir -p %{buildroot}%{_datadir}/pixmaps/
 cp %{SOURCE42} %{buildroot}%{_datadir}/pixmaps/
 
+# nvsandboxutils configuration
+install -p -m 0644 -D sandboxutils-filelist.json %{buildroot}%{_datadir}/nvidia/files.d/sandboxutils-filelist.json
+
+# dnf needs-restarting plugin
+# dnf4 only for the moment: https://github.com/rpm-software-management/dnf5/issues/1815
+%if 0%{?fedora} < 42 || 0%{?rhel}
+mkdir -p %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d
+echo %{name} > %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}.conf
+echo %{name}-cuda > %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}-cuda.conf
+%endif
+
 %check
 # Using appstreamcli: appstreamcli validate --strict
 # Icon type local is not supported by appstreamcli for drivers
@@ -364,6 +365,9 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %systemd_postun nvidia-resume.service
 %systemd_postun nvidia-suspend.service
 %systemd_post nvidia-suspend-then-hibernate.service
+%if 0%{?fedora} < 42 || 0%{?rhel}
+%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}.conf
+%endif
 
 %endif
 
