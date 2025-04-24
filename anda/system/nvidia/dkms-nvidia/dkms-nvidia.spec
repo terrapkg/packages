@@ -5,13 +5,14 @@
 
 Name:           dkms-%{modulename}
 Version:        575.51.02
-Release:        1%?dist
+Release:        2%?dist
 Summary:        NVIDIA display driver kernel module
 Epoch:          3
 License:        NVIDIA License
 URL:            https://www.nvidia.com/object/unix.html
 Source0:        https://download.nvidia.com/XFree86/Linux-%{_arch}/%{version}/NVIDIA-Linux-%{_arch}-%{version}.run
 Source1:        %{name}.conf
+Patch0:         nvidia-kernel-ccflags-y.patch
 BuildRequires:  sed
 Provides:       %{modulename}-kmod = %{?epoch:%{epoch}:}%{version}
 Requires:       %{modulename}-kmod-common = %{?epoch:%{epoch}:}%{version}
@@ -26,6 +27,7 @@ This package provides the proprietary NVIDIA kernel driver modules.
 %prep
 sh %{SOURCE0} -x --target dkms-nvidia-%{version}-%{_arch}
 %setup -T -D -n dkms-nvidia-%{version}-%{_arch}
+%autopatch -p1
 
 cp -f %{SOURCE1} dkms.conf
 
@@ -43,10 +45,14 @@ dkms add -m %{modulename} -v %{version} -q --rpm_safe_upgrade || :
 # Rebuild and make available for the currently running kernel:
 dkms build -m %{modulename} -v %{version} -q || :
 dkms install -m %{modulename} -v %{version} -q --force || :
+dracut --regenerate-all --force --quiet
 
 %preun
 # Remove all versions from DKMS registry:
 dkms remove -m %{modulename} -v %{version} -q --all --rpm_safe_upgrade || :
+if [ "$1" == 0 ]; then
+    dracut --regenerate-all --force --quiet
+fi
 
 %files
 %{_usrsrc}/%{modulename}-%{version}
