@@ -43,7 +43,7 @@
 
 Name:           zig-master
 Version:        %(echo %{ver} | sed 's/-/~/g')
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Programming language for maintaining robust, optimal, and reusable software
 License:        MIT AND NCSA AND LGPL-2.1-or-later AND LGPL-2.1-or-later WITH GCC-exception-2.0 AND GPL-2.0-or-later AND GPL-2.0-or-later WITH GCC-exception-2.0 AND BSD-3-Clause AND Inner-Net-2.0 AND ISC AND LicenseRef-Fedora-Public-Domain AND GFDL-1.1-or-later AND ZPL-2.1
 URL:            https://ziglang.org
@@ -136,7 +136,7 @@ Documentation for Zig. For more information, visit %{url}
     -DZIG_TARGET_MCPU:STRING=baseline \
     -DZIG_TARGET_TRIPLE:STRING=native \
     \
-    -DZIG_VERSION:STRING="%{ver}"
+    -DZIG_VERSION:STRING="%(v=%{ver}; echo ${v:0:6})"
 
 %if %{with bootstrap}
 %cmake_build --target stage3
@@ -165,11 +165,6 @@ help2man --no-discard-stderr --no-info "./zig-out/bin/zig" --version-option=vers
 DESTDIR="%{buildroot}" zig build install %{zig_install_options}
 
 install -D -pv -m 0644 -t %{buildroot}%{_mandir}/man1/zig.1
-%endif
-
-
-%if %{with macro}
-install -D -pv -m 0644 %{SOURCE2} %{buildroot}%{_rpmmacrodir}/macros.%{name}
 %endif
 
 %if %{with test}
