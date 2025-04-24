@@ -86,6 +86,7 @@ Provides:       bundled(mingw) = 3839e21b08807479a31d5a9764666f82ae2f0356
 Provides:       bundled(musl) = 1.2.5
 # Apache-2.0 WITH LLVM-exception AND Apache-2.0 AND MIT AND BSD-2-Clause
 Provides:       bundled(wasi-libc) = d03829489904d38c624f6de9983190f1e5e7c9c5
+Conflicts:      zig
 ExclusiveArch:  %{zig_arches}
 Packager:       Gilver E. <rockgrub@disroot.org>
 
@@ -96,6 +97,7 @@ and clarity. This package provides the zig compiler and the associated runtime.
 # The Zig stdlib only contains uncompiled code
 %package libs
 Summary:        Zig Standard Library
+Conflicts:      zig-libs
 BuildArch:      noarch
 
 %description libs
@@ -104,6 +106,7 @@ Zig Standard Library
 %if %{with docs}
 %package doc
 Summary:        Documentation for Zig
+Conflicts:      zig-doc
 BuildArch:      noarch
 Requires:       %{name} = %{version}
 
