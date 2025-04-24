@@ -16,7 +16,7 @@ URL:            http://www.nvidia.com/object/unix.html
 
 BuildArch:      noarch
 
-Source0:        http://download.nvidia.com/XFree86/Linux-%{_arch}/%{version}/NVIDIA-Linux-%{_arch}-%{version}.run
+Source0:        http://download.nvidia.com/XFree86/Linux-x86_64/%{version}/NVIDIA-Linux-x86_64%{version}.run
 Source18:       kernel.conf
 Source19:       nvidia-modeset.conf
 Source20:       nvidia.conf
@@ -35,8 +35,8 @@ This package provides the common files required by all NVIDIA kernel module
 package variants.
  
 %prep
-sh %{SOURCE0} -x --target nvidia-kmod-%{version}-%{_arch}
-%setup -T -D -n nvidia-kmod-%{version}-%{_arch}
+sh %{SOURCE0} -x --target nvidia-kmod-%{version}-x86_64
+%setup -T -D -n nvidia-kmod-%{version}-x86_64
 
 %install
 # Choice of kernel module type:

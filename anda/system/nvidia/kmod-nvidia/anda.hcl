@@ -4,5 +4,6 @@ project pkg {
 	}
 	labels {
 		subrepo = "nvidia"
+		mock = 1
 	}
 }
