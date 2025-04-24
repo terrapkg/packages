@@ -2,7 +2,7 @@ project pkg {
     rpm {
         spec = "egl-x11.spec"
     }
-    labels = {
+    labels {
         subrepo = "nvidia"
     }
 }
