@@ -91,7 +91,6 @@ fi
 %license LICENSE
 %{_bindir}/ipu6-driver-select
 %{_libdir}/libcamhal.so.*
-%{_libdir}/libhal_adaptor.so.*
 %{_libdir}/libcamhal
 %{_datadir}/defaults
 %{_udevrulesdir}/60-intel-ipu6.rules
