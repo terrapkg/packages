@@ -5,7 +5,7 @@
 
 Name:           nvidia-kmod
 Version:        575.51.02
-Release:        1%?dist
+Release:        2%?dist
 Summary:        NVIDIA display driver kernel module
 Epoch:          3
 License:        NVIDIA License
@@ -13,6 +13,9 @@ URL:            http://www.nvidia.com/object/unix.html
 ExclusiveArch:  x86_64 aarch64
 
 Source0:        http://download.nvidia.com/XFree86/Linux-%{_arch}/%{version}/NVIDIA-Linux-%{_arch}-%{version}.run
+Patch0:         nvidia-kernel-ccflags-y.patch
+Requires:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
+Requires:       akmods
 
 
 # Get the needed BuildRequires (in parts depending on what we build for):
@@ -32,6 +35,7 @@ kmodtool  --target %{_target_cpu}  --repo terra.fyralabs.com --kmodname %{name} 
 
 sh %{SOURCE0} -x --target nvidia-kmod-%{version}-%{_arch}
 %setup -T -D -n nvidia-kmod-%{version}-%{_arch}
+%autopatch -p1
 
 rm -f */dkms.conf
 
