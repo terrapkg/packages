@@ -1,0 +1,88 @@
+From c451aa3f50f8a5ef26d9a36f159c3f9fb8e6ef11 Mon Sep 17 00:00:00 2001
+From: Hans de Goede <hdegoede@redhat.com>
+Date: Mon, 10 Jun 2024 13:05:53 +0200
+Subject: [PATCH 1/9] Makefile: Switch sensor driver symbols from
+ CONFIG_VIDEO_FOO to CONFIG_ICAMERA_FOO
+
+Switch the Kconfig symbols for sensor drivers from CONFIG_VIDEO_FOO to
+CONFIG_ICAMERA_FOO to avoid these still being set when they should not
+because of the CONFIG_VIDEO_FOO symbols inherited from the base kernel.
+
+Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+---
+ Makefile                   | 22 +++++++++++-----------
+ drivers/media/i2c/Makefile | 22 +++++++++++-----------
+ 2 files changed, 22 insertions(+), 22 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 49b27300a..356f5e7f3 100644
+--- a/Makefile
++++ b/Makefile
+@@ -81,22 +81,22 @@ else
+ obj-y += drivers/media/pci/intel/ipu6/psys/
+ endif
+ 
+-export CONFIG_VIDEO_HM11B1 = m
+-export CONFIG_VIDEO_OV01A1S = m
+-export CONFIG_VIDEO_OV01A10 = m
+-export CONFIG_VIDEO_OV02C10 = m
+-export CONFIG_VIDEO_OV02E10 = m
+-export CONFIG_VIDEO_HM2170 = m
+-export CONFIG_VIDEO_HM2172 = m
+-export CONFIG_VIDEO_HI556 = m
++export CONFIG_ICAMERA_HM11B1 = m
++export CONFIG_ICAMERA_OV01A1S = m
++export CONFIG_ICAMERA_OV01A10 = m
++export CONFIG_ICAMERA_OV02C10 = m
++export CONFIG_ICAMERA_OV02E10 = m
++export CONFIG_ICAMERA_HM2170 = m
++export CONFIG_ICAMERA_HM2172 = m
++export CONFIG_ICAMERA_HI556 = m
+ 
+ ifeq ($(call version_lt,$(KERNEL_VERSION),$(KV_OV2740)),true)
+-export CONFIG_VIDEO_OV2740 = m
+-export CONFIG_VIDEO_GC5035 = m
++export CONFIG_ICAMERA_OV2740 = m
++export CONFIG_ICAMERA_GC5035 = m
+ endif
+ 
+ ifeq ($(call version_lt,$(KERNEL_VERSION),$(KV_OV05C10)),false)
+-export CONFIG_VIDEO_OV05C10 = m
++export CONFIG_ICAMERA_OV05C10 = m
+ endif
+ 
+ obj-y += drivers/media/i2c/
+diff --git a/drivers/media/i2c/Makefile b/drivers/media/i2c/Makefile
+index b4fa25598..2bcc878e7 100644
+--- a/drivers/media/i2c/Makefile
++++ b/drivers/media/i2c/Makefile
+@@ -1,15 +1,15 @@
+ # SPDX-License-Identifier: GPL-2.0
+ # Copyright (c) 2021 Intel Corporation.
+ 
+-obj-$(CONFIG_VIDEO_HM11B1) += hm11b1.o
+-obj-$(CONFIG_VIDEO_GC5035) += gc5035.o
+-obj-$(CONFIG_VIDEO_OV01A1S) += ov01a1s.o
+-obj-$(CONFIG_VIDEO_OV01A10) += ov01a10.o
+-obj-$(CONFIG_VIDEO_OV02C10) += ov02c10.o
+-obj-$(CONFIG_VIDEO_OV02E10) += ov02e10.o
+-obj-$(CONFIG_VIDEO_OV05C10) += ov05c10.o
+-obj-$(CONFIG_VIDEO_OV2740) += ov2740.o
+-obj-$(CONFIG_VIDEO_HM2170) += hm2170.o
+-obj-$(CONFIG_VIDEO_HM2170) += hm2172.o
+-obj-$(CONFIG_VIDEO_HI556) += hi556.o
++obj-$(CONFIG_ICAMERA_HM11B1) += hm11b1.o
++obj-$(CONFIG_ICAMERA_GC5035) += gc5035.o
++obj-$(CONFIG_ICAMERA_OV01A1S) += ov01a1s.o
++obj-$(CONFIG_ICAMERA_OV01A10) += ov01a10.o
++obj-$(CONFIG_ICAMERA_OV02C10) += ov02c10.o
++obj-$(CONFIG_ICAMERA_OV02E10) += ov02e10.o
++obj-$(CONFIG_ICAMERA_OV05C10) += ov05c10.o
++obj-$(CONFIG_ICAMERA_OV2740) += ov2740.o
++obj-$(CONFIG_ICAMERA_HM2170) += hm2170.o
++obj-$(CONFIG_ICAMERA_HM2170) += hm2172.o
++obj-$(CONFIG_ICAMERA_HI556) += hi556.o
+ obj-$(CONFIG_POWER_CTRL_LOGIC) += power_ctrl_logic.o
+-- 
+2.48.1
+
