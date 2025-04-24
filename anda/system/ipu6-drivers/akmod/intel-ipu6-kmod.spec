@@ -21,22 +21,8 @@ URL:            https://github.com/intel/ipu6-drivers
 Source0:        https://github.com/intel/ipu6-drivers/archive/%{ipu6_commit}/ipu6-drivers-%{ipu6_shortcommit}.tar.gz
 Source1:        https://github.com/intel/usbio-drivers/archive/%{usbio_commit}/usbio-drivers-%{usbio_shortcommit}.tar.gz
 # Patches
-# https://github.com/intel/ipu6-drivers/pull/322
-Patch1:         0001-Makefile-Switch-sensor-driver-symbols-from-CONFIG_VI.patch
-Patch2:         0002-Makefile-Re-enable-gc5035-compilation-with-kernels-6.patch
-Patch3:         0003-Makefile-Do-not-build-hi556-driver-with-kernels-6.10.patch
-Patch4:         0004-Makefile-Do-not-build-ov01a10-driver-with-kernels-6..patch
 # https://github.com/intel/ipu6-drivers/pull/321
-Patch5:         0005-media-ipu6-Fix-out-of-tree-builds.patch
-Patch6:         0006-media-ipu6-Fix-building-with-kernel-6.13.patch
-Patch7:         0007-Modify-0001-v6.10-IPU6-headers-used-by-PSYS.patch-fo.patch
-# https://github.com/intel/ipu6-drivers/pull/324
-Patch8:         0008-ipu6-psys-Adjust-DMA-code-for-ipu6-bus-DMA-changes-i.patch
-Patch9:         0009-Add-ipu6-dma.h-to-0001-v6.10-IPU6-headers-used-by-PS.patch
-# https://github.com/intel/ipu6-drivers/pull/327
-Patch10:        0010-psys-Do-not-skipping-registering-ipu_psys_bus-for-ke.patch
-Patch11:        0011-psys-Use-cdev_device_add-for-dev-ipu-psys0.patch
-# https://github.com/intel/usbio-drivers/pull/33
+Patch0:         0005-media-ipu6-Fix-out-of-tree-builds.patch
 Patch20:        0010-usbio-Fix-GPIO-and-I2C-driver-modaliases.patch
 # https://github.com/intel/usbio-drivers/pull/34
 Patch21:        0011-usbio-Fix-I2C-max-transfer-size.patch
@@ -67,17 +53,7 @@ kmodtool  --target %{_target_cpu} --repo terra --kmodname %{modulename} %{?build
 
 %setup -q -c -a 1
 (cd ipu6-drivers-%{ipu6_commit}
-%patch 1 -p1
-%patch 2 -p1
-%patch 3 -p1
-%patch 4 -p1
-%patch 5 -p1
-%patch 6 -p1
-%patch 7 -p1
-%patch 8 -p1
-%patch 9 -p1
-%patch 10 -p1
-%patch 11 -p1
+%patch 0 -p1
 %patch 101 -p1
 patch -p1 < patches/0001-v6.10-IPU6-headers-used-by-PSYS.patch
 )
