@@ -74,10 +74,6 @@ install -Dpm 0644 %{SOURCE3} %{buildroot}%{_datadir}/defaults/etc/camera/ipu6epm
 ### Script to switch between proprietary and open IPU6 stacks
 install -Dpm 0755 %{SOURCE4} %{buildroot}%{_bindir}/ipu6-driver-select
 
-### Needed for GStreamer ICamera builds.
-ln -sf hal_adaptor %{buildroot}%{_includedir}/libcamhal
-ln -sf hal_adaptor.pc %{buildroot}%{_libdir}/pkgconfig/libcamhal.pc
-
 %posttrans
 ### Skip triggering if udevd isn't accessible
 if [ -S /run/udev/control ]; then
@@ -96,11 +92,8 @@ fi
 %{_udevrulesdir}/60-intel-ipu6.rules
 
 %files devel
-%{_includedir}/hal_adaptor
 %{_includedir}/libcamhal
 %{_libdir}/libcamhal.so
-%{_libdir}/libhal_adaptor.so
-%{_libdir}/pkgconfig/hal_adaptor.pc
 %{_libdir}/pkgconfig/libcamhal.pc
 
 
