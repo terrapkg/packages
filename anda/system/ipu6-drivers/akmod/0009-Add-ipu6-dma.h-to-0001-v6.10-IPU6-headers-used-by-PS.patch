@@ -1,0 +1,84 @@
+From 47a2e1cf89b789bbc10d3cb3b26b357404633114 Mon Sep 17 00:00:00 2001
+From: Hans de Goede <hdegoede@redhat.com>
+Date: Sat, 1 Feb 2025 08:19:22 +0100
+Subject: [PATCH 9/9] Add ipu6-dma.h to
+ 0001-v6.10-IPU6-headers-used-by-PSYS.patch
+
+Add ipu6-dma.h to 0001-v6.10-IPU6-headers-used-by-PSYS.patch,
+this is necessary for the DMA code adjustments in the psys code
+which were done for the ipu6-bus DMA changes in kernels >= 6.12.
+
+Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+---
+ ...0001-v6.10-IPU6-headers-used-by-PSYS.patch | 55 +++++++++++++++++++
+ 1 file changed, 55 insertions(+)
+
+diff --git a/patches/0001-v6.10-IPU6-headers-used-by-PSYS.patch b/patches/0001-v6.10-IPU6-headers-used-by-PSYS.patch
+index 6a465a924..b8eeaae66 100644
+--- a/patches/0001-v6.10-IPU6-headers-used-by-PSYS.patch
++++ b/patches/0001-v6.10-IPU6-headers-used-by-PSYS.patch
+@@ -1195,6 +1195,61 @@ index 000000000..92e3c3414
+ +			int pkg_dir_idx, void __iomem *base, u64 *pkg_dir,
+ +			dma_addr_t pkg_dir_dma_addr);
+ +#endif /* IPU6_H */
++diff --git a/drivers/media/pci/intel/ipu6/ipu6-dma.h b/drivers/media/pci/intel/ipu6/ipu6-dma.h
++new file mode 100644
++index 000000000..b51244add
++--- /dev/null
+++++ b/drivers/media/pci/intel/ipu6/ipu6-dma.h
++@@ -0,0 +1,49 @@
+++/* SPDX-License-Identifier: GPL-2.0-only */
+++/* Copyright (C) 2013--2024 Intel Corporation */
+++
+++#ifndef IPU6_DMA_H
+++#define IPU6_DMA_H
+++
+++#include <linux/dma-map-ops.h>
+++#include <linux/dma-mapping.h>
+++#include <linux/iova.h>
+++#include <linux/iova.h>
+++#include <linux/scatterlist.h>
+++#include <linux/types.h>
+++
+++#include "ipu6-bus.h"
+++
+++struct ipu6_mmu_info;
+++
+++struct ipu6_dma_mapping {
+++	struct ipu6_mmu_info *mmu_info;
+++	struct iova_domain iovad;
+++};
+++
+++void ipu6_dma_sync_single(struct ipu6_bus_device *sys, dma_addr_t dma_handle,
+++			  size_t size);
+++void ipu6_dma_sync_sg(struct ipu6_bus_device *sys, struct scatterlist *sglist,
+++		      int nents);
+++void ipu6_dma_sync_sgtable(struct ipu6_bus_device *sys, struct sg_table *sgt);
+++void *ipu6_dma_alloc(struct ipu6_bus_device *sys, size_t size,
+++		     dma_addr_t *dma_handle, gfp_t gfp,
+++		     unsigned long attrs);
+++void ipu6_dma_free(struct ipu6_bus_device *sys, size_t size, void *vaddr,
+++		   dma_addr_t dma_handle, unsigned long attrs);
+++int ipu6_dma_mmap(struct ipu6_bus_device *sys, struct vm_area_struct *vma,
+++		  void *addr, dma_addr_t iova, size_t size,
+++		  unsigned long attrs);
+++int ipu6_dma_map_sg(struct ipu6_bus_device *sys, struct scatterlist *sglist,
+++		    int nents, enum dma_data_direction dir,
+++		    unsigned long attrs);
+++void ipu6_dma_unmap_sg(struct ipu6_bus_device *sys, struct scatterlist *sglist,
+++		       int nents, enum dma_data_direction dir,
+++		       unsigned long attrs);
+++int ipu6_dma_map_sgtable(struct ipu6_bus_device *sys, struct sg_table *sgt,
+++			 enum dma_data_direction dir, unsigned long attrs);
+++void ipu6_dma_unmap_sgtable(struct ipu6_bus_device *sys, struct sg_table *sgt,
+++			    enum dma_data_direction dir, unsigned long attrs);
+++int ipu6_dma_get_sgtable(struct ipu6_bus_device *sys, struct sg_table *sgt,
+++			 void *cpu_addr, dma_addr_t handle, size_t size,
+++			 unsigned long attrs);
+++#endif /* IPU6_DMA_H */
+ -- 
+ 2.43.0
+ 
+-- 
+2.48.1
+
