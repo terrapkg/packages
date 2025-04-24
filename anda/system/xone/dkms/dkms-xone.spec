@@ -7,7 +7,10 @@
 
 Name:           dkms-%{modulename}
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        1%?dist
+Release:        2%?dist
+%if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
+Epoch:          1
+%endif
 Summary:        Linux kernel driver for Xbox One and Xbox Series X|S accessories
 License:        GPL-2.0-or-later
 URL:            https://github.com/dlundqvist/xone
@@ -18,6 +21,10 @@ BuildRequires:  systemd-rpm-macros
 Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
 Requires:       dkms
 Conflicts:      akmod-%{modulename}
+%if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
+Conflicts:      %{name} < %{?epoch:%{epoch}:}3.0^20250419git.c682b0c
+Obsoletes:      %{name} < %{?epoch:%{epoch}:}3.0^20250419git.c682b0c
+%endif
 BuildArch:      noarch
 Packager:       Gilver E. <rockgrub@disroot.org>
 
