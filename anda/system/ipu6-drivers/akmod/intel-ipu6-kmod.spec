@@ -48,7 +48,7 @@ BuildRequires:  gcc
 BuildRequires:  kmodtool
 Requires:       %{modulename}-kmod-common = %{?epoch:%{epoch}:}%{version}
 Requires:       akmods
-%if %{?fedora} <= 43 || %{?rhel} <= 10
+%if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Provides:       %{name} = %{commit_date}.%{ipu6_shortcommit}-%{release}
 Provides:       akmod-%{modulename} = %{commit_date}.%{ipu6_shortcommit}-%{release}
 %endif
