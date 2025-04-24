@@ -75,7 +75,7 @@ Requires:       libnvidia-ml%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       vulkan-loader
 # dlopened
 Requires:       libnvidia-gpucomp%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-Requires:       libnvidia-ml = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       libnvidia-ml%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 Conflicts:      nvidia-x11-drv-libs
 Conflicts:      nvidia-x11-drv-470xx-libs
@@ -299,19 +299,6 @@ install -p -m 0755 systemd/nvidia-sleep.sh %{buildroot}%{_bindir}/
 install -p -m 0755 -D systemd/system-sleep/nvidia %{buildroot}%{_systemd_util_dir}/system-sleep/nvidia
 install -p -m 0644 -D nvidia-dbus.conf %{buildroot}%{_datadir}/dbus-1/system.d/nvidia-dbus.conf
 
-%if 0%{?fedora} >= 41
-mkdir -p %{buildroot}%{_unitdir}/systemd-suspend.service.d/
-cat > %{buildroot}%{_unitdir}/systemd-suspend.service.d/10-nvidia.conf << EOF
-[Service]
-Environment="SYSTEMD_SLEEP_FREEZE_USER_SESSIONS=false"
-EOF
-mkdir -p %{buildroot}%{_unitdir}/systemd-homed.service.d/
-cat > %{buildroot}%{_unitdir}/systemd-homed.service.d/10-nvidia.conf << EOF
-[Service]
-Environment="SYSTEMD_HOME_LOCK_FREEZE_SESSION=false"
-EOF
-%endif
-
 # Ignore powerd binary exiting if hardware is not present
 # We should check for information in the DMI table
 sed -i -e 's/ExecStart=/ExecStart=-/g' %{buildroot}%{_unitdir}/nvidia-powerd.service
@@ -357,17 +344,14 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %systemd_preun nvidia-powerd.service
 %systemd_preun nvidia-resume.service
 %systemd_preun nvidia-suspend.service
-%systemd_post nvidia-suspend-then-hibernate.service
+%systemd_preun nvidia-suspend-then-hibernate.service
 
 %postun
 %systemd_postun nvidia-hibernate.service
 %systemd_postun nvidia-powerd.service
 %systemd_postun nvidia-resume.service
 %systemd_postun nvidia-suspend.service
-%systemd_post nvidia-suspend-then-hibernate.service
-%if 0%{?fedora} < 42 || 0%{?rhel}
-%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}.conf
-%endif
+%systemd_postun nvidia-suspend-then-hibernate.service
 
 %endif
 
@@ -395,9 +379,8 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %{_unitdir}/nvidia-resume.service
 %{_unitdir}/nvidia-suspend.service
 %{_unitdir}/nvidia-suspend-then-hibernate.service
-%if 0%{?fedora} >= 41
-%{_unitdir}/systemd-suspend.service.d/10-nvidia.conf
-%{_unitdir}/systemd-homed.service.d/10-nvidia.conf
+%if 0%{?fedora} < 42 || 0%{?rhel}
+%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}.conf
 %endif
 
 %if 0%{?fedora} || 0%{?rhel} < 10
@@ -417,10 +400,14 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %{_bindir}/nvidia-cuda-mps-server
 %{_bindir}/nvidia-debugdump
 %{_bindir}/nvidia-smi
+%{_datadir}/nvidia/files.d/sandboxutils-filelist.json
 %{_mandir}/man1/nvidia-cuda-mps-control.1.*
 %{_mandir}/man1/nvidia-smi.*
 %{_prefix}/lib/nvidia/alternate-install-present
 %{_systemd_util_dir}/system-preset/70-nvidia-driver-cuda.preset
+%if 0%{?fedora} < 42 || 0%{?rhel}
+%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}-cuda.conf
+%endif
 
 %endif
 
@@ -466,7 +453,9 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %{_libdir}/libnvidia-vksc-core.so.%{version}
 %dir %{_libdir}/nvidia
 %dir %{_libdir}/nvidia/wine
-%{_libdir}/nvidia/wine/*.dll
+%{_libdir}/nvidia/wine/_nvngx.dll
+%{_libdir}/nvidia/wine/nvngx.dll
+%{_libdir}/nvidia/wine/nvngx_dlssg.dll
 %endif
 
 %files cuda-libs
@@ -500,8 +489,6 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %else
 %{_libdir}/libnvidia-pkcs11-openssl3.so.%{version}
 %endif
-%{_libdir}/libnvidia-sandboxutils.so.1
-%{_libdir}/libnvidia-sandboxutils.so.%{version}
 %endif
 
 %files -n libnvidia-fbc
