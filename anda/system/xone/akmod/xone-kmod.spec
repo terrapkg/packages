@@ -1,6 +1,6 @@
-%global commit aeb27e6d98f7b22b3672701af6171612254a4d0c
+%global commit c682b0cd4fd56d2d9639b64787034a375535eb4b
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20250313
+%global commitdate 20250419
 %global ver 0.3
 %define buildforkernels akmod
 %global debug_package %{nil}
@@ -8,7 +8,10 @@
 
 Name:           %{modulename}-kmod
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        1%?dist
+Release:        2%?dist
+%if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
+Epoch:          1
+%endif
 Summary:        Linux kernel driver for Xbox One and Xbox Series X|S accessories
 License:        GPL-2.0-or-later
 URL:            https://github.com/dlundqvist/xone
@@ -19,6 +22,10 @@ Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
 Requires:       %{modulename}-akmod-modules = %{?epoch:%{epoch}:}%{version}
 Requires:       akmods
 Conflicts:      dkms-%{modulename}
+%if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
+Conflicts:      %{name} < %{?epoch:%{epoch}:}3.0^20250419git.c682b0c
+Obsoletes:      %{name} < %{?epoch:%{epoch}:}3.0^20250419git.c682b0c
+%endif
 Packager:       Gilver E. <rockgrub@disroot.org>
 
 %{expand:%(kmodtool --target %{_target_cpu} --repo terra --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }

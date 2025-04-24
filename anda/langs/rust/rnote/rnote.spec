@@ -1,7 +1,7 @@
 %global build_rustflags %build_rustflags -C link-arg=-fuse-ld=mold
 
 Name:           rnote
-Version:        0.11.0
+Version:        0.12.0
 Release:        1%?dist
 Summary:        Sketch and take handwritten notes.
 License:        GPL-3.0

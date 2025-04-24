@@ -1,0 +1,51 @@
+From 14d41bf82770fcab65dcf3b2eec3f95b7a963aff Mon Sep 17 00:00:00 2001
+From: Hans de Goede <hdegoede@redhat.com>
+Date: Mon, 13 Jan 2025 13:15:15 +0100
+Subject: [PATCH 4/9] Makefile: Do not build ov01a10 driver with kernels >= 6.8
+
+Since commit 47a78052db51 ("media: ov01a10: Enable runtime PM before
+registering async sub-device") the mainline ov01a10 driver is fully
+usable and it can be used instead of the out of tree driver.
+
+Add a new KV_OV01A10 variable and stop building the ov01a10 driver on
+kernels >= 6.8.
+
+Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+---
+ Makefile | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index 472fdec22..7ae3be835 100644
+--- a/Makefile
++++ b/Makefile
+@@ -23,6 +23,7 @@ version_lt = $(shell \
+ KV_IVSC := 6.6.0
+ KV_IPU_BRIDGE := 6.6.0
+ KV_OV2740 := 6.8.0
++KV_OV01A10 := 6.8.0
+ KV_OV05C10 := 6.8.0
+ KV_HI556 := 6.10
+ KV_IPU6_ISYS := 6.10.0
+@@ -84,7 +85,6 @@ endif
+ 
+ export CONFIG_ICAMERA_HM11B1 = m
+ export CONFIG_ICAMERA_OV01A1S = m
+-export CONFIG_ICAMERA_OV01A10 = m
+ export CONFIG_ICAMERA_OV02C10 = m
+ export CONFIG_ICAMERA_OV02E10 = m
+ export CONFIG_ICAMERA_HM2170 = m
+@@ -95,6 +95,10 @@ ifeq ($(call version_lt,$(KERNEL_VERSION),$(KV_OV2740)),true)
+ export CONFIG_ICAMERA_OV2740 = m
+ endif
+ 
++ifeq ($(call version_lt,$(KERNEL_VERSION),$(KV_OV01A10)),true)
++export CONFIG_ICAMERA_OV01A10 = m
++endif
++
+ # Note OV05C10 check is reversed, it is not build on too old kernels
+ ifeq ($(call version_lt,$(KERNEL_VERSION),$(KV_OV05C10)),false)
+ export CONFIG_ICAMERA_OV05C10 = m
+-- 
+2.48.1
+
