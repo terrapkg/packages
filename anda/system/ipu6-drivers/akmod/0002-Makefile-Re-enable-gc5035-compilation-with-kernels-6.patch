@@ -1,17 +1,38 @@
+From b839b8153bd364c22811496c1753145fa475bcc8 Mon Sep 17 00:00:00 2001
+From: Hans de Goede <hdegoede@redhat.com>
+Date: Mon, 10 Jun 2024 13:41:16 +0200
+Subject: [PATCH 2/9] Makefile: Re-enable gc5035 compilation with kernels >=
+ 6.8
+
+For some reason the gc5035 driver has been disabled for kernels >= 6.8,
+but it is not upstream yet.
+
+Fix compilation with kernel >= 6.8 and re-enable the driver.
+
+Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+---
+ Makefile                   |  2 +-
+ drivers/media/i2c/gc5035.c | 19 +++++++++++++++++++
+ 2 files changed, 20 insertions(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index 356f5e7f3..58bc10aed 100644
 --- a/Makefile
 +++ b/Makefile
-@@ -83,10 +83,10 @@ export CONFIG_VIDEO_OV02E10 = m
- export CONFIG_VIDEO_HM2170 = m
- export CONFIG_VIDEO_HM2172 = m
- export CONFIG_VIDEO_HI556 = m
-+export CONFIG_VIDEO_GC5035 = m
+@@ -89,10 +89,10 @@ export CONFIG_ICAMERA_OV02E10 = m
+ export CONFIG_ICAMERA_HM2170 = m
+ export CONFIG_ICAMERA_HM2172 = m
+ export CONFIG_ICAMERA_HI556 = m
++export CONFIG_ICAMERA_GC5035 = m
  
  ifeq ($(call version_lt,$(KERNEL_VERSION),$(KV_OV2740)),true)
- export CONFIG_VIDEO_OV2740 = m
--export CONFIG_VIDEO_GC5035 = m
+ export CONFIG_ICAMERA_OV2740 = m
+-export CONFIG_ICAMERA_GC5035 = m
  endif
- obj-y += drivers/media/i2c/
  
+ ifeq ($(call version_lt,$(KERNEL_VERSION),$(KV_OV05C10)),false)
+diff --git a/drivers/media/i2c/gc5035.c b/drivers/media/i2c/gc5035.c
+index 16bbd4845..e825dfa7d 100644
 --- a/drivers/media/i2c/gc5035.c
 +++ b/drivers/media/i2c/gc5035.c
 @@ -1497,7 +1497,11 @@ static int gc5035_set_fmt(struct v4l2_subdev *sd,
@@ -71,3 +92,6 @@
  	ret = gc5035_initialize_controls(gc5035);
  	if (ret) {
  		dev_err_probe(dev, ret, "Failed to initialize controls\n");
+-- 
+2.48.1
+
