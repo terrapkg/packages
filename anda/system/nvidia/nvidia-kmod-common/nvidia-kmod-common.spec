@@ -4,11 +4,11 @@
 
 # gsp_*.bin: ELF 64-bit LSB executable, UCB RISC-V
 %global _binaries_in_noarch_packages_terminate_build 0
-%global __strip /bin/true
+%global __brp_strip %{nil}
 
 Name:           nvidia-kmod-common
 Version:        575.51.02
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Common file for NVIDIA's proprietary driver kernel modules
 Epoch:          3
 License:        NVIDIA License
@@ -17,18 +17,14 @@ URL:            http://www.nvidia.com/object/unix.html
 BuildArch:      noarch
 
 Source0:        http://download.nvidia.com/XFree86/Linux-x86_64/%{version}/NVIDIA-Linux-x86_64-%{version}.run
-Source17:       nvidia-boot-update
 Source18:       kernel.conf
 Source19:       nvidia-modeset.conf
 Source20:       nvidia.conf
 Source21:       60-nvidia.rules
-Source24:       99-nvidia.conf
 
 # UDev rule location (_udevrulesdir) and systemd macros:
 BuildRequires:  systemd-rpm-macros
 
-# Owns /usr/lib/firmware:
-Requires:       linux-firmware
 Requires:       nvidia-modprobe
 Requires:       nvidia-kmod = %{?epoch:%{epoch}:}%{version}
 Provides:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
@@ -43,13 +39,6 @@ sh %{SOURCE0} -x --target nvidia-kmod-%{version}-x86_64
 %setup -T -D -n nvidia-kmod-%{version}-x86_64
 
 %install
-# Script for post/preun tasks
-install -p -m 0755 -D %{SOURCE17} %{buildroot}%{_sbindir}/nvidia-boot-update
-sed -i \
-    -e 's/_dracutopts_in/%{_dracutopts_in}/g' \
-    -e 's/_dracutopts_rm/%{_dracutopts_rm}/g' \
-    %{buildroot}%{_sbindir}/nvidia-boot-update
-
 # Choice of kernel module type:
 install -p -m 0644 -D %{SOURCE18} %{buildroot}%{_sysconfdir}/nvidia/kernel.conf
 
@@ -58,9 +47,6 @@ install -p -m 0644 -D %{SOURCE19} %{buildroot}%{_sysconfdir}/modprobe.d/nvidia-m
 
 # Load nvidia-uvm, enable complete power management:
 install -p -m 0644 -D %{SOURCE20} %{buildroot}%{_modprobedir}/nvidia.conf
-
-# Avoid Nvidia modules getting in the initrd:
-install -p -m 0644 -D %{SOURCE24} %{buildroot}%{_dracut_conf_d}/99-nvidia.conf
 
 # UDev rules
 # https://github.com/NVIDIA/nvidia-modprobe/blob/master/modprobe-utils/nvidia-modprobe-utils.h#L33-L46
@@ -72,19 +58,19 @@ install -p -m 644 -D %{SOURCE21} %{buildroot}%{_udevrulesdir}/60-nvidia.rules
 mkdir -p %{buildroot}%{_prefix}/lib/firmware/nvidia/%{version}/
 install -p -m 644 firmware/* %{buildroot}%{_prefix}/lib/firmware/nvidia/%{version}
 
-%post
-%{_sbindir}/nvidia-boot-update post
+%pre
+# Remove the kernel command line adjustments one last time when doing an upgrade
+# from a version that was still setting up the command line parameters:
+if [ "$1" -eq "2" ] && [ -x %{_bindir}/nvidia-boot-update ]; then
+  %{_bindir}/nvidia-boot-update preun
 
-%preun
-if [ "$1" -eq "0" ]; then
-  %{_sbindir}/nvidia-boot-update preun
 fi ||:
 
 %files
-%{_dracut_conf_d}/99-nvidia.conf
 %{_modprobedir}/nvidia.conf
+%dir %{_prefix}/lib/firmware
+%dir %{_prefix}/lib/firmware/nvidia
 %{_prefix}/lib/firmware/nvidia/%{version}
-%{_sbindir}/nvidia-boot-update
 %config(noreplace) %{_sysconfdir}/modprobe.d/nvidia-modeset.conf
 %config(noreplace) %{_sysconfdir}/nvidia/kernel.conf
 %{_udevrulesdir}/60-nvidia.rules
