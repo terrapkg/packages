@@ -82,22 +82,4 @@ find %{buildroot} -name '*.la' -delete
 %{_libdir}/pkgconfig/wayland-eglstream.pc
 
 %changelog
-* Wed Apr 23 2025 Simone Caronni <negativo17@gmail.com> - 1.1.19-2
-- Update to 1.1.19 final.
-
-* Mon Mar 17 2025 Simone Caronni <negativo17@gmail.com> - 1.1.19~20250313gitf1fd514-1
-- Update to latest snapshot.
-- Trim changelog.
-- Use a downloaded copy of the DRM syncobj protocol definition.
-
-* Thu Sep 26 2024 Simone Caronni <negativo17@gmail.com> - 1.1.13.1-3
-- Drop gbm ICD loader that went in egl-gbm (#163).
-
-* Wed Aug 07 2024 Simone Caronni <negativo17@gmail.com> - 1.1.13.1-2
-- Update build requirements.
-
-* Mon Aug 05 2024 Simone Caronni <negativo17@gmail.com> - 1.1.13.1-1
-- Update to 1.1.13.1 which includes the backported patch for driver 560+.
-
-* Wed May 29 2024 Simone Caronni <negativo17@gmail.com> - 1.1.13-2
-- Backport upstream patch.
+%autochangelog

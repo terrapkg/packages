@@ -67,38 +67,4 @@ rm -fv %{buildroot}%{_libdir}/*.so
 %{_datadir}/egl/egl_external_platform.d/20_nvidia_xlib.json
 
 %changelog
-* Tue Apr 22 2025 Simone Caronni <negativo17@gmail.com> - 1.0.1-6
-- Update to final 1.0.1.
-
-* Thu Mar 27 2025 Simone Caronni <negativo17@gmail.com> - 1.0.1~20250324git0558d54-5
-- Update to latest snapshot.
-
-* Mon Mar 24 2025 Simone Caronni <negativo17@gmail.com> - 1.0.1~20250320git4c691fa-4
-- Update to latest snapshot.
-
-* Mon Mar 17 2025 Simone Caronni <negativo17@gmail.com> - 1.0.1~20250311gitb403f3a-3
-- Update to latest snapshot.
-
-* Thu Jan 16 2025 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.1~20241213git61e70b0-2
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_42_Mass_Rebuild
-
-* Mon Dec 16 2024 Simone Caronni <negativo17@gmail.com> - 1.0.1~20241213git61e70b0-1
-- Update to 1.0.1 pre-release snapshot.
-
-* Thu Dec 12 2024 Simone Caronni <negativo17@gmail.com> - 1.0.0-4
-- Update to final 1.0.0 (no change).
-
-* Mon Nov 25 2024 Simone Caronni <negativo17@gmail.com> - 1.0.0^20241120gitc616565-3
-- Update to latest snapshot.
-
-* Mon Nov 18 2024 Simone Caronni <negativo17@gmail.com> - 1.0.0^20241113git6092c1f-2
-- Update to latest snapshot.
-
-* Wed Sep 18 2024 Simone Caronni <negativo17@gmail.com> - 1.0.0^20240916gitf13be94-1
-- Update to latest snapshot.
-
-* Thu Sep 12 2024 Simone Caronni <negativo17@gmail.com> - 0.1^20240910git4b333d9-1
-- Update to latest packaging guidelines for snapshots.
-
-* Wed Sep 04 2024 Simone Caronni <negativo17@gmail.com> - 0.1-1.20240828git2be2296
-- First build.
+%autochangelog
