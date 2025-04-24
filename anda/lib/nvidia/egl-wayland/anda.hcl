@@ -2,7 +2,7 @@ project pkg {
     rpm {
         spec = "egl-wayland.spec"
     }
-    labels = {
+    labels {
         subrepo = "nvidia"
     }
 }
