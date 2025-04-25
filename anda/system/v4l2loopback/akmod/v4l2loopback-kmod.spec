@@ -30,6 +30,7 @@ BuildRequires:  kmodtool
 Requires:       akmods
 Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
 Requires:       %{modulename}-akmod-modules = %{?epoch:%{epoch}:}%{version}
+Requires:       help2man
 Requires:       kernel-devel
 Conflicts:      dkms-%{modulename}
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
