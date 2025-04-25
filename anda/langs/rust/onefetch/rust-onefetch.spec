@@ -4,7 +4,7 @@
 %global crate onefetch
 
 Name:           rust-onefetch
-Version:        2.23.1
+Version:        2.24.0
 Release:        1%?dist
 Summary:        Command-line Git information tool
 

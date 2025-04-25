@@ -1,0 +1,27 @@
+diff -Naur open-gpu-kernel-modules-570.133.07.old/utils.mk open-gpu-kernel-modules-570.133.07/utils.mk
+--- open-gpu-kernel-modules-570.133.07.old/utils.mk	2025-04-12 15:13:09.368747667 +0200
++++ open-gpu-kernel-modules-570.133.07/utils.mk	2025-04-12 15:14:11.297683469 +0200
+@@ -114,14 +114,8 @@
+ CHMOD                 ?= chmod
+ OBJCOPY               ?= objcopy
+ XZ                    ?= xz
+-WHOAMI                ?= whoami
+ PKG_CONFIG            ?= pkg-config
+ 
+-ifndef HOSTNAME
+-  HOSTNAME             = $(shell hostname)
+-endif
+-
+-
+ NV_AUTO_DEPEND        ?= 1
+ NV_VERBOSE            ?= 0
+ 
+@@ -551,7 +545,7 @@
+   # g_nvid_string.c depends on all objects except g_nvid_string.o, and version.mk
+   $(NVIDSTRING): $$(filter-out $$(call BUILD_OBJECT_LIST,$$(NVIDSTRING)), $(3)) $$(VERSION_MK)
+ 	$(at_if_quiet)$$(MKDIR) $$(dir $$@)
+-	$(at_if_quiet)$$(ECHO) "const char $(1)[] = \"nvidia id: NVIDIA $$(strip $(2)) for $$(TARGET_ARCH)  $$(NVIDIA_VERSION)  $$(NVIDSTRING_BUILD_TYPE_STRING)  (`$$(WHOAMI)`@$$(HOSTNAME))  `$$(DATE)`\";" > $$@
++	$(at_if_quiet)$$(ECHO) "const char $(1)[] = \"nvidia id: NVIDIA $$(strip $(2)) for $$(TARGET_ARCH)  $$(NVIDIA_VERSION)  $$(NVIDSTRING_BUILD_TYPE_STRING)  `$$(DATE)`\";" > $$@
+ 	$(at_if_quiet)$$(ECHO) "const char *const p$$(strip $(1)) = $(1) + 11;" >> $$@;
+ endef
+ 

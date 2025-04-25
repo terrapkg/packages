@@ -1,20 +1,23 @@
 %global debug_package %{nil}
 %global commit 3c1cdd3e634bb4668a900d75efd4d6292b8c7d1d
-%global commit_date 20240507
+%global commit_date 20241127
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global ver 1.0.1
 
 Name:           ipu6-camera-bins
 Summary:        Libraries for Intel IPU6
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
-Release:        2%?dist
+Release:        3%?dist
+%if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
+Epoch:          1
+%endif
 License:        Proprietary
 URL:            https://github.com/intel/ipu6-camera-bins
 Source0:        %{url}/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
 BuildRequires:  chrpath
 BuildRequires:  sed
 BuildRequires:  systemd-rpm-macros
-Requires:       gstreamer1-plugin-icamerasrc
+#Requires:       gstreamer1-plugin-icamerasrc
 Requires:       intel-ipu6-kmod
 Requires:       intel-vsc-firmware >= 20240513
 Requires:       v4l2-relayd
@@ -27,11 +30,10 @@ Obsoletes:      ivsc-firmware < 20250326.3377801-3
 %endif
 Obsoletes:      ivsc-firmware < 0^20250326git.3377801-3
 %endif
-### For Akmods package
-Provides:       intel-ipu6-kmod-common = %{version}
 # Fix the stupid issue when changing versioning schemes
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
-Provides:       %{name} = %{commit_date}.%{shortcommit}
+Provides:       %{name} = %{?epoch:%{epoch}:}%{commit_date}.%{shortcommit}-%{release}
+Obsoletes:      %{name} < %{?epoch:%{epoch}:}%{commit_date}.%{shortcommit}-2
 %endif
 ExclusiveArch:  x86_64
 Packager:       Gilver E. <rockgrub@disroot.org>
@@ -41,7 +43,11 @@ Provides binary libraries for Intel IPU6.
 
 %package devel
 Summary:        IPU6 development files
-Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+%if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
+Provides:       %{name}-devel = %{?epoch:%{epoch}:}%{commit_date}.%{shortcommit}-%{release}
+Obsoletes:      %{name}-devel < %{?epoch:%{epoch}:}%{commit_date}.%{shortcommit}-2
+%endif
 
 %description devel
 This provides the header files for IPU6 development.

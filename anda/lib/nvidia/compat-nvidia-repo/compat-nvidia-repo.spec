@@ -1,5 +1,5 @@
 Name:           compat-nvidia-repo
-Version:        570.133.07
+Version:        575.51.02
 Epoch:          3
 Release:        1%?dist
 Summary:        Compatibility package required by official CUDA packages
