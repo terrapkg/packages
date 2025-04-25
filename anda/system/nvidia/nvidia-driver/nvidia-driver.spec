@@ -483,8 +483,12 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %if "%{version}" > "570.144"
 %{_libdir}/libnvidia-nvvm70.so.4
 %endif
+%if "%{version}" <= "570.144"
+%ifnarch aarch64
 %{_libdir}/libnvidia-sandboxutils.so.1
 %{_libdir}/libnvidia-sandboxutils.so.%{version}
+%endif
+%endif
 %endif
 %ifarch x86_64
 %if 0%{?rhel} == 8
