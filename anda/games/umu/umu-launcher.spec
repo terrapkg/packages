@@ -33,6 +33,7 @@ Requires:	python3
 %if %{?fedora} <= 41
 Requires:	python3-xlib
 Requires:       python3-pyzstd
+Requires:       python3-xxhash
 
 AutoReqProv:    no
 %endif
