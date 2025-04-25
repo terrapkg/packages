@@ -1,5 +1,5 @@
---- a/main.zig	2025-04-25 06:01:31.337458939 -0500
-+++ b/main.zig	2025-04-25 06:03:02.239473385 -0500
+--- a/src/main.zig	2025-04-25 06:01:31.337458939 -0500
++++ b/src/main.zig	2025-04-25 06:03:02.239473385 -0500
 @@ -4072,6 +4072,14 @@
  
              try create_module.lib_directories.ensureUnusedCapacity(arena, paths.lib_dirs.items.len);
