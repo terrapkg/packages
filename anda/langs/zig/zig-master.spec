@@ -45,8 +45,9 @@ License:        MIT AND NCSA AND LGPL-2.1-or-later AND LGPL-2.1-or-later WITH GC
 URL:            https://ziglang.org
 Source0:        %{url}/builds/zig-%{ver}.tar.xz
 Source1:        %{url}/builds/zig-%{ver}.tar.xz.minisig
-Patch0:         0000-increase-upper-bounds-of-main-zig-executable-to-9G.patch
-Patch1:         0001-build-pass-zig-lib-dir-as-directory-instead-of-as-st.patch
+Patch0:         0000-remove-native-lib-directories-from-rpath.patch
+Patch1:         0001-increase-upper-bounds-of-main-zig-executable-to-9G.patch
+Patch2:         0002-build-pass-zig-lib-dir-as-directory-instead-of-as-st.patch
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
