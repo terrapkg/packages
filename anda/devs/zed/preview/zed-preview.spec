@@ -1,5 +1,4 @@
 %bcond_with check
-%rustflags_debuginfo 0
 
 %global ver 0.184.2-pre
 # Exclude input files from mangling
@@ -7,6 +6,8 @@
 
 %global crate zed
 %global app_id dev.zed.Zed-Preview
+
+%global rustflags_debuginfo 0
 
 # Zed needs a special approach to fetch the dep licenses
 %global zed_license_online %{shrink:                                        \
