@@ -14,6 +14,7 @@ Source1:        no-weak-modules.conf
 BuildRequires:  systemd-rpm-macros
 Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
 Requires:       dkms
+Requires:       help2man
 Conflicts:      akmod-%{modulename}
 BuildArch:      noarch
 Packager:       Gilver E. <rockgrub@disroot.org>
