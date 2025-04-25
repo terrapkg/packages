@@ -61,7 +61,7 @@ BuildRequires:  help2man
 # for signature verification
 BuildRequires:  minisign
 %if %{without bootstrap}
-BuildRequires:  %{name}
+BuildRequires:  %{name} >= %{version}
 %endif
 %if %{with test}
 BuildRequires:  elfutils-libelf-devel
@@ -106,7 +106,7 @@ Zig Standard Library
 Summary:        Documentation for Zig
 Conflicts:      zig-doc
 BuildArch:      noarch
-Requires:       %{name} = %{version}
+Requires:       %{name} >= %{version}
 
 %description doc
 Documentation for Zig. For more information, visit %{url}
@@ -193,5 +193,7 @@ install -D -pv -m 0644 -t %{buildroot}%{_mandir}/man1/zig.1
 %endif
 
 %changelog
+* Fri Apr 25 2025 Gilver E. <rockgrub@disroot.org> - 0.15.0~dev.384+c06fecd46-2
+- Ported Fedora Zig patches
 * Wed Apr 23 2025 Gilver E. <rockgrub@disroot.org>
 - Initial package
