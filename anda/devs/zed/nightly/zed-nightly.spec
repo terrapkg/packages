@@ -4,7 +4,7 @@
 %global ver 0.185.0
 
 %bcond_with check
-%rustflags_dsbuginfo 0
+%rustflags_debuginfo 0
 
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
