@@ -11,11 +11,7 @@
 %bcond bootstrap 1
 %bcond docs      %{without bootstrap}
 %bcond test      1
-%if 0%{?fedora} <= 40
-%global zig_cache_dir %{_builddir}/zig-cache
-%else
 %global zig_cache_dir %{builddir}/zig-cache
-%endif
 %global zig_build_options %{shrink: \
     --verbose \
     --release=fast \
@@ -50,6 +46,7 @@ URL:            https://ziglang.org
 Source0:        %{url}/builds/zig-%{ver}.tar.xz
 Source1:        %{url}/builds/zig-%{ver}.tar.xz.minisig
 Patch0:         0000-increase-upper-bounds-of-main-zig-executable-to-9G.patch
+Patch1:         0001-build-pass-zig-lib-dir-as-directory-instead-of-as-st.patch
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
@@ -117,6 +114,10 @@ Documentation for Zig. For more information, visit %{url}
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
 %autosetup -p1 -n zig-%{ver}
+%if %{without bootstrap}
+# Ensure that the pre-build stage1 binary is not used
+rm -f stage1/zig1.wasm
+%endif
 
 %build
 # zig doesn't know how to dynamically link llvm on its own so we need cmake to generate a header ahead of time
