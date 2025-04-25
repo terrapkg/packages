@@ -34,6 +34,7 @@ Requires:	python3
 Requires:	python3-xlib
 Requires:       python3-pyzstd
 Requires:       python3-xxhash
+Requires:       python3-cbor2
 
 AutoReqProv:    no
 %endif
