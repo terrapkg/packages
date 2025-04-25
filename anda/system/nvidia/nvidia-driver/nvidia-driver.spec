@@ -1,5 +1,6 @@
 %global debug_package %{nil}
 %global __strip %{nil}
+%global __brp_strip_comment_note %{nil}
 %global __brp_ldconfig %{nil}
 %define _build_id_links none
 
