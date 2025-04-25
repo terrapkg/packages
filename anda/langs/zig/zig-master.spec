@@ -155,7 +155,7 @@ help2man --no-discard-stderr --no-info "./zig-out/bin/zig" --version-option=vers
 ./zig-out/bin/zig build docs \
     --verbose \
     --global-cache-dir "%{zig_cache_dir}" \
-    -Dversion-string="%{version}"
+    -Dversion-string="%(v=%{ver}; echo ${v:0:6})"
 %endif
 
 %install
