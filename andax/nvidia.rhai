@@ -12,7 +12,6 @@ fn nvidia_component_version(component) {
 }
 
 fn nvidia_driver_version() {
-    let url = get(`https://gfwsl.geforce.com/services_toolkit/services/com/nvidia/services/AjaxDriverService.php?func=DriverManualLookup&osID=12&languageCode=1033&numberOfResults=1&beta=0`);
-    let matches = find("\"DisplayVersion\" : \"([\\d.]+)\"", url, 1);
-    return(matches);
+    let driver = get(`https://gfwsl.geforce.com/services_toolkit/services/com/nvidia/services/AjaxDriverService.php?func=DriverManualLookup&osID=12&languageCode=1033&numberOfResults=1&beta=0`);
+    return(driver);
 }
