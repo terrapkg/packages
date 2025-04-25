@@ -11,11 +11,7 @@
 %bcond bootstrap 1
 %bcond docs      %{without bootstrap}
 %bcond test      1
-%if 0%{?fedora} <= 40
-%global zig_cache_dir %{_builddir}/zig-cache
-%else
 %global zig_cache_dir %{builddir}/zig-cache
-%endif
 %global zig_build_options %{shrink: \
     --verbose \
     --release=fast \
@@ -29,7 +25,7 @@
     --cache-dir "%{zig_cache_dir}" \
     --global-cache-dir "%{zig_cache_dir}" \
     \
-    -Dversion-string="%{version}" \
+    -Dversion-string="%(v=%{ver}; echo ${v:0:6})" \
     -Dstatic-llvm=false \
     -Denable-llvm=true \
     -Dno-langref=true \
@@ -43,13 +39,15 @@
 
 Name:           zig-master
 Version:        %(echo %{ver} | sed 's/-/~/g')
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Programming language for maintaining robust, optimal, and reusable software
 License:        MIT AND NCSA AND LGPL-2.1-or-later AND LGPL-2.1-or-later WITH GCC-exception-2.0 AND GPL-2.0-or-later AND GPL-2.0-or-later WITH GCC-exception-2.0 AND BSD-3-Clause AND Inner-Net-2.0 AND ISC AND LicenseRef-Fedora-Public-Domain AND GFDL-1.1-or-later AND ZPL-2.1
 URL:            https://ziglang.org
 Source0:        %{url}/builds/zig-%{ver}.tar.xz
 Source1:        %{url}/builds/zig-%{ver}.tar.xz.minisig
-Patch0:         0000-increase-upper-bounds-of-main-zig-executable-to-9G.patch
+Patch0:         0000-remove-native-lib-directories-from-rpath.patch
+Patch1:         0001-increase-upper-bounds-of-main-zig-executable-to-9G.patch
+Patch2:         0002-build-pass-zig-lib-dir-as-directory-instead-of-as-st.patch
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
@@ -63,7 +61,7 @@ BuildRequires:  help2man
 # for signature verification
 BuildRequires:  minisign
 %if %{without bootstrap}
-BuildRequires:  %{name} = %{version}
+BuildRequires:  %{name} >= %{version}
 %endif
 %if %{with test}
 BuildRequires:  elfutils-libelf-devel
@@ -108,7 +106,7 @@ Zig Standard Library
 Summary:        Documentation for Zig
 Conflicts:      zig-doc
 BuildArch:      noarch
-Requires:       %{name} = %{version}
+Requires:       %{name} >= %{version}
 
 %description doc
 Documentation for Zig. For more information, visit %{url}
@@ -117,6 +115,10 @@ Documentation for Zig. For more information, visit %{url}
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
 %autosetup -p1 -n zig-%{ver}
+%if %{without bootstrap}
+# Ensure that the pre-build stage1 binary is not used
+rm -f stage1/zig1.wasm
+%endif
 
 %build
 # zig doesn't know how to dynamically link llvm on its own so we need cmake to generate a header ahead of time
@@ -155,7 +157,7 @@ help2man --no-discard-stderr --no-info "./zig-out/bin/zig" --version-option=vers
 ./zig-out/bin/zig build docs \
     --verbose \
     --global-cache-dir "%{zig_cache_dir}" \
-    -Dversion-string="%{version}"
+    -Dversion-string="%(v=%{ver}; echo ${v:0:6})"
 %endif
 
 %install
@@ -191,5 +193,7 @@ install -D -pv -m 0644 -t %{buildroot}%{_mandir}/man1/zig.1
 %endif
 
 %changelog
+* Fri Apr 25 2025 Gilver E. <rockgrub@disroot.org> - 0.15.0~dev.384+c06fecd46-2
+- Ported Fedora Zig patches
 * Wed Apr 23 2025 Gilver E. <rockgrub@disroot.org>
 - Initial package
