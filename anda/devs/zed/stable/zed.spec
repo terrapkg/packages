@@ -1,11 +1,12 @@
 %bcond_with check
-%rustflags_debuginfo 0
 
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 %global crate zed
 %global app_id dev.zed.Zed
+
+%global rustflags_debuginfo 0
 
 # Zed needs a special approach to fetch the dep licenses
 %global zed_license_online %{shrink:                                        \
