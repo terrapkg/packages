@@ -12,6 +12,6 @@ fn nvidia_component_version(component) {
 }
 
 fn nvidia_driver_version() {
-    let matches = find_all(`(?m)^\s+<span class='dir'><a href='([\d.]+)/'>[\d.]+/</a></span>`, get("https://download.nvidia.com/XFree86/Linux-x86_64/"));
-    return(matches[matches.len() - 1][1]);
+    let driver = get("https://gfwsl.geforce.com/services_toolkit/services/com/nvidia/services/AjaxDriverService.php?func=DriverManualLookup&osID=12&languageCode=1033&numberOfResults=1&beta=0").json().IDS[0].downloadInfo.DisplayVersion;
+    return(driver);
 }
