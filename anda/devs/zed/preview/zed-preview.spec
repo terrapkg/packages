@@ -100,7 +100,7 @@ install -Dm644 crates/zed/resources/app-icon-preview.png %{buildroot}%{_datadir}
 install -Dm644 %app_id.metainfo.xml %{buildroot}%{_metainfodir}/%app_id.metainfo.xml
 
 # The license generation script doesn't generate licenses for ALL compiled dependencies, just direct deps of Zed, and it does not "group" licenses
-%{zed_license_online} > LICENSE.dependencies
+%zed_license_online > LICENSE.dependencies
 mv assets/icons/LICENSES LICENSE.icons
 mv assets/themes/LICENSES LICENSE.themes
 mv assets/fonts/plex-mono/license.txt LICENSE.fonts
