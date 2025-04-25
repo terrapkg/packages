@@ -1,4 +1,5 @@
 %bcond_with check
+%rustflags_debuginfo 0
 
 %global ver 0.184.2-pre
 # Exclude input files from mangling
