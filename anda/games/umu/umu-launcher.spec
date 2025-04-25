@@ -32,7 +32,6 @@ Requires:	python
 Requires:	python3
 %if %{?fedora} <= 41
 Requires:	python3-xlib
-Requires:	python3-filelock
 Requires:       python3-pyzstd
 
 AutoReqProv:    no
