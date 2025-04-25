@@ -449,14 +449,12 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %endif
 %ifarch x86_64
 %{_datadir}/vulkansc/icd.d/nvidia_icd.%{_target_cpu}.json
-%{_libdir}/libnvidia-present.so.%{version}
+%dnl %{_libdir}/libnvidia-present.so.%{version}
 %{_libdir}/libnvidia-vksc-core.so.1
 %{_libdir}/libnvidia-vksc-core.so.%{version}
 %dir %{_libdir}/nvidia
 %dir %{_libdir}/nvidia/wine
-%{_libdir}/nvidia/wine/_nvngx.dll
-%{_libdir}/nvidia/wine/nvngx.dll
-%{_libdir}/nvidia/wine/nvngx_dlssg.dll
+%{_libdir}/nvidia/wine/*.dll
 %endif
 
 %files cuda-libs
