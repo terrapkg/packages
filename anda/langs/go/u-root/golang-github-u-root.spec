@@ -34,7 +34,7 @@ Summary:        A fully Go userland with Linux bootloaders! u-root can create a 
 License:        BSD-3-Clause
 URL:            %{gourl}
 Source:         %{gosource}
-Patch0:         https://github.com/u-root/u-root/compare/v0.14.0..c2602c67706500f0e81dbeb468377fffd22d884f.diff
+Patch0:         https://github.com/u-root/u-root/compare/v0.14.0..a620c4fc0eeeaa71ea68c27d6ef96352ed814829.diff
 
 BuildRequires: anda-srpm-macros
 
