@@ -40,7 +40,7 @@
 Name:           zig-master
 Version:        %(echo %{ver} | sed 's/-/~/g')
 Release:        3%?dist
-Summary:        Programming language for maintaining robust, optimal, and reusable software
+Summary:        Master builds of the Zig language
 License:        MIT AND NCSA AND LGPL-2.1-or-later AND LGPL-2.1-or-later WITH GCC-exception-2.0 AND GPL-2.0-or-later AND GPL-2.0-or-later WITH GCC-exception-2.0 AND BSD-3-Clause AND Inner-Net-2.0 AND ISC AND LicenseRef-Fedora-Public-Domain AND GFDL-1.1-or-later AND ZPL-2.1
 URL:            https://ziglang.org
 Source0:        %{url}/builds/zig-%{ver}.tar.xz
@@ -89,8 +89,9 @@ ExclusiveArch:  %{zig_arches}
 Packager:       Gilver E. <rockgrub@disroot.org>
 
 %description
-Zig is an open-source programming language designed for robustness, optimality,
-and clarity. This package provides the zig compiler and the associated runtime.
+Zig is an open source alternative to C. 
+This package provides the master/"prerelease" builds of the Zig compiler and the associated runtime.
+Please note these are not stable releases and should only be used for Zig projects that use these or Git versions of Zig.
 
 # The Zig stdlib only contains uncompiled code
 %package libs
