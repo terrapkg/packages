@@ -28,12 +28,13 @@ file system (initramfs) containing a busybox-like set of tools written in Go.}
                         tools/golang_patched_dce/README.md
 
 Name:           %{goname}
-Release:        1%?dist
+Release:        2%?dist
 Summary:        A fully Go userland with Linux bootloaders! u-root can create a one-binary root file system (initramfs) containing a busybox-like set of tools written in Go
 
 License:        BSD-3-Clause
 URL:            %{gourl}
 Source:         %{gosource}
+Patch0:         https://github.com/u-root/u-root/compare/v0.14.0..c2602c67706500f0e81dbeb468377fffd22d884f.diff
 
 BuildRequires: anda-srpm-macros
 
@@ -42,8 +43,10 @@ BuildRequires: anda-srpm-macros
 %gopkg
 
 %prep
-%goprep
-%autopatch -p1
+meow() {
+%autosetup -n u-root-%version -p1
+}
+meow || true
 
 go mod download
 
@@ -51,7 +54,8 @@ go mod download
 go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w -extldflags '--static-pie'" -buildmode=pie -tags 'osusergo,netgo,static_build' -v -x -o %{gobuilddir}/bin/u-root %{goipath}
 
 %install
-%gopkginstall
+#gopkginstall
+cd %_builddir/%buildsubdir
 install -m 0755 -vd                     %{buildroot}%{_bindir}
 install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 
@@ -63,8 +67,7 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %files
 %license LICENSE
 %doc docs examples AUTHORS SECURITY.md tricksandtips.md CONTRIBUTING.md
-%doc README.md roadmap.md cmds/core/tail/test_samples/read_backwards.txt
-%doc cmds/core/tail/test_samples/read_from_beginning.txt
+%doc README.md roadmap.md
 %doc configs/README.md tools/golang_patched_dce/README.md
 %doc configs/amd64_config.txt configs/arm_config.txt configs/generic_config.txt
 %doc integration/README.md pkg/boot/systembooter/README.md pkg/smbios/README.md
