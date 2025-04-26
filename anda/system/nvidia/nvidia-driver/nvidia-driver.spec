@@ -449,7 +449,7 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %endif
 %ifarch x86_64
 %{_datadir}/vulkansc/icd.d/nvidia_icd.%{_target_cpu}.json
-%if "%{version}" > "570.144"
+%if v"%{version}" > v"570.144"
 %{_libdir}/libnvidia-present.so.%{version}
 %endif
 %{_libdir}/libnvidia-vksc-core.so.1
@@ -480,10 +480,10 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %ifarch x86_64 aarch64
 %{_libdir}/libcudadebugger.so.1
 %{_libdir}/libcudadebugger.so.%{version}
-%if "%{version}" > "570.144"
+%if v"%{version}" > v"570.144"
 %{_libdir}/libnvidia-nvvm70.so.4
 %endif
-%if "%{version}" <= "570.144"
+%if v"%{version}" <= v"570.144"
 %ifnarch aarch64
 %{_libdir}/libnvidia-sandboxutils.so.1
 %{_libdir}/libnvidia-sandboxutils.so.%{version}
