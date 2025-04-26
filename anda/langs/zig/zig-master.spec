@@ -8,7 +8,7 @@
 %endif
 %global         llvm_version 20.0.0
 %global         ver 0.15.0-dev.384+c06fecd46
-%bcond bootstrap 1
+%bcond bootstrap 0
 %bcond docs      %{without bootstrap}
 %bcond test      1
 %global zig_cache_dir %{builddir}/zig-cache
@@ -39,7 +39,7 @@
 
 Name:           zig-master
 Version:        %(echo %{ver} | sed 's/-/~/g')
-Release:        2%?dist
+Release:        3%?dist
 Summary:        Programming language for maintaining robust, optimal, and reusable software
 License:        MIT AND NCSA AND LGPL-2.1-or-later AND LGPL-2.1-or-later WITH GCC-exception-2.0 AND GPL-2.0-or-later AND GPL-2.0-or-later WITH GCC-exception-2.0 AND BSD-3-Clause AND Inner-Net-2.0 AND ISC AND LicenseRef-Fedora-Public-Domain AND GFDL-1.1-or-later AND ZPL-2.1
 URL:            https://ziglang.org
@@ -61,7 +61,7 @@ BuildRequires:  help2man
 # for signature verification
 BuildRequires:  minisign
 %if %{without bootstrap}
-BuildRequires:  %{name} >= %{version}
+BuildRequires:  %{name} <= %{version}
 %endif
 %if %{with test}
 BuildRequires:  elfutils-libelf-devel
@@ -106,7 +106,7 @@ Zig Standard Library
 Summary:        Documentation for Zig
 Conflicts:      zig-doc
 BuildArch:      noarch
-Requires:       %{name} >= %{version}
+Requires:       %{name} = %{version}
 
 %description doc
 Documentation for Zig. For more information, visit %{url}
@@ -154,10 +154,14 @@ help2man --no-discard-stderr --no-info "./zig-out/bin/zig" --version-option=vers
 
 %if %{with docs}
 # Use the newly made stage 3 compiler to generate docs
-./zig-out/bin/zig build docs \
+# Zig has an extremely annoying issue with transitive failures when trying to build the docs, retry until it succeeds
+while ! ./zig-out/bin/zig build docs \
     --verbose \
     --global-cache-dir "%{zig_cache_dir}" \
-    -Dversion-string="%(v=%{ver}; echo ${v:0:6})"
+    -Dversion-string="%(v=%{ver}; echo ${v:0:6})" 
+do
+    echo "Transitive failure. Trying again."
+done
 %endif
 
 %install
@@ -166,7 +170,7 @@ help2man --no-discard-stderr --no-info "./zig-out/bin/zig" --version-option=vers
 %else
 DESTDIR="%{buildroot}" zig build install %{zig_install_options}
 
-install -D -pv -m 0644 -t %{buildroot}%{_mandir}/man1/zig.1
+install -Dpm644 zig.1 -t %{buildroot}%{_mandir}/man1/ 
 %endif
 
 %if %{with test}
