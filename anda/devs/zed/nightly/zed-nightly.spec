@@ -14,7 +14,7 @@
 %global rustflags_debuginfo 0
 
 Name:           zed-nightly
-Version:        %ver^%commit_date.%shortcommitl
+Version:        %ver^%commit_date.%shortcommit
 Release:        2%?dist
 Summary:        Zed is a high-performance, multiplayer code editor
 SourceLicense:  AGPL-3.0-only AND Apache-2.0 AND GPL-3.0-or-later
