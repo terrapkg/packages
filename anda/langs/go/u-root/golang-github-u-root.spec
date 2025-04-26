@@ -54,7 +54,7 @@ go mod download
 go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w -extldflags '--static-pie'" -buildmode=pie -tags 'osusergo,netgo,static_build' -v -x -o %{gobuilddir}/bin/u-root %{goipath}
 
 %install
-#gopkginstall
+%gopkginstall
 install -m 0755 -vd                     %{buildroot}%{_bindir}
 install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 
