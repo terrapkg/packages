@@ -10,7 +10,7 @@
 
 Name:       wl-kmod
 Version:    6.30.223.271
-Release:    2%{?dist}
+Release:    3%{?dist}
 Summary:    Kernel module for Broadcom wireless devices
 Group:      System Environment/Kernel
 License:    Redistributable, no modification permitted
@@ -99,6 +99,8 @@ pushd %{name}-%{version}-src
 %patch -P 24 -p1 -b .kernel_6.10_adaptation
 %patch -P 25 -p1 -b .wpa_supplicant-2.11_adaptation
 %patch -P 26 -p1 -b .kernel_6.12_adaptation
+%patch -P 27 -p1 -b .kernel_6.13_adaptation
+%patch -P 28 -p1 -b .kernel_6.14_adaptation
 
 ### NOTE: These MUST be added to as new EL versions are released.
 %if 0%{?rhel} == 9
