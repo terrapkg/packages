@@ -1,6 +1,6 @@
-diff -Naur ffmpeg-7.1.old/configure ffmpeg-7.1/configure
---- ffmpeg-7.1.old/configure	2024-12-03 14:07:22.650053667 +0100
-+++ ffmpeg-7.1/configure	2024-12-03 14:07:23.080056247 +0100
+diff -Naur ffmpeg-7.1.1.old/configure ffmpeg-7.1.1/configure
+--- ffmpeg-7.1.1.old/configure	2025-03-24 10:54:38.202757211 +0100
++++ ffmpeg-7.1.1/configure	2025-03-24 10:54:38.618546808 +0100
 @@ -278,6 +278,7 @@
    --enable-libsrt          enable Haivision SRT protocol via libsrt [no]
    --enable-libssh          enable SFTP protocol via libssh [no]
@@ -33,9 +33,9 @@ diff -Naur ffmpeg-7.1.old/configure ffmpeg-7.1/configure
  enabled libtensorflow     && require libtensorflow tensorflow/c/c_api.h TF_Version -ltensorflow
  enabled libtesseract      && require_pkg_config libtesseract tesseract tesseract/capi.h TessBaseAPICreate
  enabled libtheora         && require libtheora theora/theoraenc.h th_info_init -ltheoraenc -ltheoradec -logg
-diff -Naur ffmpeg-7.1.old/libavcodec/allcodecs.c ffmpeg-7.1/libavcodec/allcodecs.c
---- ffmpeg-7.1.old/libavcodec/allcodecs.c	2024-12-03 14:07:22.562053139 +0100
-+++ ffmpeg-7.1/libavcodec/allcodecs.c	2024-12-03 14:07:23.080056247 +0100
+diff -Naur ffmpeg-7.1.1.old/libavcodec/allcodecs.c ffmpeg-7.1.1/libavcodec/allcodecs.c
+--- ffmpeg-7.1.1.old/libavcodec/allcodecs.c	2025-03-24 10:54:38.119756212 +0100
++++ ffmpeg-7.1.1/libavcodec/allcodecs.c	2025-03-24 10:54:38.619934060 +0100
 @@ -796,6 +796,7 @@
  extern const FFCodec ff_libvo_amrwbenc_encoder;
  extern const FFCodec ff_libvorbis_encoder;
@@ -44,9 +44,9 @@ diff -Naur ffmpeg-7.1.old/libavcodec/allcodecs.c ffmpeg-7.1/libavcodec/allcodecs
  extern const FFCodec ff_libvpx_vp8_encoder;
  extern const FFCodec ff_libvpx_vp8_decoder;
  extern FFCodec ff_libvpx_vp9_encoder;
-diff -Naur ffmpeg-7.1.old/libavcodec/libsvt_vp9.c ffmpeg-7.1/libavcodec/libsvt_vp9.c
---- ffmpeg-7.1.old/libavcodec/libsvt_vp9.c	1970-01-01 01:00:00.000000000 +0100
-+++ ffmpeg-7.1/libavcodec/libsvt_vp9.c	2024-12-03 14:07:23.080056247 +0100
+diff -Naur ffmpeg-7.1.1.old/libavcodec/libsvt_vp9.c ffmpeg-7.1.1/libavcodec/libsvt_vp9.c
+--- ffmpeg-7.1.1.old/libavcodec/libsvt_vp9.c	1970-01-01 01:00:00.000000000 +0100
++++ ffmpeg-7.1.1/libavcodec/libsvt_vp9.c	2025-03-24 10:54:38.620176868 +0100
 @@ -0,0 +1,701 @@
 +/*
 +* Scalable Video Technology for VP9 encoder library plugin
@@ -749,9 +749,9 @@ diff -Naur ffmpeg-7.1.old/libavcodec/libsvt_vp9.c ffmpeg-7.1/libavcodec/libsvt_v
 +    .defaults         = eb_enc_defaults,
 +    .p.wrapper_name   = "libsvt_vp9",
 +};
-diff -Naur ffmpeg-7.1.old/libavcodec/Makefile ffmpeg-7.1/libavcodec/Makefile
---- ffmpeg-7.1.old/libavcodec/Makefile	2024-12-03 14:07:22.366051964 +0100
-+++ ffmpeg-7.1/libavcodec/Makefile	2024-12-03 14:07:23.080056247 +0100
+diff -Naur ffmpeg-7.1.1.old/libavcodec/Makefile ffmpeg-7.1.1/libavcodec/Makefile
+--- ffmpeg-7.1.1.old/libavcodec/Makefile	2025-03-24 10:54:37.935753999 +0100
++++ ffmpeg-7.1.1/libavcodec/Makefile	2025-03-24 10:54:38.620394147 +0100
 @@ -1157,6 +1157,7 @@
  OBJS-$(CONFIG_LIBVORBIS_DECODER)          += libvorbisdec.o
  OBJS-$(CONFIG_LIBVORBIS_ENCODER)          += libvorbisenc.o \
