@@ -13,7 +13,7 @@ Summary:        A complete solution to record, convert and stream audio and vide
 Name:           ffmpeg
 Version:        7.1.1
 Release:        1%{?dist}
-License:        LGPLv3+
+License:        LGPL-3.0-or-later
 URL:            http://%{name}.org/
 Epoch:          1
 
@@ -21,17 +21,17 @@ Source0:        http://%{name}.org/releases/%{name}-%{version}.tar.xz
 
 # https://github.com/OpenVisualCloud/SVT-VP9/tree/master/ffmpeg_plugin
 Patch0:         %{name}-svt-vp9.patch
-# https://github.com/HandBrake/HandBrake/tree/fa9154a20f3f64fdc183a097e6b63f7fd4bc6cab
+# https://github.com/HandBrake/HandBrake/tree/e117cfe7fca37abeec59ea4201e5d93ed7477746
 Patch2:         %{name}-HandBrake.patch
 # https://bugzilla.redhat.com/show_bug.cgi?id=2240127
 # Reference: https://crbug.com/1306560
 Patch3:         %{name}-chromium.patch
-Patch4:         https://git.ffmpeg.org/gitweb/ffmpeg.git/patch/63f5c007a7da69248f664c988398204c21eac7cf#/%{name}-x265-4.1.patch
+# Fix build with recent NVCC:
+Patch4:         %{name}-nvcc.patch
 
 BuildRequires:  AMF-devel >= 1.4.28
 BuildRequires:  bzip2-devel
 BuildRequires:  codec2-devel
-BuildRequires:  decklink-devel >= 10.11
 BuildRequires:  doxygen
 BuildRequires:  frei0r-devel
 BuildRequires:  gmp-devel
@@ -52,9 +52,7 @@ BuildRequires:  nasm
 BuildRequires:  ocl-icd-devel
 BuildRequires:  openal-soft-devel
 BuildRequires:  opencore-amr-devel
-BuildRequires:  perl(GD::Text)
 BuildRequires:  perl(Pod::Man)
-BuildRequires:  perl(Texinfo::Convert::HTML)
 BuildRequires:  snappy-devel
 BuildRequires:  soxr-devel
 BuildRequires:  subversion
@@ -80,6 +78,7 @@ BuildRequires:  pkgconfig(jack)
 BuildRequires:  pkgconfig(kvazaar) >= 0.8.1
 BuildRequires:  pkgconfig(lc3) >= 1.1.0
 BuildRequires:  pkgconfig(lcms2) >= 2.13
+BuildRequires:  pkgconfig(lcevc_dec) >= 2.0.0
 BuildRequires:  pkgconfig(libaribcaption) >= 1.1.1
 BuildRequires:  pkgconfig(libass) >= 0.11.0
 BuildRequires:  pkgconfig(libbluray)
@@ -108,7 +107,7 @@ BuildRequires:  pkgconfig(libva) >= 0.35.0
 BuildRequires:  pkgconfig(libva-drm)
 BuildRequires:  pkgconfig(libva-x11)
 BuildRequires:  pkgconfig(libv4l2)
-BuildRequires:  pkgconfig(libvvenc) >= 1.6.1
+BuildRequires:  pkgconfig(libvvenc) >= 1.11.0
 BuildRequires:  pkgconfig(libwebp)
 BuildRequires:  pkgconfig(libwebpmux) >= 0.4.0
 BuildRequires:  pkgconfig(libxml-2.0)
@@ -120,9 +119,6 @@ BuildRequires:  pkgconfig(lv2)
 BuildRequires:  pkgconfig(openh264)
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pkgconfig(opus)
-%if 0%{?fedora} < 39
-BuildRequires:  pkgconfig(pocketsphinx)
-%endif
 BuildRequires:  pkgconfig(rav1e) >= 0.4.0
 BuildRequires:  pkgconfig(rubberband) >= 1.8.1
 BuildRequires:  pkgconfig(sdl2)
@@ -420,7 +416,6 @@ This subpackage contains the headers for FFmpeg libswscale.
     --enable-alsa \
     --enable-bzlib \
     --enable-chromaprint \
-    --enable-decklink \
     --enable-frei0r \
     --enable-gcrypt \
     --enable-gmp \
@@ -460,6 +455,7 @@ This subpackage contains the headers for FFmpeg libswscale.
     --enable-libkvazaar \
     --enable-liblc3 \
     --disable-liblensfun \
+    --enable-liblcevc-dec \
     --enable-libmodplug \
     --enable-libmp3lame \
     --enable-libmysofa \
@@ -522,9 +518,6 @@ This subpackage contains the headers for FFmpeg libswscale.
     --enable-opencl \
     --enable-opengl \
     --enable-openssl \
-%if 0%{?fedora} < 39
-    --enable-pocketsphinx \
-%endif
     --enable-postproc \
     --enable-sdl2 \
     --enable-shared \
@@ -670,5 +663,3 @@ mv doc/*.html doc/html
 %{_libdir}/pkgconfig/libswscale.pc
 %{_libdir}/libswscale.so
 %{_mandir}/man3/libswscale.3*
-
-%autochangelog
