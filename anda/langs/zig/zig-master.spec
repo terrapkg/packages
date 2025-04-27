@@ -7,7 +7,7 @@
 %define         llvm_compat 20
 %endif
 %global         llvm_version 20.0.0
-%global         ver 0.15.0-dev.384+c06fecd46
+%global         ver 0.15.0-dev.386+2e35fdd03
 %bcond bootstrap 0
 %bcond docs      %{without bootstrap}
 %bcond test      1
@@ -39,8 +39,8 @@
 
 Name:           zig-master
 Version:        %(echo %{ver} | sed 's/-/~/g')
-Release:        3%?dist
-Summary:        Master builds of the Zig language
+Release:        2%?dist
+Summary:        Master builds of the Zig languageLicense
 License:        MIT AND NCSA AND LGPL-2.1-or-later AND LGPL-2.1-or-later WITH GCC-exception-2.0 AND GPL-2.0-or-later AND GPL-2.0-or-later WITH GCC-exception-2.0 AND BSD-3-Clause AND Inner-Net-2.0 AND ISC AND LicenseRef-Fedora-Public-Domain AND GFDL-1.1-or-later AND ZPL-2.1
 URL:            https://ziglang.org
 Source0:        %{url}/builds/zig-%{ver}.tar.xz
