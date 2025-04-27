@@ -9,21 +9,6 @@
 
 %global rustflags_debuginfo 0
 
-# Zed needs a special approach to fetch the dep licenses
-%global zed_license_online %{shrink:                                        \
-    %{__cargo} tree                                                         \
-    -Z avoid-dev-deps                                                       \
-    --workspace                                                             \
-    --edges no-build,no-dev,no-proc-macro                                   \
-    --target all                                                            \
-    %{__cargo_parse_opts %{-n} %{-a} %{-f:-f%{-f*}}}                        \
-    --prefix none                                                           \
-    --format "{l}: {p}"                                                     \
-    | sed -e "s: ($(pwd)[^)]*)::g" -e "s: / :/:g" -e "/\/.*:/{s/\// OR /}"  \
-    | sed -e '/.*(\*).*/d' -e '/^: pet/ s/./MIT&/'                          \
-    | sort -u                                                               \
-}\
-
 Name:           zed-preview
 Version:        %(echo %ver | sed 's/-/~/')
 Release:        pre2%?dist
@@ -100,7 +85,19 @@ install -Dm644 crates/zed/resources/app-icon-preview.png %{buildroot}%{_datadir}
 install -Dm644 %app_id.metainfo.xml %{buildroot}%{_metainfodir}/%app_id.metainfo.xml
 
 # The license generation script doesn't generate licenses for ALL compiled dependencies, just direct deps of Zed, and it does not "group" licenses
-%{zed_license_online} > LICENSE.dependencies
+# Zed also needs a special approach to fetch the dep licenses
+%{__cargo} tree                                                             \
+    -Z avoid-dev-deps                                                       \
+    --workspace                                                             \
+    --edges no-build,no-dev,no-proc-macro                                   \
+    --target all                                                            \
+    %{__cargo_parse_opts %{-n} %{-a} %{-f:-f%{-f*}}}                        \
+    --prefix none                                                           \
+    --format "{l}: {p}"                                                     \
+    | sed -e "s: ($(pwd)[^)]*)::g" -e "s: / :/:g" -e "/\/.*:/{s/\// OR /}"  \
+    | sed -e '/.*(\*).*/d' -e '/^: pet/ s/./MIT&/'                          \
+    | sort -u                                                               \
+> LICENSE.dependencies
 mv assets/icons/LICENSES LICENSE.icons
 mv assets/themes/LICENSES LICENSE.themes
 mv assets/fonts/plex-mono/license.txt LICENSE.fonts
