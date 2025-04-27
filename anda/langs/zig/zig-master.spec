@@ -8,7 +8,7 @@
 %endif
 %global         llvm_version 20.0.0
 %global         ver 0.15.0-dev.386+2e35fdd03
-%bcond bootstrap 1
+%bcond bootstrap 0
 %bcond docs      %{without bootstrap}
 %bcond test      1
 %global zig_cache_dir %{builddir}/zig-cache
@@ -39,8 +39,8 @@
 
 Name:           zig-master
 Version:        %(echo %{ver} | sed 's/-/~/g')
-Release:        1%?dist
-Summary:        Programming language for maintaining robust, optimal, and reusable software
+Release:        2%?dist
+Summary:        Master builds of the Zig language
 License:        MIT AND NCSA AND LGPL-2.1-or-later AND LGPL-2.1-or-later WITH GCC-exception-2.0 AND GPL-2.0-or-later AND GPL-2.0-or-later WITH GCC-exception-2.0 AND BSD-3-Clause AND Inner-Net-2.0 AND ISC AND LicenseRef-Fedora-Public-Domain AND GFDL-1.1-or-later AND ZPL-2.1
 URL:            https://ziglang.org
 Source0:        %{url}/builds/zig-%{ver}.tar.xz
@@ -61,7 +61,7 @@ BuildRequires:  help2man
 # for signature verification
 BuildRequires:  minisign
 %if %{without bootstrap}
-BuildRequires:  %{name} >= %{version}
+BuildRequires:  %{name} <= %{version}
 %endif
 %if %{with test}
 BuildRequires:  elfutils-libelf-devel
@@ -89,8 +89,9 @@ ExclusiveArch:  %{zig_arches}
 Packager:       Gilver E. <rockgrub@disroot.org>
 
 %description
-Zig is an open-source programming language designed for robustness, optimality,
-and clarity. This package provides the zig compiler and the associated runtime.
+Zig is an open source alternative to C. 
+This package provides the master/"prerelease" builds of the Zig compiler and the associated runtime.
+Please note these are not stable releases and should only be used for Zig projects that use these or Git versions of Zig.
 
 # The Zig stdlib only contains uncompiled code
 %package libs
@@ -106,7 +107,7 @@ Zig Standard Library
 Summary:        Documentation for Zig
 Conflicts:      zig-doc
 BuildArch:      noarch
-Requires:       %{name} >= %{version}
+Requires:       %{name} = %{version}
 
 %description doc
 Documentation for Zig. For more information, visit %{url}
@@ -154,10 +155,22 @@ help2man --no-discard-stderr --no-info "./zig-out/bin/zig" --version-option=vers
 
 %if %{with docs}
 # Use the newly made stage 3 compiler to generate docs
-./zig-out/bin/zig build docs \
+# Zig has an extremely annoying issue with transitive failures when trying to build the docs, retry until it succeeds
+r=3
+
+for ((i=0; i<r; i++)); do
+    ./zig-out/bin/zig build docs \
     --verbose \
     --global-cache-dir "%{zig_cache_dir}" \
     -Dversion-string="%(v=%{ver}; echo ${v:0:6})"
+    [[ $? -eq 0 ]] && break
+
+    echo "Transitive failure. Trying again."
+done
+
+(( r == i )) && { exit 1; }
+exit 0
+
 %endif
 
 %install
@@ -166,7 +179,7 @@ help2man --no-discard-stderr --no-info "./zig-out/bin/zig" --version-option=vers
 %else
 DESTDIR="%{buildroot}" zig build install %{zig_install_options}
 
-install -D -pv -m 0644 -t %{buildroot}%{_mandir}/man1/zig.1
+install -Dpm644 zig.1 -t %{buildroot}%{_mandir}/man1/ 
 %endif
 
 %if %{with test}
