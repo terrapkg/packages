@@ -24,6 +24,7 @@ BuildRequires:  git-core
 Obsoletes:      %{name}+gix-faster-devel < 1.23.0
 Obsoletes:      %{name}+gix-features-devel < 1.23.0
 Obsoletes:      %{name}+gix-max-perf-devel < 1.23.0
+Obsoletes:      %{name}+libz-ng-sys-devel < 1.23.0
 
 %global _description %{expand:
 The minimal, blazing-fast, and infinitely customizable prompt for any
@@ -91,18 +92,6 @@ This package contains library source intended for building other packages which
 use the "config-schema" feature of the "%{crate}" crate.
 
 %files       -n %{name}+config-schema-devel
-%ghost %{crate_instdir}/Cargo.toml
-
-%package     -n %{name}+libz-ng-sys-devel
-Summary:        %{summary}
-BuildArch:      noarch
-
-%description -n %{name}+libz-ng-sys-devel %{_description}
-
-This package contains library source intended for building other packages which
-use the "libz-ng-sys" feature of the "%{crate}" crate.
-
-%files       -n %{name}+libz-ng-sys-devel
 %ghost %{crate_instdir}/Cargo.toml
 
 %package     -n %{name}+notify-devel
