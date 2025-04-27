@@ -88,18 +88,6 @@ use the "config-schema" feature of the "%{crate}" crate.
 %files       -n %{name}+config-schema-devel
 %ghost %{crate_instdir}/Cargo.toml
 
-%package     -n %{name}+gix-faster-devel
-Summary:        %{summary}
-BuildArch:      noarch
-
-%description -n %{name}+gix-faster-devel %{_description}
-
-This package contains library source intended for building other packages which
-use the "gix-faster" feature of the "%{crate}" crate.
-
-%files       -n %{name}+gix-faster-devel
-%ghost %{crate_instdir}/Cargo.toml
-
 %package     -n %{name}+gix-features-devel
 Summary:        %{summary}
 BuildArch:      noarch
