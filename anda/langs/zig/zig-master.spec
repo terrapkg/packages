@@ -162,7 +162,7 @@ if ! (r=3; while ! { ./zig-out/bin/zig build docs \
     -Dversion-string="%(v=%{ver}; echo ${v:0:6})" ; } ; do
           ((--r)||exit
           echo "Transitive failure. Trying again."
-          ;done) ; then
+          done) ; then
     exit 1
 fi
 exit 0
