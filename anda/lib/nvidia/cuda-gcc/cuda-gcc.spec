@@ -1,8 +1,12 @@
+%if 0%{?fedora} < 42 || 0%{?rhel} <= 10
 %global gcc_major 13
+%else
+%global gcc_major 14
+%endif
 
 Name:           cuda-gcc
 Version:        13.3.1
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        GNU Compiler Collection CUDA compatibility package
 License:        BSD
 URL:            http://gcc.gnu.org
@@ -29,14 +33,14 @@ cat > %{buildroot}%{_sysconfdir}/profile.d/%{name}.sh <<EOF
 export NVCC_CCBIN='g++-%{gcc_major}'
 
 # Alternatively you can use the following:
-export NVCC_PREPEND_FLAGS='-ccbin %{_bindir}/g++-%{gcc_major}'
+#export NVCC_PREPEND_FLAGS='-ccbin %{_bindir}/g++-%{gcc_major}'
 EOF
 
 cat > %{buildroot}%{_sysconfdir}/profile.d/%{name}.csh <<EOF
 setenv NVCC_CCBIN 'g++-%{gcc_major}'
 
 # Alternatively you can use the following:
-setenv NVCC_PREPEND_FLAGS '-ccbin %{_bindir}/g++-%{gcc_major}'
+#setenv NVCC_PREPEND_FLAGS '-ccbin %{_bindir}/g++-%{gcc_major}'
 EOF
 
 %files
