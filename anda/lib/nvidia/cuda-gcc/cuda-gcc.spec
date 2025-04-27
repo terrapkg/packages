@@ -5,8 +5,13 @@
 %endif
 
 Name:           cuda-gcc
+%if 0%{?fedora} >= 42
 Version:        14.2.1
 Release:        1%{?dist}
+%else
+Version:        13.3.1
+Release:        2%{?dist}
+%endif
 Summary:        GNU Compiler Collection CUDA compatibility package
 License:        BSD
 URL:            http://gcc.gnu.org
