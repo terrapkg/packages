@@ -1,6 +1,6 @@
-diff -Naur ffmpeg-7.1.old/configure ffmpeg-7.1/configure
---- ffmpeg-7.1.old/configure	2024-12-03 14:07:23.586059283 +0100
-+++ ffmpeg-7.1/configure	2024-12-03 14:07:23.774060411 +0100
+diff -Naur ffmpeg-7.1.1.old/configure ffmpeg-7.1.1/configure
+--- ffmpeg-7.1.1.old/configure	2025-03-24 10:54:39.093543820 +0100
++++ ffmpeg-7.1.1/configure	2025-03-24 10:54:39.281929795 +0100
 @@ -3338,6 +3338,7 @@
  av1_mediacodec_decoder_deps="mediacodec"
  av1_mediacodec_encoder_deps="mediacodec"
@@ -9,9 +9,9 @@ diff -Naur ffmpeg-7.1.old/configure ffmpeg-7.1/configure
  av1_nvenc_encoder_deps="nvenc NV_ENC_PIC_PARAMS_AV1"
  av1_nvenc_encoder_select="atsc_a53"
  av1_qsv_decoder_select="qsvdec"
-diff -Naur ffmpeg-7.1.old/libavcodec/allcodecs.c ffmpeg-7.1/libavcodec/allcodecs.c
---- ffmpeg-7.1.old/libavcodec/allcodecs.c	2024-12-03 14:07:23.587059289 +0100
-+++ ffmpeg-7.1/libavcodec/allcodecs.c	2024-12-03 14:07:23.774060411 +0100
+diff -Naur ffmpeg-7.1.1.old/libavcodec/allcodecs.c ffmpeg-7.1.1/libavcodec/allcodecs.c
+--- ffmpeg-7.1.1.old/libavcodec/allcodecs.c	2025-03-24 10:54:39.094862193 +0100
++++ ffmpeg-7.1.1/libavcodec/allcodecs.c	2025-03-24 10:54:39.282298069 +0100
 @@ -839,6 +839,7 @@
  extern const FFCodec ff_av1_qsv_decoder;
  extern const FFCodec ff_av1_qsv_encoder;
@@ -20,9 +20,9 @@ diff -Naur ffmpeg-7.1.old/libavcodec/allcodecs.c ffmpeg-7.1/libavcodec/allcodecs
  extern const FFCodec ff_av1_vaapi_encoder;
  extern const FFCodec ff_libopenh264_encoder;
  extern const FFCodec ff_libopenh264_decoder;
-diff -Naur ffmpeg-7.1.old/libavcodec/amfenc_av1.c ffmpeg-7.1/libavcodec/amfenc_av1.c
---- ffmpeg-7.1.old/libavcodec/amfenc_av1.c	2024-12-03 14:07:22.576053223 +0100
-+++ ffmpeg-7.1/libavcodec/amfenc_av1.c	2024-12-03 14:07:23.770060387 +0100
+diff -Naur ffmpeg-7.1.1.old/libavcodec/amfenc_av1.c ffmpeg-7.1.1/libavcodec/amfenc_av1.c
+--- ffmpeg-7.1.1.old/libavcodec/amfenc_av1.c	2025-03-24 10:54:38.133756381 +0100
++++ ffmpeg-7.1.1/libavcodec/amfenc_av1.c	2025-03-24 10:54:39.277830845 +0100
 @@ -116,6 +116,7 @@
      { "none",                   "no adaptive quantization",         0, AV_OPT_TYPE_CONST, {.i64 = AMF_VIDEO_ENCODER_AV1_AQ_MODE_NONE }, 0, 0, VE, .unit = "adaptive_quantisation_mode" },
      { "caq",                    "context adaptive quantization",    0, AV_OPT_TYPE_CONST, {.i64 = AMF_VIDEO_ENCODER_AV1_AQ_MODE_CAQ }, 0, 0, VE, .unit = "adaptive_quantisation_mode" },
@@ -69,9 +69,9 @@ diff -Naur ffmpeg-7.1.old/libavcodec/amfenc_av1.c ffmpeg-7.1/libavcodec/amfenc_a
  
      profile_level = avctx->level;
      if (profile_level == AV_LEVEL_UNKNOWN) {
-diff -Naur ffmpeg-7.1.old/libavcodec/amfenc.c ffmpeg-7.1/libavcodec/amfenc.c
---- ffmpeg-7.1.old/libavcodec/amfenc.c	2024-12-03 14:07:22.468052576 +0100
-+++ ffmpeg-7.1/libavcodec/amfenc.c	2024-12-03 14:07:23.772060399 +0100
+diff -Naur ffmpeg-7.1.1.old/libavcodec/amfenc.c ffmpeg-7.1.1/libavcodec/amfenc.c
+--- ffmpeg-7.1.1.old/libavcodec/amfenc.c	2025-03-24 10:54:38.032755166 +0100
++++ ffmpeg-7.1.1/libavcodec/amfenc.c	2025-03-24 10:54:39.279550845 +0100
 @@ -415,10 +415,6 @@
      else
          pix_fmt = avctx->pix_fmt;
@@ -251,9 +251,9 @@ diff -Naur ffmpeg-7.1.old/libavcodec/amfenc.c ffmpeg-7.1/libavcodec/amfenc.c
  int ff_amf_get_color_profile(AVCodecContext *avctx)
  {
      amf_int64 color_profile = AMF_VIDEO_CONVERTER_COLOR_PROFILE_UNKNOWN;
-diff -Naur ffmpeg-7.1.old/libavcodec/amfenc.h ffmpeg-7.1/libavcodec/amfenc.h
---- ffmpeg-7.1.old/libavcodec/amfenc.h	2024-12-03 14:07:22.422052299 +0100
-+++ ffmpeg-7.1/libavcodec/amfenc.h	2024-12-03 14:07:23.770060387 +0100
+diff -Naur ffmpeg-7.1.1.old/libavcodec/amfenc.h ffmpeg-7.1.1/libavcodec/amfenc.h
+--- ffmpeg-7.1.1.old/libavcodec/amfenc.h	2025-03-24 10:54:37.990754660 +0100
++++ ffmpeg-7.1.1/libavcodec/amfenc.h	2025-03-24 10:54:39.277763348 +0100
 @@ -114,6 +114,7 @@
      int                 max_b_frames;
      int                 qvbr_quality_level;
@@ -271,9 +271,9 @@ diff -Naur ffmpeg-7.1.old/libavcodec/amfenc.h ffmpeg-7.1/libavcodec/amfenc.h
  int ff_amf_get_color_profile(AVCodecContext *avctx);
  
  /**
-diff -Naur ffmpeg-7.1.old/libavcodec/amfenc_h264.c ffmpeg-7.1/libavcodec/amfenc_h264.c
---- ffmpeg-7.1.old/libavcodec/amfenc_h264.c	2024-12-03 14:07:22.622053499 +0100
-+++ ffmpeg-7.1/libavcodec/amfenc_h264.c	2024-12-03 14:07:23.770060387 +0100
+diff -Naur ffmpeg-7.1.1.old/libavcodec/amfenc_h264.c ffmpeg-7.1.1/libavcodec/amfenc_h264.c
+--- ffmpeg-7.1.1.old/libavcodec/amfenc_h264.c	2025-03-24 10:54:38.175756886 +0100
++++ ffmpeg-7.1.1/libavcodec/amfenc_h264.c	2025-03-24 10:54:39.277925894 +0100
 @@ -133,6 +133,7 @@
      { "me_half_pel",    "Enable ME Half Pixel",                 OFFSET(me_half_pel),   AV_OPT_TYPE_BOOL,  { .i64 = -1 }, -1, 1, VE },
      { "me_quarter_pel", "Enable ME Quarter Pixel",              OFFSET(me_quarter_pel),AV_OPT_TYPE_BOOL,  { .i64 = -1 }, -1, 1, VE },
@@ -314,9 +314,9 @@ diff -Naur ffmpeg-7.1.old/libavcodec/amfenc_h264.c ffmpeg-7.1/libavcodec/amfenc_
  
      // autodetect rate control method
      if (ctx->rate_control_mode == AMF_VIDEO_ENCODER_RATE_CONTROL_METHOD_UNKNOWN) {
-diff -Naur ffmpeg-7.1.old/libavcodec/amfenc_hevc.c ffmpeg-7.1/libavcodec/amfenc_hevc.c
---- ffmpeg-7.1.old/libavcodec/amfenc_hevc.c	2024-12-03 14:07:22.423052305 +0100
-+++ ffmpeg-7.1/libavcodec/amfenc_hevc.c	2024-12-03 14:07:23.770060387 +0100
+diff -Naur ffmpeg-7.1.1.old/libavcodec/amfenc_hevc.c ffmpeg-7.1.1/libavcodec/amfenc_hevc.c
+--- ffmpeg-7.1.1.old/libavcodec/amfenc_hevc.c	2025-03-24 10:54:37.991754672 +0100
++++ ffmpeg-7.1.1/libavcodec/amfenc_hevc.c	2025-03-24 10:54:39.278019962 +0100
 @@ -100,6 +100,7 @@
      { "me_half_pel",    "Enable ME Half Pixel",                     OFFSET(me_half_pel),   AV_OPT_TYPE_BOOL,{ .i64 = -1 },  -1, 1, VE },
      { "me_quarter_pel", "Enable ME Quarter Pixel ",                 OFFSET(me_quarter_pel),AV_OPT_TYPE_BOOL,{ .i64 = -1 },  -1, 1, VE },
@@ -362,9 +362,9 @@ diff -Naur ffmpeg-7.1.old/libavcodec/amfenc_hevc.c ffmpeg-7.1/libavcodec/amfenc_
  
      // Picture control properties
      AMF_ASSIGN_PROPERTY_INT64(res, ctx->encoder, AMF_VIDEO_ENCODER_HEVC_NUM_GOPS_PER_IDR, ctx->gops_per_idr);
-diff -Naur ffmpeg-7.1.old/libavcodec/av1dec.c ffmpeg-7.1/libavcodec/av1dec.c
---- ffmpeg-7.1.old/libavcodec/av1dec.c	2024-12-03 14:07:22.534052971 +0100
-+++ ffmpeg-7.1/libavcodec/av1dec.c	2024-12-03 14:07:23.766060363 +0100
+diff -Naur ffmpeg-7.1.1.old/libavcodec/av1dec.c ffmpeg-7.1.1/libavcodec/av1dec.c
+--- ffmpeg-7.1.1.old/libavcodec/av1dec.c	2025-03-24 10:54:38.093755899 +0100
++++ ffmpeg-7.1.1/libavcodec/av1dec.c	2025-03-24 10:54:39.273932914 +0100
 @@ -1002,6 +1002,8 @@
          break;
      }
@@ -393,42 +393,9 @@ diff -Naur ffmpeg-7.1.old/libavcodec/av1dec.c ffmpeg-7.1/libavcodec/av1dec.c
          ret = ff_dovi_attach_side_data(&s->dovi, frame);
          if (ret < 0)
              return ret;
-diff -Naur ffmpeg-7.1.old/libavcodec/avcodec.c ffmpeg-7.1/libavcodec/avcodec.c
---- ffmpeg-7.1.old/libavcodec/avcodec.c	2024-12-03 14:07:22.391052114 +0100
-+++ ffmpeg-7.1/libavcodec/avcodec.c	2024-12-03 14:07:23.776060423 +0100
-@@ -175,14 +175,6 @@
-     if (avctx->extradata_size < 0 || avctx->extradata_size >= FF_MAX_EXTRADATA_SIZE)
-         return AVERROR(EINVAL);
- 
--    if ((ret = av_opt_set_dict(avctx, options)) < 0)
--        return ret;
--
--    if (avctx->codec_whitelist && av_match_list(codec->name, avctx->codec_whitelist, ',') <= 0) {
--        av_log(avctx, AV_LOG_ERROR, "Codec (%s) not on whitelist \'%s\'\n", codec->name, avctx->codec_whitelist);
--        return AVERROR(EINVAL);
--    }
--
-     avci = av_codec_is_decoder(codec) ?
-         ff_decode_internal_alloc()    :
-         ff_encode_internal_alloc();
-@@ -216,6 +208,14 @@
-     } else {
-         avctx->priv_data = NULL;
-     }
-+    if ((ret = av_opt_set_dict(avctx, options)) < 0)
-+        goto free_and_end;
-+
-+    if (avctx->codec_whitelist && av_match_list(codec->name, avctx->codec_whitelist, ',') <= 0) {
-+        av_log(avctx, AV_LOG_ERROR, "Codec (%s) not on whitelist \'%s\'\n", codec->name, avctx->codec_whitelist);
-+        ret = AVERROR(EINVAL);
-+        goto free_and_end;
-+    }
- 
-     // only call ff_set_dimensions() for non H.264/VP6F/DXV codecs so as not to overwrite previously setup dimensions
-     if (!(avctx->coded_width && avctx->coded_height && avctx->width && avctx->height &&
-diff -Naur ffmpeg-7.1.old/libavcodec/bsf/hevc_mp4toannexb.c ffmpeg-7.1/libavcodec/bsf/hevc_mp4toannexb.c
---- ffmpeg-7.1.old/libavcodec/bsf/hevc_mp4toannexb.c	2024-12-03 14:07:22.514052852 +0100
-+++ ffmpeg-7.1/libavcodec/bsf/hevc_mp4toannexb.c	2024-12-03 14:07:23.766060363 +0100
+diff -Naur ffmpeg-7.1.1.old/libavcodec/bsf/hevc_mp4toannexb.c ffmpeg-7.1.1/libavcodec/bsf/hevc_mp4toannexb.c
+--- ffmpeg-7.1.1.old/libavcodec/bsf/hevc_mp4toannexb.c	2025-03-24 10:54:38.075755683 +0100
++++ ffmpeg-7.1.1/libavcodec/bsf/hevc_mp4toannexb.c	2025-03-24 10:54:39.273106358 +0100
 @@ -125,6 +125,7 @@
      AVPacket *in;
      GetByteContext gb;
@@ -453,9 +420,9 @@ diff -Naur ffmpeg-7.1.old/libavcodec/bsf/hevc_mp4toannexb.c ffmpeg-7.1/libavcode
          extra_size    = add_extradata * ctx->par_out->extradata_size;
          got_irap     |= is_irap;
  
-diff -Naur ffmpeg-7.1.old/libavcodec/ccaption_dec.c ffmpeg-7.1/libavcodec/ccaption_dec.c
---- ffmpeg-7.1.old/libavcodec/ccaption_dec.c	2024-12-03 14:07:22.615053457 +0100
-+++ ffmpeg-7.1/libavcodec/ccaption_dec.c	2024-12-03 14:07:23.761060333 +0100
+diff -Naur ffmpeg-7.1.1.old/libavcodec/ccaption_dec.c ffmpeg-7.1.1/libavcodec/ccaption_dec.c
+--- ffmpeg-7.1.1.old/libavcodec/ccaption_dec.c	2025-03-24 10:54:38.169756814 +0100
++++ ffmpeg-7.1.1/libavcodec/ccaption_dec.c	2025-03-24 10:54:39.268544045 +0100
 @@ -889,12 +889,13 @@
  
          if (ctx->buffer[bidx].str[0] || ctx->real_time) {
@@ -474,9 +441,9 @@ diff -Naur ffmpeg-7.1.old/libavcodec/ccaption_dec.c ffmpeg-7.1/libavcodec/ccapti
              else
                  sub->end_display_time = -1;
              ret = ff_ass_add_rect2(sub, ctx->buffer[bidx].str, ctx->readorder++, 0, NULL, NULL, &nb_rect_allocated);
-diff -Naur ffmpeg-7.1.old/libavcodec/dvdsubdec.c ffmpeg-7.1/libavcodec/dvdsubdec.c
---- ffmpeg-7.1.old/libavcodec/dvdsubdec.c	2024-12-03 14:07:22.407052209 +0100
-+++ ffmpeg-7.1/libavcodec/dvdsubdec.c	2024-12-03 14:07:23.761060333 +0100
+diff -Naur ffmpeg-7.1.1.old/libavcodec/dvdsubdec.c ffmpeg-7.1.1/libavcodec/dvdsubdec.c
+--- ffmpeg-7.1.1.old/libavcodec/dvdsubdec.c	2025-03-24 10:54:37.975754480 +0100
++++ ffmpeg-7.1.1/libavcodec/dvdsubdec.c	2025-03-24 10:54:39.267391144 +0100
 @@ -45,6 +45,8 @@
    int      buf_size;
    int      forced_subs_only;
@@ -592,10 +559,10 @@ diff -Naur ffmpeg-7.1.old/libavcodec/dvdsubdec.c ffmpeg-7.1/libavcodec/dvdsubdec
      { NULL }
  };
  static const AVClass dvdsub_class = {
-diff -Naur ffmpeg-7.1.old/libavcodec/libdav1d.c ffmpeg-7.1/libavcodec/libdav1d.c
---- ffmpeg-7.1.old/libavcodec/libdav1d.c	2024-12-03 14:07:22.531052953 +0100
-+++ ffmpeg-7.1/libavcodec/libdav1d.c	2024-12-03 14:07:23.767060369 +0100
-@@ -562,6 +562,8 @@
+diff -Naur ffmpeg-7.1.1.old/libavcodec/libdav1d.c ffmpeg-7.1.1/libavcodec/libdav1d.c
+--- ffmpeg-7.1.1.old/libavcodec/libdav1d.c	2025-03-24 10:54:38.090755863 +0100
++++ ffmpeg-7.1.1/libavcodec/libdav1d.c	2025-03-24 10:54:39.274085311 +0100
+@@ -563,6 +563,8 @@
              break;
          }
          case ITU_T_T35_PROVIDER_CODE_DOLBY: {
@@ -604,7 +571,7 @@ diff -Naur ffmpeg-7.1.old/libavcodec/libdav1d.c ffmpeg-7.1/libavcodec/libdav1d.c
              int provider_oriented_code = bytestream2_get_be32(&gb);
              if (itut_t35->country_code != ITU_T_T35_COUNTRY_CODE_US ||
                  provider_oriented_code != 0x800)
-@@ -574,6 +576,18 @@
+@@ -575,6 +577,18 @@
                  break; // ignore
              }
  
@@ -623,17 +590,17 @@ diff -Naur ffmpeg-7.1.old/libavcodec/libdav1d.c ffmpeg-7.1/libavcodec/libdav1d.c
              res = ff_dovi_attach_side_data(&dav1d->dovi, frame);
              if (res < 0)
                  goto fail;
-diff -Naur ffmpeg-7.1.old/libavcodec/mfenc.c ffmpeg-7.1/libavcodec/mfenc.c
---- ffmpeg-7.1.old/libavcodec/mfenc.c	2024-12-03 14:07:22.568053176 +0100
-+++ ffmpeg-7.1/libavcodec/mfenc.c	2024-12-03 14:07:23.775060417 +0100
+diff -Naur ffmpeg-7.1.1.old/libavcodec/mfenc.c ffmpeg-7.1.1/libavcodec/mfenc.c
+--- ffmpeg-7.1.1.old/libavcodec/mfenc.c	2025-03-24 10:54:38.125756284 +0100
++++ ffmpeg-7.1.1/libavcodec/mfenc.c	2025-03-24 10:54:39.282547759 +0100
 @@ -1315,3 +1315,4 @@
  
  MF_ENCODER(VIDEO, h264,        H264, venc_opts, VFMTS, VCAPS, defaults);
  MF_ENCODER(VIDEO, hevc,        HEVC, venc_opts, VFMTS, VCAPS, defaults);
 +MF_ENCODER(VIDEO, av1,         AV1,  venc_opts, VFMTS, VCAPS, defaults);
-diff -Naur ffmpeg-7.1.old/libavcodec/mf_utils.c ffmpeg-7.1/libavcodec/mf_utils.c
---- ffmpeg-7.1.old/libavcodec/mf_utils.c	2024-12-03 14:07:22.526052923 +0100
-+++ ffmpeg-7.1/libavcodec/mf_utils.c	2024-12-03 14:07:23.775060417 +0100
+diff -Naur ffmpeg-7.1.1.old/libavcodec/mf_utils.c ffmpeg-7.1.1/libavcodec/mf_utils.c
+--- ffmpeg-7.1.1.old/libavcodec/mf_utils.c	2025-03-24 10:54:38.086755815 +0100
++++ ffmpeg-7.1.1/libavcodec/mf_utils.c	2025-03-24 10:54:39.282392106 +0100
 @@ -240,6 +240,7 @@
      GUID_ENTRY(MFMediaType_Video),
      GUID_ENTRY(MFAudioFormat_PCM),
@@ -650,9 +617,9 @@ diff -Naur ffmpeg-7.1.old/libavcodec/mf_utils.c ffmpeg-7.1/libavcodec/mf_utils.c
      case AV_CODEC_ID_H264:              return &MFVideoFormat_H264;
      case AV_CODEC_ID_HEVC:              return &ff_MFVideoFormat_HEVC;
      case AV_CODEC_ID_AC3:               return &MFAudioFormat_Dolby_AC3;
-diff -Naur ffmpeg-7.1.old/libavcodec/mf_utils.h ffmpeg-7.1/libavcodec/mf_utils.h
---- ffmpeg-7.1.old/libavcodec/mf_utils.h	2024-12-03 14:07:22.499052761 +0100
-+++ ffmpeg-7.1/libavcodec/mf_utils.h	2024-12-03 14:07:23.775060417 +0100
+diff -Naur ffmpeg-7.1.1.old/libavcodec/mf_utils.h ffmpeg-7.1.1/libavcodec/mf_utils.h
+--- ffmpeg-7.1.1.old/libavcodec/mf_utils.h	2025-03-24 10:54:38.061755515 +0100
++++ ffmpeg-7.1.1/libavcodec/mf_utils.h	2025-03-24 10:54:39.282464482 +0100
 @@ -113,6 +113,7 @@
  
  DEFINE_MEDIATYPE_GUID(ff_MFVideoFormat_HEVC, 0x43564548); // FCC('HEVC')
@@ -661,9 +628,9 @@ diff -Naur ffmpeg-7.1.old/libavcodec/mf_utils.h ffmpeg-7.1/libavcodec/mf_utils.h
  
  
  // This enum is missing from mingw-w64's codecapi.h by v7.0.0.
-diff -Naur ffmpeg-7.1.old/libavcodec/pgssubdec.c ffmpeg-7.1/libavcodec/pgssubdec.c
---- ffmpeg-7.1.old/libavcodec/pgssubdec.c	2024-12-03 14:07:22.419052281 +0100
-+++ ffmpeg-7.1/libavcodec/pgssubdec.c	2024-12-03 14:07:23.773060405 +0100
+diff -Naur ffmpeg-7.1.1.old/libavcodec/pgssubdec.c ffmpeg-7.1.1/libavcodec/pgssubdec.c
+--- ffmpeg-7.1.1.old/libavcodec/pgssubdec.c	2025-03-24 10:54:37.986754612 +0100
++++ ffmpeg-7.1.1/libavcodec/pgssubdec.c	2025-03-24 10:54:39.280528236 +0100
 @@ -35,9 +35,11 @@
  #include "libavutil/opt.h"
  
@@ -1444,9 +1411,9 @@ diff -Naur ffmpeg-7.1.old/libavcodec/pgssubdec.c ffmpeg-7.1/libavcodec/pgssubdec
              break;
          case DISPLAY_SEGMENT:
              if (*got_sub_ptr) {
-diff -Naur ffmpeg-7.1.old/libavcodec/videotoolbox.c ffmpeg-7.1/libavcodec/videotoolbox.c
---- ffmpeg-7.1.old/libavcodec/videotoolbox.c	2024-12-03 14:07:22.462052540 +0100
-+++ ffmpeg-7.1/libavcodec/videotoolbox.c	2024-12-03 14:07:23.764060351 +0100
+diff -Naur ffmpeg-7.1.1.old/libavcodec/videotoolbox.c ffmpeg-7.1.1/libavcodec/videotoolbox.c
+--- ffmpeg-7.1.1.old/libavcodec/videotoolbox.c	2025-03-24 10:54:38.027755105 +0100
++++ ffmpeg-7.1.1/libavcodec/videotoolbox.c	2025-03-24 10:54:39.271196851 +0100
 @@ -916,6 +916,23 @@
          break;
      }
@@ -1471,9 +1438,9 @@ diff -Naur ffmpeg-7.1.old/libavcodec/videotoolbox.c ffmpeg-7.1/libavcodec/videot
  #if defined(MAC_OS_X_VERSION_10_9) && !TARGET_OS_IPHONE && (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_9) && AV_HAS_BUILTIN(__builtin_available)
      if (avctx->codec_id == AV_CODEC_ID_PRORES) {
          if (__builtin_available(macOS 10.9, *)) {
-diff -Naur ffmpeg-7.1.old/libavformat/isom.h ffmpeg-7.1/libavformat/isom.h
---- ffmpeg-7.1.old/libavformat/isom.h	2024-12-03 14:07:22.825054717 +0100
-+++ ffmpeg-7.1/libavformat/isom.h	2024-12-03 14:07:23.756060303 +0100
+diff -Naur ffmpeg-7.1.1.old/libavformat/isom.h ffmpeg-7.1.1/libavformat/isom.h
+--- ffmpeg-7.1.1.old/libavformat/isom.h	2025-03-24 10:54:38.366759184 +0100
++++ ffmpeg-7.1.1/libavformat/isom.h	2025-03-24 10:54:39.261252302 +0100
 @@ -272,6 +272,9 @@
          MOVEncryptionIndex *encryption_index;
      } cenc;
@@ -1484,9 +1451,9 @@ diff -Naur ffmpeg-7.1.old/libavformat/isom.h ffmpeg-7.1/libavformat/isom.h
      struct IAMFDemuxContext *iamf;
  } MOVStreamContext;
  
-diff -Naur ffmpeg-7.1.old/libavformat/matroskaenc.c ffmpeg-7.1/libavformat/matroskaenc.c
---- ffmpeg-7.1.old/libavformat/matroskaenc.c	2024-12-03 14:07:22.857054909 +0100
-+++ ffmpeg-7.1/libavformat/matroskaenc.c	2024-12-03 14:07:23.763060345 +0100
+diff -Naur ffmpeg-7.1.1.old/libavformat/matroskaenc.c ffmpeg-7.1.1/libavformat/matroskaenc.c
+--- ffmpeg-7.1.1.old/libavformat/matroskaenc.c	2025-03-24 10:54:38.396759545 +0100
++++ ffmpeg-7.1.1/libavformat/matroskaenc.c	2025-03-24 10:54:39.269651231 +0100
 @@ -2933,6 +2933,16 @@
      case AV_CODEC_ID_AAC:
          if (side_data_size && mkv->track.bc) {
@@ -1504,9 +1471,9 @@ diff -Naur ffmpeg-7.1.old/libavformat/matroskaenc.c ffmpeg-7.1/libavformat/matro
              ret = get_aac_sample_rates(s, mkv, side_data, side_data_size,
                                         &track->sample_rate, &output_sample_rate);
              if (ret < 0)
-diff -Naur ffmpeg-7.1.old/libavformat/mov.c ffmpeg-7.1/libavformat/mov.c
---- ffmpeg-7.1.old/libavformat/mov.c	2024-12-03 14:07:22.811054633 +0100
-+++ ffmpeg-7.1/libavformat/mov.c	2024-12-03 14:07:23.756060303 +0100
+diff -Naur ffmpeg-7.1.1.old/libavformat/mov.c ffmpeg-7.1.1/libavformat/mov.c
+--- ffmpeg-7.1.1.old/libavformat/mov.c	2025-03-24 10:54:38.353759028 +0100
++++ ffmpeg-7.1.1/libavformat/mov.c	2025-03-24 10:54:39.261629363 +0100
 @@ -56,6 +56,7 @@
  #include "libavcodec/mpegaudiodecheader.h"
  #include "libavcodec/mlp_parse.h"
@@ -1515,7 +1482,7 @@ diff -Naur ffmpeg-7.1.old/libavformat/mov.c ffmpeg-7.1/libavformat/mov.c
  #include "internal.h"
  #include "avio_internal.h"
  #include "demux.h"
-@@ -326,6 +327,73 @@
+@@ -342,6 +343,73 @@
      return 0;
  }
  
@@ -1589,7 +1556,7 @@ diff -Naur ffmpeg-7.1.old/libavformat/mov.c ffmpeg-7.1/libavformat/mov.c
  static int mov_read_udta_string(MOVContext *c, AVIOContext *pb, MOVAtom atom)
  {
      char tmp_key[AV_FOURCC_MAX_STRING_SIZE] = {0};
-@@ -338,6 +406,7 @@
+@@ -354,6 +422,7 @@
      int (*parse)(MOVContext*, AVIOContext*, unsigned, const char*) = NULL;
      int raw = 0;
      int num = 0;
@@ -1597,7 +1564,7 @@ diff -Naur ffmpeg-7.1.old/libavformat/mov.c ffmpeg-7.1/libavformat/mov.c
  
      switch (atom.type) {
      case MKTAG( '@','P','R','M'): key = "premiere_version"; raw = 1; break;
-@@ -351,15 +420,33 @@
+@@ -367,15 +436,33 @@
      case MKTAG( 'c','a','t','g'): key = "category"; break;
      case MKTAG( 'c','p','i','l'): key = "compilation";
          parse = mov_metadata_int8_no_padding; break;
@@ -1634,7 +1601,7 @@ diff -Naur ffmpeg-7.1.old/libavformat/mov.c ffmpeg-7.1/libavformat/mov.c
      case MKTAG( 'h','d','v','d'): key = "hd_video";
          parse = mov_metadata_int8_no_padding; break;
      case MKTAG( 'H','M','M','T'):
-@@ -370,6 +457,7 @@
+@@ -386,6 +473,7 @@
          return mov_metadata_loci(c, pb, atom.size);
      case MKTAG( 'm','a','n','u'): key = "make"; break;
      case MKTAG( 'm','o','d','l'): key = "model"; break;
@@ -1642,7 +1609,7 @@ diff -Naur ffmpeg-7.1.old/libavformat/mov.c ffmpeg-7.1/libavformat/mov.c
      case MKTAG( 'p','c','s','t'): key = "podcast";
          parse = mov_metadata_int8_no_padding; break;
      case MKTAG( 'p','g','a','p'): key = "gapless_playback";
-@@ -429,6 +517,15 @@
+@@ -445,6 +533,15 @@
      case MKTAG(0xa9,'w','r','n'): key = "warning";   break;
      case MKTAG(0xa9,'w','r','t'): key = "composer";  break;
      case MKTAG(0xa9,'x','y','z'): key = "location";  break;
@@ -1658,7 +1625,7 @@ diff -Naur ffmpeg-7.1.old/libavformat/mov.c ffmpeg-7.1/libavformat/mov.c
      }
  retry:
      if (c->itunes_metadata && atom.size > 8) {
-@@ -555,17 +652,23 @@
+@@ -571,17 +668,23 @@
              }
              str[str_size] = 0;
          }
@@ -1691,7 +1658,7 @@ diff -Naur ffmpeg-7.1.old/libavformat/mov.c ffmpeg-7.1/libavformat/mov.c
          }
      }
  
-@@ -9040,6 +9143,23 @@
+@@ -9081,6 +9184,23 @@
      return ret;
  }
  
@@ -1715,7 +1682,7 @@ diff -Naur ffmpeg-7.1.old/libavformat/mov.c ffmpeg-7.1/libavformat/mov.c
  static const MOVParseTableEntry mov_default_parse_table[] = {
  { MKTAG('A','C','L','R'), mov_read_aclr },
  { MKTAG('A','P','R','G'), mov_read_avid },
-@@ -9142,6 +9262,7 @@
+@@ -9183,6 +9303,7 @@
  { MKTAG('v','p','c','C'), mov_read_vpcc },
  { MKTAG('m','d','c','v'), mov_read_mdcv },
  { MKTAG('c','l','l','i'), mov_read_clli },
@@ -1723,7 +1690,7 @@ diff -Naur ffmpeg-7.1.old/libavformat/mov.c ffmpeg-7.1/libavformat/mov.c
  { MKTAG('d','v','c','C'), mov_read_dvcc_dvvc },
  { MKTAG('d','v','v','C'), mov_read_dvcc_dvvc },
  { MKTAG('d','v','w','C'), mov_read_dvcc_dvvc },
-@@ -10306,6 +10427,23 @@
+@@ -10367,6 +10488,23 @@
              err = ff_replaygain_export(st, s->metadata);
              if (err < 0)
                  return err;
@@ -1747,9 +1714,9 @@ diff -Naur ffmpeg-7.1.old/libavformat/mov.c ffmpeg-7.1/libavformat/mov.c
              break;
          case AVMEDIA_TYPE_VIDEO:
              if (sc->display_matrix) {
-diff -Naur ffmpeg-7.1.old/libavformat/movenc.c ffmpeg-7.1/libavformat/movenc.c
---- ffmpeg-7.1.old/libavformat/movenc.c	2024-12-03 14:07:22.841054813 +0100
-+++ ffmpeg-7.1/libavformat/movenc.c	2024-12-03 14:07:23.754060291 +0100
+diff -Naur ffmpeg-7.1.1.old/libavformat/movenc.c ffmpeg-7.1.1/libavformat/movenc.c
+--- ffmpeg-7.1.1.old/libavformat/movenc.c	2025-03-24 10:54:38.381759365 +0100
++++ ffmpeg-7.1.1/libavformat/movenc.c	2025-03-24 10:54:39.258769917 +0100
 @@ -28,6 +28,7 @@
  
  #include "movenc.h"
@@ -1758,7 +1725,7 @@ diff -Naur ffmpeg-7.1.old/libavformat/movenc.c ffmpeg-7.1/libavformat/movenc.c
  #include "avio_internal.h"
  #include "dovi_isom.h"
  #include "riff.h"
-@@ -4051,6 +4052,41 @@
+@@ -4055,6 +4056,41 @@
      return len + 24;
  }
  
@@ -1800,7 +1767,7 @@ diff -Naur ffmpeg-7.1.old/libavformat/movenc.c ffmpeg-7.1/libavformat/movenc.c
  static int mov_write_track_metadata(AVIOContext *pb, AVStream *st,
                                      const char *tag, const char *str)
  {
-@@ -4125,8 +4161,23 @@
+@@ -4129,8 +4165,23 @@
      if (ret < 0)
          return ret;
  
@@ -1825,7 +1792,7 @@ diff -Naur ffmpeg-7.1.old/libavformat/movenc.c ffmpeg-7.1/libavformat/movenc.c
  
      if (mov->mode & MODE_MP4) {
          if ((ret = mov_write_track_kinds(pb_buf, st)) < 0)
-@@ -4723,35 +4774,6 @@
+@@ -4727,35 +4778,6 @@
      return 0;
  }
  
@@ -1861,7 +1828,7 @@ diff -Naur ffmpeg-7.1.old/libavformat/movenc.c ffmpeg-7.1/libavformat/movenc.c
  static int mov_write_chpl_tag(AVIOContext *pb, AVFormatContext *s)
  {
      int64_t pos = avio_tell(pb);
-@@ -4790,14 +4812,14 @@
+@@ -4794,14 +4816,14 @@
          return ret;
  
      if (mov->mode & MODE_3GP) {
@@ -1884,9 +1851,9 @@ diff -Naur ffmpeg-7.1.old/libavformat/movenc.c ffmpeg-7.1/libavformat/movenc.c
          mov_write_loci_tag(s, pb_buf);
      } else if (mov->mode == MODE_MOV && !(mov->flags & FF_MOV_FLAG_USE_MDTA)) { // the title field breaks gtkpod with mp4 and my suspicion is that stuff is not valid in mp4
          mov_write_string_metadata(s, pb_buf, "\251ART", "artist",      0);
-diff -Naur ffmpeg-7.1.old/libavutil/frame.c ffmpeg-7.1/libavutil/frame.c
---- ffmpeg-7.1.old/libavutil/frame.c	2024-12-03 14:07:22.753054285 +0100
-+++ ffmpeg-7.1/libavutil/frame.c	2024-12-03 14:07:23.767060369 +0100
+diff -Naur ffmpeg-7.1.1.old/libavutil/frame.c ffmpeg-7.1.1/libavutil/frame.c
+--- ffmpeg-7.1.1.old/libavutil/frame.c	2025-03-24 10:54:38.298758366 +0100
++++ ffmpeg-7.1.1/libavutil/frame.c	2025-03-24 10:54:39.274197994 +0100
 @@ -45,6 +45,7 @@
      [AV_FRAME_DATA_FILM_GRAIN_PARAMS]           = { "Film grain parameters" },
      [AV_FRAME_DATA_DETECTION_BBOXES]            = { "Bounding boxes for object detection and classification" },
@@ -1895,9 +1862,9 @@ diff -Naur ffmpeg-7.1.old/libavutil/frame.c ffmpeg-7.1/libavutil/frame.c
      [AV_FRAME_DATA_DOVI_METADATA]               = { "Dolby Vision Metadata" },
      [AV_FRAME_DATA_LCEVC]                       = { "LCEVC NAL data" },
      [AV_FRAME_DATA_VIEW_ID]                     = { "View ID" },
-diff -Naur ffmpeg-7.1.old/libavutil/frame.h ffmpeg-7.1/libavutil/frame.h
---- ffmpeg-7.1.old/libavutil/frame.h	2024-12-03 14:07:22.742054219 +0100
-+++ ffmpeg-7.1/libavutil/frame.h	2024-12-03 14:07:23.767060369 +0100
+diff -Naur ffmpeg-7.1.1.old/libavutil/frame.h ffmpeg-7.1.1/libavutil/frame.h
+--- ffmpeg-7.1.1.old/libavutil/frame.h	2025-03-24 10:54:38.287758234 +0100
++++ ffmpeg-7.1.1/libavutil/frame.h	2025-03-24 10:54:39.274296419 +0100
 @@ -201,6 +201,12 @@
      AV_FRAME_DATA_DOVI_RPU_BUFFER,
  
@@ -1911,10 +1878,10 @@ diff -Naur ffmpeg-7.1.old/libavutil/frame.h ffmpeg-7.1/libavutil/frame.h
       * Parsed Dolby Vision metadata, suitable for passing to a software
       * implementation. The payload is the AVDOVIMetadata struct defined in
       * libavutil/dovi_meta.h.
-diff -Naur ffmpeg-7.1.old/libswscale/swscale_unscaled.c ffmpeg-7.1/libswscale/swscale_unscaled.c
---- ffmpeg-7.1.old/libswscale/swscale_unscaled.c	2024-12-03 14:07:22.649053661 +0100
-+++ ffmpeg-7.1/libswscale/swscale_unscaled.c	2024-12-03 14:07:23.765060357 +0100
-@@ -339,7 +339,7 @@
+diff -Naur ffmpeg-7.1.1.old/libswscale/swscale_unscaled.c ffmpeg-7.1.1/libswscale/swscale_unscaled.c
+--- ffmpeg-7.1.1.old/libswscale/swscale_unscaled.c	2025-03-24 10:54:38.201757199 +0100
++++ ffmpeg-7.1.1/libswscale/swscale_unscaled.c	2025-03-24 10:54:39.272233834 +0100
+@@ -341,7 +341,7 @@
          const uint8_t *tsrc0 = src[0];
          for (x = c->srcW; x > 0; x--) {
              t = *tsrc0++;
@@ -1923,7 +1890,7 @@ diff -Naur ffmpeg-7.1.old/libswscale/swscale_unscaled.c ffmpeg-7.1/libswscale/sw
          }
          src[0] += srcStride[0];
          dstY += dstStride[0] / 2;
-@@ -350,9 +350,9 @@
+@@ -352,9 +352,9 @@
              const uint8_t *tsrc2 = src[2];
              for (x = c->srcW / 2; x > 0; x--) {
                  t = *tsrc1++;
