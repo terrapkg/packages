@@ -20,6 +20,10 @@ BuildRequires:  cmake
 BuildRequires:  mold
 BuildRequires:  git-core
 
+# Old devel packages
+Obsoletes:      %{name}+gix-faster-devel < %{version}
+Obsoletes:      %{name}+gix-features-devel < %{version}
+
 %global _description %{expand:
 The minimal, blazing-fast, and infinitely customizable prompt for any
 shell! ☄🌌️.}
@@ -87,22 +91,6 @@ use the "config-schema" feature of the "%{crate}" crate.
 
 %files       -n %{name}+config-schema-devel
 %ghost %{crate_instdir}/Cargo.toml
-
-%package     -n %{name}+gix-features-devel
-Summary:        %{summary}
-BuildArch:      noarch
-
-%description -n %{name}+gix-features-devel %{_description}
-
-This package contains library source intended for building other packages which
-use the "gix-features" feature of the "%{crate}" crate.
-
-%files       -n %{name}+gix-features-devel
-%ghost %{crate_instdir}/Cargo.toml
-
-%package     -n %{name}+gix-max-perf-devel
-Summary:        %{summary}
-BuildArch:      noarch
 
 %description -n %{name}+gix-max-perf-devel %{_description}
 
