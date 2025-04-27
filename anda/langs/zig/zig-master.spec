@@ -156,7 +156,9 @@ help2man --no-discard-stderr --no-info "./zig-out/bin/zig" --version-option=vers
 %if %{with docs}
 # Use the newly made stage 3 compiler to generate docs
 # Zig has an extremely annoying issue with transitive failures when trying to build the docs, retry until it succeeds
-for ((i=0; i<3; i++)); do
+r=3
+
+for ((i=0; i<r; i++)); do
     ./zig-out/bin/zig build docs \
     --verbose \
     --global-cache-dir "%{zig_cache_dir}" \
@@ -166,7 +168,7 @@ for ((i=0; i<3; i++)); do
     echo "Transitive failure. Trying again."
 done
 
-(( retries == i )) && { exit 1; }
+(( r == i )) && { exit 1; }
 exit 0
 
 %endif
