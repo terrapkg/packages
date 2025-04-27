@@ -92,6 +92,10 @@ use the "config-schema" feature of the "%{crate}" crate.
 %files       -n %{name}+config-schema-devel
 %ghost %{crate_instdir}/Cargo.toml
 
+%package     -n %{name}+gix-max-perf-devel
+Summary:        %{summary}
+BuildArch:      noarch
+
 %description -n %{name}+gix-max-perf-devel %{_description}
 
 This package contains library source intended for building other packages which
