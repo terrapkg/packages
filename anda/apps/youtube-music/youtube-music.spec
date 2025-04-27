@@ -1,18 +1,18 @@
 %define debug_package %nil
 
 # Exclude private libraries since this is bundled with electron
-%global __requires_exclude libffmpeg.so
-%global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
+%global __provides_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*))$
+%global __requires_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*))$
 
 # macro shorthand for calling pnpm
 %global pnpm npx pnpm@%{pnpm_version}
 
 # Try to vendor PNPM directly from Fedora
 # but if this fails, you can try setting this to 1 to vendor PNPM directly from upstream
-%global vendor_pnpm 0
+%global vendor_pnpm 1
 
 Name:           youtube-music
-Version:        3.7.4
+Version:        3.9.0
 Release:        1%?dist
 Summary:        YouTube Music Desktop App bundled with custom plugins (and built-in ad blocker / downloader)
 Source1:        youtube-music.desktop
@@ -31,6 +31,10 @@ BuildRequires:  python3 gcc-c++
 %if !0%{?vendor_pnpm}
 BuildRequires:  pnpm nodejs20
 %endif
+
+Requires:       nss
+Requires:       libXext
+Requires:       libXfixes
 
 %description
 YouTube Music Desktop App bundled with custom plugins (and built-in ad blocker / downloader)

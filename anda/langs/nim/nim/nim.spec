@@ -2,7 +2,7 @@
 %global debug_package %{nil}
 
 Name:			nim
-Version:		2.2.2
+Version:		2.2.4
 Release:		1%?dist
 Summary:		Imperative, multi-paradigm, compiled programming language
 License:		MIT and BSD
@@ -70,10 +70,6 @@ koch docs &
 koch tools -t:-fPIE -l:-pie &
 nim c -d:danger -t:-fPIE -l:-pie nimsuggest/nimsuggest.nim &
 wait
-
-%ifarch x86_64
-sed -i '/<link.*fonts.googleapis.com/d' doc/html/*.html
-%endif
 
 
 %install

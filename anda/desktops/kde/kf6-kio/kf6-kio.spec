@@ -1,12 +1,15 @@
 %global framework kio
 
 %global stable_kf6 stable
-%global majmin_ver_kf6 6.11
+%global majmin_ver_kf6 6.13
 
 Name:    kf6-%{framework}
 Version: %{majmin_ver_kf6}.0
 Release: 1%{?dist}.switcheroo
 Summary: KDE Frameworks 6 Tier 3 solution for filesystem abstraction
+
+Provides: kf6-%{framework}.switcheroo = %version-%release
+Obsoletes: kf6-%{framework}.switcheroo < 6.13.0-2
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only) AND MIT
 URL:     https://invent.kde.org/frameworks/%{framework}
@@ -28,6 +31,7 @@ Patch101: kio-no-help-protocol.patch
 # https://invent.kde.org/frameworks/kio/-/merge_requests/1556
 Patch201: 1556.patch
 
+Provides:       kf6-%{framework}
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
@@ -98,6 +102,7 @@ Requires:       cmake(KF6Solid)
 Requires:       cmake(KF6XmlGui)
 Requires:       cmake(KF6WindowSystem)
 Requires:       qt6-qtbase-devel
+Provides:       kf6-kio-devel = %version-%release
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
@@ -106,6 +111,8 @@ developing applications that use %{name}.
 Summary:        Documentation files for %{name}
 Requires:       %{name}-core = %{version}-%{release}
 BuildArch:      noarch
+Provides:       kf6-kio-doc = %version-%release
+Obsoletes:      kf6-kio-doc <= %version-%release
 %description    doc
 Documentation for %{name}.
 
@@ -116,12 +123,16 @@ Requires:       %{name}-core-libs%{?_isa} = %{version}-%{release}
 Requires:       %{name}-doc = %{version}-%{release}
 Requires:       kf6-filesystem
 Recommends:     switcheroo-control
+Provides:       kf6-kio-core = %version-%release
+Obsoletes:      kf6-kio-core <= %version-%release
 %description    core
 KIOCore library provides core non-GUI components for working with KIO.
 
 %package        core-libs
 Summary:        Runtime libraries for KIO Core
 Requires:       %{name}-core%{?_isa} = %{version}-%{release}
+Provides:       kf6-kio-core-libs = %version-%release
+Obsoletes:      kf6-kio-core-libs <= %version-%release
 %description    core-libs
 %{summary}.
 
@@ -131,6 +142,8 @@ Summary:        Widgets for KIO Framework
 ## included here for completeness, even those -core already has a dependency.
 %{?kf6_kinit_requires}
 Requires:       %{name}-core%{?_isa} = %{version}-%{release}
+Provides:       kf6-kio-widgets = %version-%release
+Obsoletes:      kf6-kio-widgets <= %version-%release
 %description    widgets
 KIOWidgets contains classes that provide generic job control, progress
 reporting, etc.
@@ -138,12 +151,16 @@ reporting, etc.
 %package        widgets-libs
 Summary:        Runtime libraries for KIO Widgets library
 Requires:       %{name}-widgets%{?_isa} = %{version}-%{release}
+Provides:       kf6-kio-widgets-libs = %version-%release
+Obsoletes:      kf6-kio-widgets-libs <= %version-%release
 %description    widgets-libs
 %{summary}.
 
 %package        file-widgets
 Summary:        Widgets for file-handling for KIO Framework
 Requires:       %{name}-widgets%{?_isa} = %{version}-%{release}
+Provides:       kf6-kio-file-widgets = %version-%release
+Obsoletes:      kf6-kio-file-widgets <= %version-%release
 %description    file-widgets
 The KIOFileWidgets library provides the file selection dialog and
 its components.
@@ -151,12 +168,16 @@ its components.
 %package        gui
 Summary:        Gui components for the KIO Framework
 Requires:       %{name}-core%{?_isa} = %{version}-%{release}
+Provides:       kf6-kio-gui = %version-%release
+Obsoletes:      kf6-kio-gui <= %version-%release
 %description    gui
 %{summary}.
 
 %package        qch-doc
 Summary:        Developer Documentation files for %{name}
 BuildArch:      noarch
+Provides:       kf6-kio-qch-doc = %version-%release
+Obsoletes:      kf6-kio-qch-doc <= %version-%release
 %description    qch-doc
 Developer Documentation files for %{name} for use with KDevelop or QtCreator.
 
@@ -172,7 +193,7 @@ Developer Documentation files for %{name} for use with KDevelop or QtCreator.
 
 %install
 %cmake_install
-%find_lang %{name} --all-name --with-man --with-html
+%find_lang kf6-kio --all-name --with-man --with-html
 
 %files
 %license LICENSES/*.txt
@@ -196,7 +217,7 @@ Developer Documentation files for %{name} for use with KDevelop or QtCreator.
 %files core-libs
 %{_kf6_libdir}/libKF6KIOCore.so.*
 
-%files doc -f %{name}.lang
+%files doc -f kf6-kio.lang
 
 %files gui
 %{_kf6_libdir}/libKF6KIOGui.so.*

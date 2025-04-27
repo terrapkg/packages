@@ -3,7 +3,7 @@
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           rust-felix
-Version:        2.16.0
+Version:        2.16.1
 Release:        1%?dist
 Summary:        Tui file manager with vim-like key mapping
 

@@ -1,6 +1,6 @@
 %define debug_package %nil
 %define _ttfontsdir %{_datadir}/fonts/maple
-%global upstream_ver v7.0-beta36
+%global upstream_ver v7.0
 %define sanitized_ver %(echo "$( sed 's/^.//;s/-/~/' <<< "%{upstream_ver}" )")
 
 Name:           maple-fonts

@@ -1,5 +1,5 @@
-%global commit e1176e63ccbee51ab59fdb8afaed2bf5af8427d1
-%global commit_date 20240711
+%global commit 11f6a53130182a85908505b9120313f8b817f32c
+%global commit_date 20250328
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global debug_package %{nil}
 %define __os_install_post %{nil}

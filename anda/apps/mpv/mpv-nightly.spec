@@ -1,7 +1,7 @@
-%global commit e32beaa0dba209dfd10cff7fdbdcd0dbde1f82b9
+%global commit b47c805fa2aa444fb4c6a6a1a921034a6232719a
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250221
-%global ver 0.39.0
+%global commit_date 20250427
+%global ver 0.40.0
 
 Name:           mpv-nightly
 Version:        %ver^%commit_date.%shortcommit
@@ -124,6 +124,33 @@ Requires: mpv-nightly-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 %description devel
 This package contains development header files and libraries for Mpv.
 
+%package bash-completion
+Summary: MPV Bash completion
+Requires: bash
+Requires: %{name}
+Supplements: (%{name} and bash)
+
+%description bash-completion
+Bash shell completion for MPV.
+
+%package fish-completion
+Summary: MPV Fish completion
+Requires: fish
+Requires: %{name}
+Supplements: (%{name} and fish)
+
+%description fish-completion
+Fish shell completion for MPV.
+
+%package zsh-completion
+Summary: MPV Zsh completion
+Requires: zsh
+Requires: %{name}
+Supplements: (%{name} and zsh)
+
+%description zsh-completion
+Zsh shell completion for MPV.
+
 %prep
 %autosetup -p1 -n mpv-%commit
 sed -e "s|/usr/local/etc|%{_sysconfdir}/mpv|" -i etc/mpv.conf
@@ -205,13 +232,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/mpv.desktop
 %{_docdir}/mpv/
 %{_bindir}/mpv
 %{_datadir}/applications/mpv.desktop
-%dir %{_datadir}/bash-completion/
-%dir %{_datadir}/bash-completion/completions/
-%{_datadir}/bash-completion/completions/mpv
 %{_datadir}/icons/hicolor/*/apps/mpv*.*
-%dir %{_datadir}/zsh/
-%dir %{_datadir}/zsh/site-functions/
-%{_datadir}/zsh/site-functions/_mpv
 %{_mandir}/man1/mpv.*
 %{_metainfodir}/mpv.metainfo.xml
 %dir %{_sysconfdir}/mpv/
@@ -225,6 +246,15 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/mpv.desktop
 %{_includedir}/mpv/
 %{_libdir}/libmpv.so
 %{_libdir}/pkgconfig/mpv.pc
+
+%files bash-completion
+%{bash_completions_dir}/mpv
+
+%files fish-completion
+%{fish_completions_dir}/mpv.fish
+
+%files zsh-completion
+%{zsh_completions_dir}/_mpv
 
 %changelog
 %autochangelog

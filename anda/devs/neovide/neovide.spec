@@ -2,8 +2,8 @@
 %global raw_forgeurl https://raw.githubusercontent.com/%{crate}/%{crate}
 
 Name:           rust-neovide
-Version:        0.14.0
-Release:        2%?dist
+Version:        0.14.1
+Release:        1%?dist
 Summary:        No Nonsense Neovim Client in Rust
 
 License:        MIT
