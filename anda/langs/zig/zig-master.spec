@@ -156,9 +156,7 @@ help2man --no-discard-stderr --no-info "./zig-out/bin/zig" --version-option=vers
 %if %{with docs}
 # Use the newly made stage 3 compiler to generate docs
 # Zig has an extremely annoying issue with transitive failures when trying to build the docs, retry until it succeeds
-retries=3
-
-for ((i=0; i<retries; i++)); do
+for ((i=0; i<3; i++)); do
     ./zig-out/bin/zig build docs \
     --verbose \
     --global-cache-dir "%{zig_cache_dir}" \
