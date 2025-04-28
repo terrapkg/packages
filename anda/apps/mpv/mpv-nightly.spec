@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-%global commit 27c08affb14daaaa0ae156dcc073b411296264f1
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250414
-=======
 %global commit f8cef99033e2e46e610f7378334f59cd242dacb4
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global commit_date 20250428
->>>>>>> cc7240ca2 (bump(nightly): mpv nightly micro nightly prismlauncher-nightly nightly)
 %global ver 0.40.0
 
 Name:           mpv-nightly
