@@ -6,7 +6,7 @@
 
 Name:           cuda-gcc
 Version:        14.2.1
-Release:        1%?dist
+Release:        2%?dist
 Summary:        GNU Compiler Collection CUDA compatibility package
 License:        BSD
 URL:            http://gcc.gnu.org
