@@ -5,7 +5,7 @@
 
 Name:           egl-wayland
 Version:        1.1.19
-Release:        1%?dist
+Release:        2%?dist
 Summary:        EGLStream-based Wayland external platform
 License:        MIT
 URL:            https://github.com/NVIDIA/%{name}
