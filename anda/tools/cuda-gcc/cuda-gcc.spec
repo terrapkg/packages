@@ -1,4 +1,4 @@
-%if 0%{?fedora} < 42 || 0%{?rhel} <= 10
+%if 0%{?fedora} < 042
 %global gcc_major 13
 %else
 %global gcc_major 14
@@ -6,7 +6,7 @@
 
 Name:           cuda-gcc
 Version:        14.2.1
-Release:        1%?dist
+Release:        2%?dist
 Summary:        GNU Compiler Collection CUDA compatibility package
 License:        BSD
 URL:            http://gcc.gnu.org
