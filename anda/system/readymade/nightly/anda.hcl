@@ -3,6 +3,5 @@ project pkg {
     spec = "readymade-nightly.spec"
   }
   labels {
-    nightly = 1
   }
 }
