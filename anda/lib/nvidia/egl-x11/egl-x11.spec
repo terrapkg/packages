@@ -5,7 +5,7 @@
 
 Name:           egl-x11
 Version:        1.0.1
-Release:        1%?dist
+Release:        2%?dist
 Summary:        NVIDIA XLib and XCB EGL Platform Library
 License:        Apache-2.0
 URL:            https://github.com/NVIDIA/egl-x11
