@@ -29,10 +29,6 @@ BuildRequires:  anda-srpm-macros
 %prep
 %goprep
 %go_prep_online
-sed -iE '/^func Start(/,/^}$/s@return start\(src\)@return ""@' updater/update.go
-cat updater/update.go
-sed -iE '/r.POST("/update", updateHandler)/d' main.go
-cat main.go
 
 %build
 sed -iE '/^func Start(/,/^}$/s@return start\(src\)@return ""@' src/updater/update.go
