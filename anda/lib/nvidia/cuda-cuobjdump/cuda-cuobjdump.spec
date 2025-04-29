@@ -4,12 +4,12 @@
 %global __strip /bin/true
 %global _missing_build_ids_terminate_build 0
 %global _build_id_links none
-%global major_package_version 12-6
+%global major_package_version 12-8
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
 Version:        12.8.90
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Utility to extract information from CUDA binary files
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
