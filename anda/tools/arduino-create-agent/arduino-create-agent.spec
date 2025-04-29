@@ -28,14 +28,17 @@ BuildRequires:  anda-srpm-macros
 
 %prep
 %goprep
-%autopatch -p1
 %go_prep_online
-
-%build
 sed -iE '/^func Start(/,/^}$/s@return start\(src\)@return ""@' updater/update.go
 cat updater/update.go
 sed -iE '/r.POST("/update", updateHandler)/d' main.go
 cat main.go
+
+%build
+sed -iE '/^func Start(/,/^}$/s@return start\(src\)@return ""@' src/updater/update.go
+cat src/updater/update.go
+sed -iE '/r.POST("/update", updateHandler)/d' src/main.go
+cat src/main.go
 %define gomodulesmode GO111MODULE=on
 %gobuild -o %{gobuilddir}/bin/arduino-create-agent %{goipath}
 
