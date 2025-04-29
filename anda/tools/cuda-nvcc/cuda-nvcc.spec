@@ -4,12 +4,12 @@
 %global __strip /bin/true
 %global _missing_build_ids_terminate_build 0
 %global _build_id_links none
-%global major_package_version 12-6
+%global major_package_version 12-8
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
-Version:        12.6.85
-Release:        1%{?dist}
+Version:        12.8.61
+Release:        2%{?dist}
 Summary:        CUDA Compiler (NVCC)
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -19,12 +19,15 @@ Source0:        https://developer.download.nvidia.com/compute/cuda/redist/%{real
 Source1:        https://developer.download.nvidia.com/compute/cuda/redist/%{real_name}/linux-sbsa/%{real_name}-linux-sbsa-%{version}-archive.tar.xz
 Source3:        nvcc.profile
 
-Requires(post): ldconfig
 Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
 
-# CUDA 12.4 does not support GCC 14+:
-%if 0%{?fedora} >= 40
+# CUDA 12.8 does not support GCC 15+:
+%if 0%{?fedora} >= 42
 Requires:       cuda-gcc
+%else
+# CUDA 12.8 supports GCC 14:
+Obsoletes:      cuda-gcc
+Provides:       cuda-gcc
 %endif
 
 %description
@@ -72,8 +75,6 @@ sed -i \
     -e 's|INCLUDE_DIR|%{_includedir}/cuda|g' \
     %{buildroot}/%{_bindir}/nvcc.profile
 
-%{?ldconfig_scriptlets}
-
 %files
 %license LICENSE
 %{_bindir}/bin2c
@@ -95,6 +96,7 @@ sed -i \
 %{_includedir}/crt/cudacc_ext.h
 %{_includedir}/crt/device_double_functions.h
 %{_includedir}/crt/device_double_functions.hpp
+%{_includedir}/crt/device_fp128_functions.h
 %{_includedir}/crt/device_functions.h
 %{_includedir}/crt/device_functions.hpp
 %{_includedir}/crt/func_macro.h
@@ -112,78 +114,17 @@ sed -i \
 %{_includedir}/crt/sm_80_rt.hpp
 %{_includedir}/crt/sm_90_rt.h
 %{_includedir}/crt/sm_90_rt.hpp
+%{_includedir}/crt/sm_100_rt.h
+%{_includedir}/crt/sm_100_rt.hpp
 %{_includedir}/crt/storage_class.h
 %{_includedir}/fatbinary_section.h
 %{_includedir}/nvPTXCompiler.h
 %{_includedir}/nvvm.h
+
 %{_libdir}/libnvptxcompiler_static.a
 %{_libdir}/libnvvm.so
 %{_libdir}/libnvvm.so.4
 %{_libdir}/libnvvm.so.4.0.0
 
 %changelog
-* Fri Dec 13 2024 Simone Caronni <negativo17@gmail.com> - 1:12.6.85-1
-- Update to 12.6.85.
-- Require new cuda-gcc profile package.
-
-* Thu Sep 19 2024 Simone Caronni <negativo17@gmail.com> - 1:12.6.68-1
-- Update to 12.6.68.
-
-* Thu Jul 11 2024 Simone Caronni <negativo17@gmail.com> - 1:12.5.82-1
-- Update to 12.5.82.
-
-* Thu Jul 11 2024 Simone Caronni <negativo17@gmail.com> - 1:12.4.99-1
-- Update to 12.4.99.
-
-* Fri Mar 22 2024 Simone Caronni <negativo17@gmail.com> - 1:12.4.99-2
-- Correct GCC requirements.
-
-* Tue Mar 12 2024 Simone Caronni <negativo17@gmail.com> - 1:12.4.99-1
-- Update to 12.4.99.
-- Drop ppc64le.
-
-* Sat Jan 06 2024 Simone Caronni <negativo17@gmail.com> - 1:12.3.107-1
-- Update to 12.3.107.
-
-* Tue Nov 28 2023 Simone Caronni <negativo17@gmail.com> - 1:12.3.103-1
-- Update to 12.3.103.
-
-* Thu Sep 28 2023 Simone Caronni <negativo17@gmail.com> - 1:12.2.140-1
-- Update to 12.2.140.
-
-* Tue Jul 11 2023 Simone Caronni <negativo17@gmail.com> - 1:12.2.91-1
-- Update to 12.2.91.
-
-* Thu Jun 08 2023 Simone Caronni <negativo17@gmail.com> - 1:12.1.105-1
-- Update to 12.1.105.
-
-* Tue Apr 11 2023 Simone Caronni <negativo17@gmail.com> - 1:12.1.66-1
-- Update to 12.1.66.
-
-* Mon Mar 13 2023 Simone Caronni <negativo17@gmail.com> - 1:12.0.140-2
-- Add requirement on cuda-gcc for Fedora 38+.
-
-* Sat Feb 25 2023 Simone Caronni <negativo17@gmail.com> - 1:12.0.140-1
-- Update to 12.0.140.
-
-* Tue Dec 13 2022 Simone Caronni <negativo17@gmail.com> - 1:12.0.76-1
-- Update to 12.0.76.
-
-* Fri Nov 11 2022 Simone Caronni <negativo17@gmail.com> - 1:11.8.89-1
-- Update to 11.8.89.
-- Use aarch64 archive in place of sbsa.
-
-* Sun Sep 04 2022 Simone Caronni <negativo17@gmail.com> - 1:11.7.99-1
-- Update to 11.7.99.
-
-* Thu Jun 23 2022 Simone Caronni <negativo17@gmail.com> - 1:11.7.64-1
-- Update to 11.7.64.
-
-* Thu Mar 31 2022 Simone Caronni <negativo17@gmail.com> - 1:11.6.124-1
-- Update to 11.6.124 (CUDA 11.6.2).
-
-* Tue Mar 08 2022 Simone Caronni <negativo17@gmail.com> - 1:11.6.112-1
-- Update to 11.6.112 (CUDA 11.6.1).
-
-* Fri Jan 28 2022 Simone Caronni <negativo17@gmail.com> - 1:11.6.55-1
-- First build with the new tarball components.
+%autochangelog
