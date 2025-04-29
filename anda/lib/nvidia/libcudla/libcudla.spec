@@ -2,13 +2,13 @@
 %global __strip /bin/true
 %global _missing_build_ids_terminate_build 0
 %global _build_id_links none
-%global major_package_version 12-6
+%global major_package_version 12-8
 
 Name:           libcudla
 Epoch:          1
 Version:        12.8.90
-Release:        1%?dist
-Summary:        NVIDIA CUDA Deep Learning Accelerator (DLA) engines (Jetson Xavier and Orin)
+Release:        2%?dist
+Summary:        NVIDIA CUDA Deep Learning Accelerator (DLA) engines (Jetson Xavier + Orin)
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
 ExclusiveArch:  aarch64
@@ -17,7 +17,8 @@ Source0:        https://developer.download.nvidia.com/compute/cuda/redist/%{name
 Source1:        cudla.pc
 
 %description
-Low-level driver for the Deep Learning Accelerator (DLA) engine for Jetson Xavier and Orin boards.
+Low-level driver for the Deep Learning Accelerator (DLA) engine for Jetson
+Xavier + Orin boards.
 
 %package devel
 Summary:        Development files for CUDA Deep Learning Accelerator (DLA) engines
@@ -25,7 +26,8 @@ Requires:       %{name}%{_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Conflicts:      %{name}-devel-%{major_package_version} < %{?epoch:%{epoch}:}%{version}
 
 %description devel
-This package provides development files for the CUDA Deep Learning Accelerator (DLA) engines.
+This package provides development files for the CUDA Deep Learning Accelerator
+(DLA) engines.
 
 %prep
 %autosetup -n %{name}-linux-aarch64-%{version}-archive
