@@ -9,7 +9,7 @@
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
 Version:        12.8.93
-Release:        1%?dist
+Release:        2%?dist
 Summary:        CUDA runtime compilation library (NVRTC)
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit

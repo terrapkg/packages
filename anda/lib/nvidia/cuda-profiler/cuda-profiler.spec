@@ -6,7 +6,7 @@
 Name:           cuda-profiler
 Epoch:          1
 Version:        12.8.90
-Release:        1%?dist
+Release:        2%?dist
 Summary:        CUDA Profiler API
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit

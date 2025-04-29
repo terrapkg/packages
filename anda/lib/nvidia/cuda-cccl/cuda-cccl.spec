@@ -6,7 +6,7 @@
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
 Version:        12.8.90
-Release:        1%?dist
+Release:        2%?dist
 Summary:        CXX Core Compute Libraries
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit

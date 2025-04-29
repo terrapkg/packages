@@ -7,7 +7,7 @@
 Name:           libnpp
 Epoch:          1
 Version:        12.3.3.100
-Release:        1%?dist
+Release:        2%?dist
 Summary:        NVIDIA Performance Primitives libraries
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
