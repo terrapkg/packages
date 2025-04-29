@@ -1,4 +1,4 @@
-global         debug_package %{nil}
+%global         debug_package %{nil}
 %global         __strip /bin/true
 %global         _missing_build_ids_terminate_build 0
 %global         _build_id_links none
