@@ -1,22 +1,16 @@
 Name:           switcheroo-control
 Version:        2.6
-Release:        8%{?dist}
+Release:        9%{?dist}
 Summary:        D-Bus service to check the availability of dual-GPU
 
 License:        GPLv3
 URL:            https://gitlab.freedesktop.org/hadess/switcheroo-control/
 # URL from https://gitlab.freedesktop.org/hadess/switcheroo-control/-/releases
 Source0:        https://gitlab.freedesktop.org/hadess/switcheroo-control/uploads/86ea54ac7ddb901b6bf6e915209151f8/switcheroo-control-2.6.tar.xz
-Patch:          0001-main-update-GPUs-comment-for-dbus-property.patch
-Patch:          0002-main-add-Discrete-key.patch
-Patch:          0003-tests-fix-integration-tests-without-UMockdev.patch
-Patch:          0004-tests-add-tests-for-discrete-detection-with-mock-lib.patch
-Patch:          0005-main-remove-leftover-and-fix-typo.patch
-Patch:          0006-main-move-discrete-dependencies-out-of-main-deps.patch
-Patch:          0007-main-use-glib-for-discrete-command-line-arguments.patch
-Patch:          0008-main-add-udev-rule-for-i915.patch
-Patch:          0009-main-use-Discrete-key-in-switcherooctl.patch
-Patch:					0010-main-use-new-GPU-list-on-uevent.patch
+# Adds proper discrete GPU detection to switcheroo-control
+# https://gitlab.freedesktop.org/hadess/switcheroo-control/-/merge_requests/69
+Patch:					discrete.patch
+
 
 BuildRequires:  gcc
 BuildRequires:  pkgconfig(gudev-1.0)
@@ -25,6 +19,7 @@ BuildRequires:  gtk-doc
 BuildRequires:  meson
 BuildRequires:  systemd
 BuildRequires:  libdrm-devel
+BuildRequires:  kernel-headers
 BuildRequires:  python3-dbusmock
 BuildRequires:  umockdev
 
@@ -78,6 +73,7 @@ fi
 %{_mandir}/man1/switcherooctl.1*
 %{_libexecdir}/check-discrete-amdgpu
 %{_libexecdir}/check-discrete-nouveau
+%{_libexecdir}/check-discrete-xe
 %{_udevrulesdir}/30-discrete-gpu.rules
 
 %files docs
@@ -86,14 +82,17 @@ fi
 %{_datadir}/gtk-doc/html/%{name}/
 
 %changelog
-* Fri Sep 06 2024 Jan200101 <sentrycraft123@gmail.com> - 2.6-8
+* Tue Apr 29 2025 Jan200101 <sentrycraft123@gmail.com> - 2.6-9
 - Update discrete patch
 
-* Thu Feb 15 2024 Jan Drögehoff <sentrycraft123@gmail.com> - 2.6-7
-- Update discrete patch
+* Sun Jan 19 2025 Fedora Release Engineering <releng@fedoraproject.org> - 2.6-8
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_42_Mass_Rebuild
 
-* Wed Feb 14 2024 Jan Drögehoff <sentrycraft123@gmail.com> - 2.6-6
-- Add discrete patch
+* Mon Jul 29 2024 Miroslav Suchý <msuchy@redhat.com> - 2.6-7
+- convert license to SPDX
+
+* Sat Jul 20 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.6-6
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_41_Mass_Rebuild
 
 * Sat Jan 27 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.6-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_40_Mass_Rebuild
