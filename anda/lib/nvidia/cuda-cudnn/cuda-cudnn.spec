@@ -1,12 +1,12 @@
-%global         debug_package %{nil}
+global         debug_package %{nil}
 %global         __strip /bin/true
 %global         _missing_build_ids_terminate_build 0
 %global         _build_id_links none
 %global         cuda_version 12
 
 Name:           cuda-cudnn
-Version:        9.8.0.87
-Release:        1%?dist
+Version:        9.7.1.26
+Release:        1%{?dist}
 Epoch:          1
 Summary:        NVIDIA CUDA Deep Neural Network library (cuDNN)
 License:        NVIDIA Software Development Kit
@@ -58,8 +58,6 @@ chmod 644 %{buildroot}%{_libdir}/*.a
 mkdir -p %{buildroot}%{_includedir}
 cp -a include/* %{buildroot}%{_includedir}/
 chmod 644 %{buildroot}%{_includedir}/*
-
-%{?ldconfig_scriptlets}
 
 %files
 %license LICENSE

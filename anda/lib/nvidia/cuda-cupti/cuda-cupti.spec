@@ -8,8 +8,8 @@
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
-Version:        12.8.90
-Release:        1%?dist
+Version:        12.8.57
+Release:        1%{?dist}
 Summary:        NVIDIA CUDA Profiling Tools Interface (CUPTI) library
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -49,33 +49,6 @@ This package contains static libraries for NVIDIA CUDA Profiling Tools Interface
 
 %ifarch aarch64
 %setup -q -T -b 1 -n %{real_name}-linux-sbsa-%{version}-archive
-%endif
-
-%{?ldconfig_scriptlets}
-
-%install
-mkdir -p %{buildroot}%{_includedir}
-mkdir -p %{buildroot}%{_libdir}
-cp -fr include/* %{buildroot}%{_includedir}/
-cp -fr lib/* %{buildroot}%{_libdir}/
-
-%files
-%license LICENSE
-%{_libdir}/libcheckpoint.so
-%{_libdir}/libcupti.so.*
-%{_libdir}/libpcsamplingutil.so
-
-%files devel
-%doc doc/* samples/*
-%{_includedir}/*
-%{_libdir}/libcupti.so
-%{_libdir}/libnvperf_host.so
-%{_libdir}/libnvperf_target.so
-
-%files static
-%{_libdir}/libcupti_static.a
-%ifarch x86_64
-%{_libdir}/libnvperf_host_static.a
 %endif
 
 %changelog
