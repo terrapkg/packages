@@ -1,0 +1,12 @@
+diff -Naur ffmpeg-7.1.1.old/configure ffmpeg-7.1.1/configure
+--- ffmpeg-7.1.1.old/configure	2025-03-24 11:04:46.377074634 +0100
++++ ffmpeg-7.1.1/configure	2025-03-24 11:04:54.615698726 +0100
+@@ -6742,7 +6742,7 @@
+     nvccflags=$nvccflags_default
+ fi
+ 
+-nvccflags="$nvccflags -std=c++11"
++nvccflags="$nvccflags -std=c++14"
+ 
+ if enabled x86_64 || enabled ppc64 || enabled aarch64; then
+     nvccflags="$nvccflags -m64"
