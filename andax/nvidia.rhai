@@ -2,9 +2,10 @@
 // This module is used to parse the NVIDIA website for the latest driver version
 
 fn nvidia_component_list() {
-    let series = "12.8.1";
-    let url = `https://developer.download.nvidia.com/compute/cuda/redist/redistrib_${series}.json`;
-    return get(url).json();
+    let url = "https://developer.download.nvidia.com/compute/cuda/redist/";
+    let matches = find_all("redistrib_[\\d.]+.json", get(url));
+    let series = `${url}${matches[matches.len - 1][0]}`;
+    return get(series).json();
 }
 fn nvidia_component_version(component) {
     let components = nvidia_component_list();
