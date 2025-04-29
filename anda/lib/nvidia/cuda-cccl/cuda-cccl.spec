@@ -1,12 +1,12 @@
 %global real_name cuda_cccl
 
 %global debug_package %{nil}
-%global major_package_version 12-6
+%global major_package_version 12-8
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
 Version:        12.8.90
-Release:        1%?dist
+Release:        2%?dist
 Summary:        CXX Core Compute Libraries
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit

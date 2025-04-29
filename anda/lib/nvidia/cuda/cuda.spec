@@ -1,9 +1,9 @@
 %global debug_package %{nil}
-%global major_package_version 12-6
+%global major_package_version 12-8
 
 Name:           cuda
 Version:        12.8.90
-Release:        1%?dist
+Release:        2%?dist
 Summary:        NVIDIA Compute Unified Device Architecture Toolkit
 Epoch:          1
 License:        CUDA Toolkit
@@ -91,6 +91,7 @@ Requires:       %{name}-nvrtc-devel%{?_isa}
 Requires:       %{name}-nvtx-devel%{?_isa}
 Requires:       %{name}-cuobjdump%{?_isa}
 Requires:       %{name}-cuxxfilt-devel%{?_isa}
+Requires:       %{name}-sandbox-devel%{?_isa}
 Requires:       libcublas-devel%{?_isa}
 Requires:       libcufft-devel%{?_isa}
 Requires:       libcufile-devel%{?_isa}

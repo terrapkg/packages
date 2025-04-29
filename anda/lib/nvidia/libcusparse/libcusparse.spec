@@ -2,12 +2,12 @@
 %global __strip /bin/true
 %global _missing_build_ids_terminate_build 0
 %global _build_id_links none
-%global major_package_version 12-6
+%global major_package_version 12-8
 
 Name:           libcusparse
 Epoch:          1
 Version:        12.5.8.93
-Release:        1%?dist
+Release:        2%?dist
 Summary:        NVIDIA CUDA Sparse Matrix library (cuSPARSE) library
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -17,7 +17,6 @@ Source0:        https://developer.download.nvidia.com/compute/cuda/redist/%{name
 Source1:        https://developer.download.nvidia.com/compute/cuda/redist/%{name}/linux-sbsa/%{name}-linux-sbsa-%{version}-archive.tar.xz
 Source3:        cusparse.pc
 
-Requires(post): ldconfig
 Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description
@@ -67,8 +66,6 @@ sed -i \
     -e 's|LIBDIR|%{_libdir}|g' \
     -e 's|INCLUDE_DIR|%{_includedir}|g' \
     %{buildroot}/%{_libdir}/pkgconfig/*.pc
-
-%{?ldconfig_scriptlets}
 
 %files
 %license LICENSE
