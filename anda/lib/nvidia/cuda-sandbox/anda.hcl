@@ -1,6 +1,7 @@
 project pkg {
+   arches = ["x86_64"]
     rpm {
-        spec = "libnvjpeg.spec"
+        spec = "cuda-sandbox.spec"
     }
     labels {
 	    subrepo = "nvidia"
