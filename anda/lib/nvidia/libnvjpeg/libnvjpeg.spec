@@ -6,8 +6,8 @@
 
 Name:           libnvjpeg
 Epoch:          1
-Version:        12.3.3.54
-Release:        1%{?dist}
+Version:        12.3.5.92
+Release:        1%?dist
 Summary:        CUDA NVIDIA JPEG decoder (nvJPEG)
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit

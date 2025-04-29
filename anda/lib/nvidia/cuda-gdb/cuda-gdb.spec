@@ -7,8 +7,8 @@
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
-Version:        12.6.77
-Release:        1%{?dist}
+Version:        12.8.90
+Release:        1%?dist
 Summary:        CUDA GDB tool for debugging CUDA applications
 License:        GPLv3+ and GPLv3+ with exceptions and GPLv2+ and GPLv2+ with exceptions and GPL+ and LGPLv2+ and LGPLv3+ and BSD and Public Domain and GFDL
 URL:            https://developer.nvidia.com/cuda-toolkit

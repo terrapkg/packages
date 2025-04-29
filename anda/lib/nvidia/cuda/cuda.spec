@@ -2,8 +2,8 @@
 %global major_package_version 12-6
 
 Name:           cuda
-Version:        12.6.77
-Release:        1%{?dist}
+Version:        12.8.90
+Release:        1%?dist
 Summary:        NVIDIA Compute Unified Device Architecture Toolkit
 Epoch:          1
 License:        CUDA Toolkit

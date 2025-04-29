@@ -8,8 +8,8 @@
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
-Version:        12.6.77
-Release:        1%{?dist}
+Version:        12.8.90
+Release:        1%?dist
 Summary:        CUDA cuxxfilt (demangler)
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
