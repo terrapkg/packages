@@ -4,8 +4,8 @@
 %global         _build_id_links none
 
 Name:           libcusparselt
-Version:        0.7.0.0
-Release:        1%{?dist}
+Version:        0.7.1.0
+Release:        1%?dist
 Summary:        CUDA Library for Sparse Matrix-Matrix Multiplication
 License:        NVIDIA License
 URL:            https://docs.nvidia.com/cuda/cusparselt/index.html
