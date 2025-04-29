@@ -51,6 +51,31 @@ This package contains static libraries for NVIDIA CUDA Profiling Tools Interface
 %setup -q -T -b 1 -n %{real_name}-linux-sbsa-%{version}-archive
 %endif
 
+%install
+mkdir -p %{buildroot}%{_includedir}
+mkdir -p %{buildroot}%{_libdir}
+cp -fr include/* %{buildroot}%{_includedir}/
+cp -fr lib/* %{buildroot}%{_libdir}/
+
+%files
+%license LICENSE
+%{_libdir}/libcheckpoint.so
+%{_libdir}/libcupti.so.*
+%{_libdir}/libpcsamplingutil.so
+
+%files devel
+%doc doc/* samples/*
+%{_includedir}/*
+%{_libdir}/libcupti.so
+%{_libdir}/libnvperf_host.so
+%{_libdir}/libnvperf_target.so
+
+%files static
+%{_libdir}/libcupti_static.a
+%ifarch x86_64
+%{_libdir}/libnvperf_host_static.a
+%endif
+
 %changelog
 %autochangelog
 
