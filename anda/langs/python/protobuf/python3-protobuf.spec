@@ -2,7 +2,7 @@
 %global pypi_name protobuf
 
 Name:           python-%{pypi_name}
-Version:        5.29.3
+Version:        6.30.2
 Release:        1%?dist
 Summary:        Protocol Buffers
 
@@ -39,7 +39,6 @@ rm -rf %{pypi_name}.egg-info
 %doc README.md
 %{python3_sitearch}/google
 %{python3_sitearch}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
-%{python3_sitearch}/%{pypi_name}-%{version}-py%{python3_version}-nspkg.pth
 
 %changelog
 * Sun Feb 19 2023 windowsboy111 <wboy111@outlook.com> - 4.22.0-1

@@ -1,28 +1,28 @@
-%global commit 145f8b06d91707c77e2bc9b069bc5478f78ebc36
-%global commit_date 20250212
+%global commit a5e0c2e5ae7d2be97bf8407eb5d2bfc89671b5dd
+%global commit_date 20250422
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %define debug_package %nil
 
-Name:		legcord-nightly
-Version:	%commit_date.%shortcommit
-Release:	1%?dist
-License:	OSL-3.0
-Summary:	Custom lightweight Discord client designed to enhance your experience
-URL:		https://github.com/LegCord/LegCord
-Group:		Applications/Internet
-Source0:  %url/archive/%commit/legcord-%commit.tar.gz
-Source1:	launch.sh
-Packager:	Owen <owen@fyralabs.com>
-Requires:	electron xdg-utils
-Provides:   armcord-nightly
-Obsoletes:  armcord < 3.3.2-1
-Conflicts:	legcord-bin
-Conflicts:	legcord
-BuildArch:	noarch
+Name:           legcord-nightly
+Version:        %commit_date.%shortcommit
+Release:        1%?dist
+License:        OSL-3.0
+Summary:        Custom lightweight Discord client designed to enhance your experience
+URL:            https://github.com/Legcord/Legcord
+Group:          Applications/Internet
+Source0:        %url/archive/%commit/Legcord-%commit.tar.gz
+Source1:        launch.sh
+Packager:       Owen <owen@fyralabs.com>
+Requires:       electron xdg-utils
+Provides:       armcord-nightly
+Obsoletes:      armcord < 3.3.2-1
+Conflicts:      legcord-bin
+Conflicts:      legcord
+BuildArch:      noarch
 BuildRequires:  anda-srpm-macros pnpm
 
 %description
-legcord is a custom client designed to enhance your Discord experience
+Legcord is a custom client designed to enhance your Discord experience
 while keeping everything lightweight.
 
 %prep
@@ -30,7 +30,7 @@ while keeping everything lightweight.
 
 cat <<EOF > legcord.desktop
 [Desktop Entry]
-Name=LegCord
+Name=Legcord
 Comment=%summary
 GenericName=Internet Messenger
 Type=Application

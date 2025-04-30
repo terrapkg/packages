@@ -1,4 +1,5 @@
-let release = labels.branch.to_upper();
-let ver = get(`https://bodhi.fedoraproject.org/updates/?search=gstreamer1-plugins-ugly-free&status=stable&releases=${release}&rows_per_page=1&page=1`).json().updates[0].title;
-rpm.version(find(`gstreamer1-plugins-ugly-free-([\d.]+)`, ver, 1));
-rpm.release(find(`gstreamer1-plugins-ugly-free-[\d.]+-([\d.])`, ver, 1));
+import "andax/bump_extras.rhai" as bump;
+
+let vr = bump::bodhi_vr("gstreamer1-plugins-ugly-free", bump::as_bodhi_ver(labels.branch));
+rpm.version(vr[1]);
+rpm.release(vr[2]);

@@ -1,6 +1,6 @@
-%define sdk_version 2.1.0
+%define sdk_version 2.1.1
 Name:           picotool
-Version:        2.1.0
+Version:        2.1.1
 Release:        1%?dist
 Summary:        Tool to inspect RP2040 binaries
 License:        BSD-3-Clause

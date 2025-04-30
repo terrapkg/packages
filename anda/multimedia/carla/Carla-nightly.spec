@@ -5,7 +5,7 @@
 %global commit_date 20241205
 
 Name:           Carla-nightly
-Version:        %ver^%commit_date.git~%shortcommit
+Version:        %(echo %ver | tr -d 'v')^%commit_date.git~%shortcommit
 Release:        1%?dist
 Summary:        Audio plugin host
 

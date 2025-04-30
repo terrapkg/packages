@@ -1,8 +1,8 @@
 %global         majorminor 1.0
 
 Name:           gstreamer1-plugins-ugly
-Version:        1.24.11
-Release:        1%{?dist}
+Version:        1.26.1
+Release:        1%?dist
 Summary:        GStreamer streaming media framework "ugly" plugins
 License:        LGPLv2+ and LGPLv2
 URL:            http://gstreamer.freedesktop.org/
