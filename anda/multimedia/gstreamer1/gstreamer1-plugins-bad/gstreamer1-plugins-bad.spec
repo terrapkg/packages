@@ -402,7 +402,7 @@ well enough, or the code is not of good enough quality.
   -D opus=enabled \
   -D orc=enabled \
   -D package-name="Fedora GStreamer-plugins-bad package" \
-  -D package-origin="https://negativo17.org" \
+  -D package-origin="hhttps://terra.fyralabs.com" \
   -D pcapparse=enabled \
   -D pnm=enabled \
   -D proxy=enabled \
