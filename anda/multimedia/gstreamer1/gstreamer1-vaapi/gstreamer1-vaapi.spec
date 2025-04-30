@@ -1,6 +1,7 @@
-Name:           gstreamer1-vaapi
-Version:        1.24.11
+Name:           gstreamer1-plugin-vaapi
+Version:        1.26.0
 Release:        1%{?dist}
+Epoch:          1
 Summary:        GStreamer VA-API integration
 License:        LGPLv2+
 URL:            https://gstreamer.freedesktop.org/modules/gstreamer-vaapi.html
@@ -17,6 +18,7 @@ BuildRequires:  meson >= 0.48.0
 BuildRequires:  pkgconfig(egl)
 BuildRequires:  pkgconfig(gl)
 BuildRequires:  pkgconfig(glesv2)
+#BuildRequires:  pkgconfig(glesv3)
 BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(libdrm)
 BuildRequires:  pkgconfig(libudev)
@@ -38,7 +40,11 @@ Provides:       gstreamer1-vaapi = 1:%{version}-%{release}
 Provides:       gstreamer1-vaapi%{?_isa} = 1:%{version}-%{release}
 
 %description
-GStreamer VA-API decoder, encoder, postprocessing, and video sink.
+GStreamer is a streaming media framework, based on graphs of elements which
+operate on media data.
+
+VA-API-based decoder, encoder, postprocessing and video sink elements for
+GStreamer.
 
 %prep
 %autosetup -n gstreamer-vaapi-%{version}
