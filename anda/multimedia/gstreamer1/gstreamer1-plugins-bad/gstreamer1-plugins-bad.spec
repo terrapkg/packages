@@ -228,16 +228,10 @@ Provides:       %{name}-free-fluidsynth = %{?epoch}:%{version}-%{release}
 Provides:       %{name}-free-fluidsynth%{?_isa} = %{?epoch}:%{version}-%{release}
 
 %description    fluidsynth
-GStreamer is a streaming media framework, based on graphs of elements which
-operate on media data.
-
-This package contains plug-ins that aren't tested well enough, or the code is
-not of good enough quality.
-
-This package contains the fluidsynth plugin
+This package contains the GStreamer Fluidsynth plugin.
 
 %package        devel
-Summary:        Development files for the GStreamer media framework "bad" plug-ins
+Summary:        Development files for the GStreamer "bad" plugins
 Requires:       %{name}%{?_isa} = %{?epoch}:%{version}-%{release}
 Requires:       gstreamer1-plugins-base-devel
 Obsoletes:      %{name}-free-devel < %{?epoch}:%{version}-%{release}
