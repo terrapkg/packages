@@ -31,7 +31,6 @@ BuildRequires: make
 BuildRequires: nodejs
 BuildRequires: pnpm
 BuildRequires: python3
-BuildRequires: sed
 Requires:      alsa-lib
 Requires:      gtk3
 Requires:      hicolor-icon-theme
