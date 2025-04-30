@@ -29,11 +29,7 @@ BuildRequires:  yasm
 %endif
 
 %description
-GStreamer is a streaming media framework, based on graphs of elements which
-operate on media data.
-
-GStreamer Libav plug-in contains one plugin with a set of elements using the
-Libav library code. It contains many popular decoders and encoders.
+GStreamer plugin containing libav library code.
 
 %prep
 %autosetup -p1 -n gst-libav-%{version}
@@ -54,3 +50,6 @@ find %{buildroot} -name "*.la" -delete
 %license COPYING
 %doc AUTHORS NEWS README.md
 %{_libdir}/gstreamer-1.0/libgstlibav.so
+
+%changelog
+%autochangelog
