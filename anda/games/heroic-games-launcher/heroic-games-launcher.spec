@@ -52,7 +52,7 @@ Heroic is a Free and Open Source Epic, GOG, and Amazon Prime Games launcher for 
 
 %prep
 %git_clone https://github.com/%{org_name}/%{git_name} v%{version}
-desktop-file-edit --set-key=Exec --set-value="/usr/share/%{shortname}/%{shortname} %U" flatpak/%{reverse_dns}.desktop
+desktop-file-edit --set-key=Exec --set-value="/usr/share/%{shortname}/%{shortname} %u" flatpak/%{reverse_dns}.desktop
 
 %build
 pnpm install
