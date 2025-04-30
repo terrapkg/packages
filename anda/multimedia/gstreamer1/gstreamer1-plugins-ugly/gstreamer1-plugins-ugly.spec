@@ -46,7 +46,7 @@ they want/can ship these plugins.
 %build
 %meson \
   -D package-name="Fedora GStreamer-plugins-ugly package" \
-  -D package-origin="https://negativo17.org" \
+  -D package-origin="https://terra.fyralabs.com" \
   -D a52dec=enabled \
   -D asfdemux=enabled \
   -D cdio=enabled \
