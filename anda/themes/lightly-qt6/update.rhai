@@ -1,3 +1,5 @@
+import "andax/bump_extras.rhai" as bump;
+
 fn main() {
     let branch = bump::as_bodhi_ver(labels.branch);
     let url = `https://bodhi.fedoraproject.org/updates/?search=qt6-6.&status=stable&releases=${branch}&rows_per_page=1&page=1`;
