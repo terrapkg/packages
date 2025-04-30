@@ -242,11 +242,7 @@ Provides:       gst-transcoder-devel = 1.16.0-4
 Obsoletes:      gst-transcoder-devel < 1.16.0-4
 
 %description    devel
-GStreamer is a streaming media framework, based on graphs of elements which
-operate on media data.
-
-This package contains the development files for the plug-ins that aren't tested
-well enough, or the code is not of good enough quality.
+%summary. 
 
 %prep
 %autosetup -p1 -n gst-plugins-bad-%{version}
