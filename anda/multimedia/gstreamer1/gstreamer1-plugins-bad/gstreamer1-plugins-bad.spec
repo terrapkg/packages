@@ -392,7 +392,7 @@ Obsoletes:      gst-transcoder-devel < 1.16.0-4
   -D opus=enabled \
   -D orc=enabled \
   -D package-name="Fedora GStreamer-plugins-bad package" \
-  -D package-origin="hhttps://terra.fyralabs.com" \
+  -D package-origin="https://terra.fyralabs.com" \
   -D pcapparse=enabled \
   -D pnm=enabled \
   -D proxy=enabled \
