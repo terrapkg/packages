@@ -1,10 +1,11 @@
 %global         majorminor 1.0
 
 Name:           gstreamer1-plugins-ugly
-Version:        1.26.1
-Release:        1%?dist
+Version:        1.26.0
+Release:        1%{?dist}
+Epoch:          1
 Summary:        GStreamer streaming media framework "ugly" plugins
-License:        LGPLv2+ and LGPLv2
+License:        LGPL-2.0-or-later and LGPL-2.0-only
 URL:            http://gstreamer.freedesktop.org/
 
 Source0:        http://gstreamer.freedesktop.org/src/gst-plugins-ugly/gst-plugins-ugly-%{version}.tar.xz
@@ -30,7 +31,14 @@ Provides:       %{name}-free = %{?epoch}:%{version}-%{release}
 Provides:       %{name}-free%{?_isa} = %{?epoch}:%{version}-%{release}
 
 %description
-This module contains a set of plugins that have good quality and are well tested, but can be questionable to distribute due to patents.
+GStreamer is a streaming media framework, based on graphs of elements which
+operate on media data.
+
+This module contains a set of plugins that have good quality and correct
+functionality, but distributing them might pose problems. The license on either
+the plugins or the supporting libraries might not be how we'd like. The code
+might be widely known to present patent problems. Distributors should check if
+they want/can ship these plugins.
 
 %prep
 %autosetup -n gst-plugins-ugly-%{version}
@@ -38,7 +46,7 @@ This module contains a set of plugins that have good quality and are well tested
 %build
 %meson \
   -D package-name="Fedora GStreamer-plugins-ugly package" \
-  -D package-origin="http://gstreamer.freedesktop.org" \
+  -D package-origin="https://negativo17.org" \
   -D a52dec=enabled \
   -D asfdemux=enabled \
   -D cdio=enabled \
