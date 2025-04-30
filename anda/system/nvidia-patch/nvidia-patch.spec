@@ -7,7 +7,7 @@
 %global patches %{_datadir}/src/nvidia-patch
 Name:           nvidia-patch
 Version:        0^%commit_date.%{shortcommit}
-Release:        1%?dist
+Release:        2%?dist
 Summary:        NVENC and NvFBC patches for NVIDIA drivers
 
 License:        EULA
@@ -15,7 +15,7 @@ URL:            https://github.com/keylase/nvidia-patch
 Source0:        %{url}/archive/%{commit}.tar.gz
 
 BuildRequires:  tar
-Requires:       akmod-nvidia
+Requires:       nvidia-kmod
 
 %description
 NVENC patch removes restriction on maximum number of simultaneous NVENC video encoding sessions imposed by Nvidia to consumer-grade GPUs.
