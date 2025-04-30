@@ -184,6 +184,10 @@ install -m 644 -p %{SOURCE7} %{buildroot}%{_prefix}/lib/systemd/system.conf.d/
 install -m 644 -p %{SOURCE7} %{buildroot}%{_prefix}/lib/systemd/user.conf.d/
 install -m 775 -p %{SOURCE9} %{buildroot}%{_bindir}/steamrestart
 
+# https://github.com/ValveSoftware/steam-for-linux/issues/9940
+desktop-file-edit --remove-key=PrefersNonDefaultGPU %{buildroot}%{_datadir}/applications/%{name}.desktop
+desktop-file-edit --remove-key=X-KDE-RunOnDiscreteGpu %{buildroot}%{_datadir}/applications/%{name}.desktop
+
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%{appstream_id}.metainfo.xml
