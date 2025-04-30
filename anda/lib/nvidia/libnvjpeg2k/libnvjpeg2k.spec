@@ -54,7 +54,6 @@ This package contains static libraries for NVIDIA JPEG 2K decoder (nvJPEG2000).
 %endif
 
 %build
-# Nothing to build
 
 %install
 mkdir -p %{buildroot}/%{_libdir}/pkgconfig/
