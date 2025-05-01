@@ -17,7 +17,7 @@
 
 Name:          %{shortname}-games-launcher
 Version:       2.16.1
-Release:       3%?dist
+Release:       4%?dist
 Summary:       A games launcher for GOG, Amazon, and Epic Games
 License:       GPL-3.0-only AND MIT AND BSD-3-Clause
 URL:           https://heroicgameslauncher.com
@@ -31,7 +31,6 @@ BuildRequires: make
 BuildRequires: nodejs
 BuildRequires: pnpm
 BuildRequires: python3
-BuildRequires: sed
 Requires:      alsa-lib
 Requires:      gtk3
 Requires:      hicolor-icon-theme
@@ -52,8 +51,7 @@ Heroic is a Free and Open Source Epic, GOG, and Amazon Prime Games launcher for 
 
 %prep
 %git_clone https://github.com/%{org_name}/%{git_name} v%{version}
-sed -i 's/Exec=.*%u/Exec=\/usr\/share\/%{shortname}\/%{shortname} %U/g' flatpak/%{reverse_dns}.desktop
-sed -i 's/Icon=.*/Icon=%{shortname}/g' flatpak/%{reverse_dns}.desktop
+desktop-file-edit --set-key=Exec --set-value="/usr/share/%{shortname}/%{shortname} %u" flatpak/%{reverse_dns}.desktop
 
 %build
 pnpm install
@@ -78,18 +76,18 @@ mkdir -p %{buildroot}%{_bindir}
 # Make names executable
 ln -sr %{_datadir}/%{shortname}/%{shortname} %{buildroot}%{_bindir}/%{name}
 ln -sr %{_datadir}/%{shortname}/%{shortname} %{buildroot}%{_bindir}/%{shortname}
-install -Dm644 dist/.icon-set/icon_16x16.png %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{shortname}.png
-install -Dm644 dist/.icon-set/icon_32x32.png %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{shortname}.png
-install -Dm644 dist/.icon-set/icon_48x48.png %{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{shortname}.png
-install -Dm644 dist/.icon-set/icon_64x64.png %{buildroot}%{_iconsdir}/hicolor/64x64/apps/%{shortname}.png
-install -Dm644 dist/.icon-set/icon_128x128.png %{buildroot}%{_iconsdir}/hicolor/128x128/apps/%{shortname}.png
-install -Dm644 dist/.icon-set/icon_256x256.png %{buildroot}%{_iconsdir}/hicolor/256x256/apps/%{shortname}.png
-install -Dm644 dist/.icon-set/icon_512x512.png %{buildroot}%{_iconsdir}/hicolor/512x512/apps/%{shortname}.png
-install -Dm644 dist/.icon-set/icon_1024.png %{buildroot}%{_iconsdir}/hicolor/1024x1024/apps/%{shortname}.png
-install -Dm644 flatpak/%{reverse_dns}.desktop %{buildroot}%{_datadir}/applications/%{shortname}.desktop
+install -Dm644 dist/.icon-set/icon_16x16.png %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{reverse_dns}.png
+install -Dm644 dist/.icon-set/icon_32x32.png %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{reverse_dns}.png
+install -Dm644 dist/.icon-set/icon_48x48.png %{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{reverse_dns}.png
+install -Dm644 dist/.icon-set/icon_64x64.png %{buildroot}%{_iconsdir}/hicolor/64x64/apps/%{reverse_dns}.png
+install -Dm644 dist/.icon-set/icon_128x128.png %{buildroot}%{_iconsdir}/hicolor/128x128/apps/%{reverse_dns}.png
+install -Dm644 dist/.icon-set/icon_256x256.png %{buildroot}%{_iconsdir}/hicolor/256x256/apps/%{reverse_dns}.png
+install -Dm644 dist/.icon-set/icon_512x512.png %{buildroot}%{_iconsdir}/hicolor/512x512/apps/%{reverse_dns}.png
+install -Dm644 dist/.icon-set/icon_1024.png %{buildroot}%{_iconsdir}/hicolor/1024x1024/apps/%{reverse_dns}.png
+install -Dm644 flatpak/%{reverse_dns}.desktop -t %{buildroot}%{_datadir}/applications/
 
 %check
-desktop-file-validate %{buildroot}%{_datadir}/applications/%{shortname}.desktop
+desktop-file-validate %{buildroot}%{_datadir}/applications/%{reverse_dns}.desktop
 
 %files
 %doc     README.md
@@ -103,15 +101,15 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{shortname}.desktop
 %{_datadir}/%{shortname}/*
 %{_bindir}/%{shortname}
 %{_bindir}/%{name}
-%{_datadir}/applications/%{shortname}.desktop
-%{_iconsdir}/hicolor/16x16/apps/%{shortname}.png
-%{_iconsdir}/hicolor/32x32/apps/%{shortname}.png
-%{_iconsdir}/hicolor/48x48/apps/%{shortname}.png
-%{_iconsdir}/hicolor/64x64/apps/%{shortname}.png
-%{_iconsdir}/hicolor/128x128/apps/%{shortname}.png
-%{_iconsdir}/hicolor/256x256/apps/%{shortname}.png
-%{_iconsdir}/hicolor/512x512/apps/%{shortname}.png
-%{_iconsdir}/hicolor/1024x1024/apps/%{shortname}.png
+%{_datadir}/applications/%{reverse_dns}.desktop
+%{_iconsdir}/hicolor/16x16/apps/%{reverse_dns}.png
+%{_iconsdir}/hicolor/32x32/apps/%{reverse_dns}.png
+%{_iconsdir}/hicolor/48x48/apps/%{reverse_dns}.png
+%{_iconsdir}/hicolor/64x64/apps/%{reverse_dns}.png
+%{_iconsdir}/hicolor/128x128/apps/%{reverse_dns}.png
+%{_iconsdir}/hicolor/256x256/apps/%{reverse_dns}.png
+%{_iconsdir}/hicolor/512x512/apps/%{reverse_dns}.png
+%{_iconsdir}/hicolor/1024x1024/apps/%{reverse_dns}.png
 
 %changelog
 * Sun Mar 02 2025 Gilver E. <rockgrub@disroot.org>
