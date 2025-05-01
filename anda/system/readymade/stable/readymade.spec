@@ -1,6 +1,6 @@
 Name:           readymade
 Version:        0.12.2
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Install ready-made distribution images!
 License:        GPL-3.0-or-later
 URL:            https://github.com/FyraLabs/readymade
@@ -42,7 +42,7 @@ ln -sf %{_datadir}/applications/com.fyralabs.Readymade.desktop %{buildroot}%{_da
 
 %files config-ultramarine
 %_sysconfdir/readymade.toml
-
+%_datadir/readymade
 
 %files
 %license LICENSE
@@ -50,6 +50,5 @@ ln -sf %{_datadir}/applications/com.fyralabs.Readymade.desktop %{buildroot}%{_da
 %_datadir/polkit-1/actions/com.fyralabs.pkexec.readymade.policy
 %_datadir/applications/com.fyralabs.Readymade.desktop
 %_datadir/applications/liveinst.desktop
-%_datadir/readymade
 %_datadir/icons/hicolor/scalable/apps/com.fyralabs.Readymade.svg
 
