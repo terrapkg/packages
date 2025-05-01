@@ -2,7 +2,7 @@ project pkg {
     arches = ["x86_64", "aarch64", "i386"]
     rpm {
         spec = "ffmpeg.spec"
-        extra_repos = ["https://repos.fyralabs.com/terrael$//releasever"}
+        extra_repos = ["https://repos.fyralabs.com/terrael$//releasever"]
     }
     labels {
         updbranch = 1
