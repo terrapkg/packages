@@ -1,6 +1,3 @@
-# No debug packages.
-%global debug_package %{nil}
-
 Name:    zapret
 Version: 70.6
 Release: 6%{?dist}
@@ -66,7 +63,7 @@ Transparent proxy worker solution.
 rm -rf files/huawei/ # FIX: Remove a busybox dependency.
 
 %build
-make systemd
+%make_build systemd
 
 # Credit: https://aur.archlinux.org/packages/zapret-git
 %install
