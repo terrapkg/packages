@@ -5,10 +5,11 @@
 # Generate kernel symbols requirements:
 %global _use_internal_dependency_generator 0
 
-%{!?kversion: %global kversion %(uname -r)}
+# uname -r does not work in GitHub runners
+%{!?kversion: %global kversion %(rpm -q kernel-devel | sed 's/kernel-devel-//g')}
 
 Name:           kmod-%{kmod_name}
-Version:        575.51.02
+Version:        570.144
 Release:        1%{?dist}
 Summary:        NVIDIA display driver kernel module
 Epoch:          3
@@ -18,10 +19,12 @@ ExclusiveArch:  x86_64 aarch64
 
 Source0:        https://github.com/NVIDIA/open-gpu-kernel-modules/archive/refs/tags/%{version}.tar.gz
 # Kbuild: Convert EXTRA_CFLAGS to ccflags-y (6.15+) + std=gnu17
-Patch0:         nvidia-kernel-ccflags-y.patch
+%dnl Patch0:         nvidia-kernel-ccflags-y.patch
 # https://git.almalinux.org/ngompa/nvidia-kmod-el-rpm/
 Patch1:         %{name}-ldflags.patch
 Patch2:         %{name}-no-hostname-whoami.patch
+# This is needed for the Makefile for the beta drivers, added just in case it's needed in the future
+%dnl Patch3:         fix-build-in-actions.patch
 
 BuildRequires:  elfutils-libelf-devel
 BuildRequires:  gcc
@@ -42,6 +45,7 @@ depend upon the specific ABI provided by a range of releases of the same variant
 of the Linux kernel and not on any one specific build.
 
 %prep
+rpm -q kernel-devel | sed 's/kernel-devel-//g'
 %autosetup -p1 -n open-gpu-kernel-modules-%{version}
 
 echo "override %{kmod_name} * weak-updates/%{kmod_name}" > kmod-%{kmod_name}.conf
