@@ -96,9 +96,9 @@ cp -pr usr %{buildroot}
 %{_datadir}/applications/%{name}.desktop
 
 %files   non-free-plugin
-%doc     plugin/NEWS
-%license plugin/COPYING.EPSON
-%license plugin/copyright
+%doc     plugins/NEWS
+%license plugins/COPYING.EPSON
+%license plugins/copyright
 %{_libdir}/%{name}/libexec
 %{_libdir}/%{name}/non-free-exec
 %{_libdir}/%{name}-ocr
