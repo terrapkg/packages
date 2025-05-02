@@ -49,8 +49,6 @@ Non-free but redistributable plugin for %{name}.
 %autosetup -n %{name}-%{version}-%{release}
 gzip -dc '%{SOURCE1}' | tar -xof - --strip-components=1
 rpm2cpio plugins/*.rpm | cpio -idmv
-mv %{SOURCE2} .
-mv %{SOURCE3} .
 
 %build
 # CMake macro fails to generate the build files somehow? This works however. I don't really understand.
@@ -98,9 +96,9 @@ cp -pr usr %{buildroot}
 %{_datadir}/applications/%{name}.desktop
 
 %files   non-free-plugin
+%doc     plugin/NEWS
 %license plugin/COPYING.EPSON
 %license plugin/copyright
-%doc     plugin/NEWS
 %{_libdir}/%{name}/libexec
 %{_libdir}/%{name}/non-free-exec
 %{_libdir}/%{name}-ocr
