@@ -57,6 +57,6 @@ ln -sf %{_datadir}/applications/com.fyralabs.Readymade.desktop %{buildroot}%{_da
 %_datadir/polkit-1/actions/com.fyralabs.pkexec.readymade.policy
 %_datadir/applications/com.fyralabs.Readymade.desktop
 %_datadir/applications/liveinst.desktop
-%_datadir/readymade
+%ghost %_datadir/readymade
 %_datadir/icons/hicolor/scalable/apps/com.fyralabs.Readymade.svg
 
