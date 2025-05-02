@@ -44,3 +44,4 @@ joycond is a linux daemon which uses the evdev devices provided by hid-nintendo
 %_udevrulesdir/89-joycond.rules
 %_unitdir/joycond.service
 %_sysconfdir/modules-load.d/joycond.conf
+%_datadir/metainfo/com.github.DanielOgorchock.joycond.metainfo.xml
