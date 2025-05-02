@@ -12,7 +12,9 @@ URL:           https://support.epson.net/linux/en/epsonscan2.php
 # This software doesn't have versioned download links, absolute nightmare
 Source0:       https://download3.ebz.epson.net/dsc/f/03/00/16/60/70/c7fc14e41ec84255008c6125b63bcac40f55e11c/epsonscan2-%{version}-%{release}.src.tar.gz
 # The non-free-plugin should be redistributable as far as anything I can find in the license but it is NOT provided externally?? Repackage the RPM I guess.
+%ifarch x86_64
 Source1:       https://download3.ebz.epson.net/dsc/f/03/00/16/14/40/9cb99579f9fa7facf54f77f0ce6fe5600677f30a/epsonscan2-bundle-%{version}.x86_64.rpm.tar.gz
+%endif
 BuildRequires: boost-filesystem >= 1.36.0
 BuildRequires: boost-devel >= 1.36.0
 BuildRequires: cmake >= 2.8.12.2
@@ -37,6 +39,7 @@ Packager:      Gilver E. <rockgrub@disroot.org>
 %description
 This package contains all essential software to use Epson scanners.
 
+%ifarch x86_64
 %package      non-free-plugin
 License:      Epson End User Software License Agreement
 Summary:      Non free plugin for Epson scanners
@@ -44,11 +47,14 @@ Requires:     %{name} = %{version}-%{release}
 
 %description non-free-plugin
 Non-free but redistributable plugin for %{name}.
+%endif
 
 %prep
 %autosetup -n %{name}-%{version}-%{release}
+%ifarch x86_64
 gzip -dc '%{SOURCE1}' | tar -xof - --strip-components=1
 rpm2cpio plugins/*.rpm | cpio -idmv
+%endif
 
 %build
 # CMake macro fails to generate the build files somehow? This works however. I don't really understand.
@@ -73,11 +79,13 @@ ln -sf ../%{name}/libsane-%{name}.so %{buildroot}%{_libdir}/sane/libsane-%{name}
 # Let RPM handle the doc files. This project's build incorrectly puts licenses in this folder.
 rm -rf %{buildroot}%{_defaultdocdir}/%{name}*
 
+%ifarch x86_64
 mv usr/share/doc/%{name}*/* -t plugins
 
 rm -rf usr/share/doc/%{name}*
 
 cp -pr usr %{buildroot}
+%endif
 
 %files
 %doc     changelog.Debian
@@ -95,6 +103,7 @@ cp -pr usr %{buildroot}
 %{_sysconfdir}/sane.d/dll.d/%{name}
 %{_datadir}/applications/%{name}.desktop
 
+%ifarch x86_64
 %files   non-free-plugin
 %doc     plugins/NEWS
 %license plugins/COPYING.EPSON
@@ -105,6 +114,7 @@ cp -pr usr %{buildroot}
 %{_libexecdir}/%{name}-ocr
 %{_datadir}/%{name}
 %{_datadir}/%{name}-ocr
+%endif
 
 %changelog
 * Thu May 1 2025 Gilver E. <rockgrub@disroot.org>
