@@ -81,9 +81,7 @@ rm -rf %{buildroot}%{_defaultdocdir}/%{name}*
 
 %ifarch x86_64
 mv usr/share/doc/%{name}*/* -t plugins
-
 rm -rf usr/share/doc/%{name}*
-
 cp -pr usr %{buildroot}
 %endif
 
