@@ -3,7 +3,7 @@ project "pkg" {
         spec = "cuda-nvcc.spec"
     }
     labels {
-        upbranch = 1
+        updbranch = 1
         subrepo = "nvidia"
     }
 }
