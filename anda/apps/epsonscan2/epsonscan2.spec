@@ -69,7 +69,8 @@ mv %{buildroot}/lib/udev/rules.d/60-%{name}.rules -t %{buildroot}%{_udevrulesdir
 install -Dpm644 desktop/rpm/x86_64/%{name}.desktop -t %{buildroot}%{_datadir}/applications/
 
 mkdir -p %{buildroot}%{_libdir}/sane
-ln -sf ../%{name}/libsane-%{name}.so %{buildroot}%{_libdir}/sane/libsane-%{name}.so.1{.0.0}
+ln -sf ../%{name}/libsane-%{name}.so %{buildroot}%{_libdir}/sane/libsane-%{name}.so.1
+ln -sf ../%{name}/libsane-%{name}.so %{buildroot}%{_libdir}/sane/libsane-%{name}.so.1.0.0
 
 # Let RPM handle the doc files. This project's build incorrectly puts licenses in this folder.
 rm -rf %{buildroot}%{_defaultdocdir}/%{name}*
