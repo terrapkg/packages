@@ -4,5 +4,6 @@ project "pkg" {
     }
     labels {
         upbranch = 1
+        subrepo = "nvidia"
     }
 }
