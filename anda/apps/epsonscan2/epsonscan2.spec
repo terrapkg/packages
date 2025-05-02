@@ -73,7 +73,7 @@ ln -sf ../%{name}/libsane-%{name}.so %{buildroot}%{_libdir}/sane/libsane-%{name}
 # Let RPM handle the doc files. This project's build incorrectly puts licenses in this folder.
 rm -rf %{buildroot}%{_defaultdocdir}/%{name}*
 
-mv usr/share/doc/%{name}*/* -t plugin
+mv usr/share/doc/%{name}*/* -t plugins
 
 rm -rf usr/share/doc/%{name}*
 
