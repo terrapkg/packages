@@ -1,6 +1,6 @@
-%global commit 5e44361880265bc5b0d9645785d3de65ef0b86cf
+%global commit 197b160f7806d7d27117b12198cacb7656a07f1f
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20250414
+%global commitdate 20250503
 %global ver 0.3
 %global _dracutconfdir %{_prefix}/lib/dracut/dracut.conf.d
 %global firmware_hash0 48084d9fa53b9bb04358f3bb127b7495dc8f7bb0b3ca1437bd24ef2b6eabdf66
@@ -8,7 +8,10 @@
 
 Name:           xone
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        3%?dist
+Release:        1%?dist
+%if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
+Epoch:          1
+%endif
 Summary:        Linux kernel driver for Xbox One and Xbox Series X|S accessories common files
 License:        GPL-2.0-or-later
 URL:            https://github.com/dlundqvist/xone
