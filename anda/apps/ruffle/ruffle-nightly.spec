@@ -50,7 +50,7 @@ install -Dm644 desktop/packages/linux/rs.ruffle.Ruffle.svg %buildroot%_iconsdir/
 install -Dm644 desktop/packages/linux/rs.ruffle.Ruffle.desktop %buildroot%_datadir/applications/rs.ruffle.Ruffle.desktop
 install -Dm644 desktop/packages/linux/rs.ruffle.Ruffle.metainfo.xml %buildroot%_metainfodir/rs.ruffle.Ruffle.metainfo.xml
 
-%cargo_license_online > LICENSE.dependencies
+%{cargo_license_online} > LICENSE.dependencies
 
 %changelog
 * Mon Jul 29 2024 madonuko <mado@fyralabs.com>
