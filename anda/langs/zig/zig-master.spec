@@ -8,7 +8,7 @@
 %endif
 %global         llvm_version 20.0.0
 %global         ver 0.15.0-dev.451+a843be44a
-%bcond bootstrap 0
+%bcond bootstrap 1
 %bcond docs      %{without bootstrap}
 %bcond test      1
 %global zig_cache_dir %{builddir}/zig-cache
