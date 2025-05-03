@@ -1,4 +1,4 @@
-%global ver 2025-05-01
+%global ver 2025-05-03
 %global goodver %(echo %ver | sed 's/-//g')
 %global __brp_mangle_shebangs %{nil}
 %bcond_without mold
@@ -9,7 +9,7 @@ language. Ruffle targets both the desktop and the web using WebAssembly.}
 
 Name:           ruffle-nightly
 Version:        %goodver
-Release:        2%?dist
+Release:        1%?dist
 Summary:        A Flash Player emulator written in Rust
 License:        Apache-2.0 OR MIT
 URL:            https://ruffle.rs/
@@ -17,7 +17,6 @@ Source0:        https://github.com/ruffle-rs/ruffle/archive/refs/tags/nightly-%v
 Provides:       ruffle
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros mold
-BuildRequires:  desktop-file-utils
 BuildRequires:  gcc-c++ cmake java
 BuildRequires:  java-latest-openjdk-headless
 BuildRequires:  pkgconfig(alsa)
