@@ -211,9 +211,9 @@ done
 
 # Changelog.
 %changelog
-* Wed Apr 30 2025 libffi <contact@ffi.lol> - %{version}-2
+* Wed Apr 30 2025 libffi <contact@ffi.lol> - 1.8.2502-2
 - Refactor.
 - Use subpackages.
 
-* Wed Apr 30 2025 libffi <contact@ffi.lol> - %{version}-1
+* Wed Apr 30 2025 libffi <contact@ffi.lol> - 1.8.2502-1
 - Initial build.
