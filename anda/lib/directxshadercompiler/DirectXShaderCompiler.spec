@@ -89,9 +89,9 @@ for %{name}.
  
 %prep
 %autosetup
-%setup -D -C -a 1
-%setup -D -C -a 2
-%setup -D -C -a 3
+%setup -D -C -a 1 -q
+%setup -D -C -a 2 -q
+%setup -D -C -a 3 -q
 rm -rf external/DirectX-Headers
 rm -rf external/SPIRV-Headers
 rm -rf external/SPIRV-Tools
