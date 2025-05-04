@@ -58,16 +58,13 @@ rpm2cpio plugins/*.rpm | cpio -idmv
 
 %build
 # CMake macro fails to generate the build files somehow? This works however. I don't really understand.
-%cmake \
+cmake . \
    -DBUILD_TYPE=Release
 
-cd %{__cmake_builddir}
 %make_build
 
 %install
-pushd %{__cmake_builddir}
 %make_install
-popd
 
 # The Makefile fails to do these steps correctly but just using CMake was even more problematic.
 # The file is also very annoying to patch. Thank God this doesn't seem to update anymore.
