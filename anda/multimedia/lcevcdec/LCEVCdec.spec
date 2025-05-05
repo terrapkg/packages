@@ -16,7 +16,7 @@
 %bcond docs 0
 
 Name:           LCEVCdec
-Version:        3.3.6
+Version:        3.3.7
 Release:        1%?dist
 Summary:        MPEG-5 LCEVC Decoder
 License:        BSD-3-Clause-Clear

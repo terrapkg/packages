@@ -1,6 +1,6 @@
 project pkg {
   rpm {
-    spec = "readymade-nightly.spec"
+    spec = "readymade-git.spec"
   }
   labels {
   }
