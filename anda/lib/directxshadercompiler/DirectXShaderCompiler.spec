@@ -3,10 +3,13 @@
 %global SPIRV_Tools_HASH a62abcb402009b9ca5975e6167c09f237f630e0e
 %global DirectX_Headers_HASH 980971e835876dc0cde415e8f9bc646e64667bf7
 
+# Build parameters.
+%bcond external_libraries 1
+
 # Metadata.
 Name:           DirectXShaderCompiler
 Version:        1.8.2502
-Release:        2%?dist
+Release:        3%?dist
 Summary:        A Direct X Shader compiler.
 License:        MIT
 Packager:       libffi <contact@ffi.lol>
@@ -26,6 +29,13 @@ BuildRequires:  gcc-c++
 BuildRequires:  cmake >= 3.17.2
 BuildRequires:  python3
 BuildRequires:  git
+
+# External libraries - BuildRequires.
+%if %{!with external_libraries}
+    BuildRequires: DirectX-Headers-devel
+    BuildRequires: spirv-tools-devel
+    BuildRequires: spirv-headers-devel
+%endif
 
 # Sub-packages.
 
@@ -89,15 +99,25 @@ for %{name}.
  
 %prep
 %autosetup
-%setup -D -C -a 1 -q
-%setup -D -C -a 2 -q
-%setup -D -C -a 3 -q
-rm -rf external/DirectX-Headers
-rm -rf external/SPIRV-Headers
-rm -rf external/SPIRV-Tools
-mv DirectX-Headers-%{DirectX_Headers_HASH} external/DirectX-Headers
-mv SPIRV-Headers-%{SPIRV_Headers_HASH} external/SPIRV-Headers
-mv SPIRV-Tools-%{SPIRV_Tools_HASH} external/SPIRV-Tools
+# Are we building with external libraries?
+%if %{with external_libraries}
+    # If so, extract and prepare them.
+    %setup -D -C -a 1 -q
+    %setup -D -C -a 2 -q
+    %setup -D -C -a 3 -q
+    rm -rf external/DirectX-Headers
+    rm -rf external/SPIRV-Headers
+    rm -rf external/SPIRV-Tools
+    mv DirectX-Headers-%{DirectX_Headers_HASH} external/DirectX-Headers
+    mv SPIRV-Headers-%{SPIRV_Headers_HASH} external/SPIRV-Headers
+    mv SPIRV-Tools-%{SPIRV_Tools_HASH} external/SPIRV-Tools
+%else
+    # Warn :P.
+    %{warn: Building without external libraries is unsupported by upstream!}
+    %{warn: You are likely to run into compilation failures this way.}
+    # Otherwise, nuke external libraries as a whole.
+    rm -rf external/
+%endif
  
 # Build.
 # Attribution: https://github.com/gentoo/guru/blob/master/dev-util/DirectXShaderCompiler/DirectXShaderCompiler-1.8.2407.ebuild
@@ -211,6 +231,10 @@ done
 
 # Changelog.
 %changelog
+* Sun May 5 2025 libffi <contact@ffi.lol> - 1.8.2502-3
+- Provide unsupported build conditional for building with(out)
+external libraries.
+
 * Sun May 4 2025 libffi <contact@ffi.lol> - 1.8.2502-2
 - Refactor.
 - Use subpackages.
