@@ -52,27 +52,7 @@ BuildRequires:  cmake(KF%{_qt_major_version}Package)
 BuildRequires:  cmake(KF%{_qt_major_version}WindowSystem)
 
 BuildRequires:  cmake(Qt%{_qt_old_major}Core)
-BuildRequires:  cmake(Qt%{_qt_old_major}DBus)
 BuildRequires:  cmake(Qt%{_qt_old_major}Gui)
-BuildRequires:  cmake(Qt%{_qt_old_major}Quick)
-BuildRequires:  cmake(Qt%{_qt_old_major}UiTools)
-BuildRequires:  cmake(Qt%{_qt_old_major}Widgets)
- 
-BuildRequires:  cmake(KF%{_qt_old_major}CoreAddons)
-BuildRequires:  cmake(KF%{_qt_old_major}Config)
-BuildRequires:  cmake(KF%{_qt_old_major}ConfigWidgets)
-BuildRequires:  cmake(KF%{_qt_old_major}Crash)
-BuildRequires:  cmake(KF%{_qt_old_major}FrameworkIntegration)
-BuildRequires:  cmake(KF%{_qt_old_major}GuiAddons)
-BuildRequires:  cmake(KF%{_qt_old_major}GlobalAccel)
-BuildRequires:  cmake(KF%{_qt_old_major}I18n)
-BuildRequires:  cmake(KF%{_qt_old_major}IconThemes)
-BuildRequires:  cmake(KF%{_qt_old_major}KCMUtils)
-BuildRequires:  cmake(KF%{_qt_old_major}KIO)
-BuildRequires:  cmake(KF%{_qt_old_major}Kirigami2)
-BuildRequires:  cmake(KF%{_qt_old_major}Notifications)
-BuildRequires:  cmake(KF%{_qt_old_major}Package)
-BuildRequires:  cmake(KF%{_qt_old_major}WindowSystem)
 
 BuildRequires:  cmake(KDecoration2)
 BuildRequires:  cmake(KWayland)
@@ -95,7 +75,13 @@ Lightly is a fork of breeze theme style that aims to be visually modern and mini
 %forgeautosetup -p1
  
 %build
-%cmake_kf6 -DQT_MAJOR_VERSION=%{_qt_major_version} -DCMAKE_INSTALL_PREFIX=%{_prefix} -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_USE_QT_SYS_PATHS=ON
+%cmake_kf6 \
+   -DQT_MAJOR_VERSION=%{_qt_major_version} \
+   -DCMAKE_INSTALL_PREFIX=%{_prefix} \
+   -DCMAKE_BUILD_TYPE=Release \
+   -DBUILD_TESTING=OFF \
+   -DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
+   -DINSTALL_NAMESPACE="lightly%{_qt_major_version}"
 %cmake_build
  
 %install
