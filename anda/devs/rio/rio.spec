@@ -1,6 +1,7 @@
 %global crate rioterm
 %global _description %{expand:
 A hardware-accelerated terminal emulator focusing to run in desktops and browsers.}
+%bcond docs 1
 
 Name:          rio
 Version:       0.2.13
@@ -12,6 +13,7 @@ URL:           http://rioterm.com
 Source0:       https://github.com/raphamorim/%{name}/archive/refs/tags/v%{version}.tar.gz
 BuildRequires: anda-srpm-macros
 BuildRequires: cargo-rpm-macros
+BuildRequires: desktop-file-utils
 BuildRequires: freetype-devel
 BuildRequires: cmake
 BuildRequires: gcc-c++
@@ -22,8 +24,10 @@ BuildRequires: sed
 Requires:      freetype
 Requires:      fontconfig
 Requires:      hicolor-icon-theme
-Requires:      libgcc
 Obsoletes:     %{crate} < %{version}-%{release}
+%if %{with docs}
+Suggests:      %{name}-doc = %{version}-%{release}
+%endif
 Packager:      Gilver E. <rockgrub@disroot.org>
 
 %description %_description
@@ -35,10 +39,18 @@ Requires:      %{name} = %{version}-%{release}
 %description   devel
 This package contains the development libraries for Rio.
 
+%if %{with docs}
+%package       doc
+Summary:       Documentation for Rio
+
+%description   doc
+This package contains all official documentation files for the Rio terminal.
+%endif
+
 %prep
 %autosetup -n %{name}-%{version}
-sed -i 's/Exec=.*/Exec=%{crate}/g' misc/%{name}.desktop
 %cargo_prep_online
+sed -i 's/Exec=.*/Exec=%{crate}/g' misc/%{name}.desktop
 
 %build
 %cargo_build -a
@@ -46,9 +58,12 @@ sed -i 's/Exec=.*/Exec=%{crate}/g' misc/%{name}.desktop
 %install
 install -Dm755 target/rpm/%{name} %{buildroot}%{_bindir}/%{crate}
 install -Dm755 target/rpm/*.so -t %{buildroot}%{_libdir}
-install -Dm644 misc/%{name}.desktop %{buildroot}%{_datadir}/applications/%{name}.desktop
 install -Dm644 docs/static/assets/%{name}-logo.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps/%{name}.svg
+desktop-file-install misc/%{name}.desktop
 %{cargo_license_online -a} > LICENSE.dependencies
+
+%check
+desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 %files
 %doc README.md
@@ -63,6 +78,13 @@ install -Dm644 docs/static/assets/%{name}-logo.svg %{buildroot}%{_iconsdir}/hico
 %{_libdir}/librio_proc_macros.so
 %{_libdir}/libsugarloaf.so
 
+%if %{with docs}
+%files doc
+%doc docs/docs/*
+%endif
+
 %changelog
+* Mon May 5 2025 Gilver E. <rockgrub@disroot.org> - 0.2.13-1
+- Added doc package
 * Sat Mar 8 2025 Gilver E. <rockgrub@disroot.org>
 - Initial package
