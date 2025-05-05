@@ -23,6 +23,7 @@ Patch0:         add-missing-files.patch
 BuildRequires:  gcc-c++
 BuildRequires:  cmake >= 3.16
 BuildRequires:  extra-cmake-modules >= 5.240.0
+BuildRequires:  qt5-qtbase-devel
  
 BuildRequires:  kf%{_qt_major_version}-rpm-macros
 BuildRequires:  kf%{_qt_major_version}-filesystem
@@ -33,7 +34,6 @@ BuildRequires:  cmake(Qt%{_qt_major_version}Gui)
 BuildRequires:  cmake(Qt%{_qt_major_version}Quick)
 BuildRequires:  cmake(Qt%{_qt_major_version}UiTools)
 BuildRequires:  cmake(Qt%{_qt_major_version}Widgets)
-BuildRequires:  cmake(Qt5GuiConfig)
  
 BuildRequires:  cmake(KF%{_qt_major_version}CoreAddons)
 BuildRequires:  cmake(KF%{_qt_major_version}Config)
