@@ -44,8 +44,7 @@ Provides:       %{name}-free-libs%{?_isa} = %{?epoch}:%{version}-%{release}
 Obsoletes:      gstreamer1-plugin-vaapi < %{?epoch}:%{version}-%{release}
 Provides:       gstreamer1-plugin-vaapi = %{?epoch}:%{version}-%{release}
 Provides:       gstreamer1-plugin-vaapi%{?_isa} = %{?epoch}:%{version}-%{release}
-Obsoletes:      %{name}-freeworld < %{?epoch}:%{version}-%{release}
-Provides:       %{name}-freeworld = %{?epoch}:%{version}-%{release}
+Obsoletes:      %{name}-freeworld <= %{?epoch}:%{version}-%{release}
 
 BuildRequires:  gcc-c++
 BuildRequires:  meson >= 0.62
