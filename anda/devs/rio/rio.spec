@@ -50,6 +50,7 @@ This package contains all official documentation files for the Rio terminal.
 %prep
 %autosetup -n %{name}-%{version}
 %cargo_prep_online
+desktop-file-edit --set-key=TryExec --set-value="%{crate}" misc/%{name}.desktop
 desktop-file-edit --set-key=Exec --set-value="%{crate}" misc/%{name}.desktop
 
 %build
