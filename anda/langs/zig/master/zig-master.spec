@@ -8,7 +8,7 @@
 %endif
 %global         llvm_version 20.0.0
 %global         ver 0.15.0-dev.464+dffd18f13
-%bcond bootstrap 1
+%bcond bootstrap 0
 %bcond docs      %{without bootstrap}
 %bcond test      1
 %global zig_cache_dir %{builddir}/zig-cache
@@ -61,7 +61,7 @@ BuildRequires:  help2man
 # for signature verification
 BuildRequires:  minisign
 %if %{without bootstrap}
-BuildRequires:  %{name} <= %{version}
+BuildRequires:  %{name}-bootstrap = %{version}
 %endif
 %if %{with test}
 BuildRequires:  elfutils-libelf-devel
