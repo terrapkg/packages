@@ -37,10 +37,10 @@
     --prefix "%{_prefix}" \
 }
 
-Name:           zig-master
+Name:           zig-master-bootstrap
 Version:        %(echo %{ver} | sed 's/-/~/g')
 Release:        1%?dist
-Summary:        Master builds of the Zig language
+Summary:        Boostrap builds for Zig.
 License:        MIT AND NCSA AND LGPL-2.1-or-later AND LGPL-2.1-or-later WITH GCC-exception-2.0 AND GPL-2.0-or-later AND GPL-2.0-or-later WITH GCC-exception-2.0 AND BSD-3-Clause AND Inner-Net-2.0 AND ISC AND LicenseRef-Fedora-Public-Domain AND GFDL-1.1-or-later AND ZPL-2.1
 URL:            https://ziglang.org
 Source0:        %{url}/builds/zig-%{ver}.tar.xz
@@ -90,8 +90,8 @@ Packager:       Gilver E. <rockgrub@disroot.org>
 
 %description
 Zig is an open source alternative to C. 
-This package provides the master/"prerelease" builds of the Zig compiler and the associated runtime.
-Please note these are not stable releases and should only be used for Zig projects that use these or Git versions of Zig.
+This package provides the bootstrap to build full "prerelease"/master builds of Zig.
+It is not recommended to use this build on its own.
 
 # The Zig stdlib only contains uncompiled code
 %package libs
@@ -101,17 +101,6 @@ BuildArch:      noarch
 
 %description libs
 Zig Standard Library
-
-%if %{with docs}
-%package doc
-Summary:        Documentation for Zig
-Conflicts:      zig-doc
-BuildArch:      noarch
-Requires:       %{name} = %{version}
-
-%description doc
-Documentation for Zig. For more information, visit %{url}
-%endif
 
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
