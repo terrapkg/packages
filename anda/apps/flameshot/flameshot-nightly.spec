@@ -57,28 +57,28 @@ Features:
 
 
 %package bash-completion
-Summary:  Bash completion for %{name}
-Requires:  %{name} = %{version}-%{release}
-Requires:  bash-completion
-Supplements:  (%{name} and bash-completion)
+Summary:		Bash completion for %{name}
+Requires:		%{name} = %{version}-%{release}
+Requires: 		bash-completion
+Supplements:	(%{name} and bash-completion)
 
 %description bash-completion
 Bash command line completion support for %{name}.
 
 %package fish-completion
-Summary:  Fish completion for %{name}
-Requires:  %{name} = %{version}-%{release}
-Requires:  fish
-Supplements:  (%{name} and fish)
+Summary:		Fish completion for %{name}
+Requires:		%{name} = %{version}-%{release}
+Requires:		fish
+Supplements:	(%{name} and fish)
 
 %description fish-completion
 Fish command line completion support for %{name}.
 
 %package zsh-completion
-Summary:  Zsh completion for %{name}
-Requires:  %{name} = %{version}-%{release}
-Requires:  zsh
-Supplements:  (%{name} and zsh)
+Summary:		Zsh completion for %{name}
+Requires:		%{name} = %{version}-%{release}
+Requires:		zsh
+Supplements:	(%{name} and zsh)
 
 %description zsh-completion
 Zsh command line completion support for %{name}.
