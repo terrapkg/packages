@@ -63,6 +63,9 @@ install -Dm644 misc/%{name}.desktop %{buildroot}%{_datadir}/applications/%{name}
 install -Dm644 docs/static/assets/%{name}-logo.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps/%{name}.svg
 %{cargo_license_online -a} > LICENSE.dependencies
 
+%check
+desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
+
 %files
 %doc README.md
 %license LICENSE
