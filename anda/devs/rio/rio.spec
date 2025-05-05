@@ -12,6 +12,7 @@ URL:           http://rioterm.com
 Source0:       https://github.com/raphamorim/%{name}/archive/refs/tags/v%{version}.tar.gz
 BuildRequires: anda-srpm-macros
 BuildRequires: cargo-rpm-macros
+BuildRequires: desktop-file-utils
 BuildRequires: freetype-devel
 BuildRequires: cmake
 BuildRequires: gcc-c++
@@ -35,10 +36,16 @@ Requires:      %{name} = %{version}-%{release}
 %description   devel
 This package contains the development libraries for Rio.
 
+%package       doc
+Summary:       Documentation for Rio
+
+%description   doc
+This package contains all official documentation files for the Rio terminal.
+
 %prep
 %autosetup -n %{name}-%{version}
-sed -i 's/Exec=.*/Exec=%{crate}/g' misc/%{name}.desktop
 %cargo_prep_online
+desktop-file-edit --set-key=Exec --set-value="%{crate}" misc/%{name}.desktop
 
 %build
 %cargo_build -a
@@ -62,6 +69,9 @@ install -Dm644 docs/static/assets/%{name}-logo.svg %{buildroot}%{_iconsdir}/hico
 %{_libdir}/librio_backend.so
 %{_libdir}/librio_proc_macros.so
 %{_libdir}/libsugarloaf.so
+
+%files doc
+%doc docs/docs/
 
 %changelog
 * Sat Mar 8 2025 Gilver E. <rockgrub@disroot.org>
