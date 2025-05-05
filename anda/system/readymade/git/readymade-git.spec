@@ -1,8 +1,8 @@
-%global commit 6519859b9adebd01f6e9cf5546248e5e45ff137c
-%global commit_date 20250429
+%global commit 6be7869f4af9c76748266a235a62e1a3e2a4cf10
+%global commit_date 20250505
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
-Name:           readymade-nightly
+Name:           readymade-git
 Version:        %commit_date.%shortcommit
 Release:        1%?dist
 Summary:        Install ready-made distribution images!
@@ -15,6 +15,7 @@ BuildRequires:  pkgconfig(gnome-desktop-4)
 BuildRequires:  clang-devel
 BuildRequires:  cmake
 Conflicts:      readymade
+Obsoletes:      readymade-nightly < 20250502.4dc78ec-3
 
 Requires:  efibootmgr
 
@@ -26,9 +27,10 @@ It is created as a replacement to Red Hat's Anaconda installer.
 
 %package config-ultramarine
 Summary:        Readymade Configuration for Ultramarine Linux
-Requires:       readymade-nightly
-Provides:       readymade-nightly-config
+Requires:       readymade-git
+Provides:       readymade-git-config
 Conflicts:      readymade-config-ultramarine
+Obsoletes:      readymade-nightly-config-ultramarine < 20250502.4dc78ec-3
 
 %description config-ultramarine
 This package contains the configuration files for Readymade to install Ultramarine Linux.
@@ -57,6 +59,6 @@ ln -sf %{_datadir}/applications/com.fyralabs.Readymade.desktop %{buildroot}%{_da
 %_datadir/polkit-1/actions/com.fyralabs.pkexec.readymade.policy
 %_datadir/applications/com.fyralabs.Readymade.desktop
 %_datadir/applications/liveinst.desktop
-%_datadir/readymade
+%ghost %_datadir/readymade
 %_datadir/icons/hicolor/scalable/apps/com.fyralabs.Readymade.svg
 

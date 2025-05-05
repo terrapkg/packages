@@ -68,14 +68,13 @@
 %endif
 
 %global vulkan_drivers swrast,virtio%{?base_vulkan}%{?intel_platform_vulkan}%{?extra_platform_vulkan}%{?with_nvk:,nouveau}
-%global vulkan_drivers swrast%{?base_vulkan}%{?intel_platform_vulkan}%{?extra_platform_vulkan}%{?with_nvk:,nouveau}
 Name:           %{srcname}
 Summary:        Mesa graphics libraries
 # Make the dep solver always prefer our Mesa over the distro's
 # This should not break anything by default as the Mesa stream is ***EXPLICITLY***
 # disabled by default, and has to be enabled manually. See `terra/release/terra-mesa.repo` for details.
 Epoch:          1
-Version:        25.0.4
+Version:        25.0.5
 Release:        1%?dist
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0
 URL:            http://www.mesa3d.org
@@ -682,8 +681,8 @@ popd
 %files vulkan-drivers
 %{_libdir}/libvulkan_lvp.so
 %{_datadir}/vulkan/icd.d/lvp_icd.*.json
-%dnl %{_libdir}/libvulkan_virtio.so
-%dnl %{_datadir}/vulkan/icd.d/virtio_icd.*.json
+%{_libdir}/libvulkan_virtio.so
+%{_datadir}/vulkan/icd.d/virtio_icd.*.json
 %{_libdir}/libVkLayer_MESA_device_select.so
 %{_datadir}/vulkan/implicit_layer.d/VkLayer_MESA_device_select.json
 %if 0%{?with_vulkan_hw}
