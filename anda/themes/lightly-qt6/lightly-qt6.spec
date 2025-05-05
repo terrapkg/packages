@@ -80,8 +80,7 @@ Lightly is a fork of breeze theme style that aims to be visually modern and mini
    -DCMAKE_INSTALL_PREFIX=%{_prefix} \
    -DCMAKE_BUILD_TYPE=Release \
    -DBUILD_TESTING=OFF \
-   -DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
-   -DINSTALL_NAMESPACE="lightly%{_qt_major_version}"
+   -DKDE_INSTALL_USE_QT_SYS_PATHS=ON 
 %cmake_build
  
 %install
