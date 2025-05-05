@@ -44,6 +44,8 @@ Provides:       %{name}-free-libs%{?_isa} = %{?epoch}:%{version}-%{release}
 Obsoletes:      gstreamer1-plugin-vaapi < %{?epoch}:%{version}-%{release}
 Provides:       gstreamer1-plugin-vaapi = %{?epoch}:%{version}-%{release}
 Provides:       gstreamer1-plugin-vaapi%{?_isa} = %{?epoch}:%{version}-%{release}
+Obsoletes:      %{name}-freeworld < %{?epoch}:%{version}-%{release}
+Provides:       %{name}-freeworld = %{?epoch}:%{version}-%{release}
 
 BuildRequires:  gcc-c++
 BuildRequires:  meson >= 0.62
@@ -237,9 +239,6 @@ Requires:       gstreamer1-plugins-base-devel
 Obsoletes:      %{name}-free-devel < %{?epoch}:%{version}-%{release}
 Provides:       %{name}-free-devel = %{?epoch}:%{version}-%{release}
 Provides:       %{name}-free-devel%{?_isa} = %{?epoch}:%{version}-%{release}
-# Drop after Fedora 36:
-Provides:       gst-transcoder-devel = 1.16.0-4
-Obsoletes:      gst-transcoder-devel < 1.16.0-4
 
 %description    devel
 %summary. 
