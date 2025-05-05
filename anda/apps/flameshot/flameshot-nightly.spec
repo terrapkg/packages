@@ -125,4 +125,4 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{fish_completions_dir}/flameshot.fish
 
 %files zsh-completion
-%{zsh_compleitons_dir}/_flameshot
+%{zsh_completions_dir}/_flameshot
