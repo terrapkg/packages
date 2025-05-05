@@ -33,6 +33,7 @@ BuildRequires:  cmake(Qt%{_qt_major_version}Gui)
 BuildRequires:  cmake(Qt%{_qt_major_version}Quick)
 BuildRequires:  cmake(Qt%{_qt_major_version}UiTools)
 BuildRequires:  cmake(Qt%{_qt_major_version}Widgets)
+BuildRequires:  cmake(Qt5GuiConfig)
  
 BuildRequires:  cmake(KF%{_qt_major_version}CoreAddons)
 BuildRequires:  cmake(KF%{_qt_major_version}Config)
