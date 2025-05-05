@@ -61,15 +61,12 @@ rpm2cpio plugins/*.rpm | cpio -idmv
 %cmake  \
    -DBUILD_TYPE=Release
 
-cd %{__cmake_builddir}
-%make_build
+%cmake_build
 
 %install
-pushd %{__cmake_builddir}
-%make_install
-popd
+%cmake_install
 
-# The Makefile fails to do these steps correctly but just using CMake was even more problematic.
+# The CMakeLists.txt fails to do these steps correctly.
 # The file is also very annoying to patch. Thank God this doesn't seem to update anymore.
 mkdir -p %{buildroot}%{_udevrulesdir}
 mv %{buildroot}/lib/udev/rules.d/60-%{name}.rules -t %{buildroot}%{_udevrulesdir}
