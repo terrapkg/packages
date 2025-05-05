@@ -1,6 +1,7 @@
 %global crate rioterm
 %global _description %{expand:
 A hardware-accelerated terminal emulator focusing to run in desktops and browsers.}
+%bcond docs 1
 
 Name:          rio
 Version:       0.2.13
@@ -25,6 +26,9 @@ Requires:      fontconfig
 Requires:      hicolor-icon-theme
 Requires:      libgcc
 Obsoletes:     %{crate} < %{version}-%{release}
+%if %{with docs}
+Suggests:      %{name}-doc = %{version}
+%endif
 Packager:      Gilver E. <rockgrub@disroot.org>
 
 %description %_description
@@ -36,11 +40,13 @@ Requires:      %{name} = %{version}-%{release}
 %description   devel
 This package contains the development libraries for Rio.
 
+%if %{with docs}
 %package       doc
 Summary:       Documentation for Rio
 
 %description   doc
 This package contains all official documentation files for the Rio terminal.
+%endif
 
 %prep
 %autosetup -n %{name}-%{version}
@@ -70,9 +76,13 @@ install -Dm644 docs/static/assets/%{name}-logo.svg %{buildroot}%{_iconsdir}/hico
 %{_libdir}/librio_proc_macros.so
 %{_libdir}/libsugarloaf.so
 
+%if %{with docs}
 %files doc
-%doc docs/docs/
+%doc docs/docs/*
+%endif
 
 %changelog
+* Mon May 5 2025 Gilver E. <rockgrub@disroot.org> - 0.2.13-1
+- Added doc package
 * Sat Mar 8 2025 Gilver E. <rockgrub@disroot.org>
 - Initial package
