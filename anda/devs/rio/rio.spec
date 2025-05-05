@@ -24,7 +24,6 @@ BuildRequires: sed
 Requires:      freetype
 Requires:      fontconfig
 Requires:      hicolor-icon-theme
-Requires:      libgcc
 Obsoletes:     %{crate} < %{version}-%{release}
 %if %{with docs}
 Suggests:      %{name}-doc = %{version}-%{release}
