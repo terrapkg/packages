@@ -15,6 +15,8 @@ BuildRequires:  pkgconfig(gobject-introspection-1.0)
 BuildRequires:  pkgconfig(gio-2.0)
 BuildRequires:  pkgconfig(gtk4)
 BuildRequires:  pkgconfig(gtk4-layer-shell-0)
+BuildRequires:  python3dist(meson-python)
+BuildRequires:  python3dist(pip)
 
 %global _description %{expand:
 %summary.}
