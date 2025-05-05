@@ -58,15 +58,15 @@ rpm2cpio plugins/*.rpm | cpio -idmv
 
 %build
 # CMake macro fails to generate the build files somehow? This works however. I don't really understand.
-cmake . \
+%cmake  \
    -DBUILD_TYPE=Release
 
-%make_build
+%cmake_build
 
 %install
-%make_install
+%cmake_install
 
-# The Makefile fails to do these steps correctly but just using CMake was even more problematic.
+# The CMakeLists.txt fails to do these steps correctly.
 # The file is also very annoying to patch. Thank God this doesn't seem to update anymore.
 mkdir -p %{buildroot}%{_udevrulesdir}
 mv %{buildroot}/lib/udev/rules.d/60-%{name}.rules -t %{buildroot}%{_udevrulesdir}
