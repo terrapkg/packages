@@ -50,8 +50,7 @@ This package contains all official documentation files for the Rio terminal.
 %prep
 %autosetup -n %{name}-%{version}
 %cargo_prep_online
-desktop-file-edit --set-key=TryExec --set-value="%{crate}" misc/%{name}.desktop
-desktop-file-edit --set-key=Exec --set-value="%{crate}" misc/%{name}.desktop
+sed -i 's/Exec=.*/Exec=%{crate}/g' misc/%{name}.desktop
 
 %build
 %cargo_build -a
@@ -59,8 +58,8 @@ desktop-file-edit --set-key=Exec --set-value="%{crate}" misc/%{name}.desktop
 %install
 install -Dm755 target/rpm/%{name} %{buildroot}%{_bindir}/%{crate}
 install -Dm755 target/rpm/*.so -t %{buildroot}%{_libdir}
-install -Dm644 misc/%{name}.desktop %{buildroot}%{_datadir}/applications/%{name}.desktop
 install -Dm644 docs/static/assets/%{name}-logo.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps/%{name}.svg
+desktop-file-install misc/%{name}.desktop
 %{cargo_license_online -a} > LICENSE.dependencies
 
 %check
