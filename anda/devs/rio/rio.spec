@@ -27,7 +27,7 @@ Requires:      hicolor-icon-theme
 Requires:      libgcc
 Obsoletes:     %{crate} < %{version}-%{release}
 %if %{with docs}
-Suggests:      %{name}-doc = %{version}
+Suggests:      %{name}-doc = %{version}-%{release}
 %endif
 Packager:      Gilver E. <rockgrub@disroot.org>
 
