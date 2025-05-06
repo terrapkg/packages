@@ -37,7 +37,7 @@ jobs:
             git config user.email "raboneko@fyralabs.com"
             git config gpg.format "ssh"
             git config user.signingkey "${{ runner.temp }}/signing_key"
-            msg="bump(weekly): $(git status | grep modified | sed -r 's@.+/([^/]+)/[^/]+\n?@\1 @g' | tr -d '\n')"
+            msg="bump(weekly): $(anda run andax/ci/update_commit_message.rhai)"
             git commit -S -a -m "$msg"
             git format-patch HEAD^
             copy_over () {
