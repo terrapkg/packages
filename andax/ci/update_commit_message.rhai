@@ -1,9 +1,7 @@
 import "anda::cfg" as cfg;
 
 let cmd = `git status | sed -nE '/^\tmodified:/{s@^\tmodified:\s+@@;s@[^/]+$@@;p}' | sort -u`;
-let filelist = sh(`git status | sed -nE '/^\tmodified:/{s@^\tmodified:\s+@@;s@[^/]+$@@;p}'`, #{
-	"stdout": "piped",
-}).ctx.stdout.split('\n');
+let filelist = sh(cmd, #{ "stdout": "piped" }).ctx.stdout.split('\n');
 
 let modified_list = "";
 for file in filelist {
