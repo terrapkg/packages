@@ -29,6 +29,7 @@ BuildRequires:  pkgconfig(x264) >= 0.120
 Obsoletes:      %{name}-free < %{?epoch}:%{version}-%{release}
 Provides:       %{name}-free = %{?epoch}:%{version}-%{release}
 Provides:       %{name}-free%{?_isa} = %{?epoch}:%{version}-%{release}
+Obsoletes:      %{name} < %{?epoch}:%{version}-%{release}
 
 %description
 This module contains a set of plugins that have good quality and are well tested, but can be questionable to distribute due to patents.
