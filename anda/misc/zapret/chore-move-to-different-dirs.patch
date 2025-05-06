@@ -1,0 +1,164 @@
+From 97c9edf12cad05fb8c682ce432a3e8e5ff4c1956 Mon Sep 17 00:00:00 2001
+From: VirtualFreeEx <contact@ffi.lol>
+Date: Thu, 1 May 2025 18:22:41 +0300
+Subject: [PATCH 1/2] chore: move to different dirs
+
+---
+ blockcheck.sh                             | 15 ++++++++-------
+ config.default                            |  3 ---
+ init.d/systemd/nfqws@.service             |  2 +-
+ init.d/systemd/tpws@.service              |  2 +-
+ init.d/systemd/zapret-list-update.service |  2 +-
+ init.d/systemd/zapret.service             |  4 ++--
+ init.d/sysv/functions                     |  9 +++++----
+ init.d/sysv/zapret                        |  2 +-
+ 8 files changed, 19 insertions(+), 20 deletions(-)
+
+diff --git a/blockcheck.sh b/blockcheck.sh
+index a827843..9fb0d2b 100755
+--- a/blockcheck.sh
++++ b/blockcheck.sh
+@@ -3,9 +3,10 @@
+ EXEDIR="$(dirname "$0")"
+ EXEDIR="$(cd "$EXEDIR"; pwd)"
+ ZAPRET_BASE=${ZAPRET_BASE:-"$EXEDIR"}
+-ZAPRET_RW=${ZAPRET_RW:-"$ZAPRET_BASE"}
++ZAPRET_BINARIES="/usr/bin"
++ZAPRET_RW=${ZAPRET_RW:-"/etc/zapret"}
+ ZAPRET_CONFIG=${ZAPRET_CONFIG:-"$ZAPRET_RW/config"}
+-ZAPRET_CONFIG_DEFAULT="$ZAPRET_BASE/config.default"
++ZAPRET_CONFIG_DEFAULT="$ZAPRET_RW/config.default"
+ 
+ CURL=${CURL:-curl}
+ 
+@@ -28,11 +29,11 @@ QNUM=${QNUM:-59780}
+ SOCKS_PORT=${SOCKS_PORT:-1993}
+ TPWS_UID=${TPWS_UID:-1}
+ TPWS_GID=${TPWS_GID:-3003}
+-NFQWS=${NFQWS:-${ZAPRET_BASE}/nfq/nfqws}
+-DVTWS=${DVTWS:-${ZAPRET_BASE}/nfq/dvtws}
+-WINWS=${WINWS:-${ZAPRET_BASE}/nfq/winws}
+-TPWS=${TPWS:-${ZAPRET_BASE}/tpws/tpws}
+-MDIG=${MDIG:-${ZAPRET_BASE}/mdig/mdig}
++NFQWS=${NFQWS:-${ZAPRET_BINARIES}/nfqws}
++DVTWS=${DVTWS:-${ZAPRET_BINARIES}/dvtws}
++WINWS=${WINWS:-${ZAPRET_BINARIES}/winws}
++TPWS=${TPWS:-${ZAPRET_BINARIES}/tpws}
++MDIG=${MDIG:-${ZAPRET_BINARIES}/mdig}
+ DESYNC_MARK=0x10000000
+ IPFW_RULE_NUM=${IPFW_RULE_NUM:-1}
+ IPFW_DIVERT_PORT=${IPFW_DIVERT_PORT:-59780}
+diff --git a/config.default b/config.default
+index 3a79e59..6a4fc31 100644
+--- a/config.default
++++ b/config.default
+@@ -1,9 +1,6 @@
+ # this file is included from init scripts
+ # change values here
+ 
+-# can help in case /tmp has not enough space
+-#TMPDIR=/opt/zapret/tmp
+-
+ # redefine user for zapret daemons. required on Keenetic
+ #WS_USER=nobody
+ 
+diff --git a/init.d/systemd/nfqws@.service b/init.d/systemd/nfqws@.service
+index ca1a6d5..3ddbbb5 100644
+--- a/init.d/systemd/nfqws@.service
++++ b/init.d/systemd/nfqws@.service
+@@ -30,7 +30,7 @@ After=network.target
+ Type=notify
+ Restart=on-failure
+ 
+-ExecSearchPath=/opt/zapret/binaries/my
++ExecSearchPath=/usr/bin
+ ExecStart=nfqws @${CONFIG_DIR}/${INSTANCE}.conf
+ Environment=CONFIG_DIR=/etc/zapret
+ Environment=INSTANCE=%i
+diff --git a/init.d/systemd/tpws@.service b/init.d/systemd/tpws@.service
+index d6cce63..6ce1ca9 100644
+--- a/init.d/systemd/tpws@.service
++++ b/init.d/systemd/tpws@.service
+@@ -30,7 +30,7 @@ After=network.target
+ Type=notify
+ Restart=on-failure
+ 
+-ExecSearchPath=/opt/zapret/binaries/my
++ExecSearchPath=/usr/bin
+ ExecStart=tpws @${CONFIG_DIR}/${INSTANCE}.conf
+ Environment=CONFIG_DIR=/etc/zapret
+ Environment=INSTANCE=%i
+diff --git a/init.d/systemd/zapret-list-update.service b/init.d/systemd/zapret-list-update.service
+index eeee1b0..1a476d2 100644
+--- a/init.d/systemd/zapret-list-update.service
++++ b/init.d/systemd/zapret-list-update.service
+@@ -7,7 +7,7 @@ IgnoreSIGPIPE=no
+ KillMode=control-group
+ GuessMainPID=no
+ RemainAfterExit=no
+-ExecStart=/opt/zapret/ipset/get_config.sh
++ExecStart=/usr/share/zapret/ipset/get_config.sh
+ 
+ [Install]
+ WantedBy=multi-user.target
+diff --git a/init.d/systemd/zapret.service b/init.d/systemd/zapret.service
+index 9d3bf41..4d13d3c 100644
+--- a/init.d/systemd/zapret.service
++++ b/init.d/systemd/zapret.service
+@@ -10,8 +10,8 @@ IgnoreSIGPIPE=no
+ KillMode=none
+ GuessMainPID=no
+ RemainAfterExit=no
+-ExecStart=/opt/zapret/init.d/sysv/zapret start
+-ExecStop=/opt/zapret/init.d/sysv/zapret stop
++ExecStart=/usr/bin/zapret start
++ExecStop=/usr/bin/zapret stop
+ 
+ [Install]
+ WantedBy=multi-user.target
+diff --git a/init.d/sysv/functions b/init.d/sysv/functions
+index 59e488e..4eb7c97 100644
+--- a/init.d/sysv/functions
++++ b/init.d/sysv/functions
+@@ -1,7 +1,8 @@
+ # init script functions library for desktop linux systems
+ 
+-ZAPRET_BASE=${ZAPRET_BASE:-/opt/zapret}
+-ZAPRET_RW=${ZAPRET_RW:-"$ZAPRET_BASE"}
++ZAPRET_BASE=${ZAPRET_BASE:-/usr/share/zapret}
++ZAPRET_BINARIES="/usr/bin"
++ZAPRET_RW=${ZAPRET_RW:-"/etc/zapret"}
+ ZAPRET_CONFIG=${ZAPRET_CONFIG:-"$ZAPRET_RW/config"}
+ . "$ZAPRET_CONFIG"
+ . "$ZAPRET_BASE/common/base.sh"
+@@ -74,12 +75,12 @@ IPSET_CR="$ZAPRET_BASE/ipset/create_ipset.sh"
+ [ -n "$DESYNC_MARK_POSTNAT" ] || DESYNC_MARK_POSTNAT=0x20000000
+ 
+ [ -n "$QNUM" ] || QNUM=200
+-[ -n "$NFQWS" ] || NFQWS="$ZAPRET_BASE/nfq/nfqws"
++[ -n "$NFQWS" ] || NFQWS="$ZAPRET_BINARIES/nfqws"
+ NFQWS_OPT_BASE="$USEROPT --dpi-desync-fwmark=$DESYNC_MARK"
+ 
+ [ -n "$TPPORT" ] || TPPORT=988
+ [ -n "$TPPORT_SOCKS" ] || TPPORT_SOCKS=987
+-[ -n "$TPWS" ] || TPWS="$ZAPRET_BASE/tpws/tpws"
++[ -n "$TPWS" ] || TPWS="$ZAPRET_BINARIES/tpws"
+ TPWS_LOCALHOST4=127.0.0.127
+ 
+ TPWS_OPT_BASE="$USEROPT"
+diff --git a/init.d/sysv/zapret b/init.d/sysv/zapret
+index bb15abb..8d45cec 100755
+--- a/init.d/sysv/zapret
++++ b/init.d/sysv/zapret
+@@ -9,7 +9,7 @@
+ 
+ SCRIPT=$(readlink -f "$0")
+ EXEDIR=$(dirname "$SCRIPT")
+-ZAPRET_BASE=$(readlink -f "$EXEDIR/../..")
++# ZAPRET_BASE=$(readlink -f "$EXEDIR/../..")
+ . "$EXEDIR/functions"
+ 
+ NAME=zapret
+-- 
+2.49.0
+

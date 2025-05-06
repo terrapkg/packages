@@ -8,8 +8,8 @@
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
-Version:        12.8.61
-Release:        2%{?dist}
+Version:        12.9.41
+Release:        1%?dist
 Summary:        CUDA Compiler (NVCC)
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit

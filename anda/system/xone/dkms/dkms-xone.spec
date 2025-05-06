@@ -1,13 +1,13 @@
-%global commit c682b0cd4fd56d2d9639b64787034a375535eb4b
+%global commit 197b160f7806d7d27117b12198cacb7656a07f1f
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20250419
+%global commitdate 20250503
 %global ver 0.3
 %global debug_package %{nil}
 %global modulename xone
 
 Name:           dkms-%{modulename}
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        2%?dist
+Release:        1%?dist
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Epoch:          1
 %endif
