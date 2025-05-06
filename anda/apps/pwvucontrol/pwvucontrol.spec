@@ -6,7 +6,7 @@ License:        GPL-3.0-only
 URL:            https://github.com/saivert/pwvucontrol
 Source0:        %url/archive/refs/tags/%version.tar.gz
 Packager:       madonuko <mado@fyralabs.com>
-BuildRequires:  rust-packaging anda-srpm-macros cargo-rpm-macros
+BuildRequires:  rust-packaging anda-srpm-macros cargo-rpm-macros meson
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(gio-2.0)
 BuildRequires:  pkgconfig(gtk4)
