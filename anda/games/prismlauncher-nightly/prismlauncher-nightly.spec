@@ -3,7 +3,6 @@
 
 %global commit cb8f6f5e80e42dc7d59336109d5ae3daa45f024e
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global libnbtplusplus_commit 23b955121b8217c1c348a9ed2483167a6f3ff4ad
 
 %global commit_date 20250506
 %global snapshot_info %{commit_date}.%{shortcommit}
@@ -36,8 +35,6 @@ Summary:          Minecraft launcher with ability to manage multiple instances
 License:          GPL-3.0-only AND Apache-2.0 AND LGPL-3.0-only AND GPL-3.0-or-later AND GPL-2.0-or-later AND ISC AND OFL-1.1 AND LGPL-2.1-only AND MIT AND BSD-2-Clause-FreeBSD AND BSD-3-Clause AND LGPL-3.0-or-later
 Group:            Amusements/Games
 URL:              https://prismlauncher.org/
-Source0:          https://github.com/PrismLauncher/PrismLauncher/archive/%{commit}/%{real_name}-%{shortcommit}.tar.gz
-Source1:          https://github.com/PrismLauncher/libnbtplusplus/archive/%{libnbtplusplus_commit}/libnbtplusplus-%{libnbtplusplus_commit}.tar.gz
 Patch0:           0001-find-cmark-with-pkgconfig.patch
 
 BuildRequires:    cmake >= 3.15
@@ -53,6 +50,7 @@ BuildRequires:    temurin-17-jdk
 %else
 BuildRequires:    java-17-openjdk-devel
 %endif
+BuildRequires:    anda-srpm-macros
 BuildRequires:    desktop-file-utils
 BuildRequires:    libappstream-glib
 BuildRequires:    tomlplusplus-devel
@@ -112,12 +110,9 @@ multiple installations of Minecraft at once (Fork of MultiMC)
 
 
 %prep
-%autosetup -p1 -n PrismLauncher-%{commit}
+%git_clone https://github.com/%{nice_name}/%{nice_name}.git %{commit}
 
-tar -xzf %{SOURCE1} -C libraries
-
-rmdir libraries/{extra-cmake-modules,filesystem,libnbtplusplus,zlib}/
-mv -f libraries/libnbtplusplus-%{libnbtplusplus_commit} libraries/libnbtplusplus
+rm -rf libraries/{extra-cmake-modules,zlib}/
 
 # Do not set RPATH
 sed -i "s|\$ORIGIN/||" CMakeLists.txt
