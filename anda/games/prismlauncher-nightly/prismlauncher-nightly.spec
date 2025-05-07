@@ -116,7 +116,7 @@ multiple installations of Minecraft at once (Fork of MultiMC)
 
 tar -xzf %{SOURCE1} -C libraries
 
-rmdir libraries/{extra-cmake-modules,filesystem,libnbtplusplus,zlib}/
+rmdir libraries/{extra-cmake-modules,libnbtplusplus,zlib}/
 mv -f libraries/libnbtplusplus-%{libnbtplusplus_commit} libraries/libnbtplusplus
 
 # Do not set RPATH
