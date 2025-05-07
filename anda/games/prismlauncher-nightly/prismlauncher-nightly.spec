@@ -112,7 +112,7 @@ multiple installations of Minecraft at once (Fork of MultiMC)
 %prep
 %git_clone https://github.com/%{nice_name}/%{nice_name}.git %{commit}
 
-rmdir libraries/{extra-cmake-modules,zlib}/
+rm -rf libraries/{extra-cmake-modules,zlib}/
 
 # Do not set RPATH
 sed -i "s|\$ORIGIN/||" CMakeLists.txt
