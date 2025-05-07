@@ -110,7 +110,7 @@ multiple installations of Minecraft at once (Fork of MultiMC)
 
 
 %prep
-%git_clone https://github.com/%{nice_name}.git %{commit}
+%git_clone https://github.com/%{nice_name}/%{nice_name}.git %{commit}
 
 rmdir libraries/{extra-cmake-modules,zlib}/
 
