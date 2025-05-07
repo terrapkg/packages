@@ -42,9 +42,10 @@ ls -l
 %cargo_prep_online
 
 %build
+%{cargo_build} --locked
 
 %install
-%cargo_install
+install -Dm755 target/rpm/readymade -t %buildroot%_bindir
 ./install.sh %buildroot
 ln -sf %{_datadir}/applications/com.fyralabs.Readymade.desktop %{buildroot}%{_datadir}/applications/liveinst.desktop
 
