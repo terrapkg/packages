@@ -99,6 +99,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_bindir}/%{name}
 %{_datadir}/%{name}/
 %{_datadir}/applications/*.desktop
+%{_datadir}/dbus-1/services/%{uuid}.service
 %{_datadir}/glib-2.0/schemas/*.gschema.xml
 %{_datadir}/icons/hicolor/scalable/*/*.svg
 %{_datadir}/icons/hicolor/symbolic/*/*.svg
