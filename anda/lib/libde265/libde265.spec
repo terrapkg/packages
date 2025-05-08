@@ -2,7 +2,7 @@ Name:             libde265
 Summary:          Open H.265 video codec implementation
 Version:          1.0.16
 Release:          1%?dist
-License:          LGPLv3+
+License:          LGPL-3.0-or-later
 URL:              https://www.libde265.org/
 Source0:          https://github.com/strukturag/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 BuildRequires:    autoconf
@@ -50,13 +50,11 @@ autoreconf -vif
 %make_install
 find %{buildroot} -name '*.la' -delete
 
-%{?ldconfig_scriptlets}
-
 %files
 %license COPYING
 %doc AUTHORS
 %{_libdir}/%{name}.so.0
-%{_libdir}/%{name}.so.0.1.8
+%{_libdir}/%{name}.so.0.1.9
 
 %files devel
 %doc README.md
@@ -66,7 +64,6 @@ find %{buildroot} -name '*.la' -delete
 
 %files tools
 %doc README.md
-%{_bindir}/acceleration_speed
 %{_bindir}/bjoentegaard
 %{_bindir}/block-rate-estim
 %{_bindir}/dec265
