@@ -127,8 +127,10 @@ sed -i \
 %install
 %cmake_install
 
+%ifnarch %ix86
 mv %{buildroot}%{_prefix}/lib/*.a %{buildroot}%{_libdir}/
 rm -fr %{buildroot}%{_prefix}/lib
+%endif
 
 # Let RPM pick up docs in the files section
 rm -fr %{buildroot}%{_docdir} %{buildroot}%{_prefix}/licenses
