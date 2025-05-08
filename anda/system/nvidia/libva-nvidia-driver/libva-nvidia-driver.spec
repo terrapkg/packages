@@ -4,6 +4,10 @@
 
 %global upstream_name nvidia-vaapi-driver
 
+%ifarch %ix86
+%global build_cflags %{__build_flags_lang_c} %{?_distro_extra_cflags} -Wno-error=format=
+%endif
+
 Name:           libva-nvidia-driver
 Epoch:          1
 Version:        0.0.13%{!?tag:^%{date}git%{shortcommit0}}
