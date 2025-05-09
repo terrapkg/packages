@@ -29,6 +29,7 @@ Requires:       python3dist(colorz)
 Requires:       python3dist(fast-colorthief)
 Requires:       python3dist(haishoku)
 Requires:       python3dist(modern-colorthief)
+%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 This project is a 16 colors fork of Pywal.
