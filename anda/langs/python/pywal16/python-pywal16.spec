@@ -13,14 +13,9 @@ Source0:        %{pypi_source}
 BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(colorthief)
-BuildRequires:  python3dist(colorthief)
-BuildRequires:  python3dist(colorz)
 BuildRequires:  python3dist(colorz)
 BuildRequires:  python3dist(fast-colorthief)
-BuildRequires:  python3dist(fast-colorthief)
 BuildRequires:  python3dist(haishoku)
-BuildRequires:  python3dist(haishoku)
-BuildRequires:  python3dist(modern-colorthief)
 BuildRequires:  python3dist(modern-colorthief)
 BuildRequires:  python3dist(setuptools)
 Packager:       Gilver E. <rockgrub@disroot.org>
@@ -30,16 +25,10 @@ Packager:       Gilver E. <rockgrub@disroot.org>
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
 Requires:       python3dist(colorthief)
-Requires:       python3dist(colorthief)
-Requires:       python3dist(colorz)
 Requires:       python3dist(colorz)
 Requires:       python3dist(fast-colorthief)
-Requires:       python3dist(fast-colorthief)
-Requires:       python3dist(haishoku)
 Requires:       python3dist(haishoku)
 Requires:       python3dist(modern-colorthief)
-Requires:       python3dist(modern-colorthief)
-Requires:       python3dist(setuptools)
 
 %description -n python3-%{pypi_name}
 This project is a 16 colors fork of Pywal.
