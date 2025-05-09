@@ -1,3 +1,4 @@
+# Credit to LionHeartP from Nobara for most of the spec and letting me know about the need for this package
 %global origname mesa
 %global ver 25.0.4
 
