@@ -454,7 +454,6 @@ rm -vf %{buildroot}%{_libdir}/libGLES*
 %if ! 0%{?with_asahi}
 # This symlink is unconditionally created when any kmsro driver is enabled
 # We don't want this one so delete it
-# Thank you LionHeartP from Nobara <3
 rm -vf %{buildroot}%{_libdir}/dri/apple_dri.so
 %endif
 
