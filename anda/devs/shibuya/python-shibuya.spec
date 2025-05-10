@@ -10,6 +10,7 @@ Summary:        A clean, responsive, and customizable Sphinx documentation theme
 License:        BSD-3-Clause
 URL:            https://shibuya.lepture.com
 Source0:        https://github.com/lepture/shibuya/archive/refs/tags/%{version}.tar.gz
+BuildRequires:  babel
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(babel)
 BuildRequires:  python3dist(setuptools)
@@ -84,7 +85,6 @@ PYTHONPATH=${PWD} pybabel compile -D sphinx -d src/shibuya/locale
 
 %if %{with docs}
 %files -n python3-%{pypi_name}-doc
-%doc 
 %endif
 
 %changelog
