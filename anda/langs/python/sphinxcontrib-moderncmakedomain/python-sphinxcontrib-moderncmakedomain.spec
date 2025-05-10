@@ -31,8 +31,10 @@ Modern CMake domain entries, originally from Kitware.
 %prep
 %autosetup -n %{pypi_name}-%{version}
 
+%if 0%{?fedora} < 42
 %generate_buildrequires
 %pyproject_buildrequires
+%endif
 
 %build
 %pyproject_wheel
