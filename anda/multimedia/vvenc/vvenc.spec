@@ -45,7 +45,6 @@ developing applications that use %{name}.
 %autosetup -p1
 
 %build
-export CXXFLAGS="%{optflags} -Wno-error=maybe-uninitialized -Wno-error=uninitialized"
 %ifarch %ix86
 export LDFLAGS="%{optflags} --unresolved-symbols=ignore-in-object-files"
 %endif
