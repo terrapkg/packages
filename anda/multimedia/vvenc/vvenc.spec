@@ -51,7 +51,10 @@ developing applications that use %{name}.
 %cmake \
     -DCMAKE_SKIP_INSTALL_RPATH=OFF \
     -DVVENC_INSTALL_FULLFEATURE_APP=ON \
-    -DVVENC_ENABLE_X86_SIMD=TRUE
+    -DVVENC_ENABLE_X86_SIMD=TRUE \
+%ifarch %ix86
+    -DVVENC_OPT_TARGET_ARCH=%{_arch}
+%endif
 %cmake_build
 
 %install
