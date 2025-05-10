@@ -669,3 +669,6 @@ mv doc/*.html doc/html
 %{_libdir}/pkgconfig/libswscale.pc
 %{_libdir}/libswscale.so
 %{_mandir}/man3/libswscale.3*
+
+%changelog
+%autochangelog
