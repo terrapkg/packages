@@ -12,3 +12,6 @@ open_file("anda/multimedia/ffmpeg/VERSION_x265.txt", "w").write(ffmpeg_ver);
 
 let tesseract_ver = bump::bodhi("tesseract", bump::as_bodhi_ver(labels.branch));
 open_file("anda/multimedia/ffmpeg/VERSION_tesseract.txt", "w").write(tesseract_ver);
+
+let vvenc_ver = get(`https://madoguchi.fyralabs.com/v4/terra${branch}/packages/vvenc-libs`).json().ver;
+open_file("anda/multimedia/ffmpeg/VERSION_vvenc.txt", "w").write(vvenc_ver);
