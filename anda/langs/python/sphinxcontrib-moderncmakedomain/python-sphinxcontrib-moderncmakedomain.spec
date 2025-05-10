@@ -15,6 +15,7 @@ BuildRequires:  python3dist(hatchling)
 BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(setuptools)
+BuildRequires:  python3dist(sphinx)
 BuildArch:      noarch
 Packager:       Gilver E. <rockgrub@disroot.org>
 
@@ -24,6 +25,7 @@ Modern CMake domain entries, originally from Kitware.
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
 Requires:       python3dist(hatchling)
+Requires:       python3dist(sphinx)
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
