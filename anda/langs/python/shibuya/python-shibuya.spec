@@ -1,6 +1,7 @@
 %global pypi_name shibuya
 %global _description %{expand:
 A responsive, good looking with modern design documentation theme for Sphinx, with great supports for many sphinx extensions.}
+%bcond docs 1
 
 Name:           python-%{pypi_name}
 Version:        2025.4.25
@@ -12,6 +13,7 @@ Source0:        %{pypi_source}
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(sphinx)
+BuildRequires:  python3dist(babel)
 BuildArch:      noarch
 Packager:       Gilver E. <rockgrub@disroot.org>
 
@@ -45,6 +47,14 @@ Recommends:     python3dist(sphinxcontrib-youtube)
 
 %description -n python3-%{pypi_name} %_description
 
+%if %{with_docs}
+%package -n     python3-%{pypi_name}-doc
+Summary:        Doc files for Shibuya
+
+%description -n python3-%{pypi_name}-doc
+This package contains the official docs for Shibuya.
+%endif
+
 %prep
 %autosetup -n %{pypi_name}-%{version}
 # Remove bundled egg-info
@@ -52,6 +62,13 @@ rm -rf %{pypi_name}.egg-info
 
 %build
 %py3_build
+
+%if %{with_docs}
+PYTHONPATH=${PWD} sphinx-build docs build/_html -b dirhtml -a
+%endif
+
+# Language files
+PYTHONPATH=${PWD} pybabel compile -D sphinx -d src/shibuya/locale
 
 %install
 %py3_install
@@ -61,6 +78,11 @@ rm -rf %{pypi_name}.egg-info
 %doc README.md
 %{python3_sitelib}/%{pypi_name}
 %{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+
+%if %{with_docs}
+%files -n python3-%{pypi_name}-doc
+%doc 
+%endif
 
 %changelog
 * Sat May 10 2025 Gilver E. <rockgrub@disroot.org> - 2025.4.25-1
