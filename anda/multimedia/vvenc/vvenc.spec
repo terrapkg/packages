@@ -1,3 +1,5 @@
+%global build_cxxflags %{__build_flags_lang_cxx} %{?_distro_extra_cxxflags} -Wno-error=maybe-uninitialized -Wno-error=uninitialized
+
 Name:           vvenc
 Version:        1.13.1
 Release:        1%{?dist}
@@ -44,6 +46,9 @@ developing applications that use %{name}.
 
 %build
 export CXXFLAGS="%{optflags} -Wno-error=maybe-uninitialized -Wno-error=uninitialized"
+%ifarch %ix86
+export LDFLAGS="%{optflags} --unresolved-symbols=ignore-in-object-files"
+%endif
 %cmake \
     -DCMAKE_SKIP_INSTALL_RPATH=OFF \
     -DVVENC_INSTALL_FULLFEATURE_APP=ON
