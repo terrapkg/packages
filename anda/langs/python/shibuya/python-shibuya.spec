@@ -9,7 +9,7 @@ Release:        1%{?dist}
 Summary:        A clean, responsive, and customizable Sphinx documentation theme with light/dark mode
 License:        BSD-3-Clause
 URL:            https://shibuya.lepture.com
-Source0:        https://github.com/lepture/shibuya/releases/tag/%{version}.tar.gz
+Source0:        https://github.com/lepture/shibuya/archive/refs/tag/%{version}.tar.gz
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(sphinx)
