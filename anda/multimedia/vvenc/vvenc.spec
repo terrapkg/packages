@@ -10,7 +10,7 @@ URL:            https://github.com/fraunhoferhhi/%{name}
 Source0:        %{url}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 # Fix for i386/ARM32 builds
 Patch0:         %{url}/commit/ebce395254d9d7be7dc00cec7b49c7ed1d9eebec.patch
-Patch1:         %{url}/commit/bfd55ee783bfe30fc73f6f314b066b84bb1e5b60.patch
+%dnl Patch1:         %{url}/commit/bfd55ee783bfe30fc73f6f314b066b84bb1e5b60.patch
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
