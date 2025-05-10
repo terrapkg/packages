@@ -53,7 +53,7 @@ developing applications that use %{name}.
     -DVVENC_INSTALL_FULLFEATURE_APP=ON \
     -DVVENC_ENABLE_X86_SIMD=TRUE \
 %ifarch %ix86
-    -DVVENC_OPT_TARGET_ARCH=%{_arch}
+    -DVVENC_OPT_TARGET_ARCH=i686
 %endif
 %cmake_build
 
