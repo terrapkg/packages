@@ -11,9 +11,9 @@ License:        BSD-3-Clause
 URL:            https://shibuya.lepture.com
 Source0:        https://github.com/lepture/shibuya/archive/refs/tag/%{version}.tar.gz
 BuildRequires:  python3-devel
+BuildRequires:  python3dist(babel)
 BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(sphinx)
-BuildRequires:  python3dist(babel)
 BuildArch:      noarch
 Packager:       Gilver E. <rockgrub@disroot.org>
 
