@@ -400,6 +400,12 @@ This subpackage contains the headers for FFmpeg libswscale.
 #sed -i -e 's|#!/bin/sh|#!/bin/sh -x|g' configure
 
 %build
+# Work around a new GCC15 change until FFmpeg updates for it
+%if 0%{?fedora} >= 42
+%if "%{version}" <= "7.1.1"
+export CFLAGS="%{optflags} -Wno-incompatible-pointer-types
+%endif
+%endif
 %set_build_flags
 
 ./configure \
