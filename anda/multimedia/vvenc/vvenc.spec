@@ -1,5 +1,3 @@
-%global vvenc_majorminor %(v=%{version}; echo ${v:0:4})
-
 Name:           vvenc
 Version:        1.13.1
 Release:        1%{?dist}
@@ -11,6 +9,9 @@ Source0:        %{url}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
+
+# Define this after the version is defined
+%global vvenc_majorminor %(v=%{version}; echo ${v:0:4})
 
 %description
 VVenC, the Fraunhofer Versatile Video Encoder, is a fast and efficient software
