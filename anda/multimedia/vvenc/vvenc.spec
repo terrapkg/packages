@@ -2,12 +2,14 @@
 
 Name:           vvenc
 Version:        1.13.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        VVenC, the Fraunhofer Versatile Video Encoder
 License:        BSD-3-Clause
 URL:            https://github.com/fraunhoferhhi/%{name}
 
 Source0:        %{url}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+# Fix for i386 builds
+Patch0:         %{url}/pull/525.patch
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
@@ -45,9 +47,6 @@ developing applications that use %{name}.
 %autosetup -p1
 
 %build
-%ifarch %ix86
-export LDFLAGS="%{optflags} -Wl,--unresolved-symbols=ignore-all"
-%endif
 %cmake \
     -DCMAKE_SKIP_INSTALL_RPATH=OFF \
     -DVVENC_INSTALL_FULLFEATURE_APP=ON
