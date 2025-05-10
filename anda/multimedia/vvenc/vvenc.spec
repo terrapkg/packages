@@ -1,5 +1,7 @@
+%global vvenc_majorminor %(v=%{version}; echo ${v:0:4})
+
 Name:           vvenc
-Version:        1.12.1
+Version:        1.13.1
 Release:        1%{?dist}
 Summary:        VVenC, the Fraunhofer Versatile Video Encoder
 License:        BSD-3-Clause
@@ -56,7 +58,7 @@ export CXXFLAGS="%{optflags} -Wno-error=maybe-uninitialized -Wno-error=uninitial
 %files libs
 %license LICENSE.txt
 %doc README.md changelog.txt
-%{_libdir}/lib%{name}.so.1.12
+%{_libdir}/lib%{name}.so.%{vvenc_majorminor}
 %{_libdir}/lib%{name}.so.%{version}
 
 %files devel
@@ -66,8 +68,4 @@ export CXXFLAGS="%{optflags} -Wno-error=maybe-uninitialized -Wno-error=uninitial
 %{_libdir}/pkgconfig/lib%{name}.pc
 
 %changelog
-* Mon Nov 11 2024 Simone Caronni <negativo17@gmail.com> - 1.12.1-1
-- Update to 1.12.1.
-
-* Mon Aug 19 2024 Simone Caronni <negativo17@gmail.com> - 1.12.0-1
-- First build.
+%autochangelog
