@@ -1,7 +1,7 @@
 %global pypi_name shibuya
 %global _description %{expand:
 A responsive, good looking with modern design documentation theme for Sphinx, with great supports for many sphinx extensions.}
-%bcond docs 1
+%bcond docs 0
 
 Name:           python-%{pypi_name}
 Version:        2025.4.25
@@ -14,6 +14,9 @@ BuildRequires:  python3-devel
 BuildRequires:  python3dist(babel)
 BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(sphinx)
+%if %{with_docs}
+BuildRequires:  python3dist(shibuya)
+%endif
 BuildArch:      noarch
 Packager:       Gilver E. <rockgrub@disroot.org>
 
