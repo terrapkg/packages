@@ -46,7 +46,7 @@ developing applications that use %{name}.
 
 %build
 %ifarch %ix86
-export LDFLAGS="$LDFLAGS --unresolved-symbols=ignore-in-object-files"
+export LDFLAGS="%{optflags} -Wl,--build-id=sha1,--unresolved-symbols=ignore-in-object-files"
 %endif
 %cmake \
     -DCMAKE_SKIP_INSTALL_RPATH=OFF \
