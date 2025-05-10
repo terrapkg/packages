@@ -72,7 +72,12 @@ PYTHONPATH=${PWD} sphinx-build docs build/_html -b dirhtml -a
 %endif
 
 # Language files
-PYTHONPATH=${PWD} pybabel compile -D sphinx -d src/shibuya/locale
+mkdir -p %{buildroot}%{_datadir}/locale
+for l in de es fr ja ko pt pt_BR zh zh_TW; do
+pybabel init -D sphinx -i src/shibuya/locale/sphinx.pot -d src/shibuya/locale -l $l
+pybabel update -D sphinx -i src/shibuya/locale/sphinx.pot -d src/shibuya/locale -l $l
+pybabel compile -D sphinx -d src/shibuya/locale
+done
 
 %install
 %py3_install
