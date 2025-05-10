@@ -9,8 +9,11 @@ Release:        1%{?dist}
 Summary:        A clean, responsive, and customizable Sphinx documentation theme with light/dark mode
 License:        BSD-3-Clause
 URL:            https://shibuya.lepture.com
+%if %{with docs}
 Source0:        https://github.com/lepture/shibuya/archive/refs/tags/%{version}.tar.gz
-BuildRequires:  babel
+%else
+Source0:        %{pypi_source}
+%endif
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(babel)
 BuildRequires:  python3dist(setuptools)
@@ -70,14 +73,6 @@ rm -rf %{pypi_name}.egg-info
 %if %{with docs}
 PYTHONPATH=${PWD} sphinx-build docs build/_html -b dirhtml -a
 %endif
-
-# Language files
-mkdir -p %{buildroot}%{_datadir}/locale
-for l in de es fr ja ko pt pt_BR zh zh_TW; do
-pybabel init -D sphinx -i src/shibuya/locale/sphinx.pot -d src/shibuya/locale -l $l
-pybabel update -D sphinx -i src/shibuya/locale/sphinx.pot -d src/shibuya/locale -l $l
-pybabel compile -D sphinx -d src/shibuya/locale
-done
 
 %install
 %py3_install
