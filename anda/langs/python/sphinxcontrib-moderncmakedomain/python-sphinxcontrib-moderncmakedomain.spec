@@ -12,6 +12,7 @@ URL:            https://github.com/scikit-build/moderncmakedomain
 Source0:        %{pypi_source}
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(hatchling)
+BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(setuptools)
 BuildArch:      noarch
