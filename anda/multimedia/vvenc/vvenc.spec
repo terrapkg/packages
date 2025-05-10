@@ -8,8 +8,9 @@ License:        BSD-3-Clause
 URL:            https://github.com/fraunhoferhhi/%{name}
 
 Source0:        %{url}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
-# Fix for i386 builds
-Patch0:         %{url}/pull/525.patch
+# Fix for i386/ARM32 builds
+Patch0:         %{url}/ebce395254d9d7be7dc00cec7b49c7ed1d9eebec.patch
+Patch1:         %{url}/bfd55ee783bfe30fc73f6f314b066b84bb1e5b60.patch
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
@@ -49,7 +50,8 @@ developing applications that use %{name}.
 %build
 %cmake \
     -DCMAKE_SKIP_INSTALL_RPATH=OFF \
-    -DVVENC_INSTALL_FULLFEATURE_APP=ON
+    -DVVENC_INSTALL_FULLFEATURE_APP=ON \
+    -DVVENC_ENABLE_X86_SIMD
 %cmake_build
 
 %install
