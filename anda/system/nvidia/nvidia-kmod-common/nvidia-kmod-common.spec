@@ -66,7 +66,7 @@ if [ "$1" -eq "2" ] && [ -x %{_bindir}/nvidia-boot-update ]; then
 
 fi ||:
 
-%post
+%posttrans
 for id in 1340 1341 1344 1346 1347 1348 1349 134b 134d 134e 134f 137a 137b 1380 1381 1382 1390 1391 1392 1393 1398 1399 139a 139b 139c 139d 13b0 13b1 13b2 13b3 13b4 13b6 13b9 13ba 13bb 13bc 13c0 13c2 13d7 13d8 13d9 13da 13f0 13f1 13f2 13f3 13f8 13f9 13fa 13fb 1401 1402 1406 1407 1427 1430 1431 1436 15f0 15f7 15f8 15f9 1617 1618 1619 161a 1667 174d 174e 179c 17c2 17c8 17f0 17f1 17fd 1b00 1b02 1b06 1b30 1b38 1b80 1b81 1b82 1b83 1b84 1b87 1ba0 1ba1 1ba2 1bb0 1bb1 1bb4 1bb5 1bb6 1bb7 1bb8 1bb9 1bbb 1bc7 1be0 1be1 1c02 1c03 1c04 1c06 1c07 1c09 1c20 1c21 1c22 1c23 1c30 1c31 1c60 1c61 1c62 1c81 1c82 1c83 1c8c 1c8d 1c8f 1c90 1c91 1c92 1c94 1c96 1cb1 1cb2 1cb3 1cb6 1cba 1cbb 1cbc 1cbd 1cfa 1cfb 1d01 1d02 1d10 1d11 1d12 1d13 1d16 1d33 1d34 1d52 1d81 1db1 1db3 1db4 1db5 1db6 1db7 1db8 1dba 1df0 1df2 1df6 1e09 1f0b 2189; do
 if lspci | grep -i NVIDIA | head -n 1 | cut -d ':' -f 3 | cut -d '[' -f 1 | sed -e 's/^[[:space:]]*//' | grep "10de:$id" &>/dev/null;
  then
