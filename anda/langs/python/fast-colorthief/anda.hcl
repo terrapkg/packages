@@ -1,5 +1,5 @@
 project "pkg" {
     rpm {
-        spec = "fast-colorthief.spec"
+        spec = "python-fast-colorthief.spec"
     }
 }
