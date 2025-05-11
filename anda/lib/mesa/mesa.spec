@@ -90,9 +90,6 @@ Source1:        Mesa-MLAA-License-Clarification-Email.txt
 # https://github.com/bazzite-org/mesa
 Patch20:        bazzite.patch
 
-# temporary: DOOM: The Dark Ages patches from SteamOS
-Patch21:        doom-dta.patch
-
 BuildRequires:  meson >= 1.3.0
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
