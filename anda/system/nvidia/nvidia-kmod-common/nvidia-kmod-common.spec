@@ -72,6 +72,7 @@ if lspci | grep -i NVIDIA | head -n 1 | cut -d ':' -f 3 | cut -d '[' -f 1 | sed 
  then
   if cat /etc/nvidia/kernel.conf | grep "MODULE_VARIANT=kernel-open" &>/dev/null;
     then sed -i -e 's/kernel-open$/kernel/g' /etc/nvidia/kernel.conf &>/dev/null
+     akmods --rebuild &>/dev/null || dkms build -m nvidia/%{version} --force &>/dev/null && dkms install -m nvidia/%{version} --force &>/dev/null || :
   fi
 fi
 done
