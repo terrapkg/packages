@@ -10,6 +10,7 @@ License:        MIT
 URL:            https://github.com/bedapisl/fast-colorthief
 Source0:        %{pypi_source}
 BuildRequires:  cmake
+BuildRequires:  doxygen
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  pybind11-devel
@@ -21,6 +22,7 @@ BuildRequires:  python3dist(furo)
 BuildRequires:  python3dist(numpy)
 BuildRequires:  python3dist(pillow)
 BuildRequires:  python3dist(pip)
+BuildRequires:  python3dist(pybind11)
 BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(sphinx)
 BuildRequires:  python3dist(sphinx-copybutton)
@@ -56,10 +58,10 @@ Documentation files for %{pypi_name}
 rm -rf %{pypi_name}.egg-info
 
 %build
-# This is not a fully Python project and is mostly C++, for whatever reason I needed to call both CMake and pyproject to build it
+# This is not a fully Python project and is mostly C++
+%pyproject_wheel
 %cmake
 %cmake_build
-%pyproject_wheel
 %if %{with docs}
 # generate html docs
 PYTHONPATH=${PWD} sphinx-build-3 pybind11/docs html
@@ -78,7 +80,7 @@ rm -rf html/.{doctrees,buildinfo}
 %{python3_sitearch}/__pycache__/*
 %{python3_sitearch}/fast_colorthief.py
 %{python3_sitearch}/version.py
-%{python3_sitearch}/fast_colorthief_backend.cpython-313-%{_arch}-linux-gnu.so
+%{python3_sitearch}/fast_colorthief_backend.cpython-*-%{_arch}-linux-gnu.so
 %{python3_sitearch}/fast_colorthief-%{version}.dist-info
 
 %if %{with docs}
@@ -87,5 +89,5 @@ rm -rf html/.{doctrees,buildinfo}
 %endif
 
 %changelog
-* Fri May 11 2025 Gilver E. <rockgrub@disroot.org> - 0.0.5-1
+* Sun May 11 2025 Gilver E. <rockgrub@disroot.org> - 0.0.5-1
 - Initial package.
