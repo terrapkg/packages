@@ -39,7 +39,7 @@
 
 Name:           zig-master-bootstrap
 Version:        %(echo %{ver} | sed 's/-/~/g')
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Boostrap builds for Zig.
 License:        MIT AND NCSA AND LGPL-2.1-or-later AND LGPL-2.1-or-later WITH GCC-exception-2.0 AND GPL-2.0-or-later AND GPL-2.0-or-later WITH GCC-exception-2.0 AND BSD-3-Clause AND Inner-Net-2.0 AND ISC AND LicenseRef-Fedora-Public-Domain AND GFDL-1.1-or-later AND ZPL-2.1
 URL:            https://ziglang.org
@@ -67,6 +67,8 @@ BuildRequires:  %{name} <= %{version}
 BuildRequires:  elfutils-libelf-devel
 BuildRequires:  libstdc++-static
 %endif
+# Zig invokes the C compiler to figure out system info
+Requires:       gcc
 Requires:       %{name}-libs = %{version}
 # Apache-2.0 WITH LLVM-exception OR NCSA OR MIT
 Provides:       bundled(compiler-rt) = %{llvm_version}
@@ -197,6 +199,8 @@ install -Dpm644 zig.1 -t %{buildroot}%{_mandir}/man1/
 %endif
 
 %changelog
+* Sat May 10 2025 Gilver E. <rockgrub@disroot.org> - 0.15.0~dev.482+2c241b263-2
+- Added GCC runtime dependency to pass system information to Zig
 * Fri Apr 25 2025 Gilver E. <rockgrub@disroot.org> - 0.15.0~dev.384+c06fecd46-2
 - Ported Fedora Zig patches
 * Wed Apr 23 2025 Gilver E. <rockgrub@disroot.org>
