@@ -70,8 +70,8 @@ rm -rf html/.{doctrees,buildinfo}
 %endif
 
 %install
-%cmake_install
 %pyproject_install
+%cmake_install
 
 %files -n python3-%{pypi_name}
 %license pybind11/LICENSE
