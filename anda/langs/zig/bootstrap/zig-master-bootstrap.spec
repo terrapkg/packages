@@ -199,7 +199,7 @@ install -Dpm644 zig.1 -t %{buildroot}%{_mandir}/man1/
 %endif
 
 %changelog
-* Sat May 10 2025 Gilver E. <rockgrub@disroot.org> - 0.15.0~dev.471+369177f0b-2
+* Sat May 10 2025 Gilver E. <rockgrub@disroot.org> - 0.15.0~dev.482+2c241b263-2
 - Added GCC runtime dependency to pass system information to Zig
 * Fri Apr 25 2025 Gilver E. <rockgrub@disroot.org> - 0.15.0~dev.384+c06fecd46-2
 - Ported Fedora Zig patches
