@@ -84,19 +84,22 @@ Release:        1%?dist
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0
 URL:            http://www.mesa3d.org
 
-
-
 Source0:        https://archive.mesa3d.org/%{srcname}-%{version}.tar.xz
 # src/gallium/auxiliary/postprocess/pp_mlaa* have an ... interestingly worded license.
 # Source1 contains email correspondence clarifying the license terms.
 # Fedora opts to ignore the optional part of clause 2 and treat that code as 2 clause BSD.
 Source1:        Mesa-MLAA-License-Clarification-Email.txt
 
+Patch10:        gnome-shell-glthread-disable.patch
+
 # https://github.com/bazzite-org/mesa
 Patch20:        bazzite.patch
 
-# temporary: DOOM: The Dark Ages patches from SteamOS
-Patch21:        doom-dta.patch
+# This patch makes Fedora CI fail and causes issues in QEMU. Revert it until
+# we find a fix.
+# https://bugzilla.redhat.com/show_bug.cgi?id=2360851
+# https://gitlab.freedesktop.org/mesa/mesa/-/issues/13009
+Patch30:        0001-Revert-kopper-Explicitly-choose-zink.patch
 
 BuildRequires:  meson >= 1.3.0
 BuildRequires:  gcc
@@ -158,7 +161,7 @@ BuildRequires:  flatbuffers-devel
 BuildRequires:  flatbuffers-compiler
 BuildRequires:  xtensor-devel
 %endif
-%if 0%{?with_opencl} || 0%{?with_nvk} || 0%{?with_intel_clc}
+%if 0%{?with_opencl} || 0%{?with_nvk} || 0%{?with_intel_clc} || 0%{?with_asahi} || 0%{?with_panfrost}
 BuildRequires:  clang-devel
 BuildRequires:  pkgconfig(libclc)
 BuildRequires:  pkgconfig(SPIRV-Tools)
@@ -214,7 +217,7 @@ Obsoletes:      %{name}-libOSMesa < %{?epoch:%{epoch}:}25.1.0~rc2-1
 
 %package libGL-devel
 Summary:        Mesa libGL development package
-Requires:       %{name}-libGL%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       (%{name}-libGL%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release} if %{name}-libGL%{?_isa})
 Requires:       libglvnd-devel%{?_isa} >= 1:1.3.2
 Provides:       libGL-devel
 Provides:       libGL-devel%{?_isa}
@@ -228,14 +231,14 @@ Obsoletes:      %{name}-libOSMesa-devel < %{?epoch:%{epoch}:}25.1.0~rc2-1
 Summary:        Mesa libEGL runtime libraries
 Requires:       libglvnd-egl%{?_isa} >= 1:1.3.2
 Requires:       %{name}-libgbm%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-Recommends:     %{name}-dri-drivers%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       %{name}-dri-drivers%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description libEGL
 %{summary}.
 
 %package libEGL-devel
 Summary:        Mesa libEGL development package
-Requires:       %{name}-libEGL%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       (%{name}-libEGL%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release} if %{name}-libEGL%{?_isa})
 Requires:       libglvnd-devel%{?_isa} >= 1:1.3.2
 Requires:       %{name}-khr-devel%{?_isa}
 Provides:       libEGL-devel
@@ -250,7 +253,7 @@ Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{rel
 %if 0%{?with_va}
 Recommends:     %{name}-va-drivers%{?_isa}
 %endif
-Obsoletes:      %{name}-libglapi < 1:25.0.0~rc2-1
+Obsoletes:      %{name}-libglapi < 25.0.0~rc2-1
 
 %description dri-drivers
 %{summary}.
@@ -259,7 +262,7 @@ Obsoletes:      %{name}-libglapi < 1:25.0.0~rc2-1
 %package        va-drivers
 Summary:        Mesa-based VA-API video acceleration drivers
 Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes:      %{name}-vaapi-drivers < 1:22.2.0-5
+Obsoletes:      %{name}-vaapi-drivers < 22.2.0-5
 
 %description va-drivers
 %{summary}.
@@ -318,7 +321,7 @@ Provides:       libxatracker-devel%{?_isa}
 %if 0%{?with_opencl}
 %package libOpenCL
 Summary:        Mesa OpenCL runtime library
-Requires:       ocl-icd%{?_isa}
+Requires:       (ocl-icd%{?_isa} or OpenCL-ICD-Loader%{?_isa})
 Requires:       libclc%{?_isa}
 Requires:       %{name}-libgbm%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       opencl-filesystem
@@ -398,7 +401,7 @@ export MESON_PACKAGE_CACHE_DIR="%{cargo_registry}/"
 %if 0%{?with_hardware}
   -Dgallium-drivers=llvmpipe,virgl,nouveau%{?with_r300:,r300}%{?with_crocus:,crocus}%{?with_i915:,i915}%{?with_iris:,iris}%{?with_vmware:,svga}%{?with_radeonsi:,radeonsi}%{?with_r600:,r600}%{?with_asahi:,asahi}%{?with_freedreno:,freedreno}%{?with_etnaviv:,etnaviv}%{?with_tegra:,tegra}%{?with_vc4:,vc4}%{?with_v3d:,v3d}%{?with_lima:,lima}%{?with_panfrost:,panfrost}%{?with_vulkan_hw:,zink} \
 %else
-  -Dgallium-drivers=swrast,virgl \
+  -Dgallium-drivers=llvmpipe,virgl \
 %endif
   -Dgallium-vdpau=%{?with_vdpau:enabled}%{!?with_vdpau:disabled} \
   -Dgallium-va=%{?with_va:enabled}%{!?with_va:disabled} \
@@ -494,7 +497,6 @@ popd
 %{_includedir}/EGL/eglmesaext.h
 
 %files libgbm
-%{_libdir}/gbm/dri_gbm.so
 %{_libdir}/libgbm.so.1
 %{_libdir}/libgbm.so.1.*
 %files libgbm-devel
@@ -551,6 +553,7 @@ popd
 %files dri-drivers
 %{_datadir}/drirc.d/00-mesa-defaults.conf
 %{_libdir}/libgallium-*.so
+%{_libdir}/gbm/dri_gbm.so
 %{_libdir}/dri/kms_swrast_dri.so
 %{_libdir}/dri/libdril_dri.so
 %{_libdir}/dri/swrast_dri.so
@@ -713,6 +716,6 @@ popd
 %{_datadir}/vulkan/icd.d/powervr_mesa_icd.*.json
 %endif
 %endif
- 
+
 %changelog
 %autochangelog
