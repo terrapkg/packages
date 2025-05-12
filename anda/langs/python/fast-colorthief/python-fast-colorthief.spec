@@ -58,20 +58,21 @@ Documentation files for %{pypi_name}
 rm -rf %{pypi_name}.egg-info
 
 %build
-# This is not a fully Python project and is mostly C++
+### This is not a fully Python project and is mostly C++
+## Disable PIC
+# https://docs.fedoraproject.org/en-US/packaging-guidelines/#_pie
+sed -i 's/CMAKE_POSITION_INDEPENDENT_CODE ON/CMAKE_POSITION_INDEPENDENT_CODE OFF/' CMakeLists.txt
 %pyproject_wheel
-%cmake
-%cmake_build
+
 %if %{with docs}
-# generate html docs
-PYTHONPATH=${PWD} sphinx-build-3 pybind11/docs html
+# generate docs
+PYTHONPATH=${PWD} sphinx-build pybind11/docs html
 # remove the sphinx-build leftovers
 rm -rf html/.{doctrees,buildinfo}
 %endif
 
 %install
 %pyproject_install
-%cmake_install
 
 %files -n python3-%{pypi_name}
 %license pybind11/LICENSE
