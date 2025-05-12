@@ -1,0 +1,16 @@
+commit 86a77b2e3d69a09f75992e6795903ab56df1a900 (HEAD -> main, fork/main)
+Author: Adam Fidel <adam@fidel.id>
+Date:   Tue Apr 22 14:52:16 2025 -0500
+
+    feat: add MimeType to .desktop file
+
+diff --git a/data/usr/share/applications/com.flatpost.flatpostapp.desktop b/data/usr/share/applications/com.flatpost.flatpostapp.desktop
+index 73013fc..d1f321d 100644
+--- a/data/usr/share/applications/com.flatpost.flatpostapp.desktop
++++ b/data/usr/share/applications/com.flatpost.flatpostapp.desktop
+@@ -4,3 +4,4 @@ Exec=python3 /usr/bin/flatpost
+ Icon=com.flatpost.flatpostapp
+ Type=Application
+ Categories=Utility;
++MimeType=application/vnd.flatpak.ref;application/vnd.flatpak.repo;
+

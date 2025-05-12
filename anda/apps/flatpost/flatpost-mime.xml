@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="application/vnd.flatpak.ref">
+    <glob pattern="*.flatpakref"/>
+    <comment>Flatpak Reference File</comment>
+  </mime-type>
+  <mime-type type="application/vnd.flatpak.repo">
+    <glob pattern="*.flatpakrepo"/>
+    <comment>Flatpak Repository File</comment>
+  </mime-type>
+</mime-info>

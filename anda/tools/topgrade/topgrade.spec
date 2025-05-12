@@ -3,8 +3,8 @@
 
 Name:           topgrade
 # renovate: datasource=github-releases depName=topgrade-rs/topgrade
-Version:        16.0.2
-Release:        1%{?dist}
+Version:        16.0.3
+Release:        1%?dist
 Summary:        Upgrade all the things
 
 SourceLicense:  GPL-3.0-or-later

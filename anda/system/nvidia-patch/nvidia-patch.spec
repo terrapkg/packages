@@ -1,7 +1,7 @@
 %global debug_package %{nil}
-%global commit 07080317245ac30c38001d2149810b2dee3cce1f
+%global commit 0c21bb5407668d0151a7dcdb9a3d940fa9ee0e33
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250320
+%global commit_date 20250504
 
 
 %global patches %{_datadir}/src/nvidia-patch
@@ -15,7 +15,7 @@ URL:            https://github.com/keylase/nvidia-patch
 Source0:        %{url}/archive/%{commit}.tar.gz
 
 BuildRequires:  tar
-Requires:       akmod-nvidia
+Requires:       nvidia-kmod
 
 %description
 NVENC patch removes restriction on maximum number of simultaneous NVENC video encoding sessions imposed by Nvidia to consumer-grade GPUs.

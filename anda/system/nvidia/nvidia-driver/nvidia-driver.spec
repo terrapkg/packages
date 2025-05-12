@@ -1,5 +1,6 @@
 %global debug_package %{nil}
-%global __strip /bin/true
+%global __strip %{nil}
+%global __brp_strip_comment_note %{nil}
 %global __brp_ldconfig %{nil}
 %define _build_id_links none
 
@@ -9,7 +10,7 @@
 %endif
 
 Name:           nvidia-driver
-Version:        570.133.07
+Version:        570.144
 Release:        1%?dist
 Summary:        NVIDIA's proprietary display driver for NVIDIA graphic cards
 Epoch:          3
@@ -73,6 +74,9 @@ Requires:       libglvnd-glx%{?_isa} >= 1.0
 Requires:       libglvnd-opengl%{?_isa} >= 1.0
 Requires:       libnvidia-ml%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       vulkan-loader
+# dlopened
+Requires:       libnvidia-gpucomp%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       libnvidia-ml%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 Conflicts:      nvidia-x11-drv-libs
 Conflicts:      nvidia-x11-drv-470xx-libs
@@ -91,6 +95,9 @@ Requires:       libnvidia-ml = %{?epoch:%{epoch}:}%{version}-%{release}
 %ifarch x86_64 aarch64
 Requires:       libnvidia-cfg = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
+# dlopened:
+Requires:       libnvidia-gpucomp%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       libnvidia-ml = %{?epoch:%{epoch}:}%{version}-%{release}
 
 Conflicts:      xorg-x11-drv-nvidia-cuda-libs
 Conflicts:      xorg-x11-drv-nvidia-470xx-cuda-libs
@@ -102,7 +109,7 @@ This package provides the CUDA libraries for %{name}-cuda.
 Summary:        NVIDIA OpenGL-based Framebuffer Capture libraries
 Provides:       nvidia-driver-NvFBCOpenGL = %{?epoch:%{epoch}:}%{version}-%{release}
 Obsoletes:      nvidia-driver-NvFBCOpenGL < %{?epoch:%{epoch}:}%{version}-%{release}
-# Loads libnvidia-encode.so at runtime
+# dlopened:
 Requires:       %{name}-cuda-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description -n libnvidia-fbc
@@ -110,6 +117,13 @@ This library provides a high performance, low latency interface to capture and
 optionally encode the composited framebuffer of an X screen. NvFBC are private
 APIs that are only available to NVIDIA approved partners for use in remote
 graphics scenarios.
+
+%package -n libnvidia-gpucomp
+Summary:        NVIDIA library for shader compilation (nvgpucomp)
+
+%description -n libnvidia-gpucomp
+This package contains the private libnvidia-gpucomp runtime library which is used by
+other driver components.
 
 %package -n libnvidia-ml
 Summary:        NVIDIA Management Library (NVML)
@@ -167,6 +181,11 @@ The NVIDIA X.org X11 driver and associated components.
 %prep
 source %{SOURCE99}
 export VERSION=%{version}
+%ifarch %ix86
+export ARCH=x86_64
+%else
+export ARCH=%{_arch}
+%endif
 
 unpack() {
   set_vars
@@ -176,23 +195,8 @@ unpack() {
   create_tarball
 }
 
-%ifarch %{ix86}
-export ARCH=x86_64
 unpack
-%setup -D -T -n %{name}-%{version}-i386
-%endif
-
-%ifarch x86_64
-export ARCH=x86_64
-unpack
-%setup -D -T -n %{name}-%{version}-x86_64
-%endif
-
-%ifarch aarch64
-export ARCH=aarch64
-unpack
-%setup -D -T -n %{name}-%{version}-aarch64
-%endif
+%setup -D -T -n %{name}-%{version}-%{_arch}
 
 %ifarch x86_64
 %if 0%{?rhel} == 8
@@ -296,19 +300,6 @@ install -p -m 0755 systemd/nvidia-sleep.sh %{buildroot}%{_bindir}/
 install -p -m 0755 -D systemd/system-sleep/nvidia %{buildroot}%{_systemd_util_dir}/system-sleep/nvidia
 install -p -m 0644 -D nvidia-dbus.conf %{buildroot}%{_datadir}/dbus-1/system.d/nvidia-dbus.conf
 
-%if 0%{?fedora} >= 41
-mkdir -p %{buildroot}%{_unitdir}/systemd-suspend.service.d/
-cat > %{buildroot}%{_unitdir}/systemd-suspend.service.d/10-nvidia.conf << EOF
-[Service]
-Environment="SYSTEMD_SLEEP_FREEZE_USER_SESSIONS=false"
-EOF
-mkdir -p %{buildroot}%{_unitdir}/systemd-homed.service.d/
-cat > %{buildroot}%{_unitdir}/systemd-homed.service.d/10-nvidia.conf << EOF
-[Service]
-Environment="SYSTEMD_HOME_LOCK_FREEZE_SESSION=false"
-EOF
-%endif
-
 # Ignore powerd binary exiting if hardware is not present
 # We should check for information in the DMI table
 sed -i -e 's/ExecStart=/ExecStart=-/g' %{buildroot}%{_unitdir}/nvidia-powerd.service
@@ -321,6 +312,17 @@ install -p -m 0644 -D %{SOURCE40} %{buildroot}%{_metainfodir}/com.nvidia.driver.
 %{SOURCE41} supported-gpus/supported-gpus.json %{buildroot}%{_metainfodir}/com.nvidia.driver.metainfo.xml
 mkdir -p %{buildroot}%{_datadir}/pixmaps/
 cp %{SOURCE42} %{buildroot}%{_datadir}/pixmaps/
+
+# nvsandboxutils configuration
+install -p -m 0644 -D sandboxutils-filelist.json %{buildroot}%{_datadir}/nvidia/files.d/sandboxutils-filelist.json
+
+# dnf needs-restarting plugin
+# dnf4 only for the moment: https://github.com/rpm-software-management/dnf5/issues/1815
+%if 0%{?fedora} < 42 || 0%{?rhel}
+mkdir -p %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d
+echo %{name} > %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}.conf
+echo %{name}-cuda > %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}-cuda.conf
+%endif
 
 %check
 # Using appstreamcli: appstreamcli validate --strict
@@ -343,14 +345,14 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %systemd_preun nvidia-powerd.service
 %systemd_preun nvidia-resume.service
 %systemd_preun nvidia-suspend.service
-%systemd_post nvidia-suspend-then-hibernate.service
+%systemd_preun nvidia-suspend-then-hibernate.service
 
 %postun
 %systemd_postun nvidia-hibernate.service
 %systemd_postun nvidia-powerd.service
 %systemd_postun nvidia-resume.service
 %systemd_postun nvidia-suspend.service
-%systemd_post nvidia-suspend-then-hibernate.service
+%systemd_postun nvidia-suspend-then-hibernate.service
 
 %endif
 
@@ -378,9 +380,8 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %{_unitdir}/nvidia-resume.service
 %{_unitdir}/nvidia-suspend.service
 %{_unitdir}/nvidia-suspend-then-hibernate.service
-%if 0%{?fedora} >= 41
-%{_unitdir}/systemd-suspend.service.d/10-nvidia.conf
-%{_unitdir}/systemd-homed.service.d/10-nvidia.conf
+%if 0%{?fedora} < 42 || 0%{?rhel}
+%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}.conf
 %endif
 
 %if 0%{?fedora} || 0%{?rhel} < 10
@@ -400,10 +401,14 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %{_bindir}/nvidia-cuda-mps-server
 %{_bindir}/nvidia-debugdump
 %{_bindir}/nvidia-smi
+%{_datadir}/nvidia/files.d/sandboxutils-filelist.json
 %{_mandir}/man1/nvidia-cuda-mps-control.1.*
 %{_mandir}/man1/nvidia-smi.*
 %{_prefix}/lib/nvidia/alternate-install-present
 %{_systemd_util_dir}/system-preset/70-nvidia-driver-cuda.preset
+%if 0%{?fedora} < 42 || 0%{?rhel}
+%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}-cuda.conf
+%endif
 
 %endif
 
@@ -444,6 +449,9 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %endif
 %ifarch x86_64
 %{_datadir}/vulkansc/icd.d/nvidia_icd.%{_target_cpu}.json
+%if v"%{version}" > v"570.144"
+%{_libdir}/libnvidia-present.so.%{version}
+%endif
 %{_libdir}/libnvidia-vksc-core.so.1
 %{_libdir}/libnvidia-vksc-core.so.%{version}
 %dir %{_libdir}/nvidia
@@ -472,6 +480,15 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %ifarch x86_64 aarch64
 %{_libdir}/libcudadebugger.so.1
 %{_libdir}/libcudadebugger.so.%{version}
+%if v"%{version}" > v"570.144"
+%{_libdir}/libnvidia-nvvm70.so.4
+%endif
+%if v"%{version}" <= v"570.144"
+%ifnarch aarch64
+%{_libdir}/libnvidia-sandboxutils.so.1
+%{_libdir}/libnvidia-sandboxutils.so.%{version}
+%endif
+%endif
 %endif
 %ifarch x86_64
 %if 0%{?rhel} == 8
@@ -479,13 +496,14 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %else
 %{_libdir}/libnvidia-pkcs11-openssl3.so.%{version}
 %endif
-%{_libdir}/libnvidia-sandboxutils.so.1
-%{_libdir}/libnvidia-sandboxutils.so.%{version}
 %endif
 
 %files -n libnvidia-fbc
 %{_libdir}/libnvidia-fbc.so.1
 %{_libdir}/libnvidia-fbc.so.%{version}
+
+%files -n libnvidia-gpucomp
+%{_libdir}/libnvidia-gpucomp.so.%{version}
 
 %files -n libnvidia-ml
 %{_libdir}/libnvidia-ml.so.1

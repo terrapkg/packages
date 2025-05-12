@@ -12,8 +12,8 @@
 
 # Naming variable as something other than "commit" is necessary
 # to stop %%gometa from putting commit hash in release
-%global commit_hash f4d62a498b204e73b8f084a5dc1ce82380b8c03a
-%global commit_date 20250326
+%global commit_hash 98ff79dbcaff3df2f70e4c322f0b3d406f6ae698
+%global commit_date 20250512
 %global shortcommit %{sub %{commit_hash} 1 7}
 %global ver 2.0.14
 

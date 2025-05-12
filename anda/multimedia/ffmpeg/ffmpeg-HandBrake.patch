@@ -1,0 +1,1904 @@
+diff -Naur ffmpeg-7.1.1.old/configure ffmpeg-7.1.1/configure
+--- ffmpeg-7.1.1.old/configure	2025-03-24 10:54:39.093543820 +0100
++++ ffmpeg-7.1.1/configure	2025-03-24 10:54:39.281929795 +0100
+@@ -3338,6 +3338,7 @@
+ av1_mediacodec_decoder_deps="mediacodec"
+ av1_mediacodec_encoder_deps="mediacodec"
+ av1_mediacodec_encoder_select="extract_extradata_bsf"
++av1_mf_encoder_deps="mediafoundation"
+ av1_nvenc_encoder_deps="nvenc NV_ENC_PIC_PARAMS_AV1"
+ av1_nvenc_encoder_select="atsc_a53"
+ av1_qsv_decoder_select="qsvdec"
+diff -Naur ffmpeg-7.1.1.old/libavcodec/allcodecs.c ffmpeg-7.1.1/libavcodec/allcodecs.c
+--- ffmpeg-7.1.1.old/libavcodec/allcodecs.c	2025-03-24 10:54:39.094862193 +0100
++++ ffmpeg-7.1.1/libavcodec/allcodecs.c	2025-03-24 10:54:39.282298069 +0100
+@@ -839,6 +839,7 @@
+ extern const FFCodec ff_av1_qsv_decoder;
+ extern const FFCodec ff_av1_qsv_encoder;
+ extern const FFCodec ff_av1_amf_encoder;
++extern const FFCodec ff_av1_mf_encoder;
+ extern const FFCodec ff_av1_vaapi_encoder;
+ extern const FFCodec ff_libopenh264_encoder;
+ extern const FFCodec ff_libopenh264_decoder;
+diff -Naur ffmpeg-7.1.1.old/libavcodec/amfenc_av1.c ffmpeg-7.1.1/libavcodec/amfenc_av1.c
+--- ffmpeg-7.1.1.old/libavcodec/amfenc_av1.c	2025-03-24 10:54:38.133756381 +0100
++++ ffmpeg-7.1.1/libavcodec/amfenc_av1.c	2025-03-24 10:54:39.277830845 +0100
+@@ -116,6 +116,7 @@
+     { "none",                   "no adaptive quantization",         0, AV_OPT_TYPE_CONST, {.i64 = AMF_VIDEO_ENCODER_AV1_AQ_MODE_NONE }, 0, 0, VE, .unit = "adaptive_quantisation_mode" },
+     { "caq",                    "context adaptive quantization",    0, AV_OPT_TYPE_CONST, {.i64 = AMF_VIDEO_ENCODER_AV1_AQ_MODE_CAQ }, 0, 0, VE, .unit = "adaptive_quantisation_mode" },
+ 
++    { "forced_idr",             "Force I frames to be IDR frames",  OFFSET(forced_idr),   AV_OPT_TYPE_BOOL, { .i64 = 0 }, 0, 1, VE },
+ 
+     { "align",                  "alignment mode",                           OFFSET(align),                          AV_OPT_TYPE_INT,     {.i64 = AMF_VIDEO_ENCODER_AV1_ALIGNMENT_MODE_NO_RESTRICTIONS },         AMF_VIDEO_ENCODER_AV1_ALIGNMENT_MODE_64X16_ONLY, AMF_VIDEO_ENCODER_AV1_ALIGNMENT_MODE_NO_RESTRICTIONS, VE, .unit = "align" },
+     { "64x16",                  "", 0, AV_OPT_TYPE_CONST, {.i64 = AMF_VIDEO_ENCODER_AV1_ALIGNMENT_MODE_64X16_ONLY               }, 0, 0, VE, .unit = "align" },
+@@ -186,6 +187,8 @@
+     AMFRate             framerate;
+     AMFSize             framesize = AMFConstructSize(avctx->width, avctx->height);
+     amf_int64           color_depth;
++    amf_int64           color_primaries;
++    amf_int64           transfer_characteristic;
+     amf_int64           color_profile;
+     enum                AVPixelFormat pix_fmt;
+ 
+@@ -238,7 +241,11 @@
+     }
+ 
+     /// Color profile
++    color_primaries = ff_amf_get_color_primaries(avctx);
++    transfer_characteristic = ff_amf_get_transfer_characteristic(avctx);
+     color_profile = ff_amf_get_color_profile(avctx);
++    AMF_ASSIGN_PROPERTY_INT64(res, ctx->encoder, AMF_VIDEO_ENCODER_AV1_OUTPUT_COLOR_PRIMARIES, color_primaries);
++    AMF_ASSIGN_PROPERTY_INT64(res, ctx->encoder, AMF_VIDEO_ENCODER_AV1_OUTPUT_TRANSFER_CHARACTERISTIC, transfer_characteristic);
+     AMF_ASSIGN_PROPERTY_INT64(res, ctx->encoder, AMF_VIDEO_ENCODER_AV1_OUTPUT_COLOR_PROFILE, color_profile);
+ 
+     /// Color Depth
+@@ -250,16 +257,6 @@
+     }
+ 
+     AMF_ASSIGN_PROPERTY_INT64(res, ctx->encoder, AMF_VIDEO_ENCODER_AV1_COLOR_BIT_DEPTH, color_depth);
+-    AMF_ASSIGN_PROPERTY_INT64(res, ctx->encoder, AMF_VIDEO_ENCODER_AV1_OUTPUT_COLOR_PROFILE, color_profile);
+-    if (color_depth == AMF_COLOR_BIT_DEPTH_8) {
+-        /// Color Transfer Characteristics (AMF matches ISO/IEC)
+-        AMF_ASSIGN_PROPERTY_INT64(res, ctx->encoder, AMF_VIDEO_ENCODER_AV1_OUTPUT_TRANSFER_CHARACTERISTIC, AMF_COLOR_TRANSFER_CHARACTERISTIC_BT709);
+-        /// Color Primaries (AMF matches ISO/IEC)
+-        AMF_ASSIGN_PROPERTY_INT64(res, ctx->encoder, AMF_VIDEO_ENCODER_AV1_OUTPUT_COLOR_PRIMARIES, AMF_COLOR_PRIMARIES_BT709);
+-    } else {
+-        AMF_ASSIGN_PROPERTY_INT64(res, ctx->encoder, AMF_VIDEO_ENCODER_AV1_OUTPUT_TRANSFER_CHARACTERISTIC, AMF_COLOR_TRANSFER_CHARACTERISTIC_SMPTE2084);
+-        AMF_ASSIGN_PROPERTY_INT64(res, ctx->encoder, AMF_VIDEO_ENCODER_AV1_OUTPUT_COLOR_PRIMARIES, AMF_COLOR_PRIMARIES_BT2020);
+-    }
+ 
+     profile_level = avctx->level;
+     if (profile_level == AV_LEVEL_UNKNOWN) {
+diff -Naur ffmpeg-7.1.1.old/libavcodec/amfenc.c ffmpeg-7.1.1/libavcodec/amfenc.c
+--- ffmpeg-7.1.1.old/libavcodec/amfenc.c	2025-03-24 10:54:38.032755166 +0100
++++ ffmpeg-7.1.1/libavcodec/amfenc.c	2025-03-24 10:54:39.279550845 +0100
+@@ -415,10 +415,6 @@
+     else
+         pix_fmt = avctx->pix_fmt;
+ 
+-    if (pix_fmt == AV_PIX_FMT_P010) {
+-        AMF_RETURN_IF_FALSE(ctx, ctx->version >= AMF_MAKE_FULL_VERSION(1, 4, 32, 0), AVERROR_UNKNOWN, "10-bit encoder is not supported by AMD GPU drivers versions lower than 23.30.\n");
+-    }
+-
+     ctx->format = amf_av_to_amf_format(pix_fmt);
+     AMF_RETURN_IF_FALSE(ctx, ctx->format != AMF_SURFACE_UNKNOWN, AVERROR(EINVAL),
+                         "Format %s is not supported\n", av_get_pix_fmt_name(pix_fmt));
+@@ -766,11 +762,50 @@
+         switch (avctx->codec->id) {
+         case AV_CODEC_ID_H264:
+             AMF_ASSIGN_PROPERTY_INT64(res, surface, AMF_VIDEO_ENCODER_INSERT_AUD, !!ctx->aud);
++            switch (frame->pict_type) {
++            case AV_PICTURE_TYPE_I:
++                if (ctx->forced_idr) {
++                    AMF_ASSIGN_PROPERTY_INT64(res, surface, AMF_VIDEO_ENCODER_INSERT_SPS, 1);
++                    AMF_ASSIGN_PROPERTY_INT64(res, surface, AMF_VIDEO_ENCODER_INSERT_PPS, 1);
++                    AMF_ASSIGN_PROPERTY_INT64(res, surface, AMF_VIDEO_ENCODER_FORCE_PICTURE_TYPE, AMF_VIDEO_ENCODER_PICTURE_TYPE_IDR);
++                } else {
++                    AMF_ASSIGN_PROPERTY_INT64(res, surface, AMF_VIDEO_ENCODER_FORCE_PICTURE_TYPE, AMF_VIDEO_ENCODER_PICTURE_TYPE_I);
++                }
++                break;
++            case AV_PICTURE_TYPE_P:
++                AMF_ASSIGN_PROPERTY_INT64(res, surface, AMF_VIDEO_ENCODER_FORCE_PICTURE_TYPE, AMF_VIDEO_ENCODER_PICTURE_TYPE_P);
++                break;
++            case AV_PICTURE_TYPE_B:
++                AMF_ASSIGN_PROPERTY_INT64(res, surface, AMF_VIDEO_ENCODER_FORCE_PICTURE_TYPE, AMF_VIDEO_ENCODER_PICTURE_TYPE_B);
++                break;
++            }
+             break;
+         case AV_CODEC_ID_HEVC:
+             AMF_ASSIGN_PROPERTY_INT64(res, surface, AMF_VIDEO_ENCODER_HEVC_INSERT_AUD, !!ctx->aud);
++            switch (frame->pict_type) {
++            case AV_PICTURE_TYPE_I:
++                if (ctx->forced_idr) {
++                    AMF_ASSIGN_PROPERTY_INT64(res, surface, AMF_VIDEO_ENCODER_HEVC_INSERT_HEADER, 1);
++                    AMF_ASSIGN_PROPERTY_INT64(res, surface, AMF_VIDEO_ENCODER_HEVC_FORCE_PICTURE_TYPE, AMF_VIDEO_ENCODER_HEVC_PICTURE_TYPE_IDR);
++                } else {
++                    AMF_ASSIGN_PROPERTY_INT64(res, surface, AMF_VIDEO_ENCODER_HEVC_FORCE_PICTURE_TYPE, AMF_VIDEO_ENCODER_HEVC_PICTURE_TYPE_I);
++                }
++                break;
++            case AV_PICTURE_TYPE_P:
++                AMF_ASSIGN_PROPERTY_INT64(res, surface, AMF_VIDEO_ENCODER_HEVC_FORCE_PICTURE_TYPE, AMF_VIDEO_ENCODER_HEVC_PICTURE_TYPE_P);
++                break;
++            }
++            break;
++        case AV_CODEC_ID_AV1:
++            if (frame->pict_type == AV_PICTURE_TYPE_I) {
++                if (ctx->forced_idr) {
++                    AMF_ASSIGN_PROPERTY_INT64(res, surface, AMF_VIDEO_ENCODER_AV1_FORCE_INSERT_SEQUENCE_HEADER, 1);
++                    AMF_ASSIGN_PROPERTY_INT64(res, surface, AMF_VIDEO_ENCODER_AV1_FORCE_FRAME_TYPE, AMF_VIDEO_ENCODER_AV1_FORCE_FRAME_TYPE_KEY);
++                } else {
++                    AMF_ASSIGN_PROPERTY_INT64(res, surface, AMF_VIDEO_ENCODER_AV1_FORCE_FRAME_TYPE, AMF_VIDEO_ENCODER_AV1_FORCE_FRAME_TYPE_INTRA_ONLY);
++                }
++            }
+             break;
+-        //case AV_CODEC_ID_AV1 not supported
+         default:
+             break;
+         }
+@@ -878,6 +913,115 @@
+     return ret;
+ }
+ 
++int ff_amf_get_color_primaries(AVCodecContext *avctx)
++{
++    amf_int64 color_primaries = AMF_COLOR_PRIMARIES_UNDEFINED;
++    switch (avctx->color_primaries) {
++        case AVCOL_PRI_BT709:
++            color_primaries = AMF_COLOR_PRIMARIES_BT709;
++            break;
++        case AVCOL_PRI_UNSPECIFIED:
++            color_primaries = AMF_COLOR_PRIMARIES_UNSPECIFIED;
++            break;
++        case AVCOL_PRI_RESERVED:
++            color_primaries = AMF_COLOR_PRIMARIES_RESERVED;
++            break;
++        case AVCOL_PRI_BT470M:
++            color_primaries = AMF_COLOR_PRIMARIES_BT470M;
++            break;
++        case AVCOL_PRI_BT470BG:
++            color_primaries = AMF_COLOR_PRIMARIES_BT470BG;
++            break;
++        case AVCOL_PRI_SMPTE170M:
++            color_primaries = AMF_COLOR_PRIMARIES_SMPTE170M;
++            break;
++        case AVCOL_PRI_SMPTE240M:
++            color_primaries = AMF_COLOR_PRIMARIES_SMPTE240M;
++            break;
++        case AVCOL_PRI_FILM:
++            color_primaries = AMF_COLOR_PRIMARIES_FILM;
++            break;
++        case AVCOL_PRI_BT2020:
++            color_primaries = AMF_COLOR_PRIMARIES_BT2020;
++            break;
++        case AVCOL_PRI_SMPTE428:
++            color_primaries = AMF_COLOR_PRIMARIES_SMPTE428;
++            break;
++        case AVCOL_PRI_SMPTE431:
++            color_primaries = AMF_COLOR_PRIMARIES_SMPTE431;
++            break;
++        case AVCOL_PRI_SMPTE432:
++            color_primaries = AMF_COLOR_PRIMARIES_SMPTE432;
++            break;
++        case AVCOL_PRI_EBU3213:
++            color_primaries = AMF_COLOR_PRIMARIES_JEDEC_P22;
++            break;
++    }
++    return color_primaries;
++}
++
++int ff_amf_get_transfer_characteristic(AVCodecContext *avctx)
++{
++    amf_int64 transfer_characteristic = AMF_COLOR_TRANSFER_CHARACTERISTIC_UNDEFINED;
++    switch (avctx->color_trc) {
++        case AVCOL_TRC_BT709:
++            transfer_characteristic = AMF_COLOR_TRANSFER_CHARACTERISTIC_BT709;
++            break;
++        case AVCOL_TRC_UNSPECIFIED:
++            transfer_characteristic = AMF_COLOR_TRANSFER_CHARACTERISTIC_UNSPECIFIED;
++            break;
++        case AVCOL_TRC_RESERVED:
++            transfer_characteristic = AMF_COLOR_TRANSFER_CHARACTERISTIC_RESERVED;
++            break;
++        case AVCOL_TRC_GAMMA22:
++            transfer_characteristic = AMF_COLOR_TRANSFER_CHARACTERISTIC_GAMMA22;
++            break;
++        case AVCOL_TRC_GAMMA28:
++            transfer_characteristic = AMF_COLOR_TRANSFER_CHARACTERISTIC_GAMMA28;
++            break;
++        case AVCOL_TRC_SMPTE170M:
++            transfer_characteristic = AMF_COLOR_TRANSFER_CHARACTERISTIC_SMPTE170M;
++            break;
++        case AVCOL_TRC_SMPTE240M:
++            transfer_characteristic = AMF_COLOR_TRANSFER_CHARACTERISTIC_SMPTE240M;
++            break;
++        case AVCOL_TRC_LINEAR:
++            transfer_characteristic = AMF_COLOR_TRANSFER_CHARACTERISTIC_LINEAR;
++            break;
++        case AVCOL_TRC_LOG:
++            transfer_characteristic = AMF_COLOR_TRANSFER_CHARACTERISTIC_LOG;
++            break;
++        case AVCOL_TRC_LOG_SQRT:
++            transfer_characteristic = AMF_COLOR_TRANSFER_CHARACTERISTIC_LOG_SQRT;
++            break;
++        case AVCOL_TRC_IEC61966_2_4:
++            transfer_characteristic = AMF_COLOR_TRANSFER_CHARACTERISTIC_IEC61966_2_4;
++            break;
++        case AVCOL_TRC_BT1361_ECG:
++            transfer_characteristic = AMF_COLOR_TRANSFER_CHARACTERISTIC_BT1361_ECG;
++            break;
++        case AVCOL_TRC_IEC61966_2_1:
++            transfer_characteristic = AMF_COLOR_TRANSFER_CHARACTERISTIC_IEC61966_2_1;
++            break;
++        case AVCOL_TRC_BT2020_10:
++            transfer_characteristic = AMF_COLOR_TRANSFER_CHARACTERISTIC_BT2020_10;
++            break;
++        case AVCOL_TRC_BT2020_12:
++            transfer_characteristic = AMF_COLOR_TRANSFER_CHARACTERISTIC_BT2020_12;
++            break;
++        case AVCOL_TRC_SMPTE2084:
++            transfer_characteristic = AMF_COLOR_TRANSFER_CHARACTERISTIC_SMPTE2084;
++            break;
++        case AVCOL_TRC_SMPTE428:
++            transfer_characteristic = AMF_COLOR_TRANSFER_CHARACTERISTIC_SMPTE428;
++            break;
++        case AVCOL_TRC_ARIB_STD_B67:
++            transfer_characteristic = AMF_COLOR_TRANSFER_CHARACTERISTIC_ARIB_STD_B67;
++            break;
++    }
++    return transfer_characteristic;
++}
++
+ int ff_amf_get_color_profile(AVCodecContext *avctx)
+ {
+     amf_int64 color_profile = AMF_VIDEO_CONVERTER_COLOR_PROFILE_UNKNOWN;
+diff -Naur ffmpeg-7.1.1.old/libavcodec/amfenc.h ffmpeg-7.1.1/libavcodec/amfenc.h
+--- ffmpeg-7.1.1.old/libavcodec/amfenc.h	2025-03-24 10:54:37.990754660 +0100
++++ ffmpeg-7.1.1/libavcodec/amfenc.h	2025-03-24 10:54:39.277763348 +0100
+@@ -114,6 +114,7 @@
+     int                 max_b_frames;
+     int                 qvbr_quality_level;
+     int                 hw_high_motion_quality_boost;
++    int                 forced_idr;
+ 
+     // HEVC - specific options
+ 
+@@ -173,6 +174,8 @@
+ */
+ extern const enum AVPixelFormat ff_amf_pix_fmts[];
+ 
++int ff_amf_get_color_primaries(AVCodecContext *avctx);
++int ff_amf_get_transfer_characteristic(AVCodecContext *avctx);
+ int ff_amf_get_color_profile(AVCodecContext *avctx);
+ 
+ /**
+diff -Naur ffmpeg-7.1.1.old/libavcodec/amfenc_h264.c ffmpeg-7.1.1/libavcodec/amfenc_h264.c
+--- ffmpeg-7.1.1.old/libavcodec/amfenc_h264.c	2025-03-24 10:54:38.175756886 +0100
++++ ffmpeg-7.1.1/libavcodec/amfenc_h264.c	2025-03-24 10:54:39.277925894 +0100
+@@ -133,6 +133,7 @@
+     { "me_half_pel",    "Enable ME Half Pixel",                 OFFSET(me_half_pel),   AV_OPT_TYPE_BOOL,  { .i64 = -1 }, -1, 1, VE },
+     { "me_quarter_pel", "Enable ME Quarter Pixel",              OFFSET(me_quarter_pel),AV_OPT_TYPE_BOOL,  { .i64 = -1 }, -1, 1, VE },
+ 
++    { "forced_idr",     "Force I frames to be IDR frames",      OFFSET(forced_idr)   , AV_OPT_TYPE_BOOL,  { .i64 = 0  }, 0, 1, VE },
+     { "aud",            "Inserts AU Delimiter NAL unit",        OFFSET(aud)          , AV_OPT_TYPE_BOOL,  { .i64 = -1 }, -1, 1, VE },
+ 
+ 
+@@ -201,6 +202,8 @@
+     AMFRate                          framerate;
+     AMFSize                          framesize = AMFConstructSize(avctx->width, avctx->height);
+     int                              deblocking_filter = (avctx->flags & AV_CODEC_FLAG_LOOP_FILTER) ? 1 : 0;
++    amf_int64                        color_primaries;
++    amf_int64                        transfer_characteristic;
+     amf_int64                        color_profile;
+     enum                             AVPixelFormat pix_fmt;
+ 
+@@ -273,7 +276,11 @@
+         AMF_ASSIGN_PROPERTY_RATIO(res, ctx->encoder, AMF_VIDEO_ENCODER_ASPECT_RATIO, ratio);
+     }
+ 
++    color_primaries = ff_amf_get_color_primaries(avctx);
++    transfer_characteristic = ff_amf_get_transfer_characteristic(avctx);
+     color_profile = ff_amf_get_color_profile(avctx);
++    AMF_ASSIGN_PROPERTY_INT64(res, ctx->encoder, AMF_VIDEO_ENCODER_OUTPUT_COLOR_PRIMARIES, color_primaries);
++    AMF_ASSIGN_PROPERTY_INT64(res, ctx->encoder, AMF_VIDEO_ENCODER_OUTPUT_TRANSFER_CHARACTERISTIC, transfer_characteristic);
+     AMF_ASSIGN_PROPERTY_INT64(res, ctx->encoder, AMF_VIDEO_ENCODER_OUTPUT_COLOR_PROFILE, color_profile);
+ 
+     /// Color Range (Support for older Drivers)
+@@ -287,10 +294,6 @@
+     AMF_RETURN_IF_FALSE(ctx, pix_fmt != AV_PIX_FMT_P010, AVERROR_INVALIDDATA, "10-bit input video is not supported by AMF H264 encoder\n");
+ 
+     AMF_ASSIGN_PROPERTY_INT64(res, ctx->encoder, AMF_VIDEO_ENCODER_COLOR_BIT_DEPTH, AMF_COLOR_BIT_DEPTH_8);
+-    /// Color Transfer Characteristics (AMF matches ISO/IEC)
+-    AMF_ASSIGN_PROPERTY_INT64(res, ctx->encoder, AMF_VIDEO_ENCODER_OUTPUT_TRANSFER_CHARACTERISTIC, (amf_int64)avctx->color_trc);
+-    /// Color Primaries (AMF matches ISO/IEC)
+-    AMF_ASSIGN_PROPERTY_INT64(res, ctx->encoder, AMF_VIDEO_ENCODER_OUTPUT_COLOR_PRIMARIES, (amf_int64)avctx->color_primaries);
+ 
+     // autodetect rate control method
+     if (ctx->rate_control_mode == AMF_VIDEO_ENCODER_RATE_CONTROL_METHOD_UNKNOWN) {
+diff -Naur ffmpeg-7.1.1.old/libavcodec/amfenc_hevc.c ffmpeg-7.1.1/libavcodec/amfenc_hevc.c
+--- ffmpeg-7.1.1.old/libavcodec/amfenc_hevc.c	2025-03-24 10:54:37.991754672 +0100
++++ ffmpeg-7.1.1/libavcodec/amfenc_hevc.c	2025-03-24 10:54:39.278019962 +0100
+@@ -100,6 +100,7 @@
+     { "me_half_pel",    "Enable ME Half Pixel",                     OFFSET(me_half_pel),   AV_OPT_TYPE_BOOL,{ .i64 = -1 },  -1, 1, VE },
+     { "me_quarter_pel", "Enable ME Quarter Pixel ",                 OFFSET(me_quarter_pel),AV_OPT_TYPE_BOOL,{ .i64 = -1 },  -1, 1, VE },
+ 
++    { "forced_idr",     "Force I frames to be IDR frames",          OFFSET(forced_idr)    ,AV_OPT_TYPE_BOOL,{ .i64 = 0  }, 0, 1, VE },
+     { "aud",            "Inserts AU Delimiter NAL unit",            OFFSET(aud)           ,AV_OPT_TYPE_BOOL,{ .i64 = -1 }, -1, 1, VE },
+ 
+ 
+@@ -167,6 +168,8 @@
+     AMFSize             framesize = AMFConstructSize(avctx->width, avctx->height);
+     int                 deblocking_filter = (avctx->flags & AV_CODEC_FLAG_LOOP_FILTER) ? 1 : 0;
+     amf_int64           color_depth;
++    amf_int64           color_primaries;
++    amf_int64           transfer_characteristic;
+     amf_int64           color_profile;
+     enum                AVPixelFormat pix_fmt;
+ 
+@@ -241,7 +244,11 @@
+         AMF_ASSIGN_PROPERTY_RATIO(res, ctx->encoder, AMF_VIDEO_ENCODER_HEVC_ASPECT_RATIO, ratio);
+     }
+ 
++    color_primaries = ff_amf_get_color_primaries(avctx);
++    transfer_characteristic = ff_amf_get_transfer_characteristic(avctx);
+     color_profile = ff_amf_get_color_profile(avctx);
++    AMF_ASSIGN_PROPERTY_INT64(res, ctx->encoder, AMF_VIDEO_ENCODER_HEVC_OUTPUT_COLOR_PRIMARIES, color_primaries);
++    AMF_ASSIGN_PROPERTY_INT64(res, ctx->encoder, AMF_VIDEO_ENCODER_HEVC_OUTPUT_TRANSFER_CHARACTERISTIC, transfer_characteristic);
+     AMF_ASSIGN_PROPERTY_INT64(res, ctx->encoder, AMF_VIDEO_ENCODER_HEVC_OUTPUT_COLOR_PROFILE, color_profile);
+     /// Color Range (Support for older Drivers)
+     AMF_ASSIGN_PROPERTY_BOOL(res, ctx->encoder, AMF_VIDEO_ENCODER_HEVC_NOMINAL_RANGE, !!(avctx->color_range == AVCOL_RANGE_JPEG));
+@@ -253,15 +260,6 @@
+         color_depth = AMF_COLOR_BIT_DEPTH_10;
+     }
+     AMF_ASSIGN_PROPERTY_INT64(res, ctx->encoder, AMF_VIDEO_ENCODER_HEVC_COLOR_BIT_DEPTH, color_depth);
+-    if (color_depth == AMF_COLOR_BIT_DEPTH_8) {
+-        /// Color Transfer Characteristics (AMF matches ISO/IEC)
+-        AMF_ASSIGN_PROPERTY_INT64(res, ctx->encoder, AMF_VIDEO_ENCODER_HEVC_OUTPUT_TRANSFER_CHARACTERISTIC, AMF_COLOR_TRANSFER_CHARACTERISTIC_BT709);
+-        /// Color Primaries (AMF matches ISO/IEC)
+-        AMF_ASSIGN_PROPERTY_INT64(res, ctx->encoder, AMF_VIDEO_ENCODER_HEVC_OUTPUT_COLOR_PRIMARIES, AMF_COLOR_PRIMARIES_BT709);
+-    } else {
+-        AMF_ASSIGN_PROPERTY_INT64(res, ctx->encoder, AMF_VIDEO_ENCODER_HEVC_OUTPUT_TRANSFER_CHARACTERISTIC, AMF_COLOR_TRANSFER_CHARACTERISTIC_SMPTE2084);
+-        AMF_ASSIGN_PROPERTY_INT64(res, ctx->encoder, AMF_VIDEO_ENCODER_HEVC_OUTPUT_COLOR_PRIMARIES, AMF_COLOR_PRIMARIES_BT2020);
+-    }
+ 
+     // Picture control properties
+     AMF_ASSIGN_PROPERTY_INT64(res, ctx->encoder, AMF_VIDEO_ENCODER_HEVC_NUM_GOPS_PER_IDR, ctx->gops_per_idr);
+diff -Naur ffmpeg-7.1.1.old/libavcodec/av1dec.c ffmpeg-7.1.1/libavcodec/av1dec.c
+--- ffmpeg-7.1.1.old/libavcodec/av1dec.c	2025-03-24 10:54:38.093755899 +0100
++++ ffmpeg-7.1.1/libavcodec/av1dec.c	2025-03-24 10:54:39.273932914 +0100
+@@ -1002,6 +1002,8 @@
+         break;
+     }
+     case ITU_T_T35_PROVIDER_CODE_DOLBY: {
++        AVBufferRef *rpu_buf;
++        AVFrameSideData *rpu;
+         int provider_oriented_code = bytestream2_get_be32(&gb);
+         if (itut_t35->itu_t_t35_country_code != ITU_T_T35_COUNTRY_CODE_US ||
+             provider_oriented_code != 0x800)
+@@ -1014,6 +1016,18 @@
+             break; // ignore
+         }
+ 
++        rpu_buf = av_buffer_alloc(itut_t35->payload_size);
++        if (rpu_buf) {
++            memcpy(rpu_buf->data, itut_t35->payload, itut_t35->payload_size);
++            rpu = av_frame_new_side_data_from_buf(frame, AV_FRAME_DATA_DOVI_RPU_BUFFER_T35, rpu_buf);
++            if (!rpu) {
++                av_buffer_unref(&rpu_buf);
++                return AVERROR(ENOMEM);
++            }
++        } else {
++            return AVERROR(ENOMEM);
++        }
++
+         ret = ff_dovi_attach_side_data(&s->dovi, frame);
+         if (ret < 0)
+             return ret;
+diff -Naur ffmpeg-7.1.1.old/libavcodec/bsf/hevc_mp4toannexb.c ffmpeg-7.1.1/libavcodec/bsf/hevc_mp4toannexb.c
+--- ffmpeg-7.1.1.old/libavcodec/bsf/hevc_mp4toannexb.c	2025-03-24 10:54:38.075755683 +0100
++++ ffmpeg-7.1.1/libavcodec/bsf/hevc_mp4toannexb.c	2025-03-24 10:54:39.273106358 +0100
+@@ -125,6 +125,7 @@
+     AVPacket *in;
+     GetByteContext gb;
+ 
++    int has_sps = 0, has_pps = 0;
+     int got_irap = 0;
+     int i, ret = 0;
+ 
+@@ -158,11 +159,14 @@
+         }
+ 
+         nalu_type = (bytestream2_peek_byte(&gb) >> 1) & 0x3f;
++        has_sps = (has_sps || nalu_type == HEVC_NAL_SPS);
++        has_pps = (has_pps || nalu_type == HEVC_NAL_PPS);
+ 
+         /* prepend extradata to IRAP frames */
+         is_irap = nalu_type >= HEVC_NAL_BLA_W_LP &&
+                   nalu_type <= HEVC_NAL_RSV_IRAP_VCL23;
+-        add_extradata = is_irap && !got_irap;
++        /* ignore the extradata if IRAP frame has sps and pps */
++        add_extradata = is_irap && !got_irap && !(has_sps && has_pps);
+         extra_size    = add_extradata * ctx->par_out->extradata_size;
+         got_irap     |= is_irap;
+ 
+diff -Naur ffmpeg-7.1.1.old/libavcodec/ccaption_dec.c ffmpeg-7.1.1/libavcodec/ccaption_dec.c
+--- ffmpeg-7.1.1.old/libavcodec/ccaption_dec.c	2025-03-24 10:54:38.169756814 +0100
++++ ffmpeg-7.1.1/libavcodec/ccaption_dec.c	2025-03-24 10:54:39.268544045 +0100
+@@ -889,12 +889,13 @@
+ 
+         if (ctx->buffer[bidx].str[0] || ctx->real_time) {
+             ff_dlog(ctx, "cdp writing data (%s)\n", ctx->buffer[bidx].str);
+-            start_time = ctx->buffer_time[0];
+-            sub->pts = start_time;
+-            end_time = ctx->buffer_time[1];
+-            if (!ctx->real_time)
++            if (!ctx->real_time) {
++                start_time = ctx->buffer_time[0];
++                sub->pts = start_time;
++                end_time = ctx->buffer_time[1];
+                 sub->end_display_time = av_rescale_q(end_time - start_time,
+                                                      AV_TIME_BASE_Q, ms_tb);
++            }
+             else
+                 sub->end_display_time = -1;
+             ret = ff_ass_add_rect2(sub, ctx->buffer[bidx].str, ctx->readorder++, 0, NULL, NULL, &nb_rect_allocated);
+diff -Naur ffmpeg-7.1.1.old/libavcodec/dvdsubdec.c ffmpeg-7.1.1/libavcodec/dvdsubdec.c
+--- ffmpeg-7.1.1.old/libavcodec/dvdsubdec.c	2025-03-24 10:54:37.975754480 +0100
++++ ffmpeg-7.1.1/libavcodec/dvdsubdec.c	2025-03-24 10:54:39.267391144 +0100
+@@ -45,6 +45,8 @@
+   int      buf_size;
+   int      forced_subs_only;
+   uint8_t  used_color[256];
++  int64_t  pts;
++  int      output_empty_rects;
+ } DVDSubContext;
+ 
+ static void yuv_a_to_rgba(const uint8_t *ycbcr, const uint8_t *alpha, uint32_t *rgba, int num_values)
+@@ -230,7 +232,10 @@
+     uint32_t size;
+     int64_t offset1, offset2;
+ 
+-    if (buf_size < 10)
++    if (buf_size < 2)
++        return AVERROR(EAGAIN);
++
++    if (buf_size == 2 && AV_RB16(buf) == 0)
+         return -1;
+ 
+     if (AV_RB16(buf) == 0) {   /* HD subpicture with 4-byte offsets */
+@@ -243,15 +248,22 @@
+         cmd_pos = 2;
+     }
+ 
++    if (big_offsets && buf_size < 6)
++        return AVERROR(EAGAIN);
++
+     size = READ_OFFSET(buf + (big_offsets ? 2 : 0));
+-    cmd_pos = READ_OFFSET(buf + cmd_pos);
+ 
+-    if (cmd_pos < 0 || cmd_pos > buf_size - 2 - offset_size) {
+-        if (cmd_pos > size) {
+-            av_log(ctx, AV_LOG_ERROR, "Discarding invalid packet\n");
+-            return 0;
+-        }
++    if (size == 0)
++        return -1;
++
++    if (buf_size < size)
+         return AVERROR(EAGAIN);
++
++    cmd_pos = READ_OFFSET(buf + cmd_pos);
++
++    if (cmd_pos < 0 || cmd_pos > size) {
++        av_log(ctx, AV_LOG_ERROR, "Discarding invalid packet\n");
++        return AVERROR_INVALIDDATA;
+     }
+ 
+     while (cmd_pos > 0 && cmd_pos < buf_size - 2 - offset_size) {
+@@ -524,10 +536,13 @@
+     int appended = 0;
+     int is_menu;
+ 
++    if (ctx->pts == AV_NOPTS_VALUE && sub->pts != AV_NOPTS_VALUE)
++        ctx->pts = sub->pts;
+     if (ctx->buf_size) {
+         int ret = append_to_cached_buf(avctx, buf, buf_size);
+         if (ret < 0) {
+             *data_size = 0;
++            ctx->pts = AV_NOPTS_VALUE;
+             return ret;
+         }
+         buf = ctx->buf;
+@@ -538,7 +553,12 @@
+     is_menu = decode_dvd_subtitles(ctx, sub, buf, buf_size);
+     if (is_menu == AVERROR(EAGAIN)) {
+         *data_size = 0;
+-        return appended ? 0 : append_to_cached_buf(avctx, buf, buf_size);
++        int ret = appended ? 0 : append_to_cached_buf(avctx, buf, buf_size);
++        if (ret < 0) {
++            ctx->pts = AV_NOPTS_VALUE;
++            return ret;
++        }
++        return buf_size;
+     }
+ 
+     if (is_menu < 0) {
+@@ -547,9 +567,10 @@
+         reset_rects(sub);
+         *data_size = 0;
+ 
++        ctx->pts = AV_NOPTS_VALUE;
+         return buf_size;
+     }
+-    if (!is_menu && find_smallest_bounding_rectangle(ctx, sub) == 0)
++    if (!is_menu && !ctx->output_empty_rects && find_smallest_bounding_rectangle(ctx, sub) == 0)
+         goto no_subtitle;
+ 
+     if (ctx->forced_subs_only && !(sub->rects[0]->flags & AV_SUBTITLE_FLAG_FORCED))
+@@ -557,6 +578,8 @@
+ 
+     ctx->buf_size = 0;
+     *data_size = 1;
++    sub->pts = ctx->pts;
++    ctx->pts = AV_NOPTS_VALUE;
+     return buf_size;
+ }
+ 
+@@ -682,6 +705,7 @@
+             av_log(avctx, AV_LOG_DEBUG, " 0x%06"PRIx32, ctx->palette[i]);
+         av_log(avctx, AV_LOG_DEBUG, "\n");
+     }
++    ctx->pts = AV_NOPTS_VALUE;
+ 
+     return 1;
+ }
+@@ -698,6 +722,7 @@
+     { "palette", "set the global palette", OFFSET(palette_str), AV_OPT_TYPE_STRING, { .str = NULL }, 0, 0, SD },
+     { "ifo_palette", "obtain the global palette from .IFO file", OFFSET(ifo_str), AV_OPT_TYPE_STRING, { .str = NULL }, 0, 0, SD },
+     { "forced_subs_only", "Only show forced subtitles", OFFSET(forced_subs_only), AV_OPT_TYPE_BOOL, {.i64 = 0}, 0, 1, SD},
++    { "output_empty_rects", "Output subtitles with empty or fully transparent rects", OFFSET(output_empty_rects), AV_OPT_TYPE_BOOL, {.i64 = 0}, 0, 1, SD},
+     { NULL }
+ };
+ static const AVClass dvdsub_class = {
+diff -Naur ffmpeg-7.1.1.old/libavcodec/libdav1d.c ffmpeg-7.1.1/libavcodec/libdav1d.c
+--- ffmpeg-7.1.1.old/libavcodec/libdav1d.c	2025-03-24 10:54:38.090755863 +0100
++++ ffmpeg-7.1.1/libavcodec/libdav1d.c	2025-03-24 10:54:39.274085311 +0100
+@@ -563,6 +563,8 @@
+             break;
+         }
+         case ITU_T_T35_PROVIDER_CODE_DOLBY: {
++            AVBufferRef *rpu_buf;
++            AVFrameSideData *rpu;
+             int provider_oriented_code = bytestream2_get_be32(&gb);
+             if (itut_t35->country_code != ITU_T_T35_COUNTRY_CODE_US ||
+                 provider_oriented_code != 0x800)
+@@ -575,6 +577,18 @@
+                 break; // ignore
+             }
+ 
++            rpu_buf = av_buffer_alloc(itut_t35->payload_size);
++            if (rpu_buf) {
++                memcpy(rpu_buf->data, itut_t35->payload, itut_t35->payload_size);
++                rpu = av_frame_new_side_data_from_buf(frame, AV_FRAME_DATA_DOVI_RPU_BUFFER_T35, rpu_buf);
++                if (!rpu) {
++                    av_buffer_unref(&rpu_buf);
++                    goto fail;
++                }
++            } else {
++                goto fail;
++            }
++
+             res = ff_dovi_attach_side_data(&dav1d->dovi, frame);
+             if (res < 0)
+                 goto fail;
+diff -Naur ffmpeg-7.1.1.old/libavcodec/mfenc.c ffmpeg-7.1.1/libavcodec/mfenc.c
+--- ffmpeg-7.1.1.old/libavcodec/mfenc.c	2025-03-24 10:54:38.125756284 +0100
++++ ffmpeg-7.1.1/libavcodec/mfenc.c	2025-03-24 10:54:39.282547759 +0100
+@@ -1315,3 +1315,4 @@
+ 
+ MF_ENCODER(VIDEO, h264,        H264, venc_opts, VFMTS, VCAPS, defaults);
+ MF_ENCODER(VIDEO, hevc,        HEVC, venc_opts, VFMTS, VCAPS, defaults);
++MF_ENCODER(VIDEO, av1,         AV1,  venc_opts, VFMTS, VCAPS, defaults);
+diff -Naur ffmpeg-7.1.1.old/libavcodec/mf_utils.c ffmpeg-7.1.1/libavcodec/mf_utils.c
+--- ffmpeg-7.1.1.old/libavcodec/mf_utils.c	2025-03-24 10:54:38.086755815 +0100
++++ ffmpeg-7.1.1/libavcodec/mf_utils.c	2025-03-24 10:54:39.282392106 +0100
+@@ -240,6 +240,7 @@
+     GUID_ENTRY(MFMediaType_Video),
+     GUID_ENTRY(MFAudioFormat_PCM),
+     GUID_ENTRY(MFAudioFormat_Float),
++    GUID_ENTRY(ff_MFVideoFormat_AV1),
+     GUID_ENTRY(MFVideoFormat_H264),
+     GUID_ENTRY(MFVideoFormat_H264_ES),
+     GUID_ENTRY(ff_MFVideoFormat_HEVC),
+@@ -507,6 +508,7 @@
+ const CLSID *ff_codec_to_mf_subtype(enum AVCodecID codec)
+ {
+     switch (codec) {
++    case AV_CODEC_ID_AV1:               return &ff_MFVideoFormat_AV1;
+     case AV_CODEC_ID_H264:              return &MFVideoFormat_H264;
+     case AV_CODEC_ID_HEVC:              return &ff_MFVideoFormat_HEVC;
+     case AV_CODEC_ID_AC3:               return &MFAudioFormat_Dolby_AC3;
+diff -Naur ffmpeg-7.1.1.old/libavcodec/mf_utils.h ffmpeg-7.1.1/libavcodec/mf_utils.h
+--- ffmpeg-7.1.1.old/libavcodec/mf_utils.h	2025-03-24 10:54:38.061755515 +0100
++++ ffmpeg-7.1.1/libavcodec/mf_utils.h	2025-03-24 10:54:39.282464482 +0100
+@@ -113,6 +113,7 @@
+ 
+ DEFINE_MEDIATYPE_GUID(ff_MFVideoFormat_HEVC, 0x43564548); // FCC('HEVC')
+ DEFINE_MEDIATYPE_GUID(ff_MFVideoFormat_HEVC_ES, 0x53564548); // FCC('HEVS')
++DEFINE_MEDIATYPE_GUID(ff_MFVideoFormat_AV1, 0x31305641); // FCC('AV01')
+ 
+ 
+ // This enum is missing from mingw-w64's codecapi.h by v7.0.0.
+diff -Naur ffmpeg-7.1.1.old/libavcodec/pgssubdec.c ffmpeg-7.1.1/libavcodec/pgssubdec.c
+--- ffmpeg-7.1.1.old/libavcodec/pgssubdec.c	2025-03-24 10:54:37.986754612 +0100
++++ ffmpeg-7.1.1/libavcodec/pgssubdec.c	2025-03-24 10:54:39.280528236 +0100
+@@ -35,9 +35,11 @@
+ #include "libavutil/opt.h"
+ 
+ #define RGBA(r,g,b,a) (((unsigned)(a) << 24) | ((r) << 16) | ((g) << 8) | (b))
+-#define MAX_EPOCH_PALETTES 8   // Max 8 allowed per PGS epoch
+-#define MAX_EPOCH_OBJECTS  64  // Max 64 allowed per PGS epoch
+-#define MAX_OBJECT_REFS    2   // Max objects per display set
++#define MAX_EPOCH_PALETTES 8    // Max 8 allowed per PGS epoch
++#define MAX_EPOCH_OBJECTS  64   // Max 64 allowed per PGS epoch
++#define MAX_OBJECT_REFS    2    // Max objects per display set
++#define MAX_OBJECT_WH      4096 // Max object width/height
++
+ 
+ enum SegmentType {
+     PALETTE_SEGMENT      = 0x14,
+@@ -48,57 +50,80 @@
+ };
+ 
+ typedef struct PGSSubObjectRef {
+-    int     id;
+-    int     window_id;
+-    uint8_t composition_flag;
+-    int     x;
+-    int     y;
+-    int     crop_x;
+-    int     crop_y;
+-    int     crop_w;
+-    int     crop_h;
++    uint16_t id;
++    uint8_t  window_id;
++    uint8_t  composition_flag;
++    uint16_t x;
++    uint16_t y;
++    uint16_t crop_x;
++    uint16_t crop_y;
++    uint16_t crop_w;
++    uint16_t crop_h;
+ } PGSSubObjectRef;
+ 
+ typedef struct PGSSubPresentation {
+-    int id_number;
+-    int palette_id;
+-    int object_count;
++    uint8_t         palette_flag;
++    uint8_t         palette_id;
++    uint8_t         object_count;
+     PGSSubObjectRef objects[MAX_OBJECT_REFS];
+-    int64_t pts;
++    int64_t         pts;
+ } PGSSubPresentation;
+ 
+ typedef struct PGSSubObject {
+-    int          id;
+-    int          w;
+-    int          h;
+-    uint8_t      *rle;
+-    unsigned int rle_buffer_size, rle_data_len;
+-    unsigned int rle_remaining_len;
++    uint16_t  id;
++    uint16_t  w;
++    uint16_t  h;
++    uint8_t   *rle;
++    uint8_t   *bitmap;
++    uint32_t  rle_buffer_size;
++    uint32_t  rle_data_len;
++    uint32_t  rle_remaining_len;
++    uint32_t  bitmap_buffer_size;
++    uint32_t  bitmap_size;
+ } PGSSubObject;
+ 
+ typedef struct PGSSubObjects {
+-    int          count;
++    uint8_t      count;
+     PGSSubObject object[MAX_EPOCH_OBJECTS];
+ } PGSSubObjects;
+ 
+ typedef struct PGSSubPalette {
+-    int         id;
+-    uint32_t    clut[256];
++    uint8_t     id;
++    uint32_t    clut[AVPALETTE_COUNT];
+ } PGSSubPalette;
+ 
+ typedef struct PGSSubPalettes {
+-    int           count;
++    uint8_t       count;
+     PGSSubPalette palette[MAX_EPOCH_PALETTES];
+ } PGSSubPalettes;
+ 
++typedef struct PGSGraphicPlane {
++   uint8_t        count;
++   uint8_t        writable;
++   AVSubtitleRect visible_rect[MAX_OBJECT_REFS];
++} PGSGraphicPlane;
++
+ typedef struct PGSSubContext {
+     AVClass *class;
+     PGSSubPresentation presentation;
+     PGSSubPalettes     palettes;
+     PGSSubObjects      objects;
++    PGSGraphicPlane    plane;
+     int forced_subs_only;
+ } PGSSubContext;
+ 
++static void clear_graphic_plane(PGSSubContext *ctx)
++{
++    int i;
++
++    for (i = 0; i < ctx->plane.count; i++) {
++       av_freep(&ctx->plane.visible_rect[i].data[0]);
++       memset(&ctx->plane.visible_rect[i], 0, sizeof(ctx->plane.visible_rect[i]));
++    }
++    ctx->plane.writable = 0;
++    ctx->plane.count = 0;
++}
++
+ static void flush_cache(AVCodecContext *avctx)
+ {
+     PGSSubContext *ctx = avctx->priv_data;
+@@ -106,8 +131,11 @@
+ 
+     for (i = 0; i < ctx->objects.count; i++) {
+         av_freep(&ctx->objects.object[i].rle);
+-        ctx->objects.object[i].rle_buffer_size  = 0;
++        ctx->objects.object[i].rle_buffer_size    = 0;
+         ctx->objects.object[i].rle_remaining_len  = 0;
++        av_freep(&ctx->objects.object[i].bitmap);
++        ctx->objects.object[i].bitmap_buffer_size = 0;
++        ctx->objects.object[i].bitmap_size        = 0;
+     }
+     ctx->objects.count = 0;
+     ctx->palettes.count = 0;
+@@ -144,6 +172,7 @@
+ 
+ static av_cold int close_decoder(AVCodecContext *avctx)
+ {
++    clear_graphic_plane((PGSSubContext *)avctx->priv_data);
+     flush_cache(avctx);
+ 
+     return 0;
+@@ -159,48 +188,51 @@
+  * @param buf pointer to the RLE data to process
+  * @param buf_size size of the RLE data to process
+  */
+-static int decode_rle(AVCodecContext *avctx, AVSubtitleRect *rect,
+-                      const uint8_t *buf, unsigned int buf_size)
++static int decode_object_rle(AVCodecContext *avctx, PGSSubObject *object)
+ {
+-    const uint8_t *rle_bitmap_end;
++    const uint8_t *rle_buf;
++    const uint8_t *rle_end;
+     int pixel_count, line_count;
++    rle_buf = object->rle;
++    rle_end = object->rle + object->rle_data_len;
+ 
+-    rle_bitmap_end = buf + buf_size;
++    object->bitmap_size = object->w * object->h;
++    av_fast_padded_malloc(&object->bitmap, &object->bitmap_buffer_size,
++                          object->bitmap_size);
+ 
+-    rect->data[0] = av_malloc_array(rect->w, rect->h);
+-
+-    if (!rect->data[0])
++    if (!object->bitmap)
+         return AVERROR(ENOMEM);
+ 
+     pixel_count = 0;
+     line_count  = 0;
+ 
+-    while (buf < rle_bitmap_end && line_count < rect->h) {
++    while (rle_buf < rle_end && line_count < object->h) {
+         uint8_t flags, color;
+         int run;
+ 
+-        color = bytestream_get_byte(&buf);
++        color = bytestream_get_byte(&rle_buf);
+         run   = 1;
+ 
+         if (color == 0x00) {
+-            flags = bytestream_get_byte(&buf);
++            flags = bytestream_get_byte(&rle_buf);
+             run   = flags & 0x3f;
+             if (flags & 0x40)
+-                run = (run << 8) + bytestream_get_byte(&buf);
+-            color = flags & 0x80 ? bytestream_get_byte(&buf) : 0;
++                run = (run << 8) + bytestream_get_byte(&rle_buf);
++            color = flags & 0x80 ? bytestream_get_byte(&rle_buf) : 0;
+         }
+ 
+-        if (run > 0 && pixel_count + run <= rect->w * rect->h) {
+-            memset(rect->data[0] + pixel_count, color, run);
++        if (run > 0 && pixel_count + run <= object->w * object->h) {
++            memset(object->bitmap + pixel_count, color, run);
+             pixel_count += run;
+         } else if (!run) {
+             /*
+              * New Line. Check if correct pixels decoded, if not display warning
+              * and adjust bitmap pointer to correct new line position.
+              */
+-            if (pixel_count % rect->w > 0) {
+-                av_log(avctx, AV_LOG_ERROR, "Decoded %d pixels, when line should be %d pixels\n",
+-                       pixel_count % rect->w, rect->w);
++            if (pixel_count % object->w > 0) {
++                av_log(avctx, AV_LOG_ERROR,
++                       "Decoded %d pixels, when object line should be %d pixels\n",
++                       pixel_count % object->w, object->w);
+                 if (avctx->err_recognition & AV_EF_EXPLODE) {
+                     return AVERROR_INVALIDDATA;
+                 }
+@@ -209,13 +241,11 @@
+         }
+     }
+ 
+-    if (pixel_count < rect->w * rect->h) {
+-        av_log(avctx, AV_LOG_ERROR, "Insufficient RLE data for subtitle\n");
++    if (pixel_count < object->w * object->h) {
++        av_log(avctx, AV_LOG_ERROR, "Insufficient RLE data for object\n");
+         return AVERROR_INVALIDDATA;
+     }
+-
+-    ff_dlog(avctx, "Pixel Count = %d, Area = %d\n", pixel_count, rect->w * rect->h);
+-
++    ff_dlog(avctx, "Pixel Count = %d, Area = %d\n", pixel_count, object->w * object->h);
+     return 0;
+ }
+ 
+@@ -237,7 +267,7 @@
+ 
+     uint8_t sequence_desc;
+     unsigned int rle_bitmap_len, width, height;
+-    int id;
++    int id, ret;
+ 
+     if (buf_size <= 4)
+         return AVERROR_INVALIDDATA;
+@@ -260,57 +290,71 @@
+     /* Read the Sequence Description to determine if start of RLE data or appended to previous RLE */
+     sequence_desc = bytestream_get_byte(&buf);
+ 
+-    if (!(sequence_desc & 0x80)) {
+-        /* Additional RLE data */
+-        if (buf_size > object->rle_remaining_len)
++    /* First in sequence object definition segment */
++    if (sequence_desc & 0x80) {
++        if (buf_size <= 7)
+             return AVERROR_INVALIDDATA;
++        buf_size -= 7;
+ 
+-        memcpy(object->rle + object->rle_data_len, buf, buf_size);
+-        object->rle_data_len += buf_size;
+-        object->rle_remaining_len -= buf_size;
+-
+-        return 0;
+-    }
+-
+-    if (buf_size <= 7)
+-        return AVERROR_INVALIDDATA;
+-    buf_size -= 7;
++        /* Decode rle bitmap length, stored size includes width/height data */
++        rle_bitmap_len = bytestream_get_be24(&buf) - 2*2;
+ 
+-    /* Decode rle bitmap length, stored size includes width/height data */
+-    rle_bitmap_len = bytestream_get_be24(&buf) - 2*2;
++        if (buf_size > rle_bitmap_len) {
++            av_log(avctx, AV_LOG_ERROR,
++                   "Buffer dimension %d larger than the expected RLE data %d\n",
++                   buf_size, rle_bitmap_len);
++            return AVERROR_INVALIDDATA;
++        }
+ 
+-    if (buf_size > rle_bitmap_len) {
+-        av_log(avctx, AV_LOG_ERROR,
+-               "Buffer dimension %d larger than the expected RLE data %d\n",
+-               buf_size, rle_bitmap_len);
+-        return AVERROR_INVALIDDATA;
+-    }
++        /* Get bitmap dimensions from data */
++        width  = bytestream_get_be16(&buf);
++        height = bytestream_get_be16(&buf);
++
++        /* Make sure the bitmap is not too large */
++        if (MAX_OBJECT_WH < width || MAX_OBJECT_WH < height || !width || !height) {
++            av_log(avctx, AV_LOG_ERROR, "Bitmap dimensions (%dx%d) invalid.\n", width, height);
++            return AVERROR_INVALIDDATA;
++        }
+ 
+-    /* Get bitmap dimensions from data */
+-    width  = bytestream_get_be16(&buf);
+-    height = bytestream_get_be16(&buf);
+-
+-    /* Make sure the bitmap is not too large */
+-    if (avctx->width < width || avctx->height < height || !width || !height) {
+-        av_log(avctx, AV_LOG_ERROR, "Bitmap dimensions (%dx%d) invalid.\n", width, height);
+-        return AVERROR_INVALIDDATA;
+-    }
++        object->rle_data_len = 0;
++        object->w = width;
++        object->h = height;
++        /* Dimensions against video are checked at decode after cropping. */
++        av_fast_padded_malloc(&object->rle, &object->rle_buffer_size, rle_bitmap_len);
+ 
+-    object->w = width;
+-    object->h = height;
++        if (!object->rle) {
++            object->rle_remaining_len = 0;
++            return AVERROR(ENOMEM);
++        }
+ 
+-    av_fast_padded_malloc(&object->rle, &object->rle_buffer_size, rle_bitmap_len);
++        memcpy(object->rle, buf, buf_size);
++        object->rle_remaining_len = rle_bitmap_len;
++    } else {
++        /* Additional RLE data */
++        if (buf_size > object->rle_remaining_len)
++            return AVERROR_INVALIDDATA;
+ 
+-    if (!object->rle) {
+-        object->rle_data_len = 0;
+-        object->rle_remaining_len = 0;
+-        return AVERROR(ENOMEM);
++        memcpy(object->rle + object->rle_data_len, buf, buf_size);
+     }
++    object->rle_data_len += buf_size;
++    object->rle_remaining_len -= buf_size;
+ 
+-    memcpy(object->rle, buf, buf_size);
+-    object->rle_data_len = buf_size;
+-    object->rle_remaining_len = rle_bitmap_len - buf_size;
+-
++    /* Last in sequence object definition (can be both first and last) */
++    if (sequence_desc & 0x40) {
++        /* Attempt decoding if data is valid */
++        if (0 == object->rle_remaining_len) {
++            ret = decode_object_rle(avctx, object);
++            if (ret < 0 && (avctx->err_recognition & AV_EF_EXPLODE || ret == AVERROR(ENOMEM))) {
++                return ret;
++            }
++        } else {
++            av_log(avctx, AV_LOG_ERROR,
++                "RLE data length %u is %u bytes shorter than expected\n",
++                object->rle_data_len, object->rle_remaining_len);
++            if (avctx->err_recognition & AV_EF_EXPLODE)
++                return AVERROR_INVALIDDATA;
++        }
++    }
+     return 0;
+ }
+ 
+@@ -318,7 +362,7 @@
+  * Parse the palette segment packet.
+  *
+  * The palette segment contains details of the palette,
+- * a maximum of 256 colors can be defined.
++ * a maximum of 256 colors (AVPALETTE_COUNT) can be defined.
+  *
+  * @param avctx contains the current codec context
+  * @param buf pointer to the packet to process
+@@ -391,13 +435,17 @@
+                                       int64_t pts)
+ {
+     PGSSubContext *ctx = avctx->priv_data;
+-    int i, state, ret;
++    int ret;
++    uint8_t i, state;
+     const uint8_t *buf_end = buf + buf_size;
+ 
+     // Video descriptor
+     int w = bytestream_get_be16(&buf);
+     int h = bytestream_get_be16(&buf);
+ 
++    // On a new display set, reset writability of the graphic plane
++    ctx->plane.writable = 0;
++
+     ctx->presentation.pts = pts;
+ 
+     ff_dlog(avctx, "Video Dimensions %dx%d\n",
+@@ -406,88 +454,121 @@
+     if (ret < 0)
+         return ret;
+ 
+-    /* Skip 1 bytes of unknown, frame rate */
+-    buf++;
++    /* Skip 3 bytes: framerate (1), presentation id number (2) */
++    buf+=3;
+ 
+-    // Composition descriptor
+-    ctx->presentation.id_number = bytestream_get_be16(&buf);
+     /*
+-     * state is a 2 bit field that defines pgs epoch boundaries
++     * State is a 2 bit field that defines pgs epoch boundaries
+      * 00 - Normal, previously defined objects and palettes are still valid
+      * 01 - Acquisition point, previous objects and palettes can be released
+      * 10 - Epoch start, previous objects and palettes can be released
+      * 11 - Epoch continue, previous objects and palettes can be released
+      *
+-     * reserved 6 bits discarded
++     * Reserved 6 bits discarded
+      */
+     state = bytestream_get_byte(&buf) >> 6;
+     if (state != 0) {
++        /* Epoch start always wipes the graphic plane. Epoch continue does only if
++         * playback is not seamless, which should not happen with a proper stream.
++         */
++        if (0b10 == state)
++            clear_graphic_plane((PGSSubContext *)avctx->priv_data);
+         flush_cache(avctx);
+     }
+ 
++    /* Reserved 7 bits discarded. */
++    ctx->presentation.palette_flag = bytestream_get_byte(&buf) & 0x80;
++    ctx->presentation.palette_id = bytestream_get_byte(&buf);
++
+     /*
+-     * skip palette_update_flag (0x80),
++     * On palette update, don't parse the compositions references,
++     * just evaluate the existing graphic plane with the new palette.
+      */
+-    buf += 1;
+-    ctx->presentation.palette_id = bytestream_get_byte(&buf);
+-    ctx->presentation.object_count = bytestream_get_byte(&buf);
+-    if (ctx->presentation.object_count > MAX_OBJECT_REFS) {
+-        av_log(avctx, AV_LOG_ERROR,
+-               "Invalid number of presentation objects %d\n",
+-               ctx->presentation.object_count);
+-        ctx->presentation.object_count = 2;
+-        if (avctx->err_recognition & AV_EF_EXPLODE) {
+-            return AVERROR_INVALIDDATA;
++    if (!ctx->presentation.palette_flag) {
++        ctx->presentation.object_count = bytestream_get_byte(&buf);
++        if (ctx->presentation.object_count > MAX_OBJECT_REFS) {
++            av_log(avctx, AV_LOG_ERROR,
++                   "Invalid number of presentation objects %d\n",
++                   ctx->presentation.object_count);
++            ctx->presentation.object_count = 2;
++            if (avctx->err_recognition & AV_EF_EXPLODE) {
++                return AVERROR_INVALIDDATA;
++            }
+         }
+-    }
+ 
++        for (i = 0; i < ctx->presentation.object_count; i++) {
++            PGSSubObjectRef *const object = &ctx->presentation.objects[i];
+ 
+-    for (i = 0; i < ctx->presentation.object_count; i++)
+-    {
+-        PGSSubObjectRef *const object = &ctx->presentation.objects[i];
+-
+-        if (buf_end - buf < 8) {
+-            av_log(avctx, AV_LOG_ERROR, "Insufficent space for object\n");
+-            ctx->presentation.object_count = i;
+-            return AVERROR_INVALIDDATA;
+-        }
+-
+-        object->id               = bytestream_get_be16(&buf);
+-        object->window_id        = bytestream_get_byte(&buf);
+-        object->composition_flag = bytestream_get_byte(&buf);
+-
+-        object->x = bytestream_get_be16(&buf);
+-        object->y = bytestream_get_be16(&buf);
+-
+-        // If cropping
+-        if (object->composition_flag & 0x80) {
+-            object->crop_x = bytestream_get_be16(&buf);
+-            object->crop_y = bytestream_get_be16(&buf);
+-            object->crop_w = bytestream_get_be16(&buf);
+-            object->crop_h = bytestream_get_be16(&buf);
+-        }
+-
+-        ff_dlog(avctx, "Subtitle Placement x=%d, y=%d\n",
+-                object->x, object->y);
+-
+-        if (object->x > avctx->width || object->y > avctx->height) {
+-            av_log(avctx, AV_LOG_ERROR, "Subtitle out of video bounds. x = %d, y = %d, video width = %d, video height = %d.\n",
+-                   object->x, object->y,
+-                    avctx->width, avctx->height);
+-            object->y = object->x = 0;
+-            if (avctx->err_recognition & AV_EF_EXPLODE) {
++            if (buf_end - buf < 8) {
++                av_log(avctx, AV_LOG_ERROR, "Insufficent space for object\n");
++                ctx->presentation.object_count = i;
+                 return AVERROR_INVALIDDATA;
+             }
++
++            object->id               = bytestream_get_be16(&buf);
++            object->window_id        = bytestream_get_byte(&buf);
++            object->composition_flag = bytestream_get_byte(&buf);
++
++            object->x = bytestream_get_be16(&buf);
++            object->y = bytestream_get_be16(&buf);
++
++            // If cropping
++            if (object->composition_flag & 0x80) {
++                object->crop_x = bytestream_get_be16(&buf);
++                object->crop_y = bytestream_get_be16(&buf);
++                object->crop_w = bytestream_get_be16(&buf);
++                object->crop_h = bytestream_get_be16(&buf);
++            }
++
++            /* Placement is checked at decode after cropping. */
++            ff_dlog(avctx, "Subtitle Placement x=%d, y=%d\n",
++                    object->x, object->y);
+         }
+     }
++    return 0;
++}
++
++/**
++ * Parse the window segment packet.
++ *
++ * The window segment instructs the decoder to redraw the graphic plane
++ * with the composition references provided in the presentation segment
++ *
++ * @param avctx contains the current codec context
++ */
++static int parse_window_segment(AVCodecContext *avctx, const uint8_t *buf,
++                                int buf_size)
++{
++    PGSSubContext *ctx = (PGSSubContext *)avctx->priv_data;
++
++    // 1 byte: number of windows defined
++    if (bytestream_get_byte(&buf) > MAX_OBJECT_REFS) {
++        av_log(avctx, AV_LOG_ERROR, "Too many windows defined.\n");
++        return AVERROR_INVALIDDATA;
++    }
+ 
++    /* TODO: mask objects with windows when transfering to the graphic plane
++     * Window Segment Structure
++     *     {
++     *       1 byte : window id,
++     *       2 bytes: X position of window,
++     *       2 bytes: Y position of window,
++     *       2 bytes: Width of window,
++     *       2 bytes: Height of window.
++     *     }
++     */
++    // Flush the graphic plane, it will be redrawn.
++    clear_graphic_plane(ctx);
++    ctx->plane.writable = 1;
++    ctx->plane.count = ctx->presentation.object_count;
+     return 0;
+ }
+ 
+ /**
+  * Parse the display segment packet.
+  *
+- * The display segment controls the updating of the display.
++ * The display segment closes the display set. The inferred data is used
++ * to decide if the display should be updated.
+  *
+  * @param avctx contains the current codec context
+  * @param data pointer to the data pertaining the subtitle to display
+@@ -500,26 +581,33 @@
+     PGSSubContext *ctx = avctx->priv_data;
+     int64_t pts;
+     PGSSubPalette *palette;
+-    int i, ret;
++    int i;
+ 
+     pts = ctx->presentation.pts != AV_NOPTS_VALUE ? ctx->presentation.pts : sub->pts;
+     memset(sub, 0, sizeof(*sub));
+     sub->pts = pts;
+     ctx->presentation.pts = AV_NOPTS_VALUE;
+-    sub->start_display_time = 0;
+     // There is no explicit end time for PGS subtitles.  The end time
+     // is defined by the start of the next sub which may contain no
+     // objects (i.e. clears the previous sub)
+     sub->end_display_time   = UINT32_MAX;
+-    sub->format             = 0;
+ 
+-    // Blank if last object_count was 0.
+-    if (!ctx->presentation.object_count)
++    // Object count is zero only on an epoch start with no WDS
++    // or the last DS with a WDS had no presentation object.
++    if (!ctx->plane.count) {
+         return 1;
+-    sub->rects = av_calloc(ctx->presentation.object_count, sizeof(*sub->rects));
+-    if (!sub->rects) {
+-        return AVERROR(ENOMEM);
+     }
++
++    if (!ctx->presentation.palette_flag && !ctx->plane.writable) {
++        // This display set does not perform a display update
++        // E.g. it only defines new objects or palettes for future usage.
++        return 0;
++    }
++
++    sub->rects = av_calloc(ctx->plane.count, sizeof(*sub->rects));
++    if (!sub->rects)
++        return AVERROR(ENOMEM);
++
+     palette = find_palette(ctx->presentation.palette_id, &ctx->palettes);
+     if (!palette) {
+         // Missing palette.  Should only happen with damaged streams.
+@@ -528,57 +616,128 @@
+         avsubtitle_free(sub);
+         return AVERROR_INVALIDDATA;
+     }
+-    for (i = 0; i < ctx->presentation.object_count; i++) {
+-        AVSubtitleRect *const rect = av_mallocz(sizeof(*rect));
+-        PGSSubObject *object;
+ 
+-        if (!rect)
+-            return AVERROR(ENOMEM);
+-        sub->rects[sub->num_rects++] = rect;
+-        rect->type = SUBTITLE_BITMAP;
++    for (i = 0; i < ctx->plane.count; i++) {
++        const PGSSubObjectRef *sub_object = &ctx->presentation.objects[i];
++        AVSubtitleRect *const gp_rect = &ctx->plane.visible_rect[i];
++        AVSubtitleRect *rect;
++        gp_rect->type = SUBTITLE_BITMAP;
++
++        // Compose the graphic plane if a window segment has been provided
++        if (ctx->plane.writable) {
++            PGSSubObject *object;
++
++            // Process bitmap
++            object = find_object(sub_object->id, &ctx->objects);
++            if (!object) {
++                // Missing object.  Should only happen with damaged streams.
++                av_log(avctx, AV_LOG_ERROR, "Invalid object id %d\n", sub_object->id);
++                if (avctx->err_recognition & AV_EF_EXPLODE)
++                    return AVERROR_INVALIDDATA;
++                // Leaves rect empty with 0 width and height.
++                continue;
++            }
++            if (sub_object->composition_flag & 0x40)
++                gp_rect->flags |= AV_SUBTITLE_FLAG_FORCED;
+ 
+-        /* Process bitmap */
+-        object = find_object(ctx->presentation.objects[i].id, &ctx->objects);
+-        if (!object) {
+-            // Missing object.  Should only happen with damaged streams.
+-            av_log(avctx, AV_LOG_ERROR, "Invalid object id %d\n",
+-                   ctx->presentation.objects[i].id);
+-            if (avctx->err_recognition & AV_EF_EXPLODE)
+-                return AVERROR_INVALIDDATA;
+-            // Leaves rect empty with 0 width and height.
+-            continue;
+-        }
+-        if (ctx->presentation.objects[i].composition_flag & 0x40)
+-            rect->flags |= AV_SUBTITLE_FLAG_FORCED;
++            gp_rect->x    = sub_object->x;
++            gp_rect->y    = sub_object->y;
+ 
+-        rect->x    = ctx->presentation.objects[i].x;
+-        rect->y    = ctx->presentation.objects[i].y;
++            if (object->rle) {
++                int out_of_picture = 0;
++                gp_rect->w = object->w;
++                gp_rect->h = object->h;
++
++                gp_rect->linesize[0] = object->w;
++
++                // Check for cropping.
++                if (sub_object->composition_flag & 0x80) {
++                    int out_of_object = 0;
++
++                    if (object->w < sub_object->crop_x + sub_object->crop_w)
++                        out_of_object = 1;
++                    if (object->h < sub_object->crop_y + sub_object->crop_h)
++                        out_of_object = 1;
++
++                    if (out_of_object) {
++                        av_log(avctx, AV_LOG_ERROR,
++                               "Subtitle cropping values are out of object. "
++                               "obj_w = %d, obj_h = %d, crop_x = %d, crop_y = %d, "
++                               "crop_w = %d, crop_h = %d.\n",
++                               object->w,
++                               object->h,
++                               sub_object->crop_x,
++                               sub_object->crop_y,
++                               sub_object->crop_w,
++                               sub_object->crop_h);
++                        if (avctx->err_recognition & AV_EF_EXPLODE)
++                            return AVERROR_INVALIDDATA;
++                    } else {
++                        // Replace subtitle dimensions with cropping ones.
++                        gp_rect->w = sub_object->crop_w;
++                        gp_rect->h = sub_object->crop_h;
++                        gp_rect->linesize[0] = sub_object->crop_w;
++                    }
++                }
+ 
+-        if (object->rle) {
+-            rect->w    = object->w;
+-            rect->h    = object->h;
++                /* Make sure the subtitle is not out of picture. */
++                if (avctx->width < gp_rect->x + gp_rect->w || !gp_rect->w)
++                    out_of_picture = 1;
++                if (avctx->height < gp_rect->y + gp_rect->h || !gp_rect->h)
++                    out_of_picture = 1;
++                if (out_of_picture) {
++                    av_log(avctx, AV_LOG_ERROR,
++                           "Subtitle out of video bounds. "
++                           "x = %d, y = %d, width = %d, height = %d.\n",
++                           gp_rect->x, gp_rect->y, gp_rect->w, gp_rect->h);
++                    if (avctx->err_recognition & AV_EF_EXPLODE)
++                        return AVERROR_INVALIDDATA;
++                    gp_rect->w = 0;
++                    gp_rect->h = 0;
++                    continue;
++                }
+ 
+-            rect->linesize[0] = object->w;
++                if (!object->bitmap_size || object->rle_remaining_len) {
++                    gp_rect->w = 0;
++                    gp_rect->h = 0;
++                    continue;
++                }
+ 
+-            if (object->rle_remaining_len) {
+-                av_log(avctx, AV_LOG_ERROR, "RLE data length %u is %u bytes shorter than expected\n",
+-                       object->rle_data_len, object->rle_remaining_len);
+-                if (avctx->err_recognition & AV_EF_EXPLODE)
+-                    return AVERROR_INVALIDDATA;
+-            }
+-            ret = decode_rle(avctx, rect, object->rle, object->rle_data_len);
+-            if (ret < 0) {
+-                if ((avctx->err_recognition & AV_EF_EXPLODE) ||
+-                    ret == AVERROR(ENOMEM)) {
+-                    return ret;
++                gp_rect->data[0] = av_malloc_array(gp_rect->w, gp_rect->h);
++                if (!gp_rect->data[0])
++                    return AVERROR(ENOMEM);
++
++                if (sub_object->composition_flag & 0x80) {
++                    /* Copy cropped bitmap. */
++                    int y;
++
++                    for (y = 0; y < sub_object->crop_h; y++) {
++                        memcpy(&gp_rect->data[0][y * sub_object->crop_w],
++                               &object->bitmap[(sub_object->crop_y + y) *
++                               object->w + sub_object->crop_x],
++                               sub_object->crop_w);
++                    }
++                }
++                else {
++                    /* copy full object */
++                    memcpy(gp_rect->data[0], object->bitmap, object->bitmap_size);
+                 }
+-                rect->w = 0;
+-                rect->h = 0;
+-                continue;
+             }
+         }
+-        /* Allocate memory for colors */
+-        rect->nb_colors = 256;
++        // Export graphic plane content with latest palette
++        rect = av_memdup(gp_rect, sizeof(*gp_rect));
++        if (!rect)
++            return AVERROR(ENOMEM);
++
++        sub->rects[sub->num_rects++] = rect;
++        if (gp_rect->data[0]) {
++            rect->data[0] = av_memdup(gp_rect->data[0], rect->w*rect->h);
++            if (!rect->data[0])
++                return AVERROR(ENOMEM);
++        }
++
++        // Allocate memory for colors
++        rect->nb_colors = AVPALETTE_COUNT;
+         rect->data[1]   = av_mallocz(AVPALETTE_SIZE);
+         if (!rect->data[1])
+             return AVERROR(ENOMEM);
+@@ -641,14 +800,7 @@
+             ret = parse_presentation_segment(avctx, buf, segment_length, sub->pts);
+             break;
+         case WINDOW_SEGMENT:
+-            /*
+-             * Window Segment Structure (No new information provided):
+-             *     2 bytes: Unknown,
+-             *     2 bytes: X position of subtitle,
+-             *     2 bytes: Y position of subtitle,
+-             *     2 bytes: Width of subtitle,
+-             *     2 bytes: Height of subtitle.
+-             */
++            ret = parse_window_segment(avctx, buf, segment_length);
+             break;
+         case DISPLAY_SEGMENT:
+             if (*got_sub_ptr) {
+diff -Naur ffmpeg-7.1.1.old/libavcodec/videotoolbox.c ffmpeg-7.1.1/libavcodec/videotoolbox.c
+--- ffmpeg-7.1.1.old/libavcodec/videotoolbox.c	2025-03-24 10:54:38.027755105 +0100
++++ ffmpeg-7.1.1/libavcodec/videotoolbox.c	2025-03-24 10:54:39.271196851 +0100
+@@ -916,6 +916,23 @@
+         break;
+     }
+ 
++#if ARCH_X86_64
++    if (avctx->codec_id == AV_CODEC_ID_H264 &&
++        avctx->sw_pix_fmt == AV_PIX_FMT_YUV420P10)
++    {
++        // 10-bit H.264 is not supported on x86_64
++        return AVERROR(ENOSYS);
++    }
++#endif
++
++    if (avctx->codec_id == AV_CODEC_ID_H264 &&
++        (avctx->level == 61 || avctx->level == 62))
++    {
++        // H.264 Level 6.1 and 6.2 can't be
++        // decoded properly
++        return AVERROR(ENOSYS);
++    }
++
+ #if defined(MAC_OS_X_VERSION_10_9) && !TARGET_OS_IPHONE && (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_9) && AV_HAS_BUILTIN(__builtin_available)
+     if (avctx->codec_id == AV_CODEC_ID_PRORES) {
+         if (__builtin_available(macOS 10.9, *)) {
+diff -Naur ffmpeg-7.1.1.old/libavformat/isom.h ffmpeg-7.1.1/libavformat/isom.h
+--- ffmpeg-7.1.1.old/libavformat/isom.h	2025-03-24 10:54:38.366759184 +0100
++++ ffmpeg-7.1.1/libavformat/isom.h	2025-03-24 10:54:39.261252302 +0100
+@@ -272,6 +272,9 @@
+         MOVEncryptionIndex *encryption_index;
+     } cenc;
+ 
++    int has_fallback;   // Audio fallback track
++    int fallback;
++
+     struct IAMFDemuxContext *iamf;
+ } MOVStreamContext;
+ 
+diff -Naur ffmpeg-7.1.1.old/libavformat/matroskaenc.c ffmpeg-7.1.1/libavformat/matroskaenc.c
+--- ffmpeg-7.1.1.old/libavformat/matroskaenc.c	2025-03-24 10:54:38.396759545 +0100
++++ ffmpeg-7.1.1/libavformat/matroskaenc.c	2025-03-24 10:54:39.269651231 +0100
+@@ -2933,6 +2933,16 @@
+     case AV_CODEC_ID_AAC:
+         if (side_data_size && mkv->track.bc) {
+             int output_sample_rate = 0;
++            if (par->extradata && par->extradata_size) {
++                if (par->extradata_size != side_data_size ||
++                    memcmp(par->extradata, side_data, side_data_size)) {
++                    av_log(s, AV_LOG_ERROR, "Error, AAC extradata changed mid-stream.\n");
++                    return AVERROR(EINVAL);
++                } else {
++                    // Already written
++                    break;
++                }
++            }
+             ret = get_aac_sample_rates(s, mkv, side_data, side_data_size,
+                                        &track->sample_rate, &output_sample_rate);
+             if (ret < 0)
+diff -Naur ffmpeg-7.1.1.old/libavformat/mov.c ffmpeg-7.1.1/libavformat/mov.c
+--- ffmpeg-7.1.1.old/libavformat/mov.c	2025-03-24 10:54:38.353759028 +0100
++++ ffmpeg-7.1.1/libavformat/mov.c	2025-03-24 10:54:39.261629363 +0100
+@@ -56,6 +56,7 @@
+ #include "libavcodec/mpegaudiodecheader.h"
+ #include "libavcodec/mlp_parse.h"
+ #include "avformat.h"
++#include "avlanguage.h"
+ #include "internal.h"
+ #include "avio_internal.h"
+ #include "demux.h"
+@@ -342,6 +343,73 @@
+     return 0;
+ }
+ 
++static int mov_read_3gp_udta_tag(MOVContext *c, AVIOContext *pb, MOVAtom atom)
++{
++    const char *key;
++    AVDictionary *metadata;
++    uint16_t langcode = 0;
++    char key2[32], language[4] = {0};
++    uint32_t str_size, version;
++    char *str;
++    if (atom.size < 6)
++        return AVERROR_INVALIDDATA;
++    switch (atom.type) {
++    case MKTAG( 'a','l','b','m'): key = "album"; break;
++    case MKTAG( 'a','u','t','h'): key = "author"; break;
++    case MKTAG( 'c','p','r','t'): key = "copyright"; break;
++    case MKTAG( 'd','s','c','p'): key = "comment"; break;
++    case MKTAG( 'g','n','r','e'): key = "genre"; break;
++    case MKTAG( 'p','e','r','f'): key = "artist"; break;
++    case MKTAG( 't','i','t','l'): key = "title"; break;
++    case MKTAG( 'y','r','r','c'): key = "date"; break;
++    default: return 0;
++    }
++    version = avio_rb32(pb); // version + flags
++    if (version != 0)
++        av_log(c->fc, AV_LOG_WARNING, "udta %s unknown version number: %u\n", str, version);
++    if (MKTAG( 'y','r','r','c') == atom.type) {
++        int year;
++        year = avio_rb16(pb);
++        str = av_asprintf("%d", year);
++        if (!str)
++            return AVERROR(ENOMEM);
++    } else {
++        int ret;
++        const char *tmp;
++        langcode = avio_rb16(pb);
++        ff_mov_lang_to_iso639(langcode, language);
++        tmp = ff_convert_lang_to(language, AV_LANG_ISO639_2_BIBL);
++        if (!tmp)
++           av_log(c->fc, AV_LOG_WARNING, "udta %s unknown language code: %u\n", str, langcode);
++        str_size = atom.size - 6;
++        if (str_size <= 0 || str_size >= INT_MAX/2)
++            return AVERROR_INVALIDDATA;
++        str = av_mallocz(str_size + 1);
++        if (!str)
++            return AVERROR(ENOMEM);
++        ret = ffio_read_size(pb, str, str_size);
++        if (ret < 0) {
++            av_free(str);
++            return ret;
++        }
++        str[str_size] = 0;
++    }
++    if (c->trak_index < 0) {
++        metadata = c->fc->metadata;
++        c->fc->event_flags |= AVFMT_EVENT_FLAG_METADATA_UPDATED;
++    }
++    else {
++        metadata = c->fc->streams[c->trak_index]->metadata;
++    }
++    av_dict_set(&metadata, key, str, 0);
++    if (*language && strcmp(language, "und")) {
++        snprintf(key2, sizeof(key2), "%s-%s", key, language);
++        av_dict_set(&metadata, key2, str, 0);
++    }
++    av_freep(&str);
++    return 0;
++}
++
+ static int mov_read_udta_string(MOVContext *c, AVIOContext *pb, MOVAtom atom)
+ {
+     char tmp_key[AV_FOURCC_MAX_STRING_SIZE] = {0};
+@@ -354,6 +422,7 @@
+     int (*parse)(MOVContext*, AVIOContext*, unsigned, const char*) = NULL;
+     int raw = 0;
+     int num = 0;
++    AVDictionary *metadata;
+ 
+     switch (atom.type) {
+     case MKTAG( '@','P','R','M'): key = "premiere_version"; raw = 1; break;
+@@ -367,15 +436,33 @@
+     case MKTAG( 'c','a','t','g'): key = "category"; break;
+     case MKTAG( 'c','p','i','l'): key = "compilation";
+         parse = mov_metadata_int8_no_padding; break;
+-    case MKTAG( 'c','p','r','t'): key = "copyright"; break;
++    case MKTAG( 'c','p','r','t'):
++        key = "copyright";
++        if (!c->itunes_metadata) {
++            int64_t pos = avio_tell(pb);
++            int ret = mov_read_3gp_udta_tag(c, pb, atom);
++            if (ret != AVERROR_INVALIDDATA)
++                return ret;
++            avio_seek(pb, pos, SEEK_SET);
++        }
++        break;
+     case MKTAG( 'd','e','s','c'): key = "description"; break;
+     case MKTAG( 'd','i','s','k'): key = "disc";
+         parse = mov_metadata_track_or_disc_number; break;
+     case MKTAG( 'e','g','i','d'): key = "episode_uid";
+         parse = mov_metadata_int8_no_padding; break;
+     case MKTAG( 'F','I','R','M'): key = "firmware"; raw = 1; break;
+-    case MKTAG( 'g','n','r','e'): key = "genre";
+-        parse = mov_metadata_gnre; break;
++    case MKTAG( 'g','n','r','e'):
++        key = "genre";
++        parse = mov_metadata_gnre;
++        if (!c->itunes_metadata) {
++            int64_t pos = avio_tell(pb);
++            int ret = mov_read_3gp_udta_tag(c, pb, atom);
++            if (ret != AVERROR_INVALIDDATA)
++                return ret;
++            avio_seek(pb, pos, SEEK_SET);
++        }
++        break;
+     case MKTAG( 'h','d','v','d'): key = "hd_video";
+         parse = mov_metadata_int8_no_padding; break;
+     case MKTAG( 'H','M','M','T'):
+@@ -386,6 +473,7 @@
+         return mov_metadata_loci(c, pb, atom.size);
+     case MKTAG( 'm','a','n','u'): key = "make"; break;
+     case MKTAG( 'm','o','d','l'): key = "model"; break;
++    case MKTAG( 'n','a','m','e'): key = "title"; raw = 1; break;
+     case MKTAG( 'p','c','s','t'): key = "podcast";
+         parse = mov_metadata_int8_no_padding; break;
+     case MKTAG( 'p','g','a','p'): key = "gapless_playback";
+@@ -445,6 +533,15 @@
+     case MKTAG(0xa9,'w','r','n'): key = "warning";   break;
+     case MKTAG(0xa9,'w','r','t'): key = "composer";  break;
+     case MKTAG(0xa9,'x','y','z'): key = "location";  break;
++    case MKTAG( 'a','l','b','m'):
++    case MKTAG( 'a','u','t','h'):
++    case MKTAG( 'd','s','c','p'):
++    case MKTAG( 'p','e','r','f'):
++    case MKTAG( 't','i','t','l'):
++    case MKTAG( 'y','r','r','c'):
++        if (!c->itunes_metadata) {
++            return mov_read_3gp_udta_tag(c, pb, atom);
++        }
+     }
+ retry:
+     if (c->itunes_metadata && atom.size > 8) {
+@@ -571,17 +668,23 @@
+             }
+             str[str_size] = 0;
+         }
+-        c->fc->event_flags |= AVFMT_EVENT_FLAG_METADATA_UPDATED;
+-        av_dict_set(&c->fc->metadata, key, str, 0);
++        if (c->trak_index < 0) {
++            metadata = c->fc->metadata;
++            c->fc->event_flags |= AVFMT_EVENT_FLAG_METADATA_UPDATED;
++            if (!strcmp(key, "encoder")) {
++                int major, minor, micro;
++                if (sscanf(str, "HandBrake %d.%d.%d", &major, &minor, &micro) == 3) {
++                    c->handbrake_version = 1000000*major + 1000*minor + micro;
++                }
++            }
++        }
++        else {
++            metadata = c->fc->streams[c->trak_index]->metadata;
++        }
++        av_dict_set(&metadata, key, str, 0);
+         if (*language && strcmp(language, "und")) {
+             snprintf(key2, sizeof(key2), "%s-%s", key, language);
+-            av_dict_set(&c->fc->metadata, key2, str, 0);
+-        }
+-        if (!strcmp(key, "encoder")) {
+-            int major, minor, micro;
+-            if (sscanf(str, "HandBrake %d.%d.%d", &major, &minor, &micro) == 3) {
+-                c->handbrake_version = 1000000*major + 1000*minor + micro;
+-            }
++            av_dict_set(&metadata, key2, str, 0);
+         }
+     }
+ 
+@@ -9081,6 +9184,23 @@
+     return ret;
+ }
+ 
++static int mov_read_fall(MOVContext *c, AVIOContext *pb, MOVAtom atom)
++{
++    AVStream *st;
++    MOVStreamContext *sc;
++
++    if (c->fc->nb_streams < 1)
++        return 0;
++    st = c->fc->streams[c->fc->nb_streams-1];
++    sc = st->priv_data;
++
++    sc->fallback = avio_rb32(pb);
++    sc->has_fallback = 1;
++
++    return 0;
++}
++
++
+ static const MOVParseTableEntry mov_default_parse_table[] = {
+ { MKTAG('A','C','L','R'), mov_read_aclr },
+ { MKTAG('A','P','R','G'), mov_read_avid },
+@@ -9183,6 +9303,7 @@
+ { MKTAG('v','p','c','C'), mov_read_vpcc },
+ { MKTAG('m','d','c','v'), mov_read_mdcv },
+ { MKTAG('c','l','l','i'), mov_read_clli },
++{ MKTAG('f','a','l','l'), mov_read_fall },
+ { MKTAG('d','v','c','C'), mov_read_dvcc_dvvc },
+ { MKTAG('d','v','v','C'), mov_read_dvcc_dvvc },
+ { MKTAG('d','v','w','C'), mov_read_dvcc_dvvc },
+@@ -10367,6 +10488,23 @@
+             err = ff_replaygain_export(st, s->metadata);
+             if (err < 0)
+                 return err;
++            if (sc->has_fallback) {
++                for (j = 0; j < s->nb_streams; j++) {
++                    if (s->streams[j]->id == sc->fallback) {
++                        AVPacketSideData *sd;
++                        int *fallback;
++                        sd = av_packet_side_data_new(&st->codecpar->coded_side_data,
++                                 &st->codecpar->nb_coded_side_data,
++                                 AV_PKT_DATA_FALLBACK_TRACK,
++                                 sizeof(int), 0);
++                        if (!sd)
++                            return AVERROR(ENOMEM);
++                        fallback = (int*)sd->data;
++                        *fallback = j;
++                        break;
++                    }
++                }
++            }
+             break;
+         case AVMEDIA_TYPE_VIDEO:
+             if (sc->display_matrix) {
+diff -Naur ffmpeg-7.1.1.old/libavformat/movenc.c ffmpeg-7.1.1/libavformat/movenc.c
+--- ffmpeg-7.1.1.old/libavformat/movenc.c	2025-03-24 10:54:38.381759365 +0100
++++ ffmpeg-7.1.1/libavformat/movenc.c	2025-03-24 10:54:39.258769917 +0100
+@@ -28,6 +28,7 @@
+ 
+ #include "movenc.h"
+ #include "avformat.h"
++#include "avlanguage.h"
+ #include "avio_internal.h"
+ #include "dovi_isom.h"
+ #include "riff.h"
+@@ -4055,6 +4056,41 @@
+     return len + 24;
+ }
+ 
++static uint16_t language_code(const char *str)
++{
++    return (((str[0] - 0x60) & 0x1F) << 10) +
++           (((str[1] - 0x60) & 0x1F) <<  5) +
++           (( str[2] - 0x60) & 0x1F);
++}
++static int mov_write_3gp_udta_tag(AVIOContext *pb, AVDictionary *metadata,
++                                  const char *tag, const char *str)
++{
++    int64_t pos = avio_tell(pb);
++    AVDictionaryEntry *t = av_dict_get(metadata, str, NULL, 0);
++    if (!t || !utf8len(t->value))
++        return 0;
++    avio_wb32(pb, 0);   /* size */
++    ffio_wfourcc(pb, tag); /* type */
++    avio_wb32(pb, 0);   /* version + flags */
++    if (!strcmp(tag, "yrrc"))
++        avio_wb16(pb, atoi(t->value));
++    else {
++        int lang = 0, len;
++        len = strlen(t->key);
++        if (t->key[len - 4] == '-') {
++            lang = ff_mov_iso639_to_lang(&t->key[len - 3], 1);
++        }
++        if (!lang)
++            lang = ff_mov_iso639_to_lang("und", 1);
++        avio_wb16(pb, lang); /* language */
++        avio_write(pb, t->value, strlen(t->value) + 1); /* UTF8 string value */
++        if (!strcmp(tag, "albm") &&
++            (t = av_dict_get(metadata, "track", NULL, 0)))
++            avio_w8(pb, atoi(t->value));
++    }
++    return update_size(pb, pos);
++}
++
+ static int mov_write_track_metadata(AVIOContext *pb, AVStream *st,
+                                     const char *tag, const char *str)
+ {
+@@ -4129,8 +4165,23 @@
+     if (ret < 0)
+         return ret;
+ 
+-    if (mov->mode & (MODE_MP4|MODE_MOV))
++    if (mov->mode & (MODE_MP4|MODE_MOV)) {
++        AVDictionaryEntry *t = NULL;
++        int und = 0;
++
+         mov_write_track_metadata(pb_buf, st, "name", "title");
++        while ((t = av_dict_get(st->metadata, "title-", t, AV_DICT_IGNORE_SUFFIX))) {
++            int len = strlen(t->key);
++            if (len == 10 &&
++                ff_convert_lang_to(&t->key[len - 3], AV_LANG_ISO639_2_BIBL)) {
++                mov_write_3gp_udta_tag(pb_buf, st->metadata, "titl", t->key);
++                if (!strcmp("und", &t->key[len - 3]))
++                    und = 1;
++            }
++        }
++        if (!und)
++            mov_write_3gp_udta_tag(pb_buf, st->metadata, "titl", "title");
++    }
+ 
+     if (mov->mode & MODE_MP4) {
+         if ((ret = mov_write_track_kinds(pb_buf, st)) < 0)
+@@ -4727,35 +4778,6 @@
+     return 0;
+ }
+ 
+-static uint16_t language_code(const char *str)
+-{
+-    return (((str[0] - 0x60) & 0x1F) << 10) +
+-           (((str[1] - 0x60) & 0x1F) <<  5) +
+-           (( str[2] - 0x60) & 0x1F);
+-}
+-
+-static int mov_write_3gp_udta_tag(AVIOContext *pb, AVFormatContext *s,
+-                                  const char *tag, const char *str)
+-{
+-    int64_t pos = avio_tell(pb);
+-    AVDictionaryEntry *t = av_dict_get(s->metadata, str, NULL, 0);
+-    if (!t || !utf8len(t->value))
+-        return 0;
+-    avio_wb32(pb, 0);   /* size */
+-    ffio_wfourcc(pb, tag); /* type */
+-    avio_wb32(pb, 0);   /* version + flags */
+-    if (!strcmp(tag, "yrrc"))
+-        avio_wb16(pb, atoi(t->value));
+-    else {
+-        avio_wb16(pb, language_code("eng")); /* language */
+-        avio_write(pb, t->value, strlen(t->value) + 1); /* UTF8 string value */
+-        if (!strcmp(tag, "albm") &&
+-            (t = av_dict_get(s->metadata, "track", NULL, 0)))
+-            avio_w8(pb, atoi(t->value));
+-    }
+-    return update_size(pb, pos);
+-}
+-
+ static int mov_write_chpl_tag(AVIOContext *pb, AVFormatContext *s)
+ {
+     int64_t pos = avio_tell(pb);
+@@ -4794,14 +4816,14 @@
+         return ret;
+ 
+     if (mov->mode & MODE_3GP) {
+-        mov_write_3gp_udta_tag(pb_buf, s, "perf", "artist");
+-        mov_write_3gp_udta_tag(pb_buf, s, "titl", "title");
+-        mov_write_3gp_udta_tag(pb_buf, s, "auth", "author");
+-        mov_write_3gp_udta_tag(pb_buf, s, "gnre", "genre");
+-        mov_write_3gp_udta_tag(pb_buf, s, "dscp", "comment");
+-        mov_write_3gp_udta_tag(pb_buf, s, "albm", "album");
+-        mov_write_3gp_udta_tag(pb_buf, s, "cprt", "copyright");
+-        mov_write_3gp_udta_tag(pb_buf, s, "yrrc", "date");
++        mov_write_3gp_udta_tag(pb_buf, s->metadata, "perf", "artist");
++        mov_write_3gp_udta_tag(pb_buf, s->metadata, "titl", "title");
++        mov_write_3gp_udta_tag(pb_buf, s->metadata, "auth", "author");
++        mov_write_3gp_udta_tag(pb_buf, s->metadata, "gnre", "genre");
++        mov_write_3gp_udta_tag(pb_buf, s->metadata, "dscp", "comment");
++        mov_write_3gp_udta_tag(pb_buf, s->metadata, "albm", "album");
++        mov_write_3gp_udta_tag(pb_buf, s->metadata, "cprt", "copyright");
++        mov_write_3gp_udta_tag(pb_buf, s->metadata, "yrrc", "date");
+         mov_write_loci_tag(s, pb_buf);
+     } else if (mov->mode == MODE_MOV && !(mov->flags & FF_MOV_FLAG_USE_MDTA)) { // the title field breaks gtkpod with mp4 and my suspicion is that stuff is not valid in mp4
+         mov_write_string_metadata(s, pb_buf, "\251ART", "artist",      0);
+diff -Naur ffmpeg-7.1.1.old/libavutil/frame.c ffmpeg-7.1.1/libavutil/frame.c
+--- ffmpeg-7.1.1.old/libavutil/frame.c	2025-03-24 10:54:38.298758366 +0100
++++ ffmpeg-7.1.1/libavutil/frame.c	2025-03-24 10:54:39.274197994 +0100
+@@ -45,6 +45,7 @@
+     [AV_FRAME_DATA_FILM_GRAIN_PARAMS]           = { "Film grain parameters" },
+     [AV_FRAME_DATA_DETECTION_BBOXES]            = { "Bounding boxes for object detection and classification" },
+     [AV_FRAME_DATA_DOVI_RPU_BUFFER]             = { "Dolby Vision RPU Data" },
++    [AV_FRAME_DATA_DOVI_RPU_BUFFER_T35]         = { "Dolby Vision RPU ITU T35 Data" },
+     [AV_FRAME_DATA_DOVI_METADATA]               = { "Dolby Vision Metadata" },
+     [AV_FRAME_DATA_LCEVC]                       = { "LCEVC NAL data" },
+     [AV_FRAME_DATA_VIEW_ID]                     = { "View ID" },
+diff -Naur ffmpeg-7.1.1.old/libavutil/frame.h ffmpeg-7.1.1/libavutil/frame.h
+--- ffmpeg-7.1.1.old/libavutil/frame.h	2025-03-24 10:54:38.287758234 +0100
++++ ffmpeg-7.1.1/libavutil/frame.h	2025-03-24 10:54:39.274296419 +0100
+@@ -201,6 +201,12 @@
+     AV_FRAME_DATA_DOVI_RPU_BUFFER,
+ 
+     /**
++     * Dolby Vision RPU ITU T35 raw data, suitable for passing to SVT-AV1
++     * or other libraries. Array of uint8_t.
++     */
++    AV_FRAME_DATA_DOVI_RPU_BUFFER_T35,
++
++    /**
+      * Parsed Dolby Vision metadata, suitable for passing to a software
+      * implementation. The payload is the AVDOVIMetadata struct defined in
+      * libavutil/dovi_meta.h.
+diff -Naur ffmpeg-7.1.1.old/libswscale/swscale_unscaled.c ffmpeg-7.1.1/libswscale/swscale_unscaled.c
+--- ffmpeg-7.1.1.old/libswscale/swscale_unscaled.c	2025-03-24 10:54:38.201757199 +0100
++++ ffmpeg-7.1.1/libswscale/swscale_unscaled.c	2025-03-24 10:54:39.272233834 +0100
+@@ -341,7 +341,7 @@
+         const uint8_t *tsrc0 = src[0];
+         for (x = c->srcW; x > 0; x--) {
+             t = *tsrc0++;
+-            output_pixel(tdstY++, t | (t << 8));
++            output_pixel(tdstY++, (t << 8));
+         }
+         src[0] += srcStride[0];
+         dstY += dstStride[0] / 2;
+@@ -352,9 +352,9 @@
+             const uint8_t *tsrc2 = src[2];
+             for (x = c->srcW / 2; x > 0; x--) {
+                 t = *tsrc1++;
+-                output_pixel(tdstUV++, t | (t << 8));
++                output_pixel(tdstUV++, (t << 8));
+                 t = *tsrc2++;
+-                output_pixel(tdstUV++, t | (t << 8));
++                output_pixel(tdstUV++, (t << 8));
+             }
+             src[1] += srcStride[1];
+             src[2] += srcStride[2];

@@ -3,12 +3,12 @@
 %global gtk4_version        4.14.4
 %global libadwaita_version  1.5.1
 %global pure_protobuf_version 2.0.0
-%global raw_ver v1.74.0
+%global raw_ver v1.76.1
 
 Name:           komikku
-Version:        1.74.0
+Version:        1.76.1
 %forgemeta
-Release:        3%?dist
+Release:        1%?dist
 Summary:        A manga reader for GNOME
 
 BuildArch:      noarch
@@ -99,6 +99,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_bindir}/%{name}
 %{_datadir}/%{name}/
 %{_datadir}/applications/*.desktop
+%{_datadir}/dbus-1/services/%{uuid}.service
 %{_datadir}/glib-2.0/schemas/*.gschema.xml
 %{_datadir}/icons/hicolor/scalable/*/*.svg
 %{_datadir}/icons/hicolor/symbolic/*/*.svg

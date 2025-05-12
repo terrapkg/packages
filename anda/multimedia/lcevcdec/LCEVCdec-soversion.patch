@@ -1,0 +1,22 @@
+diff -Naur LCEVCdec-3.3.5.old/src/api/CMakeLists.txt LCEVCdec-3.3.5/src/api/CMakeLists.txt
+--- LCEVCdec-3.3.5.old/src/api/CMakeLists.txt	2025-03-23 16:27:09.553851133 +0100
++++ LCEVCdec-3.3.5/src/api/CMakeLists.txt	2025-03-26 16:53:24.642189905 +0100
+@@ -57,6 +57,7 @@
+ 
+ include(GNUInstallDirs)
+ 
++set_target_properties(lcevc_dec_api PROPERTIES SOVERSION ${GIT_SHORT_VERSION} VERSION ${GIT_VERSION})
+ get_target_property(IS_APPLE_FRAMEWORK lcevc_dec_api FRAMEWORK)
+ if (IS_APPLE_FRAMEWORK)
+     install(TARGETS lcevc_dec_api DESTINATION lib)
+diff -Naur LCEVCdec-3.3.5.old/src/core/decoder/CMakeLists.txt LCEVCdec-3.3.5/src/core/decoder/CMakeLists.txt
+--- LCEVCdec-3.3.5.old/src/core/decoder/CMakeLists.txt	2025-03-23 16:27:09.556081884 +0100
++++ LCEVCdec-3.3.5/src/core/decoder/CMakeLists.txt	2025-03-26 16:53:10.698019829 +0100
+@@ -170,6 +170,7 @@
+ 
+ # -------------------------------------------------------------------------------
+ 
++set_target_properties(lcevc_dec_core PROPERTIES SOVERSION ${GIT_SHORT_VERSION} VERSION ${GIT_VERSION})
+ get_target_property(IS_APPLE_FRAMEWORK lcevc_dec_core FRAMEWORK)
+ if (IS_APPLE_FRAMEWORK)
+     install(TARGETS lcevc_dec_core DESTINATION lib)
