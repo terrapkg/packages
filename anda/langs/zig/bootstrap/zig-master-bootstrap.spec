@@ -7,7 +7,7 @@
 %define         llvm_compat 20
 %endif
 %global         llvm_version 20.0.0
-%global         ver 0.15.0-dev.471+369177f0b
+%global         ver 0.15.0-dev.483+837e0f9c3
 %bcond bootstrap 1
 %bcond docs      %{without bootstrap}
 %bcond test      1
@@ -67,6 +67,8 @@ BuildRequires:  %{name} <= %{version}
 BuildRequires:  elfutils-libelf-devel
 BuildRequires:  libstdc++-static
 %endif
+# Zig invokes the C compiler to figure out system info
+Requires:       gcc
 Requires:       %{name}-libs = %{version}
 # Apache-2.0 WITH LLVM-exception OR NCSA OR MIT
 Provides:       bundled(compiler-rt) = %{llvm_version}
@@ -197,6 +199,8 @@ install -Dpm644 zig.1 -t %{buildroot}%{_mandir}/man1/
 %endif
 
 %changelog
+* Sat May 10 2025 Gilver E. <rockgrub@disroot.org> - 0.15.0~dev.482+2c241b263-2
+- Added GCC runtime dependency to pass system information to Zig
 * Fri Apr 25 2025 Gilver E. <rockgrub@disroot.org> - 0.15.0~dev.384+c06fecd46-2
 - Ported Fedora Zig patches
 * Wed Apr 23 2025 Gilver E. <rockgrub@disroot.org>
