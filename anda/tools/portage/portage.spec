@@ -12,7 +12,7 @@ Summary:        Portage is the package management and distribution system for Ge
 # https://docs.fedoraproject.org/en-US/packaging-guidelines/LicensingGuidelines/
 License:        GPLv2
 URL:            https://github.com/gentoo/portage
-Source:         %{name}-%{version}.tar.gz
+Source:         https://codeload.github.com/gentoo/portage/tar.gz/refs/tags/portage-3.0.68#/%{name}-%{version}.tar.gz
 
 BuildRequires:  pyproject-rpm-macros
 BuildRequires:  python3-devel
@@ -146,7 +146,7 @@ Links
 %description %_description
 
 %prep
-%autosetup -p1 -n %{name}-%{version}
+%autosetup -p1 -n %{name}-%{name}-%{version}
 
 %build
 %meson
