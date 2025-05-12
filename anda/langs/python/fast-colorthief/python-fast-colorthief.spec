@@ -15,7 +15,6 @@ BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  pybind11-devel
 BuildRequires:  python3-devel
-BuildRequires:  python3-sphinxcontrib_moderncmakedomain
 BuildRequires:  python3-sphinxcontrib-rsvgconverter
 BuildRequires:  python3dist(breathe)
 BuildRequires:  python3dist(furo)
@@ -25,6 +24,7 @@ BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(pybind11)
 BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(sphinx)
+BuildRequires:  python3dist(sphinxcontrib-moderncmakedomain)
 BuildRequires:  python3dist(sphinx-copybutton)
 Packager:       Gilver E. <rockgrub@disroot.org>
 
