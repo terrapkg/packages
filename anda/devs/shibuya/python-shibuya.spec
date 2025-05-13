@@ -1,7 +1,9 @@
 %global pypi_name shibuya
 %global _description %{expand:
 A responsive, good looking with modern design documentation theme for Sphinx, with great supports for many sphinx extensions.}
+# I would love to enable the docs but Fedora has stopped maintaining their jupyter-sphinx package with 42 and it is required to build them
 %bcond docs 0
+
 
 Name:           python-%{pypi_name}
 Version:        2025.4.25
@@ -15,11 +17,17 @@ Source0:        https://github.com/lepture/shibuya/archive/refs/tags/%{version}.
 Source0:        %{pypi_source}
 %endif
 BuildRequires:  python3-devel
+BuildRequires:  python3-rpm-macros
 BuildRequires:  python3dist(babel)
+BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(sphinx)
 %if %{with docs}
+BuildRequires:  python3dist(jupyter-sphinx)
+BuildRequires:  python3dist(myst-parser)
 BuildRequires:  python3dist(shibuya)
+BuildRequires:  python3dist(sphinx-copybutton)
+BuildRequires:  python3dist(sphinx-design)
 %endif
 BuildArch:      noarch
 Packager:       Gilver E. <rockgrub@disroot.org>
@@ -87,7 +95,6 @@ done
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
 
 %if %{with docs}
 %files -n python3-%{pypi_name}-doc
