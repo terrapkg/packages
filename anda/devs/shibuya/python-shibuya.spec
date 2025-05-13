@@ -4,7 +4,6 @@ A responsive, good looking with modern design documentation theme for Sphinx, wi
 # I would love to enable the docs but Fedora has stopped maintaining their jupyter-sphinx package with 42 and it is required to build them
 %bcond docs 0
 
-
 Name:           python-%{pypi_name}
 Version:        2025.4.25
 Release:        1%{?dist}
