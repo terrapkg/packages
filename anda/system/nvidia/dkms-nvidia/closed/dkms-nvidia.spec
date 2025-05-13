@@ -12,7 +12,6 @@ License:        NVIDIA License
 URL:            https://www.nvidia.com/object/unix.html
 Source0:        https://download.nvidia.com/XFree86/Linux-%{_arch}/%{version}/NVIDIA-Linux-%{_arch}-%{version}.run
 Source1:        %{name}.conf
-Source2:        kernel.conf
 %dnl Patch0:         nvidia-kernel-ccflags-y.patch
 BuildRequires:  sed
 Provides:       %{modulename}-kmod = %{?epoch:%{epoch}:}%{version}
