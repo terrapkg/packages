@@ -83,7 +83,7 @@ done
 # Poetry Pytests will fail on Rawhide due to original Colorthief being missing
 %if 0%{?fedora} <= 42
 # This is in the wrong spot in pyproject.toml and Poetry hates it
-# May seem like feating the purpose of testing but the other tests can be useful
+# May seem like defeating the purpose of testing but the other tests can be useful
 sed -iE 's/python = ">=3.9,<3.14"//' pyproject.toml
 poetry run pytest
 %endif
