@@ -107,5 +107,5 @@ poetry run pytest
 %endif
 
 %changelog
-* Sun May 11 2025 Gilver E. <rockgrub@disroot.org> - 0.1.7-1
+* Tue May 13 2025 Gilver E. <rockgrub@disroot.org> - 0.1.7-1
 - Initial package
