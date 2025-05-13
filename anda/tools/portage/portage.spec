@@ -165,7 +165,7 @@ useradd -r -u 250 -g 250 -d /var/tmp/portage -s /bin/false portage
 groupadd -g 250 portage
 mkdir -pv %{_sysconfdir}
 cp -RTfvpu %{_datadir}/%{name}/config %{_sysconfdir}/%{name}
-dir="$(cat /etc/portage/repos.conf | sed -n 's~location\s*=\s*\(.*\)\s*~\1~pg;')/profiles"
+dir="$(cat %{_sysconfdir}/%{name}/repos.conf | sed -n 's~location\s*=\s*\(.*\)\s*~\1~pg;')/profiles"
 mkdir -pv "${dir}"
 
 
