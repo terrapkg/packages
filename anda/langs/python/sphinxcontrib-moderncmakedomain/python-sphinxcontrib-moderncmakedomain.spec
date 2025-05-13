@@ -12,6 +12,7 @@ URL:            https://github.com/scikit-build/moderncmakedomain
 Source0:        %{pypi_source}
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(hatchling)
+BuildRequires:  python3dist(nox)
 BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(setuptools)
@@ -42,7 +43,7 @@ Modern CMake domain entries, originally from Kitware.
 %pyproject_install
 
 %check
-%pytest tests/*.py
+nox -s tests
 
 %files -n python3-%{real_name}
 %doc     PKG-INFO
