@@ -69,7 +69,7 @@ jobs:
           dnf5 builddep -y ${dir}/*.spec
 
       - name: Build with Andaman
-        run: anda build ${{ matrix.pkg.pkg }} -c terra-${{ matrix.version }}-${{ matrix.pkg.arch }} ${{ !matrix.pkg.labels.mock == '1' && '-rrpmbuild' || '' }}
+        run: anda build ${{ matrix.pkg.pkg }} -D "vendor Terra" -c terra-${{ matrix.version }}-${{ matrix.pkg.arch }} ${{ !matrix.pkg.labels.mock == '1' && '-rrpmbuild' || '' }}
 
       - name: Generating artifact name
         id: art
