@@ -34,6 +34,7 @@ BuildRequires: python3-devel
 BuildRequires: python3-rpm-macros
 BuildRequires: qt5-qtsvg-devel
 BuildRequires: fdupes
+BuildRequires: python3dist(pip)
 BuildRequires: python3dist(setuptools)
 Requires:      qt5-qtgraphicaleffects
 Requires:      qt5-qtfeedback
@@ -97,7 +98,7 @@ rm -rf %{buildroot}%{_qt5_qmldir}/Extinct
 
 pushd tests/autopilot
 %pyproject_install
-mv lomiriuitoolkit/{tests,_custom_proxy_objects} %{buildroot}%{python3_sitelib}/lomiriuitoolkit/
+mv lomiriuitoolkit/{tests,_custom_proxy_objects} -t %{buildroot}%{python3_sitelib}/lomiriuitoolkit/
 popd
 
 %find_lang %{name}
@@ -143,8 +144,6 @@ popd
 %doc README.md
 %dir %{python3_sitelib}/lomiriuitoolkit
 %{python3_sitelib}/lomiriuitoolkit/*.py
-%dir %{python3_sitelib}/lomiriuitoolkit-%{version}-py%{python3_version}.egg-info
-%{python3_sitelib}/lomiriuitoolkit-%{version}-py%{python3_version}.egg-info/*
 %{python3_sitelib}/lomiriuitoolkit/_custom_proxy_objects/
 %{python3_sitelib}/lomiriuitoolkit/__pycache__/
 %{python3_sitelib}/lomiriuitoolkit/tests/
