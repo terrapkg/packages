@@ -13,8 +13,5 @@
 # +-------------+---------------------+----------------+
 
 # TERRA-SPECIFIC NOTES:
-# A script has been added to the spec to detect if a Pascal, Maxwell, or lower card is in use.
-# This script will switch to closed modules if one is.
-# When NVIDIA drops all support for closed modules, this script will be removed.
-
-MODULE_VARIANT=kernel-open
+# The default module versions have been added to the DKMS and Akmods packages.
+# This file now exists only to explain how the variable works.
