@@ -14,7 +14,7 @@ Source0:        https://download.nvidia.com/XFree86/Linux-%{_arch}/%{version}/NV
 Source1:        %{name}.conf
 %dnl Patch0:         nvidia-kernel-ccflags-y.patch
 BuildRequires:  sed
-Provides:       %{modulename}-kmod = %{?epoch:%{epoch}:}%{version}
+Provides:       %{modulename}-open-kmod = %{?epoch:%{epoch}:}%{version}
 Requires:       %{modulename}-kmod-common = %{?epoch:%{epoch}:}%{version}
 Requires:       dkms
 Conflicts:      akmod-nvidia

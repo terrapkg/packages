@@ -26,7 +26,7 @@ Source21:       60-nvidia.rules
 BuildRequires:  systemd-rpm-macros
 
 Requires:       nvidia-modprobe
-Requires:       nvidia-kmod = %{?epoch:%{epoch}:}%{version}
+Requires:       (nvidia-open-kmod = %{?epoch:%{epoch}:}%{version} or nvidia-kmod = %{?epoch:%{epoch}:}%{version})
 Provides:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
 Obsoletes:      cuda-nvidia-kmod-common < %{?epoch:%{epoch}:}%{version}
 
