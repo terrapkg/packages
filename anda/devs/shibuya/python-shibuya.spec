@@ -68,14 +68,20 @@ This package contains the official docs for Shibuya.
 rm -rf %{pypi_name}.egg-info
 
 %build
-%py3_build
+%pyproject_wheel
 
 %if %{with docs}
-PYTHONPATH=${PWD} sphinx-build docs build/_html -b dirhtml -a
+sphinx-build docs build/_html -b dirhtml -a
+pybabel extract -F babel.cfg src/shibuya/theme -o src/shibuya/locale/sphinx.pot
+for l in de en es fr ja ko pt pt_BR zh zh_TW; do
+pybabel init -D sphinx -i src/shibuya/locale/sphinx.pot -d src/shibuya/locale -l $l
+pybabel update -D sphinx -i src/shibuya/locale/sphinx.pot -d src/shibuya/locale -l $l
+pybabel compile -D sphinx -d src/shibuya/locale
+done
 %endif
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %license LICENSE
@@ -85,6 +91,8 @@ PYTHONPATH=${PWD} sphinx-build docs build/_html -b dirhtml -a
 
 %if %{with docs}
 %files -n python3-%{pypi_name}-doc
+%doc build/_html/*
+%doc src/shibuya/locale/{de,en,es,fr,ja,ko,pt,pt_BR,zh,zh_TW}
 %endif
 
 %changelog
