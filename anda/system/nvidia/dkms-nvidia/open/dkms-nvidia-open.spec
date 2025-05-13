@@ -41,7 +41,6 @@ cp -fr * %{buildroot}%{_usrsrc}/%{modulename}-%{version}/
 rm -f %{buildroot}%{_usrsrc}/%{modulename}-%{version}/*/dkms.conf
 
 %post
-export MODULE_VARIANT=kernel-open
 dkms add -m %{modulename} -v %{version} -q --rpm_safe_upgrade || :
 # Rebuild and make available for the currently running kernel:
 dkms build -m %{modulename} -v %{version} -q || :
@@ -49,7 +48,6 @@ dkms install -m %{modulename} -v %{version} -q --force || :
 dracut --regenerate-all --force --quiet
 
 %preun
-export MODULE_VARIANT=kernel-open
 # Remove all versions from DKMS registry:
 dkms remove -m %{modulename} -v %{version} -q --all --rpm_safe_upgrade || :
 if [ "$1" == 0 ]; then
