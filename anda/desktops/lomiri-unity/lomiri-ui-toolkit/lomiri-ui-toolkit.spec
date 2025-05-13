@@ -84,7 +84,7 @@ Examples for Lomiri-ui-toolkit.
 %build
 %{qmake_qt5} 'CONFIG+=ubuntu-uitk-compat' 'CONFIG+=test'
 pushd tests/autopilot
-%py3_build
+%pyproject_wheel
 popd
 %make_build
 
@@ -96,7 +96,7 @@ rm -rf %{buildroot}%{_qt5_qmldir}/Extinct
 %fdupes %buildroot%_libdir/qt5/examples/%name/examples/
 
 pushd tests/autopilot
-%py3_install
+%pyproject_install
 mv lomiriuitoolkit/{tests,_custom_proxy_objects} %{buildroot}%{python3_sitelib}/lomiriuitoolkit/
 popd
 
