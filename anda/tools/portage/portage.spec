@@ -21,8 +21,9 @@ BuildRequires:  gcc
 BuildRequires:  xmlto
 BuildRequires:  python3-sphinx
 BuildRequires:  fdupes
-Requires:       env
-Requires:       python
+Requires:       bash
+Requires:       (coreutils or env)
+Requires:       (python-unversioned-command or python)
 BuildArch:      noarch
 Packager:       bunzuhbu <g89156436@gmail.com>
 
