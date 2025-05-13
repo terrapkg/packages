@@ -5,7 +5,7 @@
 
 Name:           python-%{real_name}
 Version:        3.29.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Sphinx domain for modern CMake
 License:        BSD-3-Clause
 URL:            https://github.com/scikit-build/moderncmakedomain
@@ -22,11 +22,12 @@ Packager:       Gilver E. <rockgrub@disroot.org>
 %description
 Modern CMake domain entries, originally from Kitware.
 
-%package -n     python3-%{pypi_name}
+%package -n     python3-%{real_name}
 Summary:        %{summary}
 Requires:       python3dist(hatchling)
 Requires:       python3dist(sphinx)
-%{?python_provide:%python_provide python3-%{pypi_name}}
+Obsoletes:      python3-%{pypi_name} < 3.29.0-2
+%{?python_provide:%python_provide python3-%{real_name}}
 
 %description -n python3-%{pypi_name}
 Modern CMake domain entries, originally from Kitware.
@@ -43,7 +44,7 @@ Modern CMake domain entries, originally from Kitware.
 %check
 %pytest tests/*.py
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{real_name}
 %doc     PKG-INFO
 %doc     README.md
 %license LICENSE
