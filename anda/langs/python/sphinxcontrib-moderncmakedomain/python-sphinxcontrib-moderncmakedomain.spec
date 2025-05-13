@@ -29,7 +29,7 @@ Requires:       python3dist(sphinx)
 Obsoletes:      python3-%{pypi_name} < 3.29.0-2
 %{?python_provide:%python_provide python3-%{real_name}}
 
-%description -n python3-%{pypi_name}
+%description -n python3-%{real_name}
 Modern CMake domain entries, originally from Kitware.
 
 %prep
