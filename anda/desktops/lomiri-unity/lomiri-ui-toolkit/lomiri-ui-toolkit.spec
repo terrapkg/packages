@@ -4,7 +4,7 @@
 
 Name:           lomiri-ui-toolkit
 Version:        1.3.5110
-Release:        1%?dist
+Release:        2%?dist
 Summary:        QML components to ease the creation of beautiful applications in QML for Lomiri
 
 License:        LGPL-3.0

@@ -6,7 +6,7 @@ A responsive, good looking with modern design documentation theme for Sphinx, wi
 
 Name:           python-%{pypi_name}
 Version:        2025.4.25
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A clean, responsive, and customizable Sphinx documentation theme with light/dark mode
 License:        BSD-3-Clause
 URL:            https://shibuya.lepture.com
