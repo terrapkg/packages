@@ -24,6 +24,9 @@ BuildRequires:  fdupes
 Requires:       bash
 Requires:       (coreutils or env)
 Requires:       (python-unversioned-command or python)
+Requires(post): shadow-utils
+Requires(post): sed
+Requires(post): coreutils
 BuildArch:      noarch
 Packager:       bunzuhbu <g89156436@gmail.com>
 
@@ -156,6 +159,15 @@ Links
 
 %install
 %meson_install
+
+%post
+useradd -r -u 250 -g 250 -d /var/tmp/portage -s /bin/false portage
+groupadd -g 250 portage
+mkdir -pv %{_sysconfdir}
+cp -RTfvpu %{_datadir}/%{name}/config %{_sysconfdir}/%{name}
+dir="$(cat /etc/portage/repos.conf | sed -n 's~location\s*=\s*\(.*\)\s*~\1~pg;')/profiles"
+mkdir -pv "${dir}"
+
 
 %files
 %{_bindir}/*
