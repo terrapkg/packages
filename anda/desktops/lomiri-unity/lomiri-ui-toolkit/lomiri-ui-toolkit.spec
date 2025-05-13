@@ -147,6 +147,7 @@ popd
 %{python3_sitelib}/lomiriuitoolkit/_custom_proxy_objects/
 %{python3_sitelib}/lomiriuitoolkit/__pycache__/
 %{python3_sitelib}/lomiriuitoolkit/tests/
+%{python3_sitelib}/lomiriuitoolkit-%{version}.dist-info/
 
 %files doc
 %license COPYING.CC-BY-SA-3.0
