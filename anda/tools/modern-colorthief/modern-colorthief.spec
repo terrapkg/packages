@@ -1,5 +1,4 @@
 %global pypi_name modern_colorthief
-%global real_name modern-colorthief
 %bcond docs 0
 %bcond test 1
 %global debug_package %{nil}
