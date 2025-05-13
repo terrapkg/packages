@@ -94,6 +94,7 @@ done
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/%{pypi_name}
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 
 %if %{with docs}
 %files -n python3-%{pypi_name}-doc
