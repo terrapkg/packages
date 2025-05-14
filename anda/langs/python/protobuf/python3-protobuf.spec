@@ -2,7 +2,7 @@
 %global pypi_name protobuf
 
 Name:           python-%{pypi_name}
-Version:        6.30.1
+Version:        6.30.2
 Release:        2%?dist
 Summary:        Protocol Buffers
 
@@ -11,6 +11,7 @@ URL:            https://developers.google.com/protocol-buffers/
 Source0:        %{pypi_source}
 
 BuildRequires:  python3-devel gcc
+BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(setuptools)
 
 %description
@@ -30,15 +31,15 @@ Protocol Buffers are Google's data interchange format
 rm -rf %{pypi_name}.egg-info
 
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
 
 %files -n python3-%{pypi_name}
 %doc README.md
-%{python3_sitearch}/google
-%{python3_sitearch}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{python3_sitearch}/google/
+%{python3_sitearch}/protobuf-%{version}.dist-info/
 
 %changelog
 * Sun Feb 19 2023 windowsboy111 <wboy111@outlook.com> - 4.22.0-1
