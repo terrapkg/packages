@@ -13,7 +13,9 @@ Source0:        %{pypi_source}
 BuildRequires:  pyproject-rpm-macros
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(hatchling)
+%if 0%{?fedora}
 BuildRequires:  python3dist(nox)
+%endif
 BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(setuptools)
@@ -44,7 +46,11 @@ Modern CMake domain entries, originally from Kitware.
 %pyproject_install
 
 %check
+%if 0%{?rhel}
+%pytest tests/*.py
+%else
 nox -s tests
+%endif
 
 %files -n python3-%{real_name}
 %doc     PKG-INFO
