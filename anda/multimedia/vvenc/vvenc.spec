@@ -12,7 +12,6 @@ Source0:        %{url}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Patch0:         %{url}/commit/ebce395254d9d7be7dc00cec7b49c7ed1d9eebec.patch
 Patch1:         %{url}/commit/bfd55ee783bfe30fc73f6f314b066b84bb1e5b60.patch
 Patch2:         %{url}/commit/982fcaac22488415899ae6c6ef7977a728a88e94.patch
-Patch3:         17f2ca78b3ad29fe0210a8d297fcf01f7465138f.patch
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
