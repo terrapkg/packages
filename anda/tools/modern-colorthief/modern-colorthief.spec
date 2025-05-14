@@ -30,9 +30,9 @@ BuildRequires: python3dist(sphinx)
 BuildRequires: poetry
 # Colorthief does not exist on Rawhide?
 BuildRequires: python3dist(colorthief)
+BuildRequires: python3dist(poetry)
 %endif
 BuildRequires: python3dist(fast-colorthief)
-BuildRequires: python3dist(poetry)
 BuildRequires: python3dist(pytest)
 %endif
 
