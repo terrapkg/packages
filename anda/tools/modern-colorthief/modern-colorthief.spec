@@ -26,9 +26,9 @@ BuildRequires: python3dist(shibuya)
 BuildRequires: python3dist(sphinx)
 %endif
 %if %{with test}
+%if 0%{?fedora} <= 42 
 BuildRequires: poetry
 # Colorthief does not exist on Rawhide?
-%if 0%{?fedora} <= 42
 BuildRequires: python3dist(colorthief)
 %endif
 BuildRequires: python3dist(fast-colorthief)
