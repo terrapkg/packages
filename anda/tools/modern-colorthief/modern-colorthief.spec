@@ -100,7 +100,6 @@ poetry run pytest
 
 %if %{with docs}
 %files -n python3-%{name}-doc
-%doc docs/*.md
 %doc html/*
 %endif
 
