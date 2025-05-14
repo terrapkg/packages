@@ -2,8 +2,8 @@
 %global pypi_name protobuf
 
 Name:           python-%{pypi_name}
-Version:        6.30.2
-Release:        2%?dist
+Version:        6.31.0
+Release:        1%?dist
 Summary:        Protocol Buffers
 
 License:        BSD-3-Clause
