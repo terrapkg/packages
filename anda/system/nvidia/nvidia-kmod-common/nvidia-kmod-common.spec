@@ -69,6 +69,9 @@ fi ||:
 %triggerin -- nvidia-kmod
 dracut --regenerate-all --force
 
+%triggerin -- nvidia-open-kmod
+dracut --regenerate-all --force
+
 %files
 %doc MODULE_VARIANT.txt
 %{_modprobedir}/nvidia.conf
