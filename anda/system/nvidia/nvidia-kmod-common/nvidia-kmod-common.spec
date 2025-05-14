@@ -8,7 +8,7 @@
 
 Name:           nvidia-kmod-common
 Version:        570.144
-Release:        3%?dist
+Release:        4%?dist
 Summary:        Common file for NVIDIA's proprietary driver kernel modules
 Epoch:          3
 License:        NVIDIA License
@@ -65,6 +65,9 @@ if [ "$1" -eq "2" ] && [ -x %{_bindir}/nvidia-boot-update ]; then
   %{_bindir}/nvidia-boot-update preun
 
 fi ||:
+
+%triggerin -- nvidia-kmod
+dracut --regenerate-all --force
 
 %files
 %doc MODULE_VARIANT.txt
