@@ -10,6 +10,7 @@ Summary:        Sphinx domain for modern CMake
 License:        BSD-3-Clause
 URL:            https://github.com/scikit-build/moderncmakedomain
 Source0:        %{pypi_source}
+BuildRequires:  pyproject-rpm-macros
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(hatchling)
 BuildRequires:  python3dist(nox)
