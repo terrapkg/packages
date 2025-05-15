@@ -1,9 +1,9 @@
 #? https://github.com/flameshot-org/flameshot/blob/master/packaging/rpm/fedora/flameshot.spec
 
 %global ver v12.1.0
-%global commit 899c55e47bd90769b8de8f9f08cc590b57d059ff
+%global commit e9817d8a81c7ff8b2497d087c18a3bc43fd97490
 %global shortcommit %{sub %{commit} 1 7}
-%global commit_date 20250513
+%global commit_date 20250515
 
 Name:			flameshot.nightly
 Version:		%ver^%{commit_date}git.%shortcommit
