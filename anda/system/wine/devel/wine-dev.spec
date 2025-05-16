@@ -6,7 +6,7 @@
 %global flavor %nil
 %global compat_package	terra-wine-dev
 # Cannot use the _datadir macro here or it will cause mass macro recursion
-%global _prefix 	/usr/share/wine-devel
+%global _prefix 	/usr/share/wine-dev
 %global srcmajor 10.x
 # Make this as a variable instead in case of WINE RCs
 %global ver 10.7
