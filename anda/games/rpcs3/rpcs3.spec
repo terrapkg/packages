@@ -1,8 +1,10 @@
 %global _distro_extra_cflags -Wno-maybe-uninitialized -fuse-linker-plugin -fuse-ld=mold
 %global _distro_extra_cxxflags -include %_includedir/c++/*/cstdint
+%global commit 62055bed3f69cbc2fa10f3fddd35d4c9278838bc
+%global ver 0.0.36-17949
 
 Name:           rpcs3
-Version:        0.0.36
+Version:        %(echo %{ver} | sed 's/-/^/g')
 Release:        1%?dist
 Summary:        PlayStation 3 emulator and debugger
 License:        GPL-2.0-only
@@ -45,7 +47,7 @@ BuildRequires:  qt6-qtbase-private-devel vulkan-devel jack-audio-connection-kit-
 %summary.
 
 %prep
-%git_clone %url v%version
+%git_clone %url %commit
 
 %build
 %cmake -DDISABLE_LTO=TRUE -DZSTD_BUILD_SHARED=ON -DZSTD_BUILD_STATIC=OFF\
