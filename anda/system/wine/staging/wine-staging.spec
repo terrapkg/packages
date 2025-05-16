@@ -58,37 +58,8 @@ Source100:	https://github.com/wine-staging/wine-staging/archive/v%{version}.tar.
 # Alexandres key
 Source99:	wine.keyring
 
-BuildRequires:  gcc
-BuildRequires:  mingw32-gcc
-BuildRequires:  mingw64-gcc
-BuildRequires:  SDL2-devel
-BuildRequires:  opencl-headers
-BuildRequires:  ocl-icd-devel
-BuildRequires:  pcsc-lite-devel
-BuildRequires:  samba-devel
-BuildRequires:  libnetapi-devel
-BuildRequires:  libgcrypt-devel
-BuildRequires:  icoutils
-BuildRequires:  vulkan-devel
-BuildRequires:  gstreamer1-devel
-BuildRequires:  gstreamer1-plugins-base-devel
-BuildRequires:  gtk3-devel
-BuildRequires:  libva-devel
-BuildRequires:  fontforge
-BuildRequires:  fontpackages-devel
-BuildRequires:  libudev-devel
-BuildRequires:  libv4l-devel
-BuildRequires:  pulseaudio-libs-devel
-BuildRequires:  lzma
-BuildRequires:  audiofile-devel
-BuildRequires:  giflib-devel
-BuildRequires:  ImageMagick-devel
-BuildRequires:  libpcap-devel
-BuildRequires:  libXxf86dga-devel
-BuildRequires:  mesa-compat-libOSMesa-devel
-BuildRequires:  libgphoto2-devel
-BuildRequires:  libusb1-devel
 BuildRequires:  alsa-lib-devel
+BuildRequires:  audiofile-devel
 BuildRequires:  autoconf
 BuildRequires:  bison
 BuildRequires:  coreutils
@@ -97,21 +68,38 @@ BuildRequires:  dbus-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  flex
 BuildRequires:  fontconfig-devel
-BuildRequires:  freetype-devel
+BuildRequires:  fontforge
+BuildRequires:  fontpackages-devel
 BuildRequires:  freeglut-devel
+BuildRequires:  freetype-devel
 BuildRequires:  gawk
-BuildRequires:  xz
+BuildRequires:  gcc
 BuildRequires:  gettext-devel
+BuildRequires:  giflib-devel
+BuildRequires:  gnupg2
 BuildRequires:  gnutls-devel
+BuildRequires:  gstreamer1-devel
+BuildRequires:  gstreamer1-plugins-base-devel
+BuildRequires:  gtk3-devel
+BuildRequires:  icoutils
+BuildRequires:  ImageMagick-devel
 BuildRequires:  krb5-devel
 BuildRequires:  libattr-devel
 BuildRequires:  libavcodec-free-devel
 BuildRequires:  libavformat-free-devel
 BuildRequires:  libavutil-free-devel
+BuildRequires:  libgcrypt-devel
+BuildRequires:  libgphoto2-devel
 BuildRequires:  libieee1284-devel
+BuildRequires:  libnetapi-devel
+BuildRequires:  libpcap-devel
 BuildRequires:  librsvg2
 BuildRequires:  librsvg2-devel
 BuildRequires:  libstdc++-devel
+BuildRequires:  libudev-devel
+BuildRequires:  libusb1-devel
+BuildRequires:  libv4l-devel
+BuildRequires:  libva-devel
 BuildRequires:  libX11-devel
 BuildRequires:  libXcomposite-devel
 BuildRequires:  libXcursor-devel
@@ -122,15 +110,27 @@ BuildRequires:  libxkbcommon-devel
 BuildRequires:  libXmu-devel
 BuildRequires:  libXrandr-devel
 BuildRequires:  libXrender-devel
+BuildRequires:  libXxf86dga-devel
 BuildRequires:  libXxf86vm-devel
+BuildRequires:  lzma
+BuildRequires:  mesa-compat-libOSMesa-devel
 BuildRequires:  mesa-libGL-devel
 BuildRequires:  mesa-libGLU-devel
+BuildRequires:  mingw32-gcc
+BuildRequires:  mingw64-gcc
 BuildRequires:  ncurses-devel
+BuildRequires:  ocl-icd-devel
+BuildRequires:  opencl-headers
+BuildRequires:  pcsc-lite-devel
+BuildRequires:  pulseaudio-libs-devel
+BuildRequires:  samba-devel
 BuildRequires:  sane-backends-devel
+BuildRequires:  SDL2-devel
 BuildRequires:  unixODBC-devel
 BuildRequires:  unzip
 BuildRequires:  util-linux
-
+BuildRequires:  vulkan-devel
+BuildRequires:  xz
 
 %if 0%{?fedora} < 40
 %ifarch x86_64
@@ -242,7 +242,11 @@ This compatibility package allows to use %{wine} system-wide as
 the default Wine version.
 
 %prep
-# unpack tarball SOURCE0
+gpg --keyserver hkp://keys.gnupg.net --recv-keys CEFAC8EAAF17519D
+gpg --with-fingerprint --import %{SOURCE99}
+gpg --update-trustdb
+gpg --refresh-keys
+gpg --verify --with-fingerprint %{SOURCE1} %{SOURCE0}
 %setup -n wine-%{version}  -q -T -b0
 
 # apply wine staging patch set on top of the wine release.
@@ -397,8 +401,8 @@ done
 %{_libdir}/wine/%{_arch}-windows/*.*
 %endif
 %else
-%{_libdir}/wine/i386-windows/*.*
 %{_libdir}/wine/%{_arch}-unix/*
+%{_libdir}/wine/i386-windows/*.*
 %{_libdir}/wine/x86_64-windows/*.*
 %endif
 
