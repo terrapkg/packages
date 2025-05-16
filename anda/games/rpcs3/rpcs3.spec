@@ -1,4 +1,4 @@
-%global _distro_extra_cflags -Wno-maybe-uninitialized -fuse-linker-plugin -fuse-ld=mold
+%global _distro_extra_cflags -Wno-maybe-uninitialized -Wno-error=old-style-cast -fuse-linker-plugin -fuse-ld=mold
 %global _distro_extra_cxxflags -Wno-error=old-style-cast -include %_includedir/c++/*/cstdint
 %global commit 62055bed3f69cbc2fa10f3fddd35d4c9278838bc
 %global ver 0.0.36-17949
