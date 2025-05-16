@@ -402,7 +402,7 @@ done
 %endif
 %else
 %{_libdir}/wine/i386-windows/*.*
-%{_libdir}/wine/x86_64-unix/*
+%{_libdir}/wine/*-unix/*
 %{_libdir}/wine/x86_64-windows/*.*
 %endif
 
