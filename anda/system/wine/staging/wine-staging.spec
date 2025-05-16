@@ -242,8 +242,7 @@ This compatibility package allows to use %{wine} system-wide as
 the default Wine version.
 
 %prep
-gpg --keyserver hkp://keys.gnupg.net --recv-keys CEFAC8EAAF17519D
-gpg --with-fingerprint --import %{SOURCE99}
+gpg --keyserver hkp://keys.gnupg.net --recv-keys CEFAC8EAAF17519D || gpg --with-fingerprint --import %{SOURCE99}
 gpg --update-trustdb
 gpg --refresh-keys
 gpg --verify --with-fingerprint %{SOURCE1} %{SOURCE0}
