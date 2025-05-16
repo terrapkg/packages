@@ -392,8 +392,18 @@ done
 %endif
 
 %if 0%{?fedora} < 40
-%{_libdir}/wine/%{_arch}-unix/*.*
+%ifarch %{ix86}
+%{_libdir}/wine/i386-unix/*.*
 %{_libdir}/wine/i386-windows/*.*
+%endif
+%ifarch x86_64
+%{_libdir}/wine/x86_64-unix/*.*
+%{_libdir}/wine/x86_64-windows/*.*
+%endif
+%else
+%{_libdir}/wine/i386-windows/*.*
+%{_libdir}/wine/x86_64-unix/*
+%{_libdir}/wine/%{_arch}-unix/*
 %{_libdir}/wine/x86_64-windows/*.*
 %endif
 
