@@ -12,7 +12,7 @@ Release:        1%{?dist}
 Summary:        Work around common problems in Wine
 
 License:        LGPL-2.1-or-later
-URL:            https://github.com/Winetricks/%{name}
+URL:            https://github.com/Winetricks/winetricks
 Source0:        %{url}/archive/%{commit}.tar.gz#/%{name}-%{commit}.tar.gz
 
 BuildArch:      noarch
