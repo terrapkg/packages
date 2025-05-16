@@ -5,7 +5,7 @@
 %global ver 20250102
 %global commit_date 20250504
 
-Name:           winetricks
+Name:           winetricks-git
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
 Release:        1%{?dist}
 
