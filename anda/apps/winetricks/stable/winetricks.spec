@@ -1,7 +1,7 @@
 # Fedora sometimes sources the snapshots under stable versions and just bumps release
 # For user clarity I have separated these into different packages
 
-Name:           winetricks
+Name:           terra-winetricks
 Version:        20250102
 Release:        1%{?dist}
 
@@ -26,6 +26,8 @@ Requires:       (wine-stable or wine-staging or wine-devel)
 Requires:       cabextract gzip unzip wget which
 Requires:       hicolor-icon-theme
 Requires:       (kdialog or zenity)
+Conflicts:      winetricks
+Conflicts:      winetricks-git
 
 %description
 Winetricks is an easy way to work around common problems in Wine.

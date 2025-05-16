@@ -30,6 +30,8 @@ Requires:       (wine-stable or wine-staging or wine-devel)
 Requires:       cabextract gzip unzip wget which
 Requires:       hicolor-icon-theme
 Requires:       (kdialog or zenity)
+Conflicts:      winetricks
+Conflicts:      terra-winetricks
 
 %description
 Winetricks is an easy way to work around common problems in Wine.
