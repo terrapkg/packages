@@ -387,12 +387,8 @@ install -p -m 0644 loader/wine.pl.UTF-8.man "%{buildroot}/usr/share/man/pl.UTF-8
 
 %if 0%{?fedora} < 40
 %{_libdir}/wine/%{_arch}-unix/*.*
-%ifarch %{ix86} x86_64
-%{_libdir}/wine/%{_arch}-windows/*.*
-%else
 %{_libdir}/wine/i386-windows/*.*
 %{_libdir}/wine/x86_64-windows/*.*
-%endif
 %endif
 
 %files -n %{wine}-devel
