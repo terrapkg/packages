@@ -42,7 +42,7 @@ or tweak various Wine settings individually.
 
 
 %prep
-%setup -qn%{name}-%{commit}
+%setup -qn winetricks-%{commit}
 
 sed -i -e s:steam:: -e s:flash:: tests/*
 

@@ -38,7 +38,7 @@ or tweak various Wine settings individually.
 
 
 %prep
-%setup -q
+%setup -q -n winetricks-%{version}
 
 sed -i -e s:steam:: -e s:flash:: tests/*
 
