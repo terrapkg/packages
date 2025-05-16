@@ -26,7 +26,7 @@ BuildRequires:  make
 BuildRequires:  desktop-file-utils
 BuildRequires:  gcc
 
-Requires:       (wine-stable or wine-staging or wine-dev)
+Requires:       (wine-stable or wine-staging or wine-dev or wine-core)
 Requires:       cabextract gzip unzip wget which
 Requires:       hicolor-icon-theme
 Requires:       (kdialog or zenity)
