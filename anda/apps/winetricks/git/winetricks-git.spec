@@ -53,7 +53,7 @@ sed -i -e s:steam:: -e s:flash:: tests/*
 %install
 %make_install
 # some tarballs do not install appdata
-install -Dtm0644 %{buildroot}%{_datadir}/metainfo src/io.github.winetricks.Winetricks.metainfo.xml
+install -Dm0644 -t %{buildroot}%{_datadir}/metainfo src/io.github.winetricks.Winetricks.metainfo.xml
 
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/winetricks.desktop
