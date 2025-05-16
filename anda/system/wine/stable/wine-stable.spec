@@ -144,6 +144,13 @@ Provides:   %{name}-bin = %{epoch}:%{version}-%{release}
 Summary:    WINE Is Not An Emulator - runs MS Windows programs (32-bit common files)
 Group:      Emulators
 Requires:   %{name}-bin = %{epoch}:%{version}-%{release}
+
+%description -n %{name}-common
+Wine is a program which allows running Microsoft Windows programs
+(including DOS, Windows 3.x and Win32 executables) on Unix.
+
+This package contains the files needed to support 32-bit Windows
+programs, and is used by both %{name} and %{name}64.
 %endif
 
 %define dlopenreq() %(F=/usr/%{_lib}/lib%{1}.so;[ -e $F ] && (file $F|grep -q ASCII && grep -o 'lib[^ ]*' $F|sed -e "s/\$/%{mark64}/"||objdump -p $F | grep SONAME | awk '{ print $2 "%{mark64}" }') || echo "wine-missing-buildrequires-on-%{1}")
@@ -187,13 +194,6 @@ be used for porting Win32 code into native Unix executables.
 %ifarch x86_64
 %description -n %{wine}
 %desc
-%else
-%description -n %{name}-common
-Wine is a program which allows running Microsoft Windows programs
-(including DOS, Windows 3.x and Win32 executables) on Unix.
-
-This package contains the files needed to support 32-bit Windows
-programs, and is used by both %{name} and %{name}64.
 %endif
 
 %package -n %{wine}-devel
