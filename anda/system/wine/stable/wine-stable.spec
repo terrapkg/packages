@@ -389,15 +389,14 @@ install -p -m 0644 loader/wine.pl.UTF-8.man "%{buildroot}/usr/share/man/pl.UTF-8
 %ifarch %{ix86}
 %{_libdir}/wine/i386-unix/*.*
 %{_libdir}/wine/i386-windows/*.*
-%endif
-%ifarch x86_64
+%elifarch x86_64
 %{_libdir}/wine/x86_64-unix/*.*
 %{_libdir}/wine/x86_64-windows/*.*
-%endif
-%else
+%elifarch aarch64
 %{_libdir}/wine/i386-windows/*.*
-%{_libdir}/wine/%{_arch}-unix/*.*
+%{_libdir}/wine/aarch64-unix/*.*
 %{_libdir}/wine/x86_64-windows/*.*
+%endif
 %endif
 
 %files -n %{wine}-devel
