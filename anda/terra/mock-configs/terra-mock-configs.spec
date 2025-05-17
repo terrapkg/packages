@@ -27,7 +27,7 @@ Obsoletes: anda-mock-configs < 3-2%{?dist}
 mkdir -p %{buildroot}%{_sysusersdir}
 mkdir -p %{buildroot}%{_sysconfdir}/mock/templates
 
-# not copying terra-el.tpl as it might be a duplicate
+# not copying terra-el.tpl as that might be a duplicate
 cp -v -t %{buildroot}%{_sysconfdir}/mock/templates/ terra.tpl terra-el-dev.tpl
 cp -v *.cfg %{buildroot}%{_sysconfdir}/mock/
 
