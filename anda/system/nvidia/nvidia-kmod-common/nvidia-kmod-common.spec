@@ -25,6 +25,7 @@ Source21:       60-nvidia.rules
 # UDev rule location (_udevrulesdir) and systemd macros:
 BuildRequires:  systemd-rpm-macros
 
+Requires:       dracut
 Requires:       nvidia-modprobe
 Requires:       (nvidia-open-kmod = %{?epoch:%{epoch}:}%{version} or nvidia-kmod = %{?epoch:%{epoch}:}%{version})
 Provides:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
@@ -66,10 +67,7 @@ if [ "$1" -eq "2" ] && [ -x %{_bindir}/nvidia-boot-update ]; then
 
 fi ||:
 
-%triggerin -- nvidia-kmod
-dracut --regenerate-all --force
-
-%triggerin -- nvidia-open-kmod
+%triggerin -- nvidia-kmod,nvidia-open-kmod
 dracut --regenerate-all --force
 
 %files
