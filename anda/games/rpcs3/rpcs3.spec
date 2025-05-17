@@ -58,6 +58,8 @@ BuildRequires:  qt6-qtbase-private-devel vulkan-devel jack-audio-connection-kit-
 %ifarch aarch64
 Makefile=3rdparty/zstd/zstd/Makefile
 sed -i "s/$(cat $Makefile | grep 'cxxtest: CXXFLAGS +=')/$(cat $Makefile | grep 'cxxtest: CXXFLAGS +=' | sed 's/-Wall //g' | sed 's/-Wextra //g')/g" $Makefile
+sed -i 's/-Wold-style-cast //g' $(find 3rdparty -name Makefile -or -name CMakeLists.txt)
+sed -i 's/-Werror=old-style-cast //g' $(find 3rdparty -name Makefile -or -name CMakeLists.txt)
 %endif
 
 %build
@@ -73,9 +75,6 @@ sed -i "s/$(cat $Makefile | grep 'cxxtest: CXXFLAGS +=')/$(cat $Makefile | grep 
     -DUSE_SYSTEM_SDL=ON                                \
     -DBUILD_LLVM=OFF                                   \
     -DUSE_PRECOMPILED_HEADERS=OFF                      \
-%ifarch aarch64
-    -DCMAKE_CXX_FLAGS=-Wno-old-style-cast -Wno-error=old-style-cast
-%endif
 #    -DCMAKE_AR="$AR"                                   \
 #    -DCMAKE_RANLIB="$RANLIB"                           \
 #    -DUSE_SYSTEM_WOLFSSL=OFF                            \
