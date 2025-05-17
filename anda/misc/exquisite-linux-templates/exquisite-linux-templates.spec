@@ -4,10 +4,12 @@
 
 Name:		exquisite-linux-templates
 Version:	0~%{commit_date}git.%shortcommit
+Release:	1%?dist
 Summary:	A collection of shared file templates for use in $HOME/Templates on Linux systems
 License:	MIT
 URL:		https://codeberg.org/nathandyer/%name
 Source0:	%url/archive/%commit.tar.gz
+BuildArch:	noarch
 
 %description
 %summary.
