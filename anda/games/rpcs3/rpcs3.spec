@@ -55,6 +55,7 @@ BuildRequires:  qt6-qtbase-private-devel vulkan-devel jack-audio-connection-kit-
 
 %prep
 %git_clone %url %commit
+sed -i
 
 %build
 %cmake -DDISABLE_LTO=TRUE -DZSTD_BUILD_SHARED=ON -DZSTD_BUILD_STATIC=OFF\
@@ -67,8 +68,7 @@ BuildRequires:  qt6-qtbase-private-devel vulkan-devel jack-audio-connection-kit-
     -DUSE_SYSTEM_SDL=ON                                \
     -DBUILD_LLVM=OFF                                   \
     -DUSE_PRECOMPILED_HEADERS=OFF                      \
-    -DZSTD_BUILD_STATIC=OFF                            \
-    -DUSE_SYSTEM_ZSTD=ON                               \
+    -DZSTD_BUILD_SHARED=ON                             \
 #    -DCMAKE_AR="$AR"                                   \
 #    -DCMAKE_RANLIB="$RANLIB"                           \
 #    -DUSE_SYSTEM_WOLFSSL=OFF                            \
