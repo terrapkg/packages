@@ -55,9 +55,14 @@ BuildRequires:  qt6-qtbase-private-devel vulkan-devel jack-audio-connection-kit-
 
 %prep
 %git_clone %url %commit
+%ifarch aarch64
+sed -i "s/$(cat Makefile | grep 'cxxtest: CXXFLAGS +=')/$(cat Makefile | grep 'cxxtest: CXXFLAGS +=' | sed 's/-Wall//g' | sed 's/-Wextra//g')/g" 3rdparty/zstd/zstd/Makefile
+%endif
 
 %build
-%cmake -DDISABLE_LTO=TRUE -DZSTD_BUILD_SHARED=ON -DZSTD_BUILD_STATIC=OFF\
+%cmake -DDISABLE_LTO=TRUE                              \
+    -DZSTD_BUILD_SHARED=OFF                            \
+    -DZSTD_BUILD_STATIC=ON                             \
     -DUSE_NATIVE_INSTRUCTIONS=OFF                      \
     -DCMAKE_C_FLAGS="$CFLAGS"                          \
     -DCMAKE_CXX_FLAGS="$CXXFLAGS"                      \
@@ -67,7 +72,6 @@ BuildRequires:  qt6-qtbase-private-devel vulkan-devel jack-audio-connection-kit-
     -DUSE_SYSTEM_SDL=ON                                \
     -DBUILD_LLVM=OFF                                   \
     -DUSE_PRECOMPILED_HEADERS=OFF                      \
-    -DZSTD_BUILD_SHARED=ON                             \
 #    -DCMAKE_AR="$AR"                                   \
 #    -DCMAKE_RANLIB="$RANLIB"                           \
 #    -DUSE_SYSTEM_WOLFSSL=OFF                            \
