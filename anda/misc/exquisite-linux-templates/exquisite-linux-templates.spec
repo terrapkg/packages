@@ -18,7 +18,7 @@ Note that this only works with English. You should rename `~/Templates` to the c
 string for your user language for the templates to take effect.
 
 %prep
-%autosetup
+%autosetup -n %name-%commit
 
 %install
 mkdir -p %buildroot%_sysconfdir/skel/Templates
