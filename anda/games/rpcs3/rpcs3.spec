@@ -73,6 +73,9 @@ sed -i "s/$(cat $Makefile | grep 'cxxtest: CXXFLAGS +=')/$(cat $Makefile | grep 
     -DUSE_SYSTEM_SDL=ON                                \
     -DBUILD_LLVM=OFF                                   \
     -DUSE_PRECOMPILED_HEADERS=OFF                      \
+%ifarch aarch64
+    -DCMAKE_CXX_FLAGS=-Wno-old-style-cast -Wno-error=old-style-cast
+%endif
 #    -DCMAKE_AR="$AR"                                   \
 #    -DCMAKE_RANLIB="$RANLIB"                           \
 #    -DUSE_SYSTEM_WOLFSSL=OFF                            \
