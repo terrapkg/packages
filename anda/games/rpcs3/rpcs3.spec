@@ -94,3 +94,9 @@ export CXX=clang++
 %files
 %doc README.md
 %license LICENSE
+%_bindir/rpcs3
+%_datadir/applications/rpcs3.desktop
+%_datadir/metainfo/rpcs3.metainfo.xml
+%_datadir/rpcs3/
+%_iconsdir/hicolor/48x48/apps/rpcs3.png
+%_iconsdir/hicolor/scalable/apps/rpcs3.svg
