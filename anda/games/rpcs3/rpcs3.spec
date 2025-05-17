@@ -1,8 +1,11 @@
 %global _distro_extra_cflags -Wno-maybe-uninitialized -fuse-linker-plugin -fuse-ld=mold
 %global _distro_extra_cxxflags -include %_includedir/c++/*/cstdint
+# GLIBCXX_ASSERTIONS is known to break RPCS3
+%global build_cflags %(echo %{__build_flags_lang_c} | sed 's/-Wp,-D_GLIBCXX_ASSERTIONS//g') %{?_distro_extra_cflags}
+%global build_cxxflags %(echo %{__build_flags_lang_cxx} | sed 's/-Wp,-D_GLIBCXX_ASSERTIONS//g') %{?_distro_extra_cxxflags}
 %ifarch aarch64
-%global build_cflags %(echo %{__build_flags_lang_c} | sed 's/-Wall//g' | sed 's/-Wformat-security//g' | sed 's/-Werror=format-security//g') %{?_distro_extra_cflags} -Wno-error=old-style-cast
-%global build_cxxflags %(echo %{__build_flags_lang_cxx} | sed 's/-Wall//g' | sed 's/-Wformat-security//g' | sed 's/-Werror=format-security//g') %{?_distro_extra_cxxflags} -Wno-old-style-cast -Wno-error=old-style-cast
+%global build_cflags %(echo %{build_cflags} | sed 's/-Wall//g' | sed 's/-Wformat-security//g' | sed 's/-Werror=format-security//g') -Wno-error=old-style-cast
+%global build_cxxflags %(echo %{build_cxxflags} | sed 's/-Wall//g' | sed 's/-Wformat-security//g' | sed 's/-Werror=format-security//g') -Wno-old-style-cast -Wno-error=old-style-cast
 %endif
 %global commit 62055bed3f69cbc2fa10f3fddd35d4c9278838bc
 %global ver 0.0.36-17949
@@ -65,6 +68,7 @@ BuildRequires:  qt6-qtbase-private-devel vulkan-devel jack-audio-connection-kit-
     -DBUILD_LLVM=OFF                                   \
     -DUSE_PRECOMPILED_HEADERS=OFF                      \
     -DZSTD_BUILD_STATIC=OFF                            \
+    -DUSE_SYSTEM_ZSTD=ON                               \
 #    -DCMAKE_AR="$AR"                                   \
 #    -DCMAKE_RANLIB="$RANLIB"                           \
 #    -DUSE_SYSTEM_WOLFSSL=OFF                            \
