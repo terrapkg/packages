@@ -241,7 +241,7 @@ the default Wine version.
 
 %prep
 # Pull key from key server, if this fails import local copy and then refresh it to make sure it is up to date
-gpg --keyserver hkp://keys.gnupg.net --recv-keys CEFAC8EAAF17519D || { gpg --with-fingerprint --import %{SOURCE99} && gpg --refresh-keys }
+gpg --keyserver hkp://keys.gnupg.net --recv-keys CEFAC8EAAF17519D || { gpg --with-fingerprint --import %{SOURCE99} && gpg --refresh-keys; }
 gpg --update-trustdb
 gpg --verify --with-fingerprint %{SOURCE1} %{SOURCE0}
 %setup -n wine-%{version}  -q -T -b0
