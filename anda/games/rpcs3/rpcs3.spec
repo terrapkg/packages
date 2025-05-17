@@ -56,7 +56,7 @@ BuildRequires:  qt6-qtbase-private-devel vulkan-devel jack-audio-connection-kit-
 %prep
 %git_clone %url %commit
 %ifarch aarch64
-sed -i "s/%(cat Makefile | grep 'cxxtest: CXXFLAGS +=')/%(cat Makefile | grep 'cxxtest: CXXFLAGS +=' | sed 's/-Wall//g' | sed 's/-Wextra//g')/g" 3rdparty/zstd/zstd/Makefile
+sed -i "s/$(cat 3rdparty/zstd/zstd/Makefile | grep 'cxxtest: CXXFLAGS +=')/$(cat 3rdparty/zstd/zstd/Makefile | grep 'cxxtest: CXXFLAGS +=' | sed 's/-Wall//g' | sed 's/-Wextra//g')/g" 3rdparty/zstd/zstd/Makefile
 %endif
 
 %build
