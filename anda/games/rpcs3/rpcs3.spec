@@ -1,7 +1,7 @@
-%global _distro_extra_cflags -Wno-maybe-uninitialized -fuse-linker-plugin -fuse-ld=mold
+%global _distro_extra_cflags -Wno-maybe-uninitialized
 %global _distro_extra_cxxflags -include %_includedir/c++/*/cstdint
 %ifarch aarch64
-%global build_cflags %(echo %{__build_flags_lang_c} | sed 's/-Wall//g') %{?_distro_extra_cflags} -Wno-error=old-style-cast
+%global build_cflags %(echo %{__build_flags_lang_c} | sed 's/-Wall//g' | sed 's/-Wformat-security//g') %{?_distro_extra_cflags} -Wno-error=old-style-cast
 %global _distro_extra_cxxflags %{?_distro_extra_cxxflags} -Wno-old-style-cast -Wno-error=old-style-cast
 %endif
 %global commit 62055bed3f69cbc2fa10f3fddd35d4c9278838bc
