@@ -3,10 +3,6 @@
 # GLIBCXX_ASSERTIONS is known to break RPCS3
 %global build_cflags %(echo %{__build_flags_lang_c} | sed 's/-Wp,-D_GLIBCXX_ASSERTIONS//g') %{?_distro_extra_cflags}
 %global build_cxxflags %(echo %{__build_flags_lang_cxx} | sed 's/-Wp,-D_GLIBCXX_ASSERTIONS//g') %{?_distro_extra_cxxflags}
-%ifarch aarch64
-%global build_cflags %{build_cflags} -Wno-error=old-style-cast
-%global build_cxxflags %{build_cxxflags} -Wno-old-style-cast -Wno-error=old-style-cast
-%endif
 %global commit 62055bed3f69cbc2fa10f3fddd35d4c9278838bc
 %global ver 0.0.36-17949
 
@@ -17,7 +13,7 @@ Summary:        PlayStation 3 emulator and debugger
 License:        GPL-2.0-only
 URL:            https://github.com/RPCS3/rpcs3
 %dnl Source0:        %url/archive/refs/tags/v%version.tar.gz
-BuildRequires:  glew openal-soft cmake vulkan-validation-layers gcc gcc-c++ git-core mold
+BuildRequires:  anda-srpm-macros glew openal-soft cmake vulkan-validation-layers gcc gcc-c++ git-core mold
 BuildRequires:  cmake(FAudio)
 BuildRequires:  cmake(OpenAL)
 BuildRequires:  cmake(OpenCV)
@@ -55,12 +51,6 @@ BuildRequires:  qt6-qtbase-private-devel vulkan-devel jack-audio-connection-kit-
 
 %prep
 %git_clone %url %commit
-%ifarch aarch64
-Makefile=3rdparty/zstd/zstd/Makefile
-sed -i "s/$(cat $Makefile | grep 'cxxtest: CXXFLAGS +=')/$(cat $Makefile | grep 'cxxtest: CXXFLAGS +=' | sed 's/-Wall //g' | sed 's/-Wextra //g')/g" $Makefile
-sed -i 's/-Wold-style-cast //g' $(find 3rdparty -name Makefile -or -name CMakeLists.txt)
-sed -i 's/-Werror=old-style-cast //g' $(find 3rdparty -name Makefile -or -name CMakeLists.txt)
-%endif
 
 %build
 %cmake -DDISABLE_LTO=TRUE                              \
@@ -75,14 +65,13 @@ sed -i 's/-Werror=old-style-cast //g' $(find 3rdparty -name Makefile -or -name C
     -DUSE_SYSTEM_SDL=ON                                \
     -DBUILD_LLVM=OFF                                   \
     -DUSE_PRECOMPILED_HEADERS=OFF                      \
-#    -DCMAKE_AR="$AR"                                   \
-#    -DCMAKE_RANLIB="$RANLIB"                           \
-#    -DUSE_SYSTEM_WOLFSSL=OFF                            \
+    -DUSE_DISCORD_RPC=ON                               \
 #    -DUSE_SYSTEM_CURL=ON                               \
 #    -DUSE_SYSTEM_FFMPEG=ON                             \
 #    -DUSE_SYSTEM_OPENCV=ON                             \
-#    -DUSE_DISCORD_RPC=ON                               \
 #    -DOpenGL_GL_PREFERENCE=LEGACY                      \
+#    -DCMAKE_AR="$AR"                                   \
+#    -DCMAKE_RANLIB="$RANLIB"                           \
 %cmake_build
 
 %install
