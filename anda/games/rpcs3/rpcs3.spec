@@ -1,5 +1,9 @@
 %global _distro_extra_cflags -Wno-maybe-uninitialized -fuse-linker-plugin -fuse-ld=mold
-%global _distro_extra_cxxflags -Wno-old-style-cast -include %_includedir/c++/*/cstdint
+%global _distro_extra_cxxflags -include %_includedir/c++/*/cstdint
+%ifarch aarch64
+%global _distro_extra_cflags %{?_distro_extra_cflags} -Wno-old-style-cast -Wno-error=old-style-cast
+%global _distro_extra_cxxflags %{?_distro_extra_cxxflags} -Wno-old-style-cast -Wno-error=old-style-cast
+%endif
 %global commit 62055bed3f69cbc2fa10f3fddd35d4c9278838bc
 %global ver 0.0.36-17949
 
@@ -10,7 +14,7 @@ Summary:        PlayStation 3 emulator and debugger
 License:        GPL-2.0-only
 URL:            https://github.com/RPCS3/rpcs3
 %dnl Source0:        %url/archive/refs/tags/v%version.tar.gz
-BuildRequires:  glew openal-soft cmake vulkan-validation-layers gcc gcc-c++ git-core mold libzstd-static
+BuildRequires:  glew openal-soft cmake vulkan-validation-layers gcc gcc-c++ git-core mold
 BuildRequires:  cmake(FAudio)
 BuildRequires:  cmake(OpenAL)
 BuildRequires:  cmake(OpenCV)
@@ -58,6 +62,7 @@ BuildRequires:  qt6-qtbase-private-devel vulkan-devel jack-audio-connection-kit-
     -DUSE_SYSTEM_FAUDIO=ON                          \
     -DUSE_SDL=ON                                       \
     -DUSE_SYSTEM_SDL=ON                                \
+    -DBUILD_LLVM=OFF                                    \
 #    -DUSE_PRECOMPILED_HEADERS=OFF                      \
 #    -DCMAKE_AR="$AR"                                   \
 #    -DCMAKE_RANLIB="$RANLIB"                           \
