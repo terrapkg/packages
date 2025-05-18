@@ -8,7 +8,7 @@
 
 Name:           nvidia-kmod-common
 Version:        570.144
-Release:        3%?dist
+Release:        4%?dist
 Summary:        Common file for NVIDIA's proprietary driver kernel modules
 Epoch:          3
 License:        NVIDIA License
@@ -25,6 +25,7 @@ Source21:       60-nvidia.rules
 # UDev rule location (_udevrulesdir) and systemd macros:
 BuildRequires:  systemd-rpm-macros
 
+Requires:       dracut
 Requires:       nvidia-modprobe
 Requires:       (nvidia-open-kmod = %{?epoch:%{epoch}:}%{version} or nvidia-kmod = %{?epoch:%{epoch}:}%{version})
 Provides:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
@@ -65,6 +66,9 @@ if [ "$1" -eq "2" ] && [ -x %{_bindir}/nvidia-boot-update ]; then
   %{_bindir}/nvidia-boot-update preun
 
 fi ||:
+
+%triggerin -- nvidia-kmod,nvidia-open-kmod
+dracut --regenerate-all --force
 
 %files
 %doc MODULE_VARIANT.txt
