@@ -39,14 +39,14 @@
 
 Name:           zig-master-bootstrap
 Version:        %(echo %{ver} | sed 's/-/~/g')
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Boostrap builds for Zig.
 License:        MIT AND NCSA AND LGPL-2.1-or-later AND LGPL-2.1-or-later WITH GCC-exception-2.0 AND GPL-2.0-or-later AND GPL-2.0-or-later WITH GCC-exception-2.0 AND BSD-3-Clause AND Inner-Net-2.0 AND ISC AND LicenseRef-Fedora-Public-Domain AND GFDL-1.1-or-later AND ZPL-2.1
 URL:            https://ziglang.org
 Source0:        %{url}/builds/zig-%{ver}.tar.xz
 Source1:        %{url}/builds/zig-%{ver}.tar.xz.minisig
 Patch0:         0000-remove-native-lib-directories-from-rpath.patch
-Patch1:         0001-increase-upper-bounds-of-main-zig-executable-to-9G.patch
+Patch1:         0001-increase-upper-bounds-of-main-zig-executable-to-10G.patch
 Patch2:         0002-build-pass-zig-lib-dir-as-directory-instead-of-as-st.patch
 BuildRequires:  cmake
 BuildRequires:  gcc
