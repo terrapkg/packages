@@ -17,7 +17,7 @@
 # Upstream WineHQ names this -devel, I have renamed it dev to signify it is the dev branch
 # Also less confusing because it has a devel package
 Name:       wine-dev
-Version:    %(echo %{ver} | sed 's/-/~/g')
+Version:    %(echo %{ver} | sed 's/v//g' | sed 's/wine-//g' | sed 's/-/~/g')
 Release:    1%?dist
 Epoch:      1
 Summary:    WINE Is Not An Emulator - runs MS Windows programs
