@@ -34,6 +34,7 @@ BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  glslang
 BuildRequires:  meson
+BuildRequires:  wine-staging
 BuildRequires:  wine-staging-devel
 
 %ifarch x86_64
