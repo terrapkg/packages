@@ -1,5 +1,4 @@
 let v = (gitlab_tag("gitlab.winehq.org", "5"));
-v.crop(1);
 rpm.global("ver", v); // Sometimes the development branch includes RC candidates
 if rpm.changed () {
     rpm.release();
