@@ -52,7 +52,7 @@ URL:        https://www.winehq.org
 Source0:	https://dl.winehq.org/wine/source/%{srcmajor}/wine-%{version}.tar.xz
 Source1:	https://dl.winehq.org/wine/source/%{srcmajor}/wine-%{version}.tar.xz.sign
 
-# The official GitLab repo containing the patches does not appear tp be downloadable so we have to download them from the mirror. What
+# The official GitLab repo containing the patches does not appear to be downloadable so we have to download them from the mirror. What
 Source100:	https://github.com/wine-staging/wine-staging/archive/v%{version}.tar.gz#/wine-staging-%{version}.tar.xz
 
 # Alexandres key
