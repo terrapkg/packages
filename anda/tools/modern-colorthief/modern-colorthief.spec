@@ -1,6 +1,6 @@
 %global pypi_name modern_colorthief
 %bcond docs 0
-%bcond test 0
+%bcond test 1
 
 # The srcrpm is not prefixed with Python because the source is mostly Rust
 Name:          modern-colorthief
@@ -17,6 +17,7 @@ BuildRequires: cargo-rpm-macros
 BuildRequires: maturin
 BuildRequires: mold
 BuildRequires: python3-devel
+BuildRequires: pyproject-rpm-macros
 BuildRequires: python3dist(pip)
 BuildRequires: python3dist(setuptools)
 %if %{with docs}
@@ -24,6 +25,8 @@ BuildRequires: python3dist(modern-colorthief)
 BuildRequires: python3dist(myst-parser)
 BuildRequires: python3dist(shibuya)
 BuildRequires: python3dist(sphinx)
+%elif %{with test}
+BuildRequires: python3dist(modern-colorthief)
 %endif
 %if %{with test}
 %if 0%{?fedora} <= 42 
