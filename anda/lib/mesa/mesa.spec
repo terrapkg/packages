@@ -80,7 +80,7 @@ Summary:        Mesa graphics libraries
 # disabled by default, and has to be enabled manually. See `terra/release/terra-mesa.repo` for details.
 Epoch:          1
 Version:        25.1.0
-Release:        2%?dist
+Release:        3%?dist
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0
 URL:            http://www.mesa3d.org
 
@@ -91,9 +91,6 @@ Source0:        https://archive.mesa3d.org/%{srcname}-%{version}.tar.xz
 Source1:        Mesa-MLAA-License-Clarification-Email.txt
 
 Patch10:        gnome-shell-glthread-disable.patch
-
-# Backport for DOOM: The Dark Ages
-Patch15:        sparse.patch
 
 # https://github.com/bazzite-org/mesa
 Patch20:        bazzite.patch
