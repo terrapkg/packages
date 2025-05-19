@@ -34,6 +34,7 @@ BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  glslang
 BuildRequires:  meson
+BuildRequires:  terra-wine-staging
 BuildRequires:  wine-staging
 BuildRequires:  wine-staging-devel
 
