@@ -7,46 +7,21 @@
 %define         llvm_compat 20
 %endif
 %global         llvm_version 20.0.0
-%global         ver 0.15.0-dev.483+837e0f9c3
 %bcond bootstrap 0
 %bcond docs      %{without bootstrap}
 %bcond test      1
 %global zig_cache_dir %{builddir}/zig-cache
-%global zig_build_options %{shrink: \
-    --verbose \
-    --release=fast \
-    --summary all \
-    \
-    -Dtarget=native \
-    -Dcpu=baseline \
-    --zig-lib-dir lib \
-    --build-id=sha1 \
-    \
-    --cache-dir "%{zig_cache_dir}" \
-    --global-cache-dir "%{zig_cache_dir}" \
-    \
-    -Dversion-string="%(v=%{ver}; echo ${v:0:6})" \
-    -Dstatic-llvm=false \
-    -Denable-llvm=true \
-    -Dno-langref=true \
-    -Dstd-docs=false \
-    -Dpie \
-    -Dconfig_h="%{__cmake_builddir}/config.h" \
-}
-%global zig_install_options %zig_build_options %{shrink: \
-    --prefix "%{_prefix}" \
-}
 
 Name:           zig-master
 Version:        0.15.0~dev.565+8e72a2528
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Master builds of the Zig language
 License:        MIT AND NCSA AND LGPL-2.1-or-later AND LGPL-2.1-or-later WITH GCC-exception-2.0 AND GPL-2.0-or-later AND GPL-2.0-or-later WITH GCC-exception-2.0 AND BSD-3-Clause AND Inner-Net-2.0 AND ISC AND LicenseRef-Fedora-Public-Domain AND GFDL-1.1-or-later AND ZPL-2.1
 URL:            https://ziglang.org
-Source0:        %{url}/builds/zig-%{ver}.tar.xz
-Source1:        %{url}/builds/zig-%{ver}.tar.xz.minisig
+Source0:        %{url}/builds/zig-%{version_no_tilde}.tar.xz
+Source1:        %{url}/builds/zig-%{version_no_tilde}.tar.xz.minisig
 Patch0:         0000-remove-native-lib-directories-from-rpath.patch
-Patch1:         0001-increase-upper-bounds-of-main-zig-executable-to-9G.patch
+Patch1:         0001-increase-upper-bounds-of-main-zig-executable-to-10G.patch
 Patch2:         0002-build-pass-zig-lib-dir-as-directory-instead-of-as-st.patch
 BuildRequires:  cmake
 BuildRequires:  gcc
@@ -67,6 +42,8 @@ BuildRequires:  %{name}-bootstrap = %{version}
 BuildRequires:  elfutils-libelf-devel
 BuildRequires:  libstdc++-static
 %endif
+# For the version_no_tilde macro
+BuildRequires:  rust-srpm-macros
 # Zig invokes the C compiler to figure out system info
 Requires:       gcc
 Requires:       %{name}-libs = %{version}
@@ -89,6 +66,32 @@ Provides:       bundled(wasi-libc) = d03829489904d38c624f6de9983190f1e5e7c9c5
 Conflicts:      zig
 ExclusiveArch:  %{zig_arches}
 Packager:       Gilver E. <rockgrub@disroot.org>
+
+# Must be defined AFTER the version is
+%global zig_build_options %{shrink: \
+    --verbose \
+    --release=fast \
+    --summary all \
+    \
+    -Dtarget=native \
+    -Dcpu=baseline \
+    --zig-lib-dir lib \
+    --build-id=sha1 \
+    \
+    --cache-dir "%{zig_cache_dir}" \
+    --global-cache-dir "%{zig_cache_dir}" \
+    \
+    -Dversion-string="%(v=%{version_no_tilde}; echo ${v:0:6})" \
+    -Dstatic-llvm=false \
+    -Denable-llvm=true \
+    -Dno-langref=true \
+    -Dstd-docs=false \
+    -Dpie \
+    -Dconfig_h="%{__cmake_builddir}/config.h" \
+}
+%global zig_install_options %zig_build_options %{shrink: \
+    --prefix "%{_prefix}" \
+}
 
 %description
 Zig is an open source alternative to C. 
@@ -117,7 +120,7 @@ Documentation for Zig. For more information, visit %{url}
 
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
-%autosetup -p1 -n zig-%{ver}
+%autosetup -p1 -n zig-%{version_no_tilde}
 %if %{without bootstrap}
 # Ensure that the pre-build stage1 binary is not used
 rm -f stage1/zig1.wasm
@@ -141,7 +144,7 @@ rm -f stage1/zig1.wasm
     -DZIG_TARGET_MCPU:STRING=baseline \
     -DZIG_TARGET_TRIPLE:STRING=native \
     \
-    -DZIG_VERSION:STRING="%(v=%{ver}; echo ${v:0:6})"
+    -DZIG_VERSION:STRING="%(v=%{version_no_tilde}; echo ${v:0:6})"
 
 %if %{with bootstrap}
 %cmake_build --target stage3
@@ -163,7 +166,7 @@ attempt=1
 while ./zig-out/bin/zig build docs \
     --verbose \
     --global-cache-dir "%{zig_cache_dir}" \
-    -Dversion-string="%(v=%{ver}; echo ${v:0:6})"; [[ $? -ne 0 ]];
+    -Dversion-string="%(v=%{version_no_tilde}; echo ${v:0:6})"; [[ $? -ne 0 ]];
 do
   echo "Transitive failure. Trying again."
 
