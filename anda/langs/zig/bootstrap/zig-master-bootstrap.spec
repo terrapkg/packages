@@ -7,7 +7,7 @@
 %define         llvm_compat 20
 %endif
 %global         llvm_version 20.0.0
-%global         ver 0.15.0-dev.565+8e72a2528
+%global         ver 0.15.0-dev.566+74a3ae492
 %bcond bootstrap 1
 %bcond docs      %{without bootstrap}
 %bcond test      1
@@ -46,7 +46,7 @@ URL:            https://ziglang.org
 Source0:        %{url}/builds/zig-%{ver}.tar.xz
 Source1:        %{url}/builds/zig-%{ver}.tar.xz.minisig
 Patch0:         0000-remove-native-lib-directories-from-rpath.patch
-Patch1:         0001-increase-upper-bounds-of-main-zig-executable-to-9G.patch
+Patch1:         0001-increase-upper-bounds-of-main-zig-executable-to-10G.patch
 Patch2:         0002-build-pass-zig-lib-dir-as-directory-instead-of-as-st.patch
 BuildRequires:  cmake
 BuildRequires:  gcc
