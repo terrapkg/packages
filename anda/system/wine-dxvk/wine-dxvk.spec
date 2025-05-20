@@ -158,12 +158,11 @@ winebuild --builtin %buildroot%mingw_sysroot/mingw/bin/d3d9.dll
 winebuild --builtin %buildroot%mingw_sysroot/mingw/bin/d3d10core.dll
 winebuild --builtin %buildroot%mingw_sysroot/mingw/bin/d3d11.dll
 
-mkdir -p %{buildroot}%{_libdir}/wine/%{winepedir}/
-install -p -m 644 %buildroot%mingw_sysroot/mingw/bin/dxgi.dll %{buildroot}%{wine_lib_dir}/wine/%{winepedir}/dxvk-dxgi.dll
-install -p -m 644 %buildroot%mingw_sysroot/mingw/bin/d3d8.dll %{buildroot}%{wine_lib_dir}/wine/%{winepedir}/dxvk-d3d8.dll
-install -p -m 644 %buildroot%mingw_sysroot/mingw/bin/d3d9.dll %{buildroot}%{wine_lib_dir}/wine/%{winepedir}/dxvk-d3d9.dll
-install -p -m 644 %buildroot%mingw_sysroot/mingw/bin/d3d10core.dll %{buildroot}%{wine_lib_dir}/wine/%{winepedir}/dxvk-d3d10core.dll
-install -p -m 644 %buildroot%mingw_sysroot/mingw/bin/d3d11.dll %{buildroot}%{wine_lib_dir}/wine/%{winepedir}/dxvk-d3d11.dll
+install -Dpm644 %buildroot%mingw_sysroot/mingw/bin/dxgi.dll %{buildroot}%{wine_lib_dir}/wine/%{winepedir}/dxvk-dxgi.dll
+install -Dpm644 %buildroot%mingw_sysroot/mingw/bin/d3d8.dll %{buildroot}%{wine_lib_dir}/wine/%{winepedir}/dxvk-d3d8.dll
+install -Dpm644 %buildroot%mingw_sysroot/mingw/bin/d3d9.dll %{buildroot}%{wine_lib_dir}/wine/%{winepedir}/dxvk-d3d9.dll
+install -Dpm644 %buildroot%mingw_sysroot/mingw/bin/d3d10core.dll %{buildroot}%{wine_lib_dir}/wine/%{winepedir}/dxvk-d3d10core.dll
+install -Dpm644 %buildroot%mingw_sysroot/mingw/bin/d3d11.dll %{buildroot}%{wine_lib_dir}/wine/%{winepedir}/dxvk-d3d11.dll
 
 # Clean-up
 rm -rf %buildroot%mingw_sysroot/mingw
