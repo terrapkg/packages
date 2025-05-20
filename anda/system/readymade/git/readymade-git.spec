@@ -1,5 +1,5 @@
-%global commit 8891605847b2ce7407947fd6f529b848835c44e6
-%global commit_date 20250507
+%global commit fbb329b160154a444998d5c6a669ca38db8ff908
+%global commit_date 20250519
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           readymade-git
@@ -42,9 +42,10 @@ ls -l
 %cargo_prep_online
 
 %build
+%{cargo_build} --locked
 
 %install
-%cargo_install
+install -Dm755 target/rpm/readymade -t %buildroot%_bindir
 ./install.sh %buildroot
 ln -sf %{_datadir}/applications/com.fyralabs.Readymade.desktop %{buildroot}%{_datadir}/applications/liveinst.desktop
 
