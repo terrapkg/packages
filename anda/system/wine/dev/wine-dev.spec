@@ -9,7 +9,7 @@
 %global _prefix 	/usr/share/wine-dev
 %global srcmajor 10.x
 # Make this as a variable instead in case of WINE RCs
-%global ver ine-10.8
+%global ver wine-10.8
 
 # This is unfortunate but a lot of Fedora's/SUSE's hardening flags break WINE
 %undefine _hardened_build
