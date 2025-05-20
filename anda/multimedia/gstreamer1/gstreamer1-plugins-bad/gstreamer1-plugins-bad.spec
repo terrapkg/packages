@@ -682,22 +682,7 @@ install -p -m 644 -D %{SOURCE1} %{buildroot}%{_metainfodir}/gstreamer-bad.metain
 
 %files libs
 %{_libdir}/girepository-%{majorminor}/CudaGst-%{majorminor}.typelib
-%{_libdir}/girepository-%{majorminor}/GstAnalytics-%{majorminor}.typelib
-%{_libdir}/girepository-%{majorminor}/GstBadAudio-%{majorminor}.typelib
-%{_libdir}/girepository-%{majorminor}/GstCodecs-%{majorminor}.typelib
-%{_libdir}/girepository-%{majorminor}/GstCuda-%{majorminor}.typelib
-%{_libdir}/girepository-%{majorminor}/GstDxva-%{majorminor}.typelib
-%{_libdir}/girepository-%{majorminor}/GstInsertBin-%{majorminor}.typelib
-%{_libdir}/girepository-%{majorminor}/GstMpegts-%{majorminor}.typelib
-%{_libdir}/girepository-%{majorminor}/GstMse-%{majorminor}.typelib
-%{_libdir}/girepository-%{majorminor}/GstPlayer-%{majorminor}.typelib
-%{_libdir}/girepository-%{majorminor}/GstPlay-%{majorminor}.typelib
-%{_libdir}/girepository-%{majorminor}/GstTranscoder-%{majorminor}.typelib
-%{_libdir}/girepository-%{majorminor}/GstVa-%{majorminor}.typelib
-%{_libdir}/girepository-%{majorminor}/GstVulkan-%{majorminor}.typelib
-%{_libdir}/girepository-%{majorminor}/GstVulkanWayland-%{majorminor}.typelib
-%{_libdir}/girepository-%{majorminor}/GstVulkanXCB-%{majorminor}.typelib
-%{_libdir}/girepository-%{majorminor}/GstWebRTC-%{majorminor}.typelib
+%{_libdir}/girepository-%{majorminor}/Gst*-%{majorminor}.typelib
 %{_libdir}/libgstadaptivedemux-%{majorminor}.so.*
 %{_libdir}/libgstanalytics-%{majorminor}.so.*
 %{_libdir}/libgstbadaudio-%{majorminor}.so.*
