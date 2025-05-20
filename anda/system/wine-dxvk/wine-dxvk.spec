@@ -81,7 +81,7 @@ Recommends:     terra-wine-dxvk-d3d10%{?_isa} = %{version}-%{release}
 
 # I'm looking into setting these up for the different WINE builds
 # Huge WIP
-#Requires(posttrans):   %{_sbindir}/alternatives wine
+Requires(posttrans):   %{_sbindir}/alternatives wine-staging
 Requires(preun):       %{_sbindir}/alternatives
 
 ExclusiveArch:  %{ix86} x86_64
