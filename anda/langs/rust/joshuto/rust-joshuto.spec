@@ -2,6 +2,7 @@
 %bcond_without check
 
 %global crate joshuto
+%global __brp_mangle_shebangs %{nil}
 
 Name:           rust-joshuto
 Version:        0.9.9
