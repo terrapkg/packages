@@ -1,11 +1,11 @@
---- a/build.zig	2025-04-23 22:33:17.801652844 -0500
-+++ b/build.zig	2025-04-23 22:34:14.127282140 -0500
-@@ -679,7 +679,7 @@
- 
+--- a/build.zig	2025-05-21 00:23:29.485933582 -0500
++++ b/build.zig	2025-05-21 00:25:06.001631897 -0500
+@@ -690,7 +690,7 @@
+ fn addCompilerStep(b: *std.Build, options: AddCompilerModOptions) *std.Build.Step.Compile {
      const exe = b.addExecutable(.{
          .name = "zig",
 -        .max_rss = 7_800_000_000,
 +        .max_rss = 10_000_000_000,
-         .root_module = compiler_mod,
+         .root_module = addCompilerMod(b, options),
      });
      exe.stack_size = stack_size;
