@@ -117,7 +117,12 @@ export OPENSSL_NO_VENDOR=true
 %{cargo_build} -p typst-cli
 
 %install
+cat<<EOF > install.sh
 %cargo_install
+EOF
+sed -i 's/cargo install/cargo install -p %crate/' install.sh
+bash install.sh
+
 #? https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=typst-git#n60
 local _artifacts='crates/typst-cli/artifacts'
 install -Dm755 -t %buildroot%_bindir                target/rpm/%crate
