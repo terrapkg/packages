@@ -14,6 +14,7 @@ Source:         https://github.com/typst/typst/archive/refs/tags/v%version.tar.g
 Packager:       madonuko <mado@fyralabs.com>
 
 BuildRequires:  anda-srpm-macros cargo-rpm-macros >= 24
+BuildRequires:  pkgconfig(openssl)
 
 %global _description %{expand:
 A new markup-based typesetting system that is powerful and easy to
