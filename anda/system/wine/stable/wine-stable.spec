@@ -12,7 +12,7 @@
 
 Name:       wine-stable
 Version:    10.0
-Release:    1
+Release:    2%{?dist}
 Epoch:      1
 Summary:    WINE Is Not An Emulator - runs MS Windows programs
 License:    LGPL-2.0-or-later
@@ -136,6 +136,7 @@ Conflicts:  %{name}64
 %if 0%{?fedora} < 40
 Requires:   %{name}-common = %{epoch}:%{version}-%{release}
 %endif
+Requires:   %{compat_package} = %{epoch}:%{version}-%{release}
 Provides:   %{lib_name} = %{epoch}:%{version}-%{release}
 Provides:   %{name}-bin = %{epoch}:%{version}-%{release}
 Obsoletes:  %{lib_name} <= %{epoch}:%{version}-%{release}
