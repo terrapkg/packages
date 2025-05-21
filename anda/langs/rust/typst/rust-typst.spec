@@ -11,6 +11,7 @@ Summary:        New markup-based typesetting system that is powerful and easy to
 License:        Apache-2.0
 URL:            https://typst.app
 Source:         https://github.com/typst/typst/archive/refs/tags/v%version.tar.gz
+Source1:        %crates_source
 Packager:       madonuko <mado@fyralabs.com>
 
 BuildRequires:  anda-srpm-macros cargo-rpm-macros >= 24
@@ -103,7 +104,10 @@ Zsh command line completion support for %{crate}.
 %prep
 %autosetup -n %{crate}-%{version} -p1
 %cargo_prep_online
-cd crates/%{crate}-cli
+pushd crates/%{crate}-cli
+%cargo_prep_online
+popd
+%setup -TDa1 -n %{crate}-%{version}
 %cargo_prep_online
 
 %build
@@ -117,12 +121,6 @@ export OPENSSL_NO_VENDOR=true
 %{cargo_build} -p typst-cli
 
 %install
-cat<<EOF > install.sh
-%cargo_install
-EOF
-sed -i 's/cargo install/cargo install -p %crate/' install.sh
-bash install.sh
-
 #? https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=typst-git#n60
 local _artifacts='crates/typst-cli/artifacts'
 install -Dm755 -t %buildroot%_bindir                target/rpm/%crate
@@ -131,6 +129,10 @@ install -Dm644 -t %buildroot%zsh_completions_dir    $_artifacts/_%crate
 install -Dm644 -t %buildroot%fish_completions_dir   %_artifacts/%crate.fish
 # no .bash suffix
 install -Dm644    $_artifacts/%crate.bash           %buildroot%bash_completions_dir/%crate
+
+pushd %{crate}-%{version}
+%cargo_install
+popd
 
 %if %{with check}
 %check
