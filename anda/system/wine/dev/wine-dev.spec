@@ -9,7 +9,8 @@
 %global _prefix 	/usr/share/wine-dev
 %global srcmajor 10.x
 # Make this as a variable instead in case of WINE RCs
-%global ver 10.7
+%global ver wine-10.8
+%global cleanver %(echo %{ver} | sed 's/v//g;s/wine-//g')
 
 # This is unfortunate but a lot of Fedora's/SUSE's hardening flags break WINE
 %undefine _hardened_build
@@ -17,8 +18,8 @@
 # Upstream WineHQ names this -devel, I have renamed it dev to signify it is the dev branch
 # Also less confusing because it has a devel package
 Name:       wine-dev
-Version:    %(echo %{ver} | sed 's/-/~/g')
-Release:    1
+Version:    %(echo %{cleanver} | sed 's/-/~/g')
+Release:    1%?dist
 Epoch:      1
 Summary:    WINE Is Not An Emulator - runs MS Windows programs
 License:    LGPL-2.0-or-later
@@ -48,8 +49,8 @@ URL:        https://www.winehq.org
 %endif
 %endif
 
-Source0:	https://dl.winehq.org/wine/source/%{srcmajor}/wine-%{ver}.tar.xz
-Source1:	https://dl.winehq.org/wine/source/%{srcmajor}/wine-%{version}.tar.xz.sign
+Source0:	https://dl.winehq.org/wine/source/%{srcmajor}/wine-%{cleanver}.tar.xz
+Source1:	https://dl.winehq.org/wine/source/%{srcmajor}/wine-%{cleanver}.tar.xz.sign
 
 # Alexandres key
 Source99:	wine.keyring
