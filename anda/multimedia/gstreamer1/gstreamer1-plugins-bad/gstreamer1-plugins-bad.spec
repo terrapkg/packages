@@ -5,7 +5,7 @@
 Name:           gstreamer1-plugins-bad
 Version:        1.26.1
 Release:        1%?dist
-Epoch:          1
+Epoch:          2
 Summary:        GStreamer streaming media framework "bad" plugins
 License:        LGPL-2.0-or-later and LGPL-2.0-only
 URL:            http://gstreamer.freedesktop.org/
@@ -20,7 +20,7 @@ Provides:       %{name}-free%{?_isa} = %{?epoch}:%{version}-%{release}
 Obsoletes:      %{name}-free-extras < %{?epoch}:%{version}-%{release}
 Provides:       %{name}-free-extras = %{?epoch}:%{version}-%{release}
 Provides:       %{name}-free-extras%{?_isa} = %{?epoch}:%{version}-%{release}
-Obsoletes:      %{name}-freeworld < %{?epoch}:%{version}-%{release}
+#Obsoletes:      %{name}-freeworld < %{?epoch}:%{version}-%{release}
 Provides:       %{name}-freeworld = %{?epoch}:%{version}-%{release}
 Provides:       %{name}-freeworld%{?_isa} = %{?epoch}:%{version}-%{release}
 Obsoletes:      %{name}-nonfree < %{?epoch}:%{version}-%{release}
@@ -41,7 +41,6 @@ Provides:       gstreamer1-svt-hevc%{?_isa} = %{?epoch}:%{version}-%{release}
 Obsoletes:      gstreamer1-plugin-vaapi < %{?epoch}:%{version}-%{release}
 Provides:       gstreamer1-plugin-vaapi = %{?epoch}:%{version}-%{release}
 Provides:       gstreamer1-plugin-vaapi%{?_isa} = %{?epoch}:%{version}-%{release}
-Obsoletes:      %{name}-freeworld <= %{?epoch}:%{version}-%{release}
 Requires:       %{name}-libs = %{?epoch}:%{version}-%{release}
 
 BuildRequires:  gcc-c++
