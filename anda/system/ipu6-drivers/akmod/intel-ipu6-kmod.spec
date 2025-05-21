@@ -2,8 +2,8 @@
 %global buildforkernels akmod
 %global debug_package %{nil}
 %endif
-%global ipu6_commit 1a884d5124dc149af4a645aa1493873bf796d677
-%global ipu6_commitdate 20250509
+%global ipu6_commit e89983c628d046b2f77af3b6678cc49c2dd58332
+%global ipu6_commitdate 20250521
 %global ipu6_shortcommit %(c=%{ipu6_commit}; echo ${c:0:7})
 %global usbio_commit 450939ff5f8af733bc89c564603222a4d420acf3
 %global usbio_commitdate 20241210
