@@ -20,7 +20,7 @@ Provides:       %{name}-free%{?_isa} = %{?epoch}:%{version}-%{release}
 Obsoletes:      %{name}-free-extras < %{?epoch}:%{version}-%{release}
 Provides:       %{name}-free-extras = %{?epoch}:%{version}-%{release}
 Provides:       %{name}-free-extras%{?_isa} = %{?epoch}:%{version}-%{release}
-Obsoletes:      %{name}-freeworld < %{?epoch}:%{version}-%{release}
+#Obsoletes:      %{name}-freeworld < %{?epoch}:%{version}-%{release}
 Provides:       %{name}-freeworld = %{?epoch}:%{version}-%{release}
 Provides:       %{name}-freeworld%{?_isa} = %{?epoch}:%{version}-%{release}
 Obsoletes:      %{name}-nonfree < %{?epoch}:%{version}-%{release}
