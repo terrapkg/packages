@@ -7,8 +7,9 @@ Summary:        Open source input router and remapper daemon for Linux
 License:        GPL-3.0-or-later
 URL:            https://github.com/ShadowBlip/InputPlumber
 Source0:        %{url}/archive/refs/tags/v%version.tar.gz
+Patch0:         make-install-dont-build.patch
 BuildRequires:  libevdev-devel libiio-devel git make cargo libudev-devel llvm-devel clang-devel
-BuildRequires:  rust-packaging cargo-rpm-macros mold rpm_macro(cargo_prep_online)
+BuildRequires:  rust-packaging cargo-rpm-macros mold rpm_macro(cargo_prep_online) systemd-rpm-macros
 Requires:       libevdev libiio
 Recommends:     steam gamescope-session linuxconsoletools
 Packager:       madonuko <mado@fyralabs.com>
@@ -46,5 +47,7 @@ keyboards) and translate their input to a variety of virtual device formats.
 %_unitdir/inputplumber.service
 %_unitdir/inputplumber-suspend.service
 %_udevhwdbdir/59-inputplumber.hwdb
+%_udevhwdbdir/60-inputplumber-autostart.hwdb
+%_udevrulesdir/90-inputplumber-autostart.rules
 %_datadir/dbus-1/system.d/org.shadowblip.InputPlumber.conf
 %_datadir/inputplumber/
