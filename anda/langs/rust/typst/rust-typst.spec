@@ -34,7 +34,7 @@ use the "%{crate}" crate.
 
 %files          devel
 %license LICENSE
-%doc %{crate_instdir}/README.md
+%doc README.md
 %{crate_instdir}/
 
 %package     -n %{name}+default-devel
