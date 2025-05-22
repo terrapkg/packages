@@ -16,6 +16,7 @@ Packager:       madonuko <mado@fyralabs.com>
 
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  pkgconfig(dbus-1)
+BuildRequires:  protoc
 
 %global _description %{expand:
 Command-line utility for controlling Google Pixel Buds Pro.}
