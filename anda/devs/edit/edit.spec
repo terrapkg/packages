@@ -1,5 +1,6 @@
 %global _description %{expand:
 An editor that pays homage to the classic MS-DOS Editor, but with a modern interface and input controls similar to VS Code.}
+%bcond nightly 1
 
 Name:          edit
 Version:       1.0.0
@@ -23,6 +24,10 @@ Packager:      Gilver E. <rockgrub@disroot.org>
 %build
 
 %install
+%if %{with nightly}
+export RUSTC_BOOTSTRAP=1
+%endif
+
 %cargo_install
 
 %{cargo_license_online} > LICENSE.dependencies
