@@ -1,5 +1,7 @@
 import "andax/nvidia.rhai" as nvidia;
 
+rpm.version(nvidia::nvidia_driver_version());
+
 // Rebuild the package whenever the RHEL kernel updates
 // The best we can do is track the kernel headers in UBI since they *should* reflect the kernel version RHEL is on
 let releasever = labels.branch;
