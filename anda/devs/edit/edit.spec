@@ -21,10 +21,9 @@ Packager:      Gilver E. <rockgrub@disroot.org>
 %cargo_prep_online
 
 %build
-%cargo_build
 
 %install
-ls target/rpm
+%cargo_install
 
 %{cargo_license_online} > LICENSE.dependencies
 
