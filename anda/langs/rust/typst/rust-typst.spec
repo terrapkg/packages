@@ -124,9 +124,9 @@ export OPENSSL_NO_VENDOR=true
 #? https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=typst-git#n60
 _artifacts='crates/typst-cli/artifacts'
 install -Dm755 -t %buildroot%_bindir                target/rpm/%crate
-install -Dm644 -t %buildroot%_mandir/man1           $_artifacts/%crate*.1
+install -Dm644 -t %buildroot%_mandir/man1           $_artifacts/%{crate}*.1
 install -Dm644 -t %buildroot%zsh_completions_dir    $_artifacts/_%crate
-install -Dm644 -t %buildroot%fish_completions_dir   %_artifacts/%crate.fish
+install -Dm644 -t %buildroot%fish_completions_dir   $_artifacts/%crate.fish
 # no .bash suffix
 install -Dm644    $_artifacts/%crate.bash           %buildroot%bash_completions_dir/%crate
 
