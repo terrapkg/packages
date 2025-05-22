@@ -1,12 +1,12 @@
-%global commit 0401e0aa0019c53dee265f3b1261365a83647e0b
-%global commit_date 20250516
+%global commit 2b322bc377cf14f19b8a5deaa70600b71c314a3a
+%global commit_date 20250522
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %define _unpackaged_files_terminate_build 0
 
 Name:			rpi-utils
 Version:		%{commit_date}.%{shortcommit}
-Release:		2%?dist
+Release:		1%?dist
 Summary:		A collection of scripts and simple applications for Raspberry Pi devices
 License:		BSD-3-Clause
 URL:			https://github.com/raspberrypi/utils
