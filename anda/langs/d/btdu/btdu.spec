@@ -18,7 +18,7 @@ ExclusiveArch:	%ldc_arches
 # see macro _d_optflags
 # got rid of -release
 export DFLAGS="-O -gc -wi --linker=mold"
-dub build -b release-debug --parallel -n -y --compiler=ldmd2
+dub build -b release --parallel -n -y --compiler=ldmd2 # release-debug doesn't work
 
 %install
 install -Dpm755 btdu	-t %buildroot%_bindir
