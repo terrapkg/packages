@@ -17,7 +17,7 @@ ExclusiveArch:	%ldc_arches
 %build
 # see macro _d_optflags
 # got rid of -release
-export DFLAGS="-O -g -wi --linker=mold"
+export DFLAGS="-O -gc -wi --linker=mold"
 dub build -b release-debug --parallel -n -y --compiler=ldmd2
 
 %install
