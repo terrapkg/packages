@@ -10,14 +10,14 @@
 %global git_name %(echo %{org_name} | sed 's/-//g')
 %global reverse_dns com.heroicgameslauncher.hgl
 %global shortname heroic
-%global legendary_version 0.20.36
+%global legendary_version 0.20.37
 %global gogdl_version 1.1.2
 %global nile_version 1.1.2
 %global comet_version 0.2.0
 
 Name:          %{shortname}-games-launcher
-Version:       2.16.1
-Release:       4%?dist
+Version:       2.17.0
+Release:       1%?dist
 Summary:       A games launcher for GOG, Amazon, and Epic Games
 License:       GPL-3.0-only AND MIT AND BSD-3-Clause
 URL:           https://heroicgameslauncher.com
