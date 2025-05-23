@@ -13,6 +13,9 @@ BuildRequires:	dub ldc mold
 BuildRequires:	pkgconfig(ncurses)
 ExclusiveArch:	%ldc_arches
 
+%description
+%summary.
+
 %prep
 %autosetup
 
