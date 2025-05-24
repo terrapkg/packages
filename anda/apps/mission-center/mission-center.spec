@@ -1,9 +1,9 @@
 %global forgeurl0 https://gitlab.com/mission-center-devs/mission-center
-Version: 1.0.0
+Version: 1.0.1
 %global tag0 v%{version}
 
 %global forgeurl1 https://gitlab.com/mission-center-devs/gng
-%global commit1 dcc600e18cfa17d56d0f12a61be2702cc7a015ae
+%global commit1 593dd596ef4358d36146a65243fdaa35141a7ec2
 
 
 %forgemeta -a
@@ -16,7 +16,6 @@ License:        GPL-3.0-or-later
 URL:            %{forgeurl0}
 Source0:         %{forgesource0}
 Source1:         %{forgesource1}
-Patch0: https://gitlab.com/mission-center-devs/mission-center/-/merge_requests/319.diff
 Provides: bundled(mission-center-magpie)
 Provides: bundled(nvtop) = 3.2.0
 #mission centere uses a patched version of nvtop
@@ -50,14 +49,14 @@ Monitor your CPU, Memory, Disk, Network and GPU usage
 %prep
 %forgesetup -z 0
 mkdir -p ./subprojects/magpie
-patch -p1 < %{PATCH0}
 tar -x --strip-components=1  -f %{SOURCE1} -C ./subprojects/magpie
 pushd ./subprojects/magpie/
 %cargo_prep_online
 popd
 %cargo_prep_online
 %{cargo_license_summary_online}
-%cargo_license_online > LICENSE.dependencies
+# %cargo_license_online > LICENSE.dependencies
+#builds is erroring
 
 %build
 %meson
