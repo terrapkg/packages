@@ -84,7 +84,7 @@ popd
 %build
 pushd crates/%{crate}-cli
 %{cargo_license_summary_online}
-%{cargo_license_online} > ../LICENSE.dependencies
+%{cargo_license_online} > ../../LICENSE.dependencies
 popd
 export TYPST_VERSION="%version"
 export GEN_ARTIFACTS=artifacts/
