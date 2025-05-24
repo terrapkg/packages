@@ -1,6 +1,6 @@
 Name:           sbctl
 Version:        0.17
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Secure Boot key manager
 
 License:        MIT
@@ -61,6 +61,9 @@ fi
 
 
 %changelog
+* Sat May 24 2025 Esteve Fernandez <esteve@apache.org> - 0.17-2
+- Do not run file triggers on atomic systems
+
 * Sat Mar 30 2024 Cappy Ishihara <cappy@cappuchino.xyz> - 0.13-1
 - Push to Terra
 
