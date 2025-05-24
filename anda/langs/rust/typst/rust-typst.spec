@@ -11,7 +11,6 @@ Summary:        New markup-based typesetting system that is powerful and easy to
 License:        Apache-2.0
 URL:            https://typst.app
 Source:         https://github.com/typst/typst/archive/refs/tags/v%version.tar.gz
-Source1:        %crates_source
 Packager:       madonuko <mado@fyralabs.com>
 
 BuildRequires:  anda-srpm-macros cargo-rpm-macros >= 24
@@ -22,20 +21,6 @@ A new markup-based typesetting system that is powerful and easy to
 learn.}
 
 %description %{_description}
-
-%package        devel
-Summary:        %{summary}
-BuildArch:      noarch
-
-%description    devel %{_description}
-
-This package contains library source intended for building other packages which
-use the "%{crate}" crate.
-
-%files          devel
-%license LICENSE
-%doc README.md
-%{crate_instdir}/
 
 %package     -n %{name}+default-devel
 Summary:        %{summary}
@@ -107,8 +92,6 @@ Zsh command line completion support for %{crate}.
 pushd crates/%{crate}-cli
 %cargo_prep_online
 popd
-%setup -TDa1 -n %{crate}-%{version}
-%cargo_prep_online
 
 %build
 pushd crates/%{crate}-cli
@@ -129,10 +112,6 @@ install -Dm644 -t %buildroot%zsh_completions_dir    $_artifacts/_%crate
 install -Dm644 -t %buildroot%fish_completions_dir   $_artifacts/%crate.fish
 # no .bash suffix
 install -Dm644    $_artifacts/%crate.bash           %buildroot%bash_completions_dir/%crate
-
-pushd %{crate}-%{version}
-%cargo_install
-popd
 
 %if %{with check}
 %check
