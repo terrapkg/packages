@@ -22,13 +22,12 @@ Packager:      Gilver E. <rockgrub@disroot.org>
 %cargo_prep_online
 
 %build
+%{cargo_build} --freeze
 
 %install
 %if %{with nightly}
 export RUSTC_BOOTSTRAP=1
 %endif
-
-%cargo_install
 
 %{cargo_license_online} > LICENSE.dependencies
 
