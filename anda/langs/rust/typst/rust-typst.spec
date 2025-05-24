@@ -34,6 +34,13 @@ Provides:       %crate-cli = %version-%release
 %license LICENSE.dependencies
 %doc README.md
 %_bindir/typst
+%_mandir/man1/typst-compile.1.gz
+%_mandir/man1/typst-fonts.1.gz
+%_mandir/man1/typst-init.1.gz
+%_mandir/man1/typst-query.1.gz
+%_mandir/man1/typst-update.1.gz
+%_mandir/man1/typst-watch.1.gz
+%_mandir/man1/typst.1.gz
 
 
 %package bash-completion
