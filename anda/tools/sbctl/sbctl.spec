@@ -42,7 +42,7 @@ export GOPATH=%{_builddir}/go
 
 
 %transfiletriggerin -P 1 -- /boot /efi /usr/lib /usr/libexec
-if if [[ ! -f /run/ostree-booted ]] && grep -q -m 1 -e '\.efi$' -e '/vmlinuz$'; then
+if [[ ! -f /run/ostree-booted ]] && grep -q -m 1 -e '\.efi$' -e '/vmlinuz$'; then
     exec </dev/null
     %{_bindir}/sbctl sign-all -g
 fi
