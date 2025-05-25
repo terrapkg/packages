@@ -38,10 +38,10 @@ rustup override set nightly
 %cargo_prep_online
 
 %build
+%cargo_build
 
 %install
-%cargo_install
-
+%crate_install_bin
 %{cargo_license_online} > LICENSE.dependencies
 
 %files
