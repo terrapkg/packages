@@ -1,5 +1,6 @@
 %global _description %{expand:
 An editor that pays homage to the classic MS-DOS Editor, but with a modern interface and input controls similar to VS Code.}
+%global build_cflags %{__build_flags_lang_c} %{?_distro_extra_cflags} -Wno-maybe-uninitialized
 %bcond rust_nightly 1
 
 Name:          edit
