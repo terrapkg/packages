@@ -3,6 +3,9 @@ An editor that pays homage to the classic MS-DOS Editor, but with a modern inter
 %global build_cflags %{__build_flags_lang_c} %{?_distro_extra_cflags} -Wno-maybe-uninitialized
 %global build_cxxflags %{__build_flags_lang_cxx} %{?_distro_extra_cxxflags} -Wno-maybe-uninitialized
 %bcond rust_nightly 1
+%if %{with rust_nightly}
+%define %__cargo /usr/bin/env CARGO_HOME=.cargo RUSTC_BOOTSTRAP=1 RUSTFLAGS='%{build_rustflags}' .cargo/bin/cargo
+%endif
 
 Name:          edit
 Version:       1.0.0
