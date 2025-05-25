@@ -13,7 +13,7 @@ Version:       1.0.0
 Release:       1%{?dist}
 Summary:       A simple editor for simple needs.
 SourceLicense: MIT
-License:       MIT
+License:       MIT AND (MIT OR Apache-2.0)
 URL:           https://github.com/microsoft/edit
 Source0:       %{url}/archive/refs/tags/v%{version}.tar.gz
 BuildRequires: anda-srpm-macros
