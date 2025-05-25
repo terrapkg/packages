@@ -25,6 +25,7 @@ Packager:      Gilver E. <rockgrub@disroot.org>
 %cargo_prep_online
 %if %{with rust_nightly}
 rustup-init -y
+. "$HOME/.cargo/env"
 rustup toolchain install nightly
 rustup override set nightly
 %endif
