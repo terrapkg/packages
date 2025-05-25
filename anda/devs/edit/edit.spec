@@ -25,16 +25,16 @@ Packager:      Gilver E. <rockgrub@disroot.org>
 %prep
 %autosetup -n %{name}-%{version}
 %cargo_prep_online
+
+%build
+
+%install
 %if %{with rust_nightly}
 rustup-init -y
 . "$HOME/.cargo/env"
 rustup toolchain install nightly
 rustup override set nightly
 %endif
-
-%build
-
-%install
 %cargo_install
 
 %{cargo_license_online} > LICENSE.dependencies
