@@ -1,6 +1,6 @@
 %global _description %{expand:
 An editor that pays homage to the classic MS-DOS Editor, but with a modern interface and input controls similar to VS Code.}
-%bcond nightly 1
+%bcond rust_nightly 1
 
 Name:          edit
 Version:       1.0.0
@@ -12,6 +12,9 @@ URL:           https://github.com/microsoft/edit
 Source0:       %{url}/archive/refs/tags/v%{version}.tar.gz
 BuildRequires: anda-srpm-macros
 BuildRequires: cargo-rpm-macros
+%if %{with rust_nightly}
+BuildRequires: rustup
+%endif
 BuildRequires: mold
 Packager:      Gilver E. <rockgrub@disroot.org>
 
@@ -20,14 +23,15 @@ Packager:      Gilver E. <rockgrub@disroot.org>
 %prep
 %autosetup -n %{name}-%{version}
 %cargo_prep_online
+%if %{with rust_nightly}
+rustup toolchain install nightly
+rustup override set nightly
+%endif
 
 %build
-%{cargo_build} --freeze
 
 %install
-%if %{with nightly}
-export RUSTC_BOOTSTRAP=1
-%endif
+%cargo_install
 
 %{cargo_license_online} > LICENSE.dependencies
 
