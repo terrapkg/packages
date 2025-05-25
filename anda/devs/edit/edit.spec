@@ -5,6 +5,8 @@ An editor that pays homage to the classic MS-DOS Editor, but with a modern inter
 %bcond rust_nightly 1
 %if %{with rust_nightly}
 %define __cargo /usr/bin/env CARGO_HOME=.cargo RUSTC_BOOTSTRAP=1 RUSTFLAGS='%{build_rustflags}' $HOME/.cargo/bin/cargo
+%define __rustc $HOME/.cargo/bin/rustc
+%define __rustdoc $HOME/.cargo/bin/rustdoc
 %endif
 
 Name:          edit
@@ -36,9 +38,9 @@ rustup override set nightly
 %cargo_prep_online
 
 %build
-%cargo_build
 
 %install
+%cargo_install
 
 %{cargo_license_online} > LICENSE.dependencies
 
