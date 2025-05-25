@@ -24,6 +24,7 @@ Packager:      Gilver E. <rockgrub@disroot.org>
 %autosetup -n %{name}-%{version}
 %cargo_prep_online
 %if %{with rust_nightly}
+rustup-init
 rustup toolchain install nightly
 rustup override set nightly
 %endif
