@@ -36,9 +36,9 @@ rustup override set nightly
 %cargo_prep_online
 
 %build
+%cargo_build
 
 %install
-%cargo_install
 
 %{cargo_license_online} > LICENSE.dependencies
 
