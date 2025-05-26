@@ -48,9 +48,9 @@ rm -rf %{pypi_name}.egg-info
 %doc README.md
 %{python3_sitearch}/google/
 %if 0%{?fedora} <= 41 || 0%{?rhel}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitearch}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
 %else
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
+%{python3_sitearch}/%{pypi_name}-%{version}.dist-info/
 %endif
 
 %changelog
