@@ -17,14 +17,13 @@ Summary:        Grabs the dominant color or a representative color palette from 
 License:        BSD-3-Clause
 URL:            https://github.com/fengsp/color-thief-py
 Source0:        %{pypi_source}
-
-BuildArch:      noarch
-
 BuildRequires:  pyproject-rpm-macros
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(pillow)
 BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(setuptools)
+BuildArch:      noarch
+Packager:       Gilver E. <rockgrub@disroot.org>
 
 %global _description %{expand:
 A Python module for grabbing the color palette from an image.}
@@ -74,4 +73,5 @@ Summary:        %{summary}
 
 
 %changelog
-%autochangelog
+* Mon May 26 2025 Gilver E. <rockgrub@disroot.org> - 0.2.1-1
+- Initial port from Fedora
