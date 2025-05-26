@@ -4,6 +4,6 @@ project pkg {
 	spec = "python-jupyter-sphinx.spec"
   }
   labels {
-    upbranch = 1
+    subrepo = "extras"
   }
 }
