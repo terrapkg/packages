@@ -101,7 +101,7 @@ poetry run pytest
 %license LICENSE
 %license LICENSE.dependencies
 %{python3_sitearch}/%{pypi_name}
-%{python3_sitearch}/%{pypi_name}-%{version}.dist-info
+%{python3_sitearch}/%{pypi_name}-%{version}.dist-info/
 
 %if %{with docs}
 %files -n python3-%{name}-doc
