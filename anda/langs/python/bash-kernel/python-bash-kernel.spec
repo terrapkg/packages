@@ -19,6 +19,7 @@ BuildRequires:  python3-devel
 BuildRequires:  python3dist(filetype)
 BuildRequires:  python3dist(flit-core)
 BuildRequires:  python3dist(ipykernel)
+BuildRequires:  python3dist(pexpect)
 BuildRequires:  python3dist(pip)
 BuildRequires:  %{py3_dist docutils}
 
