@@ -31,7 +31,7 @@ BuildRequires:  python3dist(nbconvert)
 BuildRequires:  python3dist(nbformat)
 BuildRequires:  python3dist(numpy)
 BuildRequires:  python3dist(pip)
-BuilRequires:   python3dist(pytest)
+BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(sphinx)
 
 %global _desc %{expand:
