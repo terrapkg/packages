@@ -62,11 +62,7 @@ Documentation for Modern Colorthief.
 %cargo_prep_online
 
 %build
-%if 0%{?fedora} <= 41 || 0%{?rhel}
-%py3_build
-%else
 %pyproject_wheel
-%endif
 
 %if %{with docs}
 # Generates the docs in all languages Sphinx can translate most or all of the docs for this project in
@@ -78,11 +74,7 @@ done
 %endif
 
 %install
-%if 0%{?fedora} <= 41 || 0%{?rhel}
-%py3_install
-%else
 %pyproject_install
-%endif
 
 %{cargo_license_online} > LICENSE.dependencies
 
@@ -105,11 +97,7 @@ poetry run pytest
 %license LICENSE
 %license LICENSE.dependencies
 %{python3_sitearch}/%{pypi_name}
-%if 0%{?fedora} <= 41 || 0%{?rhel}
-%{python3_sitearch}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
-%else
-%{python3_sitearch}/%{pypi_name}-%{version}.dist-info/
-%endif
+%{python3_sitearch}/%{pypi_name}-%{version}.dist-info
 
 %if %{with docs}
 %files -n python3-%{name}-doc
