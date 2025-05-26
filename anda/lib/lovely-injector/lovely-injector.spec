@@ -35,7 +35,7 @@ BuildRequires: rustup
 
 %prep
 rm -rf *
-git clone --recursive %{url} . -b v%{version}
+%git_clone %{url} v%{version}
 
 %if %{with rust_nightly}
 rustup-init -y
@@ -63,9 +63,9 @@ install -Dm 644 target/rpm/liblovely.so %{buildroot}%{_libdir}/liblovely.so
 
 %files
 %license LICENSE.md
-%if %{version} >= 0.8
-%license crates/dobby-sys/LICENSE
-%endif
+# Only include dobby-sys license for versions >= 0.8
+# Manually uncomment the next line when updating to 0.8 or later
+# %license crates/dobby-sys/LICENSE
 %license LICENSE.dependencies
 %{_libdir}/liblovely.so
 %doc README.md
