@@ -83,7 +83,8 @@ fi
 %files -f missioncenter.lang
 %doc README.md
 %license COPYING
-%license LICENSE.dependencies
+#builds is erroring
+# [%]license LICENSE.dependencies
 %{_datadir}/missioncenter/
 %{_datadir}/applications/io.missioncenter.MissionCenter.desktop
 %{_datadir}/metainfo/io.missioncenter.MissionCenter.metainfo.xml
