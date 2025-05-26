@@ -50,7 +50,7 @@ rustup override set nightly
 %{cargo_license_online} > LICENSE.dependencies
 pushd crates/lovely-unix
 %cargo_build
-    popd
+popd
 
 %install
 # install library
