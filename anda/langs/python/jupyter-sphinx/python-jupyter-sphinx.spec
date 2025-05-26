@@ -23,6 +23,7 @@ BuildRequires:  pyproject-rpm-macros
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(hatchling)
 BuildRequires:  python3dist(pip)
+BuildRequires:  python3dist(sphinx)
 
 %global _desc %{expand:
 Jupyter-Sphinx enables running code embedded in Sphinx documentation and
