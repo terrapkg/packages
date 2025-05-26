@@ -3,4 +3,7 @@ project pkg {
   rpm {
 	spec = "python-colorthief.spec"
   }
+  labels {
+    updbranch = 1
+  }
 }
