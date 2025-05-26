@@ -17,6 +17,7 @@ BuildArch:      noarch
 BuildRequires:  pyproject-rpm-macros
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(flit-core)
+BuildRequires:  python3dist(ipykernel)
 BuildRequires:  python3dist(pip)
 BuildRequires:  %{py3_dist docutils}
 
