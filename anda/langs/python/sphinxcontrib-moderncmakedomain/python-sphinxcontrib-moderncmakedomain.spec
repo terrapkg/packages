@@ -3,6 +3,13 @@
 %global pypi_name sphinxcontrib_moderncmakedomain
 %global real_name sphinxcontrib-moderncmakedomain
 
+# Tests fail on EL even with Pytest due to the package versions
+%if 0%{?rhel}
+%bcond test 0
+%else
+%bcond test 1
+%endif
+
 Name:           python-%{real_name}
 Version:        3.29.0
 Release:        2%{?dist}
@@ -45,10 +52,8 @@ Modern CMake domain entries, originally from Kitware.
 %install
 %pyproject_install
 
+%if %{with test}
 %check
-%if 0%{?rhel}
-%pytest tests/*.py
-%else
 nox -s tests
 %endif
 

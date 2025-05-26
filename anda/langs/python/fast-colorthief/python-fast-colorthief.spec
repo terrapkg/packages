@@ -14,7 +14,9 @@ BuildRequires:  doxygen
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  pybind11-devel
+BuildRequires:  pyproject-rpm-macros
 BuildRequires:  python3-devel
+# This package is not buildable on EL due to this dep. There's unfortunately not much I can do about this.
 BuildRequires:  python3-sphinxcontrib-rsvgconverter
 BuildRequires:  python3dist(breathe)
 BuildRequires:  python3dist(furo)
@@ -66,9 +68,10 @@ rm -rf %{pypi_name}.egg-info
 %endif
 
 %if %{with docs}
-# generate docs
-PYTHONPATH=${PWD} sphinx-build pybind11/docs html
-# remove the sphinx-build leftovers
+# Generate docs
+# Only works in English currently. Sad.
+PYTHONPATH=${PWD} sphinx-build pybind11/docs html -D language=en
+# Remove the sphinx-build leftovers
 rm -rf html/.{doctrees,buildinfo}
 %endif
 
