@@ -10,14 +10,14 @@
 %global git_name %(echo %{org_name} | sed 's/-//g')
 %global reverse_dns com.heroicgameslauncher.hgl
 %global shortname heroic
-%global legendary_version 0.20.36
+%global legendary_version 0.20.37
 %global gogdl_version 1.1.2
 %global nile_version 1.1.2
 %global comet_version 0.2.0
 
 Name:          %{shortname}-games-launcher
-Version:       2.16.1
-Release:       4%?dist
+Version:       2.17.0
+Release:       1%?dist
 Summary:       A games launcher for GOG, Amazon, and Epic Games
 License:       GPL-3.0-only AND MIT AND BSD-3-Clause
 URL:           https://heroicgameslauncher.com
@@ -29,6 +29,7 @@ BuildRequires: gcc-c++
 BuildRequires: git
 BuildRequires: make
 BuildRequires: nodejs
+BuildRequires: nodejs-npm
 BuildRequires: pnpm
 BuildRequires: python3
 Requires:      alsa-lib
@@ -51,7 +52,6 @@ Heroic is a Free and Open Source Epic, GOG, and Amazon Prime Games launcher for 
 
 %prep
 %git_clone https://github.com/%{org_name}/%{git_name} v%{version}
-desktop-file-edit --set-key=Exec --set-value="/usr/share/%{shortname}/%{shortname} %u" flatpak/%{reverse_dns}.desktop
 
 %build
 pnpm install
@@ -62,11 +62,10 @@ pnpm dist:linux
 mkdir -p %{buildroot}%{_datadir}/%{shortname}
 mv $(find . -iname "*LICENSE*" -not -path "./node_modules/*" -and -not -path "./public/*") .
 mv LICENSE node-font-list.LICENSE
-rm -rf dist/linux-unpacked/resources/app.asar.unpacked/node_modules/font-list/libs/darwin
-rm -rf dist/linux-unpacked/resources/app.asar.unpacked/node_modules/font-list/libs/win32
+rm -rf dist/linux-unpacked/resources/app.asar.unpacked/node_modules/font-list/libs/{darwin,win32}
 %ifarch aarch64
-### Needs testing once aarch64 Heroic is complete:
-#rm -rf dist/linux-unpacked/resources/app.asar.unpacked/build/bin/x64
+# Keep the x86_64 Windows binaries run through Wine just in case
+rm -rf dist/linux-unpacked/resources/app.asar.unpacked/build/bin/x64/{darwin,linux}
 mv dist/linux-arm64-unpacked/* %{buildroot}%{_datadir}/%{shortname}
 %else
 rm -rf dist/linux-unpacked/resources/app.asar.unpacked/build/bin/arm64
@@ -84,7 +83,7 @@ install -Dm644 dist/.icon-set/icon_128x128.png %{buildroot}%{_iconsdir}/hicolor/
 install -Dm644 dist/.icon-set/icon_256x256.png %{buildroot}%{_iconsdir}/hicolor/256x256/apps/%{reverse_dns}.png
 install -Dm644 dist/.icon-set/icon_512x512.png %{buildroot}%{_iconsdir}/hicolor/512x512/apps/%{reverse_dns}.png
 install -Dm644 dist/.icon-set/icon_1024.png %{buildroot}%{_iconsdir}/hicolor/1024x1024/apps/%{reverse_dns}.png
-install -Dm644 flatpak/%{reverse_dns}.desktop -t %{buildroot}%{_datadir}/applications/
+desktop-file-install --set-key=Exec --set-value="/usr/share/%{shortname}/%{shortname} %u" flatpak/%{reverse_dns}.desktop
 
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{reverse_dns}.desktop
