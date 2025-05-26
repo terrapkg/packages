@@ -21,6 +21,8 @@ BuildArch:      noarch
 BuildRequires:  make
 BuildRequires:  pyproject-rpm-macros
 BuildRequires:  python3-devel
+BuildRequires:  python3dist(hatchling)
+BuildRequires:  python3dist(pip)
 
 %global _desc %{expand:
 Jupyter-Sphinx enables running code embedded in Sphinx documentation and
@@ -63,9 +65,6 @@ Documentation for %{name}.
 
 %prep
 %autosetup -n jupyter-sphinx-%{version} -p1
-
-%generate_buildrequires
-%pyproject_buildrequires -x doc,test
 
 %build
 %pyproject_wheel
