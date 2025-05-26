@@ -12,12 +12,7 @@ Summary:        Jupyter Sphinx extensions
 License:        BSD-3-Clause
 URL:            https://jupyter-sphinx.readthedocs.io/
 VCS:            git:%{giturl}.git
-Source:         %{giturl}/archive/v%{version}/jupyter-sphinx-%{version}.tar.gz
-
-# See https://fedoraproject.org/wiki/Changes/EncourageI686LeafRemoval
-ExcludeArch:    %{ix86}
-BuildArch:      noarch
-
+Source0:        %{giturl}/archive/v%{version}/jupyter-sphinx-%{version}.tar.gz
 BuildRequires:  make
 BuildRequires:  pyproject-rpm-macros
 BuildRequires:  python3-devel
@@ -33,6 +28,10 @@ BuildRequires:  python3dist(numpy)
 BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(sphinx)
+# See https://fedoraproject.org/wiki/Changes/EncourageI686LeafRemoval
+ExcludeArch:    %{ix86}
+BuildArch:      noarch
+Packager:       Gilver E. <rockgrub@disroot.org>
 
 %global _desc %{expand:
 Jupyter-Sphinx enables running code embedded in Sphinx documentation and
@@ -100,4 +99,5 @@ export JUPYTER_PLATFORM_DIRS=1
 %doc doc/build/html
 
 %changelog
-%autochangelog
+* Mon May 26 2025 Gilver E. <rockgrub@disroot.org> - 0.5.3-1
+- Initial port from Fedora
