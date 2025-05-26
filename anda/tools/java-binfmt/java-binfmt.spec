@@ -18,7 +18,7 @@ Source5:        https://raw.githubusercontent.com/terrapkg/pkg-java-binfmt/%{com
 Source6:        https://raw.githubusercontent.com/terrapkg/pkg-java-binfmt/%{commit}/Applet-lib64.conf
 BuildRequires:  gcc
 BuildRequires:  systemd-rpm-macros
-Packager:       ShinyGil <rockgrub@disroot.org>
+Packager:       Gilver E. <rockgrub@disroot.org>
 
 %description
 This package installs binfmt files for use with Java wrappers.
@@ -109,5 +109,5 @@ install -Dpm644 %{SOURCE6} %{buildroot}%{_binfmtdir}/Applet-lib64.conf
 /bin/systemctl --system try-restart systemd-binfmt.service &>/dev/null || :
 
 %changelog
-* Thu Jan 30 2025 ShinyGil <rockgrub@disroot.org>
+* Thu Jan 30 2025 Gilver E. <rockgrub@disroot.org>
 - Initial package

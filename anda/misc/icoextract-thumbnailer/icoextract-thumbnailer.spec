@@ -1,6 +1,6 @@
 Name:           icoextract-thumbnailer
-Version:        0.1.5
-Release:        1%{?dist}
+Version:        0.1.6
+Release:        1%?dist
 Summary:        XDG-compatible thumbnailer for Windows PE executables
 
 URL:            https://github.com/jlu5/icoextract/

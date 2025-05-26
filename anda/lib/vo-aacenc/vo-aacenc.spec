@@ -3,8 +3,8 @@ Version:        0.1.3
 Release:        1%{?dist}
 Summary:        VisualOn AAC encoder library
 License:        ASL 2.0
-URL:            http://sourceforge.net/projects/opencore-amr/
-Source0:        http://downloads.sourceforge.net/opencore-amr/%{name}/%{name}-%{version}.tar.gz
+URL:            https://sourceforge.net/projects/opencore-amr/
+Source0:        https://downloads.sourceforge.net/opencore-amr/%{name}/%{name}-%{version}.tar.gz
 BuildRequires:  gcc
 
 %description

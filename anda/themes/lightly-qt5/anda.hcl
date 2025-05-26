@@ -3,4 +3,7 @@ project "pkg" {
     rpm {
         spec = "lightly-qt5.spec"
     }
+    labels {
+        updbranch = 1
+    }
 }
