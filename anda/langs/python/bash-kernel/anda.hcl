@@ -4,6 +4,6 @@ project pkg {
 	spec = "python-bash-kernel.spec"
   }
   labels {
-    updbranch = 1
+    subrepo = "extras"
   }
 }
