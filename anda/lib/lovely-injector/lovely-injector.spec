@@ -50,7 +50,7 @@ rustup override set nightly
 %{cargo_license_online} > LICENSE.dependencies
 pushd crates/lovely-unix
 %cargo_build
-popd
+    popd
 
 %install
 # install library
@@ -58,7 +58,9 @@ install -Dm 644 target/rpm/liblovely.so %{buildroot}%{_libdir}/liblovely.so
 
 %if %{with check}
 %check
+pushd crates/lovely-unix
 %cargo_test
+popd
 %endif
 
 %files

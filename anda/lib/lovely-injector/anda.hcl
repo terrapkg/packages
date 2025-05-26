@@ -2,5 +2,5 @@ project pkg {
 	rpm {
 		spec = "lovely-injector.spec"
 	}
-	arches = ["x86_64"]
+	# arches = ["x86_64"]
 }
