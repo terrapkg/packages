@@ -16,6 +16,8 @@ ExcludeArch:    %{ix86}
 BuildArch:      noarch
 BuildRequires:  pyproject-rpm-macros
 BuildRequires:  python3-devel
+BuildRequires:  python3dist(flit-core)
+BuildRequires:  python3dist(pip)
 BuildRequires:  %{py3_dist docutils}
 
 %description
@@ -34,9 +36,6 @@ This package contains a Jupyter kernel for bash.
 
 # Work around an install error
 sed -i 's/from \.resources/from %{pypi_name}.resources/' %{pypi_name}/install.py
-
-%generate_buildrequires
-%pyproject_buildrequires
 
 %build
 %pyproject_wheel
