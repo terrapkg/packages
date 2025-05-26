@@ -40,21 +40,13 @@ Modern CMake domain entries, originally from Kitware.
 %autosetup -n %{pypi_name}-%{version}
 
 %build
-%if 0%{?fedora} <= 41 || 0%{?rhel}
-%py3_build
-%else
 %pyproject_wheel
-%endif
 
 %install
-%if 0%{?fedora} <= 41 || 0%{?rhel}
-%py3_install
-%else
 %pyproject_install
-%endif
 
 %check
-%if 0%{?fedora} <= 41 || 0%{?rhel}
+%if 0%{?rhel}
 %pytest tests/*.py
 %else
 nox -s tests
@@ -65,11 +57,7 @@ nox -s tests
 %doc     README.md
 %license LICENSE
 %{python3_sitelib}/sphinxcontrib/moderncmakedomain
-%if 0%{?fedora} <= 41 || 0%{?rhel}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
-%else
 %{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
-%endif
 
 %changelog
 * Sat May 10 2025 Gilver E. <rockgrub@disroot.org> - 3.29.0-1
