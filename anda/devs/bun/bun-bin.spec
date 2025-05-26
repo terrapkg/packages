@@ -1,22 +1,54 @@
-%ifarch x86_64
+%define debug_package %nil
+%ifarch x86_64_v3
 %global a x64
+%elifarch x86_64
+%global a x64-baseline
 %elifarch aarch64
 %global a aarch64
 %endif
 
 Name:			bun-bin
-Version:		1.2.2
-Release:		1%?dist
+Version:		1.2.14
+Release:		3%?dist
 Summary:		Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one
 License:		MIT
 URL:			https://bun.sh
 Source0:		https://github.com/oven-sh/bun/releases/download/bun-v%version/bun-linux-%a.zip
-BuildRequires:	unzip
+
+%description
+%summary.
+
+
+%package bash-completion
+Summary:		Bash completion for %{name}
+Requires:		%{name} = %{version}-%{release}
+Requires: 		bash-completion
+Supplements:	(%{name} and bash-completion)
+
+%description bash-completion
+Bash command line completion support for %{name}.
+
+%package fish-completion
+Summary:		Fish completion for %{name}
+Requires:		%{name} = %{version}-%{release}
+Requires:		fish
+Supplements:	(%{name} and fish)
+
+%description fish-completion
+Fish command line completion support for %{name}.
+
+%package zsh-completion
+Summary:		Zsh completion for %{name}
+Requires:		%{name} = %{version}-%{release}
+Requires:		zsh
+Supplements:	(%{name} and zsh)
+
+%description zsh-completion
+Zsh command line completion support for %{name}.
+
 
 %prep
-unzip %SOURCE0
-%global buildsubdir bun-linux-%a
-cd %buildsubdir
+%autosetup -n bun-linux-%a
 cat<<EOF > LICENSE
 MIT License
 
@@ -57,6 +89,12 @@ ln -s bun %buildroot%_bindir/bunx
 %license LICENSE
 %_bindir/bun
 %_bindir/bunx
+
+%files bash-completion
 %bash_completions_dir/bun.bash
+
+%files fish-completion
 %fish_completions_dir/bun.fish
+
+%files zsh-completion
 %zsh_completions_dir/_bun
