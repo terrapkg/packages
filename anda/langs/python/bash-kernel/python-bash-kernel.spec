@@ -10,10 +10,6 @@ Summary:        Bash kernel for Jupyter
 License:        BSD-3-Clause
 URL:            https://github.com/takluyver/bash_kernel
 Source:         %{pypi_source}
-
-# See https://fedoraproject.org/wiki/Changes/EncourageI686LeafRemoval
-ExcludeArch:    %{ix86}
-BuildArch:      noarch
 BuildRequires:  pyproject-rpm-macros
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(filetype)
@@ -22,6 +18,10 @@ BuildRequires:  python3dist(ipykernel)
 BuildRequires:  python3dist(pexpect)
 BuildRequires:  python3dist(pip)
 BuildRequires:  %{py3_dist docutils}
+# See https://fedoraproject.org/wiki/Changes/EncourageI686LeafRemoval
+ExcludeArch:    %{ix86}
+BuildArch:      noarch
+Packager:       Gilver E. <rockgrub@disroot.org>
 
 %description
 This package contains a Jupyter kernel for bash.
@@ -61,4 +61,5 @@ cd -
 %{_datadir}/jupyter/kernels/bash/
 
 %changelog
-%autochangelog
+* Mon May 26 2025 Gilver E. <rockgrub@disroot.org> - 0.10.0-1
+- Initial port from Fedora
