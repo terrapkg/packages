@@ -21,11 +21,17 @@ BuildArch:      noarch
 BuildRequires:  make
 BuildRequires:  pyproject-rpm-macros
 BuildRequires:  python3-devel
+BuildRequires:  python3dist(bash-kernel)
 BuildRequires:  python3dist(hatchling)
+BuildRequires:  python3dist(ipykernel)
 BuildRequires:  python3dist(ipywidgets)
+BuildRequires:  python3dist(ipython)
 BuildRequires:  python3dist(matplotlib)
+BuildRequires:  python3dist(nbconvert)
+BuildRequires:  python3dist(nbformat)
 BuildRequires:  python3dist(numpy)
 BuildRequires:  python3dist(pip)
+BuilRequires:   python3dist(pytest)
 BuildRequires:  python3dist(sphinx)
 
 %global _desc %{expand:
