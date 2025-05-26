@@ -58,11 +58,12 @@ Documentation files for %{pypi_name}
 rm -rf %{pypi_name}.egg-info
 
 %build
-### This is not a fully Python project and is mostly C++
-## Disable PIC
-# https://docs.fedoraproject.org/en-US/packaging-guidelines/#_pie
-sed -i 's/CMAKE_POSITION_INDEPENDENT_CODE ON/CMAKE_POSITION_INDEPENDENT_CODE OFF/' CMakeLists.txt
+## This is not a fully Python project and is mostly C++
+%if 0%{?fedora} <= 41 || 0%{?rhel}
+%py3_build
+%else
 %pyproject_wheel
+%endif
 
 %if %{with docs}
 # generate docs
@@ -72,7 +73,11 @@ rm -rf html/.{doctrees,buildinfo}
 %endif
 
 %install
+%if 0%{?fedora} <= 41 || 0%{?rhel}
+%py3_install
+%else
 %pyproject_install
+%endif
 
 %files -n python3-%{pypi_name}
 %license pybind11/LICENSE
@@ -82,7 +87,11 @@ rm -rf html/.{doctrees,buildinfo}
 %{python3_sitearch}/fast_colorthief.py
 %{python3_sitearch}/version.py
 %{python3_sitearch}/fast_colorthief_backend.cpython-*-%{_arch}-linux-gnu.so
-%{python3_sitearch}/fast_colorthief-%{version}.dist-info
+%if 0%{?fedora} <= 41 || 0%{?rhel}
+%{python3_sitearch}/fast_colorthief-%{version}-py%{python3_version}.egg-info/
+%else
+%{python3_sitearch}/fast_colorthief-%{version}.dist-info/
+%endif
 
 %if %{with docs}
 %files -n python3-%{pypi_name}-doc
