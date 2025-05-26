@@ -22,6 +22,7 @@ BuildRequires:  make
 BuildRequires:  pyproject-rpm-macros
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(hatchling)
+BuildRequires:  python3dist(ipywidgets)
 BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(sphinx)
 
