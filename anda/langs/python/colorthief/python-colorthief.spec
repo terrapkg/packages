@@ -22,6 +22,8 @@ BuildArch:      noarch
 
 BuildRequires:  pyproject-rpm-macros
 BuildRequires:  python3-devel
+BuildRequires:  python3dist(pillow)
+BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(setuptools)
 
 %global _description %{expand:
@@ -36,11 +38,6 @@ Summary:        %{summary}
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-
-%if 0%{?fedora} > 41
-%generate_buildrequires
-%pyproject_buildrequires
-%endif
 
 %build
 %if 0%{?fedora} <= 41 || 0%{?rhel}
