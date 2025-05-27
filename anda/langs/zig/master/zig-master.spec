@@ -23,6 +23,7 @@ Source1:        %{url}/builds/zig-%{version_no_tilde}.tar.xz.minisig
 Patch0:         0000-remove-native-lib-directories-from-rpath.patch
 Patch1:         0001-increase-upper-bounds-of-main-zig-executable-to-10G.patch
 Patch2:         0002-build-pass-zig-lib-dir-as-directory-instead-of-as-st.patch
+Patch3:         https://src.fedoraproject.org/rpms/zig/raw/rawhide/f/0005-link.Elf-add-root-directory-of-libraries-to-linker-p.patch
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
@@ -44,8 +45,6 @@ BuildRequires:  libstdc++-static
 %endif
 # For the version_no_tilde macro
 BuildRequires:  rust-srpm-macros
-# Zig invokes the C compiler to figure out system info
-Requires:       gcc
 Requires:       %{name}-libs = %{version}
 # Apache-2.0 WITH LLVM-exception OR NCSA OR MIT
 Provides:       bundled(compiler-rt) = %{llvm_version}
