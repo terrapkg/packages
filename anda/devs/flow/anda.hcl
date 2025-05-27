@@ -1,8 +1,5 @@
 project pkg {
     rpm {
-        spec = "flow-control-nightly.spec"
-    }
-    labels {
-        nightly = 1
+        spec = "flow-control.spec"
     }
 }

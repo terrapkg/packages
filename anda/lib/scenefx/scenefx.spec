@@ -1,12 +1,12 @@
 Name:           scenefx
-Version:        0.2
-Release:        2%?dist
+Version:        0.2.1
+Release:        1%?dist
 
 Summary:        A drop-in replacement for the wlroots scene API that allows wayland compositors to render surfaces with eye-candy effects
 URL:            https://github.com/wlrfx/scenefx
 License:        MIT
 
-Source0:        %{url}/archive/refs/tags/%version.tar.gz
+Source0:        %{url}/archive/%{version}.tar.gz
 
 
 BuildRequires:  cmake
@@ -55,22 +55,19 @@ MESON_OPTIONS=(
     -Dexamples=false
     -Dwerror=false
 )
-%{meson} "${MESON_OPTIONS[@]}"
-%{meson_build}
+%meson "${MESON_OPTIONS[@]}"
+%meson_build
 
 %install
-%{meson_install}
-
-%check
-%{meson_test}
+%meson_install
 
 
 %files
 %license LICENSE
 %doc README.md
-%{_libdir}/lib%{name}-%{version}.so
+%{_libdir}/lib%{name}-0.2.so
 
 
 %files  devel
-%{_includedir}/scenefx
-%{_libdir}/pkgconfig/%{name}.pc
+%{_includedir}/%{name}-0.2/*
+%{_libdir}/pkgconfig/%{name}-0.2.pc

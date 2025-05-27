@@ -1,19 +1,22 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-app-launch
-%global commit 3a0dacbbf99b45b67c39bb92449235c576cbf05a
+%global commit ca7670c0a74c42f03c0bb4196773519c270a0d75
 %forgemeta
 
 Name:           lomiri-app-launch
-Version:        0.1.11
+Version:        0.1.12
 Release:        1%?dist
 Summary:        Provides the Lomiri App Launch user space daemon
 License:        GPL-3.0
 URL:            https://gitlab.com/ubports/development/core/lomiri-app-launch
 Source0:        %{url}/-/archive/%commit/lomiri-app-launch-%commit.tar.gz
+Patch0:         https://sources.debian.org/data/main/l/lomiri-app-launch/0.1.11-1/debian/patches/2003_remove-werror.patch
+Patch1:         2004-std-workaround.patch
 
 BuildRequires: cmake
 BuildRequires: pkgconfig
-BuildRequires: g++
 BuildRequires: gcc
+BuildRequires: gcc-c++
+BuildRequires: libatomic
 BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig(gobject-introspection-1.0)
 BuildRequires: pkgconfig(lttng-ust)
@@ -49,8 +52,6 @@ This package contains development files needed for lomiri-app-launch.
 %autosetup -n lomiri-app-launch-%commit
 
 %build
-sed -i 's/-Werror//' ./CMakeLists.txt
-
 # For some reason the macro of cmake fails on both clang and gcc
 cmake -DLOMIRI_APP_LAUNCH_ARCH=%{_arch} -DENABLE_COVERAGE=OFF -DENABLE_TESTS=OFF -B redhat-linux-build -DCMAKE_INSTALL_PREFIX:PATH=/usr -DENABLE_MIRCLIENT=off -DUSE_SYSTEMD=ON
 %cmake_build

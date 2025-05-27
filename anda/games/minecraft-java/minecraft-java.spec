@@ -17,7 +17,7 @@ ExclusiveArch:	x86_64
 Requires:	java >= 1.8.0
 Requires:       gtk3
 Requires:       libgpg-error
-Requires:       (gnome-keyring or kwallet)
+Requires:       (gnome-keyring or kf6-kwallet or kf5-kwallet or kwallet)
 
 %description
 The official Linux release of the launcher for Minecraft, a game about placing blocks and going on adventures.

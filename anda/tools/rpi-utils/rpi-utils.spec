@@ -1,5 +1,5 @@
-%global commit a2408f03fad56b4ece231fa7a8c813a6ddeacfb1
-%global commit_date 20250201
+%global commit 657359cd6d6d8ebc6ba431750dc3c2c1d91fd707
+%global commit_date 20250523
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %define _unpackaged_files_terminate_build 0
@@ -94,7 +94,7 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 %autosetup -p1 -n utils-%commit
 
 %build
-%cmake
+%cmake -DBUILD_SHARED_LIBS=1
 %cmake_build
 
 %install
@@ -111,6 +111,8 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 %{_mandir}/man1/dtoverlay.1.gz
 %{_mandir}/man1/dtparam.1.gz
 %{_mandir}/man2/dtoverlay.2.gz
+%{_exec_prefix}/%{_lib}/libdtovl.so
+%{_exec_prefix}/%{_lib}/libdtovl.so.0
 
 %files eeptools
 %doc eeptools/README.md
@@ -142,6 +144,8 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 %license LICENCE
 %{_bindir}/pinctrl
 %{_datadir}/bash-completion/completions/pinctrl
+%{_exec_prefix}/%{_lib}/libgpiolib.so.0
+%{_exec_prefix}/%{_lib}/libgpiolib.so
 
 %files piolib
 %doc piolib/README.md
@@ -154,6 +158,8 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 %{_bindir}/piows2812
 %{_bindir}/quadenc
 %{_bindir}/rp1sm
+%{_exec_prefix}/%{_lib}/libpio.so.0
+%{_exec_prefix}/%{_lib}/libpio.so
 
 %files vcgencmd
 %license LICENCE
@@ -175,6 +181,9 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 %{_mandir}/man7/raspirev.7.gz
 
 %changelog
+* Mon May 19 2025 Owen-sz <owen@fyralabs.com>
+- Build shared libraries
+
 * Tue Dec 17 2024 sadlerm <sad_lerm@hotmail.com>
 - Split into individual subpackages and no longer package raspinfo
 

@@ -1,8 +1,9 @@
 project pkg {
-	rpm {
-		spec = "chromebook-usbc-fix.spec"
-	}
-  labels {
-    nightly = "1"
-  }
+    arches = ["x86_64"]
+    rpm {
+        spec = "chromebook-usbc-fix.spec"
+    }
+    labels {
+        nightly = "1"
+    }
 }
