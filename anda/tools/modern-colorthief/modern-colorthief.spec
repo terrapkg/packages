@@ -79,7 +79,7 @@ done
 
 %if %{with test}
 %check
-%if %{?rhel}
+%if 0%{?rhel}
 %pytest tests/*.py
 # Poetry doesn't exist on EL
 %else
