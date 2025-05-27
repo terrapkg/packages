@@ -1,14 +1,12 @@
 %global commit 4820a3e
-%global shortcommit %{sub %commit 1 7}
 %global commit_date 20250513
 
 Name:			astal
-Version:		0^%commit_date.%shortcommit
+Version:		0^%commit_date.%commit
 Release:		1%?dist
 Summary:		Building blocks for creating custom desktop shells
 License:		LGPL-2.1-only
 URL:			https://aylur.github.io/astal
-Source0:		https://github.com/Aylur/astal/archive/%commit.tar.gz
 Packager:		madonuko <mado@fyralabs.com>
 BuildRequires:	meson gobject-introspection vala valadoc cmake
 BuildRequires:	pkgconfig(astal-io-0.1)
@@ -59,7 +57,7 @@ This package contains development files and documentation for astal-gtk4.
 
 
 %prep
-%autosetup -n astal-%commit
+%git_clone https://github.com/Aylur/astal
 
 %build
 my_build() {

@@ -20,7 +20,6 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 URL:            %{gourl}
 Source:         %{url}/archive/%{version}.tar.gz
-Patch0:         update.patch
 BuildRequires:  anda-srpm-macros
 
 %description %{common_description}
@@ -29,10 +28,11 @@ BuildRequires:  anda-srpm-macros
 
 %prep
 %goprep
-%autopatch -p1
 %go_prep_online
 
 %build
+sed -E '/^func Start\(/,/^\}$/s@return start\(src\)@return ""@' -i updater/updater.go
+sed -E '\?r.POST\("/update", updateHandler\)?d' -i main.go
 %define gomodulesmode GO111MODULE=on
 %gobuild -o %{gobuilddir}/bin/arduino-create-agent %{goipath}
 
