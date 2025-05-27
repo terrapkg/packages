@@ -12,6 +12,7 @@ BuildRequires:  zstd
 BuildRequires:  pkgconfig(liblz4)
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  pkgconfig(wayland-client)
+BuildRequires:  pkgconfig(wayland-protocols)
 
 %description
 swww is a wallpaper daemon for Wayland that is controlled
