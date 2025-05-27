@@ -27,6 +27,7 @@ BuildRequires:  python3dist(myst-parser)
 BuildRequires:  python3dist(shibuya)
 BuildRequires:  python3dist(sphinx-copybutton)
 BuildRequires:  python3dist(sphinx-design)
+BuildRequires:  python3dist(sphinx-togglebutton)
 %endif
 BuildArch:      noarch
 Packager:       Gilver E. <rockgrub@disroot.org>
@@ -75,7 +76,11 @@ This package contains the official docs for Shibuya.
 rm -rf %{pypi_name}.egg-info
 
 %build
+%if 0%{?fedora} <= 41 || 0%{?rhel}
+%py3_build
+%else
 %pyproject_wheel
+%endif
 
 %if %{with docs}
 sphinx-build docs build/_html -b dirhtml -a
@@ -88,13 +93,21 @@ done
 %endif
 
 %install
+%if 0%{?fedora} <= 41 || 0%{?rhel}
+%py3_install
+%else
 %pyproject_install
+%endif
 
 %files -n python3-%{pypi_name}
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/%{pypi_name}
+%if 0%{?fedora} <= 41 || 0%{?rhel}
+%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%else
 %{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
+%endif
 
 %if %{with docs}
 %files -n python3-%{pypi_name}-doc

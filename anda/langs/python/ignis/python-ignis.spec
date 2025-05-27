@@ -8,6 +8,7 @@ URL:            https://linkfrg.github.io/ignis
 Source:         https://github.com/linkfrg/ignis/archive/v%{version}/ignis-%{version}.tar.gz
 Packager:       madonuko <mado@fyralabs.com>
 
+BuildRequires:  pyproject-rpm-macros
 BuildRequires:  python3-devel
 BuildRequires:  gcc git-core
 BuildRequires:  pkgconfig(glib-2.0)
