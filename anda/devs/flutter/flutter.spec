@@ -16,8 +16,6 @@ beautiful mobile, web, desktop, and embedded apps from a single codebase.
 %prep
 tar xf %SOURCE0
 
-%build
-
 %install
 mkdir -p %buildroot%_datadir %buildroot%_bindir
 mv %name/ %buildroot%_datadir/
