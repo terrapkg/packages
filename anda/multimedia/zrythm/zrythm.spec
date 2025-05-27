@@ -97,6 +97,8 @@ tools, limitless automation capabilities, powerful
 mixing features, chord assistance and support for
 various plugin and file formats.
 
+%pkg_completion -Bf
+
 %prep
 %autosetup -n %name-%v
 
@@ -136,5 +138,3 @@ CXXFLAGS=$(echo "$CFLAGS -fuse-ld=mold" | sed -E "s@\b-Werror\b@@")
 %_datadir/mime/packages/org.zrythm.Zrythm-mime.xml
 %_datadir/metainfo/org.zrythm.Zrythm.appdata.xml
 %_mandir/man1/zrythm.1.*
-%bash_completions_dir/zrythm
-%fish_completions_dir/zrythm.fish

@@ -4,7 +4,7 @@
 
 Name:           terra-surface-dtx-daemon
 Version:        %(echo %ver | sed 's/-/~/g')
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Surface Detachment System (DTX) Daemon
 License:        MIT
 URL:            https://github.com/linux-surface/surface-dtx-daemon
@@ -17,6 +17,8 @@ Obsoletes:      surface-dtx-daemon < 0.3.8~1-3
 Linux User-Space Detachment System (DTX) Daemon for the Surface ACPI Driver
 (and Surface Books). Currently only the Surface Book 2 is supported, due to
 lack of driver-support on the Surface Book 1. This may change in the future.
+
+%pkg_completion -Bfz surface-dtx-daemon surface-dtx-userd
 
 %prep
 %autosetup -n surface-dtx-daemon-%{ver2}
@@ -71,12 +73,6 @@ install -D -m644 "target/surface-dtx-userd.fish" "%{buildroot}/usr/share/fish/ve
 /usr/bin/surface-dtx-userd
 /usr/lib/systemd/system/surface-dtx-daemon.service
 /usr/lib/systemd/user/surface-dtx-userd.service
-/usr/share/bash-completion/completions/surface-dtx-daemon
-/usr/share/bash-completion/completions/surface-dtx-userd
-/usr/share/zsh/site-functions/_surface-dtx-daemon
-/usr/share/zsh/site-functions/_surface-dtx-userd
-/usr/share/fish/vendor_completions.d/surface-dtx-daemon.fish
-/usr/share/fish/vendor_completions.d/surface-dtx-userd.fish
 
 %changelog
 * Wed Feb 5 2025 Owen Zimmerman <owen@fyralabs.com>
