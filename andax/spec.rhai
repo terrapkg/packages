@@ -20,6 +20,5 @@ fn get_define(rpm, macro) {
 }
 
 fn bump_release(rpm) {
-    if !rpm.changed() { return; }
     rpm.release(`${rpm.get_release().parse_int() + 1}`);
 }
