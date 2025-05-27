@@ -1,6 +1,8 @@
 %global pypi_name fast-colorthief
 %global debug_package %{nil}
 %bcond docs 1
+# Fedora packages pybind11 but not the test module kill me
+%bcond test 0
 
 Name:           python-%{pypi_name}
 Version:        0.0.5
@@ -19,6 +21,11 @@ BuildRequires:  python3-devel
 # This package is not buildable on EL due to this dep. There's unfortunately not much I can do about this.
 BuildRequires:  python3-sphinxcontrib-rsvgconverter
 BuildRequires:  python3dist(breathe)
+%if %{with test}
+BuildRequires:  python3dist(colorthief)
+BuildRequires:  python3dist(pytest)
+BuildRequires:  python3dist(pybind11-tests)
+%endif
 BuildRequires:  python3dist(furo)
 BuildRequires:  python3dist(numpy)
 BuildRequires:  python3dist(pillow)
@@ -80,6 +87,11 @@ rm -rf html/.{doctrees,buildinfo}
 %py3_install
 %else
 %pyproject_install
+%endif
+
+%if %{with test}
+%check
+%pytest
 %endif
 
 %files -n python3-%{pypi_name}

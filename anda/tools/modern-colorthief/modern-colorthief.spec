@@ -28,13 +28,10 @@ BuildRequires: python3dist(sphinx)
 %endif
 %if %{with test}
 %if 0%{?fedora}
-%if 0%{?fedora} <= 42 
 BuildRequires: poetry
-# Colorthief does not exist on Rawhide?
-BuildRequires: python3dist(colorthief)
 BuildRequires: python3dist(poetry)
 %endif
-%endif
+BuildRequires: python3dist(colorthief)
 BuildRequires: python3dist(fast-colorthief)
 BuildRequires: python3dist(pytest)
 %endif
@@ -82,15 +79,14 @@ done
 
 %if %{with test}
 %check
+%if %{?rhel}
 %pytest tests/*.py
-# Poetry Pytests will fail on Rawhide due to original Colorthief being missing
-%if 0%{?fedora}
-%if 0%{?fedora} <= 42
+# Poetry doesn't exist on EL
+%else
 # This is in the wrong spot in pyproject.toml and Poetry hates it
 # May seem like defeating the purpose of testing but the other tests can be useful
 sed -iE 's/python = ">=3.9,<3.14"//' pyproject.toml
 poetry run pytest
-%endif
 %endif
 %endif
 
