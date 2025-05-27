@@ -85,7 +85,11 @@ Examples for Lomiri-ui-toolkit.
 %build
 %{qmake_qt5} 'CONFIG+=ubuntu-uitk-compat' 'CONFIG+=test'
 pushd tests/autopilot
+%if 0%{?fedora} <= 41 || 0%{?rhel}
+%py3_build
+%else
 %pyproject_wheel
+%endif
 popd
 %make_build
 
@@ -97,7 +101,11 @@ rm -rf %{buildroot}%{_qt5_qmldir}/Extinct
 %fdupes %buildroot%_libdir/qt5/examples/%name/examples/
 
 pushd tests/autopilot
+%if 0%{?fedora} <= 41 || 0%{?rhel}
+%py3_install
+%else
 %pyproject_install
+%endif
 mv lomiriuitoolkit/{tests,_custom_proxy_objects} -t %{buildroot}%{python3_sitelib}/lomiriuitoolkit/
 popd
 
@@ -147,7 +155,11 @@ popd
 %{python3_sitelib}/lomiriuitoolkit/_custom_proxy_objects/
 %{python3_sitelib}/lomiriuitoolkit/__pycache__/
 %{python3_sitelib}/lomiriuitoolkit/tests/
+%if 0%{?fedora} <= 41 || 0%{?rhel}
+%{python3_sitelib}/lomiriuitoolkit-%{version}-py%{python3_version}.egg-info/
+%else
 %{python3_sitelib}/lomiriuitoolkit-%{version}.dist-info/
+%endif
 
 %files doc
 %license COPYING.CC-BY-SA-3.0
