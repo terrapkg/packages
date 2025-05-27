@@ -5,7 +5,7 @@
 %global crate anda
 
 Name:           rust-anda
-Version:        0.4.9
+Version:        0.4.12
 Release:        1%?dist
 Summary:        Andaman Build toolchain
 
@@ -41,6 +41,7 @@ Summary:        %{summary}
 %description -n %{crate} %{_description}
 
 %files       -n %{crate}
+%license LICENSE.dependencies LICENSE.md
 %{_bindir}/anda
 %{_mandir}/man1/anda*.1*
 %config %{_sysconfdir}/bash_completion.d/anda.bash
@@ -53,11 +54,12 @@ Summary:        %{summary}
 
 %build
 %cargo_build
+%{cargo_license_online} > LICENSE.dependencies
 cargo run --release -p xtask -- manpage
 cargo run --release -p xtask -- completion
 
 %install
-%cargo_install
+install -Dpm755 target/rpm/anda -t %buildroot%_bindir/
 
 mkdir -p %{buildroot}%{_mandir}/man1/
 
