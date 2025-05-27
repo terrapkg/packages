@@ -27,7 +27,7 @@ BuildRequires: python3dist(shibuya)
 BuildRequires: python3dist(sphinx)
 %endif
 %if %{with test}
-%if 0%{?fedora}
+%if 0%{?fedora} > 40
 BuildRequires: poetry
 BuildRequires: python3dist(poetry)
 %endif
@@ -79,9 +79,9 @@ done
 
 %if %{with test}
 %check
-%if 0%{?rhel}
+# Poetry doesn't exist on EL and is too old on 40
+%if 0%{?fedora} <= 40 || 0%{?rhel}
 %pytest tests/*.py
-# Poetry doesn't exist on EL
 %else
 # This is in the wrong spot in pyproject.toml and Poetry hates it
 # May seem like defeating the purpose of testing but the other tests can be useful
