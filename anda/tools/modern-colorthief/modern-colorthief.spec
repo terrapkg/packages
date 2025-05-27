@@ -25,8 +25,6 @@ BuildRequires: python3dist(modern-colorthief)
 BuildRequires: python3dist(myst-parser)
 BuildRequires: python3dist(shibuya)
 BuildRequires: python3dist(sphinx)
-%elif %{with test}
-BuildRequires: python3dist(modern-colorthief)
 %endif
 %if %{with test}
 %if 0%{?fedora} <= 42 
