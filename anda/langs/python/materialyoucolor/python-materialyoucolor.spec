@@ -58,7 +58,7 @@ rm -rf %{pypi_name}.egg-info
 %files -n python3-%{pypi_name}
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/%{pypi_name}
+%dnl %{python3_sitelib}/%{pypi_name}/
 %if 0%{?fedora} <= 41 || 0%{?rhel}
 %{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
 %else
