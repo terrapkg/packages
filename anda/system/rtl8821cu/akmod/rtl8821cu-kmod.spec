@@ -57,3 +57,7 @@ for kernel_version in %{?kernel_versions}; do
         %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
 done
 %{?akmod_install}
+
+%changelog
+* Wed May 28 2025 Gilver E. <rockgrub@disroot.org> - 5.12.0.4^20250508git.d74134a-1
+- Initial package

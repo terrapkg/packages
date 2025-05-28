@@ -69,3 +69,7 @@ dkms remove -m %{modulename} -v %{version} -q --all --rpm_safe_upgrade || :
 %if 0%{?fedora}
 %{_sysconfdir}/dkms/%{modulename}.conf
 %endif
+
+%changelog
+* Wed May 28 2025 Gilver E. <rockgrub@disroot.org> - 5.12.0.4^20250508git.d74134a-1
+- Initial package

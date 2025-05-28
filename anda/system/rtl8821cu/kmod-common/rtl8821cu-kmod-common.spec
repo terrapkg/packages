@@ -45,4 +45,6 @@ install -Dm644 8821cu.conf -t %{buildroot}%{_modprobedir}
 %doc supported-device-IDs
 %doc docs/*
 
-
+%changelog
+* Wed May 28 2025 Gilver E. <rockgrub@disroot.org> - 5.12.0.4^20250508git.d74134a-1
+- Initial package
