@@ -62,7 +62,7 @@ rm -rf %{pypi_name}.egg-info
 %if 0%{?fedora} <= 41 || 0%{?rhel}
 %{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
 %else
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
+%dnl %{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 %endif
 
 
