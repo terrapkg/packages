@@ -1,32 +1,33 @@
-%global pypi_name colorz
+%global pypi_name materialyoucolor
+%bcond test 0
 
 Name:           python-%{pypi_name}
-Version:        1.0.3
+Version:        2.0.10
 Release:        1%{?dist}
-Summary:        Color scheme generator
+Summary:        Material You color generation algorithms in pure python!
 License:        MIT
-URL:            https://github.com/metakirby5/colorz
+URL:            https://github.com/T-Dynamos/materialyoucolor-python
 Source0:        %{pypi_source}
+BuildRequires:  gcc
+BuildRequires:  gcc-c++
 BuildRequires:  pyproject-rpm-macros
 BuildRequires:  python3-devel
+BuildRequires:  python3dist(pillow)
 BuildRequires:  python3dist(pip)
+BuildRequires:  python3dist(pytest)
+BuildRequires:  python3dist(rich)
 BuildRequires:  python3dist(setuptools)
-BuildArch:      noarch
 Packager:       Gilver E. <rockgrub@disroot.org>
 
 %description
-A k-means color scheme generator.
+Material You color generation algorithms in Python.
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-Requires:       python3dist(pillow)
-Requires:       python3dist(scipy)
-Requires:       python3dist(setuptools)
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
-
 %description -n python3-%{pypi_name}
-A k-means color scheme generator.
+Material You color generation algorithms in Python.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
@@ -47,18 +48,23 @@ rm -rf %{pypi_name}.egg-info
 %pyproject_install
 %endif
 
-%files -n python3-%{pypi_name}
-%doc PKG-INFO
-%doc README.rst
-%{_bindir}/colorz
-%{python3_sitelib}/__pycache__/*
-%{python3_sitelib}/%{pypi_name}.py
-%if 0%{?fedora} <= 41 || 0%{?rhel}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
-%else
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
+# Test image isn't included and I'm not supplying one
+%if %{with test}
+%check
+%pytest test_image.jpg 1
 %endif
 
+%files -n python3-%{pypi_name}
+%license LICENSE
+%doc README.md
+%{python3_sitearch}/%{pypi_name}/
+%if 0%{?fedora} <= 41 || 0%{?rhel}
+%{python3_sitearch}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%else
+%{python3_sitearch}/%{pypi_name}-%{version}.dist-info/
+%endif
+
+
 %changelog
-* Thu May 22 2025 Gilver <rockgrub@disroot.org> - 1.0.3-1
+* Wed May 28 2025 Gilver E. <rockgrub@disroot.org> - 2.0.10-1
 - Initial package.

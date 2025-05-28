@@ -7,7 +7,7 @@
 
 Name:           python-%{srcname}
 Version:        0.22.0
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Python library for working with HEIF images and plugin for Pillow
 
 License:        BSD-3-Clause
@@ -22,6 +22,7 @@ BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-pillow-devel
 BuildRequires:  libheif-devel
+BuildRequires:  python%{python3_pkgversion}dist(pip)
 %if %{with doc}
 BuildRequires:  make
 BuildRequires:  python%{python3_pkgversion}-sphinx
@@ -72,7 +73,11 @@ Documentation for %{srcname}.
 
 %build
 # Native build
+%if 0%{?fedora} <= 41 || 0%{?rhel}
 %py3_build
+%else
+%pyproject_wheel
+%endif
 
 # Doc build
 %if %{with doc}
@@ -83,7 +88,11 @@ rm -f docs/_build_py3/html/.buildinfo
 
 %install
 # Native build
+%if 0%{?fedora} <= 41 || 0%{?rhel}
 %py3_install
+%else
+%pyproject_install
+%endif
 
 %check
 # Check Python 3 modules
@@ -97,7 +106,11 @@ popd
 %doc README.md CHANGELOG.md
 %license LICENSE.txt
 %{python3_sitearch}/pillow_heif/
+%if 0%{?fedora} <= 41 || 0%{?rhel}
 %{python3_sitearch}/pillow_heif-%{version}-py%{python3_version}.egg-info/
+%else
+%{python3_sitearch}/pillow_heif-%{version}.dist-info/
+%endif
 %{python3_sitearch}/_pillow_heif.*.so
 
 %files -n python%{python3_pkgversion}-%{srcname}-devel
