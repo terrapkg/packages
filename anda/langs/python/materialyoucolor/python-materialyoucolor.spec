@@ -17,7 +17,6 @@ BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(rich)
 BuildRequires:  python3dist(setuptools)
-BuildArch:      noarch
 Packager:       Gilver E. <rockgrub@disroot.org>
 
 %description
@@ -58,11 +57,11 @@ rm -rf %{pypi_name}.egg-info
 %files -n python3-%{pypi_name}
 %license LICENSE
 %doc README.md
-%dnl %{python3_sitelib}/%{pypi_name}/
+%{python3_sitearch}/%{pypi_name}/
 %if 0%{?fedora} <= 41 || 0%{?rhel}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitearch}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
 %else
-%dnl %{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
+%{python3_sitearch}/%{pypi_name}-%{version}.dist-info/
 %endif
 
 
