@@ -13,6 +13,7 @@ BuildRequires:  pyproject-rpm-macros
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(pytest)
+BuildRequires:  python3dist(rich)
 BuildRequires:  python3dist(setuptools)
 BuildArch:      noarch
 Packager:       Gilver E. <rockgrub@disroot.org>
