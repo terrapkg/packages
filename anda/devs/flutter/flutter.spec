@@ -14,7 +14,7 @@ Flutter transforms the app development process. Build, test, and deploy
 beautiful mobile, web, desktop, and embedded apps from a single codebase.
 
 %prep
-tar xf %SOURCE0
+tar xf %SOURCE0 %name/bin
 
 %install
 mkdir -p %buildroot%_datadir %buildroot%_bindir
