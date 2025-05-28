@@ -51,6 +51,7 @@ Summary:        %{summary}
 %doc README.*
 %license LICENSE
 %{_bindir}/ignis
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info
 
 
 %changelog
