@@ -13,8 +13,5 @@
 # +-------------+---------------------+----------------+
 
 # TERRA-SPECIFIC NOTES:
-# Since we are focused on HWE, we will use proprietary drivers for now.
-# At least until Pascal/Maxwell support is added to the open source drivers, or until
-# everyone stops using them in the near future.
-
-MODULE_VARIANT=kernel
+# The default module versions have been added to the DKMS and Akmods packages.
+# This file now exists only to explain how the variable works.

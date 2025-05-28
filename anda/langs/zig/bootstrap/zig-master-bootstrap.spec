@@ -7,7 +7,7 @@
 %define         llvm_compat 20
 %endif
 %global         llvm_version 20.0.0
-%global         ver 0.15.0-dev.471+369177f0b
+%global         ver 0.15.0-dev.646+ef35c3d5f
 %bcond bootstrap 1
 %bcond docs      %{without bootstrap}
 %bcond test      1
@@ -39,15 +39,16 @@
 
 Name:           zig-master-bootstrap
 Version:        %(echo %{ver} | sed 's/-/~/g')
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Boostrap builds for Zig.
 License:        MIT AND NCSA AND LGPL-2.1-or-later AND LGPL-2.1-or-later WITH GCC-exception-2.0 AND GPL-2.0-or-later AND GPL-2.0-or-later WITH GCC-exception-2.0 AND BSD-3-Clause AND Inner-Net-2.0 AND ISC AND LicenseRef-Fedora-Public-Domain AND GFDL-1.1-or-later AND ZPL-2.1
 URL:            https://ziglang.org
 Source0:        %{url}/builds/zig-%{ver}.tar.xz
 Source1:        %{url}/builds/zig-%{ver}.tar.xz.minisig
 Patch0:         0000-remove-native-lib-directories-from-rpath.patch
-Patch1:         0001-increase-upper-bounds-of-main-zig-executable-to-9G.patch
+Patch1:         0001-increase-upper-bounds-of-main-zig-executable-to-10G.patch
 Patch2:         0002-build-pass-zig-lib-dir-as-directory-instead-of-as-st.patch
+Patch3:         https://src.fedoraproject.org/rpms/zig/raw/rawhide/f/0005-link.Elf-add-root-directory-of-libraries-to-linker-p.patch
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
@@ -61,7 +62,7 @@ BuildRequires:  help2man
 # for signature verification
 BuildRequires:  minisign
 %if %{without bootstrap}
-BuildRequires:  %{name} <= %{version}
+BuildRequires:  %{name} = %{version}
 %endif
 %if %{with test}
 BuildRequires:  elfutils-libelf-devel
@@ -197,6 +198,8 @@ install -Dpm644 zig.1 -t %{buildroot}%{_mandir}/man1/
 %endif
 
 %changelog
+* Sat May 10 2025 Gilver E. <rockgrub@disroot.org> - 0.15.0~dev.482+2c241b263-2
+- Added GCC runtime dependency to pass system information to Zig
 * Fri Apr 25 2025 Gilver E. <rockgrub@disroot.org> - 0.15.0~dev.384+c06fecd46-2
 - Ported Fedora Zig patches
 * Wed Apr 23 2025 Gilver E. <rockgrub@disroot.org>

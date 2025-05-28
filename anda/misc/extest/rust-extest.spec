@@ -23,7 +23,7 @@ Release:        2%?dist
 Summary:        X11 XTEST reimplementation primarily for Steam Controller on Wayland
 
 License:        MIT
-URL:            https://github.com/KyleGospo/extest
+URL:            https://github.com/bazzite-org/extest
 
 Source0:        %{url}/archive/%{commit}.tar.gz
 
