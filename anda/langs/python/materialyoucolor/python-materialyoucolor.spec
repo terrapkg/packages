@@ -7,6 +7,8 @@ Summary:        Material You color generation algorithms in pure python!
 License:        MIT
 URL:            https://github.com/T-Dynamos/materialyoucolor-python
 Source0:        %{pypi_source}
+BuildRequires:  gcc
+BuildRequires:  gcc-c++
 BuildRequires:  pyproject-rpm-macros
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(pip)
