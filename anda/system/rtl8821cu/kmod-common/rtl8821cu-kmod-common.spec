@@ -2,10 +2,11 @@
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global commit_date 20250508
 %global ver 5.12.0.4
+%global modulename rtl8821cu
 %global git_name 8821cu-20210916
 %global debug_package %{nil}
 
-Name:           rtl8821cu-kmod-common
+Name:           %{modulename}-kmod-common
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
 Release:        1%{?dist}
 Summary:        Common files and documentation for the rtl8821cu driver
@@ -18,12 +19,12 @@ BuildArch:      noarch
 Packager:       Gilver E. <rockgrub@disroot.org>
 
 %description
-Necessary files for the rtl8821cu driver.
+Necessary files for the %{modulename} driver.
 
-%package -n     rtl8821cu-doc
+%package -n     %{modulename}-doc
 Summary:        Docs for the rtl8821cu driver
 
-%description -n rtl8821cu-doc
+%description -n %{modulename}-doc
 Documentation files for the Linux rtl8821cu driver.
 
 %prep
@@ -40,7 +41,7 @@ install -Dm644 8821cu.conf -t %{buildroot}%{_modprobedir}
 %license LICENSE
 %{_modprobedir}/8821cu.conf
 
-%files -n rtl8821cu-doc
+%files -n %{modulename}-doc
 %doc FAQ.md
 %doc supported-device-IDs
 %doc docs/*
