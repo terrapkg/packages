@@ -20,7 +20,7 @@ BuildArch:      noarch
 Packager:       Gilver E. <rockgrub@disroot.org>
 
 %description
-Material You color generation algorithms in python.
+Material You color generation algorithms in Python.
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
