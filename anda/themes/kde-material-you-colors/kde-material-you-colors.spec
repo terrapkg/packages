@@ -49,7 +49,6 @@ Python files for KDE Material You Colors.
 
 %build
 %pyproject_wheel
-# I love CPython
 %cmake \
    -DCMAKE_INSTALL_PREFIX=%{_prefix} \
    -DINSTALL_PLASMOID=ON
