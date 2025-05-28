@@ -1,5 +1,5 @@
 Name:           nvidia-settings
-Version:        570.144
+Version:        570.153.02
 Release:        1%?dist
 Summary:        Configure the NVIDIA graphics driver
 Epoch:          3

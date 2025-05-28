@@ -4,8 +4,8 @@
 %global debug_package %{nil}
 
 Name:           nvidia-kmod
-Version:        570.144
-Release:        2%?dist
+Version:        570.153.02
+Release:        1%?dist
 Summary:        NVIDIA display driver kernel module
 Epoch:          3
 License:        NVIDIA License

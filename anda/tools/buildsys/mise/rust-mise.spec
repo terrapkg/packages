@@ -5,7 +5,7 @@
 %global crate mise
 
 Name:           rust-mise
-Version:        2025.5.5
+Version:        2025.5.15
 Release:        1%?dist
 Summary:        Front-end to your dev env
 
@@ -30,7 +30,7 @@ The front-end to your dev env.}
 
 %package     -n %{crate}
 Summary:        %{summary}
-License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND (0BSD OR MIT OR Apache-2.0) AND Apache-2.0 AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND BSD-3-Clause AND BSL-1.0 AND (CC0-1.0 OR MIT-0 OR Apache-2.0) AND MIT AND (MIT AND (MIT OR Apache-2.0)) AND (MIT OR Apache-2.0) AND (MIT OR Apache-2.0 OR BSD-1-Clause) AND (MIT OR Zlib OR Apache-2.0) AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT)
+License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND (0BSD OR MIT OR Apache-2.0) AND Apache-2.0 AND (Apache-2.0 AND ISC) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (BSD-3-Clause) AND (CC0-1.0 OR MIT-0 OR Apache-2.0) AND CDLA-Permissive-2.0 AND ISC AND MIT AND (MIT OR Apache-2.0) AND (MIT OR Apache-2.0 OR Apache-2.0 WITH LLVM-exception) AND (MIT OR Apache-2.0 OR BSD-1-Clause) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Zlib OR Apache-2.0) AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT) AND Zlib AND (Zlib OR Apache-2.0 OR MIT)
 URL:            https://mise.jdx.dev/
 
 %description -n %{crate} %{_description}
@@ -48,6 +48,7 @@ URL:            https://mise.jdx.dev/
 Summary:        Bash completion for %crate
 Requires:       %{crate} = %{version}-%{release}
 Requires:       bash-completion
+Requires:       usage
 Supplements:    (%{crate} and bash-completion)
 
 %description -n %crate-bash-completion
@@ -57,6 +58,7 @@ Bash command line completion support for %{crate}.
 Summary:        Fish completion for %{crate}
 Requires:       %{crate} = %{version}-%{release}
 Requires:       fish
+Requires:       usage
 Supplements:    (%{crate} and fish)
 
 %description -n %crate-fish-completion
@@ -66,6 +68,7 @@ Fish command line completion support for %{crate}.
 Summary:        Zsh completion for %{crate}
 Requires:       %{crate} = %{version}-%{release}
 Requires:       zsh
+Requires:       usage
 Supplements:    (%{crate} and zsh)
 
 %description -n %crate-zsh-completion

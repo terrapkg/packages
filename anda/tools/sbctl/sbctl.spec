@@ -1,6 +1,6 @@
 Name:           sbctl
 Version:        0.17
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Secure Boot key manager
 
 License:        MIT
@@ -42,7 +42,7 @@ export GOPATH=%{_builddir}/go
 
 
 %transfiletriggerin -P 1 -- /boot /efi /usr/lib /usr/libexec
-if grep -q -m 1 -e '\.efi$' -e '/vmlinuz$'; then
+if [[ ! -f /run/ostree-booted ]] && grep -q -m 1 -e '\.efi$' -e '/vmlinuz$'; then
     exec </dev/null
     %{_bindir}/sbctl sign-all -g
 fi
@@ -61,6 +61,9 @@ fi
 
 
 %changelog
+* Sat May 24 2025 Esteve Fernandez <esteve@apache.org> - 0.17-2
+- Do not run file triggers on atomic systems
+
 * Sat Mar 30 2024 Cappy Ishihara <cappy@cappuchino.xyz> - 0.13-1
 - Push to Terra
 
