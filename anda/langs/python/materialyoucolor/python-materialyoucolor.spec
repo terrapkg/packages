@@ -1,4 +1,5 @@
 %global pypi_name materialyoucolor
+%bcond test 0
 
 Name:           python-%{pypi_name}
 Version:        2.0.10
@@ -48,8 +49,11 @@ rm -rf %{pypi_name}.egg-info
 %pyproject_install
 %endif
 
+# Test image isn't included and I'm not supplying one
+%if %{with test}
 %check
-%pytest
+%pytest test_image.jpg 1
+%endif
 
 %files -n python3-%{pypi_name}
 %license LICENSE
