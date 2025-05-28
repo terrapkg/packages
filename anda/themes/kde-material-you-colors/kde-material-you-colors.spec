@@ -61,6 +61,7 @@ sed -i "1{/^#!\/usr\/bin\/env python3/d}" %{buildroot}%{python3_sitelib}/kde_mat
 
 
 %files
+%doc CHANGELOG.md
 %doc README.md
 %license LICENSE
 %{_bindir}/%{name}-screenshot-helper
