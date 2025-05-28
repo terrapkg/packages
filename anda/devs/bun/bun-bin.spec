@@ -1,5 +1,7 @@
 %define debug_package %nil
-%ifarch x86_64
+%ifarch x86_64_v3
+%global a x64
+%elifarch x86_64
 %global a x64-baseline
 %elifarch aarch64
 %global a aarch64
@@ -7,12 +9,11 @@
 
 Name:			bun-bin
 Version:		1.2.14
-Release:		2%?dist
+Release:		3%?dist
 Summary:		Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one
 License:		MIT
 URL:			https://bun.sh
 Source0:		https://github.com/oven-sh/bun/releases/download/bun-v%version/bun-linux-%a.zip
-BuildRequires:	unzip
 
 %description
 %summary.
