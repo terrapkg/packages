@@ -28,7 +28,7 @@ Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
-Material You color generation algorithms in python.
+Material You color generation algorithms in Python.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
