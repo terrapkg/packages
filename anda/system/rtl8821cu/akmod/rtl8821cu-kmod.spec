@@ -33,7 +33,10 @@ kmodtool  --target %{_target_cpu}  --repo terra --kmodname %{name} %{?buildforke
 
 %autosetup -n %{git_name}-%{commit}
 
-%ifarch aarch64
+%ifarch armv7hl
+sed -i 's/CONFIG_PLATFORM_I386_PC = y/CONFIG_PLATFORM_I386_PC = n/g' ${srcdir}/8821cu-${repoversion}/Makefile
+sed -i 's/CONFIG_PLATFORM_ARM_RPI = n/CONFIG_PLATFORM_ARM_RPI = y/g' ${srcdir}/8821cu-${repoversion}/Makefile
+%elifarch aarch64
 sed -i 's/CONFIG_PLATFORM_I386_PC = y/CONFIG_PLATFORM_I386_PC = n/g' Makefile
 sed -i 's/CONFIG_PLATFORM_ARM_RPI = y/CONFIG_PLATFORM_ARM_RPI = n/g' Makefile
 sed -i 's/CONFIG_PLATFORM_ARM64_RPI = n/CONFIG_PLATFORM_ARM64_RPI = y/g' Makefile
