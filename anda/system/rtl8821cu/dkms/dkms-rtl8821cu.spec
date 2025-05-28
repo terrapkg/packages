@@ -37,8 +37,8 @@ sed -i 's/PACKAGE_VERSION=".*"/PACKAGE_VERSION="%{version}"/g' dkms.conf
 
 # Technically this package is noarch. However it cannot be built that way due to arch dependencies for the built kmod.
 %ifarch armv7hl
-sed -i 's/CONFIG_PLATFORM_I386_PC = y/CONFIG_PLATFORM_I386_PC = n/g' ${srcdir}/8821cu-${repoversion}/Makefile
-sed -i 's/CONFIG_PLATFORM_ARM_RPI = n/CONFIG_PLATFORM_ARM_RPI = y/g' ${srcdir}/8821cu-${repoversion}/Makefile
+sed -i 's/CONFIG_PLATFORM_I386_PC = y/CONFIG_PLATFORM_I386_PC = n/g' Makefile
+sed -i 's/CONFIG_PLATFORM_ARM_RPI = n/CONFIG_PLATFORM_ARM_RPI = y/g' Makefile
 %elifarch aarch64
 sed -i 's/CONFIG_PLATFORM_I386_PC = y/CONFIG_PLATFORM_I386_PC = n/g' Makefile
 sed -i 's/CONFIG_PLATFORM_ARM_RPI = y/CONFIG_PLATFORM_ARM_RPI = n/g' Makefile
