@@ -39,7 +39,7 @@
 
 Name:           zig-master-bootstrap
 Version:        %(echo %{ver} | sed 's/-/~/g')
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Boostrap builds for Zig.
 License:        MIT AND NCSA AND LGPL-2.1-or-later AND LGPL-2.1-or-later WITH GCC-exception-2.0 AND GPL-2.0-or-later AND GPL-2.0-or-later WITH GCC-exception-2.0 AND BSD-3-Clause AND Inner-Net-2.0 AND ISC AND LicenseRef-Fedora-Public-Domain AND GFDL-1.1-or-later AND ZPL-2.1
 URL:            https://ziglang.org
@@ -48,6 +48,7 @@ Source1:        %{url}/builds/zig-%{ver}.tar.xz.minisig
 Patch0:         0000-remove-native-lib-directories-from-rpath.patch
 Patch1:         0001-increase-upper-bounds-of-main-zig-executable-to-10G.patch
 Patch2:         0002-build-pass-zig-lib-dir-as-directory-instead-of-as-st.patch
+Patch3:         https://src.fedoraproject.org/rpms/zig/raw/rawhide/f/0005-link.Elf-add-root-directory-of-libraries-to-linker-p.patch
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
@@ -61,14 +62,12 @@ BuildRequires:  help2man
 # for signature verification
 BuildRequires:  minisign
 %if %{without bootstrap}
-BuildRequires:  %{name} <= %{version}
+BuildRequires:  %{name} = %{version}
 %endif
 %if %{with test}
 BuildRequires:  elfutils-libelf-devel
 BuildRequires:  libstdc++-static
 %endif
-# Zig invokes the C compiler to figure out system info
-Requires:       gcc
 Requires:       %{name}-libs = %{version}
 # Apache-2.0 WITH LLVM-exception OR NCSA OR MIT
 Provides:       bundled(compiler-rt) = %{llvm_version}
