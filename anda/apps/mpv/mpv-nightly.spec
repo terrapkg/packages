@@ -5,7 +5,7 @@
 
 Name:           mpv-nightly
 Version:        %ver^%commit_date.%shortcommit
-Release:        1%?dist
+Release:        2%?dist
 
 License:        GPL-2.0-or-later AND LGPL-2.1-or-later
 Summary:        Movie player playing most video formats and DVDs
