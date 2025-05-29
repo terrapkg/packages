@@ -17,9 +17,8 @@ ExclusiveArch:  %{rust_arches}
 
 BuildRequires:  rust-packaging >= 21
 BuildRequires:  anda-srpm-macros
-%if 0%{?rhel}
 BuildRequires:  openssl-devel
-%else
+%if 0%{?fedora}
 BuildRequires:  openssl-devel-engine
 %endif
 BuildRequires:  git-core
