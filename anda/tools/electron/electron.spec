@@ -12,7 +12,7 @@
 %global __provides_exclude_from %{_libdir}/%{name}/.*\\.so
 
 Name:			electron
-Version:		36.3.1
+Version:		36.3.2
 Release:		1%?dist
 Summary:		Build cross platform desktop apps with web technologies
 License:		MIT
