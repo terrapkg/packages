@@ -22,7 +22,7 @@ design that focuses on efficiency, expressiveness, and elegance (in that
 order of priority).
 
 
-%pkg_completion -b nim nimble
+%pkg_completion -B nim nimble
 
 %package tools
 Summary:	Tools for Nim programming language

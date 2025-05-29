@@ -5,7 +5,7 @@
 
 Name:           rust-typst
 Version:        0.13.1
-Release:        %autorelease
+Release:        2%?dist
 Summary:        New markup-based typesetting system that is powerful and easy to learn
 
 License:        Apache-2.0

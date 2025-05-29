@@ -2,7 +2,7 @@
 
 Name:           zrythm
 Version:        %(echo %v | sed 's@-@~@g' | sed 's@^v@@')
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Highly automated and intuitive digital audio workstation
 License:        AGPL-3.0-or-later
 Packager:       madonuko <mado@fyralabs.com>
