@@ -1,4 +1,4 @@
-rpm.version(gh("doitsujin/dxvk");
+rpm.version(gh("doitsujin/dxvk"));
 if rpm.changed {
     let json = get("https://api.github.com/repos/doitsujin/dxvk/contents/subprojects").json_arr();
     rpm.global("libdisplay_commit", json[0].sha);
