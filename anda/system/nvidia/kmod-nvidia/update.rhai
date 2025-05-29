@@ -3,7 +3,6 @@ import "andax/nvidia.rhai" as nvidia;
 rpm.version(nvidia::nvidia_driver_version());
 
 // Rebuild the package whenever the Alma kernel updates
-labels.branch.crop(2);
 let releasever = [];
 for matches in find_all(`([\d]+\.[\d]+)/`, get("https://repo.almalinux.org/almalinux/")) {
         releasever += matches[1].parse_float();
