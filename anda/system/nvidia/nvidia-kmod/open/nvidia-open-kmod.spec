@@ -4,7 +4,7 @@
 %global debug_package %{nil}
 
 Name:           nvidia-open-kmod
-Version:        570.144
+Version:        570.153.02
 Release:        1%?dist
 Summary:        NVIDIA display driver kernel module
 Epoch:          3

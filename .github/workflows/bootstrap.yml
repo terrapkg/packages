@@ -48,14 +48,14 @@ jobs:
         run: anda build anda/terra/release/pkg --rpm-builder=rpmbuild
 
       - name: Build Subatomic
-        run: anda build -c terra-el${{ matrix.version }}-dev-${{ matrix.arch }}.cfg anda/tools/buildsys/subatomic/pkg --rpm-builder=rpmbuild
+        run: anda build -c terra-el${{ matrix.version }}-${{ matrix.arch }}.cfg anda/tools/buildsys/subatomic/pkg --rpm-builder=rpmbuild
       - name: Install Subatomic and anda-srpm-macros
         run: dnf install -y ./anda-build/rpm/rpms/{subatomic,anda-srpm-macros}-*.rpm
 
       - name: Install Build Dependencies for Andaman
         run: dnf builddep -y anda/tools/buildsys/anda/*.spec
       - name: Build Andaman
-        run: anda build -c terra-el${{ matrix.version }}-dev-${{ matrix.arch }} anda/tools/buildsys/anda/pkg --rpm-builder=rpmbuild
+        run: anda build -c terra-el${{ matrix.version }}-${{ matrix.arch }} anda/tools/buildsys/anda/pkg --rpm-builder=rpmbuild
 
       - name: Upload packages to subatomic
         run: |
