@@ -2,8 +2,7 @@ import "andax/nvidia.rhai" as nvidia;
 
 rpm.version(nvidia::nvidia_driver_version());
 
-// Rebuild the package whenever the RHEL kernel updates
-// The best we can do is track the kernel headers in UBI since they *should* reflect the kernel version RHEL is on
+// Rebuild the package whenever the Alma kernel updates
 labels.branch.crop(2);
 let releasever = [];
 for matches in find_all(`([\d]+\.[\d]+)/`, get("https://repo.almalinux.org/almalinux/")) {
