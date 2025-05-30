@@ -486,7 +486,6 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %{_libdir}/libnvidia-sandboxutils.so.1
 %{_libdir}/libnvidia-sandboxutils.so.%{version}
 %endif
-%endif
 %ifarch x86_64
 %if 0%{?rhel} == 8
 %{_libdir}/libnvidia-pkcs11.so.%{version}
