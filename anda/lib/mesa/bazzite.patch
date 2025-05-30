@@ -1,7 +1,7 @@
 From aac6b04f39717f7363071f5500a89bb33e01cb33 Mon Sep 17 00:00:00 2001
 From: Antheas Kapenekakis <git@antheas.dev>
 Date: Sat, 15 Mar 2025 16:39:08 +0100
-Subject: [PATCH 01/12] [BEGIN] SteamOS Changes
+Subject: [PATCH 01/11] [BEGIN] SteamOS Changes
 
 -- 
 2.49.0
@@ -10,7 +10,7 @@ Subject: [PATCH 01/12] [BEGIN] SteamOS Changes
 From 9fc35e8c53fe7e6c84b7da9ddff3d528f22ea4a9 Mon Sep 17 00:00:00 2001
 From: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
 Date: Fri, 14 Jan 2022 15:58:45 +0100
-Subject: [PATCH 02/12] STEAMOS: radv: min image count override for FH5
+Subject: [PATCH 02/11] STEAMOS: radv: min image count override for FH5
 
 Otherwise in combination with the vblank time reservation in
 gamescope the game could get stuck in low power states.
@@ -39,7 +39,7 @@ index aef8b9006cd..2a6b0ec84a4 100644
 From 09299a2cf516078ce9ed9786a49ea6f957ac6527 Mon Sep 17 00:00:00 2001
 From: Samuel Pitoiset <samuel.pitoiset@gmail.com>
 Date: Thu, 22 Feb 2024 22:32:45 +0100
-Subject: [PATCH 03/12] STEAMOS: Dynamic swapchain override for gamescope
+Subject: [PATCH 03/11] STEAMOS: Dynamic swapchain override for gamescope
  limiter for DRI3 only
 
 The original patch (from Bas) contained WSI VK support too but it's
@@ -146,7 +146,7 @@ index 4da19d73090..819a0e548fc 100644
 From 379efbce79f2ca73d34ec48b10e28942be3ed1be Mon Sep 17 00:00:00 2001
 From: Antheas Kapenekakis <git@antheas.dev>
 Date: Sat, 15 Mar 2025 16:39:25 +0100
-Subject: [PATCH 04/12] [BEGIN] SteamOS Backports
+Subject: [PATCH 04/11] [BEGIN] SteamOS Backports
 
 -- 
 2.49.0
@@ -155,7 +155,7 @@ Subject: [PATCH 04/12] [BEGIN] SteamOS Backports
 From a4ac8f2bcd23eb4194adfe41117d4e168ffc6ddd Mon Sep 17 00:00:00 2001
 From: Antheas Kapenekakis <git@antheas.dev>
 Date: Sat, 15 Mar 2025 16:39:33 +0100
-Subject: [PATCH 05/12] [BEGIN] Our Mesa backports
+Subject: [PATCH 05/11] [BEGIN] Our Mesa backports
 
 -- 
 2.49.0
@@ -164,7 +164,7 @@ Subject: [PATCH 05/12] [BEGIN] Our Mesa backports
 From 7286b058c851688929bd145116c61872d06d81c8 Mon Sep 17 00:00:00 2001
 From: Maarten Lankhorst <maarten.lankhorst@intel.com>
 Date: Mon, 17 Feb 2025 14:55:29 -0800
-Subject: [PATCH 06/12] anv: Mark images with format modifiers set as scanout.
+Subject: [PATCH 06/11] anv: Mark images with format modifiers set as scanout.
 
 We currently use the presence of struct WSI_IMAGE_CREATE_INFO_MESA.scanout to mark the BO as scanout,
 but this only handles the linear case, and fails when drm format modifiers are used.
@@ -202,7 +202,7 @@ index 0fb86e9d846..de37994d324 100644
 From 643137e1f57b1c89451a77edec40565e6084e2e1 Mon Sep 17 00:00:00 2001
 From: Antheas Kapenekakis <git@antheas.dev>
 Date: Mon, 24 Mar 2025 19:50:51 +0100
-Subject: [PATCH 07/12] Revert "winsys/amdgpu: use VM_ALWAYS_VALID for all VRAM
+Subject: [PATCH 07/11] Revert "winsys/amdgpu: use VM_ALWAYS_VALID for all VRAM
  and GTT allocations"
 
 This reverts commit 8c91624614c1f939974fe0d2d1a3baf83335cecb.
@@ -235,7 +235,7 @@ index dfefc468bca..cc0719a1898 100644
 From e38d54fb349d78b10ca5000add7cd97bf921323a Mon Sep 17 00:00:00 2001
 From: Antheas Kapenekakis <git@antheas.dev>
 Date: Wed, 7 May 2025 18:50:48 +0200
-Subject: [PATCH 08/12] [BEGIN] Intel DX12 fix
+Subject: [PATCH 08/11] [BEGIN] Intel DX12 fix
 
 -- 
 2.49.0
@@ -244,123 +244,16 @@ Subject: [PATCH 08/12] [BEGIN] Intel DX12 fix
 From cb2c3290e03518f90e13e83f68edea63c9c6c0cf Mon Sep 17 00:00:00 2001
 From: Kyle Gospodnetich <me@kylegospodneti.ch>
 Date: Sun, 18 May 2025 09:40:01 -0700
-Subject: [PATCH 09/12] [BEGIN] Proton-GE Patches
+Subject: [PATCH 09/11] [BEGIN] Proton-GE Patches
 
 -- 
 2.49.0
 
 
-From 24d4a18ec695dbdc4fba33eee941dcca49a9a106 Mon Sep 17 00:00:00 2001
-From: Kyle Gospodnetich <me@kylegospodneti.ch>
-Date: Sun, 18 May 2025 09:41:21 -0700
-Subject: [PATCH 10/12] radv,driconf: Add radv_force_64k_sparse_alignment
- config
-
----
- src/amd/vulkan/radv_buffer.c   | 6 +++++-
- src/amd/vulkan/radv_instance.c | 3 +++
- src/amd/vulkan/radv_instance.h | 1 +
- src/util/00-radv-defaults.conf | 7 +++++++
- src/util/driconf.h             | 3 +++
- 5 files changed, 19 insertions(+), 1 deletion(-)
-
-diff --git a/src/amd/vulkan/radv_buffer.c b/src/amd/vulkan/radv_buffer.c
-index 88111750517..8ef575f8246 100644
---- a/src/amd/vulkan/radv_buffer.c
-+++ b/src/amd/vulkan/radv_buffer.c
-@@ -167,6 +167,7 @@ radv_get_buffer_memory_requirements(struct radv_device *device, VkDeviceSize siz
-                                     VkBufferUsageFlags2 usage, VkMemoryRequirements2 *pMemoryRequirements)
- {
-    const struct radv_physical_device *pdev = radv_device_physical(device);
-+   const struct radv_instance *instance = radv_physical_device_instance(pdev);
- 
-    pMemoryRequirements->memoryRequirements.memoryTypeBits =
-       ((1u << pdev->memory_properties.memoryTypeCount) - 1u) & ~pdev->memory_types_32bit;
-@@ -179,7 +180,10 @@ radv_get_buffer_memory_requirements(struct radv_device *device, VkDeviceSize siz
-       pMemoryRequirements->memoryRequirements.memoryTypeBits = pdev->memory_types_32bit;
- 
-    if (flags & VK_BUFFER_CREATE_SPARSE_BINDING_BIT) {
--      pMemoryRequirements->memoryRequirements.alignment = 4096;
-+      if (instance->drirc.force_64k_sparse_alignment)
-+         pMemoryRequirements->memoryRequirements.alignment = 65536;
-+      else
-+         pMemoryRequirements->memoryRequirements.alignment = 4096;
-    } else {
-       if (usage & VK_BUFFER_USAGE_2_PREPROCESS_BUFFER_BIT_EXT)
-          pMemoryRequirements->memoryRequirements.alignment = radv_dgc_get_buffer_alignment(device);
-diff --git a/src/amd/vulkan/radv_instance.c b/src/amd/vulkan/radv_instance.c
-index 7aebf073dfd..15a3f710502 100644
---- a/src/amd/vulkan/radv_instance.c
-+++ b/src/amd/vulkan/radv_instance.c
-@@ -194,6 +194,7 @@ static const driOptionDescription radv_dri_options[] = {
-       DRI_CONF_RADV_APP_LAYER()
-       DRI_CONF_RADV_EMULATE_RT(false)
-       DRI_CONF_RADV_ENABLE_FLOAT16_GFX8(false)
-+      DRI_CONF_RADV_FORCE_64K_SPARSE_ALIGNMENT(false)
-    DRI_CONF_SECTION_END
- };
- // clang-format on
-@@ -298,6 +299,8 @@ radv_init_dri_options(struct radv_instance *instance)
-    instance->drirc.emulate_rt = driQueryOptionb(&instance->drirc.options, "radv_emulate_rt");
- 
-    instance->drirc.expose_float16_gfx8 = driQueryOptionb(&instance->drirc.options, "radv_enable_float16_gfx8");
-+
-+   instance->drirc.force_64k_sparse_alignment = driQueryOptionb(&instance->drirc.options, "radv_force_64k_sparse_alignment");
- }
- 
- static const struct vk_instance_extension_table radv_instance_extensions_supported = {
-diff --git a/src/amd/vulkan/radv_instance.h b/src/amd/vulkan/radv_instance.h
-index d0f23404285..81c4921222e 100644
---- a/src/amd/vulkan/radv_instance.h
-+++ b/src/amd/vulkan/radv_instance.h
-@@ -74,6 +74,7 @@ struct radv_instance {
-       bool lower_terminate_to_discard;
-       bool emulate_rt;
-       bool expose_float16_gfx8;
-+      bool force_64k_sparse_alignment;
-       char *app_layer;
-       uint8_t override_graphics_shader_version;
-       uint8_t override_compute_shader_version;
-diff --git a/src/util/00-radv-defaults.conf b/src/util/00-radv-defaults.conf
-index 2a6b0ec84a4..595a435802f 100644
---- a/src/util/00-radv-defaults.conf
-+++ b/src/util/00-radv-defaults.conf
-@@ -123,6 +123,13 @@ Application bugs worked around in this file:
-             <option name="radv_invariant_geom" value="true" />
-         </application>
- 
-+        <application name="DOOM: The Dark Ages" application_name_match="DOOMTheDarkAges">
-+            <option name="radv_force_64k_sparse_alignment" value="true" />
-+            <option name="radv_zero_vram" value="true" />
-+            <option name="radv_disable_dedicated_sparse_queue" value="true" />
-+            <option name="radv_disable_dcc_stores" value="true" />
-+        </application>
-+
-         <application name="Wolfenstein II" application_name_match="Wolfenstein II The New Colossus">
-             <option name="radv_disable_dcc" value="true" />
-         </application>
-diff --git a/src/util/driconf.h b/src/util/driconf.h
-index 5b0481912c8..26f7ca0b551 100644
---- a/src/util/driconf.h
-+++ b/src/util/driconf.h
-@@ -834,6 +834,9 @@
-    DRI_CONF_OPT_B(radv_enable_float16_gfx8, def, \
-                   "Expose float16 on GFX8, where it's supported but usually not beneficial.")
- 
-+#define DRI_CONF_RADV_FORCE_64K_SPARSE_ALIGNMENT(def) \
-+   DRI_CONF_OPT_B(radv_force_64k_sparse_alignment, def, \
-+                  "Force the alignment of sparse buffers to 64KiB")
- /**
-  * \brief ANV specific configuration options
-  */
--- 
-2.49.0
-
-
-From 06e57ae464ad6a373808a132e096d6a7bc137dfb Mon Sep 17 00:00:00 2001
+From 6ff35dc0b8f4cfa85c5a798de338cce478af53fa Mon Sep 17 00:00:00 2001
 From: Kyle Gospodnetich <me@kylegospodneti.ch>
 Date: Sun, 18 May 2025 09:42:23 -0700
-Subject: [PATCH 11/12] radv: min image count patch for Wine Wayland/Path of
+Subject: [PATCH 10/11] radv: min image count patch for Wine Wayland/Path of
  Exile 2 Credit to Glorious Eggroll.
 
 ---
@@ -382,7 +275,7 @@ Subject: [PATCH 11/12] radv: min image count patch for Wine Wayland/Path of
  15 files changed, 42 insertions(+), 22 deletions(-)
 
 diff --git a/src/amd/vulkan/radv_instance.c b/src/amd/vulkan/radv_instance.c
-index 15a3f710502..a6af9d67db0 100644
+index 7aebf073dfd..d199a535ee9 100644
 --- a/src/amd/vulkan/radv_instance.c
 +++ b/src/amd/vulkan/radv_instance.c
 @@ -148,7 +148,7 @@ static const struct debug_control trace_options[] = {
@@ -519,7 +412,7 @@ index 082add17d58..31e8b277bd7 100644
  
          <application name="X4 Foundations" executable="X4.exe">
 diff --git a/src/util/driconf.h b/src/util/driconf.h
-index 26f7ca0b551..5ced93ddede 100644
+index 5b0481912c8..ef1f6c67493 100644
 --- a/src/util/driconf.h
 +++ b/src/util/driconf.h
 @@ -445,8 +445,8 @@
@@ -678,17 +571,17 @@ index 65b7fdf7212..ea5d3750f46 100644
 2.49.0
 
 
-From 71a603439c89eb97a0cedf9733dbd4202294175a Mon Sep 17 00:00:00 2001
+From 0f5cc95a6c132f6e0b0c2b3fc056521707962ded Mon Sep 17 00:00:00 2001
 From: Kyle Gospodnetich <me@kylegospodneti.ch>
 Date: Sun, 18 May 2025 09:59:41 -0700
-Subject: [PATCH 12/12] vulkan/wsi/wayland: Move drm syncobj to swapchain
+Subject: [PATCH 11/11] vulkan/wsi/wayland: Move drm syncobj to swapchain
 
 ---
  src/vulkan/wsi/wsi_common_wayland.c | 81 +++++++++++++++--------------
  1 file changed, 43 insertions(+), 38 deletions(-)
 
 diff --git a/src/vulkan/wsi/wsi_common_wayland.c b/src/vulkan/wsi/wsi_common_wayland.c
-index 1f1adf4ddf9..12c7b5256f9 100644
+index 1f1adf4ddf9..c4da2626a31 100644
 --- a/src/vulkan/wsi/wsi_common_wayland.c
 +++ b/src/vulkan/wsi/wsi_common_wayland.c
 @@ -194,13 +194,9 @@ struct wsi_wl_surface {
