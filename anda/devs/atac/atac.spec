@@ -6,7 +6,7 @@
 %global __brp_mangle_shebangs %{nil}
 
 Name:           atac
-Version:        0.20.0
+Version:        0.20.1
 Release:        1%?dist
 Summary:        Arguably a Terminal API Client
 
