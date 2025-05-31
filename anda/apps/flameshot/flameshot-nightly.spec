@@ -4,6 +4,7 @@
 %global commit 134238b8ebf93b118c81f41dee73c473dbcef256
 %global shortcommit %{sub %{commit} 1 7}
 %global commit_date 20250531
+%global devel_name QtColorWidgets
 
 Name:			flameshot.nightly
 Version:		%ver^%{commit_date}git.%shortcommit
@@ -83,6 +84,12 @@ Supplements:	(%{name} and zsh)
 %description zsh-completion
 Zsh command line completion support for %{name}.
 
+%package devel
+Summary:      Flameshot development files
+Requires:     %{name} = %{version}
+
+%description devel
+Development files for Flameshot.
 
 %prep
 %autosetup -p1 -n flameshot-%commit
@@ -110,6 +117,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %dir %{_datadir}/flameshot
 %dir %{_datadir}/flameshot/translations
 %{_bindir}/flameshot
+%{_libdir}/lib%{devel_name}.so.*
 %{_datadir}/applications/org.flameshot.Flameshot.desktop
 %{_metainfodir}/org.flameshot.Flameshot.metainfo.xml
 %{_datadir}/dbus-1/interfaces/org.flameshot.Flameshot.xml
@@ -126,3 +134,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 %files zsh-completion
 %{zsh_completions_dir}/_flameshot
+
+%files devel
+%{_libdir}/lib%{devel_name}.so
+%{_libdir}/cmake/%{devel_name}/
+%{_libdir}/pkgconfig/%{devel_name}.pc
+%{_includedir}/%{devel_name}/
