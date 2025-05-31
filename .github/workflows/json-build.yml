@@ -35,7 +35,7 @@ jobs:
           fi
 
       - name: Install Build Dependencies
-        if: ${{ !contains(matrix.pkg.labels, 'mock') }}
+        if: ${{ matrix.pkg.labels.mock != '1' }}
         run: |
           dir=$(dirname ${{ matrix.pkg.pkg }})
           dnf builddep -y ${dir}/*.spec
