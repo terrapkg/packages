@@ -5,4 +5,4 @@ for matches in find_all("[\\d.]+\\.0", get("https://dl.winehq.org/wine/source/")
 }
 v.dedup();
 v.sort();
-rpm.version(v[v.len()-1]);
+rpm.version(`${v[v.len()-1]}`);
