@@ -1,13 +1,9 @@
-%global _distro_extra_cflags -Wno-maybe-uninitialized
+%global _distro_extra_cflags -Wno-uninitialized
 %global _distro_extra_cxxflags -include %_includedir/c++/*/cstdint
 # GLIBCXX_ASSERTIONS is known to break RPCS3
-%global build_cflags %(echo %{__build_flags_lang_c} | sed 's/-Wp,-D_GLIBCXX_ASSERTIONS//g') %{?_distro_extra_cflags}
-%global build_cxxflags %(echo %{__build_flags_lang_cxx} | sed 's/-Wp,-D_GLIBCXX_ASSERTIONS//g') %{?_distro_extra_cxxflags}
-%ifarch aarch64
 # Need to get rid of everything Clang can't use and undefine -Wunused-command-line-argument where possible due to the project's build flags
-%global build_cflags %(echo %{build_cflags} | sed 's:-Werror ::g' | sed 's:-Wunused-command-line-argument ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-hardened-ld ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-hardened-ld-errors ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-package-notes ::g') -Wno-unused-command-line-argument
-%global build_cxxflags %(echo %{build_cxxflags} | sed 's:-Werror ::g' | sed 's:-Wunused-command-line-argument ::g' | sed 's:-specs\=/usr/lib/rpm/redhat/redhat-annobin-cc1 ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-hardened-ld ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-hardened-ld-errors ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-package-notes ::g') -Wno-unused-command-line-argument
-%endif
+%global build_cflags %(echo %{__build_flags_lang_c} | sed 's/-Wp,-D_GLIBCXX_ASSERTIONS//g') %(echo %{build_cflags} | sed 's:-Werror ::g' | sed 's:-Wunused-command-line-argument ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-hardened-ld ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-hardened-ld-errors ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-package-notes ::g') -Wno-unused-command-line-argument %{?_distro_extra_cflags}
+%global build_cxxflags %(echo %{__build_flags_lang_cxx} | sed 's/-Wp,-D_GLIBCXX_ASSERTIONS//g') %(echo %{build_cxxflags} | sed 's:-Werror ::g' | sed 's:-Wunused-command-line-argument ::g' | sed 's:-specs\=/usr/lib/rpm/redhat/redhat-annobin-cc1 ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-hardened-ld ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-hardened-ld-errors ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-package-notes ::g') -Wno-unused-command-line-argument %{?_distro_extra_cxxflags}
 %global commit 382e62c7d8755fbd1bbeb1b70c44e211f2d5cdfa
 %global ver 0.0.36-17979
 
@@ -21,9 +17,8 @@ URL:            https://github.com/RPCS3/rpcs3
 BuildRequires:  anda-srpm-macros glew openal-soft cmake vulkan-validation-layers git-core mold
 %ifarch x86_64
 BuildRequires:  gcc gcc-c++
-%elifarch aarch64
 BuildRequires:  clang
-%endif
+BuildRequires:  lld
 BuildRequires:  cmake(FAudio)
 BuildRequires:  cmake(OpenAL)
 BuildRequires:  cmake(OpenCV)
@@ -69,11 +64,9 @@ BuildRequires:  qt6-qtbase-private-devel vulkan-devel jack-audio-connection-kit-
 %git_clone %url %commit
 
 %build
-%ifarch aarch64
 # Looking at the CMakeLists.txt, this is the intended compiler and there are no fixes for GCC on aarch64
 export CC=clang
 export CXX=clang++
-%endif
 %cmake -DZSTD_BUILD_SHARED=OFF                          \
     -DZSTD_BUILD_STATIC=ON                              \
     -DUSE_NATIVE_INSTRUCTIONS=OFF                       \
@@ -95,11 +88,9 @@ export CXX=clang++
     -DUSE_SYSTEM_CURL=ON                                \
     -DUSE_SYSTEM_FLATBUFFERS=ON                         \
     -DUSE_SYSTEM_PUGIXML=ON                             \
-%ifarch aarch64
     -DCMAKE_LINKER=lld                                  \
     -DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS -fuse-ld=lld" \
     -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS -fuse-ld=lld"
-%endif
 # LLD actually seems faster on this project than Mold due to the LTO, which SHOULD be used if possible
 %cmake_build
 
