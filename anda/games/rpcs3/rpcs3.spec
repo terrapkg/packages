@@ -1,4 +1,4 @@
-%global _distro_extra_cflags -Wno-maybe-uninitialized -fuse-linker-plugin -fuse-ld=mold
+%global _distro_extra_cflags -Wno-maybe-uninitialized
 %global _distro_extra_cxxflags -include %_includedir/c++/*/cstdint
 # GLIBCXX_ASSERTIONS is known to break RPCS3
 %global build_cflags %(echo %{__build_flags_lang_c} | sed 's/-Wp,-D_GLIBCXX_ASSERTIONS//g') %{?_distro_extra_cflags}
@@ -13,7 +13,7 @@
 
 Name:           rpcs3
 Version:        %(echo %{ver} | sed 's/-/^/g')
-Release:        1%?dist
+Release:        2%?dist
 Summary:        PlayStation 3 emulator and debugger
 License:        GPL-2.0-only
 URL:            https://github.com/RPCS3/rpcs3
@@ -34,6 +34,7 @@ BuildRequires:  pkgconfig(sndio)
 BuildRequires:  pkgconfig(jack)
 BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(glew)
+BuildRequires:  pkgconfig(flatbuffers)
 BuildRequires:  pkgconfig(libzstd)
 BuildRequires:  pkgconfig(libusb-1.0)
 BuildRequires:  pkgconfig(libevdev)
@@ -42,8 +43,11 @@ BuildRequires:  pkgconfig(gl)
 BuildRequires:  pkgconfig(vulkan)
 BuildRequires:  pkgconfig(libffi)
 BuildRequires:  pkgconfig(libcurl)
+BuildRequires:  pkgconfig(libpng)
 BuildRequires:  pkgconfig(alsa)
+BuildRequires:  pkgconfig(pugixml)
 BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:  pkgconfg(zlib)
 BuildRequires:  pkgconfig(sdl2)
 BuildRequires:  pkgconfig(libavcodec)
 BuildRequires:  pkgconfig(libavformat)
@@ -68,24 +72,27 @@ BuildRequires:  qt6-qtbase-private-devel vulkan-devel jack-audio-connection-kit-
 export CC=clang
 export CXX=clang++
 %endif
-%cmake -DDISABLE_LTO=TRUE                              \
-    -DZSTD_BUILD_SHARED=OFF                            \
-    -DZSTD_BUILD_STATIC=ON                             \
-    -DUSE_NATIVE_INSTRUCTIONS=OFF                      \
-    -DCMAKE_C_FLAGS="$CFLAGS"                          \
-    -DCMAKE_CXX_FLAGS="$CXXFLAGS"                      \
-    -DSTATIC_LINK_LLVM=OFF                             \
-    -DUSE_SYSTEM_FAUDIO=ON                             \
-    -DUSE_SDL=ON                                       \
-    -DUSE_SYSTEM_SDL=ON                                \
-    -DBUILD_LLVM=OFF                                   \
-    -DUSE_PRECOMPILED_HEADERS=OFF                      \
-    -DUSE_DISCORD_RPC=ON                               \
-    -DUSE_SYSTEM_FFMPEG=ON                             \
-    -DUSE_SYSTEM_OPENCV=ON                             \
-%if 0%{?fedora} < 43
-    -DUSE_SYSTEM_CURL=ON
+%cmake -DZSTD_BUILD_SHARED=OFF                          \
+    -DZSTD_BUILD_STATIC=ON                              \
+    -DUSE_NATIVE_INSTRUCTIONS=OFF                       \
+    -DCMAKE_C_FLAGS="$CFLAGS"                           \
+    -DCMAKE_CXX_FLAGS="$CXXFLAGS"                       \
+    -DSTATIC_LINK_LLVM=OFF                              \
+    -DUSE_SYSTEM_FAUDIO=ON                              \
+    -DUSE_SDL=ON                                        \
+    -DUSE_SYSTEM_SDL=ON                                 \
+    -DBUILD_LLVM=OFF                                    \
+    -DUSE_PRECOMPILED_HEADERS=OFF                       \
+    -DUSE_DISCORD_RPC=ON                                \
+    -DUSE_SYSTEM_FFMPEG=ON                              \
+    -DUSE_SYSTEM_OPENCV=ON                              \
+    -DUSE_SYSTEM_CURL=ON                                \
+%ifarch aarch64
+    -DCMAKE_LINKER=lld                                  \
+    -DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS -fuse-ld=lld" \
+    -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS -fuse-ld=lld"
 %endif
+# LLD actually seems faster on this project than Mold due to the LTO, which SHOULD be used if possible
 %cmake_build
 
 %install
