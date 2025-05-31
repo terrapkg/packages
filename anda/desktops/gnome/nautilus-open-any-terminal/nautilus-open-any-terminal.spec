@@ -13,6 +13,7 @@ BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(setuptools-scm)
 BuildRequires:  python3dist(pip)
+BuildRequires:  python3dist(msgfmt)
 
 
 %global _description %{expand:
