@@ -90,6 +90,7 @@ export CXX=clang++
     -DUSE_SYSTEM_CURL=ON                                 \
     -DUSE_SYSTEM_FLATBUFFERS=OFF                         \
     -DUSE_SYSTEM_PUGIXML=OFF                             \
+    -DUSE_SYSTEM_WOLFSSL=OFF
 %cmake_build
 
 %install
