@@ -47,7 +47,7 @@ BuildRequires:  pkgconfig(libpng)
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(pugixml)
 BuildRequires:  pkgconfig(xkbcommon)
-%if 0%{?fedora} < 43
+%if 0%{?fedora} < 42
 BuildRequires:  pkgconfg(zlib)
 %endif
 BuildRequires:  pkgconfig(sdl2)
@@ -88,7 +88,7 @@ export CXX=clang++
     -DUSE_DISCORD_RPC=ON                                \
     -DUSE_SYSTEM_FFMPEG=ON                              \
     -DUSE_SYSTEM_LIBPNG=ON                              \
-%if 0%{?fedora} < 43
+%if 0%{?fedora} < 42
     -DUSE_SYSTEM_ZLIB=ON                                \
 %endif
     -DUSE_SYSTEM_OPENCV=ON                              \
