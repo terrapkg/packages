@@ -1,4 +1,4 @@
-%global _distro_extra_cflags -Wno-uninitialized
+%global _distro_extra_cflags -Wno-uninitialized -fuse-linker-plugin -fuse-ld=lld
 %global _distro_extra_cxxflags -include %_includedir/c++/*/cstdint
 # GLIBCXX_ASSERTIONS is known to break RPCS3
 %global build_cflags %(echo %{__build_flags_lang_c} | sed 's/-Wp,-D_GLIBCXX_ASSERTIONS//g') %{?_distro_extra_cflags}
@@ -86,11 +86,8 @@ export CXX=clang++
 %endif
     -DUSE_SYSTEM_OPENCV=ON                               \
     -DUSE_SYSTEM_CURL=ON                                 \
-    -DUSE_SYSTEM_FLATBUFFERS=OFF                         \
+    -DUSE_SYSTEM_FLATBUFFERS=ON                          \
     -DUSE_SYSTEM_PUGIXML=ON                              \
-    -DCMAKE_LINKER=lld                                   \
-    -DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS -fuse-ld=lld"  \
-    -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS -fuse-ld=lld"
 %cmake_build
 
 %install
