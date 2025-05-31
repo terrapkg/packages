@@ -67,31 +67,30 @@ BuildRequires:  qt6-qtbase-private-devel vulkan-devel jack-audio-connection-kit-
 # Looking at the CMakeLists.txt, this is the intended compiler and there are no fixes for GCC on aarch64
 export CC=clang
 export CXX=clang++
-%cmake -DZSTD_BUILD_SHARED=OFF                          \
-    -DZSTD_BUILD_STATIC=ON                              \
-    -DUSE_NATIVE_INSTRUCTIONS=OFF                       \
-    -DCMAKE_C_FLAGS="$CFLAGS"                           \
-    -DCMAKE_CXX_FLAGS="$CXXFLAGS"                       \
-    -DSTATIC_LINK_LLVM=OFF                              \
-    -DUSE_SYSTEM_FAUDIO=ON                              \
-    -DUSE_SDL=ON                                        \
-    -DUSE_SYSTEM_SDL=ON                                 \
-    -DBUILD_LLVM=OFF                                    \
-    -DUSE_PRECOMPILED_HEADERS=OFF                       \
-    -DUSE_DISCORD_RPC=ON                                \
-    -DUSE_SYSTEM_FFMPEG=ON                              \
-    -DUSE_SYSTEM_LIBPNG=ON                              \
+%cmake -DZSTD_BUILD_SHARED=OFF                           \
+    -DZSTD_BUILD_STATIC=ON                               \
+    -DUSE_NATIVE_INSTRUCTIONS=OFF                        \
+    -DCMAKE_C_FLAGS="$CFLAGS"                            \
+    -DCMAKE_CXX_FLAGS="$CXXFLAGS"                        \
+    -DSTATIC_LINK_LLVM=OFF                               \
+    -DUSE_SYSTEM_FAUDIO=ON                               \
+    -DUSE_SDL=ON                                         \
+    -DUSE_SYSTEM_SDL=ON                                  \
+    -DBUILD_LLVM=OFF                                     \
+    -DUSE_PRECOMPILED_HEADERS=OFF                        \
+    -DUSE_DISCORD_RPC=ON                                 \
+    -DUSE_SYSTEM_FFMPEG=ON                               \
+    -DUSE_SYSTEM_LIBPNG=ON                               \
 %if 0%{?fedora} < 42
-    -DUSE_SYSTEM_ZLIB=ON                                \
+    -DUSE_SYSTEM_ZLIB=ON                                 \
 %endif
-    -DUSE_SYSTEM_OPENCV=ON                              \
-    -DUSE_SYSTEM_CURL=ON                                \
-    -DUSE_SYSTEM_FLATBUFFERS=ON                         \
-    -DUSE_SYSTEM_PUGIXML=ON                             \
-    -DCMAKE_LINKER=lld                                  \
-    -DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS -fuse-ld=lld" \
-    -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS -fuse-ld=lld"
-# LLD actually seems faster on this project than Mold due to the LTO, which SHOULD be used if possible
+    -DUSE_SYSTEM_OPENCV=ON                               \
+    -DUSE_SYSTEM_CURL=ON                                 \
+    -DUSE_SYSTEM_FLATBUFFERS=ON                          \
+    -DUSE_SYSTEM_PUGIXML=ON                              \
+    -DCMAKE_LINKER=mold                                  \
+    -DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS -fuse-ld=mold" \
+    -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS -fuse-ld=mold"
 %cmake_build
 
 %install
