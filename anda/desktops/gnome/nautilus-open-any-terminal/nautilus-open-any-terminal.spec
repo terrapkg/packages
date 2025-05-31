@@ -11,6 +11,8 @@ Packager:       madonuko <mado@fyralabs.com>
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
+BuildRequires:  python3dist(setuptools-scm)
+BuildRequires:  python3dist(pip)
 
 
 %global _description %{expand:
