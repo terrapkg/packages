@@ -86,7 +86,9 @@ export CXX=clang++
     -DUSE_DISCORD_RPC=ON                                \
     -DUSE_SYSTEM_FFMPEG=ON                              \
     -DUSE_SYSTEM_LIBPNG=ON                              \
+%if 0%{?fedora} < 43
     -DUSE_SYSTEM_ZLIB=ON                                \
+%endif
     -DUSE_SYSTEM_OPENCV=ON                              \
     -DUSE_SYSTEM_CURL=ON                                \
     -DUSE_SYSTEM_FLATBUFFERS=ON                         \
