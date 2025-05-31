@@ -8,6 +8,7 @@ Group:			Development/Building
 Source0:		https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_%version-stable.tar.xz
 Requires:		bash curl git file which zip xz
 Recommends:		mesa-libGLU
+AutoReqProv:	no
 
 %description
 Flutter transforms the app development process. Build, test, and deploy
@@ -15,8 +16,6 @@ beautiful mobile, web, desktop, and embedded apps from a single codebase.
 
 %prep
 tar xf %SOURCE0
-
-%build
 
 %install
 mkdir -p %buildroot%_datadir %buildroot%_bindir
