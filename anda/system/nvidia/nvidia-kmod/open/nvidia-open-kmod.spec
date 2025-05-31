@@ -13,7 +13,6 @@ URL:            http://www.nvidia.com/object/unix.html
 ExclusiveArch:  x86_64 aarch64
 
 Source0:        http://download.nvidia.com/XFree86/Linux-%{_arch}/%{version}/NVIDIA-Linux-%{_arch}-%{version}.run
-%dnl Patch0:         nvidia-kernel-ccflags-y.patch
 Requires:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
 Requires:       akmods
 
