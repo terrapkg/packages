@@ -87,7 +87,7 @@ export CXX=clang++
     -DUSE_SYSTEM_OPENCV=ON                               \
     -DUSE_SYSTEM_CURL=ON                                 \
     -DUSE_SYSTEM_FLATBUFFERS=ON                          \
-    -DUSE_SYSTEM_PUGIXML=ON                              \
+    -DUSE_SYSTEM_PUGIXML=OFF                             \
 %cmake_build
 
 %install
