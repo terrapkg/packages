@@ -32,7 +32,7 @@ git checkout %{version}
 
 %build
 export RELEASE=1
-export PYTHONPATH=%_libdir/python3/dist-packages
+export PYTHONPATH="%{buildroot}%{python3_sitelib}:%{buildroot}%{python3_sitearch}:$PYTHONPATH"
 cargo update
 mold -run ./tools/build
 
