@@ -42,7 +42,6 @@ BuildRequires:  pkgconfig(libpng)
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(pugixml)
 BuildRequires:  pkgconfig(xkbcommon)
-BuildRequires:  pkgconfig(zlib-ng)
 BuildRequires:  pkgconfig(sdl2)
 BuildRequires:  pkgconfig(libavcodec)
 BuildRequires:  pkgconfig(libavformat)
@@ -53,7 +52,7 @@ BuildRequires:  pkgconfig(wayland-server)
 BuildRequires:  pkgconfig(wayland-cursor)
 #BuildRequires:  pkgconfig(wayland-eglstream)
 BuildRequires:  doxygen
-BuildRequires:  qt6-qtbase-private-devel vulkan-devel jack-audio-connection-kit-devel llvm-devel
+BuildRequires:  qt6-qtbase-private-devel vulkan-devel jack-audio-connection-kit-devel llvm-devel zlib-ng-compat-devel
 
 %description
 %summary.
@@ -81,9 +80,7 @@ export CXX=clang++
     -DUSE_DISCORD_RPC=ON                                 \
     -DUSE_SYSTEM_FFMPEG=ON                               \
     -DUSE_SYSTEM_LIBPNG=ON                               \
-%if 0%{?fedora} < 42
     -DUSE_SYSTEM_ZLIB=ON                                 \
-%endif
     -DUSE_SYSTEM_OPENCV=ON                               \
     -DUSE_SYSTEM_CURL=ON                                 \
     -DUSE_SYSTEM_FLATBUFFERS=OFF                         \
