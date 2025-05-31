@@ -4,7 +4,7 @@
 %global modulename nvidia
 
 Name:           dkms-%{modulename}-open
-Version:        570.153.02
+Version:        575.57.08
 Release:        1%?dist
 Summary:        NVIDIA display driver kernel module
 Epoch:          3
@@ -12,7 +12,6 @@ License:        NVIDIA License
 URL:            https://www.nvidia.com/object/unix.html
 Source0:        https://download.nvidia.com/XFree86/Linux-%{_arch}/%{version}/NVIDIA-Linux-%{_arch}-%{version}.run
 Source1:        %{name}.conf
-%dnl Patch0:         nvidia-kernel-ccflags-y.patch
 BuildRequires:  sed
 Provides:       %{modulename}-open-kmod = %{?epoch:%{epoch}:}%{version}
 Requires:       %{modulename}-kmod-common = %{?epoch:%{epoch}:}%{version}
