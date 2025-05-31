@@ -1,5 +1,5 @@
 %global __requires_exclude ^((libwolfssl\\.so.*)|(libFusion\\.so.*)|(libasmjit\\.so.*)|(libcubeb\\.so.*)|(libdiscord-rpc\\.so.*)|(libglslang\\.so.*)|(librtmidi\\.so.*))$
-%global _distro_extra_cflags -Wno-uninitialized -fuse-linker-plugin -fuse-ld=lld
+%global _distro_extra_cflags -Wno-uninitialized
 %global _distro_extra_cxxflags -include %_includedir/c++/*/cstdint
 # GLIBCXX_ASSERTIONS is known to break RPCS3
 %global build_cflags %(echo %{__build_flags_lang_c} | sed 's/-Wp,-D_GLIBCXX_ASSERTIONS//g') %{?_distro_extra_cflags}
@@ -91,7 +91,10 @@ export CXX=clang++
     -DUSE_SYSTEM_CURL=ON                                 \
     -DUSE_SYSTEM_FLATBUFFERS=OFF                         \
     -DUSE_SYSTEM_PUGIXML=OFF                             \
-    -DUSE_SYSTEM_WOLFSSL=OFF
+    -DUSE_SYSTEM_WOLFSSL=OFF                             \
+    -DCMAKE_LINKER=mold                                  \
+    -DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS -fuse-ld=mold" \
+    -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS -fuse-ld=mold"    
 %cmake_build
 
 %install
