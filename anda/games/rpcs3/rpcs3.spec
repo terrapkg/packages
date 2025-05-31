@@ -86,11 +86,11 @@ export CXX=clang++
 %endif
     -DUSE_SYSTEM_OPENCV=ON                               \
     -DUSE_SYSTEM_CURL=ON                                 \
-    -DUSE_SYSTEM_FLATBUFFERS=ON                          \
+    -DUSE_SYSTEM_FLATBUFFERS=OFF                         \
     -DUSE_SYSTEM_PUGIXML=ON                              \
-    -DCMAKE_LINKER=mold                                  \
-    -DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS -fuse-ld=mold" \
-    -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS -fuse-ld=mold"
+    -DCMAKE_LINKER=lld                                   \
+    -DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS -fuse-ld=lld"  \
+    -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS -fuse-ld=lld"
 %cmake_build
 
 %install
