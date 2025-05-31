@@ -49,7 +49,7 @@ cp %{S:1} %{S:2} .
 
 %install
 %if 0%{?fedora} <= 41
-%py3_build
+%py3_install
 %else
 %pyproject_install
 %pyproject_save_files -l %{pypi_name}
