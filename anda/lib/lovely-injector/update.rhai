@@ -1,1 +1,1 @@
-rpm.global("ver",gh("ethangreen-dev/lovely-injector"));
+rpm.version(gh("ethangreen-dev/lovely-injector"));
