@@ -70,6 +70,7 @@ export CXX=clang++
 %cmake -DDISABLE_LTO=TRUE                                \
      -DZSTD_BUILD_SHARED=OFF                             \
     -DZSTD_BUILD_STATIC=ON                               \
+    -DCMAKE_SKIP_RPATH=ON                                \
     -DUSE_NATIVE_INSTRUCTIONS=OFF                        \
     -DCMAKE_C_FLAGS="$CFLAGS"                            \
     -DCMAKE_CXX_FLAGS="$CXXFLAGS"                        \
