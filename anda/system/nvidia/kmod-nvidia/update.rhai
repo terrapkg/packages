@@ -14,5 +14,5 @@ majorminor.dedup();
 majorminor.sort();
 let kver = find_all(`kernel-([\d.]+.*?)\.el.*?\.x86_64\.rpm`, get(`https://repo.almalinux.org/almalinux/${majorminor[majorminor.len()-1]}/BaseOS/x86_64/os/Packages/`));
 kver.dedup();
-open_file("anda/system/nvidia/kmod-nvidia/VERSION_kernel.txt", "w").write(kver[kver.len - 1][0]);
+open_file("anda/system/nvidia/kmod-nvidia/VERSION_kernel.txt", "w").write(`${kver[kver.len - 1][0]}`);
 import "andax/ci/bump_release.rhai";
