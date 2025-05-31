@@ -19,7 +19,6 @@ URL:            https://github.com/RPCS3/rpcs3
 %dnl Source0:        %url/archive/refs/tags/v%version.tar.gz
 BuildRequires:  anda-srpm-macros glew openal-soft cmake vulkan-validation-layers git-core mold
 BuildRequires:  clang
-BuildRequires:  lld
 BuildRequires:  cmake(FAudio)
 BuildRequires:  cmake(OpenAL)
 BuildRequires:  cmake(OpenCV)
@@ -43,9 +42,7 @@ BuildRequires:  pkgconfig(libpng)
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(pugixml)
 BuildRequires:  pkgconfig(xkbcommon)
-%if 0%{?fedora} < 42
-BuildRequires:  pkgconfg(zlib)
-%endif
+BuildRequires:  pkgconfig(zlib)
 BuildRequires:  pkgconfig(sdl2)
 BuildRequires:  pkgconfig(libavcodec)
 BuildRequires:  pkgconfig(libavformat)
@@ -84,9 +81,7 @@ export CXX=clang++
     -DUSE_DISCORD_RPC=ON                                 \
     -DUSE_SYSTEM_FFMPEG=ON                               \
     -DUSE_SYSTEM_LIBPNG=ON                               \
-%if 0%{?fedora} < 42
     -DUSE_SYSTEM_ZLIB=ON                                 \
-%endif
     -DUSE_SYSTEM_OPENCV=ON                               \
     -DUSE_SYSTEM_CURL=ON                                 \
     -DUSE_SYSTEM_FLATBUFFERS=OFF                         \
