@@ -19,7 +19,6 @@ URL:            https://github.com/RPCS3/rpcs3
 %dnl Source0:        %url/archive/refs/tags/v%version.tar.gz
 BuildRequires:  anda-srpm-macros glew openal-soft cmake vulkan-validation-layers git-core mold
 BuildRequires:  clang
-BuildRequires:  lld
 BuildRequires:  cmake(FAudio)
 BuildRequires:  cmake(OpenAL)
 BuildRequires:  cmake(OpenCV)
@@ -43,6 +42,7 @@ BuildRequires:  pkgconfig(libpng)
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(pugixml)
 BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:  pkgconfig(zlib-ng)
 BuildRequires:  pkgconfig(sdl2)
 BuildRequires:  pkgconfig(libavcodec)
 BuildRequires:  pkgconfig(libavformat)
