@@ -10,7 +10,7 @@ Summary:        Portage is the package management and distribution system for Ge
 
 # Check if the automatically generated License and its spelling is correct for Fedora
 # https://docs.fedoraproject.org/en-US/packaging-guidelines/LicensingGuidelines/
-License:        GPLv2
+License:        GPL-2.0-only
 URL:            https://github.com/gentoo/portage
 Source:         https://codeload.github.com/gentoo/portage/tar.gz/refs/tags/portage-3.0.68#/%{name}-%{version}.tar.gz
 
