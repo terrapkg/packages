@@ -1,0 +1,13 @@
+--- a/Makefile	2025-05-21 22:56:09.064696169 -0500
++++ b/Makefile	2025-05-21 23:14:40.494058939 -0500
+@@ -41,8 +41,8 @@
+ 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n"} /^[a-zA-Z_0-9-]+:.*?##/ { printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
+ 
+ .PHONY: install
+-install: build ## Install inputplumber to the given prefix (default: PREFIX=/usr)
+-	install -D -m 755 target/$(TARGET_ARCH)/$(BUILD_TYPE)/$(NAME) \
++install:
++	install -D -m 755 target/$(BUILD_TYPE)/$(NAME) \
+ 		$(PREFIX)/bin/$(NAME)
+ 	install -D -m 644 rootfs/usr/share/dbus-1/system.d/$(DBUS_NAME).conf \
+ 		$(PREFIX)/share/dbus-1/system.d/$(DBUS_NAME).conf

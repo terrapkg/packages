@@ -1,13 +1,13 @@
 %global debug_package %{nil}
-%global commit 3c1cdd3e634bb4668a900d75efd4d6292b8c7d1d
-%global commit_date 20241127
+%global commit eff4a63c32b3ce4ac86d521d924b9973bbec8b99
+%global commit_date 20250521
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global ver 1.0.1
+%global ver 1.0.0
 
 Name:           ipu6-camera-bins
 Summary:        Libraries for Intel IPU6
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
-Release:        3%?dist
+Release:        1%?dist
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Epoch:          1
 %endif

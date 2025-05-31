@@ -1,9 +1,9 @@
-%global xurl https://files.pythonhosted.org/packages/e3/02/b33d4b92ebeba69d321814af706cdd734e6db7ff8f4ec06b312fa1983ea7/anki-25.02.4-cp39-abi3-manylinux_2_35_x86_64.whl
-%global aurl https://files.pythonhosted.org/packages/af/28/789ad6f2ed63281756a609862f778df4cb2ac85b3bc65722a1d6773c16c8/anki-25.02.4-cp39-abi3-manylinux_2_35_aarch64.whl
-%global qurl https://files.pythonhosted.org/packages/04/f0/1bef63c18a1cb00bfb1d26bd6532315f7c28681af9636a3bb82fbbffe767/aqt-25.02.4-py3-none-any.whl
+%global xurl https://files.pythonhosted.org/packages/32/51/cf365e03f3820f8b8adfd11717c38b3fcc167d08c0e53591dbfc702b2292/anki-25.02.5-cp39-abi3-manylinux_2_35_x86_64.whl
+%global aurl https://files.pythonhosted.org/packages/c9/9d/6e27cec817c7f0f208e880f78585071eedc1bfd4294ebbae4ac5e49bf98d/anki-25.02.5-cp39-abi3-manylinux_2_35_aarch64.whl
+%global qurl https://files.pythonhosted.org/packages/5e/8b/2651dcd76e3a670bc0ae95e462ad0776c3bcb9cc2b0b19eaa9cb8f92b709/aqt-25.02.5-py3-none-any.whl
 
 Name:			anki-bin
-Version:		25.02.4
+Version:		25.02.5
 Release:		1%?dist
 Summary:		Flashcard program for using space repetition learning (Installed with wheel)
 License:		AGPL-3.0-or-later AND GPL-3.0-or-later AND LGPL-3.0-or-later AND MIT AND BSD-3-Clause AND CC-BY-SA-3.0 AND CC-BY-3.0 AND Apache-2.0 AND CC-BY-2.5

@@ -1,5 +1,5 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-system-settings
-%global commit 2c7a2f4400a624abfad8bd6abae1b8b3d914a497
+%global commit 8ea4a5730db308b73b3e3a9d6935477700091bfd
 %forgemeta
 
 Name:       lomiri-system-settings
@@ -9,7 +9,8 @@ Summary:    The system settings application for Lomiri
 License:    GPLv3
 URL:        https://gitlab.com/ubports/development/core/lomiri-system-settings
 Source0:    %{url}/-/archive/%commit/lomiri-system-settings-%commit.tar.gz
-Patch0:     https://sources.debian.org/data/main/l/lomiri-system-settings/1.3.0-4/debian/patches/2011_build-without-trust-store.patch
+Patch0:     https://sources.debian.org/data/main/l/lomiri-system-settings/1.3.1-2/debian/patches/2002_use-Noto-font-instead-of-Ubuntu-font.patch
+Patch1:     https://sources.debian.org/data/main/l/lomiri-system-settings/1.3.1-2/debian/patches/2011_build-without-trust-store.patch
 
 BuildRequires: cmake
 BuildRequires: gcc-c++

@@ -7,7 +7,7 @@
 %define         llvm_compat 20
 %endif
 %global         llvm_version 20.0.0
-%global         ver 0.15.0-dev.515+833d4c9ce
+%global         ver 0.15.0-dev.670+1a08c83eb
 %bcond bootstrap 1
 %bcond docs      %{without bootstrap}
 %bcond test      1
@@ -46,8 +46,9 @@ URL:            https://ziglang.org
 Source0:        %{url}/builds/zig-%{ver}.tar.xz
 Source1:        %{url}/builds/zig-%{ver}.tar.xz.minisig
 Patch0:         0000-remove-native-lib-directories-from-rpath.patch
-Patch1:         0001-increase-upper-bounds-of-main-zig-executable-to-9G.patch
+Patch1:         0001-increase-upper-bounds-of-main-zig-executable-to-10G.patch
 Patch2:         0002-build-pass-zig-lib-dir-as-directory-instead-of-as-st.patch
+Patch3:         https://src.fedoraproject.org/rpms/zig/raw/rawhide/f/0005-link.Elf-add-root-directory-of-libraries-to-linker-p.patch
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
@@ -61,14 +62,12 @@ BuildRequires:  help2man
 # for signature verification
 BuildRequires:  minisign
 %if %{without bootstrap}
-BuildRequires:  %{name} <= %{version}
+BuildRequires:  %{name} = %{version}
 %endif
 %if %{with test}
 BuildRequires:  elfutils-libelf-devel
 BuildRequires:  libstdc++-static
 %endif
-# Zig invokes the C compiler to figure out system info
-Requires:       gcc
 Requires:       %{name}-libs = %{version}
 # Apache-2.0 WITH LLVM-exception OR NCSA OR MIT
 Provides:       bundled(compiler-rt) = %{llvm_version}
