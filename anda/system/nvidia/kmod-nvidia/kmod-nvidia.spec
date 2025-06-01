@@ -18,10 +18,8 @@ URL:            http://www.nvidia.com/
 ExclusiveArch:  x86_64 aarch64
 
 Source0:        https://github.com/NVIDIA/open-gpu-kernel-modules/archive/refs/tags/%{version}.tar.gz
-# Kbuild: Convert EXTRA_CFLAGS to ccflags-y (6.15+) + std=gnu17
-%dnl Patch0:         nvidia-kernel-ccflags-y.patch
 # https://git.almalinux.org/ngompa/nvidia-kmod-el-rpm/
-Patch1:         %{name}-no-hostname-whoami.patch
+Patch0:         %{name}-no-hostname-whoami.patch
 # This is needed for the Makefile for the beta drivers, added just in case it's needed in the future
 %dnl Patch3:         fix-build-in-actions.patch
 
