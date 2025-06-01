@@ -153,6 +153,7 @@ zig build \
     -Demit-terminfo=false
 %endif
 
+# Don't conflict with ncurses-term on F42 and up
 %if 0%{?fedora} >= 42
 rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %endif
