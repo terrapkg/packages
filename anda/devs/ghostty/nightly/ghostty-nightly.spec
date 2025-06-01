@@ -215,6 +215,9 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %{_datadir}/terminfo/x/xterm-%{base_name}
 
 %changelog
+* Sat May 31 2025 Gilver E. <rockgrub@disroot.org> - 1.1.4~tip^20250531git1ff9162
+- Updated for Zig 0.14.0
+- Updated for ncurses-term compatibility in Fedora 42 and Rawhide
 * Wed Mar 05 2025 Gilver E. <rockgrub@disroot.org>
 - Update to 1.1.3~tip^20250305git66e8d91-2%{?dist}
  * Ghostty now has localization support via gettext as well as corresponding localization files
