@@ -93,7 +93,7 @@ scratch.
 
 This package contains the development files.
 
-%pkg_completion -b x264
+%pkg_completion -B x264
 
 %global x_configure \
 ./configure \\\
