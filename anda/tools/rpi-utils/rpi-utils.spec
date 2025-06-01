@@ -69,7 +69,7 @@ Summary:        A more powerful replacement for raspi-gpio, a tool for displayin
 %description    pinctrl
 %{summary}.
 
-%pkg_completion -Bn %name-pinctrl 
+%pkg_completion -Bn %name-pinctrl pinctrl
 
 %package        piolib
 Summary:        A library for accessing the Pi 5's PIO hardware
@@ -82,7 +82,7 @@ Summary:        Query the VideoCore for information
 A command line utility that can get various pieces of information
 from the VideoCore GPU on the Raspberry Pi.
 
-%pkg_completion -Bn %name-vcgencmd
+%pkg_completion -Bn %name-vcgencmd vcgencmd
 
 %package        vcmailbox
 Summary:        Send messages to the VideoCore via the mailbox
