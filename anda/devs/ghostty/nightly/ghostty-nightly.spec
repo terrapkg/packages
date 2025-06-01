@@ -11,8 +11,6 @@
 %else
 %global cache_dir %{builddir}/zig-cache
 %endif
-# Temporary fix because Zig is messed up, this should be removed ASAP
-%undefine _missing_build_ids_terminate_build
 
 Name:           %{base_name}-nightly
 Version:        %{ver}~tip^%{commit_date}git%{shortcommit}
@@ -144,6 +142,7 @@ zig build \
     --prefix "%{_prefix}" --prefix-lib-dir "%{_libdir}" \
     --prefix-exe-dir "%{_bindir}" --prefix-include-dir "%{_includedir}" \
     --verbose \
+    --build-id=sha1 \
     -Dversion-string="%{ver}-dev+%{shortcommit}" \
     -Dcpu=baseline \
     -Dstrip=false \
