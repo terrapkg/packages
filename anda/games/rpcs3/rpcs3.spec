@@ -1,4 +1,4 @@
-%global __requires_exclude ^((libwolfssl\\.so.*)|(libFusion\\.so.*)|(libasmjit\\.so.*)|(libcubeb\\.so.*)|(libdiscord-rpc\\.so.*)|(libglslang\\.so.*)|(librtmidi\\.so.*))$
+%global __requires_exclude ^((libwolfssl\\.so.*)|(libFusion\\.so.*)|(libasmjit\\.so.*)|(libcubeb\\.so.*)|(libdiscord-rpc\\.so.*)|(libglslang\\.so.*)|(librtmidi\\.so.*)(libyaml-cpp\\.so.*))$
 %global _distro_extra_cflags -Wno-uninitialized
 %global _distro_extra_cxxflags -include %_includedir/c++/*/cstdint
 # GLIBCXX_ASSERTIONS is known to break RPCS3
@@ -12,7 +12,7 @@
 
 Name:           rpcs3
 Version:        %(echo %{ver} | sed 's/-/^/g')
-Release:        2%?dist
+Release:        3%?dist
 Summary:        PlayStation 3 emulator and debugger
 License:        GPL-2.0-only
 URL:            https://github.com/RPCS3/rpcs3
