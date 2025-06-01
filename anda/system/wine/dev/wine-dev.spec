@@ -9,7 +9,7 @@
 %global _prefix 	/usr/share/wine-dev
 %global srcmajor 10.x
 # Make this as a variable instead in case of WINE RCs
-%global ver wine-10.8
+%global ver wine-10.9
 %global cleanver %(echo %{ver} | sed 's/v//g;s/wine-//g')
 
 # This is unfortunate but a lot of Fedora's/SUSE's hardening flags break WINE
@@ -19,7 +19,7 @@
 # Also less confusing because it has a devel package
 Name:       wine-dev
 Version:    %(echo %{cleanver} | sed 's/-/~/g')
-Release:    2%?dist
+Release:    1%?dist
 Epoch:      1
 Summary:    WINE Is Not An Emulator - runs MS Windows programs
 License:    LGPL-2.0-or-later

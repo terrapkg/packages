@@ -1,4 +1,4 @@
-%global __requires_exclude ^((libwolfssl\\.so.*)|(libFusion\\.so.*)|(libasmjit\\.so.*)|(libcubeb\\.so.*)|(libdiscord-rpc\\.so.*)|(libglslang\\.so.*)|(librtmidi\\.so.*))$
+%global __requires_exclude ^((libwolfssl\\.so.*)|(libFusion\\.so.*)|(libasmjit\\.so.*)|(libcubeb\\.so.*)|(libdiscord-rpc\\.so.*)|(libglslang\\.so.*)|(librtmidi\\.so.*)|(libyaml-cpp\\.so.*)|(libSPIRV\\.so.*)|(libhidapi-hidraw\\.so.*)|(libpugixml\\.so.*))$
 %global _distro_extra_cflags -Wno-uninitialized
 %global _distro_extra_cxxflags -include %_includedir/c++/*/cstdint
 # GLIBCXX_ASSERTIONS is known to break RPCS3
@@ -7,12 +7,12 @@
 # Need to get rid of everything Clang can't use and undefine -Wunused-command-line-argument where possible due to the project's build flags
 %global build_cflags %(echo %{build_cflags} | sed 's:-Werror ::g' | sed 's:-Wunused-command-line-argument ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-hardened-ld ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-hardened-ld-errors ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-package-notes ::g') -Wno-unused-command-line-argument
 %global build_cxxflags %(echo %{build_cxxflags} | sed 's:-Werror ::g' | sed 's:-Wunused-command-line-argument ::g' | sed 's:-specs\=/usr/lib/rpm/redhat/redhat-annobin-cc1 ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-hardened-ld ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-hardened-ld-errors ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-package-notes ::g') -Wno-unused-command-line-argument
-%global commit 382e62c7d8755fbd1bbeb1b70c44e211f2d5cdfa
-%global ver 0.0.36-17979
+%global commit 68d25733443297c892b956fff8cd3e7c38c3744e
+%global ver 0.0.37-17986
 
 Name:           rpcs3
 Version:        %(echo %{ver} | sed 's/-/^/g')
-Release:        2%?dist
+Release:        4%?dist
 Summary:        PlayStation 3 emulator and debugger
 License:        GPL-2.0-only
 URL:            https://github.com/RPCS3/rpcs3
