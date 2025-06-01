@@ -46,11 +46,8 @@ BuildRequires:  pkgconfig(libpng)
 BuildRequires:  pkgconfig(libxml-2.0)
 BuildRequires:  pkgconfig(oniguruma)
 BuildRequires:  pkgconfig(zlib)
-Requires:       %{name}-terminfo
-%if 0%{?fedora} >= 42
-Requires:       ncurses-term >= 6.5-5.20250125
-%endif
-Requires:       %{name}-shell-integration
+Requires:       %{name}-terminfo = %{version}-%{release}
+Requires:       %{name}-shell-integration = %{version}-%{release}
 Requires:       gtk4
 Requires:       gtk4-layer-shell
 Requires:       libadwaita
@@ -117,6 +114,9 @@ This package contains files allowing Ghostty to integrate with various shells.
 
 %package        terminfo
 Summary:        Ghostty terminfo
+%if 0%{?fedora} >= 42
+Requires:       ncurses-term >= 6.5-5.20250125
+%endif
 Supplements:    %{name}
 %if 0%{?fedora} <= 41
 Provides:       %{name}-terminfo = %{commit_date}.%{shortcommit}
