@@ -1,4 +1,4 @@
-# No longer works on EL?
+# Unrecognized argument error
 %global build_ldflags %(echo %{build_ldflags} | sed 's/-Wl,-z,relro//g')
 
 %global kmod_name nvidia
