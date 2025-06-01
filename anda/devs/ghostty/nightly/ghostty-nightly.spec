@@ -167,6 +167,7 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %{_datadir}/%{base_name}/doc
 %{_datadir}/%{base_name}/themes
 %{_datadir}/kio/servicemenus/%{reverse_dns}.desktop
+%{_datadir}/metainfo/%{reverse_dns}.metainfo.xml
 %{_datadir}/nautilus-python/extensions/%{base_name}.py
 %{_datadir}/nvim/site/compiler/%{base_name}.vim
 %{_datadir}/nvim/site/ftdetect/%{base_name}.vim
