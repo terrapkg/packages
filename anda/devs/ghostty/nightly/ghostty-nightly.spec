@@ -11,6 +11,8 @@
 %else
 %global cache_dir %{builddir}/zig-cache
 %endif
+# Temporary fix because Zig is messed up, this should be removed ASAP
+%undefine _missing_build_ids_terminate_build
 
 Name:           %{base_name}-nightly
 Version:        %{ver}~tip^%{commit_date}git%{shortcommit}
