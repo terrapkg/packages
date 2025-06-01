@@ -148,10 +148,7 @@ zig build \
     -Dcpu=baseline \
     -Dstrip=false \
     -Dpie=true \
-    -Demit-docs \
-%if 0%{?fedora} >= 42
-    -Demit-terminfo=false
-%endif
+    -Demit-docs 
 
 # Don't conflict with ncurses-term on F42 and up
 %if 0%{?fedora} >= 42
