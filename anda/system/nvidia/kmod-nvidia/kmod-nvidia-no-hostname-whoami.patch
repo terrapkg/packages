@@ -1,6 +1,6 @@
 diff -Naur open-gpu-kernel-modules-570.133.07.old/utils.mk open-gpu-kernel-modules-570.133.07/utils.mk
---- open-gpu-kernel-modules-570.133.07.old/utils.mk	2025-04-12 15:13:09.368747667 +0200
-+++ open-gpu-kernel-modules-570.133.07/utils.mk	2025-04-12 15:14:11.297683469 +0200
+--- open-gpu-kernel-modules-*.old/utils.mk	2025-04-12 15:13:09.368747667 +0200
++++ open-gpu-kernel-modules-*/utils.mk	2025-04-12 15:14:11.297683469 +0200
 @@ -114,14 +114,8 @@
  CHMOD                 ?= chmod
  OBJCOPY               ?= objcopy
