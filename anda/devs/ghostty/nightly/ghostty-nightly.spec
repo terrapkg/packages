@@ -46,10 +46,9 @@ BuildRequires:  pkgconfig(libpng)
 BuildRequires:  pkgconfig(libxml-2.0)
 BuildRequires:  pkgconfig(oniguruma)
 BuildRequires:  pkgconfig(zlib)
-%if 0%{?fedora} < 42
 Requires:       %{name}-terminfo
-%else
-Requires:       ncurses-term >= 6.5-5.20250125%{?dist}
+%if 0%{?fedora} >= 42
+Requires:       ncurses-term >= 6.5-5.20250125
 %endif
 Requires:       %{name}-shell-integration
 Requires:       gtk4
@@ -116,7 +115,6 @@ BuildArch:      noarch
 %description    shell-integration
 This package contains files allowing Ghostty to integrate with various shells.
 
-%if 0%{?fedora} < 42
 %package        terminfo
 Summary:        Ghostty terminfo
 Supplements:    %{name}
@@ -128,7 +126,6 @@ BuildArch:      noarch
 
 %description    terminfo
 Ghostty's terminfo. Needed for basic terminal function.
-%endif
 
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
@@ -154,6 +151,10 @@ zig build \
     -Demit-docs \
 %if 0%{?fedora} >= 42
     -Demit-terminfo=false
+%endif
+
+%if 0%{?fedora} >= 42
+rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %endif
 
 %find_lang %{reverse_dns}
@@ -208,11 +209,11 @@ zig build \
 %{_datadir}/%{base_name}/shell-integration/zsh/.zshenv
 %{_datadir}/%{base_name}/shell-integration/zsh/%{base_name}-integration
 
-%if 0%{?fedora} < 42
 %files terminfo
+%if 0%{?fedora} < 42
 %{_datadir}/terminfo/g/%{base_name}
-%{_datadir}/terminfo/x/xterm-%{base_name}
 %endif
+%{_datadir}/terminfo/x/xterm-%{base_name}
 
 %changelog
 * Wed Mar 05 2025 Gilver E. <rockgrub@disroot.org>
