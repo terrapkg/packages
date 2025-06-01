@@ -1,5 +1,5 @@
 # Unrecognized argument error
-%global build_ldflags %(echo %{build_ldflags} | sed 's/-Wl,-z,relro//g;s/-Wl,--as-needed//g')
+%global build_ldflags %(echo %{build_ldflags} | sed 's/-Wl,-z,relro //g;s/-Wl,--as-needed //g;s/-Wl,-z,pack-relative-relocs //g')
 
 %global kmod_name nvidia
 
