@@ -11,10 +11,12 @@
 %else
 %global cache_dir %{builddir}/zig-cache
 %endif
+# Temporray fix because Zig is messed up, this should be removed ASAP
+%undefine _missing_build_ids_terminate_build
 
 Name:           %{base_name}-nightly
 Version:        %{ver}~tip^%{commit_date}git%{shortcommit}
-Release:        1%?dist
+Release:        2%?dist
 %if 0%{?fedora} <= 41
 Epoch:          1
 %endif
