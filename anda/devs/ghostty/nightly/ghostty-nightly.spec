@@ -31,7 +31,7 @@ BuildRequires:  minisign
 BuildRequires:  ncurses
 BuildRequires:  ncurses-devel
 BuildRequires:  pandoc-cli
-BuildRequires:  zig
+BuildRequires:  zig >= 1.14.0
 BuildRequires:  pkgconfig(blueprint-compiler)
 BuildRequires:  pkgconfig(bzip2)
 BuildRequires:  pkgconfig(freetype2)
