@@ -1,0 +1,36 @@
+From 38b7e1478b58b983724ec817562301edd5c244a2 Mon Sep 17 00:00:00 2001
+From: Neal Gompa <ngompa@almalinux.org>
+Date: Mon, 7 Apr 2025 19:34:49 -0400
+Subject: [PATCH] src/nvidia/Makefile: Drop broken addition of userspace linker
+ flags
+
+The Makefile currently causes the package build of the kernel modules
+to fail with the following error:
+
+ld: unrecognized option '-Wl,-z,relro'
+ld: use the --help option for usage information
+make[1]: *** [Makefile:214: _out/Linux_x86_64/nv-kernel.o] Error 1
+make: *** [Makefile:34: src/nvidia/_out/Linux_x86_64/nv-kernel.o] Error 2
+
+Dropping this line fixes this issue.
+
+Signed-off-by: Neal Gompa <ngompa@almalinux.org>
+---
+ src/nvidia/Makefile | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/src/nvidia/Makefile b/src/nvidia/Makefile
+index 931a74c0..423414af 100644
+--- a/src/nvidia/Makefile
++++ b/src/nvidia/Makefile
+@@ -208,8 +208,6 @@ all: $(NV_KERNEL_O)
+ 
+ LINKER_SCRIPT = nv-kernel.ld
+ 
+-NV_KERNEL_O_LDFLAGS += $(LDFLAGS)
+-
+ $(NV_KERNEL_O): $(OBJS) $(EXPORTS_LINK_COMMAND) $(LINKER_SCRIPT)
+ 	$(call quiet_cmd,LD) \
+ 	  $(NV_KERNEL_O_LDFLAGS) \
+-- 
+2.48.1

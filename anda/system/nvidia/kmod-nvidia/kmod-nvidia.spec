@@ -1,6 +1,3 @@
-# Unrecognized argument error
-%global build_ldflags %(echo %{build_ldflags} | sed 's/-Wl,-z,relro //g;s/-Wl,--as-needed //g;s/-Wl,-z,pack-relative-relocs //g')
-
 %global kmod_name nvidia
 
 %global debug_package %{nil}
@@ -22,7 +19,8 @@ ExclusiveArch:  x86_64 aarch64
 
 Source0:        https://github.com/NVIDIA/open-gpu-kernel-modules/archive/refs/tags/%{version}.tar.gz
 # https://git.almalinux.org/ngompa/nvidia-kmod-el-rpm/
-Patch0:         %{name}-no-hostname-whoami.patch
+Patch0:         %{name}-ldflags.patch
+Patch1:         %{name}-no-hostname-whoami.patch
 # This is needed for the Makefile for the beta drivers, added just in case it's needed in the future
 %dnl Patch3:         fix-build-in-actions.patch
 
