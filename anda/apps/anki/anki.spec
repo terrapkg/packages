@@ -7,7 +7,7 @@ URL:            https://apps.ankiweb.net/
 BuildRequires:  python3-devel python3-setuptools python3-waitress python3-protobuf python3-pysocks rpm_macro(fdupes)
 BuildRequires:  python3-distro python3-flask-cors python3-jsonschema python3-send2trash python3-certifi python3-simplejson
 BuildRequires:  python3-installer make mold cargo git rsync ninja-build libxcrypt-compat nodejs python3.9 python-unversioned-command gcc python3-pyqt6-webengine
-BuildRequires:  python3-qt5 python3-qt5-devel python3-pyqt6 python3-pyqt6-devel
+BuildRequires:  python3-qt5 python3-qt5-devel python3-pyqt6 python3-pyqt6-devel protobuf-compiler
 BuildRequires:  python3dist(pyqt5)
 BuildRequires:  python3dist(pyqt5-sip)
 BuildRequires:  python3dist(pyqt6)
