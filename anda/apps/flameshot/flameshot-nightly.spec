@@ -8,7 +8,7 @@
 
 Name:			flameshot.nightly
 Version:		%ver^%{commit_date}git.%shortcommit
-Release:		1%?dist
+Release:		2%?dist
 License:		GPL-3.0-or-later AND ASL-2.0 AND GPL-2.0-only AND LGPL-3.0-only AND FAL-1.3
 Summary:		Powerful yet simple to use screenshot software
 URL:			https://flameshot.org
@@ -57,32 +57,7 @@ Features:
  * Upload to Imgur
 
 
-%package bash-completion
-Summary:		Bash completion for %{name}
-Requires:		%{name} = %{version}-%{release}
-Requires: 		bash-completion
-Supplements:	(%{name} and bash-completion)
-
-%description bash-completion
-Bash command line completion support for %{name}.
-
-%package fish-completion
-Summary:		Fish completion for %{name}
-Requires:		%{name} = %{version}-%{release}
-Requires:		fish
-Supplements:	(%{name} and fish)
-
-%description fish-completion
-Fish command line completion support for %{name}.
-
-%package zsh-completion
-Summary:		Zsh completion for %{name}
-Requires:		%{name} = %{version}-%{release}
-Requires:		zsh
-Supplements:	(%{name} and zsh)
-
-%description zsh-completion
-Zsh command line completion support for %{name}.
+%pkg_completion -Bfz flameshot
 
 %package devel
 Summary:      Flameshot development files
@@ -125,15 +100,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_datadir}/icons/hicolor/*/apps/*.png
 %{_datadir}/icons/hicolor/scalable/apps/*.svg
 %{_mandir}/man1/flameshot.1*
-
-%files bash-completion
-%{bash_completions_dir}/flameshot
-
-%files fish-completion
-%{fish_completions_dir}/flameshot.fish
-
-%files zsh-completion
-%{zsh_completions_dir}/_flameshot
 
 %files devel
 %{_libdir}/lib%{devel_name}.so

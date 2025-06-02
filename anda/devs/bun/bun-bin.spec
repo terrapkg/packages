@@ -7,7 +7,7 @@
 
 Name:			bun-bin
 Version:		1.2.15
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one
 License:		MIT
 URL:			https://bun.sh
@@ -17,34 +17,7 @@ BuildRequires:	unzip
 %description
 %summary.
 
-
-%package bash-completion
-Summary:		Bash completion for %{name}
-Requires:		%{name} = %{version}-%{release}
-Requires: 		bash-completion
-Supplements:	(%{name} and bash-completion)
-
-%description bash-completion
-Bash command line completion support for %{name}.
-
-%package fish-completion
-Summary:		Fish completion for %{name}
-Requires:		%{name} = %{version}-%{release}
-Requires:		fish
-Supplements:	(%{name} and fish)
-
-%description fish-completion
-Fish command line completion support for %{name}.
-
-%package zsh-completion
-Summary:		Zsh completion for %{name}
-Requires:		%{name} = %{version}-%{release}
-Requires:		zsh
-Supplements:	(%{name} and zsh)
-
-%description zsh-completion
-Zsh command line completion support for %{name}.
-
+%pkg_completion -bfz bun
 
 %prep
 %autosetup -n bun-linux-%a
@@ -88,12 +61,3 @@ ln -s bun %buildroot%_bindir/bunx
 %license LICENSE
 %_bindir/bun
 %_bindir/bunx
-
-%files bash-completion
-%bash_completions_dir/bun.bash
-
-%files fish-completion
-%fish_completions_dir/bun.fish
-
-%files zsh-completion
-%zsh_completions_dir/_bun
