@@ -3,7 +3,7 @@
 
 Name:			nim
 Version:		2.2.4
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Imperative, multi-paradigm, compiled programming language
 License:		MIT and BSD
 URL:			https://nim-lang.org
@@ -21,6 +21,8 @@ Nim is a compiled, garbage-collected systems programming language with a
 design that focuses on efficiency, expressiveness, and elegance (in that
 order of priority).
 
+
+%pkg_completion -B nim nimble
 
 %package tools
 Summary:	Tools for Nim programming language
@@ -142,8 +144,6 @@ cp -r %buildroot%_prefix/lib/nim/dist %buildroot%_datadir/nim/
 %_includedir/cycle.h
 %_includedir/nimbase.h
 %_datadir/nim
-%bash_completions_dir/nim
-%bash_completions_dir/nimble
 
 %files tools
 %license copying.txt
