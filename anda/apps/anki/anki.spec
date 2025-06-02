@@ -34,7 +34,8 @@ git checkout %{version}
 
 %build
 export RELEASE=1
-ln -sf PyQt6 %{buildroot}%{python3_sitearch}/PyQt6.sip
+mkdir -p %{buildroot}%{python3_sitearch}
+ln -sf %{python3_sitearch}/PyQt6 %{buildroot}%{python3_sitearch}/PyQt6.sip
 export PYTHONPATH="%{python3_sitelib}:%{python3_sitearch}:%{buildroot}%{python3_sitelib}:%{buildroot}%{python3_sitearch}:$PYTHONPATH"
 cargo update
 mold -run ./tools/build
