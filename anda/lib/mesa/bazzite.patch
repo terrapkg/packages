@@ -1,16 +1,256 @@
-From aac6b04f39717f7363071f5500a89bb33e01cb33 Mon Sep 17 00:00:00 2001
+From 15d9496c44df8c20128127e8ccb8856d5b7c8c29 Mon Sep 17 00:00:00 2001
+From: Antheas Kapenekakis <git@antheas.dev>
+Date: Sat, 15 Mar 2025 16:38:53 +0100
+Subject: [PATCH 01/11] [NA] Developer files, readme, etc
+
+---
+ Containerfile | 117 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ sync.sh       |  94 ++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 211 insertions(+)
+ create mode 100644 Containerfile
+ create mode 100755 sync.sh
+
+diff --git a/Containerfile b/Containerfile
+new file mode 100644
+index 00000000000..ba4ecf6c172
+--- /dev/null
++++ b/Containerfile
+@@ -0,0 +1,117 @@
++ARG FEDORA_VERSION=41
++
++FROM fedora:${FEDORA_VERSION}
++
++# noarch
++RUN dnf5 install -y \
++    meson \
++    python3-mako \
++    python3-ply \
++    python3-pycparser \
++    rust-paste-devel \
++    rust-proc-macro2-devel \
++    rust-quote-devel \
++    cargo-rpm-macros \
++    rust-syn+clone-impls-devel \
++    rust-unicode-ident-devel \
++    vulkan-headers \
++    wayland-protocols-devel \
++    xorg-x11-proto-devel \
++    && dnf5 clean all
++
++# x86_64
++RUN dnf5 install -y \
++    bindgen-cli \
++    bison \
++    cbindgen \
++    clang-devel \
++    elfutils-libelf-devel \
++    expat-devel \
++    flex \
++    gcc \
++    gettext \
++    glslang \
++    kernel-headers \
++    libX11-devel \
++    libXdamage-devel \
++    libXext-devel \
++    libXfixes-devel \
++    libXrandr-devel \
++    libXxf86vm-devel \
++    libclc-devel \
++    libdrm-devel \
++    libglvnd-core-devel \
++    libselinux-devel \
++    libunwind-devel \
++    libva-devel \
++    libvdpau-devel \
++    libxcb-devel \
++    libxshmfence-devel \
++    libzstd-devel \
++    python3-devel \
++    lm_sensors-devel \
++    python3-pyyaml \
++    valgrind-devel \
++    spirv-llvm-translator-devel \
++    spirv-tools-devel \
++    vulkan-loader-devel \
++    wayland-devel \
++    zlib-ng-compat-devel
++
++# x86
++RUN dnf5 install -y \
++    clang-devel.i686 \
++    elfutils-libelf-devel.i686 \
++    expat-devel.i686 \
++    glslang.i686 \
++    kernel-headers.i686 \
++    libX11-devel.i686 \
++    libXdamage-devel.i686 \
++    libXext-devel.i686 \
++    libXfixes-devel.i686 \
++    libXrandr-devel.i686 \
++    libXxf86vm-devel.i686 \
++    libclc-devel.i686 \
++    libdrm-devel.i686 \
++    libglvnd-core-devel.i686 \
++    libselinux-devel.i686 \
++    libunwind-devel.i686 \
++    libva-devel.i686 \
++    libvdpau-devel.i686 \
++    libxcb-devel.i686 \
++    libxshmfence-devel.i686 \
++    libzstd-devel.i686 \
++    python3-devel.i686 \
++    lm_sensors-devel.i686 \
++    valgrind-devel.i686 \
++    spirv-llvm-translator-devel.i686 \
++    spirv-tools-devel.i686 \
++    vulkan-loader-devel.i686 \
++    wayland-devel.i686 \
++    zlib-ng-compat-devel.i686 \
++    pkgconf-pkg-config.i686
++
++# these do not have an i686 version
++# bindgen-cli.i686 \
++# bison.i686 \
++# cbindgen.i686 \
++# flex.i686 \
++# gcc.i686 \
++# gettext.i686 \
++# python3-pyyaml.i686 \
++
++RUN dnf install -y ccache
++
++ARG UID=1000
++ARG GID=1000
++
++RUN groupadd -g $GID -o builder && \
++    useradd -m -u $UID -g $GID -o -s /bin/bash builder && \
++    echo "builder ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/builder && \
++    chmod 0440 /etc/sudoers.d/builder
++
++USER builder
++
++ENV PATH="/usr/lib64/ccache/:$PATH"
++
++WORKDIR /workspace
+\ No newline at end of file
+diff --git a/sync.sh b/sync.sh
+new file mode 100755
+index 00000000000..f0fa113f876
+--- /dev/null
++++ b/sync.sh
+@@ -0,0 +1,94 @@
++if [ -z "$1" ]; then
++    echo "Usage: $0 <host>"
++    exit 1
++fi
++
++# https://gist.github.com/Venemo/a9483106565df3a83fc67a411191edbd
++
++RHOST=$1
++RSYNC="rsync -rv --exclude .git --exclude venv --exclude __pycache__ --links"
++DEVUSER=${DEVUSER:-bazzite}
++
++# If RHOST=claw, set driver name to intel
++if [ "$RHOST" = "claw" ]; then
++    echo "Using Intel driver"
++    DRIVER_NAME=intel
++    VKICD_NAME=intel
++    GALLIUM_DRIVER=iris
++else
++    echo "Using AMD driver"
++    DRIVER_NAME=amd
++    VKICD_NAME=radeon
++    GALLIUM_DRIVER=radeonsi
++fi
++
++set -e -x
++
++sudo podman build . --tag mesa_builder \
++    --build-arg UID=$(id -u) --build-arg GID=$(id -g)
++
++PODMAN_RUN="sudo podman run --rm -v $(pwd):/workspace \
++  --env CCACHE_DIR=/workspace/.cache \
++  --env CCACHE_MAXSIZE=5G \
++  --env CCACHE_COMPRESS=1 \
++    -it mesa_builder"
++
++$PODMAN_RUN rm -rf build64 build32
++
++$PODMAN_RUN meson setup build64 --libdir lib64 --prefix /workspace/.out \
++    -Dgallium-drivers=swrast,zink,$GALLIUM_DRIVER -Dvulkan-drivers=$DRIVER_NAME \
++    -Dgallium-nine=true -Dbuildtype=release \
++    -Dvideo-codecs=h264dec,h264enc,h265dec,h265enc,vc1dec
++
++# Cross-file for arch: lib32, fedora: ./gcc-i686
++$PODMAN_RUN meson setup build32 --libdir lib --prefix /workspace/.out \
++    -Dgallium-drivers=swrast,zink,$GALLIUM_DRIVER -Dvulkan-drivers=$DRIVER_NAME \
++    -Dgallium-nine=true -Dbuildtype=release \
++    -Dvideo-codecs=h264dec,h264enc,h265dec,h265enc,vc1dec
++
++time $PODMAN_RUN ninja -C build64 install
++
++time $PODMAN_RUN ninja -C build32 install
++
++RUNCONFIG=$(cat << EOF
++
++
++MESA=/home/$DEVUSER/.out
++
++export LD_LIBRARY_PATH=\$MESA/lib64:\$MESA/lib:\$LD_LIBRARY_PATH
++export LIBGL_DRIVERS_PATH=\$MESA/lib64/dri:\$MESA/lib/dri
++export EGL_DRIVERS_PATH=\$MESA/lib64/dri:\$MESA/lib/dri
++export VK_ICD_FILENAMES=\$MESA/share/vulkan/icd.d/${VKICD_NAME}_icd.x86_64.json:\$MESA/share/vulkan/icd.d/${VKICD_NAME}_icd.i686.json
++export LIBVA_DRIVERS_PATH=\$MESA/lib64/dri:\$MESA/lib/dri
++export VDPAU_DRIVER_PATH=\$MESA/lib64/vdpau
++export D3D_MODULE_PATH=\$MESA/lib64/d3d/d3dadapter9.so.1:\$MESA/lib/d3d/d3dadapter9.so.1
++# export ENABLE_GAMESCOPE_WSI=0
++
++EOF
++)
++
++ssh $RHOST /bin/bash << EOF
++    rm -rf .out
++    mkdir -p .out
++EOF
++
++echo "$RUNCONFIG" > .out/runconfig
++
++# Fixup vunkan_icd install dir
++sed -i "s|/workspace/.out|/home/$DEVUSER/.out|g" .out/share/vulkan/icd.d/*.json
++
++$RSYNC .out/ $RHOST:.out/
++
++ssh $RHOST /bin/bash << EOF
++    sudo rpm-ostree usroverlay --hotfix
++
++    # check if session does not have D3D_MODULE_PATH
++    if ! grep -q D3D_MODULE_PATH /usr/share/gamescope-session-plus/device-quirks; then
++        cat ~/.out/runconfig | sudo tee -a /usr/share/gamescope-session-plus/device-quirks
++    fi
++
++    # sudo rsync -r -v ~/.out/* /usr/
++    
++    bazzite-session-select gamescope
++    # sudo reboot
++EOF
+-- 
+2.49.0
+
+
+From 0d1d997dfc1c7ae6321544cb54cd0fae443d13bd Mon Sep 17 00:00:00 2001
 From: Antheas Kapenekakis <git@antheas.dev>
 Date: Sat, 15 Mar 2025 16:39:08 +0100
-Subject: [PATCH 01/12] [BEGIN] SteamOS Changes
+Subject: [PATCH 02/11] [BEGIN] SteamOS Changes
 
 -- 
 2.49.0
 
 
-From 9fc35e8c53fe7e6c84b7da9ddff3d528f22ea4a9 Mon Sep 17 00:00:00 2001
+From 4cace3e7b524fe399a0f970cddff8298ed5d8848 Mon Sep 17 00:00:00 2001
 From: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
 Date: Fri, 14 Jan 2022 15:58:45 +0100
-Subject: [PATCH 02/12] STEAMOS: radv: min image count override for FH5
+Subject: [PATCH 03/11] STEAMOS: radv: min image count override for FH5
 
 Otherwise in combination with the vblank time reservation in
 gamescope the game could get stuck in low power states.
@@ -19,10 +259,10 @@ gamescope the game could get stuck in low power states.
  1 file changed, 4 insertions(+)
 
 diff --git a/src/util/00-radv-defaults.conf b/src/util/00-radv-defaults.conf
-index aef8b9006cd..2a6b0ec84a4 100644
+index f4933bef04e..595a435802f 100644
 --- a/src/util/00-radv-defaults.conf
 +++ b/src/util/00-radv-defaults.conf
-@@ -223,5 +223,9 @@ Application bugs worked around in this file:
+@@ -230,5 +230,9 @@ Application bugs worked around in this file:
          <application name="Total War: WARHAMMER III" application_name_match="TotalWarhammer3">
              <option name="radv_disable_depth_storage" value="true"/>
          </application>
@@ -36,10 +276,10 @@ index aef8b9006cd..2a6b0ec84a4 100644
 2.49.0
 
 
-From 09299a2cf516078ce9ed9786a49ea6f957ac6527 Mon Sep 17 00:00:00 2001
+From ecc936c2cc8bd40dae8e0a72a0be20ac2013b135 Mon Sep 17 00:00:00 2001
 From: Samuel Pitoiset <samuel.pitoiset@gmail.com>
 Date: Thu, 22 Feb 2024 22:32:45 +0100
-Subject: [PATCH 03/12] STEAMOS: Dynamic swapchain override for gamescope
+Subject: [PATCH 04/11] STEAMOS: Dynamic swapchain override for gamescope
  limiter for DRI3 only
 
 The original patch (from Bas) contained WSI VK support too but it's
@@ -143,28 +383,28 @@ index 4da19d73090..819a0e548fc 100644
 2.49.0
 
 
-From 379efbce79f2ca73d34ec48b10e28942be3ed1be Mon Sep 17 00:00:00 2001
+From 748118300fed8a077fe78b121e2440f9a5e94b86 Mon Sep 17 00:00:00 2001
 From: Antheas Kapenekakis <git@antheas.dev>
 Date: Sat, 15 Mar 2025 16:39:25 +0100
-Subject: [PATCH 04/12] [BEGIN] SteamOS Backports
+Subject: [PATCH 05/11] [BEGIN] SteamOS Backports
 
 -- 
 2.49.0
 
 
-From a4ac8f2bcd23eb4194adfe41117d4e168ffc6ddd Mon Sep 17 00:00:00 2001
+From ac2264f9364e2660618f9c6c65ffeb6cc582d8c9 Mon Sep 17 00:00:00 2001
 From: Antheas Kapenekakis <git@antheas.dev>
 Date: Sat, 15 Mar 2025 16:39:33 +0100
-Subject: [PATCH 05/12] [BEGIN] Our Mesa backports
+Subject: [PATCH 06/11] [BEGIN] Our Mesa backports
 
 -- 
 2.49.0
 
 
-From 7286b058c851688929bd145116c61872d06d81c8 Mon Sep 17 00:00:00 2001
+From daaf7be9a252e1a2fd217114e395dfe65e473784 Mon Sep 17 00:00:00 2001
 From: Maarten Lankhorst <maarten.lankhorst@intel.com>
 Date: Mon, 17 Feb 2025 14:55:29 -0800
-Subject: [PATCH 06/12] anv: Mark images with format modifiers set as scanout.
+Subject: [PATCH 07/11] anv: Mark images with format modifiers set as scanout.
 
 We currently use the presence of struct WSI_IMAGE_CREATE_INFO_MESA.scanout to mark the BO as scanout,
 but this only handles the linear case, and fails when drm format modifiers are used.
@@ -199,10 +439,10 @@ index 0fb86e9d846..de37994d324 100644
 2.49.0
 
 
-From 643137e1f57b1c89451a77edec40565e6084e2e1 Mon Sep 17 00:00:00 2001
+From 395b58b678a438bf04c96297f243eaebfb2b02ab Mon Sep 17 00:00:00 2001
 From: Antheas Kapenekakis <git@antheas.dev>
 Date: Mon, 24 Mar 2025 19:50:51 +0100
-Subject: [PATCH 07/12] Revert "winsys/amdgpu: use VM_ALWAYS_VALID for all VRAM
+Subject: [PATCH 08/11] Revert "winsys/amdgpu: use VM_ALWAYS_VALID for all VRAM
  and GTT allocations"
 
 This reverts commit 8c91624614c1f939974fe0d2d1a3baf83335cecb.
@@ -232,135 +472,19 @@ index dfefc468bca..cc0719a1898 100644
 2.49.0
 
 
-From e38d54fb349d78b10ca5000add7cd97bf921323a Mon Sep 17 00:00:00 2001
-From: Antheas Kapenekakis <git@antheas.dev>
-Date: Wed, 7 May 2025 18:50:48 +0200
-Subject: [PATCH 08/12] [BEGIN] Intel DX12 fix
-
--- 
-2.49.0
-
-
-From cb2c3290e03518f90e13e83f68edea63c9c6c0cf Mon Sep 17 00:00:00 2001
+From d4e93fa407acb088fb1b16f7cf79e24e9886cebd Mon Sep 17 00:00:00 2001
 From: Kyle Gospodnetich <me@kylegospodneti.ch>
 Date: Sun, 18 May 2025 09:40:01 -0700
-Subject: [PATCH 09/12] [BEGIN] Proton-GE Patches
+Subject: [PATCH 09/11] [BEGIN] Proton-GE Patches
 
 -- 
 2.49.0
 
 
-From 24d4a18ec695dbdc4fba33eee941dcca49a9a106 Mon Sep 17 00:00:00 2001
-From: Kyle Gospodnetich <me@kylegospodneti.ch>
-Date: Sun, 18 May 2025 09:41:21 -0700
-Subject: [PATCH 10/12] radv,driconf: Add radv_force_64k_sparse_alignment
- config
-
----
- src/amd/vulkan/radv_buffer.c   | 6 +++++-
- src/amd/vulkan/radv_instance.c | 3 +++
- src/amd/vulkan/radv_instance.h | 1 +
- src/util/00-radv-defaults.conf | 7 +++++++
- src/util/driconf.h             | 3 +++
- 5 files changed, 19 insertions(+), 1 deletion(-)
-
-diff --git a/src/amd/vulkan/radv_buffer.c b/src/amd/vulkan/radv_buffer.c
-index 88111750517..8ef575f8246 100644
---- a/src/amd/vulkan/radv_buffer.c
-+++ b/src/amd/vulkan/radv_buffer.c
-@@ -167,6 +167,7 @@ radv_get_buffer_memory_requirements(struct radv_device *device, VkDeviceSize siz
-                                     VkBufferUsageFlags2 usage, VkMemoryRequirements2 *pMemoryRequirements)
- {
-    const struct radv_physical_device *pdev = radv_device_physical(device);
-+   const struct radv_instance *instance = radv_physical_device_instance(pdev);
- 
-    pMemoryRequirements->memoryRequirements.memoryTypeBits =
-       ((1u << pdev->memory_properties.memoryTypeCount) - 1u) & ~pdev->memory_types_32bit;
-@@ -179,7 +180,10 @@ radv_get_buffer_memory_requirements(struct radv_device *device, VkDeviceSize siz
-       pMemoryRequirements->memoryRequirements.memoryTypeBits = pdev->memory_types_32bit;
- 
-    if (flags & VK_BUFFER_CREATE_SPARSE_BINDING_BIT) {
--      pMemoryRequirements->memoryRequirements.alignment = 4096;
-+      if (instance->drirc.force_64k_sparse_alignment)
-+         pMemoryRequirements->memoryRequirements.alignment = 65536;
-+      else
-+         pMemoryRequirements->memoryRequirements.alignment = 4096;
-    } else {
-       if (usage & VK_BUFFER_USAGE_2_PREPROCESS_BUFFER_BIT_EXT)
-          pMemoryRequirements->memoryRequirements.alignment = radv_dgc_get_buffer_alignment(device);
-diff --git a/src/amd/vulkan/radv_instance.c b/src/amd/vulkan/radv_instance.c
-index 7aebf073dfd..15a3f710502 100644
---- a/src/amd/vulkan/radv_instance.c
-+++ b/src/amd/vulkan/radv_instance.c
-@@ -194,6 +194,7 @@ static const driOptionDescription radv_dri_options[] = {
-       DRI_CONF_RADV_APP_LAYER()
-       DRI_CONF_RADV_EMULATE_RT(false)
-       DRI_CONF_RADV_ENABLE_FLOAT16_GFX8(false)
-+      DRI_CONF_RADV_FORCE_64K_SPARSE_ALIGNMENT(false)
-    DRI_CONF_SECTION_END
- };
- // clang-format on
-@@ -298,6 +299,8 @@ radv_init_dri_options(struct radv_instance *instance)
-    instance->drirc.emulate_rt = driQueryOptionb(&instance->drirc.options, "radv_emulate_rt");
- 
-    instance->drirc.expose_float16_gfx8 = driQueryOptionb(&instance->drirc.options, "radv_enable_float16_gfx8");
-+
-+   instance->drirc.force_64k_sparse_alignment = driQueryOptionb(&instance->drirc.options, "radv_force_64k_sparse_alignment");
- }
- 
- static const struct vk_instance_extension_table radv_instance_extensions_supported = {
-diff --git a/src/amd/vulkan/radv_instance.h b/src/amd/vulkan/radv_instance.h
-index d0f23404285..81c4921222e 100644
---- a/src/amd/vulkan/radv_instance.h
-+++ b/src/amd/vulkan/radv_instance.h
-@@ -74,6 +74,7 @@ struct radv_instance {
-       bool lower_terminate_to_discard;
-       bool emulate_rt;
-       bool expose_float16_gfx8;
-+      bool force_64k_sparse_alignment;
-       char *app_layer;
-       uint8_t override_graphics_shader_version;
-       uint8_t override_compute_shader_version;
-diff --git a/src/util/00-radv-defaults.conf b/src/util/00-radv-defaults.conf
-index 2a6b0ec84a4..595a435802f 100644
---- a/src/util/00-radv-defaults.conf
-+++ b/src/util/00-radv-defaults.conf
-@@ -123,6 +123,13 @@ Application bugs worked around in this file:
-             <option name="radv_invariant_geom" value="true" />
-         </application>
- 
-+        <application name="DOOM: The Dark Ages" application_name_match="DOOMTheDarkAges">
-+            <option name="radv_force_64k_sparse_alignment" value="true" />
-+            <option name="radv_zero_vram" value="true" />
-+            <option name="radv_disable_dedicated_sparse_queue" value="true" />
-+            <option name="radv_disable_dcc_stores" value="true" />
-+        </application>
-+
-         <application name="Wolfenstein II" application_name_match="Wolfenstein II The New Colossus">
-             <option name="radv_disable_dcc" value="true" />
-         </application>
-diff --git a/src/util/driconf.h b/src/util/driconf.h
-index 5b0481912c8..26f7ca0b551 100644
---- a/src/util/driconf.h
-+++ b/src/util/driconf.h
-@@ -834,6 +834,9 @@
-    DRI_CONF_OPT_B(radv_enable_float16_gfx8, def, \
-                   "Expose float16 on GFX8, where it's supported but usually not beneficial.")
- 
-+#define DRI_CONF_RADV_FORCE_64K_SPARSE_ALIGNMENT(def) \
-+   DRI_CONF_OPT_B(radv_force_64k_sparse_alignment, def, \
-+                  "Force the alignment of sparse buffers to 64KiB")
- /**
-  * \brief ANV specific configuration options
-  */
--- 
-2.49.0
-
-
-From 06e57ae464ad6a373808a132e096d6a7bc137dfb Mon Sep 17 00:00:00 2001
+From d2797aae04d682bf180c919f35447e58f41c9157 Mon Sep 17 00:00:00 2001
 From: Kyle Gospodnetich <me@kylegospodneti.ch>
 Date: Sun, 18 May 2025 09:42:23 -0700
-Subject: [PATCH 11/12] radv: min image count patch for Wine Wayland/Path of
+Subject: [PATCH 10/11] radv: min image count patch for Wine Wayland/Path of
  Exile 2 Credit to Glorious Eggroll.
 
 ---
@@ -408,7 +532,7 @@ index 4be7a763da7..f1171053e0b 100644
        DRI_CONF_VK_X11_ENSURE_MIN_IMAGE_COUNT(false)
        DRI_CONF_VK_KHR_PRESENT_WAIT(false)
 diff --git a/src/freedreno/vulkan/tu_device.cc b/src/freedreno/vulkan/tu_device.cc
-index 50b9b322ad4..8d7ab456a87 100644
+index dd79caf6927..a86a2e31017 100644
 --- a/src/freedreno/vulkan/tu_device.cc
 +++ b/src/freedreno/vulkan/tu_device.cc
 @@ -1623,7 +1623,7 @@ tu_destroy_physical_device(struct vk_physical_device *device)
@@ -460,7 +584,7 @@ index 8c7d9050063..3966dab52c5 100644
        DRI_CONF_VK_X11_ENSURE_MIN_IMAGE_COUNT(false)
        DRI_CONF_VK_KHR_PRESENT_WAIT(false)
 diff --git a/src/panfrost/vulkan/panvk_instance.c b/src/panfrost/vulkan/panvk_instance.c
-index a87abdd4c7c..836f91bad40 100644
+index f6cbe8de4b7..7d3e3c71acf 100644
 --- a/src/panfrost/vulkan/panvk_instance.c
 +++ b/src/panfrost/vulkan/panvk_instance.c
 @@ -151,7 +151,7 @@ panvk_kmod_free(const struct pan_kmod_allocator *allocator, void *data)
@@ -473,10 +597,10 @@ index a87abdd4c7c..836f91bad40 100644
        DRI_CONF_VK_X11_ENSURE_MIN_IMAGE_COUNT(false)
        DRI_CONF_VK_KHR_PRESENT_WAIT(false)
 diff --git a/src/util/00-mesa-defaults.conf b/src/util/00-mesa-defaults.conf
-index 082add17d58..31e8b277bd7 100644
+index 3475dda8083..c06297e9c07 100644
 --- a/src/util/00-mesa-defaults.conf
 +++ b/src/util/00-mesa-defaults.conf
-@@ -616,24 +616,24 @@ TODO: document the other workarounds.
+@@ -620,24 +620,24 @@ TODO: document the other workarounds.
  
          <application name="gfxbench" executable="testfw_app">
              <option name="mesa_glthread_app_profile" value="0" />
@@ -505,7 +629,7 @@ index 082add17d58..31e8b277bd7 100644
              <option name="vk_x11_strict_image_count" value="true" />
          </application>
  
-@@ -694,10 +694,12 @@ TODO: document the other workarounds.
+@@ -698,10 +698,12 @@ TODO: document the other workarounds.
  
          <application name="Path of Exile" executable="PathOfExile_x64Steam.exe">
              <option name="vk_zero_vram" value="true" />
@@ -517,12 +641,12 @@ index 082add17d58..31e8b277bd7 100644
 +            <option name="vk_override_min_image_count" value="3" />
          </application>
  
-         <application name="X4 Foundations" executable="X4.exe">
+         <application name="X4 Foundations" executable="X4">
 diff --git a/src/util/driconf.h b/src/util/driconf.h
-index 26f7ca0b551..5ced93ddede 100644
+index 52605a44280..fc116c8d2bc 100644
 --- a/src/util/driconf.h
 +++ b/src/util/driconf.h
-@@ -445,8 +445,8 @@
+@@ -448,8 +448,8 @@
     DRI_CONF_OPT_B(vk_wsi_force_swapchain_to_current_extent, def, \
                    "Force VkSwapchainCreateInfoKHR::imageExtent to be VkSurfaceCapabilities2KHR::currentExtent")
  
@@ -590,7 +714,7 @@ index 51bfa77d4b2..593743c8b0e 100644
                         const VkAllocationCallbacks *alloc);
  VkResult wsi_win32_init_wsi(struct wsi_device *wsi_device,
 diff --git a/src/vulkan/wsi/wsi_common_wayland.c b/src/vulkan/wsi/wsi_common_wayland.c
-index 6be46f49d14..1f1adf4ddf9 100644
+index d592aa59401..4c1bbed855e 100644
 --- a/src/vulkan/wsi/wsi_common_wayland.c
 +++ b/src/vulkan/wsi/wsi_common_wayland.c
 @@ -58,6 +58,7 @@
@@ -601,7 +725,7 @@ index 6be46f49d14..1f1adf4ddf9 100644
  
  #include <loader/loader_wayland_helper.h>
  
-@@ -1683,9 +1684,12 @@ wsi_wl_surface_get_support(VkIcdSurfaceBase *surface,
+@@ -1684,9 +1685,12 @@ wsi_wl_surface_get_support(VkIcdSurfaceBase *surface,
  #define WSI_WL_DEFAULT_NUM_IMAGES 3
  
  static uint32_t
@@ -615,7 +739,7 @@ index 6be46f49d14..1f1adf4ddf9 100644
     if (present_mode) {
        return present_mode->presentMode == VK_PRESENT_MODE_MAILBOX_KHR ?
               WSI_WL_BUMPED_NUM_IMAGES : WSI_WL_DEFAULT_NUM_IMAGES;
-@@ -1734,7 +1738,7 @@ wsi_wl_surface_get_capabilities(VkIcdSurfaceBase *icd_surface,
+@@ -1735,7 +1739,7 @@ wsi_wl_surface_get_capabilities(VkIcdSurfaceBase *icd_surface,
        display = &temp_display;
     }
  
@@ -624,7 +748,7 @@ index 6be46f49d14..1f1adf4ddf9 100644
  
     if (!wsi_wl_surface->display)
        wsi_wl_display_finish(&temp_display);
-@@ -3496,7 +3500,7 @@ wsi_wl_surface_create_swapchain(VkIcdSurfaceBase *icd_surface,
+@@ -3497,7 +3501,7 @@ wsi_wl_surface_create_swapchain(VkIcdSurfaceBase *icd_surface,
        const VkSurfacePresentModeEXT mode =
              { VK_STRUCTURE_TYPE_SURFACE_PRESENT_MODE_EXT, NULL, pCreateInfo->presentMode };
  
@@ -633,7 +757,7 @@ index 6be46f49d14..1f1adf4ddf9 100644
        bool requires_image_count_bump = min_images == WSI_WL_BUMPED_NUM_IMAGES;
        if (requires_image_count_bump)
           num_images = MAX2(min_images, num_images);
-@@ -3684,7 +3688,8 @@ fail:
+@@ -3685,7 +3689,8 @@ fail:
  VkResult
  wsi_wl_init_wsi(struct wsi_device *wsi_device,
                  const VkAllocationCallbacks *alloc,
@@ -643,7 +767,7 @@ index 6be46f49d14..1f1adf4ddf9 100644
  {
     struct wsi_wayland *wsi;
     VkResult result;
-@@ -3710,6 +3715,14 @@ wsi_wl_init_wsi(struct wsi_device *wsi_device,
+@@ -3711,6 +3716,14 @@ wsi_wl_init_wsi(struct wsi_device *wsi_device,
  
     wsi_device->wsi[VK_ICD_WSI_PLATFORM_WAYLAND] = &wsi->base;
  
@@ -678,17 +802,17 @@ index 65b7fdf7212..ea5d3750f46 100644
 2.49.0
 
 
-From 71a603439c89eb97a0cedf9733dbd4202294175a Mon Sep 17 00:00:00 2001
+From a5460180b4a9020aaad7078da88c306acb8ec970 Mon Sep 17 00:00:00 2001
 From: Kyle Gospodnetich <me@kylegospodneti.ch>
 Date: Sun, 18 May 2025 09:59:41 -0700
-Subject: [PATCH 12/12] vulkan/wsi/wayland: Move drm syncobj to swapchain
+Subject: [PATCH 11/11] vulkan/wsi/wayland: Move drm syncobj to swapchain
 
 ---
- src/vulkan/wsi/wsi_common_wayland.c | 81 +++++++++++++++--------------
- 1 file changed, 43 insertions(+), 38 deletions(-)
+ src/vulkan/wsi/wsi_common_wayland.c | 84 +++++++++++++++--------------
+ 1 file changed, 44 insertions(+), 40 deletions(-)
 
 diff --git a/src/vulkan/wsi/wsi_common_wayland.c b/src/vulkan/wsi/wsi_common_wayland.c
-index 1f1adf4ddf9..12c7b5256f9 100644
+index 4c1bbed855e..c4da2626a31 100644
 --- a/src/vulkan/wsi/wsi_common_wayland.c
 +++ b/src/vulkan/wsi/wsi_common_wayland.c
 @@ -194,13 +194,9 @@ struct wsi_wl_surface {
@@ -755,18 +879,20 @@ index 1f1adf4ddf9..12c7b5256f9 100644
     }
  }
  
-@@ -1237,13 +1237,14 @@ wsi_wl_swapchain_update_colorspace(struct wsi_wl_swapchain *chain)
+@@ -1237,14 +1237,14 @@ wsi_wl_swapchain_update_colorspace(struct wsi_wl_swapchain *chain)
        }
     }
  
 -   bool new_color_surface = !surface->color.color_surface;
 +   bool new_color_surface = !chain->color.color_surface;
     bool needs_color_surface_new = needs_color_surface(display, chain->color.colorspace);
--   bool needs_color_surface_old = needs_color_surface(display, surface->color.colorspace);
+-   bool needs_color_surface_old = surface->color.color_surface &&
+-      needs_color_surface(display, surface->color.colorspace);
+-   if (!needs_color_surface_old && needs_color_surface_new) {
+-      wsi_wl_surface_add_color_refcount(surface);
 +   bool needs_color_surface_old = chain->color.color_surface &&
 +      needs_color_surface(display, chain->color.colorspace);
-    if ((new_color_surface || !needs_color_surface_old) && needs_color_surface_new) {
--      wsi_wl_surface_add_color_refcount(surface);
++   if ((new_color_surface || !needs_color_surface_old) && needs_color_surface_new) {
 +      wsi_wl_swapchain_add_color_refcount(chain);
     } else if (needs_color_surface_old && !needs_color_surface_new) {
 -      wsi_wl_surface_remove_color_refcount(surface);
@@ -774,7 +900,7 @@ index 1f1adf4ddf9..12c7b5256f9 100644
     }
  
     struct wayland_hdr_metadata wayland_hdr_metadata = {
-@@ -1349,7 +1350,7 @@ wsi_wl_swapchain_update_colorspace(struct wsi_wl_swapchain *chain)
+@@ -1350,7 +1350,7 @@ wsi_wl_swapchain_update_colorspace(struct wsi_wl_swapchain *chain)
        }
     }
  
@@ -783,7 +909,7 @@ index 1f1adf4ddf9..12c7b5256f9 100644
                                                          image_desc,
                                                          WP_COLOR_MANAGER_V1_RENDER_INTENT_PERCEPTUAL);
     wp_image_description_v1_destroy(image_desc);
-@@ -2025,18 +2026,12 @@ wsi_wl_surface_destroy(VkIcdSurfaceBase *icd_surface, VkInstance _instance,
+@@ -2026,18 +2026,12 @@ wsi_wl_surface_destroy(VkIcdSurfaceBase *icd_surface, VkInstance _instance,
     struct wsi_wl_surface *wsi_wl_surface =
        wl_container_of((VkIcdSurfaceWayland *)icd_surface, wsi_wl_surface, base);
  
@@ -802,7 +928,7 @@ index 1f1adf4ddf9..12c7b5256f9 100644
     if (wsi_wl_surface->surface)
        wl_proxy_wrapper_destroy(wsi_wl_surface->surface);
  
-@@ -2314,15 +2309,6 @@ static VkResult wsi_wl_surface_init(struct wsi_wl_surface *wsi_wl_surface,
+@@ -2315,15 +2309,6 @@ static VkResult wsi_wl_surface_init(struct wsi_wl_surface *wsi_wl_surface,
                                   wsi_wl_surface->display->queue);
     }
  
@@ -818,7 +944,7 @@ index 1f1adf4ddf9..12c7b5256f9 100644
     wsi_wl_surface_analytics_init(wsi_wl_surface, pAllocator);
  
     return VK_SUCCESS;
-@@ -3004,11 +2990,11 @@ wsi_wl_swapchain_queue_present(struct wsi_swapchain *wsi_chain,
+@@ -3005,11 +2990,11 @@ wsi_wl_swapchain_queue_present(struct wsi_swapchain *wsi_chain,
        /* Incremented by signal in base queue_present. */
        uint64_t acquire_point = image->base.explicit_sync[WSI_ES_ACQUIRE].timeline;
        uint64_t release_point = image->base.explicit_sync[WSI_ES_RELEASE].timeline;
@@ -832,7 +958,7 @@ index 1f1adf4ddf9..12c7b5256f9 100644
                                                          image->wl_syncobj_timeline[WSI_ES_RELEASE],
                                                          (uint32_t)(release_point >> 32),
                                                          (uint32_t)(release_point & 0xffffffff));
-@@ -3351,9 +3337,10 @@ wsi_wl_swapchain_chain_free(struct wsi_wl_swapchain *chain,
+@@ -3352,9 +3337,10 @@ wsi_wl_swapchain_chain_free(struct wsi_wl_swapchain *chain,
        wl_callback_destroy(chain->frame);
     if (chain->tearing_control)
        wp_tearing_control_v1_destroy(chain->tearing_control);
@@ -846,7 +972,7 @@ index 1f1adf4ddf9..12c7b5256f9 100644
     }
  
     /* Only unregister if we are the non-retired swapchain, or
-@@ -3471,6 +3458,15 @@ wsi_wl_surface_create_swapchain(VkIcdSurfaceBase *icd_surface,
+@@ -3472,6 +3458,15 @@ wsi_wl_surface_create_swapchain(VkIcdSurfaceBase *icd_surface,
           wp_commit_timer_v1_destroy(old_chain->commit_timer);
           old_chain->commit_timer = NULL;
        }
@@ -862,7 +988,7 @@ index 1f1adf4ddf9..12c7b5256f9 100644
     }
  
     /* Take ownership of the wsi_wl_surface */
-@@ -3519,6 +3515,15 @@ wsi_wl_surface_create_swapchain(VkIcdSurfaceBase *icd_surface,
+@@ -3520,6 +3515,15 @@ wsi_wl_surface_create_swapchain(VkIcdSurfaceBase *icd_surface,
                                                            WP_TEARING_CONTROL_V1_PRESENTATION_HINT_ASYNC);
     }
  
