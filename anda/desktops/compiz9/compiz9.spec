@@ -79,7 +79,7 @@ Compiz 9 branch, which is newer then what Fedora packages and required by Unity 
 
 %prep
 %autosetup -p1 -n compiz-%version+%(echo %_ubuntu_rel | sed -E 's@-0ubuntu.+@@')
-grep -rlZ '-Wall' . | xargs -0 sed -i 's/-Wall//g'
+grep -rlZ -- '-Wall' . | xargs -0 sed -i 's/-Wall//g'
 
 %build
 # The driver blacklist hack is obselete
