@@ -64,11 +64,11 @@ Ultramarine Linux
 install -D -m 644 example.ks %{buildroot}%{_datadir}/anaconda/post-scripts/stellar.ks
 
 %files
+%license LICENSE
+%doc README.md
 %{_datadir}/anaconda/post-scripts/stellar.ks
 
 %files -n python3-%{pypi_name}
-%license LICENSE
-%doc README.md
 %{python3_sitelib}/%{pypi_name}
 %if 0%{?fedora} <= 41
 %{python3_sitelib}/%{pypi_name}-%{pypi_version}-py%{python3_version}.egg-info/
