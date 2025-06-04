@@ -37,6 +37,8 @@ Requires:       python3dist(requests)
 Requires:       python3dist(pygobject)
 Requires:       anaconda-core
 Requires:       %{pypi_name} = %{version}-%{release}
+BuildArch:      noarch
+
 %description -n python3-%{pypi_name}
 Stellar is a quick-and-dirty GUI post-install menu for
 Ultramarine Linux
