@@ -4,7 +4,7 @@
 
 Name:           python-%{pypi_name}
 Version:        %{pypi_version}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Ultramarine Quickstart Tool
 
 Provides:       python3-%{pypi_name} = %{version}-%{release}
@@ -43,10 +43,18 @@ Ultramarine Linux
 %autosetup -n stellar-%{pypi_version}
 
 %build
+%if 0%{?fedora} <= 41
 %py3_build
+%else
+%pyproject_wheel
+%endif
 
 %install
+%if 0%{?fedora} <= 41
 %py3_install
+%else
+%pyproject_install
+%endif
 
 # install kickstart file
 install -D -m 644 example.ks %{buildroot}%{_datadir}/anaconda/post-scripts/stellar.ks
@@ -55,7 +63,11 @@ install -D -m 644 example.ks %{buildroot}%{_datadir}/anaconda/post-scripts/stell
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{pypi_version}-py%{python3_version}.egg-info
+%if 0%{?fedora} <= 41
+%{python3_sitelib}/%{pypi_name}-%{pypi_version}-py%{python3_version}.egg-info/
+%else
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
+%endif
 %{_datadir}/anaconda/post-scripts/stellar.ks
 
 %changelog
