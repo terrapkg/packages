@@ -16,6 +16,7 @@ Source0:        %{url}/archive/v%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
+BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(setuptools)
 
 %description
