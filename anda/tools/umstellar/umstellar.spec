@@ -2,13 +2,15 @@
 %global pypi_name umstellar
 %global pypi_version 0.2.0
 
-Name:           python-%{pypi_name}
+Name:           %{pypi_name}
 Version:        %{pypi_version}
 Release:        2%{?dist}
 Summary:        Ultramarine Quickstart Tool
 
 Provides:       python3-%{pypi_name} = %{version}-%{release}
 Provides:       %{pypi_name} = %{version}-%{release}
+Obsoletes:      python3-%{pypi_name} < 0.2.0-2
+Requires:       python3-%{pypi_name} = %{version}-%{release}
 
 License:        GPL-3.0
 URL:            https://github.com/Ultramarine-Linux/stellar
@@ -34,11 +36,10 @@ Summary:        %{summary}
 Requires:       python3dist(requests)
 Requires:       python3dist(pygobject)
 Requires:       anaconda-core
+Requires:       %{pypi_name} = %{version}-%{release}
 %description -n python3-%{pypi_name}
-
 Stellar is a quick-and-dirty GUI post-install menu for
 Ultramarine Linux
-
 
 %prep
 %autosetup -n stellar-%{pypi_version}
@@ -60,6 +61,9 @@ Ultramarine Linux
 # install kickstart file
 install -D -m 644 example.ks %{buildroot}%{_datadir}/anaconda/post-scripts/stellar.ks
 
+%files
+%{_datadir}/anaconda/post-scripts/stellar.ks
+
 %files -n python3-%{pypi_name}
 %license LICENSE
 %doc README.md
@@ -69,7 +73,6 @@ install -D -m 644 example.ks %{buildroot}%{_datadir}/anaconda/post-scripts/stell
 %else
 %{python3_sitelib}/%{pypi_name}-%{version}.dist-info/
 %endif
-%{_datadir}/anaconda/post-scripts/stellar.ks
 
 %changelog
 * Mon Apr 1 2024 Lleyton Gray <lleyton@fyralabs.com> - 0.2.0-1
