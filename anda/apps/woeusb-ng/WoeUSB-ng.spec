@@ -1,6 +1,6 @@
 Name:           WoeUSB-ng
 Version:        0.2.12
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Simple tool that enable you to create your own usb stick with Windows installer
 License:        GPL-3.0-only
 Requires:       parted dosfstools ntfsprogs p7zip p7zip-plugins xdg-utils grub2-tools
