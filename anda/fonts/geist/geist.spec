@@ -20,7 +20,7 @@ headlines, logos, posters, and other large display sizes.
 %package        mono
 Requires:       %{name} = %{version}-%{release}
 Summary:        Geist Mono is a monospaced typeface that has been crafted to be the perfect partner to Geist Sans
-Provides:       geist-%package
+Provides:       geist-mono geist-mono-fonts
 
 %description    mono
 Geist Mono is a monospaced typeface that has been crafted to be the perfect partner to Geist Sans.
