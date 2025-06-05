@@ -162,7 +162,7 @@ its components.
 Summary:        Gui components for the KIO Framework
 Requires:       %{name}-core%{?_isa} = %{version}-%{release}
 Provides:       kf6-kio-gui = %version-%release
-Obsoletes:      kf6-kio.switcheroo-gui < 6.13.0-4
+Obsoletes:      kf6-kio.switcheroo-gui < 6.14.0-4
 %description    gui
 %{summary}.
 
