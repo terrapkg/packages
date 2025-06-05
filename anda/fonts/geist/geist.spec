@@ -8,6 +8,7 @@ Summary:	    Geist is a new font family for Vercel, created by Vercel in collabo
 BuildRequires:  make python3 python3.10 python3.10-devel meson cairo cairo-devel gcc
 BuildArch:	    noarch
 Provides:       geist
+Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
 Geist is a new font family for Vercel, created by Vercel in collaboration with Basement Studio.
