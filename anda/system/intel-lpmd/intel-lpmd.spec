@@ -1,4 +1,5 @@
 %global _distro_extra_cflags -Wno-unused-variable -Wno-unused-function -Wno-switch
+%global __cc clang
 
 Name:			intel-lpmd
 Version:		0.0.9
@@ -7,8 +8,8 @@ Summary:		Linux daemon designed to optimize active idle power
 License:		GPL-2.0-only
 URL:			https://github.com/intel/intel-lpmd
 Source0:		%url/archive/refs/tags/v%version.tar.gz
-BuildRequires:	automake autoconf-archive gcc glib2-devel dbus-glib-devel libxml2-devel libnl3-devel systemd-devel gtk-doc upower-devel
-BuildRequires:	kernel-devel
+BuildRequires:	automake autoconf-archive glib2-devel dbus-glib-devel libxml2-devel libnl3-devel systemd-devel gtk-doc upower-devel
+BuildRequires:	clang-libs clang
 
 %description
 Intel Low Power Mode Daemon (lpmd) is a Linux daemon designed to optimize active idle power. It selects the most power-efficient CPUs based on a configuration file or CPU topology. Depending on system utilization and other hints, it puts the system into Low Power Mode by activating the power-efficient CPUs and disabling the rest, and restores the system from Low Power Mode by activating all CPUs.
