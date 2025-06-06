@@ -7,8 +7,6 @@ Version:        %{pypi_version}
 Release:        2%{?dist}
 Summary:        Ultramarine Quickstart Tool
 
-Provides:       python3-%{pypi_name} = %{version}-%{release}
-Provides:       %{pypi_name} = %{version}-%{release}
 Obsoletes:      python3-%{pypi_name} < 0.2.0-2
 Requires:       python3-%{pypi_name} = %{version}-%{release}
 
