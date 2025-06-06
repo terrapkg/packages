@@ -27,6 +27,7 @@ sed -i 's@mandb || true@@' Makefile.am
 %make_install
 
 mv %buildroot{%_usr%_sysconfdir/intel_lpmd,%_sysconfdir}
+mv %buildroot{%_usr/sbin/*,%_bindir}
 
 %files
 %doc README.md ChangeLog AUTHORS NEWS security.md
