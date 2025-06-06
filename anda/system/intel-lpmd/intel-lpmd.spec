@@ -8,6 +8,7 @@ License:		GPL-2.0-only
 URL:			https://github.com/intel/intel-lpmd
 Packager:		madonuko <mado@fyralabs.com>
 Source0:		%url/archive/refs/tags/v%version.tar.gz
+ExclusiveArch:	x86_64
 BuildRequires:	automake autoconf-archive glib2-devel dbus-glib-devel libxml2-devel libnl3-devel systemd-devel gtk-doc upower-devel
 BuildRequires:	gcc
 
