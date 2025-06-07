@@ -21,9 +21,7 @@ URL:            https://ziglang.org
 Source0:        %{url}/builds/zig-%{version_no_tilde}.tar.xz
 Source1:        %{url}/builds/zig-%{version_no_tilde}.tar.xz.minisig
 Patch0:         0000-remove-native-lib-directories-from-rpath.patch
-Patch1:         0001-increase-upper-bounds-of-main-zig-executable-to-10G.patch
-Patch2:         0002-build-pass-zig-lib-dir-as-directory-instead-of-as-st.patch
-Patch3:         https://src.fedoraproject.org/rpms/zig/raw/rawhide/f/0005-link.Elf-add-root-directory-of-libraries-to-linker-p.patch
+Patch3:         0005-link.Elf-add-root-directory-of-libraries-to-linker-p.patch
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
