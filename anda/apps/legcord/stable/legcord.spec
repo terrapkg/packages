@@ -15,7 +15,6 @@ License:        OSL-3.0
 Summary:        Custom lightweight Discord client designed to enhance your experience
 URL:            https://github.com/Legcord/Legcord
 Group:          Applications/Internet
-Source1:        launch.sh
 Packager:       madonuko <mado@fyralabs.com>
 Requires:       xdg-utils
 Obsoletes:      armcord < 3.3.2-1
