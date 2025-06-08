@@ -23,7 +23,7 @@ URL:            https://github.com/ethangreen-dev/lovely-injector
 Requires:       love
 Packager:       Cappy Ishihara <cappy@cappuchino.xyz>
 
-BuildRequires:  mold anda-srpm-macros cargo-rpm-macros >= 24
+BuildRequires:  cmake mold anda-srpm-macros cargo-rpm-macros >= 24
 %if %{with rust_nightly}
 BuildRequires: rustup
 %endif
