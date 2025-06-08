@@ -1,9 +1,9 @@
 #? https://github.com/flameshot-org/flameshot/blob/master/packaging/rpm/fedora/flameshot.spec
 
 %global ver v12.1.0
-%global commit 88eaf96f249e7df7e81a2960594914c82ff302b7
+%global commit 4edfb2ac1d71e7f75fcdcb850ff6bce5fb148a7b
 %global shortcommit %{sub %{commit} 1 7}
-%global commit_date 20250606
+%global commit_date 20250608
 %global devel_name QtColorWidgets
 
 Name:			flameshot.nightly
