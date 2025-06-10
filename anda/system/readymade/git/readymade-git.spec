@@ -1,5 +1,5 @@
-%global commit 216c7ba7321b31f098e892f4fa8294da6f404889
-%global commit_date 20250502
+%global commit eced36223a7683dec87af0f6496a5c01ff757bab
+%global commit_date 20250610
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           readymade-git
@@ -60,6 +60,5 @@ ln -sf %{_datadir}/applications/com.fyralabs.Readymade.desktop %{buildroot}%{_da
 %_datadir/polkit-1/actions/com.fyralabs.pkexec.readymade.policy
 %_datadir/applications/com.fyralabs.Readymade.desktop
 %_datadir/applications/liveinst.desktop
-%_datadir/readymade
+%ghost %_datadir/readymade
 %_datadir/icons/hicolor/scalable/apps/com.fyralabs.Readymade.svg
-
