@@ -5,7 +5,6 @@
 %elifarch aarch64
 %global __requires_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*)|(.*\\x86_64*\\.so.*)|(.*\\x86-64*\\.so.*))$
 %endif
-%define _build_id_links none
 %global org_name Heroic-Games-Launcher
 %global git_name %(echo %{org_name} | sed 's/-//g')
 %global reverse_dns com.heroicgameslauncher.hgl
