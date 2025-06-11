@@ -38,7 +38,7 @@ This package contains the configuration files for Readymade to install Ultramari
 
 %prep
 %autosetup -n readymade-%commit -Sgit
-git submodule init -j8
+git submodule init
 %cargo_prep_online
 
 %build
