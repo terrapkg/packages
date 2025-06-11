@@ -6,7 +6,7 @@
 
 Name:           rust-anda
 Version:        0.4.12
-Release:        3%?dist
+Release:        4%?dist
 Summary:        Andaman Build toolchain
 
 License:        MIT
@@ -38,7 +38,9 @@ Requires:       rpm-build
 Requires:       createrepo_c
 Requires:       git-core
 Requires:       libgit2
-Requires:       script
+%if 0%{?fedora} >= 42
+Requires:       util-linux-script
+%endif
 
 %description -n %{crate} %{_description}
 
