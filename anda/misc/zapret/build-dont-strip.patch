@@ -1,0 +1,119 @@
+From 77ade97f4c3a1acc5955feeac3bf6e83e0f4d22e Mon Sep 17 00:00:00 2001
+From: VirtualFreeEx <contact@ffi.lol>
+Date: Thu, 1 May 2025 18:21:33 +0300
+Subject: [PATCH 2/2] build: dont strip
+
+---
+ ip2net/Makefile | 6 +++---
+ mdig/Makefile   | 8 ++++----
+ nfq/Makefile    | 4 ++--
+ tpws/Makefile   | 8 ++++----
+ 4 files changed, 13 insertions(+), 13 deletions(-)
+
+diff --git a/ip2net/Makefile b/ip2net/Makefile
+index 484f3d7..209ad3c 100644
+--- a/ip2net/Makefile
++++ b/ip2net/Makefile
+@@ -9,14 +9,14 @@ SRC_FILES = ip2net.c qsort.c
+ all: ip2net
+ 
+ ip2net: $(SRC_FILES)
+-	$(CC) -s $(CFLAGS) -o ip2net $(SRC_FILES) $(LIBS) $(LDFLAGS)
++	$(CC) $(CFLAGS) -o ip2net $(SRC_FILES) $(LIBS) $(LDFLAGS)
+ 
+ systemd: ip2net
+ 
+ android: ip2net
+ 
+ bsd: $(SRC_FILES)
+-	$(CC) -s $(CFLAGS) $(CFLAGS_BSD) -o ip2net $(SRC_FILES) $(LIBS) $(LDFLAGS)
++	$(CC) $(CFLAGS) $(CFLAGS_BSD) -o ip2net $(SRC_FILES) $(LIBS) $(LDFLAGS)
+ 
+ mac: $(SRC_FILES)
+ 	$(CC) $(CFLAGS) $(CFLAGS_BSD) -o ip2neta $(SRC_FILES) -target arm64-apple-macos10.8 $(LIBS) $(LDFLAGS)
+@@ -26,7 +26,7 @@ mac: $(SRC_FILES)
+ 	rm -f ip2netx ip2neta
+ 
+ win: $(SRC_FILES)
+-	$(CC) -s $(CFLAGS) $(CFLAGS_WIN) -o ip2net $(SRC_FILES) $(LIBS_WIN) $(LDFLAGS)
++	$(CC) $(CFLAGS) $(CFLAGS_WIN) -o ip2net $(SRC_FILES) $(LIBS_WIN) $(LDFLAGS)
+ 
+ clean:
+ 	rm -f ip2net *.o
+diff --git a/mdig/Makefile b/mdig/Makefile
+index 21b6c84..a9ea0e1 100644
+--- a/mdig/Makefile
++++ b/mdig/Makefile
+@@ -10,15 +10,15 @@ SRC_FILES = *.c
+ all: mdig
+ 
+ mdig: $(SRC_FILES)
+-	$(CC) -s $(CFLAGS) -o mdig $(SRC_FILES) $(LIBS) $(LDFLAGS)
++	$(CC) $(CFLAGS) -o mdig $(SRC_FILES) $(LIBS) $(LDFLAGS)
+ 
+ systemd: mdig
+ 
+ android: $(SRC_FILES)
+-	$(CC) -s $(CFLAGS) -o mdig $(SRC_FILES) $(LIBS_ANDROID) $(LDFLAGS)
++	$(CC) $(CFLAGS) -o mdig $(SRC_FILES) $(LIBS_ANDROID) $(LDFLAGS)
+ 
+ bsd: $(SRC_FILES)
+-	$(CC) -s $(CFLAGS) $(CFLAGS_BSD) -o mdig $(SRC_FILES) $(LIBS) $(LDFLAGS)
++	$(CC) $(CFLAGS) $(CFLAGS_BSD) -o mdig $(SRC_FILES) $(LIBS) $(LDFLAGS)
+ 
+ mac: $(SRC_FILES)
+ 	$(CC) $(CFLAGS) $(CFLAGS_BSD) -o mdiga $(SRC_FILES) -target arm64-apple-macos10.8 $(LIBS_BSD) $(LDFLAGS)
+@@ -28,7 +28,7 @@ mac: $(SRC_FILES)
+ 	rm -f mdigx mdiga
+ 
+ win: $(SRC_FILES)
+-	$(CC) -s $(CFLAGS) $(CFLAGS_WIN) -o mdig $(SRC_FILES) $(LIBS_WIN) $(LDFLAGS)
++	$(CC) $(CFLAGS) $(CFLAGS_WIN) -o mdig $(SRC_FILES) $(LIBS_WIN) $(LDFLAGS)
+ 
+ clean:
+ 	rm -f mdig *.o
+diff --git a/nfq/Makefile b/nfq/Makefile
+index 85a29e4..4b6491b 100644
+--- a/nfq/Makefile
++++ b/nfq/Makefile
+@@ -16,10 +16,10 @@ SRC_FILES = *.c crypto/*.c
+ all: nfqws
+ 
+ nfqws: $(SRC_FILES)
+-	$(CC) -s $(CFLAGS) -o nfqws $(SRC_FILES) $(LIBS_LINUX) $(LDFLAGS)
++	$(CC) $(CFLAGS) -o nfqws $(SRC_FILES) $(LIBS_LINUX) $(LDFLAGS)
+ 
+ systemd: $(SRC_FILES)
+-	$(CC) -s $(CFLAGS) $(CFLAGS_SYSTEMD) -o nfqws $(SRC_FILES) $(LIBS_LINUX) $(LIBS_SYSTEMD) $(LDFLAGS)
++	$(CC) $(CFLAGS) $(CFLAGS_SYSTEMD) -o nfqws $(SRC_FILES) $(LIBS_LINUX) $(LIBS_SYSTEMD) $(LDFLAGS)
+ 
+ android: nfqws
+ 
+diff --git a/tpws/Makefile b/tpws/Makefile
+index 2f53263..4fc1743 100644
+--- a/tpws/Makefile
++++ b/tpws/Makefile
+@@ -11,16 +11,16 @@ SRC_FILES_ANDROID = $(SRC_FILES) andr/*.c
+ all: tpws
+ 
+ tpws: $(SRC_FILES)
+-	$(CC) -s $(CFLAGS) -o tpws $(SRC_FILES) $(LIBS) $(LDFLAGS)
++	$(CC) -g $(CFLAGS) -o tpws $(SRC_FILES) $(LIBS) $(LDFLAGS)
+ 
+ systemd: $(SRC_FILES)
+-	$(CC) -s $(CFLAGS) $(CFLAGS_SYSTEMD) -o tpws $(SRC_FILES) $(LIBS) $(LIBS_SYSTEMD) $(LDFLAGS)
++	$(CC) -g $(CFLAGS) $(CFLAGS_SYSTEMD) -o tpws $(SRC_FILES) $(LIBS) $(LIBS_SYSTEMD) $(LDFLAGS)
+ 
+ android: $(SRC_FILES)
+-	$(CC) -s $(CFLAGS) -o tpws $(SRC_FILES_ANDROID) $(LIBS_ANDROID) $(LDFLAGS)
++	$(CC) -g $(CFLAGS) -o tpws $(SRC_FILES_ANDROID) $(LIBS_ANDROID) $(LDFLAGS)
+ 
+ bsd: $(SRC_FILES)
+-	$(CC) -s $(CFLAGS) $(CFLAGS_BSD) -Iepoll-shim/include -o tpws $(SRC_FILES) epoll-shim/src/*.c $(LIBS) $(LDFLAGS)
++	$(CC) $(CFLAGS) $(CFLAGS_BSD) -Iepoll-shim/include -o tpws $(SRC_FILES) epoll-shim/src/*.c $(LIBS) $(LDFLAGS)
+ 
+ mac: $(SRC_FILES)
+ 	$(CC) $(CFLAGS) $(CFLAGS_BSD) -Iepoll-shim/include -Imacos -o tpwsa -target arm64-apple-macos10.8 $(SRC_FILES) epoll-shim/src/*.c $(LIBS) $(LDFLAGS)
+-- 
+2.49.0
+

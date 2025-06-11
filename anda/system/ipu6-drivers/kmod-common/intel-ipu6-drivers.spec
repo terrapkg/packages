@@ -1,6 +1,6 @@
 %global debug_package %{nil}
-%global ipu6_commit c09e2198d801e1eb701984d2948373123ba92a56
-%global ipu6_commitdate 20250424
+%global ipu6_commit e89983c628d046b2f77af3b6678cc49c2dd58332
+%global ipu6_commitdate 20250521
 %global ipu6_shortcommit %(c=%{ipu6_commit}; echo ${c:0:7})
 %global usbio_commit 4fb690c6d15a81c492954636c2db396cb700a119
 %global usbio_commitdate 20241210

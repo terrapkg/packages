@@ -1,5 +1,6 @@
 %global debug_package %{nil}
 %global __strip %{nil}
+%global __brp_strip_comment_note %{nil}
 %global __brp_ldconfig %{nil}
 %define _build_id_links none
 
@@ -9,8 +10,8 @@
 %endif
 
 Name:           nvidia-driver
-Version:        575.51.02
-Release:        2%?dist
+Version:        575.57.08
+Release:        1%?dist
 Summary:        NVIDIA's proprietary display driver for NVIDIA graphic cards
 Epoch:          3
 License:        NVIDIA License
@@ -448,14 +449,14 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %endif
 %ifarch x86_64
 %{_datadir}/vulkansc/icd.d/nvidia_icd.%{_target_cpu}.json
+%if v"%{version}" > v"570.144"
 %{_libdir}/libnvidia-present.so.%{version}
+%endif
 %{_libdir}/libnvidia-vksc-core.so.1
 %{_libdir}/libnvidia-vksc-core.so.%{version}
 %dir %{_libdir}/nvidia
 %dir %{_libdir}/nvidia/wine
-%{_libdir}/nvidia/wine/_nvngx.dll
-%{_libdir}/nvidia/wine/nvngx.dll
-%{_libdir}/nvidia/wine/nvngx_dlssg.dll
+%{_libdir}/nvidia/wine/*.dll
 %endif
 
 %files cuda-libs
@@ -479,7 +480,9 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %ifarch x86_64 aarch64
 %{_libdir}/libcudadebugger.so.1
 %{_libdir}/libcudadebugger.so.%{version}
+%if v"%{version}" > v"570.144"
 %{_libdir}/libnvidia-nvvm70.so.4
+%endif
 %{_libdir}/libnvidia-sandboxutils.so.1
 %{_libdir}/libnvidia-sandboxutils.so.%{version}
 %endif

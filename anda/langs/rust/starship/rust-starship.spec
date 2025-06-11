@@ -4,7 +4,7 @@
 %global crate starship
 
 Name:           rust-starship
-Version:        1.22.1
+Version:        1.23.0
 Release:        1%?dist
 Summary:        Minimal, blazing-fast, and infinitely customizable prompt for any shell! ☄🌌️
 
@@ -19,6 +19,12 @@ BuildRequires:  anda-srpm-macros
 BuildRequires:  cmake
 BuildRequires:  mold
 BuildRequires:  git-core
+
+# Old devel packages
+Obsoletes:      %{name}+gix-faster-devel < 1.23.0
+Obsoletes:      %{name}+gix-features-devel < 1.23.0
+Obsoletes:      %{name}+gix-max-perf-devel < 1.23.0
+Obsoletes:      %{name}+libz-ng-sys-devel < 1.23.0
 
 %global _description %{expand:
 The minimal, blazing-fast, and infinitely customizable prompt for any
@@ -86,54 +92,6 @@ This package contains library source intended for building other packages which
 use the "config-schema" feature of the "%{crate}" crate.
 
 %files       -n %{name}+config-schema-devel
-%ghost %{crate_instdir}/Cargo.toml
-
-%package     -n %{name}+gix-faster-devel
-Summary:        %{summary}
-BuildArch:      noarch
-
-%description -n %{name}+gix-faster-devel %{_description}
-
-This package contains library source intended for building other packages which
-use the "gix-faster" feature of the "%{crate}" crate.
-
-%files       -n %{name}+gix-faster-devel
-%ghost %{crate_instdir}/Cargo.toml
-
-%package     -n %{name}+gix-features-devel
-Summary:        %{summary}
-BuildArch:      noarch
-
-%description -n %{name}+gix-features-devel %{_description}
-
-This package contains library source intended for building other packages which
-use the "gix-features" feature of the "%{crate}" crate.
-
-%files       -n %{name}+gix-features-devel
-%ghost %{crate_instdir}/Cargo.toml
-
-%package     -n %{name}+gix-max-perf-devel
-Summary:        %{summary}
-BuildArch:      noarch
-
-%description -n %{name}+gix-max-perf-devel %{_description}
-
-This package contains library source intended for building other packages which
-use the "gix-max-perf" feature of the "%{crate}" crate.
-
-%files       -n %{name}+gix-max-perf-devel
-%ghost %{crate_instdir}/Cargo.toml
-
-%package     -n %{name}+libz-ng-sys-devel
-Summary:        %{summary}
-BuildArch:      noarch
-
-%description -n %{name}+libz-ng-sys-devel %{_description}
-
-This package contains library source intended for building other packages which
-use the "libz-ng-sys" feature of the "%{crate}" crate.
-
-%files       -n %{name}+libz-ng-sys-devel
 %ghost %{crate_instdir}/Cargo.toml
 
 %package     -n %{name}+notify-devel

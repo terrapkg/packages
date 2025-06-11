@@ -1,4 +1,5 @@
 %global build_rustflags %build_rustflags -C link-arg=-fuse-ld=mold
+%global rustflags_debuginfo 1
 
 Name:           rnote
 Version:        0.12.0
@@ -36,8 +37,9 @@ import/export, an infinite canvas and an adaptive UI for big and small screens.
 %files
 %doc README.md
 %license LICENSE
-
+%_bindir/rnote-cli
 %_bindir/rnote
+%_datadir/thumbnailers/rnote.thumbnailer
 %_datadir/applications/com.github.flxzt.rnote.desktop
 %_datadir/glib-2.0/schemas/com.github.flxzt.rnote.gschema.xml
 %_datadir/icons/hicolor/scalable/apps/com.github.flxzt.rnote.svg
