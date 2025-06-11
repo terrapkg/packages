@@ -8,6 +8,8 @@ Release:        1%?dist
 Summary:        Install ready-made distribution images!
 License:        GPL-3.0-or-later
 URL:            https://github.com/FyraLabs/readymade
+Source0:        %url/archive/%commit.tar.gz
+Source1:        https://github.com/FyraLabs/rdms_proc_macros/archive/HEAD.tar.gz
 BuildRequires:	anda-srpm-macros rust-packaging mold
 BuildRequires:  pkgconfig(libhelium-1)
 BuildRequires:  clang-devel
@@ -35,7 +37,8 @@ This package contains the configuration files for Readymade to install Ultramari
 
 
 %prep
-%git_clone
+%autosetup -n readymade-%commit -Sgit
+git submodule init -j8
 %cargo_prep_online
 
 %build
