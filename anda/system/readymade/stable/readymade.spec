@@ -1,5 +1,5 @@
 Name:           readymade
-Version:        0.12.3
+Version:        0.12.4
 Release:        1%?dist
 Summary:        Install ready-made distribution images!
 License:        GPL-3.0-or-later
