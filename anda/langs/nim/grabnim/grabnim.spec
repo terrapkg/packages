@@ -10,6 +10,7 @@ License:		MIT
 URL:			https://codeberg.org/janAkali/grabnim
 Source0:		%url/archive/%commit.tar.gz
 Packager:		madonuko <mado@fyralabs.com>
+BuildRequires:	nim
 
 %description
 GrabNim is a simple tool to install, manage and switch between different versions of the Nim compiler.
