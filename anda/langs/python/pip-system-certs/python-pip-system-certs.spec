@@ -12,7 +12,7 @@ URL:            https://gitlab.com/alelec/pip-system-certs
 Source0:        https://files.pythonhosted.org/packages/source/p/%{pypi_name}/pip_system_certs-%{pypi_version}.tar.gz
 BuildArch:      noarch
 
-BuildRequires:  python3-devel python3-pip python3dist(setuptools) python3dist(wheel) git
+BuildRequires:  python3-devel python3-pip python3dist(setuptools) python3dist(wheel) git-core
 
 
 %description
@@ -39,14 +39,28 @@ rm -rf %{pypi_name}.egg-info
 
 %build
 pip install git-versioner
+%if 0%{?fedora} <= 41
+%py3_build
+%else
 %pyproject_wheel
+%endif
 
 %install
+%if 0%{?fedora} <= 41
+%py3_install
+%else
 %pyproject_install
 
 %pyproject_save_files pip_system_certs
+%endif
 
+%if 0%{?fedora} <= 41
+%files -n python3-%{pypi_name}
+%{python3_sitelib}/python_pip_certs/
+%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%else
 %files -n python3-%{pypi_name} -f %pyproject_files
+%endif
 %license LICENSE
 %doc README.rst
 %python3_sitelib/pip_system_certs.pth
