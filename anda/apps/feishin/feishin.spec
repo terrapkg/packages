@@ -13,7 +13,8 @@ License:		GPL-3.0
 URL:			https://github.com/jeffvli/feishin
 Source0:		%url/archive/refs/tags/v%version.tar.gz
 Requires:		fuse mpv
-BuildRequires:	nodejs20-npm jq libxcrypt-compat pnpm
+Packager:		madonuko <mado@fyralabs.com>
+BuildRequires:	jq libxcrypt-compat pnpm
 
 %description
 %summary.
@@ -48,11 +49,11 @@ pnpm run build
 %define a arm64
 %endif
 
-npx-20 electron-builder --linux dir --%a
+pnpm exec electron-builder --linux dir --%a
 
 %install
 mkdir -p %buildroot%_datadir/{pixmaps,applications} %buildroot%_bindir
-mv release/build/*-unpacked %buildroot%_datadir/feishin
+mv dist/*-unpacked %buildroot%_datadir/feishin
 install -Dm644 assets/icons/icon.png %buildroot%_datadir/pixmaps/feishin.png
 ln -s %_datadir/feishin/feishin %buildroot%_bindir/feishin
 install -Dm644 feishin.desktop %buildroot%_datadir/applications/
