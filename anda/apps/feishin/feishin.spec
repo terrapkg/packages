@@ -13,7 +13,7 @@ License:		GPL-3.0
 URL:			https://github.com/jeffvli/feishin
 Source0:		%url/archive/refs/tags/v%version.tar.gz
 Requires:		fuse mpv
-BuildRequires:	nodejs20-npm jq libxcrypt-compat
+BuildRequires:	nodejs20-npm jq libxcrypt-compat pnpm
 
 %description
 %summary.
@@ -42,9 +42,9 @@ export PATH="$PATH:$(pwd)/bin"
 mkdir bin
 ln -s /usr/bin/node-20 bin/node
 ln -s /usr/bin/npm-20 bin/npm
-npm-20 install --legacy-peer-deps
-npm-20 run postinstall
-npm-20 run build
+pnpm i
+pnpm run postinstall
+pnpm run build
 %ifarch x86_64
 
 %define a linux
