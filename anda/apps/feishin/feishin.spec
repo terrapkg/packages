@@ -38,10 +38,6 @@ Keywords=Music;Jellyfin;Audio;Stream;Sonixd
 EOF
 
 %build
-export PATH="$PATH:$(pwd)/bin"
-mkdir bin
-ln -s /usr/bin/node-20 bin/node
-ln -s /usr/bin/npm-20 bin/npm
 pnpm i
 pnpm run postinstall
 pnpm run build
