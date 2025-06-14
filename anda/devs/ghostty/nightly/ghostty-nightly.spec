@@ -145,9 +145,9 @@ DESTDIR="%{buildroot}" \
 rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %endif
 
-%dnl %find_lang %{reverse_dns}
+%find_lang %{reverse_dns}
 
-%files
+%files -f %{reverse_dns}.lang
 %doc README.md
 %license LICENSE
 %{_bindir}/%{base_name}
