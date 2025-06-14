@@ -30,6 +30,6 @@ install -Dpm644 nimble.zsh-completion %buildroot%zsh_completions_dir/_nimble.zsh
 %doc readme.markdown
 %license license.txt
 %_bindir/nimble
-%_mandir/man1/nimble.1
+%_mandir/man1/nimble.1.gz
 %bash_completions_dir/nimble
 %zsh_completions_dir/_nimble.zsh
