@@ -34,6 +34,7 @@ License:        MIT
 URL:            %{gourl}
 Source:         %{gosource}
 Source1:        https://raw.githubusercontent.com/twpayne/chezmoi/294e3ac0532e70fb23808e2ec2e5190854330bba/go.sum
+Source2:        https://raw.githubusercontent.com/twpayne/chezmoi/294e3ac0532e70fb23808e2ec2e5190854330bba/go.mod
 
 %description %{common_description}
 
@@ -41,7 +42,7 @@ Source1:        https://raw.githubusercontent.com/twpayne/chezmoi/294e3ac0532e70
 
 %prep
 %goprep
-rm go.sum
+cp %{S:1} %{S:2} .
 
 %build
 %define gomodulesmode GO111MODULE=on
