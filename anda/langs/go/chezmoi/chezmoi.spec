@@ -41,8 +41,7 @@ Source1:        https://raw.githubusercontent.com/twpayne/chezmoi/294e3ac0532e70
 
 %prep
 %goprep
-cp %{S:1} .
-%go_prep_online
+rm go.sum
 
 %build
 %define gomodulesmode GO111MODULE=on
