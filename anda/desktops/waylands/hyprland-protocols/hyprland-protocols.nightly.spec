@@ -7,7 +7,7 @@
 %global shortcommit %{sub %commit 1 7}
 
 Name:           %realname.nightly
-Version:        %ver
+Version:        %ver^%{commit_date}git.%shortcommit
 Release:        1%?dist
 Summary:        Wayland protocol extensions for Hyprland
 BuildArch:      noarch
