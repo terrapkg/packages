@@ -1,5 +1,5 @@
-%global commit 822c0d6
-%global commit_date 20250613
+%global commit 4e455bb
+%global commit_date 20250614
 
 Name:			astal
 Version:		0^%commit_date.%commit
