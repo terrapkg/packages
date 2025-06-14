@@ -72,7 +72,7 @@ Conflicts:		%realname-tests
 
 
 %prep
-%autosetup -p1
+%autosetup -p1 -n %realname-%version
 
 
 %build
