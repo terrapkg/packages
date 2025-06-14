@@ -46,6 +46,7 @@ cp %{S:1} %{S:2} .
 
 %build
 %define gomodulesmode GO111MODULE=on
+cp %{S:1} %{S:2} .
 %gobuild -o %{gobuilddir}/bin/chezmoi .
 
 %install
