@@ -1,0 +1,18 @@
+--- a/src/main.zig	2025-04-25 06:01:31.337458939 -0500
++++ b/src/main.zig	2025-04-25 06:03:02.239473385 -0500
+@@ -4072,6 +4072,15 @@
+ 
+             try create_module.lib_directories.ensureUnusedCapacity(arena, paths.lib_dirs.items.len);
+             for (paths.lib_dirs.items) |path| addLibDirectoryWarn2(&create_module.lib_directories, path, true);
++
++            for (paths.lib_dirs.items) |native_lib_dir| {
++                for (0.., create_module.rpath_list.items) |i, rpath_dir| {
++                    if (std.mem.eql(u8, native_lib_dir, rpath_dir)) {
++                        _ = create_module.rpath_list.orderedRemove(i);
++                        break;
++                    }
++                }
++            }
+         }
+ 
+         if (create_module.libc_paths_file) |paths_file| {

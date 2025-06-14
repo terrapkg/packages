@@ -1,8 +1,12 @@
-%global commit0 c519e97ef7af581c109f49b6973269fb16d1bc54
-%global date 20250206
+%global commit0 effa3af05da4525d850a525ae2dedf5eb80351d7
+%global date 20250524
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 %global upstream_name nvidia-vaapi-driver
+
+%ifarch %ix86
+%global build_cflags %{__build_flags_lang_c} %{?_distro_extra_cflags} -Wno-error=format=
+%endif
 
 Name:           libva-nvidia-driver
 Epoch:          1

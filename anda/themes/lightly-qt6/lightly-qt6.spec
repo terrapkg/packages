@@ -2,6 +2,7 @@
 %global _style lightly
 %global dev boehs
 %global _qt_major_version 6
+%global _qt_old_major 5
  
 %global forgeurl https://github.com/%{dev}/%{style}
 %global commit 00ca23447844114d41bfc0d37cf8823202c082e8
@@ -49,7 +50,10 @@ BuildRequires:  cmake(KF%{_qt_major_version}Kirigami2)
 BuildRequires:  cmake(KF%{_qt_major_version}Notifications)
 BuildRequires:  cmake(KF%{_qt_major_version}Package)
 BuildRequires:  cmake(KF%{_qt_major_version}WindowSystem)
- 
+
+BuildRequires:  cmake(Qt%{_qt_old_major}Core)
+BuildRequires:  cmake(Qt%{_qt_old_major}Gui)
+
 BuildRequires:  cmake(KDecoration2)
 BuildRequires:  cmake(KWayland)
 BuildRequires:  cmake(Plasma)
@@ -71,7 +75,12 @@ Lightly is a fork of breeze theme style that aims to be visually modern and mini
 %forgeautosetup -p1
  
 %build
-%cmake_kf6 -DQT_MAJOR_VERSION=%{_qt_major_version}
+%cmake_kf6 \
+   -DQT_MAJOR_VERSION=%{_qt_major_version} \
+   -DCMAKE_INSTALL_PREFIX=%{_prefix} \
+   -DCMAKE_BUILD_TYPE=Release \
+   -DBUILD_TESTING=OFF \
+   -DKDE_INSTALL_USE_QT_SYS_PATHS=ON 
 %cmake_build
  
 %install

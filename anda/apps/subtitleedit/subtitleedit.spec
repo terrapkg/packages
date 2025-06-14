@@ -2,8 +2,8 @@
 %global realname subtitleedit
 
 Name:           %realname.bin
-Version:        4.0.11
-Release:        1%?dist
+Version:        4.0.12
+Release:        2%?dist
 Summary:        An advanced subtitle editor and converter
 License:        GPL-3.0-only
 URL:            https://www.nikse.dk/SubtitleEdit
@@ -13,7 +13,7 @@ Packager:       madonuko <mado@fyralabs.com>
 Provides:       %realname = %evr
 Conflicts:      %realname
 BuildRequires:  unzip anda-srpm-macros
-Requires:       mono dejavu-fonts
+Requires:       dejavu-sans-mono-fonts mono-core
 
 %description
 %summary.
@@ -33,7 +33,7 @@ EOF
 
 cat<<EOF > subtitleedit
 #!/usr/bin/sh
-exec mono /opt/subtitleedit/SubtitleEdit.exe "$@"
+exec mono /usr/share/subtitleedit/SubtitleEdit.exe "$@"
 EOF
 
 

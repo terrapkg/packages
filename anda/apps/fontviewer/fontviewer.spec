@@ -1,6 +1,6 @@
 Name:           fontviewer
 Epoch:          1
-Version:        1.1.0
+Version:        1.2.0
 Release:        1%?dist
 Summary:        View and install fonts
 

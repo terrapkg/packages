@@ -1,5 +1,5 @@
---- kanata-1.8.0/Cargo.toml	1970-01-01T00:00:01+00:00
-+++ kanata-1.8.0/Cargo.toml	2025-02-24T02:18:17.384667+00:00
+--- kanata-*/Cargo.toml	1970-01-01T00:00:01+00:00
++++ kanata-*/Cargo.toml	2025-02-24T02:18:17.384667+00:00
 @@ -124,23 +124,9 @@
      "kanata-parser/gui",
      "win_sendinput_send_scancodes",
@@ -34,15 +34,15 @@
  ]
  win_sendinput_send_scancodes = ["kanata-parser/win_sendinput_send_scancodes"]
  zippychord = ["kanata-parser/zippychord"]
-@@ -189,91 +173,3 @@
+@@ -192,91 +176,2 @@
  [target.'cfg(target_os = "linux")'.dependencies.signal-hook]
  version = "0.3.14"
- 
+-
 -[target.'cfg(target_os = "macos")'.dependencies.core-graphics]
 -version = "0.24.0"
 -
 -[target.'cfg(target_os = "macos")'.dependencies.karabiner-driverkit]
--version = "0.1.4"
+-version = "0.1.5"
 -
 -[target.'cfg(target_os = "macos")'.dependencies.libc]
 -version = "0.2"
