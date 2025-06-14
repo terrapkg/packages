@@ -65,7 +65,7 @@ BuildRequires:  mingw32-spirv-headers
 Requires(pre):  vulkan-tools
 
 # Disable ISA dep on WINE until I figure out what we are doing with 32-bit WINE, currently these are non-WOW64 builds
-Requires:       terra-wine-staging
+Requires:       (terra-wine-staging or terra-wine-stable or terra-wine-dev)
 Requires:       terra-wine-dxvk-dxgi%{?_isa} = %{version}-%{release}
 Requires:       vulkan-loader%{?_isa}
 
