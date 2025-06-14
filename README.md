@@ -30,7 +30,7 @@ In addition, you can install `terra-release-extra` for more repositories (e.g. `
 
 ### Enterprise Linux (EL)
 
-Only EL10 or above are supported, and not all packages available in Terra are available in Terra EL.
+Only EL10 is supported. Not all packages available in Terra are available in Terra EL at this time.
 
 ```bash
 sudo dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terrael$releasever' terra-release
