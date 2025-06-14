@@ -8,11 +8,11 @@ Source0:		%url/archive/refs/tags/v%version.tar.gz
 Packager:		madonuko <mado@fyralabs.com>
 BuildRequires:	cmake
 BuildRequires:	pkgconfig(wayland-protocols)
-BuildRequires:	pkgconfig(hyprland-protocols)
-BuildRequires:	(pkgconfig(hyprlang) >= 0.6.0 with hyprlang.nightly-devel)
+BuildRequires:	(pkgconfig(hyprland-protocols) with hyprland-protocols.nightly-devel)
+BuildRequires:	(pkgconfig(hyprlang) with hyprlang.nightly-devel)
 BuildRequires:	pkgconfig(sdbus-c++)
 BuildRequires:	(pkgconfig(hyprwayland-scanner) with hyprwayland-scanner.nightly-devel)
-BuildRequires:	pkgconfig(hyprutils) >= 0.2.0
+BuildRequires:	(pkgconfig(hyprutils) with hyprutils.nightly-devel)
 
 %description
 %summary.
