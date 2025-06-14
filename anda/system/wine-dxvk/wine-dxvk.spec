@@ -24,7 +24,7 @@
 
 Name:           terra-wine-dxvk
 Version:        2.6.2
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Vulkan-based implementation of D3D8, 9, 10 and 11 for Linux / Wine
 
 License:        zlib AND MIT
