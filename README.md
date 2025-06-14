@@ -26,7 +26,7 @@ curl -fsSL https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo | pke
 sudo rpm-ostree install terra-release
 ```
 
-In addition, you can install `terra-release-extra` for more repositories (e.g. `terra-nvidia`, `terra-mesa`, `terra-extras`).
+Optionally, you can install `terra-release-extra` to use the Extras repository. This also installs the Nvidia, and Mesa streams but does not enable them.
 
 ### Enterprise Linux (EL)
 
