@@ -37,6 +37,7 @@ and account-less.}
 %build
 %{cargo_license_summary_online}
 %{cargo_license_online} > LICENSE.dependencies
+%{cargo_build} --locked
 
 %install
-%cargo_install
+%crate_install_bin
