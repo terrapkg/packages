@@ -41,9 +41,10 @@ Source1:        https://raw.githubusercontent.com/twpayne/chezmoi/294e3ac0532e70
 
 %prep
 %goprep
+cp %{S:1} .
+%go_prep_online
 
 %build
-cp %{S:1} .
 %define gomodulesmode GO111MODULE=on
 %gobuild -o %{gobuilddir}/bin/chezmoi .
 
