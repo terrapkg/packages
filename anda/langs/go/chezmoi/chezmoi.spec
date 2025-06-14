@@ -33,6 +33,7 @@ Summary:        Manage your dotfiles across multiple diverse machines, securely
 License:        MIT
 URL:            %{gourl}
 Source:         %{gosource}
+Source1:        https://raw.githubusercontent.com/twpayne/chezmoi/294e3ac0532e70fb23808e2ec2e5190854330bba/go.sum
 
 %description %{common_description}
 
@@ -42,6 +43,7 @@ Source:         %{gosource}
 %goprep
 
 %build
+cp %{S:1} .
 %define gomodulesmode GO111MODULE=on
 %gobuild -o %{gobuilddir}/bin/chezmoi .
 
