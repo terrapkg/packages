@@ -9,6 +9,7 @@ Suggests:       qt6-qtwayland
 BuildRequires:  cmake git-core gcc gcc-c++ binutils
 BuildRequires:  cmake(Qt6)
 BuildRequires:  cmake(Qt6LinguistTools)
+ExclusiveArch:  x86_64
 
 %description
 VPKEdit is an open source MIT-licensed tool that can extract from, preview the
