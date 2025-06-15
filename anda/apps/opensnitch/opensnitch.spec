@@ -31,8 +31,9 @@ BuildRequires:  python-rpm-macros
 BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(setuptools) >= 61.0
 BuildRequires:  python3dist(wheel) >= 0.37.1
+BuildRequires:  python3dist(grpc_tools)
 BuildRequires:  protobuf-compiler
-BuildRequires:  protoc-gen-go
+#BuildRequires:  protoc-gen-go
 
 %description %{common_description}
 
