@@ -1,5 +1,5 @@
 Name:           bruno
-Version:        1.22.0
+Version:        2.5.0
 Release:        1%?dist
 Summary:        Opensource API Client for Exploring and Testing APIs
 License:        MIT
