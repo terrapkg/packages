@@ -6,8 +6,8 @@
 
 Name:           switchboard-plug-tweaks
 Summary:        Switchboard Tweaks Plug
-Version:        2.0.2
-Release:        2%?dist
+Version:        2.3.0
+Release:        1%?dist
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/pantheon-tweaks/pantheon-tweaks

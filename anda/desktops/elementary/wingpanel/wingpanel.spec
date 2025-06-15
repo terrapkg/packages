@@ -6,7 +6,7 @@ launcher.}
 
 Name:           wingpanel
 Summary:        Stylish top panel
-Version:        8.0.0
+Version:        8.0.3
 Release:        1%?dist
 License:        GPL-2.0-or-later
 Epoch:          1

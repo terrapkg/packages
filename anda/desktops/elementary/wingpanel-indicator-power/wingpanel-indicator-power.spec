@@ -5,7 +5,7 @@
 
 Name:           wingpanel-indicator-power
 Summary:        Power indicator for wingpanel
-Version:        8.0.0
+Version:        8.0.2
 Release:        1%?dist
 License:        GPL-2.0-or-later
 

@@ -8,7 +8,7 @@
 
 Name:           switchboard-plug-locale
 Summary:        Switchboard Locale Plug
-Version:        8.0.0
+Version:        8.0.2
 Release:        1%?dist
 License:        LGPL-3.0-or-later
 

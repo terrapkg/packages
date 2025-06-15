@@ -1,6 +1,6 @@
 %bcond_with check
 
-%global ver 0.187.5
+%global ver 0.191.2-pre
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 

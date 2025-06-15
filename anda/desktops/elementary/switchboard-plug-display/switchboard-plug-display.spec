@@ -8,7 +8,7 @@
 
 Name:           switchboard-plug-display
 Summary:        Switchboard Display plug
-Version:        8.0.0
+Version:        8.0.2
 Release:        1%?dist
 License:        GPL-3.0-or-later
 

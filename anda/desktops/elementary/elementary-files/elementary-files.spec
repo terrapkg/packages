@@ -5,7 +5,7 @@
 
 Name:           elementary-files
 Summary:        File manager from elementary
-Version:        7.0.0
+Version:        7.1.2
 Release:        1%?dist
 License:        GPL-3.0
 

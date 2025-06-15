@@ -8,7 +8,7 @@
 
 Name:           switchboard-plug-useraccounts
 Summary:        Switchboard User Accounts Plug
-Version:        8.0.0
+Version:        8.0.1
 Release:        1%?dist
 License:        LGPL-3.0-or-later
 

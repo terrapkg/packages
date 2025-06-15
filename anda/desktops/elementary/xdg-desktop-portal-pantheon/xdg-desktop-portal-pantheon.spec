@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:			xdg-desktop-portal-pantheon
-Version:		7.2.0
+Version:		8.0.3
 Release:		1%?dist
 Summary:		Pantheon XDG Desktop Portals
 License:		GPL-3.0

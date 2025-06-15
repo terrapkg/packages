@@ -3,7 +3,7 @@
 
 Name:           switchboard
 Summary:        Modular Desktop Settings Hub
-Version:        8.0.0
+Version:        8.0.2
 Release:        1%?dist
 License:        LGPL-2.0-or-later
 

@@ -8,7 +8,7 @@
 
 Name:           switchboard-plug-about
 Summary:        Switchboard System Information plug
-Version:        8.0.0
+Version:        8.2.1
 Release:        1%?dist
 License:        GPL-3.0-or-later
 

@@ -3,7 +3,7 @@
 
 Name:           elementary-screenshot-tool
 Summary:        Screenshot tool designed for elementary
-Version:        8.0.0
+Version:        8.0.1
 Release:        1%?dist
 License:        LGPL-3.0
 

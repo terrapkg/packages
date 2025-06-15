@@ -5,7 +5,7 @@
 
 Name:           wingpanel-applications-menu
 Summary:        Lightweight and stylish app launcher
-Version:        8.0.0
+Version:        8.0.1
 Release:        1%?dist
 License:        GPL-3.0-or-later
 

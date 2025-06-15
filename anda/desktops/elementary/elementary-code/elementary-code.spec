@@ -5,7 +5,7 @@
 
 Name:           elementary-code
 Summary:        Code editor from elementary
-Version:        7.3.0
+Version:        7.4.0
 Release:        1%?dist
 License:        GPL-3.0
 
