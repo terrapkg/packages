@@ -10,7 +10,7 @@ BuildRequires:	cmake
 BuildRequires:	pkgconfig(cairo)
 BuildRequires:	(pkgconfig(hyprgraphics) with hyprgraphics.nightly-devel)
 BuildRequires:	pkgconfig(hyprland-protocols)
-BuildRequires:	pkgconfig(hyprlang)
+BuildRequires:	(pkgconfig(hyprlang) with hyprlang.nightly-devel)
 BuildRequires:	pkgconfig(hyprutils)
 BuildRequires:	pkgconfig(hyprwayland-scanner)
 BuildRequires:	mesa-libgbm-devel
