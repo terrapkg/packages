@@ -8,7 +8,7 @@ Source0:		%url/archive/refs/tags/v%version.tar.gz
 Packager:		madonuko <mado@fyralabs.com>
 BuildRequires:	cmake
 BuildRequires:	pkgconfig(cairo)
-BuildRequires:	pkgconfig(hyprgraphics)
+BuildRequires:	(pkgconfig(hyprgraphics) with hyprgraphics.nightly-devel)
 BuildRequires:	pkgconfig(hyprland-protocols)
 BuildRequires:	pkgconfig(hyprlang)
 BuildRequires:	pkgconfig(hyprutils)
@@ -20,7 +20,7 @@ BuildRequires:	pkgconfig(pango)
 BuildRequires:	pkgconfig(wayland-client)
 BuildRequires:	pkgconfig(wayland-protocols)
 BuildRequires:	pkgconfig(xkbcommon)
-BuildRequires:	pkgconfig(sdbus-c++)
+BuildRequires:	pkgconfig(sdbus-c++) >= 2.0.0
 
 %description
 %summary.
@@ -38,3 +38,6 @@ BuildRequires:	pkgconfig(sdbus-c++)
 %files
 %doc README.md
 %license LICENSE
+%_bindir/%name
+%_pam_confdir/%name
+%_datadir/hypr/%name.conf
