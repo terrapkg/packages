@@ -10,7 +10,7 @@ BuildArch:      noarch
 
 %dnl We probably shouldn't do this in Rawhide!
 %dnl Requires:       system-release(%{version})
-Requires:       epel-release
+Requires:       (epel-release-latest-%{version} or epel-release)
 
 %description
 Release package for Terra, containing the Terra repository configuration.
