@@ -1,5 +1,5 @@
 Name:           vpkedit
-Version:        4.2.3
+Version:        4.4.2
 Release:        1%?dist
 Summary:        A CLI/GUI tool to create, read, and write several pack file formats
 License:        MIT
@@ -8,6 +8,9 @@ Requires:       qt6-qtbase hicolor-icon-theme
 Suggests:       qt6-qtwayland
 BuildRequires:  cmake git-core gcc gcc-c++ binutils
 BuildRequires:  cmake(Qt6)
+BuildRequires:  cmake(Qt6Svg)
+BuildRequires:  cmake(Qt6Linguist)
+BuildRequires:  cmake(Qt6Charts)
 BuildRequires:  cmake(Qt6LinguistTools)
 ExclusiveArch:  x86_64
 
