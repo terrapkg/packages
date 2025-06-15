@@ -6,7 +6,7 @@ License:		BSD-3-Clause
 URL:			https://github.com/hyprwm/%name
 Source0:		%url/archive/refs/tags/v%version.tar.gz
 Packager:		madonuko <mado@fyralabs.com>
-BuildRequires:	cmake gcc
+BuildRequires:	cmake gcc gcc-c++
 BuildRequires:	pkgconfig(cairo)
 BuildRequires:	(pkgconfig(hyprgraphics) with hyprgraphics.nightly-devel)
 BuildRequires:	pkgconfig(hyprland-protocols)
