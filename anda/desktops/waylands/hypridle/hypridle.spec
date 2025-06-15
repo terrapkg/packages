@@ -7,6 +7,7 @@ URL:			https://github.com/hyprwm/hypridle
 Source0:		%url/archive/refs/tags/v%version.tar.gz
 Packager:		madonuko <mado@fyralabs.com>
 BuildRequires:	cmake gcc gcc-c++
+BuildRequires:	pkgconfig(wayland-client)
 BuildRequires:	pkgconfig(wayland-protocols)
 BuildRequires:	(pkgconfig(hyprland-protocols) with hyprland-protocols.nightly-devel)
 BuildRequires:	(pkgconfig(hyprlang) with hyprlang.nightly-devel)
