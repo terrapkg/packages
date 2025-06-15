@@ -22,27 +22,31 @@ new VPKs.
 
 
 %prep
-rm -rf ./*
-git clone %url . --depth 1 --recursive --branch v%version
-git checkout v%version
+%git_clone %url v%version
 
 
 %build
-%cmake # -DVPKEDIT_BUILD_LIBC=ON
+%cmake -DCMAKE_INSTALL_PREFIX=%_libdir/%name# -DVPKEDIT_BUILD_LIBC=ON
 %cmake_build
 
 
 %install
 %cmake_install
-ls %buildroot/usr/**
+pushd %buildroot%_libdir/%name
+rm -rf libQt*
+popd
 ln -sf %_libdir/vpkedit/vpkedit %buildroot%_bindir/vpkedit
 ln -sf %_libdir/vpkedit/vpkeditcli %buildroot%_bindir/vpkeditcli
 sed -i 's@Exec=/opt/vpkedit/@Exec=@g' %buildroot%_datadir/applications/vpkedit.desktop
 
 
 %files
-%doc README.md
+%doc README.md CREDITS.md
 %license LICENSE
 %_bindir/vpkedit
 %_bindir/vpkeditcli
+%_libdir/%name/
 %_datadir/applications/vpkedit.desktop
+%_iconsdir/hicolor/128x128/mimetypes/application-x-vpkedit.png
+%_datadir/mime/packages/vpkedit.xml
+%_datadir/pixmaps/vpkedit.png
