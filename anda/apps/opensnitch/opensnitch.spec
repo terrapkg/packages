@@ -28,6 +28,7 @@ URL:            %{gourl}
 Source:         %{gosource}
 BuildRequires:  gcc-c++
 BuildRequires:  /usr/bin/qmake
+BuildRequires:  qt5-linguist
 BuildRequires:  python3-devel
 BuildRequires:  python-rpm-macros
 BuildRequires:  python3dist(pip)
