@@ -11,7 +11,7 @@ BuildRequires:	pkgconfig(wayland-client)
 BuildRequires:	pkgconfig(wayland-protocols)
 BuildRequires:	(pkgconfig(hyprland-protocols) with hyprland-protocols.nightly-devel)
 BuildRequires:	(pkgconfig(hyprlang) with hyprlang.nightly-devel)
-BuildRequires:	pkgconfig(sdbus-c++)
+BuildRequires:	(pkgconfig(sdbus-c++) with sdbus-cpp.terra-devel)
 BuildRequires:	(pkgconfig(hyprwayland-scanner) with hyprwayland-scanner.nightly-devel)
 BuildRequires:	(pkgconfig(hyprutils) with hyprutils.nightly-devel)
 
