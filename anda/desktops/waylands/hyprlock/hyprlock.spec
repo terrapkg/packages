@@ -12,7 +12,7 @@ BuildRequires:	(pkgconfig(hyprgraphics) with hyprgraphics.nightly-devel)
 BuildRequires:	pkgconfig(hyprland-protocols)
 BuildRequires:	(pkgconfig(hyprlang) with hyprlang.nightly-devel)
 BuildRequires:	pkgconfig(hyprutils)
-BuildRequires:	pkgconfig(hyprwayland-scanner)
+BuildRequires:	(pkgconfig(hyprwayland-scanner) with hyprwayland-scanner.nightly-devel)
 BuildRequires:	mesa-libgbm-devel
 BuildRequires:	mesa-libGL-devel
 BuildRequires:	pkgconfig(pam)
