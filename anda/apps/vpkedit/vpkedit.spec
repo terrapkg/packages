@@ -26,7 +26,7 @@ new VPKs.
 
 
 %build
-%cmake -DCMAKE_INSTALL_PREFIX=%_libdir/%name# -DVPKEDIT_BUILD_LIBC=ON
+%cmake -DCMAKE_INSTALL_PREFIX=%_libdir/%name   # -DVPKEDIT_BUILD_LIBC=ON
 %cmake_build
 
 
