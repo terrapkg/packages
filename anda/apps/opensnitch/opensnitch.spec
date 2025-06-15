@@ -27,14 +27,13 @@ License:        GPL-3.0-only AND LGPL-2.1-only
 URL:            %{gourl}
 Source:         %{gosource}
 BuildRequires:  gcc-c++
-BuildRequires:  qt6-qtbase-devel
-BuildRequires:  qt6-linguist
 BuildRequires:  python3-devel
 BuildRequires:  python-rpm-macros
 BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(setuptools) >= 61.0
 BuildRequires:  python3dist(wheel) >= 0.37.1
 BuildRequires:  python3dist(pyqt5)
+BuildRequires:  python3dist(protobuf)
 BuildRequires:  protobuf-compiler
 #BuildRequires:  protoc-gen-go
 #BuildRequires:  /usr/bin/protoc-gen-go-grpc
