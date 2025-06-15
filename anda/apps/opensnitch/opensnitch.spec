@@ -27,8 +27,8 @@ License:        GPL-3.0-only AND LGPL-2.1-only
 URL:            %{gourl}
 Source:         %{gosource}
 BuildRequires:  gcc-c++
-BuildRequires:  /usr/bin/qmake
-BuildRequires:  qt5-linguist
+BuildRequires:  qt6-qtbase-devel
+BuildRequires:  qt6-linguist
 BuildRequires:  python3-devel
 BuildRequires:  python-rpm-macros
 BuildRequires:  python3dist(pip)
