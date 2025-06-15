@@ -46,7 +46,6 @@ ls %buildroot/usr/**
 ln -sf %_libdir/vpkedit/vpkedit %buildroot%_bindir/vpkedit
 ln -sf %_libdir/vpkedit/vpkeditcli %buildroot%_bindir/vpkeditcli
 sed -i 's@Exec=/opt/vpkedit/@Exec=@g' %buildroot%_datadir/applications/vpkedit.desktop
-install -Dpm755 include/vpkeditc %buildroot%_includedir/vpkeditc
 
 
 %files
