@@ -8,6 +8,9 @@ Requires:       qt6-qtbase hicolor-icon-theme
 Suggests:       qt6-qtwayland
 BuildRequires:  cmake git-core gcc gcc-c++ binutils
 BuildRequires:  cmake(Qt6)
+BuildRequires:  cmake(Qt6Svg)
+BuildRequires:  cmake(Qt6Linguist)
+BuildRequires:  cmake(Qt6Charts)
 BuildRequires:  cmake(Qt6LinguistTools)
 
 %description
