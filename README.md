@@ -32,6 +32,14 @@ Optionally, you can install `terra-release-extra` to use the Extras repository. 
 
 Only EL10 is supported. Not all packages available in Terra are available in Terra EL at this time.
 
+Terra EL requires the EPEL repos, which may be installed with:
+
+```bash
+sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-${{ matrix.version }}.noarch.rpm
+```
+
+And Terra EL itself can be installed with:
+
 ```bash
 sudo dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terrael$releasever' terra-release
 ```
