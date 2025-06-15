@@ -55,6 +55,10 @@ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.3.0
 sed -i 's/@pip3 /@python3 -m pip /' ui/Makefile
 
 %build
+pushd ui
+%make_build deps
+popd
+
 export GOBIN=$(cat %_builddir/gobin)
 export PATH=$GOBIN:$PATH
 pushd proto
