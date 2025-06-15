@@ -12,6 +12,8 @@ BuildRequires:  asar electron pnpm gcc gcc-c++
 BuildRequires:  pkgconfig(pixman-1)
 BuildRequires:  pkgconfig(cairo)
 BuildRequires:  pkgconfig(pangocairo)
+BuildRequires:  python3-devel
+BuildRequires:  python3-distutils-extra
 
 %description
 Bruno is a new and innovative API client, aimed at revolutionizing the status quo represented by Postman and similar tools out there.
