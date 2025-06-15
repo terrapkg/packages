@@ -42,7 +42,7 @@ Summary:        Development headers for flashprog
 
 
 %prep
-%git_clone %{url} v%{version}
+%git_clone https://review.sourcearcade.org/flashprog v%{version}
 
 %build
 %make_build PREFIX=%{_prefix}
