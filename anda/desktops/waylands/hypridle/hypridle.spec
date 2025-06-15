@@ -38,4 +38,8 @@ BuildRequires:	(pkgconfig(hyprutils) with hyprutils.nightly-devel)
 %systemd_user_postun_with_restart %name.service
 
 %files
+%doc README.md
+%license LICENSE
+%_bindir/hypridle
+%_datadir/hypr/hypridle.conf
 %_userunitdir/%name.service
