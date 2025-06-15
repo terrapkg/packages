@@ -1,5 +1,5 @@
 Name:           anda-srpm-macros
-Version:        0.2.14
+Version:        0.2.17
 Release:        1%?dist
 Summary:        SRPM macros for extra Fedora packages
 
@@ -28,12 +28,13 @@ done
 install -Dpm755 *.sh -t %buildroot%_libexecdir/%name/
 
 %files
-%_libexecdir/%name/
+%attr(0755, root, root) %_libexecdir/%name/*.sh
 %{_rpmmacrodir}/macros.anda
 %{_rpmmacrodir}/macros.caching
 %{_rpmmacrodir}/macros.cargo_extra
 %{_rpmmacrodir}/macros.go_extra
 %{_rpmmacrodir}/macros.nim_extra
+%{_rpmmacrodir}/macros.zig_extra
 
 
 %changelog
