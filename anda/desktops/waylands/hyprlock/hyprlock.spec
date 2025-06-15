@@ -21,6 +21,9 @@ BuildRequires:	pkgconfig(wayland-client)
 BuildRequires:	pkgconfig(wayland-protocols)
 BuildRequires:	pkgconfig(xkbcommon)
 BuildRequires:	pkgconfig(sdbus-c++) >= 2.0.0
+BuildRequires:	pkgconfig(libjpeg)
+BuildRequires:	pkgconfig(libwebp)
+BuildRequires:	pkgconfig(libmagic)
 
 %description
 %summary.
