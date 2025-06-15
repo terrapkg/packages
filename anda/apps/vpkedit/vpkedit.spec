@@ -6,6 +6,7 @@ License:        MIT
 URL:            https://github.com/craftablescience/VPKEdit
 Requires:       qt6-qtbase hicolor-icon-theme
 Suggests:       qt6-qtwayland
+Packager:       madonuko <mado@fyralabs.com>
 BuildRequires:  cmake git-core gcc gcc-c++ binutils
 BuildRequires:  cmake(Qt6)
 BuildRequires:  cmake(Qt6Svg)
@@ -15,15 +16,6 @@ BuildRequires:  cmake(Qt6LinguistTools)
 ExclusiveArch:  x86_64
 
 %description
-VPKEdit is an open source MIT-licensed tool that can extract from, preview the
-contents of and write to several pack file formats. It also supports creating
-new VPKs.
-
-
-%package -n libvpkeditc
-Summary: A library to create, read, and write several pack file formats
-
-%description -n libvpkeditc
 VPKEdit is an open source MIT-licensed tool that can extract from, preview the
 contents of and write to several pack file formats. It also supports creating
 new VPKs.
@@ -54,12 +46,3 @@ sed -i 's@Exec=/opt/vpkedit/@Exec=@g' %buildroot%_datadir/applications/vpkedit.d
 %_bindir/vpkedit
 %_bindir/vpkeditcli
 %_datadir/applications/vpkedit.desktop
-
-%files -n libvpkeditc
-%doc README.md
-%license LICENSE
-%_includedir/vpkeditc
-%_libdir/libvpkeditc.so
-
-%changelog
-%autochangelog
