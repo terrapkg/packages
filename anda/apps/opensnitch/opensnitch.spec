@@ -33,7 +33,7 @@ BuildRequires:  python3dist(setuptools) >= 61.0
 BuildRequires:  python3dist(wheel) >= 0.37.1
 BuildRequires:  python3dist(grpc_tools)
 BuildRequires:  protobuf-compiler
-#BuildRequires:  protoc-gen-go
+BuildRequires:  /usr/bin/protoc-gen-go-grpc
 
 %description %{common_description}
 
@@ -54,7 +54,7 @@ sed -i 's/@pip3 /@python3 -m pip /' ui/Makefile
 
 %build
 export GOBIN=$(cat %_builddir/gobin)
-export PATH=$PATH:$GOBIN
+export PATH=$GOBIN:$PATH
 pushd proto
 %make_build
 popd
