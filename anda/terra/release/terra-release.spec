@@ -1,6 +1,6 @@
 Name:           terra-release
 Version:        10
-Release:        2
+Release:        3
 Summary:        Release package for Terra
 
 License:        MIT
@@ -10,6 +10,7 @@ BuildArch:      noarch
 
 %dnl We probably shouldn't do this in Rawhide!
 %dnl Requires:       system-release(%{version})
+Requires:       epel-release
 
 %description
 Release package for Terra, containing the Terra repository configuration.
