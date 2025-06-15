@@ -1,1 +1,3 @@
-rpm.version(gh_rawfile("hyprwm/hypridle", "main", "VERSION"));
+let v = gh_rawfile("hyprwm/hypridle", "main", "VERSION");
+v.trim();
+rpm.version(v);
