@@ -5,7 +5,7 @@
 %global crate anda
 
 Name:           rust-anda
-Version:        0.4.12
+Version:        0.4.13
 Release:        1%?dist
 Summary:        Andaman Build toolchain
 
@@ -26,13 +26,6 @@ BuildRequires:  libgit2-devel
 BuildRequires:  libssh2-devel
 BuildRequires:  mold
 
-Requires:       mock-scm
-Requires:       rpm-build
-Requires:       createrepo_c
-Requires:       git-core
-Requires:       libgit2
-Requires:       script
-
 %global _description %{expand:
 Andaman Build toolchain.}
 
@@ -40,6 +33,15 @@ Andaman Build toolchain.}
 
 %package     -n %{crate}
 Summary:        %{summary}
+Requires:       mock
+Requires:       rpm-build
+Requires:       createrepo_c
+Requires:       git-core
+Requires:       libgit2
+%if 0%{?fedora} >= 42
+Requires:       mock-filesystem
+Requires:       util-linux-script
+%endif
 
 %description -n %{crate} %{_description}
 

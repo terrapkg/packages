@@ -6,8 +6,8 @@
 %endif
 
 Name:			bun-bin
-Version:		1.2.15
-Release:		2%?dist
+Version:		1.2.16
+Release:		1%?dist
 Summary:		Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one
 License:		MIT
 URL:			https://bun.sh

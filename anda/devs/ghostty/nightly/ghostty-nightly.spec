@@ -1,16 +1,11 @@
-%global commit 57cd5ef08520800533596f00a60ce84b9bd8950d
+%global commit d0f116da3554c151c63fd3a11e90661cb8489359
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global fulldate 2025-06-09
+%global fulldate 2025-06-15
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
 %global ver 1.1.4
 %global base_name ghostty
 %global reverse_dns com.mitchellh.%{base_name}
-%if 0%{?fedora} <= 40
-%global cache_dir %{_builddir}/zig-cache
-%else
-%global cache_dir %{builddir}/zig-cache
-%endif
 
 Name:           %{base_name}-nightly
 Version:        %{ver}~tip^%{commit_date}git%{shortcommit}
@@ -23,7 +18,7 @@ License:        MIT AND MPL-2.0 AND OFL-1.1 AND (WTFPL OR CC0-1.0) AND Apache-2.
 URL:            https://%{base_name}.org
 Source0:        https://github.com/%{base_name}-org/%{base_name}/releases/download/tip/%{base_name}-source.tar.gz
 Source1:        https://github.com/%{base_name}-org/%{base_name}/releases/download/tip/%{base_name}-source.tar.gz.minisig
-BuildRequires:  anda-srpm-macros
+BuildRequires:  anda-srpm-macros >= 0.2.15
 BuildRequires:  gettext
 BuildRequires:  gtk4-devel
 BuildRequires:  libadwaita-devel
@@ -33,6 +28,7 @@ BuildRequires:  ncurses
 BuildRequires:  ncurses-devel
 BuildRequires:  pandoc-cli
 BuildRequires:  zig >= 0.14.0
+BuildRequires:  zig-rpm-macros
 BuildRequires:  pkgconfig(blueprint-compiler)
 BuildRequires:  pkgconfig(bzip2)
 BuildRequires:  pkgconfig(freetype2)
@@ -130,22 +126,16 @@ Ghostty's terminfo. Needed for basic terminal function.
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
 %autosetup -n %{base_name}-%{ver}-main+%{shortcommit}
 
-ZIG_GLOBAL_CACHE_DIR="%{cache_dir}" ./nix/build-support/fetch-zig-cache.sh
+ZIG_GLOBAL_CACHE_DIR="%{_zig_cache_dir}" ./nix/build-support/fetch-zig-cache.sh
 
 %build
 
 %install
 DESTDIR="%{buildroot}" \
-zig build \
-    --summary all \
-    --release=fast \
-    --system "%{cache_dir}/p" \
+%{zig_build_target -r fast} \
     --prefix "%{_prefix}" --prefix-lib-dir "%{_libdir}" \
     --prefix-exe-dir "%{_bindir}" --prefix-include-dir "%{_includedir}" \
-    --verbose \
-    --build-id=sha1 \
     -Dversion-string="%{ver}-dev+%{shortcommit}" \
-    -Dcpu=baseline \
     -Dstrip=false \
     -Dpie=true \
     -Demit-docs 
