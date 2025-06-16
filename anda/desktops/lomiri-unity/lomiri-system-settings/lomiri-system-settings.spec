@@ -75,9 +75,9 @@ developing applications that use %{name}.
 %dir %{_datadir}/lomiri-system-settings
 %{_datadir}/lomiri-system-settings/*.settings
 %{_datadir}/lomiri-system-settings/*.svg
-%{_datadir}/lomiri-system-settings/*.png
+%dnl %{_datadir}/lomiri-system-settings/*.png
 %{_datadir}/lomiri-system-settings/url-map.ini
-%dir %{_datadir}/lomiri-system-settings/icons
+%dnl %dir %{_datadir}/lomiri-system-settings/icons
 %{_datadir}/lomiri-system-settings/icons/*.svg
 %{_datadir}/lomiri-system-settings/qml-plugins/
 %{_datadir}/lomiri-url-dispatcher/urls/lomiri-system-settings.url-dispatcher
