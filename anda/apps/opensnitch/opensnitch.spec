@@ -35,6 +35,7 @@ BuildRequires:  python3dist(wheel) >= 0.37.1
 BuildRequires:  python3dist(pyqt5)
 BuildRequires:  /usr/bin/lrelease-qt5
 BuildRequires:  protobuf-compiler
+BuildRequires:  pkgconfig(libnetfilter_queue)
 #BuildRequires:  protoc-gen-go
 #BuildRequires:  /usr/bin/protoc-gen-go-grpc
 
