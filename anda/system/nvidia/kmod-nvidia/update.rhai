@@ -15,4 +15,9 @@ majorminor.sort();
 let kver = find_all(`kernel-([\d.]+.*?)\.el.*?\.x86_64\.rpm`, get(`https://repo.almalinux.org/almalinux/${majorminor[majorminor.len()-1]}/BaseOS/x86_64/os/Packages/`));
 kver.dedup();
 open_file("anda/system/nvidia/kmod-nvidia/VERSION_kernel.txt", "w").write(`${kver[kver.len - 1][1]}`);
-import "andax/ci/bump_release.rhai";
+
+let dir = sub(`/[^/]+`, "", __script_path);
+if sh("[[ `git status " + dir + "--porcelain` ]] && exit 1", #{}).ctx.rc == 1 {
+let rel = spec::get_release(rpm).parse_int();Add commentMore actions
+rpm.release(rel + 1);
+}
