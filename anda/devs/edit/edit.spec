@@ -1,12 +1,7 @@
 %global _description %{expand:
 An editor that pays homage to the classic MS-DOS Editor, but with a modern interface and input controls similar to VS Code.}
 %global crate edit
-%bcond rust_nightly 1
-%if %{with rust_nightly}
-%define __cargo /usr/bin/env CARGO_HOME=.cargo RUSTC_BOOTSTRAP=1 RUSTFLAGS='%{build_rustflags}' $HOME/.cargo/bin/cargo
-%define __rustc $HOME/.cargo/bin/rustc
-%define __rustdoc $HOME/.cargo/bin/rustdoc
-%endif
+%bcond rust_nightly 0
 
 Name:          %{crate}
 Version:       1.2.0
@@ -29,10 +24,7 @@ Packager:      Gilver E. <rockgrub@disroot.org>
 %prep
 %autosetup -n %{name}-%{version}
 %if %{with rust_nightly}
-rustup-init -y
-. "$HOME/.cargo/env"
-rustup toolchain install nightly
-rustup override set nightly
+%rustup_nightly
 %endif
 %cargo_prep_online
 
