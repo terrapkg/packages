@@ -18,6 +18,6 @@ open_file("anda/system/nvidia/kmod-nvidia/VERSION_kernel.txt", "w").write(`${kve
 
 let dir = sub(`/[^/]+`, "", __script_path);
 if sh("[[ `git status " + dir + "--porcelain` ]] && exit 1", #{}).ctx.rc == 1 {
-let rel = spec::get_release(rpm).parse_int();Add commentMore actions
-rpm.release(rel + 1);
+    let rel = spec::get_release(rpm).parse_int();
+    rpm.release(rel + 1);
 }
