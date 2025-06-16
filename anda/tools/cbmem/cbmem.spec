@@ -1,9 +1,9 @@
 %define debug_package %nil
-%global build_cflags %(echo '%{__build_flags_lang_c} %{?_distro_extra_cflags} -std=c17' | sed 's|-Werror||g' | sed 's|-Wall||g' | sed 's|=format-security||g')
-%global build_cxxflags %(echo '%{__build_flags_lang_cxx} %{?_distro_extra_cxxflags}' | sed 's|-Werror||g' | sed 's|-Wall||g' | sed 's|=format-security||g')
+%dnl %global build_cflags %(echo '%{__build_flags_lang_c} %{?_distro_extra_cflags} -std=c17' | sed 's|-Werror||g' | sed 's|-Wall||g' | sed 's|=format-security||g')
+%dnl %global build_cxxflags %(echo '%{__build_flags_lang_cxx} %{?_distro_extra_cxxflags}' | sed 's|-Werror||g' | sed 's|-Wall||g' | sed 's|=format-security||g')
 
 Name:           cbmem
-Version:        24.12
+Version:        25.03
 Release:        1%?dist
 Summary:        Prints out coreboot mem table information
 URL:            https://review.coreboot.org
@@ -30,5 +30,5 @@ install -Dm 755 util/cbmem/cbmem %buildroot%_bindir/cbmem
 %{_bindir}/cbmem
 
 %changelog
-* Thu Feb 13 2025 Owen Zimmerman <owen@fyralabs.com>
+* Sun Jun 15 2025 Owen Zimmerman <owen@fyralabs.com>
 - Initial Package
