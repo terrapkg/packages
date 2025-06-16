@@ -31,6 +31,7 @@ License:        zlib AND MIT
 URL:            https://github.com/doitsujin/dxvk
 Source0:        %{url}/archive/v%{version}/dxvk-%{version}.tar.gz
 
+BuildRequires:  anda-srpm-macros
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  glslang
