@@ -8,6 +8,7 @@ Source0:        %{URL}/archive/refs/tags/v%{version}.tar.gz
 BuildRequires:  anda-srpm-macros
 BuildRequires:  bpftool
 BuildRequires:  cargo
+BuildRequires:  cargo-rpm-macros
 BuildRequires:  clang >= 17
 BuildRequires:  elfutils-libelf
 BuildRequires:  elfutils-libelf-devel
