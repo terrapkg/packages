@@ -29,7 +29,6 @@ Summary:        Vulkan-based implementation of D3D8, 9, 10 and 11 for Linux / Wi
 
 License:        zlib AND MIT
 URL:            https://github.com/doitsujin/dxvk
-Source0:        %{url}/archive/v%{version}/dxvk-%{version}.tar.gz
 
 BuildRequires:  anda-srpm-macros
 BuildRequires:  gcc
@@ -143,7 +142,7 @@ Requires:       terra-wine-dxvk-d3d8(x86-32) = %{version}-%{release}
 %{summary}
 
 %prep
-%git_clone %{url}.git %{version}
+%git_clone %{url}.git v%{version}
 
 %build
 %mingw_meson --buildtype=plain --wrap-mode=nodownload --auto-features=enabled --cross-file ../build-win%{target_x86_type}.txt --buildtype release
