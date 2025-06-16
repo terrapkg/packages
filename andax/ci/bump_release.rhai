@@ -1,4 +1,4 @@
-import "andax/spec.rhai" as spec;
+import "../spec.rhai" as spec;
 
 let dir = sub(`/[^/]+`, "", __script_path);
 
