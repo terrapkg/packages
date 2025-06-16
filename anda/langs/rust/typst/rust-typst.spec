@@ -5,7 +5,7 @@
 
 Name:           rust-typst
 Version:        0.13.1
-Release:        %autorelease
+Release:        2%?dist
 Summary:        New markup-based typesetting system that is powerful and easy to learn
 
 License:        Apache-2.0
@@ -43,42 +43,7 @@ Provides:       %crate-cli = %version-%release
 %_mandir/man1/typst.1.gz
 
 
-%package bash-completion
-Summary:		Bash completion for %{crate}
-Requires:		%{crate} = %{version}-%{release}
-Requires: 		bash-completion
-Supplements:	(%{crate} and bash-completion)
-
-%description bash-completion
-Bash command line completion support for %{crate}.
-
-%package fish-completion
-Summary:		Fish completion for %{crate}
-Requires:		%{crate} = %{version}-%{release}
-Requires:		fish
-Supplements:	(%{crate} and fish)
-
-%description fish-completion
-Fish command line completion support for %{crate}.
-
-%package zsh-completion
-Summary:		Zsh completion for %{crate}
-Requires:		%{crate} = %{version}-%{release}
-Requires:		zsh
-Supplements:	(%{crate} and zsh)
-
-%description zsh-completion
-Zsh command line completion support for %{crate}.
-
-
-%files bash-completion
-%{bash_completions_dir}/%{crate}
-
-%files fish-completion
-%{fish_completions_dir}/%{crate}.fish
-
-%files zsh-completion
-%{zsh_completions_dir}/_%{crate}
+%pkg_completion -Bfzn %crate
 
 
 %prep
