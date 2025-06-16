@@ -168,8 +168,6 @@ rm -rf %buildroot%mingw_sysroot/mingw
 
 
 %posttrans
-if rpm -q --quiet terra-wine-staging; then
- WINE_LIB_DIR=
 if vulkaninfo |& grep "ERROR_INITIALIZATION_FAILED\|ERROR_SURFACE_LOST_KHR\|Vulkan support is incomplete" > /dev/null; then
     %{_sbindir}/alternatives --install %{wine_lib_dir}/wine/%{winepedir}/d3d11.dll 'wine-d3d11%{?_isa}' %{wine_lib_dir}/wine/%{winepedir}/dxvk-d3d11.dll 5
 else
