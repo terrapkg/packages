@@ -9,8 +9,10 @@ Summary:    The system settings application for Lomiri
 License:    GPLv3
 URL:        https://gitlab.com/ubports/development/core/lomiri-system-settings
 Source0:    %{url}/-/archive/%commit/lomiri-system-settings-%commit.tar.gz
-Patch0:     https://sources.debian.org/data/main/l/lomiri-system-settings/1.3.1-2/debian/patches/2002_use-Noto-font-instead-of-Ubuntu-font.patch
-Patch1:     https://sources.debian.org/data/main/l/lomiri-system-settings/1.3.1-2/debian/patches/2011_build-without-trust-store.patch
+Patch0:     https://sources.debian.org/data/main/l/lomiri-system-settings/1.3.1-4/debian/patches/0001_lib-LomiriSystemSettingsPrivate-accountsservice.cpp-Register-missing-D-Bus-types.patch
+Patch1:     https://sources.debian.org/data/main/l/lomiri-system-settings/1.3.1-4/debian/patches/2002_use-Noto-font-instead-of-Ubuntu-font.patch
+Patch2:     https://sources.debian.org/data/main/l/lomiri-system-settings/1.3.1-4/debian/patches/2011_build-without-trust-store.patch
+Patch3:     https://sources.debian.org/data/main/l/lomiri-system-settings/1.3.1-4/debian/patches/2013_show-hotspot-on-desktop.patch
 
 BuildRequires: cmake
 BuildRequires: gcc-c++
@@ -73,10 +75,10 @@ developing applications that use %{name}.
 %dir %{_datadir}/lomiri-system-settings
 %{_datadir}/lomiri-system-settings/*.settings
 %{_datadir}/lomiri-system-settings/*.svg
-%{_datadir}/lomiri-system-settings/*.png
+%dnl %{_datadir}/lomiri-system-settings/*.png
 %{_datadir}/lomiri-system-settings/url-map.ini
-%dir %{_datadir}/lomiri-system-settings/icons
-%{_datadir}/lomiri-system-settings/icons/*.svg
+%dnl %dir %{_datadir}/lomiri-system-settings/icons
+%dnl %{_datadir}/lomiri-system-settings/icons/*.svg
 %{_datadir}/lomiri-system-settings/qml-plugins/
 %{_datadir}/lomiri-url-dispatcher/urls/lomiri-system-settings.url-dispatcher
 
