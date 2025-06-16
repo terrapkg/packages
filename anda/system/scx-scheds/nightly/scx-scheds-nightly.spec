@@ -57,10 +57,11 @@ sched_ext is a Linux kernel feature which enables implementing kernel thread sch
 This package contains nightly builds of the sched_ext schedulers.
 
 %package devel
-Summary:        Development files for %{name}
-
-%description devel
-The %{name}-devel package contains libraries header files for developing applications that use %{name}
+License:       GPL-2.0-only
+%pkg_devel_files
+%doc BREAKING_CHANGES.md
+%doc DEVELOPER_GUIDE.md
+%license LICENSE
 
 %prep
 %autosetup -p1 -n scx-%{commit}
@@ -92,12 +93,6 @@ The %{name}-devel package contains libraries header files for developing applica
 %{_prefix}/lib/systemd/system/scx.service
 %{_datadir}/dbus-1/system.d/org.scx.Loader.conf
 %{_datadir}/dbus-1/system-services/org.scx.Loader.service
-
-%files devel
-%doc BREAKING_CHANGES.md
-%doc DEVELOPER_GUIDE.md
-%license LICENSE
-%{_includedir}/scx/
 
 %changelog
 * Sun Jun 15 2025 Gilver E. <rockgrub@disroot.org> - 1.0.13^20250612.git.c1507b0-1

@@ -50,10 +50,11 @@ Packager:       Gilver E. <rockgrub@disroot.org>
 sched_ext is a Linux kernel feature which enables implementing kernel thread schedulers in BPF and dynamically loading them.
 
 %package devel
-Summary:        Development files for %{name}
-
-%description devel
-The %{name}-devel package contains libraries header files for developing applications that use %{name}
+License:       GPL-2.0-only
+%pkg_devel_files
+%doc BREAKING_CHANGES.md
+%doc DEVELOPER_GUIDE.md
+%license LICENSE
 
 %prep
 %autosetup -n scx-%{version} -p1
@@ -83,12 +84,6 @@ The %{name}-devel package contains libraries header files for developing applica
 %{_prefix}/lib/systemd/system/scx.service
 %{_datadir}/dbus-1/system.d/org.scx.Loader.conf
 %{_datadir}/dbus-1/system-services/org.scx.Loader.service
-
-%files devel
-%doc BREAKING_CHANGES.md
-%doc DEVELOPER_GUIDE.md
-%license LICENSE
-%{_includedir}/scx/
 
 %changelog
 * Sun Jun 15 2025 Gilver E. <rockgrub@disroot.org> - 1.0.13-1
