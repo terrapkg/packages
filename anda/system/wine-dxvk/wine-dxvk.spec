@@ -30,7 +30,6 @@ Summary:        Vulkan-based implementation of D3D8, 9, 10 and 11 for Linux / Wi
 License:        zlib AND MIT
 URL:            https://github.com/doitsujin/dxvk
 Source0:        %{url}/archive/v%{version}/dxvk-%{version}.tar.gz
-Source1:        https://gitlab.freedesktop.org/frog/libdisplay-info/-/archive/%{libdisplay_commit}/libdisplay-info-%{libdisplay_shortcommit}.tar.gz
 
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
@@ -143,8 +142,7 @@ Requires:       terra-wine-dxvk-d3d8(x86-32) = %{version}-%{release}
 %{summary}
 
 %prep
-%autosetup -n dxvk-%{version} -p1 -a1
-rm -rf subprojects/libdisplay-info && mv libdisplay-info-%{libdisplay_commit} subprojects/libdisplay-info
+%git_clone %{url}.git %{version}
 
 %build
 %mingw_meson --buildtype=plain --wrap-mode=nodownload --auto-features=enabled --cross-file ../build-win%{target_x86_type}.txt --buildtype release
@@ -170,6 +168,8 @@ rm -rf %buildroot%mingw_sysroot/mingw
 
 
 %posttrans
+if rpm -q --quiet terra-wine-staging; then
+ WINE_LIB_DIR=
 if vulkaninfo |& grep "ERROR_INITIALIZATION_FAILED\|ERROR_SURFACE_LOST_KHR\|Vulkan support is incomplete" > /dev/null; then
     %{_sbindir}/alternatives --install %{wine_lib_dir}/wine/%{winepedir}/d3d11.dll 'wine-d3d11%{?_isa}' %{wine_lib_dir}/wine/%{winepedir}/dxvk-d3d11.dll 5
 else
