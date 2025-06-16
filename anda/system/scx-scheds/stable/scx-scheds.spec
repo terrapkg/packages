@@ -2,7 +2,8 @@ Name:           scx-scheds
 Version:        1.0.13
 Release:        1%{?dist}
 Summary:        sched_ext schedulers and tools
-License:        GPL-2.0
+SourceLicense:  GPL-2.0-only
+License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND BSD-2-Clause AND BSD-3-Clause AND GPL-2.0-only AND ISC AND (LGPL-2.1-only OR BSD-2-Clause) AND LGPL-2.1 AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MIT AND (MPL-2.0 OR MIT OR Apache-2.0) AND MPL-2.0-only and MPL-2.0-or-later AND (Unlicense OR MIT) AND Zlib
 URL:            https://github.com/sched-ext/scx
 Source0:        %{URL}/archive/refs/tags/v%{version}.tar.gz
 BuildRequires:  anda-srpm-macros
@@ -86,6 +87,7 @@ The %{name}-devel package contains libraries header files for developing applica
 %files devel
 %doc BREAKING_CHANGES.md
 %doc DEVELOPER_GUIDE.md
+%license LICENSE
 %{_includedir}/scx/
 
 %changelog
