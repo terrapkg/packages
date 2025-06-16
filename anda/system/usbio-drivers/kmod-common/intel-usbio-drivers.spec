@@ -34,3 +34,7 @@ This package contains the common files for the UBSIO kernel modules.
 %doc SECURITY.md
 %doc security.md
 %license LICENSE.txt
+
+%changelog
+* Mon Jun 16 2025 Gilver E. <rockgrub@disroot.org> - 0^20250312git4fb690c
+- Initial package

@@ -60,4 +60,5 @@ done
 %{?akmod_install}
 
 %changelog
-%autochangelog
+* Mon Jun 16 2025 Gilver E. <rockgrub@disroot.org> - 0^20250312git4fb690c
+- Initial package
