@@ -9,8 +9,10 @@ Summary:    The system settings application for Lomiri
 License:    GPLv3
 URL:        https://gitlab.com/ubports/development/core/lomiri-system-settings
 Source0:    %{url}/-/archive/%commit/lomiri-system-settings-%commit.tar.gz
-Patch0:     https://sources.debian.org/data/main/l/lomiri-system-settings/1.3.1-2/debian/patches/2002_use-Noto-font-instead-of-Ubuntu-font.patch
-Patch1:     https://sources.debian.org/data/main/l/lomiri-system-settings/1.3.1-2/debian/patches/2011_build-without-trust-store.patch
+Patch0:     https://sources.debian.org/data/main/l/lomiri-system-settings/1.3.1-4/debian/patches/0001_lib-LomiriSystemSettingsPrivate-accountsservice.cpp-Register-missing-D-Bus-types.patch
+Patch1:     https://sources.debian.org/data/main/l/lomiri-system-settings/1.3.1-4/debian/patches/2002_use-Noto-font-instead-of-Ubuntu-font.patch
+Patch2:     https://sources.debian.org/data/main/l/lomiri-system-settings/1.3.1-4/debian/patches/2013_show-hotspot-on-desktop.patch
+Patch3:     https://sources.debian.org/data/main/l/lomiri-system-settings/1.3.1-4/debian/patches/2014_removing-unnecessary-mobile-only-functionality.patch
 
 BuildRequires: cmake
 BuildRequires: gcc-c++
