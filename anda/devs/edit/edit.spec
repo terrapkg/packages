@@ -9,7 +9,7 @@ An editor that pays homage to the classic MS-DOS Editor, but with a modern inter
 %endif
 
 Name:          %{crate}
-Version:       1.1.0
+Version:       1.2.0
 Release:       1%?dist
 Summary:       A simple editor for simple needs.
 SourceLicense: MIT

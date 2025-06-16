@@ -2,7 +2,7 @@
 %global major_package_version 12-8
 
 Name:           cuda
-Version:        12.9.43
+Version:        12.9.88
 Release:        1%?dist
 Summary:        NVIDIA Compute Unified Device Architecture Toolkit
 Epoch:          1

@@ -1,0 +1,40 @@
+From 48aa23307d1a47b444854fc09478da6d4ee8e624 Mon Sep 17 00:00:00 2001
+From: Jan200101 <sentrycraft123@gmail.com>
+Date: Sun, 11 May 2025 01:09:41 +0200
+Subject: [PATCH 5/5] link.Elf: add root directory of libraries to linker path
+
+all the given dynamic shared objects will be linked with an absolute path however they may link to other dynamic shared objects which won't have an absolute path, for this we need to add the library path so that lld can resolve it
+
+Signed-off-by: Jan200101 <sentrycraft123@gmail.com>
+---
+ src/link/Elf.zig | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
+
+diff --git a/src/link/Elf.zig b/src/link/Elf.zig
+index 53f88101b1..fe2b7abd48 100644
+--- a/src/link/Elf.zig
++++ b/src/link/Elf.zig
+@@ -1938,9 +1938,19 @@ fn linkWithLLD(self: *Elf, arena: Allocator, tid: Zcu.PerThread.Id, prog_node: s
+         // Positional arguments to the linker such as object files.
+         var whole_archive = false;
+ 
++        var lib_directories = std.StringArrayHashMap(void).init(gpa);
++        defer lib_directories.deinit();
++
+         for (self.base.comp.link_inputs) |link_input| switch (link_input) {
+             .res => unreachable, // Windows-only
+-            .dso => continue,
++            .dso => |dso| {
++                if (dso.path.root_dir.path) |root_dir| {
++                    const lib_dir = try lib_directories.getOrPut(root_dir);
++                    if (lib_dir.found_existing) continue;
++                    try argv.append("-L");
++                    try argv.append(root_dir);
++                }
++            },
+             .object, .archive => |obj| {
+                 if (obj.must_link and !whole_archive) {
+                     try argv.append("-whole-archive");
+-- 
+2.49.0
+
