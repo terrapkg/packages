@@ -30,6 +30,7 @@ BuildRequires:  protobuf-compiler
 BuildRequires:  python3
 BuildRequires:  rust
 BuildRequires:  systemd
+BuildRequires:  systemd-rpm-macros
 BuildRequires:  zlib-ng-compat
 Requires:       elfutils-libelf
 Requires:       jq
@@ -89,8 +90,8 @@ License:       GPL-2.0-only
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/default/scx
 %{_bindir}/scx*
 %{_bindir}/vmlinux_docify
-%{_prefix}/lib/systemd/system/scx_loader.service
-%{_prefix}/lib/systemd/system/scx.service
+%{_unitdir}/scx_loader.service
+%{_unitdir}/scx.service
 %{_datadir}/dbus-1/system.d/org.scx.Loader.conf
 %{_datadir}/dbus-1/system-services/org.scx.Loader.service
 
