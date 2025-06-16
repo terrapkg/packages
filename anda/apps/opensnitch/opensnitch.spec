@@ -23,7 +23,7 @@ Name:           opensnitch
 Release:        %autorelease
 Summary:        OpenSnitch is a GNU/Linux interactive application firewall inspired by Little Snitch
 
-License:        GPL-3.0-only AND LGPL-2.1-only
+License:        GPL-3.0-only AND LGPL-2.1-or-later
 URL:            %{gourl}
 Source:         %{gosource}
 BuildRequires:  gcc-c++
@@ -69,6 +69,7 @@ popd
 
 pushd ui
 %make_build
+%pyproject_wheel
 popd
 
 %global gomodulesmode GO111MODULE=on
@@ -86,21 +87,33 @@ pushd ui
 %py3_install
 %else
 %pyproject_install
-%pyproject_save_files %name-ui
+%pyproject_save_files %name
 %endif
+popd
+
+rm -rf %buildroot%python3_sitelib/tests/
+cp -r %buildroot%python3_sitelib%_usr/ %buildroot%_usr/ --preserve=all --no-target-directory
+rm -rf %buildroot%python3_sitelib%_usr
 
 
 %if 0%{?fedora} <= 41
 %files
-%{python3_sitelib}/%name-ui/
-%{python3_sitelib}/%name-ui-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%name/
+%{python3_sitelib}/%name-%{version}-py%{python3_version}.egg-info/
 %else
 %files -f %{pyproject_files}
 %endif
-%license LICENSE ui/LICENSE ui/opensnitch/res/themes/dark/icons/LICENSE
-%doc README.md ebpf_prog/README ui/requirements.txt ui/i18n/README.md example
-%doc example example utils/packaging/daemon/deb/debian/changelog
-%doc utils/packaging/ui/deb/debian/changelog
-# TODO: files
+%license LICENSE
+%doc README.md
+%_bindir/opensnitch-ui
+%_bindir/opensnitchd
+%_datadir/applications/opensnitch_ui.desktop
+%_iconsdir/hicolor/48x48/apps/opensnitch-ui.png
+%_iconsdir/hicolor/64x64/apps/opensnitch-ui.png
+%_iconsdir/hicolor/scalable/apps/opensnitch-ui.svg
+%_datadir/kservices5/kcm_opensnitch.desktop
+%_metainfodir/io.github.evilsocket.opensnitch.appdata.xml
+
+/usr/share/icons/hicolor/scalable/apps/opensnitch-ui.svg
 
 %gopkgfiles
