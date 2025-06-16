@@ -1,27 +1,30 @@
-From 48aa23307d1a47b444854fc09478da6d4ee8e624 Mon Sep 17 00:00:00 2001
+From 1796a91063dc5ed71418f164bb7d98ca65c33d4a Mon Sep 17 00:00:00 2001
 From: Jan200101 <sentrycraft123@gmail.com>
-Date: Sun, 11 May 2025 01:09:41 +0200
-Subject: [PATCH 5/5] link.Elf: add root directory of libraries to linker path
+Date: Mon, 16 Jun 2025 20:46:25 +0200
+Subject: [PATCH] link.Elf: add root directory of libraries to linker path
 
-all the given dynamic shared objects will be linked with an absolute path however they may link to other dynamic shared objects which won't have an absolute path, for this we need to add the library path so that lld can resolve it
+All the given dynamic shared objects will be linked with an absolute
+path however they may link to other dynamic shared objects which won't
+have an absolute path, for this we need to add the library path so that
+lld can resolve it.
 
 Signed-off-by: Jan200101 <sentrycraft123@gmail.com>
 ---
- src/link/Elf.zig | 12 +++++++++++-
+ src/link/Lld.zig | 12 +++++++++++-
  1 file changed, 11 insertions(+), 1 deletion(-)
 
-diff --git a/src/link/Elf.zig b/src/link/Elf.zig
-index 53f88101b1..fe2b7abd48 100644
---- a/src/link/Elf.zig
-+++ b/src/link/Elf.zig
-@@ -1938,9 +1938,19 @@ fn linkWithLLD(self: *Elf, arena: Allocator, tid: Zcu.PerThread.Id, prog_node: s
+diff --git a/src/link/Lld.zig b/src/link/Lld.zig
+index 4ea809428e..b8421dd60a 100644
+--- a/src/link/Lld.zig
++++ b/src/link/Lld.zig
+@@ -1109,9 +1109,19 @@ fn elfLink(lld: *Lld, arena: Allocator) !void {
          // Positional arguments to the linker such as object files.
          var whole_archive = false;
  
 +        var lib_directories = std.StringArrayHashMap(void).init(gpa);
 +        defer lib_directories.deinit();
 +
-         for (self.base.comp.link_inputs) |link_input| switch (link_input) {
+         for (base.comp.link_inputs) |link_input| switch (link_input) {
              .res => unreachable, // Windows-only
 -            .dso => continue,
 +            .dso => |dso| {
