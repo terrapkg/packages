@@ -23,7 +23,7 @@ Packager:       Gilver E. <rockgrub@disroot.org>
 Common files for the Intel IPU6 camera drivers.
 
 %prep
-%autosetup -n ipu6-drivers-%{shortcommit}
+%autosetup -n ipu6-drivers-%{commit}
 
 %build
 
