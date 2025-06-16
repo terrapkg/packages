@@ -1,1 +1,3 @@
-rpm.version(gh_rawfile("hyprwm/hyprlock", "main", "VERSION"));
+let v = gh_rawfile("hyprwm/hyprlock", "main", "VERSION");
+v.trim();
+rpm.version(v);

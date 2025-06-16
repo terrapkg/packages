@@ -1,37 +1,5 @@
 Name:			hyprlock
 Version:		0.8.2
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Release:		1%?dist
 Summary:		Hyprland's GPU-accelerated screen locking utility
 License:		BSD-3-Clause
@@ -43,7 +11,7 @@ BuildRequires:	pkgconfig(cairo)
 BuildRequires:	(pkgconfig(hyprgraphics) with hyprgraphics.nightly-devel)
 BuildRequires:	pkgconfig(hyprland-protocols)
 BuildRequires:	(pkgconfig(hyprlang) with hyprlang.nightly-devel)
-BuildRequires:	pkgconfig(hyprutils)
+BuildRequires:	(pkgconfig(hyprutils) with hyprutils.nightly-devel)
 BuildRequires:	(pkgconfig(hyprwayland-scanner) with hyprwayland-scanner.nightly-devel)
 BuildRequires:	mesa-libgbm-devel
 BuildRequires:	mesa-libGL-devel
@@ -52,7 +20,7 @@ BuildRequires:	pkgconfig(pango)
 BuildRequires:	pkgconfig(wayland-client)
 BuildRequires:	pkgconfig(wayland-protocols)
 BuildRequires:	pkgconfig(xkbcommon)
-BuildRequires:	pkgconfig(sdbus-c++) >= 2.0.0
+BuildRequires:	pkgconfig(sdbus-c++) >= 2.1.0
 BuildRequires:	pkgconfig(libjpeg)
 BuildRequires:	pkgconfig(libwebp)
 BuildRequires:	pkgconfig(libmagic)
