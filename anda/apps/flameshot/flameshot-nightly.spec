@@ -1,6 +1,6 @@
 #? https://github.com/flameshot-org/flameshot/blob/master/packaging/rpm/fedora/flameshot.spec
 
-%global ver v12.1.0
+%global ver 12.1.0
 %global commit d420a53a4a61cb39842ee632fb8183ab07b58879
 %global shortcommit %{sub %{commit} 1 7}
 %global commit_date 20250617
