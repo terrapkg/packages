@@ -23,6 +23,7 @@ BuildRequires:	ninja-build
 BuildRequires:	desktop-file-utils
 
 BuildRequires:	cmake(Qt5Core) >= 5.9.0
+BuildRequires:  cmake(Qt6Core)
 BuildRequires:	cmake(KF5GuiAddons) >= 5.89.0
 BuildRequires:	cmake(Qt5DBus) >= 5.9.0
 BuildRequires:	cmake(Qt5Gui) >= 5.9.0
