@@ -15,6 +15,8 @@ BuildArch:      noarch
 
 BuildRequires:  python3-devel
 BuildRequires:  pyproject-rpm-macros
+BuildRequires:  python3dist(pip)
+BuildRequires:  python3dist(poetry-core)
 
 Requires:       python3-dnf
 Requires:       python3-melody = %{version}-%{release}
