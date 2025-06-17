@@ -24,7 +24,7 @@ BuildRequires: python3dist(pytest-cov) >= 2.10
 BuildRequires: python3dist(pytest) >= 6.0
 %endif
 
-Requires:   terra-winetricks
+Requires:   (terra-winetricks or winetricks-git)
 
 Recommends: yad
 
