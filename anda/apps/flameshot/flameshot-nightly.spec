@@ -22,27 +22,19 @@ BuildRequires:	libappstream-glib
 BuildRequires:	ninja-build
 BuildRequires:	desktop-file-utils
 
-#BuildRequires:	cmake(Qt5Core) >= 5.9.0
 BuildRequires:  cmake(Qt6Core)
-#BuildRequires:	cmake(KF5GuiAddons) >= 5.89.0
 BuildRequires:  cmake(KF6GuiAddons)
-#BuildRequires:	cmake(Qt5DBus) >= 5.9.0
 BuildRequires:  cmake(Qt6DBus)
-#BuildRequires:	cmake(Qt5Gui) >= 5.9.0
 BuildRequires:  cmake(Qt6Gui)
-#BuildRequires:	cmake(Qt5LinguistTools) >= 5.9.0
-BuildRequires: cmake(Qt6LinguistTools)
-#BuildRequires:	cmake(Qt5Network) >= 5.9.0
+BuildRequires:  cmake(Qt6LinguistTools)
 BuildRequires:  cmake(Qt6Network)
-#BuildRequires:	cmake(Qt5Svg) >= 5.9.0
 BuildRequires:  cmake(Qt6Svg)
-#BuildRequires:	cmake(Qt5Widgets) >= 5.9.0
 BuildRequires:  cmake(Qt6Widgets)
 
 Requires:		hicolor-icon-theme
-Requires:		qt5-qtbase >= 5.9.0
-Requires:		qt5-qttools >= 5.9.0
-Requires:		qt5-qtsvg%{?_isa} >= 5.9.0
+Requires:		qt6-qtbase >= 5.9.0
+Requires:		qt6-qttools >= 5.9.0
+Requires:		qt6-qtsvg%{?_isa} >= 5.9.0
 
 %dnl Provides:		flameshot = %version-%release
 Conflicts:		flameshot
