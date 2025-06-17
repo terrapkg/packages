@@ -1,6 +1,6 @@
 #? https://github.com/flameshot-org/flameshot/blob/master/packaging/rpm/fedora/flameshot.spec
 
-%global ver v12.1.0
+%global ver 12.1.0
 %global commit d420a53a4a61cb39842ee632fb8183ab07b58879
 %global shortcommit %{sub %{commit} 1 7}
 %global commit_date 20250617
@@ -12,7 +12,7 @@ Release:		2%?dist
 License:		GPL-3.0-or-later AND ASL-2.0 AND GPL-2.0-only AND LGPL-3.0-only AND FAL-1.3
 Summary:		Powerful yet simple to use screenshot software
 URL:			https://flameshot.org
-Source0:		https://github.com/flameshot-org/flameshot/archive/%commit/flameshot-%commit.tar.gz
+%dnl Source0:		https://github.com/flameshot-org/flameshot/archive/%commit/flameshot-%commit.tar.gz
 Packager:  madonuko <mado@fyralabs.com>
 
 BuildRequires:	cmake >= 3.13.0
@@ -22,19 +22,19 @@ BuildRequires:	libappstream-glib
 BuildRequires:	ninja-build
 BuildRequires:	desktop-file-utils
 
-BuildRequires:	cmake(Qt5Core) >= 5.9.0
-BuildRequires:	cmake(KF5GuiAddons) >= 5.89.0
-BuildRequires:	cmake(Qt5DBus) >= 5.9.0
-BuildRequires:	cmake(Qt5Gui) >= 5.9.0
-BuildRequires:	cmake(Qt5LinguistTools) >= 5.9.0
-BuildRequires:	cmake(Qt5Network) >= 5.9.0
-BuildRequires:	cmake(Qt5Svg) >= 5.9.0
-BuildRequires:	cmake(Qt5Widgets) >= 5.9.0
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(KF6GuiAddons)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6LinguistTools)
+BuildRequires:  cmake(Qt6Network)
+BuildRequires:  cmake(Qt6Svg)
+BuildRequires:  cmake(Qt6Widgets)
 
 Requires:		hicolor-icon-theme
-Requires:		qt5-qtbase >= 5.9.0
-Requires:		qt5-qttools >= 5.9.0
-Requires:		qt5-qtsvg%{?_isa} >= 5.9.0
+Requires:		qt6-qtbase 
+Requires:		qt6-qttools 
+Requires:		qt6-qtsvg%{?_isa} 
 
 %dnl Provides:		flameshot = %version-%release
 Conflicts:		flameshot
@@ -67,7 +67,7 @@ Requires:     %{name} = %{version}
 Development files for Flameshot.
 
 %prep
-%autosetup -p1 -n flameshot-%commit
+%git_clone https://github.com/flameshot-org/flameshot.git %commit
 
 %build
 %cmake -G Ninja \
