@@ -40,7 +40,7 @@ repository is available at Sirmentio/protontricks.
 
 
 %prep
-%autosetup
+%autosetup -n protontricks-%{version}
 
 
 %build
