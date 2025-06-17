@@ -80,9 +80,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_datadir}/applications/*.desktop
 %{python3_sitelib}/%{name}/
 %if 0%{?fedora} <= 41
-%{python3_sitelib}/%{name}-%{version}*.egg-info/
+%{python3_sitelib}/protontricks-%{version}*.egg-info/
 %else
-%{python3_sitelib}/%{name}-%{version}*.dist-info/
+%{python3_sitelib}/protontricks-%{version}*.dist-info/
 %endif
 
 
