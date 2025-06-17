@@ -28,6 +28,7 @@ BuildRequires:	cmake(KF5GuiAddons) >= 5.89.0
 BuildRequires:	cmake(Qt5DBus) >= 5.9.0
 BuildRequires:	cmake(Qt5Gui) >= 5.9.0
 BuildRequires:	cmake(Qt5LinguistTools) >= 5.9.0
+BuildRequires: cmake(Qt6LinguistTools)
 BuildRequires:	cmake(Qt5Network) >= 5.9.0
 BuildRequires:	cmake(Qt5Svg) >= 5.9.0
 BuildRequires:  cmake(Qt6Svg)
