@@ -67,7 +67,7 @@ Requires:     %{name} = %{version}
 Development files for Flameshot.
 
 %prep
-%git_clone %url %commit
+%git_clone https://github.com/flameshot-org/flameshot.git %commit
 
 %build
 %cmake -G Ninja \
