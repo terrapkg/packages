@@ -14,6 +14,7 @@ Source0:    %{pypi_source protontricks}
 
 BuildRequires: desktop-file-utils
 BuildRequires: python3-devel
+BuildRequires: python3dist(pip)
 BuildRequires: python3dist(setuptools)
 BuildRequires: python3dist(setuptools-scm)
 # BuildRequires: python3dist(vdf) >= 3.4
