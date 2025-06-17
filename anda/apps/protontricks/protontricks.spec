@@ -1,4 +1,5 @@
 %bcond_with tests
+%global pypi_name protontricks
 
 Name:       terra-protontricks
 Version:    1.12.1
@@ -10,7 +11,7 @@ License:    GPL-3.0-or-later
 URL:        https://github.com/Matoking/protontricks
 
 # GitHub tarball won't work for setuptools-scm
-Source0:    %{pypi_source protontricks}
+Source0:    %{pypi_source}
 
 BuildRequires: desktop-file-utils
 BuildRequires: python3-devel
@@ -41,7 +42,7 @@ repository is available at Sirmentio/protontricks.
 
 
 %prep
-%autosetup -n protontricks-%{version}
+%autosetup -n %{pipi_name}-%{version}
 
 
 %build
@@ -75,14 +76,14 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %files
 %license LICENSE
 %doc README.md CHANGELOG.md
-%{_bindir}/%{name}-launch
-%{_bindir}/%{name}
+%{_bindir}/%{pipi_name}-launch
+%{_bindir}/%{pipi_name}
 %{_datadir}/applications/*.desktop
-%{python3_sitelib}/%{name}/
+%{python3_sitelib}/%{pipi_name}/
 %if 0%{?fedora} <= 41
-%{python3_sitelib}/protontricks-%{version}*.egg-info/
+%{python3_sitelib}/%{pipi_name}-%{version}*.egg-info/
 %else
-%{python3_sitelib}/protontricks-%{version}*.dist-info/
+%{python3_sitelib}/%{pipi_name}-%{version}*.dist-info/
 %endif
 
 
