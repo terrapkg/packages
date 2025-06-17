@@ -25,6 +25,7 @@ BuildRequires: python3dist(pytest) >= 6.0
 %endif
 
 Requires:   (terra-winetricks or winetricks-git)
+Conflicts:  protontricks
 
 Recommends: yad
 
