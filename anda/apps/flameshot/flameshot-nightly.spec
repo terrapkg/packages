@@ -12,7 +12,7 @@ Release:		2%?dist
 License:		GPL-3.0-or-later AND ASL-2.0 AND GPL-2.0-only AND LGPL-3.0-only AND FAL-1.3
 Summary:		Powerful yet simple to use screenshot software
 URL:			https://flameshot.org
-Source0:		https://github.com/flameshot-org/flameshot/archive/%commit/flameshot-%commit.tar.gz
+%dnl Source0:		https://github.com/flameshot-org/flameshot/archive/%commit/flameshot-%commit.tar.gz
 Packager:  madonuko <mado@fyralabs.com>
 
 BuildRequires:	cmake >= 3.13.0
@@ -32,9 +32,9 @@ BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  cmake(Qt6Widgets)
 
 Requires:		hicolor-icon-theme
-Requires:		qt6-qtbase >= 5.9.0
-Requires:		qt6-qttools >= 5.9.0
-Requires:		qt6-qtsvg%{?_isa} >= 5.9.0
+Requires:		qt6-qtbase 
+Requires:		qt6-qttools 
+Requires:		qt6-qtsvg%{?_isa} 
 
 %dnl Provides:		flameshot = %version-%release
 Conflicts:		flameshot
@@ -67,7 +67,7 @@ Requires:     %{name} = %{version}
 Development files for Flameshot.
 
 %prep
-%autosetup -p1 -n flameshot-%commit
+%git_clone %url %commit
 
 %build
 %cmake -G Ninja \
