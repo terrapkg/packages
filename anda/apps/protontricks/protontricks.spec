@@ -1,7 +1,7 @@
 %bcond_with tests
 %global pypi_name protontricks
 
-Name:       terra-protontricks
+Name:       terra-%{pypi_name}
 Version:    1.12.1
 Release:    1%{?dist}
 Summary:    Simple wrapper that does winetricks things for Proton enabled games
@@ -42,7 +42,7 @@ repository is available at Sirmentio/protontricks.
 
 
 %prep
-%autosetup -n %{pipi_name}-%{version}
+%autosetup -n %{pypi_name}-%{version}
 
 
 %build
@@ -76,14 +76,14 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %files
 %license LICENSE
 %doc README.md CHANGELOG.md
-%{_bindir}/%{pipi_name}-launch
-%{_bindir}/%{pipi_name}
+%{_bindir}/%{pypi_name}-launch
+%{_bindir}/%{pypi_name}
 %{_datadir}/applications/*.desktop
-%{python3_sitelib}/%{pipi_name}/
+%{python3_sitelib}/%{pypi_name}/
 %if 0%{?fedora} <= 41
-%{python3_sitelib}/%{pipi_name}-%{version}*.egg-info/
+%{python3_sitelib}/%{pypi_name}-%{version}*.egg-info/
 %else
-%{python3_sitelib}/%{pipi_name}-%{version}*.dist-info/
+%{python3_sitelib}/%{pypi_name}-%{version}*.dist-info/
 %endif
 
 
