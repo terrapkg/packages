@@ -64,7 +64,7 @@ repository is available at Sirmentio/protontricks.
 # Remove `protontricks-desktop-install`, since we already install .desktop
 # files properly
 # https://bugzilla.redhat.com/show_bug.cgi?id=1991684
-rm %{buildroot}%{_bindir}/protontricks-desktop-install
+rm %{buildroot}%{_bindir}/%{pypi_name}-desktop-install
 
 
 %if %{with tests}
