@@ -36,9 +36,6 @@ Summary:        %{summary}
 %prep
 %autosetup -p1 -n melody-main
 
-%generate_buildrequires
-%pyproject_buildrequires -r
-
 
 %build
 %pyproject_wheel
