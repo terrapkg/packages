@@ -30,6 +30,7 @@ BuildRequires:	cmake(Qt5Gui) >= 5.9.0
 BuildRequires:	cmake(Qt5LinguistTools) >= 5.9.0
 BuildRequires:	cmake(Qt5Network) >= 5.9.0
 BuildRequires:	cmake(Qt5Svg) >= 5.9.0
+BuildRequires:  cmake(Qt6Svg)
 BuildRequires:	cmake(Qt5Widgets) >= 5.9.0
 
 Requires:		hicolor-icon-theme
