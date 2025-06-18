@@ -126,7 +126,7 @@ mv assets/fonts/plex-mono/license.txt LICENSE.fonts
 %license LICENSE.themes
 %license assets/licenses.md
 %{_libexecdir}/zed-editor
-%{_bindir}/zed
+%{_bindir}/zed-cli
 %{_datadir}/applications/%app_id.desktop
 %{_datadir}/pixmaps/%app_id.png
 %{_metainfodir}/%app_id.metainfo.xml
