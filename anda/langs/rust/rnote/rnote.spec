@@ -3,15 +3,16 @@
 
 Name:           rnote
 Version:        0.12.0
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Sketch and take handwritten notes
 License:        GPL-3.0
 URL:            https://github.com/flxzt/rnote
 Packager:       madonuko <mado@fyralabs.com>
 Source0:        %{url}/archive/refs/tags/v%version.tar.gz
-Requires:       gtk4
-Requires:       rnote-cli = %evr
-BuildRequires:  cargo meson cmake libappstream-glib gcc-c++ pkgconfig(alsa) alsa-lib clang-devel python desktop-file-utils mold
+Recommends:     rnote-cli = %evr
+BuildRequires:  rust-packaging
+BuildRequires:  cargo cmake libappstream-glib gcc-c++ alsa-lib clang-devel python desktop-file-utils mold
+BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(glib-2.0) >= 2.66
 BuildRequires:  pkgconfig(gtk4) >= 4.7
 BuildRequires:  pkgconfig(libadwaita-1) >= 1.2
