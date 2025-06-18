@@ -150,7 +150,7 @@ python3 src/func_tests/run_tests.py
 
 %files devel
 %{_includedir}/LCEVC
-%{_includedir}/lcevc_config.h
+#{_includedir}/lcevc_config.h
 %{_libdir}/liblcevc_dec_api.so
 %{_libdir}/liblcevc_dec_core.so
 %{_libdir}/pkgconfig/lcevc_dec.pc
