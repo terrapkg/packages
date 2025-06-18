@@ -14,6 +14,7 @@ Source:         %{crates_source}
 Source1:        https://github.com/davidlattimore/wild/archive/refs/tags/%version.tar.gz
 
 BuildRequires:  cargo-rpm-macros >= 24
+BuildRequires:  gcc-c++
 
 %global _description %{expand:
 A very fast linker for Linux.}
