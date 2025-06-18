@@ -78,7 +78,7 @@ script/generate-licenses
 
 %install
 install -Dm755 target/rpm/zed %{buildroot}%{_libexecdir}/zed-editor
-install -Dm755 target/rpm/cli %{buildroot}%{_bindir}/zed
+install -Dm755 target/rpm/cli %{buildroot}%{_bindir}/zed-cli
 
 %__cargo clean
 
