@@ -11,11 +11,9 @@ BuildRequires:  anda-srpm-macros
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  zig >= 0.14.0
 BuildRequires:  zig-rpm-macros
-Requires:	    %{name}-profiles
-Requires:	    (scx-scheds or scx-scheds-nightly)
+Requires:       %{name}-profiles
+Requires:       (scx-scheds or scx-scheds-nightly)
 Conflicts:      gamemode
-# We should switch these to explicitly -v3 and up builds once DNF supports this.
-ExclusiveArch:  x86_64 aarch64
 Packager:       Gilver E. <rockgrub@disroot.org>
 
 %description
@@ -23,7 +21,6 @@ falcond is a powerful system daemon designed to automatically optimize your Linu
 
 %prep
 %autosetup -n %{name}/%{name}
-ZIG_GLOBAL_CACHE_DIR="%{_zig_cache_dir}" zig build --fetch
 
 %build
 
