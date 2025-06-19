@@ -11,7 +11,7 @@ Packager:       madonuko <mado@fyralabs.com>
 Source0:        %{url}/archive/refs/tags/v%version.tar.gz
 Recommends:     rnote-cli = %evr
 BuildRequires:  rust-packaging
-BuildRequires:  cargo cmake libappstream-glib gcc-c++ alsa-lib clang-devel python desktop-file-utils mold
+BuildRequires:  cargo meson cmake libappstream-glib gcc-c++ alsa-lib clang-devel python desktop-file-utils mold
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(glib-2.0) >= 2.66
 BuildRequires:  pkgconfig(gtk4) >= 4.7
@@ -38,6 +38,7 @@ This provides the `rnote-cli` binary. For more information, see the `rnote` pack
 
 
 %build
+%meson
 %cargo_license_summary_online
 %{cargo_license_online} > LICENSE.dependencies
 %{cargo_build} --bin rnote
