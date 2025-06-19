@@ -7,7 +7,7 @@ Summary:        Advanced Linux Gaming Performance Daemon
 License:        MIT
 URL:            https://git.pika-os.com/general-packages/falcond
 Source0:        %{url}/archive/v%{version}.tar.gz
-BuildRequires:  anda-srpm-macros
+BuildRequires:  anda-srpm-macros >= 0.2.18
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  zig >= 0.14.0
 BuildRequires:  zig-rpm-macros
@@ -27,7 +27,7 @@ falcond is a powerful system daemon designed to automatically optimize your Linu
 %install
 install -Dm644 debian/%{name}.service %{buildroot}%{_unitdir}
 DESTDIR="%{buildroot}" \
-%{zig_build_target -r fast -c x86_64_v3}
+%{zig_build_target -r fast -c x86_64_v3 -s}
 
 %post
 %systemd_post %{name}.service
