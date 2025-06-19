@@ -23,7 +23,6 @@ This package contains the profiles needed for falcond.
 # Hi, I'm empty!
 
 %install
-
 install -Dm644 usr/share/falcond/system.conf -t %{buildroot}%{_datadir}/falcond/
 install -Dm644 usr/share/falcond/profiles/*.conf -t %{buildroot}%{_datadir}/falcond/profiles/
 install -Dm644 usr/share/falcond/profiles/handheld/* -t %{buildroot}%{_datadir}/falcond/profiles/handheld/
