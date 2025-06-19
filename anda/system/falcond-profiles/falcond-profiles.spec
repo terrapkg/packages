@@ -8,8 +8,7 @@ Release:        1%{?dist}
 Summary:        Profiles for falcond
 License:        MIT
 URL:            https://github.com/PikaOS-Linux/falcond-profiles
-Source0:        %{url}/archive/refs/heads/main.tar.gz
-BuildRequires:  anda-srpm-macros
+Source0:        %{url}/archive/%{commit}.tar.gz#/%{name}-%{shortcommit}.tar.gz
 Requires:	    falcond
 BuildArch:	    noarch
 Packager:       Gilver E. <rockgrub@disroot.org>
@@ -18,7 +17,7 @@ Packager:       Gilver E. <rockgrub@disroot.org>
 This package contains the profiles needed for falcond.
 
 %prep
-%git_clone %{url}.git %{commit}
+%autosetup -n %{name}-%{commit}
 
 %build
 # Hi, I'm empty!
