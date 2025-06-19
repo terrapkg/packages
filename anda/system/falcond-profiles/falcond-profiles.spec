@@ -9,8 +9,8 @@ Summary:        Profiles for falcond
 License:        MIT
 URL:            https://github.com/PikaOS-Linux/falcond-profiles
 Source0:        %{url}/archive/%{commit}.tar.gz#/%{name}-%{shortcommit}.tar.gz
-Requires:	    falcond
-BuildArch:	    noarch
+Requires:       falcond
+BuildArch:      noarch
 Packager:       Gilver E. <rockgrub@disroot.org>
 
 %description

@@ -15,7 +15,7 @@ Requires:	    %{name}-profiles
 Requires:	    (scx-scheds or scx-scheds-nightly)
 Conflicts:      gamemode
 # We should switch these to explicitly -v3 and up builds once DNF supports this.
-ExclusiveArch:	x86_64 aarch64
+ExclusiveArch:  x86_64 aarch64
 Packager:       Gilver E. <rockgrub@disroot.org>
 
 %description
