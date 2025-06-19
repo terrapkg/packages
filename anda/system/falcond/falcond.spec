@@ -23,7 +23,7 @@ falcond is a powerful system daemon designed to automatically optimize your Linu
 
 %prep
 %autosetup -n %{name}/%{name}
-zig build --fetch
+ZIG_GLOBAL_CACHE_DIR="%{_zig_cache_dir}" zig build --fetch
 
 %build
 
