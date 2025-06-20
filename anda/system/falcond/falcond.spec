@@ -39,8 +39,8 @@ DESTDIR="%{buildroot}" \
 %systemd_postun_with_restart %{name}.service
 
 %files
-%doc README.md
-%license LICENSE
+%doc ../README.md
+%license ../LICENSE
 %{_bindir}/%{name}
 %{_unitdir}/%{name}.service
 
