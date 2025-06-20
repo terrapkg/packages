@@ -35,7 +35,7 @@ DESTDIR="%{buildroot}" \
 %ifarch x86_64
 %{zig_build_target -r fast -c x86_64_v3 -s} \
 %elifarch aarch64
-%{zig_build_target -r fast -c -s} \
+%{zig_build_target -r fast -c aarch64-generic -s} \
 %endif
 
 %post
