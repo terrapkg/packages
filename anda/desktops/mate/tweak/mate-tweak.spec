@@ -30,6 +30,7 @@ python3 -m pip install distutils-extra-python
 %py3_install
 %else
 %pyproject_install
+desktop-file-install data/*.desktop
 %endif
 
 %check
