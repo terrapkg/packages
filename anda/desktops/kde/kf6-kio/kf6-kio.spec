@@ -14,6 +14,7 @@ License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-
 URL:     https://invent.kde.org/frameworks/%{framework}
 
 Source0: https://download.kde.org/%{stable_kf6}/frameworks/%{majmin_ver_kf6}/%{framework}-%{version}.tar.xz
+Source1: https://download.kde.org/%{stable_kf6}/frameworks/%{majmin_ver_kf6}/%{framework}-%{version}.tar.xz.sig
 
 # https://invent.kde.org/frameworks/kio/-/issues/26
 # I'm not sending this upstream because I'm not sure it's really
@@ -173,6 +174,12 @@ Obsoletes:      kf6-kio.switcheroo-qch-doc < 6.14.0-4
 %description    qch-doc
 Developer Documentation files for %{name} for use with KDevelop or QtCreator.
 
+%package        html
+Summary:        Developer Documentation files for %{name}
+BuildArch:      noarch
+%description    html
+Developer Documentation files for %{name} in HTML format 
+
 
 %prep
 %autosetup -n %{framework}-%{version} -p1
@@ -180,11 +187,11 @@ Developer Documentation files for %{name} for use with KDevelop or QtCreator.
 
 %build
 %cmake_kf6
-%cmake_build
+%cmake_build_kf6
 
 
 %install
-%cmake_install
+%cmake_install_kf6
 %find_lang kf6-kio --all-name --with-man --with-html
 
 %files
@@ -231,10 +238,16 @@ Developer Documentation files for %{name} for use with KDevelop or QtCreator.
 %{_kf6_libdir}/cmake/KF6KIO/
 %{_kf6_datadir}/kdevappwizard/templates/kioworker6.tar.bz2
 %{_kf6_qtplugindir}/designer/kio6widgets.so
-%{_qt6_docdir}/*.tags
+%{_qt6_docdir}/*/*.tags
+%{_qt6_docdir}/*/*.index 
  
 %files qch-doc
 %{_qt6_docdir}/*.qch
+
+%files html
+%{_qt6_docdir}/*/*
+%exclude %{_qt6_docdir}/*/*.tags
+%exclude %{_qt6_docdir}/*/*.index 
 
 %changelog
 * Fri Feb 07 2025 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 6.11.0-1
