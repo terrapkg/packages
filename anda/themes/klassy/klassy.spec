@@ -1,8 +1,8 @@
 Name:           klassy
 
 %global forgeurl https://github.com/paulmcauley/%{name}
-%global tag 6.3.breeze6.3.5
-%global date 20250506
+%global tag 6.4.breeze6.4.0
+%global date 20250617
 %forgemeta
 
 Version:        %{tag}

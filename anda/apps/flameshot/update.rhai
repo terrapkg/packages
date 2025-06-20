@@ -1,3 +1,4 @@
+terminate();
 rpm.global("commit", gh_commit("flameshot-org/flameshot"));
 if rpm.changed() {
     let v = gh("flameshot-org/flameshot");
