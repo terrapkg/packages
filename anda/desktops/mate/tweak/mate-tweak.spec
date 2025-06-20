@@ -32,8 +32,8 @@ python3 -m pip install distutils-extra-python
 %pyproject_install
 desktop-file-install data/*.desktop
 install -Dm644 data/*.1 -t %{buildroot}%{_mandir}/man1/
-install -Dm755 {data/mate-tweak.ui,util/mate-tweak-helper} -t %{_prefix}/lib/%{name}/
-install -Dm644 data/org.mate.mate-tweak.policy -t %{_datadir}/polkit-1/actions/
+install -Dm755 {data/mate-tweak.ui,util/mate-tweak-helper} -t %{buildroot}%{_prefix}/lib/%{name}/
+install -Dm644 data/org.mate.mate-tweak.policy -t %{buildroot}%{_datadir}/polkit-1/actions/
 %endif
 
 %check
