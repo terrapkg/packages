@@ -26,11 +26,12 @@ falcond is a powerful system daemon designed to automatically optimize your Linu
 
 %install
 install -Dm644 debian/%{name}.service -t %{buildroot}%{_unitdir}
+# When DNF supports microarchitectures the fallback option for -c can be used here instead
 DESTDIR="%{buildroot}" \
 %ifarch x86_64 x86_64_v2 x86_64_v3 x86_64_v4
 %{zig_build_target -r fast -c x86_64_v3 -s} \
 %elifarch aarch64
-%{zig_build_target -r fast -s}
+%{zig_build_target -r fast -s} \
 %endif
 
 %post
