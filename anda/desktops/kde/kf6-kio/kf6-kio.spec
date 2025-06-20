@@ -173,6 +173,12 @@ Obsoletes:      kf6-kio.switcheroo-qch-doc < 6.14.0-4
 %description    qch-doc
 Developer Documentation files for %{name} for use with KDevelop or QtCreator.
 
+%package        html
+Summary:        Developer Documentation files for %{name}
+BuildArch:      noarch
+%description    html
+Developer Documentation files for %{name} in HTML format 
+
 
 %prep
 %autosetup -n %{framework}-%{version} -p1
@@ -181,10 +187,15 @@ Developer Documentation files for %{name} for use with KDevelop or QtCreator.
 %build
 %cmake_kf6
 %cmake_build
+%cmake_build -t prepare_docs
+%cmake_build -t generate_docs 
+%cmake_build -t generate_qch 
 
 
 %install
 %cmake_install
+%cmake_build -t install_html_docs
+%cmake_build -t install_qch_docs 
 %find_lang kf6-kio --all-name --with-man --with-html
 
 %files
@@ -231,10 +242,16 @@ Developer Documentation files for %{name} for use with KDevelop or QtCreator.
 %{_kf6_libdir}/cmake/KF6KIO/
 %{_kf6_datadir}/kdevappwizard/templates/kioworker6.tar.bz2
 %{_kf6_qtplugindir}/designer/kio6widgets.so
-%{_qt6_docdir}/*.tags
+%{_qt6_docdir}/*/*.tags
+%{_qt6_docdir}/*/*.index 
  
 %files qch-doc
 %{_qt6_docdir}/*.qch
+
+%files html
+%{_qt6_docdir}/*/*
+%exclude %{_qt6_docdir}/*/*.tags
+%exclude %{_qt6_docdir}/*/*.index 
 
 %changelog
 * Fri Feb 07 2025 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 6.11.0-1
