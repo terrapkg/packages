@@ -29,11 +29,13 @@
 
 %ifarch %{ix86} x86_64
 %global with_crocus 1
-%global with_i915   1
 %global with_iris   1
 %global with_xa     1
 %global with_intel_clc 1
 %global intel_platform_vulkan %{?with_vulkan_hw:,intel,intel_hasvk}%{!?with_vulkan_hw:%{nil}}
+%if !0%{?rhel}
+%global with_i915   1
+%endif 
 %endif
 %ifarch x86_64
 %if !0%{?with_vulkan_hw}
@@ -42,17 +44,18 @@
 %endif
 
 %ifarch aarch64 x86_64 %{ix86}
-%global with_kmsro     1
 %if !0%{?rhel}
-%global with_lima      1
-%global with_vc4       1
-%global with_etnaviv   1
-%global with_tegra     1
 %global with_asahi     1
+%global with_d3d12     1
+%global with_etnaviv   1
+%global with_lima      1
+%global with_tegra     1
+%global with_vc4       1
+%global with_v3d       1
 %endif
 %global with_freedreno 1
+%global with_kmsro     1
 %global with_panfrost  1
-%global with_v3d       1
 %global with_xa        1
 %if 0%{?with_asahi}
 %global asahi_platform_vulkan %{?with_vulkan_hw:,asahi}%{!?with_vulkan_hw:%{nil}}
@@ -63,6 +66,7 @@
 %if !0%{?rhel}
 %global with_libunwind 1
 %global with_lmsensors 1
+%global with_virtio    1
 %endif
 
 %ifarch %{valgrind_arches}
@@ -71,7 +75,7 @@
 %bcond_with valgrind
 %endif
 
-%global vulkan_drivers swrast,virtio%{?base_vulkan}%{?intel_platform_vulkan}%{?asahi_platform_vulkan}%{?extra_platform_vulkan}%{?with_nvk:,nouveau}
+%global vulkan_drivers swrast%{?base_vulkan}%{?intel_platform_vulkan}%{?asahi_platform_vulkan}%{?extra_platform_vulkan}%{?with_nvk:,nouveau}%{?with_virtio:,virtio}
 
 Name:           %{srcname}
 Summary:        Mesa graphics libraries
@@ -80,7 +84,7 @@ Summary:        Mesa graphics libraries
 # disabled by default, and has to be enabled manually. See `terra/release/terra-mesa.repo` for details.
 Epoch:          1
 Version:        25.1.4
-Release:        1%?dist
+Release:        2%?dist
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0
 URL:            http://www.mesa3d.org
 
@@ -94,12 +98,6 @@ Patch10:        gnome-shell-glthread-disable.patch
 
 # https://github.com/bazzite-org/mesa
 Patch20:        bazzite.patch
-
-# This patch makes Fedora CI fail and causes issues in QEMU. Revert it until
-# we find a fix.
-# https://bugzilla.redhat.com/show_bug.cgi?id=2360851
-# https://gitlab.freedesktop.org/mesa/mesa/-/issues/13009
-Patch30:        0001-Revert-kopper-Explicitly-choose-zink.patch
 
 BuildRequires:  meson >= 1.3.0
 BuildRequires:  gcc
@@ -194,6 +192,9 @@ BuildRequires:  glslang
 %if 0%{?with_vulkan_hw}
 BuildRequires:  pkgconfig(vulkan)
 %endif
+%if 0%{?with_d3d12}
+BuildRequires:  pkgconfig(DirectX-Headers) >= 1.614.1
+%endif 
 
 %description
 %{summary}.
@@ -254,6 +255,7 @@ Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{rel
 Recommends:     %{name}-va-drivers%{?_isa}
 %endif
 Obsoletes:      %{name}-libglapi < %{?epoch:%{epoch}:}25.0.0~rc2-1
+Provides:       %{name}-libglapi >= %{?epoch:%{epoch}:}25.0.0~rc2-1
 
 %description dri-drivers
 %{summary}.
@@ -399,7 +401,7 @@ export MESON_PACKAGE_CACHE_DIR="%{cargo_registry}/"
   -Dplatforms=x11,wayland \
   -Dosmesa=true \
 %if 0%{?with_hardware}
-  -Dgallium-drivers=llvmpipe,virgl,nouveau%{?with_r300:,r300}%{?with_crocus:,crocus}%{?with_i915:,i915}%{?with_iris:,iris}%{?with_vmware:,svga}%{?with_radeonsi:,radeonsi}%{?with_r600:,r600}%{?with_asahi:,asahi}%{?with_freedreno:,freedreno}%{?with_etnaviv:,etnaviv}%{?with_tegra:,tegra}%{?with_vc4:,vc4}%{?with_v3d:,v3d}%{?with_lima:,lima}%{?with_panfrost:,panfrost}%{?with_vulkan_hw:,zink} \
+  -Dgallium-drivers=llvmpipe,virgl,nouveau%{?with_r300:,r300}%{?with_crocus:,crocus}%{?with_i915:,i915}%{?with_iris:,iris}%{?with_vmware:,svga}%{?with_radeonsi:,radeonsi}%{?with_r600:,r600}%{?with_asahi:,asahi}%{?with_freedreno:,freedreno}%{?with_etnaviv:,etnaviv}%{?with_tegra:,tegra}%{?with_vc4:,vc4}%{?with_v3d:,v3d}%{?with_lima:,lima}%{?with_panfrost:,panfrost}%{?with_vulkan_hw:,zink}%{?with_d3d12:,d3d12} \
 %else
   -Dgallium-drivers=llvmpipe,virgl \
 %endif
@@ -568,14 +570,19 @@ popd
 %endif
 %ifarch %{ix86} x86_64
 %{_libdir}/dri/crocus_dri.so
-%{_libdir}/dri/i915_dri.so
 %{_libdir}/dri/iris_dri.so
+%if 0%{?with_i915}
+%{_libdir}/dri/i915_dri.so
+%endif 
 %endif
 %ifarch aarch64 x86_64 %{ix86}
 %if 0%{?with_asahi}
 %{_libdir}/dri/apple_dri.so
 %{_libdir}/dri/asahi_dri.so
 %endif
+%if 0%{?with_d3d12}
+%{_libdir}/dri/d3d12_dri.so
+%endif 
 %{_libdir}/dri/ingenic-drm_dri.so
 %{_libdir}/dri/imx-drm_dri.so
 %{_libdir}/dri/imx-lcdif_dri.so
@@ -656,6 +663,9 @@ popd
 %if 0%{?with_radeonsi}
 %{_libdir}/dri/radeonsi_drv_video.so
 %endif
+%if 0%{?with_d3d12}
+%{_libdir}/dri/d3d12_drv_video.so
+%endif 
 %{_libdir}/dri/virtio_gpu_drv_video.so
 %endif
 
@@ -669,16 +679,21 @@ popd
 %if 0%{?with_radeonsi}
 %{_libdir}/vdpau/libvdpau_radeonsi.so.1*
 %endif
+%if 0%{?with_d3d12}
+%{_libdir}/vdpau/libvdpau_d3d12.so.1*
+%endif 
 %{_libdir}/vdpau/libvdpau_virtio_gpu.so.1*
 %endif
 
 %files vulkan-drivers
 %{_libdir}/libvulkan_lvp.so
 %{_datadir}/vulkan/icd.d/lvp_icd.*.json
-%{_libdir}/libvulkan_virtio.so
-%{_datadir}/vulkan/icd.d/virtio_icd.*.json
 %{_libdir}/libVkLayer_MESA_device_select.so
 %{_datadir}/vulkan/implicit_layer.d/VkLayer_MESA_device_select.json
+%if 0%{?with_virtio}
+%{_libdir}/libvulkan_virtio.so
+%{_datadir}/vulkan/icd.d/virtio_icd.*.json
+%endif 
 %if 0%{?with_vulkan_hw}
 %{_libdir}/libvulkan_radeon.so
 %{_datadir}/drirc.d/00-radv-defaults.conf
