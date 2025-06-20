@@ -48,5 +48,5 @@ dracut -f --regenerate-all
 %{_modprobedir}/amdgpu.conf
 
 %changelog
-* Fri Jun 20 2025 Gilver E. <rockgrub@disroot.org> - 1-1
+* Fri Jun 20 2025 Gilver E. <rockgrub@disroot.org> - 0^20250620git.c0c7df4-1
 - Initial package
