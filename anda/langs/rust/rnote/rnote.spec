@@ -47,6 +47,8 @@ This provides the `rnote-cli` binary. For more information, see the `rnote` pack
 
 %install
 install -Dm755 target/rpm/rnote{,-cli} -t %buildroot%_bindir
+cp target/rpm/rnote{,-cli} %_vpath_builddir
+%meson_install
 
 
 %files
