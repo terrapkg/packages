@@ -1,19 +1,26 @@
-From 77ade97f4c3a1acc5955feeac3bf6e83e0f4d22e Mon Sep 17 00:00:00 2001
+From eb811f9950a3b00dab37ce194adf43140789c58e Mon Sep 17 00:00:00 2001
 From: VirtualFreeEx <contact@ffi.lol>
-Date: Thu, 1 May 2025 18:21:33 +0300
-Subject: [PATCH 2/2] build: dont strip
+Date: Fri, 20 Jun 2025 07:07:50 +0300
+Subject: [PATCH 1/2] build: dont strip
 
 ---
- ip2net/Makefile | 6 +++---
- mdig/Makefile   | 8 ++++----
- nfq/Makefile    | 4 ++--
- tpws/Makefile   | 8 ++++----
- 4 files changed, 13 insertions(+), 13 deletions(-)
+ ip2net/Makefile |  8 ++++----
+ mdig/Makefile   | 10 +++++-----
+ nfq/Makefile    |  6 +++---
+ tpws/Makefile   | 10 +++++-----
+ 4 files changed, 17 insertions(+), 17 deletions(-)
 
 diff --git a/ip2net/Makefile b/ip2net/Makefile
-index 484f3d7..209ad3c 100644
+index 484f3d7..c3c68be 100644
 --- a/ip2net/Makefile
 +++ b/ip2net/Makefile
+@@ -1,5 +1,5 @@
+ CC ?= gcc
+-CFLAGS += -std=gnu99 -Os -flto=auto
++CFLAGS += -g -std=gnu99 -Os -flto=auto
+ CFLAGS_BSD = -Wno-address-of-packed-member
+ CFLAGS_WIN = -static
+ LIBS = 
 @@ -9,14 +9,14 @@ SRC_FILES = ip2net.c qsort.c
  all: ip2net
  
@@ -41,9 +48,16 @@ index 484f3d7..209ad3c 100644
  clean:
  	rm -f ip2net *.o
 diff --git a/mdig/Makefile b/mdig/Makefile
-index 21b6c84..a9ea0e1 100644
+index 21b6c84..d841433 100644
 --- a/mdig/Makefile
 +++ b/mdig/Makefile
+@@ -1,5 +1,5 @@
+ CC ?= gcc
+-CFLAGS += -std=gnu99 -Os
++CFLAGS += -g -std=gnu99 -Os
+ CFLAGS_BSD = -Wno-address-of-packed-member
+ CFLAGS_WIN = -static
+ LIBS = -lpthread
 @@ -10,15 +10,15 @@ SRC_FILES = *.c
  all: mdig
  
@@ -73,10 +87,17 @@ index 21b6c84..a9ea0e1 100644
  clean:
  	rm -f mdig *.o
 diff --git a/nfq/Makefile b/nfq/Makefile
-index 85a29e4..4b6491b 100644
+index f368101..3cb9559 100644
 --- a/nfq/Makefile
 +++ b/nfq/Makefile
-@@ -16,10 +16,10 @@ SRC_FILES = *.c crypto/*.c
+@@ -1,5 +1,5 @@
+ CC ?= gcc
+-CFLAGS += -std=gnu99 -Os -flto=auto
++CFLAGS += -std=gnu99 -Os -flto=auto -g
+ CFLAGS_SYSTEMD = -DUSE_SYSTEMD
+ CFLAGS_BSD = -Wno-address-of-packed-member
+ CFLAGS_CYGWIN = -Wno-address-of-packed-member -static
+@@ -17,10 +17,10 @@ SRC_FILES = *.c crypto/*.c
  all: nfqws
  
  nfqws: $(SRC_FILES)
@@ -87,26 +108,33 @@ index 85a29e4..4b6491b 100644
 -	$(CC) -s $(CFLAGS) $(CFLAGS_SYSTEMD) -o nfqws $(SRC_FILES) $(LIBS_LINUX) $(LIBS_SYSTEMD) $(LDFLAGS)
 +	$(CC) $(CFLAGS) $(CFLAGS_SYSTEMD) -o nfqws $(SRC_FILES) $(LIBS_LINUX) $(LIBS_SYSTEMD) $(LDFLAGS)
  
- android: nfqws
- 
+ android: $(SRC_FILES)
+ 	$(CC) -s $(CFLAGS) -o nfqws $(SRC_FILES) $(LIBS_LINUX) $(LDFLAGS) $(LDFLAGS_ANDROID)
 diff --git a/tpws/Makefile b/tpws/Makefile
-index 2f53263..4fc1743 100644
+index e1270f8..47c4348 100644
 --- a/tpws/Makefile
 +++ b/tpws/Makefile
-@@ -11,16 +11,16 @@ SRC_FILES_ANDROID = $(SRC_FILES) andr/*.c
+@@ -1,5 +1,5 @@
+ CC ?= gcc
+-CFLAGS += -std=gnu99 -Os -flto=auto
++CFLAGS += -g -std=gnu99 -Os -flto=auto
+ CFLAGS_SYSTEMD = -DUSE_SYSTEMD
+ CFLAGS_BSD = -Wno-address-of-packed-member
+ LDFLAGS_ANDROID = -llog
+@@ -12,16 +12,16 @@ SRC_FILES_ANDROID = $(SRC_FILES) andr/*.c
  all: tpws
  
  tpws: $(SRC_FILES)
 -	$(CC) -s $(CFLAGS) -o tpws $(SRC_FILES) $(LIBS) $(LDFLAGS)
-+	$(CC) -g $(CFLAGS) -o tpws $(SRC_FILES) $(LIBS) $(LDFLAGS)
++	$(CC) $(CFLAGS) -o tpws $(SRC_FILES) $(LIBS) $(LDFLAGS)
  
  systemd: $(SRC_FILES)
 -	$(CC) -s $(CFLAGS) $(CFLAGS_SYSTEMD) -o tpws $(SRC_FILES) $(LIBS) $(LIBS_SYSTEMD) $(LDFLAGS)
-+	$(CC) -g $(CFLAGS) $(CFLAGS_SYSTEMD) -o tpws $(SRC_FILES) $(LIBS) $(LIBS_SYSTEMD) $(LDFLAGS)
++	$(CC) $(CFLAGS) $(CFLAGS_SYSTEMD) -o tpws $(SRC_FILES) $(LIBS) $(LIBS_SYSTEMD) $(LDFLAGS)
  
  android: $(SRC_FILES)
--	$(CC) -s $(CFLAGS) -o tpws $(SRC_FILES_ANDROID) $(LIBS_ANDROID) $(LDFLAGS)
-+	$(CC) -g $(CFLAGS) -o tpws $(SRC_FILES_ANDROID) $(LIBS_ANDROID) $(LDFLAGS)
+-	$(CC) -s $(CFLAGS) -o tpws $(SRC_FILES_ANDROID) $(LIBS_ANDROID) $(LDFLAGS) $(LDFLAGS_ANDROID)
++	$(CC) $(CFLAGS) -o tpws $(SRC_FILES_ANDROID) $(LIBS_ANDROID) $(LDFLAGS) $(LDFLAGS_ANDROID)
  
  bsd: $(SRC_FILES)
 -	$(CC) -s $(CFLAGS) $(CFLAGS_BSD) -Iepoll-shim/include -o tpws $(SRC_FILES) epoll-shim/src/*.c $(LIBS) $(LDFLAGS)
