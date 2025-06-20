@@ -31,7 +31,8 @@ python3 -m pip install distutils-extra-python
 %else
 %pyproject_install
 desktop-file-install data/*.desktop
-mv -f %{buildroot}%{python3_sitelib}%{_prefix} -t %{buildroot}
+mv %{buildroot}%{python3_sitelib}%{_prefix}/* -t %{buildroot}%{_prefix}
+rm -rf %{buildroot}%{python3_sitelib}%{_prefix}
 %endif
 
 %check
