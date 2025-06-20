@@ -28,7 +28,6 @@ sed -i 's@mandb || true@@' Makefile.am
 %install
 %make_install
 
-mv %buildroot{%_usr%_sysconfdir/intel_lpmd,%_sysconfdir}
 %if "%_sbindir" == "%_bindir"
 mv %buildroot{%_usr/sbin/*,%_bindir}
 %endif
@@ -42,6 +41,6 @@ mv %buildroot{%_usr/sbin/*,%_bindir}
 %_mandir/man5/intel_lpmd_config.xml.5.gz
 %_mandir/man8/intel_lpmd.8.*
 %_mandir/man8/intel_lpmd_control.8.*
-%_sysconfdir/intel_lpmd/
+%_usr%_sysconfdir/intel_lpmd/
 %_sysconfdir/dbus-1/system.d/org.freedesktop.intel_lpmd.conf
 %_unitdir/intel_lpmd.service
