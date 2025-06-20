@@ -6,6 +6,7 @@ License:       GPL-3.0-only
 URL:           https://github.com/terrapkg/pkg-si-cik-amdgpu
 Source0:       %{url}/archive/refs/heads/main.tar.gz
 BuildRequires: systemd-rpm-macros
+BuildArch:     noarch
 Packager:      Gilver E. <rockgrub@disroot.org>
 
 %description
