@@ -31,9 +31,7 @@ python3 -m pip install distutils-extra-python
 %else
 %pyproject_install
 desktop-file-install data/*.desktop
-install -Dm644 data/*.1 -t %{buildroot}%{_mandir}/man1/
-install -Dm755 {data/mate-tweak.ui,util/mate-tweak-helper} -t %{buildroot}%{_prefix}/lib/%{name}/
-install -Dm644 data/org.mate.mate-tweak.policy -t %{buildroot}%{_datadir}/polkit-1/actions/
+mv %{buildroot}%{python3_sitelib}%{_prefix} -t %{buildroot}
 %endif
 
 %check
@@ -51,9 +49,9 @@ desktop-file-validate %buildroot%_datadir/applications/*.desktop
 %_datadir/applications/%name.desktop
 %_datadir/applications/marco-{glx,no-composite,xr_glx_hybrid,xrender}.desktop
 %_datadir/polkit-1/actions/org.mate.%name.policy
-%if 0%{?fedora} <= 41
-%{python3_sitelib}/site-packages/__pycache__
+%{python3_sitelib}/site-packages/__pycache__/
 %{python3_sitelib}/site-packages/setup.py
+%if 0%{?fedora} <= 41
 %{python3_sitelib}/mate_tweak-%version-py3.*.egg-info/
 %else
 %{python3_sitelib}/mate_tweak-%{version}.dist-info/
