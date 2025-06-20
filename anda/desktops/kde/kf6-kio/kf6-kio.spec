@@ -14,6 +14,7 @@ License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-
 URL:     https://invent.kde.org/frameworks/%{framework}
 
 Source0: https://download.kde.org/%{stable_kf6}/frameworks/%{majmin_ver_kf6}/%{framework}-%{version}.tar.xz
+Source1: https://download.kde.org/%{stable_kf6}/frameworks/%{majmin_ver_kf6}/%{framework}-%{version}.tar.xz.sig
 
 # https://invent.kde.org/frameworks/kio/-/issues/26
 # I'm not sending this upstream because I'm not sure it's really
@@ -173,6 +174,11 @@ Obsoletes:      kf6-kio.switcheroo-qch-doc < 6.14.0-4
 %description    qch-doc
 Developer Documentation files for %{name} for use with KDevelop or QtCreator.
 
+%package        html
+Summary:        Developer Documentation files for %{name}
+BuildArch:      noarch
+%description    html
+Developer Documentation files for %{name} in HTML format
 
 %prep
 %autosetup -n %{framework}-%{version} -p1
@@ -180,12 +186,12 @@ Developer Documentation files for %{name} for use with KDevelop or QtCreator.
 
 %build
 %cmake_kf6
-%cmake_build
-
+%cmake_build_kf6
 
 %install
-%cmake_install
-%find_lang kf6-kio --all-name --with-man --with-html
+%cmake_install_kf6
+
+%find_lang %{name} --all-name --with-man --with-html
 
 %files
 %license LICENSES/*.txt
@@ -209,7 +215,7 @@ Developer Documentation files for %{name} for use with KDevelop or QtCreator.
 %files core-libs
 %{_kf6_libdir}/libKF6KIOCore.so.*
 
-%files doc -f kf6-kio.lang
+%files doc -f %{name}.lang
 
 %files gui
 %{_kf6_libdir}/libKF6KIOGui.so.*
@@ -231,12 +237,46 @@ Developer Documentation files for %{name} for use with KDevelop or QtCreator.
 %{_kf6_libdir}/cmake/KF6KIO/
 %{_kf6_datadir}/kdevappwizard/templates/kioworker6.tar.bz2
 %{_kf6_qtplugindir}/designer/kio6widgets.so
-%{_qt6_docdir}/*.tags
+%{_qt6_docdir}/*/*.tags
+%{_qt6_docdir}/*/*.index
  
 %files qch-doc
 %{_qt6_docdir}/*.qch
 
+%files html
+%{_qt6_docdir}/*/*
+%exclude %{_qt6_docdir}/*/*.tags
+%exclude %{_qt6_docdir}/*/*.index
+ 
+
 %changelog
+* Tue Jun 17 2025 Marie Loise Nolden <loise@kde.org> - 6.15.0-2
+- 6.15 and plasma 3.4 compatibility rebuild
+
+* Sat Jun 07 2025 Steve Cossette <farchord@gmail.com> - 6.15.0-1
+- 6.15.0
+
+* Fri May 09 2025 Alessandro Astone <ales.astone@gmail.com> - 6.14.0-3
+- Respun
+
+* Wed May 07 2025 Steve Cossette <farchord@gmail.com> - 6.14.0-2
+- Respun
+
+* Sat May 03 2025 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 6.14.0-1
+- 6.14.0
+
+* Mon Apr 14 2025 Jan Grulich <jgrulich@redhat.com> - 6.13.0-2
+- Rebuild (qt6)
+
+* Sun Apr 06 2025 Steve Cossette <farchord@gmail.com> - 6.13.0-1
+- 6.13.0
+
+* Tue Mar 25 2025 Jan Grulich <jgrulich@redhat.com> - 6.12.0-2
+- Rebuild (qt6)
+
+* Fri Mar 07 2025 Steve Cossette <farchord@gmail.com> - 6.12.0-1
+- 6.12.0
+
 * Fri Feb 07 2025 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 6.11.0-1
 - 6.11.0
 
