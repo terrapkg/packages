@@ -1,13 +1,19 @@
-Name:          si-cik-amdgpu
-Version:       1
-Release:       1%{?dist}
-Summary:       Modprobe config to enable the amdgpu drivers on Southern Islands (SI) and CIK (Sea Islands)
-License:       GPL-3.0-only
-URL:           https://github.com/terrapkg/pkg-si-cik-amdgpu
-Source0:       %{url}/archive/refs/heads/main.tar.gz
-BuildRequires: systemd-rpm-macros
-BuildArch:     noarch
-Packager:      Gilver E. <rockgrub@disroot.org>
+%global commit c0c7df418d9d5eb499b72f738fa4c9c4ee7fcbc6
+%global shortcommit %(c=%{commit}; echo ${c:0:7})
+%global commit_date 20250620
+
+Name:             si-cik-amdgpu
+Version:          0^%{commit_date}git.%{shortcommit}
+Release:          1%{?dist}
+Summary:          Modprobe config to enable the amdgpu drivers on Southern Islands (SI) and CIK (Sea Islands)
+License:          GPL-3.0-only
+URL:              https://github.com/terrapkg/pkg-si-cik-amdgpu
+Source0:          %{url}/archive/%{commit}.tar.gz#/%{name}-%{shortcommit}.tar.gz
+BuildRequires:    systemd-rpm-macros
+Requires(post):   dracut
+Requires(postun): dracut
+BuildArch:        noarch
+Packager:         Gilver E. <rockgrub@disroot.org>
 
 %description
 %{summary}.
@@ -22,7 +28,7 @@ Using this driver with these GPUs is known in some cases to cause a higher power
 If this is not a potential tradeoff you are comfortable with, please do not use this config.
 
 %prep
-%autosetup -n pkg-%{name}-main
+%autosetup -n pkg-%{name}-%{commit}
 
 %build
 # [Crickets chirping]
