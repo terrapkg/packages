@@ -38,12 +38,13 @@ This provides the `rnote-cli` binary. For more information, see the `rnote` pack
 
 
 %build
-%meson -Dui=false -Dcli=false
-%meson_build
+%meson
 %cargo_license_summary_online
 %{cargo_license_online} > LICENSE.dependencies
 %{cargo_build} --bin rnote
 %{cargo_build} --bin rnote-cli
+%meson -Dui=false -Dcli=false
+%meson_build
 
 
 %install
