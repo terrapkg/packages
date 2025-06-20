@@ -112,7 +112,7 @@ Requires:       SDL2%{?_isa}
 
 # Game performance is increased with gamemode (for games that support it)
 Recommends:     (falcond or gamemode)
-Recommends:     gamemode%{?_isa}
+Recommends:     (gamemode%{?_isa} if gamemode(x86-64))
 Recommends:     (gnome-shell-extension-appindicator if gnome-shell)
 
 Recommends:     (gnome-shell-extension-appindicator if gnome-shell)
