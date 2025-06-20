@@ -1,4 +1,4 @@
-From 15d9496c44df8c20128127e8ccb8856d5b7c8c29 Mon Sep 17 00:00:00 2001
+From 27e5ca5e9f32a3dab5d9f22e53c34133a98fc1ef Mon Sep 17 00:00:00 2001
 From: Antheas Kapenekakis <git@antheas.dev>
 Date: Sat, 15 Mar 2025 16:38:53 +0100
 Subject: [PATCH 01/11] [NA] Developer files, readme, etc
@@ -238,7 +238,7 @@ index 00000000000..f0fa113f876
 2.49.0
 
 
-From 0d1d997dfc1c7ae6321544cb54cd0fae443d13bd Mon Sep 17 00:00:00 2001
+From 2f02ad01e44eddb1d78e6e2a336bb21b7c3c93af Mon Sep 17 00:00:00 2001
 From: Antheas Kapenekakis <git@antheas.dev>
 Date: Sat, 15 Mar 2025 16:39:08 +0100
 Subject: [PATCH 02/11] [BEGIN] SteamOS Changes
@@ -247,7 +247,7 @@ Subject: [PATCH 02/11] [BEGIN] SteamOS Changes
 2.49.0
 
 
-From 4cace3e7b524fe399a0f970cddff8298ed5d8848 Mon Sep 17 00:00:00 2001
+From d446cc1258a6c6fd042e9a3d651a799a033a2d8c Mon Sep 17 00:00:00 2001
 From: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
 Date: Fri, 14 Jan 2022 15:58:45 +0100
 Subject: [PATCH 03/11] STEAMOS: radv: min image count override for FH5
@@ -259,10 +259,10 @@ gamescope the game could get stuck in low power states.
  1 file changed, 4 insertions(+)
 
 diff --git a/src/util/00-radv-defaults.conf b/src/util/00-radv-defaults.conf
-index f4933bef04e..595a435802f 100644
+index e0e5b34dc87..5e931f61760 100644
 --- a/src/util/00-radv-defaults.conf
 +++ b/src/util/00-radv-defaults.conf
-@@ -230,5 +230,9 @@ Application bugs worked around in this file:
+@@ -238,5 +238,9 @@ Application bugs worked around in this file:
          <application name="Total War: WARHAMMER III" application_name_match="TotalWarhammer3">
              <option name="radv_disable_depth_storage" value="true"/>
          </application>
@@ -276,7 +276,7 @@ index f4933bef04e..595a435802f 100644
 2.49.0
 
 
-From ecc936c2cc8bd40dae8e0a72a0be20ac2013b135 Mon Sep 17 00:00:00 2001
+From 016b60d32de3cd99e10207e7f0fa2c6fce91476c Mon Sep 17 00:00:00 2001
 From: Samuel Pitoiset <samuel.pitoiset@gmail.com>
 Date: Thu, 22 Feb 2024 22:32:45 +0100
 Subject: [PATCH 04/11] STEAMOS: Dynamic swapchain override for gamescope
@@ -383,7 +383,7 @@ index 4da19d73090..819a0e548fc 100644
 2.49.0
 
 
-From 748118300fed8a077fe78b121e2440f9a5e94b86 Mon Sep 17 00:00:00 2001
+From 23db9ff0bf721f2c9080955c8c5dcf1f187d7adc Mon Sep 17 00:00:00 2001
 From: Antheas Kapenekakis <git@antheas.dev>
 Date: Sat, 15 Mar 2025 16:39:25 +0100
 Subject: [PATCH 05/11] [BEGIN] SteamOS Backports
@@ -392,7 +392,7 @@ Subject: [PATCH 05/11] [BEGIN] SteamOS Backports
 2.49.0
 
 
-From ac2264f9364e2660618f9c6c65ffeb6cc582d8c9 Mon Sep 17 00:00:00 2001
+From 69160c86a0d01b1c8482277faca1f6f7fa24cfce Mon Sep 17 00:00:00 2001
 From: Antheas Kapenekakis <git@antheas.dev>
 Date: Sat, 15 Mar 2025 16:39:33 +0100
 Subject: [PATCH 06/11] [BEGIN] Our Mesa backports
@@ -401,7 +401,7 @@ Subject: [PATCH 06/11] [BEGIN] Our Mesa backports
 2.49.0
 
 
-From daaf7be9a252e1a2fd217114e395dfe65e473784 Mon Sep 17 00:00:00 2001
+From 59e3d359a4f4f78112ee965bb790dec2208ea480 Mon Sep 17 00:00:00 2001
 From: Maarten Lankhorst <maarten.lankhorst@intel.com>
 Date: Mon, 17 Feb 2025 14:55:29 -0800
 Subject: [PATCH 07/11] anv: Mark images with format modifiers set as scanout.
@@ -439,7 +439,7 @@ index 0fb86e9d846..de37994d324 100644
 2.49.0
 
 
-From 395b58b678a438bf04c96297f243eaebfb2b02ab Mon Sep 17 00:00:00 2001
+From 8c17b9dd7ad7f565080bd3623cfb820efb729444 Mon Sep 17 00:00:00 2001
 From: Antheas Kapenekakis <git@antheas.dev>
 Date: Mon, 24 Mar 2025 19:50:51 +0100
 Subject: [PATCH 08/11] Revert "winsys/amdgpu: use VM_ALWAYS_VALID for all VRAM
@@ -472,7 +472,7 @@ index dfefc468bca..cc0719a1898 100644
 2.49.0
 
 
-From d4e93fa407acb088fb1b16f7cf79e24e9886cebd Mon Sep 17 00:00:00 2001
+From 816dec380bba16f65d7c65ddf9960a0ff79a8923 Mon Sep 17 00:00:00 2001
 From: Kyle Gospodnetich <me@kylegospodneti.ch>
 Date: Sun, 18 May 2025 09:40:01 -0700
 Subject: [PATCH 09/11] [BEGIN] Proton-GE Patches
@@ -481,7 +481,7 @@ Subject: [PATCH 09/11] [BEGIN] Proton-GE Patches
 2.49.0
 
 
-From d2797aae04d682bf180c919f35447e58f41c9157 Mon Sep 17 00:00:00 2001
+From e768b0cf066c73e9c379d59d380462c15f050a03 Mon Sep 17 00:00:00 2001
 From: Kyle Gospodnetich <me@kylegospodneti.ch>
 Date: Sun, 18 May 2025 09:42:23 -0700
 Subject: [PATCH 10/11] radv: min image count patch for Wine Wayland/Path of
@@ -506,7 +506,7 @@ Subject: [PATCH 10/11] radv: min image count patch for Wine Wayland/Path of
  15 files changed, 42 insertions(+), 22 deletions(-)
 
 diff --git a/src/amd/vulkan/radv_instance.c b/src/amd/vulkan/radv_instance.c
-index 15a3f710502..a6af9d67db0 100644
+index d03b311fa07..910d3989451 100644
 --- a/src/amd/vulkan/radv_instance.c
 +++ b/src/amd/vulkan/radv_instance.c
 @@ -148,7 +148,7 @@ static const struct debug_control trace_options[] = {
@@ -597,10 +597,10 @@ index f6cbe8de4b7..7d3e3c71acf 100644
        DRI_CONF_VK_X11_ENSURE_MIN_IMAGE_COUNT(false)
        DRI_CONF_VK_KHR_PRESENT_WAIT(false)
 diff --git a/src/util/00-mesa-defaults.conf b/src/util/00-mesa-defaults.conf
-index 3475dda8083..c06297e9c07 100644
+index 5f6034061c2..ca7511877ee 100644
 --- a/src/util/00-mesa-defaults.conf
 +++ b/src/util/00-mesa-defaults.conf
-@@ -620,24 +620,24 @@ TODO: document the other workarounds.
+@@ -625,24 +625,24 @@ TODO: document the other workarounds.
  
          <application name="gfxbench" executable="testfw_app">
              <option name="mesa_glthread_app_profile" value="0" />
@@ -629,7 +629,7 @@ index 3475dda8083..c06297e9c07 100644
              <option name="vk_x11_strict_image_count" value="true" />
          </application>
  
-@@ -698,10 +698,12 @@ TODO: document the other workarounds.
+@@ -703,10 +703,12 @@ TODO: document the other workarounds.
  
          <application name="Path of Exile" executable="PathOfExile_x64Steam.exe">
              <option name="vk_zero_vram" value="true" />
@@ -643,7 +643,7 @@ index 3475dda8083..c06297e9c07 100644
  
          <application name="X4 Foundations" executable="X4">
 diff --git a/src/util/driconf.h b/src/util/driconf.h
-index 52605a44280..fc116c8d2bc 100644
+index 86e00d6edd6..a00c4c0e9a5 100644
 --- a/src/util/driconf.h
 +++ b/src/util/driconf.h
 @@ -448,8 +448,8 @@
@@ -672,7 +672,7 @@ index a843b463e84..4de75ceb8af 100644
        DRI_CONF_VK_XWAYLAND_WAIT_READY(true)
        DRI_CONF_VENUS_IMPLICIT_FENCING(false)
 diff --git a/src/vulkan/wsi/wsi_common.c b/src/vulkan/wsi/wsi_common.c
-index 05a247181cf..b0fb88bf2d6 100644
+index 528605856d5..d0ffd475b8f 100644
 --- a/src/vulkan/wsi/wsi_common.c
 +++ b/src/vulkan/wsi/wsi_common.c
 @@ -219,7 +219,7 @@ wsi_device_init(struct wsi_device *wsi,
@@ -802,7 +802,7 @@ index 65b7fdf7212..ea5d3750f46 100644
 2.49.0
 
 
-From a5460180b4a9020aaad7078da88c306acb8ec970 Mon Sep 17 00:00:00 2001
+From a1be005decba7afccc3f9ef36d7b8913d3e53952 Mon Sep 17 00:00:00 2001
 From: Kyle Gospodnetich <me@kylegospodneti.ch>
 Date: Sun, 18 May 2025 09:59:41 -0700
 Subject: [PATCH 11/11] vulkan/wsi/wayland: Move drm syncobj to swapchain
