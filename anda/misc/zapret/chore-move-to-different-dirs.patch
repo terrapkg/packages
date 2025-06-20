@@ -1,7 +1,7 @@
-From 97c9edf12cad05fb8c682ce432a3e8e5ff4c1956 Mon Sep 17 00:00:00 2001
+From e6e3b033683453f3bffceb099ebe4195f35a3d7c Mon Sep 17 00:00:00 2001
 From: VirtualFreeEx <contact@ffi.lol>
-Date: Thu, 1 May 2025 18:22:41 +0300
-Subject: [PATCH 1/2] chore: move to different dirs
+Date: Fri, 20 Jun 2025 07:08:06 +0300
+Subject: [PATCH 2/2] chore: move to different dirs
 
 ---
  blockcheck.sh                             | 15 ++++++++-------
@@ -15,7 +15,7 @@ Subject: [PATCH 1/2] chore: move to different dirs
  8 files changed, 19 insertions(+), 20 deletions(-)
 
 diff --git a/blockcheck.sh b/blockcheck.sh
-index a827843..9fb0d2b 100755
+index 24ad898..1fa77ea 100755
 --- a/blockcheck.sh
 +++ b/blockcheck.sh
 @@ -3,9 +3,10 @@
@@ -49,7 +49,7 @@ index a827843..9fb0d2b 100755
  IPFW_RULE_NUM=${IPFW_RULE_NUM:-1}
  IPFW_DIVERT_PORT=${IPFW_DIVERT_PORT:-59780}
 diff --git a/config.default b/config.default
-index 3a79e59..6a4fc31 100644
+index ac04997..bee9a86 100644
 --- a/config.default
 +++ b/config.default
 @@ -1,9 +1,6 @@
@@ -63,7 +63,7 @@ index 3a79e59..6a4fc31 100644
  #WS_USER=nobody
  
 diff --git a/init.d/systemd/nfqws@.service b/init.d/systemd/nfqws@.service
-index ca1a6d5..3ddbbb5 100644
+index 5a18c7e..98daa37 100644
 --- a/init.d/systemd/nfqws@.service
 +++ b/init.d/systemd/nfqws@.service
 @@ -30,7 +30,7 @@ After=network.target
@@ -76,7 +76,7 @@ index ca1a6d5..3ddbbb5 100644
  Environment=CONFIG_DIR=/etc/zapret
  Environment=INSTANCE=%i
 diff --git a/init.d/systemd/tpws@.service b/init.d/systemd/tpws@.service
-index d6cce63..6ce1ca9 100644
+index c278008..62732b5 100644
 --- a/init.d/systemd/tpws@.service
 +++ b/init.d/systemd/tpws@.service
 @@ -30,7 +30,7 @@ After=network.target
