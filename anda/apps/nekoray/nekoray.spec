@@ -1,6 +1,6 @@
 %global gomodulesmode GO111MODULE=on
 Name: nekoray
-Version: 4.3.4
+Version: 4.3.5
 Release: 1%?dist
 Summary: Qt based cross-platform GUI proxy configuration manager (backend: sing-box)
 URL: https://github.com/Mahdi-zarei/nekoray

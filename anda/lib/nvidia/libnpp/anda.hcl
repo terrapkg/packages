@@ -3,7 +3,6 @@ project pkg {
         spec = "libnpp.spec"
     }
     labels {
-	    subrepo = "nvidia"
 	    updbranch = 1
     }
 }

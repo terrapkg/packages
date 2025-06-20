@@ -7,7 +7,7 @@
 %define         llvm_compat 20
 %endif
 %global         llvm_version 20.0.0
-%global         ver 0.15.0-dev.465+bb79c85cb
+%global         ver 0.15.0-dev.848+f3940ad85
 %bcond bootstrap 1
 %bcond docs      %{without bootstrap}
 %bcond test      1
@@ -46,8 +46,7 @@ URL:            https://ziglang.org
 Source0:        %{url}/builds/zig-%{ver}.tar.xz
 Source1:        %{url}/builds/zig-%{ver}.tar.xz.minisig
 Patch0:         0000-remove-native-lib-directories-from-rpath.patch
-Patch1:         0001-increase-upper-bounds-of-main-zig-executable-to-9G.patch
-Patch2:         0002-build-pass-zig-lib-dir-as-directory-instead-of-as-st.patch
+Patch3:         0005-link.Elf-add-root-directory-of-libraries-to-linker-p.patch
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
@@ -61,7 +60,7 @@ BuildRequires:  help2man
 # for signature verification
 BuildRequires:  minisign
 %if %{without bootstrap}
-BuildRequires:  %{name} <= %{version}
+BuildRequires:  %{name} = %{version}
 %endif
 %if %{with test}
 BuildRequires:  elfutils-libelf-devel
@@ -197,6 +196,8 @@ install -Dpm644 zig.1 -t %{buildroot}%{_mandir}/man1/
 %endif
 
 %changelog
+* Sat May 10 2025 Gilver E. <rockgrub@disroot.org> - 0.15.0~dev.482+2c241b263-2
+- Added GCC runtime dependency to pass system information to Zig
 * Fri Apr 25 2025 Gilver E. <rockgrub@disroot.org> - 0.15.0~dev.384+c06fecd46-2
 - Ported Fedora Zig patches
 * Wed Apr 23 2025 Gilver E. <rockgrub@disroot.org>

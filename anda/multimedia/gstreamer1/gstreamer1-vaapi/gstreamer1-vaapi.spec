@@ -1,5 +1,5 @@
 Name:           gstreamer1-plugin-vaapi
-Version:        1.26.1
+Version:        1.26.2
 Release:        1%?dist
 Epoch:          1
 Summary:        GStreamer VA-API integration

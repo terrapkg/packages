@@ -1,16 +1,11 @@
-%global commit b6f338065eb45935627a51a7d9102019aaeae1c0
+%global commit d0e145292e35994bf86908ac27864ff267ce0e4c
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global fulldate 2025-05-03
+%global fulldate 2025-06-18
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
 %global ver 1.1.4
 %global base_name ghostty
 %global reverse_dns com.mitchellh.%{base_name}
-%if 0%{?fedora} <= 40
-%global cache_dir %{_builddir}/zig-cache
-%else
-%global cache_dir %{builddir}/zig-cache
-%endif
 
 Name:           %{base_name}-nightly
 Version:        %{ver}~tip^%{commit_date}git%{shortcommit}
@@ -23,6 +18,7 @@ License:        MIT AND MPL-2.0 AND OFL-1.1 AND (WTFPL OR CC0-1.0) AND Apache-2.
 URL:            https://%{base_name}.org
 Source0:        https://github.com/%{base_name}-org/%{base_name}/releases/download/tip/%{base_name}-source.tar.gz
 Source1:        https://github.com/%{base_name}-org/%{base_name}/releases/download/tip/%{base_name}-source.tar.gz.minisig
+BuildRequires:  anda-srpm-macros >= 0.2.15
 BuildRequires:  gettext
 BuildRequires:  gtk4-devel
 BuildRequires:  libadwaita-devel
@@ -31,7 +27,8 @@ BuildRequires:  minisign
 BuildRequires:  ncurses
 BuildRequires:  ncurses-devel
 BuildRequires:  pandoc-cli
-BuildRequires:  zig
+BuildRequires:  zig >= 0.14.0
+BuildRequires:  zig-rpm-macros
 BuildRequires:  pkgconfig(blueprint-compiler)
 BuildRequires:  pkgconfig(bzip2)
 BuildRequires:  pkgconfig(freetype2)
@@ -44,8 +41,8 @@ BuildRequires:  pkgconfig(libpng)
 BuildRequires:  pkgconfig(libxml-2.0)
 BuildRequires:  pkgconfig(oniguruma)
 BuildRequires:  pkgconfig(zlib)
-Requires:       %{name}-terminfo
-Requires:       %{name}-shell-integration
+Requires:       %{name}-terminfo = %{evr}
+Requires:       %{name}-shell-integration = %{evr}
 Requires:       gtk4
 Requires:       gtk4-layer-shell
 Requires:       libadwaita
@@ -112,55 +109,40 @@ This package contains files allowing Ghostty to integrate with various shells.
 
 %package        terminfo
 Summary:        Ghostty terminfo
+%if 0%{?fedora} >= 42
+Requires:       ncurses-term >= 6.5-5.20250125
+%endif
 Supplements:    %{name}
 %if 0%{?fedora} <= 41
 Provides:       %{name}-terminfo = %{commit_date}.%{shortcommit}
 %endif
-%if 0%{?fedora} >= 42
-Requires:       ncurses-term >= 6.5-5.20250125%{?dist}
-%endif
+Obsoletes:      %{name}-terminfo-source < %{evr}
 BuildArch:      noarch
 
 %description    terminfo
 Ghostty's terminfo. Needed for basic terminal function.
 
-%package        terminfo-source
-Summary:        Source files for Ghostty's terminfo
-Requires:       %{name}
-Requires:       %{name}-terminfo
-BuildArch:      noarch
-
-%description    terminfo-source
-This package contains files for Ghostty's terminfo. Available for debugging use.
-
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
 %autosetup -n %{base_name}-%{ver}-main+%{shortcommit}
 
-ZIG_GLOBAL_CACHE_DIR="%{cache_dir}" ./nix/build-support/fetch-zig-cache.sh
+ZIG_GLOBAL_CACHE_DIR="%{_zig_cache_dir}" ./nix/build-support/fetch-zig-cache.sh
 
 %build
 
 %install
 DESTDIR="%{buildroot}" \
-zig build \
-    --summary all \
-    --release=fast \
-    --system "%{cache_dir}/p" \
+%{zig_build_target -r fast} \
     --prefix "%{_prefix}" --prefix-lib-dir "%{_libdir}" \
     --prefix-exe-dir "%{_bindir}" --prefix-include-dir "%{_includedir}" \
-    --verbose \
     -Dversion-string="%{ver}-dev+%{shortcommit}" \
-    -Dcpu=baseline \
     -Dstrip=false \
     -Dpie=true \
-    -Demit-docs \
-    -Demit-termcap \
-    -Demit-terminfo
+    -Demit-docs 
 
-#Don't conflict with ncurses-term on F42 and up
+# Don't conflict with ncurses-term on F42 and up
 %if 0%{?fedora} >= 42
-rm -rf %{buildroot}%{_datadir}/terminfo/g/ghostty
+rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %endif
 
 %find_lang %{reverse_dns}
@@ -175,6 +157,7 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/ghostty
 %{_datadir}/%{base_name}/doc
 %{_datadir}/%{base_name}/themes
 %{_datadir}/kio/servicemenus/%{reverse_dns}.desktop
+%{_datadir}/metainfo/%{reverse_dns}.metainfo.xml
 %{_datadir}/nautilus-python/extensions/%{base_name}.py
 %{_datadir}/nvim/site/compiler/%{base_name}.vim
 %{_datadir}/nvim/site/ftdetect/%{base_name}.vim
@@ -221,11 +204,10 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/ghostty
 %endif
 %{_datadir}/terminfo/x/xterm-%{base_name}
 
-%files terminfo-source
-%{_datadir}/terminfo/%{base_name}.termcap
-%{_datadir}/terminfo/%{base_name}.terminfo
-
 %changelog
+* Sat May 31 2025 Gilver E. <rockgrub@disroot.org> - 1.1.4~tip^20250531git1ff9162
+- Updated for Zig 0.14.0
+- Updated for ncurses-term compatibility in Fedora 42 and Rawhide
 * Wed Mar 05 2025 Gilver E. <rockgrub@disroot.org>
 - Update to 1.1.3~tip^20250305git66e8d91-2%{?dist}
  * Ghostty now has localization support via gettext as well as corresponding localization files

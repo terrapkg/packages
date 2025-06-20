@@ -12,7 +12,7 @@
 Summary:        A complete solution to record, convert and stream audio and video
 Name:           ffmpeg
 Version:        7.1.1
-Release:        1%{?dist}
+Release:        13%?dist
 License:        LGPL-3.0-or-later
 URL:            http://%{name}.org/
 Epoch:          1
@@ -400,6 +400,12 @@ This subpackage contains the headers for FFmpeg libswscale.
 #sed -i -e 's|#!/bin/sh|#!/bin/sh -x|g' configure
 
 %build
+# Work around a new GCC15 change until FFmpeg updates for it
+%if 0%{?fedora} >= 42
+%if "%{version}" <= "7.1.1"
+export CFLAGS="%{optflags} -Wno-incompatible-pointer-types"
+%endif
+%endif
 %set_build_flags
 
 ./configure \
@@ -663,3 +669,6 @@ mv doc/*.html doc/html
 %{_libdir}/pkgconfig/libswscale.pc
 %{_libdir}/libswscale.so
 %{_mandir}/man3/libswscale.3*
+
+%changelog
+%autochangelog

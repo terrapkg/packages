@@ -8,7 +8,7 @@
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
-Version:        12.9.37
+Version:        12.9.79
 Release:        1%?dist
 Summary:        CUDA Runtime API library
 License:        CUDA Toolkit

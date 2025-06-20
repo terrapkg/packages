@@ -8,7 +8,7 @@
 
 Name:           cuda-sanitizer
 Epoch:          1
-Version:        12.9.27
+Version:        12.9.79
 Release:        1%?dist
 Summary:        CUDA Compute Sanitizer API
 License:        CUDA Toolkit
