@@ -25,7 +25,7 @@ falcond is a powerful system daemon designed to automatically optimize your Linu
 %build
 
 %install
-install -Dm644 debian/%{name}.service %{buildroot}%{_unitdir}
+install -Dm644 debian/%{name}.service -t %{buildroot}%{_unitdir}
 DESTDIR="%{buildroot}" \
 %{zig_build_target -r fast -c x86_64_v3 -s}
 
