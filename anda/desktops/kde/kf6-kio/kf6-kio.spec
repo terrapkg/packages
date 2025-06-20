@@ -186,16 +186,11 @@ Developer Documentation files for %{name} in HTML format
 
 %build
 %cmake_kf6
-%cmake_build
-%cmake_build -t prepare_docs
-%cmake_build -t generate_docs 
-%cmake_build -t generate_qch 
+%cmake_build_kf6
 
 
 %install
-%cmake_install
-%cmake_build -t install_html_docs
-%cmake_build -t install_qch_docs 
+%cmake_install_kf6
 %find_lang kf6-kio --all-name --with-man --with-html
 
 %files
