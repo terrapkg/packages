@@ -48,9 +48,9 @@ desktop-file-validate %buildroot%_datadir/applications/*.desktop
 %_datadir/applications/%name.desktop
 %_datadir/applications/marco-{glx,no-composite,xr_glx_hybrid,xrender}.desktop
 %_datadir/polkit-1/actions/org.mate.%name.policy
+%if 0%{?fedora} <= 41
 %{python3_sitelib}/site-packages/__pycache__
 %{python3_sitelib}/site-packages/setup.py
-%if 0%{?fedora} <= 41
 %{python3_sitelib}/mate_tweak-%version-py3.*.egg-info/
 %else
 %{python3_sitelib}/mate_tweak-%{version}.dist-info/
