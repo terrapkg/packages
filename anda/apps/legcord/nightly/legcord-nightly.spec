@@ -1,5 +1,5 @@
-%global commit 774311e9473dbf7741f0daced1bad98ddac17de8
-%global commit_date 20250614
+%global commit 0d9959e1bbe1dc1a5d4a479add3690ff8955ed65
+%global commit_date 20250621
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %define debug_package %nil
 %global __provides_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*))$
