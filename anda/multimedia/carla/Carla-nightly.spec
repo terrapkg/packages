@@ -79,7 +79,7 @@ BuildRequires:  pkgconfig(mxml)
 BuildRequires:  pkgconfig(gl)
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  python3-qt5-base
-BuildRequires:  python3-magic
+BuildRequires:  python3-file-magic
 BuildRequires:  python3-rdflib
 BuildRequires:  pkgconfig(liblo)
 BuildRequires:  pkgconfig(zlib)
@@ -89,7 +89,6 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  make
 BuildRequires:  /usr/bin/appstream-util
 BuildRequires:  /usr/bin/desktop-file-validate
-BuildConflicts: python3-file-magic
 Requires:       python3-qt5
 Requires:       python-pyliblo3
 Requires:       hicolor-icon-theme
