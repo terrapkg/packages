@@ -89,7 +89,7 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  make
 BuildRequires:  /usr/bin/appstream-util
 BuildRequires:  /usr/bin/desktop-file-validate
-BuildConflicts: python2-file-magic
+BuildConflicts: python3-file-magic
 Requires:       python3-qt5
 Requires:       python-pyliblo3
 Requires:       hicolor-icon-theme
