@@ -84,7 +84,9 @@ BuildRequires:  python3-rdflib
 BuildRequires:  pkgconfig(liblo)
 BuildRequires:  pkgconfig(zlib)
 Buildrequires:  pkgconfig(libmagic)
-BuildRequires:  (ffmpeg-free-devel or ffmpeg-devel)
+BuildRequires:  pkgconfig(SDL2)
+BuildRequires:  pkgconfig(SDL3)
+BuildRequires:  ffmpeg-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  make
 BuildRequires:  /usr/bin/appstream-util
