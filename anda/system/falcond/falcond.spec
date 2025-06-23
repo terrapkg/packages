@@ -2,7 +2,7 @@
 
 Name:           falcond
 Version:        1.1.6
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Advanced Linux Gaming Performance Daemon
 License:        MIT
 URL:            https://git.pika-os.com/general-packages/falcond
@@ -33,7 +33,7 @@ install -Dm644 %{SOURCE1} %{buildroot}%{_presetdir}/60-%{name}.preset
 # When DNF supports microarchitectures the fallback option for -c can be used here instead
 DESTDIR="%{buildroot}" \
 %ifarch x86_64
-%{zig_build_target -r fast -c x86_64_v3 -s} \
+%{zig_build_target -r fast -c x86_64_v2 -s} \
 %elifarch aarch64
 %{zig_build_target -r fast -s} \
 %endif
