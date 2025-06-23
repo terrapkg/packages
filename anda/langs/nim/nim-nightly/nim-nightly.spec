@@ -1,8 +1,8 @@
 %global csrc_commit 561b417c65791cd8356b5f73620914ceff845d10
-%global commit 7701b3c7e6f6c640a89cc445b40f466834ab4fcf
+%global commit 334848f3ae7aa8011e3665da90839e3c7e9bc439
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global ver 2.3.1
-%global commit_date 20250613
+%global commit_date 20250622
 %global debug_package %nil
 
 Name:			nim-nightly
@@ -14,7 +14,6 @@ URL:			https://nim-lang.org
 Source0:		https://github.com/nim-lang/Nim/archive/%commit.tar.gz
 Source1:		nim.1
 Source2:		nimgrep.1
-Source3:		nimble.1
 Source4:		nimsuggest.1
 BuildRequires:	gcc mold git gcc-c++ nodejs openssl-devel pkgconfig(bash-completion) gc-devel pcre pcre-devel
 Requires:		redhat-rpm-config gcc
@@ -104,7 +103,7 @@ mkdir -p %buildroot/%_bindir %buildroot/%_datadir/bash-completion/completions %b
 install -Dpm755 bin/nim{grep,suggest,pretty} %buildroot/%_bindir
 install -Dpm644 tools/nim.bash-completion %buildroot/%_datadir/bash-completion/completions/nim
 install -Dpm644 dist/nimble/nimble.bash-completion %buildroot/%_datadir/bash-completion/completions/nimble
-install -Dpm644 -t%buildroot/%_mandir/man1 %SOURCE1 %SOURCE2 %SOURCE3 %SOURCE4
+install -Dpm644 -t%buildroot/%_mandir/man1 %SOURCE1 %SOURCE2 %SOURCE4
 mv %buildroot%_bindir/nim %buildroot%_datadir/
 ln -s %_datadir/nim/bin/nim %buildroot%_bindir/nim
 
@@ -133,7 +132,7 @@ cp -r %buildroot%_prefix/lib/nim/dist %buildroot%_datadir/nim/
 %license copying.txt dist/nimble/license.txt
 %doc doc/readme.txt
 %_bindir/nim{,ble}
-%_mandir/man1/nim{,ble}.1*
+%_mandir/man1/nim.1.*
 %_datadir/bash-completion/completions/nim{,ble}
 %_datadir/nim/
 %_prefix/lib/nim/
