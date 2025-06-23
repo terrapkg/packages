@@ -43,6 +43,9 @@ Source:         %{gosource}
 
 %build
 %define gomodulesmode GO111MODULE=on
+go clean -modcache
+rm go.sum
+go mod tidy
 %gobuild -o %{gobuilddir}/bin/chezmoi .
 
 %install
