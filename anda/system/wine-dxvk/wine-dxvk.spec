@@ -24,14 +24,13 @@
 
 Name:           terra-wine-dxvk
 Version:        2.6.2
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Vulkan-based implementation of D3D8, 9, 10 and 11 for Linux / Wine
 
 License:        zlib AND MIT
 URL:            https://github.com/doitsujin/dxvk
-Source0:        %{url}/archive/v%{version}/dxvk-%{version}.tar.gz
-Source1:        https://gitlab.freedesktop.org/frog/libdisplay-info/-/archive/%{libdisplay_commit}/libdisplay-info-%{libdisplay_shortcommit}.tar.gz
 
+BuildRequires:  anda-srpm-macros
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  glslang
@@ -65,7 +64,7 @@ BuildRequires:  mingw32-spirv-headers
 Requires(pre):  vulkan-tools
 
 # Disable ISA dep on WINE until I figure out what we are doing with 32-bit WINE, currently these are non-WOW64 builds
-Requires:       terra-wine-staging
+Requires:       (terra-wine-staging or terra-wine-stable or terra-wine-dev)
 Requires:       terra-wine-dxvk-dxgi%{?_isa} = %{version}-%{release}
 Requires:       vulkan-loader%{?_isa}
 
@@ -143,8 +142,7 @@ Requires:       terra-wine-dxvk-d3d8(x86-32) = %{version}-%{release}
 %{summary}
 
 %prep
-%autosetup -n dxvk-%{version} -p1 -a1
-rm -rf subprojects/libdisplay-info && mv libdisplay-info-%{libdisplay_commit} subprojects/libdisplay-info
+%git_clone %{url}.git v%{version}
 
 %build
 %mingw_meson --buildtype=plain --wrap-mode=nodownload --auto-features=enabled --cross-file ../build-win%{target_x86_type}.txt --buildtype release
