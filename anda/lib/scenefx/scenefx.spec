@@ -65,9 +65,9 @@ MESON_OPTIONS=(
 %files
 %license LICENSE
 %doc README.md
-%{_libdir}/lib%{name}-%{version}.so
+%{_libdir}/lib%{name}-*.so
 
 
 %files  devel
-%{_includedir}/%{name}-%{version}/*
-%{_libdir}/pkgconfig/%{name}-%{version}.pc
+%{_includedir}/%{name}-*/*
+%{_libdir}/pkgconfig/%{name}-*.pc
