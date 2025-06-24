@@ -1,7 +1,7 @@
 %global swayVersion 1.10.1
 
 Name:           swayfx
-Version:        0.5.1
+Version:        0.5.2
 Release:        1%?dist
 
 Summary:        SwayFX: Sway, but with eye candy!

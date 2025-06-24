@@ -1,7 +1,8 @@
 %global commit 0b1a005936552abd5aed144bdc0ca5a82f2fa682
 %global commit_date 20250622
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%define debug_package %nil
+%global debug_package %nil
+%global __strip /bin/true
 %global __provides_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*))$
 %ifnarch aarch64 
 %global __requires_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*)|(.*\\aarch64*\\.so.*))$
