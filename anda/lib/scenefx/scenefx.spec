@@ -25,7 +25,7 @@ BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(wayland-protocols) >= 1.32
 BuildRequires:  pkgconfig(wayland-scanner)
 BuildRequires:  pkgconfig(wayland-server) >= 1.22
-BuildRequires:  pkgconfig(wlroots-0.18)
+BuildRequires:  pkgconfig(wlroots-0.19)
 
 
 Packager:       Atmois <atmois@atmois.com>
@@ -65,9 +65,9 @@ MESON_OPTIONS=(
 %files
 %license LICENSE
 %doc README.md
-%{_libdir}/lib%{name}-0.2.so
+%{_libdir}/lib%{name}-*.so
 
 
 %files  devel
-%{_includedir}/%{name}-0.2/*
-%{_libdir}/pkgconfig/%{name}-0.2.pc
+%{_includedir}/%{name}-*/*
+%{_libdir}/pkgconfig/%{name}-*.pc
