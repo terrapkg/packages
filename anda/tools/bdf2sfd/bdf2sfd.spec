@@ -5,7 +5,7 @@ Summary:		BDF to SFD converter, allowing to vectorize bitmap fonts
 License:		BSD-2-Clause
 URL:			https://github.com/fcambus/bdf2sfd
 Source0:		%url/archive/refs/tags/1.1.9.tar.gz
-BuildRequires:	cmake
+BuildRequires:	cmake gcc
 
 %description
 bdf2sfd is a BDF to SFD converter, allowing to vectorize bitmap fonts.
