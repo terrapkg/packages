@@ -8,7 +8,7 @@
 
 Name:           nvidia-kmod-common
 Version:        575.64
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Common file for NVIDIA's proprietary driver kernel modules
 Epoch:          3
 License:        NVIDIA License
@@ -29,6 +29,7 @@ Requires:       dracut
 Requires:       nvidia-modprobe
 Requires:       (nvidia-open-kmod = %{?epoch:%{epoch}:}%{version} or nvidia-kmod = %{?epoch:%{epoch}:}%{version})
 Provides:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
+Provides:       nvidia-open-kmod-common = %{?epoch:%{epoch}:}%{version}
 Obsoletes:      cuda-nvidia-kmod-common < %{?epoch:%{epoch}:}%{version}
 
 %description
