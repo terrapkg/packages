@@ -1,21 +1,27 @@
-%global debug_package %nil
 %global __make bmake
 %global _make_output_sync %nil
+%global fontcontact security@fyralabs.com
+%global fontorg com.fyralabs.terra
 
-Name:			spleen-fonts
 Version:		2.1.0
 Release:		1%?dist
-Summary:		Monospaced bitmap fonts
-License:		BSD-2-Clause
 URL:			https://www.cambus.net/spleen-monospaced-bitmap-fonts/
+
+%global fontlicense       BSD-2-Clause
+%global fontlicenses      LICENSE
+%global fontdocs          FAQ ChangeLog AUTHORS README.md
+%global fontfamily        Spleen
+%global fontsummary       Monospaced bitmap fonts
+%global fonts             *.otf
+%global fontdescription   %fontsummary
+
 Source0:		https://github.com/fcambus/spleen/archive/refs/tags/%version.zip
-#Patch0:			https://github.com/fcambus/spleen/pull/42.patch
+
 BuildRequires:	bmake fontforge
 BuildRequires:	bdf2sfd
-BuildArch:		noarch
+BuildRequires:  rpm_macro(fontpkg)
 
-%description
-%summary.
+%fontpkg
 
 %prep
 %autosetup -n spleen-%version
@@ -23,11 +29,14 @@ BuildArch:		noarch
 %build
 %make_build sfd
 %make_build otf
+%fontbuild
 
 %install
 install -Dm644 fonts.alias *.otf -t %buildroot%_fontbasedir/%name/
+%fontinstall -a
 
-%files
-%license LICENSE
-%doc FAQ ChangeLog AUTHORS README.md
-%_fontbasedir/%name/
+%check
+%fontcheck -a
+
+%fontfiles -a
+%_fontbasedir/%name/fonts.alias
