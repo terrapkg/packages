@@ -13,7 +13,7 @@
 %global __requires_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*))$
 
 Name:			voicevox
-Version:		0.23.1
+Version:		0.24.0
 Release:		1%?dist
 Summary:		Free Japanese text-to-speech editor
 License:		LGPL-3.0
