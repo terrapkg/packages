@@ -1,5 +1,7 @@
 ## NVIDIA DKMS package, based on the work of Negativo17 with tweaks for Terra.
 
+# RPM inexplicably thinks this package deps on a version of libcrypto it does not?
+%global __requires_exclude (libcrypto\\.so\\.1\\.1.*)$
 %global debug_package %{nil}
 %global modulename nvidia
 
