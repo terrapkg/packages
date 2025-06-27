@@ -2,6 +2,7 @@
 
 %global toolchain clang
 %global _distro_extra_cxxflags -std=c++11 -Wno-unused-but-set-variable -Wno-unused-variable
+%global _distro_extra_cflags -Wno-unused-but-set-variable -Wno-unused-variable
 
 Name:           deadbeef
 Version:        1.10.0
