@@ -1,6 +1,6 @@
 Name:           virtualsmartcard
 Version:        0.10 
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Smart card emulator and driver for networked smart card reader/emulator
 URL:            https://frankmorgner.github.io/vsmartcard/index.html
 Source0:        https://github.com/frankmorgner/vsmartcard/releases/download/%name-%version/%name-%version.tar.gz
@@ -34,6 +34,7 @@ autoreconf --verbose --install
 %{_sysconfdir}/reader.conf.d/vpcd
 %{_bindir}/vpcd-config
 %doc docs
+%license COPYING
  
 %changelog
 * Wed Jun 25 2025 june-fish <git@june.fish>
