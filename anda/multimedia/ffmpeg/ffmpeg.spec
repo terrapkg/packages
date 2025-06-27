@@ -12,7 +12,7 @@
 Summary:        A complete solution to record, convert and stream audio and video
 Name:           ffmpeg
 Version:        7.1.1
-Release:        13%?dist
+Release:        14%?dist
 License:        LGPL-3.0-or-later
 URL:            http://%{name}.org/
 Epoch:          1
@@ -468,7 +468,9 @@ export CFLAGS="%{optflags} -Wno-incompatible-pointer-types"
     --enable-libopencore-amrnb \
     --enable-libopencore-amrwb \
     --disable-libopencv \
+%ifnarch %{ix86}
     --enable-libopenh264 \
+%endif
     --enable-libopenjpeg \
     --enable-libopenmpt \
     --enable-libopus \
