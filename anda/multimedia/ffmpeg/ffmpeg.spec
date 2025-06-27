@@ -116,7 +116,9 @@ BuildRequires:  pkgconfig(lilv-0)
 BuildRequires:  pkgconfig(lv2)
 #BuildRequires:  pkgconfig(OpenCL)
 #BuildRequires:  pkgconfig(opencv)
+%ifnarch %{ix86}
 BuildRequires:  pkgconfig(openh264)
+%endif
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pkgconfig(opus)
 BuildRequires:  pkgconfig(rav1e) >= 0.4.0
