@@ -32,14 +32,11 @@ A highly configurable and privacy minded Discord client.
 %autosetup -n GoofCord-%{version}
 
 %build
-bun install
-%ifarch x86_64
-bun run packageLinux --x64
-%elifarch aarch64
-bun run packageLinux --arm64
-%elifarch armv7hl armv7l
-bun run packageLinux --armv7l
+%ifarch aarch64 armv7hl armv7l
+sed -i '/\"x64\",/d' electron-builder.ts
 %endif
+bun install
+bun run packageLinux
 
 %install
 mkdir -p %{buildroot}%{_datadir}/%{name}
