@@ -23,6 +23,7 @@ BuildRequires: make
 BuildRequires: nodejs
 BuildRequires: nodejs-npm
 BuildRequires: python3
+BuildRequires: zlib-ng-compat
 Packager:      Gilver E. <rockgrub@disroot.org>
 
 %description
