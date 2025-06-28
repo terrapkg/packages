@@ -1,4 +1,4 @@
-%define debug_package %{nil}
+%global debug_package %{nil}
 # Exclude private libraries
 %global __provides_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*))$
 %ifnarch aarch64 armv7hl armv7l
