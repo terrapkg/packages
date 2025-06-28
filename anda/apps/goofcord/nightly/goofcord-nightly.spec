@@ -18,7 +18,7 @@ License:       OSL-3.0
 Summary:       A privacy-minded Legcord fork.
 Group:         Applications/Internet
 URL:           https://github.com/Milkshiift/GoofCord
-Source0:        %{URL}/archive/%{commit}/GoofCord-%{commit}.tar.gz
+Source0:       %{URL}/archive/%{commit}/GoofCord-%{commit}.tar.gz
 BuildRequires: bun-bin
 BuildRequires: desktop-file-utils
 BuildRequires: gcc
