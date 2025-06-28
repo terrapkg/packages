@@ -43,6 +43,10 @@ Source:         %{gosource}
 
 %build
 %define gomodulesmode GO111MODULE=on
+%define __gobuild_extldflags -X main.version=%version -X main.builtBy=%vendor
+go clean -modcache
+rm go.sum
+go mod tidy
 %gobuild -o %{gobuilddir}/bin/chezmoi .
 
 %install
