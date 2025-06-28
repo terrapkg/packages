@@ -5,8 +5,6 @@
 %global __requires_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*)|(.*\\aarch64*\\.so.*))$
 %elifarch aarch64 armv7hl armv7l
 %global __requires_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*)|(.*\\x86_64*\\.so.*)|(.*\\x86-64*\\.so.*))$
-%global build_cflags %(echo %{__build_flags_lang_c} %{?_distro_extra_cflags} | sed 's/-m64//g/')
-%global build_cxxflags %(echo %{__build_flags_lang_cxx} %{?_distro_extra_cxxflags} | sed 's/-m64//g/')
 %endif
 
 Name:          goofcord
@@ -35,6 +33,9 @@ A highly configurable and privacy minded Discord client.
 
 %build
 bun install
+%ifarch aarch64 armv7hl armv7l
+sed -i 's/-m64//g' $HOME/.electron-gyp/*/include/node/common.gypi
+%endif
 bun run packageLinux
 
 %install
