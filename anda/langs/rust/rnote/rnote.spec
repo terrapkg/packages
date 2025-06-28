@@ -35,7 +35,6 @@ This provides the `rnote-cli` binary. For more information, see the `rnote` pack
 %autosetup -n rnote-%{version}
 %cargo_prep_online
 
-
 %build
 %meson
 %cargo_license_summary_online
