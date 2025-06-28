@@ -22,7 +22,7 @@ import/export, an infinite canvas and an adaptive UI for big and small screens.
 
 %prep
 %autosetup -n rnote-%{version}
-
+%cargo_prep_online
 
 %build
 %meson
