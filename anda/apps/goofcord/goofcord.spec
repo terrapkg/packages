@@ -35,7 +35,7 @@ A highly configurable and privacy minded Discord client.
 bun install
 %ifarch x86_64
 bun run packageLinux --x64
-%elifarch
+%elifarch aarch64
 bun run packageLinux --arm64
 %elifarch armv7hl armv7l
 bun run packageLinux --armv7l
