@@ -1,5 +1,5 @@
-%global commit 69d31d1067916e5ac3694d311c73b6f3515991ed
-%global commit_date 20250503
+%global commit 4765da512b881d1ca7776ab33069a7b17ed44a39
+%global commit_date 20250627
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           tela-icon-theme
