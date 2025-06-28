@@ -52,4 +52,4 @@ Conflicts:		%realname-devel
 %license LICENSE
 %doc README.md
 %{_libdir}/lib%{realname}.so.%{ver}
-%{_libdir}/lib%{realname}.so.6
+%{_libdir}/lib%{realname}.so.*
