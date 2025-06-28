@@ -22,7 +22,7 @@ Source19:       nvidia-modeset.conf
 Source20:       nvidia.conf
 Source21:       60-nvidia.rules
 Source22:       nvidia-fallback.service
-Source23:       10-nvidia.rules
+Source23:       10-nvidia-fallback.rules
 
 # UDev rule location (_udevrulesdir) and systemd macros:
 BuildRequires:  systemd-rpm-macros
@@ -67,7 +67,7 @@ cp %{SOURCE18} .
 # Fallback service. Fall back to Nouveau if NVIDIA drivers fail.
 # This is actually from RPM Fusion.
 install -Dm644 %{SOURCE22} -t %{buildroot}%{_unitdir}
-install -Dm644 %{SOURCE23} %{buildroot}%{_udevrulesdir}/10-nvidia-fallback.rules
+install -Dm644 %{SOURCE23} -t %{buildroot}%{_udevrulesdir}
 
 %pre
 # Remove the kernel command line adjustments one last time when doing an upgrade
