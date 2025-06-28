@@ -3,6 +3,6 @@ project pkg {
 		spec = "goofcord.spec"
 	}
         labels {
-                mock =1
+                mock = 1
         } 
 } 
