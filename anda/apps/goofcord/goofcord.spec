@@ -33,10 +33,13 @@ A highly configurable and privacy minded Discord client.
 
 %build
 bun install
-%ifarch aarch64 armv7hl armv7l
-sed -i 's/-m64//g' $HOME/.electron-gyp/*/include/node/common.gypi
+%ifarch x86_64
+bun run packageLinux -x64
+%elifarch
+bun run packageLinux -arm64
+%elifarch armv7hl armv7l
+bun run packageLinux -armv7l
 %endif
-bun run packageLinux
 
 %install
 mkdir -p %{buildroot}%{_datadir}/%{name}
