@@ -8,7 +8,7 @@
 
 Name:           nvidia-kmod-common
 Version:        575.64
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Common file for NVIDIA's proprietary driver kernel modules
 Epoch:          3
 License:        NVIDIA License
@@ -21,14 +21,19 @@ Source18:       MODULE_VARIANT.txt
 Source19:       nvidia-modeset.conf
 Source20:       nvidia.conf
 Source21:       60-nvidia.rules
+Source22:       nvidia-fallback.service
+Source23:       10-nvidia-fallback.rules
 
 # UDev rule location (_udevrulesdir) and systemd macros:
 BuildRequires:  systemd-rpm-macros
 
 Requires:       dracut
 Requires:       nvidia-modprobe
+Requires:       nvidia-driver = %{?epoch:%{epoch}:}%{version}
+Requires:       nvidia-driver-libs = %{?epoch:%{epoch}:}%{version}
 Requires:       (nvidia-open-kmod = %{?epoch:%{epoch}:}%{version} or nvidia-kmod = %{?epoch:%{epoch}:}%{version})
 Provides:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
+Provides:       nvidia-open-kmod-common = %{?epoch:%{epoch}:}%{version}
 Obsoletes:      cuda-nvidia-kmod-common < %{?epoch:%{epoch}:}%{version}
 
 %description
@@ -59,6 +64,11 @@ install -p -m 644 firmware/* %{buildroot}%{_prefix}/lib/firmware/nvidia/%{versio
 # Old kernel.conf rewritten as a doc file.
 cp %{SOURCE18} .
 
+# Fallback service. Fall back to Nouveau if NVIDIA drivers fail.
+# This is actually from RPM Fusion.
+install -Dm644 %{SOURCE22} -t %{buildroot}%{_unitdir}
+install -Dm644 %{SOURCE23} -t %{buildroot}%{_udevrulesdir}
+
 %pre
 # Remove the kernel command line adjustments one last time when doing an upgrade
 # from a version that was still setting up the command line parameters:
@@ -77,7 +87,9 @@ dracut --regenerate-all --force
 %dir %{_prefix}/lib/firmware/nvidia
 %{_prefix}/lib/firmware/nvidia/%{version}
 %config(noreplace) %{_sysconfdir}/modprobe.d/nvidia-modeset.conf
+%{_udevrulesdir}/10-nvidia-fallback.rules
 %{_udevrulesdir}/60-nvidia.rules
+%{_unitdir}/nvidia-fallback.service
 
 %changelog
 %autochangelog
