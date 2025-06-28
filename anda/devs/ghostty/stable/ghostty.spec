@@ -1,10 +1,6 @@
 # Signing key from https://github.com/ghostty-org/ghostty/blob/main/PACKAGING.md
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
-%if 0%{?fedora} <= 40
-%global cache_dir %{_builddir}/zig-cache
-%else
-%global cache_dir %{builddir}/zig-cache
-%endif
+%global appid com.mitchellh.%{name}
 
 Name:           ghostty
 Version:        1.1.3
@@ -179,11 +175,11 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/ghostty
 %files
 %doc README.md
 %license LICENSE
-%{_bindir}/%{base_name}
+%{_bindir}/%{name}
 %{_datadir}/applications/%{appid}.desktop
-%dir %{_datadir}/%{base_name}
-%{_datadir}/%{base_name}/doc
-%{_datadir}/%{base_name}/themes
+%dir %{_datadir}/%{name}
+%{_datadir}/%{name}/doc
+%{_datadir}/%{name}/themes
 %{_datadir}/metainfo/%{appid}.metainfo.xml
 %{_iconsdir}/hicolor/16x16/apps/%{appid}.png
 %{_iconsdir}/hicolor/16x16@2/apps/%{appid}.png
@@ -195,49 +191,49 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/ghostty
 %{_iconsdir}/hicolor/256x256@2/apps/%{appid}.png
 %{_iconsdir}/hicolor/512x512/apps/%{appid}.png
 %{_iconsdir}/hicolor/1024x1024/apps/%{appid}.png
-%{_mandir}/man1/%{base_name}.1.gz
-%{_mandir}/man5/%{base_name}.5.gz
+%{_mandir}/man1/%{name}.1.gz
+%{_mandir}/man5/%{name}.5.gz
 %{_userunitdir}/%{appid}.service
 %{_prefix}/lib/dbus-1/services/%{appid}.service
 
 %files bash-completion
-%{bash_completions_dir}/%{base_name}.bash
+%{bash_completions_dir}/%{name}.bash
 
 %files fish-completion
-%{fish_completions_dir}/%{base_name}.fish
+%{fish_completions_dir}/%{name}.fish
 
 %files zsh-completion
-%{zsh_completions_dir}/_%{base_name}
+%{zsh_completions_dir}/_%{name}
 
 %files kio
 %{_datadir}/kio/servicemenus/%{appid}.desktop
 
 %files nautilus
-%{_datadir}/nautilus-python/extensions/%{base_name}.py
+%{_datadir}/nautilus-python/extensions/%{name}.py
 
 %files vim
-%{_datadir}/vim/vimfiles/compiler/%{base_name}.vim
-%{_datadir}/vim/vimfiles/ftdetect/%{base_name}.vim
-%{_datadir}/vim/vimfiles/ftplugin/%{base_name}.vim
-%{_datadir}/vim/vimfiles/syntax/%{base_name}.vim
+%{_datadir}/vim/vimfiles/compiler/%{name}.vim
+%{_datadir}/vim/vimfiles/ftdetect/%{name}.vim
+%{_datadir}/vim/vimfiles/ftplugin/%{name}.vim
+%{_datadir}/vim/vimfiles/syntax/%{name}.vim
 
 %files neovim
-%{_datadir}/nvim/site/compiler/%{base_name}.vim
-%{_datadir}/nvim/site/ftdetect/%{base_name}.vim
-%{_datadir}/nvim/site/ftplugin/%{base_name}.vim
-%{_datadir}/nvim/site/syntax/%{base_name}.vim
+%{_datadir}/nvim/site/compiler/%{name}.vim
+%{_datadir}/nvim/site/ftdetect/%{name}.vim
+%{_datadir}/nvim/site/ftplugin/%{name}.vim
+%{_datadir}/nvim/site/syntax/%{name}.vim
 
 %files bat-syntax
-%{_datadir}/bat/syntaxes/%{base_name}.sublime-syntax
+%{_datadir}/bat/syntaxes/%{name}.sublime-syntax
 
 %files shell-integration
-%dir %{_datadir}/%{base_name}/shell-integration
-%{_datadir}/%{base_name}/shell-integration/bash/bash-preexec.sh
-%{_datadir}/%{base_name}/shell-integration/bash/%{base_name}.bash
-%{_datadir}/%{base_name}/shell-integration/elvish/lib/%{base_name}-integration.elv
-%{_datadir}/%{base_name}/shell-integration/fish/vendor_conf.d/%{base_name}-shell-integration.fish
-%{_datadir}/%{base_name}/shell-integration/zsh/.zshenv
-%{_datadir}/%{base_name}/shell-integration/zsh/%{base_name}-integration
+%dir %{_datadir}/%{name}/shell-integration
+%{_datadir}/%{name}/shell-integration/bash/bash-preexec.sh
+%{_datadir}/%{name}/shell-integration/bash/%{name}.bash
+%{_datadir}/%{name}/shell-integration/elvish/lib/%{name}-integration.elv
+%{_datadir}/%{name}/shell-integration/fish/vendor_conf.d/%{name}-shell-integration.fish
+%{_datadir}/%{name}/shell-integration/zsh/.zshenv
+%{_datadir}/%{name}/shell-integration/zsh/%{name}-integration
 
 %files terminfo
 %if 0%{?fedora} < 42
