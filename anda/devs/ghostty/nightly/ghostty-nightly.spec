@@ -265,6 +265,15 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %endif
 %{_datadir}/terminfo/x/xterm-%{base_name}
 
+%post
+%systemd_user_post %{appid}.service
+
+%preun
+%systemd_user_preun %{appid}.service
+
+%postun
+%systemd_user_postun %{appid}.service
+
 %changelog
 * Sat May 31 2025 Gilver E. <rockgrub@disroot.org> - 1.1.4~tip^20250531git1ff9162
 - Updated for Zig 0.14.0
