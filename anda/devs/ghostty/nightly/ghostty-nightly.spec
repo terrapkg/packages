@@ -218,7 +218,6 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %{_mandir}/man1/%{base_name}.1.gz
 %{_mandir}/man5/%{base_name}.5.gz
 %{_userunitdir}/%{appid}.service
-%{_prefix}/lib/dbus-1/services/%{appid}.service
 
 %files bash-completion
 %{bash_completions_dir}/%{base_name}.bash
