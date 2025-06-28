@@ -1,9 +1,9 @@
 #? https://src.fedoraproject.org/rpms/hyprgraphics/blob/rawhide/f/hyprgraphics.spec
 
 %global realname hyprgraphics
-%global ver 0.1.3
-%global commit c7225d73755a6c4c7c72f4d4f3925ea426e325a8
-%global commit_date 20250607
+%global ver 0.1.4
+%global commit b3d628d01693fb9bb0a6690cd4e7b80abda04310
+%global commit_date 20250623
 %global shortcommit %{sub %commit 1 7}
 
 %bcond libjxl 1
