@@ -1,4 +1,3 @@
-%global build_rustflags %build_rustflags -C link-arg=-fuse-ld=mold
 %global rustflags_debuginfo 1
 
 Name:           rnote
