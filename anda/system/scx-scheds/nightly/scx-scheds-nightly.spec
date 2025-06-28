@@ -83,12 +83,15 @@ License:       GPL-2.0-only
 %{cargo_license_online} > LICENSE.dependencies
 
 %post
+%systemd_post scx.service
 %systemd_post scx_loader.service
 
 %preun
+%systemd_preun scx.service
 %systemd_preun scx_loader.service
 
 %postun
+%systemd_postun_with_restart scx.service
 %systemd_postun_with_restart scx_loader.service
 
 %files
