@@ -19,10 +19,12 @@ Summary:       A privacy-minded Legcord fork.
 Group:         Applications/Internet
 URL:           https://github.com/Milkshiift/GoofCord
 Source0:       %{url}/archive/%{commit}/GoofCord-%{commit}.tar.gz
+BuildRequires: anda-srpm-macros
 BuildRequires: bun-bin
 BuildRequires: desktop-file-utils
 BuildRequires: gcc
 BuildRequires: gcc-c++
+BuildRequires: git
 BuildRequires: make
 BuildRequires: nodejs
 BuildRequires: nodejs-npm
@@ -36,7 +38,7 @@ Packager:      Gilver E. <rockgrub@disroot.org>
 A highly configurable and privacy minded Discord client.
 
 %prep
-%autosetup -n GoofCord-%{commit}
+%git_clone %{url}.git %{commit}
 
 %build
 %ifarch aarch64 armv7hl armv7l
