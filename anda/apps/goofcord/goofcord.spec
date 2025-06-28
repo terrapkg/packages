@@ -34,11 +34,11 @@ A highly configurable and privacy minded Discord client.
 %build
 bun install
 %ifarch x86_64
-bun run packageLinux -x64
+bun run packageLinux --x64
 %elifarch
-bun run packageLinux -arm64
+bun run packageLinux --arm64
 %elifarch armv7hl armv7l
-bun run packageLinux -armv7l
+bun run packageLinux --armv7l
 %endif
 
 %install
