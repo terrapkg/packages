@@ -8,11 +8,7 @@ Version:        0.10.0
 Release:        %autorelease
 Summary:        Software KVM Switch / mouse & keyboard sharing software for Local Area Networks
 
-SourceLicense:  GPL-3.0-or-later
-# FIXME: paste output of %%cargo_license_summary here
-License:        GPL-3.0-or-later # FIXME
-# LICENSE.dependencies contains a full license breakdown
-
+License:        GPL-3.0-or-later
 URL:            https://github.com/feschber/lan-mouse
 Source0:        %{url}/archive/refs/tags/v%version.tar.gz
 Requires:       gtk4
