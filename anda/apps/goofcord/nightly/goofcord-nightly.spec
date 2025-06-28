@@ -94,5 +94,5 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 %{_iconsdir}/hicolor/1024x1024/apps/%{name}.png
 
 %changelog
-* Sat Jun 28 2025 Gilver E. <rockgrub@disroot.org> - 1.10.1-1
+* Sat Jun 28 2025 Gilver E. <rockgrub@disroot.org> - 1.10.1^20250615.git.3f5eda1
 - Initial package
