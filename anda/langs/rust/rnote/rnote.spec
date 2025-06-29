@@ -38,17 +38,15 @@ This provides the `rnote-cli` binary. For more information, see the `rnote` pack
 
 
 %build
-%meson
+%meson -Dcargo=/bin/true
 %cargo_license_summary_online
 %{cargo_license_online} > LICENSE.dependencies
 %{cargo_build} --bin rnote
 %{cargo_build} --bin rnote-cli
-%meson -Dui=false -Dcli=false
 %meson_build
 
 
 %install
-install -Dm755 target/rpm/rnote{,-cli} -t %buildroot%_bindir
 cp target/rpm/rnote{,-cli} %_vpath_builddir
 %meson_install
 
