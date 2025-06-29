@@ -45,7 +45,7 @@ A highly configurable and privacy minded Discord client.
 sed -i '/\"x64\",/d' electron-builder.ts
 %endif
 bun install
-bun run packageLinux
+bun run packageLinux --publish never
 
 %install
 mkdir -p %{buildroot}%{_datadir}/%{name}
