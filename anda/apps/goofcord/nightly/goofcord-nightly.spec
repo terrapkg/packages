@@ -13,14 +13,14 @@
 %global __requires_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*)|(.*\\x86_64*\\.so.*)|(.*\\x86-64*\\.so.*))$
 %endif
 
-Name:          goofcord-nightly
+Name:          %{base_name}-nightly
 Version:       %{ver}^%{commit_date}.git.%{shortcommit}
 Release:       1%{?dist}
 License:       OSL-3.0
 Summary:       A privacy-minded Legcord fork.
 Group:         Applications/Internet
-URL:           https://github.com/Milkshiift/GoofCord
-Source0:       %{url}/archive/%{commit}/GoofCord-%{commit}.tar.gz
+URL:           https://github.com/Milkshiift/%{git_name}
+Source0:       %{url}/archive/%{commit}/%{git_name}-%{commit}.tar.gz
 BuildRequires: bun-bin
 BuildRequires: desktop-file-utils
 BuildRequires: gcc
@@ -33,7 +33,7 @@ BuildRequires: python3
 %ifarch aarch64
 BuildRequires: zlib-ng-compat-devel
 %endif
-Conflicts:     goofcord
+Conflicts:     %{base_name}
 Packager:      Gilver E. <rockgrub@disroot.org>
 
 %description
@@ -71,11 +71,11 @@ install -Dm644 dist/.icon-set/icon_512.png %{buildroot}/%{_iconsdir}/hicolor/512
 install -Dm644 dist/.icon-set/icon_1024.png %{buildroot}/%{_iconsdir}/hicolor/1024x1024/apps/%{base_name}.png
 
 %ifarch x86_64
-dist/GoofCord-*x86_64.AppImage --appimage-extract '*.desktop'
+dist/%{git_name}-*x86_64.AppImage --appimage-extract '*.desktop'
 %elifarch aarch64
-dist/GoofCord-*arm64.AppImage --appimage-extract '*.desktop'
+dist/%{git_name}-*arm64.AppImage --appimage-extract '*.desktop'
 %elifarch armv7hl armv7l
-dist/GoofCord-*armv7l.AppImage --appimage-extract '*.desktop'
+dist/%{git_name}-*armv7l.AppImage --appimage-extract '*.desktop'
 %endif
 desktop-file-install --set-key=Exec --set-value="%{_datadir}/%{base_name}/%{base_name} --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto %U" squashfs-root/%{git_name}.desktop
 

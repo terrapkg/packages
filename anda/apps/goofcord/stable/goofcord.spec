@@ -1,3 +1,4 @@
+%global git_name GoofCord
 %global debug_package %{nil}
 # Exclude private libraries
 %global __provides_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*))$
@@ -13,7 +14,7 @@ Release:       1%{?dist}
 License:       OSL-3.0
 Summary:       A privacy-minded Legcord fork.
 Group:         Applications/Internet
-URL:           https://github.com/Milkshiift/GoofCord
+URL:           https://github.com/Milkshiift/%{git_name}
 Source0:       %{url}/archive/refs/tags/v%{version}.tar.gz
 BuildRequires: bun-bin
 BuildRequires: desktop-file-utils
@@ -33,7 +34,7 @@ Packager:      Gilver E. <rockgrub@disroot.org>
 A highly configurable and privacy minded Discord client.
 
 %prep
-%autosetup -n GoofCord-%{version}
+%autosetup -n %{git_name}-%{version}
 
 %build
 %ifarch aarch64 armv7hl armv7l
@@ -64,11 +65,11 @@ install -Dm644 dist/.icon-set/icon_512.png %{buildroot}/%{_iconsdir}/hicolor/512
 install -Dm644 dist/.icon-set/icon_1024.png %{buildroot}/%{_iconsdir}/hicolor/1024x1024/apps/%{name}.png
 
 %ifarch x86_64
-dist/GoofCord-*x86_64.AppImage --appimage-extract '*.desktop'
+dist/%{git_name}-*x86_64.AppImage --appimage-extract '*.desktop'
 %elifarch aarch64
-dist/GoofCord-*arm64.AppImage --appimage-extract '*.desktop'
+dist/%{git_name}-*arm64.AppImage --appimage-extract '*.desktop'
 %elifarch armv7hl armv7l
-dist/GoofCord-*armv7l.AppImage --appimage-extract '*.desktop'
+dist/%{git_name}-*armv7l.AppImage --appimage-extract '*.desktop'
 %endif
 desktop-file-install --set-key=Exec --set-value="%{_datadir}/%{name}/%{name} --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto %U" squashfs-root/%{name}.desktop
 
