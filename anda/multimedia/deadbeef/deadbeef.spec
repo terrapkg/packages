@@ -6,7 +6,7 @@
 
 Name:           deadbeef
 Version:        0.2.2.2
-Release:        1%?dist
+Release:        2%?dist
 Summary:        An audio player for GNU/Linux
 
 License:        GPL-2.0-or later AND LGPL-2.0-or-later and BSD and MIT AND Zlib
@@ -44,7 +44,7 @@ BuildRequires:  pkgconfig(opusfile)
 BuildRequires:  libdispatch-devel
 
 Requires:       hicolor-icon-theme
-Requires:       %{name}-plugins%{?_isa} %evr
+Requires:       %{name}-plugins%{?_isa} = %evr
 
 Recommends:     deadbeef-mpris2-plugin
 

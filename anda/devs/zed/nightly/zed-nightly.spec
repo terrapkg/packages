@@ -1,6 +1,6 @@
-%global commit ba1c05abf27f4285fb856fe4594e10c83e6dd01e
+%global commit e5bcd720e1715f1905734f05bdd752b45fb57966
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250627
+%global commit_date 20250629
 %global ver 0.194.0
 
 %bcond_with check
