@@ -31,6 +31,7 @@ BuildRequires: python3
 %ifarch aarch64
 BuildRequires: zlib-ng-compat-devel
 %endif
+Conflicts:     goofcord
 Packager:      Gilver E. <rockgrub@disroot.org>
 
 %description
