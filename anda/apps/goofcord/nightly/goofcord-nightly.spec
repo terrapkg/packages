@@ -75,7 +75,7 @@ dist/GoofCord-*arm64.AppImage --appimage-extract '*.desktop'
 %elifarch armv7hl armv7l
 dist/GoofCord-*armv7l.AppImage --appimage-extract '*.desktop'
 %endif
-desktop-file-install --set-key=Exec --set-value="%{_datadir}/%{name}/%{name} --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto %U" squashfs-root/%{name}.desktop
+desktop-file-install --set-key=Exec --set-value="%{_datadir}/%{name}/%{name} --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto %U" squashfs-root/GoofCord.desktop
 
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/GoofCord.desktop
