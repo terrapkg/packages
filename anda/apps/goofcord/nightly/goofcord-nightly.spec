@@ -19,7 +19,6 @@ Summary:       A privacy-minded Legcord fork.
 Group:         Applications/Internet
 URL:           https://github.com/Milkshiift/GoofCord
 Source0:       %{url}/archive/%{commit}/GoofCord-%{commit}.tar.gz
-BuildRequires: anda-srpm-macros
 BuildRequires: bun-bin
 BuildRequires: desktop-file-utils
 BuildRequires: gcc
@@ -38,14 +37,14 @@ Packager:      Gilver E. <rockgrub@disroot.org>
 A highly configurable and privacy minded Discord client.
 
 %prep
-%git_clone %{url}.git %{commit}
+%autosetup -n GoofCord-%{commit}
 
 %build
 %ifarch aarch64 armv7hl armv7l
 sed -i '/\"x64\",/d' electron-builder.ts
 %endif
 bun install
-bun run packageLinux --publish never
+bun run packageLinux --publish=never
 
 %install
 mkdir -p %{buildroot}%{_datadir}/%{name}
