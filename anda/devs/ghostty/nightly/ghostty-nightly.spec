@@ -9,7 +9,7 @@
 
 Name:           %{base_name}-nightly
 Version:        %{ver}~tip^%{commit_date}git%{shortcommit}
-Release:        1%?dist
+Release:        2%?dist
 %if 0%{?fedora} <= 41
 Epoch:          1
 %endif
@@ -117,9 +117,10 @@ This package enables Nautilus integration for Ghostty.
 
 %package        vim
 Summary:        Vim plugins for Ghostty
-Supplements:    (%{name} and vim)
+Supplements:    (%{name} and vim-filesystem)
 Requires:       %{name} = %{evr}
-Requires:       vim
+Requires:       vim-enhanced
+Requires:       vim-filesystem
 BuildArch:      noarch
 
 %description    vim
