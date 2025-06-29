@@ -1,26 +1,26 @@
-Name:               sbctl
-Version:            0.17
-Release:            3%?dist
-Summary:            Secure Boot key manager
+Name:           sbctl
+Version:        0.17
+Release:        3%?dist
+Summary:        Secure Boot key manager
 
-License:             MIT
-URL:                 https://github.com/Foxboron/sbctl
-Source0:             https://github.com/Foxboron/sbctl/releases/download/%{version}/sbctl-%{version}.tar.gz
+License:        MIT
+URL:            https://github.com/Foxboron/sbctl
+Source0:        https://github.com/Foxboron/sbctl/releases/download/%{version}/sbctl-%{version}.tar.gz
 ## Based on CachyOS's batch sign script
 # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/bin/sbctl-batch-sign
-Source1:             %{name}-batch-sign
+Source1:        %{name}-batch-sign
 
-ExclusiveArch:       %{golang_arches}
+ExclusiveArch:  %{golang_arches}
 
-Requires:            binutils
-Requires:            util-linux
-Requires(triggerin): bash
+Requires:       binutils
+Requires:       util-linux
+Requires(post): bash
 
-Recommends:          systemd-udev
+Recommends:     systemd-udev
 
-BuildRequires:       asciidoc
-BuildRequires:       git
-BuildRequires:       go-rpm-macros
+BuildRequires:  asciidoc
+BuildRequires:  git
+BuildRequires:  go-rpm-macros
 
 %description
 sbctl intends to be a user-friendly secure boot key manager capable of setting
