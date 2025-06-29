@@ -92,7 +92,8 @@ This package enables Nautilus integration for Ghostty.
 Summary:        Vim plugins for Ghostty
 Supplements:    (%{name} and vim)
 Requires:       %{name} = %{evr}
-Requires:       vim
+Requires:       vim-enhanced
+Requires:       vim-filesystem
 BuildArch:      noarch
 
 %description    vim
