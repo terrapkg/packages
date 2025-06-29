@@ -1,11 +1,11 @@
-%global commit 98b1af8353077b608713d30a9863cbc6e008d034
+%global commit 206d41844e88176a398f149e8e2c8f6e2fdbd28a
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global fulldate 2025-06-27
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
 %global ver 1.1.4
 %global base_name ghostty
-%global reverse_dns com.mitchellh.%{base_name}
+%global appid com.mitchellh.%{base_name}
 
 Name:           %{base_name}-nightly
 Version:        %{ver}~tip^%{commit_date}git%{shortcommit}
@@ -27,6 +27,7 @@ BuildRequires:  minisign
 BuildRequires:  ncurses
 BuildRequires:  ncurses-devel
 BuildRequires:  pandoc-cli
+BuildRequires:  systemd-rpm-macros
 BuildRequires:  zig >= 0.14.0
 BuildRequires:  zig-rpm-macros
 BuildRequires:  pkgconfig(blueprint-compiler)
@@ -43,6 +44,7 @@ BuildRequires:  pkgconfig(oniguruma)
 BuildRequires:  pkgconfig(zlib)
 Requires:       %{name}-terminfo = %{evr}
 Requires:       %{name}-shell-integration = %{evr}
+Requires:       (%{name}-kio = %{evr} if kf6-kio)
 Requires:       gtk4
 Requires:       gtk4-layer-shell
 Requires:       libadwaita
@@ -96,6 +98,53 @@ BuildArch:      noarch
 %description    zsh-completion
 Zsh shell completion for Ghostty.
 
+%package        kio
+Summary:        KIO support for Ghostty
+Requires:       %{name} = %{evr}
+BuildArch:      noarch
+
+%description    kio
+This package allows Ghostty to interact with KIO.
+
+%package        nautilus
+Summary:        Nautilus menu support for Ghostty
+Supplements:    (%{name} and nautilus)
+Requires:       %{name} = %{evr}
+BuildArch:      noarch
+
+%description    nautilus
+This package enables Nautilus integration for Ghostty.
+
+%package        vim
+Summary:        Vim plugins for Ghostty
+Supplements:    (%{name} and vim)
+Requires:       %{name} = %{evr}
+Requires:       vim
+BuildArch:      noarch
+
+%description    vim
+This package provides the Ghostty Vim plugins.
+
+%package        neovim
+Summary:        Neovim plugins for Ghostty
+Supplements:    (%{name} and neovim)
+Requires:       %{name} = %{evr}
+Requires:       neovim
+BuildArch:      noarch
+
+%description    neovim
+This package provides the Neovim plugins for Ghostty.
+
+%package        bat-syntax
+Summary:        Bat syntax for Ghostty
+Supplements:    (%{name} and bat)
+Requires:       %{name} = %{evr}
+Requires:       bat
+BuildArch:      noarch
+
+%description    bat-syntax
+This package provides the Bat syntax files for Ghostty.
+
 %package        shell-integration
 Summary:        Ghostty shell integration
 Supplements:    %{name}
@@ -145,40 +194,31 @@ DESTDIR="%{buildroot}" \
 rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %endif
 
-%find_lang %{reverse_dns}
+%find_lang %{appid}
 
-%files -f %{reverse_dns}.lang
+%files -f %{appid}.lang
 %doc README.md
 %license LICENSE
 %{_bindir}/%{base_name}
-%{_datadir}/applications/%{reverse_dns}.desktop
-%{_datadir}/bat/syntaxes/%{base_name}.sublime-syntax
+%{_datadir}/applications/%{appid}.desktop
 %dir %{_datadir}/%{base_name}
 %{_datadir}/%{base_name}/doc
 %{_datadir}/%{base_name}/themes
-%{_datadir}/kio/servicemenus/%{reverse_dns}.desktop
-%{_datadir}/metainfo/%{reverse_dns}.metainfo.xml
-%{_datadir}/nautilus-python/extensions/%{base_name}.py
-%{_datadir}/nvim/site/compiler/%{base_name}.vim
-%{_datadir}/nvim/site/ftdetect/%{base_name}.vim
-%{_datadir}/nvim/site/ftplugin/%{base_name}.vim
-%{_datadir}/nvim/site/syntax/%{base_name}.vim
-%{_datadir}/vim/vimfiles/compiler/%{base_name}.vim
-%{_datadir}/vim/vimfiles/ftdetect/%{base_name}.vim
-%{_datadir}/vim/vimfiles/ftplugin/%{base_name}.vim
-%{_datadir}/vim/vimfiles/syntax/%{base_name}.vim
-%{_iconsdir}/hicolor/16x16/apps/%{reverse_dns}.png
-%{_iconsdir}/hicolor/16x16@2/apps/%{reverse_dns}.png
-%{_iconsdir}/hicolor/32x32/apps/%{reverse_dns}.png
-%{_iconsdir}/hicolor/32x32@2/apps/%{reverse_dns}.png
-%{_iconsdir}/hicolor/128x128/apps/%{reverse_dns}.png
-%{_iconsdir}/hicolor/128x128@2/apps/%{reverse_dns}.png
-%{_iconsdir}/hicolor/256x256/apps/%{reverse_dns}.png
-%{_iconsdir}/hicolor/256x256@2/apps/%{reverse_dns}.png
-%{_iconsdir}/hicolor/512x512/apps/%{reverse_dns}.png
-%{_iconsdir}/hicolor/1024x1024/apps/%{reverse_dns}.png
+%{_datadir}/metainfo/%{appid}.metainfo.xml
+%{_datadir}/dbus-1/services/%{appid}.service
+%{_iconsdir}/hicolor/16x16/apps/%{appid}.png
+%{_iconsdir}/hicolor/16x16@2/apps/%{appid}.png
+%{_iconsdir}/hicolor/32x32/apps/%{appid}.png
+%{_iconsdir}/hicolor/32x32@2/apps/%{appid}.png
+%{_iconsdir}/hicolor/128x128/apps/%{appid}.png
+%{_iconsdir}/hicolor/128x128@2/apps/%{appid}.png
+%{_iconsdir}/hicolor/256x256/apps/%{appid}.png
+%{_iconsdir}/hicolor/256x256@2/apps/%{appid}.png
+%{_iconsdir}/hicolor/512x512/apps/%{appid}.png
+%{_iconsdir}/hicolor/1024x1024/apps/%{appid}.png
 %{_mandir}/man1/%{base_name}.1.gz
 %{_mandir}/man5/%{base_name}.5.gz
+%{_userunitdir}/%{appid}.service
 
 %files bash-completion
 %{bash_completions_dir}/%{base_name}.bash
@@ -188,6 +228,27 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 
 %files zsh-completion
 %{zsh_completions_dir}/_%{base_name}
+
+%files kio
+%{_datadir}/kio/servicemenus/%{appid}.desktop
+
+%files nautilus
+%{_datadir}/nautilus-python/extensions/%{base_name}.py
+
+%files vim
+%{_datadir}/vim/vimfiles/compiler/%{base_name}.vim
+%{_datadir}/vim/vimfiles/ftdetect/%{base_name}.vim
+%{_datadir}/vim/vimfiles/ftplugin/%{base_name}.vim
+%{_datadir}/vim/vimfiles/syntax/%{base_name}.vim
+
+%files neovim
+%{_datadir}/nvim/site/compiler/%{base_name}.vim
+%{_datadir}/nvim/site/ftdetect/%{base_name}.vim
+%{_datadir}/nvim/site/ftplugin/%{base_name}.vim
+%{_datadir}/nvim/site/syntax/%{base_name}.vim
+
+%files bat-syntax
+%{_datadir}/bat/syntaxes/%{base_name}.sublime-syntax
 
 %files shell-integration
 %dir %{_datadir}/%{base_name}/shell-integration
@@ -203,6 +264,15 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %{_datadir}/terminfo/g/%{base_name}
 %endif
 %{_datadir}/terminfo/x/xterm-%{base_name}
+
+%post
+%systemd_user_post %{appid}.service
+
+%preun
+%systemd_user_preun %{appid}.service
+
+%postun
+%systemd_user_postun %{appid}.service
 
 %changelog
 * Sat May 31 2025 Gilver E. <rockgrub@disroot.org> - 1.1.4~tip^20250531git1ff9162
