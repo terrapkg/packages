@@ -1,4 +1,4 @@
-%global commit 8035a35d588dbd317bf47a908cfc4e368563fcb3
+%global commit 31218294b0df40211e8573d08c178fb4d9c4bce5
 
 Name:          micro-default-editor
 # Version, release, and epoch are inherited from the editor package just like other default editors
