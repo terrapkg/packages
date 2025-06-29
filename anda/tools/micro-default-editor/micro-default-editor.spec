@@ -15,7 +15,7 @@ Source2:       https://raw.githubusercontent.com/terrapkg/pkg-micro-default-edit
 # For EVR macro
 BuildRequires: anda-srpm-macros
 Requires:      default-editor
-Requires:      (micro = %{evr} or micro-nightly)
+Requires:      micro
 # All default editor packages MUST provide this
 Provides:      system-default-editor
 BuildArch:     noarch
