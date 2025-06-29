@@ -2,6 +2,8 @@
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global commit_date 20250615
 %global ver 1.10.1
+%global base_name goofcord
+%global git_name GoofCord
 %global debug_package %{nil}
 # Exclude private libraries
 %global __provides_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*))$
@@ -11,7 +13,7 @@
 %global __requires_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*)|(.*\\x86_64*\\.so.*)|(.*\\x86-64*\\.so.*))$
 %endif
 
-Name:          goofcord
+Name:          goofcord-nightly
 Version:       %{ver}^%{commit_date}.git.%{shortcommit}
 Release:       1%{?dist}
 License:       OSL-3.0
@@ -38,7 +40,7 @@ Packager:      Gilver E. <rockgrub@disroot.org>
 A highly configurable and privacy minded Discord client.
 
 %prep
-%autosetup -n GoofCord-%{commit}
+%autosetup -n %{git_name}-%{commit}
 
 %build
 %ifarch aarch64 armv7hl armv7l
@@ -48,25 +50,25 @@ bun install
 bun run packageLinux --publish=never
 
 %install
-mkdir -p %{buildroot}%{_datadir}/%{name}
+mkdir -p %{buildroot}%{_datadir}/%{base_name}
 %ifarch x86_64
-mv dist/linux-unpacked/* -t %{buildroot}%{_datadir}/%{name}
+mv dist/linux-unpacked/* -t %{buildroot}%{_datadir}/%{base_name}
 %elifarch aarch64
-mv dist/linux-arm64-unpacked/* -t %{buildroot}%{_datadir}/%{name}
+mv dist/linux-arm64-unpacked/* -t %{buildroot}%{_datadir}/%{base_name}
 %elifarch armv7hl armv7l
-mv dist/linux-armv7l-unpacked/* -t %{buildroot}%{_datadir}/%{name}
+mv dist/linux-armv7l-unpacked/* -t %{buildroot}%{_datadir}/%{base_name}
 %endif
 
 mkdir -p %{buildroot}%{_bindir}
-ln -sf %{_datadir}/%{name}/%{name} %{buildroot}%{_bindir}/%{name}
-install -Dm644 dist/.icon-set/icon_16x16.png %{buildroot}/%{_iconsdir}/hicolor/16x16/apps/%{name}.png
-install -Dm644 dist/.icon-set/icon_32.png %{buildroot}/%{_iconsdir}/hicolor/32x32/apps/%{name}.png
-install -Dm644 dist/.icon-set/icon_48x48.png %{buildroot}/%{_iconsdir}/hicolor/48x48/apps/%{name}.png
-install -Dm644 dist/.icon-set/icon_64.png %{buildroot}/%{_iconsdir}/hicolor/64x64/apps/%{name}.png
-install -Dm644 dist/.icon-set/icon_128.png %{buildroot}/%{_iconsdir}/hicolor/128x128/apps/%{name}.png
-install -Dm644 dist/.icon-set/icon_256.png %{buildroot}/%{_iconsdir}/hicolor/256x256/apps/%{name}.png
-install -Dm644 dist/.icon-set/icon_512.png %{buildroot}/%{_iconsdir}/hicolor/512x512/apps/%{name}.png
-install -Dm644 dist/.icon-set/icon_1024.png %{buildroot}/%{_iconsdir}/hicolor/1024x1024/apps/%{name}.png
+ln -sf %{_datadir}/%{base_name}/%{base_name} %{buildroot}%{_bindir}/%{base_name}
+install -Dm644 dist/.icon-set/icon_16x16.png %{buildroot}/%{_iconsdir}/hicolor/16x16/apps/%{bsse_name}.png
+install -Dm644 dist/.icon-set/icon_32.png %{buildroot}/%{_iconsdir}/hicolor/32x32/apps/%{base_name}.png
+install -Dm644 dist/.icon-set/icon_48x48.png %{buildroot}/%{_iconsdir}/hicolor/48x48/apps/%{base_name}.png
+install -Dm644 dist/.icon-set/icon_64.png %{buildroot}/%{_iconsdir}/hicolor/64x64/apps/%{base_name}.png
+install -Dm644 dist/.icon-set/icon_128.png %{buildroot}/%{_iconsdir}/hicolor/128x128/apps/%{base_name}.png
+install -Dm644 dist/.icon-set/icon_256.png %{buildroot}/%{_iconsdir}/hicolor/256x256/apps/%{base_name}.png
+install -Dm644 dist/.icon-set/icon_512.png %{buildroot}/%{_iconsdir}/hicolor/512x512/apps/%{base_name}.png
+install -Dm644 dist/.icon-set/icon_1024.png %{buildroot}/%{_iconsdir}/hicolor/1024x1024/apps/%{base_name}.png
 
 %ifarch x86_64
 dist/GoofCord-*x86_64.AppImage --appimage-extract '*.desktop'
@@ -75,25 +77,25 @@ dist/GoofCord-*arm64.AppImage --appimage-extract '*.desktop'
 %elifarch armv7hl armv7l
 dist/GoofCord-*armv7l.AppImage --appimage-extract '*.desktop'
 %endif
-desktop-file-install --set-key=Exec --set-value="%{_datadir}/%{name}/%{name} --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto %U" squashfs-root/GoofCord.desktop
+desktop-file-install --set-key=Exec --set-value="%{_datadir}/%{base_name}/%{base_name} --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto %U" squashfs-root/%{git_name}.desktop
 
 %check
-desktop-file-validate %{buildroot}%{_datadir}/applications/GoofCord.desktop
+desktop-file-validate %{buildroot}%{_datadir}/applications/%{git_name}.desktop
 
 %files
 %doc README.md
 %license LICENSE
-%{_bindir}/%{name}
-%{_datadir}/applications/%{name}.desktop
-%{_datadir}/%{name}/
-%{_iconsdir}/hicolor/16x16/apps/%{name}.png
-%{_iconsdir}/hicolor/32x32/apps/%{name}.png
-%{_iconsdir}/hicolor/48x48/apps/%{name}.png
-%{_iconsdir}/hicolor/64x64/apps/%{name}.png
-%{_iconsdir}/hicolor/128x128/apps/%{name}.png
-%{_iconsdir}/hicolor/256x256/apps/%{name}.png
-%{_iconsdir}/hicolor/512x512/apps/%{name}.png
-%{_iconsdir}/hicolor/1024x1024/apps/%{name}.png
+%{_bindir}/%{base_name}
+%{_datadir}/applications/%{git_name}.desktop
+%{_datadir}/%{base_name}/
+%{_iconsdir}/hicolor/16x16/apps/%{base_name}.png
+%{_iconsdir}/hicolor/32x32/apps/%{base_name}.png
+%{_iconsdir}/hicolor/48x48/apps/%{base_name}.png
+%{_iconsdir}/hicolor/64x64/apps/%{base_name}.png
+%{_iconsdir}/hicolor/128x128/apps/%{base_name}.png
+%{_iconsdir}/hicolor/256x256/apps/%{base_name}.png
+%{_iconsdir}/hicolor/512x512/apps/%{base_name}.png
+%{_iconsdir}/hicolor/1024x1024/apps/%{base_name}.png
 
 %changelog
 * Sat Jun 28 2025 Gilver E. <rockgrub@disroot.org> - 1.10.1^20250615.git.3f5eda1
