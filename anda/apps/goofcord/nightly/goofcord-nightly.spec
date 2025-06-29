@@ -61,7 +61,7 @@ mv dist/linux-armv7l-unpacked/* -t %{buildroot}%{_datadir}/%{base_name}
 
 mkdir -p %{buildroot}%{_bindir}
 ln -sf %{_datadir}/%{base_name}/%{base_name} %{buildroot}%{_bindir}/%{base_name}
-install -Dm644 dist/.icon-set/icon_16x16.png %{buildroot}/%{_iconsdir}/hicolor/16x16/apps/%{bsse_name}.png
+install -Dm644 dist/.icon-set/icon_16x16.png %{buildroot}/%{_iconsdir}/hicolor/16x16/apps/%{base_name}.png
 install -Dm644 dist/.icon-set/icon_32.png %{buildroot}/%{_iconsdir}/hicolor/32x32/apps/%{base_name}.png
 install -Dm644 dist/.icon-set/icon_48x48.png %{buildroot}/%{_iconsdir}/hicolor/48x48/apps/%{base_name}.png
 install -Dm644 dist/.icon-set/icon_64.png %{buildroot}/%{_iconsdir}/hicolor/64x64/apps/%{base_name}.png
