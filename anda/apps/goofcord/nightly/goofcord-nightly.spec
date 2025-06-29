@@ -77,7 +77,7 @@ dist/GoofCord-*armv7l.AppImage --appimage-extract '*.desktop'
 desktop-file-install --set-key=Exec --set-value="%{_datadir}/%{name}/%{name} --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto %U" squashfs-root/%{name}.desktop
 
 %check
-desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
+desktop-file-validate %{buildroot}%{_datadir}/applications/GoofCord.desktop
 
 %files
 %doc README.md
