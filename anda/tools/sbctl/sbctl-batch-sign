@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+# sbctl-batch-sign is a helper script designed to make it easier for users to sign files needed for secure boot support.
+# The obvious case in which this script helps a lot is when dual booting Windows as there are a lot of files by Windows that
+# needs to be signed in EFI.
+set -e
+
+if [ -f /boot/limine.conf ]; then
+    echo "Limine detected, please do not use this script."
+    exit 0
+fi
+
+if [ "$(id -u)" -ne 0 ]; then
+    echo "Error: This script must be run with root privileges."
+    exit 1
+fi
+
+export ESP_PATH=/boot
+sbctl verify 2>/dev/null | awk '/✗/ {print $2}' | while IFS= read -r entry; do
+    # We expect users who use this script to enroll their
+    # own keys alongside Microsoft's.
+    # With that in mind, there's no need to sign MS ESP
+    # files with our own keys.
+    if [[ "$entry" =~ ^.*/EFI/(Microsoft|Windows) || "$entry" == *.mui || "$entry" == *.dll
+        || "$entry" =~ ^/boot/grub ]]; then
+        continue
+    fi
+    sbctl sign -s "$entry"
+done

@@ -1,22 +1,26 @@
-Name:           sbctl
-Version:        0.17
-Release:        2%?dist
-Summary:        Secure Boot key manager
+Name:               sbctl
+Version:            0.17
+Release:            3%?dist
+Summary:            Secure Boot key manager
 
-License:        MIT
-URL:            https://github.com/Foxboron/sbctl
-Source0:        https://github.com/Foxboron/sbctl/releases/download/%{version}/sbctl-%{version}.tar.gz
+License:             MIT
+URL:                 https://github.com/Foxboron/sbctl
+Source0:             https://github.com/Foxboron/sbctl/releases/download/%{version}/sbctl-%{version}.tar.gz
+## Based on CachyOS's batch sign script
+# https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/bin/sbctl-batch-sign
+Source1:             %{name}-batch-sign
 
-ExclusiveArch:  %{golang_arches}
+ExclusiveArch:       %{golang_arches}
 
-Requires:       binutils
-Requires:       util-linux
+Requires:            binutils
+Requires:            util-linux
+Requires(triggerin): bash
 
-Recommends:     systemd-udev
+Recommends:          systemd-udev
 
-BuildRequires:  asciidoc
-BuildRequires:  git
-BuildRequires:  go-rpm-macros
+BuildRequires:       asciidoc
+BuildRequires:       git
+BuildRequires:       go-rpm-macros
 
 %description
 sbctl intends to be a user-friendly secure boot key manager capable of setting
@@ -39,12 +43,12 @@ export GOPATH=%{_builddir}/go
 
 %install
 %make_install PREFIX=%{_prefix}
-
+install -Dm755 %{SOURCE1} -t %{buildroot}%{_bindir}
 
 %transfiletriggerin -P 1 -- /boot /efi /usr/lib /usr/libexec
 if [[ ! -f /run/ostree-booted ]] && grep -q -m 1 -e '\.efi$' -e '/vmlinuz$'; then
     exec </dev/null
-    %{_bindir}/sbctl sign-all -g
+    %{_bindir}/sbctl-batch-sign
 fi
 
 
@@ -52,6 +56,7 @@ fi
 %license LICENSE
 %doc README.md
 %{_bindir}/sbctl
+%{_bindir}/sbctl-batch-sign
 %{_prefix}/lib/kernel/install.d/91-sbctl.install
 %{_mandir}/man8/sbctl.8*
 %{_mandir}/man5/sbctl.conf.5*
