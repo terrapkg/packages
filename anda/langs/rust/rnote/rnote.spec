@@ -34,7 +34,7 @@ This provides the `rnote-cli` binary. For more information, see the `rnote` pack
 %prep
 %autosetup -n rnote-%{version}
 %cargo_prep_online
-sed -E "/^choices: / s/'devel'/'devel', 'rpm'/" -i meson_options.txt
+sed -E "/choices: / s/'devel'/'devel', 'rpm'/" -i meson_options.txt
 
 %build
 %meson -Dprofile=rpm
