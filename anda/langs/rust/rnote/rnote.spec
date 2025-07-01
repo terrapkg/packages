@@ -35,8 +35,8 @@ This provides the `rnote-cli` binary. For more information, see the `rnote` pack
 %autosetup -n rnote-%{version}
 %cargo_prep_online
 sed -E "/choices: / s/'devel'/'devel', 'rpm'/" -i meson_options.txt
-sed '/rust_target_folder/s@release@rpm@;'"
-/cargo_options += ['--target-dir', cargo_target_dir]/s@_dir]@_dir, '--target', 'rpm']" -i meson.build
+sed -E '/rust_target_folder/s@release@rpm@'"
+/cargo_options += .+cargo_target_dir/"'s@_dir]$@_dir,'" '--target', 'rpm']@" -i meson.build
 
 %build
 %meson -Dprofile=rpm
