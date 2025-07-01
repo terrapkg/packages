@@ -36,7 +36,7 @@ new VPKs.
 %install
 %cmake_install
 pushd %buildroot%_libdir/%name
-rm -rf libQt*
+rm -rf {libQt*,*.md,LICENSE}
 popd
 ln -sf %_libdir/vpkedit/vpkedit %buildroot%_bindir/vpkedit
 ln -sf %_libdir/vpkedit/vpkeditcli %buildroot%_bindir/vpkeditcli
