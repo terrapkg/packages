@@ -1,10 +1,11 @@
 %define _debugsource_template %{nil}
 
 %define commit cd7d8fac1be33c2bdf06494f174b2ecb0e2f4f8e
-%define shortcommit %(c=%{commit}; echo ${c:0:12})
+%global shortcommit %{sub %{commit} 1 12}
+%global commit_date 250419
 
 Name:           bmpblk_utility
-Version:        git+%{shortcommit}
+Version:        0~%{commit_date}git.%{shortcommit}
 Release:        1%{?dist}
 Summary:        A utility to create/modify the bmpfv in the GBB of chromebooks running old stock firmware
 
