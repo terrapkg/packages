@@ -1,7 +1,11 @@
 import "andax/nvidia.rhai" as nvidia;
 import "andax/spec.rhai" as spec;
 
-rpm.version(nvidia::nvidia_driver_version());
+let v = nvidia::nvidia_driver_version();
+let m = gh("NVIDIA/open-gpu-kernel-modules");
+if m == v {
+rpm.version(v);
+}
 
 // Rebuild the package whenever the Alma kernel updates
 let releasever = labels.branch;
