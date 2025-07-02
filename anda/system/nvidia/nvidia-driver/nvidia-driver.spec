@@ -11,7 +11,7 @@
 
 Name:           nvidia-driver
 Version:        575.64.03
-Release:        1%?dist
+Release:        2%?dist
 Summary:        NVIDIA's proprietary display driver for NVIDIA graphic cards
 Epoch:          3
 License:        NVIDIA License
@@ -48,11 +48,6 @@ BuildRequires:  coreutils
 
 Requires:       nvidia-driver-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}
 Requires:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
-%if 0%{?fedora}
-%ifarch x86_64
-Requires:       %{name}(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
-%endif
-%endif
 
 Conflicts:      nvidia-x11-drv
 Conflicts:      nvidia-x11-drv-470xx
