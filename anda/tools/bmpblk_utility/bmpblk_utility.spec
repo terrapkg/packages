@@ -22,6 +22,8 @@ BuildRequires:  xz-devel
 BuildRequires:  libyaml
 BuildRequires:  libyaml-devel
 
+packager:       Owen Zimmerman <owen@fyralabs.com>
+
 %description
 %summary.
 
