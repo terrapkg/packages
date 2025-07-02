@@ -76,7 +76,7 @@ Requires:       libnvidia-ml%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       vulkan-loader
 %if 0%{?fedora}
 %ifarch x86_64
-Suggests:        %{name}-libs(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:        %{name}-libs(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
 %endif
 # dlopened
@@ -102,7 +102,7 @@ Requires:       libnvidia-cfg = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
 %if 0%{?fedora}
 %ifarch x86_64
-Suggests:        %{name}-cuda-libs(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       %{name}-cuda-libs(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
 %endif
 # dlopened:
@@ -121,7 +121,7 @@ Provides:       nvidia-driver-NvFBCOpenGL = %{?epoch:%{epoch}:}%{version}-%{rele
 Obsoletes:      nvidia-driver-NvFBCOpenGL < %{?epoch:%{epoch}:}%{version}-%{release}
 %if 0%{?fedora}
 %ifarch x86_64
-Suggests:       libnvidia-fbc(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       libnvidia-fbc(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
 %endif
 # dlopened:
@@ -137,7 +137,7 @@ graphics scenarios.
 Summary:        NVIDIA library for shader compilation (nvgpucomp)
 %if 0%{?fedora}
 %ifarch x86_64
-Suggests:       libnvidia-gpucomp(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       libnvidia-gpucomp(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
 %endif
 
@@ -151,7 +151,7 @@ Provides:       cuda-nvml%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:       nvidia-driver-NVML = %{?epoch:%{epoch}:}%{version}-%{release}
 %if 0%{?fedora}
 %ifarch x86_64
-Suggests:       libnvidia-ml(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       libnvidia-ml(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
 %endif
 Obsoletes:      nvidia-driver-NVML < %{?epoch:%{epoch}:}%{version}-%{release}
