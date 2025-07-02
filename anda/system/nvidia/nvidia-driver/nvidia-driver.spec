@@ -11,7 +11,7 @@
 
 Name:           nvidia-driver
 Version:        575.64.03
-Release:        1%?dist
+Release:        2%?dist
 Summary:        NVIDIA's proprietary display driver for NVIDIA graphic cards
 Epoch:          3
 License:        NVIDIA License
@@ -48,11 +48,6 @@ BuildRequires:  coreutils
 
 Requires:       nvidia-driver-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}
 Requires:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
-%if 0%{?fedora}
-%ifarch x86_64
-Requires:       %{name}(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
-%endif
-%endif
 
 Conflicts:      nvidia-x11-drv
 Conflicts:      nvidia-x11-drv-470xx
@@ -81,7 +76,7 @@ Requires:       libnvidia-ml%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       vulkan-loader
 %if 0%{?fedora}
 %ifarch x86_64
-Requires:       %{name}-libs(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
+Suggests:        %{name}-libs(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
 %endif
 # dlopened
@@ -107,7 +102,7 @@ Requires:       libnvidia-cfg = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
 %if 0%{?fedora}
 %ifarch x86_64
-Requires:       %{name}-cuda-libs(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
+Suggests:        %{name}-cuda-libs(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
 %endif
 # dlopened:
@@ -126,7 +121,7 @@ Provides:       nvidia-driver-NvFBCOpenGL = %{?epoch:%{epoch}:}%{version}-%{rele
 Obsoletes:      nvidia-driver-NvFBCOpenGL < %{?epoch:%{epoch}:}%{version}-%{release}
 %if 0%{?fedora}
 %ifarch x86_64
-Requires:       libnvidia-fbc(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
+Suggests:       libnvidia-fbc(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
 %endif
 # dlopened:
@@ -142,7 +137,7 @@ graphics scenarios.
 Summary:        NVIDIA library for shader compilation (nvgpucomp)
 %if 0%{?fedora}
 %ifarch x86_64
-Requires:       libnvidia-gpucomp(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
+Suggests:       libnvidia-gpucomp(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
 %endif
 
@@ -156,7 +151,7 @@ Provides:       cuda-nvml%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:       nvidia-driver-NVML = %{?epoch:%{epoch}:}%{version}-%{release}
 %if 0%{?fedora}
 %ifarch x86_64
-Requires:       libnvidia-ml(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
+Suggests:       libnvidia-ml(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
 %endif
 Obsoletes:      nvidia-driver-NVML < %{?epoch:%{epoch}:}%{version}-%{release}
