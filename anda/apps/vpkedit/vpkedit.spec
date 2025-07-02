@@ -1,6 +1,6 @@
 Name:           vpkedit
 Version:        4.4.2
-Release:        2%?dist
+Release:        3%?dist
 Summary:        A CLI/GUI tool to create, read, and write several pack file formats
 License:        MIT
 URL:            https://github.com/craftablescience/VPKEdit
@@ -27,7 +27,8 @@ new VPKs.
 
 %build
 %cmake -DCMAKE_INSTALL_PREFIX=%_libdir/%name \
-   -DBUILD_SHARED_LIBS:BOOL=OFF
+   -DBUILD_SHARED_LIBS:BOOL=OFF              \
+   -DCMAKE_BUILD_TYPE=Release
 #   -DVPKEDIT_BUILD_LIBC=ON
 %cmake_build
 
@@ -35,7 +36,7 @@ new VPKs.
 %install
 %cmake_install
 pushd %buildroot%_libdir/%name
-rm -rf libQt*
+rm -rf {libQt*,*.md,LICENSE}
 popd
 ln -sf %_libdir/vpkedit/vpkedit %buildroot%_bindir/vpkedit
 ln -sf %_libdir/vpkedit/vpkeditcli %buildroot%_bindir/vpkeditcli

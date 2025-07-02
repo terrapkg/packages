@@ -1,9 +1,10 @@
-%global commit f022a130912d946d6f69af9cae3e374c60788ab3
+%global commit faca128304dd175b9b9441572bb7b827e380c0cf
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250701
+%global commit_date 20250702
 %global ver 0.194.0
 
 %bcond_with check
+%bcond nightly 1
 
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
@@ -47,6 +48,9 @@ BuildRequires:  perl-IPC-Cmd
 BuildRequires:  perl-File-Compare
 BuildRequires:  perl-File-Copy
 BuildRequires:  perl-lib
+%if %{with nightly}
+BuildRequires:  rustup
+%endif
 BuildRequires:  vulkan-loader
 Requires: (%name-rename-zeditor if zfs else %name-cli)
 Suggests: %name-cli
@@ -77,6 +81,9 @@ The normal package is %name-cli.
 
 %prep
 %autosetup -n %{crate}-%{commit} -p1
+%if %{with nightly}
+%rustup_nightly
+%endif
 %cargo_prep_online
 
 export DO_STARTUP_NOTIFY="true"
