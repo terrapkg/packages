@@ -5,9 +5,9 @@ Summary:        Install ready-made distribution images!
 License:        GPL-3.0-or-later
 URL:            https://github.com/FyraLabs/readymade
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
+Source1:        https://github.com/FyraLabs/rdms_proc_macros/archive/HEAD.tar.gz
 BuildRequires:	anda-srpm-macros rust-packaging mold
 BuildRequires:  pkgconfig(libhelium-1)
-BuildRequires:  pkgconfig(gnome-desktop-4)
 BuildRequires:  clang-devel
 BuildRequires:  cmake
 
@@ -30,12 +30,15 @@ This package contains the configuration files for Readymade to install Ultramari
 
 %prep
 %autosetup
+tar xf %{S:1}
+rmdir taidan_proc_macros && mv rdms_proc_macros* taidan_proc_macros
 %cargo_prep_online
 
 %build
+%{cargo_build} --locked
 
 %install
-%cargo_install
+%crate_install_bin
 ./install.sh %buildroot
 ln -sf %{_datadir}/applications/com.fyralabs.Readymade.desktop %{buildroot}%{_datadir}/applications/liveinst.desktop
 

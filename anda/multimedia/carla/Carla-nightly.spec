@@ -1,8 +1,8 @@
 %global pname   carla
-%global ver     v2.5.9
-%global commit  54ebc831f54d37b23a400f85cb3d44637718d52e
+%global ver     2.5.9
+%global commit  2e1598f5f8edb7da3e819f5a0a5efef9394449c0
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250623
+%global commit_date 20250701
 
 Name:           Carla-nightly
 Version:        %(echo %ver | tr -d 'v')^%commit_date.git~%shortcommit
