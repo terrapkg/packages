@@ -41,7 +41,7 @@ Provides:       nvdec-vaapi-driver = %{version}-%{release}
 Requires:       mesa-filesystem
 %if 0%{?fedora}
 %ifarch x86_64
-Requires:       %{name}(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
+Suggests:       %{name}(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
 %endif
 
