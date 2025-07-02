@@ -76,7 +76,7 @@ Requires:       libnvidia-ml%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       vulkan-loader
 %if 0%{?fedora}
 %ifarch x86_64
-Requires:        %{name}-libs(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       %{name}-libs(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
 %endif
 # dlopened
