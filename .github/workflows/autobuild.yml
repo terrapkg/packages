@@ -1,6 +1,8 @@
 # for each folder in anda/
 # generate a new workflow for each folder in anda/
 name: Automatically build packages
+permissions:
+  contents: read
 on:
   push:
     paths:

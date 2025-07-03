@@ -1,4 +1,6 @@
 name: Manual Builds
+permissions:
+  contents: read
 on:
   workflow_dispatch:
     inputs:
