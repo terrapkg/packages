@@ -1,4 +1,6 @@
 name: JSON Build
+permissions:
+  contents: read
 on:
   workflow_dispatch:
     inputs:
@@ -66,6 +68,7 @@ jobs:
             terrael${{ matrix.version }} anda-build/rpm/rpms/*
 
       - name: Upload source packages to subatomic
+        if: matrix.pkg.labels['no_upload_srpms'] != '1'
         run: |
           subatomic-cli upload --prune \
             --server https://subatomic.fyralabs.com \

@@ -1,4 +1,6 @@
 name: Update
+permissions:
+  contents: write
 on:
   schedule:
     - cron: "*/10 * * * *"

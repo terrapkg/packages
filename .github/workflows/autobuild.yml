@@ -1,6 +1,8 @@
 # for each folder in anda/
 # generate a new workflow for each folder in anda/
 name: Automatically build packages
+permissions:
+  contents: read
 on:
   push:
     paths:
@@ -95,7 +97,7 @@ jobs:
             terrael${{ matrix.version }} anda-build/rpm/rpms/*
 
       - name: Upload source packages to subatomic
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && matrix.pkg.labels['no_upload_srpms'] != '1'
         run: |
           subatomic-cli upload --prune \
             --server https://subatomic.fyralabs.com \
