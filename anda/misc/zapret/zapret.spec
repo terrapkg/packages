@@ -1,6 +1,6 @@
 Name:    zapret
 Version: 71.1.1
-Release: 1%?dist
+Release: 2%?dist
 Summary: A multi-platform Deep Packet Inspection (DPI) bypass tool
 License: MIT 
 ExcludeArch: s390x
@@ -16,6 +16,7 @@ BuildRequires: gcc
 BuildRequires: make
 BuildRequires: git
 # Headers.
+BuildRequires: libmnl-devel
 BuildRequires: libcap-devel
 BuildRequires: systemd-devel
 

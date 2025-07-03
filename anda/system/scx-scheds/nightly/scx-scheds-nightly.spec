@@ -1,6 +1,6 @@
-%global commit e4791ca93f38f3ba28e04e4d583279c5a407a704
+%global commit 43b71dc8c8bb14d3dad6bbbc463414124c6f49cc
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20250619
+%global commitdate 20250702
 %global ver 1.0.13
 
 Name:           scx-scheds-nightly
@@ -81,6 +81,18 @@ License:       GPL-2.0-only
 %meson_install
 
 %{cargo_license_online} > LICENSE.dependencies
+
+%post
+%systemd_post scx_loader.service
+%systemd_post scx.service
+
+%preun
+%systemd_preun scx_loader.service
+%systemd_preun scx.service
+
+%postun
+%systemd_postun_with_restart scx_loader.service
+%systemd_postun_with_restart scx.service
 
 %files
 %doc OVERVIEW.md

@@ -2,9 +2,9 @@
 
 %global realname hyprwayland-scanner
 %global ver 0.4.4
-%global commit 817918315ea016cc2d94004bfb3223b5fd9dfcc6
+%global commit aa38edd6e3e277ae6a97ea83a69261a5c3aab9fd
 %global shortcommit %{sub %commit 1 7}
-%global commit_date 20250614
+%global commit_date 20250620
 
 Name:           %realname.nightly
 Version:        %ver^%{commit_date}git.%shortcommit
