@@ -1,1 +1,1 @@
-npm("backport");
+rpm.version(npm("backport"));
