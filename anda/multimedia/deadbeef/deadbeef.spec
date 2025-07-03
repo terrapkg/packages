@@ -5,8 +5,8 @@
 %global _distro_extra_cflags -Wno-unused-but-set-variable -Wno-unused-variable
 
 Name:           deadbeef
-Version:        0.2.2.2
-Release:        2%?dist
+Version:        1.10.0
+Release:        3%?dist
 Summary:        An audio player for GNU/Linux
 
 License:        GPL-2.0-or later AND LGPL-2.0-or-later and BSD and MIT AND Zlib
