@@ -1,4 +1,6 @@
 name: Manual Builds
+permissions:
+  contents: read
 on:
   workflow_dispatch:
     inputs:
@@ -90,17 +92,20 @@ jobs:
 
       - name: Upload packages to subatomic
         run: |
+          subrepo="${{ fromJson(steps.art.outputs.labels).subrepo }}"
           subatomic-cli upload --prune \
             --server https://subatomic.fyralabs.com \
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
-            terra${{ matrix.version }} anda-build/rpm/rpms/*
+            terra${{ matrix.version }}${{ fromJson(steps.art.outputs.labels)['subrepo'] && '-$subrepo' }} anda-build/rpm/rpms/*
 
       - name: Upload source packages to subatomic
+        if: fromJson(steps.art.outputs.labels)['no_upload_srpms'] != '1'
         run: |
+          subrepo="${{ fromJson(steps.art.outputs.labels).subrepo }}"
           subatomic-cli upload --prune \
             --server https://subatomic.fyralabs.com \
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
-            terra${{ matrix.version }}-source anda-build/rpm/srpm/*
+            terra${{ matrix.version }}${{ fromJson(steps.art.outputs.labels)['subrepo'] && '-$subrepo' }}-source anda-build/rpm/srpm/*
 
       - name: Notify Madoguchi (Success)
         if: success()

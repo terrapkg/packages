@@ -1,6 +1,8 @@
 # for each folder in anda/
 # generate a new workflow for each folder in anda/
 name: Automatically build packages
+permissions:
+  contents: read
 on:
   push:
     paths:
@@ -97,7 +99,7 @@ jobs:
             terra${{ matrix.version }}${{ matrix.pkg.labels['subrepo'] && '-$subrepo' || '' }} anda-build/rpm/rpms/*
 
       - name: Upload source packages to subatomic
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && matrix.pkg.labels['no_upload_srpms'] != '1'
         run: |
           subrepo="${{ matrix.pkg.labels.subrepo }}"
           subatomic-cli upload --prune \
