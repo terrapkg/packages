@@ -88,7 +88,7 @@ jobs:
             terra${{ matrix.version }}${{ fromJson(steps.art.outputs.labels)['subrepo'] && '-$subrepo' }} anda-build/rpm/rpms/*
 
       - name: Upload source packages to subatomic
-        if: fromJson(steps.art.outputs.labels).no_upload_srpms != '1'
+        if: fromJson(steps.art.outputs.labels)['no_upload_srpms'] != '1'
         run: |
           subrepo="${{ fromJson(steps.art.outputs.labels).subrepo }}"
           subatomic-cli upload --prune \
