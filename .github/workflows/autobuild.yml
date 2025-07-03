@@ -96,7 +96,7 @@ jobs:
             terra${{ matrix.version }}${{ matrix.pkg.labels['subrepo'] && '-$subrepo' || '' }} anda-build/rpm/rpms/*
 
       - name: Upload source packages to subatomic
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && matrix.pkg.labels.no_upload_srpms != '1'
         run: |
           subrepo="${{ matrix.pkg.labels.subrepo }}"
           subatomic-cli upload --prune \
