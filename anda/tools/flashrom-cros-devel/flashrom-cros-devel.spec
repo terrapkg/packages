@@ -10,7 +10,7 @@ License:        GPL-2.0-only
 URL:            https://chromium.googlesource.com/chromiumos/third_party/flashrom
 Source0:        %url/+archive/refs/heads/release-R130-16033.B.tar.gz
 BuildRequires:  gcc gnupg2 libusb1-devel meson pciutils-devel python3-sphinx systemd zlib-devel dmidecode
-Requires:       libconfuse libftdi-devel libjaylink-devel pciutils-devel python3-libftdi flashrom-cros
+Requires:       libconfuse libftdi-devel libjaylink-devel pciutils-devel python3-libftdi libusb1-devel flashrom-cros
 Conflicts:      flashrom-devel
 Conflicts:      flashrom
 Packager:       Owen Zimmerman <owen@fyralabs.com>
@@ -26,11 +26,15 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %meson_build
 
 %install
+ls -la
+install -Dm755 include/libflashrom.h %{buildroot}/usr/include/libflashrom.h
 install -Dm755 %{_vpath_builddir}/libflashrom.so %{buildroot}%{_libdir}/libflashrom.so
 install -Dm755 %{_vpath_builddir}/libflashrom.so.1 %{buildroot}%{_libdir}/libflashrom.so.1
 install -Dm755 %{_vpath_builddir}/libflashrom.so.1.0.0 %{buildroot}%{_libdir}/libflashrom.so.1.0.0
 
 %files
+/usr/include/libflashrom.h
+%dnl %{_libdir}/pkgconfig/flashrom.pc
 %{_libdir}/libflashrom.so
 %{_libdir}/libflashrom.so.1
 %{_libdir}/libflashrom.so.1.0.0
