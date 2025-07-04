@@ -26,7 +26,6 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %meson_build
 
 %install
-ls -la
 install -Dm755 include/libflashrom.h %{buildroot}/usr/include/libflashrom.h
 install -Dm755 %{_vpath_builddir}/libflashrom.so %{buildroot}%{_libdir}/libflashrom.so
 install -Dm755 %{_vpath_builddir}/libflashrom.so.1 %{buildroot}%{_libdir}/libflashrom.so.1
