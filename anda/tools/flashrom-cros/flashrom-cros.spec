@@ -35,5 +35,8 @@ install -Dm755 %{_vpath_builddir}/flashrom %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Fri Jul 04 2025 Owen Zimmerman <owen@fyralabs.com>
+- Add back to terra, conflict with flashrom
+
 * Fri Oct 25 2024 WeirdTreeThing <bradyn127@protonmail.com>
 - initial release
