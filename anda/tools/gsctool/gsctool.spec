@@ -2,7 +2,7 @@
 %define shortcommit %(c=%{commit}; echo ${c:0:12})
 Name:           gsctool
 Version:        git+%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Chromium OS EC utilities
 
 License:      BSD-3-Clause
