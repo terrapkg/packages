@@ -9,7 +9,7 @@
 Name:           terra-gamescope
 #Version:        100.%{gamescope_tag}
 Version:        104.%{short_commit}
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Micro-compositor for video games on Wayland
 
 License:        BSD
@@ -86,7 +86,9 @@ BuildRequires:  git
 Requires:       libliftoff%{?_isa} >= %{libliftoff_minver}
 Requires:       xorg-x11-server-Xwayland
 Requires:       terra-gamescope-libs = %{version}-%{release}
+%ifarch x86_64
 Requires:       terra-gamescope-libs(x86-32) = %{version}-%{release}
+%endif
 Recommends:     mesa-dri-drivers
 Recommends:     mesa-vulkan-drivers
 
