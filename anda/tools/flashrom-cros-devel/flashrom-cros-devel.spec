@@ -34,7 +34,6 @@ install -Dm755 %{_vpath_builddir}/libflashrom.so.1.0.0 %{buildroot}%{_libdir}/li
 
 %files
 /usr/include/libflashrom.h
-%dnl %{_libdir}/pkgconfig/flashrom.pc
 %{_libdir}/libflashrom.so
 %{_libdir}/libflashrom.so.1
 %{_libdir}/libflashrom.so.1.0.0
