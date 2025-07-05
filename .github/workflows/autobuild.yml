@@ -1,6 +1,8 @@
 # for each folder in anda/
 # generate a new workflow for each folder in anda/
 name: Automatically build packages
+permissions:
+  contents: read
 on:
   push:
     paths:
@@ -69,7 +71,7 @@ jobs:
           dnf5 builddep -y ${dir}/*.spec
 
       - name: Build with Andaman
-        run: anda build ${{ matrix.pkg.pkg }} -c terra-${{ matrix.version }}-${{ matrix.pkg.arch }} ${{ !matrix.pkg.labels.mock == '1' && '-rrpmbuild' || '' }}
+        run: anda build ${{ matrix.pkg.pkg }} -D "vendor Terra" -c terra-${{ matrix.version }}-${{ matrix.pkg.arch }} ${{ !matrix.pkg.labels.mock == '1' && '-rrpmbuild' || '' }}
 
       - name: Generating artifact name
         id: art
@@ -96,7 +98,7 @@ jobs:
             terra${{ matrix.version }}${{ matrix.pkg.labels['subrepo'] && '-$subrepo' || '' }} anda-build/rpm/rpms/*
 
       - name: Upload source packages to subatomic
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && matrix.pkg.labels['no_upload_srpms'] != '1'
         run: |
           subrepo="${{ matrix.pkg.labels.subrepo }}"
           subatomic-cli upload --prune \
@@ -106,7 +108,7 @@ jobs:
 
       - name: Notify Madoguchi (Success)
         if: success() && github.event_name == 'push'
-        run: ./.github/workflows/mg.sh true ${{matrix.pkg.pkg}} ${{matrix.version}} ${{matrix.pkg.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}} $GITHUB_SHA
+        run: ./.github/workflows/mg.sh true "${{matrix.pkg.pkg}}" "${{matrix.version}}" "${{matrix.pkg.arch}}" "${{github.run_id}}" "${{secrets.MADOGUCHI_JWT}}" "$GITHUB_SHA"
       - name: Notify Madoguchi (Failure)
         if: ( cancelled() || failure() ) && github.event_name == 'push'
-        run: ./.github/workflows/mg.sh false ${{matrix.pkg.pkg}} ${{matrix.version}} ${{matrix.pkg.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}} $GITHUB_SHA
+        run: ./.github/workflows/mg.sh false "${{matrix.pkg.pkg}}" "${{matrix.version}}" "${{matrix.pkg.arch}}" "${{github.run_id}}" "${{secrets.MADOGUCHI_JWT}}" "$GITHUB_SHA"

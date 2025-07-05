@@ -1,12 +1,12 @@
 Name:           klassy
 
 %global forgeurl https://github.com/paulmcauley/%{name}
-%global tag 6.2.breeze6.2.1
-%global date 20250226
+%global tag 6.4.breeze6.4.0
+%global date 20250617
 %forgemeta
 
 Version:        %{tag}
-Release:        2%?dist
+Release:        1%?dist
 Summary:        Window Decoration, Application Style and Global Theme plugin for recent versions of the KDE Plasma desktop.
 License:        GPL-2.0-or-later
 Group:          System/GUI/KDE

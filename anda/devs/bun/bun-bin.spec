@@ -1,12 +1,12 @@
 %define debug_package %nil
 %ifarch x86_64
-%global a x64
+%global a x64-baseline
 %elifarch aarch64
 %global a aarch64
 %endif
 
 Name:			bun-bin
-Version:		1.2.10
+Version:		1.2.18
 Release:		1%?dist
 Summary:		Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one
 License:		MIT
@@ -17,10 +17,10 @@ BuildRequires:	unzip
 %description
 %summary.
 
+%pkg_completion -bfz bun
+
 %prep
-unzip %SOURCE0
-%global buildsubdir bun-linux-%a
-cd %buildsubdir
+%autosetup -n bun-linux-%a
 cat<<EOF > LICENSE
 MIT License
 
@@ -61,6 +61,3 @@ ln -s bun %buildroot%_bindir/bunx
 %license LICENSE
 %_bindir/bun
 %_bindir/bunx
-%bash_completions_dir/bun.bash
-%fish_completions_dir/bun.fish
-%zsh_completions_dir/_bun

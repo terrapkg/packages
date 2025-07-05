@@ -1,14 +1,23 @@
+%global build_cxxflags %{__build_flags_lang_cxx} %{?_distro_extra_cxxflags} -Wno-error=maybe-uninitialized -Wno-error=uninitialized
+
 Name:           vvenc
-Version:        1.12.1
-Release:        1%{?dist}
+Version:        1.13.1
+Release:        3%{?dist}
 Summary:        VVenC, the Fraunhofer Versatile Video Encoder
 License:        BSD-3-Clause
 URL:            https://github.com/fraunhoferhhi/%{name}
 
 Source0:        %{url}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+# Fixes for i386/ARM32 builds
+Patch0:         %{url}/commit/ebce395254d9d7be7dc00cec7b49c7ed1d9eebec.patch
+Patch1:         %{url}/commit/bfd55ee783bfe30fc73f6f314b066b84bb1e5b60.patch
+Patch2:         %{url}/commit/982fcaac22488415899ae6c6ef7977a728a88e94.patch
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
+
+# Define this after the version is defined
+%global vvenc_majorminor %(v=%{version}; echo ${v:0:4})
 
 %description
 VVenC, the Fraunhofer Versatile Video Encoder, is a fast and efficient software
@@ -40,7 +49,6 @@ developing applications that use %{name}.
 %autosetup -p1
 
 %build
-export CXXFLAGS="%{optflags} -Wno-error=maybe-uninitialized -Wno-error=uninitialized"
 %cmake \
     -DCMAKE_SKIP_INSTALL_RPATH=OFF \
     -DVVENC_INSTALL_FULLFEATURE_APP=ON
@@ -56,7 +64,7 @@ export CXXFLAGS="%{optflags} -Wno-error=maybe-uninitialized -Wno-error=uninitial
 %files libs
 %license LICENSE.txt
 %doc README.md changelog.txt
-%{_libdir}/lib%{name}.so.1.12
+%{_libdir}/lib%{name}.so.%{vvenc_majorminor}
 %{_libdir}/lib%{name}.so.%{version}
 
 %files devel
@@ -66,8 +74,4 @@ export CXXFLAGS="%{optflags} -Wno-error=maybe-uninitialized -Wno-error=uninitial
 %{_libdir}/pkgconfig/lib%{name}.pc
 
 %changelog
-* Mon Nov 11 2024 Simone Caronni <negativo17@gmail.com> - 1.12.1-1
-- Update to 1.12.1.
-
-* Mon Aug 19 2024 Simone Caronni <negativo17@gmail.com> - 1.12.0-1
-- First build.
+%autochangelog

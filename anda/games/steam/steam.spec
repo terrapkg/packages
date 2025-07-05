@@ -4,8 +4,8 @@
 %global appstream_id com.valvesoftware.Steam
 
 Name:           steam
-Version:        1.0.0.82
-Release:        3%?dist
+Version:        1.0.0.83
+Release:        2%?dist
 Summary:        Installer for the Steam software distribution service
 # Redistribution and repackaging for Linux is allowed, see license file. udev rules are MIT.
 License:        Steam License Agreement and MIT
@@ -111,8 +111,8 @@ Requires:       SDL2%{?_isa}
 %endif
 
 # Game performance is increased with gamemode (for games that support it)
-Recommends:     gamemode
-Recommends:     gamemode%{?_isa}
+Recommends:     (falcond or gamemode)
+Recommends:     (gamemode%{?_isa} if gamemode(x86-64))
 Recommends:     (gnome-shell-extension-appindicator if gnome-shell)
 
 Recommends:     (gnome-shell-extension-appindicator if gnome-shell)
@@ -178,6 +178,10 @@ mkdir -p %{buildroot}%{_prefix}/lib/systemd/user.conf.d/
 install -m 644 -p %{SOURCE7} %{buildroot}%{_prefix}/lib/systemd/system.conf.d/
 install -m 644 -p %{SOURCE7} %{buildroot}%{_prefix}/lib/systemd/user.conf.d/
 install -m 775 -p %{SOURCE9} %{buildroot}%{_bindir}/steamrestart
+
+# https://github.com/ValveSoftware/steam-for-linux/issues/9940
+desktop-file-edit --remove-key=PrefersNonDefaultGPU %{buildroot}%{_datadir}/applications/%{name}.desktop
+desktop-file-edit --remove-key=X-KDE-RunOnDiscreteGpu %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop

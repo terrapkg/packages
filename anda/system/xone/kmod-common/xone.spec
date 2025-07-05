@@ -1,14 +1,14 @@
-%global commit c682b0cd4fd56d2d9639b64787034a375535eb4b
+%global commit 2857eb7effeaeb8240f7587e2728990b37b7db52
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20250419
-%global ver 0.3
+%global commitdate 20250704
+%global ver 0.3.4
 %global _dracutconfdir %{_prefix}/lib/dracut/dracut.conf.d
 %global firmware_hash0 48084d9fa53b9bb04358f3bb127b7495dc8f7bb0b3ca1437bd24ef2b6eabdf66
 %global firmware_hash1 080ce4091e53a4ef3e5fe29939f51fd91f46d6a88be6d67eb6e99a5723b3a223
 
 Name:           xone
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        3%?dist
+Release:        1%?dist
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Epoch:          1
 %endif

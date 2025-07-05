@@ -1,9 +1,10 @@
-%global commit d46890978aeac4840a458f952fc7c88b56cf27b3
+%global commit 76fe33245fcff14013760255223d4b1cb92573c1
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250426
-%global ver 0.185.0
+%global commit_date 20250705
+%global ver 0.195.0
 
 %bcond_with check
+%bcond nightly 1
 
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
@@ -12,21 +13,6 @@
 %global app_id dev.zed.Zed-Nightly
 
 %global rustflags_debuginfo 0
-
-# Zed needs a special approach to fetch the dep licenses
-%global zed_license_online %{shrink:                                        \
-    %{__cargo} tree                                                         \
-    -Z avoid-dev-deps                                                       \
-    --workspace                                                             \
-    --edges no-build,no-dev,no-proc-macro                                   \
-    --target all                                                            \
-    %{__cargo_parse_opts %{-n} %{-a} %{-f:-f%{-f*}}}                        \
-    --prefix none                                                           \
-    --format "{l}: {p}"                                                     \
-    | sed -e "s: ($(pwd)[^)]*)::g" -e "s: / :/:g" -e "/\/.*:/{s/\// OR /}"  \
-    | sed -e '/.*(\*).*/d' -e '/^: pet/ s/./MIT&/'                          \
-    | sort -u                                                               \
-}\
 
 Name:           zed-nightly
 Version:        %ver^%commit_date.%shortcommit
@@ -52,13 +38,19 @@ BuildRequires:  alsa-lib-devel
 BuildRequires:  fontconfig-devel
 BuildRequires:  wayland-devel
 BuildRequires:  libxkbcommon-x11-devel
+BuildRequires:  openssl-devel
+%if 0%{?fedora}
 BuildRequires:  openssl-devel-engine
+%endif
 BuildRequires:  libzstd-devel
 BuildRequires:  perl-FindBin
 BuildRequires:  perl-IPC-Cmd
 BuildRequires:  perl-File-Compare
 BuildRequires:  perl-File-Copy
 BuildRequires:  perl-lib
+%if %{with nightly}
+BuildRequires:  rustup
+%endif
 BuildRequires:  vulkan-loader
 
 %description
@@ -66,6 +58,9 @@ Code at the speed of thought - Zed is a high-performance, multiplayer code edito
 
 %prep
 %autosetup -n %{crate}-%{commit} -p1
+%if %{with nightly}
+%rustup_nightly
+%endif
 %cargo_prep_online
 
 export DO_STARTUP_NOTIFY="true"
@@ -104,7 +99,19 @@ install -Dm644 crates/zed/resources/app-icon-nightly.png %{buildroot}%{_datadir}
 install -Dm644 %app_id.metainfo.xml %{buildroot}%{_metainfodir}/%app_id.metainfo.xml
 
 # The license generation script doesn't generate licenses for ALL compiled dependencies, just direct deps of Zed, and it does not "group" licenses
-%{zed_license_online} > LICENSE.dependencies
+# Zed also needs a special approach to fetch the dep licenses
+%{__cargo} tree                                                             \
+    -Z avoid-dev-deps                                                       \
+    --workspace                                                             \
+    --edges no-build,no-dev,no-proc-macro                                   \
+    --target all                                                            \
+    %{__cargo_parse_opts %{-n} %{-a} %{-f:-f%{-f*}}}                        \
+    --prefix none                                                           \
+    --format "{l}: {p}"                                                     \
+    | sed -e "s: ($(pwd)[^)]*)::g" -e "s: / :/:g" -e "/\/.*:/{s/\// OR /}"  \
+    | sed -e '/.*(\*).*/d' -e '/^: pet/ s/./MIT&/'                          \
+    | sort -u                                                               \
+> LICENSE.dependencies
 mv assets/icons/LICENSES LICENSE.icons
 mv assets/themes/LICENSES LICENSE.themes
 mv assets/fonts/plex-mono/license.txt LICENSE.fonts

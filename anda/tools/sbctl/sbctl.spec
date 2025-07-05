@@ -1,16 +1,20 @@
 Name:           sbctl
-Version:        0.16
-Release:        1%?dist
+Version:        0.17
+Release:        3%?dist
 Summary:        Secure Boot key manager
 
 License:        MIT
 URL:            https://github.com/Foxboron/sbctl
 Source0:        https://github.com/Foxboron/sbctl/releases/download/%{version}/sbctl-%{version}.tar.gz
+## Based on CachyOS's batch sign script
+# https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/bin/sbctl-batch-sign
+Source1:        %{name}-batch-sign
 
 ExclusiveArch:  %{golang_arches}
 
 Requires:       binutils
 Requires:       util-linux
+Requires(post): bash
 
 Recommends:     systemd-udev
 
@@ -39,12 +43,12 @@ export GOPATH=%{_builddir}/go
 
 %install
 %make_install PREFIX=%{_prefix}
-
+install -Dm755 %{SOURCE1} -t %{buildroot}%{_bindir}
 
 %transfiletriggerin -P 1 -- /boot /efi /usr/lib /usr/libexec
-if grep -q -m 1 -e '\.efi$' -e '/vmlinuz$'; then
+if [[ ! -f /run/ostree-booted ]] && grep -q -m 1 -e '\.efi$' -e '/vmlinuz$'; then
     exec </dev/null
-    %{_bindir}/sbctl sign-all -g
+    %{_bindir}/sbctl-batch-sign
 fi
 
 
@@ -52,6 +56,7 @@ fi
 %license LICENSE
 %doc README.md
 %{_bindir}/sbctl
+%{_bindir}/sbctl-batch-sign
 %{_prefix}/lib/kernel/install.d/91-sbctl.install
 %{_mandir}/man8/sbctl.8*
 %{_mandir}/man5/sbctl.conf.5*
@@ -61,6 +66,9 @@ fi
 
 
 %changelog
+* Sat May 24 2025 Esteve Fernandez <esteve@apache.org> - 0.17-2
+- Do not run file triggers on atomic systems
+
 * Sat Mar 30 2024 Cappy Ishihara <cappy@cappuchino.xyz> - 0.13-1
 - Push to Terra
 

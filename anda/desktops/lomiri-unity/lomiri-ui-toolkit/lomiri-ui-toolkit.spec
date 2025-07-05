@@ -4,7 +4,7 @@
 
 Name:           lomiri-ui-toolkit
 Version:        1.3.5110
-Release:        1%?dist
+Release:        2%?dist
 Summary:        QML components to ease the creation of beautiful applications in QML for Lomiri
 
 License:        LGPL-3.0
@@ -34,6 +34,7 @@ BuildRequires: python3-devel
 BuildRequires: python3-rpm-macros
 BuildRequires: qt5-qtsvg-devel
 BuildRequires: fdupes
+BuildRequires: python3dist(pip)
 BuildRequires: python3dist(setuptools)
 Requires:      qt5-qtgraphicaleffects
 Requires:      qt5-qtfeedback
@@ -84,7 +85,11 @@ Examples for Lomiri-ui-toolkit.
 %build
 %{qmake_qt5} 'CONFIG+=ubuntu-uitk-compat' 'CONFIG+=test'
 pushd tests/autopilot
+%if 0%{?fedora} <= 41 || 0%{?rhel}
 %py3_build
+%else
+%pyproject_wheel
+%endif
 popd
 %make_build
 
@@ -96,8 +101,12 @@ rm -rf %{buildroot}%{_qt5_qmldir}/Extinct
 %fdupes %buildroot%_libdir/qt5/examples/%name/examples/
 
 pushd tests/autopilot
+%if 0%{?fedora} <= 41 || 0%{?rhel}
 %py3_install
-mv lomiriuitoolkit/{tests,_custom_proxy_objects} %{buildroot}%{python3_sitelib}/lomiriuitoolkit/
+%else
+%pyproject_install
+%endif
+mv lomiriuitoolkit/{tests,_custom_proxy_objects} -t %{buildroot}%{python3_sitelib}/lomiriuitoolkit/
 popd
 
 %find_lang %{name}
@@ -143,11 +152,14 @@ popd
 %doc README.md
 %dir %{python3_sitelib}/lomiriuitoolkit
 %{python3_sitelib}/lomiriuitoolkit/*.py
-%dir %{python3_sitelib}/lomiriuitoolkit-%{version}-py%{python3_version}.egg-info
-%{python3_sitelib}/lomiriuitoolkit-%{version}-py%{python3_version}.egg-info/*
 %{python3_sitelib}/lomiriuitoolkit/_custom_proxy_objects/
 %{python3_sitelib}/lomiriuitoolkit/__pycache__/
 %{python3_sitelib}/lomiriuitoolkit/tests/
+%if 0%{?fedora} <= 41 || 0%{?rhel}
+%{python3_sitelib}/lomiriuitoolkit-%{version}-py%{python3_version}.egg-info/
+%else
+%{python3_sitelib}/lomiriuitoolkit-%{version}.dist-info/
+%endif
 
 %files doc
 %license COPYING.CC-BY-SA-3.0

@@ -1,2 +1,4 @@
 anda-build/
 **/*.tar*
+**/*.crate
+**/*.zip

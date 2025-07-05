@@ -1,6 +1,6 @@
-%global commit 2b38b382cf24a7a03a955bcbb8e3eaa1b3e035c9
+%global commit 614e3c42239d771adede547fbf4d4d364dbd8c68
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250426
+%global commit_date 20250705
 %global ver 0.40.0
 
 Name:           mpv-nightly
@@ -124,32 +124,7 @@ Requires: mpv-nightly-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 %description devel
 This package contains development header files and libraries for Mpv.
 
-%package bash-completion
-Summary: MPV Bash completion
-Requires: bash
-Requires: %{name}
-Supplements: (%{name} and bash)
-
-%description bash-completion
-Bash shell completion for MPV.
-
-%package fish-completion
-Summary: MPV Fish completion
-Requires: fish
-Requires: %{name}
-Supplements: (%{name} and fish)
-
-%description fish-completion
-Fish shell completion for MPV.
-
-%package zsh-completion
-Summary: MPV Zsh completion
-Requires: zsh
-Requires: %{name}
-Supplements: (%{name} and zsh)
-
-%description zsh-completion
-Zsh shell completion for MPV.
+%pkg_completion -Bfz mpv
 
 %prep
 %autosetup -p1 -n mpv-%commit
@@ -246,15 +221,3 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/mpv.desktop
 %{_includedir}/mpv/
 %{_libdir}/libmpv.so
 %{_libdir}/pkgconfig/mpv.pc
-
-%files bash-completion
-%{bash_completions_dir}/mpv
-
-%files fish-completion
-%{fish_completions_dir}/mpv.fish
-
-%files zsh-completion
-%{zsh_completions_dir}/_mpv
-
-%changelog
-%autochangelog

@@ -8,23 +8,8 @@
 
 %global rustflags_debuginfo 0
 
-# Zed needs a special approach to fetch the dep licenses
-%global zed_license_online %{shrink:                                        \
-    %{__cargo} tree                                                         \
-    -Z avoid-dev-deps                                                       \
-    --workspace                                                             \
-    --edges no-build,no-dev,no-proc-macro                                   \
-    --target all                                                            \
-    %{__cargo_parse_opts %{-n} %{-a} %{-f:-f%{-f*}}}                        \
-    --prefix none                                                           \
-    --format "{l}: {p}"                                                     \
-    | sed -e "s: ($(pwd)[^)]*)::g" -e "s: / :/:g" -e "/\/.*:/{s/\// OR /}"  \
-    | sed -e '/.*(\*).*/d' -e '/^: pet/ s/./MIT&/'                          \
-    | sort -u                                                               \
-}\
-
 Name:           zed
-Version:        0.183.11
+Version:        0.193.3
 Release:        1%?dist
 Summary:        Zed is a high-performance, multiplayer code editor
 SourceLicense:  AGPL-3.0-only AND Apache-2.0 AND GPL-3.0-or-later
@@ -47,7 +32,10 @@ BuildRequires:  alsa-lib-devel
 BuildRequires:  fontconfig-devel
 BuildRequires:  wayland-devel
 BuildRequires:  libxkbcommon-x11-devel
+BuildRequires:  openssl-devel
+%if 0%{?fedora}
 BuildRequires:  openssl-devel-engine
+%endif
 BuildRequires:  libzstd-devel
 BuildRequires:  perl-FindBin
 BuildRequires:  perl-IPC-Cmd
@@ -100,7 +88,19 @@ install -Dm644 crates/zed/resources/app-icon.png %{buildroot}%{_datadir}/pixmaps
 install -Dm644 %app_id.metainfo.xml %{buildroot}%{_metainfodir}/%app_id.metainfo.xml
 
 # The license generation script doesn't generate licenses for ALL compiled dependencies, just direct deps of Zed, and it does not "group" licenses
-%{zed_license_online} > LICENSE.dependencies
+# Zed also needs a special approach to fetch the dep licenses
+%{__cargo} tree                                                             \
+    -Z avoid-dev-deps                                                       \
+    --workspace                                                             \
+    --edges no-build,no-dev,no-proc-macro                                   \
+    --target all                                                            \
+    %{__cargo_parse_opts %{-n} %{-a} %{-f:-f%{-f*}}}                        \
+    --prefix none                                                           \
+    --format "{l}: {p}"                                                     \
+    | sed -e "s: ($(pwd)[^)]*)::g" -e "s: / :/:g" -e "/\/.*:/{s/\// OR /}"  \
+    | sed -e '/.*(\*).*/d' -e '/^: pet/ s/./MIT&/'                          \
+    | sort -u                                                               \
+> LICENSE.dependencies
 mv assets/icons/LICENSES LICENSE.icons
 mv assets/themes/LICENSES LICENSE.themes
 mv assets/fonts/plex-mono/license.txt LICENSE.fonts

@@ -1,5 +1,5 @@
 Name:           abuild
-Version:        25.03
+Version:        25.06
 Release:        1%?dist
 Summary:        coreboot autobuild script builds coreboot images for all available targets.
 URL:            https://doc.coreboot.org/util/abuild/index.html
