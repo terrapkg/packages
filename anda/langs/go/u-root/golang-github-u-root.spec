@@ -51,11 +51,6 @@ Source:         %{gosource}
 %autopatch -p1
 
 %if %{without bootstrap}
-%generate_buildrequires
-%go_generate_buildrequires
-%endif
-
-%if %{without bootstrap}
 %build
 %define gomodulesmode GO111MODULE=on
 %gobuild -o %{gobuilddir}/bin/u-root %{goipath}
