@@ -3,11 +3,11 @@
 %global priority 90
 
 %global real_name vala
-%global commit a0ccf4e2a43c2523e9fb1649e8025351a74c7cd5
+%global commit 279dd36f95df98b8e87de68351b6b16440dfc2f1
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global repo https://gitlab.gnome.org/GNOME/%{real_name}.git
 
-%global commit_date 20250701
+%global commit_date 20250705
 %global snapshot_info %{commit_date}.%{shortcommit}
 
 Name:           vala-nightly
