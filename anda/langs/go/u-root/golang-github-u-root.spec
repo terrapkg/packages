@@ -74,13 +74,8 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %files
 %license LICENSE
 %doc docs examples AUTHORS CONTRIBUTING.md README.md SECURITY.md roadmap.md
-%doc tricksandtips.md cmds/exp/esxiboot/README.md cmds/exp/tftpd/README.md
-%doc cmds/exp/uefiboot/README.md cmds/exp/vmboot/README.md configs/README.md
+%doc tricksandtips.md
 %doc configs/amd64_config.txt configs/arm_config.txt configs/generic_config.txt
-%doc integration/README.md pkg/boot/systembooter/README.md pkg/netcat/doc.md
-%doc pkg/netstat/doc.md pkg/smbios/README.md pkg/tc/readme.md
-%doc tools/golang_patched_dce/README.md tools/tinygo-buildstatus/README.md
-%doc tools/tinygobb/README.md
 %{_bindir}/u-root
 %endif
 
