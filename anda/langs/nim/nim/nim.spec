@@ -14,6 +14,8 @@ Source4:		nimsuggest.1
 BuildRequires:	gcc mold git-core gcc-c++ nodejs openssl-devel pkgconfig(bash-completion) gc-devel pcre-devel
 BuildRequires:  redhat-rpm-config anda-srpm-macros
 Requires:		gcc
+Recommends:		nim-tools
+Conflicts:		nimble
 
 
 %description
