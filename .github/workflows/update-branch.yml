@@ -1,4 +1,6 @@
 name: Update per branch
+permissions:
+  contents: write
 on:
   schedule:
     - cron: "*/30 * * * *"
