@@ -19,8 +19,9 @@ BuildRequires:	gcc mold git gcc-c++ nodejs openssl-devel pkgconfig(bash-completi
 Requires:		redhat-rpm-config gcc
 Conflicts:		choosenim
 # somehow wrong name and never noticed
-Provides:		nim-nightly = %version-%release
 Obsoletes:		nim-nighlty < 2.1.1^20240404.9e1b170-2
+Conflicts:		nim
+Recommends:		nim-nightly-tools nimble
 
 
 %description
@@ -33,6 +34,7 @@ order of priority).
 Summary:	Tools for Nim programming language
 Provides:	nim-nightly-tools = %version-%release
 Obsoletes:	nim-nighlty-tools < 2.1.1^20240404.9e1b170-2
+Conflicts:	nim-tools
 
 %description tools
 Nim is a compiled, garbage-collected systems programming language with a
@@ -131,9 +133,9 @@ cp -r %buildroot%_prefix/lib/nim/dist %buildroot%_datadir/nim/
 %files
 %license copying.txt dist/nimble/license.txt
 %doc doc/readme.txt
-%_bindir/nim{,ble}
+%_bindir/nim
 %_mandir/man1/nim.1.*
-%_datadir/bash-completion/completions/nim{,ble}
+%_datadir/bash-completion/completions/nim
 %_datadir/nim/
 %_prefix/lib/nim/
 %_sysconfdir/nim/
