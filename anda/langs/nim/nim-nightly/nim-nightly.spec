@@ -7,7 +7,7 @@
 
 Name:			nim-nightly
 Version:		%ver^%commit_date.%shortcommit
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Imperative, multi-paradigm, compiled programming language
 License:		MIT and BSD
 URL:			https://nim-lang.org
@@ -19,8 +19,9 @@ BuildRequires:	gcc mold git gcc-c++ nodejs openssl-devel pkgconfig(bash-completi
 Requires:		redhat-rpm-config gcc
 Conflicts:		choosenim
 # somehow wrong name and never noticed
-Provides:		nim-nightly = %version-%release
 Obsoletes:		nim-nighlty < 2.1.1^20240404.9e1b170-2
+Conflicts:		nim
+Recommends:		nim-nightly-tools nimble
 
 
 %description
@@ -33,6 +34,7 @@ order of priority).
 Summary:	Tools for Nim programming language
 Provides:	nim-nightly-tools = %version-%release
 Obsoletes:	nim-nighlty-tools < 2.1.1^20240404.9e1b170-2
+Conflicts:	nim-tools
 
 %description tools
 Nim is a compiled, garbage-collected systems programming language with a
@@ -102,7 +104,6 @@ sh ./install.sh %buildroot/usr/bin
 mkdir -p %buildroot/%_bindir %buildroot/%_datadir/bash-completion/completions %buildroot/usr/lib/nim %buildroot%_datadir
 install -Dpm755 bin/nim{grep,suggest,pretty} %buildroot/%_bindir
 install -Dpm644 tools/nim.bash-completion %buildroot/%_datadir/bash-completion/completions/nim
-install -Dpm644 dist/nimble/nimble.bash-completion %buildroot/%_datadir/bash-completion/completions/nimble
 install -Dpm644 -t%buildroot/%_mandir/man1 %SOURCE1 %SOURCE2 %SOURCE4
 mv %buildroot%_bindir/nim %buildroot%_datadir/
 ln -s %_datadir/nim/bin/nim %buildroot%_bindir/nim
@@ -131,9 +132,9 @@ cp -r %buildroot%_prefix/lib/nim/dist %buildroot%_datadir/nim/
 %files
 %license copying.txt dist/nimble/license.txt
 %doc doc/readme.txt
-%_bindir/nim{,ble}
+%_bindir/nim
 %_mandir/man1/nim.1.*
-%_datadir/bash-completion/completions/nim{,ble}
+%_datadir/bash-completion/completions/nim
 %_datadir/nim/
 %_prefix/lib/nim/
 %_sysconfdir/nim/
