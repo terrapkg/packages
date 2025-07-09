@@ -1,4 +1,6 @@
 name: Manual Builds
+permissions:
+  contents: read
 on:
   workflow_dispatch:
     inputs:
@@ -81,21 +83,24 @@ jobs:
 
       - name: Upload packages to subatomic
         run: |
+          subrepo="${{ fromJson(steps.art.outputs.labels).subrepo }}"
           subatomic-cli upload --prune \
             --server https://subatomic.fyralabs.com \
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
-            terra${{ matrix.version }}${{ fromJson(steps.art.outputs.labels)['extra'] && '-extras' }} anda-build/rpm/rpms/*
+            terra${{ matrix.version }}${{ fromJson(steps.art.outputs.labels)['subrepo'] && '-$subrepo' }} anda-build/rpm/rpms/*
 
       - name: Upload source packages to subatomic
+        if: fromJson(steps.art.outputs.labels)['no_upload_srpms'] != '1'
         run: |
+          subrepo="${{ fromJson(steps.art.outputs.labels).subrepo }}"
           subatomic-cli upload --prune \
             --server https://subatomic.fyralabs.com \
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
-            terra${{ matrix.version }}${{ fromJson(steps.art.outputs.labels)['extra'] && '-extras' }}-source anda-build/rpm/srpm/*
+            terra${{ matrix.version }}${{ fromJson(steps.art.outputs.labels)['subrepo'] && '-$subrepo' }}-source anda-build/rpm/srpm/*
 
       - name: Notify Madoguchi (Success)
         if: success()
-        run: ./.github/workflows/mg.sh true "${{matrix.pkg}}" "${{matrix.version}}" "${{matrix.arch}}" "${{github.run_id}}" "${{secrets.MADOGUCHI_JWT}}" "$GITHUB_SHA"
+        run: ./.github/workflows/mg.sh true "anda/${{matrix.pkg}}pkg" "${{matrix.version}}" "${{matrix.arch}}" "${{github.run_id}}" "${{secrets.MADOGUCHI_JWT}}" "$GITHUB_SHA"
       - name: Notify Madoguchi (Failure)
         if: cancelled() || failure()
-        run: ./.github/workflows/mg.sh false "${{matrix.pkg}}" "${{matrix.version}}" "${{matrix.arch}}" "${{github.run_id}}" "${{secrets.MADOGUCHI_JWT}}" "$GITHUB_SHA"
+        run: ./.github/workflows/mg.sh false "anda/${{matrix.pkg}}pkg" "${{matrix.version}}" "${{matrix.arch}}" "${{github.run_id}}" "${{secrets.MADOGUCHI_JWT}}" "$GITHUB_SHA"

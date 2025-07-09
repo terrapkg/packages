@@ -1,6 +1,6 @@
 Name:		dracut-strip-trigger
 Version:	0
-Release:	1%?dist
+Release:	2%?dist
 Summary:	Strip initramfs aggressively
 License:	GPL-3.0-only
 Requires(post): dracut
@@ -29,7 +29,7 @@ dracut --force --parallel --regenerate-all --hostonly --strip --aggressive-strip
 echo 'All non-rescue initramfs have been regenerated.'
 echo 'If you have problems booting up, use the rescue image, then uninstall `%name`.'
 
-%triggerin -- kernel
+%triggerin -- installonlypkg(kernel)
 dracut --force --hostonly --strip --aggressive-strip
 
 %postun
