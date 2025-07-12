@@ -12,7 +12,6 @@ License:        GPL-2.0-or-later
 Group:          System/GUI/KDE
 URL:            %{forgeurl}
 Source:         %{forgesource}
-Patch0:         https://github.com/paulmcauley/klassy/pull/178.patch
 
 Obsoletes:      classikstyles <= %{version}
 Obsoletes:      classik <= %{version}
