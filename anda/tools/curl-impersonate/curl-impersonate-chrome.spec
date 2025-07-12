@@ -61,6 +61,9 @@ wait
 %{__make} checkbuild
 
 %install
+pushd curl-*
+%configure
+popd
 %make_install
 
 %files
