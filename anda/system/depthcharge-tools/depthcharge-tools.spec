@@ -16,7 +16,7 @@ with depthcharge, the Chrome OS bootloader.
 %pkg_completion -Bz mkdepthcharge depthchargectl
 
 %prep
-%autosetup
+%autosetup -n %name-v%version
 
 %build
 python3 setup.py build
