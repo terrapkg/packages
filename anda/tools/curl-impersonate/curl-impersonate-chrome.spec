@@ -18,7 +18,7 @@ BuildRequires:  golang
 BuildRequires:  unzip
 BuildRequires:  zlib-ng-compat-devel
 BuildRequires:  zstd libzstd-devel
-# not actually required, but %configure in curl thinks it's needed
+# not actually required, but %%configure in curl thinks it's needed
 BuildRequires:  pkgconfig(openssl)
 
 %global _description %{expand:
