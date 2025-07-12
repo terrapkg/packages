@@ -61,7 +61,7 @@ wait
 %{__make} checkbuild
 
 %install
-pushd curl-*
+pushd `sed -nE 's@^CURL_VERSION := (.+)$@\1@p' Makefile.in`
 %configure
 popd
 %make_install
