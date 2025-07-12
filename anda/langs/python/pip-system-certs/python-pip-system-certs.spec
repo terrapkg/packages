@@ -38,18 +38,31 @@ trusted by your system install.
 rm -rf %{pypi_name}.egg-info
 
 %build
+%if 0%{?fedora} <= 41 || 0%{?rhel}
 pip install git-versioner
+%py3_build
+%else
 %pyproject_wheel
+%endif
 
 %install
+%if 0%{?fedora} <= 41 || 0%{?rhel}
+%py3_install
+%else
 %pyproject_install
-
 %pyproject_save_files pip_system_certs
+%endif
 
+%if 0%{?fedora} <= 41 || 0%{?rhel}
+%files -n python3-%{pypi_name}
+%else
 %files -n python3-%{pypi_name} -f %pyproject_files
+%endif
 %license LICENSE
 %doc README.rst
 %python3_sitelib/pip_system_certs.pth
+%{python3_sitearch}/google/
+
 
 %changelog
 * Thu Apr 04 2024 madomado <madonuko@outlook.com> - 4.0-1
