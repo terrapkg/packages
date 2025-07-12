@@ -18,6 +18,8 @@ BuildRequires:  golang
 BuildRequires:  unzip
 BuildRequires:  zlib-ng-compat-devel
 BuildRequires:  zstd libzstd-devel
+# not actually required, but %configure in curl thinks it's needed
+BuildRequires:  pkgconfig(openssl)
 
 %global _description %{expand:
 A special build of curl that can impersonate Chrome, Edge and Safari. curl-impersonate is able to perform TLS and HTTP handshakes that are identical to that of a real browser.
