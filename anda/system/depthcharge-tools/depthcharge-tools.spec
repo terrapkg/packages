@@ -4,7 +4,7 @@ Release:		1%?dist
 Summary:		Tools to manage the Chrome OS bootloader
 License:		GPL-2.0-or-later
 URL:			https://gitlab.postmarketos.org/postmarketOS/depthcharge-tools
-Source0:		%url/-/archive/v%version/v%version.tar.gz
+Source0:		%url/-/archive/v%version/%name-v%version.tar.gz
 Requires:		vboot-utils dtc gzip lz4 python3-setuptools uboot-tools vboot-utils xz
 BuildRequires:	python3-setuptools python3-rpm-macros systemd-rpm-macros redhat-rpm-config python3-docutils
 BuildArch:		noarch
