@@ -64,6 +64,11 @@ wait
 %{__make} checkbuild
 
 %install
+pushd `sed -nE 's@^CURL_VERSION := (.+)$@\1@p' Makefile.in`
+export LT_SYS_LIBRARY_PATH="../boringssl-$(sed -nE 's@^BORING_SSL_COMMIT := (.+)$@\1@p' ../Makefile.in)/include"
+%configure --with-openssl
+sed -E 's@MAKEFLAGS=$@MAKEFLAGS=-j$(SUBJOBS)@' -i Makefile
+popd
 %make_install
 
 %files
