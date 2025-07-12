@@ -1,4 +1,3 @@
-
 Name:			choosenim
 Version:		0.8.16
 Release:		1%?dist
@@ -6,8 +5,6 @@ Summary:		Easily install and manage multiple versions of the Nim programming lan
 License:		BSD-3-Clause
 URL:			https://github.com/nim-lang/choosenim
 Source0:        %url/archive/refs/tags/v%version.tar.gz
-# Fix for https://github.com/nim-lang/choosenim/issues/13
-Patch0:         https://patch-diff.githubusercontent.com/raw/nim-lang/choosenim/pull/38.patch
 Packager:		madonuko <mado@fyralabs.com>
 BuildRequires:  nim
 BuildRequires:	git-core anda-srpm-macros
