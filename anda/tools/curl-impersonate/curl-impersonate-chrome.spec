@@ -1,15 +1,14 @@
 %global build_cxxflags %(echo "%{__build_flags_lang_cxx} %{?_distro_extra_cxxflags}" | sed 's@-Werror=format-security@@')
 
 Name:           curl-impersonate-chrome
-Version:        0.7.0
+Version:        1.1.1
 Release:        1%{?dist}
 Summary:        A series of patches that make curl requests look like Chrome
 
 License:        MIT
 URL:            https://github.com/lexiforest/curl-impersonate
 Source0:        %{url}/archive/v%{version}.tar.gz
-Patch0:         remove-werror-in-boringssl-build.patch
-Patch1:         install-sh-scripts-to-buildroot.patch
+# Patch0:         remove-werror-in-boringssl-build.patch
 
 Packager:       sadlerm <lerm@chromebooks.lol>
 
@@ -49,16 +48,20 @@ This package contains the object files necessary to develop %{name}.
 
 %prep
 %autosetup -n curl-impersonate-%{version} -p1
+sed -i '/^install:$/,/^$/{s/@bindir@/$(DESTDIR)@bindir@/}' Makefile.in
 
 %build
 %configure
-%{__make} chrome-build
+%make_build `sed -nE 's@^CURL_VERSION := (.+)$@\1@p' Makefile.in`.tar.gz &
+%make_build boringssl-`sed -nE 's@^BORING_SSL_COMMIT := (.+)$@\1@p' Makefile.in`.zip &
+wait
+%make_build build || true
 
 %check
-%{__make} chrome-checkbuild
+%{__make} checkbuild
 
 %install
-%{__make} DESTDIR=%{buildroot} chrome-install 
+%make_install
 
 %files
 %license LICENSE
