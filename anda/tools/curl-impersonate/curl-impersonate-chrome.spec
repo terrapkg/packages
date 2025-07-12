@@ -62,7 +62,7 @@ wait
 
 %install
 pushd `sed -nE 's@^CURL_VERSION := (.+)$@\1@p' Makefile.in`
-%configure
+%configure --with-openssl
 popd
 %make_install
 
