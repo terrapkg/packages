@@ -5,7 +5,7 @@ Summary:        📡 GUI Network Applet
 License:        GPL-3.0-or-later
 URL:            https://github.com/madonuko/netto
 Source0:        %url/archive/refs/tags/v%version.tar.gz
-BuildRequires:  anda-srpm-macros nim-tools
+BuildRequires:  anda-srpm-macros nim
 BuildRequires:  pkgconfig(gtk4)
 BuildRequires:  pkgconfig(libnm)
 
