@@ -19,7 +19,7 @@
 
 Name:           extest
 Version:        %{commit_date}git.%{shortcommit}
-Release:        2%?dist
+Release:        3%?dist
 Summary:        X11 XTEST reimplementation primarily for Steam Controller on Wayland
 
 License:        MIT
@@ -45,7 +45,7 @@ BuildRequires:  clang
 BuildRequires:  mold
 Recommends:     %{name}-steam
 %ifarch x86_64
-Recommends:     %{name}.i686
+Recommends:     %{name}(x86-32)
 %endif
 
 %description
@@ -56,16 +56,12 @@ Extest is a drop in replacement for the X11 XTEST extension. It creates a virtua
 %package steam
 BuildArch:      noarch
 Summary:        Extest subpackage that patches Steam's scripts to load Extest
+Requires:       %{name}(x86-32)
+Recommends:     %{name}
 
 %description steam
 This subpackage contains scripts that patch Steam's scripts to load Extest. This is necessary for Extest to work with Steam on Wayland.
 
-# If on x86_64, require the i686 version of the package
-%ifarch x86_64
-Requires:        %{name}.i686
-%else
-Requires:        %{name}
-%endif
 
 %prep
 %autosetup -n %{name}-%{commit}
