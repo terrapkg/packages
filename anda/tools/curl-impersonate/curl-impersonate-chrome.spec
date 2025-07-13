@@ -52,16 +52,25 @@ This package contains the object files necessary to develop %{name}.
 
 %prep
 %autosetup -n curl-impersonate-%{version} -p1
+sed -i '/^install:$/,/^$/{s/@bindir@/$(DESTDIR)@bindir@/}' Makefile.in
 
 %build
 %configure
-%make_build
+%make_build `sed -nE 's@^CURL_VERSION := (.+)$@\1@p' Makefile.in`.tar.gz &
+%make_build boringssl-`sed -nE 's@^BORING_SSL_COMMIT := (.+)$@\1@p' Makefile.in`.zip &
+wait
+%make_build build || true
 
 %check
 %{__make} checkbuild
 
 %install
-%make_install DESTDIR=%{buildroot}
+pushd `sed -nE 's@^CURL_VERSION := (.+)$@\1@p' Makefile.in`
+export LT_SYS_LIBRARY_PATH="../boringssl-$(sed -nE 's@^BORING_SSL_COMMIT := (.+)$@\1@p' ../Makefile.in)/include"
+%configure --with-openssl
+sed -E 's@MAKEFLAGS=$@MAKEFLAGS=-j$(SUBJOBS)@' -i Makefile
+popd
+%make_install
 
 %files
 %license LICENSE
