@@ -55,13 +55,13 @@ This package contains the object files necessary to develop %{name}.
 
 %build
 %configure
-%{__make} chrome-build
+%make_build
 
 %check
-%{__make} chrome-checkbuild
+%{__make} checkbuild
 
 %install
-%{__make} DESTDIR=%{buildroot} chrome-install 
+%make_install DESTDIR=%{buildroot}
 
 %files
 %license LICENSE
