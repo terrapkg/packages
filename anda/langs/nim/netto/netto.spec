@@ -6,7 +6,7 @@ License:        GPL-3.0-or-later
 URL:            https://github.com/madonuko/netto
 Source0:        %url/archive/refs/tags/v%version.tar.gz
 BuildRequires:  anda-srpm-macros nim
-BuildRequires:  pkgconfig(gtk4)
+BuildRequires:  pkgconfig(libhelium-1)
 BuildRequires:  pkgconfig(libnm)
 
 %description
