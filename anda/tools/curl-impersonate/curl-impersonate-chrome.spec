@@ -8,7 +8,8 @@ Summary:        A series of patches that make curl requests look like Chrome
 License:        MIT
 URL:            https://github.com/lexiforest/curl-impersonate
 Source0:        %{url}/archive/v%{version}.tar.gz
-# Patch0:         remove-werror-in-boringssl-build.patch
+Patch0:         remove-werror-in-boringssl-build.patch
+%dnl Patch1:         install-sh-scripts-to-buildroot.patch
 
 Packager:       sadlerm <lerm@chromebooks.lol>
 
@@ -18,9 +19,9 @@ BuildRequires:  golang
 BuildRequires:  unzip
 BuildRequires:  zlib-ng-compat-devel
 BuildRequires:  zstd libzstd-devel
-# not actually required, but %%configure in curl thinks it's needed
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pkgconfig(libpsl)
+BuildRequires:  mingw64-openssl-static
 
 %global _description %{expand:
 A special build of curl that can impersonate Chrome, Edge and Safari. curl-impersonate is able to perform TLS and HTTP handshakes that are identical to that of a real browser.
@@ -51,25 +52,16 @@ This package contains the object files necessary to develop %{name}.
 
 %prep
 %autosetup -n curl-impersonate-%{version} -p1
-sed -i '/^install:$/,/^$/{s/@bindir@/$(DESTDIR)@bindir@/}' Makefile.in
 
 %build
 %configure
-%make_build `sed -nE 's@^CURL_VERSION := (.+)$@\1@p' Makefile.in`.tar.gz &
-%make_build boringssl-`sed -nE 's@^BORING_SSL_COMMIT := (.+)$@\1@p' Makefile.in`.zip &
-wait
-%make_build build || true
+%{__make} chrome-build
 
 %check
-%{__make} checkbuild
+%{__make} chrome-checkbuild
 
 %install
-pushd `sed -nE 's@^CURL_VERSION := (.+)$@\1@p' Makefile.in`
-export LT_SYS_LIBRARY_PATH="../boringssl-$(sed -nE 's@^BORING_SSL_COMMIT := (.+)$@\1@p' ../Makefile.in)/include"
-%configure --with-openssl
-sed -E 's@MAKEFLAGS=$@MAKEFLAGS=-j$(SUBJOBS)@' -i Makefile
-popd
-%make_install
+%{__make} DESTDIR=%{buildroot} chrome-install 
 
 %files
 %license LICENSE
