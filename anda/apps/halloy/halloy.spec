@@ -30,6 +30,7 @@ BuildRequires: desktop-file-utils
 %install
 %cargo_install
 #generate desktop file
+mkdir -p %{buildroot}%{_datadir}/applications
 desktop-file-edit  \
                             --set-key=Type \
                             --set-value=Application \
@@ -43,7 +44,7 @@ desktop-file-edit  \
                             --set-value=halloy \
                             --set-key=Terminal \
                             --set-value=false \
-                %{buildroot}/%{_datadir}/applications/halloy.desktop
+                %{buildroot}%{_datadir}/applications/halloy.desktop
 
 #copy logo file to be used in desktop file
 install -Dpm644 ./assets/logo.png %{buildroot}%{_datadir}/pixmaps/halloy.png
