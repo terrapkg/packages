@@ -12,7 +12,8 @@ License:        (0BSD OR MIT OR Apache-2.0) AND Apache-2.0 AND (Apache-2.0 OR BS
 URL:            https://github.com/squidowl/halloy
 Source:         https://github.com/squidowl/halloy/archive/refs/tags/%{version}.tar.gz
 
-BuildRequires:  cargo-rpm-macros >= 24
+BuildRequires: alsa-lib-devel
+BuildRequires: cargo-rpm-macros >= 24
 BuildRequires: desktop-file-utils
 BuildRequires: openssl-devel
 
