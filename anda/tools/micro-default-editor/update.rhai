@@ -1,7 +1,5 @@
-let info = sh("dnf info micro -y", #{"stdout": "piped"}).ctx.stdout;
-let v = find("Version\\s+: ([\\d.]+)", info, 1);
-rpm.version(v);
-let r = find("Release\\s+: ([\\d]+)", info, 1);
-rpm.f = sub(`Release: (.+?)\n`, "Release: " + r + "%{?dist}\n", rpm.f);
-let e = find("Epoch\\s+: ([\\d.]+)", info, 1);
-rpm.f = sub(`Epoch: (.+?)\n`, "Epoch: " + e + "\n", rpm.f);
+let v = sh("dnf rq --qf='%{version}|%{release}|%{epoch}' micro --repo=fedora,updates", #{"stdout": "piped"}).ctx.stdout;
+let vre = v.split("|");
+rpm.version(vre[0]);
+rpm.release(vre[1].split(".")[0].parse_int());
+rpm.f = sub(`^Epoch: (.+?)$`, "Epoch: " + vre[2], rpm.f);
