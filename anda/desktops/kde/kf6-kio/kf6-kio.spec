@@ -28,9 +28,6 @@ Patch0:  0001-Give-the-kuriikwsfiltereng_private-a-VERSION-and-SOV.patch
 Patch101: kio-no-help-protocol.patch
 %endif
 
-# https://invent.kde.org/frameworks/kio/-/merge_requests/1556
-Patch201: 1556.patch
-
 Provides:       kf6-%{framework}
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
