@@ -1,9 +1,7 @@
-let v = sh("dnf info micro -y | grep Version | grep -Eo '[0-9]+\\.[0-9]+.*'", #{"stdout": "piped"}).ctx.stdout;
-v.pop();
+let info = sh("dnf info micro -y", #{"stdout": "piped"}).ctx.stdout;
+let v = find("Version\\s+: ([\\d.]+)", info, 1);
 rpm.version(v);
-let r = sh("dnf info micro -y | grep Release | grep -Eo '[0-9]+' | head -1", #{"stdout": "piped"}).ctx.stdout;
-r.pop();
+let r = find("Release\\s+: ([\\d]+)", info, 1);
 rpm.f = sub(`Release: (.+?)\n`, "Release: " + r + "%{?dist}\n", rpm.f);
-let e = sh("dnf info micro -y | grep Epoch | grep -Eo '[0-9]+'", #{"stdout": "piped"}).ctx.stdout;
-e.pop();
+let e = find("Epoch\\s+: ([\\d.]+)", info, 1);
 rpm.f = sub(`Epoch: (.+?)\n`, "Epoch: " + e + "\n", rpm.f);
