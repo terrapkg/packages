@@ -1,6 +1,6 @@
 Name:           netto
 Version:        0.1.1
-Release:        1%?dist
+Release:        2%?dist
 Summary:        📡 GUI Network Applet
 License:        GPL-3.0-or-later
 URL:            https://github.com/madonuko/netto
