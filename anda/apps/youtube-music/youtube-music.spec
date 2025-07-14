@@ -53,7 +53,7 @@ git checkout v%{version}
 %if 0%{?vendor_pnpm}
 curl -fsSL https://get.pnpm.io/install.sh | sh -
 source $HOME/.bashrc
-pnpm env use --global 20
+pnpm env use --global 22
 %endif
 pnpm install
 pnpm build
