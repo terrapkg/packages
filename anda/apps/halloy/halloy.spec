@@ -44,7 +44,7 @@ desktop-file-edit  \
                             --set-key=Exec \
                             --set-value=%{_bindir}/halloy \
                             --set-key=Icon \
-                            --set-value=%{_datadir}/icons/halloy.png \
+                            --set-value=halloy \
                             --set-key=Terminal \
                             --set-value=false \
                 %{buildroot}/%{_datadir}/applications/halloy.desktop
