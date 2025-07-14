@@ -1,4 +1,6 @@
 name: Nightly Update
+permissions:
+  contents: write
 on:
   schedule:
     - cron: "0 0 * * *"

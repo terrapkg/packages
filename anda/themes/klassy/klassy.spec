@@ -12,7 +12,6 @@ License:        GPL-2.0-or-later
 Group:          System/GUI/KDE
 URL:            %{forgeurl}
 Source:         %{forgesource}
-Patch0:         https://github.com/paulmcauley/klassy/pull/178.patch
 
 Obsoletes:      classikstyles <= %{version}
 Obsoletes:      classik <= %{version}
@@ -102,7 +101,7 @@ Klassy (formerly ClassiK/ClassikStyles) is a highly customizable binary Window D
 %{_kf6_qtplugindir}/kstyle_config/klassystyleconfig.so
 %{_kf6_qtplugindir}/org.kde.kdecoration3/org.kde.klassy.so
 %{_kf6_qtplugindir}/org.kde.kdecoration3.kcm/kcm_klassydecoration.so
-%{_kf6_qtplugindir}/org.kde.kdecoration2.kcm/klassydecoration/presets/*
+%{_kf6_qtplugindir}/org.kde.kdecoration3.kcm/klassydecoration/presets/*
 
 %{_kf6_datadir}/applications/kcm_klassydecoration.desktop
 %{_kf6_datadir}/applications/klassystyleconfig.desktop

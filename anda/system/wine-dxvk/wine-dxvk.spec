@@ -23,7 +23,7 @@
 %global wine_lib_dir %{_datadir}/wine-staging/lib64
 
 Name:           terra-wine-dxvk
-Version:        2.6.2
+Version:        2.7
 Release:        1%?dist
 Summary:        Vulkan-based implementation of D3D8, 9, 10 and 11 for Linux / Wine
 
