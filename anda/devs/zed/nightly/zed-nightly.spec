@@ -1,9 +1,10 @@
-%global commit aa330fcf2c4c1153d5c4f0408a4f6bfc145d94d5
+%global commit 51df8a17ef32196acac6e3125c0f2d6297300e63
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250625
-%global ver 0.193.0
+%global commit_date 20250714
+%global ver 0.196.0
 
 %bcond_with check
+%bcond nightly 1
 
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
@@ -47,6 +48,9 @@ BuildRequires:  perl-IPC-Cmd
 BuildRequires:  perl-File-Compare
 BuildRequires:  perl-File-Copy
 BuildRequires:  perl-lib
+%if %{with nightly}
+BuildRequires:  rustup
+%endif
 BuildRequires:  vulkan-loader
 
 %description
@@ -54,6 +58,9 @@ Code at the speed of thought - Zed is a high-performance, multiplayer code edito
 
 %prep
 %autosetup -n %{crate}-%{commit} -p1
+%if %{with nightly}
+%rustup_nightly
+%endif
 %cargo_prep_online
 
 export DO_STARTUP_NOTIFY="true"

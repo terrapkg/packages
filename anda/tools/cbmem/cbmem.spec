@@ -1,7 +1,7 @@
 %define debug_package %nil
 
 Name:           cbmem
-Version:        25.03
+Version:        25.06
 Release:        1%?dist
 Summary:        Prints out coreboot mem table information
 URL:            https://review.coreboot.org
