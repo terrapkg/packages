@@ -31,7 +31,7 @@ BuildRequires: desktop-file-utils
 
 %install
 #copy logo file to be used in desktop file
-cp ./assets/logo.png %{buildroot}%{_datadir}/pixmaps/halloy.png
+install -Dpm644 ./assets/logo.png %{buildroot}%{_datadir}/pixmaps/halloy.png
 %cargo_install
 #generate desktop file
 desktop-file-edit  \
