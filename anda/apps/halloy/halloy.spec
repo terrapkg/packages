@@ -10,13 +10,14 @@ SourceLicense:  GPL-3.0-or-later
 License:        (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND (Apache-2.0 WITH LLVM-exception) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (BSD-2-Clause) AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR MIT OR Apache-2.0) AND (BSD-3-Clause) AND (BSD-3-Clause OR MIT OR Apache-2.0) AND (BSL-1.0) AND (CC0-1.0) AND (CC0-1.0 OR Apache-2.0) AND (GPL-3.0+ OR BSD-3-Clause) AND (GPL-3.0-or-later) AND (ISC) AND (LGPL-3.0-or-later OR MPL-2.0) AND (MIT) AND (MIT AND (MIT OR Apache-2.0)) AND (MIT OR Apache-2.0) AND ((MIT OR Apache-2.0) AND NCSA) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (MIT OR Apache-2.0 OR BSD-1-Clause) AND (MIT OR Apache-2.0 OR CC0-1.0) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Zlib OR Apache-2.0) AND (MPL-2.0) AND (Unicode-3.0) AND (Unlicense) AND (Unlicense OR MIT) AND (Zlib) AND (Zlib OR Apache-2.0 OR MIT)
 
 URL:            https://github.com/squidowl/halloy
-Source:         https://github.com/squidowl/halloy/archive/refs/tags/%{Version}.tar.gz
+Source:         https://github.com/squidowl/halloy/archive/refs/tags/%{version}.tar.gz
 
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires: desktop-file-utils
 
 
-%description %{Summary}
+%description
+%{summary}.
 
 %prep
 %autosetup -n halloy-%{version} -p1
@@ -26,12 +27,12 @@ BuildRequires: desktop-file-utils
 %build
 %cargo_build
 %cargo_license_summary_online
-%{cargo_license} > LICENSE.dependencies
+%{cargo_license_online} > LICENSE.dependencies
 
 
 %install
 #copy logo file to be used in desktop file
-cp ./assets/logo.png %{buildroot}/%{_datadir}/icons/halloy.png
+cp ./assets/logo.png %{buildroot}%{_datadir}/pixmaps/halloy.png
 %cargo_install
 #generate desktop file
 desktop-file-edit  \
