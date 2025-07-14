@@ -25,13 +25,9 @@ BuildRequires: desktop-file-utils
 
 
 %build
-%cargo_license_summary_online
-%{cargo_license_online} > LICENSE.dependencies
 
 
 %install
-#copy logo file to be used in desktop file
-install -Dpm644 ./assets/logo.png %{buildroot}%{_datadir}/pixmaps/halloy.png
 %cargo_install
 #generate desktop file
 desktop-file-edit  \
@@ -48,6 +44,12 @@ desktop-file-edit  \
                             --set-key=Terminal \
                             --set-value=false \
                 %{buildroot}/%{_datadir}/applications/halloy.desktop
+
+#copy logo file to be used in desktop file
+install -Dpm644 ./assets/logo.png %{buildroot}%{_datadir}/pixmaps/halloy.png
+
+%cargo_license_summary_online
+%{cargo_license_online} > LICENSE.dependencies
 
 %if %{with check}
 %check
