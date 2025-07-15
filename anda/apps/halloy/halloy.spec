@@ -56,15 +56,15 @@ cp -r assets/linux/icons -t %{buildroot}%{_datadir}
 %{_bindir}/halloy
 %{_datadir}/applications/halloy.desktop
 %{_datadir}/metainfo/%{appid}.appdata.xml
-%{_datadir}%{_iconsdir}/16x16/%{appid}.png
-%{_datadir}%{_iconsdir}/24x14/%{appid}.png
-%{_datadir}%{_iconsdir}/32x32/%{appid}.png
-%{_datadir}%{_iconsdir}/48x48/%{appid}.png
-%{_datadir}%{_iconsdir}/64x64/%{appid}.png
-%{_datadir}%{_iconsdir}/96x96/%{appid}.png
-%{_datadir}%{_iconsdir}/128x128/%{appid}.png
-%{_datadir}%{_iconsdir}/256x256/%{appid}.png
-%{_datadir}%{_iconsdir}/512x512/%{appid}.png
+%{_datadir}%{_iconsdir}/hicolor/16x16/%{appid}.png
+%{_datadir}%{_iconsdir}/hicolor/24x14/%{appid}.png
+%{_datadir}%{_iconsdir}/hicolor/32x32/%{appid}.png
+%{_datadir}%{_iconsdir}/hicolor/48x48/%{appid}.png
+%{_datadir}%{_iconsdir}/hicolor/64x64/%{appid}.png
+%{_datadir}%{_iconsdir}/hicolor/96x96/%{appid}.png
+%{_datadir}%{_iconsdir}/hicolor/128x128/%{appid}.png
+%{_datadir}%{_iconsdir}/hicolor/256x256/%{appid}.png
+%{_datadir}%{_iconsdir}/hicolor/512x512/%{appid}.png
 
 %changelog
 %autochangelog
