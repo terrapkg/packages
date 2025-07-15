@@ -34,7 +34,7 @@ BuildRequires: openssl-devel
 %install
 %crate_install_bin
 desktop-file-install assets/linux/%{appid}.desktop
-install -Dpm644 %{appid}.appdata.xml -t %{buildroot}%{_datadir}/metainfo
+install -Dpm644 assets/linux/%{appid}.appdata.xml -t %{buildroot}%{_datadir}/metainfo
 
 mkdir -p %{buildroot}%{_datadir}
 cp -r assets/linux/icons -t %{buildroot}%{_datadir}
