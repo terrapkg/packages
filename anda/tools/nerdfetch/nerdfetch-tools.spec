@@ -1,33 +1,33 @@
 Name: nerdfetch
 Version: 8.4.0
-Release: 1%{?dist}
+Release: 1%?dist
 Summary: A POSIX *nix fetch script using Nerdfonts 
 
 License: MIT
 URL: https://github.com/ThatOneCalculator/NerdFetch
-Source0: %{url}/archive/refs/tags/v%{version}.tar.gz
+Source0: %url/archive/refs/tags/v%version.tar.gz
 
 BuildArch: noarch
 Requires: bash
 
 %prep
-%autosetup -n NerdFetch-%{version}
+%autosetup -n NerdFetch-%version
 
 %build
 
 
 %install 
-install -Dpm755 nerdfetch %{buildroot}%{_bindir}/nerdfetch
+install -Dpm755 nerdfetch %buildroot%_bindir/nerdfetch
 
 
 %check
-%{buildroot}%{_bindir}/nerdfetch | grep -q "$(whoami)"
+%buildroot%_bindir/nerdfetch | grep -q "$(whoami)"
 
 
 %files
 %license LICENSE
 %doc README.md
-%{_bindir}/nerdfetch
+%_bindir/nerdfetch
 
 %changelog
 * Tue Jul 16 2025 dotdot0 - 8.4.0-1
