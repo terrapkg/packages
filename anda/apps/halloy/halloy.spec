@@ -16,7 +16,6 @@ BuildRequires: alsa-lib-devel
 BuildRequires: cargo-rpm-macros >= 24
 BuildRequires: desktop-file-utils
 BuildRequires: openssl-devel
-BuildRequires: rustup
 
 
 %description
@@ -24,15 +23,13 @@ BuildRequires: rustup
 
 %prep
 %autosetup -n halloy-%{version} -p1
-%rustup_nightly
 %cargo_prep_online
 
 
 %build
-
+%cargo_build
 
 %install
-%cargo_install
 #generate desktop file
 mkdir -p %{buildroot}%{_datadir}/applications
 desktop-file-edit  \
