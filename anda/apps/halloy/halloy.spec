@@ -37,7 +37,7 @@ desktop-file-install assets/linux/%{appid}.desktop
 install -Dpm644 assets/linux/%{appid}.appdata.xml -t %{buildroot}%{_datadir}/metainfo
 
 mkdir -p %{buildroot}%{_datadir}
-cp -r assets/linux/icons -t %{buildroot}%{_datadir}
+cp assets/linux/icons -t %{buildroot}%{_datadir}
 
 %cargo_license_summary_online
 %{cargo_license_online} > LICENSE.dependencies
@@ -54,7 +54,7 @@ cp -r assets/linux/icons -t %{buildroot}%{_datadir}
 %doc CHANGELOG.md
 %doc README.md
 %{_bindir}/halloy
-%{_datadir}/applications/halloy.desktop
+%{_datadir}/applications/%{appid}.desktop
 %{_datadir}/metainfo/%{appid}.appdata.xml
 %{_datadir}%{_iconsdir}/hicolor/16x16/%{appid}.png
 %{_datadir}%{_iconsdir}/hicolor/24x14/%{appid}.png
