@@ -36,8 +36,8 @@ BuildRequires: openssl-devel
 desktop-file-install assets/linux/%{appid}.desktop
 install -Dpm644 assets/linux/%{appid}.appdata.xml -t %{buildroot}%{_datadir}/metainfo
 
-mkdir -p %{buildroot}%{_iconsdir}
-cp -r assets/linux/icons/* -t %{buildroot}%{_iconsdir}
+mkdir -p %{buildroot}%{_datadir}
+cp -r assets/linux/icons/* -t %{buildroot}%{_datadir}
 
 %cargo_license_summary_online
 %{cargo_license_online} > LICENSE.dependencies
@@ -56,15 +56,15 @@ cp -r assets/linux/icons/* -t %{buildroot}%{_iconsdir}
 %{_bindir}/halloy
 %{_datadir}/applications/%{appid}.desktop
 %{_datadir}/metainfo/%{appid}.appdata.xml
-%{_datadir}%{_iconsdir}/hicolor/16x16/%{appid}.png
-%{_datadir}%{_iconsdir}/hicolor/24x14/%{appid}.png
-%{_datadir}%{_iconsdir}/hicolor/32x32/%{appid}.png
-%{_datadir}%{_iconsdir}/hicolor/48x48/%{appid}.png
-%{_datadir}%{_iconsdir}/hicolor/64x64/%{appid}.png
-%{_datadir}%{_iconsdir}/hicolor/96x96/%{appid}.png
-%{_datadir}%{_iconsdir}/hicolor/128x128/%{appid}.png
-%{_datadir}%{_iconsdir}/hicolor/256x256/%{appid}.png
-%{_datadir}%{_iconsdir}/hicolor/512x512/%{appid}.png
+%{_datadir}%{_iconsdir}/hicolor/16x16/apps/%{appid}.png
+%{_datadir}%{_iconsdir}/hicolor/24x14/apps/%{appid}.png
+%{_datadir}%{_iconsdir}/hicolor/32x32/apps/%{appid}.png
+%{_datadir}%{_iconsdir}/hicolor/48x48/apps/%{appid}.png
+%{_datadir}%{_iconsdir}/hicolor/64x64/apps/%{appid}.png
+%{_datadir}%{_iconsdir}/hicolor/96x96/apps/%{appid}.png
+%{_datadir}%{_iconsdir}/hicolor/128x128/apps/%{appid}.png
+%{_datadir}%{_iconsdir}/hicolor/256x256/apps/%{appid}.png
+%{_datadir}%{_iconsdir}/hicolor/512x512/apps/%{appid}.png
 
 %changelog
 %autochangelog
