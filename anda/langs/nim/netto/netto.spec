@@ -1,6 +1,6 @@
 Name:           netto
 Version:        0.1.1
-Release:        1%?dist
+Release:        2%?dist
 Summary:        📡 GUI Network Applet
 License:        GPL-3.0-or-later
 URL:            https://github.com/madonuko/netto
@@ -22,9 +22,13 @@ atlas rep atlas.lock
 %nim_c src/netto
 
 %install
-install -Dm755 src/netto -t %buildroot%_bindir
+install -Dpm755 src/netto -t %buildroot%_bindir
+install -Dpm644 assets/netto.desktop -t %buildroot%_datadir/applications/
+install -Dpm644 assets/netto.svg -t %buildroot%_iconsdir/hicolor/scalable/apps/
 
 %files
 %doc README.md
 %license LICENSE.md
 %_bindir/netto
+%_datadir/applications/netto.desktop
+%_iconsdir/hicolor/scalable/apps/netto.svg
