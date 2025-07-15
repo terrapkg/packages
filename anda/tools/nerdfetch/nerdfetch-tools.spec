@@ -10,6 +10,9 @@ Source0: %url/archive/refs/tags/v%version.tar.gz
 BuildArch: noarch
 Requires: /usr/bin/sh
 
+%description
+A POSIX *nix (Linux, macOS, Android, BSD, etc) fetch script using Nerdfonts (and others)
+
 %prep
 %autosetup -n NerdFetch-%version
 
