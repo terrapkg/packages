@@ -8,7 +8,7 @@ URL: https://github.com/ThatOneCalculator/NerdFetch
 Source0: %url/archive/refs/tags/v%version.tar.gz
 
 BuildArch: noarch
-Requires: bash
+Requires: /usr/bin/sh
 
 %prep
 %autosetup -n NerdFetch-%version
@@ -31,3 +31,4 @@ install -Dpm755 nerdfetch %buildroot%_bindir/nerdfetch
 
 %changelog
 * Tue Jul 16 2025 dotdot0 - 8.4.0-1
+- Initial Package
