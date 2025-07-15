@@ -57,7 +57,7 @@ cp -r assets/linux/icons -t %{buildroot}%{_datadir}
 %{_datadir}/applications/%{appid}.desktop
 %{_datadir}/metainfo/%{appid}.appdata.xml
 %{_iconsdir}/hicolor/16x16/apps/%{appid}.png
-%{_iconsdir}/hicolor/24x14/apps/%{appid}.png
+%{_iconsdir}/hicolor/24x24/apps/%{appid}.png
 %{_iconsdir}/hicolor/32x32/apps/%{appid}.png
 %{_iconsdir}/hicolor/48x48/apps/%{appid}.png
 %{_iconsdir}/hicolor/64x64/apps/%{appid}.png
