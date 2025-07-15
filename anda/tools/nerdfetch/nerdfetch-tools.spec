@@ -31,4 +31,4 @@ install -Dpm755 nerdfetch %buildroot%_bindir/nerdfetch
 
 %changelog
 * Tue Jul 16 2025 dotdot0 - 8.4.0-1
-- Initial Package
+- Initial Package 
