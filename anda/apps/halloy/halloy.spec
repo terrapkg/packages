@@ -36,8 +36,8 @@ BuildRequires: openssl-devel
 desktop-file-install assets/linux/%{appid}.desktop
 install -Dpm644 assets/linux/%{appid}.appdata.xml -t %{buildroot}%{_datadir}/metainfo
 
-mkdir -p %{buildroot}%{_datadir}
-cp assets/linux/icons -t %{buildroot}%{_datadir}
+mkdir -p %{buildroot}%{_iconsdir}
+cp -r assets/linux/icons/* -t %{buildroot}%{_iconsdir}
 
 %cargo_license_summary_online
 %{cargo_license_online} > LICENSE.dependencies
