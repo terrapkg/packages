@@ -1,5 +1,5 @@
 Name:			flutter
-Version:		3.32.6
+Version:		3.32.7
 Release:		1%?dist
 Summary:		SDK for crafting beautiful, fast user experiences from a single codebase
 License:		BSD-3-Clause
