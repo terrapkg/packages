@@ -1,28 +1,41 @@
-%define debug_package %nil
+# https://github.com/arduino/arduino-fwuploader
+%global goipath github.com/arduino/arduino-fwuploader
+Version:        2.4.1
 
-Name:          arduino-fwuploader
-Version:       2.4.1
-Release:       1%?dist
-Summary:       A Command Line Tool made to update the firmware and/or add SSL certificates for any Arduino board equipped with WINC or NINA Wi-Fi module.
-License:       AGPLv3
-Packager:      Owen Zimmerman <owen@fyralabs.com>
-Url:           https://github.com/arduino/arduino-fwuploader
-Source0:       %url/archive/refs/tags/%version.tar.gz
-BuildRequires: golang git go-rpm-macros anda-srpm-macros python3 go-task
+%gometa -f
+
+
+%global common_description %{expand:
+The Arduino Firmware Uploader is a tool made to update the firmware and/or add SSL certificates for any Arduino board equipped with ESP32-S3 or NINA Wi-Fi module.}
+
+%global golicenses      LICENSE.txt
+%global godocs          README.md
+
+Name:           arduino-fwuploader
+Release:        2%?dist
+Summary:        Update the firmware and/or add SSL certificates for any Arduino board equipped with WINC or NINA Wi-Fi module
+License:        AGPL-3.0
+Packager:       Owen Zimmerman <owen@fyralabs.com>
+
+URL:            %{gourl}
+Source:         %{url}/archive/%{version}.tar.gz
+BuildRequires:  anda-srpm-macros python3-devel go-task
 
 %description
-%summary
+%{common_description}
+
+%gopkg
 
 %prep
-%autosetup -n arduino-fwuploader-%version
+%goprep
+%go_prep_online
 
 %build
-mkdir -p bin
-%go_build_online
+%define gomodulesmode GO111MODULE=on
+%gobuild -o %{gobuilddir}/bin/arduino-fwuploader %{goipath}
 
 %install
-mkdir -p %{buildroot}%{_bindir}
-install -Dm 755 build/bin/arduino-fwuploader %buildroot%{_bindir}/arduino-fwuploader
+install -Dm755 %{gobuilddir}/bin/arduino-fwuploader -t %buildroot%{_bindir}
 
 %files
 %license LICENSE.txt

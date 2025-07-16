@@ -1,8 +1,8 @@
 %global csrc_commit 561b417c65791cd8356b5f73620914ceff845d10
-%global commit 1f8da3835f6e395d068c92f86787f0fa77fb6d08
+%global commit 611b8bbf67b7e4f51db60087d5e5b8f672fabf51
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global ver 2.3.1
-%global commit_date 20250223
+%global commit_date 20250715
 %global debug_package %nil
 
 Name:			nim-nightly
@@ -14,14 +14,14 @@ URL:			https://nim-lang.org
 Source0:		https://github.com/nim-lang/Nim/archive/%commit.tar.gz
 Source1:		nim.1
 Source2:		nimgrep.1
-Source3:		nimble.1
 Source4:		nimsuggest.1
 BuildRequires:	gcc mold git gcc-c++ nodejs openssl-devel pkgconfig(bash-completion) gc-devel pcre pcre-devel
 Requires:		redhat-rpm-config gcc
 Conflicts:		choosenim
 # somehow wrong name and never noticed
-Provides:		nim-nightly = %version-%release
 Obsoletes:		nim-nighlty < 2.1.1^20240404.9e1b170-2
+Conflicts:		nim
+Recommends:		nim-nightly-tools nimble
 
 
 %description
@@ -34,6 +34,7 @@ order of priority).
 Summary:	Tools for Nim programming language
 Provides:	nim-nightly-tools = %version-%release
 Obsoletes:	nim-nighlty-tools < 2.1.1^20240404.9e1b170-2
+Conflicts:	nim-tools
 
 %description tools
 Nim is a compiled, garbage-collected systems programming language with a
@@ -103,8 +104,7 @@ sh ./install.sh %buildroot/usr/bin
 mkdir -p %buildroot/%_bindir %buildroot/%_datadir/bash-completion/completions %buildroot/usr/lib/nim %buildroot%_datadir
 install -Dpm755 bin/nim{grep,suggest,pretty} %buildroot/%_bindir
 install -Dpm644 tools/nim.bash-completion %buildroot/%_datadir/bash-completion/completions/nim
-install -Dpm644 dist/nimble/nimble.bash-completion %buildroot/%_datadir/bash-completion/completions/nimble
-install -Dpm644 -t%buildroot/%_mandir/man1 %SOURCE1 %SOURCE2 %SOURCE3 %SOURCE4
+install -Dpm644 -t%buildroot/%_mandir/man1 %SOURCE1 %SOURCE2 %SOURCE4
 mv %buildroot%_bindir/nim %buildroot%_datadir/
 ln -s %_datadir/nim/bin/nim %buildroot%_bindir/nim
 
@@ -132,9 +132,9 @@ cp -r %buildroot%_prefix/lib/nim/dist %buildroot%_datadir/nim/
 %files
 %license copying.txt dist/nimble/license.txt
 %doc doc/readme.txt
-%_bindir/nim{,ble}
-%_mandir/man1/nim{,ble}.1*
-%_datadir/bash-completion/completions/nim{,ble}
+%_bindir/nim
+%_mandir/man1/nim.1.*
+%_datadir/bash-completion/completions/nim
 %_datadir/nim/
 %_prefix/lib/nim/
 %_sysconfdir/nim/

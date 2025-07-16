@@ -1,0 +1,8 @@
+libdir=LIBDIR
+includedir=INCLUDE_DIR
+
+Name: cufile
+Description: GPUDirect Storage Library
+Version: CUDA_VERSION
+Libs: -L${libdir} -lnvjpeg
+Cflags: -I${includedir}

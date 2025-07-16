@@ -1,7 +1,7 @@
-%global commit 80c9d7d8dffe7e0c2d132feaf01e83eac9ea572b
+%global commit dd2cccec192496940d396e75d1a3892ee09efd81
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250225
-%global ver 0.39.0
+%global commit_date 20250716
+%global ver 0.40.0
 
 Name:           mpv-nightly
 Version:        %ver^%commit_date.%shortcommit
@@ -124,6 +124,8 @@ Requires: mpv-nightly-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 %description devel
 This package contains development header files and libraries for Mpv.
 
+%pkg_completion -Bfz mpv
+
 %prep
 %autosetup -p1 -n mpv-%commit
 sed -e "s|/usr/local/etc|%{_sysconfdir}/mpv|" -i etc/mpv.conf
@@ -205,13 +207,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/mpv.desktop
 %{_docdir}/mpv/
 %{_bindir}/mpv
 %{_datadir}/applications/mpv.desktop
-%dir %{_datadir}/bash-completion/
-%dir %{_datadir}/bash-completion/completions/
-%{_datadir}/bash-completion/completions/mpv
 %{_datadir}/icons/hicolor/*/apps/mpv*.*
-%dir %{_datadir}/zsh/
-%dir %{_datadir}/zsh/site-functions/
-%{_datadir}/zsh/site-functions/_mpv
 %{_mandir}/man1/mpv.*
 %{_metainfodir}/mpv.metainfo.xml
 %dir %{_sysconfdir}/mpv/
@@ -225,6 +221,3 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/mpv.desktop
 %{_includedir}/mpv/
 %{_libdir}/libmpv.so
 %{_libdir}/pkgconfig/mpv.pc
-
-%changelog
-%autochangelog
