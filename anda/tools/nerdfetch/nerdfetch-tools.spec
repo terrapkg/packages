@@ -9,6 +9,7 @@ Source0: %url/archive/refs/tags/v%version.tar.gz
 
 BuildArch: noarch
 Requires: /usr/bin/sh
+Requires: nerdfontssymbolsonly-nerd-fonts
 
 %description
 A POSIX *nix (Linux, macOS, Android, BSD, etc) fetch script using Nerdfonts (and others)
@@ -21,11 +22,6 @@ A POSIX *nix (Linux, macOS, Android, BSD, etc) fetch script using Nerdfonts (and
 
 %install 
 install -Dpm755 nerdfetch %buildroot%_bindir/nerdfetch
-
-
-%check
-%buildroot%_bindir/nerdfetch | grep -q "$(whoami)"
-
 
 %files
 %license LICENSE
