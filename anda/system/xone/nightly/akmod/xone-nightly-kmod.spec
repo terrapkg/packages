@@ -6,7 +6,7 @@
 %global debug_package %{nil}
 %global modulename xone
 
-Name:           %{modulename}-kmod
+Name:           %{modulename}-nightly-kmod
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
 Release:        1%?dist
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
@@ -18,12 +18,12 @@ URL:            https://github.com/dlundqvist/xone
 Source0:        %{url}/archive/%{commit}.tar.gz#/%{modulename}-%{shortcommit}.tar.gz
 BuildRequires:  kmodtool
 BuildRequires:  systemd-rpm-macros
-Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
-Requires:       %{modulename}-akmod-modules = %{?epoch:%{epoch}:}%{version}
+Requires:       %{modulename}-nightly = %{?epoch:%{epoch}:}%{version}
+Requires:       %{modulename}-nightly-akmod-modules = %{?epoch:%{epoch}:}%{version}
 Requires:       akmods
-Conflicts:      dkms-%{modulename}
+Conflicts:      dkms-%{modulename}-nightly
+Conflicts:      %{modulename}-kmod
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
-Conflicts:      %{name} < %{?epoch:%{epoch}:}3.0^20250419git.c682b0c
 Obsoletes:      %{name} < %{?epoch:%{epoch}:}3.0^20250419git.c682b0c
 %endif
 Packager:       Gilver E. <rockgrub@disroot.org>
