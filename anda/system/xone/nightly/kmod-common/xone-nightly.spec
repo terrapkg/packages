@@ -88,7 +88,7 @@ install -Dpm644 firm0/FW_ACC_00U.bin %{buildroot}%{_prefix}/lib/firmware/xow_don
 install -Dpm644 firm1/FW_ACC_00U.bin %{buildroot}%{_prefix}/lib/firmware/xow_dongle_045e_02e6.bin
 
 # Akmods modules
-install -Dm644 %{name}.conf -t %{buildroot}%{_modulesloaddir}
+install -Dm644 %{modulename}.conf -t %{buildroot}%{_modulesloaddir}
 
 %files
 %license LICENSE
