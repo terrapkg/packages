@@ -31,7 +31,7 @@ cd espanso
 
 %build
 cd espanso
-%cargo_build -n -f vendored-tls,"wayland",modulo -- --package={espanso,espanso-clipboard,espanso-config,espanso-detect,espanso-engine,espanso-info,espanso-inject,espanso-ipc,espanso-kvs,espanso-mac-utils,espanso-match,espanso-modulo,espanso-package,espanso-path,espanso-render,espanso-ui}
+%cargo_build -n -f vendored-tls,"wayland",modulo -- --package={espanso,espanso-clipboard,espanso-config,espanso-detect,espanso-engine,espanso-info,espanso-inject,espanso-ipc,espanso-kvs,espanso-mac-utils,espanso-match,espanso-modulo,espanso-package,espanso-render,espanso-ui}
 
 %install
 mkdir -p %buildroot%_bindir
