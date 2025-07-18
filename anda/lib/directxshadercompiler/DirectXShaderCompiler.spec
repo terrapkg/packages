@@ -1,6 +1,9 @@
+# Disable in-source build.
+%undefine __cmake_in_source_build
+
 # Commit hashes.
-%global SPIRV_Headers_HASH aa6cef192b8e693916eb713e7a9ccadf06062ceb
-%global SPIRV_Tools_HASH a62abcb402009b9ca5975e6167c09f237f630e0e
+%global SPIRV_Headers_HASH 2a611a970fdbc41ac2e3e328802aed9985352dca
+%global SPIRV_Tools_HASH 33e02568181e3312f49a3cf33df470bf96ef293a
 %global DirectX_Headers_HASH 980971e835876dc0cde415e8f9bc646e64667bf7
 
 # Build parameters.
@@ -8,8 +11,8 @@
 
 # Metadata.
 Name:           DirectXShaderCompiler
-Version:        1.8.2502
-Release:        3%?dist
+Version:        1.8.2505.1
+Release:        4%?dist
 Summary:        A Direct X Shader compiler.
 License:        MIT
 Packager:       libffi <contact@ffi.lol>
@@ -30,6 +33,9 @@ BuildRequires:  cmake >= 3.17.2
 BuildRequires:  python3
 BuildRequires:  git
 
+Provides:       dxc = %{version}-%{release}
+Requires:       %{name}-libs
+
 # External libraries - BuildRequires.
 %if %{!with external_libraries}
     BuildRequires: DirectX-Headers-devel
@@ -49,13 +55,6 @@ Summary: Runtime shared libraries for %{name}.
 
 %package static
 Summary: Static libraries for %{name}.
-
-%package cmake-utils
-Summary: CMake files for %{name}. Theoretically useless.
-
-%package tools
-Summary: Binaries of %{name}, such as the compiler/optimizer.
-Requires: %{name}-libs
 
 # Descriptions.
 
@@ -78,19 +77,6 @@ Provided files include:
 disassembler, and validator.
 * and some other ones!
 
-%description tools
-This package contains runtime binaries of %{name} that could be used in
-scripts.
-
-Provided files include:
-* dxc, a command-line tool that can compile HLSL programs for SM6.0 or later.
-* dxv, a command-line tool for validating the DXIL bytecode/compiled binaries.
-* and some other ones!
-
-%description cmake-utils
-This package contains CMake scripts of %{name}.
-Theoretically internal usage only, likely no usage at all.
-
 %description static
 Static libraries / binaries to link with applications at compile-time
 for %{name}.
@@ -112,47 +98,58 @@ for %{name}.
     mv SPIRV-Headers-%{SPIRV_Headers_HASH} external/SPIRV-Headers
     mv SPIRV-Tools-%{SPIRV_Tools_HASH} external/SPIRV-Tools
 %else
-    # Warn :P.
+    # Otherwise, nuke external libraries as a whole.
+    # And warn :P.
     %{warn: Building without external libraries is unsupported by upstream!}
     %{warn: You are likely to run into compilation failures this way.}
-    # Otherwise, nuke external libraries as a whole.
     rm -rf external/
 %endif
  
 # Build.
 # Attribution: https://github.com/gentoo/guru/blob/master/dev-util/DirectXShaderCompiler/DirectXShaderCompiler-1.8.2407.ebuild
+# Attribution: https://github.com/negativo17/DirectXShaderCompiler/blob/master/DirectXShaderCompiler.spec
 %build
 %cmake \
     -C ./cmake/caches/PredefinedParams.cmake \
-    -DSPIRV_WERROR=0 \
-    -DLLVM_BUILD_DOCS=0 \
-    -DLLVM_BUILD_TOOLS=0 \
-    -DSPIRV_BUILD_TESTS=0 \
-    -DLLVM_ENABLE_WERROR=0 \
+    -DCMAKE_C_COMPILER=gcc \
+    -DCMAKE_CXX_COMPILER=g++ \
+    -DSPIRV_BUILD_TESTS=OFF \
     -DBUILD_SHARED_LIBS=OFF \
-    -DLLVM_VERSION_SUFFIX=dxc \
-    -DSPIRV_WARN_EVERYTHING=0 \
-    -DCMAKE_INSTALL_PREFIX="%{_libdir}/%{name}" \
-    -DCMAKE_BUILD_TYPE=RelWithDebInfo
+    -DCMAKE_BUILD_TYPE=Fedora
+
 %cmake_build
  
 # Install.
-
+# Attribution: https://github.com/negativo17/DirectXShaderCompiler/blob/master/DirectXShaderCompiler.spec
 %install
-%cmake_install
 mkdir %{buildroot}%{_bindir} -p
-# Link binaries.
-for BINARY in dxa dxc dxl dxopt dxr dxv; do
-ln -s ../%{lib}/%{name}/bin/$BINARY %{buildroot}%{_bindir}/$BINARY;
-done
+# Binaries.
+install -m755 %{_vpath_builddir}/bin/dx{a,c,l,opt,r,v} \
+    %{buildroot}%{_bindir}/
+
+# Static libraries.
+mkdir -p %{buildroot}%{_libdir}
+for STATIC in libdxclib libdxcvalidator; do
+install -m644 %{_vpath_builddir}/lib/$STATIC.a \
+    %{buildroot}%{_libdir}/; done
+
+# Shared libraries.
+install -m755 %{_vpath_builddir}/lib/*.so \
+    %{buildroot}%{_libdir}/
+
+# Headers.
+mkdir -p %{buildroot}%{_includedir}/dxc
+install -m644 include/dxc/*.h \
+    %{buildroot}%{_includedir}/dxc/
 
 # Test.
 %check
 %ctest
  
 # Files.
-%files tools
-%{_libdir}/%{name}/bin/
+%files
+%license LICENSE.TXT
+%doc CONTRIBUTING.md README.md SECURITY.md ThirdPartyNotices.txt
 %{_bindir}/dxa
 %{_bindir}/dxc
 %{_bindir}/dxl
@@ -161,77 +158,26 @@ done
 %{_bindir}/dxv
 
 %files libs
-%{_libdir}/%{name}/lib/libdxcompiler.so
-%{_libdir}/%{name}/lib/libdxil.so
+%{_libdir}/libdxcompiler.so
+%{_libdir}/libdxil.so
+%{_libdir}/libdxildll.so
 
 %files static
-%{_libdir}/%{name}/lib/libHLSLTestLib.a
-%{_libdir}/%{name}/lib/libLLVMAnalysis.a
-%{_libdir}/%{name}/lib/libLLVMAsmParser.a
-%{_libdir}/%{name}/lib/libLLVMBitReader.a
-%{_libdir}/%{name}/lib/libLLVMBitWriter.a
-%{_libdir}/%{name}/lib/libLLVMCore.a
-%{_libdir}/%{name}/lib/libLLVMDXIL.a
-%{_libdir}/%{name}/lib/libLLVMDxcBindingTable.a
-%{_libdir}/%{name}/lib/libLLVMDxcSupport.a
-%{_libdir}/%{name}/lib/libLLVMDxilCompression.a
-%{_libdir}/%{name}/lib/libLLVMDxilContainer.a
-%{_libdir}/%{name}/lib/libLLVMDxilDia.a
-%{_libdir}/%{name}/lib/libLLVMDxilHash.a
-%{_libdir}/%{name}/lib/libLLVMDxilPIXPasses.a
-%{_libdir}/%{name}/lib/libLLVMDxilPdbInfo.a
-%{_libdir}/%{name}/lib/libLLVMDxilRootSignature.a
-%{_libdir}/%{name}/lib/libLLVMDxilValidation.a
-%{_libdir}/%{name}/lib/libLLVMDxrFallback.a
-%{_libdir}/%{name}/lib/libLLVMHLSL.a
-%{_libdir}/%{name}/lib/libLLVMIRReader.a
-%{_libdir}/%{name}/lib/libLLVMInstCombine.a
-%{_libdir}/%{name}/lib/libLLVMLinker.a
-%{_libdir}/%{name}/lib/libLLVMMSSupport.a
-%{_libdir}/%{name}/lib/libLLVMOption.a
-%{_libdir}/%{name}/lib/libLLVMPassPrinters.a
-%{_libdir}/%{name}/lib/libLLVMPasses.a
-%{_libdir}/%{name}/lib/libLLVMProfileData.a
-%{_libdir}/%{name}/lib/libLLVMScalarOpts.a
-%{_libdir}/%{name}/lib/libLLVMSupport.a
-%{_libdir}/%{name}/lib/libLLVMTableGen.a
-%{_libdir}/%{name}/lib/libLLVMTarget.a
-%{_libdir}/%{name}/lib/libLLVMTransformUtils.a
-%{_libdir}/%{name}/lib/libLLVMVectorize.a
-%{_libdir}/%{name}/lib/libLLVMipa.a
-%{_libdir}/%{name}/lib/libLLVMipo.a
-%{_libdir}/%{name}/lib/libclang.a
-%{_libdir}/%{name}/lib/libclangAST.a
-%{_libdir}/%{name}/lib/libclangASTMatchers.a
-%{_libdir}/%{name}/lib/libclangAnalysis.a
-%{_libdir}/%{name}/lib/libclangBasic.a
-%{_libdir}/%{name}/lib/libclangCodeGen.a
-%{_libdir}/%{name}/lib/libclangDriver.a
-%{_libdir}/%{name}/lib/libclangEdit.a
-%{_libdir}/%{name}/lib/libclangFormat.a
-%{_libdir}/%{name}/lib/libclangFrontend.a
-%{_libdir}/%{name}/lib/libclangFrontendTool.a
-%{_libdir}/%{name}/lib/libclangIndex.a
-%{_libdir}/%{name}/lib/libclangLex.a
-%{_libdir}/%{name}/lib/libclangParse.a
-%{_libdir}/%{name}/lib/libclangRewrite.a
-%{_libdir}/%{name}/lib/libclangRewriteFrontend.a
-%{_libdir}/%{name}/lib/libclangSPIRV.a
-%{_libdir}/%{name}/lib/libclangSema.a
-%{_libdir}/%{name}/lib/libclangTooling.a
-%{_libdir}/%{name}/lib/libclangToolingCore.a
-%{_libdir}/%{name}/lib/libdxclib.a
-%{_libdir}/%{name}/lib/libdxcvalidator.a
+%{_libdir}/*.a
 
 %files devel
-%{_libdir}/%{name}/include/
-
-%files cmake-utils
-%{_libdir}/%{name}/share/llvm/cmake
+%{_includedir}/dxc/*.h
 
 # Changelog.
 %changelog
-* Sun May 5 2025 libffi <contact@ffi.lol> - 1.8.2502-3
+* Fri Jul 18 2025 libffi <contact@ffi.lol> - 1.8.2505.1-4
+- Remove the `tools` and `cmake-utils` subpackages.
+- Make the package provide the `dxc` package.
+- Add license and some docs.
+- Internal package changes.
+- Bump upstream.
+
+* Mon May 5 2025 libffi <contact@ffi.lol> - 1.8.2502-3
 - Provide unsupported build conditional for building with(out)
 external libraries.
 
