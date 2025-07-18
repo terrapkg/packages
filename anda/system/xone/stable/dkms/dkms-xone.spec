@@ -1,29 +1,25 @@
-%global commit 778dbc953b1987d259ea6d802fd6967b6a0d2097
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20250718
-%global ver 0.3.4
 %global debug_package %{nil}
 %global modulename xone
 
 Name:           dkms-%{modulename}
-Version:        %{ver}^%{commitdate}git.%{shortcommit}
+Version:        0.3.4
 Release:        1%?dist
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
-Epoch:          1
+Epoch:          2
 %endif
 Summary:        Linux kernel driver for Xbox One and Xbox Series X|S accessories
 License:        GPL-2.0-or-later
 URL:            https://github.com/dlundqvist/xone
-Source0:        %{url}/archive/%{commit}.tar.gz#/%{modulename}-%{shortcommit}.tar.gz
+Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 Source1:        no-weak-modules.conf
 BuildRequires:  sed
 BuildRequires:  systemd-rpm-macros
 Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
 Requires:       dkms
 Conflicts:      akmod-%{modulename}
+Provides:       %{modulename}-kmod
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
-Conflicts:      %{name} < %{?epoch:%{epoch}:}3.0^20250419git.c682b0c
-Obsoletes:      %{name} < %{?epoch:%{epoch}:}3.0^20250419git.c682b0c
+Obsoletes:      %{name} < %{?epoch:%{epoch}:}0.3.4
 %endif
 BuildArch:      noarch
 Packager:       Gilver E. <rockgrub@disroot.org>
@@ -32,7 +28,7 @@ Packager:       Gilver E. <rockgrub@disroot.org>
 Linux kernel driver for Xbox One and Xbox Series X|S accessories.
 
 %prep
-%autosetup -p1 -n %{modulename}-%{commit}
+%autosetup -p1 -n %{modulename}-%{version}
 
 sed -i \
     -e 's|#VERSION#|%{version}|g' \
