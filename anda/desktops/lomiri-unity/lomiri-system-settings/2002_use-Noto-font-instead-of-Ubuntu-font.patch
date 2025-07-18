@@ -23,3 +23,4 @@ Forwarded: not needed, Debian-specific
 +                    ctx.font="%1px Noto Sans".arg(fontHeight)
  
                      ctx.translate(0, 1)
+ 
