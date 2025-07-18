@@ -9,7 +9,7 @@ Summary:    The system settings application for Lomiri
 License:    GPLv3
 URL:        https://gitlab.com/ubports/development/core/lomiri-system-settings
 Source0:    %{url}/-/archive/%commit/lomiri-system-settings-%commit.tar.gz
-Patch0:     0001_lib-LomiriSystemSettingsPrivate-accountsservice.cpp-Register-missing-D-Bus-types.patch
+Patch0:     0001_plugins-language-hardwarekeyboard-plugin.cpp-Registe.patch
 Patch1:     2002_use-Noto-font-instead-of-Ubuntu-font.patch
 Patch2:     2011_build-without-trust-store.patch
 Patch3:     2013_show-hotspot-on-desktop.patch
