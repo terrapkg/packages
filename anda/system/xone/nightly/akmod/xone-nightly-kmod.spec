@@ -6,7 +6,7 @@
 %global debug_package %{nil}
 %global modulename xone
 
-Name:           %{modulename}-kmod
+Name:           %{modulename}-nightly-kmod
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
 Release:        1%?dist
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
@@ -21,7 +21,8 @@ BuildRequires:  systemd-rpm-macros
 Requires:       %{modulename}-nightly = %{?epoch:%{epoch}:}%{version}
 Requires:       %{modulename}-nightly-akmod-modules = %{?epoch:%{epoch}:}%{version}
 Requires:       akmods
-Conflicts:      dkms-%{modulename}
+Conflicts:      dkms-%{modulename}-nightly
+Conflicts:      %{modulename}-kmod
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Conflicts:      %{name} < %{?epoch:%{epoch}:}3.0^20250419git.c682b0c
 Obsoletes:      %{name} < %{?epoch:%{epoch}:}3.0^20250419git.c682b0c
@@ -37,7 +38,7 @@ Linux kernel driver for Xbox One and Xbox Series X|S accessories.
 %{?kmodtool_check}
 kmodtool  --target %{_target_cpu}  --repo terra --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
-%autosetup -p1 -n %{modulename}-%{version}
+%autosetup -p1 -n %{modulename}-%{commit}
 
 find . -type f -name '*.c' -exec sed -i "s/#VERSION#/%{version}/" {} \;
 

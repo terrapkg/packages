@@ -20,7 +20,9 @@ BuildRequires:  sed
 BuildRequires:  systemd-rpm-macros
 Requires:       %{modulename}-nightly = %{?epoch:%{epoch}:}%{version}
 Requires:       dkms
-Conflicts:      akmod-%{modulename}
+Conflicts:      akmod-%{modulename}-nightly
+Conflicts:      %{modulename}-kmod
+Provides:       %{modulename}-nightly-kmod = %{?epoch:%{epoch}:}%{version}
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Obsoletes:      dkms-%{modulename} < %{?epoch:%{epoch}:}3.0^20250419git.c682b0c
 %endif

@@ -28,9 +28,10 @@ BuildRequires:  sed
 BuildRequires:  systemd-rpm-macros
 Requires:       wireless-regdb
 Requires:       %{name}-firmware = %{?epoch:%{epoch}:}%{version}-%{release}
-Requires:       (akmod-%{name} = %{?epoch:%{epoch}:}%{version} or dkms-%{name} = %{?epoch:%{epoch}:}%{version})
+Requires:       %{name}-kmod = %{?epoch:%{epoch}:}%{version}
 Requires(post): dracut
 Provides:       %{name}-kmod-common = %{?epoch:%{epoch}:}%{version}
+Conflicts:      %{modulename}
 Conflicts:      xow <= 0.5
 Obsoletes:      xow <= 0.5
 BuildArch:      noarch

@@ -26,6 +26,7 @@ Requires:       %{name}-firmware = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       %{name}-kmod = %{?epoch:%{epoch}:}%{version}
 Requires(post): dracut
 Provides:       %{name}-kmod-common = %{?epoch:%{epoch}:}%{version}
+Conflicts:      %{name}-nightly
 Conflicts:      xow <= 0.5
 Obsoletes:      xow <= 0.5
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10

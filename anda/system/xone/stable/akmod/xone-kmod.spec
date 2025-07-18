@@ -11,13 +11,14 @@ Epoch:          2
 Summary:        Linux kernel driver for Xbox One and Xbox Series X|S accessories
 License:        GPL-2.0-or-later
 URL:            https://github.com/dlundqvist/xone
-Source0:        %{url}/archive/%{commit}.tar.gz#/%{modulename}-%{shortcommit}.tar.gz
+Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 BuildRequires:  kmodtool
 BuildRequires:  systemd-rpm-macros
 Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
 Requires:       %{modulename}-akmod-modules = %{?epoch:%{epoch}:}%{version}
 Requires:       akmods
 Conflicts:      dkms-%{modulename}
+Conflicts:      %{modulename}-nightly-kmod
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Obsoletes:      %{name} < %{?epoch:%{epoch}:}0.3.4
 %endif
@@ -32,7 +33,7 @@ Linux kernel driver for Xbox One and Xbox Series X|S accessories.
 %{?kmodtool_check}
 kmodtool  --target %{_target_cpu}  --repo terra --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
-%autosetup -p1 -n %{modulename}-%{commit}
+%autosetup -p1 -n %{modulename}-%{version}
 
 find . -type f -name '*.c' -exec sed -i "s/#VERSION#/%{version}/" {} \;
 

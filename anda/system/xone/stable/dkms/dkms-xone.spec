@@ -17,6 +17,7 @@ BuildRequires:  systemd-rpm-macros
 Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
 Requires:       dkms
 Conflicts:      akmod-%{modulename}
+Conflicts:      %{modulename}-nightly-kmod
 Provides:       %{modulename}-kmod
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Obsoletes:      %{name} < %{?epoch:%{epoch}:}0.3.4
