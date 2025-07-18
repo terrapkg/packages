@@ -24,7 +24,6 @@ Requires:       akmods
 Conflicts:      dkms-%{modulename}-nightly
 Conflicts:      %{modulename}-kmod
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
-Conflicts:      %{name} < %{?epoch:%{epoch}:}3.0^20250419git.c682b0c
 Obsoletes:      %{name} < %{?epoch:%{epoch}:}3.0^20250419git.c682b0c
 %endif
 Packager:       Gilver E. <rockgrub@disroot.org>
