@@ -1,31 +1,16 @@
 # Disable in-source build.
 %undefine __cmake_in_source_build
 
-# Commit hashes.
-%global SPIRV_Headers_HASH 2a611a970fdbc41ac2e3e328802aed9985352dca
-%global SPIRV_Tools_HASH 33e02568181e3312f49a3cf33df470bf96ef293a
-%global DirectX_Headers_HASH 980971e835876dc0cde415e8f9bc646e64667bf7
-
-# Build parameters.
-%bcond external_libraries 1
-
 # Metadata.
 Name:           DirectXShaderCompiler
 Version:        1.8.2505.1
-Release:        4%?dist
+Release:        5%?dist
 Summary:        A Direct X Shader compiler.
 License:        MIT
 Packager:       libffi <contact@ffi.lol>
 
-# Source and Project URLs.
+# Project URL.
 URL:            https://github.com/microsoft/DirectXShaderCompiler
-Source0:        https://github.com/microsoft/DirectXShaderCompiler/archive/refs/tags/v%{version}.tar.gz
-
-# Libraries - building with libraries with a different version / git reference
-# is not supported by upstream.
-Source1:        https://github.com/KhronosGroup/SPIRV-Headers/archive/%{SPIRV_Headers_HASH}.tar.gz
-Source2:        https://github.com/KhronosGroup/SPIRV-Tools/archive/%{SPIRV_Tools_HASH}.tar.gz
-Source3:        https://github.com/microsoft/DirectX-Headers/archive/%{DirectX_Headers_HASH}.tar.gz
 
 # Build dependencies - tooling.
 BuildRequires:  gcc-c++
@@ -35,13 +20,6 @@ BuildRequires:  git
 
 Provides:       dxc = %{version}-%{release}
 Requires:       %{name}-libs
-
-# External libraries - BuildRequires.
-%if %{!with external_libraries}
-    BuildRequires: DirectX-Headers-devel
-    BuildRequires: spirv-tools-devel
-    BuildRequires: spirv-headers-devel
-%endif
 
 # Sub-packages.
 
@@ -84,26 +62,7 @@ for %{name}.
 # Prepare.
  
 %prep
-%autosetup
-# Are we building with external libraries?
-%if %{with external_libraries}
-    # If so, extract and prepare them.
-    %setup -D -C -a 1 -q
-    %setup -D -C -a 2 -q
-    %setup -D -C -a 3 -q
-    rm -rf external/DirectX-Headers
-    rm -rf external/SPIRV-Headers
-    rm -rf external/SPIRV-Tools
-    mv DirectX-Headers-%{DirectX_Headers_HASH} external/DirectX-Headers
-    mv SPIRV-Headers-%{SPIRV_Headers_HASH} external/SPIRV-Headers
-    mv SPIRV-Tools-%{SPIRV_Tools_HASH} external/SPIRV-Tools
-%else
-    # Otherwise, nuke external libraries as a whole.
-    # And warn :P.
-    %{warn: Building without external libraries is unsupported by upstream!}
-    %{warn: You are likely to run into compilation failures this way.}
-    rm -rf external/
-%endif
+%git_clone %{url} v%{version}
  
 # Build.
 # Attribution: https://github.com/gentoo/guru/blob/master/dev-util/DirectXShaderCompiler/DirectXShaderCompiler-1.8.2407.ebuild
@@ -170,6 +129,10 @@ install -m644 include/dxc/*.h \
 
 # Changelog.
 %changelog
+* Sun Jul 20 2025 libffi <contact@ffi.lol> - 1.8.2505.1-5
+- Removed support for building with external libraries.
+- Internal changes to the build process.
+
 * Fri Jul 18 2025 libffi <contact@ffi.lol> - 1.8.2505.1-4
 - Remove the `tools` and `cmake-utils` subpackages.
 - Make the package provide the `dxc` package.
@@ -179,7 +142,7 @@ install -m644 include/dxc/*.h \
 
 * Mon May 5 2025 libffi <contact@ffi.lol> - 1.8.2502-3
 - Provide unsupported build conditional for building with(out)
-external libraries.
+  external libraries.
 
 * Sun May 4 2025 libffi <contact@ffi.lol> - 1.8.2502-2
 - Refactor.
