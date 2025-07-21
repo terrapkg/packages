@@ -49,7 +49,7 @@ Provides:       scxctl = %{version}
 Provides:       scx_layered
 Provides:       scx_rustland
 Provides:       scx_rusty
-Obsoletes:      scxctl >= 0.3.4
+Obsoletes:      scxctl <= 0.3.4
 Packager:       Gilver E. <rockgrub@disroot.org>
 
 %description
@@ -71,8 +71,8 @@ License:       GPL-2.0-only
 
 %build
 %meson \
- -Dsystemd=enabled  \
- -Dopenrc=disabled  \
+ -Dsystemd=enabled \
+ -Dopenrc=disabled \
  -Dlibalpm=disabled
 %meson_build
 
