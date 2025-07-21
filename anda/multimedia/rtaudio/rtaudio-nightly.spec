@@ -13,8 +13,7 @@ URL:            https://github.com/thestk/rtaudio
 Source0:        %url/archive/%commit.tar.gz
 Packager:       madonuko <mado@fyralabs.com>
 BuildRequires:  alsa-lib-devel
-BuildRequires:  cmake
-BuildRequires:  cmake-rpm-macros
+BuildRequires:  automake
 BuildRequires:  doxygen
 BuildRequires:  gcc-c++
 BuildRequires:  jack-audio-connection-kit-devel
@@ -63,19 +62,11 @@ done
 
 
 %build
-%cmake                                \
-  -DCMAKE_C_FLAGS="$CFLAGS -fPIC"     \
-  -DCMAKE_CXX_FLAGS="$CXXFLAGS -fPIC" \
-  -DRTAUDIO_API_ALSA=ON               \
-  -DRTAUDIO_API_PULSE=ON              \
-  -DRTAUDIO_API_JACK=ON               \
-  -DRTAUDIO_BUILD_SHARED_LIBS=ON      \
-  -DRTAUDIO_BUILD_STATIC_LIBS=OFF
-%cmake_build
-
+./autogen.sh --with-jack --with-alsa --with-pulse --enable-shared --disable-static --verbose
+%make_build
 
 %install
-%cmake_install
+%make_install
 %ldconfig_scriptlets
 
 
