@@ -1,12 +1,16 @@
 #? https://src.fedoraproject.org/rpms/rtaudio/blob/db1aa72863ccbfd480e22c2f7aefb41ebb8e2360/f/rtaudio.spec
+%global commit 40e0d8140f14acd8552d2dc4f42dcc853274a12c
+%global shortcommit %(c=%{commit}; echo ${c:0:7})
+%global commit_date 20250430
+%global ver 6.0.1
 
 Name:           rtaudio-nightly
-Version:        6.0.1
+Version:        %{ver}^%{commit_date}.git.%{shortcommit}
 Release:        1%?dist
 Summary:        Real-time Audio I/O Library
 License:        MIT
-URL:            https://www.music.mcgill.ca/~gary/rtaudio/
-Source0:        %url/release/rtaudio-%version.tar.gz
+URL:            https://github.com/thestk/rtaudio
+Source0:        %url/archive/%commit.tar.gz
 Packager:       madonuko <mado@fyralabs.com>
 BuildRequires:  alsa-lib-devel
 BuildRequires:  doxygen
@@ -46,7 +50,7 @@ Provides:       rtaudio-devel = %version-%release
 
 
 %prep
-%autosetup -n rtaudio-%version
+%autosetup -n rtaudio-%commit
 # Fix encoding issues
 for file in tests/teststops.cpp; do
    sed 's|\r||' $file > $file.tmp
