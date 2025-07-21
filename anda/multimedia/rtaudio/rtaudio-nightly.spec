@@ -73,7 +73,7 @@ done
 %files
 %license doc/doxygen/license.txt
 %doc README.md doc/release.txt
-%{_libdir}/librtaudio.so.*
+%dnl %{_libdir}/librtaudio.so.*
 
 %files devel
 %doc doc/html doc/images
