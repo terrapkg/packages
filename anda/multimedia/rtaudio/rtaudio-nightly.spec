@@ -20,6 +20,8 @@ BuildRequires:  gcc-c++
 BuildRequires:  jack-audio-connection-kit-devel
 BuildRequires:  libtool
 BuildRequires:  make
+BuildRequires:  meson
+BuildRequires:  ninja-build
 BuildRequires:  pulseaudio-libs-devel
 Conflicts:      rtaudio
 Provides:       rtaudio = %version-%release
@@ -74,7 +76,7 @@ done
 %cmake_build
 
 pushd doc
-%make_build
+%meson_build
 popd
 
 
@@ -82,7 +84,7 @@ popd
 %cmake_install
 
 pushd doc
-%make_install
+%meson_install
 popd
 
 %ldconfig_scriptlets
