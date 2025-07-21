@@ -13,6 +13,7 @@ URL:            https://github.com/thestk/rtaudio
 Source0:        %url/archive/%commit.tar.gz
 Packager:       madonuko <mado@fyralabs.com>
 BuildRequires:  alsa-lib-devel
+BuildRequires:  cmake
 BuildRequires:  cmake-rpm-macros
 BuildRequires:  doxygen
 BuildRequires:  gcc-c++
