@@ -71,9 +71,8 @@ License:       GPL-2.0-only
 
 %build
 %meson \
- -Dbuildtype=release \
- -Dsystemd=enabled   \
- -Dopenrc=disabled   \
+ -Dsystemd=enabled  \
+ -Dopenrc=disabled  \
  -Dlibalpm=disabled
 %meson_build
 
