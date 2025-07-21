@@ -13,7 +13,8 @@ URL:            https://github.com/thestk/rtaudio
 Source0:        %url/archive/%commit.tar.gz
 Packager:       madonuko <mado@fyralabs.com>
 BuildRequires:  alsa-lib-devel
-BuildRequires:  automake
+BuildRequires:  cmake
+BuildRequires:  cmake-rpm-macros
 BuildRequires:  doxygen
 BuildRequires:  gcc-c++
 BuildRequires:  jack-audio-connection-kit-devel
@@ -62,18 +63,35 @@ done
 
 
 %build
-./autogen.sh --with-jack --with-alsa --with-pulse --enable-shared --disable-static --verbose
+%cmake                                \
+  -DCMAKE_C_FLAGS="$CFLAGS -fPIC"     \
+  -DCMAKE_CXX_FLAGS="$CXXFLAGS -fPIC" \
+  -DRTAUDIO_API_ALSA=ON               \
+  -DRTAUDIO_API_PULSE=ON              \
+  -DRTAUDIO_API_JACK=ON               \
+  -DRTAUDIO_BUILD_SHARED_LIBS=ON      \
+  -DRTAUDIO_BUILD_STATIC_LIBS=OFF
+%cmake_build
+
+pushd docs
 %make_build
+popd
+
 
 %install
+%cmake_install
+
+pushd docs
 %make_install
+popd
+
 %ldconfig_scriptlets
 
 
 %files
 %license doc/doxygen/license.txt
 %doc README.md doc/release.txt
-%dnl %{_libdir}/librtaudio.so.*
+%{_libdir}/librtaudio.so.*
 
 %files devel
 %doc doc/html doc/images
