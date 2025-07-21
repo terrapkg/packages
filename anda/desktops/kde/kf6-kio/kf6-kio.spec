@@ -1,7 +1,7 @@
 %global framework kio
 
 %global stable_kf6 stable
-%global majmin_ver_kf6 6.15
+%global majmin_ver_kf6 6.16
 
 Name:    kf6-%{framework}
 Version: %{majmin_ver_kf6}.0
@@ -27,9 +27,6 @@ Patch0:  0001-Give-the-kuriikwsfiltereng_private-a-VERSION-and-SOV.patch
 # on the docbook stack.
 Patch101: kio-no-help-protocol.patch
 %endif
-
-# https://invent.kde.org/frameworks/kio/-/merge_requests/1556
-Patch201: 1556.patch
 
 Provides:       kf6-%{framework}
 BuildRequires:  extra-cmake-modules

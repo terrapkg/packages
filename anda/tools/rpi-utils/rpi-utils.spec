@@ -110,6 +110,7 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 
 %files dtmerge
 %license LICENCE
+%doc dtmerge/README.md
 %{_bindir}/dt*
 %{_mandir}/man1/dtmerge.1.gz
 %{_mandir}/man1/dtoverlay.1.gz

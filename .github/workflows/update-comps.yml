@@ -1,4 +1,6 @@
 name: Push comps updates
+permissions:
+  contents: read
 
 on:
   push:

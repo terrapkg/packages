@@ -1,11 +1,11 @@
-%global commit d31a04e35f0afcb2b06d5bc54240fb2ee634449a
+%global commit 778dbc953b1987d259ea6d802fd6967b6a0d2097
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20250701
+%global commitdate 20250718
 %global ver 0.3.4
 %global debug_package %{nil}
 %global modulename xone
 
-Name:           dkms-%{modulename}
+Name:           dkms-%{modulename}-nightly
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
 Release:        1%?dist
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
@@ -18,12 +18,13 @@ Source0:        %{url}/archive/%{commit}.tar.gz#/%{modulename}-%{shortcommit}.ta
 Source1:        no-weak-modules.conf
 BuildRequires:  sed
 BuildRequires:  systemd-rpm-macros
-Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
+Requires:       %{modulename}-nightly = %{?epoch:%{epoch}:}%{version}
 Requires:       dkms
-Conflicts:      akmod-%{modulename}
+Conflicts:      akmod-%{modulename}-nightly
+Conflicts:      %{modulename}-kmod
+Provides:       %{modulename}-nightly-kmod = %{?epoch:%{epoch}:}%{version}
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
-Conflicts:      %{name} < %{?epoch:%{epoch}:}3.0^20250419git.c682b0c
-Obsoletes:      %{name} < %{?epoch:%{epoch}:}3.0^20250419git.c682b0c
+Obsoletes:      dkms-%{modulename} < %{?epoch:%{epoch}:}3.0^20250419git.c682b0c
 %endif
 BuildArch:      noarch
 Packager:       Gilver E. <rockgrub@disroot.org>
