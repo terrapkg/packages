@@ -63,6 +63,7 @@ done
 
 
 %build
+export CFLAGS="%optflags -fPIC"
 NOCONFIGURE=1 ./autogen.sh
 %configure --with-jack --with-alsa --with-pulse --enable-shared --disable-static --verbose
 %make_build
