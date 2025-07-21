@@ -13,6 +13,8 @@ URL:            https://github.com/thestk/rtaudio
 Source0:        %url/archive/%commit.tar.gz
 Packager:       madonuko <mado@fyralabs.com>
 BuildRequires:  alsa-lib-devel
+BuildRequires:  autoconf
+BuildRequires:  automake
 BuildRequires:  doxygen
 BuildRequires:  gcc-c++
 BuildRequires:  jack-audio-connection-kit-devel
@@ -62,9 +64,9 @@ done
 
 %build
 export CFLAGS="%optflags -fPIC"
+NOCONFIGURE=1 ./autogen.sh
 %configure --with-jack --with-alsa --with-pulse --enable-shared --disable-static --verbose
 %make_build
-
 
 %install
 %make_install
