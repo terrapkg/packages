@@ -73,7 +73,7 @@ done
   -DRTAUDIO_BUILD_STATIC_LIBS=OFF
 %cmake_build
 
-pushd docs
+pushd doc
 %make_build
 popd
 
@@ -81,7 +81,7 @@ popd
 %install
 %cmake_install
 
-pushd docs
+pushd doc
 %make_install
 popd
 
