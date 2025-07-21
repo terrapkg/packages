@@ -61,7 +61,7 @@ done
 
 
 %build
-%cmake \
+%cmake                                \
   -DCMAKE_C_FLAGS="$CFLAGS -fPIC"     \
   -DCMAKE_CXX_FLAGS="$CXXFLAGS -fPIC" \
   -DRTAUDIO_API_ALSA=ON               \
