@@ -61,13 +61,19 @@ done
 
 
 %build
-export CFLAGS="%optflags -fPIC"
-%configure --with-jack --with-alsa --with-pulse --enable-shared --disable-static --verbose
-%make_build
+%cmake \
+  -DCMAKE_C_FLAGS="$CFLAGS -fPIC"     \
+  -DCMAKE_CXX_FLAGS="$CXXFLAGS -fPIC" \
+  -DRTAUDIO_API_ALSA=ON               \
+  -DRTAUDIO_API_PULSE=ON              \
+  -DRTAUDIO_API_JACK=ON               \
+  -DRTAUDIO_BUILD_SHARED_LIBS=ON      \
+  -DRTAUDIO_BUILD_STATIC_LIBS=OFF
+%cmake_build
 
 
 %install
-%make_install
+%cmake_install
 %ldconfig_scriptlets
 
 
