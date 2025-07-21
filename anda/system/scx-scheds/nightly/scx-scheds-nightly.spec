@@ -71,8 +71,9 @@ License:       GPL-2.0-only
 
 %build
 %meson \
- -Dsystemd=enabled \
- -Dopenrc=disabled \
+ -Dbuildtype=release \
+ -Dsystemd=enabled   \
+ -Dopenrc=disabled   \
  -Dlibalpm=disabled
 %meson_build
 
@@ -106,6 +107,7 @@ License:       GPL-2.0-only
 %{_unitdir}/scx.service
 %{_datadir}/dbus-1/system.d/org.scx.Loader.conf
 %{_datadir}/dbus-1/system-services/org.scx.Loader.service
+%attr(0644,root,root) %config(noreplace) %{_datadir}/scx_loader/config.toml
 
 %changelog
 * Sun Jun 15 2025 Gilver E. <rockgrub@disroot.org> - 1.0.13^20250612.git.c1507b0-1
