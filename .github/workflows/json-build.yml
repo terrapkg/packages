@@ -16,6 +16,7 @@ on:
       custom_builder:
         description: "Custom Builder"
         required: false
+        type: string
         default: ""
   workflow_dispatch:
     inputs:
