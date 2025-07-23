@@ -17,6 +17,8 @@ on:
         default: ""
         type: string
 
+run-name: ${{ inputs.packages }}
+
 jobs:
   manifest:
     outputs:
