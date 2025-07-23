@@ -26,15 +26,15 @@ jobs:
       image: ghcr.io/terrapkg/builder:frawhide
       options: --cap-add=SYS_ADMIN --privileged
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Setup Git
         run: |
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git config user.name "Raboneko"
           git config user.email "raboneko@fyralabs.com"
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - name: Parse Input
         id: parsing
         run: |
