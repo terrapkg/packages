@@ -47,9 +47,9 @@ jobs:
           if [ "${{ inputs.architecture }}" != "" ]; then
             # e.g.: [ unique_by(.pkg)[] | (.arch="x86_64", .arch="aarch64") ]
             filter=`echo -n "${{ inputs.architecture }}" | tr '[:space:]' '\n' | sed -E '/^$/d; s@^.+$@.arch="\0"@' | tr '\n' ', '`
-            b=`echo $b | jq '[unique_by(.pkg)[] | ('"$filter"')]'`
+            b=`echo $b | jq -c '[unique_by(.pkg)[] | ('"$filter"')]'`
           elif [ "${{ inputs.custom_builder }}" != "" ]; then
-            b=`echo $b | jq 'unique_by(.pkg)'`
+            b=`echo $b | jq -c 'unique_by(.pkg)'`
           fi
           echo "build_matrix=$b" >> $GITHUB_OUTPUT
 
