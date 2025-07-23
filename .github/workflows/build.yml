@@ -41,6 +41,7 @@ jobs:
           for pkg in ${{ inputs.packages }}; do
             touch anda/$pkg/.build
           done
+          git add --all
           git commit -a -m "tmp"
           b=$(anda ci | sed -E 's@^build_matrix=@@')
           if [ "${{ inputs.architecture }}" != "" ]; then
