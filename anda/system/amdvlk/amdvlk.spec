@@ -29,6 +29,7 @@ BuildRequires:  curl
 BuildRequires:  openssl-devel
 BuildRequires:  glibc-devel
 BuildRequires:  libstdc++-devel
+# BUILD_SHARED_LIBS=off requires statically linking with libstdc++.
 BuildRequires:  libstdc++-static
 BuildRequires:  libxcb-devel
 BuildRequires:  libX11-devel
@@ -52,24 +53,32 @@ experience across platforms, including support for recently released GPUs
 and compatibility with AMD developer tools.
  
 %prep
+# Set up git.
+git config --global user.name dummy
+git config --global user.email dummy
 # Clone sources.
 repo init -u https://github.com/GPUOpen-Drivers/AMDVLK.git -b refs/tags/v-%{version}
 repo sync
 %patch 0 -p 1 -d drivers/pal/shared/devdriver/third_party/rapidjson/
  
 %build
+# Shared libs are not built because otherwise it can not link with it's own
+# LLVM.
 %cmake -G Ninja -S drivers/xgl -DBUILD_WAYLAND_SUPPORT=ON \
     -DBUILD_SHARED_LIBS:BOOL=OFF
 %cmake_build
  
 %install
 %cmake_install --component icd
+# _docdir only containts the license, which is made redundant by %license.
+rm %{buildroot}/%{_docdir}/ -r
  
 %files
-%{_sysconfdir}/vulkan/icd.d/amd_icd64.json
-%{_sysconfdir}/vulkan/implicit_layer.d/amd_icd64.json
-%{_libdir}/amdvlk64.so
-%license LICENSE.txt
+# Files are globbed for reasons of potentially being built for 32-bit systems.
+%{_sysconfdir}/vulkan/icd.d/amd_icd*.json
+%{_sysconfdir}/vulkan/implicit_layer.d/amd_icd*.json
+%{_libdir}/amdvlk*.so
+%license drivers/xgl/LICENSE.txt
  
 %changelog
 * Thu Jul 24 2025 libffi <contact@ffi.lol>
