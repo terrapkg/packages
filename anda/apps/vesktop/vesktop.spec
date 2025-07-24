@@ -46,8 +46,8 @@ EOF
 
 
 %build
-npx pnpm@8 install --no-frozen-lockfile
-npx pnpm@8 package:dir
+npx pnpm install --no-frozen-lockfile
+npx pnpm package:dir
 
 
 %install
