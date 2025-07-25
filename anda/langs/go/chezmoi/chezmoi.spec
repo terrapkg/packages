@@ -27,7 +27,7 @@ Manage your dotfiles across multiple diverse machines, securely.}
                         assets/chezmoi.io/snippets/common-flags/tree.md
 
 Name:           chezmoi
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Manage your dotfiles across multiple diverse machines, securely
 
 License:        MIT
@@ -53,6 +53,9 @@ go mod tidy
 #gopkginstall
 install -m 0755 -vd                     %{buildroot}%{_bindir}
 install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
+install -m 0644 -Dvp completions/chezmoi-completion.bash %{buildroot}%{bash_completions_dir}/chezmoi
+install -m 0644 -Dvp completions/chezmoi.fish -t %{buildroot}%{fish_completions_dir}/
+install -m 0644 -Dvp completions/chezmoi.zsh %{buildroot}%{zsh_completions_dir}/_chezmoi
 
 %if %{without bootstrap}
 %if %{with check}
@@ -65,5 +68,7 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %license LICENSE
 %doc README.md
 %{_bindir}/chezmoi
+
+%pkg_completion -Bfz
 
 #gopkgfiles
