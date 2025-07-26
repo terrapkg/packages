@@ -219,7 +219,6 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %{_iconsdir}/hicolor/1024x1024/apps/%{appid}.png
 %{_mandir}/man1/%{base_name}.1.gz
 %{_mandir}/man5/%{base_name}.5.gz
-%{_userunitdir}/%{appid}.service
 
 %files bash-completion
 %{bash_completions_dir}/%{base_name}.bash
@@ -265,15 +264,6 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %{_datadir}/terminfo/g/%{base_name}
 %endif
 %{_datadir}/terminfo/x/xterm-%{base_name}
-
-%post
-%systemd_user_post %{appid}.service
-
-%preun
-%systemd_user_preun %{appid}.service
-
-%postun
-%systemd_user_postun %{appid}.service
 
 %changelog
 * Sat May 31 2025 Gilver E. <rockgrub@disroot.org> - 1.1.4~tip^20250531git1ff9162
