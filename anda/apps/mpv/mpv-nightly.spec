@@ -135,7 +135,6 @@ This package contains development header files and libraries for Mpv.
 sed -e "s|/usr/local/etc|%{_sysconfdir}/mpv|" -i etc/mpv.conf
 
 %build
-%build
 %meson --auto-features=auto \
     -Dalsa=enabled \
     -Dbuild-date=false \
