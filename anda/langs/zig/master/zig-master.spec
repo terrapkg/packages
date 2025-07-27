@@ -11,30 +11,6 @@
 %bcond docs      %{without bootstrap}
 %bcond test      1
 %global zig_cache_dir %{builddir}/zig-cache
-%global zig_build_options %{shrink: \
-    --verbose \
-    --release=fast \
-    --summary all \
-    \
-    -Dtarget=native \
-    -Dcpu=baseline \
-    --zig-lib-dir lib \
-    --build-id=sha1 \
-    \
-    --cache-dir "%{zig_cache_dir}" \
-    --global-cache-dir "%{zig_cache_dir}" \
-    \
-    -Dversion-string="%(v=%{version}; echo ${v:0:6})" \
-    -Dstatic-llvm=false \
-    -Denable-llvm=true \
-    -Dno-langref=true \
-    -Dstd-docs=false \
-    -Dpie \
-    -Dconfig_h="%{__cmake_builddir}/config.h" \
-}
-%global zig_install_options %zig_build_options %{shrink: \
-    --prefix "%{_prefix}" \
-}
 %global mirror_url https://pkg.machengine.org/zig
 
 Name:           zig-master
@@ -88,6 +64,32 @@ Provides:       bundled(wasi-libc) = d03829489904d38c624f6de9983190f1e5e7c9c5
 Conflicts:      zig
 ExclusiveArch:  %{zig_arches}
 Packager:       Gilver E. <rockgrub@disroot.org>
+
+# Must be defined AFTER the version is
+%global zig_build_options %{shrink: \
+    --verbose \
+    --release=fast \
+    --summary all \
+    \
+    -Dtarget=native \
+    -Dcpu=baseline \
+    --zig-lib-dir lib \
+    --build-id=sha1 \
+    \
+    --cache-dir "%{zig_cache_dir}" \
+    --global-cache-dir "%{zig_cache_dir}" \
+    \
+    -Dversion-string="%(v=%{ver}; echo ${v:0:6})" \
+    -Dstatic-llvm=false \
+    -Denable-llvm=true \
+    -Dno-langref=true \
+    -Dstd-docs=false \
+    -Dpie \
+    -Dconfig_h="%{__cmake_builddir}/config.h" \
+}
+%global zig_install_options %zig_build_options %{shrink: \
+    --prefix "%{_prefix}" \
+}
 
 %description
 Zig is an open source alternative to C. 
