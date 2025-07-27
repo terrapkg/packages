@@ -217,8 +217,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/mpv.desktop
 %{_datadir}/icons/hicolor/*/apps/mpv*.*
 %{_mandir}/man1/mpv.*
 %{_metainfodir}/mpv.metainfo.xml
-%dir %{_sysconfdir}/mpv/
-%config(noreplace) %{_sysconfdir}/mpv/encoding-profiles.conf
 
 %files libs
 %license LICENSE.GPL LICENSE.LGPL Copyright
