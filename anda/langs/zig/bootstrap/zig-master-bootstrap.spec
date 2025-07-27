@@ -25,7 +25,7 @@
     --cache-dir "%{zig_cache_dir}" \
     --global-cache-dir "%{zig_cache_dir}" \
     \
-    -Dversion-string="%(v=%{version}; echo ${v:0:6})" \
+    -Dversion-string="%(v=%{ver}; echo ${v:0:6})" \
     -Dstatic-llvm=false \
     -Denable-llvm=true \
     -Dno-langref=true \
