@@ -32,6 +32,7 @@ install -Dpm755 *.sh -t %buildroot%_libexecdir/%name/
 %{_rpmmacrodir}/macros.anda
 %{_rpmmacrodir}/macros.caching
 %{_rpmmacrodir}/macros.cargo_extra
+%{_rpmmacrodir}/macros.electron
 %{_rpmmacrodir}/macros.go_extra
 %{_rpmmacrodir}/macros.nim_extra
 %{_rpmmacrodir}/macros.nodejs_extra
