@@ -79,7 +79,7 @@ Packager:       Gilver E. <rockgrub@disroot.org>
     --cache-dir "%{zig_cache_dir}" \
     --global-cache-dir "%{zig_cache_dir}" \
     \
-    -Dversion-string="%(v=%{version}; echo ${v:0:6})" \
+    -Dversion-string="%(v=%{version_no_tilde}; echo ${v:0:6})" \
     -Dstatic-llvm=false \
     -Denable-llvm=true \
     -Dno-langref=true \
