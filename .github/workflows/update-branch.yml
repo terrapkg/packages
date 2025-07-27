@@ -1,4 +1,6 @@
 name: Update per branch
+permissions:
+  contents: write
 on:
   schedule:
     - cron: "*/30 * * * *"
@@ -11,7 +13,6 @@ jobs:
       matrix:
         branch:
           - frawhide
-          - f40
           - f41
           - f42
           - el10

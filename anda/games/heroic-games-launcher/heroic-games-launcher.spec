@@ -15,7 +15,7 @@
 %global comet_version 0.2.0
 
 Name:          %{shortname}-games-launcher
-Version:       2.17.2
+Version:       2.18.0
 Release:       1%?dist
 Summary:       A games launcher for GOG, Amazon, and Epic Games
 License:       GPL-3.0-only AND MIT AND BSD-3-Clause
@@ -37,7 +37,7 @@ Requires:      hicolor-icon-theme
 Requires:      nss
 Requires:      python3
 Requires:      which
-Recommends:    gamemode
+Recommends:    (falcond or gamemode)
 Recommends:    mangohud
 Recommends:    umu-launcher
 Provides:      bundled(comet) = %{comet_version}
@@ -61,7 +61,6 @@ wait
 %install
 mkdir -p %{buildroot}%{_datadir}/%{shortname}
 mv $(find . -iname "*LICENSE*" -not -path "./node_modules/*" -and -not -path "./public/*") .
-mv LICENSE node-font-list.LICENSE
 rm -rf dist/linux-unpacked/resources/app.asar.unpacked/node_modules/font-list/libs/{darwin,win32}
 %ifarch aarch64
 # Keep the x86_64 Windows binaries run through Wine just in case
@@ -95,7 +94,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{reverse_dns}.deskto
 %license legendary.LICENSE
 %license LICENSES.chromium.html
 %license LICENSE.electron.txt
-%license node-font-list.LICENSE
 %dir %{_datadir}/%{shortname}
 %{_datadir}/%{shortname}/*
 %{_bindir}/%{shortname}

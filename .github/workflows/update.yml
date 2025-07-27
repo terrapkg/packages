@@ -1,4 +1,6 @@
 name: Update
+permissions:
+  contents: write
 on:
   schedule:
     - cron: "*/10 * * * *"
@@ -46,7 +48,6 @@ jobs:
               git add anda
               git commit -S -a -m "$msg"
             }
-            copy_over f40 || true
             copy_over f41 || true
             copy_over f42 || true
             copy_over el10 || true

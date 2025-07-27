@@ -16,7 +16,7 @@
 %bcond docs 0
 
 Name:           LCEVCdec
-Version:        3.3.7
+Version:        4.0.0
 Release:        1%?dist
 Summary:        MPEG-5 LCEVC Decoder
 License:        BSD-3-Clause-Clear
@@ -150,7 +150,7 @@ python3 src/func_tests/run_tests.py
 
 %files devel
 %{_includedir}/LCEVC
-%{_includedir}/lcevc_config.h
+#{_includedir}/lcevc_config.h
 %{_libdir}/liblcevc_dec_api.so
 %{_libdir}/liblcevc_dec_core.so
 %{_libdir}/pkgconfig/lcevc_dec.pc

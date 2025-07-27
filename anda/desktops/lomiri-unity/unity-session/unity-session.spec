@@ -1,8 +1,8 @@
-%define _ubuntu_rel 2ubuntu3
+%define _ubuntu_rel 1ubuntu1
 
 Name:    unity-session
 Summary: Lightdm profile for Unity 7
-Version: 47.0.1
+Version: 48.0
 Release: 1%?dist
 
 License:   GPL-2.0
