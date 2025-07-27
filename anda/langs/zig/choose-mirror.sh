@@ -11,7 +11,7 @@ function randomize_mirrors() {
 }
 
 # ONLY export mirrors to the update scripts if they connect on both files
-until curl -If $mirror/zig-${version}.tar.xz &>/dev/null && curl -If $mirror/zig-${version}.tar.xz.minisg &>/dev/null; do
+until curl -If $mirror/zig-${version}.tar.xz &>/dev/null && curl -If $mirror/zig-${version}.tar.xz.minisig &>/dev/null; do
   randomize_mirrors
 done
 
