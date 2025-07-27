@@ -11,7 +11,8 @@
 %bcond docs      %{without bootstrap}
 %bcond test      1
 %global zig_cache_dir %{builddir}/zig-cache
-%global mirror_url https://zig.florent.dev
+%global zig_mirrors ("https://pkg.machengine.org/zig" "https://zigmirror.hryx.net/zig" "https://zig.linus.dev/zig" "https://zig.squirl.dev" "https://zig.florent.dev")
+%global mirror_url %(mirrors=%{zig_mirrors}; index=$(( RANDOM % ${#mirrors[@]} )); echo ${mirrors[$index]})
 
 Name:           zig-master
 Version:        0.15.0~dev.1254+c9ce1debe

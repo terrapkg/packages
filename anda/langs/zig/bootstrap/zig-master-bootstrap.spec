@@ -36,7 +36,8 @@
 %global zig_install_options %zig_build_options %{shrink: \
     --prefix "%{_prefix}" \
 }
-%global mirror_url https://zig.squirl.dev
+%global zig_mirrors ("https://pkg.machengine.org/zig" "https://zigmirror.hryx.net/zig" "https://zig.linus.dev/zig" "https://zig.squirl.dev" "https://zig.florent.dev")
+%global mirror_url %(mirrors=%{zig_mirrors}; index=$(( RANDOM % ${#mirrors[@]} )); echo ${mirrors[$index]})
 
 Name:           zig-master-bootstrap
 Version:        %(echo %{ver} | sed 's/-/~/g')
