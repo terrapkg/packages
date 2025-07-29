@@ -97,7 +97,7 @@ export ZED_UPDATE_EXPLANATION="Run dnf up to update Zed Preview from Terra."
 echo "preview" > crates/zed/RELEASE_CHANNEL
 
 %cargo_build -- --package zed --package cli
-script/generate-licenses
+ALLOW_MISSING_LICENSES=1 script/generate-licenses
 
 %install
 install -Dm755 target/rpm/zed %{buildroot}%{_libexecdir}/zed-editor
