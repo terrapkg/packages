@@ -1,5 +1,5 @@
 Name:           nvidia-xconfig
-Version:        575.64.03
+Version:        575.64.05
 Release:        1%?dist
 Summary:        NVIDIA X configuration file editor
 Epoch:          3
