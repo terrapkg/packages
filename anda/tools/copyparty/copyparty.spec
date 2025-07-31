@@ -2,15 +2,18 @@
 
 Name:           %{pypi_name}
 Version:        1.18.8
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Portable, featureful, and fast file server 
 URL:            https://github.com/9001/copyparty
 Source0:        %{pypi_source}
 License:        MIT
+# For EVR macro
+BuildRequires:  anda-srpm-macros
 BuildRequires:  python3-devel python3-pip pyproject-rpm-macros
 BuildRequires:  python3dist(wheel) python3dist(build) python3dist(jinja2)
 BuildRequires:  python3dist(setuptools) python3dist(installer)
 Requires:       python3
+Requires:       python3-%{name} = %{evr}
 Suggests:       ffmpeg python3dist(fuse)
 BuildArch:		noarch
 Packager:       Riley Loo <dev@zackerthescar.com>
@@ -21,7 +24,9 @@ FTP, TFTP, zeroconf, media indexer, thumbnails++ all in one file, no
 (runtime) deps (other than Python itself)
 
 %package -n     python3-%{pypi_name}
+Requires:       python3
 Summary:        %{summary}
+Requires:       %{name} = %{evr}
 
 %description -n python3-%{pypi_name}
 
