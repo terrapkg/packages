@@ -24,6 +24,7 @@ FTP, TFTP, zeroconf, media indexer, thumbnails++ all in one file, no
 (runtime) deps (other than Python itself)
 
 %package -n     python3-%{pypi_name}
+Requires:       python3
 Summary:        %{summary}
 Requires:       %{name} = %{evr}
 
