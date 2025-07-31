@@ -3,8 +3,8 @@
 Name:       kwin-system76-scheduler-integration
 
 %global forgeurl https://github.com/maxiberta/%{name}
-%global commit 45c688f08265f0f830ead964598b8859537299ec
-%global date 20250724
+%global commit 8375d843afbd2fe20780a79a473cabddbaff3602
+%global date 20250728
 %forgemeta
 
 Version:    0.1
