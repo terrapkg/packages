@@ -1,11 +1,11 @@
-%global debug_package %nil #needed to avoid "empty %files file" errors
+%global pypi_name copyparty
 
-Name:           copyparty
+Name:           %{pypi_name}
 Version:        1.18.6
 Release:        1%?dist
 Summary:        Portable, featureful, and fast file server 
 URL:            https://github.com/9001/copyparty
-Source0:        https://files.pythonhosted.org/packages/source/c/copyparty/copyparty-%version.tar.gz
+Source0:        %{pypi_source}
 License:        MIT
 BuildRequires:  python3-devel python3-pip pyproject-rpm-macros
 BuildRequires:  python3dist(wheel) python3dist(build) python3dist(jinja2)
@@ -20,10 +20,10 @@ Portable file server with accelerated resumable uploads, dedup, WebDAV,
 FTP, TFTP, zeroconf, media indexer, thumbnails++ all in one file, no 
 (runtime) deps (other than Python itself)
 
-%package -n     python3-copyparty
+%package -n     python3-%{pypi_name}
 Summary:        %{summary}
 
-%description -n python3-copyparty
+%description -n python3-%{pypi_name}
 
 Portable file server with accelerated resumable uploads, dedup, WebDAV, 
 FTP, TFTP, zeroconf, media indexer, thumbnails++ all in one file, no 
@@ -45,8 +45,8 @@ FTP, TFTP, zeroconf, media indexer, thumbnails++ all in one file, no
 %{_bindir}/partyfuse
 %{_bindir}/u2c
 
-%files -n python3-copyparty
-%{python3_sitelib}/copyparty*
+%files -n python3-%{pypi_name}
+%{python3_sitelib}/%{pypi_name}*
 
  
 %changelog
