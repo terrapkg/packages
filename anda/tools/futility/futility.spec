@@ -1,7 +1,7 @@
 %define commit 5adf9508431b8c703eb60dde2fed0381079f7423
 %define shortcommit %(c=%{commit}; echo ${c:0:12})
 
-Name:           futility
+Name:           chromium-futility
 Version:        git+%{shortcommit}
 Release:        1%{?dist}
 Summary:        Chromium OS EC utilities
@@ -38,10 +38,10 @@ ln -s /usr/include/libflashrom.h firmware/include/libflashrom.h
 %make_build BUILD=futility CFLAGS="-I%{_includedir} $CFLAGS" V=1
 
 %install
-install -Dm 755 futility %{buildroot}%{_bindir}/futility
+install -Dm 755 futility %{buildroot}%{_bindir}/chromium-futility
 
 %files
-%{_bindir}/futility
+%{_bindir}/chromium-futility
 %license LICENSE
 %doc README docs/
 
