@@ -5,7 +5,7 @@
 
 Name:           rust-eza
 Version:        0.23.0
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Modern replacement for ls
 
 License:        EUPL-1.2
@@ -15,6 +15,7 @@ Source:         %{crates_source}
 Patch:          eza-fix-metadata-auto.diff
 
 BuildRequires:  anda-srpm-macros cargo-rpm-macros >= 24
+BuildRequires:  pandoc
 
 %global _description %{expand:
 A modern replacement for ls.}
@@ -40,6 +41,10 @@ License:        (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apa
 %doc SECURITY.md
 %doc TESTING.md
 %{_bindir}/eza
+%{_mandir}/man1/eza.1.gz
+%{_mandir}/man5/eza_colors{,-explanation}.5.gz
+
+%pkg_completion -Bfzn %{crate}
 
 %package        devel
 Summary:        %{summary}
@@ -178,8 +183,19 @@ use the "vendored-openssl" feature of the "%{crate}" crate.
 %{cargo_license_summary_online}
 %{cargo_license_online} > LICENSE.dependencies
 
+pandoc --standalone -f markdown -t man man/eza.1.md > man/eza.1
+pandoc --standalone -f markdown -t man man/eza_colors.5.md > man/eza_colors.5
+pandoc --standalone -f markdown -t man man/eza_colors-explanation.5.md > man/eza_colors-explanation.5
+
 %install
 %cargo_install
+
+install -Dpm 0644 completions/bash/eza      -t %{buildroot}%{bash_completions_dir}/
+install -Dpm 0644 completions/fish/eza.fish -t %{buildroot}%{fish_completions_dir}/
+install -Dpm 0644 completions/zsh/_eza      -t %{buildroot}%{zsh_completions_dir}/
+install -Dpm 0644 man/eza.1                     -t %{buildroot}%{_mandir}/man1/
+install -Dpm 0644 man/eza_colors.5              -t %{buildroot}%{_mandir}/man5/
+install -Dpm 0644 man/eza_colors-explanation.5  -t %{buildroot}%{_mandir}/man5/
 
 %if %{with check}
 %check

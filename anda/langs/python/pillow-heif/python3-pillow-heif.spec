@@ -6,7 +6,7 @@
 %bcond_with doc
 
 Name:           python-%{srcname}
-Version:        1.0.0
+Version:        1.1.0
 Release:        1%?dist
 Summary:        Python library for working with HEIF images and plugin for Pillow
 

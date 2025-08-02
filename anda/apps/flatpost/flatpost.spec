@@ -6,8 +6,6 @@ Summary:       Desktop environment agnostic Flathub software center.
 
 URL:            https://github.com/gloriouseggroll/flatpost
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
-Source1:        flatpost-mime.xml
-Patch0:         flatpost-desktop-mimetype.patch
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
@@ -45,7 +43,6 @@ installation, removal, updating, and permission management of flatpak packages a
 
 %build
 make all DESTDIR=%{buildroot}
-install -D -m644 %{SOURCE1} %{buildroot}/usr/share/mime/packages/flatpost.xml
 
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/com.flatpost.flatpostapp.desktop

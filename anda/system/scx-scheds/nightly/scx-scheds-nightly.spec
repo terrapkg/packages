@@ -1,6 +1,6 @@
-%global commit 6215d83b1cbdd201c539f029bbe0787bf82bf896
+%global commit a6e551f52ac3e3178a16b05d1750a76f803fab01
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20250723
+%global commitdate 20250802
 %global ver 1.0.14
 
 Name:           scx-scheds-nightly
@@ -72,8 +72,7 @@ License:       GPL-2.0-only
 %build
 %meson \
  -Dsystemd=enabled \
- -Dopenrc=disabled \
- -Dlibalpm=disabled
+ -Dopenrc=disabled
 %meson_build
 
 

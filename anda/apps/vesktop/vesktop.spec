@@ -4,10 +4,11 @@
 %global __requires_exclude libffmpeg.so
 %global __provides_exclude_from %{_datadir}/vesktop/.*\\.so
 
-Name:		vencord-desktop
-Provides:   VencordDesktop = %{version}-%{release}
+Name:		vesktop
+Obsoletes:  VencordDesktop < 1.5.8-1
+Obsoletes:  vencord-desktop < 1.5.8-1
 Version:	1.5.8
-Release:	1%?dist
+Release:	2%?dist
 License:	GPL-3.0
 Summary:	Vesktop is a cross platform desktop app aiming to give you a snappier Discord experience with Vencord pre-installed
 URL:		https://github.com/Vencord/Vesktop
@@ -35,18 +36,18 @@ Name=Vesktop
 Comment=%summary
 GenericName=Internet Messenger
 Type=Application
-Exec=/usr/bin/vencorddesktop
+Exec=/usr/bin/vesktop
 Icon=vesktop
 Categories=Network;InstantMessaging;
-StartupWMClass=VencordDesktop
+StartupWMClass=vesktop
 
 Keywords=discord;vesktop;vencord;shelter;armcord;electron;
 EOF
 
 
 %build
-npx pnpm@8 install --no-frozen-lockfile
-npx pnpm@8 package:dir
+npx pnpm install --no-frozen-lockfile
+npx pnpm package:dir
 
 
 %install
@@ -54,21 +55,24 @@ npx pnpm@8 package:dir
 mkdir -p %buildroot/usr/share/vesktop
 cp -r dist/*-unpacked/. %buildroot/usr/share/vesktop/.
 
-install -Dm755 dist/*-unpacked/vencorddesktop %buildroot/usr/bin/vencorddesktop
-ln -sf /usr/share/vesktop/vencorddesktop %buildroot/usr/bin/vencorddesktop
+install -Dm755 dist/*-unpacked/vesktop %buildroot/usr/bin/vesktop
+ln -sf /usr/share/vesktop/vesktop %buildroot/usr/bin/vesktop
+ln -sf /usr/bin/vesktop %buildroot/usr/bin/vencorddesktop
 install -Dm644 vesktop.desktop %buildroot/usr/share/applications/vesktop.desktop
 install -Dm644 build/icon.png %buildroot/usr/share/pixmaps/vesktop.png
 
 %files
 %doc README.md
 %license LICENSE
+/usr/bin/vesktop
 /usr/bin/vencorddesktop
 /usr/share/applications/vesktop.desktop
 /usr/share/pixmaps/vesktop.png
 /usr/share/vesktop/*
 
 %changelog
+* Thu Jul 24 2025 Atmois <info@atmois.com> - 1.5.8-2
+- Rename from vencord-desktop to vesktop and amend the spec file accordingly
 * Tue Nov 07 2023 Cappy Ishihara <cappy@cappuchino.xyz> - 0.4.3-1
 - Initial package
-
 
