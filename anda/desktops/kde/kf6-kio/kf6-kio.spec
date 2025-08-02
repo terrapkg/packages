@@ -2,6 +2,8 @@
 
 %global stable_kf6 stable
 %global majmin_ver_kf6 6.17
+%global ecm_ver 6.17.0
+%global ecm_rel 1
 
 Name:    kf6-%{framework}
 Version: %{majmin_ver_kf6}.0
