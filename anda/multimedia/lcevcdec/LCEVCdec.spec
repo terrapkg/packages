@@ -139,10 +139,12 @@ python3 src/func_tests/run_tests.py
 
 %files devel
 %{_includedir}/LCEVC
+%ifnarch %{ix86}
 %{_libdir}/liblcevc_dec_api.so
 %{_libdir}/liblcevc_dec_legacy.so
 %{_libdir}/liblcevc_dec_pipeline_cpu.so
 %{_libdir}/liblcevc_dec_pipeline_legacy.so
+%endif
 # Static:
 %{_libdir}/liblcevc_dec_api_utility.a
 %{_libdir}/liblcevc_dec_common.a
