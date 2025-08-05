@@ -83,7 +83,7 @@ Summary:        Sample programs for %{name}
 Sample programs that use %{name}.
 
 %prep
-%git_clone https://github.com/v-novaltd/%{name}.git v%{version}
+%git_clone https://github.com/v-novaltd/%{name}.git %{version}
 
 %if %{with tests}
 # Adjust configuration file for tests:
