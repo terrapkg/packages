@@ -163,4 +163,5 @@ python3 src/func_tests/run_tests.py
 %{_bindir}/lcevc_dec_utility_test_unit
 %{_bindir}/lcevc_sequencer_test_unit
 
+%changelog
 %autochangelog
