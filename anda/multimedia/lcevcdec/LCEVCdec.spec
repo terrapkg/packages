@@ -15,9 +15,8 @@ Summary:        MPEG-5 LCEVC Decoder
 License:        BSD-3-Clause-Clear
 URL:            https://docs.v-nova.com/v-nova/lcevc/lcevc-sdk-overview
 
-Source0:        https://github.com/v-novaltd/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
-
 BuildRequires:  anda-srpm-macros
+
 BuildRequires:  cmake
 BuildRequires:  cmake(CLI11)
 BuildRequires:  cmake(fmt)
@@ -60,21 +59,29 @@ Features:
  - CPU pixel processing stage
  - Extensive API
 
+%description
+Low Complexity Enhancement Video Codec Decoder (LCEVCdec) is the primary MPEG-5
+Part 2 decoder SDK repository maintained by V-Nova.
+
+Features:
+ - Decode LCEVC compliant bitstreams
+ - Support for a range of formats including YUV, NV12 and RGBA
+ - Support for a range of colour formats including BT709 and BT2020
+ - Support for HDR and 10-bit streams
+ - Support for ABR ladders
+ - CPU pixel processing stage
+ - Extensive API
+
 %package        devel
 Summary:        Development files for %{name}
+Provides:       %{name}-static = %{version}-%{release}
+Obsoletes:      %{name}-static < %{version}-%{release}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       plutovg-devel%{?_isa}
+Requires:       plutovg-devel%{?_isa}       
 
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
-%package        static
-Summary:        Static libraries for %{name}
-Requires:       %{name}-devel%{?_isa} = %{version}-%{release}
-
-%description    static
-Static library files for %{name}.
 
 %package        samples
 Summary:        Sample programs for %{name}
