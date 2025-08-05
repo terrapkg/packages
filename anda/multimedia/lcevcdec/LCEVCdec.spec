@@ -1,10 +1,3 @@
-# This information is required if not building from a GIT checkout.
-# See cmake/modules/VNovaSetup.cmake:
-%global gitlonghash bf7e0d91c969502e90a925942510a1ca8088afec
-%global gitdate 20250320
-%global githash %(c=%{gitlonghash}; echo ${c:0:7})
-%global gitbranch main
-
 # Tests require network, as described in src/func_tests/README.md, and each test type
 # (Qualcomm dev kit, Ubuntu, etc.) requires the download of a few gigabytes of videos
 # from https://lcevcdec.nbg1.your-objectstorage.com. The videos used for testing
@@ -89,16 +82,7 @@ Summary:        Sample programs for %{name}
 Sample programs that use %{name}.
 
 %prep
-%autosetup -p1
-
-# This information is required if not building from a GIT checkout.
-# See cmake/modules/VNovaSetup.cmake:
-echo -n %{gitlonghash} > .gitlonghash
-echo -n %{gitdate} | date +%Y-%m-%d > .gitdate
-echo -n %{githash} > .githash
-echo -n %{gitbranch} > .gitbranch
-echo -n %{version} > .gitversion
-echo -n %(echo %version | cut -d. -f1) > .gitshortversion
+%git_clone https://github.com/v-novaltd/%{name}.git v%{version}
 
 %if %{with tests}
 # Adjust configuration file for tests:
@@ -126,10 +110,8 @@ sed -i \
 %install
 %cmake_install
 
-%ifnarch %ix86
-mv %{buildroot}%{_prefix}/lib/*.a %{buildroot}%{_libdir}/
+#mv %{buildroot}%{_prefix}/lib/*.a %{buildroot}%{_libdir}/
 rm -fr %{buildroot}%{_prefix}/lib
-%endif
 
 # Let RPM pick up docs in the files section
 rm -fr %{buildroot}%{_docdir} %{buildroot}%{_prefix}/licenses
