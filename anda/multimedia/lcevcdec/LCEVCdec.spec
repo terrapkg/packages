@@ -16,7 +16,6 @@ License:        BSD-3-Clause-Clear
 URL:            https://docs.v-nova.com/v-nova/lcevc/lcevc-sdk-overview
 
 BuildRequires:  anda-srpm-macros
-
 BuildRequires:  cmake
 BuildRequires:  cmake(CLI11)
 BuildRequires:  cmake(fmt)
