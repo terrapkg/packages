@@ -58,6 +58,7 @@ jobs:
   build:
     needs: manifest
     uses: ./.github/workflows/json-build.yml
+    secrets: inherit
     with:
       packages: ${{ needs.manifest.outputs.build_matrix }}
       custom_builder: ${{ inputs.custom_builder }}
