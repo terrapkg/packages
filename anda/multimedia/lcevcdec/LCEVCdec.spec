@@ -17,6 +17,7 @@ URL:            https://docs.v-nova.com/v-nova/lcevc/lcevc-sdk-overview
 
 Source0:        https://github.com/v-novaltd/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
+BuildRequires:  anda-srpm-macros
 BuildRequires:  cmake
 BuildRequires:  cmake(CLI11)
 BuildRequires:  cmake(fmt)
