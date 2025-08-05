@@ -39,6 +39,7 @@ jobs:
   build:
     needs: manifest
     uses: ./.github/workflows/json-build.yml
+    secrets: inherit
     with:
       packages: ${{ needs.manifest.outputs.build_matrix }}
       publish: ${{ github.event_name == 'push' }}
