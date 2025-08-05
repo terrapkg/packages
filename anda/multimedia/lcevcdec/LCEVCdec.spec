@@ -58,19 +58,6 @@ Features:
  - CPU pixel processing stage
  - Extensive API
 
-%description
-Low Complexity Enhancement Video Codec Decoder (LCEVCdec) is the primary MPEG-5
-Part 2 decoder SDK repository maintained by V-Nova.
-
-Features:
- - Decode LCEVC compliant bitstreams
- - Support for a range of formats including YUV, NV12 and RGBA
- - Support for a range of colour formats including BT709 and BT2020
- - Support for HDR and 10-bit streams
- - Support for ABR ladders
- - CPU pixel processing stage
- - Extensive API
-
 %package        devel
 Summary:        Development files for %{name}
 Provides:       %{name}-static = %{version}-%{release}
