@@ -115,6 +115,7 @@ rm -fr %{buildroot}%{_docdir} %{buildroot}%{_prefix}/licenses
 python3 src/func_tests/run_tests.py
 %endif
 
+%ifnarch %{ix86}
 %files
 %license LICENSE.md COPYING
 %doc README.md
@@ -123,15 +124,18 @@ python3 src/func_tests/run_tests.py
 %{_libdir}/liblcevc_dec_legacy.so.1
 %{_libdir}/liblcevc_dec_pipeline_cpu.so.1
 %{_libdir}/liblcevc_dec_pipeline_legacy.so.1
+%endif
 
 %files devel
+%ifarch %{ix86}
+%license LICENSE.md COPYING
+%doc README.md
+%endif
 %{_includedir}/LCEVC
-%ifnarch %{ix86}
 %{_libdir}/liblcevc_dec_api.so
 %{_libdir}/liblcevc_dec_legacy.so
 %{_libdir}/liblcevc_dec_pipeline_cpu.so
 %{_libdir}/liblcevc_dec_pipeline_legacy.so
-%endif
 # Static:
 %{_libdir}/liblcevc_dec_api_utility.a
 %{_libdir}/liblcevc_dec_common.a
