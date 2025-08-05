@@ -1,10 +1,3 @@
-# This information is required if not building from a GIT checkout.
-# See cmake/modules/VNovaSetup.cmake:
-%global gitlonghash bf7e0d91c969502e90a925942510a1ca8088afec
-%global gitdate 20250320
-%global githash %(c=%{gitlonghash}; echo ${c:0:7})
-%global gitbranch main
-
 # Tests require network, as described in src/func_tests/README.md, and each test type
 # (Qualcomm dev kit, Ubuntu, etc.) requires the download of a few gigabytes of videos
 # from https://lcevcdec.nbg1.your-objectstorage.com. The videos used for testing
@@ -22,9 +15,7 @@ Summary:        MPEG-5 LCEVC Decoder
 License:        BSD-3-Clause-Clear
 URL:            https://docs.v-nova.com/v-nova/lcevc/lcevc-sdk-overview
 
-Source0:        https://github.com/v-novaltd/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
-Patch1:         %{name}-soversion.patch
-
+BuildRequires:  anda-srpm-macros
 BuildRequires:  cmake
 BuildRequires:  cmake(CLI11)
 BuildRequires:  cmake(fmt)
@@ -69,19 +60,14 @@ Features:
 
 %package        devel
 Summary:        Development files for %{name}
+Provides:       %{name}-static = %{version}-%{release}
+Obsoletes:      %{name}-static < %{version}-%{release}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       plutovg-devel%{?_isa}
+Requires:       plutovg-devel%{?_isa}       
 
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
-%package        static
-Summary:        Static libraries for %{name}
-Requires:       %{name}-devel%{?_isa} = %{version}-%{release}
-
-%description    static
-Static library files for %{name}.
 
 %package        samples
 Summary:        Sample programs for %{name}
@@ -90,16 +76,7 @@ Summary:        Sample programs for %{name}
 Sample programs that use %{name}.
 
 %prep
-%autosetup -p1
-
-# This information is required if not building from a GIT checkout.
-# See cmake/modules/VNovaSetup.cmake:
-echo -n %{gitlonghash} > .gitlonghash
-echo -n %{gitdate} | date +%Y-%m-%d > .gitdate
-echo -n %{githash} > .githash
-echo -n %{gitbranch} > .gitbranch
-echo -n %{version} > .gitversion
-echo -n %(echo %version | cut -d. -f1) > .gitshortversion
+%git_clone https://github.com/v-novaltd/%{name}.git %{version}
 
 %if %{with tests}
 # Adjust configuration file for tests:
@@ -127,8 +104,8 @@ sed -i \
 %install
 %cmake_install
 
-%ifnarch %ix86
-mv %{buildroot}%{_prefix}/lib/*.a %{buildroot}%{_libdir}/
+%ifnarch %{ix86}
+#mv %{buildroot}%{_prefix}/lib/*.a %{buildroot}%{_libdir}/
 rm -fr %{buildroot}%{_prefix}/lib
 %endif
 
@@ -140,38 +117,50 @@ rm -fr %{buildroot}%{_docdir} %{buildroot}%{_prefix}/licenses
 python3 src/func_tests/run_tests.py
 %endif
 
+
 %files
 %license LICENSE.md COPYING
 %doc README.md
-%{_libdir}/liblcevc_dec_api.so.3
+%{_libdir}/liblcevc_dec_api.so.4
 %{_libdir}/liblcevc_dec_api.so.%{version}
-%{_libdir}/liblcevc_dec_core.so.3
-%{_libdir}/liblcevc_dec_core.so.%{version}
+%{_libdir}/liblcevc_dec_legacy.so.1
+%{_libdir}/liblcevc_dec_pipeline_cpu.so.1
+%{_libdir}/liblcevc_dec_pipeline_legacy.so.1
 
 %files devel
+%license LICENSE.md COPYING
+%doc README.md
 %{_includedir}/LCEVC
-#{_includedir}/lcevc_config.h
 %{_libdir}/liblcevc_dec_api.so
-%{_libdir}/liblcevc_dec_core.so
-%{_libdir}/pkgconfig/lcevc_dec.pc
-
-%files static
-%{_libdir}/liblcevc_dec_api_static.a
+%{_libdir}/liblcevc_dec_legacy.so
+%{_libdir}/liblcevc_dec_pipeline_cpu.so
+%{_libdir}/liblcevc_dec_pipeline_legacy.so
+# Static:
 %{_libdir}/liblcevc_dec_api_utility.a
-%{_libdir}/liblcevc_dec_core_sequencing.a
-%{_libdir}/liblcevc_dec_core_static.a
-%{_libdir}/liblcevc_dec_enhancement_cpu.a
-%{_libdir}/liblcevc_dec_overlay_images.a
+%{_libdir}/liblcevc_dec_common.a
+%{_libdir}/liblcevc_dec_enhancement.a
+%{_libdir}/liblcevc_dec_extract.a
+%{_libdir}/liblcevc_dec_pipeline.a
+%{_libdir}/liblcevc_dec_pixel_processing.a
+%{_libdir}/liblcevc_dec_sequencer.a
 %{_libdir}/liblcevc_dec_unit_test_utilities.a
 %{_libdir}/liblcevc_dec_utility.a
+%{_libdir}/pkgconfig/lcevc_dec.pc
 
 %files samples
+%{_bindir}/lcevc_dec_common_test_unit
+%{_bindir}/lcevc_dec_enhancement_sample
+%{_bindir}/lcevc_dec_enhancement_test_unit
+%{_bindir}/lcevc_dec_legacy_test_unit
+%{_bindir}/lcevc_dec_pipeline_cpu_test_unit
+%{_bindir}/lcevc_dec_pipeline_legacy_test_unit
+%{_bindir}/lcevc_dec_pipeline_test_unit
+%{_bindir}/lcevc_dec_pixel_processing_test_unit
 %{_bindir}/lcevc_dec_sample
 %{_bindir}/lcevc_dec_test_harness
 %{_bindir}/lcevc_dec_test_unit
 %{_bindir}/lcevc_dec_utility_test_unit
-%{_bindir}/lcevc_core_test_unit
-%{_bindir}/lcevc_core_sequencing_test_unit
+%{_bindir}/lcevc_sequencer_test_unit
 
 %changelog
 %autochangelog
