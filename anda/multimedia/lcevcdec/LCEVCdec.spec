@@ -142,10 +142,9 @@ python3 src/func_tests/run_tests.py
 %files
 %license LICENSE.md COPYING
 %doc README.md
-%{_libdir}/liblcevc_dec_api.so.3
-%{_libdir}/liblcevc_dec_api.so.%{version}
-%{_libdir}/liblcevc_dec_core.so.3
-%{_libdir}/liblcevc_dec_core.so.%{version}
+%{_libdir}/liblcevc_dec_legacy.so.1
+%{_libdir}/liblcevc_dec_pipeline_cpu.so.1
+%{_libdir}/liblcevc_dec_pipeline_legacy.so.1
 
 %files devel
 %{_includedir}/LCEVC
