@@ -33,6 +33,7 @@ cp -r usr %buildroot/
 %_userunitdir/gamescope-session-plus@.service
 %_datadir/gamescope-session-plus/device-quirks
 %_datadir/gamescope-session-plus/gamescope-session-plus
+%_datadir/gamescope/scripts/50-custom/50-disable-explicit-sync.lua
 
 %changelog
 %autochangelog
