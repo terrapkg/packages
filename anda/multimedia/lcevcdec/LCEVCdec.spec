@@ -132,6 +132,7 @@ python3 src/func_tests/run_tests.py
 %doc README.md
 %endif
 %{_includedir}/LCEVC
+%ifnarch %{ix86}
 %{_libdir}/liblcevc_dec_api.so
 %{_libdir}/liblcevc_dec_legacy.so
 %{_libdir}/liblcevc_dec_pipeline_cpu.so
@@ -147,6 +148,7 @@ python3 src/func_tests/run_tests.py
 %{_libdir}/liblcevc_dec_unit_test_utilities.a
 %{_libdir}/liblcevc_dec_utility.a
 %{_libdir}/pkgconfig/lcevc_dec.pc
+%endif
 
 %files samples
 %{_bindir}/lcevc_dec_common_test_unit
