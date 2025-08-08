@@ -1,7 +1,7 @@
 %global pypi_name copyparty
 
 Name:           %{pypi_name}
-Version:        1.18.10
+Version:        1.19.0
 Release:        1%?dist
 Summary:        Portable, featureful, and fast file server 
 URL:            https://github.com/9001/copyparty
