@@ -17,6 +17,7 @@ Packager:       madonuko <mado@fyralabs.com>
 Provides:       bw
 
 BuildRequires:  nodejs-npm
+BuildRequires:  gcc-c++ gcc make
 
 %description
 %summary.
