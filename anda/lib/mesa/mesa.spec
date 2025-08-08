@@ -12,6 +12,7 @@
 %if !0%{?rhel}
 %global with_r300 1
 %global with_r600 1
+%global with_nine 1
 %if 0%{?with_vulkan_hw}
 %global with_nvk %{with_vulkan_hw}
 %endif
@@ -29,6 +30,7 @@
 %ifarch %{ix86} x86_64
 %global with_crocus 1
 %global with_iris   1
+%global with_xa     1
 %global with_intel_clc 1
 %global intel_platform_vulkan %{?with_vulkan_hw:,intel,intel_hasvk}%{!?with_vulkan_hw:%{nil}}
 %if !0%{?rhel}
@@ -54,6 +56,7 @@
 %global with_freedreno 1
 %global with_kmsro     1
 %global with_panfrost  1
+%global with_xa        1
 %if 0%{?with_asahi}
 %global asahi_platform_vulkan %{?with_vulkan_hw:,asahi}%{!?with_vulkan_hw:%{nil}}
 %endif
@@ -80,8 +83,8 @@ Summary:        Mesa graphics libraries
 # This should not break anything by default as the Mesa stream is ***EXPLICITLY***
 # disabled by default, and has to be enabled manually. See `terra/release/terra-mesa.repo` for details.
 Epoch:          1
-Version:        25.2.0
-Release:        1%?dist
+Version:        25.1.7
+Release:        2%?dist
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0
 URL:            http://www.mesa3d.org
 
@@ -173,7 +176,6 @@ BuildRequires:  (crate(proc-macro2) >= 1.0.56 with crate(proc-macro2) < 2)
 BuildRequires:  (crate(quote) >= 1.0.25 with crate(quote) < 2)
 BuildRequires:  (crate(syn/clone-impls) >= 2.0.15 with crate(syn/clone-impls) < 3)
 BuildRequires:  (crate(unicode-ident) >= 1.0.6 with crate(unicode-ident) < 2)
-BuildRequires:  (crate(rustc-hash) >= 2.1.1 with crate(rustc-hash) < 3)
 %endif
 %if %{with valgrind}
 BuildRequires:  pkgconfig(valgrind)
@@ -299,6 +301,25 @@ Provides:       libgbm-devel%{?_isa}
 %description libgbm-devel
 %{summary}.
 
+%if 0%{?with_xa}
+%package libxatracker
+Summary:        Mesa XA state tracker
+Provides:       libxatracker
+Provides:       libxatracker%{?_isa}
+
+%description libxatracker
+%{summary}.
+
+%package libxatracker-devel
+Summary:        Mesa XA state tracker development package
+Requires:       %{name}-libxatracker%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:       libxatracker-devel
+Provides:       libxatracker-devel%{?_isa}
+
+%description libxatracker-devel
+%{summary}.
+%endif
+
 %if 0%{?with_opencl}
 %package libOpenCL
 Summary:        Mesa OpenCL runtime library
@@ -323,6 +344,21 @@ Requires:       %{name}-libOpenCL%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{rele
 Summary:        Mesa TensorFlow Lite delegate
 
 %description libTeflon
+%{summary}.
+%endif
+
+%if 0%{?with_nine}
+%package libd3d
+Summary:        Mesa Direct3D9 state tracker
+
+%description libd3d
+%{summary}.
+
+%package libd3d-devel
+Summary:        Mesa Direct3D9 state tracker development package
+Requires:       %{name}-libd3d%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+
+%description libd3d-devel
 %{summary}.
 %endif
 
@@ -363,7 +399,7 @@ export MESON_PACKAGE_CACHE_DIR="%{cargo_registry}/"
 
 %meson \
   -Dplatforms=x11,wayland \
-  -Dgallium-mediafoundation=disabled \
+  -Dosmesa=true \
 %if 0%{?with_hardware}
   -Dgallium-drivers=llvmpipe,virgl,nouveau%{?with_r300:,r300}%{?with_crocus:,crocus}%{?with_i915:,i915}%{?with_iris:,iris}%{?with_vmware:,svga}%{?with_radeonsi:,radeonsi}%{?with_r600:,r600}%{?with_asahi:,asahi}%{?with_freedreno:,freedreno}%{?with_etnaviv:,etnaviv}%{?with_tegra:,tegra}%{?with_vc4:,vc4}%{?with_v3d:,v3d}%{?with_lima:,lima}%{?with_panfrost:,panfrost}%{?with_vulkan_hw:,zink}%{?with_d3d12:,d3d12} \
 %else
@@ -371,9 +407,12 @@ export MESON_PACKAGE_CACHE_DIR="%{cargo_registry}/"
 %endif
   -Dgallium-vdpau=%{?with_vdpau:enabled}%{!?with_vdpau:disabled} \
   -Dgallium-va=%{?with_va:enabled}%{!?with_va:disabled} \
+  -Dgallium-xa=%{?with_xa:enabled}%{!?with_xa:disabled} \
+  -Dgallium-nine=%{?with_nine:true}%{!?with_nine:false} \
   -Dteflon=%{?with_teflon:true}%{!?with_teflon:false} \
 %if 0%{?with_opencl}
   -Dgallium-rusticl=true \
+  -Dgallium-opencl=disabled \
 %endif
   -Dvulkan-drivers=%{?vulkan_drivers} \
   -Dvulkan-layers=device-select \
@@ -468,6 +507,23 @@ popd
 %{_includedir}/gbm_backend_abi.h
 %{_libdir}/pkgconfig/gbm.pc
 
+%if 0%{?with_xa}
+%files libxatracker
+%if 0%{?with_hardware}
+%{_libdir}/libxatracker.so.2
+%{_libdir}/libxatracker.so.2.*
+%endif
+
+%files libxatracker-devel
+%if 0%{?with_hardware}
+%{_libdir}/libxatracker.so
+%{_includedir}/xa_tracker.h
+%{_includedir}/xa_composite.h
+%{_includedir}/xa_context.h
+%{_libdir}/pkgconfig/xatracker.pc
+%endif
+%endif
+
 %if 0%{?with_teflon}
 %files libTeflon
 %{_libdir}/libteflon.so
@@ -480,6 +536,17 @@ popd
 
 %files libOpenCL-devel
 %{_libdir}/libRusticlOpenCL.so
+%endif
+
+%if 0%{?with_nine}
+%files libd3d
+%dir %{_libdir}/d3d/
+%{_libdir}/d3d/*.so.*
+
+%files libd3d-devel
+%{_libdir}/pkgconfig/d3d.pc
+%{_includedir}/d3dadapter/
+%{_libdir}/d3d/*.so
 %endif
 
 %files dri-drivers
