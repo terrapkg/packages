@@ -10,6 +10,8 @@ License:        BSD-3-Clause
 URL:            https://github.com/raspberrypi-ui/raindrop
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 Source0:        %url/archive/%commit.tar.gz
+Source1:        org.raspberrypi.raindrop.configure-display.policy
+Patch0:         desktop-file-call-pkexec.patch
 
 BuildRequires: meson
 BuildRequires: ninja-build
@@ -19,15 +21,16 @@ BuildRequires: intltool
 BuildRequires: pkgconfig
 BuildRequires: gcc
 BuildRequires: gtk-layer-shell-devel
+BuildRequires: polkit
 
-Requires: libxml2 libinput wlr-randr gtk3
+Requires: libxml2 libinput wlr-randr gtk3 polkit
 
 %description
 Screen configuration tool for Raspberry Pi Desktop,
 GTK screen configuration tool for labwc and openbox environments.
 
 %prep
-%autosetup -n raindrop-%commit
+%autosetup -n raindrop-%commit -p0
 
 %build
 %meson
@@ -35,11 +38,13 @@ GTK screen configuration tool for labwc and openbox environments.
 
 %install
 %meson_install
+install -Dm644 %{SOURCE1} %{buildroot}/%{_datadir}/polkit-1/actions/org.raspberrypi.raindrop.configure-display.policy
 %find_lang %{name}
 
 %files -f %{name}.lang
 %license debian/copyright
 %{_bindir}/raindrop
+%{_datadir}/polkit-1/actions/org.raspberrypi.raindrop.configure-display.policy
 %{_datadir}/applications/raindrop.desktop
 %{_datadir}/raindrop/ui/raindrop.ui
 
