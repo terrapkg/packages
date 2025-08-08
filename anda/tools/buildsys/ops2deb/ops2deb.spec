@@ -2,7 +2,7 @@
 %define _python_dist_allow_version_zero # upstream issue?
 
 Name:			python3-ops2deb
-Version:		2.6.0
+Version:		2.7.0
 Release:		1%?dist
 Summary:		Generate Debian packages for common devops tools
 License:		MIT
