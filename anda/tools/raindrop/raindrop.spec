@@ -3,11 +3,12 @@
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           raindrop
-Version:        %commit_date.git~%shortcommit
+Version:        0~%commit_date.git~%shortcommit
 Release:        1%?dist
 Summary:        Desktop front-end for arandr and wlrandr
 License:        BSD-3-Clause
 URL:            https://github.com/raspberrypi-ui/raindrop
+Packager:       Owen Zimmerman <owen@fyralabs.com>
 Source0:        %url/archive/%commit.tar.gz
 
 BuildRequires: meson
@@ -34,51 +35,12 @@ GTK screen configuration tool for labwc and openbox environments.
 
 %install
 %meson_install
+%find_lang %{name}
 
-%files
+%files -f %{name}.lang
 %license debian/copyright
 %{_bindir}/raindrop
-%dnl /usr/lib/debug/usr/bin/raindrop-20250530.git~66271d1-1.fcrawhide.x86_64.debug
 %{_datadir}/applications/raindrop.desktop
-%{_datadir}/locale/ar/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/br/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/bs/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/ca/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/ckb/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/cs/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/da/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/de/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/el/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/es/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/et/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/fa/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/fi/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/fr/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/gl/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/he/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/hu/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/hy/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/id/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/it/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/ja/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/kn/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/ko_KR/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/lt/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/nb_NO/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/nl/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/pl/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/pt_BR/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/ro/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/ru/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/sc/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/sk/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/sq/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/sr/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/sv/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/tr/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/uk/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/zh_CN/LC_MESSAGES/raindrop.mo
-%{_datadir}/locale/zh_Hant/LC_MESSAGES/raindrop.mo
 %{_datadir}/raindrop/ui/raindrop.ui
 
 %changelog
