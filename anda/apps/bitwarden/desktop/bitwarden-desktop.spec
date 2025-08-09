@@ -27,14 +27,17 @@ npm ci --include optional --include dev --include prod
 
 %build
 pushd apps/desktop
-touch electron-rebuild && chmod +x ./electron-rebuild
+cat<<EOF > electron-rebuild
+yes | npx electron-rebuild --version $(electron --version)
+EOF
+chmod +x ./electron-rebuild
 cat<<EOF > husky
 #!/bin/sh
 yes | npx husky
 EOF
 chmod +x ./husky
 export PATH="$PATH:$(pwd)"
-npm ci --include optional --include dev --include prod
+npm ci --include optional --include dev --include prod &
 pushd desktop_native/napi
 npm i & 
 %cargo_prep_online
@@ -42,26 +45,28 @@ npm i &
 %{cargo_license_online} > ../../../../LICENSE.napi_dependencies
 wait
 CARGO_HOME=.cargo RUSTC_BOOTSTRAP=1 RUSTFLAGS='%{build_rustflags}' \
-  npm exec napi build --platform --js false --profile rpm -- & #--target %_arch-unknown-linux-gnu
+  npm exec napi build --platform --js false --profile rpm & #--target %_arch-unknown-linux-gnu
 popd
 pushd desktop_native/proxy
 %cargo_prep_online
 #cargo_license_summary_online
 %{cargo_license_online} > ../../../../LICENSE.proxy_dependencies
-#cargo_build
+%cargo_build -- &
 popd
 NODE_ENV=production npm exec webpack --config ./webpack.preload.js &
 NODE_ENV=production npm exec webpack --config ./webpack.main.js &
 NODE_ENV=production npm exec webpack --config ./webpack.renderer.js &
 wait
 rm -rf ./dist
+# jq '.directories.app = "."' electron-builder.json > electron-builder.json.new
+# mv electron-builder.json{.new,}
 yes | npm exec electron-builder --dir # -p never
 
 %install
 pushd apps/desktop
-pushd desktop_native/proxy
-%cargo_install
-popd
+# pushd desktop_native
+# install -Dm755 target/rpm/desktop_proxy -t %buildroot%_bindir
+# popd
 %electron_install
 
 %files
