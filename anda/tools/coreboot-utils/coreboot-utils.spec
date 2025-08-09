@@ -208,6 +208,12 @@ Tools used to dump the two blobs from the factory firmware of many HP
 laptops with 8051-based SMSC KBC1098/KBC1126 embedded controller and
 insert them to the firmware image.
 
+%package        mediatek-coreboot-utilities
+Summary:        Generate MediaTek bootload header
+%description    mediatek-coreboot-utilities
+check-pi-img.py - Check `PI_IMG` firmware.
+gen-bl-img.py - Generate MediaTek bootloader header.
+
 %package        mma
 Summary:        Memory Margin Analysis automation tests
 %description    mma
@@ -216,11 +222,6 @@ Summary:        Memory Margin Analysis automation tests
 %package        msrtool
 Summary:        Dumps chipset-specific MSR registers
 %description    msrtool
-%summary.
-
-%package        mtkheader
-Summary:        Generate MediaTek bootload header
-%description    mtkheader
 %summary.
 
 %package        nvramtool
@@ -443,13 +444,14 @@ install -Dm 755 util/intelp2m/intelp2m %buildroot%_bindir/intelp2m
 install -Dm 755 util/kbc1126/kbc1126_ec_dump %buildroot%_bindir/kbc1126_ec_dump
 install -Dm 755 util/kbc1126/kbc1126_ec_insert %buildroot%_bindir/kbc1126_ec_insert
 
+install -Dm 755 util/mediatek/check-pi-img.py %buildroot%_bindir/check-pi-img
+install -Dm 755 util/mediatek/gen-bl-img.py %buildroot%_bindir/gen-bl-img
+
 install -Dm 755 util/mma/mma_automated_test.sh %buildroot%_bindir/mma_automated_test
 install -Dm 755 util/mma/mma_get_result.sh %buildroot%_bindir/mma_get_result
 install -Dm 755 util/mma/mma_setup_test.sh %buildroot%_bindir/mma_setup_test
 
 install -Dm 755 util/msrtool/msrtool %buildroot%_bindir/msrtool
-
-install -Dm 755 util/mtkheader/gen-bl-img.py %buildroot%_bindir/gen-bl-img
 
 install -Dm 755 util/nvramtool/nvramtool %buildroot%_bindir/nvramtool
 
@@ -458,12 +460,15 @@ install -Dm 755 util/pmh7tool/pmh7tool %buildroot%_bindir/pmh7tool
 install -Dm 755 util/post/post %buildroot%_bindir/post
 
 install -Dm 755 util/qualcomm/createxbl.py %buildroot%_bindir/createxbl
+install -Dm 755 util/qualcomm/create_multielf.py %buildroot%_bindir/create_multielf
 install -Dm 755 util/qualcomm/ipqheader.py %buildroot%_bindir/ipqheader
 install -Dm 755 util/qualcomm/mbncat.py %buildroot%_bindir/mbncat
 install -Dm 755 util/qualcomm/mbn_tools.py %buildroot%_bindir/mbn_tools
 install -Dm 755 util/qualcomm/qgpt.py %buildroot%_bindir/qgpt
-install -Dm 755 util/qualcomm/sifive-gpt.py %buildroot%_bindir/sifive-gpt
-install -Dm 755 util/qualcomm/starfive-jh7110-spl-tool/ %buildroot%_bindir/spl_tool #funny?
+install -Dm 755 util/qualcomm/elf_segment_extractor.py %buildroot%_bindir/elf_segment_extractor
+
+# install -Dm 755 util/qualcomm/sifive-gpt.py %buildroot%_bindir/sifive-gpt
+# install -Dm 755 util/qualcomm/starfive-jh7110-spl-tool/ %buildroot%_bindir/spl_tool #funny?
 
 install -Dm 755 util/riscv/make-spike-elf.sh %buildroot%_bindir/make-spike-elf
 
@@ -617,13 +622,14 @@ install -Dm 755 util/xcompile/xcompile %buildroot%_libdir/xcompile
 %{_bindir}/kbc1126_ec_insert
 %doc util/kbc1126/*.md
 
+%files mediatek-coreboot-utilities
+%{_bindir}/gen-bl-img
+%{_bindir}/check-pi-img
+
 %files mma
 %{_bindir}/mma_automated_test
 %{_bindir}/mma_get_result
 %{_bindir}/mma_setup_test
-
-%files mtkheader
-%{_bindir}/gen-bl-img
 
 %files msrtool
 %{_bindir}/msrtool
@@ -646,10 +652,12 @@ install -Dm 755 util/xcompile/xcompile %buildroot%_libdir/xcompile
 
 %files qualcomm-coreboot-utilities
 %{_bindir}/createxbl
+%{_bindir}/create_multielf
 %{_bindir}/ipqheader
 %{_bindir}/mbncat
 %{_bindir}/mbn_tools
 %{_bindir}/qgpt
+%{_bindir}/elf_segment_extractor
 
 %files riscv-coreboot-utilities
 %{_bindir}/make-spike-elf
