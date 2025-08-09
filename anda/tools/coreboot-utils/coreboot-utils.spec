@@ -9,6 +9,7 @@ License:        BSD-3-Clause AND Apache-2.0 AND CC-BY-SA-3.0 AND GPL-2.0-only AN
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
 BuildRequires:  anda-srpm-macros
+BuildRequires:  go-rpm-macros
 BuildRequires:  pkg-config
 
 BuildRequires:  gcc
@@ -86,6 +87,9 @@ apcb_v3_edit - This tool allows patching an existing APCB v3 binary with up to  
 
 %package        autoport
 Summary:        Porting coreboot using autoport
+Requires:       acpica dmidecode ectool glibc pciutils
+Requires:       inteltool = %{version}
+Requires:       superiotool = %{version}
 %description    autoport
 Automated porting coreboot to Sandy Bridge/Ivy Bridge/Haswell platforms.
 
@@ -313,7 +317,6 @@ Summary:        Cross compile setup
 
 %prep
 %git_clone https://review.coreboot.org/coreboot.git %version
-ls -la src/commonlib/bsd/include/commonlib/bsd
 
 %build
 %if 0%{?fedora} >= 42
@@ -323,7 +326,7 @@ export CXX=g++-14
 
 pushd util
 %make_build -C amdfwtool LDFLAGS="-fPIE -lcrypto"
-%dnl %make_build -C archive
+%dnl %make_build -C archive # bugged code
 %make_build -C bincfg
 %make_build -C bucts LDFLAGS="-fPIE"
 %make_build -C cbmem CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS"
@@ -347,13 +350,8 @@ pushd util
 %make_build -C riscv/starfive-jh7110-spl-tool LDFLAGS="-fPIE"
 
 pushd autoport
-export GOPATH="%{_builddir}/coreboot/util/autoport/autoport"
-export CGO_CPPFLAGS="%{CPPFLAGS}"
-export CGO_CFLAGS="%{CFLAGS}"
-export CGO_CXXFLAGS="%{CXXFLAGS}"
-export CGO_LDFLAGS="%{LDFLAGS}"
 export GOFLAGS="-buildmode=pie -trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw"
-%go_build_online
+%gobuild -o %{_builddir}/autoport
 popd
 
 pushd msrtool
@@ -388,7 +386,7 @@ install -Dm 755 util/apcb/apcb_v3_edit.py %buildroot%_bindir/apcb_v3_edit
 
 %dnl install -Dm 777 util/archive/archive %buildroot%_bindir/archive
 
-install -Dm 755 util/autoport/autoport %buildroot%_bindir/autoport
+install -Dm 755 %{_builddir}/autoport %buildroot%_bindir/autoport
 
 install -Dm 755 util/bincfg/bincfg %buildroot%_bindir/bincfg
 
