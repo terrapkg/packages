@@ -316,13 +316,12 @@ Summary:        Cross compile setup
 ls -la src/commonlib/bsd/include/commonlib/bsd
 
 %build
-%dnl export CFLAGS="%{optflags} -fPIE"
-%dnl export LDFLAGS="-pie"
 %if 0%{?fedora} >= 42
 export CC=gcc-14
 export CXX=g++-14
 %endif
-cd util
+
+pushd util
 %make_build -C amdfwtool LDFLAGS="-fPIE -lcrypto"
 %dnl %make_build -C archive
 %make_build -C bincfg
@@ -332,8 +331,7 @@ cd util
 %make_build -C ectool LDFLAGS="-fPIE"
 %make_build -C futility
 %make_build -C ifdtool
-%make_build -C intelmetool CFLAGS+="-I src/commonlib/bsd/include"
-%dnl CPPFLAGS="-I../../"
+%make_build -C intelmetool CFLAGS="%{optflags} -I %{_builddir}/coreboot/src/commonlib/bsd/include"
 %make_build -C nvramtool LDFLAGS="-fPIE"
 %make_build -C inteltool
 %make_build -C superiotool
@@ -349,7 +347,7 @@ cd util
 %make_build -C riscv/starfive-jh7110-spl-tool LDFLAGS="-fPIE"
 
 pushd autoport
-export GOPATH="abuild/"
+export GOPATH="%{_builddir}/coreboot/util/autoport/autoport"
 export CGO_CPPFLAGS="%{CPPFLAGS}"
 export CGO_CFLAGS="%{CFLAGS}"
 export CGO_CXXFLAGS="%{CXXFLAGS}"
@@ -370,8 +368,7 @@ pushd redhat-linux-build
 %ninja_build
 popd
 popd
-
-ls -la
+popd
 
 %install
 install -Dm 777 util/abuild/abuild %buildroot%_bindir/abuild
@@ -391,7 +388,7 @@ install -Dm 755 util/apcb/apcb_v3_edit.py %buildroot%_bindir/apcb_v3_edit
 
 %dnl install -Dm 777 util/archive/archive %buildroot%_bindir/archive
 
-install -Dm 755 autoport/build/bin/coreboot-utils %buildroot%_bindir/autoport
+install -Dm 755 util/autoport/autoport %buildroot%_bindir/autoport
 
 install -Dm 755 util/bincfg/bincfg %buildroot%_bindir/bincfg
 
