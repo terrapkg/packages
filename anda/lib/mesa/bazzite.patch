@@ -1,16 +1,7 @@
-From cc3cc28e7b1e76d3640be7a497271475fdcfc550 Mon Sep 17 00:00:00 2001
-From: Antheas Kapenekakis <git@antheas.dev>
-Date: Sat, 15 Mar 2025 16:39:08 +0100
-Subject: [PATCH 1/9] [BEGIN] SteamOS Changes
-
--- 
-2.50.1
-
-
 From 21b062a757a202dcb737d40442b6145c34bb1e48 Mon Sep 17 00:00:00 2001
 From: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
 Date: Fri, 14 Jan 2022 15:58:45 +0100
-Subject: [PATCH 2/9] STEAMOS: radv: min image count override for FH5
+Subject: [PATCH 01/11] STEAMOS: radv: min image count override for FH5
 
 Otherwise in combination with the vblank time reservation in
 gamescope the game could get stuck in low power states.
@@ -39,8 +30,8 @@ index b82e8d4da4d..c8d059571ad 100644
 From e837814b4f33e48eaf6a79975cb738da39ed0fd2 Mon Sep 17 00:00:00 2001
 From: Samuel Pitoiset <samuel.pitoiset@gmail.com>
 Date: Thu, 22 Feb 2024 22:32:45 +0100
-Subject: [PATCH 3/9] STEAMOS: Dynamic swapchain override for gamescope limiter
- for DRI3 only
+Subject: [PATCH 02/11] STEAMOS: Dynamic swapchain override for gamescope
+ limiter for DRI3 only
 
 The original patch (from Bas) contained WSI VK support too but it's
 been removed because the Gamescope WSI layer already handles that.
@@ -146,7 +137,7 @@ index 26f138d1b83..3f0f3f66fac 100644
 From 354cf8783e49b082c97982f2e5be305ad6e4ab50 Mon Sep 17 00:00:00 2001
 From: Antheas Kapenekakis <git@antheas.dev>
 Date: Sat, 15 Mar 2025 16:39:25 +0100
-Subject: [PATCH 4/9] [BEGIN] SteamOS Backports
+Subject: [PATCH 03/11] [BEGIN] SteamOS Backports
 
 -- 
 2.50.1
@@ -155,7 +146,7 @@ Subject: [PATCH 4/9] [BEGIN] SteamOS Backports
 From c5a4eab20075dfa2f2bdfb87e55ecec262ef00f6 Mon Sep 17 00:00:00 2001
 From: Antheas Kapenekakis <git@antheas.dev>
 Date: Sat, 15 Mar 2025 16:39:33 +0100
-Subject: [PATCH 5/9] [BEGIN] Our Mesa backports
+Subject: [PATCH 04/11] [BEGIN] Our Mesa backports
 
 -- 
 2.50.1
@@ -164,7 +155,7 @@ Subject: [PATCH 5/9] [BEGIN] Our Mesa backports
 From 221b11df6d9cd7b66c8502fa51d8d72cfc377e5e Mon Sep 17 00:00:00 2001
 From: Antheas Kapenekakis <git@antheas.dev>
 Date: Mon, 24 Mar 2025 19:50:51 +0100
-Subject: [PATCH 6/9] Revert "winsys/amdgpu: use VM_ALWAYS_VALID for all VRAM
+Subject: [PATCH 05/11] Revert "winsys/amdgpu: use VM_ALWAYS_VALID for all VRAM
  and GTT allocations"
 
 This reverts commit 8c91624614c1f939974fe0d2d1a3baf83335cecb.
@@ -197,7 +188,7 @@ index d5646e9660b..a51348b44a8 100644
 From cf8c0d66ed49f99d0d259c28fe72174d58c06de7 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Daniel=20Sch=C3=BCrmann?= <daniel@schuermann.dev>
 Date: Mon, 24 Mar 2025 21:25:29 +0100
-Subject: [PATCH 7/9] vulkan: implement VK_AMD_anti_lag as implicit vulkan
+Subject: [PATCH 06/11] vulkan: implement VK_AMD_anti_lag as implicit vulkan
  layer
 
 VkLayer_MESA_anti_lag is a lightweight implicit layer which provides
@@ -2021,19 +2012,427 @@ index 3225b5f4a9d..cf62ecc6ae7 100644
 2.50.1
 
 
-From d8a839a64e5680f20c9280baad8860b4c0fc1ba9 Mon Sep 17 00:00:00 2001
+From e4adbbe12d9aafdaf80f340f685cf7bd7758d385 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Daniel=20Sch=C3=BCrmann?= <daniel@schuermann.dev>
+Date: Thu, 30 May 2024 11:55:46 +0200
+Subject: [PATCH 07/11] util/time: add os_time_nanosleep_until() function
+
+Part-of: <https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/34242>
+---
+ src/util/os_time.c | 16 +++++++++++++++-
+ src/util/os_time.h |  2 ++
+ 2 files changed, 17 insertions(+), 1 deletion(-)
+
+diff --git a/src/util/os_time.c b/src/util/os_time.c
+index da8ad7a80b8..209b7ae442c 100644
+--- a/src/util/os_time.c
++++ b/src/util/os_time.c
+@@ -60,7 +60,21 @@ os_time_get_nano(void)
+    return ts.tv_nsec + ts.tv_sec*INT64_C(1000000000);
+ }
+ 
+-
++void
++os_time_nanosleep_until(int64_t deadline)
++{
++#if DETECT_OS_LINUX || DETECT_OS_MANAGARM
++   struct timespec time;
++   time.tv_sec = deadline / INT64_C(1000000000);
++   time.tv_nsec = deadline % INT64_C(1000000000);
++   while (clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &time, &time) == EINTR);
++#else
++   int64_t duration = deadline - os_time_get_nano();
++   if (duration > 0) {
++      os_time_sleep(duration / 1000);
++   }
++#endif
++}
+ 
+ void
+ os_time_sleep(int64_t usecs)
+diff --git a/src/util/os_time.h b/src/util/os_time.h
+index 6ca37eac769..4217ff37b68 100644
+--- a/src/util/os_time.h
++++ b/src/util/os_time.h
+@@ -74,6 +74,8 @@ os_localtime(const time_t *timer, struct tm *buf)
+ #endif
+ }
+ 
++void
++os_time_nanosleep_until(int64_t deadline);
+ 
+ /*
+  * Sleep.
+-- 
+2.50.1
+
+
+From 22d1adddbaff70c62207396a12576329f477174f Mon Sep 17 00:00:00 2001
+From: Hans-Kristian Arntzen <post@arntzen-software.no>
+Date: Thu, 26 Jun 2025 13:00:20 +0200
+Subject: [PATCH 08/11] anti-lag: Only consider timestamps from queues which
+ have presented.
+
+Avoids stray submissions to compute queues to nullify the delay.
+
+Signed-off-by: Hans-Kristian Arntzen <post@arntzen-software.no>
+Part-of: <https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/34242>
+---
+ src/vulkan/anti-lag-layer/anti_lag_layer.c    | 24 ++++++++++++++++++-
+ src/vulkan/anti-lag-layer/anti_lag_layer.h    |  3 +++
+ .../anti-lag-layer/anti_lag_layer_interface.c |  2 ++
+ 3 files changed, 28 insertions(+), 1 deletion(-)
+
+diff --git a/src/vulkan/anti-lag-layer/anti_lag_layer.c b/src/vulkan/anti-lag-layer/anti_lag_layer.c
+index 6c21e074024..d7543a5dfd9 100644
+--- a/src/vulkan/anti-lag-layer/anti_lag_layer.c
++++ b/src/vulkan/anti-lag-layer/anti_lag_layer.c
+@@ -8,6 +8,7 @@
+ #include <string.h>
+ #include "util/os_time.h"
+ #include "util/simple_mtx.h"
++#include "util/u_atomic.h"
+ #include "vulkan/vulkan_core.h"
+ #include "ringbuffer.h"
+ #include "vk_alloc.h"
+@@ -400,7 +401,11 @@ get_commandbuffer(device_context *ctx, queue_context *queue_ctx, VkCommandBuffer
+    /* Begin critical section. */
+    ringbuffer_lock(ctx->frames);
+    ringbuffer_lock(queue_ctx->queries);
+-   struct query *query = allocate_query(ctx, queue_ctx);
++
++   /* Don't record timestamps for queues that are not deemed sensitive to latency. */
++   struct query *query =
++      p_atomic_read(&queue_ctx->latency_sensitive) ? allocate_query(ctx, queue_ctx) : NULL;
++
+    if (query == NULL) {
+       ringbuffer_unlock(queue_ctx->queries);
+       ringbuffer_unlock(ctx->frames);
+@@ -588,3 +593,20 @@ anti_lag_QueueSubmit(VkQueue queue, uint32_t submitCount, const VkSubmitInfo *pS
+    vk_free(&ctx->alloc, buf);
+    return res;
+ }
++
++VKAPI_ATTR VkResult VKAPI_CALL
++anti_lag_QueuePresentKHR(VkQueue queue, const VkPresentInfoKHR *pPresentInfo)
++{
++   /* When multiple queues are in flight, the min-delay approach
++    * has problems. An async compute queue could be submitted to
++    * with very low delay while the main graphics queue would be swamped with work.
++    * If we take a global min-delay over all queues, the algorithm would
++    * assume that there is very low delay and thus sleeps are disabled, but
++    * unless the graphics work depends directly on the async compute work,
++    * this is a false assumption. */
++   device_context *ctx = get_device_context(queue);
++   queue_context *queue_ctx = get_queue_context(ctx, queue);
++   p_atomic_set(&queue_ctx->latency_sensitive, true);
++
++   return ctx->vtable.QueuePresentKHR(queue, pPresentInfo);
++}
+diff --git a/src/vulkan/anti-lag-layer/anti_lag_layer.h b/src/vulkan/anti-lag-layer/anti_lag_layer.h
+index 31abb0f9aee..d03d246d79c 100644
+--- a/src/vulkan/anti-lag-layer/anti_lag_layer.h
++++ b/src/vulkan/anti-lag-layer/anti_lag_layer.h
+@@ -39,6 +39,7 @@ struct query {
+ typedef struct queue_context {
+    VkQueue queue;
+    uint32_t queue_family_idx;
++   bool latency_sensitive;
+    VkCommandPool cmdPool;
+    VkQueryPool queryPool;
+    VkSemaphore semaphore;
+@@ -74,6 +75,7 @@ typedef struct device_context {
+       DECLARE_HOOK(DestroySemaphore);
+       DECLARE_HOOK(GetSemaphoreCounterValue);
+       DECLARE_HOOK(WaitSemaphores);
++      DECLARE_HOOK(QueuePresentKHR);
+ #undef DECLARE_HOOK
+    } vtable;
+ 
+@@ -105,6 +107,7 @@ VkResult anti_lag_QueueSubmit2(VkQueue queue, uint32_t submitCount, const VkSubm
+                                VkFence fence);
+ VkResult anti_lag_QueueSubmit(VkQueue queue, uint32_t submitCount, const VkSubmitInfo *pSubmits,
+                               VkFence fence);
++VkResult anti_lag_QueuePresentKHR(VkQueue queue, const VkPresentInfoKHR *pPresentInfo);
+ 
+ VkResult anti_lag_NegotiateLoaderLayerInterfaceVersion(VkNegotiateLayerInterface *pVersionStruct);
+ 
+diff --git a/src/vulkan/anti-lag-layer/anti_lag_layer_interface.c b/src/vulkan/anti-lag-layer/anti_lag_layer_interface.c
+index d2ca4a7dd44..6a803e24fe6 100644
+--- a/src/vulkan/anti-lag-layer/anti_lag_layer_interface.c
++++ b/src/vulkan/anti-lag-layer/anti_lag_layer_interface.c
+@@ -194,6 +194,7 @@ init_device_vtable(device_context *ctx, PFN_vkGetDeviceProcAddr gpa, PFN_vkSetDe
+    INIT_HOOK(CmdWriteTimestamp);
+    INIT_HOOK(CreateSemaphore);
+    INIT_HOOK(DestroySemaphore);
++   INIT_HOOK(QueuePresentKHR);
+    INIT_HOOK_ALIAS(GetSemaphoreCounterValue, GetSemaphoreCounterValueKHR, timeline_semaphore_khr);
+    INIT_HOOK_ALIAS(WaitSemaphores, WaitSemaphoresKHR, timeline_semaphore_khr);
+ #undef INIT_HOOK
+@@ -833,6 +834,7 @@ static const struct {
+    ADD_HOOK(QueueSubmit),
+    ADD_HOOK(QueueSubmit2),
+    ADD_HOOK(QueueSubmit2KHR),
++   ADD_HOOK(QueuePresentKHR),
+ };
+ #undef ADD_HOOK
+ 
+-- 
+2.50.1
+
+
+From be19fb7abf7dba7aaff2ff809a6a0a8f6ac68ce4 Mon Sep 17 00:00:00 2001
+From: Hans-Kristian Arntzen <post@arntzen-software.no>
+Date: Thu, 26 Jun 2025 14:22:07 +0200
+Subject: [PATCH 09/11] anti-lag: Submit timestamps early in a frame.
+
+Allows detecting if the queue ends up going idle due to
+a cross-queue dependency. Since we're only considering delays from
+specific queues, we would not be able to detect low-latency situations
+arising from the start of a frame happening on async queues.
+
+Until we observe real work happening for a queue in a frame context,
+submit timestamps ahead of any other waits.
+
+Signed-off-by: Hans-Kristian Arntzen <post@arntzen-software.no>
+Part-of: <https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/34242>
+---
+ src/vulkan/anti-lag-layer/anti_lag_layer.c | 114 ++++++++++++++++-----
+ 1 file changed, 86 insertions(+), 28 deletions(-)
+
+diff --git a/src/vulkan/anti-lag-layer/anti_lag_layer.c b/src/vulkan/anti-lag-layer/anti_lag_layer.c
+index d7543a5dfd9..f730ca00f9c 100644
+--- a/src/vulkan/anti-lag-layer/anti_lag_layer.c
++++ b/src/vulkan/anti-lag-layer/anti_lag_layer.c
+@@ -366,13 +366,9 @@ get_queue_context(device_context *ctx, VkQueue queue)
+ }
+ 
+ static struct query *
+-allocate_query(device_context *ctx, queue_context *queue_ctx)
++allocate_query(queue_context *queue_ctx, uint32_t frame_idx)
+ {
+-   if (!ctx->active_frame)
+-      return NULL;
+-
+    /* Allow for a single frame to use at most half of the query pool. */
+-   uint32_t frame_idx = ringbuffer_index(ctx->frames, ctx->active_frame);
+    if (queue_ctx->submissions_per_frame[frame_idx] > MAX_QUERIES / 2)
+       return NULL;
+ 
+@@ -394,7 +390,8 @@ allocate_query(device_context *ctx, queue_context *queue_ctx)
+ }
+ 
+ static bool
+-get_commandbuffer(device_context *ctx, queue_context *queue_ctx, VkCommandBuffer *cmdbuffer)
++get_commandbuffer(device_context *ctx, queue_context *queue_ctx, VkCommandBuffer *cmdbuffer,
++                  bool has_command_buffer, bool has_wait_before_cmdbuffer, bool *early_submit)
+ {
+    uint64_t now = os_time_get_nano();
+ 
+@@ -403,8 +400,24 @@ get_commandbuffer(device_context *ctx, queue_context *queue_ctx, VkCommandBuffer
+    ringbuffer_lock(queue_ctx->queries);
+ 
+    /* Don't record timestamps for queues that are not deemed sensitive to latency. */
+-   struct query *query =
+-      p_atomic_read(&queue_ctx->latency_sensitive) ? allocate_query(ctx, queue_ctx) : NULL;
++   bool need_query = ctx->active_frame && p_atomic_read(&queue_ctx->latency_sensitive);
++   uint32_t frame_idx;
++   struct query *query = NULL;
++
++   if (need_query) {
++      assert(ctx->active_frame->state == FRAME_SUBMIT);
++      frame_idx = ringbuffer_index(ctx->frames, ctx->active_frame);
++
++      /* For the very first submissions in a frame (until we observe real GPU work happening),
++       * we would want to submit a timestamp before anything else, including waits.
++       * This allows us to detect a sensitive queue going idle before we can submit work to it.
++       * If the queue in question depends on semaphores from other unrelated queues,
++       * we may not easily be able to detect that situation without adding a lot more complexity.
++       */
++      *early_submit = has_wait_before_cmdbuffer && queue_ctx->submissions_per_frame[frame_idx] == 0;
++      if (has_command_buffer || *early_submit)
++         query = allocate_query(queue_ctx, frame_idx);
++   }
+ 
+    if (query == NULL) {
+       ringbuffer_unlock(queue_ctx->queries);
+@@ -421,8 +434,6 @@ get_commandbuffer(device_context *ctx, queue_context *queue_ctx, VkCommandBuffer
+    queue_ctx->semaphore_value++;
+ 
+    /* Add new submission entry for the current frame */
+-   assert(ctx->active_frame->state == FRAME_SUBMIT);
+-   uint32_t frame_idx = ringbuffer_index(ctx->frames, ctx->active_frame);
+    queue_ctx->submissions_per_frame[frame_idx]++;
+ 
+    ringbuffer_unlock(queue_ctx->queries);
+@@ -435,13 +446,17 @@ queue_submit2(device_context *ctx, VkQueue queue, uint32_t submitCount,
+               const VkSubmitInfo2 *pSubmits, VkFence fence, PFN_vkQueueSubmit2 queueSubmit2)
+ {
+    queue_context *queue_ctx = get_queue_context(ctx, queue);
+-   if (!ctx->active_frame || !queue_ctx)
++   if (!ctx->active_frame || !queue_ctx || !submitCount)
+       return queueSubmit2(queue, submitCount, pSubmits, fence);
+ 
++   bool has_wait_before_cmdbuffer = false;
+    int first = -1;
+    VkCommandBuffer timestamp_cmdbuffer;
+    /* Check if any submission contains commandbuffers. */
+    for (unsigned i = 0; i < submitCount; i++) {
++      if (pSubmits[i].waitSemaphoreInfoCount != 0)
++         has_wait_before_cmdbuffer = true;
++
+       if (pSubmits[i].commandBufferInfoCount) {
+          first = i;
+          break;
+@@ -449,23 +464,42 @@ queue_submit2(device_context *ctx, VkQueue queue, uint32_t submitCount,
+    }
+ 
+    /* Get timestamp commandbuffer. */
+-   if (first == -1 || !get_commandbuffer(ctx, queue_ctx, &timestamp_cmdbuffer))
++   bool early_submit;
++   if (!get_commandbuffer(ctx, queue_ctx, &timestamp_cmdbuffer, first >= 0,
++                          has_wait_before_cmdbuffer, &early_submit)) {
+       return queueSubmit2(queue, submitCount, pSubmits, fence);
++   }
+ 
+    VkSubmitInfo2 *submits;
+    VkCommandBufferSubmitInfo *cmdbuffers;
+    VkSemaphoreSubmitInfo *semaphores;
+    VK_MULTIALLOC(ma);
+-   vk_multialloc_add(&ma, &submits, VkSubmitInfo2, submitCount);
+-   vk_multialloc_add(&ma, &cmdbuffers, VkCommandBufferSubmitInfo,
+-                     pSubmits[first].commandBufferInfoCount + 1);
+-   vk_multialloc_add(&ma, &semaphores, VkSemaphoreSubmitInfo,
+-                     pSubmits[first].signalSemaphoreInfoCount + 1);
++
++   if (early_submit) {
++      vk_multialloc_add(&ma, &submits, VkSubmitInfo2, submitCount + 1);
++      vk_multialloc_add(&ma, &cmdbuffers, VkCommandBufferSubmitInfo, 1);
++      vk_multialloc_add(&ma, &semaphores, VkSemaphoreSubmitInfo, 1);
++      first = 0;
++   } else {
++      vk_multialloc_add(&ma, &submits, VkSubmitInfo2, submitCount);
++      vk_multialloc_add(&ma, &cmdbuffers, VkCommandBufferSubmitInfo,
++                        pSubmits[first].commandBufferInfoCount + 1);
++      vk_multialloc_add(&ma, &semaphores, VkSemaphoreSubmitInfo,
++                        pSubmits[first].signalSemaphoreInfoCount + 1);
++   }
++
+    void *buf = vk_multialloc_zalloc(&ma, &ctx->alloc, VK_SYSTEM_ALLOCATION_SCOPE_COMMAND);
+    if (!buf)
+       return VK_ERROR_OUT_OF_HOST_MEMORY;
+ 
+-   memcpy(submits, pSubmits, sizeof(VkSubmitInfo2) * submitCount);
++   if (early_submit) {
++      memcpy(submits + 1, pSubmits, sizeof(VkSubmitInfo2) * submitCount);
++      submits[0] = (VkSubmitInfo2){.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO_2};
++      submitCount++;
++   } else {
++      memcpy(submits, pSubmits, sizeof(VkSubmitInfo2) * submitCount);
++   }
++
+    VkSubmitInfo2 *submit_info = &submits[first];
+ 
+    /* Add commandbuffer to submission. */
+@@ -518,13 +552,17 @@ anti_lag_QueueSubmit(VkQueue queue, uint32_t submitCount, const VkSubmitInfo *pS
+ {
+    device_context *ctx = get_device_context(queue);
+    queue_context *queue_ctx = get_queue_context(ctx, queue);
+-   if (!ctx->active_frame || !queue_ctx)
++   if (!ctx->active_frame || !queue_ctx || !submitCount)
+       return ctx->vtable.QueueSubmit(queue, submitCount, pSubmits, fence);
+ 
++   bool has_wait_before_cmdbuffer = false;
+    int first = -1;
+    VkCommandBuffer timestamp_cmdbuffer;
+-   /* Check if any submission contains commandbuffers. */
++   /* Check if any submission contains commandbuffers or waits before those. */
+    for (unsigned i = 0; i < submitCount; i++) {
++      if (pSubmits[i].waitSemaphoreCount != 0)
++         has_wait_before_cmdbuffer = true;
++
+       if (pSubmits[i].commandBufferCount) {
+          first = i;
+          break;
+@@ -532,8 +570,11 @@ anti_lag_QueueSubmit(VkQueue queue, uint32_t submitCount, const VkSubmitInfo *pS
+    }
+ 
+    /* Get timestamp commandbuffer. */
+-   if (first == -1 || !get_commandbuffer(ctx, queue_ctx, &timestamp_cmdbuffer))
++   bool early_submit;
++   if (!get_commandbuffer(ctx, queue_ctx, &timestamp_cmdbuffer, first >= 0,
++                          has_wait_before_cmdbuffer, &early_submit)) {
+       return ctx->vtable.QueueSubmit(queue, submitCount, pSubmits, fence);
++   }
+ 
+    VkSubmitInfo *submits;
+    VkCommandBuffer *cmdbuffers;
+@@ -541,16 +582,33 @@ anti_lag_QueueSubmit(VkQueue queue, uint32_t submitCount, const VkSubmitInfo *pS
+    VkTimelineSemaphoreSubmitInfo *semaphore_info;
+    uint64_t *semaphore_values;
+    VK_MULTIALLOC(ma);
+-   vk_multialloc_add(&ma, &submits, VkSubmitInfo, submitCount);
+-   vk_multialloc_add(&ma, &cmdbuffers, VkCommandBuffer, pSubmits[first].commandBufferCount + 1);
+-   vk_multialloc_add(&ma, &semaphores, VkSemaphore, pSubmits[first].signalSemaphoreCount + 1);
+-   vk_multialloc_add(&ma, &semaphore_info, VkTimelineSemaphoreSubmitInfo, 1);
+-   vk_multialloc_add(&ma, &semaphore_values, uint64_t, pSubmits[first].signalSemaphoreCount + 1);
++
++   if (early_submit) {
++      vk_multialloc_add(&ma, &submits, VkSubmitInfo, submitCount + 1);
++      vk_multialloc_add(&ma, &cmdbuffers, VkCommandBuffer, 1);
++      vk_multialloc_add(&ma, &semaphores, VkSemaphore, 1);
++      vk_multialloc_add(&ma, &semaphore_info, VkTimelineSemaphoreSubmitInfo, 1);
++      vk_multialloc_add(&ma, &semaphore_values, uint64_t, 1);
++      first = 0;
++   } else {
++      vk_multialloc_add(&ma, &submits, VkSubmitInfo, submitCount);
++      vk_multialloc_add(&ma, &cmdbuffers, VkCommandBuffer, pSubmits[first].commandBufferCount + 1);
++      vk_multialloc_add(&ma, &semaphores, VkSemaphore, pSubmits[first].signalSemaphoreCount + 1);
++      vk_multialloc_add(&ma, &semaphore_info, VkTimelineSemaphoreSubmitInfo, 1);
++      vk_multialloc_add(&ma, &semaphore_values, uint64_t, pSubmits[first].signalSemaphoreCount + 1);
++   }
+    void *buf = vk_multialloc_zalloc(&ma, &ctx->alloc, VK_SYSTEM_ALLOCATION_SCOPE_COMMAND);
+    if (!buf)
+       return VK_ERROR_OUT_OF_HOST_MEMORY;
+ 
+-   memcpy(submits, pSubmits, sizeof(VkSubmitInfo) * submitCount);
++   if (early_submit) {
++      memcpy(submits + 1, pSubmits, sizeof(VkSubmitInfo) * submitCount);
++      submits[0] = (VkSubmitInfo){.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO};
++      submitCount++;
++   } else {
++      memcpy(submits, pSubmits, sizeof(VkSubmitInfo) * submitCount);
++   }
++
+    VkSubmitInfo *submit_info = &submits[first];
+ 
+    /* Add commandbuffer to submission. */
+@@ -562,7 +620,7 @@ anti_lag_QueueSubmit(VkQueue queue, uint32_t submitCount, const VkSubmitInfo *pS
+ 
+    /* Add timeline semaphore to submission. */
+    const VkTimelineSemaphoreSubmitInfo *tlssi =
+-      vk_find_struct_const(pSubmits[first].pNext, TIMELINE_SEMAPHORE_SUBMIT_INFO);
++      vk_find_struct_const(submit_info->pNext, TIMELINE_SEMAPHORE_SUBMIT_INFO);
+    semaphores[0] = queue_ctx->semaphore;
+    memcpy(&semaphores[1], submit_info->pSignalSemaphores,
+           sizeof(VkSemaphore) * submit_info->signalSemaphoreCount);
+-- 
+2.50.1
+
+
+From aaaa9d5cd9891b88b8a94692f0f49036233da227 Mon Sep 17 00:00:00 2001
 From: Kyle Gospodnetich <me@kylegospodneti.ch>
 Date: Sun, 18 May 2025 09:40:01 -0700
-Subject: [PATCH 8/9] [BEGIN] Proton-GE Patches
+Subject: [PATCH 10/11] [BEGIN] Proton-GE Patches
 
 -- 
 2.50.1
 
 
-From fafcddbaa789ba9a10cdf4536489cdfb5e9eff88 Mon Sep 17 00:00:00 2001
+From c4bb61d428cc14bc21f9a10f530fd37aa32a4c24 Mon Sep 17 00:00:00 2001
 From: Kyle Gospodnetich <me@kylegospodneti.ch>
 Date: Sun, 18 May 2025 09:42:23 -0700
-Subject: [PATCH 9/9] radv: min image count patch for Wine Wayland/Path of
+Subject: [PATCH 11/11] radv: min image count patch for Wine Wayland/Path of
  Exile 2 Credit to Glorious Eggroll.
 
 ---
