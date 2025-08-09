@@ -6,45 +6,55 @@ Release:        1%?dist
 Summary:        Various coreboot utilities
 URL:            https://doc.coreboot.org
 License:        BSD-3-Clause AND Apache-2.0 AND CC-BY-SA-3.0 AND GPL-2.0-only AND GPL-3.0-or-later AND ISC AND BSD-2-Clause-Patent AND BSD-4-Clause-UC AND CC-PDDC AND GPL-2.0-or-later AND HPND-sell-varient AND LGPL-2.1-or-later AND BSD-2-Clause AND CC-BY-4.0 AND GPL-3.0-only AND HPND AND X11 AND MIT
+Packager:	    Owen Zimmerman <owen@fyralabs.com>
+
 BuildRequires:  anda-srpm-macros
 BuildRequires:  pkg-config
+
 BuildRequires:  gcc
 BuildRequires:  g++
 BuildRequires:  gcc-gnat
 BuildRequires:  bison
-BuildRequires:  glibc-devel
-BuildRequires:  libstdc++
-BuildRequires:  libgcc
-BuildRequires:	libbpf-devel
+BuildRequires:  meson
 BuildRequires:  make
 BuildRequires:  cmake
 BuildRequires:  ninja-build
-BuildRequires:  flex
-BuildRequires:  iasl
 BuildRequires:  golang
+
+BuildRequires:  libstdc++
+BuildRequires:  libgcc
+BuildRequires:	libbpf-devel
+BuildRequires:  glibc-devel
 BuildRequires:  ncurses-devel
 BuildRequires:  libfl-devel
 BuildRequires:  pciutils-devel
 BuildRequires:  libxcrypt-devel
+BuildRequires:  yaml-cpp-devel
 BuildRequires:  openssl-devel
-BuildRequires:	openssl
-%dnl BuildRequires:	sha-devel
-%dnl BuildRequires:	sha2-devel
-%dnl BuildRequires:	ghc-cryptohash-sha256-devel
+BuildRequires:  qt5-qtbase-devel
+BuildRequires:  qt6-qtbase-devel
+BuildRequires:  qt5-qtsvg-devel
+
+BuildRequires:  inkscape
+BuildRequires:  flex
+BuildRequires:  acpica-tools
 BuildRequires:  binutils
-%dnl BuildRequires:  netcdf-cxx-devel
+
 %if 0%{?fedora} >= 42
 BuildRequires:  gcc14 gcc14-c++
 %endif
-Requires:       bash python3
-BuildArch:      noarch
 
-Packager:	    Owen Zimmerman <owen@fyralabs.com>
+Requires:       bash
+Requires:       python3
+Requires:       dmidecode
+# Make requires for seperate subpackages
 
 %description
 %summary.
 
 %package        abuild
+Conflicts:      abuild <= 25.06-1
+Obsoletes:      abuild <= 25.06-1
 Summary:        coreboot autobuild script builds coreboot images for all available targets
 %description    abuild
 %summary.
@@ -100,11 +110,15 @@ Summary:        Devicetree_convert Tool to convert a DTB to a static C file
 %summary.
 
 %package        cbfstool
+Conflicts:      cbfstool <= 25.06-1
+Obsoletes:      cbfstool <= 25.06-1
 Summary:        Management utility for CBFS formatted ROM images
 %description    cbfstool
 %summary.
 
 %package        cbmem
+Conflicts:      cbmem <= 25.06-1
+Obsoletes:      cbmem <= 25.06-1
 Summary:        Prints out coreboot mem table information
 %description    cbmem
 Prints out coreboot mem table information in JSON by default, and also implements the basic cbmem -list and -console commands.
@@ -133,6 +147,7 @@ Summary:        DTD structure parser
 %summary.
 
 %package        ectool
+Conflicts:      chromium-ectool
 Summary:        Dumps the RAM of a laptop's Embedded/Environmental Controller (EC)
 %description    ectool
 %summary.
@@ -317,7 +332,8 @@ cd util
 %make_build -C ectool LDFLAGS="-fPIE"
 %make_build -C futility
 %make_build -C ifdtool
-%dnl %make_build -C intelmetool CFLAGS="$CFLAGS -Isrc/commonlib/bsd/include"
+%make_build -C intelmetool CFLAGS+="-I src/commonlib/bsd/include"
+%dnl CPPFLAGS="-I../../"
 %make_build -C nvramtool LDFLAGS="-fPIE"
 %make_build -C inteltool
 %make_build -C superiotool
@@ -329,28 +345,37 @@ cd util
 %make_build -C post
 %make_build -C smmstoretool CFLAGS="$CFLAGS -U_FORTIFY_SOURCE"
 %make_build -C spd_tools
-ls -la
-
 %dnl %make_build -C spkmodem-recv
 %make_build -C riscv/starfive-jh7110-spl-tool LDFLAGS="-fPIE"
 
-cd autoport
-%go_build
+pushd autoport
+export GOPATH="abuild/"
+export CGO_CPPFLAGS="%{CPPFLAGS}"
+export CGO_CFLAGS="%{CFLAGS}"
+export CGO_CXXFLAGS="%{CXXFLAGS}"
+export CGO_LDFLAGS="%{LDFLAGS}"
+export GOFLAGS="-buildmode=pie -trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw"
+%go_build_online
+popd
 
-cd ../msrtool
+pushd msrtool
 ./configure
 %make_build
+popd
 
-cd ../coreboot-configurator/build
+pushd coreboot-configurator
+%meson
+%meson_build
+pushd redhat-linux-build
 %ninja_build
+popd
+popd
+
+ls -la
 
 %install
 install -Dm 777 util/abuild/abuild %buildroot%_bindir/abuild
 
-%dnl install -Dm 777 util/archive/archive %buildroot%_bindir/archive
-
-install -Dm 777 util/cbfstool/cbfstool %buildroot%_bindir/cbfstool
-install -Dm 755 util/cbmem/cbmem %buildroot%_bindir/cbmem
 install -Dm 755 util/amdfwtool/amdfwtool %buildroot%_bindir/amdfwtool
 install -Dm 755 util/amdfwtool/amdfwread %buildroot%_bindir/amdfwread
 
@@ -364,7 +389,9 @@ install -Dm 755 util/apcb/apcb_edit.py %buildroot%_bindir/apcb_edit
 install -Dm 755 util/apcb/apcb_v3a_edit.py %buildroot%_bindir/apcb_v3a_edit
 install -Dm 755 util/apcb/apcb_v3_edit.py %buildroot%_bindir/apcb_v3_edit
 
-install -Dm 755 util/autoport/autoport %buildroot%_bindir/autoport
+%dnl install -Dm 777 util/archive/archive %buildroot%_bindir/archive
+
+install -Dm 755 autoport/build/bin/coreboot-utils %buildroot%_bindir/autoport
 
 install -Dm 755 util/bincfg/bincfg %buildroot%_bindir/bincfg
 
@@ -376,12 +403,16 @@ install -Dm 755 util/bucts/bucts %buildroot%_bindir/bucts
 
 install -Dm 755 util/cavium/devicetree_convert.py %buildroot%_bindir/devicetree_convert
 
+install -Dm 777 util/cbfstool/cbfstool %buildroot%_bindir/cbfstool
+
+install -Dm 755 util/cbmem/cbmem %buildroot%_bindir/cbmem
+
 install -Dm 755 util/chromeos/crosfirmware.sh %buildroot%_bindir/crosfirmware
 install -Dm 755 util/chromeos/extract_blobs.sh %buildroot%_bindir/extract_blobs
 install -Dm 755 util/chromeos/gen_test_hwid.sh %buildroot%_bindir/gen_test_hwid
 install -Dm 755 util/chromeos/update_ec_headers.sh %buildroot%_bindir/update_ec_headers
 
-install -Dm 755 util/coreboot-configurator/build/src/application/coreboot-csmmstoretoolonfigurator %buildroot%_bindir/coreboot-configurator
+install -Dm 755 util/coreboot-configurator/build/src/application/coreboot-configurator %buildroot%_bindir/coreboot-configurator
 
 install -Dm 755 util/dtd_parser/dtd_parser.py %buildroot%_bindir/dtd_parser
 
@@ -426,11 +457,10 @@ install -Dm 755 util/qualcomm/ipqheader.py %buildroot%_bindir/ipqheader
 install -Dm 755 util/qualcomm/mbncat.py %buildroot%_bindir/mbncat
 install -Dm 755 util/qualcomm/mbn_tools.py %buildroot%_bindir/mbn_tools
 install -Dm 755 util/qualcomm/qgpt.py %buildroot%_bindir/qgpt
+install -Dm 755 util/qualcomm/sifive-gpt.py %buildroot%_bindir/sifive-gpt
+install -Dm 755 util/qualcomm/starfive-jh7110-spl-tool/ %buildroot%_bindir/spl_tool #funny?
 
 install -Dm 755 util/riscv/make-spike-elf.sh %buildroot%_bindir/make-spike-elf
-
-install -Dm 755 util/qualcomm/sifive-gpt.py %buildroot%_bindir/sifive-gpt
-install -Dm 755 util/qualcomm/starfive-jh7110-spl-tool/ %buildroot%_bindir/spl_tool
 
 install -Dm 755 util/rockchip/make_idb.py %buildroot%_bindir/make_idb
 
