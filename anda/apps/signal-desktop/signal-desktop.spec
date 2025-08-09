@@ -10,46 +10,46 @@
 %define arch arm64-
 %endif
 
-Name:			signal-desktop	
-Version:		7.65.0
-Release:		1%?dist
-Summary:		A private messenger for Windows, macOS, and Linux
-URL:			https://signal.org
-Source0:		https://github.com/signalapp/Signal-Desktop/archive/refs/tags/v%{version}.tar.gz
+Name:			        signal-desktop	
+Version:		      7.65.0
+Release:		      1%?dist
+Summary:		      A private messenger for Windows, macOS, and Linux
+URL:			        https://signal.org
+Source0:		      https://github.com/signalapp/Signal-Desktop/archive/refs/tags/v%{version}.tar.gz
 # signal.desktop from https://github.com/signalflatpak/signal/blob/master/org.signal.Signal.desktop
-Source1:		signal.desktop
-License:		AGPL-3.0 AND %electron_licenses
-ExclusiveArch:          x86_64 aarch64
+Source1:		      signal.desktop
+License:		      AGPL-3.0 AND %electron_licenses
+ExclusiveArch:    x86_64 aarch64
 BuildRequires:		pulseaudio-libs-devel libX11-devel pnpm make gcc g++ python3 
-Requires:		pulseaudio-libs 
-Requires:               glib2
-Requires:               gtk3
-Requires:               libwayland-cursor
-Requires:               libwayland-client 
-Requires:               libxkbcommon
-Requires:               glibc 
-Requires:               gdk-pixbuf2
-Requires:               libthai
-Requires:               nettle
-Requires:               avahi-libs
-Requires:               libXfixes
-Requires:               libX11
-Requires:               libjpeg-turbo
-Requires:               sqlite-libs
-Requires:               json-glib
-Requires:               libdatrie
-Requires:               libxml2
-Requires:               libbrotli
-Requires:               cairo
-Requires:               xz-libs
-Requires:               libxcb
-Requires:               nss-util
-Requires:               nss
-Requires:               dbus-libs
-Requires:               mesa-libgbm
-Requires:               at-spi2-atk
-Requires:               expat
-Requires:               alsa-lib
+Requires:		      pulseaudio-libs 
+Requires:         glib2
+Requires:         gtk3
+Requires:         libwayland-cursor
+Requires:         libwayland-client 
+Requires:         libxkbcommon
+Requires:         glibc 
+Requires:         gdk-pixbuf2
+Requires:         libthai
+Requires:         nettle
+Requires:         avahi-libs
+Requires:         libXfixes
+Requires:         libX11
+Requires:         libjpeg-turbo
+Requires:         sqlite-libs
+Requires:         json-glib
+Requires:         libdatrie
+Requires:         libxml2
+Requires:         libbrotli
+Requires:         cairo
+Requires:         xz-libs
+Requires:         libxcb
+Requires:         nss-util
+Requires:         nss
+Requires:         dbus-libs
+Requires:         mesa-libgbm
+Requires:         at-spi2-atk
+Requires:         expat
+Requires:         alsa-lib
 
 %description
 Signal Desktop links with Signal on Android or iOS and lets you message from your Windows, macOS, and Linux computers.
