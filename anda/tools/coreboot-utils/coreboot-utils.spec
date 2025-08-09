@@ -136,7 +136,7 @@ VGA option roms) from a ChromeOS recovery image.
 
 %package        coreboot-configurator
 Summary:        A simple GUI to change settings in coreboot's CBFS, via the nvramtool utility
-Requires:       coreboot-utils-nvramtool
+Requires:       coreboot-utils-nvramtool = %version
 %description    coreboot-configurator
 %summary.
 
@@ -362,9 +362,6 @@ popd
 pushd coreboot-configurator
 %meson
 %meson_build
-pushd redhat-linux-build
-%ninja_build
-popd
 popd
 popd
 
@@ -407,7 +404,20 @@ install -Dm 755 util/chromeos/extract_blobs.sh %buildroot%_bindir/extract_blobs
 install -Dm 755 util/chromeos/gen_test_hwid.sh %buildroot%_bindir/gen_test_hwid
 install -Dm 755 util/chromeos/update_ec_headers.sh %buildroot%_bindir/update_ec_headers
 
-install -Dm 755 util/coreboot-configurator/build/src/application/coreboot-configurator %buildroot%_bindir/coreboot-configurator
+install -Dm 755 util/coreboot-configurator/redhat-linux-build/src/application/coreboot-configurator %buildroot%_bindir/coreboot-configurator
+install -Dm 644 util/coreboot-configurator/src/resources/org.coreboot.nvramtool.policy %{buildroot}%{_datadir}/polkit-1/actions/org.coreboot.nvramtool.policy
+install -Dm 644 util/coreboot-configurator/src/resources/org.coreboot.reboot.policy %{buildroot}%{_datadir}/polkit-1/actions/org.coreboot.reboot.policy
+install -Dm 644 util/coreboot-configurator/src/resources/coreboot-configurator.desktop %{buildroot}%{_datadir}/applications/coreboot-configurator.desktop
+install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/24.png %{buildroot}%{_datadir}/icons/hicolor/24x24/apps/coreboot-configurator.png
+install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/48.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/coreboot-configurator.png
+install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/96.png %{buildroot}%{_datadir}/icons/hicolor/96x96/apps/coreboot-configurator.png
+install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/16.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/coreboot-configurator.png
+install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/32.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/coreboot-configurator.png
+install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/64.png %{buildroot}%{_datadir}/icons/hicolor/64x64/apps/coreboot-configurator.png
+install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/coreboot-configurator.png
+install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/256.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/coreboot-configurator.png
+install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/512.png %{buildroot}%{_datadir}/icons/hicolor/512x512/apps/coreboot-configurator.png
+
 
 install -Dm 755 util/dtd_parser/dtd_parser.py %buildroot%_bindir/dtd_parser
 
@@ -557,6 +567,18 @@ install -Dm 755 util/xcompile/xcompile %buildroot%_libdir/xcompile
 
 %files coreboot-configurator
 %{_bindir}/coreboot-configurator
+%{_datadir}/polkit-1/actions/org.coreboot.nvramtool.policy
+%{_datadir}/polkit-1/actions/org.coreboot.reboot.policy
+%{_datadir}/applications/coreboot-configurator.desktop
+%{_datadir}/icons/hicolor/24x24/apps/coreboot-configurator.png
+%{_datadir}/icons/hicolor/48x48/apps/coreboot-configurator.png
+%{_datadir}/icons/hicolor/96x96/apps/coreboot-configurator.png
+%{_datadir}/icons/hicolor/16x16/apps/coreboot-configurator.png
+%{_datadir}/icons/hicolor/32x32/apps/coreboot-configurator.png
+%{_datadir}/icons/hicolor/64x64/apps/coreboot-configurator.png
+%{_datadir}/icons/hicolor/128x128/apps/coreboot-configurator.png
+%{_datadir}/icons/hicolor/256x256/apps/coreboot-configurator.png
+%{_datadir}/icons/hicolor/512x512/apps/coreboot-configurator.png
 %doc /util/coreboot-configurator/README.md
 
 %files dtd_parser
