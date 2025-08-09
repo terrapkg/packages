@@ -622,7 +622,9 @@ popd
 %{_libdir}/libvulkan_lvp.so
 %{_datadir}/vulkan/icd.d/lvp_icd.*.json
 %{_libdir}/libVkLayer_MESA_device_select.so
+%{_libdir}/libVkLayer_MESA_anti_lag.so
 %{_datadir}/vulkan/implicit_layer.d/VkLayer_MESA_device_select.json
+%{_datadir}/vulkan/implicit_layer.d/VkLayer_MESA_anti_lag.json
 %if 0%{?with_virtio}
 %{_libdir}/libvulkan_virtio.so
 %{_datadir}/vulkan/icd.d/virtio_icd.*.json
