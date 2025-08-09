@@ -9,6 +9,7 @@ Summary:        Browser for Raspberry Pi Press publications in PDF format
 License:        BSD-3-Clause
 URL:            https://github.com/raspberrypi-ui/bookshelf
 Source0:        %url/archive/%commit.tar.gz
+Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 BuildRequires: meson
 BuildRequires: ninja-build
