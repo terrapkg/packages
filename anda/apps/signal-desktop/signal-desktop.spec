@@ -4,6 +4,12 @@
 %global __requires_exclude libffmpeg.so
 %global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
+%ifarch x86_64
+%define arch amd64
+%elifarch aarch64
+%define arch arm64
+%endif
+
 Name:			signal-desktop	
 Version:		7.65.0
 Release:		1%?dist
@@ -13,6 +19,7 @@ Source0:		https://github.com/signalapp/Signal-Desktop/archive/refs/tags/v%{versi
 # signal.desktop from https://github.com/signalflatpak/signal/blob/master/org.signal.Signal.desktop
 Source1:		signal.desktop
 License:		AGPL-3.0 AND %electron_licenses
+ExclusiveArch:          x86_64 aarch64
 BuildRequires:		pulseaudio-libs-devel libX11-devel pnpm make gcc g++ python3 
 Requires:		pulseaudio-libs 
 Requires:               glib2
@@ -55,27 +62,27 @@ pnpm install
 pnpm run build-linux --dir
 
 %install
-install -Dm755 release/linux-arm64-unpacked/libEGL.so %{buildroot}%{_libdir}/signal-desktop/libEGL.so
-install -Dm755 release/linux-arm64-unpacked/libGLESv2.so %{buildroot}%{_libdir}/signal-desktop/libGLESv2.so
-install -Dm755 release/linux-arm64-unpacked/libffmpeg.so %{buildroot}%{_libdir}/signal-desktop/libffmpeg.so
-install -Dm755 release/linux-arm64-unpacked/libvk_swiftshader.so %{buildroot}%{_libdir}/signal-desktop/libvk_swiftshader.so
-install -Dm755 release/linux-arm64-unpacked/libvulkan.so.1 %{buildroot}%{_libdir}/signal-desktop/libvulkan.so.1
-install -Dm644 release/linux-arm64-unpacked/icudtl.dat %{buildroot}%{_libdir}/signal-desktop/icudtl.dat
-install -Dm644 release/linux-arm64-unpacked/v8_context_snapshot.bin %{buildroot}%{_libdir}/signal-desktop/v8_context_snapshot.bin
-install -Dm644 release/linux-arm64-unpacked/chrome_100_percent.pak %{buildroot}%{_libdir}/signal-desktop/chrome_100_percent.pak
-install -Dm644 release/linux-arm64-unpacked/chrome_200_percent.pak %{buildroot}%{_libdir}/signal-desktop/chrome_200_percent.pak
-install -Dm644 release/linux-arm64-unpacked/resources.pak %{buildroot}%{_libdir}/signal-desktop/resources.pak
-install -Dm644 release/linux-arm64-unpacked/vk_swiftshader_icd.json %{buildroot}%{_libdir}/signal-desktop/vk_swiftshader_icd.json
-install -Dm644 release/linux-arm64-unpacked/resources/app.asar %{buildroot}%{_libdir}/signal-desktop/resources/app.asar
-cp -r release/linux-arm64-unpacked/resources/app.asar.unpacked %{buildroot}%{_libdir}/signal-desktop/resources/
+install -Dm755 release/linux-%{arch}-unpacked/libEGL.so %{buildroot}%{_libdir}/signal-desktop/libEGL.so
+install -Dm755 release/linux-%{arch}-unpacked/libGLESv2.so %{buildroot}%{_libdir}/signal-desktop/libGLESv2.so
+install -Dm755 release/linux-%{arch}-unpacked/libffmpeg.so %{buildroot}%{_libdir}/signal-desktop/libffmpeg.so
+install -Dm755 release/linux-%{arch}-unpacked/libvk_swiftshader.so %{buildroot}%{_libdir}/signal-desktop/libvk_swiftshader.so
+install -Dm755 release/linux-%{arch}-unpacked/libvulkan.so.1 %{buildroot}%{_libdir}/signal-desktop/libvulkan.so.1
+install -Dm644 release/linux-%{arch}-unpacked/icudtl.dat %{buildroot}%{_libdir}/signal-desktop/icudtl.dat
+install -Dm644 release/linux-%{arch}-unpacked/v8_context_snapshot.bin %{buildroot}%{_libdir}/signal-desktop/v8_context_snapshot.bin
+install -Dm644 release/linux-%{arch}-unpacked/chrome_100_percent.pak %{buildroot}%{_libdir}/signal-desktop/chrome_100_percent.pak
+install -Dm644 release/linux-%{arch}-unpacked/chrome_200_percent.pak %{buildroot}%{_libdir}/signal-desktop/chrome_200_percent.pak
+install -Dm644 release/linux-%{arch}-unpacked/resources.pak %{buildroot}%{_libdir}/signal-desktop/resources.pak
+install -Dm644 release/linux-%{arch}-unpacked/vk_swiftshader_icd.json %{buildroot}%{_libdir}/signal-desktop/vk_swiftshader_icd.json
+install -Dm644 release/linux-%{arch}-unpacked/resources/app.asar %{buildroot}%{_libdir}/signal-desktop/resources/app.asar
+cp -r release/linux-%{arch}-unpacked/resources/app.asar.unpacked %{buildroot}%{_libdir}/signal-desktop/resources/
 
-install -Dm755 release/linux-arm64-unpacked/chrome-sandbox %{buildroot}%{_libdir}/signal-desktop/chrome-sandbox
-install -Dm755 release/linux-arm64-unpacked/chrome_crashpad_handler %{buildroot}%{_libdir}/signal-desktop/chrome_crashpad_handler
+install -Dm755 release/linux-%{arch}-unpacked/chrome-sandbox %{buildroot}%{_libdir}/signal-desktop/chrome-sandbox
+install -Dm755 release/linux-%{arch}-unpacked/chrome_crashpad_handler %{buildroot}%{_libdir}/signal-desktop/chrome_crashpad_handler
 
-install -Dm755 release/linux-arm64-unpacked/signal-desktop %{buildroot}%{_libdir}/signal-desktop/signal-desktop
+install -Dm755 release/linux-%{arch}-unpacked/signal-desktop %{buildroot}%{_libdir}/signal-desktop/signal-desktop
 
-install -Dm644 release/linux-arm64-unpacked/resources/org.signalapp.view-aep.policy %{buildroot}%{_datadir}/polkit-1/rules.d/org.signalapp.view-aep.policy
-install -Dm644 release/linux-arm64-unpacked/resources/org.signalapp.enable-backups.policy %{buildroot}%{_datadir}/polkit-1/rules.d/org.signalapp.enable-backups.policy
+install -Dm644 release/linux-%{arch}-unpacked/resources/org.signalapp.view-aep.policy %{buildroot}%{_datadir}/polkit-1/rules.d/org.signalapp.view-aep.policy
+install -Dm644 release/linux-%{arch}-unpacked/resources/org.signalapp.enable-backups.policy %{buildroot}%{_datadir}/polkit-1/rules.d/org.signalapp.enable-backups.policy
 
 install -Dm644 build/icons/png/1024x1024.png %{buildroot}%{_iconsdir}/hicolor/1024x1024/apps/signal.png
 install -Dm644 build/icons/png/128x128.png %{buildroot}%{_iconsdir}/hicolor/128x128/apps/signal.png
