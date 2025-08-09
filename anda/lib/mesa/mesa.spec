@@ -376,7 +376,7 @@ export MESON_PACKAGE_CACHE_DIR="%{cargo_registry}/"
   -Dgallium-rusticl=true \
 %endif
   -Dvulkan-drivers=%{?vulkan_drivers} \
-  -Dvulkan-layers=device-select \
+  -Dvulkan-layers=device-select,anti-lag \
   -Dshared-glapi=enabled \
   -Dgles1=enabled \
   -Dgles2=enabled \
