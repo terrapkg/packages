@@ -1,7 +1,7 @@
-%global commit 76fe33245fcff14013760255223d4b1cb92573c1
+%global commit 0dd480d475f7e8141e560785033b8e39411ca775
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250705
-%global ver 0.195.0
+%global commit_date 20250808
+%global ver 0.200.0
 
 %bcond_with check
 %bcond nightly 1
@@ -52,9 +52,32 @@ BuildRequires:  perl-lib
 BuildRequires:  rustup
 %endif
 BuildRequires:  vulkan-loader
+Requires: (%name-rename-zeditor if zfs else %name-cli)
+Suggests: %name-cli
 
 %description
 Code at the speed of thought - Zed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter.
+
+%package cli
+Summary: Provides the /usr/bin/zed binary
+Conflicts: zfs
+Supplements: (%name unless zfs)
+%description cli
+This package provides the /usr/bin/zed binary. If you use zfs, install %name-rename-zeditor instead.
+%files cli
+%_bindir/zed
+
+%package rename-zeditor
+Summary: Rename zed to zeditor to prevent collision with zfs
+Provides: %name-cli
+Conflicts: %name-cli
+Supplements: (%name and zfs)
+%description rename-zeditor
+This package provides the %_bindir/zeditor binary instead of %_bindir/zed. This avoids conflicts with the zfs package.
+The normal package is %name-cli.
+%files rename-zeditor
+%_bindir/zeditor
+
 
 %prep
 %autosetup -n %{crate}-%{commit} -p1
@@ -85,10 +108,11 @@ export ZED_UPDATE_EXPLANATION="Run dnf up to update Zed Nightly from Terra."
 echo "nightly" > crates/zed/RELEASE_CHANNEL
 
 %cargo_build -- --package zed --package cli
-script/generate-licenses
+ALLOW_MISSING_LICENSES=1 script/generate-licenses
 
 %install
 install -Dm755 target/rpm/zed %{buildroot}%{_libexecdir}/zed-editor
+install -Dm755 target/rpm/cli %{buildroot}%{_bindir}/zeditor
 install -Dm755 target/rpm/cli %{buildroot}%{_bindir}/zed
 
 %__cargo clean
@@ -133,7 +157,6 @@ mv assets/fonts/plex-mono/license.txt LICENSE.fonts
 %license LICENSE.themes
 %license assets/licenses.md
 %{_libexecdir}/zed-editor
-%{_bindir}/zed
 %{_datadir}/applications/%app_id.desktop
 %{_datadir}/pixmaps/%app_id.png
 %{_metainfodir}/%app_id.metainfo.xml

@@ -8,7 +8,7 @@
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
-Version:        12.9.86
+Version:        13.0.48
 Release:        1%?dist
 Summary:        CUDA Compiler (NVCC)
 License:        CUDA Toolkit

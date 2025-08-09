@@ -4,7 +4,7 @@
 
 # https://github.com/twpayne/chezmoi
 %global goipath         github.com/twpayne/chezmoi
-Version:                2.62.7
+Version:                2.64.0
 
 %gometa -f
 
@@ -53,6 +53,9 @@ go mod tidy
 #gopkginstall
 install -m 0755 -vd                     %{buildroot}%{_bindir}
 install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
+install -m 0644 -Dvp completions/chezmoi-completion.bash %{buildroot}%{bash_completions_dir}/chezmoi
+install -m 0644 -Dvp completions/chezmoi.fish -t %{buildroot}%{fish_completions_dir}/
+install -m 0644 -Dvp completions/chezmoi.zsh %{buildroot}%{zsh_completions_dir}/_chezmoi
 
 %if %{without bootstrap}
 %if %{with check}
@@ -65,5 +68,7 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %license LICENSE
 %doc README.md
 %{_bindir}/chezmoi
+
+%pkg_completion -Bfz
 
 #gopkgfiles

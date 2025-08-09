@@ -1,9 +1,5 @@
-let v = sh("dnf info micro -y | grep Version | grep -Eo '[0-9]+\\.[0-9]+.*'", #{"stdout": "piped"}).ctx.stdout;
-v.pop();
-rpm.version(v);
-let r = sh("dnf info micro -y | grep Release | grep -Eo '[0-9]+' | head -1", #{"stdout": "piped"}).ctx.stdout;
-r.pop();
-rpm.f = sub(`Release: (.+?)\n`, "Release: " + r + "%{?dist}\n", rpm.f);
-let e = sh("dnf info micro -y | grep Epoch | grep -Eo '[0-9]+'", #{"stdout": "piped"}).ctx.stdout;
-e.pop();
-rpm.f = sub(`Epoch: (.+?)\n`, "Epoch: " + e + "\n", rpm.f);
+let v = sh("dnf rq --qf='%{version}|%{release}|%{epoch}' micro --repo=fedora,updates", #{"stdout": "piped"}).ctx.stdout;
+let vre = v.split("|");
+rpm.version(vre[0]);
+rpm.release(vre[1].split(".")[0].parse_int());
+rpm.f = sub(`^Epoch: (.+?)$`, "Epoch: " + vre[2], rpm.f);

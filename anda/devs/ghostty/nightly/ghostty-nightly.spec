@@ -1,6 +1,6 @@
-%global commit 908eb6d1564f480ee6028eb6b72dcd4b8839ad53
+%global commit c659f9c5d2354257c91a42ca7ba0f5937f232a09
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global fulldate 2025-07-04
+%global fulldate 2025-08-07
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
 %global ver 1.1.4
@@ -219,7 +219,7 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %{_iconsdir}/hicolor/1024x1024/apps/%{appid}.png
 %{_mandir}/man1/%{base_name}.1.gz
 %{_mandir}/man5/%{base_name}.5.gz
-%{_userunitdir}/%{appid}.service
+%{_userunitdir}/app-%{appid}.service
 
 %files bash-completion
 %{bash_completions_dir}/%{base_name}.bash
@@ -267,13 +267,13 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %{_datadir}/terminfo/x/xterm-%{base_name}
 
 %post
-%systemd_user_post %{appid}.service
+%systemd_user_post app-%{appid}.service
 
 %preun
-%systemd_user_preun %{appid}.service
+%systemd_user_preun app-%{appid}.service
 
 %postun
-%systemd_user_postun %{appid}.service
+%systemd_user_postun app-%{appid}.service
 
 %changelog
 * Sat May 31 2025 Gilver E. <rockgrub@disroot.org> - 1.1.4~tip^20250531git1ff9162

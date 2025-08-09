@@ -1,7 +1,7 @@
-%global commit 2fdf42d281ddd2ed806067d5229a62d8dd375209
+%global commit 5ff891e71ce282c802332b398e8a98ccd4207552
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20250705
-%global ver 1.0.13
+%global commitdate 20250808
+%global ver 1.0.14
 
 Name:           scx-scheds-nightly
 Version:        %{ver}^%{commitdate}.git.%{shortcommit}
@@ -49,7 +49,7 @@ Provides:       scxctl = %{version}
 Provides:       scx_layered
 Provides:       scx_rustland
 Provides:       scx_rusty
-Obsoletes:      scxctl >= 0.3.4
+Obsoletes:      scxctl <= 0.3.4
 Packager:       Gilver E. <rockgrub@disroot.org>
 
 %description
@@ -72,8 +72,7 @@ License:       GPL-2.0-only
 %build
 %meson \
  -Dsystemd=enabled \
- -Dopenrc=disabled \
- -Dlibalpm=disabled
+ -Dopenrc=disabled
 %meson_build
 
 
@@ -106,6 +105,7 @@ License:       GPL-2.0-only
 %{_unitdir}/scx.service
 %{_datadir}/dbus-1/system.d/org.scx.Loader.conf
 %{_datadir}/dbus-1/system-services/org.scx.Loader.service
+%attr(0644,root,root) %config(noreplace) %{_datadir}/scx_loader/config.toml
 
 %changelog
 * Sun Jun 15 2025 Gilver E. <rockgrub@disroot.org> - 1.0.13^20250612.git.c1507b0-1

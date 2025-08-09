@@ -1,5 +1,5 @@
 Name:       gstreamer1-plugin-libav
-Version:    1.26.3
+Version:    1.26.5
 Release:    1%?dist
 Epoch:      1
 Summary:    GStreamer Libav plugin

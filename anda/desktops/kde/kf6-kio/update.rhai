@@ -14,3 +14,7 @@ for entry in get(url).json().updates[0].title.split(' ') {
   }
   break;
 }
+
+let vr = bump::bodhi_vr("extra-cmake-modules", branch);
+rpm.global("ecm_ver", vr[1]);
+rpm.global("ecm_rel", vr[2]);
