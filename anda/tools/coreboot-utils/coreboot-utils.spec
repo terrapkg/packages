@@ -347,7 +347,7 @@ pushd util
 %make_build -C post
 %make_build -C smmstoretool CFLAGS="$CFLAGS -U_FORTIFY_SOURCE"
 %make_build -C spd_tools
-%dnl %make_build -C spkmodem-recv
+%make_build -C spkmodem_recv
 %make_build -C riscv/starfive-jh7110-spl-tool LDFLAGS="-fPIE"
 
 pushd autoport
@@ -499,7 +499,7 @@ install -Dm 755 util/spdtool/spdtool.py %buildroot%_bindir/spdtool
 install -Dm 755 util/spd_tools/bin/part_id_gen %buildroot%_bindir/part_id_gen
 install -Dm 755 util/spd_tools/bin/spd_gen %buildroot%_bindir/spd_gen
 
-install -Dm 755 util/spkmodem-recv/bin/spkmodem-recv %buildroot%_bindir/spkmodem-recv
+install -Dm 755 util/spkmodem_recv/spkmodem-recv %buildroot%_bindir/spkmodem-recv
 
 install -Dm 755 util/superiotool/bin/superiotool %buildroot%_bindir/superiotool
 
