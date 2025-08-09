@@ -501,14 +501,12 @@ install -Dm 755 util/spd_tools/bin/spd_gen %buildroot%_bindir/spd_gen
 
 install -Dm 755 util/spkmodem_recv/spkmodem-recv %buildroot%_bindir/spkmodem-recv
 
-install -Dm 755 util/superiotool/bin/superiotool %buildroot%_bindir/superiotool
-
-install -Dm 755 util/superiovboot_lib/libvboot_host.so %buildroot%_libdir/libvboot_host.so
+install -Dm 755 util/superiotool/superiotool %buildroot%_bindir/superiotool
 
 install -Dm 755 util/xcompile/xcompile %buildroot%_libdir/xcompile
 
 %files
-%doc util/lREADME.md AUTHORS MAINTAINERS
+%doc util/README.md AUTHORS MAINTAINERS
 %license COPYING
 %license LICENSES/*
 
