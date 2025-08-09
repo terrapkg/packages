@@ -101,8 +101,8 @@ ln -s %_libdir/signal-desktop/signal-desktop %_bindir/signal-desktop
 
 %files
 %license LICENSE
-%license release/linux-arm64-unpacked/LICENSE.electron.txt
-%license release/linux-arm64-unpacked/LICENSES.chromium.html
+%license release/linux-%arch-unpacked/LICENSE.electron.txt
+%license release/linux-%arch-unpacked/LICENSES.chromium.html
 %doc CONTRIBUTING.md
 %doc ACKNOWLEDGMENTS.md
 %doc README.md
