@@ -103,9 +103,7 @@ ln -s %_libdir/signal-desktop/signal-desktop %_bindir/signal-desktop
 %license LICENSE
 %license release/linux-%arch-unpacked/LICENSE.electron.txt
 %license release/linux-%arch-unpacked/LICENSES.chromium.html
-%doc CONTRIBUTING.md
-%doc ACKNOWLEDGMENTS.md
-%doc README.md
+%doc README.md CONTRIBUTING.md ACKNOWLEDGMENTS.md
 %ghost %{_bindir}/signal-desktop
 %{_libdir}/signal-desktop/
 %{_datadir}/polkit-1/rules.d/org.signalapp.view-aep.policy
