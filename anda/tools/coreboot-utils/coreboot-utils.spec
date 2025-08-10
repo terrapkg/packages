@@ -143,9 +143,9 @@ Requires:       coreboot-utils-nvramtool = %version
 %description    coreboot-configurator
 %summary.
 
-%package        docs
+%package        doc
 Summary:        Coreboot utility documentation
-%description    docs
+%description    doc
 %summary.
 
 %package        dtd_parser
@@ -321,7 +321,6 @@ Summary:        Cross compile setup
 
 %prep
 %git_clone https://review.coreboot.org/coreboot.git %version
-ls -la
 %patch -P0 -p1
 %patch -P1 -p1
 
@@ -425,7 +424,6 @@ install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/128.
 install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/256.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/coreboot-configurator.png
 install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/512.png %{buildroot}%{_datadir}/icons/hicolor/512x512/apps/coreboot-configurator.png
 
-
 install -Dm 755 util/dtd_parser/dtd_parser.py %buildroot%_bindir/dtd_parser
 
 install -Dm 755 util/ectool/ectool %buildroot%_bindir/ectool
@@ -473,10 +471,9 @@ install -Dm 755 util/qualcomm/mbn_tools.py %buildroot%_bindir/mbn_tools
 install -Dm 755 util/qualcomm/qgpt.py %buildroot%_bindir/qgpt
 install -Dm 755 util/qualcomm/elf_segment_extractor.py %buildroot%_bindir/elf_segment_extractor
 
-# install -Dm 755 util/qualcomm/sifive-gpt.py %buildroot%_bindir/sifive-gpt
-# install -Dm 755 util/qualcomm/starfive-jh7110-spl-tool/ %buildroot%_bindir/spl_tool #funny?
-
 install -Dm 755 util/riscv/make-spike-elf.sh %buildroot%_bindir/make-spike-elf
+install -Dm 755 util/riscv/sifive-gpt.py %buildroot%_bindir/sifive-gpt
+install -Dm 755 util/riscv/starfive-jh7110-spl-tool/spl_tool %buildroot%_bindir/spl_tool
 
 install -Dm 755 util/rockchip/make_idb.py %buildroot%_bindir/make_idb
 
@@ -511,6 +508,24 @@ install -Dm 755 util/superiotool/superiotool %buildroot%_bindir/superiotool
 
 install -Dm 755 util/xcompile/xcompile %buildroot%_libdir/xcompile
 
+# Install documentation files to appropriate subdirectries within docdir as to not have multiple files of the same name
+mkdir -p %{buildroot}%{_docdir}/coreboot-utils/abuild
+mkdir -p %{buildroot}%{_docdir}/coreboot-utils/cbfstool
+mkdir -p %{buildroot}%{_docdir}/coreboot-utils/ifdtool
+mkdir -p %{buildroot}%{_docdir}/coreboot-utils/intelp2m
+mkdir -p %{buildroot}%{_docdir}/coreboot-utils/smmstoretool
+
+cp Documentation/util.md %{buildroot}%{_docdir}/coreboot-utils/util.md
+cp Documentation/cbfs.txt %{buildroot}%{_docdir}/coreboot-utils/cbfs.txt
+cp Documentation/util/abuild/index.md %{buildroot}%{_docdir}/coreboot-utils/abuild/index.md
+cp Documentation/util/cbfstool/index.md %{buildroot}%{_docdir}/coreboot-utils/cbfstool/index.md
+cp Documentation/util/cbfstool/mmap_windows.md %{buildroot}%{_docdir}/coreboot-utils/cbfstool/mmap_windows.md
+cp Documentation/util/ifdtool/binary_extraction.md %{buildroot}%{_docdir}/coreboot-utils/ifdtool/binary_extraction.md
+cp Documentation/util/ifdtool/index.md %{buildroot}%{_docdir}/coreboot-utils/ifdtool/index.md
+cp Documentation/util/ifdtool/layout.md %{buildroot}%{_docdir}/coreboot-utils/ifdtool/layout.md
+cp Documentation/util/intelp2m/index.md %{buildroot}%{_docdir}/coreboot-utils/intelp2m/index.md
+cp Documentation/util/smmstoretool/index.md %{buildroot}%{_docdir}/coreboot-utils/smmstoretool/index.md
+
 %files
 %doc util/README.md AUTHORS MAINTAINERS
 %license COPYING
@@ -529,14 +544,18 @@ install -Dm 755 util/xcompile/xcompile %buildroot%_libdir/xcompile
 %{_bindir}/k8-read-mem-settings
 %{_bindir}/parse-bkdg
 %{_bindir}/update_efs_spi_speed
+%doc util/amdtools/*.md
 
 %files apcb
 %{_bindir}/apcb_edit
 %{_bindir}/apcb_v3a_edit
 %{_bindir}/apcb_v3_edit
+%doc util/apcb/README
+%doc util/apcb/description.md
 
 %dnl %files archive
 %dnl %{_bindir}/archive
+%dnl %doc util/archive/description.md
 
 %files autoport
 %{_bindir}/autoport
@@ -566,6 +585,7 @@ install -Dm 755 util/xcompile/xcompile %buildroot%_libdir/xcompile
 
 %files cbmem
 %{_bindir}/cbmem
+%doc util/cbmem/description.md
 
 %files chromeos-coreboot-utilities
 %{_bindir}/crosfirmware
@@ -588,38 +608,47 @@ install -Dm 755 util/xcompile/xcompile %buildroot%_libdir/xcompile
 %{_datadir}/icons/hicolor/128x128/apps/coreboot-configurator.png
 %{_datadir}/icons/hicolor/256x256/apps/coreboot-configurator.png
 %{_datadir}/icons/hicolor/512x512/apps/coreboot-configurator.png
-%doc /util/coreboot-configurator/README.md
+%doc util/coreboot-configurator/README.md
 
 %files dtd_parser
 %{_bindir}/dtd_parser
+%doc util/dtd_parser/description.md
 
 %files ectool
 %{_bindir}/ectool
+%doc util/ectool/description.md
 
 %files exynos
 %{_bindir}/fixed_cksum
 %{_bindir}/variable_cksum
+%doc util/exynos/description.md
 
 %files find_usbdebug
 %{_bindir}/find_usbdebug
 
 %files futility
 %{_bindir}/futility
+%doc util/futility/description.md
 
 %files genbuild_h
 %{_bindir}/genbuild_h
+%doc util/genbuild_h/description.md
 
 %files hda-decoder
 %{_bindir}/hda-decoder
+%doc util/hda-decoder/description.md
 
 %files ifdtool
 %{_bindir}/ifdtool
+%doc util/ifdtool/description.md
 
 %files intelmetool
 %{_bindir}/intelmetool
+%doc util/intelmetool/description.md
 
 %files intelp2m
 %{_bindir}/intelp2m
+%doc util/intelp2m/description.md
 
 %files kbc1126
 %{_bindir}/kbc1126_ec_dump
@@ -629,30 +658,35 @@ install -Dm 755 util/xcompile/xcompile %buildroot%_libdir/xcompile
 %files mediatek-coreboot-utilities
 %{_bindir}/gen-bl-img
 %{_bindir}/check-pi-img
+%doc util/mediatek/description.md
 
 %files mma
 %{_bindir}/mma_automated_test
 %{_bindir}/mma_get_result
 %{_bindir}/mma_setup_test
+%doc util/mma/description.md
 
 %files msrtool
 %{_bindir}/msrtool
 %doc util/msrtool/README
 %doc util/msrtool/description.md
+%license util/msrtool/COPYING
 
 %files nvramtool
 %{_bindir}/nvramtool
 %doc util/nvramtool/README
 %doc util/nvramtool/DISCLAIMER
-%doc util/nvramtool/Changelog
+%doc util/nvramtool/description.md
 %license util/nvramtool/COPYING
 
 %files pmh7tool
 %{_bindir}/pmh7tool
+%doc util/pmh7tool/description.md
 
 %files post
 %{_bindir}/post
 %doc util/post/README
+%doc util/post/description.md
 
 %files qualcomm-coreboot-utilities
 %{_bindir}/createxbl
@@ -662,11 +696,13 @@ install -Dm 755 util/xcompile/xcompile %buildroot%_libdir/xcompile
 %{_bindir}/mbn_tools
 %{_bindir}/qgpt
 %{_bindir}/elf_segment_extractor
+%doc util/qualcomm/description.md
 
 %files riscv-coreboot-utilities
 %{_bindir}/make-spike-elf
 %{_bindir}/sifive-gpt
 %{_bindir}/spl_tool
+%doc util/riscv/description.md
 %doc util/riscv/starfive-jh7110-spl-tool/README.md
 %license util/riscv/starfive-jh7110-spl-tool/LICENSE
 
@@ -692,12 +728,15 @@ install -Dm 755 util/xcompile/xcompile %buildroot%_libdir/xcompile
 %{_bindir}/testsoc
 %{_bindir}/ucode_h_to_bin
 %{_bindir}/update_submodules
+%doc util/scripts/description.md
 
 %files smmstoretool
 %{_bindir}/smmstoretool
+%doc util/smmstoretool/description.md
 
 %files spdtool
 %{_bindir}/spdtool
+%doc util/spdtool/description.md
 
 %files spd_tools
 %{_bindir}/part_id_gen
@@ -710,6 +749,7 @@ install -Dm 755 util/xcompile/xcompile %buildroot%_libdir/xcompile
 %files superiotool
 %{_bindir}/superiotool
 %doc util/superiotool/README
+%doc util/superiotool/description.md
 %license util/superiotool/LICENSE
 
 %files vboot_lib
@@ -717,62 +757,19 @@ install -Dm 755 util/xcompile/xcompile %buildroot%_libdir/xcompile
 
 %files xcompile
 %{_libdir}/xcompile
-
-%files docs
-%doc Documentation/*.md
-%doc Documentation/*.txt
-%doc Documentation/util/abuild/*
-%doc Documentation/util/cbfstool/*.md
-%doc util/amdtool/*.md
-%doc util/cbmem/description.md
-%doc Documentation/util/ifdtool/*
-%doc util/apcb/README
-%doc util/apcb/description.md
-%doc util/autoport/readme.md
-%doc util/autoport/description.md
-%doc util/bincfg/description.md
-%doc util/board_status/*.md
-%doc util/bucts/*.md
-%doc util/cavium/description.md
-%doc util/chromeos/*.md
-%doc /util/coreboot-configurator/README.md
-%doc util/dtd_parser/description.md
-%doc util/ectool/description.md
-%doc util/exynos/description.md
-%doc util/futility/description.md
-%doc util/genbuild_h/description.md
-%doc util/hda-decoder/description.md
-%doc util/ifdtool/description.md
-%doc util/intelmetool/description.md
-%doc util/intelp2m/description.md
-%doc util/kbc1126/*.md
-%doc Documentation/util/intelp2m/*
-%doc util/mma/description.md
-%doc util/msrtool/README
-%doc util/msrtool/description.md
-%license util/msrtool/COPYING
-%doc util/mtkheader/description.md
-%doc util/nvramtool/README
-%doc util/nvramtool/DISCLAIMER
-%doc util/nvramtool/Changelog
-%doc util/nvramtool/description.md
-%license util/nvramtool/COPYING
-%doc util/pmh7tool/description.md
-%doc util/post/README
-%doc util/post/description.md
-%doc util/qualcomm/description.md
-%doc util/riscv/description.md
-%doc util/riscv/starfive-jh7110-spl-tool/README.md
-%license util/riscv/starfive-jh7110-spl-tool/LICENSE
-%doc util/scripts/description.md
-%doc util/smmstoretool/description.md
-%doc util/spdtool/description.md
-%doc util/spd_tools/README.md
-%doc util/superiotool/description.md
-%doc util/superiotool/README
 %doc util/xcompile/description.md
-%dnl %doc util/archive/description.md
-%doc Documentation/util/smmstoretool/*
+
+%files doc
+%{_docdir}/coreboot-utils/util.md
+%{_docdir}/coreboot-utils/cbfs.txt
+%{_docdir}/coreboot-utils/abuild/index.md
+%{_docdir}/coreboot-utils/cbfstool/index.md
+%{_docdir}/coreboot-utils/cbfstool/mmap_windows.md
+%{_docdir}/coreboot-utils/ifdtool/binary_extraction.md
+%{_docdir}/coreboot-utils/ifdtool/index.md
+%{_docdir}/coreboot-utils/ifdtool/layout.md
+%{_docdir}/coreboot-utils/intelp2m/index.md
+%{_docdir}/coreboot-utils/smmstoretool/index.md
 %license Documentation/COPYING
 
 %changelog
