@@ -74,6 +74,7 @@ Requires:       glibc
 %package        amdtools
 Summary:        Various tools for AMD processors
 Requires:       coreboot-utils
+Requires:       perl
 %description    amdtools
 %summary.
 
@@ -139,6 +140,14 @@ Requires:       coreboot-utils
 Conflicts:      cbfstool <= 25.06-1
 Obsoletes:      cbfstool <= 25.06-1
 %description    cbfstool
+%summary.
+
+%package        cbfstool-tests
+Summary:        CBFSTool tests
+Requires:       coreboot-utils
+Requires:       coreboot-utils-cbfstool = %version
+Requires:       python3-pytest
+%description    cbfstool-tests
 %summary.
 
 %package        cbmem
@@ -469,7 +478,10 @@ install -Dm 755 util/bucts/bucts %buildroot%_bindir/bucts
 
 install -Dm 755 util/cavium/devicetree_convert.py %buildroot%_bindir/devicetree_convert
 
-install -Dm 777 util/cbfstool/cbfstool %buildroot%_bindir/cbfstool
+install -Dm 755 util/cbfstool/cbfstool %buildroot%_bindir/cbfstool
+
+install -Dm 755 util/cbfstool/tests/conftest.py %buildroot%_bindir/conftest
+install -Dm 755 util/cbfstool/tests/elogtool_test.py %buildroot%_bindir/elogtool_test
 
 install -Dm 755 util/cbmem/cbmem %buildroot%_bindir/cbmem
 
@@ -629,8 +641,7 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_docdir}/coreboot-util
 
 %files autoport
 %{_bindir}/autoport
-%doc util/autoport/readme.md
-%doc util/autoport/description.md
+%doc util/autoport/*.md
 
 %files bincfg
 %{_bindir}/bincfg
@@ -652,6 +663,12 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_docdir}/coreboot-util
 
 %files cbfstool
 %{_bindir}/cbfstool
+%doc util/cbfstool/description.md
+
+%files cbfstool-tests
+%{_bindir}/conftest
+%{_bindir}/elogtool_test
+%doc util/cbfstool/tests/README.md
 
 %files cbmem
 %{_bindir}/cbmem
