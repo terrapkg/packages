@@ -1,0 +1,10 @@
+diff --git a/util/qualcomm/elf_segment_extractor.py b/util/qualcomm/elf_segment_extractor.py
+index 7ba6e8aa..ae477373 100755
+--- a/util/qualcomm/elf_segment_extractor.py
++++ b/util/qualcomm/elf_segment_extractor.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ import sys
+ import os
+ import struct

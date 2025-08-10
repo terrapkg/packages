@@ -8,6 +8,9 @@ URL:            https://doc.coreboot.org
 License:        BSD-3-Clause AND Apache-2.0 AND CC-BY-SA-3.0 AND GPL-2.0-only AND GPL-3.0-or-later AND ISC AND BSD-2-Clause-Patent AND BSD-4-Clause-UC AND CC-PDDC AND GPL-2.0-or-later AND HPND-sell-varient AND LGPL-2.1-or-later AND BSD-2-Clause AND CC-BY-4.0 AND GPL-3.0-only AND HPND AND X11 AND MIT
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
+Patch0:         spdtool-python3.patch
+Patch1:         elf_segment_extractor-python3.patch
+
 BuildRequires:  anda-srpm-macros
 BuildRequires:  go-rpm-macros
 BuildRequires:  pkg-config
@@ -318,6 +321,9 @@ Summary:        Cross compile setup
 
 %prep
 %git_clone https://review.coreboot.org/coreboot.git %version
+ls -la
+%patch -P0 -p1
+%patch -P1 -p1
 
 %build
 %if 0%{?fedora} >= 42
@@ -327,7 +333,7 @@ export CXX=g++-14
 
 pushd util
 %make_build -C amdfwtool LDFLAGS="-fPIE -lcrypto"
-%dnl %make_build -C archive # bugged code
+%dnl %make_build -C archive # bugged upstream, does not build
 %make_build -C bincfg
 %make_build -C bucts LDFLAGS="-fPIE"
 %make_build -C cbmem CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS"
@@ -566,7 +572,7 @@ install -Dm 755 util/xcompile/xcompile %buildroot%_libdir/xcompile
 %{_bindir}/extract_blobs
 %{_bindir}/gen_test_hwid
 %{_bindir}/update_ec_headers
-%doc util/chromeos/*.mdstarfive-jh7110-spl-tool
+%doc util/chromeos/*.md
 
 %files coreboot-configurator
 %{_bindir}/coreboot-configurator
