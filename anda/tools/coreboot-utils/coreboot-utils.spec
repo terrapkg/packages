@@ -49,47 +49,47 @@ BuildRequires:  python3
 BuildRequires:  gcc14 gcc14-c++
 %endif
 
-Requires:       %{name}-abuild = %{version}
-Requires:       %{name}-amdfwtool = %{version}
-Requires:       %{name}-amdtools = %{version}
-Requires:       %{name}-apcb = %{version}
-%dnl Requires:       %{name}-archive = %{version}
-Requires:       %{name}-autoport = %{version}
-Requires:       %{name}-bincfg = %{version}
-Requires:       %{name}-board_status = %{version}
-Requires:       %{name}-bucts = %{version}
-Requires:       %{name}-cbfstool = %{version}
-Requires:       %{name}-cbfstool-tests = %{version}
-Requires:       %{name}-cbmem = %{version}
-Requires:       %{name}-chromeos-coreboot-utilities = %{version}
-Requires:       %{name}-coreboot-configurator = %{version}
-Requires:       %{name}-ectool = %{version}
-Requires:       %{name}-exynos = %{version}
-Requires:       %{name}-find_usbdebug = %{version}
-Requires:       %{name}-futility = %{version}
-Requires:       %{name}-genbuild_h = %{version}
-Requires:       %{name}-hda-decoder = %{version}
-Requires:       %{name}-ifdtool = %{version}
-Requires:       %{name}-intelmetool = %{version}
-Requires:       %{name}-intelp2m = %{version}
-Requires:       %{name}-inteltool = %{version}
-Requires:       %{name}-kbc1126 = %{version}
-Requires:       %{name}-mediatek-coreboot-utilities = %{version}
-Requires:       %{name}-mma = %{version}
-Requires:       %{name}-msrtool = %{version}
-Requires:       %{name}-nvramtool = %{version}
-Requires:       %{name}-pmh7tool = %{version}
-Requires:       %{name}-post = %{version}
-Requires:       %{name}-qualcomm-coreboot-utilities = %{version}
-Requires:       %{name}-riscv-coreboot-utilities = %{version}
-Requires:       %{name}-rockchip-coreboot-utilities = %{version}
-Requires:       %{name}-scripts = %{version}
-Requires:       %{name}-smmstoretool = %{version}
-Requires:       %{name}-spd_tools = %{version}
-Requires:       %{name}-spdtool = %{version}
-Requires:       %{name}-spkmodem_recv = %{version}
-Requires:       %{name}-superiotool = %{version}
-Requires:       %{name}-xcompile = %{version}
+Requires:       %{name}-abuild
+Requires:       %{name}-amdfwtool
+Requires:       %{name}-amdtools
+Requires:       %{name}-apcb
+%dnl Requires:       %{name}-archive
+Requires:       %{name}-autoport
+Requires:       %{name}-bincfg
+Requires:       %{name}-board_status
+Requires:       %{name}-bucts
+Requires:       %{name}-cbfstool
+Requires:       %{name}-cbfstool-tests
+Requires:       %{name}-cbmem
+Requires:       %{name}-chromeos-coreboot-utilities
+Requires:       %{name}-coreboot-configurator
+Requires:       %{name}-ectool
+Requires:       %{name}-exynos
+Requires:       %{name}-find_usbdebug
+Requires:       %{name}-futility
+Requires:       %{name}-genbuild_h
+Requires:       %{name}-hda-decoder
+Requires:       %{name}-ifdtool
+Requires:       %{name}-intelmetool
+Requires:       %{name}-intelp2m
+Requires:       %{name}-inteltool
+Requires:       %{name}-kbc1126
+Requires:       %{name}-mediatek-coreboot-utilities
+Requires:       %{name}-mma
+Requires:       %{name}-msrtool
+Requires:       %{name}-nvramtool
+Requires:       %{name}-pmh7tool
+Requires:       %{name}-post
+Requires:       %{name}-qualcomm-coreboot-utilities
+Requires:       %{name}-riscv-coreboot-utilities
+Requires:       %{name}-rockchip-coreboot-utilities
+Requires:       %{name}-scripts
+Requires:       %{name}-smmstoretool
+Requires:       %{name}-spd_tools
+Requires:       %{name}-spdtool
+Requires:       %{name}-spkmodem_recv
+Requires:       %{name}-superiotool
+Requires:       %{name}-xcompile
 
 %description
 %summary.
@@ -217,143 +217,149 @@ Requires:       yaml-cpp
 %summary.
 
 %package        doc
-Requires:       coreboot-utils = %{version}
 Summary:        Coreboot utility documentation
+Requires:       coreboot-utils = %{version}
 %description    doc
 %summary.
 
 %package        ectool
+Summary:        Dumps the RAM of a laptop's Embedded/Environmental Controller (EC)
 Requires:       coreboot-utils = %{version}
 Requires:       glibc
 Conflicts:      chromium-ectool
-Summary:        Dumps the RAM of a laptop's Embedded/Environmental Controller (EC)
 %description    ectool
 %summary.
 
 %package        exynos
+Summary:        Computes and fills Exynos ROM checksum (for BL1 or BL2)
 Requires:       coreboot-utils = %{version}
 Requires:       python3
-Summary:        Computes and fills Exynos ROM checksum (for BL1 or BL2)
 %description    exynos
 %summary.
 
 %package        find_usbdebug
+Summary:        Help find USB debug ports
 Requires:       coreboot-utils = %{version}
 Requires:       bash
-Summary:        Help find USB debug ports
 %description    find_usbdebug
 %summary.
 
 %package        futility
-Requires:       coreboot-utils = %{version}
 Summary:        Firmware utility for signing ChromeOS images
+Requires:       coreboot-utils = %{version}
 %description    futility
 %summary.
 
 %package        genbuild_h
+Summary:        Generate build system definitions
 Requires:       coreboot-utils = %{version}
 Requires:       bash
-Summary:        Generate build system definitions
 %description    genbuild_h
 %summary.
 
 %package        hda-decoder
-Requires:       coreboot-utils = %{version}
 Summary:        Dumps decoded HDA default configuration registers into a format which can be used in coreboot's verb table
+Requires:       coreboot-utils = %{version}
 %description    hda-decoder
 %summary.
 
 %package        ifdtool
+Summary:        Extract and dump Intel Firmware Descriptor information
+
 Requires:       coreboot-utils = %{version}
 Requires:       glibc
 Requires:       pciutils
 Requires:       zlib-ng
-Summary:        Extract and dump Intel Firmware Descriptor information
+
 %description    ifdtool
 %summary.
 
 %package        intelmetool
+Summary:        Dump interesting things about Management Engine even if hidden
+
 Requires:       coreboot-utils = %{version}
 Requires:       glibc
 Requires:       pciutils
 Requires:       zlib-ng
-Summary:        Dump interesting things about Management Engine even if hidden
+
 %description    intelmetool
 %summary.
 
 %package        intelp2m
-Requires:       coreboot-utils = %{version}
 Summary:        convert the configuration DW0/1 registers value from an inteltool dump to coreboot macros
+Requires:       coreboot-utils = %{version}
 %description    intelp2m
 %summary.
 
 %package        inteltool
+Summary:        Provides information about the Intel CPU/chipset hardware configuration
+
 Requires:       coreboot-utils = %{version}
 Requires:       glibc
 Requires:       pciutils
 Requires:       zlib-ng
-Summary:        Provides information about the Intel CPU/chipset hardware configuration
+
 %description    inteltool
 %summary.
 
 %package        intelvbttool
+Summary:        Parse VBT from VGA BIOS
 Requires:       coreboot-utils = %{version}
 Requires:       glibc
-Summary:        Parse VBT from VGA BIOS
 %description    intelvbttool
 %summary.
 
 %package        kbc1126
-Requires:       coreboot-utils = %{version}
 Summary:        dump the two blobs from the factory firmware of some HP laptops
+Requires:       coreboot-utils = %{version}
 %description    kbc1126
 Tools used to dump the two blobs from the factory firmware of many HP
 laptops with 8051-based SMSC KBC1098/KBC1126 embedded controller and
 insert them to the firmware image.
 
 %package        mediatek-coreboot-utilities
+Summary:        Generate MediaTek bootload header
 Requires:       coreboot-utils = %{version}
 Requires:       python3
-Summary:        Generate MediaTek bootload header
 %description    mediatek-coreboot-utilities
 check-pi-img.py - Check `PI_IMG` firmware.
 gen-bl-img.py - Generate MediaTek bootloader header.
 
 %package        mma
+Summary:        Memory Margin Analysis automation tests
 Requires:       coreboot-utils = %{version}
 Requires:       bash
-Summary:        Memory Margin Analysis automation tests
 %description    mma
 %summary.
 
 %package        msrtool
-Requires:       coreboot-utils = %{version}
 Summary:        Dumps chipset-specific MSR registers
+Requires:       coreboot-utils = %{version}
 %description    msrtool
 %summary.
 
 %package        nvramtool
-Requires:       coreboot-utils = %{version}
 Summary:        Reads and writes coreboot parameters and displaying information from the coreboot table in CMOS/NVRAM
+Requires:       coreboot-utils = %{version}
 %description    nvramtool
 %summary.
 
 %package        pmh7tool
-Requires:       coreboot-utils = %{version}
 Summary:        Dumps, reads and writes PMH7 registers on Lenovo ThinkPads. PMH7 is used for switching on and off the power of some devices on the board such as dGPU
+Requires:       coreboot-utils = %{version}
 %description    pmh7tool
 %summary.
 
 %package        post
-Requires:       coreboot-utils = %{version}
 Summary:        Userspace utility that can be used to test POST cards
+Requires:       coreboot-utils = %{version}
 %description    post
 %summary.
 
 %package        qualcomm-coreboot-utilities
+Summary:        CMM script to debug Qualcomm coreboot environments
 Requires:       coreboot-utils = %{version}
 Requires:       python3
-Summary:        CMM script to debug Qualcomm coreboot environments
 %description    qualcomm-coreboot-utilities
 CMM script to debug Qualcomm coreboot environments.
 
@@ -363,25 +369,27 @@ mbncat - Generate ipq8064 uber SBL
 mbn_tools - Contains all MBN Utilities for image generation
 
 %package        riscv-coreboot-utilities
+Summary:        riscv coreboot utilities
 Requires:       coreboot-utils = %{version}
 Requires:       bash
 Requires:       python3
-Summary:        riscv coreboot utilities
 %description    riscv-coreboot-utilities
 %summary.
 
 %package        rockchip-coreboot-utilities
+Summary:        Generate Rockchip idblock bootloader
 Requires:       coreboot-utils = %{version}
 Requires:       python3
-Summary:        Generate Rockchip idblock bootloader
 %description    rockchip-coreboot-utilities
 %summary.
 
 %package        scripts
+Summary:        Various coreboot utility scripts
+
 Requires:       coreboot-utils = %{version}
 Requires:       perl
 Requires:       bash
-Summary:        Various coreboot utility scripts
+
 %description    scripts
 - capture_commands.sh - Write all commands from the build to a file.
 - config - Manipulate options in a .config file from the command line.
@@ -401,41 +409,41 @@ Summary:        Various coreboot utility scripts
 - update_submodules - Check all submodules for updates.
 
 %package        smmstoretool
-Requires:       coreboot-utils = %{version}
 Summary:        Offline SMMSTORE variable modification tool
+Requires:       coreboot-utils = %{version}
 %description    smmstoretool
 %summary.
 
 %package        spdtool
+Summary:        Dumps SPD ROMs from a given blob to separate files using known patterns and reserved bits
 Requires:       coreboot-utils = %{version}
 Requires:       python3
-Summary:        Dumps SPD ROMs from a given blob to separate files using known patterns and reserved bits
 %description    spdtool
 Dumps SPD ROMs from a given blob to separate files using known patterns
 and reserved bits. Useful for analysing firmware that holds SPDs on boards
 that have soldered down DRAM.
 
 %package        spd_tools
-Requires:       coreboot-utils = %{version}
 Summary:        A set of tools to generate SPD files for platforms with memory down configurations
+Requires:       coreboot-utils = %{version}
 %description    spd_tools
 %summary.
 
 %package        spkmodem_recv
-Requires:       coreboot-utils = %{version}
 Summary:        Decode spkmodem signals
+Requires:       coreboot-utils = %{version}
 %description    spkmodem_recv
 %summary.
 
 %package        superiotool
-Requires:       coreboot-utils = %{version}
 Summary:        A user-space utility to detect Super I/O of a mainboard and provide detailed information about the register contents of the Super I/O
+Requires:       coreboot-utils = %{version}
 %description    superiotool
 %summary.
 
 %package        xcompile
-Requires:       coreboot-utils = %{version}
 Summary:        Cross compile setup
+Requires:       coreboot-utils = %{version}
 %description    xcompile
 %summary.
 
@@ -459,21 +467,21 @@ pushd util
 %make_build -C cbfstool
 %make_build -C ectool LDFLAGS="-fPIE"
 %make_build -C futility
+%make_build -C hda-decoder
 %make_build -C ifdtool
 %make_build -C intelmetool CFLAGS="%{optflags} -I %{_builddir}/coreboot/src/commonlib/bsd/include"
-%make_build -C nvramtool LDFLAGS="-fPIE"
-%make_build -C inteltool
-%make_build -C superiotool
-%make_build -C intelvbttool
 %make_build -C intelp2m
-%make_build -C hda-decoder
+%make_build -C inteltool
+%make_build -C intelvbttool
 %make_build -C kbc1126
+%make_build -C nvramtool LDFLAGS="-fPIE"
 %make_build -C pmh7tool LDFLAGS="-fPIE"
 %make_build -C post
+%make_build -C riscv/starfive-jh7110-spl-tool LDFLAGS="-fPIE"
 %make_build -C smmstoretool CFLAGS="$CFLAGS -U_FORTIFY_SOURCE"
 %make_build -C spd_tools
 %make_build -C spkmodem_recv
-%make_build -C riscv/starfive-jh7110-spl-tool LDFLAGS="-fPIE"
+%make_build -C superiotool
 
 pushd autoport
 export GOFLAGS="-buildmode=pie -trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw"
@@ -562,9 +570,9 @@ install -Dm 755 util/ifdtool/ifdtool %{buildroot}%{_bindir}/ifdtool
 
 install -Dm 755 util/intelmetool/intelmetool %{buildroot}%{_bindir}/intelmetool
 
-install -Dm 755 util/inteltool/inteltool %{buildroot}%{_bindir}/inteltool
-
 install -Dm 755 util/intelp2m/intelp2m %{buildroot}%{_bindir}/intelp2m
+
+install -Dm 755 util/inteltool/inteltool %{buildroot}%{_bindir}/inteltool
 
 install -Dm 755 util/kbc1126/kbc1126_ec_dump %{buildroot}%{_bindir}/kbc1126_ec_dump
 install -Dm 755 util/kbc1126/kbc1126_ec_insert %{buildroot}%{_bindir}/kbc1126_ec_insert
@@ -765,13 +773,13 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_docdir}/coreboot-util
 %{_bindir}/intelmetool
 %doc util/intelmetool/description.md
 
-%files inteltool
-%{_bindir}/inteltool
-%doc util/inteltool/description.md
-
 %files intelp2m
 %{_bindir}/intelp2m
 %doc util/intelp2m/description.md
+
+%files inteltool
+%{_bindir}/inteltool
+%doc util/inteltool/description.md
 
 %files kbc1126
 %{_bindir}/kbc1126_ec_dump
