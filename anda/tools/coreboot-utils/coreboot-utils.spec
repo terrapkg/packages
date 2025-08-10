@@ -57,24 +57,29 @@ Requires:       dmidecode
 %summary.
 
 %package        abuild
+Summary:        coreboot autobuild script builds coreboot images for all available targets
+Requires:       coreboot-utils
 Conflicts:      abuild <= 25.06-1
 Obsoletes:      abuild <= 25.06-1
-Summary:        coreboot autobuild script builds coreboot images for all available targets
 %description    abuild
 %summary.
 
 %package        amdfwtool
 Summary:        Create AMD Firmware combination
+Requires:       coreboot-utils
+Requires:       glibc
 %description    amdfwtool
 %summary.
 
 %package        amdtools
 Summary:        Various tools for AMD processors
+Requires:       coreboot-utils
 %description    amdtools
 %summary.
 
 %package        apcb
 Summary:        AMD PSP Control Block tools
+Requires:       coreboot-utils
 %description    apcb
 The necessary tools for building APCBs are not available for use by coreboot.
 This tool allows patching an existing APCB binary with specific SPDs
@@ -84,53 +89,69 @@ apcb_edit - This tool allows patching an existing APCB binary with specific SPDs
 apcb_v3_edit - This tool allows patching an existing APCB v3 binary with up to  16 specific SPDs.
 
 %dnl %package archive - ### Currently bugged and does not compile ###
+%dnl Requires:       coreboot-utils
 %dnl Summary:        Concatenate files and create an archive
 %dnl %description    archive
 %dnl %summary.
 
 %package        autoport
 Summary:        Porting coreboot using autoport
-Requires:       acpica dmidecode ectool glibc pciutils
+
+Requires:       coreboot-utils
+Requires:       acpica
+Requires:       dmidecode
+Requires:       ectool
+Requires:       glibc
+Requires:       pciutils
 Requires:       inteltool = %{version}
 Requires:       superiotool = %{version}
+
 %description    autoport
 Automated porting coreboot to Sandy Bridge/Ivy Bridge/Haswell platforms.
 
 %package        bincfg
 Summary:        Compiler/Decompiler for data blobs with specs
+Requires:       coreboot-utils
 %description    bincfg
 %summary.
 
 %package        board_status
 Summary:        Tools to collect logs and upload them to the board status repository
+Requires:       coreboot-utils
 %description    board_status
 %summary.
 
 %package        bucts
 Summary:        A tool to manipulate the BUC.TS bit on Intel targets
+Requires:       coreboot-utils
 %description    bucts
 %summary.
 
 %package        cavium
 Summary:        Devicetree_convert Tool to convert a DTB to a static C file
+Requires:       coreboot-utils
 %description    cavium
 %summary.
 
 %package        cbfstool
+Summary:        Management utility for CBFS formatted ROM images
+Requires:       coreboot-utils
 Conflicts:      cbfstool <= 25.06-1
 Obsoletes:      cbfstool <= 25.06-1
-Summary:        Management utility for CBFS formatted ROM images
 %description    cbfstool
 %summary.
 
 %package        cbmem
+Summary:        Prints out coreboot mem table information
+Requires:       coreboot-utils
+Requires:       glibc
 Conflicts:      cbmem <= 25.06-1
 Obsoletes:      cbmem <= 25.06-1
-Summary:        Prints out coreboot mem table information
 %description    cbmem
 Prints out coreboot mem table information in JSON by default, and also implements the basic cbmem -list and -console commands.
 
 %package        chromeos-coreboot-utilities
+Requires:       coreboot-utils
 Summary:        access or generate ChromeOS resources
 %description    chromeos-coreboot-utilities
 These scripts can be used to access or generate ChromeOS resources, for example
@@ -139,72 +160,108 @@ VGA option roms) from a ChromeOS recovery image.
 
 %package        coreboot-configurator
 Summary:        A simple GUI to change settings in coreboot's CBFS, via the nvramtool utility
+
+Requires:       coreboot-utils
 Requires:       coreboot-utils-nvramtool = %version
+Requires:       qt5-qtbase
+Requires:       qt5-qtsvg
+Requires:       yaml-cpp
+
 %description    coreboot-configurator
 %summary.
 
 %package        doc
+Requires:       coreboot-utils
 Summary:        Coreboot utility documentation
 %description    doc
 %summary.
 
 %package        dtd_parser
+Requires:       coreboot-utils
 Summary:        DTD structure parser
 %description    dtd_parser
 %summary.
 
 %package        ectool
+Requires:       coreboot-utils
+Requires:       glibc
 Conflicts:      chromium-ectool
 Summary:        Dumps the RAM of a laptop's Embedded/Environmental Controller (EC)
 %description    ectool
 %summary.
 
 %package        exynos
+Requires:       coreboot-utils
 Summary:        Computes and fills Exynos ROM checksum (for BL1 or BL2)
 %description    exynos
 %summary.
 
 %package        find_usbdebug
+Requires:       coreboot-utils
 Summary:        Help find USB debug ports
 %description    find_usbdebug
 %summary.
 
 %package        futility
+Requires:       coreboot-utils
 Summary:        Firmware utility for signing ChromeOS images
 %description    futility
 %summary.
 
 %package        genbuild_h
+Requires:       coreboot-utils
 Summary:        Generate build system definitions
 %description    genbuild_h
 %summary.
 
 %package        hda-decoder
+Requires:       coreboot-utils
 Summary:        Dumps decoded HDA default configuration registers into a format which can be used in coreboot's verb table
 %description    hda-decoder
 %summary.
 
 %package        ifdtool
+Requires:       coreboot-utils
+Requires:       glibc
+Requires:       pciutils
+Requires:       zlib-ng
 Summary:        Extract and dump Intel Firmware Descriptor information
 %description    ifdtool
 %summary.
 
 %package        intelmetool
+Requires:       coreboot-utils
+Requires:       glibc
+Requires:       pciutils
+Requires:       zlib-ng
 Summary:        Dump interesting things about Management Engine even if hidden
 %description    intelmetool
 %summary.
 
 %package        intelp2m
+Requires:       coreboot-utils
 Summary:        convert the configuration DW0/1 registers value from an inteltool dump to coreboot macros
 %description    intelp2m
 %summary.
 
+%package        inteltool
+Requires:       coreboot-utils
+Requires:       glibc
+Requires:       pciutils
+Requires:       zlib-ng
+Summary:        Provides information about the Intel CPU/chipset hardware configuration
+%description    inteltool
+%summary.
+
 %package        intelvbttool
+Requires:       coreboot-utils
+Requires:       glibc
 Summary:        Parse VBT from VGA BIOS
 %description    intelvbttool
 %summary.
 
 %package        kbc1126
+Requires:       coreboot-utils
 Summary:        dump the two blobs from the factory firmware of some HP laptops
 %description    kbc1126
 Tools used to dump the two blobs from the factory firmware of many HP
@@ -212,37 +269,44 @@ laptops with 8051-based SMSC KBC1098/KBC1126 embedded controller and
 insert them to the firmware image.
 
 %package        mediatek-coreboot-utilities
+Requires:       coreboot-utils
 Summary:        Generate MediaTek bootload header
 %description    mediatek-coreboot-utilities
 check-pi-img.py - Check `PI_IMG` firmware.
 gen-bl-img.py - Generate MediaTek bootloader header.
 
 %package        mma
+Requires:       coreboot-utils
 Summary:        Memory Margin Analysis automation tests
 %description    mma
 %summary.
 
 %package        msrtool
+Requires:       coreboot-utils
 Summary:        Dumps chipset-specific MSR registers
 %description    msrtool
 %summary.
 
 %package        nvramtool
+Requires:       coreboot-utils
 Summary:        Reads and writes coreboot parameters and displaying information from the coreboot table in CMOS/NVRAM
 %description    nvramtool
 %summary.
 
 %package        pmh7tool
+Requires:       coreboot-utils
 Summary:        Dumps, reads and writes PMH7 registers on Lenovo ThinkPads. PMH7 is used for switching on and off the power of some devices on the board such as dGPU
 %description    pmh7tool
 %summary.
 
 %package        post
+Requires:       coreboot-utils
 Summary:        Userspace utility that can be used to test POST cards
 %description    post
 %summary.
 
 %package        qualcomm-coreboot-utilities
+Requires:       coreboot-utils
 Summary:        CMM script to debug Qualcomm coreboot environments
 %description    qualcomm-coreboot-utilities
 CMM script to debug Qualcomm coreboot environments.
@@ -253,16 +317,19 @@ mbncat - Generate ipq8064 uber SBL
 mbn_tools - Contains all MBN Utilities for image generation
 
 %package        riscv-coreboot-utilities
+Requires:       coreboot-utils
 Summary:        riscv coreboot utilities
 %description    riscv-coreboot-utilities
 %summary.
 
 %package        rockchip-coreboot-utilities
+Requires:       coreboot-utils
 Summary:        Generate Rockchip idblock bootloader
 %description    rockchip-coreboot-utilities
 %summary.
 
 %package        scripts
+Requires:       coreboot-utils
 Summary:        Various coreboot utility scripts
 %description    scripts
 - capture_commands.sh - Write all commands from the build to a file.
@@ -283,11 +350,13 @@ Summary:        Various coreboot utility scripts
 - update_submodules - Check all submodules for updates.
 
 %package        smmstoretool
+Requires:       coreboot-utils
 Summary:        Offline SMMSTORE variable modification tool
 %description    smmstoretool
 %summary.
 
 %package        spdtool
+Requires:       coreboot-utils
 Summary:        Dumps SPD ROMs from a given blob to separate files using known patterns and reserved bits
 %description    spdtool
 Dumps SPD ROMs from a given blob to separate files using known patterns
@@ -295,26 +364,25 @@ and reserved bits. Useful for analysing firmware that holds SPDs on boards
 that have soldered down DRAM.
 
 %package        spd_tools
+Requires:       coreboot-utils
 Summary:        A set of tools to generate SPD files for platforms with memory down configurations
 %description    spd_tools
 %summary.
 
 %package        spkmodem_recv
+Requires:       coreboot-utils
 Summary:        Decode spkmodem signals
 %description    spkmodem_recv
 %summary.
 
 %package        superiotool
+Requires:       coreboot-utils
 Summary:        A user-space utility to detect Super I/O of a mainboard and provide detailed information about the register contents of the Super I/O
 %description    superiotool
 %summary.
 
-%package        vboot_lib
-Summary:        vboot library file
-%description    vboot_lib
-%summary.
-
 %package        xcompile
+Requires:       coreboot-utils
 Summary:        Cross compile setup
 %description    xcompile
 %summary.
@@ -443,6 +511,8 @@ install -Dm 755 util/ifdtool/ifdtool %buildroot%_bindir/ifdtool
 
 install -Dm 755 util/intelmetool/intelmetool %buildroot%_bindir/intelmetool
 
+install -Dm 755 util/inteltool/inteltool %buildroot%_bindir/inteltool
+
 install -Dm 755 util/intelp2m/intelp2m %buildroot%_bindir/intelp2m
 
 install -Dm 755 util/kbc1126/kbc1126_ec_dump %buildroot%_bindir/kbc1126_ec_dump
@@ -508,7 +578,7 @@ install -Dm 755 util/superiotool/superiotool %buildroot%_bindir/superiotool
 
 install -Dm 755 util/xcompile/xcompile %buildroot%_libdir/xcompile
 
-# Install documentation files to appropriate subdirectries within docdir as to not have multiple files of the same name
+# Install documentation files to appropriate subdirectries within docdir to prevent multiple files of the same name
 mkdir -p %{buildroot}%{_docdir}/coreboot-utils/abuild
 mkdir -p %{buildroot}%{_docdir}/coreboot-utils/cbfstool
 mkdir -p %{buildroot}%{_docdir}/coreboot-utils/ifdtool
@@ -646,6 +716,10 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_docdir}/coreboot-util
 %{_bindir}/intelmetool
 %doc util/intelmetool/description.md
 
+%files inteltool
+%{_bindir}/inteltool
+%doc util/inteltool/description.md
+
 %files intelp2m
 %{_bindir}/intelp2m
 %doc util/intelp2m/description.md
@@ -750,10 +824,7 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_docdir}/coreboot-util
 %{_bindir}/superiotool
 %doc util/superiotool/README
 %doc util/superiotool/description.md
-%license util/superiotool/LICENSE
-
-%files vboot_lib
-%{_libdir}/libvboot_host.so
+%license util/superiotool/COPYING
 
 %files xcompile
 %{_libdir}/xcompile
