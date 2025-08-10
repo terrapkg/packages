@@ -165,6 +165,7 @@ Requires:       bash
 
 %package        bucts
 Summary:        A tool to manipulate the BUC.TS bit on Intel targets
+ExclusiveArch:  x86_64
 Requires:       coreboot-utils = %{version}
 %description    bucts
 %summary.
@@ -224,6 +225,7 @@ Requires:       coreboot-utils = %{version}
 
 %package        ectool
 Summary:        Dumps the RAM of a laptop's Embedded/Environmental Controller (EC)
+ExclusiveArch:  x86_64
 Requires:       coreboot-utils = %{version}
 Requires:       glibc
 Conflicts:      chromium-ectool
@@ -462,10 +464,14 @@ pushd util
 %make_build -C amdfwtool LDFLAGS="-fPIE -lcrypto"
 %dnl %make_build -C archive # bugged upstream, does not build
 %make_build -C bincfg
+%ifarch x86_64
 %make_build -C bucts LDFLAGS="-fPIE"
+%endif
 %make_build -C cbmem CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS"
 %make_build -C cbfstool
+%ifarch x86_64
 %make_build -C ectool LDFLAGS="-fPIE"
+%endif
 %make_build -C futility
 %make_build -C hda-decoder
 %make_build -C ifdtool
