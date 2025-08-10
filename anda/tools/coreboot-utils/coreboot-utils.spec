@@ -43,6 +43,7 @@ BuildRequires:  inkscape
 BuildRequires:  flex
 BuildRequires:  acpica-tools
 BuildRequires:  binutils
+BuildRequires:  python3
 
 %if 0%{?fedora} >= 42
 BuildRequires:  gcc14 gcc14-c++
@@ -57,13 +58,11 @@ Requires:       %{name}-autoport = %{version}
 Requires:       %{name}-bincfg = %{version}
 Requires:       %{name}-board_status = %{version}
 Requires:       %{name}-bucts = %{version}
-Requires:       %{name}-cavium = %{version}
 Requires:       %{name}-cbfstool = %{version}
 Requires:       %{name}-cbfstool-tests = %{version}
 Requires:       %{name}-cbmem = %{version}
 Requires:       %{name}-chromeos-coreboot-utilities = %{version}
 Requires:       %{name}-coreboot-configurator = %{version}
-Requires:       %{name}-dtd_parser = %{version}
 Requires:       %{name}-ectool = %{version}
 Requires:       %{name}-exynos = %{version}
 Requires:       %{name}-find_usbdebug = %{version}
@@ -140,7 +139,7 @@ apcb_v3_edit - This tool allows patching an existing APCB v3 binary with up to  
 Summary:        Porting coreboot using autoport
 
 Requires:       coreboot-utils = %{version}
-Requires:       acpica
+Requires:       acpica-tools
 Requires:       dmidecode
 Requires:       ectool
 Requires:       glibc
@@ -168,13 +167,6 @@ Requires:       bash
 Summary:        A tool to manipulate the BUC.TS bit on Intel targets
 Requires:       coreboot-utils = %{version}
 %description    bucts
-%summary.
-
-%package        cavium
-Summary:        Devicetree_convert Tool to convert a DTB to a static C file
-Requires:       coreboot-utils = %{version}
-Requires:       python3
-%description    cavium
 %summary.
 
 %package        cbfstool
@@ -228,13 +220,6 @@ Requires:       yaml-cpp
 Requires:       coreboot-utils = %{version}
 Summary:        Coreboot utility documentation
 %description    doc
-%summary.
-
-%package        dtd_parser
-Requires:       coreboot-utils = %{version}
-Requires:       python3
-Summary:        DTD structure parser
-%description    dtd_parser
 %summary.
 
 %package        ectool
@@ -534,8 +519,6 @@ install -Dm 755 util/board_status/set_up_live_image.sh %{buildroot}%{_bindir}/se
 
 install -Dm 755 util/bucts/bucts %{buildroot}%{_bindir}/bucts
 
-install -Dm 755 util/cavium/devicetree_convert.py %{buildroot}%{_bindir}/devicetree_convert
-
 install -Dm 755 util/cbfstool/cbfstool %{buildroot}%{_bindir}/cbfstool
 
 install -Dm 755 util/cbfstool/tests/conftest.py %{buildroot}%{_bindir}/conftest
@@ -561,8 +544,6 @@ install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/64.p
 install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/coreboot-configurator.png
 install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/256.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/coreboot-configurator.png
 install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/512.png %{buildroot}%{_datadir}/icons/hicolor/512x512/apps/coreboot-configurator.png
-
-install -Dm 755 util/dtd_parser/dtd_parser.py %{buildroot}%{_bindir}/dtd_parser
 
 install -Dm 755 util/ectool/ectool %{buildroot}%{_bindir}/ectool
 
@@ -715,10 +696,6 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_docdir}/coreboot-util
 %{_bindir}/bucts
 %doc util/bucts/*.md
 
-%files cavium
-%{_bindir}/devicetree_convert
-%doc util/cavium/description.md
-
 %files cbfstool
 %{_bindir}/cbfstool
 %doc util/cbfstool/description.md
@@ -754,10 +731,6 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_docdir}/coreboot-util
 %{_datadir}/icons/hicolor/256x256/apps/coreboot-configurator.png
 %{_datadir}/icons/hicolor/512x512/apps/coreboot-configurator.png
 %doc util/coreboot-configurator/README.md
-
-%files dtd_parser
-%{_bindir}/dtd_parser
-%doc util/dtd_parser/description.md
 
 %files ectool
 %{_bindir}/ectool
