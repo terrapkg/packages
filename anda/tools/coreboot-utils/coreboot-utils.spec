@@ -628,7 +628,9 @@ install -Dm 755 util/intelp2m/intelp2m %{buildroot}%{_bindir}/intelp2m
 install -Dm 755 util/inteltool/inteltool %{buildroot}%{_bindir}/inteltool
 %endif
 
+%ifarch x86_64
 install -Dm 755 util/intelvbttool/intelvbttool %{buildroot}%{_bindir}/intelvbttool
+%endif
 
 install -Dm 755 util/kbc1126/kbc1126_ec_dump %{buildroot}%{_bindir}/kbc1126_ec_dump
 install -Dm 755 util/kbc1126/kbc1126_ec_insert %{buildroot}%{_bindir}/kbc1126_ec_insert
