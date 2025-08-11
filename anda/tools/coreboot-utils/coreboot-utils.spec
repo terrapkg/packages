@@ -356,11 +356,13 @@ Requires:       coreboot-utils = %{version}
 %summary.
 %endif
 
+%ifarch x86_64
 %package        pmh7tool
 Summary:        Dumps, reads and writes PMH7 registers on Lenovo ThinkPads. PMH7 is used for switching on and off the power of some devices on the board such as dGPU
 Requires:       coreboot-utils = %{version}
 %description    pmh7tool
 %summary.
+%endif
 
 %package        post
 Summary:        Userspace utility that can be used to test POST cards
@@ -628,7 +630,9 @@ install -Dm 755 util/msrtool/msrtool %{buildroot}%{_bindir}/msrtool
 install -Dm 755 util/nvramtool/nvramtool %{buildroot}%{_bindir}/nvramtool
 %endif
 
+%ifarch x86_64
 install -Dm 755 util/pmh7tool/pmh7tool %{buildroot}%{_bindir}/pmh7tool
+%endif
 
 install -Dm 755 util/post/post %{buildroot}%{_bindir}/post
 
@@ -866,9 +870,11 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_docdir}/coreboot-util
 %doc util/nvramtool/description.md
 %endif
 
+%ifarch x86_64
 %files pmh7tool
 %{_bindir}/pmh7tool
 %doc util/pmh7tool/description.md
+%endif
 
 %files post
 %{_bindir}/post
