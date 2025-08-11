@@ -503,7 +503,9 @@ pushd util
 %ifarch x86_64
 %make_build -C nvramtool LDFLAGS="-fPIE"
 %endif
+%ifarch x86_64
 %make_build -C pmh7tool LDFLAGS="-fPIE"
+%endif
 %make_build -C post
 %make_build -C riscv/starfive-jh7110-spl-tool LDFLAGS="-fPIE"
 %make_build -C smmstoretool CFLAGS="$CFLAGS -U_FORTIFY_SOURCE"
