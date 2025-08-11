@@ -530,10 +530,12 @@ export GOFLAGS="-buildmode=pie -trimpath -ldflags=-linkmode=external -mod=readon
 %gobuild -o %{_builddir}/autoport
 popd
 
+%ifarch x86_64
 pushd msrtool
 ./configure
 %make_build
 popd
+%endif
 
 pushd coreboot-configurator
 %meson
@@ -638,7 +640,9 @@ install -Dm 755 util/mma/mma_automated_test.sh %{buildroot}%{_bindir}/mma_automa
 install -Dm 755 util/mma/mma_get_result.sh %{buildroot}%{_bindir}/mma_get_result
 install -Dm 755 util/mma/mma_setup_test.sh %{buildroot}%{_bindir}/mma_setup_test
 
+%ifarch x86_64
 install -Dm 755 util/msrtool/msrtool %{buildroot}%{_bindir}/msrtool
+%endif
 
 %ifarch x86_64
 install -Dm 755 util/nvramtool/nvramtool %{buildroot}%{_bindir}/nvramtool
@@ -806,6 +810,19 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_docdir}/coreboot-util
 %{_datadir}/icons/hicolor/512x512/apps/coreboot-configurator.png
 %doc util/coreboot-configurator/README.md
 
+%files doc
+%{_docdir}/coreboot-utils/util.md
+%{_docdir}/coreboot-utils/cbfs.txt
+%{_docdir}/coreboot-utils/abuild/index.md
+%{_docdir}/coreboot-utils/cbfstool/index.md
+%{_docdir}/coreboot-utils/cbfstool/mmap_windows.md
+%{_docdir}/coreboot-utils/ifdtool/binary_extraction.md
+%{_docdir}/coreboot-utils/ifdtool/index.md
+%{_docdir}/coreboot-utils/ifdtool/layout.md
+%{_docdir}/coreboot-utils/intelp2m/index.md
+%{_docdir}/coreboot-utils/smmstoretool/index.md
+%license Documentation/COPYING
+
 %ifarch x86_64
 %files ectool
 %{_bindir}/ectool
@@ -877,10 +894,12 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_docdir}/coreboot-util
 %{_bindir}/mma_setup_test
 %doc util/mma/description.md
 
+%ifarch x86_64
 %files msrtool
 %{_bindir}/msrtool
 %doc util/msrtool/README
 %doc util/msrtool/description.md
+%endif
 
 %ifarch x86_64
 %files nvramtool
@@ -974,19 +993,6 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_docdir}/coreboot-util
 %files xcompile
 %{_libdir}/xcompile
 %doc util/xcompile/description.md
-
-%files doc
-%{_docdir}/coreboot-utils/util.md
-%{_docdir}/coreboot-utils/cbfs.txt
-%{_docdir}/coreboot-utils/abuild/index.md
-%{_docdir}/coreboot-utils/cbfstool/index.md
-%{_docdir}/coreboot-utils/cbfstool/mmap_windows.md
-%{_docdir}/coreboot-utils/ifdtool/binary_extraction.md
-%{_docdir}/coreboot-utils/ifdtool/index.md
-%{_docdir}/coreboot-utils/ifdtool/layout.md
-%{_docdir}/coreboot-utils/intelp2m/index.md
-%{_docdir}/coreboot-utils/smmstoretool/index.md
-%license Documentation/COPYING
 
 %changelog
 * Wed Jul 30 2025 Owen Zimmerman <owen@fyralabs.com>
