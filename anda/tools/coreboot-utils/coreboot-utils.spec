@@ -453,11 +453,13 @@ Requires:       coreboot-utils = %{version}
 %description    spkmodem_recv
 %summary.
 
+%ifarch x86_64
 %package        superiotool
 Summary:        A user-space utility to detect Super I/O of a mainboard and provide detailed information about the register contents of the Super I/O
 Requires:       coreboot-utils = %{version}
 %description    superiotool
 %summary.
+%endif
 
 %package        xcompile
 Summary:        Cross compile setup
@@ -519,7 +521,9 @@ pushd util
 %endif
 %make_build -C spd_tools
 %make_build -C spkmodem_recv
+%ifarch x86_64
 %make_build -C superiotool
+%endif
 
 pushd autoport
 export GOFLAGS="-buildmode=pie -trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw"
@@ -691,7 +695,9 @@ install -Dm 755 util/spd_tools/bin/spd_gen %{buildroot}%{_bindir}/spd_gen
 
 install -Dm 755 util/spkmodem_recv/spkmodem-recv %{buildroot}%{_bindir}/spkmodem-recv
 
+%ifarch x86_64
 install -Dm 755 util/superiotool/superiotool %{buildroot}%{_bindir}/superiotool
+%endif
 
 install -Dm 755 util/xcompile/xcompile %{buildroot}%{_libdir}/xcompile
 
@@ -958,10 +964,12 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_docdir}/coreboot-util
 %{_bindir}/spkmodem-recv
 %doc util/spkmodem_recv/description.md
 
+%ifarch x86_64
 %files superiotool
 %{_bindir}/superiotool
 %doc util/superiotool/README
 %doc util/superiotool/description.md
+%endif
 
 %files xcompile
 %{_libdir}/xcompile
