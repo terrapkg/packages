@@ -348,11 +348,13 @@ Requires:       coreboot-utils = %{version}
 %description    msrtool
 %summary.
 
+%ifarch x86_64
 %package        nvramtool
 Summary:        Reads and writes coreboot parameters and displaying information from the coreboot table in CMOS/NVRAM
 Requires:       coreboot-utils = %{version}
 %description    nvramtool
 %summary.
+%endif
 
 %package        pmh7tool
 Summary:        Dumps, reads and writes PMH7 registers on Lenovo ThinkPads. PMH7 is used for switching on and off the power of some devices on the board such as dGPU
@@ -485,12 +487,20 @@ pushd util
 %make_build -C ifdtool
 %ifarch x86_64
 %make_build -C intelmetool CFLAGS="%{optflags} -I %{_builddir}/coreboot/src/commonlib/bsd/include"
+%endif
+%ifarch x86_64
 %make_build -C intelp2m
+%endif
+%ifarch x86_64
 %make_build -C inteltool
+%endif
+%ifarch x86_64
 %make_build -C intelvbttool
 %endif
 %make_build -C kbc1126
+%ifarch x86_64
 %make_build -C nvramtool LDFLAGS="-fPIE"
+%endif
 %make_build -C pmh7tool LDFLAGS="-fPIE"
 %make_build -C post
 %make_build -C riscv/starfive-jh7110-spl-tool LDFLAGS="-fPIE"
@@ -614,7 +624,9 @@ install -Dm 755 util/mma/mma_setup_test.sh %{buildroot}%{_bindir}/mma_setup_test
 
 install -Dm 755 util/msrtool/msrtool %{buildroot}%{_bindir}/msrtool
 
+%ifarch x86_64
 install -Dm 755 util/nvramtool/nvramtool %{buildroot}%{_bindir}/nvramtool
+%endif
 
 install -Dm 755 util/pmh7tool/pmh7tool %{buildroot}%{_bindir}/pmh7tool
 
@@ -846,11 +858,13 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_docdir}/coreboot-util
 %doc util/msrtool/README
 %doc util/msrtool/description.md
 
+%ifarch x86_64
 %files nvramtool
 %{_bindir}/nvramtool
 %doc util/nvramtool/README
 %doc util/nvramtool/DISCLAIMER
 %doc util/nvramtool/description.md
+%endif
 
 %files pmh7tool
 %{_bindir}/pmh7tool
