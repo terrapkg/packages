@@ -364,11 +364,13 @@ Requires:       coreboot-utils = %{version}
 %summary.
 %endif
 
+%ifarch x86_64
 %package        post
 Summary:        Userspace utility that can be used to test POST cards
 Requires:       coreboot-utils = %{version}
 %description    post
 %summary.
+%endif
 
 %package        qualcomm-coreboot-utilities
 Summary:        CMM script to debug Qualcomm coreboot environments
@@ -506,7 +508,9 @@ pushd util
 %ifarch x86_64
 %make_build -C pmh7tool LDFLAGS="-fPIE"
 %endif
+%ifarch x86_64
 %make_build -C post
+%endif
 %make_build -C riscv/starfive-jh7110-spl-tool LDFLAGS="-fPIE"
 %make_build -C smmstoretool CFLAGS="$CFLAGS -U_FORTIFY_SOURCE"
 %make_build -C spd_tools
@@ -636,7 +640,9 @@ install -Dm 755 util/nvramtool/nvramtool %{buildroot}%{_bindir}/nvramtool
 install -Dm 755 util/pmh7tool/pmh7tool %{buildroot}%{_bindir}/pmh7tool
 %endif
 
+%ifarch x86_64
 install -Dm 755 util/post/post %{buildroot}%{_bindir}/post
+%endif
 
 install -Dm 755 util/qualcomm/createxbl.py %{buildroot}%{_bindir}/createxbl
 install -Dm 755 util/qualcomm/create_multielf.py %{buildroot}%{_bindir}/create_multielf
@@ -878,10 +884,12 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_docdir}/coreboot-util
 %doc util/pmh7tool/description.md
 %endif
 
+%ifarch x86_64
 %files post
 %{_bindir}/post
 %doc util/post/README
 %doc util/post/description.md
+%endif
 
 %files qualcomm-coreboot-utilities
 %{_bindir}/createxbl
