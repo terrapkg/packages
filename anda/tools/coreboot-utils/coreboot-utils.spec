@@ -424,11 +424,13 @@ Requires:       bash
 - ucode_h_to_bin.sh - Microcode conversion tool.
 - update_submodules - Check all submodules for updates.
 
+%ifarch x86_64
 %package        smmstoretool
 Summary:        Offline SMMSTORE variable modification tool
 Requires:       coreboot-utils = %{version}
 %description    smmstoretool
 %summary.
+%endif
 
 %package        spdtool
 Summary:        Dumps SPD ROMs from a given blob to separate files using known patterns and reserved bits
@@ -512,7 +514,9 @@ pushd util
 %make_build -C post
 %endif
 %make_build -C riscv/starfive-jh7110-spl-tool LDFLAGS="-fPIE"
+%ifarch x86_64
 %make_build -C smmstoretool CFLAGS="$CFLAGS -U_FORTIFY_SOURCE"
+%endif
 %make_build -C spd_tools
 %make_build -C spkmodem_recv
 %make_build -C superiotool
@@ -676,7 +680,9 @@ install -Dm 755 util/scripts/testsoc %{buildroot}%{_bindir}/testsoc
 install -Dm 755 util/scripts/ucode_h_to_bin.sh %{buildroot}%{_bindir}/ucode_h_to_bin
 install -Dm 755 util/scripts/update_submodules %{buildroot}%{_bindir}/update_submodules
 
+%ifarch x86_64
 install -Dm 755 util/smmstoretool/smmstoretool %{buildroot}%{_bindir}/smmstoretool
+%endif
 
 install -Dm 755 util/spdtool/spdtool.py %{buildroot}%{_bindir}/spdtool
 
@@ -933,9 +939,11 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_docdir}/coreboot-util
 %{_bindir}/update_submodules
 %doc util/scripts/description.md
 
+%ifarch x86_64
 %files smmstoretool
 %{_bindir}/smmstoretool
 %doc util/smmstoretool/description.md
+%endif
 
 %files spdtool
 %{_bindir}/spdtool
