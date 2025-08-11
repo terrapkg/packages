@@ -567,7 +567,9 @@ install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/128.
 install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/256.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/coreboot-configurator.png
 install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/512.png %{buildroot}%{_datadir}/icons/hicolor/512x512/apps/coreboot-configurator.png
 
+%ifarch x86_64
 install -Dm 755 util/ectool/ectool %{buildroot}%{_bindir}/ectool
+%endif
 
 install -Dm 755 util/exynos/fixed_cksum.py %{buildroot}%{_bindir}/fixed_cksum
 install -Dm 755 util/exynos/variable_cksum.py %{buildroot}%{_bindir}/variable_cksum
@@ -758,9 +760,11 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_docdir}/coreboot-util
 %{_datadir}/icons/hicolor/512x512/apps/coreboot-configurator.png
 %doc util/coreboot-configurator/README.md
 
+%ifarch x86_64
 %files ectool
 %{_bindir}/ectool
 %doc util/ectool/description.md
+%endif
 
 %files exynos
 %{_bindir}/fixed_cksum
