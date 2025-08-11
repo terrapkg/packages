@@ -15,7 +15,7 @@
 %global comet_version 0.2.0
 
 Name:          %{shortname}-games-launcher
-Version:       2.18.0
+Version:       2.18.1
 Release:       1%?dist
 Summary:       A games launcher for GOG, Amazon, and Epic Games
 License:       GPL-3.0-only AND MIT AND BSD-3-Clause

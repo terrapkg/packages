@@ -1,8 +1,8 @@
 %define debug_package %nil
 
-%global commit 1d4bffb9ca8c78387e4c4e1f5bfa4a73c55b16da
+%global commit 1c14e09d2cf75c9716fb8ca808d243ea9f5e9154
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250725
+%global commit_date 20250802
 
 Name:           gamescope-session
 Version:        %commit_date.%shortcommit
@@ -33,6 +33,7 @@ cp -r usr %buildroot/
 %_userunitdir/gamescope-session-plus@.service
 %_datadir/gamescope-session-plus/device-quirks
 %_datadir/gamescope-session-plus/gamescope-session-plus
+%_datadir/gamescope/scripts/50-custom/50-disable-explicit-sync.lua
 
 %changelog
 %autochangelog

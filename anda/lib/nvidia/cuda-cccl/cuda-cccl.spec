@@ -5,7 +5,7 @@
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
-Version:        12.9.27
+Version:        13.0.50
 Release:        1%?dist
 Summary:        CXX Core Compute Libraries
 License:        CUDA Toolkit

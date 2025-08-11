@@ -1,6 +1,6 @@
 Name:           vpkedit
-Version:        4.4.2
-Release:        3%?dist
+Version:        5.0.0.1
+Release:        1%?dist
 Summary:        A CLI/GUI tool to create, read, and write several pack file formats
 License:        MIT
 URL:            https://github.com/craftablescience/VPKEdit
