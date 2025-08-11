@@ -537,7 +537,9 @@ install -Dm 755 util/board_status/board_status.sh %{buildroot}%{_bindir}/board_s
 install -Dm 755 util/board_status/getrevision.sh %{buildroot}%{_bindir}/getrevision
 install -Dm 755 util/board_status/set_up_live_image.sh %{buildroot}%{_bindir}/set_up_live_image
 
+%ifarch x86_64
 install -Dm 755 util/bucts/bucts %{buildroot}%{_bindir}/bucts
+%endif
 
 install -Dm 755 util/cbfstool/cbfstool %{buildroot}%{_bindir}/cbfstool
 
@@ -580,7 +582,9 @@ install -Dm 755 util/hda-decoder/hda-decoder %{buildroot}%{_bindir}/hda-decoder
 
 install -Dm 755 util/ifdtool/ifdtool %{buildroot}%{_bindir}/ifdtool
 
+%ifarch x86_64
 install -Dm 755 util/intelmetool/intelmetool %{buildroot}%{_bindir}/intelmetool
+%endif
 
 install -Dm 755 util/intelp2m/intelp2m %{buildroot}%{_bindir}/intelp2m
 
@@ -712,9 +716,11 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_docdir}/coreboot-util
 %{_bindir}/set_up_live_image
 %doc util/board_status/*.md
 
+%ifarch x86_64
 %files bucts
 %{_bindir}/bucts
 %doc util/bucts/*.md
+%endif
 
 %files cbfstool
 %{_bindir}/cbfstool
@@ -781,9 +787,11 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_docdir}/coreboot-util
 %{_bindir}/ifdtool
 %doc util/ifdtool/description.md
 
+%ifarch x86_64
 %files intelmetool
 %{_bindir}/intelmetool
 %doc util/intelmetool/description.md
+%endif
 
 %files intelp2m
 %{_bindir}/intelp2m
