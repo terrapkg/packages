@@ -163,12 +163,13 @@ Requires:       bash
 %description    board_status
 %summary.
 
+%ifarch x86_64
 %package        bucts
 Summary:        A tool to manipulate the BUC.TS bit on Intel targets
-ExclusiveArch:  x86_64
 Requires:       coreboot-utils = %{version}
 %description    bucts
 %summary.
+%endif
 
 %package        cbfstool
 Summary:        Management utility for CBFS formatted ROM images
@@ -223,14 +224,15 @@ Requires:       coreboot-utils = %{version}
 %description    doc
 %summary.
 
+%ifarch x86_64
 %package        ectool
 Summary:        Dumps the RAM of a laptop's Embedded/Environmental Controller (EC)
-ExclusiveArch:  x86_64
 Requires:       coreboot-utils = %{version}
 Requires:       glibc
 Conflicts:      chromium-ectool
 %description    ectool
 %summary.
+%endif
 
 %package        exynos
 Summary:        Computes and fills Exynos ROM checksum (for BL1 or BL2)
@@ -276,9 +278,9 @@ Requires:       zlib-ng
 %description    ifdtool
 %summary.
 
+%ifarch x86_64
 %package        intelmetool
 Summary:        Dump interesting things about Management Engine even if hidden
-ExclusiveArch:  x86_64
 
 Requires:       coreboot-utils = %{version}
 Requires:       glibc
@@ -287,6 +289,7 @@ Requires:       zlib-ng
 
 %description    intelmetool
 %summary.
+%endif
 
 %package        intelp2m
 Summary:        convert the configuration DW0/1 registers value from an inteltool dump to coreboot macros
