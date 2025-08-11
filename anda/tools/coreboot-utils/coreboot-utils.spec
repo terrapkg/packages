@@ -278,6 +278,7 @@ Requires:       zlib-ng
 
 %package        intelmetool
 Summary:        Dump interesting things about Management Engine even if hidden
+ExclusiveArch:  x86_64
 
 Requires:       coreboot-utils = %{version}
 Requires:       glibc
@@ -475,7 +476,9 @@ pushd util
 %make_build -C futility
 %make_build -C hda-decoder
 %make_build -C ifdtool
+%ifarch x86_64
 %make_build -C intelmetool CFLAGS="%{optflags} -I %{_builddir}/coreboot/src/commonlib/bsd/include"
+%endif
 %make_build -C intelp2m
 %make_build -C inteltool
 %make_build -C intelvbttool
