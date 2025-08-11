@@ -291,12 +291,15 @@ Requires:       zlib-ng
 %summary.
 %endif
 
+%ifarch x86_64
 %package        intelp2m
 Summary:        convert the configuration DW0/1 registers value from an inteltool dump to coreboot macros
 Requires:       coreboot-utils = %{version}
 %description    intelp2m
 %summary.
+%endif
 
+%ifarch x86_64
 %package        inteltool
 Summary:        Provides information about the Intel CPU/chipset hardware configuration
 
@@ -307,6 +310,7 @@ Requires:       zlib-ng
 
 %description    inteltool
 %summary.
+%endif
 
 %package        intelvbttool
 Summary:        Parse VBT from VGA BIOS
@@ -481,10 +485,10 @@ pushd util
 %make_build -C ifdtool
 %ifarch x86_64
 %make_build -C intelmetool CFLAGS="%{optflags} -I %{_builddir}/coreboot/src/commonlib/bsd/include"
-%endif
 %make_build -C intelp2m
 %make_build -C inteltool
 %make_build -C intelvbttool
+%endif
 %make_build -C kbc1126
 %make_build -C nvramtool LDFLAGS="-fPIE"
 %make_build -C pmh7tool LDFLAGS="-fPIE"
@@ -588,9 +592,15 @@ install -Dm 755 util/ifdtool/ifdtool %{buildroot}%{_bindir}/ifdtool
 install -Dm 755 util/intelmetool/intelmetool %{buildroot}%{_bindir}/intelmetool
 %endif
 
+%ifarch x86_64
 install -Dm 755 util/intelp2m/intelp2m %{buildroot}%{_bindir}/intelp2m
+%endif
 
+%ifarch x86_64
 install -Dm 755 util/inteltool/inteltool %{buildroot}%{_bindir}/inteltool
+%endif
+
+install -Dm 755 util/intelvbttool/intelvbttool %{buildroot}%{_bindir}/intelvbttool
 
 install -Dm 755 util/kbc1126/kbc1126_ec_dump %{buildroot}%{_bindir}/kbc1126_ec_dump
 install -Dm 755 util/kbc1126/kbc1126_ec_insert %{buildroot}%{_bindir}/kbc1126_ec_insert
@@ -797,13 +807,23 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_docdir}/coreboot-util
 %doc util/intelmetool/description.md
 %endif
 
+%ifarch x86_64
 %files intelp2m
 %{_bindir}/intelp2m
 %doc util/intelp2m/description.md
+%endif
 
+%ifarch x86_64
 %files inteltool
 %{_bindir}/inteltool
 %doc util/inteltool/description.md
+%endif
+
+%ifarch x86_64
+%files intelvbttool
+%{_bindir}/intelvbttool
+%doc util/intelvbttool/description.md
+%endif
 
 %files kbc1126
 %{_bindir}/kbc1126_ec_dump
