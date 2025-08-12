@@ -49,6 +49,12 @@ BuildRequires:  python3
 BuildRequires:  gcc14 gcc14-c++
 %endif
 
+%description
+%summary.
+
+%package        all
+Summary:        Installs all coreboot-utils packages
+
 Requires:       %{name}-abuild
 Requires:       %{name}-amdfwtool
 Requires:       %{name}-amdtools
@@ -91,7 +97,7 @@ Requires:       %{name}-spkmodem_recv
 Requires:       %{name}-superiotool
 Requires:       %{name}-xcompile
 
-%description
+%description    all
 %summary.
 
 %package        abuild
