@@ -2,8 +2,8 @@
 %global pypi_name protontricks
 
 Name:       terra-%{pypi_name}
-Version:    1.12.1
-Release:    1%{?dist}
+Version:    1.13.0
+Release:    1%?dist
 Summary:    Simple wrapper that does winetricks things for Proton enabled games
 BuildArch:  noarch
 
