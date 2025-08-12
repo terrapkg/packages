@@ -1,5 +1,5 @@
 project pkg {
 	rpm {
-		spec = "cbmem.spec"
+		spec = "raindrop.spec"
 	}
 }
