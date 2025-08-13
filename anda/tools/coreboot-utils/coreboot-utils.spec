@@ -739,6 +739,8 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_docdir}/coreboot-util
 %files abuild
 %{_bindir}/abuild
 
+%files all
+
 %files amdfwtool
 %{_bindir}/amdfwtool
 %{_bindir}/amdfwread
