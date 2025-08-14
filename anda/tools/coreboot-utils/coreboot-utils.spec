@@ -2,7 +2,7 @@
 
 Name:           coreboot-utils
 Version:        25.06
-Release:        2%?dist
+Release:        3%?dist
 Summary:        Various coreboot utilities
 URL:            https://doc.coreboot.org
 License:        BSD-3-Clause AND Apache-2.0 AND CC-BY-SA-3.0 AND GPL-2.0-only AND GPL-3.0-or-later AND ISC AND BSD-2-Clause-Patent AND BSD-4-Clause-UC AND CC-PDDC AND GPL-2.0-or-later AND HPND-sell-varient AND LGPL-2.1-or-later AND BSD-2-Clause AND CC-BY-4.0 AND GPL-3.0-only AND HPND AND X11 AND MIT
@@ -635,7 +635,7 @@ install -Dm 755 util/exynos/variable_cksum.py %{buildroot}%{_bindir}/variable_ck
 
 install -Dm 755 util/find_usbdebug/find_usbdebug.sh %{buildroot}%{_bindir}/find_usbdebug
 
-install -Dm 755 util/futility/futility %{buildroot}%{_bindir}/futility
+install -Dm 755 util/futility/futility %{buildroot}%{_bindir}/coreboot-futility
 
 install -Dm 755 util/genbuild_h/genbuild_h.sh %{buildroot}%{_bindir}/genbuild_h
 
@@ -870,7 +870,7 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_docdir}/coreboot-util
 %doc util/find_usbdebug/description.md
 
 %files futility
-%{_bindir}/futility
+%{_bindir}/coreboot-futility
 %doc util/futility/description.md
 
 %files genbuild_h
