@@ -96,15 +96,14 @@ install -Dm644 build/icons/png/64x64.png %{buildroot}%{_iconsdir}/hicolor/64x64/
 
 install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/applications/signal.desktop
 
-%post
-ln -s %_libdir/signal-desktop/signal-desktop %_bindir/signal-desktop
+ln -s %_libdir/signal-desktop/signal-desktop %buildroot%_bindir/signal-desktop
 
 %files
 %license LICENSE
 %doc README.md CONTRIBUTING.md ACKNOWLEDGMENTS.md
 %license release/linux-%{arch}unpacked/LICENSE.electron.txt
 %license release/linux-%{arch}unpacked/LICENSES.chromium.html
-%ghost %{_bindir}/signal-desktop
+%{_bindir}/signal-desktop
 %{_libdir}/signal-desktop/
 %{_datadir}/polkit-1/rules.d/org.signalapp.view-aep.policy
 %{_datadir}/polkit-1/rules.d/org.signalapp.enable-backups.policy
