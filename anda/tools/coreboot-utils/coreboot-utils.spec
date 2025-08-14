@@ -2,7 +2,7 @@
 
 Name:           coreboot-utils
 Version:        25.06
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Various coreboot utilities
 URL:            https://doc.coreboot.org
 License:        BSD-3-Clause AND Apache-2.0 AND CC-BY-SA-3.0 AND GPL-2.0-only AND GPL-3.0-or-later AND ISC AND BSD-2-Clause-Patent AND BSD-4-Clause-UC AND CC-PDDC AND GPL-2.0-or-later AND HPND-sell-varient AND LGPL-2.1-or-later AND BSD-2-Clause AND CC-BY-4.0 AND GPL-3.0-only AND HPND AND X11 AND MIT
@@ -63,38 +63,59 @@ Requires:       %{name}-apcb
 Requires:       %{name}-autoport
 Requires:       %{name}-bincfg
 Requires:       %{name}-board_status
+%ifarch x86_64
 Requires:       %{name}-bucts
+%endif
 Requires:       %{name}-cbfstool
 Requires:       %{name}-cbfstool-tests
 Requires:       %{name}-cbmem
 Requires:       %{name}-chromeos-coreboot-utilities
 Requires:       %{name}-coreboot-configurator
+%ifarch x86_64
 Requires:       %{name}-ectool
+%endif
 Requires:       %{name}-exynos
 Requires:       %{name}-find_usbdebug
 Requires:       %{name}-futility
 Requires:       %{name}-genbuild_h
 Requires:       %{name}-hda-decoder
 Requires:       %{name}-ifdtool
+%ifarch x86_64
 Requires:       %{name}-intelmetool
+%endif
+%ifarch x86_64
 Requires:       %{name}-intelp2m
+%endif
+%ifarch x86_64
 Requires:       %{name}-inteltool
+%endif
+Requires:       %{name}-intelvbttool
 Requires:       %{name}-kbc1126
 Requires:       %{name}-mediatek-coreboot-utilities
 Requires:       %{name}-mma
 Requires:       %{name}-msrtool
+%ifarch x86_64
 Requires:       %{name}-nvramtool
+%endif
+%ifarch x86_64
 Requires:       %{name}-pmh7tool
+%endif
+%ifarch x86_64
 Requires:       %{name}-post
+%endif
 Requires:       %{name}-qualcomm-coreboot-utilities
 Requires:       %{name}-riscv-coreboot-utilities
 Requires:       %{name}-rockchip-coreboot-utilities
 Requires:       %{name}-scripts
+%ifarch x86_64
 Requires:       %{name}-smmstoretool
+%endif
 Requires:       %{name}-spd_tools
 Requires:       %{name}-spdtool
 Requires:       %{name}-spkmodem_recv
+%ifarch x86_64
 Requires:       %{name}-superiotool
+%endif
 Requires:       %{name}-xcompile
 
 %description    all
@@ -147,11 +168,11 @@ Summary:        Porting coreboot using autoport
 Requires:       coreboot-utils = %{version}
 Requires:       acpica-tools
 Requires:       dmidecode
-Requires:       ectool
+Requires:       %{name}-ectool
 Requires:       glibc
 Requires:       pciutils
-Requires:       inteltool = %{version}
-Requires:       superiotool = %{version}
+Requires:       %{name}-inteltool
+Requires:       %{name}-superiotool
 
 %description    autoport
 Automated porting coreboot to Sandy Bridge/Ivy Bridge/Haswell platforms.
@@ -188,7 +209,7 @@ Obsoletes:      cbfstool <= 25.06
 %package        cbfstool-tests
 Summary:        CBFSTool tests
 Requires:       coreboot-utils = %{version}
-Requires:       coreboot-utils-cbfstool = %{version}
+Requires:       %{name}-cbfstool
 Requires:       python3
 Requires:       python3-pytest
 %description    cbfstool-tests
@@ -216,7 +237,7 @@ VGA option roms) from a ChromeOS recovery image.
 Summary:        A simple GUI to change settings in coreboot's CBFS, via the nvramtool utility
 
 Requires:       coreboot-utils = %{version}
-Requires:       coreboot-utils-nvramtool = %{version}
+Requires:       %{name}-nvramtool
 Requires:       qt5-qtbase
 Requires:       qt5-qtsvg
 Requires:       yaml-cpp
