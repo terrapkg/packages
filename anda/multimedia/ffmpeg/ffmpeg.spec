@@ -38,6 +38,10 @@ BuildRequires:  bzip2-devel
 BuildRequires:  codec2-devel
 BuildRequires:  doxygen
 BuildRequires:  frei0r-devel
+%if 0%{?fedora} >= 42
+BuildRequires:  gcc14
+BuildRequires:  gcc14-c++
+%endif
 BuildRequires:  gmp-devel
 BuildRequires:  gsm-devel
 BuildRequires:  ilbc-devel
@@ -404,13 +408,13 @@ This subpackage contains the headers for FFmpeg libswscale.
 #sed -i -e 's|#!/bin/sh|#!/bin/sh -x|g' configure
 
 %build
-%if 0%{?fedora} >= 42
-export CFLAGS="%{optflags} -Wno-incompatible-pointer-types"
-%endif
-
 %set_build_flags
 
 ./configure \
+%if 0%{?fedora} >= 42
+    CC=gcc-14 \
+    CXX=g++-14 \
+%endif
     --arch=%{_target_cpu} \
     --bindir=%{_bindir} \
     --datadir=%{_datadir}/%{name} \
@@ -543,7 +547,7 @@ export CFLAGS="%{optflags} -Wno-incompatible-pointer-types"
     --incdir=%{_includedir} \
     --libdir=%{_libdir} \
     --mandir=%{_mandir} \
-    --optflags="%{build_cflags} -Wno-incompatible-pointer-types" \
+    --optflags="%{build_cflags}" \
     --prefix=%{_prefix} \
     --shlibdir=%{_libdir} \
 %ifarch x86_64 aarch64
@@ -562,7 +566,7 @@ export CFLAGS="%{optflags} -Wno-incompatible-pointer-types"
     --enable-libvpl \
 #    --enable-libxevd \
 #    --enable-libxeve \
-%endif || cat ffbuild/config.log
+%endif
 
 %make_build V=1
 make documentation V=1
