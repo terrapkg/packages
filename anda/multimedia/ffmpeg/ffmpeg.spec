@@ -412,8 +412,8 @@ This subpackage contains the headers for FFmpeg libswscale.
 
 ./configure \
 %if 0%{?fedora} >= 42
-    CC=gcc-14 \
-    CXX=g++-14 \
+    --cc=gcc-14 \
+    --cxx=g++-14 \
 %endif
     --arch=%{_target_cpu} \
     --bindir=%{_bindir} \
