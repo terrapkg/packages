@@ -12,7 +12,7 @@
 Summary:        A complete solution to record, convert and stream audio and video
 Name:           ffmpeg
 Version:        7.1.1
-Release:        14%?dist
+Release:        15%{?dist}
 License:        LGPL-3.0-or-later
 URL:            http://%{name}.org/
 Epoch:          1
@@ -28,6 +28,10 @@ Patch2:         %{name}-HandBrake.patch
 Patch3:         %{name}-chromium.patch
 # Fix build with recent NVCC:
 Patch4:         %{name}-nvcc.patch
+# Support Decklink 14.4+:
+Patch5:         https://patch-diff.githubusercontent.com/raw/pabloko/FFmpeg/pull/1.patch#/%{name}-decklink-14.4.patch
+# Support LCEVCdec 4.0+:
+Patch6:         https://aur.archlinux.org/cgit/aur.git/plain/080-ffmpeg-lcevcdec4.0.0-fix.patch?h=ffmpeg-full#/%{name}-LCEVCdec-4.patch
 
 BuildRequires:  AMF-devel >= 1.4.28
 BuildRequires:  bzip2-devel
@@ -400,12 +404,10 @@ This subpackage contains the headers for FFmpeg libswscale.
 #sed -i -e 's|#!/bin/sh|#!/bin/sh -x|g' configure
 
 %build
-# Work around a new GCC15 change until FFmpeg updates for it
 %if 0%{?fedora} >= 42
-%if "%{version}" <= "7.1.1"
 export CFLAGS="%{optflags} -Wno-incompatible-pointer-types"
 %endif
-%endif
+
 %set_build_flags
 
 ./configure \
@@ -541,7 +543,7 @@ export CFLAGS="%{optflags} -Wno-incompatible-pointer-types"
     --incdir=%{_includedir} \
     --libdir=%{_libdir} \
     --mandir=%{_mandir} \
-    --optflags="%{build_cflags}" \
+    --optflags="%{build_cflags} -Wno-incompatible-pointer-types" \
     --prefix=%{_prefix} \
     --shlibdir=%{_libdir} \
 %ifarch x86_64 aarch64
@@ -560,7 +562,7 @@ export CFLAGS="%{optflags} -Wno-incompatible-pointer-types"
     --enable-libvpl \
 #    --enable-libxevd \
 #    --enable-libxeve \
-%endif
+%endif || cat ffbuild/config.log
 
 %make_build V=1
 make documentation V=1
