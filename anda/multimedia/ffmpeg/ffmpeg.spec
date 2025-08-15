@@ -31,7 +31,7 @@ Patch4:         %{name}-nvcc.patch
 # Support Decklink 14.4+:
 Patch5:         https://patch-diff.githubusercontent.com/raw/pabloko/FFmpeg/pull/1.patch#/%{name}-decklink-14.4.patch
 # Support LCEVCdec 4.0+:
-Patch6:         https://aur.archlinux.org/cgit/aur.git/plain/080-ffmpeg-lcevcdec4.0.0-fix.patch?h=ffmpeg-full#/%{name}-LCEVCdec-4.patch
+Patch6:         080-ffmpeg-lcevcdec4.0.0-fix.patch
 
 BuildRequires:  AMF-devel >= 1.4.28
 BuildRequires:  bzip2-devel
