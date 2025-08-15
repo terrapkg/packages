@@ -38,10 +38,6 @@ BuildRequires:  bzip2-devel
 BuildRequires:  codec2-devel
 BuildRequires:  doxygen
 BuildRequires:  frei0r-devel
-%if 0%{?fedora} >= 42
-BuildRequires:  gcc14
-BuildRequires:  gcc14-c++
-%endif
 BuildRequires:  gmp-devel
 BuildRequires:  gsm-devel
 BuildRequires:  ilbc-devel
@@ -411,10 +407,6 @@ This subpackage contains the headers for FFmpeg libswscale.
 %set_build_flags
 
 ./configure \
-%if 0%{?fedora} >= 42
-    --cc=gcc-14 \
-    --cxx=g++-14 \
-%endif
     --arch=%{_target_cpu} \
     --bindir=%{_bindir} \
     --datadir=%{_datadir}/%{name} \
@@ -547,7 +539,7 @@ This subpackage contains the headers for FFmpeg libswscale.
     --incdir=%{_includedir} \
     --libdir=%{_libdir} \
     --mandir=%{_mandir} \
-    --optflags="%{build_cflags}" \
+    --optflags="%{build_cflags} -Wno-incompatible-pointer-types" \
     --prefix=%{_prefix} \
     --shlibdir=%{_libdir} \
 %ifarch x86_64 aarch64
