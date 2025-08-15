@@ -1,9 +1,9 @@
 --- a/configure	2025-08-15 04:31:53.911210538 -0500
 +++ b/configure	2025-08-15 04:52:55.209001415 -0500
-@@ -7583,7 +7583,5 @@
+@@ -7583,7 +7583,6 @@
  elif enabled gcc; then
      check_optflags -fno-tree-vectorize
--    check_cflags -Werror=format-security
+    check_cflags -Werror=format-security
 -    check_cflags -Werror=implicit-function-declaration
      check_cflags -Werror=missing-prototypes
      check_cflags -Werror=return-type
