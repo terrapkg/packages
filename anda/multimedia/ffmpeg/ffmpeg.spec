@@ -1,4 +1,4 @@
-%global build_cflags %(echo %{build_cflags} | sed 's/-Wall//g')
+%global build_cflags %(echo %{build_cflags} | sed 's/-Wall //g')
 %global _lto_cflags %{nil}
 
 %global avcodec_soversion 61
