@@ -1,4 +1,4 @@
-%global build_cflags %(echo %{build_cflags} | sed 's/-Wall //g')
+%global build_cflags %(echo "%{build_cflags} -Wno-incompatible-pointer-types" | sed 's/-Wall //g')
 %global _lto_cflags %{nil}
 
 %global avcodec_soversion 61
@@ -541,7 +541,7 @@ This subpackage contains the headers for FFmpeg libswscale.
     --incdir=%{_includedir} \
     --libdir=%{_libdir} \
     --mandir=%{_mandir} \
-    --optflags="%{build_cflags} -Wno-incompatible-pointer-types" \
+    --optflags="%{build_cflags}" \
     --prefix=%{_prefix} \
     --shlibdir=%{_libdir} \
 %ifarch x86_64 aarch64
