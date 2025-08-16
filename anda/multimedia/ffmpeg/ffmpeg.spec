@@ -540,7 +540,7 @@ This subpackage contains the headers for FFmpeg libswscale.
     --incdir=%{_includedir} \
     --libdir=%{_libdir} \
     --mandir=%{_mandir} \
-    --optflags="%{build_cflags}" \
+    --optflags="%{build_cflags} -Wno-incompatible-pointer-types" \
     --prefix=%{_prefix} \
     --shlibdir=%{_libdir} \
 %ifarch x86_64 aarch64
