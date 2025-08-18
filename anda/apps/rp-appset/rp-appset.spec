@@ -42,18 +42,18 @@ Provides:       rp-appset
 %license debian/copyright
 %{_bindir}/pipanel
 %{_datadir}/applications/pipanel.desktop
-%{_datadir}/pipanel/ui
-%{_datadir}/locale/de/LC_MESSAGES
-%{_datadir}/locale/en_GB/LC_MESSAGES
-%{_datadir}/locale/hy/LC_MESSAGES
-%{_datadir}/locale/is/LC_MESSAGES
-%{_datadir}/locale/it/LC_MESSAGES
-%{_datadir}/locale/ja/LC_MESSAGES
-%{_datadir}/locale/ko/LC_MESSAGES
-%{_datadir}/locale/nb/LC_MESSAGES
-%{_datadir}/locale/sk/LC_MESSAGES
-%{_datadir}/locale/zh_CN/LC_MESSAGES
-%{_datadir}/locale/zh_TW/LC_MESSAGES
+%{_datadir}/pipanel/ui/pipanel.ui
+%{_datadir}/locale/de/LC_MESSAGES/pipanel.mo
+%{_datadir}/locale/en_GB/LC_MESSAGES/pipanel.mo
+%{_datadir}/locale/hy/LC_MESSAGES/pipanel.mo
+%{_datadir}/locale/is/LC_MESSAGES/pipanel.mo
+%{_datadir}/locale/it/LC_MESSAGES/pipanel.mo
+%{_datadir}/locale/ja/LC_MESSAGES/pipanel.mo
+%{_datadir}/locale/ko/LC_MESSAGES/pipanel.mo
+%{_datadir}/locale/nb/LC_MESSAGES/pipanel.mo
+%{_datadir}/locale/sk/LC_MESSAGES/pipanel.mo
+%{_datadir}/locale/zh_CN/LC_MESSAGES/pipanel.mo
+%{_datadir}/locale/zh_TW/LC_MESSAGES/pipanel.mo
 
 %changelog
 * Fri Aug 15 2025 Owen Zimmerman <owen@fyralabs.com>
