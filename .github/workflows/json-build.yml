@@ -2,11 +2,33 @@ name: JSON Build
 permissions:
   contents: read
 on:
+  workflow_call:
+    inputs:
+      packages:
+        description: "Packages to Build"
+        required: true
+        type: string
+      publish:
+        description: "Whether the package should be published"
+        required: false
+        type: boolean
+        default: true
+      custom_builder:
+        description: "Custom Builder"
+        required: false
+        type: string
+        default: ""
   workflow_dispatch:
     inputs:
       packages:
         description: "Packages to Build"
         required: true
+        type: string
+      publish:
+        description: "Whether the package should be published"
+        required: false
+        type: boolean
+        default: true
 
 jobs:
   build:
@@ -15,7 +37,7 @@ jobs:
         pkg: ${{ fromJson(inputs.packages) }}
         version: ["43"]
       fail-fast: false
-    runs-on: ${{ (matrix.pkg.arch == 'aarch64' && matrix.pkg.labels['large']) && 'arm64-lg' || matrix.pkg.arch == 'aarch64' && 'ubuntu-22.04-arm' || matrix.pkg.labels['large'] && 'cirun-x86-64-lg--${{ github.run_id }}"' || 'ubuntu-22.04' }}
+    runs-on: ${{ inputs.custom_builder && inputs.custom_builder || (matrix.pkg.arch == 'aarch64' && matrix.pkg.labels['large']) && 'arm64-lg' || matrix.pkg.arch == 'aarch64' && 'ubuntu-22.04-arm' || matrix.pkg.labels['large'] && 'cirun-x86-64-lg--${{ github.run_id }}"' || 'ubuntu-22.04' }}
     container:
       image: ghcr.io/terrapkg/builder:f${{ matrix.version }}
       options: --cap-add=SYS_ADMIN --privileged
@@ -61,6 +83,7 @@ jobs:
             anda-build/rpm/srpm/*
 
       - name: Upload packages to subatomic
+        if: inputs.publish
         run: |
           subrepo="${{ matrix.pkg.labels.subrepo }}"
           subatomic-cli upload --prune \
@@ -69,7 +92,7 @@ jobs:
             terra${{ matrix.version }}${{ matrix.pkg.labels['subrepo'] && '-$subrepo' || '' }} anda-build/rpm/rpms/*
 
       - name: Upload source packages to subatomic
-        if: matrix.pkg.labels['no_upload_srpms'] != '1'
+        if: inputs.publish && matrix.pkg.labels['no_upload_srpms'] != '1'
         run: |
           subrepo="${{ matrix.pkg.labels.subrepo }}"
           subatomic-cli upload --prune \
@@ -78,8 +101,8 @@ jobs:
             terra${{ matrix.version }}${{ matrix.pkg.labels['subrepo'] && '-$subrepo' || '' }}-source anda-build/rpm/srpm/*
 
       - name: Notify Madoguchi (Success)
-        if: success()
+        if: inputs.publish && success()
         run: ./.github/workflows/mg.sh true "${{matrix.pkg.pkg}}" "${{matrix.version}}" "${{matrix.pkg.arch}}" "${{github.run_id}}" "${{secrets.MADOGUCHI_JWT}}" "$GITHUB_SHA"
       - name: Notify Madoguchi (Failure)
-        if: cancelled() || failure()
+        if: inputs.publish && (cancelled() || failure())
         run: ./.github/workflows/mg.sh false "${{matrix.pkg.pkg}}" "${{matrix.version}}" "${{matrix.pkg.arch}}" "${{github.run_id}}" "${{secrets.MADOGUCHI_JWT}}" "$GITHUB_SHA"
