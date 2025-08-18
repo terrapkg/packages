@@ -53,14 +53,19 @@ pushd desktop_native/proxy
 %{cargo_license_online} > ../../../../LICENSE.proxy_dependencies
 %cargo_build -- &
 popd
-NODE_ENV=production npm exec webpack --config ./webpack.preload.js &
-NODE_ENV=production npm exec webpack --config ./webpack.main.js &
-NODE_ENV=production npm exec webpack --config ./webpack.renderer.js &
+NODE_ENV=production npm exec webpack --config ./webpack.preload.js </dev/null &
+NODE_ENV=production npm exec webpack --config ./webpack.main.js </dev/null &
+NODE_ENV=production npm exec webpack --config ./webpack.renderer.js </dev/null &
 wait
 rm -rf ./dist
-# jq '.directories.app = "."' electron-builder.json > electron-builder.json.new
-# mv electron-builder.json{.new,}
-yes | npm exec electron-builder --dir # -p never
+#copy this manually instead of using electron-builder. there's few enough dependencies.
+cd build
+mkdir -pv node_modules/@bitwarden/desktop-napi
+cp -plv ../desktop_native/napi/{package.json,index.js} -t node_modules/@bitwarden/desktop-napi
+cp -plvT ../desktop_native/target/release/*.so node_modules/@bitwarden/desktop-napi/desktop_napi.node
+cp -plv -t . ../desktop_native/target/release/desktop_proxy
+
+
 
 %install
 pushd apps/desktop
