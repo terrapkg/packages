@@ -95,7 +95,7 @@ install -Dm644 build/icons/png/512x512.png %{buildroot}%{_iconsdir}/hicolor/512x
 install -Dm644 build/icons/png/64x64.png %{buildroot}%{_iconsdir}/hicolor/64x64/apps/signal.png
 
 install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/applications/signal.desktop
-
+mkdir -p %buildroot%_bindir
 ln -s %_libdir/signal-desktop/signal-desktop %buildroot%_bindir/signal-desktop
 
 %files
