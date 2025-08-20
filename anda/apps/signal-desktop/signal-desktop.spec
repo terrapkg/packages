@@ -11,12 +11,12 @@
 %define arch arm64-
 %endif
 
-Name:			signal-desktop	
-Version:		7.66.0
-Release:		2%?dist
-Summary:		A private messenger for Windows, macOS, and Linux
-URL:			https://signal.org
-Source0:		https://github.com/signalapp/Signal-Desktop/archive/refs/tags/v%{version}.tar.gz
+Name:			        signal-desktop	
+Version:		      7.67.0
+Release:		      1%?dist
+Summary:		      A private messenger for Windows, macOS, and Linux
+URL:			        https://signal.org
+Source0:		      https://github.com/signalapp/Signal-Desktop/archive/refs/tags/v%{version}.tar.gz
 # signal.desktop from https://github.com/signalflatpak/signal/blob/master/org.signal.Signal.desktop
 Source1:		signal.desktop
 License:		AGPL-3.0 AND %electron_licenses

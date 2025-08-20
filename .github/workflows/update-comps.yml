@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - frawhide
+      - f43
       - f42
       - f41
       - el10
