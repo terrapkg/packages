@@ -8,7 +8,7 @@ Version:        2025.1.2.12
 Release:        1%{?dist}
 Summary:        Official IDE for Android development
 License:        Apache-2.0
-Packager:	like-engels higashikataengels@icloud.com
+Packager:       like-engels <higashikataengels@icloud.com>
 URL:            https://developer.android.com/studio
 Source0:        https://dl.google.com/dl/android/studio/ide-zips/%{version}/android-studio-%{version}-linux.tar.gz
 
