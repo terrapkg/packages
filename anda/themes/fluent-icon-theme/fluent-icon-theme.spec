@@ -32,6 +32,7 @@ mkdir -p %{buildroot}%{_datadir}/themes
 %doc README.md
 
 %{_datadir}/icons/Fluent*/
+%{_datadir}/icons/.Fluent*
 
 %changelog
 * Thu Jun 01 2023 Lleyton Gray <lleyton@fyralabs.com> - 20230201-1
