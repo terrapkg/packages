@@ -65,7 +65,7 @@ popd
 DEST=$PWD/%{__cmake_builddir}/%{core}
 pushd core/server
 %define currentgoldflags -w -s -X 'github.com/sagernet/sing-box/constant.Version=%{singbox_version}'
-GO_BUILDTAGS=with_clash_api with_gvisor with_quic with_wireguard with_utls with_ech with_dhcp
+GO_BUILDTAGS='with_clash_api with_gvisor with_quic with_wireguard with_utls with_ech with_dhcp'
 go mod download
 %gobuild -o $DEST -mod=readonly -modcacherw
 popd
