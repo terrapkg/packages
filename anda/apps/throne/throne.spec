@@ -1,12 +1,14 @@
 %global gomodulesmode GO111MODULE=on
-Name: nekoray
-Version: 4.3.7
+Name: throne
+Version: 1.0.2
 Release: 1%?dist
 Summary: Qt based cross-platform GUI proxy configuration manager (backend: sing-box)
-URL: https://github.com/Mahdi-zarei/nekoray
+URL: https://github.com/throneproj/Throne
 License: GPLv3
 
-Source0: https://github.com/Mahdi-zarei/nekoray/archive/refs/tags/%{version}.tar.gz#/nekoray-%{version}.tar.gz
+Obsoletes: nekoray < 4.3.7-2
+
+Source0: https://github.com/throneproj/Throne/archive/refs/tags/%{version}.tar.gz#/throne-%{version}.tar.gz
 Packager: bunzuhbu <g89156436@gmail.com>
 Source1: vendor-%{version}.tar.gz
 %define fetch_vendor %{_rpmconfigdir}/rpmuncompress -xv %{SOURCE1}
@@ -37,7 +39,7 @@ BuildRequires: sed
 BuildRequires: golang
 BuildRequires: rpm_macro(gobuildflags)
 Requires: %{name}-core
-%define core nekobox_core
+%define core throne_core
 
 %package core
 Summary: %{summary}
@@ -49,7 +51,7 @@ Summary: %{summary}
 %{summary}
 
 %prep
-%autosetup -p1 -n %{name}-%{version}
+%autosetup -p1 -n Throne-%{version}
 sed -i 's~find_package(Protobuf CONFIG REQUIRED)~find_package(Protobuf REQUIRED)~' cmake/myproto.cmake
 sed -i 's~add_library(qhotkey 3rdparty/QHotkey/qhotkey.cpp)~add_library(qhotkey STATIC 3rdparty/QHotkey/qhotkey.cpp)~' cmake/QHotkey.cmake
 # sed -i 's~ImageFormat::BGRA~ImageFormat::BGR~' 3rdparty/ZxingQtReader.hpp
@@ -62,7 +64,10 @@ popd
 %cmake_build
 DEST=$PWD/%{__cmake_builddir}/%{core}
 pushd core/server
-go build %{gobuildflags} -o $DEST -trimpath -ldflags "-B 0x$(echo "%{name}-%{version}-%{release}-${SOURCE_DATE_EPOCH:-}" | sha1sum | cut -d ' ' -f1) -w -s -X 'github.com/sagernet/sing-box/constant.Version=%{singbox_version}'" -tags "with_clash_api,with_gvisor,with_quic,with_wireguard,with_utls,with_ech,with_dhcp"
+%define currentgoldflags -w -s -X 'github.com/sagernet/sing-box/constant.Version=%{singbox_version}'
+GO_BUILDTAGS=with_clash_api with_gvisor with_quic with_wireguard with_utls with_ech with_dhcp
+go mod download
+%gobuild -o $DEST -mod=readonly -modcacherw
 popd
 
 %install
@@ -73,11 +78,11 @@ mkdir -p %{buildroot}%{_datadir}/icons
 
 cp %{SOURCE4} %{buildroot}%{_bindir}/%{name}
 cp %{SOURCE3} %{buildroot}%{_datadir}/applications/%{name}.desktop
-sed -i 's~/bin~%{_bindir}~g;s~/usr/share~%{_datadir}~g;s~nekoray~%{name}~g' %{buildroot}%{_datadir}/applications/%{name}.desktop
-sed -i 's~/bin~%{_bindir}~g;s~/lib64~%{_libdir}~g;s~nekoray~%{name}~g' %{buildroot}%{_bindir}/%{name}
+sed -i 's~/bin~%{_bindir}~g;s~/usr/share~%{_datadir}~g;s~throne~%{name}~g' %{buildroot}%{_datadir}/applications/%{name}.desktop
+sed -i 's~/bin~%{_bindir}~g;s~/lib64~%{_libdir}~g;s~throne~%{name}~g' %{buildroot}%{_bindir}/%{name}
 cp %{__cmake_builddir}/%{name} %{buildroot}%{_libdir}/%{name}/%{name}
 cp %{__cmake_builddir}/%{core} %{buildroot}%{_libdir}/%{name}/%{core}
-cp res/nekoray.ico %{buildroot}%{_datadir}/icons/%{name}.ico
+cp res/throne.ico %{buildroot}%{_datadir}/icons/%{name}.ico
 patchelf --remove-rpath %{buildroot}%{_libdir}/%{name}/%{name}
 patchelf --remove-rpath %{buildroot}%{_libdir}/%{name}/%{core}
 
