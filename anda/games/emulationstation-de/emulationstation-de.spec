@@ -15,9 +15,6 @@ Packager:       Cappy Ishihara <cappy@fyralabs.com>
 License:        MIT
 URL:            https://es-de.org/
 Source0:        https://gitlab.com/es-de/emulationstation-de/-/archive/v%{version}/emulationstation-de-v%{version}.tar.gz
-# Backport a patch to fix a build issue with libgit2
-# This patch should already be included in the next release
-Patch0:         https://gitlab.com/es-de/emulationstation-de/-/commit/3510a09d83949beb765c140041332583b4e70837.patch
 
 BuildRequires:  gcc-c++
 BuildRequires:  clang-tools-extra
