@@ -15,6 +15,7 @@ jobs:
           - frawhide
           - f41
           - f42
+          - f43
           - el10
     container:
       image: ghcr.io/terrapkg/builder:frawhide
