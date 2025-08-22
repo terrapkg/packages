@@ -39,6 +39,7 @@ BuildRequires:  pugixml-devel
 BuildRequires:  alsa-lib-devel
 BuildRequires:  mesa-libGL-devel
 BuildRequires:  poppler-cpp-devel
+BuildRequires:  vulkan-loader-devel
 
 Provides:       es-de = %{version}-%{release}
 
