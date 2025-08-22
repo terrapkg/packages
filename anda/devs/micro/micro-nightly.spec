@@ -60,7 +60,6 @@ Conflicts:      micro
 git clone --recurse-submodules -q %{gourl} micro-%{version}
 cd %{builddir}/micro-%{version} && git checkout -q %{commit_hash}
 %gomkdir
-%go_prep_online
 
 %build
 %if %{without bootstrap}
