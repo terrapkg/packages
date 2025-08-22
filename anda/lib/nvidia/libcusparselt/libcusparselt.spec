@@ -4,7 +4,7 @@
 %global         _build_id_links none
 
 Name:           libcusparselt
-Version:        0.6.3.2
+Version:        0.8.0.4
 Release:        1%?dist
 Summary:        CUDA Library for Sparse Matrix-Matrix Multiplication
 License:        NVIDIA License
@@ -61,8 +61,6 @@ install -p -m0644 lib/libcusparseLt_static.a %{buildroot}%{_libdir}/
 
 mkdir -p %{buildroot}%{_includedir}/
 install -p -m0644 include/cusparseLt.h %{buildroot}%{_includedir}/
-
-%{?ldconfig_scriptlets}
 
 %files
 %license LICENSE

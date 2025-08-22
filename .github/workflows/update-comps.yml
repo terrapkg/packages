@@ -1,12 +1,14 @@
 name: Push comps updates
+permissions:
+  contents: read
 
 on:
   push:
     branches:
       - frawhide
+      - f43
       - f42
       - f41
-      - f40
       - el10
     paths:
       - comps.xml

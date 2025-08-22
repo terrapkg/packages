@@ -1,11 +1,12 @@
 Name:		limine
-Version:	9.0.0
+Version:	9.6.1
 Release:	1%?dist
 Summary:	Modern, advanced, portable, multiprotocol bootloader
 License:	BSD-2-Clause
 URL:		https://limine-bootloader.org
 Source0:	https://github.com/limine-bootloader/limine/releases/download/v%version/limine-%version.tar.gz
 Source1:	https://raw.githubusercontent.com/limine-bootloader/limine/v%version/README.md
+Packager:	madonuko <mado@fyralabs.com>
 BuildRequires:	nasm mtools llvm lld clang make
 
 %description
@@ -23,13 +24,12 @@ cp %SOURCE1 .
 %install
 %make_install
 
+
 %files
-%doc README.md CONFIG.md PHILOSOPHY.md PROTOCOL.md COPYING USAGE.md
+%doc README.md 3RDPARTY.md FAQ.md CONFIG.md PROTOCOL.md COPYING USAGE.md
+%doc %_datadir/doc/limine/LICENSES/LicenseRef-scancode-bsd-no-disclaimer-unmodified.txt
 %license COPYING
 %_bindir/limine
 %_includedir/limine.h
 %_datadir/limine/
 %_mandir/man1/limine.1.gz
-
-%changelog
-%autochangelog

@@ -1,4 +1,4 @@
-%global ver 2025-02-21
+%global ver 2025-08-22
 %global goodver %(echo %ver | sed 's/-//g')
 %global __brp_mangle_shebangs %{nil}
 %bcond_without mold
@@ -31,7 +31,7 @@ Packager:       madonuko <mado@fyralabs.com>
 %doc README.md
 %license LICENSE.md
 %license LICENSE.dependencies
-%_bindir/ruffle_desktop
+%_bindir/ruffle
 %_datadir/applications/rs.ruffle.Ruffle.desktop
 %_iconsdir/hicolor/scalable/apps/rs.ruffle.Ruffle.svg
 %_metainfodir/rs.ruffle.Ruffle.metainfo.xml
@@ -39,18 +39,18 @@ Packager:       madonuko <mado@fyralabs.com>
 %prep
 %autosetup -n ruffle-nightly-%ver -p1
 %cargo_prep_online
-sed -iE 's@^Exec=ruffle %%u$@Exec=ruffle_desktop %%u@' desktop/packages/linux/rs.ruffle.Ruffle.desktop
-cat desktop/packages/linux/rs.ruffle.Ruffle.desktop
 
 %build
-%{cargo_license_online} > LICENSE.dependencies
+cd desktop
+%cargo_build
 
 %install
-cd desktop
-%cargo_install
-install -Dm644 packages/linux/rs.ruffle.Ruffle.svg %buildroot%_iconsdir/hicolor/scalable/apps/rs.ruffle.Ruffle.svg
-install -Dm644 packages/linux/rs.ruffle.Ruffle.desktop %buildroot%_datadir/applications/rs.ruffle.Ruffle.desktop
-install -Dm644 packages/linux/rs.ruffle.Ruffle.metainfo.xml %buildroot%_metainfodir/rs.ruffle.Ruffle.metainfo.xml
+install -Dm755 target/rpm/ruffle_desktop %buildroot%_bindir/ruffle
+install -Dm644 desktop/packages/linux/rs.ruffle.Ruffle.svg %buildroot%_iconsdir/hicolor/scalable/apps/rs.ruffle.Ruffle.svg
+install -Dm644 desktop/packages/linux/rs.ruffle.Ruffle.desktop %buildroot%_datadir/applications/rs.ruffle.Ruffle.desktop
+install -Dm644 desktop/packages/linux/rs.ruffle.Ruffle.metainfo.xml %buildroot%_metainfodir/rs.ruffle.Ruffle.metainfo.xml
+
+%{cargo_license_online} > LICENSE.dependencies
 
 %changelog
 * Mon Jul 29 2024 madonuko <mado@fyralabs.com>

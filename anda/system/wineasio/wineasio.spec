@@ -1,6 +1,6 @@
 Name:           wineasio
 
-%global tag v1.2.0
+%global tag v1.3.0
 # macro to remove the v from version
 %global version_tag %(echo %{tag} | sed 's/^v//')
 %global forgeurl https://github.com/wineasio/%{name}

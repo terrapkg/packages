@@ -36,7 +36,7 @@
 Summary: H264/AVC video streams encoder
 Name: x264
 Version: 0.%{api}
-Release: 15%{?gver}%{?_with_bootstrap:_bootstrap}%{?dist}
+Release: 16%{?gver}%{?_with_bootstrap:_bootstrap}%{?dist}
 License: GPLv2+
 URL: https://www.videolan.org/developers/x264.html
 Source0: https://code.videolan.org/videolan/x264/-/archive/%gitversion.tar.bz2
@@ -92,6 +92,8 @@ x264 is a free library for encoding H264/AVC video streams, written from
 scratch.
 
 This package contains the development files.
+
+%pkg_completion -B x264
 
 %global x_configure \
 ./configure \\\
@@ -177,9 +179,6 @@ install -pm644 generic/{AUTHORS,COPYING} %{buildroot}%{_pkgdocdir}/
 
 %files
 %{_bindir}/x264
-%dir %{_datadir}/bash-completion
-%dir %{_datadir}/bash-completion/completions
-%{_datadir}/bash-completion/completions/x264
 
 %files libs
 %dir %{_pkgdocdir}

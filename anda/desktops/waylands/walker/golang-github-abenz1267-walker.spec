@@ -12,7 +12,7 @@
 
 # https://github.com/abenz1267/walker
 %global goipath         github.com/abenz1267/walker
-Version:                0.12.16
+Version:                1.0.0.beta.5
 
 %gometa -f
 

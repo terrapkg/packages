@@ -1,7 +1,10 @@
-%global commit e32beaa0dba209dfd10cff7fdbdcd0dbde1f82b9
+# Disable X11 for RHEL 10+
+%bcond x11 %[%{undefined rhel} || 0%{?rhel} < 10]
+
+%global commit bde63fe092a9eb285b92834cfe403df17018d04d
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250221
-%global ver 0.39.0
+%global commit_date 20250821
+%global ver 0.40.0
 
 Name:           mpv-nightly
 Version:        %ver^%commit_date.%shortcommit
@@ -42,8 +45,8 @@ BuildRequires:  pkgconfig(libavutil) >= 57.24.100
 BuildRequires:  pkgconfig(libbluray)
 BuildRequires:  pkgconfig(libcdio)
 BuildRequires:  pkgconfig(libcdio_paranoia)
-BuildRequires:  pkgconfig(libdisplay-info)
 BuildRequires:  pkgconfig(libdrm)
+BuildRequires:  pkgconfig(libdisplay-info)
 BuildRequires:  pkgconfig(libjpeg)
 BuildRequires:  pkgconfig(libpipewire-0.3) >= 0.3.19
 BuildRequires:  pkgconfig(libplacebo) >= 6.338.0
@@ -56,10 +59,8 @@ BuildRequires:  pkgconfig(mujs)
 BuildRequires:  pkgconfig(openal)
 BuildRequires:  pkgconfig(rubberband)
 BuildRequires:  pkgconfig(sdl2)
-BuildRequires:  pkgconfig(shaderc)
 BuildRequires:  pkgconfig(uchardet) >= 0.0.5
 BuildRequires:  pkgconfig(vapoursynth)
-BuildRequires:  pkgconfig(vdpau)
 BuildRequires:  pkgconfig(vulkan)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(wayland-cursor)
@@ -71,12 +72,15 @@ BuildRequires:  pkgconfig(xdamage)
 BuildRequires:  pkgconfig(xext)
 BuildRequires:  pkgconfig(xinerama)
 BuildRequires:  pkgconfig(xkbcommon)
-BuildRequires:  pkgconfig(xpresent)
 BuildRequires:  pkgconfig(xrandr)
-BuildRequires:  pkgconfig(xscrnsaver)
-BuildRequires:  pkgconfig(xv)
 BuildRequires:  pkgconfig(zimg) >= 2.9
 BuildRequires:  pkgconfig(zlib)
+%if %{with x11}
+BuildRequires:  pkgconfig(vdpau)
+BuildRequires:  pkgconfig(xpresent)
+BuildRequires:  pkgconfig(xscrnsaver)
+BuildRequires:  pkgconfig(xv)
+%endif
 
 Requires:       hicolor-icon-theme
 Provides:       mplayer-backend
@@ -124,6 +128,8 @@ Requires: mpv-nightly-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 %description devel
 This package contains development header files and libraries for Mpv.
 
+%pkg_completion -Bfz mpv
+
 %prep
 %autosetup -p1 -n mpv-%commit
 sed -e "s|/usr/local/etc|%{_sysconfdir}/mpv|" -i etc/mpv.conf
@@ -144,10 +150,17 @@ sed -e "s|/usr/local/etc|%{_sysconfdir}/mpv|" -i etc/mpv.conf
     -Ddvdnav=enabled \
     -Degl-drm=enabled \
     -Degl-wayland=enabled \
+%if %{with x11}
     -Degl-x11=enabled \
+    -Dgl-x11=enabled \
+    -Dvaapi-x11=enabled \
+    -Dvdpau-gl-x11=enabled \
+    -Dvdpau=enabled \
+    -Dx11=enabled \
+    -Dxv=enabled \
+%endif
     -Degl=enabled \
     -Dgbm=enabled \
-    -Dgl-x11=enabled \
     -Dgl=enabled \
     -Dhtml-build=enabled \
     -Diconv=enabled \
@@ -172,22 +185,18 @@ sed -e "s|/usr/local/etc|%{_sysconfdir}/mpv|" -i etc/mpv.conf
     -Dsdl2-gamepad=enabled \
     -Dsdl2-video=enabled \
     -Dsdl2=enabled \
+    -Dshaderc=disabled \
     -Dsndio=disabled \
     -Dspirv-cross=disabled \
     -Duchardet=enabled \
     -Dvaapi-drm=enabled \
     -Dvaapi-wayland=enabled \
-    -Dvaapi-x11=enabled \
     -Dvaapi=enabled \
     -Dvapoursynth=enabled \
-    -Dvdpau-gl-x11=enabled \
-    -Dvdpau=enabled \
     -Dvector=enabled \
     -Dvulkan=enabled \
     -Dwayland=enabled \
     -Dwerror=false \
-    -Dx11=enabled \
-    -Dxv=enabled \
     -Dzimg=enabled \
     -Dzlib=enabled
 %meson_build
@@ -205,17 +214,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/mpv.desktop
 %{_docdir}/mpv/
 %{_bindir}/mpv
 %{_datadir}/applications/mpv.desktop
-%dir %{_datadir}/bash-completion/
-%dir %{_datadir}/bash-completion/completions/
-%{_datadir}/bash-completion/completions/mpv
 %{_datadir}/icons/hicolor/*/apps/mpv*.*
-%dir %{_datadir}/zsh/
-%dir %{_datadir}/zsh/site-functions/
-%{_datadir}/zsh/site-functions/_mpv
 %{_mandir}/man1/mpv.*
 %{_metainfodir}/mpv.metainfo.xml
-%dir %{_sysconfdir}/mpv/
-%config(noreplace) %{_sysconfdir}/mpv/encoding-profiles.conf
 
 %files libs
 %license LICENSE.GPL LICENSE.LGPL Copyright
@@ -225,6 +226,3 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/mpv.desktop
 %{_includedir}/mpv/
 %{_libdir}/libmpv.so
 %{_libdir}/pkgconfig/mpv.pc
-
-%changelog
-%autochangelog

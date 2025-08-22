@@ -1,0 +1,10 @@
+diff --git a/util/spdtool/spdtool.py b/util/spdtool/spdtool.py
+index 89976eac..2cd70273 100644
+--- a/util/spdtool/spdtool.py
++++ b/util/spdtool/spdtool.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ # spdtool - Tool for partial deblobbing of UEFI firmware images
+ # SPDX-License-Identifier: GPL-3.0-or-later
+ #

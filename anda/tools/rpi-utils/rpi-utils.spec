@@ -1,5 +1,5 @@
-%global commit 6c3ace77f2299f9a2e442c2eb10d67ae73c949ba
-%global commit_date 20250213
+%global commit efe8351b61d116f7fedfcaf8ccfac8edb6a9f312
+%global commit_date 20250822
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %define _unpackaged_files_terminate_build 0
@@ -69,6 +69,8 @@ Summary:        A more powerful replacement for raspi-gpio, a tool for displayin
 %description    pinctrl
 %{summary}.
 
+%pkg_completion -Bn %name-pinctrl pinctrl
+
 %package        piolib
 Summary:        A library for accessing the Pi 5's PIO hardware
 %description    piolib
@@ -79,6 +81,8 @@ Summary:        Query the VideoCore for information
 %description    vcgencmd
 A command line utility that can get various pieces of information
 from the VideoCore GPU on the Raspberry Pi.
+
+%pkg_completion -Bn %name-vcgencmd vcgencmd
 
 %package        vcmailbox
 Summary:        Send messages to the VideoCore via the mailbox
@@ -94,7 +98,7 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 %autosetup -p1 -n utils-%commit
 
 %build
-%cmake
+%cmake -DBUILD_SHARED_LIBS=1
 %cmake_build
 
 %install
@@ -106,11 +110,14 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 
 %files dtmerge
 %license LICENCE
+%doc dtmerge/README.md
 %{_bindir}/dt*
 %{_mandir}/man1/dtmerge.1.gz
 %{_mandir}/man1/dtoverlay.1.gz
 %{_mandir}/man1/dtparam.1.gz
 %{_mandir}/man2/dtoverlay.2.gz
+%{_exec_prefix}/%{_lib}/libdtovl.so
+%{_exec_prefix}/%{_lib}/libdtovl.so.0
 
 %files eeptools
 %doc eeptools/README.md
@@ -141,7 +148,8 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 %doc pinctrl/README.md
 %license LICENCE
 %{_bindir}/pinctrl
-%{_datadir}/bash-completion/completions/pinctrl
+%{_exec_prefix}/%{_lib}/libgpiolib.so.0
+%{_exec_prefix}/%{_lib}/libgpiolib.so
 
 %files piolib
 %doc piolib/README.md
@@ -154,12 +162,13 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 %{_bindir}/piows2812
 %{_bindir}/quadenc
 %{_bindir}/rp1sm
+%{_exec_prefix}/%{_lib}/libpio.so.0
+%{_exec_prefix}/%{_lib}/libpio.so
 
 %files vcgencmd
 %license LICENCE
 %{_bindir}/vcgencmd
 %{_mandir}/man1/vcgencmd.1.gz
-%{_datadir}/bash-completion/completions/vcgencmd
 
 %files vclog
 %doc vclog/README.md
@@ -175,6 +184,9 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 %{_mandir}/man7/raspirev.7.gz
 
 %changelog
+* Mon May 19 2025 Owen-sz <owen@fyralabs.com>
+- Build shared libraries
+
 * Tue Dec 17 2024 sadlerm <sad_lerm@hotmail.com>
 - Split into individual subpackages and no longer package raspinfo
 

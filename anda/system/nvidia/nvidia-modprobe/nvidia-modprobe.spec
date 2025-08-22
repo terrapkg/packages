@@ -1,5 +1,5 @@
 Name:           nvidia-modprobe
-Version:        570.86.16
+Version:        580.76.05
 Release:        1%?dist
 Summary:        NVIDIA kernel module loader
 Epoch:          3

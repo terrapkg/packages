@@ -1,7 +1,7 @@
-%global tag 2025-02-10
+%global tag 2025-08-21
 
 Name:           fluent-icon-theme
-Version:        20250210
+Version:        20250821
 Release:        1%?dist
 Summary:        Fluent icon theme for linux desktops
 
@@ -11,6 +11,7 @@ Source0:        %{url}/archive/refs/tags/%{tag}.tar.gz
 
 BuildArch:      noarch
 BuildRequires:  gtk-update-icon-cache fdupes
+Conflicts:      %name
 
 %description
 Fluent icon theme for linux desktops.
