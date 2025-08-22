@@ -17,6 +17,7 @@ URL:            https://es-de.org/
 Source0:        https://gitlab.com/es-de/emulationstation-de/-/archive/v%{version}/emulationstation-de-v%{version}.tar.gz
 
 BuildRequires:  gcc-c++
+BuildRequires:  bluez-libs-devel
 BuildRequires:  clang-tools-extra
 BuildRequires:  cmake
 BuildRequires:  gettext
