@@ -138,7 +138,7 @@ install -Dm644 %app_id.metainfo.xml %{buildroot}%{_metainfodir}/%app_id.metainfo
 > LICENSE.dependencies
 mv assets/icons/LICENSES LICENSE.icons
 mv assets/themes/LICENSES LICENSE.themes
-mv assets/fonts/plex-mono/license.txt LICENSE.fonts
+mv assets/fonts/ibm-plex-sans/license.txt LICENSE.fonts
 
 %if %{with check}
 %check
