@@ -7,6 +7,7 @@ open_file("anda/multimedia/ffmpeg/VERSION_x265.txt", "w").write(bump::madoguchi(
 open_file("anda/multimedia/ffmpeg/VERSION_tesseract.txt", "w").write(bump::bodhi("tesseract", bump::as_bodhi_ver(labels.branch)));
 open_file("anda/multimedia/ffmpeg/VERSION_vvenc.txt", "w").write(bump::madoguchi("vvenc-libs", labels.branch));
 open_file("anda/multimedia/ffmpeg/VERSION_libnpp.txt", "w").write(bump::madoguchi("libnpp", labels.branch));
+open_file("anda/multimedia/ffmpeg/VERSION_LCEVCdec.txt", "w").write(bump::madoguchi("LCEVCdec", labels.branch));
 
 let dir = sub(`/[^/]+$`, "", __script_path);
 if sh("[[ `git status " + dir + " --porcelain` ]] && exit 1 || exit 0", #{}).ctx.rc == 1 {
