@@ -3,19 +3,11 @@ Name: nekoray
 Version: 4.3.7
 Release: 1%?dist
 Summary: Qt based cross-platform GUI proxy configuration manager (backend: sing-box)
-URL: https://github.com/Mahdi-zarei/nekoray
+URL: https://github.com/qr243vbi/nekoray
 License: GPLv3
 
-Source0: https://github.com/Mahdi-zarei/nekoray/archive/refs/tags/%{version}.tar.gz#/nekoray-%{version}.tar.gz
-Packager: bunzuhbu <g89156436@gmail.com>
-Source1: vendor-%{version}.tar.gz
-%define fetch_vendor %{_rpmconfigdir}/rpmuncompress -xv %{SOURCE1}
-
-Source2: Sagernet.SingBox.Version.txt
-%define singbox_version $(cat %{SOURCE2})
-
-Source3: %{name}.desktop
-Source4: %{name}.sh
+Source0: %{url}/releases/download/%{version}/nekobox-unified-source-%{version}.tar.xz
+Source1: %{url}/releases/download/%{version}/nekobox-unified-source-%{version}.tar.xz.sha256sum
 
 BuildRequires: rpm_macro(cmake)
 BuildRequires: rpm_macro(cmake_build)
@@ -29,41 +21,56 @@ BuildRequires: cmake(ZXing)
 BuildRequires: cmake(absl)
 BuildRequires: cmake(cpr)
 BuildRequires: cmake(Qt6)
+BuildRequires: cmake(Qt6Network)
 BuildRequires: cmake(Qt6Svg)
 BuildRequires: cmake(Qt6Linguist)
 BuildRequires: cmake(Qt6Charts)
 BuildRequires: patchelf
+
 BuildRequires: sed
-BuildRequires: golang
-BuildRequires: rpm_macro(gobuildflags)
-Requires: %{name}-core
+BuildRequires: golang > 1.21
+
+%package -n nekobox
+Summary: %{summary}
+Requires: nekobox-core
+%define main nekobox
 %define core nekobox_core
 
-%package core
+%package -n nekobox-core
 Summary: %{summary}
 
 %description
-%{summary}
+%{summary}.
 
-%description core
-%{summary}
+%description -n nekobox
+%{summary}.
+
+%description -n nekobox-core
+%{summary}.
 
 %prep
-%autosetup -p1 -n %{name}-%{version}
-sed -i 's~find_package(Protobuf CONFIG REQUIRED)~find_package(Protobuf REQUIRED)~' cmake/myproto.cmake
-sed -i 's~add_library(qhotkey 3rdparty/QHotkey/qhotkey.cpp)~add_library(qhotkey STATIC 3rdparty/QHotkey/qhotkey.cpp)~' cmake/QHotkey.cmake
-# sed -i 's~ImageFormat::BGRA~ImageFormat::BGR~' 3rdparty/ZxingQtReader.hpp
-pushd core/server
-%{fetch_vendor}
-popd
+%autosetup -p1 -n nekobox-unified-source-%{version}
 
 %build
+%{?!__builddir:%define __builddir build}
+%{?!__cmake_builddir:%define __cmake_builddir %__builddir}
+
+(
+DEST=$PWD/%{__cmake_builddir}
+GOARCH=""
+GOOS=darwin
+GOFLAGS='-mod=vendor %{?gobuildflags}'
+VERSION_SINGBOX="$(cat SingBox.Version)"
+. script/build_go.sh
+
+)
+
+(
+export CXXFLAGS="$CXXFLAGS -Wno-error=return-type"
+export CFLAGS="$CFLAGS -Wno-error=return-type"
 %cmake
 %cmake_build
-DEST=$PWD/%{__cmake_builddir}/%{core}
-pushd core/server
-go build %{gobuildflags} -o $DEST -trimpath -ldflags "-B 0x$(echo "%{name}-%{version}-%{release}-${SOURCE_DATE_EPOCH:-}" | sha1sum | cut -d ' ' -f1) -w -s -X 'github.com/sagernet/sing-box/constant.Version=%{singbox_version}'" -tags "with_clash_api,with_gvisor,with_quic,with_wireguard,with_utls,with_ech,with_dhcp"
-popd
+)
 
 %install
 mkdir -p %{buildroot}%{_libdir}/%{name}
@@ -71,23 +78,37 @@ mkdir -p %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_datadir}/applications
 mkdir -p %{buildroot}%{_datadir}/icons
 
-cp %{SOURCE4} %{buildroot}%{_bindir}/%{name}
-cp %{SOURCE3} %{buildroot}%{_datadir}/applications/%{name}.desktop
-sed -i 's~/bin~%{_bindir}~g;s~/usr/share~%{_datadir}~g;s~nekoray~%{name}~g' %{buildroot}%{_datadir}/applications/%{name}.desktop
-sed -i 's~/bin~%{_bindir}~g;s~/lib64~%{_libdir}~g;s~nekoray~%{name}~g' %{buildroot}%{_bindir}/%{name}
-cp %{__cmake_builddir}/%{name} %{buildroot}%{_libdir}/%{name}/%{name}
+cat << EOF > %{buildroot}%{_bindir}/%{main}
+#!%{_bindir}/sh
+%{_libdir}/%{name}/%{main} -appdata "${@}"
+EOF
+
+cat << EOF > %{buildroot}%{_datadir}/applications/%{main}.desktop
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=%{main}
+Categories=Network;
+Comment=Qt based cross-platform GUI proxy configuration manager (backend: sing-box)
+Comment[zh_CN]=基于 Qt 的跨平台代理配置管理器 (后端 sing-box)
+Keywords=Internet;VPN;Proxy;sing-box;
+Exec=%{_bindir}/%{main}
+Icon=%{_datadir}/icons/%{main}.ico
+EOF
+
+cp %{__cmake_builddir}/%{main} %{buildroot}%{_libdir}/%{name}/%{main}
 cp %{__cmake_builddir}/%{core} %{buildroot}%{_libdir}/%{name}/%{core}
-cp res/nekoray.ico %{buildroot}%{_datadir}/icons/%{name}.ico
-patchelf --remove-rpath %{buildroot}%{_libdir}/%{name}/%{name}
-patchelf --remove-rpath %{buildroot}%{_libdir}/%{name}/%{core}
+cp res/%{main}.ico %{buildroot}%{_datadir}/icons/%{main}.ico
+patchelf --remove-rpath %{buildroot}%{_libdir}/%{name}/%{main}
 
-%files
-%attr(0755, -, -) %{_bindir}/%{name}
-%attr(0755, -, -) %{_libdir}/%{name}/%{name}
-%attr(0644, -, -) %{_datadir}/icons/%{name}.ico
-%attr(0644, -, -) %{_datadir}/applications/%{name}.desktop
+%files -n nekobox
+%attr(0755, -, -) %{_bindir}/%{main}
+%attr(0755, -, -) %{_libdir}/%{name}/%{main}
+%attr(0644, -, -) %{_datadir}/icons/%{main}.ico
+%attr(0644, -, -) %{_datadir}/applications/%{main}.desktop
 
-%files core
+%files -n nekobox-core
 %dir %{_libdir}/%{name}
 %attr(0755, -, -) %{_libdir}/%{name}/%{core}
 
