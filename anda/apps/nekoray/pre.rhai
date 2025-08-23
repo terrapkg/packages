@@ -1,5 +1,5 @@
 let sourcedir = "anda/apps/nekoray";
 
-sh(`dnf in -y golang rpmdevtools tar rpm-build coreutils`, #{});
-sh(`pushd ${sourcedir}; bash -x pre.sh; popd`, #{});
+sh(`echo dnf in -y golang rpmdevtools tar rpm-build coreutils`, #{});
+sh(`echo pushd ${sourcedir}; echo bash -x pre.sh; echo popd`, #{});
 
