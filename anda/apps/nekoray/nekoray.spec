@@ -32,6 +32,7 @@ BuildRequires: golang > 1.21
 
 %package -n nekobox
 Summary: %{summary}
+Provides: nekoray = %{version}-%{release}
 Requires: nekobox-core
 %define main nekobox
 %define core nekobox_core
