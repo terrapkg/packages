@@ -3,7 +3,7 @@ Name: nekoray
 Version: 4.3.7
 Release: 1%?dist
 Summary: Qt based cross-platform GUI proxy configuration manager (backend: sing-box)
-URL: https://github.com/qr243vbi/nekoray
+URL: https://github.com/qr243vbi/nekobox
 License: GPLv3
 
 Source0: %{url}/releases/download/%{version}/nekobox-unified-source-%{version}.tar.xz
