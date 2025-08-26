@@ -37,6 +37,7 @@ Requires:       webkitgtk6.0
 Requires:       python3-beautifulsoup4
 Requires:       python3-brotli
 Requires:       python3-colorthief
+Requires:       python3-modern-colorthief
 Requires:       python3-dateparser  %dnl >= 1.1.4 | https://bugzilla.redhat.com/show_bug.cgi?id=2115204
 Requires:       python3-emoji
 Requires:       python3-gobject
