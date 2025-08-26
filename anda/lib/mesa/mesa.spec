@@ -72,7 +72,7 @@
 %bcond_with valgrind
 %endif
 
-%global vulkan_drivers swrast%{?base_vulkan}%{?intel_platform_vulkan}%{?asahi_platform_vulkan}%{?extra_platform_vulkan}%{?with_nvk:,nouveau}%{?with_virtio:,virtio}
+%global vulkan_drivers swrast%{?base_vulkan}%{?intel_platform_vulkan}%{?asahi_platform_vulkan}%{?extra_platform_vulkan}%{?with_nvk:,nouveau}%{?with_virtio:,virtio}%{?with_d3d12:,microsoft-experimental}
 
 Name:           %{srcname}
 Summary:        Mesa graphics libraries
@@ -81,7 +81,7 @@ Summary:        Mesa graphics libraries
 # disabled by default, and has to be enabled manually. See `terra/release/terra-mesa.repo` for details.
 Epoch:          1
 Version:        25.2.1
-Release:        1%?dist
+Release:        2%?dist
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0
 URL:            http://www.mesa3d.org
 
@@ -391,7 +391,9 @@ export MESON_PACKAGE_CACHE_DIR="%{cargo_registry}/"
 %endif
   -Dvideo-codecs=all \
   -Dintel-rt=%{?with_intel_vk_rt:enabled}%{!?with_intel_vk_rt:disabled} \
+%if !0%{?with_d3d12}
   -Dmicrosoft-clc=disabled \
+%endif
   -Dllvm=enabled \
   -Dshared-llvm=enabled \
   -Dvalgrind=%{?with_valgrind:enabled}%{!?with_valgrind:disabled} \
