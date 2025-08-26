@@ -72,7 +72,7 @@
 %bcond_with valgrind
 %endif
 
-%global vulkan_drivers swrast%{?base_vulkan}%{?intel_platform_vulkan}%{?asahi_platform_vulkan}%{?extra_platform_vulkan}%{?with_nvk:,nouveau}%{?with_virtio:,virtio}
+%global vulkan_drivers swrast%{?base_vulkan}%{?intel_platform_vulkan}%{?asahi_platform_vulkan}%{?extra_platform_vulkan}%{?with_nvk:,nouveau}%{?with_virtio:,virtio}%{?with_d3d12:,microsoft-experimental}
 
 Name:           %{srcname}
 Summary:        Mesa graphics libraries
@@ -81,7 +81,7 @@ Summary:        Mesa graphics libraries
 # disabled by default, and has to be enabled manually. See `terra/release/terra-mesa.repo` for details.
 Epoch:          1
 Version:        25.2.1
-Release:        1%?dist
+Release:        2%?dist
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0
 URL:            http://www.mesa3d.org
 
@@ -326,10 +326,22 @@ Summary:        Mesa TensorFlow Lite delegate
 %{summary}.
 %endif
 
+%if 0%{?with_d3d12}
+%package dxil
+Summary:        Mesa SPIR-V to DXIL libraries
+Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+
+%description dxil
+Libraries for translating SPIR-V shader code to DXIL for Direct3D 12
+%endif
+
 %package vulkan-drivers
 Summary:        Mesa Vulkan drivers
 Requires:       vulkan%{_isa}
 Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+%if 0%{?with_d3d12}
+Requires:       %{name}-dxil%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+%endif
 Obsoletes:      mesa-vulkan-devel < %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description vulkan-drivers
@@ -618,6 +630,13 @@ popd
 %{_libdir}/vdpau/libvdpau_virtio_gpu.so.1*
 %endif
 
+%if 0%{?with_d3d12}
+%files dxil
+%{_bindir}/spirv2dxil
+%{_libdir}/libspirv_to_dxil.a
+%{_libdir}/libspirv_to_dxil.so
+%endif
+
 %files vulkan-drivers
 %{_libdir}/libvulkan_lvp.so
 %{_datadir}/vulkan/icd.d/lvp_icd.*.json
@@ -636,6 +655,10 @@ popd
 %if 0%{?with_nvk}
 %{_libdir}/libvulkan_nouveau.so
 %{_datadir}/vulkan/icd.d/nouveau_icd.*.json
+%endif
+%if 0%{?with_d3d12}
+%{_libdir}/libvulkan_dzn.so
+%{_datadir}/vulkan/icd.d/dzn_icd.*.json
 %endif
 %ifarch %{ix86} x86_64
 %{_libdir}/libvulkan_intel.so
