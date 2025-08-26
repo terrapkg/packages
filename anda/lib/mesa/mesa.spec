@@ -29,7 +29,6 @@
 %ifarch %{ix86} x86_64
 %global with_crocus 1
 %global with_iris   1
-%global with_intel_clc 1
 %global intel_platform_vulkan %{?with_vulkan_hw:,intel,intel_hasvk}%{!?with_vulkan_hw:%{nil}}
 %if !0%{?rhel}
 %global with_i915   1
@@ -156,7 +155,7 @@ BuildRequires:  flatbuffers-devel
 BuildRequires:  flatbuffers-compiler
 BuildRequires:  xtensor-devel
 %endif
-%if 0%{?with_opencl} || 0%{?with_nvk} || 0%{?with_intel_clc} || 0%{?with_asahi} || 0%{?with_panfrost}
+%if 0%{?with_opencl} || 0%{?with_nvk} || 0%{?with_asahi} || 0%{?with_panfrost}
 BuildRequires:  clang-devel
 BuildRequires:  pkgconfig(libclc)
 BuildRequires:  pkgconfig(SPIRV-Tools)
@@ -180,9 +179,7 @@ BuildRequires:  pkgconfig(valgrind)
 %endif
 BuildRequires:  python3-devel
 BuildRequires:  python3-mako
-%if 0%{?with_intel_clc}
 BuildRequires:  python3-ply
-%endif
 BuildRequires:  python3-pycparser
 BuildRequires:  python3-pyyaml
 BuildRequires:  vulkan-headers
@@ -397,9 +394,6 @@ export MESON_PACKAGE_CACHE_DIR="%{cargo_registry}/"
   -Dglx=dri \
   -Degl=enabled \
   -Dglvnd=enabled \
-%if 0%{?with_intel_clc}
-  -Dintel-clc=enabled \
-%endif
   -Dvideo-codecs=all \
   -Dintel-rt=%{?with_intel_vk_rt:enabled}%{!?with_intel_vk_rt:disabled} \
   -Dmicrosoft-clc=disabled \
