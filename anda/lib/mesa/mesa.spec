@@ -80,7 +80,7 @@ Summary:        Mesa graphics libraries
 # disabled by default, and has to be enabled manually. See `terra/release/terra-mesa.repo` for details.
 Epoch:          1
 Version:        25.2.1
-Release:        2%?dist
+Release:        3%?dist
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0
 URL:            http://www.mesa3d.org
 
@@ -325,10 +325,18 @@ Summary:        Mesa TensorFlow Lite delegate
 
 %if 0%{?with_d3d12}
 %package dxil
-Summary:        Mesa SPIR-V to DXIL libraries
+Summary:        Mesa SPIR-V to DXIL binary
 Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description dxil
+Binary for translating SPIR-V shader code to DXIL for Direct3D 12
+
+%package dxil-libs
+Summary:        Mesa SPIR-V to DXIL libraries
+Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       %{name}-dxil = %{?epoch:%{epoch}:}%{version}-%{release}
+
+%description dxil-libs
 Libraries for translating SPIR-V shader code to DXIL for Direct3D 12
 %endif
 
@@ -337,7 +345,7 @@ Summary:        Mesa Vulkan drivers
 Requires:       vulkan%{_isa}
 Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 %if 0%{?with_d3d12}
-Requires:       %{name}-dxil%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       %{name}-dxil-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
 Obsoletes:      mesa-vulkan-devel < %{?epoch:%{epoch}:}%{version}-%{release}
 
@@ -635,6 +643,7 @@ popd
 %if 0%{?with_d3d12}
 %files dxil
 %{_bindir}/spirv2dxil
+%files dxil-libs
 %{_libdir}/libspirv_to_dxil.a
 %{_libdir}/libspirv_to_dxil.so
 %endif
