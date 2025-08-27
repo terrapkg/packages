@@ -334,7 +334,7 @@ Binary for translating SPIR-V shader code to DXIL for Direct3D 12
 %package dxil-libs
 Summary:        Mesa SPIR-V to DXIL libraries
 Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-Requires:       %{name}-dxil%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       %{name}-dxil = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description dxil-libs
 Libraries for translating SPIR-V shader code to DXIL for Direct3D 12
