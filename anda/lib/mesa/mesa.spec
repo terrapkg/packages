@@ -565,6 +565,10 @@ popd
 %{_libdir}/dri/vmwgfx_dri.so
 %endif
 %endif
+%if 0%{?with_opencl}
+%dir %{_libdir}/gallium-pipe
+%{_libdir}/gallium-pipe/*.so
+%endif
 %if 0%{?with_kmsro}
 %{_libdir}/dri/armada-drm_dri.so
 %{_libdir}/dri/exynos_dri.so
