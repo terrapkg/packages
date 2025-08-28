@@ -75,3 +75,4 @@ install -Dm644 resources/themes/default/style.css %themedir/style.css
 %license LICENSE.dependencies
 %doc README.md
 %{_bindir}/walker
+/etc/xdg/walker/
