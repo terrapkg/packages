@@ -1,1 +1,1 @@
-rpm.global("_ver", gh("abenz1267/walker"));
+rpm.global("ver", gh("abenz1267/walker"));
