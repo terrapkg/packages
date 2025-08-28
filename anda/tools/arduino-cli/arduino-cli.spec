@@ -26,8 +26,7 @@ BuildRequires:  anda-srpm-macros
 %gopkg
 
 %prep
-%goprep
-%go_prep_online
+%goprep -A
 
 %build
 %define gomodulesmode GO111MODULE=on
