@@ -47,9 +47,6 @@ BuildRequires:  pkgconfig(vips)
 
 %prep
 %goprep -A
-mv {LICENSE,README.md} cmd
-%setup -T -D -n %{name}-%{version}/cmd
-
 
 %build
 %define gomodulesmode GO111MODULE=on
