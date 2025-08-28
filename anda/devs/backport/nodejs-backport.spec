@@ -49,7 +49,6 @@ NODE_ENV=test %{builddir}/bin/%{module} -R tests
 %endif
 
 %files
-%doc CHANGELOG.md
 %doc README.md
 %license LICENSE.txt
 %license LICENSE.modules
