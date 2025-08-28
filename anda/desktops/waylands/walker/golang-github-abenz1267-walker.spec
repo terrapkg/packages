@@ -2,7 +2,7 @@
 %bcond check 0
 %bcond bootstrap 0
 
-%global ver v1.0.0-beta-15
+%global _ver v1.0.0-beta-15
 
 %if %{with bootstrap}
 %global __requires_exclude %{?__requires_exclude:%{__requires_exclude}|}^golang\\(.*\\)$
@@ -14,7 +14,7 @@
 
 # https://github.com/abenz1267/walker
 %global goipath         github.com/abenz1267/walker
-Version:                %{gsub %{sub %ver 2} - .}
+Version:                %{gsub %{sub %_ver 2} - .}
 
 %gometa -f
 
@@ -29,7 +29,7 @@ Release:        2%?dist
 Summary:        Multi-Purpose Launcher with a lot of features. Highly Customizable and fast
 
 License:        MIT
-URL:            https://%goipath/archive/refs/tags/%ver.tar.gz
+URL:            https://%goipath/archive/refs/tags/%_ver.tar.gz
 Source:         %{gosource}
 Provides:       golang-github-abenz1267-walker = %evr
 Obsoletes:      golang-github-abenz1267-walker < 0.11.4-2
