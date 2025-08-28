@@ -24,7 +24,7 @@ Run your GitHub Actions locally
 %global godocs          README.md
 
 Name:           gh-act
-Release:        1%?dist
+Release:        2%?dist
 Summary:        None
 
 License:        MIT AND ISC AND BSD-3-Clause AND Apache-2.0 AND BSD-2-Clause
@@ -39,7 +39,6 @@ BuildRequires:  anda-srpm-macros
 
 %prep
 %autosetup -p1 -n act-%{version}
-%go_prep_online
 
 %if %{without bootstrap}
 %build

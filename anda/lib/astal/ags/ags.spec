@@ -23,7 +23,7 @@ Scaffolding CLI for Astal+TypeScript.}
 %global godocs          docs README.md
 
 Name:           ags
-Release:        %autorelease
+Release:        2%?dist
 Summary:        Scaffolding CLI for Astal+TypeScript
 
 License:        GPL-3.0-only
@@ -38,29 +38,11 @@ BuildRequires:  anda-srpm-macros
 %gopkg
 
 %prep
-%goprep # -A
-#autopatch -p1
-%go_prep_online
+%goprep -A
 
 %build
-%dnl for cmd in cmd/* ; do
-%dnl   go build -buildmode pie -compiler gc -tags="rpm_crashtraceback ${GO_BUILDTAGS-${BUILDTAGS-}}" -a -x \
-%dnl     -ldflags "-X main.version=%{version} \
-%dnl               -B 0x$(echo "%{name}-%{version}-%{release}-${SOURCE_DATE_EPOCH:-}" | sha1sum | cut -d ' ' -f1) \
-%dnl               -compressdwarf=false -linkmode=external \
-%dnl               -extldflags '-Wl,-z,relro -Wl,--as-needed -Wl,-z,pack-relative-relocs -Wl,-z,now \
-%dnl                            -specs=/usr/lib/rpm/redhat/redhat-hardened-ld -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 \
-%dnl                            -Wl,--build-id=sha1'" \
-%dnl     -o %{gobuilddir}/bin/$(basename $cmd) $cmd
-%dnl done
-go build -buildmode pie -compiler gc -tags="rpm_crashtraceback ${GO_BUILDTAGS-${BUILDTAGS-}}" -a -x \
-  -ldflags "-X main.version=%{version} \
-            -B 0x$(echo "%{name}-%{version}-%{release}-${SOURCE_DATE_EPOCH:-}" | sha1sum | cut -d ' ' -f1) \
-            -compressdwarf=false -linkmode=external \
-            -extldflags '-Wl,-z,relro -Wl,--as-needed -Wl,-z,pack-relative-relocs -Wl,-z,now \
-                         -specs=/usr/lib/rpm/redhat/redhat-hardened-ld -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 \
-                         -Wl,--build-id=sha1'" \
-  -o %{gobuilddir}/bin/ags .
+%define currentgoldflags -X main.version=%version
+%gobuild -o %{gobuilddir}/bin/ags .
 
 %install
 install -m 0755 -vd                     %{buildroot}%{_bindir}
