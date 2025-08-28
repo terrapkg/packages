@@ -42,6 +42,7 @@ Packager:       madonuko <mado@fyralabs.com>
 
 %build
 %define currentgoldflags -X main.version=%version
+%define gomodulesmode GO111MODULE=on
 %gobuild -o %{gobuilddir}/bin/ags .
 
 %install
