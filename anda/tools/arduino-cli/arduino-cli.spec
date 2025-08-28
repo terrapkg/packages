@@ -12,7 +12,7 @@ Arduino CLI is an all-in-one solution that provides Boards/Library Managers, ske
 %global godocs          README.md
 
 Name:           arduino-cli
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Arduino command line tool
 License:        GPL-3.0
 Packager:       Owen Zimmerman <owen@fyralabs.com>
@@ -27,7 +27,6 @@ BuildRequires:  anda-srpm-macros
 
 %prep
 %goprep
-%go_prep_online
 
 %build
 %define gomodulesmode GO111MODULE=on
