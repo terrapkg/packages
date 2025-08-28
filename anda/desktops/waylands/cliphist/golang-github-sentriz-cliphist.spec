@@ -43,12 +43,13 @@ BuildRequires:  anda-srpm-macros
 
 %if %{without bootstrap}
 %build
+%define gomodulesmode GO111MODULE=on
 mkdir -p build/bin
 %gobuild -o build/bin/%name
 %endif
 
 %install
-#gopkginstall
+%gopkginstall
 %if %{without bootstrap}
 install -m 0755 -vd                 %{buildroot}%{_bindir}
 install -m 0755 -vp build/bin/%name %{buildroot}%{_bindir}/cliphist
@@ -68,7 +69,7 @@ install -m 0755 -vp build/bin/%name %{buildroot}%{_bindir}/cliphist
 %{_bindir}/cliphist
 %endif
 
-#gopkgfiles
+%gopkgfiles
 
 %changelog
 %autochangelog

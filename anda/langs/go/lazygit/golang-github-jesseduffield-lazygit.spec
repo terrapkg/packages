@@ -34,6 +34,7 @@ Provides:       lazygit = %{version}-%{release}
 
 %build
 %define currentgoldflags -X main.version=%version
+%define gomodulesmode GO111MODULE=on
 %gobuild -o %{gobuilddir}/bin/lazygit %{goipath}
 
 %install

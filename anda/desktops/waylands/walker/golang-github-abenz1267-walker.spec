@@ -50,10 +50,11 @@ mv {LICENSE,README.md} cmd
 
 
 %build
+%define gomodulesmode GO111MODULE=on
 %gobuild -o walker
 
 %install
-#gopkginstall
+%gopkginstall
 %if %{without bootstrap}
 install -m 0755 -vd        %{buildroot}%{_bindir}
 install -m 0755 -vp walker %{buildroot}%{_bindir}/walker
