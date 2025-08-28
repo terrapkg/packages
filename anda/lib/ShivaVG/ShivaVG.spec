@@ -1,10 +1,9 @@
 %global commit 35e58010f3662b21b6632bbe55988dc18070534c
 %global commit_date 20211031
 %global shortcommit %{sub %{commit} 1 7}
-%define debug_package %nil
 
 Name:           ShivaVG
-Version:        %commit_date.%shortcommit
+Version:        0~%{commit_date}git.%shortcommit
 Release:        1%{?dist}
 Summary:        An open-source LGPL ANSI C implementation of the Khronos Group OpenVG specification
 
@@ -26,14 +25,14 @@ OpenVG is an royalty-free, cross-platform API that provides a low-level hardware
 interface for vector graphics and imaging applications.
 
 %package devel
-Requires:       %{name}-%{version}-%{release}
+Requires:       %{name} = %evr
 Requires:       glew-devel
 Requires:       mesa-libGL-devel
 %pkg_devel_files
 %_libdir/cmake/OpenVG/
 
 %package static
-Requires:       %{name}-%{version}-%{release}
+Requires:       %{name} = %evr
 %pkg_static_files
 
 %prep
@@ -46,7 +45,7 @@ Requires:       %{name}-%{version}-%{release}
 %install
 %cmake_install
 
-%files_libs -n %name
+%files
 %license COPYING
 %doc README.md
 
