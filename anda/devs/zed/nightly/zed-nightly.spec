@@ -26,6 +26,8 @@ Source0:        https://github.com/zed-industries/zed/archive/%{commit}.tar.gz
 Conflicts:      zed
 Conflicts:      zed-preview
 
+# BUG: fedora rustc missing this dep
+BuildRequires:  libedit(x86-64)
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros
 BuildRequires:  gcc

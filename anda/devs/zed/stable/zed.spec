@@ -20,6 +20,8 @@ Source0:        https://github.com/zed-industries/zed/archive/refs/tags/v%{versi
 Conflicts:      zed-nightly
 Conflicts:      zed-preview
 
+# BUG: fedora rustc missing this dep
+BuildRequires:  libedit(x86-64)
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros
 BuildRequires:  gcc
