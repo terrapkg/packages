@@ -1,6 +1,5 @@
-project "ShivaVG" {
+project pkg {
   rpm {
-    spec = "anda/ShivaVG.spec"
-    rhai = "anda/ShivaVG.rhai"
+    spec = "ShivaVG.spec"
   }
 }

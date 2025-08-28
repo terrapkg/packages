@@ -1,7 +1,7 @@
 %global commit 35e58010f3662b21b6632bbe55988dc18070534c
 %global commit_date 20211031
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global debug_package %{nil}
+%global shortcommit %{sub %{commit} 1 7}
+%define debug_package %nil
 
 Name:           ShivaVG
 Version:        %commit_date.%shortcommit
@@ -26,49 +26,29 @@ OpenVG is an royalty-free, cross-platform API that provides a low-level hardware
 interface for vector graphics and imaging applications.
 
 %package devel
-Summary:        Development files for ShivaVG
 Requires:       %{name}-%{version}-%{release}
 Requires:       glew-devel
 Requires:       mesa-libGL-devel
-
-%description devel
-Development files for ShivaVG, including header files and static library needed
-to develop applications using the OpenVG API.
+%pkg_devel_files
+%_libdir/cmake/OpenVG/
 
 %package static
-Summary:        Static library for ShivaVG
 Requires:       %{name}-%{version}-%{release}
-
-%description static
-Static library for ShivaVG, needed when statically linking applications.
+%pkg_static_files
 
 %prep
 %autosetup -n ShivaVG-%{commit}
 
 %build
-mkdir build
-cd build
-%cmake .. -DSHARED_LIBRARY_NAME=OpenVG -DSTATIC_LIBRARY_NAME=OpenVGStatic -DBUILD_EXAMPLES=OFF
-cd redhat-linux-build
-%make_build
+%cmake -DBUILD_EXAMPLES=OFF
+%cmake_build
 
 %install
-cd build/redhat-linux-build
-%make_install
+%cmake_install
 
-%files
-%{_libdir}/libOpenVG.so
+%files_libs -n %name
 %license COPYING
 %doc README.md
-
-%files devel
-%{_includedir}/VG/
-%{_libdir}/libOpenVGStatic.a
-%{_libdir}/pkgconfig/openvg.pc
-%{_libdir}/cmake/OpenVG/
-
-%files static
-%{_libdir}/libOpenVGStatic.a
 
 %changelog
 * Wed Aug 27 2025 Ruka <pkgs@ruka.red> - 20211031.35e5801-1
