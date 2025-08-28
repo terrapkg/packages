@@ -31,6 +31,7 @@ URL:            %{gourl}
 Source:         %{gosource}
 
 Provides:       golang-github-knqyf263-pet = %evr
+Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description %{common_description}
 
