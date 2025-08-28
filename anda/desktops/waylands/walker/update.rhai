@@ -1,1 +1,1 @@
-rpm.version(gh("abenz1267/walker"));
+rpm.global("upstream_version", gh("abenz1267/walker"));
