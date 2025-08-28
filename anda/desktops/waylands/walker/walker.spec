@@ -28,6 +28,10 @@ BuildRequires:  pkgconfig(gtk4-layer-shell-0)
 BuildRequires:  pkgconfig(cairo)
 BuildRequires:  protobuf-compiler
 BuildRequires:  pkgconfig(poppler-glib)
+%ifarch x86_64
+# BUG: fedora rustc missing this dep
+BuildRequires:  libedit(x86-64)
+%endif
 
 %global _description %{expand:
 %{summary}.}
