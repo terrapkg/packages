@@ -26,6 +26,10 @@ Source0:        https://github.com/zed-industries/zed/archive/%{commit}.tar.gz
 Conflicts:      zed
 Conflicts:      zed-preview
 
+%ifarch x86_64
+# BUG: fedora rustc missing this dep
+BuildRequires:  libedit(x86-64)
+%endif
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros
 BuildRequires:  gcc
@@ -121,7 +125,8 @@ install -Dm755 target/rpm/cli %{buildroot}%{_bindir}/zed
 %__cargo clean
 
 install -Dm644 %app_id.desktop %{buildroot}%{_datadir}/applications/%app_id.desktop
-sed 's/Exec=zed/Exec=zeditor/' %app_id.desktop > %app_id.desktop.zeditorinstall -Dm644 %app_id.desktop.zeditor -t %buildroot%_datadir/applications/
+sed 's/Exec=zed/Exec=zeditor/' %app_id.desktop > %app_id.desktop.zeditor
+install -Dm644 %app_id.desktop.zeditor -t %buildroot%_datadir/applications/
 install -Dm644 crates/zed/resources/app-icon-nightly.png %{buildroot}%{_datadir}/pixmaps/%app_id.png
 
 install -Dm644 %app_id.metainfo.xml %{buildroot}%{_metainfodir}/%app_id.metainfo.xml
