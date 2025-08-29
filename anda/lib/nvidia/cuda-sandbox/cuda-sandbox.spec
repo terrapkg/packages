@@ -48,7 +48,7 @@ This package provides development files for the CUDA nvsandboxutils library.
 mkdir -p %{buildroot}%{_includedir}
 
 cp -fr include/* %{buildroot}%{_includedir}/
-install -p -m 0644 -D %{_lib}/stubs/libnvidia-sandboxutils_loader.a %{buildroot}%{_libdir}/libnvidia-sandboxutils_loader.a
+install -p -m 0644 -D lib*/stubs/libnvidia-sandboxutils_loader.a %{buildroot}%{_libdir}/libnvidia-sandboxutils_loader.a
 
 %files devel
 %license LICENSE
