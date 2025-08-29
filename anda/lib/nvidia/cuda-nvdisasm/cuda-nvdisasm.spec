@@ -9,7 +9,7 @@
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
 Version:        13.0.39
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Utility to extract information from CUDA binary files
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -19,7 +19,7 @@ Source0:        https://developer.download.nvidia.com/compute/cuda/redist/%{real
 Source1:        https://developer.download.nvidia.com/compute/cuda/redist/%{real_name}/linux-sbsa/%{real_name}-linux-sbsa-%{version}-archive.tar.xz
 
 Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
-
+ 
 %description
 nvdisasm extracts information from standalone cubin files and presents them in
 human readable format. The output of nvdisasm includes CUDA assembly code for

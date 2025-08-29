@@ -9,7 +9,7 @@
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
 Version:        13.0.48
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        CUDA Compiler (NVCC)
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -57,15 +57,10 @@ code from NVVM IR.
 
 %install
 mkdir -p %{buildroot}%{_bindir}
-
 mkdir -p %{buildroot}%{_includedir}
-mkdir -p %{buildroot}%{_libdir}
-mkdir -p %{buildroot}%{_datadir}/nvcc/
 
-cp -fr bin/* nvvm/bin/* %{buildroot}%{_bindir}/
-cp -fr include/* nvvm/include/* %{buildroot}%{_includedir}/
-cp -fr lib/* nvvm/lib64/* %{buildroot}%{_libdir}/
-cp -fr nvvm/libdevice/* %{buildroot}%{_datadir}/nvcc/
+cp -fr bin/* %{buildroot}%{_bindir}/
+cp -fr include/* %{buildroot}%{_includedir}/
 
 cp -f %{SOURCE3} %{buildroot}%{_bindir}/
 
@@ -77,6 +72,7 @@ sed -i \
 
 %files
 %license LICENSE
+%{_bindir}/__nvcc_device_query
 %{_bindir}/bin2c
 %{_bindir}/cicc
 %dir %{_bindir}/crt/
@@ -85,46 +81,10 @@ sed -i \
 %{_bindir}/cudafe++
 %{_bindir}/fatbinary
 %{_bindir}/nvcc
-%{_bindir}/__nvcc_device_query
 %{_bindir}/nvcc.profile
 %{_bindir}/nvlink
 %{_bindir}/ptxas
-%dir %{_datadir}/nvcc/
-%{_datadir}/nvcc/libdevice.10.bc
-%dir %{_includedir}/crt/
-%{_includedir}/crt/common_functions.h
-%{_includedir}/crt/cudacc_ext.h
-%{_includedir}/crt/device_double_functions.h
-%{_includedir}/crt/device_double_functions.hpp
-%{_includedir}/crt/device_fp128_functions.h
-%{_includedir}/crt/device_functions.h
-%{_includedir}/crt/device_functions.hpp
-%{_includedir}/crt/func_macro.h
-%{_includedir}/crt/host_config.h
-%{_includedir}/crt/host_defines.h
-%{_includedir}/crt/host_runtime.h
-%{_includedir}/crt/math_functions.h
-%{_includedir}/crt/math_functions.hpp
-%{_includedir}/crt/mma.h
-%{_includedir}/crt/mma.hpp
-%{_includedir}/crt/nvfunctional
-%{_includedir}/crt/sm_70_rt.h
-%{_includedir}/crt/sm_70_rt.hpp
-%{_includedir}/crt/sm_80_rt.h
-%{_includedir}/crt/sm_80_rt.hpp
-%{_includedir}/crt/sm_90_rt.h
-%{_includedir}/crt/sm_90_rt.hpp
-%{_includedir}/crt/sm_100_rt.h
-%{_includedir}/crt/sm_100_rt.hpp
-%{_includedir}/crt/storage_class.h
 %{_includedir}/fatbinary_section.h
-%{_includedir}/nvPTXCompiler.h
-%{_includedir}/nvvm.h
-
-%{_libdir}/libnvptxcompiler_static.a
-%{_libdir}/libnvvm.so
-%{_libdir}/libnvvm.so.4
-%{_libdir}/libnvvm.so.4.0.0
 
 %changelog
 %autochangelog
