@@ -18,7 +18,6 @@ URL:            http://%{name}.org/
 Epoch:          1
 
 Source0:        http://%{name}.org/releases/%{name}-%{version}.tar.xz
-
 # https://github.com/OpenVisualCloud/SVT-VP9/tree/master/ffmpeg_plugin
 Patch0:         %{name}-svt-vp9.patch
 # https://github.com/HandBrake/HandBrake/tree/e117cfe7fca37abeec59ea4201e5d93ed7477746
@@ -28,11 +27,8 @@ Patch2:         %{name}-HandBrake.patch
 Patch3:         %{name}-chromium.patch
 # Fix build with recent NVCC:
 Patch4:         %{name}-nvcc.patch
-# Support Decklink 14.4+:
-Patch5:         https://patch-diff.githubusercontent.com/raw/pabloko/FFmpeg/pull/1.patch#/%{name}-decklink-14.4.patch
 # Support LCEVCdec 4.0+:
-Patch6:         080-ffmpeg-lcevcdec4.0.0-fix.patch
-Patch7:         configure.patch
+Patch5:         https://aur.archlinux.org/cgit/aur.git/plain/080-ffmpeg-lcevcdec4.0.0-fix.patch?h=ffmpeg-full#/%{name}-LCEVCdec-4.patch
 
 BuildRequires:  AMF-devel >= 1.4.28
 BuildRequires:  bzip2-devel
