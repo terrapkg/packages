@@ -95,4 +95,3 @@ sed -i \
 
 %changelog
 %autochangelog
-
