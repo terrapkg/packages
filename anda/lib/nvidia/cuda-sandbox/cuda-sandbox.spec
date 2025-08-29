@@ -9,7 +9,7 @@
 Name:           cuda-sandbox
 Epoch:          1
 Version:        13.0.39
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        CUDA nvsandboxutils
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
