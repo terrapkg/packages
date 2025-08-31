@@ -70,9 +70,15 @@ jobs:
             terra${{ matrix.version }} anda-build/rpm/rpms/*
 
       - name: Upload source packages to subatomic
-        if: github.event_name == 'push'
         run: |
           subatomic-cli upload --prune \
             --server https://subatomic.fyralabs.com \
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
             terra${{ matrix.version }}-source anda-build/rpm/srpm/*
+
+      - name: Add madoguchi repo
+        run: |
+          curl -X PUT https://madoguchi.fyralabs.com/v4/repos/terra${{ matrix.version }} \
+            -H "Authorization: Bearer ${{ secrets.MADOGUCHI_JWT }}" \
+            -H "Content-Type: application/json" \
+            -d '{"link":"https://repos.fyralabs.com/terra'${{ matrix.version }}'/","gh":"https://github.com/terrapkg/packages/tree/f'${{ matrix.version }}'"}' --fail-with-body
