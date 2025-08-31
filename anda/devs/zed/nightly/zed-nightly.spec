@@ -1,7 +1,7 @@
-%global commit e664a9bc48dcc0e74d02772acd295ce6356e850b
+%global commit f78f3e7729b6e505685ba20ef207c709f0229149
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250816
-%global ver 0.201.0
+%global commit_date 20250830
+%global ver 0.203.0
 
 %bcond_with check
 %bcond nightly 1
@@ -26,6 +26,10 @@ Source0:        https://github.com/zed-industries/zed/archive/%{commit}.tar.gz
 Conflicts:      zed
 Conflicts:      zed-preview
 
+%ifarch x86_64
+# BUG: fedora rustc missing this dep
+BuildRequires:  libedit(x86-64)
+%endif
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros
 BuildRequires:  gcc
@@ -66,17 +70,20 @@ Supplements: (%name unless zfs)
 This package provides the /usr/bin/zed binary. If you use zfs, install %name-rename-zeditor instead.
 %files cli
 %_bindir/zed
+%{_datadir}/applications/%app_id.desktop
 
 %package rename-zeditor
 Summary: Rename zed to zeditor to prevent collision with zfs
 Provides: %name-cli
 Conflicts: %name-cli
 Supplements: (%name and zfs)
+RemovePathPostFixes: .zeditor
 %description rename-zeditor
 This package provides the %_bindir/zeditor binary instead of %_bindir/zed. This avoids conflicts with the zfs package.
 The normal package is %name-cli.
 %files rename-zeditor
 %_bindir/zeditor
+%_datadir/applications/%app_id.desktop.zeditor
 
 
 %prep
@@ -118,6 +125,8 @@ install -Dm755 target/rpm/cli %{buildroot}%{_bindir}/zed
 %__cargo clean
 
 install -Dm644 %app_id.desktop %{buildroot}%{_datadir}/applications/%app_id.desktop
+sed 's/Exec=zed/Exec=zeditor/' %app_id.desktop > %app_id.desktop.zeditor
+install -Dm644 %app_id.desktop.zeditor -t %buildroot%_datadir/applications/
 install -Dm644 crates/zed/resources/app-icon-nightly.png %{buildroot}%{_datadir}/pixmaps/%app_id.png
 
 install -Dm644 %app_id.metainfo.xml %{buildroot}%{_metainfodir}/%app_id.metainfo.xml
@@ -157,7 +166,6 @@ mv assets/fonts/ibm-plex-sans/license.txt LICENSE.fonts
 %license LICENSE.themes
 %license assets/licenses.md
 %{_libexecdir}/zed-editor
-%{_datadir}/applications/%app_id.desktop
 %{_datadir}/pixmaps/%app_id.png
 %{_metainfodir}/%app_id.metainfo.xml
 

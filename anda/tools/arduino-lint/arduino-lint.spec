@@ -15,7 +15,7 @@ Arduino Lint is a command line tool that checks for common problems in Arduino p
 %global godocs          README.md
 
 Name:           arduino-lint
-Release:        2%?dist
+Release:        3%?dist
 Summary:        Tool to check for problems with Arduino projects
 License:        GPL-3.0
 Packager:       Owen Zimmerman <owen@fyralabs.com>
@@ -31,7 +31,6 @@ BuildRequires:  anda-srpm-macros
 
 %prep
 %goprep
-%go_prep_online
 
 %build
 %define gomodulesmode GO111MODULE=on

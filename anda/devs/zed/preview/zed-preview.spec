@@ -1,6 +1,6 @@
 %bcond_with check
 
-%global ver 0.200.1-pre
+%global ver 0.202.4-pre
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
@@ -11,7 +11,7 @@
 
 Name:           zed-preview
 Version:        %(echo %ver | sed 's/-/~/')
-Release:        3%?dist
+Release:        4%?dist
 Summary:        Zed is a high-performance, multiplayer code editor
 SourceLicense:  AGPL-3.0-only AND Apache-2.0 AND GPL-3.0-or-later
 License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 AND ISC) AND AGPL.3.0-only AND AGPL-3.0-or-later AND (Apache-2.0 OR BSL-1.0 OR MIT) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception) AND Apache-2.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR MIT OR Apache-2.0) AND BSD-2-Clause AND (CC0-1.0 OR Apache-2.0 OR Apache-2.0 WITH LLVM-exception) AND (CC0-1.0 OR Apache-2.0) AND (CC0-1.0 OR MIT-0 OR Apache-2.0) AND CC0-1.0 AND GPL-3.0-or-later AND (ISC AND (Apache-2.0 OR ISC) AND OpenSSL) AND (ISC AND (Apache-2.0 OR ISC)) AND ISC AND (MIT AND (MIT OR Apache-2.0)) AND (MIT AND BSD-3-Clause) AND (MIT OR Apache-2.0 OR CC0-1.0) AND (MIT OR Apache-2.0 OR NCSA) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MIT AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT) AND Zlib
@@ -21,6 +21,10 @@ Source0:        https://github.com/zed-industries/zed/archive/refs/tags/v%{ver}.
 Conflicts:      zed
 Conflicts:      zed-nightly
 
+%ifarch x86_64
+# BUG: fedora rustc missing this dep
+BuildRequires:  libedit(x86-64)
+%endif
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros
 BuildRequires:  gcc
@@ -58,17 +62,20 @@ Supplements: (%name unless zfs)
 This package provides the /usr/bin/zed binary. If you use zfs, install %name-rename-zeditor instead.
 %files cli
 %_bindir/zed
+%{_datadir}/applications/%app_id.desktop
 
 %package rename-zeditor
 Summary: Rename zed to zeditor to prevent collision with zfs
 Provides: %name-cli
 Conflicts: %name-cli
 Supplements: (%name and zfs)
+RemovePathPostFixes: .zeditor
 %description rename-zeditor
 This package provides the %_bindir/zeditor binary instead of %_bindir/zed. This avoids conflicts with the zfs package.
 The normal package is %name-cli.
 %files rename-zeditor
 %_bindir/zeditor
+%_datadir/applications/%app_id.desktop.zeditor
 
 
 %prep
@@ -107,6 +114,8 @@ install -Dm755 target/rpm/cli %{buildroot}%{_bindir}/zed
 %__cargo clean
 
 install -Dm644 %app_id.desktop %{buildroot}%{_datadir}/applications/%app_id.desktop
+sed 's/Exec=zed/Exec=zeditor/' %app_id.desktop > %app_id.desktop.zeditor
+install -Dm644 %app_id.desktop.zeditor -t %buildroot%_datadir/applications/
 install -Dm644 crates/zed/resources/app-icon-preview.png %{buildroot}%{_datadir}/pixmaps/%app_id.png
 
 install -Dm644 %app_id.metainfo.xml %{buildroot}%{_metainfodir}/%app_id.metainfo.xml
@@ -146,7 +155,6 @@ mv assets/fonts/ibm-plex-sans/license.txt LICENSE.fonts
 %license LICENSE.themes
 %license assets/licenses.md
 %{_libexecdir}/zed-editor
-%{_datadir}/applications/%app_id.desktop
 %{_datadir}/pixmaps/%app_id.png
 %{_metainfodir}/%app_id.metainfo.xml
 
