@@ -1,6 +1,6 @@
 Name:           terra-release
-Version:        42
-Release:        4
+Version:        43
+Release:        1
 Summary:        Release package for Terra
 
 License:        MIT
@@ -11,8 +11,7 @@ Source2:        terra-nvidia.repo
 Source3:        terra-mesa.repo
 BuildArch:      noarch
 
-%dnl We probably shouldn't do this in Rawhide!
-%dnl Requires:       system-release(%{version})
+Requires:       system-release(%{version})
 
 %description
 Release package for Terra, containing the Terra repository configuration.
