@@ -18,7 +18,7 @@ the reference implementation for the Limine boot protocol.
 cp %SOURCE1 .
 
 %build
-%configure --enable-all TOOLCHAIN_FOR_TARGET=llvm
+%configure --enable-all
 %make_build
 
 %install
