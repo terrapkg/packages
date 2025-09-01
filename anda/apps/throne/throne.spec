@@ -1,15 +1,16 @@
-%global gomodulesmode GO111MODULE=on
-Name: nekoray
-Version: 4.3.7
+#? https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=throne-git
+
+Name: throne
+Version: 1.0.5
 Release: 1%?dist
 Summary: Qt based cross-platform GUI proxy configuration manager (backend: sing-box)
-URL: https://github.com/Mahdi-zarei/nekoray
+URL: https://github.com/throneproj/Throne
 License: GPLv3
 
-Source0: https://github.com/Mahdi-zarei/nekoray/archive/refs/tags/%{version}.tar.gz#/nekoray-%{version}.tar.gz
+Obsoletes: nekoray < 4.3.7-2
+
+Source0: https://github.com/throneproj/Throne/archive/refs/tags/%{version}.tar.gz#/throne-%{version}.tar.gz
 Packager: bunzuhbu <g89156436@gmail.com>
-Source1: vendor-%{version}.tar.gz
-%define fetch_vendor %{_rpmconfigdir}/rpmuncompress -xv %{SOURCE1}
 
 Source2: Sagernet.SingBox.Version.txt
 %define singbox_version $(cat %{SOURCE2})
@@ -36,8 +37,9 @@ BuildRequires: patchelf
 BuildRequires: sed
 BuildRequires: golang
 BuildRequires: rpm_macro(gobuildflags)
+BuildRequires: protobuf-compiler
 Requires: %{name}-core
-%define core nekobox_core
+%define core throne_core
 
 %package core
 Summary: %{summary}
@@ -49,43 +51,52 @@ Summary: %{summary}
 %{summary}
 
 %prep
-%autosetup -p1 -n %{name}-%{version}
+%autosetup -p1 -n Throne-%{version}
 sed -i 's~find_package(Protobuf CONFIG REQUIRED)~find_package(Protobuf REQUIRED)~' cmake/myproto.cmake
 sed -i 's~add_library(qhotkey 3rdparty/QHotkey/qhotkey.cpp)~add_library(qhotkey STATIC 3rdparty/QHotkey/qhotkey.cpp)~' cmake/QHotkey.cmake
 # sed -i 's~ImageFormat::BGRA~ImageFormat::BGR~' 3rdparty/ZxingQtReader.hpp
 pushd core/server
-%{fetch_vendor}
-popd
+export GOBIN=$(pwd)/gobin
+export PATH="${PATH}:${GOBIN}"
+go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+go install github.com/chai2010/protorpc/protoc-gen-protorpc@latest
+
+cd gen
+protoc -I . --go_out=. --protorpc_out=. libcore.proto
 
 %build
 %cmake
 %cmake_build
 DEST=$PWD/%{__cmake_builddir}/%{core}
 pushd core/server
-go build %{gobuildflags} -o $DEST -trimpath -ldflags "-B 0x$(echo "%{name}-%{version}-%{release}-${SOURCE_DATE_EPOCH:-}" | sha1sum | cut -d ' ' -f1) -w -s -X 'github.com/sagernet/sing-box/constant.Version=%{singbox_version}'" -tags "with_clash_api,with_gvisor,with_quic,with_wireguard,with_utls,with_ech,with_dhcp"
+export GOBIN=$(pwd)/gobin
+export PATH="${PATH}:${GOBIN}"
+%define currentgoldflags -w -s -X github.com/sagernet/sing-box/constant.Version=%{singbox_version}
+%define gomodulesmode GO111MODULE=on
+%define build_ldflags %nil
+export GO_LDFLAGS=' '
+export GO_BUILDTAGS="with_clash_api with_gvisor with_quic with_wireguard with_utls with_dhcp with_tailscale"
+%gobuild -o $DEST -mod=readonly -modcacherw
 popd
 
 %install
-mkdir -p %{buildroot}%{_libdir}/%{name}
-mkdir -p %{buildroot}%{_bindir}
-mkdir -p %{buildroot}%{_datadir}/applications
-mkdir -p %{buildroot}%{_datadir}/icons
-
-cp %{SOURCE4} %{buildroot}%{_bindir}/%{name}
-cp %{SOURCE3} %{buildroot}%{_datadir}/applications/%{name}.desktop
-sed -i 's~/bin~%{_bindir}~g;s~/usr/share~%{_datadir}~g;s~nekoray~%{name}~g' %{buildroot}%{_datadir}/applications/%{name}.desktop
-sed -i 's~/bin~%{_bindir}~g;s~/lib64~%{_libdir}~g;s~nekoray~%{name}~g' %{buildroot}%{_bindir}/%{name}
-cp %{__cmake_builddir}/%{name} %{buildroot}%{_libdir}/%{name}/%{name}
-cp %{__cmake_builddir}/%{core} %{buildroot}%{_libdir}/%{name}/%{core}
-cp res/nekoray.ico %{buildroot}%{_datadir}/icons/%{name}.ico
+install -Dm755 %__cmake_builddir/Throne %buildroot%_libdir/%name/%name
+install -Dm755 %__cmake_builddir/%core %buildroot%_libdir/%name/%core
+install -Dpm755 %{SOURCE4} %{buildroot}%{_bindir}/%{name}
+install -Dpm644 %{SOURCE3} %{buildroot}%{_datadir}/applications/%{name}.desktop
+sed -i 's~/bin~%{_bindir}~g' %{buildroot}%{_datadir}/applications/%{name}.desktop
+sed -i 's~/bin~%{_bindir}~g;s~/lib64~%{_libdir}~g' %{buildroot}%{_bindir}/%{name}
+install -Dpm644 res/Throne.ico -t %buildroot%_iconsdir/
+install -Dpm644 res/public/Throne.png -t %buildroot%_datadir/pixmaps/
 patchelf --remove-rpath %{buildroot}%{_libdir}/%{name}/%{name}
 patchelf --remove-rpath %{buildroot}%{_libdir}/%{name}/%{core}
 
 %files
 %attr(0755, -, -) %{_bindir}/%{name}
 %attr(0755, -, -) %{_libdir}/%{name}/%{name}
-%attr(0644, -, -) %{_datadir}/icons/%{name}.ico
+%attr(0644, -, -) %{_datadir}/icons/Throne.ico
 %attr(0644, -, -) %{_datadir}/applications/%{name}.desktop
+%_datadir/pixmaps/Throne.png
 
 %files core
 %dir %{_libdir}/%{name}
