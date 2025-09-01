@@ -1,3 +1,5 @@
+%define __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
+
 Name:           zoi.prod.beta
 Version:        4.3.7
 Release:        1%?dist
