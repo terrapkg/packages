@@ -14,7 +14,7 @@ BuildRequires:  python3dist(torchvision)
 BuildRequires:  python3-gobject
 BuildRequires:  pkgconfig(opencv)
 BuildRequires:  git-core
-BuildRequires:  gcc-c++ gcc
+BuildRequires:  gcc-c++ gcc clang
 Requires:       python3dist(torch)
 
 %description
@@ -28,6 +28,7 @@ cargo add tch@0.18.0
 mkdir facenet_pytorch
 cd facenet_pytorch
 tar xf %{S:1} --strip-components=1
+rm -rf data
 
 %build
 %cargo_license_summary_online
