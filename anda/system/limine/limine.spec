@@ -16,6 +16,7 @@ the reference implementation for the Limine boot protocol.
 %autosetup -n limine
 
 %build
+autoreconf -fiv
 %configure --enable-all
 %make_build
 
