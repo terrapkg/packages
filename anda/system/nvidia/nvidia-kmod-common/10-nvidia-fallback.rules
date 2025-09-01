@@ -1,0 +1,2 @@
+SUBSYSTEM=="pci", ATTRS{vendor}=="0x12d2", ATTRS{class}=="0x030000", TAG+="systemd", ENV{SYSTEMD_WANTS}="nvidia-fallback.service"
+SUBSYSTEM=="pci", ATTRS{vendor}=="0x10de", ATTRS{class}=="0x030[02]00", TAG+="systemd", ENV{SYSTEMD_WANTS}="nvidia-fallback.service"

@@ -1,4 +1,4 @@
-%define _ubuntu_rel 22.10.20220822-0ubuntu15
+%define _ubuntu_rel 22.10.20220822-0ubuntu16
 %global _hardened_build 0
 %global build_cflags %{__build_flags_lang_c} -Wno-incompatible-pointer-types
 

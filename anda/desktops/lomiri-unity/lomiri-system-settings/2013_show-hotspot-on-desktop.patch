@@ -1,0 +1,24 @@
+Description: Show hotspot feature on any device, not just phones.
+Author: Mike Gabriel <mike.gabriel@das-netzwerkteam.de>
+Forwarded: not yet, Debian-specific for now
+
+--- a/plugins/hotspot/hotspot.settings
++++ b/plugins/hotspot/hotspot.settings
+@@ -6,7 +6,8 @@
+     "category": "network",
+     "priority": 2,
+     "form-factors": [
+-        "phone"
++        "phone",
++        "tablet"
+     ],
+     "keywords": [
+         "network",
+@@ -14,6 +15,6 @@
+         "tethering"
+     ],
+     "has-dynamic-keywords": false,
+-    "has-dynamic-visibility": true,
++    "has-dynamic-visibility": false,
+     "page-component": "PageComponent.qml"
+ }

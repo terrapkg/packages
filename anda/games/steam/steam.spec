@@ -4,7 +4,7 @@
 %global appstream_id com.valvesoftware.Steam
 
 Name:           steam
-Version:        1.0.0.83
+Version:        1.0.0.84
 Release:        1%?dist
 Summary:        Installer for the Steam software distribution service
 # Redistribution and repackaging for Linux is allowed, see license file. udev rules are MIT.
@@ -111,8 +111,8 @@ Requires:       SDL2%{?_isa}
 %endif
 
 # Game performance is increased with gamemode (for games that support it)
-Recommends:     gamemode
-Recommends:     gamemode%{?_isa}
+Recommends:     (falcond or gamemode)
+Recommends:     (gamemode%{?_isa} if gamemode(x86-64))
 Recommends:     (gnome-shell-extension-appindicator if gnome-shell)
 
 Recommends:     (gnome-shell-extension-appindicator if gnome-shell)

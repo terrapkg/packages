@@ -1,25 +1,26 @@
 %define debug_package %nil
 
 # Exclude private libraries
-%global __requires_exclude libffmpeg.so
-%global __provides_exclude_from %{_datadir}/(armcord|legcord)/.*\\.so
+%global __provides_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*))$
+%ifnarch aarch64 
+%global __requires_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*)|(.*\\aarch64*\\.so.*))$
+%elifarch aarch64
+%global __requires_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*)|(.*\\x86_64*\\.so.*)|(.*\\x86-64*\\.so.*))$
+%endif
 
 Name:           legcord
 Version:        1.1.5
-Release:        1%?dist
+Release:        2%?dist
 License:        OSL-3.0
 Summary:        Custom lightweight Discord client designed to enhance your experience
 URL:            https://github.com/Legcord/Legcord
 Group:          Applications/Internet
-Source1:        launch.sh
 Packager:       madonuko <mado@fyralabs.com>
-Requires:       electron xdg-utils
-Provides:       armcord
+Requires:       xdg-utils
 Obsoletes:      armcord < 3.3.2-1
-Conflicts:      legcord-bin
+Obsoletes:      legcord-bin < 1.1.5-2
 Conflicts:      legcord-nightly
-BuildArch:      noarch
-BuildRequires:  anda-srpm-macros pnpm
+BuildRequires:  anda-srpm-macros pnpm nodejs-npm git-core gcc gcc-c++ make desktop-file-utils zlib-ng-compat-devel
 
 %description
 Legcord is a custom client designed to enhance your Discord experience
@@ -28,49 +29,47 @@ while keeping everything lightweight.
 %prep
 %git_clone %url v%version
 
-cat <<EOF > legcord.desktop
-[Desktop Entry]
-Name=Legcord
-Comment=%summary
-GenericName=Internet Messenger
-Type=Application
-Exec=/usr/bin/legcord
-Icon=legcord
-Categories=Network;InstantMessaging;
-StartupWMClass=legcord
-Keywords=discord;armcord;legcord;vencord;shelter;electron;
-EOF
-
-
 %build
-pnpm install --no-frozen-lockfile
-pnpm run packageQuick
-
+pnpm install
+pnpm run build
+pnpm run package --linux AppImage tar.gz
 
 %install
-install -Dm644 dist/*-unpacked/resources/app.asar %buildroot/usr/share/legcord/app.asar
+mkdir -p %{buildroot}%{_datadir}/legcord
+%ifarch aarch64
+mv dist/linux-arm64-unpacked/* %{buildroot}%{_datadir}/legcord
+%else
+mv dist/linux-unpacked/* -t %{buildroot}%{_datadir}/legcord
+%endif
 
-install -Dm755 %SOURCE1 %buildroot/usr/bin/legcord
-install -Dm644 legcord.desktop %buildroot/usr/share/applications/LegCord.desktop
-install -Dm644 build/icon.png %buildroot/usr/share/pixmaps/legcord.png
+mkdir -p %{buildroot}%{_bindir}
+ln -sf %{_datadir}/legcord/legcord %{buildroot}%{_bindir}/legcord
+install -Dm644 dist/.icon-set/icon_16.png %{buildroot}%{_iconsdir}/hicolor/16x16/apps/legcord.png
+install -Dm644 dist/.icon-set/icon_32.png %{buildroot}%{_iconsdir}/hicolor/32x32/apps/legcord.png
+install -Dm644 dist/.icon-set/icon_48x48.png %{buildroot}%{_iconsdir}/hicolor/48x48/apps/legcord.png
+install -Dm644 dist/.icon-set/icon_64.png %{buildroot}%{_iconsdir}/hicolor/64x64/apps/legcord.png
+install -Dm644 dist/.icon-set/icon_128.png %{buildroot}%{_iconsdir}/hicolor/128x128/apps/legcord.png
+install -Dm644 dist/.icon-set/icon_256.png %{buildroot}%{_iconsdir}/hicolor/256x256/apps/legcord.png
+install -Dm644 dist/.icon-set/icon_512.png %{buildroot}%{_iconsdir}/hicolor/512x512/apps/legcord.png
+install -Dm644 dist/.icon-set/icon_1024.png %{buildroot}%{_iconsdir}/hicolor/1024x1024/apps/legcord.png
 
-ln -s %_datadir/legcord %buildroot%_datadir/armcord
-
-# HACK: rpm bug for unability to replace existing files on system.
-%pre
-if [ -d %_datadir/armcord ] && [ ! -L %_datadir/armcord ]; then
-  echo "Found old %_datadir/armcord directory, removing…"
-  rm -rf %_datadir/armcord
-fi
+dist/Legcord-*.AppImage --appimage-extract '*.desktop'
+desktop-file-install --set-key=Exec --set-value="%{_datadir}/legcord/legcord %U" squashfs-root/legcord.desktop
 
 %files
 %doc README.md
 %license license.txt
-/usr/bin/legcord
-/usr/share/applications/LegCord.desktop
-/usr/share/pixmaps/legcord.png
-/usr/share/legcord/app.asar
-/usr/share/armcord
+%{_bindir}/legcord
+%{_datadir}/applications/legcord.desktop
+%{_datadir}/legcord/
+%{_iconsdir}/hicolor/16x16/apps/legcord.png
+%{_iconsdir}/hicolor/32x32/apps/legcord.png
+%{_iconsdir}/hicolor/48x48/apps/legcord.png
+%{_iconsdir}/hicolor/64x64/apps/legcord.png
+%{_iconsdir}/hicolor/128x128/apps/legcord.png
+%{_iconsdir}/hicolor/256x256/apps/legcord.png
+%{_iconsdir}/hicolor/512x512/apps/legcord.png
+%{_iconsdir}/hicolor/1024x1024/apps/legcord.png
 
 %changelog
 * Mon Oct 21 2024 madonuko <mado@fyralabs.com> - 1.0.2-2

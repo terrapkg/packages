@@ -13,6 +13,8 @@ This monorepo contains the package manifests for all packages in Terra.
 
 ## Installation
 
+### Fedora
+
 ```bash
 sudo dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
 ```
@@ -22,6 +24,24 @@ If you are using immutable/atomic editions of Fedora, run the following commands
 ```bash
 curl -fsSL https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo | pkexec tee /etc/yum.repos.d/terra.repo
 sudo rpm-ostree install terra-release
+```
+
+Optionally, you can install `terra-release-extra` to use the Extras repository. This also installs the Nvidia, and Mesa streams but does not enable them.
+
+### Enterprise Linux (EL)
+
+Only EL10 is supported. Not all packages available in Terra are available in Terra EL at this time.
+
+Terra EL requires the EPEL repos, which may be installed with:
+
+```bash
+sudo dnf install 'https://dl.fedoraproject.org/pub/epel/epel-release-latest-$releasever.noarch.rpm'
+```
+
+And Terra EL itself can be installed with:
+
+```bash
+sudo dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terrael$releasever' terra-release
 ```
 
 ## Documentation

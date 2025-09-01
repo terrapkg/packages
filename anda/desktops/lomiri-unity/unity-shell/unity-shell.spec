@@ -21,7 +21,7 @@ BuildRequires:	pkgconfig(zeitgeist-2.0)
 BuildRequires:	libappstream-glib-devel
 BuildRequires:	libdbusmenu-devel
 BuildRequires:	bamf-devel
-BuildRequires:	terra-libindicator-gtk3-devel
+BuildRequires:	libindicator-gtk3-devel
 BuildRequires:	json-glib-devel
 BuildRequires:	libnotify-devel
 BuildRequires:	libsigc++20-devel
@@ -30,6 +30,7 @@ BuildRequires:	doxygen
 BuildRequires:	pam-devel
 BuildRequires:	boost-devel
 BuildRequires:	python3-devel
+BuildRequires:  python3-pip
 BuildRequires:	python3-setuptools
 BuildRequires:	pkgconfig(libstartup-notification-1.0)
 BuildRequires:	pkgconfig(nux-4.0)
@@ -47,7 +48,7 @@ Requires:	pam
 Requires:	bamf-daemon
 Requires:	unity-gtk-module-common
 Requires:	compiz9
-Requires:	terra-libindicator-gtk3
+Requires:	libindicator-gtk3
 Recommends:	unity-greeter
 Recommends:	unity-scope-home
 
@@ -115,12 +116,20 @@ sed -i '/libgeis/d' CMakeLists.txt
 %cmake_build
 
 pushd uwidgets/
+%if 0%{?fedora} <= 41
 %py3_build
+%else
+%pyproject_wheel
+%endif
 popd
 
 %install
 pushd uwidgets/
+%if 0%{?fedora} <= 41
 %py3_install
+%else
+%pyproject_install
+%endif
 popd
 
 %cmake_install
@@ -222,7 +231,11 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &>/dev/null || :
 %doc README
 %license uwidgets/LICENCE
 %{_bindir}/uwidgets-runner
+%if 0%{?fedora} <= 41
 %{python3_sitearch}/uwidgets-*.egg-info/
+%else
+%{python3_sitearch}/uwidgets-*.dist-info/
+%endif
 %{python3_sitearch}/uwidgets/
 
 %changelog

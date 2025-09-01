@@ -5,11 +5,11 @@ It supports a wide range of flash chips (most commonly found in SOIC8, DIP8, SOI
 
 Name:           flashprog
 Version:        1.4
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Utility for detecting, reading, writing, verifying and erasing flash chips
 
-License:        GPL-2.0
-URL:            https://review.sourcearcade.org/flashprog
+License:        GPL-2.0-only
+URL:            https://flashprog.org
 
 Packager:       sadlerm <lerm@chromebooks.lol>
 
@@ -42,7 +42,7 @@ Summary:        Development headers for flashprog
 
 
 %prep
-%git_clone %{url} v%{version}
+%git_clone https://review.sourcearcade.org/flashprog v%{version}
 
 %build
 %make_build PREFIX=%{_prefix}

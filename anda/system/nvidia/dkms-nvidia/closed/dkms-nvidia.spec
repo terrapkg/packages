@@ -1,10 +1,12 @@
 ## NVIDIA DKMS package, based on the work of Negativo17 with tweaks for Terra.
 
+# RPM inexplicably thinks this package deps on a version of libcrypto it does not?
+%global __requires_exclude (libcrypto\\.so\\.1\\.1.*)$
 %global debug_package %{nil}
 %global modulename nvidia
 
 Name:           dkms-%{modulename}
-Version:        570.153.02
+Version:        580.76.05
 Release:        1%?dist
 Summary:        NVIDIA display driver kernel module
 Epoch:          3
@@ -12,7 +14,6 @@ License:        NVIDIA License
 URL:            https://www.nvidia.com/object/unix.html
 Source0:        https://download.nvidia.com/XFree86/Linux-%{_arch}/%{version}/NVIDIA-Linux-%{_arch}-%{version}.run
 Source1:        %{name}.conf
-%dnl Patch0:         nvidia-kernel-ccflags-y.patch
 BuildRequires:  sed
 Provides:       %{modulename}-kmod = %{?epoch:%{epoch}:}%{version}
 Requires:       %{modulename}-kmod-common = %{?epoch:%{epoch}:}%{version}

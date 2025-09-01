@@ -1,8 +1,8 @@
 %global pname   carla
-%global ver     v2.5.9
-%global commit  17000e7fe99459b25a50094a8b00bdfa12f2bfbc
+%global ver     2.5.10
+%global commit  12bc40fd6c9c5b36481c7df55086b27ba9ae8a80
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20241205
+%global commit_date 20250901
 
 Name:           Carla-nightly
 Version:        %(echo %ver | tr -d 'v')^%commit_date.git~%shortcommit
@@ -79,12 +79,14 @@ BuildRequires:  pkgconfig(mxml)
 BuildRequires:  pkgconfig(gl)
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  python3-qt5-base
-BuildRequires:  python3-magic
+BuildRequires:  python3-file-magic
 BuildRequires:  python3-rdflib
 BuildRequires:  pkgconfig(liblo)
 BuildRequires:  pkgconfig(zlib)
 Buildrequires:  pkgconfig(libmagic)
-BuildRequires:  (ffmpeg-free-devel or ffmpeg-devel)
+BuildRequires:  cmake(SDL2)
+BuildRequires:  cmake(SDL3)
+BuildRequires:  ffmpeg-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  make
 BuildRequires:  /usr/bin/appstream-util

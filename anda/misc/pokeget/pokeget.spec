@@ -4,8 +4,8 @@
 %bcond check 1
 
 Name:          %{crate}
-Version:       1.6.4
-Release:       3%?dist
+Version:       1.6.5
+Release:       1%?dist
 SourceLicense: MIT
 License:       (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND BSD-2-Clause AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MIT AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT)
 Summary:       A better Rust version of pokeget.
