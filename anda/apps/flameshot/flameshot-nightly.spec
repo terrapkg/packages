@@ -23,22 +23,22 @@ BuildRequires:	fdupes
 BuildRequires:	libappstream-glib
 BuildRequires:	ninja-build
 BuildRequires:	desktop-file-utils
-BuildRequires: mold
+BuildRequires:	mold
 
-BuildRequires: cmake(Qt6Core) >= 6.0.0
-BuildRequires: cmake(KF6GuiAddons) >= 6.7.0
-BuildRequires: cmake(Qt6DBus) >= 6.0.0
-BuildRequires: cmake(Qt6Gui) >= 6.0.0
-BuildRequires: cmake(Qt6LinguistTools) >= 6.0.0
-BuildRequires: cmake(Qt6Network) >= 6.0.0
-BuildRequires: cmake(Qt6Svg) >= 6.0.0
-BuildRequires: cmake(Qt6Widgets) >= 6.0.0
+BuildRequires:	cmake(Qt6Core) >= 6.0.0
+BuildRequires:	cmake(KF6GuiAddons) >= 6.7.0
+BuildRequires:	cmake(Qt6DBus) >= 6.0.0
+BuildRequires:	cmake(Qt6Gui) >= 6.0.0
+BuildRequires:	cmake(Qt6LinguistTools) >= 6.0.0
+BuildRequires:	cmake(Qt6Network) >= 6.0.0
+BuildRequires:	cmake(Qt6Svg) >= 6.0.0
+BuildRequires:	cmake(Qt6Widgets) >= 6.0.0
 
 Requires:		hicolor-icon-theme
 
 Conflicts:		flameshot
 
-Recommends:  qt6-qtimageformats
+Recommends:		qt6-qtimageformats
 Recommends:		xdg-desktop-portal%{?_isa}
 Recommends:		(xdg-desktop-portal-gnome%{?_isa} if gnome-shell%{?_isa})
 Recommends:		(xdg-desktop-portal-kde%{?_isa} if plasma-workspace-wayland%{?_isa})
