@@ -1,7 +1,7 @@
-%global commit 5cce6ff6a22d647db55a8596a88c8e29e6fdf970
+%global commit dc12a8468e388f68350657fb6f26683bf588cc4e
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20250625
-%global ver 1.0.13
+%global commitdate 20250901
+%global ver 1.0.15
 
 Name:           scx-scheds-nightly
 Version:        %{ver}^%{commitdate}.git.%{shortcommit}
@@ -49,7 +49,7 @@ Provides:       scxctl = %{version}
 Provides:       scx_layered
 Provides:       scx_rustland
 Provides:       scx_rusty
-Obsoletes:      scxctl >= 0.3.4
+Obsoletes:      scxctl <= 0.3.4
 Packager:       Gilver E. <rockgrub@disroot.org>
 
 %description
@@ -72,8 +72,7 @@ License:       GPL-2.0-only
 %build
 %meson \
  -Dsystemd=enabled \
- -Dopenrc=disabled \
- -Dlibalpm=disabled
+ -Dopenrc=disabled
 %meson_build
 
 
@@ -81,6 +80,18 @@ License:       GPL-2.0-only
 %meson_install
 
 %{cargo_license_online} > LICENSE.dependencies
+
+%post
+%systemd_post scx_loader.service
+%systemd_post scx.service
+
+%preun
+%systemd_preun scx_loader.service
+%systemd_preun scx.service
+
+%postun
+%systemd_postun_with_restart scx_loader.service
+%systemd_postun_with_restart scx.service
 
 %files
 %doc OVERVIEW.md
@@ -94,6 +105,7 @@ License:       GPL-2.0-only
 %{_unitdir}/scx.service
 %{_datadir}/dbus-1/system.d/org.scx.Loader.conf
 %{_datadir}/dbus-1/system-services/org.scx.Loader.service
+%attr(0644,root,root) %config(noreplace) %{_datadir}/scx_loader/config.toml
 
 %changelog
 * Sun Jun 15 2025 Gilver E. <rockgrub@disroot.org> - 1.0.13^20250612.git.c1507b0-1

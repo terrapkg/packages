@@ -12,7 +12,7 @@
 %global vendor_pnpm 1
 
 Name:           youtube-music
-Version:        3.9.0
+Version:        3.10.0
 Release:        1%?dist
 Summary:        YouTube Music Desktop App bundled with custom plugins (and built-in ad blocker / downloader)
 Source1:        youtube-music.desktop
@@ -53,7 +53,7 @@ git checkout v%{version}
 %if 0%{?vendor_pnpm}
 curl -fsSL https://get.pnpm.io/install.sh | sh -
 source $HOME/.bashrc
-pnpm env use --global 20
+pnpm env use --global 22
 %endif
 pnpm install
 pnpm build

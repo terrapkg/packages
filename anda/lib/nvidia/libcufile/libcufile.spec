@@ -6,7 +6,7 @@
 
 Name:           libcufile
 Epoch:          1
-Version:        1.14.1.1
+Version:        1.15.0.42
 Release:        1%?dist
 Summary:        NVIDIA GPUDirect Storage library (cuFile)
 License:        CUDA Toolkit

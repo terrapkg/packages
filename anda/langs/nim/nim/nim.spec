@@ -3,7 +3,7 @@
 
 Name:			nim
 Version:		2.2.4
-Release:		2%?dist
+Release:		3%?dist
 Summary:		Imperative, multi-paradigm, compiled programming language
 License:		MIT and BSD
 URL:			https://nim-lang.org
@@ -14,6 +14,8 @@ Source4:		nimsuggest.1
 BuildRequires:	gcc mold git-core gcc-c++ nodejs openssl-devel pkgconfig(bash-completion) gc-devel pcre-devel
 BuildRequires:  redhat-rpm-config anda-srpm-macros
 Requires:		gcc
+Recommends:		nim-tools
+Conflicts:		nimble
 
 
 %description

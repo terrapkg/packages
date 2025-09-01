@@ -12,8 +12,8 @@
 
 # Naming variable as something other than "commit" is necessary
 # to stop %%gometa from putting commit hash in release
-%global commit_hash 4db233acf4bff3095ccb52fc2c1d47af0fa62c74
-%global commit_date 20250625
+%global commit_hash b8057f28c6e5adef9744250643ad8cf8b5fafa18
+%global commit_date 20250826
 %global shortcommit %{sub %{commit_hash} 1 7}
 %global ver 2.0.14
 
@@ -60,7 +60,6 @@ Conflicts:      micro
 git clone --recurse-submodules -q %{gourl} micro-%{version}
 cd %{builddir}/micro-%{version} && git checkout -q %{commit_hash}
 %gomkdir
-%go_prep_online
 
 %build
 %if %{without bootstrap}

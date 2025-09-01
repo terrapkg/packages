@@ -1,6 +1,6 @@
-%global commit 32bf79010dd2eb981ad5022c5b79fb65d2324d8a
+%global commit 8550ab26a712b7f5f6d0947070181446b9de61fd
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250603
+%global commit_date 20250715
 %global ver 12.12
 %global base_name steamtinkerlaunch
 %global _description %{expand:

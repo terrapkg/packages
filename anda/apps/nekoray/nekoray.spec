@@ -1,6 +1,6 @@
 %global gomodulesmode GO111MODULE=on
 Name: nekoray
-Version: 4.3.5
+Version: 4.3.7
 Release: 1%?dist
 Summary: Qt based cross-platform GUI proxy configuration manager (backend: sing-box)
 URL: https://github.com/Mahdi-zarei/nekoray
@@ -52,7 +52,7 @@ Summary: %{summary}
 %autosetup -p1 -n %{name}-%{version}
 sed -i 's~find_package(Protobuf CONFIG REQUIRED)~find_package(Protobuf REQUIRED)~' cmake/myproto.cmake
 sed -i 's~add_library(qhotkey 3rdparty/QHotkey/qhotkey.cpp)~add_library(qhotkey STATIC 3rdparty/QHotkey/qhotkey.cpp)~' cmake/QHotkey.cmake
-sed -i 's~ImageFormat::BGRA~ImageFormat::BGR~' 3rdparty/ZxingQtReader.hpp
+# sed -i 's~ImageFormat::BGRA~ImageFormat::BGR~' 3rdparty/ZxingQtReader.hpp
 pushd core/server
 %{fetch_vendor}
 popd

@@ -1,6 +1,6 @@
-%global commit d74134a1c68f59f2b80cdd6c6afb8c1a8a687cbf
+%global commit 945c687aa1e62ee0b95b1ddd1dbfdbd513c30152
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250508
+%global commit_date 20250722
 %global ver 5.12.0.4
 %global modulename rtl8821cu
 %global git_name 8821cu-20210916
@@ -8,7 +8,7 @@
 
 Name:           %{modulename}-kmod-common
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        1%?dist
 Summary:        Common files and documentation for the rtl8821cu driver
 License:        GPL-2.0-only
 URL:            https://github.com/morrownr/8821cu-20210916

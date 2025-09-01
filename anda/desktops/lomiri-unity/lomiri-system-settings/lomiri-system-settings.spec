@@ -1,5 +1,5 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-system-settings
-%global commit fcc7fe7570da28147906b6779d2f0587ae4ee854
+%global commit 88d4af5b1476c5a69e7661637506ae1932a2ccb5
 %forgemeta
 
 Name:       lomiri-system-settings
@@ -9,10 +9,9 @@ Summary:    The system settings application for Lomiri
 License:    GPLv3
 URL:        https://gitlab.com/ubports/development/core/lomiri-system-settings
 Source0:    %{url}/-/archive/%commit/lomiri-system-settings-%commit.tar.gz
-Patch0:     https://sources.debian.org/data/main/l/lomiri-system-settings/1.3.1-4/debian/patches/0001_lib-LomiriSystemSettingsPrivate-accountsservice.cpp-Register-missing-D-Bus-types.patch
-Patch1:     https://sources.debian.org/data/main/l/lomiri-system-settings/1.3.1-4/debian/patches/2002_use-Noto-font-instead-of-Ubuntu-font.patch
-Patch2:     https://sources.debian.org/data/main/l/lomiri-system-settings/1.3.1-4/debian/patches/2011_build-without-trust-store.patch
-Patch3:     https://sources.debian.org/data/main/l/lomiri-system-settings/1.3.1-4/debian/patches/2013_show-hotspot-on-desktop.patch
+Patch0:     2002_use-Noto-font-instead-of-Ubuntu-font.patch
+Patch1:     2011_build-without-trust-store.patch
+Patch2:     2013_show-hotspot-on-desktop.patch
 
 BuildRequires: cmake
 BuildRequires: gcc-c++

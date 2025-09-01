@@ -1,5 +1,5 @@
-%global commit0 677f48002cee82e4e37d4e95a5b085ab1c5bbe98
-%global date 20250623
+%global commit0 e02b9c5c714f35a7576f0c1e549327e060fc7903
+%global date 20250819
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 %global upstream_name nvidia-vaapi-driver
@@ -11,7 +11,7 @@
 Name:           libva-nvidia-driver
 Epoch:          1
 Version:        0.0.14%{!?tag:^%{date}git%{shortcommit0}}
-Release:        1%?dist
+Release:        2%?dist
 Summary:        VA-API user mode driver for Nvidia GPUs
 License:        MIT
 URL:            https://github.com/elFarto/%{upstream_name}
@@ -39,6 +39,11 @@ Provides:       %{upstream_name} = %{version}-%{release}
 Provides:       nvdec-vaapi-driver = %{version}-%{release}
 
 Requires:       mesa-filesystem
+%if 0%{?fedora}
+%ifarch x86_64
+Requires:       %{name}(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
+%endif
+%endif
 
 %description
 This is a VA-API implementation that uses NVDEC as a backend. This

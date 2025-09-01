@@ -1,10 +1,10 @@
 #? https://src.fedoraproject.org/rpms/hyprutils/blob/rawhide/f/hyprutils.spec
 
 %global realname hyprutils
-%global ver 0.7.1
+%global ver 0.8.4
 
-%global commit 1b8090e5d87e6c365eabb1a0c10bf5cd0d6fe60d
-%global commit_date 20250624
+%global commit b2ae3204845f5f2f79b4703b441252d8ad2ecfd0
+%global commit_date 20250826
 %global shortcommit %{sub %commit 1 7}
 
 Name:           %realname.nightly
@@ -52,4 +52,4 @@ Conflicts:		%realname-devel
 %license LICENSE
 %doc README.md
 %{_libdir}/lib%{realname}.so.%{ver}
-%{_libdir}/lib%{realname}.so.6
+%{_libdir}/lib%{realname}.so.*

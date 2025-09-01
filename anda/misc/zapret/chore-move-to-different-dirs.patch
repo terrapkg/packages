@@ -1,7 +1,7 @@
-From e6e3b033683453f3bffceb099ebe4195f35a3d7c Mon Sep 17 00:00:00 2001
+From fd814758e6eded5ff0e9a6c5717effa52cccfda0 Mon Sep 17 00:00:00 2001
 From: VirtualFreeEx <contact@ffi.lol>
-Date: Fri, 20 Jun 2025 07:08:06 +0300
-Subject: [PATCH 2/2] chore: move to different dirs
+Date: Fri, 18 Jul 2025 11:43:26 +0300
+Subject: [PATCH 1/2] chore: move to different dirs
 
 ---
  blockcheck.sh                             | 15 ++++++++-------
@@ -15,7 +15,7 @@ Subject: [PATCH 2/2] chore: move to different dirs
  8 files changed, 19 insertions(+), 20 deletions(-)
 
 diff --git a/blockcheck.sh b/blockcheck.sh
-index 24ad898..1fa77ea 100755
+index 63e48f4..e7f4938 100755
 --- a/blockcheck.sh
 +++ b/blockcheck.sh
 @@ -3,9 +3,10 @@
@@ -160,5 +160,5 @@ index bb15abb..8d45cec 100755
  
  NAME=zapret
 -- 
-2.49.0
+2.50.1
 

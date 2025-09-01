@@ -1,9 +1,10 @@
-%global commit aa330fcf2c4c1153d5c4f0408a4f6bfc145d94d5
+%global commit a852bcc09410b47dcabbe9b089725777024d125e
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250625
-%global ver 0.193.0
+%global commit_date 20250901
+%global ver 0.203.0
 
 %bcond_with check
+%bcond nightly 1
 
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
@@ -25,6 +26,10 @@ Source0:        https://github.com/zed-industries/zed/archive/%{commit}.tar.gz
 Conflicts:      zed
 Conflicts:      zed-preview
 
+%ifarch x86_64
+# BUG: fedora rustc missing this dep
+BuildRequires:  libedit(x86-64)
+%endif
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros
 BuildRequires:  gcc
@@ -47,13 +52,45 @@ BuildRequires:  perl-IPC-Cmd
 BuildRequires:  perl-File-Compare
 BuildRequires:  perl-File-Copy
 BuildRequires:  perl-lib
+%if %{with nightly}
+BuildRequires:  rustup
+%endif
 BuildRequires:  vulkan-loader
+Requires: (%name-rename-zeditor if zfs else %name-cli)
+Suggests: %name-cli
 
 %description
 Code at the speed of thought - Zed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter.
 
+%package cli
+Summary: Provides the /usr/bin/zed binary
+Conflicts: zfs
+Supplements: (%name unless zfs)
+%description cli
+This package provides the /usr/bin/zed binary. If you use zfs, install %name-rename-zeditor instead.
+%files cli
+%_bindir/zed
+%{_datadir}/applications/%app_id.desktop
+
+%package rename-zeditor
+Summary: Rename zed to zeditor to prevent collision with zfs
+Provides: %name-cli
+Conflicts: %name-cli
+Supplements: (%name and zfs)
+RemovePathPostFixes: .zeditor
+%description rename-zeditor
+This package provides the %_bindir/zeditor binary instead of %_bindir/zed. This avoids conflicts with the zfs package.
+The normal package is %name-cli.
+%files rename-zeditor
+%_bindir/zeditor
+%_datadir/applications/%app_id.desktop.zeditor
+
+
 %prep
 %autosetup -n %{crate}-%{commit} -p1
+%if %{with nightly}
+%rustup_nightly
+%endif
 %cargo_prep_online
 
 export DO_STARTUP_NOTIFY="true"
@@ -78,15 +115,18 @@ export ZED_UPDATE_EXPLANATION="Run dnf up to update Zed Nightly from Terra."
 echo "nightly" > crates/zed/RELEASE_CHANNEL
 
 %cargo_build -- --package zed --package cli
-script/generate-licenses
+ALLOW_MISSING_LICENSES=1 script/generate-licenses
 
 %install
 install -Dm755 target/rpm/zed %{buildroot}%{_libexecdir}/zed-editor
+install -Dm755 target/rpm/cli %{buildroot}%{_bindir}/zeditor
 install -Dm755 target/rpm/cli %{buildroot}%{_bindir}/zed
 
 %__cargo clean
 
 install -Dm644 %app_id.desktop %{buildroot}%{_datadir}/applications/%app_id.desktop
+sed 's/Exec=zed/Exec=zeditor/' %app_id.desktop > %app_id.desktop.zeditor
+install -Dm644 %app_id.desktop.zeditor -t %buildroot%_datadir/applications/
 install -Dm644 crates/zed/resources/app-icon-nightly.png %{buildroot}%{_datadir}/pixmaps/%app_id.png
 
 install -Dm644 %app_id.metainfo.xml %{buildroot}%{_metainfodir}/%app_id.metainfo.xml
@@ -107,7 +147,7 @@ install -Dm644 %app_id.metainfo.xml %{buildroot}%{_metainfodir}/%app_id.metainfo
 > LICENSE.dependencies
 mv assets/icons/LICENSES LICENSE.icons
 mv assets/themes/LICENSES LICENSE.themes
-mv assets/fonts/plex-mono/license.txt LICENSE.fonts
+mv assets/fonts/ibm-plex-sans/license.txt LICENSE.fonts
 
 %if %{with check}
 %check
@@ -126,8 +166,6 @@ mv assets/fonts/plex-mono/license.txt LICENSE.fonts
 %license LICENSE.themes
 %license assets/licenses.md
 %{_libexecdir}/zed-editor
-%{_bindir}/zed
-%{_datadir}/applications/%app_id.desktop
 %{_datadir}/pixmaps/%app_id.png
 %{_metainfodir}/%app_id.metainfo.xml
 

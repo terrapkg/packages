@@ -6,7 +6,7 @@
 
 Name:           libcurand
 Epoch:          2
-Version:        10.3.10.19
+Version:        10.4.0.35
 Release:        1%?dist
 Summary:        NVIDIA CUDA Random Number Generation library (cuRAND)
 License:        CUDA Toolkit
