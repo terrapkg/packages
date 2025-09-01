@@ -1,11 +1,11 @@
 Name:		limine
-Version:	moved.to.codeberg
+Version:	9.6.5
 Release:	1%?dist
 Summary:	Modern, advanced, portable, multiprotocol bootloader
 License:	BSD-2-Clause
 URL:		https://limine-bootloader.org
-Source0:	https://github.com/limine-bootloader/limine/releases/download/v%version/limine-%version.tar.gz
-Source1:	https://raw.githubusercontent.com/limine-bootloader/limine/v%version/README.md
+Source0:	https://codeberg.org/Limine/Limine/releases/download/v%version/limine-%version.tar.gz
+Source1:	https://codeberg.org/Limine/Limine/raw/tag/v%version/README.md
 Packager:	madonuko <mado@fyralabs.com>
 BuildRequires:	nasm mtools llvm lld clang make
 
@@ -15,10 +15,10 @@ the reference implementation for the Limine boot protocol.
 
 %prep
 %autosetup
-cp %SOURCE1 .
+cp %{S:1} .
 
 %build
-%configure --enable-all TOOLCHAIN_FOR_TARGET=llvm
+%configure --enable-all CC_FOR_TARGET=clang LD_FOR_TARGET=ld.lld
 %make_build
 
 %install
@@ -27,7 +27,7 @@ cp %SOURCE1 .
 
 %files
 %doc README.md 3RDPARTY.md FAQ.md CONFIG.md PROTOCOL.md COPYING USAGE.md
-%doc %_datadir/doc/limine/LICENSES/LicenseRef-scancode-bsd-no-disclaimer-unmodified.txt
+%license %_datadir/doc/limine/LICENSES/LicenseRef-scancode-bsd-no-disclaimer-unmodified.txt
 %license COPYING
 %_bindir/limine
 %_includedir/limine.h
