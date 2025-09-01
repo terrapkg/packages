@@ -1,5 +1,7 @@
 %define __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
+%global crate zoi-rs
+
 Name:           zoi.prod.beta
 Version:        4.3.7
 Release:        1%?dist
@@ -19,8 +21,24 @@ Provides:       zoi = %version
 Packager:       madonuko <mado@fyralabs.com>
 Requires:       git
 
-%description
-Zoi is a universal package manager and environment setup tool, designed to simplify package management and environment configuration across multiple operating systems.
+%global _description %{expand:
+Zoi is a universal package manager and environment setup tool, designed to simplify package management and environment configuration across multiple operating systems.}
+
+%description %_description
+
+%package        devel
+Summary:        %{summary}
+BuildArch:      noarch
+
+%description    devel %{_description}
+
+This package contains library source intended for building other packages which
+use the "%{crate}" crate.
+
+%files          devel
+%license %{crate_instdir}/LICENSE
+%doc %{crate_instdir}/README.md
+%{crate_instdir}/
 
 %pkg_completion -Befz zoi
 
