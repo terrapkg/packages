@@ -1,5 +1,5 @@
 %global pypi_name modern_colorthief
-%bcond boostrap 1
+%bcond bootstrap 1
 %bcond docs %{without bootstrap}
 %bcond test %{without bootstrap}
 
