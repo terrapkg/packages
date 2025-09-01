@@ -8,6 +8,7 @@ URL:            https://gitlab.com/Zillowe/Zillwen/Zusty/Zoi
 Source0:        https://gitlab.com/Zillowe/Zillwen/Zusty/Zoi/-/archive/Prod-Beta-%version/Zoi-Prod-Beta-%version.tar.gz
 BuildRequires:  cargo rpm_macro(cargo_install)
 BuildRequires:  perl(FindBin)
+BuildRequires:  perl(IPC::Cmd)
 Provides:       zoi = %version
 Packager:       madonuko <mado@fyralabs.com>
 Requires:       git
