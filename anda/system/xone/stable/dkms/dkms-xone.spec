@@ -2,7 +2,7 @@
 %global modulename xone
 
 Name:           dkms-%{modulename}
-Version:        0.4.3
+Version:        0.4.4
 Release:        1%?dist
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Epoch:          2
