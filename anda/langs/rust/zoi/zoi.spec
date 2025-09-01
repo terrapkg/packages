@@ -36,10 +36,10 @@ Zoi is a universal package manager and environment setup tool, designed to simpl
 %cargo_install
 
 # skip powershell
-"%buildroot%_bindir/zoi" generate-completions bash | install -Dm644 /dev/stdin %bash_completions_dir/zoi
-"%buildroot%_bindir/zoi" generate-completions elvish | install -Dm644 /dev/stdin %elvish_completions_dir/zoi.elv
-"%buildroot%_bindir/zoi" generate-completions fish | install -Dm644 /dev/stdin %fish_completions_dir/zoi.fish
-"%buildroot%_bindir/zoi" generate-completions zsh | install -Dm644 /dev/stdin %zsh_completions_dir/_zoi
+"%buildroot%_bindir/zoi" generate-completions bash | install -Dm644 /dev/stdin %buildroot%bash_completions_dir/zoi
+"%buildroot%_bindir/zoi" generate-completions elvish | install -Dm644 /dev/stdin %buildroot%elvish_completions_dir/zoi.elv
+"%buildroot%_bindir/zoi" generate-completions fish | install -Dm644 /dev/stdin %buildroot%fish_completions_dir/zoi.fish
+"%buildroot%_bindir/zoi" generate-completions zsh | install -Dm644 /dev/stdin %buildroot%zsh_completions_dir/_zoi
 
 %files
 %doc README.md
