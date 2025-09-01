@@ -1,5 +1,5 @@
 %global pypi_name modern_colorthief
-%bcond bootstrap 1
+%bcond bootstrap 0
 %bcond docs %{without bootstrap}
 %bcond test %{without bootstrap}
 
@@ -122,5 +122,7 @@ poetry run pytest
 %endif
 
 %changelog
+* Mon Sep 1 2025 Gilver E. <rockgrub@disroot.org> - 0.1.7-2
+- Rebuilt for Python 3.14
 * Tue May 13 2025 Gilver E. <rockgrub@disroot.org> - 0.1.7-1
 - Initial package
