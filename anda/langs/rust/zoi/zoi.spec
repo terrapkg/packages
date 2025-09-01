@@ -22,7 +22,7 @@ Requires:       git
 %description
 Zoi is a universal package manager and environment setup tool, designed to simplify package management and environment configuration across multiple operating systems.
 
-%pkg_completion -befz zoi
+%pkg_completion -Befz zoi
 
 %prep
 %autosetup -n Zoi-Prod-Beta-%version
