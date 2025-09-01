@@ -14,7 +14,6 @@ BuildRequires:  python3dist(torchvision)
 BuildRequires:  python3-gobject
 BuildRequires:  pkgconfig(opencv)
 BuildRequires:  git-core
-#BuildRequires:  pkgconfig(libtorch)
 Requires:       python3dist(torch)
 
 %description
@@ -23,6 +22,8 @@ Requires:       python3dist(torch)
 %prep
 %autosetup -n eyMate-%version
 %cargo_prep_online
+cargo rm tch
+cargo add tch@0.18.0
 mkdir facenet_pytorch
 cd facenet_pytorch
 tar xf %{S:1} --strip-components=1
@@ -33,6 +34,8 @@ tar xf %{S:1} --strip-components=1
 python build_model.py
 
 %install
+export LIBTORCH_USE_PYTORCH=1
+export LIBTORCH_BYPASS_VERSION_CHECK=1
 %cargo_install
 install -Dm644 target/rpm/libpam_eymate.so -t %buildroot%_usr/lib/security/
 install -Dm755 vggface2.pt -t %buildroot%_datadir/eymate/
