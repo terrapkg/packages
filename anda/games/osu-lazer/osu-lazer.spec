@@ -10,8 +10,8 @@ ExclusiveArch:	x86_64
 URL:			https://osu.ppy.sh/
 License:		MIT AND CC-BY-NC-4.0
 Requires:		osu-mime fuse
-Source0:		https://github.com/ppy/osu/releases/download/%{version}/osu.AppImage
-Source1:		https://raw.githubusercontent.com/ppy/osu/%{version}/assets/lazer.png
+Source0:		https://github.com/ppy/osu/releases/download/%{version}-lazer/osu.AppImage
+Source1:		https://raw.githubusercontent.com/ppy/osu/%{version}-lazer/assets/lazer.png
 Source2:		https://raw.githubusercontent.com/ppy/osu-resources/%{osuresver}/LICENCE.md
 Source3:		osu-lazer.desktop
 Source4:		osu-lazer-uri-handler.desktop
