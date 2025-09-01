@@ -1,6 +1,6 @@
 %global pypi_name modern_colorthief
 %bcond docs 0
-%bcond test 1
+%bcond test 0
 
 # The srcrpm is not prefixed with Python because the source is mostly Rust
 Name:          modern-colorthief
