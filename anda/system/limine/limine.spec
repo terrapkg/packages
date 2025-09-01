@@ -13,7 +13,7 @@ Limine is a modern, advanced, portable, multiprotocol bootloader, also used as
 the reference implementation for the Limine boot protocol.
 
 %prep
-%autosetup
+%autosetup -n Limine-v%version
 
 %build
 %configure --enable-all
