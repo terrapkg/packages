@@ -38,7 +38,7 @@ Packager:       Ben Woods <git@ben.woods.am>
 %{_bindir}/btm
 %{_bindir}/schema
 
-%pkg_completion -z -n %crate btm
+%dnl %pkg_completion -Bfz -n %crate btm
 
 %package        devel
 Summary:        %{summary}
