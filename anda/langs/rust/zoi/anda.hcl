@@ -1,5 +1,5 @@
 project pkg {
   rpm {
-    spec = "zoi.spec"
+    spec = "rust-zoi-rs.spec"
   }
 }
