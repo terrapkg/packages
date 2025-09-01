@@ -6,9 +6,12 @@ SourceLicense:  Apache-2.0
 License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND (0BSD OR MIT OR Apache-2.0) AND Apache-2.0 AND (Apache-2.0 AND ISC) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND BSD-2-Clause AND BSD-3-Clause AND BSL-1.0 AND CDLA-Permissive-2.0 AND ISC AND LGPL-2.0-or-later AND MIT AND (MIT OR Apache-2.0) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Zlib OR Apache-2.0) AND MPL-2.0 AND MPL-2.0+ AND Unicode-3.0 AND (Unlicense OR MIT) AND Zlib
 URL:            https://gitlab.com/Zillowe/Zillwen/Zusty/Zoi
 Source0:        https://gitlab.com/Zillowe/Zillwen/Zusty/Zoi/-/archive/Prod-Beta-%version/Zoi-Prod-Beta-%version.tar.gz
-BuildRequires:  cargo rpm_macro(cargo_install)
+BuildRequires:  cargo
+BuildRequires:  rpm_macro(cargo_install)
+BuildRequires:  pkgconfig(openssl)
 BuildRequires:  perl(FindBin)
 BuildRequires:  perl(IPC::Cmd)
+BuildRequires:  perl(File::Compare)
 Provides:       zoi = %version
 Packager:       madonuko <mado@fyralabs.com>
 Requires:       git
