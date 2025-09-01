@@ -72,9 +72,10 @@ Requires:     %{name} = %{version}
 %autosetup -p1 -n flameshot-%commit
 
 %build
+export GIT_HASH=%commit
 %cmake -G Ninja \
     -DCMAKE_BUILD_TYPE=Release \
-    -DUSE_WAYLAND_CLIPBOARD:BOOL=ON \
+    -DUSE_WAYLAND_CLIPBOARD:BOOL=ON
 %cmake_build
 
 %install
