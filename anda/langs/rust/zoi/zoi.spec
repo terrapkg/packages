@@ -12,6 +12,7 @@ BuildRequires:  pkgconfig(openssl)
 BuildRequires:  perl(FindBin)
 BuildRequires:  perl(IPC::Cmd)
 BuildRequires:  perl(File::Compare)
+BuildRequires:  perl(File::Copy)
 Provides:       zoi = %version
 Packager:       madonuko <mado@fyralabs.com>
 Requires:       git
