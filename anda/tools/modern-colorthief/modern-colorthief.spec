@@ -64,7 +64,7 @@ Documentation for Modern Colorthief.
 %endif
 
 %prep
-%autosetup -n %{pypi_name}-%{version}
+%autosetup -n -p1 %{pypi_name}-%{version}
 %cargo_prep_online
 
 %build
