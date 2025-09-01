@@ -81,7 +81,7 @@ popd
 
 %install
 install -Dm755 %__cmake_builddir/Throne -t %buildroot%_libdir/%name/%name
-install -Dm755 %__cmake_builddir/Core -t %buildroot%_libdir/%name/%core
+install -Dm755 %__cmake_builddir/%core -t %buildroot%_libdir/%name/%core
 install -Dpm755 %{SOURCE4} %{buildroot}%{_bindir}/%{name}
 install -Dpm644 %{SOURCE3} %{buildroot}%{_datadir}/applications/%{name}.desktop
 sed -i 's~/bin~%{_bindir}~g' %{buildroot}%{_datadir}/applications/%{name}.desktop
