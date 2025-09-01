@@ -42,6 +42,7 @@ python build_model.py
 %install
 export LIBTORCH_USE_PYTORCH=1
 export LIBTORCH_BYPASS_VERSION_CHECK=1
+rm -rf .cargo/registry/
 %cargo_install
 install -Dm644 target/rpm/libpam_eymate.so -t %buildroot%_usr/lib/security/
 install -Dm755 vggface2.pt -t %buildroot%_datadir/eymate/
