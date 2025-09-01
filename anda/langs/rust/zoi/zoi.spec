@@ -7,6 +7,7 @@ License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND (0BSD OR MIT OR Apach
 URL:            https://gitlab.com/Zillowe/Zillwen/Zusty/Zoi
 Source0:        https://gitlab.com/Zillowe/Zillwen/Zusty/Zoi/-/archive/Prod-Beta-%version/Zoi-Prod-Beta-%version.tar.gz
 BuildRequires:  cargo rpm_macro(cargo_install)
+BuildRequires:  perl(FindBin)
 Provides:       zoi = %version
 Packager:       madonuko <mado@fyralabs.com>
 Requires:       git
