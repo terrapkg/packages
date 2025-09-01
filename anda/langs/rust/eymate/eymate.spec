@@ -13,6 +13,7 @@ BuildRequires:  python3dist(torch)
 BuildRequires:  python3dist(torchvision)
 BuildRequires:  python3-gobject
 BuildRequires:  pkgconfig(opencv)
+BuildRequires:  pkgconfig(pam)
 BuildRequires:  git-core
 BuildRequires:  gcc-c++ gcc clang
 Requires:       python3dist(torch)
