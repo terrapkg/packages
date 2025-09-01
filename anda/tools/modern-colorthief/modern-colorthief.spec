@@ -34,6 +34,7 @@ BuildRequires: cargo-rpm-macros
 BuildRequires: maturin
 BuildRequires: mold
 BuildRequires: python3-devel
+BuildRequires: python3-rpm-macros
 BuildRequires: pyproject-rpm-macros
 BuildRequires: python3dist(pip)
 BuildRequires: python3dist(setuptools)
