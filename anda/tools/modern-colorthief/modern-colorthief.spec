@@ -11,7 +11,13 @@ SourceLicense: MIT
 License:       (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception) AND BSD-2-Clause AND (CC0-1.0 OR Apache-2.0) AND (MIT OR Apache-2.0 OR NCSA) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MIT AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT)
 URL:           https://modern-colorthief.readthedocs.io
 Source0:       %{pypi_source}
-Patch0:        https://github.com/baseplate-admin/modern_colorthief/commit/1ae82aa8e695820224721d18069ec75ad73543a0.patch
+Patch0:        https://github.com/baseplate-admin/modern_colorthief/commit/6b1f631af1e690741646d9432ed971cdf5b627e3.patch
+Patch1:        https://github.com/baseplate-admin/modern_colorthief/commit/0abc0147d574bb962e17a244fca413448848e7e0.patch
+Patch2:        https://github.com/baseplate-admin/modern_colorthief/commit/47c5d08576f98b06733d997d9f05e227b150858c.patch
+Patch3:        https://github.com/baseplate-admin/modern_colorthief/commit/5e1ae7a597d2fc2e56e1e4b1aae22257dd8b7624.patch
+Patch4:        https://github.com/baseplate-admin/modern_colorthief/commit/4ce6437b9cf14002eb388bde7a49dc9c1448d7b3.patch
+Patch5:        https://github.com/baseplate-admin/modern_colorthief/commit/8c9a8ff0db2b1ed2fcc3465dba4e5848dbd5128e.patch
+Patch6:        https://github.com/baseplate-admin/modern_colorthief/commit/1ae82aa8e695820224721d18069ec75ad73543a0.patch
 BuildRequires: anda-srpm-macros
 BuildRequires: cargo
 BuildRequires: cargo-rpm-macros
