@@ -96,6 +96,7 @@ patchelf --remove-rpath %{buildroot}%{_libdir}/%{name}/%{core}
 %attr(0755, -, -) %{_libdir}/%{name}/%{name}
 %attr(0644, -, -) %{_datadir}/icons/Throne.ico
 %attr(0644, -, -) %{_datadir}/applications/%{name}.desktop
+%_datadir/pixmaps/Throne.png
 
 %files core
 %dir %{_libdir}/%{name}
