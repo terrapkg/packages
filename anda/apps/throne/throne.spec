@@ -84,8 +84,6 @@ install -Dm755 %__cmake_builddir/Throne %buildroot%_libdir/%name/%name
 install -Dm755 %__cmake_builddir/%core %buildroot%_libdir/%name/%core
 install -Dpm755 %{SOURCE4} %{buildroot}%{_bindir}/%{name}
 install -Dpm644 %{SOURCE3} %{buildroot}%{_datadir}/applications/%{name}.desktop
-sed -i 's~/bin~%{_bindir}~g' %{buildroot}%{_datadir}/applications/%{name}.desktop
-sed -i 's~/bin~%{_bindir}~g;s~/lib64~%{_libdir}~g' %{buildroot}%{_bindir}/%{name}
 install -Dpm644 res/Throne.ico -t %buildroot%_iconsdir/
 install -Dpm644 res/public/Throne.png -t %buildroot%_datadir/pixmaps/
 patchelf --remove-rpath %{buildroot}%{_libdir}/%{name}/%{name}
