@@ -2,7 +2,7 @@ Name:          mdBook
 Version:       0.4.52
 Release:       1%?dist
 Summary:       Create a book from markdown files
-License:       MPL-2.0
+License:       MPL-2.0 AND MIT AND (Apache-2.0 OR MIT) AND Apache-2.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND CC0-1.0 AND ISC AND (MIT OR Zlib OR Apache-2.0) AND Unicode-3.0 AND (Apache-2.0 OR BSL-1.0) AND (MIT AND BSD-3-Clause)
 URL:           https://github.com/rust-lang/mdBook
 Source0:       %url/archive/refs/tags/v%{version}.tar.gz
 
@@ -28,6 +28,7 @@ mdBook is a utility to create modern online books from Markdown files.
 
 %install
 %cargo_install
+%cargo_license_summary_online
 %{cargo_license_online -a} > LICENSE.dependencies
 
 %files
