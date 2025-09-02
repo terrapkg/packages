@@ -4,8 +4,8 @@
 %global __requires_exclude ^libaaudio\\.so.*|^libandroid\\.so.*|^libmediandk\\.so.*|^liblog\\.so.*|^libc\\.so.*|^libm\\.so.*|^libdl\\.so.*|^libcrypt\\.so.*|^libstdc\\+\\+\\.so.*|^libncursesw\\.so.*|^libtinfo\\.so.*|^libnsl\\.so.*|^libpanelw\\.so.*$
 
 Name:           android-studio
-Version:        2025.1.2.13
-Release:        2%?dist
+Version:        2025.1.3.7
+Release:        1%?dist
 Summary:        Official IDE for Android development
 License:        Apache-2.0
 Packager:       like-engels <higashikataengels@icloud.com>

@@ -1,8 +1,8 @@
 %global pypi_name nautilus_open_any_terminal
 
 Name:           nautilus-open-any-terminal
-Version:        0.6.1
-Release:        2%?dist
+Version:        0.6.2
+Release:        1%?dist
 Summary:        Context-menu entry for opening other terminal in Nautilus
 License:        GPL-3.0-only
 URL:            https://github.com/Stunkymonkey/nautilus-open-any-terminal
