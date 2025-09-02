@@ -37,8 +37,9 @@ Packager:       Ben Woods <git@ben.woods.am>
 %doc README.md
 %{_bindir}/btm
 %{_bindir}/schema
+%{_mandir}/man1/btm.1*
 
-%dnl %pkg_completion -Bfz -n %crate btm
+%pkg_completion -Bfz -n %crate btm
 
 %package        devel
 Summary:        %{summary}
@@ -256,7 +257,15 @@ use the "zfs" feature of the "%{crate}" crate.
 %{cargo_license_online -f generate_schema} > LICENSE.dependencies
 
 %install
+# https://github.com/ClementTsang/bottom/blob/main/docs/content/contribution/packaging-and-distribution.md#manpage-and-completion-generation
+export BTM_GENERATE=true
 %cargo_install -f generate_schema
+# Completions
+ls target/tmp/bottom
+install -Dpm 0644 target/tmp/bottom/completion/btm.bash %{buildroot}%{_datadir}/bash-completion/completions/btm
+install -Dpm 0644 target/tmp/bottom/completion/btm.fish %{buildroot}%{_datadir}/fish/vendor_completions.d/btm.fish
+install -Dpm 0644 target/tmp/bottom/completion/_btm %{buildroot}%{_datadir}/zsh/site-functions/_btm
+install -Dpm 0644 target/tmp/bottom/manpage/btm.1 %{buildroot}%{_mandir}/man1/btm.1
 
 %if %{with check}
 %check
