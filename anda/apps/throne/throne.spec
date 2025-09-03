@@ -2,7 +2,7 @@
 
 Name: throne
 Version: 1.0.5
-Release: 2%?dist
+Release: 3%?dist
 Summary: Qt based cross-platform GUI proxy configuration manager (backend: sing-box)
 URL: https://github.com/throneproj/Throne
 License: GPLv3
@@ -39,7 +39,7 @@ BuildRequires: golang
 BuildRequires: rpm_macro(gobuildflags)
 BuildRequires: protobuf-compiler
 Requires: %{name}-core
-%define core throne_core
+%define core Core
 
 %package core
 Summary: %{summary}
