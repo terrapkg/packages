@@ -100,15 +100,9 @@ sed -i \
 %{_libdir}/libcufile_rdma.so
 %{_libdir}/libcufile.so
 %{_libdir}/pkgconfig/cufile.pc
-%{_mandir}/man3/CUfileFSOps.3*
+%{_mandir}/man3/CUfile*.3*
 %{_mandir}/man3/cufileRDMAInfo.3*
 %{_mandir}/man3/cufile.h.3*
-%{_mandir}/man3/CUfileDrvProps.3*
-%{_mandir}/man3/CUfileDescr_t.3*
-%{_mandir}/man3/CUfileError.3*
-%{_mandir}/man3/CUfileIOParams.3*
-%{_mandir}/man3/CUfileIOEvents.3*
-%{_mandir}/man3/CUfileOpError.h.3*
 
 %files static
 %{_libdir}/libcufile_rdma_static.a
