@@ -4,7 +4,7 @@
 %global __strip /bin/true
 %global _missing_build_ids_terminate_build 0
 %global _build_id_links none
-%global major_package_version 12-8
+%global major_package_version 13-0
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
@@ -29,6 +29,10 @@ Requires:       cuda-gcc
 Obsoletes:      cuda-gcc
 Provides:       cuda-gcc
 %endif
+
+Requires:       cuda-crt
+Requires:       libnvptxcompiler-devel
+Requires:       libnvvm-devel
 
 %description
 The compilation trajectory involves several splitting, compilation,
@@ -74,7 +78,6 @@ sed -i \
 %license LICENSE
 %{_bindir}/__nvcc_device_query
 %{_bindir}/bin2c
-%{_bindir}/cicc
 %dir %{_bindir}/crt/
 %{_bindir}/crt/link.stub
 %{_bindir}/crt/prelink.stub

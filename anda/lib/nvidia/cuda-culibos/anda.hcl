@@ -1,6 +1,6 @@
 project pkg {
     rpm {
-        spec = "cuda-sandbox.spec"
+        spec = "cuda-culibos.spec"
     }
     labels {
 	    subrepo = "nvidia"

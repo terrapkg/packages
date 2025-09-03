@@ -4,7 +4,7 @@
 %global __strip /bin/true
 %global _missing_build_ids_terminate_build 0
 %global _build_id_links none
-%global major_package_version 12-8
+%global major_package_version 13-0
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
@@ -42,4 +42,3 @@ install -m 0755 -p -D bin/nvprune %{buildroot}%{_bindir}/nvprune
 
 %changelog
 %autochangelog
-

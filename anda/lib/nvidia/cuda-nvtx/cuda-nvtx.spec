@@ -4,7 +4,7 @@
 %global __strip /bin/true
 %global _missing_build_ids_terminate_build 0
 %global _build_id_links none
-%global major_package_version 12-8
+%global major_package_version 13-0
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
@@ -62,7 +62,7 @@ sed -i \
 
 %files
 %license LICENSE
-%{_libdir}/libnvToolsExt.so.*
+%{_libdir}/libnvtx3interop.so.*
 
 %files devel
 %{_includedir}/nvToolsExtCuda.h
@@ -88,7 +88,7 @@ sed -i \
 %{_includedir}/nvtx3/nvtxDetail/nvtxInit.h
 %{_includedir}/nvtx3/nvtxDetail/nvtxLinkOnce.h
 %{_includedir}/nvtx3/nvtxDetail/nvtxTypes.h
-%{_libdir}/libnvToolsExt.so
+%{_libdir}/libnvtx3interop.so
 %{_libdir}/pkgconfig/nvToolsExt.pc
 
 %changelog
