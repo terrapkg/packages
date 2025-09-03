@@ -11,9 +11,9 @@
 
 Summary:        A complete solution to record, convert and stream audio and video
 Name:           ffmpeg
-Version:        8.0
-Release:        1%?dist
-License:        LGPL-3.0-or-later
+Version:        7.1.1
+Release:        5%{?dist}
+License:        LGPLv3+
 URL:            http://%{name}.org/
 Epoch:          1
 
@@ -26,8 +26,6 @@ Patch2:         %{name}-HandBrake.patch
 # https://bugzilla.redhat.com/show_bug.cgi?id=2240127
 # Reference: https://crbug.com/1306560
 Patch3:         %{name}-chromium.patch
-# Fix build with recent NVCC:
-Patch4:         %{name}-nvcc.patch
 # Support LCEVCdec 4.0+:
 Patch5:         https://aur.archlinux.org/cgit/aur.git/plain/080-ffmpeg-lcevcdec4.0.0-fix.patch?h=ffmpeg-full#/%{name}-LCEVCdec-4.patch
 
@@ -72,6 +70,7 @@ BuildRequires:  pkgconfig(dav1d) >= 0.5.0
 BuildRequires:  pkgconfig(davs2) >= 1.6.0
 BuildRequires:  pkgconfig(dvdnav) >= 6.1.1
 BuildRequires:  pkgconfig(fdk-aac)
+BuildRequires:  pkgconfig(ffnvcodec) >= 12.0.16.0
 BuildRequires:  pkgconfig(fontconfig)
 BuildRequires:  pkgconfig(freetype2)
 BuildRequires:  pkgconfig(fribidi)
@@ -152,10 +151,6 @@ BuildRequires:  pkgconfig(zlib)
 BuildRequires:  pkgconfig(zvbi-0.2) >= 0.2.28
 
 %ifarch x86_64 aarch64
-# Nvidia CUVID support and Performance Primitives based code
-BuildRequires:  cuda-cudart-devel
-BuildRequires:  cuda-nvcc
-BuildRequires:  libnpp-devel
 BuildRequires:  pkgconfig(ffnvcodec) >= 12.0.16.0
 %endif
 
@@ -402,9 +397,6 @@ This subpackage contains the headers for FFmpeg libswscale.
 #sed -i -e 's|#!/bin/sh|#!/bin/sh -x|g' configure
 
 %build
-%if 0%{?fedora} >= 42
-export CFLAGS="%{optflags} -Wno-incompatible-pointer-types"
-%endif
 %set_build_flags
 
 ./configure \
@@ -421,6 +413,7 @@ export CFLAGS="%{optflags} -Wno-incompatible-pointer-types"
     --enable-alsa \
     --enable-bzlib \
     --enable-chromaprint \
+    --disable-cuda-nvcc \
     --enable-frei0r \
     --enable-gcrypt \
     --enable-gmp \
@@ -464,6 +457,7 @@ export CFLAGS="%{optflags} -Wno-incompatible-pointer-types"
     --enable-libmodplug \
     --enable-libmp3lame \
     --enable-libmysofa \
+    --disable-libnpp \
     --enable-libopencore-amrnb \
     --enable-libopencore-amrwb \
     --disable-libopencv \
@@ -540,14 +534,12 @@ export CFLAGS="%{optflags} -Wno-incompatible-pointer-types"
     --incdir=%{_includedir} \
     --libdir=%{_libdir} \
     --mandir=%{_mandir} \
-    --optflags="%{build_cflags} -Wno-incompatible-pointer-types" \
+    --optflags="%{build_cflags}" \
     --prefix=%{_prefix} \
     --shlibdir=%{_libdir} \
 %ifarch x86_64 aarch64
-    --enable-cuda-nvcc \
     --enable-cuvid \
     --enable-ffnvcodec \
-    --enable-libnpp \
     --enable-nvdec \
     --enable-nvenc \
     --extra-cflags="-I%{_includedir}/cuda" \
