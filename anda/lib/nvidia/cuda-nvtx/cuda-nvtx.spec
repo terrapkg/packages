@@ -49,6 +49,7 @@ mkdir -p %{buildroot}%{_includedir}
 mkdir -p %{buildroot}%{_libdir}
 mkdir -p %{buildroot}%{_libdir}/pkgconfig/
 
+ls include
 cp -fr include/* %{buildroot}%{_includedir}/
 cp -fr lib/* %{buildroot}%{_libdir}/
 cp -fr %{SOURCE3} %{buildroot}/%{_libdir}/pkgconfig/
