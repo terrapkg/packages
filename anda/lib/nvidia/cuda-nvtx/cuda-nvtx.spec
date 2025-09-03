@@ -66,23 +66,7 @@ sed -i \
 
 %files devel
 %dir %{_includedir}/nvtx3/
-%{_includedir}/nvtx3/nvToolsExtCuda.h
-%{_includedir}/nvtx3/nvToolsExtCudaRt.h
-%{_includedir}/nvtx3/nvToolsExt.h
-%{_includedir}/nvtx3/nvToolsExtOpenCL.h
-%{_includedir}/nvtx3/nvToolsExtSync.h
-%dir %{_includedir}/nvtx3/nvtxDetail/
-%{_includedir}/nvtx3/nvtxDetail/nvtxImplCore.h
-%{_includedir}/nvtx3/nvtxDetail/nvtxImplCudaRt_v3.h
-%{_includedir}/nvtx3/nvtxDetail/nvtxImplCuda_v3.h
-%{_includedir}/nvtx3/nvtxDetail/nvtxImpl.h
-%{_includedir}/nvtx3/nvtxDetail/nvtxImplOpenCL_v3.h
-%{_includedir}/nvtx3/nvtxDetail/nvtxImplSync_v3.h
-%{_includedir}/nvtx3/nvtxDetail/nvtxInitDecls.h
-%{_includedir}/nvtx3/nvtxDetail/nvtxInitDefs.h
-%{_includedir}/nvtx3/nvtxDetail/nvtxInit.h
-%{_includedir}/nvtx3/nvtxDetail/nvtxLinkOnce.h
-%{_includedir}/nvtx3/nvtxDetail/nvtxTypes.h
+%{_includedir}/nvtx3/*
 %{_libdir}/libnvtx3interop.so
 %{_libdir}/pkgconfig/nvToolsExt.pc
 
