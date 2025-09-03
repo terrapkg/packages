@@ -63,10 +63,11 @@ version %{version}.
 
 %package libs
 Summary:        Libraries for %{name}
-Requires:       egl-gbm%{?_isa} >= 2:1.1.2
-Requires:       egl-wayland%{?_isa} >= 1.1.13.1
-Requires:       egl-x11%{?_isa}
-Requires:       libvdpau%{?_isa} >= 0.5
+Requires:       egl-gbm%{?_isa} >= 2:1.1.2.1
+Requires:       (egl-wayland%{?_isa} >= 1.1.20 or egl-wayland2%{?_isa} >= 1.0.0~20250806gitd4deb7c-3)
+Suggests:       egl-wayland%{?_isa} >= 1.1.20
+Requires:       egl-x11%{?_isa} >= 1.0.3
+Requires:       libvdpau%{?_isa} >= 1.5
 Requires:       libglvnd%{?_isa} >= 1.0
 Requires:       libglvnd-egl%{?_isa} >= 1.0
 Requires:       libglvnd-gles%{?_isa} >= 1.0
