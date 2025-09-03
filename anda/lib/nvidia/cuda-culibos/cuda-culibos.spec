@@ -40,5 +40,4 @@ install -p -m 0755 -D lib/libculibos.a %{buildroot}%{_libdir}/libculibos.a
 %{_libdir}/libculibos.a
 
 %changelog
-* Wed Sep 03 2025 Simone Caronni <negativo17@gmail.com> - 1:13.0.39-1
-- First build.
+%autochangelog
