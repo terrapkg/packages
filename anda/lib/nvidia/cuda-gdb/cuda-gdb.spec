@@ -41,12 +41,7 @@ mkdir -p %{buildroot}%{_datadir}/%{name}
 mkdir -p %{buildroot}%{_includedir}
 mkdir -p %{buildroot}%{_libdir}
 
-ls bin
-%ifarch x86_64
-install -p -m 0755 -D bin/cuda-gdb-minimal %{buildroot}%{_bindir}/cuda-gdb
-%else
 install -p -m 0755 -D bin/cuda-gdb %{buildroot}%{_bindir}/cuda-gdb
-%endif
 install -p -m 0755 -D bin/cuda-gdbserver %{buildroot}%{_bindir}/cuda-gdbserver
 cp -f extras/Debugger/include/* %{buildroot}%{_includedir}/
 
