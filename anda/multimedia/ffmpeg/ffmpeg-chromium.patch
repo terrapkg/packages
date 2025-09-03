@@ -28,3 +28,4 @@ diff -Naur ffmpeg-7.1.1.old/libavformat/utils.c ffmpeg-7.1.1/libavformat/utils.c
 +
  /* an arbitrarily chosen "sane" max packet size -- 50M */
  #define SANE_CHUNK_SIZE (50000000)
+ 

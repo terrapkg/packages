@@ -23,7 +23,7 @@ Wayland clipboard manager with support for multimedia.}
 %global godocs          CHANGELOG.md readme.md version.txt
 
 Name:           cliphist
-Release:        2%?dist
+Release:        3%?dist
 Summary:        Wayland clipboard manager with support for multimedia
 Provides:       golang-github-sentriz-cliphist = %version-%release
 Obsoletes:      golang-github-sentriz-cliphist < 0.6.1-2
@@ -40,20 +40,16 @@ BuildRequires:  anda-srpm-macros
 %prep
 %goprep -A
 %autopatch -p1
-%go_prep_online
-
-#if %{without bootstrap}
-#generate_buildrequires
-#go_generate_buildrequires
-#endif
 
 %if %{without bootstrap}
 %build
-%go_build_online
+%define gomodulesmode GO111MODULE=on
+mkdir -p build/bin
+%gobuild -o build/bin/%name
 %endif
 
 %install
-#gopkginstall
+%gopkginstall
 %if %{without bootstrap}
 install -m 0755 -vd                 %{buildroot}%{_bindir}
 install -m 0755 -vp build/bin/%name %{buildroot}%{_bindir}/cliphist
@@ -73,7 +69,7 @@ install -m 0755 -vp build/bin/%name %{buildroot}%{_bindir}/cliphist
 %{_bindir}/cliphist
 %endif
 
-#gopkgfiles
+%gopkgfiles
 
 %changelog
 %autochangelog

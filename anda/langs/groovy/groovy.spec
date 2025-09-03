@@ -1,5 +1,5 @@
 Name:			groovy
-Version:		4.0.28
+Version:		5.0.0
 Release:		1%?dist
 Summary:		A multi-faceted language for the Java platform
 BuildArch:		noarch

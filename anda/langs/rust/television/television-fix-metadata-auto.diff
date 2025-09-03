@@ -1,0 +1,27 @@
+--- television-0.13.2/Cargo.toml	1970-01-01T00:00:01+00:00
++++ television-0.13.2/Cargo.toml	2025-08-12T10:41:15.727396+00:00
+@@ -227,19 +227,6 @@
+ version = "0.28"
+ features = ["serde"]
+ 
+-[target.'cfg(target_os = "macos")'.dependencies.crossterm]
+-version = "0.28.1"
+-features = [
+-    "serde",
+-    "use-dev-tty",
+-]
+-
+-[target."cfg(windows)".dependencies.clipboard-win]
+-version = "5.4.0"
+-
+-[target."cfg(windows)".dependencies.winapi-util]
+-version = "0.1.9"
+-
+ [lints.clippy]
+ cast_precision_loss = "allow"
+ float_cmp = "allow"
+@@ -277,3 +264,4 @@
+ lto = false
+ debug = 2
+ inherits = "dev"
++

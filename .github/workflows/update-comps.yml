@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - frawhide
+      - f43
       - f42
       - f41
       - el10
@@ -15,7 +16,7 @@ on:
 
 jobs:
   update-comps:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04-arm
     container:
       image: ghcr.io/terrapkg/builder:frawhide
     steps:

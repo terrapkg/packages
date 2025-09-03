@@ -1,5 +1,5 @@
 project pkg {
 	rpm {
-		spec = "nekoray.spec"
+		spec = "throne.spec"
 	}
 }

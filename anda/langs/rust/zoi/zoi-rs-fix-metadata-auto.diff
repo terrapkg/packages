@@ -1,0 +1,12 @@
+--- zoi-rs-4.3.7-beta/Cargo.toml	1970-01-01T00:00:01+00:00
++++ zoi-rs-4.3.7-beta/Cargo.toml	2025-09-01T17:17:19.316000+00:00
+@@ -200,8 +200,6 @@
+ [build-dependencies.dotenvy]
+ version = "0.15.7"
+ 
+-[target."cfg(windows)".dependencies.winreg]
+-version = "0.55.0"
+-
+ [lints.clippy]
+ too_many_arguments = "allow"
++
