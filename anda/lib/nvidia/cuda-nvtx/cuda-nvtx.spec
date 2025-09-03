@@ -49,7 +49,6 @@ mkdir -p %{buildroot}%{_includedir}
 mkdir -p %{buildroot}%{_libdir}
 mkdir -p %{buildroot}%{_libdir}/pkgconfig/
 
-ls include/nvtx3
 cp -fr include/* %{buildroot}%{_includedir}/
 cp -fr lib/* %{buildroot}%{_libdir}/
 cp -fr %{SOURCE3} %{buildroot}/%{_libdir}/pkgconfig/
@@ -66,11 +65,6 @@ sed -i \
 %{_libdir}/libnvtx3interop.so.*
 
 %files devel
-%{_includedir}/nvToolsExtCuda.h
-%{_includedir}/nvToolsExtCudaRt.h
-%{_includedir}/nvToolsExt.h
-%{_includedir}/nvToolsExtOpenCL.h
-%{_includedir}/nvToolsExtSync.h
 %dir %{_includedir}/nvtx3/
 %{_includedir}/nvtx3/nvToolsExtCuda.h
 %{_includedir}/nvtx3/nvToolsExtCudaRt.h
