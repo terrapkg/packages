@@ -99,4 +99,3 @@ sed -i \
 
 %changelog
 %autochangelog
-
