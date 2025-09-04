@@ -17,11 +17,10 @@ BuildArch:      noarch
 Source0:        http://download.nvidia.com/XFree86/Linux-x86_64/%{version}/NVIDIA-Linux-x86_64-%{version}.run
 Source16:       MODULE_VARIANT.txt
 Source17:       nvidia-boot-update
-Source18:       kernel.conf
-Source19:       nvidia-modeset.conf
-Source20:       nvidia.conf
-Source21:       60-nvidia.rules
-Source24:       99-nvidia.conf
+Source18:       nvidia-modeset.conf
+Source19:       nvidia.conf
+Source20:       60-nvidia.rules
+Source21:       99-nvidia.conf
 
 # UDev rule location (_udevrulesdir) and systemd macros:
 BuildRequires:  systemd-rpm-macros
@@ -47,23 +46,20 @@ sh %{SOURCE0} -x --target nvidia-kmod-%{version}-x86_64
 # Script for post/preun tasks
 install -p -m 0755 -D %{SOURCE17} %{buildroot}%{_bindir}/nvidia-boot-update
 
-# Choice of kernel module type:
-install -p -m 0644 -D %{SOURCE18} %{buildroot}%{_sysconfdir}/nvidia/kernel.conf
-
 # Nvidia modesetting support:
-install -p -m 0644 -D %{SOURCE19} %{buildroot}%{_sysconfdir}/modprobe.d/nvidia-modeset.conf
+install -p -m 0644 -D %{SOURCE18} %{buildroot}%{_sysconfdir}/modprobe.d/nvidia-modeset.conf
 
 # Load nvidia-uvm, enable complete power management:
-install -p -m 0644 -D %{SOURCE20} %{buildroot}%{_modprobedir}/nvidia.conf
+install -p -m 0644 -D %{SOURCE19} %{buildroot}%{_modprobedir}/nvidia.conf
 
 # Avoid Nvidia modules getting in the initrd:
-install -p -m 0644 -D %{SOURCE24} %{buildroot}%{_dracut_conf_d}/99-nvidia.conf
+install -p -m 0644 -D %{SOURCE21} %{buildroot}%{_dracut_conf_d}/99-nvidia.conf
 
 # UDev rules
 # https://github.com/NVIDIA/nvidia-modprobe/blob/master/modprobe-utils/nvidia-modprobe-utils.h#L33-L46
 # https://github.com/negativo17/nvidia-kmod-common/issues/11
 # https://github.com/negativo17/nvidia-driver/issues/27
-install -p -m 644 -D %{SOURCE21} %{buildroot}%{_udevrulesdir}/60-nvidia.rules
+install -p -m 644 -D %{SOURCE20} %{buildroot}%{_udevrulesdir}/60-nvidia.rules
 
 # Firmware files:
 mkdir -p %{buildroot}%{_prefix}/lib/firmware/nvidia/%{version}/
