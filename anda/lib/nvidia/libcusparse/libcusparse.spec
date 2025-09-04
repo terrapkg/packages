@@ -2,12 +2,12 @@
 %global __strip /bin/true
 %global _missing_build_ids_terminate_build 0
 %global _build_id_links none
-%global major_package_version 12-8
+%global major_package_version 13-0
 
 Name:           libcusparse
 Epoch:          1
 Version:        12.6.2.49
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        NVIDIA CUDA Sparse Matrix library (cuSPARSE) library
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -85,4 +85,3 @@ sed -i \
 
 %changelog
 %autochangelog
-

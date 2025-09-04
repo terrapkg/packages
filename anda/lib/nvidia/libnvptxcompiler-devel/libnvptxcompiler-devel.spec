@@ -1,4 +1,4 @@
-%global real_name cuda_nvdisasm
+%global real_name libnvptxcompiler
 
 %global debug_package %{nil}
 %global __strip /bin/true
@@ -6,11 +6,11 @@
 %global _build_id_links none
 %global major_package_version 13-0
 
-Name:           %(echo %real_name | tr '_' '-')
+Name:           %{real_name}-devel
 Epoch:          1
-Version:        13.0.39
+Version:        13.0.48
 Release:        1%{?dist}
-Summary:        Utility to extract information from CUDA binary files
+Summary:        CUDA nvptxcompiler
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
 ExclusiveArch:  x86_64 aarch64
@@ -18,15 +18,10 @@ ExclusiveArch:  x86_64 aarch64
 Source0:        https://developer.download.nvidia.com/compute/cuda/redist/%{real_name}/linux-x86_64/%{real_name}-linux-x86_64-%{version}-archive.tar.xz
 Source1:        https://developer.download.nvidia.com/compute/cuda/redist/%{real_name}/linux-sbsa/%{real_name}-linux-sbsa-%{version}-archive.tar.xz
 
-Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
+Conflicts:      %{real_name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
  
 %description
-nvdisasm extracts information from standalone cubin files and presents them in
-human readable format. The output of nvdisasm includes CUDA assembly code for
-each kernel, listing of ELF data sections and other CUDA specific sections.
-Output style and options are controlled through nvdisasm command-line options.
-nvdisasm also does control flow analysis to annotate jump/branch targets and
-makes the output easier to read.
+Compiler IR for CUDA applications.
 
 %prep
 %ifarch x86_64
@@ -38,12 +33,13 @@ makes the output easier to read.
 %endif
 
 %install
-install -m 0755 -p -D bin/nvdisasm %{buildroot}%{_bindir}/nvdisasm
+install -p -m 0755 -D lib/libnvptxcompiler_static.a %{buildroot}%{_libdir}/libnvptxcompiler_static.a
+install -p -m 0644 -D include/nvPTXCompiler.h %{buildroot}%{_includedir}/nvPTXCompiler.h
 
 %files
 %license LICENSE
-%{_bindir}/nvdisasm
+%{_libdir}/libnvptxcompiler_static.a
+%{_includedir}/nvPTXCompiler.h
 
 %changelog
 %autochangelog
-

@@ -1,6 +1,6 @@
 project pkg {
     rpm {
-        spec = "cuda-sandbox.spec"
+        spec = "libnvptxcompiler-devel.spec"
     }
     labels {
 	    subrepo = "nvidia"
