@@ -2,7 +2,7 @@
 
 %global commit ba967fd8c5de7dc6c623b614296b3872255996b0
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20241206
+%global commit_date 20250904
 
 Name:           gamescope-session-steam
 Version:        %commit_date.%shortcommit
