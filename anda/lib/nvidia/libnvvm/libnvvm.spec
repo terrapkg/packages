@@ -8,7 +8,7 @@
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
-Version:        13.0.48
+Version:        13.0.88
 Release:        2%{?dist}
 Summary:        CUDA NVVM
 License:        CUDA Toolkit
