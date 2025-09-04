@@ -7,7 +7,7 @@ URL:			https://github.com/ErikReider/SwayAudioIdleInhibit
 Source0:		%url/archive/refs/tags/v%version.tar.gz
 BuildRequires:	meson gcc-c++
 BuildRequires:	pkgconfig(libpulse)
-BuildRequires:	pkgconfig(systemd)
+BuildRequires:	pkgconfig(libsystemd)
 
 %description
 %summary.
