@@ -2,12 +2,12 @@
 %global __strip /bin/true
 %global _missing_build_ids_terminate_build 0
 %global _build_id_links none
-%global major_package_version 12-8
+%global major_package_version 13-0
 
 Name:           libcufile
 Epoch:          1
 Version:        1.15.0.42
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        NVIDIA GPUDirect Storage library (cuFile)
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -100,15 +100,9 @@ sed -i \
 %{_libdir}/libcufile_rdma.so
 %{_libdir}/libcufile.so
 %{_libdir}/pkgconfig/cufile.pc
-%{_mandir}/man3/CUfileFSOps.3*
+%{_mandir}/man3/CUfile*.3*
 %{_mandir}/man3/cufileRDMAInfo.3*
 %{_mandir}/man3/cufile.h.3*
-%{_mandir}/man3/CUfileDrvProps.3*
-%{_mandir}/man3/CUfileDescr_t.3*
-%{_mandir}/man3/CUfileError.3*
-%{_mandir}/man3/CUfileIOParams.3*
-%{_mandir}/man3/CUfileIOEvents.3*
-%{_mandir}/man3/CUfileOpError.h.3*
 
 %files static
 %{_libdir}/libcufile_rdma_static.a

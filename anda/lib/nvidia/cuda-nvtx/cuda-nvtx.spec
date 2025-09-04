@@ -4,12 +4,12 @@
 %global __strip /bin/true
 %global _missing_build_ids_terminate_build 0
 %global _build_id_links none
-%global major_package_version 12-8
+%global major_package_version 13-0
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
 Version:        13.0.39
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        NVIDIA Tools Extension (NVTX) library
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -62,33 +62,12 @@ sed -i \
 
 %files
 %license LICENSE
-%{_libdir}/libnvToolsExt.so.*
+%{_libdir}/libnvtx3interop.so.*
 
 %files devel
-%{_includedir}/nvToolsExtCuda.h
-%{_includedir}/nvToolsExtCudaRt.h
-%{_includedir}/nvToolsExt.h
-%{_includedir}/nvToolsExtOpenCL.h
-%{_includedir}/nvToolsExtSync.h
 %dir %{_includedir}/nvtx3/
-%{_includedir}/nvtx3/nvToolsExtCuda.h
-%{_includedir}/nvtx3/nvToolsExtCudaRt.h
-%{_includedir}/nvtx3/nvToolsExt.h
-%{_includedir}/nvtx3/nvToolsExtOpenCL.h
-%{_includedir}/nvtx3/nvToolsExtSync.h
-%dir %{_includedir}/nvtx3/nvtxDetail/
-%{_includedir}/nvtx3/nvtxDetail/nvtxImplCore.h
-%{_includedir}/nvtx3/nvtxDetail/nvtxImplCudaRt_v3.h
-%{_includedir}/nvtx3/nvtxDetail/nvtxImplCuda_v3.h
-%{_includedir}/nvtx3/nvtxDetail/nvtxImpl.h
-%{_includedir}/nvtx3/nvtxDetail/nvtxImplOpenCL_v3.h
-%{_includedir}/nvtx3/nvtxDetail/nvtxImplSync_v3.h
-%{_includedir}/nvtx3/nvtxDetail/nvtxInitDecls.h
-%{_includedir}/nvtx3/nvtxDetail/nvtxInitDefs.h
-%{_includedir}/nvtx3/nvtxDetail/nvtxInit.h
-%{_includedir}/nvtx3/nvtxDetail/nvtxLinkOnce.h
-%{_includedir}/nvtx3/nvtxDetail/nvtxTypes.h
-%{_libdir}/libnvToolsExt.so
+%{_includedir}/nvtx3/*
+%{_libdir}/libnvtx3interop.so
 %{_libdir}/pkgconfig/nvToolsExt.pc
 
 %changelog

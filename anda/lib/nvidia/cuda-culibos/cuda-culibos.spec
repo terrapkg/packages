@@ -1,4 +1,4 @@
-%global real_name cuda_nvdisasm
+%global real_name cuda_culibos
 
 %global debug_package %{nil}
 %global __strip /bin/true
@@ -6,11 +6,11 @@
 %global _build_id_links none
 %global major_package_version 13-0
 
-Name:           %(echo %real_name | tr '_' '-')
+Name:           %(echo %real_name | tr '_' '-')-devel
 Epoch:          1
 Version:        13.0.39
 Release:        1%{?dist}
-Summary:        Utility to extract information from CUDA binary files
+Summary:        CUDA Culibos Math development library
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
 ExclusiveArch:  x86_64 aarch64
@@ -21,12 +21,7 @@ Source1:        https://developer.download.nvidia.com/compute/cuda/redist/%{real
 Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
  
 %description
-nvdisasm extracts information from standalone cubin files and presents them in
-human readable format. The output of nvdisasm includes CUDA assembly code for
-each kernel, listing of ELF data sections and other CUDA specific sections.
-Output style and options are controlled through nvdisasm command-line options.
-nvdisasm also does control flow analysis to annotate jump/branch targets and
-makes the output easier to read.
+CUDA CULIBOS is a Math Libraries fork of the cuos library.
 
 %prep
 %ifarch x86_64
@@ -38,12 +33,11 @@ makes the output easier to read.
 %endif
 
 %install
-install -m 0755 -p -D bin/nvdisasm %{buildroot}%{_bindir}/nvdisasm
+install -p -m 0755 -D lib/libculibos.a %{buildroot}%{_libdir}/libculibos.a
 
 %files
 %license LICENSE
-%{_bindir}/nvdisasm
+%{_libdir}/libculibos.a
 
 %changelog
 %autochangelog
-
