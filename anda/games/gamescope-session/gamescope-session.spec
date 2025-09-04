@@ -2,7 +2,7 @@
 
 %global commit c65fbffa7306167989e4dd6fe76d6bab3c9d8c30
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250802
+%global commit_date 20250904
 
 Name:           gamescope-session
 Version:        %commit_date.%shortcommit
