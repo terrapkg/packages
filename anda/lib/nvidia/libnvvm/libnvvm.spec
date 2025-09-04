@@ -9,7 +9,7 @@
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
 Version:        13.0.88
-Release:        1%?dist
+Release:        2%{?dist}
 Summary:        CUDA NVVM
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -21,7 +21,15 @@ Source1:        https://developer.download.nvidia.com/compute/cuda/redist/%{real
 Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
  
 %description
-Compiler IR for CUDA applications.
+LLVM IR for CUDA applications.
+
+%package devel
+Summary:        Development package for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
+
+%description devel
+Files for development with %{name} and LLVM IR bytecode.
 
 %prep
 %ifarch x86_64
@@ -42,11 +50,13 @@ cp -fr nvvm/lib64/* %{buildroot}%{_libdir}/
 
 %files
 %license LICENSE
+%{_libdir}/libnvvm.so.*
+
+%files devel
 %{_bindir}/cicc
 %{_datadir}/libdevice
 %{_includedir}/nvvm.h
 %{_libdir}/libnvvm.so
-%{_libdir}/libnvvm.so.*
 
 %changelog
 %autochangelog
