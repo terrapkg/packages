@@ -2,12 +2,12 @@
 %global __strip /bin/true
 %global _missing_build_ids_terminate_build 0
 %global _build_id_links none
-%global major_package_version 12-8
+%global major_package_version 13-0
 
 Name:           libcufft
 Epoch:          2
 Version:        12.0.0.15
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        NVIDIA CUDA Fast Fourier Transform library (cuFFT) libraries
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -94,9 +94,8 @@ sed -i \
 
 %files static
 %{_libdir}/libcufft_static.a
-%{_libdir}/libcufft_static_nocallback.a
+%dnl %{_libdir}/libcufft_static_nocallback.a
 %{_libdir}/libcufftw_static.a
 
 %changelog
 %autochangelog
-

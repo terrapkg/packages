@@ -3,12 +3,12 @@
 %global __strip /bin/true
 %global _missing_build_ids_terminate_build 0
 %global _build_id_links none
-%global major_package_version 12-8
+%global major_package_version 13-0
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
 Version:        13.0.39
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        CUDA GDB
 License:        GPLv3+ and GPLv3+ with exceptions and GPLv2+ and GPLv2+ with exceptions and GPL+ and LGPLv2+ and LGPLv3+ and BSD and Public Domain and GFDL
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -41,11 +41,7 @@ mkdir -p %{buildroot}%{_datadir}/%{name}
 mkdir -p %{buildroot}%{_includedir}
 mkdir -p %{buildroot}%{_libdir}
 
-%ifarch x86_64
-install -p -m 0755 -D bin/cuda-gdb-minimal %{buildroot}%{_bindir}/cuda-gdb
-%else
 install -p -m 0755 -D bin/cuda-gdb %{buildroot}%{_bindir}/cuda-gdb
-%endif
 install -p -m 0755 -D bin/cuda-gdbserver %{buildroot}%{_bindir}/cuda-gdbserver
 cp -f extras/Debugger/include/* %{buildroot}%{_includedir}/
 
