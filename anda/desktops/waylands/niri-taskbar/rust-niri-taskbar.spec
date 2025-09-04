@@ -2,7 +2,7 @@
 %bcond check 1
 
 %global crate niri-taskbar
-%global crate_version 0.3.0+niri.25.08
+%global crate_version 0.2.0+niri.25.05
 
 Name:           rust-niri-taskbar
 Version:        %(echo %crate_version | sed 's/\+.*//g')
