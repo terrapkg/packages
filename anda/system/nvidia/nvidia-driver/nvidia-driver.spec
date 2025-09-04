@@ -63,10 +63,11 @@ version %{version}.
 
 %package libs
 Summary:        Libraries for %{name}
-Requires:       egl-gbm%{?_isa} >= 2:1.1.2
-Requires:       egl-wayland%{?_isa} >= 1.1.13.1
-Requires:       egl-x11%{?_isa}
-Requires:       libvdpau%{?_isa} >= 0.5
+Requires:       egl-gbm%{?_isa} >= 2:1.1.2.1
+Requires:       (egl-wayland%{?_isa} >= 1.1.20 or egl-wayland2%{?_isa} >= 1.0.0~20250806gitd4deb7c-3)
+Suggests:       egl-wayland%{?_isa} >= 1.1.20
+Requires:       egl-x11%{?_isa} >= 1.0.3
+Requires:       libvdpau%{?_isa} >= 1.5
 Requires:       libglvnd%{?_isa} >= 1.0
 Requires:       libglvnd-egl%{?_isa} >= 1.0
 Requires:       libglvnd-gles%{?_isa} >= 1.0
@@ -76,7 +77,7 @@ Requires:       libnvidia-ml%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       vulkan-loader
 %if 0%{?fedora}
 %ifarch x86_64
-Requires:       %{name}-libs(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       (%{name}-libs(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
 %endif
 %endif
 # dlopened
@@ -102,7 +103,7 @@ Requires:       libnvidia-cfg = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
 %if 0%{?fedora}
 %ifarch x86_64
-Requires:       %{name}-cuda-libs(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       (%{name}-cuda-libs(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
 %endif
 %endif
 # dlopened:
@@ -121,7 +122,7 @@ Provides:       nvidia-driver-NvFBCOpenGL = %{?epoch:%{epoch}:}%{version}-%{rele
 Obsoletes:      nvidia-driver-NvFBCOpenGL < %{?epoch:%{epoch}:}%{version}-%{release}
 %if 0%{?fedora}
 %ifarch x86_64
-Requires:       libnvidia-fbc(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       (libnvidia-fbc(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
 %endif
 %endif
 # dlopened:
@@ -137,7 +138,7 @@ graphics scenarios.
 Summary:        NVIDIA library for shader compilation (nvgpucomp)
 %if 0%{?fedora}
 %ifarch x86_64
-Requires:       libnvidia-gpucomp(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       (libnvidia-gpucomp(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
 %endif
 %endif
 
@@ -151,7 +152,7 @@ Provides:       cuda-nvml%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:       nvidia-driver-NVML = %{?epoch:%{epoch}:}%{version}-%{release}
 %if 0%{?fedora}
 %ifarch x86_64
-Requires:       libnvidia-ml(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       (libnvidia-ml(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
 %endif
 %endif
 Obsoletes:      nvidia-driver-NVML < %{?epoch:%{epoch}:}%{version}-%{release}
