@@ -95,7 +95,6 @@ dracut --regenerate-all --force
 %{_prefix}/lib/firmware/nvidia/%{version}
 %{_bindir}/nvidia-boot-update
 %config(noreplace) %{_sysconfdir}/modprobe.d/nvidia-modeset.conf
-%config(noreplace) %{_sysconfdir}/nvidia/kernel.conf
 %{_udevrulesdir}/60-nvidia.rules
 
 %changelog
