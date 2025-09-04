@@ -9,7 +9,7 @@
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
 Version:        13.0.48
-Release:        1%?dist
+Release:        2%{?dist}
 Summary:        CUDA Runtime API library
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -74,7 +74,6 @@ sed -i \
 %{_includedir}/*
 %{_libdir}/libcudadevrt.a
 %{_libdir}/libcudart.so
-%{_libdir}/libculibos.a
 %{_libdir}/pkgconfig/cudart.pc
 
 %files static

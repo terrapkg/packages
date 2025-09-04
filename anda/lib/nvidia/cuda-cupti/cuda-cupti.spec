@@ -9,7 +9,7 @@
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
 Version:        13.0.48
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        NVIDIA CUDA Profiling Tools Interface (CUPTI) library
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit

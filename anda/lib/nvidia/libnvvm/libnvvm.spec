@@ -1,4 +1,4 @@
-%global real_name cuda_nvdisasm
+%global real_name libnvvm
 
 %global debug_package %{nil}
 %global __strip /bin/true
@@ -8,9 +8,9 @@
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
-Version:        13.0.39
+Version:        13.0.48
 Release:        1%{?dist}
-Summary:        Utility to extract information from CUDA binary files
+Summary:        CUDA NVVM
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
 ExclusiveArch:  x86_64 aarch64
@@ -21,12 +21,7 @@ Source1:        https://developer.download.nvidia.com/compute/cuda/redist/%{real
 Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
  
 %description
-nvdisasm extracts information from standalone cubin files and presents them in
-human readable format. The output of nvdisasm includes CUDA assembly code for
-each kernel, listing of ELF data sections and other CUDA specific sections.
-Output style and options are controlled through nvdisasm command-line options.
-nvdisasm also does control flow analysis to annotate jump/branch targets and
-makes the output easier to read.
+Compiler IR for CUDA applications.
 
 %prep
 %ifarch x86_64
@@ -38,12 +33,20 @@ makes the output easier to read.
 %endif
 
 %install
-install -m 0755 -p -D bin/nvdisasm %{buildroot}%{_bindir}/nvdisasm
+install -p -m 0755 -D nvvm/bin/cicc %{buildroot}%{_bindir}/cicc
+install -p -m 0644 -D nvvm/include/nvvm.h %{buildroot}%{_includedir}/nvvm.h
+install -p -m 0644 -D nvvm/libdevice/libdevice.10.bc %{buildroot}%{_datadir}/libdevice/libdevice.10.bc
+
+mkdir -p %{buildroot}%{_libdir}
+cp -fr nvvm/lib64/* %{buildroot}%{_libdir}/
 
 %files
 %license LICENSE
-%{_bindir}/nvdisasm
+%{_bindir}/cicc
+%{_datadir}/libdevice
+%{_includedir}/nvvm.h
+%{_libdir}/libnvvm.so
+%{_libdir}/libnvvm.so.*
 
 %changelog
 %autochangelog
-
