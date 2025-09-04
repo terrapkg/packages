@@ -66,8 +66,8 @@ cp %{SOURCE18} .
 
 # Fallback service. Fall back to Nouveau if NVIDIA drivers fail.
 # This is actually from RPM Fusion.
-install -Dm644 %{SOURCE22} -t %{buildroot}%{_unitdir}
-install -Dm644 %{SOURCE23} -t %{buildroot}%{_udevrulesdir}
+%dnl install -Dm644 %{SOURCE22} -t %{buildroot}%{_unitdir}
+%dnl install -Dm644 %{SOURCE23} -t %{buildroot}%{_udevrulesdir}
 
 %pre
 # Remove the kernel command line adjustments one last time when doing an upgrade
@@ -87,9 +87,9 @@ dracut --regenerate-all --force
 %dir %{_prefix}/lib/firmware/nvidia
 %{_prefix}/lib/firmware/nvidia/%{version}
 %config(noreplace) %{_sysconfdir}/modprobe.d/nvidia-modeset.conf
-%{_udevrulesdir}/10-nvidia-fallback.rules
+%dnl %{_udevrulesdir}/10-nvidia-fallback.rules
 %{_udevrulesdir}/60-nvidia.rules
-%{_unitdir}/nvidia-fallback.service
+%dnl %{_unitdir}/nvidia-fallback.service
 
 %changelog
 %autochangelog
