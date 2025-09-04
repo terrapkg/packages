@@ -41,7 +41,7 @@ Provides:       nvdec-vaapi-driver = %{version}-%{release}
 Requires:       mesa-filesystem
 %if 0%{?fedora}
 %ifarch x86_64
-Requires:       %{name}(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       (%{name}(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
 %endif
 %endif
 
@@ -73,31 +73,4 @@ decode of web content, and may not operate correctly in other applications.
 %{_libdir}/dri/nvidia_drv_video.so
 
 %changelog
-* Sun Nov 10 2024 Simone Caronni <negativo17@gmail.com> - 1:0.0.13^20241108git259b7b7-1
-- Update to latest snapshot.
-- Drop no longer needed patch.
-
-* Fri Oct 04 2024 Simone Caronni <negativo17@gmail.com> - 1:0.0.12^20240909git68efa33-2
-- Update to latest snapshot.
-- Add patch for 560/Wayland.
-
-* Mon May 06 2024 Simone Caronni <negativo17@gmail.com> - 1:0.0.12-1
-- Update to 0.0.12.
-- Trim changelog.
-- Clean up SPEC file, allow it to build for EL8.
-
-* Wed Nov 08 2023 Simone Caronni <negativo17@gmail.com> - 0.0.11-1
-- Update to 0.0.11.
-- Rename to libva-nvidia-driver, as in main Fedora repository.
-
-* Wed Jun 28 2023 Simone Caronni <negativo17@gmail.com> - 0.0.10-1
-- Update to 0.0.10.
-
-* Mon Mar 20 2023 Simone Caronni <negativo17@gmail.com> - 0.0.9-1.20230319gitc0a7f54
-- Update to latest snapshot.
-
-* Mon Feb 06 2023 Simone Caronni <negativo17@gmail.com> - 0.0.8-2.20230205git17c62b8
-- Add latest fixes.
-
-* Sat Feb 04 2023 Simone Caronni <negativo17@gmail.com> - 0.0.8-1.20230131git2bb71a5
-- Rebase to latest snapshot.
+%autochangelog
