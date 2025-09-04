@@ -1,6 +1,6 @@
 Name:           sbctl
 Version:        0.17
-Release:        3%?dist
+Release:        4%?dist
 Summary:        Secure Boot key manager
 
 License:        MIT
@@ -45,7 +45,13 @@ export GOPATH=%{_builddir}/go
 %make_install PREFIX=%{_prefix}
 install -Dm755 %{SOURCE1} -t %{buildroot}%{_bindir}
 
-%transfiletriggerin -P 1 -- /boot /efi /usr/lib /usr/libexec
+%transfiletriggerin -P 1 -- /efi /usr/lib /usr/libexec
+if [[ ! -f /run/ostree-booted ]] && grep -q -m 1 -e '\.efi$' -e '/vmlinuz$'; then
+    exec </dev/null
+    %{_bindir}/sbctl-batch-sign
+fi
+
+%filetriggerpostun -P 1 -- /boot
 if [[ ! -f /run/ostree-booted ]] && grep -q -m 1 -e '\.efi$' -e '/vmlinuz$'; then
     exec </dev/null
     %{_bindir}/sbctl-batch-sign
