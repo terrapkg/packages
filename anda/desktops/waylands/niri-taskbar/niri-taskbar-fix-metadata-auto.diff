@@ -4,7 +4,7 @@
  edition = "2024"
  rust-version = "1.87.0"
  name = "niri-taskbar"
--version = "0.3.0+niri.25.08"
+-version = "0.2.0+niri.25.05"
 +version = "0.3.0"
  build = false
  autolib = false
