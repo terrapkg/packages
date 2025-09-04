@@ -1,5 +1,5 @@
 Name:           nvidia-settings
-Version:        580.76.05
+Version:        580.82.07
 Release:        1%?dist
 Summary:        Configure the NVIDIA graphics driver
 Epoch:          3

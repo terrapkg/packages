@@ -9,7 +9,7 @@
 
 Name:			flameshot.qt5
 Version:		%ver^%{commit_date}git.%shortcommit
-Release:		2%?dist
+Release:		3%?dist
 License:		GPL-3.0-or-later AND ASL-2.0 AND GPL-2.0-only AND LGPL-3.0-only AND FAL-1.3
 Summary:		Powerful yet simple to use screenshot software
 URL:			https://flameshot.org
@@ -71,6 +71,7 @@ Development files for Flameshot.
 %autosetup -p1 -n flameshot-%commit
 
 %build
+export GIT_HASH=%commit
 %cmake -G Ninja \
     -DCMAKE_BUILD_TYPE=Release \
     -DUSE_WAYLAND_CLIPBOARD:BOOL=ON \

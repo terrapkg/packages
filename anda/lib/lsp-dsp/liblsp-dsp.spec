@@ -3,7 +3,7 @@
 #define _empty_manifest_terminate_build 0
 
 Name:           liblsp-dsp
-Version:        1.0.30
+Version:        1.0.31
 Release:        1%?dist
 Summary:        DSP library for signal processing
 License:        LGPL-3.0
