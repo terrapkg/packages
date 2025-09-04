@@ -9,7 +9,7 @@
 %global rustflags_debuginfo 0
 
 Name:           zed
-Version:        0.200.5
+Version:        0.202.6
 Release:        1%?dist
 Summary:        Zed is a high-performance, multiplayer code editor
 SourceLicense:  AGPL-3.0-only AND Apache-2.0 AND GPL-3.0-or-later
@@ -20,6 +20,10 @@ Source0:        https://github.com/zed-industries/zed/archive/refs/tags/v%{versi
 Conflicts:      zed-nightly
 Conflicts:      zed-preview
 
+%ifarch x86_64
+# BUG: fedora rustc missing this dep
+BuildRequires:  libedit(x86-64)
+%endif
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros
 BuildRequires:  gcc

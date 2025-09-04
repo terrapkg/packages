@@ -1,6 +1,6 @@
 %bcond_with check
 
-%global ver 0.201.4-pre
+%global ver 0.203.1-pre
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
@@ -21,6 +21,10 @@ Source0:        https://github.com/zed-industries/zed/archive/refs/tags/v%{ver}.
 Conflicts:      zed
 Conflicts:      zed-nightly
 
+%ifarch x86_64
+# BUG: fedora rustc missing this dep
+BuildRequires:  libedit(x86-64)
+%endif
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros
 BuildRequires:  gcc
