@@ -1,5 +1,5 @@
 Name:		    geist-font
-Version:	    1.5.0
+Version:	    1.5.1
 Release:	    1%?dist
 URL:		    https://vercel.com/font
 Source0:	    https://github.com/vercel/geist-font/archive/refs/tags/%version.tar.gz
