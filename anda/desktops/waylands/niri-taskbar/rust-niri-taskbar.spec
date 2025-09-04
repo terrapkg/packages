@@ -20,6 +20,7 @@ BuildRequires:  pkgconfig(cairo-gobject)
 BuildRequires:  pkgconfig(cairo)
 BuildRequires:  pkgconfig(gdk-pixbuf-2.0)
 BuildRequires:  pkgconfig(gtk4)
+BuildRequires:  pkgconfig(atk)
 
 %global _description %{expand:
 Niri taskbar module for Waybar.}
