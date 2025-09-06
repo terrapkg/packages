@@ -26,19 +26,43 @@ Summary:        %{summary}
 
 %prep
 %autosetup -n python-mpv-%version
+%if 0%{?fedora} <= 41 || 0%{?rhel}
+cat<<EOL > setup.py
+from setuptools import setup
+
+setup()
+EOL
+%endif
 
 %build
+%if 0%{?fedora} <= 41 || 0%{?rhel}
+%py3_build
+%else
 %pyproject_wheel
+%endif
 
 %install
+%if 0%{?fedora} <= 41 || 0%{?rhel}
+%py3_install
+%else
 %pyproject_install
 %pyproject_save_files mpv
+%endif
 
+%if 0%{?fedora} <= 41 || 0%{?rhel}
+%files
+%doc README.rst
+%license LICENSE.GPL LICENSE.LGPL
+%ghost %python3_sitelib/__pycache__/mpv.cpython-*.pyc
+%python3_sitelib/mpv-%version-py%python3_version.egg-info/
+%python3_sitelib/mpv.py
+%else
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE.GPL LICENSE.LGPL
 %ghost %python3_sitelib/__pycache__/mpv.cpython-*.pyc
 %python3_sitelib/mpv.py
+%endif
 
 %changelog
 %autochangelog
