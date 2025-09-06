@@ -43,6 +43,7 @@ Requires:       python3-pillow
 Provides:       qmk
 Provides:       qmk_cli
 Provides:       qmk-cli
+Provides:       python3-qmk_cli
 
 Packager:	      Owen Zimmerman <owen@fyralabs.com>
 
