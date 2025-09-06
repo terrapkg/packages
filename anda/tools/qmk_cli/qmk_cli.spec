@@ -41,6 +41,10 @@ Requires:       python3-pyserial
 Requires:       python3-pillow
 
 Provides:       qmk
+Provides:       qmk_cli
+Provides:       qmk-cli
+
+Packager:	      Owen Zimmerman <owen@fyralabs.com>
 
 %description
 %_desc
