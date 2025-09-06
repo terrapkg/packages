@@ -1,5 +1,5 @@
 Name:		limine
-Version:	9.6.5
+Version:	9.6.6
 Release:	1%?dist
 Summary:	Modern, advanced, portable, multiprotocol bootloader
 License:	BSD-2-Clause

@@ -1,6 +1,6 @@
 Name:           sbctl
 Version:        0.17
-Release:        5%?dist
+Release:        6%?dist
 Summary:        Secure Boot key manager
 
 License:        MIT
@@ -51,7 +51,7 @@ if [[ ! -f /run/ostree-booted ]] && grep -q -m 1 -e '\.efi$' -e '/vmlinuz$'; the
     %{_bindir}/sbctl-batch-sign
 fi
 
-%transfiletriggerun -P -10000 -- /boot
+%filetriggerpostun -P -10000 -- /boot
 if [[ ! -f /run/ostree-booted ]] && grep -q -m 1 -e '\.efi$' -e '/vmlinuz$'; then
     exec </dev/null
     %{_bindir}/sbctl-batch-sign
