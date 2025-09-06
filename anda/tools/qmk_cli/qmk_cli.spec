@@ -69,16 +69,6 @@ Summary:        %{summary}
 %ghost %python3_sitelib/__pycache__/*.cpython-*.pyc
 %ghost %python3_sitelib/%{name}/subcommands/__pycache__/*.cpython-*.pyc
 %python3_sitelib/qmk-%version.dist-info/*
-%dnl %{python3_sitelib}/%{name}/git.py
-%dnl %{python3_sitelib}/%{name}/helpers.py
-%dnl %{python3_sitelib}/%{name}/script_qmk.py
-%dnl %{python3_sitelib}/%{name}/__init__.py
-%dnl %{python3_sitelib}/%{name}/subcommands/__init__.py
-%dnl %{python3_sitelib}/%{name}/subcommands/clone.py
-%dnl %{python3_sitelib}/%{name}/subcommands/console.py
-%dnl %{python3_sitelib}/%{name}/subcommands/env.py
-%dnl %{python3_sitelib}/%{name}/subcommands/setup.py
-%dnl %{python3_sitelib}/%{name}/__pycache__/*.pyc
 
 %changelog
 * Thu Sep 04 2025 Owen Zimmerman <owen@fyralabs.com>
