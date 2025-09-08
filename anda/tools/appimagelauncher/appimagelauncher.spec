@@ -8,7 +8,6 @@ Summary:        Helper application for Linux distributions serving as a kind of 
 License:        MIT
 URL:            https://github.com/TheAssassin/AppImageLauncher
 Source0:        %url/archive/refs/tags/v%ver.tar.gz
-Patch0:         use-fedora-qtlinguist.patch
 
 
 BuildRequires:  make
