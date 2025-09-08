@@ -28,6 +28,7 @@ BuildRequires:  librsvg2-devel
 BuildRequires:  libqtxdg-devel
 BuildRequires:  /usr/bin/ranlib
 BuildRequires:  /usr/bin/ar
+BuildRequires:  pkgconfig(libgcrypt)
 
 
 %description
