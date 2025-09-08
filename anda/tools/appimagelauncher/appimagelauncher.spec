@@ -27,6 +27,8 @@ BuildRequires:  libappimageupdate-devel
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  librsvg2-devel
 BuildRequires:  libqtxdg-devel
+BuildRequires:  /usr/bin/ranlib
+BuildRequires:  /usr/bin/ar
 
 
 %description
@@ -44,9 +46,13 @@ BuildRequires:  libqtxdg-devel
  -DUSE_SYSTEM_BOOST=ON \
  -DUSE_SYSTEM_CURL=ON \
  -DUSE_SYSTEM_XDGUTILS=ON \
- -DUSE_SYSTEM_LIBAPPIMAGE=ON
+ -DUSE_SYSTEM_LIBAPPIMAGE=ON \
+ -DBUILD_TESTING='OFF' \
+ -Wno-dev
 
+make libappimageupdate libappimageupdate-qt
 %cmake_build
+make
 
 
 %install
