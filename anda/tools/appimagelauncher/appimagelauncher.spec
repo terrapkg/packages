@@ -7,7 +7,7 @@ Summary:        Helper application for Linux distributions serving as a kind of 
 
 License:        MIT
 URL:            https://github.com/TheAssassin/AppImageLauncher
-Source0:        %url/archive/refs/tags/v%ver.tar.gz
+%dnl Source0:        %url/archive/refs/tags/v%ver.tar.gz
 
 
 BuildRequires:  make
@@ -34,7 +34,7 @@ BuildRequires:  /usr/bin/ar
 %{summary}.
 
 %prep
-%autosetup -n AppImageLauncher-%ver
+%git_clone %url v%ver
 
 
 %build
