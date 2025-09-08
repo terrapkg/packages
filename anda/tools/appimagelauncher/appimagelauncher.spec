@@ -1,14 +1,13 @@
-%global git_commit 0f918015fa418affec32435d1c61c6ae473f2af5
-%global git_shortcommit %(c=%{git_commit}; echo ${c:0:7})
+%global ver 3.0.0-beta-1
 
 Name:           appimagelauncher
-Version:        3.0.0.beta.1
+Version:        %(echo %ver | sed 's/-/./g')
 Release:        1%?dist
 Summary:        Helper application for Linux distributions serving as a kind of "entry point" for running and integrating AppImages
 
 License:        MIT
 URL:            https://github.com/TheAssassin/AppImageLauncher
-Source0:        %{url}/releases/download/v%{version}/appimagelauncher-%{git_shortcommit}.source.tar.xz
+Source0:        %url/archive/refs/tags/v%ver.tar.gz
 Patch0:         use-fedora-qtlinguist.patch
 
 
@@ -34,11 +33,11 @@ BuildRequires:  libqtxdg-devel
 %{summary}.
 
 %prep
-%autosetup -n appimagelauncher-%{git_shortcommit}.source -p1
+%autosetup -n AppImageLauncher-%ver
 
 
 %build
-%cmake -DBUILD_SHARED_LIBS:BOOL=OFF \
+%cmake \
  -DUSE_SYSTEM_LIBARCHIVE=ON \
  -DUSE_SYSTEM_LIBCURL=ON \
  -DUSE_SYSTEM_SQUASHFUSE=ON \
@@ -73,7 +72,7 @@ if [ -x "$update_notifier" ]; then
     "$update_notifier"
 fi
 
-cat <<EOF
+[ $1 -eq 0 ] && cat <<EOF
 #####################################################
 #                                                   #
 #  NOTE: you need to reboot your computer in order  #
