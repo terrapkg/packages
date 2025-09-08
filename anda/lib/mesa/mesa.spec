@@ -324,29 +324,18 @@ Summary:        Mesa TensorFlow Lite delegate
 %endif
 
 %if 0%{?with_d3d12}
-%package dxil
+%package dxil-devel
 Summary:        Mesa SPIR-V to DXIL binary
 Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 
-%description dxil
-Binary for translating SPIR-V shader code to DXIL for Direct3D 12
-
-%package dxil-libs
-Summary:        Mesa SPIR-V to DXIL libraries
-Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-Requires:       %{name}-dxil = %{?epoch:%{epoch}:}%{version}-%{release}
-
-%description dxil-libs
-Libraries for translating SPIR-V shader code to DXIL for Direct3D 12
+%description dxil-devel
+Development tools for translating SPIR-V shader code to DXIL for Direct3D 12
 %endif
 
 %package vulkan-drivers
 Summary:        Mesa Vulkan drivers
 Requires:       vulkan%{_isa}
 Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-%if 0%{?with_d3d12}
-Requires:       %{name}-dxil-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-%endif
 Obsoletes:      mesa-vulkan-devel < %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description vulkan-drivers
@@ -633,9 +622,8 @@ popd
 %endif
 
 %if 0%{?with_d3d12}
-%files dxil
+%files dxil-devel
 %{_bindir}/spirv2dxil
-%files dxil-libs
 %{_libdir}/libspirv_to_dxil.a
 %{_libdir}/libspirv_to_dxil.so
 %endif
