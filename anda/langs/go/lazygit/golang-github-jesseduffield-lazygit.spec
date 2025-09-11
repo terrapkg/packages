@@ -2,7 +2,7 @@
 
 # https://github.com/jesseduffield/lazygit
 %global goipath         github.com/jesseduffield/lazygit
-Version:                0.54.2
+Version:                0.55.0
 
 %gometa -f
 
@@ -13,7 +13,7 @@ Simple terminal UI for git commands.}
 %global godocs          docs README.md VISION.md
 
 Name:           golang-github-jesseduffield-lazygit
-Release:        2%?dist
+Release:        1%?dist
 Summary:        Simple terminal UI for git commands
 
 License:        MIT

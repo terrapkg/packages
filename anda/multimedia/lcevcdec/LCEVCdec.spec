@@ -23,6 +23,7 @@ BuildRequires:  cmake(nlohmann_json)
 BuildRequires:  cmake(range-v3)
 BuildRequires:  gcc-c++
 BuildRequires:  git
+BuildRequires:  vulkan-loader
 BuildRequires:  pkgconfig(libavcodec)
 BuildRequires:  pkgconfig(libavdevice)
 BuildRequires:  pkgconfig(libxxhash)

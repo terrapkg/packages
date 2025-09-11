@@ -2,8 +2,8 @@
 %global git_shortcommit %(c=%{git_commit}; echo ${c:0:7})
 
 Name:           appimagelauncher
-Version:        2.2.0
-Release:        1%{?dist}
+Version:        3.0.0.beta.1
+Release:        1%?dist
 Summary:        Helper application for Linux distributions serving as a kind of "entry point" for running and integrating AppImages
 
 License:        MIT

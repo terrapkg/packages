@@ -13,6 +13,10 @@ URL:            http://gstreamer.freedesktop.org/
 Source0:        https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-%{version}.tar.xz
 Source1:        gstreamer-bad.metainfo.xml
 
+# Add support for LCEVCdec 4. Based off:
+# https://gitlab.freedesktop.org/gstreamer/gstreamer/-/commit/1b041d8114b4de8341926fe1ae62a1d64781970d
+Patch0:         %{name}-lcevcdec4.patch
+
 # Requires Provides with and without _isa defined due to package dependencies
 Obsoletes:      %{name}-free < %{?epoch}:%{version}-%{release}
 Provides:       %{name}-free = %{?epoch}:%{version}-%{release}
