@@ -10,6 +10,8 @@ Source0:		https://github.com/stakira/OpenUtau/releases/download/%ver/OpenUtau-li
 Source1:		https://github.com/stakira/OpenUtau/raw/refs/tags/%ver/LICENSE.txt
 Source2:		https://github.com/stakira/OpenUtau/raw/refs/tags/%ver/OpenUtau/Assets/open-utau.ico
 Packager:		madonuko <mado@fyralabs.com>
+Provides:		openutau = %evr
+Provides:		OpenUtau = %evr
 
 %description
 OpenUtau is a free, open-source editor made for the UTAU community.
