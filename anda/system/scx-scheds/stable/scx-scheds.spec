@@ -67,6 +67,7 @@ License:       GPL-2.0-only
  -Dopenrc=disabled
 %meson_build
 
+%install
 %meson_install
 
 %{cargo_license_online} > LICENSE.dependencies
