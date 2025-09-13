@@ -44,7 +44,7 @@ Provides:       scxctl = %{version}
 Provides:       scx_layered
 Provides:       scx_rustland
 Provides:       scx_rusty
-Obsoletes:      scxctl >= 0.3.4
+Obsoletes:      scxctl <= 0.3.4
 Packager:       Gilver E. <rockgrub@disroot.org>
 
 %description
@@ -64,8 +64,7 @@ License:       GPL-2.0-only
 %build
 %meson \
  -Dsystemd=enabled \
- -Dopenrc=disabled \
- -Dlibalpm=disabled
+ -Dopenrc=disabled
 %meson_build
 
 %install
@@ -97,6 +96,7 @@ License:       GPL-2.0-only
 %{_unitdir}/scx.service
 %{_datadir}/dbus-1/system.d/org.scx.Loader.conf
 %{_datadir}/dbus-1/system-services/org.scx.Loader.service
+%config(noreplace) %{_datadir}/scx_loader/config.toml
 
 %changelog
 * Sun Jun 15 2025 Gilver E. <rockgrub@disroot.org> - 1.0.13-1

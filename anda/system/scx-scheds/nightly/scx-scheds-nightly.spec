@@ -5,7 +5,7 @@
 
 Name:           scx-scheds-nightly
 Version:        %{ver}^%{commitdate}.git.%{shortcommit}
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Nightly builds of sched_ext schedulers and tools
 SourceLicense:  GPL-2.0-only
 License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND BSD-2-Clause AND BSD-3-Clause AND GPL-2.0-only AND ISC AND (LGPL-2.1-only OR BSD-2-Clause) AND LGPL-2.1 AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MIT AND (MPL-2.0 OR MIT OR Apache-2.0) AND MPL-2.0-only and MPL-2.0-or-later AND (Unlicense OR MIT) AND Zlib
@@ -83,29 +83,24 @@ License:       GPL-2.0-only
 
 %post
 %systemd_post scx_loader.service
-%systemd_post scx.service
 
 %preun
 %systemd_preun scx_loader.service
-%systemd_preun scx.service
 
 %postun
 %systemd_postun_with_restart scx_loader.service
-%systemd_postun_with_restart scx.service
 
 %files
 %doc OVERVIEW.md
 %doc README.md
 %license LICENSE
 %license LICENSE.dependencies
-%attr(0644,root,root) %config(noreplace) %{_sysconfdir}/default/scx
 %{_bindir}/scx*
 %{_bindir}/vmlinux_docify
 %{_unitdir}/scx_loader.service
-%{_unitdir}/scx.service
 %{_datadir}/dbus-1/system.d/org.scx.Loader.conf
 %{_datadir}/dbus-1/system-services/org.scx.Loader.service
-%attr(0644,root,root) %config(noreplace) %{_datadir}/scx_loader/config.toml
+%config(noreplace) %{_datadir}/scx_loader/config.toml
 
 %changelog
 * Sun Jun 15 2025 Gilver E. <rockgrub@disroot.org> - 1.0.13^20250612.git.c1507b0-1
