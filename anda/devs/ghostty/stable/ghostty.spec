@@ -11,6 +11,7 @@ URL:            https://ghostty.org/
 Source0:        https://release.files.ghostty.org/%{version}/ghostty-%{version}.tar.gz
 Source1:        https://release.files.ghostty.org/%{version}/ghostty-%{version}.tar.gz.minisig
 BuildRequires:  anda-srpm-macros >= 0.2.15
+BuildRequires:  gettext
 BuildRequires:  gtk4-devel
 BuildRequires:  libadwaita-devel
 BuildRequires:  libX11-devel
@@ -18,22 +19,26 @@ BuildRequires:  minisign
 BuildRequires:  ncurses
 BuildRequires:  ncurses-devel
 BuildRequires:  pandoc-cli
+BuildRequires:  systemd-rpm-macros
 BuildRequires:  zig >= 0.14.0
 BuildRequires:  zig-rpm-macros
+BuildRequires:  pkgconfig(blueprint-compiler)
 BuildRequires:  pkgconfig(bzip2)
 BuildRequires:  pkgconfig(freetype2)
 BuildRequires:  pkgconfig(fontconfig)
 BuildRequires:  pkgconfig(gtk4)
+BuildRequires:  pkgconfig(gtk4-layer-shell-0)
 BuildRequires:  pkgconfig(harfbuzz)
 BuildRequires:  pkgconfig(libadwaita-1)
 BuildRequires:  pkgconfig(libpng)
 BuildRequires:  pkgconfig(libxml-2.0)
 BuildRequires:  pkgconfig(oniguruma)
 BuildRequires:  pkgconfig(zlib)
-Requires:       %{name}-terminfo = %{version}-%{release}
-Requires:       %{name}-shell-integration = %{version}-%{release}
+Requires:       %{name}-terminfo = %{evr}
+Requires:       %{name}-shell-integration = %{evr}
 Requires:       (%{name}-kio = %{evr} if kf6-kio)
 Requires:       gtk4
+Requires:       gtk4-layer-shell
 Requires:       libadwaita
 Conflicts:      ghostty-nightly
 Packager:       Gilver E. <rockgrub@disroot.org>
