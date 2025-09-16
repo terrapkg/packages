@@ -51,9 +51,6 @@ Summary:        Ghostty Bash completion
 Requires:       %{name}
 Requires:       bash-completion
 Supplements:    (%{name} and bash-completion)
-%if 0%{?fedora} <= 41
-Provides:       %{name}-bash-completion = %{commit_date}.%{shortcommit}
-%endif
 BuildArch:      noarch
 
 %description    bash-completion
@@ -64,9 +61,6 @@ Summary:        Ghostty Fish completion
 Requires:       %{name}
 Requires:       fish
 Supplements:    (%{name} and fish)
-%if 0%{?fedora} <= 41
-Provides:       %{name}-fish-completion = %{commit_date}.%{shortcommit}
-%endif
 BuildArch:      noarch
 
 %description    fish-completion
@@ -77,9 +71,6 @@ Summary:        Ghostty Zsh completion
 Requires:       %{name}
 Requires:       zsh
 Supplements:    (%{name} and zsh)
-%if 0%{?fedora} <= 41
-Provides:       %{name}-zsh-completion = %{commit_date}.%{shortcommit}
-%endif
 BuildArch:      noarch
 
 %description    zsh-completion
@@ -136,9 +127,6 @@ This package provides the Bat syntax files for Ghostty.
 %package        shell-integration
 Summary:        Ghostty shell integration
 Supplements:    %{name}
-%if 0%{?fedora} <= 41
-Provides:       %{name}-shell-integration = %{commit_date}.%{shortcommit}
-%endif
 BuildArch:      noarch
 
 %description    shell-integration
