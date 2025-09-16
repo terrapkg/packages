@@ -11,6 +11,7 @@ URL:            https://ghostty.org/
 Source0:        https://release.files.ghostty.org/%{version}/ghostty-%{version}.tar.gz
 Source1:        https://release.files.ghostty.org/%{version}/ghostty-%{version}.tar.gz.minisig
 BuildRequires:  anda-srpm-macros >= 0.2.15
+BuildRequires:  gettext
 BuildRequires:  gtk4-devel
 BuildRequires:  libadwaita-devel
 BuildRequires:  libX11-devel
@@ -18,22 +19,26 @@ BuildRequires:  minisign
 BuildRequires:  ncurses
 BuildRequires:  ncurses-devel
 BuildRequires:  pandoc-cli
+BuildRequires:  systemd-rpm-macros
 BuildRequires:  zig >= 0.14.0
 BuildRequires:  zig-rpm-macros
+BuildRequires:  pkgconfig(blueprint-compiler)
 BuildRequires:  pkgconfig(bzip2)
 BuildRequires:  pkgconfig(freetype2)
 BuildRequires:  pkgconfig(fontconfig)
 BuildRequires:  pkgconfig(gtk4)
+BuildRequires:  pkgconfig(gtk4-layer-shell-0)
 BuildRequires:  pkgconfig(harfbuzz)
 BuildRequires:  pkgconfig(libadwaita-1)
 BuildRequires:  pkgconfig(libpng)
 BuildRequires:  pkgconfig(libxml-2.0)
 BuildRequires:  pkgconfig(oniguruma)
 BuildRequires:  pkgconfig(zlib)
-Requires:       %{name}-terminfo = %{version}-%{release}
-Requires:       %{name}-shell-integration = %{version}-%{release}
+Requires:       %{name}-terminfo = %{evr}
+Requires:       %{name}-shell-integration = %{evr}
 Requires:       (%{name}-kio = %{evr} if kf6-kio)
 Requires:       gtk4
+Requires:       gtk4-layer-shell
 Requires:       libadwaita
 Conflicts:      ghostty-nightly
 Packager:       Gilver E. <rockgrub@disroot.org>
@@ -43,7 +48,7 @@ Packager:       Gilver E. <rockgrub@disroot.org>
 
 %package        bash-completion
 Summary:        Ghostty Bash completion
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}
 Requires:       bash-completion
 Supplements:    (%{name} and bash-completion)
 BuildArch:      noarch
@@ -53,7 +58,7 @@ Bash shell completion for Ghostty.
 
 %package        fish-completion
 Summary:        Ghostty Fish completion
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}
 Requires:       fish
 Supplements:    (%{name} and fish)
 BuildArch:      noarch
@@ -63,7 +68,7 @@ Fish shell completion for Ghostty.
 
 %package        zsh-completion
 Summary:        Ghostty Zsh completion
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}
 Requires:       zsh
 Supplements:    (%{name} and zsh)
 BuildArch:      noarch
@@ -129,33 +134,21 @@ This package contains files allowing Ghostty to integrate with various shells.
 
 %package        terminfo
 Summary:        Ghostty terminfo
-Supplements:    %{name}
 %if 0%{?fedora} >= 42
-Requires:       ncurses-term >= 6.5-5.20250125%{?dist}
+Requires:       ncurses-term >= 6.5-5.20250125
 %endif
+Supplements:    %{name}
 Obsoletes:      %{name}-terminfo-source < %{evr}
 BuildArch:      noarch
 
 %description    terminfo
 Ghostty's terminfo. Needed for basic terminal function.
 
-%package        terminfo-source
-Summary:        Source files for Ghostty's terminfo
-Requires:       %{name}
-Requires:       %{name}-terminfo
-BuildArch:      noarch
-
-%description    terminfo-source
-Source files for Ghostty's terminfo. Available for debugging use.
-
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
 %autosetup
 
-export ZIG_GLOBAL_CACHE_DIR="%{_zig_cache_dir}"
-zig build --fetch
-zig fetch git+https://github.com/zigimg/zigimg#3a667bdb3d7f0955a5a51c8468eac83210c1439e
-zig fetch git+https://github.com/mitchellh/libxev#f6a672a78436d8efee1aa847a43a900ad773618b
+ZIG_GLOBAL_CACHE_DIR="%{_zig_cache_dir}" ./nix/build-support/fetch-zig-cache.sh
 
 %build
 
@@ -167,14 +160,16 @@ DESTDIR="%{buildroot}" \
     -Dversion-string="%{version}" \
     -Dstrip=false \
     -Dpie=true \
-    -Demit-docs
+    -Demit-docs 
 
-#Don't conflict with ncurses-term on F42 and up
+# Don't conflict with ncurses-term on F42 and up
 %if 0%{?fedora} >= 42
-rm -rf %{buildroot}%{_datadir}/terminfo/g/ghostty
+rm -rf %{buildroot}%{_datadir}/terminfo/g/%{name}
 %endif
 
-%files
+%find_lang %{appid}
+
+%files -f %{appid}.lang
 %doc README.md
 %license LICENSE
 %{_bindir}/%{name}
@@ -183,6 +178,7 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/ghostty
 %{_datadir}/%{name}/doc
 %{_datadir}/%{name}/themes
 %{_datadir}/metainfo/%{appid}.metainfo.xml
+%{_datadir}/dbus-1/services/%{appid}.service
 %{_iconsdir}/hicolor/16x16/apps/%{appid}.png
 %{_iconsdir}/hicolor/16x16@2/apps/%{appid}.png
 %{_iconsdir}/hicolor/32x32/apps/%{appid}.png
@@ -195,8 +191,7 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/ghostty
 %{_iconsdir}/hicolor/1024x1024/apps/%{appid}.png
 %{_mandir}/man1/%{name}.1.gz
 %{_mandir}/man5/%{name}.5.gz
-%{_userunitdir}/%{appid}.service
-%{_prefix}/lib/dbus-1/services/%{appid}.service
+%{_userunitdir}/app-%{appid}.service
 
 %files bash-completion
 %{bash_completions_dir}/%{name}.bash
@@ -239,13 +234,18 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/ghostty
 
 %files terminfo
 %if 0%{?fedora} < 42
-%{_datadir}/terminfo/g/ghostty
+%{_datadir}/terminfo/g/%{name}
 %endif
-%{_datadir}/terminfo/x/xterm-ghostty
+%{_datadir}/terminfo/x/xterm-%{name}
 
-%files terminfo-source
-%{_datadir}/terminfo/ghostty.termcap
-%{_datadir}/terminfo/ghostty.terminfo
+%post
+%systemd_user_post app-%{appid}.service
+
+%preun
+%systemd_user_preun app-%{appid}.service
+
+%postun
+%systemd_user_postun app-%{appid}.service
 
 %changelog
 * Fri Jan 31 2025 Gilver E. <rockgrub@disroot.org>
