@@ -161,10 +161,10 @@ DESTDIR="%{buildroot}" \
 %{zig_build_target -r fast} \
     --prefix "%{_prefix}" --prefix-lib-dir "%{_libdir}" \
     --prefix-exe-dir "%{_bindir}" --prefix-include-dir "%{_includedir}" \
-    -Dversion-string="%{ver}-dev+%{shortcommit}" \
+    -Dversion-string="%{version}" \
     -Dstrip=false \
     -Dpie=true \
-    -Demit-docs 
+    -Demit-docs
 
 #Don't conflict with ncurses-term on F42 and up
 %if 0%{?fedora} >= 42
