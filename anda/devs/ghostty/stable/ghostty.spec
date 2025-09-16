@@ -171,12 +171,14 @@ DESTDIR="%{buildroot}" \
     -Dpie=true \
     -Demit-docs
 
-#Don't conflict with ncurses-term on F42 and up
+# Don't conflict with ncurses-term on F42 and up
 %if 0%{?fedora} >= 42
-rm -rf %{buildroot}%{_datadir}/terminfo/g/ghostty
+rm -rf %{buildroot}%{_datadir}/terminfo/g/%{name}
 %endif
 
-%files
+%find_lang %{appid}
+
+%files -f %{appid}.lang
 %doc README.md
 %license LICENSE
 %{_bindir}/%{name}
@@ -185,6 +187,7 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/ghostty
 %{_datadir}/%{name}/doc
 %{_datadir}/%{name}/themes
 %{_datadir}/metainfo/%{appid}.metainfo.xml
+%{_datadir}/dbus-1/services/%{appid}.service
 %{_iconsdir}/hicolor/16x16/apps/%{appid}.png
 %{_iconsdir}/hicolor/16x16@2/apps/%{appid}.png
 %{_iconsdir}/hicolor/32x32/apps/%{appid}.png
@@ -197,8 +200,7 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/ghostty
 %{_iconsdir}/hicolor/1024x1024/apps/%{appid}.png
 %{_mandir}/man1/%{name}.1.gz
 %{_mandir}/man5/%{name}.5.gz
-%{_userunitdir}/%{appid}.service
-%{_prefix}/lib/dbus-1/services/%{appid}.service
+%{_userunitdir}/app-%{appid}.service
 
 %files bash-completion
 %{bash_completions_dir}/%{name}.bash
@@ -241,13 +243,18 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/ghostty
 
 %files terminfo
 %if 0%{?fedora} < 42
-%{_datadir}/terminfo/g/ghostty
+%{_datadir}/terminfo/g/%{name}
 %endif
-%{_datadir}/terminfo/x/xterm-ghostty
+%{_datadir}/terminfo/x/xterm-%{name}
 
-%files terminfo-source
-%{_datadir}/terminfo/ghostty.termcap
-%{_datadir}/terminfo/ghostty.terminfo
+%post
+%systemd_user_post app-%{appid}.service
+
+%preun
+%systemd_user_preun app-%{appid}.service
+
+%postun
+%systemd_user_postun app-%{appid}.service
 
 %changelog
 * Fri Jan 31 2025 Gilver E. <rockgrub@disroot.org>
