@@ -152,10 +152,7 @@ Source files for Ghostty's terminfo. Available for debugging use.
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
 %autosetup
 
-export ZIG_GLOBAL_CACHE_DIR="%{_zig_cache_dir}"
-zig build --fetch
-zig fetch git+https://github.com/zigimg/zigimg#3a667bdb3d7f0955a5a51c8468eac83210c1439e
-zig fetch git+https://github.com/mitchellh/libxev#f6a672a78436d8efee1aa847a43a900ad773618b
+ZIG_GLOBAL_CACHE_DIR="%{_zig_cache_dir}" ./nix/build-support/fetch-zig-cache.sh
 
 %build
 
@@ -164,10 +161,10 @@ DESTDIR="%{buildroot}" \
 %{zig_build_target -r fast} \
     --prefix "%{_prefix}" --prefix-lib-dir "%{_libdir}" \
     --prefix-exe-dir "%{_bindir}" --prefix-include-dir "%{_includedir}" \
-    -Dversion-string="%{version}" \
+    -Dversion-string="%{ver}-dev+%{shortcommit}" \
     -Dstrip=false \
     -Dpie=true \
-    -Demit-docs
+    -Demit-docs 
 
 #Don't conflict with ncurses-term on F42 and up
 %if 0%{?fedora} >= 42
