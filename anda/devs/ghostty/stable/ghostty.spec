@@ -134,24 +134,12 @@ This package contains files allowing Ghostty to integrate with various shells.
 
 %package        terminfo
 Summary:        Ghostty terminfo
-Supplements:    %{name}
 %if 0%{?fedora} >= 42
-Requires:       ncurses-term >= 6.5-5.20250125%{?dist}
+Requires:       ncurses-term >= 6.5-5.20250125
 %endif
+Supplements:    %{name}
 Obsoletes:      %{name}-terminfo-source < %{evr}
 BuildArch:      noarch
-
-%description    terminfo
-Ghostty's terminfo. Needed for basic terminal function.
-
-%package        terminfo-source
-Summary:        Source files for Ghostty's terminfo
-Requires:       %{name}
-Requires:       %{name}-terminfo
-BuildArch:      noarch
-
-%description    terminfo-source
-Source files for Ghostty's terminfo. Available for debugging use.
 
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
