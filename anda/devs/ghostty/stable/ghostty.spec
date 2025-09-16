@@ -141,6 +141,9 @@ Supplements:    %{name}
 Obsoletes:      %{name}-terminfo-source < %{evr}
 BuildArch:      noarch
 
+%description    terminfo
+Ghostty's terminfo. Needed for basic terminal function.
+
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
 %autosetup
