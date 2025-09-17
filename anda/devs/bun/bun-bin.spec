@@ -1,6 +1,4 @@
 %define debug_package %nil
-%if %__cflags_arch_x86_64_level == 1
-%endif
 %ifarch x86_64
 %global a x64-baseline
 %elifarch aarch64
