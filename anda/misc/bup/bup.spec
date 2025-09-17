@@ -6,6 +6,7 @@ License:		LGPL-2.0-only
 URL:			https://bup.github.io
 Source0:		https://github.com/bup/bup/archive/refs/tags/%version.tar.gz
 Packager:		madonuko <mado@fyralabs.com>
+BuildRequires:	gcc-c++
 BuildRequires:	pkgconfig(readline)
 BuildRequires:	pkgconfig(libacl)
 
