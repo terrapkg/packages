@@ -16,7 +16,7 @@ bup is a program that backs things up. It's short for "backup." Can you believe 
 %autosetup
 
 %build
-%configure
+./configure
 %make_build
 
 %install
