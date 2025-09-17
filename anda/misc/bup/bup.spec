@@ -18,7 +18,7 @@ bup is a program that backs things up. It's short for "backup." Can you believe 
 %package doc
 Summary:	HTML documentations for %name
 BuildArch:	noarch
-%description
+%description doc
 HTML documentations for %name.
 
 %prep
