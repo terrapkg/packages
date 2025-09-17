@@ -15,6 +15,12 @@ Requires:		python3
 %description
 bup is a program that backs things up. It's short for "backup." Can you believe that nobody else has named an open source program "bup" after all this time? Me neither.
 
+%package doc
+Summary:	HTML documentations for %name
+BuildArch:	noarch
+%description
+HTML documentations for %name.
+
 %prep
 %autosetup
 
@@ -25,9 +31,8 @@ bup is a program that backs things up. It's short for "backup." Can you believe 
 %install
 %make_install PREFIX=%_prefix LIBDIR=%_libdir/bup
 
-%files
+%files doc
 %license LICENSE
-%doc README.md DESIGN HACKING 
 %doc %_pkgdocdir/bup-bloom.1.html
 %doc %_pkgdocdir/bup-cat-file.1.html
 %doc %_pkgdocdir/bup-config.5.html
@@ -67,6 +72,10 @@ bup is a program that backs things up. It's short for "backup." Can you believe 
 %doc %_pkgdocdir/bup-validate-ref-links.1.html
 %doc %_pkgdocdir/bup-web.1.html
 %doc %_pkgdocdir/bup.1.html
+
+%files
+%license LICENSE
+%doc README.md DESIGN HACKING 
 %_bindir/bup
 %_libdir/bup/
 %_mandir/man1/bup-bloom.1.*
