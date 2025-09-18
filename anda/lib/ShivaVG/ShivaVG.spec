@@ -37,9 +37,10 @@ Requires:       %{name} = %evr
 
 %prep
 %autosetup -n ShivaVG-%{commit}
+sed '/set(CMAKE_C_FLAGS/d' -i CMakeLists.txt
 
 %build
-%cmake -DBUILD_EXAMPLES=OFF
+%cmake -DBUILD_EXAMPLES=OFF -DDEBUG=ON -DPROJECT_VERSION=%commit -DCMAKE_C_FLAGS='%build_cflags'
 %cmake_build
 
 %install
