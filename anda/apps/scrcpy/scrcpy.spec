@@ -39,5 +39,5 @@ export VERSION=v%version
 %meson_install
 
 %files
-%doc READMD.md
+%doc README.md
 %license LICENSE
