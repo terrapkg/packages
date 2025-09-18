@@ -6,8 +6,8 @@ License:		Apache-2.0
 URL:			https://github.com/Genymobile/scrcpy
 Source0:		%url/archive/refs/tags/v%version.tar.gz
 Packager:		madonuko <mado@fyralabs.com>
-BuildRequires:	meson ninja-build nasm gcc
-BuildRequires:	pkgconfig(sdl)
+BuildRequires:	meson ninja-build cmake nasm gcc
+BuildRequires:	pkgconfig(sdl2)
 BuildRequires:	pkgconfig(libavcodec)
 BuildRequires:	pkgconfig(libavdevice)
 BuildRequires:	pkgconfig(libavformat)
