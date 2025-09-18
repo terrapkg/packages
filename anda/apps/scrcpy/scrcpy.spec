@@ -21,6 +21,8 @@ BuildRequires:	vulkan-loader
 %description
 This application mirrors Android devices (video and audio) connected via USB or TCP/IP and allows control using the computer's keyboard and mouse. It does not require root access or an app installed on the device. It works on Linux, Windows, and macOS.
 
+%pkg_completion -Bz
+
 %prep
 %autosetup
 
@@ -41,3 +43,8 @@ export VERSION=v%version
 %files
 %doc README.md
 %license LICENSE
+%_bindir/scrcpy
+%_datadir/applications/scrcpy-console.desktop
+%_datadir/applications/scrcpy.desktop
+%_iconsdir/hicolor/*/apps/scrcpy.png
+%_mandir/man1/scrcpy.1.*
