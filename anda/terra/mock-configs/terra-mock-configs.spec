@@ -1,5 +1,5 @@
 Name:           terra-mock-configs
-Version:        2.1.0
+Version:        2.1.1
 Release:        1%?dist
 Epoch:          1
 Summary:        Mock configs for Terra repos

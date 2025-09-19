@@ -4,7 +4,7 @@
 %global crate eza
 
 Name:           rust-eza
-Version:        0.23.1
+Version:        0.23.3
 Release:        1%?dist
 Summary:        Modern replacement for ls
 

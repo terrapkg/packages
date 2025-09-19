@@ -1,9 +1,9 @@
-%global commit 5aac5a764b7058587489e728191fcc36f09c33e7
+%global commit b9a5cad5622667b033be0fedef5490be4ba68aef
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global fulldate 2025-09-10
+%global fulldate 2025-09-19
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
-%global ver 1.1.4
+%global ver 1.2.1
 %global base_name ghostty
 %global appid com.mitchellh.%{base_name}
 
