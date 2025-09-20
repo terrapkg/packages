@@ -32,7 +32,7 @@
 %global intel_platform_vulkan %{?with_vulkan_hw:,intel,intel_hasvk}%{!?with_vulkan_hw:%{nil}}
 %if !0%{?rhel}
 %global with_i915   1
-%endif 
+%endif
 %endif
 %ifarch x86_64
 %if !0%{?with_vulkan_hw}
@@ -189,7 +189,7 @@ BuildRequires:  pkgconfig(vulkan)
 %endif
 %if 0%{?with_d3d12}
 BuildRequires:  pkgconfig(DirectX-Headers) >= 1.614.1
-%endif 
+%endif
 
 %description
 %{summary}.
@@ -327,6 +327,8 @@ Summary:        Mesa TensorFlow Lite delegate
 %package dxil-devel
 Summary:        Mesa SPIR-V to DXIL binary
 Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Obsoletes:      %{name}-dxil-libs < 1:25.2.3-2
+Obsoletes:      %{name}-dxil < 1:25.2.3-2
 
 %description dxil-devel
 Development tools for translating SPIR-V shader code to DXIL for Direct3D 12
@@ -509,7 +511,7 @@ popd
 %{_libdir}/dri/iris_dri.so
 %if 0%{?with_i915}
 %{_libdir}/dri/i915_dri.so
-%endif 
+%endif
 %endif
 %ifarch aarch64 x86_64 %{ix86}
 %if 0%{?with_asahi}
@@ -518,7 +520,7 @@ popd
 %endif
 %if 0%{?with_d3d12}
 %{_libdir}/dri/d3d12_dri.so
-%endif 
+%endif
 %{_libdir}/dri/ingenic-drm_dri.so
 %{_libdir}/dri/imx-drm_dri.so
 %{_libdir}/dri/imx-lcdif_dri.so
@@ -601,7 +603,7 @@ popd
 %endif
 %if 0%{?with_d3d12}
 %{_libdir}/dri/d3d12_drv_video.so
-%endif 
+%endif
 %{_libdir}/dri/virtio_gpu_drv_video.so
 %endif
 
@@ -617,7 +619,7 @@ popd
 %endif
 %if 0%{?with_d3d12}
 %{_libdir}/vdpau/libvdpau_d3d12.so.1*
-%endif 
+%endif
 %{_libdir}/vdpau/libvdpau_virtio_gpu.so.1*
 %endif
 
@@ -638,7 +640,7 @@ popd
 %if 0%{?with_virtio}
 %{_libdir}/libvulkan_virtio.so
 %{_datadir}/vulkan/icd.d/virtio_icd.*.json
-%endif 
+%endif
 %if 0%{?with_vulkan_hw}
 %{_libdir}/libvulkan_radeon.so
 %{_datadir}/drirc.d/00-radv-defaults.conf
