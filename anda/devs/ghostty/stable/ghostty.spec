@@ -147,8 +147,10 @@ Ghostty's terminfo. Needed for basic terminal function.
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
 %autosetup
-
-ZIG_GLOBAL_CACHE_DIR="%{_zig_cache_dir}" ./nix/build-support/fetch-zig-cache.sh
+export ZIG_GLOBAL_CACHE_DIR="%{_zig_cache_dir}"
+zig build --fetch
+zig fetch git+https://github.com/zigimg/zigimg#3a667bdb3d7f0955a5a51c8468eac83210c1439e
+zig fetch git+https://github.com/mitchellh/libxev#f6a672a78436d8efee1aa847a43a900ad773618b
 
 %build
 
@@ -160,7 +162,7 @@ DESTDIR="%{buildroot}" \
     -Dversion-string="%{version}" \
     -Dstrip=false \
     -Dpie=true \
-    -Demit-docs 
+    -Demit-docs
 
 # Don't conflict with ncurses-term on F42 and up
 %if 0%{?fedora} >= 42
