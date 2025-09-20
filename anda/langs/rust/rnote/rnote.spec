@@ -1,7 +1,7 @@
 %global rustflags_debuginfo 1
 
 Name:           rnote
-Version:        0.13.0
+Version:        0.13.1
 Release:        1%?dist
 Summary:        Sketch and take handwritten notes
 License:        GPL-3.0

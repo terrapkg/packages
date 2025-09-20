@@ -1,6 +1,6 @@
-%global commit abc5cff81c16cf6a4e45a8990df1226081281062
+%global commit 1f0f94ce30c56be5f80367b7a2aae291b0416d46
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20250907
+%global commitdate 20250920
 %global ver 1.0.16
 
 Name:           scx-scheds-nightly
@@ -83,29 +83,24 @@ License:       GPL-2.0-only
 
 %post
 %systemd_post scx_loader.service
-%systemd_post scx.service
 
 %preun
 %systemd_preun scx_loader.service
-%systemd_preun scx.service
 
 %postun
 %systemd_postun_with_restart scx_loader.service
-%systemd_postun_with_restart scx.service
 
 %files
 %doc OVERVIEW.md
 %doc README.md
 %license LICENSE
 %license LICENSE.dependencies
-%attr(0644,root,root) %config(noreplace) %{_sysconfdir}/default/scx
 %{_bindir}/scx*
 %{_bindir}/vmlinux_docify
 %{_unitdir}/scx_loader.service
-%{_unitdir}/scx.service
 %{_datadir}/dbus-1/system.d/org.scx.Loader.conf
 %{_datadir}/dbus-1/system-services/org.scx.Loader.service
-%attr(0644,root,root) %config(noreplace) %{_datadir}/scx_loader/config.toml
+%config(noreplace) %{_datadir}/scx_loader/config.toml
 
 %changelog
 * Sun Jun 15 2025 Gilver E. <rockgrub@disroot.org> - 1.0.13^20250612.git.c1507b0-1

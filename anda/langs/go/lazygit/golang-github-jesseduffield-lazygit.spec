@@ -2,7 +2,7 @@
 
 # https://github.com/jesseduffield/lazygit
 %global goipath         github.com/jesseduffield/lazygit
-Version:                0.55.0
+Version:                0.55.1
 
 %gometa -f
 
