@@ -1,6 +1,6 @@
 Name:           terra-mock-configs
 Version:        2.1.1
-Release:        1%?dist
+Release:        2%?dist
 Epoch:          1
 Summary:        Mock configs for Terra repos
 
@@ -34,6 +34,7 @@ cp -v *.cfg %{buildroot}%{_sysconfdir}/mock/
 %files
 %config %{_sysconfdir}/mock/templates/terra.tpl
 %config %{_sysconfdir}/mock/templates/terra-el.tpl
+%config %{_sysconfdir}/mock/templates/terra-rawhide.tpl
 %config %{_sysconfdir}/mock/terra-*-x86_64.cfg
 %config %{_sysconfdir}/mock/terra-*-aarch64.cfg
 %config %{_sysconfdir}/mock/terra-*-i386.cfg
