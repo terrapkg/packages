@@ -7,7 +7,7 @@
 %elifarch aarch64 armv7hl armv7l
 %global __requires_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*)|(.*\\x86_64*\\.so.*)|(.*\\x86-64*\\.so.*))$
 %endif
-%bcond vendored_nodejs 0
+%bcond vendored_nodejs 1
 
 Name:          goofcord
 Version:       1.10.3
