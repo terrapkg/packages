@@ -7,7 +7,7 @@
 %elifarch aarch64 armv7hl armv7l
 %global __requires_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*)|(.*\\x86_64*\\.so.*)|(.*\\x86-64*\\.so.*))$
 %endif
-%bcond vendored_nodejs 1
+%bcond vendored_nodejs 0
 
 Name:          goofcord
 Version:       1.10.3
@@ -51,7 +51,7 @@ nvm install 24
 %ifarch aarch64 armv7hl armv7l
 sed -i '/\"x64\",/d' electron-builder.ts
 %endif
-bun install
+bun install --no-frozen-lockfile
 bun run packageLinux
 
 %install
