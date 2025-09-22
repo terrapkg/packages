@@ -22,6 +22,7 @@ BuildRequires: desktop-file-utils
 BuildRequires: gcc
 BuildRequires: gcc-c++
 BuildRequires: make
+BuildRequires: electron
 %if %{without vendored_nodejs}
 BuildRequires: nodejs
 BuildRequires: nodejs-npm
