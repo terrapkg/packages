@@ -52,9 +52,10 @@ nvm install 24
 %ifarch aarch64 armv7hl armv7l
 sed -i '/\"x64\",/d' electron-builder.ts
 %endif
-bun install --frozen-lockfile
-sed '/electronFuses:/i electronVersion: "'$(electron --version | sed 's/v//')'",'
-bun run packageLinux
+ELECTRON_VERSION=$(electron --version | sed 's/v//')
+bun install
+#sed '/electronFuses:/i electronVersion: "'$ELECTRON_VERSION'",'
+bun run build && electron-builder --linux --dir --publish=never -c.electronVersion="$ELECTRON_VERSION"
 
 %install
 mkdir -p %{buildroot}%{_datadir}/%{name}
