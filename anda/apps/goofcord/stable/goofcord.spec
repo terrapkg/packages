@@ -55,7 +55,9 @@ sed -i '/\"x64\",/d' electron-builder.ts
 export ELECTRON_VERSION="$(electron --version --no-sandbox | sed 's/v//')"
 %{__bun} install
 sed '/electronFuses:/i electronVersion: "'$ELECTRON_VERSION'",'
-%{__bun} run packageLinux -c.electronVersion="$ELECTRON_VERSION"
+%{__bun} run build 
+%{__bun} run electron-builder --linux --dir --publish=never #-c.electronVersion="$ELECTRON_VERSION"
+ls dist/ || ls
 
 %install
 mkdir -p %{buildroot}%{_datadir}/%{name}
