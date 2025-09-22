@@ -53,9 +53,10 @@ nvm install 24
 sed -i '/\"x64\",/d' electron-builder.ts
 %endif
 ELECTRON_VERSION=$(electron --version | sed 's/v//')
-bun install
+%{__bun} install
 #sed '/electronFuses:/i electronVersion: "'$ELECTRON_VERSION'",'
-bun run build && electron-builder --linux --dir --publish=never -c.electronVersion="$ELECTRON_VERSION"
+%{__bun} run build 
+%{__bun} run electron-builder --linux --dir --publish=never -c.electronVersion="$ELECTRON_VERSION"
 
 %install
 mkdir -p %{buildroot}%{_datadir}/%{name}
