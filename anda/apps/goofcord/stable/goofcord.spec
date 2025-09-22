@@ -38,7 +38,8 @@ A highly configurable and privacy minded Discord client.
 %prep
 %autosetup -n %{git_name}-%{version}
 %if %{with vendored_nodejs}
-NVM_DIR="%{rpmbuilddir}/.nvm" curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+touch ~/.bash_profile
+HOME="%{rpmbuilddir}/.nvm" curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 . "%{rpmbuilddir}/.nvm/nvm.sh"
 . "%{rpmbuilddir}/.nvm/bash_completion"
 nvm install 24
