@@ -1,6 +1,10 @@
-%global commit 607ceaac6bb542dacadb52573fb20bedc5b6228b
-%global commit_date 20250919
-%global shortcommit %{sub %{commit} 1 7}
+# https://github.com/nats-io/natscli
+%global goipath         github.com/nats-io/natscli
+%global commit          607ceaac6bb542dacadb52573fb20bedc5b6228b
+%global commit_date     20250919
+%global shortcommit     %{sub %{commit} 1 7}
+
+%gometa -f
 
 Name:           natscli
 Version:        0~%{commit_date}git.%shortcommit
@@ -8,23 +12,29 @@ Release:        1%{?dist}
 Summary:        The NATS Command Line Interface
 
 License:        Apache-2.0
-URL:            https://github.com/nats-io/natscli
-Source0:        %{url}/archive/%{commit}/natscli-%{commit}.tar.gz
+URL:            %{gourl}
+Source0:        %{gosource}
+
+Packager:       Ruka <pkgs@ruka.red>
 
 BuildRequires:  go
 BuildRequires:  git
+BuildRequires:  anda-srpm-macros
 
 %description
 A command line utility to interact with and manage NATS.
 
 %prep
-%autosetup -n natscli-%{commit}
+%goprep -A
 
 %build
-cd nats && go build -o nats .
+%define currentgoldflags -X main.version=%{version} -X main.commit=%{commit} -X main.date=%{commit_date}
+%define gomodulesmode GO111MODULE=on
+%gobuild -o %{gobuilddir}/bin/nats %{goipath}/nats
 
 %install
-install -Dm755 nats/nats "%{buildroot}%{_bindir}/nats"
+install -m 0755 -vd                     %{buildroot}%{_bindir}
+install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 
 %files
 %license LICENSE
