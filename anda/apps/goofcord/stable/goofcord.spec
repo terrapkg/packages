@@ -40,7 +40,7 @@ A highly configurable and privacy minded Discord client.
 %if %{with vendored_nodejs}
 touch ~/.bash_profile
 NVM_DIR="%{rpmbuilddir}/.nvm" curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
-. "$NVM_DIR/.nvm/nvm.sh"
+. "$NVM_DIR/nvm.sh"
 . "$NVM_DIR/bash_completion"
 nvm install 24
 %endif
