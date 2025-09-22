@@ -57,6 +57,7 @@ export ELECTRON_VERSION="$(electron --version --no-sandbox | sed 's/v//')"
 #sed '/electronFuses:/i electronVersion: "'$ELECTRON_VERSION'",'
 %{__bun} run build 
 %{__bun} run electron-builder --linux --publish=never -c.electronVersion="$ELECTRON_VERSION"
+ls dist/
 
 %install
 mkdir -p %{buildroot}%{_datadir}/%{name}
