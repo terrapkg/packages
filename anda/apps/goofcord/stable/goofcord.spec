@@ -52,6 +52,7 @@ nvm install 24
 sed -i '/\"x64\",/d' electron-builder.ts
 %endif
 bun install --frozen-lockfile
+sed '/electronFuses:/i electronVersion: "'$(electron --version | sed 's/v//')'",'
 bun run packageLinux
 
 %install
