@@ -52,7 +52,7 @@ nvm install 24
 %ifarch aarch64 armv7hl armv7l
 sed -i '/\"x64\",/d' electron-builder.ts
 %endif
-export ELECTRON_VERSION="$(electron --version | sed 's/v//')"
+export ELECTRON_VERSION="$(electron --version --no-sandbox | sed 's/v//')"
 %{__bun} install
 #sed '/electronFuses:/i electronVersion: "'$ELECTRON_VERSION'",'
 %{__bun} run build 
