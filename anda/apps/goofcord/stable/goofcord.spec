@@ -52,6 +52,7 @@ nvm install 24
 sed -i '/\"x64\",/d' electron-builder.ts
 %endif
 bun install --no-frozen-lockfile
+%{__npm} update node-abi
 bun run packageLinux
 
 %install
