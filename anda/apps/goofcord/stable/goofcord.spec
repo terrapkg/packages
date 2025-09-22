@@ -7,7 +7,7 @@
 %elifarch aarch64 armv7hl armv7l
 %global __requires_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*)|(.*\\x86_64*\\.so.*)|(.*\\x86-64*\\.so.*))$
 %endif
-%bcond vendored_nodejs 1
+%bcond vendored_nodejs 0
 
 Name:          goofcord
 Version:       1.10.3
@@ -22,7 +22,6 @@ BuildRequires: desktop-file-utils
 BuildRequires: gcc
 BuildRequires: gcc-c++
 BuildRequires: make
-BuildRequires: electron
 %if %{without vendored_nodejs}
 BuildRequires: nodejs
 BuildRequires: nodejs-npm
@@ -42,9 +41,9 @@ A highly configurable and privacy minded Discord client.
 touch ~/.bash_profile
 mkdir -p %{rpmbuilddir}/.nvm
 export NVM_DIR="%{rpmbuilddir}/.nvm"
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
-. "$NVM_DIR/nvm.sh"
-. "$NVM_DIR/bash_completion"
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash &>/dev/null
+. "$NVM_DIR/nvm.sh" &>/dev/null
+. "$NVM_DIR/bash_completion" &>/dev/null
 nvm install 24
 %endif
 
@@ -52,8 +51,7 @@ nvm install 24
 %ifarch aarch64 armv7hl armv7l
 sed -i '/\"x64\",/d' electron-builder.ts
 %endif
-bun install --no-frozen-lockfile
-bun update node-abi
+bun install --frozen-lockfile
 bun run packageLinux
 
 %install
