@@ -18,6 +18,7 @@ BuildRequires:	pkgconfig(libv4l2)
 BuildRequires:	cmake(VulkanHeaders)
 BuildRequires:	vulkan-loader
 BuildRequires:	OpenCL-ICD-Loader
+BuildConflicts:	dkms-nvidia akmod-nvidia
 
 %description
 This application mirrors Android devices (video and audio) connected via USB or TCP/IP and allows control using the computer's keyboard and mouse. It does not require root access or an app installed on the device. It works on Linux, Windows, and macOS.
