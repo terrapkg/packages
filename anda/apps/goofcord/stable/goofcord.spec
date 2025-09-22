@@ -7,6 +7,7 @@
 %elifarch aarch64 armv7hl armv7l
 %global __requires_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*)|(.*\\x86_64*\\.so.*)|(.*\\x86-64*\\.so.*))$
 %endif
+%bcond vendored_nodejs 1
 
 Name:          goofcord
 Version:       1.10.3
@@ -21,8 +22,10 @@ BuildRequires: desktop-file-utils
 BuildRequires: gcc
 BuildRequires: gcc-c++
 BuildRequires: make
+%if %{without vendored_nodejs}
 BuildRequires: nodejs
 BuildRequires: nodejs-npm
+%endif
 BuildRequires: python3
 %ifarch aarch64
 BuildRequires: zlib-ng-compat-devel
@@ -34,6 +37,12 @@ A highly configurable and privacy minded Discord client.
 
 %prep
 %autosetup -n %{git_name}-%{version}
+%if %{with vendored_nodejs}
+NVM_DIR="%{rpmbuilddir}/.nvm" curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+. "%{rpmbuilddir}/.nvm/nvm.sh"
+. "%{rpmbuilddir}/.nvm/bash_completion"
+nvm install 24
+%endif
 
 %build
 %ifarch aarch64 armv7hl armv7l
