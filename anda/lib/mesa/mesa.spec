@@ -32,6 +32,7 @@
 %global intel_platform_vulkan %{?with_vulkan_hw:,intel,intel_hasvk}%{!?with_vulkan_hw:%{nil}}
 %if !0%{?rhel}
 %global with_i915   1
+%global with_d3d12  1
 %endif
 %endif
 %ifarch x86_64
@@ -43,7 +44,6 @@
 %ifarch aarch64 x86_64 %{ix86}
 %if !0%{?rhel}
 %global with_asahi     1
-%global with_d3d12     1
 %global with_etnaviv   1
 %global with_lima      1
 %global with_tegra     1
