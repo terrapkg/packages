@@ -2,8 +2,7 @@
 %define	debug_package %{nil}
 
 # Exclude private libraries
-%global __requires_exclude libffmpeg.so
-%global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
+%global __provides_exclude ^lib.*\\.so.*$
 
 %ifarch x86_64
 %define arch %{nil}
