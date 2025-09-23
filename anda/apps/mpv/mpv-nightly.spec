@@ -82,6 +82,10 @@ BuildRequires:  pkgconfig(xscrnsaver)
 BuildRequires:  pkgconfig(xv)
 %endif
 
+%ifarch x86_64
+BuildRequires:  libOpenCL.so.1
+%endif
+
 Requires:       hicolor-icon-theme
 Provides:       mplayer-backend
 Recommends:     (yt-dlp or youtube-dl)
