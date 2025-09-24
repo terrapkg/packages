@@ -24,6 +24,7 @@ BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  (pkgconfig(hyprlang) with hyprlang.nightly-devel)
 BuildRequires:  pkgconfig(cairo)
+BuildRequires:  pkgconfig(pangocairo)
 BuildRequires:  (pkgconfig(hyprutils) with hyprutils.nightly-devel)
 BuildRequires:  pkgconfig(libjpeg)
 BuildRequires:  pkgconfig(libwebp)
