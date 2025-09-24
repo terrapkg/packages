@@ -13,7 +13,12 @@ Source1:        https://github.com/FyraLabs/rdms_proc_macros/archive/HEAD.tar.gz
 BuildRequires:	anda-srpm-macros rust-packaging mold
 BuildRequires:  pkgconfig(libhelium-1)
 BuildRequires:  clang-devel
+BuildRequires:  gcc
 BuildRequires:  cmake
+BuildRequires:  glibc-all-langpacks
+# We'll need cryptsetup to unlock disks for now
+Requires:       cryptsetup
+Recommends:     readymade-config
 Conflicts:      readymade
 Obsoletes:      readymade-nightly < 20250502.4dc78ec-3
 
