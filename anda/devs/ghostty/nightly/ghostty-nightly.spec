@@ -44,7 +44,8 @@ BuildRequires:  pkgconfig(oniguruma)
 BuildRequires:  pkgconfig(zlib)
 Requires:       %{name}-terminfo = %{evr}
 Requires:       %{name}-shell-integration = %{evr}
-Requires:       (%{name}-kio = %{evr} if kf6-kio-core or kf5-kio-core)
+Requires:       (%{name}-kio = %{evr} if kf5-kio-core)
+Requires:       (%{name}-kio = %{evr} if kf6-kio-core)
 Requires:       gtk4
 Requires:       gtk4-layer-shell
 Requires:       libadwaita
