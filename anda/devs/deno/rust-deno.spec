@@ -23,6 +23,8 @@ BuildRequires:  llvm17-devel
 BuildRequires:  python3
 BuildRequires:  cmake
 BuildRequires:  gcc
+BuildRequires:  clang
+BuildRequires:  clang-devel
 
 %global _description %{expand:
 Provides the deno executable.}
