@@ -9,7 +9,7 @@
 
 Name:           %{base_name}-nightly
 Version:        %{ver}~tip^%{commit_date}git%{shortcommit}
-Release:        1%?dist
+Release:        2%?dist
 %if 0%{?fedora} <= 41
 Epoch:          1
 %endif
@@ -44,7 +44,8 @@ BuildRequires:  pkgconfig(oniguruma)
 BuildRequires:  pkgconfig(zlib)
 Requires:       %{name}-terminfo = %{evr}
 Requires:       %{name}-shell-integration = %{evr}
-Requires:       (%{name}-kio = %{evr} if kf6-kio)
+Requires:       (%{name}-kio = %{evr} if kf5-kio-core)
+Requires:       (%{name}-kio = %{evr} if kf6-kio-core)
 Requires:       gtk4
 Requires:       gtk4-layer-shell
 Requires:       libadwaita

@@ -4,7 +4,7 @@
 
 Name:           ghostty
 Version:        1.2.0
-Release:        1%?dist
+Release:        2%?dist
 Summary:        A fast, native terminal emulator written in Zig.
 License:        MIT AND MPL-2.0 AND OFL-1.1 AND (WTFPL OR CC0-1.0) AND Apache-2.0
 URL:            https://ghostty.org/
@@ -35,8 +35,8 @@ BuildRequires:  pkgconfig(libxml-2.0)
 BuildRequires:  pkgconfig(oniguruma)
 BuildRequires:  pkgconfig(zlib)
 Requires:       %{name}-terminfo = %{evr}
-Requires:       %{name}-shell-integration = %{evr}
-Requires:       (%{name}-kio = %{evr} if kf6-kio)
+Requires:       (%{name}-kio = %{evr} if kf5-kio-core)
+Requires:       (%{name}-kio = %{evr} if kf6-kio-core)
 Requires:       gtk4
 Requires:       gtk4-layer-shell
 Requires:       libadwaita
