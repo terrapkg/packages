@@ -21,6 +21,8 @@ BuildRequires:  anda-srpm-macros
 BuildRequires:  protobuf-compiler
 BuildRequires:  llvm17-devel
 BuildRequires:  python3
+BuildRequires:  cmake
+BuildRequires:  gcc
 
 %global _description %{expand:
 Provides the deno executable.}
