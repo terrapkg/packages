@@ -42,7 +42,7 @@ sed 's/VERSION=""/VERSION="%shortcommit"/g' -i version-make.sh
 
 %build
 # https://github.com/vgmstream/vgmstream/issues/1780
-%cmake -DCMAKE_BUILD_TYPE=Release -DUSE_G719=0 %[%_arch == "x86_64" ? "" : "-DUSE_CELT=0"]
+%cmake -DCMAKE_BUILD_TYPE=Release -DUSE_G719=0 %["%_arch" == "x86_64" ? "" : "-DUSE_CELT=0"]
 %cmake_build
 
 %install
