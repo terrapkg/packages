@@ -41,8 +41,8 @@ For more information, see the main vgmstream package.
 sed 's/VERSION=""/VERSION="%shortcommit"/g' -i version-make.sh
 
 %build
-# need to disable g719 when building dynamically?
-%cmake -DCMAKE_BUILD_TYPE=Release -DUSE_G719=0
+# https://github.com/vgmstream/vgmstream/issues/1780
+%cmake -DCMAKE_BUILD_TYPE=Release -DUSE_G719=0 %[%_arch == "x86_64" ? "" : "-DUSE_CELT=0"]
 %cmake_build
 
 %install
