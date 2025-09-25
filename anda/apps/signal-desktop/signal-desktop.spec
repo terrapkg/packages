@@ -13,7 +13,7 @@
 
 Name:			signal-desktop	
 Version:			7.72.1
-Release:			1%?dist
+Release:			2%?dist
 Summary:		A private messenger for Windows, macOS, and Linux
 URL:			https://signal.org
 Source0:		https://github.com/signalapp/Signal-Desktop/archive/refs/tags/v%{version}.tar.gz
@@ -48,6 +48,10 @@ Requires:		mesa-libgbm
 Requires:		at-spi2-atk
 Requires:		expat
 Requires:		alsa-lib
+
+Provides:       signal
+Provides:       Signal
+Provides:       Signal-Desktop
 
 %description
 Signal Desktop links with Signal on Android or iOS and lets you message from your Windows, macOS, and Linux computers.
