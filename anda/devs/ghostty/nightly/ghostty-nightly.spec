@@ -98,6 +98,13 @@ BuildArch:      noarch
 %description    zsh-completion
 Zsh shell completion for Ghostty.
 
+%package        devel
+Summary:        Development files for Ghostty.
+Requires:       %{name} = %{evr}
+
+%description    devel
+This package includes the development files for Ghostty.
+
 %package        kio
 Summary:        KIO support for Ghostty
 Requires:       %{name} = %{evr}
@@ -229,6 +236,11 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 
 %files zsh-completion
 %{zsh_completions_dir}/_%{base_name}
+
+%files devel
+%{_includedir}/ghostty/
+%{_libdir}/libghostty-vt.so
+%{_datadir}/pkgconfig/libghostty-vt.pc
 
 %files kio
 %{_datadir}/kio/servicemenus/%{appid}.desktop
