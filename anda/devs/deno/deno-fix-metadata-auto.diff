@@ -1,0 +1,27 @@
+--- deno-2.5.2/Cargo.toml	1970-01-01T00:00:01+00:00
++++ deno-2.5.2/Cargo.toml	2025-09-25T08:45:18.476444+00:00
+@@ -650,24 +650,3 @@
+ [target."cfg(unix)".dependencies.shell-escape]
+ version = "=0.1.5"
+ 
+-[target."cfg(windows)".dependencies.deno_subprocess_windows]
+-version = "0.12.0"
+-
+-[target."cfg(windows)".dependencies.winapi]
+-version = "=0.3.9"
+-features = [
+-    "knownfolders",
+-    "mswsock",
+-    "objbase",
+-    "shlobj",
+-    "tlhelp32",
+-    "winbase",
+-    "winerror",
+-    "winsock2",
+-]
+-
+-[target."cfg(windows)".build-dependencies.winapi]
+-version = "=0.3.9"
+-
+-[target."cfg(windows)".build-dependencies.winres]
+-version = "=0.1.12"
