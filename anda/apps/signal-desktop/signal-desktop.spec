@@ -3,7 +3,7 @@
 
 # Exclude private libraries
 %global __requires_exclude libffmpeg.so
-%global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
+%global __provides_exclude ^lib.*\\.so.*$
 
 %ifarch x86_64
 %define arch %{nil}
@@ -12,8 +12,8 @@
 %endif
 
 Name:			signal-desktop	
-Version:			7.70.0
-Release:			1%?dist
+Version:			7.72.0
+Release:			2%?dist
 Summary:		A private messenger for Windows, macOS, and Linux
 URL:			https://signal.org
 Source0:		https://github.com/signalapp/Signal-Desktop/archive/refs/tags/v%{version}.tar.gz
