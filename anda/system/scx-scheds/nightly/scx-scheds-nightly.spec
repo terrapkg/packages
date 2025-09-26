@@ -97,6 +97,7 @@ License:       GPL-2.0-only
 %license LICENSE.dependencies
 %{_bindir}/scx*
 %{_bindir}/vmlinux_docify
+%{_bindir}/xtask
 %{_unitdir}/scx_loader.service
 %{_datadir}/dbus-1/system.d/org.scx.Loader.conf
 %{_datadir}/dbus-1/system-services/org.scx.Loader.service
