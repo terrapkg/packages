@@ -16,7 +16,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-pip
 BuildRequires:  python3dist(setuptools)
 BuildRequires:  git
-BuildRequires:  python3-devel
 
 Requires:       python3
 Requires:       python3-platformdirs
