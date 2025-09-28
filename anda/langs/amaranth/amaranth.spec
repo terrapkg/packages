@@ -24,9 +24,6 @@ Requires:       python3-jinja2
 Requires:       python3-jschon
 Requires:       python3-pyvcd
 
-Provides:       amaranth
-Provides:       python3-amaranth
-
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
 %description
@@ -34,6 +31,7 @@ Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
+Provides:       amaranth
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
