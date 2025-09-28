@@ -1,1 +1,1 @@
-rpm.version(pypi("pyvcd"));
+rpm.version(gh("SanDisk-Open-Source/pyvcd"));
