@@ -1,5 +1,5 @@
 Name:			scrcpy
-Version:		3.3.2
+Version:		3.3.3
 Release:		1%?dist
 Summary:		Display and control your Android device
 License:		Apache-2.0
