@@ -15,9 +15,6 @@ BuildRequires:  python3-pip
 BuildRequires:  python3-setuptools
 BuildRequires:  python3-setuptools_scm
 
-Provides:       cobs
-Provides:       python3-cobs
-
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
 %description
@@ -25,6 +22,7 @@ Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
+Provides:       cobs
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
