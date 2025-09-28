@@ -32,7 +32,7 @@ cp %{S:1} %buildroot/usr/lib/dracut/dracut.conf.d/
 %files
 %doc README
 %license LICENSE
-/usr/lib/dracut/dracut.conf.d/%name-iscsi.conf
+/usr/lib/dracut/dracut.conf.d/02-iscsi.conf
 /usr/lib/dracut/dracut.conf.d/01-aggressive-strip.conf
 
 %post
