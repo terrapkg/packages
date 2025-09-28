@@ -2,8 +2,8 @@
 
 %global realname hyprgraphics
 %global ver 0.1.6
-%global commit c44e749dd611521dee940d00f7c444ee0ae4cfb7
-%global commit_date 20250919
+%global commit 32e6b8386f7dc70a4cc01607a826a281f3c52364
+%global commit_date 20250923
 %global shortcommit %{sub %commit 1 7}
 
 %bcond libjxl 1
@@ -24,6 +24,7 @@ BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  (pkgconfig(hyprlang) with hyprlang.nightly-devel)
 BuildRequires:  pkgconfig(cairo)
+BuildRequires:  pkgconfig(pangocairo)
 BuildRequires:  (pkgconfig(hyprutils) with hyprutils.nightly-devel)
 BuildRequires:  pkgconfig(libjpeg)
 BuildRequires:  pkgconfig(libwebp)

@@ -1,5 +1,5 @@
-%global commit 9621ae11165ad4de4a3d9edd722bb32d0233ebed
-%global commit_date 20250908
+%global commit 81f0364d15c51971494af84a8a971e679662de24
+%global commit_date 20250924
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           readymade-git
@@ -13,7 +13,12 @@ Source1:        https://github.com/FyraLabs/rdms_proc_macros/archive/HEAD.tar.gz
 BuildRequires:	anda-srpm-macros rust-packaging mold
 BuildRequires:  pkgconfig(libhelium-1)
 BuildRequires:  clang-devel
+BuildRequires:  gcc
 BuildRequires:  cmake
+BuildRequires:  glibc-all-langpacks
+# We'll need cryptsetup to unlock disks for now
+Requires:       cryptsetup
+Recommends:     readymade-config
 Conflicts:      readymade
 Obsoletes:      readymade-nightly < 20250502.4dc78ec-3
 
