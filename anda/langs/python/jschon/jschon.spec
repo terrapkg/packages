@@ -23,9 +23,6 @@ BuildRequires:  python3-sphinx_rtd_theme
 Requires:       python3-requests
 Requires:       python3-rfc3986
 
-Provides:       jschon
-Provides:       python3-jschon
-
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
 %description
@@ -33,6 +30,7 @@ Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
+Provides:       jschon
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
