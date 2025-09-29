@@ -7,7 +7,7 @@
 
 Name:           katsu
 Version:        0.9.2
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Vicious image builder
 Packager:       madonuko <mado@fyralabs.com>
 
