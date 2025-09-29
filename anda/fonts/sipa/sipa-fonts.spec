@@ -144,7 +144,6 @@ mv "THSarabunNew Bold.ttf"			"TH Sarabun New Bold.ttf"
 mv "THSarabunNew BoldItalic.ttf"	"TH Sarabun New BoldItalic.ttf"
 mv "THSarabunNew Italic.ttf"		"TH Sarabun New Italic.ttf"
 mv "THSarabunNew.ttf"				"TH Sarabun New.ttf"
-ls -lah
 %fontbuild -a
 
 %install
