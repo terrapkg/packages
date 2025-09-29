@@ -29,7 +29,7 @@ Requires:       %{name}-all
 # this package so this is necessary,
 # and these fonts are an open-source, state-sponsored package
 # required for official Thai documentation
-License:		LicenseRef-DIP-SIPA AND OFL-1.1-RFN
+License:		LicenseRef-DIP-SIPA
 Source1:        15-supercede-sarabun.conf
 Source2:        SIPA-LICENSE
 BuildRequires:  rpm_macro(fontpkg)
