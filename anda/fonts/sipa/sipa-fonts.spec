@@ -19,6 +19,7 @@ script sponsored by the Thai government.
 Name:			sipa-fonts
 Provides:       %{name} = %{version}-%{release}
 Obsoletes:      sipa-fonts < 20200217-5
+Packager:       Cappy Ishihara <cappy@fyralabs.com>
 Summary:		Thai National Fonts collection
 Source0:		https://waa.inter.nstda.or.th/stks/pub/%(x=%version;echo ${x:0:4})/%version-13Fonts.zip
 # migration path for old versions
@@ -158,5 +159,9 @@ install -Dm644 %{SOURCE1} %buildroot/%{_sysconfdir}/fonts/conf.d/15-supercede-sa
 
 
 %changelog
+* Mon Sep 29 2025 Cappy Ishihara <cappy@fyralabs.com> - 20200217-5
+- Use Fedora macros to build and install fonts
+- Auto-generate AppStream metadata for fonts
+
 * Sun Jun 11 2023 windowsboy111 <windowsboy111@fyralabs.com> - 20200217-1
 - Initial package
