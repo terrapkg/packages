@@ -7,17 +7,17 @@
 Name:           stardust-xr-gravity
 Version:        %commit_date.%shortcommit
 Release:        1%?dist
-Summary:        Utility to launch apps and Stardust XR clients spatially.
+Summary:        Utility to launch apps and Stardust XR clients spatially
 URL:            https://github.com/StardustXR/gravity
 Source0:        %url/archive/%commit/gravity-%commit.tar.gz
 License:        MIT
-BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold  
+BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold
 
-Provides:       stardust-gravity
+Provides:       gravity stardust-gravity
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
-%summary
+%summary.
 
 %prep
 %autosetup -n gravity-%commit
