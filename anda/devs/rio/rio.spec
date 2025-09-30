@@ -21,6 +21,7 @@ BuildRequires: libxcb-devel
 BuildRequires: libxkbcommon-devel
 BuildRequires: mold
 BuildRequires: sed
+BuildRequires: pkgconfig(alsa)
 Requires:      freetype
 Requires:      fontconfig
 Requires:      hicolor-icon-theme

@@ -17,7 +17,7 @@ Source0:        https://github.com/ruffle-rs/ruffle/archive/refs/tags/nightly-%v
 Provides:       ruffle
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros mold
-BuildRequires:  gcc-c++ cmake java
+BuildRequires:  gcc-c++ cmake
 BuildRequires:  java-latest-openjdk-headless
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(gtk+-3.0)
