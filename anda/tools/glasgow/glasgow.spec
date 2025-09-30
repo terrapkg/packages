@@ -5,6 +5,7 @@
 %global pypi_name glasgow
 %global _desc Scots Army Knife for electronics.
 
+# Errors without setting this for some reason
 %global _udevrulesdir /usr/lib/udev/rules.d
 
 Name:			python-%{pypi_name}
@@ -23,12 +24,6 @@ BuildRequires:  python3-build
 BuildRequires:  python3-pdm-backend
 BuildRequires:  git
 
-Requires:       python3-libusb1
-Requires:       python3-fx2
-Requires:       python3-amaranth
-Requires:       python3-pyvcd
-Requires:       python3-importlib-resources
-Requires:       python3-cobs
 Requires:       yosys
 Requires:       nextpnr
 Requires:       icestorm
@@ -75,5 +70,5 @@ install -Dm644 config/70-glasgow.rules %{buildroot}%{_udevrulesdir}/70-glasgow.r
 %python3_sitelib/glasgow-0.1.0.dist-info/*
 
 %changelog
-* Sat Sep 27 2025 Owen Zimmerman <owen@fyralabs.com>
+* Mon Sep 29 2025 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit
