@@ -91,8 +91,8 @@ BuildRequires:  qt6-qtbase-private-devel vulkan-devel jack-audio-connection-kit-
     -DUSE_SYSTEM_PUGIXML=OFF                             \
     -DUSE_SYSTEM_WOLFSSL=OFF                             \
 %if %{with llvm_compat}
-    -DCMAKE_C_COMPILER=clang%{?llvm_major}               \
-    -DCMAKE_CXX_COMPILER=clang%{?llvm_major}++           \
+    -DCMAKE_C_COMPILER=clang-%{?llvm_major}              \
+    -DCMAKE_CXX_COMPILER=clang-%{?llvm_major}++          \
 %else
     -DCMAKE_C_COMPILER=clang                             \
     -DCMAKE_CXX_COMPILER=clang++                         \
