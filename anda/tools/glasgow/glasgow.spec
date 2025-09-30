@@ -27,7 +27,6 @@ BuildRequires:  git
 Requires:       yosys
 Requires:       nextpnr
 Requires:       icestorm
-Requires:       rp-appset
 
 Recommends:     python3-aiohttp
 
