@@ -69,7 +69,7 @@ BuildRequires:  qt6-qtbase-private-devel vulkan-devel jack-audio-connection-kit-
 %build
 # Looking at the CMakeLists.txt, this is the intended compiler and there are no fixes for GCC on aarch64
 %if %{with llvm_compat}
-export LLVM_DIR=/usr/lib64/llvm20/lib64/cmake
+export LLVM_DIR=%{_libdir}/llvm20/lib64/cmake
 %endif
 %cmake -DDISABLE_LTO=TRUE                                \
     -DZSTD_BUILD_STATIC=ON                               \
