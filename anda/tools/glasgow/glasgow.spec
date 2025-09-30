@@ -30,9 +30,6 @@ Requires:       icestorm
 
 Recommends:     python3-aiohttp
 
-Provides:       glasgow
-Provides:       python3-glasgow
-
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
 %description
@@ -40,6 +37,7 @@ Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
 %package     -n python3-%{pypi_name}
 Summary:        %{summary}
+Provides:       glasgow
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
