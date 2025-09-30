@@ -7,7 +7,7 @@
 Name:           stardust-xr-protostar
 Version:        %commit_date.%shortcommit
 Release:        1%?dist
-Summary:        Prototype application launcher for Stardust XR.
+Summary:        Prototype application launcher for Stardust XR
 URL:            https://github.com/StardustXR/protostar
 Source0:        %url/archive/%commit/protostar-%commit.tar.gz
 License:        MIT
