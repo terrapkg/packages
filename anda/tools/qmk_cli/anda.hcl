@@ -1,5 +1,6 @@
 project pkg {
-	rpm {
+  arches = ["x86_64"]
+  rpm {
 		spec = "qmk_cli.spec"
 	}
 }

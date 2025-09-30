@@ -11,6 +11,7 @@ License:		MIT
 URL:			https://github.com/qmk/qmk_cli
 Source0:		%url/archive/refs/tags/%version.tar.gz
 Patch0:         nonexistant-deps.patch
+BuildArch:      noarch
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-pip
