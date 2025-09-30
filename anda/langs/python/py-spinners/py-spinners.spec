@@ -6,7 +6,7 @@
 %global _desc More than 60 spinners for terminal, python wrapper for amazing node library cli-spinners.
 
 Name:			python-%{pypi_name}
-Version:		0.11.1
+Version:		%commit_date.%shortcommit
 Release:		1%?dist
 Summary:		More than 60 spinners for terminal, python wrapper for amazing node library cli-spinners
 License:		MIT
