@@ -3,6 +3,7 @@
 # Define which LLVM/Clang version RPCS3 needs
 %if %{?fedora} >= 43
 %global llvm_major 20
+%bcond llvm_compat 1
 %endif
 # GLIBCXX_ASSERTIONS is known to break RPCS3
 %global build_cflags %(echo %{__build_flags_lang_c} | sed 's/-Wp,-D_GLIBCXX_ASSERTIONS//g') %{?_distro_extra_cflags}
@@ -89,8 +90,13 @@ BuildRequires:  qt6-qtbase-private-devel vulkan-devel jack-audio-connection-kit-
     -DUSE_SYSTEM_FLATBUFFERS=OFF                         \
     -DUSE_SYSTEM_PUGIXML=OFF                             \
     -DUSE_SYSTEM_WOLFSSL=OFF                             \
+%if %{with llvm_compat}
     -DCMAKE_C_COMPILER=clang%{?llvm_major}               \
     -DCMAKE_CXX_COMPILER=clang%{?llvm_major}++           \
+%else
+    -DCMAKE_C_COMPILER=clang                             \
+    -DCMAKE_CXX_COMPILER=clang++                         \
+%endif
     -DCMAKE_LINKER=mold                                  \
     -DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS -fuse-ld=mold" \
     -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS -fuse-ld=mold"    
