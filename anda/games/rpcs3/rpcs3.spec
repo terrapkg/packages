@@ -21,7 +21,7 @@ License:        GPL-2.0-only
 URL:            https://github.com/RPCS3/rpcs3
 %dnl Source0:        %url/archive/refs/tags/v%version.tar.gz
 BuildRequires:  anda-srpm-macros glew openal-soft cmake vulkan-validation-layers git-core mold
-BuildRequires:  llvm-devel%{?llvm_major}
+BuildRequires:  llvm%{?llvm_major}-devel
 BuildRequires:  clang%{?llvm_major}
 BuildRequires:  cmake(FAudio)
 BuildRequires:  cmake(OpenAL)
