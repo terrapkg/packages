@@ -1,17 +1,13 @@
-%global commit a73d561aa58b12afc3aa4ee80143dca87656688d
-%global commit_date 20200219
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
-
-%global pypi_name py-spinners
+%global pypi_name spinners
 %global _desc More than 60 spinners for terminal, python wrapper for amazing node library cli-spinners.
 
 Name:			python-%{pypi_name}
-Version:		%commit_date.%shortcommit
+Version:		0.0.24
 Release:		1%?dist
 Summary:		More than 60 spinners for terminal, python wrapper for amazing node library cli-spinners
 License:		MIT
-URL:			https://github.com/ManrajGrover/py-spinners
-Source0:		%url/archive/%commit/py-spinners-%commit.tar.gz
+URL:			https://pypi.org/project/spinners/
+Source0:		%{pypi_source}
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
@@ -26,28 +22,28 @@ Packager:	    Owen Zimmerman <owen@fyralabs.com>
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
 Provides:       py-spinners
-Provides:       spinners
+Provides:       %{pypi_name}
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 %_desc
 
 %prep
-%autosetup -n py-spinners-%{commit}
+%autosetup -n %{pypi_name}-%{version}
 
 %build
 %pyproject_wheel
 
 %install
 %pyproject_install
-%pyproject_save_files spinners
+%pyproject_save_files %{pypi_name}
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%doc README.md DEVELOPMENT.md
+%doc README.md
 %license LICENSE
 %ghost %python3_sitelib/__pycache__/*.cpython-*.pyc
 %ghost %python3_sitelib/%{name}/subcommands/__pycache__/*.cpython-*.pyc
-%python3_sitelib/spinners-0.0.24.dist-info/*
+%python3_sitelib/spinners-%{version}.dist-info/*
 
 %changelog
 * Tue Sep 30 2025 Owen Zimmerman <owen@fyralabs.com>
