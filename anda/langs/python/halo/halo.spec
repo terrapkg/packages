@@ -1,17 +1,13 @@
-%global commit b76fa94abae4505d0d5b14dcf1d77521c02482e4
-%global commit_date 20240616
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
-
 %global pypi_name halo
 %global _desc Beautiful spinners for terminal, IPython and Jupyter.
 
 Name:			python-%{pypi_name}
-Version:		%commit_date.%shortcommit
+Version:		0.0.31
 Release:		1%?dist
 Summary:		Beautiful spinners for terminal, IPython and Jupyter
 License:		MIT
 URL:			https://github.com/manrajgrover/halo
-Source0:		%url/archive/%commit/halo-%commit.tar.gz
+Source0:		%{pypi_source}
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
@@ -32,7 +28,7 @@ Provides:       halo
 %_desc
 
 %prep
-%autosetup -n halo-%{commit}
+%autosetup -n halo-%{version}
 
 %build
 %pyproject_wheel
@@ -42,11 +38,11 @@ Provides:       halo
 %pyproject_save_files halo
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%doc README.md DEVELOPMENT.md
+%doc README.md
 %license LICENSE
 %ghost %python3_sitelib/__pycache__/*.cpython-*.pyc
 %ghost %python3_sitelib/%{name}/subcommands/__pycache__/*.cpython-*.pyc
-%python3_sitelib/halo-0.0.31.dist-info/*
+%python3_sitelib/halo-%{version}.dist-info/*
 
 %changelog
 * Tue Sep 30 2025 Owen Zimmerman <owen@fyralabs.com>
