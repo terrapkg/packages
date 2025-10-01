@@ -4,7 +4,7 @@
 
 Name:           appset
 Version:        0~%commit_date.git~%shortcommit
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Application for customisation of appearance of Raspberry Pi Desktop
 License:        BSD-3-Clause
 URL:            https://github.com/raspberrypi-ui/appset
@@ -37,9 +37,9 @@ Provides:       rp-appset
 %install
 %meson_install
 
-%find_lang pipanel
+%find_lang rpcc_pipanel
 
-%files -f pipanel.lang
+%files -f rpcc_pipanel.lang
 %doc README
 %license debian/copyright
 %{_bindir}/pipanel
