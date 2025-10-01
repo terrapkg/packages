@@ -1,9 +1,9 @@
 %global real_name vala-language-server
 
-%global commit a5d24a8cf7b61d0d2082234034905f0f8ed96726
+%global commit c66ce433375815fb65d3aefddf68122817c0073d
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
-%global commit_date 20250606
+%global commit_date 20250927
 %global snapshot_info %{commit_date}.%{shortcommit}
 %global verrel 0.48.7
 

@@ -1,6 +1,6 @@
-%global commit fc0a37f9e02ffb1adb24cbbd64ed0c3ecfb46ecd
+%global commit f41e61cd31a1e5555a9a52ae29da6ee37f150d1f
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global fulldate 2025-09-24
+%global fulldate 2025-09-30
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
 %global ver 1.2.1
@@ -9,7 +9,7 @@
 
 Name:           %{base_name}-nightly
 Version:        %{ver}~tip^%{commit_date}git%{shortcommit}
-Release:        2%?dist
+Release:        1%?dist
 %if 0%{?fedora} <= 41
 Epoch:          1
 %endif

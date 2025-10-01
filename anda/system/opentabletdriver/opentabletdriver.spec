@@ -9,8 +9,8 @@
 %global dotnet_runtime_version 8.0
 
 Name: opentabletdriver
-Version: 0.6.5.1
-Release: 2%?dist
+Version: 0.6.6.0
+Release: 1%?dist
 Summary: A cross-platform open source tablet driver
 License: LGPLv3
 URL: https://github.com/OpenTabletDriver/OpenTabletDriver
