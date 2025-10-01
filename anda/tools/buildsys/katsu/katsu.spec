@@ -7,7 +7,7 @@
 
 Name:           katsu
 Version:        0.9.2
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Vicious image builder
 Packager:       madonuko <mado@fyralabs.com>
 
@@ -30,7 +30,7 @@ Source0:		%url/archive/refs/tags/v%version.tar.gz
 
 BuildRequires:  anda-srpm-macros cargo-rpm-macros >= 26
 Requires:		xorriso dracut limine grub2 systemd-devel squashfs-tools parted gdisk
-Requires:		dracut-live dracut-config-generic dracut-config-rescue grub2-tools-extra dracut-squash
+Requires:		dracut-live dracut-config-rescue grub2-tools-extra dracut-squash
 BuildRequires:	cargo rust-packaging pkgconfig(libudev) clang-devel mold
 
 %description
