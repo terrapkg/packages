@@ -1,5 +1,10 @@
 %global _distro_extra_cflags -Wno-uninitialized
 %global _distro_extra_cxxflags -include %_includedir/c++/*/cstdint
+# Define which LLVM/Clang version RPCS3 needs
+%if %{?fedora} >= 43
+%global llvm_major 20
+%bcond llvm_compat 1
+%endif
 # GLIBCXX_ASSERTIONS is known to break RPCS3
 %global build_cflags %(echo %{__build_flags_lang_c} | sed 's/-Wp,-D_GLIBCXX_ASSERTIONS//g') %{?_distro_extra_cflags}
 %global build_cxxflags %(echo %{__build_flags_lang_cxx} | sed 's/-Wp,-D_GLIBCXX_ASSERTIONS//g') %{?_distro_extra_cxxflags}
@@ -17,7 +22,8 @@ License:        GPL-2.0-only
 URL:            https://github.com/RPCS3/rpcs3
 %dnl Source0:        %url/archive/refs/tags/v%version.tar.gz
 BuildRequires:  anda-srpm-macros glew openal-soft cmake vulkan-validation-layers git-core mold
-BuildRequires:  clang
+BuildRequires:  llvm%{?llvm_major}-devel
+BuildRequires:  clang%{?llvm_major}
 BuildRequires:  cmake(FAudio)
 BuildRequires:  cmake(OpenAL)
 BuildRequires:  cmake(OpenCV)
@@ -52,7 +58,7 @@ BuildRequires:  pkgconfig(wayland-server)
 BuildRequires:  pkgconfig(wayland-cursor)
 #BuildRequires:  pkgconfig(wayland-eglstream)
 BuildRequires:  doxygen
-BuildRequires:  qt6-qtbase-private-devel vulkan-devel jack-audio-connection-kit-devel llvm-devel
+BuildRequires:  qt6-qtbase-private-devel vulkan-devel jack-audio-connection-kit-devel
 
 %description
 %summary.
@@ -62,6 +68,9 @@ BuildRequires:  qt6-qtbase-private-devel vulkan-devel jack-audio-connection-kit-
 
 %build
 # Looking at the CMakeLists.txt, this is the intended compiler and there are no fixes for GCC on aarch64
+%if %{with llvm_compat}
+export LLVM_DIR=%{_libdir}/llvm%{?llvm_major}/%{_lib}/cmake
+%endif
 %cmake -DDISABLE_LTO=TRUE                                \
     -DZSTD_BUILD_STATIC=ON                               \
     -DCMAKE_SKIP_RPATH=ON                                \
@@ -84,8 +93,13 @@ BuildRequires:  qt6-qtbase-private-devel vulkan-devel jack-audio-connection-kit-
     -DUSE_SYSTEM_FLATBUFFERS=OFF                         \
     -DUSE_SYSTEM_PUGIXML=OFF                             \
     -DUSE_SYSTEM_WOLFSSL=OFF                             \
+%if %{with llvm_compat}
+    -DCMAKE_C_COMPILER=clang-%{?llvm_major}              \
+    -DCMAKE_CXX_COMPILER=clang++-%{?llvm_major}          \
+%else
     -DCMAKE_C_COMPILER=clang                             \
     -DCMAKE_CXX_COMPILER=clang++                         \
+%endif
     -DCMAKE_LINKER=mold                                  \
     -DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS -fuse-ld=mold" \
     -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS -fuse-ld=mold"    
