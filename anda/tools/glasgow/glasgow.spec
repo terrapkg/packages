@@ -64,7 +64,7 @@ install -Dm644 config/70-glasgow.rules %{buildroot}%{_udevrulesdir}/70-glasgow.r
 %{_udevrulesdir}/70-glasgow.rules
 %ghost %python3_sitelib/__pycache__/*.cpython-*.pyc
 %ghost %python3_sitelib/%{name}/subcommands/__pycache__/*.cpython-*.pyc
-%python3_sitelib/glasgow-0.1.0.dist-info/*
+%python3_sitelib/glasgow-*.dist-info/*
 
 %changelog
 * Mon Sep 29 2025 Owen Zimmerman <owen@fyralabs.com>
