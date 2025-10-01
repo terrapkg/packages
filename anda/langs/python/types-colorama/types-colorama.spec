@@ -6,7 +6,7 @@
 %global _desc Typing stubs for colorama.
 
 Name:			python-%{pypi_name}
-Version:		%commit_date.%shortcommit
+Version:		0~%{commit_date}git.%shortcommit
 Release:		1%?dist
 Summary:		Typing stubs for colorama
 License:		Apache-2.0
