@@ -5,7 +5,7 @@
 # namespace
 %global fontorg th.or.sipa
 Version:		20200217
-Release:		5%{?dist}
+Release:		6%{?dist}
 URL:			https://www.nstda.or.th/home/news_post/thai-font/
 %global fontlicense       LicenseRef-DIP-SIPA AND OFL-1.1-RFN
 %global fontlicenses      LICENSE
@@ -22,6 +22,24 @@ Obsoletes:      sipa-fonts < 20200217-5
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
 Summary:		Thai National Fonts collection
 Source0:		https://waa.inter.nstda.or.th/stks/pub/%(x=%version;echo ${x:0:4})/%version-13Fonts.zip
+
+
+# The packages were renamed
+Obsoletes:      th-baijam-fonts
+Obsoletes:      th-chakra-fonts
+Obsoletes:      th-charm-fonts
+Obsoletes:      th-charmonman-fonts
+Obsoletes:      th-fahkwang-fonts
+Obsoletes:      th-k2d-july8-fonts
+Obsoletes:      th-kodchasal-fonts
+Obsoletes:      th-koho-fonts
+Obsoletes:      th-krub-fonts
+Obsoletes:      th-mali-grade6-fonts
+Obsoletes:      th-niramit-as-fonts
+Obsoletes:      th-sarabun-fonts
+Obsoletes:      th-sarabunnew-fonts
+Obsoletes:      th-srisakdi-fonts
+
 # migration path for old versions
 Requires:       %{name}-all
 # The SIPA license is a custom localized variant of the OFL,
