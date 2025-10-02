@@ -30,6 +30,7 @@ BuildRequires:  pkgconfig(libjpeg)
 BuildRequires:  pkgconfig(libwebp)
 BuildRequires:  pkgconfig(libmagic)
 BuildRequires:  pkgconfig(spng)
+BuildRequires:  pkgconfig(librsvg-2.0)
 
 %if %{with libjxl}
 BuildRequires:  pkgconfig(libjxl)
