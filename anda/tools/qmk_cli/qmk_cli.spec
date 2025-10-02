@@ -5,12 +5,11 @@
 
 Name:			python-%{pypi_name}
 Version:		1.1.8
-Release:		2%?dist
+Release:		3%?dist
 Summary:		A program to help users work with QMK
 License:		MIT
 URL:			https://github.com/qmk/qmk_cli
 Source0:		%url/archive/refs/tags/%version.tar.gz
-Patch0:         nonexistant-deps.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
@@ -56,7 +55,7 @@ Provides:       qmk-cli
 %_desc
 
 %prep
-%autosetup -p1 -n qmk_cli-%version
+%autosetup -n qmk_cli-%version
 
 %build
 %pyproject_wheel
