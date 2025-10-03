@@ -19,6 +19,7 @@ BuildRequires:	cmake(VulkanHeaders)
 BuildRequires:	vulkan-loader
 BuildRequires:	OpenCL-ICD-Loader
 BuildConflicts:	dkms-nvidia akmod-nvidia
+Requires:       android-tools
 
 %description
 This application mirrors Android devices (video and audio) connected via USB or TCP/IP and allows control using the computer's keyboard and mouse. It does not require root access or an app installed on the device. It works on Linux, Windows, and macOS.
@@ -31,10 +32,12 @@ This application mirrors Android devices (video and audio) connected via USB or 
 %build
 export WORK_DIR=$PWD/work
 export OUTPUT_DIR=$PWD/output
+%dnl #export CFLAGS="$(echo $CFLAGS | sed 's/-D_GNU_SOURCE[=1]*//g')"
+%dnl #export CPPFLAGS="$(echo $CPPFLAGS | sed 's/-D_GNU_SOURCE[=1]*//g')"
 export VERSION=v%version
 
 %meson \
-	-Dcompile_server=false \
+	-Dcompile_server=true \
 	-Dportable=false \
 	-Dstatic=false
 %meson_build
@@ -48,5 +51,7 @@ export VERSION=v%version
 %_bindir/scrcpy
 %_datadir/applications/scrcpy-console.desktop
 %_datadir/applications/scrcpy.desktop
+%_datadir/scrcpy/scrcpy-server
+%_datadir/bash-completion/completions/scrcpy
 %_iconsdir/hicolor/*/apps/scrcpy.png
 %_mandir/man1/scrcpy.1.*
