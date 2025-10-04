@@ -4,7 +4,7 @@
 
 Name:           readymade-git
 Version:        %commit_date.%shortcommit
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Install ready-made distribution images!
 License:        GPL-3.0-or-later
 URL:            https://github.com/FyraLabs/readymade
@@ -58,6 +58,7 @@ ln -sf %{_datadir}/applications/com.fyralabs.Readymade.desktop %{buildroot}%{_da
 
 %files config-ultramarine
 %_sysconfdir/readymade.toml
+%_datadir/readymade/*
 
 
 %files
