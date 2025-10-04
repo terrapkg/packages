@@ -7,7 +7,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0~%{commit_date}git.%shortcommit
-Release:		2%?dist
+Release:		3%?dist
 Summary:		Typing stubs for colorama
 License:		Apache-2.0
 URL:			https://github.com/python/typeshed
@@ -24,6 +24,7 @@ Packager:	    Owen Zimmerman <owen@fyralabs.com>
 Summary:        %{summary}
 Provides:       types-colorama
 Provides:       python%{python3_pkgversion}dist(types-colorama)
+Provides:       python3.13dist(types-colorama)
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
