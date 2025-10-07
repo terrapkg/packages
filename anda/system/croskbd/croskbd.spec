@@ -1,15 +1,11 @@
-%global commit a5869aa4561bcae91c9fbaf4af33a2255f197eab
-%global commit_date 20251004
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
-
 Name:           croskbd
-Version:        0~%{commit_date}git.%shortcommit
+Version:        0.1.0
 Release:        1%{?dist}
 Summary:        Chromebook Keyboard Daemon
 
 License:        BSD-3-Clause
 URL:            https://github.com/WeirdTreeThing/croskbd
-Source0:        %{url}/archive/%{commit}/croskbd-%{commit}.tar.gz
+Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
@@ -19,13 +15,13 @@ BuildRequires:  make gcc systemd-rpm-macros
 %{summary}.
 
 %prep
-%autosetup -n %{name}-%{commit}
+%autosetup -n %{name}-%{version}
 
 %build
 %make_build
 
 %install
-%make_install PREFIX=%{_prefix} INSTALL="/usr/bin/install -p" install install_systemd
+%make_install DESTDIR=%{buildroot} PREFIX=%{_prefix} install install_systemd
 
 %post
 %systemd_post %{name}.service
