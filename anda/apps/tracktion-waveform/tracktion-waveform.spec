@@ -48,4 +48,4 @@ export QA_RPATHS="[0-7]"
 
 %changelog
 * Tue Oct 07 2025 Cappy Ishihara <cappy@cappuchino.xyz>
-- 
+- Initial Release
