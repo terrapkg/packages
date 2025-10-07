@@ -10,7 +10,6 @@ Summary:        Chromebook Keyboard Daemon
 License:        BSD-3-Clause
 URL:            https://github.com/WeirdTreeThing/croskbd
 Source0:        %{url}/archive/%{commit}/croskbd-%{commit}.tar.gz
-Patch0:         makefile-install-path-fix.patch
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
@@ -20,7 +19,7 @@ BuildRequires:  make gcc systemd-rpm-macros
 %{summary}.
 
 %prep
-%autosetup -p1 -n %{name}-%{commit}
+%autosetup -n %{name}-%{commit}
 
 %build
 %make_build
