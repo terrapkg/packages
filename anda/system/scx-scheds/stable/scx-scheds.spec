@@ -1,5 +1,5 @@
 Name:           scx-scheds
-Version:        1.0.16
+Version:        1.0.17
 Release:        1%?dist
 Summary:        sched_ext schedulers and tools
 SourceLicense:  GPL-2.0-only
