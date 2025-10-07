@@ -1,9 +1,9 @@
 #? https://src.fedoraproject.org/rpms/hyprland-protocols/blob/rawhide/f/hyprland-protocols.spec
 
 %global realname hyprland-protocols
-%global ver 0.6.4
-%global commit 613878cb6f459c5e323aaafe1e6f388ac8a36330
-%global commit_date 20250604
+%global ver 0.7.0
+%global commit bd153e76f751f150a09328dbdeb5e4fab9d23622
+%global commit_date 20251005
 %global shortcommit %{sub %commit 1 7}
 
 Name:           %realname.nightly

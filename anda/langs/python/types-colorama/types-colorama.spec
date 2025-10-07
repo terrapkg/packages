@@ -1,5 +1,5 @@
-%global commit bee1e1f551c1c4b74b1cbb250ffd1152290b40a5
-%global commit_date 20251002
+%global commit 058aa6246b9c5b61267dadf1ea25b7040960d86a
+%global commit_date 20251007
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %global pypi_name types-colorama
@@ -23,6 +23,8 @@ Packager:	    Owen Zimmerman <owen@fyralabs.com>
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
 Provides:       types-colorama
+Provides:       python%{python3_pkgversion}dist(types-colorama)
+Provides:       python3.13dist(types-colorama)
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
