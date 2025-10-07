@@ -14,7 +14,7 @@ Patch0:         makefile-install-path-fix.patch
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
-BuildRequires:  make gcc gcc-c++ systemd-rpm-macros
+BuildRequires:  make gcc systemd-rpm-macros
 
 %description
 %{summary}.
