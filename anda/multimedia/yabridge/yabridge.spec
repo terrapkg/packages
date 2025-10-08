@@ -173,6 +173,9 @@ export LDFLAGS="%{build_ldflags}"
 %define bitbridge false
 %endif
 
+export CC_LD=mold
+export LD=mold
+
 %if %{with_32bit}
 %meson --cross-file cross-wine.conf \
   -Dbitbridge=true --wrap-mode=default --unity=on --unity-size=1000
