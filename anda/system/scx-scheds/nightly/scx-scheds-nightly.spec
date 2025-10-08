@@ -1,7 +1,7 @@
-%global commit 1d624e026144d0df6038d23503c4f7b595382086
+%global commit 76e7eadc8caab8b91f17effe9bdd2b5b7b03e7a3
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20251007
-%global ver 1.0.16
+%global commitdate 20251008
+%global ver 1.0.17
 
 Name:           scx-scheds-nightly
 Version:        %{ver}^%{commitdate}.git.%{shortcommit}
