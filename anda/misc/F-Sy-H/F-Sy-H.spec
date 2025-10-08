@@ -7,7 +7,7 @@ Summary:        Feature-rich Syntax Highlighting for Zsh
 License:        BSD-3-Clause
 URL:            https://github.com/z-shell/F-Sy-H
 Source0:        %url/archive/refs/tags/v%version.tar.gz
-Requires:       bash
+Requires:       zsh
 BuildArch:      noarch
 Provides:       f-sy-h
 Provides:       zsh-F-Sy-H
