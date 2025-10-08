@@ -1,0 +1,1 @@
+rpm.version(gh("z-shell/F-Sy-H"));
