@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.4.1
-Release:		2%?dist
+Release:		1%?dist
 Summary:		%{_desc}
 License:		GPLv3
 URL:			https://github.com/JoshuaVandaele/SuperISOUpdater
