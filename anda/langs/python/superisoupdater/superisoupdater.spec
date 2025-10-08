@@ -11,15 +11,11 @@ Source0:		%url/archive/refs/tags/%{version}.tar.gz
 Patch0:         remove-version-reqs.patch
 BuildArch:      noarch
 
-BuildRequires:  python3
 BuildRequires:  python3-devel
 BuildRequires:  python3-build
 BuildRequires:  python3-wheel
 BuildRequires:  python3-setuptools
-BuildRequires:  python3-setuptools_scm
 BuildRequires:  python3-pip
-BuildRequires:  python3-sphinx
-BuildRequires:  python3-sphinx_rtd_theme
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
