@@ -42,6 +42,7 @@ Release:        %{release}%{?dist}
 %endif
 Summary:        Yet Another VST bridge, run Windows VST2 plugins under Linux
 License:        GPLv3
+Packager:       Cappy Ishihara <cappy@fyralabs.com>
 URL:            https://github.com/robbert-vdh/yabridge
 %if %{beta_or_rc}
 Source0:        https://github.com/robbert-vdh/yabridge/archive/{commit}/%{name}-%{version}-git%{shortcommit}.tar.gz
