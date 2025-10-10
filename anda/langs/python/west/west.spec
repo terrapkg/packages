@@ -10,8 +10,6 @@ URL:			https://github.com/zephyrproject-rtos/west
 Source0:		%{url}/archive/refs/tags/v%{version}.tar.gz
 BuildArch:      noarch
 
-BuildRequires:  python3
-BuildRequires:  python3.10
 BuildRequires:  python3-build
 BuildRequires:  python3-installer
 BuildRequires:  python3-wheel
