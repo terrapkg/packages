@@ -53,7 +53,8 @@ nvm install 24
 sed -i '/\"x64\",/d' electron-builder.ts
 %endif
 #export ELECTRON_VERSION="$(electron --version --no-sandbox | sed 's/v//')"
-%{__bun} install --no-frozen-lockfile
+%{__bun} install --no-save
+%{__bun} update node-abi
 #sed '/electronFuses:/i electronVersion: "'$ELECTRON_VERSION'",'
 %{__bun} run build 
 %{__bun} run packageLinux
