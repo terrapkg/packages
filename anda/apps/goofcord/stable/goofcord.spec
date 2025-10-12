@@ -7,7 +7,7 @@
 %elifarch aarch64 armv7hl armv7l
 %global __requires_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*)|(.*\\x86_64*\\.so.*)|(.*\\x86-64*\\.so.*))$
 %endif
-%bcond vendored_nodejs 0
+%bcond vendored_nodejs 1
 
 Name:          goofcord
 Version:       1.11.0
@@ -52,12 +52,11 @@ nvm install 24
 %ifarch aarch64 armv7hl armv7l
 sed -i '/\"x64\",/d' electron-builder.ts
 %endif
-export ELECTRON_VERSION="$(electron --version --no-sandbox | sed 's/v//')"
+#export ELECTRON_VERSION="$(electron --version --no-sandbox | sed 's/v//')"
 %{__bun} install
 #sed '/electronFuses:/i electronVersion: "'$ELECTRON_VERSION'",'
 %{__bun} run build 
-%{__bun} install electron-builder
-%{__bun} exec electron-builder --linux --dir --publish=never -c.electronVersion="$ELECTRON_VERSION"
+%{__bun} run packageLinux
 
 %install
 mkdir -p %{buildroot}%{_datadir}/%{name}
