@@ -1,9 +1,9 @@
 #? https://src.fedoraproject.org/rpms/hyprgraphics/blob/rawhide/f/hyprgraphics.spec
 
 %global realname hyprgraphics
-%global ver 0.1.6
-%global commit c44e749dd611521dee940d00f7c444ee0ae4cfb7
-%global commit_date 20250919
+%global ver 0.2.0
+%global commit 9431db625cd9bb66ac55525479dce694101d6d7a
+%global commit_date 20251004
 %global shortcommit %{sub %commit 1 7}
 
 %bcond libjxl 1
@@ -24,11 +24,13 @@ BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  (pkgconfig(hyprlang) with hyprlang.nightly-devel)
 BuildRequires:  pkgconfig(cairo)
+BuildRequires:  pkgconfig(pangocairo)
 BuildRequires:  (pkgconfig(hyprutils) with hyprutils.nightly-devel)
 BuildRequires:  pkgconfig(libjpeg)
 BuildRequires:  pkgconfig(libwebp)
 BuildRequires:  pkgconfig(libmagic)
 BuildRequires:  pkgconfig(spng)
+BuildRequires:  pkgconfig(librsvg-2.0)
 
 %if %{with libjxl}
 BuildRequires:  pkgconfig(libjxl)

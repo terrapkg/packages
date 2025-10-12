@@ -1,6 +1,6 @@
-%global commit bc95317ba45a686dcda9721a0d5148a53378099e
+%global commit d3ee3c5b8a382aee982973cce704411b9a33f052
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global fulldate 2025-09-21
+%global fulldate 2025-10-11
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
 %global ver 1.2.1
@@ -44,7 +44,8 @@ BuildRequires:  pkgconfig(oniguruma)
 BuildRequires:  pkgconfig(zlib)
 Requires:       %{name}-terminfo = %{evr}
 Requires:       %{name}-shell-integration = %{evr}
-Requires:       (%{name}-kio = %{evr} if kf6-kio)
+Requires:       (%{name}-kio = %{evr} if kf5-kio-core)
+Requires:       (%{name}-kio = %{evr} if kf6-kio-core)
 Requires:       gtk4
 Requires:       gtk4-layer-shell
 Requires:       libadwaita
@@ -97,6 +98,13 @@ BuildArch:      noarch
 
 %description    zsh-completion
 Zsh shell completion for Ghostty.
+
+%package        devel
+Summary:        Development files for Ghostty.
+Requires:       %{name} = %{evr}
+
+%description    devel
+This package includes the development files for Ghostty.
 
 %package        kio
 Summary:        KIO support for Ghostty
@@ -229,6 +237,11 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 
 %files zsh-completion
 %{zsh_completions_dir}/_%{base_name}
+
+%files devel
+%{_includedir}/ghostty/
+%{_libdir}/libghostty-vt.so
+%{_datadir}/pkgconfig/libghostty-vt.pc
 
 %files kio
 %{_datadir}/kio/servicemenus/%{appid}.desktop

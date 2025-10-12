@@ -1,10 +1,10 @@
-%global commit 9621ae11165ad4de4a3d9edd722bb32d0233ebed
-%global commit_date 20250908
+%global commit bb8cfa0ec76c703faac1f47743206cc5e267d16d
+%global commit_date 20251004
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           readymade-git
 Version:        %commit_date.%shortcommit
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Install ready-made distribution images!
 License:        GPL-3.0-or-later
 URL:            https://github.com/FyraLabs/readymade
@@ -13,7 +13,12 @@ Source1:        https://github.com/FyraLabs/rdms_proc_macros/archive/HEAD.tar.gz
 BuildRequires:	anda-srpm-macros rust-packaging mold
 BuildRequires:  pkgconfig(libhelium-1)
 BuildRequires:  clang-devel
+BuildRequires:  gcc
 BuildRequires:  cmake
+BuildRequires:  glibc-all-langpacks
+# We'll need cryptsetup to unlock disks for now
+Requires:       cryptsetup
+Recommends:     readymade-config
 Conflicts:      readymade
 Obsoletes:      readymade-nightly < 20250502.4dc78ec-3
 
@@ -53,6 +58,7 @@ ln -sf %{_datadir}/applications/com.fyralabs.Readymade.desktop %{buildroot}%{_da
 
 %files config-ultramarine
 %_sysconfdir/readymade.toml
+%_datadir/readymade/*
 
 
 %files

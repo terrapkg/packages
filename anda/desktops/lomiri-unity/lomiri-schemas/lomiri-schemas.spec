@@ -1,9 +1,9 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-schemas
-%global commit 139e6090d18040270e942429cf08f6b48a67b0cc
+%global commit c5d57303dfb0f9641c9c0ce572905b3eedb99bd9
 %forgemeta
 
 Name:       lomiri-schemas
-Version:    0.1.8
+Version:    0.1.9
 Release:    1%?dist
 Summary:    Configuration schemas for lomiri
 License:    LGPL-2.0-or-later

@@ -12,7 +12,7 @@
 
 # https://github.com/sentriz/cliphist
 %global goipath         github.com/sentriz/cliphist
-Version:                0.6.1
+Version:                0.7.0
 
 %gometa -f
 
@@ -23,7 +23,7 @@ Wayland clipboard manager with support for multimedia.}
 %global godocs          CHANGELOG.md readme.md version.txt
 
 Name:           cliphist
-Release:        3%?dist
+Release:        1%?dist
 Summary:        Wayland clipboard manager with support for multimedia
 Provides:       golang-github-sentriz-cliphist = %version-%release
 Obsoletes:      golang-github-sentriz-cliphist < 0.6.1-2

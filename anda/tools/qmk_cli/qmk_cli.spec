@@ -5,18 +5,17 @@
 
 Name:			python-%{pypi_name}
 Version:		1.1.8
-Release:		1%?dist
+Release:		3%?dist
 Summary:		A program to help users work with QMK
 License:		MIT
 URL:			https://github.com/qmk/qmk_cli
 Source0:		%url/archive/refs/tags/%version.tar.gz
-Patch0:         nonexistant-deps.patch
+BuildArch:      noarch
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-pip
 BuildRequires:  python3dist(setuptools)
 BuildRequires:  git
-BuildRequires:  python3-devel
 
 Requires:       python3
 Requires:       python3-platformdirs
@@ -40,11 +39,6 @@ Requires:       python3-pyusb
 Requires:       python3-pyserial
 Requires:       python3-pillow
 
-Provides:       qmk
-Provides:       qmk_cli
-Provides:       qmk-cli
-Provides:       python3-qmk_cli
-
 Packager:	      Owen Zimmerman <owen@fyralabs.com>
 
 %description
@@ -52,13 +46,16 @@ Packager:	      Owen Zimmerman <owen@fyralabs.com>
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
+Provides:       qmk
+Provides:       qmk_cli
+Provides:       qmk-cli
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 %_desc
 
 %prep
-%autosetup -p1 -n qmk_cli-%version
+%autosetup -n qmk_cli-%version
 
 %build
 %pyproject_wheel

@@ -3,7 +3,7 @@
 
 # Exclude private libraries
 %global __requires_exclude libffmpeg.so
-%global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
+%global __provides_exclude ^lib.*\\.so.*$
 
 %ifarch x86_64
 %define arch %{nil}
@@ -12,7 +12,7 @@
 %endif
 
 Name:			signal-desktop	
-Version:			7.71.0
+Version:			7.74.0
 Release:			1%?dist
 Summary:		A private messenger for Windows, macOS, and Linux
 URL:			https://signal.org
@@ -48,6 +48,10 @@ Requires:		mesa-libgbm
 Requires:		at-spi2-atk
 Requires:		expat
 Requires:		alsa-lib
+
+Provides:       signal
+Provides:       Signal
+Provides:       Signal-Desktop
 
 %description
 Signal Desktop links with Signal on Android or iOS and lets you message from your Windows, macOS, and Linux computers.

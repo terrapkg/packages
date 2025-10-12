@@ -1,7 +1,7 @@
-%global commit 4587a88e05cb65b0c73dad50c5f613d94bed064e
+%global commit 47bb889b56c1b27b651eb5fb092531348b971415
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20250921
-%global ver 1.0.16
+%global commitdate 20251012
+%global ver 1.0.17
 
 Name:           scx-scheds-nightly
 Version:        %{ver}^%{commitdate}.git.%{shortcommit}
@@ -97,6 +97,7 @@ License:       GPL-2.0-only
 %license LICENSE.dependencies
 %{_bindir}/scx*
 %{_bindir}/vmlinux_docify
+%{_bindir}/xtask
 %{_unitdir}/scx_loader.service
 %{_datadir}/dbus-1/system.d/org.scx.Loader.conf
 %{_datadir}/dbus-1/system-services/org.scx.Loader.service

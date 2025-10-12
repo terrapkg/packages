@@ -1,5 +1,5 @@
 Name:			scrcpy
-Version:		3.3.2
+Version:		3.3.3
 Release:		1%?dist
 Summary:		Display and control your Android device
 License:		Apache-2.0
@@ -17,7 +17,8 @@ BuildRequires:	pkgconfig(libusb)
 BuildRequires:	pkgconfig(libv4l2)
 BuildRequires:	cmake(VulkanHeaders)
 BuildRequires:	vulkan-loader
-BuildRequires:	%_libdir/libOpenCL.so.1
+BuildRequires:	OpenCL-ICD-Loader
+BuildConflicts:	dkms-nvidia akmod-nvidia
 
 %description
 This application mirrors Android devices (video and audio) connected via USB or TCP/IP and allows control using the computer's keyboard and mouse. It does not require root access or an app installed on the device. It works on Linux, Windows, and macOS.
