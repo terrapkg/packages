@@ -9,11 +9,13 @@ Summary:        A modern, beautiful system monitor
 License:        GPL-3.0-only
 URL:            https://github.com/tau-OS/monita
 Source0:        %url/archive/%commit.tar.gz
+Packager:       madonuko <mado@fyralabs.com>
 BuildRequires:  meson vala
 BuildRequires:  pkgconfig(gtk4)
 BuildRequires:  pkgconfig(libhelium-1)
 BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  pkgconfig(libgtop-2.0)
+BuildRequires:  %_bindir/update-desktop-database
 
 %description
 A modern, beautiful system monitor for Linux built with GTK4 and libhelium.
