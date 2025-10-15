@@ -70,6 +70,8 @@ License:       GPL-2.0-only
 %install
 %meson_install
 
+mv services/systemd/README.md SERVICE_MIGRATION.md
+
 %{cargo_license_online} > LICENSE.dependencies
 
 %post
@@ -84,6 +86,7 @@ License:       GPL-2.0-only
 %files
 %doc OVERVIEW.md
 %doc README.md
+%doc SERVICE_MIGRATION.md
 %license LICENSE
 %license LICENSE.dependencies
 %{_bindir}/scx*
