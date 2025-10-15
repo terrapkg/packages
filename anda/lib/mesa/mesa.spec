@@ -80,7 +80,7 @@ Summary:        Mesa graphics libraries
 # disabled by default, and has to be enabled manually. See `terra/release/terra-mesa.repo` for details.
 Epoch:          1
 Version:        25.2.4
-Release:        1%?dist
+Release:        2%?dist
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0
 URL:            http://www.mesa3d.org
 
@@ -94,6 +94,7 @@ Patch10:        gnome-shell-glthread-disable.patch
 
 # https://github.com/bazzite-org/mesa
 Patch20:        bazzite.patch
+Patch21:        https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/37498.diff
 
 BuildRequires:  meson >= 1.3.0
 BuildRequires:  gcc
