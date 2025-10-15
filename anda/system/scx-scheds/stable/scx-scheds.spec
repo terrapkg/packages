@@ -70,30 +70,29 @@ License:       GPL-2.0-only
 %install
 %meson_install
 
+mv services/systemd/README.md SERVICE_MIGRATION.md
+
 %{cargo_license_online} > LICENSE.dependencies
 
 %post
 %systemd_post scx_loader.service
-%systemd_post scx.service
 
 %preun
 %systemd_preun scx_loader.service
-%systemd_preun scx.service
 
 %postun
 %systemd_postun_with_restart scx_loader.service
-%systemd_postun_with_restart scx.service
 
 %files
 %doc OVERVIEW.md
 %doc README.md
+%doc SERVICE_MIGRATION.md
 %license LICENSE
 %license LICENSE.dependencies
-%attr(0644,root,root) %config(noreplace) %{_sysconfdir}/default/scx
 %{_bindir}/scx*
 %{_bindir}/vmlinux_docify
+%{_bindir}/xtask
 %{_unitdir}/scx_loader.service
-%{_unitdir}/scx.service
 %{_datadir}/dbus-1/system.d/org.scx.Loader.conf
 %{_datadir}/dbus-1/system-services/org.scx.Loader.service
 %config(noreplace) %{_datadir}/scx_loader/config.toml
