@@ -86,7 +86,6 @@ License:       GPL-2.0-only
 %doc README.md
 %license LICENSE
 %license LICENSE.dependencies
-%attr(0644,root,root) %config(noreplace) %{_sysconfdir}/default/scx
 %{_bindir}/scx*
 %{_bindir}/vmlinux_docify
 %{_unitdir}/scx_loader.service
