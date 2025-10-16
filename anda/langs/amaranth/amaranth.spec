@@ -4,7 +4,7 @@
 %define _python_dist_allow_version_zero 1
 
 Name:			python-%{pypi_name}
-Version:		0.5.7
+Version:		0.5.8
 Release:		1%?dist
 Summary:		A modern hardware definition language and toolchain based on Python
 License:		BSD-2-Clause
