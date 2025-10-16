@@ -1,8 +1,8 @@
 #? https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=throne-git
 
 Name: throne
-Version: 1.0.5
-Release: 3%?dist
+Version: 1.0.6
+Release: 1%?dist
 Summary: Qt based cross-platform GUI proxy configuration manager (backend: sing-box)
 URL: https://github.com/throneproj/Throne
 License: GPLv3
