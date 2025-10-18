@@ -10,7 +10,7 @@
 
 Name:           gnome-shell
 Version:        %{major_version}.%{minor_version}
-Release:        1%{?dist}.switcheroo
+Release:        2%{?dist}.switcheroo
 Summary:        Window management and application launching for GNOME
 
 Provides:       gnome-shell.switcheroo = %version-%release
