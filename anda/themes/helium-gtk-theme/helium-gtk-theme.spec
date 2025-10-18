@@ -1,4 +1,4 @@
-%global ver 1.8.70
+%global ver 1.8.71
 
 Summary:        tauOS GTK/GNOME Shell Themes
 Name:           helium-gtk-theme
