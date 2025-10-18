@@ -18,6 +18,7 @@ BuildRequires:	make gcc flex bison elfutils-devel parted vboot-utils golang xz b
 %ifarch aarch64
 BuildRequires:  python3-importlib-metadata
 BuildRequires:  python3-packaging
+BuildRequires:  python3-importlib-resources
 %endif
 
 %description
