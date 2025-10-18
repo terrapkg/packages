@@ -17,6 +17,7 @@ URL:			https://github.com/FyraLabs/submarine
 BuildRequires:	make gcc flex bison elfutils-devel parted vboot-utils golang xz bc openssl-devel git depthcharge-tools uboot-tools openssl-devel-engine
 %ifarch aarch64
 BuildRequires:  python3-importlib-metadata
+BuildRequires:  python3-packaging
 %endif
 
 %description
