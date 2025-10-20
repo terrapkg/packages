@@ -5,6 +5,7 @@ Summary:		Tiny alternative Discord client with a smaller footprint, snappier sta
 License:		GPL-3.0-only
 URL:			https://spikehd.dev/projects/dorion
 Source0:		https://github.com/SpikeHD/Dorion/archive/refs/tags/v%version.tar.gz
+Source1:		https://raw.githubusercontent.com/uwu/shelter-builds/main/shelter.js
 Packager:		madonuko <mado@fyralabs.com>
 BuildRequires:	pnpm rpm_macro(cargo_install) rust-packaging
 BuildRequires:	cmake gcc-c++
@@ -20,6 +21,7 @@ Dorion is an alternative Discord client aimed towards lower-spec or storage-sens
 #pnpm i
 cd src-tauri
 %cargo_prep_online
+cp %{S:1} injection/shelter.js
 
 %build
 #pnpm run build:js
