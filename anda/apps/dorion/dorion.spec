@@ -9,7 +9,7 @@ Packager:		madonuko <mado@fyralabs.com>
 BuildRequires:	pnpm rpm_macro(cargo_install) rust-packaging
 BuildRequires:	cmake gcc-c++
 BuildRequires:	pkgconfig(gtk+-3.0)
-BuildRequires:	webkit2gtk-web-extension-4.1
+BuildRequires:	pkgconfig(webkit2gtk-web-extension-4.1)
 
 %description
 Dorion is an alternative Discord client aimed towards lower-spec or storage-sensitive PCs that supports themes, plugins, and more!
