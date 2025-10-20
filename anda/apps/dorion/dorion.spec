@@ -1,6 +1,4 @@
 %undefine __brp_mangle_shebangs
-%global _description %{expand:
-Dorion is an alternative Discord client aimed towards lower-spec or storage-sensitive PCs that supports themes, plugins, and more!}
 
 Name:			dorion
 Version:		6.11.0
@@ -18,21 +16,8 @@ BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	pkgconfig(webkit2gtk-web-extension-4.1)
 BuildRequires:	pkgconfig(openssl)
 
-%description %{_description}
-
-%package        devel
-Summary:        %{summary}
-BuildArch:      noarch
-
-%description    devel %{_description}
-
-This package contains library source intended for building other packages which
-use the "%{crate}" crate.
-
-%files          devel
-%license %{crate_instdir}/LICENSE
-%doc %{crate_instdir}/README.md
-%{crate_instdir}/
+%description
+Dorion is an alternative Discord client aimed towards lower-spec or storage-sensitive PCs that supports themes, plugins, and more!
 
 %prep
 %autosetup -n Dorion-%version
