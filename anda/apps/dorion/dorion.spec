@@ -7,7 +7,7 @@ URL:			https://spikehd.dev/projects/dorion
 Source0:		https://github.com/SpikeHD/Dorion/archive/refs/tags/v%version.tar.gz
 Packager:		madonuko <mado@fyralabs.com>
 BuildRequires:	pnpm rpm_macro(cargo_install) rust-packaging
-BuildRequires:	cmake
+BuildRequires:	cmake gcc-c++
 
 %description
 Dorion is an alternative Discord client aimed towards lower-spec or storage-sensitive PCs that supports themes, plugins, and more!
@@ -34,5 +34,5 @@ cd src-tauri
 
 %files
 %doc README.md
-%license LICENSE
+%license LICENSE LICENSE.dependencies
 %_bindir/dorion
