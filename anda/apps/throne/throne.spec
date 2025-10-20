@@ -17,6 +17,7 @@ Source2: Sagernet.SingBox.Version.txt
 
 Source3: %{name}.desktop
 Source4: %{name}.sh
+Source5: https://raw.githubusercontent.com/throneproj/routeprofiles/rule-set/srslist.h
 
 BuildRequires: rpm_macro(cmake)
 BuildRequires: rpm_macro(cmake_build)
@@ -65,6 +66,8 @@ cd gen
 protoc -I . --go_out=. --protorpc_out=. libcore.proto
 
 %build
+mkdir -p %__cmake_builddir
+cp %{S:5} %__cmake_builddir/
 %cmake
 %cmake_build
 DEST=$PWD/%{__cmake_builddir}/%{core}
