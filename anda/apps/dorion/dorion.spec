@@ -62,7 +62,7 @@ cd extension_webkit
 cp %__cmake_builddir/libextension.so .
 cd ..
 %cargo_license_summary_online
-%{cargo_license_online} > LICENSE.dependencies
+%{cargo_license_online} > ../LICENSE.dependencies
 
 %install
 install -Dpm655 Dorion.desktop -t %buildroot%_datadir/applications
