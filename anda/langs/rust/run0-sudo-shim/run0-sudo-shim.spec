@@ -30,6 +30,6 @@ ln -s %_bindir/run0-sudo-shim %buildroot%_bindir/sudo
 
 %files
 %doc README.md
-%license LICENSE LICENSE.dependencies
+%license LICENSE.dependencies
 %_bindir/run0-sudo-shim
 %_bindir/sudo
