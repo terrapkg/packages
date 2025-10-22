@@ -64,11 +64,11 @@ install -Dm644 build/icon.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps/ves
 %files
 %doc README.md
 %license LICENSE
-/usr/bin/vesktop
-/usr/bin/vencorddesktop
-/usr/share/applications/vesktop.desktop
-/usr/share/pixmaps/vesktop.png
-/usr/share/vesktop/*
+%{_bindir}/vesktop
+%{_bindir}/vencorddesktop
+%{_datadir}/applications/vesktop.desktop
+%{_iconsdir}/hicolor/scalable/apps/vesktop.svg
+%{_datadir}/vesktop/*
 
 %changelog
 * Thu Jul 24 2025 Atmois <info@atmois.com> - 1.5.8-2
