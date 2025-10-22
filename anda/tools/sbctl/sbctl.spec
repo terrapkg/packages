@@ -45,6 +45,11 @@ export GOPATH=%{_builddir}/go
 %make_install PREFIX=%{_prefix}
 install -Dm755 %{SOURCE1} -t %{buildroot}%{_bindir}
 
+# This script is actually broken on Fedora, while new Debian installkernel hook works fine
+# for kernel-install, thanks to Fedora's kernel-install hook adding support for
+# postinst.d hooks.
+rm -f %{buildroot}%{_prefix}/lib/kernel/install.d/91-sbctl.install
+
 %transfiletriggerin -P 1 -- /efi /usr/lib /usr/libexec
 if [[ ! -f /run/ostree-booted ]] && grep -q -m 1 -e '\.efi$' -e '/vmlinuz$'; then
     exec </dev/null
@@ -63,7 +68,7 @@ fi
 %doc README.md
 %{_bindir}/sbctl
 %{_bindir}/sbctl-batch-sign
-%{_prefix}/lib/kernel/install.d/91-sbctl.install
+%{_prefix}/lib/kernel/postinst.d/91-sbctl.install
 %{_mandir}/man8/sbctl.8*
 %{_mandir}/man5/sbctl.conf.5*
 %{_datadir}/bash-completion/completions/sbctl
