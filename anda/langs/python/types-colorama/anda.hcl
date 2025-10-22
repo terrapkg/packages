@@ -3,4 +3,7 @@ project pkg {
   rpm {
 	spec = "types-colorama.spec"
   }
+  labels {
+    nightly = 1
+  }
 }
