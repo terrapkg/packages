@@ -21,6 +21,7 @@ Recommends:     systemd-udev
 BuildRequires:  asciidoc
 BuildRequires:  git
 BuildRequires:  go-rpm-macros
+BuildRequires:  pkgconfig(libpcsclite)
 
 %description
 sbctl intends to be a user-friendly secure boot key manager capable of setting
@@ -37,7 +38,7 @@ sed -i '/go build/d' Makefile
 %build
 export GOPATH=%{_builddir}/go
 %global gomodulesmode GO111MODULE=on
-%gobuild -o sbctl ./cmd/sbctl
+%gobuild -o sbctl ./cmd/sbctl   
 %make_build
 
 
@@ -45,13 +46,12 @@ export GOPATH=%{_builddir}/go
 %make_install PREFIX=%{_prefix}
 install -Dm755 %{SOURCE1} -t %{buildroot}%{_bindir}
 
-%transfiletriggerin -P 1 -- /efi /usr/lib /usr/libexec
-if [[ ! -f /run/ostree-booted ]] && grep -q -m 1 -e '\.efi$' -e '/vmlinuz$'; then
-    exec </dev/null
-    %{_bindir}/sbctl-batch-sign
-fi
+# This script is actually broken on Fedora, while new Debian installkernel hook works fine
+# for kernel-install, thanks to Fedora's kernel-install hook adding support for
+# postinst.d hooks.
+rm -f %{buildroot}%{_prefix}/lib/kernel/install.d/91-sbctl.install
 
-%filetriggerpostun -P -10000 -- /boot
+%transfiletriggerin -P 1 -- /efi /usr/lib /usr/libexec
 if [[ ! -f /run/ostree-booted ]] && grep -q -m 1 -e '\.efi$' -e '/vmlinuz$'; then
     exec </dev/null
     %{_bindir}/sbctl-batch-sign
@@ -63,7 +63,7 @@ fi
 %doc README.md
 %{_bindir}/sbctl
 %{_bindir}/sbctl-batch-sign
-%{_prefix}/lib/kernel/install.d/91-sbctl.install
+%{_prefix}/lib/kernel/postinst.d/91-sbctl.install
 %{_mandir}/man8/sbctl.8*
 %{_mandir}/man5/sbctl.conf.5*
 %{_datadir}/bash-completion/completions/sbctl
