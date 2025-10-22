@@ -21,6 +21,7 @@ Recommends:     systemd-udev
 BuildRequires:  asciidoc
 BuildRequires:  git
 BuildRequires:  go-rpm-macros
+BuildRequires:  pkgconfig(libpcsclite)
 
 %description
 sbctl intends to be a user-friendly secure boot key manager capable of setting
@@ -37,7 +38,7 @@ sed -i '/go build/d' Makefile
 %build
 export GOPATH=%{_builddir}/go
 %global gomodulesmode GO111MODULE=on
-%gobuild -o sbctl ./cmd/sbctl
+%gobuild -o sbctl ./cmd/sbctl   
 %make_build
 
 
