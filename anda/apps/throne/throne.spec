@@ -1,8 +1,8 @@
 #? https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=throne-git
 
 Name: throne
-Version: 1.0.5
-Release: 3%?dist
+Version: 1.0.6
+Release: 1%?dist
 Summary: Qt based cross-platform GUI proxy configuration manager (backend: sing-box)
 URL: https://github.com/throneproj/Throne
 License: GPLv3
@@ -17,6 +17,7 @@ Source2: Sagernet.SingBox.Version.txt
 
 Source3: %{name}.desktop
 Source4: %{name}.sh
+Source5: https://raw.githubusercontent.com/throneproj/routeprofiles/rule-set/srslist.h
 
 BuildRequires: rpm_macro(cmake)
 BuildRequires: rpm_macro(cmake_build)
@@ -65,6 +66,8 @@ cd gen
 protoc -I . --go_out=. --protorpc_out=. libcore.proto
 
 %build
+mkdir -p %__cmake_builddir
+cp %{S:5} %__cmake_builddir/
 %cmake
 %cmake_build
 DEST=$PWD/%{__cmake_builddir}/%{core}
