@@ -1,7 +1,7 @@
 # https://github.com/nats-io/natscli
 %global goipath         github.com/nats-io/natscli
-%global commit          6a2312b5296cabee5781e8cebfaa8ad357e74792
-%global commit_date     20251007
+%global commit          2afc2ad240b5fb88a64fed81cd8bb48a5878d935
+%global commit_date     20251021
 %global shortcommit     %{sub %{commit} 1 7}
 
 %gometa -f
