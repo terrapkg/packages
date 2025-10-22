@@ -8,7 +8,7 @@ Name:		vesktop
 Obsoletes:  VencordDesktop < 1.5.8-1
 Obsoletes:  vencord-desktop < 1.5.8-1
 Version:	1.6.0
-Release:	1%?dist
+Release:	2%?dist
 License:	GPL-3.0
 Summary:	Vesktop is a cross platform desktop app aiming to give you a snappier Discord experience with Vencord pre-installed
 URL:		https://github.com/Vencord/Vesktop
@@ -58,8 +58,8 @@ cp -r dist/*-unpacked/. %buildroot/usr/share/vesktop/.
 install -Dm755 dist/*-unpacked/vesktop %buildroot/usr/bin/vesktop
 ln -sf /usr/share/vesktop/vesktop %buildroot/usr/bin/vesktop
 ln -sf /usr/bin/vesktop %buildroot/usr/bin/vencorddesktop
-install -Dm644 vesktop.desktop %buildroot/usr/share/applications/vesktop.desktop
-install -Dm644 build/icon.png %buildroot/usr/share/pixmaps/vesktop.png
+install -Dm644 vesktop.desktop %{buildroot}%{_datadir}/applications/vesktop.desktop
+install -Dm644 build/icon.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps/vesktop.svg
 
 %files
 %doc README.md
