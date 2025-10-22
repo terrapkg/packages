@@ -4,6 +4,6 @@ project pkg {
 		spec = "glasgow.spec"
 	}
  labels {
-    nightly = "1"
+    nightly = 1
   }
 }

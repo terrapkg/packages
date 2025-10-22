@@ -3,6 +3,6 @@ project pkg {
 		spec = "crossystem.spec"
 	}
  labels {
-    nightly = "1"
+    nightly = 1
   }
 }

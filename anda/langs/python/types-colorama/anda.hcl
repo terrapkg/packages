@@ -4,6 +4,6 @@ project pkg {
 	spec = "types-colorama.spec"
   }
   labels {
-    nightly = "1"
+    nightly = 1
   }
 }

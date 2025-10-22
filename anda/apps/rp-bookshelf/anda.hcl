@@ -3,6 +3,6 @@ project pkg {
     spec = "rp-bookshelf.spec"
   }
   labels {
-    nightly = "1"
+    nightly = 1
   }
 }
