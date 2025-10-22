@@ -3,4 +3,7 @@ project pkg {
 	rpm {
 		spec = "pokemon-colorscripts.spec"
 	}
+ labels {
+    nightly = 1
+  }
 }
