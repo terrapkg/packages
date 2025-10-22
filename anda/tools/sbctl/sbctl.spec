@@ -56,12 +56,6 @@ if [[ ! -f /run/ostree-booted ]] && grep -q -m 1 -e '\.efi$' -e '/vmlinuz$'; the
     %{_bindir}/sbctl-batch-sign
 fi
 
-%filetriggerpostun -P -10000 -- /boot
-if [[ ! -f /run/ostree-booted ]] && grep -q -m 1 -e '\.efi$' -e '/vmlinuz$'; then
-    exec </dev/null
-    %{_bindir}/sbctl-batch-sign
-fi
-
 
 %files
 %license LICENSE
