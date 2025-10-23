@@ -33,9 +33,7 @@ BuildRequires: pkgconfig(audec)
 BuildRequires: pkgconfig(libadwaita-1)
 BuildRequires: pkgconfig(libchromaprint)
 BuildRequires: pkgconfig(libcurl)
-#BuildRequires: pkgconfig(libfl)
 BuildRequires: libfl-devel
-# ^ maybe?
 BuildRequires: pkgconfig(libgtop-2.0)
 BuildRequires: pkgconfig(libsass)
 BuildRequires: pkgconfig(libxml-2.0)
@@ -59,9 +57,6 @@ BuildRequires: pkgconfig(rubberband)
 BuildRequires: pkgconfig(jack)
 BuildRequires: pkgconfig(json-glib-1.0)
 BuildRequires: pkgconfig(x11)
-BuildRequires: pkgconfig(Qt5Core)
-BuildRequires: pkgconfig(Qt5Gui)
-BuildRequires: pkgconfig(Qt5Widgets)
 BuildRequires: pkgconfig(libxdot)
 BuildRequires: python3dist(sphinx)
 BuildRequires: python3dist(pypandoc)
@@ -73,6 +68,9 @@ BuildRequires: pkgconfig(zix-0)
 BuildRequires: pkgconfig(yyjson)
 BuildRequires: pkgconfig(epoxy)
 BuildRequires: cmake(Qt6Core)
+BuildRequires: cmake(Qt6Gui)
+BuildRequires: cmake(Qt6Widgets)
+BuildRequires: cmake(Qt6Quick)
 BuildRequires: libstdc++
 BuildRequires: libstdc++-devel
 BuildRequires: libstdc++-static
@@ -81,7 +79,6 @@ BuildRequires: jq-devel
 BuildRequires: help2man
 BuildRequires: texi2html
 BuildRequires: xdg-utils
-BuildRequires: meson
 BuildRequires: guile22
 BuildRequires: flex
 Requires:      ladspa
