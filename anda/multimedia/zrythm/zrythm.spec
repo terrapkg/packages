@@ -107,17 +107,17 @@ various plugin and file formats.
 CFLAGS=$(echo "$CFLAGS -fuse-ld=mold -Wno-incompatible-pointer-types" | sed -E "s@\b-Werror\b@@")
 CXXFLAGS=$(echo "$CFLAGS -fuse-ld=mold" | sed -E "s@\b-Werror\b@@")
 
-%meson \
+%cmake \
        -Drtmidi=enabled \
        -Drtaudio=enabled \
        -Dsdl=enabled \
        -Dlsp_dsp=disabled \
        -Dgraphviz=enabled \
        --buildtype=release
-%meson_build
+%cmake_build
 
 %install
-%meson_install
+%cmake_install
 
 %find_lang %name
 
