@@ -72,6 +72,7 @@ BuildRequires: pkgconfig(soxr)
 BuildRequires: pkgconfig(zix-0)
 BuildRequires: pkgconfig(yyjson)
 BuildRequires: pkgconfig(epoxy)
+BuildRequires: cmake(Qt6Core)
 BuildRequires: libstdc++
 BuildRequires: libstdc++-devel
 BuildRequires: libstdc++-static
