@@ -1,3 +1,4 @@
+%define _distro_extra_cflags -Wno-incompatible-pointer-types
 %global _lto_cflags %{nil}
 
 %global avcodec_soversion 61

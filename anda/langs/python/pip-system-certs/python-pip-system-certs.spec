@@ -1,6 +1,6 @@
 # Created by pyp2rpm-3.3.10
 %global pypi_name pip-system-certs
-%global pypi_version 5.2
+%global pypi_version 5.3
 
 Name:           python-%{pypi_name}
 Version:        %{pypi_version}

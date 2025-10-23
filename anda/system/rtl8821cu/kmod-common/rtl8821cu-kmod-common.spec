@@ -1,6 +1,6 @@
-%global commit 07fa9cf0fa8b0c08920c359c725dfc250e91422b
+%global commit 3d1fcf4bc838542ceb03b0b4e9e40600720cf6ae
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250911
+%global commit_date 20251010
 %global ver 5.12.0.4
 %global modulename rtl8821cu
 %global git_name 8821cu-20210916

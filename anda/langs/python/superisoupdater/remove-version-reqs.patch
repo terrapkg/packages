@@ -1,0 +1,33 @@
+diff --git a/requirements.txt b/requirements.txt
+index f450174..94ac9b8 100644
+--- a/requirements.txt
++++ b/requirements.txt
+@@ -1,4 +1,4 @@
+-beautifulsoup4==4.12.2
+-requests==2.31.0
+-tqdm==4.65.0
+-PGPy13==0.6.1rc1
+\ No newline at end of file
++beautifulsoup4
++requests
++tqdm
++PGPy13
+diff --git a/setup.py b/setup.py
+index aa41242..348b51c 100644
+--- a/setup.py
++++ b/setup.py
+@@ -43,10 +43,10 @@ setup(
+     package_data={"": ["config.toml.default"]},
+     python_requires=">=3.10, <4",
+     install_requires=[
+-        "beautifulsoup4==4.12.2",
+-        "requests==2.31.0",
+-        "tqdm==4.65.0",
+-        "PGPy13==0.6.1rc1",
++        "beautifulsoup4",
++        "requests",
++        "tqdm",
++        "PGPy13",
+     ],  # Optional
+     # extras_require={
+     #     "dev": [""],

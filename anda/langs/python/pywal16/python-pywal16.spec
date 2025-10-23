@@ -3,7 +3,7 @@
 Pywal is a tool that generates a color palette from the dominant colors in an image. It then applies the colors system-wide and on-the-fly in all of your favourite programs.}
 
 Name:           python-%{pypi_name}
-Version:        3.8.10
+Version:        3.8.11
 Release:        1%?dist
 Summary:        16 color fork of the original Pywal
 License:        MIT
