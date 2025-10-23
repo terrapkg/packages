@@ -112,8 +112,7 @@ CXXFLAGS=$(echo "$CFLAGS -fuse-ld=mold" | sed -E "s@\b-Werror\b@@")
        -Drtaudio=enabled \
        -Dsdl=enabled \
        -Dlsp_dsp=disabled \
-       -Dgraphviz=enabled \
-       --buildtype=release
+       -Dgraphviz=enabled
 %cmake_build
 
 %install
