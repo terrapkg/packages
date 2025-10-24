@@ -42,7 +42,6 @@ Provides:       synapse-s3-storage-provider
 %license LICENSE
 %ghost %python3_sitelib/__pycache__/*.cpython-*.pyc
 %ghost %python3_sitelib/%{name}/subcommands/__pycache__/*.cpython-*.pyc
-%dnl %python3_sitelib/synapse-s3_storage_provider-%{version}.dist-info/*
 %{_bindir}/s3_media_upload
 
 %changelog
