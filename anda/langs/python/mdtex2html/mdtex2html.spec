@@ -41,7 +41,6 @@ Provides:       mdtex2html
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
-%{_bindir}/mdtex2html
 %ghost %python3_sitelib/__pycache__/*.cpython-*.pyc
 %ghost %python3_sitelib/%{name}/subcommands/__pycache__/*.cpython-*.pyc
 %python3_sitelib/mdtex2html-%version.dist-info/*
