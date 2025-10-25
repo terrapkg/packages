@@ -28,8 +28,8 @@ connect by ptrace(2), so it is workable for any program. The principle will be e
 
 %install
 install -Dm755 graftcp                                      %{buildroot}%{_bindir}/graftcp
-install -Dm755 graftcp                                      %{buildroot}%{_bindir}/graftcp-local
-install -Dm755 graftcp                                      %{buildroot}%{_bindir}/mgraftcp
+install -Dm755 graftcp-local                                %{buildroot}%{_bindir}/graftcp-local
+install -Dm755 mgraftcp                                     %{buildroot}%{_bindir}/mgraftcp
 install -Dm644 local/contrib/systemd/graftcp-local.service  %{buildroot}%{_unitdir}/graftcp-local.service
 install -Dm644 local/example-graftcp-local.conf             %{buildroot}%{_sysconfdir}/graftcp-local/example-graftcp-local.conf
 
