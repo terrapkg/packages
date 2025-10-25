@@ -1,1 +1,1 @@
-rpm.version(gh_tag("an-anime-team/the-honkers-railway-launcher"));
+rpm.version(gh_tag("an-anime-team/an-anime-game-launcher"));

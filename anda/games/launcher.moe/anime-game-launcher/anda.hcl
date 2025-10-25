@@ -1,5 +1,5 @@
 project pkg {
     rpm {
-        spec = "honkers-railway-launcher.spec"
+        spec = "anime-game-launcher.spec"
     }
 }
