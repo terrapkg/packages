@@ -11,7 +11,6 @@ URL:            https://github.com/fthx/appmenu-is-back
 BuildArch:      noarch
 
 Source0:        https://github.com/fthx/appmenu-is-back/archive/refs/tags/v%{version}.tar.gz
-Patch0:         https://github.com/fthx/appmenu-is-back/compare/v2..703a31acf900eb7bcab3462baeefa815ec7f13ab.patch
 
 Requires:       (gnome-shell >= 48~ with gnome-shell < 50~)
 Recommends:     gnome-extensions-app
