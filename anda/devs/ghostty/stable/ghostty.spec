@@ -3,7 +3,7 @@
 %global appid com.mitchellh.ghostty
 
 Name:           ghostty
-Version:        1.2.2
+Version:        1.2.3
 Release:        1%?dist
 Summary:        A fast, native terminal emulator written in Zig.
 License:        MIT AND MPL-2.0 AND OFL-1.1 AND (WTFPL OR CC0-1.0) AND Apache-2.0
