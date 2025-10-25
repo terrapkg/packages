@@ -1,9 +1,9 @@
 # Fedora sometimes sources the snapshots under stable versions and just bumps release
 # For user clarity I have separated these into different packages
-%global commit  5a543dbc7bcb2465f3fb77bcfb28c0fc21d508b5
+%global commit  a5a76f24a5d03697cab0c3192843a4379d6f8ff6
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global ver 20250102
-%global commit_date 20250928
+%global commit_date 20251025
 
 Name:           winetricks-git
 Version:        %{ver}^%{commit_date}git.%{shortcommit}

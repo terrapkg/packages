@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:           subatomic
-Version:        0.11.2
+Version:        0.11.4
 Release:        1%?dist
 Summary:        A modern package delivery system
 
