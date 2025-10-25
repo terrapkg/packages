@@ -9,7 +9,7 @@ Summary:		A flexible tool for redirecting a given program's TCP traffic to SOCKS
 URL:			https://github.com/hmgle/graftcp
 License:		GPL-3.0
 Source0:        %url/archive/%commit/graftcp-%commit.tar.gz
-BuildRequires:	gcc mold make anda-srpm-macros golang systemd-rpm-macros
+BuildRequires:	gcc mold make golang systemd-rpm-macros
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 Conflicts:      graftcp
 
