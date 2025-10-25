@@ -2,8 +2,8 @@
 
 %global realname hyprlang
 %global ver 0.6.3
-%global commit 23f0debd2003f17bd65f851cd3f930cff8a8c809
-%global commit_date 20250728
+%global commit 4dafa28d4f79877d67a7d1a654cddccf8ebf15da
+%global commit_date 20250927
 %global shortcommit %{sub %commit 1 7}
 
 Name:           %realname.nightly
