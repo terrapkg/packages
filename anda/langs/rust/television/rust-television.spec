@@ -5,8 +5,8 @@
 %global crate television
 
 Name:           rust-television
-Version:        0.13.2
-Release:        %autorelease
+Version:        0.13.5
+Release:        1%?dist
 Summary:        Cross-platform, fast and extensible general purpose fuzzy finder TUI
 
 License:        MIT
