@@ -4,7 +4,7 @@
 Name:           %{crate}
 Version:        3.17.0
 Release:        1%?dist
-Summary:        An Anime Game Launcher for Linux with automatic patching and telemetry disabling 
+Summary:        An Anime Game Launcher for Linux with automatic patching and telemetry disabling
 
 License:        GPL-3.0-or-later
 URL:            https://github.com/an-anime-team/an-anime-game-launcher
@@ -37,6 +37,7 @@ BuildRequires: rust-packaging
 BuildRequires: desktop-file-utils
 BuildRequires: anda-srpm-macros
 BuildRequires: cargo-rpm-macros
+BuildRequires: protobuf-devel protobuf-compiler
 
 
 %description
