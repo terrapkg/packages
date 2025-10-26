@@ -19,7 +19,6 @@ BuildRequires:  intltool
 BuildRequires:  gcc
 
 Requires:       libxml2
-Requires:       gtk3
 
 Provides:       pipanel
 Provides:       rp-appset
@@ -37,15 +36,20 @@ Provides:       rp-appset
 %install
 %meson_install
 
-%find_lang pipanel
+%find_lang rpcc_pipanel
 
-%files -f pipanel.lang
+%files -f rpcc_pipanel.lang
 %doc README
 %license debian/copyright
-%{_bindir}/pipanel
-%{_datadir}/applications/pipanel.desktop
-%{_datadir}/pipanel/ui/pipanel.ui
+%{_datadir}/rpcc/ui/pipanel.ui
+%{_libdir}/rpcc/librpcc_pipanel.so
+%{_iconsdir}/hicolor/24x24/apps/appset-desktop.png
+%{_iconsdir}/hicolor/24x24/apps/appset-taskbar.png
+%{_iconsdir}/hicolor/32x32/apps/appset-desktop.png
+%{_iconsdir}/hicolor/32x32/apps/appset-taskbar.png
 
 %changelog
+* Sat Oct 25 2025 Owen Zimmerman <owen@fyralabs.com>
+- Follow upstream by changing to build plugin instead of application
 * Fri Aug 15 2025 Owen Zimmerman <owen@fyralabs.com>
 - Package appset
