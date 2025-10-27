@@ -4,7 +4,7 @@
 
 Name:           rpcc
 Version:        0~%commit_date.git~%shortcommit
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Raspberry Pi Control Centre - an extensible settings application for the Raspberry Pi Desktop
 License:        BSD-3-Clause
 URL:            https://github.com/raspberrypi-ui/rpcc
@@ -20,9 +20,6 @@ BuildRequires:  gcc
 
 Requires:       libxml2
 Requires:       gtk3
-
-Provides:       pipanel
-Provides:       rp-appset
 
 %description
 Raspberry Pi Control Centre - an extensible settings application for the Raspberry Pi Desktop
