@@ -2,7 +2,7 @@
 
 Name:          neovim-default-editor
 # Version, release, and epoch are inherited from the editor package just like other default editors
-Version:       0.6.0
+Version:       0.11.4
 Release:       2%?dist
 Epoch: 0
 # Inherited from Neovim itself
