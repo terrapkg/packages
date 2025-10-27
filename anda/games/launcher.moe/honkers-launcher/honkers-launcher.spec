@@ -4,7 +4,7 @@
 Name:           %{crate}
 Version:        1.12.0
 Release:        1%?dist
-Summary:        Sleepy Game Launcher for Linux with automatic patching and telemetry disabling 
+Summary:        Honkers Launcher for Linux with automatic patching and telemetry disabling 
 
 License:        GPL-3.0-or-later
 URL:            https://github.com/an-anime-team/honkers-launcher
