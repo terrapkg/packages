@@ -1,3 +1,7 @@
+%global commit 0e82c4bb73440675e7518b95796e4d2702b3f3f9
+%global commit_date 20250821
+%global shortcommit %(c=%{commit}; echo ${c:0:7})
+
 Name:			multipass
 Version:		1.16.1
 Release:		1%?dist
@@ -16,9 +20,13 @@ Requires:       qemu-system-x86
 Requires:       mesa-libGL libpng qt6-qtbase qt6-qtbase-gui libxml2 dnsmasq dnsmasq-utils qemu-img slang iproute iptables-nft iputils linux-atm-libs iptables-libs xterm
 
 %prep
-%autosetup -n %name-%version
+%ifarch aarch64
+export VCPKG_FORCE_SYSTEM_BINARIES=1
+%endif
+%git_clone %{url}.git %{commit}
 
 %build
+git submodule update --init --recursive
 %cmake
 
 %cmake_build
@@ -26,3 +34,4 @@ Requires:       mesa-libGL libpng qt6-qtbase qt6-qtbase-gui libxml2 dnsmasq dnsm
 %install
 %cmake_install
 
+%files
