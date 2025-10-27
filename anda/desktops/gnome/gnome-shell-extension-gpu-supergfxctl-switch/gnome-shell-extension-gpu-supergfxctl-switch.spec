@@ -31,6 +31,7 @@ install -Dm644 extension.js %{buildroot}%{_datadir}/gnome-shell/extensions/%{uui
 
 %files
 %license LICENSE
+%doc README.md
 %{_datadir}/gnome-shell/extensions/%{uuid}
 
 %changelog
