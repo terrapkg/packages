@@ -26,7 +26,6 @@ export VCPKG_FORCE_SYSTEM_BINARIES=1
 %git_clone %{url}.git %{commit}
 
 %build
-git submodule update --init --recursive
 %cmake
 
 %cmake_build
