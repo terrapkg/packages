@@ -40,7 +40,7 @@ BuildRequires: cargo-rpm-macros
 
 
 %description
-%{summary}
+%{summary}.
 
 %prep
 %autosetup -n honkers-launcher-%{version}
