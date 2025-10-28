@@ -22,7 +22,7 @@ Obsoletes:      sipa-fonts < 20200217-5
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
 Summary:		Thai National Fonts collection
 Source0:		https://waa.inter.nstda.or.th/stks/pub/%(x=%version;echo ${x:0:4})/%version-13Fonts.zip
-
+Requires:       tlwg-laksaman-fonts
 
 # The packages were renamed
 Obsoletes:      th-baijam-fonts
@@ -65,11 +65,10 @@ BuildArch:		noarch
 
 %global fontfamily2        TH Sarabun New
 %global foundry2           %foundry1
-%global fontlicense        OFL-1.1-RFN
+%global fontlicense2       OFL-1.1-RFN
 %global fonts2             'TH Sarabun New'*.ttf
 %global fontsummary2       Revision of the %{fontfamily1} font family
 %global fontdescription2   %{common_description}
-%global fonts2_requires    laksaman-fonts
 
 %global fontfamily3        TH Charmonman
 %global foundry3           Ekkalak Phianphanawet
@@ -94,7 +93,6 @@ BuildArch:		noarch
 %global fonts6             'TH Niramit AS'*.ttf
 %global fontsummary6       %{fontfamily6} font family
 %global fontdescription6   %{common_description}
-
 
 %global fontfamily7        TH Charm of AU
 %global foundry7           Kanlayanamit Noraratphutthi
@@ -150,7 +148,6 @@ BuildArch:		noarch
 # pull in tlwg-laksaman-fonts
 # since this actually provides a fix for TH Sarabun
 # (#6929) (#2482)
-Requires: tlwg-laksaman-fonts
 
 
 %prep
@@ -158,6 +155,7 @@ Requires: tlwg-laksaman-fonts
 cp -v %{SOURCE2} LICENSE
 
 %build
+touch METAPKG
 mv "THSarabun Bold Italic.ttf"		"TH Sarabun Bold Italic.ttf"
 mv "THSarabun Bold.ttf"				"TH Sarabun Bold.ttf"
 mv "THSarabun BoldItalic.ttf"		"TH Sarabun BoldItalic.ttf"
@@ -174,6 +172,9 @@ mv "THSarabunNew.ttf"				"TH Sarabun New.ttf"
 
 %check
 %fontcheck -a
+
+%files
+%doc METAPKG
 
 %fontfiles -a
 
