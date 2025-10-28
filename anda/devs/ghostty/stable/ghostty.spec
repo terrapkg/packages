@@ -4,7 +4,7 @@
 
 Name:           ghostty
 Version:        1.2.3
-Release:        1%?dist
+Release:        2%?dist
 Summary:        A fast, native terminal emulator written in Zig.
 License:        MIT AND MPL-2.0 AND OFL-1.1 AND (WTFPL OR CC0-1.0) AND Apache-2.0
 URL:            https://ghostty.org/
@@ -160,7 +160,8 @@ DESTDIR="%{buildroot}" \
     -Dversion-string="%{version}" \
     -Dstrip=false \
     -Dpie=true \
-    -Demit-docs 
+    -Demit-docs \
+    -Demit-themes=false
 
 # Don't conflict with ncurses-term on F42 and up
 %if 0%{?fedora} >= 42

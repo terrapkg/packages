@@ -9,7 +9,7 @@
 
 Name:           %{base_name}-nightly
 Version:        %{ver}~tip^%{commit_date}git%{shortcommit}
-Release:        1%?dist
+Release:        2%?dist
 %if 0%{?fedora} <= 41
 Epoch:          1
 %endif
@@ -196,7 +196,8 @@ DESTDIR="%{buildroot}" \
     -Dversion-string="%{ver}-dev+%{shortcommit}" \
     -Dstrip=false \
     -Dpie=true \
-    -Demit-docs 
+    -Demit-docs \
+    -Demit-themes=false
 
 # Don't conflict with ncurses-term on F42 and up
 %if 0%{?fedora} >= 42
