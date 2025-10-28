@@ -5,7 +5,7 @@
 # namespace
 %global fontorg th.or.sipa
 Version:		20200217
-Release:		6%{?dist}
+Release:		7%{?dist}
 URL:			https://www.nstda.or.th/home/news_post/thai-font/
 %global fontlicense       LicenseRef-DIP-SIPA AND OFL-1.1-RFN
 %global fontlicenses      LICENSE
@@ -48,7 +48,6 @@ Requires:       %{name}-all
 # and these fonts are an open-source, state-sponsored package
 # required for official Thai documentation
 License:		LicenseRef-DIP-SIPA
-Source1:        15-supercede-sarabun.conf
 Source2:        SIPA-LICENSE
 BuildRequires:  rpm_macro(fontpkg)
 Supplements:    (default-fonts-th)
@@ -70,6 +69,7 @@ BuildArch:		noarch
 %global fonts2             'TH Sarabun New'*.ttf
 %global fontsummary2       Revision of the %{fontfamily1} font family
 %global fontdescription2   %{common_description}
+%global fonts2_requires    laksaman-fonts
 
 %global fontfamily3        TH Charmonman
 %global foundry3           Ekkalak Phianphanawet
@@ -147,6 +147,11 @@ BuildArch:		noarch
 
 %fontpkg -a
 %fontmetapkg
+# pull in tlwg-laksaman-fonts
+# since this actually provides a fix for TH Sarabun
+# (#6929) (#2482)
+Requires: tlwg-laksaman-fonts
+
 
 %prep
 %autosetup -n Fonts
@@ -166,13 +171,11 @@ mv "THSarabunNew.ttf"				"TH Sarabun New.ttf"
 
 %install
 %fontinstall -a
-install -Dm644 %{SOURCE1} %buildroot/%{_sysconfdir}/fonts/conf.d/15-supercede-sarabun.conf
 
 %check
 %fontcheck -a
 
 %fontfiles -a
-%config(noreplace) %{_sysconfdir}/fonts/conf.d/15-supercede-sarabun.conf
 
 
 %changelog
