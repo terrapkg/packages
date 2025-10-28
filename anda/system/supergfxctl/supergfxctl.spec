@@ -1,3 +1,5 @@
+%global debug_package %{nil}
+
 Name:           supergfxctl
 Version:        5.2.7
 Release:        1%?dist
@@ -9,7 +11,7 @@ BuildRequires:  cargo anda-srpm-macros cargo-rpm-macros mold rust-udev-devel
 Packager:       Its-J
 
 %description
-%{Summary}.
+%{summary}.
 
 %prep
 %autosetup -n supergfxctl-%{version}
@@ -20,23 +22,26 @@ Packager:       Its-J
 
 %install
 %make_install
-%dnl install -Dm 755 target/rpm/supergfxctl %{buildroot}%{_bindir}/supergfxctl
-%dnl install -Dm 0755 target/release/supergfxd %{buildroot}%{_bindir}/supergfxd
-%dnl install -Dm 0644 data/90-supergfxd-nvidia-pm.rules %{buildroot}%{_udevrulesdir}/90-supergfxd-nvidia-pm.rules
-%dnl install -Dm 0644 data/org.supergfxctl.Daemon.conf  %{buildroot}%{_sysconfdir}/dbus-1/system.d/org.supergfxctl.Daemon.conf
-%dnl install -Dm 0644 data/supergfxd.service %{buildroot}%{_unitdir}/supergfxd.service
-%dnl install -Dm 0644 data/supergfxd.preset %{buildroot}%{_presetdir}/99-supergfxd.preset
+install -Dm 0644 data/90-supergfxd-nvidia-pm.rules %{buildroot}/etc/X11/xorg.conf.d/90-supergfxd-nvidia-pm.rules
+install -Dm 0644 data/org.supergfxctl.Daemon.conf  %{buildroot}%{_datadir}/dbus-1/system.d/org.supergfxctl.Daemon.conf
+install -Dm 0644 data/org.supergfxctl.Daemon.conf  %{buildroot}/etc/dbus-1/system.d/org.supergfxctl.Daemon.conf
+install -Dm 0644 data/supergfxd.preset %{buildroot}%{_presetdir}/99-supergfxd.preset
+install -Dm 0644 data/90-nvidia-screen-G05.conf %{buildroot}%{_datadir}/X11/xorg.conf.d/90-nvidia-screen-G05.conf
 
 %files
-%{_bindir}/supergfxctl
-%{_bindir}/supergfxd
-%{_udevrulesdir}/90-supergfxd-nvidia-pm.rules
-%{_sysconfdir}/X11/xorg.conf.d/90-nvidia-screen-G05.conf
-%{_sysconfdir}/dbus-1/system.d/org.supergfxctl.Daemon.conf
-%{_unitdir}/supergfxd.service
-%{_presetdir}/99-supergfxd.preset
 %license LICENSE
 %doc README.md
+%{_bindir}/supergfxctl
+%{_bindir}/supergfxd
+%{_sysconfdir}/X11/xorg.conf.d/90-supergfxd-nvidia-pm.rules
+%{_udevrulesdir}/90-supergfxd-nvidia-pm.rules
+%{_datadir}/X11/xorg.conf.d/90-nvidia-screen-G05.conf
+%{_datadir}/dbus-1/system.d/org.supergfxctl.Daemon.conf
+%{_unitdir}/supergfxd.service
+%{_presetdir}/99-supergfxd.preset
+%{_sysconfdir}/dbus-1/system.d/org.supergfxctl.Daemon.conf
+# We should not be installing .preset files (errors if not listed)
+%ghost /usr/lib/systemd/system-preset/supergfxd.preset
 
 %changelog
 * Sun Oct 26 2025 Its-J
