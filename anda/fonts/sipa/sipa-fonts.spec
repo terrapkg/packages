@@ -5,7 +5,7 @@
 # namespace
 %global fontorg th.or.sipa
 Version:		20200217
-Release:		6%{?dist}
+Release:		7%{?dist}
 URL:			https://www.nstda.or.th/home/news_post/thai-font/
 %global fontlicense       LicenseRef-DIP-SIPA AND OFL-1.1-RFN
 %global fontlicenses      LICENSE
@@ -22,7 +22,7 @@ Obsoletes:      sipa-fonts < 20200217-5
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
 Summary:		Thai National Fonts collection
 Source0:		https://waa.inter.nstda.or.th/stks/pub/%(x=%version;echo ${x:0:4})/%version-13Fonts.zip
-
+Requires:       tlwg-laksaman-fonts
 
 # The packages were renamed
 Obsoletes:      th-baijam-fonts
@@ -48,7 +48,6 @@ Requires:       %{name}-all
 # and these fonts are an open-source, state-sponsored package
 # required for official Thai documentation
 License:		LicenseRef-DIP-SIPA
-Source1:        15-supercede-sarabun.conf
 Source2:        SIPA-LICENSE
 BuildRequires:  rpm_macro(fontpkg)
 Supplements:    (default-fonts-th)
@@ -66,7 +65,7 @@ BuildArch:		noarch
 
 %global fontfamily2        TH Sarabun New
 %global foundry2           %foundry1
-%global fontlicense        OFL-1.1-RFN
+%global fontlicense2       OFL-1.1-RFN
 %global fonts2             'TH Sarabun New'*.ttf
 %global fontsummary2       Revision of the %{fontfamily1} font family
 %global fontdescription2   %{common_description}
@@ -94,7 +93,6 @@ BuildArch:		noarch
 %global fonts6             'TH Niramit AS'*.ttf
 %global fontsummary6       %{fontfamily6} font family
 %global fontdescription6   %{common_description}
-
 
 %global fontfamily7        TH Charm of AU
 %global foundry7           Kanlayanamit Noraratphutthi
@@ -147,12 +145,17 @@ BuildArch:		noarch
 
 %fontpkg -a
 %fontmetapkg
+# pull in tlwg-laksaman-fonts
+# since this actually provides a fix for TH Sarabun
+# (#6929) (#2482)
+
 
 %prep
 %autosetup -n Fonts
 cp -v %{SOURCE2} LICENSE
 
 %build
+touch METAPKG
 mv "THSarabun Bold Italic.ttf"		"TH Sarabun Bold Italic.ttf"
 mv "THSarabun Bold.ttf"				"TH Sarabun Bold.ttf"
 mv "THSarabun BoldItalic.ttf"		"TH Sarabun BoldItalic.ttf"
@@ -166,13 +169,14 @@ mv "THSarabunNew.ttf"				"TH Sarabun New.ttf"
 
 %install
 %fontinstall -a
-install -Dm644 %{SOURCE1} %buildroot/%{_sysconfdir}/fonts/conf.d/15-supercede-sarabun.conf
 
 %check
 %fontcheck -a
 
+%files
+%license LICENSE
+
 %fontfiles -a
-%config(noreplace) %{_sysconfdir}/fonts/conf.d/15-supercede-sarabun.conf
 
 
 %changelog
