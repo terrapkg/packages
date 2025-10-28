@@ -177,7 +177,6 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{name}
 %{_datadir}/applications/%{appid}.desktop
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/doc
-%{_datadir}/%{name}/themes
 %{_datadir}/metainfo/%{appid}.metainfo.xml
 %{_datadir}/dbus-1/services/%{appid}.service
 %{_iconsdir}/hicolor/16x16/apps/%{appid}.png
