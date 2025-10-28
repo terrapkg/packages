@@ -174,7 +174,7 @@ mv "THSarabunNew.ttf"				"TH Sarabun New.ttf"
 %fontcheck -a
 
 %files
-%doc METAPKG
+%license LICENSE
 
 %fontfiles -a
 
