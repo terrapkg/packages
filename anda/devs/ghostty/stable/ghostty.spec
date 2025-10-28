@@ -248,6 +248,10 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{name}
 %systemd_user_postun app-%{appid}.service
 
 %changelog
+* Tue Oct 28 2025 Gilver E. <rockgrub@disroot.org> - 1.2.3-2
+- Disabled bundled themes
+ * This is necessary to address licensing issues in the themes repo Ghostty uses
+ * See: https://github.com/mbadolato/iTerm2-Color-Schemes/issues/638
 * Fri Jan 31 2025 Gilver E. <rockgrub@disroot.org>
 - Update to 1.1.0-1%{?dist}
  * Low GHSA-98wc-794w-gjx3: Ghostty leaked file descriptors allowing the shell and any of its child processes to impact other Ghostty terminal instances
