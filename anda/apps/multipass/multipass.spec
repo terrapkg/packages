@@ -34,3 +34,7 @@ export VCPKG_FORCE_SYSTEM_BINARIES=1
 %cmake_install
 
 %files
+
+%changelog
+* DAY Oct DD 2025 Jaiden Riordan <jade@fyralabs.com>
+- Initial package
