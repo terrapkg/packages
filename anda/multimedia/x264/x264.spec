@@ -123,7 +123,6 @@ sh version.sh > ./version.h
 cp %{SOURCE2} .
 %patch -P0 -p1 -b .nover
 %patch -P1 -p1 -b .10b
-%patch -P2 -p1 -b .ptr
 %patch -P11 -p1 -b .opencl
 popd
 
