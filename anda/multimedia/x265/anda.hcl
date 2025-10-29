@@ -4,6 +4,7 @@ project pkg {
         spec = "x265.spec"
     }
     labels {
-        mock =1
+        mock = 1
+        subrepo = "extras"
    }
 }
