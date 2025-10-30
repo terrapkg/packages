@@ -47,8 +47,6 @@ Source2: https://raw.githubusercontent.com/rpmfusion/x264/%fusionsrc_commit/vers
 Patch0: https://raw.githubusercontent.com/rpmfusion/x264/%fusionsrc_commit/x264-nover.patch
 # add 10b suffix to high bit depth build
 Patch1: https://raw.githubusercontent.com/rpmfusion/x264/%fusionsrc_commit/x264-10b.patch
-# fix assignment from incompatible pointer type errors
-Patch2: https://raw.githubusercontent.com/rpmfusion/x264/%fusionsrc_commit/x264-altivec-incompatible-pointer-type.patch
 Patch11: https://raw.githubusercontent.com/rpmfusion/x264/%fusionsrc_commit/x264-opencl.patch
 
 BuildRequires: anda-srpm-macros git-core
@@ -126,7 +124,6 @@ sh version.sh > ./version.h
 cp %{SOURCE2} .
 %patch -P0 -p1 -b .nover
 %patch -P1 -p1 -b .10b
-%patch -P2 -p1 -b .ptr
 %patch -P11 -p1 -b .opencl
 popd
 
