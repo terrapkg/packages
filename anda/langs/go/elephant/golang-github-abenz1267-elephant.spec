@@ -35,6 +35,8 @@ Source:         %{gourl}/archive/refs/tags/v%version.tar.gz
 
 Provides:       golang-github-abenz1267-elephant = %evr
 Packager:       madonuko <mado@fyralabs.com>
+# desktopapplications
+BuildRequires:  wayland-devel
 
 %description %{common_description}
 
