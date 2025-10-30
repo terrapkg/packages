@@ -3,4 +3,7 @@ project pkg {
     rpm {
         spec = "gay.spec"
     }
+   	labels {
+      nightly = 1
+	}
 }
