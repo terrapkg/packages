@@ -10,7 +10,7 @@
 
 Name:           gnome-shell
 Version:        %{major_version}.%{minor_version}
-Release:        2%{?dist}.switcheroo
+Release:        3%{?dist}.switcheroo
 Summary:        Window management and application launching for GNOME
 
 Provides:       gnome-shell.switcheroo = %version-%release
@@ -214,11 +214,11 @@ mkdir -p %{buildroot}%{_datadir}/gnome-shell/search-providers
 %find_lang gnome-shell
 
 %check
-desktop-file-validate %{buildroot}%{_datadir}/applications/org.gnome.Shell.desktop
-desktop-file-validate %{buildroot}%{_datadir}/applications/org.gnome.Shell.Extensions.desktop
+%dnl desktop-file-validate %{buildroot}%{_datadir}/applications/org.gnome.Shell.desktop
+%dnl desktop-file-validate %{buildroot}%{_datadir}/applications/org.gnome.Shell.Extensions.desktop
 
 %if %{portal_helper}
-desktop-file-validate %{buildroot}%{_datadir}/applications/org.gnome.Shell.PortalHelper.desktop
+%dnl desktop-file-validate %{buildroot}%{_datadir}/applications/org.gnome.Shell.PortalHelper.desktop
 %endif
 
 %files -f gnome-shell.lang
@@ -229,8 +229,8 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.gnome.Shell.Porta
 %{_bindir}/gnome-shell-extension-tool
 %{_bindir}/gnome-shell-test-tool
 %{_datadir}/glib-2.0/schemas/00_org.gnome.shell.gschema.override
-%{_datadir}/applications/org.gnome.Shell.Extensions.desktop
-%{_datadir}/applications/org.gnome.Shell.desktop
+%dnl %{_datadir}/applications/org.gnome.Shell.Extensions.desktop
+%dnl %{_datadir}/applications/org.gnome.Shell.desktop
 %{_datadir}/bash-completion/completions/gnome-extensions
 %{_datadir}/gnome-control-center/keybindings/50-gnome-shell-launchers.xml
 %{_datadir}/gnome-control-center/keybindings/50-gnome-shell-screenshots.xml
@@ -266,7 +266,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.gnome.Shell.Porta
 %{_mandir}/man1/gnome-shell.1*
 
 %if %{portal_helper}
-%{_datadir}/applications/org.gnome.Shell.PortalHelper.desktop
+%dnl %{_datadir}/applications/org.gnome.Shell.PortalHelper.desktop
 %{_datadir}/dbus-1/services/org.gnome.Shell.PortalHelper.service
 %{_datadir}/icons/hicolor/scalable/apps/org.gnome.Shell.CaptivePortal.svg
 %{_datadir}/icons/hicolor/symbolic/apps/org.gnome.Shell.CaptivePortal-symbolic.svg
