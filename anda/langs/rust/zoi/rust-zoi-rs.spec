@@ -14,25 +14,27 @@ Source:         %{crates_source %{crate} %{crate_version}}
 # Automatically generated patch to strip dependencies and normalize metadata
 Patch:          zoi-rs-fix-metadata-auto.diff
 BuildRequires:  cargo
+BuildRequires:  gcc-c++
 BuildRequires:  rpm_macro(cargo_install)
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  perl(FindBin)
 BuildRequires:  perl(IPC::Cmd)
 BuildRequires:  perl(File::Compare)
 BuildRequires:  perl(File::Copy)
+BuildRequires:  perl(lib)
+BuildRequires:  perl(Time::Piece)
 Packager:       madonuko <mado@fyralabs.com>
 
 %global _description %{expand:
-Zoi is a universal package manager and environment setup tool, designed to simplify package management and environment configuration across multiple operating systems.}
+Universal Package Manager & Environment Setup Tool.}
 
-%description %_description
+%description %{_description}
 
 %package     -n %{crate}
 Summary:        %{summary}
 License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND (0BSD OR MIT OR Apache-2.0) AND Apache-2.0 AND (Apache-2.0 AND ISC) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND BSD-2-Clause AND BSD-3-Clause AND BSL-1.0 AND CDLA-Permissive-2.0 AND ISC AND LGPL-2.0-or-later AND MIT AND (MIT OR Apache-2.0) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Zlib OR Apache-2.0) AND MPL-2.0 AND MPL-2.0+ AND Unicode-3.0 AND (Unlicense OR MIT) AND Zlib
 # LICENSE.dependencies contains a full license breakdown
 Provides:       zoi = %evr
-Provides:       zoi.prod.beta = %evr
 Requires:       git
 
 %description -n %{crate} %{_description}
@@ -40,8 +42,11 @@ Requires:       git
 %files       -n %{crate}
 %license LICENSE
 %license LICENSE.dependencies
+%doc CHANGELOG.md
 %doc CODE_OF_CONDUCT.md
+%doc PACKAGING.md
 %doc README.md
+%doc RELEASE.md
 %doc SECURITY.md
 %{_bindir}/zoi
 
@@ -58,8 +63,11 @@ use the "%{crate}" crate.
 
 %files          devel
 %license %{crate_instdir}/LICENSE
+%doc %{crate_instdir}/CHANGELOG.md
 %doc %{crate_instdir}/CODE_OF_CONDUCT.md
+%doc %{crate_instdir}/PACKAGING.md
 %doc %{crate_instdir}/README.md
+%doc %{crate_instdir}/RELEASE.md
 %doc %{crate_instdir}/SECURITY.md
 %{crate_instdir}/
 
@@ -74,7 +82,6 @@ use the "default" feature of the "%{crate}" crate.
 
 %files       -n %{name}+default-devel
 %ghost %{crate_instdir}/Cargo.toml
-
 
 %prep
 %autosetup -n %{crate}-%{crate_version}
