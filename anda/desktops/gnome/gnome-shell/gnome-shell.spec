@@ -214,11 +214,10 @@ mkdir -p %{buildroot}%{_datadir}/gnome-shell/search-providers
 %find_lang gnome-shell
 
 %check
-%dnl desktop-file-validate %{buildroot}%{_datadir}/applications/org.gnome.Shell.desktop
-%dnl desktop-file-validate %{buildroot}%{_datadir}/applications/org.gnome.Shell.Extensions.desktop
+desktop-file-validate %{buildroot}%{_datadir}/applications/org.gnome.Shell.Extensions.desktop
 
 %if %{portal_helper}
-%dnl desktop-file-validate %{buildroot}%{_datadir}/applications/org.gnome.Shell.PortalHelper.desktop
+desktop-file-validate %{buildroot}%{_datadir}/applications/org.gnome.Shell.PortalHelper.desktop
 %endif
 
 %files -f gnome-shell.lang
@@ -229,8 +228,7 @@ mkdir -p %{buildroot}%{_datadir}/gnome-shell/search-providers
 %{_bindir}/gnome-shell-extension-tool
 %{_bindir}/gnome-shell-test-tool
 %{_datadir}/glib-2.0/schemas/00_org.gnome.shell.gschema.override
-%dnl %{_datadir}/applications/org.gnome.Shell.Extensions.desktop
-%dnl %{_datadir}/applications/org.gnome.Shell.desktop
+%{_datadir}/applications/org.gnome.Shell.Extensions.desktop
 %{_datadir}/bash-completion/completions/gnome-extensions
 %{_datadir}/gnome-control-center/keybindings/50-gnome-shell-launchers.xml
 %{_datadir}/gnome-control-center/keybindings/50-gnome-shell-screenshots.xml
@@ -242,6 +240,7 @@ mkdir -p %{buildroot}%{_datadir}/gnome-shell/search-providers
 %{_datadir}/dbus-1/services/org.gnome.Shell.HotplugSniffer.service
 %{_datadir}/dbus-1/services/org.gnome.Shell.Notifications.service
 %{_datadir}/dbus-1/services/org.gnome.Shell.Screencast.service
+%{_datadir}/dbus-1/interfaces/org.gnome.Shell.Brightness.xml
 %{_datadir}/dbus-1/interfaces/org.gnome.Shell.Extensions.xml
 %{_datadir}/dbus-1/interfaces/org.gnome.Shell.Introspect.xml
 %{_datadir}/dbus-1/interfaces/org.gnome.Shell.PadOsd.xml
@@ -257,7 +256,6 @@ mkdir -p %{buildroot}%{_datadir}/gnome-shell/search-providers
 %{_userunitdir}/org.gnome.Shell-disable-extensions.service
 %{_userunitdir}/org.gnome.Shell.target
 %{_userunitdir}/org.gnome.Shell@wayland.service
-%dnl %{_userunitdir}/org.gnome.Shell@x11.service
 %{_libdir}/gnome-shell/
 %{_libexecdir}/gnome-shell-calendar-server
 %{_libexecdir}/gnome-shell-perf-helper
@@ -266,7 +264,7 @@ mkdir -p %{buildroot}%{_datadir}/gnome-shell/search-providers
 %{_mandir}/man1/gnome-shell.1*
 
 %if %{portal_helper}
-%dnl %{_datadir}/applications/org.gnome.Shell.PortalHelper.desktop
+%{_datadir}/applications/org.gnome.Shell.PortalHelper.desktop
 %{_datadir}/dbus-1/services/org.gnome.Shell.PortalHelper.service
 %{_datadir}/icons/hicolor/scalable/apps/org.gnome.Shell.CaptivePortal.svg
 %{_datadir}/icons/hicolor/symbolic/apps/org.gnome.Shell.CaptivePortal-symbolic.svg
