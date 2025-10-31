@@ -2,7 +2,7 @@
 
 # globals for x264-0.164-20231001git31e19f92.tar.bz2
 %global api 165
-%global gitdate 20231001
+%global gitdate 20250609
 %global gitlongver b35605ace3ddf7c1a5d67a2eb553f034aef41d55
 %global gitversion %{sub %gitlongver 1 8}
 
@@ -36,7 +36,7 @@
 Summary: H264/AVC video streams encoder
 Name: x264
 Version: 0.%{api}
-Release: 16%{?gver}%{?_with_bootstrap:_bootstrap}%{?dist}
+Release: 17%{?gver}%{?_with_bootstrap:_bootstrap}%{?dist}
 License: GPLv2+
 URL: https://www.videolan.org/developers/x264.html
 Source0: https://code.videolan.org/videolan/x264/-/archive/%gitversion.tar.bz2
