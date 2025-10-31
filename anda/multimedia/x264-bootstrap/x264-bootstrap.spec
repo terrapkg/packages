@@ -1,10 +1,10 @@
-%global fusionsrc_commit 91b92ea4846982e5d9eb58744fda70f75d0faf8d
+%global fusionsrc_commit d8f53f1f25ce2c778582e7cff5790ae24408db2e
 
 # globals for x264-0.164-20231001git31e19f92.tar.bz2
-%global api 164
-%global gitdate 20231001
-%global gitversion 31e19f92
-%global gitlongver 31e19f92f00c7003fa115047ce50978bc98c3a0d
+%global api 165
+%global gitdate 20250609
+%global gitlongver b35605ace3ddf7c1a5d67a2eb553f034aef41d55
+%global gitversion %{sub %gitlongver 1 8}
 
 %global snapshot %{gitdate}git%{gitversion}
 %global gver .%{gitdate}git%{gitversion}
@@ -36,7 +36,7 @@
 Summary: H264/AVC video streams encoder
 Name: x264-bootstrap
 Version: 0.0.%{api}
-Release: 15%{?gver}%{?_with_bootstrap:_bootstrap}%{?dist}
+Release: 17%{?gver}%{?_with_bootstrap:_bootstrap}%{?dist}
 License: GPLv2+
 URL: https://www.videolan.org/developers/x264.html
 Source0: https://code.videolan.org/videolan/x264/-/archive/%gitversion.tar.bz2
@@ -47,8 +47,6 @@ Source2: https://raw.githubusercontent.com/rpmfusion/x264/%fusionsrc_commit/vers
 Patch0: https://raw.githubusercontent.com/rpmfusion/x264/%fusionsrc_commit/x264-nover.patch
 # add 10b suffix to high bit depth build
 Patch1: https://raw.githubusercontent.com/rpmfusion/x264/%fusionsrc_commit/x264-10b.patch
-# fix assignment from incompatible pointer type errors
-Patch2: https://raw.githubusercontent.com/rpmfusion/x264/%fusionsrc_commit/x264-altivec-incompatible-pointer-type.patch
 Patch11: https://raw.githubusercontent.com/rpmfusion/x264/%fusionsrc_commit/x264-opencl.patch
 
 BuildRequires: anda-srpm-macros git-core
@@ -126,7 +124,6 @@ sh version.sh > ./version.h
 cp %{SOURCE2} .
 %patch -P0 -p1 -b .nover
 %patch -P1 -p1 -b .10b
-%patch -P2 -p1 -b .ptr
 %patch -P11 -p1 -b .opencl
 popd
 
