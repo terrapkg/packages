@@ -20,6 +20,7 @@ BuildRequires:  perl(FindBin)
 BuildRequires:  perl(IPC::Cmd)
 BuildRequires:  perl(File::Compare)
 BuildRequires:  perl(File::Copy)
+BuildRequires:  perl(lib)
 Packager:       madonuko <mado@fyralabs.com>
 
 %global _description %{expand:
