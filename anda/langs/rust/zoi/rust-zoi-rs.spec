@@ -14,6 +14,7 @@ Source:         %{crates_source %{crate} %{crate_version}}
 # Automatically generated patch to strip dependencies and normalize metadata
 Patch:          zoi-rs-fix-metadata-auto.diff
 BuildRequires:  cargo
+BuildRequires:  gcc-c++
 BuildRequires:  rpm_macro(cargo_install)
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  perl(FindBin)
