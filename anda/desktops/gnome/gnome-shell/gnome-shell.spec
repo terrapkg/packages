@@ -257,7 +257,7 @@ mkdir -p %{buildroot}%{_datadir}/gnome-shell/search-providers
 %{_userunitdir}/org.gnome.Shell-disable-extensions.service
 %{_userunitdir}/org.gnome.Shell.target
 %{_userunitdir}/org.gnome.Shell@wayland.service
-%{_userunitdir}/org.gnome.Shell@x11.service
+%dnl %{_userunitdir}/org.gnome.Shell@x11.service
 %{_libdir}/gnome-shell/
 %{_libexecdir}/gnome-shell-calendar-server
 %{_libexecdir}/gnome-shell-perf-helper
