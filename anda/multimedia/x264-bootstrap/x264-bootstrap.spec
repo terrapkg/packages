@@ -1,7 +1,7 @@
 %global fusionsrc_commit d8f53f1f25ce2c778582e7cff5790ae24408db2e
 
 # globals for x264-0.164-20231001git31e19f92.tar.bz2
-%global api 164
+%global api 165
 %global gitdate 20250609
 %global gitlongver b35605ace3ddf7c1a5d67a2eb553f034aef41d55
 %global gitversion %{sub %gitlongver 1 8}
