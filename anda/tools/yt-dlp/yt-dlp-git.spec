@@ -8,9 +8,6 @@ Summary:        A command-line program to download videos from online video plat
 
 License:        Unlicense
 URL:            https://github.com/yt-dlp/yt-dlp
-# License of the specfile
-Source:         https://src.fedoraproject.org/rpms/yt-dlp/raw/rawhide/f/yt-dlp.spec.license
-
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
