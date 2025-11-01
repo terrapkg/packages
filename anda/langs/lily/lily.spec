@@ -27,6 +27,7 @@ Requires:      %{name}
 %cmake_build
 
 %install
+install -Dm644 redhat-linux-build/lib/liblily.so %{buildroot}/usr/lib64/liblily.so
 %cmake_install
 
 %files
@@ -35,7 +36,8 @@ Requires:      %{name}
 %{_bindir}/lily
 
 %files devel
-/usr/lib/liblily.so
+/usr/lib64/liblily.so
+%ghost /usr/lib/liblily.so
 %{_includedir}/lily/lily.h
 
 %changelog
