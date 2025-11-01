@@ -15,7 +15,7 @@ Source0:        https://archive.mesa3d.org/mesa-%{ver}.tar.xz
 # Fedora opts to ignore the optional part of clause 2 and treat that code as 2 clause BSD.
 Source1:        Mesa-MLAA-License-Clarification-Email.txt
 # Keep Mesa builds relatively the same
-%dnl Patch0:         bazzite.patch
+Patch0:         bazzite.patch
 
 BuildRequires:  meson >= 1.3.0
 BuildRequires:  gcc
