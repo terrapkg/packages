@@ -51,6 +51,7 @@ License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) 
 %autosetup -n %{crate}-%{version} -p1
 %cargo_prep_online
 
+cp %{S:1} .
 cp %{S:2} gcc
 
 %global __cc %_builddir/%buildsubdir/gcc
