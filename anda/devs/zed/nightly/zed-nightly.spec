@@ -107,7 +107,7 @@ export BRANDING_DARK="#1a5fb4"
 
 echo "StartupWMClass=$APP_ID" >> crates/zed/resources/zed.desktop.in
 envsubst < "crates/zed/resources/zed.desktop.in" > $APP_ID.desktop # from https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=zed-git#n52
-sed -i "s|@release_info@||g" crates/zed/resource/flatpak/zed.metainfo.xml.in
+sed -i "s|@release_info@||g" "crates/zed/resources/flatpak/zed.metainfo.xml.in"
 
 envsubst < "crates/zed/resources/flatpak/zed.metainfo.xml.in" > $APP_ID.metainfo.xml
 
