@@ -5,7 +5,7 @@ Summary:        Mesa graphics libraries - legacy compatibility libraries
 %global ver 25.0.7
 Version:        %{lua:ver = string.gsub(rpm.expand("%{ver}"), "-", "~"); print(ver)}
 Epoch:          1
-Release:        %autorelease
+Release:        1%{?dist}
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0
 URL:            http://www.mesa3d.org
 
@@ -15,7 +15,7 @@ Source0:        https://archive.mesa3d.org/mesa-%{ver}.tar.xz
 # Fedora opts to ignore the optional part of clause 2 and treat that code as 2 clause BSD.
 Source1:        Mesa-MLAA-License-Clarification-Email.txt
 # Keep Mesa builds relatively the same
-Patch0:         bazzite.patch
+%dnl Patch0:         bazzite.patch
 
 BuildRequires:  meson >= 1.3.0
 BuildRequires:  gcc
