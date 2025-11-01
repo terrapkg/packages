@@ -1,3 +1,2 @@
-let v = gitlab_tag("gitlab.freedesktop.org", "176");
-v.crop(5);
-rpm.global("ver", v);
+let v = find(`mesa-([\d.]+).tar.xz`, get("https://archive.mesa3d.org/?C=D;O=D"), 1);
+rpm.version(v);

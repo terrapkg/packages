@@ -1,0 +1,8 @@
+libdir=LIBDIR
+includedir=INCLUDE_DIR
+
+Name: nppidei
+Description: NVIDIA Performance Primitives - Image Processing - DEI
+Version: CUDA_VERSION
+Libs: -L${libdir} -lnppidei
+Cflags: -I${includedir}

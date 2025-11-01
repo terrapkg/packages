@@ -1,0 +1,8 @@
+libdir=LIBDIR
+includedir=INCLUDE_DIR
+
+Name: nppicc
+Description: NVIDIA Performance Primitives - Image Processing - Color Conversion
+Version: CUDA_VERSION
+Libs: -L${libdir} -lnppicc
+Cflags: -I${includedir}

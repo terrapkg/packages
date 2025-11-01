@@ -1,5 +1,5 @@
-%global commit d00c5ecf0bcaf2b4382ec3b4f3373ea5b761ee7b
-%global commit_date 20241230
+%global commit 63ff648bb64c23023a0047ea3ff2c0b6b1fd3caf
+%global commit_date 20250404
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
@@ -7,7 +7,7 @@
 Name:           stardust-xr-magnetar
 Version:        %commit_date.%shortcommit
 Release:        1%?dist
-Summary:        Workspaces client for Stardust XR.
+Summary:        Workspaces client for Stardust XR
 URL:            https://github.com/StardustXR/magnetar
 Source0:        %url/archive/%commit/magnetar-%commit.tar.gz
 License:        MIT
@@ -17,7 +17,7 @@ Provides:       magnetar stardust-magnetar
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
-%summary
+%summary.
 
 %prep
 %autosetup -n magnetar-%commit
@@ -38,4 +38,3 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %changelog
 * Wed Sep 11 2024 Owen-sz <owen@fyralabs.com>
 - Package StardustXR magnetar
-

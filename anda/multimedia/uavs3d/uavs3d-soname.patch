@@ -1,0 +1,20 @@
+diff -Naur uavs3d-7b1dd734c926a23f8134b42dbfaac4d22cd6ba1d.old/CMakeLists.txt uavs3d-7b1dd734c926a23f8134b42dbfaac4d22cd6ba1d/CMakeLists.txt
+--- uavs3d-7b1dd734c926a23f8134b42dbfaac4d22cd6ba1d.old/CMakeLists.txt	2022-03-16 11:03:27.762312616 +0100
++++ uavs3d-7b1dd734c926a23f8134b42dbfaac4d22cd6ba1d/CMakeLists.txt	2022-03-16 11:03:35.893460120 +0100
+@@ -15,4 +15,3 @@
+     target_link_libraries(uavs3dec m)
+ endif()
+ target_link_libraries(uavs3dec uavs3d)
+-#target_link_libraries(uavs3dec dl)
+diff -Naur uavs3d-7b1dd734c926a23f8134b42dbfaac4d22cd6ba1d.old/source/CMakeLists.txt uavs3d-7b1dd734c926a23f8134b42dbfaac4d22cd6ba1d/source/CMakeLists.txt
+--- uavs3d-7b1dd734c926a23f8134b42dbfaac4d22cd6ba1d.old/source/CMakeLists.txt	2022-03-16 11:03:27.764312652 +0100
++++ uavs3d-7b1dd734c926a23f8134b42dbfaac4d22cd6ba1d/source/CMakeLists.txt	2022-03-16 11:03:45.958642708 +0100
+@@ -128,6 +128,8 @@
+ MESSAGE(STATUS "BUILD_SHARED_LIBS \t\t: false")
+ endif()
+ add_library(${LIBNAME} ${DIR_UAVS3D_SRC} ${UAVS3D_ASM_FILES})
++set_target_properties(${LIBNAME} PROPERTIES VERSION 1.2.0)
++set_target_properties(${LIBNAME} PROPERTIES SOVERSION 1)
+
+ if (NOT MSVC)
+     target_link_libraries(${LIBNAME} m)

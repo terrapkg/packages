@@ -1,0 +1,14 @@
+--- a/source/decoder/uavs3d.c
++++ b/source/decoder/uavs3d.c
+@@ -1083,11 +1083,6 @@
+     uavs3d_funs_init_arm64();
+ #elif defined(ENABLE_FUNCTION_ARM32)
+     uavs3d_funs_init_armv7();
+-#elif defined(ENABLE_FUNCTION_X86)
+-    uavs3d_funs_init_sse();
+-    if (uavs3d_simd_avx_level(NULL) >= 2) {
+-        uavs3d_funs_init_avx2();
+-    }
+ #endif
+ 
+     ctx->dec_cfg.frm_threads = COM_CLIP3(1, 32, ctx->dec_cfg.frm_threads);

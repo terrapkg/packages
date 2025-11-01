@@ -1,0 +1,44 @@
+diff --git a/software/pyproject.toml b/software/pyproject.toml
+index c1151748..c3302e60 100644
+--- a/software/pyproject.toml
++++ b/software/pyproject.toml
+@@ -29,30 +29,30 @@ requires-python = ">=3.11, <4"
+ dependencies = [
+   # We use `typing` features not available in the lowest Python version we support. The library
+   # `typing_extensions` provides shims for such features. It uses SemVer.
+-  "typing_extensions>=4.8,<5",
++  "typing_extensions",
+   # Amaranth is the core of the Glasgow software/gateware interoperability layer. It uses SemVer.
+-  "amaranth>=0.5.7,<0.6",
++  "amaranth",
+   # `packaging` is used in the plugin system, `support.plugin`. It uses CalVer: the major version
+   # is the two last digits of the year and the minor version is the release within that year.
+-  "packaging>=23.0",
++  "packaging",
+   # `platformdirs` is used in the bitstream builder to use platform-appropriate cache directories.
+   # It uses SemVer.
+-  "platformdirs>=3.0.0,<5",
++  "platformdirs",
+   # `fx2` is effectively maintained together with Glasgow. It uses SemVer, and keeps backward
+   # compatibility within the 0.x release series.
+-  "fx2>=0.11,<1",
++  "fx2",
+   # `libusb1` is used to communicate with the device, and its API mirrors the stable API/ABI of
+   # of the native `libusb1` library. It increases major version when dropping support for older
+   # Python versions.
+-  "libusb1>=3.3.0; sys_platform!='emscripten'",
++  "libusb1; sys_platform!='emscripten'",
+   # `cobs` is used to multiplex communication streams in applets. It uses an ad-hoc versioning
+   # system.
+-  "cobs>=1.2.1",
++  "cobs",
+   # `pyvcd` is used in the applet analyzer to dump waveform files. It is also a dependency of
+   # Amaranth, and the version range here must be compatible with Amaranth's.
+-  "pyvcd>=0.4.1,<0.5",
++  "pyvcd",
+   # `importlib_resources` is used to shim over Python API incompatibilities. It uses SemVer.
+-  "importlib_resources~=6.5.2",
++  "importlib_resources",
+ ]
+ 
+ [project.optional-dependencies]

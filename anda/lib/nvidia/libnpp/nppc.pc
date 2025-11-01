@@ -1,0 +1,8 @@
+libdir=LIBDIR
+includedir=INCLUDE_DIR
+
+Name: nppc
+Description: NVIDIA Performance Primitives - Core
+Version: CUDA_VERSION
+Libs: -L${libdir} -lnppc
+Cflags: -I${includedir}

@@ -1,7 +1,7 @@
-%global tag 2024-06-12
+%global tag 2025-04-17
 
 Name:           fluent-theme
-Version:        20240612
+Version:        20250417
 Release:        1%?dist
 Summary:        Fluent design theme for GNOME/GTK based desktop environments
 

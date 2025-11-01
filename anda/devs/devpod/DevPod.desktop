@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=DevPod
+Comment=Spin up dev environments in any infra
+Exec=dev-pod-desktop
+Icon=dev-pod-desktop
+Terminal=false
+StartupNotify=false
+Categories=Development;

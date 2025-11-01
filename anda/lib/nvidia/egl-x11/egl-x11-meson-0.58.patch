@@ -1,0 +1,12 @@
+diff -Naur egl-x11-2be2296e1439b2e4a7f73d976d63982383ae2938.old/src/x11/meson.build egl-x11-2be2296e1439b2e4a7f73d976d63982383ae2938/src/x11/meson.build
+--- egl-x11-2be2296e1439b2e4a7f73d976d63982383ae2938.old/src/x11/meson.build	2024-09-04 09:15:04.539451788 +0200
++++ egl-x11-2be2296e1439b2e4a7f73d976d63982383ae2938/src/x11/meson.build	2024-09-04 09:19:07.641999858 +0200
+@@ -21,7 +21,7 @@
+ dep_xcb_dri3 = dependency('xcb-dri3')
+ dep_dl = meson.get_compiler('c').find_library('dl', required : false)
+ 
+-enable_xlib = (get_option('xlib').allowed() and dep_x11.found() and dep_x11_xcb.found())
++enable_xlib = (get_option('xlib').enabled() and dep_x11.found() and dep_x11_xcb.found())
+ 
+ x11_deps = [
+   dep_libdrm,

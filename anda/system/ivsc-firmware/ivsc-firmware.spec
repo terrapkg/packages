@@ -1,16 +1,24 @@
 %global debug_package %{nil}
-%global commit 74a01d1208a352ed85d76f959c68200af4ead918
-%global commitdate 20230811
+%global commit 3377801f46b86e03c464bfb03ca3c486e9b0db00
+%global commit_date 20250326
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           ivsc-firmware
 Summary:        Intel iVSC firmware
 URL:            https://github.com/intel/ivsc-firmware
-Version:        %{commitdate}.%{shortcommit}
-Release:        1%?dist
+Version:        0^%{commit_date}git.%{shortcommit}
+Release:        3%?dist
+%if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
+Epoch:          1
+%endif
 License:        Proprietary
 Source0:        https://github.com/intel/%{name}/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
 Requires:       ipu6-camera-bins
+# Fix the stupid issue when changing versioning schemes
+%if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
+Provides:       %{name} = %{?epoch:%{epoch}:}%{commit_date}.%{shortcommit}-%{release}
+Obsoletes:      %{name} < %{?epoch:%{epoch}:}20230811.74a01d1-2
+%endif
 ExclusiveArch:  x86_64
 
 %description
@@ -32,8 +40,12 @@ done
 popd
 
 %files
+%doc README.md
+%doc SECURITY.md
 %license LICENSE
 %{_prefix}/lib/firmware/vsc/
 
 %changelog
-%autochangelog
+* Tue Apr 1 2025 Gilver E. <rockgrub@disroot.org> - 0^20250326git.3377801-2%{?dist} - FINAL
+- Final update as the project is archived
+- Include the doc files

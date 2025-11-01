@@ -1,15 +1,15 @@
 %define debug_package %nil
 
-%global commit 2b9525daff0a28a17bc99d3a54998306584f6a86
+%global commit 7887b2941dd1ec70bf002e8ea3cd6007859131ec
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250105
+%global commit_date 20251012
 
 Name:           gamescope-session
 Version:        %commit_date.%shortcommit
 Release:        1%?dist
-Summary:        ChimeraOS session on Gamescope
+Summary:        Gamescope session based on Valve's gamescope
 License:        MIT
-URL:            https://github.com/ChimeraOS/gamescope-session
+URL:            https://github.com/bazzite-org/gamescope-session
 Source0:        %url/archive/%commit.tar.gz
 BuildRequires:  systemd-rpm-macros
 
@@ -28,9 +28,13 @@ cp -r usr %buildroot/
 %files
 %doc README.md
 %license LICENSE
-%_bindir/export-gpu
-%_bindir/gamescope-session-plus
-%_libexecdir/gamescope-sdl-workaround
-%_userunitdir/gamescope-session-plus@.service
-%_datadir/gamescope-session-plus/device-quirks
-%_datadir/gamescope-session-plus/gamescope-session-plus
+%{_bindir}/export-gpu
+%{_bindir}/gamescope-session-plus
+%{_datadir}/gamescope-session-plus/device-quirks
+%{_datadir}/gamescope-session-plus/gamescope-session-plus
+%{_userunitdir}/gamescope-session-plus@.service
+%{_userunitdir}/gamescope-session.target
+
+
+%changelog
+%autochangelog

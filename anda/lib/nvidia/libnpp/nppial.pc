@@ -1,0 +1,8 @@
+libdir=LIBDIR
+includedir=INCLUDE_DIR
+
+Name: nppial
+Description: NVIDIA Performance Primitives - Image Processing - Arithmetic and Logic
+Version: CUDA_VERSION
+Libs: -L${libdir} -lnppial
+Cflags: -I${includedir}

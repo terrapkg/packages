@@ -1,8 +1,17 @@
---- ouch-0.5.1/Cargo.toml	1970-01-01T00:00:01+00:00
-+++ ouch-0.5.1/Cargo.toml	2023-12-10T09:36:31.446957+00:00
-@@ -176,5 +176,3 @@
- ]
- use_zstd_thin = ["zstd/thin"]
+--- ouch-0.6.0/Cargo.toml	1970-01-01T00:00:01+00:00
++++ ouch-0.6.0/Cargo.toml	2025-04-20T17:51:00.814645+00:00
+@@ -223,9 +223,6 @@
+ [build-dependencies.clap_mangen]
+ version = "0.2.24"
  
 -[target."cfg(not(unix))".dependencies.is_executable]
 -version = "1.0.1"
+-
+ [profile.fast]
+ opt-level = 2
+ lto = false
+@@ -238,3 +235,4 @@
+ lto = true
+ codegen-units = 1
+ strip = true
++

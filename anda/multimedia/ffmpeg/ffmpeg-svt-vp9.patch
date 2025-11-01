@@ -1,0 +1,762 @@
+diff -Naur ffmpeg-7.1.1.old/configure ffmpeg-7.1.1/configure
+--- ffmpeg-7.1.1.old/configure	2025-03-24 10:54:38.202757211 +0100
++++ ffmpeg-7.1.1/configure	2025-03-24 10:54:38.618546808 +0100
+@@ -278,6 +278,7 @@
+   --enable-libsrt          enable Haivision SRT protocol via libsrt [no]
+   --enable-libssh          enable SFTP protocol via libssh [no]
+   --enable-libsvtav1       enable AV1 encoding via SVT [no]
++  --enable-libsvtvp9       enable VP9 encoding via svt [no]
+   --enable-libtensorflow   enable TensorFlow as a DNN module backend
+                            for DNN based filters like sr [no]
+   --enable-libtesseract    enable Tesseract, needed for ocr filter [no]
+@@ -1953,6 +1954,7 @@
+     libshaderc
+     libshine
+     libsmbclient
++    libsvtvp9
+     libsnappy
+     libsoxr
+     libspeex
+@@ -3575,6 +3577,7 @@
+ libvpx_vp8_encoder_deps="libvpx"
+ libvpx_vp9_decoder_deps="libvpx"
+ libvpx_vp9_encoder_deps="libvpx"
++libsvt_vp9_encoder_deps="libsvtvp9"
+ libvvenc_encoder_deps="libvvenc"
+ libwebp_encoder_deps="libwebp"
+ libwebp_anim_encoder_deps="libwebp"
+@@ -6997,6 +7000,7 @@
+ enabled libspeex          && require_pkg_config libspeex speex speex/speex.h speex_decoder_init
+ enabled libsrt            && require_pkg_config libsrt "srt >= 1.3.0" srt/srt.h srt_socket
+ enabled libsvtav1         && require_pkg_config libsvtav1 "SvtAv1Enc >= 0.9.0" EbSvtAv1Enc.h svt_av1_enc_init_handle
++enabled libsvtvp9         && require_pkg_config libsvtvp9 SvtVp9Enc EbSvtVp9Enc.h       eb_vp9_svt_init_handle
+ enabled libtensorflow     && require libtensorflow tensorflow/c/c_api.h TF_Version -ltensorflow
+ enabled libtesseract      && require_pkg_config libtesseract tesseract tesseract/capi.h TessBaseAPICreate
+ enabled libtheora         && require libtheora theora/theoraenc.h th_info_init -ltheoraenc -ltheoradec -logg
+diff -Naur ffmpeg-7.1.1.old/libavcodec/allcodecs.c ffmpeg-7.1.1/libavcodec/allcodecs.c
+--- ffmpeg-7.1.1.old/libavcodec/allcodecs.c	2025-03-24 10:54:38.119756212 +0100
++++ ffmpeg-7.1.1/libavcodec/allcodecs.c	2025-03-24 10:54:38.619934060 +0100
+@@ -796,6 +796,7 @@
+ extern const FFCodec ff_libvo_amrwbenc_encoder;
+ extern const FFCodec ff_libvorbis_encoder;
+ extern const FFCodec ff_libvorbis_decoder;
++extern const FFCodec ff_libsvt_vp9_encoder;
+ extern const FFCodec ff_libvpx_vp8_encoder;
+ extern const FFCodec ff_libvpx_vp8_decoder;
+ extern FFCodec ff_libvpx_vp9_encoder;
+diff -Naur ffmpeg-7.1.1.old/libavcodec/libsvt_vp9.c ffmpeg-7.1.1/libavcodec/libsvt_vp9.c
+--- ffmpeg-7.1.1.old/libavcodec/libsvt_vp9.c	1970-01-01 01:00:00.000000000 +0100
++++ ffmpeg-7.1.1/libavcodec/libsvt_vp9.c	2025-03-24 10:54:38.620176868 +0100
+@@ -0,0 +1,701 @@
++/*
++* Scalable Video Technology for VP9 encoder library plugin
++*
++* Copyright (c) 2018 Intel Corporation
++*
++* This file is part of FFmpeg.
++*
++* FFmpeg is free software; you can redistribute it and/or
++* modify it under the terms of the GNU Lesser General Public
++* License as published by the Free Software Foundation; either
++* version 2.1 of the License, or (at your option) any later version.
++*
++* FFmpeg is distributed in the hope that it will be useful,
++* but WITHOUT ANY WARRANTY; without even the implied warranty of
++* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++* Lesser General Public License for more details.
++*
++* You should have received a copy of the GNU Lesser General Public
++* License along with this program; if not, write to the Free Software
++* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
++*/
++
++#include <stdint.h>
++#include "EbSvtVp9ErrorCodes.h"
++#include "EbSvtVp9Enc.h"
++
++#include "libavutil/common.h"
++#include "libavutil/frame.h"
++#include "libavutil/mem.h"
++#include "libavutil/opt.h"
++#include "libavcodec/get_bits.h"
++
++#include "codec_internal.h"
++#include "internal.h"
++#include "encode.h"
++#include "avcodec.h"
++
++#define SUPERFRAME_INDEX_MAX_SIZE 128
++
++#define RECIVED_FRAMES_MAX_SIZE 32
++#define MAX_VP9_SUPERFRAME_SIZE 8
++
++typedef enum eos_status {
++    EOS_NOT_REACHED = 0,
++    EOS_REACHED,
++    EOS_TOTRIGGER
++}EOS_STATUS;
++
++typedef struct SvtReceivedFrameStruct {
++    // fields for AVPacket
++    AVBufferRef *buf;
++    int64_t pts;
++    int64_t dts;
++    int size;
++    int flags;
++
++    // svt fields:
++    int ready_flag; // frame or superframe in data is visible
++    int frames_count;
++    int frames_sizes[MAX_VP9_SUPERFRAME_SIZE];
++} SvtReceivedFrameStruct;
++
++typedef struct SvtContext {
++    AVClass     *class;
++
++    EbSvtVp9EncConfiguration    enc_params;
++    EbComponentType            *svt_handle;
++
++    EbBufferHeaderType         *in_buf;
++    int                         raw_size;
++
++    AVFrame *frame;
++
++    AVBufferPool* pool;
++
++    EOS_STATUS eos_flag;
++
++    // User options.
++    int enc_mode;
++    int rc_mode;
++    int tune;
++    int qp;
++
++    int target_socket;
++
++    int forced_idr;
++
++    int level;
++
++    int base_layer_switch_mode;
++
++
++    int64_t last_ready_dts;
++    SvtReceivedFrameStruct received_frames[RECIVED_FRAMES_MAX_SIZE];
++    int received_frames_size;
++} SvtContext;
++
++static int error_mapping(EbErrorType svt_ret)
++{
++    int err;
++
++    switch (svt_ret) {
++    case EB_ErrorInsufficientResources:
++        err = AVERROR(ENOMEM);
++        break;
++
++    case EB_ErrorUndefined:
++    case EB_ErrorInvalidComponent:
++    case EB_ErrorBadParameter:
++        err = AVERROR(EINVAL);
++        break;
++
++    case EB_ErrorDestroyThreadFailed:
++    case EB_ErrorSemaphoreUnresponsive:
++    case EB_ErrorDestroySemaphoreFailed:
++    case EB_ErrorCreateMutexFailed:
++    case EB_ErrorMutexUnresponsive:
++    case EB_ErrorDestroyMutexFailed:
++        err = AVERROR_EXTERNAL;
++            break;
++
++    case EB_NoErrorEmptyQueue:
++        err = AVERROR(EAGAIN);
++
++    case EB_ErrorNone:
++        err = 0;
++        break;
++
++    default:
++        err = AVERROR_UNKNOWN;
++    }
++
++    return err;
++}
++
++static void free_buffer(SvtContext *svt_enc)
++{
++    if (svt_enc->in_buf) {
++        EbSvtEncInput *in_data = (EbSvtEncInput *)svt_enc->in_buf->p_buffer;
++        av_freep(&in_data);
++        av_freep(&svt_enc->in_buf);
++    }
++    av_buffer_pool_uninit(&svt_enc->pool);
++}
++
++static int alloc_buffer(EbSvtVp9EncConfiguration *config, SvtContext *svt_enc)
++{
++    const size_t luma_size_8bit    =
++        config->source_width * config->source_height;
++    const size_t luma_size_10bit   =
++        (config->encoder_bit_depth > 8) ? luma_size_8bit : 0;
++
++    EbSvtEncInput *in_data;
++
++    svt_enc->raw_size = ((luma_size_8bit + luma_size_10bit) * 3 / 2) * MAX_VP9_SUPERFRAME_SIZE + SUPERFRAME_INDEX_MAX_SIZE;
++
++    // allocate buffer for in and out
++    svt_enc->in_buf           = av_mallocz(sizeof(*svt_enc->in_buf));
++    if (!svt_enc->in_buf)
++        goto failed;
++
++
++    svt_enc->in_buf->p_buffer = (unsigned char *)av_mallocz(sizeof(*in_data));
++    if (!svt_enc->in_buf->p_buffer)
++        goto failed;
++
++    svt_enc->in_buf->size        = sizeof(*svt_enc->in_buf);
++    svt_enc->in_buf->p_app_private  = NULL;
++
++    svt_enc->pool = av_buffer_pool_init(svt_enc->raw_size, NULL);
++    if (!svt_enc->pool)
++        goto failed;
++
++    svt_enc->received_frames_size = 0;
++    svt_enc->last_ready_dts = -1e9;
++
++    return 0;
++
++failed:
++    free_buffer(svt_enc);
++    return AVERROR(ENOMEM);
++}
++
++static int config_enc_params(EbSvtVp9EncConfiguration *param,
++                             AVCodecContext *avctx)
++{
++    SvtContext *svt_enc = avctx->priv_data;
++    int             ret;
++    int        ten_bits = 0;
++
++    param->source_width     = avctx->width;
++    param->source_height    = avctx->height;
++
++    if (avctx->pix_fmt == AV_PIX_FMT_YUV420P10LE) {
++        av_log(avctx, AV_LOG_DEBUG , "Encoder 10 bits depth input\n");
++        // Disable Compressed 10-bit format default
++        ten_bits = 1;
++    }
++
++    // Update param from options
++    param->enc_mode                 = svt_enc->enc_mode;
++    param->level                    = svt_enc->level;
++    param->rate_control_mode        = svt_enc->rc_mode;
++    param->tune                     = svt_enc->tune;
++    param->base_layer_switch_mode   = svt_enc->base_layer_switch_mode;
++    param->qp                       = svt_enc->qp;
++    param->target_socket            = svt_enc->target_socket;
++    param->target_bit_rate          = avctx->bit_rate;
++    if (avctx->gop_size > 0)
++        param->intra_period  = avctx->gop_size - 1;
++
++    if (avctx->framerate.num > 0 && avctx->framerate.den > 0) {
++        param->frame_rate_numerator     = avctx->framerate.num;
++        param->frame_rate_denominator   = avctx->framerate.den * avctx->ticks_per_frame;
++    } else {
++        param->frame_rate_numerator     = avctx->time_base.den;
++        param->frame_rate_denominator   = avctx->time_base.num * avctx->ticks_per_frame;
++    }
++
++    if (param->rate_control_mode) {
++        param->max_qp_allowed       = avctx->qmax;
++        param->min_qp_allowed       = avctx->qmin;
++    }
++
++    if (ten_bits) {
++        param->encoder_bit_depth        = 10;
++    }
++
++    ret = alloc_buffer(param, svt_enc);
++
++    return ret;
++}
++
++static void read_in_data(EbSvtVp9EncConfiguration *config,
++                         const AVFrame *frame,
++                         EbBufferHeaderType *headerPtr)
++{
++    uint8_t is16bit = config->encoder_bit_depth > 8;
++    uint64_t luma_size =
++        (uint64_t)config->source_width * config->source_height<< is16bit;
++    EbSvtEncInput *in_data = (EbSvtEncInput *)headerPtr->p_buffer;
++
++    // support yuv420p and yuv420p010
++    in_data->luma = frame->data[0];
++    in_data->cb   = frame->data[1];
++    in_data->cr   = frame->data[2];
++
++    // stride info
++    in_data->y_stride  = frame->linesize[0] >> is16bit;
++    in_data->cb_stride = frame->linesize[1] >> is16bit;
++    in_data->cr_stride = frame->linesize[2] >> is16bit;
++
++    headerPtr->n_filled_len   += luma_size * 3/2u;
++}
++
++static av_cold int eb_enc_init(AVCodecContext *avctx)
++{
++    SvtContext   *svt_enc = avctx->priv_data;
++    EbErrorType svt_ret;
++
++    svt_enc->eos_flag = EOS_NOT_REACHED;
++
++    svt_ret = eb_vp9_svt_init_handle(&svt_enc->svt_handle, svt_enc, &svt_enc->enc_params);
++    if (svt_ret != EB_ErrorNone) {
++        av_log(avctx, AV_LOG_ERROR, "Error init encoder handle\n");
++        goto failed;
++    }
++
++    svt_ret = config_enc_params(&svt_enc->enc_params, avctx);
++    if (svt_ret != EB_ErrorNone) {
++        av_log(avctx, AV_LOG_ERROR, "Error configure encoder parameters\n");
++        goto failed_init_handle;
++    }
++
++    svt_ret = eb_vp9_svt_enc_set_parameter(svt_enc->svt_handle, &svt_enc->enc_params);
++    if (svt_ret != EB_ErrorNone) {
++        av_log(avctx, AV_LOG_ERROR, "Error setting encoder parameters\n");
++        goto failed_init_handle;
++    }
++
++    svt_ret = eb_vp9_init_encoder(svt_enc->svt_handle);
++    if (svt_ret != EB_ErrorNone) {
++        av_log(avctx, AV_LOG_ERROR, "Error init encoder\n");
++        goto failed_init_handle;
++    }
++
++    svt_enc->frame = av_frame_alloc();
++    if (!svt_enc->frame)
++        return AVERROR(ENOMEM);
++
++ //   if (avctx->flags & AV_CODEC_FLAG_GLOBAL_HEADER) {
++ //       EbBufferHeaderType* headerPtr;
++ //       headerPtr->size       = sizeof(headerPtr);
++ //       headerPtr->n_filled_len  = 0; /* in/out */
++ //       headerPtr->p_buffer     = av_malloc(10 * 1024 * 1024);
++ //       headerPtr->n_alloc_len   = (10 * 1024 * 1024);
++ //
++ //       if (!headerPtr->p_buffer) {
++ //           av_log(avctx, AV_LOG_ERROR,
++ //                  "Cannot allocate buffer size %d.\n", headerPtr->n_alloc_len);
++ //           svt_ret = EB_ErrorInsufficientResources;
++ //           goto failed_init_enc;
++ //       }
++ //
++ //       svt_ret = eb_svt_enc_stream_header(svt_enc->svt_handle, &headerPtr);
++ //       if (svt_ret != EB_ErrorNone) {
++ //           av_log(avctx, AV_LOG_ERROR, "Error when build stream header.\n");
++ //           av_freep(&headerPtr->p_buffer);
++ //           goto failed_init_enc;
++ //       }
++ //
++ //       avctx->extradata_size = headerPtr->n_filled_len;
++ //       avctx->extradata = av_mallocz(avctx->extradata_size + AV_INPUT_BUFFER_PADDING_SIZE);
++ //       if (!avctx->extradata) {
++ //           av_log(avctx, AV_LOG_ERROR,
++ //                  "Cannot allocate VP9 header of size %d.\n", avctx->extradata_size);
++ //           av_freep(&headerPtr->p_buffer);
++ //           svt_ret = EB_ErrorInsufficientResources;
++ //           goto failed_init_enc;
++ //       }
++ //       memcpy(avctx->extradata, headerPtr->p_buffer, avctx->extradata_size);
++ //
++ //       av_freep(&headerPtr->p_buffer);
++ //   }
++    return 0;
++
++//failed_init_enc:
++//    eb_deinit_encoder(svt_enc->svt_handle);
++failed_init_handle:
++    eb_vp9_deinit_handle(svt_enc->svt_handle);
++failed:
++    free_buffer(svt_enc);
++    return error_mapping(svt_ret);
++}
++
++static int eb_send_frame(AVCodecContext *avctx, const AVFrame *frame)
++{
++    SvtContext           *svt_enc = avctx->priv_data;
++    EbBufferHeaderType  *headerPtr = svt_enc->in_buf;
++
++    if (!frame) {
++        if (svt_enc->eos_flag == EOS_REACHED)
++            return 0;
++
++        EbBufferHeaderType headerPtrLast;
++        headerPtrLast.n_alloc_len   = 0;
++        headerPtrLast.n_filled_len  = 0;
++        headerPtrLast.n_tick_count  = 0;
++        headerPtrLast.p_app_private = NULL;
++        headerPtrLast.p_buffer      = NULL;
++        headerPtrLast.flags         = EB_BUFFERFLAG_EOS;
++
++        eb_vp9_svt_enc_send_picture(svt_enc->svt_handle, &headerPtrLast);
++        svt_enc->eos_flag = EOS_REACHED;
++        av_log(avctx, AV_LOG_DEBUG, "Finish sending frames!!!\n");
++        return 0;
++    }
++
++    read_in_data(&svt_enc->enc_params, frame, headerPtr);
++
++    headerPtr->flags         = 0;
++    headerPtr->p_app_private = NULL;
++    headerPtr->pts           = frame->pts;
++    switch (frame->pict_type) {
++    case AV_PICTURE_TYPE_I:
++        headerPtr->pic_type = svt_enc->forced_idr > 0 ? EB_IDR_PICTURE : EB_I_PICTURE;
++        break;
++    case AV_PICTURE_TYPE_P:
++        headerPtr->pic_type = EB_P_PICTURE;
++        break;
++    case AV_PICTURE_TYPE_B:
++        headerPtr->pic_type = EB_B_PICTURE;
++        break;
++    default:
++        headerPtr->pic_type = EB_INVALID_PICTURE;
++        break;
++    }
++    eb_vp9_svt_enc_send_picture(svt_enc->svt_handle, headerPtr);
++
++    return 0;
++}
++
++static int is_frame_visible(uint8_t const* ptr, int size) {
++    GetBitContext gb;
++    int ret, visible, profile;
++    if ((ret = init_get_bits8(&gb, ptr, size)) < 0) {
++        return ret;
++    }
++
++    // frame marker
++    get_bits(&gb, 2);
++    profile  = get_bits1(&gb);
++    profile |= get_bits1(&gb) << 1;
++
++    // reserved_zero
++    if (profile == 3) profile += get_bits1(&gb);  // reserved_zero
++
++    // read show_existing_frame
++    if (get_bits1(&gb)) {
++        // show_existing_frame == 1
++        visible = 1;
++    } else {
++        // show_existing_frame == 0
++        // keyframe (frame_type actually)
++        get_bits1(&gb);
++        // read show_frame
++        visible = get_bits1(&gb) ? 2 : 0;
++    }
++
++    return visible;
++}
++
++static int get_received_frame(SvtContext *svt_enc, AVPacket *pkt) {
++    SvtReceivedFrameStruct* rfs = &svt_enc->received_frames[0];
++
++    if (svt_enc->received_frames_size == 0 || !rfs->ready_flag) {
++        return AVERROR(EAGAIN);
++    }
++
++    pkt->buf = rfs->buf;
++    pkt->data = rfs->buf->data;
++    pkt->dts = rfs->dts;
++    pkt->pts = rfs->pts;
++    pkt->flags = rfs->flags;
++    pkt->size = rfs->size;
++
++    --svt_enc->received_frames_size;
++    for (int i = 0; i < svt_enc->received_frames_size; ++i) {
++        svt_enc->received_frames[i] = svt_enc->received_frames[i + 1];
++    }
++
++    return 0;
++}
++
++static int put_received_frame(AVCodecContext *avctx, uint8_t* data, int size, int keyframe, int64_t dts, int64_t pts) {
++    SvtContext  *svt_enc = avctx->priv_data;
++    SvtReceivedFrameStruct* rfs;
++
++    if (svt_enc->received_frames_size == 0 || svt_enc->received_frames[svt_enc->received_frames_size - 1].ready_flag) {
++        ++svt_enc->received_frames_size;
++        if (svt_enc->received_frames_size > RECIVED_FRAMES_MAX_SIZE) {
++            av_log(avctx, AV_LOG_ERROR, "Fail: svt_enc->received_frames_size > RECIVED_FRAMES_MAX_SIZE \n");
++            return AVERROR_BUG;
++        }
++
++        rfs = &svt_enc->received_frames[svt_enc->received_frames_size - 1];
++
++        rfs->buf = av_buffer_pool_get(svt_enc->pool);
++        if (!rfs->buf) {
++            av_log(avctx, AV_LOG_ERROR, "Failed to allocate output packet.\n");
++            return AVERROR(ENOMEM);
++        }
++
++        rfs->size = 0;
++        rfs->flags = 0;
++        rfs->ready_flag = 0;
++        rfs->frames_count = 0;
++    } else {
++        rfs = &svt_enc->received_frames[svt_enc->received_frames_size - 1];
++    }
++
++    rfs->pts = pts;
++    rfs->dts = dts;
++    rfs->flags = (keyframe ? AV_PKT_FLAG_KEY : 0);
++
++    ++rfs->frames_count;
++    if (rfs->frames_count > MAX_VP9_SUPERFRAME_SIZE) {
++        av_log(avctx, AV_LOG_ERROR, "Fail: rfs->frames_count > MAX_VP9_SUPERFRAME_SIZE \n");
++        return AVERROR_BUG;
++    }
++
++    rfs->frames_sizes[rfs->frames_count - 1] = size;
++
++    memcpy(rfs->buf->data + rfs->size, data, size);
++    rfs->size += size;
++
++    int visible = is_frame_visible(data, size);
++    if (visible < 0) {
++        av_log(avctx, AV_LOG_ERROR, "Fail: is_frame_visible \n");
++        return visible;
++    }
++
++
++    rfs->ready_flag = visible;
++
++    if (rfs->ready_flag) {
++        if (rfs->dts <= svt_enc->last_ready_dts) {
++            rfs->dts = svt_enc->last_ready_dts + 1;
++        }
++        svt_enc->last_ready_dts = rfs->dts;
++
++    }
++
++    // add superframe_index if needed
++    if (rfs->ready_flag && rfs->frames_count > 1) {
++        // superframe_header:
++        // 110 - superframe_marker
++        // 11 = 3 = bytes_per_framesize_minus_1 - use 4-bytes size
++        // xxx = frames_in_superframe_minus_1
++        uint8_t header = 0b11011000;
++        header |= (rfs->frames_count - 1) & 0b111;
++
++        uint8_t* ptr = rfs->buf->data + rfs->size;
++
++        ptr[0] = header;
++        ++ptr;
++
++        for (int i = 0; i < rfs->frames_count; ++i) {
++            ptr[0] = (rfs->frames_sizes[i] >>  0) & 0xff;
++            ptr[1] = (rfs->frames_sizes[i] >>  8) & 0xff;
++            ptr[2] = (rfs->frames_sizes[i] >> 16) & 0xff;
++            ptr[3] = (rfs->frames_sizes[i] >> 24) & 0xff;
++
++            ptr += 4;
++        }
++
++        ptr[0] = header;
++        ++ptr;
++
++        rfs->size = ptr - rfs->buf->data;
++    }
++
++    return 0;
++}
++
++static int eb_receive_packet(AVCodecContext *avctx, AVPacket *pkt)
++{
++    SvtContext  *svt_enc = avctx->priv_data;
++    EbBufferHeaderType   *headerPtr;
++    EbErrorType          svt_ret;
++    AVBufferRef *ref;
++    int ret = 0;
++
++    if (get_received_frame(svt_enc, pkt) == 0) {
++        return 0;
++    }
++
++    if (EOS_TOTRIGGER == svt_enc->eos_flag) {
++        pkt = NULL;
++        return AVERROR_EOF;
++    }
++
++    AVFrame *frame = svt_enc->frame;
++    ret = ff_encode_get_frame(avctx, frame);
++    if (ret < 0 && ret != AVERROR_EOF) {
++        return ret;
++    }
++    if (ret == AVERROR_EOF)
++        frame = NULL;
++
++    ret = eb_send_frame(avctx, frame);
++    if (ret < 0)
++        return ret;
++    av_frame_unref(svt_enc->frame);
++
++    for (;;) {
++        svt_ret = eb_vp9_svt_get_packet(svt_enc->svt_handle, &headerPtr, svt_enc->eos_flag);
++        if (svt_ret == EB_NoErrorEmptyQueue) {
++            return AVERROR(EAGAIN);
++        }
++
++        if (EB_BUFFERFLAG_EOS & headerPtr->flags)
++            svt_enc->eos_flag = EOS_TOTRIGGER;
++
++        ret = 0;
++
++        // ignore headerPtr->dts on purpose
++
++        if (headerPtr->flags & EB_BUFFERFLAG_SHOW_EXT) {
++            ret = put_received_frame(avctx, headerPtr->p_buffer, headerPtr->n_filled_len - 4, 0, headerPtr->pts - 3, headerPtr->pts - 3);
++            if (ret != 0) goto end;
++            ret = put_received_frame(avctx, headerPtr->p_buffer + headerPtr->n_filled_len - 4, 1, 0, headerPtr->pts - 2, headerPtr->pts - 2);
++            if (ret != 0) goto end;
++            ret = put_received_frame(avctx, headerPtr->p_buffer + headerPtr->n_filled_len - 3, 1, 0, headerPtr->pts - 1, headerPtr->pts - 1);
++            if (ret != 0) goto end;
++            ret = put_received_frame(avctx, headerPtr->p_buffer + headerPtr->n_filled_len - 2, 1, 0, headerPtr->pts + 0, headerPtr->pts + 0);
++            if (ret != 0) goto end;
++            ret = put_received_frame(avctx, headerPtr->p_buffer + headerPtr->n_filled_len - 1, 1, 0, headerPtr->pts + 1, headerPtr->pts + 1);
++            if (ret != 0) goto end;
++        } else {
++            ret = put_received_frame(avctx, headerPtr->p_buffer, headerPtr->n_filled_len, headerPtr->pic_type == EB_IDR_PICTURE, headerPtr->pts, headerPtr->pts);
++            if (ret != 0) goto end;
++        }
++
++        ret = get_received_frame(svt_enc, pkt);
++
++        end:
++            eb_vp9_svt_release_out_buffer(&headerPtr);
++
++        if (ret == AVERROR(EAGAIN)) {
++            continue;
++        }
++
++        break;
++    }
++
++
++
++    return ret;
++}
++
++static av_cold int eb_enc_close(AVCodecContext *avctx)
++{
++    SvtContext *svt_enc = avctx->priv_data;
++
++    eb_vp9_deinit_encoder(svt_enc->svt_handle);
++    eb_vp9_deinit_handle(svt_enc->svt_handle);
++
++    av_frame_free(&svt_enc->frame);
++
++    free_buffer(svt_enc);
++
++    return 0;
++}
++
++#define OFFSET(x) offsetof(SvtContext, x)
++#define VE AV_OPT_FLAG_VIDEO_PARAM | AV_OPT_FLAG_ENCODING_PARAM
++static const AVOption options[] = {
++    { "preset", "Encoding preset [1, 1]",
++      OFFSET(enc_mode), AV_OPT_TYPE_INT, { .i64 = 9 }, 0, 9, VE },
++
++    { "level", "Set level (level_idc)", OFFSET(level),
++      AV_OPT_TYPE_INT, { .i64 = 0 }, 0, 0xff, VE, "level" },
++
++#define LEVEL(name, value) name, NULL, 0, AV_OPT_TYPE_CONST, \
++      { .i64 = value }, 0, 0, VE, "level"
++        { LEVEL("1",   10) },
++        { LEVEL("2",   20) },
++        { LEVEL("2.1", 21) },
++        { LEVEL("3",   30) },
++        { LEVEL("3.1", 31) },
++        { LEVEL("4",   40) },
++        { LEVEL("4.1", 41) },
++        { LEVEL("5",   50) },
++        { LEVEL("5.1", 51) },
++        { LEVEL("5.2", 52) },
++        { LEVEL("6",   60) },
++        { LEVEL("6.1", 61) },
++        { LEVEL("6.2", 62) },
++#undef LEVEL
++
++    { "tune", "Tune mode", OFFSET(tune),
++      AV_OPT_TYPE_INT, { .i64 = 0 }, 0, 2, VE , "tune"},
++        { "vq", NULL, 0, AV_OPT_TYPE_CONST, { .i64 = 0 },  INT_MIN, INT_MAX, VE, "tune" },
++        { "ssim", NULL, 0, AV_OPT_TYPE_CONST, { .i64 = 1 },  INT_MIN, INT_MAX, VE, "tune" },
++        { "vmaf", NULL, 0, AV_OPT_TYPE_CONST, { .i64 = 2 },  INT_MIN, INT_MAX, VE, "tune" },
++
++    { "rc", "Bit rate control mode", OFFSET(rc_mode),
++      AV_OPT_TYPE_INT, { .i64 = 0 }, 0, 2, VE , "rc"},
++        { "cqp", NULL, 0, AV_OPT_TYPE_CONST, { .i64 = 0 },  INT_MIN, INT_MAX, VE, "rc" },
++        { "vbr", NULL, 0, AV_OPT_TYPE_CONST, { .i64 = 1 },  INT_MIN, INT_MAX, VE, "rc" },
++        { "cbr", NULL, 0, AV_OPT_TYPE_CONST, { .i64 = 2 },  INT_MIN, INT_MAX, VE, "rc" },
++
++    { "qp", "QP value for intra frames", OFFSET(qp),
++      AV_OPT_TYPE_INT, { .i64 = 32 }, 0, 51, VE },
++
++    { "socket", "Target CPU socket to use.  -1 use all available", OFFSET(target_socket),
++      AV_OPT_TYPE_INT, { .i64 = -1 }, -1, 1, VE },
++
++    { "bl_mode", "Random Access Prediction Structure type setting", OFFSET(base_layer_switch_mode),
++      AV_OPT_TYPE_BOOL, { .i64 = 0 }, 0, 1, VE },
++
++    { "forced-idr", "If forcing keyframes, force them as IDR frames.", OFFSET(forced_idr),
++      AV_OPT_TYPE_BOOL,   { .i64 = 0 }, -1, 1, VE },
++
++    {NULL},
++};
++
++static const AVClass class = {
++    .class_name = "libsvt_vp9",
++    .item_name  = av_default_item_name,
++    .option     = options,
++    .version    = LIBAVUTIL_VERSION_INT,
++};
++
++static const FFCodecDefault eb_enc_defaults[] = {
++    { "b",         "7M"    },
++    { "flags",     "-cgop" },
++    { "qmin",      "10"    },
++    { "qmax",      "48"    },
++    { NULL },
++};
++
++const FFCodec ff_libsvt_vp9_encoder = {
++    .p.name           = "libsvt_vp9",
++    .p.long_name      = NULL_IF_CONFIG_SMALL("SVT-VP9(Scalable Video Technology for VP9) encoder"),
++    .priv_data_size = sizeof(SvtContext),
++    .p.type           = AVMEDIA_TYPE_VIDEO,
++    .p.id             = AV_CODEC_ID_VP9,
++    .init             = eb_enc_init,
++    FF_CODEC_RECEIVE_PACKET_CB(eb_receive_packet),
++    .close            = eb_enc_close,
++    .p.capabilities   = AV_CODEC_CAP_DELAY | AV_CODEC_CAP_OTHER_THREADS,
++    .caps_internal    = FF_CODEC_CAP_NOT_INIT_THREADSAFE |
++                        FF_CODEC_CAP_AUTO_THREADS | FF_CODEC_CAP_INIT_CLEANUP,
++    .p.pix_fmts       = (const enum AVPixelFormat[]){ AV_PIX_FMT_YUV420P,
++                                                    AV_PIX_FMT_NONE },
++    .p.priv_class     = &class,
++    .defaults         = eb_enc_defaults,
++    .p.wrapper_name   = "libsvt_vp9",
++};
+diff -Naur ffmpeg-7.1.1.old/libavcodec/Makefile ffmpeg-7.1.1/libavcodec/Makefile
+--- ffmpeg-7.1.1.old/libavcodec/Makefile	2025-03-24 10:54:37.935753999 +0100
++++ ffmpeg-7.1.1/libavcodec/Makefile	2025-03-24 10:54:38.620394147 +0100
+@@ -1157,6 +1157,7 @@
+ OBJS-$(CONFIG_LIBVORBIS_DECODER)          += libvorbisdec.o
+ OBJS-$(CONFIG_LIBVORBIS_ENCODER)          += libvorbisenc.o \
+                                              vorbis_data.o
++OBJS-$(CONFIG_LIBSVT_VP9_ENCODER)         += libsvt_vp9.o
+ OBJS-$(CONFIG_LIBVPX_VP8_DECODER)         += libvpxdec.o
+ OBJS-$(CONFIG_LIBVPX_VP8_ENCODER)         += libvpxenc.o
+ OBJS-$(CONFIG_LIBVPX_VP9_DECODER)         += libvpxdec.o

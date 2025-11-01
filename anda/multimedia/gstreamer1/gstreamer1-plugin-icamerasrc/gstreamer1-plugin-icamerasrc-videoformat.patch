@@ -1,0 +1,34 @@
+--- icamerasrc-9b2f7e3cec27d42a3bf01058b93ae22fed26cc9c.old/src/gstcameraformat.cpp	2024-04-11 05:02:03.000000000 +0200
++++ icamerasrc-9b2f7e3cec27d42a3bf01058b93ae22fed26cc9c/src/gstcameraformat.cpp	2024-05-07 15:28:47.502046987 +0200
+@@ -159,11 +159,6 @@
+     break;
+     case V4L2_PIX_FMT_P010:{
+       structure = gst_structure_new ("video/x-raw",
+-            "format", G_TYPE_STRING, gst_video_format_to_string (GST_VIDEO_FORMAT_P010_10BE), (void *)NULL);
+-    }
+-    break;
+-    case V4L2_PIX_FMT_P010_LE:{
+-      structure = gst_structure_new ("video/x-raw",
+             "format", G_TYPE_STRING, gst_video_format_to_string (GST_VIDEO_FORMAT_P010_10LE), (void *)NULL);
+     }
+     break;
+--- icamerasrc-9b2f7e3cec27d42a3bf01058b93ae22fed26cc9c.old/src/utils.cpp	2024-04-11 05:02:03.000000000 +0200
++++ icamerasrc-9b2f7e3cec27d42a3bf01058b93ae22fed26cc9c/src/utils.cpp	2024-05-07 15:35:05.263520367 +0200
+@@ -61,8 +61,7 @@
+   { "RGB16", GST_VIDEO_FORMAT_RGB16, V4L2_PIX_FMT_RGB565 },
+   { "NV16", GST_VIDEO_FORMAT_NV16, V4L2_PIX_FMT_NV16 },
+   { "BGRx", GST_VIDEO_FORMAT_BGRx, V4L2_PIX_FMT_XBGR32 },
+-  { "P010", GST_VIDEO_FORMAT_P010_10BE, V4L2_PIX_FMT_P010 },
+-  { "P01L", GST_VIDEO_FORMAT_P010_10LE, V4L2_PIX_FMT_P010_LE },
++  { "P01L", GST_VIDEO_FORMAT_P010_10LE, V4L2_PIX_FMT_P010 },
+ };
+ 
+ int num_of_format = ARRAY_SIZE(gFormatMapping);
+@@ -121,7 +120,6 @@
+     case V4L2_PIX_FMT_YUV420:
+     case V4L2_PIX_FMT_YVU420:
+     case V4L2_PIX_FMT_P010:
+-    case V4L2_PIX_FMT_P010_LE:
+       return height*3/2;
+     case V4L2_PIX_FMT_NV16:
+       return height*2;

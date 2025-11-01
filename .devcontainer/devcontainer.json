@@ -1,18 +1,19 @@
 {
-  "name": "Fedora",
-  "build": {
-    "dockerfile": "Dockerfile",
-    "args": { "VARIANT": "rawhide" }
-  },
-  "remoteUser": "vscode",
+  "name": "Terra Devcontainer",
+  "image": "ghcr.io/terrapkg/builder:frawhide",
   "runArgs": [
     "--privileged"
   ],
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {}
+  },
   "customizations": {
     "vscode": {
       "extensions": [
         "rhaiscript.vscode-rhai"
       ]
     }
-  }
+  },
+  "remoteUser": "vscode",
+  "onCreateCommand": "sudo usermod -a -G mock vscode"
 }

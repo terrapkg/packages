@@ -1,0 +1,8 @@
+libdir=LIBDIR
+includedir=INCLUDE_DIR
+
+Name: nppist
+Description: NVIDIA Performance Primitives - Image Processing - Statistic and Linear
+Version: CUDA_VERSION
+Libs: -L${libdir} -lnppist
+Cflags: -I${includedir}

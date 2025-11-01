@@ -3,6 +3,6 @@ project pkg {
     spec = "v4l2-relayd.spec"
   }
   labels {
-        weekly = 1
+        nightly = 1
     }
 }

@@ -1,0 +1,11 @@
+--- a/source/x265.pc.in
++++ b/source/x265.pc.in
+@@ -1,6 +1,6 @@
+ prefix=@CMAKE_INSTALL_PREFIX@
+ exec_prefix=${prefix}
+-libdir=${exec_prefix}/@LIB_INSTALL_DIR@
++libdir=@LIB_INSTALL_DIR@
+ includedir=${prefix}/include
+ 
+ Name: @CMAKE_PROJECT_NAME@
+

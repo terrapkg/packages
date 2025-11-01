@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/sh
 
 
 # EL8 (grub2 with BootLoaderSpec patches)
@@ -14,10 +14,11 @@
 #   - BIOS: /etc/grub2.cfg -> /boot/grub2/grub.cfg
 
 
-# EL9 (grub2 with BootLoaderSpec patches)
+# EL9 + EL10 (grub2 with BootLoaderSpec patches)
 #
 # kernel options: grub.cfg + /etc/kernel/cmdline + /boot/loader/entries/*.conf
 # manually update: /etc/default/grub + /etc/kernel/cmdline
+# /etc/kernel/cmdline is not really used
 # grub2-mkconfig does not update /boot/loader/entries/*.conf
 # grub.cfg:
 #   - UEFI: /etc/grub2-efi.cfg -> /boot/efi/EFI/<os>/grub.cfg
@@ -27,8 +28,10 @@
 # Fedora (grub2 with BootLoaderSpec patches)
 #
 # kernel options: grub.cfg + /etc/kernel/cmdline + /boot/loader/entries/*.conf
-# manually update: /etc/default/grub + /etc/kernel/cmdline
-# grub2-mkconfig does not update /boot/loader/entries/*.conf
+# manually update: /etc/default/grub
+# grub2-mkconfig:
+#   - updates /boot/loader/entries/*.conf
+#   - updates /etc/kernel/cmdline
 # grub.cfg:
 #   - UEFI/BIOS: /boot/grub2/grub.cfg
 
@@ -50,8 +53,8 @@
 #   - update options in /etc/kernel/cmdline
 #   - cover both UEFI and BIOS case
 
-CMDLINE_ARGS_ADD="_dracutopts_in"
-CMDLINE_ARGS_REMOVE="_dracutopts_rm"
+CMDLINE_ARGS_NVIDIA="rd.driver.blacklist=nouveau rd.driver.blacklist=nova-core"
+CMDLINE_ARGS_ALWAYS_REMOVE="nomodeset gfxpayload=vga=normal nouveau.modeset=0 nvidia-drm.modeset=1 nvidia-drm.fbdev=1 modprobe.blacklist=nouveau initcall_blacklist=simpledrm_platform_driver_init"
 
 print_usage() {
 cat <<EOF
@@ -81,16 +84,14 @@ check() {
         GRUB_CFG=/etc/grub2.cfg
       fi
 
-      if [ -d /etc/kernel/cmdline ]; then
-        # Grub 2 with BootLoaderSpec patches, different path than systemd-boot
-        BLS_ENTRIES=/boot/loader/entries
-      fi
+      # Grub 2 with BootLoaderSpec patches, different path than systemd-boot
+      BLS_ENTRIES=/boot/loader/entries
 
       . /etc/default/grub
 
     elif [ ! -f /etc/default/grub ] && [ -f /etc/kernel/cmdline ]; then
 
-      # systemd-boot is installed
+      # systemd-boot is installed, differnt path than Grub 2 with BootLoaderSpec patches
       BLS_ENTRIES=/boot/efi/loader/entries
 
     else
@@ -104,16 +105,17 @@ check() {
 
 post() {
 
+  # Edit GRUB configuration file
   if [ -v GRUB_CFG ]; then
 
     if [ -z "${GRUB_CMDLINE_LINUX}" ]; then
-      echo GRUB_CMDLINE_LINUX=\""$CMDLINE_ARGS_ADD"\" >> /etc/default/grub
+      echo GRUB_CMDLINE_LINUX=\""$CMDLINE_ARGS_NVIDIA"\" >> /etc/default/grub
     else
-      for param in $CMDLINE_ARGS_ADD; do
+      for param in $CMDLINE_ARGS_NVIDIA; do
         echo ${GRUB_CMDLINE_LINUX} | grep -q $param
         [ $? -eq 1 ] && GRUB_CMDLINE_LINUX="${GRUB_CMDLINE_LINUX} ${param}"
       done
-      for param in $CMDLINE_ARGS_REMOVE; do
+      for param in $CMDLINE_ARGS_ALWAYS_REMOVE; do
         echo ${GRUB_CMDLINE_LINUX} | grep -q $param
         [ $? -eq 0 ] && GRUB_CMDLINE_LINUX="$(echo ${GRUB_CMDLINE_LINUX} | sed -e "s/ $param//g")"
       done
@@ -124,14 +126,15 @@ post() {
 
   fi
 
+  # Edit BootLoaderSpec entries
   if [ -v BLS_ENTRIES ]; then
 
     for config_file in $BLS_ENTRIES/*.conf; do
-      for param in $CMDLINE_ARGS_ADD; do
+      for param in $CMDLINE_ARGS_NVIDIA; do
         grep -q $param $config_file
         [ $? -eq 1 ] && sed -i -e "s|^options.*|& $param|" $config_file
       done
-      for param in $CMDLINE_ARGS_REMOVE; do
+      for param in $CMDLINE_ARGS_ALWAYS_REMOVE; do
         grep -q $param $config_file
         [ $? -eq 0 ] && sed -i -e "s| $param||" $config_file
       done
@@ -139,13 +142,24 @@ post() {
 
   fi
 
+  # Edit /etc/kernel/cmdline
+  for param in $CMDLINE_ARGS_NVIDIA; do
+    grep -q $param /etc/kernel/cmdline
+    [ $? -eq 1 ] && sed -i -e "s|^.*|& $param|" /etc/kernel/cmdline
+  done
+  for param in $CMDLINE_ARGS_ALWAYS_REMOVE; do
+    grep -q $param /etc/kernel/cmdline
+    [ $? -eq 0 ] && sed -i -e "s| $param||" /etc/kernel/cmdline
+  done
+
 }
 
 preun() {
 
+  # Edit GRUB configuration file
   if [ -v GRUB_CFG ]; then
 
-    for param in $CMDLINE_ARGS_ADD; do
+    for param in $CMDLINE_ARGS_NVIDIA; do
       echo ${GRUB_CMDLINE_LINUX} | grep -q $param
       [ $? -eq 0 ] && GRUB_CMDLINE_LINUX="$(echo ${GRUB_CMDLINE_LINUX} | sed -e "s/ $param//g")"
     done
@@ -155,16 +169,23 @@ preun() {
 
   fi
 
+  # Edit BootLoaderSpec entries
   if [ -v BLS_ENTRIES ]; then
 
     for config_file in $BLS_ENTRIES/*.conf; do
-      for param in $CMDLINE_ARGS_ADD; do
+      for param in $CMDLINE_ARGS_NVIDIA; do
         grep -q $param $config_file
         [ $? -eq 0 ] && sed -i -e "s| $param||" $config_file
       done
     done
 
   fi
+
+  # Edit /etc/kernel/cmdline
+  for param in $CMDLINE_ARGS_NVIDIA; do
+    grep -q $param /etc/kernel/cmdline
+    [ $? -eq 0 ] && sed -i -e "s| $param||" /etc/kernel/cmdline
+  done
 
 }
 

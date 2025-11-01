@@ -3,4 +3,8 @@ project pkg {
     rpm {
         spec = "libcudla.spec"
     }
+    labels {
+	    subrepo = "nvidia"
+	    updbranch = 1
+    }
 }

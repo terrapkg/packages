@@ -1,0 +1,8 @@
+[Desktop Entry]
+Categories=Utility;
+Comment=A cross-platform system monitor
+Exec=NeoHtop
+Icon=NeoHtop
+Name=NeoHtop
+Terminal=false
+Type=Application

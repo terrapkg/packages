@@ -6,5 +6,6 @@ project "pkg" {
     labels = {
         subrepo = "nvidia"
         mock = 1
+        nightly = 1
     }
 }

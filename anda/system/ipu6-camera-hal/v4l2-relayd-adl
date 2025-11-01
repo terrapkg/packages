@@ -1,0 +1,15 @@
+# GStreamer source element name:
+VIDEOSRC="icamerasrc"
+#SPLASHSRC="filesrc location=/.../splash.png ! pngdec ! imagefreeze num-buffers=4 ! videoscale ! videoconvert"
+
+# Output format, width, height, and frame rate:
+FORMAT=NV12
+WIDTH=1280
+HEIGHT=720
+FRAMERATE=30/1
+
+# Virtual video device name:
+CARD_LABEL="Intel MIPI Camera"
+
+# Extra options to pass to v4l2-relayd:
+#EXTRA_OPTS=-d

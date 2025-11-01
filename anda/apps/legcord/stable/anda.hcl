@@ -1,6 +1,8 @@
 project pkg {
-	arches = ["x86_64"]
 	rpm {
 		spec = "legcord.spec"
 	}
-}
+        labels {
+                mock =1
+        } 
+} 

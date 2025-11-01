@@ -3,7 +3,7 @@
 %global shortcommit1 %(c=%{commit1}; echo ${c:0:7})
 
 Name:           openh264
-Version:        2.5.0
+Version:        2.6.0
 # Also bump the Release tag for gstreamer1-plugin-openh264 down below
 Release:        2%?dist
 Summary:        H.264 codec library
@@ -94,8 +94,7 @@ rm $RPM_BUILD_ROOT%{_libdir}/*.a
 %files
 %license LICENSE
 %doc README.md
-%{_libdir}/libopenh264.so.7
-%{_libdir}/libopenh264.so.%{version}
+%{_libdir}/libopenh264.so.*
 
 %files devel
 %{_includedir}/wels/

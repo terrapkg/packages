@@ -1,0 +1,8 @@
+libdir=LIBDIR
+includedir=INCLUDE_DIR
+
+Name: nppicom
+Description: NVIDIA Performance Primitives - Image Processing - Compression
+Version: CUDA_VERSION
+Libs: -L${libdir} -lnppicom
+Cflags: -I${includedir}
