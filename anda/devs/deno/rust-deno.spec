@@ -44,7 +44,7 @@ License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) 
 %doc README.md
 %{_bindir}/deno
 
-%pkg_completion -Befzn %crate
+%pkg_completion -Bfzn %crate
 
 %prep
 %autosetup -n %{crate}-%{version} -p1
@@ -64,6 +64,6 @@ sed '/\[env\]/a CC="%__cc"' -i .cargo/config
 %crate_install_bin
 mkdir -p %buildroot{%bash_completions_dir,%elvish_completions_dir,%fish_completions_dir,%zsh_completions_dir}
 target/rpm/deno completions bash > %buildroot%bash_completions_dir/deno
-target/rpm/deno completions elvish > %buildroot%elvish_completions_dir/deno.elv
+%dnl target/rpm/deno completions elvish > %buildroot%elvish_completions_dir/deno.elv
 target/rpm/deno completions fish > %buildroot%fish_completions_dir/deno.fish
 target/rpm/deno completions zsh > %buildroot%zsh_completions_dir/_deno
