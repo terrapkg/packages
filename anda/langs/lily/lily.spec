@@ -14,6 +14,11 @@ BuildRequires:  g++
 %description
 %{summary}.
 
+%package       devel
+Summary:       Development files for lily
+Requires:      %{name}
+%pkg_devel_files
+
 %prep
 %autosetup -n %{name}-%{version}
 
@@ -28,6 +33,8 @@ BuildRequires:  g++
 %doc README.md RELEASES.md
 %license LICENSE.txt
 %{_bindir}/lily
+
+%files devel
 /usr/lib/liblily.so
 %{_includedir}/lily/lily.h
 
