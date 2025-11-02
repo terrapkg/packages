@@ -89,7 +89,7 @@ install -Dm755 internal/providers/*/*.so -t %buildroot/etc/xdg/elephant/provider
 %if %{without bootstrap}
 %files
 %license LICENSE
-%doc BREAKING.md README.md cmd/elephant/version.txt
+%doc README.md
 %{_bindir}/elephant
 %ghost /etc/xdg/elephant/
 %endif
