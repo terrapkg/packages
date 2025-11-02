@@ -10,6 +10,7 @@ Packager:		madonuko <mado@fyralabs.com>
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
+BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(hatch-vcs)
 BuildRequires:  (deno or bun or nodejs-npm)
 
