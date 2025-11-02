@@ -23,7 +23,7 @@ Elephant - cuz it's phat - is a powerful data provider service and backend for b
 }
 
 %global golicenses      LICENSE
-%global godocs          BREAKING.md README.md cmd/elephant/version.txt
+%global godocs          README.md
 
 Name:           elephant
 Release:        1%?dist
