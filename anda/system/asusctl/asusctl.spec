@@ -3,7 +3,6 @@
 %global commit c9e76f327376c8bb6ab4e4cc5187954aa8cdc538
 %global commit_date 20251020
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global rustflags -Clink-arg=-Wl,-z,relro,-z,now
 
 Name:           asusctl
 Version:        %commit_date.%shortcommit
@@ -47,17 +46,17 @@ a notification service, and ability to run in the background.
 %cargo_build
 
 %install
-export RUSTFLAGS="%{rustflags}"
-mkdir -p "%{buildroot}/%{_bindir}" "%{buildroot}%{_docdir}"
 %make_install
 
+install -D -m 0644 README.md %{buildroot}/%{_docdir}/%{name}/README.md
+install -D -m 0644 rog-anime/README.md %{buildroot}/%{_docdir}/%{name}/README-anime.md
 install -D -m 0644 rog-anime/data/diagonal-template.png %{buildroot}/%{_docdir}/%{name}/diagonal-template.png
 
 desktop-file-validate %{buildroot}/%{_datadir}/applications/rog-control-center.desktop
 
 %files
 %license LICENSE
-%doc README.md rog-anime/README.md
+%{_datadir}/asusctl/LICENSE
 %{_bindir}/asusd
 %{_bindir}/asusd-user
 %{_bindir}/asusctl
@@ -65,10 +64,21 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/rog-control-center.d
 %{_userunitdir}/asusd-user.service
 %{_udevrulesdir}/99-asusd.rules
 %dnl %{_sysconfdir}/asusd/
+%{_datadir}/asusd/aura_support.ron
 %{_datadir}/dbus-1/system.d/asusd.conf
-%{_datadir}/icons/hicolor/512x512/apps/asus_notif_*.png
-%{_datadir}/icons/hicolor/scalable/status/gpu-*.svg
+%{_datadir}/icons/hicolor/512x512/apps/asus_notif_yellow.png
+%{_datadir}/icons/hicolor/512x512/apps/asus_notif_green.png
+%{_datadir}/icons/hicolor/512x512/apps/asus_notif_red.png
+%{_datadir}/icons/hicolor/512x512/apps/asus_notif_blue.png
+%{_datadir}/icons/hicolor/512x512/apps/asus_notif_orange.png
+%{_datadir}/icons/hicolor/512x512/apps/asus_notif_white.png
+%{_datadir}/icons/hicolor/scalable/status/gpu-compute.svg
+%{_datadir}/icons/hicolor/scalable/status/gpu-hybrid.svg
+%{_datadir}/icons/hicolor/scalable/status/gpu-integrated.svg
+%{_datadir}/icons/hicolor/scalable/status/gpu-nvidia.svg
+%{_datadir}/icons/hicolor/scalable/status/gpu-vfio.svg
 %{_datadir}/icons/hicolor/scalable/status/notification-reboot.svg
+%{_docdir}/%{name}/
 %{_datadir}/asusd/
 
 %files rog-gui
@@ -76,7 +86,6 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/rog-control-center.d
 %{_datadir}/applications/rog-control-center.desktop
 %{_datadir}/icons/hicolor/512x512/apps/rog-control-center.png
 %{_datadir}/rog-gui
-
 
 %changelog
 * Sun Oct 26 2025 Metcya <metcya@gmail.com>
