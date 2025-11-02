@@ -30,6 +30,7 @@ BuildRequires:  anda-srpm-macros
 # ffmpeg-free is now available in Fedora.
 Recommends:     /usr/bin/ffmpeg
 Recommends:     /usr/bin/ffprobe
+Recommends:     yt-dlp-ejs
 
 Conflicts:      yt-dlp
 
