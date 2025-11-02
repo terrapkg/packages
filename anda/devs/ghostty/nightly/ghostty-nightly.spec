@@ -1,6 +1,6 @@
-%global commit fb5b8d7968e6d760b53785ba169c751de75ac08d
+%global commit 765ee6842930f0d6918574b9b87c2ee6583e4727
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global fulldate 2025-10-23
+%global fulldate 2025-10-31
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
 %global ver 1.3.0
@@ -196,7 +196,8 @@ DESTDIR="%{buildroot}" \
     -Dversion-string="%{ver}-dev+%{shortcommit}" \
     -Dstrip=false \
     -Dpie=true \
-    -Demit-docs 
+    -Demit-docs \
+    -Demit-themes=false
 
 # Don't conflict with ncurses-term on F42 and up
 %if 0%{?fedora} >= 42
@@ -212,7 +213,6 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %{_datadir}/applications/%{appid}.desktop
 %dir %{_datadir}/%{base_name}
 %{_datadir}/%{base_name}/doc
-%{_datadir}/%{base_name}/themes
 %{_datadir}/metainfo/%{appid}.metainfo.xml
 %{_datadir}/dbus-1/services/%{appid}.service
 %{_iconsdir}/hicolor/16x16/apps/%{appid}.png
@@ -289,6 +289,10 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %systemd_user_postun app-%{appid}.service
 
 %changelog
+* Tue Oct 28 2025 Gilver E. <rockgrub@disroot.org> - 1.3.0~tip^20251027gitd40321a-2
+- Disabled bundled themes
+ * This is necessary to address licensing issues in the themes repo Ghostty uses
+ * See: https://github.com/mbadolato/iTerm2-Color-Schemes/issues/638
 * Sat May 31 2025 Gilver E. <rockgrub@disroot.org> - 1.1.4~tip^20250531git1ff9162
 - Updated for Zig 0.14.0
 - Updated for ncurses-term compatibility in Fedora 42 and Rawhide
