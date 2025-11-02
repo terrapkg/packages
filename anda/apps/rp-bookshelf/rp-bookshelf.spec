@@ -1,5 +1,5 @@
-%global commit e5e5796f787fade0514c44649d206a860049424d
-%global commit_date 20250930
+%global commit 316b2a9787e19352eb22cf8de163d6856a1ea26f
+%global commit_date 20251101
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           rp-bookshelf
