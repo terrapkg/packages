@@ -1,5 +1,5 @@
-%global commit d4bbcb081c28632fa80c89d8d9b9a419ffd22a8f
-%global commit_date 20251023
+%global commit 6ae576bee3ca42f0aea597e76d2e0df0e1184bad
+%global commit_date 20251030
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           rpcc
@@ -20,9 +20,6 @@ BuildRequires:  gcc
 
 Requires:       libxml2
 Requires:       gtk3
-
-Provides:       pipanel
-Provides:       rp-appset
 
 %description
 Raspberry Pi Control Centre - an extensible settings application for the Raspberry Pi Desktop
