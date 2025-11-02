@@ -9,6 +9,8 @@ Summary:        A command-line program to download videos from online video plat
 License:        Unlicense
 URL:            https://github.com/yt-dlp/yt-dlp
 BuildArch:      noarch
+Packager:       madonuko <mado@fyralabs.com>
+Requires:       deno
 
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(hatchling)
