@@ -44,8 +44,7 @@ Provides:       %{pypi_name}
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
-%{python3_sitelib}/%{pypi_name}-%{_version}.dist-info/*
-%{python3_sitelib}/%{pypi_name}-%{_version}.dist-info/licenses/LICENSE
+%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/*
 %{python3_sitelib}/%{pypi_name}/*.{py,so,typed}
 %{python3_sitelib}/%{pypi_name}/__pycache__/*.pyc
 %{python3_sitelib}/%{pypi_name}/requests/*.py
