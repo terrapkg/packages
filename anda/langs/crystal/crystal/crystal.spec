@@ -1,4 +1,5 @@
-%define debug_package %nil
+%bcond bootstrap 1
+%global bootstrap_version 1.17.1
 
 Name:			  crystal
 Version:		1.18.2
@@ -7,7 +8,12 @@ Summary:    A general-purpose, object-oriented programming language
 License:		Apache-2.0
 URL:			  https://crystal-lang.org/
 Source0:    https://github.com/crystal-lang/crystal/archive/%version.tar.gz
-BuildRequires:  crystal gcc gcc-c++ make gc-devel llvm-devel
+%if %{with bootstrap}
+Source1:    https://dev.alpinelinux.org/archive/crystal/crystal-%{bootstrap_version}-%{_arch}-alpine-linux-musl.tar.gz
+%else
+BuildRequires:  crystal
+%endif
+BuildRequires:  gcc gcc-c++ make gc-devel llvm-devel
 BuildRequires:  pcre2-devel libyaml-devel libffi-devel
 Requires:       gcc pkgconfig gc-devel
 Requires:       pcre2-devel openssl-devel zlib-devel
@@ -23,13 +29,21 @@ Crystal is a programming language with the following goals:
 - Compile to efficient native code
 
 %prep
+%if %{with bootstrap}
+%setup -q -b 1
+%else
 %setup -q
+%endif
 
 %build
-make release=1 interpreter=1 LDFLAGS="%{build_ldflags}" CRYSTAL_CONFIG_LIBRARY_PATH=%{_libdir}/crystal
+%if %{with bootstrap}
+# Use bootstrap crystal binary
+export PATH="%{_builddir}/crystal-%{bootstrap_version}/bin:$PATH"
+%endif
+%make_build release=1 interpreter=1 LDFLAGS="%{build_ldflags}" CRYSTAL_CONFIG_LIBRARY_PATH=%{_libdir}/crystal
 
 %install
-make install DESTDIR=%{buildroot} PREFIX=%{_prefix}
+%make_install PREFIX=%{_prefix}
 
 %files
 %license %{_datadir}/licenses/crystal/LICENSE
