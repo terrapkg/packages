@@ -1,28 +1,25 @@
-%define debug_package %nil
-
-Name:			  shards
-Version:		0.19.1
-Release:		1%?dist
-Summary:    Dependency manager for the Crystal language 
-License:		Apache-2.0
-URL:			  https://crystal-lang.org/
-Source0:    https://github.com/crystal-lang/shards/archive/refs/tags/v%version.tar.gz
-BuildRequires:  crystal
-Requires:       git make
-Supplements:    crystal
+Name:          shards
+Version:       0.19.1
+Release:       1%?dist
+Summary:       Dependency manager for the Crystal language 
+License:       Apache-2.0
+URL:           https://crystal-lang.org/
+Source0:       https://github.com/crystal-lang/shards/archive/refs/tags/v%version.tar.gz
+BuildRequires: crystal
+Suggests:      git make
+Supplements:   crystal
 
 %description
 Shards is a dependency manager for the Crystal programming language. It allows you to easily manage and install external libraries (called "shards") that your Crystal projects depend on.
-
 
 %prep
 %setup -q
 
 %build
-make release=1 FLAGS="--link-flags=\"%{build_ldflags}\""
+%make_build release=1 FLAGS="--link-flags=\"%{build_ldflags}\""
 
 %install
-make install DESTDIR=%{buildroot} PREFIX=%{_prefix}
+%make_install PREFIX=%{_prefix}
 
 %files
 %{_bindir}/shards
