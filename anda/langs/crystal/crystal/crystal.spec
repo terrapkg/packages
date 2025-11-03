@@ -1,24 +1,24 @@
 %bcond bootstrap 1
 %global bootstrap_version 1.17.1
 
-Name:			  crystal
-Version:		1.18.2
-Release:		2%?dist
-Summary:    A general-purpose, object-oriented programming language
-License:		Apache-2.0
-URL:			  https://crystal-lang.org/
-Source0:    https://github.com/crystal-lang/crystal/archive/%version.tar.gz
+Name:          crystal
+Version:       1.18.2
+Release:       2%?dist
+Summary:       A general-purpose, object-oriented programming language
+License:       Apache-2.0
+URL:           https://crystal-lang.org/
+Source0:       https://github.com/crystal-lang/crystal/archive/%version.tar.gz
 %if %{with bootstrap}
-Source1:    https://dev.alpinelinux.org/archive/crystal/crystal-%{bootstrap_version}-%{_arch}-alpine-linux-musl.tar.gz
+Source1:       https://dev.alpinelinux.org/archive/crystal/crystal-%{bootstrap_version}-%{_arch}-alpine-linux-musl.tar.gz
 %else
-BuildRequires:  crystal
+BuildRequires: crystal
 %endif
-BuildRequires:  gcc gcc-c++ make gc-devel llvm-devel
-BuildRequires:  pcre2-devel libyaml-devel libffi-devel
-Requires:       gcc pkgconfig gc-devel
-Requires:       pcre2-devel openssl-devel zlib-devel
-Requires:       libyaml-devel libxml2-devel gmp-devel
-Suggests:       shards
+BuildRequires: gcc gcc-c++ make gc-devel llvm-devel
+BuildRequires: pcre2-devel libyaml-devel libffi-devel
+Requires:      gcc pkgconfig gc-devel
+Requires:      pcre2-devel openssl-devel zlib-devel
+Requires:      libyaml-devel libxml2-devel gmp-devel
+Suggests:      shards
 
 %description
 Crystal is a programming language with the following goals:
