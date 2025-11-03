@@ -4,7 +4,7 @@
 
 # https://github.com/twpayne/chezmoi
 %global goipath         github.com/twpayne/chezmoi
-Version:                2.66.1
+Version:                2.67.0
 
 %gometa -f
 
