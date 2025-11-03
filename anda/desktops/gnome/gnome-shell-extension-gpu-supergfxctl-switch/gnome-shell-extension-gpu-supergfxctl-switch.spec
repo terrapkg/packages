@@ -17,6 +17,8 @@ Source0:        %url/archive/%commit.tar.gz
 Requires:       (gnome-shell >= 48~ with gnome-shell < 50~) asusctl supergfxctl
 Recommends:     gnome-extensions-app
 
+BuildArch:	noarch
+
 %description
 GPU Profile switcher Gnome-Shell-Extension for ASUS laptops using Supergfxctl
 
