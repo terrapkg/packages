@@ -5,7 +5,7 @@ Summary:       Dependency manager for the Crystal language
 License:       Apache-2.0
 URL:           https://crystal-lang.org/
 Source0:       https://github.com/crystal-lang/shards/archive/refs/tags/v%version.tar.gz
-BuildRequires: crystal make
+BuildRequires: crystal make gcc
 Suggests:      git make
 Supplements:   crystal
 
