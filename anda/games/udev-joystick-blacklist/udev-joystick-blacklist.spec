@@ -11,6 +11,7 @@ URL:           https://github.com/denilsonsa/udev-joystick-blacklist
 Source0:       %{url}/archive/%{commit}.tar.gz
 BuildRequires: systemd-rpm-macros
 BuildArch:     noarch
+Packager:       Gilver E. <rockgrub@disroot.org>
 
 %description
 There are several devices that, although recognized by kernel as joysticks, are not joysticks.
@@ -44,3 +45,7 @@ install -Dpm644 after_kernel_4_9/51-these-are-not-joysticks-rm.rules -t %{buildr
 %files rm
 %doc README.md
 %{_udevrulesdir}/51-these-are-not-joysticks-rm.rules
+
+%changelog
+* Mon Nov 03 2025 Gilver E. <rockgrub@disroot.org> - 0^20250715gita1ace57-1
+- Initial package
