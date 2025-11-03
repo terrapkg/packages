@@ -24,10 +24,10 @@ Obsoletes:     steam-device-rules <= 1.0.0.85-1
 %description   rm
 There are several devices that, although recognized by kernel as joysticks, are not joysticks.
 
+This package contains rules which will prevent those devices from being recognized as joysticks by removing the devices.
+
 %prep
 %autosetup -n %{name}-%{commit}
-
-This package contains rules which will prevent those devices from being recognized as joysticks by removing the devices.
 
 %build
 # Empty.
