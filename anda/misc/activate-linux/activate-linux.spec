@@ -12,7 +12,6 @@ URL:            https://github.com/MrGlockenspiel/activate-linux
 Source0:        %{url}/archive/%{commit}.tar.gz
 BuildRequires:  clang 
 BuildRequires:  pkgconfig(pango)
-%dnl BuildRequires:  pkgconfig(cairo)
 BuildRequires:  libconfig-devel
 BuildRequires:  libXinerama-devel
 BuildRequires:  libXext-devel
