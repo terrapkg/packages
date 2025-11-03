@@ -29,16 +29,15 @@ Crystal is a programming language with the following goals:
 - Compile to efficient native code
 
 %prep
+%autosetup -v
 %if %{with bootstrap}
-%setup -q -b 1
-%else
-%setup -q
+%setup -b 1
 %endif
 
 %build
 %if %{with bootstrap}
 # Use bootstrap crystal binary
-export PATH="%{_builddir}/crystal-%{bootstrap_version}/bin:$PATH"
+export PATH="%{_builddir}/crystal-%{bootstrap_version}-%{_arch}-alpine-linux-musl/bin:$PATH"
 %endif
 %make_build release=1 interpreter=1 LDFLAGS="%{build_ldflags}" CRYSTAL_CONFIG_LIBRARY_PATH=%{_libdir}/crystal
 
