@@ -1,10 +1,10 @@
-%global commit bb8cfa0ec76c703faac1f47743206cc5e267d16d
-%global commit_date 20251004
+%global commit 53fe99a00a6778da8402a6870854499bcd5088d1
+%global commit_date 20251031
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           readymade-git
 Version:        %commit_date.%shortcommit
-Release:        2%?dist
+Release:        1%?dist
 Summary:        Install ready-made distribution images!
 License:        GPL-3.0-or-later
 URL:            https://github.com/FyraLabs/readymade
