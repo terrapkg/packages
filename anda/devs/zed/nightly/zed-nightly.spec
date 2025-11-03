@@ -1,7 +1,7 @@
-%global commit b7cc597d28409b67c7985f8b983bc28241255f09
+%global commit f7153bbe8a869d0e2b25efed64fd7e4217899b63
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20251026
-%global ver 0.211.0
+%global commit_date 20251103
+%global ver 0.212.0
 
 %bcond_with check
 %bcond nightly 1
@@ -107,6 +107,7 @@ export BRANDING_DARK="#1a5fb4"
 
 echo "StartupWMClass=$APP_ID" >> crates/zed/resources/zed.desktop.in
 envsubst < "crates/zed/resources/zed.desktop.in" > $APP_ID.desktop # from https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=zed-git#n52
+sed -i "s|@release_info@||g" "crates/zed/resources/flatpak/zed.metainfo.xml.in"
 
 envsubst < "crates/zed/resources/flatpak/zed.metainfo.xml.in" > $APP_ID.metainfo.xml
 
@@ -151,6 +152,9 @@ mv assets/fonts/ibm-plex-sans/license.txt LICENSE.fonts
 
 %if %{with check}
 %check
+appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%app_id.metainfo.xml
+desktop-file-validate %{buildroot}%{_datadir}/applications/%app_id.desktop
+
 %cargo_test
 %endif
 
