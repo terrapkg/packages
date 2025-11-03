@@ -29,9 +29,9 @@ Crystal is a programming language with the following goals:
 - Compile to efficient native code
 
 %prep
-%autosetup
+%setup -q
 %if %{with bootstrap}
-%setup -b 1
+%setup -q -b 1
 %endif
 
 %build
