@@ -3,6 +3,7 @@ Version:       0.19.1
 Release:       1%?dist
 Summary:       Dependency manager for the Crystal language 
 License:       Apache-2.0
+Packager:      Carl Hörberg <carl@84codes.com>
 URL:           https://crystal-lang.org/
 Source0:       https://github.com/crystal-lang/shards/archive/refs/tags/v%version.tar.gz
 BuildRequires: crystal make

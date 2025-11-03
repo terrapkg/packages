@@ -6,6 +6,7 @@ Version:       1.18.2
 Release:       2%?dist
 Summary:       A general-purpose, object-oriented programming language
 License:       Apache-2.0
+Packager:      Carl Hörberg <carl@84codes.com>
 URL:           https://crystal-lang.org/
 Source0:       https://github.com/crystal-lang/crystal/archive/%version.tar.gz
 %if %{with bootstrap}
