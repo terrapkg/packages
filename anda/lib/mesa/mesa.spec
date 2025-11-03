@@ -91,7 +91,6 @@ Source1:        Mesa-MLAA-License-Clarification-Email.txt
 
 # https://github.com/bazzite-org/mesa
 Patch20:        bazzite.patch
-Patch21:        https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/37498.diff
 
 BuildRequires:  meson >= 1.3.0
 BuildRequires:  gcc
