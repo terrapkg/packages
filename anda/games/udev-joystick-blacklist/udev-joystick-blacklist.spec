@@ -22,6 +22,7 @@ This package contains rules which will prevent those devices from being recogniz
 
 %package       rm
 Summary:       Fix for keyboard/mouse/tablet being detected as joysticks in Linux
+Obsoletes:     steam-device-rules <= 1.0.0.85-1
 
 %description   rm
 There are several devices that, although recognized by kernel as joysticks, are not joysticks.
