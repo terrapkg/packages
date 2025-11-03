@@ -34,7 +34,6 @@ This package contains rules which will prevent those devices from being recogniz
 # Empty.
 
 %install
-mkdir -p %{buildroot}%{_udevrulesdir}
 install -Dpm644 after_kernel_4_9/51-these-are-not-joysticks.rules -t %{buildroot}%{_udevrulesdir}
 install -Dpm644 after_kernel_4_9/51-these-are-not-joysticks-rm.rules -t %{buildroot}%{_udevrulesdir}
 
