@@ -18,7 +18,7 @@ BuildRequires:  python3-setuptools
 BuildRequires:  python3-pip
 BuildRequires:  curl-impersonate-chrome-devel
 
-Packager:	    Owen Zimmerman <owen@fyralabs.com>
+Packager:	    Metcya <metcya@gmail.com>
 
 %description
 %_desc
@@ -52,5 +52,5 @@ Provides:       %{pypi_name}
 %{python3_sitelib}/%{pypi_name}/requests/__pycache__/*.pyc
 
 %changelog
-* Tue Sep 30 2025 Owen Zimmerman <owen@fyralabs.com>
+* Sun Nov 02 2025 Metcya <metcya@gmail.com>
 - Initial commit
