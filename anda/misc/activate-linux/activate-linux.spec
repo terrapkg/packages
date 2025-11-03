@@ -1,17 +1,18 @@
 %global commit d55b639e251cf921541be11e0c32530b0364f7bb
 %global date 20251019
 %global short %(c=%{commit}; echo ${c:0:7})
+%global ver 1.1.0
 
 Name:           activate-linux
 Summary:        The "Activate Windows" watermark ported to Linux
-Version:        %{date}.%{short}
+Version:        %{ver}^%{date}git.%{short}
 License:        GPL-3.0-only
 Release:        1%?dist
 URL:            https://github.com/MrGlockenspiel/activate-linux
 Source0:        %{url}/archive/%{commit}.tar.gz
 BuildRequires:  clang 
 BuildRequires:  pkgconfig(pango)
-BuildRequires:  pkgconfig(cairo)
+%dnl BuildRequires:  pkgconfig(cairo)
 BuildRequires:  libconfig-devel
 BuildRequires:  libXinerama-devel
 BuildRequires:  libXext-devel
