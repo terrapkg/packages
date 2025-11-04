@@ -1,1 +1,1 @@
-rpm.version(gh("lexiforest/curl_cffi"));
+rpm.version(pypi("curl_cffi"));
