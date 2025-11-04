@@ -43,7 +43,7 @@ Summary:		Versatile typeface for code, from code.
 BuildRequires:  rpm_macro(fontpkg)
 URL:            https://github.com/be5invis/Iosevka
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
-BuildRequires:  nodejs-npm
+BuildRequires:  bun-bin
 BuildRequires:  ttfautohint
 
 %fontpkg -a
@@ -51,7 +51,7 @@ BuildRequires:  ttfautohint
 
 %prep
 %autosetup -n Iosevka-%{version}
-npm i
+bun i
 
 %build
 font="Iosevka"
@@ -71,7 +71,7 @@ collections="%{_iosevka_families}"
 
 build_font() {
     local style=$1
-    npm run build -- ttc::${style} %{_font_smp_flags}
+    bun run --bun build -- ttc::${style} %{_font_smp_flags}
 }
 
 for collection in $collections; do
