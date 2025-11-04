@@ -22,7 +22,6 @@ Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-Provides:       spake2
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
