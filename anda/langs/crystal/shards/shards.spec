@@ -7,6 +7,7 @@ Packager:      Carl Hörberg <carl@84codes.com>
 URL:           https://crystal-lang.org/
 Source0:       https://github.com/crystal-lang/shards/archive/refs/tags/v%version.tar.gz
 BuildRequires: crystal make
+BuildRequires: gcc gc-devel libyaml-devel pcre-devel
 Suggests:      git make
 Supplements:   crystal
 
