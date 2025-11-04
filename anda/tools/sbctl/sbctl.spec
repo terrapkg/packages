@@ -53,7 +53,7 @@ rm -f %{buildroot}%{_prefix}/lib/kernel/install.d/91-sbctl.install
 
 # 95-kernel-hooks.install only runs postinst scripts from /etc, so move it there
 mkdir -p %{buildroot}%{%_sysconfdir}/kernel/postinst.d
-mv %{buildroot}%{_prefix}/lib/kernel/postinst.d/91-sbctl.install %{buildroot}%{%_sysconfdir}/kernel/postinst.d/
+mv %{buildroot}%{_prefix}/lib/kernel/postinst.d/91-sbctl.install %{buildroot}%{_sysconfdir}/kernel/postinst.d/
 
 %transfiletriggerin -P 1 -- /efi /usr/lib /usr/libexec
 if [[ ! -f /run/ostree-booted ]] && grep -q -m 1 -e '\.efi$' -e '/vmlinuz$'; then
