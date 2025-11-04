@@ -1,4 +1,6 @@
 %define _iosevka_families Iosevka IosevkaAile IosevkaCurly IosevkaCurlySlab IosevkaEtoile IosevkaSS01 IosevkaSS02 IosevkaSS03 IosevkaSS04 IosevkaSS05 IosevkaSS06 IosevkaSS07 IosevkaSS08 IosevkaSS09 IosevkaSS10 IosevkaSS11 IosevkaSS12 IosevkaSS13 IosevkaSS14 IosevkaSS15 IosevkaSS16 IosevkaSlab
+%bcond_with smt
+%bcond_with ttc
 
 # this runs at macro expansion time, not build time
 %{lua:
@@ -14,7 +16,11 @@
   for family in string.gmatch(families, "%S+") do
     local pretty = prettify(family)
     rpm.define(string.format("fontfamily%d %s", i, pretty))
-    rpm.define(string.format("fonts%d dist/%s/TTF/*.ttf", i, family))
+    if rpm.expand("%{with ttc}") == "1" then
+      rpm.define(string.format("fonts%d dist/.ttc/%s/*.ttc", i, family))
+    else
+      rpm.define(string.format("fonts%d dist/%s/TTF/*.ttf", i, family))
+    end
     rpm.define(string.format("fontdescription%d %%fontdescription (%s)", i, pretty))
     i = i + 1
   end
@@ -24,7 +30,6 @@
 
 
 %global fontorg io.github.be5invis
-%bcond_with smt
 %global fontlicense       OFL-1.1
 %global fontlicenses      LICENSE
 %global foundry           be5invis
