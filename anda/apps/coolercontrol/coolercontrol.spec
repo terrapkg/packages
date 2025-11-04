@@ -8,7 +8,7 @@ for background device management, as well as a GUI to expertly customize your se
 %global __brp_mangle_shebangs %{nil}
 
 Name:           coolercontrol
-Version:        3.0.1
+Version:        3.0.2
 Release:        1%?dist
 Summary:        Cooling device control for Linux
 License:        GPL-3.0-or-later
