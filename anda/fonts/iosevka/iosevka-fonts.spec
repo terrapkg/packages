@@ -31,7 +31,7 @@
 
 %global fontorg io.github.be5invis
 %global fontlicense       OFL-1.1
-%global fontlicenses      LICENSE
+%global fontlicenses      LICENSE.md
 %global foundry           be5invis
 %global fontdescription   %{expand:
 Versatile typeface for code, from code.}
