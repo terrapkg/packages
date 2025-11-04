@@ -1,5 +1,5 @@
 %define _iosevka_families Iosevka IosevkaAile IosevkaCurly IosevkaCurlySlab IosevkaEtoile IosevkaSS01 IosevkaSS02 IosevkaSS03 IosevkaSS04 IosevkaSS05 IosevkaSS06 IosevkaSS07 IosevkaSS08 IosevkaSS09 IosevkaSS10 IosevkaSS11 IosevkaSS12 IosevkaSS13 IosevkaSS14 IosevkaSS15 IosevkaSS16 IosevkaSlab
-%bcond_with smt
+%bcond_without smt
 %bcond_with ttc
 
 # this runs at macro expansion time, not build time
