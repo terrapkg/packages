@@ -55,11 +55,11 @@ font="Iosevka"
 # to parallelize builds
 #
 %if %{with smt}
-%define _font_smp_flags --jcmd=%{_smp_build_ncpus}
+%define _font_smp_flags --jCmd=%{_smp_build_ncpus}
 %else
 # However, we will be doing only 1 thread here to avoid
 # thrashing builders
-%define _font_smp_flags --jcmd=1
+%define _font_smp_flags --jCmd=1
 %endif
 
 collections="%{_iosevka_families}"
