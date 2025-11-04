@@ -6,7 +6,7 @@
 %global cargo_install_lib 0
 
 Name:           katsu
-Version:        0.10.0
+Version:        0.10.1
 Release:        1%?dist
 Summary:        Vicious image builder
 Packager:       madonuko <mado@fyralabs.com>
