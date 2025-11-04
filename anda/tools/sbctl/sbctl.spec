@@ -1,6 +1,6 @@
 Name:           sbctl
 Version:        0.18
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Secure Boot key manager
 
 License:        MIT
