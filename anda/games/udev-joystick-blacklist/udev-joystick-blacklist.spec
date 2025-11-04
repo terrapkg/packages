@@ -10,6 +10,7 @@ License:       Public Domain
 URL:           https://github.com/denilsonsa/udev-joystick-blacklist
 Source0:       %{url}/archive/%{commit}.tar.gz
 BuildRequires: systemd-rpm-macros
+Conflicts:     %{name}-rm
 BuildArch:     noarch
 Packager:      Gilver E. <rockgrub@disroot.org>
 
@@ -20,6 +21,7 @@ This package contains rules which will prevent those devices from being recogniz
 
 %package       rm
 Summary:       Fix for keyboard/mouse/tablet being detected as joysticks in Linux
+Conflicts:     %{name}
 Obsoletes:     steam-device-rules <= 1.0.0.85-1
 
 %description   rm
