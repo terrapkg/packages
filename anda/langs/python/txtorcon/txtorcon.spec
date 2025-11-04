@@ -1,5 +1,5 @@
 %global pypi_name txtorcon
-%global _desc 🔉 Twisted-based asynchronous Tor control protocol implementation. Includes unit-tests, examples, state-tracking code and configuration abstraction.
+%global _desc Twisted-based asynchronous Tor control protocol implementation. Includes unit-tests, examples, state-tracking code and configuration abstraction.
 
 Name:			python-%{pypi_name}
 Version:		24.8.0
