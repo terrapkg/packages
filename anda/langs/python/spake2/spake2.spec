@@ -46,5 +46,5 @@ Provides:       spake2
 %python3_sitelib/spake2-%version.dist-info/*
 
 %changelog
-* Fri Oct 24 2025 Owen Zimmerman <owen@fyralabs.com>
+* Mon Nov 03 2025 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit
