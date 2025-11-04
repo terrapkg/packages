@@ -1,43 +1,48 @@
+%define _iosevka_families Iosevka IosevkaAile IosevkaCurly IosevkaCurlySlab IosevkaEtoile IosevkaSS01 IosevkaSS02 IosevkaSS03 IosevkaSS04 IosevkaSS05 IosevkaSS06 IosevkaSS07 IosevkaSS08 IosevkaSS09 IosevkaSS10 IosevkaSS11 IosevkaSS12 IosevkaSS13 IosevkaSS14 IosevkaSS15 IosevkaSS16 IosevkaSlab
+
+# this runs at macro expansion time, not build time
+%{lua:
+  local families = rpm.expand("%{_iosevka_families}")
+  local i = 0
+  local function prettify(name)
+    -- insert space before uppercase letters (except first)
+    local spaced = name:gsub("(%l)(%u)", "%1 %2")
+    -- fix "SSxx" into "SSxx" (with space before)
+    spaced = spaced:gsub("(%a)(SS%d+)", "%1 %2")
+    return spaced
+  end
+  for family in string.gmatch(families, "%S+") do
+    local pretty = prettify(family)
+    rpm.define(string.format("fontfamily%d %s", i, pretty))
+    rpm.define(string.format("fonts%d dist/%s/TTF/*.ttf", i, family))
+    rpm.define(string.format("fontdescription%d %%fontdescription (%s)", i, pretty))
+    i = i + 1
+  end
+  rpm.define(string.format("iosevka_family_count %d", i))
+}
+
+
 
 %global fontorg io.github.be5invis
-# Enable this flag to build with SMT, if you have unlimited RAM
 %bcond_with smt
-Version:		33.3.3
-Release:		1%{?dist}
 %global fontlicense       OFL-1.1
 %global fontlicenses      LICENSE
 %global foundry           be5invis
-%global common_description %{expand:
-Versatile typeface for code, from code.
-}
-# hoo boy, this is gonna be a long one
+%global fontdescription   %{expand:
+Versatile typeface for code, from code.}
 
-Name:			iosevka-fonts
-Provides:       %{name} = %{version}-%{release}
+Version:		33.3.3
+Release:		1%{?dist}
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
 Summary:		Versatile typeface for code, from code.
-License:		OFL-1.1
 BuildRequires:  rpm_macro(fontpkg)
-BuildArch:		noarch
 URL:            https://github.com/be5invis/Iosevka
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
-# https://github.com/be5invis/Iosevka/archive/refs/tags/v33.3.3.tar.gz
 BuildRequires:  nodejs-npm
 BuildRequires:  ttfautohint
 
-%description
-%{common_description}
-
-%global fontfamily1        Iosevka
-%global fonts1             dist/Iosevka/TTF*.ttf
-
-
 %fontpkg -a
 %fontmetapkg
-# pull in tlwg-laksaman-fonts
-# since this actually provides a fix for TH Sarabun
-# (#6929) (#2482)
-
 
 %prep
 %autosetup -n Iosevka-%{version}
@@ -57,7 +62,7 @@ font="Iosevka"
 %define _font_smp_flags --jcmd=1
 %endif
 
-collections=$(grep '^\[collectPlans\.' build-plans.toml | grep -v '\[collectPlans\.[^.]*\.' | sed -E 's/^\[collectPlans\.([^.]+)\].*/\1/' | sort -u | tr '\n' ' ')
+collections="%{_iosevka_families}"
 
 build_font() {
     local style=$1
@@ -68,7 +73,6 @@ for collection in $collections; do
     build_font "$collection"
 done
 
-
 %fontbuild -a
 
 %install
@@ -77,9 +81,7 @@ done
 %check
 %fontcheck -a
 
-
 %fontfiles -a
-
 
 %changelog
 %autochangelog
