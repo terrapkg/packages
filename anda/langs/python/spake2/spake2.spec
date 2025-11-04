@@ -1,5 +1,5 @@
 %global pypi_name spake2
-%global _desc 🔉 pure-python implementation of the SPAKE2 Password-Authenticated Key Exchange algorithm.
+%global _desc pure-python implementation of the SPAKE2 Password-Authenticated Key Exchange algorithm.
 
 Name:			python-%{pypi_name}
 Version:		0.9
