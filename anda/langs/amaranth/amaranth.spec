@@ -1,5 +1,5 @@
 %global pypi_name amaranth
-%global _desc Scots A modern hardware definition language and toolchain based on Python.
+%global _desc A modern hardware definition language and toolchain based on Python.
 
 %define _python_dist_allow_version_zero 1
 
