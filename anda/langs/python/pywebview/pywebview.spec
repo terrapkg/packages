@@ -42,8 +42,8 @@ Provides:       pywebview
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 %license LICENSE SECURITY.md
-%ghost %python3_sitelib/__pycache__/*.cpython-*.pyc
-%ghost %python3_sitelib/%{name}/subcommands/__pycache__/*.cpython-*.pyc
+%python3_sitelib/__pycache__/*.cpython-*.pyc
+%python3_sitelib/%{name}/subcommands/__pycache__/*.cpython-*.pyc
 
 %changelog
 * Tue Nov 04 2025 Owen Zimmerman <owen@fyralabs.com>
