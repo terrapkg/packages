@@ -1,3 +1,5 @@
+%define _unpackaged_files_terminate_build 0
+
 %global pypi_name magic-wormhole
 %global _desc get things from one computer to another, safely.
 
@@ -82,15 +84,12 @@ install -Dm644 docs/wormhole.1 %{buildroot}%{_mandir}/man1/wormhole.1
 
 %files bash-completion
 %{bash_completions_dir}/wormhole_complete.bash
-%ghost /usr/wormhole_complete.bash
 
 %files fish-completion
 %{fish_completions_dir}/wormhole_complete.fish
-%ghost /usr/wormhole_complete.fish
 
 %files zsh-completion
 %{zsh_completions_dir}/wormhole_complete.zsh
-%ghost /usr/wormhole_complete.zsh
 
 %changelog
 * Mon Nov 03 2025 Owen Zimmerman <owen@fyralabs.com>
