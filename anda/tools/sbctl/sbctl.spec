@@ -1,6 +1,6 @@
 Name:           sbctl
 Version:        0.18
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Secure Boot key manager
 
 License:        MIT
@@ -51,6 +51,10 @@ install -Dm755 %{SOURCE1} -t %{buildroot}%{_bindir}
 # postinst.d hooks.
 rm -f %{buildroot}%{_prefix}/lib/kernel/install.d/91-sbctl.install
 
+# 95-kernel-hooks.install only runs postinst scripts from /etc, so move it there
+mkdir -p %{buildroot}%{_sysconfdir}/kernel/postinst.d
+mv %{buildroot}%{_prefix}/lib/kernel/postinst.d/91-sbctl.install %{buildroot}%{_sysconfdir}/kernel/postinst.d/
+
 %transfiletriggerin -P 1 -- /efi /usr/lib /usr/libexec
 if [[ ! -f /run/ostree-booted ]] && grep -q -m 1 -e '\.efi$' -e '/vmlinuz$'; then
     exec </dev/null
@@ -63,7 +67,7 @@ fi
 %doc README.md
 %{_bindir}/sbctl
 %{_bindir}/sbctl-batch-sign
-%{_prefix}/lib/kernel/postinst.d/91-sbctl.install
+%{_sysconfdir}/kernel/postinst.d/91-sbctl.install
 %{_mandir}/man8/sbctl.8*
 %{_mandir}/man5/sbctl.conf.5*
 %{_datadir}/bash-completion/completions/sbctl

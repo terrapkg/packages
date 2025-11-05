@@ -5,7 +5,7 @@
 %global _version 0.14.0b2
 
 Name:			python-%{pypi_name}
-Version:		%{_version}
+Version:		0.13.0
 Release:		1%?dist
 Summary:		Python binding for curl-impersonate fork via cffi..
 License:		MIT
