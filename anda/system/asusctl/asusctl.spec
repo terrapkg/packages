@@ -1,18 +1,14 @@
 %global debug_package %{nil}
 
-%global commit c9e76f327376c8bb6ab4e4cc5187954aa8cdc538
-%global commit_date 20251020
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
-
 Name:           asusctl
-Version:        %commit_date.%shortcommit
+Version:        6.1.16
 Release:        1%?dist
 Summary:        A control daemon, CLI tools, and a collection of crates for interacting with ASUS ROG laptops
 URL:            https://gitlab.com/asus-linux/asusctl
-Source0:        %url/-/archive/%commit/asusctl-%commit.tar.gz
+Source0:        %url/-/archive/%version/asusctl-%version.tar.gz
 License:        MPL-2.0
 Patch0:         fix-makefile.patch
-BuildRequires:  anda-srpm-macros cargo-rpm-macros systemd-rpm-macros mold rust-udev-devel clang-devel 
+BuildRequires:  anda-srpm-macros cargo-rpm-macros systemd-rpm-macros mold rust-udev-devel clang-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  cmake
 BuildRequires:  rust
@@ -39,7 +35,7 @@ A one-stop-shop GUI tool for asusd/asusctl. It aims to provide most controls,
 a notification service, and ability to run in the background.
 
 %prep
-%autosetup -p1 -n asusctl-%commit
+%autosetup -p1 -n asusctl-%version
 %cargo_prep_online
 
 %build
