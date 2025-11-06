@@ -1,7 +1,7 @@
 %global commit 53fe99a00a6778da8402a6870854499bcd5088d1
 %global commit_date 20251031
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-
+%global crate readymade
 Name:           readymade-git
 Version:        %commit_date.%shortcommit
 Release:        1%?dist
