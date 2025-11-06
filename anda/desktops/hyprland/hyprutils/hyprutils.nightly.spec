@@ -1,10 +1,10 @@
 #? https://src.fedoraproject.org/rpms/hyprutils/blob/rawhide/f/hyprutils.spec
 
 %global realname hyprutils
-%global ver 0.10.0
+%global ver 0.10.1
 
-%global commit 164a30b3d8b3174a32ac7326782476f1188e6118
-%global commit_date 20251104
+%global commit 926689ddb9c0a8787e58c02c765a62e32d63d1f7
+%global commit_date 20251106
 %global shortcommit %{sub %commit 1 7}
 
 Name:           %realname.nightly
