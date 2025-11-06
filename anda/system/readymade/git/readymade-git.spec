@@ -1,4 +1,4 @@
-%global commit 4cbb97800d3eda85d2d0f245980764fbec1c1079
+%global commit 70554f6bbb6325a9638d73b56d9f49bcbc6441ab
 %global commit_date 20251106
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global crate readymade
