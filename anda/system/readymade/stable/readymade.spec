@@ -1,3 +1,4 @@
+%global crate readymade
 Name:           readymade
 Version:        0.12.6
 Release:        1%?dist
