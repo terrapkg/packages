@@ -3,6 +3,10 @@
 # Patched for Fedora, for the Terra repository
 
 #shellcheck disable=SC2034
+# Enable xtrace if we're verbose
+if [ "${KERNEL_INSTALL_VERBOSE:-0}" = "1" ]; then
+        set -x
+fi
 
 ver=${1}
 img=${2}
