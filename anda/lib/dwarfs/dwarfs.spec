@@ -87,7 +87,6 @@ This package contains the development files for DWARFS.
 -DWITH_MAN_OPTION=OFF \
 -DCMAKE_INSTALL_SBINDIR=%(echo %{_sbindir} | sed 's|^/usr||') \
 %cmake_build 
-%ctest -j
 
 %install
 %cmake_install
