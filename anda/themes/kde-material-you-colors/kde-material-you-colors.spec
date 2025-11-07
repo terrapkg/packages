@@ -66,7 +66,7 @@ sed -i "1{/^#!\/usr\/bin\/env python3/d}" %{buildroot}%{python3_sitelib}/kde_mat
 %license LICENSE
 %{_bindir}/%{name}-screenshot-helper
 %{_datadir}/applications/%{name}-screenshot-helper.desktop
-%{_datadir}/metainfo/luisbocanegra.kdematerialyou.colors.appdata.xml
+%dnl %{_datadir}/metainfo/luisbocanegra.kdematerialyou.colors.appdata.xml
 %{_datadir}/plasma/plasmoids/luisbocanegra.kdematerialyou.colors/
 
 %files -n python3-%{name}
