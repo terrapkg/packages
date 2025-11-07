@@ -86,6 +86,11 @@ This package contains the development files for DWARFS.
 -DBUILD_SHARED_LIBS=ON \
 -DWITH_MAN_OPTION=OFF \
 -DCMAKE_INSTALL_SBINDIR=%(echo %{_sbindir} | sed 's|^/usr||') \
+%ifarch aarch64
+-DCMAKE_C_FLAGS="-fno-lto -fno-use-linker-plugin" \
+-DCMAKE_CXX_FLAGS="-fno-lto -fno-use-linker-plugin" \
+-DCMAKE_SHARED_LINKER_FLAGS="-fno-lto -fno-use-linker-plugin" \
+%endif
 %cmake_build 
 
 %install
