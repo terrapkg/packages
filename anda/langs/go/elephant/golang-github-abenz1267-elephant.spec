@@ -46,7 +46,7 @@ BuildRequires:  wayland-devel
 for prov in string.gmatch(macros.providers, "%S+") do
   print("%package "..prov.."\n")
   print("Summary: "..prov.." provider for elephant\n")
-  print("\n%description "..prov.."\n"..prov.." provider for elephant.\n")
+  print("\n%description "..prov.."\n"..prov.." provider for elephant.\n\n")
   print("%files "..prov.."\n")
   print("/etc/xdg/elephant/providers/"..prov..".so\n\n")
 end
