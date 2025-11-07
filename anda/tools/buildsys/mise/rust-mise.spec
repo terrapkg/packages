@@ -6,7 +6,7 @@
 
 Name:           rust-mise
 Version:        2025.11.2
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Front-end to your dev env
 
 License:        MIT
@@ -44,8 +44,44 @@ License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) 
 %{_bindir}/mise
 %_mandir/man1/mise.1.gz
 
+%package -n %crate-bash-completion
+Summary:        Bash completion for %crate
+Requires:       %{crate} = %{version}-%{release}
+Requires:       bash-completion
+Requires:       usage
+Supplements:    (%{crate} and bash-completion)
 
-%pkg_completion -bfzn %crate
+%description -n %crate-bash-completion
+Bash command line completion support for %{crate}.
+
+%package -n %crate-fish-completion
+Summary:        Fish completion for %{crate}
+Requires:       %{crate} = %{version}-%{release}
+Requires:       fish
+Requires:       usage
+Supplements:    (%{crate} and fish)
+
+%description -n %crate-fish-completion
+Fish command line completion support for %{crate}.
+
+%package -n %crate-zsh-completion
+Summary:        Zsh completion for %{crate}
+Requires:       %{crate} = %{version}-%{release}
+Requires:       zsh
+Requires:       usage
+Supplements:    (%{crate} and zsh)
+
+%description -n %crate-zsh-completion
+Zsh command line completion support for %{crate}.
+
+%files -n %crate-bash-completion
+%bash_completions_dir/mise.bash
+
+%files -n %crate-fish-completion
+%fish_completions_dir/mise.fish
+
+%files -n %crate-zsh-completion
+%zsh_completions_dir/_mise
 
 
 %prep
