@@ -1,9 +1,9 @@
 # Disable X11 for RHEL 10+
 %bcond x11 %[%{undefined rhel} || 0%{?rhel} < 10]
 
-%global commit 28ef6b780c227507e248890b18397da21027d935
+%global commit bbafb74880987cc7899fe196e8265088d6627a3c
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20251106
+%global commit_date 20251107
 %global ver 0.40.0
 
 Name:           mpv-nightly
