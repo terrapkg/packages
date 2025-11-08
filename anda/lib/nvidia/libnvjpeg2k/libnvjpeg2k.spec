@@ -4,7 +4,7 @@
 
 Name:           libnvjpeg2k
 Version:        0.9.0.43
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        NVIDIA JPEG 2K decoder (nvJPEG2000)
 License:        NVIDIA EULA
 URL:            https://developer.nvidia.com/nvjpeg
@@ -54,6 +54,7 @@ This package contains static libraries for NVIDIA JPEG 2K decoder (nvJPEG2000).
 %endif
 
 %build
+# Nothing to build
 
 %install
 mkdir -p %{buildroot}/%{_libdir}/pkgconfig/
