@@ -5,7 +5,7 @@ A fast high compression read-only file system for Linux and Windows.}
 
 Name:          dwarfs
 Version:       0.14.1
-Release:       3%?dist
+Release:       4%?dist
 Summary:       A fast high compression read-only file system for Linux, Windows and macOS
 License:       GPL-3.0-or-later
 URL:           https://github.com/mhx/%{name}
@@ -78,7 +78,9 @@ This package contains the development files for DWARFS.
 %package        bash-completion
 Summary:        dwarfs Bash completion
 Requires:       %{name}
+Requires:       bash
 Requires:       bash-completion
+Supplements:    (%{name} and bash)
 BuildArch:      noarch
 
 %description    bash-completion
@@ -88,6 +90,7 @@ Bash shell completion for dwarfs.
 Summary:        dwarfs Zsh completion
 Requires:       %{name}
 Requires:       zsh
+Supplements:    (%{name} and zsh)
 BuildArch:      noarch
 
 %description    zsh-completion
@@ -118,40 +121,40 @@ Zsh shell completion for dwarfs.
 %doc README.md
 %doc CHANGES.md
 %license LICENSE
-%{_bindir}/dwarfsck
-%{_bindir}/dwarfsextract
-%{_bindir}/mkdwarfs
-%{_sbindir}/dwarfs
-%{_sbindir}/mount.dwarfs
-%{_libdir}/libdwarfs_*.so.*
-%{_mandir}/man1/dwarfs.1*
-%{_mandir}/man1/dwarfsck.1*
-%{_mandir}/man1/dwarfsextract.1*
-%{_mandir}/man1/mkdwarfs.1*
-%{_mandir}/man5/dwarfs-format.5*
-%{_mandir}/man7/dwarfs-env.7*
-%{_datadir}/applications/dwarfs-mount-handler.desktop
-%{_datadir}/mime/packages/dwarfs.xml
+%{_bindir}/%{name}
+%{_bindir}/%{name}ck
+%{_bindir}/%{name}extract
+%{_bindir}/mk%{name}
+%{_sbindir}/mount.%{name}
+%{_libdir}/lib%{name}_*.so.*
+%{_mandir}/man1/%{name}.1*
+%{_mandir}/man1/%{name}ck.1*
+%{_mandir}/man1/%{name}extract.1*
+%{_mandir}/man1/mk%{name}.1*
+%{_mandir}/man5/%{name}-format.5*
+%{_mandir}/man7/%{name}-env.7*
+%{_datadir}/applications/%{name}-mount-handler.desktop
+%{_datadir}/mime/packages/%{name}.xml
 
 %files devel
-%dir %{_libdir}/cmake/dwarfs
-%{_libdir}/cmake/dwarfs/*.cmake
-%{_libdir}/libdwarfs_*.so
-%{_includedir}/dwarfs/*.h
-%{_includedir}/dwarfs/*/*.h
-%{_includedir}/dwarfs/*/*/*.h
+%dir %{_libdir}/cmake/%{name}
+%{_libdir}/cmake/%{name}/*.cmake
+%{_libdir}/lib%{name}_*.so
+%{_includedir}/%{name}/*.h
+%{_includedir}/%{name}/*/*.h
+%{_includedir}/%{name}/*/*/*.h
 
 %files bash-completion
-%{bash_completions_dir}/dwarfs
-%{bash_completions_dir}/dwarfsck
-%{bash_completions_dir}/dwarfsextract
-%{bash_completions_dir}/mkdwarfs
+%{bash_completions_dir}/%{name}
+%{bash_completions_dir}/%{name}ck
+%{bash_completions_dir}/%{name}extract
+%{bash_completions_dir}/mk%{name}
 
 %files zsh-completion
-%{zsh_completions_dir}/_dwarfs
-%{zsh_completions_dir}/_dwarfsck
-%{zsh_completions_dir}/_dwarfsextract
-%{zsh_completions_dir}/_mkdwarfs
+%{zsh_completions_dir}/_%{name}
+%{zsh_completions_dir}/_%{name}ck
+%{zsh_completions_dir}/_%{name}extract
+%{zsh_completions_dir}/_mk%{name}
 
 %changelog
 * Sat Nov 08 2025 Owen Zimmerman <owen@fyralabs.com>
