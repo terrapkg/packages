@@ -8,8 +8,8 @@
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
-Version:        13.0.96
-Release:        1%?dist
+Version:        13.0.88
+Release:        1%{?dist}
 Summary:        CUDA Runtime API library
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
