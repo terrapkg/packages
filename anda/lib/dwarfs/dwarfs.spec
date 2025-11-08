@@ -5,7 +5,7 @@ A fast high compression read-only file system for Linux and Windows.}
 
 Name:          dwarfs
 Version:       0.14.1
-Release:       2%?dist
+Release:       3%?dist
 Summary:       A fast high compression read-only file system for Linux, Windows and macOS
 License:       GPL-3.0-or-later
 URL:           https://github.com/mhx/%{name}
@@ -40,7 +40,7 @@ BuildRequires: git
 BuildRequires: glog-devel
 BuildRequires: gmock-devel
 BuildRequires: google-benchmark-devel
-BuildRequires: gtest-devel 
+BuildRequires: gtest-devel
 BuildRequires: jemalloc-devel
 BuildRequires: json-devel
 BuildRequires: libacl-devel
@@ -75,6 +75,24 @@ Requires:      %{name}
 %description devel
 This package contains the development files for DWARFS.
 
+%package        bash-completion
+Summary:        dwarfs Bash completion
+Requires:       %{name}
+Requires:       bash-completion
+BuildArch:      noarch
+
+%description    bash-completion
+Bash shell completion for dwarfs.
+
+%package        zsh-completion
+Summary:        dwarfs Zsh completion
+Requires:       %{name}
+Requires:       zsh
+BuildArch:      noarch
+
+%description    zsh-completion
+Zsh shell completion for dwarfs.
+
 %prep
 %autosetup
 
@@ -91,7 +109,7 @@ This package contains the development files for DWARFS.
 -DCMAKE_CXX_FLAGS="-fno-lto -fno-use-linker-plugin" \
 -DCMAKE_SHARED_LINKER_FLAGS="-fno-lto -fno-use-linker-plugin" \
 %endif
-%cmake_build 
+%cmake_build
 
 %install
 %cmake_install
@@ -114,14 +132,6 @@ This package contains the development files for DWARFS.
 %{_mandir}/man7/dwarfs-env.7*
 %{_datadir}/applications/dwarfs-mount-handler.desktop
 %{_datadir}/mime/packages/dwarfs.xml
-%{_datadir}/bash-completion/completions/dwarfs
-%{_datadir}/bash-completion/completions/dwarfsck
-%{_datadir}/bash-completion/completions/dwarfsextract
-%{_datadir}/bash-completion/completions/mkdwarfs
-%{_datadir}/zsh/site-functions/_dwarfs
-%{_datadir}/zsh/site-functions/_dwarfsck
-%{_datadir}/zsh/site-functions/_dwarfsextract
-%{_datadir}/zsh/site-functions/_mkdwarfs
 
 %files devel
 %dir %{_libdir}/cmake/dwarfs
@@ -131,7 +141,22 @@ This package contains the development files for DWARFS.
 %{_includedir}/dwarfs/*/*.h
 %{_includedir}/dwarfs/*/*/*.h
 
+%files bash-completion
+%{bash_completions_dir}/dwarfs
+%{bash_completions_dir}/dwarfsck
+%{bash_completions_dir}/dwarfsextract
+%{bash_completions_dir}/mkdwarfs
+
+%files zsh-completion
+%{zsh_completions_dir}/_dwarfs
+%{zsh_completions_dir}/_dwarfsck
+%{zsh_completions_dir}/_dwarfsextract
+%{zsh_completions_dir}/_mkdwarfs
+
 %changelog
+* Sat Nov 08 2025 Owen Zimmerman <owen@fyralabs.com>
+- Create shell completion subpackages
+
 * Fri Nov 07 2025 A. Garcia <alberto@garcialnk.com>
 - Fix up INSTALL_SBINDIR path with duplicated /usr
 - Add missing installed files to the package
