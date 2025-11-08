@@ -41,8 +41,4 @@ cp -fra include/crt %{buildroot}%{_includedir}/
 %{_includedir}/crt
 
 %changelog
-* Sun Oct 26 2025 Simone Caronni <negativo17@gmail.com> - 1:13.0.88-1
-- Update to 13.0.88.
-
-* Wed Sep 03 2025 Simone Caronni <negativo17@gmail.com> - 1:13.0.48-1
-- First build.
+%autochangelog
