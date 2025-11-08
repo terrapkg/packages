@@ -7,7 +7,7 @@
 Name:           libcufft
 Epoch:          2
 Version:        12.0.0.61
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        NVIDIA CUDA Fast Fourier Transform library (cuFFT) libraries
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -94,7 +94,6 @@ sed -i \
 
 %files static
 %{_libdir}/libcufft_static.a
-%dnl %{_libdir}/libcufft_static_nocallback.a
 %{_libdir}/libcufftw_static.a
 
 %changelog

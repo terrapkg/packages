@@ -9,7 +9,7 @@
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
 Version:        13.0.88
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        CUDA crt
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -41,4 +41,8 @@ cp -fra include/crt %{buildroot}%{_includedir}/
 %{_includedir}/crt
 
 %changelog
-%autochangelog
+* Sun Oct 26 2025 Simone Caronni <negativo17@gmail.com> - 1:13.0.88-1
+- Update to 13.0.88.
+
+* Wed Sep 03 2025 Simone Caronni <negativo17@gmail.com> - 1:13.0.48-1
+- First build.
