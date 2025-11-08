@@ -1,6 +1,6 @@
 Name:           vvenc
 Version:        1.13.1
-Release:        2%{?dist}
+Release:        4%{?dist}
 Summary:        VVenC, the Fraunhofer Versatile Video Encoder
 License:        BSD-3-Clause
 URL:            https://github.com/fraunhoferhhi/%{name}
