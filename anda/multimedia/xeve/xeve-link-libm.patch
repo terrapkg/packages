@@ -1,0 +1,23 @@
+diff -Naur xeve-0.5.1.old/src_base/CMakeLists.txt xeve-0.5.1/src_base/CMakeLists.txt
+--- xeve-0.5.1.old/src_base/CMakeLists.txt	2025-09-09 14:10:13.817765661 +0200
++++ xeve-0.5.1/src_base/CMakeLists.txt	2025-09-09 14:10:18.814666609 +0200
+@@ -89,6 +89,7 @@
+   endif()
+   set_target_properties(${LIB_NAME_BASE}_dynamic PROPERTIES FOLDER lib
+                                                             LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
++  target_link_libraries(${LIB_NAME_BASE}_dynamic m)
+   target_compile_definitions( ${LIB_NAME_BASE} PUBLIC ANY LINUX )
+   target_link_libraries(${LIB_NAME_BASE} m)
+ endif()
+diff -Naur xeve-0.5.1.old/src_main/CMakeLists.txt xeve-0.5.1/src_main/CMakeLists.txt
+--- xeve-0.5.1.old/src_main/CMakeLists.txt	2025-09-09 14:10:13.828252642 +0200
++++ xeve-0.5.1/src_main/CMakeLists.txt	2025-09-09 14:10:56.392703629 +0200
+@@ -100,7 +100,7 @@
+     endif()
+ 
+     set_target_properties(${LIB_NAME}_dynamic PROPERTIES FOLDER lib LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+-
++    target_link_libraries(${LIB_NAME}_dynamic m)
+     target_compile_definitions( ${LIB_NAME} PUBLIC ANY LINUX )
+     target_link_libraries(${LIB_NAME} m)
+ endif()
