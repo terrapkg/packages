@@ -15,8 +15,6 @@ Summary:        MPEG-5 LCEVC Decoder
 License:        BSD-3-Clause-Clear
 URL:            https://docs.v-nova.com/v-nova/lcevc/lcevc-sdk-overview
 
-Source0:        https://github.com/v-novaltd/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
-
 BuildRequires:  cmake
 BuildRequires:  cmake(CLI11)
 BuildRequires:  cmake(fmt)
@@ -78,7 +76,7 @@ Summary:        Sample programs for %{name}
 Sample programs that use %{name}.
 
 %prep
-%autosetup -p1
+%git_clone https://github.com/v-novaltd/%{name}.git %{version}
 
 %if %{with tests}
 # Adjust configuration file for tests:
@@ -105,6 +103,11 @@ sed -i \
 
 %install
 %cmake_install
+
+%ifnarch %{ix86}
+#mv %{buildroot}%{_prefix}/lib/*.a %{buildroot}%{_libdir}/
+rm -fr %{buildroot}%{_prefix}/lib
+%endif
 
 # Let RPM pick up docs in the files section
 rm -fr %{buildroot}%{_docdir} %{buildroot}%{_prefix}/licenses
