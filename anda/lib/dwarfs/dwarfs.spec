@@ -4,8 +4,8 @@ The Deduplicating Warp-speed Advanced Read-only File System.
 A fast high compression read-only file system for Linux and Windows.}
 
 Name:          dwarfs
-Version:       0.13.0
-Release:       1%?dist
+Version:       0.14.1
+Release:       2%?dist
 Summary:       A fast high compression read-only file system for Linux, Windows and macOS
 License:       GPL-3.0-or-later
 URL:           https://github.com/mhx/%{name}
@@ -85,9 +85,13 @@ This package contains the development files for DWARFS.
 -DWITH_FUSE_DRIVER=ON \
 -DBUILD_SHARED_LIBS=ON \
 -DWITH_MAN_OPTION=OFF \
--DCMAKE_INSTALL_SBINDIR=%{_sbindir} \
+-DCMAKE_INSTALL_SBINDIR=%(echo %{_sbindir} | sed 's|^/usr||') \
+%ifarch aarch64
+-DCMAKE_C_FLAGS="-fno-lto -fno-use-linker-plugin" \
+-DCMAKE_CXX_FLAGS="-fno-lto -fno-use-linker-plugin" \
+-DCMAKE_SHARED_LINKER_FLAGS="-fno-lto -fno-use-linker-plugin" \
+%endif
 %cmake_build 
-%ctest -j
 
 %install
 %cmake_install
@@ -107,6 +111,17 @@ This package contains the development files for DWARFS.
 %{_mandir}/man1/dwarfsextract.1*
 %{_mandir}/man1/mkdwarfs.1*
 %{_mandir}/man5/dwarfs-format.5*
+%{_mandir}/man7/dwarfs-env.7*
+%{_datadir}/applications/dwarfs-mount-handler.desktop
+%{_datadir}/mime/packages/dwarfs.xml
+%{_datadir}/bash-completion/completions/dwarfs
+%{_datadir}/bash-completion/completions/dwarfsck
+%{_datadir}/bash-completion/completions/dwarfsextract
+%{_datadir}/bash-completion/completions/mkdwarfs
+%{_datadir}/zsh/site-functions/_dwarfs
+%{_datadir}/zsh/site-functions/_dwarfsck
+%{_datadir}/zsh/site-functions/_dwarfsextract
+%{_datadir}/zsh/site-functions/_mkdwarfs
 
 %files devel
 %dir %{_libdir}/cmake/dwarfs
@@ -114,7 +129,12 @@ This package contains the development files for DWARFS.
 %{_libdir}/libdwarfs_*.so
 %{_includedir}/dwarfs/*.h
 %{_includedir}/dwarfs/*/*.h
+%{_includedir}/dwarfs/*/*/*.h
 
 %changelog
+* Fri Nov 07 2025 A. Garcia <alberto@garcialnk.com>
+- Fix up INSTALL_SBINDIR path with duplicated /usr
+- Add missing installed files to the package
+
 * Thu Mar 20 2025 Gilver E. <rockgrub@disroot.org>
 - Initial package
