@@ -10,12 +10,13 @@
 
 Name:           LCEVCdec
 Version:        4.0.3
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        MPEG-5 LCEVC Decoder
 License:        BSD-3-Clause-Clear
 URL:            https://docs.v-nova.com/v-nova/lcevc/lcevc-sdk-overview
 
-BuildRequires:  anda-srpm-macros
+Source0:        https://github.com/v-novaltd/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
+
 BuildRequires:  cmake
 BuildRequires:  cmake(CLI11)
 BuildRequires:  cmake(fmt)
@@ -23,7 +24,7 @@ BuildRequires:  cmake(nlohmann_json)
 BuildRequires:  cmake(range-v3)
 BuildRequires:  gcc-c++
 BuildRequires:  git
-BuildRequires:  vulkan-loader
+BuildRequires:  gmock-devel
 BuildRequires:  pkgconfig(libavcodec)
 BuildRequires:  pkgconfig(libavdevice)
 BuildRequires:  pkgconfig(libxxhash)
@@ -64,7 +65,7 @@ Summary:        Development files for %{name}
 Provides:       %{name}-static = %{version}-%{release}
 Obsoletes:      %{name}-static < %{version}-%{release}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       plutovg-devel%{?_isa}       
+Requires:       plutovg-devel%{?_isa}
 
 %description    devel
 The %{name}-devel package contains libraries and header files for
@@ -77,7 +78,7 @@ Summary:        Sample programs for %{name}
 Sample programs that use %{name}.
 
 %prep
-%git_clone https://github.com/v-novaltd/%{name}.git %{version}
+%autosetup -p1
 
 %if %{with tests}
 # Adjust configuration file for tests:
@@ -105,11 +106,6 @@ sed -i \
 %install
 %cmake_install
 
-%ifnarch %{ix86}
-#mv %{buildroot}%{_prefix}/lib/*.a %{buildroot}%{_libdir}/
-rm -fr %{buildroot}%{_prefix}/lib
-%endif
-
 # Let RPM pick up docs in the files section
 rm -fr %{buildroot}%{_docdir} %{buildroot}%{_prefix}/licenses
 
@@ -117,7 +113,6 @@ rm -fr %{buildroot}%{_docdir} %{buildroot}%{_prefix}/licenses
 %check
 python3 src/func_tests/run_tests.py
 %endif
-
 
 %files
 %license LICENSE.md COPYING
@@ -129,8 +124,6 @@ python3 src/func_tests/run_tests.py
 %{_libdir}/liblcevc_dec_pipeline_legacy.so.1
 
 %files devel
-%license LICENSE.md COPYING
-%doc README.md
 %{_includedir}/LCEVC
 %{_libdir}/liblcevc_dec_api.so
 %{_libdir}/liblcevc_dec_legacy.so
