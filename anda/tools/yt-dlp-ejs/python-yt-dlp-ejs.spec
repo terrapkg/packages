@@ -1,6 +1,6 @@
 Name:           python-yt-dlp-ejs
-Version:        0.3.0
-Release:        %autorelease
+Version:        0.3.1
+Release:        1%?dist
 Summary:        External JavaScript for yt-dlp supporting many runtimes
 
 License:        Unlicense AND MIT AND ISC
