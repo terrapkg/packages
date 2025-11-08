@@ -1,1 +1,1 @@
-rpm.version(gh("mpeg5/xeve"));
+rpm.version(gh_tag("mpeg5/xeve"));
