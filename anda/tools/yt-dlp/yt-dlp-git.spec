@@ -8,10 +8,9 @@ Summary:        A command-line program to download videos from online video plat
 
 License:        Unlicense
 URL:            https://github.com/yt-dlp/yt-dlp
-# License of the specfile
-Source:         https://src.fedoraproject.org/rpms/yt-dlp/raw/rawhide/f/yt-dlp.spec.license
-
 BuildArch:      noarch
+Packager:       madonuko <mado@fyralabs.com>
+Requires:       deno
 
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(hatchling)
@@ -31,6 +30,7 @@ BuildRequires:  anda-srpm-macros
 # ffmpeg-free is now available in Fedora.
 Recommends:     /usr/bin/ffmpeg
 Recommends:     /usr/bin/ffprobe
+Recommends:     yt-dlp-ejs
 
 Conflicts:      yt-dlp
 
