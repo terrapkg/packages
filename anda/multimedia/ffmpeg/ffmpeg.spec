@@ -1,4 +1,13 @@
-%define _distro_extra_cflags -Wno-incompatible-pointer-types
+%bcond bootstrap 0
+
+%if %{with bootstrap}
+%bcond chromaprint 0
+%bcond lcevcdec 0
+%else
+%bcond chromaprint 1
+%bcond lcevcdec 1
+%endif
+
 %global _lto_cflags %{nil}
 
 %global avcodec_soversion 61
@@ -13,7 +22,7 @@
 Summary:        A complete solution to record, convert and stream audio and video
 Name:           ffmpeg
 Version:        7.1.2
-Release:        3%?dist
+Release:        3%{?dist}
 License:        LGPLv3+
 URL:            http://%{name}.org/
 Epoch:          1
@@ -22,17 +31,24 @@ Source0:        http://%{name}.org/releases/%{name}-%{version}.tar.xz
 
 # https://github.com/OpenVisualCloud/SVT-VP9/tree/master/ffmpeg_plugin
 Patch0:         %{name}-svt-vp9.patch
-# https://github.com/HandBrake/HandBrake/tree/e117cfe7fca37abeec59ea4201e5d93ed7477746
-Patch2:         %{name}-HandBrake.patch
+# https://github.com/HandBrake/HandBrake/tree/8902805364f00e0d420c4d4b33053a31d27045ab
+Patch1:         %{name}-HandBrake.patch
 # https://bugzilla.redhat.com/show_bug.cgi?id=2240127
 # Reference: https://crbug.com/1306560
-Patch3:         %{name}-chromium.patch
+Patch2:         %{name}-chromium.patch
+# Fix build with recent NVCC:
+Patch3:         %{name}-nvcc.patch
+# https://git.ffmpeg.org/gitweb/ffmpeg.git/commitdiff/f8a300c6739ea2ca648579d7faf3ae9811b9f19a
+Patch4:         %{name}-cuda-13.patch
 # Support LCEVCdec 4.0+:
 Patch5:         https://aur.archlinux.org/cgit/aur.git/plain/080-ffmpeg-lcevcdec4.0.0-fix.patch?h=ffmpeg-full#/%{name}-LCEVCdec-4.patch
+# https://github.com/magarnicle/FFmpeg/commits/DeckLink_SDK_14_4/
+Patch6:         %{name}-decklink-14.patch
 
 BuildRequires:  AMF-devel >= 1.4.28
 BuildRequires:  bzip2-devel
 BuildRequires:  codec2-devel
+BuildRequires:  decklink-devel >= 14.2
 BuildRequires:  doxygen
 BuildRequires:  frei0r-devel
 BuildRequires:  gmp-devel
@@ -41,7 +57,9 @@ BuildRequires:  ilbc-devel
 BuildRequires:  lame-devel >= 3.98.3
 BuildRequires:  ladspa-devel
 BuildRequires:  libavc1394-devel
+%if %{with chromaprint}
 BuildRequires:  libchromaprint-devel
+%endif
 BuildRequires:  libgcrypt-devel
 BuildRequires:  libiec61883-devel
 BuildRequires:  libklvanc-devel
@@ -71,7 +89,6 @@ BuildRequires:  pkgconfig(dav1d) >= 0.5.0
 BuildRequires:  pkgconfig(davs2) >= 1.6.0
 BuildRequires:  pkgconfig(dvdnav) >= 6.1.1
 BuildRequires:  pkgconfig(fdk-aac)
-BuildRequires:  pkgconfig(ffnvcodec) >= 12.0.16.0
 BuildRequires:  pkgconfig(fontconfig)
 BuildRequires:  pkgconfig(freetype2)
 BuildRequires:  pkgconfig(fribidi)
@@ -80,7 +97,9 @@ BuildRequires:  pkgconfig(jack)
 BuildRequires:  pkgconfig(kvazaar) >= 0.8.1
 BuildRequires:  pkgconfig(lc3) >= 1.1.0
 BuildRequires:  pkgconfig(lcms2) >= 2.13
+%if %{with lcevcdec}
 BuildRequires:  pkgconfig(lcevc_dec) >= 2.0.0
+%endif
 BuildRequires:  pkgconfig(libaribcaption) >= 1.1.1
 BuildRequires:  pkgconfig(libass) >= 0.11.0
 BuildRequires:  pkgconfig(libbluray)
@@ -129,6 +148,7 @@ BuildRequires:  pkgconfig(shaderc) >= 2019.1
 BuildRequires:  pkgconfig(smbclient)
 BuildRequires:  pkgconfig(speex)
 BuildRequires:  pkgconfig(srt) >= 1.3.0
+BuildRequires:  pkgconfig(SvtAv1Enc) >= 0.9.0
 BuildRequires:  pkgconfig(tesseract)
 BuildRequires:  pkgconfig(uavs3d) >= 1.1.41
 BuildRequires:  pkgconfig(vapoursynth-script) >= 42
@@ -142,6 +162,8 @@ BuildRequires:  pkgconfig(xcb) >= 1.4
 BuildRequires:  pkgconfig(xcb-shape)
 BuildRequires:  pkgconfig(xcb-shm)
 BuildRequires:  pkgconfig(xcb-xfixes)
+BuildRequires:  pkgconfig(xevd) >= 0.4.1
+BuildRequires:  pkgconfig(xeve) >= 0.4.3
 BuildRequires:  pkgconfig(xext)
 BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(x264)
@@ -152,17 +174,16 @@ BuildRequires:  pkgconfig(zlib)
 BuildRequires:  pkgconfig(zvbi-0.2) >= 0.2.28
 
 %ifarch x86_64 aarch64
+BuildRequires:  cuda-cudart-devel
+BuildRequires:  cuda-nvcc
 BuildRequires:  pkgconfig(ffnvcodec) >= 12.0.16.0
 %endif
 
 %ifarch x86_64
 BuildRequires:  pkgconfig(libmfx)
 BuildRequires:  pkgconfig(libvmaf) >= 2.0.0
-BuildRequires:  pkgconfig(SvtAv1Enc) >= 0.9.0
 BuildRequires:  pkgconfig(SvtVp9Enc)
 BuildRequires:  pkgconfig(vpl) >= 2.6
-#BuildRequires:  pkgconfig(xevd) >= 0.4.1
-#BuildRequires:  pkgconfig(xeve) >= 0.4.3
 %endif
 
 Obsoletes:      %{name}-free < %{epoch}:%{version}-%{release}
@@ -413,8 +434,12 @@ This subpackage contains the headers for FFmpeg libswscale.
     --enable-avformat \
     --enable-alsa \
     --enable-bzlib \
+%if %{with chromaprint}
     --enable-chromaprint \
-    --disable-cuda-nvcc \
+%else
+    --disable-chromaprint \
+%endif
+    --enable-decklink \
     --enable-frei0r \
     --enable-gcrypt \
     --enable-gmp \
@@ -423,7 +448,6 @@ This subpackage contains the headers for FFmpeg libswscale.
     --enable-iconv \
     --enable-ladspa \
     --enable-lcms2 \
-    --enable-libass \
     --enable-libaom \
     --enable-libaribb24 \
     --enable-libaribcaption \
@@ -454,7 +478,11 @@ This subpackage contains the headers for FFmpeg libswscale.
     --enable-libkvazaar \
     --enable-liblc3 \
     --disable-liblensfun \
+%if %{with lcevcdec}
     --enable-liblcevc-dec \
+%else
+    --disable-liblcevc-dec \
+%endif
     --enable-libmodplug \
     --enable-libmp3lame \
     --enable-libmysofa \
@@ -480,6 +508,7 @@ This subpackage contains the headers for FFmpeg libswscale.
     --disable-libshine \
     --enable-libsmbclient \
     --enable-libsnappy \
+    --enable-libsvtav1 \
     --enable-libsoxr \
     --enable-libspeex \
     --enable-libsrt \
@@ -505,6 +534,8 @@ This subpackage contains the headers for FFmpeg libswscale.
     --enable-libxcb-shape \
     --enable-libxcb-shm \
     --enable-libxcb-xfixes \
+    --enable-libxevd \
+    --enable-libxeve \
     --enable-libxml2 \
     --enable-libxvid \
     --enable-libzimg \
@@ -539,6 +570,8 @@ This subpackage contains the headers for FFmpeg libswscale.
     --prefix=%{_prefix} \
     --shlibdir=%{_libdir} \
 %ifarch x86_64 aarch64
+    --enable-cuda-llvm \
+    --enable-cuda-nvcc \
     --enable-cuvid \
     --enable-ffnvcodec \
     --enable-nvdec \
@@ -546,12 +579,9 @@ This subpackage contains the headers for FFmpeg libswscale.
     --extra-cflags="-I%{_includedir}/cuda" \
 %endif
 %ifarch x86_64
-    --enable-libsvtav1 \
     --enable-libsvtvp9 \
     --enable-libvmaf \
     --enable-libvpl \
-#    --enable-libxevd \
-#    --enable-libxeve \
 %endif
 
 %make_build V=1
