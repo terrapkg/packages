@@ -12,6 +12,9 @@ Patch1:         %{url}/commit/982fcaac22488415899ae6c6ef7977a728a88e94.patch
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
 
+# Define this after the version is defined
+%global vvenc_majorminor %(v=%{version}; echo ${v:0:4})
+
 %description
 VVenC, the Fraunhofer Versatile Video Encoder, is a fast and efficient software
 H.266/VVC encoder implementation with the following main features:
@@ -58,7 +61,7 @@ export CXXFLAGS="%{optflags} -Wno-error=maybe-uninitialized -Wno-error=uninitial
 %files libs
 %license LICENSE.txt
 %doc README.md changelog.txt
-%{_libdir}/lib%{name}.so.1.13
+%{_libdir}/lib%{name}.so.%{vvenc_majorminor}
 %{_libdir}/lib%{name}.so.%{version}
 
 %files devel
