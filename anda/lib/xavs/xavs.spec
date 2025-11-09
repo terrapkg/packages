@@ -56,6 +56,7 @@ svn co -r %{commit} https://svn.code.sf.net/p/xavs/code/trunk %{name}
 %else 
     --extra-cflags="-Wno-int-conversion -Wno-declaration-missing-parameter-type"
 %endif
+
 %make_build
 
 %install
