@@ -1,6 +1,6 @@
 Name:           xavs
 Version:        0.1.55
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        AVS1 (First-generation AVS Standards) library
 License:        GPLv2
 URL:            https://xavs.sourceforge.net/
@@ -10,7 +10,7 @@ BuildRequires:  automake
 BuildRequires:  gcc
 BuildRequires:  libtool
 BuildRequires:  subversion
-#BuildRequires:  yasm
+BuildRequires:  yasm
 
 %description
 AVS is a complete standard system including system, video, audio, and digital
@@ -41,7 +41,11 @@ svn co https://svn.code.sf.net/p/xavs/code/trunk %{name}
 
 %build
 %configure \
+%ifarch x86_64
+    --enable-asm \
+%else
     --disable-asm \
+%endif
     --enable-pic \
     --enable-shared \
     --extra-cflags="-Wno-int-conversion -Wno-declaration-missing-parameter-type"
