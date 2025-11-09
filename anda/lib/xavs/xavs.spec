@@ -51,7 +51,7 @@ svn co -r %{commit} https://svn.code.sf.net/p/xavs/code/trunk %{name}
 %endif
     --enable-pic \
     --enable-shared \
-    --extra-cflags="-Wno-int-conversion -Wno-declaration-missing-parameter-type"
+    --extra-cflags="-Wno-int-conversion -Wno-declaration-missing-parameter-type -Wno-implicit-function-declaration"
 %make_build
 
 %install
