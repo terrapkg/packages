@@ -46,17 +46,13 @@ svn co -r %{commit} https://svn.code.sf.net/p/xavs/code/trunk %{name}
 %configure \
 %ifarch x86_64
     --enable-asm \
+    --extra-cflags="-Wno-int-conversion -Wno-declaration-missing-parameter-type -Wno-implicit-function-declaration -Wno-incompatible-pointer-types" \
 %else
     --disable-asm \
+    --extra-cflags="-Wno-int-conversion -Wno-declaration-missing-parameter-type" \
 %endif
     --enable-pic \
-    --enable-shared \
-%ifarch x86_64
-    --extra-cflags="-Wno-int-conversion -Wno-declaration-missing-parameter-type -Wno-implicit-function-declaration -Wno-incompatible-pointer-types" \
-%else 
-    --extra-cflags="-Wno-int-conversion -Wno-declaration-missing-parameter-type"
-%endif
-
+    --enable-shared 
 %make_build
 
 %install
