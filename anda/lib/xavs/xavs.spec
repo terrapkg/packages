@@ -1,5 +1,8 @@
+%global commit r55
+%global date 20110821
+
 Name:           xavs
-Version:        0.1.55
+Version:        0.1.55^%{date}svn%{commit}
 Release:        2%{?dist}
 Summary:        AVS1 (First-generation AVS Standards) library
 License:        GPLv2
@@ -35,7 +38,7 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %prep
-svn co https://svn.code.sf.net/p/xavs/code/trunk %{name}
+svn co -r %{commit} https://svn.code.sf.net/p/xavs/code/trunk %{name}
 %setup -T -D -n %{name}
 %autopatch -p1
 
