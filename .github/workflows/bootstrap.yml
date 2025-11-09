@@ -1,5 +1,6 @@
 name: Bootstrap Andaman and Subatomic
-
+permissions:
+  contents: read
 on:
   workflow_dispatch:
 

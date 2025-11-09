@@ -2,12 +2,12 @@
 %global commit_date 20241230
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 # Exclude input files from mangling
-%global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$ 
+%global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-xr-black-hole
 Version:        %commit_date.%shortcommit
 Release:        1%?dist
-Summary:        Spatial storage for Stardust XR.
+Summary:        Spatial storage for Stardust XR
 URL:            https://github.com/StardustXR/black-hole
 Source0:        %url/archive/%commit/black-hole-%commit.tar.gz
 License:        MIT
@@ -17,7 +17,7 @@ Provides:       black-hole stardust-black-hole
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
-%summary
+%summary.
 
 %prep
 %autosetup -n black-hole-%commit

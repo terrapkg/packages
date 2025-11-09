@@ -1,6 +1,6 @@
 Name:			yadm
 Version:		3.5.0
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Yet Another Dotfiles Manager
 
 License:        GPL-3.0-only
@@ -19,32 +19,7 @@ yadm supplies the ability to manage a subset of secure files, which are
 encrypted before they are included in the repository.
 
 
-%package bash-completion
-Summary:		Bash completion for %{name}
-Requires:		%{name} = %{version}-%{release}
-Requires: 		bash-completion
-Supplements:	(%{name} and bash-completion)
-
-%description bash-completion
-Bash command line completion support for %{name}.
-
-%package fish-completion
-Summary:		Fish completion for %{name}
-Requires:		%{name} = %{version}-%{release}
-Requires:		fish
-Supplements:	(%{name} and fish)
-
-%description fish-completion
-Fish command line completion support for %{name}.
-
-%package zsh-completion
-Summary:		Zsh completion for %{name}
-Requires:		%{name} = %{version}-%{release}
-Requires:		zsh
-Supplements:	(%{name} and zsh)
-
-%description zsh-completion
-Zsh command line completion support for %{name}.
+%pkg_completion -Bfz
 
 
 %prep
@@ -63,15 +38,6 @@ install -Dpm644 -t %buildroot%zsh_completions_dir completion/zsh/_yadm
 %license LICENSE
 %_bindir/yadm
 %_mandir/man1/yadm.1.gz
-
-%files bash-completion
-%bash_completions_dir/yadm
-
-%files fish-completion
-%fish_completions_dir/yadm.fish
-
-%files zsh-completion
-%zsh_completions_dir/_yadm
 
 %changelog
 * Sun May 05 2024 madonuko <mado@fyralabs.com> - 0.5-1

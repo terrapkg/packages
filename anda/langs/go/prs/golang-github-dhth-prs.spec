@@ -13,7 +13,7 @@ Stay updated on PRs from your terminal.}
 %global godocs          README.md ui/assets/help.md
 
 Name:           golang-github-dhth-prs
-Release:        %autorelease
+Release:        2%?dist
 Summary:        Stay updated on PRs from your terminal
 
 License:        MIT
@@ -31,16 +31,11 @@ Packager:       sadlerm <lerm@chromebooks.lol>
 
 %prep
 %git_clone https://%{goipath} v%{version}
-%go_prep_online
+%goprep -A
 
 %build
-go build -buildmode pie -compiler gc -tags="rpm_crashtraceback ${GO_BUILDTAGS-${BUILDTAGS-}}" -a -x \
-         -ldflags "-B 0x$(echo "%{name}-%{version}-%{release}-${SOURCE_DATE_EPOCH:-}" | sha1sum | cut -d ' ' -f1) \
-                   -compressdwarf=false -linkmode=external \
-                   -extldflags '-Wl,-z,relro -Wl,--as-needed -Wl,-z,pack-relative-relocs -Wl,-z,now \
-                                -specs=/usr/lib/rpm/redhat/redhat-hardened-ld -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 \
-                                -Wl,--build-id=sha1'" \
-         -o %{_builddir}/bin/prs .
+%define gomodulesmode GO111MODULE=on
+%gobuild -o %{_builddir}/bin/prs .
 
 %install
 install -m 0755 -vd                     %{buildroot}%{_bindir}

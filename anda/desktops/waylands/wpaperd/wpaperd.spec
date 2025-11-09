@@ -1,9 +1,8 @@
-%global elvish_completions_dir %_datadir/elvish/lib/completions
-%bcond check 1
+%bcond check 0
 
 Name:           wpaperd
 Version:        1.2.2
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Modern wallpaper daemon for Wayland
 License:        (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND BSD-2-Clause AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND BSD-3-Clause AND CC0-1.0 AND (CC0-1.0 OR Apache-2.0) AND (CC0-1.0 OR Artistic-2.0) AND GPL-3.0+ AND ISC AND MIT AND (MIT OR Apache-2.0) AND (MIT OR Apache-2.0 OR NCSA) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Zlib OR Apache-2.0) AND MPL-2.0 AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT)
 SourceLicense:  GPL-3.0-or-later
@@ -32,41 +31,7 @@ Supplements:    wpaperd
 %description doc
 Man papes for %name.
 
-%package bash-completion
-Summary:        Bash completion for %name
-Requires:       %{name} = %{version}-%{release}
-Requires:       bash-completion
-Supplements:    (%{name} and bash-completion)
-
-%description bash-completion
-Bash command line completion support for %{name}.
-
-%package elvish-completion
-Summary:        Elvish completion for %name
-Requires:       %{name} = %{version}-%{release}
-Requires:       elvish
-Supplements:    (%{name} and elvish-completion)
-
-%description elvish-completion
-Elvish command line completion support for %{name}.
-
-%package fish-completion
-Summary:        Fish completion for %{name}
-Requires:       %{name} = %{version}-%{release}
-Requires:       fish
-Supplements:    (%{name} and fish)
-
-%description fish-completion
-Fish command line completion support for %{name}.
-
-%package zsh-completion
-Summary:        Zsh completion for %{name}
-Requires:       %{name} = %{version}-%{release}
-Requires:       zsh
-Supplements:    (%{name} and zsh)
-
-%description zsh-completion
-Zsh command line completion support for %{name}.
+%pkg_completion -befz wpaperctl wpaperd
 
 
 %prep
@@ -110,22 +75,6 @@ install -Dpm644 -t %buildroot%zsh_completions_dir target/rpm/completions/_*
 %_mandir/man1/wpaperctl.1.gz
 %_mandir/man1/wpaperd.1.gz
 %_mandir/man5/wpaperd-output.5.gz
-
-%files bash-completion
-%bash_completions_dir/wpaperctl.bash
-%bash_completions_dir/wpaperd.bash
-
-%files elvish-completion
-%elvish_completions_dir/wpaperctl.elv
-%elvish_completions_dir/wpaperd.elv
-
-%files fish-completion
-%fish_completions_dir/wpaperctl.fish
-%fish_completions_dir/wpaperd.fish
-
-%files zsh-completion
-%zsh_completions_dir/_wpaperctl
-%zsh_completions_dir/_wpaperd
 
 %changelog
 * Fri Dec 20 2024 madonuko <mado@fyralabs.com> - 1.1.1-1

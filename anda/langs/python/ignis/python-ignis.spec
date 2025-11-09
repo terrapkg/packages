@@ -1,13 +1,14 @@
 Name:           python-ignis
-Version:        0.5
-Release:        2%{?dist}
+Version:        0.5.1
+Release:        2%?dist
 Summary:        A widget framework for building desktop shells, written and configurable in Python
 
 License:        LGPL-2.1-or-later
-URL:            https://linkfrg.github.io/ignis
+URL:            https://ignis-sh.github.io/ignis
 Source:         https://github.com/linkfrg/ignis/archive/v%{version}/ignis-%{version}.tar.gz
 Packager:       madonuko <mado@fyralabs.com>
 
+BuildRequires:  pyproject-rpm-macros
 BuildRequires:  python3-devel
 BuildRequires:  gcc git-core
 BuildRequires:  pkgconfig(glib-2.0)

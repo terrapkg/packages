@@ -1,0 +1,121 @@
+Description: Disable all trust-store related settings. Not available in Debian.
+Author: Mike Gabriel <mike.gabriel@das-netzwerkteam.de>
+Forwarded: not needed, Debian-specific
+
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -53,7 +53,7 @@
+ pkg_check_modules(GIO REQUIRED gio-2.0 gio-unix-2.0)
+ pkg_check_modules(LIBSYSTEMD REQUIRED libsystemd)
+ pkg_check_modules(POLKIT_AGENT REQUIRED polkit-agent-1)
+-pkg_check_modules(TRUST_STORE REQUIRED trust-store)
++#pkg_check_modules(TRUST_STORE REQUIRED trust-store)
+ pkg_search_module(UPOWER_GLIB REQUIRED upower-glib)
+ pkg_search_module(ACCOUNTSSERVICE REQUIRED accountsservice)
+ if (ENABLE_UBUNTU_ACCOUNTSSERVICE)
+--- a/plugins/security-privacy/CMakeLists.txt
++++ b/plugins/security-privacy/CMakeLists.txt
+@@ -18,8 +18,8 @@
+     ${LIBSYSTEMD_LDFLAGS})
+ 
+ set(QML_SOURCES
+-    AppAccess.qml
+-    AppAccessControl.qml
++#    AppAccess.qml
++#    AppAccessControl.qml
+     here-terms.qml
+     Location.qml
+     LockSecurity.qml
+@@ -37,8 +37,8 @@
+     plugin.h
+     securityprivacy.cpp
+     securityprivacy.h
+-    trust-store-model.cpp
+-    trust-store-model.h
++#    trust-store-model.cpp
++#    trust-store-model.h
+ )
+ add_library(LomiriSecurityPrivacyPanel MODULE ${PANEL_SOURCES} ${QML_SOURCES})
+ 
+@@ -47,7 +47,7 @@
+     QT_NO_KEYWORDS)
+ target_include_directories(LomiriSecurityPrivacyPanel PRIVATE
+     ${Intl_INCLUDE_DIRS}
+-    ${TRUST_STORE_INCLUDE_DIRS}
++#    ${TRUST_STORE_INCLUDE_DIRS}
+     ${GLIB_INCLUDE_DIRS}
+ )
+ target_link_libraries (LomiriSecurityPrivacyPanel
+@@ -58,7 +58,7 @@
+     Qt5::Quick
+     Qt5::DBus
+     LomiriSystemSettingsPrivate
+-    ${TRUST_STORE_LDFLAGS}
++#    ${TRUST_STORE_LDFLAGS}
+     ${GLIB_LDFLAGS}
+ )
+ 
+--- a/plugins/security-privacy/PageComponent.qml
++++ b/plugins/security-privacy/PageComponent.qml
+@@ -64,15 +64,15 @@
+             case 'location':
+                 page = Qt.resolvedUrl("Location.qml");
+                 break;
+-            case 'permissions':
+-                page = Qt.resolvedUrl("AppAccess.qml")
+-                break;
+-            }
+-        } else if (pluginOptions && pluginOptions['service']) {
+-            // This whole else if branch will be removed once the
+-            // camera app asks for [1] as described in lp:1545733.
+-            // [1] settings:///system/permissions?service=camera
+-            page = Qt.resolvedUrl("AppAccess.qml");
++//          case 'permissions':
++//              page = Qt.resolvedUrl("AppAccess.qml")
++//              break;
++            }
++//      } else if (pluginOptions && pluginOptions['service']) {
++//          // This whole else if branch will be removed once the
++//          // camera app asks for [1] as described in lp:1545733.
++//          // [1] settings:///system/permissions?service=camera
++//          page = Qt.resolvedUrl("AppAccess.qml");
+         }
+         if (page) {
+             pageStack.addPageToNextColumn(root, page, opts);
+@@ -222,10 +222,10 @@
+                 value: locationActionGroup.enabled.state
+             }
+ 
+-            SettingsListItems.SingleValueProgression {
+-                text: i18n.tr("App permissions")
+-                onClicked: pageStack.addPageToNextColumn(root, Qt.resolvedUrl("AppAccess.qml"), {pluginManager: pluginManager})
+-            }
++//            SettingsListItems.SingleValueProgression {
++//                text: i18n.tr("App permissions")
++//                onClicked: pageStack.addPageToNextColumn(root, Qt.resolvedUrl("AppAccess.qml"), {pluginManager: pluginManager})
++//            }
+         }
+     }
+ }
+--- a/plugins/security-privacy/plugin.cpp
++++ b/plugins/security-privacy/plugin.cpp
+@@ -37,7 +37,7 @@
+     Q_ASSERT(uri == QLatin1String("Lomiri.SystemSettings.SecurityPrivacy"));
+     qmlRegisterSingletonType<Connectivity>(uri, 1, 0, "Connectivity", connectivitySingeltonProvider);
+     qmlRegisterType<SecurityPrivacy>(uri, 1, 0, "LomiriSecurityPrivacyPanel");
+-    qmlRegisterType<TrustStoreModel>(uri, 1, 0, "TrustStoreModel");
++//    qmlRegisterType<TrustStoreModel>(uri, 1, 0, "TrustStoreModel");
+ }
+ 
+ void BackendPlugin::initializeEngine(QQmlEngine *engine, const char *uri)
+--- a/tests/plugins/CMakeLists.txt
++++ b/tests/plugins/CMakeLists.txt
+@@ -4,7 +4,7 @@
+ add_subdirectory(bluetooth)
+ add_subdirectory(wifi)
+ add_subdirectory(notifications)
+-add_subdirectory(security-privacy)
++#add_subdirectory(security-privacy)
+ 
+ set(qmltest_DEFAULT_TARGETS qmluitests)
+ set(qmltest_DEFAULT_PROPERTIES ENVIRONMENT "LC_ALL=C")

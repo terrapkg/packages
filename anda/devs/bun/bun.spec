@@ -1,10 +1,6 @@
 %bcond bootstrap 1
 
-%global forgeurl https://github.com/oven-sh/bun
 
-%global tag bun-v1.3.2
-
-%forgemeta
 
 Name:			bun
 Version:		1.3.2
@@ -13,21 +9,16 @@ Summary:		Incredibly fast JavaScript runtime, bundler, test runner, and package 
 License:		MIT
 URL:			https://bun.sh
 
-
-
-
-Source0:		%{forgesource}
-
 BuildRequires:	cmake
 BuildRequires:	ninja-build
-BuildRequires:	zig
 BuildRequires:	llvm19
 BuildRequires:	clang19
 BuildRequires:	lld19
 BuildRequires:	sccache
 BuildRequires:	cargo
 BuildRequires:	libicu-devel
-BuildRequires:	libicu-devel
+BuildRequires:glibc-devel
+BuildRequires:	golang
 BuildRequires:	perl(Math::BigInt)
 %if  %{with bootstrap}
 BuildRequires:	bun-bin
@@ -44,16 +35,18 @@ ExclusiveArch: x86_64 aarch64
 
 
 %prep
-%{forgesetup}
+git clone https://github.com/oven-sh/bun
+cd bun
+git checkout bun-v%{version}
 
 %build
-%cmake -G Ninja -DBUN_TEST=ON -DCI=ON -DUSE_STATIC_LIBATOMIC=OFF
-%cmake_build
+cd bun
+bun run  build:smol -DUSE_STATIC_LIBATOMIC=OFF -DCI=ON
+
 
 
 
 %install
-%cmake_install
 
 %check
 %ctest

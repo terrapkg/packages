@@ -3,7 +3,7 @@
 
 Name:           swaylock-effects
 Version:        1.7.0.0^1.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Swaylock, with fancy effects
 
 License:        MIT
@@ -31,32 +31,7 @@ Conflicts:      swaylock
 swaylock-effects is a fork of swaylock which adds built-in screenshots and image manipulation effects like blurring.
 
 
-%package bash-completion
-Summary:        Bash completion for %{name}
-Requires:       %{name} = %{version}-%{release}
-Requires:       bash-completion
-Supplements:    (%{name} and bash-completion)
-
-%description bash-completion
-Bash command-line completion support for %{name}.
-
-%package zsh-completion
-Summary:        Zsh completion for %{name}
-Requires:       %{name} = %{version}-%{release}
-Requires:       zsh
-Supplements:    (%{name} and zsh)
-
-%description zsh-completion
-Zsh command-line completion support for %{name}.
-
-%package fish-completion
-Summary:        Fish completion for %{name}
-Requires:       %{name} = %{version}-%{release}
-Requires:       fish
-Supplements:    (%{name} and fish)
-
-%description fish-completion
-Fish command-line completion support for %{name}.
+%pkg_completion -Bfz %binary_name
 
 
 %prep
@@ -78,15 +53,6 @@ Fish command-line completion support for %{name}.
 %{_bindir}/%{binary_name}
 %{_mandir}/man1/%{binary_name}.1.gz
 %config(noreplace) %{_sysconfdir}/pam.d/%{binary_name}
-
-%files bash-completion
-%{bash_completions_dir}/%{binary_name}
-
-%files zsh-completion
-%{zsh_completions_dir}/_%{binary_name}
-
-%files fish-completion
-%{fish_completions_dir}/%{binary_name}.fish
 
 
 %changelog

@@ -3,4 +3,7 @@ project pkg {
 	rpm {
 		spec = "nerd-fonts.spec"
 	}
+	labels {
+		no_upload_srpms = 1
+	}
 }

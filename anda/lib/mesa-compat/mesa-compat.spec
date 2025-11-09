@@ -1,9 +1,8 @@
-# Credit to LionHeartP from Nobara for most of the spec and letting me know about the need for this package <3
 %global origname mesa
-%global ver 25.0.4
 
 Name:           %{origname}-compat
 Summary:        Mesa graphics libraries - legacy compatibility libraries
+%global ver 25.0.7
 Version:        %{lua:ver = string.gsub(rpm.expand("%{ver}"), "-", "~"); print(ver)}
 Release:        1%{?dist}
 Epoch:          1
@@ -41,6 +40,23 @@ BuildRequires:  python3-pyyaml
 %description
 %{summary}.
 
+%package libxatracker
+Summary:        Mesa XA state tracker
+Provides:       libxatracker%{?_isa}
+Provides:       mesa-libxatracker%{?_isa}
+Obsoletes:      mesa-libxatracker < 25.3
+
+%description libxatracker
+%{summary}.
+
+%package libxatracker-devel
+Summary:        Mesa XA state tracker development package
+Requires: %{name}-libxatracker%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Obsoletes:      mesa-libxatracker-devel < 25.3
+
+%description libxatracker-devel
+%{summary}.
+
 %package libOSMesa
 Summary:        Mesa offscreen rendering libraries
 Provides:       libOSMesa
@@ -73,10 +89,10 @@ cp %{SOURCE1} docs/
 %meson \
   -Dplatforms= \
   -Dosmesa=true \
-  -Dgallium-drivers=llvmpipe \
+  -Dgallium-drivers=llvmpipe,svga \
   -Dgallium-vdpau=disabled \
   -Dgallium-va=disabled \
-  -Dgallium-xa=disabled \
+  -Dgallium-xa=enabled \
   -Dgallium-nine=false \
   -Dgallium-opencl=disabled \
   -Dgallium-rusticl=false \
@@ -121,6 +137,16 @@ rm -rf %{buildroot}%{_includedir}/KHR
 %{_libdir}/libOSMesa.so
 %{_libdir}/pkgconfig/osmesa.pc
 
+%files libxatracker
+%{_libdir}/libxatracker.so.2*
+%{_libdir}/libxatracker.so.2.*
+
+%files libxatracker-devel
+%{_libdir}/libxatracker.so
+%{_includedir}/xa_tracker.h
+%{_includedir}/xa_composite.h
+%{_includedir}/xa_context.h
+%{_libdir}/pkgconfig/xatracker.pc
+
 %changelog
-* Thu Apr 24 2025 Neal Gompa <ngompa@fedoraproject.org> - 25.0.4-1
-- Initial split from mesa for compat libraries (rhbz#2362203)
+%autochangelog
