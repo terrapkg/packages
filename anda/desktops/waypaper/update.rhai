@@ -1,1 +1,1 @@
-rpm.version(gh("anufrievroman/waypaper"));
+rpm.version(pypi("waypaper"));
