@@ -5,7 +5,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.5.8
-Release:		1%?dist
+Release:		2%?dist
 Summary:		A modern hardware definition language and toolchain based on Python
 License:		BSD-2-Clause
 URL:			https://github.com/amaranth-lang/amaranth
