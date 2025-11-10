@@ -19,7 +19,6 @@ BuildRequires:  python3-setuptools_scm
 BuildRequires:  python3-packaging
 BuildRequires:  python3-pip
 
-Requires:       python3
 Requires:       python3-jinja2
 Requires:       python3-jschon
 Requires:       python3-pyvcd
