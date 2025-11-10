@@ -22,6 +22,7 @@ ExcludeArch:    %{ix86}
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  pkgconfig(pixman-1)
+BuildRequires:  cmake(GTest)
 
 Provides:		%realname = %evr
 Conflicts:		%realname
