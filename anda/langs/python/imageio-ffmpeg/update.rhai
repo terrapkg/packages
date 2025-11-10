@@ -1,1 +1,1 @@
-rpm.version(gh("imageio/imageio-ffmpeg"));
+rpm.version(pypi("imageio-ffmpeg"));
