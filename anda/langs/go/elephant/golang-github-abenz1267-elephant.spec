@@ -91,6 +91,7 @@ install -Dm755 internal/providers/*/*.so -t %buildroot/etc/xdg/elephant/provider
 %license LICENSE
 %doc README.md
 %{_bindir}/elephant
+%ghost /etc/xdg/elephant/providers/*.so
 %endif
 
 %gopkgfiles
