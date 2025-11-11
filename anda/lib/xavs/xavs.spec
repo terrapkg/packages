@@ -45,6 +45,9 @@ developing applications that use %{name}.
 %autosetup -p1 -n %{name}-code-r55-trunk
 
 %build
+%ifarch x86_64 %{ix86}
+export CFLAGS="$CFLAGS -fPIC"
+%endif
 %configure \
 %ifarch x86_64
     --enable-asm \
