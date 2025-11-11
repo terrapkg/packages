@@ -1,63 +1,111 @@
-%define debug_package %nil
-%ifarch x86_64
-%global a x64-baseline
-%elifarch aarch64
-%global a aarch64
-%endif
+%global rpmbuilddir %{?builddir}%{?!builddir:%{_builddir}}
+%global npm_common_vars NPM_CONFIG_USERCONFIG=%{rpmbuilddir}/.npmrc NPM_CONFIG_GLOBALCONFIG=%{rpmbuilddir}/npmrc NPM_CONFIG_CACHE=%{rpmbuilddir}/.npm NPM_CONFIG_LOGLEVEL=error NPM_CONFIG_FUND=false NPM_CONFIG_UPDATE_NOTIFIER=false NO_UPDATE_NOTIFIER=1 NPM_CONFIG_INIT_MODULE=%{rpmbuilddir}/.npm-init.js
+%global __yarn /usr/bin/env %{npm_common_vars} YARN_CACHE_FOLDER=%{rpmbuilddir}/yarn /usr/bin/yarn
+%bcond bootstrap 1
 
-Name:			bun-bin
+Name:			bun
 Version:		1.2.19
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one
 License:		MIT
 URL:			https://bun.sh
-Source0:		https://github.com/oven-sh/bun/releases/download/bun-v%version/bun-linux-%a.zip
-BuildRequires:	unzip
+Source0:        https://github.com/oven-sh/bun/archive/refs/tags/%{name}-v%{version}.tar.gz
+Patch0:         BuildBrotli.patch
+BuildRequires:  anda-srpm-macros
+%if %{without bootstrap}
+BuildRequires:  bun
+%endif
+BuildRequires:  cargo
+BuildRequires:  cargo-rpm-macros
+BuildRequires:  ccache
+BuildRequires:	cmake
+BuildRequires:  cmake-rpm-macros
+BuildRequires:  gcc
+BuildRequires:  gcc-c++
+BuildRequires:  git-core
+BuildRequires:  glibc-common
+BuildRequires:  libicu-devel
+BuildRequires:  libdeflate-devel
+BuildRequires:  libtool
+%if 0%{?fedora} <= 41
+BuildRequires:  lld
+BuildRequires:  llvm
+%else
+BuildRequires:  lld19
+BuildRequires:  llvm19
+%endif
+BuildRequires:  mold
+BuildRequires:  ninja-build
+BuildRequires:  nodejs
+BuildRequires:  pkg-config
+BuildRequires:  python3
+BuildRequires:  python3-devel
+BuildRequires:  ruby
+BuildRequires:  ruby-bundled-gems
+BuildRequires:  unzip
+%if %{with bootstrap}
+BuildRequires:  yarnpkg-berry
+%endif
+BuildRequires:  zig
+Requires:       c-ares
+Requires:       libarchive
+Requires:       libuv
+Requires:       mimalloc
+Requires:       (zlib-ng-compat or zlib)
+Requires:       zstd
+Obsoletes:      bun-bin < 1.2.19-1
 
 %description
 %summary.
 
+%package        doc
+Summary:        Doc files for Bun.
+
+%description    doc
+Documentation for Bun.
+
 %pkg_completion -bfz bun
 
 %prep
-%autosetup -n bun-linux-%a
-cat<<EOF > LICENSE
-MIT License
+%autosetup -p1 -n %{name}-%{name}-v%{version}
 
-Copyright (c) Jarred Sumner
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-EOF
-
-%install
-declare -a shells=("zsh" "bash" "fish")
-for s in "${shells[@]}"; do
-	SHELL=$s ./bun completions > bun.$s
+for dir in packages/bun-build-mdx-rs packages/bun-native-plugin-rs bench/ffi/src packages/bun-native-plugin-rs/bun-macro; do
+pushd $dir
+%cargo_prep_online
+popd
 done
 
-install -Dpm755 bun -t %buildroot%_bindir
-install -Dm644 bun.zsh %buildroot%zsh_completions_dir/_bun
-install -Dm644 bun.bash -t %buildroot%bash_completions_dir
-install -Dm644 bun.fish -t %buildroot%fish_completions_dir
-ln -s bun %buildroot%_bindir/bunx
+%build
+CXXFLAGS="-Wno-unused-result ${CXXFLAGS}"
+%set_build_flags
+
+mkdir -p %{__cmake_builddir}
+# Bun build must be bootstrapped by another build system or itself
+BUN_HOME=%{rpmbuilddir}/.bun %{!?with_bootstrap:%{__bun}}%{?with_bootstrap:BUN_RUNTIME_TRANSPILER_CACHE_PATH=0 %{__yarn} dlx bun} \
+ ./scripts/build.mjs -GNinja -B %{__cmake_builddir} \
+  -DCMAKE_BUILD_TYPE=Release    \
+  -DUSE_STATIC_LIBATOMIC=OFF    \
+  -DENABLE_CCACHE=ON            \
+  -DENABLE_LTO=ON               \
+  -DUSE_STATIC_SQLITE=OFF       \
+%ifnarch x86_64_v3 x86_64_v4
+  -DENABLE_BASELINE=ON          \
+%endif
+  -DCMAKE_C_FLAGS="$CFLAGS"     \
+  -DCMAKE_CXX_FLAGS="$CXXFLAGS" \
+  -DCMAKE_C_COMPILER=gcc        \
+  -DCMAKE_CXX_COMPILER=g++      \
+  -DBUILD_SHARED_LIBS:BOOL=OFF  \
+  -DCARGO_EXECUTABLE="%{__cargo}"
+
+%install
+%cmake_install
 
 %files
-%license LICENSE
+%doc README.md
+%license LICENSE.md
 %_bindir/bun
 %_bindir/bunx
+
+%files doc
+%doc docs/*
