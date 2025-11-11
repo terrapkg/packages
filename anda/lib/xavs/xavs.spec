@@ -43,9 +43,6 @@ svn co -r %{commit} https://svn.code.sf.net/p/xavs/code/trunk %{name}
 %autopatch -p1
 
 %build
-%ifarch x86_64 %{ix86}
-export CFLAGS="$CFLAGS -fPIC"
-%endif
 %configure \
 %ifarch x86_64
     --enable-asm \
