@@ -14,7 +14,7 @@ Source:         %{crates_source}
 Source1:        https://raw.githubusercontent.com/typstyle-rs/typstyle/v%{version}/LICENSE
 Packager:       metcya <metcya@gmail.com>
 
-BuildRequires:  anda-srpm-macros rust-packaging >= 24
+BuildRequires:  anda-srpm-macros rust-packaging >= 24 mold
 
 %global _description %{expand:
 The CLI for Typstyle.}
