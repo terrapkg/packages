@@ -59,11 +59,6 @@ BuildArch:      noarch
 %install
 %cargo_install
 
-%files
-%license LICENSE LICENSE.dependencies
-%doc BREAKINGCHANGES.md README.md
-%{_bindir}/%{name}
-
 %changelog
 * Tue Jul 02 2024 Andrey Brusnik <dev@shdwchn.io> - 15.0.0-1
 - chore(topgrade): Bump to 15.0.0
