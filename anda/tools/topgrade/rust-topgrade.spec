@@ -8,7 +8,7 @@ Release:        1%?dist
 Summary:        Upgrade all the things
 
 SourceLicense:  GPL-3.0-or-later
-License:        ((MIT OR Apache-2.0) AND Unicode-DFS-2016) AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND GPL-3.0 AND MIT AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MPL-2.0 AND (Unlicense OR MIT)
+License:        ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND GPL-3.0 AND GPL-3.0-only AND MIT AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MPL-2.0 AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT)
 URL:            https://crates.io/crates/topgrade
 Source:         %crates_source
 # Automatically generated patch to strip dependencies and normalize metadata
@@ -49,7 +49,7 @@ BuildArch:      noarch
 %{_bindir}/topgrade
 
 %prep
-%autosetup -n %{name}-%{version} -p1
+%autosetup -n %{crate}-%{version} -p1
 %cargo_prep_online
 
 %build
