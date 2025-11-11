@@ -25,12 +25,12 @@ Source1:		signal.desktop
 License:		AGPL-3.0 AND %{electron_license}
 ExclusiveArch:	x86_64 aarch64
 
-BuildRequires:	pulseaudio-libs-devel
+BuildRequires:	 pulseaudio-libs-devel
 BuildRequires:  libX11-devel
-BuildRequires:	git-lfs
+BuildRequires:	 git-lfs
 BuildRequires:  git-core
 BuildRequires:  anda-srpm-macros
-BuildRequires:	pnpm
+BuildRequires:	 pnpm
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  git-core
