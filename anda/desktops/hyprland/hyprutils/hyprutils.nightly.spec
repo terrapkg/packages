@@ -1,10 +1,10 @@
 #? https://src.fedoraproject.org/rpms/hyprutils/blob/rawhide/f/hyprutils.spec
 
 %global realname hyprutils
-%global ver 0.10.0
+%global ver 0.10.2
 
-%global commit 164a30b3d8b3174a32ac7326782476f1188e6118
-%global commit_date 20251104
+%global commit cb3e797fde5c748164eb70d9859336141136a166
+%global commit_date 20251111
 %global shortcommit %{sub %commit 1 7}
 
 Name:           %realname.nightly
@@ -22,6 +22,7 @@ ExcludeArch:    %{ix86}
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  pkgconfig(pixman-1)
+BuildRequires:  cmake(GTest)
 
 Provides:		%realname = %evr
 Conflicts:		%realname

@@ -5,6 +5,6 @@ project "pkg" {
     arches = ["x86_64"]
     labels = {
         subrepo = "nvidia"
-        weekly = 1
+        weekly = 3
     }
 }

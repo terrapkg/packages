@@ -9,7 +9,7 @@
 Name:           cuda-sandbox
 Epoch:          1
 Version:        13.0.85
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        CUDA nvsandboxutils
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -48,7 +48,7 @@ This package provides development files for the CUDA nvsandboxutils library.
 mkdir -p %{buildroot}%{_includedir}
 
 cp -fr include/* %{buildroot}%{_includedir}/
-install -p -m 0644 -D lib*/stubs/libnvidia-sandboxutils_loader.a %{buildroot}%{_libdir}/libnvidia-sandboxutils_loader.a
+install -p -m 0644 -D lib/stubs/libnvidia-sandboxutils_loader.a %{buildroot}%{_libdir}/libnvidia-sandboxutils_loader.a
 
 %files devel
 %license LICENSE
