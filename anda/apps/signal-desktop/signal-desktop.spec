@@ -1,6 +1,9 @@
 #? https://gitlab.archlinux.org/archlinux/packaging/packages/signal-desktop/-/blob/main/PKGBUILD
 %define	debug_package %{nil}
 
+# Make electron_license macro properly work
+%bcond bundled_electron 1
+
 # Exclude private libraries
 %global __requires_exclude libffmpeg.so
 %global __provides_exclude ^lib.*\\.so.*$
