@@ -8,10 +8,14 @@ Source0:        https://raw.githubusercontent.com/magnus-ISU/aur-scripts/master/
 Requires:       bash
 BuildArch:      noarch
 
+Packager:       Its-J
+
 %description
 %{summary}.
 
 %prep
+
+%build
 
 %install
 install -Dm 755 %{SOURCE0} %{buildroot}%{_bindir}/shitpost
