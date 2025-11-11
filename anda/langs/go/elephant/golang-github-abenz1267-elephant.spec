@@ -46,7 +46,7 @@ BuildRequires:  wayland-devel
 for prov in string.gmatch(macros.providers, "%S+") do
   print("%package "..prov.."\n")
   print("Summary: "..prov.." provider for elephant\n")
-  print("\n%description "..prov.."\n"..prov.." provider for elephant.\n")
+  print("\n%description "..prov.."\n"..prov.." provider for elephant.\n\n")
   print("%files "..prov.."\n")
   print("/etc/xdg/elephant/providers/"..prov..".so\n\n")
 end
@@ -91,7 +91,7 @@ install -Dm755 internal/providers/*/*.so -t %buildroot/etc/xdg/elephant/provider
 %license LICENSE
 %doc README.md
 %{_bindir}/elephant
-%ghost /etc/xdg/elephant/
+%ghost /etc/xdg/elephant/providers/*.so
 %endif
 
 %gopkgfiles
