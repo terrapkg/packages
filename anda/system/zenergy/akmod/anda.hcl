@@ -4,6 +4,7 @@ project pkg {
 		spec = "zenergy-kmod.spec"
 	}
 	labels {
+		mock = 1
 		nightly = 1
 	}
 }
