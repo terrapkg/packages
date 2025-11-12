@@ -50,7 +50,7 @@ for shell in bash zsh fish; do
 done
 
 %install
-%cargo_install
+%crate_install_bin
 install -Dm644 "completions/%{crate}-completion.bash" "%{buildroot}/%{bash_completions_dir}/%{crate}"
 install -Dm644 "completions/%{crate}-completion.zsh" "%{buildroot}/%{zsh_completions_dir}/_%{crate}"
 install -Dm644 "completions/%{crate}-completion.fish" "%{buildroot}/%{fish_completions_dir}/%{crate}.fish"
