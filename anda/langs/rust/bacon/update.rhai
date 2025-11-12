@@ -1,1 +1,1 @@
-rpm.version(crates("bacon"))
+rpm.version(crates("bacon"));
