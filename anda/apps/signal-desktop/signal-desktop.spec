@@ -1,6 +1,9 @@
 #? https://gitlab.archlinux.org/archlinux/packaging/packages/signal-desktop/-/blob/main/PKGBUILD
 %define	debug_package %{nil}
 
+# Make electron_license macro properly work
+%bcond bundled_electron 1
+
 # Exclude private libraries
 %global __requires_exclude libffmpeg.so
 %global __provides_exclude ^lib.*\\.so.*$
@@ -11,21 +14,34 @@
 %define arch arm64-
 %endif
 
-Name:			signal-desktop	
-Version:			7.78.0
-Release:			1%?dist
+Name:			signal-desktop
+Version:		7.78.0
+Release:		2%?dist
 Summary:		A private messenger for Windows, macOS, and Linux
 URL:			https://signal.org
 Source0:		https://github.com/signalapp/Signal-Desktop/archive/refs/tags/v%{version}.tar.gz
 # signal.desktop from https://github.com/signalflatpak/signal/blob/master/org.signal.Signal.desktop
 Source1:		signal.desktop
-License:		AGPL-3.0 AND %electron_licenses
+License:		AGPL-3.0 AND %{electron_license}
 ExclusiveArch:	x86_64 aarch64
-BuildRequires:	pulseaudio-libs-devel libX11-devel pnpm make gcc g++ python3 
-BuildRequires:	git-lfs
+
+BuildRequires:	 pulseaudio-libs-devel
+BuildRequires:  libX11-devel
+BuildRequires:	 git-lfs
+BuildRequires:  git-core
+BuildRequires:  anda-srpm-macros
+BuildRequires:	 pnpm
+BuildRequires:  gcc
+BuildRequires:  gcc-c++
+BuildRequires:  git-core
+BuildRequires:  make
+BuildRequires:  nodejs
+BuildRequires:  nodejs-npm
+BuildRequires:  python3
+
 Requires:		gtk3
 Requires:		libwayland-cursor
-Requires:		libwayland-client 
+Requires:		libwayland-client
 Requires:		libxkbcommon
 Requires:		gdk-pixbuf2
 Requires:		libthai
@@ -48,6 +64,16 @@ Requires:		mesa-libgbm
 Requires:		at-spi2-atk
 Requires:		expat
 Requires:		alsa-lib
+Requires:       xdg-utils
+Requires:       re2
+Requires:       (libXtst or libXtst6)
+Requires:       libXScrnSaver
+Requires:       libnotify
+Requires:       (libuuid or libuuid1)
+Requires:       at-spi2-core
+Requires:       c-ares
+Requires:       gtk3
+Requires:       minizip
 
 Provides:       signal
 Provides:       Signal
@@ -57,7 +83,7 @@ Provides:       Signal-Desktop
 Signal Desktop links with Signal on Android or iOS and lets you message from your Windows, macOS, and Linux computers.
 
 %prep
-%autosetup -n Signal-Desktop-%{version} -p1
+%autosetup -n Signal-Desktop-%{version}
 
 %build
 pnpm install --frozen-lockfile
@@ -99,8 +125,8 @@ install -Dm644 build/icons/png/512x512.png %{buildroot}%{_iconsdir}/hicolor/512x
 install -Dm644 build/icons/png/64x64.png %{buildroot}%{_iconsdir}/hicolor/64x64/apps/signal.png
 
 install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/applications/signal.desktop
-mkdir -p %buildroot%_bindir
-ln -s %_libdir/signal-desktop/signal-desktop %buildroot%_bindir/signal-desktop
+mkdir -p %{buildroot}%{_bindir}
+ln -s %{_libdir}/signal-desktop/signal-desktop %{buildroot}%{_bindir}/signal-desktop
 
 %files
 %license LICENSE
@@ -123,5 +149,7 @@ ln -s %_libdir/signal-desktop/signal-desktop %buildroot%_bindir/signal-desktop
 %{_iconsdir}/hicolor/64x64/apps/signal.png
 
 %changelog
+* Tue Nov 11 2025 Owen Zimmerman <owen@fyralabs.com>
+- Add more Requires:, fix electron_license macro application, fix some formatting
 * Fri Aug 8 2025 june-fish <git@june.fish>
 - Initial Package
