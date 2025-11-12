@@ -4,7 +4,7 @@ project pkg {
         spec = "gstreamer1-plugin-libav.spec"
     }
     labels {
-        subrepo = "extras"
+        subrepo = "multimedia"
         mock = 1
         updbranch = 1
     }

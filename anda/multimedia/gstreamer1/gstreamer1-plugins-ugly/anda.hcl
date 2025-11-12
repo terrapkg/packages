@@ -4,7 +4,7 @@ project pkg {
     spec = "gstreamer1-plugins-ugly.spec"
   }
   labels {
-    subrepo = "extras"
+    subrepo = "multimedia"
     mock = 1
     updbranch = 1
   }
