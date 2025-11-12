@@ -1,1 +1,1 @@
-rpm.version(crates("typstyle"))
+rpm.version(crates("typstyle"));
