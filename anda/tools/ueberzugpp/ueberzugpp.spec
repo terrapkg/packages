@@ -6,7 +6,6 @@ Summary:    Drop in replacement for ueberzug written in C++
 URL:        https://github.com/jstkdng/%{name}
 Source:     %{url}/archive/v%{version}.tar.gz
 Packager:   metcya <metcya@gmail.com>
-Provides:   ueberzug
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++ 
@@ -44,9 +43,11 @@ on terminals by using X11/wayland child windows, sixels, kitty and iterm2.
 %files
 %{_bindir}/ueberzug
 %{_bindir}/ueberzugpp
-/usr/lib/debug/usr/bin/ueberzug-2.9.8-1.fc42.x86_64.debug
-%{_mandir}/man1/ueberzug.1.gz
-%{_mandir}/man/man1/ueberzugpp.1.gz
+%{_mandir}/man1/ueberzug.1*
+%{_mandir}/man1/ueberzugpp.1*
+
+%check
+%ctest
 
 %changelog
 * Tue Nov 11 2025 metcya <metcya@gmail.com>
