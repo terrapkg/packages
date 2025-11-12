@@ -39,8 +39,8 @@ Provides:       magic-wormhole
 
 %install
 install -Dm644 wormhole_complete.bash %{buildroot}%{bash_completions_dir}/wormhole_complete.bash
-install -Dm644 wormhole_complete.bash %{buildroot}%{fish_completions_dir}/wormhole_complete.fish
-install -Dm644 wormhole_complete.bash %{buildroot}%{zsh_completions_dir}/_wormhole_complete
+install -Dm644 wormhole_complete.fish %{buildroot}%{fish_completions_dir}/wormhole_complete.fish
+install -Dm644 wormhole_complete.zsh %{buildroot}%{zsh_completions_dir}/_wormhole_complete
 install -Dm644 docs/wormhole.1 %{buildroot}%{_mandir}/man1/wormhole.1
 %pyproject_install
 %pyproject_save_files wormhole
