@@ -32,7 +32,6 @@ Upgrade all the things.}
 
 %package     -n %{crate}
 Summary:        %{summary}
-BuildArch:      noarch
 
 %description -n %{crate} %{_description}
 
