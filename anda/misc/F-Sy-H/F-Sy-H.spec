@@ -1,6 +1,6 @@
 Name:           F-Sy-H
 Version:        1.67
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Feature-rich Syntax Highlighting for Zsh
 License:        BSD-3-Clause
 URL:            https://github.com/z-shell/F-Sy-H
