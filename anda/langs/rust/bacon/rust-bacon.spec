@@ -123,7 +123,6 @@ use the "sound" feature of the "%{crate}" crate.
 %{cargo_license_online -f %{features}} > LICENSE.dependencies
 
 %install
-ls -lahrt target/rpm
 %{cargo_install}
 
 %if %{with check}
