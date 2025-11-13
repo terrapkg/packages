@@ -45,7 +45,7 @@ MangoWC is a lightweight, high-performance Wayland compositor built on dwl, desi
 %{_bindir}/mango
 %{_bindir}/mmsg
 %{_sysconfdir}/mango/config.conf
-%dnl %{_datadir}/wayland-sessions/%{name}.desktop
+%{_datadir}/wayland-sessions/mango.desktop
 
 %changelog
 * Wed Nov 12 2025 metcya <metcya@gmail.com>
