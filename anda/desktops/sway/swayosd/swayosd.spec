@@ -11,8 +11,6 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 BuildRequires:  meson
 BuildRequires:  ninja-build
 BuildRequires:  gtk3-devel
-%dnl BuildRequires:  libxml2-devel
-%dnl BuildRequires:  intltool
 BuildRequires:  gcc
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  rust
