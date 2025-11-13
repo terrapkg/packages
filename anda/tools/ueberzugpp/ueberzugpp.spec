@@ -41,6 +41,9 @@ on terminals by using X11/wayland child windows, sixels, kitty and iterm2.
 %cmake_install
 
 %files
+%doc README.md
+%doc CODE_OF_CONDUCT.md
+%license LICENSE
 %{_bindir}/ueberzug
 %{_bindir}/ueberzugpp
 %{_mandir}/man1/ueberzug.1*
