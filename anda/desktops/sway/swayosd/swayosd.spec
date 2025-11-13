@@ -23,8 +23,19 @@ BuildRequires:  pulseaudio-libs-devel
 BuildRequires:  libinput-devel
 BuildRequires:  louvre
 
-Requires:       libxml2
-Requires:       gtk3
+Requires:       cairo
+Requires:       gtk4
+Requires:       cairo
+Requires:       dbus
+Requires:       gdk-pixbuf2
+Requires:       glib2
+Requires:       glibc
+Requires:       gtk4-layer-shell
+Requires:       libevdev
+Requires:       libinput
+Requires:       pulseaudio-libs
+Requires:       pango
+Requires:       systemd-libs
 
 Provides:       swayosd
 
@@ -44,8 +55,8 @@ Provides:       swayosd
 %post
 %systemd_post swayosd-libinput-backend.service
 %systemd_post org.erikreider.swayosd.service
-%preun
 
+%preun
 %systemd_preun swayosd-libinput-backend.service
 %systemd_preunorg.erikreider.swayosd.service
 
@@ -62,8 +73,8 @@ Provides:       swayosd
 %config(noreplace) %{_sysconfdir}/xdg/swayosd/backend.toml
 %config(noreplace) %{_sysconfdir}/xdg/swayosd/config.toml
 %config(noreplace) %{_sysconfdir}/xdg/swayosd/style.css
-%{_unitdir}/swayosd-libinput-backend.service
-%{_udevrulesdir}/99-swayosd.rules
+%{_usr}/lib64/systemd/system/swayosd-libinput-backend.service
+%{_usr}/lib64/udev/rules.d/99-swayosd.rules
 %{_datadir}/dbus-1/system-services/org.erikreider.swayosd.service
 %{_datadir}/dbus-1/system.d/org.erikreider.swayosd.conf
 %{_datadir}/polkit-1/actions/org.erikreider.swayosd.policy
