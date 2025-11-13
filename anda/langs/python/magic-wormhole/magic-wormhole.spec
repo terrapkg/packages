@@ -1,11 +1,9 @@
-%define _unpackaged_files_terminate_build 0
-
 %global pypi_name magic-wormhole
 %global _desc get things from one computer to another, safely.
 
 Name:			python-%{pypi_name}
 Version:		0.21.1
-Release:		1%?dist
+Release:		2%?dist
 Summary:		get things from one computer to another, safely
 License:		MIT
 URL:			https://github.com/magic-wormhole/magic-wormhole
@@ -31,32 +29,7 @@ Provides:       magic-wormhole
 %description -n python3-%{pypi_name}
 %_desc
 
-%package        bash-completion
-Summary:        magic-wormhole Bash completion
-Requires:       python3-%{pypi_name}
-Requires:       bash-completion
-BuildArch:      noarch
-
-%description    bash-completion
-Bash shell completion for magic-wormhole.
-
-%package        fish-completion
-Summary:        magic-wormhole Fish completion
-Requires:       python3-%{pypi_name}
-Requires:       fish
-BuildArch:      noarch
-
-%description    fish-completion
-Fish shell completion for magic-wormhole.
-
-%package        zsh-completion
-Summary:        magic-wormhole Zsh completion
-Requires:       python3-%{pypi_name}
-Requires:       zsh
-BuildArch:      noarch
-
-%description    zsh-completion
-Zsh shell completion for magic-wormhole.
+%pkg_completion -bfzn %{pypi_name} wormhole_complete
 
 %prep
 %autosetup -n magic-wormhole-%{version}
@@ -66,11 +39,12 @@ Zsh shell completion for magic-wormhole.
 
 %install
 install -Dm644 wormhole_complete.bash %{buildroot}%{bash_completions_dir}/wormhole_complete.bash
-install -Dm644 wormhole_complete.bash %{buildroot}%{fish_completions_dir}/wormhole_complete.fish
-install -Dm644 wormhole_complete.bash %{buildroot}%{zsh_completions_dir}/wormhole_complete.zsh
+install -Dm644 wormhole_complete.fish %{buildroot}%{fish_completions_dir}/wormhole_complete.fish
+install -Dm644 wormhole_complete.zsh %{buildroot}%{zsh_completions_dir}/_wormhole_complete
 install -Dm644 docs/wormhole.1 %{buildroot}%{_mandir}/man1/wormhole.1
 %pyproject_install
 %pyproject_save_files wormhole
+rm %{buildroot}%{_usr}/wormhole_complete.*
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md docs/*.rst
@@ -81,15 +55,6 @@ install -Dm644 docs/wormhole.1 %{buildroot}%{_mandir}/man1/wormhole.1
 %ghost %python3_sitelib/__pycache__/*.cpython-*.pyc
 %ghost %python3_sitelib/%{name}/subcommands/__pycache__/*.cpython-*.pyc
 %python3_sitelib/magic_wormhole-%version.dist-info/*
-
-%files bash-completion
-%{bash_completions_dir}/wormhole_complete.bash
-
-%files fish-completion
-%{fish_completions_dir}/wormhole_complete.fish
-
-%files zsh-completion
-%{zsh_completions_dir}/wormhole_complete.zsh
 
 %changelog
 * Mon Nov 03 2025 Owen Zimmerman <owen@fyralabs.com>
