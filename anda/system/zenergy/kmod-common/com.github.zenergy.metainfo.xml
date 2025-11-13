@@ -2,7 +2,7 @@
   <id>com.github.zenergy</id>
   <name>zenergy</name>
   <pkgname>zenergy</pkgname>
-  <summary>Exposes the energy counters that are reported via the Running Average Power Limit (RAPL) Model-specific Registers (MSRs) via the hardware monitor (HWMON) sysfs interface.</summary>
+  <summary>Exposes the energy counters that are reported via the Running Average Power Limit (RAPL)</summary>
   <description>
     <p>
     Based on AMD_ENERGY driver, but with some jiffies added so non-root users can read it safely.
