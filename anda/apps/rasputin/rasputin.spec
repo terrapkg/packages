@@ -1,5 +1,5 @@
-%global commit 9a7a79ae7d4a6ca0812fcfc81517130e74bdd619
-%global commit_date 20251111
+%global commit b4345eed61965cca90814f33ef361a68f0fab170
+%global commit_date 20251113
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           rasputin

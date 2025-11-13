@@ -2,7 +2,7 @@
 %global crate honkers-launcher
 %global appid moe.launcher.honkers-launcher
 Name:           %{crate}
-Version:        1.12.0
+Version:        1.13.0
 Release:        1%?dist
 Summary:        Honkers Launcher for Linux with automatic patching and telemetry disabling 
 
