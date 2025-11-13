@@ -9,7 +9,7 @@ Summary:        Exposes the energy counters that are reported via the Running Av
 License:        GPL-2.0
 URL:            https://github.com/BoukeHaarsma23/zenergy
 Source0:        %{url}/archive/%{commit}.tar.gz#/%{name}-%{shortcommit}.tar.gz
-%dnl Source1:        io.github.%{name}.metainfo.xml
+Source1:        com.github.zenergy.metainfo.xml
 BuildRequires:  sed
 BuildRequires:  systemd-rpm-macros
 Requires:       (akmod-%{name} = %{?epoch:%{epoch}:}%{version} or dkms-%{name} = %{?epoch:%{epoch}:}%{version})
@@ -38,17 +38,19 @@ Akmods modules for the akmod-%{name} package.
 /usr/bin/sed -nE 's/@VERSION@/%{version}/g' dkms.conf > %{name}.conf
 
 %install
+install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/metainfo/com.github.zenergy.metainfo.xml
 
 # Akmods modules
 install -Dm644 %{name}.conf -t %{buildroot}%{_modulesloaddir}
 
+
 %files
 %license LICENSE
 %doc README.md
+%{_datadir}/metainfo/com.github.zenergy.metainfo.xml
 
 %files akmod-modules
 %{_modulesloaddir}/%{name}.conf
 
 %changelog
-* Fri Mar 07 2025 Gilver E. <rockgrub@disroot.org>
-- Package refactoring
+%autochangelog

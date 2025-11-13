@@ -58,5 +58,4 @@ dkms install -m %{modulename} -v %{version} -q --force || :
 
 
 %changelog
-* Fri Mar 07 2025 Gilver E. <rockgrub@disroot.org>
-- Package refactoring
+%autochangelog
