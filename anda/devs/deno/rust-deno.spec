@@ -44,6 +44,7 @@ License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) 
 %license LICENSE.md
 %license LICENSE.dependencies
 %doc README.md
+%{_metainfodir}/land.deno.deno.metainfo.xml
 %{_bindir}/deno
 
 %pkg_completion -Bfzn %crate
