@@ -15,7 +15,7 @@
 %global mirror_url %(mirrors=%{zig_mirrors}; index=$(( RANDOM % ${#mirrors[@]} )); echo ${mirrors[$index]})
 
 Name:           zig-master
-Version:        0.16.0~dev.1301+cbfa87cbe
+Version:        0.16.0~dev.1303+ee0a0f119
 Release:        1%?dist
 Summary:        Master builds of the Zig language
 License:        MIT AND NCSA AND LGPL-2.1-or-later AND LGPL-2.1-or-later WITH GCC-exception-2.0 AND GPL-2.0-or-later AND GPL-2.0-or-later WITH GCC-exception-2.0 AND BSD-3-Clause AND Inner-Net-2.0 AND ISC AND LicenseRef-Fedora-Public-Domain AND GFDL-1.1-or-later AND ZPL-2.1
