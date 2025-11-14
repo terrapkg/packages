@@ -15,9 +15,6 @@ BuildRequires: cargo
 BuildRequires: mold
 BuildRequires: systemd-rpm-macros
 
-Requires:      openssl
-Requires:      pulseaudio-libs
-
 Packager:      Owen Zimmerman <owen@fyralabs.com>
 
 %description
