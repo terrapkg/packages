@@ -1,6 +1,6 @@
 Name:           SwayOSD
 Version:        0.2.1
-Release:        1%?dist
+Release:        2%?dist
 Summary:        A GTK based on screen display for keyboard shortcuts like caps-lock and volume
 License:        GPL-3.0-only
 URL:            https://github.com/ErikReider/SwayOSD
@@ -58,7 +58,7 @@ Provides:       swayosd
 
 %preun
 %systemd_preun swayosd-libinput-backend.service
-%systemd_preunorg.erikreider.swayosd.service
+%systemd_preun org.erikreider.swayosd.service
 
 %postun
 %systemd_postun_with_restart swayosd-libinput-backend.service
