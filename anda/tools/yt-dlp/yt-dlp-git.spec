@@ -10,7 +10,7 @@ License:        Unlicense
 URL:            https://github.com/yt-dlp/yt-dlp
 BuildArch:      noarch
 Packager:       madonuko <mado@fyralabs.com>
-Requires:       deno
+Recommends:     (deno or bun or nodejs-npm)
 
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(hatchling)
