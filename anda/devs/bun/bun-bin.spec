@@ -7,11 +7,12 @@
 
 Name:			bun-bin
 Version:		1.3.2
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one
 License:		MIT
 URL:			https://bun.sh
 Source0:		https://github.com/oven-sh/bun/releases/download/bun-v%version/bun-linux-%a.zip
+Source1:        sh.oven.bun.metainfo.xml
 BuildRequires:	unzip
 
 %description
@@ -57,7 +58,10 @@ install -Dm644 bun.bash -t %buildroot%bash_completions_dir
 install -Dm644 bun.fish -t %buildroot%fish_completions_dir
 ln -s bun %buildroot%_bindir/bunx
 
+install -Dm644 %{SOURCE1} %buildroot%{_datadir}/metainfo/sh.oven.bun.metainfo.xml
+
 %files
 %license LICENSE
 %_bindir/bun
 %_bindir/bunx
+%{_datadir}/metainfo/sh.oven.bun.metainfo.xml
