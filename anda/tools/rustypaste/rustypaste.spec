@@ -57,8 +57,8 @@ install -Dm644 extra/systemd/rustypaste.tmpfiles %{buildroot}/usr/lib/tmpfiles.d
 %{_sysconfdir}/rustypaste/config.toml
 %{_sysconfdir}/rustypaste/rustypaste.env
 %{_unitdir}/rustypaste.service
-%{_libdir}/sysusers.d/rustypaste.conf
-%{_libdir}/tmpfiles.d/rustypaste.conf
+/usr/lib/sysusers.d/rustypaste.conf
+/usr/lib/tmpfiles.d/rustypaste.conf
 
 %changelog
 * Thu Nov 13 2025 Owen Zimmerman <owen@fyralabs.com>
