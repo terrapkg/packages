@@ -8,8 +8,6 @@ URL:            https://github.com/yt-dlp/ejs
 Source:         %{pypi_source yt_dlp_ejs}
 Packager:		madonuko <mado@fyralabs.com>
 
-Requires:       (deno or bun or nodejs-npm)
-
 BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(pip)
@@ -25,6 +23,7 @@ BuildRequires:  (deno or bun or nodejs-npm)
 %package -n     python3-yt-dlp-ejs
 Summary:        %{summary}
 Provides:		yt-dlp-ejs = %evr
+Requires:       (deno or bun or nodejs-npm)
 
 %description -n python3-yt-dlp-ejs %_description
 
