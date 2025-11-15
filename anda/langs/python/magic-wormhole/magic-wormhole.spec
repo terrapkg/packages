@@ -58,5 +58,7 @@ rm %{buildroot}%{_usr}/wormhole_complete.*
 %python3_sitelib/magic_wormhole-%version.dist-info/*
 
 %changelog
+* Sat Nov 15 2025 Owen Zimmerman <owen@fyralabs.com>
+- Add version remove patch
 * Mon Nov 03 2025 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit
