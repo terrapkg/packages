@@ -1,5 +1,5 @@
-%global commit ae7b1ac7b5191ba6677eafb48cd756ec1c60bd83
-%global commit_date 20251114
+%global commit b3f3f1da2fa59a2cbdea73c75b7d67bc312ce2bc
+%global commit_date 20251115
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           appset
