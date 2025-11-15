@@ -1,7 +1,7 @@
 %global goipath         github.com/arduino/arduino-flasher-cli
 Version:                0.3.0
 
-%gometa -L -f
+%gometa -f
 
 %global common_description %{expand:
 CLI tool to flash UNO Q boards with the latest Arduino Linux image.}
@@ -22,7 +22,8 @@ BuildRequires:  anda-srpm-macros
 %gopkg
 
 %prep
-%goprep -A
+%goprep
+cp -r %{_specdir}/resources %{_builddir}/%{name}-%{version}/
 
 %build
 %define gomodulesmode GO111MODULE=on
