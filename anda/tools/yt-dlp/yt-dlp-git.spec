@@ -2,7 +2,7 @@
 %global oldpkgname yt-dlp-nightly
 
 Name:           yt-dlp-git
-Version:        2025.11.12.004747
+Version:        2025.11.15.012914
 Release:        1%?dist
 Summary:        A command-line program to download videos from online video platforms
 
@@ -10,7 +10,7 @@ License:        Unlicense
 URL:            https://github.com/yt-dlp/yt-dlp
 BuildArch:      noarch
 Packager:       madonuko <mado@fyralabs.com>
-Requires:       deno
+Recommends:     (deno or bun or nodejs-npm)
 
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(hatchling)

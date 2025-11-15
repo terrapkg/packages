@@ -1,6 +1,6 @@
 Name:           python-yt-dlp-ejs
 Version:        0.3.1
-Release:        1%?dist
+Release:        2%?dist
 Summary:        External JavaScript for yt-dlp supporting many runtimes
 
 License:        Unlicense AND MIT AND ISC
@@ -23,6 +23,7 @@ BuildRequires:  (deno or bun or nodejs-npm)
 %package -n     python3-yt-dlp-ejs
 Summary:        %{summary}
 Provides:		yt-dlp-ejs = %evr
+Requires:       (deno or bun or nodejs-npm)
 
 %description -n python3-yt-dlp-ejs %_description
 
