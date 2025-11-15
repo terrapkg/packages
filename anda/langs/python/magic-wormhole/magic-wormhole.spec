@@ -3,11 +3,12 @@
 
 Name:			python-%{pypi_name}
 Version:		0.21.1
-Release:		2%?dist
+Release:		3%?dist
 Summary:		get things from one computer to another, safely
 License:		MIT
 URL:			https://github.com/magic-wormhole/magic-wormhole
 Source0:		%url/archive/refs/tags/%version.tar.gz
+Patch0:         remove-version-reqs.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
@@ -32,7 +33,7 @@ Provides:       magic-wormhole
 %pkg_completion -bfzn %{pypi_name} wormhole_complete
 
 %prep
-%autosetup -n magic-wormhole-%{version}
+%autosetup -p1 -n magic-wormhole-%{version}
 
 %build
 %pyproject_wheel
