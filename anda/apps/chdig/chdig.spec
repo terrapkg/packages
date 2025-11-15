@@ -7,7 +7,7 @@ Summary:        Dig into ClickHouse with TUI interface
 URL:            https://github.com/azat/chdig
 Source0:        %url/archive/refs/tags/v%{version}.tar.gz
 License:        MIT
-BuildRequires:  cargo anda-srpm-macros cargo-rpm-macros mold fontconfig-devel mupdf glib2 libgcc clang python
+BuildRequires:  cargo anda-srpm-macros cargo-rpm-macros mold fontconfig-devel glib2 libgcc
 
 %description
 %{summary}.
