@@ -66,7 +66,7 @@ jobs:
             --uncompressed-icons \
             --origin=test \
             --basename=test \
-            --veto-ignore=missing-icons \
+            --veto-ignore=missing-parents \
             --veto-ignore=missing-info | tee asb.log
       - name: Report Summary
         run: |
@@ -77,20 +77,20 @@ jobs:
             echo "::group::Vetoed packages"
             echo "### Vetoed packages" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
-            echo "```xml" >> $GITHUB_STEP_SUMMARY
+            echo '```xml' >> $GITHUB_STEP_SUMMARY
             echo "$(grep -i 'veto' asb.log)" >> $GITHUB_STEP_SUMMARY
-            echo "```" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
             echo "::endgroup::"
           fi
           echo "## Full Data Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo ### Generated Appstream files: >> $GITHUB_STEP_SUMMARY
+          echo "### Generated Appstream files:" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           for file in output/*.xml.gz; do
             echo "#### \`$file\`" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
-            echo "```xml" >> $GITHUB_STEP_SUMMARY
+            echo '```xml' >> $GITHUB_STEP_SUMMARY
             zcat "$file" >> $GITHUB_STEP_SUMMARY
-            echo "```" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
           done
