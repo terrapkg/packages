@@ -34,11 +34,13 @@ Python files needed for %{name}.
 %install
 %pyproject_install
 %pyproject_save_files -l terra_appstream_helper
+install -Dpm644 terra-appstream.macros -t %buildroot%_rpmmacrodir
 
 %files
 %license LICENSE
 %doc README.md
 %{_bindir}/terra-appstream-helper
+%{_rpmmacrodir}/terra-appstream.macros
 
 
 
