@@ -1,3 +1,8 @@
+%global appid com.sched_ext
+%global developer "sched-ext Contributors"
+%global org "com.sched_ext"
+%global appstream_component service
+
 Name:           scx-tools
 Version:        1.0.18
 Release:        1%{?dist}
@@ -45,6 +50,8 @@ find target/rpm \
 ./target/rpm/xtask install --destdir %{buildroot}
 
 %{cargo_license_online} > LICENSE.dependencies
+
+%terra_appstream
 
 %post
 %systemd_post scx_loader.service
