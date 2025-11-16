@@ -64,6 +64,7 @@ License:       GPL-2.0-only
 
 %build
 %{cargo_build -a} \
+     --workspace \
      --exclude scx_rlfifo \
      --exclude scx_mitosis \
      --exclude scx_wd40 \
