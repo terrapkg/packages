@@ -78,7 +78,7 @@ jobs:
           cat asb.log >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
           echo '---' >> $GITHUB_STEP_SUMMARY
-          
+
       - name: Report Summary
         id: report_summary
         run: |
@@ -91,6 +91,7 @@ jobs:
             echo '```xml' >> $GITHUB_STEP_SUMMARY
             echo "$(grep -i 'veto' asb.log)" >> $GITHUB_STEP_SUMMARY
             echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "::warning file=asb.log::Some packages were vetoed during AppStream generation. Please review the 'Vetoed packages' section in the summary for details."
             echo "::endgroup::"
           fi
           echo "## Full Data Summary" >> $GITHUB_STEP_SUMMARY
