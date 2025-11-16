@@ -1,3 +1,5 @@
+%undefine __brp_mangle_shebangs
+
 Name:           scx-scheds
 Version:        1.0.18
 Release:        2%?dist

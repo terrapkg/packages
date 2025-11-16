@@ -2,6 +2,7 @@
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global commitdate 20251116
 %global ver 1.0.18
+%undefine __brp_mangle_shebangs
 
 Name:           scx-scheds-nightly
 Version:        %{ver}^%{commitdate}.git.%{shortcommit}

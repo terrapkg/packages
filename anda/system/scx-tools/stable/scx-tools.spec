@@ -1,4 +1,4 @@
-%global appid com.sched_ext
+%global appid com.sched_ext.scx
 %global developer "sched-ext Contributors"
 %global org "com.sched_ext"
 %global appstream_component service

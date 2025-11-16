@@ -2,7 +2,7 @@
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global commitdate 20251114
 %global ver 1.0.18
-%global appid com.sched_ext
+%global appid com.sched_ext.scx
 %global developer "sched-ext Contributors"
 %global org "com.sched_ext"
 %global appstream_component service
