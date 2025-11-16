@@ -82,7 +82,6 @@ jobs:
       - name: Report Summary
         id: report_summary
         run: |
-          set -x
           echo "## AppStream Builder Report" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           if grep -q "veto" asb.log; then
