@@ -5,6 +5,6 @@ Name=Minecraft Launcher
 Comment=Official Minecraft Launcher
 Exec=/usr/bin/minecraft-launcher
 Path=/usr/bin
-Icon=minecraft-launcher
+Icon=com.mojang.Minecraft
 Terminal=false
 Categories=Game;Application;
