@@ -2,7 +2,7 @@
 
 Name:           bat-extras
 Version:        2024.08.24
-Release:        2%?dist
+Release:        1%?dist
 Summary:        Bash scripts that integrate bat with various command line tools
 
 License:        MIT
