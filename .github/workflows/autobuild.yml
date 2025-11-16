@@ -68,8 +68,16 @@ jobs:
             --origin=test \
             --basename=test \
             --veto-ignore=missing-parents \
-            --veto-ignore=missing-info | tee asb.log
+            --veto-ignore=missing-info 2>&1 | tee asb.log
+      - name: Export logs
+        id: export_logs
+        run: |
+          echo "## AppStream Builder Log" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          cat asb.log >> $GITHUB_STEP_SUMMARY
+          
       - name: Report Summary
+        id: report_summary
         run: |
           set -x
           echo "## AppStream Builder Report" >> $GITHUB_STEP_SUMMARY
