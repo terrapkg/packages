@@ -76,6 +76,7 @@ find target/rpm \
 %{_datadir}/dbus-1/system.d/org.scx.Loader.conf
 %{_datadir}/polkit-1/actions/org.scx.Loader.policy
 %config(noreplace) %{_datadir}/scx_loader/config.toml
+%{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
 * Sun Nov 16 2025 Gilver E. <rockgrub@disroot.org> - 1.0.18^20251114.git.d830ef7-1
