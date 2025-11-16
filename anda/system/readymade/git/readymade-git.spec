@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-%global commit 2a1faf0b607c8ab87fb794d25b8050a8b9117f60
-=======
 %global commit f8a2f2884e9d7e9224b42a1cba35d57deaf44b69
->>>>>>> 0d0068577 (bump(nightly): mpv-nightly hyprgraphics.nightly zed-nightly prismlauncher-nightly nim-nightly types-colorama astal libbacktrace-nightly nvidia-patch readymade-git scx-scheds-nightly glasgow)
 %global commit_date 20251107
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global crate readymade
