@@ -62,6 +62,7 @@ jobs:
           appstream-builder -v \
             --packages-dir=artifacts \
             --icons-dir=icons \
+            --include-failed \
             --output-dir=output \
             --uncompressed-icons \
             --origin=test \
