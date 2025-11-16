@@ -60,7 +60,7 @@ jobs:
         run: |
           set -x
           appstream-builder -v \
-            --packages-dir=artifacts \
+            --packages-dir=artifacts/rpms \
             --icons-dir=icons \
             --include-failed \
             --output-dir=output \
