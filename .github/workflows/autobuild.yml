@@ -74,7 +74,9 @@ jobs:
         run: |
           echo "## AppStream Builder Log" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
           cat asb.log >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
           
       - name: Report Summary
         id: report_summary
