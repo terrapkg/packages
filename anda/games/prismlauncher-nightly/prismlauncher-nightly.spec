@@ -1,5 +1,7 @@
 %global real_name prismlauncher
 %global nice_name PrismLauncher
+%global name_pretty %{quote:Prism Launcher (Nightly)}
+%global appid org.prismlauncher.PrismLauncher-nightly
 
 %global commit 8b4ad7aa49be5bff1473b9242a759945473a3c3b
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
@@ -36,10 +38,12 @@ License:          GPL-3.0-only AND Apache-2.0 AND LGPL-3.0-only AND GPL-3.0-or-l
 Group:            Amusements/Games
 URL:              https://prismlauncher.org/
 Patch0:           0001-find-cmark-with-pkgconfig.patch
+Source2:          nightly.xml
 
 BuildRequires:    cmake >= 3.15
 BuildRequires:    extra-cmake-modules
 BuildRequires:    gcc-c++
+BuildRequires:    terra-appstream-helper
 # JDKs less than the most recent release & LTS are no longer in the default
 # Fedora repositories
 # Make sure you have Adoptium's repositories enabled
@@ -55,6 +59,7 @@ BuildRequires:    desktop-file-utils
 BuildRequires:    libappstream-glib
 BuildRequires:    tomlplusplus-devel
 BuildRequires:    cmake(ghc_filesystem)
+BuildRequires:    qrencode-devel
 BuildRequires:    cmake(Qt%{qt_version}Concurrent) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Core) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Gui) >= %{min_qt_version}
@@ -138,7 +143,8 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 
 %install
 %cmake_install
-
+%terra_appstream -o %{SOURCE2}
+rm -f %{buildroot}%{_datadir}/metainfo/org.prismlauncher.PrismLauncher.metainfo.xml
 
 %check
 %ctest
@@ -154,7 +160,7 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 %{_datadir}/%{nice_name}/qtlogging.ini
 %{_datadir}/%{nice_name}/NewLaunchLegacy.jar
 %{_datadir}/applications/org.prismlauncher.PrismLauncher.desktop
-%{_metainfodir}/org.prismlauncher.PrismLauncher.metainfo.xml
+%{_metainfodir}/%{appid}.metainfo.xml
 %{_datadir}/icons/hicolor/scalable/apps/org.prismlauncher.PrismLauncher.svg
 %{_datadir}/mime/packages/modrinth-mrpack-mime.xml
 %{_datadir}/qlogging-categories%{qt_version}/prismlauncher.categories
