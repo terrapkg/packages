@@ -38,6 +38,7 @@ License:          GPL-3.0-only AND Apache-2.0 AND LGPL-3.0-only AND GPL-3.0-or-l
 Group:            Amusements/Games
 URL:              https://prismlauncher.org/
 Patch0:           0001-find-cmark-with-pkgconfig.patch
+Source2:          nightly.xml
 
 BuildRequires:    cmake >= 3.15
 BuildRequires:    extra-cmake-modules
@@ -142,7 +143,7 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 
 %install
 %cmake_install
-%terra_appstream
+%terra_appstream -o %{SOURCE2}
 rm -f %{buildroot}%{_datadir}/metainfo/org.prismlauncher.PrismLauncher.metainfo.xml
 
 %check
