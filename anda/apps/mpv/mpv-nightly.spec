@@ -1,15 +1,9 @@
 # Disable X11 for RHEL 10+
 %bcond x11 %[%{undefined rhel} || 0%{?rhel} < 10]
 
-<<<<<<< HEAD
-%global commit d3ec15bca87536341f121a4f0f97954d00a6cfe5
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20251101
-=======
 %global commit 701201b13c95d00cc894b4f88551b5add740d409
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global commit_date 20251116
->>>>>>> a82483ad5 (chore: Bump nightly packages on <= 43 (#7410))
 %global ver 0.40.0
 
 Name:           mpv-nightly
