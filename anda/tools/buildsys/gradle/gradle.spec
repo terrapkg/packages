@@ -1,5 +1,5 @@
 Name:			gradle
-Version:		9.2.0
+Version:		9.2.1
 Release:		1%?dist
 Summary:		Powerful build system for the JVM
 URL:			https://gradle.org/
