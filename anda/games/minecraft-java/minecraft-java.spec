@@ -34,22 +34,16 @@ The official Linux release of the launcher for Minecraft, a game about placing b
 %build
 
 %install
-mkdir -p %{buildroot}%{_bindir}
-mkdir -p %{buildroot}%{_datadir}/icons/hicolor/symbolic/apps/
-mkdir -p %{buildroot}%{_datadir}/applications/
-
-mv %{_builddir}/minecraft-launcher/minecraft-launcher %{buildroot}%{_bindir}/minecraft-launcher
-chmod 755 %{buildroot}%{_bindir}/minecraft-launcher
-
+install -Dm755 %{_builddir}/minecraft-launcher/minecraft-launcher %{buildroot}%{_bindir}/minecraft-launcher
 install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/applications/%{appid}.desktop
-install -Dm644 %{SOURCE2} %{buildroot}%{_datadir}/icons/hicolor/symbolic/apps/%{appid}.svg
+install -Dm644 %{SOURCE2} %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/%{appid}.svg
 
 %terra_appstream -o %{SOURCE3}
 cat %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 %files
 %{_bindir}/minecraft-launcher
 %{_datadir}/applications/%{appid}.desktop
-%{_datadir}/icons/hicolor/symbolic/apps/%{appid}.svg
+%{_datadir}/icons/hicolor/scalable/apps/%{appid}.svg
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
