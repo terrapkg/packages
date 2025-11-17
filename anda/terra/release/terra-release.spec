@@ -1,5 +1,5 @@
 Name:           terra-release
-Version:        43
+Version:        %{fedora}
 Release:        1
 Summary:        Release package for Terra
 
