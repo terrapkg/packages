@@ -1,5 +1,5 @@
 Name:           terra-release
-Version:        42
+Version:        %{fedora}
 Release:        1
 Summary:        Release package for Terra
 
@@ -12,8 +12,7 @@ Source3:        terra-mesa.repo
 Source4:        terra-multimedia.repo
 BuildArch:      noarch
 
-%dnl We probably shouldn't do this in Rawhide!
-%dnl Requires:       system-release(%{version})
+Requires:       system-release(%{version})
 
 %description
 Release package for Terra, containing the Terra repository configuration.
