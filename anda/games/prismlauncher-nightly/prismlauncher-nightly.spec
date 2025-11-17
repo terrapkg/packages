@@ -143,6 +143,7 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 %install
 %cmake_install
 %terra_appstream
+rm -f %{buildroot}%{_datadir}/metainfo/org.prismlauncher.PrismLauncher.metainfo.xml
 
 %check
 %ctest
@@ -158,7 +159,7 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 %{_datadir}/%{nice_name}/qtlogging.ini
 %{_datadir}/%{nice_name}/NewLaunchLegacy.jar
 %{_datadir}/applications/org.prismlauncher.PrismLauncher.desktop
-%{_metainfodir}/org.prismlauncher.PrismLauncher.metainfo.xml
+%{_metainfodir}/%{appid}.metainfo.xml
 %{_datadir}/icons/hicolor/scalable/apps/org.prismlauncher.PrismLauncher.svg
 %{_datadir}/mime/packages/modrinth-mrpack-mime.xml
 %{_datadir}/qlogging-categories%{qt_version}/prismlauncher.categories
