@@ -27,8 +27,20 @@ Provides: terra-release-extra = %version-%release
 Release package for Terra Extras, which is a repository with packages that might cause
 conflict with Fedora.
 
+%package nvidia
+Summary: Release package for the nvidia subrepo of Terra Extras
+
+%description
+Release package for the Terra Extras nvidia subrepo, which provides nvidia drivers that might cause a conflict with Fedora.
+
+%package mesa
+Summary: Release package for the mesa subrepo of Terra Extras
+
+%description
+Release package for the Terra Extras mesa subrepo, which provides a patched and updated version of mesa that might cause a conflict with Fedora.
+
 %package multimedia
-Summary: Release package for multimedia subrepo of Terra Extras
+Summary: Release package for the multimedia subrepo of Terra Extras
 
 %description
 Release package for the Terra Extras multimedia subrepo, which provides codecs that might cause a conflict with Fedora.
@@ -49,8 +61,12 @@ install -Dpm644 -t %buildroot%_sysconfdir/yum.repos.d %SOURCE4
 
 %files extras
 %config(noreplace) %{_sysconfdir}/yum.repos.d/terra-extras.repo
-%config(noreplace) %{_sysconfdir}/yum.repos.d/terra-nvidia.repo
-%config(noreplace) %{_sysconfdir}/yum.repos.d/terra-mesa.repo
+
+%files nvidia
+%config(noreplace) %{_sysconfdir}/yum.repos.d/terra-multimedia.repo
+
+%files mesa
+%config(noreplace) %{_sysconfdir}/yum.repos.d/terra-multimedia.repo
 
 %files multimedia
 %config(noreplace) %{_sysconfdir}/yum.repos.d/terra-multimedia.repo
