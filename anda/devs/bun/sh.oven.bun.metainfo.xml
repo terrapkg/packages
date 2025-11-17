@@ -3,6 +3,7 @@
   <id>sh.oven.bun</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>MIT</project_license>
+  <icon type="remote">https://bun.sh/logo.svg</icon>
 
   <name>Bun</name>
   <summary
