@@ -33,7 +33,8 @@ BuildRequires:  rust
 BuildRequires:  systemd
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  zlib-ng-compat
-Requires:       scx-tools-nightly
+Requires:       (scx-tools or scx-tools-nightly)
+Suggests:       scx-tools-nightly
 Requires:       elfutils-libelf
 Requires:       jq
 Requires:       libseccomp

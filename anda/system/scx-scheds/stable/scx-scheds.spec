@@ -29,7 +29,8 @@ BuildRequires:  rust
 BuildRequires:  systemd
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  zlib-ng-compat
-Requires:       scx-tools
+Requires:       (scx-tools or scx-tools-nightly)
+Suggests:       scx-tools
 Requires:       elfutils-libelf
 Requires:       jq
 Requires:       libseccomp
@@ -41,6 +42,7 @@ Conflicts:      scx_layered
 Conflicts:      scx_rustland
 Conflicts:      scx_rusty
 Conflicts:      scx-scheds-git
+Conflicts:      scx-scheds-nightly
 Provides:       rust-scx_utils-devel
 Provides:       scx_c_schedulers
 Provides:       scxctl = %{version}

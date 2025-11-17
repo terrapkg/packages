@@ -29,9 +29,11 @@ BuildRequires:  python3
 BuildRequires:  rust
 BuildRequires:  systemd
 BuildRequires:  systemd-rpm-macros
-Requires:       scx-scheds-nightly
+Requires:       (scx-scheds or scx-scheds-nightly)
+Suggests:       scx-scheds-nightly
 Obsoletes:      scxctl <= 0.3.4
 Provides:       scxctl = %{evr}
+Conflicts:      scx-tools
 Packager:       Gilver E. <rockgrub@disroot.org>
 
 %description
