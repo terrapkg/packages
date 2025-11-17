@@ -1,5 +1,6 @@
 %global real_name prismlauncher
 %global nice_name PrismLauncher
+%global name_pretty Prism Launcher (Nightly)
 %global appid org.prismlauncher.PrismLauncher-nightly
 
 %global commit 16066c9a15f09f92bb22e44d53e3aafc520f9f70
@@ -57,6 +58,7 @@ BuildRequires:    desktop-file-utils
 BuildRequires:    libappstream-glib
 BuildRequires:    tomlplusplus-devel
 BuildRequires:    cmake(ghc_filesystem)
+BuildRequires:    qrencode-devel
 BuildRequires:    cmake(Qt%{qt_version}Concurrent) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Core) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Gui) >= %{min_qt_version}

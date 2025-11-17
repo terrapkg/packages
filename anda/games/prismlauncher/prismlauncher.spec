@@ -1,6 +1,7 @@
 %global real_name prismlauncher
 %global nice_name PrismLauncher
 %bcond_without qt6
+%global appid org.prismlauncher.PrismLauncher
 
 # Change this variables if you want to use custom keys
 # Leave blank if you want to build Prism Launcher without MSA id or curseforge api key
@@ -45,6 +46,7 @@ BuildRequires:    temurin-17-jdk
 %else
 BuildRequires:    java-17-openjdk-devel
 %endif
+BuildRequires:    anda-srpm-macros
 BuildRequires:    desktop-file-utils
 BuildRequires:    libappstream-glib
 BuildRequires:    cmake(ghc_filesystem)
@@ -57,6 +59,7 @@ BuildRequires:    cmake(Qt%{qt_version}Widgets) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Xml) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}NetworkAuth) >= %{min_qt_version}
 BuildRequires:    tomlplusplus-devel
+BuildRequires:    qrencode-devel
 
 %if %{with qt6}
 BuildRequires:    cmake(Qt6Core5Compat)
@@ -129,7 +132,7 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 
 %install
 %cmake_install
-
+%terra_appstream
 
 %check
 %ctest
