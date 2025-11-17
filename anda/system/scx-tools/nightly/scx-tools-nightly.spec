@@ -43,7 +43,8 @@ scx_loader: A D-Bus interface for managing sched_ext schedulers
 %cargo_prep_online
 
 %build
-%{cargo_build -a}
+%{cargo_build -a} \
+     --workspace
 
 %install
 find target/rpm \
