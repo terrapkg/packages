@@ -1,5 +1,6 @@
 %global real_name prismlauncher
 %global nice_name PrismLauncher
+%appid org.prismlauncher.PrismLauncher-nightly
 
 %global commit 16066c9a15f09f92bb22e44d53e3aafc520f9f70
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
@@ -40,6 +41,7 @@ Patch0:           0001-find-cmark-with-pkgconfig.patch
 BuildRequires:    cmake >= 3.15
 BuildRequires:    extra-cmake-modules
 BuildRequires:    gcc-c++
+BuildRequires:    terra-appstream-helper
 # JDKs less than the most recent release & LTS are no longer in the default
 # Fedora repositories
 # Make sure you have Adoptium's repositories enabled
@@ -138,7 +140,7 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 
 %install
 %cmake_install
-
+%terra_appstream
 
 %check
 %ctest
