@@ -1,0 +1,186 @@
+diff -Naur xeve-0.5.1.old/src_base/CMakeLists.txt xeve-0.5.1/src_base/CMakeLists.txt
+--- xeve-0.5.1.old/src_base/CMakeLists.txt	2024-06-24 09:49:08.000000000 +0200
++++ xeve-0.5.1/src_base/CMakeLists.txt	2025-09-08 20:52:14.500329611 +0200
+@@ -17,15 +17,25 @@
+ include(GenerateExportHeader)
+ include_directories("${CMAKE_BINARY_DIR}")
+ 
++set(ARM "FALSE")
++message("SYSTEM_PROCESSOR=${CMAKE_SYSTEM_PROCESSOR}")
++if(${CMAKE_SYSTEM_PROCESSOR} MATCHES "^(arm|aarch)")
++  set(ARM "TRUE")
++elseif(${CMAKE_SYSTEM_PROCESSOR} MATCHES "^(x86|ia64|i386|i686)")
++  set(X86 "TRUE")
++endif()
+ 
+ if("${ARM}" STREQUAL "TRUE")
+   add_library( ${LIB_NAME_BASE} STATIC ${LIB_API_SRC} ${XEVE_INC} ${LIB_BASE_SRC} ${LIB_BASE_INC} ${LIB_NEON_INC} ${LIB_NEON_SRC})
+   add_library( ${LIB_NAME_BASE}_dynamic SHARED ${LIB_API_SRC} ${XEVE_INC} ${LIB_BASE_SRC} ${LIB_BASE_INC} ${LIB_NEON_INC} ${LIB_NEON_SRC})
+-else()
++elseif(X86)
+   add_library( ${LIB_NAME_BASE} STATIC ${LIB_API_SRC} ${XEVE_INC} ${LIB_BASE_SRC} ${LIB_BASE_INC} ${LIB_SSE_SRC} ${LIB_SSE_INC}
+                                      ${LIB_AVX_SRC} ${LIB_AVX_INC} )
+   add_library( ${LIB_NAME_BASE}_dynamic SHARED ${LIB_API_SRC} ${XEVE_INC} ${LIB_BASE_SRC} ${LIB_BASE_INC} ${LIB_SSE_SRC} ${LIB_SSE_INC}
+                                              ${LIB_AVX_SRC} ${LIB_AVX_INC} )
++else()
++  add_library( ${LIB_NAME_BASE} STATIC ${LIB_API_SRC} ${XEVE_INC} ${LIB_BASE_SRC} ${LIB_BASE_INC} )
++  add_library( ${LIB_NAME_BASE}_dynamic SHARED ${LIB_API_SRC} ${XEVE_INC} ${LIB_BASE_SRC} ${LIB_BASE_INC} )
+ endif()
+ 
+ set_target_properties(${LIB_NAME_BASE}_dynamic PROPERTIES VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR} SOVERSION ${LIB_SOVERSION})
+@@ -59,8 +69,10 @@
+ 
+ if("${ARM}" STREQUAL "TRUE")
+   include_directories( ${LIB_NAME_BASE} PUBLIC . .. ../inc ./neon)
+-else()
++elseif(X86)
+   include_directories( ${LIB_NAME_BASE} PUBLIC . .. ../inc ./sse ./avx)
++else()
++  include_directories( ${LIB_NAME_BASE} PUBLIC . .. ../inc)
+ endif()
+ 
+ set( SSE ${BASE_INC_FILES} ${LIB_SSE_SRC})
+@@ -83,7 +95,11 @@
+                             ARCHIVE_OUTPUT_DIRECTORY  ${CMAKE_CURRENT_BINARY_DIR}/import/lib)
+ 
+ elseif( UNIX OR MINGW )
+-  if("${ARM}" STREQUAL "FALSE")
++  if(ARM)
++    add_definitions(-DARM=1)
++    set_property( SOURCE ${NEON} APPEND PROPERTY COMPILE_FLAGS "-flax-vector-conversions -Wno-cpp")
++  elseif(X86)
++    add_definitions(-DX86=1)
+     set_property( SOURCE ${SSE} APPEND PROPERTY COMPILE_FLAGS "-msse4.1" )
+     set_property( SOURCE ${AVX} APPEND PROPERTY COMPILE_FLAGS " -mavx2" )
+   endif()
+diff -Naur xeve-0.5.1.old/src_base/xeve_def.h xeve-0.5.1/src_base/xeve_def.h
+--- xeve-0.5.1.old/src_base/xeve_def.h	2024-06-24 09:49:08.000000000 +0200
++++ xeve-0.5.1/src_base/xeve_def.h	2025-09-08 20:52:14.500467050 +0200
+@@ -1514,10 +1514,10 @@
+ #include "xeve_ipred.h"
+ #include "xeve_picman.h"
+ #include "xeve_mc.h"
+-#ifndef ARM
++#if defined(X86)
+ #include "xeve_mc_sse.h"
+ #include "xeve_mc_avx.h"
+-#else
++#elif defined(ARM)
+ #include "xeve_mc_neon.h"
+ #endif
+ #include "xeve_type.h"
+diff -Naur xeve-0.5.1.old/src_base/xeve_port.h xeve-0.5.1/src_base/xeve_port.h
+--- xeve-0.5.1.old/src_base/xeve_port.h	2024-06-24 09:49:08.000000000 +0200
++++ xeve-0.5.1/src_base/xeve_port.h	2025-09-08 20:52:14.500592747 +0200
+@@ -138,10 +138,10 @@
+ #define xeve_assert_gv(x,r,v,g) \
+     {if(!(x)){assert(x); (r)=(v); goto g;}}
+ 
+-#ifndef ARM
++#if defined(X86)
+ #define X86_SSE                 1
+ #define ARM_NEON                0
+-#else
++#elif defined (ARM)
+ #define X86_SSE                 0
+ #define ARM_NEON                1
+ #endif
+diff -Naur xeve-0.5.1.old/src_base/xeve_type.h xeve-0.5.1/src_base/xeve_type.h
+--- xeve-0.5.1.old/src_base/xeve_type.h	2024-06-24 09:49:08.000000000 +0200
++++ xeve-0.5.1/src_base/xeve_type.h	2025-09-08 20:52:14.500672457 +0200
+@@ -34,10 +34,10 @@
+ #include "xeve_def.h"
+ #include "xeve_bsw.h"
+ #include "xeve_sad.h"
+-#ifndef ARM
++#if defined(X86)
+ #include "xeve_sad_sse.h"
+ #include "xeve_sad_avx.h"
+-#else
++#elif defined(ARM)
+ #include "xeve_sad_neon.h"
+ #endif
+ 
+@@ -1016,11 +1016,11 @@
+ #include "xeve_tbl.h"
+ #include "xeve_itdq.h"
+ 
+-#ifndef ARM
++#if defined(X86)
+ #include "xeve_itdq_sse.h"
+ #include "xeve_itdq_avx.h"
+ #include "xeve_tq_avx.h"
+-#else
++#elif defined(ARM)
+ #include "xeve_itdq_neon.h"
+ #include "xeve_tq_neon.h"
+ #endif
+diff -Naur xeve-0.5.1.old/src_main/CMakeLists.txt xeve-0.5.1/src_main/CMakeLists.txt
+--- xeve-0.5.1.old/src_main/CMakeLists.txt	2024-06-24 09:49:08.000000000 +0200
++++ xeve-0.5.1/src_main/CMakeLists.txt	2025-09-08 20:52:14.500798415 +0200
+@@ -19,18 +19,31 @@
+ file (GLOB LIB_MAIN_SSE_INC "./sse/xevem_*.h" )
+ file (GLOB LIB_MAIN_AVX_SRC "./avx/xevem_*.c")
+ file (GLOB LIB_MAIN_AVX_INC "./avx/xevem_*.h" )
++file (GLOB LIB_MAIN_NEON_SRC "./neon/xevem_*.c")
++file (GLOB LIB_MAIN_NEON_INC "./neon/xevem_*.h" )
+ 
+ include(GenerateExportHeader)
+ include_directories("${CMAKE_BINARY_DIR}")
+ 
++set(ARM "FALSE")
++message("SYSTEM_PROCESSOR=${CMAKE_SYSTEM_PROCESSOR}")
++if(${CMAKE_SYSTEM_PROCESSOR} MATCHES "^(arm|aarch)")
++  set(ARM "TRUE")
++elseif(${CMAKE_SYSTEM_PROCESSOR} MATCHES "^(x86|ia64|i386|i686)")
++  set(X86 "TRUE")
++endif()
++
+ if("${ARM}" STREQUAL "TRUE")
+-  add_library( ${LIB_NAME} STATIC ${LIB_API_MAIN_SRC} ${ETM_INC} ${LIB_BASE_SRC} ${LIB_BASE_INC} ${LIB_MAIN_SRC} ${LIB_MAIN_INC} ${LIB_NEON_INC} ${LIB_NEON_SRC} )
+-  add_library( ${LIB_NAME}_dynamic SHARED ${LIB_API_MAIN_SRC} ${ETM_INC} ${LIB_BASE_SRC} ${LIB_BASE_INC} ${LIB_MAIN_SRC} ${LIB_MAIN_INC} ${LIB_NEON_INC} ${LIB_NEON_SRC})
+-else()
++  add_library( ${LIB_NAME} STATIC ${LIB_API_MAIN_SRC} ${ETM_INC} ${LIB_BASE_SRC} ${LIB_BASE_INC} ${LIB_MAIN_SRC} ${LIB_MAIN_INC} ${LIB_NEON_SRC} ${LIB_NEON_INC} )
++  add_library( ${LIB_NAME}_dynamic SHARED ${LIB_API_MAIN_SRC} ${ETM_INC} ${LIB_BASE_SRC} ${LIB_BASE_INC} ${LIB_MAIN_SRC} ${LIB_MAIN_INC} ${LIB_NEON_SRC} ${LIB_NEON_INC})
++elseif(X86)
+   add_library( ${LIB_NAME} STATIC ${LIB_API_MAIN_SRC} ${ETM_INC} ${LIB_BASE_SRC} ${LIB_BASE_INC} ${LIB_MAIN_SRC} ${LIB_MAIN_INC}
+                                   ${LIB_SSE_SRC} ${LIB_SSE_INC} ${LIB_MAIN_SSE_SRC} ${LIB_MAIN_SSE_INC} ${LIB_AVX_SRC} ${LIB_AVX_INC} ${LIB_MAIN_AVX_SRC} ${LIB_MAIN_AVX_INC} )
+   add_library( ${LIB_NAME}_dynamic SHARED ${LIB_API_MAIN_SRC} ${ETM_INC} ${LIB_BASE_SRC} ${LIB_BASE_INC} ${LIB_MAIN_SRC} ${LIB_MAIN_INC}
+-                                          ${LIB_SSE_SRC} ${LIB_SSE_INC} ${LIB_MAIN_SSE_SRC} ${LIB_MAIN_SSE_INC} ${LIB_AVX_SRC} ${LIB_AVX_SRC} ${LIB_AVX_INC} ${LIB_MAIN_AVX_SRC} ${LIB_MAIN_AVX_INC})
++                                          ${LIB_SSE_SRC} ${LIB_SSE_INC} ${LIB_MAIN_SSE_SRC} ${LIB_MAIN_SSE_INC} ${LIB_AVX_SRC} ${LIB_AVX_INC} ${LIB_MAIN_AVX_SRC} ${LIB_MAIN_AVX_INC})
++else()
++  add_library( ${LIB_NAME} STATIC ${LIB_API_MAIN_SRC} ${ETM_INC} ${LIB_BASE_SRC} ${LIB_BASE_INC} ${LIB_MAIN_SRC} ${LIB_MAIN_INC} )
++  add_library( ${LIB_NAME}_dynamic SHARED ${LIB_API_MAIN_SRC} ${ETM_INC} ${LIB_BASE_SRC} ${LIB_BASE_INC} ${LIB_MAIN_SRC} ${LIB_MAIN_INC} )
+ endif()
+ 
+ set_target_properties(${LIB_NAME}_dynamic PROPERTIES VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR} SOVERSION ${LIB_SOVERSION})
+@@ -71,12 +84,15 @@
+ 
+ if("${ARM}" STREQUAL "TRUE")
+   include_directories( ${LIB_NAME} PUBLIC . .. ../inc ../src_base ../src_base/neon)
+-else()
++elseif(X86)
+   include_directories( ${LIB_NAME} PUBLIC . .. ../inc ./sse ./avx ../src_base ../src_base/sse ../src_base/avx)
++else()
++  include_directories( ${LIB_NAME} PUBLIC . .. ../inc ../src_base)
+ endif()
+ 
+ set( SSE ${BASE_INC_FILES} ${LIB_SSE_SRC} ${LIB_MAIN_SSE_SRC})
+ set( AVX ${LIB_AVX_SRC} ${LIB_MAIN_AVX_SRC})
++set( NEON ${LIB_NEON_SRC})
+ 
+ set_target_properties(${LIB_NAME}_dynamic PROPERTIES OUTPUT_NAME ${LIB_NAME})
+ 
+@@ -94,7 +110,11 @@
+                             ARCHIVE_OUTPUT_DIRECTORY  ${CMAKE_CURRENT_BINARY_DIR}/import/lib)
+ 
+ elseif( UNIX OR MINGW )
+-    if("${ARM}" STREQUAL "FALSE")
++    if(ARM)
++        add_definitions(-DARM=1)
++        set_property( SOURCE ${NEON} APPEND PROPERTY COMPILE_FLAGS "-flax-vector-conversions -Wno-cpp")
++    elseif(X86)
++        add_definitions(-DX86=1)
+         set_property( SOURCE ${SSE} APPEND PROPERTY COMPILE_FLAGS "-msse4.1" )
+         set_property( SOURCE ${AVX} APPEND PROPERTY COMPILE_FLAGS " -mavx2" )
+     endif()
