@@ -63,10 +63,10 @@ install -Dpm644 -t %buildroot%_sysconfdir/yum.repos.d %SOURCE4
 %config(noreplace) %{_sysconfdir}/yum.repos.d/terra-extras.repo
 
 %files nvidia
-%config(noreplace) %{_sysconfdir}/yum.repos.d/terra-multimedia.repo
+%config(noreplace) %{_sysconfdir}/yum.repos.d/terra-nvidia.repo
 
 %files mesa
-%config(noreplace) %{_sysconfdir}/yum.repos.d/terra-multimedia.repo
+%config(noreplace) %{_sysconfdir}/yum.repos.d/terra-mesa.repo
 
 %files multimedia
 %config(noreplace) %{_sysconfdir}/yum.repos.d/terra-multimedia.repo
