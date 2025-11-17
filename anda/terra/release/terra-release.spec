@@ -19,13 +19,19 @@ BuildArch:      noarch
 Release package for Terra, containing the Terra repository configuration.
 
 %package extras
-Summary: Release package for Terra Extra
+Summary: Release package for Terra Extras
 Obsoletes: terra-release-extra < 42-3
 Provides: terra-release-extra = %version-%release
 
 %description extras
-Release package for Terra Extra, which is a repository with packages that might cause
+Release package for Terra Extras, which is a repository with packages that might cause
 conflict with Fedora.
+
+%package multimedia
+Summary: Release package for multimedia subrepo of Terra Extras
+
+%description
+Release package for the Terra Extras multimedia subrepo, which provides codecs that might cause a conflict with Fedora.
 
 %prep
 
@@ -45,6 +51,8 @@ install -Dpm644 -t %buildroot%_sysconfdir/yum.repos.d %SOURCE4
 %config(noreplace) %{_sysconfdir}/yum.repos.d/terra-extras.repo
 %config(noreplace) %{_sysconfdir}/yum.repos.d/terra-nvidia.repo
 %config(noreplace) %{_sysconfdir}/yum.repos.d/terra-mesa.repo
+
+%files multimedia
 %config(noreplace) %{_sysconfdir}/yum.repos.d/terra-multimedia.repo
 
 %changelog
