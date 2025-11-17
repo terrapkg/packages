@@ -1,5 +1,5 @@
 Name:           terra-release
-Version:        10
+Version:        %{rhel}
 Release:        3
 Summary:        Release package for Terra
 
