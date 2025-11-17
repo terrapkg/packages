@@ -49,6 +49,8 @@ find target/rpm \
 # Install runtime assets via xtask
 ./target/rpm/xtask install --destdir %{buildroot}
 
+install -Dm755 target/rpm/*.so -t %{buildroot}%{_libdir}
+
 %{cargo_license_online} > LICENSE.dependencies
 
 %terra_appstream
