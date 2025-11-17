@@ -1,6 +1,6 @@
 %global real_name prismlauncher
 %global nice_name PrismLauncher
-%global name_pretty Prism Launcher (Nightly)
+%global name_pretty %{quote:Prism Launcher (Nightly)}
 %global appid org.prismlauncher.PrismLauncher-nightly
 
 %global commit 16066c9a15f09f92bb22e44d53e3aafc520f9f70
