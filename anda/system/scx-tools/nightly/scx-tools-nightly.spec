@@ -76,6 +76,7 @@ install -Dm755 target/rpm/*.so -t %{buildroot}%{_libdir} || :
 %doc README.md
 %{_bindir}/scx*
 %{_unitdir}/scx_loader.service
+%{_datadir}/dbus-1/interfaces/org.scx.Loader.xml
 %{_datadir}/dbus-1/system-services/org.scx.Loader.service
 %{_datadir}/dbus-1/system.d/org.scx.Loader.conf
 %{_datadir}/polkit-1/actions/org.scx.Loader.policy
