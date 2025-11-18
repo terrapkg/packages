@@ -2,8 +2,9 @@
 An editor that pays homage to the classic MS-DOS Editor, but with a modern interface and input controls similar to VS Code.}
 %global crate edit
 %bcond rust_nightly 0
-%global appid com.microsoft.Edit
+%global appid com.microsoft.edit
 %global org com.microsoft
+%global appstream_component console-application
 
 Name:          %{crate}
 Version:       1.2.1
@@ -37,6 +38,10 @@ Packager:      Gilver E. <rockgrub@disroot.org>
 %install
 %crate_install_bin
 %{cargo_license_online} > LICENSE.dependencies
+install -Dm644 assets/edit.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps/%{appid}.svg
+
+sed -i "s|^Icon=edit$|Icon=%{appid}|g" assets/%{appid}.desktop
+install -Dm644 assets/%{appid}.desktop
 %terra_appstream -o %{SOURCE1}
 
 %files
