@@ -41,6 +41,7 @@ Packager:      Gilver E. <rockgrub@disroot.org>
 install -Dm644 assets/edit.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps/%{appid}.svg
 
 sed -i "s|^Icon=edit$|Icon=%{appid}|g" assets/%{appid}.desktop
+
 install -Dm644 assets/%{appid}.desktop %{buildroot}%{_datadir}/applications/%{appid}.desktop
 %terra_appstream -o %{SOURCE1}
 
