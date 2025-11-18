@@ -3,10 +3,10 @@
   <id>sh.oven.bun</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>MIT</project_license>
+  <icon type="stock">applications-development</icon>
 
   <name>Bun</name>
-  <summary
-    >Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one</summary>
+  <summary>Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one</summary>
 
   <description>
     <p>
