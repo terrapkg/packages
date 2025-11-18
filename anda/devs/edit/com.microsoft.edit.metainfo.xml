@@ -17,4 +17,5 @@
   <developer id="com.microsoft">
     <name>Microsoft Corporation</name>
   </developer>
+  <icon type="stock">com.microsoft.edit</icon>
 </component>
