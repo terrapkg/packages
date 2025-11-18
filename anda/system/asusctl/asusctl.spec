@@ -5,14 +5,23 @@
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           asusctl
+<<<<<<< Updated upstream
 Version:        %commit_date.%shortcommit
 Release:        1%?dist
+=======
+Version:        6.1.17
+Release:        2%?dist
+>>>>>>> Stashed changes
 Summary:        A control daemon, CLI tools, and a collection of crates for interacting with ASUS ROG laptops
 URL:            https://gitlab.com/asus-linux/asusctl
 Source0:        %url/-/archive/%commit/asusctl-%commit.tar.gz
 License:        MPL-2.0
+<<<<<<< Updated upstream
 Patch0:         fix-makefile.patch
 BuildRequires:  anda-srpm-macros cargo-rpm-macros systemd-rpm-macros mold rust-udev-devel clang-devel 
+=======
+BuildRequires:  anda-srpm-macros cargo-rpm-macros systemd-rpm-macros mold rust-udev-devel clang-devel
+>>>>>>> Stashed changes
 BuildRequires:  desktop-file-utils
 BuildRequires:  cmake
 BuildRequires:  rust
@@ -88,5 +97,8 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/rog-control-center.d
 %{_datadir}/rog-gui
 
 %changelog
+* Tue Nov 18 2025 Metcya <metcya@gmail.com>
+- Remove unnecessary patch
+
 * Sun Oct 26 2025 Metcya <metcya@gmail.com>
 - Package asusctl
