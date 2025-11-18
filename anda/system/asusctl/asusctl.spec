@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           asusctl
-Version:        6.1.18
+Version:        6.1.20
 Release:        1%?dist
 Summary:        A control daemon, CLI tools, and a collection of crates for interacting with ASUS ROG laptops
 URL:            https://gitlab.com/asus-linux/asusctl
