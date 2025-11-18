@@ -1,6 +1,6 @@
 Name:           terra-release
 Version:        %{fedora}
-Release:        2
+Release:        5
 Summary:        Release package for Terra
 
 License:        MIT
