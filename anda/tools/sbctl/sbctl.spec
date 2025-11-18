@@ -1,6 +1,6 @@
 Name:           sbctl
 Version:        0.18
-Release:        2%?dist
+Release:        3%?dist
 Summary:        Secure Boot key manager
 
 License:        MIT
@@ -9,6 +9,9 @@ Source0:        https://github.com/Foxboron/sbctl/releases/download/%{version}/s
 ## Based on CachyOS's batch sign script
 # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/bin/sbctl-batch-sign
 Source1:        %{name}-batch-sign
+# Downstream postinst hook
+Source2:        91-sbctl-sign
+Source3:        91-sbctl-rm
 
 ExclusiveArch:  %{golang_arches}
 
@@ -46,14 +49,13 @@ export GOPATH=%{_builddir}/go
 %make_install PREFIX=%{_prefix}
 install -Dm755 %{SOURCE1} -t %{buildroot}%{_bindir}
 
-# This script is actually broken on Fedora, while new Debian installkernel hook works fine
-# for kernel-install, thanks to Fedora's kernel-install hook adding support for
-# postinst.d hooks.
+# This script is actually broken on Fedora
 rm -f %{buildroot}%{_prefix}/lib/kernel/install.d/91-sbctl.install
+rm -f %{buildroot}%{_prefix}/lib/kernel/postinst.d/91-sbctl.install
 
-# 95-kernel-hooks.install only runs postinst scripts from /etc, so move it there
-mkdir -p %{buildroot}%{_sysconfdir}/kernel/postinst.d
-mv %{buildroot}%{_prefix}/lib/kernel/postinst.d/91-sbctl.install %{buildroot}%{_sysconfdir}/kernel/postinst.d/
+# 95-kernel-hooks.install only runs postinst scripts from /etc, so install it there
+install -Dm755 %{SOURCE2} -t %{buildroot}%{_sysconfdir}/kernel/postinst.d
+install -Dm755 %{SOURCE3} -t %{buildroot}%{_sysconfdir}/kernel/prerm.d
 
 %transfiletriggerin -P 1 -- /efi /usr/lib /usr/libexec
 if [[ ! -f /run/ostree-booted ]] && grep -q -m 1 -e '\.efi$' -e '/vmlinuz$'; then
@@ -67,7 +69,8 @@ fi
 %doc README.md
 %{_bindir}/sbctl
 %{_bindir}/sbctl-batch-sign
-%{_sysconfdir}/kernel/postinst.d/91-sbctl.install
+%{_sysconfdir}/kernel/postinst.d/91-sbctl-sign
+%{_sysconfdir}/kernel/prerm.d/91-sbctl-rm
 %{_mandir}/man8/sbctl.8*
 %{_mandir}/man5/sbctl.conf.5*
 %{_datadir}/bash-completion/completions/sbctl

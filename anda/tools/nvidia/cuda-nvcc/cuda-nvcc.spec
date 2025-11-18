@@ -9,7 +9,7 @@
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
 Version:        13.0.88
-Release:        1%?dist
+Release:        4%{?dist}
 Summary:        CUDA Compiler (NVCC)
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -21,16 +21,17 @@ Source3:        nvcc.profile
 
 Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
 
-# CUDA 12.8 does not support GCC 15+:
-%if 0%{?fedora} >= 42
+# CUDA 13.0 does not support GCC 16+:
+%if 0%{?fedora} >= 44
 Requires:       cuda-gcc
 %else
-# CUDA 12.8 supports GCC 14:
+# But it supports GCC 14, so obsolete the wrapper in case of an upgrade:
 Obsoletes:      cuda-gcc
 Provides:       cuda-gcc
 %endif
 
 Requires:       cuda-crt
+Requires:       cuda-cudart-devel
 Requires:       libnvptxcompiler-devel
 Requires:       libnvvm-devel
 
@@ -43,12 +44,6 @@ options, such as for defining macros and include/library paths, and for steering
 the compilation process. All non-CUDA compilation steps are forwarded to a C++
 host compiler that is supported by nvcc, and nvcc translates its options to
 appropriate host compiler command line options.
-
-NVVM IR is a compiler IR (intermediate representation) based on the LLVM IR.
-The NVVM IR is designed to represent GPU compute kernels (for example, CUDA
-kernels). High-level language front-ends, like the CUDA C compiler front-end,
-can generate NVVM IR. The NVVM compiler (which is based on LLVM) generates PTX
-code from NVVM IR.
 
 %prep
 %ifarch x86_64
@@ -70,8 +65,10 @@ cp -f %{SOURCE3} %{buildroot}%{_bindir}/
 
 # Set proper variables
 sed -i \
+    -e 's|PREFIX|%{_prefix}|g' \
+    -e 's|BINDIR|%{_bindir}|g' \
     -e 's|LIBDIR|%{_libdir}|g' \
-    -e 's|INCLUDE_DIR|%{_includedir}/cuda|g' \
+    -e 's|INCLUDE_DIR|%{_includedir}|g' \
     %{buildroot}/%{_bindir}/nvcc.profile
 
 %files
