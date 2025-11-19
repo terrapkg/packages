@@ -6,7 +6,7 @@
 
 Name:           rust-deno
 Version:        2.5.6
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Deno executable
 
 License:        MIT
@@ -14,6 +14,7 @@ URL:            https://crates.io/crates/deno
 Source:         %{crates_source}
 Source1:        https://raw.githubusercontent.com/denoland/deno/refs/tags/v%version/LICENSE.md
 Source2:        gcc-wrapper.sh
+Source3:        land.deno.deno.metainfo.xml
 # Automatically generated patch to strip dependencies and normalize metadata
 Patch:          deno-fix-metadata-auto.diff
 
@@ -43,6 +44,7 @@ License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) 
 %license LICENSE.md
 %license LICENSE.dependencies
 %doc README.md
+%{_metainfodir}/land.deno.deno.metainfo.xml
 %{_bindir}/deno
 
 %pkg_completion -Bfzn %crate
@@ -69,3 +71,4 @@ target/rpm/deno completions bash > %buildroot%bash_completions_dir/deno
 %dnl target/rpm/deno completions elvish > %buildroot%elvish_completions_dir/deno.elv
 target/rpm/deno completions fish > %buildroot%fish_completions_dir/deno.fish
 target/rpm/deno completions zsh > %buildroot%zsh_completions_dir/_deno
+install -Dm644 %{S:3} -t %buildroot%{_metainfodir}

@@ -1,5 +1,5 @@
-%global commit0 5a539c7740e4f108fd825e51b8be0b077d50b22b
-%global date 20251109
+%global commit0 57a476b0e55f015759d9c50cc1f13159c6cd8f95
+%global date 20251114
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 %global upstream_name nvidia-vaapi-driver

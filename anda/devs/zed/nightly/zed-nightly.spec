@@ -1,7 +1,7 @@
-%global commit 21f73d9c02681152019ed5703ce8808c841fcbbe
+%global commit 1e2f15a3d70258ab366e9ac9309605749d5b0a27
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20251109
-%global ver 0.213.0
+%global commit_date 20251119
+%global ver 0.214.0
 
 %bcond_with check
 %bcond nightly 1
@@ -71,6 +71,7 @@ This package provides the /usr/bin/zed binary. If you use zfs, install %name-ren
 %files cli
 %_bindir/zed
 %{_datadir}/applications/%app_id.desktop
+%{_metainfodir}/%app_id.metainfo.xml
 
 %package rename-zeditor
 Summary: Rename zed to zeditor to prevent collision with zfs
@@ -84,6 +85,7 @@ The normal package is %name-cli.
 %files rename-zeditor
 %_bindir/zeditor
 %_datadir/applications/%app_id.desktop.zeditor
+%{_metainfodir}/%app_id.metainfo.xml
 
 
 %prep
@@ -171,7 +173,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%app_id.desktop
 %license assets/licenses.md
 %{_libexecdir}/zed-editor
 %{_datadir}/pixmaps/%app_id.png
-%{_metainfodir}/%app_id.metainfo.xml
 
 %changelog
 %autochangelog
