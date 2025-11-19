@@ -46,7 +46,7 @@ install -Dm644 res/icon.svg             %{buildroot}%{_iconsdir}/hicolor/scalabl
 %{_datadir}/applications/senpai.desktop
 %{_iconsdir}/hicolor/48x48/apps/senpai.png
 %{_iconsdir}/hicolor/scalable/apps/senpai.svg
-%{_metainfodir}/senpai.metainfo.xml
+%{_metainfodir}/org.sr.ht.delthas.senpai.metainfo.xml
 
 %changelog
 * Tue Nov 18 2025 Owen Zimmerman <owen@fyralabs.com>
