@@ -34,7 +34,7 @@ A one-stop-shop GUI tool for asusd/asusctl. It aims to provide most controls,
 a notification service, and ability to run in the background.
 
 %prep
-%autosetup -p1 -n asusctl-%version
+%autosetup -n asusctl-%version
 %cargo_prep_online
 
 %build
