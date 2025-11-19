@@ -10,8 +10,8 @@
 
   <description>
     <p>
-    senpai is an IRC client that works best with bouncers:
-
+        senpai is an IRC client that works best with bouncers:
+    </p>
     <ul>
         <li>no logs are kept</li>
         <li>history is fetched from the server via CHATHISTORY</li>
@@ -19,7 +19,6 @@
         <li>messages can be searched in logs via SEARCH</li>
         <li>files can be uploaded via FILEHOST (with drag &amp; drop!)</li>
     </ul>
-    </p>
   </description>
 
 <launchable type="desktop-id">senpai.desktop</launchable>
