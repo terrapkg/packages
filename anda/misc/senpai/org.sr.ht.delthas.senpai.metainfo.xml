@@ -16,7 +16,7 @@
     - history is fetched from the server via CHATHISTORY,
     - networks are fetched from the server via bouncer-networks,
     - messages can be searched in logs via SEARCH,
-    - files can be uploaded via FILEHOST (with drag & drop!)
+    - files can be uploaded via FILEHOST (with drag &amp; drop!)
     </p>
   </description>
 
