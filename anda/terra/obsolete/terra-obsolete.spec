@@ -122,6 +122,8 @@ BuildArch:  noarch
 %obsolete iosevka-fusion-fonts 25.1.1-2
 
 
+%obsolete terra-surface-dtx-daemon 0.3.10-1
+
 %description
 Currently obsoleted packages:
 
@@ -133,4 +135,3 @@ Currently obsoleted packages:
 
 %changelog
 %autochangelog
-
