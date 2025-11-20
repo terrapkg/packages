@@ -1,13 +1,13 @@
 %global commit 0480cb05fa188d37ae87e8f4fd8f1aea3711f7ee
 %global commit_date 20250910
 %global api_version 165
-%global shortcommit %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %bcond_with bootstrap
 
 Name:           x264
 Version:        0.%{api_version}
-Release:        38%{?shortcommit:.%{date}git%{shortcommit}}%{?dist}
+Release:        38%{?shortcommit:.%{commit_date}git%{shortcommit}}%{?dist}
 Epoch:          1
 Summary:        H264/AVC video streams encoder
 License:        GPL-2.0-or-later
