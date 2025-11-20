@@ -50,9 +50,6 @@ install -Dm755 %{SOURCE1} -t %{buildroot}%{_bindir}
 # We don't want the Debian script
 rm -f %{buildroot}%{_prefix}/lib/kernel/postinst.d/91-sbctl.install
 
-# Use our own patched Terra script
-install -Dm755 %{SOURCE2} -t %{buildroot}%{_prefix}/lib/kernel/install.d/96-sbctl.install
-
 %transfiletriggerin -P 1 -- /efi /usr/lib /usr/libexec
 if [[ ! -f /run/ostree-booted ]] && grep -q -m 1 -e '\.efi$' -e '/vmlinuz$'; then
     exec </dev/null
