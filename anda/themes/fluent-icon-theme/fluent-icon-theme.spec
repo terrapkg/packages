@@ -2,7 +2,7 @@
 
 Name:           fluent-icon-theme
 Version:        20250821
-Release:        2%?dist
+Release:        3%?dist
 Summary:        Fluent icon theme for linux desktops
 
 License:        GPL-3.0
@@ -25,7 +25,7 @@ Fluent icon theme for linux desktops.
 mkdir -p %buildroot%_datadir/themes
 ./install.sh -a -d %buildroot%_datadir/icons
 
-%fdupes %buildroot%_datadir/icons/
+%fdupes -s %buildroot%_datadir/icons/
 
 %files
 %license COPYING

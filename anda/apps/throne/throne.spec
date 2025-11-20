@@ -1,7 +1,7 @@
 #? https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=throne-git
 
 Name: throne
-Version: 1.0.5
+Version: 1.0.8
 Release: 1%?dist
 Summary: Qt based cross-platform GUI proxy configuration manager (backend: sing-box)
 URL: https://github.com/throneproj/Throne
@@ -17,6 +17,7 @@ Source2: Sagernet.SingBox.Version.txt
 
 Source3: %{name}.desktop
 Source4: %{name}.sh
+Source5: https://raw.githubusercontent.com/throneproj/routeprofiles/rule-set/srslist.h
 
 BuildRequires: rpm_macro(cmake)
 BuildRequires: rpm_macro(cmake_build)
@@ -39,7 +40,7 @@ BuildRequires: golang
 BuildRequires: rpm_macro(gobuildflags)
 BuildRequires: protobuf-compiler
 Requires: %{name}-core
-%define core throne_core
+%define core Core
 
 %package core
 Summary: %{summary}
@@ -65,6 +66,8 @@ cd gen
 protoc -I . --go_out=. --protorpc_out=. libcore.proto
 
 %build
+mkdir -p %__cmake_builddir
+cp %{S:5} %__cmake_builddir/
 %cmake
 %cmake_build
 DEST=$PWD/%{__cmake_builddir}/%{core}
@@ -84,8 +87,6 @@ install -Dm755 %__cmake_builddir/Throne %buildroot%_libdir/%name/%name
 install -Dm755 %__cmake_builddir/%core %buildroot%_libdir/%name/%core
 install -Dpm755 %{SOURCE4} %{buildroot}%{_bindir}/%{name}
 install -Dpm644 %{SOURCE3} %{buildroot}%{_datadir}/applications/%{name}.desktop
-sed -i 's~/bin~%{_bindir}~g' %{buildroot}%{_datadir}/applications/%{name}.desktop
-sed -i 's~/bin~%{_bindir}~g;s~/lib64~%{_libdir}~g' %{buildroot}%{_bindir}/%{name}
 install -Dpm644 res/Throne.ico -t %buildroot%_iconsdir/
 install -Dpm644 res/public/Throne.png -t %buildroot%_datadir/pixmaps/
 patchelf --remove-rpath %{buildroot}%{_libdir}/%{name}/%{name}

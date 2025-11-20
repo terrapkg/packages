@@ -4,8 +4,8 @@
 %global realname sdbus-cpp
 
 Name:           %realname.terra
-Version:        2.1.0
-Release:        3%{?dist}
+Version:        2.2.0
+Release:        1%?dist
 Summary:        High-level C++ D-Bus library
 
 License:        LGPL-2.1-only

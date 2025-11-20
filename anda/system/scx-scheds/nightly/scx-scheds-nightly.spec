@@ -1,7 +1,8 @@
-%global commit dc12a8468e388f68350657fb6f26683bf588cc4e
+%global commit 06dd28f95d7a3b33accda7a18740e73da8f97eb9
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20250901
-%global ver 1.0.15
+%global commitdate 20251120
+%global ver 1.0.18
+%undefine __brp_mangle_shebangs
 
 Name:           scx-scheds-nightly
 Version:        %{ver}^%{commitdate}.git.%{shortcommit}
@@ -32,6 +33,8 @@ BuildRequires:  rust
 BuildRequires:  systemd
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  zlib-ng-compat
+Requires:       (scx-tools or scx-tools-nightly)
+Suggests:       scx-tools-nightly
 Requires:       elfutils-libelf
 Requires:       jq
 Requires:       libseccomp
@@ -70,42 +73,31 @@ License:       GPL-2.0-only
 %cargo_prep_online
 
 %build
-%meson \
- -Dsystemd=enabled \
- -Dopenrc=disabled
-%meson_build
-
+%{cargo_build -a} \
+     --workspace \
+     --exclude scx_rlfifo \
+     --exclude scx_mitosis \
+     --exclude scx_wd40 \
+     --exclude xtask \
+     --exclude scxcash \
+     --exclude vmlinux_docify \
+     --exclude scx_arena_selftests
 
 %install
-%meson_install
+find target/rpm \
+    -maxdepth 1 -type f -executable ! -name '*.so' \
+    -exec install -Dm755 -t %{buildroot}%{_bindir} {} +
+
+install -Dm755 target/rpm/*.so -t %{buildroot}%{_libdir}
 
 %{cargo_license_online} > LICENSE.dependencies
-
-%post
-%systemd_post scx_loader.service
-%systemd_post scx.service
-
-%preun
-%systemd_preun scx_loader.service
-%systemd_preun scx.service
-
-%postun
-%systemd_postun_with_restart scx_loader.service
-%systemd_postun_with_restart scx.service
 
 %files
 %doc OVERVIEW.md
 %doc README.md
 %license LICENSE
 %license LICENSE.dependencies
-%attr(0644,root,root) %config(noreplace) %{_sysconfdir}/default/scx
 %{_bindir}/scx*
-%{_bindir}/vmlinux_docify
-%{_unitdir}/scx_loader.service
-%{_unitdir}/scx.service
-%{_datadir}/dbus-1/system.d/org.scx.Loader.conf
-%{_datadir}/dbus-1/system-services/org.scx.Loader.service
-%attr(0644,root,root) %config(noreplace) %{_datadir}/scx_loader/config.toml
 
 %changelog
 * Sun Jun 15 2025 Gilver E. <rockgrub@disroot.org> - 1.0.13^20250612.git.c1507b0-1

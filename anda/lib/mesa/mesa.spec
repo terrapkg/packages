@@ -32,7 +32,7 @@
 %global intel_platform_vulkan %{?with_vulkan_hw:,intel,intel_hasvk}%{!?with_vulkan_hw:%{nil}}
 %if !0%{?rhel}
 %global with_i915   1
-%endif 
+%endif
 %endif
 %ifarch x86_64
 %if !0%{?with_vulkan_hw}
@@ -79,8 +79,8 @@ Summary:        Mesa graphics libraries
 # This should not break anything by default as the Mesa stream is ***EXPLICITLY***
 # disabled by default, and has to be enabled manually. See `terra/release/terra-mesa.repo` for details.
 Epoch:          1
-Version:        25.2.1
-Release:        4%?dist
+Version:        25.3.0
+Release:        1%?dist
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0
 URL:            http://www.mesa3d.org
 
@@ -94,6 +94,7 @@ Patch10:        gnome-shell-glthread-disable.patch
 
 # https://github.com/bazzite-org/mesa
 Patch20:        bazzite.patch
+Patch21:        https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/37498.diff
 
 BuildRequires:  meson >= 1.3.0
 BuildRequires:  gcc
@@ -189,7 +190,7 @@ BuildRequires:  pkgconfig(vulkan)
 %endif
 %if 0%{?with_d3d12}
 BuildRequires:  pkgconfig(DirectX-Headers) >= 1.614.1
-%endif 
+%endif
 
 %description
 %{summary}.
@@ -198,6 +199,9 @@ BuildRequires:  pkgconfig(DirectX-Headers) >= 1.614.1
 Summary:        Mesa driver filesystem
 Provides:       mesa-dri-filesystem = %{?epoch:%{epoch}:}%{version}-%{release}
 Obsoletes:      mesa-omx-drivers < %{?epoch:%{epoch}:}%{version}-%{release}
+Obsoletes:      mesa-libd3d < %{?epoch:%{epoch}:}%{version}-%{release}
+Obsoletes:      mesa-libd3d-devel < %{?epoch:%{epoch}:}%{version}-%{release}
+Obsoletes:      mesa-vdpau-drivers < %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description filesystem
 %{summary}.
@@ -324,29 +328,20 @@ Summary:        Mesa TensorFlow Lite delegate
 %endif
 
 %if 0%{?with_d3d12}
-%package dxil
+%package dxil-devel
 Summary:        Mesa SPIR-V to DXIL binary
 Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Obsoletes:      %{name}-dxil-libs < 1:25.2.3-2
+Obsoletes:      %{name}-dxil < 1:25.2.3-2
 
-%description dxil
-Binary for translating SPIR-V shader code to DXIL for Direct3D 12
-
-%package dxil-libs
-Summary:        Mesa SPIR-V to DXIL libraries
-Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-Requires:       %{name}-dxil = %{?epoch:%{epoch}:}%{version}-%{release}
-
-%description dxil-libs
-Libraries for translating SPIR-V shader code to DXIL for Direct3D 12
+%description dxil-devel
+Development tools for translating SPIR-V shader code to DXIL for Direct3D 12
 %endif
 
 %package vulkan-drivers
 Summary:        Mesa Vulkan drivers
 Requires:       vulkan%{_isa}
 Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-%if 0%{?with_d3d12}
-Requires:       %{name}-dxil-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-%endif
 Obsoletes:      mesa-vulkan-devel < %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description vulkan-drivers
@@ -520,7 +515,7 @@ popd
 %{_libdir}/dri/iris_dri.so
 %if 0%{?with_i915}
 %{_libdir}/dri/i915_dri.so
-%endif 
+%endif
 %endif
 %ifarch aarch64 x86_64 %{ix86}
 %if 0%{?with_asahi}
@@ -529,7 +524,7 @@ popd
 %endif
 %if 0%{?with_d3d12}
 %{_libdir}/dri/d3d12_dri.so
-%endif 
+%endif
 %{_libdir}/dri/ingenic-drm_dri.so
 %{_libdir}/dri/imx-drm_dri.so
 %{_libdir}/dri/imx-lcdif_dri.so
@@ -612,7 +607,7 @@ popd
 %endif
 %if 0%{?with_d3d12}
 %{_libdir}/dri/d3d12_drv_video.so
-%endif 
+%endif
 %{_libdir}/dri/virtio_gpu_drv_video.so
 %endif
 
@@ -628,14 +623,13 @@ popd
 %endif
 %if 0%{?with_d3d12}
 %{_libdir}/vdpau/libvdpau_d3d12.so.1*
-%endif 
+%endif
 %{_libdir}/vdpau/libvdpau_virtio_gpu.so.1*
 %endif
 
 %if 0%{?with_d3d12}
-%files dxil
+%files dxil-devel
 %{_bindir}/spirv2dxil
-%files dxil-libs
 %{_libdir}/libspirv_to_dxil.a
 %{_libdir}/libspirv_to_dxil.so
 %endif
@@ -650,7 +644,7 @@ popd
 %if 0%{?with_virtio}
 %{_libdir}/libvulkan_virtio.so
 %{_datadir}/vulkan/icd.d/virtio_icd.*.json
-%endif 
+%endif
 %if 0%{?with_vulkan_hw}
 %{_libdir}/libvulkan_radeon.so
 %{_datadir}/drirc.d/00-radv-defaults.conf

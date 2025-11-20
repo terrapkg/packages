@@ -1,2 +1,2 @@
 #!/bin/sh
-/lib64/nekoray/nekoray -appdata "${@}"
+/usr/lib64/throne/throne -appdata "${@}"

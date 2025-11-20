@@ -12,7 +12,7 @@
 
 # https://github.com/Aylur/ags
 %global goipath         github.com/Aylur/ags
-Version:                2.3.0
+Version:                3.0.0
 
 %gometa -f
 
@@ -23,7 +23,7 @@ Scaffolding CLI for Astal+TypeScript.}
 %global godocs          docs README.md
 
 Name:           ags
-Release:        2%?dist
+Release:        1%?dist
 Summary:        Scaffolding CLI for Astal+TypeScript
 
 License:        GPL-3.0-only

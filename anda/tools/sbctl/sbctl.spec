@@ -1,5 +1,5 @@
 Name:           sbctl
-Version:        0.17
+Version:        0.18
 Release:        3%?dist
 Summary:        Secure Boot key manager
 
@@ -9,6 +9,9 @@ Source0:        https://github.com/Foxboron/sbctl/releases/download/%{version}/s
 ## Based on CachyOS's batch sign script
 # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/bin/sbctl-batch-sign
 Source1:        %{name}-batch-sign
+# Downstream postinst hook
+Source2:        91-sbctl-sign
+Source3:        91-sbctl-rm
 
 ExclusiveArch:  %{golang_arches}
 
@@ -21,6 +24,7 @@ Recommends:     systemd-udev
 BuildRequires:  asciidoc
 BuildRequires:  git
 BuildRequires:  go-rpm-macros
+BuildRequires:  pkgconfig(libpcsclite)
 
 %description
 sbctl intends to be a user-friendly secure boot key manager capable of setting
@@ -37,7 +41,7 @@ sed -i '/go build/d' Makefile
 %build
 export GOPATH=%{_builddir}/go
 %global gomodulesmode GO111MODULE=on
-%gobuild -o sbctl ./cmd/sbctl
+%gobuild -o sbctl ./cmd/sbctl   
 %make_build
 
 
@@ -45,7 +49,15 @@ export GOPATH=%{_builddir}/go
 %make_install PREFIX=%{_prefix}
 install -Dm755 %{SOURCE1} -t %{buildroot}%{_bindir}
 
-%transfiletriggerin -P 1 -- /boot /efi /usr/lib /usr/libexec
+# This script is actually broken on Fedora
+rm -f %{buildroot}%{_prefix}/lib/kernel/install.d/91-sbctl.install
+rm -f %{buildroot}%{_prefix}/lib/kernel/postinst.d/91-sbctl.install
+
+# 95-kernel-hooks.install only runs postinst scripts from /etc, so install it there
+install -Dm755 %{SOURCE2} -t %{buildroot}%{_sysconfdir}/kernel/postinst.d
+install -Dm755 %{SOURCE3} -t %{buildroot}%{_sysconfdir}/kernel/prerm.d
+
+%transfiletriggerin -P 1 -- /efi /usr/lib /usr/libexec
 if [[ ! -f /run/ostree-booted ]] && grep -q -m 1 -e '\.efi$' -e '/vmlinuz$'; then
     exec </dev/null
     %{_bindir}/sbctl-batch-sign
@@ -57,7 +69,8 @@ fi
 %doc README.md
 %{_bindir}/sbctl
 %{_bindir}/sbctl-batch-sign
-%{_prefix}/lib/kernel/install.d/91-sbctl.install
+%{_sysconfdir}/kernel/postinst.d/91-sbctl-sign
+%{_sysconfdir}/kernel/prerm.d/91-sbctl-rm
 %{_mandir}/man8/sbctl.8*
 %{_mandir}/man5/sbctl.conf.5*
 %{_datadir}/bash-completion/completions/sbctl
