@@ -38,7 +38,6 @@ Requires:       tigervnc
 
 %install
 %cmake_install
-%find_lang %{name}
 
 %files
 %doc README.md README_Build.md CONTRIBUTING.md
