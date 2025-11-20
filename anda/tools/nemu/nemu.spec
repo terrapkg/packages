@@ -8,6 +8,7 @@ Summary:        Ncurses UI for QEMU
 URL:            https://github.com/nemuTUI/nemu
 Source:         %{url}/archive/v%{version}.tar.gz
 License:        BSD-2-Clause
+Packager:       metcya <metcya@gmail.com>
 
 BuildRequires:  cmake
 BuildRequires:  gcc
