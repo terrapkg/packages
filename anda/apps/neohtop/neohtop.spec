@@ -53,8 +53,7 @@ install -Dpm644 src-tauri/icons/128x128.png %buildroot%{_iconsdir}/hicolor/128x1
 %{_iconsdir}/hicolor/256x256@2/apps/NeoHtop.png
 %{_iconsdir}/hicolor/32x32/apps/NeoHtop.png
 %{_iconsdir}/hicolor/128x128/apps/NeoHtop.png
-%dnl %{_metainfodir}/com.github.neohtop.metadata.xml
-/usr/share/metainfo/com.github.neohtop.metainfo.xml
+%{_metainfodir}/com.github.neohtop.metadata.xml
 
 %changelog
 * Wed Nov 19 2025 Owen Zimmerman <owen@fyralabs.com>
