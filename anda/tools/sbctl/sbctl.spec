@@ -1,6 +1,6 @@
 %global appid  dev.linderud.sbctl
 %global appstream_component console-application
-
+%global patch_commit e33d7427bcfb9535eb2eea15054ddeb08a9347f6
 Name:           sbctl
 Version:        0.18
 Release:        4%?dist
@@ -9,7 +9,7 @@ Summary:        Secure Boot key manager
 License:        MIT
 URL:            https://github.com/Foxboron/sbctl
 Source0:        https://github.com/Foxboron/sbctl/releases/download/%{version}/sbctl-%{version}.tar.gz
-Patch1:         https://github.com/terrapkg/sbctl/commit/8f08fa3c10fec9738e6061290f66b5520351856b.patch
+Patch1:         https://github.com/Foxboron/sbctl/compare/master...%{patch_commit}.patch
 ## Based on CachyOS's batch sign script
 # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/bin/sbctl-batch-sign
 Source1:        %{name}-batch-sign
