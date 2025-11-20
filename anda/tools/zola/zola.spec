@@ -2,8 +2,8 @@ Name:           zola
 Version:        0.21.0
 Release:        1%?dist
 Summary:        A fast static site generator in a single binary with everything built-in.
-URL:            https://github.com/getzola/zola
-Source0:        %url/archive/refs/tags/v%{version}.tar.gz
+URL:            https://www.getzola.org
+Source0:        https://github.com/getzola/%{name}/archive/refs/tags/v%{version}.tar.gz
 License:        MIT
 BuildRequires:  cargo anda-srpm-macros cargo-rpm-macros mold glib2 libgcc clang
 
