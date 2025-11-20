@@ -8,4 +8,3 @@ if rpm.changed {
    let mirrors = sub("\n", " ", mirrorlist);
    rpm.global("zig_mirrors", mirrors);
 }
-
