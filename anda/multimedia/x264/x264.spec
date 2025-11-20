@@ -7,7 +7,7 @@
 
 Name:           x264
 Version:        0.%{api_version}
-Release:        38%{?shortcommit:.%{commit_date}git%{shortcommit}}%{?dist}
+Release:        38%{?shortcommit:.%{date}git%{shortcommit}}%{?dist}
 Epoch:          1
 Summary:        H264/AVC video streams encoder
 License:        GPL-2.0-or-later
