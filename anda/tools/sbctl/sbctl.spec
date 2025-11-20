@@ -1,6 +1,6 @@
 Name:           sbctl
 Version:        0.18
-Release:        3%?dist
+Release:        4%?dist
 Summary:        Secure Boot key manager
 
 License:        MIT
@@ -10,8 +10,7 @@ Source0:        https://github.com/Foxboron/sbctl/releases/download/%{version}/s
 # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/bin/sbctl-batch-sign
 Source1:        %{name}-batch-sign
 # Downstream postinst hook
-Source2:        91-sbctl-sign
-Source3:        91-sbctl-rm
+Source2:        96-sbctl.install
 
 ExclusiveArch:  %{golang_arches}
 
@@ -53,9 +52,8 @@ install -Dm755 %{SOURCE1} -t %{buildroot}%{_bindir}
 rm -f %{buildroot}%{_prefix}/lib/kernel/install.d/91-sbctl.install
 rm -f %{buildroot}%{_prefix}/lib/kernel/postinst.d/91-sbctl.install
 
-# 95-kernel-hooks.install only runs postinst scripts from /etc, so install it there
-install -Dm755 %{SOURCE2} -t %{buildroot}%{_sysconfdir}/kernel/postinst.d
-install -Dm755 %{SOURCE3} -t %{buildroot}%{_sysconfdir}/kernel/prerm.d
+# Use our own patched Terra script
+install -Dm755 %{SOURCE2} -t %{buildroot}%{_prefix}/lib/kernel/install.d/96-sbctl.install
 
 %transfiletriggerin -P 1 -- /efi /usr/lib /usr/libexec
 if [[ ! -f /run/ostree-booted ]] && grep -q -m 1 -e '\.efi$' -e '/vmlinuz$'; then
@@ -69,8 +67,7 @@ fi
 %doc README.md
 %{_bindir}/sbctl
 %{_bindir}/sbctl-batch-sign
-%{_sysconfdir}/kernel/postinst.d/91-sbctl-sign
-%{_sysconfdir}/kernel/prerm.d/91-sbctl-rm
+%{_prefix}/lib/kernel/install.d/96-sbctl.install
 %{_mandir}/man8/sbctl.8*
 %{_mandir}/man5/sbctl.conf.5*
 %{_datadir}/bash-completion/completions/sbctl
