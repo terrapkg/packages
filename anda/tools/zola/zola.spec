@@ -18,17 +18,26 @@ Packager:       arbormoss <arbormoss@woodsprite.dev>
 
 %build
 %cargo_build
+for shell in bash zsh elvish fish; do
+    target/rpm/%{crate} completions $shell > completions/%{crate}-completion.$shell
+done
 
 %install
 install -Dm755 target/rpm/zola %{buildroot}%{_bindir}/zola
 %cargo_license_summary_online
 %{cargo_license_online -a} > LICENSE.dependencies
+install -Dm644 completions/%{crate}-completion.bash %{bash_completions_dir}/%{crate}
+install -Dm644 completions/%{crate}-completion.zsh %{zsh_completions_dir}/_%{crate}
+install -Dm644 completsion/%{crate}-completion.elvish %{elvish_completions_dir}/%{crate}.elv
+install -Dm644 completions/%{crate}-completion.fish %{fish_completions_dir}/%{crate}.fish
 
 %files
 %doc README.md CHANGELOG.md CONTRIBUTING.md EXAMPLES.md
 %license LICENSE
 %license LICENSE.dependencies
 %{_bindir}/zola
+
+%pkg_completion -Bzef
 
 %changelog
 * Wed Nov 19 2025 arbormoss <arbormoss@woodsprite.dev>
