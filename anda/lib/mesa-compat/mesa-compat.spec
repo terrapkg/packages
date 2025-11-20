@@ -44,7 +44,7 @@ BuildRequires:  python3-pyyaml
 Summary:        Mesa XA state tracker
 Provides:       libxatracker%{?_isa}
 Provides:       mesa-libxatracker%{?_isa}
-Obsoletes:      mesa-libxatracker < 25.3
+Obsoletes:      mesa-libxatracker < %{?epoch:%{epoch}:}25.3
 
 %description libxatracker
 %{summary}.
@@ -52,7 +52,7 @@ Obsoletes:      mesa-libxatracker < 25.3
 %package libxatracker-devel
 Summary:        Mesa XA state tracker development package
 Requires: %{name}-libxatracker%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes:      mesa-libxatracker-devel < 25.3
+Obsoletes:      mesa-libxatracker-devel < %{?epoch:%{epoch}:}25.3
 
 %description libxatracker-devel
 %{summary}.
