@@ -6,11 +6,10 @@ Summary:        Secure Boot key manager
 License:        MIT
 URL:            https://github.com/Foxboron/sbctl
 Source0:        https://github.com/Foxboron/sbctl/releases/download/%{version}/sbctl-%{version}.tar.gz
+Patch1:         https://github.com/terrapkg/sbctl/commit/8f08fa3c10fec9738e6061290f66b5520351856b.patch
 ## Based on CachyOS's batch sign script
 # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/bin/sbctl-batch-sign
 Source1:        %{name}-batch-sign
-# Downstream postinst hook
-Source2:        96-sbctl.install
 
 ExclusiveArch:  %{golang_arches}
 
@@ -48,8 +47,7 @@ export GOPATH=%{_builddir}/go
 %make_install PREFIX=%{_prefix}
 install -Dm755 %{SOURCE1} -t %{buildroot}%{_bindir}
 
-# This script is actually broken on Fedora
-rm -f %{buildroot}%{_prefix}/lib/kernel/install.d/91-sbctl.install
+# We don't want the Debian script
 rm -f %{buildroot}%{_prefix}/lib/kernel/postinst.d/91-sbctl.install
 
 # Use our own patched Terra script
@@ -67,7 +65,7 @@ fi
 %doc README.md
 %{_bindir}/sbctl
 %{_bindir}/sbctl-batch-sign
-%{_prefix}/lib/kernel/install.d/96-sbctl.install
+%{_prefix}/lib/kernel/install.d/91-sbctl.install
 %{_mandir}/man8/sbctl.8*
 %{_mandir}/man5/sbctl.conf.5*
 %{_datadir}/bash-completion/completions/sbctl
