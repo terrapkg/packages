@@ -1,6 +1,6 @@
 %global appid  dev.linderud.sbctl
 %global appstream_component console-application
-%global patch_commit e33d7427bcfb9535eb2eea15054ddeb08a9347f6
+%global patch_commit 14c4027270589b8d6f39cbca97569e6b13e40a05
 Name:           sbctl
 Version:        0.18
 Release:        4%?dist
