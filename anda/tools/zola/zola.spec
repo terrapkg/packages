@@ -18,6 +18,7 @@ Packager:       arbormoss <arbormoss@woodsprite.dev>
 
 %build
 %cargo_build
+mkdir -p completions
 for shell in bash zsh elvish fish; do
     target/rpm/%{crate} completions $shell > completions/%{crate}-completion.$shell
 done
