@@ -9,7 +9,7 @@ License:        MIT
 URL:            https://github.com/Abdenasser/neohtop
 Source0:        %url/archive/refs/tags/v%version.tar.gz
 Source1:        NeoHtop.desktop
-Source2:        com.github.neohtop.metadata.xml
+Source2:        com.github.neohtop.metainfo.xml
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 BuildRequires:  rust
 BuildRequires:  nodejs-npm
@@ -53,7 +53,7 @@ install -Dpm644 src-tauri/icons/128x128.png %buildroot%{_iconsdir}/hicolor/128x1
 %{_iconsdir}/hicolor/256x256@2/apps/NeoHtop.png
 %{_iconsdir}/hicolor/32x32/apps/NeoHtop.png
 %{_iconsdir}/hicolor/128x128/apps/NeoHtop.png
-%{_metainfodir}/com.github.neohtop.metadata.xml
+%{_metainfodir}/com.github.neohtop.metainfo.xml
 
 %changelog
 * Wed Nov 19 2025 Owen Zimmerman <owen@fyralabs.com>
