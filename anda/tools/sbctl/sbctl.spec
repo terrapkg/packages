@@ -1,3 +1,6 @@
+%global appid  dev.linderud.sbctl
+%global appstream_component console-application
+
 Name:           sbctl
 Version:        0.18
 Release:        4%?dist
@@ -22,6 +25,7 @@ Recommends:     systemd-udev
 BuildRequires:  asciidoc
 BuildRequires:  git
 BuildRequires:  go-rpm-macros
+BuildRequires:  anda-srpm-macros
 BuildRequires:  pkgconfig(libpcsclite)
 
 %description
@@ -49,6 +53,7 @@ install -Dm755 %{SOURCE1} -t %{buildroot}%{_bindir}
 
 # We don't want the Debian script
 rm -f %{buildroot}%{_prefix}/lib/kernel/postinst.d/91-sbctl.install
+%terra_appstream
 
 %transfiletriggerin -P 1 -- /efi /usr/lib /usr/libexec
 if [[ ! -f /run/ostree-booted ]] && grep -q -m 1 -e '\.efi$' -e '/vmlinuz$'; then
@@ -68,6 +73,7 @@ fi
 %{_datadir}/bash-completion/completions/sbctl
 %{_datadir}/fish/vendor_completions.d/sbctl.fish
 %{_datadir}/zsh/site-functions/_sbctl
+%{_metainfodir}/%{appid}.metainfo.xml
 
 
 %changelog
