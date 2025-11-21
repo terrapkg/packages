@@ -7,7 +7,7 @@ License:   OFL-1.1
 Summary:   A monospaced font with reasonable unicode support
 Requires:  xorg-x11-font-utils
 BuildArch: noarch
-Provides:  JuliaMono-font
+Provides:  JuliaMono-fonts
 Packager:  Its-J
 
 
