@@ -4,5 +4,5 @@ project pkg {
 	}
 	labels {
 	    subrepo = "extras"
-    }
+	}
 }
