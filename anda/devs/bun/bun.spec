@@ -9,6 +9,8 @@ Summary:		Incredibly fast JavaScript runtime, bundler, test runner, and package 
 License:		MIT
 URL:			https://bun.sh
 
+Packager: Yoong jin <solomoncyj@gmail.com>
+
 BuildRequires:	cmake
 BuildRequires:	ninja-build
 BuildRequires:	llvm19
@@ -39,8 +41,6 @@ ExclusiveArch: x86_64 aarch64
 
 %build
 bun run  build:smol -DUSE_STATIC_LIBATOMIC=OFF -DCI=ON
-
-
 
 
 %install
