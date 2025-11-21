@@ -4,7 +4,7 @@ A hardware-accelerated terminal emulator focusing to run in desktops and browser
 %bcond docs 1
 
 Name:          rio
-Version:       0.2.23
+Version:       0.2.36
 Release:       1%?dist
 Summary:       A hardware-accelerated terminal written in Rust.
 SourceLicense: MIT
@@ -21,6 +21,7 @@ BuildRequires: libxcb-devel
 BuildRequires: libxkbcommon-devel
 BuildRequires: mold
 BuildRequires: sed
+BuildRequires: pkgconfig(alsa)
 Requires:      freetype
 Requires:      fontconfig
 Requires:      hicolor-icon-theme

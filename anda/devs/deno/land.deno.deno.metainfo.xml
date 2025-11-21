@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component type="runtime">
+  <id>land.deno.deno</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+
+  <name>Deno</name>
+  <summary>A modern runtime for JavaScript and TypeScript.</summary>
+
+  <description>
+    <p>
+    Deno (/ˈdiːnoʊ/, pronounced dee-no) is a JavaScript, TypeScript, and WebAssembly runtime with secure defaults and a great developer experience.
+    It's built on V8, Rust, and Tokio.
+    </p>
+  </description>
+  <url type="homepage">https://deno.com</url>
+  <provides>
+      <mediatype>text/javascript</mediatype>
+      <mediatype>text/typescript</mediatype>
+  </provides>
+
+
+  <releases>
+    <release version="2.5.6" />
+  </releases>
+</component>

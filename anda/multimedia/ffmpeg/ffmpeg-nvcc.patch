@@ -1,7 +1,7 @@
-diff -Naur ffmpeg-7.1.1.old/configure ffmpeg-7.1.1/configure
---- ffmpeg-7.1.1.old/configure	2025-03-24 11:04:46.377074634 +0100
-+++ ffmpeg-7.1.1/configure	2025-03-24 11:04:54.615698726 +0100
-@@ -6742,7 +6742,7 @@
+diff -Naur ffmpeg-7.1.2.old/configure ffmpeg-7.1.2/configure
+--- ffmpeg-7.1.2.old/configure	2025-10-27 10:07:01.862821941 +0100
++++ ffmpeg-7.1.2/configure	2025-10-27 10:07:02.140469997 +0100
+@@ -6766,7 +6766,7 @@
      nvccflags=$nvccflags_default
  fi
  

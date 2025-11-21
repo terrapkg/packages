@@ -2,11 +2,11 @@
 %global __strip /bin/true
 %global _missing_build_ids_terminate_build 0
 %global _build_id_links none
-%global major_package_version 12-8
+%global major_package_version 13-0
 
 Name:           libcublas
 Epoch:          1
-Version:        12.9.1.4
+Version:        13.1.0.3
 Release:        1%?dist
 Summary:        NVIDIA CUDA Basic Linear Algebra Subroutines (cuBLAS) libraries
 License:        CUDA Toolkit

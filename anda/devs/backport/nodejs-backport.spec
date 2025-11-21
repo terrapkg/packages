@@ -3,7 +3,7 @@
 %bcond test 1
 
 Name:          node-%{module}
-Version:       10.0.1
+Version:       10.2.0
 Release:       1%?dist
 Summary:       Backport GitHub commits
 SourceLicense: Apache-2.0
@@ -49,7 +49,6 @@ NODE_ENV=test %{builddir}/bin/%{module} -R tests
 %endif
 
 %files
-%doc CHANGELOG.md
 %doc README.md
 %license LICENSE.txt
 %license LICENSE.modules

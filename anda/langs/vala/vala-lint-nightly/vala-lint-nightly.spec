@@ -1,9 +1,9 @@
 %global real_name vala-lint
 
-%global commit 4ed1443c35a8a84445fb59292d539358365d8263
+%global commit a1d1a7bc0f740920e592fd788a836c402fd9825c
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
-%global commit_date 20240829
+%global commit_date 20250804
 %global snapshot_info %{commit_date}.%{shortcommit}
 
 Name:			vala-lint-nightly
