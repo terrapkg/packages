@@ -18,14 +18,14 @@ Packager:       arbormoss <arbormoss@woodsprite.dev>
 
 %build
 %cargo_build
-target/rpm/zola completion bash > %{bash_completions_dir}/%{name}
-install -Dpm 0644 %{name}.bash -t %{elvish_completions_dir}/%{name}
-target/rpm/zola completion elvish > %{elvish_completions_dir}/%{name}.elv
-install -Dpm 0644 %{name}.elv -t %{elvish_completions_dir}/%{name}.elv
-target/rpm/zola completion fish > %{fish_completions_dir}/%{name}.fish
-install -Dpm 0644 %{name}.fish -t %{fish_completions_dir}/%{name}.fish
-target/rpm/zola completion zsh > %{zsh_completions_dir}/_%{name}
-install -Dpm 0644 %{name}.zsh -t %{zsh_completions_dir}/_%{name}
+target/rpm/zola completion bash > %{name}
+install -Dpm 0644 %{name} -t %{bash_completions_dir}
+target/rpm/zola completion elvish > %{name}.elv
+install -Dpm 0644 %{name}.elv -t %{elvish_completions_dir}
+target/rpm/zola completion fish > %{name}.fish
+install -Dpm 0644 %{name}.fish -t %{fish_completions_dir}
+target/rpm/zola completion zsh > _%{name}
+install -Dpm 0644 _%{name} -t %{zsh_completions_dir}
 
 %pkg_completion -Befz %{name}
 
@@ -39,6 +39,10 @@ install -Dm755 target/rpm/zola %{buildroot}%{_bindir}/zola
 %license LICENSE
 %license LICENSE.dependencies
 %{_bindir}/zola
+%{bash_completions_dir}/%{name}
+%{elvish_completions_dir}/%{name}.elv
+%{fish_completions_dir}/%{name}.fish
+%{zsh_completions_dir}/_%{name}
 
 %changelog
 * Thu Nov 20 2025 arbormoss <arbormoss@woodsprite.dev>
