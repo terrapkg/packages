@@ -18,21 +18,20 @@ Packager:       arbormoss <arbormoss@woodsprite.dev>
 
 %build
 %cargo_build
-target/rpm/zola completion bash > %{name}
-install -Dpm 0644 %{name} -t %{bash_completions_dir}
-target/rpm/zola completion elvish > %{name}.elv
-install -Dpm 0644 %{name}.elv -t %{elvish_completions_dir}
-target/rpm/zola completion fish > %{name}.fish
-install -Dpm 0644 %{name}.fish -t %{fish_completions_dir}
-target/rpm/zola completion zsh > _%{name}
-install -Dpm 0644 _%{name} -t %{zsh_completions_dir}
-
-%pkg_completion -Befz %{name}
+mkdir -p completions
+target/rpm/zola completion bash > completions/%{name}
+target/rpm/zola completion elvish > completions/%{name}.elv
+target/rpm/zola completion fish > completions/%{name}.fish
+target/rpm/zola completion zsh > completions/_%{name}
 
 %install
 install -Dm755 target/rpm/zola %{buildroot}%{_bindir}/zola
 %cargo_license_summary_online
 %{cargo_license_online -a} > LICENSE.dependencies
+install -Dpm 0644 completions/%{name} -t %{buildroot}%{bash_completions_dir}
+install -Dpm 0644 completions/%{name}.elv -t %{buildroot}%{elvish_completions_dir}
+install -Dpm 0644 completions/%{name}.fish -t %{buildroot}%{fish_completions_dir}
+install -Dpm 0644 completions/_%{name} -t %{buildroot}%{zsh_completions_dir}
 
 %files
 %doc README.md CHANGELOG.md CONTRIBUTING.md EXAMPLES.md
@@ -43,6 +42,8 @@ install -Dm755 target/rpm/zola %{buildroot}%{_bindir}/zola
 %{elvish_completions_dir}/%{name}.elv
 %{fish_completions_dir}/%{name}.fish
 %{zsh_completions_dir}/_%{name}
+
+%pkg_completion -Befz %{name}
 
 %changelog
 * Thu Nov 20 2025 arbormoss <arbormoss@woodsprite.dev>
