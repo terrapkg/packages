@@ -35,12 +35,9 @@ ExclusiveArch: x86_64 aarch64
 
 
 %prep
-git clone https://github.com/oven-sh/bun
-cd bun
-git checkout bun-v%{version}
+%git_clone https://github.com/oven-sh/bun bun-v%{version}
 
 %build
-cd bun
 bun run  build:smol -DUSE_STATIC_LIBATOMIC=OFF -DCI=ON
 
 
