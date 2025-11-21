@@ -8,6 +8,7 @@ Summary:   A monospaced font with reasonable unicode support
 Requires:  xorg-x11-font-utils
 BuildArch: noarch
 Provides:  JuliaMono-font
+Packager:  Its-J
 
 
 %description
