@@ -124,6 +124,8 @@ BuildArch:  noarch
 
 %obsolete terra-surface-dtx-daemon 0.3.10-1
 
+%obsolete x264-bash-completion 0.165-17.20250609gitb35605ac
+
 %description
 Currently obsoleted packages:
 
