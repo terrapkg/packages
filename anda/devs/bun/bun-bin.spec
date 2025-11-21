@@ -1,10 +1,7 @@
-%global rpmbuilddir %{?builddir}%{?!builddir:%{_builddir}}
-%global npm_common_vars NPM_CONFIG_USERCONFIG=%{rpmbuilddir}/.npmrc NPM_CONFIG_GLOBALCONFIG=%{rpmbuilddir}/npmrc NPM_CONFIG_CACHE=%{rpmbuilddir}/.npm NPM_CONFIG_LOGLEVEL=error NPM_CONFIG_FUND=false NPM_CONFIG_UPDATE_NOTIFIER=false NO_UPDATE_NOTIFIER=1 NPM_CONFIG_INIT_MODULE=%{rpmbuilddir}/.npm-init.js
-%global __yarn /usr/bin/env %{npm_common_vars} YARN_CACHE_FOLDER=%{rpmbuilddir}/yarn /usr/bin/yarn
 %bcond bootstrap 1
 
 Name:			bun
-Version:		1.2.19
+Version:		1.3.2
 Release:		2%?dist
 Summary:		Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one
 License:		MIT
@@ -104,8 +101,8 @@ BUN_HOME=%{rpmbuilddir}/.bun %{!?with_bootstrap:%{__bun}}%{?with_bootstrap:BUN_R
 %files
 %doc README.md
 %license LICENSE.md
-%_bindir/bun
-%_bindir/bunx
+%{_bindir}/bun
+%{_bindir}/bunx
 
 %files doc
 %doc docs/*
