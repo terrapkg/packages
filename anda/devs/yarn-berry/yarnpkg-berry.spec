@@ -64,5 +64,3 @@ done
 %changelog
 * Thu Nov 20 2025 Gilver E. <rockgrub@disroot.org> - 4.11.0-1
 - Initial build
-
-
