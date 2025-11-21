@@ -50,7 +50,7 @@ Requires:       libuv
 Requires:       mimalloc
 Requires:       (zlib-ng-compat or zlib)
 Requires:       zstd
-Obsoletes:      bun-bin < 1.2.19-1
+Obsoletes:      bun-bin < 1.2.19
 
 %description
 %summary.
