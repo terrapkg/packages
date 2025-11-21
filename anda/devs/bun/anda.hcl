@@ -1,8 +1,5 @@
 project pkg {
 	rpm {
-		spec = "yarnpkg-berry.spec"
+		spec = "bun-bin.spec"
 	}
-	labels {
-	    subrepo = "extras"
-    }
 }
