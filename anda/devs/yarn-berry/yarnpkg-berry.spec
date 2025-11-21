@@ -1,5 +1,5 @@
 %global debug_package %{nil}
-%bcond bootstrap 1
+%bcond bootstrap 0
 
 Name:          yarnpkg-berry
 Version:       4.11.0
