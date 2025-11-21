@@ -19,6 +19,7 @@ BuildRequires: %{name}
 Requires:      nodejs
 Provides:      yarn-berry
 Provides:      yarnpkg = %{evr}
+BuildArch:     noarch
 Packager:      Gilver E. <rockgrub@disroot.org>
 
 %description
