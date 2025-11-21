@@ -18,6 +18,16 @@ Packager:       arbormoss <arbormoss@woodsprite.dev>
 
 %build
 %cargo_build
+target/rpm/zola completion bash > %{bash_completions_dir}/%{name}
+install -Dpm 0644 %{name}.bash -t %{elvish_completions_dir}/%{name}
+target/rpm/zola completion elvish > %{elvish_completions_dir}/%{name}.elv
+install -Dpm 0644 %{name}.elv -t %{elvish_completions_dir}/%{name}.elv
+target/rpm/zola completion fish > %{fish_completions_dir}/%{name}.fish
+install -Dpm 0644 %{name}.fish -t %{fish_completions_dir}/%{name}.fish
+target/rpm/zola completion zsh > %{zsh_completions_dir}/_%{name}
+install -Dpm 0644 %{name}.zsh -t %{zsh_completions_dir}/_%{name}
+
+%pkg_completion -Befz %{name}
 
 %install
 install -Dm755 target/rpm/zola %{buildroot}%{_bindir}/zola
@@ -31,5 +41,8 @@ install -Dm755 target/rpm/zola %{buildroot}%{_bindir}/zola
 %{_bindir}/zola
 
 %changelog
+* Thu Nov 20 2025 arbormoss <arbormoss@woodsprite.dev>
+- Add Shell Completions
+
 * Wed Nov 19 2025 arbormoss <arbormoss@woodsprite.dev>
 - Intial Commit
