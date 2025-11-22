@@ -15,7 +15,7 @@ Packager:       arbormoss <arbormoss@woodsprite.dev>
 %summary.
 
 %prep
-curl -L -o ${name}.zip https://broth.itch.ovh/${name}/linux-amd64/${version}/archive/default
+curl -L -o ${name}.zip %{SOURCE0}
 unzip ${name}.zip
 
 %build
