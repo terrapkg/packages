@@ -2,12 +2,14 @@ Name:           butler
 Version:        15.24.0
 Release:        1%?dist
 Summary:        Command-line itch.io helper.
-URL:            https://itch.io/docs/butler/
-Source0:        https://broth.itch.zone/${name}/linux-amd64/${version}/signature/default
+URL:            https://itch.io/docs/butler
+Source0:        https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
+Source1:        https://raw.githubusercontent.com/itchio/butler/refs/heads/master/LICENSE
+Source2:	https://raw.githubusercontent.com/itchio/butler/refs/heads/master/README.md
 License:        MIT
-BuildRequires:  golang 7zip
-Provides: itchio-butler
-Provides: itch-butler
+BuildRequires:  anda-srpm-macros mold
+Provides:  	itchio-butler
+Provides: 	itch-butler
 
 Packager:       arbormoss <arbormoss@woodsprite.dev>
 
@@ -15,18 +17,20 @@ Packager:       arbormoss <arbormoss@woodsprite.dev>
 %summary.
 
 %prep
-curl -L -o ${name}.zip %{SOURCE0}
-unzip ${name}.zip
+curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
+curl -o README.md https://raw.githubusercontent.com/itchio/butler/refs/heads/master/README.md
+curl -o LICENSE https://raw.githubusercontent.com/itchio/butler/refs/heads/master/LICENSE
+unzip butler.zip
 
 %build
 
 %install
-install -Dm755 target/rpm/${name} %{buildroot}%{_bindir}/${name}
+install -Dm755 butler %{buildroot}%{_bindir}/butler
 
 %files
 %doc README.md
 %license LICENSE
-%{_bindir}/${name}
+%{_bindir}/butler
 
 %changelog
 * Sat Nov 22 2025 arbormoss <arbormoss@woodsprite.dev>
