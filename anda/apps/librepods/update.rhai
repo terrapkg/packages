@@ -1,5 +1,4 @@
 let tags = json_arr(get("https://api.github.com/repos/kavishdevar/librepods/tags"));
-print(tags);
-tag = tags.filter(|t| t.starts_with("linux-"));
-print(tag);
-rpm.version(tag.remove("linux-"))
+let tag = tags.find(|t| t.name.starts_with("linux-v"));
+tag.name.crop(7);
+rpm.version(tag.name);
