@@ -146,6 +146,10 @@ BuildArch:  noarch
 %obsolete switchboard-plug-useraccounts 8.0.0-2
 %obsolete switchboard-plug-wacom 8.0.0-2
 
+%obsolete terra-surface-dtx-daemon 0.3.10-1
+
+%obsolete x264-bash-completion 0.165-17.20250609gitb35605ac
+
 %description
 Currently obsoleted packages:
 
@@ -157,4 +161,3 @@ Currently obsoleted packages:
 
 %changelog
 %autochangelog
-
