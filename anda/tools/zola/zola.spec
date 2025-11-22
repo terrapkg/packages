@@ -38,11 +38,6 @@ install -Dpm 0644 completions/_%{name} -t %{buildroot}%{zsh_completions_dir}
 %license LICENSE
 %license LICENSE.dependencies
 %{_bindir}/zola
-%{bash_completions_dir}/%{name}
-%{elvish_completions_dir}/%{name}.elv
-%{fish_completions_dir}/%{name}.fish
-%{zsh_completions_dir}/_%{name}
-
 %pkg_completion -Befz %{name}
 
 %changelog
