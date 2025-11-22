@@ -6,7 +6,6 @@ rpm.version(bump::bodhi("ffmpeg", bump::as_bodhi_ver(labels.branch)));
 open_file("anda/multimedia/ffmpeg/VERSION_x264.txt", "w").write(bump::madoguchi("x264", labels.branch));
 open_file("anda/multimedia/ffmpeg/VERSION_x265.txt", "w").write(bump::madoguchi("x265", labels.branch));
 open_file("anda/multimedia/ffmpeg/VERSION_tesseract.txt", "w").write(bump::bodhi("tesseract", bump::as_bodhi_ver(labels.branch)));
-open_file("anda/multimedia/ffmpeg/VERSION_rubberband.txt", "w").write(bump::bodhi("rubberband", bump::as_bodhi_ver(labels.branch)));
 open_file("anda/multimedia/ffmpeg/VERSION_libbluray.txt", "w").write(bump::bodhi("libbluray", bump::as_bodhi_ver(labels.branch)));
 open_file("anda/multimedia/ffmpeg/VERSION_libchromaprint.txt", "w").write(bump::bodhi("libchromaprint", bump::as_bodhi_ver(labels.branch)));
 open_file("anda/multimedia/ffmpeg/VERSION_vvenc.txt", "w").write(bump::madoguchi("vvenc-libs", labels.branch));
