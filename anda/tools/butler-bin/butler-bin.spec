@@ -1,4 +1,4 @@
-Name:           butler
+Name:           butler-bin
 Version:        15.24.0
 Release:        1%?dist
 Summary:        Command-line itch.io helper.
@@ -8,8 +8,8 @@ Source1:        https://raw.githubusercontent.com/itchio/butler/refs/heads/maste
 Source2:	https://raw.githubusercontent.com/itchio/butler/refs/heads/master/README.md
 License:        MIT
 BuildRequires:  anda-srpm-macros mold
-Provides:  	itchio-butler
-Provides: 	itch-butler
+Provides:  	itchio-butler-bin
+Provides: 	itch-butler-bin
 
 Packager:       arbormoss <arbormoss@woodsprite.dev>
 
