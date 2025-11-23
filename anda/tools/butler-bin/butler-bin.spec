@@ -9,6 +9,7 @@ Source2:	https://raw.githubusercontent.com/itchio/butler/refs/heads/master/READM
 License:        MIT
 Provides:  	itchio-butler-bin
 Provides: 	itch-butler-bin
+ExclusiveArch: 	x86_64
 
 Packager:       arbormoss <arbormoss@woodsprite.dev>
 
