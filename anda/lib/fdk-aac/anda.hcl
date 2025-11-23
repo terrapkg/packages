@@ -1,10 +1,11 @@
 project pkg {
-         arches = ["x86_64", "aarch64", "i686"]
+         arches = ["x86_64", "aarch64", "i386"]
   rpm {
     spec = "fdk-aac.spec"
   }
   labels {
-        subrepo = "extras"
+        mock=1
+        subrepo = "multimedia"
         weekly = 1
     }
 }
