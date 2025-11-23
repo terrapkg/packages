@@ -7,7 +7,6 @@ Source0:        https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
 Source1:        https://raw.githubusercontent.com/itchio/butler/refs/heads/master/LICENSE
 Source2:	https://raw.githubusercontent.com/itchio/butler/refs/heads/master/README.md
 License:        MIT
-BuildRequires:  anda-srpm-macros mold
 Provides:  	itchio-butler-bin
 Provides: 	itch-butler-bin
 
