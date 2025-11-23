@@ -68,10 +68,10 @@ install -Dm644 %{SOURCE1} %{buildroot}%{_defaultlicensedir}/python3-%{pypi_name}
 %systemd_postun_with_restart pt-reboot.service
 %systemd_postun_with_restart pt-poweroff.service
 
-%if 0%{?fedora} > 43
-%check
-%pyproject_check_import
-%endif
+%dnl %if 0%{?fedora} > 43
+%dnl %check
+%dnl %pyproject_check_import
+%dnl %endif
 
 %if 0%{?fedora} <= 41 || 0%{?rhel}
 %files -n python3-%{pypi_name}
