@@ -6,8 +6,6 @@ URL:            https://www.getzola.org
 Source0:        https://github.com/getzola/%{name}/archive/refs/tags/v%{version}.tar.gz
 License:        MIT
 BuildRequires:  cargo anda-srpm-macros cargo-rpm-macros mold glib2 libgcc clang
-Provides: itchio-butler
-Provides: itch-butler
 
 Packager:       arbormoss <arbormoss@woodsprite.dev>
 
