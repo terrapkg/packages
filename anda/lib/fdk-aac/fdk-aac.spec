@@ -15,6 +15,7 @@ BuildRequires:  autoconf
 BuildRequires:  automake
 BuildRequires:  gcc-c++
 BuildRequires:  libtool
+BuildArch:      x86_64 aarch64 i686
 
 %description
 Fraunhofer FDK Advanced Audio Coding Codec Library for Android.
