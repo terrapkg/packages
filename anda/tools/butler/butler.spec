@@ -18,14 +18,14 @@ Packager:       arbormoss <arbormoss@woodsprite.dev>
 
 %prep
 curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
-curl -o README.md https://raw.githubusercontent.com/itchio/butler/refs/heads/master/README.md
-curl -o LICENSE https://raw.githubusercontent.com/itchio/butler/refs/heads/master/LICENSE
 unzip butler.zip
 
 %build
 
 %install
 install -Dm755 butler %{buildroot}%{_bindir}/butler
+install -Dm644 %{S:1} %{buildroot}%{_defaultlicensedir}/butler/LICENSE
+install -Dm644 %{S:2} %{buildroot}%{_docdir}/butler/README.md
 
 %files
 %doc README.md
