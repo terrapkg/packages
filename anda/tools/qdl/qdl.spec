@@ -20,7 +20,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %{summary}.
 
 %prep
-%autosetup -n qdl-%commit
+%autosetup -n qdl-%{commit}
 
 %build
 %make_build
