@@ -24,8 +24,8 @@ unzip butler.zip
 
 %install
 install -Dm755 butler %{buildroot}%{_bindir}/butler
-install -Dm644 %{S:1} %{buildroot}%{_defaultlicensedir}/butler/LICENSE
-install -Dm644 %{S:2} %{buildroot}%{_docdir}/butler/README.md
+install -Dm644 %{S:1} %{buildroot}%{_defaultlicensedir}/butler-bin/LICENSE
+install -Dm644 %{S:2} %{buildroot}%{_docdir}/butler-bin/README.md
 
 %files
 %doc README.md
