@@ -9,7 +9,7 @@ on:
 jobs:
   backport:
     name: Backport/sync PR
-    runs-on: ubuntu-24.04-arm
+    runs-on: ubuntu-22.04
     if: github.event.pull_request.merged
     steps:
       - name: Install SSH signing key
