@@ -7,7 +7,6 @@ Summary:       Active development version of Yarn
 License:       BSD-2-Clause
 URL:           https://yarnpkg.com
 Source0:       https://github.com/yarnpkg/berry/archive/refs/tags/@yarnpkg/cli/%{version}.tar.gz
-Source1:       run-yarn.sh
 Patch0:        setup-ts-cache.patch
 BuildRequires: anda-srpm-macros
 BuildRequires: nodejs
