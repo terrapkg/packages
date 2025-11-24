@@ -1,5 +1,5 @@
-%global commit b7651d86d71a172b2208c67b2e360cbcb4f9d98f
-%global commit_date 20250612
+%global commit 6e0779b1c552976e0da2374c0325a8c9c77b6010
+%global commit_date 20251120
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %define _unpackaged_files_terminate_build 0
@@ -110,6 +110,7 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 
 %files dtmerge
 %license LICENCE
+%doc dtmerge/README.md
 %{_bindir}/dt*
 %{_mandir}/man1/dtmerge.1.gz
 %{_mandir}/man1/dtoverlay.1.gz

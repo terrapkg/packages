@@ -1,9 +1,9 @@
-%global commit f1f9d5eb4b1f027aff4c7a4ed52911a0903a7e64
+%global commit 6b28671eade5d31ef737349cdf53a2e6470a8648
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global fulldate 2025-07-02
+%global fulldate 2025-11-22
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
-%global ver 1.1.4
+%global ver 1.3.0
 %global base_name ghostty
 %global appid com.mitchellh.%{base_name}
 
@@ -44,7 +44,8 @@ BuildRequires:  pkgconfig(oniguruma)
 BuildRequires:  pkgconfig(zlib)
 Requires:       %{name}-terminfo = %{evr}
 Requires:       %{name}-shell-integration = %{evr}
-Requires:       (%{name}-kio = %{evr} if kf6-kio)
+Requires:       (%{name}-kio = %{evr} if kf5-kio-core)
+Requires:       (%{name}-kio = %{evr} if kf6-kio-core)
 Requires:       gtk4
 Requires:       gtk4-layer-shell
 Requires:       libadwaita
@@ -97,6 +98,13 @@ BuildArch:      noarch
 
 %description    zsh-completion
 Zsh shell completion for Ghostty.
+
+%package        devel
+Summary:        Development files for Ghostty.
+Requires:       %{name} = %{evr}
+
+%description    devel
+This package includes the development files for Ghostty.
 
 %package        kio
 Summary:        KIO support for Ghostty
@@ -188,7 +196,8 @@ DESTDIR="%{buildroot}" \
     -Dversion-string="%{ver}-dev+%{shortcommit}" \
     -Dstrip=false \
     -Dpie=true \
-    -Demit-docs 
+    -Demit-docs \
+    -Demit-themes=false
 
 # Don't conflict with ncurses-term on F42 and up
 %if 0%{?fedora} >= 42
@@ -204,7 +213,6 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %{_datadir}/applications/%{appid}.desktop
 %dir %{_datadir}/%{base_name}
 %{_datadir}/%{base_name}/doc
-%{_datadir}/%{base_name}/themes
 %{_datadir}/metainfo/%{appid}.metainfo.xml
 %{_datadir}/dbus-1/services/%{appid}.service
 %{_iconsdir}/hicolor/16x16/apps/%{appid}.png
@@ -219,7 +227,7 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %{_iconsdir}/hicolor/1024x1024/apps/%{appid}.png
 %{_mandir}/man1/%{base_name}.1.gz
 %{_mandir}/man5/%{base_name}.5.gz
-%{_userunitdir}/%{appid}.service
+%{_userunitdir}/app-%{appid}.service
 
 %files bash-completion
 %{bash_completions_dir}/%{base_name}.bash
@@ -229,6 +237,11 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 
 %files zsh-completion
 %{zsh_completions_dir}/_%{base_name}
+
+%files devel
+%{_includedir}/ghostty/
+%{_libdir}/libghostty-vt.so
+%{_datadir}/pkgconfig/libghostty-vt.pc
 
 %files kio
 %{_datadir}/kio/servicemenus/%{appid}.desktop
@@ -267,15 +280,19 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %{_datadir}/terminfo/x/xterm-%{base_name}
 
 %post
-%systemd_user_post %{appid}.service
+%systemd_user_post app-%{appid}.service
 
 %preun
-%systemd_user_preun %{appid}.service
+%systemd_user_preun app-%{appid}.service
 
 %postun
-%systemd_user_postun %{appid}.service
+%systemd_user_postun app-%{appid}.service
 
 %changelog
+* Tue Oct 28 2025 Gilver E. <rockgrub@disroot.org> - 1.3.0~tip^20251027gitd40321a-2
+- Disabled bundled themes
+ * This is necessary to address licensing issues in the themes repo Ghostty uses
+ * See: https://github.com/mbadolato/iTerm2-Color-Schemes/issues/638
 * Sat May 31 2025 Gilver E. <rockgrub@disroot.org> - 1.1.4~tip^20250531git1ff9162
 - Updated for Zig 0.14.0
 - Updated for ncurses-term compatibility in Fedora 42 and Rawhide

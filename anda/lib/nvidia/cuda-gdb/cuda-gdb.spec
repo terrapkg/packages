@@ -3,12 +3,12 @@
 %global __strip /bin/true
 %global _missing_build_ids_terminate_build 0
 %global _build_id_links none
-%global major_package_version 12-8
+%global major_package_version 13-0
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
-Version:        12.9.79
-Release:        1%?dist
+Version:        13.0.85
+Release:        1%{?dist}
 Summary:        CUDA GDB
 License:        GPLv3+ and GPLv3+ with exceptions and GPLv2+ and GPLv2+ with exceptions and GPL+ and LGPLv2+ and LGPLv3+ and BSD and Public Domain and GFDL
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -17,6 +17,7 @@ ExclusiveArch:  x86_64 aarch64
 Source0:        https://developer.download.nvidia.com/compute/cuda/redist/%{real_name}/linux-x86_64/%{real_name}-linux-x86_64-%{version}-archive.tar.xz
 Source1:        https://developer.download.nvidia.com/compute/cuda/redist/%{real_name}/linux-sbsa/%{real_name}-linux-sbsa-%{version}-archive.tar.xz
 
+BuildRequires:  chrpath
 Requires:       gdb
 Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
 
@@ -36,16 +37,14 @@ simulation and emulation environments.
 %setup -q -T -b 1 -n %{real_name}-linux-sbsa-%{version}-archive
 %endif
 
+chrpath -d bin/cuda-gdb-minimal
+
 %install
 mkdir -p %{buildroot}%{_datadir}/%{name}
 mkdir -p %{buildroot}%{_includedir}
 mkdir -p %{buildroot}%{_libdir}
 
-%ifarch x86_64
 install -p -m 0755 -D bin/cuda-gdb-minimal %{buildroot}%{_bindir}/cuda-gdb
-%else
-install -p -m 0755 -D bin/cuda-gdb %{buildroot}%{_bindir}/cuda-gdb
-%endif
 install -p -m 0755 -D bin/cuda-gdbserver %{buildroot}%{_bindir}/cuda-gdbserver
 cp -f extras/Debugger/include/* %{buildroot}%{_includedir}/
 

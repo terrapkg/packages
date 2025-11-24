@@ -1,32 +1,25 @@
-From eb811f9950a3b00dab37ce194adf43140789c58e Mon Sep 17 00:00:00 2001
+From 91a0029abd6394100476d51af9e840d29208e3a4 Mon Sep 17 00:00:00 2001
 From: VirtualFreeEx <contact@ffi.lol>
-Date: Fri, 20 Jun 2025 07:07:50 +0300
-Subject: [PATCH 1/2] build: dont strip
+Date: Fri, 18 Jul 2025 11:47:50 +0300
+Subject: [PATCH 2/2] build: dont strip
 
 ---
- ip2net/Makefile |  8 ++++----
- mdig/Makefile   | 10 +++++-----
- nfq/Makefile    |  6 +++---
- tpws/Makefile   | 10 +++++-----
+ ip2net/Makefile |  6 +++---
+ mdig/Makefile   |  8 ++++----
+ nfq/Makefile    | 12 ++++++------
+ tpws/Makefile   |  8 ++++----
  4 files changed, 17 insertions(+), 17 deletions(-)
 
 diff --git a/ip2net/Makefile b/ip2net/Makefile
-index 484f3d7..c3c68be 100644
+index 3c44256..50c6ac2 100644
 --- a/ip2net/Makefile
 +++ b/ip2net/Makefile
-@@ -1,5 +1,5 @@
- CC ?= gcc
--CFLAGS += -std=gnu99 -Os -flto=auto
-+CFLAGS += -g -std=gnu99 -Os -flto=auto
- CFLAGS_BSD = -Wno-address-of-packed-member
- CFLAGS_WIN = -static
- LIBS = 
-@@ -9,14 +9,14 @@ SRC_FILES = ip2net.c qsort.c
+@@ -10,14 +10,14 @@ SRC_FILES = ip2net.c qsort.c
  all: ip2net
  
  ip2net: $(SRC_FILES)
 -	$(CC) -s $(CFLAGS) -o ip2net $(SRC_FILES) $(LIBS) $(LDFLAGS)
-+	$(CC) $(CFLAGS) -o ip2net $(SRC_FILES) $(LIBS) $(LDFLAGS)
++	$(CC) -g $(CFLAGS) -o ip2net $(SRC_FILES) $(LIBS) $(LDFLAGS)
  
  systemd: ip2net
  
@@ -34,114 +27,113 @@ index 484f3d7..c3c68be 100644
  
  bsd: $(SRC_FILES)
 -	$(CC) -s $(CFLAGS) $(CFLAGS_BSD) -o ip2net $(SRC_FILES) $(LIBS) $(LDFLAGS)
-+	$(CC) $(CFLAGS) $(CFLAGS_BSD) -o ip2net $(SRC_FILES) $(LIBS) $(LDFLAGS)
++	$(CC) -g $(CFLAGS) $(CFLAGS_BSD) -o ip2net $(SRC_FILES) $(LIBS) $(LDFLAGS)
  
  mac: $(SRC_FILES)
  	$(CC) $(CFLAGS) $(CFLAGS_BSD) -o ip2neta $(SRC_FILES) -target arm64-apple-macos10.8 $(LIBS) $(LDFLAGS)
-@@ -26,7 +26,7 @@ mac: $(SRC_FILES)
+@@ -27,7 +27,7 @@ mac: $(SRC_FILES)
  	rm -f ip2netx ip2neta
  
  win: $(SRC_FILES)
 -	$(CC) -s $(CFLAGS) $(CFLAGS_WIN) -o ip2net $(SRC_FILES) $(LIBS_WIN) $(LDFLAGS)
-+	$(CC) $(CFLAGS) $(CFLAGS_WIN) -o ip2net $(SRC_FILES) $(LIBS_WIN) $(LDFLAGS)
++	$(CC) -g $(CFLAGS) $(CFLAGS_WIN) -o ip2net $(SRC_FILES) $(LIBS_WIN) $(LDFLAGS)
  
  clean:
  	rm -f ip2net *.o
 diff --git a/mdig/Makefile b/mdig/Makefile
-index 21b6c84..d841433 100644
+index e4a011b..10d1863 100644
 --- a/mdig/Makefile
 +++ b/mdig/Makefile
-@@ -1,5 +1,5 @@
- CC ?= gcc
--CFLAGS += -std=gnu99 -Os
-+CFLAGS += -g -std=gnu99 -Os
- CFLAGS_BSD = -Wno-address-of-packed-member
- CFLAGS_WIN = -static
- LIBS = -lpthread
-@@ -10,15 +10,15 @@ SRC_FILES = *.c
+@@ -11,15 +11,15 @@ SRC_FILES = *.c
  all: mdig
  
  mdig: $(SRC_FILES)
 -	$(CC) -s $(CFLAGS) -o mdig $(SRC_FILES) $(LIBS) $(LDFLAGS)
-+	$(CC) $(CFLAGS) -o mdig $(SRC_FILES) $(LIBS) $(LDFLAGS)
++	$(CC) -g $(CFLAGS) -o mdig $(SRC_FILES) $(LIBS) $(LDFLAGS)
  
  systemd: mdig
  
  android: $(SRC_FILES)
 -	$(CC) -s $(CFLAGS) -o mdig $(SRC_FILES) $(LIBS_ANDROID) $(LDFLAGS)
-+	$(CC) $(CFLAGS) -o mdig $(SRC_FILES) $(LIBS_ANDROID) $(LDFLAGS)
++	$(CC) -g $(CFLAGS) -o mdig $(SRC_FILES) $(LIBS_ANDROID) $(LDFLAGS)
  
  bsd: $(SRC_FILES)
 -	$(CC) -s $(CFLAGS) $(CFLAGS_BSD) -o mdig $(SRC_FILES) $(LIBS) $(LDFLAGS)
-+	$(CC) $(CFLAGS) $(CFLAGS_BSD) -o mdig $(SRC_FILES) $(LIBS) $(LDFLAGS)
++	$(CC) -g $(CFLAGS) $(CFLAGS_BSD) -o mdig $(SRC_FILES) $(LIBS) $(LDFLAGS)
  
  mac: $(SRC_FILES)
  	$(CC) $(CFLAGS) $(CFLAGS_BSD) -o mdiga $(SRC_FILES) -target arm64-apple-macos10.8 $(LIBS_BSD) $(LDFLAGS)
-@@ -28,7 +28,7 @@ mac: $(SRC_FILES)
+@@ -29,7 +29,7 @@ mac: $(SRC_FILES)
  	rm -f mdigx mdiga
  
  win: $(SRC_FILES)
 -	$(CC) -s $(CFLAGS) $(CFLAGS_WIN) -o mdig $(SRC_FILES) $(LIBS_WIN) $(LDFLAGS)
-+	$(CC) $(CFLAGS) $(CFLAGS_WIN) -o mdig $(SRC_FILES) $(LIBS_WIN) $(LDFLAGS)
++	$(CC) -g $(CFLAGS) $(CFLAGS_WIN) -o mdig $(SRC_FILES) $(LIBS_WIN) $(LDFLAGS)
  
  clean:
  	rm -f mdig *.o
 diff --git a/nfq/Makefile b/nfq/Makefile
-index f368101..3cb9559 100644
+index 97cf6bb..37896bf 100644
 --- a/nfq/Makefile
 +++ b/nfq/Makefile
-@@ -1,5 +1,5 @@
- CC ?= gcc
--CFLAGS += -std=gnu99 -Os -flto=auto
-+CFLAGS += -std=gnu99 -Os -flto=auto -g
- CFLAGS_SYSTEMD = -DUSE_SYSTEMD
- CFLAGS_BSD = -Wno-address-of-packed-member
- CFLAGS_CYGWIN = -Wno-address-of-packed-member -static
-@@ -17,10 +17,10 @@ SRC_FILES = *.c crypto/*.c
+@@ -18,16 +18,16 @@ SRC_FILES = *.c crypto/*.c
  all: nfqws
  
  nfqws: $(SRC_FILES)
 -	$(CC) -s $(CFLAGS) -o nfqws $(SRC_FILES) $(LIBS_LINUX) $(LDFLAGS)
-+	$(CC) $(CFLAGS) -o nfqws $(SRC_FILES) $(LIBS_LINUX) $(LDFLAGS)
++	$(CC) -g $(CFLAGS) -o nfqws $(SRC_FILES) $(LIBS_LINUX) $(LDFLAGS)
  
  systemd: $(SRC_FILES)
 -	$(CC) -s $(CFLAGS) $(CFLAGS_SYSTEMD) -o nfqws $(SRC_FILES) $(LIBS_LINUX) $(LIBS_SYSTEMD) $(LDFLAGS)
-+	$(CC) $(CFLAGS) $(CFLAGS_SYSTEMD) -o nfqws $(SRC_FILES) $(LIBS_LINUX) $(LIBS_SYSTEMD) $(LDFLAGS)
++	$(CC) -g $(CFLAGS) $(CFLAGS_SYSTEMD) -o nfqws $(SRC_FILES) $(LIBS_LINUX) $(LIBS_SYSTEMD) $(LDFLAGS)
  
  android: $(SRC_FILES)
- 	$(CC) -s $(CFLAGS) -o nfqws $(SRC_FILES) $(LIBS_LINUX) $(LDFLAGS) $(LDFLAGS_ANDROID)
+-	$(CC) -s $(CFLAGS) -o nfqws $(SRC_FILES) $(LIBS_LINUX) $(LDFLAGS) $(LDFLAGS_ANDROID)
++	$(CC) -g $(CFLAGS) -o nfqws $(SRC_FILES) $(LIBS_LINUX) $(LDFLAGS) $(LDFLAGS_ANDROID)
+ 
+ bsd: $(SRC_FILES)
+-	$(CC) -s $(CFLAGS) $(CFLAGS_BSD) -o dvtws $(SRC_FILES) $(LIBS_BSD) $(LDFLAGS)
++	$(CC) -g $(CFLAGS) $(CFLAGS_BSD) -o dvtws $(SRC_FILES) $(LIBS_BSD) $(LDFLAGS)
+ 
+ mac: $(SRC_FILES)
+ 	$(CC) $(CFLAGS) $(CFLAGS_BSD) -o dvtwsa $(SRC_FILES) -target arm64-apple-macos10.8 $(LIBS_BSD) $(LDFLAGS)
+@@ -37,9 +37,9 @@ mac: $(SRC_FILES)
+ 	rm -f dvtwsx dvtwsa
+ 
+ cygwin64:
+-	$(CC) -s $(CFLAGS) $(CFLAGS_CYGWIN) -o winws $(SRC_FILES) $(LIBS_CYGWIN) $(LIBS_CYGWIN64) $(RES_CYGWIN64) $(LDFLAGS)
++	$(CC) -g $(CFLAGS) $(CFLAGS_CYGWIN) -o winws $(SRC_FILES) $(LIBS_CYGWIN) $(LIBS_CYGWIN64) $(RES_CYGWIN64) $(LDFLAGS)
+ cygwin32:
+-	$(CC) -s $(CFLAGS) $(CFLAGS_CYGWIN) -o winws $(SRC_FILES) $(LIBS_CYGWIN) $(LIBS_CYGWIN32) $(RES_CYGWIN32) $(LDFLAGS)
++	$(CC) -g $(CFLAGS) $(CFLAGS_CYGWIN) -o winws $(SRC_FILES) $(LIBS_CYGWIN) $(LIBS_CYGWIN32) $(RES_CYGWIN32) $(LDFLAGS)
+ cygwin: cygwin64
+ 
+ clean:
 diff --git a/tpws/Makefile b/tpws/Makefile
-index e1270f8..47c4348 100644
+index 35ebb45..797884e 100644
 --- a/tpws/Makefile
 +++ b/tpws/Makefile
-@@ -1,5 +1,5 @@
- CC ?= gcc
--CFLAGS += -std=gnu99 -Os -flto=auto
-+CFLAGS += -g -std=gnu99 -Os -flto=auto
- CFLAGS_SYSTEMD = -DUSE_SYSTEMD
- CFLAGS_BSD = -Wno-address-of-packed-member
- LDFLAGS_ANDROID = -llog
-@@ -12,16 +12,16 @@ SRC_FILES_ANDROID = $(SRC_FILES) andr/*.c
+@@ -13,16 +13,16 @@ SRC_FILES_ANDROID = $(SRC_FILES) andr/*.c
  all: tpws
  
  tpws: $(SRC_FILES)
 -	$(CC) -s $(CFLAGS) -o tpws $(SRC_FILES) $(LIBS) $(LDFLAGS)
-+	$(CC) $(CFLAGS) -o tpws $(SRC_FILES) $(LIBS) $(LDFLAGS)
++	$(CC) -g $(CFLAGS) -o tpws $(SRC_FILES) $(LIBS) $(LDFLAGS)
  
  systemd: $(SRC_FILES)
 -	$(CC) -s $(CFLAGS) $(CFLAGS_SYSTEMD) -o tpws $(SRC_FILES) $(LIBS) $(LIBS_SYSTEMD) $(LDFLAGS)
-+	$(CC) $(CFLAGS) $(CFLAGS_SYSTEMD) -o tpws $(SRC_FILES) $(LIBS) $(LIBS_SYSTEMD) $(LDFLAGS)
++	$(CC) -g $(CFLAGS) $(CFLAGS_SYSTEMD) -o tpws $(SRC_FILES) $(LIBS) $(LIBS_SYSTEMD) $(LDFLAGS)
  
  android: $(SRC_FILES)
 -	$(CC) -s $(CFLAGS) -o tpws $(SRC_FILES_ANDROID) $(LIBS_ANDROID) $(LDFLAGS) $(LDFLAGS_ANDROID)
-+	$(CC) $(CFLAGS) -o tpws $(SRC_FILES_ANDROID) $(LIBS_ANDROID) $(LDFLAGS) $(LDFLAGS_ANDROID)
++	$(CC) -g $(CFLAGS) -o tpws $(SRC_FILES_ANDROID) $(LIBS_ANDROID) $(LDFLAGS) $(LDFLAGS_ANDROID)
  
  bsd: $(SRC_FILES)
 -	$(CC) -s $(CFLAGS) $(CFLAGS_BSD) -Iepoll-shim/include -o tpws $(SRC_FILES) epoll-shim/src/*.c $(LIBS) $(LDFLAGS)
-+	$(CC) $(CFLAGS) $(CFLAGS_BSD) -Iepoll-shim/include -o tpws $(SRC_FILES) epoll-shim/src/*.c $(LIBS) $(LDFLAGS)
++	$(CC) -g $(CFLAGS) $(CFLAGS_BSD) -Iepoll-shim/include -o tpws $(SRC_FILES) epoll-shim/src/*.c $(LIBS) $(LDFLAGS)
  
  mac: $(SRC_FILES)
  	$(CC) $(CFLAGS) $(CFLAGS_BSD) -Iepoll-shim/include -Imacos -o tpwsa -target arm64-apple-macos10.8 $(SRC_FILES) epoll-shim/src/*.c $(LIBS) $(LDFLAGS)
 -- 
-2.49.0
+2.50.1
 

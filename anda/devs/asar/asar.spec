@@ -7,7 +7,7 @@
 %global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 Name:           asar
-Version:        4.0.0
+Version:        4.0.1
 Release:        1%?dist
 Summary:        Simple extensive tar-like archive format with indexing
 License:        MIT
