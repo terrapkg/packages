@@ -10,7 +10,6 @@ Summary: Orchis is a Material Design theme for GNOME/GTK based desktop environme
 License: GPL-3.0-only
 Url: https://github.com/vinceliuice/Orchis-theme/
 Source0: %{url}/archive/refs/tags/%{ver}.tar.gz
-# https://github.com/vinceliuice/Orchis-theme/archive/refs/tags/2025-04-25.tar.gz
 
 BuildRequires: sassc
 
