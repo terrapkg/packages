@@ -1,6 +1,10 @@
 %global __requires_exclude_from %{_datadir}/%{name}/.*
 %bcond_without server_prebuilt
 
+%global appid com.genymobile.scrcpy
+%global org com.genymobile
+%global appstream_component console-application
+
 # NOTE: We only do this on aarch64 to avoid
 # duplicate build artifacts on x86_64
 # 
@@ -106,6 +110,8 @@ popd
 ls -la
 install -Dm 644 %{SOURCE1} %{buildroot}%{_datadir}/licenses/LICENSE.android-sdk-license
 
+%terra_appstream
+
 %files
 %doc README.md
 %license LICENSE
@@ -115,6 +121,7 @@ install -Dm 644 %{SOURCE1} %{buildroot}%{_datadir}/licenses/LICENSE.android-sdk-
 %_datadir/applications/scrcpy.desktop
 %_datadir/bash-completion/completions/scrcpy
 %_iconsdir/hicolor/*/apps/scrcpy.png
+%_metainfodir/%{appid}.metainfo.xml
 %_mandir/man1/scrcpy.1.*
 
 %if %{with server}
