@@ -108,14 +108,16 @@ pushd "%_vpath_builddir"
 %ninja_install
 popd
 ls -la
+
+%if %{with server}
 install -Dm 644 %{SOURCE1} %{buildroot}%{_datadir}/licenses/LICENSE.android-sdk-license
+%endif
 
 %terra_appstream
 
 %files
 %doc README.md
 %license LICENSE
-%license %{_datadir}/licenses/LICENSE.android-sdk-license
 %_bindir/scrcpy
 %_datadir/applications/scrcpy-console.desktop
 %_datadir/applications/scrcpy.desktop
@@ -126,6 +128,7 @@ install -Dm 644 %{SOURCE1} %{buildroot}%{_datadir}/licenses/LICENSE.android-sdk-
 
 %if %{with server}
 %files server
+%license %{_datadir}/licenses/LICENSE.android-sdk-license
 %_datadir/scrcpy/scrcpy-server
 %endif
 
