@@ -4,7 +4,7 @@ Name:           %{origname}-compat
 Summary:        Mesa graphics libraries - legacy compatibility libraries
 %global ver 25.0.7
 Version:        %{lua:ver = string.gsub(rpm.expand("%{ver}"), "-", "~"); print(ver)}
-Release:        2%{?dist}
+Release:        3%{?dist}
 Epoch:          1
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0
 URL:            http://www.mesa3d.org
@@ -40,6 +40,7 @@ BuildRequires:  python3-pyyaml
 %description
 %{summary}.
 
+%if 0%{?fedora} > 42
 %package libxatracker
 Summary:        Mesa XA state tracker
 Provides:       libxatracker%{?_isa}
@@ -56,6 +57,7 @@ Obsoletes:      mesa-libxatracker-devel < %{?epoch:%{epoch}:}25.3
 
 %description libxatracker-devel
 %{summary}.
+%endif
 
 %package libOSMesa
 Summary:        Mesa offscreen rendering libraries
@@ -89,10 +91,18 @@ cp %{SOURCE1} docs/
 %meson \
   -Dplatforms= \
   -Dosmesa=true \
+%if 0%{?fedora} <= 42
+  -Dgallium-drivers=llvmpipe \
+%else
   -Dgallium-drivers=llvmpipe,svga \
+%endif
   -Dgallium-vdpau=disabled \
   -Dgallium-va=disabled \
+%if 0%{?fedora} <= 42
+  -Dgallium-xa=disabled \
+%else
   -Dgallium-xa=enabled \
+%endif
   -Dgallium-nine=false \
   -Dgallium-opencl=disabled \
   -Dgallium-rusticl=false \
@@ -137,6 +147,7 @@ rm -rf %{buildroot}%{_includedir}/KHR
 %{_libdir}/libOSMesa.so
 %{_libdir}/pkgconfig/osmesa.pc
 
+%if 0%{?fedora} > 42
 %files libxatracker
 %{_libdir}/libxatracker.so.2*
 %{_libdir}/libxatracker.so.2.*
@@ -147,6 +158,7 @@ rm -rf %{buildroot}%{_includedir}/KHR
 %{_includedir}/xa_composite.h
 %{_includedir}/xa_context.h
 %{_libdir}/pkgconfig/xatracker.pc
+%endif
 
 %changelog
 %autochangelog
