@@ -12,7 +12,7 @@ The Arduino Language Server is the tool that powers the autocompletion of the ne
 %global godocs          README.md
 
 Name:           arduino-language-server
-Release:        1%?dist
+Release:        2%?dist
 Summary:        An Arduino Language Server based on Clangd for Arduino code autocompletion
 License:        AGPL-3.0
 Packager:       Owen Zimmerman <owen@fyralabs.com>
@@ -27,8 +27,7 @@ BuildRequires:  anda-srpm-macros clang
 %gopkg
 
 %prep
-%goprep
-%go_prep_online
+%goprep -A
 
 %build
 %define gomodulesmode GO111MODULE=on

@@ -8,18 +8,16 @@
 %bcond_with kms
 
 Name:           emulationstation-de
-Version:        3.3.0
+Version:        3.4.0
 Release:        1%?dist
 Summary:        ES-DE is a frontend for browsing and launching games from your multi-platform collection.
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
 License:        MIT
 URL:            https://es-de.org/
 Source0:        https://gitlab.com/es-de/emulationstation-de/-/archive/v%{version}/emulationstation-de-v%{version}.tar.gz
-# Backport a patch to fix a build issue with libgit2
-# This patch should already be included in the next release
-Patch0:         https://gitlab.com/es-de/emulationstation-de/-/commit/3510a09d83949beb765c140041332583b4e70837.patch
 
 BuildRequires:  gcc-c++
+BuildRequires:  bluez-libs-devel
 BuildRequires:  clang-tools-extra
 BuildRequires:  cmake
 BuildRequires:  gettext
@@ -41,6 +39,7 @@ BuildRequires:  pugixml-devel
 BuildRequires:  alsa-lib-devel
 BuildRequires:  mesa-libGL-devel
 BuildRequires:  poppler-cpp-devel
+BuildRequires:  vulkan-loader-devel
 
 Provides:       es-de = %{version}-%{release}
 

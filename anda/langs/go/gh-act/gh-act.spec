@@ -12,7 +12,7 @@
 
 # https://github.com/nektos/act
 %global goipath         github.com/nektos/act
-Version:                0.2.79
+Version:                0.2.82
 
 %gometa -f
 
@@ -39,7 +39,6 @@ BuildRequires:  anda-srpm-macros
 
 %prep
 %autosetup -p1 -n act-%{version}
-%go_prep_online
 
 %if %{without bootstrap}
 %build

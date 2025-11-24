@@ -12,7 +12,6 @@
 %if !0%{?rhel}
 %global with_r300 1
 %global with_r600 1
-%global with_nine 1
 %if 0%{?with_vulkan_hw}
 %global with_nvk %{with_vulkan_hw}
 %endif
@@ -30,12 +29,10 @@
 %ifarch %{ix86} x86_64
 %global with_crocus 1
 %global with_iris   1
-%global with_xa     1
-%global with_intel_clc 1
 %global intel_platform_vulkan %{?with_vulkan_hw:,intel,intel_hasvk}%{!?with_vulkan_hw:%{nil}}
 %if !0%{?rhel}
 %global with_i915   1
-%endif 
+%endif
 %endif
 %ifarch x86_64
 %if !0%{?with_vulkan_hw}
@@ -56,7 +53,6 @@
 %global with_freedreno 1
 %global with_kmsro     1
 %global with_panfrost  1
-%global with_xa        1
 %if 0%{?with_asahi}
 %global asahi_platform_vulkan %{?with_vulkan_hw:,asahi}%{!?with_vulkan_hw:%{nil}}
 %endif
@@ -75,7 +71,7 @@
 %bcond_with valgrind
 %endif
 
-%global vulkan_drivers swrast%{?base_vulkan}%{?intel_platform_vulkan}%{?asahi_platform_vulkan}%{?extra_platform_vulkan}%{?with_nvk:,nouveau}%{?with_virtio:,virtio}
+%global vulkan_drivers swrast%{?base_vulkan}%{?intel_platform_vulkan}%{?asahi_platform_vulkan}%{?extra_platform_vulkan}%{?with_nvk:,nouveau}%{?with_virtio:,virtio}%{?with_d3d12:,microsoft-experimental}
 
 Name:           %{srcname}
 Summary:        Mesa graphics libraries
@@ -83,7 +79,7 @@ Summary:        Mesa graphics libraries
 # This should not break anything by default as the Mesa stream is ***EXPLICITLY***
 # disabled by default, and has to be enabled manually. See `terra/release/terra-mesa.repo` for details.
 Epoch:          1
-Version:        25.1.6
+Version:        25.3.0
 Release:        1%?dist
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0
 URL:            http://www.mesa3d.org
@@ -98,6 +94,7 @@ Patch10:        gnome-shell-glthread-disable.patch
 
 # https://github.com/bazzite-org/mesa
 Patch20:        bazzite.patch
+Patch21:        https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/37498.diff
 
 BuildRequires:  meson >= 1.3.0
 BuildRequires:  gcc
@@ -159,7 +156,7 @@ BuildRequires:  flatbuffers-devel
 BuildRequires:  flatbuffers-compiler
 BuildRequires:  xtensor-devel
 %endif
-%if 0%{?with_opencl} || 0%{?with_nvk} || 0%{?with_intel_clc} || 0%{?with_asahi} || 0%{?with_panfrost}
+%if 0%{?with_opencl} || 0%{?with_nvk} || 0%{?with_asahi} || 0%{?with_panfrost}
 BuildRequires:  clang-devel
 BuildRequires:  pkgconfig(libclc)
 BuildRequires:  pkgconfig(SPIRV-Tools)
@@ -176,15 +173,14 @@ BuildRequires:  (crate(proc-macro2) >= 1.0.56 with crate(proc-macro2) < 2)
 BuildRequires:  (crate(quote) >= 1.0.25 with crate(quote) < 2)
 BuildRequires:  (crate(syn/clone-impls) >= 2.0.15 with crate(syn/clone-impls) < 3)
 BuildRequires:  (crate(unicode-ident) >= 1.0.6 with crate(unicode-ident) < 2)
+BuildRequires:  (crate(rustc-hash) >= 2.1.1 with crate(rustc-hash) < 3)
 %endif
 %if %{with valgrind}
 BuildRequires:  pkgconfig(valgrind)
 %endif
 BuildRequires:  python3-devel
 BuildRequires:  python3-mako
-%if 0%{?with_intel_clc}
 BuildRequires:  python3-ply
-%endif
 BuildRequires:  python3-pycparser
 BuildRequires:  python3-pyyaml
 BuildRequires:  vulkan-headers
@@ -194,7 +190,7 @@ BuildRequires:  pkgconfig(vulkan)
 %endif
 %if 0%{?with_d3d12}
 BuildRequires:  pkgconfig(DirectX-Headers) >= 1.614.1
-%endif 
+%endif
 
 %description
 %{summary}.
@@ -203,6 +199,9 @@ BuildRequires:  pkgconfig(DirectX-Headers) >= 1.614.1
 Summary:        Mesa driver filesystem
 Provides:       mesa-dri-filesystem = %{?epoch:%{epoch}:}%{version}-%{release}
 Obsoletes:      mesa-omx-drivers < %{?epoch:%{epoch}:}%{version}-%{release}
+Obsoletes:      mesa-libd3d < %{?epoch:%{epoch}:}%{version}-%{release}
+Obsoletes:      mesa-libd3d-devel < %{?epoch:%{epoch}:}%{version}-%{release}
+Obsoletes:      mesa-vdpau-drivers < %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description filesystem
 %{summary}.
@@ -301,25 +300,6 @@ Provides:       libgbm-devel%{?_isa}
 %description libgbm-devel
 %{summary}.
 
-%if 0%{?with_xa}
-%package libxatracker
-Summary:        Mesa XA state tracker
-Provides:       libxatracker
-Provides:       libxatracker%{?_isa}
-
-%description libxatracker
-%{summary}.
-
-%package libxatracker-devel
-Summary:        Mesa XA state tracker development package
-Requires:       %{name}-libxatracker%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-Provides:       libxatracker-devel
-Provides:       libxatracker-devel%{?_isa}
-
-%description libxatracker-devel
-%{summary}.
-%endif
-
 %if 0%{?with_opencl}
 %package libOpenCL
 Summary:        Mesa OpenCL runtime library
@@ -347,19 +327,15 @@ Summary:        Mesa TensorFlow Lite delegate
 %{summary}.
 %endif
 
-%if 0%{?with_nine}
-%package libd3d
-Summary:        Mesa Direct3D9 state tracker
+%if 0%{?with_d3d12}
+%package dxil-devel
+Summary:        Mesa SPIR-V to DXIL binary
+Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Obsoletes:      %{name}-dxil-libs < 1:25.2.3-2
+Obsoletes:      %{name}-dxil < 1:25.2.3-2
 
-%description libd3d
-%{summary}.
-
-%package libd3d-devel
-Summary:        Mesa Direct3D9 state tracker development package
-Requires:       %{name}-libd3d%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-
-%description libd3d-devel
-%{summary}.
+%description dxil-devel
+Development tools for translating SPIR-V shader code to DXIL for Direct3D 12
 %endif
 
 %package vulkan-drivers
@@ -399,7 +375,7 @@ export MESON_PACKAGE_CACHE_DIR="%{cargo_registry}/"
 
 %meson \
   -Dplatforms=x11,wayland \
-  -Dosmesa=true \
+  -Dgallium-mediafoundation=disabled \
 %if 0%{?with_hardware}
   -Dgallium-drivers=llvmpipe,virgl,nouveau%{?with_r300:,r300}%{?with_crocus:,crocus}%{?with_i915:,i915}%{?with_iris:,iris}%{?with_vmware:,svga}%{?with_radeonsi:,radeonsi}%{?with_r600:,r600}%{?with_asahi:,asahi}%{?with_freedreno:,freedreno}%{?with_etnaviv:,etnaviv}%{?with_tegra:,tegra}%{?with_vc4:,vc4}%{?with_v3d:,v3d}%{?with_lima:,lima}%{?with_panfrost:,panfrost}%{?with_vulkan_hw:,zink}%{?with_d3d12:,d3d12} \
 %else
@@ -407,15 +383,12 @@ export MESON_PACKAGE_CACHE_DIR="%{cargo_registry}/"
 %endif
   -Dgallium-vdpau=%{?with_vdpau:enabled}%{!?with_vdpau:disabled} \
   -Dgallium-va=%{?with_va:enabled}%{!?with_va:disabled} \
-  -Dgallium-xa=%{?with_xa:enabled}%{!?with_xa:disabled} \
-  -Dgallium-nine=%{?with_nine:true}%{!?with_nine:false} \
   -Dteflon=%{?with_teflon:true}%{!?with_teflon:false} \
-  -Dgallium-opencl=%{?with_opencl:icd}%{!?with_opencl:disabled} \
 %if 0%{?with_opencl}
   -Dgallium-rusticl=true \
 %endif
   -Dvulkan-drivers=%{?vulkan_drivers} \
-  -Dvulkan-layers=device-select \
+  -Dvulkan-layers=device-select,anti-lag \
   -Dshared-glapi=enabled \
   -Dgles1=enabled \
   -Dgles2=enabled \
@@ -424,9 +397,6 @@ export MESON_PACKAGE_CACHE_DIR="%{cargo_registry}/"
   -Dglx=dri \
   -Degl=enabled \
   -Dglvnd=enabled \
-%if 0%{?with_intel_clc}
-  -Dintel-clc=enabled \
-%endif
   -Dvideo-codecs=all \
   -Dintel-rt=%{?with_intel_vk_rt:enabled}%{!?with_intel_vk_rt:disabled} \
   -Dmicrosoft-clc=disabled \
@@ -507,23 +477,6 @@ popd
 %{_includedir}/gbm_backend_abi.h
 %{_libdir}/pkgconfig/gbm.pc
 
-%if 0%{?with_xa}
-%files libxatracker
-%if 0%{?with_hardware}
-%{_libdir}/libxatracker.so.2
-%{_libdir}/libxatracker.so.2.*
-%endif
-
-%files libxatracker-devel
-%if 0%{?with_hardware}
-%{_libdir}/libxatracker.so
-%{_includedir}/xa_tracker.h
-%{_includedir}/xa_composite.h
-%{_includedir}/xa_context.h
-%{_libdir}/pkgconfig/xatracker.pc
-%endif
-%endif
-
 %if 0%{?with_teflon}
 %files libTeflon
 %{_libdir}/libteflon.so
@@ -531,25 +484,11 @@ popd
 
 %if 0%{?with_opencl}
 %files libOpenCL
-%{_libdir}/libMesaOpenCL.so.*
 %{_libdir}/libRusticlOpenCL.so.*
-%{_sysconfdir}/OpenCL/vendors/mesa.icd
 %{_sysconfdir}/OpenCL/vendors/rusticl.icd
 
 %files libOpenCL-devel
-%{_libdir}/libMesaOpenCL.so
 %{_libdir}/libRusticlOpenCL.so
-%endif
-
-%if 0%{?with_nine}
-%files libd3d
-%dir %{_libdir}/d3d/
-%{_libdir}/d3d/*.so.*
-
-%files libd3d-devel
-%{_libdir}/pkgconfig/d3d.pc
-%{_includedir}/d3dadapter/
-%{_libdir}/d3d/*.so
 %endif
 
 %files dri-drivers
@@ -576,7 +515,7 @@ popd
 %{_libdir}/dri/iris_dri.so
 %if 0%{?with_i915}
 %{_libdir}/dri/i915_dri.so
-%endif 
+%endif
 %endif
 %ifarch aarch64 x86_64 %{ix86}
 %if 0%{?with_asahi}
@@ -585,7 +524,7 @@ popd
 %endif
 %if 0%{?with_d3d12}
 %{_libdir}/dri/d3d12_dri.so
-%endif 
+%endif
 %{_libdir}/dri/ingenic-drm_dri.so
 %{_libdir}/dri/imx-drm_dri.so
 %{_libdir}/dri/imx-lcdif_dri.so
@@ -624,10 +563,6 @@ popd
 %if 0%{?with_vmware}
 %{_libdir}/dri/vmwgfx_dri.so
 %endif
-%endif
-%if 0%{?with_opencl}
-%dir %{_libdir}/gallium-pipe
-%{_libdir}/gallium-pipe/*.so
 %endif
 %if 0%{?with_kmsro}
 %{_libdir}/dri/armada-drm_dri.so
@@ -672,7 +607,7 @@ popd
 %endif
 %if 0%{?with_d3d12}
 %{_libdir}/dri/d3d12_drv_video.so
-%endif 
+%endif
 %{_libdir}/dri/virtio_gpu_drv_video.so
 %endif
 
@@ -688,19 +623,28 @@ popd
 %endif
 %if 0%{?with_d3d12}
 %{_libdir}/vdpau/libvdpau_d3d12.so.1*
-%endif 
+%endif
 %{_libdir}/vdpau/libvdpau_virtio_gpu.so.1*
+%endif
+
+%if 0%{?with_d3d12}
+%files dxil-devel
+%{_bindir}/spirv2dxil
+%{_libdir}/libspirv_to_dxil.a
+%{_libdir}/libspirv_to_dxil.so
 %endif
 
 %files vulkan-drivers
 %{_libdir}/libvulkan_lvp.so
 %{_datadir}/vulkan/icd.d/lvp_icd.*.json
 %{_libdir}/libVkLayer_MESA_device_select.so
+%{_libdir}/libVkLayer_MESA_anti_lag.so
 %{_datadir}/vulkan/implicit_layer.d/VkLayer_MESA_device_select.json
+%{_datadir}/vulkan/implicit_layer.d/VkLayer_MESA_anti_lag.json
 %if 0%{?with_virtio}
 %{_libdir}/libvulkan_virtio.so
 %{_datadir}/vulkan/icd.d/virtio_icd.*.json
-%endif 
+%endif
 %if 0%{?with_vulkan_hw}
 %{_libdir}/libvulkan_radeon.so
 %{_datadir}/drirc.d/00-radv-defaults.conf
@@ -708,6 +652,10 @@ popd
 %if 0%{?with_nvk}
 %{_libdir}/libvulkan_nouveau.so
 %{_datadir}/vulkan/icd.d/nouveau_icd.*.json
+%endif
+%if 0%{?with_d3d12}
+%{_libdir}/libvulkan_dzn.so
+%{_datadir}/vulkan/icd.d/dzn_icd.*.json
 %endif
 %ifarch %{ix86} x86_64
 %{_libdir}/libvulkan_intel.so

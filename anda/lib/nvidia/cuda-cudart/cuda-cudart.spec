@@ -8,7 +8,7 @@
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
-Version:        12.9.79
+Version:        13.0.96
 Release:        1%?dist
 Summary:        CUDA Runtime API library
 License:        CUDA Toolkit
@@ -74,7 +74,6 @@ sed -i \
 %{_includedir}/*
 %{_libdir}/libcudadevrt.a
 %{_libdir}/libcudart.so
-%{_libdir}/libculibos.a
 %{_libdir}/pkgconfig/cudart.pc
 
 %files static

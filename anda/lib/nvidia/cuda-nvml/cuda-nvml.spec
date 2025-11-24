@@ -4,12 +4,12 @@
 %global __strip /bin/true
 %global _missing_build_ids_terminate_build 0
 %global _build_id_links none
-%global major_package_version 12-8
+%global major_package_version 13-0
 
 Name:           cuda-nvml
 Epoch:          1
-Version:        12.9.79
-Release:        1%?dist
+Version:        13.0.87
+Release:        1%{?dist}
 Summary:        NVIDIA Management library (NVML)
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit

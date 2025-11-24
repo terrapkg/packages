@@ -1,7 +1,7 @@
-%global commit e5269212ade866d33866af5dc008d0710058e0ec
+%global commit dbcfb48198d80e6b6315dd752466279d2d8ec616
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250729
-%global ver 0.198.0
+%global commit_date 20251124
+%global ver 0.215.0
 
 %bcond_with check
 %bcond nightly 1
@@ -26,6 +26,10 @@ Source0:        https://github.com/zed-industries/zed/archive/%{commit}.tar.gz
 Conflicts:      zed
 Conflicts:      zed-preview
 
+%ifarch x86_64
+# BUG: fedora rustc missing this dep
+BuildRequires:  libedit(x86-64)
+%endif
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros
 BuildRequires:  gcc
@@ -66,17 +70,22 @@ Supplements: (%name unless zfs)
 This package provides the /usr/bin/zed binary. If you use zfs, install %name-rename-zeditor instead.
 %files cli
 %_bindir/zed
+%{_datadir}/applications/%app_id.desktop
+%{_metainfodir}/%app_id.metainfo.xml
 
 %package rename-zeditor
 Summary: Rename zed to zeditor to prevent collision with zfs
 Provides: %name-cli
 Conflicts: %name-cli
 Supplements: (%name and zfs)
+RemovePathPostFixes: .zeditor
 %description rename-zeditor
 This package provides the %_bindir/zeditor binary instead of %_bindir/zed. This avoids conflicts with the zfs package.
 The normal package is %name-cli.
 %files rename-zeditor
 %_bindir/zeditor
+%_datadir/applications/%app_id.desktop.zeditor
+%{_metainfodir}/%app_id.metainfo.xml
 
 
 %prep
@@ -100,6 +109,7 @@ export BRANDING_DARK="#1a5fb4"
 
 echo "StartupWMClass=$APP_ID" >> crates/zed/resources/zed.desktop.in
 envsubst < "crates/zed/resources/zed.desktop.in" > $APP_ID.desktop # from https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=zed-git#n52
+sed -i "s|@release_info@||g" "crates/zed/resources/flatpak/zed.metainfo.xml.in"
 
 envsubst < "crates/zed/resources/flatpak/zed.metainfo.xml.in" > $APP_ID.metainfo.xml
 
@@ -118,6 +128,8 @@ install -Dm755 target/rpm/cli %{buildroot}%{_bindir}/zed
 %__cargo clean
 
 install -Dm644 %app_id.desktop %{buildroot}%{_datadir}/applications/%app_id.desktop
+sed 's/Exec=zed/Exec=zeditor/' %app_id.desktop > %app_id.desktop.zeditor
+install -Dm644 %app_id.desktop.zeditor -t %buildroot%_datadir/applications/
 install -Dm644 crates/zed/resources/app-icon-nightly.png %{buildroot}%{_datadir}/pixmaps/%app_id.png
 
 install -Dm644 %app_id.metainfo.xml %{buildroot}%{_metainfodir}/%app_id.metainfo.xml
@@ -138,10 +150,13 @@ install -Dm644 %app_id.metainfo.xml %{buildroot}%{_metainfodir}/%app_id.metainfo
 > LICENSE.dependencies
 mv assets/icons/LICENSES LICENSE.icons
 mv assets/themes/LICENSES LICENSE.themes
-mv assets/fonts/plex-mono/license.txt LICENSE.fonts
+mv assets/fonts/ibm-plex-sans/license.txt LICENSE.fonts
 
 %if %{with check}
 %check
+appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%app_id.metainfo.xml
+desktop-file-validate %{buildroot}%{_datadir}/applications/%app_id.desktop
+
 %cargo_test
 %endif
 
@@ -157,9 +172,7 @@ mv assets/fonts/plex-mono/license.txt LICENSE.fonts
 %license LICENSE.themes
 %license assets/licenses.md
 %{_libexecdir}/zed-editor
-%{_datadir}/applications/%app_id.desktop
 %{_datadir}/pixmaps/%app_id.png
-%{_metainfodir}/%app_id.metainfo.xml
 
 %changelog
 %autochangelog

@@ -1,9 +1,9 @@
 # Disable X11 for RHEL 10+
 %bcond x11 %[%{undefined rhel} || 0%{?rhel} < 10]
 
-%global commit a6f3236c3a174663c497b0d73a7ec648f6267a41
+%global commit 8469605191c1fb3c9ebf84617a4b2e2bada357fa
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250729
+%global commit_date 20251124
 %global ver 0.40.0
 
 Name:           mpv-nightly
@@ -80,6 +80,10 @@ BuildRequires:  pkgconfig(vdpau)
 BuildRequires:  pkgconfig(xpresent)
 BuildRequires:  pkgconfig(xscrnsaver)
 BuildRequires:  pkgconfig(xv)
+%endif
+
+%ifarch x86_64
+BuildRequires:  libOpenCL.so.1
 %endif
 
 Requires:       hicolor-icon-theme

@@ -1,7 +1,9 @@
 %global framework kio
 
 %global stable_kf6 stable
-%global majmin_ver_kf6 6.16
+%global majmin_ver_kf6 6.20
+%global ecm_ver 6.20.0
+%global ecm_rel 1
 
 Name:    kf6-%{framework}
 Version: %{majmin_ver_kf6}.0

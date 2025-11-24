@@ -1,5 +1,6 @@
-%global commit 57e7efe
-%global commit_date 20250709
+%global commit 5baeb660214bcafc9ae0b733a1bc84f5fa6078f4
+%global shortcommit 5baeb66
+%global commit_date 20251108
 
 Name:			astal
 Version:		0^%commit_date.%commit

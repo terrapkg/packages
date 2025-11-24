@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component type="console-application">
+  <id>org.sr.ht.delthas.senpai</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>ISC</project_license>
+  <icon type="local">/usr/share/icons/hicolor/scalable/apps/senpai.svg</icon>
+
+  <name>senpai</name>
+  <summary>Your everyday TUI IRC student</summary>
+
+  <description>
+    <p>
+        senpai is an IRC client that works best with bouncers:
+    </p>
+    <ul>
+        <li>no logs are kept</li>
+        <li>history is fetched from the server via CHATHISTORY</li>
+        <li>networks are fetched from the server via bouncer-networks</li>
+        <li>messages can be searched in logs via SEARCH</li>
+        <li>files can be uploaded via FILEHOST (with drag &amp; drop!)</li>
+    </ul>
+  </description>
+
+<launchable type="desktop-id">senpai.desktop</launchable>
+
+  <url type="homepage">https://sr.ht/~taiite/senpai/</url>
+  <provides>
+      <mediatype>text/javascript</mediatype>
+      <mediatype>text/typescript</mediatype>
+  </provides>
+
+  <releases>
+    <release version="0.4.1" />
+  </releases>
+</component>

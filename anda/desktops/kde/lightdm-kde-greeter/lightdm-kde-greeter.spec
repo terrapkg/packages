@@ -1,7 +1,7 @@
-%global commit 31d29530ad834c1bfb70ed43f9395a549fbace56
+%global commit 7f92a0f5aab4936f24f5a47a717a7444af1d3f42
 
 Name:           lightdm-kde-greeter
-Version:        6.0.3
+Version:        6.0.5
 Release:        1%?dist
 Summary:        Login screen using the LightDM framework
 License:        GPL-3.0-or-later
