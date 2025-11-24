@@ -1,5 +1,5 @@
 %global appid luisbocanegra.kdematerialyou.colors
-%global developer "Luis Bocanegra "
+%global developer "Luis Bocanegra"
 %global org "com.github.luisbocanegra"
 
 Name:           kde-material-you-colors
