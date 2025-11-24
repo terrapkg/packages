@@ -2,6 +2,7 @@
 %global npm_name license-checker-rseidelsohn
 # Disabled for now. Requires ESLint.
 %bcond test 0
+%jsmeta
 
 
 Name:          nodejs-license-checker
@@ -35,7 +36,7 @@ Enhanced and updated fork of Dav Glass' original (but abandoned) license-checker
 %npm_install -s license-checker
 
 # Bootstrap the license fetching
-bin/%{npm_name}.js --limitAttributes licenses --out LICENSE.modules
+bin/%{npm_name}%{?_js} --limitAttributes licenses --out LICENSE.modules
 
 %if %{with test}
 %check
@@ -50,4 +51,4 @@ bin/%{npm_name}.js --limitAttributes licenses --out LICENSE.modules
 %doc README.md
 %doc SECURITY.md
 %{_bindir}/license-checker
-%{nodejs_sitelib}/%{npm_name}/
+%{_jsdir}/%{npm_name}/
