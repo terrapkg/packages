@@ -6,6 +6,7 @@
 
 %global crate zed
 %global appid dev.zed.Zed-Preview
+%global appstream_component desktop-application
 
 %global rustflags_debuginfo 0
 

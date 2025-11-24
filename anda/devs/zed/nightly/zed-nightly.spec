@@ -11,6 +11,7 @@
 
 %global crate zed
 %global appid dev.zed.Zed-Nightly
+%global appstream_component desktop-application
 
 %global rustflags_debuginfo 0
 
