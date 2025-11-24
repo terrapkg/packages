@@ -1,4 +1,5 @@
 %global __requires_exclude_from %{_datadir}/%{name}/.*
+%bcond_without server
 
 Name:			scrcpy
 Version:		3.3.3
@@ -22,28 +23,37 @@ BuildRequires:	cmake(VulkanHeaders)
 BuildRequires:	vulkan-loader
 BuildRequires:	OpenCL-ICD-Loader
 BuildRequires:  python3-sdkmanager
-BuildRequires:  java-25-openjdk-devel
+# Gradle here really wants Java 21-23 to work properly
+# Java 25 breaks the build
+BuildRequires:  java-21-openjdk-devel
 BuildConflicts:	dkms-nvidia akmod-nvidia
 Requires:       android-tools
 
 %description
 This application mirrors Android devices (video and audio) connected via USB or TCP/IP and allows control using the computer's keyboard and mouse. It does not require root access or an app installed on the device. It works on Linux, Windows, and macOS.
 
+%if %{with server}
 %package server
 
 %description server
 Android server for %{name}
+%endif
+
 
 %pkg_completion -Bz
 
 %prep
 %autosetup
 mkdir -p /tmp/android_sdk
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
+export PATH=$JAVA_HOME/bin:$PATH
 export ANDROID_SDK_ROOT=/tmp/android_sdk
 sdkmanager --install tools --sdk_root /tmp/android_sdk
 echo y | sdkmanager --license
 
 %build
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
+export PATH=$JAVA_HOME/bin:$PATH
 export WORK_DIR=$PWD/work
 export OUTPUT_DIR=$PWD/output
 %dnl #export CFLAGS="$(echo $CFLAGS | sed 's/-D_GNU_SOURCE[=1]*//g')"
@@ -52,7 +62,8 @@ export VERSION=v%version
 export ANDROID_SDK_ROOT=/tmp/android_sdk
 
 %meson \
-	-Dcompile_server=true \
+	%{?with_server:-Dcompile_server=true} \
+	%{!?with_server:-Dcompile_server=false} \
 	-Dportable=false \
 	-Dstatic=false
 
@@ -78,8 +89,10 @@ install -Dm 644 ${SOURCES}/terms.html %{buildroot}%{_licensedir}/LICENSE.android
 %_iconsdir/hicolor/*/apps/scrcpy.png
 %_mandir/man1/scrcpy.1.*
 
+%if %{with server}
 %files server
 %_datadir/scrcpy/scrcpy-server
+%endif
 
 %changelog
 * Thu Oct 02 2025 june-fish <june@fyralabs.com>
