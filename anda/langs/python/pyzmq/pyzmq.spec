@@ -15,11 +15,11 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-pip
 BuildRequires:  python3-setuptools
 BuildRequires:  python3-scikit-build-core
-BuildRequires:  cmake gcc gcc-c++ python3-cython
+BuildRequires:  python3-cython
 
-BuildRequires:  python3-wheel
-BuildRequires:  python3-pyproject-metadata
-BuildRequires:  python3-importlib-metadata
+BuildRequires:  cmake
+BuildRequires:  gcc
+BuildRequires:  gcc-c++
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
