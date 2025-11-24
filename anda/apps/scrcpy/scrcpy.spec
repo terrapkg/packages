@@ -1,3 +1,5 @@
+%global __requires_exclude_from %{_datadir}/%{name}/.*
+
 Name:			scrcpy
 Version:		3.3.3
 Release:		2%?dist
@@ -26,6 +28,11 @@ Requires:       android-tools
 
 %description
 This application mirrors Android devices (video and audio) connected via USB or TCP/IP and allows control using the computer's keyboard and mouse. It does not require root access or an app installed on the device. It works on Linux, Windows, and macOS.
+
+%package server
+
+%description
+Android server for %{name}
 
 %pkg_completion -Bz
 
@@ -67,10 +74,12 @@ install -Dm 644 ${SOURCES}/terms.html %{buildroot}%{_licensedir}/LICENSE.android
 %_bindir/scrcpy
 %_datadir/applications/scrcpy-console.desktop
 %_datadir/applications/scrcpy.desktop
-%_datadir/scrcpy/scrcpy-server
 %_datadir/bash-completion/completions/scrcpy
 %_iconsdir/hicolor/*/apps/scrcpy.png
 %_mandir/man1/scrcpy.1.*
+
+%files server
+%_datadir/scrcpy/scrcpy-server
 
 %changelog
 * Thu Oct 02 2025 june-fish <june@fyralabs.com>
