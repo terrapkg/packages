@@ -1,9 +1,16 @@
 %global __requires_exclude_from %{_datadir}/%{name}/.*
 %bcond_without server_prebuilt
+
+# NOTE: We only do this on aarch64 to avoid
+# duplicate build artifacts on x86_64
+# 
+# If you are building this package locally,
+# set --with server to cross-compile/bundle the server APK subpackage.
+# 
+# The server APK is architecture independent.
 %ifarch aarch64
 %bcond_without server
-%endif
-%ifarch x86_64
+%else
 %bcond_with server
 %endif
 
@@ -78,10 +85,14 @@ export ANDROID_SDK_ROOT=/tmp/android_sdk
 # 21-25, so we can't build the APK here at all
 # For now, let's use the prebuilt server
 # https://github.com/gradle/gradle/issues/35111
-%if %{with server_prebuilt}
+%if %{with server}
+  %if %{with server_prebuilt}
 %meson -Dprebuilt_server=%{SOURCE10}
+  %else
+%meson -Dcompile_server=true
+  %endif
 %else
-%meson %{?with_server:-Dcompile_server=true} %{!?with_server:-Dcompile_server=false}
+%meson -Dcompile_server=false
 %endif
 
 %meson_build
