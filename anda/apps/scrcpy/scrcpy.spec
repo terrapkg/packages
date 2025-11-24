@@ -31,7 +31,7 @@ This application mirrors Android devices (video and audio) connected via USB or 
 
 %package server
 
-%description
+%description server
 Android server for %{name}
 
 %pkg_completion -Bz
