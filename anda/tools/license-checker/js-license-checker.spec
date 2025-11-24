@@ -5,7 +5,7 @@
 %jsmeta
 
 
-Name:          nodejs-license-checker
+Name:          js-license-checker
 Version:       4.4.2
 Release:       1%{?dist}
 Summary:       Check NPM package licenses
@@ -16,6 +16,7 @@ BuildRequires: anda-srpm-macros >= 0.2.19
 BuildRequires: nodejs-devel
 BuildRequires: nodejs-npm
 BuildRequires: nodejs-packaging
+BuildRequires: web-assets-devel
 ExclusiveArch: %{nodejs_arches} noarch
 BuildArch:     noarch
 Packager:      Gilver E. <rockgrub@disroot.org>
@@ -52,3 +53,4 @@ bin/%{npm_name}%{?_js} --limitAttributes licenses --out LICENSE.modules
 %doc SECURITY.md
 %{_bindir}/license-checker
 %{_jsdir}/%{npm_name}/
+%{nodejs_sitelib}/%{npm_name}
