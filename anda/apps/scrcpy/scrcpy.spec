@@ -3,7 +3,7 @@
 
 %global appid com.genymobile.scrcpy
 %global org com.genymobile
-%global appstream_component console-application
+%global appstream_component desktop-application
 
 # NOTE: We only do this on aarch64 to avoid
 # duplicate build artifacts on x86_64
