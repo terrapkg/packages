@@ -1,5 +1,5 @@
 Name:           netto
-Version:        0.1.2
+Version:        0.1.4
 Release:        1%?dist
 Summary:        📡 GUI Network Applet
 License:        GPL-3.0-or-later

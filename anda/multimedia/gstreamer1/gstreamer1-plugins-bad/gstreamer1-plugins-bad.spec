@@ -3,8 +3,8 @@
 %global         majorminor 1.0
 
 Name:           gstreamer1-plugins-bad
-Version:        1.26.6
-Release:        2%?dist
+Version:        1.26.8
+Release:        1%?dist
 Epoch:          2
 Summary:        GStreamer streaming media framework "bad" plugins
 License:        LGPL-2.0-or-later and LGPL-2.0-only
@@ -24,7 +24,7 @@ Provides:       %{name}-free%{?_isa} = %{?epoch}:%{version}-%{release}
 Obsoletes:      %{name}-free-extras < %{?epoch}:%{version}-%{release}
 Provides:       %{name}-free-extras = %{?epoch}:%{version}-%{release}
 Provides:       %{name}-free-extras%{?_isa} = %{?epoch}:%{version}-%{release}
-#Obsoletes:      %{name}-freeworld < %{?epoch}:%{version}-%{release}
+Obsoletes:      %{name}-freeworld < %{?epoch}:%{version}-%{release}
 Provides:       %{name}-freeworld = %{?epoch}:%{version}-%{release}
 Provides:       %{name}-freeworld%{?_isa} = %{?epoch}:%{version}-%{release}
 Obsoletes:      %{name}-nonfree < %{?epoch}:%{version}-%{release}
@@ -64,7 +64,9 @@ BuildRequires:  gobject-introspection-devel >= 1.31.1
 BuildRequires:  gsm-devel
 BuildRequires:  ladspa-devel
 BuildRequires:  libatomic
+%if 0%{?fedora} < 44
 BuildRequires:  libcdaudio-devel
+%endif
 BuildRequires:  libmicrodns-devel
 #BuildRequires:  libmpcdec-devel - Old API
 BuildRequires:  mesa-libGL-devel

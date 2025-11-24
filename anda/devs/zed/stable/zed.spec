@@ -9,7 +9,7 @@
 %global rustflags_debuginfo 0
 
 Name:           zed
-Version:        0.206.7
+Version:        0.213.4
 Release:        1%?dist
 Summary:        Zed is a high-performance, multiplayer code editor
 SourceLicense:  AGPL-3.0-only AND Apache-2.0 AND GPL-3.0-or-later
@@ -63,6 +63,7 @@ This package provides the /usr/bin/zed binary. If you use zfs, install %name-ren
 %files cli
 %_bindir/zed
 %{_datadir}/applications/%app_id.desktop
+%{_metainfodir}/%app_id.metainfo.xml
 
 %package rename-zeditor
 Summary: Rename zed to zeditor to prevent collision with zfs
@@ -76,6 +77,7 @@ The normal package is %name-cli.
 %files rename-zeditor
 %_bindir/zeditor
 %_datadir/applications/%app_id.desktop.zeditor
+%{_metainfodir}/%app_id.metainfo.xml
 
 
 %prep
@@ -96,6 +98,7 @@ export BRANDING_DARK="#1a5fb4"
 
 echo "StartupWMClass=$APP_ID" >> crates/zed/resources/zed.desktop.in
 envsubst < "crates/zed/resources/zed.desktop.in" > $APP_ID.desktop # from https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=zed-git#n52
+sed -i "s|@release_info@||g" "crates/zed/resources/flatpak/zed.metainfo.xml.in"
 
 envsubst < "crates/zed/resources/flatpak/zed.metainfo.xml.in" > $APP_ID.metainfo.xml
 
@@ -140,6 +143,9 @@ mv assets/fonts/ibm-plex-sans/license.txt LICENSE.fonts
 
 %if %{with check}
 %check
+appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%app_id.metainfo.xml
+desktop-file-validate %{buildroot}%{_datadir}/applications/%app_id.desktop
+
 %cargo_test
 %endif
 
@@ -156,7 +162,6 @@ mv assets/fonts/ibm-plex-sans/license.txt LICENSE.fonts
 %license assets/licenses.md
 %{_libexecdir}/zed-editor
 %{_datadir}/pixmaps/%app_id.png
-%{_metainfodir}/%app_id.metainfo.xml
 
 %changelog
 %autochangelog

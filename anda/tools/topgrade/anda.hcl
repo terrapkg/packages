@@ -1,5 +1,5 @@
 project pkg {
     rpm {
-        spec = "topgrade.spec"
+        spec = "rust-topgrade.spec"
     }
 }

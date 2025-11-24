@@ -79,7 +79,7 @@ Summary:        Mesa graphics libraries
 # This should not break anything by default as the Mesa stream is ***EXPLICITLY***
 # disabled by default, and has to be enabled manually. See `terra/release/terra-mesa.repo` for details.
 Epoch:          1
-Version:        25.2.4
+Version:        25.3.0
 Release:        1%?dist
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0
 URL:            http://www.mesa3d.org
@@ -94,6 +94,7 @@ Patch10:        gnome-shell-glthread-disable.patch
 
 # https://github.com/bazzite-org/mesa
 Patch20:        bazzite.patch
+Patch21:        https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/37498.diff
 
 BuildRequires:  meson >= 1.3.0
 BuildRequires:  gcc
@@ -198,6 +199,9 @@ BuildRequires:  pkgconfig(DirectX-Headers) >= 1.614.1
 Summary:        Mesa driver filesystem
 Provides:       mesa-dri-filesystem = %{?epoch:%{epoch}:}%{version}-%{release}
 Obsoletes:      mesa-omx-drivers < %{?epoch:%{epoch}:}%{version}-%{release}
+Obsoletes:      mesa-libd3d < %{?epoch:%{epoch}:}%{version}-%{release}
+Obsoletes:      mesa-libd3d-devel < %{?epoch:%{epoch}:}%{version}-%{release}
+Obsoletes:      mesa-vdpau-drivers < %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description filesystem
 %{summary}.

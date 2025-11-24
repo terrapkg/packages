@@ -1,5 +1,5 @@
 Name:			espanso-x11
-Version: 		2.2.8
+Version: 		2.3.0
 Release:		1%?dist
 Summary:		Cross-platform Text Expander written in Rust for X11
 License:		GPL-3.0
