@@ -3,23 +3,21 @@
 # Disabled for now. Requires ESLint.
 %bcond test 0
 
-Name:          js-license-checker
+
+Name:          nodejs-license-checker
 Version:       4.4.2
 Release:       1%{?dist}
 Summary:       Check NPM package licenses
 SourceLicense: BSD-3-Clause
 License:       Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND CC-BY-3.0 AND ISC AND (MIT AND CC-BY-3.0) AND MIT
 URL:           https://github.com/RSeidelsohn/license-checker-rseidelsohn
-BuildRequires: anda-srpm-macros >= 0.2.20
-BuildRequires: bsdtar
+BuildRequires: anda-srpm-macros >= 0.2.19
 BuildRequires: nodejs-devel
 BuildRequires: nodejs-npm
 BuildRequires: nodejs-packaging
 ExclusiveArch: %{nodejs_arches} noarch
 BuildArch:     noarch
 Packager:      Gilver E. <rockgrub@disroot.org>
-
-%jsmeta
 
 %description
 Extract NPM package licenses.
@@ -37,7 +35,7 @@ Enhanced and updated fork of Dav Glass' original (but abandoned) license-checker
 %npm_install -s license-checker
 
 # Bootstrap the license fetching
-bin/%{npm_name}%{?_js} --limitAttributes licenses --out LICENSE.modules
+bin/%{npm_name}.js --limitAttributes licenses --out LICENSE.modules
 
 %if %{with test}
 %check
@@ -52,4 +50,4 @@ bin/%{npm_name}%{?_js} --limitAttributes licenses --out LICENSE.modules
 %doc README.md
 %doc SECURITY.md
 %{_bindir}/license-checker
-%{_jsdir}/%{npm_name}/
+%{nodejs_sitelib}/%{npm_name}/
