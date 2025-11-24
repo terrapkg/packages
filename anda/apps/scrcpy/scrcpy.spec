@@ -1,6 +1,11 @@
 %global __requires_exclude_from %{_datadir}/%{name}/.*
 %bcond_without server_prebuilt
+%ifarch aarch64
 %bcond_without server
+%endif
+%ifarch x86_64
+%bcond_with server
+%endif
 
 Name:			scrcpy
 Version:		3.3.3
