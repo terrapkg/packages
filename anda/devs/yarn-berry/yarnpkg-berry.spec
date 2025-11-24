@@ -42,7 +42,7 @@ mkdir -p {%{buildroot}%{_bindir},%{buildroot}%{_libdir}/yarn-berry}
 cp -pr {scripts,packages,.pnp.cjs,.pnp.loader.mjs,.yarn} -t %{buildroot}%{_libdir}/yarn-berry
 
 for bin in yarn yarnpkg; do
-   ln -sfr %{buildroot}%{_prefix}%{_libdir}/yarn-berry/scripts/bin/$bin %{buildroot}%{_bindir}/$bin
+   ln -sfr %{buildroot}%{_libdir}/yarn-berry/scripts/bin/$bin %{buildroot}%{_bindir}/$bin
 done
 
 %files
