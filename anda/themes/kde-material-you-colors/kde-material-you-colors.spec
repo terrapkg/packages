@@ -1,3 +1,7 @@
+%global appid luisbocanegra.kdematerialyou.colors
+%global developer "Luis Bocanegra"
+%global org "com.github.luisbocanegra"
+
 Name:           kde-material-you-colors
 Version:        2.0.0
 Release:        1%?dist
@@ -6,6 +10,7 @@ License:        GPL-3.0-only
 URL:            https://github.com/luisbocanegra/%{name}
 # The PyPi source is a more generic install and lacks the Plasmoid config
 Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
+BuildRequires:  anda-srpm-macros
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  cmake >= 3.16
@@ -59,6 +64,7 @@ DESTDIR="%{buildroot}" %cmake_install
 sed -i "1{/^#!\/usr\/bin\/env python3/d}" %{buildroot}%{python3_sitelib}/kde_material_you_colors/main.py
 %fdupes %{buildroot}%{python3_sitelib}/%{name}/
 
+%terra_appstream
 
 %files
 %doc CHANGELOG.md
@@ -66,7 +72,7 @@ sed -i "1{/^#!\/usr\/bin\/env python3/d}" %{buildroot}%{python3_sitelib}/kde_mat
 %license LICENSE
 %{_bindir}/%{name}-screenshot-helper
 %{_datadir}/applications/%{name}-screenshot-helper.desktop
-%{_datadir}/metainfo/luisbocanegra.kdematerialyou.colors.appdata.xml
+%{_metainfodir}/luisbocanegra.kdematerialyou.colors.metainfo.xml
 %{_datadir}/plasma/plasmoids/luisbocanegra.kdematerialyou.colors/
 
 %files -n python3-%{name}
