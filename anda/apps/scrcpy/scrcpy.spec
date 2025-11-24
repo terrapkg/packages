@@ -1,4 +1,5 @@
 %global __requires_exclude_from %{_datadir}/%{name}/.*
+%bcond_without server_prebuilt
 %bcond_without server
 
 Name:			scrcpy
@@ -9,6 +10,9 @@ License:		Apache-2.0 AND Proprietary
 URL:			https://github.com/Genymobile/scrcpy
 Source0:		%url/archive/refs/tags/v%version.tar.gz
 Source1:    https://developer.android.com/studio/terms.html
+%if %{with server_prebuilt}
+Source10:       https://github.com/Genymobile/scrcpy/releases/download/v%{version}/scrcpy-server-v%{version}
+%endif
 Packager:		madonuko <mado@fyralabs.com>
 BuildRequires:	meson ninja-build cmake nasm gcc
 BuildRequires:	pkgconfig(sdl2)
@@ -23,6 +27,7 @@ BuildRequires:	cmake(VulkanHeaders)
 BuildRequires:	vulkan-loader
 BuildRequires:	OpenCL-ICD-Loader
 BuildRequires:  python3-sdkmanager
+Requires:       %{name}-server
 # Gradle here really wants Java 21-23 to work properly
 # Java 25 breaks the build
 BuildRequires:  java-21-openjdk-devel
@@ -34,7 +39,10 @@ This application mirrors Android devices (video and audio) connected via USB or 
 
 %if %{with server}
 %package server
-
+# This package is architecture independent, it's
+# an Android APK file.
+Summary:	Android server for %{name}
+BuildArch:	noarch
 %description server
 Android server for %{name}
 %endif
@@ -61,11 +69,15 @@ export OUTPUT_DIR=$PWD/output
 export VERSION=v%version
 export ANDROID_SDK_ROOT=/tmp/android_sdk
 
-%meson \
-	%{?with_server:-Dcompile_server=true} \
-	%{!?with_server:-Dcompile_server=false} \
-	-Dportable=false \
-	-Dstatic=false
+# TODO: Gradle 8.9 seems to have problems with Java
+# 21-25, so we can't build the APK here at all
+# For now, let's use the prebuilt server
+# https://github.com/gradle/gradle/issues/35111
+%if %{with server_prebuilt}
+%meson -Dprebuilt_server=%{SOURCE10}
+%else
+%meson %{?with_server:-Dcompile_server=true} %{!?with_server:-Dcompile_server=false}
+%endif
 
 %meson_build
 
@@ -76,12 +88,12 @@ pushd "%_vpath_builddir"
 %ninja_install
 popd
 ls -la
-install -Dm 644 ${SOURCES}/terms.html %{buildroot}%{_licensedir}/LICENSE.android-sdk-license
+install -Dm 644 %{SOURCE1} %{buildroot}%{_datadir}/licenses/LICENSE.android-sdk-license
 
 %files
 %doc README.md
 %license LICENSE
-%license %{SOURCE1}
+%license %{_datadir}/licenses/LICENSE.android-sdk-license
 %_bindir/scrcpy
 %_datadir/applications/scrcpy-console.desktop
 %_datadir/applications/scrcpy.desktop
