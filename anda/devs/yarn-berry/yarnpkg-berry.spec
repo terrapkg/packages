@@ -1,8 +1,8 @@
-%bcond bootstrap 1
+%bcond bootstrap 0
 
 Name:          yarnpkg-berry
 Version:       4.12.0
-Release:       2%?dist
+Release:       3%?dist
 Summary:       Active development version of Yarn
 License:       BSD-2-Clause
 URL:           https://yarnpkg.com
@@ -62,5 +62,7 @@ done
 %doc GOVERNANCE.md
 
 %changelog
+* Sun Nov 23 2025 Gilver E. <rockgrub@disroot.org> - 4.12.0-3
+- First build without bootstrap
 * Thu Nov 20 2025 Gilver E. <rockgrub@disroot.org> - 4.11.0-1
 - Initial build
