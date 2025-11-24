@@ -15,6 +15,7 @@ BuildRequires: nodejs-packaging
 BuildRequires: yarnpkg
 %else
 BuildRequires: %{name}
+%endif
 Provides:      yarn-berry
 Provides:      yarnpkg = %{evr}
 BuildArch:     noarch
