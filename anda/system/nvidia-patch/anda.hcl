@@ -3,7 +3,7 @@ project "pkg" {
         spec = "nvidia-patch.spec"
     }
    	labels {
-		nightly = "1"
+		nightly = 1
                 subrepo = "nvidia"
 	}
 }

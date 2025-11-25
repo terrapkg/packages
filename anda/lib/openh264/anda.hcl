@@ -3,6 +3,6 @@ project pkg {
         spec = "openh264.spec"
     }
     labels {
-        subrepo = "extras"
+        subrepo = "multimedia"
     }
 }

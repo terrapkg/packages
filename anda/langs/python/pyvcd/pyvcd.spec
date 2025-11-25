@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.4.0
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Python package for writing Value Change Dump (VCD) files
 License:		MIT
 URL:			https://github.com/SanDisk-Open-Source/pyvcd
@@ -22,11 +22,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-installer
 BuildRequires:  git
 
-Requires:       python3
-
-Provides:       pyvcd
-Provides:       python3-pyvcd
-
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
 %description
@@ -34,6 +29,7 @@ Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
+Provides:       pyvcd
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}

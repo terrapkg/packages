@@ -3,6 +3,6 @@ project pkg {
 		spec = "nim-nightly.spec"
 	}
 	labels {
-		nightly = "1"
+		nightly = 1
 	}
 }

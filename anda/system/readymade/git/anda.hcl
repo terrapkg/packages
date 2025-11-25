@@ -3,5 +3,6 @@ project pkg {
     spec = "readymade-git.spec"
   }
   labels {
+    nightly = 1
   }
 }

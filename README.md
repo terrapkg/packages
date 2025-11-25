@@ -1,9 +1,5 @@
 # Terra Sources
 
-[![Repository status](https://repology.org/badge/repository-big/terra_40.svg?header=Terra+40)](https://repology.org/repository/terra_40)
-[![Repository status](https://repology.org/badge/repository-big/terra_41.svg?header=Terra+41)](https://repology.org/repository/terra_41)
-[![Repository status](https://repology.org/badge/repository-big/terra_rawhide.svg?header=Terra+Rawhide)](https://repology.org/repository/terra_rawhide)
-
 Terra is a rolling-release Fedora repository for all the software you need.
 With Terra, you can install the latest packages knowing that quality and security are assured.
 
@@ -12,6 +8,8 @@ See the introduction at [our website](https://terra.fyralabs.com).
 This monorepo contains the package manifests for all packages in Terra.
 
 ## Installation
+
+The latest detailed instructions are available in our Devdocs: https://developer.fyralabs.com/terra/installing
 
 ### Fedora
 
@@ -44,9 +42,22 @@ And Terra EL itself can be installed with:
 sudo dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terrael$releasever' terra-release
 ```
 
+## Contributions
+
+First of all, thanks for being interested in contributing to Terra! If you have any questions about contributing, please [join our chats](https://wiki.ultramarine-linux.org/en/community/community/).
+
+- [Contribution Guide](https://developer.fyralabs.com/terra/contributing)
+- [FAQ](https://developer.fyralabs.com/terra/faq)
+- [Policy](https://developer.fyralabs.com/terra/policy)
+
+
 ## Documentation
 
 Our documentation can be found on our [Devdocs](https://developer.fyralabs.com/terra/).
+
+## pkgs.org
+
+pkgs.org provides a list of the packages available in the main stream: https://fedora.pkgs.org/rawhide/terra/
 
 ## Questions?
 

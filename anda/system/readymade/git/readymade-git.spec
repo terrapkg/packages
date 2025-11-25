@@ -1,7 +1,7 @@
-%global commit 81f0364d15c51971494af84a8a971e679662de24
-%global commit_date 20250924
+%global commit 40d07f6d1e34c5ecaf958d01a5ddee8d9e1fefcf
+%global commit_date 20251111
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-
+%global crate readymade
 Name:           readymade-git
 Version:        %commit_date.%shortcommit
 Release:        1%?dist
@@ -58,6 +58,7 @@ ln -sf %{_datadir}/applications/com.fyralabs.Readymade.desktop %{buildroot}%{_da
 
 %files config-ultramarine
 %_sysconfdir/readymade.toml
+%_datadir/readymade/*
 
 
 %files
@@ -68,4 +69,3 @@ ln -sf %{_datadir}/applications/com.fyralabs.Readymade.desktop %{buildroot}%{_da
 %_datadir/applications/liveinst.desktop
 %ghost %_datadir/readymade
 %_datadir/icons/hicolor/scalable/apps/com.fyralabs.Readymade.svg
-

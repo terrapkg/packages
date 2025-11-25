@@ -1,0 +1,21 @@
+# Quick and dirty patch to make Yarn Berry's build cache system work when installed as a system package.
+# This patch is created for and maintained solely for Terra.
+--- a/scripts/setup-ts-cache.js	2025-11-22 00:36:54.889317752 -0600
++++ b/scripts/setup-ts-cache.js	2025-11-22 00:44:29.823498920 -0600
+@@ -1,6 +1,7 @@
+ const crypto = require(`crypto`);
+ const esbuild = require(`esbuild`);
+ const fs = require(`fs`);
++const os = require('os');
+ const path = require(`path`);
+ const v8 = require(`v8`);
+ const zlib = require(`zlib`);
+@@ -25,7 +26,7 @@
+   isDirty: false,
+ };
+ 
+-const cachePath = path.join(__dirname, `../node_modules/.cache/yarn/esbuild-transpile-cache.bin`);
++const cachePath = path.join(os.homedir(), `.cache/yarn/esbuild-transpile-cache.bin`);
+ try {
+   const cacheData = v8.deserialize(zlib.brotliDecompressSync(fs.readFileSync(cachePath)));
+   if (cacheData.version === cache.version) {
