@@ -53,7 +53,7 @@ nvm install 24
 sed -i '/\"x64\",/d' electron-builder.ts
 %endif
 %{__bun} install
-%{__bun} install node-abi@latest
+%{__npm} install node-abi@latest
 %{__bun} run packageLinux
 
 %install
