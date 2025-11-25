@@ -37,7 +37,7 @@
     --prefix "%{_prefix}" \
 }
 
-Name:           zig-master-bootstrap
+Name:           zig-master
 Version:        %(echo %{ver} | sed 's/-/~/g')
 Release:        1%?dist
 Summary:        Bootstrap builds for Zig.

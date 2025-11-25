@@ -5,4 +5,6 @@ rpm.global("ver", v);
 
 if rpm.changed() {
    rpm.release();
+   // Update the Zig version in the script
+   sh(`sed -i 's/version=.*/version=${v}/' anda/langs/zig/bootstrap/choose-mirror.sh`, #{});
 }
