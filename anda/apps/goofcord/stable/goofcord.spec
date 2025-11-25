@@ -52,6 +52,7 @@ nvm install 24
 %ifarch aarch64 armv7hl armv7l
 sed -i '/\"x64\",/d' electron-builder.ts
 %endif
+rm bun.lock
 %{__bun} install
 %{__bun} run packageLinux --publish=never
 
