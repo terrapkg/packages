@@ -122,9 +122,14 @@ BuildArch:  noarch
 %obsolete iosevka-fusion-fonts 25.1.1-2
 
 
+%obsolete_ticket https://github.com/terrapkg/packages/pull/7098
 %obsolete terra-surface-dtx-daemon 0.3.10-1
 
+%obsolete_ticket https://github.com/terrapkg/packages/pull/7521
 %obsolete x264-bash-completion 0.165-17.20250609gitb35605ac
+
+%obsolete_ticket https://github.com/terrapkg/packages/pull/7659
+%obsolete x264-bootstrap 0.0.164-15.20231001git31e19f92
 
 %description
 Currently obsoleted packages:
