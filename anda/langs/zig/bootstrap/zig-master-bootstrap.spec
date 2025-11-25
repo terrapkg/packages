@@ -40,7 +40,7 @@
 Name:           zig-master
 Version:        %(echo %{ver} | sed 's/-/~/g')
 Release:        1%?dist
-Summary:        Bootstrap builds for Zig.
+Summary:        Bootstrapped build of Zig from master.
 License:        MIT AND NCSA AND LGPL-2.1-or-later AND LGPL-2.1-or-later WITH GCC-exception-2.0 AND GPL-2.0-or-later AND GPL-2.0-or-later WITH GCC-exception-2.0 AND BSD-3-Clause AND Inner-Net-2.0 AND ISC AND LicenseRef-Fedora-Public-Domain AND GFDL-1.1-or-later AND ZPL-2.1
 URL:            https://ziglang.org
 Source0:        zig-%{version_no_tilde}.tar.xz
@@ -92,7 +92,7 @@ Packager:       Gilver E. <rockgrub@disroot.org>
 
 %description
 Zig is an open source alternative to C. 
-This package provides the bootstrap to build full "prerelease"/master builds of Zig.
+This package provides the bootstrapped build to build full "prerelease"/master builds of Zig.
 It is not recommended to use this build on its own.
 
 # The Zig stdlib only contains uncompiled code
