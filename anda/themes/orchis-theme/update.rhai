@@ -1,1 +1,1 @@
-rpm.global("ver",gh("vinceliuice/Orchis-theme"));
+rpm.global("ver", gh("vinceliuice/Orchis-theme"));
