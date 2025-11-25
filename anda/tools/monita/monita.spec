@@ -1,4 +1,4 @@
-%global commit      c0c619ebd4f0a0320024c17c2c0f3a886241a5ac
+%global commit      99bbb3b403bd8a29ae6a3ee78a89a0edac48b06d
 %global shortcommit %{sub %commit 1 7}
 %global commit_date 20251012
 

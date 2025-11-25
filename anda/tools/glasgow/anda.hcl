@@ -3,4 +3,7 @@ project pkg {
 	rpm {
 		spec = "glasgow.spec"
 	}
+ labels {
+    nightly = 1
+  }
 }

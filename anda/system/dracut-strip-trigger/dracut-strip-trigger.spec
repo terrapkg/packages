@@ -1,6 +1,6 @@
 Name:		dracut-strip-trigger
 Version:	0
-Release:	5%?dist
+Release:	6%?dist
 Summary:	Strip initramfs aggressively
 License:	GPL-3.0-only
 Requires:	dracut installonlypkg(kernel)
@@ -22,13 +22,18 @@ EOF
 cp %{S:0} .
 
 %install
-mkdir -p %{buildroot}/usr/lib/dracut/dracut.conf.d/
-cp %{S:1} %{buildroot}/usr/lib/dracut/dracut.conf.d/
+
+mkdir -p %buildroot/usr/lib/dracut/dracut.conf.d/
+cat<<EOF > %buildroot/usr/lib/dracut/dracut.conf.d/02-iscsi.conf
+add_dracutmodules+=" iscsi "
+EOF
+cp %{S:1} %buildroot/usr/lib/dracut/dracut.conf.d/
 
 %files
-/usr/lib/dracut/dracut.conf.d/01-aggressive-strip.conf
 %doc README
 %license LICENSE
+/usr/lib/dracut/dracut.conf.d/02-iscsi.conf
+/usr/lib/dracut/dracut.conf.d/01-aggressive-strip.conf
 
 %post
 echo 'Regenerating all initramfs…'

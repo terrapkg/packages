@@ -4,8 +4,8 @@
 %global crate typst
 
 Name:           rust-typst
-Version:        0.13.1
-Release:        2%?dist
+Version:        0.14.0
+Release:        1%?dist
 Summary:        New markup-based typesetting system that is powerful and easy to learn
 
 License:        Apache-2.0

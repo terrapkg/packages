@@ -9,7 +9,7 @@
 Name:           %{real_name}-devel
 Epoch:          1
 Version:        13.0.88
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        CUDA nvptxcompiler
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit

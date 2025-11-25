@@ -1,6 +1,6 @@
-%global commit 774890f017eaa000df0647965a627f8738dcea71
+%global commit ee221ecae757d43ab3fb39433f389373b2026109
 %global shortcommit %{sub %{commit} 1 7}
-%global commit_date 20251011
+%global commit_date 20251031
 %global debug_package %{nil}
 
 Name:          dkms-%{modulename}

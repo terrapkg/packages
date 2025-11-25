@@ -1,5 +1,5 @@
 Name:           budgie-extras
-Version:        1.9.0
+Version:        2.0.0
 Release:        1%?dist
 
 License:        GPL-3.0
