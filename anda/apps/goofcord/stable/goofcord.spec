@@ -53,10 +53,7 @@ nvm install 24
 sed -i '/\"x64\",/d' electron-builder.ts
 %endif
 %{__bun} install
-pushd %{rpmbuilddir}
-%{__npm} install node-abi@latest
-popd
-%{__bun} run packageLinux
+%{__bun} run packageLinux --publish=never
 
 %install
 mkdir -p %{buildroot}%{_datadir}/%{name}
