@@ -199,6 +199,8 @@ install -Dpm644 zig.1 -t %{buildroot}%{_mandir}/man1/
 %endif
 
 %changelog
+* Mon Nov 24 2025 Gilver E. <rockgrub@disroot.org> - 0.16.0~dev.1456+16fc083f2-2
+- Moved to new method of bootstrapping, deprecated zig-master-bootstrap
 * Sat May 10 2025 Gilver E. <rockgrub@disroot.org> - 0.15.0~dev.482+2c241b263-2
 - Added GCC runtime dependency to pass system information to Zig
 * Fri Apr 25 2025 Gilver E. <rockgrub@disroot.org> - 0.15.0~dev.384+c06fecd46-2
