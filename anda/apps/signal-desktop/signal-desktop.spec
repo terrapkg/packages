@@ -87,8 +87,10 @@ Signal Desktop links with Signal on Android or iOS and lets you message from you
 
 %build
 pnpm install --frozen-lockfile
-pnpm --prefix sticker-creator install
-pnpm --prefix sticker-creator build
+pushd sticker-creator
+pnpm install --frozen-lockfile
+pnpm build
+popd
 pnpm run build-linux --dir
 
 %install
