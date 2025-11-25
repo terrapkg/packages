@@ -36,6 +36,7 @@ BuildRequires:  help2man
 BuildRequires:  minisign
 %if %{without bootstrap}
 BuildRequires:  %{name} = %{version}
+Obsoletes:      %{name}-bootstrap < %{version}
 %endif
 %if %{with test}
 BuildRequires:  elfutils-libelf-devel
