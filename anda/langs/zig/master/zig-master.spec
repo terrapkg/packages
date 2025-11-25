@@ -35,7 +35,7 @@ BuildRequires:  help2man
 # for signature verification
 BuildRequires:  minisign
 %if %{without bootstrap}
-BuildRequires:  %{name}-bootstrap = %{version}
+BuildRequires:  %{name} = %{version}
 %endif
 %if %{with test}
 BuildRequires:  elfutils-libelf-devel
