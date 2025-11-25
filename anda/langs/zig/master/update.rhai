@@ -6,4 +6,3 @@ if rpm.changed {
   let r = bump::madoguchi_json("zig-master", labels.branch).rel;
   rpm.release(r + 1);
 }
-
