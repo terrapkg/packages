@@ -1,5 +1,5 @@
 Name:           terra-release
-Version:        %{fedora}
+Version:        %{?fedora:%{fedora}}%{?rhel:%{rhel}}
 Release:        2
 Summary:        Release package for Terra
 
