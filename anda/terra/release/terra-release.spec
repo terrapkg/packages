@@ -1,3 +1,5 @@
+%global dist %{nil}
+
 Name:           terra-release
 Version:        %{?fedora:%{fedora}}%{?rhel:%{rhel}}
 Release:        2
