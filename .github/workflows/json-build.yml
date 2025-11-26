@@ -18,6 +18,11 @@ on:
         required: false
         type: string
         default: ""
+      bust_cache:
+        description: "Whether to bust the cache"
+        required: false
+        type: boolean
+        default: false
   workflow_dispatch:
     inputs:
       packages:
@@ -29,6 +34,14 @@ on:
         required: false
         type: boolean
         default: true
+
+env:
+  RUSTC_WRAPPER: sccache
+  # SCCACHE_NO_DAEMON: "1"
+  # Disable incremental compilation so sccache works better
+  CARGO_INCREMENTAL: "false"
+  SCCACHE_GHA_ENABLED: "true"
+  SCCACHE_RECACHE: "${{ inputs.bust_cache == 'true' && 'true' || '' }}"
 
 jobs:
   build:
@@ -63,6 +76,9 @@ jobs:
         run: |
           dir=$(dirname ${{ matrix.pkg.pkg }})
           dnf5 builddep -y ${dir}/*.spec
+
+      - name: Run sccache-cache
+        uses: mozilla-actions/sccache-action@v0.0.9
 
       - name: Build with Andaman
         run: anda build -D "vendor Terra" ${{ matrix.pkg.pkg }} -c terra-${{ matrix.version }}-${{ matrix.pkg.arch }} ${{ !matrix.pkg.labels.mock == '1' && '-rrpmbuild' || '' }}
