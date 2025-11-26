@@ -156,7 +156,7 @@ BuildArch:  noarch
 %obsolete x264-bootstrap 0.0.164-15.20231001git31e19f92
 
 %obsolete_ticket https://github.com/terrapkg/packages/pull/7503
-%obsolete zig-master-bootstrap 0.16.0-dev.1458+755a3d957
+%obsolete zig-master-bootstrap 0.16.0~dev.1458+755a3d957
 
 %description
 Currently obsoleted packages:
