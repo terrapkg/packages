@@ -1,4 +1,12 @@
 module.exports = async ({ github, context, core, exec }) => {
+  if (!exec) {
+    throw new Error("exec parameter is required but was not provided");
+  }
+
+  // Use SCCACHE_PATH if set, otherwise default to 'sccache' (will use PATH)
+  const sccachePath = process.env.SCCACHE_PATH || "sccache";
+  core.debug(`Using sccache path: ${sccachePath}`);
+
   const percentage = (x, y) => Math.round((x / y) * 100 || 0);
   const plural = (count, base, pluralForm = base + "s") =>
     `${count} ${count === 1 ? base : pluralForm}`;
@@ -70,9 +78,12 @@ module.exports = async ({ github, context, core, exec }) => {
     return { table, notice };
   };
 
-  const getOutput = async (command, args) => {
+  const getOutput = async (command, args = []) => {
     core.debug(`get_output: ${command} ${args.join(" ")}`);
-    const output = await exec.getExecOutput(command, args);
+    const output = await exec.getExecOutput(command, args, {
+      ignoreReturnCode: false,
+      silent: false,
+    });
     if (!output.stdout.endsWith("\n")) {
       process.stdout.write("\n");
     }
@@ -80,14 +91,11 @@ module.exports = async ({ github, context, core, exec }) => {
   };
 
   const humanStats = await core.group("Get human-readable stats", async () => {
-    return getOutput(process.env.SCCACHE_PATH, ["--show-stats"]);
+    return getOutput(sccachePath, ["--show-stats"]);
   });
 
   const jsonStats = await core.group("Get JSON stats", async () => {
-    return getOutput(process.env.SCCACHE_PATH, [
-      "--show-stats",
-      "--stats-format=json",
-    ]);
+    return getOutput(sccachePath, ["--show-stats", "--stats-format=json"]);
   });
 
   const stats = JSON.parse(jsonStats);

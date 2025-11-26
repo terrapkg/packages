@@ -2,6 +2,7 @@
 module.exports = ({github, context, core}) => {
   // Force the GitHub Actions cache service v2
   core.exportVariable('ACTIONS_CACHE_SERVICE_V2', 'on');
+  core.exportVariable('SCCACHE_GHA_ENABLED', 'true');
 
   // Expose the GHA cache related variables to make it easier for users to
   // integrate with GHA support (from upstream mozilla/sccache-action)
@@ -9,8 +10,8 @@ module.exports = ({github, context, core}) => {
   core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env.ACTIONS_RUNTIME_TOKEN || '');
 
   // Set cache version and restore keys for this specific build matrix
-  core.exportVariable('SCCACHE_GHA_VERSION', process.env.SCCACHE_GHA_VERSION);
-  core.exportVariable('SCCACHE_GHA_CACHE_FROM', process.env.SCCACHE_GHA_CACHE_FROM);
+  // core.exportVariable('SCCACHE_GHA_VERSION', process.env.SCCACHE_GHA_VERSION);
+  // core.exportVariable('SCCACHE_GHA_CACHE_FROM', process.env.SCCACHE_GHA_CACHE_FROM);
 
   // Check if cache busting is enabled
   const inputs = (github && github.context && github.context.payload && github.context.payload.inputs) || {};
