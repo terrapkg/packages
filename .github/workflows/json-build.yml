@@ -33,7 +33,7 @@ on:
 env:
   RUSTC_WRAPPER: sccache
   SCCACHE_GHA_ENABLED: on
-  SCCACHE_NO_DAEMON: "1"
+  # SCCACHE_NO_DAEMON: "1"
   # Disable incremental compilation so sccache works better
   CARGO_INCREMENTAL: "false"
   SCCACHE_LOG: "debug"
