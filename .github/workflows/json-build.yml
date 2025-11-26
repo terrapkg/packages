@@ -18,6 +18,11 @@ on:
         required: false
         type: string
         default: ""
+      bust_cache:
+        description: "Whether to bust the cache"
+        required: false
+        type: boolean
+        default: false
   workflow_dispatch:
     inputs:
       packages:
@@ -80,8 +85,27 @@ jobs:
           script: |
             core.exportVariable('ACTIONS_RESULTS_URL', process.env.ACTIONS_RESULTS_URL || '');
             core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env.ACTIONS_RUNTIME_TOKEN || '');
-            core.exportVariable('SCCACHE_GHA_VERSION', `${{ matrix.pkg.pkg }}-${{ matrix.version }}-${{ matrix.pkg.arch }}`);
-            core.exportVariable('SCCACHE_GHA_CACHE_FROM', `${{ matrix.pkg.pkg }}-${{ matrix.version }}-${{ matrix.pkg.arch }}`);
+            core.exportVariable('SCCACHE_GHA_VERSION', `${{ matrix.version }}-${{ matrix.pkg.arch }}-${{ matrix.pkg.pkg }}`);
+            core.exportVariable('SCCACHE_GHA_CACHE_FROM', `${{ matrix.version }}-${{ matrix.pkg.arch }}-${{ matrix.pkg.pkg }}`);
+
+            const inputs = (github && github.context && github.context.payload && github.context.payload.inputs) || {};
+            const rawBustCache = inputs.bust_cache ?? inputs.bustCache ?? process.env.INPUT_BUST_CACHE ?? process.env.BUST_CACHE;
+            let bustCache = false;
+            if (typeof rawBustCache === 'string') {
+              const v = rawBustCache.toLowerCase().trim();
+              bustCache = v === 'true' || v === '1' || v === 'yes';
+            } else {
+              bustCache = !!rawBustCache;
+            }
+            if (bustCache) {
+              core.exportVariable('SCCACHE_RECACHE', '1');
+              core.info('SCCACHE_RECACHE enabled because bust_cache is true');
+            }
+
+      - name: Copy sccache config
+        run: |
+          mkdir -p $HOME/.config/sccache
+          cp .github/workflows/sccache.toml $HOME/.config/sccache/config
 
       - name: Build with Andaman
         run: anda build -D "vendor Terra" ${{ matrix.pkg.pkg }} -c terra-${{ matrix.version }}-${{ matrix.pkg.arch }} ${{ !matrix.pkg.labels.mock == '1' && '-rrpmbuild' || '' }}

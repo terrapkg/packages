@@ -1,0 +1,4 @@
+# This should be put in ~.config/sccache/config
+
+[cache.gha]
+url = "http://localhost"
