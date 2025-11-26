@@ -89,11 +89,6 @@ jobs:
             const script = require('./.github/scripts/configure-sccache.js')
             script({github, context, core})
 
-      - name: Copy sccache config
-        run: |
-          mkdir -p $HOME/.config/sccache
-          cp .github/workflows/sccache.toml $HOME/.config/sccache/config
-
       - name: Build with Andaman
         run: anda build -D "vendor Terra" ${{ matrix.pkg.pkg }} -c terra-${{ matrix.version }}-${{ matrix.pkg.arch }} ${{ !matrix.pkg.labels.mock == '1' && '-rrpmbuild' || '' }}
 
