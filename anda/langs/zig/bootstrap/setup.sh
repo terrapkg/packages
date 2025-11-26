@@ -20,6 +20,7 @@ if [ "$1" == "fetch" ]; then
    until curl -If ${mirror}/zig-${version}.tar.xz &>/dev/null && curl -If ${mirror}/zig-${version}.tar.xz.minisig &>/dev/null; do
      randomize_mirrors
    done
+   echo "'\033[0;32m'Note:'\033[0m' Selected mirror $mirror"
    curl -A "rpmdev-spectool" -H "Accept-Encoding: identity" -O ${mirror}/zig-${version}.tar.xz
    curl -A "rpmdev-spectool" -H "Accept-Encoding: identity" -O ${mirror}/zig-${version}.tar.xz.minisig
 elif [ "$1" == "version" ]; then
