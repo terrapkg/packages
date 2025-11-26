@@ -40,10 +40,10 @@ env:
   # SCCACHE_NO_DAEMON: "1"
   # Disable incremental compilation so sccache works better
   CARGO_INCREMENTAL: "false"
-  SCCACHE_LOG: "debug"
+  SCCACHE_LOG: "trace"
   # GitHub Actions cache integration
   ACTIONS_CACHE_SERVICE_V2: "on"
-  SCCACHE_GHA_ENABLED: "true"
+  SCCACHE_GHA_ENABLED: "on"
 
 jobs:
   build:
