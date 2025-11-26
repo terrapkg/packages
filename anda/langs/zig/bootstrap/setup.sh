@@ -28,8 +28,8 @@ elif [ "$1" == "version" ]; then
 elif [ "$1" == "mirror" ]; then
    randomize_mirrors
    echo "Your random mirror is $mirror"
-elif [ "$1" == "mirrorlist" ]; then
-   echo "$mirrorlist"
+elif [ "$1" == "mirrors" ]; then
+   echo "$mirrors"
 fi
 
 exit 0
