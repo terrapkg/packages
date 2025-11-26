@@ -1,4 +1,8 @@
 // Configure sccache environment variables for GitHub Actions cache integration
+// 
+// This script is still unused until we build terra-sccache with this supported,
+// Turns out that Fedora's sccache build has the GHA feature support disabled.
+// 
 // Note: ACTIONS_CACHE_SERVICE_V2 and SCCACHE_GHA_ENABLED are set at workflow level
 module.exports = async ({ github, context, core, exec }) => {
   // Find sccache path (try which command)
