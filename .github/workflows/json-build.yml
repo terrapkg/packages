@@ -78,28 +78,14 @@ jobs:
           # todo: probably add sccache in the builder image
           dnf5 install -y sccache
 
+
+      - name: Run sccache-cache
+        uses: mozilla-actions/sccache-action@v0.0.9
+
       - name: Configure sccache
         run: |
           set -euo pipefail
-          # Ensure ACTIONS_* env vars exist (empty if not set)
-          echo "ACTIONS_RESULTS_URL=${ACTIONS_RESULTS_URL:-}" >> $GITHUB_ENV
-          echo "ACTIONS_RUNTIME_TOKEN=${ACTIONS_RUNTIME_TOKEN:-}" >> $GITHUB_ENV
-
-          # Configure SCCACHE identifiers used by the cache/config
-          echo "SCCACHE_GHA_VERSION=${{ matrix.version }}-${{ matrix.pkg.arch }}-${{ matrix.pkg.pkg }}" >> $GITHUB_ENV
-          echo "SCCACHE_GHA_CACHE_FROM=${{ matrix.version }}-${{ matrix.pkg.arch }}-${{ matrix.pkg.pkg }}" >> $GITHUB_ENV
-
-          # Use the workflow input 'bust_cache' directly
-          bustCache="${{ inputs.bust_cache }}"
-          if [ "${bustCache}" = "true" ]; then
-            echo "SCCACHE_RECACHE=1" >> $GITHUB_ENV
-            echo "SCCACHE_RECACHE enabled because bust_cache is true"
-          fi
-
-          mkdir -p $HOME/.config/sccache
-          cp .github/workflows/sccache.toml $HOME/.config/sccache/config
-          
-          echo "version = \"${{ matrix.version }}-${{ matrix.pkg.arch }}-${{ matrix.pkg.pkg }}\"" >> $HOME/.config/sccache/config
+          echo "SCCACHE_GHA_ENABLED=true" >> $GITHUB_ENV
 
 
       - name: Build with Andaman
