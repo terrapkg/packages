@@ -41,6 +41,9 @@ env:
   # Disable incremental compilation so sccache works better
   CARGO_INCREMENTAL: "false"
   SCCACHE_LOG: "debug"
+  # GitHub Actions cache integration
+  ACTIONS_CACHE_SERVICE_V2: "on"
+  SCCACHE_GHA_ENABLED: "true"
 
 jobs:
   build:
@@ -86,7 +89,7 @@ jobs:
         with:
           script: |
             const script = require('./.github/scripts/configure-sccache.js')
-            script({github, context, core})
+            await script({github, context, core, exec})
 
       - name: Build with Andaman
         run: anda build -D "vendor Terra" ${{ matrix.pkg.pkg }} -c terra-${{ matrix.version }}-${{ matrix.pkg.arch }} ${{ !matrix.pkg.labels.mock == '1' && '-rrpmbuild' || '' }}
