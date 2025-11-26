@@ -1,10 +1,10 @@
 Name:       terra-obsolete
 # Please keep the version equal to the targeted Terra release
-Version:    42
+Version:    %{?fedora:%{fedora}}%{?rhel:%{rhel}}
 # The dist number is the version here, it is intentionally not repeated in the release
 %global dist %nil
 
-Release:    1
+Release:    2
 Summary:    A package to obsolete retired packages, based on Fedora's equivalent package
 
 License:    LicenseRef-Fedora-Public-Domain
@@ -146,6 +146,15 @@ BuildArch:  noarch
 %obsolete switchboard-plug-useraccounts 8.0.0-2
 %obsolete switchboard-plug-wacom 8.0.0-2
 
+%obsolete_ticket https://github.com/terrapkg/packages/pull/7098
+%obsolete terra-surface-dtx-daemon 0.3.10-1
+
+%obsolete_ticket https://github.com/terrapkg/packages/pull/7521
+%obsolete x264-bash-completion 0.165-17.20250609gitb35605ac
+
+%obsolete_ticket https://github.com/terrapkg/packages/pull/7659
+%obsolete x264-bootstrap 0.0.164-15.20231001git31e19f92
+
 %description
 Currently obsoleted packages:
 
@@ -157,4 +166,3 @@ Currently obsoleted packages:
 
 %changelog
 %autochangelog
-

@@ -1,6 +1,6 @@
-%global commit d830ef7cae6b6e937dc01455a4c59607189d4db7
+%global commit 0bacdf766269592d82c7e5f847e541af56f4ed26
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20251114
+%global commitdate 20251120
 %global ver 1.0.18
 %global appid com.sched_ext.scx
 %global developer "sched-ext Contributors"
@@ -8,7 +8,7 @@
 
 Name:           scx-tools-nightly
 Version:        %{ver}^%{commitdate}.git.%{shortcommit}
-Release:        1%{?dist}
+Release:        1%?dist
 Summary:        Sched_ext Tools
 License:        ((MIT OR Apache-2.0) AND Unicode-3.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND GPL-2.0-only AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0) AND MIT AND MPL-2.0 AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT)
 SourceLicense:  GPL-2.0-only
@@ -76,6 +76,7 @@ install -Dm755 target/rpm/*.so -t %{buildroot}%{_libdir} || :
 %doc README.md
 %{_bindir}/scx*
 %{_unitdir}/scx_loader.service
+%{_datadir}/dbus-1/interfaces/org.scx.Loader.xml
 %{_datadir}/dbus-1/system-services/org.scx.Loader.service
 %{_datadir}/dbus-1/system.d/org.scx.Loader.conf
 %{_datadir}/polkit-1/actions/org.scx.Loader.policy
