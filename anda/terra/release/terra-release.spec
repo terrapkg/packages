@@ -1,6 +1,8 @@
+%global dist %{nil}
+
 Name:           terra-release
-Version:        %{fedora}
-Release:        1%?dist
+Version:        %{?fedora:%{fedora}}%{?rhel:%{rhel}}
+Release:        6
 Summary:        Release package for Terra
 
 License:        MIT
