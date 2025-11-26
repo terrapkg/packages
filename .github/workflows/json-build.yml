@@ -40,7 +40,6 @@ env:
   # SCCACHE_NO_DAEMON: "1"
   # Disable incremental compilation so sccache works better
   CARGO_INCREMENTAL: "false"
-  SCCACHE_LOG: "debug"
 
 jobs:
   build:
