@@ -6,6 +6,7 @@ Version:        1.13.0
 Release:        1%?dist
 Summary:        Honkers Launcher for Linux with automatic patching and telemetry disabling 
 
+
 License:        GPL-3.0-or-later
 URL:            https://github.com/an-anime-team/honkers-launcher
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
