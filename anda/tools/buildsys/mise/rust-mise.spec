@@ -5,13 +5,8 @@
 %global crate mise
 
 Name:           rust-mise
-<<<<<<< HEAD
-Version:        2025.11.2
-Release:        2%?dist
-=======
 Version:        2025.11.8
 Release:        1%?dist
->>>>>>> db1c8a4b1 (bump: mangowc rpcs3 rust-mise rust-topgrade (#7719))
 Summary:        Front-end to your dev env
 
 License:        MIT
