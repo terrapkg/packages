@@ -23,7 +23,6 @@ state, controlling LEDs, and setting the inactive time.
 %prep
 %autosetup -n %{name}-%{commit}
 
-%build
 %cmake
 %cmake_build
 
