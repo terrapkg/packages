@@ -4,7 +4,6 @@
 %bcond test 0
 %jsmeta
 
-
 Name:          js-license-checker
 Version:       4.4.2
 Release:       1%{?dist}
