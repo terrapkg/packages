@@ -4,14 +4,15 @@
 %global commitdate  20251121
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
-Name:           HeadsetControl
+Name:           HeadsetControl-nightly
 Version:        0^%{commitdate}.%{shortcommit}
 Release:        1%?dist
 Summary:        A tool to control certain aspects of USB-connected headsets on Linux
 URL:            https://github.com/Sapd/HeadsetControl
 Source:         %{url}/archive/%{commit}.tar.gz
 License:        GPL-3.0
-Provides:       headsetcontrol
+Provides:       headsetcontrol-nightly
+Conflicts:      headsetcontrol
 
 BuildRequires:  cmake gcc hidapi-devel
 
@@ -23,6 +24,7 @@ state, controlling LEDs, and setting the inactive time.
 %prep
 %autosetup -n %{name}-%{commit}
 
+%build
 %cmake
 %cmake_build
 
