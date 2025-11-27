@@ -1,10 +1,10 @@
-%global commit 661ca1cba2984d874effa5ee5864132b079fbba0
-%global commit_date 20251120
+%global commit 2db10bd0c65eefac3598e9426410e556716ad105
+%global commit_date 20251127
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           qdl
 Version:        0^%commit_date.%shortcommit
-Release:        2%?dist
+Release:        1%?dist
 Summary:        This tool communicates with USB devices of id 05c6:9008 to upload a flash loader and use this to flash images
 URL:            https://github.com/linux-msm/qdl
 Source0:        %{url}/archive/%{commit}/qdl-%{commit}.tar.gz
