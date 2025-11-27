@@ -7,7 +7,7 @@
 %define         llvm_compat 20
 %endif
 %global         llvm_version 20.0.0
-%bcond bootstrap 0
+%bcond_without bootstrap
 %bcond docs      %{without bootstrap}
 %bcond test      1
 %global zig_cache_dir %{builddir}/zig-cache
