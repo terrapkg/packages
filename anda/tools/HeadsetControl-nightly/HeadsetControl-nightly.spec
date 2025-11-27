@@ -22,7 +22,7 @@ Currently, support is provided for adjusting sidetone, getting battery
 state, controlling LEDs, and setting the inactive time.
 
 %prep
-%autosetup -n %{name}-%{commit}
+%autosetup -n HeadsetControl-%{commit}
 
 %build
 %cmake
