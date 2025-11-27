@@ -1,5 +1,5 @@
 Name:          mullvad-vpn
-Version:       2025.7
+Version:       2025.13
 Release:       1%{?dist}
 Summary:       The Mullvad VPN client app for desktop
 SourceLicense: GPL-3.0-only
@@ -14,15 +14,15 @@ BuildRequires: dbus-devel
 BuildRequires: golang >= 1.21
 BuildRequires: libxcrypt-compat
 BuildRequires: mold
+BuildRequires: pkgconfig(libnftnl)
 BuildRequires: protobuf-devel
 BuildRequires: systemd-rpm-macros
-BuildRequires: pkgconfig(libnftnl)
 Requires:      dbus-libs
 Requires:      libnotify
 Requires:      libXScrnSaver
 Packager:      Gilver E. <rockgrub@disroot.org>
 
-%electronmeta
+%electronmeta -a
 
 %description
 Mullvad is a free and open source VPN especially focused on privacy and freedom.
@@ -75,7 +75,7 @@ popd
 
 %electron_install -D
 # Extra symlink
-ln -sf %{_datadir}/%{name}/resources/mullvad-problem-report %{buildroot}%{_bindir}/mullvad-problem-report
+ln -sf %{_libdir}/%{name}/resources/mullvad-problem-report %{buildroot}%{_bindir}/mullvad-problem-report
 
 %{cargo_license_online} > LICENSE.dependencies
 
@@ -99,8 +99,8 @@ rm -f /var/cache/mullvad-vpn/api-ip-address.txt
 %systemd_preun mullvad-early-boot-blocking.service
 
 # Internal daemon handling.
-%{_datadir}/%{name}/resources/mullvad-setup reset-firewall || :
-%{_datadir}/%{name}/resources/mullvad-setup remove-device || :
+%{_libdir}/%{name}/resources/mullvad-setup reset-firewall || :
+%{_libdir}/%{name}/resources/mullvad-setup remove-device || :
 
 %postun
 %systemd_postun_with_restart mullvad-daemon.service

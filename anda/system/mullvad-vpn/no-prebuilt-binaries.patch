@@ -1,6 +1,6 @@
---- a/desktop/packages/mullvad-vpn/tasks/distribution.js	2025-07-26 13:38:13.195612653 -0500
-+++ b/desktop/packages/mullvad-vpn/tasks/distribution.js	2025-07-26 13:45:47.104522171 -0500
-@@ -174,16 +174,6 @@
+--- a/desktop/packages/mullvad-vpn/tasks/distribution.js	2025-11-27 10:32:49.229089406 -0600
++++ b/desktop/packages/mullvad-vpn/tasks/distribution.js	2025-11-27 10:54:15.873776987 -0600
+@@ -178,16 +178,6 @@
      },
  
      linux: {
@@ -14,6 +14,6 @@
 -          arch: getLinuxTargetArch(),
 -        },
 -      ],
+       executableName: 'mullvad-vpn',
        artifactName: 'MullvadVPN-${version}_${arch}.${ext}',
        category: 'Network',
-       icon: distAssets('icon.icns'),
