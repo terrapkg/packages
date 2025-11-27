@@ -84,7 +84,7 @@ ln -sf %{_libdir}/%{name}/resources/mullvad-problem-report %{buildroot}%{_bindir
 # If a log exists, back it up for the user to check.
 if which systemctl &> /dev/null && systemctl is-system-running | grep -vq offline &> /dev/null; then
     if systemctl status mullvad-daemon &> /dev/null; then
-        %{_datadir}/%{name}/resources/mullvad-setup prepare-restart || true
+        %{_libdir}/%{name}/resources/mullvad-setup prepare-restart || true
         if stat /var/log/mullvad-vpn/daemon.log &> /dev/null; then
           cp /var/log/mullvad-vpn/daemon.log /var/log/mullvad-vpn/daemon.log.bak || echo "Mullvad log backup failed."
         fi
