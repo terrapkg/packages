@@ -8,8 +8,6 @@
 
 %define _optdir /opt/Wave
 
-%dnl %define npm
-
 Name:           waveterm
 Version:        0.12.5
 Release:        1%?dist
@@ -40,7 +38,7 @@ BuildRequires:  gtk3
 BuildRequires:  mesa-libgbm
 BuildRequires:  alsa-lib
 BuildRequires:  rpm-build
-%dnl BuildRequires:	anda-srpm-macros
+
 BuildRequires:  terra-appstream-helper
 
 Requires:       electron
@@ -71,9 +69,6 @@ install -Dm 0755 make/linux-unpacked/chrome-sandbox             %{buildroot}%{_o
 install -Dm 0644 make/linux-unpacked/libvulkan.so.1             %{buildroot}%{_optdir}/libvulkan.so.1
 install -Dm 0755 make/linux-unpacked/chrome_100_percent.pak     %{buildroot}%{_optdir}/chrome_100_percent.pak
 install -Dm 0755 make/linux-unpacked/chrome_200_percent.pak     %{buildroot}%{_optdir}/chrome_200_percent.pak
-install -Dm 0755 make/linux-unpacked/waveterm %{buildroot}%{_optdir}/waveterm
-install -Dm 0755 make/linux-unpacked/waveterm %{buildroot}%{_optdir}/waveterm
-install -Dm 0755 make/linux-unpacked/waveterm %{buildroot}%{_optdir}/waveterm
 
 %terra_appstream -o %{SOURCE1}
 
