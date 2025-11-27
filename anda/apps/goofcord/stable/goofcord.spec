@@ -10,7 +10,7 @@
 %bcond vendored_nodejs 0
 
 Name:          goofcord
-Version:       1.11.1
+Version:       1.11.2
 Release:       1%?dist
 License:       OSL-3.0
 Summary:       A privacy-minded Legcord fork.
