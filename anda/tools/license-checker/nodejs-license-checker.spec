@@ -2,9 +2,8 @@
 %global npm_name license-checker-rseidelsohn
 # Disabled for now. Requires ESLint.
 %bcond test 0
-%jsmeta
 
-Name:          js-license-checker
+Name:          nodejs-license-checker
 Version:       4.4.2
 Release:       1%{?dist}
 Summary:       Check NPM package licenses

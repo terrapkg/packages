@@ -1,6 +1,6 @@
 project pkg {
 		arches = ["x86_64"]
 	rpm {
-		spec = "js-license-checker.spec"
+		spec = "nodejs-license-checker.spec"
 	}
 }
