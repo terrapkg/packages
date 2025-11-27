@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component type="console-application">
+  <id>dev.waveterm</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>Apache-2.0</project_license>
+  <icon
+        type="remote"
+    >https://github.com/wavetermdev/waveterm/blob/main/assets/appicon-windows.png</icon>
+
+  <name>Waveterm</name>
+  <summary>An open-source, cross-platform terminal for seamless workflows
+    </summary>
+
+    <screenshots>
+      <screenshot type="default">
+        <caption>Waveterm showcase</caption>
+        <image
+                type="source"
+                width="1600"
+                height="900"
+            >https://github.com/wavetermdev/waveterm/blob/main/assets/wave-screenshot.webp</image>
+      </screenshot>
+    </screenshots>
+
+  <description>
+    <p>
+    Wave is an open-source terminal that combines traditional terminal features with graphical capabilities
+    like file previews, web browsing, and AI assistance. It runs on MacOS, Linux, and Windows.
+    Modern development involves constantly switching between terminals and browsers - checking documentation,
+    previewing files, monitoring systems, and using AI tools. Wave brings these graphical tools directly into
+    the terminal, letting you control them from the command line. This means you can stay in your terminal workflow
+    while still having access to the visual interfaces you need.
+    </p>
+  </description>
+
+  <launchable type="desktop-id">waveterm.desktop</launchable>
+
+  <url type="homepage">https://www.waveterm.dev/</url>
+
+  <releases>
+    <release version="0.12.5" />
+  </releases>
+</component>
