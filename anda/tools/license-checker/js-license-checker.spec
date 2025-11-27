@@ -16,7 +16,6 @@ BuildRequires: anda-srpm-macros >= 0.2.19
 BuildRequires: nodejs-devel
 BuildRequires: nodejs-npm
 BuildRequires: nodejs-packaging
-BuildRequires: web-assets-devel
 ExclusiveArch: %{nodejs_arches} noarch
 BuildArch:     noarch
 Packager:      Gilver E. <rockgrub@disroot.org>
