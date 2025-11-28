@@ -45,7 +45,7 @@ License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) 
 %license LICENSE.md
 %license LICENSE.dependencies
 %doc README.md
-%{_metainfodir}/land.deno.deno.metainfo.xml
+%{_metainfodir}/%{appid}.metainfo.xml
 %{_bindir}/deno
 
 %pkg_completion -Bfzn %crate
@@ -64,7 +64,6 @@ sed '/\[env\]/a CC="%__cc"' -i .cargo/config
 %{cargo_license_summary_online}
 %{cargo_license_online} > LICENSE.dependencies
 %{cargo_build} --locked
-%terra_appstream -o %{SOURCE3}
 
 %install
 %crate_install_bin
@@ -74,4 +73,4 @@ target/rpm/deno completions bash > %buildroot%bash_completions_dir/deno
 %dnl target/rpm/deno completions elvish > %buildroot%elvish_completions_dir/deno.elv
 target/rpm/deno completions fish > %buildroot%fish_completions_dir/deno.fish
 target/rpm/deno completions zsh > %buildroot%zsh_completions_dir/_deno
-install -Dm644 %{S:3} -t %buildroot%{_metainfodir}
+%terra_appstream -o %{SOURCE3}
