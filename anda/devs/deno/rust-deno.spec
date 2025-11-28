@@ -69,7 +69,6 @@ sed '/\[env\]/a CC="%__cc"' -i .cargo/config
 %crate_install_bin
 mkdir -p %buildroot{%bash_completions_dir,%elvish_completions_dir,%fish_completions_dir,%zsh_completions_dir}
 target/rpm/deno completions bash > %buildroot%bash_completions_dir/deno
-%_metainfodir/%{appid}.metainfo.xml
 %dnl target/rpm/deno completions elvish > %buildroot%elvish_completions_dir/deno.elv
 target/rpm/deno completions fish > %buildroot%fish_completions_dir/deno.fish
 target/rpm/deno completions zsh > %buildroot%zsh_completions_dir/_deno
