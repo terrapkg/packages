@@ -13,8 +13,9 @@ jobs:
       matrix:
         branch:
           - frawhide
-          - f41
+          - f43
           - f42
+          - f41
           - el10
     container:
       image: ghcr.io/terrapkg/builder:f42
