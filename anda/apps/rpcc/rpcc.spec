@@ -1,5 +1,5 @@
-%global commit 6ae576bee3ca42f0aea597e76d2e0df0e1184bad
-%global commit_date 20251030
+%global commit 9527e92f697ad380ce8669a2b6c61260abafab19
+%global commit_date 20251126
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           rpcc

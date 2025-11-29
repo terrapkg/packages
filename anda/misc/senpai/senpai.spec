@@ -1,11 +1,14 @@
+%global appid org.sr.ht.delthas.senpai
+
 Name:			senpai
 Version:		0.4.1
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Your everyday IRC student
 License:		ISC
-URL:			https://github.com/delthas/senpai
-Source0:		%url/archive/refs/tags/v%version.tar.gz
-BuildRequires:	golang scdoc gcc
+URL:			https://sr.ht/~delthas/senpai/
+Source0:		https://github.com/delthas/senpai/archive/refs/tags/v%version.tar.gz
+Source1:        org.sr.ht.delthas.senpai.metainfo.xml
+BuildRequires:	golang scdoc gcc anda-srpm-macros terra-appstream-helper
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
@@ -32,6 +35,8 @@ install -Dm644 contrib/senpai.desktop   %{buildroot}%{_datadir}/applications/sen
 install -Dm644 res/icon.48.png          %{buildroot}%{_iconsdir}/hicolor/48x48/apps/senpai.png
 install -Dm644 res/icon.svg             %{buildroot}%{_iconsdir}/hicolor/scalable/apps/senpai.svg
 
+%terra_appstream -o %{SOURCE1}
+
 %files
 %doc README.md
 %license LICENSE
@@ -41,7 +46,10 @@ install -Dm644 res/icon.svg             %{buildroot}%{_iconsdir}/hicolor/scalabl
 %{_datadir}/applications/senpai.desktop
 %{_iconsdir}/hicolor/48x48/apps/senpai.png
 %{_iconsdir}/hicolor/scalable/apps/senpai.svg
+%{_metainfodir}/org.sr.ht.delthas.senpai.metainfo.xml
 
 %changelog
+* Tue Nov 18 2025 Owen Zimmerman <owen@fyralabs.com>
+- Add metainfo
 * Fri Oct 31 2025 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit
