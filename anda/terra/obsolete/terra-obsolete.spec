@@ -4,7 +4,7 @@ Version:    %{?fedora:%{fedora}}%{?rhel:%{rhel}}
 # The dist number is the version here, it is intentionally not repeated in the release
 %global dist %nil
 
-Release:    3
+Release:    4
 Summary:    A package to obsolete retired packages, based on Fedora's equivalent package
 
 License:    LicenseRef-Fedora-Public-Domain
@@ -156,6 +156,9 @@ BuildArch:  noarch
 %obsolete x264-bootstrap 0.0.165-17.20250609gitb35605ac_bootstrap
 %obsolete x264-bootstrap-libs 0.0.165-17.20250609gitb35605ac_bootstrap
 %obsolete x264-bootstrap-devel 0.0.165-17.20250609gitb35605ac_bootstrap
+
+%obsolete_ticket https://github.com/terrapkg/packages/pull/7503
+%obsolete zig-master-bootstrap 0.16.0~dev.1484+d0ba6642b-2
 
 %description
 Currently obsoleted packages:
