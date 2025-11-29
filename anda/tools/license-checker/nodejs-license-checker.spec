@@ -49,5 +49,4 @@ bin/%{npm_name}%{?_js} --limitAttributes licenses --out LICENSE.modules
 %doc README.md
 %doc SECURITY.md
 %{_bindir}/license-checker
-%{_jsdir}/%{npm_name}/
 %{nodejs_sitelib}/%{npm_name}
