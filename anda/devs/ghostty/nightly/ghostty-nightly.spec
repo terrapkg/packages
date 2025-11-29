@@ -180,17 +180,17 @@ BuildArch:      noarch
 %description    terminfo
 Ghostty's terminfo. Needed for basic terminal function.
 
-%package -n     libghostty-vt
+%package -n     libghostty-vt-nightly
 Summary:        The libghostty-vt libraries
 
-%description -n libghostty-vt
+%description -n libghostty-vt-nightly
 This package contains the libghostty-vt libraries, the first of many linghostty libaries in development.
 
-%package -n     libghostty-vt-devel
+%package -n     libghostty-vt-nightly-devel
 Summary:        Development files for libghostty-vt
 Requires:       libghostty-vt = %{evr}
 
-%description -n libghostty-vt-devel
+%description -n libghostty-vt-nightly-devel
 This package contains the libraries and header files that are needed for developing with libghostty-vt.
 
 %prep
@@ -290,10 +290,10 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %endif
 %{_datadir}/terminfo/x/xterm-%{base_name}
 
-%files -n libghostty-vt
+%files -n libghostty-vt-nightly
 %{_libdir}/libghostty-vt.so.*
 
-%files -n libghostty-vt-devel
+%files -n libghostty-vt-nightly-devel
 %{_libdir}/libghostty-vt.so
 %{_datadir}/pkgconfig/libghostty-vt.pc
 
