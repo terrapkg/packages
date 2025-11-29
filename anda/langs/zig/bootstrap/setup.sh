@@ -4,8 +4,8 @@ version=0.16.0-dev.1484+d0ba6642b
 
 mirrors=()
 
-for mirror in $(curl -s https://ziglang.org/download/community-mirrors.txt); do
-  mirrors+=($mirror)
+for m in $(curl -s https://ziglang.org/download/community-mirrors.txt); do
+  mirrors+=($m)
 done
 
 
