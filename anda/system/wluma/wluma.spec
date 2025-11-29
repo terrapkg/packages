@@ -9,7 +9,7 @@ BuildRequires:  cargo anda-srpm-macros cargo-rpm-macros mold v4l-utils libv4l-de
 Packager:       Its-J
 
 %description
-%{version}
+%{summary}.
 
 %prep
 %autosetup -n %{name}-%{version}
