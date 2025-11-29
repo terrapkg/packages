@@ -18,6 +18,7 @@ SourceLicense:  AGPL-3.0-only AND Apache-2.0 AND GPL-3.0-or-later
 License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 AND ISC) AND AGPL.3.0-only AND AGPL-3.0-or-later AND (Apache-2.0 OR BSL-1.0 OR MIT) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception) AND Apache-2.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR MIT OR Apache-2.0) AND BSD-2-Clause AND (CC0-1.0 OR Apache-2.0 OR Apache-2.0 WITH LLVM-exception) AND (CC0-1.0 OR Apache-2.0) AND (CC0-1.0 OR MIT-0 OR Apache-2.0) AND CC0-1.0 AND GPL-3.0-or-later AND (ISC AND (Apache-2.0 OR ISC) AND OpenSSL) AND (ISC AND (Apache-2.0 OR ISC)) AND ISC AND (MIT AND (MIT OR Apache-2.0)) AND (MIT AND BSD-3-Clause) AND (MIT OR Apache-2.0 OR CC0-1.0) AND (MIT OR Apache-2.0 OR NCSA) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MIT AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT) AND Zlib
 URL:            https://zed.dev/
 Source0:        https://github.com/zed-industries/zed/archive/refs/tags/v%{ver}.tar.gz
+Source1:        override.xml
 
 Conflicts:      zed
 Conflicts:      zed-nightly
@@ -120,7 +121,7 @@ install -Dm755 target/rpm/cli %{buildroot}%{_bindir}/zed
 install -Dm644 %appid.desktop %{buildroot}%{_datadir}/applications/%appid.desktop
 sed 's/Exec=zed/Exec=zeditor/' %appid.desktop > %appid.desktop.zeditor
 install -Dm644 %appid.desktop.zeditor -t %buildroot%_datadir/applications/
-install -Dm644 crates/zed/resources/app-icon-preview.png %{buildroot}%{_datadir}/pixmaps/%appid.png
+install -Dm644 crates/zed/resources/app-icon-preview.png %{buildroot}%{_datadir}/icons/hicolor/512x512/apps/%appid.png
 
 install -Dm644 %appid.metainfo.xml %{buildroot}%{_metainfodir}/%appid.metainfo.xml
 
@@ -142,6 +143,8 @@ mv assets/icons/LICENSES LICENSE.icons
 mv assets/themes/LICENSES LICENSE.themes
 mv assets/fonts/ibm-plex-sans/license.txt LICENSE.fonts
 
+%terra_appstream -o %{SOURCE1}
+
 %if %{with check}
 %check
 appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%appid.metainfo.xml
@@ -162,7 +165,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%appid.desktop
 %license LICENSE.themes
 %license assets/licenses.md
 %{_libexecdir}/zed-editor
-%{_datadir}/pixmaps/%appid.png
+%{_datadir}/icons/hicolor/512x512/apps/%appid.png
 
 %changelog
 %autochangelog

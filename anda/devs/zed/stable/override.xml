@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component type="desktop-application">
+  <id>dev.zed.Zed</id>
+  <icon>dev.zed.Zed</icon>
+</component>

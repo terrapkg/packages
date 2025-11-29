@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component type="desktop-application">
+  <name>Zed Editor (Nightly)</name>
+  <id>dev.zed.Zed-Nightly</id>
+  <icon>dev.zed.Zed-Nightly</icon>
+</component>
