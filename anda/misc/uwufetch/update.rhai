@@ -1,5 +1,4 @@
-let url = `https://api.github.com/repos/ad-oliviero/uwufetch/commits/development`;
-let json = get(url).json();
+let json = get(`https://api.github.com/repos/ad-oliviero/uwufetch/commits/development`).json();
 let c = json.sha;
 let d = json.commit.author.date;
 rpm.global("commit", c);
