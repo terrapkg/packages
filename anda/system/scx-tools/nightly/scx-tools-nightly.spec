@@ -1,6 +1,6 @@
-%global commit d830ef7cae6b6e937dc01455a4c59607189d4db7
+%global commit b60b6a95bdee4419634e60978db0597f2a9ca710
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20251114
+%global commitdate 20251129
 %global ver 1.0.18
 %global appid com.sched_ext.scx
 %global developer "sched-ext Contributors"
