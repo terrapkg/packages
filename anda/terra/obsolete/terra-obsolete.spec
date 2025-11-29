@@ -153,11 +153,11 @@ BuildArch:  noarch
 %obsolete x264-bash-completion 0.165-17.20250609gitb35605ac
 
 %obsolete_ticket https://github.com/terrapkg/packages/pull/7659
-%obsolete x264-bootstrap 0.0.165-17.20250609gitb35605ac_bootstrap-1
+%obsolete x264-bootstrap 0.0.165-17.20250609gitb35605ac_bootstrap
 
 %obsolete_ticket https://github.com/terrapkg/packages/pull/7751
-%obsolete x264-bootstrap-libs 0.0.165-17.20250609gitb35605ac_bootstrap-1
-%obsolete x264-bootstrap-devel 0.0.165-17.20250609gitb35605ac_bootstrap-1
+%obsolete x264-bootstrap-libs 0.0.165-17.20250609gitb35605ac_bootstrap
+%obsolete x264-bootstrap-devel 0.0.165-17.20250609gitb35605ac_bootstrap
 
 %description
 Currently obsoleted packages:
