@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 version=0.16.0-dev.1484+d0ba6642b
 
