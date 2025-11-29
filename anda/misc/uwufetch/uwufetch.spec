@@ -1,7 +1,8 @@
 %global commit f3d4503e72fa5b7dff466e527453cfbf2c95cc01
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20251128
-%global ver .1
+%global fulldate 2024-02-14
+%global commit_date %(echo %{fulldate} | sed 's/-//g')
+%global ver 2.1
 %global debug_package %{nil}
 
 Name:          uwufetch
