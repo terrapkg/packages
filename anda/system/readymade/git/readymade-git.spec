@@ -1,7 +1,7 @@
-%global commit 5f9416645827ecf6ed781f2255afef1e05fd8e2f
-%global commit_date 20250702
+%global commit 40d07f6d1e34c5ecaf958d01a5ddee8d9e1fefcf
+%global commit_date 20251111
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-
+%global crate readymade
 Name:           readymade-git
 Version:        %commit_date.%shortcommit
 Release:        1%?dist
@@ -13,7 +13,12 @@ Source1:        https://github.com/FyraLabs/rdms_proc_macros/archive/HEAD.tar.gz
 BuildRequires:	anda-srpm-macros rust-packaging mold
 BuildRequires:  pkgconfig(libhelium-1)
 BuildRequires:  clang-devel
+BuildRequires:  gcc
 BuildRequires:  cmake
+BuildRequires:  glibc-all-langpacks
+# We'll need cryptsetup to unlock disks for now
+Requires:       cryptsetup
+Recommends:     readymade-config
 Conflicts:      readymade
 Obsoletes:      readymade-nightly < 20250502.4dc78ec-3
 
@@ -53,6 +58,7 @@ ln -sf %{_datadir}/applications/com.fyralabs.Readymade.desktop %{buildroot}%{_da
 
 %files config-ultramarine
 %_sysconfdir/readymade.toml
+%_datadir/readymade/*
 
 
 %files
@@ -63,4 +69,3 @@ ln -sf %{_datadir}/applications/com.fyralabs.Readymade.desktop %{buildroot}%{_da
 %_datadir/applications/liveinst.desktop
 %ghost %_datadir/readymade
 %_datadir/icons/hicolor/scalable/apps/com.fyralabs.Readymade.svg
-

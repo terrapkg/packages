@@ -7,7 +7,7 @@
 Name:           stardust-xr-atmosphere
 Version:        %commit_date.%shortcommit
 Release:        1%?dist
-Summary:        Environment, homespace, and setup client for Stardust XR.
+Summary:        Environment, homespace, and setup client for Stardust XR
 URL:            https://github.com/StardustXR/atmosphere
 Source0:        %url/archive/%commit/atmosphere-%commit.tar.gz
 License:        MIT
@@ -17,7 +17,7 @@ Provides:       atmosphere stardust-atmosphere
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
-%summary
+%summary.
 
 %prep
 %autosetup -n atmosphere-%commit

@@ -1,7 +1,8 @@
-%global commit 8c780ba2b3bf0cf26bfa7d5600cbfa8162a24131
+%global commit 365d85d48f4315e94562cd307223234e71b161b8
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20250709
-%global ver 1.0.14
+%global commitdate 20251128
+%global ver 1.0.18
+%undefine __brp_mangle_shebangs
 
 Name:           scx-scheds-nightly
 Version:        %{ver}^%{commitdate}.git.%{shortcommit}
@@ -32,6 +33,8 @@ BuildRequires:  rust
 BuildRequires:  systemd
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  zlib-ng-compat
+Requires:       (scx-tools or scx-tools-nightly)
+Suggests:       scx-tools-nightly
 Requires:       elfutils-libelf
 Requires:       jq
 Requires:       libseccomp
@@ -49,7 +52,7 @@ Provides:       scxctl = %{version}
 Provides:       scx_layered
 Provides:       scx_rustland
 Provides:       scx_rusty
-Obsoletes:      scxctl >= 0.3.4
+Obsoletes:      scxctl <= 0.3.4
 Packager:       Gilver E. <rockgrub@disroot.org>
 
 %description
@@ -70,42 +73,31 @@ License:       GPL-2.0-only
 %cargo_prep_online
 
 %build
-%meson \
- -Dsystemd=enabled \
- -Dopenrc=disabled \
- -Dlibalpm=disabled
-%meson_build
-
+%{cargo_build -a} \
+     --workspace \
+     --exclude scx_rlfifo \
+     --exclude scx_mitosis \
+     --exclude scx_wd40 \
+     --exclude xtask \
+     --exclude scxcash \
+     --exclude vmlinux_docify \
+     --exclude scx_arena_selftests
 
 %install
-%meson_install
+find target/rpm \
+    -maxdepth 1 -type f -executable ! -name '*.so' \
+    -exec install -Dm755 -t %{buildroot}%{_bindir} {} +
+
+install -Dm755 target/rpm/*.so -t %{buildroot}%{_libdir}
 
 %{cargo_license_online} > LICENSE.dependencies
-
-%post
-%systemd_post scx_loader.service
-%systemd_post scx.service
-
-%preun
-%systemd_preun scx_loader.service
-%systemd_preun scx.service
-
-%postun
-%systemd_postun_with_restart scx_loader.service
-%systemd_postun_with_restart scx.service
 
 %files
 %doc OVERVIEW.md
 %doc README.md
 %license LICENSE
 %license LICENSE.dependencies
-%attr(0644,root,root) %config(noreplace) %{_sysconfdir}/default/scx
 %{_bindir}/scx*
-%{_bindir}/vmlinux_docify
-%{_unitdir}/scx_loader.service
-%{_unitdir}/scx.service
-%{_datadir}/dbus-1/system.d/org.scx.Loader.conf
-%{_datadir}/dbus-1/system-services/org.scx.Loader.service
 
 %changelog
 * Sun Jun 15 2025 Gilver E. <rockgrub@disroot.org> - 1.0.13^20250612.git.c1507b0-1

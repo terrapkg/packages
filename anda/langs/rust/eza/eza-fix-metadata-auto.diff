@@ -1,11 +1,11 @@
---- eza-0.21.0/Cargo.toml	1970-01-01T00:00:01+00:00
-+++ eza-0.21.0/Cargo.toml	2025-04-16T03:47:21.617301+00:00
-@@ -231,12 +231,6 @@
+--- eza-0.23.0/Cargo.toml	1970-01-01 08:00:01.000000000 +0800
++++ eza-0.23.0/Cargo.toml	2025-07-23 12:49:16.775971979 +0800
+@@ -225,12 +225,5 @@
  [target.'cfg(target_os = "linux")'.dependencies.proc-mounts]
  version = "0.3"
  
 -[target.'cfg(target_os = "windows")'.dependencies.windows-sys]
--version = "0.59.0"
+-version = "0.60.2"
 -features = [
 -    "Win32_System_Console",
 -    "Win32_Foundation",
@@ -13,4 +13,3 @@
 -
  [target."cfg(unix)".dependencies.uzers]
  version = "0.12.1"
-+

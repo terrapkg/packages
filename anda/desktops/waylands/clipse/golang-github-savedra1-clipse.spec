@@ -24,9 +24,9 @@ Configurable TUI clipboard manager for Unix.}
                         resources/test_data/top_secret_credentials.txt
 
 Name:           clipse
-Release:        2%?dist
+Release:        3%?dist
 Summary:        Configurable TUI clipboard manager for Unix
-Provides:       golang-github-savedra1-clipse = %version-%release
+Provides:       golang-github-savedra1-clipse = %evr
 Obsoletes:      golang-github-savedra1-clipse < 1.1.0-2
 Packager:       madonuko <mado@fyralabs.com>
 License:        MIT
@@ -40,21 +40,17 @@ BuildRequires:  anda-srpm-macros
 
 %prep
 %autosetup -p1 -n clipse-%version
-%go_prep_online
-
-#if %{without bootstrap}
-#generate_buildrequires
-#go_generate_buildrequires
-#endif
+%goprep -A
 
 %if %{without bootstrap}
 %build
 mkdir -p build/bin
-go build -ldflags="-linkmode=external" -o build/bin/%{name}
+%define gomodulesmode GO111MODULE=on
+%gobuild -o build/bin/%{name}
 %endif
 
 %install
-#gopkginstall
+%gopkginstall
 %if %{without bootstrap}
 install -m 0755 -vd                 %{buildroot}%{_bindir}
 install -m 0755 -vp build/bin/%name %{buildroot}%{_bindir}/clipse
@@ -74,7 +70,7 @@ install -m 0755 -vp build/bin/%name %{buildroot}%{_bindir}/clipse
 %{_bindir}/clipse
 %endif
 
-#gopkgfiles
+%gopkgfiles
 
 %changelog
 %autochangelog

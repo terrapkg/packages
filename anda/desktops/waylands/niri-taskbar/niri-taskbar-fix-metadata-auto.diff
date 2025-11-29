@@ -1,0 +1,16 @@
+--- niri-taskbar-0.3.0+niri.25.08/Cargo.toml	1970-01-01T00:00:01+00:00
++++ niri-taskbar-0.3.0+niri.25.08/Cargo.toml	2025-09-04T15:36:25.545774+00:00
+@@ -13,7 +13,7 @@
+ edition = "2024"
+ rust-version = "1.87.0"
+ name = "niri-taskbar"
+-version = "0.2.0+niri.25.05"
++version = "0.3.0"
+ build = false
+ autolib = false
+ autobins = false
+@@ -79,3 +79,4 @@
+ 
+ [dependencies.zbus]
+ version = "5.5.0"
++
