@@ -307,7 +307,7 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %systemd_user_postun app-%{appid}.service
 
 %changelog
-* Sat Nov 29 2025 Gilver E. <rockgrub@disroot.org> - 1.3.0~tip^2025-11-28git9baf37a
+* Sat Nov 29 2025 Gilver E. <rockgrub@disroot.org> - 1.3.0~tip^20251128git9baf37a-1
 - Initial libghostty-vt packages
 * Tue Oct 28 2025 Gilver E. <rockgrub@disroot.org> - 1.3.0~tip^20251027gitd40321a-2
 - Disabled bundled themes
