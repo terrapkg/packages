@@ -6,7 +6,7 @@ if rpm.changed() {
     rpm.release();
     rpm.global("fulldate", d);
     d.truncate(10);
-    let ver = gh_tag("ad-oliviero/uwufetch");
+    let ver = gh("ad-oliviero/uwufetch");
     ver.crop(1);
     rpm.global("ver", ver);
 }
