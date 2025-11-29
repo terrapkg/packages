@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component type="desktop-application">
+  <!-- the terra appstream builder will auto-fill this, this is a quirk of terra-appstream-builder -->
+  <name>Zed</name>
+  <id>dev.zed.Zed</id>
+  <icon>dev.zed.Zed-nightly</icon>
+</component>
