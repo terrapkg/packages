@@ -159,7 +159,6 @@ BuildArch:  noarch
 %obsolete x264-bootstrap-libs 0.0.165-17.20250609gitb35605ac_bootstrap-1
 %obsolete x264-bootstrap-devel 0.0.165-17.20250609gitb35605ac_bootstrap-1
 
-
 %description
 Currently obsoleted packages:
 
