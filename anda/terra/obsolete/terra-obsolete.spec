@@ -4,7 +4,7 @@ Version:    %{?fedora:%{fedora}}%{?rhel:%{rhel}}
 # The dist number is the version here, it is intentionally not repeated in the release
 %global dist %nil
 
-Release:    2
+Release:    3
 Summary:    A package to obsolete retired packages, based on Fedora's equivalent package
 
 License:    LicenseRef-Fedora-Public-Domain
@@ -129,7 +129,9 @@ BuildArch:  noarch
 %obsolete x264-bash-completion 0.165-17.20250609gitb35605ac
 
 %obsolete_ticket https://github.com/terrapkg/packages/pull/7659
-%obsolete x264-bootstrap 0.0.164-15.20231001git31e19f92
+%obsolete x264-bootstrap 0.0.165-17.20250609gitb35605ac_bootstrap
+%obsolete x264-bootstrap-libs 0.0.165-17.20250609gitb35605ac_bootstrap
+%obsolete x264-bootstrap-devel 0.0.165-17.20250609gitb35605ac_bootstrap
 
 %description
 Currently obsoleted packages:
