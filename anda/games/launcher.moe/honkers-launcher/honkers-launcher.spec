@@ -1,3 +1,4 @@
+
 %global cargo_install_lib 0
 %global crate honkers-launcher
 %global appid moe.launcher.honkers-launcher
