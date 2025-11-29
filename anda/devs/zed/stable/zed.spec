@@ -1,4 +1,9 @@
 %bcond_with check
+%bcond_with debug_no_build
+
+%if %{with debug_no_build}
+%global debug_package %{nil}
+%endif
 
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
@@ -63,7 +68,10 @@ Supplements: (%name unless zfs)
 %description cli
 This package provides the /usr/bin/zed binary. If you use zfs, install %name-rename-zeditor instead.
 %files cli
+%if %{without debug_no_build}
 %_bindir/zed
+%endif
+%{_datadir}/icons/hicolor/512x512/apps/%appid.png
 %{_datadir}/applications/%appid.desktop
 %{_metainfodir}/%appid.metainfo.xml
 
@@ -77,19 +85,23 @@ RemovePathPostFixes: .zeditor
 This package provides the %_bindir/zeditor binary instead of %_bindir/zed. This avoids conflicts with the zfs package.
 The normal package is %name-cli.
 %files rename-zeditor
+%if %{without debug_no_build}
 %_bindir/zeditor
+%endif
+%{_datadir}/icons/hicolor/512x512/apps/%appid.png
 %_datadir/applications/%appid.desktop.zeditor
 %{_metainfodir}/%appid.metainfo.xml
 
-
 %prep
 %autosetup -n %{crate}-%{version} -p1
+%if %{without debug_no_build}
 %cargo_prep_online
+%endif
 
 export DO_STARTUP_NOTIFY="true"
-export appid="%appid"
+export APP_ID="%appid"
 export APP_ICON="%appid"
-export APP_NAME="Zed Editor"
+export APP_NAME="Zed"
 export APP_CLI="zed"
 export APP="%{_libexecdir}/zed-editor"
 export APP_ARGS="%U"
@@ -99,24 +111,28 @@ export BRANDING_LIGHT="#e9aa6a"
 export BRANDING_DARK="#1a5fb4"
 
 echo "StartupWMClass=$appid" >> crates/zed/resources/zed.desktop.in
-envsubst < "crates/zed/resources/zed.desktop.in" > $appid.desktop # from https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=zed-git#n52
+envsubst < "crates/zed/resources/zed.desktop.in" > %{appid}.desktop # from https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=zed-git#n52
 sed -i "s|@release_info@||g" "crates/zed/resources/flatpak/zed.metainfo.xml.in"
 
-envsubst < "crates/zed/resources/flatpak/zed.metainfo.xml.in" > $appid.metainfo.xml
+envsubst < "crates/zed/resources/flatpak/zed.metainfo.xml.in" > %{appid}.metainfo.xml
 
 %build
+%if %{without debug_no_build}
 export ZED_UPDATE_EXPLANATION="Run dnf up to update Zed from Terra."
 echo "stable" > crates/zed/RELEASE_CHANNEL
 
 %cargo_build -- --package zed --package cli
 ALLOW_MISSING_LICENSES=1 script/generate-licenses
+%endif
 
 %install
+%if %{without debug_no_build}
 install -Dm755 target/rpm/zed %{buildroot}%{_libexecdir}/zed-editor
 install -Dm755 target/rpm/cli %{buildroot}%{_bindir}/zeditor
 install -Dm755 target/rpm/cli %{buildroot}%{_bindir}/zed
 
 %__cargo clean
+%endif
 
 install -Dm644 %appid.desktop %{buildroot}%{_datadir}/applications/%appid.desktop
 sed 's/Exec=zed/Exec=zeditor/' %appid.desktop > %appid.desktop.zeditor
@@ -127,6 +143,7 @@ install -Dm644 %appid.metainfo.xml %{buildroot}%{_metainfodir}/%appid.metainfo.x
 
 # The license generation script doesn't generate licenses for ALL compiled dependencies, just direct deps of Zed, and it does not "group" licenses
 # Zed also needs a special approach to fetch the dep licenses
+%if %{without debug_no_build}
 %{__cargo} tree                                                             \
     -Z avoid-dev-deps                                                       \
     --workspace                                                             \
@@ -139,6 +156,7 @@ install -Dm644 %appid.metainfo.xml %{buildroot}%{_metainfodir}/%appid.metainfo.x
     | sed -e '/.*(\*).*/d' -e '/^: pet/ s/./MIT&/'                          \
     | sort -u                                                               \
 > LICENSE.dependencies
+%endif
 mv assets/icons/LICENSES LICENSE.icons
 mv assets/themes/LICENSES LICENSE.themes
 mv assets/fonts/ibm-plex-sans/license.txt LICENSE.fonts
@@ -150,7 +168,9 @@ mv assets/fonts/ibm-plex-sans/license.txt LICENSE.fonts
 appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%appid.metainfo.xml
 desktop-file-validate %{buildroot}%{_datadir}/applications/%appid.desktop
 
+%if %{without debug_no_build}
 %cargo_test
+%endif
 %endif
 
 %files
@@ -159,13 +179,17 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%appid.desktop
 %license LICENSE-AGPL
 %license LICENSE-APACHE
 %license LICENSE-GPL
+%if %{without debug_no_build}
 %license LICENSE.dependencies
+%license assets/licenses.md
+%endif
 %license LICENSE.fonts
 %license LICENSE.icons
 %license LICENSE.themes
-%license assets/licenses.md
+%if %{without debug_no_build}
 %{_libexecdir}/zed-editor
-%{_datadir}/icons/hicolor/512x512/apps/%appid.png
+%endif
+
 
 %changelog
 %autochangelog
