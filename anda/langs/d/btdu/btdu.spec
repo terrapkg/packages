@@ -1,7 +1,7 @@
 %define debug_package %nil
 
 Name:			btdu
-Version:		0.6.0
+Version:		0.6.1
 Release:		1%?dist
 Summary:		Sampling disk usage profiler for btrfs
 License:		GPL-2.0-only

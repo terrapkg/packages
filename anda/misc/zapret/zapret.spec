@@ -1,5 +1,5 @@
 Name:    zapret
-Version: 71.4
+Version: 72.3
 Release: 1%?dist
 Summary: A multi-platform Deep Packet Inspection (DPI) bypass tool
 License: MIT 

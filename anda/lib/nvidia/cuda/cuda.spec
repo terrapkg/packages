@@ -3,7 +3,7 @@
 
 Name:           cuda
 Version:        13.0.85
-Release:        1%?dist
+Release:        5%{?dist}
 Summary:        NVIDIA Compute Unified Device Architecture Toolkit
 Epoch:          1
 License:        CUDA Toolkit
@@ -14,8 +14,6 @@ ExclusiveArch:  x86_64 aarch64
 # it's really the same package.
 Source0:        https://developer.download.nvidia.com/compute/cuda/redist/cuda_documentation/linux-x86_64/cuda_documentation-linux-x86_64-%{version}-archive.tar.xz
 
-Source3:        %{name}.sh
-Source4:        %{name}.csh
 Source21:       cuda.pc
 
 Requires:       %{name}-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
@@ -35,9 +33,6 @@ Requires:       %{name}-devel%{?_isa}
 Requires:       %{name}-gdb%{?_isa}
 Requires:       %{name}-memcheck%{?_isa}
 Requires:       %{name}-nvdisasm%{?_isa}
-%ifnarch aarch64
-Requires:       %{name}-nvprof%{?_isa}
-%endif
 Requires:       %{name}-nvtx%{?_isa}
 Requires:       %{name}-sanitizer%{?_isa}
 Requires:       expat >= 1.95
@@ -58,6 +53,7 @@ Requires:       libcurand%{?_isa}
 Requires:       libcusolver%{?_isa}
 Requires:       libcusparse%{?_isa}
 Requires:       libnpp%{?_isa}
+Requires:       libnvjitlink%{?_isa}
 Requires:       libnvjpeg%{?_isa}
 Conflicts:      %{name}-driver-devel-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
 Conflicts:      %{name}-libraries-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
@@ -84,13 +80,13 @@ Requires:       %{name}-cccl-devel%{?_isa}
 Requires:       %{name}-cudart-devel%{?_isa}
 Requires:       %{name}-cupti-devel%{?_isa}
 Requires:       %{name}-nvcc%{?_isa}
-Requires:       %{name}-nvprof-devel%{?_isa}
 Requires:       %{name}-nvprune%{?_isa}
 Requires:       %{name}-nvml-devel%{?_isa}
 Requires:       %{name}-nvrtc-devel%{?_isa}
 Requires:       %{name}-nvtx-devel%{?_isa}
 Requires:       %{name}-cuobjdump%{?_isa}
 Requires:       %{name}-cuxxfilt-devel%{?_isa}
+Requires:       %{name}-profiler-devel%{?_isa}
 Requires:       %{name}-sandbox-devel%{?_isa}
 Requires:       libcublas-devel%{?_isa}
 Requires:       libcufft-devel%{?_isa}
@@ -99,6 +95,7 @@ Requires:       libcurand-devel%{?_isa}
 Requires:       libcusolver-devel%{?_isa}
 Requires:       libcusparse-devel%{?_isa}
 Requires:       libnpp-devel%{?_isa}
+Requires:       libnvjitlink-devel%{?_isa}
 Requires:       libnvjpeg-devel%{?_isa}
 Conflicts:      %{name}-headers-%{major_package_version} < %{?epoch:%{epoch}:}%{version}
 Conflicts:      %{name}-libraries-dev-%{major_package_version} < %{?epoch:%{epoch}:}%{version}
@@ -117,25 +114,19 @@ This package provides the development files of the %{name} package.
 
 %install
 mkdir -p %{buildroot}%{_libdir}/pkgconfig/
-mkdir -p %{buildroot}%{_sysconfdir}/profile.d/
-
-# Environment settings
-install -pm 644 %{SOURCE3} %{SOURCE4} %{buildroot}%{_sysconfdir}/profile.d
 
 # pkg-config files
 install -pm 644 %{SOURCE21} %{buildroot}/%{_libdir}/pkgconfig
-
-# Set proper variables
 sed -i \
     -e 's|CUDA_VERSION|%{version}|g' \
+    -e 's|PREFIX|%{_prefix}|g' \
     -e 's|LIBDIR|%{_libdir}|g' \
-    -e 's|INCLUDE_DIR|%{_includedir}/cuda|g' \
-    %{buildroot}/%{_libdir}/pkgconfig/*.pc
+    -e 's|INCLUDE_DIR|%{_includedir}|g' \
+    %{buildroot}%{_libdir}/pkgconfig/*.pc
 
 %files
 %license LICENSE
 %doc CUDA_Toolkit_Release_Notes.txt DOCS EULA.txt README tools
-%config(noreplace) %{_sysconfdir}/profile.d/%{name}.*sh
 
 %files cli-tools
 # Empty metapackage

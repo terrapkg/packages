@@ -2,17 +2,18 @@
 %global         __strip /bin/true
 %global         _missing_build_ids_terminate_build 0
 %global         _build_id_links none
+%global         cuda_version 13
 
 Name:           libcusparselt
 Version:        0.8.1.1
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        CUDA Library for Sparse Matrix-Matrix Multiplication
 License:        NVIDIA License
 URL:            https://docs.nvidia.com/cuda/cusparselt/index.html
 ExclusiveArch:  x86_64 aarch64
 
-Source0:        https://developer.download.nvidia.com/compute/cusparselt/redist/libcusparse_lt/linux-x86_64/libcusparse_lt-linux-x86_64-%{version}-archive.tar.xz
-Source1:        https://developer.download.nvidia.com/compute/cusparselt/redist/libcusparse_lt/linux-sbsa/libcusparse_lt-linux-sbsa-%{version}-archive.tar.xz
+Source0:        https://developer.download.nvidia.com/compute/cusparselt/redist/libcusparse_lt/linux-x86_64/libcusparse_lt-linux-x86_64-%{version}_cuda%{cuda_version}-archive.tar.xz
+Source1:        https://developer.download.nvidia.com/compute/cusparselt/redist/libcusparse_lt/linux-sbsa/libcusparse_lt-linux-sbsa-%{version}_cuda%{cuda_version}-archive.tar.xz
 
 Conflicts:      %{name}0 < %{?epoch:%{epoch}:}%{version}-%{release}
 
@@ -43,11 +44,11 @@ Static libraries for cuSPARSELt.
 
 %prep
 %ifarch x86_64
-%setup -q -n libcusparse_lt-linux-x86_64-%{version}-archive
+%setup -q -n libcusparse_lt-linux-x86_64-%{version}_cuda%{cuda_version}-archive
 %endif
 
 %ifarch aarch64
-%setup -q -T -b 1 -n libcusparse_lt-linux-sbsa-%{version}-archive
+%setup -q -T -b 1 -n libcusparse_lt-linux-sbsa-%{version}_cuda%{cuda_version}-archive
 %endif
 
 %build

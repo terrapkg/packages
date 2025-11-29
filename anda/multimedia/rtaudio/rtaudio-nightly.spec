@@ -1,7 +1,7 @@
 #? https://src.fedoraproject.org/rpms/rtaudio/blob/db1aa72863ccbfd480e22c2f7aefb41ebb8e2360/f/rtaudio.spec
-%global commit acec45bb17425b0bfbc9972ead29d2b0c22c0c93
+%global commit 409636b5dcad3054ae5a9e85014bba3861b8edab
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250909
+%global commit_date 20251126
 %global ver .0.1
 
 Name:           rtaudio-nightly
