@@ -8,6 +8,7 @@ Source0:  %{url}/archive/refs/tags/v%{version}.tar.gz
 # Only works with POSIX compliant shells
 Requires:  (bash or dash or ksh or zsh)
 BuildArch: noarch
+Packager:  Gilver E. <rockgrub@disroot.org>
 
 %description
 POSIX-compliant script to manage multiple active Node.js versions.
@@ -34,3 +35,7 @@ install -Dm644 %{name}.sh -t %{buildroot}%{_sysconfdir}/profile.d
 %doc README.md
 %{_bindir}/%{name}-init
 %{_sysconfdir}/profile.d/%{name}.sh
+
+%changelog
+* Sun Nov 30 2025 Gilver E. <rockgrub@disroot.org> - 0.40.3-1
+- Initial package
