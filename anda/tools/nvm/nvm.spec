@@ -23,7 +23,7 @@ POSIX-compliant script to manage multiple active Node.js versions.
 # Anyone home?
 
 %install
-install -Dm744 %{SOURCE1} -t %{buildroot}%{_bindir}
+install -Dm744 %{SOURCE1} %{buildroot}%{_bindir}/%{name}
 
 install -Dm644 bash_completion %{buildroot}%{bash_completions_dir}/%{name}.bash
 # Another cursed script that uses bashcompinit to use one file for Bash and Zsh completions
