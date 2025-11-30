@@ -36,17 +36,15 @@
 %global zig_install_options %zig_build_options %{shrink: \
     --prefix "%{_prefix}" \
 }
-%global zig_mirrors ("https://pkg.machengine.org/zig" "https://zigmirror.hryx.net/zig" "https://zig.linus.dev/zig" "https://zig.squirl.dev" "https://zig.florent.dev")
-%global mirror_url %(mirrors=%{zig_mirrors}; index=$(( RANDOM % ${#mirrors[@]} )); echo ${mirrors[$index]})
 
-Name:           zig-master-bootstrap
+Name:           zig-master
 Version:        %(echo %{ver} | sed 's/-/~/g')
 Release:        1%?dist
-Summary:        Boostrap builds for Zig.
+Summary:        Bootstrapped build of Zig from master.
 License:        MIT AND NCSA AND LGPL-2.1-or-later AND LGPL-2.1-or-later WITH GCC-exception-2.0 AND GPL-2.0-or-later AND GPL-2.0-or-later WITH GCC-exception-2.0 AND BSD-3-Clause AND Inner-Net-2.0 AND ISC AND LicenseRef-Fedora-Public-Domain AND GFDL-1.1-or-later AND ZPL-2.1
 URL:            https://ziglang.org
-Source0:        %{mirror_url}/zig-%{ver}.tar.xz
-Source1:        %{mirror_url}/zig-%{ver}.tar.xz.minisig
+Source0:        zig-%{version_no_tilde}.tar.xz
+Source1:        zig-%{version_no_tilde}.tar.xz.minisig
 Patch0:         0000-remove-native-lib-directories-from-rpath.patch
 Patch3:         0005-link.Elf-add-root-directory-of-libraries-to-linker-p.patch
 BuildRequires:  cmake
@@ -63,11 +61,14 @@ BuildRequires:  help2man
 BuildRequires:  minisign
 %if %{without bootstrap}
 BuildRequires:  %{name} = %{version}
+Obsoletes:      %{name}-bootstrap < %{version}
 %endif
 %if %{with test}
 BuildRequires:  elfutils-libelf-devel
 BuildRequires:  libstdc++-static
 %endif
+# For the version_no_tilde macro
+BuildRequires:  rust-srpm-macros
 Requires:       %{name}-libs = %{version}
 # Apache-2.0 WITH LLVM-exception OR NCSA OR MIT
 Provides:       bundled(compiler-rt) = %{llvm_version}
@@ -91,7 +92,7 @@ Packager:       Gilver E. <rockgrub@disroot.org>
 
 %description
 Zig is an open source alternative to C. 
-This package provides the bootstrap to build full "prerelease"/master builds of Zig.
+This package provides the bootstrapped build to build full "prerelease"/master builds of Zig.
 It is not recommended to use this build on its own.
 
 # The Zig stdlib only contains uncompiled code
@@ -198,6 +199,8 @@ install -Dpm644 zig.1 -t %{buildroot}%{_mandir}/man1/
 %endif
 
 %changelog
+* Mon Nov 24 2025 Gilver E. <rockgrub@disroot.org> - 0.16.0~dev.1456+16fc083f2-2
+- Moved to new method of bootstrapping, deprecated zig-master-bootstrap
 * Sat May 10 2025 Gilver E. <rockgrub@disroot.org> - 0.15.0~dev.482+2c241b263-2
 - Added GCC runtime dependency to pass system information to Zig
 * Fri Apr 25 2025 Gilver E. <rockgrub@disroot.org> - 0.15.0~dev.384+c06fecd46-2
