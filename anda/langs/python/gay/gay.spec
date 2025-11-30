@@ -44,8 +44,6 @@ Provides:       gay
 %doc README.md
 %license LICENSE
 %{_bindir}/gay
-%python3_sitelib/__pycache__/*.cpython-*.pyc
-%python3_sitelib/%{name}/subcommands/__pycache__/*.cpython-*.pyc
 %python3_sitelib/gay-1.3.4.dist-info/*
 
 %changelog
