@@ -13,7 +13,7 @@ Packager:  Gilver E. <rockgrub@disroot.org>
 %description
 POSIX-compliant script to manage multiple active Node.js versions.
 
-%pkg_completion -b
+%pkg_completion -bz
 
 %prep
 %autosetup -n %{name}-%{version}
@@ -27,6 +27,8 @@ install -Dm744 install.sh %{buildroot}%{_bindir}/%{name}-init
 
 # Also based on Fedora's Rustup, these files are installed so that when this is a system package they are available globally
 install -Dm644 bash_completion %{buildroot}%{bash_completions_dir}/%{name}.bash
+# Another cursed script that uses bashcompinit to use one file for Bash and Zsh completions
+install -Dm644 bash_completion %{buildroot}%{zsh_completions_dir}/_%{name}
 
 install -Dm644 %{name}.sh -t %{buildroot}%{_sysconfdir}/profile.d
 
