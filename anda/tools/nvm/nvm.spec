@@ -5,6 +5,7 @@ Summary:  Node Version Manager
 License:  MIT
 URL:      https://github.com/nvm-sh/nvm
 Source0:  %{url}/archive/refs/tags/v%{version}.tar.gz
+Source1:  binscript
 # Only works with POSIX compliant shells
 Requires:  (bash or dash or ksh or zsh)
 BuildArch: noarch
@@ -22,10 +23,8 @@ POSIX-compliant script to manage multiple active Node.js versions.
 # Anyone home?
 
 %install
-# Works exactly the same as rustup-init
-install -Dm744 install.sh %{buildroot}%{_bindir}/%{name}-init
+install -Dm744 %{SOURCE1} -t %{buildroot}%{_bindir}
 
-# Also based on Fedora's Rustup, these files are installed so that when this is a system package they are available globally
 install -Dm644 bash_completion %{buildroot}%{bash_completions_dir}/%{name}.bash
 # Another cursed script that uses bashcompinit to use one file for Bash and Zsh completions
 install -Dm644 bash_completion %{buildroot}%{zsh_completions_dir}/_%{name}
@@ -35,7 +34,7 @@ install -Dm644 %{name}.sh -t %{buildroot}%{_sysconfdir}/profile.d
 %files
 %license LICENSE.md
 %doc README.md
-%{_bindir}/%{name}-init
+%{_bindir}/%{name}
 %{_sysconfdir}/profile.d/%{name}.sh
 
 %changelog
