@@ -26,10 +26,9 @@ cp %{S:1} .
 
 
 %files
-%doc README.md 3RDPARTY.md FAQ.md CONFIG.md PROTOCOL.md COPYING USAGE.md
+%doc README.md 3RDPARTY.md FAQ.md CONFIG.md COPYING USAGE.md
 %license %_datadir/doc/limine/LICENSES/LicenseRef-scancode-bsd-no-disclaimer-unmodified.txt
 %license COPYING
 %_bindir/limine
-%_includedir/limine.h
 %_datadir/limine/
 %_mandir/man1/limine.1.gz
