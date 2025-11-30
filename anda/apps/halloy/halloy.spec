@@ -18,6 +18,7 @@ BuildRequires: alsa-lib-devel
 BuildRequires: cargo-rpm-macros >= 24
 BuildRequires: desktop-file-utils
 BuildRequires: openssl-devel
+BuildRequires: pkgconfig(xcb)
 
 
 %description
