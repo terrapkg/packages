@@ -2,7 +2,7 @@
 
 Name:           nautilus-open-any-terminal
 Version:        0.7.0
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Context-menu entry for opening other terminal in Nautilus
 License:        GPL-3.0-only
 URL:            https://github.com/Stunkymonkey/nautilus-open-any-terminal
@@ -18,6 +18,7 @@ BuildRequires:  python3dist(pip)
 BuildRequires:  gettext
 Requires:       python3-%{name} = %{version}-%{release}
 Requires:       %{name}-caja = %{version}-%{release}
+Requires:       nautilus-python
 Obsoletes:      python3-%{name} < 0.6.1-2
 
 

@@ -1,7 +1,16 @@
-From 21b062a757a202dcb737d40442b6145c34bb1e48 Mon Sep 17 00:00:00 2001
+From 822117cacfa1eb2f327734c9b95739b7882c17ae Mon Sep 17 00:00:00 2001
+From: Kyle Gospodnetich <me@kylegospodneti.ch>
+Date: Mon, 24 Nov 2025 21:07:27 -0800
+Subject: [PATCH 1/8] [BEGIN] SteamOS Changes
+
+-- 
+2.52.0
+
+
+From 94b012e3b5858db415b4fff612df61667ea85f7b Mon Sep 17 00:00:00 2001
 From: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
 Date: Fri, 14 Jan 2022 15:58:45 +0100
-Subject: [PATCH 01/11] STEAMOS: radv: min image count override for FH5
+Subject: [PATCH 2/8] STEAMOS: radv: min image count override for FH5
 
 Otherwise in combination with the vblank time reservation in
 gamescope the game could get stuck in low power states.
@@ -10,12 +19,12 @@ gamescope the game could get stuck in low power states.
  1 file changed, 4 insertions(+)
 
 diff --git a/src/util/00-radv-defaults.conf b/src/util/00-radv-defaults.conf
-index b82e8d4da4d..c8d059571ad 100644
+index e36357b9e4a..68a1957ee7b 100644
 --- a/src/util/00-radv-defaults.conf
 +++ b/src/util/00-radv-defaults.conf
-@@ -234,5 +234,9 @@ Application bugs worked around in this file:
-         <application name="Total War: WARHAMMER III" application_name_match="TotalWarhammer3">
-             <option name="radv_disable_depth_storage" value="true"/>
+@@ -311,5 +311,9 @@ Application bugs worked around in this file:
+         <application name="No Man's Sky" application_name_match="No Man's Sky">
+             <option name="radv_app_layer" value="no_mans_sky" />
          </application>
 +
 +        <application name="Forza Horizon 5" application_name_match="ForzaHorizon5.exe">
@@ -24,14 +33,14 @@ index b82e8d4da4d..c8d059571ad 100644
      </device>
  </driconf>
 -- 
-2.50.1
+2.52.0
 
 
-From e837814b4f33e48eaf6a79975cb738da39ed0fd2 Mon Sep 17 00:00:00 2001
+From 482112717feaee42098c18eb9143d5afd6f5e173 Mon Sep 17 00:00:00 2001
 From: Samuel Pitoiset <samuel.pitoiset@gmail.com>
 Date: Thu, 22 Feb 2024 22:32:45 +0100
-Subject: [PATCH 02/11] STEAMOS: Dynamic swapchain override for gamescope
- limiter for DRI3 only
+Subject: [PATCH 3/8] STEAMOS: Dynamic swapchain override for gamescope limiter
+ for DRI3 only
 
 The original patch (from Bas) contained WSI VK support too but it's
 been removed because the Gamescope WSI layer already handles that.
@@ -43,7 +52,7 @@ Signed-off-by: Samuel Pitoiset <samuel.pitoiset@gmail.com>
  2 files changed, 41 insertions(+), 2 deletions(-)
 
 diff --git a/src/gallium/frontends/dri/loader_dri3_helper.c b/src/gallium/frontends/dri/loader_dri3_helper.c
-index a795d45ce29..435ea2405a8 100644
+index 2c8caba08fd..2c9159672dc 100644
 --- a/src/gallium/frontends/dri/loader_dri3_helper.c
 +++ b/src/gallium/frontends/dri/loader_dri3_helper.c
 @@ -297,6 +297,30 @@ dri3_update_max_num_back(struct loader_dri3_drawable *draw)
@@ -131,31 +140,31 @@ index 26f138d1b83..3f0f3f66fac 100644
     const struct loader_dri3_vtable *vtable;
  
 -- 
-2.50.1
+2.52.0
 
 
-From 354cf8783e49b082c97982f2e5be305ad6e4ab50 Mon Sep 17 00:00:00 2001
-From: Antheas Kapenekakis <git@antheas.dev>
-Date: Sat, 15 Mar 2025 16:39:25 +0100
-Subject: [PATCH 03/11] [BEGIN] SteamOS Backports
-
--- 
-2.50.1
-
-
-From c5a4eab20075dfa2f2bdfb87e55ecec262ef00f6 Mon Sep 17 00:00:00 2001
-From: Antheas Kapenekakis <git@antheas.dev>
-Date: Sat, 15 Mar 2025 16:39:33 +0100
-Subject: [PATCH 04/11] [BEGIN] Our Mesa backports
+From 46d91c20dfb4f314a6e261ef4f1ae7ae65d90569 Mon Sep 17 00:00:00 2001
+From: Kyle Gospodnetich <me@kylegospodneti.ch>
+Date: Mon, 24 Nov 2025 21:08:23 -0800
+Subject: [PATCH 4/8] [BEGIN] SteamOS Backports
 
 -- 
-2.50.1
+2.52.0
 
 
-From 221b11df6d9cd7b66c8502fa51d8d72cfc377e5e Mon Sep 17 00:00:00 2001
+From 6823720adcf0fc209bcc341999b3e3fe76b6c189 Mon Sep 17 00:00:00 2001
+From: Kyle Gospodnetich <me@kylegospodneti.ch>
+Date: Mon, 24 Nov 2025 21:08:31 -0800
+Subject: [PATCH 5/8] [BEGIN] Our Mesa Backports
+
+-- 
+2.52.0
+
+
+From 227cd7d88802583e47ea3c7ff006103266330ec9 Mon Sep 17 00:00:00 2001
 From: Antheas Kapenekakis <git@antheas.dev>
 Date: Mon, 24 Mar 2025 19:50:51 +0100
-Subject: [PATCH 05/11] Revert "winsys/amdgpu: use VM_ALWAYS_VALID for all VRAM
+Subject: [PATCH 6/8] Revert "winsys/amdgpu: use VM_ALWAYS_VALID for all VRAM
  and GTT allocations"
 
 This reverts commit 8c91624614c1f939974fe0d2d1a3baf83335cecb.
@@ -166,7 +175,7 @@ Messes with AutoVRAM, who would have thought?
  1 file changed, 5 deletions(-)
 
 diff --git a/src/gallium/winsys/amdgpu/drm/amdgpu_bo.c b/src/gallium/winsys/amdgpu/drm/amdgpu_bo.c
-index d5646e9660b..a51348b44a8 100644
+index ce4e9f67659..47703444abf 100644
 --- a/src/gallium/winsys/amdgpu/drm/amdgpu_bo.c
 +++ b/src/gallium/winsys/amdgpu/drm/amdgpu_bo.c
 @@ -624,11 +624,6 @@ static struct amdgpu_winsys_bo *amdgpu_create_bo(struct amdgpu_winsys *aws,
@@ -182,2257 +191,22 @@ index d5646e9660b..a51348b44a8 100644
         aws->info.drm_minor >= 47)
        request.flags |= AMDGPU_GEM_CREATE_DISCARDABLE;
 -- 
-2.50.1
+2.52.0
 
 
-From cf8c0d66ed49f99d0d259c28fe72174d58c06de7 Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?Daniel=20Sch=C3=BCrmann?= <daniel@schuermann.dev>
-Date: Mon, 24 Mar 2025 21:25:29 +0100
-Subject: [PATCH 06/11] vulkan: implement VK_AMD_anti_lag as implicit vulkan
- layer
-
-VkLayer_MESA_anti_lag is a lightweight implicit layer which provides
-an open-source implementation of the VK_AMD_anti_lag vulkan extension.
-
-The algorithm used by this layer is very simplistic and only aims to
-minimize the delay between calls to vkQueueSubmit or vkQueueSubmit2
-and the begin of the execution of the submission.
-
-In order to build VkLayer_MESA_anti_lag, pass -Dlayers=anti-lag to meson.
-It is possible to either install the layer or to use
-
- VK_ADD_IMPLICIT_LAYER_PATH=<buildpath>/share/vulkan/implicit_layer.d/
-
-for testing purposes.
-(Keep in mind that you have to adjust the library_path in the json file in that case.)
-
-Part-of: <https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/34242>
----
- meson.build                                   |   1 +
- meson.options                                 |   2 +-
- .../anti-lag-layer/VkLayer_MESA_anti_lag.json |  26 +
- src/vulkan/anti-lag-layer/anti_lag_layer.c    | 590 ++++++++++++
- src/vulkan/anti-lag-layer/anti_lag_layer.h    | 111 +++
- .../anti-lag-layer/anti_lag_layer_interface.c | 899 ++++++++++++++++++
- src/vulkan/anti-lag-layer/meson.build         |  26 +
- src/vulkan/anti-lag-layer/ringbuffer.h        |  58 ++
- src/vulkan/meson.build                        |   3 +
- 9 files changed, 1715 insertions(+), 1 deletion(-)
- create mode 100644 src/vulkan/anti-lag-layer/VkLayer_MESA_anti_lag.json
- create mode 100644 src/vulkan/anti-lag-layer/anti_lag_layer.c
- create mode 100644 src/vulkan/anti-lag-layer/anti_lag_layer.h
- create mode 100644 src/vulkan/anti-lag-layer/anti_lag_layer_interface.c
- create mode 100644 src/vulkan/anti-lag-layer/meson.build
- create mode 100644 src/vulkan/anti-lag-layer/ringbuffer.h
-
-diff --git a/meson.build b/meson.build
-index 427cfde435c..c6c6457abae 100644
---- a/meson.build
-+++ b/meson.build
-@@ -95,6 +95,7 @@ with_vulkan_overlay_layer = get_option('vulkan-layers').contains('overlay')
- with_vulkan_device_select_layer = get_option('vulkan-layers').contains('device-select')
- with_vulkan_screenshot_layer = get_option('vulkan-layers').contains('screenshot')
- with_vulkan_vram_report_limit_layer = get_option('vulkan-layers').contains('vram-report-limit')
-+with_vulkan_anti_lag_layer = get_option('vulkan-layers').contains('anti-lag')
- with_tools = get_option('tools')
- if with_tools.contains('all')
-   with_tools = [
-diff --git a/meson.options b/meson.options
-index c3c02c4c94f..cd0e56cc429 100644
---- a/meson.options
-+++ b/meson.options
-@@ -299,7 +299,7 @@ option(
-   type : 'array',
-   value : [],
-   choices : [
--    'device-select', 'intel-nullhw', 'overlay', 'screenshot',
-+    'device-select', 'intel-nullhw', 'overlay', 'screenshot', 'anti-lag',
-     'vram-report-limit',
-   ],
-   description : 'List of vulkan layers to build'
-diff --git a/src/vulkan/anti-lag-layer/VkLayer_MESA_anti_lag.json b/src/vulkan/anti-lag-layer/VkLayer_MESA_anti_lag.json
-new file mode 100644
-index 00000000000..4e2ab794c9e
---- /dev/null
-+++ b/src/vulkan/anti-lag-layer/VkLayer_MESA_anti_lag.json
-@@ -0,0 +1,26 @@
-+{
-+   "file_format_version": "1.2.1",
-+   "layer": {
-+      "name": "VK_LAYER_MESA_anti_lag",
-+      "type": "GLOBAL",
-+      "library_path": "libVkLayer_MESA_anti_lag.so",
-+      "api_version": "1.4.303",
-+      "implementation_version": "1",
-+      "description": "Open-source implementation of the VK_AMD_anti_lag extension.",
-+      "functions": {
-+         "vkNegotiateLoaderLayerInterfaceVersion": "anti_lag_NegotiateLoaderLayerInterfaceVersion"
-+      },
-+      "device_extensions": [
-+         {
-+            "name": "VK_AMD_anti_lag",
-+            "spec_version": "1",
-+            "entrypoints": [
-+               "vkAntiLagUpdateAMD"
-+            ]
-+         }
-+      ],
-+      "disable_environment": {
-+         "DISABLE_LAYER_MESA_ANTI_LAG": "1"
-+      }
-+   }
-+}
-\ No newline at end of file
-diff --git a/src/vulkan/anti-lag-layer/anti_lag_layer.c b/src/vulkan/anti-lag-layer/anti_lag_layer.c
-new file mode 100644
-index 00000000000..6c21e074024
---- /dev/null
-+++ b/src/vulkan/anti-lag-layer/anti_lag_layer.c
-@@ -0,0 +1,590 @@
-+/*
-+ * Copyright © 2025 Valve Corporation
-+ *
-+ * SPDX-License-Identifier: MIT
-+ */
-+
-+#include "anti_lag_layer.h"
-+#include <string.h>
-+#include "util/os_time.h"
-+#include "util/simple_mtx.h"
-+#include "vulkan/vulkan_core.h"
-+#include "ringbuffer.h"
-+#include "vk_alloc.h"
-+#include "vk_util.h"
-+
-+static bool
-+evaluate_frame(device_context *ctx, frame *frame, bool force_wait)
-+{
-+   if (frame->state != FRAME_PRESENT) {
-+      /* This frame is not finished yet. */
-+      assert(!force_wait);
-+      return false;
-+   }
-+
-+   int query_flags = VK_QUERY_RESULT_64_BIT | VK_QUERY_RESULT_WAIT_BIT;
-+   const uint32_t frame_idx = ringbuffer_index(ctx->frames, frame);
-+
-+   /* Before we commit to completing a frame, all submits on all queues must have completed. */
-+   for (unsigned i = 0; i < ctx->num_queues; i++) {
-+      queue_context *queue_ctx = &ctx->queues[i];
-+      ringbuffer_lock(queue_ctx->queries);
-+      uint64_t expected_signal_value = queue_ctx->semaphore_value - queue_ctx->queries.size +
-+                                       queue_ctx->submissions_per_frame[frame_idx];
-+      ringbuffer_unlock(queue_ctx->queries);
-+
-+      if (force_wait) {
-+         /* Wait for the timeline semaphore of the frame to be signaled. */
-+         struct VkSemaphoreWaitInfo wait_info = {
-+            .sType = VK_STRUCTURE_TYPE_SEMAPHORE_WAIT_INFO,
-+            .semaphoreCount = 1,
-+            .pSemaphores = &queue_ctx->semaphore,
-+            .pValues = &expected_signal_value,
-+         };
-+         ctx->vtable.WaitSemaphores(ctx->device, &wait_info, 0);
-+      } else {
-+         /* Return early if the last timeline semaphore of the frame has not been signaled yet. */
-+         uint64_t signal_value;
-+         ctx->vtable.GetSemaphoreCounterValue(ctx->device, queue_ctx->semaphore, &signal_value);
-+         if (signal_value < expected_signal_value)
-+            return false;
-+      }
-+   }
-+
-+   /* For each queue, retrieve timestamp query results. */
-+   for (unsigned i = 0; i < ctx->num_queues; i++) {
-+      queue_context *queue_ctx = &ctx->queues[i];
-+
-+      /* As we hold a global mtx and this is the only place where queries are free'd,
-+       * we don't need to lock the query ringbuffer here in order to read the first entry.
-+       */
-+      struct query *query = ringbuffer_first(queue_ctx->queries);
-+      uint32_t query_idx = ringbuffer_index(queue_ctx->queries, query);
-+      int num_timestamps =
-+         MIN2(queue_ctx->submissions_per_frame[frame_idx], MAX_QUERIES - query_idx);
-+
-+      while (num_timestamps > 0) {
-+         /* Retreive timestamp results from this queue. */
-+         ctx->vtable.GetQueryPoolResults(ctx->device, queue_ctx->queryPool, query_idx,
-+                                         num_timestamps, sizeof(uint64_t), &query->begin_gpu_ts,
-+                                         sizeof(struct query), query_flags);
-+
-+         ringbuffer_lock(queue_ctx->queries);
-+         for (unsigned j = 0; j < num_timestamps; j++) {
-+
-+            /* Calibrate device timestamps. */
-+            query->begin_gpu_ts =
-+               ctx->calibration.delta +
-+               (uint64_t)(query->begin_gpu_ts * ctx->calibration.timestamp_period);
-+            if (query->begin_gpu_ts > query->submit_cpu_ts)
-+               frame->min_delay =
-+                  MIN2(frame->min_delay, query->begin_gpu_ts - query->submit_cpu_ts);
-+
-+            /* Check if we can reset half of the query pool at once. */
-+            uint32_t next_idx = ringbuffer_index(queue_ctx->queries, query) + 1;
-+            const bool reset = next_idx == MAX_QUERIES || next_idx == MAX_QUERIES / 2;
-+            if (reset) {
-+               ringbuffer_unlock(queue_ctx->queries);
-+               ctx->vtable.ResetQueryPool(ctx->device, queue_ctx->queryPool,
-+                                          next_idx - MAX_QUERIES / 2, MAX_QUERIES / 2);
-+               ringbuffer_lock(queue_ctx->queries);
-+            }
-+
-+            /* Free query. */
-+            ringbuffer_free(queue_ctx->queries, query);
-+            queue_ctx->submissions_per_frame[frame_idx]--;
-+
-+            query = ringbuffer_first(queue_ctx->queries);
-+         }
-+
-+         /* Ensure that the total number of queries across all frames is correct. */
-+         ASSERTED uint32_t count = 0;
-+         for (unsigned i = 0; i < MAX_FRAMES; i++)
-+            count += queue_ctx->submissions_per_frame[i];
-+         assert(count == queue_ctx->queries.size);
-+
-+         query_idx = ringbuffer_index(queue_ctx->queries, query);
-+         num_timestamps =
-+            MIN2(queue_ctx->submissions_per_frame[frame_idx], MAX_QUERIES - query_idx);
-+
-+         ringbuffer_unlock(queue_ctx->queries);
-+      }
-+   }
-+
-+   frame->min_delay++; /* wrap UINT64_MAX in case we didn't have any submissions. */
-+
-+   return true;
-+}
-+
-+static bool
-+calibrate_timestamps(device_context *ctx)
-+{
-+   uint64_t ts[2];
-+   uint64_t deviation;
-+
-+   VkCalibratedTimestampInfoKHR info[2] = {
-+      {
-+         .sType = VK_STRUCTURE_TYPE_CALIBRATED_TIMESTAMP_INFO_KHR,
-+         .timeDomain = VK_TIME_DOMAIN_CLOCK_MONOTONIC_KHR,
-+      },
-+      {
-+         .sType = VK_STRUCTURE_TYPE_CALIBRATED_TIMESTAMP_INFO_KHR,
-+         .timeDomain = VK_TIME_DOMAIN_DEVICE_KHR,
-+      },
-+   };
-+
-+   VkResult result = ctx->vtable.GetCalibratedTimestampsKHR(ctx->device, 2, info, ts, &deviation);
-+   if (result == VK_SUCCESS) {
-+      /* We take a moving average in order to avoid variance. */
-+      int64_t new_delta = ts[0] - (int64_t)(ts[1] * ctx->calibration.timestamp_period);
-+
-+      if (ctx->calibration.delta == 0) {
-+         ctx->calibration.delta = new_delta;
-+      } else {
-+         int64_t diff = new_delta - ctx->calibration.delta;
-+         ctx->calibration.delta += diff / 8;
-+      }
-+
-+      /* Take a new calibrated timestamp every second. */
-+      ctx->calibration.recalibrate_when = ts[0] + 1000000000ull;
-+   }
-+
-+   return result == VK_SUCCESS;
-+}
-+
-+static void
-+begin_next_frame(device_context *ctx)
-+{
-+   frame *next_frame;
-+   if (ctx->active_frame) {
-+      assert(ctx->active_frame->state == FRAME_SUBMIT);
-+      ctx->active_frame->state = FRAME_PRESENT;
-+      next_frame = ringbuffer_next(ctx->frames, ctx->active_frame);
-+   } else {
-+      next_frame = ringbuffer_last(ctx->frames);
-+   }
-+
-+   /* If there is a frame ready, it becomes active. */
-+   if (next_frame->state == FRAME_INPUT) {
-+      next_frame->state = FRAME_SUBMIT;
-+      ctx->active_frame = next_frame;
-+   } else {
-+      ctx->active_frame = NULL;
-+   }
-+}
-+
-+static void
-+anti_lag_disable(device_context *ctx)
-+{
-+   ringbuffer_lock(ctx->frames);
-+   while (ctx->frames.size) {
-+      /* Set force-wait=true, so that all pending timestamp queries get completed. */
-+      begin_next_frame(ctx);
-+      frame *frame = ringbuffer_first(ctx->frames);
-+      evaluate_frame(ctx, frame, true);
-+      frame->state = FRAME_INVALID;
-+      ringbuffer_free(ctx->frames, frame);
-+   }
-+   assert(!ctx->active_frame);
-+   ringbuffer_unlock(ctx->frames);
-+}
-+
-+#define TARGET_DELAY 4000000ll /* 4 ms */
-+/**
-+ * Returns the amount of time that we want the next frame to be delayed.
-+ *
-+ * The algorithm used by this function is very simplistic and only aims
-+ * to minimize the delay between calls to vkQueueSubmit or vkQueueSubmit2
-+ * and the begin of the execution of the submission.
-+ */
-+static int64_t
-+get_wait_time(device_context *ctx)
-+{
-+   /* Take the previous evaluated frame's delay as baseline. */
-+   int64_t imposed_delay = ctx->base_delay;
-+   int64_t adaptation = 0;
-+
-+   ringbuffer_lock(ctx->frames);
-+   /* In case our ringbuffer is completely full and no frame is in PRESENT stage,
-+    * just move the oldest frame to PRESENT stage, and force-wait.
-+    */
-+   bool force_wait = ctx->frames.size == MAX_FRAMES;
-+   frame *next_frame = ringbuffer_first(ctx->frames);
-+   if (force_wait && next_frame->state != FRAME_PRESENT)
-+      begin_next_frame(ctx);
-+
-+   /* Also force-wait for the oldest frame if there is already 2 frames in PRESENT stage. */
-+   force_wait |= ringbuffer_next(ctx->frames, next_frame)->state == FRAME_PRESENT;
-+   ringbuffer_unlock(ctx->frames);
-+
-+   /* Take new evaluated frames into consideration. */
-+   while (evaluate_frame(ctx, next_frame, force_wait)) {
-+
-+      if (next_frame->min_delay < TARGET_DELAY / 2 && ctx->adaptation <= 0) {
-+         /* If there is no delay between submission and GPU start, halve the base delay and
-+          * set the delay for this frame to zero, in order to account for sudden changes.
-+          */
-+         ctx->base_delay = ctx->base_delay / 2;
-+         adaptation = -ctx->base_delay;
-+      } else {
-+         /* We use some kind of exponential weighted moving average function here,
-+          * in order to determine a base-delay. We use a smoothing-factor of roughly
-+          * 3%, but don't discount the previous value. This helps keeping the delay
-+          * slightly below the target of 5 ms, most of the time.
-+          */
-+         int64_t diff = (int64_t)next_frame->min_delay - TARGET_DELAY;
-+         ctx->base_delay = MAX2(0, ctx->base_delay + diff / 32); /* corresponds to ~3 % */
-+
-+         /* As the base-delay gets adjusted rather slowly, we additionally use the half of the
-+          * diff as adaptation delay to account for sudden changes. A quarter of the adaptation
-+          * is then subtracted for the next frame, so that we can avoid overcompensation.
-+          */
-+         adaptation = diff / 2 - ctx->adaptation / 4;
-+      }
-+
-+      /* We only need space for one frame. */
-+      force_wait = false;
-+
-+      ringbuffer_lock(ctx->frames);
-+      next_frame->state = FRAME_INVALID;
-+      ringbuffer_free(ctx->frames, next_frame);
-+      next_frame = ringbuffer_first(ctx->frames);
-+      ringbuffer_unlock(ctx->frames);
-+   }
-+   imposed_delay = ctx->base_delay + adaptation;
-+   ctx->adaptation = adaptation;
-+
-+   if (imposed_delay > 100000000) {
-+      /* This corresponds to <10 FPS. Something might have gone wrong. */
-+      calibrate_timestamps(ctx);
-+      ctx->base_delay = ctx->adaptation = imposed_delay = 0;
-+   }
-+
-+   return MAX2(0, imposed_delay);
-+}
-+
-+static void
-+reset_frame(frame *frame)
-+{
-+   assert(frame->state == FRAME_INVALID);
-+   frame->frame_idx = 0;
-+   frame->frame_start_time = 0;
-+   frame->min_delay = UINT64_MAX;
-+   frame->state = FRAME_INPUT;
-+}
-+
-+VKAPI_ATTR void VKAPI_CALL
-+anti_lag_AntiLagUpdateAMD(VkDevice device, const VkAntiLagDataAMD *pData)
-+{
-+   if (pData == NULL)
-+      return;
-+
-+   device_context *ctx = get_device_context(device);
-+   if (pData->mode == VK_ANTI_LAG_MODE_OFF_AMD) {
-+      /* Application request to disable Anti-Lag. */
-+      simple_mtx_lock(&ctx->mtx);
-+      anti_lag_disable(ctx);
-+      simple_mtx_unlock(&ctx->mtx);
-+      return;
-+   }
-+
-+   uint64_t frame_idx = 0;
-+   int64_t now = os_time_get_nano();
-+   int64_t imposed_delay = 0;
-+   int64_t last_frame_begin = 0;
-+
-+   if (pData->pPresentationInfo) {
-+      /* The same frameIndex value should be used with VK_ANTI_LAG_STAGE_INPUT_AMD before
-+       * the frame begins and with VK_ANTI_LAG_STAGE_PRESENT_AMD when the frame ends.
-+       */
-+      frame_idx = pData->pPresentationInfo->frameIndex;
-+
-+      /* This marks the end of the current frame. */
-+      if (pData->pPresentationInfo->stage == VK_ANTI_LAG_STAGE_PRESENT_AMD) {
-+         /* If there is already a new frame pending, any submission that happens afterwards
-+          * gets associated with the new frame.
-+          */
-+         ringbuffer_lock(ctx->frames);
-+         /* Check that the currently active frame is indeed the frame we are ending now. */
-+         while (ctx->active_frame && ctx->active_frame->frame_idx <= frame_idx) {
-+            begin_next_frame(ctx);
-+         }
-+         ringbuffer_unlock(ctx->frames);
-+         return;
-+      }
-+   }
-+
-+   /* Lock this function, in order to avoid race conditions on frame allocation. */
-+   simple_mtx_lock(&ctx->mtx);
-+
-+   /* VK_ANTI_LAG_STAGE_INPUT_AMD: This marks the begin of a new frame.
-+    * Evaluate previous frames in order to determine the wait time.
-+    */
-+   imposed_delay = get_wait_time(ctx);
-+   int64_t next_deadline = now + imposed_delay;
-+
-+   /* Ensure maxFPS adherence. */
-+   if (pData->maxFPS) {
-+      int64_t frametime_period = 1000000000u / pData->maxFPS;
-+      last_frame_begin = ringbuffer_last(ctx->frames)->frame_start_time;
-+      next_deadline = MAX2(next_deadline, last_frame_begin + frametime_period);
-+   }
-+
-+   /* Recalibrate every now and then. */
-+   if (next_deadline > ctx->calibration.recalibrate_when)
-+      calibrate_timestamps(ctx);
-+
-+   /* Sleep until deadline is met. */
-+   os_time_nanosleep_until(next_deadline);
-+
-+   /* Initialize new frame. */
-+   ringbuffer_lock(ctx->frames);
-+   frame *new_frame = ringbuffer_alloc(ctx->frames);
-+   reset_frame(new_frame);
-+   new_frame->frame_start_time = next_deadline;
-+   new_frame->imposed_delay = imposed_delay;
-+   new_frame->frame_idx = frame_idx;
-+
-+   /* Immediately set the frame active if there is no other frame already active. */
-+   if (!ctx->active_frame)
-+      begin_next_frame(ctx);
-+
-+   ringbuffer_unlock(ctx->frames);
-+   simple_mtx_unlock(&ctx->mtx);
-+}
-+
-+static queue_context *
-+get_queue_context(device_context *ctx, VkQueue queue)
-+{
-+   for (unsigned i = 0; i < ctx->num_queues; i++) {
-+      if (ctx->queues[i].queue == queue)
-+         return &ctx->queues[i];
-+   }
-+
-+   return NULL;
-+}
-+
-+static struct query *
-+allocate_query(device_context *ctx, queue_context *queue_ctx)
-+{
-+   if (!ctx->active_frame)
-+      return NULL;
-+
-+   /* Allow for a single frame to use at most half of the query pool. */
-+   uint32_t frame_idx = ringbuffer_index(ctx->frames, ctx->active_frame);
-+   if (queue_ctx->submissions_per_frame[frame_idx] > MAX_QUERIES / 2)
-+      return NULL;
-+
-+   /* Check that the next query index has been reset properly:
-+    *
-+    * We use some double-buffering here in order to reduce the number of
-+    * VkResetQueryPool commands.
-+    * Return false if the next query-index allocation crosses into the half
-+    * which still contains active queries,
-+    */
-+   if (queue_ctx->queries.size > MAX_QUERIES / 2) {
-+      struct query *last_query = ringbuffer_last(queue_ctx->queries);
-+      uint32_t next_idx = ringbuffer_index(queue_ctx->queries, last_query) + 1;
-+      if (next_idx == MAX_QUERIES || next_idx == MAX_QUERIES / 2)
-+         return NULL;
-+   }
-+
-+   return ringbuffer_alloc(queue_ctx->queries);
-+}
-+
-+static bool
-+get_commandbuffer(device_context *ctx, queue_context *queue_ctx, VkCommandBuffer *cmdbuffer)
-+{
-+   uint64_t now = os_time_get_nano();
-+
-+   /* Begin critical section. */
-+   ringbuffer_lock(ctx->frames);
-+   ringbuffer_lock(queue_ctx->queries);
-+   struct query *query = allocate_query(ctx, queue_ctx);
-+   if (query == NULL) {
-+      ringbuffer_unlock(queue_ctx->queries);
-+      ringbuffer_unlock(ctx->frames);
-+      return false;
-+   }
-+
-+   query->submit_cpu_ts = now;
-+
-+   /* Assign commandBuffer for timestamp. */
-+   *cmdbuffer = query->cmdbuffer;
-+
-+   /* Increment timeline semaphore count. */
-+   queue_ctx->semaphore_value++;
-+
-+   /* Add new submission entry for the current frame */
-+   assert(ctx->active_frame->state == FRAME_SUBMIT);
-+   uint32_t frame_idx = ringbuffer_index(ctx->frames, ctx->active_frame);
-+   queue_ctx->submissions_per_frame[frame_idx]++;
-+
-+   ringbuffer_unlock(queue_ctx->queries);
-+   ringbuffer_unlock(ctx->frames);
-+   return true;
-+}
-+
-+static VkResult
-+queue_submit2(device_context *ctx, VkQueue queue, uint32_t submitCount,
-+              const VkSubmitInfo2 *pSubmits, VkFence fence, PFN_vkQueueSubmit2 queueSubmit2)
-+{
-+   queue_context *queue_ctx = get_queue_context(ctx, queue);
-+   if (!ctx->active_frame || !queue_ctx)
-+      return queueSubmit2(queue, submitCount, pSubmits, fence);
-+
-+   int first = -1;
-+   VkCommandBuffer timestamp_cmdbuffer;
-+   /* Check if any submission contains commandbuffers. */
-+   for (unsigned i = 0; i < submitCount; i++) {
-+      if (pSubmits[i].commandBufferInfoCount) {
-+         first = i;
-+         break;
-+      }
-+   }
-+
-+   /* Get timestamp commandbuffer. */
-+   if (first == -1 || !get_commandbuffer(ctx, queue_ctx, &timestamp_cmdbuffer))
-+      return queueSubmit2(queue, submitCount, pSubmits, fence);
-+
-+   VkSubmitInfo2 *submits;
-+   VkCommandBufferSubmitInfo *cmdbuffers;
-+   VkSemaphoreSubmitInfo *semaphores;
-+   VK_MULTIALLOC(ma);
-+   vk_multialloc_add(&ma, &submits, VkSubmitInfo2, submitCount);
-+   vk_multialloc_add(&ma, &cmdbuffers, VkCommandBufferSubmitInfo,
-+                     pSubmits[first].commandBufferInfoCount + 1);
-+   vk_multialloc_add(&ma, &semaphores, VkSemaphoreSubmitInfo,
-+                     pSubmits[first].signalSemaphoreInfoCount + 1);
-+   void *buf = vk_multialloc_zalloc(&ma, &ctx->alloc, VK_SYSTEM_ALLOCATION_SCOPE_COMMAND);
-+   if (!buf)
-+      return VK_ERROR_OUT_OF_HOST_MEMORY;
-+
-+   memcpy(submits, pSubmits, sizeof(VkSubmitInfo2) * submitCount);
-+   VkSubmitInfo2 *submit_info = &submits[first];
-+
-+   /* Add commandbuffer to submission. */
-+   cmdbuffers[0] = (VkCommandBufferSubmitInfo){
-+      .sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_SUBMIT_INFO,
-+      .commandBuffer = timestamp_cmdbuffer,
-+   };
-+   memcpy(&cmdbuffers[1], submit_info->pCommandBufferInfos,
-+          sizeof(VkCommandBufferSubmitInfo) * submit_info->commandBufferInfoCount);
-+   submit_info->pCommandBufferInfos = cmdbuffers;
-+   submit_info->commandBufferInfoCount++;
-+
-+   /* Add timeline semaphore to submission. */
-+   memcpy(semaphores, submit_info->pSignalSemaphoreInfos,
-+          sizeof(VkSemaphoreSubmitInfo) * submit_info->signalSemaphoreInfoCount);
-+   semaphores[submit_info->signalSemaphoreInfoCount] = (VkSemaphoreSubmitInfo){
-+      .sType = VK_STRUCTURE_TYPE_TIMELINE_SEMAPHORE_SUBMIT_INFO,
-+      .semaphore = queue_ctx->semaphore,
-+      .value = queue_ctx->semaphore_value,
-+      .stageMask = VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT,
-+   };
-+   submit_info->pSignalSemaphoreInfos = semaphores;
-+   submit_info->signalSemaphoreInfoCount++;
-+
-+   /* Submit with added timestamp query commandbuffer. */
-+   VkResult res = queueSubmit2(queue, submitCount, submits, fence);
-+   vk_free(&ctx->alloc, submits);
-+   return res;
-+}
-+
-+VKAPI_ATTR VkResult VKAPI_CALL
-+anti_lag_QueueSubmit2KHR(VkQueue queue, uint32_t submitCount, const VkSubmitInfo2 *pSubmits,
-+                         VkFence fence)
-+{
-+   device_context *ctx = get_device_context(queue);
-+   return queue_submit2(ctx, queue, submitCount, pSubmits, fence, ctx->vtable.QueueSubmit2KHR);
-+}
-+
-+VKAPI_ATTR VkResult VKAPI_CALL
-+anti_lag_QueueSubmit2(VkQueue queue, uint32_t submitCount, const VkSubmitInfo2 *pSubmits,
-+                      VkFence fence)
-+{
-+   device_context *ctx = get_device_context(queue);
-+   return queue_submit2(ctx, queue, submitCount, pSubmits, fence, ctx->vtable.QueueSubmit2);
-+}
-+
-+VKAPI_ATTR VkResult VKAPI_CALL
-+anti_lag_QueueSubmit(VkQueue queue, uint32_t submitCount, const VkSubmitInfo *pSubmits,
-+                     VkFence fence)
-+{
-+   device_context *ctx = get_device_context(queue);
-+   queue_context *queue_ctx = get_queue_context(ctx, queue);
-+   if (!ctx->active_frame || !queue_ctx)
-+      return ctx->vtable.QueueSubmit(queue, submitCount, pSubmits, fence);
-+
-+   int first = -1;
-+   VkCommandBuffer timestamp_cmdbuffer;
-+   /* Check if any submission contains commandbuffers. */
-+   for (unsigned i = 0; i < submitCount; i++) {
-+      if (pSubmits[i].commandBufferCount) {
-+         first = i;
-+         break;
-+      }
-+   }
-+
-+   /* Get timestamp commandbuffer. */
-+   if (first == -1 || !get_commandbuffer(ctx, queue_ctx, &timestamp_cmdbuffer))
-+      return ctx->vtable.QueueSubmit(queue, submitCount, pSubmits, fence);
-+
-+   VkSubmitInfo *submits;
-+   VkCommandBuffer *cmdbuffers;
-+   VkSemaphore *semaphores;
-+   VkTimelineSemaphoreSubmitInfo *semaphore_info;
-+   uint64_t *semaphore_values;
-+   VK_MULTIALLOC(ma);
-+   vk_multialloc_add(&ma, &submits, VkSubmitInfo, submitCount);
-+   vk_multialloc_add(&ma, &cmdbuffers, VkCommandBuffer, pSubmits[first].commandBufferCount + 1);
-+   vk_multialloc_add(&ma, &semaphores, VkSemaphore, pSubmits[first].signalSemaphoreCount + 1);
-+   vk_multialloc_add(&ma, &semaphore_info, VkTimelineSemaphoreSubmitInfo, 1);
-+   vk_multialloc_add(&ma, &semaphore_values, uint64_t, pSubmits[first].signalSemaphoreCount + 1);
-+   void *buf = vk_multialloc_zalloc(&ma, &ctx->alloc, VK_SYSTEM_ALLOCATION_SCOPE_COMMAND);
-+   if (!buf)
-+      return VK_ERROR_OUT_OF_HOST_MEMORY;
-+
-+   memcpy(submits, pSubmits, sizeof(VkSubmitInfo) * submitCount);
-+   VkSubmitInfo *submit_info = &submits[first];
-+
-+   /* Add commandbuffer to submission. */
-+   cmdbuffers[0] = timestamp_cmdbuffer;
-+   memcpy(&cmdbuffers[1], submit_info->pCommandBuffers,
-+          sizeof(VkCommandBuffer) * submit_info->commandBufferCount);
-+   submit_info->pCommandBuffers = cmdbuffers;
-+   submit_info->commandBufferCount++;
-+
-+   /* Add timeline semaphore to submission. */
-+   const VkTimelineSemaphoreSubmitInfo *tlssi =
-+      vk_find_struct_const(pSubmits[first].pNext, TIMELINE_SEMAPHORE_SUBMIT_INFO);
-+   semaphores[0] = queue_ctx->semaphore;
-+   memcpy(&semaphores[1], submit_info->pSignalSemaphores,
-+          sizeof(VkSemaphore) * submit_info->signalSemaphoreCount);
-+   submit_info->pSignalSemaphores = semaphores;
-+   submit_info->signalSemaphoreCount++;
-+   semaphore_values[0] = queue_ctx->semaphore_value;
-+   if (tlssi) {
-+      *semaphore_info = *tlssi; /* save original values */
-+      memcpy(&semaphore_values[1], tlssi->pSignalSemaphoreValues,
-+             sizeof(uint64_t) * tlssi->signalSemaphoreValueCount);
-+      ((VkTimelineSemaphoreSubmitInfo *)tlssi)->pSignalSemaphoreValues = semaphore_values;
-+      ((VkTimelineSemaphoreSubmitInfo *)tlssi)->signalSemaphoreValueCount =
-+         submit_info->signalSemaphoreCount;
-+   } else {
-+      *semaphore_info = (VkTimelineSemaphoreSubmitInfo){
-+         .sType = VK_STRUCTURE_TYPE_TIMELINE_SEMAPHORE_SUBMIT_INFO,
-+         .pNext = submit_info->pNext,
-+         .signalSemaphoreValueCount = submit_info->signalSemaphoreCount,
-+         .pSignalSemaphoreValues = semaphore_values,
-+      };
-+      submit_info->pNext = semaphore_info;
-+   }
-+
-+   /* Submit with added timestamp query commandbuffer. */
-+   VkResult res = ctx->vtable.QueueSubmit(queue, submitCount, submits, fence);
-+   if (tlssi)
-+      *(VkTimelineSemaphoreSubmitInfo *)tlssi = *semaphore_info; /* restore */
-+   vk_free(&ctx->alloc, buf);
-+   return res;
-+}
-diff --git a/src/vulkan/anti-lag-layer/anti_lag_layer.h b/src/vulkan/anti-lag-layer/anti_lag_layer.h
-new file mode 100644
-index 00000000000..31abb0f9aee
---- /dev/null
-+++ b/src/vulkan/anti-lag-layer/anti_lag_layer.h
-@@ -0,0 +1,111 @@
-+/*
-+ * Copyright © 2025 Valve Corporation
-+ *
-+ * SPDX-License-Identifier: MIT
-+ */
-+
-+#ifndef ANTI_LAG_LAYER_H
-+#define ANTI_LAG_LAYER_H
-+
-+#include "util/simple_mtx.h"
-+#include "vulkan/vk_layer.h"
-+#include "vulkan/vulkan_core.h"
-+#include "ringbuffer.h"
-+
-+#define MAX_FRAMES  8
-+#define MAX_QUERIES 256
-+
-+enum frame_state {
-+   FRAME_INVALID = 0,
-+   FRAME_INPUT,   /* Frame is in input stage. */
-+   FRAME_SUBMIT,  /* All current queueSubmit calls are associated with this frame. */
-+   FRAME_PRESENT, /* Frame is in present stage and latencies can be evaluated. */
-+};
-+
-+typedef struct frame {
-+   uint64_t frame_idx;
-+   uint64_t frame_start_time;
-+   uint64_t min_delay;
-+   uint64_t imposed_delay;
-+   enum frame_state state;
-+} frame;
-+
-+struct query {
-+   uint64_t begin_gpu_ts;
-+   uint64_t submit_cpu_ts;
-+   VkCommandBuffer cmdbuffer;
-+};
-+
-+typedef struct queue_context {
-+   VkQueue queue;
-+   uint32_t queue_family_idx;
-+   VkCommandPool cmdPool;
-+   VkQueryPool queryPool;
-+   VkSemaphore semaphore;
-+   uint64_t semaphore_value;
-+   uint8_t submissions_per_frame[MAX_FRAMES];
-+   RINGBUFFER_DECLARE(queries, struct query, MAX_QUERIES);
-+} queue_context;
-+
-+typedef struct device_context {
-+
-+   struct DeviceDispatchTable {
-+#define DECLARE_HOOK(fn) PFN_vk##fn fn
-+      DECLARE_HOOK(GetDeviceProcAddr);
-+      DECLARE_HOOK(SetDeviceLoaderData);
-+      DECLARE_HOOK(DestroyDevice);
-+      DECLARE_HOOK(QueueSubmit);
-+      DECLARE_HOOK(QueueSubmit2);
-+      DECLARE_HOOK(QueueSubmit2KHR);
-+      DECLARE_HOOK(GetDeviceQueue);
-+      DECLARE_HOOK(CreateCommandPool);
-+      DECLARE_HOOK(DestroyCommandPool);
-+      DECLARE_HOOK(CreateQueryPool);
-+      DECLARE_HOOK(ResetQueryPool);
-+      DECLARE_HOOK(DestroyQueryPool);
-+      DECLARE_HOOK(GetQueryPoolResults);
-+      DECLARE_HOOK(AllocateCommandBuffers);
-+      DECLARE_HOOK(FreeCommandBuffers);
-+      DECLARE_HOOK(BeginCommandBuffer);
-+      DECLARE_HOOK(EndCommandBuffer);
-+      DECLARE_HOOK(GetCalibratedTimestampsKHR);
-+      DECLARE_HOOK(CmdWriteTimestamp);
-+      DECLARE_HOOK(CreateSemaphore);
-+      DECLARE_HOOK(DestroySemaphore);
-+      DECLARE_HOOK(GetSemaphoreCounterValue);
-+      DECLARE_HOOK(WaitSemaphores);
-+#undef DECLARE_HOOK
-+   } vtable;
-+
-+   VkDevice device;
-+   VkAllocationCallbacks alloc;
-+   simple_mtx_t mtx;
-+
-+   struct {
-+      int64_t delta;
-+      uint64_t recalibrate_when;
-+      float timestamp_period;
-+   } calibration;
-+
-+   RINGBUFFER_DECLARE(frames, frame, MAX_FRAMES);
-+   frame *active_frame;
-+   int64_t base_delay;
-+   int64_t adaptation;
-+
-+   unsigned num_queues;
-+   queue_context queues[];
-+} device_context;
-+
-+device_context *get_device_context(const void *object);
-+
-+void anti_lag_AntiLagUpdateAMD(VkDevice device, const VkAntiLagDataAMD *pData);
-+VkResult anti_lag_QueueSubmit2KHR(VkQueue queue, uint32_t submitCount,
-+                                  const VkSubmitInfo2 *pSubmits, VkFence fence);
-+VkResult anti_lag_QueueSubmit2(VkQueue queue, uint32_t submitCount, const VkSubmitInfo2 *pSubmits,
-+                               VkFence fence);
-+VkResult anti_lag_QueueSubmit(VkQueue queue, uint32_t submitCount, const VkSubmitInfo *pSubmits,
-+                              VkFence fence);
-+
-+VkResult anti_lag_NegotiateLoaderLayerInterfaceVersion(VkNegotiateLayerInterface *pVersionStruct);
-+
-+#endif /* ANTI_LAG_LAYER_H */
-diff --git a/src/vulkan/anti-lag-layer/anti_lag_layer_interface.c b/src/vulkan/anti-lag-layer/anti_lag_layer_interface.c
-new file mode 100644
-index 00000000000..d2ca4a7dd44
---- /dev/null
-+++ b/src/vulkan/anti-lag-layer/anti_lag_layer_interface.c
-@@ -0,0 +1,899 @@
-+/*
-+ * Copyright © 2025 Valve Corporation
-+ *
-+ * SPDX-License-Identifier: MIT
-+ */
-+
-+#include "util/simple_mtx.h"
-+#include "vulkan/vk_layer.h"
-+#include "vulkan/vulkan_core.h"
-+#include "anti_lag_layer.h"
-+#include "vk_alloc.h"
-+#include "vk_util.h"
-+
-+static uintptr_t
-+object_to_key(const void *object)
-+{
-+   return (uintptr_t)*(uintptr_t *)object;
-+}
-+
-+typedef struct instance_data {
-+   struct InstanceDispatchTable {
-+#define DECLARE_HOOK(fn) PFN_vk##fn fn
-+      DECLARE_HOOK(GetInstanceProcAddr);
-+      DECLARE_HOOK(CreateInstance);
-+      DECLARE_HOOK(DestroyInstance);
-+      DECLARE_HOOK(CreateDevice);
-+      DECLARE_HOOK(EnumerateDeviceExtensionProperties);
-+      DECLARE_HOOK(GetPhysicalDeviceFeatures2KHR);
-+      DECLARE_HOOK(GetPhysicalDeviceFeatures2);
-+      DECLARE_HOOK(GetPhysicalDeviceProperties);
-+      DECLARE_HOOK(GetPhysicalDeviceCalibrateableTimeDomainsEXT);
-+      DECLARE_HOOK(GetPhysicalDeviceCalibrateableTimeDomainsKHR);
-+      DECLARE_HOOK(GetPhysicalDeviceQueueFamilyProperties);
-+#undef DECLARE_HOOK
-+   } vtable;
-+
-+   VkInstance instance;
-+   uint32_t apiVersion;
-+   VkAllocationCallbacks alloc;
-+   struct instance_data *next;
-+} instance_data;
-+
-+static void
-+init_instance_vtable(instance_data *ctx, PFN_vkGetInstanceProcAddr gpa)
-+{
-+   ctx->vtable.GetInstanceProcAddr = gpa;
-+#define INIT_HOOK(fn) ctx->vtable.fn = (PFN_vk##fn)gpa(ctx->instance, "vk" #fn)
-+   INIT_HOOK(CreateInstance);
-+   INIT_HOOK(DestroyInstance);
-+   INIT_HOOK(CreateDevice);
-+   INIT_HOOK(EnumerateDeviceExtensionProperties);
-+   INIT_HOOK(GetPhysicalDeviceFeatures2KHR);
-+   INIT_HOOK(GetPhysicalDeviceFeatures2);
-+   INIT_HOOK(GetPhysicalDeviceProperties);
-+   INIT_HOOK(GetPhysicalDeviceCalibrateableTimeDomainsEXT);
-+   INIT_HOOK(GetPhysicalDeviceCalibrateableTimeDomainsKHR);
-+   INIT_HOOK(GetPhysicalDeviceQueueFamilyProperties);
-+#undef INIT_HOOK
-+}
-+
-+static simple_mtx_t instance_mtx = SIMPLE_MTX_INITIALIZER;
-+static instance_data *instance_list = NULL;
-+
-+static void
-+add_instance(instance_data *instance)
-+{
-+   simple_mtx_lock(&instance_mtx);
-+   instance_data **ptr = &instance_list;
-+   while (*ptr != NULL)
-+      ptr = &(*ptr)->next;
-+   *ptr = instance;
-+   simple_mtx_unlock(&instance_mtx);
-+}
-+
-+static instance_data *
-+remove_instance(const void *object)
-+{
-+   uintptr_t key = object_to_key(object);
-+   simple_mtx_lock(&instance_mtx);
-+   instance_data **ptr = &instance_list;
-+   while (*ptr && key != object_to_key((*ptr)->instance))
-+      ptr = &(*ptr)->next;
-+
-+   instance_data *ctx = *ptr;
-+   *ptr = ctx ? ctx->next : NULL;
-+   simple_mtx_unlock(&instance_mtx);
-+   return ctx;
-+}
-+
-+static instance_data *
-+get_instance_data(const void *object)
-+{
-+   uintptr_t key = object_to_key(object);
-+   simple_mtx_lock(&instance_mtx);
-+   instance_data *ctx = instance_list;
-+   while (ctx && key != object_to_key(ctx->instance))
-+      ctx = ctx->next;
-+   simple_mtx_unlock(&instance_mtx);
-+   return ctx;
-+}
-+
-+static VKAPI_ATTR VkResult VKAPI_CALL
-+anti_lag_CreateInstance(const VkInstanceCreateInfo *pCreateInfo,
-+                        const VkAllocationCallbacks *pAllocator, VkInstance *pInstance)
-+{
-+   VkLayerInstanceCreateInfo *chain_info = (VkLayerInstanceCreateInfo *)(pCreateInfo->pNext);
-+   while (chain_info && !(chain_info->sType == VK_STRUCTURE_TYPE_LOADER_INSTANCE_CREATE_INFO &&
-+                          chain_info->function == VK_LAYER_LINK_INFO)) {
-+      chain_info = (VkLayerInstanceCreateInfo *)(chain_info->pNext);
-+   }
-+
-+   assert(chain_info && chain_info->u.pLayerInfo);
-+   PFN_vkGetInstanceProcAddr fpGetInstanceProcAddr =
-+      chain_info->u.pLayerInfo->pfnNextGetInstanceProcAddr;
-+   PFN_vkCreateInstance fpCreateInstance =
-+      (PFN_vkCreateInstance)fpGetInstanceProcAddr(NULL, "vkCreateInstance");
-+   if (fpCreateInstance == NULL)
-+      return VK_ERROR_INITIALIZATION_FAILED;
-+
-+   /* Advance the link info for the next element on the chain. */
-+   chain_info->u.pLayerInfo = chain_info->u.pLayerInfo->pNext;
-+
-+   /* Create Instance. */
-+   VkResult result = fpCreateInstance(pCreateInfo, pAllocator, pInstance);
-+   if (result != VK_SUCCESS)
-+      return result;
-+
-+   /* Create Instance context. */
-+   const VkAllocationCallbacks *alloc = pAllocator ? pAllocator : vk_default_allocator();
-+   void *buf = vk_alloc(alloc, sizeof(instance_data), alignof(instance_data),
-+                        VK_SYSTEM_ALLOCATION_SCOPE_INSTANCE);
-+   if (!buf) {
-+      PFN_vkDestroyInstance fpDestroyInstance =
-+         (PFN_vkDestroyInstance)fpGetInstanceProcAddr(*pInstance, "vkDestroyInstance");
-+      fpDestroyInstance(*pInstance, alloc);
-+      return VK_ERROR_OUT_OF_HOST_MEMORY;
-+   }
-+   instance_data *ctx = (instance_data *)buf;
-+   ctx->apiVersion = pCreateInfo->pApplicationInfo && pCreateInfo->pApplicationInfo->apiVersion
-+                        ? pCreateInfo->pApplicationInfo->apiVersion
-+                        : VK_API_VERSION_1_0;
-+   ctx->instance = *pInstance;
-+   ctx->alloc = *alloc;
-+   ctx->next = NULL;
-+   init_instance_vtable(ctx, fpGetInstanceProcAddr);
-+   add_instance(ctx);
-+
-+   return VK_SUCCESS;
-+}
-+
-+static VKAPI_ATTR void VKAPI_CALL
-+anti_lag_DestroyInstance(VkInstance instance, const VkAllocationCallbacks *pAllocator)
-+{
-+   instance_data *ctx = remove_instance(instance);
-+   if (ctx) {
-+      ctx->vtable.DestroyInstance(instance, pAllocator);
-+      vk_free(&ctx->alloc, ctx);
-+   }
-+}
-+
-+typedef struct device_data {
-+   VkDevice device;
-+   PFN_vkGetDeviceProcAddr GetDeviceProcAddr;
-+   device_context *ctx; /* NULL if anti-lag ext is not enabled. */
-+   struct device_data *next;
-+} device_data;
-+
-+static void
-+init_device_vtable(device_context *ctx, PFN_vkGetDeviceProcAddr gpa, PFN_vkSetDeviceLoaderData sld,
-+                   bool calibrated_timestamps_khr, bool host_query_reset_ext,
-+                   bool timeline_semaphore_khr)
-+{
-+   ctx->vtable.GetDeviceProcAddr = gpa;
-+   ctx->vtable.SetDeviceLoaderData = sld;
-+#define INIT_HOOK(fn) ctx->vtable.fn = (PFN_vk##fn)gpa(ctx->device, "vk" #fn)
-+#define INIT_HOOK_ALIAS(fn, alias, cond)                                                           \
-+   ctx->vtable.fn = (PFN_vk##fn)gpa(ctx->device, cond ? "vk" #alias : "vk" #fn)
-+   INIT_HOOK(DestroyDevice);
-+   INIT_HOOK(QueueSubmit);
-+   INIT_HOOK(QueueSubmit2);
-+   INIT_HOOK(QueueSubmit2KHR);
-+   INIT_HOOK(GetDeviceQueue);
-+   INIT_HOOK(CreateCommandPool);
-+   INIT_HOOK(DestroyCommandPool);
-+   INIT_HOOK(CreateQueryPool);
-+   INIT_HOOK_ALIAS(ResetQueryPool, ResetQueryPoolEXT, host_query_reset_ext);
-+   INIT_HOOK(DestroyQueryPool);
-+   INIT_HOOK(GetQueryPoolResults);
-+   INIT_HOOK(AllocateCommandBuffers);
-+   INIT_HOOK(FreeCommandBuffers);
-+   INIT_HOOK(BeginCommandBuffer);
-+   INIT_HOOK(EndCommandBuffer);
-+   INIT_HOOK_ALIAS(GetCalibratedTimestampsKHR, GetCalibratedTimestampsEXT, !calibrated_timestamps_khr);
-+   INIT_HOOK(CmdWriteTimestamp);
-+   INIT_HOOK(CreateSemaphore);
-+   INIT_HOOK(DestroySemaphore);
-+   INIT_HOOK_ALIAS(GetSemaphoreCounterValue, GetSemaphoreCounterValueKHR, timeline_semaphore_khr);
-+   INIT_HOOK_ALIAS(WaitSemaphores, WaitSemaphoresKHR, timeline_semaphore_khr);
-+#undef INIT_HOOK
-+#undef INIT_HOOK_ALIAS
-+}
-+
-+static simple_mtx_t device_mtx = SIMPLE_MTX_INITIALIZER;
-+static device_data *device_list = NULL;
-+
-+static void
-+add_device(device_data *device)
-+{
-+   simple_mtx_lock(&device_mtx);
-+   device_data **ptr = &device_list;
-+   while (*ptr != NULL)
-+      ptr = &(*ptr)->next;
-+   *ptr = device;
-+   simple_mtx_unlock(&device_mtx);
-+}
-+
-+static device_data *
-+remove_device(const void *object)
-+{
-+   uintptr_t key = object_to_key(object);
-+   simple_mtx_lock(&device_mtx);
-+   device_data **ptr = &device_list;
-+   while (*ptr && key != object_to_key((*ptr)->device))
-+      ptr = &(*ptr)->next;
-+
-+   device_data *ctx = *ptr;
-+   *ptr = ctx ? ctx->next : NULL;
-+   simple_mtx_unlock(&device_mtx);
-+   return ctx;
-+}
-+
-+static device_data *
-+get_device_data(const void *object)
-+{
-+   uintptr_t key = object_to_key(object);
-+   simple_mtx_lock(&device_mtx);
-+   device_data *ctx = device_list;
-+   while (ctx && key != object_to_key(ctx->device))
-+      ctx = ctx->next;
-+   simple_mtx_unlock(&device_mtx);
-+   return ctx;
-+}
-+
-+device_context *
-+get_device_context(const void *object)
-+{
-+   device_data *data = get_device_data(object);
-+   assert(data && data->ctx);
-+   return data->ctx;
-+}
-+
-+static VkLayerDeviceCreateInfo *
-+get_device_chain_info(const VkDeviceCreateInfo *pCreateInfo, VkLayerFunction func)
-+{
-+   vk_foreach_struct_const (item, pCreateInfo->pNext) {
-+      if (item->sType == VK_STRUCTURE_TYPE_LOADER_DEVICE_CREATE_INFO &&
-+          ((VkLayerDeviceCreateInfo *)item)->function == func)
-+         return (VkLayerDeviceCreateInfo *)item;
-+   }
-+   return NULL;
-+}
-+
-+static bool
-+should_enable_layer(instance_data *ctx, VkPhysicalDevice physicalDevice,
-+                    VkPhysicalDeviceAntiLagFeaturesAMD ext_feature)
-+{
-+   /* The extension is not requested by the application. */
-+   if (!ext_feature.antiLag)
-+      return false;
-+
-+   /* Ensure that the underlying implementation does not expose VK_AMD_anti_lag itself. */
-+   ext_feature.antiLag = false;
-+   VkPhysicalDeviceFeatures2 features = {
-+      .sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2,
-+      .pNext = &ext_feature,
-+   };
-+
-+   if (ctx->vtable.GetPhysicalDeviceFeatures2KHR) {
-+      ctx->vtable.GetPhysicalDeviceFeatures2KHR(physicalDevice, &features);
-+      return !ext_feature.antiLag;
-+   }
-+
-+   if (ctx->vtable.GetPhysicalDeviceFeatures2) {
-+      ctx->vtable.GetPhysicalDeviceFeatures2(physicalDevice, &features);
-+      return !ext_feature.antiLag;
-+   }
-+
-+   return false;
-+}
-+
-+static bool
-+check_calibrated_timestamps(instance_data *data, VkPhysicalDevice physicalDevice, bool *has_khr)
-+{
-+   VkResult res;
-+   uint32_t count = 0;
-+   res = data->vtable.EnumerateDeviceExtensionProperties(physicalDevice, NULL, &count, NULL);
-+   VkExtensionProperties *extensions =
-+      vk_alloc(&data->alloc, count * sizeof(VkExtensionProperties), alignof(VkExtensionProperties),
-+               VK_SYSTEM_ALLOCATION_SCOPE_COMMAND);
-+   if (!extensions)
-+      return false;
-+
-+   res |= data->vtable.EnumerateDeviceExtensionProperties(physicalDevice, NULL, &count, extensions);
-+
-+   *has_khr = false;
-+   bool has_ext = false;
-+   if (res == VK_SUCCESS) {
-+      for (unsigned i = 0; i < count; i++) {
-+         if (strcmp(extensions[i].extensionName, VK_KHR_CALIBRATED_TIMESTAMPS_EXTENSION_NAME) == 0)
-+            *has_khr = true;
-+         if (strcmp(extensions[i].extensionName, VK_EXT_CALIBRATED_TIMESTAMPS_EXTENSION_NAME) == 0)
-+            has_ext = true;
-+      }
-+   }
-+
-+   vk_free(&data->alloc, extensions);
-+   return *has_khr || has_ext;
-+}
-+
-+/* Initialize per-queue context:
-+ *
-+ * This includes creating one CommandPool and one QueryPool per Queue as well as
-+ * recording one CommandBuffer per timestamp query.
-+ */
-+static VkResult
-+init_queue_context(device_context *ctx, queue_context *queue_ctx)
-+{
-+#define CHECK_RESULT(res, label)                                                                   \
-+   if (res != VK_SUCCESS) {                                                                        \
-+      goto label;                                                                                  \
-+   }
-+
-+   VkResult result;
-+
-+   /* Create command pool */
-+   struct VkCommandPoolCreateInfo pool_info = {
-+      .sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO,
-+      .pNext = NULL,
-+      .flags = 0,
-+      .queueFamilyIndex = queue_ctx->queue_family_idx,
-+   };
-+   result =
-+      ctx->vtable.CreateCommandPool(ctx->device, &pool_info, &ctx->alloc, &queue_ctx->cmdPool);
-+   CHECK_RESULT(result, fail_cmdpool)
-+
-+   /* Create query pool */
-+   VkQueryPoolCreateInfo query_pool_info = {
-+      .sType = VK_STRUCTURE_TYPE_QUERY_POOL_CREATE_INFO,
-+      .queryType = VK_QUERY_TYPE_TIMESTAMP,
-+      .queryCount = MAX_QUERIES,
-+   };
-+   result = ctx->vtable.CreateQueryPool(ctx->device, &query_pool_info, &ctx->alloc,
-+                                        &queue_ctx->queryPool);
-+   CHECK_RESULT(result, fail_querypool)
-+   ctx->vtable.ResetQueryPool(ctx->device, queue_ctx->queryPool, 0, MAX_QUERIES);
-+   ringbuffer_init(queue_ctx->queries);
-+
-+   /* Create timeline semaphore */
-+   VkSemaphoreTypeCreateInfo timelineCreateInfo = {
-+      .sType = VK_STRUCTURE_TYPE_SEMAPHORE_TYPE_CREATE_INFO,
-+      .pNext = NULL,
-+      .semaphoreType = VK_SEMAPHORE_TYPE_TIMELINE,
-+      .initialValue = 0,
-+   };
-+   VkSemaphoreCreateInfo createInfo = {
-+      .sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO,
-+      .pNext = &timelineCreateInfo,
-+      .flags = 0,
-+   };
-+   result =
-+      ctx->vtable.CreateSemaphore(ctx->device, &createInfo, &ctx->alloc, &queue_ctx->semaphore);
-+   CHECK_RESULT(result, fail_semaphore);
-+
-+   for (unsigned j = 0; j < MAX_QUERIES; j++) {
-+      struct query *query = &queue_ctx->queries.data[j];
-+
-+      /* Allocate commandBuffer for timestamp. */
-+      VkCommandBufferAllocateInfo buffer_info = {
-+         .sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO,
-+         .commandPool = queue_ctx->cmdPool,
-+         .level = VK_COMMAND_BUFFER_LEVEL_PRIMARY,
-+         .commandBufferCount = 1,
-+      };
-+      result = ctx->vtable.AllocateCommandBuffers(ctx->device, &buffer_info, &query->cmdbuffer);
-+      CHECK_RESULT(result, fail)
-+      result = ctx->vtable.SetDeviceLoaderData(ctx->device, query->cmdbuffer);
-+      CHECK_RESULT(result, fail)
-+
-+      /* Record commandbuffer. */
-+      VkCommandBufferBeginInfo beginInfo = {
-+         .sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO,
-+      };
-+
-+      result = ctx->vtable.BeginCommandBuffer(query->cmdbuffer, &beginInfo);
-+      CHECK_RESULT(result, fail)
-+      ctx->vtable.CmdWriteTimestamp(query->cmdbuffer, VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT,
-+                                    queue_ctx->queryPool, j);
-+      result = ctx->vtable.EndCommandBuffer(query->cmdbuffer);
-+      CHECK_RESULT(result, fail)
-+   }
-+
-+#undef CHECK_RESULT
-+   return result;
-+
-+fail:
-+   ctx->vtable.DestroySemaphore(ctx->device, queue_ctx->semaphore, &ctx->alloc);
-+fail_semaphore:
-+   ctx->vtable.DestroyQueryPool(ctx->device, queue_ctx->queryPool, &ctx->alloc);
-+fail_querypool:
-+   ctx->vtable.DestroyCommandPool(ctx->device, queue_ctx->cmdPool, &ctx->alloc);
-+fail_cmdpool:
-+   for (queue_context *qctx = ctx->queues; qctx != queue_ctx; qctx++) {
-+      ctx->vtable.DestroyQueryPool(ctx->device, qctx->queryPool, &ctx->alloc);
-+      ctx->vtable.DestroyCommandPool(ctx->device, qctx->cmdPool, &ctx->alloc);
-+   }
-+
-+   return result;
-+}
-+
-+static VKAPI_ATTR VkResult VKAPI_CALL
-+anti_lag_CreateDevice(VkPhysicalDevice physicalDevice, const VkDeviceCreateInfo *pCreateInfo,
-+                      const VkAllocationCallbacks *pAllocator, VkDevice *pDevice)
-+{
-+   instance_data *instance_ctx = get_instance_data(physicalDevice);
-+   VkLayerDeviceCreateInfo *chain_info = get_device_chain_info(pCreateInfo, VK_LAYER_LINK_INFO);
-+   PFN_vkGetDeviceProcAddr fpGetDeviceProcAddr = chain_info->u.pLayerInfo->pfnNextGetDeviceProcAddr;
-+   PFN_vkGetInstanceProcAddr fpGetInstanceProcAddr =
-+      chain_info->u.pLayerInfo->pfnNextGetInstanceProcAddr;
-+   PFN_vkCreateDevice fpCreateDevice =
-+      (PFN_vkCreateDevice)fpGetInstanceProcAddr(instance_ctx->instance, "vkCreateDevice");
-+   if (fpCreateDevice == NULL)
-+      return VK_ERROR_INITIALIZATION_FAILED;
-+
-+   /* Advance the link info for the next element on the chain. */
-+   chain_info->u.pLayerInfo = chain_info->u.pLayerInfo->pNext;
-+
-+   const VkAllocationCallbacks *alloc = pAllocator ? pAllocator : &instance_ctx->alloc;
-+   device_data *data;
-+   VkResult result;
-+
-+   /*  Only allocate a context and add to dispatch if the extension is enabled. */
-+   const VkPhysicalDeviceAntiLagFeaturesAMD *ext_features =
-+      vk_find_struct_const(pCreateInfo->pNext, PHYSICAL_DEVICE_ANTI_LAG_FEATURES_AMD);
-+   bool enable = ext_features && should_enable_layer(instance_ctx, physicalDevice, *ext_features);
-+   if (enable) {
-+      /* Count queues with sufficient timestamp valid bits. */
-+      // TODO: make it work with less than 64 valid bits
-+      unsigned num_queue_families = 0;
-+      unsigned num_queues = 0;
-+      for (unsigned i = 0; i < pCreateInfo->queueCreateInfoCount; i++)
-+         num_queue_families =
-+            MAX2(num_queue_families, pCreateInfo->pQueueCreateInfos[i].queueFamilyIndex + 1);
-+      VkQueueFamilyProperties *queue_family_props =
-+         vk_alloc(alloc, num_queue_families * sizeof(VkQueueFamilyProperties),
-+                  alignof(VkQueueFamilyProperties), VK_SYSTEM_ALLOCATION_SCOPE_COMMAND);
-+      if (!queue_family_props)
-+         return VK_ERROR_OUT_OF_HOST_MEMORY;
-+
-+      instance_ctx->vtable.GetPhysicalDeviceQueueFamilyProperties(
-+         physicalDevice, &num_queue_families, queue_family_props);
-+      for (unsigned i = 0; i < pCreateInfo->queueCreateInfoCount; i++) {
-+         uint32_t queue_family_idx = pCreateInfo->pQueueCreateInfos[i].queueFamilyIndex;
-+         if (queue_family_props[queue_family_idx].timestampValidBits == 64 &&
-+             (queue_family_props[queue_family_idx].queueFlags &
-+              (VK_QUEUE_GRAPHICS_BIT | VK_QUEUE_COMPUTE_BIT))) {
-+            num_queues += pCreateInfo->pQueueCreateInfos[i].queueCount;
-+         }
-+      }
-+
-+      /* Allocate the context. */
-+      device_context *ctx;
-+      queue_context *queues;
-+      VK_MULTIALLOC(ma);
-+      vk_multialloc_add(&ma, &data, device_data, 1);
-+      vk_multialloc_add(&ma, &ctx, struct device_context, 1);
-+      vk_multialloc_add(&ma, &queues, queue_context, num_queues);
-+      void *buf = vk_multialloc_zalloc(&ma, alloc, VK_SYSTEM_ALLOCATION_SCOPE_DEVICE);
-+      if (!buf) {
-+         vk_free(alloc, queue_family_props);
-+         return VK_ERROR_OUT_OF_HOST_MEMORY;
-+      }
-+
-+      VkPhysicalDeviceProperties properties;
-+      instance_ctx->vtable.GetPhysicalDeviceProperties(physicalDevice, &properties);
-+
-+      /* Ensure that calibrated timestamps and host query reset extensions are enabled. */
-+      bool has_calibrated_timestamps = false;
-+      bool has_calibrated_timestamps_khr = false;
-+      bool has_vk12 = instance_ctx->apiVersion >= VK_API_VERSION_1_2 &&
-+                      properties.apiVersion >= VK_API_VERSION_1_2;
-+      bool has_host_query_reset = has_vk12;
-+      bool has_host_query_reset_ext = false;
-+      bool has_timeline_semaphore = has_vk12;
-+      bool has_timeline_semaphore_khr = false;
-+      for (unsigned i = 0; i < pCreateInfo->enabledExtensionCount; i++) {
-+         if (strcmp(pCreateInfo->ppEnabledExtensionNames[i],
-+                    VK_KHR_CALIBRATED_TIMESTAMPS_EXTENSION_NAME) == 0)
-+            has_calibrated_timestamps = has_calibrated_timestamps_khr = true;
-+         if (strcmp(pCreateInfo->ppEnabledExtensionNames[i],
-+                    VK_EXT_CALIBRATED_TIMESTAMPS_EXTENSION_NAME) == 0)
-+            has_calibrated_timestamps = true;
-+         if (strcmp(pCreateInfo->ppEnabledExtensionNames[i],
-+                    VK_EXT_HOST_QUERY_RESET_EXTENSION_NAME) == 0)
-+            has_host_query_reset = has_host_query_reset_ext = true;
-+         if (strcmp(pCreateInfo->ppEnabledExtensionNames[i],
-+                    VK_KHR_TIMELINE_SEMAPHORE_EXTENSION_NAME) == 0)
-+            has_timeline_semaphore = has_timeline_semaphore_khr = true;
-+      }
-+
-+      /* Add missing extensions. */
-+      VkDeviceCreateInfo create_info = *pCreateInfo;
-+      const char **ext_names = NULL;
-+      uint32_t num_extra_extensions =
-+         !has_calibrated_timestamps + !has_host_query_reset + !has_timeline_semaphore;
-+      if (num_extra_extensions) {
-+         ext_names = vk_alloc(
-+            alloc, (pCreateInfo->enabledExtensionCount + num_extra_extensions) * sizeof(char *),
-+            alignof(char *), VK_SYSTEM_ALLOCATION_SCOPE_COMMAND);
-+         if (!ext_names) {
-+            result = VK_ERROR_OUT_OF_HOST_MEMORY;
-+            goto fail;
-+         }
-+
-+         memcpy(ext_names, pCreateInfo->ppEnabledExtensionNames,
-+                sizeof(char *) * pCreateInfo->enabledExtensionCount);
-+
-+         if (!has_timeline_semaphore) {
-+            has_timeline_semaphore_khr = true;
-+            ext_names[create_info.enabledExtensionCount++] =
-+               VK_KHR_TIMELINE_SEMAPHORE_EXTENSION_NAME;
-+         }
-+         if (!has_host_query_reset) {
-+            has_host_query_reset_ext = true;
-+            ext_names[create_info.enabledExtensionCount++] = VK_EXT_HOST_QUERY_RESET_EXTENSION_NAME;
-+         }
-+         if (!has_calibrated_timestamps) {
-+            check_calibrated_timestamps(instance_ctx, physicalDevice,
-+                                        &has_calibrated_timestamps_khr);
-+            ext_names[create_info.enabledExtensionCount++] =
-+               has_calibrated_timestamps_khr ? VK_KHR_CALIBRATED_TIMESTAMPS_EXTENSION_NAME
-+                                             : VK_EXT_CALIBRATED_TIMESTAMPS_EXTENSION_NAME;
-+         }
-+         create_info.ppEnabledExtensionNames = ext_names;
-+      }
-+
-+      /* Ensure that hostQueryReset feature is enabled. */
-+      const VkPhysicalDeviceVulkan12Features *vk12 =
-+         vk_find_struct_const(pCreateInfo->pNext, PHYSICAL_DEVICE_VULKAN_1_2_FEATURES);
-+      const VkPhysicalDeviceHostQueryResetFeatures *query_reset =
-+         vk_find_struct_const(pCreateInfo->pNext, PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES);
-+      const VkPhysicalDeviceTimelineSemaphoreFeatures *timeline_semaphore =
-+         vk_find_struct_const(pCreateInfo->pNext, PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES);
-+      uint32_t prev_hostQueryReset;
-+      uint32_t prev_timelineSemaphore;
-+      if (vk12) {
-+         prev_hostQueryReset = vk12->hostQueryReset;
-+         prev_timelineSemaphore = vk12->timelineSemaphore;
-+         ((VkPhysicalDeviceVulkan12Features *)vk12)->hostQueryReset = VK_TRUE;
-+         ((VkPhysicalDeviceVulkan12Features *)vk12)->timelineSemaphore = VK_TRUE;
-+      } else {
-+         if (query_reset) {
-+            prev_hostQueryReset = query_reset->hostQueryReset;
-+            ((VkPhysicalDeviceHostQueryResetFeatures *)query_reset)->hostQueryReset = VK_TRUE;
-+         } else {
-+            VkPhysicalDeviceHostQueryResetFeatures *feat =
-+               alloca(sizeof(VkPhysicalDeviceHostQueryResetFeatures));
-+            *feat = (VkPhysicalDeviceHostQueryResetFeatures){
-+               .sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES,
-+               .pNext = (void *)create_info.pNext,
-+               .hostQueryReset = VK_TRUE,
-+            };
-+            create_info.pNext = feat;
-+         }
-+         if (timeline_semaphore) {
-+            prev_timelineSemaphore = timeline_semaphore->timelineSemaphore;
-+            ((VkPhysicalDeviceTimelineSemaphoreFeatures *)timeline_semaphore)->timelineSemaphore =
-+               VK_TRUE;
-+         } else {
-+            VkPhysicalDeviceTimelineSemaphoreFeatures *feat =
-+               alloca(sizeof(VkPhysicalDeviceTimelineSemaphoreFeatures));
-+            *feat = (VkPhysicalDeviceTimelineSemaphoreFeatures){
-+               .sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES,
-+               .pNext = (void *)create_info.pNext,
-+               .timelineSemaphore = VK_TRUE,
-+            };
-+            create_info.pNext = feat;
-+         }
-+      }
-+
-+      /* Create Device. */
-+      result = fpCreateDevice(physicalDevice, &create_info, pAllocator, pDevice);
-+
-+      if (vk12) {
-+         ((VkPhysicalDeviceVulkan12Features *)vk12)->hostQueryReset = prev_hostQueryReset;
-+         ((VkPhysicalDeviceVulkan12Features *)vk12)->timelineSemaphore = prev_timelineSemaphore;
-+      } else {
-+         if (query_reset)
-+            ((VkPhysicalDeviceHostQueryResetFeatures *)query_reset)->hostQueryReset =
-+               prev_hostQueryReset;
-+         if (timeline_semaphore)
-+            ((VkPhysicalDeviceTimelineSemaphoreFeatures *)timeline_semaphore)->timelineSemaphore =
-+               prev_timelineSemaphore;
-+      }
-+      if (ext_names)
-+         vk_free(alloc, ext_names);
-+
-+      if (result != VK_SUCCESS)
-+         goto fail;
-+
-+      /* Initialize Context. */
-+      data->ctx = ctx;
-+      ctx->device = *pDevice;
-+      chain_info = get_device_chain_info(pCreateInfo, VK_LOADER_DATA_CALLBACK);
-+      PFN_vkSetDeviceLoaderData fpSetDeviceLoaderData =
-+         (PFN_vkSetDeviceLoaderData)chain_info->u.pfnSetDeviceLoaderData;
-+      init_device_vtable(ctx, fpGetDeviceProcAddr, fpSetDeviceLoaderData,
-+                         has_calibrated_timestamps_khr, has_host_query_reset_ext,
-+                         has_timeline_semaphore_khr);
-+      simple_mtx_init(&ctx->mtx, mtx_plain);
-+      ctx->num_queues = num_queues;
-+      ctx->alloc = *alloc;
-+      ctx->calibration.timestamp_period = properties.limits.timestampPeriod;
-+      ringbuffer_init(ctx->frames);
-+
-+      /* Initialize Queue contexts. */
-+      unsigned idx = 0;
-+      for (unsigned i = 0; i < pCreateInfo->queueCreateInfoCount; i++) {
-+         /* Skip queue families without sufficient timestamp valid bits.
-+          * Also skip queue families which cannot do GRAPHICS or COMPUTE since they
-+          * always heavily async in nature (DMA transfers and sparse for example).
-+          * Video is also irrelvant here since it should never be a critical path
-+          * in a game that wants anti-lag. */
-+         uint32_t queue_family_idx = pCreateInfo->pQueueCreateInfos[i].queueFamilyIndex;
-+         if (queue_family_props[queue_family_idx].timestampValidBits != 64 ||
-+             !(queue_family_props[queue_family_idx].queueFlags &
-+               (VK_QUEUE_GRAPHICS_BIT | VK_QUEUE_COMPUTE_BIT)))
-+            continue;
-+
-+         for (unsigned j = 0; j < pCreateInfo->pQueueCreateInfos[i].queueCount; j++) {
-+            VkQueue queue;
-+            ctx->vtable.GetDeviceQueue(*pDevice, queue_family_idx, j, &queue);
-+            ctx->queues[idx].queue = queue;
-+            ctx->queues[idx].queue_family_idx = queue_family_idx;
-+            result = init_queue_context(ctx, &ctx->queues[idx]);
-+            idx++;
-+            if (result != VK_SUCCESS)
-+               goto fail;
-+         }
-+      }
-+      assert(idx == num_queues);
-+   fail:
-+      vk_free(alloc, queue_family_props);
-+   } else {
-+      data = (device_data *)vk_alloc(alloc, sizeof(device_data), alignof(device_data),
-+                                     VK_SYSTEM_ALLOCATION_SCOPE_DEVICE);
-+      if (!data)
-+         return VK_ERROR_OUT_OF_HOST_MEMORY;
-+      result = fpCreateDevice(physicalDevice, pCreateInfo, pAllocator, pDevice);
-+      data->ctx = NULL;
-+   }
-+
-+   if (result == VK_SUCCESS) {
-+      data->device = *pDevice;
-+      data->GetDeviceProcAddr = fpGetDeviceProcAddr;
-+      data->next = NULL;
-+      add_device(data);
-+   } else {
-+      vk_free(alloc, data);
-+   }
-+
-+   return result;
-+}
-+
-+static VKAPI_ATTR void VKAPI_CALL
-+anti_lag_DestroyDevice(VkDevice pDevice, const VkAllocationCallbacks *pAllocator)
-+{
-+   device_data *data = remove_device(pDevice);
-+   assert(data && data->ctx);
-+   device_context *ctx = data->ctx;
-+
-+   /* Destroy per-queue context.
-+    * The application must ensure that no work is active on the device.
-+    */
-+   for (unsigned i = 0; i < ctx->num_queues; i++) {
-+      queue_context *queue_ctx = &ctx->queues[i];
-+      ctx->vtable.DestroyQueryPool(ctx->device, queue_ctx->queryPool, &ctx->alloc);
-+      ctx->vtable.DestroyCommandPool(ctx->device, queue_ctx->cmdPool, &ctx->alloc);
-+      ctx->vtable.DestroySemaphore(ctx->device, queue_ctx->semaphore, &ctx->alloc);
-+   }
-+
-+   ctx->vtable.DestroyDevice(pDevice, pAllocator);
-+   vk_free(&ctx->alloc, data);
-+}
-+
-+static bool
-+is_anti_lag_supported(VkPhysicalDevice physicalDevice)
-+{
-+   instance_data *data = get_instance_data(physicalDevice);
-+   VkPhysicalDeviceProperties properties;
-+   data->vtable.GetPhysicalDeviceProperties(physicalDevice, &properties);
-+   if (properties.limits.timestampPeriod == 0.0 || !properties.limits.timestampComputeAndGraphics)
-+      return false;
-+
-+   /* Check whether calibrated timestamps are supported. */
-+   bool has_khr;
-+   if (!check_calibrated_timestamps(data, physicalDevice, &has_khr))
-+      return false;
-+
-+   /* Check whether timeline semaphores and host query reset are supported. */
-+   VkPhysicalDeviceTimelineSemaphoreFeatures timeline_semaphore = {
-+      .sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES,
-+      .timelineSemaphore = VK_FALSE,
-+   };
-+   VkPhysicalDeviceHostQueryResetFeatures query_reset = {
-+      .sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES,
-+      .pNext = &timeline_semaphore,
-+      .hostQueryReset = VK_FALSE,
-+   };
-+   VkPhysicalDeviceFeatures2 features = {
-+      .sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2,
-+      .pNext = &query_reset,
-+   };
-+   if (data->vtable.GetPhysicalDeviceFeatures2KHR)
-+      data->vtable.GetPhysicalDeviceFeatures2KHR(physicalDevice, &features);
-+   else if (data->vtable.GetPhysicalDeviceFeatures2)
-+      data->vtable.GetPhysicalDeviceFeatures2(physicalDevice, &features);
-+   if (!timeline_semaphore.timelineSemaphore || !query_reset.hostQueryReset)
-+      return false;
-+
-+   /* Check that DEVICE and CLOCK_MONOTONIC time domains are available. */
-+   VkResult res;
-+   uint32_t count = 0;
-+   PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsKHR ctd =
-+      has_khr ? data->vtable.GetPhysicalDeviceCalibrateableTimeDomainsKHR
-+              : data->vtable.GetPhysicalDeviceCalibrateableTimeDomainsEXT;
-+   res = ctd(physicalDevice, &count, NULL);
-+   VkTimeDomainKHR *time_domains = alloca(count * sizeof(VkTimeDomainKHR));
-+   res |= ctd(physicalDevice, &count, time_domains);
-+   if (res != VK_SUCCESS)
-+      return false;
-+
-+   bool has_device_domain = false;
-+   bool has_host_domain = false;
-+   for (unsigned i = 0; i < count; i++) {
-+      has_device_domain |= time_domains[i] == VK_TIME_DOMAIN_DEVICE_KHR;
-+      has_host_domain |= time_domains[i] == VK_TIME_DOMAIN_CLOCK_MONOTONIC_KHR;
-+   }
-+
-+   return has_device_domain && has_host_domain;
-+}
-+
-+static VKAPI_ATTR VkResult VKAPI_CALL
-+anti_lag_EnumerateDeviceExtensionProperties(VkPhysicalDevice physicalDevice, const char *pLayerName,
-+                                            uint32_t *pPropertyCount,
-+                                            VkExtensionProperties *pProperties)
-+{
-+   instance_data *instance_data = get_instance_data(physicalDevice);
-+
-+   if (pLayerName && strcmp(pLayerName, "VK_LAYER_MESA_anti_lag") == 0) {
-+      if (!is_anti_lag_supported(physicalDevice)) {
-+         *pPropertyCount = 0;
-+         return VK_SUCCESS;
-+      }
-+
-+      VK_OUTARRAY_MAKE_TYPED(VkExtensionProperties, out, pProperties, pPropertyCount);
-+      vk_outarray_append_typed(VkExtensionProperties, &out, prop)
-+      {
-+         *prop =
-+            (VkExtensionProperties){VK_AMD_ANTI_LAG_EXTENSION_NAME, VK_AMD_ANTI_LAG_SPEC_VERSION};
-+      }
-+      return vk_outarray_status(&out);
-+   }
-+
-+   return instance_data->vtable.EnumerateDeviceExtensionProperties(physicalDevice, pLayerName,
-+                                                                   pPropertyCount, pProperties);
-+}
-+
-+static VKAPI_ATTR void VKAPI_CALL
-+anti_lag_GetPhysicalDeviceFeatures2(VkPhysicalDevice physicalDevice,
-+                                    VkPhysicalDeviceFeatures2 *pFeatures)
-+{
-+   instance_data *ctx = get_instance_data(physicalDevice);
-+   ctx->vtable.GetPhysicalDeviceFeatures2(physicalDevice, pFeatures);
-+   VkPhysicalDeviceAntiLagFeaturesAMD *anti_lag_features =
-+      vk_find_struct(pFeatures->pNext, PHYSICAL_DEVICE_ANTI_LAG_FEATURES_AMD);
-+
-+   if (anti_lag_features) {
-+      anti_lag_features->antiLag |= is_anti_lag_supported(physicalDevice);
-+   }
-+}
-+
-+static VKAPI_ATTR void VKAPI_CALL
-+anti_lag_GetPhysicalDeviceFeatures2KHR(VkPhysicalDevice physicalDevice,
-+                                       VkPhysicalDeviceFeatures2 *pFeatures)
-+{
-+   instance_data *ctx = get_instance_data(physicalDevice);
-+   ctx->vtable.GetPhysicalDeviceFeatures2KHR(physicalDevice, pFeatures);
-+   VkPhysicalDeviceAntiLagFeaturesAMD *anti_lag_features =
-+      vk_find_struct(pFeatures->pNext, PHYSICAL_DEVICE_ANTI_LAG_FEATURES_AMD);
-+
-+   if (anti_lag_features) {
-+      anti_lag_features->antiLag |= is_anti_lag_supported(physicalDevice);
-+   }
-+}
-+
-+static VKAPI_ATTR PFN_vkVoidFunction VKAPI_CALL
-+anti_lag_GetInstanceProcAddr(VkInstance instance, const char *pName);
-+
-+static VKAPI_ATTR PFN_vkVoidFunction VKAPI_CALL
-+anti_lag_GetDeviceProcAddr(VkDevice device, const char *pName);
-+
-+#define ADD_HOOK(fn) {"vk" #fn, (PFN_vkVoidFunction)anti_lag_##fn}
-+static const struct {
-+   const char *name;
-+   PFN_vkVoidFunction ptr;
-+} instance_funcptr_map[] = {
-+   ADD_HOOK(GetInstanceProcAddr),
-+   ADD_HOOK(CreateInstance),
-+   ADD_HOOK(DestroyInstance),
-+   ADD_HOOK(EnumerateDeviceExtensionProperties),
-+   ADD_HOOK(CreateDevice),
-+   ADD_HOOK(GetPhysicalDeviceFeatures2),
-+   ADD_HOOK(GetPhysicalDeviceFeatures2KHR),
-+};
-+
-+static const struct {
-+   const char *name;
-+   PFN_vkVoidFunction ptr;
-+} device_funcptr_map[] = {
-+   ADD_HOOK(GetDeviceProcAddr),
-+   ADD_HOOK(DestroyDevice),
-+   ADD_HOOK(AntiLagUpdateAMD),
-+   ADD_HOOK(QueueSubmit),
-+   ADD_HOOK(QueueSubmit2),
-+   ADD_HOOK(QueueSubmit2KHR),
-+};
-+#undef ADD_HOOK
-+
-+static VKAPI_ATTR PFN_vkVoidFunction VKAPI_CALL
-+anti_lag_GetInstanceProcAddr(VkInstance instance, const char *pName)
-+{
-+   if (!pName)
-+      return NULL;
-+
-+   PFN_vkVoidFunction result = NULL;
-+   if (instance) {
-+      instance_data *ctx = get_instance_data(instance);
-+      if (ctx)
-+         result = ctx->vtable.GetInstanceProcAddr(instance, pName);
-+   }
-+
-+   /* Only hook instance functions which are exposed by the underlying impl.
-+    * Ignore instance parameter for vkCreateInstance and vkCreateDevice.
-+    */
-+   if (result || strcmp(pName, "vkCreateInstance") == 0 || strcmp(pName, "vkCreateDevice") == 0) {
-+      for (uint32_t i = 0; i < ARRAY_SIZE(instance_funcptr_map); i++) {
-+         if (strcmp(pName, instance_funcptr_map[i].name) == 0)
-+            return instance_funcptr_map[i].ptr;
-+      }
-+   }
-+
-+   return result;
-+}
-+
-+static VKAPI_ATTR PFN_vkVoidFunction VKAPI_CALL
-+anti_lag_GetDeviceProcAddr(VkDevice device, const char *pName)
-+{
-+   if (!pName || !device)
-+      return NULL;
-+
-+   device_data *data = get_device_data(device);
-+   PFN_vkVoidFunction result = data->GetDeviceProcAddr(device, pName);
-+
-+   /* Only hook device functions if the Layer extension is enabled. */
-+   if (data->ctx && (result || strcmp(pName, "vkAntiLagUpdateAMD") == 0)) {
-+      for (uint32_t i = 0; i < ARRAY_SIZE(device_funcptr_map); i++) {
-+         if (strcmp(pName, device_funcptr_map[i].name) == 0)
-+            return device_funcptr_map[i].ptr;
-+      }
-+   }
-+
-+   return result;
-+}
-+
-+PUBLIC VKAPI_ATTR VkResult VKAPI_CALL
-+anti_lag_NegotiateLoaderLayerInterfaceVersion(VkNegotiateLayerInterface *pVersionStruct)
-+{
-+   assert(pVersionStruct != NULL);
-+   assert(pVersionStruct->sType == LAYER_NEGOTIATE_INTERFACE_STRUCT);
-+
-+   if (pVersionStruct->loaderLayerInterfaceVersion >= 2) {
-+      pVersionStruct->loaderLayerInterfaceVersion = 2;
-+      pVersionStruct->pfnGetInstanceProcAddr = anti_lag_GetInstanceProcAddr;
-+      pVersionStruct->pfnGetDeviceProcAddr = anti_lag_GetDeviceProcAddr;
-+      pVersionStruct->pfnGetPhysicalDeviceProcAddr = NULL;
-+   }
-+
-+   return VK_SUCCESS;
-+}
-diff --git a/src/vulkan/anti-lag-layer/meson.build b/src/vulkan/anti-lag-layer/meson.build
-new file mode 100644
-index 00000000000..264c55c8e75
---- /dev/null
-+++ b/src/vulkan/anti-lag-layer/meson.build
-@@ -0,0 +1,26 @@
-+# Copyright © 2025 Valve Corporation
-+# SPDX-License-Identifier: MIT
-+
-+vklayer_files = files(
-+  'anti_lag_layer.c',
-+  'anti_lag_layer_interface.c',
-+)
-+
-+shared_library(
-+  'VkLayer_MESA_anti_lag',
-+  vklayer_files,
-+  c_args : [no_override_init_args],
-+  gnu_symbol_visibility : 'hidden',
-+  dependencies : [
-+    idep_vulkan_util, idep_mesautil,
-+  ],
-+  include_directories : [inc_include, inc_util, inc_src],
-+  link_args : cc.get_supported_link_arguments(['-Wl,-Bsymbolic-functions', '-Wl,-z,relro']),
-+  install : true
-+)
-+
-+install_data(
-+  files('VkLayer_MESA_anti_lag.json'),
-+  install_dir : join_paths(get_option('datadir'), 'vulkan', 'implicit_layer.d'),
-+  install_tag : 'runtime',
-+)
-diff --git a/src/vulkan/anti-lag-layer/ringbuffer.h b/src/vulkan/anti-lag-layer/ringbuffer.h
-new file mode 100644
-index 00000000000..1747b7e720f
---- /dev/null
-+++ b/src/vulkan/anti-lag-layer/ringbuffer.h
-@@ -0,0 +1,58 @@
-+/*
-+ * Copyright © 2025 Valve Corporation
-+ *
-+ * SPDX-License-Identifier: MIT
-+ */
-+
-+#ifndef RINGBUFFER_H
-+#define RINGBUFFER_H
-+
-+#include "util/macros.h"
-+
-+#define RINGBUFFER_DECLARE(name, type, N)                                                          \
-+   struct {                                                                                        \
-+      type data[N];                                                                                \
-+      uint32_t head;                                                                               \
-+      uint32_t tail;                                                                               \
-+      uint32_t size;                                                                               \
-+      simple_mtx_t mtx;                                                                            \
-+   } name
-+
-+#define ringbuffer_init(buffer)                                                                    \
-+   (buffer.head = buffer.tail = buffer.size = 0, simple_mtx_init(&buffer.mtx, mtx_plain))
-+
-+#define ringbuffer_lock(buffer)   simple_mtx_lock(&buffer.mtx)
-+#define ringbuffer_unlock(buffer) simple_mtx_unlock(&buffer.mtx)
-+
-+static inline uint32_t
-+__ringbuffer_add_wrap(uint32_t *val, uint32_t *size, uint32_t N)
-+{
-+   uint32_t prev = *val;
-+   *val = (*val + 1) % N;
-+   *size = *size + 1;
-+   assert(*size <= N);
-+   return prev;
-+}
-+
-+#define ringbuffer_alloc(buffer)                                                                   \
-+   (buffer.size == ARRAY_SIZE(buffer.data)                                                         \
-+       ? NULL                                                                                      \
-+       : &buffer.data[__ringbuffer_add_wrap(&buffer.head, &buffer.size, ARRAY_SIZE(buffer.data))])
-+
-+#define ringbuffer_free(buffer, elem)                                                              \
-+   assert(elem == NULL || elem == &buffer.data[buffer.tail]);                                      \
-+   buffer.size--;                                                                                  \
-+   assert(buffer.size < ARRAY_SIZE(buffer.data));                                                  \
-+   buffer.tail = (buffer.tail + 1) % ARRAY_SIZE(buffer.data)
-+
-+#define ringbuffer_first(buffer) (&buffer.data[buffer.tail])
-+
-+#define ringbuffer_last(buffer)                                                                    \
-+   (&buffer.data[(buffer.head + ARRAY_SIZE(buffer.data) - 1) % ARRAY_SIZE(buffer.data)])
-+
-+#define ringbuffer_index(buffer, elem) (elem - buffer.data)
-+
-+#define ringbuffer_next(buffer, elem)                                                              \
-+   (&buffer.data[(ringbuffer_index(buffer, elem) + 1) % ARRAY_SIZE(buffer.data)])
-+
-+#endif /* RINGBUFFER_H */
-diff --git a/src/vulkan/meson.build b/src/vulkan/meson.build
-index 3225b5f4a9d..cf62ecc6ae7 100644
---- a/src/vulkan/meson.build
-+++ b/src/vulkan/meson.build
-@@ -98,3 +98,6 @@ endif
- if with_vulkan_vram_report_limit_layer
-   subdir('vram-report-limit-layer')
- endif
-+if with_vulkan_anti_lag_layer
-+  subdir('anti-lag-layer')
-+endif
--- 
-2.50.1
-
-
-From e4adbbe12d9aafdaf80f340f685cf7bd7758d385 Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?Daniel=20Sch=C3=BCrmann?= <daniel@schuermann.dev>
-Date: Thu, 30 May 2024 11:55:46 +0200
-Subject: [PATCH 07/11] util/time: add os_time_nanosleep_until() function
-
-Part-of: <https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/34242>
----
- src/util/os_time.c | 16 +++++++++++++++-
- src/util/os_time.h |  2 ++
- 2 files changed, 17 insertions(+), 1 deletion(-)
-
-diff --git a/src/util/os_time.c b/src/util/os_time.c
-index da8ad7a80b8..209b7ae442c 100644
---- a/src/util/os_time.c
-+++ b/src/util/os_time.c
-@@ -60,7 +60,21 @@ os_time_get_nano(void)
-    return ts.tv_nsec + ts.tv_sec*INT64_C(1000000000);
- }
- 
--
-+void
-+os_time_nanosleep_until(int64_t deadline)
-+{
-+#if DETECT_OS_LINUX || DETECT_OS_MANAGARM
-+   struct timespec time;
-+   time.tv_sec = deadline / INT64_C(1000000000);
-+   time.tv_nsec = deadline % INT64_C(1000000000);
-+   while (clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &time, &time) == EINTR);
-+#else
-+   int64_t duration = deadline - os_time_get_nano();
-+   if (duration > 0) {
-+      os_time_sleep(duration / 1000);
-+   }
-+#endif
-+}
- 
- void
- os_time_sleep(int64_t usecs)
-diff --git a/src/util/os_time.h b/src/util/os_time.h
-index 6ca37eac769..4217ff37b68 100644
---- a/src/util/os_time.h
-+++ b/src/util/os_time.h
-@@ -74,6 +74,8 @@ os_localtime(const time_t *timer, struct tm *buf)
- #endif
- }
- 
-+void
-+os_time_nanosleep_until(int64_t deadline);
- 
- /*
-  * Sleep.
--- 
-2.50.1
-
-
-From 22d1adddbaff70c62207396a12576329f477174f Mon Sep 17 00:00:00 2001
-From: Hans-Kristian Arntzen <post@arntzen-software.no>
-Date: Thu, 26 Jun 2025 13:00:20 +0200
-Subject: [PATCH 08/11] anti-lag: Only consider timestamps from queues which
- have presented.
-
-Avoids stray submissions to compute queues to nullify the delay.
-
-Signed-off-by: Hans-Kristian Arntzen <post@arntzen-software.no>
-Part-of: <https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/34242>
----
- src/vulkan/anti-lag-layer/anti_lag_layer.c    | 24 ++++++++++++++++++-
- src/vulkan/anti-lag-layer/anti_lag_layer.h    |  3 +++
- .../anti-lag-layer/anti_lag_layer_interface.c |  2 ++
- 3 files changed, 28 insertions(+), 1 deletion(-)
-
-diff --git a/src/vulkan/anti-lag-layer/anti_lag_layer.c b/src/vulkan/anti-lag-layer/anti_lag_layer.c
-index 6c21e074024..d7543a5dfd9 100644
---- a/src/vulkan/anti-lag-layer/anti_lag_layer.c
-+++ b/src/vulkan/anti-lag-layer/anti_lag_layer.c
-@@ -8,6 +8,7 @@
- #include <string.h>
- #include "util/os_time.h"
- #include "util/simple_mtx.h"
-+#include "util/u_atomic.h"
- #include "vulkan/vulkan_core.h"
- #include "ringbuffer.h"
- #include "vk_alloc.h"
-@@ -400,7 +401,11 @@ get_commandbuffer(device_context *ctx, queue_context *queue_ctx, VkCommandBuffer
-    /* Begin critical section. */
-    ringbuffer_lock(ctx->frames);
-    ringbuffer_lock(queue_ctx->queries);
--   struct query *query = allocate_query(ctx, queue_ctx);
-+
-+   /* Don't record timestamps for queues that are not deemed sensitive to latency. */
-+   struct query *query =
-+      p_atomic_read(&queue_ctx->latency_sensitive) ? allocate_query(ctx, queue_ctx) : NULL;
-+
-    if (query == NULL) {
-       ringbuffer_unlock(queue_ctx->queries);
-       ringbuffer_unlock(ctx->frames);
-@@ -588,3 +593,20 @@ anti_lag_QueueSubmit(VkQueue queue, uint32_t submitCount, const VkSubmitInfo *pS
-    vk_free(&ctx->alloc, buf);
-    return res;
- }
-+
-+VKAPI_ATTR VkResult VKAPI_CALL
-+anti_lag_QueuePresentKHR(VkQueue queue, const VkPresentInfoKHR *pPresentInfo)
-+{
-+   /* When multiple queues are in flight, the min-delay approach
-+    * has problems. An async compute queue could be submitted to
-+    * with very low delay while the main graphics queue would be swamped with work.
-+    * If we take a global min-delay over all queues, the algorithm would
-+    * assume that there is very low delay and thus sleeps are disabled, but
-+    * unless the graphics work depends directly on the async compute work,
-+    * this is a false assumption. */
-+   device_context *ctx = get_device_context(queue);
-+   queue_context *queue_ctx = get_queue_context(ctx, queue);
-+   p_atomic_set(&queue_ctx->latency_sensitive, true);
-+
-+   return ctx->vtable.QueuePresentKHR(queue, pPresentInfo);
-+}
-diff --git a/src/vulkan/anti-lag-layer/anti_lag_layer.h b/src/vulkan/anti-lag-layer/anti_lag_layer.h
-index 31abb0f9aee..d03d246d79c 100644
---- a/src/vulkan/anti-lag-layer/anti_lag_layer.h
-+++ b/src/vulkan/anti-lag-layer/anti_lag_layer.h
-@@ -39,6 +39,7 @@ struct query {
- typedef struct queue_context {
-    VkQueue queue;
-    uint32_t queue_family_idx;
-+   bool latency_sensitive;
-    VkCommandPool cmdPool;
-    VkQueryPool queryPool;
-    VkSemaphore semaphore;
-@@ -74,6 +75,7 @@ typedef struct device_context {
-       DECLARE_HOOK(DestroySemaphore);
-       DECLARE_HOOK(GetSemaphoreCounterValue);
-       DECLARE_HOOK(WaitSemaphores);
-+      DECLARE_HOOK(QueuePresentKHR);
- #undef DECLARE_HOOK
-    } vtable;
- 
-@@ -105,6 +107,7 @@ VkResult anti_lag_QueueSubmit2(VkQueue queue, uint32_t submitCount, const VkSubm
-                                VkFence fence);
- VkResult anti_lag_QueueSubmit(VkQueue queue, uint32_t submitCount, const VkSubmitInfo *pSubmits,
-                               VkFence fence);
-+VkResult anti_lag_QueuePresentKHR(VkQueue queue, const VkPresentInfoKHR *pPresentInfo);
- 
- VkResult anti_lag_NegotiateLoaderLayerInterfaceVersion(VkNegotiateLayerInterface *pVersionStruct);
- 
-diff --git a/src/vulkan/anti-lag-layer/anti_lag_layer_interface.c b/src/vulkan/anti-lag-layer/anti_lag_layer_interface.c
-index d2ca4a7dd44..6a803e24fe6 100644
---- a/src/vulkan/anti-lag-layer/anti_lag_layer_interface.c
-+++ b/src/vulkan/anti-lag-layer/anti_lag_layer_interface.c
-@@ -194,6 +194,7 @@ init_device_vtable(device_context *ctx, PFN_vkGetDeviceProcAddr gpa, PFN_vkSetDe
-    INIT_HOOK(CmdWriteTimestamp);
-    INIT_HOOK(CreateSemaphore);
-    INIT_HOOK(DestroySemaphore);
-+   INIT_HOOK(QueuePresentKHR);
-    INIT_HOOK_ALIAS(GetSemaphoreCounterValue, GetSemaphoreCounterValueKHR, timeline_semaphore_khr);
-    INIT_HOOK_ALIAS(WaitSemaphores, WaitSemaphoresKHR, timeline_semaphore_khr);
- #undef INIT_HOOK
-@@ -833,6 +834,7 @@ static const struct {
-    ADD_HOOK(QueueSubmit),
-    ADD_HOOK(QueueSubmit2),
-    ADD_HOOK(QueueSubmit2KHR),
-+   ADD_HOOK(QueuePresentKHR),
- };
- #undef ADD_HOOK
- 
--- 
-2.50.1
-
-
-From be19fb7abf7dba7aaff2ff809a6a0a8f6ac68ce4 Mon Sep 17 00:00:00 2001
-From: Hans-Kristian Arntzen <post@arntzen-software.no>
-Date: Thu, 26 Jun 2025 14:22:07 +0200
-Subject: [PATCH 09/11] anti-lag: Submit timestamps early in a frame.
-
-Allows detecting if the queue ends up going idle due to
-a cross-queue dependency. Since we're only considering delays from
-specific queues, we would not be able to detect low-latency situations
-arising from the start of a frame happening on async queues.
-
-Until we observe real work happening for a queue in a frame context,
-submit timestamps ahead of any other waits.
-
-Signed-off-by: Hans-Kristian Arntzen <post@arntzen-software.no>
-Part-of: <https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/34242>
----
- src/vulkan/anti-lag-layer/anti_lag_layer.c | 114 ++++++++++++++++-----
- 1 file changed, 86 insertions(+), 28 deletions(-)
-
-diff --git a/src/vulkan/anti-lag-layer/anti_lag_layer.c b/src/vulkan/anti-lag-layer/anti_lag_layer.c
-index d7543a5dfd9..f730ca00f9c 100644
---- a/src/vulkan/anti-lag-layer/anti_lag_layer.c
-+++ b/src/vulkan/anti-lag-layer/anti_lag_layer.c
-@@ -366,13 +366,9 @@ get_queue_context(device_context *ctx, VkQueue queue)
- }
- 
- static struct query *
--allocate_query(device_context *ctx, queue_context *queue_ctx)
-+allocate_query(queue_context *queue_ctx, uint32_t frame_idx)
- {
--   if (!ctx->active_frame)
--      return NULL;
--
-    /* Allow for a single frame to use at most half of the query pool. */
--   uint32_t frame_idx = ringbuffer_index(ctx->frames, ctx->active_frame);
-    if (queue_ctx->submissions_per_frame[frame_idx] > MAX_QUERIES / 2)
-       return NULL;
- 
-@@ -394,7 +390,8 @@ allocate_query(device_context *ctx, queue_context *queue_ctx)
- }
- 
- static bool
--get_commandbuffer(device_context *ctx, queue_context *queue_ctx, VkCommandBuffer *cmdbuffer)
-+get_commandbuffer(device_context *ctx, queue_context *queue_ctx, VkCommandBuffer *cmdbuffer,
-+                  bool has_command_buffer, bool has_wait_before_cmdbuffer, bool *early_submit)
- {
-    uint64_t now = os_time_get_nano();
- 
-@@ -403,8 +400,24 @@ get_commandbuffer(device_context *ctx, queue_context *queue_ctx, VkCommandBuffer
-    ringbuffer_lock(queue_ctx->queries);
- 
-    /* Don't record timestamps for queues that are not deemed sensitive to latency. */
--   struct query *query =
--      p_atomic_read(&queue_ctx->latency_sensitive) ? allocate_query(ctx, queue_ctx) : NULL;
-+   bool need_query = ctx->active_frame && p_atomic_read(&queue_ctx->latency_sensitive);
-+   uint32_t frame_idx;
-+   struct query *query = NULL;
-+
-+   if (need_query) {
-+      assert(ctx->active_frame->state == FRAME_SUBMIT);
-+      frame_idx = ringbuffer_index(ctx->frames, ctx->active_frame);
-+
-+      /* For the very first submissions in a frame (until we observe real GPU work happening),
-+       * we would want to submit a timestamp before anything else, including waits.
-+       * This allows us to detect a sensitive queue going idle before we can submit work to it.
-+       * If the queue in question depends on semaphores from other unrelated queues,
-+       * we may not easily be able to detect that situation without adding a lot more complexity.
-+       */
-+      *early_submit = has_wait_before_cmdbuffer && queue_ctx->submissions_per_frame[frame_idx] == 0;
-+      if (has_command_buffer || *early_submit)
-+         query = allocate_query(queue_ctx, frame_idx);
-+   }
- 
-    if (query == NULL) {
-       ringbuffer_unlock(queue_ctx->queries);
-@@ -421,8 +434,6 @@ get_commandbuffer(device_context *ctx, queue_context *queue_ctx, VkCommandBuffer
-    queue_ctx->semaphore_value++;
- 
-    /* Add new submission entry for the current frame */
--   assert(ctx->active_frame->state == FRAME_SUBMIT);
--   uint32_t frame_idx = ringbuffer_index(ctx->frames, ctx->active_frame);
-    queue_ctx->submissions_per_frame[frame_idx]++;
- 
-    ringbuffer_unlock(queue_ctx->queries);
-@@ -435,13 +446,17 @@ queue_submit2(device_context *ctx, VkQueue queue, uint32_t submitCount,
-               const VkSubmitInfo2 *pSubmits, VkFence fence, PFN_vkQueueSubmit2 queueSubmit2)
- {
-    queue_context *queue_ctx = get_queue_context(ctx, queue);
--   if (!ctx->active_frame || !queue_ctx)
-+   if (!ctx->active_frame || !queue_ctx || !submitCount)
-       return queueSubmit2(queue, submitCount, pSubmits, fence);
- 
-+   bool has_wait_before_cmdbuffer = false;
-    int first = -1;
-    VkCommandBuffer timestamp_cmdbuffer;
-    /* Check if any submission contains commandbuffers. */
-    for (unsigned i = 0; i < submitCount; i++) {
-+      if (pSubmits[i].waitSemaphoreInfoCount != 0)
-+         has_wait_before_cmdbuffer = true;
-+
-       if (pSubmits[i].commandBufferInfoCount) {
-          first = i;
-          break;
-@@ -449,23 +464,42 @@ queue_submit2(device_context *ctx, VkQueue queue, uint32_t submitCount,
-    }
- 
-    /* Get timestamp commandbuffer. */
--   if (first == -1 || !get_commandbuffer(ctx, queue_ctx, &timestamp_cmdbuffer))
-+   bool early_submit;
-+   if (!get_commandbuffer(ctx, queue_ctx, &timestamp_cmdbuffer, first >= 0,
-+                          has_wait_before_cmdbuffer, &early_submit)) {
-       return queueSubmit2(queue, submitCount, pSubmits, fence);
-+   }
- 
-    VkSubmitInfo2 *submits;
-    VkCommandBufferSubmitInfo *cmdbuffers;
-    VkSemaphoreSubmitInfo *semaphores;
-    VK_MULTIALLOC(ma);
--   vk_multialloc_add(&ma, &submits, VkSubmitInfo2, submitCount);
--   vk_multialloc_add(&ma, &cmdbuffers, VkCommandBufferSubmitInfo,
--                     pSubmits[first].commandBufferInfoCount + 1);
--   vk_multialloc_add(&ma, &semaphores, VkSemaphoreSubmitInfo,
--                     pSubmits[first].signalSemaphoreInfoCount + 1);
-+
-+   if (early_submit) {
-+      vk_multialloc_add(&ma, &submits, VkSubmitInfo2, submitCount + 1);
-+      vk_multialloc_add(&ma, &cmdbuffers, VkCommandBufferSubmitInfo, 1);
-+      vk_multialloc_add(&ma, &semaphores, VkSemaphoreSubmitInfo, 1);
-+      first = 0;
-+   } else {
-+      vk_multialloc_add(&ma, &submits, VkSubmitInfo2, submitCount);
-+      vk_multialloc_add(&ma, &cmdbuffers, VkCommandBufferSubmitInfo,
-+                        pSubmits[first].commandBufferInfoCount + 1);
-+      vk_multialloc_add(&ma, &semaphores, VkSemaphoreSubmitInfo,
-+                        pSubmits[first].signalSemaphoreInfoCount + 1);
-+   }
-+
-    void *buf = vk_multialloc_zalloc(&ma, &ctx->alloc, VK_SYSTEM_ALLOCATION_SCOPE_COMMAND);
-    if (!buf)
-       return VK_ERROR_OUT_OF_HOST_MEMORY;
- 
--   memcpy(submits, pSubmits, sizeof(VkSubmitInfo2) * submitCount);
-+   if (early_submit) {
-+      memcpy(submits + 1, pSubmits, sizeof(VkSubmitInfo2) * submitCount);
-+      submits[0] = (VkSubmitInfo2){.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO_2};
-+      submitCount++;
-+   } else {
-+      memcpy(submits, pSubmits, sizeof(VkSubmitInfo2) * submitCount);
-+   }
-+
-    VkSubmitInfo2 *submit_info = &submits[first];
- 
-    /* Add commandbuffer to submission. */
-@@ -518,13 +552,17 @@ anti_lag_QueueSubmit(VkQueue queue, uint32_t submitCount, const VkSubmitInfo *pS
- {
-    device_context *ctx = get_device_context(queue);
-    queue_context *queue_ctx = get_queue_context(ctx, queue);
--   if (!ctx->active_frame || !queue_ctx)
-+   if (!ctx->active_frame || !queue_ctx || !submitCount)
-       return ctx->vtable.QueueSubmit(queue, submitCount, pSubmits, fence);
- 
-+   bool has_wait_before_cmdbuffer = false;
-    int first = -1;
-    VkCommandBuffer timestamp_cmdbuffer;
--   /* Check if any submission contains commandbuffers. */
-+   /* Check if any submission contains commandbuffers or waits before those. */
-    for (unsigned i = 0; i < submitCount; i++) {
-+      if (pSubmits[i].waitSemaphoreCount != 0)
-+         has_wait_before_cmdbuffer = true;
-+
-       if (pSubmits[i].commandBufferCount) {
-          first = i;
-          break;
-@@ -532,8 +570,11 @@ anti_lag_QueueSubmit(VkQueue queue, uint32_t submitCount, const VkSubmitInfo *pS
-    }
- 
-    /* Get timestamp commandbuffer. */
--   if (first == -1 || !get_commandbuffer(ctx, queue_ctx, &timestamp_cmdbuffer))
-+   bool early_submit;
-+   if (!get_commandbuffer(ctx, queue_ctx, &timestamp_cmdbuffer, first >= 0,
-+                          has_wait_before_cmdbuffer, &early_submit)) {
-       return ctx->vtable.QueueSubmit(queue, submitCount, pSubmits, fence);
-+   }
- 
-    VkSubmitInfo *submits;
-    VkCommandBuffer *cmdbuffers;
-@@ -541,16 +582,33 @@ anti_lag_QueueSubmit(VkQueue queue, uint32_t submitCount, const VkSubmitInfo *pS
-    VkTimelineSemaphoreSubmitInfo *semaphore_info;
-    uint64_t *semaphore_values;
-    VK_MULTIALLOC(ma);
--   vk_multialloc_add(&ma, &submits, VkSubmitInfo, submitCount);
--   vk_multialloc_add(&ma, &cmdbuffers, VkCommandBuffer, pSubmits[first].commandBufferCount + 1);
--   vk_multialloc_add(&ma, &semaphores, VkSemaphore, pSubmits[first].signalSemaphoreCount + 1);
--   vk_multialloc_add(&ma, &semaphore_info, VkTimelineSemaphoreSubmitInfo, 1);
--   vk_multialloc_add(&ma, &semaphore_values, uint64_t, pSubmits[first].signalSemaphoreCount + 1);
-+
-+   if (early_submit) {
-+      vk_multialloc_add(&ma, &submits, VkSubmitInfo, submitCount + 1);
-+      vk_multialloc_add(&ma, &cmdbuffers, VkCommandBuffer, 1);
-+      vk_multialloc_add(&ma, &semaphores, VkSemaphore, 1);
-+      vk_multialloc_add(&ma, &semaphore_info, VkTimelineSemaphoreSubmitInfo, 1);
-+      vk_multialloc_add(&ma, &semaphore_values, uint64_t, 1);
-+      first = 0;
-+   } else {
-+      vk_multialloc_add(&ma, &submits, VkSubmitInfo, submitCount);
-+      vk_multialloc_add(&ma, &cmdbuffers, VkCommandBuffer, pSubmits[first].commandBufferCount + 1);
-+      vk_multialloc_add(&ma, &semaphores, VkSemaphore, pSubmits[first].signalSemaphoreCount + 1);
-+      vk_multialloc_add(&ma, &semaphore_info, VkTimelineSemaphoreSubmitInfo, 1);
-+      vk_multialloc_add(&ma, &semaphore_values, uint64_t, pSubmits[first].signalSemaphoreCount + 1);
-+   }
-    void *buf = vk_multialloc_zalloc(&ma, &ctx->alloc, VK_SYSTEM_ALLOCATION_SCOPE_COMMAND);
-    if (!buf)
-       return VK_ERROR_OUT_OF_HOST_MEMORY;
- 
--   memcpy(submits, pSubmits, sizeof(VkSubmitInfo) * submitCount);
-+   if (early_submit) {
-+      memcpy(submits + 1, pSubmits, sizeof(VkSubmitInfo) * submitCount);
-+      submits[0] = (VkSubmitInfo){.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO};
-+      submitCount++;
-+   } else {
-+      memcpy(submits, pSubmits, sizeof(VkSubmitInfo) * submitCount);
-+   }
-+
-    VkSubmitInfo *submit_info = &submits[first];
- 
-    /* Add commandbuffer to submission. */
-@@ -562,7 +620,7 @@ anti_lag_QueueSubmit(VkQueue queue, uint32_t submitCount, const VkSubmitInfo *pS
- 
-    /* Add timeline semaphore to submission. */
-    const VkTimelineSemaphoreSubmitInfo *tlssi =
--      vk_find_struct_const(pSubmits[first].pNext, TIMELINE_SEMAPHORE_SUBMIT_INFO);
-+      vk_find_struct_const(submit_info->pNext, TIMELINE_SEMAPHORE_SUBMIT_INFO);
-    semaphores[0] = queue_ctx->semaphore;
-    memcpy(&semaphores[1], submit_info->pSignalSemaphores,
-           sizeof(VkSemaphore) * submit_info->signalSemaphoreCount);
--- 
-2.50.1
-
-
-From aaaa9d5cd9891b88b8a94692f0f49036233da227 Mon Sep 17 00:00:00 2001
+From 4f1a882f75edd79690610135738f5d5317263ffd Mon Sep 17 00:00:00 2001
 From: Kyle Gospodnetich <me@kylegospodneti.ch>
-Date: Sun, 18 May 2025 09:40:01 -0700
-Subject: [PATCH 10/11] [BEGIN] Proton-GE Patches
+Date: Mon, 24 Nov 2025 21:09:02 -0800
+Subject: [PATCH 7/8] [BEGIN] Proton-GE Patches
 
 -- 
-2.50.1
+2.52.0
 
 
-From c4bb61d428cc14bc21f9a10f530fd37aa32a4c24 Mon Sep 17 00:00:00 2001
+From 59eb16ed2551892c18d75e146a29a213964aee6b Mon Sep 17 00:00:00 2001
 From: Kyle Gospodnetich <me@kylegospodneti.ch>
 Date: Sun, 18 May 2025 09:42:23 -0700
-Subject: [PATCH 11/11] radv: min image count patch for Wine Wayland/Path of
+Subject: [PATCH 8/8] radv: min image count patch for Wine Wayland/Path of
  Exile 2 Credit to Glorious Eggroll.
 
 ---
@@ -2454,10 +228,10 @@ Subject: [PATCH 11/11] radv: min image count patch for Wine Wayland/Path of
  15 files changed, 42 insertions(+), 22 deletions(-)
 
 diff --git a/src/amd/vulkan/radv_instance.c b/src/amd/vulkan/radv_instance.c
-index 6bcf18847bd..2773003911b 100644
+index c43b8f9a00c..fb0db9769e6 100644
 --- a/src/amd/vulkan/radv_instance.c
 +++ b/src/amd/vulkan/radv_instance.c
-@@ -151,7 +151,7 @@ static const struct debug_control trace_options[] = {
+@@ -154,7 +154,7 @@ static const struct debug_control trace_options[] = {
  static const driOptionDescription radv_dri_options[] = {
     DRI_CONF_SECTION_PERFORMANCE
        DRI_CONF_ADAPTIVE_SYNC(true)
@@ -2465,9 +239,9 @@ index 6bcf18847bd..2773003911b 100644
 +      DRI_CONF_VK_OVERRIDE_MIN_IMAGE_COUNT(0)
        DRI_CONF_VK_X11_STRICT_IMAGE_COUNT(false)
        DRI_CONF_VK_X11_ENSURE_MIN_IMAGE_COUNT(false)
-       DRI_CONF_VK_KHR_PRESENT_WAIT(false)
+       DRI_CONF_VK_XWAYLAND_WAIT_READY(false)
 diff --git a/src/asahi/vulkan/hk_instance.c b/src/asahi/vulkan/hk_instance.c
-index 69e315ff979..b0361133793 100644
+index 1fd2c844681..a872018d923 100644
 --- a/src/asahi/vulkan/hk_instance.c
 +++ b/src/asahi/vulkan/hk_instance.c
 @@ -80,7 +80,7 @@ hk_EnumerateInstanceExtensionProperties(const char *pLayerName,
@@ -2478,22 +252,22 @@ index 69e315ff979..b0361133793 100644
 +      DRI_CONF_VK_OVERRIDE_MIN_IMAGE_COUNT(0)
        DRI_CONF_VK_X11_STRICT_IMAGE_COUNT(false)
        DRI_CONF_VK_X11_ENSURE_MIN_IMAGE_COUNT(false)
-       DRI_CONF_VK_KHR_PRESENT_WAIT(false)
+       DRI_CONF_VK_XWAYLAND_WAIT_READY(false)
 diff --git a/src/freedreno/vulkan/tu_device.cc b/src/freedreno/vulkan/tu_device.cc
-index 2c72aff780d..f9d95c63bbe 100644
+index 05ffad6424d..e32862161de 100644
 --- a/src/freedreno/vulkan/tu_device.cc
 +++ b/src/freedreno/vulkan/tu_device.cc
-@@ -1671,7 +1671,7 @@ tu_destroy_physical_device(struct vk_physical_device *device)
+@@ -1748,7 +1748,7 @@ tu_destroy_physical_device(struct vk_physical_device *device)
  
  static const driOptionDescription tu_dri_options[] = {
     DRI_CONF_SECTION_PERFORMANCE
 -      DRI_CONF_VK_X11_OVERRIDE_MIN_IMAGE_COUNT(0)
 +      DRI_CONF_VK_OVERRIDE_MIN_IMAGE_COUNT(0)
-       DRI_CONF_VK_KHR_PRESENT_WAIT(false)
        DRI_CONF_VK_X11_STRICT_IMAGE_COUNT(false)
        DRI_CONF_VK_X11_ENSURE_MIN_IMAGE_COUNT(false)
+       DRI_CONF_VK_XWAYLAND_WAIT_READY(false)
 diff --git a/src/intel/vulkan/anv_instance.c b/src/intel/vulkan/anv_instance.c
-index 268a5f3425b..0ab889654ae 100644
+index 73a46dc72ee..b51b055ca7b 100644
 --- a/src/intel/vulkan/anv_instance.c
 +++ b/src/intel/vulkan/anv_instance.c
 @@ -10,7 +10,7 @@
@@ -2503,23 +277,23 @@ index 268a5f3425b..0ab889654ae 100644
 -      DRI_CONF_VK_X11_OVERRIDE_MIN_IMAGE_COUNT(0)
 +      DRI_CONF_VK_OVERRIDE_MIN_IMAGE_COUNT(0)
        DRI_CONF_VK_X11_STRICT_IMAGE_COUNT(false)
-       DRI_CONF_VK_KHR_PRESENT_WAIT(false)
        DRI_CONF_VK_XWAYLAND_WAIT_READY(false)
+       DRI_CONF_ANV_ASSUME_FULL_SUBGROUPS(0)
 diff --git a/src/intel/vulkan_hasvk/anv_device.c b/src/intel/vulkan_hasvk/anv_device.c
-index 81f08e50e5d..7e9d43df7ce 100644
+index d111c96ae7a..42e3f82eff9 100644
 --- a/src/intel/vulkan_hasvk/anv_device.c
 +++ b/src/intel/vulkan_hasvk/anv_device.c
-@@ -65,7 +65,7 @@
+@@ -66,7 +66,7 @@
  static const driOptionDescription anv_dri_options[] = {
     DRI_CONF_SECTION_PERFORMANCE
        DRI_CONF_ADAPTIVE_SYNC(true)
 -      DRI_CONF_VK_X11_OVERRIDE_MIN_IMAGE_COUNT(0)
 +      DRI_CONF_VK_OVERRIDE_MIN_IMAGE_COUNT(0)
        DRI_CONF_VK_X11_STRICT_IMAGE_COUNT(false)
-       DRI_CONF_VK_KHR_PRESENT_WAIT(false)
        DRI_CONF_VK_XWAYLAND_WAIT_READY(true)
+       DRI_CONF_ANV_ASSUME_FULL_SUBGROUPS(0)
 diff --git a/src/nouveau/vulkan/nvk_instance.c b/src/nouveau/vulkan/nvk_instance.c
-index 37e7abe1584..29da7e3a0b3 100644
+index e2413045455..2261dc080a8 100644
 --- a/src/nouveau/vulkan/nvk_instance.c
 +++ b/src/nouveau/vulkan/nvk_instance.c
 @@ -98,7 +98,7 @@ nvk_init_debug_flags(struct nvk_instance *instance)
@@ -2530,12 +304,12 @@ index 37e7abe1584..29da7e3a0b3 100644
 +      DRI_CONF_VK_OVERRIDE_MIN_IMAGE_COUNT(0)
        DRI_CONF_VK_X11_STRICT_IMAGE_COUNT(false)
        DRI_CONF_VK_X11_ENSURE_MIN_IMAGE_COUNT(false)
-       DRI_CONF_VK_KHR_PRESENT_WAIT(false)
+       DRI_CONF_VK_XWAYLAND_WAIT_READY(false)
 diff --git a/src/panfrost/vulkan/panvk_instance.c b/src/panfrost/vulkan/panvk_instance.c
-index 31abc8f4369..8c8f7a8ca0c 100644
+index bb425414bb1..39f137d5ab3 100644
 --- a/src/panfrost/vulkan/panvk_instance.c
 +++ b/src/panfrost/vulkan/panvk_instance.c
-@@ -151,7 +151,7 @@ panvk_kmod_free(const struct pan_kmod_allocator *allocator, void *data)
+@@ -178,7 +178,7 @@ panvk_kmod_free(const struct pan_kmod_allocator *allocator, void *data)
  static const driOptionDescription panvk_dri_options[] = {
     DRI_CONF_SECTION_PERFORMANCE
        DRI_CONF_ADAPTIVE_SYNC(true)
@@ -2543,12 +317,12 @@ index 31abc8f4369..8c8f7a8ca0c 100644
 +      DRI_CONF_VK_OVERRIDE_MIN_IMAGE_COUNT(0)
        DRI_CONF_VK_X11_STRICT_IMAGE_COUNT(false)
        DRI_CONF_VK_X11_ENSURE_MIN_IMAGE_COUNT(false)
-       DRI_CONF_VK_KHR_PRESENT_WAIT(false)
+       DRI_CONF_VK_XWAYLAND_WAIT_READY(false)
 diff --git a/src/util/00-mesa-defaults.conf b/src/util/00-mesa-defaults.conf
-index d42526732fa..eaab8afc3e9 100644
+index b09512adfbb..bd816765bf0 100644
 --- a/src/util/00-mesa-defaults.conf
 +++ b/src/util/00-mesa-defaults.conf
-@@ -634,24 +634,24 @@ TODO: document the other workarounds.
+@@ -639,24 +639,24 @@ TODO: document the other workarounds.
  
          <application name="gfxbench" executable="testfw_app">
              <option name="mesa_glthread_app_profile" value="0" />
@@ -2577,7 +351,7 @@ index d42526732fa..eaab8afc3e9 100644
              <option name="vk_x11_strict_image_count" value="true" />
          </application>
  
-@@ -712,10 +712,12 @@ TODO: document the other workarounds.
+@@ -717,10 +717,12 @@ TODO: document the other workarounds.
  
          <application name="Path of Exile" executable="PathOfExile_x64Steam.exe">
              <option name="vk_zero_vram" value="true" />
@@ -2591,12 +365,12 @@ index d42526732fa..eaab8afc3e9 100644
  
          <application name="X4 Foundations" executable="X4">
 diff --git a/src/util/driconf.h b/src/util/driconf.h
-index 8faa15fb560..c94de3f45fe 100644
+index 45ed8a40579..84934b24dd9 100644
 --- a/src/util/driconf.h
 +++ b/src/util/driconf.h
-@@ -449,8 +449,8 @@
-    DRI_CONF_OPT_B(vk_wsi_force_swapchain_to_current_extent, def, \
-                   "Force VkSwapchainCreateInfoKHR::imageExtent to be VkSurfaceCapabilities2KHR::currentExtent")
+@@ -453,8 +453,8 @@
+    DRI_CONF_OPT_B(vk_wsi_disable_unordered_submits, def, \
+                   "Disable unordered WSI submits to workaround application synchronization bugs")
  
 -#define DRI_CONF_VK_X11_OVERRIDE_MIN_IMAGE_COUNT(def) \
 -   DRI_CONF_OPT_I(vk_x11_override_min_image_count, def, 0, 999, \
@@ -2606,7 +380,7 @@ index 8faa15fb560..c94de3f45fe 100644
  
  #define DRI_CONF_VK_X11_STRICT_IMAGE_COUNT(def) \
 diff --git a/src/virtio/vulkan/vn_instance.c b/src/virtio/vulkan/vn_instance.c
-index 1942d77f67c..23c8e19188c 100644
+index 523f0590e9a..b1f642f1c2e 100644
 --- a/src/virtio/vulkan/vn_instance.c
 +++ b/src/virtio/vulkan/vn_instance.c
 @@ -70,8 +70,8 @@ static const struct vk_instance_extension_table
@@ -2620,7 +394,7 @@ index 1942d77f67c..23c8e19188c 100644
        DRI_CONF_VK_XWAYLAND_WAIT_READY(true)
        DRI_CONF_VENUS_IMPLICIT_FENCING(false)
 diff --git a/src/vulkan/wsi/wsi_common.c b/src/vulkan/wsi/wsi_common.c
-index f78e4baa22a..047d5dcdeaf 100644
+index 362e50f2aec..2d22e6bfc3d 100644
 --- a/src/vulkan/wsi/wsi_common.c
 +++ b/src/vulkan/wsi/wsi_common.c
 @@ -220,7 +220,7 @@ wsi_device_init(struct wsi_device *wsi,
@@ -2633,10 +407,10 @@ index f78e4baa22a..047d5dcdeaf 100644
        goto fail;
  #endif
 diff --git a/src/vulkan/wsi/wsi_common.h b/src/vulkan/wsi/wsi_common.h
-index 44c81ccddf0..a97e7c2a948 100644
+index abe771b5bfc..d67f953c42a 100644
 --- a/src/vulkan/wsi/wsi_common.h
 +++ b/src/vulkan/wsi/wsi_common.h
-@@ -209,6 +209,10 @@ struct wsi_device {
+@@ -161,6 +161,10 @@ struct wsi_device {
     struct {
        /* Don't use the commit-timing protocol for pacing */
        bool disable_timestamps;
@@ -2648,10 +422,10 @@ index 44c81ccddf0..a97e7c2a948 100644
  
     /*
 diff --git a/src/vulkan/wsi/wsi_common_private.h b/src/vulkan/wsi/wsi_common_private.h
-index f138fee5519..1d1b55ac7e5 100644
+index 9fe64cfba95..c20174f6175 100644
 --- a/src/vulkan/wsi/wsi_common_private.h
 +++ b/src/vulkan/wsi/wsi_common_private.h
-@@ -420,7 +420,8 @@ void wsi_x11_finish_wsi(struct wsi_device *wsi_device,
+@@ -456,7 +456,8 @@ void wsi_x11_finish_wsi(struct wsi_device *wsi_device,
                          const VkAllocationCallbacks *alloc);
  VkResult wsi_wl_init_wsi(struct wsi_device *wsi_device,
                           const VkAllocationCallbacks *alloc,
@@ -2662,7 +436,7 @@ index f138fee5519..1d1b55ac7e5 100644
                         const VkAllocationCallbacks *alloc);
  VkResult wsi_win32_init_wsi(struct wsi_device *wsi_device,
 diff --git a/src/vulkan/wsi/wsi_common_wayland.c b/src/vulkan/wsi/wsi_common_wayland.c
-index dd15d03846b..df68d2ea006 100644
+index cf3749be6d4..04278d3c8a3 100644
 --- a/src/vulkan/wsi/wsi_common_wayland.c
 +++ b/src/vulkan/wsi/wsi_common_wayland.c
 @@ -58,6 +58,7 @@
@@ -2673,7 +447,7 @@ index dd15d03846b..df68d2ea006 100644
  
  #include <loader/loader_wayland_helper.h>
  
-@@ -1668,9 +1669,12 @@ wsi_wl_surface_get_support(VkIcdSurfaceBase *surface,
+@@ -1703,9 +1704,12 @@ wsi_wl_surface_get_support(VkIcdSurfaceBase *surface,
  #define WSI_WL_DEFAULT_NUM_IMAGES 3
  
  static uint32_t
@@ -2687,7 +461,7 @@ index dd15d03846b..df68d2ea006 100644
     if (present_mode) {
        return present_mode->presentMode == VK_PRESENT_MODE_MAILBOX_KHR ?
               WSI_WL_BUMPED_NUM_IMAGES : WSI_WL_DEFAULT_NUM_IMAGES;
-@@ -1719,7 +1723,7 @@ wsi_wl_surface_get_capabilities(VkIcdSurfaceBase *icd_surface,
+@@ -1754,7 +1758,7 @@ wsi_wl_surface_get_capabilities(VkIcdSurfaceBase *icd_surface,
        display = &temp_display;
     }
  
@@ -2696,7 +470,7 @@ index dd15d03846b..df68d2ea006 100644
  
     if (!wsi_wl_surface->display)
        wsi_wl_display_finish(&temp_display);
-@@ -3481,7 +3485,7 @@ wsi_wl_surface_create_swapchain(VkIcdSurfaceBase *icd_surface,
+@@ -3516,7 +3520,7 @@ wsi_wl_surface_create_swapchain(VkIcdSurfaceBase *icd_surface,
        const VkSurfacePresentModeEXT mode =
              { VK_STRUCTURE_TYPE_SURFACE_PRESENT_MODE_EXT, NULL, pCreateInfo->presentMode };
  
@@ -2705,7 +479,7 @@ index dd15d03846b..df68d2ea006 100644
        bool requires_image_count_bump = min_images == WSI_WL_BUMPED_NUM_IMAGES;
        if (requires_image_count_bump)
           num_images = MAX2(min_images, num_images);
-@@ -3676,7 +3680,8 @@ fail:
+@@ -3711,7 +3715,8 @@ fail:
  VkResult
  wsi_wl_init_wsi(struct wsi_device *wsi_device,
                  const VkAllocationCallbacks *alloc,
@@ -2715,7 +489,7 @@ index dd15d03846b..df68d2ea006 100644
  {
     struct wsi_wayland *wsi;
     VkResult result;
-@@ -3702,6 +3707,14 @@ wsi_wl_init_wsi(struct wsi_device *wsi_device,
+@@ -3737,6 +3742,14 @@ wsi_wl_init_wsi(struct wsi_device *wsi_device,
  
     wsi_device->wsi[VK_ICD_WSI_PLATFORM_WAYLAND] = &wsi->base;
  
@@ -2731,7 +505,7 @@ index dd15d03846b..df68d2ea006 100644
  
  fail:
 diff --git a/src/vulkan/wsi/wsi_common_x11.c b/src/vulkan/wsi/wsi_common_x11.c
-index 2edb7bf2bf3..0f9e2a422c0 100644
+index 2cd023dadcf..7872a2a899f 100644
 --- a/src/vulkan/wsi/wsi_common_x11.c
 +++ b/src/vulkan/wsi/wsi_common_x11.c
 @@ -2924,9 +2924,9 @@ wsi_x11_init_wsi(struct wsi_device *wsi_device,
@@ -2747,5 +521,5 @@ index 2edb7bf2bf3..0f9e2a422c0 100644
        if (driCheckOption(dri_options, "vk_x11_strict_image_count", DRI_BOOL)) {
           wsi_device->x11.strict_imageCount =
 -- 
-2.50.1
+2.52.0
 
