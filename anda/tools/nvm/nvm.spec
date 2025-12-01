@@ -1,11 +1,13 @@
 Name:     nvm
 Version:  0.40.3
-Release:  1%{?dist}
+Release:  2%{?dist}
 Summary:  Node Version Manager
 License:  MIT
 URL:      https://github.com/nvm-sh/nvm
 Source0:  %{url}/archive/refs/tags/v%{version}.tar.gz
 Source1:  binscript
+# Make sure NVM always chooses "$HOME/.nvm" as the directory for local files unless explicitly set otherwise
+Patch0:   nvm-always-use-default-dir.patch
 # Only works with POSIX compliant shells
 Requires:  (bash or dash or ksh or zsh)
 BuildArch: noarch
@@ -17,7 +19,7 @@ POSIX-compliant script to manage multiple active Node.js versions.
 %pkg_completion -bz
 
 %prep
-%autosetup -n %{name}-%{version}
+%autosetup -n %{name}-%{version} -p1
 
 %build
 # Anyone home?
