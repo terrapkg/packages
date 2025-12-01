@@ -19,7 +19,7 @@ POSIX-compliant script to manage multiple active Node.js versions.
 %pkg_completion -bz
 
 %prep
-%autosetup -n -p1 %{name}-%{version}
+%autosetup -n %{name}-%{version} -p1
 
 %build
 # Anyone home?
