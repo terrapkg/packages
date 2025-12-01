@@ -1,4 +1,5 @@
 import "andax/bump_extras.rhai" as bump;
+import "andax/spec.rhai" as spec;
 
 rpm.version(pypi("kde-material-you-colors"));
 

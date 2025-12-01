@@ -1,3 +1,6 @@
+import "andax/bump_extras.rhai" as bump;
+import "andax/spec.rhai" as spec;
+
 rpm.version(gh("v-novaltd/LCEVCdec"));
 
 open_file("anda/multimedia/LCEVCdec/VERSION_ffmpeg.txt", "w").write(bump::madoguchi("ffmpeg", labels.branch));
