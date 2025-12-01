@@ -1,1 +1,0 @@
-print(npm("@yarnpkg/cli"));
