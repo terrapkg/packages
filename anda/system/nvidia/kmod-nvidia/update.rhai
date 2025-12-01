@@ -1,4 +1,5 @@
 import "andax/bump_extras.rhai" as bump;
+import "andax/spec.rhai" as spec;
 
 let v = bump::madoguchi("nvidia-kmod-common", labels.branch);
 let m = gh("NVIDIA/open-gpu-kernel-modules");
