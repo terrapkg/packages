@@ -15,8 +15,6 @@ fn alma(pkg, branch) {
     majorminor.dedup();
     majorminor.sort();
     let matches = find_all(`${pkg}-([\d.]+)-(\d.+)\.el${branch}.*?\.rpm`, get(`https://repo.almalinux.org/almalinux/${majorminor[majorminor.len()-1]}/BaseOS/x86_64/os/Packages/`));
-    //                              ──────── ───── .el??
-    //                              version  release
     matches.dedup();
     if matches.len() != 0 {
         return matches[0][1];
