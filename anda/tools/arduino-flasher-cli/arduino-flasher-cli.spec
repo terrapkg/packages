@@ -14,8 +14,9 @@ Release:        1%?dist
 Summary:        CLI tool to flash UNO Q boards with the latest Arduino Linux image
 License:        GPL-3.0-only
 URL:            %{gourl}
-Source:         %{gosource}
-BuildRequires:  anda-srpm-macros
+Source0:        %{gosource}
+Source1:        https://raw.githubusercontent.com/arduino/arduino-flasher-cli/refs/heads/main/README.md
+BuildRequires:  anda-srpm-macros qdl
 
 %description %{common_description}
 
@@ -25,18 +26,19 @@ BuildRequires:  anda-srpm-macros
 %goprep
 
 %build
+mkdir -p updater/artifacts/resources_linux_amd64
+cp %{_bindir}/qdl updater/artifacts/resources_linux_amd64/qdl
 %define gomodulesmode GO111MODULE=on
 %gobuild -o %{gobuilddir}/bin/arduino-cli %{goipath}
 
 %install
-install -Dm755 %{gobuilddir}/bin/arduino-flasher-cli -t %buildroot%{_bindir}
+cp %{S:1} README.md
+install -Dm755 %{gobuilddir}/bin/arduino-cli -t %buildroot%{_bindir}
 
 %files
-%license LICENSE.txt
+%license LICENSE
 %doc README.md
-%{_bindir}/arduino-flasher-cli
-
-%gopkgfiles
+%{_bindir}/arduino-cli
 
 %changelog
 * Fri Nov 14 2025 Jaiden Riordan <jade@fyralabs.com>
