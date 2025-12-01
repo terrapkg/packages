@@ -1,4 +1,5 @@
 import "andax/bump_extras.rhai" as bump;
+import "andax/spec.rhai" as spec;
 
 // rpm.version(find(`<small>ffmpeg-([\d.]+?)\.tar\.xz</small>`, get("https://ffmpeg.org/download.html"), 1));
 rpm.version(bump::bodhi("ffmpeg", bump::as_bodhi_ver(labels.branch)));
