@@ -94,8 +94,7 @@ EOF
 %files
 %license LICENSE
 %doc README.md CONTRIBUTORS
-%{_libdir}/lib%{name}.so.8
-%{_libdir}/lib%{name}.so.%{version}
+%{_libdir}/lib%{name}.so.*
 
 %files devel
 %{_includedir}/*
