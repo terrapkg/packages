@@ -17,6 +17,7 @@ URL:            %{gourl}
 Source0:        %{gosource}
 Source1:        https://raw.githubusercontent.com/arduino/arduino-flasher-cli/refs/heads/main/README.md
 BuildRequires:  anda-srpm-macros qdl
+ExclusiveArch:  x86_64
 
 %description %{common_description}
 
