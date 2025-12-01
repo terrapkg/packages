@@ -23,7 +23,6 @@ BuildRequires:  anda-srpm-macros
 
 %prep
 %goprep
-cp -r %{_specdir}/resources %{_builddir}/%{name}-%{version}/
 
 %build
 %define gomodulesmode GO111MODULE=on
