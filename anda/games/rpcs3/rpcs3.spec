@@ -1,9 +1,8 @@
 %global _distro_extra_cflags -Wno-uninitialized
 %global _distro_extra_cxxflags -include %_includedir/c++/*/cstdint
 # Define which LLVM/Clang version RPCS3 needs
-%if %{?fedora} >= 43
-%global llvm_major 20
-%bcond llvm_compat 1
+%if 0%{?fedora} >= 45
+%global llvm_major 21
 %endif
 # GLIBCXX_ASSERTIONS is known to break RPCS3
 %global build_cflags %(echo %{__build_flags_lang_c} | sed 's/-Wp,-D_GLIBCXX_ASSERTIONS//g') %{?_distro_extra_cflags}
@@ -68,40 +67,35 @@ BuildRequires:  qt6-qtbase-private-devel vulkan-devel jack-audio-connection-kit-
 
 %build
 # Looking at the CMakeLists.txt, this is the intended compiler and there are no fixes for GCC on aarch64
-%if %{with llvm_compat}
+%if %{defined llvm_major}
 export LLVM_DIR=%{_libdir}/llvm%{?llvm_major}/%{_lib}/cmake
 %endif
-%cmake -DDISABLE_LTO=TRUE                                \
-    -DZSTD_BUILD_STATIC=ON                               \
-    -DCMAKE_SKIP_RPATH=ON                                \
-    -DBUILD_SHARED_LIBS:BOOL=OFF                         \
-    -DUSE_NATIVE_INSTRUCTIONS=OFF                        \
-    -DCMAKE_C_FLAGS="$CFLAGS"                            \
-    -DCMAKE_CXX_FLAGS="$CXXFLAGS"                        \
-    -DSTATIC_LINK_LLVM=OFF                               \
-    -DUSE_SYSTEM_FAUDIO=ON                               \
-    -DUSE_SDL=ON                                         \
-    -DUSE_SYSTEM_SDL=ON                                  \
-    -DBUILD_LLVM=OFF                                     \
-    -DUSE_PRECOMPILED_HEADERS=OFF                        \
-    -DUSE_DISCORD_RPC=ON                                 \
-    -DUSE_SYSTEM_FFMPEG=ON                               \
-    -DUSE_SYSTEM_LIBPNG=ON                               \
-    -DUSE_SYSTEM_ZLIB=ON                                 \
-    -DUSE_SYSTEM_OPENCV=ON                               \
-    -DUSE_SYSTEM_CURL=ON                                 \
-    -DUSE_SYSTEM_FLATBUFFERS=OFF                         \
-    -DUSE_SYSTEM_PUGIXML=OFF                             \
-    -DUSE_SYSTEM_WOLFSSL=OFF                             \
-%if %{with llvm_compat}
-    -DCMAKE_C_COMPILER=clang-%{?llvm_major}              \
-    -DCMAKE_CXX_COMPILER=clang++-%{?llvm_major}          \
-%else
-    -DCMAKE_C_COMPILER=clang                             \
-    -DCMAKE_CXX_COMPILER=clang++                         \
-%endif
-    -DCMAKE_LINKER=mold                                  \
-    -DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS -fuse-ld=mold" \
+%cmake -DDISABLE_LTO=TRUE                                     \
+    -DZSTD_BUILD_STATIC=ON                                    \
+    -DCMAKE_SKIP_RPATH=ON                                     \
+    -DBUILD_SHARED_LIBS:BOOL=OFF                              \
+    -DUSE_NATIVE_INSTRUCTIONS=OFF                             \
+    -DCMAKE_C_FLAGS="$CFLAGS"                                 \
+    -DCMAKE_CXX_FLAGS="$CXXFLAGS"                             \
+    -DSTATIC_LINK_LLVM=OFF                                    \
+    -DUSE_SYSTEM_FAUDIO=ON                                    \
+    -DUSE_SDL=ON                                              \
+    -DUSE_SYSTEM_SDL=ON                                       \
+    -DBUILD_LLVM=OFF                                          \
+    -DUSE_PRECOMPILED_HEADERS=OFF                             \
+    -DUSE_DISCORD_RPC=ON                                      \
+    -DUSE_SYSTEM_FFMPEG=ON                                    \
+    -DUSE_SYSTEM_LIBPNG=ON                                    \
+    -DUSE_SYSTEM_ZLIB=ON                                      \
+    -DUSE_SYSTEM_OPENCV=ON                                    \
+    -DUSE_SYSTEM_CURL=ON                                      \
+    -DUSE_SYSTEM_FLATBUFFERS=OFF                              \
+    -DUSE_SYSTEM_PUGIXML=OFF                                  \
+    -DUSE_SYSTEM_WOLFSSL=OFF                                  \
+    -DCMAKE_C_COMPILER=clang%{?llvm_major:-%{llvm_major}}     \
+    -DCMAKE_CXX_COMPILER=clang++%{?llvm_major:-%{llvm_major}} \
+    -DCMAKE_LINKER=mold                                       \
+    -DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS -fuse-ld=mold"      \
     -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS -fuse-ld=mold"    
 %cmake_build
 
