@@ -1,5 +1,5 @@
 #!/usr/bin/sh
 
-source /etc/profile.d/nvm.sh
+. /etc/profile.d/nvm.sh
 
 nvm $@
