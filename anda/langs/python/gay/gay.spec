@@ -7,7 +7,7 @@
 
 Name:			python-%{pypi_name}
 Version:		%commit_date.%shortcommit
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Colour your text / terminal to be more gay
 License:		MIT
 URL:			https://github.com/ms-jpq/gay
@@ -44,8 +44,6 @@ Provides:       gay
 %doc README.md
 %license LICENSE
 %{_bindir}/gay
-%ghost %python3_sitelib/__pycache__/*.cpython-*.pyc
-%ghost %python3_sitelib/%{name}/subcommands/__pycache__/*.cpython-*.pyc
 %python3_sitelib/gay-1.3.4.dist-info/*
 
 %changelog
