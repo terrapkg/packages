@@ -1,13 +1,15 @@
 %global __brp_mangle_shebangs %{nil}
+%global appid com.github.neohtop
 
 Name:           neohtop
 Version:        1.2.0
-Release:        1%?dist
+Release:        2%?dist
 Summary:        System monitoring on steroids
 License:        MIT
 URL:            https://github.com/Abdenasser/neohtop
 Source0:        %url/archive/refs/tags/v%version.tar.gz
 Source1:        NeoHtop.desktop
+Source2:        com.github.neohtop.metainfo.xml
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 BuildRequires:  rust
 BuildRequires:  nodejs-npm
@@ -18,6 +20,10 @@ BuildRequires:  gtk3-devel
 BuildRequires:  rust-gdk-pixbuf-sys-devel
 BuildRequires:  glib2-devel
 BuildRequires:  openssl-devel
+BuildRequires:  anda-srpm-macros
+BuildRequires:  terra-appstream-helper
+
+Provides:       NeoHtop
 
 %description
 %summary.
@@ -37,6 +43,8 @@ install -Dpm644 src-tauri/icons/128x128@2x.png %buildroot%{_iconsdir}/hicolor/25
 install -Dpm644 src-tauri/icons/32x32.png %buildroot%{_iconsdir}/hicolor/32x32/apps/NeoHtop.png
 install -Dpm644 src-tauri/icons/128x128.png %buildroot%{_iconsdir}/hicolor/128x128/apps/NeoHtop.png
 
+%terra_appstream -o %{SOURCE2}
+
 %files
 %doc README.md
 %license LICENSE
@@ -45,7 +53,10 @@ install -Dpm644 src-tauri/icons/128x128.png %buildroot%{_iconsdir}/hicolor/128x1
 %{_iconsdir}/hicolor/256x256@2/apps/NeoHtop.png
 %{_iconsdir}/hicolor/32x32/apps/NeoHtop.png
 %{_iconsdir}/hicolor/128x128/apps/NeoHtop.png
+%{_metainfodir}/com.github.neohtop.metainfo.xml
 
 %changelog
+* Wed Nov 19 2025 Owen Zimmerman <owen@fyralabs.com>
+- Add metainfo
 * Sat Feb 15 2025 Owen Zimmerman <owen@fyralabs.com>
 - Initial package

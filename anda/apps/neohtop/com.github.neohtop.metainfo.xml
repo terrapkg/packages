@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component type="desktop-application">
+  <id>com.github.neohtop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <icon type="local">/usr/share/icons/hicolor/128x128/apps/NeoHtop.png</icon>
+
+  <name>NeoHtop</name>
+  <summary>System monitoring on steroids</summary>
+
+  <description>
+    <p>
+        A modern, cross-platform system monitor built on top of Svelte, Rust, and Tauri.
+    </p>
+  </description>
+
+  <launchable type="desktop-id">NeoHtop.desktop</launchable>
+
+  <url type="homepage">https://abdenasser.github.io/neohtop/</url>
+  <provides>
+    <binary>neohtop</binary>
+  </provides>
+
+  <keywords>
+    <keyword>system monitor</keyword>
+  </keywords>
+
+  <releases>
+    <release version="1.2.0" />
+  </releases>
+</component>

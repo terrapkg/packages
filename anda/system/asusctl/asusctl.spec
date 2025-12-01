@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           asusctl
-Version:        6.1.20
+Version:        6.1.22
 Release:        3%?dist
 Summary:        A control daemon, CLI tools, and a collection of crates for interacting with ASUS ROG laptops
 URL:            https://gitlab.com/asus-linux/asusctl
@@ -18,6 +18,7 @@ BuildRequires:  pkgconfig(libseat)
 BuildRequires:  pkgconfig(libudev)
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  pkgconfig(libzstd)
+BuildRequires:  pkgconfig(fontconfig)
 ExclusiveArch:  x86_64
 
 Packager:       Metcya <metcya@gmail.com>
