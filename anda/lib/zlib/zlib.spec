@@ -7,50 +7,37 @@ Source:         https://github.com/madler/zlib/archive/v%{version}.tar.gz
 Summary:        A massively spiffy yet delicately unobtrusive compression library
 Conflicts:      zlib-ng
 
-BuildRequires:  cmake gcc
+BuildRequires:  gcc
 
 %description
 %summary.
 
 %package devel
-Summary:    Development files for %{name}
-Requires:   %{name}%{?_isa} = %{version}-%{release}
-
-%description devel
-The %{name}-devel package contains libraries and headers for developing applications that use %{name}.
+%pkg_devel_files
 
 %package static
-Summary:    Static library files for %{name}
-Requires:   %{name}-devel%{?_isa} = %{version}-%{release}
-
-%description static
-Static library files for %{name}
+%pkg_static_files
 
 %prep
-%autosetup
-%cmake -DLIBDIR=lib64 .
+%autosetup 
+export CFLAGS="%optflags"
+./configure --libdir=%_libdir \
+            --includedir=%_includedir \
+            --sysconfdir=%_sysconfdir \
+            --localstatedir=%_localstatedir \
+            --prefix=/usr
 
 %build
-%cmake_build
+%make_build
 
 %install
-%cmake_install 
-ls -lah %{_libdir}
+%make_install
 
 %files
 %license LICENSE
-%doc README FAQ INDEX ChangeLog
-%{_libdir}/libz.so.*
-%{_libdir}/libz.so.%{version}
-
-%files devel
-%{_includedir}/*.h
-%{_libdir}/libz.so
-%{_datadir}/pkgconfig/%{name}.pc
-%{_mandir}/man3/%{name}.3.*
-
-%files static
-%{_libdir}/libz.a
+%doc README 
+%_mandir/man3/zlib.3.*
+%_libdir/libz.so.*
 
 %changelog
 * Wed Nov 26 2025 metcya <metcya@gmail.com>
