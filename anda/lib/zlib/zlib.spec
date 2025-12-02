@@ -5,7 +5,7 @@ License:        Zlib
 URL:            https://zlib.net
 Source:         https://github.com/madler/zlib/archive/v%{version}.tar.gz
 Summary:        A massively spiffy yet delicately unobtrusive compression library
-Conflicts:      zlib-ng
+Conflicts:      zlib-ng-compat
 
 BuildRequires:  gcc
 
