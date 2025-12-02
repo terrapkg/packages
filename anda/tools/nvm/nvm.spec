@@ -1,6 +1,6 @@
 Name:     nvm
 Version:  0.40.3
-Release:  2%{?dist}
+Release:  3%{?dist}
 Summary:  Node Version Manager
 License:  MIT
 URL:      https://github.com/nvm-sh/nvm
@@ -25,7 +25,7 @@ POSIX-compliant script to manage multiple active Node.js versions.
 # Anyone home?
 
 %install
-install -Dm744 %{SOURCE1} %{buildroot}%{_bindir}/%{name}
+install -Dm755 %{SOURCE1} %{buildroot}%{_bindir}/%{name}
 
 install -Dm644 bash_completion %{buildroot}%{bash_completions_dir}/%{name}.bash
 # Another cursed script that uses bashcompinit to use one file for Bash and Zsh completions
