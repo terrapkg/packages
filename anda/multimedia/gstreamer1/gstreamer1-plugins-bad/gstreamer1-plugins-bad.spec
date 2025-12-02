@@ -1,5 +1,5 @@
 %define _legacy_common_support 1
-
+%undefine __brp_check_rpaths
 %global         majorminor 1.0
 
 Name:           gstreamer1-plugins-bad
