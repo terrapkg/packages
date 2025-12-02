@@ -1,6 +1,4 @@
-%define debug_package %nil
-
-%global commit 64c8d951f237b77a70bd0f0b5b133cb706c8c718
+%global commit 2c514175efc53be985d7d092601f158b38dc29b4
 %global commit_date 20251201
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
@@ -39,9 +37,11 @@ See the stars! Easy stardust setups to run on your computer.
 %install
 install -Dm755 scripts/telescope          %buildroot%_bindir/telescope
 install -Dm755 scripts/_telescope_startup %buildroot%_bindir/_telescope_startup
+install -Dm644 org.stardustxr.png         %buildroot%_iconsdir/hicolor/512x512/apps/org.stardustxr.png
 
 %files
 %doc README.md
 %license LICENSE
 %_bindir/telescope
 %_bindir/_telescope_startup
+%_iconsdir/hicolor/512x512/apps/org.stardustxr.png
