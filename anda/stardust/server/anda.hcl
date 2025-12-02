@@ -6,5 +6,4 @@ project pkg {
 	   nightly = 1
 		 mock = 1
 	}
-
 }
