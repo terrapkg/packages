@@ -25,7 +25,7 @@ export CFLAGS="%optflags"
             --includedir=%_includedir \
             --sysconfdir=%_sysconfdir \
             --localstatedir=%_localstatedir \
-            --prefix=/usr
+            --prefix=%_prefix
 
 %build
 %make_build
