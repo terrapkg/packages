@@ -2,7 +2,7 @@
 
 Name:           asusctl
 Version:        6.1.22
-Release:        1%?dist
+Release:        2%?dist
 Summary:        A control daemon, CLI tools, and a collection of crates for interacting with ASUS ROG laptops
 URL:            https://gitlab.com/asus-linux/asusctl
 Source0:        %url/-/archive/%version/asusctl-%version.tar.gz
@@ -76,6 +76,18 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/rog-control-center.d
 %{_docdir}/%{name}/
 %{_datadir}/asusd/
 
+%post
+%systemd_post asusd.service
+%systemd_user_post asusd-user.service
+
+%preun
+%systemd_preun asusd.service
+%systemd_user_preun asusd-user.service
+
+%postun
+%systemd_postun_with_restart asusd.service
+%systemd_user_postun_with_restart asusd-user.service
+
 %files rog-gui
 %{_bindir}/rog-control-center
 %{_datadir}/applications/rog-control-center.desktop
@@ -83,6 +95,9 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/rog-control-center.d
 %{_datadir}/rog-gui
 
 %changelog
+* Mon Dec 1 2025 Metcya <metcya@gmail.com>
+- Add systemd scriptlets
+
 * Tue Nov 18 2025 Metcya <metcya@gmail.com>
 - Remove unnecessary patch
 
