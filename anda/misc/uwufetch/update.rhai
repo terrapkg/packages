@@ -1,8 +1,11 @@
-rpm.global("commit", gh_commit("ad-oliviero/uwufetch"));
+let json = get(`https://api.github.com/repos/ad-oliviero/uwufetch/commits/development`).json();
+let c = json.sha;
+let d = json.commit.author.date;
+rpm.global("commit", c);
 if rpm.changed() {
     rpm.release();
-    rpm.global("commit_date", date());
+    rpm.global("fulldate", d);
+    d.truncate(10);
     let ver = gh_tag("ad-oliviero/uwufetch");
-    ver.crop(1);
     rpm.global("ver", ver);
 }
