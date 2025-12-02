@@ -21,6 +21,7 @@ BuildRequires:  gcc
 %prep
 %autosetup 
 export CFLAGS="%optflags"
+export LDFLAGS="%build_ldflags"
 ./configure --libdir=%_libdir \
             --includedir=%_includedir \
             --sysconfdir=%_sysconfdir \
