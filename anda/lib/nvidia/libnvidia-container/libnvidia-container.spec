@@ -30,12 +30,10 @@ The nvidia-container library provides an interface to configure containers using
 %autopatch -p1
 
 %build
-cd %{name}
 make distclean
 %make_build REVISION=%{version} WITH_LIBELF=yes
 
 %install
-cd %{name}
 make install DESTDIR=%{buildroot} REVISION=%{version} WITH_LIBELF=yes \
              LDCONFIG=/bin/true \
              prefix=%{_prefix} \
