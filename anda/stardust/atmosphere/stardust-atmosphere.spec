@@ -32,7 +32,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %{cargo_license_online} > LICENSE.dependencies
 
 %files
-%_bindir/atmosphere
+%_bindir/%{name}
 %license LICENSE
 %license LICENSE.dependencies
 %doc README.md
