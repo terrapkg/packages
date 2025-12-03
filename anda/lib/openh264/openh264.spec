@@ -52,6 +52,7 @@ sed -i \
   -e 's@CFLAGS_OPT=-O3@CFLAGS_OPT=%{optflags}@g' \
   -e '/^CFLAGS_OPT=/i LDFLAGS=%{__global_ldflags}' \
   Makefile
+%{__make} gmp-boostrap
 %make_build
 %make_build plugin
 
