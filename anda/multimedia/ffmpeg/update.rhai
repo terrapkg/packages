@@ -13,7 +13,7 @@ open_file("anda/multimedia/ffmpeg/VERSION_vvenc.txt", "w").write(bump::madoguchi
 open_file("anda/multimedia/ffmpeg/VERSION_xeve.txt", "w").write(bump::madoguchi("xeve", labels.branch));
 open_file("anda/multimedia/ffmpeg/VERSION_xevd.txt", "w").write(bump::madoguchi("xevd", labels.branch));
 open_file("anda/multimedia/ffmpeg/VERSION_LCEVCdec.txt", "w").write(bump::madoguchi("LCEVCdec", labels.branch));
-open_file("anda/multimedia/ffmpeg/VERSION_svt-av1.txt", "w").write(bump::bodhi("svt-av1", labels.branch));
+open_file("anda/multimedia/ffmpeg/VERSION_svt-av1.txt", "w").write(bump::bodhi("svt-av1", bump::as_bodhi_ver(labels.branch)));
 
 let dir = sub(`/[^/]+$`, "", __script_path);
 if sh("[[ `git status " + dir + " --porcelain` ]] && exit 1 || exit 0", #{}).ctx.rc == 1 {
