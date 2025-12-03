@@ -52,7 +52,7 @@ Usable Linux display server that reinvents human-computer interaction for all ki
 %install
 install -Dm755 target/rpm/stardust-xr-server %{buildroot}%{_bindir}/stardust-xr-server
 %cargo_license_summary_online
-%{cargo_license_online -a} > LICENSE.dependencies
+%{cargo_license_online} > LICENSE.dependencies
 
 %files
 %{_bindir}/stardust-xr-server
