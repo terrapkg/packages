@@ -24,7 +24,6 @@ BuildRequires:  glibc
 BuildRequires:  wayland-devel
 BuildRequires:  openxr-devel
 BuildRequires:  alsa-lib-devel
-BuildRequires:  mesa-libEGL-devel
 
 Provides:       stardust-server
 
