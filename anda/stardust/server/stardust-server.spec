@@ -19,7 +19,6 @@ BuildRequires:  mold
 BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo-rpm-macros
 
-BuildRequires:  glx-utils
 BuildRequires:  fontconfig-devel
 BuildRequires:  glibc
 BuildRequires:  libxcb-devel
