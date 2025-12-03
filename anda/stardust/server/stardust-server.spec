@@ -24,8 +24,6 @@ BuildRequires:  glibc
 BuildRequires:  wayland-devel
 BuildRequires:  openxr-devel
 BuildRequires:  libwayland-egl
-BuildRequires:  libX11-devel
-BuildRequires:  libXfixes-devel
 BuildRequires:  libxkbcommon-devel
 BuildRequires:  alsa-lib-devel
 BuildRequires:  mesa-libEGL-devel
