@@ -45,11 +45,11 @@ cp -r res/* %buildroot%_datadir/
 %doc README.md
 %license LICENSE
 %license LICENSE.dependencies
-%_bindir/app_grid
+%dnl %_bindir/app_grid
 %_bindir/hexagon_launcher
 %_bindir/single
 %_bindir/sirius
-%_bindir/protostar
+%dnl %_bindir/protostar
 %_datadir/protostar/
 
 %changelog
