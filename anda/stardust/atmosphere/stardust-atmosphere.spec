@@ -6,7 +6,7 @@
 
 Name:           stardust-xr-atmosphere
 Version:        %commit_date.%shortcommit
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Environment, homespace, and setup client for Stardust XR
 URL:            https://github.com/StardustXR/atmosphere
 Source0:        %url/archive/%commit/atmosphere-%commit.tar.gz
@@ -28,10 +28,13 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %install
 %define __cargo_common_opts %{?_smp_mflags} -Z avoid-dev-deps --locked
 %cargo_install
+%cargo_license_summary_online
+%{cargo_license_online} > LICENSE.dependencies
 
 %files
 %_bindir/atmosphere
 %license LICENSE
+%license LICENSE.dependencies
 %doc README.md
 
 %changelog
