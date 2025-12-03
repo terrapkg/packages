@@ -1,4 +1,5 @@
 import "andax/bump_extras.rhai" as bump;
+import "andax/spec.rhai" as spec;
 
 let vr = bump::bodhi_vr("gstreamer1-plugins-ugly-free", bump::as_bodhi_ver(labels.branch));
 rpm.version(vr[1]);

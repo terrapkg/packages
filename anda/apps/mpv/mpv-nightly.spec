@@ -1,9 +1,9 @@
 # Disable X11 for RHEL 10+
 %bcond x11 %[%{undefined rhel} || 0%{?rhel} < 10]
 
-%global commit 8469605191c1fb3c9ebf84617a4b2e2bada357fa
+%global commit 72dbcf119a9ed5082be2f226593194e20f611eea
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20251124
+%global commit_date 20251201
 %global ver 0.40.0
 
 Name:           mpv-nightly
@@ -188,7 +188,6 @@ sed -e "s|/usr/local/etc|%{_sysconfdir}/mpv|" -i etc/mpv.conf
     -Dsdl2-audio=enabled \
     -Dsdl2-gamepad=enabled \
     -Dsdl2-video=enabled \
-    -Dsdl2=enabled \
     -Dshaderc=disabled \
     -Dsndio=disabled \
     -Dspirv-cross=disabled \
