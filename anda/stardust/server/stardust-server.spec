@@ -21,7 +21,6 @@ BuildRequires:  cargo-rpm-macros
 
 BuildRequires:  fontconfig-devel
 BuildRequires:  glibc
-BuildRequires:  wayland-devel
 BuildRequires:  openxr-devel
 BuildRequires:  alsa-lib-devel
 
