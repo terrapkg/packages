@@ -188,7 +188,6 @@ sed -e "s|/usr/local/etc|%{_sysconfdir}/mpv|" -i etc/mpv.conf
     -Dsdl2-audio=enabled \
     -Dsdl2-gamepad=enabled \
     -Dsdl2-video=enabled \
-    -Dsdl2=enabled \
     -Dshaderc=disabled \
     -Dsndio=disabled \
     -Dspirv-cross=disabled \
