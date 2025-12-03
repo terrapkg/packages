@@ -25,20 +25,15 @@ BuildRequires:  rpcgen
 The nvidia-container library provides an interface to configure containers using NVIDIA hardware.
 
 %prep
-rm -rf ./*
 ### Must be built this way because the Makefile expects be to in a Git directory.
-git clone https://github.com/NVIDIA/%{name}.git
-cd %{name}
-git checkout v%{version}
+%git_clone %{url}.git v%{version}
 %autopatch -p1
 
 %build
-cd %{name}
 make distclean
 %make_build REVISION=%{version} WITH_LIBELF=yes
 
 %install
-cd %{name}
 make install DESTDIR=%{buildroot} REVISION=%{version} WITH_LIBELF=yes \
              LDCONFIG=/bin/true \
              prefix=%{_prefix} \
