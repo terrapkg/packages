@@ -28,6 +28,7 @@ Usable Linux display server that reinvents human-computer interaction for all ki
 %cargo_prep_online
 
 %build
+export CXXFLAGS=""
 %cargo_build
 
 %install
