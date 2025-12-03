@@ -6,7 +6,7 @@
 
 Name:           stardust-xr-protostar
 Version:        %commit_date.%shortcommit
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Prototype application launcher for Stardust XR
 URL:            https://github.com/StardustXR/protostar
 Source0:        %url/archive/%commit/protostar-%commit.tar.gz
@@ -38,10 +38,13 @@ wait
 mkdir -p %buildroot%_datadir
 cp -r res/* %buildroot%_datadir/
 
+%cargo_license_summary_online
+%{cargo_license_online} > LICENSE.dependencies
+
 %files
 %doc README.md
 %license LICENSE
-%_bindir/app_grid
+%license LICENSE.dependencies
 %_bindir/hexagon_launcher
 %_bindir/single
 %_bindir/sirius
