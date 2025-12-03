@@ -1,5 +1,5 @@
-%global commit 3e31905b5bc9bd78e285099ed94a4b31fdc6810b
-%global commit_date 20250402
+%global commit 2eecce5f05678460e99daa771448c5ce19dfc740
+%global commit_date 20251203
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
@@ -12,12 +12,31 @@ URL:            https://github.com/StardustXR/server
 Source0:        %url/archive/%commit/server-%commit.tar.gz
 License:        GPL-2.0-only
 
-BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros gcc-c++ mold
-BuildRequires:  glx-utils fontconfig-devel glibc libxcb-devel wayland-devel
-BuildRequires:  openxr-devel libglvnd-devel libglvnd-gles mesa-libgbm-devel
-BuildRequires:  libwayland-egl libX11-devel libXfixes-devel
-BuildRequires:  mesa-libEGL-devel libxkbcommon-devel
+BuildRequires:  cargo
+BuildRequires:  cmake
+BuildRequires:  gcc-c++
+BuildRequires:  mold
+BuildRequires:  anda-srpm-macros
+BuildRequires:  cargo-rpm-macros
+
+BuildRequires:  glx-utils
+BuildRequires:  fontconfig-devel
+BuildRequires:  glibc
+BuildRequires:  libxcb-devel
+BuildRequires:  wayland-devel
+BuildRequires:  openxr-devel
+BuildRequires:  libglvnd-devel
+BuildRequires:  libglvnd-gles
+BuildRequires:  mesa-libgbm-devel
+BuildRequires:  libwayland-egl
+BuildRequires:  libX11-devel
+BuildRequires:  libXfixes-devel
+BuildRequires:  libxkbcommon-devel
+BuildRequires:  alsa-lib-devel
+BuildRequires:  mesa-libEGL-devel
+
 Provides:       stardust-server
+
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
@@ -28,18 +47,22 @@ Usable Linux display server that reinvents human-computer interaction for all ki
 %cargo_prep_online
 
 %build
-export CXXFLAGS=""
 %cargo_build
 
 %install
-install -Dm755 target/rpm/stardust-xr-server %buildroot%_bindir/stardust-xr-server
-
+install -Dm755 target/rpm/stardust-xr-server %{buildroot}%{_bindir}/stardust-xr-server
+%cargo_license_summary_online
+%{cargo_license_online} > LICENSE.dependencies
 
 %files
-%_bindir/stardust-xr-server
+%{_bindir}/stardust-xr-server
 %license LICENSE
+%license LICENSE.dependencies
 %doc README.md
 
 %changelog
+* Tue Dec 02 2025 Owen Zimmerman <owen@fyralabs.com>
+- Update spec to reflect upstream changes, add LICENSE.dependencies
+
 * Sat Sep 14 2024 Owen-sz <owen@fyralabs.com>
 - Package StardustXR Server
