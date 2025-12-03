@@ -49,6 +49,7 @@ cp -r res/* %buildroot%_datadir/
 %_bindir/hexagon_launcher
 %_bindir/single
 %_bindir/sirius
+%_bindir/protostar
 %_datadir/protostar/
 
 %changelog
