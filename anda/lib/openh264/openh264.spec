@@ -12,6 +12,7 @@ URL:            https://www.openh264.org/
 Source0:        https://github.com/cisco/%{name}/archive/v%{version}.tar.gz#/%{name}-v%{version}.tar.gz
 
 BuildRequires:  gcc-c++
+BuildRequires:  git-core
 BuildRequires:  make
 BuildRequires:  nasm
 
@@ -52,7 +53,7 @@ sed -i \
   -e 's@CFLAGS_OPT=-O3@CFLAGS_OPT=%{optflags}@g' \
   -e '/^CFLAGS_OPT=/i LDFLAGS=%{__global_ldflags}' \
   Makefile
-%{__make} gmp-boostrap
+%{__make} gmp-bootstrap
 %make_build
 %make_build plugin
 
