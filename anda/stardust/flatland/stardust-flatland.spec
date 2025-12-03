@@ -6,7 +6,7 @@
 
 Name:           stardust-xr-flatland
 Version:        %commit_date.%shortcommit
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Flatland for Stardust XR
 URL:            https://github.com/StardustXR/flatland
 Source0:        %url/archive/%commit/flatland-%commit.tar.gz
@@ -32,12 +32,15 @@ export STARDUST_RES_PREFIXES=%_datadir
 
 mkdir -p %buildroot%_datadir
 cp -r res/* %buildroot%_datadir/
+%cargo_license_summary_online
+%{cargo_license_online} > LICENSE.dependencies
 
 
 %files
 %_bindir/flatland
 %_datadir/flatland/
 %license LICENSE
+%license LICENSE.dependencies
 %doc README.md
 
 %changelog
