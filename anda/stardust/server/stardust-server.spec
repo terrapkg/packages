@@ -23,7 +23,6 @@ BuildRequires:  fontconfig-devel
 BuildRequires:  glibc
 BuildRequires:  wayland-devel
 BuildRequires:  openxr-devel
-BuildRequires:  libwayland-egl
 BuildRequires:  libxkbcommon-devel
 BuildRequires:  alsa-lib-devel
 BuildRequires:  mesa-libEGL-devel
