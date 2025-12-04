@@ -1,4 +1,3 @@
-rpm.global("commit1", gh_commit("mozilla/gmp-api"));
-let h264 = gh("cisco/openh264");
-h264.crop(1);
-rpm.version(h264);
+import "andax/bump_extras.rhai" as bump;
+
+rpm.version(bump::bodhi("openh264", bump::as_bodhi_ver(labels.branch)));
