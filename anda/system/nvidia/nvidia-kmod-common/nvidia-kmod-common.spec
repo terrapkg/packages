@@ -6,7 +6,7 @@
 
 Name:           nvidia-kmod-common
 Version:        580.105.08
-Release:        2%?dist
+Release:        3%?dist
 Summary:        Common file for NVIDIA's proprietary driver kernel modules
 Epoch:          3
 License:        NVIDIA License
@@ -72,19 +72,20 @@ cp %{SOURCE16} .
 # This is actually from RPM Fusion.
 %dnl install -Dm644 %{SOURCE22} -t %{buildroot}%{_unitdir}
 %dnl install -Dm644 %{SOURCE23} -t %{buildroot}%{_udevrulesdir}
+
 %post
-%{_bindir}/nvidia-boot-update post
+%{_bindir}/nvidia-boot-update post || :
 
 %pre
 # Remove the kernel command line adjustments one last time when doing an upgrade
 # from a version that was still setting up the command line parameters:
 if [ "$1" -eq "2" ] && [ -x %{_bindir}/nvidia-boot-update ]; then
-  %{_bindir}/nvidia-boot-update preun
+  %{_bindir}/nvidia-boot-update preun || :
 
 fi ||:
 
 %triggerin -- nvidia-kmod,nvidia-open-kmod
-dracut --regenerate-all --force
+dracut --regenerate-all --force || :
 
 %files
 %doc MODULE_VARIANT.txt
