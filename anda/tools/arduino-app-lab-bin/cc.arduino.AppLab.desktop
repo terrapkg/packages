@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Arduino App Lab
 Comment=A powerful visual environment for managing the Arduino UNO Q
-Exec=arduino-app-lab 
+Exec=arduino-app-lab-bin
 Icon=/usr/share/pixmaps/round-arduino-logo.svg
 Terminal=false
 Type=Application
