@@ -19,21 +19,11 @@ BuildRequires:  mold
 BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo-rpm-macros
 
-BuildRequires:  glx-utils
 BuildRequires:  fontconfig-devel
 BuildRequires:  glibc
-BuildRequires:  libxcb-devel
-BuildRequires:  wayland-devel
 BuildRequires:  openxr-devel
-BuildRequires:  libglvnd-devel
-BuildRequires:  libglvnd-gles
-BuildRequires:  mesa-libgbm-devel
-BuildRequires:  libwayland-egl
-BuildRequires:  libX11-devel
-BuildRequires:  libXfixes-devel
-BuildRequires:  libxkbcommon-devel
 BuildRequires:  alsa-lib-devel
-BuildRequires:  mesa-libEGL-devel
+BuildRequires:  wayland-devel
 
 Provides:       stardust-server
 
