@@ -27,7 +27,7 @@ tar -xvf %{_sourcedir}/source-app-lab-${version}.zip
 %build
 
 %install
-install -dm755 %{buildroot}/ArduinoAppLab_%{version}_Linux_x86_64/arduino-app-lab
+install -dm755 %{buildroot}/ArduinoAppLab_%{version}_Linux_x86-64/arduino-app-lab
 cp -a * %{buildroot}%{_bindir}/%{name}/
 
 install -dm755 %{buildroot}/source-app-lab-0.2.4/source-app-lab/ui-packages/images/assets/round-arduino-logo.svg
