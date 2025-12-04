@@ -13,7 +13,7 @@ Source2:        cc.arduino.AppLab.desktop
 ExclusiveArch:  x86_64
 
 Requires:       android-tools
-Suggests:       arduino-flasher-cli #arduino-app-cli
+Suggests:       arduino-flasher-cli
 
 Packager:       Jaiden Riordan <jade@fyralabs.com>
 
