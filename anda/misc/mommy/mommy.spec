@@ -28,5 +28,5 @@ install -Dm 644 src/main/completions/zsh/_%{name} %{buildroot}%{zsh_completions_
 %pkg_completion -zf
 
 %changelog
-* Wed Dec 3 2025 metcya <metcya@gmail.com
+* Wed Dec 3 2025 metcya <metcya@gmail.com>
 - package mommy~ ❤️
