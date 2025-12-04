@@ -1,0 +1,14 @@
+diff --git a/GNUmakefile b/GNUmakefile
+index c288fd1..76bb14a 100644
+--- a/GNUmakefile
++++ b/GNUmakefile
+@@ -105,9 +105,6 @@ build/%: build ;
+ # Copy built files into prefix-appropriate directories
+ .PHONY: install
+ install: build
+-	@# Create directories
+-	@install -m 755 -d "$(bin_prefix)" "$(man_prefix)/man1/" "$(fish_prefix)" "$(zsh_prefix)"
+-
+ 	@# Copy files
+ 	@install -m 755 "$(build_dir)/bin/mommy" "$(bin_prefix)"
+ 	@install -m 644 "$(build_dir)/man/man1/mommy.1$(man_compress_ext)" "$(man_prefix)/man1/"
