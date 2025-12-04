@@ -7,7 +7,7 @@ Source0:		https://services.gradle.org/distributions/%{name}-%{version}-src.zip
 Source1:		https://services.gradle.org/distributions/%{name}-%{version}-all.zip
 License:		Apache-2.0
 Requires:		java-latest-openjdk coreutils findutils sed which bash
-BuildRequires:	java-11-openjdk-devel asciidoc xmlto groovy unzip git
+BuildRequires:	java-21-openjdk-devel asciidoc xmlto groovy unzip git
 BuildArch:		noarch
 Recommends:		gradle-doc gradle-src
 
@@ -36,6 +36,7 @@ rmdir %{name}-%{version}
 unzip %{SOURCE0}
 cd %{name}-%{version}
 
+mkdir -p dist
 cat <<EOF > dist/gradle.sh
 #!/bin/sh
 export GRADLE_HOME=/usr/share/java/gradle
@@ -44,9 +45,9 @@ EOF
 # remove ADOPTIUM contraint from all build related files
 sed -i '/JvmVendorSpec.ADOPTIUM/d' \
 	build-logic/jvm/src/main/kotlin/gradlebuild.unittest-and-compile.gradle.kts \
-	subprojects/docs/src/snippets/java/toolchain-filters/groovy/build.gradle \
-	subprojects/docs/src/snippets/java/toolchain-filters/kotlin/build.gradle.kts \
-	build-logic-commons/gradle-plugin/src/main/kotlin/common.kt
+#	subprojects/docs/src/snippets/java/toolchain-filters/groovy/build.gradle \
+#	subprojects/docs/src/snippets/java/toolchain-filters/kotlin/build.gradle.kts \
+#	build-logic-commons/gradle-plugin/src/main/kotlin/common.kt
 # inhibit automatic download of binary gradle
 sed -i "s#distributionUrl=.*#distributionUrl=file\:%{SOURCE1}#" \
 	gradle/wrapper/gradle-wrapper.properties
@@ -54,11 +55,12 @@ sed -i "s#distributionUrl=.*#distributionUrl=file\:%{SOURCE1}#" \
 
 %build
 cd %{name}-%{version}
-export PATH="/usr/lib/jvm/java-11-openjdk/bin:${PATH}"
+export PATH="/usr/lib/jvm/java-21-openjdk/bin:${PATH}"
 ./gradlew installAll \
 	-Porg.gradle.java.installations.auto-download=false \
 	-PfinalRelease=true \
 	-Pgradle_installPath="$(pwd)/dist" \
+	-Porg.gradle.ignoreBuildJavaVersionCheck=true \
 	--no-configuration-cache
 
 
@@ -101,7 +103,6 @@ install -Dm644 %{SOURCE3} %{buildroot}/%{_datadir}/doc/%{name}/
 install -Dm644 %{SOURCE3} %{buildroot}/%{_datadir}/doc/%{name}-doc/
 install -Dm644 %{SOURCE3} %{buildroot}/%{_datadir}/doc/%{name}-src/
 
-
 %files
 %doc README
 %license LICENSE
@@ -123,4 +124,3 @@ install -Dm644 %{SOURCE3} %{buildroot}/%{_datadir}/doc/%{name}-src/
 %changelog
 * Tue Feb 7 2023 windowsboy111 <windowsboy111@fyralabs.com>
 - Initial package
-
