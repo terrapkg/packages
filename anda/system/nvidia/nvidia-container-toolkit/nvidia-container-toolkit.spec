@@ -1,6 +1,6 @@
 Name:             nvidia-container-toolkit
 Version:          1.18.1
-Release:          1%?dist
+Release:          2%?dist
 Summary:          NVIDIA Container Toolkit
 License:          Apache-2.0
 Group:            Development/Tools/Other
@@ -46,16 +46,16 @@ mkdir -p %{buildroot}%{_sysconfdir}/nvidia-container-runtime
 
 %post
 if rpm -q --quiet moby-engine; then
-    nvidia-ctk runtime configure --runtime=docker
+    nvidia-ctk runtime configure --runtime=docker || :
       /bin/systemctl --system try-restart docker.service &>/dev/null || :
 elif rpm -q --quiet containerd; then
-   nvidia-ctk runtime configure --runtime=containerd
+   nvidia-ctk runtime configure --runtime=containerd || :
      /bin/systemctl --system try-restart containerd.service &>/dev/null || :
 elif rpm -q --quiet cri-o; then
-    nvidia-ctk runtime configure --runtime=crio
+    nvidia-ctk runtime configure --runtime=crio || :
       /bin/systemctl --system try-restart crio.service &>/dev/null || :
  elif rpm -q --quiet podman; then
-    nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml
+    nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml || :
 fi
 
 %postun
