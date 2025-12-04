@@ -23,6 +23,7 @@ BuildRequires:  fontconfig-devel
 BuildRequires:  glibc
 BuildRequires:  openxr-devel
 BuildRequires:  alsa-lib-devel
+BuildRequires:  wayland-devel
 
 Provides:       stardust-server
 
