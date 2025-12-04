@@ -1,11 +1,3 @@
-# To get the commit:
-# git clone https://github.com/cisco/openh264.git
-# cd openh264
-# rm -rf gmp-api; make gmp-bootstrap; cd gmp-api
-# git rev-parse HEAD
-%global commit1 1f5a2f07a565a9465c14d3a8b12f3202f83c775e
-%global shortcommit1 %(c=%{commit1}; echo ${c:0:7})
-
 # Makefile expects V=Yes instead of V=1:
 %global _make_verbose V=Yes
 
@@ -18,9 +10,9 @@ License:        BSD
 URL:            https://www.openh264.org/
 
 Source0:        https://github.com/cisco/%{name}/archive/v%{version}.tar.gz#/%{name}-v%{version}.tar.gz
-Source1:        https://github.com/mozilla/gmp-api/archive/%{commit1}/gmp-api-%{shortcommit1}.tar.gz
 
 BuildRequires:  gcc-c++
+BuildRequires:  git-core
 BuildRequires:  make
 BuildRequires:  nasm
 
@@ -53,10 +45,6 @@ The mozilla-openh264 package contains a H.264 codec plugin for Mozilla browsers.
 %prep
 %autosetup
 
-# Extract gmp-api archive
-tar -xf %{S:1}
-mv gmp-api-%{commit1} gmp-api
-
 %build
 sed -i \
   -e 's@PREFIX=/usr/local@PREFIX=%{_prefix}@g' \
@@ -65,6 +53,7 @@ sed -i \
   -e 's@CFLAGS_OPT=-O3@CFLAGS_OPT=%{optflags}@g' \
   -e '/^CFLAGS_OPT=/i LDFLAGS=%{__global_ldflags}' \
   Makefile
+%{__make} gmp-bootstrap
 %make_build
 %make_build plugin
 
