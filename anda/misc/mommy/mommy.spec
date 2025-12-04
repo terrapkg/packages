@@ -4,7 +4,6 @@ Release:        1%?dist
 Summary:        mommy's here to support you, in any shell, on any system~ ❤️ 
 URL:            https://github.com/fwdekker/mommy
 Source:         %{url}/archive/refs/tags/v%{version}.tar.gz
-Patch0:         fix-makefile.patch
 License:        Unlicense
 BuildArch:      noarch
 
