@@ -22,7 +22,7 @@ Packager:       Jaiden Riordan <jade@fyralabs.com>
 
 %prep
 tar -xvf %{_sourcedir}/ArduinoAppLab_%{version}_Linux_x86-64.tar.gz
-tar -xvf %{_sourcedir}/source-app-lab-%{version}.zip
+unzip -v %{_sourcedir}/source-app-lab-%{version}.zip
 
 %build
 
