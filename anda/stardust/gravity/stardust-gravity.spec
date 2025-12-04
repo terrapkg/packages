@@ -6,7 +6,7 @@
 
 Name:           stardust-xr-gravity
 Version:        %commit_date.%shortcommit
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Utility to launch apps and Stardust XR clients spatially
 URL:            https://github.com/StardustXR/gravity
 Source0:        %url/archive/%commit/gravity-%commit.tar.gz
@@ -28,11 +28,13 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %install
 %define __cargo_common_opts %{?_smp_mflags} -Z avoid-dev-deps --locked
 %cargo_install
-
+%cargo_license_summary_online
+%{cargo_license_online} > LICENSE.dependencies
 
 %files
 %_bindir/gravity
 %license LICENSE
+%license LICENSE.dependencies
 %doc README.md
 
 %changelog
