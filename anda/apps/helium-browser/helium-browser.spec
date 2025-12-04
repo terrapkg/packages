@@ -1,10 +1,9 @@
 %define debug_package %{nil}
-%global _build_id_links none
 
 %global __requires_exclude libffmpeg.so|libvk_swiftshader.so|libvulkan.so|libEGL.so|libGLESv2.so
-%global __provides_exclude_from /opt/%{name}/.*\\.so
+%global __provides_exclude_from %{_libdir}/%{name}/.*\\.so
 
-Name:           helium-browser
+Name:           helium-browser-bin
 Version:        0.6.9.1
 Release:        1%{?dist}
 Summary:        Private, fast, and honest web browser based on Chromium
@@ -43,18 +42,17 @@ sed -i \
 %build
 
 %install
-install -dm755 %{buildroot}/opt/%{name}
-cp -a * %{buildroot}/opt/%{name}/
+install -dm755 %{buildroot}%{_libdir}/%{name}
+cp -a * %{buildroot}%{_libdir}/%{name}/
 
 sed -i 's/exists_desktop_file || generate_desktop_file/true/' \
-    %{buildroot}/opt/%{name}/chrome-wrapper
+    %{buildroot}%{_libdir}/%{name}/chrome-wrapper
 
 install -Dm644 helium.desktop %{buildroot}%{_datadir}/applications/%{name}.desktop
+install -Dm644 product_logo_256.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{name}.png
 
-install -Dm644 %{buildroot}/opt/%{name}/product_logo_256.png \
-    %{buildroot}%{_datadir}/pixmaps/%{name}.png
-install -Dm644 %{buildroot}/opt/%{name}/product_logo_256.png \
-    %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{name}.png
+rm -f %{buildroot}%{_libdir}/%{name}/helium.desktop
+rm -f %{buildroot}%{_libdir}/%{name}/product_logo_256.png
 
 install -dm755 %{buildroot}%{_bindir}
 cat > %{buildroot}%{_bindir}/%{name} << EOF
@@ -99,15 +97,14 @@ if [[ -n "\${HELIUM_USER_FLAGS:-}" ]]; then
     FLAGS+=("\${ENV_FLAGS[@]}")
 fi
 
-exec /opt/helium-browser/chrome-wrapper "\${FLAGS[@]}" "\$@"
+exec %{_libdir}/%{name}/chrome-wrapper "\${FLAGS[@]}" "\$@"
 EOF
 chmod 755 %{buildroot}%{_bindir}/%{name}
 
 %files
-/opt/%{name}/
+%{_libdir}/%{name}/
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
-%{_datadir}/pixmaps/%{name}.png
 %{_datadir}/icons/hicolor/256x256/apps/%{name}.png
 
 %changelog
