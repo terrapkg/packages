@@ -7,8 +7,8 @@
   <name>Helium Browser</name>
   <summary>Private, fast, and honest web browser based on Chromium.</summary>
 
-  <icon type="remote">
-    https://github.com/imputnet/helium/blob/main/resources/branding/app_icon/raw.png
+  <icon type="local">
+  /usr/share/icons/hicolor/256x256/apps/net.imput.helium.png
   </icon>
   <description>
     <p>

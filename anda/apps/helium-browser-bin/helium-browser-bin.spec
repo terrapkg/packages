@@ -40,7 +40,7 @@ Based on ungoogled-chromium with additional privacy and usability improvements.
 sed -i \
     -e 's/Exec=chromium/Exec=%{name}/' \
     -e 's/Name=Helium$/Name=Helium Browser/' \
-    -e 's/Icon=helium/Icon=%{name}/' \
+    -e 's/Icon=helium/Icon=%{appid}/' \
     helium.desktop
 
 %build
@@ -53,7 +53,7 @@ sed -i 's/exists_desktop_file || generate_desktop_file/true/' \
     %{buildroot}%{_libdir}/%{name}/chrome-wrapper
 
 install -Dm644 helium.desktop %{buildroot}%{_datadir}/applications/%{name}.desktop
-install -Dm644 product_logo_256.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{name}.png
+install -Dm644 product_logo_256.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{appid}.png
 
 rm -f %{buildroot}%{_libdir}/%{name}/helium.desktop
 rm -f %{buildroot}%{_libdir}/%{name}/product_logo_256.png
@@ -111,7 +111,7 @@ chmod 755 %{buildroot}%{_bindir}/%{name}
 %{_libdir}/%{name}/
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
-%{_datadir}/icons/hicolor/256x256/apps/%{name}.png
+%{_datadir}/icons/hicolor/256x256/apps/%{appid}.png
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
