@@ -34,9 +34,9 @@ Based on ungoogled-chromium with additional privacy and usability improvements.
 %endif
 
 sed -i \
-    -e 's/Exec=chromium/Exec=helium-browser/' \
+    -e 's/Exec=chromium/Exec=%{name}/' \
     -e 's/Name=Helium$/Name=Helium Browser/' \
-    -e 's/Icon=helium/Icon=helium-browser/' \
+    -e 's/Icon=helium/Icon=%{name}/' \
     helium.desktop
 
 %build
