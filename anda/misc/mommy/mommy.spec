@@ -1,6 +1,6 @@
 Name:           mommy
 Version:        1.8.0
-Release:        1%?dist
+Release:        2%?dist
 Summary:        mommy's here to support you, in any shell, on any system~ ❤️ 
 URL:            https://github.com/fwdekker/mommy
 Source:         %{url}/archive/refs/tags/v%{version}.tar.gz
@@ -28,5 +28,5 @@ install -Dm 644 src/main/completions/zsh/_%{name} %{buildroot}%{zsh_completions_
 %pkg_completion -zf
 
 %changelog
-* Wed Dec 3 2025 metcya <metcya@gmail.com
+* Wed Dec 3 2025 metcya <metcya@gmail.com>
 - package mommy~ ❤️
