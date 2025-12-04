@@ -27,11 +27,19 @@ Packager:       Jaiden Riordan <jade@fyralabs.com>
 %build
 
 %install
-install -dm755 %{buildroot}ArduinoAppLab_%{version}_Linux_x86_64/arduino-app-lab
+install -dm755 %{buildroot}/ArduinoAppLab_%{version}_Linux_x86_64/arduino-app-lab
 cp -a * %{buildroot}%{_bindir}/%{name}/
 
-install -dm755 %{buildroot}source-app-lab-0.2.4/source-app-lab/ui-packages/images/assets/round-arduino-logo.svg
+install -dm755 %{buildroot}/source-app-lab-0.2.4/source-app-lab/ui-packages/images/assets/round-arduino-logo.svg
 cp -a * %{buildroot}%{_datadir}/pixmaps/round-arduino-logo.svg
+
+install -dm755 %{buildroot}/cc.arduino.AppLab.desktop
+cp -a * %{buildroot}%{datadir}/applications/cc.arduino.AppLab.desktop
+
+%files 
+%{_bindir}/arduino-app-lab 
+%{_datadir}/pixmaps/round-arduino-logo.svg
+%{_datadir}/applications/cc.arduino.AppLab.desktop
 
 %changelog
 * Thu Dec 4 2025 Jaiden Riordan  <jade@fyralabs.com>
