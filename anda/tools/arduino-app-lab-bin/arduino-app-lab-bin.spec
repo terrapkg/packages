@@ -7,7 +7,7 @@ URL:            https://www.arduino.cc/en/software
 License:        GPL-3.0
 
 Source0:        https://downloads.arduino.cc/AppLab/Stable/ArduinoAppLab_%{version}_Linux_x86-64.tar.gz
-Source1:        https://downloads.arduino.cc/AppLab/Stable/source-app-lab-${version}.zip
+Source1:        https://downloads.arduino.cc/AppLab/Stable/source-app-lab-%{version}.zip
 Source2:        cc.arduino.AppLab.desktop
 
 ExclusiveArch:  x86_64
