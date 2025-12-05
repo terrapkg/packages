@@ -24,24 +24,21 @@ Packager:       Jaiden Riordan <jade@fyralabs.com>
 tar -xvf %{_sourcedir}/ArduinoAppLab_%{version}_Linux_x86-64.tar.gz
 unzip -v %{_sourcedir}/source-app-lab-%{version}.zip
 
-%build
-
 %install
-install -dm755 %{buildroot}/ArduinoAppLab_%{version}_Linux_x86-64/arduino-app-lab
-cp -a * %{buildroot}%{_bindir}/%{name}/
+install -dm755 %{buildroot}%{_bindir}
+install -p -m755 ArduinoAppLab_%{version}_Linux_x86-64/arduino-app-lab %{buildroot}%{_bindir}/%{name}
 
-install -dm755 %{buildroot}/source-app-lab-0.2.4/source-app-lab/ui-packages/images/assets/round-arduino-logo.svg
-cp -a * %{buildroot}%{_datadir}/pixmaps/round-arduino-logo.svg
+install -dm755 %{buildroot}%{_datadir}/pixmaps/
+install -p -m644 source-app-lab-%{version}/ui-packages/images/assets/round-arduino-logo.svg %{buildroot}%{_datadir}/pixmaps/round-arduino-logo.svg
 
-install -dm755 %{buildroot}/cc.arduino.AppLab.desktop
-cp -a * %{buildroot}%{datadir}/applications/cc.arduino.AppLab.desktop
+install -dm755 %{buildroot}%{_datadir}/applications/
+install -p -m644 %{SOURCE2} %{buildroot}%{_datadir}/applications/cc.arduino.AppLab.desktop
 
 %files 
-%{_bindir}/arduino-app-lab 
+%{_bindir}/%{name}
 %{_datadir}/pixmaps/round-arduino-logo.svg
 %{_datadir}/applications/cc.arduino.AppLab.desktop
 
 %changelog
 * Thu Dec 4 2025 Jaiden Riordan  <jade@fyralabs.com>
 - Package arduino-app-lab-bin
-
