@@ -46,7 +46,7 @@ install -p -m644 %{SOURCE2} %{buildroot}%{_datadir}/applications/%{appid}.deskto
 %{_bindir}/%{name}
 %{_iconsdir}/hicolor/scalable/apps/%{appid}.svg
 %{_datadir}/applications/%{appid}.desktop
-%license LICENSE.txt # bloat see License:, fuck you owen
+%license LICENSE.txt # bloat see License:, fuck you john gpl
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
