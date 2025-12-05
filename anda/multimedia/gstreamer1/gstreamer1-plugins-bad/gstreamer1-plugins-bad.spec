@@ -4,7 +4,7 @@
 
 Name:           gstreamer1-plugins-bad
 Version:        1.26.8
-Release:        3%?dist
+Release:        4%?dist
 Epoch:          2
 Summary:        GStreamer streaming media framework "bad" plugins
 License:        LGPL-2.0-or-later and LGPL-2.0-only
@@ -48,7 +48,6 @@ Provides:       %{name}-free-libs%{?_isa} = %{?epoch}:%{version}-%{release}
 Obsoletes:      gstreamer1-plugin-vaapi < %{?epoch}:%{version}-%{release}
 Provides:       gstreamer1-plugin-vaapi = %{?epoch}:%{version}-%{release}
 Provides:       gstreamer1-plugin-vaapi%{?_isa} = %{?epoch}:%{version}-%{release}
-Requires:       %{name}-libs = %{?epoch}:%{version}-%{release}
 
 BuildRequires:  gcc-c++
 BuildRequires:  meson >= 0.62
