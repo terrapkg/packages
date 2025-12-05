@@ -15,7 +15,6 @@ Recommends:		gradle-doc gradle-src
 %description
 Gradle is a build tool with a focus on build automation and support for multi-language development. If you are building, testing, publishing, and deploying software on any platform, Gradle offers a flexible model that can support the entire development lifecycle from compiling and packaging code to publishing web sites. Gradle has been designed to support build automation across multiple languages and platforms including Java, Scala, Android, Kotlin, C/C++, and Groovy, and is closely integrated with development tools and continuous integration servers including Eclipse, IntelliJ, and Jenkins.
 
-
 %package doc
 Summary:	Gradle documentation
 %description doc
@@ -25,9 +24,6 @@ Documentation for gradle, a powerful build system for the JVM.
 Summary:	Gradle sources
 %description src
 Sources for gradle, a powerful build system for the JVM.
-
-
-# See PKGBUILD on Arch Linux
 
 %prep
 unzip %{SOURCE1} %{name}-%{version}/{README,LICENSE}
@@ -53,17 +49,16 @@ sed -i '/JvmVendorSpec.ADOPTIUM/d' \
 sed -i "s#distributionUrl=.*#distributionUrl=file\:%{SOURCE1}#" \
 	gradle/wrapper/gradle-wrapper.properties
 
-
 %build
 cd %{name}-%{version}
 export PATH="/usr/lib/jvm/java-21-openjdk/bin:${PATH}"
-./gradlew installAll \
+./gradlew installAll --parallel \
 	-Porg.gradle.java.installations.auto-download=false \
 	-PfinalRelease=true \
 	-Pgradle_installPath="$(pwd)/dist" \
 	-Porg.gradle.ignoreBuildJavaVersionCheck=true \
+	--warning-mode all \
 	--no-configuration-cache
-
 
 %install
 cd %{name}-%{version}/dist
@@ -88,14 +83,11 @@ install -m644 init.d/*.* "%{buildroot}/usr/share/java/%{name}/init.d"
 # link gradle script to /usr/bin
 ln -s /usr/share/java/%{name}/bin/%{name} "%{buildroot}/usr/bin"
 
-
 install -d %{buildroot}/usr/share/java/gradle/docs
 cp -r docs/* %{buildroot}/usr/share/java/gradle/docs
 
-
 install -d %{buildroot}/usr/share/java/gradle/src
 cp -r src/* %{buildroot}/usr/share/java/gradle/src
-
 
 install -Dm644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/%{name}/
 install -Dm644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/%{name}-doc/
@@ -107,21 +99,23 @@ install -Dm644 %{SOURCE3} %{buildroot}/%{_datadir}/doc/%{name}-src/
 %files
 %doc README
 %license LICENSE
-/etc/profile.d/gradle.sh
-/usr/share/java/%{name}/
-/usr/bin/%{name}
+%{_sysconfdir}/profile.d/gradle.sh
+%{_javadir}/java/%{name}/
+%{_bindir}/%{name}
 
 %files doc
 %doc README
 %license LICENSE
-/usr/share/java/gradle/docs
+%{_javadir}/%{name}/docs
 
 %files src
 %doc README
 %license LICENSE
-/usr/share/java/gradle/src
-
+%{_javadir}/%{name}/src
 
 %changelog
+* Fri Dec 05 2025 Owen Zimmerman <owen@fyralabs.com>
+- Pull in adoptium repo, fix some build issues
+
 * Tue Feb 7 2023 windowsboy111 <windowsboy111@fyralabs.com>
 - Initial package
