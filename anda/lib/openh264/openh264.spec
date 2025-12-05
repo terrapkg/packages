@@ -2,7 +2,7 @@
 %global _make_verbose V=Yes
 
 Name:           openh264
-Version:        2.6.0
+Version:        2.5.1
 Release:        3%{?dist}
 Epoch:          1
 Summary:        Open Source H.264 Codec
