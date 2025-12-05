@@ -20,6 +20,7 @@ Requires:       android-tools
 BuildRequires:  terra-appstream-helper
 
 Suggests:       arduino-flasher-cli
+Suggests:       arduino-app-cli
 
 Packager:       Jaiden Riordan <jade@fyralabs.com>
 
@@ -34,20 +35,20 @@ unzip %{_sourcedir}/source-app-lab-%{version}.zip
 install -dm755 %{buildroot}%{_bindir}
 install -p -m755 ArduinoAppLab_%{version}_Linux_x86-64/arduino-app-lab %{buildroot}%{_bindir}/%{name}
 
-install -dm755 %{buildroot}%{_datadir}/pixmaps/
-install -p -m644 source-app-lab/ui-packages/images/assets/round-arduino-logo.svg %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/cc.arduino.AppLab.svg
+install -dm755 %{buildroot}%{_iconsdir}/hicolor/scalable/apps/
+install -p -m644 source-app-lab/ui-packages/images/assets/round-arduino-logo.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps/cc.arduino.AppLab.svg
 
 install -dm755 %{buildroot}%{_datadir}/applications/
-install -p -m644 %{SOURCE2} %{buildroot}%{_datadir}/applications/cc.arduino.AppLab.desktop
+install -p -m644 %{SOURCE2} %{buildroot}%{_datadir}/applications/%{appid}.desktop
 
 %terra_appstream -o %{SOURCE3}
 
-%files 
+%files
 %{_bindir}/%{name}
-%{_datadir}/icons/hicolor/scalable/apps/cc.arduino.AppLab.svg
-%{_datadir}/applications/cc.arduino.AppLab.desktop
+%{_iconsdir}/hicolor/scalable/apps/%{appid}.svg
+%{_datadir}/applications/%{appid}.desktop
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
-* Thu Dec 4 2025 Jaiden Riordan  <jade@fyralabs.com>
+* Thu Dec 4 2025 Jaiden Riordan <jade@fyralabs.com>
 - Package arduino-app-lab-bin
