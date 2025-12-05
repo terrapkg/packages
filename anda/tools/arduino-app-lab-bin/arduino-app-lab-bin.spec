@@ -40,9 +40,8 @@ install -p -m644 source-app-lab/ui-packages/images/assets/round-arduino-logo.svg
 install -dm755 %{buildroot}%{_datadir}/applications/
 install -p -m644 %{SOURCE2} %{buildroot}%{_datadir}/applications/%{appid}.desktop
 
-install -p -m644 source-app-lab/LICENSE %{buildroot}%{_defaultlicensedir}/%{name}/LICENSE
-install -p -m644 source-app-lab/dependency_licenses %{buildroot}%{_defaultlicensedir}/%{name}/dependency_licenses
-
+cp source-app-lab/LICENSE -t .
+cp source-app-lab/dependency_licenses -t .
 
 %terra_appstream -o %{SOURCE3}
 
