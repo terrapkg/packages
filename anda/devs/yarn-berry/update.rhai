@@ -1,1 +1,1 @@
-rpm.version(find("([\\d.]+)", gh("yarnpkg/berry"), 1));
+rpm.version(npm("@yarnpkg/cli"));

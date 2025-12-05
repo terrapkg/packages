@@ -6,7 +6,7 @@
 
 Name:           nvidia-kmod-common
 Version:        580.105.08
-Release:        1%?dist
+Release:        3%?dist
 Summary:        Common file for NVIDIA's proprietary driver kernel modules
 Epoch:          3
 License:        NVIDIA License
@@ -65,29 +65,30 @@ install -p -m 644 -D %{SOURCE20} %{buildroot}%{_udevrulesdir}/60-nvidia.rules
 mkdir -p %{buildroot}%{_prefix}/lib/firmware/nvidia/%{version}/
 install -p -m 644 firmware/* %{buildroot}%{_prefix}/lib/firmware/nvidia/%{version}
 
-%post
-%{_bindir}/nvidia-boot-update post
-
 # Old kernel.conf rewritten as a doc file.
-cp %{SOURCE18} .
+cp %{SOURCE16} .
 
 # Fallback service. Fall back to Nouveau if NVIDIA drivers fail.
 # This is actually from RPM Fusion.
 %dnl install -Dm644 %{SOURCE22} -t %{buildroot}%{_unitdir}
 %dnl install -Dm644 %{SOURCE23} -t %{buildroot}%{_udevrulesdir}
 
+%post
+%{_bindir}/nvidia-boot-update post || :
+
 %pre
 # Remove the kernel command line adjustments one last time when doing an upgrade
 # from a version that was still setting up the command line parameters:
 if [ "$1" -eq "2" ] && [ -x %{_bindir}/nvidia-boot-update ]; then
-  %{_bindir}/nvidia-boot-update preun
+  %{_bindir}/nvidia-boot-update preun || :
 
 fi ||:
 
 %triggerin -- nvidia-kmod,nvidia-open-kmod
-dracut --regenerate-all --force
+dracut --regenerate-all --force || :
 
 %files
+%doc MODULE_VARIANT.txt
 %{_dracut_conf_d}/99-nvidia.conf
 %{_modprobedir}/nvidia.conf
 %dir %{_prefix}/lib/firmware

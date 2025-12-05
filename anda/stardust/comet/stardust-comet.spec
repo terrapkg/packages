@@ -1,12 +1,12 @@
-%global commit 86e962eada5f9e5722c746f4eaab8e5aa087bbf4
-%global commit_date 20251130
+%global commit 529e13b59b6a888b2bc1c3afb1576204b8e51d9b
+%global commit_date 20251202
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-xr-comet
 Version:        %commit_date.%shortcommit
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Annotate things in Stardust XR
 URL:            https://github.com/StardustXR/comet
 Source0:        %url/archive/%commit/comet-%commit.tar.gz
@@ -28,10 +28,13 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %install
 %define __cargo_common_opts %{?_smp_mflags} -Z avoid-dev-deps --locked
 %cargo_install
+%cargo_license_summary_online
+%{cargo_license_online} > LICENSE.dependencies
 
 %files
 %_bindir/comet
 %license LICENSE
+%license LICENSE.dependencies
 %doc README.md
 
 %changelog
