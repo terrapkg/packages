@@ -9,7 +9,7 @@ Summary:        Open Source H.264 Codec
 License:        BSD
 URL:            https://www.openh264.org/
 
-Source0:        https://github.com/cisco/%{name}/archive/v%{version}.tar.gz#/%{name}-v%{version}.tar.gz
+Source0:        https://github.com/cisco/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
 BuildRequires:  gcc-c++
 BuildRequires:  git-core
