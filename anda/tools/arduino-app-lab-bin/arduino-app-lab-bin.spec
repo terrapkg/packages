@@ -22,14 +22,14 @@ Packager:       Jaiden Riordan <jade@fyralabs.com>
 
 %prep
 tar -xvf %{_sourcedir}/ArduinoAppLab_%{version}_Linux_x86-64.tar.gz
-unzip -v %{_sourcedir}/source-app-lab-%{version}.zip
+unzip %{_sourcedir}/source-app-lab-%{version}.zip
 
 %install
 install -dm755 %{buildroot}%{_bindir}
 install -p -m755 ArduinoAppLab_%{version}_Linux_x86-64/arduino-app-lab %{buildroot}%{_bindir}/%{name}
 
 install -dm755 %{buildroot}%{_datadir}/pixmaps/
-install -p -m644 source-app-lab-%{version}/ui-packages/images/assets/round-arduino-logo.svg %{buildroot}%{_datadir}/pixmaps/round-arduino-logo.svg
+install -p -m644 source-app-lab/ui-packages/images/assets/round-arduino-logo.svg %{buildroot}%{_datadir}/pixmaps/round-arduino-logo.svg
 
 install -dm755 %{buildroot}%{_datadir}/applications/
 install -p -m644 %{SOURCE2} %{buildroot}%{_datadir}/applications/cc.arduino.AppLab.desktop

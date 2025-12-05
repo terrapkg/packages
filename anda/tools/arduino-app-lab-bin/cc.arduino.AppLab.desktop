@@ -8,3 +8,4 @@ Type=Application
 Categories=Development
 StartupNotify=true
 Keywords=arduino;applab;lab
+StartupWMClass=arduino-app-lab-bin
