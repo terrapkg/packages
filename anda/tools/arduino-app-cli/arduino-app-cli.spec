@@ -4,7 +4,7 @@ Version:        0.6.7
 %gometa -f
 
 Name:           arduino-app-cli
-Release:        1%?dist
+Release:        2%?dist
 Summary:        The CLI and service that manages and runs Arduino Apps on UNO Q
 License:        GPL-3.0-only
 
@@ -37,5 +37,5 @@ install -Dm755 %{gobuilddir}/cmd/arduino-app-cli %{buildroot}%{_bindir}/arduino-
 %{_bindir}/arduino-app-cli
 
 %changelog
-* Thu Dec 04 2024 Owen Zimmerman <owen@fyralabs.com>
+* Thu Dec 04 2025 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit
