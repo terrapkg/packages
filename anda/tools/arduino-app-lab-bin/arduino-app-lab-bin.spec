@@ -41,13 +41,15 @@ install -p -m644 source-app-lab/ui-packages/images/assets/round-arduino-logo.svg
 install -dm755 %{buildroot}%{_datadir}/applications/
 install -p -m644 %{SOURCE2} %{buildroot}%{_datadir}/applications/%{appid}.desktop
 
+install -dm644 Source4 %{buildroot}%{_defaultlicensedir}/%{name}/LICENSE
+
 %terra_appstream -o %{SOURCE3}
 
 %files
 %{_bindir}/%{name}
 %{_iconsdir}/hicolor/scalable/apps/%{appid}.svg
 %{_datadir}/applications/%{appid}.desktop
-%license gpl.txt # bloat see License:, fuck you john gpl
+%{_defaultlicensedir}/%{name}/LICENSE
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
