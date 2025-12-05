@@ -8,6 +8,7 @@ Source1:		https://services.gradle.org/distributions/%{name}-%{version}-all.zip
 License:		Apache-2.0
 Requires:		java-latest-openjdk coreutils findutils sed which bash
 BuildRequires:	java-21-openjdk-devel asciidoc xmlto groovy unzip git
+BuildRequires:  temurin-17-jdk temurin-17-jre
 BuildArch:		noarch
 Recommends:		gradle-doc gradle-src
 
