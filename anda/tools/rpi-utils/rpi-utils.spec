@@ -1,5 +1,5 @@
-%global commit e95a44ca65c997d05e7b55bb3528030f14f0acf5
-%global commit_date 20251128
+%global commit a66e0178eddd510b9d1a86007ff484751f8e551f
+%global commit_date 20251205
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %define _unpackaged_files_terminate_build 0
