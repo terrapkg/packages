@@ -46,8 +46,10 @@ install -p -m644 %{SOURCE2} %{buildroot}%{_datadir}/applications/%{appid}.deskto
 %{_bindir}/%{name}
 %{_iconsdir}/hicolor/scalable/apps/%{appid}.svg
 %{_datadir}/applications/%{appid}.desktop
+%license LICENSE.txt # bloat see License:, fuck you owen
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
 * Thu Dec 4 2025 Jaiden Riordan <jade@fyralabs.com>
 - Package arduino-app-lab-bin
+[]
