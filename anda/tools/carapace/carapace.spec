@@ -45,5 +45,5 @@ install -Dm 0755 %{gobuilddir}/cmd/carapace %{buildroot}%{_bindir}/carapace
 %{_bindir}/carapace
 
 %changelog
-* Thu Dec 04 2025 Owen Zimmerman <owen@fyralabs.com>
+* Fri Dec 05 2025 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit
