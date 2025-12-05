@@ -1,4 +1,4 @@
-%bcond bootstrap 0
+%bcond bootstrap 1
 
 %if %{with bootstrap}
 %bcond chromaprint 0
@@ -22,7 +22,7 @@
 Summary:        A complete solution to record, convert and stream audio and video
 Name:           ffmpeg
 Version:        7.1.2
-Release:        3%{?dist}
+Release:        4%{?dist}
 License:        LGPLv3+
 URL:            http://%{name}.org/
 Epoch:          1

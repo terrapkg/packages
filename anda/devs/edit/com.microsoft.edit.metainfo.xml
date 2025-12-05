@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component type="console-application">
+  <id>com.microsoft.edit</id>
+  <name>Microsoft Edit</name>
+  <summary>We all edit.</summary>
+  <screenshots>
+    <image type="source">https://github.com/microsoft/edit/blob/main/assets/edit_hero_image.png</image>
+  </screenshots>
+  <description>
+    <p>A simple editor for simple needs.</p>
+    <p>
+    This editor pays homage to the classic MS-DOS Editor, but with a modern interface and input controls similar to VS Code.
+    The goal is to provide an accessible editor that even users largely unfamiliar with terminals can easily use.
+    </p>
+  </description>
+  <url type="vcs-browser">https://github.com/microsoft/edit</url>
+  <developer id="com.microsoft">
+    <name>Microsoft Corporation</name>
+  </developer>
+  <icon type="stock">com.microsoft.edit</icon>
+</component>

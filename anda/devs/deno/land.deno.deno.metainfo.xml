@@ -7,6 +7,7 @@
   <name>Deno</name>
   <summary>A modern runtime for JavaScript and TypeScript.</summary>
 
+  <icon>https://deno.com/logo.svg</icon>
   <description>
     <p>
     Deno (/ˈdiːnoʊ/, pronounced dee-no) is a JavaScript, TypeScript, and WebAssembly runtime with secure defaults and a great developer experience.
