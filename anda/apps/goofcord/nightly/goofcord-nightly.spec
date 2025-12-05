@@ -1,7 +1,7 @@
-%global commit 3f5eda113f33fead76a5a53e0b71c11b254d68fd
+%global commit dbe10e789ae55aa0f1ab8828b0341ac1104849e0
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250615
-%global ver 1.10.1
+%global commit_date 20251204
+%global ver 1.11.2
 %global base_name goofcord
 %global git_name GoofCord
 %global debug_package %{nil}
@@ -15,7 +15,7 @@
 
 Name:          %{base_name}-nightly
 Version:       %{ver}^%{commit_date}.git.%{shortcommit}
-Release:       1%{?dist}
+Release:       1%?dist
 License:       OSL-3.0
 Summary:       A privacy-minded Legcord fork.
 Group:         Applications/Internet
