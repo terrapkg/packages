@@ -12,7 +12,6 @@ Source0:        https://downloads.arduino.cc/AppLab/Stable/ArduinoAppLab_%{versi
 Source1:        https://downloads.arduino.cc/AppLab/Stable/source-app-lab-%{version}.zip
 Source2:        cc.arduino.AppLab.desktop
 Source3:        cc.arduino.AppLab.metainfo.xml
-Source4:        gpl.txt
 
 ExclusiveArch:  x86_64
 
@@ -41,7 +40,7 @@ install -p -m644 source-app-lab/ui-packages/images/assets/round-arduino-logo.svg
 install -dm755 %{buildroot}%{_datadir}/applications/
 install -p -m644 %{SOURCE2} %{buildroot}%{_datadir}/applications/%{appid}.desktop
 
-install -Dm644 Source4 %{buildroot}%{_defaultlicensedir}/%{name}/LICENSE
+install -p -m644 source-app-lab/LICENSE %{buildroot}%{_defaultlicensedir}/%{name}/LICENSE
 
 %terra_appstream -o %{SOURCE3}
 
