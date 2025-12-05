@@ -19,8 +19,7 @@ Requires:       android-tools
 
 BuildRequires:  terra-appstream-helper
 
-Suggests:       arduino-flasher-cli
-Suggests:       arduino-app-cli
+Suggests:       arduino-flasher-cli arduino-app-cli  
 
 Packager:       Jaiden Riordan <jade@fyralabs.com>
 
