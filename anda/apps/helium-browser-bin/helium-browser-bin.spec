@@ -2,10 +2,11 @@
 
 %global __requires_exclude libffmpeg.so|libvk_swiftshader.so|libvulkan.so|libEGL.so|libGLESv2.so
 %global __provides_exclude_from %{_libdir}/%{name}/.*\\.so
+%global appid net.imput.helium
 
 Name:           helium-browser-bin
 Version:        0.6.9.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Private, fast, and honest web browser based on Chromium
 
 URL:            https://helium.computer
@@ -13,8 +14,11 @@ License:        GPL-3.0-only AND BSD-3-Clause
 
 Source0:        https://github.com/imputnet/helium-linux/releases/download/%{version}/helium-%{version}-x86_64_linux.tar.xz
 Source1:        https://github.com/imputnet/helium-linux/releases/download/%{version}/helium-%{version}-arm64_linux.tar.xz
+Source2:        net.imput.helium.metainfo.xml
 
 ExclusiveArch:  x86_64 aarch64
+
+BuildRequires:  terra-appstream-helper
 
 Requires:       xdg-utils
 Requires:       liberation-fonts
@@ -36,7 +40,7 @@ Based on ungoogled-chromium with additional privacy and usability improvements.
 sed -i \
     -e 's/Exec=chromium/Exec=%{name}/' \
     -e 's/Name=Helium$/Name=Helium Browser/' \
-    -e 's/Icon=helium/Icon=%{name}/' \
+    -e 's/Icon=helium/Icon=%{appid}/' \
     helium.desktop
 
 %build
@@ -49,7 +53,7 @@ sed -i 's/exists_desktop_file || generate_desktop_file/true/' \
     %{buildroot}%{_libdir}/%{name}/chrome-wrapper
 
 install -Dm644 helium.desktop %{buildroot}%{_datadir}/applications/%{name}.desktop
-install -Dm644 product_logo_256.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{name}.png
+install -Dm644 product_logo_256.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{appid}.png
 
 rm -f %{buildroot}%{_libdir}/%{name}/helium.desktop
 rm -f %{buildroot}%{_libdir}/%{name}/product_logo_256.png
@@ -101,11 +105,14 @@ exec %{_libdir}/%{name}/chrome-wrapper "\${FLAGS[@]}" "\$@"
 EOF
 chmod 755 %{buildroot}%{_bindir}/%{name}
 
+%terra_appstream -o %{SOURCE2}
+
 %files
 %{_libdir}/%{name}/
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
-%{_datadir}/icons/hicolor/256x256/apps/%{name}.png
+%{_datadir}/icons/hicolor/256x256/apps/%{appid}.png
+%{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
 * Wed Dec 03 2025 Nadia P <nyadiia@pm.me> - 0.6.9.1-1
