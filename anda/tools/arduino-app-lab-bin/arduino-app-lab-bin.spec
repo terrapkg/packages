@@ -5,6 +5,7 @@ Version:        0.2.4
 Release:        1%{?dist}
 Summary:        A powerful visual environment for managing the Arduino UNO Q
 
+Provides:       arduino-app-lab
 URL:            https://www.arduino.cc/en/software
 License:        GPL-3.0
 
