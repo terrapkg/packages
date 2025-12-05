@@ -47,10 +47,11 @@ cp source-app-lab/dependency_licenses -t .
 %terra_appstream -o %{SOURCE3}
 
 %files
+%license LICENSE
+%license dependency_licenses
 %{_bindir}/%{name}
 %{_iconsdir}/hicolor/scalable/apps/%{appid}.svg
 %{_datadir}/applications/%{appid}.desktop
-%{_defaultlicensedir}/%{name}/LICENSE
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
