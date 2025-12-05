@@ -29,7 +29,7 @@ install -dm755 %{buildroot}%{_bindir}
 install -p -m755 ArduinoAppLab_%{version}_Linux_x86-64/arduino-app-lab %{buildroot}%{_bindir}/%{name}
 
 install -dm755 %{buildroot}%{_datadir}/pixmaps/
-install -p -m644 source-app-lab/ui-packages/images/assets/round-arduino-logo.svg %{buildroot}%{_datadir}/pixmaps/round-arduino-logo.svg
+install -p -m644 source-app-lab/ui-packages/images/assets/round-arduino-logo.svg %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/arduino-app-lab
 
 install -dm755 %{buildroot}%{_datadir}/applications/
 install -p -m644 %{SOURCE2} %{buildroot}%{_datadir}/applications/cc.arduino.AppLab.desktop
