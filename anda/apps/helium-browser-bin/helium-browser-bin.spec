@@ -5,8 +5,8 @@
 %global appid net.imput.helium
 
 Name:           helium-browser-bin
-Version:        0.6.9.1
-Release:        2%{?dist}
+Version:        0.7.1.1
+Release:        1%?dist
 Summary:        Private, fast, and honest web browser based on Chromium
 
 URL:            https://helium.computer
