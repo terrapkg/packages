@@ -98,6 +98,7 @@ cp -r dist/src/* %{buildroot}%{_javadir}/gradle/src
 %{_sysconfdir}/profile.d/gradle.sh
 %{_javadir}/%{name}/
 %dnl %{_bindir}/%{name}
+/usr/binS
 
 %files doc
 %doc README.md
