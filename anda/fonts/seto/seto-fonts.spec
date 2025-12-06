@@ -1,7 +1,7 @@
 Name:      seto-fonts
 Version:   6.20
 Release:   4%?dist
-URL:       https://fontesk.com/seto-font/
+URL:       https://github.com/terrapkg/pkg-seto-fonts
 Source0:   https://github.com/terrapkg/pkg-seto-fonts/archive/refs/tags/%version.tar.gz
 License:   OFL-1.1
 Summary:   A handwritten font that contains kanji up to JIS 4th level and difficult kanji
