@@ -44,7 +44,6 @@ sed -i "s#distributionUrl=.*#distributionUrl=file\:%{SOURCE1}#" \
 	gradle/wrapper/gradle-wrapper.properties
 
 %build
-%dnl cd %{name}-%{version}
 export PATH="/usr/lib/jvm/java-21-openjdk/bin:${PATH}"
 ./gradlew installAll --parallel \
 	-Porg.gradle.java.installations.auto-download=false \
@@ -55,7 +54,6 @@ export PATH="/usr/lib/jvm/java-21-openjdk/bin:${PATH}"
 	--no-configuration-cache
 
 %install
-%dnl cd %{name}-%{version}/dist
 
 # install profile.d script
 mkdir -p %{buildroot}/%{_sysconfdir}/profile.d/
@@ -84,13 +82,6 @@ cp -r dist/docs/* %{buildroot}%{_javadir}/gradle/docs
 
 install -d %{buildroot}%{_javadir}/gradle/src
 cp -r dist/src/* %{buildroot}%{_javadir}/gradle/src
-
-%dnl install -Dm644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/%{name}/
-%dnl install -Dm644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/%{name}-doc/
-%dnl install -Dm644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/%{name}-src/
-%dnl install -Dm644 %{SOURCE3} %{buildroot}/%{_datadir}/doc/%{name}/
-%dnl install -Dm644 %{SOURCE3} %{buildroot}/%{_datadir}/doc/%{name}-doc/
-%dnl install -Dm644 %{SOURCE3} %{buildroot}/%{_datadir}/doc/%{name}-src/
 
 %files
 %doc README.md
