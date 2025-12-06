@@ -96,7 +96,7 @@ cp -r dist/src/* %{buildroot}%{_javadir}/gradle/src
 %doc README.md
 %license LICENSE
 %{_sysconfdir}/profile.d/gradle.sh
-%{_javadir}/java/%{name}/
+%{_javadir}/%{name}/
 %dnl %{_bindir}/%{name}
 
 %files doc
