@@ -37,7 +37,6 @@ install -Dpm755 *.sh -t %buildroot%_libexecdir/%name/
 %{_rpmmacrodir}/macros.go_extra
 %{_rpmmacrodir}/macros.nim_extra
 %{_rpmmacrodir}/macros.nodejs_extra
-%{_rpmmacrodir}/macros.web-assets_extra
 %{_rpmmacrodir}/macros.zig_extra
 
 
