@@ -51,11 +51,13 @@ install -Dm755 gradle.sh %{buildroot}/%{_sysconfdir}/profile.d/
 # create the necessary directory structure
 install -d "%{buildroot}%{_javadir}/%{name}/bin"
 install -d "%{buildroot}%{_javadir}/%{name}/lib/plugins"
+install -d "%{buildroot}%{_javadir}/%{name}/lib/agents"
 install -d "%{buildroot}%{_javadir}/%{name}/init.d"
 
 # copy across jar files
 install -Dm644 dist/lib/*.jar "%{buildroot}%{_javadir}/%{name}/lib"
 install -Dm644 dist/lib/plugins/*.jar "%{buildroot}%{_javadir}/%{name}/lib/plugins"
+install -Dm644 dist/lib/agents/*.jar "%{buildroot}%{_javadir}/%{name}/lib/agents"
 
 # copy across supporting text documentation and scripts
 install -m644 dist/NOTICE "%{buildroot}%{_javadir}/%{name}"
