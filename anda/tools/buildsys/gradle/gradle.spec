@@ -8,7 +8,7 @@ Source1:		https://services.gradle.org/distributions/%{name}-%{version}-all.zip
 License:		Apache-2.0
 Requires:		java-latest-openjdk coreutils findutils sed which bash
 BuildRequires:	java-21-openjdk-devel asciidoc xmlto groovy unzip git
-BuildRequires:  temurin-17-jdk temurin-17-jre
+BuildRequires:  temurin-17-jdk temurin-17-jre anda-srpm-macros
 BuildArch:		noarch
 Recommends:		gradle-doc gradle-src
 
@@ -26,15 +26,9 @@ Summary:	Gradle sources
 Sources for gradle, a powerful build system for the JVM.
 
 %prep
-unzip %{SOURCE1} %{name}-%{version}/{README,LICENSE}
-mv %{name}-%{version}/README .
-mv %{name}-%{version}/LICENSE .
-rmdir %{name}-%{version}
-unzip %{SOURCE0}
-cd %{name}-%{version}
+%git_clone https://github.com/gradle/gradle.git v%version
 
-mkdir -p dist
-cat <<EOF > dist/gradle.sh
+cat <<EOF > gradle.sh
 #!/bin/sh
 export GRADLE_HOME=/usr/share/java/gradle
 EOF
@@ -50,7 +44,7 @@ sed -i "s#distributionUrl=.*#distributionUrl=file\:%{SOURCE1}#" \
 	gradle/wrapper/gradle-wrapper.properties
 
 %build
-cd %{name}-%{version}
+%dnl cd %{name}-%{version}
 export PATH="/usr/lib/jvm/java-21-openjdk/bin:${PATH}"
 ./gradlew installAll --parallel \
 	-Porg.gradle.java.installations.auto-download=false \
@@ -61,10 +55,11 @@ export PATH="/usr/lib/jvm/java-21-openjdk/bin:${PATH}"
 	--no-configuration-cache
 
 %install
-cd %{name}-%{version}/dist
+%dnl cd %{name}-%{version}/dist
 
 # install profile.d script
-install -Dm755 gradle.sh %{buildroot}/etc/profile.d/
+mkdir -p %{buildroot}/%{_sysconfdir}/profile.d/
+install -Dm755 gradle.sh %{buildroot}/%{_sysconfdir}/profile.d/
 
 # create the necessary directory structure
 install -d "%{buildroot}/usr/share/java/%{name}/bin"
