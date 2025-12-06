@@ -79,10 +79,10 @@ install -m644 dist/init.d/*.* "%{buildroot}%{_javadir}/%{name}/init.d"
 ln -s %{_javadir}/%{name}/bin/%{name} "%{buildroot}/usr/bin"S
 
 install -d %{buildroot}%{_javadir}/gradle/docs
-cp -r docs/* %{buildroot}%{_javadir}/gradle/docs
+cp -r dist/docs/* %{buildroot}%{_javadir}/gradle/docs
 
 install -d %{buildroot}%{_javadir}/gradle/src
-cp -r src/* %{buildroot}%{_javadir}/gradle/src
+cp -r dist/src/* %{buildroot}%{_javadir}/gradle/src
 
 %dnl install -Dm644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/%{name}/
 %dnl install -Dm644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/%{name}-doc/
