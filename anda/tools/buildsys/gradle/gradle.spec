@@ -3,8 +3,7 @@ Version:		9.2.1
 Release:		1%?dist
 Summary:		Powerful build system for the JVM
 URL:			https://gradle.org/
-Source0:		https://services.gradle.org/distributions/%{name}-%{version}-src.zip
-Source1:		https://services.gradle.org/distributions/%{name}-%{version}-all.zip
+Source0:		https://github.com/gradle/gradle/archive/refs/tags/v%{version}.tar.gz
 License:		Apache-2.0
 Requires:		java-latest-openjdk coreutils findutils sed which bash
 BuildRequires:	java-21-openjdk-devel asciidoc xmlto groovy unzip git
@@ -26,7 +25,7 @@ Summary:	Gradle sources
 Sources for gradle, a powerful build system for the JVM.
 
 %prep
-%git_clone https://github.com/gradle/gradle.git v%version
+%autosetup -n %{name}-%{version}
 
 cat <<EOF > gradle.sh
 #!/bin/sh
@@ -34,14 +33,14 @@ export GRADLE_HOME=/usr/share/java/gradle
 EOF
 
 # remove ADOPTIUM contraint from all build related files
-sed -i '/JvmVendorSpec.ADOPTIUM/d' \
-	build-logic/jvm/src/main/kotlin/gradlebuild.unittest-and-compile.gradle.kts \
+# sed -i '/JvmVendorSpec.ADOPTIUM/d' \
+#	build-logic/jvm/src/main/kotlin/gradlebuild.unittest-and-compile.gradle.kts \
 #	subprojects/docs/src/snippets/java/toolchain-filters/groovy/build.gradle \
 #	subprojects/docs/src/snippets/java/toolchain-filters/kotlin/build.gradle.kts \
 #	build-logic-commons/gradle-plugin/src/main/kotlin/common.kt
 # inhibit automatic download of binary gradle
-sed -i "s#distributionUrl=.*#distributionUrl=file\:%{SOURCE1}#" \
-	gradle/wrapper/gradle-wrapper.properties
+%dnl sed -i "s#distributionUrl=.*#distributionUrl=file\:%{SOURCE1}#" \
+#	gradle/wrapper/gradle-wrapper.properties
 
 %build
 export PATH="/usr/lib/jvm/java-21-openjdk/bin:${PATH}"
