@@ -72,7 +72,7 @@ install -Dm644 dist/lib/plugins/*.jar "%{buildroot}%{_javadir}/%{name}/lib/plugi
 
 # copy across supporting text documentation and scripts
 install -m644 dist/NOTICE "%{buildroot}%{_javadir}/%{name}"
-mkdir -p %{_javadir}/%{name}/bin
+mkdir -p %{buildroot}/%{_javadir}/%{name}/bin
 install -m755 dist/bin/gradle "%{buildroot}%{_javadir}/%{name}/bin"
 install -m644 dist/init.d/*.* "%{buildroot}%{_javadir}/%{name}/init.d"
 
