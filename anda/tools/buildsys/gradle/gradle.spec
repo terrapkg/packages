@@ -33,13 +33,13 @@ export GRADLE_HOME=/usr/share/java/gradle
 EOF
 
 %build
-export PATH="/usr/lib/jvm/java-21-openjdk/bin:${PATH}"
+# export PATH="/usr/lib/jvm/java-21-openjdk/bin:${PATH}"
 ./gradlew installAll --parallel \
 	-Porg.gradle.java.installations.auto-download=false \
 	-PfinalRelease=true \
 	-Pgradle_installPath="$(pwd)/dist" \
 	-Porg.gradle.ignoreBuildJavaVersionCheck=true \
-	--warning-mode all \
+#	--warning-mode all \
 	--no-configuration-cache
 
 %install
