@@ -67,13 +67,13 @@ install -d "%{buildroot}%{_javadir}/%{name}/lib/plugins"
 install -d "%{buildroot}%{_javadir}/%{name}/init.d"
 
 # copy across jar files
-install -Dm644 lib/*.jar "%{buildroot}%{_javadir}/%{name}/lib"
-install -Dm644 lib/plugins/*.jar "%{buildroot}%{_javadir}/%{name}/lib/plugins"
+install -Dm644 dist/lib/*.jar "%{buildroot}%{_javadir}/%{name}/lib"
+install -Dm644 dist/lib/plugins/*.jar "%{buildroot}%{_javadir}/%{name}/lib/plugins"
 
 # copy across supporting text documentation and scripts
-install -m644 NOTICE "%{buildroot}%{_javadir}/%{name}"
-install -m755 bin/gradle "%{buildroot}%{_javadir}/%{name}/bin"
-install -m644 init.d/*.* "%{buildroot}%{_javadir}/%{name}/init.d"
+install -m644 dist/NOTICE "%{buildroot}%{_javadir}/%{name}"
+install -m755 dist/bin/gradle "%{buildroot}%{_javadir}/%{name}/bin"
+install -m644 dist/init.d/*.* "%{buildroot}%{_javadir}/%{name}/init.d"
 
 # link gradle script to /usr/bin
 ln -s %{_javadir}/%{name}/bin/%{name} "%{buildroot}/usr/bin"S
@@ -84,12 +84,12 @@ cp -r docs/* %{buildroot}%{_javadir}/gradle/docs
 install -d %{buildroot}%{_javadir}/gradle/src
 cp -r src/* %{buildroot}%{_javadir}/gradle/src
 
-install -Dm644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/%{name}/
-install -Dm644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/%{name}-doc/
-install -Dm644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/%{name}-src/
-install -Dm644 %{SOURCE3} %{buildroot}/%{_datadir}/doc/%{name}/
-install -Dm644 %{SOURCE3} %{buildroot}/%{_datadir}/doc/%{name}-doc/
-install -Dm644 %{SOURCE3} %{buildroot}/%{_datadir}/doc/%{name}-src/
+%dnl install -Dm644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/%{name}/
+%dnl install -Dm644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/%{name}-doc/
+%dnl install -Dm644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/%{name}-src/
+%dnl install -Dm644 %{SOURCE3} %{buildroot}/%{_datadir}/doc/%{name}/
+%dnl install -Dm644 %{SOURCE3} %{buildroot}/%{_datadir}/doc/%{name}-doc/
+%dnl install -Dm644 %{SOURCE3} %{buildroot}/%{_datadir}/doc/%{name}-src/
 
 %files
 %doc README
