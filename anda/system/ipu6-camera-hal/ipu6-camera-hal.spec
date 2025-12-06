@@ -9,7 +9,7 @@
 Name:           ipu6-camera-hal
 Summary:        Hardware abstraction layer for Intel IPU6
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
-Release:        1%?dist
+Release:        2%?dist
 License:        Apache-2.0
 URL:            https://github.com/intel/ipu6-camera-hal
 Source0:        %{url}/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
