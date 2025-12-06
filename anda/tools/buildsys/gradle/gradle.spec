@@ -72,6 +72,7 @@ install -Dm644 dist/lib/plugins/*.jar "%{buildroot}%{_javadir}/%{name}/lib/plugi
 
 # copy across supporting text documentation and scripts
 install -m644 dist/NOTICE "%{buildroot}%{_javadir}/%{name}"
+mkdir -p %{_javadir}/%{name}/bin
 install -m755 dist/bin/gradle "%{buildroot}%{_javadir}/%{name}/bin"
 install -m644 dist/init.d/*.* "%{buildroot}%{_javadir}/%{name}/init.d"
 
@@ -92,19 +93,19 @@ cp -r dist/src/* %{buildroot}%{_javadir}/gradle/src
 %dnl install -Dm644 %{SOURCE3} %{buildroot}/%{_datadir}/doc/%{name}-src/
 
 %files
-%doc README
+%doc README.md
 %license LICENSE
 %{_sysconfdir}/profile.d/gradle.sh
 %{_javadir}/java/%{name}/
-%{_bindir}/%{name}
+%dnl %{_bindir}/%{name}
 
 %files doc
-%doc README
+%doc README.md
 %license LICENSE
 %{_javadir}/%{name}/docs
 
 %files src
-%doc README
+%doc README.md
 %license LICENSE
 %{_javadir}/%{name}/src
 
