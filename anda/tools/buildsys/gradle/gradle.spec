@@ -5,7 +5,7 @@ Summary:		Powerful build system for the JVM
 URL:			https://gradle.org/
 Source0:		https://github.com/gradle/gradle/archive/refs/tags/v%{version}.tar.gz
 License:		Apache-2.0
-Requires:		java-latest-openjdk coreutils findutils sed which bash
+Requires:		java coreutils findutils sed which bash
 BuildRequires:	java-21-openjdk-devel asciidoc xmlto groovy unzip git
 BuildRequires:  temurin-17-jdk temurin-17-jre anda-srpm-macros
 BuildArch:		noarch
@@ -32,16 +32,6 @@ cat <<EOF > gradle.sh
 export GRADLE_HOME=/usr/share/java/gradle
 EOF
 
-# remove ADOPTIUM contraint from all build related files
-# sed -i '/JvmVendorSpec.ADOPTIUM/d' \
-#	build-logic/jvm/src/main/kotlin/gradlebuild.unittest-and-compile.gradle.kts \
-#	subprojects/docs/src/snippets/java/toolchain-filters/groovy/build.gradle \
-#	subprojects/docs/src/snippets/java/toolchain-filters/kotlin/build.gradle.kts \
-#	build-logic-commons/gradle-plugin/src/main/kotlin/common.kt
-# inhibit automatic download of binary gradle
-%dnl sed -i "s#distributionUrl=.*#distributionUrl=file\:%{SOURCE1}#" \
-#	gradle/wrapper/gradle-wrapper.properties
-
 %build
 export PATH="/usr/lib/jvm/java-21-openjdk/bin:${PATH}"
 ./gradlew installAll --parallel \
@@ -55,7 +45,7 @@ export PATH="/usr/lib/jvm/java-21-openjdk/bin:${PATH}"
 %install
 
 # install profile.d script
-mkdir -p %{buildroot}/%{_sysconfdir}/profile.d/
+mkdir -p %{buildroot}%{_sysconfdir}/profile.d/
 install -Dm755 gradle.sh %{buildroot}/%{_sysconfdir}/profile.d/
 
 # create the necessary directory structure
@@ -69,26 +59,26 @@ install -Dm644 dist/lib/plugins/*.jar "%{buildroot}%{_javadir}/%{name}/lib/plugi
 
 # copy across supporting text documentation and scripts
 install -m644 dist/NOTICE "%{buildroot}%{_javadir}/%{name}"
-mkdir -p %{buildroot}/%{_javadir}/%{name}/bin
-install -m755 dist/bin/gradle "%{buildroot}%{_javadir}/%{name}/bin"
+mkdir -p %{buildroot}%{_javadir}/%{name}/bin
+install -m755 dist/bin/%{name} "%{buildroot}%{_javadir}/%{name}/bin"
 install -m644 dist/init.d/*.* "%{buildroot}%{_javadir}/%{name}/init.d"
 
 # link gradle script to /usr/bin
-ln -s %{_javadir}/%{name}/bin/%{name} "%{buildroot}/usr/bin"S
+mkdir -p "%{buildroot}/%{_bindir}"
+ln -s %{_javadir}/%{name}/bin/%{name} "%{buildroot}%{_bindir}/%{name}"
 
-install -d %{buildroot}%{_javadir}/gradle/docs
-cp -r dist/docs/* %{buildroot}%{_javadir}/gradle/docs
+install -d %{buildroot}%{_javadir}/%{name}/docs
+cp -r dist/docs/* %{buildroot}%{_javadir}/%{name}/docs
 
-install -d %{buildroot}%{_javadir}/gradle/src
-cp -r dist/src/* %{buildroot}%{_javadir}/gradle/src
+install -d %{buildroot}%{_javadir}/%{name}/src
+cp -r dist/src/* %{buildroot}%{_javadir}/%{name}/src
 
 %files
 %doc README.md
 %license LICENSE
 %{_sysconfdir}/profile.d/gradle.sh
 %{_javadir}/%{name}/
-%dnl %{_bindir}/%{name}
-/usr/binS
+%{_bindir}/%{name}
 
 %files doc
 %doc README.md
