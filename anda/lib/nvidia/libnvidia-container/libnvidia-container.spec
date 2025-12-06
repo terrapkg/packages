@@ -1,7 +1,7 @@
 %global _major 1
 
 Name:           libnvidia-container
-Version:        1.18.0
+Version:        1.18.1
 Release:        1%?dist
 Summary:        NVIDIA container runtime library
 License:        BSD-3-Clause AND Apache-2.0 AND GPL-3.0-or-later AND LGPL-3.0-or-later AND MIT AND GPL-2.0-only
@@ -25,20 +25,15 @@ BuildRequires:  rpcgen
 The nvidia-container library provides an interface to configure containers using NVIDIA hardware.
 
 %prep
-rm -rf ./*
 ### Must be built this way because the Makefile expects be to in a Git directory.
-git clone https://github.com/NVIDIA/%{name}.git
-cd %{name}
-git checkout v%{version}
+%git_clone %{url}.git v%{version}
 %autopatch -p1
 
 %build
-cd %{name}
 make distclean
 %make_build REVISION=%{version} WITH_LIBELF=yes
 
 %install
-cd %{name}
 make install DESTDIR=%{buildroot} REVISION=%{version} WITH_LIBELF=yes \
              LDCONFIG=/bin/true \
              prefix=%{_prefix} \
