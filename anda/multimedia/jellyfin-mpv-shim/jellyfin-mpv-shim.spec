@@ -8,6 +8,8 @@ Version:        %{pypi_version}
 Release:        1%{?dist}
 Summary:        Cast media from Jellyfin Mobile and Web apps to MPV
 
+Packager:       metcya <metcya@gmail.com>
+
 License:        GPLv3
 URL:            https://github.com/jellyfin/jellyfin-mpv-shim
 Source0:        %{pypi_source}
@@ -16,6 +18,8 @@ BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  python3-pip
 BuildRequires:  python3dist(setuptools)
+
+Requires:       python3-mpv
 
 %description
 Jellyfin MPV Shim is a cross-platform cast client for Jellyfin. It has
