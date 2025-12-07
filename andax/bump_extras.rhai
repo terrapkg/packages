@@ -1,4 +1,4 @@
-fn alma_vr(pkg, branch) {
+fn alma_vr(pkg, repo, branch) {
     if branch.starts_with("el") {
         branch.crop(2);
     } else if branch.starts_with("f") {
@@ -14,7 +14,7 @@ fn alma_vr(pkg, branch) {
     }
     majorminor.dedup();
     majorminor.sort();
-    let url = get(`https://repo.almalinux.org/almalinux/${majorminor[majorminor.len()-1]}/BaseOS/x86_64/os/Packages/`);
+    let url = get(`https://repo.almalinux.org/almalinux/${majorminor[majorminor.len()-1]}/${repo}/x86_64/os/Packages/`);
     let matches = find_all(`${pkg}-([\d.]+)-([\d.]+)\.el${branch}.*?\.rpm`, url);
     //                             ──────── ───── .el??
     //                             version  release
@@ -25,7 +25,7 @@ fn alma_vr(pkg, branch) {
 }
 
 fn alma(pkg, branch) {
-  let vr = alma_vr(pkg, branch);
+  let vr = alma_vr(pkg, repo, branch);
   return(vr[1]);
 }
 
