@@ -34,6 +34,7 @@ Enhanced and updated fork of Dav Glass' original (but abandoned) license-checker
 %npm_install -s license-checker
 
 # Test
+ls -a ./bin
 %{lua:
 print(io.open("./bin/" .. rpm.expand("%{npm_name}") .. ".js", r))
 print(posix.stat("./bin/" .. rpm.expand("%{npm_name}") .. ".js"))}
