@@ -40,9 +40,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{base_name}.desktop
 %files
 %doc README.md
 %license LICENSE
-%{_bindir}/%{git_name}
+%{_bindir}/%{base_name}
 %{_datadir}/applications/%{git_name}.desktop
-%{_datadir}/%{git_name}/
+%{_libdir}/%{base_name}/
 %{_iconsdir}/hicolor/16x16/apps/%{git_name}.png
 %{_iconsdir}/hicolor/32x32/apps/%{git_name}.png
 %{_iconsdir}/hicolor/48x48/apps/%{git_name}.png
