@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Arduino App Lab
+Comment=A powerful visual environment for managing the Arduino UNO Q
+Exec=arduino-app-lab-bin
+Icon=cc.arduino.AppLab
+Terminal=false
+Type=Application
+Categories=Development
+StartupNotify=true
+Keywords=arduino;applab;lab
+StartupWMClass=arduino-app-lab-bin

@@ -7,8 +7,8 @@
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
-Version:        13.0.85
-Release:        1%{?dist}
+Version:        13.1.68
+Release:        1%?dist
 Summary:        CUDA GDB
 License:        GPLv3+ and GPLv3+ with exceptions and GPLv2+ and GPLv2+ with exceptions and GPL+ and LGPLv2+ and LGPLv3+ and BSD and Public Domain and GFDL
 URL:            https://developer.nvidia.com/cuda-toolkit
