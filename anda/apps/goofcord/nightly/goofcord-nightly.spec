@@ -15,7 +15,7 @@ Summary:       A privacy-minded Legcord fork.
 Group:         Applications/Internet
 URL:           https://github.com/Milkshiift/%{git_name}
 Source0:       %{url}/archive/%{commit}/%{git_name}-%{commit}.tar.gz
-BuildRequires: anda-srpm-macros >= 0.2.23
+BuildRequires: anda-srpm-macros >= 0.2.25
 BuildRequires: bun-bin
 Packager:      Gilver E. <rockgrub@disroot.org>
 
