@@ -5,7 +5,7 @@ metalink=https://tetsudou.fyralabs.com/metalink?repo=terrael$releasever&arch=$ba
 metadata_expire=6h
 type=rpm
 gpgcheck=1
-gpgkey=https://repos.fyralabs.com/terrael$releasever/key.asc
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-terrael$releasever
 repo_gpgcheck=1
 enabled=1
 enabled_metadata=1
@@ -19,7 +19,7 @@ metalink=https://tetsudou.fyralabs.com/metalink?repo=terrael$releasever-source&a
 metadata_expire=6h
 type=rpm
 gpgcheck=1
-gpgkey=https://repos.fyralabs.com/terrael$releasever-source/key.asc
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-terrael$releasever-source
 repo_gpgcheck=1
 enabled=0
 enabled_metadata=0

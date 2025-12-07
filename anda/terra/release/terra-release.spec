@@ -2,7 +2,7 @@
 
 Name:           terra-release
 Version:        %{?fedora:%{fedora}}%{?rhel:%{rhel}}
-Release:        6
+Release:        7
 Summary:        Release package for Terra
 
 License:        MIT
@@ -13,6 +13,8 @@ BuildArch:      noarch
 %dnl We probably shouldn't do this in Rawhide!
 %dnl Requires:       system-release(%{version})
 Requires:       (epel-release-latest-%{version} or epel-release)
+
+Requires:       terra-gpg-keys
 
 %description
 Release package for Terra, containing the Terra repository configuration.
