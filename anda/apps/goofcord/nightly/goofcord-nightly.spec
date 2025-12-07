@@ -31,7 +31,7 @@ sed -i '/\"x64\",/d' electron-builder.ts
 %bun_build -r build -R
 
 %install
-%electron_install -D -O -U %U -E UseOzonePlatform,WaylandWindowDecorations
+%electron_install -d goofcord -s goofcord -D -O -U %U -E UseOzonePlatform,WaylandWindowDecorations
 
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{git_name}.desktop
