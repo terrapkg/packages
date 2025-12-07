@@ -37,7 +37,7 @@ Enhanced and updated fork of Dav Glass' original (but abandoned) license-checker
 cd ./bin
 stat %{npm_name}.js
 %{lua:
-print(io.open(rpm.expand("%{npm_name}") .. ".js", r))}
+print(posix.stat("$(pwd)/" .. rpm.expand("%{npm_name}") .. ".js"))}
 # Bootstrap the license fetching
 ./bin/%{npm_name}%{?_js} --limitAttributes licenses --out LICENSE.modules
 
