@@ -1,5 +1,5 @@
-%global commit 9615228a515fd77abb0cab5de21528f1f33d26f6
-%global commit_date 20251104
+%global commit 6f3bee3b4a1c9ec65fcba586fc7fc1a804d567ba
+%global commit_date 20251205
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           envision-nightly

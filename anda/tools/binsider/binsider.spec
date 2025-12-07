@@ -1,5 +1,5 @@
 Name:          binsider
-Version:       0.2.1
+Version:       0.3.0
 Release:       1%?dist
 Summary:       Analyze ELF binaries like a boss 😼🕵️‍♂️
 License:       Apache-2.0 AND MIT
