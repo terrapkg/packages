@@ -6,8 +6,8 @@
 
 Name:           libnvfatbin
 Epoch:          1
-Version:        13.0.85
-Release:        1%{?dist}
+Version:        13.1.80
+Release:        1%?dist
 Summary:        CUDA Fatbin Creator API
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit

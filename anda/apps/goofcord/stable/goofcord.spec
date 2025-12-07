@@ -9,7 +9,7 @@
 %endif
 
 Name:          goofcord
-Version:       1.11.2
+Version:       1.11.3
 Release:       1%?dist
 License:       OSL-3.0
 Summary:       A privacy-minded Legcord fork.

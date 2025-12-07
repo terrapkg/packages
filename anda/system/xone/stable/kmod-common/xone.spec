@@ -3,7 +3,7 @@
 %global firmware_hash1 080ce4091e53a4ef3e5fe29939f51fd91f46d6a88be6d67eb6e99a5723b3a223
 
 Name:           xone
-Version:        0.4.11
+Version:        0.4.12
 Release:        1%?dist
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Epoch:          2

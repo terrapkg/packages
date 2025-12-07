@@ -2,7 +2,7 @@
 
 Name:           terra-release
 Version:        %{?fedora:%{fedora}}%{?rhel:%{rhel}}
-Release:        6
+Release:        7
 Summary:        Release package for Terra
 
 License:        MIT
@@ -17,6 +17,8 @@ BuildArch:      noarch
 %dnl We probably shouldn't do this in Rawhide!
 %dnl Requires:       system-release(%{version})
 
+Requires:       terra-gpg-keys
+
 %description
 Release package for Terra, containing the Terra repository configuration.
 
@@ -25,6 +27,8 @@ Summary: Release package for Terra Extras
 Obsoletes: terra-release-extra < 42-3
 Provides: terra-release-extra = %version-%release
 
+Requires:       terra-gpg-keys
+
 %description extras
 Release package for Terra Extras, which is a repository with packages that might cause
 conflict with Fedora.
@@ -32,17 +36,23 @@ conflict with Fedora.
 %package nvidia
 Summary: Release package for the nvidia subrepo of Terra Extras
 
+Requires:       terra-gpg-keys
+
 %description nvidia
 Release package for the Terra Extras nvidia subrepo, which provides nvidia drivers that might cause a conflict with Fedora.
 
 %package mesa
 Summary: Release package for the mesa subrepo of Terra Extras
 
+Requires:       terra-gpg-keys
+
 %description mesa
 Release package for the Terra Extras mesa subrepo, which provides a patched and updated version of mesa that might cause a conflict with Fedora.
 
 %package multimedia
 Summary: Release package for the multimedia subrepo of Terra Extras
+
+Requires:       terra-gpg-keys
 
 %description multimedia
 Release package for the Terra Extras multimedia subrepo, which provides codecs that might cause a conflict with Fedora.

@@ -1,5 +1,5 @@
-%global commit 2eecce5f05678460e99daa771448c5ce19dfc740
-%global commit_date 20251203
+%global commit a10b0705ac3fdebae240948983f74076014c57b9
+%global commit_date 20251207
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
@@ -19,21 +19,11 @@ BuildRequires:  mold
 BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo-rpm-macros
 
-BuildRequires:  glx-utils
 BuildRequires:  fontconfig-devel
 BuildRequires:  glibc
-BuildRequires:  libxcb-devel
-BuildRequires:  wayland-devel
 BuildRequires:  openxr-devel
-BuildRequires:  libglvnd-devel
-BuildRequires:  libglvnd-gles
-BuildRequires:  mesa-libgbm-devel
-BuildRequires:  libwayland-egl
-BuildRequires:  libX11-devel
-BuildRequires:  libXfixes-devel
-BuildRequires:  libxkbcommon-devel
 BuildRequires:  alsa-lib-devel
-BuildRequires:  mesa-libEGL-devel
+BuildRequires:  wayland-devel
 
 Provides:       stardust-server
 
