@@ -1,5 +1,4 @@
-# The original is dead and has vulnerabilities due to it, this fork is maintainted
-%global npm_name license-checker-rseidelsohn
+# The original is dead and has vulnerabilities due to it, this fork is maintainted%global npm_name license-checker-rseidelsohn
 # Disabled for now. Requires ESLint.
 %bcond test 0
 
@@ -34,7 +33,7 @@ Enhanced and updated fork of Dav Glass' original (but abandoned) license-checker
 %npm_install -s license-checker
 
 # Test
-%{lua: if posix.stat("./bin/" .. rpm.expand("%{npm_name"} .. ".js") then print("echo True.") end}
+%{lua: if posix.stat("./bin/" .. rpm.expand("%{npm_name}") .. ".js") then print("echo True.") end}
 # Bootstrap the license fetching
 bin/%{npm_name}%{?_js} --limitAttributes licenses --out LICENSE.modules
 
