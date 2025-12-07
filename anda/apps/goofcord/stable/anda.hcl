@@ -2,7 +2,7 @@ project pkg {
 	rpm {
 		spec = "goofcord.spec"
 	}
-        labels {
-                mock = 1
-        } 
+	labels {
+		mock = 1
+	}
 } 
