@@ -8,17 +8,10 @@ if m == v {
 }
 
 // Rebuild the package whenever the Alma kernel updates
-let releasever = labels.branch;
-releasever.crop(2);
-let majorminor = [];
-for matches in find_all(`(${releasever}\.[\d]+)/`, get("https://repo.almalinux.org/almalinux/")) {
-        majorminor += matches[1].parse_float();
-}
-majorminor.dedup();
-majorminor.sort();
-let kver = find_all(`kernel-([\d.]+.*?)\.el.*?\.x86_64\.rpm`, get(`https://repo.almalinux.org/almalinux/${majorminor[majorminor.len()-1]}/BaseOS/x86_64/os/Packages/`));
-kver.dedup();
-open_file("anda/system/nvidia/kmod-nvidia/VERSION_kernel.txt", "w").write(`${kver[kver.len - 1][1]}`);
+let kver = bump::alma_vr("kernel", "BaseOS", labels.branch)[1];
+let krel = bump::alma_vr("kernel", "BaseOS", labels.branch)[2];
+open_file("anda/system/nvidia/kmod-nvidia/VERSION_kernel.txt", "w").write(kver);
+open_file("anda/system/nvidia/kmod-nvidia/RELEASE_kernel.txt", "w").write(krel);
 
 let dir = sub(`/[^/]+$`, "", __script_path);
 if sh("[[ `git status " + dir + " --porcelain` ]] && exit 1 || exit 0", #{}).ctx.rc == 1 {
