@@ -3,7 +3,7 @@
 %global pypi_version 2.9.0
 %global pypi_install_name %(echo %pypi_name | sed -e 's/-/_/g')
 
-Name:           python-%{pypi_name}
+Name:           %{pypi_name}
 Version:        %{pypi_version}
 Release:        1%{?dist}
 Summary:        Cast media from Jellyfin Mobile and Web apps to MPV
@@ -22,16 +22,6 @@ Jellyfin MPV Shim is a cross-platform cast client for Jellyfin. It has
 support for all your advanced media files without transcoding, as well as tons
 of features which set it apart from other multimedia clients.
 
-%package -n     python3-%{pypi_name}
-Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
-
-%description -n python3-%{pypi_name}
-Jellyfin MPV Shim is a cross-platform cast client for Jellyfin. It has
-support for all your advanced media files without transcoding, as well as tons
-of features which set it apart from other multimedia clients.
-
-
 %prep
 %autosetup -n %{pypi_name}-%{pypi_version}
 
@@ -42,7 +32,7 @@ of features which set it apart from other multimedia clients.
 %pyproject_install
 %pyproject_save_files %{pypi_install_name}
 
-%files -n python3-%{pypi_name} -f %{pyproject_files}
+%files -f %{pyproject_files}
 %license LICENSE.md jellyfin_mpv_shim/default_shader_pack/LICENSE.md
 %doc README.md jellyfin_mpv_shim/default_shader_pack/README.md
 %{_bindir}/jellyfin-mpv-shim
