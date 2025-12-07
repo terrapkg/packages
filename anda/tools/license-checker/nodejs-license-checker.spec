@@ -35,6 +35,9 @@ Enhanced and updated fork of Dav Glass' original (but abandoned) license-checker
 
 # Test
 %{lua: if posix.stat("./bin/" .. rpm.expand("%{npm_name}") .. ".js") then print("echo True.") else print("echo False.") end}
+if $(stat ./bin/%{npm_name}.js); then
+ echo "True."
+fi
 # Bootstrap the license fetching
 bin/%{npm_name}%{?_js} --limitAttributes licenses --out LICENSE.modules
 
