@@ -32,7 +32,7 @@ sed -i '/\"x64\",/d' electron-builder.ts
 %bun_build -r build -R
 
 %install
-%electron_install -d %{base_name} -s %{base_name} -D -O -U %U -E UseOzonePlatform,WaylandWindowDecorations
+%electron_install -d %{base_name} -s %{base_name} -i %{base_name} -D -O -U %U -E UseOzonePlatform,WaylandWindowDecorations
 
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{base_name}.desktop
@@ -43,14 +43,14 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{base_name}.desktop
 %{_bindir}/%{base_name}
 %{_datadir}/applications/%{base_name}.desktop
 %{_libdir}/%{base_name}/
-%{_iconsdir}/hicolor/16x16/apps/%{git_name}.png
-%{_iconsdir}/hicolor/32x32/apps/%{git_name}.png
-%{_iconsdir}/hicolor/48x48/apps/%{git_name}.png
-%{_iconsdir}/hicolor/64x64/apps/%{git_name}.png
-%{_iconsdir}/hicolor/128x128/apps/%{git_name}.png
-%{_iconsdir}/hicolor/256x256/apps/%{git_name}.png
-%{_iconsdir}/hicolor/512x512/apps/%{git_name}.png
-%{_iconsdir}/hicolor/1024x1024/apps/%{git_name}.png
+%{_iconsdir}/hicolor/16x16/apps/%{base_name}.png
+%{_iconsdir}/hicolor/32x32/apps/%{base_name}.png
+%{_iconsdir}/hicolor/48x48/apps/%{base_name}.png
+%{_iconsdir}/hicolor/64x64/apps/%{base_name}.png
+%{_iconsdir}/hicolor/128x128/apps/%{base_name}.png
+%{_iconsdir}/hicolor/256x256/apps/%{base_name}.png
+%{_iconsdir}/hicolor/512x512/apps/%{base_name}.png
+%{_iconsdir}/hicolor/1024x1024/apps/%{base_name}.png
 
 %changelog
 * Sat Jun 28 2025 Gilver E. <rockgrub@disroot.org> - 1.10.1^20250615.git.3f5eda1
