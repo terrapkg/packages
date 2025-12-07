@@ -94,7 +94,7 @@ cp -r dist/src/* %{buildroot}%{_javadir}/%{name}/src
 
 %changelog
 * Fri Dec 05 2025 Owen Zimmerman <owen@fyralabs.com>
-- Pull in adoptium repo, fix some build issues
+- Pull in adoptium repo, fix many build issues, change source to GitHub release artifacts
 
 * Tue Feb 7 2023 windowsboy111 <windowsboy111@fyralabs.com>
 - Initial package
