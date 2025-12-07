@@ -10,7 +10,7 @@ Summary:       Check NPM package licenses
 SourceLicense: BSD-3-Clause
 License:       Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND CC-BY-3.0 AND ISC AND (MIT AND CC-BY-3.0) AND MIT
 URL:           https://github.com/RSeidelsohn/license-checker-rseidelsohn
-BuildRequires: anda-srpm-macros >= 0.2.19
+BuildRequires: anda-srpm-macros >= 0.2.24
 BuildRequires: nodejs-devel
 BuildRequires: nodejs-npm
 BuildRequires: nodejs-packaging
