@@ -1,0 +1,10 @@
+<component type="addon">
+  <id>com.fyralabs.PackageKit-bootc</id>
+  <extends>org.freedesktop.packagekit</extends>
+  <name>bootc for PackageKit</name>
+  <summary>A PackageKit backend for bootc system updates.</summary>
+  <project_license>GPL-3.0+</project_license>
+  <categories>
+    <category>System</category>
+  </categories>
+</component>

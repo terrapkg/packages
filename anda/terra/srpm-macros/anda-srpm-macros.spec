@@ -1,5 +1,5 @@
 Name:           anda-srpm-macros
-Version:        0.2.21
+Version:        0.2.27
 Release:        1%?dist
 Summary:        SRPM macros for extra Fedora packages
 
@@ -9,6 +9,7 @@ Source0:        %url/archive/refs/tags/v%{version}.tar.gz
 
 Recommends:     rust-packaging
 Requires:       git-core
+Requires:       terra-appstream-helper
 Obsoletes:      fyra-srpm-macros < 0.1.1-1
 Provides:       fyra-srpm-macros = %{version}-%{release}
 BuildArch:      noarch
@@ -36,7 +37,6 @@ install -Dpm755 *.sh -t %buildroot%_libexecdir/%name/
 %{_rpmmacrodir}/macros.go_extra
 %{_rpmmacrodir}/macros.nim_extra
 %{_rpmmacrodir}/macros.nodejs_extra
-%{_rpmmacrodir}/macros.web-assets_extra
 %{_rpmmacrodir}/macros.zig_extra
 
 

@@ -3,7 +3,7 @@
 %bcond test 1
 
 Name:          node-%{module}
-Version:       10.1.0
+Version:       10.2.0
 Release:       1%?dist
 Summary:       Backport GitHub commits
 SourceLicense: Apache-2.0

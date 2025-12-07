@@ -1,6 +1,6 @@
-diff -Naur ffmpeg-7.1.1.old/libavformat/avformat.h ffmpeg-7.1.1/libavformat/avformat.h
---- ffmpeg-7.1.1.old/libavformat/avformat.h	2025-03-24 10:54:38.357759076 +0100
-+++ ffmpeg-7.1.1/libavformat/avformat.h	2025-03-24 10:54:39.096586841 +0100
+diff -Naur ffmpeg-7.1.2.old/libavformat/avformat.h ffmpeg-7.1.2/libavformat/avformat.h
+--- ffmpeg-7.1.2.old/libavformat/avformat.h	2025-10-27 10:07:00.895476692 +0100
++++ ffmpeg-7.1.2/libavformat/avformat.h	2025-10-27 10:07:01.866348795 +0100
 @@ -1202,6 +1202,10 @@
  
  struct AVCodecParserContext *av_stream_get_parser(const AVStream *s);
@@ -12,9 +12,9 @@ diff -Naur ffmpeg-7.1.1.old/libavformat/avformat.h ffmpeg-7.1.1/libavformat/avfo
  #define AV_PROGRAM_RUNNING 1
  
  /**
-diff -Naur ffmpeg-7.1.1.old/libavformat/utils.c ffmpeg-7.1.1/libavformat/utils.c
---- ffmpeg-7.1.1.old/libavformat/utils.c	2025-03-24 10:54:38.360759112 +0100
-+++ ffmpeg-7.1.1/libavformat/utils.c	2025-03-24 10:54:39.097179227 +0100
+diff -Naur ffmpeg-7.1.2.old/libavformat/utils.c ffmpeg-7.1.2/libavformat/utils.c
+--- ffmpeg-7.1.2.old/libavformat/utils.c	2025-10-27 10:07:00.899476727 +0100
++++ ffmpeg-7.1.2/libavformat/utils.c	2025-10-27 10:07:01.866992658 +0100
 @@ -44,6 +44,13 @@
   * various utility functions for use within FFmpeg
   */

@@ -5,7 +5,7 @@
 
 Name:           steam
 Version:        1.0.0.85
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Installer for the Steam software distribution service
 # Redistribution and repackaging for Linux is allowed, see license file. udev rules are MIT.
 License:        Steam License Agreement and MIT
@@ -24,14 +24,11 @@ Source5:        https://github.com/terrapkg/pkg-steam/raw/refs/heads/main/README
 # https://github.com/denilsonsa/udev-joystick-blacklist
 # https://github.com/systemd/systemd/issues/32773
 
-# Input devices seen as joysticks:
-Source6:        https://raw.githubusercontent.com/denilsonsa/udev-joystick-blacklist/master/after_kernel_4_9/51-these-are-not-joysticks-rm.rules
-
 # Configure limits in systemd
-Source7:        https://github.com/terrapkg/pkg-steam/raw/refs/heads/main/01-steam.conf
+Source6:        https://github.com/terrapkg/pkg-steam/raw/refs/heads/main/01-steam.conf
 
 # Steam restart script
-Source9:       steamrestart.sh
+Source7:       steamrestart.sh
 
 # Do not install desktop file in lib/steam, do not install apt sources
 Patch0:         https://github.com/terrapkg/pkg-steam/raw/refs/heads/main/steam-makefile.patch
@@ -130,7 +127,10 @@ Recommends:     xdg-user-dirs
 Recommends:     gobject-introspection
 
 Requires:       steam-devices
-Requires:       steam-device-rules
+
+# -rm is usually better for Steam
+Recommends:     udev-joystick-blacklist-rm
+Requires:       (udev-joystick-blacklist-rm or udev-joystick-blacklist)
 
 # Workaround for GNOME issues with libei
 Recommends:     (extest-%{name} if gnome-shell)
@@ -141,14 +141,6 @@ installation, automatic updates, achievements, SteamCloud synchronized savegame
 and screenshot functionality, and many social features.
 
 This package contains the installer for the Steam software distribution service.
-
-%package        device-rules
-Summary:        Fix for keyboard/mouse/tablet being detected as joystick in Linux
-Obsoletes:      steam-devices < %{version}-%{release}
-BuildArch:      noarch
-
-%description    device-rules
-This package contains fixes for devices being detected incorrectly by Steam.
 
 %prep
 %autosetup -p1 -n %{name}-launcher
@@ -164,10 +156,6 @@ cp %{SOURCE5} .
 rm -fr %{buildroot}%{_docdir}/%{name}/ \
     %{buildroot}%{_bindir}/%{name}deps
 
-mkdir -p %{buildroot}%{_udevrulesdir}/
-install -m 644 -p %{SOURCE6} \
-    %{buildroot}%{_udevrulesdir}/
-
 # Environment files
 mkdir -p %{buildroot}%{_sysconfdir}/profile.d
 install -pm 644 %{SOURCE1} %{SOURCE2} %{buildroot}%{_sysconfdir}/profile.d
@@ -175,9 +163,9 @@ install -pm 644 %{SOURCE1} %{SOURCE2} %{buildroot}%{_sysconfdir}/profile.d
 # Raise file descriptor limit
 mkdir -p %{buildroot}%{_prefix}/lib/systemd/system.conf.d/
 mkdir -p %{buildroot}%{_prefix}/lib/systemd/user.conf.d/
-install -m 644 -p %{SOURCE7} %{buildroot}%{_prefix}/lib/systemd/system.conf.d/
-install -m 644 -p %{SOURCE7} %{buildroot}%{_prefix}/lib/systemd/user.conf.d/
-install -m 775 -p %{SOURCE9} %{buildroot}%{_bindir}/steamrestart
+install -m 644 -p %{SOURCE6} %{buildroot}%{_prefix}/lib/systemd/system.conf.d/
+install -m 644 -p %{SOURCE6} %{buildroot}%{_prefix}/lib/systemd/user.conf.d/
+install -m 775 -p %{SOURCE7} %{buildroot}%{_bindir}/steamrestart
 
 # https://github.com/ValveSoftware/steam-for-linux/issues/9940
 desktop-file-edit --remove-key=PrefersNonDefaultGPU %{buildroot}%{_datadir}/applications/%{name}.desktop
@@ -205,9 +193,6 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%{appstream_id
 %{_prefix}/lib/systemd/system.conf.d/01-steam.conf
 %dir %{_prefix}/lib/systemd/user.conf.d/
 %{_prefix}/lib/systemd/user.conf.d/01-steam.conf
-
-%files device-rules
-%{_udevrulesdir}/51-these-are-not-joysticks-rm.rules
 
 %changelog
 * Sun Sep 01 2024 Simone Caronni <negativo17@gmail.com> - 1.0.0.81-1

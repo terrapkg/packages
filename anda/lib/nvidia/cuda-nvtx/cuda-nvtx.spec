@@ -8,7 +8,7 @@
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
-Version:        13.0.85
+Version:        13.1.68
 Release:        1%?dist
 Summary:        NVIDIA Tools Extension (NVTX) library
 License:        CUDA Toolkit
@@ -65,8 +65,7 @@ sed -i \
 %{_libdir}/libnvtx3interop.so.*
 
 %files devel
-%dir %{_includedir}/nvtx3/
-%{_includedir}/nvtx3/*
+%{_includedir}/nvtx3/
 %{_libdir}/libnvtx3interop.so
 %{_libdir}/pkgconfig/nvToolsExt.pc
 

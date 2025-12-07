@@ -1,0 +1,454 @@
+diff -Naur ffmpeg-7.1.2.old/doc/outdevs.texi ffmpeg-7.1.2/doc/outdevs.texi
+--- ffmpeg-7.1.2.old/doc/outdevs.texi	2025-10-27 10:07:00.979477433 +0100
++++ ffmpeg-7.1.2/doc/outdevs.texi	2025-10-27 10:07:02.002148270 +0100
+@@ -240,6 +240,10 @@
+ outgoing VANC data will be dropped.
+ Defaults to @samp{1048576}.
+ 
++@item block_until_available
++Retries output if device appears unavailable. Retry rate is 60 times a second.
++Defaults to @option{0}.
++
+ @end table
+ 
+ @subsection Examples
+diff -Naur ffmpeg-7.1.2.old/fftools/ffmpeg_sched.c ffmpeg-7.1.2/fftools/ffmpeg_sched.c
+--- ffmpeg-7.1.2.old/fftools/ffmpeg_sched.c	2025-10-27 10:07:01.220479559 +0100
++++ ffmpeg-7.1.2/fftools/ffmpeg_sched.c	2025-10-27 10:07:02.002549025 +0100
+@@ -22,6 +22,7 @@
+ #include <stdatomic.h>
+ #include <stddef.h>
+ #include <stdint.h>
++#include <unistd.h>
+ 
+ #include "cmdutils.h"
+ #include "ffmpeg_sched.h"
+diff -Naur ffmpeg-7.1.2.old/libavdevice/decklink_common_c.h ffmpeg-7.1.2/libavdevice/decklink_common_c.h
+--- ffmpeg-7.1.2.old/libavdevice/decklink_common_c.h	2025-10-27 10:07:00.829476109 +0100
++++ ffmpeg-7.1.2/libavdevice/decklink_common_c.h	2025-10-27 10:07:02.003002589 +0100
+@@ -74,6 +74,7 @@
+     int64_t timestamp_align;
+     int timing_offset;
+     int wait_for_tc;
++    int block_until_available;
+     DecklinkSignalLossAction signal_loss_action;
+ };
+ 
+diff -Naur ffmpeg-7.1.2.old/libavdevice/decklink_common.cpp ffmpeg-7.1.2/libavdevice/decklink_common.cpp
+--- ffmpeg-7.1.2.old/libavdevice/decklink_common.cpp	2025-10-27 10:07:00.828476101 +0100
++++ ffmpeg-7.1.2/libavdevice/decklink_common.cpp	2025-10-27 10:07:02.003115933 +0100
+@@ -25,7 +25,7 @@
+ #include "libavformat/internal.h"
+ }
+ 
+-#include <DeckLinkAPI.h>
++#include <DeckLinkAPI_v14_2_1.h>
+ #ifdef _WIN32
+ #include <DeckLinkAPI_i.c>
+ #else
+@@ -53,6 +53,7 @@
+ 
+ #include "decklink_common.h"
+ 
++
+ static IDeckLinkIterator *decklink_create_iterator(AVFormatContext *avctx)
+ {
+     IDeckLinkIterator *iter;
+@@ -512,8 +513,8 @@
+         return AVERROR(EIO);
+ 
+     while (ret == 0 && iter->Next(&dl) == S_OK) {
+-        IDeckLinkOutput *output_config;
+-        IDeckLinkInput *input_config;
++        IDeckLinkOutput_v14_2_1 *output_config;
++        IDeckLinkInput_v14_2_1 *input_config;
+         const char *display_name = NULL;
+         const char *unique_name = NULL;
+         AVDeviceInfo *new_device = NULL;
+@@ -527,14 +528,14 @@
+             goto next;
+ 
+         if (show_outputs) {
+-            if (dl->QueryInterface(IID_IDeckLinkOutput, (void **)&output_config) == S_OK) {
++            if (dl->QueryInterface(IID_IDeckLinkOutput_v14_2_1, (void **)&output_config) == S_OK) {
+                 output_config->Release();
+                 add = 1;
+             }
+         }
+ 
+         if (show_inputs) {
+-            if (dl->QueryInterface(IID_IDeckLinkInput, (void **)&input_config) == S_OK) {
++            if (dl->QueryInterface(IID_IDeckLinkInput_v14_2_1, (void **)&input_config) == S_OK) {
+                 input_config->Release();
+                 add = 1;
+             }
+diff -Naur ffmpeg-7.1.2.old/libavdevice/decklink_common.h ffmpeg-7.1.2/libavdevice/decklink_common.h
+--- ffmpeg-7.1.2.old/libavdevice/decklink_common.h	2025-10-27 10:07:00.831476127 +0100
++++ ffmpeg-7.1.2/libavdevice/decklink_common.h	2025-10-27 10:07:02.003408083 +0100
+@@ -93,8 +93,8 @@
+ struct decklink_ctx {
+     /* DeckLink SDK interfaces */
+     IDeckLink *dl;
+-    IDeckLinkOutput *dlo;
+-    IDeckLinkInput *dli;
++    IDeckLinkOutput_v14_2_1 *dlo;
++    IDeckLinkInput_v14_2_1 *dli;
+     IDeckLinkConfiguration *cfg;
+     IDeckLinkProfileAttributes *attr;
+     decklink_output_callback *output_callback;
+@@ -134,7 +134,6 @@
+     AVStream *klv_st;
+     AVStream *teletext_st;
+     uint16_t cdp_sequence_num;
+-
+     /* Options */
+     int list_devices;
+     int list_formats;
+@@ -149,13 +148,16 @@
+     BMDPixelFormat raw_format;
+     DecklinkSignalLossAction signal_loss_action;
+ 
++
+     int frames_preroll;
+     int frames_buffer;
+ 
+     pthread_mutex_t mutex;
+     pthread_cond_t cond;
+     int frames_buffer_available_spots;
++    int outstanding_frames;
+     int autodetect;
++    int block_until_available;
+ 
+ #if CONFIG_LIBKLVANC
+     struct klvanc_context_s *vanc_ctx;
+@@ -249,3 +251,4 @@
+ int64_t ff_decklink_packet_queue_peekpts(DecklinkPacketQueue *q);
+ 
+ #endif /* AVDEVICE_DECKLINK_COMMON_H */
++
+diff -Naur ffmpeg-7.1.2.old/libavdevice/decklink_dec.cpp ffmpeg-7.1.2/libavdevice/decklink_dec.cpp
+--- ffmpeg-7.1.2.old/libavdevice/decklink_dec.cpp	2025-10-27 10:07:00.828476101 +0100
++++ ffmpeg-7.1.2/libavdevice/decklink_dec.cpp	2025-10-27 10:07:02.003669356 +0100
+@@ -31,7 +31,7 @@
+ #include "libavformat/internal.h"
+ }
+ 
+-#include <DeckLinkAPI.h>
++#include <DeckLinkAPI_v14_2_1.h>
+ 
+ extern "C" {
+ #include "config.h"
+@@ -56,6 +56,7 @@
+ #include "decklink_common.h"
+ #include "decklink_dec.h"
+ 
++extern bool operator==(const REFIID& me, const REFIID& other);
+ #define MAX_WIDTH_VANC 1920
+ const BMDDisplayMode AUTODETECT_DEFAULT_MODE = bmdModeNTSC;
+ 
+@@ -105,13 +106,13 @@
+     {bmdModeUnknown, 0, -1, -1, -1}
+ };
+ 
+-class decklink_allocator : public IDeckLinkMemoryAllocator
++class decklink_allocator : public IDeckLinkMemoryAllocator_v14_2_1
+ {
+ public:
+         decklink_allocator(): _refs(1) { }
+         virtual ~decklink_allocator() { }
+ 
+-        // IDeckLinkMemoryAllocator methods
++        // IDeckLinkMemoryAllocator_v14_2_1 methods
+         virtual HRESULT STDMETHODCALLTYPE AllocateBuffer(unsigned int bufferSize, void* *allocatedBuffer)
+         {
+             void *buf = av_malloc(bufferSize + AV_INPUT_BUFFER_PADDING_SIZE);
+@@ -129,7 +130,15 @@
+         virtual HRESULT STDMETHODCALLTYPE Decommit() { return S_OK; }
+ 
+         // IUnknown methods
+-        virtual HRESULT STDMETHODCALLTYPE QueryInterface(REFIID iid, LPVOID *ppv) { return E_NOINTERFACE; }
++        virtual HRESULT STDMETHODCALLTYPE QueryInterface(REFIID iid, LPVOID *ppv) 
++        {
++            if (iid == IID_IDeckLinkMemoryAllocator_v14_2_1) { 
++                *ppv = (IDeckLinkMemoryAllocator_v14_2_1*)this; 
++                AddRef(); 
++                return S_OK; 
++            }
++            return E_NOINTERFACE; 
++        }
+         virtual ULONG   STDMETHODCALLTYPE AddRef(void) { return ++_refs; }
+         virtual ULONG   STDMETHODCALLTYPE Release(void)
+         {
+@@ -472,7 +481,7 @@
+ }
+ 
+ 
+-static void handle_klv(AVFormatContext *avctx, decklink_ctx *ctx, IDeckLinkVideoInputFrame *videoFrame, int64_t pts)
++static void handle_klv(AVFormatContext *avctx, decklink_ctx *ctx, IDeckLinkVideoInputFrame_v14_2_1 *videoFrame, int64_t pts)
+ {
+     const uint8_t KLV_DID = 0x44;
+     const uint8_t KLV_IN_VANC_SDID = 0x04;
+@@ -574,17 +583,25 @@
+     }
+ }
+ 
+-class decklink_input_callback : public IDeckLinkInputCallback
++class decklink_input_callback : public IDeckLinkInputCallback_v14_2_1
+ {
+ public:
+         explicit decklink_input_callback(AVFormatContext *_avctx);
+         ~decklink_input_callback();
+ 
+-        virtual HRESULT STDMETHODCALLTYPE QueryInterface(REFIID iid, LPVOID *ppv) { return E_NOINTERFACE; }
++        virtual HRESULT STDMETHODCALLTYPE QueryInterface(REFIID iid, LPVOID *ppv)
++        {
++            if (iid == IID_IDeckLinkInputCallback_v14_2_1) {
++                *ppv = (IDeckLinkInputCallback_v14_2_1*)this;
++                AddRef();
++                return S_OK;
++            }
++            return E_NOINTERFACE; 
++        }
+         virtual ULONG STDMETHODCALLTYPE AddRef(void);
+         virtual ULONG STDMETHODCALLTYPE  Release(void);
+         virtual HRESULT STDMETHODCALLTYPE VideoInputFormatChanged(BMDVideoInputFormatChangedEvents, IDeckLinkDisplayMode*, BMDDetectedVideoInputFormatFlags);
+-        virtual HRESULT STDMETHODCALLTYPE VideoInputFrameArrived(IDeckLinkVideoInputFrame*, IDeckLinkAudioInputPacket*);
++        virtual HRESULT STDMETHODCALLTYPE VideoInputFrameArrived(IDeckLinkVideoInputFrame_v14_2_1*, IDeckLinkAudioInputPacket*);
+ 
+ private:
+         std::atomic<int>  _refs;
+@@ -593,7 +610,7 @@
+         int no_video;
+         int64_t initial_video_pts;
+         int64_t initial_audio_pts;
+-        IDeckLinkVideoInputFrame* last_video_frame;
++        IDeckLinkVideoInputFrame_v14_2_1* last_video_frame;
+ };
+ 
+ decklink_input_callback::decklink_input_callback(AVFormatContext *_avctx) : _refs(1)
+@@ -625,7 +642,7 @@
+     return ret;
+ }
+ 
+-static int64_t get_pkt_pts(IDeckLinkVideoInputFrame *videoFrame,
++static int64_t get_pkt_pts(IDeckLinkVideoInputFrame_v14_2_1 *videoFrame,
+                            IDeckLinkAudioInputPacket *audioFrame,
+                            int64_t wallclock,
+                            int64_t abs_wallclock,
+@@ -679,7 +696,7 @@
+     return pts;
+ }
+ 
+-static int get_bmd_timecode(AVFormatContext *avctx, AVTimecode *tc, AVRational frame_rate, BMDTimecodeFormat tc_format, IDeckLinkVideoInputFrame *videoFrame)
++static int get_bmd_timecode(AVFormatContext *avctx, AVTimecode *tc, AVRational frame_rate, BMDTimecodeFormat tc_format, IDeckLinkVideoInputFrame_v14_2_1 *videoFrame)
+ {
+     IDeckLinkTimecode *timecode;
+     int ret = AVERROR(ENOENT);
+@@ -701,7 +718,7 @@
+     return ret;
+ }
+ 
+-static int get_frame_timecode(AVFormatContext *avctx, decklink_ctx *ctx, AVTimecode *tc, IDeckLinkVideoInputFrame *videoFrame)
++static int get_frame_timecode(AVFormatContext *avctx, decklink_ctx *ctx, AVTimecode *tc, IDeckLinkVideoInputFrame_v14_2_1 *videoFrame)
+ {
+     AVRational frame_rate = ctx->video_st->r_frame_rate;
+     int ret;
+@@ -726,7 +743,7 @@
+ }
+ 
+ HRESULT decklink_input_callback::VideoInputFrameArrived(
+-    IDeckLinkVideoInputFrame *videoFrame, IDeckLinkAudioInputPacket *audioFrame)
++    IDeckLinkVideoInputFrame_v14_2_1 *videoFrame, IDeckLinkAudioInputPacket *audioFrame)
+ {
+     void *frameBytes;
+     void *audioFrameBytes;
+@@ -1141,7 +1158,7 @@
+         goto error;
+ 
+     /* Get input device. */
+-    if (ctx->dl->QueryInterface(IID_IDeckLinkInput, (void **) &ctx->dli) != S_OK) {
++    if (ctx->dl->QueryInterface(IID_IDeckLinkInput_v14_2_1, (void **) &ctx->dli) != S_OK) {
+         av_log(avctx, AV_LOG_ERROR, "Could not open input device from '%s'\n",
+                avctx->url);
+         ret = AVERROR(EIO);
+diff -Naur ffmpeg-7.1.2.old/libavdevice/decklink_enc_c.c ffmpeg-7.1.2/libavdevice/decklink_enc_c.c
+--- ffmpeg-7.1.2.old/libavdevice/decklink_enc_c.c	2025-10-27 10:07:00.833476145 +0100
++++ ffmpeg-7.1.2/libavdevice/decklink_enc_c.c	2025-10-27 10:07:02.004050964 +0100
+@@ -32,6 +32,7 @@
+     { "list_devices", "use ffmpeg -sinks decklink instead", OFFSET(list_devices), AV_OPT_TYPE_BOOL, { .i64 = 0   }, 0, 1, ENC | AV_OPT_FLAG_DEPRECATED},
+     { "list_formats", "list supported formats"  , OFFSET(list_formats), AV_OPT_TYPE_INT   , { .i64 = 0   }, 0, 1, ENC },
+     { "preroll"     , "video preroll in seconds", OFFSET(preroll     ), AV_OPT_TYPE_DOUBLE, { .dbl = 0.5 }, 0, 5, ENC },
++    { "block_until_available",     "wait for device to become available instead of raising error", OFFSET(block_until_available), AV_OPT_TYPE_BOOL, { .i64 = 0 }, 0, 1, ENC },
+     { "vanc_queue_size", "VANC queue buffer size", OFFSET(vanc_queue_size), AV_OPT_TYPE_INT64, { .i64 = (1024 * 1024)}, 0, INT64_MAX, ENC },
+ #if BLACKMAGIC_DECKLINK_API_VERSION >= 0x0b000000
+     { "duplex_mode" , "duplex mode"             , OFFSET(duplex_mode ), AV_OPT_TYPE_INT   , { .i64 = 0   }, 0, 5, ENC, .unit = "duplex_mode"},
+diff -Naur ffmpeg-7.1.2.old/libavdevice/decklink_enc.cpp ffmpeg-7.1.2/libavdevice/decklink_enc.cpp
+--- ffmpeg-7.1.2.old/libavdevice/decklink_enc.cpp	2025-10-27 10:07:00.832476136 +0100
++++ ffmpeg-7.1.2/libavdevice/decklink_enc.cpp	2025-10-27 10:07:02.004296918 +0100
+@@ -20,6 +20,8 @@
+  */
+ 
+ #include <atomic>
++#include <unistd.h>
++
+ using std::atomic;
+ 
+ /* Include internal.h first to avoid conflict between winsock.h (used by
+@@ -28,7 +30,7 @@
+ #include "libavformat/internal.h"
+ }
+ 
+-#include <DeckLinkAPI.h>
++#include <DeckLinkAPI_v14_2_1.h>
+ 
+ extern "C" {
+ #include "libavformat/avformat.h"
+@@ -47,8 +49,26 @@
+ #include "libklvanc/pixels.h"
+ #endif
+ 
++extern bool operator==(const REFIID& me, const REFIID& other){
++    return me.byte0 == other.byte0 &&
++	   me.byte1 == other.byte1 &&
++	   me.byte2 == other.byte2 &&
++	   me.byte3 == other.byte3 &&
++	   me.byte4 == other.byte4 &&
++	   me.byte5 == other.byte5 &&
++	   me.byte6 == other.byte6 &&
++	   me.byte7 == other.byte7 &&
++	   me.byte8 == other.byte8 &&
++	   me.byte9 == other.byte9 &&
++	   me.byte10 == other.byte10 &&
++	   me.byte11 == other.byte11 &&
++	   me.byte12 == other.byte12 &&
++	   me.byte13 == other.byte13 &&
++	   me.byte14 == other.byte14 &&
++	   me.byte15 == other.byte15;
++}
+ /* DeckLink callback class declaration */
+-class decklink_frame : public IDeckLinkVideoFrame
++class decklink_frame : public IDeckLinkVideoFrame_v14_2_1
+ {
+ public:
+     decklink_frame(struct decklink_ctx *ctx, AVFrame *avframe, AVCodecID codec_id, int height, int width) :
+@@ -111,7 +131,16 @@
+         _ancillary->AddRef();
+         return S_OK;
+     }
+-    virtual HRESULT STDMETHODCALLTYPE QueryInterface(REFIID iid, LPVOID *ppv) { return E_NOINTERFACE; }
++    virtual HRESULT STDMETHODCALLTYPE QueryInterface(REFIID iid, LPVOID *ppv) 
++    {
++        if (iid == IID_IDeckLinkVideoFrame_v14_2_1) 
++        { 
++            *ppv = (IDeckLinkVideoFrame_v14_2_1*)this; 
++            AddRef(); 
++            return S_OK; 
++        }
++        return E_NOINTERFACE; 
++    }
+     virtual ULONG   STDMETHODCALLTYPE AddRef(void)                            { return ++_refs; }
+     virtual ULONG   STDMETHODCALLTYPE Release(void)
+     {
+@@ -138,10 +167,10 @@
+     std::atomic<int>  _refs;
+ };
+ 
+-class decklink_output_callback : public IDeckLinkVideoOutputCallback
++class decklink_output_callback : public IDeckLinkVideoOutputCallback_v14_2_1
+ {
+ public:
+-    virtual HRESULT STDMETHODCALLTYPE ScheduledFrameCompleted(IDeckLinkVideoFrame *_frame, BMDOutputFrameCompletionResult result)
++    virtual HRESULT STDMETHODCALLTYPE ScheduledFrameCompleted(IDeckLinkVideoFrame_v14_2_1 *_frame, BMDOutputFrameCompletionResult result)
+     {
+         decklink_frame *frame = static_cast<decklink_frame *>(_frame);
+         struct decklink_ctx *ctx = frame->_ctx;
+@@ -155,11 +184,22 @@
+         ctx->frames_buffer_available_spots++;
+         pthread_cond_broadcast(&ctx->cond);
+         pthread_mutex_unlock(&ctx->mutex);
+-
++        pthread_mutex_lock(&ctx->mutex);
++        ctx->outstanding_frames--;
++        pthread_mutex_unlock(&ctx->mutex);
+         return S_OK;
+     }
+     virtual HRESULT STDMETHODCALLTYPE ScheduledPlaybackHasStopped(void)       { return S_OK; }
+-    virtual HRESULT STDMETHODCALLTYPE QueryInterface(REFIID iid, LPVOID *ppv) { return E_NOINTERFACE; }
++    virtual HRESULT STDMETHODCALLTYPE QueryInterface(REFIID iid, LPVOID *ppv)
++    {
++        if (iid == IID_IDeckLinkVideoOutputCallback_v14_2_1) 
++        { 
++            *ppv = (IDeckLinkVideoOutputCallback_v14_2_1*)this; 
++            AddRef(); 
++            return S_OK; 
++        }
++        return E_NOINTERFACE; 
++    }
+     virtual ULONG   STDMETHODCALLTYPE AddRef(void)                            { return 1; }
+     virtual ULONG   STDMETHODCALLTYPE Release(void)                           { return 1; }
+ };
+@@ -204,9 +244,14 @@
+         av_log(avctx, AV_LOG_WARNING, "Could not enable video output with VANC! Trying without...\n");
+         ctx->supports_vanc = 0;
+     }
+-    if (!ctx->supports_vanc && ctx->dlo->EnableVideoOutput(ctx->bmd_mode, bmdVideoOutputFlagDefault) != S_OK) {
+-        av_log(avctx, AV_LOG_ERROR, "Could not enable video output!\n");
+-        return -1;
++    while (!ctx->supports_vanc && ctx->dlo->EnableVideoOutput(ctx->bmd_mode, bmdVideoOutputFlagDefault) != S_OK) {
++        if (!ctx->block_until_available) {
++            av_log(avctx, AV_LOG_ERROR, "Could not enable video output!\n");
++            return -1;
++        };
++        av_log(avctx, AV_LOG_WARNING, "Could not enable video output, waiting for device...\n");
++        usleep(1000000 / 60);
++        continue;
+     }
+ 
+     /* Set callback. */
+@@ -370,6 +415,10 @@
+     struct decklink_cctx *cctx = (struct decklink_cctx *)avctx->priv_data;
+     struct decklink_ctx *ctx = (struct decklink_ctx *)cctx->ctx;
+ 
++    av_log(avctx, AV_LOG_DEBUG, "Wating for %d outstanding frames to return their results\n", ctx->outstanding_frames);
++    while (ctx->outstanding_frames > 0){
++        usleep(1);
++    }
+     if (ctx->playback_started) {
+         BMDTimeValue actual;
+         ctx->dlo->StopScheduledPlayback(ctx->last_pts * ctx->bmd_tb_num,
+@@ -739,7 +788,7 @@
+         ctx->first_pts = pkt->pts;
+ 
+     /* Schedule frame for playback. */
+-    hr = ctx->dlo->ScheduleVideoFrame((class IDeckLinkVideoFrame *) frame,
++    hr = ctx->dlo->ScheduleVideoFrame((class IDeckLinkVideoFrame_v14_2_1 *) frame,
+                                       pkt->pts * ctx->bmd_tb_num,
+                                       ctx->bmd_tb_num, ctx->bmd_tb_den);
+     /* Pass ownership to DeckLink, or release on failure */
+@@ -750,6 +799,9 @@
+         return AVERROR(EIO);
+     }
+ 
++    pthread_mutex_lock(&ctx->mutex);
++    ctx->outstanding_frames++;
++    pthread_mutex_unlock(&ctx->mutex);
+     ctx->dlo->GetBufferedVideoFrameCount(&buffered);
+     av_log(avctx, AV_LOG_DEBUG, "Buffered video frames: %d.\n", (int) buffered);
+     if (pkt->pts > 2 && buffered <= 2)
+@@ -850,6 +902,7 @@
+     ctx->list_devices = cctx->list_devices;
+     ctx->list_formats = cctx->list_formats;
+     ctx->preroll      = cctx->preroll;
++    ctx->block_until_available      = cctx->block_until_available;
+     ctx->duplex_mode  = cctx->duplex_mode;
+     ctx->first_pts    = AV_NOPTS_VALUE;
+     if (cctx->link > 0 && (unsigned int)cctx->link < FF_ARRAY_ELEMS(decklink_link_conf_map))
+@@ -874,7 +927,7 @@
+         return ret;
+ 
+     /* Get output device. */
+-    if (ctx->dl->QueryInterface(IID_IDeckLinkOutput, (void **) &ctx->dlo) != S_OK) {
++    if (ctx->dl->QueryInterface(IID_IDeckLinkOutput_v14_2_1, (void **) &ctx->dlo) != S_OK) {
+         av_log(avctx, AV_LOG_ERROR, "Could not open output device from '%s'\n",
+                avctx->url);
+         ret = AVERROR(EIO);

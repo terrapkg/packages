@@ -1,6 +1,6 @@
-%global commit b764055c3393d26f6c5f1ec373b53c438bcad939
+%global commit 08c9661683edc1e9e63d8e6abd469a68faaee575
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global fulldate 2025-10-22
+%global fulldate 2025-12-05
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
 %global ver 1.3.0
@@ -180,6 +180,19 @@ BuildArch:      noarch
 %description    terminfo
 Ghostty's terminfo. Needed for basic terminal function.
 
+%package -n     libghostty-vt-nightly
+Summary:        The libghostty-vt libraries
+
+%description -n libghostty-vt-nightly
+This package contains the libghostty-vt libraries, the first of many linghostty libaries in development.
+
+%package -n     libghostty-vt-nightly-devel
+Summary:        Development files for libghostty-vt
+Requires:       libghostty-vt-nightly = %{evr}
+
+%description -n libghostty-vt-nightly-devel
+This package contains the libraries and header files that are needed for developing with libghostty-vt.
+
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
 %autosetup -n %{base_name}-%{ver}-main+%{shortcommit}
@@ -196,7 +209,8 @@ DESTDIR="%{buildroot}" \
     -Dversion-string="%{ver}-dev+%{shortcommit}" \
     -Dstrip=false \
     -Dpie=true \
-    -Demit-docs 
+    -Demit-docs \
+    -Demit-themes=false
 
 # Don't conflict with ncurses-term on F42 and up
 %if 0%{?fedora} >= 42
@@ -212,7 +226,6 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %{_datadir}/applications/%{appid}.desktop
 %dir %{_datadir}/%{base_name}
 %{_datadir}/%{base_name}/doc
-%{_datadir}/%{base_name}/themes
 %{_datadir}/metainfo/%{appid}.metainfo.xml
 %{_datadir}/dbus-1/services/%{appid}.service
 %{_iconsdir}/hicolor/16x16/apps/%{appid}.png
@@ -240,8 +253,6 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 
 %files devel
 %{_includedir}/ghostty/
-%{_libdir}/libghostty-vt.so
-%{_datadir}/pkgconfig/libghostty-vt.pc
 
 %files kio
 %{_datadir}/kio/servicemenus/%{appid}.desktop
@@ -279,6 +290,13 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %endif
 %{_datadir}/terminfo/x/xterm-%{base_name}
 
+%files -n libghostty-vt-nightly
+%{_libdir}/libghostty-vt.so.*
+
+%files -n libghostty-vt-nightly-devel
+%{_libdir}/libghostty-vt.so
+%{_datadir}/pkgconfig/libghostty-vt.pc
+
 %post
 %systemd_user_post app-%{appid}.service
 
@@ -289,6 +307,12 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %systemd_user_postun app-%{appid}.service
 
 %changelog
+* Sat Nov 29 2025 Gilver E. <rockgrub@disroot.org> - 1.3.0~tip^20251128git9baf37a-1
+- Initial libghostty-vt packages
+* Tue Oct 28 2025 Gilver E. <rockgrub@disroot.org> - 1.3.0~tip^20251027gitd40321a-2
+- Disabled bundled themes
+ * This is necessary to address licensing issues in the themes repo Ghostty uses
+ * See: https://github.com/mbadolato/iTerm2-Color-Schemes/issues/638
 * Sat May 31 2025 Gilver E. <rockgrub@disroot.org> - 1.1.4~tip^20250531git1ff9162
 - Updated for Zig 0.14.0
 - Updated for ncurses-term compatibility in Fedora 42 and Rawhide

@@ -1,7 +1,7 @@
 %global _desc Tracy is a real time, nanosecond resolution, remote telemetry, hybrid frame and sampling profiler for games and other applications.
 
 Name:			tracy
-Version:		0.12.2
+Version:		0.13.0
 Release:		1%?dist
 Summary:		A real time, nanosecond resolution, remote telemetry, hybrid frame and sampling profiler for games and other applications.
 License:		BSD-3-Clause

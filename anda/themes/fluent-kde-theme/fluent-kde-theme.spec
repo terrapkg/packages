@@ -1,5 +1,5 @@
-%global commit 315251f3e0099fc7afa7ab183880141a478f584e
-%global commit_date 20250428
+%global commit 44794f29c89de994b0179aebabd2f5776c90d236
+%global commit_date 20251110
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           fluent-kde-theme

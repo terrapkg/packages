@@ -6,7 +6,7 @@
 
 Name:           stardust-xr-magnetar
 Version:        %commit_date.%shortcommit
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Workspaces client for Stardust XR
 URL:            https://github.com/StardustXR/magnetar
 Source0:        %url/archive/%commit/magnetar-%commit.tar.gz
@@ -28,11 +28,13 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %install
 %define __cargo_common_opts %{?_smp_mflags} -Z avoid-dev-deps --locked
 %cargo_install
-
+%cargo_license_summary_online
+%{cargo_license_online} > LICENSE.dependencies
 
 %files
 %_bindir/magnetar
 %license LICENSE
+%license LICENSE.dependencies
 %doc README.md
 
 %changelog

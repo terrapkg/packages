@@ -3,7 +3,7 @@
 %global         _missing_build_ids_terminate_build 0
 
 Name:           libnvjpeg2k
-Version:        0.9.0.43
+Version:        0.9.1.47
 Release:        1%?dist
 Summary:        NVIDIA JPEG 2K decoder (nvJPEG2000)
 License:        NVIDIA EULA
@@ -54,6 +54,7 @@ This package contains static libraries for NVIDIA JPEG 2K decoder (nvJPEG2000).
 %endif
 
 %build
+# Nothing to build
 
 %install
 mkdir -p %{buildroot}/%{_libdir}/pkgconfig/

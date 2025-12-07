@@ -1,12 +1,12 @@
-%global commit 8ad02b636690170adbd4279fe3fc8265088cbcc2
-%global commit_date 20240726
+%global commit c278020dc78587e887f91377a882b50d0b009c50
+%global commit_date 20251130
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-xr-armillary
 Version:        %commit_date.%shortcommit
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Model viewer for Stardust XR
 URL:            https://github.com/StardustXR/armillary
 Source0:        %url/archive/%commit/armillary-%commit.tar.gz
@@ -28,10 +28,13 @@ A model viewer for Stardust XR which works great for hand tracking, pointers, an
 %install
 %define __cargo_common_opts %{?_smp_mflags} -Z avoid-dev-deps --locked
 %cargo_install
+%cargo_license_summary_online
+%{cargo_license_online} > LICENSE.dependencies
 
 %files
 %_bindir/armillary
 %license LICENSE
+%license LICENSE.dependencies
 %doc README.md
 
 %changelog

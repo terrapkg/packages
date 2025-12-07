@@ -559,7 +559,7 @@ popd
 
 %ifarch x86_64
 pushd msrtool
-./configure
+%configure
 %make_build
 popd
 %endif

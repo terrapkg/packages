@@ -1,0 +1,9 @@
+// There is no HCL extension, but the Terraform extension grants HCL support
+{
+  "auto_install_extensions": {
+    "RPM Spec": true,
+    "XML": true,
+    "rhai": true,
+    "Terraform": true
+  }
+}
