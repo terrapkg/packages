@@ -34,6 +34,7 @@ Enhanced and updated fork of Dav Glass' original (but abandoned) license-checker
 %npm_install -s license-checker
 
 # Bootstrap the license fetching
+# Environment variable is one set during execution of %%npm_install
 ./bin/%{npm_name}$_js --limitAttributes licenses --out LICENSE.modules
 
 %if %{with test}
