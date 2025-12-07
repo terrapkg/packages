@@ -1,6 +1,3 @@
-%dnl %global requires_exclude_from %{_datadir}/QuollWriter/jre
-%dnl  %global provides_exclude_from %{_datadir}/QuollWriter/jre
-
 AutoReq: no
 AutoProv: no
 
