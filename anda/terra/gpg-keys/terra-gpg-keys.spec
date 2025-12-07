@@ -1,5 +1,7 @@
+%undefine dist
+
 Name:           terra-gpg-keys
-Version:        1
+Version:        %{?fedora:%{fedora}}%{?rhel:%{rhel}}
 Release:        1
 Summary:        GPG keys for Terra
 Requires:       filesystem >= 3.18-6
