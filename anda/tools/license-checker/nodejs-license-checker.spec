@@ -33,12 +33,8 @@ Enhanced and updated fork of Dav Glass' original (but abandoned) license-checker
 %install
 %npm_install -s license-checker
 
-# Test
-ls -s ./bin
-%{lua:
-print(posix.stat(rpm.expand("%{buildsubdir}/bin/%{npm_name}") .. ".js"))}
 # Bootstrap the license fetching
-./bin/%{npm_name}%{?_js} --limitAttributes licenses --out LICENSE.modules
+./bin/%{npm_name}$_js --limitAttributes licenses --out LICENSE.modules
 
 %if %{with test}
 %check
