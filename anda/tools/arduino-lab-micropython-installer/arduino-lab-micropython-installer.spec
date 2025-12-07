@@ -1,5 +1,7 @@
 %define debug_package %{nil}
 
+%electronmeta
+
 %ifarch x86_64
 %define arch x64
 %elifarch aarch64
