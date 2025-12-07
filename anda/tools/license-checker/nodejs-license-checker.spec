@@ -35,10 +35,12 @@ Enhanced and updated fork of Dav Glass' original (but abandoned) license-checker
 
 # Test
 %{lua:
-require("lfs")
-if io.open("bin/" .. rpm.expand("%{npm_name}") .. ".js",r) ~= nil then print("echo True.") else print("echo False.") end}
+if io.open("./bin/" .. rpm.expand("%{npm_name}") .. ".js", rb) ~= nil then 
+  print("echo True.") 
+else print("echo False.") 
+end}
 # Bootstrap the license fetching
-bin/%{npm_name}%{?_js} --limitAttributes licenses --out LICENSE.modules
+./bin/%{npm_name}%{?_js} --limitAttributes licenses --out LICENSE.modules
 
 %if %{with test}
 %check
