@@ -30,7 +30,7 @@ and Windows and is built using the Electron framework.
 mkdir -p %{buildroot}%{_datadir}/micropython-installer
 mkdir -p %{buildroot}%{_libdir}/micropython-installer
 
-install -Dm755 out/MicroPython\ Installer-Linux-%{_electron_cpu}/micropython-installer           %{buildroot}%{_bindir}/micropython-installer
+install -Dm755 out/MicroPython\ Installer-linux-%{_electron_cpu}/micropython-installer           %{buildroot}%{_bindir}/micropython-installer
 cp -r out/MicroPython\ Installer-linux-%{_electron_cpu}/*                                        %{buildroot}%{_libdir}/micropython-installer
 install -Dm644 assets/app-icon.png                                                      %{buildroot}%{_iconsdir}/hicolor/512x512/apps/micropython-installer.png
 install -Dm644 %{SOURCE1}                                                               %{buildroot}%{_datadir}/applications/micropython-installer.desktop
