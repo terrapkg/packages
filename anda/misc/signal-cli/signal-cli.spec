@@ -4,7 +4,7 @@
 
 Name:             signal-cli
 Version:          0.13.22
-Release:          2%?dist
+Release:          1%?dist
 Summary:          signal-cli provides an unofficial commandline, JSON-RPC and dbus interface for the Signal messenger
 License:          GPL-3.0-only
 URL:              https://github.com/AsamK/signal-cli
@@ -40,11 +40,6 @@ So signal-cli releases older than three months may not work correctly.
 # The release tarballs don't include buildable source code
 %git_clone %{url} v%{version}
 
-cat <<EOF > signal-cli.sh
-#!/bin/sh
-export APP_HOME=/usr/share/java/signal-cli
-EOF
-
 %build
 ./gradlew build \
 --no-daemon
@@ -74,8 +69,6 @@ install -Dm644 man/%{name}-jsonrpc.5                            %{buildroot}%{_m
 rm -f lib/commons-logging-*.jar
 rm -f lib/libsignal-client*.jar
 install -Dm644 build/install/signal-cli/lib/*.jar               %{buildroot}%{_javadir}/%{name}/lib/
-
-install -Dm755 signal-cli.sh %{buildroot}%{_sysconfdir}/profile.d/signal-cli.sh
 
 # Fix launcher to use the package-installed jars
 sed -i \
@@ -120,7 +113,6 @@ sed -i \
 %{_metainfodir}/%{appid}.metainfo.xml
 %{_iconsdir}/hicolor/scalable/apps/%{appid}.svg
 %{_javadir}/%{name}/lib/*.jar
-%{_sysconfdir}/profile.d/signal-cli.sh
 
 %changelog
 * Sun Dec 07 2025 Owen Zimmerman <owen@fyralabs.com>
