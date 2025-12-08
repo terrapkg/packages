@@ -15,7 +15,7 @@
 %endif
 
 Name:			signal-desktop
-Version:		7.79.0
+Version:		7.81.0
 Release:		1%?dist
 Summary:		A private messenger for Windows, macOS, and Linux
 URL:			https://signal.org
@@ -87,8 +87,10 @@ Signal Desktop links with Signal on Android or iOS and lets you message from you
 
 %build
 pnpm install --frozen-lockfile
-pnpm --prefix sticker-creator install
-pnpm --prefix sticker-creator build
+pushd sticker-creator
+pnpm install --frozen-lockfile
+pnpm build
+popd
 pnpm run build-linux --dir
 
 %install

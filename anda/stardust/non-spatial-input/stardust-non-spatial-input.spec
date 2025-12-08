@@ -6,7 +6,7 @@
 
 Name:           stardust-xr-non-spatial-input
 Version:        %commit_date.%shortcommit
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Tools you can easily snap together to get non-spatial input into Stardust XR
 URL:            https://github.com/StardustXR/non-spatial-input
 Source0:        %url/archive/%commit/non-spatial-input-%commit.tar.gz
@@ -34,12 +34,16 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 wait
 
+%cargo_license_summary_online
+%{cargo_license_online} > LICENSE.dependencies
+
 %files
 %_bindir/azimuth
 %_bindir/eclipse
 %_bindir/manifold
 %_bindir/simular
 %license LICENSE
+%license LICENSE.dependencies
 %doc README.md
 
 %changelog

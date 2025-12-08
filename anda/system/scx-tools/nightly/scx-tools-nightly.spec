@@ -1,6 +1,6 @@
-%global commit d830ef7cae6b6e937dc01455a4c59607189d4db7
+%global commit 97f335eea7c39f958b6dca2a19836e17a46e3b09
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20251114
+%global commitdate 20251202
 %global ver 1.0.18
 %global appid com.sched_ext.scx
 %global developer "sched-ext Contributors"
@@ -76,6 +76,7 @@ install -Dm755 target/rpm/*.so -t %{buildroot}%{_libdir} || :
 %doc README.md
 %{_bindir}/scx*
 %{_unitdir}/scx_loader.service
+%{_datadir}/dbus-1/interfaces/org.scx.Loader.xml
 %{_datadir}/dbus-1/system-services/org.scx.Loader.service
 %{_datadir}/dbus-1/system.d/org.scx.Loader.conf
 %{_datadir}/polkit-1/actions/org.scx.Loader.policy

@@ -2,7 +2,7 @@
 %global _desc A schema and validator for YAML.
 
 Name:			python-%{pypi_name}
-Version:		6.0.0
+Version:		6.1.0
 Release:		1%?dist
 Summary:		A schema and validator for YAML
 License:		MIT

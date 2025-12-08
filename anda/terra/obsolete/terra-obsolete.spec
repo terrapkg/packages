@@ -1,10 +1,10 @@
 Name:       terra-obsolete
 # Please keep the version equal to the targeted Terra release
-Version:    40
+Version:    %{?fedora:%{fedora}}%{?rhel:%{rhel}}
 # The dist number is the version here, it is intentionally not repeated in the release
 %global dist %nil
 
-Release:    3
+Release:    5
 Summary:    A package to obsolete retired packages, based on Fedora's equivalent package
 
 License:    LicenseRef-Fedora-Public-Domain
@@ -122,6 +122,20 @@ BuildArch:  noarch
 %obsolete iosevka-fusion-fonts 25.1.1-2
 
 
+%obsolete_ticket https://github.com/terrapkg/packages/pull/7098
+%obsolete terra-surface-dtx-daemon v0.3.10~1-5
+
+%obsolete_ticket https://github.com/terrapkg/packages/pull/7521
+%obsolete x264-bash-completion 0.165-18.20250609gitb35605ac
+
+%obsolete_ticket https://github.com/terrapkg/packages/pull/7659
+%obsolete x264-bootstrap 0.0.165-18.20250609gitb35605ac_bootstrap
+%obsolete x264-bootstrap-libs 0.0.165-18.20250609gitb35605ac_bootstrap
+%obsolete x264-bootstrap-devel 0.0.165-18.20250609gitb35605ac_bootstrap
+
+%obsolete_ticket https://github.com/terrapkg/packages/pull/7503
+%obsolete zig-master-bootstrap 0.16.0~dev.1484+d0ba6642b-3
+
 %description
 Currently obsoleted packages:
 
@@ -133,4 +147,3 @@ Currently obsoleted packages:
 
 %changelog
 %autochangelog
-

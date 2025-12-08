@@ -1,13 +1,12 @@
 %global debug_package %{nil}
 
 Name:           asusctl
-Version:        6.1.16
-Release:        1%?dist
+Version:        6.1.22
+Release:        2%?dist
 Summary:        A control daemon, CLI tools, and a collection of crates for interacting with ASUS ROG laptops
 URL:            https://gitlab.com/asus-linux/asusctl
 Source0:        %url/-/archive/%version/asusctl-%version.tar.gz
 License:        MPL-2.0
-Patch0:         fix-makefile.patch
 BuildRequires:  anda-srpm-macros cargo-rpm-macros systemd-rpm-macros mold rust-udev-devel clang-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  cmake
@@ -35,7 +34,7 @@ A one-stop-shop GUI tool for asusd/asusctl. It aims to provide most controls,
 a notification service, and ability to run in the background.
 
 %prep
-%autosetup -p1 -n asusctl-%version
+%autosetup -n asusctl-%version
 %cargo_prep_online
 
 %build
@@ -77,6 +76,18 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/rog-control-center.d
 %{_docdir}/%{name}/
 %{_datadir}/asusd/
 
+%post
+%systemd_post asusd.service
+%systemd_user_post asusd-user.service
+
+%preun
+%systemd_preun asusd.service
+%systemd_user_preun asusd-user.service
+
+%postun
+%systemd_postun_with_restart asusd.service
+%systemd_user_postun_with_restart asusd-user.service
+
 %files rog-gui
 %{_bindir}/rog-control-center
 %{_datadir}/applications/rog-control-center.desktop
@@ -84,5 +95,11 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/rog-control-center.d
 %{_datadir}/rog-gui
 
 %changelog
+* Mon Dec 1 2025 Metcya <metcya@gmail.com>
+- Add systemd scriptlets
+
+* Tue Nov 18 2025 Metcya <metcya@gmail.com>
+- Remove unnecessary patch
+
 * Sun Oct 26 2025 Metcya <metcya@gmail.com>
 - Package asusctl

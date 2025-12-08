@@ -9,7 +9,7 @@ on:
 jobs:
   backport:
     name: Backport/sync PR
-    runs-on: ubuntu-24.04-arm
+    runs-on: ubuntu-22.04
     if: github.event.pull_request.merged
     steps:
       - name: Install SSH signing key
@@ -25,7 +25,7 @@ jobs:
           git config --global commit.gpgsign true
 
       - name: Backport Action
-        uses: sorenlouv/backport-github-action@v9.5.1
+        uses: sorenlouv/backport-github-action@v10.2.0
         with:
           github_token: ${{ secrets.RABONEKO_BACKPORT_GITHUB_TOKEN }}
           auto_backport_label_prefix: sync-

@@ -12,7 +12,7 @@
 
 # https://github.com/nektos/act
 %global goipath         github.com/nektos/act
-Version:                0.2.82
+Version:                0.2.83
 
 %gometa -f
 
