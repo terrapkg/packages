@@ -21,6 +21,8 @@ BuildRequires:  go-task
 
 Provides:       arduino-remoteocd
 
+Recommends:     arduino-cli
+
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
