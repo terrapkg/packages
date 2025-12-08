@@ -9,6 +9,7 @@ Summary:          signal-cli provides an unofficial commandline, JSON-RPC and db
 License:          GPL-3.0-only
 URL:              https://github.com/AsamK/signal-cli
 Source0:          %url/releases/download/v%version/%name-%version.tar.gz
+BuildArch:        noarch
 
 BuildRequires:    gcc-c++
 BuildRequires:    gradle
@@ -48,7 +49,6 @@ EOF
 ./gradlew build \
 --no-daemon
 ./gradlew installDist
-# -Plibsignal_client_path="/usr/share/java/libsignal-client/libsignal-client.jar"
 
 pushd man
 %{make_build}
