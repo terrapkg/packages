@@ -77,6 +77,11 @@ install -Dm644 build/install/signal-cli/lib/*.jar               %{buildroot}%{_j
 
 install -Dm755 signal-cli.sh %{buildroot}%{_sysconfdir}/profile.d/signal-cli.sh
 
+# Fix launcher to use the package-installed jars
+sed -i \
+  's|^APP_HOME=.*$|APP_HOME=%{_javadir}/%{name}|' \
+  %{buildroot}%{_bindir}/signal-cli
+
 %terra_appstream
 
 %post
