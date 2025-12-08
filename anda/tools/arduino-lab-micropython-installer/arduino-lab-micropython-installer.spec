@@ -38,7 +38,7 @@ install -Dm644 %{SOURCE1}                                                       
 %files
 %doc README.md
 %license LICENSE
-%license MicroPython\ Installer-linux-x64/micropython-installer/LICENSE
+%license MicroPython\ Installer-linux-%{_electron_cpu}/micropython-installer/LICENSE
 %{_bindir}/micropython-installer
 %{_libdir}/micropython-installer/
 %{_iconsdir}/hicolor/512x512/apps/micropython-installer.png
