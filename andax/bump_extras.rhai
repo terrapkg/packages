@@ -24,7 +24,7 @@ fn alma_vr(pkg, repo, branch) {
     }
 }
 
-fn alma(pkg, branch) {
+fn alma(pkg, repo, branch) {
   let vr = alma_vr(pkg, repo, branch);
   return(vr[1]);
 }
