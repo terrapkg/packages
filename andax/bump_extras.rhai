@@ -1,3 +1,34 @@
+fn alma_vr(pkg, repo, branch) {
+    if branch.starts_with("el") {
+        branch.crop(2);
+    } else if branch.starts_with("f") {
+        print(`E: alma functions can only be used on el branches`);
+        terminate();
+    } else {
+        print(`E: unsupported branch: ${labels.branch}`);
+        terminate();
+    }
+    let majorminor = [];
+    for matches in find_all(`(${branch}\.[\d]+)/`, get("https://repo.almalinux.org/almalinux/")) {
+        majorminor += matches[1].parse_float();
+    }
+    majorminor.dedup();
+    majorminor.sort();
+    let url = get(`https://repo.almalinux.org/almalinux/${majorminor[majorminor.len()-1]}/${repo}/x86_64/os/Packages/`);
+    let matches = find_all(`${pkg}-([\d.]+)-([\d.]+)\.el${branch}.*?\.rpm`, url);
+    //                             ──────── ───── .el??
+    //                             version  release
+    matches.dedup();
+    if matches.len() != 0 {
+        return matches[0];
+    }
+}
+
+fn alma(pkg, branch) {
+  let vr = alma_vr(pkg, repo, branch);
+  return(vr[1]);
+}
+
 fn codeberg_commit(repo) {
     return get(`https://codeberg.org/api/v1/repos/${repo}/commits?stat=false&verification=false&files=false&limit=1`).json_arr()[0].sha;
 }

@@ -1,8 +1,8 @@
 %global appid   com.fyralabs.PackageKit-bootc
 %global appstream_component addon
 Name:           PackageKit-bootc
-Version:        0.1.0
-Release:        1%{?dist}
+Version:        0.1.1
+Release:        1%?dist
 Summary:        bootc backend for PackageKit
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
 
