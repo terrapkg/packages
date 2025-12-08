@@ -2,12 +2,6 @@
 
 %electronmeta
 
-%ifarch x86_64
-%define arch x64
-%elifarch aarch64
-%define arch arm64
-%endif
-
 Name:           lab-micropython-installer
 Version:        1.4.0
 Release:        1%?dist
@@ -18,7 +12,7 @@ Source0:        %url/archive/refs/tags/v%version.tar.gz
 Source1:        micropython-installer.desktop
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 Requires:       xdg-utils gtk3 libnotify nss libXtst xdg-utils libdrm libxcb
-BuildRequires:  anda-srpm-macros pnpm nodejs-npm git-core gcc gcc-c++ make desktop-file-utils zlib-ng-compat-devel
+BuildRequires:  anda-srpm-macros pnpm
 Provides:       arduino-lab-micropython-installer
 
 %description
@@ -30,8 +24,7 @@ and Windows and is built using the Electron framework.
 %autosetup -n %{name}-%{version}
 
 %build
-npm install
-npm run package
+%npm_build -r package
 
 %install
 mkdir -p %{buildroot}%{_datadir}/micropython-installer
