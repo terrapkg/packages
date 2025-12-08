@@ -2,7 +2,7 @@ project "pkg" {
     rpm {
         spec = "libva-nvidia-driver.spec"
     }
-    arches = ["x86_64", "aarch64", "i386"]
+    arches = ["x86_64", "aarch64"]
     labels = {
         subrepo = "nvidia"
         mock = 1

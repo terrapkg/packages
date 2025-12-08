@@ -1,5 +1,5 @@
 project pkg {
-        arches = ["x86_64", "i386"]
+        arches = ["x86_64"]
 	rpm {
 		spec = "wine-dxvk.spec"
 		extra_repos = ["https://repos.fyralabs.com/terra\\$releasever-mesa"]
