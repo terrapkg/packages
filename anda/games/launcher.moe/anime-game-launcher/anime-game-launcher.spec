@@ -1,7 +1,6 @@
 %global cargo_install_lib 0
 %global crate anime-game-launcher
 %global appid moe.launcher.an-anime-game-launcher
-
 Name:           %{crate}
 Version:        3.18.0
 Release:        2%?dist
@@ -78,5 +77,8 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/anime-game-launcher.
 %{_metainfodir}/moe.launcher.an-anime-game-launcher.metainfo.xml
 
 %changelog
+* Mon Dec 08 2025 Owen Zimmerman <owen@fyralabs.com>
+- Install metainfo
+
 * Sat Sep 20 2025 Cappy Ishihara <cappy@cappuchino.xyz>
 - Initial package
