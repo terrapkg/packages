@@ -4,7 +4,6 @@ project pkg {
     spec = "terra-glfw.spec"
   }
   labels {
-    extras = 1
     mock = 1
   }
 }

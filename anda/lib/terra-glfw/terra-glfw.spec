@@ -1,4 +1,6 @@
 Name:           terra-glfw
+%global cleanarch %(echo %{_arch} | sed 's/_/-/g')
+
 Version:        3.4
 Release:        2%{?dist}
 Epoch:          1
@@ -6,8 +8,8 @@ Summary:        A multi-platform library for OpenGL, OpenGL ES, Vulkan, window a
 License:        Zlib
 URL:            https://github.com/BoyOrigin/glfw-wayland
 Obsoletes:      glfw <= %{version}
-Provides:       glfw = %{version}
-Provides:       glfw(%{_arch}) = %{version}
+Provides:       glfw = %{epoch}:%{version}-%{release}
+Provides:       glfw(%{cleanarch}) = %{epoch}:%{version}-%{release}
 Conflicts:      glfw
 Packager:      Cappy Ishihara <cappy@fyralabs.com>
 Source0:       https://github.com/glfw/glfw/archive/%{version}/glfw-%{version}.tar.gz
