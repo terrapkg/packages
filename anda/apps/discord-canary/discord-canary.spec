@@ -7,7 +7,7 @@
 
 Name:           discord-canary
 Version:        0.0.822
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Free Voice and Text Chat for Gamers
 URL:            discord.com
 Source0:        https://dl-canary.discordapp.net/apps/linux/%{version}/discord-canary-%{version}.tar.gz
@@ -33,7 +33,7 @@ mkdir -p %{buildroot}%{_datadir}/applications/
 mkdir -p %{buildroot}%{_datadir}/pixmaps
 ln -s %_datadir/discord-canary/discord-canary.desktop %{buildroot}%{_datadir}/applications/
 ln -s %_datadir/discord-canary/discord.png %{buildroot}%{_datadir}/pixmaps/discord-canary.png
-ln -s %_datadir/discord/DiscordCanary %buildroot%_bindir/discord-canary
+ln -s %_datadir/discord-canary/DiscordCanary %buildroot%_bindir/discord-canary
 
 %files
 %_bindir/discord-canary
