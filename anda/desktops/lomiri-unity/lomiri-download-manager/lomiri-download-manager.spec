@@ -1,9 +1,9 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-download-manager
-%global commit 4ceb67059014b9b7e0e15f860297fe60b95903a2
+%global commit ff2bc3a8f57b6124ca866c108c49aabcbe22bdf8
 %forgemeta
 
 Name:       lomiri-download-manager
-Version:    0.2.2
+Version:    0.3.0
 Release:    1%?dist
 Summary:    Upload Download Manager for Lomiri
 License:    LGPLv3
