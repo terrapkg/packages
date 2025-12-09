@@ -59,7 +59,9 @@ export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
 %{_bindir}/arduino-bricks-update-ai-container-ref
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
+%doc README.md
+%license LICENSE.txt
 
 %changelog
-* Mon Dev 08 2025 Owen Zimmerman <owen@fyralabs.com>
+* Mon Dec 08 2025 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit
