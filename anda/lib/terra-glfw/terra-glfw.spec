@@ -7,7 +7,7 @@ License:        Zlib
 URL:            https://github.com/BoyOrigin/glfw-wayland
 Obsoletes:      glfw <= %{version}
 Provides:       glfw = %{version}
-Provides:       glfw(%arch) = %{version}
+Provides:       glfw(%{_arch}) = %{version}
 Conflicts:      glfw
 Packager:      Cappy Ishihara <cappy@fyralabs.com>
 Source0:       https://github.com/glfw/glfw/archive/%{version}/glfw-%{version}.tar.gz
