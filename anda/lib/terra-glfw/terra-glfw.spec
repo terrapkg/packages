@@ -18,6 +18,9 @@ Patch6:        0006-Avoid-error-on-startup.patch
 Patch7:        0007-Fix-fullscreen-location.patch
 Patch8:        0008-Fix-forge-crash.patch
 
+Supplements:   prismlauncher
+Supplements:   minecraft-launcher
+
 BuildRequires:  gcc
 BuildRequires:  cmake
 BuildRequires:  doxygen
