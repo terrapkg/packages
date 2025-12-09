@@ -41,7 +41,7 @@ fn as_bodhi_ver(branch) {
     if branch.starts_with("el") {
         branch.crop(2);
         if branch == "10" {
-            return "EPEL-10.0";
+            return "EPEL-10.1";
         }
         return `EPEL-${release}`;
     } else if branch == "frawhide" {
