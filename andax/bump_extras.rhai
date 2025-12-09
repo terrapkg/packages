@@ -24,7 +24,7 @@ fn alma_vr(pkg, repo, branch) {
     }
 }
 
-fn alma(pkg, branch) {
+fn alma(pkg, repo, branch) {
   let vr = alma_vr(pkg, repo, branch);
   return(vr[1]);
 }
@@ -41,7 +41,7 @@ fn as_bodhi_ver(branch) {
     if branch.starts_with("el") {
         branch.crop(2);
         if branch == "10" {
-            return "EPEL-10.0";
+            return "EPEL-10.1";
         }
         return `EPEL-${release}`;
     } else if branch == "frawhide" {
