@@ -1,0 +1,1 @@
+rpm.version(bump::bodhi("glfw", bump::as_bodhi_ver(labels.branch)));
