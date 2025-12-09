@@ -72,9 +72,7 @@ with %{name}.
 
 
 %prep
-%setup -n glfw-%{version}
-find . -type f | xargs sed -i 's/\r//'
-%autopatch -p1
+%autosetup -n glfw-%{version} -p1
 
 %build
 %cmake
