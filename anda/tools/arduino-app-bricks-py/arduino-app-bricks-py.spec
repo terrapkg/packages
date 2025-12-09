@@ -1,5 +1,5 @@
 %global pypi_name app-bricks-py
-%global _desc 🔉 The code of the Arduino App Lab Bricks
+%global _desc The code of the Arduino App Lab Bricks
 
 Name:			%{pypi_name}
 Version:		0.6.1
