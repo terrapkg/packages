@@ -1,6 +1,6 @@
 Name:           terra-glfw
 %global cleanarch %(echo %{_arch} | sed 's/_/-/g')
-
+%global _default_patch_fuzz 3
 Version:        3.4
 Release:        2%{?dist}
 Epoch:          1
@@ -17,9 +17,9 @@ Patch1:        0001-Key-Modifiers-Fix.patch
 Patch2:        0002-Fix-duplicate-pointer-scroll-events.patch
 Patch3:        0003-Implement-glfwSetCursorPosWayland.patch
 Patch4:        0004-Fix-Window-size-on-unset-fullscreen.patch
-Patch6:        0006-Avoid-error-on-startup.patch
-Patch7:        0007-Fix-fullscreen-location.patch
-Patch8:        0008-Fix-forge-crash.patch
+Patch5:        0005-Implement-glfwSetWindowIcon.patch
+Patch6:        0006-Fix-fullscreen-location.patch
+Patch7:        0007-Fix-forge-crash.patch
 
 Supplements:   prismlauncher
 Supplements:   minecraft-launcher
