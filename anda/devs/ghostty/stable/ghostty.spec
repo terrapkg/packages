@@ -4,7 +4,7 @@
 
 Name:           ghostty
 Version:        1.2.3
-Release:        2%?dist
+Release:        3%?dist
 Summary:        A fast, native terminal emulator written in Zig.
 License:        MIT AND MPL-2.0 AND OFL-1.1 AND (WTFPL OR CC0-1.0) AND Apache-2.0
 URL:            https://ghostty.org/
@@ -88,6 +88,7 @@ This package allows Ghostty to interact with KIO.
 Summary:        Nautilus menu support for Ghostty
 Supplements:    (%{name} and nautilus)
 Requires:       %{name} = %{evr}
+Requires:       nautilus-python
 BuildArch:      noarch
 
 %description    nautilus
