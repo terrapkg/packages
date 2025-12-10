@@ -4,7 +4,7 @@
 Name:           python-%{real_name}
 Version:        0.3.0
 Release:        1%{?dist}
-Summary:        A collection of Pygments styles.
+Summary:        A collection of Pygments styles
 License:        BSD-3-Clause
 URL:            https://pygments-styles.org
 Source0:        %{pypi_source}
