@@ -25,6 +25,7 @@ Source3:        https://catalog.s.download.windowsupdate.com/c/msdownload/update
 Source4:        https://catalog.s.download.windowsupdate.com/c/msdownload/update/driver/drvs/2017/06/1dbd7cb4-53bc-4857-a5b0-5955c8acaf71_9081931e7d664429a93ffda0db41b7545b7ac257.cab
 Source5:        https://catalog.s.download.windowsupdate.com/d/msdownload/update/driver/drvs/2017/08/aeff215c-3bc4-4d36-a3ea-e14bfa8fa9d2_e58550c4f74a27e51e5cb6868b10ff633fa77164.cab
 ### Microsoft TOU copy:
+Source6:        https://www.microsoft.com/en-us/legal/terms-of-use
 BuildRequires:  cabextract
 BuildRequires:  sed
 BuildRequires:  systemd-rpm-macros
