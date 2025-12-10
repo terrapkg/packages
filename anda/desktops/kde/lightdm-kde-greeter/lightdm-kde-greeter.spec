@@ -82,7 +82,6 @@ mkdir -p %buildroot%_sharedstatedir/%name
 %_datadir/dbus-1/system-services/org.kde.kcontrol.kcmlightdm.service
 %_datadir/dbus-1/system.d/org.kde.kcontrol.kcmlightdm.conf
 %_datadir/polkit-1/actions/org.kde.kcontrol.kcmlightdm.policy
-%_datadir/xgreeters/lightdm-kde-greeter.desktop
 %_datadir/%name/
 %_kf6_libexecdir/kauth/kcmlightdmhelper
 %_qt6_plugindir/plasma/kcms/systemsettings/kcm_lightdm.so
