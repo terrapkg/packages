@@ -9,7 +9,7 @@
 
 Name:           %{base_name}-nightly
 Version:        %{ver}~tip^%{commit_date}git%{shortcommit}
-Release:        1%?dist
+Release:        2%?dist
 %if 0%{?fedora} <= 41
 Epoch:          1
 %endif
@@ -118,6 +118,7 @@ This package allows Ghostty to interact with KIO.
 Summary:        Nautilus menu support for Ghostty
 Supplements:    (%{name} and nautilus)
 Requires:       %{name} = %{evr}
+Requires:       nautilus-python
 BuildArch:      noarch
 
 %description    nautilus
