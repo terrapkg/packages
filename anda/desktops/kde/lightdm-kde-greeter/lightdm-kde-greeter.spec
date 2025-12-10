@@ -2,7 +2,7 @@
 
 Name:           lightdm-kde-greeter
 Version:        6.1.1
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Login screen using the LightDM framework
 License:        GPL-3.0-or-later
 URL:            https://invent.kde.org/plasma/%name
@@ -25,7 +25,7 @@ BuildRequires:  pkgconfig(gtk+-2.0)
 BuildRequires:  pkgconfig(liblightdm-gobject-1)
 BuildRequires:  systemd-rpm-macros
 Requires: lightdm
-Requires: plasma-workspace-qml
+Requires: plasma-workspace
 Requires: polkit
 Provides: lightdm-greeter
 
