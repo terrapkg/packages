@@ -130,7 +130,7 @@ install -Dm644 %{name}.conf -t %{buildroot}%{_modulesloaddir}
 /usr/bin/dracut -f || :
 
 %changelog
-* Wed Dec 10 2025 Gilver E. <rockgrub@disroot.org> - 0.3.4-2
+* Wed Dec 10 2025 Gilver E. <rockgrub@disroot.org> - 0.5.0-2
 - Added new firmware files
 * Thu Apr 17 2025 Gilver E. <rockgrub@disroot.org> - 0.3^20250418git.ecdd59e-2%{?dist}
 - Added additional firmware needed for dongle pairing on some controllers
