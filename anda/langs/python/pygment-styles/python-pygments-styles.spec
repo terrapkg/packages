@@ -36,7 +36,7 @@ A curated collection of Pygments styles based on VS Code themes.
 %pyproject_install
 %pyproject_save_files %{pypi_name}
 
-%files -n python3-%{real_name} -f %{pypi_name}
+%files -n python3-%{real_name} -f %{pyproject_files}
 %doc     PKG-INFO
 %doc     README.md
 %license LICENSE
