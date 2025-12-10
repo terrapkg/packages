@@ -38,7 +38,6 @@ BuildRequires: desktop-file-utils
 BuildRequires: anda-srpm-macros
 BuildRequires: cargo-rpm-macros
 BuildRequires: protobuf-devel protobuf-compiler
-BuildRequires: terra-appstream-helper
 
 
 %description
@@ -61,8 +60,6 @@ desktop-file-install \
     --set-key="Exec" --set-value="%{name}" \
     --dir=%{buildroot}%{_datadir}/applications \
     assets/anime-game-launcher.desktop
-
-%terra_appstream
 
 %check
 desktop-file-validate %{buildroot}/%{_datadir}/applications/anime-game-launcher.desktop
