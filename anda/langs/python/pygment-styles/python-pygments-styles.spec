@@ -16,7 +16,7 @@ BuildArch:      noarch
 Packager:       Gilver E. <rockgrub@disroot.org>
 
 %description
-A curated collection of Pygments styles based on VS Code themes
+A curated collection of Pygments styles based on VS Code themes.
 
 %package -n     python3-%{real_name}
 Summary:        %{summary}
@@ -24,7 +24,7 @@ Requires:       python3dist(pygments)
 %{?python_provide:%python_provide python3-%{real_name}}
 
 %description -n python3-%{real_name}
-A curated collection of Pygments styles based on VS Code themes
+A curated collection of Pygments styles based on VS Code themes.
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
