@@ -1,7 +1,7 @@
 %global commit e927febbedbf8d6f040ff081b0c6703738e7e8d2
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global commitdate 20251211
-%global ver v0.5.0
+%global ver 0.5.0
 %global modulename xone
 %global _dracutconfdir %{_prefix}/lib/dracut/dracut.conf.d
 %global firmware_hash0 48084d9fa53b9bb04358f3bb127b7495dc8f7bb0b3ca1437bd24ef2b6eabdf66
@@ -9,7 +9,7 @@
 
 Name:           xone-nightly
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        1%?dist
+Release:        2%?dist
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Epoch:          1
 %endif
