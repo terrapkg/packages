@@ -2,5 +2,7 @@ rpm.global("commit", gh_commit("dlundqvist/xone"));
 if rpm.changed() {
     rpm.release();
     rpm.global("commitdate", date());
-    rpm.global("ver", gh("dlundqvist/xone"));
+    let v = gh("dlundqvist/xone");
+    v.crop(1);
+    rpm.global("ver", v);
 }
