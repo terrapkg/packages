@@ -13,6 +13,7 @@ URL:            https://crates.io/crates/chess-tui
 Source:         %{crates_source}
 
 BuildRequires:  cargo-rpm-macros >= 24
+BuildRequires:  pkgconfig(openssl)
 
 %global _description %{expand:
 A rusty chess game in your terminal 🦀.}
