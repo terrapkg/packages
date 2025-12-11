@@ -4,16 +4,22 @@
 %global __provides_exclude_from %{_libdir}/%{name}/.*\\.so
 %global appid net.imput.helium
 
+%ifarch x86_64
+%define arch x86_64
+%elifarch aarch64
+%define arch arm64
+%endif
+
 Name:           helium-browser-bin
 Version:        0.7.3.1
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Private, fast, and honest web browser based on Chromium
 
 URL:            https://helium.computer
 License:        GPL-3.0-only AND BSD-3-Clause
 
-Source0:        https://github.com/imputnet/helium-linux/releases/download/%{version}/helium-%{version}-x86_64_linux.tar.xz
-Source1:        https://github.com/imputnet/helium-linux/releases/download/%{version}/helium-%{version}-arm64_linux.tar.xz
+Source0:        https://github.com/imputnet/helium-linux/releases/download/%{version}/helium-%{version}-%{arch}_linux.tar.xz
+Source1:        https://github.com/imputnet/helium-linux/archive/refs/tags/%{version}.tar.gz
 Source2:        net.imput.helium.metainfo.xml
 
 ExclusiveArch:  x86_64 aarch64
@@ -30,12 +36,8 @@ Private, fast, and honest web browser based on Chromium.
 Based on ungoogled-chromium with additional privacy and usability improvements.
 
 %prep
-%ifarch x86_64
-%autosetup -n helium-%{version}-x86_64_linux
-%endif
-%ifarch aarch64
-%autosetup -n helium-%{version}-arm64_linux -T -b 1
-%endif
+%autosetup -n helium-%{version}-%{arch}_linux
+tar --strip-components=1 -zxvf %{SOURCE1}
 
 sed -i \
     -e 's/Exec=chromium/Exec=%{name}/' \
@@ -108,6 +110,8 @@ chmod 755 %{buildroot}%{_bindir}/%{name}
 %terra_appstream -o %{SOURCE2}
 
 %files
+%doc README.md
+%license LICENSE LICENSE.ungoogled_chromium
 %{_libdir}/%{name}/
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
