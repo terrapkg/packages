@@ -17,7 +17,7 @@ BuildRequires:  sqlite-devel
 BuildRequires:  gumbo-parser-devel
 BuildRequires:  expat-devel
 BuildRequires:  libcurl-devel
-BuildRequires:  scdoc
+BuildRequires:  scdoc %dnl This is just for man pages.
 
 Requires:       sqlite-devel
 Requires:       gumbo-parser-devel
@@ -35,8 +35,8 @@ It's greatly inspired by Newsboat and tries to be its lightweight counterpart.
 %autosetup -n %name-%name-%version
 
 %build
-make
-make man
+%{make_build}
+%{make_build} man
 
 %install
 mkdir -p %{buildroot}%{_mandir}/man1/
@@ -44,9 +44,9 @@ mkdir -p %{buildroot}%{_iconsdir}/hicolor/scalable/apps/
 mkdir -p %{buildroot}%{_datadir}/applications/
 
 install -Dm755 %{name} %{buildroot}%{_bindir}/%{name}
-install -m644 doc/%{name}.1 %{buildroot}%{_mandir}/man1/
-install -m644 doc/%{name}.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps/
-install -m644 doc/%{name}.desktop %{buildroot}%{_datadir}/applications/
+install -Dm644 doc/%{name}.1 %{buildroot}%{_mandir}/man1/
+install -Dm644 doc/%{name}.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps/
+install -Dm644 doc/%{name}.desktop %{buildroot}%{_datadir}/applications/
 
 %files
 %doc README.md
