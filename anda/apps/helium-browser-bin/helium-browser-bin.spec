@@ -16,7 +16,7 @@ Release:        2%?dist
 Summary:        Private, fast, and honest web browser based on Chromium
 
 URL:            https://helium.computer
-License:        GPL-3.0-only AND BSD-3-Clause AND %electron_license
+License:        GPL-3.0-only AND BSD-3-Clause
 
 Source0:        https://github.com/imputnet/helium-linux/releases/download/%{version}/helium-%{version}-%{arch}_linux.tar.xz
 Source1:        https://github.com/imputnet/helium-linux/archive/refs/tags/%{version}.tar.gz
@@ -38,9 +38,6 @@ Based on ungoogled-chromium with additional privacy and usability improvements.
 %prep
 %autosetup -n helium-%{version}-%{arch}_linux
 tar --strip-components=1 -zxvf %{SOURCE1}
-
-ls -lah ../
-ls -lah
 
 sed -i \
     -e 's/Exec=chromium/Exec=%{name}/' \
