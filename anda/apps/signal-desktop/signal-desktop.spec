@@ -1,3 +1,5 @@
+%define appid org.signal.Signal
+
 #? https://gitlab.archlinux.org/archlinux/packaging/packages/signal-desktop/-/blob/main/PKGBUILD
 %define	debug_package %{nil}
 
@@ -16,21 +18,22 @@
 
 Name:			signal-desktop
 Version:		7.82.0
-Release:		1%?dist
+Release:		2%?dist
 Summary:		A private messenger for Windows, macOS, and Linux
 URL:			https://signal.org
 Source0:		https://github.com/signalapp/Signal-Desktop/archive/refs/tags/v%{version}.tar.gz
 # signal.desktop from https://github.com/signalflatpak/signal/blob/master/org.signal.Signal.desktop
 Source1:		signal.desktop
+Source2:        org.signal.Signal.metainfo.xml
 License:		AGPL-3.0 AND %{electron_license}
 ExclusiveArch:	x86_64 aarch64
 
-BuildRequires:	 pulseaudio-libs-devel
+BuildRequires:	pulseaudio-libs-devel
 BuildRequires:  libX11-devel
-BuildRequires:	 git-lfs
+BuildRequires:	git-lfs
 BuildRequires:  git-core
 BuildRequires:  anda-srpm-macros
-BuildRequires:	 pnpm
+BuildRequires:	pnpm
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  git-core
@@ -38,6 +41,7 @@ BuildRequires:  make
 BuildRequires:  nodejs
 BuildRequires:  nodejs-npm
 BuildRequires:  python3
+BuildRequires:  terra-appstream-helper
 
 Requires:		gtk3
 Requires:		libwayland-cursor
@@ -130,6 +134,8 @@ install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/applications/signal.desktop
 mkdir -p %{buildroot}%{_bindir}
 ln -s %{_libdir}/signal-desktop/signal-desktop %{buildroot}%{_bindir}/signal-desktop
 
+%terra_appstream -o %{SOURCE2}
+
 %files
 %license LICENSE
 %doc README.md CONTRIBUTING.md ACKNOWLEDGMENTS.md
@@ -149,9 +155,14 @@ ln -s %{_libdir}/signal-desktop/signal-desktop %{buildroot}%{_bindir}/signal-des
 %{_iconsdir}/hicolor/48x48/apps/signal.png
 %{_iconsdir}/hicolor/512x512/apps/signal.png
 %{_iconsdir}/hicolor/64x64/apps/signal.png
+%{_metainfodir}/org.signal.Signal.metainfo.xml
 
 %changelog
+* Wed Dec 10 2025 Owen Zimmerman <owen@fyralabs.com>
+- Add metainfo
+
 * Tue Nov 11 2025 Owen Zimmerman <owen@fyralabs.com>
 - Add more Requires:, fix electron_license macro application, fix some formatting
+
 * Fri Aug 8 2025 june-fish <git@june.fish>
 - Initial Package
