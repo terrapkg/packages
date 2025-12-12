@@ -19,6 +19,7 @@ BuildRequires:  pkgconfig(libseat)
 BuildRequires:  pkgconfig(libudev)
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  pkgconfig(libzstd)
+BuildRequires:  pkgconfig(fontconfig)
 ExclusiveArch:  x86_64
 
 Packager:       Metcya <metcya@gmail.com>
