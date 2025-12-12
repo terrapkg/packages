@@ -14,7 +14,7 @@ Summary:	SELinux policy module for rustdesk
 
 Group:	System Environment/Base		
 License:	GPLv2+	
-URL:		http://rustdesk.com
+URL:		https://rustdesk.com
 Source0:	rustdesk.te
 
 Requires: policycoreutils, libselinux-utils
