@@ -3,7 +3,7 @@
 
 Name:           peazip
 Version:        10.8.0
-Release:        2%?dist
+Release:        3%?dist
 Summary:        Free Zip / Unzip software and Rar file extractor. Cross-platform file and archive manager
 License:        LGPL-3.0-only
 URL:            https://peazip.github.io
@@ -89,15 +89,19 @@ Qt6 version of pea.
 %build
 cd peazip-sources
 rm res/portable
-lazbuild --add-package dev/metadarkstyle/metadarkstyle.lpk
-lazbuild --ws=gtk2 dev/project_peach.lpi && cp dev/peazip ../peazip.gtk2
-lazbuild --ws=gtk3 dev/project_peach.lpi && cp dev/peazip ../peazip.gtk3
-lazbuild --ws=qt5 dev/project_peach.lpi && cp dev/peazip ../peazip.qt5
-lazbuild --ws=qt6 dev/project_peach.lpi && cp dev/peazip ../peazip.qt6
-lazbuild --ws=gtk2 dev/project_pea.lpi && cp dev/pea ../pea.gtk2
-lazbuild --ws=gtk3 dev/project_pea.lpi && cp dev/pea ../pea.gtk3
-lazbuild --ws=qt5 dev/project_pea.lpi && cp dev/pea ../pea.qt5
-lazbuild --ws=qt6 dev/project_pea.lpi && cp dev/pea ../pea.qt6
+# use system binaries
+sed -E -e 's&(\bHSYSBIN\b\s*)=\s*[0-9];&\1= 2;&' -i dev/peach.pas
+# set paths, needs trailing slash
+sed -E -e 's&(\bHBINPATH\b\s*)=\s*'"''"';&\1= '"'"'%_bindir'"'"';&' -i dev/peach.pas
+lazbuild --add-package $(pwd)/dev/metadarkstyle/metadarkstyle.lpk
+lazbuild --ws=gtk2 $(pwd)/dev/project_peach.lpi && cp dev/peazip ../peazip.gtk2
+lazbuild --ws=gtk3 $(pwd)/dev/project_peach.lpi && cp dev/peazip ../peazip.gtk3
+lazbuild --ws=qt5 $(pwd)/dev/project_peach.lpi && cp dev/peazip ../peazip.qt5
+lazbuild --ws=qt6 $(pwd)/dev/project_peach.lpi && cp dev/peazip ../peazip.qt6
+lazbuild --ws=gtk2 $(pwd)/dev/project_pea.lpi && cp dev/pea ../pea.gtk2
+lazbuild --ws=gtk3 $(pwd)/dev/project_pea.lpi && cp dev/pea ../pea.gtk3
+lazbuild --ws=qt5 $(pwd)/dev/project_pea.lpi && cp dev/pea ../pea.qt5
+lazbuild --ws=qt6 $(pwd)/dev/project_pea.lpi && cp dev/pea ../pea.qt6
 
 %install
 install -Dm755 peazip.* -t %buildroot%_bindir
