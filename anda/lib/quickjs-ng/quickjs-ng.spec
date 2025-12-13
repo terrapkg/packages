@@ -57,6 +57,7 @@ rm %{buildroot}%{_docdir}/quickjs/LICENSE
 %{_bindir}/qjsc
 
 %files examples
+%license LICENSE
 %{_docdir}/quickjs/examples/*
 
 %changelog
