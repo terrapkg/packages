@@ -11,7 +11,7 @@ Provides:       qjsc
 BuildRequires:  gcc
 BuildRequires:  cmake
 
-Requires:       %{name}-libs%{_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       %{name}-libs%{_isa} = %evr
 
 %description
 QuickJS is a small and embeddable JavaScript engine. It aims to support the
