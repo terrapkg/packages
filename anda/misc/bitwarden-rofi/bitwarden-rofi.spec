@@ -7,6 +7,11 @@ URL:            https://github.com/mattydebie/bitwarden-rofi
 Source0:        %url/archive/refs/tags/%version.tar.gz
 Requires:       bash
 BuildArch:      noarch
+
+Requires:      rofi
+Requires:      bitwarden-cli
+Requires:      jq
+
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
@@ -17,11 +22,13 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %install
 install -Dm755 lib-bwmenu %{buildroot}%{_bindir}/lib-bwmenu
+install -Dm755 bwmenu %{buildroot}%{_bindir}/bwmenu
 
 %files
 %doc README.md img/screenshot1.png
 %license LICENSE
-%_bindir/lib-bwmenu
+%{_bindir}/bwmenu
+%{_bindir}/lib-bwmenu
 
 %changelog
 * Sat Dec 13 2025 Owen Zimmerman <owen@fyralabs.com>
