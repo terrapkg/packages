@@ -1,3 +1,5 @@
+%global _distro_extra_cflags -Wno-discarded-qualifiers
+
 Name:           quickjs-ng
 Version:        0.11.0
 Release:        1%?dist
@@ -23,8 +25,12 @@ intent of reigniting its development.
 %pkg_libs_files
 
 %package devel
-Requires:   %{name}-libs%{_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:   %{name}-libs%{_isa} = %evr
 %pkg_devel_files
+
+%files devel
+%{_libdir}/cmake/quickjs/*.cmake
+
 
 %package examples
 Summary:    Example files for %{name}
@@ -48,9 +54,6 @@ rm %{buildroot}%{_docdir}/quickjs/LICENSE
 %license LICENSE
 %{_bindir}/qjs
 %{_bindir}/qjsc
-
-%files devel
-%{_libdir}/cmake/quickjs/*.cmake
 
 %files examples
 %{_docdir}/quickjs/examples/*
