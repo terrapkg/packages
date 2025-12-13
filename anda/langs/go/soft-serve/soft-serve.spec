@@ -7,7 +7,7 @@
 Name:           soft-serve
 Version:        0.11.1
 Release:        1%?dist
-Summary:        The mighty, self-hostable Git server for the command line.
+Summary:        The mighty, self-hostable Git server for the command line
 URL:            https://github.com/charmbracelet/%{name}
 Source0:        https://github.com/charmbracelet/%{name}/archive/refs/tags/v%{version}.tar.gz
 License:        MIT
@@ -16,7 +16,7 @@ BuildRequires:  anda-srpm-macros go
 Packager:       arbormoss <arbormoss@woodsprite.dev>
 
 %description
-%summary
+%summary.
 
 %prep
 %autosetup -n %name-%version
