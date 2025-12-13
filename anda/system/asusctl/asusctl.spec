@@ -100,7 +100,7 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/rog-control-center.d
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
-* Tue Dec 9 2025 Metcya <metcya@gmail.com> - 6.1.22
+* Tue Dec 9 2025 Metcya <metcya@gmail.com> - 6.2.0
 - Add metainfo
 
 * Mon Dec 1 2025 Metcya <metcya@gmail.com>
