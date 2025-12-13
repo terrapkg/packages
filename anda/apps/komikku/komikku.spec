@@ -3,12 +3,12 @@
 %global gtk4_version        4.14.4
 %global libadwaita_version  1.5.1
 %global pure_protobuf_version 2.0.0
-%global raw_ver v1.96.0
+%global raw_ver v1.97.0
 
 Name:           komikku
-Version:        1.96.0
+Version:        1.97.0
 %forgemeta
-Release:        2%?dist
+Release:        1%?dist
 Summary:        A manga reader for GNOME
 
 BuildArch:      noarch

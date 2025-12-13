@@ -5,8 +5,8 @@
 %global __brp_strip %{nil}
 
 Name:           nvidia-kmod-common
-Version:        580.105.08
-Release:        3%?dist
+Version:        580.119.02
+Release:        1%?dist
 Summary:        Common file for NVIDIA's proprietary driver kernel modules
 Epoch:          3
 License:        NVIDIA License

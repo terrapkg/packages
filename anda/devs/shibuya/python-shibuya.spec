@@ -5,7 +5,7 @@ A responsive, good looking with modern design documentation theme for Sphinx, wi
 %bcond docs 0
 
 Name:           python-%{pypi_name}
-Version:        2025.11.10
+Version:        2025.12.13
 Release:        1%?dist
 Summary:        A clean, responsive, and customizable Sphinx documentation theme with light/dark mode
 License:        BSD-3-Clause

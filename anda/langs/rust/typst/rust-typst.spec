@@ -4,7 +4,7 @@
 %global crate typst
 
 Name:           rust-typst
-Version:        0.14.1
+Version:        0.14.2
 Release:        1%?dist
 Summary:        New markup-based typesetting system that is powerful and easy to learn
 

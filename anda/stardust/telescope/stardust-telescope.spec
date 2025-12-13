@@ -1,5 +1,5 @@
-%global commit 942d5e951620d0cbee822df3e041bbf3c7f194a0
-%global commit_date 20251205
+%global commit a66e28e4eba976181419676abd3733edf1c6bbec
+%global commit_date 20251211
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           stardust-xr-telescope
