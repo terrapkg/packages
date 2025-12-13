@@ -3,7 +3,7 @@
 Name:           wishlist
 Version:        0.15.2
 Release:        1%?dist
-Summary:        The SSH directory.
+Summary:        The SSH directory
 URL:            https://github.com/charmbracelet/%{name}
 Source0:        https://github.com/charmbracelet/%{name}/archive/refs/tags/v%{version}.tar.gz
 License:        MIT
@@ -12,7 +12,7 @@ BuildRequires:  anda-srpm-macros go
 Packager:       arbormoss <arbormoss@woodsprite.dev>
 
 %description
-%summary
+%summary.
 
 %prep
 %autosetup -n %name-%version

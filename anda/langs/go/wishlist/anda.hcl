@@ -1,5 +1,5 @@
 project pkg {
   rpm {
-  	spec = "golang-github-charmbracelet-wishlist.spec"
+  	spec = "wishlist.spec"
   }
 }
