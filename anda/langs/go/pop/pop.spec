@@ -3,7 +3,7 @@
 Name:           pop
 Version:        0.2.0
 Release:        1%?dist
-Summary:        Send emails from your terminal.
+Summary:        Send emails from your terminal
 URL:            https://github.com/charmbracelet/%{name}
 Source0:        https://github.com/charmbracelet/%{name}/archive/refs/tags/v%{version}.tar.gz
 License:        MIT
@@ -12,7 +12,7 @@ BuildRequires:  anda-srpm-macros go
 Packager:       arbormoss <arbormoss@woodsprite.dev>
 
 %description
-%summary
+%summary.
 
 %prep
 %autosetup -n %name-%version
