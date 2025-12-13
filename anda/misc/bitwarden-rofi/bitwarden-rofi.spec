@@ -8,9 +8,15 @@ Source0:        %url/archive/refs/tags/%version.tar.gz
 Requires:       bash
 BuildArch:      noarch
 
-Requires:      rofi
-Requires:      bitwarden-cli
-Requires:      jq
+Requires:       rofi
+Requires:       bitwarden-cli
+Requires:       jq
+
+Recommends:     wl-clipboard
+Recommends:     ydotool
+Recommends:     xclip
+Recommends:     xsel
+Recommends:     xdotool
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
