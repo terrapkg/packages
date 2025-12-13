@@ -1,3 +1,5 @@
+%global _distro_extra_cflags -Wno-discarded-qualifiers
+
 Name:           xbps
 Version:        0.60.6
 Release:        1%?dist
