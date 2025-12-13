@@ -9,7 +9,7 @@ URL:            https://gitlab.com/asus-linux/asusctl
 Source0:        %url/-/archive/%version/asusctl-%version.tar.gz
 Source1:        %{appid}.metainfo.xml
 License:        MPL-2.0
-BuildRequires:  anda-srpm-macros cargo-rpm-macros systemd-rpm-macros mold rust-udev-devel clang-devel
+BuildRequires:  anda-srpm-macros cargo-rpCan Provides: go2rpm-generated-name if you want.m-macros systemd-rpm-macros mold rust-udev-devel clang-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  cmake
 BuildRequires:  rust

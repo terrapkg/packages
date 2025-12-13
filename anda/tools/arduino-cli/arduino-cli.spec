@@ -1,6 +1,6 @@
 # https://github.com/arduino/arduino-cli
 %global goipath github.com/arduino/arduino-cli
-Version:        1.3.1
+Version:        1.4.0
 
 %gometa -f
 
@@ -12,7 +12,7 @@ Arduino CLI is an all-in-one solution that provides Boards/Library Managers, ske
 %global godocs          README.md
 
 Name:           arduino-cli
-Release:        2%?dist
+Release:        1%?dist
 Summary:        Arduino command line tool
 License:        GPL-3.0
 Packager:       Owen Zimmerman <owen@fyralabs.com>

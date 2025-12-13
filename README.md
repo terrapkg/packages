@@ -1,5 +1,9 @@
 # Terra Sources
 
+[![Repository status](https://repology.org/badge/repository-big/terra_42.svg?header=Terra+42)](https://repology.org/repository/terra_42)
+[![Repository status](https://repology.org/badge/repository-big/terra_43.svg?header=Terra+43)](https://repology.org/repository/terra_43)
+[![Repository status](https://repology.org/badge/repository-big/terra_rawhide.svg?header=Terra+Rawhide)](https://repology.org/repository/terra_rawhide)
+
 Terra is a rolling-release Fedora repository for all the software you need.
 With Terra, you can install the latest packages knowing that quality and security are assured.
 
@@ -55,9 +59,9 @@ First of all, thanks for being interested in contributing to Terra! If you have 
 
 Our documentation can be found on our [Devdocs](https://developer.fyralabs.com/terra/).
 
-## pkgs.org
+## Searching Packages
 
-pkgs.org provides a list of the packages available in the main stream: https://fedora.pkgs.org/rawhide/terra/
+[pkgs.org](https://fedora.pkgs.org/rawhide/terra/) and [Repology](https://repology.org/) provide a list of the packages available in Terra.
 
 ## Questions?
 
