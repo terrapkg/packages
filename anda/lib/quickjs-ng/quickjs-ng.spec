@@ -7,6 +7,7 @@ License:        MIT
 Summary:        A mighty JavaScript engine
 URL:            https://github.com/quickjs-ng/quickjs
 Source:         %{url}/archive/refs/tags/v%{version}.tar.gz
+Packager:       Metcya <metcya@gmail.com>
 Provides:       qjs
 Provides:       qjsc
 
