@@ -25,6 +25,9 @@ intent of reigniting its development.
 %package libs
 %pkg_libs_files
 
+%files libs
+%license LICENSE
+
 %package devel
 Requires:   %{name}-libs%{_isa} = %evr
 %pkg_devel_files
