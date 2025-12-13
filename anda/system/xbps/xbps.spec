@@ -10,7 +10,7 @@ Packager:       Metcya <metcya@gmail.com>
 BuildRequires:  gcc
 BuildRequires:  make
 BuildRequires:  pkgconfig(pkgconf)
-BuildRequires:  zlib-ng-compat-devel
+BuildRequires:  pkgconfig(zlib)
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pkgconfig(libarchive) >= 3.3.3
 Requires:       %name-lib = %evr
