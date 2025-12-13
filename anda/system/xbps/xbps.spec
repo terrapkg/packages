@@ -9,6 +9,7 @@ URL:            https://github.com/void-linux/xbps
 Source:         %{url}/archive/refs/tags/%{version}.tar.gz
 Packager:       Metcya <metcya@gmail.com>
 
+BuildRequires:  anda-srpm-macros
 BuildRequires:  gcc
 BuildRequires:  make
 BuildRequires:  pkgconfig(pkgconf)
