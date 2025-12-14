@@ -1,4 +1,5 @@
 Name:			electron
+%electronmeta
 Version:		39.2.7
 Release:		1%?dist
 Summary:		Build cross platform desktop apps with web technologies
@@ -8,8 +9,6 @@ Source0:		https://github.com/electron/electron/releases/download/v%{version}/chr
 Source1:		https://github.com/electron/electron/releases/download/v%{version}/electron-v%{version}-linux-%{_electron_cpu}.zip
 Source2:		https://raw.githubusercontent.com/electron/electron/v%version/README.md
 BuildRequires:  anda-srpm-macros >= 0.2.26
-
-%electronmeta
 
 %description
 The Electron framework lets you write cross-platform desktop applications using
