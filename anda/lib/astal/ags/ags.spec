@@ -39,7 +39,7 @@ Packager:       madonuko <mado@fyralabs.com>
 %prep
 %goprep -A
 %autopatch -p1
-%{lua:macros["buildsubdir"] = macros["buildsubdir"] + "/cli"}
+%{lua:macros["buildsubdir"] = macros["buildsubdir"] .. "/cli"}
 
 %build
 %define currentgoldflags -X main.version=%version
