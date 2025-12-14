@@ -2,7 +2,7 @@
 
 Name:           terra-gpg-keys
 Version:        %{?fedora:%{fedora}}%{?rhel:%{rhel}}
-Release:        1
+Release:        2
 Summary:        GPG keys for Terra
 Requires:       filesystem >= 3.18-6
 
@@ -39,6 +39,8 @@ Source26:       RPM-GPG-KEY-terra43-multimedia-source
 Source27:       RPM-GPG-KEY-terra43-nvidia
 Source28:       RPM-GPG-KEY-terra43-nvidia-source
 Source29:       RPM-GPG-KEY-terra43-source
+Source30:       RPM-GPG-KEY-terrael10
+Source31:       RPM-GPG-KEY-terrael10-source
 BuildArch:      noarch
 
 %description
