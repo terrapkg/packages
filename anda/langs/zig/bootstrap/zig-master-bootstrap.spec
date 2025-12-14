@@ -106,7 +106,7 @@ BuildArch:      noarch
 Zig Standard Library
 
 %prep
-/usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key} | GREP_COLORS='mt=01;32' grep -F -C5 "file:%{archive_name}" || exit 1
+/usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key} | grep -F -C5 "file:%{archive_name}" || exit 1
 %autosetup -p1 -n zig-%{ver}
 %if %{without bootstrap}
 # Ensure that the pre-build stage1 binary is not used
