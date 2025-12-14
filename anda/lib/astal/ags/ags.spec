@@ -12,7 +12,7 @@
 
 # https://github.com/Aylur/ags
 %global goipath         github.com/Aylur/ags
-Version:                3.1.0
+Version:                3.1.1
 
 %gometa -f
 
