@@ -3,7 +3,7 @@
 Name:           xcur2png
 Version:        0.7.1
 Release:        1%{?dist}
-License:        GPL-3.0
+License:        GPL-3.0-or-later
 Summary:        Convert X cursors to PNG images
 URL:            https://github.com/eworm-de/xcur2png
 Source:         %{url}/releases/download/%{version}/%{name}-%{version}.tar.gz
