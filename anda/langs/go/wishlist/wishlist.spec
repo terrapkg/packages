@@ -1,13 +1,16 @@
 %global debug_package %{nil}
 
-Name:           wishlist
+%global goipath github.com/charmbracelet/wishlist
 Version:        0.15.2
+
+%gometa -f
+
+Name:           wishlist
 Release:        1%?dist
 Summary:        The SSH directory
 URL:            https://github.com/charmbracelet/%{name}
 Source0:        https://github.com/charmbracelet/%{name}/archive/refs/tags/v%{version}.tar.gz
 License:        MIT
-BuildRequires:  anda-srpm-macros go
 
 Packager:       arbormoss <arbormoss@woodsprite.dev>
 
@@ -15,13 +18,15 @@ Packager:       arbormoss <arbormoss@woodsprite.dev>
 %summary.
 
 %prep
-%autosetup -n %name-%version
+%goprep -A
 
 %build
-go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w" -buildmode pie -compiler gc -a -x ./cmd/%{name}
+%define currentgoldflags -X main.version=%version
+%define gomodulesmode GO111MODULE=on
+%gobuild -o %{gobuilddir}/bin/%{name} ./cmd/%{name}
 
 %install
-install -Dm755 %{name} %{buildroot}%{_bindir}/%{name}
+install -Dm755 %{gobuilddir}/bin/%{name} %{buildroot}%{_bindir}/%{name}
 
 %files
 %license LICENSE
