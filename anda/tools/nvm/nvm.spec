@@ -9,7 +9,7 @@ Source1:  binscript
 # Make sure NVM always chooses "$HOME/.nvm" as the directory for local files unless explicitly set otherwise
 Patch0:   nvm-always-use-default-dir.patch
 # Only works with POSIX compliant shells
-Requires:  (bash or dash or ksh or zsh)
+Requires: bash
 BuildArch: noarch
 Packager:  Gilver E. <rockgrub@disroot.org>
 
