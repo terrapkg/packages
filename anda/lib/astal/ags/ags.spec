@@ -40,14 +40,14 @@ Packager:       madonuko <mado@fyralabs.com>
 %goprep -A
 %autopatch -p1
 
-%global buildsubdir ags-%version/cli
-
 %build
+cd cli
 %define currentgoldflags -X main.version=%version
 %define gomodulesmode GO111MODULE=on
 %gobuild -o %{gobuilddir}/bin/ags .
 
 %install
+cd cli
 %gopkginstall
 install -m 0755 -vd                     %{buildroot}%{_bindir}
 install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
