@@ -33,7 +33,7 @@ install -Dm644 bash_completion %{buildroot}%{bash_completions_dir}/%{name}.bash
 install -Dm644 bash_completion %{buildroot}%{zsh_completions_dir}/_%{name}
 
 # Make NVM expect nvm-exec in the bindir
-sed 's|${NVM_DIR}/nvm-exec|%{_bindir}/nvm-exec|g' %{name}.sh
+sed -i 's|${NVM_DIR}/nvm-exec|%{_bindir}/nvm-exec|g' %{name}.sh
 install -Dm644 %{name}.sh -t %{buildroot}%{_sysconfdir}/profile.d
 
 %files
