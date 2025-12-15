@@ -37,7 +37,6 @@ sh %{SOURCE0} -x --target %{real_name}-%{version}-%{_arch}
 %setup -T -D -n %{real_name}-%{version}-%{_arch}
 %autopatch -p1
 
-
 rm -f */dkms.conf
 
 for kernel_version in %{?kernel_versions}; do
