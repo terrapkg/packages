@@ -2,7 +2,7 @@
 
 Name:           libnvidia-container
 Version:        1.18.1
-Release:        1%?dist
+Release:        2%?dist
 Summary:        NVIDIA container runtime library
 License:        BSD-3-Clause AND Apache-2.0 AND GPL-3.0-or-later AND LGPL-3.0-or-later AND MIT AND GPL-2.0-only
 Vendor:         NVIDIA Corporation

@@ -3,7 +3,7 @@
 
 Name:           cuda
 Version:        13.1.80
-Release:        1%?dist
+Release:        2%?dist
 Summary:        NVIDIA Compute Unified Device Architecture Toolkit
 Epoch:          1
 License:        CUDA Toolkit
