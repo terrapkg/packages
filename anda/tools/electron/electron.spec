@@ -1,6 +1,5 @@
-%electronmeta
-
 Name:			electron
+%electronmeta
 Version:		39.2.7
 Release:		1%?dist
 Summary:		Build cross platform desktop apps with web technologies
