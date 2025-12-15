@@ -1,10 +1,12 @@
 %global real_name prismlauncher
 %global nice_name PrismLauncher
+%global name_pretty %{quote:Prism Launcher (Nightly)}
+%global appid org.prismlauncher.PrismLauncher-nightly
 
-%global commit aa0bd45d6cca34ab4ec79bfc6b9dec1beaa35cf8
+%global commit c33d104dc32d560a86ca4f65de41bd71a231466e
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
-%global commit_date 20251207
+%global commit_date 20251214
 %global snapshot_info %{commit_date}.%{shortcommit}
 
 %bcond_without qt6
@@ -36,10 +38,12 @@ License:          GPL-3.0-only AND Apache-2.0 AND LGPL-3.0-only AND GPL-3.0-or-l
 Group:            Amusements/Games
 URL:              https://prismlauncher.org/
 Patch0:           0001-find-cmark-with-pkgconfig.patch
+Source2:          nightly.xml
 
 BuildRequires:    cmake >= 3.15
 BuildRequires:    extra-cmake-modules
 BuildRequires:    gcc-c++
+BuildRequires:    terra-appstream-helper
 # JDKs less than the most recent release & LTS are no longer in the default
 # Fedora repositories
 # Make sure you have Adoptium's repositories enabled
@@ -55,6 +59,9 @@ BuildRequires:    desktop-file-utils
 BuildRequires:    libappstream-glib
 BuildRequires:    tomlplusplus-devel
 BuildRequires:    cmake(ghc_filesystem)
+BuildRequires:    pkgconfig(libqrencode)
+BuildRequires:    pkgconfig(libarchive)
+BuildRequires:    pkgconfig(gamemode)
 BuildRequires:    cmake(Qt%{qt_version}Concurrent) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Core) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Gui) >= %{min_qt_version}
@@ -66,9 +73,6 @@ BuildRequires:    cmake(Qt%{qt_version}NetworkAuth) >= %{min_qt_version}
 
 %if %{with qt6}
 BuildRequires:    cmake(Qt6Core5Compat)
-BuildRequires:    quazip-qt6-devel
-%else
-BuildRequires:    quazip-qt5-devel
 %endif
 
 BuildRequires:    pkgconfig(libcmark)
@@ -138,7 +142,8 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 
 %install
 %cmake_install
-
+%terra_appstream -o %{SOURCE2}
+rm -f %{buildroot}%{_datadir}/metainfo/org.prismlauncher.PrismLauncher.metainfo.xml
 
 %check
 %ctest
@@ -154,8 +159,9 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 %{_datadir}/%{nice_name}/qtlogging.ini
 %{_datadir}/%{nice_name}/NewLaunchLegacy.jar
 %{_datadir}/applications/org.prismlauncher.PrismLauncher.desktop
-%{_metainfodir}/org.prismlauncher.PrismLauncher.metainfo.xml
+%{_metainfodir}/%{appid}.metainfo.xml
 %{_datadir}/icons/hicolor/scalable/apps/org.prismlauncher.PrismLauncher.svg
+%{_datadir}/icons/hicolor/256x256/apps/org.prismlauncher.PrismLauncher.png
 %{_datadir}/mime/packages/modrinth-mrpack-mime.xml
 %{_datadir}/qlogging-categories%{qt_version}/prismlauncher.categories
 %{_mandir}/man?/prismlauncher.*
