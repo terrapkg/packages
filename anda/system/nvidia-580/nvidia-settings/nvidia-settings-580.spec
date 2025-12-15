@@ -64,7 +64,7 @@ This devel package contains libraries and header files for
 developing applications that use the NV-CONTROL API.
 
 %prep
-%autosetup -p1
+%autosetup -p1 -n nvidia-settings-%{version}
 
 # Remove bundled jansson
 rm -fr src/jansson

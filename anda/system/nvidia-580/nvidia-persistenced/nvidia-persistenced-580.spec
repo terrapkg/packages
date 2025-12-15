@@ -7,8 +7,8 @@ License:        GPLv2+
 URL:            http://www.nvidia.com/object/unix.html
 ExclusiveArch:  x86_64 aarch64
 
-Source0:        https://download.nvidia.com/XFree86/%{name}/%{name}-%{version}.tar.bz2
-Source1:        %{name}.service
+Source0:        https://download.nvidia.com/XFree86/nvidia-persistenced/nvidia-persistenced-%{version}.tar.bz2
+Source1:        nvidia-persistenced.service
 
 BuildRequires:  gcc
 BuildRequires:  libtirpc-devel
@@ -22,13 +22,13 @@ Requires(postun):   systemd
 Requires:           libnvidia-cfg-580%{?_isa} >= %{?epoch:%{epoch}:}%{version}
 
 %description
-The %{name} utility is used to enable persistent software state in the NVIDIA
+The nvidia-persistenced utility is used to enable persistent software state in the NVIDIA
 driver. When persistence mode is enabled, the daemon prevents the driver from
 releasing device state when the device is not in use. This can improve the
 startup time of new clients in this scenario.
 
 %prep
-%autosetup
+%autosetup -n nvidia-persistenced-%{version}
 # Remove additional CFLAGS added when enabling DEBUG
 sed -i -e '/+= -O0 -g/d' utils.mk
 

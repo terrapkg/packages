@@ -13,7 +13,7 @@ Epoch:          3
 License:        NVIDIA License
 URL:            https://www.nvidia.com/object/unix.html
 Source0:        https://download.nvidia.com/XFree86/Linux-%{_arch}/%{version}/NVIDIA-Linux-%{_arch}-%{version}.run
-Source1:        %{name}.conf
+Source1:        dkms-%{modulename}.conf
 BuildRequires:  sed
 Provides:       %{modulename}-580-kmod = %{?epoch:%{epoch}:}%{version}
 Requires:       %{modulename}-580-kmod-common = %{?epoch:%{epoch}:}%{version}
