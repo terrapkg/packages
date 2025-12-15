@@ -1,5 +1,6 @@
 # Build only the akmod package and no kernel module packages:
 %define buildforkernels akmod
+%global real_name nvidia-kmod
 
 %global debug_package %{nil}
 
@@ -21,7 +22,7 @@ Requires:       akmods
 BuildRequires:  kmodtool
 
 # kmodtool does its magic here:
-%{expand:%(kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
+%{expand:%(kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{real_name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 
 %description
 The NVidia %{version} display driver kernel module for kernel %{kversion}.
@@ -30,31 +31,31 @@ The NVidia %{version} display driver kernel module for kernel %{kversion}.
 # Error out if there was something wrong with kmodtool:
 %{?kmodtool_check}
 # Print kmodtool output for debugging purposes:
-kmodtool  --target %{_target_cpu}  --repo terra.fyralabs.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
+kmodtool  --target %{_target_cpu}  --repo terra.fyralabs.com --kmodname %{real_name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
-sh %{SOURCE0} -x --target nvidia-kmod-%{version}-%{_arch}
-%setup -T -D -n nvidia-kmod-%{version}-%{_arch}
+sh %{SOURCE0} -x --target %{real_name}-%{version}-%{_arch}
+%setup -T -D -n %{real_name}-%{version}-%{_arch}
 %autopatch -p1
+
 
 rm -f */dkms.conf
 
 for kernel_version in %{?kernel_versions}; do
     mkdir _kmod_build_${kernel_version%%___*}
-    cp -fr kernel* _kmod_build_${kernel_version%%___*}
+    cp -fr Kbuild Makefile common conftest.sh *.mk nvidia* _kmod_build_${kernel_version%%___*}/
 done
 
 %build
 for kernel_version in %{?kernel_versions}; do
     pushd _kmod_build_${kernel_version%%___*}/
-        make %{?_smp_mflags} -C kernel \
-            KERNEL_UNAME="${kernel_version%%___*}" modules
+        make %{?_smp_mflags} KERNEL_UNAME="${kernel_version%%___*}" modules
     popd
 done
 
 %install
 for kernel_version in %{?kernel_versions}; do
     mkdir -p %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
-    install -p -m 0755 _kmod_build_${kernel_version%%___*}/kernel/*.ko \
+    install -p -m 0755 _kmod_build_${kernel_version%%___*}/*.ko \
         %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
 done
 %{?akmod_install}

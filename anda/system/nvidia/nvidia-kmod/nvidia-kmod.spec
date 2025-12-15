@@ -41,15 +41,13 @@ sh %{SOURCE0} -x --target nvidia-kmod-%{version}-%{_arch}
 rm -f */dkms.conf
 
 for kernel_version in %{?kernel_versions}; do
-    mkdir _kmod_build_${kernel_version%%___*}
-    cp -fr kernel* _kmod_build_${kernel_version%%___*}
+    cp -fr open-gpu-kernel-modules-%{version} _kmod_build_${kernel_version%%___*}
 done
 
 %build
 for kernel_version in %{?kernel_versions}; do
     pushd _kmod_build_${kernel_version%%___*}/
-        make %{?_smp_mflags} -C kernel-open \
-            KERNEL_UNAME="${kernel_version%%___*}" modules
+        make %{?_smp_mflags} KERNEL_UNAME="${kernel_version%%___*}" modules
     popd
 done
 
