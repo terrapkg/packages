@@ -1,4 +1,6 @@
-Name:           nvidia-xconfig-580
+%global real_name nvidia-xconfig
+
+Name:           %{real_name}-580
 Version:        580.119.02
 Release:        1%?dist
 Summary:        NVIDIA X configuration file editor
@@ -7,7 +9,7 @@ License:        GPLv2+
 URL:            http://www.nvidia.com/object/unix.html
 ExclusiveArch:  x86_64 aarch64
 
-Source0:        https://download.nvidia.com/XFree86/%{name}/%{name}-%{version}.tar.bz2
+Source0:        https://download.nvidia.com/XFree86/%{real_name}/%{real_name}-%{version}.tar.bz2
 
 BuildRequires:  gcc
 BuildRequires:  libpciaccess-devel
@@ -17,11 +19,11 @@ Requires:       libnvidia-cfg-580%{?_isa} >= %{?epoch:%{epoch}:}%{version}
 Requires:       xorg-x11-nvidia-580%{?_isa} >= %{?epoch:%{epoch}:}%{version}
 
 %description
-%{name} is a command line tool intended to provide basic control over
+%{real_name} is a command line tool intended to provide basic control over
 configuration options available in the NVIDIA X driver.
 
 %prep
-%autosetup -p1
+%autosetup -p1 -n %{real_name}-%{version}
 # Remove additional CFLAGS added when enabling DEBUG
 sed -i '/+= -O0 -g/d' utils.mk
 
@@ -44,8 +46,8 @@ make %{?_smp_mflags} \
 
 %files
 %license COPYING
-%{_bindir}/%{name}
-%{_mandir}/man1/%{name}.1*
+%{_bindir}/%{real_name}
+%{_mandir}/man1/%{real_name}.1*
 
 %changelog
 %autochangelog

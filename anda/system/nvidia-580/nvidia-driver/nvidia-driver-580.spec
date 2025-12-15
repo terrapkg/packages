@@ -3,13 +3,14 @@
 %global __brp_strip_comment_note %{nil}
 %global __brp_ldconfig %{nil}
 %define _build_id_links none
+%global real_name nvidia-driver
 
 # systemd 248+
 %if 0%{?rhel} == 8
 %global _systemd_util_dir %{_prefix}/lib/systemd
 %endif
 
-Name:           nvidia-driver-580
+Name:           %{real_name}-580
 Version:        580.119.02
 Release:        1%?dist
 Summary:        NVIDIA's proprietary display driver for NVIDIA graphic cards
@@ -21,8 +22,8 @@ ExclusiveArch:  %{ix86} x86_64 aarch64
 %dnl Source0:        %{name}-%{version}-i386.tar.xz
 %dnl Source1:        %{name}-%{version}-x86_64.tar.xz
 %dnl Source2:        %{name}-%{version}-aarch64.tar.xz
-Source8:        70-nvidia-driver.preset
-Source9:        70-nvidia-driver-cuda.preset
+Source8:        70-%{real_name}.preset
+Source9:        70-%{real_name}-cuda.preset
 Source10:       10-nvidia.conf
 Source13:       alternate-install-present
 
@@ -46,7 +47,7 @@ BuildRequires:  systemd-rpm-macros
 BuildRequires:  wget
 BuildRequires:  coreutils
 
-Requires:       nvidia-driver-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}
+Requires:       %{real_name}-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}
 Requires:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
 
 Conflicts:      nvidia-x11-drv
@@ -118,8 +119,8 @@ This package provides the CUDA libraries for %{name}-cuda.
 
 %package -n libnvidia-fbc-580
 Summary:        NVIDIA OpenGL-based Framebuffer Capture libraries
-Provides:       nvidia-driver-NvFBCOpenGL-580 = %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes:      nvidia-driver-NvFBCOpenGL < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:       %{real_name}-NvFBCOpenGL-580 = %{?epoch:%{epoch}:}%{version}-%{release}
+Obsoletes:      %{real_name}-NvFBCOpenGL < %{?epoch:%{epoch}:}%{version}-%{release}
 %if 0%{?fedora}
 %ifarch x86_64
 Requires:       (libnvidia-fbc-580(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
@@ -149,13 +150,13 @@ other driver components.
 %package -n libnvidia-ml-580
 Summary:        NVIDIA Management Library (NVML)
 Provides:       cuda-nvml-580%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-Provides:       nvidia-driver-NVML-580 = %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:       %{real_name}-NVML-580 = %{?epoch:%{epoch}:}%{version}-%{release}
 %if 0%{?fedora}
 %ifarch x86_64
 Requires:       (libnvidia-ml-580(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
 %endif
 %endif
-Obsoletes:      nvidia-driver-NVML < %{?epoch:%{epoch}:}%{version}-%{release}
+Obsoletes:      %{real_name}-NVML < %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description -n libnvidia-ml-580
 A C-based API for monitoring and managing various states of the NVIDIA GPU
@@ -193,7 +194,7 @@ This package provides the CUDA integration components for %{name}.
 Summary:        X.org X11 NVIDIA driver and extensions
 Requires:       %{name}%{?_isa} = %{?epoch:%{epoch}:}%{version}
 Requires:       xorg-x11-server-Xorg%{?_isa}
-Supplements:    (nvidia-driver-580 and xorg-x11-server-Xorg)
+Supplements:    (%{real_name}-580 and xorg-x11-server-Xorg)
 
 Conflicts:      xorg-x11-drv-nvidia
 Conflicts:      xorg-x11-drv-nvidia-470xx
@@ -346,8 +347,8 @@ install -p -m 0644 -D sandboxutils-filelist.json %{buildroot}%{_datadir}/nvidia/
 # dnf4 only for the moment: https://github.com/rpm-software-management/dnf5/issues/1815
 %if 0%{?fedora} < 42 || 0%{?rhel}
 mkdir -p %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d
-echo %{name} > %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}.conf
-echo %{name}-cuda > %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}-cuda.conf
+echo %{real_name} > %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{real_name}.conf
+echo %{real_name}-cuda > %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{real_name}-cuda.conf
 %endif
 
 %check
@@ -399,7 +400,7 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %{_datadir}/dbus-1/system.d/nvidia-dbus.conf
 %{_datadir}/nvidia/nvidia-application-profiles*
 %{_datadir}/pixmaps/com.nvidia.driver.png
-%{_systemd_util_dir}/system-preset/70-nvidia-driver.preset
+%{_systemd_util_dir}/system-preset/70-%{real_name}.preset
 %{_systemd_util_dir}/system-sleep/nvidia
 %{_unitdir}/nvidia-hibernate.service
 %{_unitdir}/nvidia-powerd.service
@@ -407,7 +408,7 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %{_unitdir}/nvidia-suspend.service
 %{_unitdir}/nvidia-suspend-then-hibernate.service
 %if 0%{?fedora} < 42 || 0%{?rhel}
-%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}.conf
+%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{real_name}.conf
 %endif
 
 %if 0%{?fedora} || 0%{?rhel} < 10
@@ -431,9 +432,9 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %{_mandir}/man1/nvidia-cuda-mps-control.1.*
 %{_mandir}/man1/nvidia-smi.*
 %{_prefix}/lib/nvidia/alternate-install-present
-%{_systemd_util_dir}/system-preset/70-nvidia-driver-cuda.preset
+%{_systemd_util_dir}/system-preset/70-%{real_name}-cuda.preset
 %if 0%{?fedora} < 42 || 0%{?rhel}
-%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}-cuda.conf
+%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{real_name}-cuda.conf
 %endif
 
 %endif

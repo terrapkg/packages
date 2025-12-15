@@ -1,4 +1,6 @@
-Name:           nvidia-settings-580
+%global real_name nvidia-settings
+
+Name:           %{real_name}-580
 Version:        580.119.02
 Release:        1%?dist
 Summary:        Configure the NVIDIA graphics driver
@@ -7,14 +9,14 @@ License:        GPLv2+
 URL:            http://www.nvidia.com/object/unix.html
 ExclusiveArch:  x86_64 aarch64
 
-Source0:        https://download.nvidia.com/XFree86/nvidia-settings/nvidia-settings-%{version}.tar.bz2
-Source1:        nvidia-settings-load.desktop
-Source2:        nvidia-settings.appdata.xml
-Patch0:         nvidia-settings-desktop.patch
-Patch1:         nvidia-settings-lib-permissions.patch
-Patch2:         nvidia-settings-link-order.patch
-Patch3:         nvidia-settings-libXNVCtrl.patch
-Patch4:         nvidia-settings-ld-dep-remove.patch
+Source0:        https://download.nvidia.com/XFree86/%{real_name}/%{real_name}-%{version}.tar.bz2
+Source1:        %{real_name}-load.desktop
+Source2:        %{real_name}.appdata.xml
+Patch0:         %{real_name}-desktop.patch
+Patch1:         %{real_name}-lib-permissions.patch
+Patch2:         %{real_name}-link-order.patch
+Patch3:         %{real_name}-libXNVCtrl.patch
+Patch4:         %{real_name}-ld-dep-remove.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  dbus-devel
@@ -39,7 +41,7 @@ Requires:       nvidia-driver-580%{?_isa} = %{?epoch}:%{version}
 Requires:       libvdpau%{?_isa} >= 0.9
 
 %description
-The nvidia-settings utility is a tool for configuring the NVIDIA graphics
+The %{real_name} utility is a tool for configuring the NVIDIA graphics
 driver. It operates by communicating with the NVIDIA X driver, querying and
 updating state as appropriate.
 
@@ -52,7 +54,7 @@ Provides:       libXNVCtrl-580 = %{?epoch}:%{version}-%{release}
 
 %description -n nvidia-libXNVCtrl-580
 This library provides the NV-CONTROL API for communicating with the proprietary
-NVidia xorg driver. It is required for proper operation of the nvidia-settings utility.
+NVidia xorg driver. It is required for proper operation of the %{real_name} utility.
 
 %package -n nvidia-libXNVCtrl-580-devel
 Summary:        Development files for libXNVCtrl
@@ -64,7 +66,7 @@ This devel package contains libraries and header files for
 developing applications that use the NV-CONTROL API.
 
 %prep
-%autosetup -p1 -n nvidia-settings-%{version}
+%autosetup -p1 -n %{real_name}-%{version}
 
 # Remove bundled jansson
 rm -fr src/jansson
@@ -99,30 +101,30 @@ cp -af src/libXNVCtrl/*.h %{buildroot}%{_includedir}/NVCtrl/
 
 # Install desktop file
 mkdir -p %{buildroot}%{_datadir}/{applications,pixmaps}
-desktop-file-install --dir %{buildroot}%{_datadir}/applications/ doc/nvidia-settings.desktop
-cp doc/nvidia-settings.png %{buildroot}%{_datadir}/pixmaps/
+desktop-file-install --dir %{buildroot}%{_datadir}/applications/ doc/%{real_name}.desktop
+cp doc/%{real_name}.png %{buildroot}%{_datadir}/pixmaps/
 
 # Install autostart file to load settings at login
-install -p -D -m 644 %{SOURCE1} %{buildroot}%{_sysconfdir}/xdg/autostart/nvidia-settings-load.desktop
+install -p -D -m 644 %{SOURCE1} %{buildroot}%{_sysconfdir}/xdg/autostart/%{real_name}-load.desktop
 
 # install AppData and add modalias provides
 mkdir -p %{buildroot}%{_metainfodir}/
 install -p -m 0644 %{SOURCE2} %{buildroot}%{_metainfodir}/
 
 %check
-desktop-file-validate %{buildroot}/%{_datadir}/applications/nvidia-settings.desktop
-desktop-file-validate %{buildroot}%{_sysconfdir}/xdg/autostart/nvidia-settings-load.desktop
-appstream-util validate-relax --nonet %{buildroot}/%{_metainfodir}/nvidia-settings.appdata.xml
+desktop-file-validate %{buildroot}/%{_datadir}/applications/%{real_name}.desktop
+desktop-file-validate %{buildroot}%{_sysconfdir}/xdg/autostart/%{real_name}-load.desktop
+appstream-util validate-relax --nonet %{buildroot}/%{_metainfodir}/%{real_name}.appdata.xml
 
 %files
-%{_bindir}/nvidia-settings
-%{_metainfodir}/nvidia-settings.appdata.xml
-%{_datadir}/applications/nvidia-settings.desktop
-%{_datadir}/pixmaps/nvidia-settings.png
+%{_bindir}/%{real_name}
+%{_metainfodir}/%{real_name}.appdata.xml
+%{_datadir}/applications/%{real_name}.desktop
+%{_datadir}/pixmaps/%{real_name}.png
 %{_libdir}/libnvidia-gtk3.so.%{version}
 %{_libdir}/libnvidia-wayland-client.so.%{version}
-%{_mandir}/man1/nvidia-settings.*
-%{_sysconfdir}/xdg/autostart/nvidia-settings-load.desktop
+%{_mandir}/man1/%{real_name}.*
+%{_sysconfdir}/xdg/autostart/%{real_name}-load.desktop
 
 %files -n nvidia-libXNVCtrl-580
 %license COPYING
