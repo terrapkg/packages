@@ -223,7 +223,7 @@ unpack() {
 }
 
 unpack
-%setup -D -T -n %{name}-%{version}-%{_arch}
+%setup -D -T -n %{real_name}-%{version}-%{_arch}
 
 %ifarch x86_64
 %if 0%{?rhel} == 8
