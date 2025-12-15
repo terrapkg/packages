@@ -1,11 +1,13 @@
 %global debug_package %{nil}
+%global appid org.asus_linux.rog_control_center
 
 Name:           asusctl
 Version:        6.2.0
-Release:        1%?dist
+Release:        2%?dist
 Summary:        A control daemon, CLI tools, and a collection of crates for interacting with ASUS ROG laptops
 URL:            https://gitlab.com/asus-linux/asusctl
 Source0:        %url/-/archive/%version/asusctl-%version.tar.gz
+Source1:        %{appid}.metainfo.xml
 License:        MPL-2.0
 BuildRequires:  anda-srpm-macros cargo-rpm-macros systemd-rpm-macros mold rust-udev-devel clang-devel
 BuildRequires:  desktop-file-utils
@@ -47,6 +49,7 @@ a notification service, and ability to run in the background.
 install -D -m 0644 README.md %{buildroot}/%{_docdir}/%{name}/README.md
 install -D -m 0644 rog-anime/README.md %{buildroot}/%{_docdir}/%{name}/README-anime.md
 install -D -m 0644 rog-anime/data/diagonal-template.png %{buildroot}/%{_docdir}/%{name}/diagonal-template.png
+%terra_appstream -o %{S:1}
 
 desktop-file-validate %{buildroot}/%{_datadir}/applications/rog-control-center.desktop
 
@@ -94,8 +97,12 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/rog-control-center.d
 %{_datadir}/applications/rog-control-center.desktop
 %{_datadir}/icons/hicolor/512x512/apps/rog-control-center.png
 %{_datadir}/rog-gui
+%{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
+* Tue Dec 9 2025 Metcya <metcya@gmail.com> - 6.2.0
+- Add metainfo
+
 * Mon Dec 1 2025 Metcya <metcya@gmail.com>
 - Add systemd scriptlets
 
