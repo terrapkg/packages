@@ -1,7 +1,5 @@
 ## NVIDIA DKMS package, based on the work of Negativo17 with tweaks for Terra.
 
-# RPM inexplicably thinks this package deps on a version of libcrypto it does not?
-%global __requires_exclude (libcrypto\\.so\\.1\\.1.*)$
 %global debug_package %{nil}
 %global modulename nvidia
 
@@ -21,9 +19,11 @@ Requires:       dkms
 Conflicts:      akmod-nvidia
 # Unlike most DKMS packages, this package is NOT noarch!
 ExclusiveArch:  x86_64 aarch64
+Provides:       %{name}-open = %{?epoch:%{epoch}:}%{version}
+Obsoletes:      %{name}-open < %{?epoch:%{epoch}:}%{version}
 
 %description
-This package provides the proprietary NVIDIA kernel driver modules.
+This package provides the NVIDIA kernel driver modules.
 
 %prep
 sh %{SOURCE0} -x --target dkms-nvidia-%{version}-%{_arch}

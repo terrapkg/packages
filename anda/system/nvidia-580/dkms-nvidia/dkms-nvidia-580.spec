@@ -1,9 +1,11 @@
 ## NVIDIA DKMS package, based on the work of Negativo17 with tweaks for Terra.
 
+# RPM inexplicably thinks this package deps on a version of libcrypto it does not?
+%global __requires_exclude (libcrypto\\.so\\.1\\.1.*)$
 %global debug_package %{nil}
 %global modulename nvidia
 
-Name:           dkms-%{modulename}-open
+Name:           dkms-%{modulename}-580
 Version:        580.105.08
 Release:        1%?dist
 Summary:        NVIDIA display driver kernel module
@@ -13,15 +15,15 @@ URL:            https://www.nvidia.com/object/unix.html
 Source0:        https://download.nvidia.com/XFree86/Linux-%{_arch}/%{version}/NVIDIA-Linux-%{_arch}-%{version}.run
 Source1:        %{name}.conf
 BuildRequires:  sed
-Provides:       %{modulename}-open-kmod = %{?epoch:%{epoch}:}%{version}
-Requires:       %{modulename}-kmod-common = %{?epoch:%{epoch}:}%{version}
+Provides:       %{modulename}-580-kmod = %{?epoch:%{epoch}:}%{version}
+Requires:       %{modulename}-580-kmod-common = %{?epoch:%{epoch}:}%{version}
 Requires:       dkms
 Conflicts:      akmod-nvidia
 # Unlike most DKMS packages, this package is NOT noarch!
 ExclusiveArch:  x86_64 aarch64
 
 %description
-This package provides the NVIDIA kernel driver modules.
+This package provides the proprietary NVIDIA kernel driver modules.
 
 %prep
 sh %{SOURCE0} -x --target dkms-nvidia-%{version}-%{_arch}

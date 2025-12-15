@@ -1,6 +1,6 @@
 project "pkg" {
     rpm {
-        spec = "nvidia-kmod.spec"
+        spec = "nvidia-580-kmod.spec"
     }
     labels {
         mock = 1

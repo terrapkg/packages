@@ -1,22 +1,24 @@
-Name:           nvidia-modprobe
+Name:           nvidia-xconfig-580
 Version:        580.119.02
 Release:        1%?dist
-Summary:        NVIDIA kernel module loader
+Summary:        NVIDIA X configuration file editor
 Epoch:          3
 License:        GPLv2+
 URL:            http://www.nvidia.com/object/unix.html
 ExclusiveArch:  x86_64 aarch64
 
 Source0:        https://download.nvidia.com/XFree86/%{name}/%{name}-%{version}.tar.bz2
-Patch0:         %{name}-man-page-permissions.patch
 
 BuildRequires:  gcc
+BuildRequires:  libpciaccess-devel
 BuildRequires:  m4
 
+Requires:       libnvidia-cfg-580%{?_isa} >= %{?epoch:%{epoch}:}%{version}
+Requires:       xorg-x11-nvidia-580%{?_isa} >= %{?epoch:%{epoch}:}%{version}
+
 %description
-This utility is used by user-space NVIDIA driver components to make sure the
-NVIDIA kernel modules are loaded and that the NVIDIA character device files are
-present.
+%{name} is a command line tool intended to provide basic control over
+configuration options available in the NVIDIA X driver.
 
 %prep
 %autosetup -p1
@@ -28,20 +30,22 @@ export CFLAGS="%{optflags}"
 export LDFLAGS="%{?__global_ldflags}"
 make %{?_smp_mflags} \
     DEBUG=1 \
+    MANPAGE_GZIP=0 \
     NV_VERBOSE=1 \
     PREFIX=%{_prefix} \
     STRIP_CMD=true
 
 %install
 %make_install \
+    MANPAGE_GZIP=0 \
     NV_VERBOSE=1 \
     PREFIX=%{_prefix} \
     STRIP_CMD=true
 
 %files
 %license COPYING
-%attr(4755, root, root) %{_bindir}/%{name}
-%{_mandir}/man1/%{name}.1.*
+%{_bindir}/%{name}
+%{_mandir}/man1/%{name}.1*
 
 %changelog
 %autochangelog

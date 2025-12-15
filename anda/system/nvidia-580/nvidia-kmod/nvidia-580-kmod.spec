@@ -3,7 +3,7 @@
 
 %global debug_package %{nil}
 
-Name:           nvidia-open-kmod
+Name:           nvidia-580-kmod
 Version:        580.105.08
 Release:        1%?dist
 Summary:        NVIDIA display driver kernel module
@@ -13,7 +13,7 @@ URL:            http://www.nvidia.com/object/unix.html
 ExclusiveArch:  x86_64 aarch64
 
 Source0:        http://download.nvidia.com/XFree86/Linux-%{_arch}/%{version}/NVIDIA-Linux-%{_arch}-%{version}.run
-Requires:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
+Requires:       nvidia-580-kmod-common = %{?epoch:%{epoch}:}%{version}
 Requires:       akmods
 
 
@@ -44,19 +44,17 @@ for kernel_version in %{?kernel_versions}; do
 done
 
 %build
-export MODULE_VARIANT=kernel-open
 for kernel_version in %{?kernel_versions}; do
     pushd _kmod_build_${kernel_version%%___*}/
-        make %{?_smp_mflags} -C ${MODULE_VARIANT} \
+        make %{?_smp_mflags} -C kernel \
             KERNEL_UNAME="${kernel_version%%___*}" modules
     popd
 done
 
 %install
-export MODULE_VARIANT=kernel-open
 for kernel_version in %{?kernel_versions}; do
     mkdir -p %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
-    install -p -m 0755 _kmod_build_${kernel_version%%___*}/${MODULE_VARIANT}/*.ko \
+    install -p -m 0755 _kmod_build_${kernel_version%%___*}/kernel/*.ko \
         %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
 done
 %{?akmod_install}
