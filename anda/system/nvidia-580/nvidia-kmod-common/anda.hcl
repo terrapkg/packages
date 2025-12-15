@@ -1,6 +1,6 @@
 project "pkg" {
     rpm {
-        spec = "nvidia-kmod-common-580.spec"
+        spec = "nvidia-580-kmod-common.spec"
     }
     arches = ["x86_64"]
     labels = {
