@@ -24,7 +24,7 @@ Name:             prismlauncher
 Name:             prismlauncher-qt5
 %endif
 Version:          9.4
-Release:          2%?dist
+Release:          3%?dist
 Summary:          Minecraft launcher with ability to manage multiple instances
 # see COPYING.md for more information
 # each file in the source also contains a SPDX-License-Identifier header that declares its license
@@ -59,13 +59,12 @@ BuildRequires:    cmake(Qt%{qt_version}Widgets) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Xml) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}NetworkAuth) >= %{min_qt_version}
 BuildRequires:    tomlplusplus-devel
-BuildRequires:    qrencode-devel
+BuildRequires:    pkgconfig(libqrencode)
+BuildRequires:    pkgconfig(libarchive)
+BuildRequires:    pkgconfig(gamemode)
 
 %if %{with qt6}
 BuildRequires:    cmake(Qt6Core5Compat)
-BuildRequires:    quazip-qt6-devel
-%else
-BuildRequires:    quazip-qt5-devel
 %endif
 
 
