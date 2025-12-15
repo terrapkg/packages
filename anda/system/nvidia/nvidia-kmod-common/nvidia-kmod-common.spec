@@ -6,7 +6,7 @@
 
 Name:           nvidia-kmod-common
 Version:        580.119.02
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Common file for NVIDIA's proprietary driver kernel modules
 Epoch:          3
 License:        NVIDIA License

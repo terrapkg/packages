@@ -5,7 +5,7 @@
 
 Name:           nvidia-kmod
 Version:        580.105.08
-Release:        1%?dist
+Release:        2%?dist
 Summary:        NVIDIA display driver kernel module
 Epoch:          3
 License:        NVIDIA License
