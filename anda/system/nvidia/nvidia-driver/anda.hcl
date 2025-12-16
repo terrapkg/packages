@@ -5,7 +5,7 @@ project "pkg" {
         # TODO: Port it inside the specfile scripts
         # pre_script = "nvidia-generate-tarballs.sh"
     }
-    arches = ["x86_64", "aarch64", "i386"]
+    arches = ["x86_64", "aarch64"]
     labels = {
         subrepo = "nvidia"
         mock = 1
