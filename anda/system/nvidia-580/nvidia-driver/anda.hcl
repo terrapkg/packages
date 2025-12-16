@@ -1,6 +1,6 @@
 project "pkg" {
     rpm {
-        spec = "nvidia-driver.spec"
+        spec = "nvidia-driver-580.spec"
         # We run the negativo17 generator script here because I genuinely tried fixing the spec file with our fancy patch and it didn't work
         # TODO: Port it inside the specfile scripts
         # pre_script = "nvidia-generate-tarballs.sh"
@@ -9,6 +9,6 @@ project "pkg" {
     labels = {
         subrepo = "nvidia"
         mock = 1
-        weekly = 3
+        weekly = 4
     }
 }
