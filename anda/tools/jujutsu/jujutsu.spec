@@ -60,7 +60,7 @@ Documentations for %{name}.
 %install
 %dnl install -m 0755 %{_builddir}/%{name}-%{version}/target/release/%{binary_name} %{buildroot}%{_bindir}/%{binary_name}
 
-# If nushell ever adds completion files, we can probably install the .nu jujutsu completion file to /usr/share/nushell/completions
+# If nushell ever adds completion files, we can probably install the .nu jujutsu completion file to /usr/share/nushell/vendor/autoload
 %dnl install -Dm644 %{binary_name}.nu %{buildroot}/usr/share/nushell/completions/%{binary_name}.nu"
 
 cp -a docs/* %{buildroot}%{_pkgdocdir}
