@@ -63,7 +63,8 @@ Documentations for %{name}.
 # If nushell ever adds completion files, we can probably install the .nu jujutsu completion file to /usr/share/nushell/vendor/autoload
 %dnl install -Dm644 %{binary_name}.nu %{buildroot}/usr/share/nushell/completions/%{binary_name}.nu"
 
-cp -a docs/* %{buildroot}%{_pkgdocdir}
+mkdir -p %{buildroot}%{_pkgdocdir}
+cp -a docs/* %{buildroot}%{_pkgdocdir}/
 
 %cargo_license_summary_online
 %{cargo_license_online} > LICENSE.dependencies
