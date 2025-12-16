@@ -52,7 +52,7 @@ Documentations for %{name}.
 %autosetup -n jj-%version
 %cargo_prep_online
 
-%pkg_completion -Bezf %{binary_name}
+%pkg_completion -bezf %{binary_name}
 
 %build
 %cargo_build
