@@ -1,6 +1,6 @@
-# The Terra NVIDIA Driver tree
+# The Terra NVIDIA 580 Driver tree
 
-This directory contains the Terra distribution of NVIDIA drivers.
+This directory contains the Terra distribution of NVIDIA 580 legacy drivers for Maxwell, Pascal, and Volta NVIDIA GPUs.
 
 These driver packages are based on negativo17's NVIDIA driver packages for Fedora, with very slight modifications for hardware compatibility, and conforming to the Terra packaging guidelines.
 

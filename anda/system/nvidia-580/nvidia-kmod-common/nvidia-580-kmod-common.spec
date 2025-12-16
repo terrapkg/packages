@@ -4,9 +4,9 @@
 %global _binaries_in_noarch_packages_terminate_build 0
 %global __brp_strip %{nil}
 
-Name:           nvidia-kmod-common
+Name:           nvidia-580-kmod-common
 Version:        580.119.02
-Release:        2%?dist
+Release:        1%?dist
 Summary:        Common file for NVIDIA's proprietary driver kernel modules
 Epoch:          3
 License:        NVIDIA License
@@ -25,12 +25,11 @@ Source21:       99-nvidia.conf
 BuildRequires:  systemd-rpm-macros
 
 Requires:       dracut
-Requires:       nvidia-modprobe
-Requires:       nvidia-driver = %{?epoch:%{epoch}:}%{version}
-Requires:       nvidia-driver-libs = %{?epoch:%{epoch}:}%{version}
-Requires:       nvidia-kmod = %{?epoch:%{epoch}:}%{version}
-Provides:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
-Obsoletes:      nvidia-open-kmod-common < %{?epoch:%{epoch}:}%{version}
+Requires:       nvidia-modprobe-580
+Requires:       nvidia-driver-580 = %{?epoch:%{epoch}:}%{version}
+Requires:       nvidia-driver-580-libs = %{?epoch:%{epoch}:}%{version}
+Requires:       nvidia-580-kmod = %{?epoch:%{epoch}:}%{version}
+Provides:       nvidia-580-kmod-common = %{?epoch:%{epoch}:}%{version}
 Obsoletes:      cuda-nvidia-kmod-common < %{?epoch:%{epoch}:}%{version}
 
 %description
