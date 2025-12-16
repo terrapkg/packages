@@ -8,19 +8,16 @@ License:        Apache-2.0
 URL:            https://www.jj-vcs.dev/latest/
 Source0:        https://github.com/jj-vcs/jj/archive/refs/tags/v%version.tar.gz
 BuildRequires:  cargo >= 1.89
-%dnl BuildRequires:  cargo-packaging
 BuildRequires:  git-core cargo-rpm-macros binutils gcc mold
 BuildRequires:  gnupg
 BuildRequires:  gpgme
 BuildRequires:  openssh
-# dependencies for completion subpackages
+
 BuildRequires:  bash-completion
 BuildRequires:  fish
 BuildRequires:  zsh
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
-
-ExcludeArch:    i586 s390x armv7hl armv7l armv7l:armv6l:armv5tel armv6hl
 
 %description
 Jujutsu is a Git-compatible DVCS. It combines features from Git (data model,
@@ -58,13 +55,9 @@ Documentations for %{name}.
 %pkg_completion -Bezf %{binary_name}
 
 %build
-%dnl %cargo_build
-ls -la
 %cargo_build
-ls -la target
 
 %install
-%dnl mkdir -p %{buildroot}%{_bindir}
 %dnl install -m 0755 %{_builddir}/%{name}-%{version}/target/release/%{binary_name} %{buildroot}%{_bindir}/%{binary_name}
 
 # If nushell ever adds completion files, we can probably install the .nu jujutsu completion file to /usr/share/nushell/completions
