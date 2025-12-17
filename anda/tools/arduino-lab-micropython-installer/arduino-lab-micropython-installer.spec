@@ -12,7 +12,11 @@ Source0:        %url/archive/refs/tags/v%version.tar.gz
 Source1:        micropython-installer.desktop
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 Requires:       xdg-utils gtk3 libnotify nss libXtst xdg-utils libdrm libxcb
-BuildRequires:  anda-srpm-macros pnpm
+BuildRequires:  anda-srpm-macros
+BuildRequires:  pnpm
+%ifarch aarch64
+BuildRequires:  python3
+%endif
 Provides:       arduino-lab-micropython-installer
 
 %description
