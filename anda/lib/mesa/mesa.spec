@@ -82,7 +82,7 @@
 
 Name:           %{srcname}
 Summary:        Mesa graphics libraries
-%global ver 25.3.0
+%global ver 25.3.1
 Epoch:          1
 Version:        %{lua:ver = string.gsub(rpm.expand("%{ver}"), "-", "~"); print(ver)}
 Release:        %autorelease
@@ -116,8 +116,10 @@ Source15:       https://crates.io/api/v1/crates/rustc-hash/%{rustc_hash_ver}/dow
 # Teflon: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/38532
 Patch12:        mesa-38532.patch
 
-# https://github.com/bazzite-org/mesa
-Patch20:        bazzite.patch
+# Gaming Patches
+Patch20:        gamescope.patch
+Patch21:        wine-wayland.patch
+Patch22:        horizon5.patch
 
 BuildRequires:  meson >= 1.3.0
 BuildRequires:  gcc
