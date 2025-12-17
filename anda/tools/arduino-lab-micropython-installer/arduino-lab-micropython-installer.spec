@@ -1,7 +1,6 @@
 
-%electronmeta
-
 Name:           lab-micropython-installer
+%electronmeta
 Version:        1.4.0
 Release:        1%?dist
 License:        AGPL-3.0 AND %electron_license
@@ -10,11 +9,10 @@ URL:            https://github.com/arduino/lab-micropython-installer
 Source0:        %url/archive/refs/tags/v%version.tar.gz
 Source1:        micropython-installer.desktop
 Packager:       Owen Zimmerman <owen@fyralabs.com>
-Requires:       xdg-utils gtk3 libnotify nss libXtst xdg-utils libdrm libxcb
+Requires:       libdrm libxcb
 BuildRequires:  anda-srpm-macros
 BuildRequires:  pnpm
 Provides:       arduino-lab-micropython-installer
-
 %description
 MicroPython Installer for Arduino is a cross-platform tool that streamlines the process of downloading
 and installing MicroPython firmware on compatible Arduino boards. It is compatible with macOS, Linux,
