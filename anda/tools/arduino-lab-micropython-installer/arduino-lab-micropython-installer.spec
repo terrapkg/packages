@@ -1,4 +1,3 @@
-%define debug_package %{nil}
 
 %electronmeta
 
