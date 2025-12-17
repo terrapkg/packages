@@ -11,6 +11,9 @@ Requires:       bash
 Requires:       perl
 Requires:       (gamescope or terra-gamescope)
 
+Suggests:       (kscreen-doctor or gnome-randr)
+Suggests:       jq
+
 Provides:       scopebuddy
 Provides:       scb
 
