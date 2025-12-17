@@ -1,0 +1,46 @@
+From 305fcbbf940a612731d55898aa20815204be55c2 Mon Sep 17 00:00:00 2001
+From: OlegAckbar <oleg@np880.ru>
+Date: Mon, 24 Jun 2024 22:39:43 +0300
+Subject: [PATCH] Wayland: unset output for fullscreen set operation
+
+---
+ src/wl_window.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/src/wl_window.c b/src/wl_window.c
+index 2e842aaaac..54efe0e58b 100644
+--- a/src/wl_window.c
++++ b/src/wl_window.c
+@@ -503,12 +503,12 @@ static void acquireMonitor(_GLFWwindow* window)
+     if (window->wl.libdecor.frame)
+     {
+         libdecor_frame_set_fullscreen(window->wl.libdecor.frame,
+-                                      window->monitor->wl.output);
++                                      NULL);
+     }
+     else if (window->wl.xdg.toplevel)
+     {
+         xdg_toplevel_set_fullscreen(window->wl.xdg.toplevel,
+-                                    window->monitor->wl.output);
++                                    NULL);
+     }
+ 
+     setIdleInhibitor(window, GLFW_TRUE);
+@@ -849,7 +849,7 @@ static GLFWbool createLibdecorFrame(_GLFWwindow* window)
+     if (window->monitor)
+     {
+         libdecor_frame_set_fullscreen(window->wl.libdecor.frame,
+-                                      window->monitor->wl.output);
++                                      NULL);
+         setIdleInhibitor(window, GLFW_TRUE);
+     }
+     else
+@@ -942,7 +942,7 @@ static GLFWbool createXdgShellObjects(_GLFWwindow* window)
+ 
+     if (window->monitor)
+     {
+-        xdg_toplevel_set_fullscreen(window->wl.xdg.toplevel, window->monitor->wl.output);
++        xdg_toplevel_set_fullscreen(window->wl.xdg.toplevel, NULL);
+         setIdleInhibitor(window, GLFW_TRUE);
+     }
+     else

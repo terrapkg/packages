@@ -1,6 +1,6 @@
-%global commit 049b8826f635fb668f509cd064a0a8b63404f445
+%global commit 2cc7341b08ca66d9efdfdd97b1ab3d49898d2677
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global fulldate 2025-12-08
+%global fulldate 2025-12-13
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
 %global ver 1.3.0
@@ -118,6 +118,7 @@ This package allows Ghostty to interact with KIO.
 Summary:        Nautilus menu support for Ghostty
 Supplements:    (%{name} and nautilus)
 Requires:       %{name} = %{evr}
+Requires:       nautilus-python
 BuildArch:      noarch
 
 %description    nautilus
