@@ -14,9 +14,6 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 Requires:       xdg-utils gtk3 libnotify nss libXtst xdg-utils libdrm libxcb
 BuildRequires:  anda-srpm-macros
 BuildRequires:  pnpm
-%dnl %ifarch aarch64
-%dnl BuildRequires:  python3
-%dnl %endif
 Provides:       arduino-lab-micropython-installer
 
 %description
