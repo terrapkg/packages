@@ -40,7 +40,7 @@ install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/applications/micropython-insta
 %license MicroPython\ Installer-linux-%{_electron_cpu}/micropython-installer/LICENSE
 %{_bindir}/micropython-installer
 %{_libdir}/micropython-installer/
-%{_iconsdir}/hicolor/512x512/apps/micropython-installer.png
+%{_hicolordir}/512x512/apps/micropython-installer.png
 %{_datadir}/applications/micropython-installer.desktop
 
 %changelog
