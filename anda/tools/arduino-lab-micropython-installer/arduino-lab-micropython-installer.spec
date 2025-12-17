@@ -41,7 +41,7 @@ install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/applications/micropython-insta
 %{_bindir}/micropython-installer
 %{_libdir}/micropython-installer/
 %{_hicolordir}/512x512/apps/micropython-installer.png
-%{_datadir}/applications/micropython-installer.desktop
+%{_appsdir}/micropython-installer.desktop
 
 %changelog
 * Sat Dec 06 2025 Owen Zimmerman <owen@fyralabs.com>
