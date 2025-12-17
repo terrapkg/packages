@@ -1,5 +1,7 @@
 %define binary_name jj
 
+%global __brp_mangle_shebangs %{nil}
+
 Name:           jujutsu
 Version:        0.36.0
 Release:        1%?dist
@@ -43,7 +45,6 @@ unusable for your particular use.
 
 %package doc
 Summary:	Documentations for %{name}
-Requires:   %{name} = %evr
 BuildArch:	noarch
 %description doc
 Documentations for %{name}.
@@ -52,16 +53,20 @@ Documentations for %{name}.
 %autosetup -n jj-%version
 %cargo_prep_online
 
-%pkg_completion -bezf %{binary_name}
+%dnl %pkg_completion -b %{binary_name}
+%dnl %pkg_completion -ezf %{binary_name}
 
 %build
 %cargo_build
 
 %install
-%dnl install -m 0755 %{_builddir}/%{name}-%{version}/target/release/%{binary_name} %{buildroot}%{_bindir}/%{binary_name}
+%dnl %cargo_install
+install -Dm 0755 target/rpm/%{binary_name} %{buildroot}%{_bindir}/%{binary_name}
 
 # If nushell ever adds completion files, we can probably install the .nu jujutsu completion file to /usr/share/nushell/vendor/autoload
 %dnl install -Dm644 %{binary_name}.nu %{buildroot}/usr/share/nushell/completions/%{binary_name}.nu"
+
+%dnl %crate_install_bin
 
 mkdir -p %{buildroot}%{_pkgdocdir}
 cp -a docs/* %{buildroot}%{_pkgdocdir}/
@@ -76,6 +81,8 @@ cp -a docs/* %{buildroot}%{_pkgdocdir}/
 %{_bindir}/%{binary_name}
 
 %files doc
+%doc README.md AUTHORS CHANGELOG.md GOVERNANCE.md SECURITY.md
+%license LICENSE
 %doc %{_pkgdocdir}
 
 %changelog
