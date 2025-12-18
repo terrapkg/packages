@@ -7,7 +7,6 @@ on:
     branches:
       - frawhide
       - f42
-      - f41
       - el10
     paths:
       - comps.xml
