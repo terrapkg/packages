@@ -25,15 +25,14 @@ but for any language.
 
 %build
 %cargo_build
-# doesn't work :(
 %dnl %cargo_license_online > LICENSE.dependencies
 
 %install
 %crate_install_bin
-target/rpm/%{name} completion bash > %bash_completion_dir 
-target/rpm/%{name} completion elvish > %elvish_completion_dir 
-target/rpm/%{name} completion fish > %fish_completion_dir 
-target/rpm/%{name} completion zsh > %zsh_completion_dir 
+target/rpm/pixi completion bash > %bash_completion_dir 
+target/rpm/pixi completion elvish > %elvish_completion_dir 
+target/rpm/pixi completion fish > %fish_completion_dir 
+target/rpm/pixi completion zsh > %zsh_completion_dir 
 
 %files
 %doc README.md SECURITY.md CHANGELOG.md CODE_OF_CONDUCT.md CONTRIBUTING.md
