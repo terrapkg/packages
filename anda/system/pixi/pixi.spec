@@ -8,7 +8,7 @@ Source:         https://github.com/prefix-dev/pixi/archive/refs/tags/v%{version}
 Packager:       metcya <metcya@gmail.com>
 
 BuildRequires:  anda-srpm-macros
-BuildRequires:  cargo
+BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  mold
 
 %pkg_completion -Befz
