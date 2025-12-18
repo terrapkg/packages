@@ -25,7 +25,8 @@ but for any language.
 
 %build
 %cargo_build
-%cargo_license_online > LICENSE.dependencies
+# doesn't work :(
+%dnl %cargo_license_online > LICENSE.dependencies
 
 %install
 %crate_install_bin
