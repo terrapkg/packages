@@ -211,6 +211,7 @@ unpack() {
 }
 
 unpack
+ls
 %setup -D -T -n %{name}-%{version}-%{_arch}
 
 %ifarch x86_64
