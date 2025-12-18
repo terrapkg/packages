@@ -25,14 +25,17 @@ but for any language.
 
 %build
 %cargo_build
+for shell in bash elvish fish zsh; do
+    target/rpm/%{name} completion --shell $shell > completions.$shell
+done
 %dnl %cargo_license_online > LICENSE.dependencies
 
 %install
-install -Dm 755 target/rpm/%{name}/%{name} %{_buildroot}%{_bindir}
-target/rpm/%{name} completion bash > %{buildroot}%{bash_completion_dir}
-target/rpm/%{name} completion elvish > %{buildroot}%{elvish_completion_dir} 
-target/rpm/%{name} completion fish > %{buildroot}%{fish_completion_dir}
-target/rpm/%{name} completion zsh > %{buildroot}%{zsh_completion_dir}
+install -Dm 755 target/rpm/%{name} %{buildroot}%{_bindir}/%{name}
+install -Dm 644 completions.bash %{buildroot}%{bash_completions_dir}/%{name}
+install -Dm 644 completions.elvish %{buildroot}%{elvish_completions_dir}/%{name}.elv
+install -Dm 644 completions.fish %{buildroot}%{fish_completions_dir}/%{name}.fish
+install -Dm 644 completions.zsh %{buildroot}%{zsh_completions_dir}/_%{name}
 
 %files
 %doc README.md SECURITY.md CHANGELOG.md CODE_OF_CONDUCT.md CONTRIBUTING.md
