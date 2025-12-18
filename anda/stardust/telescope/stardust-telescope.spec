@@ -1,5 +1,5 @@
-%global commit a66e28e4eba976181419676abd3733edf1c6bbec
-%global commit_date 20251211
+%global commit 7e5abd236c6345ad305d97bcb038582770783222
+%global commit_date 20251218
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           stardust-xr-telescope
@@ -35,13 +35,15 @@ See the stars! Easy stardust setups to run on your computer.
 %build
 
 %install
-install -Dm755 scripts/telescope          %buildroot%_bindir/telescope
-install -Dm755 scripts/_telescope_startup %buildroot%_bindir/_telescope_startup
-install -Dm644 org.stardustxr.png         %buildroot%_iconsdir/hicolor/512x512/apps/org.stardustxr.png
+install -Dm755 scripts/telescope                 %buildroot%_bindir/telescope
+install -Dm755 scripts/_telescope_startup        %buildroot%_bindir/_telescope_startup
+install -Dm644 org.stardustxr.Telescope.desktop  %buildroot%_appsdir/org.stardustxr.Telescope.desktop
+install -Dm644 org.stardustxr.Telescope.png      %buildroot%_hicolordir/512x512/apps/org.stardustxr.Telescope.png
 
 %files
 %doc README.md
 %license LICENSE
 %_bindir/telescope
 %_bindir/_telescope_startup
-%_iconsdir/hicolor/512x512/apps/org.stardustxr.png
+%_appsdir/org.stardustxr.Telescope.desktop
+%_hicolordir/512x512/apps/org.stardustxr.Telescope.png
