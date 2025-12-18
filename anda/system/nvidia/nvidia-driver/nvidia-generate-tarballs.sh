@@ -1,8 +1,15 @@
-#!/bin/bash
+#!/bin/sh
+# Slightly modified from negativo's tarball generator script
+
+# instead of generating tarballs, we just make this script export
+# the functions
+
+CONTEXT=$(realpath $(dirname $0))
 set -e
 
 set_vars() {
    export VERSION=${VERSION:?"VERSION not set"}
+   export DL_SITE=${DL_SITE:-http://download.nvidia.com/XFree86}
    export TEMP_UNPACK=${ARCH}
    export PLATFORM=Linux-${ARCH}
    export RUN_FILE=NVIDIA-${PLATFORM}-${VERSION}.run
@@ -10,16 +17,7 @@ set_vars() {
 
 run_file_get() {
     printf "Downloading installer ${RUN_FILE}... "
-    if [[ ! -f $RUN_FILE ]]; then
-        # This is getting ridiculous:
-        if wget -q -S --spider https://download.nvidia.com/XFree86/${PLATFORM}/${VERSION}/$RUN_FILE; then
-            wget -q https://download.nvidia.com/XFree86/${PLATFORM}/${VERSION}/$RUN_FILE
-        elif wget -q -S --spider https://us.download.nvidia.com/XFree86/${PLATFORM}/${VERSION}/$RUN_FILE; then
-            wget -q https://us.download.nvidia.com/XFree86/${PLATFORM}/${VERSION}/$RUN_FILE
-        else
-            wget -q https://us.download.nvidia.com/tesla/${VERSION}/$RUN_FILE
-        fi
-    fi
+    [[ -f $RUN_FILE ]] || wget -c -q ${DL_SITE}/${PLATFORM}/${VERSION}/$RUN_FILE
     printf "OK\n"
 }
 
@@ -29,6 +27,7 @@ run_file_extract() {
 }
 
 cleanup_folder() {
+
     printf "Cleaning up binaries... "
 
     cd ${TEMP_UNPACK}
@@ -37,9 +36,7 @@ cleanup_folder() {
     #   - Compiled from source
     #   - Interactive installer files
     #   - GLVND GL libraries
-    #   - GLVND test scripts
-    #   - Closed source modules
-    #   - Open source modules with precompiled c++ code
+    #   - Internal development only libraries
     rm -r \
         nvidia-xconfig* \
         nvidia-persistenced* \
@@ -73,16 +70,17 @@ cleanup_folder() {
 }
 
 create_tarball() {
+
     KMOD_COMMON=nvidia-kmod-common-${VERSION}
     USR_64=nvidia-driver-${VERSION}-${ARCH}
-    USR_32=nvidia-driver-${VERSION}-i386
+    USR_32=nvidia-driver-${VERSION}-i686
 
     rm -rf ${KMOD_COMMON} ${USR_64} ${USR_32}
     mkdir ${KMOD_COMMON} ${USR_64}
     mv ${TEMP_UNPACK}/firmware ${TEMP_UNPACK}/nvidia-bug-report.sh ${KMOD_COMMON}/
 
     if [ "$ARCH" == x86_64 ]; then
-        mkdir ${USR_32} 
+        mkdir ${USR_32}
         mv ${TEMP_UNPACK}/32/* ${USR_32}/
         rm -fr ${TEMP_UNPACK}/32
     else
@@ -99,12 +97,20 @@ create_tarball() {
     done
 }
 
-ARCHES=${ARCHES:-"x86_64 aarch64"}
+# pushd $CONTEXT
 
-for ARCH in $ARCHES; do
-    set_vars
-    run_file_get
-    run_file_extract
-    cleanup_folder
-    create_tarball
-done
+# ARCH=aarch64
+# set_vars
+# run_file_get
+# run_file_extract
+# cleanup_folder
+# create_tarball
+
+# ARCH=x86_64
+# set_vars
+# run_file_get
+# run_file_extract
+# cleanup_folder
+# create_tarball
+
+# popd
