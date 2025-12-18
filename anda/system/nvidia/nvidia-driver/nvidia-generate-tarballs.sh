@@ -92,7 +92,7 @@ create_tarball() {
 
     for tarball in ${KMOD_COMMON} ${USR_64} ${USR_32}; do
         printf "Creating tarball $tarball... "
-        XZ_OPT='-T0' tar --remove-files -cJf $tarball.tar.xz $tarball
+        # XZ_OPT='-T0' tar --remove-files -cJf $tarball.tar.xz $tarball
         printf "OK\n"
     done
 }
