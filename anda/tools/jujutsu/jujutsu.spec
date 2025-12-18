@@ -20,6 +20,10 @@ BuildRequires:  bash-completion
 BuildRequires:  fish
 BuildRequires:  zsh
 
+Requires:       glibc
+Requires:       libgit2
+Requires:       libssh2
+
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
@@ -47,6 +51,7 @@ unusable for your particular use.
 %package        doc
 Summary:        Documentations for %{name}
 BuildArch:      noarch
+
 %description    doc
 Documentations for %{name}.
 
@@ -61,24 +66,26 @@ nushell completion files for %name.
 %autosetup -n jj-%version
 %cargo_prep_online
 
-%pkg_completion -B %{binary_name} -n %name
+%pkg_completion -b %{binary_name} -n %name
 %pkg_completion -ezf %{binary_name} -n %name
 
 %build
 %cargo_build
 
 %install
-%dnl %cargo_install
 install -Dm 0755 target/rpm/%{binary_name} %{buildroot}%{_bindir}/%{binary_name}
 
 mkdir -p %{buildroot}%{bash_completions_dir}/completions/
 %{buildroot}/%{_bindir}/%{binary_name} util completion bash > %{buildroot}%{bash_completions_dir}/completions/%{binary_name}
 
+mkdir -p %{buildroot}%{elvish_completions_dir}/
+%{buildroot}/%{_bindir}/%{binary_name} util completion elvish > %{buildroot}%{elvish_completions_dir}/%{binary_name}.elv
+
 mkdir -p %{buildroot}%{fish_completions_dir}/
 %{buildroot}/%{_bindir}/%{binary_name} util completion fish > %{buildroot}%{fish_completions_dir}/%{binary_name}.fish
 
 mkdir -p %{buildroot}%{nushell_completions_dir}/
-%{buildroot}/%{_bindir}/%{binary_name} util completion nushell > %{buildroot}%{nushell_completions_dir}/%{binary_name}.nu
+%{buildroot}/%{_bindir}/%{binary_name} util completion nushell > %{buildroot}%{nushell_completions_dir}/completions-%{binary_name}.nu
 
 mkdir -p %{buildroot}%{zsh_completions_dir}/
 %{buildroot}/%{_bindir}/%{binary_name} util completion zsh > %{buildroot}%{zsh_completions_dir}/_%{binary_name}
@@ -95,17 +102,8 @@ cp -a docs/* %{buildroot}%{_pkgdocdir}/
 %license LICENSE.dependencies
 %{_bindir}/%{binary_name}
 
-%files -n %{name}-bash-completion
-%{bash_completions_dir}/completions/jj
-
-%files -n %{name}-fish-completion
-%{fish_completions_dir}/jj.fish
-
-%files -n %{name}-nushell-completion
-%{nushell_completions_dir}/%{binary_name}.nu
-
-%files -n %{name}-zsh-completion
-%{zsh_completions_dir}/_jj
+%files %{name}-nushell-completion
+%{nushell_completions_dir}/completions-%{binary_name}.nu
 
 %files doc
 %doc README.md AUTHORS CHANGELOG.md GOVERNANCE.md SECURITY.md
