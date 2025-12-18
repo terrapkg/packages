@@ -55,7 +55,7 @@ BuildRequires:  perl-File-Copy
 BuildRequires:  perl-lib
 BuildRequires:  vulkan-loader
 BuildRequires:  libcurl-devel
-Requires: (%name-cli-compat if zfs else %name-cli)
+Requires: (%name-cli-compat-zfs if zfs else %name-cli)
 Suggests: %name-cli
 
 %description
@@ -67,9 +67,9 @@ Conflicts: zfs
 Supplements: (%name unless zfs)
 
 %description cli
-This package provides the /usr/bin/zed binary. If you use zfs, install %name-cli-compat instead.
+This package provides the /usr/bin/zed binary. If you use zfs, install %name-cli-compat-zfs instead.
 
-%package cli-compat
+%package cli-compat-zfs
 Summary: Rename zed to zeditor to prevent collision with zfs
 Provides: %name-cli
 Conflicts: %name-cli
@@ -77,7 +77,7 @@ Obsoletes: %{name}-rename-zeditor <= 0.217.3
 Supplements: (%name and zfs)
 RemovePathPostFixes: .zeditor
 
-%description cli-compat
+%description cli-compat-zfs
 This package provides the %_bindir/zeditor binary instead of %_bindir/zed. This avoids conflicts with the zfs package.
 The normal package is %name-cli.
 
@@ -187,7 +187,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%appid.desktop
 %{_datadir}/applications/%appid.desktop
 %{_metainfodir}/%appid.metainfo.xml
 
-%files cli-compat
+%files cli-compat-zfs
 %if %{without debug_no_build}
 %_bindir/zeditor
 %endif
