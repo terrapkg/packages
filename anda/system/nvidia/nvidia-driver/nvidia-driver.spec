@@ -10,7 +10,7 @@
 %endif
 
 Name:           nvidia-driver
-Version:        580.105.08
+Version:        590.48.01
 Release:        1%?dist
 Summary:        NVIDIA's proprietary display driver for NVIDIA graphic cards
 Epoch:          3

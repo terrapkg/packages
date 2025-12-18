@@ -5,8 +5,8 @@
 %global __brp_strip %{nil}
 
 Name:           nvidia-kmod-common
-Version:        580.105.08
-Release:        3%?dist
+Version:        590.48.01
+Release:        1%?dist
 Summary:        Common file for NVIDIA's proprietary driver kernel modules
 Epoch:          3
 License:        NVIDIA License
@@ -15,7 +15,6 @@ URL:            http://www.nvidia.com/object/unix.html
 BuildArch:      noarch
 
 Source0:        http://download.nvidia.com/XFree86/Linux-x86_64/%{version}/NVIDIA-Linux-x86_64-%{version}.run
-Source16:       MODULE_VARIANT.txt
 Source17:       nvidia-boot-update
 Source18:       nvidia-modeset.conf
 Source19:       nvidia.conf
@@ -29,9 +28,9 @@ Requires:       dracut
 Requires:       nvidia-modprobe
 Requires:       nvidia-driver = %{?epoch:%{epoch}:}%{version}
 Requires:       nvidia-driver-libs = %{?epoch:%{epoch}:}%{version}
-Requires:       (nvidia-open-kmod = %{?epoch:%{epoch}:}%{version} or nvidia-kmod = %{?epoch:%{epoch}:}%{version})
+Requires:       nvidia-kmod = %{?epoch:%{epoch}:}%{version}
 Provides:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
-Provides:       nvidia-open-kmod-common = %{?epoch:%{epoch}:}%{version}
+Obsoletes:      nvidia-open-kmod-common < %{?epoch:%{epoch}:}%{version}
 Obsoletes:      cuda-nvidia-kmod-common < %{?epoch:%{epoch}:}%{version}
 
 %description
@@ -65,9 +64,6 @@ install -p -m 644 -D %{SOURCE20} %{buildroot}%{_udevrulesdir}/60-nvidia.rules
 mkdir -p %{buildroot}%{_prefix}/lib/firmware/nvidia/%{version}/
 install -p -m 644 firmware/* %{buildroot}%{_prefix}/lib/firmware/nvidia/%{version}
 
-# Old kernel.conf rewritten as a doc file.
-cp %{SOURCE16} .
-
 # Fallback service. Fall back to Nouveau if NVIDIA drivers fail.
 # This is actually from RPM Fusion.
 %dnl install -Dm644 %{SOURCE22} -t %{buildroot}%{_unitdir}
@@ -88,7 +84,6 @@ fi ||:
 dracut --regenerate-all --force || :
 
 %files
-%doc MODULE_VARIANT.txt
 %{_dracut_conf_d}/99-nvidia.conf
 %{_modprobedir}/nvidia.conf
 %dir %{_prefix}/lib/firmware
