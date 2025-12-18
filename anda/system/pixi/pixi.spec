@@ -28,11 +28,11 @@ but for any language.
 %dnl %cargo_license_online > LICENSE.dependencies
 
 %install
-%crate_install_bin
-target/rpm/pixi completion bash > %bash_completion_dir 
-target/rpm/pixi completion elvish > %elvish_completion_dir 
-target/rpm/pixi completion fish > %fish_completion_dir 
-target/rpm/pixi completion zsh > %zsh_completion_dir 
+install -Dm 755 target/rpm/%{name}/%{name} %{_buildroot}%{_bindir}
+target/rpm/%{name} completion bash > %{buildroot}%{bash_completion_dir}
+target/rpm/%{name} completion elvish > %{buildroot}%{elvish_completion_dir} 
+target/rpm/%{name} completion fish > %{buildroot}%{fish_completion_dir}
+target/rpm/%{name} completion zsh > %{buildroot}%{zsh_completion_dir}
 
 %files
 %doc README.md SECURITY.md CHANGELOG.md CODE_OF_CONDUCT.md CONTRIBUTING.md
