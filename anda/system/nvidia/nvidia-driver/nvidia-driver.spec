@@ -184,6 +184,7 @@ export VERSION=%{version}
 export ARCH=x86_64
 %else
 export ARCH=%{_arch}
+%endif
 
 unpack() {
   set_vars
