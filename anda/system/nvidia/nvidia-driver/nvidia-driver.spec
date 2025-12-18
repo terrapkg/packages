@@ -213,33 +213,7 @@ unpack() {
 unpack
 %setup -D -T -n %{name}-%{version}-%{_arch}
 
-rm -r \
-        nvidia-xconfig* \
-        nvidia-persistenced* \
-        nvidia-modprobe* \
-        libnvidia-gtk* libnvidia-wayland-client* nvidia-settings* \
-        libnvidia-gtk*.so* nvidia-settings* \
-        libGLESv1_CM.so.* libGLESv2.so.* libGLdispatch.so.* libOpenGL.so.* libGLX.so.* libGL.so.1* libEGL.so.1* \
-        libnvidia-egl-wayland.so.* libnvidia-egl-gbm.so.* libnvidia-egl-xcb.so.* libnvidia-egl-xlib.so.* \
-        libnvidia-egl-wayland2.so.* \
-        libOpenCL.so.1* \
-        libEGL.so.%{version} \
-        nvidia-installer* .manifest make* mk* tls_test* libglvnd_install_checker
-        nvidia-installer* .manifest make* mk* libglvnd_install_checker \
-        15_nvidia_gbm.json 10_nvidia_wayland.json 20_nvidia_xcb.json 20_nvidia_xlib.json \
-        99_nvidia_wayland2.json \
-        kernel kernel-open
-
 %ifarch x86_64
-rm -r \
-          libnvidia-wayland-client.so* \
-          32/libGLESv1_CM.so.* 32/libGLESv2.so.* 32/libGLdispatch.so.* 32/libOpenGL.so.* 32/libGLX.so.* 32/libGL.so.1* 32/libEGL.so.1* \
-          32/libOpenCL.so.1* \
-          32/libnvidia-egl-wayland.so.* 32/libnvidia-egl-gbm.so.* 32/libnvidia-egl-xcb.so.* 32/libnvidia-egl-xlib.so.* \
-          32/libnvidia-egl-wayland2.so.* \
-          32/libglvnd_install_checker
-
-        cp -f *.json* 32/
 %if 0%{?rhel} == 8
 rm -f libnvidia-pkcs11-openssl3.so.%{version}
 %else
