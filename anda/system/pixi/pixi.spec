@@ -37,7 +37,7 @@ target/rpm/%{name} completion zsh > %zsh_completion_dir
 
 %files
 %doc README.md SECURITY.md CHANGELOG.md CODE_OF_CONDUCT.md CONTRIBUTING.md
-%license LICENSE LICENSE.dependencies
+%license LICENSE
 %{_bindir}/%{name}
 
 %changelog
