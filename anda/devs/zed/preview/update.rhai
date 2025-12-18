@@ -4,7 +4,7 @@ for release in releases {
   tag.crop(1); // remove "v"
   rpm.global("ver", tag);
   break;
-  if rpm.changed() {
-    rpm.release();
-  }
+}
+if rpm.changed() {
+  rpm.release();
 }
