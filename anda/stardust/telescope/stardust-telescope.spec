@@ -38,7 +38,7 @@ See the stars! Easy stardust setups to run on your computer.
 install -Dm755 scripts/telescope                 %buildroot%_bindir/telescope
 install -Dm755 scripts/_telescope_startup        %buildroot%_bindir/_telescope_startup
 install -Dm644 org.stardustxr.Telescope.desktop  %buildroot%_appsdir/org.stardustxr.Telescope.desktop
-install -Dm644 org.stardustxr.Telescope.png      %buildroot%_iconsdir/hicolor/512x512/apps/org.stardustxr.Telescope.png
+install -Dm644 org.stardustxr.Telescope.png      %buildroot%_hicolordir/512x512/apps/org.stardustxr.Telescope.png
 
 %files
 %doc README.md
@@ -46,4 +46,4 @@ install -Dm644 org.stardustxr.Telescope.png      %buildroot%_iconsdir/hicolor/51
 %_bindir/telescope
 %_bindir/_telescope_startup
 %_appsdir/org.stardustxr.Telescope.desktop
-%_iconsdir/hicolor/512x512/apps/org.stardustxr.Telescope.png
+%_hicolordir/512x512/apps/org.stardustxr.Telescope.png
