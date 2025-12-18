@@ -76,7 +76,7 @@ nushell completion files for %name.
 install -Dm 0755 target/rpm/%{binary_name} %{buildroot}%{_bindir}/%{binary_name}
 
 mkdir -p %{buildroot}%{bash_completions_dir}/completions/
-%{buildroot}/%{_bindir}/%{binary_name} util completion bash > %{buildroot}%{bash_completions_dir}/completions/%{binary_name}
+%{buildroot}/%{_bindir}/%{binary_name} util completion bash > %{buildroot}%{bash_completions_dir}/completions/%{binary_name}.bash
 
 mkdir -p %{buildroot}%{elvish_completions_dir}/
 %{buildroot}/%{_bindir}/%{binary_name} util completion elvish > %{buildroot}%{elvish_completions_dir}/%{binary_name}.elv
