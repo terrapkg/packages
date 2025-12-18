@@ -231,6 +231,15 @@ rm -r \
         kernel kernel-open
 
 %ifarch x86_64
+rm -r \
+          libnvidia-wayland-client.so* \
+          32/libGLESv1_CM.so.* 32/libGLESv2.so.* 32/libGLdispatch.so.* 32/libOpenGL.so.* 32/libGLX.so.* 32/libGL.so.1* 32/libEGL.so.1* \
+          32/libOpenCL.so.1* \
+          32/libnvidia-egl-wayland.so.* 32/libnvidia-egl-gbm.so.* 32/libnvidia-egl-xcb.so.* 32/libnvidia-egl-xlib.so.* \
+          32/libnvidia-egl-wayland2.so.* \
+          32/libglvnd_install_checker
+
+        cp -f *.json* 32/
 %if 0%{?rhel} == 8
 rm -f libnvidia-pkcs11-openssl3.so.%{version}
 %else
