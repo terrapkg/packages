@@ -16,10 +16,10 @@ BuildArch:      noarch
 
 Source0:        http://download.nvidia.com/XFree86/Linux-x86_64/%{version}/NVIDIA-Linux-x86_64-%{version}.run
 Source17:       nvidia-boot-update
-Source18:       nvidia-modeset.conf
-Source19:       nvidia.conf
-Source20:       60-nvidia.rules
-Source21:       99-nvidia.conf
+Source19:       nvidia-modeset.conf
+Source20:       nvidia.conf
+Source21:       60-nvidia.rules
+Source24:       99-nvidia.conf
 
 # UDev rule location (_udevrulesdir) and systemd macros:
 BuildRequires:  systemd-rpm-macros
