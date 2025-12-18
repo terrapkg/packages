@@ -14,11 +14,9 @@ Summary:       xpad driver with support for XBox One controllers removed
 URL:           https://github.com/medusalix/xpad-noone
 Source0:       %{url}/archive/%{commit}/%{modulename}-%{commit}.tar.gz#/%{modulename}-%{shortcommit}.tar.gz
 Source1:       no-weak-modules.conf
-# Extra support for controllers that register as XBox 360 controllers
-%dnl Patch0:        0000.patch
 # Fix kmod compilation on kernel 6.18+
-Patch1:        https://github.com/medusalix/xpad-noone/pull/8.patch
-Patch2:        https://github.com/medusalix/xpad-noone/pull/9.patch
+Patch0:        https://github.com/medusalix/xpad-noone/pull/8.patch
+Patch1:        https://github.com/medusalix/xpad-noone/pull/9.patch
 Requires:      %{modulename} = %{?epoch:%{epoch}:}%{version}
 Requires:      dkms
 Conflicts:     akmod-%{modulename}
