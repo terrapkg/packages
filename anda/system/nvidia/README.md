@@ -8,8 +8,6 @@ Unlike negativo17 and Nobara, we do not manually generate a tarball of the NVIDI
 on-the-fly from the NVIDIA installer. This ensures that the packages can be easily maintained and updated, as long as the
 self-extracting NVIDIA installer still has the same command-line options.
 
-One major difference for Terra's distro is that we install the closed-source kernel modules by default, instead of the newer open-source kernel modules. This is because the open-source modules only support GPUs that have a GSP (GPU System Processor), which only includes Turing (RTX 20 series) and newer GPUs. As we would like to still support older GPUs, we install the closed-source modules by default.
-
 ## How Terra unpacks the self-extracting archive
 
 Instead of pre-generating the tarball, we run the NVIDIA installer with the `-x` flag to extract the contents directly to the build directory. We then make use of an RPM macro to set the new build directory as that tree.
