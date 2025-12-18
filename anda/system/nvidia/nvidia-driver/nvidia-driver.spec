@@ -60,7 +60,11 @@ version %{version}.
 Summary:        Libraries for %{name}
 Requires:       egl-gbm%{?_isa} >= 2:1.1.2.1
 Requires:       (egl-wayland%{?_isa} >= 1.1.20 or egl-wayland2%{?_isa} >= 1.0.0~20250806gitd4deb7c-3)
+%if %{defined fedora}
+%ifarch x86_64
 Requires:       (%{name}-libs(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
+%endif
+%endif
 Suggests:       egl-wayland%{?_isa} >= 1.1.20
 Requires:       egl-x11%{?_isa} >= 1.0.3
 Requires:       libvdpau%{?_isa} >= 1.5
@@ -93,7 +97,11 @@ Requires:       libnvidia-cfg = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
 Requires:       libnvidia-gpucomp%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       libnvidia-ml = %{?epoch:%{epoch}:}%{version}-%{release}
+%if %{defined fedora}
+%ifarch x86_64
 Requires:       (%{name}-cuda-libs(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
+%endif
+%endif
 
 Conflicts:      xorg-x11-drv-nvidia-cuda-libs
 Conflicts:      xorg-x11-drv-nvidia-470xx-cuda-libs
@@ -107,7 +115,11 @@ Provides:       nvidia-driver-NvFBCOpenGL = %{?epoch:%{epoch}:}%{version}-%{rele
 Obsoletes:      nvidia-driver-NvFBCOpenGL < %{?epoch:%{epoch}:}%{version}-%{release}
 # dlopened (libnvidia-encode.so):
 Requires:       %{name}-cuda-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+%if %{defined fedora}
+%ifarch x86_64
 Requires:       (libnvidia-fbc(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
+%endif
+%endif
 
 %description -n libnvidia-fbc
 This library provides a high performance, low latency interface to capture and
@@ -128,7 +140,11 @@ Summary:        NVIDIA Management Library (NVML)
 Provides:       cuda-nvml%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:       nvidia-driver-NVML = %{?epoch:%{epoch}:}%{version}-%{release}
 Obsoletes:      nvidia-driver-NVML < %{?epoch:%{epoch}:}%{version}-%{release}
+%if %{defined fedora}
+%ifarch x86_64
 Requires:       (libnvidia-ml(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
+%endif
+%endif
 
 %description -n libnvidia-ml
 A C-based API for monitoring and managing various states of the NVIDIA GPU
