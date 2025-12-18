@@ -209,7 +209,7 @@ unpack() {
   cleanup_folder
   create_tarball
 }
-.
+
 unpack
 %setup -D -T -n %{name}-%{version}-%{_arch}
 
