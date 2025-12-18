@@ -73,7 +73,7 @@ create_tarball() {
 
     KMOD_COMMON=nvidia-kmod-common-${VERSION}
     USR_64=nvidia-driver-${VERSION}-${ARCH}
-    USR_32=nvidia-driver-${VERSION}-i686
+    USR_32=nvidia-driver-${VERSION}-i386
 
     rm -rf ${KMOD_COMMON} ${USR_64} ${USR_32}
     mkdir ${KMOD_COMMON} ${USR_64}
