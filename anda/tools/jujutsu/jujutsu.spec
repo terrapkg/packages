@@ -1,4 +1,5 @@
 %define binary_name jj
+%define nushell_completions_dir %_datadir/nushell/vendor/autoload
 
 %global __brp_mangle_shebangs %{nil}
 
@@ -43,18 +44,25 @@ stable, and most developers use it daily for all their needs, there may still
 be work-in-progress features, suboptimal UX, and workflow gaps that make it
 unusable for your particular use.
 
-%package doc
-Summary:	Documentations for %{name}
-BuildArch:	noarch
-%description doc
+%package        doc
+Summary:        Documentations for %{name}
+BuildArch:      noarch
+%description    doc
 Documentations for %{name}.
+
+%package        %name-nushell-completion
+Summary:        nushell completion files for %name
+Requires:       %name = %evr
+
+%description    %name-nushell-completion
+nushell completion files for %name.
 
 %prep
 %autosetup -n jj-%version
 %cargo_prep_online
 
-%dnl %pkg_completion -b %{binary_name}
-%dnl %pkg_completion -ezf %{binary_name}
+%pkg_completion -B %{binary_name} -n %name
+%pkg_completion -ezf %{binary_name} -n %name
 
 %build
 %cargo_build
@@ -63,10 +71,17 @@ Documentations for %{name}.
 %dnl %cargo_install
 install -Dm 0755 target/rpm/%{binary_name} %{buildroot}%{_bindir}/%{binary_name}
 
-# If nushell ever adds completion files, we can probably install the .nu jujutsu completion file to /usr/share/nushell/vendor/autoload
-%dnl install -Dm644 %{binary_name}.nu %{buildroot}/usr/share/nushell/completions/%{binary_name}.nu"
+mkdir -p %{buildroot}%{bash_completions_dir}/completions/
+%{buildroot}/%{_bindir}/%{binary_name} util completion bash > %{buildroot}%{bash_completions_dir}/completions/%{binary_name}
 
-%dnl %crate_install_bin
+mkdir -p %{buildroot}%{fish_completions_dir}/
+%{buildroot}/%{_bindir}/%{binary_name} util completion fish > %{buildroot}%{fish_completions_dir}/%{binary_name}.fish
+
+mkdir -p %{buildroot}%{nushell_completions_dir}/
+%{buildroot}/%{_bindir}/%{binary_name} util completion nushell > %{buildroot}%{nushell_completions_dir}/%{binary_name}.nu
+
+mkdir -p %{buildroot}%{zsh_completions_dir}/
+%{buildroot}/%{_bindir}/%{binary_name} util completion zsh > %{buildroot}%{zsh_completions_dir}/_%{binary_name}
 
 mkdir -p %{buildroot}%{_pkgdocdir}
 cp -a docs/* %{buildroot}%{_pkgdocdir}/
@@ -79,6 +94,18 @@ cp -a docs/* %{buildroot}%{_pkgdocdir}/
 %license LICENSE
 %license LICENSE.dependencies
 %{_bindir}/%{binary_name}
+
+%files -n %{name}-bash-completion
+%{bash_completions_dir}/completions/jj
+
+%files -n %{name}-fish-completion
+%{fish_completions_dir}/jj.fish
+
+%files -n %{name}-nushell-completion
+%{nushell_completions_dir}/%{binary_name}.nu
+
+%files -n %{name}-zsh-completion
+%{zsh_completions_dir}/_jj
 
 %files doc
 %doc README.md AUTHORS CHANGELOG.md GOVERNANCE.md SECURITY.md
