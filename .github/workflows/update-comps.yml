@@ -6,7 +6,8 @@ on:
   push:
     branches:
       - frawhide
-      - f41
+      - f43
+      - f42
       - el10
     paths:
       - comps.xml
