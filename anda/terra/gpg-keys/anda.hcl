@@ -3,4 +3,7 @@ project pkg {
 	rpm {
 		spec = "terra-gpg-keys.spec"
 	}
+	labels {
+		updbranch = 1
+	}
 }
