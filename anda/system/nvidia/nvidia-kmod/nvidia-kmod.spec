@@ -1,3 +1,5 @@
+%global debug_package %{nil}
+
 # Build only the akmod package and no kernel module packages:
 %define buildforkernels akmod
 

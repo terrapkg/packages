@@ -49,10 +49,10 @@ make %{?_smp_mflags} \
     STRIP_CMD=true
 
 # Systemd unit files
-install -p -m 644 -D %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
+install -Dpm644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 
 # Systemd user
-install -p -D -m 0644 %{SOURCE2} %{buildroot}%{_sysusersdir}/%{name}.conf
+install -Dpm644 %{SOURCE2} %{buildroot}%{_sysusersdir}/%{name}.conf
 
 %post
 %systemd_post %{name}.service
