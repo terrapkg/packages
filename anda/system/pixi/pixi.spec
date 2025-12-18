@@ -29,10 +29,10 @@ but for any language.
 
 %install
 %crate_install_bin
-target/release/%{name} completion bash > %bash_completion_dir 
-target/release/%{name} completion elvish > %elvish_completion_dir 
-target/release/%{name} completion fish > %fish_completion_dir 
-target/release/%{name} completion zsh > %zsh_completion_dir 
+target/rpm/%{name} completion bash > %bash_completion_dir 
+target/rpm/%{name} completion elvish > %elvish_completion_dir 
+target/rpm/%{name} completion fish > %fish_completion_dir 
+target/rpm/%{name} completion zsh > %zsh_completion_dir 
 
 %files
 %doc README.md SECURITY.md CHANGELOG.md CODE_OF_CONDUCT.md CONTRIBUTING.md
