@@ -15,7 +15,7 @@ URL:           https://github.com/medusalix/xpad-noone
 Source0:       %{url}/archive/%{commit}/%{modulename}-%{commit}.tar.gz#/%{modulename}-%{shortcommit}.tar.gz
 Source1:       no-weak-modules.conf
 # Extra support for controllers that register as XBox 360 controllers
-Patch0:        0000.patch
+%dnl Patch0:        0000.patch
 # Fix kmod compilation on kernel 6.18+
 Patch1:        https://github.com/medusalix/xpad-noone/pull/8.patch
 Patch2:        https://github.com/medusalix/xpad-noone/pull/9.patch
@@ -28,7 +28,7 @@ Packager:      Gilver E. <rockgrub@disroot.org>
 %description %_description
 
 %prep
-%autosetup -n %{modulename}-%{commit}
+%autosetup -n %{modulename}-%{commit} -p1
 
 %build
 
