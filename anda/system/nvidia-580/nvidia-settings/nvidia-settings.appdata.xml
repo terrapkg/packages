@@ -34,15 +34,15 @@
   <screenshots>
     <screenshot type="default">
       <caption>The nvidia-settings utility main window</caption>
-      <image type="source" width="1158" height="664">https://negativo17.org/appstream/nvidia-settings-0.png</image>
+      <image type="source" width="1158" height="664">https://raw.githubusercontent.com/terrapkg/packages/refs/heads/frawhide/anda/system/nvidia-580/nvidia-settings/nvidia-settings-0.png</image>
     </screenshot>
     <screenshot>
       <caption>Monitoring GPU status</caption>
-      <image type="source" width="1414" height="884">https://negativo17.org/appstream/nvidia-settings-1.png</image>
+      <image type="source" width="1414" height="884">https://raw.githubusercontent.com/terrapkg/packages/refs/heads/frawhide/anda/system/nvidia-580/nvidia-settings/nvidia-settings-1.png</image>
     </screenshot>
     <screenshot>
       <caption>Application profiles creation</caption>
-      <image type="source" width="1638" height="984">https://negativo17.org/appstream/nvidia-settings-2.png</image>
+      <image type="source" width="1638" height="984">https://raw.githubusercontent.com/terrapkg/packages/refs/heads/frawhide/anda/system/nvidia-580/nvidia-settings/nvidia-settings-2.png</image>
     </screenshot>
   </screenshots>
   <keywords>
@@ -53,5 +53,6 @@
     <keyword>Vulkan</keyword>
     <keyword>OpenGL</keyword>
   </keywords>
-  <update_contact>negativo17@gmail.com</update_contact>
+  <update_contact>https://github.com/terrapkg/packages/issues</update_contact>
+  <vcs-browser>https://github.com/terrapkg/packages</vcs-browser>
 </component>
