@@ -62,12 +62,40 @@ Requires:       %name = %evr
 %description    %name-nushell-completion
 nushell completion files for %name.
 
+%package        %name-bash-completion
+Summary:        bash completion files for %name
+Requires:       %name = %evr
+
+%description    %name-bash-completion
+bash completion files for %name.
+
+%package        %name-zsh-completion
+Summary:        zsh completion files for %name
+Requires:       %name = %evr
+
+%description    %name-zsh-completion
+zsh completion files for %name.
+
+%package        %name-fish-completion
+Summary:        fish completion files for %name
+Requires:       %name = %evr
+
+%description    %name-fish-completion
+fish completion files for %name.
+
+%package        %name-elvish-completion
+Summary:        elvish completion files for %name
+Requires:       %name = %evr
+
+%description    %name-elvish-completion
+elvish completion files for %name.
+
 %prep
 %autosetup -n jj-%version
 %cargo_prep_online
 
-%pkg_completion -b %{binary_name} -n %name
-%pkg_completion -ezf %{binary_name} -n %name
+%dnl %pkg_completion -b %{binary_name} -n %name
+%dnl %pkg_completion -ezf %{binary_name} -n %name
 
 %build
 %cargo_build
@@ -104,6 +132,18 @@ cp -a docs/* %{buildroot}%{_pkgdocdir}/
 
 %files %{name}-nushell-completion
 %{nushell_completions_dir}/completions-%{binary_name}.nu
+
+%files %{name}-bash-completion
+%{bash_completions_dir}/completions/%{binary_name}.bash
+
+%files %{name}-zsh-completion
+%{zsh_completions_dir}/_%{binary_name}
+
+%files %{name}-fish-completion
+%{fish_completions_dir}/%{binary_name}.fish
+
+%files %{name}-elvish-completion
+%{elvish_completions_dir}/%{binary_name}.elv
 
 %files doc
 %doc README.md AUTHORS CHANGELOG.md GOVERNANCE.md SECURITY.md
