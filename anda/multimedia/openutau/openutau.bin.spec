@@ -2,7 +2,7 @@
 
 Name:			openutau.bin
 Version:		%(echo %ver | sed -E 's@^build/@@')
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Open singing synthesis platform / Open source UTAU successor
 License:		MIT
 URL:			http://www.openutau.com
@@ -39,7 +39,7 @@ install -Dpm644 open-utau.ico -t %buildroot%_iconsdir/hicolor/apps
 
 mkdir -p %buildroot%_datadir/openutau
 cd %buildroot%_datadir/openutau
-tar tf %{S:0}
+tar xf %{S:0}
 
 %files
 %license LICENSE.txt
