@@ -1,13 +1,16 @@
 #? https://github.com/flameshot-org/flameshot/blob/master/packaging/rpm/fedora/flameshot.spec
 
-%global ver v12.1.0
-%global commit 0e0ab8b73d43dc17f416ac5c67ac1d6d0516a527
+%global ver 13.3.0
+%global commit b99dc6e2ca70ab92df23bdeb9686bc120cc5f405
 %global shortcommit %{sub %{commit} 1 7}
-%global commit_date 20250530
+%global commit_date 20251216
+%global devel_name QtColorWidgets
+%global _distro_extra_cflags -fuse-ld=mold
+%global _distro_extra_cxxflags -fuse-ld=mold
 
 Name:			flameshot.nightly
 Version:		%ver^%{commit_date}git.%shortcommit
-Release:		1%?dist
+Release:		2%?dist
 License:		GPL-3.0-or-later AND ASL-2.0 AND GPL-2.0-only AND LGPL-3.0-only AND FAL-1.3
 Summary:		Powerful yet simple to use screenshot software
 URL:			https://flameshot.org
@@ -20,24 +23,22 @@ BuildRequires:	fdupes
 BuildRequires:	libappstream-glib
 BuildRequires:	ninja-build
 BuildRequires:	desktop-file-utils
+BuildRequires:	mold
 
-BuildRequires:	cmake(Qt5Core) >= 5.9.0
-BuildRequires:	cmake(KF5GuiAddons) >= 5.89.0
-BuildRequires:	cmake(Qt5DBus) >= 5.9.0
-BuildRequires:	cmake(Qt5Gui) >= 5.9.0
-BuildRequires:	cmake(Qt5LinguistTools) >= 5.9.0
-BuildRequires:	cmake(Qt5Network) >= 5.9.0
-BuildRequires:	cmake(Qt5Svg) >= 5.9.0
-BuildRequires:	cmake(Qt5Widgets) >= 5.9.0
+BuildRequires:	cmake(Qt6Core) >= 6.0.0
+BuildRequires:	cmake(KF6GuiAddons) >= 6.7.0
+BuildRequires:	cmake(Qt6DBus) >= 6.0.0
+BuildRequires:	cmake(Qt6Gui) >= 6.0.0
+BuildRequires:	cmake(Qt6LinguistTools) >= 6.0.0
+BuildRequires:	cmake(Qt6Network) >= 6.0.0
+BuildRequires:	cmake(Qt6Svg) >= 6.0.0
+BuildRequires:	cmake(Qt6Widgets) >= 6.0.0
 
 Requires:		hicolor-icon-theme
-Requires:		qt5-qtbase >= 5.9.0
-Requires:		qt5-qttools >= 5.9.0
-Requires:		qt5-qtsvg%{?_isa} >= 5.9.0
 
-%dnl Provides:		flameshot = %version-%release
 Conflicts:		flameshot
 
+Recommends:		qt6-qtimageformats
 Recommends:		xdg-desktop-portal%{?_isa}
 Recommends:		(xdg-desktop-portal-gnome%{?_isa} if gnome-shell%{?_isa})
 Recommends:		(xdg-desktop-portal-kde%{?_isa} if plasma-workspace-wayland%{?_isa})
@@ -53,49 +54,32 @@ Features:
  * Easy to use.
  * In-app screenshot edition.
  * DBus interface.
- * Upload to Imgur
 
+%pkg_completion -Bfz flameshot
 
-%package bash-completion
-Summary:		Bash completion for %{name}
-Requires:		%{name} = %{version}-%{release}
-Requires: 		bash-completion
-Supplements:	(%{name} and bash-completion)
+%package devel
+Requires:     %{name} = %{version}
+%pkg_devel_files
+%_libdir/cmake/*/
 
-%description bash-completion
-Bash command line completion support for %{name}.
+%package libs
+%pkg_libs_files
 
-%package fish-completion
-Summary:		Fish completion for %{name}
-Requires:		%{name} = %{version}-%{release}
-Requires:		fish
-Supplements:	(%{name} and fish)
-
-%description fish-completion
-Fish command line completion support for %{name}.
-
-%package zsh-completion
-Summary:		Zsh completion for %{name}
-Requires:		%{name} = %{version}-%{release}
-Requires:		zsh
-Supplements:	(%{name} and zsh)
-
-%description zsh-completion
-Zsh command line completion support for %{name}.
-
+%package static
+%pkg_static_files
 
 %prep
 %autosetup -p1 -n flameshot-%commit
 
 %build
+export GIT_HASH=%commit
 %cmake -G Ninja \
     -DCMAKE_BUILD_TYPE=Release \
-    -DUSE_WAYLAND_CLIPBOARD:BOOL=ON \
+    -DUSE_WAYLAND_CLIPBOARD:BOOL=ON
 %cmake_build
 
 %install
 %cmake_install
-# https://fedoraproject.org/wiki/PackagingDrafts/find_lang
 %find_lang Internationalization --with-qt
 %fdupes %{buildroot}%{_datadir}/icons
 
@@ -104,7 +88,6 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.metainfo.xml
 desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 %files -f Internationalization.lang
-%{_datadir}/flameshot/translations/Internationalization_grc.qm
 %doc README.md
 %license LICENSE
 %dir %{_datadir}/flameshot
@@ -117,12 +100,3 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_datadir}/icons/hicolor/*/apps/*.png
 %{_datadir}/icons/hicolor/scalable/apps/*.svg
 %{_mandir}/man1/flameshot.1*
-
-%files bash-completion
-%{bash_completions_dir}/flameshot
-
-%files fish-completion
-%{fish_completions_dir}/flameshot.fish
-
-%files zsh-completion
-%{zsh_completions_dir}/_flameshot

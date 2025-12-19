@@ -1,5 +1,5 @@
-%global commit 35a06d89747ff31fbaabf744b7dae585bfa86723
-%global commit_date 20220126
+%global commit d6ec36aae87e765eddef8308f0f58c7b5be95ad7
+%global commit_date 20251028
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           v4l2-relayd

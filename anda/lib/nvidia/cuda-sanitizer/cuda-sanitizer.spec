@@ -4,11 +4,11 @@
 %global __strip /bin/true
 %global _missing_build_ids_terminate_build 0
 %global _build_id_links none
-%global major_package_version 12-8
+%global major_package_version 13-0
 
 Name:           cuda-sanitizer
 Epoch:          1
-Version:        12.9.27
+Version:        13.1.75
 Release:        1%?dist
 Summary:        CUDA Compute Sanitizer API
 License:        CUDA Toolkit

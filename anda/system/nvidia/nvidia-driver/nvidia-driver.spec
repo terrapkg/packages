@@ -10,7 +10,7 @@
 %endif
 
 Name:           nvidia-driver
-Version:        575.57.08
+Version:        590.48.01
 Release:        1%?dist
 Summary:        NVIDIA's proprietary display driver for NVIDIA graphic cards
 Epoch:          3
@@ -63,10 +63,11 @@ version %{version}.
 
 %package libs
 Summary:        Libraries for %{name}
-Requires:       egl-gbm%{?_isa} >= 2:1.1.2
-Requires:       egl-wayland%{?_isa} >= 1.1.13.1
-Requires:       egl-x11%{?_isa}
-Requires:       libvdpau%{?_isa} >= 0.5
+Requires:       egl-gbm%{?_isa} >= 2:1.1.2.1
+Requires:       (egl-wayland%{?_isa} >= 1.1.20 or egl-wayland2%{?_isa} >= 1.0.0~20250806gitd4deb7c-3)
+Suggests:       egl-wayland%{?_isa} >= 1.1.20
+Requires:       egl-x11%{?_isa} >= 1.0.3
+Requires:       libvdpau%{?_isa} >= 1.5
 Requires:       libglvnd%{?_isa} >= 1.0
 Requires:       libglvnd-egl%{?_isa} >= 1.0
 Requires:       libglvnd-gles%{?_isa} >= 1.0
@@ -74,6 +75,11 @@ Requires:       libglvnd-glx%{?_isa} >= 1.0
 Requires:       libglvnd-opengl%{?_isa} >= 1.0
 Requires:       libnvidia-ml%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       vulkan-loader
+%if 0%{?fedora}
+%ifarch x86_64
+Requires:       (%{name}-libs(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
+%endif
+%endif
 # dlopened
 Requires:       libnvidia-gpucomp%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       libnvidia-ml%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
@@ -95,6 +101,11 @@ Requires:       libnvidia-ml = %{?epoch:%{epoch}:}%{version}-%{release}
 %ifarch x86_64 aarch64
 Requires:       libnvidia-cfg = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
+%if 0%{?fedora}
+%ifarch x86_64
+Requires:       (%{name}-cuda-libs(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
+%endif
+%endif
 # dlopened:
 Requires:       libnvidia-gpucomp%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       libnvidia-ml = %{?epoch:%{epoch}:}%{version}-%{release}
@@ -109,6 +120,11 @@ This package provides the CUDA libraries for %{name}-cuda.
 Summary:        NVIDIA OpenGL-based Framebuffer Capture libraries
 Provides:       nvidia-driver-NvFBCOpenGL = %{?epoch:%{epoch}:}%{version}-%{release}
 Obsoletes:      nvidia-driver-NvFBCOpenGL < %{?epoch:%{epoch}:}%{version}-%{release}
+%if 0%{?fedora}
+%ifarch x86_64
+Requires:       (libnvidia-fbc(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
+%endif
+%endif
 # dlopened:
 Requires:       %{name}-cuda-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 
@@ -120,6 +136,11 @@ graphics scenarios.
 
 %package -n libnvidia-gpucomp
 Summary:        NVIDIA library for shader compilation (nvgpucomp)
+%if 0%{?fedora}
+%ifarch x86_64
+Requires:       (libnvidia-gpucomp(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
+%endif
+%endif
 
 %description -n libnvidia-gpucomp
 This package contains the private libnvidia-gpucomp runtime library which is used by
@@ -129,6 +150,11 @@ other driver components.
 Summary:        NVIDIA Management Library (NVML)
 Provides:       cuda-nvml%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:       nvidia-driver-NVML = %{?epoch:%{epoch}:}%{version}-%{release}
+%if 0%{?fedora}
+%ifarch x86_64
+Requires:       (libnvidia-ml(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
+%endif
+%endif
 Obsoletes:      nvidia-driver-NVML < %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description -n libnvidia-ml
@@ -483,12 +509,8 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %if v"%{version}" > v"570.144"
 %{_libdir}/libnvidia-nvvm70.so.4
 %endif
-%if v"%{version}" <= v"570.144"
-%ifnarch aarch64
 %{_libdir}/libnvidia-sandboxutils.so.1
 %{_libdir}/libnvidia-sandboxutils.so.%{version}
-%endif
-%endif
 %endif
 %ifarch x86_64
 %if 0%{?rhel} == 8

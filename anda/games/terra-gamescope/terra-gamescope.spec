@@ -3,12 +3,12 @@
 %global _default_patch_fuzz 2
 %global build_timestamp %(date +"%Y%m%d")
 #global gamescope_tag 3.15.11
-%global gamescope_commit d3174928d47f7e353e7daca63cf882d65660cc7c
+%global gamescope_commit 2f30679c80791844c29402d232462874fe23dd46
 %define short_commit %(echo %{gamescope_commit} | cut -c1-8)
 
 Name:           terra-gamescope
 #Version:        100.%{gamescope_tag}
-Version:        104.%{short_commit}
+Version:        134.%{short_commit}
 Release:        1%?dist
 Summary:        Micro-compositor for video games on Wayland
 
@@ -26,6 +26,8 @@ Patch0:         0001-cstdint.patch
 # https://hhd.dev/
 # https://github.com/ChimeraOS/gamescope
 Patch1:         handheld.patch
+
+#Patch2:         https://github.com/ValveSoftware/gamescope/pull/1867.patch
 
 BuildRequires:  meson >= 0.54.0
 BuildRequires:  ninja-build
@@ -86,7 +88,9 @@ BuildRequires:  git
 Requires:       libliftoff%{?_isa} >= %{libliftoff_minver}
 Requires:       xorg-x11-server-Xwayland
 Requires:       terra-gamescope-libs = %{version}-%{release}
+%ifarch x86_64
 Requires:       terra-gamescope-libs(x86-32) = %{version}-%{release}
+%endif
 Recommends:     mesa-dri-drivers
 Recommends:     mesa-vulkan-drivers
 
@@ -99,9 +103,9 @@ Summary:	libs for %{name}
 %summary
 
 %prep
+%setup -Tc
 # git clone --depth 1 --branch %%{gamescope_tag} %%{url}.git
-git clone %{url}.git
-cd gamescope
+git clone %{url}.git $PWD
 git checkout %{gamescope_commit}
 git submodule update --init --recursive
 mkdir -p pkgconfig
@@ -113,7 +117,6 @@ sed -i 's^../thirdparty/SPIRV-Headers/include/spirv/^/usr/include/spirv/^' src/m
 %autopatch -p1
 
 %build
-cd gamescope
 export PKG_CONFIG_PATH=pkgconfig
 %meson \
     --auto-features=enabled \
@@ -121,12 +124,11 @@ export PKG_CONFIG_PATH=pkgconfig
 %meson_build
 
 %install
-cd gamescope
 %meson_install --skip-subprojects
 
 %files
-%license gamescope/LICENSE
-%doc gamescope/README.md
+%license LICENSE
+%doc README.md
 %caps(cap_sys_nice=eip) %{_bindir}/gamescope
 %{_bindir}/gamescopectl
 %{_bindir}/gamescopestream

@@ -1,10 +1,10 @@
 %define _legacy_common_support 1
-%global __brp_check_rpaths %{nil}
+%undefine __brp_check_rpaths
 %global         majorminor 1.0
 
 Name:           gstreamer1-plugins-bad
-Version:        1.26.1
-Release:        1%?dist
+Version:        1.26.9
+Release:        3%?dist
 Epoch:          2
 Summary:        GStreamer streaming media framework "bad" plugins
 License:        LGPL-2.0-or-later and LGPL-2.0-only
@@ -13,6 +13,10 @@ URL:            http://gstreamer.freedesktop.org/
 Source0:        https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-%{version}.tar.xz
 Source1:        gstreamer-bad.metainfo.xml
 
+# Add support for LCEVCdec 4. Based off:
+# https://gitlab.freedesktop.org/gstreamer/gstreamer/-/commit/1b041d8114b4de8341926fe1ae62a1d64781970d
+Patch0:         %{name}-lcevcdec4.patch
+
 # Requires Provides with and without _isa defined due to package dependencies
 Obsoletes:      %{name}-free < %{?epoch}:%{version}-%{release}
 Provides:       %{name}-free = %{?epoch}:%{version}-%{release}
@@ -20,7 +24,7 @@ Provides:       %{name}-free%{?_isa} = %{?epoch}:%{version}-%{release}
 Obsoletes:      %{name}-free-extras < %{?epoch}:%{version}-%{release}
 Provides:       %{name}-free-extras = %{?epoch}:%{version}-%{release}
 Provides:       %{name}-free-extras%{?_isa} = %{?epoch}:%{version}-%{release}
-#Obsoletes:      %{name}-freeworld < %{?epoch}:%{version}-%{release}
+Obsoletes:      %{name}-freeworld < %{?epoch}:%{version}-%{release}
 Provides:       %{name}-freeworld = %{?epoch}:%{version}-%{release}
 Provides:       %{name}-freeworld%{?_isa} = %{?epoch}:%{version}-%{release}
 Obsoletes:      %{name}-nonfree < %{?epoch}:%{version}-%{release}
@@ -38,10 +42,12 @@ Provides:       gstreamer1-plugin-openh264%{?_isa} = %{?epoch}:%{version}-%{rele
 Obsoletes:      gstreamer1-svt-hevc < %{?epoch}:%{version}-%{release}
 Provides:       gstreamer1-svt-hevc = %{?epoch}:%{version}-%{release}
 Provides:       gstreamer1-svt-hevc%{?_isa} = %{?epoch}:%{version}-%{release}
+Obsoletes:      %{name}-free-libs < %{?epoch}:%{version}-%{release}
+Provides:       %{name}-free-libs = %{?epoch}:%{version}-%{release}
+Provides:       %{name}-free-libs%{?_isa} = %{?epoch}:%{version}-%{release}
 Obsoletes:      gstreamer1-plugin-vaapi < %{?epoch}:%{version}-%{release}
 Provides:       gstreamer1-plugin-vaapi = %{?epoch}:%{version}-%{release}
 Provides:       gstreamer1-plugin-vaapi%{?_isa} = %{?epoch}:%{version}-%{release}
-Requires:       %{name}-libs = %{?epoch}:%{version}-%{release}
 
 BuildRequires:  gcc-c++
 BuildRequires:  meson >= 0.62
@@ -60,7 +66,9 @@ BuildRequires:  gobject-introspection-devel >= 1.31.1
 BuildRequires:  gsm-devel
 BuildRequires:  ladspa-devel
 BuildRequires:  libatomic
+%if 0%{?fedora} < 44
 BuildRequires:  libcdaudio-devel
+%endif
 BuildRequires:  libmicrodns-devel
 #BuildRequires:  libmpcdec-devel - Old API
 BuildRequires:  mesa-libGL-devel
@@ -227,17 +235,6 @@ Provides:       %{name}-free-fluidsynth%{?_isa} = %{?epoch}:%{version}-%{release
 
 %description    fluidsynth
 This package contains the GStreamer Fluidsynth plugin.
-
-
-%package        libs
-Summary:        Runtime libraries for the GStreamer "bad" plugins
-Obsoletes:      %{name}-free-libs < %{?epoch}:%{version}-%{release}
-Provides:       %{name}-free-libs = %{?epoch}:%{version}-%{release}
-Provides:       %{name}-free-libs%{?_isa} = %{?epoch}:%{version}-%{release}
-Requires:       %{name} = %{?epoch}:%{version}-%{release}
-
-%description    libs
-%summary.
 
 %package        devel
 Summary:        Development files for the GStreamer "bad" plugins
@@ -496,6 +493,32 @@ install -p -m 644 -D %{SOURCE1} %{buildroot}%{_metainfodir}/gstreamer-bad.metain
 %doc AUTHORS NEWS README.md RELEASE REQUIREMENTS
 %{_bindir}/gst-transcoder-1.0
 %{_metainfodir}/gstreamer-bad.metainfo.xml
+%{_libdir}/girepository-%{majorminor}/CudaGst-%{majorminor}.typelib
+%{_libdir}/girepository-%{majorminor}/Gst*-%{majorminor}.typelib
+%{_libdir}/libgstadaptivedemux-%{majorminor}.so.*
+%{_libdir}/libgstanalytics-%{majorminor}.so.*
+%{_libdir}/libgstbadaudio-%{majorminor}.so.*
+%{_libdir}/libgstbasecamerabinsrc-%{majorminor}.so.*
+%{_libdir}/libgstcodecparsers-%{majorminor}.so.*
+%{_libdir}/libgstcodecs-%{majorminor}.so.*
+%{_libdir}/libgstcuda-%{majorminor}.so.*
+%{_libdir}/libgstdxva-%{majorminor}.so.*
+%{_libdir}/libgstinsertbin-%{majorminor}.so.*
+%{_libdir}/libgstisoff-%{majorminor}.so.*
+%{_libdir}/libgstmpegts-%{majorminor}.so.*
+%{_libdir}/libgstmse-%{majorminor}.so.*
+%{_libdir}/libgstopencv-%{majorminor}.so.*
+%{_libdir}/libgstphotography-%{majorminor}.so.*
+%{_libdir}/libgstplayer-%{majorminor}.so.*
+%{_libdir}/libgstplay-%{majorminor}.so.*
+%{_libdir}/libgstsctp-%{majorminor}.so.*
+%{_libdir}/libgsttranscoder-%{majorminor}.so.*
+%{_libdir}/libgsturidownloader-%{majorminor}.so.*
+%{_libdir}/libgstva-%{majorminor}.so.*
+%{_libdir}/libgstvulkan-%{majorminor}.so.*
+%{_libdir}/libgstwayland-%{majorminor}.so.*
+%{_libdir}/libgstwebrtc-%{majorminor}.so.*
+%{_libdir}/libgstwebrtcnice-%{majorminor}.so.*
 # Encoder profiles
 %dir %{_datadir}/gstreamer-%{majorminor}/encoding-profiles/
 %dir %{_datadir}/gstreamer-%{majorminor}/encoding-profiles/device/
@@ -676,36 +699,6 @@ install -p -m 644 -D %{SOURCE1} %{buildroot}%{_metainfodir}/gstreamer-bad.metain
 
 %files fluidsynth
 %{_libdir}/gstreamer-%{majorminor}/libgstfluidsynthmidi.so
-%{_libdir}/gstreamer-%{majorminor}/libgstmidi.so
-%{_libdir}/gstreamer-%{majorminor}/libgstwildmidi.so
-
-%files libs
-%{_libdir}/girepository-%{majorminor}/CudaGst-%{majorminor}.typelib
-%{_libdir}/girepository-%{majorminor}/Gst*-%{majorminor}.typelib
-%{_libdir}/libgstadaptivedemux-%{majorminor}.so.*
-%{_libdir}/libgstanalytics-%{majorminor}.so.*
-%{_libdir}/libgstbadaudio-%{majorminor}.so.*
-%{_libdir}/libgstbasecamerabinsrc-%{majorminor}.so.*
-%{_libdir}/libgstcodecparsers-%{majorminor}.so.*
-%{_libdir}/libgstcodecs-%{majorminor}.so.*
-%{_libdir}/libgstcuda-%{majorminor}.so.*
-%{_libdir}/libgstdxva-%{majorminor}.so.*
-%{_libdir}/libgstinsertbin-%{majorminor}.so.*
-%{_libdir}/libgstisoff-%{majorminor}.so.*
-%{_libdir}/libgstmpegts-%{majorminor}.so.*
-%{_libdir}/libgstmse-%{majorminor}.so.*
-%{_libdir}/libgstopencv-%{majorminor}.so.*
-%{_libdir}/libgstphotography-%{majorminor}.so.*
-%{_libdir}/libgstplayer-%{majorminor}.so.*
-%{_libdir}/libgstplay-%{majorminor}.so.*
-%{_libdir}/libgstsctp-%{majorminor}.so.*
-%{_libdir}/libgsttranscoder-%{majorminor}.so.*
-%{_libdir}/libgsturidownloader-%{majorminor}.so.*
-%{_libdir}/libgstva-%{majorminor}.so.*
-%{_libdir}/libgstvulkan-%{majorminor}.so.*
-%{_libdir}/libgstwayland-%{majorminor}.so.*
-%{_libdir}/libgstwebrtc-%{majorminor}.so.*
-%{_libdir}/libgstwebrtcnice-%{majorminor}.so.*
 
 %files devel
 %{_datadir}/gir-%{majorminor}/CudaGst-%{majorminor}.gir

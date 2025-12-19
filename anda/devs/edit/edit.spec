@@ -1,21 +1,20 @@
 %global _description %{expand:
 An editor that pays homage to the classic MS-DOS Editor, but with a modern interface and input controls similar to VS Code.}
 %global crate edit
-%bcond rust_nightly 1
-%if %{with rust_nightly}
-%define __cargo /usr/bin/env CARGO_HOME=.cargo RUSTC_BOOTSTRAP=1 RUSTFLAGS='%{build_rustflags}' $HOME/.cargo/bin/cargo
-%define __rustc $HOME/.cargo/bin/rustc
-%define __rustdoc $HOME/.cargo/bin/rustdoc
-%endif
+%bcond rust_nightly 0
+%global appid com.microsoft.edit
+%global org com.microsoft
+%global appstream_component console-application
 
 Name:          %{crate}
-Version:       1.1.0
-Release:       1%?dist
+Version:       1.2.1
+Release:       2%?dist
 Summary:       A simple editor for simple needs.
 SourceLicense: MIT
 License:       MIT AND (MIT OR Apache-2.0)
 URL:           https://github.com/microsoft/edit
 Source0:       %{url}/archive/refs/tags/v%{version}.tar.gz
+Source1:       %{appid}.metainfo.xml
 BuildRequires: anda-srpm-macros
 BuildRequires: cargo-rpm-macros
 %if %{with rust_nightly}
@@ -29,10 +28,7 @@ Packager:      Gilver E. <rockgrub@disroot.org>
 %prep
 %autosetup -n %{name}-%{version}
 %if %{with rust_nightly}
-rustup-init -y
-. "$HOME/.cargo/env"
-rustup toolchain install nightly
-rustup override set nightly
+%rustup_nightly
 %endif
 %cargo_prep_online
 
@@ -42,6 +38,11 @@ rustup override set nightly
 %install
 %crate_install_bin
 %{cargo_license_online} > LICENSE.dependencies
+install -Dm644 assets/edit.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps/%{appid}.svg
+
+sed -i "s|^Icon=edit$|Icon=%{appid}|g" assets/%{appid}.desktop
+install -Dm644 assets/%{appid}.desktop %{buildroot}%{_datadir}/applications/%{appid}.desktop
+%terra_appstream -o %{SOURCE1}
 
 %files
 %doc CODE_OF_CONDUCT.md
@@ -50,6 +51,9 @@ rustup override set nightly
 %license LICENSE
 %license LICENSE.dependencies
 %{_bindir}/%{name}
+%{_metainfodir}/%{appid}.metainfo.xml
+%{_iconsdir}/hicolor/scalable/apps/%{appid}.svg
+%{_datadir}/applications/%{appid}.desktop
 
 %changelog
 * Thu May 22 2025 Gilver E. <rockgrub@disroot.org> - 1.0.0-1

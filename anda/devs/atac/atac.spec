@@ -6,7 +6,7 @@
 %global __brp_mangle_shebangs %{nil}
 
 Name:           atac
-Version:        0.20.1
+Version:        0.22.1
 Release:        1%?dist
 Summary:        Arguably a Terminal API Client
 
@@ -37,6 +37,7 @@ and account-less.}
 %build
 %{cargo_license_summary_online}
 %{cargo_license_online} > LICENSE.dependencies
+%{cargo_build} --locked
 
 %install
-%cargo_install
+%crate_install_bin

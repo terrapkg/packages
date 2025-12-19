@@ -1,5 +1,7 @@
 rpm.global("commit", gh_commit("flameshot-org/flameshot"));
 if rpm.changed() {
-    rpm.global("ver", gh("flameshot-org/flameshot"));
+    let v = gh("flameshot-org/flameshot");
+    v.crop(1);
+    rpm.global("ver", v);
     rpm.global("commit_date", date());
 }

@@ -3,10 +3,10 @@
 %global gtk4_version        4.14.4
 %global libadwaita_version  1.5.1
 %global pure_protobuf_version 2.0.0
-%global raw_ver v1.78.0
+%global raw_ver v1.97.0
 
 Name:           komikku
-Version:        1.78.0
+Version:        1.97.0
 %forgemeta
 Release:        1%?dist
 Summary:        A manga reader for GNOME
@@ -14,7 +14,7 @@ Summary:        A manga reader for GNOME
 BuildArch:      noarch
 
 License:        GPL-3.0-or-later
-URL:            https://valos.gitlab.io/Komikku
+URL:            https://apps.gnome.org/Komikku/
 Source0:        https://codeberg.org/valos/%{appname}/archive/%{raw_ver}.tar.gz#/%{name}-%{version}.tar.gz
 
 BuildRequires:  desktop-file-utils
@@ -36,7 +36,7 @@ Requires:       libnotify
 Requires:       webkitgtk6.0
 Requires:       python3-beautifulsoup4
 Requires:       python3-brotli
-Requires:       python3-colorthief
+Requires:       python3-modern-colorthief
 Requires:       python3-dateparser  %dnl >= 1.1.4 | https://bugzilla.redhat.com/show_bug.cgi?id=2115204
 Requires:       python3-emoji
 Requires:       python3-gobject

@@ -6,7 +6,7 @@
 %global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 Name:           discord-canary
-Version:        0.0.687
+Version:        0.0.832
 Release:        1%?dist
 Summary:        Free Voice and Text Chat for Gamers
 URL:            discord.com
@@ -33,7 +33,7 @@ mkdir -p %{buildroot}%{_datadir}/applications/
 mkdir -p %{buildroot}%{_datadir}/pixmaps
 ln -s %_datadir/discord-canary/discord-canary.desktop %{buildroot}%{_datadir}/applications/
 ln -s %_datadir/discord-canary/discord.png %{buildroot}%{_datadir}/pixmaps/discord-canary.png
-ln -s %_datadir/discord/DiscordCanary %buildroot%_bindir/discord-canary
+ln -s %_datadir/discord-canary/DiscordCanary %buildroot%_bindir/discord-canary
 
 %files
 %_bindir/discord-canary

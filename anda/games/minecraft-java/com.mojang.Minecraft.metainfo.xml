@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.mojang.Minecraft</id>
+  <name>Minecraft</name>
+  <name xml:lang="ar">ماين كرافت</name>
+  <name xml:lang="bn">মাইনক্রাফ্ট</name>
+  <name xml:lang="es">Minecraft</name>
+  <name xml:lang="fr">Minecraft</name>
+  <name xml:lang="hi">Minecraft</name>
+  <name xml:lang="id">Minecraft</name>
+  <name xml:lang="pt_BR">Minecraft</name>
+  <name xml:lang="ro">Minecraft</name>
+  <name xml:lang="th">Minecraft</name>
+  <name xml:lang="vi">Minecraft</name>
+  <name xml:lang="zh_CN">Minecraft</name>
+  <name xml:lang="zh_TW">Minecraft</name>
+  <metadata_license>CC0-1.0</metadata_license>
+  <summary>Create your own world in one of the most popular video games</summary>
+  <summary xml:lang="ar">أنشئ عالمك الخاص في واحدة من ألعاب الفيديو الأكثر شعبية</summary>
+  <summary xml:lang="es">Crea tu propio mundo en este videojuego popular</summary>
+  <summary xml:lang="fr">Créez votre propre univers dans l'un des jeux vidéo les plus populaires</summary>
+  <summary xml:lang="hi">सर्वाधिक लोकप्रिय वीडियो गेम में अपनी खुद की दुनिया बनाएँ</summary>
+  <summary xml:lang="id">Ciptakan duniamu sendiri di salah satu permainan paling populer ini.</summary>
+  <summary xml:lang="pt_BR">Crie seu próprio mundo em um dos videogames mais populares</summary>
+  <summary xml:lang="ro">Creeaza-ti propria lume in unul dintre cele mai populare jocuri video</summary>
+  <summary xml:lang="th">สร้างโลกของคุณขึ้นมาใหม่ในหนึ่งในวิดีโอเกมที่เป็นที่นิยมมากที่สุด</summary>
+  <summary xml:lang="vi">Kiến tạo thế giới của riêng bạn trên một trong những trò chơi điện tử phổ biến nhất</summary>
+  <summary xml:lang="zh_CN">在这款风靡全球的视频游戏中打造属于自己的世界</summary>
+  <summary xml:lang="zh_TW">在最受歡迎的電玩遊戲中打造自己的世界</summary>
+  <description>
+    <p>Join people all over the world playing Minecraft, one of the most popular videogames around! Your own imagination is the limit in this fun game where you get to build the world around you. Play with friends, or alone, as you adventure, gather, build, and battle in an incredible land of your very own. For the best experience, we recommend you create an account and purchase online at minecraft.net/en-us/store before installing this app. ** Requires internet.</p><p>NOTE: This wrapper is not verified by, affiliated with, or supported by Mojang or Microsoft.</p>
+    <p xml:lang="ar">انضم للأشخاص الذين يلعبون لُعبة ماين كرافت من جميع أنحاء العالم، وهي واحدة من ألعاب الفيديو الأكثر شعبية الموجودة الآن! خيالك الخاص هو الحد في هذه اللعبة المُمتعة حيث يمكنك بناء العالم من حولك. العب مع الأصدقاء، أو منفرداً، حيث أنك تغامر وتجمع الموارد وتبني وتحارب في أراضٍ مذهلة خاصة بك للغاية. لأفضل تجربة، فإننا ننصح بإنشاء حساب والشراء عبر الإنترنت من خلال minecraft.net/en-us/store/ قبل تثبيت هذا التطبيق. ** يتطلب الإنترنت.</p><p xml:lang="ar">NOTE: This wrapper is not verified by, affiliated with, or supported by Mojang or Microsoft.</p>
+    <p xml:lang="es">¡Todo el mundo esta jugando Minecraft, uno de los videojuegos más populares de hoy día! Tu imaginación es el límite en este juego divertido en donde puedes construir el mundo que te rodea. Juega con tus amigos, o solo, y aventura, recolecta, construye y batalla. Para obtener la mejor experiencia, recomendamos crear una cuenta y comprar el juego en línea antes de instalarlo minecraft.net/es-es/store ** Requiere internet.</p><p xml:lang="es">NOTE: This wrapper is not verified by, affiliated with, or supported by Mojang or Microsoft.</p>
+    <p xml:lang="fr">Rejoignez les joueurs du monde entier avec Minecraft, l'un des jeux vidéo les plus populaires qui existent ! Testez les limites de votre propre imagination dans ce jeu récréatif où vous devrez construire l'univers qui vous entoure. Jouez seul ou avec des amis, et partez à l'aventure en amassant, construisant et combattant dans ce monde incroyable qui est le vôtre. Pour vivre une expérience parfaite, nous vous recommandons de créer un compte et d'acheter en ligne sur minecraft.net/en-us/store avant d'installer cette appli. ** Nécessite internet.</p><p xml:lang="fr">NOTE: This wrapper is not verified by, affiliated with, or supported by Mojang or Microsoft.</p>
+    <p xml:lang="hi">दुनियाभर में Minecraft खेलने वाले लोगों से मिलें, जो सर्वाधिक लोकप्रिय वीडियो गेम में से एक है! इस मज़ेदार गेम में आपकी अपनी कल्पना ही सीमा है जहाँ आप अपने आसपास की दुनिया बनाते हैं. अपने मित्रों के साथ या अकेले खेलें, चूँकि आपकी रोमांच यात्रा आपकी अपनी सीमाओं में ही निर्मित होती है. श्रेष्ठ अनुभव के लिए, हम आपको यह ऐप स्थापित करने से पहले एक खाता निर्मित करने और minecraft.net/en-us/store पर इसे खरीदने की सलाह देते हैं. ** इंटरनेट आवश्यक.</p><p xml:lang="hi">NOTE: This wrapper is not verified by, affiliated with, or supported by Mojang or Microsoft.</p>
+    <p xml:lang="id">Bergabung dengan orang lain di dunia yang juga memainkan Minecraft, salah satu permainan yang paling populer di dunia. Anda bisa membangun dunia sendiri di game seru ini, satu-satunya batasan adalah imajinasi Anda. Bermain bersama dengan teman, atau sendiri, dimana Anda bisa berpetualang, mengumpulkan, membangun, dan bertarung di tanah ciptaan Anda sendiri. Untuk pengalaman yang paling optimal, sebelum mengunduh game ini, kami sarankan Anda membuat akun dan membeli permainan ini di minecraft.net/en-us/store. **Membutuhkan koneksi internet</p><p xml:lang="id">NOTE: This wrapper is not verified by, affiliated with, or supported by Mojang or Microsoft.</p>
+    <p xml:lang="pt_BR">Junte-se a pessoas de todas as partes do mundo jogando Minecraft, um dos videogames mais populares do momento! A sua imaginação é o limite neste jogo divertido que permite construir um mundo próprio. Jogue com amigos ou sozinho, enquanto parte em uma aventura de construções e batalhas nas suas terras incríveis. Para obter a melhor experiência, antes de instalar este app, recomendamos que você crie uma conta e adquira o jogo no site oficial do Minecraft: minecraft.net/pt-br/store  ** Necessita internet </p><p xml:lang="pt_BR">NOTE: This wrapper is not verified by, affiliated with, or supported by Mojang or Microsoft.</p>
+    <p xml:lang="ro">Alatura-te lumii jucand Minecraft, unul dintre cele mai populare jocuri video din jur! Imaginatia ta este limita in acest joc distractiv unde poti construi o lume in jurul tau. Joaca cu prietenii, sau singur, cand te aventurezi, aduni, construiesti, si te lupti in incredibilul taram al tau. Pentru o mai buna experienta, iti recomandam sa iti creezi un cont si sa cumperi online jocul la adresa minecraft.net/en-us/store inainte sa instalezi aplicatia. **Necesita internet.</p><p xml:lang="ro">NOTE: This wrapper is not verified by, affiliated with, or supported by Mojang or Microsoft.</p>
+    <p xml:lang="th">ร่วมสนุกสนานไปพร้อมกันกับผู้คนทั่วโลกในการเล่นเกม Minecraft หนึ่งในวิดีโอเกมที่เป็นที่นิยมมากที่สุดในตอนนี้! จินตนาการของคุณคือขีดจำกัดเพียงอย่างเดียวในเกมแสนสนุกนี้ ที่คุณจะได้มีโอกาสสร้างโลกขึ้นมาใหม่รอบตัวคุณ เล่นกับเพื่อนฝูง (หรือจะเล่นคนเดียวก็ได้เช่นกัน) ในขณะที่คุณออกผจญภัย เก็บของป่า ปลูกสิ่งก่อสร้าง และต่อสู้ท่ามกลางผืนดินสุดอัศจรรย์ที่คุณสร้างขึ้นมาด้วยตัวเอง หากต้องการสัมผัสประสบการณ์การเล่นเกมที่ดีที่สุด เราขอแนะนำให้คุณสร้างบัญชีผู้ใช้ขึ้นมาและซื้อออนไลน์ที่ minecraft.net/en-us/store ก่อนที่จะติดตั้งแอปนี้ ** ต้องต่ออินเทอร์เน็ต</p><p xml:lang="th">NOTE: This wrapper is not verified by, affiliated with, or supported by Mojang or Microsoft.</p>
+    <p xml:lang="vi">Hãy cùng chơi Minecraft, một trong những trò chơi điện tử phổ biến nhất, với toàn thế giới! Không điều gì có thể giới hạn trí tưởng tượng của riêng bạn trong trò chơi vui nhộn này, nơi bạn sẽ xây dựng thế giới xung quanh mình. Hãy chơi cùng bạn bè hoặc chơi một mình, và hãy phiêu lưu, tụ họp, xây dựng và chiến đấu trên mảnh đất kỳ diệu của riêng mình. Để có trải nghiệm tốt nhất, chúng tôi khuyên bạn nên tạo một tài khoản và mua hàng trực tuyến tại địa chỉ minecraft.net/en-us/store trước khi cài đặt ứng dụng này. **Cần có Internet.</p><p xml:lang="vi">NOTE: This wrapper is not verified by, affiliated with, or supported by Mojang or Microsoft.</p>
+    <p xml:lang="zh_CN">Minecraft 是一款火爆的视频游戏，在全球有无数的狂热玩家，快来加入他们！在这款充满趣味的游戏中，你可以随心所欲打造属于自己的世界，唯一能够限制你的只有你的想象力。这个神奇的世界完全属于你自己，你可以去冒险、收集资源、建造房屋，还可以跟敌对生物战斗，你可以单人娱乐，也可以多人联机。为了玩得尽兴，建议在线购买并创建一个帐户，网址为：minecraft.net/en-us/store，然后安装此应用** 需要 Internet 连接。</p><p xml:lang="zh_CN">NOTE: This wrapper is not verified by, affiliated with, or supported by Mojang or Microsoft.</p>
+    <p xml:lang="zh_TW">加入在世界各地遊玩 Minecraft 的人們吧，這是最受歡迎的電玩遊戲之一！在這款有趣的遊戲中，唯有自己的想像力是極限，您必須打造自己週邊的世界。可與好友一起或獨自遊玩，在屬於自己的絕妙世界中探索、收集、建造及戰鬥。為了獲得最佳體驗，建議在安裝此 app 前在 minecraft.net/en-us/store/ 建立帳號並線上購買。** 需要網路</p><p xml:lang="zh_TW">NOTE: This wrapper is not verified by, affiliated with, or supported by Mojang or Microsoft.</p>
+  </description>
+  <url type="homepage">https://minecraft.net</url>
+  <screenshots>
+    <screenshot type="default"><image>https://raw.githubusercontent.com/flathub/com.mojang.Minecraft/master/screenshots/minecraft1.png</image></screenshot>
+    <screenshot><image>https://raw.githubusercontent.com/flathub/com.mojang.Minecraft/master/screenshots/minecraft2.png</image></screenshot>
+  </screenshots>
+  <metadata>
+    <value key="GnomeSoftware::popular-background">https://d3lapyynmdp1i9.cloudfront.net/thumbnails/com.mojang.Minecraft/com.mojang.minecraft-thumb.jpg</value>
+  </metadata>
+  <launchable type="desktop-id">com.mojang.Minecraft.desktop</launchable>
+  <project_license>LicenseRef-proprietary</project_license>
+  <content_rating type="oars-1.1">
+    <content_attribute id="violence-cartoon">moderate</content_attribute>
+    <content_attribute id="social-chat">intense</content_attribute>
+  </content_rating>
+</component>

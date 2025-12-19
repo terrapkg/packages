@@ -1,6 +1,6 @@
-%global commit 36e917c383a333caa43e187c06c0aed0c30c0421
+%global commit 8550ab26a712b7f5f6d0947070181446b9de61fd
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250221
+%global commit_date 20250715
 %global ver 12.12
 %global base_name steamtinkerlaunch
 %global _description %{expand:
@@ -8,7 +8,7 @@ Steam Tinker Launch is a Linux wrapper tool for use with the Steam client which 
 
 Name:           %{base_name}-git
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        1%?dist
 Summary:        Wrapper tool for use with the Steam client for custom launch options
 License:        GPL-3.0-or-later
 URL:            https://github.com/sonic2kk/steamtinkerlaunch

@@ -1,13 +1,13 @@
-%global commit 0914dd3df54a5e6258dfc0a02d65af1c0fc0fc90
-%global commit_date 20240920
+%global commit e1e5ae83a71891660037d399184264e411c1100a
+%global commit_date 20251218
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-xr-flatland
 Version:        %commit_date.%shortcommit
-Release:        2%?dist
-Summary:        Flatland for Stardust XR.
+Release:        1%?dist
+Summary:        Flatland for Stardust XR
 URL:            https://github.com/StardustXR/flatland
 Source0:        %url/archive/%commit/flatland-%commit.tar.gz
 License:        MIT
@@ -17,7 +17,7 @@ Provides:       flatland stardust-flatland
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
-%summary
+%summary.
 
 %prep
 %autosetup -n flatland-%commit
@@ -32,12 +32,15 @@ export STARDUST_RES_PREFIXES=%_datadir
 
 mkdir -p %buildroot%_datadir
 cp -r res/* %buildroot%_datadir/
+%cargo_license_summary_online
+%{cargo_license_online} > LICENSE.dependencies
 
 
 %files
 %_bindir/flatland
 %_datadir/flatland/
 %license LICENSE
+%license LICENSE.dependencies
 %doc README.md
 
 %changelog

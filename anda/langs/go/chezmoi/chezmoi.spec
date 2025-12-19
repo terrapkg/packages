@@ -4,7 +4,7 @@
 
 # https://github.com/twpayne/chezmoi
 %global goipath         github.com/twpayne/chezmoi
-Version:                2.62.5
+Version:                2.68.1
 
 %gometa -f
 
@@ -43,12 +43,19 @@ Source:         %{gosource}
 
 %build
 %define gomodulesmode GO111MODULE=on
+%define __gobuild_extldflags -X main.version=%version -X main.builtBy=%vendor
+go clean -modcache
+rm go.sum
+go mod tidy
 %gobuild -o %{gobuilddir}/bin/chezmoi .
 
 %install
 #gopkginstall
 install -m 0755 -vd                     %{buildroot}%{_bindir}
 install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
+install -m 0644 -Dvp completions/chezmoi-completion.bash %{buildroot}%{bash_completions_dir}/chezmoi
+install -m 0644 -Dvp completions/chezmoi.fish -t %{buildroot}%{fish_completions_dir}/
+install -m 0644 -Dvp completions/chezmoi.zsh %{buildroot}%{zsh_completions_dir}/_chezmoi
 
 %if %{without bootstrap}
 %if %{with check}
@@ -61,5 +68,7 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %license LICENSE
 %doc README.md
 %{_bindir}/chezmoi
+
+%pkg_completion -Bfz
 
 #gopkgfiles

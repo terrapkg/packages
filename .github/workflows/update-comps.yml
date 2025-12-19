@@ -1,12 +1,13 @@
 name: Push comps updates
+permissions:
+  contents: read
 
 on:
   push:
     branches:
       - frawhide
+      - f43
       - f42
-      - f41
-      - f40
       - el10
     paths:
       - comps.xml
@@ -14,7 +15,7 @@ on:
 
 jobs:
   update-comps:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04-arm
     container:
       image: ghcr.io/terrapkg/builder:frawhide
     steps:

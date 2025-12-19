@@ -2,11 +2,11 @@
 %global __strip /bin/true
 %global _missing_build_ids_terminate_build 0
 %global _build_id_links none
-%global major_package_version 12-8
+%global major_package_version 13-0
 
 Name:           libcurand
 Epoch:          2
-Version:        10.3.10.19
+Version:        10.4.1.34
 Release:        1%?dist
 Summary:        NVIDIA CUDA Random Number Generation library (cuRAND)
 License:        CUDA Toolkit
@@ -97,4 +97,3 @@ sed -i \
 
 %changelog
 %autochangelog
-

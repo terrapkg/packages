@@ -1,6 +1,6 @@
-%global commit_date 20250317
+%global commit_date 20251219
 
-%global tree_commit d7356896fdf513aa4e51ff34c49998638ff9ee3e
+%global tree_commit 146753f3646a13f069bf3ea1e2fb8ebbe0d1b46a
 %global tree_shortcommit %(c=%{tree_commit}; echo ${c:0:7})
 
 %global um_commit 46892acafb2fff3f3ace425d4694382c92645feb

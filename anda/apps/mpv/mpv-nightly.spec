@@ -1,6 +1,9 @@
-%global commit 1d1535ff9124fdeb3c81a2f089551e2cc8404613
+# Disable X11 for RHEL 10+
+%bcond x11 %[%{undefined rhel} || 0%{?rhel} < 10]
+
+%global commit 6739fd490b63ae8092da511c2fb81a94f5ae1efc
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250523
+%global commit_date 20251219
 %global ver 0.40.0
 
 Name:           mpv-nightly
@@ -42,8 +45,8 @@ BuildRequires:  pkgconfig(libavutil) >= 57.24.100
 BuildRequires:  pkgconfig(libbluray)
 BuildRequires:  pkgconfig(libcdio)
 BuildRequires:  pkgconfig(libcdio_paranoia)
-BuildRequires:  pkgconfig(libdisplay-info)
 BuildRequires:  pkgconfig(libdrm)
+BuildRequires:  pkgconfig(libdisplay-info)
 BuildRequires:  pkgconfig(libjpeg)
 BuildRequires:  pkgconfig(libpipewire-0.3) >= 0.3.19
 BuildRequires:  pkgconfig(libplacebo) >= 6.338.0
@@ -56,10 +59,8 @@ BuildRequires:  pkgconfig(mujs)
 BuildRequires:  pkgconfig(openal)
 BuildRequires:  pkgconfig(rubberband)
 BuildRequires:  pkgconfig(sdl2)
-BuildRequires:  pkgconfig(shaderc)
 BuildRequires:  pkgconfig(uchardet) >= 0.0.5
 BuildRequires:  pkgconfig(vapoursynth)
-BuildRequires:  pkgconfig(vdpau)
 BuildRequires:  pkgconfig(vulkan)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(wayland-cursor)
@@ -71,12 +72,19 @@ BuildRequires:  pkgconfig(xdamage)
 BuildRequires:  pkgconfig(xext)
 BuildRequires:  pkgconfig(xinerama)
 BuildRequires:  pkgconfig(xkbcommon)
-BuildRequires:  pkgconfig(xpresent)
 BuildRequires:  pkgconfig(xrandr)
-BuildRequires:  pkgconfig(xscrnsaver)
-BuildRequires:  pkgconfig(xv)
 BuildRequires:  pkgconfig(zimg) >= 2.9
 BuildRequires:  pkgconfig(zlib)
+%if %{with x11}
+BuildRequires:  pkgconfig(vdpau)
+BuildRequires:  pkgconfig(xpresent)
+BuildRequires:  pkgconfig(xscrnsaver)
+BuildRequires:  pkgconfig(xv)
+%endif
+
+%ifarch x86_64
+BuildRequires:  libOpenCL.so.1
+%endif
 
 Requires:       hicolor-icon-theme
 Provides:       mplayer-backend
@@ -124,32 +132,7 @@ Requires: mpv-nightly-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 %description devel
 This package contains development header files and libraries for Mpv.
 
-%package bash-completion
-Summary: MPV Bash completion
-Requires: bash
-Requires: %{name}
-Supplements: (%{name} and bash)
-
-%description bash-completion
-Bash shell completion for MPV.
-
-%package fish-completion
-Summary: MPV Fish completion
-Requires: fish
-Requires: %{name}
-Supplements: (%{name} and fish)
-
-%description fish-completion
-Fish shell completion for MPV.
-
-%package zsh-completion
-Summary: MPV Zsh completion
-Requires: zsh
-Requires: %{name}
-Supplements: (%{name} and zsh)
-
-%description zsh-completion
-Zsh shell completion for MPV.
+%pkg_completion -Bfz mpv
 
 %prep
 %autosetup -p1 -n mpv-%commit
@@ -171,10 +154,17 @@ sed -e "s|/usr/local/etc|%{_sysconfdir}/mpv|" -i etc/mpv.conf
     -Ddvdnav=enabled \
     -Degl-drm=enabled \
     -Degl-wayland=enabled \
+%if %{with x11}
     -Degl-x11=enabled \
+    -Dgl-x11=enabled \
+    -Dvaapi-x11=enabled \
+    -Dvdpau-gl-x11=enabled \
+    -Dvdpau=enabled \
+    -Dx11=enabled \
+    -Dxv=enabled \
+%endif
     -Degl=enabled \
     -Dgbm=enabled \
-    -Dgl-x11=enabled \
     -Dgl=enabled \
     -Dhtml-build=enabled \
     -Diconv=enabled \
@@ -198,23 +188,18 @@ sed -e "s|/usr/local/etc|%{_sysconfdir}/mpv|" -i etc/mpv.conf
     -Dsdl2-audio=enabled \
     -Dsdl2-gamepad=enabled \
     -Dsdl2-video=enabled \
-    -Dsdl2=enabled \
+    -Dshaderc=disabled \
     -Dsndio=disabled \
     -Dspirv-cross=disabled \
     -Duchardet=enabled \
     -Dvaapi-drm=enabled \
     -Dvaapi-wayland=enabled \
-    -Dvaapi-x11=enabled \
     -Dvaapi=enabled \
     -Dvapoursynth=enabled \
-    -Dvdpau-gl-x11=enabled \
-    -Dvdpau=enabled \
     -Dvector=enabled \
     -Dvulkan=enabled \
     -Dwayland=enabled \
     -Dwerror=false \
-    -Dx11=enabled \
-    -Dxv=enabled \
     -Dzimg=enabled \
     -Dzlib=enabled
 %meson_build
@@ -235,8 +220,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/mpv.desktop
 %{_datadir}/icons/hicolor/*/apps/mpv*.*
 %{_mandir}/man1/mpv.*
 %{_metainfodir}/mpv.metainfo.xml
-%dir %{_sysconfdir}/mpv/
-%config(noreplace) %{_sysconfdir}/mpv/encoding-profiles.conf
 
 %files libs
 %license LICENSE.GPL LICENSE.LGPL Copyright
@@ -246,15 +229,3 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/mpv.desktop
 %{_includedir}/mpv/
 %{_libdir}/libmpv.so
 %{_libdir}/pkgconfig/mpv.pc
-
-%files bash-completion
-%{bash_completions_dir}/mpv
-
-%files fish-completion
-%{fish_completions_dir}/mpv.fish
-
-%files zsh-completion
-%{zsh_completions_dir}/_mpv
-
-%changelog
-%autochangelog

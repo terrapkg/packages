@@ -1,4 +1,6 @@
 name: Update per branch
+permissions:
+  contents: write
 on:
   schedule:
     - cron: "*/30 * * * *"
@@ -6,13 +8,12 @@ on:
 
 jobs:
   autoupdate:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04-arm
     strategy:
       matrix:
         branch:
           - frawhide
-          - f40
-          - f41
+          - f43
           - f42
           - el10
     container:
