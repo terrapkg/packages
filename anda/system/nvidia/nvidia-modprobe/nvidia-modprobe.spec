@@ -1,9 +1,9 @@
 Name:           nvidia-modprobe
 Version:        590.48.01
-Release:        1%?dist
+Release:        2%?dist
 Summary:        NVIDIA kernel module loader
 Epoch:          3
-License:        GPLv2+
+License:        GPL-2.0-or-later
 URL:            http://www.nvidia.com/object/unix.html
 ExclusiveArch:  x86_64 aarch64
 
@@ -12,6 +12,7 @@ Patch0:         %{name}-man-page-permissions.patch
 
 BuildRequires:  gcc
 BuildRequires:  m4
+BuildRequires:  sed
 
 %description
 This utility is used by user-space NVIDIA driver components to make sure the

@@ -1,25 +1,26 @@
 Name:           nvidia-persistenced
 Version:        590.48.01
-Release:        1%?dist
+Release:        2%?dist
 Summary:        A daemon to maintain persistent software state in the NVIDIA driver
 Epoch:          3
-License:        GPLv2+
+License:        GPL-2.0-or-later
 URL:            http://www.nvidia.com/object/unix.html
 ExclusiveArch:  x86_64 aarch64
 
 Source0:        https://download.nvidia.com/XFree86/%{name}/%{name}-%{version}.tar.bz2
 Source1:        %{name}.service
+Source2:        %{name}-sysusers.conf
 
-BuildRequires:  gcc
-BuildRequires:  libtirpc-devel
-BuildRequires:  m4
+BuildRequires:    gcc
+BuildRequires:    libtirpc-devel
+BuildRequires:    m4
+BuildRequires:    sed
+BuildRequires:    systemd-rpm-macros
 
-# For Fedora systemd-rpm-macros would be enough:
-BuildRequires:      systemd-devel
-Requires(post):     systemd
-Requires(preun):    systemd
-Requires(postun):   systemd
-Requires:           libnvidia-cfg%{?_isa} >= %{?epoch:%{epoch}:}%{version}
+Requires(post):   systemd
+Requires(preun):  systemd
+Requires(postun): systemd
+Requires:         libnvidia-cfg%{?_isa} >= %{?epoch:%{epoch}:}%{version}
 
 %description
 The %{name} utility is used to enable persistent software state in the NVIDIA
@@ -47,13 +48,11 @@ make %{?_smp_mflags} \
     PREFIX=%{_prefix} \
     STRIP_CMD=true
 
-%if 0%{?fedora} < 42
-mv %{buildroot}%{_bindir} %{buildroot}%{_sbindir}
-%endif
-mkdir -p %{buildroot}%{_sharedstatedir}/%{name}
-
 # Systemd unit files
-install -p -m 644 -D %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
+install -Dpm644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
+
+# Systemd user
+install -Dpm644 %{SOURCE2} %{buildroot}%{_sysusersdir}/%{name}.conf
 
 %post
 %systemd_post %{name}.service
@@ -67,13 +66,9 @@ install -p -m 644 -D %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 %files
 %license COPYING
 %{_mandir}/man1/%{name}.1.*
-%if 0%{?fedora} < 42
-%{_sbindir}/%{name}
-%else
 %{_bindir}/%{name}
-%endif
 %{_unitdir}/%{name}.service
-%{_sharedstatedir}/%{name}
+%{_sysusersdir}/%{name}.conf
 
 %changelog
 %autochangelog
