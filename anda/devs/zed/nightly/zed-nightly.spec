@@ -63,7 +63,7 @@ BuildRequires:  perl-lib
 BuildRequires:  rustup
 %endif
 BuildRequires:  vulkan-loader
-Requires: (%name-rename-zeditor if zfs else %name-cli)
+Requires: (%name-cli-compat-zfs if zfs else %name-cli)
 Suggests: %name-cli
 
 %description
@@ -73,33 +73,21 @@ Code at the speed of thought - Zed is a high-performance, multiplayer code edito
 Summary: Provides the /usr/bin/zed binary
 Conflicts: zfs
 Supplements: (%name unless zfs)
-%description cli
-This package provides the /usr/bin/zed binary. If you use zfs, install %name-rename-zeditor instead.
-%files cli
-%if %{without debug_no_build}
-%_bindir/zed
-%endif
-%{_datadir}/icons/hicolor/512x512/apps/%appid.png
-%{_datadir}/applications/%appid.desktop
-%{_metainfodir}/%appid.metainfo.xml
 
-%package rename-zeditor
+%description cli
+This package provides the /usr/bin/zed binary. If you use zfs, install %name-cli-compat-zfs instead.
+
+%package cli-compat-zfs
 Summary: Rename zed to zeditor to prevent collision with zfs
 Provides: %name-cli
 Conflicts: %name-cli
+Obsoletes: %{name}-rename-zeditor <= 0.217.3
 Supplements: (%name and zfs)
 RemovePathPostFixes: .zeditor
-%description rename-zeditor
+
+%description cli-compat-zfs
 This package provides the %_bindir/zeditor binary instead of %_bindir/zed. This avoids conflicts with the zfs package.
 The normal package is %name-cli.
-%files rename-zeditor
-%if %{without debug_no_build}
-%_bindir/zeditor
-%endif
-%{_datadir}/icons/hicolor/512x512/apps/%appid.png
-%_datadir/applications/%appid.desktop.zeditor
-%{_metainfodir}/%appid.metainfo.xml
-
 
 %prep
 %autosetup -n %{crate}-%{commit} -p1
@@ -202,6 +190,22 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%appid.desktop
 %if %{without debug_no_build}
 %{_libexecdir}/zed-editor
 %endif
+
+%files cli
+%if %{without debug_no_build}
+%_bindir/zed
+%endif
+%{_datadir}/icons/hicolor/512x512/apps/%appid.png
+%{_datadir}/applications/%appid.desktop
+%{_metainfodir}/%appid.metainfo.xml
+
+%files cli-compat-zfs
+%if %{without debug_no_build}
+%_bindir/zeditor
+%endif
+%{_datadir}/icons/hicolor/512x512/apps/%appid.png
+%_datadir/applications/%appid.desktop.zeditor
+%{_metainfodir}/%appid.metainfo.xml
 
 %changelog
 %autochangelog
