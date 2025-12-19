@@ -89,6 +89,7 @@ mkdir -p %{buildroot}%{zsh_completions_dir}/
 
 # Install the documentation
 mkdir -p %{buildroot}%{_pkgdocdir}
+mv docs/images/LICENSE LICENSE.icons
 cp -a docs/* %{buildroot}%{_pkgdocdir}/
 rm -rf %{buildroot}%{_pkgdocdir}/images
 
@@ -99,7 +100,7 @@ rm -rf %{buildroot}%{_pkgdocdir}/images
 %doc README.md AUTHORS CHANGELOG.md GOVERNANCE.md SECURITY.md
 %license LICENSE
 %license LICENSE.dependencies
-%license docs/images/LICENSE
+%license LICENSE.icons
 %{_scalableiconsdir}/jj-logo.svg
 %{_hicolordir}/96x96/apps/jj-logo.png
 %{_bindir}/%{binary_name}
