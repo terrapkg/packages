@@ -117,16 +117,14 @@ Source15:       https://crates.io/api/v1/crates/rustc-hash/%{rustc_hash_ver}/dow
 Patch12:        mesa-38532.patch
 
 # SteamVR: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/38987
-Patch15:        mesa-38987.patch
-
-# Add Gamescope Framerate Control
-Patch20:        gamescope.patch
+Patch20:        mesa-38987.patch
 
 # Add required patches for Wine Wayland (From Proton-GE Release Notes)
 Patch21:        wine-wayland.patch
 
 # SteamOS Patches
-Patch30:        horizon5.patch
+Patch30:        gamescope.patch
+Patch31:        horizon5.patch
 
 BuildRequires:  meson >= 1.3.0
 BuildRequires:  gcc
