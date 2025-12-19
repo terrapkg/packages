@@ -1,25 +1,25 @@
+%global debug_package %{nil}
+
 # Build only the akmod package and no kernel module packages:
 %define buildforkernels akmod
 
-%global debug_package %{nil}
-
 Name:           nvidia-kmod
-Version:        580.119.02
-Release:        1%?dist
+Version:        590.48.01
+Release:        2%?dist
 Summary:        NVIDIA display driver kernel module
 Epoch:          3
 License:        NVIDIA License
 URL:            http://www.nvidia.com/object/unix.html
 ExclusiveArch:  x86_64 aarch64
 
-Source0:        http://download.nvidia.com/XFree86/Linux-%{_arch}/%{version}/NVIDIA-Linux-%{_arch}-%{version}.run
+Source0:        https://github.com/NVIDIA/open-gpu-kernel-modules/archive/%{version}/open-gpu-kernel-modules-%{version}.tar.gz
 Requires:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
 Requires:       akmods
 Provides:       akmod-nvidia-open = %{?epoch:%{epoch}:}%{version}
 Obsoletes:      akmod-nvidia-open < %{?epoch:%{epoch}:}%{version}
 
 
-# Get the needed BuildRequires (in parts depending on what we build for):
+BuildRequires:  gcc-c++
 BuildRequires:  kmodtool
 
 # kmodtool does its magic here:
@@ -34,11 +34,9 @@ The NVidia %{version} display driver kernel module for kernel %{kversion}.
 # Print kmodtool output for debugging purposes:
 kmodtool  --target %{_target_cpu}  --repo terra.fyralabs.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
-sh %{SOURCE0} -x --target nvidia-kmod-%{version}-%{_arch}
-%setup -T -D -n nvidia-kmod-%{version}-%{_arch}
-%autopatch -p1
+%autosetup -p1 -c
 
-rm -f */dkms.conf
+rm -f open-gpu-kernel-modules-%{version}/dkms.conf
 
 for kernel_version in %{?kernel_versions}; do
     cp -fr open-gpu-kernel-modules-%{version} _kmod_build_${kernel_version%%___*}
