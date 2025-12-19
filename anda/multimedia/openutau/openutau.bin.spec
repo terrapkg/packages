@@ -12,6 +12,7 @@ Source2:		https://github.com/stakira/OpenUtau/raw/refs/tags/%ver/OpenUtau/Assets
 Packager:		madonuko <mado@fyralabs.com>
 Provides:		openutau = %evr
 Provides:		OpenUtau = %evr
+AutoReqProv:	0
 
 %description
 OpenUtau is a free, open-source editor made for the UTAU community.
