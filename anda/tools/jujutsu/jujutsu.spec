@@ -94,8 +94,8 @@ nushell completion files for %name.
 %autosetup -n jj-%version
 %cargo_prep_online
 
-%pkg_completion -b %name -n %{binary_name}
-%pkg_completion -ezf %name -n %{binary_name}
+%pkg_completion -b %{binary_name}
+%pkg_completion -ezf %{binary_name}
 
 %build
 %cargo_build
