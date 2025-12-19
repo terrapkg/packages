@@ -12,7 +12,7 @@
 
 Name:           %{real_name}-580
 Version:        580.119.02
-Release:        1%?dist
+Release:        2%?dist
 Summary:        NVIDIA's proprietary display driver for NVIDIA graphic cards
 Epoch:          3
 License:        NVIDIA License
