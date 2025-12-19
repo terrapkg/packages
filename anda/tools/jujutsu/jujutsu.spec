@@ -7,7 +7,7 @@ Name:           jujutsu
 Version:        0.36.0
 Release:        1%?dist
 Summary:        Git-compatible DVCS that is both simple and powerful
-License:        Apache-2.0
+License:        Apache-2.0 AND CC-BY-4.0
 URL:            https://www.jj-vcs.dev/latest/
 Source0:        https://github.com/jj-vcs/jj/archive/refs/tags/v%version.tar.gz
 BuildRequires:  cargo >= 1.89
@@ -40,7 +40,6 @@ be work-in-progress features, suboptimal UX, and workflow gaps that make it
 unusable for your particular use.
 
 %package        doc
-License:        Apache-2.0 AND CC-BY-4.0
 Summary:        Documentations for %{name}
 BuildArch:      noarch
 
@@ -92,6 +91,7 @@ mkdir -p %{buildroot}%{zsh_completions_dir}/
 # Install the documentation
 mkdir -p %{buildroot}%{_pkgdocdir}
 cp -a docs/* %{buildroot}%{_pkgdocdir}/
+rm -rf %{buildroot}%{_pkgdocdir}/images
 
 # Create deps license
 %{cargo_license_online} > LICENSE.dependencies
@@ -100,6 +100,7 @@ cp -a docs/* %{buildroot}%{_pkgdocdir}/
 %doc README.md AUTHORS CHANGELOG.md GOVERNANCE.md SECURITY.md
 %license LICENSE
 %license LICENSE.dependencies
+%license docs/images/LICENSE
 %{_scalableiconsdir}/jj-logo.svg
 %{_hicolordir}/96x96/apps/jj-logo.png
 %{_bindir}/%{binary_name}
@@ -109,7 +110,6 @@ cp -a docs/* %{buildroot}%{_pkgdocdir}/
 
 %files doc
 %license LICENSE
-%license docs/images/LICENSE
 %doc %{_pkgdocdir}
 
 %changelog
