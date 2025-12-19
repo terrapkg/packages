@@ -57,8 +57,7 @@ nushell command line completion support for %name.
 %autosetup -n jj-%version
 %cargo_prep_online
 
-%pkg_completion -b %{binary_name}
-%pkg_completion -ezf %{binary_name}
+%pkg_completion -bezf %{binary_name}
 
 %build
 %cargo_build
