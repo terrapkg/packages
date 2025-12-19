@@ -48,11 +48,11 @@ BuildArch:      noarch
 Documentations for %{name}.
 
 %package        nushell-completion
-Summary:        nushell completion files for %name
+Summary:        nushell completion for %name
 Requires:       %name = %evr
 
 %description    nushell-completion
-nushell completion files for %name.
+nushell command line completion support for %name.
 
 %prep
 %autosetup -n jj-%version
