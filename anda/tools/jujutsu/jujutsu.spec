@@ -87,7 +87,7 @@ mkdir -p %{buildroot}%{nushell_completions_dir}/
 mkdir -p %{buildroot}%{zsh_completions_dir}/
 %{buildroot}/%{_bindir}/%{binary_name} util completion zsh >       %{buildroot}%{zsh_completions_dir}/_%{binary_name}
 
-# Install the documentation
+# Install the documentation and properly handle the license file
 mkdir -p %{buildroot}%{_pkgdocdir}
 mv docs/images/LICENSE LICENSE.icons
 cp -a docs/* %{buildroot}%{_pkgdocdir}/
