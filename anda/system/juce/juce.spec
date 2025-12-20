@@ -51,6 +51,6 @@ editor.
 %license LICENSE.md
 
 %changelog
-* Fri Dec 19 2025 metcya <metcya@gmail.com> - {version}
+* Fri Dec 19 2025 metcya <metcya@gmail.com> - 8.0.12
 - Package 
 
