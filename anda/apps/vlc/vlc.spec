@@ -37,8 +37,8 @@ Release:	1%{?dist}
 Summary:	The cross-platform open-source multimedia framework, player and server
 License:	GPL-2.0-or-later AND LGPL-2.1-or-later AND BSD-2-Clause AND BSD-3-Clause
 URL:		https://www.videolan.org
-Source:		https://get.videolan.org/vlc/%{version}/vlc-%{version}.tar.xz
-Source:		macros.vlc
+Source0:	https://get.videolan.org/vlc/%{version}/vlc-%{version}.tar.xz
+Source1:	macros.vlc
 
 ## upstream patches
 # opus_header: fix channel mapping family 1 parsing (rhbz#2307919)
@@ -754,7 +754,7 @@ sed -i -e '/^#define _FORTIFY_SOURCE/d' config.h
 %make_install CPPROG="cp -p"
 
 # RPM macros for other vlc-plugin-* packages
-install -D -m0644 %{S:1} %{buildroot}%{_rpmmacrodir}/macros.vlc
+install -Dm644 %{S:1} -t %{buildroot}%{_rpmmacrodir}
 
 # Ghost the plugins cache
 touch %{buildroot}%{vlc_plugindir}/plugins.dat
@@ -785,10 +785,11 @@ rm -rf %{buildroot}%{_docdir}/vlc
 
 %check
 desktop-file-validate %{buildroot}%{_appsdir}/vlc.desktop
-appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/vlc.appdata.xml
+appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/vlc.appdata.xml
 
 # chroma_copy_test fails on s390x (big endian?)
 %ifnarch s390x
+ls
 make check
 %endif
 
