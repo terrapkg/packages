@@ -38,8 +38,9 @@ editor.
 
 %build
 cat CMakeLists.txt
-%cmake -DJUCER_ENABLE_GPL_MODE=1 \
-       -DJUCE_BUILD_EXTRAS=ON
+%cmake -DJUCER_ENABLE_GPL_MODE=1    \
+       -DJUCE_BUILD_EXTRAS=ON       \
+       -DJUCE_TOOL_INSTALL_DIR=bin
 %cmake_build
 
 %install
