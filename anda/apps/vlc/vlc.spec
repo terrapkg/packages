@@ -749,7 +749,6 @@ sed -i -e '/^#define _FORTIFY_SOURCE/d' config.h
 
 %make_build
 
-
 %install
 %make_install CPPROG="cp -p"
 
@@ -789,8 +788,8 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/vlc.appdata.xm
 
 # chroma_copy_test fails on s390x (big endian?)
 %ifnarch s390x
-ls
 make check
+cat ./test-suite.log
 %endif
 
 
