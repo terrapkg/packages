@@ -1,5 +1,3 @@
-
-
 Name:           juce
 Version:        8.0.12
 Release:        1%{?dist}
@@ -39,6 +37,7 @@ editor.
 %autosetup -p1 -n JUCE-%{version}
 
 %build
+cat CMakeLists.txt
 %cmake -DJUCER_ENABLE_GPL_MODE=1 \
        -DJUCE_BUILD_EXTRAS=ON
 %cmake_build

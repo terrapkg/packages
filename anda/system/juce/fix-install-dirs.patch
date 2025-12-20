@@ -1,7 +1,16 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index f8864a6dc5..e49f21130a 100644
+index f8864a6dc5..b52e037a7f 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
+@@ -38,7 +38,7 @@ include(CMakeDependentOption)
+ 
+ set_property(GLOBAL PROPERTY USE_FOLDERS YES)
+ 
+-set(JUCE_MODULES_DIR "${JUCE_SOURCE_DIR}/modules" CACHE INTERNAL
++set(JUCE_MODULES_DIR "share/modules/modules" CACHE INTERNAL
+     "The path to JUCE modules")
+ 
+ # This option will disable most of the JUCE helper functions and tools. This option exists to
 @@ -137,18 +137,17 @@ write_basic_package_version_file("${JUCE_BINARY_DIR}/JUCEConfigVersion.cmake"
      VERSION ${JUCE_VERSION}
      COMPATIBILITY ExactVersion)
