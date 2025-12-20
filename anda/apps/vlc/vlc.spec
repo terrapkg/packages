@@ -612,160 +612,151 @@ sed -e 's|org\.videolan\.vlc|org.videolan.VLC|' \
     -i share/vlc.appdata.xml.in.in
 
 # Fix an issue with our CI technically being run as root
-sed -i -e 's|\./vlc|\./vlc-wrapper|g' test/run_vlc.sh
+sed -i -e 's|\./vlc|\./bin/vlc-wrapper|g' test/run_vlc.sh
 
 touch src/revision.txt
 
 
 %build
 export LIVE555_PREFIX=%{_prefix}
-%configure 							\
-	--disable-silent-rules					\
-	--disable-dependency-tracking				\
-	--with-binary-version=%{version}			\
-	--disable-static					\
-	--with-pic						\
-	--disable-rpath						\
-	--enable-dbus						\
-	--disable-optimizations					\
-	--enable-lua						\
-								\
-	--enable-archive					\
-	--enable-live555					\
-	--enable-dc1394%{!?with_ieee1394:=no}			\
-	--enable-dv1394%{!?with_ieee1394:=no}			\
-	--enable-linsys						\
-	--enable-dvdread					\
-	--enable-dvdnav						\
-	--enable-bluray						\
-	--enable-opencv%{!?with_opencv:=no}			\
-	--enable-smbclient					\
-	--disable-dsm						\
-	--enable-sftp						\
-	--enable-nfs						\
-	--disable-smb2						\
-	--enable-v4l2						\
-	--disable-decklink					\
-	--enable-vcd						\
-	--enable-libcddb					\
-	--enable-screen						\
-	--enable-vnc						\
-	--enable-freerdp					\
-	--enable-realrtsp					\
-	--enable-asdcp%{!?with_asdcp:=no}			\
-								\
-	--enable-dvbpsi						\
-	--enable-gme						\
-	--disable-sid						\
-	--enable-ogg						\
-	--enable-shout						\
-	--enable-matroska					\
-	--enable-mod						\
-	--enable-mpc						\
-								\
-	--disable-shine						\
-	--disable-omxil						\
-	--enable-crystalhd%{!?with_crystalhd:=no}		\
-	--enable-mad						\
-	--enable-mpg123						\
-	--enable-gst-decode					\
-	--enable-avcodec					\
-	--enable-libva						\
-	--enable-avformat					\
-	--enable-swscale					\
-	--enable-postproc					\
-	--enable-faad						\
-	--enable-aom						\
-	--enable-dav1d						\
-	--enable-vpx						\
-	--enable-twolame					\
-	--enable-fdkaac						\
-	--enable-a52						\
-	--enable-dca						\
-	--enable-flac						\
-	--enable-libmpeg2					\
-	--enable-vorbis						\
-	--enable-tremor						\
-	--enable-speex						\
-	--enable-opus						\
-	--enable-spatialaudio					\
-	--enable-theora						\
-	--enable-oggspots					\
-	--enable-daala%{!?with_daala:=no}			\
-	--enable-schroedinger%{!?with_schro:=no}		\
-	--enable-png						\
-	--enable-jpeg						\
-	--disable-bpg						\
-	--disable-x262						\
-	--enable-x265%{!?with_x265:=no}				\
-	--enable-x264%{!?with_x264:=no}				\
-	--enable-x26410b%{!?with_x264:=no}			\
-	--enable-vpl%{!?with_vpl:=no}				\
-	--enable-fluidsynth					\
-	--disable-fluidlite					\
-	--enable-zvbi						\
-	--disable-telx						\
-	--enable-libass						\
-	--enable-aribsub					\
-	--enable-aribb25					\
-	--enable-kate						\
-	--enable-tiger						\
-	--enable-css						\
-								\
-	--enable-gles2						\
-	--enable-xcb						\
-	--enable-xvideo						\
-	--enable-vdpau						\
-	--enable-wayland					\
-	--enable-sdl-image%{!?with_sdl:=no}			\
-	--enable-freetype					\
-	--enable-fribidi					\
-	--enable-harfbuzz					\
-	--enable-fontconfig					\
-	--with-default-font-family=NotoSerif			\
-	--with-default-monospace-font-family=NotoSansMono	\
-	--enable-svg						\
-	--enable-svgdec						\
-	--enable-aa						\
-	--enable-caca						\
-	--disable-mmal						\
-	--disable-evas						\
-								\
-	--enable-pulse						\
-	--enable-alsa						\
-	--enable-jack						\
-	--enable-samplerate					\
-	--enable-soxr						\
-	--enable-chromaprint					\
-	--enable-chromecast					\
-								\
-	--enable-qt						\
-	--enable-skins2						\
-	--disable-libtar					\
-	--enable-lirc%{!?with_lirc:=no}				\
-	--enable-srt						\
-								\
-	--disable-goom						\
-	--enable-projectm%{!?with_projectm:=no}			\
-	--disable-vsxu						\
-								\
-	--enable-avahi						\
-	--enable-udev						\
-	--enable-mtp						\
-	--enable-upnp						\
-	--enable-microdns					\
-								\
-	--enable-libxml2					\
-	--enable-libgcrypt					\
-	--enable-gnutls						\
-	--enable-taglib						\
-	--enable-secret						\
-	--enable-kwallet					\
-	--disable-update-check					\
-	--enable-notify						\
-	--enable-libplacebo%{!?with_placebo:=no}		\
-	--with-kde-solid=%{_datadir}/solid/actions		\
-	%{nil}
+%configure                                            \
+    --disable-silent-rules                            \
+    --disable-dependency-tracking                     \
+    --with-binary-version=%{version}                  \
+    --disable-static                                  \
+    --with-pic                                        \
+    --disable-rpath                                   \
+    --enable-dbus                                     \
+    --disable-optimizations                           \
+    --enable-lua                                      \
+    --enable-archive                                  \
+    --enable-live555                                  \
+    --enable-dc1394%{!?with_ieee1394:=no}             \
+    --enable-dv1394%{!?with_ieee1394:=no}             \
+    --enable-linsys                                   \
+    --enable-dvdread                                  \
+    --enable-dvdnav                                   \
+    --enable-bluray                                   \
+    --enable-opencv%{!?with_opencv:=no}               \
+    --enable-smbclient                                \
+    --disable-dsm                                     \
+    --enable-sftp                                     \
+    --enable-nfs                                      \
+    --disable-smb2                                    \
+    --enable-v4l2                                     \
+    --disable-decklink                                \
+    --enable-vcd                                      \
+    --enable-libcddb                                  \
+    --enable-screen                                   \
+    --enable-vnc                                      \
+    --enable-freerdp                                  \
+    --enable-realrtsp                                 \
+    --enable-asdcp%{!?with_asdcp:=no}                 \
+    --enable-dvbpsi                                   \
+    --enable-gme                                      \
+    --disable-sid                                     \
+    --enable-ogg                                      \
+    --enable-shout                                    \
+    --enable-matroska                                 \
+    --enable-mod                                      \
+    --enable-mpc                                      \
+    --disable-shine                                   \
+    --disable-omxil                                   \
+    --enable-crystalhd%{!?with_crystalhd:=no}         \
+    --enable-mad                                      \
+    --enable-mpg123                                   \
+    --enable-gst-decode                               \
+    --enable-avcodec                                  \
+    --enable-libva                                    \
+    --enable-avformat                                 \
+    --enable-swscale                                  \
+    --enable-postproc                                 \
+    --enable-faad                                     \
+    --enable-aom                                      \
+    --enable-dav1d                                    \
+    --enable-vpx                                      \
+    --enable-twolame                                  \
+    --enable-fdkaac                                   \
+    --enable-a52                                      \
+    --enable-dca                                      \
+    --enable-flac                                     \
+    --enable-libmpeg2                                 \
+    --enable-vorbis                                   \
+    --enable-tremor                                   \
+    --enable-speex                                    \
+    --enable-opus                                     \
+    --enable-spatialaudio                             \
+    --enable-theora                                   \
+    --enable-oggspots                                 \
+    --enable-daala%{!?with_daala:=no}                 \
+    --enable-schroedinger%{!?with_schro:=no}          \
+    --enable-png                                      \
+    --enable-jpeg                                     \
+    --disable-bpg                                     \
+    --disable-x262                                    \
+    --enable-x265%{!?with_x265:=no}                   \
+    --enable-x264%{!?with_x264:=no}                   \
+    --enable-x26410b%{!?with_x264:=no}                \
+    --enable-vpl%{!?with_vpl:=no}                     \
+    --enable-fluidsynth                               \
+    --disable-fluidlite                               \
+    --enable-zvbi                                     \
+    --disable-telx                                    \
+    --enable-libass                                   \
+    --enable-aribsub                                  \
+    --enable-aribb25                                  \
+    --enable-kate                                     \
+    --enable-tiger                                    \
+    --enable-css                                      \
+    --enable-gles2                                    \
+    --enable-xcb                                      \
+    --enable-xvideo                                   \
+    --enable-vdpau                                    \
+    --enable-wayland                                  \
+    --enable-sdl-image%{!?with_sdl:=no}               \
+    --enable-freetype                                 \
+    --enable-fribidi                                  \
+    --enable-harfbuzz                                 \
+    --enable-fontconfig                               \
+    --with-default-font-family=NotoSerif              \
+    --with-default-monospace-font-family=NotoSansMono \
+    --enable-svg                                      \
+    --enable-svgdec                                   \
+    --enable-aa                                       \
+    --enable-caca                                     \
+    --disable-mmal                                    \
+    --disable-evas                                    \
+    --enable-pulse                                    \
+    --enable-alsa                                     \
+    --enable-jack                                     \
+    --enable-samplerate                               \
+    --enable-soxr                                     \
+    --enable-chromaprint                              \
+    --enable-chromecast                               \
+    --enable-qt                                       \
+    --enable-skins2                                   \
+    --disable-libtar                                  \
+    --enable-lirc%{!?with_lirc:=no}                   \
+    --enable-srt                                      \
+    --disable-goom                                    \
+    --enable-projectm%{!?with_projectm:=no}           \
+    --disable-vsxu                                    \
+    --enable-avahi                                    \
+    --enable-udev                                     \
+    --enable-mtp                                      \
+    --enable-upnp                                     \
+    --enable-microdns                                 \
+    --enable-libxml2                                  \
+    --enable-libgcrypt                                \
+    --enable-gnutls                                   \
+    --enable-taglib                                   \
+    --enable-secret                                   \
+    --enable-kwallet                                  \
+    --disable-update-check                            \
+    --enable-notify                                   \
+    --enable-libplacebo%{!?with_placebo:=no}          \
+    --with-kde-solid=%{_datadir}/solid/actions        \
+    %{nil}
 
 # clean unused-direct-shlib-dependencies
 sed -i -e 's! -shared ! -Wl,--as-needed\0!g' libtool
@@ -813,7 +804,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/vlc.appdata.xm
 
 # chroma_copy_test fails on s390x (big endian?)
 %ifnarch s390x
-make check || find . -name "vlc-wrapper"
+make check
 %endif
 
 
@@ -1135,7 +1126,6 @@ make check || find . -name "vlc-wrapper"
 %exclude %{vlc_plugindir}/video_chroma/libswscale_plugin.so
 %{vlc_plugindir}/video_chroma/*.so
 %exclude %{vlc_plugindir}/video_filter/libpostproc_plugin.so
-%exclude %{vlc_plugindir}/video_filter/libopencv_*.so
 %{vlc_plugindir}/video_filter/*.so
 %{vlc_plugindir}/video_output/libfb_plugin.so
 %{vlc_plugindir}/video_output/libvdummy_plugin.so
