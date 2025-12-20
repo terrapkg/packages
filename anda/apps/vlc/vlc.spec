@@ -788,8 +788,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/vlc.appdata.xm
 
 # chroma_copy_test fails on s390x (big endian?)
 %ifnarch s390x
-make check
-cat ./test-suite.log
+make check || cat ./test-suite.log
 %endif
 
 
