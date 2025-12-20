@@ -1,5 +1,5 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index f8864a6dc5..30c78dd9d0 100644
+index f8864a6dc5..6518db0532 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -137,10 +137,10 @@ write_basic_package_version_file("${JUCE_BINARY_DIR}/JUCEConfigVersion.cmake"
@@ -15,7 +15,15 @@ index f8864a6dc5..30c78dd9d0 100644
  set(UTILS_INSTALL_DIR "${JUCE_INSTALL_DESTINATION}")
  set(JUCEAIDE_PATH "${JUCE_TOOL_INSTALL_DIR}/${JUCE_JUCEAIDE_NAME}")
  configure_package_config_file("${JUCE_CMAKE_UTILS_DIR}/JUCEConfig.cmake.in"
-@@ -181,7 +181,7 @@ if(("${CMAKE_SOURCE_DIR}" STREQUAL "${JUCE_SOURCE_DIR}") AND (NOT JUCE_BUILD_HEL
+@@ -148,7 +148,6 @@ configure_package_config_file("${JUCE_CMAKE_UTILS_DIR}/JUCEConfig.cmake.in"
+     PATH_VARS UTILS_INSTALL_DIR JUCEAIDE_PATH JUCE_MODULE_PATH
+     INSTALL_DESTINATION "${JUCE_INSTALL_DESTINATION}")
+ 
+-set(JUCE_MODULE_PATH "${JUCE_MODULES_DIR}")
+ set(UTILS_INSTALL_DIR "${CMAKE_CURRENT_SOURCE_DIR}/extras/Build/CMake")
+ get_target_property(JUCEAIDE_PATH juceaide IMPORTED_LOCATION)
+ configure_package_config_file("${JUCE_CMAKE_UTILS_DIR}/JUCEConfig.cmake.in"
+@@ -181,7 +180,7 @@ if(("${CMAKE_SOURCE_DIR}" STREQUAL "${JUCE_SOURCE_DIR}") AND (NOT JUCE_BUILD_HEL
      _juce_add_lv2_manifest_helper_target()
  
      if(TARGET juce_lv2_helper)
