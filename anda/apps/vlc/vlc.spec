@@ -389,6 +389,11 @@ Obsoletes:	%{name}-plugin-ieee1394 < %{epoch}:%{version}-%{release}
 %if %{without opencv}
 Obsoletes:	%{name}-plugin-opencv < %{epoch}:%{version}-%{release}
 %endif
+# Handle Freeworld transition
+%if %{with freeworld}
+Provides:   %{name}-plugins-freeworld = %{epoch}:%{version}-%{release}
+Obsoletes:  %{name}-plugins-freeworld < %{epoch}:%{version}-%{release}
+%endif
 
 %description plugins-base
 VLC media player core components
