@@ -73,8 +73,6 @@ Patch:		lua-math.patch
 Patch:		freerdp2.patch
 # fix build with live555-2024.11.28
 Patch:		live555.patch
-# avoid "stale plugin cache" warnings in flatpaks
-Patch:		flatpak-cache.patch
 
 %{load:%{S:1}}
 %global __provides_exclude_from ^%{vlc_plugindir}/.*$
@@ -585,13 +583,6 @@ sed -e 's|org\.videolan\.vlc|org.videolan.VLC|' \
     -e 's|@DATE@|%(date +%F -r %{S:0})|' \
     -e 's|http:|https:|g' \
     -i share/vlc.appdata.xml.in.in
-
-%if 0%{?flatpak}
-# icons are renamed in order to be exported
-sed -i -e '/icon_theme_load/s|"vlc"|"org.videolan.VLC"|' modules/notify/notify.c
-sed -i -e '/fromTheme/s|"vlc"|"org.videolan.VLC"|' \
-	modules/gui/qt/main_interface.cpp modules/gui/qt/qt.cpp
-%endif
 
 touch src/revision.txt
 
