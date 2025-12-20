@@ -589,6 +589,9 @@ sed -e 's|org\.videolan\.vlc|org.videolan.VLC|' \
     -e 's|http:|https:|g' \
     -i share/vlc.appdata.xml.in.in
 
+# Fix an issue with our CI technically being run as root
+sed -i -e 's|\./vlc|\./vlc-wrapper|g' test/run_vlc.sh
+
 touch src/revision.txt
 
 
@@ -788,19 +791,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/vlc.appdata.xm
 
 # chroma_copy_test fails on s390x (big endian?)
 %ifnarch s390x
-make check || cat ./test-suite.log
-
-VLC="./vlc --ignore-config --rc-fake-tty"
-
-$VLC -H
-$VLC -Idummy vlc://quit
-$VLC -vv -Irc,oldrc vlc://quit
-$VLC -vv -Irc,oldrc --play-and-exit vlc://nop
-
-LSAN_OPTIONS=exitcode=0
-export LSAN_OPTIONS
-
-$VLC --play-and-exit vlc://nop
+make check
 %endif
 
 
