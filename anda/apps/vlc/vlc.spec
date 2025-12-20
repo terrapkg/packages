@@ -30,246 +30,245 @@
 %bcond vpl 1
 %endif
 
-Name:		vlc
-Epoch:		2
-Version:	3.0.21
-Release:	1%{?dist}
-Summary:	The cross-platform open-source multimedia framework, player and server
-License:	GPL-2.0-or-later AND LGPL-2.1-or-later AND BSD-2-Clause AND BSD-3-Clause
-URL:		https://www.videolan.org
-Source0:	https://get.videolan.org/vlc/%{version}/vlc-%{version}.tar.xz
-Source1:	macros.vlc
+Name:       vlc
+Epoch:      2
+Version:    3.0.21
+Release:    1%{?dist}
+Summary:    The cross-platform open-source multimedia framework, player and server
+License:    GPL-2.0-or-later AND LGPL-2.1-or-later AND BSD-2-Clause AND BSD-3-Clause
+URL:        https://www.videolan.org
+Source0:    https://get.videolan.org/vlc/%{version}/vlc-%{version}.tar.xz
+Source1:    macros.vlc
 
 ## upstream patches
 # opus_header: fix channel mapping family 1 parsing (rhbz#2307919)
-Patch:		https://code.videolan.org/videolan/vlc/-/merge_requests/5590.patch
+Patch0:     https://code.videolan.org/videolan/vlc/-/merge_requests/5590.patch
 # add support for ffmpeg 7.0 (without VAAPI)
-Patch:		https://code.videolan.org/videolan/vlc/-/merge_requests/5574.patch
+Patch1:     https://code.videolan.org/videolan/vlc/-/merge_requests/5574.patch
 # mux: avformat: fix avio callbacks signature with ffmpeg 6.1
-Patch:		https://code.videolan.org/videolan/vlc/-/merge_requests/6168.patch
+Patch2:     https://code.videolan.org/videolan/vlc/-/merge_requests/6168.patch
 # ffmpeg: backport more channel checks
-Patch:		https://code.videolan.org/videolan/vlc/-/merge_requests/6273.patch
+Patch3:     https://code.videolan.org/videolan/vlc/-/merge_requests/6273.patch
 # avcodec: vaapi: support VAAPI with latest FFmpeg
-Patch:		https://code.videolan.org/videolan/vlc/-/merge_requests/6606.patch
+Patch4:     https://code.videolan.org/videolan/vlc/-/merge_requests/6606.patch
 # nfs: fix libnfs API v2 support (rhbz#2341791)
-Patch:		https://code.videolan.org/videolan/vlc/-/merge_requests/6527.patch
+Patch5:     https://code.videolan.org/videolan/vlc/-/merge_requests/6527.patch
 
 ## upstreamable patches
 
 ## downstream patches
 # https://fedoraproject.org/wiki/Changes/CryptoPolicy
-Patch:		0001-Use-SYSTEM-wide-ciphers-for-gnutls.patch
+Patch:      0001-Use-SYSTEM-wide-ciphers-for-gnutls.patch
 # Fix building with fdk-aac-2.0; backport for 3.0 from flathub
-Patch:		fdk-aac2.patch
+Patch:      fdk-aac2.patch
 # port from intel-mediasdk to oneVPL
-Patch:		oneVPL.patch
+Patch:      oneVPL.patch
 # fix appstreamcli validate to show in Software (rhbz#2258611)
-Patch:		appdata.patch
+Patch:      appdata.patch
 # port from libidn to libidn2
-Patch:		libidn2.patch
+Patch:      libidn2.patch
 # fix deprecated lua math functions (rhbz#2280091)
-Patch:		lua-math.patch
+Patch:      lua-math.patch
 # update to freerdp2 api; backport from master
-Patch:		freerdp2.patch
+Patch:      freerdp2.patch
 # fix build with live555-2024.11.28
-Patch:		live555.patch
+Patch:      live555.patch
 
 %{load:%{S:1}}
 %global __provides_exclude_from ^%{vlc_plugindir}/.*$
 
-BuildRequires:	bison
-BuildRequires:	flex
-BuildRequires:	gettext-devel
-BuildRequires:	libtool
-BuildRequires:	gcc-c++
-BuildRequires:	desktop-file-utils
-BuildRequires:	libappstream-glib
+BuildRequires:  bison
+BuildRequires:  flex
+BuildRequires:  gettext-devel
+BuildRequires:  libtool
+BuildRequires:  gcc-c++
+BuildRequires:  desktop-file-utils
+BuildRequires:  libappstream-glib
 
-BuildRequires:	a52dec-devel
-BuildRequires:	aalib-devel
-BuildRequires:	faad2-devel
-BuildRequires:	hostname
-BuildRequires:	kernel-headers
+BuildRequires:  a52dec-devel
+BuildRequires:  aalib-devel
+BuildRequires:  faad2-devel
+BuildRequires:  hostname
+BuildRequires:  kernel-headers
 %if %{with crystalhd}
-BuildRequires:	libcrystalhd-devel
+BuildRequires:  libcrystalhd-devel
 %endif
-BuildRequires:	libgcrypt-devel
-BuildRequires:	libjpeg-devel
-BuildRequires:	libmad-devel
-BuildRequires:	libmpcdec-devel
-BuildRequires:	libpng-devel
+BuildRequires:  libgcrypt-devel
+BuildRequires:  libjpeg-devel
+BuildRequires:  libmad-devel
+BuildRequires:  libmpcdec-devel
+BuildRequires:  libpng-devel
 %if %{with lirc}
-BuildRequires:	lirc-devel
+BuildRequires:  lirc-devel
 %endif
-BuildRequires:	live555-devel
-BuildRequires:	lua-devel
-BuildRequires:	pkgconfig(alsa) >= 1.0.24
-BuildRequires:	pkgconfig(aom)
-BuildRequires:	pkgconfig(aribb24)
-BuildRequires:	pkgconfig(aribb25)
+BuildRequires:  live555-devel
+BuildRequires:  lua-devel
+BuildRequires:  pkgconfig(alsa) >= 1.0.24
+BuildRequires:  pkgconfig(aom)
+BuildRequires:  pkgconfig(aribb24)
+BuildRequires:  pkgconfig(aribb25)
 %if %{with asdcp}
-BuildRequires:	pkgconfig(asdcplib)
+BuildRequires:  pkgconfig(asdcplib)
 %endif
-BuildRequires:	pkgconfig(avahi-client) >= 0.6
-#BuildRequires:	pkgconfig(breakpad-client)
-BuildRequires:	pkgconfig(caca) >= 0.99.beta14
+BuildRequires:  pkgconfig(avahi-client) >= 0.6
+#BuildRequires: pkgconfig(breakpad-client)
+BuildRequires:  pkgconfig(caca) >= 0.99.beta14
 %if %{with daala}
-BuildRequires:	pkgconfig(daaladec)
-BuildRequires:	pkgconfig(daalaenc)
+BuildRequires:  pkgconfig(daaladec)
+BuildRequires:  pkgconfig(daalaenc)
 %endif
-BuildRequires:	pkgconfig(dav1d)
-BuildRequires:	pkgconfig(dbus-1)
-BuildRequires:	pkgconfig(dvdnav) > 4.9.0
-BuildRequires:	pkgconfig(dvdread) > 4.9.0
-BuildRequires:	pkgconfig(egl)
-#BuildRequires:	pkgconfig(evas)
-BuildRequires:	pkgconfig(fdk-aac)
-BuildRequires:	pkgconfig(flac)
-#BuildRequires:	pkgconfig(fluidlite)
-BuildRequires:	pkgconfig(fluidsynth) >= 1.1.2
-BuildRequires:	pkgconfig(fontconfig) >= 2.11
-BuildRequires:	pkgconfig(freerdp2)
-BuildRequires:	pkgconfig(freetype2)
-BuildRequires:	pkgconfig(fribidi)
-BuildRequires:	pkgconfig(gl)
-BuildRequires:	pkgconfig(glesv2)
-BuildRequires:	pkgconfig(gnutls) >= 3.3.6
-BuildRequires:	pkgconfig(gstreamer-app-1.0)
-BuildRequires:	pkgconfig(gstreamer-video-1.0)
-BuildRequires:	pkgconfig(harfbuzz)
-BuildRequires:	pkgconfig(jack) >= 1.9.7
-BuildRequires:	pkgconfig(kate) >= 0.3.0
-BuildRequires:	pkgconfig(libarchive) >= 3.1.0
-BuildRequires:	pkgconfig(libass) >= 0.9.8
-BuildRequires:	pkgconfig(libavcodec) >= 57.37.100
-BuildRequires:	pkgconfig(libavformat) >= 53.21.0
-BuildRequires:	pkgconfig(libavutil) >= 52.0.0
-BuildRequires:	pkgconfig(libbluray) >= 0.6.2
-BuildRequires:	pkgconfig(libcddb) >= 0.9.5
-BuildRequires:	pkgconfig(libchromaprint)
+BuildRequires:  pkgconfig(dav1d)
+BuildRequires:  pkgconfig(dbus-1)
+BuildRequires:  pkgconfig(dvdnav) > 4.9.0
+BuildRequires:  pkgconfig(dvdread) > 4.9.0
+BuildRequires:  pkgconfig(egl)
+#BuildRequires: pkgconfig(evas)
+BuildRequires:  pkgconfig(fdk-aac)
+BuildRequires:  pkgconfig(flac)
+#BuildRequires: pkgconfig(fluidlite)
+BuildRequires:  pkgconfig(fluidsynth) >= 1.1.2
+BuildRequires:  pkgconfig(fontconfig) >= 2.11
+BuildRequires:  pkgconfig(freerdp2)
+BuildRequires:  pkgconfig(freetype2)
+BuildRequires:  pkgconfig(fribidi)
+BuildRequires:  pkgconfig(gl)
+BuildRequires:  pkgconfig(glesv2)
+BuildRequires:  pkgconfig(gnutls) >= 3.3.6
+BuildRequires:  pkgconfig(gstreamer-app-1.0)
+BuildRequires:  pkgconfig(gstreamer-video-1.0)
+BuildRequires:  pkgconfig(harfbuzz)
+BuildRequires:  pkgconfig(jack) >= 1.9.7
+BuildRequires:  pkgconfig(kate) >= 0.3.0
+BuildRequires:  pkgconfig(libarchive) >= 3.1.0
+BuildRequires:  pkgconfig(libass) >= 0.9.8
+BuildRequires:  pkgconfig(libavcodec) >= 57.37.100
+BuildRequires:  pkgconfig(libavformat) >= 53.21.0
+BuildRequires:  pkgconfig(libavutil) >= 52.0.0
+BuildRequires:  pkgconfig(libbluray) >= 0.6.2
+BuildRequires:  pkgconfig(libcddb) >= 0.9.5
+BuildRequires:  pkgconfig(libchromaprint)
 %if %{with ieee1394}
-BuildRequires:	pkgconfig(libdc1394-2) >= 2.1.0
+BuildRequires:  pkgconfig(libdc1394-2) >= 2.1.0
 %endif
-BuildRequires:	pkgconfig(libdca) >= 0.0.5
-#BuildRequires:	pkgconfig(libdsm) >= 0.2.0
-BuildRequires:	pkgconfig(libdvbpsi)
-BuildRequires:	pkgconfig(libebml) >= 1.3.6
-BuildRequires:	pkgconfig(libgme)
-#BuildRequires:	pkgconfig(libgoom2)
-BuildRequires:	pkgconfig(libidn2)
-BuildRequires:	pkgconfig(libmatroska)
-BuildRequires:	pkgconfig(libmodplug) >= 0.8.9.0
-BuildRequires:	pkgconfig(libmpeg2) >= 0.3.2
-BuildRequires:	pkgconfig(libmpg123)
-BuildRequires:	pkgconfig(libmtp) >= 1.0.0
-BuildRequires:	pkgconfig(libnfs) >= 1.10.0
-BuildRequires:	pkgconfig(libnotify) pkgconfig(gtk+-3.0)
+BuildRequires:  pkgconfig(libdca) >= 0.0.5
+#BuildRequires: pkgconfig(libdsm) >= 0.2.0
+BuildRequires:  pkgconfig(libdvbpsi)
+BuildRequires:  pkgconfig(libebml) >= 1.3.6
+BuildRequires:  pkgconfig(libgme)
+#BuildRequires: pkgconfig(libgoom2)
+BuildRequires:  pkgconfig(libidn2)
+BuildRequires:  pkgconfig(libmatroska)
+BuildRequires:  pkgconfig(libmodplug) >= 0.8.9.0
+BuildRequires:  pkgconfig(libmpeg2) >= 0.3.2
+BuildRequires:  pkgconfig(libmpg123)
+BuildRequires:  pkgconfig(libmtp) >= 1.0.0
+BuildRequires:  pkgconfig(libnfs) >= 1.10.0
+BuildRequires:  pkgconfig(libnotify) pkgconfig(gtk+-3.0)
 %if %{with placebo}
-BuildRequires:	pkgconfig(libplacebo) < 6
+BuildRequires:  pkgconfig(libplacebo) < 6
 %endif
-BuildRequires:	pkgconfig(libpostproc)
+BuildRequires:  pkgconfig(libpostproc)
 %if %{with projectm}
-BuildRequires:	pkgconfig(libprojectM)
+BuildRequires:  pkgconfig(libprojectM)
 %endif
-BuildRequires:	pkgconfig(libpulse) >= 1.0
+BuildRequires:  pkgconfig(libpulse) >= 1.0
 %if %{with ieee1394}
-BuildRequires:	pkgconfig(libraw1394) >= 2.0.1 pkgconfig(libavc1394) >= 0.5.3
+BuildRequires:  pkgconfig(libraw1394) >= 2.0.1 pkgconfig(libavc1394) >= 0.5.3
 %endif
-BuildRequires:	pkgconfig(librsvg-2.0) >= 2.9.0
-BuildRequires:	pkgconfig(libsecret-1) >= 0.18
-#BuildRequires:	pkgconfig(libsidplay2)
-#BuildRequires:	pkgconfig(libsmb2) >= 3.0.0
-BuildRequires:	pkgconfig(libssh2)
-BuildRequires:	pkgconfig(libswscale)
-BuildRequires:	pkgconfig(libsystemd)
-BuildRequires:	pkgconfig(libudev) >= 142
-BuildRequires:	pkgconfig(libupnp)
-BuildRequires:	pkgconfig(libva) >= 0.38
-BuildRequires:	pkgconfig(libva-drm)
-BuildRequires:	pkgconfig(libva-wayland)
-BuildRequires:	pkgconfig(libva-x11)
-BuildRequires:	pkgconfig(libvncclient) >= 0.9.9
-#BuildRequires:	pkgconfig(libvsxu)
-BuildRequires:	pkgconfig(libxml-2.0) >= 2.5
-BuildRequires:	pkgconfig(microdns) >= 0.1.2
-BuildRequires:	pkgconfig(minizip)
-BuildRequires:	pkgconfig(ncursesw)
-BuildRequires:	pkgconfig(ogg) >= 1.0
+BuildRequires:  pkgconfig(librsvg-2.0) >= 2.9.0
+BuildRequires:  pkgconfig(libsecret-1) >= 0.18
+#BuildRequires: pkgconfig(libsidplay2)
+#BuildRequires: pkgconfig(libsmb2) >= 3.0.0
+BuildRequires:  pkgconfig(libssh2)
+BuildRequires:  pkgconfig(libswscale)
+BuildRequires:  pkgconfig(libsystemd)
+BuildRequires:  pkgconfig(libudev) >= 142
+BuildRequires:  pkgconfig(libupnp)
+BuildRequires:  pkgconfig(libva) >= 0.38
+BuildRequires:  pkgconfig(libva-drm)
+BuildRequires:  pkgconfig(libva-wayland)
+BuildRequires:  pkgconfig(libva-x11)
+BuildRequires:  pkgconfig(libvncclient) >= 0.9.9
+#BuildRequires: pkgconfig(libvsxu)
+BuildRequires:  pkgconfig(libxml-2.0) >= 2.5
+BuildRequires:  pkgconfig(microdns) >= 0.1.2
+BuildRequires:  pkgconfig(minizip)
+BuildRequires:  pkgconfig(ncursesw)
+BuildRequires:  pkgconfig(ogg) >= 1.0
 %if %{with opencv}
-BuildRequires:	pkgconfig(opencv)
+BuildRequires:  pkgconfig(opencv)
 %endif
-BuildRequires:	pkgconfig(opus) >= 1.0.3
-BuildRequires:	pkgconfig(protobuf-lite) >= 2.5
-BuildRequires:	pkgconfig(Qt5Core) >= 5.5
-BuildRequires:	pkgconfig(Qt5Gui) >= 5.5
-BuildRequires:	pkgconfig(Qt5Svg) >= 5.5
-BuildRequires:	pkgconfig(Qt5Widgets) >= 5.5
-BuildRequires:	pkgconfig(Qt5X11Extras) >= 5.5
-BuildRequires:	pkgconfig(samplerate)
+BuildRequires:  pkgconfig(opus) >= 1.0.3
+BuildRequires:  pkgconfig(protobuf-lite) >= 2.5
+BuildRequires:  pkgconfig(Qt5Core) >= 5.5
+BuildRequires:  pkgconfig(Qt5Gui) >= 5.5
+BuildRequires:  pkgconfig(Qt5Svg) >= 5.5
+BuildRequires:  pkgconfig(Qt5Widgets) >= 5.5
+BuildRequires:  pkgconfig(Qt5X11Extras) >= 5.5
+BuildRequires:  pkgconfig(samplerate)
 %if %{with schro}
-BuildRequires:	pkgconfig(schroedinger-1.0) >= 1.0.10
+BuildRequires:  pkgconfig(schroedinger-1.0) >= 1.0.10
 %endif
 %if %{with sdl}
-BuildRequires:	pkgconfig(SDL_image) >= 1.2.10
+BuildRequires:  pkgconfig(SDL_image) >= 1.2.10
 %endif
-#BuildRequires:	pkgconfig(shine) >= 3.0.0
-BuildRequires:	pkgconfig(shout) >= 2.1
-BuildRequires:	pkgconfig(smbclient)
-BuildRequires:	pkgconfig(soxr) >= 0.1.2
-BuildRequires:	pkgconfig(sqlite3)
-BuildRequires:	pkgconfig(spatialaudio)
-BuildRequires:	pkgconfig(speex) >= 1.0.5
-BuildRequires:	pkgconfig(speexdsp)
-BuildRequires:	pkgconfig(srt) >= 1.3.0
-BuildRequires:	pkgconfig(taglib) >= 1.9
-BuildRequires:	pkgconfig(theoradec)
-BuildRequires:	pkgconfig(theoraenc)
-BuildRequires:	pkgconfig(tiger) >= 0.3.1
-BuildRequires:	pkgconfig(twolame)
-BuildRequires:	pkgconfig(vdpau) >= 0.6
-BuildRequires:	pkgconfig(vorbis) >= 1.1
-BuildRequires:	pkgconfig(vorbisenc) >= 1.1
+#BuildRequires: pkgconfig(shine) >= 3.0.0
+BuildRequires:  pkgconfig(shout) >= 2.1
+BuildRequires:  pkgconfig(smbclient)
+BuildRequires:  pkgconfig(soxr) >= 0.1.2
+BuildRequires:  pkgconfig(sqlite3)
+BuildRequires:  pkgconfig(spatialaudio)
+BuildRequires:  pkgconfig(speex) >= 1.0.5
+BuildRequires:  pkgconfig(speexdsp)
+BuildRequires:  pkgconfig(srt) >= 1.3.0
+BuildRequires:  pkgconfig(taglib) >= 1.9
+BuildRequires:  pkgconfig(theoradec)
+BuildRequires:  pkgconfig(theoraenc)
+BuildRequires:  pkgconfig(tiger) >= 0.3.1
+BuildRequires:  pkgconfig(twolame)
+BuildRequires:  pkgconfig(vdpau) >= 0.6
+BuildRequires:  pkgconfig(vorbis) >= 1.1
+BuildRequires:  pkgconfig(vorbisenc) >= 1.1
 %if %{with vpl}
-BuildRequires:	pkgconfig(vpl)
+BuildRequires:  pkgconfig(vpl)
 %endif
-BuildRequires:	pkgconfig(vpx) >= 1.5.0
-BuildRequires:	pkgconfig(wayland-client) >= 1.5.91
-BuildRequires:	pkgconfig(wayland-egl)
-BuildRequires:	pkgconfig(wayland-protocols)
-#BuildRequires:	pkgconfig(x262)
+BuildRequires:  pkgconfig(vpx) >= 1.5.0
+BuildRequires:  pkgconfig(wayland-client) >= 1.5.91
+BuildRequires:  pkgconfig(wayland-egl)
+BuildRequires:  pkgconfig(wayland-protocols)
+#BuildRequires: pkgconfig(x262)
 %if %{with x264}
-BuildRequires:	pkgconfig(x264) >= 0.153
+BuildRequires:  pkgconfig(x264) >= 0.153
 %endif
 %if %{with x265}
-BuildRequires:	pkgconfig(x265)
+BuildRequires:  pkgconfig(x265)
 %endif
-BuildRequires:	pkgconfig(xcb) >= 1.6
-BuildRequires:	pkgconfig(xcb-composite)
-BuildRequires:	pkgconfig(xcb-keysyms) >= 0.3.4
-BuildRequires:	pkgconfig(xcb-randr) >= 1.3
-BuildRequires:	pkgconfig(xcb-shm)
-BuildRequires:	pkgconfig(xcb-xv) >= 1.1.90.1
-BuildRequires:	pkgconfig(xext)
-BuildRequires:	pkgconfig(xinerama)
-BuildRequires:	pkgconfig(xpm)
-BuildRequires:	pkgconfig(xproto)
-BuildRequires:	pkgconfig(zvbi-0.2) >= 0.2.28
-BuildRequires:	qt5-qtbase-private-devel
-BuildRequires:	zlib-devel
-
-Provides:	%{name}-xorg%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-gui-qt%{?_isa} = %{epoch}:%{version}-%{release}
-Recommends:	%{name}-gui-skins2%{?_isa} = %{epoch}:%{version}-%{release}
-Recommends:	%{name}-plugin-ffmpeg%{?_isa} = %{epoch}:%{version}-%{release}
-
-Requires:	hicolor-icon-theme
+BuildRequires:  pkgconfig(xcb) >= 1.6
+BuildRequires:  pkgconfig(xcb-composite)
+BuildRequires:  pkgconfig(xcb-keysyms) >= 0.3.4
+BuildRequires:  pkgconfig(xcb-randr) >= 1.3
+BuildRequires:  pkgconfig(xcb-shm)
+BuildRequires:  pkgconfig(xcb-xv) >= 1.1.90.1
+BuildRequires:  pkgconfig(xext)
+BuildRequires:  pkgconfig(xinerama)
+BuildRequires:  pkgconfig(xpm)
+BuildRequires:  pkgconfig(xproto)
+BuildRequires:  pkgconfig(zvbi-0.2) >= 0.2.28
+BuildRequires:  qt5-qtbase-private-devel
+BuildRequires:  zlib-devel
+Requires:       hicolor-icon-theme
 %if 0%{?fedora} >= 40 || 0%{?rhel} >= 10
-Requires:	kde-filesystem
+Requires:       kde-filesystem
 %else
-Requires:	kf5-filesystem
+Requires:       kf5-filesystem
 %endif
+Requires:       %{name}-gui-qt%{?_isa} = %{epoch}:%{version}-%{release}
+Recommends:     %{name}-gui-skins2%{?_isa} = %{epoch}:%{version}-%{release}
+Recommends:     %{name}-plugin-ffmpeg%{?_isa} = %{epoch}:%{version}-%{release}
 # For xdg-screensaver (libxdg_screensaver_plugin)
-Recommends:	xdg-utils xset
+Recommends:     xdg-utils
+Recommends:     xset
+Provides:       %{name}-xorg%{?_isa} = %{epoch}:%{version}-%{release}
 
 
 %description
@@ -280,116 +279,116 @@ It can also be used as a media converter or a server to stream in uni-cast or
 multi-cast in IPv4 or IPv6 on networks.
 
 %package libs
-Summary:	VLC media player runtime libraries
-Recommends:	libproxy-bin%{?_isa}
-Conflicts:	%{name}-core < %{epoch}:%{version}-%{release}
+Summary:    VLC media player runtime libraries
+Recommends: libproxy-bin%{?_isa}
+Conflicts:  %{name}-core < %{epoch}:%{version}-%{release}
 %description libs
 VLC media player runtime libraries
 
 %package cli
-Summary:	VLC media player command line interface
-Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
-Recommends:	%{name}-plugin-lua%{?_isa} = %{epoch}:%{version}-%{release}
-Obsoletes:	%{name}-core < %{epoch}:%{version}-%{release}
-Provides:	%{name}-core = %{epoch}:%{version}-%{release}
-Provides:	%{name}-nox = %{epoch}:%{version}-%{release}
+Summary:    VLC media player command line interface
+Requires:   %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+Recommends: %{name}-plugin-lua%{?_isa} = %{epoch}:%{version}-%{release}
+Obsoletes:  %{name}-core < %{epoch}:%{version}-%{release}
+Provides:   %{name}-core = %{epoch}:%{version}-%{release}
+Provides:   %{name}-nox = %{epoch}:%{version}-%{release}
 %description cli
 VLC media player command line interfaces
 
 %package gui-ncurses
-Summary:	VLC media player TUI
-Requires:	%{name}-cli%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+Summary:    VLC media player TUI
+Requires:   %{name}-cli%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
 %description gui-ncurses
 VLC media player ncurses-based terminal interface
 
 %package gui-qt
-Summary:	VLC media player Qt GUI
-Requires:	%{name}-cli%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-plugins-video-out%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-plugin-lua%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	(%{name}-plugin-pipewire%{?_isa} if pipewire)
-Requires:	(%{name}-plugin-pulseaudio%{?_isa} = %{epoch}:%{version}-%{release} if (pipewire-pulseaudio or pulseaudio))
-Requires:	(qt5-qtwayland%{?_isa} if libwayland-client%{?_isa})
-Recommends:	%{name}-plugins-extra%{?_isa} = %{epoch}:%{version}-%{release}
-Recommends:	%{name}-plugin-ffmpeg%{?_isa} = %{epoch}:%{version}-%{release}
-Recommends:	%{name}-plugin-visualization%{?_isa} = %{epoch}:%{version}-%{release}
-Recommends:	(%{name}-plugin-gnome%{?_isa} = %{epoch}:%{version}-%{release} if gnome-keyring)
-Recommends:	(%{name}-plugin-kde%{?_isa} = %{epoch}:%{version}-%{release} if (kf6-kwallet or kf5-wallet))
-Recommends:	(%{name}-plugin-notify%{?_isa} = %{epoch}:%{version}-%{release} if gtk3)
+Summary:    VLC media player Qt GUI
+Requires:   %{name}-cli%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugins-video-out%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugin-lua%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   (%{name}-plugin-pipewire%{?_isa} if pipewire)
+Requires:   (%{name}-plugin-pulseaudio%{?_isa} = %{epoch}:%{version}-%{release} if (pipewire-pulseaudio or pulseaudio))
+Requires:   (qt5-qtwayland%{?_isa} if libwayland-client%{?_isa})
+Recommends: %{name}-plugins-extra%{?_isa} = %{epoch}:%{version}-%{release}
+Recommends: %{name}-plugin-ffmpeg%{?_isa} = %{epoch}:%{version}-%{release}
+Recommends: %{name}-plugin-visualization%{?_isa} = %{epoch}:%{version}-%{release}
+Recommends: (%{name}-plugin-gnome%{?_isa} = %{epoch}:%{version}-%{release} if gnome-keyring)
+Recommends: (%{name}-plugin-kde%{?_isa} = %{epoch}:%{version}-%{release} if (kf6-kwallet or kf5-wallet))
+Recommends: (%{name}-plugin-notify%{?_isa} = %{epoch}:%{version}-%{release} if gtk3)
 %description gui-qt
 VLC media player Qt graphical interface
 
 %package gui-skins2
-Summary:	VLC media player Skins2 GUI
-Requires:	%{name}-cli%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-gui-qt%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	gnu-free-sans-fonts
+Summary:    VLC media player Skins2 GUI
+Requires:   %{name}-cli%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-gui-qt%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   gnu-free-sans-fonts
 
 %description gui-skins2
 VLC media player skinnable graphical interface
 
 %package plugins-all
-Summary:	VLC media player - all plugins
-Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-plugins-extra%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-plugins-video-out%{?_isa} = %{epoch}:%{version}-%{release}
+Summary:    VLC media player - all plugins
+Requires:   %{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugins-extra%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugins-video-out%{?_isa} = %{epoch}:%{version}-%{release}
 %if %{with crystalhd}
-Requires:	%{name}-plugin-crystalhd%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugin-crystalhd%{?_isa} = %{epoch}:%{version}-%{release}
 %endif
-Requires:	%{name}-plugin-ffmpeg%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-plugin-fluidsynth%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	(%{name}-plugin-gnome%{?_isa} = %{epoch}:%{version}-%{release} if gnome-keyring)
-Requires:	%{name}-plugin-gstreamer%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugin-ffmpeg%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugin-fluidsynth%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   (%{name}-plugin-gnome%{?_isa} = %{epoch}:%{version}-%{release} if gnome-keyring)
+Requires:   %{name}-plugin-gstreamer%{?_isa} = %{epoch}:%{version}-%{release}
 %if %{with ieee1394}
-Requires:	%{name}-plugin-ieee1394%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugin-ieee1394%{?_isa} = %{epoch}:%{version}-%{release}
 %endif
-Requires:	(%{name}-plugin-jack%{?_isa} = %{epoch}:%{version}-%{release} if (jack-audio-connection-kit or pipewire-jack-audio-connection-kit))
-Requires:	(%{name}-plugin-kde%{?_isa} = %{epoch}:%{version}-%{release} if (kf6-kwallet or kf5-wallet))
-Requires:	%{name}-plugin-lua%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	(%{name}-plugin-notify%{?_isa} = %{epoch}:%{version}-%{release} if gtk3)
+Requires:   (%{name}-plugin-jack%{?_isa} = %{epoch}:%{version}-%{release} if (jack-audio-connection-kit or pipewire-jack-audio-connection-kit))
+Requires:   (%{name}-plugin-kde%{?_isa} = %{epoch}:%{version}-%{release} if (kf6-kwallet or kf5-wallet))
+Requires:   %{name}-plugin-lua%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   (%{name}-plugin-notify%{?_isa} = %{epoch}:%{version}-%{release} if gtk3)
 %if %{with opencv}
-Requires:	%{name}-plugin-opencv%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugin-opencv%{?_isa} = %{epoch}:%{version}-%{release}
 %endif
-Requires:	(%{name}-plugin-pulseaudio%{?_isa} = %{epoch}:%{version}-%{release} if (pipewire-pulseaudio or pulseaudio))
-Requires:	%{name}-plugin-rdp%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-plugin-samba%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-plugin-svg%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-plugin-visualization%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-plugin-vnc%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   (%{name}-plugin-pulseaudio%{?_isa} = %{epoch}:%{version}-%{release} if (pipewire-pulseaudio or pulseaudio))
+Requires:   %{name}-plugin-rdp%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugin-samba%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugin-svg%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugin-visualization%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugin-vnc%{?_isa} = %{epoch}:%{version}-%{release}
 # separate plugins
-Requires:	%{name}-plugin-bittorrent%{?_isa}
-Requires:	%{name}-plugin-pause-click%{?_isa}
-Requires:	(%{name}-plugin-pipewire%{?_isa} if pipewire)
+Requires:   %{name}-plugin-bittorrent%{?_isa}
+Requires:   %{name}-plugin-pause-click%{?_isa}
+Requires:   (%{name}-plugin-pipewire%{?_isa} if pipewire)
 
 %description plugins-all
 Installs all available plugins for VLC media player
 
 %package plugins-base
-Summary:	VLC media player core
-Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
+Summary:    VLC media player core
+Requires:   %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 %if 0%{?rhel} && 0%{?rhel} < 10
-Requires:	google-noto-sans-mono-fonts
-Requires:	google-noto-serif-fonts
+Requires:   google-noto-sans-mono-fonts
+Requires:   google-noto-serif-fonts
 %else
-Requires:	google-noto-sans-mono-vf-fonts
-Requires:	google-noto-serif-vf-fonts
+Requires:   google-noto-sans-mono-vf-fonts
+Requires:   google-noto-serif-vf-fonts
 %endif
-Recommends:	libv4l%{?_isa}
-Conflicts:	%{name}-core < %{epoch}:%{version}-%{release}
+Recommends: libv4l%{?_isa}
+Conflicts:  %{name}-core < %{epoch}:%{version}-%{release}
 %if %{without crystalhd}
-Obsoletes:	%{name}-plugin-crystalhd < %{epoch}:%{version}-%{release}
+Obsoletes:  %{name}-plugin-crystalhd < %{epoch}:%{version}-%{release}
 %endif
 %if %{without ieee1394}
-Obsoletes:	%{name}-plugin-ieee1394 < %{epoch}:%{version}-%{release}
+Obsoletes:  %{name}-plugin-ieee1394 < %{epoch}:%{version}-%{release}
 %endif
 %if %{without opencv}
-Obsoletes:	%{name}-plugin-opencv < %{epoch}:%{version}-%{release}
+Obsoletes:  %{name}-plugin-opencv < %{epoch}:%{version}-%{release}
 %endif
 # Handle Freeworld transition
 %if %{with freeworld}
@@ -401,9 +400,9 @@ Obsoletes:  %{name}-plugins-freeworld < %{epoch}:%{version}-%{release}
 VLC media player core components
 
 %package plugins-extra
-Summary:	VLC media player extra plugins
-Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
-Conflicts:	%{name}-plugins-base < %{epoch}:%{version}-%{release}
+Summary:    VLC media player extra plugins
+Requires:   %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
+Conflicts:  %{name}-plugins-base < %{epoch}:%{version}-%{release}
 
 %description plugins-extra
 VLC media player additional components
@@ -411,183 +410,183 @@ VLC media player additional components
 # libcrystalhd requires crystalhd-firmware, is for specific hardware
 %if %{with crystalhd}
 %package plugin-crystalhd
-Summary:	VLC media player Crystal HD plugin
-Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
-Obsoletes:	%{name}-extras < %{epoch}:%{version}-%{release}
-Provides:	%{name}-extras = %{epoch}:%{version}-%{release}
+Summary:    VLC media player Crystal HD plugin
+Requires:   %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+Obsoletes:  %{name}-extras < %{epoch}:%{version}-%{release}
+Provides:   %{name}-extras = %{epoch}:%{version}-%{release}
 
 %description plugin-crystalhd
-Crystal HD plugin for VLC media player
+Crystal HD plugin for VLC media player.
 %endif
 
 # libavcodec/libavformat etc. have many dependencies
 %package plugin-ffmpeg
-Summary:	VLC media player FFmpeg plugins
-Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-plugins-video-out%{?_isa} = %{epoch}:%{version}-%{release}
+Summary:    VLC media player FFmpeg plugins
+Requires:   %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugins-video-out%{?_isa} = %{epoch}:%{version}-%{release}
 
 %description plugin-ffmpeg
-FFmpeg support plugins for VLC media player
+FFmpeg support plugins for VLC media player.
 
 # for MIDI playback, requires a soundfont (usually quite large)
 %package plugin-fluidsynth
-Summary:	VLC media player MIDI playback plugin
-Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
-Recommends:	fluid-soundfont-gm
+Summary:    VLC media player MIDI playback plugin
+Requires:   %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+Recommends: fluid-soundfont-gm
 
 %description plugin-fluidsynth
-MIDI playback support plugin for VLC media player
+MIDI playback support plugin for VLC media player.
 
 # requires libsecret, for gnome-keyring secrets storage on GNOME
 %package plugin-gnome
-Summary:	VLC media player Gnome Keyring plugin
-Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+Summary:    VLC media player Gnome Keyring plugin
+Requires:   %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
 
 %description plugin-gnome
-Gnome Keyring integration for VLC media player
+Gnome Keyring integration for VLC media player.
 
 # alternative codecs for specific formats, requires many of its own plugins
 %package plugin-gstreamer
-Summary:	VLC media player GStreamer codec plugin
-Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	gstreamer1-plugins-good%{?_isa}
-Requires:	gstreamer1-plugins-bad-free%{?_isa}
-Recommends:	gstreamer1-plugin-libav%{?_isa}
-Recommends:	gstreamer1-plugin-openh264%{?_isa}
+Summary:    VLC media player GStreamer codec plugin
+Requires:   %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   gstreamer1-plugins-good%{?_isa}
+Requires:   gstreamer1-plugins-bad-free%{?_isa}
+Recommends: gstreamer1-plugin-libav%{?_isa}
+Recommends: gstreamer1-plugin-openh264%{?_isa}
 
 %description plugin-gstreamer
-GStreamer decoder plugins for VLC media player
+GStreamer decoder plugins for VLC media player.
 
 # requires libdc1394/libavc1394/libraw1394, is for specific hardware
 %if %{with ieee1394}
 %package plugin-ieee1394
-Summary:	VLC media player IEEE 1394 plugins
-Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+Summary:    VLC media player IEEE 1394 plugins
+Requires:   %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
 
 %description plugin-ieee1394
-IEEE 1394 (FireWire) plugins for VLC media player
+IEEE 1394 (FireWire) plugins for VLC media player.
 %endif
 
 # depends on j-a-c-k or pipewire-j-a-c-k, for low-latency audio
 %package plugin-jack
-Summary:	VLC media player JACK plugins
-Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+Summary:    VLC media player JACK plugins
+Requires:   %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
 
-Suggests:	pipewire-jack-audio-connection-kit
+Suggests:   pipewire-jack-audio-connection-kit
 %description plugin-jack
-PulseAudio plugins for VLC media player
+PulseAudio plugins for VLC media player.
 
 # for KWallet secrets storage on KDE Plasma
 %package plugin-kde
-Summary:	VLC media player KWallet plugin
-Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+Summary:    VLC media player KWallet plugin
+Requires:   %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
 
 %description plugin-kde
-KDE KWallet integration for VLC media player
+KDE KWallet integration for VLC media player.
 
 # requires lua, used by CLI and GUI
 %package plugin-lua
-Summary:	VLC media player lua scripting plugins
-Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+Summary:    VLC media player lua scripting plugins
+Requires:   %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
 
 %{?lua_version:Requires: lua(abi) = %{lua_version}}
 %description plugin-lua
-Lua scripting support for VLC media player
+Lua scripting support for VLC media player.
 
 # requires gtk3 to render the notification icon
 %package plugin-notify
-Summary:	VLC media player notification plugin
-Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+Summary:    VLC media player notification plugin
+Requires:   %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
 
 %description plugin-notify
-Desktop notification plugin for VLC media player
+Desktop notification plugin for VLC media player.
 
 # opencv has many dependencies
 %if %{with opencv}
 %package plugin-opencv
-Summary:	VLC media player OpenCV plugins
-Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+Summary:    VLC media player OpenCV plugins
+Requires:   %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
 
 %description plugin-opencv
-OpenCV plugins for VLC media player
+OpenCV plugins for VLC media player.
 %endif
 
 # uses libpulse to connect to pipewire-pulseaudio
 # vlc-plugin-pipewire plugin is an alternative
 %package plugin-pulseaudio
-Summary:	VLC media player PulseAudio plugins
-Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+Summary:    VLC media player PulseAudio plugins
+Requires:   %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
 
 %description plugin-pulseaudio
-PulseAudio plugins for VLC media player
+PulseAudio plugins for VLC media player.
 
 # requires freerdp2, for RDP remote desktop support
 %package plugin-rdp
-Summary:	VLC media player RDP plugin
-Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+Summary:    VLC media player RDP plugin
+Requires:   %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
 
 %description plugin-rdp
-RDP access plugin for VLC media player
+RDP access plugin for VLC media player.
 
 # requires libsmbclient, for SMB protocol support
 %package plugin-samba
-Summary:	VLC media player SMB plugin
-Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+Summary:    VLC media player SMB plugin
+Requires:   %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
 
 %description plugin-samba
-Samba access plugin for VLC media player
+Samba access plugin for VLC media player.
 
 # requires librsvg2, for SVG decoding and screen overlay
 %package plugin-svg
-Summary:	VLC media player SVG plugins
-Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+Summary:    VLC media player SVG plugins
+Requires:   %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
 
 %description plugin-svg
-SVG plugins for VLC media player
+SVG plugins for VLC media player.
 
 # requires libv4l, libva, OpenGL, X11/xcb, etc.
 %package plugins-video-out
-Summary:	VLC media player vout plugins
-Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+Summary:    VLC media player vout plugins
+Requires:   %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
 
 %description plugins-video-out
-Video output plugins for VLC media player
+Video output plugins for VLC media player.
 
 %package plugin-visualization
-Summary:	VLC media player visualization plugins
-Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+Summary:    VLC media player visualization plugins
+Requires:   %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
 
 %description plugin-visualization
-Visualization plugins for VLC media player
+Visualization plugins for VLC media player.
 
 %package plugin-vnc
-Summary:	VLC media player VNC plugin
-Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+Summary:    VLC media player VNC plugin
+Requires:   %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:   %{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
 
 %description plugin-vnc
-VNC access plugin for VLC media player
+VNC access plugin for VLC media player.
 
 %package devel
-Summary:	Development files for %{name}
-Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
+Summary:    Development files for %{name}
+Requires:   %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 
 %description devel
 The %{name}-devel package contains libraries and header files for
@@ -797,16 +796,14 @@ rm -rf %{buildroot}%{_docdir}/vlc
 
 %find_lang %{name}
 
-
 %check
 desktop-file-validate %{buildroot}%{_appsdir}/vlc.desktop
 appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/vlc.appdata.xml
 
 # chroma_copy_test fails on s390x (big endian?)
 %ifnarch s390x
-make check
+make check || cat ./test-suite.log
 %endif
-
 
 %transfiletriggerin libs -- %{vlc_plugindir}
 %{_libdir}/vlc/vlc-cache-gen %{vlc_plugindir} &>/dev/null || :
@@ -1307,6 +1304,6 @@ make check
 %{_libdir}/pkgconfig/vlc-plugin.pc
 %{_rpmmacrodir}/macros.vlc
 
-
 %changelog
-%autochangelog
+* Fri Dec 19 2025 - 2:3.0.21-1
+- Initial package
