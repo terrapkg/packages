@@ -33,7 +33,7 @@
 Name:		vlc
 Epoch:		2
 Version:	3.0.21
-Release:	7%{?dist}
+Release:	1%{?dist}
 Summary:	The cross-platform open-source multimedia framework, player and server
 License:	GPL-2.0-or-later AND LGPL-2.1-or-later AND BSD-2-Clause AND BSD-3-Clause
 URL:		https://www.videolan.org
@@ -774,7 +774,7 @@ rm -f %{buildroot}%{_datadir}/vlc/utils/gnome-vlc-default.sh
 
 # The default PNG icons are used for desktop menu, notifications, and SNI;
 # all other icons are compiled in as resources
-find %{buildroot}%{_datadir}/icons/hicolor -type f ! -name 'vlc.png' -delete
+find %{buildroot}%{_hicolordir} -type f ! -name 'vlc.png' -delete
 rm -f %{buildroot}%{_datadir}/vlc/vlc.ico
 
 # docs will be installed in %%files
@@ -784,7 +784,7 @@ rm -rf %{buildroot}%{_docdir}/vlc
 
 
 %check
-desktop-file-validate %{buildroot}%{_datadir}/applications/vlc.desktop
+desktop-file-validate %{buildroot}%{_appsdir}/vlc.desktop
 appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/vlc.appdata.xml
 
 # chroma_copy_test fails on s390x (big endian?)
@@ -803,8 +803,8 @@ make check
 %files
 %doc AUTHORS NEWS README THANKS
 %license COPYING COPYING.LIB
-%{_datadir}/applications/%{name}.desktop
-%{_datadir}/icons/hicolor/*/apps/%{name}.png
+%{_appsdir}/%{name}.desktop
+%{_hicolordir}/*/apps/%{name}.png
 %{_datadir}/solid/actions/%{name}-*.desktop
 %{_datadir}/vlc/utils/
 %{_metainfodir}/%{name}.appdata.xml
