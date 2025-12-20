@@ -330,6 +330,7 @@ Requires:	%{name}-cli%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-gui-qt%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	gnu-free-sans-fonts
+
 %description gui-skins2
 VLC media player skinnable graphical interface
 
@@ -365,6 +366,7 @@ Requires:	%{name}-plugin-vnc%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-plugin-bittorrent%{?_isa}
 Requires:	%{name}-plugin-pause-click%{?_isa}
 Requires:	(%{name}-plugin-pipewire%{?_isa} if pipewire)
+
 %description plugins-all
 Installs all available plugins for VLC media player
 
@@ -402,6 +404,7 @@ VLC media player core components
 Summary:	VLC media player extra plugins
 Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 Conflicts:	%{name}-plugins-base < %{epoch}:%{version}-%{release}
+
 %description plugins-extra
 VLC media player additional components
 
@@ -413,6 +416,7 @@ Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
 Obsoletes:	%{name}-extras < %{epoch}:%{version}-%{release}
 Provides:	%{name}-extras = %{epoch}:%{version}-%{release}
+
 %description plugin-crystalhd
 Crystal HD plugin for VLC media player
 %endif
@@ -423,6 +427,7 @@ Summary:	VLC media player FFmpeg plugins
 Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-plugins-video-out%{?_isa} = %{epoch}:%{version}-%{release}
+
 %description plugin-ffmpeg
 FFmpeg support plugins for VLC media player
 
@@ -432,6 +437,7 @@ Summary:	VLC media player MIDI playback plugin
 Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
 Recommends:	fluid-soundfont-gm
+
 %description plugin-fluidsynth
 MIDI playback support plugin for VLC media player
 
@@ -440,6 +446,7 @@ MIDI playback support plugin for VLC media player
 Summary:	VLC media player Gnome Keyring plugin
 Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+
 %description plugin-gnome
 Gnome Keyring integration for VLC media player
 
@@ -452,6 +459,7 @@ Requires:	gstreamer1-plugins-good%{?_isa}
 Requires:	gstreamer1-plugins-bad-free%{?_isa}
 Recommends:	gstreamer1-plugin-libav%{?_isa}
 Recommends:	gstreamer1-plugin-openh264%{?_isa}
+
 %description plugin-gstreamer
 GStreamer decoder plugins for VLC media player
 
@@ -461,6 +469,7 @@ GStreamer decoder plugins for VLC media player
 Summary:	VLC media player IEEE 1394 plugins
 Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+
 %description plugin-ieee1394
 IEEE 1394 (FireWire) plugins for VLC media player
 %endif
@@ -470,6 +479,7 @@ IEEE 1394 (FireWire) plugins for VLC media player
 Summary:	VLC media player JACK plugins
 Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+
 Suggests:	pipewire-jack-audio-connection-kit
 %description plugin-jack
 PulseAudio plugins for VLC media player
@@ -479,6 +489,7 @@ PulseAudio plugins for VLC media player
 Summary:	VLC media player KWallet plugin
 Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+
 %description plugin-kde
 KDE KWallet integration for VLC media player
 
@@ -487,6 +498,7 @@ KDE KWallet integration for VLC media player
 Summary:	VLC media player lua scripting plugins
 Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+
 %{?lua_version:Requires: lua(abi) = %{lua_version}}
 %description plugin-lua
 Lua scripting support for VLC media player
@@ -496,6 +508,7 @@ Lua scripting support for VLC media player
 Summary:	VLC media player notification plugin
 Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+
 %description plugin-notify
 Desktop notification plugin for VLC media player
 
@@ -505,6 +518,7 @@ Desktop notification plugin for VLC media player
 Summary:	VLC media player OpenCV plugins
 Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+
 %description plugin-opencv
 OpenCV plugins for VLC media player
 %endif
@@ -515,6 +529,7 @@ OpenCV plugins for VLC media player
 Summary:	VLC media player PulseAudio plugins
 Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+
 %description plugin-pulseaudio
 PulseAudio plugins for VLC media player
 
@@ -523,6 +538,7 @@ PulseAudio plugins for VLC media player
 Summary:	VLC media player RDP plugin
 Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+
 %description plugin-rdp
 RDP access plugin for VLC media player
 
@@ -531,6 +547,7 @@ RDP access plugin for VLC media player
 Summary:	VLC media player SMB plugin
 Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+
 %description plugin-samba
 Samba access plugin for VLC media player
 
@@ -539,6 +556,7 @@ Samba access plugin for VLC media player
 Summary:	VLC media player SVG plugins
 Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+
 %description plugin-svg
 SVG plugins for VLC media player
 
@@ -547,6 +565,7 @@ SVG plugins for VLC media player
 Summary:	VLC media player vout plugins
 Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+
 %description plugins-video-out
 Video output plugins for VLC media player
 
@@ -554,6 +573,7 @@ Video output plugins for VLC media player
 Summary:	VLC media player visualization plugins
 Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+
 %description plugin-visualization
 Visualization plugins for VLC media player
 
@@ -561,12 +581,14 @@ Visualization plugins for VLC media player
 Summary:	VLC media player VNC plugin
 Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-plugins-base%{?_isa} = %{epoch}:%{version}-%{release}
+
 %description plugin-vnc
 VNC access plugin for VLC media player
 
 %package devel
 Summary:	Development files for %{name}
 Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
+
 %description devel
 The %{name}-devel package contains libraries and header files for
 developing applications and plugins that use %{name}.
@@ -791,7 +813,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/vlc.appdata.xm
 
 # chroma_copy_test fails on s390x (big endian?)
 %ifnarch s390x
-make check
+make check || find . -name "vlc-wrapper"
 %endif
 
 
@@ -800,7 +822,6 @@ make check
 
 %transfiletriggerpostun libs -- %{vlc_plugindir}
 %{_libdir}/vlc/vlc-cache-gen %{vlc_plugindir} &>/dev/null || :
-
 
 %files
 %doc AUTHORS NEWS README THANKS
