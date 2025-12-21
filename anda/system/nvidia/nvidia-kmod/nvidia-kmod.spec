@@ -3,9 +3,12 @@
 # Build only the akmod package and no kernel module packages:
 %define buildforkernels akmod
 
+# Build flags should be inherited from the kernel!
+%undefine _auto_set_build_flags
+
 Name:           nvidia-kmod
 Version:        590.48.01
-Release:        2%?dist
+Release:        3%?dist
 Summary:        NVIDIA display driver kernel module
 Epoch:          3
 License:        NVIDIA License
