@@ -8,7 +8,7 @@
 Name:           %{modulename}-kmod
 Summary:        Kernel drivers for the USBIO Extension
 Version:        0^%{commit_date}git.%{shortcommit}
-Release:        1%?dist
+Release:        2%?dist
 License:        GPL-2.0-only
 URL:            https://github.com/intel/usbio-drivers
 Source0:        %{url}/archive/%{commit}.tar.gz#/usbio-drivers-%{shortcommit}.tar.gz
@@ -23,7 +23,7 @@ Requires:       akmods
 Requires:       akmod-intel-ipu6
 Packager:       Gilver E. <rockgrub@disroot.org>
 
-%{expand:%(kmodtool --target %{_target_cpu} --repo terra --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
+%{expand:%(kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 
 %description
 This package enables USBIO Extension drivers on Intel Alder Lake, Raptor Lake, Meteor Lake and Lunar Lake platforms.
@@ -33,7 +33,7 @@ This package enables USBIO Extension drivers on Intel Alder Lake, Raptor Lake, M
 %{?kmodtool_check}
 
 # print kmodtool output for debugging purposes:
-kmodtool  --target %{_target_cpu} --repo terra --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
+kmodtool  --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
 %autosetup -p1 -n usbio-drivers-%{commit}
 rm -fr .github
