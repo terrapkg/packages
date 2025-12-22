@@ -62,6 +62,10 @@ popd
 %files
 %doc README.md CODE_OF_CONDUCT.md CHANGE_LIST.md BREAKING_CHANGES.md
 %license LICENSE.md
+%{_bindir}/juceaide
+%{_bindir}/juce_lv2_helper
+%{_libdir}/cmake/%{name}/*
+%dir %{_datadir}/%{name}/modules
 
 %changelog
 * Fri Dec 19 2025 metcya <metcya@gmail.com> - 8.0.12
