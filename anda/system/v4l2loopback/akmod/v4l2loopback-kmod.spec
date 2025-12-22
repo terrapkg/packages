@@ -18,7 +18,7 @@ This module allows you to create \"virtual video devices.\" Normal \(v4l2\) appl
 Name:           %{modulename}-kmod
 Summary:        Kernel module (kmod) for V4L2 loopback devices
 Version:        0.15.3
-Release:        1%?dist
+Release:        2%?dist
 License:        GPL-2.0-or-later
 URL:            https://github.com/v4l2loopback/v4l2loopback
 Source0:        %{url}/archive/v%{version}/%{modulename}-%{version}.tar.gz
@@ -35,14 +35,14 @@ Requires:       kernel-devel
 Conflicts:      dkms-%{modulename}
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
 
-%{expand:%(kmodtool --target %{_target_cpu} --repo terra --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
+%{expand:%(kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 
 %description %_description
 
 %prep
 %{?kmodtool_check}
 
-kmodtool  --target %{_target_cpu} --repo terra --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
+kmodtool  --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
 %setup -q -c
 (cd v4l2loopback-%{version}
