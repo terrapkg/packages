@@ -25,7 +25,7 @@ BuildRequires:  golang gcc go-rpm-macros
 
 %build
 %define gomodulesmode GO111MODULE=on
-%gobuild -o ls-iommu ./cmd
+%gobuild -ldflags="-X github.com/HikariKnight/ls-iommu/internal/version.Version=%version" -o ls-iommu ./cmd
 
 %install
 install -Dm 0755 ls-iommu %{buildroot}%{_bindir}/ls-iommu
