@@ -10,7 +10,6 @@ Packager:       metcya <metcya@gmail.com>
 
 BuildRequires:  gcc-c++
 BuildRequires:  cmake
-BuildRequires:  doxygen
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(freetype2)
 BuildRequires:  pkgconfig(flac)
@@ -24,6 +23,11 @@ BuildRequires:  pkgconfig(zlib)
 BuildRequires:  pkgconfig(libcurl)
 BuildRequires:  webkit2gtk4.1-devel
 
+# for building docs
+BuildRequires:  doxygen
+BuildRequires:  python3
+BuildRequires:  graphviz
+
 %description
 JUCE is an open-source cross-platform C++ application framework for creating
 desktop and mobile applications, including VST, VST3, AU, AUv3, AAX and LV2
@@ -33,15 +37,24 @@ Projucer, which supports exporting projects for Xcode (macOS and iOS), Visual
 Studio, Android Studio, and Linux Makefiles as well as containing a source code
 editor.
 
+%package doc
+Summary:        Documentation files for %{name}
+
+%description doc
+Documentation files for %{name}
+
 %prep
 %autosetup -p1 -n JUCE-%{version}
 
 %build
-cat CMakeLists.txt
 %cmake -DJUCER_ENABLE_GPL_MODE=1    \
        -DJUCE_BUILD_EXTRAS=ON       \
        -DJUCE_TOOL_INSTALL_DIR=bin
 %cmake_build
+
+pushd docs/doxygen
+python3 build.py
+popd
 
 %install
 %cmake_install
@@ -52,5 +65,5 @@ cat CMakeLists.txt
 
 %changelog
 * Fri Dec 19 2025 metcya <metcya@gmail.com> - 8.0.12
-- Package 
+- Package juce
 
