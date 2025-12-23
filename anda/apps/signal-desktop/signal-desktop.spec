@@ -10,11 +10,11 @@
 %global __requires_exclude libffmpeg.so
 %global __provides_exclude ^lib.*\\.so.*$
 
-%ifarch x86_64
-%define arch %{nil}
-%elifarch aarch64
-%define arch arm64-
-%endif
+%dnl %ifarch x86_64
+%dnl %define arch %{nil}
+%dnl %elifarch aarch64
+%dnl %define arch arm64-
+%dnl %endif
 
 %electronmeta -a
 
@@ -99,6 +99,11 @@ popd
 %pnpm_build -r prepare-beta-build
 
 %install
+%ifarch x86_64
+%define _electron_cpu %{nil}
+%endif
+%electron_install -i signal
+
 install -Dm755 release/linux-%{arch}unpacked/libEGL.so %{buildroot}%{_libdir}/signal-desktop/libEGL.so
 install -Dm755 release/linux-%{arch}unpacked/libGLESv2.so %{buildroot}%{_libdir}/signal-desktop/libGLESv2.so
 install -Dm755 release/linux-%{arch}unpacked/libffmpeg.so %{buildroot}%{_libdir}/signal-desktop/libffmpeg.so
