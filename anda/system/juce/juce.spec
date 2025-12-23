@@ -59,13 +59,20 @@ popd
 %install
 %cmake_install
 
+pushd docs/doxygen/doc
+find . -type f -exec install -Dm 644 %{buildroot}%{_pkgdocdir}
+popd
+
 %files
 %doc README.md CODE_OF_CONDUCT.md CHANGE_LIST.md BREAKING_CHANGES.md
 %license LICENSE.md
 %{_bindir}/juceaide
 %{_bindir}/juce_lv2_helper
 %{_libdir}/cmake/%{name}/*
-%dir %{_datadir}/%{name}/modules
+%{_datadir}/%{name}/modules/*
+
+%files doc
+%{_pkgdocdir}/*
 
 %changelog
 * Fri Dec 19 2025 metcya <metcya@gmail.com> - 8.0.12
