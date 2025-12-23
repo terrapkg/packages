@@ -23,14 +23,16 @@ BuildRequires:  python3-devel
 Launch websites as if they were apps.
 
 %prep
-%autosetup -n %{name}-%{commit}
+%autosetup -n %{name}-%{version}
 
 %build
-%dnl %make_build
+%make_build buildmo
 
 %install
+mkdir -p %{buildroot}%{_datadir}/locale
+cp -r usr/share/locale/* %{buildroot}%{_datadir}/locale
 install -Dm 755 usr/bin/%{name} -t %{buildroot}%{_bindir}
-install -Dm 644 usr/lib/%{name}/*.py -t %{buildroot}%{_libdir}/%{name}
+install -Dm 644 usr/lib/%{name}/*.py -t %{buildroot}%{_libdir}/%{name}/
 install -Dm 644 usr/share/applications/%{name}.desktop -t %{buildroot}%{_datadir}/applications
 install -Dm 644 usr/share/desktop-directories/webapps-webapps.directory -t %{buildroot}%{_datadir}/desktop-directories/webapps-webapps.directory
 install -Dm 644 usr/share/glib-2.0/schemas/org.x.%{name}.gschema.xml -t %{buildroot}%{_datadir}/glib-2.0/schemas
@@ -40,23 +42,27 @@ install -Dm 644 usr/share/%{name}/*.ui -t %{buildroot}%{_datadir}/%{name}
 install -Dm 644 usr/share/%{name}/firefox/userChrome-with-navbar.css -t %{buildroot}%{_datadir}/%{name}/firefox
 install -Dm 644 usr/share/%{name}/firefox/profile/{places.sqlite,search.json.mozlz4,user.js} -t %{buildroot}%{_datadir}/%{name}/firefox/profile
 install -Dm 644 usr/share/%{name}/firefox/profile/chrome/userChrome.css -t %{buildroot}%{_datadir}/%{name}/firefox/profile/chrome
-install -Dm 644 etc/xdg/menus/applications-merged/webapps.menu -t %{buildroot}%{_syscondir}/xdg/menus/applications-merged
+install -Dm 644 etc/xdg/menus/applications-merged/webapps.menu -t %{buildroot}%{_sysconfdir}/xdg/menus/applications-merged
 
-%dnl %find_lang %{name}
-
-%files %dnl -f %{name}.lang
+%files
 %doc README.md
 %license LICENSE
 %{_bindir}/%{name}
 %{_libdir}/%{name}/*.py
-%{_datadir}/applications/%{name}.desktop
+%{_appsdir}/%{name}.desktop
 %{_datadir}/desktop-directories/webapps-webapps.directory
 %{_datadir}/glib-2.0/schemas/org.x.%{name}.gschema.xml
 %{_scalableiconsdir}/%{name}.svg
 %{_hicolordir}/scalable/categories/applications-webapps.svg
-%dir %{_datadir}/%{name}/
+%{_datadir}/%{name}/
 %{_sysconfdir}/xdg/menus/applications-merged/webapps.menu
 
+%dnl %find_lang does not work because the upstream Makefile does not place them in the right spot.
+%{_datadir}/locale/*/*/webapp-manager.mo
+
 %changelog
+* Mon Dec 22 2025 Owen Zimmerman <owen@fyralabs.com>
+- Build fixes
+
 * Fri Dec 19 2025 metcya <metcya@gmail.com>
-- Port to Terra 
+- Port to Terra
