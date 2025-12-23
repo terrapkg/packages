@@ -30,7 +30,7 @@ A highly configurable and privacy minded Discord client.
 sed -i '/\"x64\",/d' electron-builder.ts
 %endif
 %ifnarch armv7l armv7hl armv7hnl
-sed -i '/\"armv7l\",/d'
+sed -i '/\"armv7l\"/d' electron-builder.ts
 %endif
 
 %bun_build -R
