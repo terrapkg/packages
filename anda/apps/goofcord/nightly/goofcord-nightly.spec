@@ -1,7 +1,7 @@
-%global commit 48973c69412a0a73fc824ec28f042907a65defe5
+%global commit 616949f91cc9cf35ecf01a67acc13e325cd94cbc
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20251213
-%global ver 1.11.3
+%global commit_date 20251223
+%global ver 1.11.3^
 %global base_name goofcord
 %global git_name GoofCord
 

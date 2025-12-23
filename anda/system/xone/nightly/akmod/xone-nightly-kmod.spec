@@ -1,7 +1,7 @@
-%global commit e927febbedbf8d6f040ff081b0c6703738e7e8d2
+%global commit 17d9b6a8939085d6e13b8c3ad684d28ca3166a02
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20251211
-%global ver 0.5.0
+%global commitdate 20251222
+%global ver 0.5.1
 %define buildforkernels akmod
 %global debug_package %{nil}
 %global modulename xone
@@ -28,14 +28,14 @@ Obsoletes:      %{name} < %{?epoch:%{epoch}:}3.0^20250419git.c682b0c
 %endif
 Packager:       Gilver E. <rockgrub@disroot.org>
 
-%{expand:%(kmodtool --target %{_target_cpu} --repo terra --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
+%{expand:%(kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 
 %description
 Linux kernel driver for Xbox One and Xbox Series X|S accessories.
 
 %prep
 %{?kmodtool_check}
-kmodtool  --target %{_target_cpu}  --repo terra --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
+kmodtool  --target %{_target_cpu}  --repo terra.fyralabs.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
 %autosetup -p1 -n %{modulename}-%{commit}
 

@@ -8,7 +8,6 @@ on:
       - frawhide
       - f43
       - f42
-      - f41
       - el10
     paths:
       - comps.xml
