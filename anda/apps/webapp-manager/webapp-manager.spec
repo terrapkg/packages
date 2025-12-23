@@ -19,6 +19,8 @@ BuildRequires:  gettext
 BuildRequires:  make
 BuildRequires:  python3-devel
 
+Packager:       metcya <metcya@gmail.com>
+
 %description
 Launch websites as if they were apps.
 
