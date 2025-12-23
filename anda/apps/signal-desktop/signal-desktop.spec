@@ -16,6 +16,8 @@
 %define arch arm64-
 %endif
 
+%electronmeta -a
+
 Name:			signal-desktop
 Version:		7.83.0
 Release:		1%?dist
@@ -42,8 +44,8 @@ BuildRequires:  nodejs
 BuildRequires:  nodejs-npm
 BuildRequires:  python3
 BuildRequires:  terra-appstream-helper
+BuildRequires:  desktop-file-utils
 
-Requires:		gtk3
 Requires:		libwayland-cursor
 Requires:		libwayland-client
 Requires:		libxkbcommon
@@ -62,21 +64,11 @@ Requires:		cairo
 Requires:		xz-libs
 Requires:		libxcb
 Requires:		nss-util
-Requires:		nss
 Requires:		dbus-libs
 Requires:		mesa-libgbm
 Requires:		at-spi2-atk
 Requires:		expat
 Requires:		alsa-lib
-Requires:       xdg-utils
-Requires:       re2
-Requires:       (libXtst or libXtst6)
-Requires:       libXScrnSaver
-Requires:       libnotify
-Requires:       (libuuid or libuuid1)
-Requires:       at-spi2-core
-Requires:       c-ares
-Requires:       gtk3
 Requires:       minizip
 
 Provides:       signal
@@ -90,12 +82,21 @@ Signal Desktop links with Signal on Android or iOS and lets you message from you
 %autosetup -n Signal-Desktop-%{version}
 
 %build
-pnpm install --frozen-lockfile
+# pnpm install --frozen-lockfile
+# pushd sticker-creator
+# pnpm install --frozen-lockfile
+# pnpm build
+# popd
+# pnpm run build-linux --dir
+export SIGNAL_ENV=production
+%{__pnpm} install
+%{__pnpm} run clean-transpile
 pushd sticker-creator
-pnpm install --frozen-lockfile
-pnpm build
+%{__pnpm} install
+%{__pnpm} run build
 popd
-pnpm run build-linux --dir
+%{__pnpm} run generate
+%pnpm_build -r prepare-beta-build
 
 %install
 install -Dm755 release/linux-%{arch}unpacked/libEGL.so %{buildroot}%{_libdir}/signal-desktop/libEGL.so
@@ -136,6 +137,9 @@ ln -s %{_libdir}/signal-desktop/signal-desktop %{buildroot}%{_bindir}/signal-des
 
 %terra_appstream -o %{SOURCE2}
 
+%check
+desktop-file-validate %{buildroot}%{_appsdir}/signal.desktop
+
 %files
 %license LICENSE
 %doc README.md CONTRIBUTING.md ACKNOWLEDGMENTS.md
@@ -145,19 +149,14 @@ ln -s %{_libdir}/signal-desktop/signal-desktop %{buildroot}%{_bindir}/signal-des
 %{_libdir}/signal-desktop/
 %{_datadir}/polkit-1/rules.d/org.signalapp.view-aep.policy
 %{_datadir}/polkit-1/rules.d/org.signalapp.enable-backups.policy
-%{_datadir}/applications/signal.desktop
-%{_iconsdir}/hicolor/1024x1024/apps/signal.png
-%{_iconsdir}/hicolor/128x128/apps/signal.png
-%{_iconsdir}/hicolor/16x16/apps/signal.png
-%{_iconsdir}/hicolor/24x24/apps/signal.png
-%{_iconsdir}/hicolor/256x256/apps/signal.png
-%{_iconsdir}/hicolor/32x32/apps/signal.png
-%{_iconsdir}/hicolor/48x48/apps/signal.png
-%{_iconsdir}/hicolor/512x512/apps/signal.png
-%{_iconsdir}/hicolor/64x64/apps/signal.png
+%{_appsdir}/signal.desktop
+%{_hicolordir}/*x*/apps/signal.png
 %{_metainfodir}/org.signal.Signal.metainfo.xml
 
 %changelog
+* Mon Dec 22 2025 Owen Zimmerman <owen@fyralabs.com>
+- Use more electron macros, correct build failures
+
 * Wed Dec 10 2025 Owen Zimmerman <owen@fyralabs.com>
 - Add metainfo
 
