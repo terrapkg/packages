@@ -60,7 +60,7 @@ popd
 %cmake_install
 
 pushd docs/doxygen/doc
-find . -type f -exec install -Dm 644 %{buildroot}%{_pkgdocdir}
+find -type f -exec install -Dm 644 '{}' -t %{buildroot}%{_pkgdocdir} \;
 popd
 
 %files
