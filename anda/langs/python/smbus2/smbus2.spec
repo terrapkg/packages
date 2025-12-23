@@ -2,7 +2,7 @@
 %global _desc A drop-in replacement for smbus-cffi/smbus-python in pure Python.
 
 Name:			python-%{pypi_name}
-Version:		0.5.0
+Version:		0.6.0
 Release:		1%?dist
 Summary:		A drop-in replacement for smbus-cffi/smbus-python in pure Python
 License:		MIT

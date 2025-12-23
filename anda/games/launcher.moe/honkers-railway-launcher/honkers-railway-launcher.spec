@@ -2,7 +2,7 @@
 %global crate honkers-railway-launcher
 %global appid moe.launcher.the-honkers-railway-launcher
 Name:           %{crate}
-Version:        1.14.1
+Version:        1.14.2
 Release:        1%?dist
 Summary:        The Honkers Railway launcher for Linux with automatic patching and telemetry disabling 
 
