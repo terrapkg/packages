@@ -1,4 +1,4 @@
-Name:			intellij-community-idea
+Name:			intellij-idea-community
 Version:		231.9161.38
 Release:		1%?dist
 Summary:		IDE for Java/Groovy/etc. with advanced refactoring features
@@ -8,8 +8,8 @@ Source0:		https://github.com/JetBrains/intellij-community/archive/refs/tags/idea
 Source1:		https://github.com/JetBrains/android/archive/refs/tags/idea/%version.tar.gz
 Source2:		https://repo1.maven.org/maven2/junit/junit/3.8.1/junit-3.8.1.jar
 Patch0:			enable-no-jdr.patch
-Requires:		giflib java-17-openjdk python3 bash libdbusmenu fontconfig hicolor-icon-theme
-BuildRequires:	ant git java-17-openjdk-devel maven
+Requires:		giflib java-latest-openjdk python3 bash libdbusmenu fontconfig hicolor-icon-theme
+BuildRequires:	ant git java-latest-openjdk-devel maven
 
 %description
 Intellij IDEA is an IDE for Java, Groovy and other programming languages with

@@ -3,7 +3,7 @@
 %global jbr_build aarch64-b469
 %global jbr_minor 82
 
-Name:		intellij-ultimate-idea
+Name:		intellij-idea-ultimate
 Version:	2023.1.3
 Release:	1%?dist
 Summary:	IDE for Java/Groovy/etc. with advanced refactoring features
@@ -12,7 +12,7 @@ URL:		https://jetbrains.com/idea
 Source0:	https://download.jetbrains.com/idea/ideaIU-%version.tar.gz
 Requires:	giflib libXtst libXrender
 Suggests:	%name-jre
-Recommends:	libdbusmenu java-17-openjdk
+Recommends:	libdbusmenu java-latest-openjdk
 
 
 %ifarch aarch64
