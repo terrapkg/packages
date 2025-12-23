@@ -26,10 +26,14 @@ A highly configurable and privacy minded Discord client.
 %autosetup -n %{git_name}-%{commit}
 
 %build
-%ifarch %{arm64} armv7hl armv7l
+%ifarch %{arm64} armv7l armv7hl armv7hnl
 sed -i '/\"x64\",/d' electron-builder.ts
 %endif
-%bun_build -r build -R
+%ifnarch armv7l armv7hl armv7hnl
+sed -i '/\"armv7l\",/d'
+%endif
+
+%bun_build -R
 
 %install
 %electron_install -d %{base_name} -s %{base_name} -i %{base_name} -D -O -U %U -E UseOzonePlatform,WaylandWindowDecorations
