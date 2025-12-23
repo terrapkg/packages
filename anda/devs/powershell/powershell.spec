@@ -80,9 +80,6 @@ cp -t src/Microsoft.PowerShell.SDK/obj \
     "%{SOURCE2}"
 
 INCFILE="$PWD/src/TypeCatalogGen/powershell_linux-%{darch}.inc"
-%ifarch aarch64
-ls $PWD/src/TypeCatalogGen
-%endif
 dotnet msbuild \
     src/Microsoft.PowerShell.SDK \
     -t:_GetDependencies \
@@ -98,7 +95,7 @@ dotnet run \
 
 dotnet publish \
     --no-restore \
-    --runtime linux-%{darch} \
+    --runtime linux-x64 \
     --no-self-contained \
     --configuration Release \
     --output lib \
