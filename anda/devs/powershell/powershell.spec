@@ -32,7 +32,6 @@ BuildRequires: nuget
 BuildRequires: unzip
 %if %{with test}
 BuildRequires: glibc-all-langpacks
-BuildRequires: glibc-langpack-en
 BuildRequires: iputils
 BuildRequires: langpacks-en
 %endif
@@ -95,7 +94,7 @@ dotnet run \
 
 dotnet publish \
     --no-restore \
-    --runtime linux-x64 \
+    --runtime linux-%{darch} \
     --no-self-contained \
     --configuration Release \
     --output lib \
@@ -116,11 +115,19 @@ cp -a $NUGET_PACKAGES/threadjob/2.0.3/. lib/Modules/ThreadJob
 unzip -ud temp_pester %{SOURCE1}
 cp -a temp_pester/tools lib/Modules/Pester
 
+# Generate manpage
+lib/pwsh -noprofile -command '
+  Import-Module ./build.psm1 -ArgumentList $true
+  Import-Module ./tools/packaging/packaging.psm1
+  New-ManGzip
+'
+
 %install
 mkdir -p %{buildroot}%{_libdir}/%{name}
 cp -a lib/* -t %{buildroot}%{_libdir}/%{name}
 mkdir -p %{buildroot}%{_bindir}
 ln -s %{_libdir}/%{name}/pwsh %{buildroot}%{_bindir}/pwsh
+install -Dpm644 assets/manpage/pwsh.1.gz -t %{buildroot}%{_mandir}/man1
 
 %if %{with test}
 %check
@@ -201,6 +208,7 @@ lib/pwsh -noprofile -command '
 %doc README.md
 %{_bindir}/pwsh
 %{_libdir}/%{name}/
+%{_mandir}/man1/pwsh.1.*
 
 %changelog
 * Tue Dec 23 2025 Gilver E. <rockgrub@disroot.org> - 7.5.4-1
