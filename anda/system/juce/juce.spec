@@ -68,11 +68,14 @@ popd
 %license LICENSE.md
 %{_bindir}/juceaide
 %{_bindir}/juce_lv2_helper
+%dir %{_libdir}/cmake/%{name}
 %{_libdir}/cmake/%{name}/*
+%dir %{_datadir}/%{name}
+%dir %{_datadir}/%{name}/modules
 %{_datadir}/%{name}/modules/*
 
 %files doc
-%{_pkgdocdir}/*
+%doc %{_pkgdocdir}/*
 
 %changelog
 * Fri Dec 19 2025 metcya <metcya@gmail.com> - 8.0.12
