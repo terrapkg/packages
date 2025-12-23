@@ -32,7 +32,7 @@ Launch websites as if they were apps.
 mkdir -p %{buildroot}%{_datadir}/locale
 cp -r usr/share/locale/* %{buildroot}%{_datadir}/locale
 install -Dm 755 usr/bin/%{name} -t %{buildroot}%{_bindir}
-install -Dm 644 usr/lib/%{name}/*.py -t %{buildroot}%{_libdir}/%{name}/
+install -Dm 755 usr/lib/%{name}/*.py -t %{buildroot}%{_libdir}/%{name}/
 install -Dm 644 usr/share/applications/%{name}.desktop -t %{buildroot}%{_datadir}/applications
 install -Dm 644 usr/share/desktop-directories/webapps-webapps.directory -t %{buildroot}%{_datadir}/desktop-directories/webapps-webapps.directory
 install -Dm 644 usr/share/glib-2.0/schemas/org.x.%{name}.gschema.xml -t %{buildroot}%{_datadir}/glib-2.0/schemas
