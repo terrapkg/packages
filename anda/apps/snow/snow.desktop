@@ -1,7 +1,7 @@
 [Desktop Entry]
 Categories=System;Emulator;
 Comment=Classic Macintosh emulator
-Exec=snow
+Exec=snowemu
 Icon=snow_icon
 Name=snow
 Type=Application
