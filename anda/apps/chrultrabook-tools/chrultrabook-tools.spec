@@ -25,10 +25,6 @@ BuildRequires:  libappindicator-devel
 BuildRequires:  libappindicator-gtk3-devel
 BuildRequires:  gstreamer1
 BuildRequires:  gstreamer1-devel
-BuildRequires:  webkit2gtk4.0
-BuildRequires:  webkit2gtk4.0-devel
-BuildRequires:  webkit2gtk4.1
-BuildRequires:  webkit2gtk4.1-devel
 BuildRequires:  patchelf
 BuildRequires:  libstdc++-static
 BuildRequires:  librsvg2-devel
