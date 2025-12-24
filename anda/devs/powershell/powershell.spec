@@ -18,7 +18,8 @@ Name:          powershell
 Version:       7.5.4
 Release:       1%{?dist}
 Summary:       A cross-platform automation and configuration tool/framework
-License:       MIT
+SourceLicense: MIT
+License:       Apache-2.0 AND BSD-2-Clause AND MIT
 URL:           https://microsoft.com/PowerShell
 Source0:       https://github.com/%{git_name}/%{git_name}/archive/refs/tags/v%{version}.tar.gz
 Source1:       https://globalcdn.nuget.org/packages/pester.%{pester_version}.nupkg
@@ -135,6 +136,8 @@ mkdir -p %{buildroot}%{_bindir}
 ln -s %{_libdir}/%{name}/pwsh %{buildroot}%{_bindir}/pwsh
 install -Dpm644 assets/manpage/pwsh.1.gz -t %{buildroot}%{_mandir}/man1
 
+install -Dpm644 assets/powershell_128.svg %{buildroot}%{_scalableiconsdir}/%{name}.svg
+
 %if %{with test}
 %check
 export NUGET_PACKAGES="$PWD/nuget"
@@ -211,11 +214,13 @@ lib/pwsh -noprofile -command '
 
 %files
 %license LICENSE.txt
+%license assets/additionalAttributions.txt
 %doc README.md
 %doc CODE_OF_CONDUCT.md
 %{_bindir}/pwsh
 %{_libdir}/%{name}/
 %{_mandir}/man1/pwsh.1.*
+%{_scalableiconsdir}/%{name}.svg
 
 %files doc
 %doc docs/*
