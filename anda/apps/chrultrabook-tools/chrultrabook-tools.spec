@@ -60,7 +60,7 @@ export NODE_ENV=production
 npm ci
 npm install @angular/cli --no-save
 npm install
-npm run tauri build # --bundles rpm
+npm run tauri build -- --no-bundle # no bundles
 
 %install
 install -Dm755 Chrultrabook-Tools %{buildroot}%{_bindir}/chrultrabook-tools
