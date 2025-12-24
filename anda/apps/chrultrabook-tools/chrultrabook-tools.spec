@@ -4,6 +4,7 @@ Release:        1%?dist
 Summary:        User-friendly configuration utility for Chromebooks running an alternate OS
 URL:            https://github.com/death7654/Chrultrabook-Tools
 Source0:        %url/archive/refs/tags/%version.tar.gz
+Patch0:         no-prebuilt-binaries.patch
 License:        GPLv3
 
 BuildRequires:  rust
