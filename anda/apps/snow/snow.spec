@@ -2,7 +2,7 @@
 
 Name:           snow
 Version:        1.2.0
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Classic Macintosh emulator
 URL:            https://github.com/twvd/snow
 Source0:        %url/archive/refs/tags/v%version.tar.gz
@@ -18,6 +18,7 @@ BuildRequires:  cargo-rpm-macros
 BuildRequires:  desktop-file-utils
 BuildRequires:  terra-appstream-helper
 BuildRequires:  SDL2-devel
+Provides:       snowemu
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
@@ -42,7 +43,7 @@ Documentation files for %{name}
 
 %install
 mkdir -p %{buildroot}%{_pkgdocdir}
-install -Dm755 target/rpm/snow_frontend_egui %{buildroot}%{_bindir}/snow
+install -Dm755 target/rpm/snow_frontend_egui %{buildroot}%{_bindir}/snowemu
 
 install -Dm644 docs/images/snow_icon.png     %{buildroot}%{_hicolordir}/1024x1024/apps/snow_icon.png
 
@@ -66,7 +67,7 @@ desktop-file-validate %{buildroot}%{_appsdir}/snow.desktop
 %doc README.md
 %license LICENSE
 %license LICENSE.dependencies
-%{_bindir}/snow
+%{_bindir}/snowemu
 %{_hicolordir}/1024x1024/apps/snow_icon.png
 %{_appsdir}/snow.desktop
 %{_metainfodir}/%appid.metainfo.xml
