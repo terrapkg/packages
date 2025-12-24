@@ -49,6 +49,8 @@ Development files for %{name}.
 %cmake_install
 
 %files
+%license COPYING
+%doc README.md
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1.*
 %{_mandir}/man3/%{name}.3.*
