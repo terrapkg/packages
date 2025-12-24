@@ -234,5 +234,5 @@ lib/pwsh -noprofile -command '
 %doc ADOPTERS.md
 
 %changelog
-* Tue Dec 23 2025 Gilver E. <rockgrub@disroot.org> - 7.5.4-1
+* Wed Dec 24 2025 Gilver E. <rockgrub@disroot.org> - 7.5.4-1
 - Initial package
