@@ -27,6 +27,7 @@ Source0:		https://github.com/signalapp/Signal-Desktop/archive/refs/tags/v%{versi
 # signal.desktop from https://github.com/signalflatpak/signal/blob/master/org.signal.Signal.desktop
 Source1:		signal.desktop
 Source2:        org.signal.Signal.metainfo.xml
+Patch0:         no-prebuilt-binaries.patch
 License:		AGPL-3.0 AND %{electron_license}
 ExclusiveArch:	x86_64 aarch64
 
