@@ -51,6 +51,7 @@ Packager:      Gilver E. <rockgrub@disroot.org>
 
 %package       doc
 Summary:       Documentation files for PowerShell
+Requires:      %{name} = %{evr}
 
 %description   doc
 This package contains documentation for PowerShell.
