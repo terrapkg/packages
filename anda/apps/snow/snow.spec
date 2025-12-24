@@ -11,15 +11,12 @@ Source2:        %appid.metainfo.xml
 License:        MIT
 
 BuildRequires:  cargo
-BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  mold
 BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  desktop-file-utils
 BuildRequires:  terra-appstream-helper
-Requires:       glibc
-
 BuildRequires:  SDL2-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
