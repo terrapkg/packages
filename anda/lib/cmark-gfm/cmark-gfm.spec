@@ -21,11 +21,14 @@ Summary:        Library files for %{name}
 %pkg_libs_files
 
 %description libs
-Library files for %{name}
+Library files for %{name}.
 
 %package static
 Summary:        Static library files for %{name}
 %pkg_static_files
+
+%description static
+Static library files for %{name}.
 
 %package devel
 Summary:        Development files for %{name}
@@ -33,7 +36,7 @@ Requires:       %{name}-libs = %{evr}
 %pkg_devel_files
 
 %description devel
-Development files for %{name}
+Development files for %{name}.
 
 %prep
 %autosetup
