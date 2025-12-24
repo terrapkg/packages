@@ -212,6 +212,7 @@ lib/pwsh -noprofile -command '
 %files
 %license LICENSE.txt
 %doc README.md
+%doc CODE_OF_CONDUCT.md
 %{_bindir}/pwsh
 %{_libdir}/%{name}/
 %{_mandir}/man1/pwsh.1.*
@@ -219,6 +220,7 @@ lib/pwsh -noprofile -command '
 %files doc
 %doc docs/*
 %doc CHANGELOG
+%doc ADOPTERS.md
 
 %changelog
 * Tue Dec 23 2025 Gilver E. <rockgrub@disroot.org> - 7.5.4-1
