@@ -38,7 +38,7 @@ mkdocs build
 %install
 %cmake_install
 pushd site
-find -type f -exec install -Dm 644 '{}' -t %{buildroot}%{_pkgdocdir} \;
+find -type f -exec install -Dm 644 '{}' -t '%{buildroot}%{_pkgdocdir}/{}' \;
 popd
 
 %files
