@@ -1,6 +1,6 @@
 Name:           juce
 Version:        8.0.12
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        AGPL-3.0
 Summary:        framework for audio application and plug-in development
 URL:            https://juce.com
@@ -75,9 +75,13 @@ popd
 %{_datadir}/%{name}/modules/*
 
 %files doc
+%license LICENSE.md
 %doc %{_pkgdocdir}/*
 
 %changelog
+* Tue Dec 23 2025 Owen Zimmerman <owen@fyralabs.com>
+- Install doc subpackage license
+
 * Fri Dec 19 2025 metcya <metcya@gmail.com> - 8.0.12
 - Package juce
 
