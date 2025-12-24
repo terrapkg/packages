@@ -36,7 +36,6 @@ BuildRequires: npm
 BuildRequires: cargo
 BuildRequires: rustc
 BuildRequires: pkgconfig
-BuildRequires: webkit2gtk3-devel
 BuildRequires: openssl-devel
 BuildRequires: gcc
 BuildRequires: gcc-c++
