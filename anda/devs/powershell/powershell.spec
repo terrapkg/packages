@@ -12,6 +12,9 @@
 %elifarch %{arm64}
 %global darch arm64
 %endif
+%global appid com.microsoft.PowerShell
+%global org com.microsoft
+%global appstream_component console-application
 %bcond test 1
 
 Name:          powershell
@@ -25,6 +28,7 @@ Source0:       https://github.com/%{git_name}/%{git_name}/archive/refs/tags/v%{v
 Source1:       https://globalcdn.nuget.org/packages/pester.%{pester_version}.nupkg
 # For some reason the build doesn't provide this information to itself
 Source2:       Microsoft.PowerShell.SDK.csproj.TypeCatalog.targets
+Source3:       com.microsoft.PowerShell.metainfo.xml
 BuildRequires: dotnet-host
 BuildRequires: dotnet-sdk-%{dotnet_version}
 BuildRequires: git-core
@@ -135,8 +139,9 @@ cp -a lib/* -t %{buildroot}%{_libdir}/%{name}
 mkdir -p %{buildroot}%{_bindir}
 ln -s %{_libdir}/%{name}/pwsh %{buildroot}%{_bindir}/pwsh
 install -Dpm644 assets/manpage/pwsh.1.gz -t %{buildroot}%{_mandir}/man1
-
 install -Dpm644 assets/powershell_128.svg %{buildroot}%{_scalableiconsdir}/%{name}.svg
+
+%terra_appstream -o %{SOURCE3}
 
 %if %{with test}
 %check
@@ -221,6 +226,7 @@ lib/pwsh -noprofile -command '
 %{_libdir}/%{name}/
 %{_mandir}/man1/pwsh.1.*
 %{_scalableiconsdir}/%{name}.svg
+%{_metainfodir}/%{appid}.metainfo.xml
 
 %files doc
 %doc docs/*
