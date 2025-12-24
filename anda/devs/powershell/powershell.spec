@@ -28,7 +28,7 @@ Source0:       https://github.com/%{git_name}/%{git_name}/archive/refs/tags/v%{v
 Source1:       https://globalcdn.nuget.org/packages/pester.%{pester_version}.nupkg
 # For some reason the build doesn't provide this information to itself
 Source2:       Microsoft.PowerShell.SDK.csproj.TypeCatalog.targets
-Source3:       com.microsoft.PowerShell.metainfo.xml
+Source3:       %{appid}.metainfo.xml
 BuildRequires: dotnet-host
 BuildRequires: dotnet-sdk-%{dotnet_version}
 BuildRequires: git-core
