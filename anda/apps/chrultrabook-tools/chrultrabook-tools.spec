@@ -56,7 +56,9 @@ Packager:       Owen Zimmerman owen@fyralabs.com
 %autosetup -n Chrultrabook-Tools-%version
 
 %build
-npm install --save-dev @angular/cli
+export NODE_ENV=production
+npm ci
+npm install @angular/cli --no-save
 npm install
 npm run tauri build # --bundles rpm
 
@@ -68,9 +70,7 @@ install -Dm755 Chrultrabook-Tools %{buildroot}%{_bindir}/chrultrabook-tools
 %license LICENSE
 %_bindir/chrultrabook-tools
 %{_datadir}/applications/chrultrabook-tools.desktop
-%{_datadir}/icons/hicolor/128x128/apps/Chrultrabook-Tools.png
-%{_datadir}/icons/hicolor/256x256@2/apps/Chrultrabook-Tools.png
-%{_datadir}/icons/hicolor/32x32/apps/Chrultrabook-Tools.png
+%{_hicolordir}/*x*/apps/Chrultrabook-Tools.png
 
 %changelog
 * Mon Jun 23 2025 Owen Zimmerman owen@fyralabs.com
