@@ -63,13 +63,13 @@ rm -r %{buildroot}%{_pkgdocdir}/theme
 desktop-file-validate %{buildroot}%{_appsdir}/snow.desktop
 
 %files
+%doc README.md
+%license LICENSE
+%license LICENSE.dependencies
 %{_bindir}/snow
 %{_hicolordir}/1024x1024/apps/snow_icon.png
 %{_appsdir}/snow.desktop
 %{_metainfodir}/%appid.metainfo.xml
-%license LICENSE
-%license LICENSE.dependencies
-%doc README.md
 
 %files doc
 %license LICENSE
