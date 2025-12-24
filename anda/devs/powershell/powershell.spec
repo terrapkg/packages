@@ -44,6 +44,12 @@ Packager:      Gilver E. <rockgrub@disroot.org>
 %description
 %{git_name} is a cross-platform automation and configuration tool/framework.
 
+%package       doc
+Summary:       Documentation files for PowerShell
+
+%description   doc
+This package contains documentation for PowerShell.
+
 %prep
 %git_clone https://github.com/%{git_name}/%{git_name}.git v%{version}
 
@@ -209,6 +215,10 @@ lib/pwsh -noprofile -command '
 %{_bindir}/pwsh
 %{_libdir}/%{name}/
 %{_mandir}/man1/pwsh.1.*
+
+%files doc
+%doc docs/*
+%doc CHANGELOG
 
 %changelog
 * Tue Dec 23 2025 Gilver E. <rockgrub@disroot.org> - 7.5.4-1
