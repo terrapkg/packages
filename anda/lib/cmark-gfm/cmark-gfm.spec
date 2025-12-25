@@ -1,7 +1,7 @@
 Name:           cmark-gfm
 Version:        0.29.0.gfm.13
 Release:        2%{?dist}
-License:        BSD-2-Clause and MIT
+License:        BSD-2-Clause AND MIT
 URL:            https://github.com/github/cmark-gfm
 Source:         %{url}/archive/refs/tags/%{version}.tar.gz
 Patch0:         fix-cmake-dir.patch
