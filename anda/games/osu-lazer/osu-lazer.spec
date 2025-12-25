@@ -5,7 +5,7 @@
 Name:			osu-lazer
 Version:		2025.1218.0
 Release:		1%?dist
-Summary:		The future of osu! and the beginning of an open era! Commonly known by the codename osu! lazer. Pew pew.
+Summary:		The future of osu! and the beginning of an open era! Commonly known by the codename osu!lazer. Pew pew.
 ExclusiveArch:	x86_64
 URL:			https://osu.ppy.sh/
 License:		MIT AND CC-BY-NC-4.0
