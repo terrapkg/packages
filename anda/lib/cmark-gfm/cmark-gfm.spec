@@ -64,5 +64,5 @@ Development files for %{name}.
 * Thu Dec 25 2025 metcya <metcya@gmail.com> - 0.29.0.gfm.13-2
 - Fix cmake install directories
 
-* Wed Dec 24 2025 metcya <metcya@gmail.com> - 0.29.0.gfm.13-2
+* Wed Dec 24 2025 metcya <metcya@gmail.com> - 0.29.0.gfm.13-1
 - Package cmark-gfm
