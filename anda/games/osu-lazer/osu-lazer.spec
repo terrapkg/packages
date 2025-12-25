@@ -9,6 +9,7 @@ Summary:		The future of osu! and the beginning of an open era! Commonly known by
 ExclusiveArch:	x86_64
 URL:			https://osu.ppy.sh/
 License:		MIT AND CC-BY-NC-4.0
+BuildRequires:  desktop-file-utils
 Requires:		osu-mime fuse
 Source0:		https://github.com/ppy/osu/releases/download/%{version}-lazer/osu.AppImage
 Source1:		https://raw.githubusercontent.com/ppy/osu/%{version}-lazer/assets/lazer.png
@@ -30,23 +31,28 @@ EOF
 
 %install
 install -Dm755 %{SOURCE0} %{buildroot}/opt/osu-lazer/osu.AppImage
-install -Dm755 -t %{buildroot}/usr/bin osu-lazer
+install -Dm755 -t %{buildroot}%{_bindir} osu-lazer
 
 # Install pixmap, desktop and license file
 mkdir -p %{buildroot}/%{_datadir}/licenses/%{name}/
-install -Dm644 %{SOURCE1} %{buildroot}/usr/share/pixmaps/osu-lazer.png
-install -Dm644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/%{name}/LICENSE.md
-install -Dm644 -t %{buildroot}/usr/share/applications %{SOURCE3}
-install -Dm644 -t %{buildroot}/usr/share/applications %{SOURCE4}
+install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/osu-lazer.png
+install -Dm644 %{SOURCE2} %{buildroot}%{_datadir}/licenses/%{name}/LICENSE.md
+install -Dm644 %{SOURCE3} %{buildroot}%{_appsdir}/osu-lazer.desktop
+install -Dm644 %{SOURCE4} %{buildroot}%{_appsdir}/osu-lazer-uri-handler.desktop
+
+%check
+desktop-file-validate %{buildroot}%{_appsdir}/osu-lazer.desktop
+desktop-file-validate %{buildroot}%{_appsdir}/osu-lazer-uri-handler.desktop
 
 %files
 %license LICENSE.md
-/usr/share/applications/osu-lazer*.desktop
-/usr/bin/osu-lazer
+%{_appsdir}/osu-lazer*.desktop
+%{_bindir}/osu-lazer
 /opt/osu-lazer/osu.AppImage
-/usr/share/pixmaps/osu-lazer.png
-
+%{_datadir}/pixmaps/osu-lazer.png
 
 %changelog
+* Wed Dec 24 2025 Owen Zimmerman <owen@fyralabs.com>
+- Use macros, add %check, clean up %install
 * Mon Feb 13 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2023.207.0-1
 - Initial package
