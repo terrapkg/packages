@@ -60,6 +60,8 @@ desktop-file-validate %{buildroot}%{_appsdir}/NeoHtop.desktop
 %{_metainfodir}/com.github.neohtop.metainfo.xml
 
 %changelog
+* Wed Dec 24 2025 Owen Zimmerman <owen@fyralabs.com>
+- Clean up build, add %check 
 * Wed Nov 19 2025 Owen Zimmerman <owen@fyralabs.com>
 - Add metainfo
 * Sat Feb 15 2025 Owen Zimmerman <owen@fyralabs.com>
