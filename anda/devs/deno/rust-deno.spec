@@ -28,6 +28,8 @@ BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  clang
 BuildRequires:  clang-devel
+# Why did Deno name their NPX equivalent this? At least OpenDX is pretty much dead.
+Conflicts:      dx
 
 %global _description %{expand:
 Provides the deno executable.}
@@ -47,6 +49,7 @@ License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) 
 %doc README.md
 %{_metainfodir}/%{appid}.metainfo.xml
 %{_bindir}/deno
+%{_bindir}/dx
 
 %pkg_completion -Bfzn %crate
 
@@ -73,4 +76,7 @@ target/rpm/deno completions bash > %buildroot%bash_completions_dir/deno
 %dnl target/rpm/deno completions elvish > %buildroot%elvish_completions_dir/deno.elv
 target/rpm/deno completions fish > %buildroot%fish_completions_dir/deno.fish
 target/rpm/deno completions zsh > %buildroot%zsh_completions_dir/_deno
+pushd %{buildroot}%{_bindir}
+./deno x --install-alias
+popd
 %terra_appstream -o %{SOURCE3}
