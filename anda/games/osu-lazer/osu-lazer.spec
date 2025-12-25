@@ -35,14 +35,14 @@ install -Dm755 -t %{buildroot}%{_bindir} osu-lazer
 
 # Install pixmap, desktop and license file
 mkdir -p %{buildroot}/%{_datadir}/licenses/%{name}/
-install -Dm644 %{SOURCE1} %{buildroot}/usr/share/pixmaps/osu-lazer.png
-install -Dm644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/%{name}/LICENSE.md
-install -Dm644 -t %{SOURCE3} %{buildroot}%{_appsdir}/osu-lazer.desktop
-install -Dm644 -t %{SOURCE4} %{buildroot}%{_appsdir}osu-lazer-uri-handler.desktop
+install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/osu-lazer.png
+install -Dm644 %{SOURCE2} %{buildroot}%{_datadir}/licenses/%{name}/LICENSE.md
+install -Dm644 %{SOURCE3} %{buildroot}%{_appsdir}/osu-lazer.desktop
+install -Dm644 %{SOURCE4} %{buildroot}%{_appsdir}/osu-lazer-uri-handler.desktop
 
 %check
 desktop-file-validate %{buildroot}%{_appsdir}/osu-lazer.desktop
-desktop-file-validate %{buildroot}%{_appsdir}osu-lazer-uri-handler.desktop
+desktop-file-validate %{buildroot}%{_appsdir}/osu-lazer-uri-handler.desktop
 
 %files
 %license LICENSE.md
@@ -53,6 +53,6 @@ desktop-file-validate %{buildroot}%{_appsdir}osu-lazer-uri-handler.desktop
 
 %changelog
 * Wed Dec 24 2025 Owen Zimmerman <owen@fyralabs.com>
-- Use macros, add %check
+- Use macros, add %check, clean up %install
 * Mon Feb 13 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2023.207.0-1
 - Initial package
