@@ -1,13 +1,13 @@
 Name: ctwm
 Summary: Lightweight window manager with virtual workspaces
 Version: 4.1.0
-Release: 1%?dist
+Release: 2%?dist
 URL: https://ctwm.org
 BuildRequires: libjpeg-turbo-devel libX11-devel libXext-devel libXmu-devel libXpm-devel libXt-devel libXrandr-devel cmake gcc m4 desktop-file-utils
 Source0: https://www.ctwm.org/dist/%{name}-%{version}.tar.xz
 Source1: %{name}.desktop
 License: MIT
-Requires: m4 
+Requires: m4
 # Derived from RPMSphere's packaging
 
 %description
@@ -57,4 +57,3 @@ desktop-file-validate %{buildroot}%{_datadir}/xsessions/%{name}.desktop
 * Tue May  3 2005 Richard Levitte <richard@levitte.org>
 - Received the original from Johan Vromans. Adjusted it to become
   an official .spec file.
-  
