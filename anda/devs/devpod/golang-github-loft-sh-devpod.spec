@@ -87,7 +87,7 @@ install -m 0755 -vd                     %{buildroot}%{_bindir}
 install -m 0755 -vp bin/devpod          %{buildroot}%{_bindir}/devpod-cli
 # tauri
 install -Dm755 "desktop/src-tauri/target/rpm/DevPod Desktop" %buildroot%_bindir/dev-pod-desktop
-install -Dm644 %{S:1} -t %buildroot%_appsdir/DevPod.desktop
+install -Dm644 %{S:1} %buildroot%_appsdir/DevPod.desktop
 install -Dm644 desktop/devpod.png %buildroot%_datadir/pixmaps/dev-pod-desktop.png
 
 %check
