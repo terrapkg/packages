@@ -94,7 +94,7 @@ patchelf --remove-rpath %{buildroot}%{_libdir}/%{name}/%{name}
 patchelf --remove-rpath %{buildroot}%{_libdir}/%{name}/%{core}
 
 %check
-desktop-file-validate %{_appsdir}/%{name}.desktop
+desktop-file-validate %{buildroot}%{_appsdir}/%{name}.desktop
 
 %files
 %attr(0755, -, -) %{_bindir}/%{name}
