@@ -33,7 +33,6 @@ License:       ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) A
 
 %install
 install -Dpm755 target/rpm/cargo-tauri %{buildroot}%{_bindir}/tauri
-%{cargo_license_summary_online}
 %{cargo_license_online} > LICENSE.dependencies
 
 %files -n tauri
