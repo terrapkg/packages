@@ -90,10 +90,10 @@ install -d -m 0755 %{buildroot}%{_bindir}
 ln -svf %{_datadir}/youtube-music/youtube-music %{buildroot}%{_bindir}/youtube-music
 
 # Install desktop file
-install -D -m 0644 %{SOURCE1} %{buildroot}%{appsdir}/youtube-music.desktop
+install -D -m 0644 %{SOURCE1} %{buildroot}%{_appsdir}/youtube-music.desktop
 
 %check
-desktop-file-validate %{buildroot}%{appsdir}/youtube-music.desktop
+desktop-file-validate %{buildroot}%{_appsdir}/youtube-music.desktop
 
 %files
 %license license
