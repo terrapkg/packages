@@ -52,6 +52,6 @@ popd
 %{_pkgdocdir}/
 
 %changelog
-* Wed Dec 24 2025 metcya <metcya@gmail.com> - {version}
+* Wed Dec 24 2025 metcya <metcya@gmail.com> - 6.4.0-1
 - Package glaze
 
