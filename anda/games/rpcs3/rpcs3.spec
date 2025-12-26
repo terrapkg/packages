@@ -1,15 +1,16 @@
-%global _distro_extra_cflags -Wno-uninitialized
+%dnl %global _distro_extra_cflags -Wno-uninitialized
 %global _distro_extra_cxxflags -include %_includedir/c++/*/cstdint
 # Define which LLVM/Clang version RPCS3 needs
 %if 0%{?fedora} >= 45
 %global llvm_major 21
 %endif
+%global toolchain clang
 # GLIBCXX_ASSERTIONS is known to break RPCS3
 %global build_cflags %(echo %{__build_flags_lang_c} | sed 's/-Wp,-D_GLIBCXX_ASSERTIONS//g') %{?_distro_extra_cflags}
-%global build_cxxflags %(echo %{__build_flags_lang_cxx} | sed 's/-Wp,-D_GLIBCXX_ASSERTIONS//g') %{?_distro_extra_cxxflags}
+%dnl %global build_cxxflags %(echo %{__build_flags_lang_cxx} | sed 's/-Wp,-D_GLIBCXX_ASSERTIONS//g') %{?_distro_extra_cxxflags}
 # Need to get rid of everything Clang can't use and undefine -Wunused-command-line-argument where possible due to the project's build flags
-%global build_cflags %(echo %{build_cflags} | sed 's:-Werror ::g' | sed 's:-Wunused-command-line-argument ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-hardened-ld ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-hardened-ld-errors ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-package-notes ::g') -Wno-unused-command-line-argument
-%global build_cxxflags %(echo %{build_cxxflags} | sed 's:-Werror ::g' | sed 's:-Wunused-command-line-argument ::g' | sed 's:-specs\=/usr/lib/rpm/redhat/redhat-annobin-cc1 ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-hardened-ld ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-hardened-ld-errors ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-package-notes ::g') -Wno-unused-command-line-argument
+%dnl %global build_cflags %(echo %{build_cflags} | sed 's:-Werror ::g' | sed 's:-Wunused-command-line-argument ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-hardened-ld ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-hardened-ld-errors ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-package-notes ::g') -Wno-unused-command-line-argument
+%dnl %global build_cxxflags %(echo %{build_cxxflags} | sed 's:-Werror ::g' | sed 's:-Wunused-command-line-argument ::g' | sed 's:-specs\=/usr/lib/rpm/redhat/redhat-annobin-cc1 ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-hardened-ld ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-hardened-ld-errors ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-package-notes ::g') -Wno-unused-command-line-argument
 %global commit 77aa5d4bbfc9ab572b678f872bf8083e0dc0725e
 %global ver 0.0.38-18547
 
@@ -92,8 +93,6 @@ export LLVM_DIR=%{_libdir}/llvm%{?llvm_major}/%{_lib}/cmake
     -DUSE_SYSTEM_FLATBUFFERS=OFF                              \
     -DUSE_SYSTEM_PUGIXML=OFF                                  \
     -DUSE_SYSTEM_WOLFSSL=OFF                                  \
-    -DCMAKE_C_COMPILER=clang%{?llvm_major:-%{llvm_major}}     \
-    -DCMAKE_CXX_COMPILER=clang++%{?llvm_major:-%{llvm_major}} \
     -DCMAKE_LINKER=mold                                       \
     -DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS -fuse-ld=mold"      \
     -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS -fuse-ld=mold"    
