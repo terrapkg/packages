@@ -15,7 +15,7 @@ Release:        1%?dist
 Summary:        PlayStation 3 emulator and debugger
 License:        GPL-2.0-only
 URL:            https://github.com/RPCS3/rpcs3
-Source0:        %{url}/archive/%{commit}/%{name}-%{commit}.tar.gz#/%{name}-%{shortcommit}.tar.gz
+Source0:        %{url}/archive/%{commit}/%{name}-%{commit}.tar.gz
 BuildRequires:  anda-srpm-macros glew openal-soft cmake vulkan-validation-layers git-core mold
 BuildRequires:  llvm%{?llvm_major}-devel
 BuildRequires:  clang%{?llvm_major}
