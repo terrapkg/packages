@@ -93,6 +93,8 @@ export LLVM_DIR=%{_libdir}/llvm%{?llvm_major}/%{_lib}/cmake
     -DUSE_SYSTEM_FLATBUFFERS=OFF                              \
     -DUSE_SYSTEM_PUGIXML=OFF                                  \
     -DUSE_SYSTEM_WOLFSSL=OFF                                  \
+    -DCMAKE_C_COMPILER=clang%{?llvm_major:-%{llvm_major}}     \
+    -DCMAKE_CXX_COMPILER=clang++%{?llvm_major:-%{llvm_major}} \
     -DCMAKE_LINKER=mold                                       \
     -DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS -fuse-ld=mold"      \
     -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS -fuse-ld=mold"    
