@@ -24,7 +24,7 @@ Packager:       Cappy Ishihara <cappy@fyralabs.com>
 # todo: investigate why
 #ExclusiveArch: x86_64
 
-BuildRequires:  git-core gcc make
+BuildRequires:  git-core gcc make desktop-file-utils
 # Required for usocket native module built with node-gyp
 BuildRequires:  python3 gcc-c++
 
@@ -90,7 +90,10 @@ install -d -m 0755 %{buildroot}%{_bindir}
 ln -svf %{_datadir}/youtube-music/youtube-music %{buildroot}%{_bindir}/youtube-music
 
 # Install desktop file
-install -D -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/applications/youtube-music.desktop
+install -D -m 0644 %{SOURCE1} %{buildroot}%{_appsdir}/youtube-music.desktop
+
+%check
+desktop-file-validate %{buildroot}%{_appsdir}/youtube-music.desktop
 
 %files
 %license license
@@ -99,10 +102,10 @@ install -D -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/applications/youtube-music
 %{_bindir}/youtube-music
 %{_datadir}/youtube-music
 %{_datadir}/icons/hicolor/*/apps/youtube-music*
-%{_datadir}/applications/youtube-music.desktop
-
-
+%{_appsdir}/youtube-music.desktop
 
 %changelog
+* Thu Dec 25 2025 Owen Zimmerman <owen@fyralabs.com>
+- Add %check
 * Sat Aug 03 2024 Cappy Ishihara <cappy@cappuchino.xyz>
 - Initial Release
