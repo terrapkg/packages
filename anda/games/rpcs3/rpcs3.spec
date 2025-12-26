@@ -1,11 +1,10 @@
-%dnl %global _distro_extra_cxxflags -include %_includedir/c++/*/cstdint
 # Define which LLVM/Clang version RPCS3 needs
 %if 0%{?fedora} >= 45
 %global llvm_major 21
 %endif
 %global toolchain clang
 # GLIBCXX_ASSERTIONS is known to break RPCS3
-%global build_cflags %(echo %{__build_flags_lang_c} | sed 's/-Wp,-D_GLIBCXX_ASSERTIONS//g') %{?_distro_extra_cflags}
+%global build_cflags %(echo "%{__build_flags_lang_c}" | sed 's|-Wp,-D_GLIBCXX_ASSERTIONS||g') %{?_distro_extra_cflags}
 %global commit 77aa5d4bbfc9ab572b678f872bf8083e0dc0725e
 %global ver 0.0.38-18547
 
