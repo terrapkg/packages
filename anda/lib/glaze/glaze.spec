@@ -3,7 +3,7 @@
 
 Name:           glaze-devel
 Version:        6.4.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        MIT
 URL:            https://stephenberry.github.io/glaze
 Source:         https://github.com/stephenberry/glaze/archive/refs/tags/v%{version}.tar.gz
@@ -32,7 +32,7 @@ Documentation files for glaze.
 
 %build
 %cmake -Dglaze_DEVELOPER_MODE=OFF \
-       -Dglaze_INSTALL_CMAKEDIR=%{_libdir}/cmake
+       -Dglaze_INSTALL_CMAKEDIR=%{_libdir}/cmake/glaze
 mkdocs build
 
 %install
@@ -45,13 +45,16 @@ popd
 %license LICENSE
 %doc README.md
 %{_includedir}/glaze/
-%{_libdir}/cmake/*.cmake
+%{_libdir}/cmake/glaze/
 
 %files -n glaze-docs
 %license LICENSE
 %{_pkgdocdir}/
 
 %changelog
+* Thu Dec 25 2025 metcya <metcya@gmail.com> - 6.4.0-2
+- Install cmake files to correct location
+
 * Wed Dec 24 2025 metcya <metcya@gmail.com> - 6.4.0-1
 - Package glaze
 
