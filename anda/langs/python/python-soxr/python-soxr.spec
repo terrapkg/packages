@@ -16,7 +16,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-wheel
 BuildRequires:  python3-setuptools
 BuildRequires:  python3-setuptools_scm
-BuildRequires:  python3-setuptools_scm+rich
 BuildRequires:  python3-pip
 BuildRequires:  python3-scikit-build-core
 BuildRequires:  python3-pybind11
