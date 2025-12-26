@@ -1,0 +1,27 @@
+From 087ef6401515d7260eafbffe423f39afc2af985c Mon Sep 17 00:00:00 2001
+From: Tomeu Vizoso <tomeu.vizoso@collabora.com>
+Date: Tue, 18 Nov 2025 11:36:43 +0100
+Subject: [PATCH] dril: don't build a rocket_dri.so
+
+As Teflon doesn't dynamically load drivers (yet?).
+---
+ src/gallium/targets/dril/meson.build | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/src/gallium/targets/dril/meson.build b/src/gallium/targets/dril/meson.build
+index 140022f077da9..62a816f44a625 100644
+--- a/src/gallium/targets/dril/meson.build
++++ b/src/gallium/targets/dril/meson.build
+@@ -124,8 +124,7 @@ foreach d : [[with_gallium_kmsro, [
+              [with_gallium_lima, 'lima_dri.so'],
+              [with_gallium_d3d12, 'd3d12_dri.so'],
+              [with_gallium_zink, 'zink_dri.so'],
+-             [with_gallium_asahi, 'asahi_dri.so'],
+-             [with_gallium_rocket, 'rocket_dri.so']]
++             [with_gallium_asahi, 'asahi_dri.so']]
+   if d[0]
+     dril_drivers += d[1]
+   endif
+-- 
+GitLab
+

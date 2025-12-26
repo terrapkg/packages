@@ -1,5 +1,5 @@
 Name:           tdf
-Version:        0.4.3
+Version:        0.5.0
 Release:        1%?dist
 Summary:        A tui-based PDF viewer
 URL:            https://github.com/itsjunetime/tdf

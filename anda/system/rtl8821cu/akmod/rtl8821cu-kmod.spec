@@ -1,6 +1,6 @@
-%global commit 3d1fcf4bc838542ceb03b0b4e9e40600720cf6ae
+%global commit 7f63a9da2e8ed83403f6f920e9b1628a37b38ef4
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20251010
+%global commit_date 20251215
 %global ver 5.12.0.4
 %global modulename rtl8821cu
 %global git_name 8821cu-20210916
@@ -11,7 +11,7 @@ Linux Driver for USB Wi-Fi Adapters that are based on the RTL8811CU, RTL8821CU, 
 
 Name:          %{modulename}-kmod
 Version:       %{ver}^%{commit_date}git.%{shortcommit}
-Release:       1%?dist
+Release:       2%?dist
 Summary:       Linux Driver for USB Wi-Fi Adapters using RTL8821 chipsets
 License:       GPL-2.0-only
 URL:           https://github.com/morrownr/8821cu-20210916
@@ -23,13 +23,13 @@ Requires:      akmods
 Conflicts:     dkms-%{modulename}
 Packager:      Gilver E. <rockgrub@disroot.org>
 
-%{expand:%(kmodtool --target %{_target_cpu} --repo terra --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
+%{expand:%(kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 
 %description %_description
 
 %prep
 %{?kmodtool_check}
-kmodtool  --target %{_target_cpu}  --repo terra --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
+kmodtool  --target %{_target_cpu}  --repo terra.fyralabs.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
 %autosetup -n %{git_name}-%{commit}
 

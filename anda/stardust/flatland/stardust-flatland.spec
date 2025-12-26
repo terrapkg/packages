@@ -1,12 +1,12 @@
-%global commit 0914dd3df54a5e6258dfc0a02d65af1c0fc0fc90
-%global commit_date 20240920
+%global commit add9b3420940a5608116d02d3dbf53fbd3eb7c40
+%global commit_date 20251225
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-xr-flatland
 Version:        %commit_date.%shortcommit
-Release:        2%?dist
+Release:        1%?dist
 Summary:        Flatland for Stardust XR
 URL:            https://github.com/StardustXR/flatland
 Source0:        %url/archive/%commit/flatland-%commit.tar.gz
@@ -32,12 +32,15 @@ export STARDUST_RES_PREFIXES=%_datadir
 
 mkdir -p %buildroot%_datadir
 cp -r res/* %buildroot%_datadir/
+%cargo_license_summary_online
+%{cargo_license_online} > LICENSE.dependencies
 
 
 %files
 %_bindir/flatland
 %_datadir/flatland/
 %license LICENSE
+%license LICENSE.dependencies
 %doc README.md
 
 %changelog

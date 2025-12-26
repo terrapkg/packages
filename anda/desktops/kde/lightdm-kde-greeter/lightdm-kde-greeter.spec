@@ -1,7 +1,7 @@
-%global commit 7f92a0f5aab4936f24f5a47a717a7444af1d3f42
+%global commit 88709e6ee84ddf7266457f8246c476bee3212ba3
 
 Name:           lightdm-kde-greeter
-Version:        6.0.5
+Version:        6.1.2
 Release:        1%?dist
 Summary:        Login screen using the LightDM framework
 License:        GPL-3.0-or-later
@@ -22,10 +22,11 @@ BuildRequires:  cmake(KF6Auth)
 BuildRequires:  cmake(KF6NetworkManagerQt)
 BuildRequires:  cmake(Plasma)
 BuildRequires:  pkgconfig(gtk+-2.0)
+BuildRequires:  pkgconfig(libei-1.0)
 BuildRequires:  pkgconfig(liblightdm-gobject-1)
 BuildRequires:  systemd-rpm-macros
 Requires: lightdm
-Requires: plasma-workspace-qml
+Requires: plasma-workspace
 Requires: polkit
 Provides: lightdm-greeter
 
@@ -81,7 +82,8 @@ mkdir -p %buildroot%_sharedstatedir/%name
 %_datadir/dbus-1/system-services/org.kde.kcontrol.kcmlightdm.service
 %_datadir/dbus-1/system.d/org.kde.kcontrol.kcmlightdm.conf
 %_datadir/polkit-1/actions/org.kde.kcontrol.kcmlightdm.policy
-%_datadir/xgreeters/lightdm-kde-greeter.desktop
+%_datadir/lightdm/greeters/lightdm-kde-greeter.desktop
+%_datadir/xgreeters/lightdm-kde-greeter-x11.desktop
 %_datadir/%name/
 %_kf6_libexecdir/kauth/kcmlightdmhelper
 %_qt6_plugindir/plasma/kcms/systemsettings/kcm_lightdm.so

@@ -3,10 +3,10 @@
 %global name_pretty %{quote:Prism Launcher (Nightly)}
 %global appid org.prismlauncher.PrismLauncher-nightly
 
-%global commit 8abf5ed7b1f31a89fad1b8d7fb1703639ca08426
+%global commit 76d1cd1b4e2bc62c827a6dda243cb7a3e715caf6
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
-%global commit_date 20251123
+%global commit_date 20251224
 %global snapshot_info %{commit_date}.%{shortcommit}
 
 %bcond_without qt6
@@ -59,7 +59,9 @@ BuildRequires:    desktop-file-utils
 BuildRequires:    libappstream-glib
 BuildRequires:    tomlplusplus-devel
 BuildRequires:    cmake(ghc_filesystem)
-BuildRequires:    qrencode-devel
+BuildRequires:    pkgconfig(libqrencode)
+BuildRequires:    pkgconfig(libarchive)
+BuildRequires:    pkgconfig(gamemode)
 BuildRequires:    cmake(Qt%{qt_version}Concurrent) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Core) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Gui) >= %{min_qt_version}
@@ -71,9 +73,6 @@ BuildRequires:    cmake(Qt%{qt_version}NetworkAuth) >= %{min_qt_version}
 
 %if %{with qt6}
 BuildRequires:    cmake(Qt6Core5Compat)
-BuildRequires:    quazip-qt6-devel
-%else
-BuildRequires:    quazip-qt5-devel
 %endif
 
 BuildRequires:    pkgconfig(libcmark)
@@ -162,6 +161,7 @@ rm -f %{buildroot}%{_datadir}/metainfo/org.prismlauncher.PrismLauncher.metainfo.
 %{_datadir}/applications/org.prismlauncher.PrismLauncher.desktop
 %{_metainfodir}/%{appid}.metainfo.xml
 %{_datadir}/icons/hicolor/scalable/apps/org.prismlauncher.PrismLauncher.svg
+%{_datadir}/icons/hicolor/256x256/apps/org.prismlauncher.PrismLauncher.png
 %{_datadir}/mime/packages/modrinth-mrpack-mime.xml
 %{_datadir}/qlogging-categories%{qt_version}/prismlauncher.categories
 %{_mandir}/man?/prismlauncher.*

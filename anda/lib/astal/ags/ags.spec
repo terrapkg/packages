@@ -12,7 +12,7 @@
 
 # https://github.com/Aylur/ags
 %global goipath         github.com/Aylur/ags
-Version:                3.0.0
+Version:                3.1.1
 
 %gometa -f
 
@@ -41,11 +41,13 @@ Packager:       madonuko <mado@fyralabs.com>
 %autopatch -p1
 
 %build
+cd cli
 %define currentgoldflags -X main.version=%version
 %define gomodulesmode GO111MODULE=on
 %gobuild -o %{gobuilddir}/bin/ags .
 
 %install
+cd cli
 %gopkginstall
 install -m 0755 -vd                     %{buildroot}%{_bindir}
 install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/

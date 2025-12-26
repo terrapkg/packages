@@ -1,6 +1,6 @@
-%global commit 6b28671eade5d31ef737349cdf53a2e6470a8648
+%global commit f705b9f46a4083d8053cfa254898c164af46ff34
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global fulldate 2025-11-22
+%global fulldate 2025-12-25
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
 %global ver 1.3.0
@@ -118,6 +118,7 @@ This package allows Ghostty to interact with KIO.
 Summary:        Nautilus menu support for Ghostty
 Supplements:    (%{name} and nautilus)
 Requires:       %{name} = %{evr}
+Requires:       nautilus-python
 BuildArch:      noarch
 
 %description    nautilus
@@ -180,6 +181,19 @@ BuildArch:      noarch
 %description    terminfo
 Ghostty's terminfo. Needed for basic terminal function.
 
+%package -n     libghostty-vt-nightly
+Summary:        The libghostty-vt libraries
+
+%description -n libghostty-vt-nightly
+This package contains the libghostty-vt libraries, the first of many linghostty libaries in development.
+
+%package -n     libghostty-vt-nightly-devel
+Summary:        Development files for libghostty-vt
+Requires:       libghostty-vt-nightly = %{evr}
+
+%description -n libghostty-vt-nightly-devel
+This package contains the libraries and header files that are needed for developing with libghostty-vt.
+
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
 %autosetup -n %{base_name}-%{ver}-main+%{shortcommit}
@@ -240,8 +254,6 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 
 %files devel
 %{_includedir}/ghostty/
-%{_libdir}/libghostty-vt.so
-%{_datadir}/pkgconfig/libghostty-vt.pc
 
 %files kio
 %{_datadir}/kio/servicemenus/%{appid}.desktop
@@ -279,6 +291,13 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %endif
 %{_datadir}/terminfo/x/xterm-%{base_name}
 
+%files -n libghostty-vt-nightly
+%{_libdir}/libghostty-vt.so.*
+
+%files -n libghostty-vt-nightly-devel
+%{_libdir}/libghostty-vt.so
+%{_datadir}/pkgconfig/libghostty-vt.pc
+
 %post
 %systemd_user_post app-%{appid}.service
 
@@ -289,6 +308,8 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %systemd_user_postun app-%{appid}.service
 
 %changelog
+* Sat Nov 29 2025 Gilver E. <rockgrub@disroot.org> - 1.3.0~tip^20251128git9baf37a-1
+- Initial libghostty-vt packages
 * Tue Oct 28 2025 Gilver E. <rockgrub@disroot.org> - 1.3.0~tip^20251027gitd40321a-2
 - Disabled bundled themes
  * This is necessary to address licensing issues in the themes repo Ghostty uses

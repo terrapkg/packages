@@ -1,7 +1,7 @@
 %define debug_package %nil
 
 Name:           nph
-Version:        0.6.1
+Version:        0.6.2
 Release:        1%?dist
 Summary:        An opinionated code formatter for Nim
 License:        MIT

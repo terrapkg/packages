@@ -1,5 +1,5 @@
 Name:           xwayland-satellite
-Version:        0.7
+Version:        0.8
 Release:        1%?dist
 Summary:        Xwayland outside your Wayland.
 License:        MPL-2.0

@@ -20,6 +20,7 @@ BuildRequires:  gtk3-devel
 BuildRequires:  rust-gdk-pixbuf-sys-devel
 BuildRequires:  glib2-devel
 BuildRequires:  openssl-devel
+BuildRequires:  desktop-file-utils
 BuildRequires:  anda-srpm-macros
 BuildRequires:  terra-appstream-helper
 
@@ -36,26 +37,31 @@ npm install
 npm run tauri build
 
 %install
-install -Dpm755 src-tauri/target/release/NeoHtop %buildroot%_bindir/NeoHtop
-install -Dpm644 %{SOURCE1} %buildroot%{_datadir}/applications/NeoHtop.desktop
+install -Dpm755 src-tauri/target/release/NeoHtop %{buildroot}%{_bindir}/NeoHtop
+install -Dpm644 %{SOURCE1}                       %{buildroot}%{_appsdir}/NeoHtop.desktop
 # don't mind the numbers not matching, this is how the offical rpm installs these files
-install -Dpm644 src-tauri/icons/128x128@2x.png %buildroot%{_iconsdir}/hicolor/256x256@2/apps/NeoHtop.png
-install -Dpm644 src-tauri/icons/32x32.png %buildroot%{_iconsdir}/hicolor/32x32/apps/NeoHtop.png
-install -Dpm644 src-tauri/icons/128x128.png %buildroot%{_iconsdir}/hicolor/128x128/apps/NeoHtop.png
+install -Dpm644 src-tauri/icons/128x128@2x.png   %{buildroot}%{_hicolordir}/256x256@2/apps/NeoHtop.png
+install -Dpm644 src-tauri/icons/32x32.png        %{buildroot}%{_hicolordir}/32x32/apps/NeoHtop.png
+install -Dpm644 src-tauri/icons/128x128.png      %{buildroot}%{_hicolordir}/128x128/apps/NeoHtop.png
 
 %terra_appstream -o %{SOURCE2}
+
+%check
+desktop-file-validate %{buildroot}%{_appsdir}/NeoHtop.desktop
 
 %files
 %doc README.md
 %license LICENSE
-%_bindir/NeoHtop
-%{_datadir}/applications/NeoHtop.desktop
-%{_iconsdir}/hicolor/256x256@2/apps/NeoHtop.png
-%{_iconsdir}/hicolor/32x32/apps/NeoHtop.png
-%{_iconsdir}/hicolor/128x128/apps/NeoHtop.png
+%{_bindir}/NeoHtop
+%{_appsdir}/NeoHtop.desktop
+%{_hicolordir}/256x256@2/apps/NeoHtop.png
+%{_hicolordir}/32x32/apps/NeoHtop.png
+%{_hicolordir}/128x128/apps/NeoHtop.png
 %{_metainfodir}/com.github.neohtop.metainfo.xml
 
 %changelog
+* Wed Dec 24 2025 Owen Zimmerman <owen@fyralabs.com>
+- Clean up build, add %check 
 * Wed Nov 19 2025 Owen Zimmerman <owen@fyralabs.com>
 - Add metainfo
 * Sat Feb 15 2025 Owen Zimmerman <owen@fyralabs.com>
