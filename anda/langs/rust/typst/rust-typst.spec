@@ -13,7 +13,7 @@ URL:            https://typst.app
 Source:         https://github.com/typst/typst/archive/refs/tags/v%version.tar.gz
 Packager:       madonuko <mado@fyralabs.com>
 
-BuildRequires:  anda-srpm-macros mold cargo-rpm-macros >= 24
+BuildRequires:  anda-srpm-macros cargo-rpm-macros >= 24
 BuildRequires:  pkgconfig(openssl)
 
 %global _description %{expand:
