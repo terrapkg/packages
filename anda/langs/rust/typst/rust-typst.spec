@@ -13,7 +13,7 @@ URL:            https://typst.app
 Source:         https://github.com/typst/typst/archive/refs/tags/v%version.tar.gz
 Packager:       madonuko <mado@fyralabs.com>
 
-BuildRequires:  anda-srpm-macros cargo-rpm-macros >= 24
+BuildRequires:  anda-srpm-macros mold cargo-rpm-macros >= 24
 BuildRequires:  pkgconfig(openssl)
 
 %global _description %{expand:
@@ -35,8 +35,10 @@ Provides:       %crate-cli = %version-%release
 %doc README.md
 %_bindir/typst
 %_mandir/man1/typst-compile.1.gz
+%_mandir/man1/typst-completions.1.gz
 %_mandir/man1/typst-fonts.1.gz
 %_mandir/man1/typst-init.1.gz
+%_mandir/man1/typst-info.1.gz
 %_mandir/man1/typst-query.1.gz
 %_mandir/man1/typst-update.1.gz
 %_mandir/man1/typst-watch.1.gz
