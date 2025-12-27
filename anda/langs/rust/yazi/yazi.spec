@@ -43,7 +43,6 @@ install -Dm755 target/rpm/ya        %{buildroot}%{_bindir}/ya
 install -Dm755 target/rpm/yazi      %{buildroot}%{_bindir}/yazi
 install -Dm644 assets/logo.png      %{buildroot}%{_hicolordir}/1024x1024/apps/yazi.png
 install -Dm644 assets/yazi.desktop  %{buildroot}%{_appsdir}/yazi.desktop
-%cargo_license_summary_online
 %{cargo_license_online} > LICENSE.dependencies
 
 %files
