@@ -50,6 +50,8 @@ install -Dm 644 extras/%{name}-url-handler.desktop -t %{buildroot}%{_datadir}/ap
 %systemd_user_postun_with_restart %{name}.service
 
 %files
+%license LICENSE
+%doc README.md CONTRIBUTING.md
 %{_bindir}/%{name}
 %{_userunitdir}/%{name}.service
 %{_datadir/%{name}/themes/
