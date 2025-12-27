@@ -1,1 +1,1 @@
-rpm.version(gh("youknowone/python-deadlib"));
+rpm.version(pypi("standard-aifc"));
