@@ -13,6 +13,7 @@ BuildRequires:  cmake(absl)
 BuildRequires:  openssl-devel
 BuildRequires:  cmark-gfm-devel
 BuildRequires:  cmake(glaze)
+BuildRequires:  cmake(minizip-ng)
 BuildRequires:  cmake(Qt6)
 BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  cmake(Qt6Keychain)
@@ -20,7 +21,7 @@ BuildRequires:  cmake(LayerShellQt)
 BuildRequires:  pkgconfig(libqalculate)
 BuildRequires:  pkgconfig(protobuf)
 BuildRequires:  wayland-devel
-BuildRequires:       nodejs-npm
+BuildRequires:  nodejs-npm
 
 %description
 Vicinae (pronounced "vih-SIN-ay") is a high-performance, native launcher for
