@@ -1,1 +1,1 @@
-rpm.version(gh("AbstractUmbra/audioop"));
+rpm.version(pypi("audioop-lts"));
