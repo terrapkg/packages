@@ -22,6 +22,7 @@ BuildRequires:  pkgconfig(libqalculate)
 BuildRequires:  pkgconfig(protobuf)
 BuildRequires:  wayland-devel
 BuildRequires:  nodejs-npm
+BuildRequires:  systemd-srpm-macros
 
 %description
 Vicinae (pronounced "vih-SIN-ay") is a high-performance, native launcher for
@@ -36,9 +37,23 @@ your desktop — built with C++ and Qt.
 
 %install
 %cmake_install
+install -Dm 644 extras/%{name}.desktop -t %{buildroot}%{_datadir}/applications
+install -Dm 644 extras/%{name}-url-handler.desktop -t %{buildroot}%{_datadir}/applications
+
+%post
+%systemd_user_post %{name}.service
+
+%preun
+%systemd_user_preun %{name}.service
+
+%postun
+%systemd_user_postun_with_restart %{name}.service
 
 %files
 %{_bindir}/%{name}
+%{_userunitdir}/%{name}.service
+%{_datadir/%{name}/themes/
+%{_hicolordir}/512x512/apps/%{name}.png
 
 %changelog
 * Fri Dec 26 2025 metcya <metcya@gmail.com> - 0.17.3
