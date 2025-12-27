@@ -13,7 +13,7 @@ BuildRequires:  cmake(absl)
 BuildRequires:  openssl-devel
 BuildRequires:  cmark-gfm-devel
 BuildRequires:  cmake(glaze)
-BuildRequires:  cmake(minizip-ng)
+BuildRequires:  cmake(minizip)
 BuildRequires:  cmake(Qt6)
 BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  cmake(Qt6Keychain)
