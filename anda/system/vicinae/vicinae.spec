@@ -55,8 +55,8 @@ install -Dm 644 extras/%{name}-url-handler.desktop -t %{buildroot}%{_datadir}/ap
 %{_bindir}/%{name}
 %{_userunitdir}/%{name}.service
 %{_datadir/%{name}/themes/
-%{_datadir}/applications/%{name}.desktop
-%{_datadir}/applications/%{name}-url-handler.desktop
+%{_appsdir}/%{name}.desktop
+%{_appsdir}/%{name}-url-handler.desktop
 %{_hicolordir}/512x512/apps/%{name}.png
 
 %changelog
