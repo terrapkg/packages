@@ -50,8 +50,7 @@ First of all, thanks for being interested in contributing to Terra! If you have 
 
 - [Contribution Guide](https://developer.fyralabs.com/terra/contributing)
 - [FAQ](https://developer.fyralabs.com/terra/faq)
-- [Policy](https://developer.fyralabs.com/terra/policy)
-
+- [Guidelines](https://developer.fyralabs.com/terra/guidelines)
 
 ## Documentation
 
@@ -67,4 +66,4 @@ Feel free to reach out by [joining our community](https://wiki.ultramarine-linux
 
 - [Contribution Guide](https://developer.fyralabs.com/terra/contributing)
 - [FAQ](https://developer.fyralabs.com/terra/faq)
-- [Policy](https://developer.fyralabs.com/terra/policy)
+- [Guidelines](https://developer.fyralabs.com/terra/guidelines)
