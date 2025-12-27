@@ -7,7 +7,7 @@ Summary:        Blazing fast terminal file manager written in Rust, based on asy
 URL:            https://yazi-rs.github.io/
 Source0:        https://github.com/sxyazi/yazi/archive/refs/tags/v%version.tar.gz
 License:        MIT
-BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold libudev-devel g++ libinput-devel libxkbcommon-x11-devel
+BuildRequires:  cargo anda-srpm-macros cargo-rpm-macros mold
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
