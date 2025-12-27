@@ -12,8 +12,6 @@ BuildArch:      noarch
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-pip
-BuildRequires:  python3-setuptools
-BuildRequires:  python3-setuptools_scm
 BuildRequires:  python3-poetry-core
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
