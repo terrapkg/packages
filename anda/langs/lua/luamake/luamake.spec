@@ -1,4 +1,4 @@
-%define debug_package %{nil}
+%dnl %define debug_package %{nil}
 
 Name:           luamake
 Version:        1.7
@@ -8,12 +8,14 @@ URL:            https://github.com/actboy168/luamake
 Source:         https://github.com/actboy168/luamake/archive/refs/tags/v%version.tar.gz
 Summary:        A platform independent configuration and build system that uses the standard Lua command-line interpreter
 
-BuildRequires:  gcc-c++ make ninja-build glibc lua gcc cmake libstdc++-devel libstdc++-static libstdc++ libcxx libcxx-devel
+BuildRequires:  gcc-c++ make ninja-build glibc lua gcc cmake libstdc++-devel libstdc++-static libstdc++ libcxx libcxx-devel sed
 
 %description
 
 %prep
 %git_clone
+
+sed -i '10 s/$/ -g/' compile/ninja/linux.ninja
 
 %build
 compile/build.sh notest
