@@ -2,7 +2,7 @@
 
 Name:           coreboot-utils
 Version:        25.12
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Various coreboot utilities
 URL:            https://doc.coreboot.org
 License:        BSD-3-Clause AND Apache-2.0 AND CC-BY-SA-3.0 AND GPL-2.0-only AND GPL-3.0-or-later AND ISC AND BSD-2-Clause-Patent AND BSD-4-Clause-UC AND CC-PDDC AND GPL-2.0-or-later AND HPND-sell-varient AND LGPL-2.1-or-later AND BSD-2-Clause AND CC-BY-4.0 AND GPL-3.0-only AND HPND AND X11 AND MIT
@@ -123,7 +123,7 @@ Requires:       %{name}-xcompile
 
 %package        abuild
 Summary:        coreboot autobuild script builds coreboot images for all available targets
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 Conflicts:      abuild <= 25.06
 Obsoletes:      abuild <= 25.06
 %description    abuild
@@ -131,14 +131,14 @@ Obsoletes:      abuild <= 25.06
 
 %package        amdfwtool
 Summary:        Create AMD Firmware combination
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 Requires:       glibc
 %description    amdfwtool
 %summary.
 
 %package        amdtools
 Summary:        Various tools for AMD processors
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 Requires:       perl
 Requires:       bash
 %description    amdtools
@@ -146,7 +146,7 @@ Requires:       bash
 
 %package        apcb
 Summary:        AMD PSP Control Block tools
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 Requires:       python3
 %description    apcb
 The necessary tools for building APCBs are not available for use by coreboot.
@@ -157,7 +157,7 @@ apcb_edit - This tool allows patching an existing APCB binary with specific SPDs
 apcb_v3_edit - This tool allows patching an existing APCB v3 binary with up to  16 specific SPDs.
 
 %dnl %package archive - ### Currently bugged and does not compile ###
-%dnl Requires:       coreboot-utils = %{version}
+%dnl Requires:       coreboot-utils = %{evr}
 %dnl Summary:        Concatenate files and create an archive
 %dnl %description    archive
 %dnl %summary.
@@ -165,7 +165,7 @@ apcb_v3_edit - This tool allows patching an existing APCB v3 binary with up to  
 %package        autoport
 Summary:        Porting coreboot using autoport
 
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 Requires:       acpica-tools
 Requires:       dmidecode
 Requires:       %{name}-ectool
@@ -179,13 +179,13 @@ Automated porting coreboot to Sandy Bridge/Ivy Bridge/Haswell platforms.
 
 %package        bincfg
 Summary:        Compiler/Decompiler for data blobs with specs
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 %description    bincfg
 %summary.
 
 %package        board_status
 Summary:        Tools to collect logs and upload them to the board status repository
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 Requires:       bash
 %description    board_status
 %summary.
@@ -193,14 +193,14 @@ Requires:       bash
 %ifarch x86_64
 %package        bucts
 Summary:        A tool to manipulate the BUC.TS bit on Intel targets
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 %description    bucts
 %summary.
 %endif
 
 %package        cbfstool
 Summary:        Management utility for CBFS formatted ROM images
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 Conflicts:      cbfstool <= 25.06
 Obsoletes:      cbfstool <= 25.06
 %description    cbfstool
@@ -208,7 +208,7 @@ Obsoletes:      cbfstool <= 25.06
 
 %package        cbfstool-tests
 Summary:        CBFSTool tests
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 Requires:       %{name}-cbfstool
 Requires:       python3
 Requires:       python3-pytest
@@ -217,7 +217,7 @@ Requires:       python3-pytest
 
 %package        cbmem
 Summary:        Prints out coreboot mem table information
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 Requires:       glibc
 Conflicts:      cbmem <= 25.06
 Obsoletes:      cbmem <= 25.06
@@ -225,7 +225,7 @@ Obsoletes:      cbmem <= 25.06
 Prints out coreboot mem table information in JSON by default, and also implements the basic cbmem -list and -console commands.
 
 %package        chromeos-coreboot-utilities
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 Requires:       bash
 Summary:        access or generate ChromeOS resources
 %description    chromeos-coreboot-utilities
@@ -236,7 +236,7 @@ VGA option roms) from a ChromeOS recovery image.
 %package        coreboot-configurator
 Summary:        A simple GUI to change settings in coreboot's CBFS, via the nvramtool utility
 
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 Requires:       %{name}-nvramtool
 Requires:       qt5-qtbase
 Requires:       qt5-qtsvg
@@ -247,14 +247,14 @@ Requires:       yaml-cpp
 
 %package        doc
 Summary:        Coreboot utility documentation
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 %description    doc
 %summary.
 
 %ifarch x86_64
 %package        ectool
 Summary:        Dumps the RAM of a laptop's Embedded/Environmental Controller (EC)
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 Requires:       glibc
 Conflicts:      chromium-ectool
 %description    ectool
@@ -263,41 +263,41 @@ Conflicts:      chromium-ectool
 
 %package        exynos
 Summary:        Computes and fills Exynos ROM checksum (for BL1 or BL2)
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 Requires:       python3
 %description    exynos
 %summary.
 
 %package        find_usbdebug
 Summary:        Help find USB debug ports
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 Requires:       bash
 %description    find_usbdebug
 %summary.
 
 %package        futility
 Summary:        Firmware utility for signing ChromeOS images
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 %description    futility
 %summary.
 
 %package        genbuild_h
 Summary:        Generate build system definitions
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 Requires:       bash
 %description    genbuild_h
 %summary.
 
 %package        hda-decoder
 Summary:        Dumps decoded HDA default configuration registers into a format which can be used in coreboot's verb table
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 %description    hda-decoder
 %summary.
 
 %package        ifdtool
 Summary:        Extract and dump Intel Firmware Descriptor information
 
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 Requires:       glibc
 Requires:       pciutils
 Requires:       zlib-ng
@@ -309,7 +309,7 @@ Requires:       zlib-ng
 %package        intelmetool
 Summary:        Dump interesting things about Management Engine even if hidden
 
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 Requires:       glibc
 Requires:       pciutils
 Requires:       zlib-ng
@@ -321,7 +321,7 @@ Requires:       zlib-ng
 %ifarch x86_64
 %package        intelp2m
 Summary:        convert the configuration DW0/1 registers value from an inteltool dump to coreboot macros
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 %description    intelp2m
 %summary.
 %endif
@@ -330,7 +330,7 @@ Requires:       coreboot-utils = %{version}
 %package        inteltool
 Summary:        Provides information about the Intel CPU/chipset hardware configuration
 
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 Requires:       glibc
 Requires:       pciutils
 Requires:       zlib-ng
@@ -341,14 +341,14 @@ Requires:       zlib-ng
 
 %package        intelvbttool
 Summary:        Parse VBT from VGA BIOS
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 Requires:       glibc
 %description    intelvbttool
 %summary.
 
 %package        kbc1126
 Summary:        dump the two blobs from the factory firmware of some HP laptops
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 %description    kbc1126
 Tools used to dump the two blobs from the factory firmware of many HP
 laptops with 8051-based SMSC KBC1098/KBC1126 embedded controller and
@@ -356,7 +356,7 @@ insert them to the firmware image.
 
 %package        mediatek-coreboot-utilities
 Summary:        Generate MediaTek bootload header
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 Requires:       python3
 %description    mediatek-coreboot-utilities
 check-pi-img.py - Check `PI_IMG` firmware.
@@ -364,21 +364,21 @@ gen-bl-img.py - Generate MediaTek bootloader header.
 
 %package        mma
 Summary:        Memory Margin Analysis automation tests
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 Requires:       bash
 %description    mma
 %summary.
 
 %package        msrtool
 Summary:        Dumps chipset-specific MSR registers
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 %description    msrtool
 %summary.
 
 %ifarch x86_64
 %package        nvramtool
 Summary:        Reads and writes coreboot parameters and displaying information from the coreboot table in CMOS/NVRAM
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 %description    nvramtool
 %summary.
 %endif
@@ -386,7 +386,7 @@ Requires:       coreboot-utils = %{version}
 %ifarch x86_64
 %package        pmh7tool
 Summary:        Dumps, reads and writes PMH7 registers on Lenovo ThinkPads. PMH7 is used for switching on and off the power of some devices on the board such as dGPU
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 %description    pmh7tool
 %summary.
 %endif
@@ -394,14 +394,14 @@ Requires:       coreboot-utils = %{version}
 %ifarch x86_64
 %package        post
 Summary:        Userspace utility that can be used to test POST cards
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 %description    post
 %summary.
 %endif
 
 %package        qualcomm-coreboot-utilities
 Summary:        CMM script to debug Qualcomm coreboot environments
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 Requires:       python3
 %description    qualcomm-coreboot-utilities
 CMM script to debug Qualcomm coreboot environments.
@@ -413,7 +413,7 @@ mbn_tools - Contains all MBN Utilities for image generation
 
 %package        riscv-coreboot-utilities
 Summary:        riscv coreboot utilities
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 Requires:       bash
 Requires:       python3
 %description    riscv-coreboot-utilities
@@ -421,7 +421,7 @@ Requires:       python3
 
 %package        rockchip-coreboot-utilities
 Summary:        Generate Rockchip idblock bootloader
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 Requires:       python3
 %description    rockchip-coreboot-utilities
 %summary.
@@ -429,7 +429,7 @@ Requires:       python3
 %package        scripts
 Summary:        Various coreboot utility scripts
 
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 Requires:       perl
 Requires:       bash
 
@@ -454,14 +454,14 @@ Requires:       bash
 %ifarch x86_64
 %package        smmstoretool
 Summary:        Offline SMMSTORE variable modification tool
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 %description    smmstoretool
 %summary.
 %endif
 
 %package        spdtool
 Summary:        Dumps SPD ROMs from a given blob to separate files using known patterns and reserved bits
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 Requires:       python3
 %description    spdtool
 Dumps SPD ROMs from a given blob to separate files using known patterns
@@ -470,27 +470,27 @@ that have soldered down DRAM.
 
 %package        spd_tools
 Summary:        A set of tools to generate SPD files for platforms with memory down configurations
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 %description    spd_tools
 %summary.
 
 %package        spkmodem_recv
 Summary:        Decode spkmodem signals
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 %description    spkmodem_recv
 %summary.
 
 %ifarch x86_64
 %package        superiotool
 Summary:        A user-space utility to detect Super I/O of a mainboard and provide detailed information about the register contents of the Super I/O
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 %description    superiotool
 %summary.
 %endif
 
 %package        xcompile
 Summary:        Cross compile setup
-Requires:       coreboot-utils = %{version}
+Requires:       coreboot-utils = %{evr}
 %description    xcompile
 %summary.
 
@@ -615,16 +615,16 @@ install -Dm 755 util/chromeos/update_ec_headers.sh %{buildroot}%{_bindir}/update
 install -Dm 755 util/coreboot-configurator/redhat-linux-build/src/application/coreboot-configurator %{buildroot}%{_bindir}/coreboot-configurator
 install -Dm 644 util/coreboot-configurator/src/resources/org.coreboot.nvramtool.policy %{buildroot}%{_datadir}/polkit-1/actions/org.coreboot.nvramtool.policy
 install -Dm 644 util/coreboot-configurator/src/resources/org.coreboot.reboot.policy %{buildroot}%{_datadir}/polkit-1/actions/org.coreboot.reboot.policy
-install -Dm 644 util/coreboot-configurator/src/resources/coreboot-configurator.desktop %{buildroot}%{_datadir}/applications/coreboot-configurator.desktop
-install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/24.png %{buildroot}%{_datadir}/icons/hicolor/24x24/apps/coreboot-configurator.png
-install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/48.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/coreboot-configurator.png
-install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/96.png %{buildroot}%{_datadir}/icons/hicolor/96x96/apps/coreboot-configurator.png
-install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/16.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/coreboot-configurator.png
-install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/32.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/coreboot-configurator.png
-install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/64.png %{buildroot}%{_datadir}/icons/hicolor/64x64/apps/coreboot-configurator.png
-install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/coreboot-configurator.png
-install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/256.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/coreboot-configurator.png
-install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/512.png %{buildroot}%{_datadir}/icons/hicolor/512x512/apps/coreboot-configurator.png
+install -Dm 644 util/coreboot-configurator/src/resources/coreboot-configurator.desktop %{buildroot}%{_appsdir}/coreboot-configurator.desktop
+install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/24.png %{buildroot}%{_hicolordir}/24x24/apps/coreboot-configurator.png
+install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/48.png %{buildroot}%{_hicolordir}/48x48/apps/coreboot-configurator.png
+install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/96.png %{buildroot}%{_hicolordir}/96x96/apps/coreboot-configurator.png
+install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/16.png %{buildroot}%{_hicolordir}/16x16/apps/coreboot-configurator.png
+install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/32.png %{buildroot}%{_hicolordir}/32x32/apps/coreboot-configurator.png
+install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/64.png %{buildroot}%{_hicolordir}/64x64/apps/coreboot-configurator.png
+install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/128.png %{buildroot}%{_hicolordir}/128x128/apps/coreboot-configurator.png
+install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/256.png %{buildroot}%{_hicolordir}/256x256/apps/coreboot-configurator.png
+install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/512.png %{buildroot}%{_hicolordir}/512x512/apps/coreboot-configurator.png
 
 %ifarch x86_64
 install -Dm 755 util/ectool/ectool %{buildroot}%{_bindir}/ectool
@@ -734,23 +734,86 @@ install -Dm 755 util/superiotool/superiotool %{buildroot}%{_bindir}/superiotool
 
 install -Dm 755 util/xcompile/xcompile %{buildroot}%{_libdir}/xcompile
 
-# Install documentation files to appropriate subdirectries within docdir to prevent multiple files of the same name
-mkdir -p %{buildroot}%{_docdir}/coreboot-utils/abuild
-mkdir -p %{buildroot}%{_docdir}/coreboot-utils/cbfstool
-mkdir -p %{buildroot}%{_docdir}/coreboot-utils/ifdtool
-mkdir -p %{buildroot}%{_docdir}/coreboot-utils/intelp2m
-mkdir -p %{buildroot}%{_docdir}/coreboot-utils/smmstoretool
+# Install documentation files to appropriate subdirectries within pkgdocdir to prevent multiple files of the same name
+mkdir -p %{buildroot}%{_pkgdocdir}/abuild
+mkdir -p %{buildroot}%{_pkgdocdir}/cbfstool
+mkdir -p %{buildroot}%{_pkgdocdir}/ifdtool
+mkdir -p %{buildroot}%{_pkgdocdir}/intelp2m
+mkdir -p %{buildroot}%{_pkgdocdir}/smmstoretool
 
-cp Documentation/util.md %{buildroot}%{_docdir}/coreboot-utils/util.md
-cp Documentation/cbfs.txt %{buildroot}%{_docdir}/coreboot-utils/cbfs.txt
-cp Documentation/util/abuild/index.md %{buildroot}%{_docdir}/coreboot-utils/abuild/index.md
-cp Documentation/util/cbfstool/index.md %{buildroot}%{_docdir}/coreboot-utils/cbfstool/index.md
-cp Documentation/util/cbfstool/mmap_windows.md %{buildroot}%{_docdir}/coreboot-utils/cbfstool/mmap_windows.md
-cp Documentation/util/ifdtool/binary_extraction.md %{buildroot}%{_docdir}/coreboot-utils/ifdtool/binary_extraction.md
-cp Documentation/util/ifdtool/index.md %{buildroot}%{_docdir}/coreboot-utils/ifdtool/index.md
-cp Documentation/util/ifdtool/layout.md %{buildroot}%{_docdir}/coreboot-utils/ifdtool/layout.md
-cp Documentation/util/intelp2m/index.md %{buildroot}%{_docdir}/coreboot-utils/intelp2m/index.md
-cp Documentation/util/smmstoretool/index.md %{buildroot}%{_docdir}/coreboot-utils/smmstoretool/index.md
+cp Documentation/util.md %{buildroot}%{_pkgdocdir}/util.md
+cp Documentation/cbfs.txt %{buildroot}%{_pkgdocdir}/cbfs.txt
+cp Documentation/util/abuild/index.md %{buildroot}%{_pkgdocdir}/abuild/index.md
+cp Documentation/util/cbfstool/index.md %{buildroot}%{_pkgdocdir}/cbfstool/index.md
+cp Documentation/util/cbfstool/mmap_windows.md %{buildroot}%{_pkgdocdir}/cbfstool/mmap_windows.md
+cp Documentation/util/ifdtool/binary_extraction.md %{buildroot}%{_pkgdocdir}/ifdtool/binary_extraction.md
+cp Documentation/util/ifdtool/index.md %{buildroot}%{_pkgdocdir}/ifdtool/index.md
+cp Documentation/util/ifdtool/layout.md %{buildroot}%{_pkgdocdir}/ifdtool/layout.md
+cp Documentation/util/intelp2m/index.md %{buildroot}%{_pkgdocdir}/intelp2m/index.md
+cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoretool/index.md
+
+%post
+%{__ln_s} -f %{_bindir}/k8-compare-pci-space %{_bindir}/k8-compare-pci-space.pl
+%{__ln_s} -f %{_bindir}/k8-interpret-extended-memory-settings %{_bindir}/k8-interpret-extended-memory-settings.pl
+%{__ln_s} -f %{_bindir}/k8-read-mem-settings %{buildroot}%{_bindir}/k8-read-mem-settings.sh
+%{__ln_s} -f %{_bindir}/parse-bkdg %{buildroot}%{_bindir}/parse-bkdg.pl
+
+%{__ln_s} -f %{_bindir}/apcb_edit %{buildroot}%{_bindir}/apcb_edit.py
+%{__ln_s} -f %{_bindir}/apcb_v3a_edit %{buildroot}%{_bindir}/apcb_v3a_edit.py
+%{__ln_s} -f %{_bindir}/apcb_v3_edit %{buildroot}%{_bindir}/apcb_v3_edit.py
+
+%{__ln_s} -f %{_bindir}/board_status %{buildroot}%{_bindir}/board_status.sh
+%{__ln_s} -f %{_bindir}/getrevision %{buildroot}%{_bindir}/getrevision.sh
+%{__ln_s} -f %{_bindir}/set_up_live_image %{buildroot}%{_bindir}/set_up_live_image.sh
+
+%{__ln_s} -f %{_bindir}/conftest %{buildroot}%{_bindir}/conftest.py
+%{__ln_s} -f %{_bindir}/elogtool_test %{buildroot}%{_bindir}/elogtool_test.py
+
+%{__ln_s} -f %{_bindir}/crosfirmware %{buildroot}%{_bindir}/crosfirmware.sh
+%{__ln_s} -f %{_bindir}/extract_blobs %{buildroot}%{_bindir}/extract_blobs.sh
+%{__ln_s} -f %{_bindir}/gen_test_hwid %{buildroot}%{_bindir}/gen_test_hwid.sh
+%{__ln_s} -f %{_bindir}/update_ec_headers %{buildroot}%{_bindir}/update_ec_headers.sh
+
+%{__ln_s} -f %{_bindir}/fixed_cksum %{buildroot}%{_bindir}/fixed_cksum.py
+%{__ln_s} -f %{_bindir}/variable_cksum %{buildroot}%{_bindir}/variable_cksum.py
+
+%{__ln_s} -f %{_bindir}/find_usbdebug %{buildroot}%{_bindir}/find_usbdebug.sh
+
+%{__ln_s} -f %{_bindir}/genbuild_h %{buildroot}%{_bindir}/genbuild_h.sh
+
+%{__ln_s} -f %{_bindir}/check-pi-img %{buildroot}%{_bindir}/check-pi-img.py
+%{__ln_s} -f %{_bindir}/gen-bl-img %{buildroot}%{_bindir}/gen-bl-img.py
+
+%{__ln_s} -f %{_bindir}/mma_automated_test %{buildroot}%{_bindir}/mma_automated_test.sh
+%{__ln_s} -f %{_bindir}/mma_get_result %{buildroot}%{_bindir}/mma_get_result.sh
+%{__ln_s} -f %{_bindir}/mma_setup_test %{buildroot}%{_bindir}/mma_setup_test.sh
+
+%{__ln_s} -f %{_bindir}/createxbl %{buildroot}%{_bindir}/createxbl.py
+%{__ln_s} -f %{_bindir}/create_multielf %{buildroot}%{_bindir}/create_multielf.py
+%{__ln_s} -f %{_bindir}/ipqheader %{buildroot}%{_bindir}/ipqheader.py
+%{__ln_s} -f %{_bindir}/mbncat %{buildroot}%{_bindir}/mbncat.py
+%{__ln_s} -f %{_bindir}/mbn_tools %{buildroot}%{_bindir}/mbn_tools.py
+%{__ln_s} -f %{_bindir}/qgpt %{buildroot}%{_bindir}/qgpt.py
+%{__ln_s} -f %{_bindir}/elf_segment_extractor %{buildroot}%{_bindir}/elf_segment_extractor.py
+
+%{__ln_s} -f %{_bindir}/make-spike-elf %{buildroot}%{_bindir}/make-spike-elf.sh
+%{__ln_s} -f %{_bindir}/sifive-gpt %{buildroot}%{_bindir}/sifive-gpt.py
+
+%{__ln_s} -f %{_bindir}/make_idb %{buildroot}%{_bindir}/make_idb.py
+
+%{__ln_s} -f %{_bindir}/capture_commands %{buildroot}%{_bindir}/capture_commands.sh
+%{__ln_s} -f %{_bindir}/decode_spd %{buildroot}%{_bindir}/decode_spd.sh
+%{__ln_s} -f %{_bindir}/dts-to-fmd %{buildroot}%{_bindir}/dts-to-fmd.sh
+%{__ln_s} -f %{_bindir}/find_new_user_commits %{buildroot}%{_bindir}/find_new_user_commits.sh
+%{__ln_s} -f %{_bindir}/find-unused-kconfig-symbols %{buildroot}%{_bindir}/find-unused-kconfig-symbols.sh
+%{__ln_s} -f %{_bindir}/get_maintainer %{buildroot}%{_bindir}/get_maintainer.pl
+%{__ln_s} -f %{_bindir}/no-fsf-addresses %{buildroot}%{_bindir}/no-fsf-addresses.sh
+%{__ln_s} -f %{_bindir}/parse-maintainers %{buildroot}%{_bindir}/parse-maintainers.pl
+%{__ln_s} -f %{_bindir}/show_platforms %{buildroot}%{_bindir}/show_platforms.sh
+%{__ln_s} -f %{_bindir}/ucode_h_to_bin %{buildroot}%{_bindir}/ucode_h_to_bin.sh
+
+%{__ln_s} -f %{_bindir}/spdtool %{buildroot}%{_bindir}/spdtool.py
+
 
 %files
 %doc util/README.md AUTHORS MAINTAINERS
@@ -829,29 +892,29 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_docdir}/coreboot-util
 %{_bindir}/coreboot-configurator
 %{_datadir}/polkit-1/actions/org.coreboot.nvramtool.policy
 %{_datadir}/polkit-1/actions/org.coreboot.reboot.policy
-%{_datadir}/applications/coreboot-configurator.desktop
-%{_datadir}/icons/hicolor/24x24/apps/coreboot-configurator.png
-%{_datadir}/icons/hicolor/48x48/apps/coreboot-configurator.png
-%{_datadir}/icons/hicolor/96x96/apps/coreboot-configurator.png
-%{_datadir}/icons/hicolor/16x16/apps/coreboot-configurator.png
-%{_datadir}/icons/hicolor/32x32/apps/coreboot-configurator.png
-%{_datadir}/icons/hicolor/64x64/apps/coreboot-configurator.png
-%{_datadir}/icons/hicolor/128x128/apps/coreboot-configurator.png
-%{_datadir}/icons/hicolor/256x256/apps/coreboot-configurator.png
-%{_datadir}/icons/hicolor/512x512/apps/coreboot-configurator.png
+%{_appsdir}/coreboot-configurator.desktop
+%{_hicolordir}/24x24/apps/coreboot-configurator.png
+%{_hicolordir}/48x48/apps/coreboot-configurator.png
+%{_hicolordir}/96x96/apps/coreboot-configurator.png
+%{_hicolordir}/16x16/apps/coreboot-configurator.png
+%{_hicolordir}/32x32/apps/coreboot-configurator.png
+%{_hicolordir}/64x64/apps/coreboot-configurator.png
+%{_hicolordir}/128x128/apps/coreboot-configurator.png
+%{_hicolordir}/256x256/apps/coreboot-configurator.png
+%{_hicolordir}/512x512/apps/coreboot-configurator.png
 %doc util/coreboot-configurator/README.md
 
 %files doc
-%{_docdir}/coreboot-utils/util.md
-%{_docdir}/coreboot-utils/cbfs.txt
-%{_docdir}/coreboot-utils/abuild/index.md
-%{_docdir}/coreboot-utils/cbfstool/index.md
-%{_docdir}/coreboot-utils/cbfstool/mmap_windows.md
-%{_docdir}/coreboot-utils/ifdtool/binary_extraction.md
-%{_docdir}/coreboot-utils/ifdtool/index.md
-%{_docdir}/coreboot-utils/ifdtool/layout.md
-%{_docdir}/coreboot-utils/intelp2m/index.md
-%{_docdir}/coreboot-utils/smmstoretool/index.md
+%{_pkgdocdir}/util.md
+%{_pkgdocdir}/cbfs.txt
+%{_pkgdocdir}/abuild/index.md
+%{_pkgdocdir}/cbfstool/index.md
+%{_pkgdocdir}/cbfstool/mmap_windows.md
+%{_pkgdocdir}/ifdtool/binary_extraction.md
+%{_pkgdocdir}/ifdtool/index.md
+%{_pkgdocdir}/ifdtool/layout.md
+%{_pkgdocdir}/intelp2m/index.md
+%{_pkgdocdir}/smmstoretool/index.md
 %license Documentation/COPYING
 
 %ifarch x86_64
@@ -1026,5 +1089,8 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_docdir}/coreboot-util
 %doc util/xcompile/description.md
 
 %changelog
+* Sun Dec 28 2025 Owen Zimmerman <owen@fyralabs.com>
+- Update macros, add %post symlinks
+
 * Wed Jul 30 2025 Owen Zimmerman <owen@fyralabs.com>
 - Initial Package
