@@ -6,7 +6,7 @@ URL:            https://github.com/actboy168/luamake
 Source:         https://github.com/actboy168/luamake/archive/refs/tags/v%version.tar.gz
 Summary:        A platform independent configuration and build system that uses the standard Lua command-line interpreter
 
-BuildRequires:  gcc-c++ make ninja-build glibc lua gcc cmake libstdc++-devel libcxx libcxx-devel
+BuildRequires:  gcc-c++ make ninja-build glibc lua gcc cmake libstdc++-devel libstdc++-static libcxx libcxx-devel
 
 %description
 
