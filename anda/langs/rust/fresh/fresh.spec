@@ -49,5 +49,5 @@ cp -a docs/*                                                %{buildroot}%{_pkgdo
 %license LICENSE
 
 %changelog
-* Sat Dec 27 2025 Owen Zimmerman <owen@fyralabs.com>
+* Sat Dec 27 2025 Owen Zimmerman <owen@fyralabs.com> - 0.1.65-1
 - Initial commit
