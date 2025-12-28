@@ -18,7 +18,7 @@ BuildRequires:  gcc-c++ make ninja-build glibc lua gcc cmake libstdc++-devel lib
 %build
 compile/build.sh notest
 pushd compile
-%ninja_build
+%ninja_build linux.ninja
 popd
 
 %install
