@@ -45,7 +45,10 @@ Requires:       glibc
 %files
 %license LICENSE
 %doc README.md
-%{_bindir}/nwg-look
+%{_bindir}/%{name}
+%{_appsdir}/%{name}.desktop
+%{_datadir}/%{name}/
+%{_datadir}/pixmaps/%{name}.svg
 
 %changelog
 * Fri Dec 05 2025 Owen Zimmerman <owen@fyralabs.com>
