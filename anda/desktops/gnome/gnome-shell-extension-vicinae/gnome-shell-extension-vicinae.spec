@@ -9,6 +9,8 @@ Source:         %{url}/archive/refs/tags/v%{version}.tar.gz
 Summary:        Companion GNOME extension for Vicinae launcher
 Packager:       metcya <metcya@gmail.com>
 
+BuildArch:      noarch
+
 Requires:       (gnome-shell >= 48~ with gnome-shell < 50~)
 Requires:       vicinae
 Recommends:     gnome-extensions-app
