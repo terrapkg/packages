@@ -9,6 +9,7 @@ Summary:        a high-performance, native launcher for Linux
 Packager:       metcya <metcya@gmail.com>
 
 BuildRequires:  cmake
+BuildRequires:  ninja
 BuildRequires:  gcc-c++
 BuildRequires:  cmake(absl)
 BuildRequires:  openssl-devel
@@ -23,7 +24,6 @@ BuildRequires:  pkgconfig(libqalculate)
 BuildRequires:  pkgconfig(protobuf)
 BuildRequires:  wayland-devel
 BuildRequires:  nodejs-npm
-BuildRequires:  anda-srpm-macros
 BuildRequires:  systemd-rpm-macros
 
 Requires:       nodejs-npm
@@ -32,25 +32,11 @@ Requires:       nodejs-npm
 Vicinae (pronounced "vih-SIN-ay") is a high-performance, native launcher for
 your desktop — built with C++ and Qt.
 
-%package xdgpp
-Summary:    C++ library implementing various Freedesktop specifications for the Vicinae launcher
-%pkg_libs_files -n %{name}-xdgpp
-
-%description xdgpp
-C++ library implementing various Freedesktop specifications for the Vicinae launcher
-
-%package xdgpp-devel
-Summary:    Development files for %{name}-xdgpp
-%pkg_devel_files -n %{name}-xdgpp-devel
-
-%description xdgpp-devel
-Development files for %{name}-xdgpp
-
 %prep
 %autosetup -p1
 
 %build
-%cmake -DNOSTRIP=ON \
+%cmake -G Ninja \
        -DXDGPP_INSTALL=ON
 %cmake_build
 
@@ -72,6 +58,7 @@ install -Dm 644 extra/%{name}-url-handler.desktop -t %{buildroot}%{_appsdir}
 %license LICENSE
 %doc README.md
 %{_bindir}/%{name}
+%{_libdir}/libxdgpp.so
 %{_userunitdir}/%{name}.service
 %{_datadir}/%{name}/themes/
 %{_appsdir}/%{name}.desktop
