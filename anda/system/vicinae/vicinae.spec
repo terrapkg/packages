@@ -37,8 +37,8 @@ your desktop — built with C++ and Qt.
 
 %install
 %cmake_install
-install -Dm 644 extras/%{name}.desktop -t %{buildroot}%{_datadir}/applications
-install -Dm 644 extras/%{name}-url-handler.desktop -t %{buildroot}%{_datadir}/applications
+install -Dm 644 extras/%{name}.desktop -t %{buildroot}%{_appsdir}
+install -Dm 644 extras/%{name}-url-handler.desktop -t %{buildroot}%{_appsdir}
 
 %post
 %systemd_user_post %{name}.service
@@ -54,7 +54,7 @@ install -Dm 644 extras/%{name}-url-handler.desktop -t %{buildroot}%{_datadir}/ap
 %doc README.md CONTRIBUTING.md
 %{_bindir}/%{name}
 %{_userunitdir}/%{name}.service
-%{_datadir/%{name}/themes/
+%{_datadir}/%{name}/themes/
 %{_appsdir}/%{name}.desktop
 %{_appsdir}/%{name}-url-handler.desktop
 %{_hicolordir}/512x512/apps/%{name}.png
