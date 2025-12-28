@@ -49,7 +49,7 @@ Development files for %{name}-xdgpp
 
 %build
 %cmake -DNOSTRIP=ON \
-       -DXDGPP_INSTALL
+       -DXDGPP_INSTALL=ON
 %cmake_build
 
 %install
