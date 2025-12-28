@@ -30,11 +30,26 @@ Requires:       nodejs-npm
 Vicinae (pronounced "vih-SIN-ay") is a high-performance, native launcher for
 your desktop — built with C++ and Qt.
 
+%package xdgpp
+Summary:    C++ library implementing various Freedesktop specifications for the Vicinae launcher
+%pkg_libs_files -n xdgpp
+
+%description xdgpp
+C++ library implementing various Freedesktop specifications for the Vicinae launcher
+
+%package xdgpp-devel
+Summary:    Development files for %{name}-xdgpp
+%pkg_devel_files -n xdgpp-devel
+
+%description xdgpp-devel
+Development files for %{name}-xdgpp
+
 %prep
 %autosetup
 
 %build
-%cmake -DNOSTRIP=ON
+%cmake -DNOSTRIP=ON \
+       -DXDGPP_INSTALL
 %cmake_build
 
 %install
