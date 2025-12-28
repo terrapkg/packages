@@ -5,7 +5,7 @@ Version:        1.5.3
 Release:        1%{?dist}
 License:        MIT
 URL:            https://github.com/dagimg-dot/vicinae-gnome-extension
-Source:         %{url}/archive/refs/tags/v${version}.tar.gz
+Source:         %{url}/archive/refs/tags/v%{version}.tar.gz
 Summary:        Companion GNOME extension for Vicinae launcher
 Packager:       metcya <metcya@gmail.com>
 
