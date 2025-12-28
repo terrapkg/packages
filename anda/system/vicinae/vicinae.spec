@@ -22,7 +22,9 @@ BuildRequires:  pkgconfig(libqalculate)
 BuildRequires:  pkgconfig(protobuf)
 BuildRequires:  wayland-devel
 BuildRequires:  nodejs-npm
-BuildRequires:  systemd-srpm-macros
+BuildRequires:  systemd-rpm-macros
+
+Requires:       nodejs-npm
 
 %description
 Vicinae (pronounced "vih-SIN-ay") is a high-performance, native launcher for
