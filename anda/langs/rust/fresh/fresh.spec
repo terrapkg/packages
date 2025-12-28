@@ -37,7 +37,7 @@ mkdir -p %{buildroot}%{_pkgdocdir}
 cp -a docs/*                                                %{buildroot}%{_pkgdocdir}/
 
 %files
-%license LICENSE
+%license LICENSE LICENSE.dependencies
 %doc README.md REFACTORING_PLAN.md CHANGELOG.md
 %{_bindir}/%{name}
 %{_scalableiconsdir}/io.github.sinelaw.fresh.svg
