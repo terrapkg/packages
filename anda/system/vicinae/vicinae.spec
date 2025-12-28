@@ -9,7 +9,7 @@ Summary:        a high-performance, native launcher for Linux
 Packager:       metcya <metcya@gmail.com>
 
 BuildRequires:  cmake
-BuildRequires:  ninja
+BuildRequires:  ninja-build
 BuildRequires:  gcc-c++
 BuildRequires:  cmake(absl)
 BuildRequires:  openssl-devel
