@@ -1,1 +1,1 @@
-rpm.version(gh("matrix-org/synapse-s3-storage-provider"));
+rpm.version(pypi("synapse-s3-storage-provider"));
