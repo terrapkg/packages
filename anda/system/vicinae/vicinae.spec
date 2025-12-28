@@ -53,7 +53,7 @@ install -Dm 644 extra/%{name}-url-handler.desktop -t %{buildroot}%{_appsdir}
 
 %files
 %license LICENSE
-%doc README.md CONTRIBUTING.md
+%doc README.md
 %{_bindir}/%{name}
 %{_userunitdir}/%{name}.service
 %{_datadir}/%{name}/themes/
