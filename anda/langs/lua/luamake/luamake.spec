@@ -1,3 +1,5 @@
+%define debug_package %{nil}
+
 Name:           luamake
 Version:        1.7
 Release:        1%?dist
