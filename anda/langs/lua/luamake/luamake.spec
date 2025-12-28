@@ -17,7 +17,9 @@ BuildRequires:  gcc-c++ make ninja-build glibc lua gcc cmake libstdc++-devel lib
 
 %build
 compile/build.sh notest
+pushd compile
 %ninja_build
+popd
 
 %install
 install -Dm755 luamake %{buildroot}%{_bindir}/luamake
