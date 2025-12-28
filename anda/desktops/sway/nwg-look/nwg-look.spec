@@ -38,18 +38,9 @@ Requires:       glibc
 %build
 %make_build
 %make_build build
-ls -la
-%dnl %define gomodulesmode GO111MODULE=on
-# export CGO_CPPFLAGS="${CPPFLAGS}"
-# export CGO_CFLAGS="${CFLAGS}"
-# export CGO_CXXFLAGS="${CXXFLAGS}"
-# export CGO_LDFLAGS="${LDFLAGS}"
-# export GOFLAGS="-buildmode=pie -trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw"
-%dnl %gobuild -o %{gobuilddir}/nwg-look %{goipath}/nwg-look
 
 %install
 %make_install
-%dnl install -Dm 0755 %{gobuilddir}/cmd/nwg-look %{buildroot}%{_bindir}/nwg-look
 
 %files
 %license LICENSE
