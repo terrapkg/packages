@@ -4,6 +4,7 @@ Release:        1%{?dist}
 License:        GPL-3.0
 URL:            https://docs.vicinae.com
 Source:         https://github.com/vicinaehq/%{name}/archive/refs/tags/v%{version}.tar.gz
+Patch0:         fix-xdgpp-install-dirs.patch
 Summary:        a high-performance, native launcher for Linux
 Packager:       metcya <metcya@gmail.com>
 
@@ -45,7 +46,7 @@ Summary:    Development files for %{name}-xdgpp
 Development files for %{name}-xdgpp
 
 %prep
-%autosetup
+%autosetup -p1
 
 %build
 %cmake -DNOSTRIP=ON \

@@ -1,0 +1,15 @@
+diff --git a/lib/xdgpp/CMakeLists.txt b/lib/xdgpp/CMakeLists.txt
+index 2828178b..5180a6fc 100644
+--- a/lib/xdgpp/CMakeLists.txt
++++ b/lib/xdgpp/CMakeLists.txt
+@@ -31,8 +31,8 @@ target_include_directories(${PROJECT_NAME} PUBLIC
+ if(XDGPP_INSTALL)
+     install(TARGETS ${PROJECT_NAME}
+         EXPORT ${PROJECT_NAME}Targets
+-        LIBRARY DESTINATION lib
+-        ARCHIVE DESTINATION lib
++        LIBRARY DESTINATION lib64
++        ARCHIVE DESTINATION lib64
+         RUNTIME DESTINATION bin
+         INCLUDES DESTINATION include
+     )
