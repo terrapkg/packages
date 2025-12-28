@@ -2,7 +2,7 @@
 
 Name:           coreboot-utils
 Version:        25.12
-Release:        2%?dist
+Release:        3%?dist
 Summary:        Various coreboot utilities
 URL:            https://doc.coreboot.org
 License:        BSD-3-Clause AND Apache-2.0 AND CC-BY-SA-3.0 AND GPL-2.0-only AND GPL-3.0-or-later AND ISC AND BSD-2-Clause-Patent AND BSD-4-Clause-UC AND CC-PDDC AND GPL-2.0-or-later AND HPND-sell-varient AND LGPL-2.1-or-later AND BSD-2-Clause AND CC-BY-4.0 AND GPL-3.0-only AND HPND AND X11 AND MIT
@@ -752,7 +752,6 @@ cp Documentation/util/ifdtool/layout.md %{buildroot}%{_pkgdocdir}/ifdtool/layout
 cp Documentation/util/intelp2m/index.md %{buildroot}%{_pkgdocdir}/intelp2m/index.md
 cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoretool/index.md
 
-%post
 %{__ln_s} -f %{_bindir}/k8-compare-pci-space %{_bindir}/k8-compare-pci-space.pl
 %{__ln_s} -f %{_bindir}/k8-interpret-extended-memory-settings %{_bindir}/k8-interpret-extended-memory-settings.pl
 %{__ln_s} -f %{_bindir}/k8-read-mem-settings %{buildroot}%{_bindir}/k8-read-mem-settings.sh
@@ -813,7 +812,6 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 %{__ln_s} -f %{_bindir}/ucode_h_to_bin %{buildroot}%{_bindir}/ucode_h_to_bin.sh
 
 %{__ln_s} -f %{_bindir}/spdtool %{buildroot}%{_bindir}/spdtool.py
-
 
 %files
 %doc util/README.md AUTHORS MAINTAINERS
