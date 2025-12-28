@@ -32,7 +32,7 @@ install -Dm755 target/rpm/%{name}                %{buildroot}%{_bindir}/%{name}
 install -Dm644 target/completions/%{name}.bash   %{buildroot}%{bash_completions_dir}/
 install -Dm644 target/completions/%{name}.fish   %{buildroot}%{fish_completions_dir}/
 install -Dm644 target/completions/_%{name}       %{buildroot}%{zsh_completions_dir}/
-install -Dm644 target/man/                       %{buildroot}%{_mandir}/man1/rmpc.1
+install -Dm644 target/man/rmpc.1                 %{buildroot}%{_mandir}/man1/rmpc.1
 %{cargo_license_online} > LICENSE.dependencies
 
 %files
