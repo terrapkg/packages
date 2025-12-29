@@ -34,7 +34,7 @@
 %endif
 %endif
 %ifarch x86_64
-%if !0%{?with_vulkan_hw}
+%if 0%{?with_vulkan_hw}
 %global with_intel_vk_rt 1
 %endif
 %endif
