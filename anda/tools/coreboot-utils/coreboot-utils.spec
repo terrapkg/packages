@@ -722,10 +722,8 @@ install -Dm 755 util/smmstoretool/smmstoretool %{buildroot}%{_bindir}/smmstoreto
 %endif
 
 install -Dm 755 util/spdtool/spdtool.py %{buildroot}%{_bindir}/spdtool
-
 install -Dm 755 util/spd_tools/bin/part_id_gen %{buildroot}%{_bindir}/part_id_gen
 install -Dm 755 util/spd_tools/bin/spd_gen %{buildroot}%{_bindir}/spd_gen
-
 install -Dm 755 util/spkmodem_recv/spkmodem-recv %{buildroot}%{_bindir}/spkmodem-recv
 
 %ifarch x86_64
@@ -752,8 +750,8 @@ cp Documentation/util/ifdtool/layout.md %{buildroot}%{_pkgdocdir}/ifdtool/layout
 cp Documentation/util/intelp2m/index.md %{buildroot}%{_pkgdocdir}/intelp2m/index.md
 cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoretool/index.md
 
-%{__ln_s} -f %{_bindir}/k8-compare-pci-space %{_bindir}/k8-compare-pci-space.pl
-%{__ln_s} -f %{_bindir}/k8-interpret-extended-memory-settings %{_bindir}/k8-interpret-extended-memory-settings.pl
+%{__ln_s} -f %{_bindir}/k8-compare-pci-space %{buildroot}%{_bindir}/k8-compare-pci-space.pl
+%{__ln_s} -f %{_bindir}/k8-interpret-extended-memory-settings %{buildroot}%{_bindir}/k8-interpret-extended-memory-settings.pl
 %{__ln_s} -f %{_bindir}/k8-read-mem-settings %{buildroot}%{_bindir}/k8-read-mem-settings.sh
 %{__ln_s} -f %{_bindir}/parse-bkdg %{buildroot}%{_bindir}/parse-bkdg.pl
 
@@ -829,22 +827,25 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 
 %files amdtools
 %{_bindir}/k8-compare-pci-space
+%{_bindir}/k8-compare-pci-space.pl
 %{_bindir}/k8-interpret-extended-memory-settings
+%{_bindir}/k8-interpret-extended-memory-settings.pl
 %{_bindir}/k8-read-mem-settings
+%{_bindir}/k8-read-mem-settings.sh
 %{_bindir}/parse-bkdg
+%{_bindir}/parse-bkdg.pl
 %{_bindir}/update_efs_spi_speed
 %doc util/amdtools/*.md
 
 %files apcb
 %{_bindir}/apcb_edit
+%{_bindir}/apcb_edit.py
 %{_bindir}/apcb_v3a_edit
+%{_bindir}/apcb_v3a_edit.py
 %{_bindir}/apcb_v3_edit
+%{_bindir}/apcb_v3_edit.py
 %doc util/apcb/README
 %doc util/apcb/description.md
-
-%dnl %files archive
-%dnl %{_bindir}/archive
-%dnl %doc util/archive/description.md
 
 %files autoport
 %{_bindir}/autoport
@@ -856,8 +857,11 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 
 %files board_status
 %{_bindir}/board_status
+%{_bindir}/board_status.sh
 %{_bindir}/getrevision
+%{_bindir}/getrevision.sh
 %{_bindir}/set_up_live_image
+%{_bindir}/set_up_live_image.sh
 %doc util/board_status/*.md
 
 %ifarch x86_64
@@ -872,7 +876,9 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 
 %files cbfstool-tests
 %{_bindir}/conftest
+%{_bindir}/conftest.py
 %{_bindir}/elogtool_test
+%{_bindir}/elogtool_test.py
 %doc util/cbfstool/tests/README.md
 
 %files cbmem
@@ -881,9 +887,13 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 
 %files chromeos-coreboot-utilities
 %{_bindir}/crosfirmware
+%{_bindir}/crosfirmware.sh
 %{_bindir}/extract_blobs
+%{_bindir}/extract_blobs.sh
 %{_bindir}/gen_test_hwid
+%{_bindir}/gen_test_hwid.sh
 %{_bindir}/update_ec_headers
+%{_bindir}/update_ec_headers.sh
 %doc util/chromeos/*.md
 
 %files coreboot-configurator
@@ -923,11 +933,14 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 
 %files exynos
 %{_bindir}/fixed_cksum
+%{_bindir}/fixed_cksum.py
 %{_bindir}/variable_cksum
+%{_bindir}/variable_cksum.py
 %doc util/exynos/description.md
 
 %files find_usbdebug
 %{_bindir}/find_usbdebug
+%{_bindir}/find_usbdebug.sh
 %doc util/find_usbdebug/description.md
 
 %files futility
@@ -936,6 +949,7 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 
 %files genbuild_h
 %{_bindir}/genbuild_h
+%{_bindir}/genbuild_h.sh
 %doc util/genbuild_h/description.md
 
 %files hda-decoder
@@ -976,14 +990,19 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 %doc util/kbc1126/*.md
 
 %files mediatek-coreboot-utilities
-%{_bindir}/gen-bl-img
 %{_bindir}/check-pi-img
+%{_bindir}/check-pi-img.py
+%{_bindir}/gen-bl-img
+%{_bindir}/gen-bl-img.py
 %doc util/mediatek/description.md
 
 %files mma
 %{_bindir}/mma_automated_test
+%{_bindir}/mma_automated_test.sh
 %{_bindir}/mma_get_result
+%{_bindir}/mma_get_result.sh
 %{_bindir}/mma_setup_test
+%{_bindir}/mma_setup_test.sh
 %doc util/mma/description.md
 
 %ifarch x86_64
@@ -1016,44 +1035,69 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 
 %files qualcomm-coreboot-utilities
 %{_bindir}/createxbl
+%{_bindir}/createxbl.py
 %{_bindir}/create_multielf
+%{_bindir}/create_multielf.py
 %{_bindir}/ipqheader
+%{_bindir}/ipqheader.py
 %{_bindir}/mbncat
+%{_bindir}/mbncat.py
 %{_bindir}/mbn_tools
+%{_bindir}/mbn_tools.py
 %{_bindir}/qgpt
+%{_bindir}/qgpt.py
 %{_bindir}/elf_segment_extractor
+%{_bindir}/elf_segment_extractor.py
 %doc util/qualcomm/description.md
 
 %files riscv-coreboot-utilities
 %{_bindir}/make-spike-elf
+%{_bindir}/make-spike-elf.sh
 %{_bindir}/sifive-gpt
+%{_bindir}/sifive-gpt.py
 %{_bindir}/spl_tool
 %doc util/riscv/description.md
 %doc util/riscv/starfive-jh7110-spl-tool/README.md
 
 %files rockchip-coreboot-utilities
 %{_bindir}/make_idb
+%{_bindir}/make_idb.py
 %license util/rockchip/LICENSE
 %doc util/rockchip/description.md
 
 %files scripts
 %{_bindir}/capture_commands
+%{_bindir}/capture_commands.sh
 %{_bindir}/config
 %{_bindir}/cross-repo-cherrypick
 %{_bindir}/decode_spd
+%{_bindir}/decode_spd.sh
 %{_bindir}/dts-to-fmd
+%{_bindir}/dts-to-fmd.sh
 %{_bindir}/find_new_user_commits
+%{_bindir}/find_new_user_commits.sh
 %{_bindir}/find-unused-kconfig-symbols
+%{_bindir}/find-unused-kconfig-symbols.sh
 %{_bindir}/gerrit-rebase
+%{_bindir}/gerrit-rebase.sh
 %{_bindir}/get_maintainer
+%{_bindir}/get_maintainer.pl
 %{_bindir}/no-fsf-addresses
+%{_bindir}/no-fsf-addresses.sh
 %{_bindir}/parse-maintainers
+%{_bindir}/parse-maintainers.pl
 %{_bindir}/prepare-commit-msg.clang-format
+%{_bindir}/prepare-commit-msg.clang-format.sh
 %{_bindir}/rm_unused_code
+%{_bindir}/rm_unused_code.sh
 %{_bindir}/show_platforms
+%{_bindir}/show_platforms.sh
 %{_bindir}/testsoc
+%{_bindir}/testsoc.sh
 %{_bindir}/ucode_h_to_bin
+%{_bindir}/ucode_h_to_bin.sh
 %{_bindir}/update_submodules
+%{_bindir}/update_submodules.sh
 %doc util/scripts/description.md
 
 %ifarch x86_64
@@ -1064,6 +1108,7 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 
 %files spdtool
 %{_bindir}/spdtool
+%{_bindir}/spdtool.py
 %doc util/spdtool/description.md
 
 %files spd_tools
