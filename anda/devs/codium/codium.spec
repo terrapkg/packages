@@ -112,3 +112,11 @@ ln -s %_datadir/%name/resources/completions/bash/codium %buildroot%_datadir/bash
 %_datadir/applications/codium-uri-handler.desktop
 %_datadir/pixmaps/vscodium.png
 %dnl %_metainfodir/%appid.metainfo.xml
+
+%changelog
+* Sat Jun 17 2023 windowsboy111 <windowsboy111@fyralabs.com> - 1.79.2.23166-2
+- Use /usr/share/ instead of /opt/.
+- Remove lib dependencies.
+
+* Sun Apr 2 2023 windowsboy111 <windowsboy111@fyralabs.com> - 1.77.3.23102-1
+- Initial package.
