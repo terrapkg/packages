@@ -2,7 +2,7 @@
 %global _build_id_links none
 
 # Exclude private libraries
-%global __requires_exclude libffmpeg.so
+%global __requires_exclude libffmpeg.so|libcurl.so|libmsalruntime.so
 %global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 %ifarch x86_64
