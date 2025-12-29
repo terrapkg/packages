@@ -11,6 +11,8 @@
 %define a arm64
 %endif
 
+%global appid com.vscodium.VSCodium
+
 Name:			codium
 Version:		1.107.18627
 Release:		2%?dist
@@ -21,11 +23,14 @@ Source0:		https://github.com/VSCodium/vscodium/releases/download/%version/VSCodi
 Source1:		https://raw.githubusercontent.com/VSCodium/vscodium/%version/README.md
 Source2:		https://raw.githubusercontent.com/VSCodium/vscodium/%version/LICENSE
 Requires:		at-spi2-atk cairo expat gtk3 xrandr mesa-libgbm nspr nss nss-util xdg-utils
+Provides:       vscodium = %evr
 BuildRequires:	rpm_macro(fdupes)
 
 %description
 VSCodium is a new choice of tool that combines the simplicity of a code editor
 with what developers need for the core edit-build-debug cycle.
+
+%pkg_completion -Bz
 
 %prep
 mkdir stuff
@@ -95,6 +100,7 @@ ln -s %_datadir/%name/resources/completions/bash/codium %buildroot%_datadir/bash
 
 %fdupes %_datadir/%name/resources/app/extensions/
 
+%terra_appstream
 
 %files
 %doc README.md
@@ -105,14 +111,3 @@ ln -s %_datadir/%name/resources/completions/bash/codium %buildroot%_datadir/bash
 %_datadir/applications/codium.desktop
 %_datadir/applications/codium-uri-handler.desktop
 %_datadir/pixmaps/vscodium.png
-%_datadir/zsh/site-functions/_codium
-%_datadir/bash-completion/completions/codium
-
-%changelog
-* Sat Jun 17 2023 windowsboy111 <windowsboy111@fyralabs.com> - 1.79.2.23166-2
-- Use /usr/share/ instead of /opt/.
-- Remove lib dependencies.
-
-* Sun Apr 2 2023 windowsboy111 <windowsboy111@fyralabs.com> - 1.77.3.23102-1
-- Initial package.
-
