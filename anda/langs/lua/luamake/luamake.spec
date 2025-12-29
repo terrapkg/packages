@@ -23,7 +23,7 @@ sed -i 's|-lstdc++ |%{build_ldflags} -lstdc++ |g' compile/ninja/linux.ninja
 
 %install
 mkdir -p %{buildroot}%{_bindir}
-ln -sf %{_datadir}/%{name}/%{name} %{buildroot}%{_bindir}%{name}
+ln -sf %{_datadir}/%{name}/%{name} %{buildroot}%{_bindir}/%{name}
 install -Dm755 luamake -t %{buildroot}%{_datadir}/%{name}
 install -Dm755 main.lua -t %{buildroot}%{_datadir}/%{name}
 cp -r scripts -t %{buildroot}%{_datadir}/%{name}
