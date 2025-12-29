@@ -11,6 +11,7 @@ Summary:        A platform independent configuration and build system that uses 
 BuildRequires:  gcc-c++ make ninja-build glibc lua gcc cmake libstdc++-devel libstdc++-static libcxx libcxx-devel
 
 %description
+%summary.
 
 %prep
 %git_clone
