@@ -111,3 +111,4 @@ ln -s %_datadir/%name/resources/completions/bash/codium %buildroot%_datadir/bash
 %_datadir/applications/codium.desktop
 %_datadir/applications/codium-uri-handler.desktop
 %_datadir/pixmaps/vscodium.png
+%_metainfodir/%appid.metainfo.xml
