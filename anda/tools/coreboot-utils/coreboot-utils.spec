@@ -1079,7 +1079,6 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 %{_bindir}/find-unused-kconfig-symbols
 %{_bindir}/find-unused-kconfig-symbols.sh
 %{_bindir}/gerrit-rebase
-%{_bindir}/gerrit-rebase.sh
 %{_bindir}/get_maintainer
 %{_bindir}/get_maintainer.pl
 %{_bindir}/no-fsf-addresses
@@ -1087,17 +1086,13 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 %{_bindir}/parse-maintainers
 %{_bindir}/parse-maintainers.pl
 %{_bindir}/prepare-commit-msg.clang-format
-%{_bindir}/prepare-commit-msg.clang-format.sh
 %{_bindir}/rm_unused_code
-%{_bindir}/rm_unused_code.sh
 %{_bindir}/show_platforms
 %{_bindir}/show_platforms.sh
 %{_bindir}/testsoc
-%{_bindir}/testsoc.sh
 %{_bindir}/ucode_h_to_bin
 %{_bindir}/ucode_h_to_bin.sh
 %{_bindir}/update_submodules
-%{_bindir}/update_submodules.sh
 %doc util/scripts/description.md
 
 %ifarch x86_64
