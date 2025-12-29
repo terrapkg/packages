@@ -6,7 +6,7 @@
 Name:           uxn
 Version:        1.0
 Release:        1%?dist
-Summary:        An emulator for the Uxn computing stack
+Summary:        An emulator for the Varvara virtual machine
 URL:            https://100r.ca/site/%{name}.html
 Source0:        https://git.sr.ht/~rabbits/%{name}/archive/%{version}.tar.gz
 License:        MIT
