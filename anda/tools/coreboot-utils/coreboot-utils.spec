@@ -2,7 +2,7 @@
 
 Name:           coreboot-utils
 Version:        25.12
-Release:        2%?dist
+Release:        3%?dist
 Summary:        Various coreboot utilities
 URL:            https://doc.coreboot.org
 License:        BSD-3-Clause AND Apache-2.0 AND CC-BY-SA-3.0 AND GPL-2.0-only AND GPL-3.0-or-later AND ISC AND BSD-2-Clause-Patent AND BSD-4-Clause-UC AND CC-PDDC AND GPL-2.0-or-later AND HPND-sell-varient AND LGPL-2.1-or-later AND BSD-2-Clause AND CC-BY-4.0 AND GPL-3.0-only AND HPND AND X11 AND MIT
@@ -582,9 +582,9 @@ install -Dm 755 util/amdtools/k8-read-mem-settings.sh %{buildroot}%{_bindir}/k8-
 install -Dm 755 util/amdtools/parse-bkdg.pl %{buildroot}%{_bindir}/parse-bkdg
 install -Dm 755 util/amdtools/update_efs_spi_speed %{buildroot}%{_bindir}/update_efs_spi_speed
 
-install -Dm 755 util/apcb/apcb_edit.py %{buildroot}%{_bindir}/apcb_edit
-install -Dm 755 util/apcb/apcb_v3a_edit.py %{buildroot}%{_bindir}/apcb_v3a_edit
-install -Dm 755 util/apcb/apcb_v3_edit.py %{buildroot}%{_bindir}/apcb_v3_edit
+install -Dm 755 util/apcb/apcb_edit.py %{buildroot}%{_bindir}/apcb_edit.py
+install -Dm 755 util/apcb/apcb_v3a_edit.py %{buildroot}%{_bindir}/apcb_v3a_edit.py
+install -Dm 755 util/apcb/apcb_v3_edit.py %{buildroot}%{_bindir}/apcb_v3_edit.py
 
 %dnl install -Dm 777 util/archive/archive %{buildroot}%{_bindir}/archive
 
@@ -602,8 +602,8 @@ install -Dm 755 util/bucts/bucts %{buildroot}%{_bindir}/bucts
 
 install -Dm 755 util/cbfstool/cbfstool %{buildroot}%{_bindir}/cbfstool
 
-install -Dm 755 util/cbfstool/tests/conftest.py %{buildroot}%{_bindir}/conftest
-install -Dm 755 util/cbfstool/tests/elogtool_test.py %{buildroot}%{_bindir}/elogtool_test
+install -Dm 755 util/cbfstool/tests/conftest.py %{buildroot}%{_bindir}/conftest.py
+install -Dm 755 util/cbfstool/tests/elogtool_test.py %{buildroot}%{_bindir}/elogtool_test.py
 
 install -Dm 755 util/cbmem/cbmem %{buildroot}%{_bindir}/cbmem
 
@@ -630,8 +630,8 @@ install -Dm 644 util/coreboot-configurator/redhat-linux-build/src/resources/512.
 install -Dm 755 util/ectool/ectool %{buildroot}%{_bindir}/ectool
 %endif
 
-install -Dm 755 util/exynos/fixed_cksum.py %{buildroot}%{_bindir}/fixed_cksum
-install -Dm 755 util/exynos/variable_cksum.py %{buildroot}%{_bindir}/variable_cksum
+install -Dm 755 util/exynos/fixed_cksum.py %{buildroot}%{_bindir}/fixed_cksum.py
+install -Dm 755 util/exynos/variable_cksum.py %{buildroot}%{_bindir}/variable_cksum.py
 
 install -Dm 755 util/find_usbdebug/find_usbdebug.sh %{buildroot}%{_bindir}/find_usbdebug
 
@@ -662,8 +662,8 @@ install -Dm 755 util/intelvbttool/intelvbttool %{buildroot}%{_bindir}/intelvbtto
 install -Dm 755 util/kbc1126/kbc1126_ec_dump %{buildroot}%{_bindir}/kbc1126_ec_dump
 install -Dm 755 util/kbc1126/kbc1126_ec_insert %{buildroot}%{_bindir}/kbc1126_ec_insert
 
-install -Dm 755 util/mediatek/check-pi-img.py %{buildroot}%{_bindir}/check-pi-img
-install -Dm 755 util/mediatek/gen-bl-img.py %{buildroot}%{_bindir}/gen-bl-img
+install -Dm 755 util/mediatek/check-pi-img.py %{buildroot}%{_bindir}/check-pi-img.py
+install -Dm 755 util/mediatek/gen-bl-img.py %{buildroot}%{_bindir}/gen-bl-img.py
 
 install -Dm 755 util/mma/mma_automated_test.sh %{buildroot}%{_bindir}/mma_automated_test
 install -Dm 755 util/mma/mma_get_result.sh %{buildroot}%{_bindir}/mma_get_result
@@ -685,19 +685,19 @@ install -Dm 755 util/pmh7tool/pmh7tool %{buildroot}%{_bindir}/pmh7tool
 install -Dm 755 util/post/post %{buildroot}%{_bindir}/post
 %endif
 
-install -Dm 755 util/qualcomm/createxbl.py %{buildroot}%{_bindir}/createxbl
-install -Dm 755 util/qualcomm/create_multielf.py %{buildroot}%{_bindir}/create_multielf
-install -Dm 755 util/qualcomm/ipqheader.py %{buildroot}%{_bindir}/ipqheader
-install -Dm 755 util/qualcomm/mbncat.py %{buildroot}%{_bindir}/mbncat
-install -Dm 755 util/qualcomm/mbn_tools.py %{buildroot}%{_bindir}/mbn_tools
-install -Dm 755 util/qualcomm/qgpt.py %{buildroot}%{_bindir}/qgpt
-install -Dm 755 util/qualcomm/elf_segment_extractor.py %{buildroot}%{_bindir}/elf_segment_extractor
+install -Dm 755 util/qualcomm/createxbl.py %{buildroot}%{_bindir}/createxbl.py
+install -Dm 755 util/qualcomm/create_multielf.py %{buildroot}%{_bindir}/create_multielf.py
+install -Dm 755 util/qualcomm/ipqheader.py %{buildroot}%{_bindir}/ipqheader.py
+install -Dm 755 util/qualcomm/mbncat.py %{buildroot}%{_bindir}/mbncat.py
+install -Dm 755 util/qualcomm/mbn_tools.py %{buildroot}%{_bindir}/mbn_tools.py
+install -Dm 755 util/qualcomm/qgpt.py %{buildroot}%{_bindir}/qgpt.py
+install -Dm 755 util/qualcomm/elf_segment_extractor.py %{buildroot}%{_bindir}/elf_segment_extractor.py
 
 install -Dm 755 util/riscv/make-spike-elf.sh %{buildroot}%{_bindir}/make-spike-elf
-install -Dm 755 util/riscv/sifive-gpt.py %{buildroot}%{_bindir}/sifive-gpt
+install -Dm 755 util/riscv/sifive-gpt.py %{buildroot}%{_bindir}/sifive-gpt.py
 install -Dm 755 util/riscv/starfive-jh7110-spl-tool/spl_tool %{buildroot}%{_bindir}/spl_tool
 
-install -Dm 755 util/rockchip/make_idb.py %{buildroot}%{_bindir}/make_idb
+install -Dm 755 util/rockchip/make_idb.py %{buildroot}%{_bindir}/make_idb.py
 
 install -Dm 755 util/scripts/capture_commands.sh %{buildroot}%{_bindir}/capture_commands
 install -Dm 755 util/scripts/config %{buildroot}%{_bindir}/config
@@ -721,11 +721,9 @@ install -Dm 755 util/scripts/update_submodules %{buildroot}%{_bindir}/update_sub
 install -Dm 755 util/smmstoretool/smmstoretool %{buildroot}%{_bindir}/smmstoretool
 %endif
 
-install -Dm 755 util/spdtool/spdtool.py %{buildroot}%{_bindir}/spdtool
-
+install -Dm 755 util/spdtool/spdtool.py %{buildroot}%{_bindir}/spdtool.py
 install -Dm 755 util/spd_tools/bin/part_id_gen %{buildroot}%{_bindir}/part_id_gen
 install -Dm 755 util/spd_tools/bin/spd_gen %{buildroot}%{_bindir}/spd_gen
-
 install -Dm 755 util/spkmodem_recv/spkmodem-recv %{buildroot}%{_bindir}/spkmodem-recv
 
 %ifarch x86_64
@@ -752,54 +750,53 @@ cp Documentation/util/ifdtool/layout.md %{buildroot}%{_pkgdocdir}/ifdtool/layout
 cp Documentation/util/intelp2m/index.md %{buildroot}%{_pkgdocdir}/intelp2m/index.md
 cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoretool/index.md
 
-%post
-%{__ln_s} -f %{_bindir}/k8-compare-pci-space %{_bindir}/k8-compare-pci-space.pl
-%{__ln_s} -f %{_bindir}/k8-interpret-extended-memory-settings %{_bindir}/k8-interpret-extended-memory-settings.pl
+%{__ln_s} -f %{_bindir}/k8-compare-pci-space %{buildroot}%{_bindir}/k8-compare-pci-space.pl
+%{__ln_s} -f %{_bindir}/k8-interpret-extended-memory-settings %{buildroot}%{_bindir}/k8-interpret-extended-memory-settings.pl
 %{__ln_s} -f %{_bindir}/k8-read-mem-settings %{buildroot}%{_bindir}/k8-read-mem-settings.sh
 %{__ln_s} -f %{_bindir}/parse-bkdg %{buildroot}%{_bindir}/parse-bkdg.pl
 
-%{__ln_s} -f %{_bindir}/apcb_edit %{buildroot}%{_bindir}/apcb_edit.py
-%{__ln_s} -f %{_bindir}/apcb_v3a_edit %{buildroot}%{_bindir}/apcb_v3a_edit.py
-%{__ln_s} -f %{_bindir}/apcb_v3_edit %{buildroot}%{_bindir}/apcb_v3_edit.py
+%{__ln_s} -f %{_bindir}/apcb_edit.py %{buildroot}%{_bindir}/apcb_edit
+%{__ln_s} -f %{_bindir}/apcb_v3a_edit.py %{buildroot}%{_bindir}/apcb_v3a_edit
+%{__ln_s} -f %{_bindir}/apcb_v3_edit.py %{buildroot}%{_bindir}/apcb_v3_edit
 
 %{__ln_s} -f %{_bindir}/board_status %{buildroot}%{_bindir}/board_status.sh
 %{__ln_s} -f %{_bindir}/getrevision %{buildroot}%{_bindir}/getrevision.sh
 %{__ln_s} -f %{_bindir}/set_up_live_image %{buildroot}%{_bindir}/set_up_live_image.sh
 
-%{__ln_s} -f %{_bindir}/conftest %{buildroot}%{_bindir}/conftest.py
-%{__ln_s} -f %{_bindir}/elogtool_test %{buildroot}%{_bindir}/elogtool_test.py
+%{__ln_s} -f %{_bindir}/conftest.py %{buildroot}%{_bindir}/conftest
+%{__ln_s} -f %{_bindir}/elogtool_test.py %{buildroot}%{_bindir}/elogtool_test
 
 %{__ln_s} -f %{_bindir}/crosfirmware %{buildroot}%{_bindir}/crosfirmware.sh
 %{__ln_s} -f %{_bindir}/extract_blobs %{buildroot}%{_bindir}/extract_blobs.sh
 %{__ln_s} -f %{_bindir}/gen_test_hwid %{buildroot}%{_bindir}/gen_test_hwid.sh
 %{__ln_s} -f %{_bindir}/update_ec_headers %{buildroot}%{_bindir}/update_ec_headers.sh
 
-%{__ln_s} -f %{_bindir}/fixed_cksum %{buildroot}%{_bindir}/fixed_cksum.py
-%{__ln_s} -f %{_bindir}/variable_cksum %{buildroot}%{_bindir}/variable_cksum.py
+%{__ln_s} -f %{_bindir}/fixed_cksum.py %{buildroot}%{_bindir}/fixed_cksum
+%{__ln_s} -f %{_bindir}/variable_cksum.py %{buildroot}%{_bindir}/variable_cksum
 
 %{__ln_s} -f %{_bindir}/find_usbdebug %{buildroot}%{_bindir}/find_usbdebug.sh
 
 %{__ln_s} -f %{_bindir}/genbuild_h %{buildroot}%{_bindir}/genbuild_h.sh
 
-%{__ln_s} -f %{_bindir}/check-pi-img %{buildroot}%{_bindir}/check-pi-img.py
-%{__ln_s} -f %{_bindir}/gen-bl-img %{buildroot}%{_bindir}/gen-bl-img.py
+%{__ln_s} -f %{_bindir}/check-pi-img.py %{buildroot}%{_bindir}/check-pi-img
+%{__ln_s} -f %{_bindir}/gen-bl-img.py %{buildroot}%{_bindir}/gen-bl-img
 
 %{__ln_s} -f %{_bindir}/mma_automated_test %{buildroot}%{_bindir}/mma_automated_test.sh
 %{__ln_s} -f %{_bindir}/mma_get_result %{buildroot}%{_bindir}/mma_get_result.sh
 %{__ln_s} -f %{_bindir}/mma_setup_test %{buildroot}%{_bindir}/mma_setup_test.sh
 
-%{__ln_s} -f %{_bindir}/createxbl %{buildroot}%{_bindir}/createxbl.py
-%{__ln_s} -f %{_bindir}/create_multielf %{buildroot}%{_bindir}/create_multielf.py
-%{__ln_s} -f %{_bindir}/ipqheader %{buildroot}%{_bindir}/ipqheader.py
-%{__ln_s} -f %{_bindir}/mbncat %{buildroot}%{_bindir}/mbncat.py
-%{__ln_s} -f %{_bindir}/mbn_tools %{buildroot}%{_bindir}/mbn_tools.py
-%{__ln_s} -f %{_bindir}/qgpt %{buildroot}%{_bindir}/qgpt.py
-%{__ln_s} -f %{_bindir}/elf_segment_extractor %{buildroot}%{_bindir}/elf_segment_extractor.py
+%{__ln_s} -f %{_bindir}/createxbl.py %{buildroot}%{_bindir}/createxbl
+%{__ln_s} -f %{_bindir}/create_multielf.py %{buildroot}%{_bindir}/create_multielf
+%{__ln_s} -f %{_bindir}/ipqheader.py %{buildroot}%{_bindir}/ipqheader
+%{__ln_s} -f %{_bindir}/mbncat.py %{buildroot}%{_bindir}/mbncat
+%{__ln_s} -f %{_bindir}/mbn_tools.py %{buildroot}%{_bindir}/mbn_tools
+%{__ln_s} -f %{_bindir}/qgpt.py %{buildroot}%{_bindir}/qgpt
+%{__ln_s} -f %{_bindir}/elf_segment_extractor.py %{buildroot}%{_bindir}/elf_segment_extractor
 
 %{__ln_s} -f %{_bindir}/make-spike-elf %{buildroot}%{_bindir}/make-spike-elf.sh
-%{__ln_s} -f %{_bindir}/sifive-gpt %{buildroot}%{_bindir}/sifive-gpt.py
+%{__ln_s} -f %{_bindir}/sifive-gpt.py %{buildroot}%{_bindir}/sifive-gpt
 
-%{__ln_s} -f %{_bindir}/make_idb %{buildroot}%{_bindir}/make_idb.py
+%{__ln_s} -f %{_bindir}/make_idb.py %{buildroot}%{_bindir}/make_idb
 
 %{__ln_s} -f %{_bindir}/capture_commands %{buildroot}%{_bindir}/capture_commands.sh
 %{__ln_s} -f %{_bindir}/decode_spd %{buildroot}%{_bindir}/decode_spd.sh
@@ -812,8 +809,7 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 %{__ln_s} -f %{_bindir}/show_platforms %{buildroot}%{_bindir}/show_platforms.sh
 %{__ln_s} -f %{_bindir}/ucode_h_to_bin %{buildroot}%{_bindir}/ucode_h_to_bin.sh
 
-%{__ln_s} -f %{_bindir}/spdtool %{buildroot}%{_bindir}/spdtool.py
-
+%{__ln_s} -f %{_bindir}/spdtool.py %{buildroot}%{_bindir}/spdtool
 
 %files
 %doc util/README.md AUTHORS MAINTAINERS
@@ -831,22 +827,25 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 
 %files amdtools
 %{_bindir}/k8-compare-pci-space
+%{_bindir}/k8-compare-pci-space.pl
 %{_bindir}/k8-interpret-extended-memory-settings
+%{_bindir}/k8-interpret-extended-memory-settings.pl
 %{_bindir}/k8-read-mem-settings
+%{_bindir}/k8-read-mem-settings.sh
 %{_bindir}/parse-bkdg
+%{_bindir}/parse-bkdg.pl
 %{_bindir}/update_efs_spi_speed
 %doc util/amdtools/*.md
 
 %files apcb
 %{_bindir}/apcb_edit
+%{_bindir}/apcb_edit.py
 %{_bindir}/apcb_v3a_edit
+%{_bindir}/apcb_v3a_edit.py
 %{_bindir}/apcb_v3_edit
+%{_bindir}/apcb_v3_edit.py
 %doc util/apcb/README
 %doc util/apcb/description.md
-
-%dnl %files archive
-%dnl %{_bindir}/archive
-%dnl %doc util/archive/description.md
 
 %files autoport
 %{_bindir}/autoport
@@ -858,8 +857,11 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 
 %files board_status
 %{_bindir}/board_status
+%{_bindir}/board_status.sh
 %{_bindir}/getrevision
+%{_bindir}/getrevision.sh
 %{_bindir}/set_up_live_image
+%{_bindir}/set_up_live_image.sh
 %doc util/board_status/*.md
 
 %ifarch x86_64
@@ -874,7 +876,9 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 
 %files cbfstool-tests
 %{_bindir}/conftest
+%{_bindir}/conftest.py
 %{_bindir}/elogtool_test
+%{_bindir}/elogtool_test.py
 %doc util/cbfstool/tests/README.md
 
 %files cbmem
@@ -883,9 +887,13 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 
 %files chromeos-coreboot-utilities
 %{_bindir}/crosfirmware
+%{_bindir}/crosfirmware.sh
 %{_bindir}/extract_blobs
+%{_bindir}/extract_blobs.sh
 %{_bindir}/gen_test_hwid
+%{_bindir}/gen_test_hwid.sh
 %{_bindir}/update_ec_headers
+%{_bindir}/update_ec_headers.sh
 %doc util/chromeos/*.md
 
 %files coreboot-configurator
@@ -925,11 +933,14 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 
 %files exynos
 %{_bindir}/fixed_cksum
+%{_bindir}/fixed_cksum.py
 %{_bindir}/variable_cksum
+%{_bindir}/variable_cksum.py
 %doc util/exynos/description.md
 
 %files find_usbdebug
 %{_bindir}/find_usbdebug
+%{_bindir}/find_usbdebug.sh
 %doc util/find_usbdebug/description.md
 
 %files futility
@@ -938,6 +949,7 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 
 %files genbuild_h
 %{_bindir}/genbuild_h
+%{_bindir}/genbuild_h.sh
 %doc util/genbuild_h/description.md
 
 %files hda-decoder
@@ -978,14 +990,19 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 %doc util/kbc1126/*.md
 
 %files mediatek-coreboot-utilities
-%{_bindir}/gen-bl-img
 %{_bindir}/check-pi-img
+%{_bindir}/check-pi-img.py
+%{_bindir}/gen-bl-img
+%{_bindir}/gen-bl-img.py
 %doc util/mediatek/description.md
 
 %files mma
 %{_bindir}/mma_automated_test
+%{_bindir}/mma_automated_test.sh
 %{_bindir}/mma_get_result
+%{_bindir}/mma_get_result.sh
 %{_bindir}/mma_setup_test
+%{_bindir}/mma_setup_test.sh
 %doc util/mma/description.md
 
 %ifarch x86_64
@@ -1018,43 +1035,63 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 
 %files qualcomm-coreboot-utilities
 %{_bindir}/createxbl
+%{_bindir}/createxbl.py
 %{_bindir}/create_multielf
+%{_bindir}/create_multielf.py
 %{_bindir}/ipqheader
+%{_bindir}/ipqheader.py
 %{_bindir}/mbncat
+%{_bindir}/mbncat.py
 %{_bindir}/mbn_tools
+%{_bindir}/mbn_tools.py
 %{_bindir}/qgpt
+%{_bindir}/qgpt.py
 %{_bindir}/elf_segment_extractor
+%{_bindir}/elf_segment_extractor.py
 %doc util/qualcomm/description.md
 
 %files riscv-coreboot-utilities
 %{_bindir}/make-spike-elf
+%{_bindir}/make-spike-elf.sh
 %{_bindir}/sifive-gpt
+%{_bindir}/sifive-gpt.py
 %{_bindir}/spl_tool
 %doc util/riscv/description.md
 %doc util/riscv/starfive-jh7110-spl-tool/README.md
 
 %files rockchip-coreboot-utilities
 %{_bindir}/make_idb
+%{_bindir}/make_idb.py
 %license util/rockchip/LICENSE
 %doc util/rockchip/description.md
 
 %files scripts
 %{_bindir}/capture_commands
+%{_bindir}/capture_commands.sh
 %{_bindir}/config
 %{_bindir}/cross-repo-cherrypick
 %{_bindir}/decode_spd
+%{_bindir}/decode_spd.sh
 %{_bindir}/dts-to-fmd
+%{_bindir}/dts-to-fmd.sh
 %{_bindir}/find_new_user_commits
+%{_bindir}/find_new_user_commits.sh
 %{_bindir}/find-unused-kconfig-symbols
+%{_bindir}/find-unused-kconfig-symbols.sh
 %{_bindir}/gerrit-rebase
 %{_bindir}/get_maintainer
+%{_bindir}/get_maintainer.pl
 %{_bindir}/no-fsf-addresses
+%{_bindir}/no-fsf-addresses.sh
 %{_bindir}/parse-maintainers
+%{_bindir}/parse-maintainers.pl
 %{_bindir}/prepare-commit-msg.clang-format
 %{_bindir}/rm_unused_code
 %{_bindir}/show_platforms
+%{_bindir}/show_platforms.sh
 %{_bindir}/testsoc
 %{_bindir}/ucode_h_to_bin
+%{_bindir}/ucode_h_to_bin.sh
 %{_bindir}/update_submodules
 %doc util/scripts/description.md
 
@@ -1066,6 +1103,7 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 
 %files spdtool
 %{_bindir}/spdtool
+%{_bindir}/spdtool.py
 %doc util/spdtool/description.md
 
 %files spd_tools
