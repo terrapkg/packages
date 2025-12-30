@@ -1,5 +1,5 @@
 %global crate typos-cli
-%define _unpackaged_files_terminate_build 0
+%define debug_package %{nil}
 
 Name:           typos
 Version:        1.40.0
@@ -15,13 +15,13 @@ Source2:        https://raw.githubusercontent.com/crate-ci/%{name}/refs/tags/v%{
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  mold
 
-%global _description %{expand:
-Source Code Spelling Correction.}
-
-%description %{_description}
+%description
+Finds and corrects spelling mistakes among source code.
 
 %prep
-%autosetup -n %{crate}-%{version} -p1
+%autosetup -n %{crate}-%{version}
+cp %{S:1} .
+cp %{S:2} .
 %cargo_prep_online
 
 %build
@@ -30,14 +30,12 @@ Source Code Spelling Correction.}
 %{cargo_license_online} > LICENSE.dependencies
 
 %install
-%cargo_install
-cp %{S:1} .
-cp %{S:2} .
+install -Dm 644 target/rpm/%{name} -t %{buildroot}%{_bindir}
 
 %files
 %license LICENSE-MIT LICENSE-APACHE LICENSE.dependencies
 %doc README.md
-%{_bindir}/typos
+%{_bindir}/%{name}
 
 %changelog
 * Sun Dec 28 2025 metcya <metcya@gmail.com> - 1.40.0-1
