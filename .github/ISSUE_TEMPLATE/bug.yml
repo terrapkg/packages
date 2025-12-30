@@ -54,10 +54,7 @@ body:
     attributes:
       label: Expected Behavior
       description: A clear and concise description of what you expected to happen.
-      placeholder: |
-        1. `dnf install this-package`
-        2. run `this-package`
-        3. see error
+      placeholder: Running it should show hello world!
   - type: textarea
     id: logs
     attributes:
