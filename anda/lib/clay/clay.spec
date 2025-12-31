@@ -21,7 +21,6 @@ Major Features:
 - React-like nested declarative syntax
 - Renderer agnostic: outputs a sorted list of rendering primitives that can be easily composited in any 3D engine, and even compiled to HTML (examples provided)
 
-
 %prep
 %autosetup -n clay-%{version}
 
