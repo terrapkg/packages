@@ -27,5 +27,5 @@ cp -r groovy-%{version} %{buildroot}/usr/share/doc/
 /usr/share/doc/groovy-%{version}
 
 %changelog
-* Tue Feb 7 2023 windowsboy111 <windowsboy111@fyralabs.com>
+* Tue Feb 7 2023 madonuko <mado@fyralabs.com>
 - Initial package

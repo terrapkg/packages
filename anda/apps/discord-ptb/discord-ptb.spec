@@ -46,11 +46,11 @@ ln -s %_datadir/discord-ptb/Discord %buildroot%_bindir/discord-ptb
 %{_datadir}/pixmaps/discord-ptb.png
 
 %changelog
-* Thu Nov 17 2022 windowsboy111 <wboy111@outlook.com> - 0.0.35-1
+* Thu Nov 17 2022 madonuko <mado@fyralabs.com> - 0.0.35-1
 - new version
 
-* Thu Oct 20 2022 windowsboy111 <wboy111@outlook.com> - 0.0.34-1
+* Thu Oct 20 2022 madonuko <mado@fyralabs.com> - 0.0.34-1
 - new version
 
-* Sun Oct 16 2022 windowsboy111 <wboy111@outlook.com> - 0.0.33
+* Sun Oct 16 2022 madonuko <mado@fyralabs.com> - 0.0.33
 - Initial Package.

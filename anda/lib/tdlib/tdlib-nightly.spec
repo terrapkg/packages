@@ -85,7 +85,7 @@ cp -r ../example %buildroot%_datadir/%{name}
 %_libdir/libtd*.a
 
 %changelog
-* Sun May 28 2023 windowsboy111 <windowsboy111@fyralabs.com> - 1.8.14^54b34e9180dabc017210ebe3995f01d0c2fbaef1-1
+* Sun May 28 2023 madonuko <mado@fyralabs.com> - 1.8.14^54b34e9180dabc017210ebe3995f01d0c2fbaef1-1
 - Repackaged for Terra
 
 * Sat Jan 21 2023 Fedora Release Engineering <releng@fedoraproject.org> - 1.8.0-3

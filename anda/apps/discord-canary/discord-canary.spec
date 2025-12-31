@@ -45,7 +45,7 @@ ln -s %_datadir/discord-canary/DiscordCanary %buildroot%_bindir/discord-canary
 * Thu Dec 01 2022 root - 0.0.144-1
 - new version
 
-* Thu Nov 17 2022 windowsboy111 <wboy111@outlook.com> - 0.0.143-1
+* Thu Nov 17 2022 madonuko <mado@fyralabs.com> - 0.0.143-1
 - new version
 
 * Fri Oct 28 2022 root - 0.0.142-1
@@ -60,10 +60,10 @@ ln -s %_datadir/discord-canary/DiscordCanary %buildroot%_bindir/discord-canary
 * Thu Oct 27 2022 root - 0.0.141-1
 - new version
 
-* Wed Oct 19 2022 windowsboy111 <wboy111@outlook.com> - 0.0.140-1
+* Wed Oct 19 2022 madonuko <mado@fyralabs.com> - 0.0.140-1
 - new version
 
-* Sun Oct 16 2022 windowsboy111 <wboy111@outlook.com> - 0.0.139
+* Sun Oct 16 2022 madonuko <mado@fyralabs.com> - 0.0.139
 - Repackaged for Terra
 
 * Tue Feb 22 2022 Ultramarine Release Tracking Service - 0.0.133-2
