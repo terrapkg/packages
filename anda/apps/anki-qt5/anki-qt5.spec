@@ -62,5 +62,5 @@ find %{buildroot} -iname direct_url.json | xargs -r rm -rf
 /usr/lib64/python*/site-packages/anki-%{version}.dist-info/
 
 %changelog
-* Tue Jan 3 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2.1.60
+* Tue Jan 3 2023 madonuko <mado@fyralabs.com> - 2.1.60
 - Initial package

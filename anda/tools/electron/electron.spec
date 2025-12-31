@@ -46,5 +46,5 @@ install -Dm644 %SOURCE2 %buildroot%_docdir/%name/
 
 
 %changelog
-* Fri Feb 10 2023 windowsboy111 <windowsboy111@fyralabs.com> - 20.3.12-1
+* Fri Feb 10 2023 madonuko <mado@fyralabs.com> - 20.3.12-1
 - Initial package

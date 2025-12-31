@@ -36,5 +36,5 @@ cp %{SOURCE2} %{buildroot}/%{_datadir}/licenses/%{name}/LICENSE
 %{_datadir}/icons/Bibata-*
 
 %changelog
-* Wed Jan 4 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2.0.3-1
+* Wed Jan 4 2023 madonuko <mado@fyralabs.com> - 2.0.3-1
 - Initial package

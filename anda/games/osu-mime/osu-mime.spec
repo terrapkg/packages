@@ -56,5 +56,5 @@ update-desktop-database -q
 /usr/share/mime/packages/osu-file-extensions.xml
 
 %changelog
-* Mon Feb 13 2023 windowsboy111 <windowsboy111@fyralabs.com>
+* Mon Feb 13 2023 madonuko <mado@fyralabs.com>
 - Initial package

@@ -46,5 +46,5 @@ ln -s %_datadir/discord/Discord %buildroot%_bindir/discord
 %{_datadir}/pixmaps/discord.png
 
 %changelog
-* Thu Jan 19 2023 windowsboy111 <wboy111@outlook.com> - 0.0.143-1
+* Thu Jan 19 2023 madonuko <mado@fyralabs.com> - 0.0.143-1
 - Initial package
