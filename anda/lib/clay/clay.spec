@@ -27,12 +27,12 @@ Major Features:
 %build
 
 %install
-install -Dm644 clay.h %{buildroot}%{_includedir}/clay/clay.h
+install -Dm644 clay.h %{buildroot}%{_includedir}/clay.h
 
 %files
 %license LICENSE.md
 %doc README.md
-%{_includedir}/clay/
+%{_includedir}/clay.h
 
 %changelog
 * Wed Dec 31 2025 Owen Zimmerman <owen@fyralabs.com>
