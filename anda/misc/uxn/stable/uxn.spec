@@ -2,8 +2,6 @@
 # is permanently frozen. A nightly will be added once the
 # sourcehut versioning script is done.
 
-%define debug_package %nil
-
 Name:           uxn
 Version:        1.0
 Release:        1%?dist
@@ -11,8 +9,7 @@ Summary:        An emulator for the Varvara virtual machine
 URL:            https://100r.ca/site/%{name}.html
 Source0:        https://git.sr.ht/~rabbits/%{name}/archive/%{version}.tar.gz
 License:        MIT
-BuildRequires:  anda-srpm-macros SDL2-devel gcc
-Requires:       SDL2-devel
+BuildRequires:  anda-srpm-macros SDL2-devel gcc libubsan libasan
 
 Packager:       arbormoss <arbormoss@woodsprite.dev>
 
@@ -23,6 +20,7 @@ Packager:       arbormoss <arbormoss@woodsprite.dev>
 %autosetup -n %name-%version
 
 %build
+sed -zi 's/debug=0/debug=1/' ./build.sh
 ./build.sh
 
 %install
