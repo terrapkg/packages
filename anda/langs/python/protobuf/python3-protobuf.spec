@@ -54,8 +54,8 @@ rm -rf %{pypi_name}.egg-info
 %endif
 
 %changelog
-* Sun Feb 19 2023 windowsboy111 <wboy111@outlook.com> - 4.22.0-1
+* Sun Feb 19 2023 madonuko <mado@fyralabs.com> - 4.22.0-1
 - Bump.
 
-* Tue Jan 10 2023 windowsboy111 <wboy111@outlook.com> - 4.21.12-1
+* Tue Jan 10 2023 madonuko <mado@fyralabs.com> - 4.21.12-1
 - Initial package.
