@@ -3,7 +3,7 @@
 
 Name:           typos
 Version:        1.40.1
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Source Code Spelling Correction
 
 License:        MIT OR Apache-2.0
@@ -30,7 +30,7 @@ cp %{S:2} .
 %{cargo_license_online} > LICENSE.dependencies
 
 %install
-install -Dm 644 target/rpm/%{name} -t %{buildroot}%{_bindir}
+install -Dm 755 target/rpm/%{name} -t %{buildroot}%{_bindir}
 
 %files
 %license LICENSE-MIT LICENSE-APACHE LICENSE.dependencies
