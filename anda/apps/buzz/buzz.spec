@@ -13,6 +13,7 @@ BuildRequires:  python3-pip
 BuildRequires:  python3-setuptools
 BuildRequires:  python3-setuptools_scm
 BuildRequires:  python3dist(polib)
+BuildRequires:  python3dist(hatchling)
 BuildRequires:  glslc
 BuildRequires:  cmake gcc gcc-c++
 
