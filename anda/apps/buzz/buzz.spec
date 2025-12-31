@@ -16,6 +16,7 @@ BuildRequires:  python3dist(polib)
 BuildRequires:  python3dist(hatchling)
 BuildRequires:  glslc
 BuildRequires:  cmake gcc gcc-c++
+BuildRequires:  pkgconfig(vulkan)
 
 %description
 Buzz transcribes and translates audio offline on your personal computer. Powered by OpenAI's Whisper.
@@ -24,7 +25,7 @@ Buzz transcribes and translates audio offline on your personal computer. Powered
 %git_clone https://github.com/chidiwilliams/buzz
 
 %build
-%pyproject_wheel
+%pyproject_wheel --ignore-requires-python
 
 %install
 %pyproject_install
