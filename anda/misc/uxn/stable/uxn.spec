@@ -1,5 +1,6 @@
 # uxn stable has no update script because this version
-# is permanently frozen.
+# is permanently frozen. A nightly will be added once the
+# sourcehut versioning script is done.
 
 %define debug_package %nil
 
