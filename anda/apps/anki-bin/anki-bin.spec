@@ -74,5 +74,5 @@ rm -rf %buildroot%_bindir/{distro,flask,jsonschema,markdown_py,normalizer,send2t
 * Fri Nov 10 2023 hazel-bunny <dabiswas112@gmail.com> - 23.10-2
 - Add python3-orjson and mpv as dependencies
 
-* Wed Jan 11 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2.1.60
+* Wed Jan 11 2023 madonuko <mado@fyralabs.com> - 2.1.60
 - Initial package

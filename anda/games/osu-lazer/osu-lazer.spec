@@ -54,5 +54,5 @@ desktop-file-validate %{buildroot}%{_appsdir}/osu-lazer-uri-handler.desktop
 %changelog
 * Wed Dec 24 2025 Owen Zimmerman <owen@fyralabs.com>
 - Use macros, add %check, clean up %install
-* Mon Feb 13 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2023.207.0-1
+* Mon Feb 13 2023 madonuko <mado@fyralabs.com> - 2023.207.0-1
 - Initial package

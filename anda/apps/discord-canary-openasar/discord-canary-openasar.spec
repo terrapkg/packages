@@ -54,7 +54,7 @@ ln -s %_datadir/discord-canary-openasar/DiscordCanary %buildroot%_bindir/discord
 
 
 %changelog
-* Wed Jan 18 2023 windowsboy111 <windowsboy111@fyralabs.com> - 0.0.146-1
+* Wed Jan 18 2023 madonuko <mado@fyralabs.com> - 0.0.146-1
 - Renamed from openasar-canary to discord-canary-openasar
 - Fix issues after removing discord-canary package
 - Bundle discord-canary

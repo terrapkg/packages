@@ -43,7 +43,7 @@ install -m 755 sass %{buildroot}%{_bindir}/sass
 %doc README.md
 
 %changelog
-* Thu Nov 17 2022 windowsboy111 <wboy111@outlook.com> - 1.56.1-1
+* Thu Nov 17 2022 madonuko <mado@fyralabs.com> - 1.56.1-1
 - new version
 
 * Tue Oct 11 2022 Cappy Ishihara <cappy@cappuchino.xyz> - 1.53.0-5

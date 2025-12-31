@@ -56,5 +56,5 @@ ln -s %_datadir/discord-ptb-openasar/Discord %buildroot%_bindir/discord-ptb-open
 
 
 %changelog
-* Sat Jan 21 2023 windowsboy111 <windowsboy111@fyralabs.com> - 0.0.38-1
+* Sat Jan 21 2023 madonuko <mado@fyralabs.com> - 0.0.38-1
 - Initial package
