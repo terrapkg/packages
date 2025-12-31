@@ -8,7 +8,7 @@ assignees: ['madonuko', 'korewaChino', 'lleyton']
 ---
 
 **Describe the Incident**
-A clear and concise description of what is going on. **If you want to report a problem with a package, you are at the wrong place.**
+A clear and concise description of what is going on. **If you want to report a problem with a package, please use the Package Bug Report option instead.**
 
 **To Reproduce**
 Steps to reproduce the behavior:
