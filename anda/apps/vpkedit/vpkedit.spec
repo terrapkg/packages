@@ -28,7 +28,8 @@ new VPKs.
 %build
 %cmake -DCMAKE_INSTALL_PREFIX=%_libdir/%name \
    -DBUILD_SHARED_LIBS:BOOL=OFF              \
-   -DCMAKE_BUILD_TYPE=Release
+   -DCMAKE_BUILD_TYPE=Release                \
+   -DCPACK_GENERATOR=RPM
 #   -DVPKEDIT_BUILD_LIBC=ON
 %cmake_build
 
@@ -38,6 +39,7 @@ new VPKs.
 pushd %buildroot%_libdir/%name
 rm -rf {libQt*,*.md,LICENSE}
 popd
+mkdir -p %buildroot%_bindir
 ln -sf %_libdir/vpkedit/vpkedit %buildroot%_bindir/vpkedit
 ln -sf %_libdir/vpkedit/vpkeditcli %buildroot%_bindir/vpkeditcli
 sed -i 's@Exec=/opt/vpkedit/@Exec=@g' %buildroot%_datadir/applications/vpkedit.desktop
