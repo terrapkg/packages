@@ -1,5 +1,5 @@
 Name:       webapp-manager
-Version:    master.lmde7
+Version:    1.4.5
 Release:    1%?dist
 Summary:    Web Application Manager
 License:    GPL-3.0-or-later
@@ -13,11 +13,13 @@ Requires:   python3-gobject
 Requires:   python3-pillow
 Requires:   python3-setproctitle
 Requires:   python3-tldextract
+Requires:   xapp-symbolic-icons
 Requires:   xapps
 
 BuildRequires:  gettext
 BuildRequires:  make
 BuildRequires:  python3-devel
+BuildRequires:  desktop-file-utils
 
 Packager:       metcya <metcya@gmail.com>
 
@@ -35,7 +37,7 @@ mkdir -p %{buildroot}%{_datadir}/locale
 cp -r usr/share/locale/* %{buildroot}%{_datadir}/locale
 install -Dm 755 usr/bin/%{name} -t %{buildroot}%{_bindir}
 install -Dm 755 usr/lib/%{name}/*.py -t %{buildroot}%{_libdir}/%{name}/
-install -Dm 644 usr/share/applications/%{name}.desktop -t %{buildroot}%{_datadir}/applications
+install -Dm 644 usr/share/applications/%{name}.desktop -t %{buildroot}%{_appsdir}
 install -Dm 644 usr/share/desktop-directories/webapps-webapps.directory -t %{buildroot}%{_datadir}/desktop-directories/webapps-webapps.directory
 install -Dm 644 usr/share/glib-2.0/schemas/org.x.%{name}.gschema.xml -t %{buildroot}%{_datadir}/glib-2.0/schemas
 install -Dm 644 usr/share/icons/hicolor/scalable/apps/webapp-manager.svg -t %{buildroot}%{_scalableiconsdir}
@@ -45,6 +47,11 @@ install -Dm 644 usr/share/%{name}/firefox/userChrome-with-navbar.css -t %{buildr
 install -Dm 644 usr/share/%{name}/firefox/profile/{places.sqlite,search.json.mozlz4,user.js} -t %{buildroot}%{_datadir}/%{name}/firefox/profile
 install -Dm 644 usr/share/%{name}/firefox/profile/chrome/userChrome.css -t %{buildroot}%{_datadir}/%{name}/firefox/profile/chrome
 install -Dm 644 etc/xdg/menus/applications-merged/webapps.menu -t %{buildroot}%{_sysconfdir}/xdg/menus/applications-merged
+
+sed -i '/^NotShowIn=KDE;$/d' %{buildroot}%{_appsdir}/%{name}.desktop
+
+%check
+desktop-file-validate %{buildroot}%{_appsdir}/%{name}.desktop
 
 %files
 %doc README.md
