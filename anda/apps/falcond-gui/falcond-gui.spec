@@ -2,7 +2,8 @@ Name:          falcond-gui
 Version:       1.0.0
 Release:       1%{?dist}
 Summary:       A GTK4/LibAdwaita application to control and monitor the Falcond gaming optimization daemon
-License:       FIXME
+SourceLicense: MIT
+License:       (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND CC0-1.0 AND ISC AND (MIT OR Apache-2.0) AND MIT AND (Unlicense OR MIT)
 URL:           https://git.pika-os.com/general-packages/falcond-gui
 Source0:       %{url}/archive/v%{version}.tar.gz
 BuildRequires: anda-srpm-macros
