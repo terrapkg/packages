@@ -38,7 +38,7 @@ install -dm777 %{buildroot}%{_datadir}/falcond/profiles/user
 %{_datadir}/falcond/profiles/*.conf
 %{_datadir}/falcond/profiles/handheld/*.conf
 %{_datadir}/falcond/profiles/htpc/*.conf
-%dir %{_datadir}/falcond/profiles/user
+%attr(0777, -, -) %{_datadir}/falcond/profiles/user/
 
 %changelog
 * Thu Jan 1 2026 Gilver E. <roachy@fyralabs.com> - 1.2.1-2
