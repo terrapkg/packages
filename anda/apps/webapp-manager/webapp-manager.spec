@@ -5,7 +5,6 @@ Summary:    Web Application Manager
 License:    GPL-3.0-or-later
 URL:        https://github.com/linuxmint/webapp-manager
 Source:     %{url}/archive/refs/tags/%{version}.tar.gz
-Patch0:     remove-no-kde-start.patch
 BuildArch:  noarch
 
 Requires:   python3-beautifulsoup4
@@ -28,7 +27,7 @@ Packager:       metcya <metcya@gmail.com>
 Launch websites as if they were apps.
 
 %prep
-%autosetup -n %{name}-%{version} -p1
+%autosetup -n %{name}-%{version}
 
 %build
 %make_build buildmo
@@ -48,6 +47,8 @@ install -Dm 644 usr/share/%{name}/firefox/userChrome-with-navbar.css -t %{buildr
 install -Dm 644 usr/share/%{name}/firefox/profile/{places.sqlite,search.json.mozlz4,user.js} -t %{buildroot}%{_datadir}/%{name}/firefox/profile
 install -Dm 644 usr/share/%{name}/firefox/profile/chrome/userChrome.css -t %{buildroot}%{_datadir}/%{name}/firefox/profile/chrome
 install -Dm 644 etc/xdg/menus/applications-merged/webapps.menu -t %{buildroot}%{_sysconfdir}/xdg/menus/applications-merged
+
+sed -i '/^NotShowIn=KDE;$/d' %{buildroot}%{_appsdir}/%{name}.desktop
 
 %check
 desktop-file-validate %{buildroot}%{_appsdir}/%{name}.desktop
