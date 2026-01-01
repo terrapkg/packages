@@ -2,6 +2,8 @@
 # is permanently frozen. A nightly will be added once the
 # sourcehut versioning script is done.
 
+%global debug_package %{nil}
+
 Name:           uxn
 Version:        1.0
 Release:        1%?dist
@@ -20,7 +22,6 @@ Packager:       arbormoss <arbormoss@woodsprite.dev>
 %autosetup -n %name-%version
 
 %build
-sed -zi 's/debug=0/debug=1/' ./build.sh
 ./build.sh
 
 %install
