@@ -13,7 +13,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %summary.
 
 %prep
-%autosetup %dnl -n %name-%version
+%autosetup
 %cargo_prep_online
 
 %build
