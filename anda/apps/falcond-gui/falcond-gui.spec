@@ -8,6 +8,7 @@ URL:            https://git.pika-os.com/general-packages/falcond-gui
 Source0:        %{url}/archive/v%{version}.tar.gz
 BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo-rpm-macros
+BuildRequires:  desktop-file-utils
 BuildRequires:  gtk4-devel
 BuildRequires:  libadwaita-devel
 BuildRequires:  mold
