@@ -1,5 +1,5 @@
 Name:       webapp-manager
-Version:    master.lmde7
+Version:    1.4.5
 Release:    1%?dist
 Summary:    Web Application Manager
 License:    GPL-3.0-or-later
@@ -13,6 +13,7 @@ Requires:   python3-gobject
 Requires:   python3-pillow
 Requires:   python3-setproctitle
 Requires:   python3-tldextract
+Requires:   xapp-symbolic-icons
 Requires:   xapps
 
 BuildRequires:  gettext
