@@ -3,7 +3,7 @@
 
 Name:           rust-tauri
 Version:        2.9.6
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Command line interface for building Tauri apps
 License:        Apache-2.0 OR MIT
 URL:            https://crates.io/crates/create-tauri-app
@@ -24,6 +24,8 @@ License:       ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) A
 %description -n tauri
 Build smaller, faster, and more secure desktop and mobile applications with a web frontend.
 
+%pkg_completion -n tauri -fz
+
 %prep
 %autosetup -n %{crate}-%{version} -p1
 %cargo_prep_online
@@ -34,6 +36,11 @@ Build smaller, faster, and more secure desktop and mobile applications with a we
 %install
 install -Dpm755 target/rpm/cargo-tauri %{buildroot}%{_bindir}/tauri
 %{cargo_license_online} > LICENSE.dependencies
+mkdir -p %{buildroot}{%{bash_completions_dir},%{fish_completions_dir},%{zsh_completions_dir}}
+
+#target/rpm/cargo-tauri completions --shell bash --output %{buildroot}%{bash_completions_dir}/tauri || :
+target/rpm/cargo-tauri completions --shell fish --output %{buildroot}%{fish_completions_dir}/tauri.fish
+target/rpm/cargo-tauri completions --shell zsh --output %{buildroot}%{zsh_completions_dir}/_tauri
 
 %files -n tauri
 %license LICENSE_APACHE-2.0
@@ -43,5 +50,7 @@ install -Dpm755 target/rpm/cargo-tauri %{buildroot}%{_bindir}/tauri
 %{_bindir}/tauri
 
 %changelog
+* Thu Jan 1 2026 <rockgrub@disroot.org> - 4.6.2-3
+- Added shell completion subpackages
 * Thu Dec 25 2025 Gilver E. <rockgrub@disroot.org> - 4.6.2-1
 - Initial package
