@@ -5,7 +5,7 @@ License:        MIT
 Summary:        Reversible directory-local environment variable manipulations
 URL:            https://shopify.github.io/shadowenv/
 Source0:        https://github.com/Shopify/shadowenv/archive/refs/tags/%version.tar.gz
-BuildRequires:  cargo anda-srpm-macros cargo-rpm-macros mold glib2 libgcc clang
+BuildRequires:  cargo cargo-rpm-macros mold
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
