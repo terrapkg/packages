@@ -2,8 +2,6 @@
 # is permanently frozen. A nightly will be added once the
 # sourcehut versioning script is done.
 
-%global debug_package %{nil}
-
 Name:           uxn
 Version:        1.0
 Release:        1%?dist
@@ -11,7 +9,7 @@ Summary:        An emulator for the Varvara virtual machine
 URL:            https://100r.ca/site/%{name}.html
 Source0:        https://git.sr.ht/~rabbits/%{name}/archive/%{version}.tar.gz
 License:        MIT
-BuildRequires:  anda-srpm-macros SDL2-devel gcc libubsan libasan
+BuildRequires:  SDL2-devel gcc
 
 Packager:       arbormoss <arbormoss@woodsprite.dev>
 
@@ -22,7 +20,17 @@ Packager:       arbormoss <arbormoss@woodsprite.dev>
 %autosetup -n %name-%version
 
 %build
-./build.sh
+# credit: based on the build script for uxn
+# https://git.sr.ht/~rabbits/uxn/tree/1.0/item/build.sh
+
+mkdir -p bin
+CC="${CC:-cc}"
+UXNEMU_LDFLAGS="-L/usr/local/lib $(sdl2-config --cflags --libs)"
+CFLAGS="%{build_cflags}"
+
+${CC} ${CFLAGS} src/%{name}asm.c -o bin/%{name}asm
+${CC} ${CFLAGS} src/%{name}.c src/devices/system.c src/devices/console.c src/devices/file.c src/devices/datetime.c src/devices/mouse.c src/devices/controller.c src/devices/screen.c src/devices/audio.c src/%{name}emu.c ${UXNEMU_LDFLAGS} ${FILE_LDFLAGS} -o bin/%{name}emu
+${CC} ${CFLAGS} src/%{name}.c src/devices/system.c src/devices/console.c src/devices/file.c src/devices/datetime.c src/%{name}cli.c ${FILE_LDFLAGS} -o bin/%{name}cli
 
 %install
 install -Dm755 bin/%{name}asm %{buildroot}%{_bindir}/%{name}asm
