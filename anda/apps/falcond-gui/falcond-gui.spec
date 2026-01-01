@@ -45,7 +45,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 %license ../LICENSE.md
 %{_bindir}/%{name}
 %{_hicolordir}/512x512/apps/falcond.png
-%{_appdir}/%{name}.desktop
+%{_appsdir}/%{name}.desktop
 
 %changelog
 * Thu Jan 1 2026 Gilver E. <roachy@fyralabs.com> - 1.0.0-1
