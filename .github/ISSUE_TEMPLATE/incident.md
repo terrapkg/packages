@@ -1,14 +1,14 @@
 ---
-name: Bug report
-about: Report an issue with a package (or Terra itself)
-title: '[BUG] '
-labels: bug
-assignees: ''
+name: Incident Report
+about: Report an issue with Terra itself
+title: '[INCIDENT] '
+labels: incident
+assignees: ['madonuko', 'korewaChino', 'lleyton']
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is. Please only report issues with packaging or Terra itself, report upstream bugs to the respective project.
+**Describe the Incident**
+A clear and concise description of what is going on. **If you want to report a problem with a package, please use the Package Bug Report option instead.**
 
 **To Reproduce**
 Steps to reproduce the behavior:
@@ -23,7 +23,7 @@ If applicable, add screenshots to help explain your problem.
 
 **Affected (please complete the following information):**
  - Distro [e.g. Fedora]
- - Package [e.g. melody, srpm-macros]
+ - Other relevant environments
 
 **Additional context**
 Add any other context about the problem here.

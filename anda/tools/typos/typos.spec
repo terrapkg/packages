@@ -2,8 +2,8 @@
 %define debug_package %{nil}
 
 Name:           typos
-Version:        1.40.1
-Release:        2%?dist
+Version:        1.41.0
+Release:        1%?dist
 Summary:        Source Code Spelling Correction
 
 License:        MIT OR Apache-2.0

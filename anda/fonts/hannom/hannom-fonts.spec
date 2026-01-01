@@ -28,5 +28,5 @@ install -Dm644 %{SOURCE1} "%{buildroot}/%{_datadir}/licenses/%{name}/COPYING"
 /%{_datadir}/fonts/hannom/
 
 %changelog
-* Mon Nov 21 2022 windowsboy111 <windowsboy111@fyralabs.com> - 4.004
+* Mon Nov 21 2022 madonuko <mado@fyralabs.com> - 4.004
 - Initial package
