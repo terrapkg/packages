@@ -31,7 +31,7 @@ falcond-gui provides a user-friendly graphical interface for managing falcond. I
 %install
 %cargo_install
 desktop-file-install res/%{name}.desktop
-install -Dm644 res/falcond.png %{buildroot}%{_hicolordir}/512x512/apps/
+install -Dm644 res/falcond.png -t %{buildroot}%{_hicolordir}/512x512/apps/
 %cargo_license_summary_online
 %{cargo_license_online} > LICENSE.dependencies
 
