@@ -5,6 +5,7 @@ Summary:    Web Application Manager
 License:    GPL-3.0-or-later
 URL:        https://github.com/linuxmint/webapp-manager
 Source:     %{url}/archive/refs/tags/%{version}.tar.gz
+Patch0:     remove-no-kde-start.patch
 BuildArch:  noarch
 
 Requires:   python3-beautifulsoup4
@@ -19,6 +20,7 @@ Requires:   xapps
 BuildRequires:  gettext
 BuildRequires:  make
 BuildRequires:  python3-devel
+BuildRequires:  desktop-file-utils
 
 Packager:       metcya <metcya@gmail.com>
 
@@ -26,7 +28,7 @@ Packager:       metcya <metcya@gmail.com>
 Launch websites as if they were apps.
 
 %prep
-%autosetup -n %{name}-%{version}
+%autosetup -n %{name}-%{version} -p1
 
 %build
 %make_build buildmo
@@ -36,7 +38,7 @@ mkdir -p %{buildroot}%{_datadir}/locale
 cp -r usr/share/locale/* %{buildroot}%{_datadir}/locale
 install -Dm 755 usr/bin/%{name} -t %{buildroot}%{_bindir}
 install -Dm 755 usr/lib/%{name}/*.py -t %{buildroot}%{_libdir}/%{name}/
-install -Dm 644 usr/share/applications/%{name}.desktop -t %{buildroot}%{_datadir}/applications
+install -Dm 644 usr/share/applications/%{name}.desktop -t %{buildroot}%{_appsdir}
 install -Dm 644 usr/share/desktop-directories/webapps-webapps.directory -t %{buildroot}%{_datadir}/desktop-directories/webapps-webapps.directory
 install -Dm 644 usr/share/glib-2.0/schemas/org.x.%{name}.gschema.xml -t %{buildroot}%{_datadir}/glib-2.0/schemas
 install -Dm 644 usr/share/icons/hicolor/scalable/apps/webapp-manager.svg -t %{buildroot}%{_scalableiconsdir}
@@ -46,6 +48,9 @@ install -Dm 644 usr/share/%{name}/firefox/userChrome-with-navbar.css -t %{buildr
 install -Dm 644 usr/share/%{name}/firefox/profile/{places.sqlite,search.json.mozlz4,user.js} -t %{buildroot}%{_datadir}/%{name}/firefox/profile
 install -Dm 644 usr/share/%{name}/firefox/profile/chrome/userChrome.css -t %{buildroot}%{_datadir}/%{name}/firefox/profile/chrome
 install -Dm 644 etc/xdg/menus/applications-merged/webapps.menu -t %{buildroot}%{_sysconfdir}/xdg/menus/applications-merged
+
+%check
+desktop-file-validate %{buildroot}%{_appsdir}/%{name}.desktop
 
 %files
 %doc README.md

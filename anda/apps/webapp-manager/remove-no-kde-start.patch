@@ -1,0 +1,12 @@
+diff --git a/generate_desktop_files b/generate_desktop_files
+index da44069..9f41ebd 100755
+--- a/generate_desktop_files
++++ b/generate_desktop_files
+@@ -19,7 +19,6 @@ Type=Application
+ Encoding=UTF-8
+ Categories=Application;Network;
+ StartupNotify=false
+-NotShowIn=KDE;
+ """
+ 
+ additionalfiles.generate(DOMAIN, PATH, "usr/share/applications/webapp-manager.desktop", prefix, _("Web Apps"), _("Run websites as if they were apps"), suffix)
