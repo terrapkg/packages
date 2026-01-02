@@ -29,7 +29,7 @@ install -Dm644 usr/share/falcond/profiles/*.conf -t %{buildroot}%{_datadir}/falc
 install -Dm644 usr/share/falcond/profiles/handheld/* -t %{buildroot}%{_datadir}/falcond/profiles/handheld/
 install -Dm644 usr/share/falcond/profiles/htpc/* -t %{buildroot}%{_datadir}/falcond/profiles/htpc/
 
-install -dm777 %{buildroot}%{_datadir}/falcond/profiles/user
+install -dm755 %{buildroot}%{_datadir}/falcond/profiles/user
 
 %files
 %doc README.md
@@ -38,7 +38,7 @@ install -dm777 %{buildroot}%{_datadir}/falcond/profiles/user
 %{_datadir}/falcond/profiles/*.conf
 %{_datadir}/falcond/profiles/handheld/*.conf
 %{_datadir}/falcond/profiles/htpc/*.conf
-%dir %attr(0777, -, -) %{_datadir}/falcond/profiles/user/
+%dir %{_datadir}/falcond/profiles/user/
 
 %changelog
 * Thu Jan 1 2026 Gilver E. <roachy@fyralabs.com> - 0^20260101git.0f87c74-2
