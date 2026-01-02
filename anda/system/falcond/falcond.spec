@@ -1,21 +1,22 @@
 %global _include_minidebuginfo 0
 
 Name:           falcond
-Version:        1.2.1
-Release:        1%?dist
+Version:        1.2.2
+Release:        2%?dist
 Summary:        Advanced Linux Gaming Performance Daemon
 License:        MIT
 URL:            https://git.pika-os.com/general-packages/falcond
 Source0:        %{url}/archive/v%{version}.tar.gz
-Source1:        %{name}.preset
 BuildRequires:  anda-srpm-macros >= 0.2.18
 BuildRequires:  systemd-rpm-macros
-BuildRequires:  zig >= 0.14.0
+BuildRequires:  zig >= 0.15.2
 BuildRequires:  zig-rpm-macros
 Requires:       %{name}-profiles
 Requires:       (scx-scheds or scx-scheds-nightly)
+Suggests:       %{name}-gui
 Conflicts:      gamemode
-Packager:       Gilver E. <rockgrub@disroot.org>
+Provides:       group(falcond)
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 falcond is a powerful system daemon designed to automatically optimize your Linux gaming experience.
@@ -29,7 +30,6 @@ This eliminates the need to manually configure settings for each game.
 
 %install
 install -Dm644 debian/%{name}.service -t %{buildroot}%{_unitdir}
-install -Dm644 %{SOURCE1} %{buildroot}%{_presetdir}/60-%{name}.preset
 # When DNF supports microarchitectures the fallback option for -c can be used here instead
 DESTDIR="%{buildroot}" \
 %ifarch x86_64
@@ -37,6 +37,13 @@ DESTDIR="%{buildroot}" \
 %elifarch aarch64
 %{zig_build_target -r fast -s} \
 %endif
+
+%pre
+# Create falcond group if it doesn't exist
+getent group 'falcond' >/dev/null || groupadd -f -r 'falcond' || :
+
+# Root must be a member of the group
+usermod -aG 'falcond' root || :
 
 %post
 %systemd_post %{name}.service
@@ -52,9 +59,11 @@ DESTDIR="%{buildroot}" \
 %license ../LICENSE
 %{_bindir}/%{name}
 %{_unitdir}/%{name}.service
-%{_presetdir}/60-%{name}.preset
 
 %changelog
+* Thu Jan 1 2026 Gilver E. <roachy@fyralabs.com> - 1.2.1-2
+- Disabled service by default in favor of user enablement via falcond-gui
+- Added weak dep on falcond-gui
 * Fri Jun 20 2025 Gilver E. <rockgrub@disroot.org> - 1.1.5-2
 - Enable service by default
 - Enable aarch64 CPU features
