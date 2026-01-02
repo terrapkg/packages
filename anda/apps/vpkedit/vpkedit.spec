@@ -47,8 +47,8 @@ sed -i 's@Exec=/opt/vpkedit/@Exec=@g' %buildroot%_datadir/applications/vpkedit.d
 
 
 %files
-%doc README.md CODE_OF_CONDUCT.md INSTALL.md
-%license LICENSE %dnl CREDITS.md
+%doc README.md CODE_OF_CONDUCT.md INSTALL.md CREDITS.md
+%license LICENSE
 %_bindir/vpkedit
 %_bindir/vpkeditcli
 %_libdir/%name/
