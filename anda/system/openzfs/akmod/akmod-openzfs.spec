@@ -48,10 +48,7 @@ This package contains the OpenZFS kernel modules built using akmods.
 
 kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
-%setup -q -c
-(cd zfs-%{version}
-)
-
+%autosetup
 for kernel_version in %{?kernel_versions} ; do
   cp -a zfs-%{version} _kmod_build_${kernel_version%%___*}
 done
@@ -62,7 +59,7 @@ for kernel_version in %{?kernel_versions} ; do
 
   ./autogen.sh
   
-  ./configure \
+  %configure% \
     --with-config=kernel \
     --with-linux=${kernel_version##*___} \
     --with-linux-obj=${kernel_version##*___}
