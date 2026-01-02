@@ -17,6 +17,9 @@ BuildRequires: qt6-qtdeclarative-private-devel
 BuildRequires: qt6-qtshadertools-devel
 BuildRequires: qt6-qtwayland-devel
 BuildRequires: spirv-tools
+BuildRequires: anda-srpm-macros
+BuildRequires: breakpad-devel
+BuildRequires: jemalloc-devel
 BuildRequires: pkgconfig
 BuildRequires: pkgconfig(libpipewire-0.3)
 BuildRequires: pkgconfig(wayland-client)
