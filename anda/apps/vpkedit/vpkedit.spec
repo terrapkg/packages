@@ -1,3 +1,5 @@
+%define _unpackaged_files_terminate_build 0
+
 Name:           vpkedit
 Version:        5.0.0.4
 Release:        1%?dist
