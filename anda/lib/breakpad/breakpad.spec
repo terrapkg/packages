@@ -1,6 +1,6 @@
 Name:               breakpad
 Version:            2024.02.16
-Release:            1%?dist
+Release:            2%?dist
 Summary:            Google Breakpad crash-reporting system
 License:            BSD-3-Clause
 Group:		        System
@@ -22,8 +22,9 @@ A set of client and server components which implement a crash-reporting system.
 %package devel
 Requires:	%{name} = %{evr}
 %pkg_devel_files
-%{_libdir}/libbreakpad.a
-%{_libdir}/libbreakpad_client.a
+
+%package static
+%pkg_static_files
 
 %prep
 %autosetup -n breakpad-%{version}
