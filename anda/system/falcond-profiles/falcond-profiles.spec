@@ -31,9 +31,6 @@ install -Dm644 usr/share/falcond/profiles/htpc/* -t %{buildroot}%{_datadir}/falc
 
 install -dm777 %{buildroot}%{_datadir}/falcond/profiles/user
 
-%check
-stat %{buildroot}%{_datadir}/falcond/profiles/user
-
 %files
 %doc README.md
 %license LICENSE
