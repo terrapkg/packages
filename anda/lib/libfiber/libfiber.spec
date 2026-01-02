@@ -19,8 +19,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 BuildRequires:  gcc-c++ make
 
-%description
-%_description
+%description %_description
 
 %prep
 %autosetup -n libfiber-%{version} -p1
