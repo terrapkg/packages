@@ -1,6 +1,6 @@
 Name:               breakpad
 Version:            2024.02.16
-Release:            3
+Release:            1%?dist
 Summary:            Google Breakpad crash-reporting system
 License:            BSD-3-Clause
 Group:		        System
@@ -12,19 +12,16 @@ BuildRequires:      gcc-c++
 BuildRequires:      pkgconfig(gmock)
 BuildRequires:      pkgconfig(gtest)
 BuildRequires:      pkgconfig(zlib)
+BuildRequires:      anda-srpm-macros
 
 Packager:           Willow Reed (willow@willowidk.dev)
-
 
 %description
 A set of client and server components which implement a crash-reporting system.
 
 %package devel
-Summary: Development files for %{name}
 Requires:	%{name} = %{evr}
-
-%description devel
-Development files for the Google Breakpad crash-reporting system.
+%pkg_devel_files
 
 %prep
 %autosetup -n breakpad-%{version}
