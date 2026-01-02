@@ -30,7 +30,6 @@ network module of the Windows GUI application written by MFC, wtl or other GUI f
 
 %install
 mkdir -p %{buildroot}%{_includedir}/fiber/
-ls -la c/include/fiber
 install -Dm644 c/include/fiber/*.h %{buildroot}%{_includedir}/fiber/
 install -Dm644 cpp/include/fiber/*.hpp %{buildroot}%{_includedir}/fiber/
 
