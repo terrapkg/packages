@@ -1,6 +1,6 @@
-%global commit 3a89c8ac5493636530129c80a32d29aa7ec45f03
+%global commit 1c2db85aa41c7d929cb23b408229e297dce2758a
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global fulldate 2025-12-31
+%global fulldate 2026-01-02
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
 %global ver 1.3.0
