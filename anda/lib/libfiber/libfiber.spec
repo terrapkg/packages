@@ -15,12 +15,9 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 BuildRequires:  gcc-c++ make
 
 %description
-The libfiber project comes from the coroutine module of the acl project in lib_fiber directory of which.
-It can be used on OS platforms including Linux, FreeBSD, macOS, and Windows, which supports select, poll,
-epoll, kqueue, iocp, and even Windows GUI messages for different platform. With libfiber, you can write
-network application services having the high performance and large concurrent more easily than the traditional
-asynchronous framework with event-driven model. What's more, with the help of libfiber, you can even write
-network module of the Windows GUI application written by MFC, wtl or other GUI framework on Windows in coroutine way.
+libfiber is a high-performance coroutine library designed for building efficient network applications across multiple platforms.
+Originating from the coroutine module in the acl project, libfiber supports Linux, FreeBSD, macOS, and Windows operating systems.
+The library enables developers to write highly concurrent applications using synchronous programming paradigms while achieving performance comparable to or better than asynchronous frameworks.
 
 %prep
 %autosetup -n libfiber-%{version} -p1
