@@ -7,7 +7,7 @@
 
 Name:           gnome-shell-extension-%{extension}
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Add multiple monitors overview and panel for GNOME Shell. This is an updated fork with GNOME 46 compatibility
 License:        GPL-2.0-or-later
 URL:            https://github.com/FrederykAbryan/multi-monitors-bar_fapv2
@@ -16,7 +16,6 @@ BuildArch:      noarch
 
 Source0:        %url/archive/%commit/multi-monitors-bar_fapv2-%commit.tar.gz
 # README declared the license, but they do not provide a license file
-Source1:        https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt
 
 Requires:       (gnome-shell >= 48~ with gnome-shell < 50~)
 Recommends:     gnome-extensions-app
@@ -28,8 +27,6 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %prep
 %autosetup -n multi-monitors-bar_fapv2-%commit
-
-cp %{SOURCE1} .
 
 %build
 
@@ -48,7 +45,7 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas/ &> /dev/null || :
 glib-compile-schemas %{_datadir}/glib-2.0/schemas/ &> /dev/null || :
 
 %files
-%license gpl-2.0.txt
+%license LICENSE
 %doc README.md
 %{_datadir}/gnome-shell/extensions/%{uuid}
 %{_datadir}/glib-2.0/schemas/*.gschema.xml
