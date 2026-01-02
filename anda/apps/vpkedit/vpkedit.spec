@@ -46,12 +46,11 @@ sed -i 's@Exec=/opt/vpkedit/@Exec=@g' %buildroot%_datadir/applications/vpkedit.d
 
 
 %files
-%doc README.md CREDITS.md
-%license LICENSE
+%doc README.md
+%license LICENSE CREDITS.md
 %_bindir/vpkedit
 %_bindir/vpkeditcli
 %_libdir/%name/
 %_datadir/applications/vpkedit.desktop
-%_iconsdir/hicolor/128x128/mimetypes/application-x-vpkedit.png
+%_hicolordir/*x*/apps/vpkedit.png
 %_datadir/mime/packages/vpkedit.xml
-%_datadir/pixmaps/vpkedit.png
