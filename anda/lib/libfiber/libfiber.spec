@@ -1,5 +1,10 @@
 %define debug_package %{nil}
 
+%global _description %{expand:
+libfiber is a high-performance coroutine library designed for building efficient network applications across multiple platforms.
+Originating from the coroutine module in the acl project, libfiber supports Linux, FreeBSD, macOS, and Windows operating systems.
+The library enables developers to write highly concurrent applications using synchronous programming paradigms while achieving performance comparable to or better than asynchronous frameworks.}
+
 Name:           libfiber-devel
 Version:        1.1.0
 Release:        1%?dist
@@ -15,9 +20,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 BuildRequires:  gcc-c++ make
 
 %description
-libfiber is a high-performance coroutine library designed for building efficient network applications across multiple platforms.
-Originating from the coroutine module in the acl project, libfiber supports Linux, FreeBSD, macOS, and Windows operating systems.
-The library enables developers to write highly concurrent applications using synchronous programming paradigms while achieving performance comparable to or better than asynchronous frameworks.
+%_description
 
 %prep
 %autosetup -n libfiber-%{version} -p1
