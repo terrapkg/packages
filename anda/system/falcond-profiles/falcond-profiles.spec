@@ -41,7 +41,7 @@ install -dm777 %{buildroot}%{_datadir}/falcond/profiles/user
 %dir %attr(0777, -, -) %{_datadir}/falcond/profiles/user/
 
 %changelog
-* Thu Jan 1 2026 Gilver E. <roachy@fyralabs.com> - 1.2.1-2
+* Thu Jan 1 2026 Gilver E. <roachy@fyralabs.com> - 0^20260101git.0f87c74-2
 - Added new user profiles directory
 - Added weak dep on falcond-gui
 * Thu Jun 19 2025 Gilver E. <rockgrub@disroot.org> - 0^20250613git.96c2cdf-1
