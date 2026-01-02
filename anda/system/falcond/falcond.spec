@@ -2,7 +2,7 @@
 
 Name:           falcond
 Version:        1.2.2
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Advanced Linux Gaming Performance Daemon
 License:        MIT
 URL:            https://git.pika-os.com/general-packages/falcond
@@ -15,6 +15,7 @@ Requires:       %{name}-profiles
 Requires:       (scx-scheds or scx-scheds-nightly)
 Suggests:       %{name}-gui
 Conflicts:      gamemode
+Provides:       group(falcond)
 Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
@@ -36,6 +37,13 @@ DESTDIR="%{buildroot}" \
 %elifarch aarch64
 %{zig_build_target -r fast -s} \
 %endif
+
+%pre
+# Create falcond group if it doesn't exist
+getent group 'falcond' >/dev/null || groupadd -f -r 'falcond' || :
+
+# Root must be a member of the group
+usermod -aG 'falcond' root || :
 
 %post
 %systemd_post %{name}.service
