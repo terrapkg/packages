@@ -26,7 +26,7 @@ new VPKs.
 
 
 %build
-%cmake -DCMAKE_INSTALL_PREFIX=%_libdir/%name \
+%cmake \%dnl -DCMAKE_INSTALL_PREFIX=%_libdir/%name \
    -DBUILD_SHARED_LIBS:BOOL=OFF              \
    -DCMAKE_BUILD_TYPE=Release                \
    -DCPACK_GENERATOR=RPM
