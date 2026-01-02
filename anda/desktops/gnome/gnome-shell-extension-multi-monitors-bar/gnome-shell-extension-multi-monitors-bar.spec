@@ -16,7 +16,7 @@ BuildArch:      noarch
 
 Source0:        %url/archive/%commit/multi-monitors-bar_fapv2-%commit.tar.gz
 # README declared the license, but they do not provide a license file
-Source1:        LICENSE.md
+Source1:        https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt
 
 Requires:       (gnome-shell >= 48~ with gnome-shell < 50~)
 Recommends:     gnome-extensions-app
@@ -48,7 +48,7 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas/ &> /dev/null || :
 glib-compile-schemas %{_datadir}/glib-2.0/schemas/ &> /dev/null || :
 
 %files
-%license LICENSE.md
+%license gpl-2.0.txt
 %doc README.md
 %{_datadir}/gnome-shell/extensions/%{uuid}
 %{_datadir}/glib-2.0/schemas/*.gschema.xml
