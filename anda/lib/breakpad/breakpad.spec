@@ -22,6 +22,8 @@ A set of client and server components which implement a crash-reporting system.
 %package devel
 Requires:	%{name} = %{evr}
 %pkg_devel_files
+%{_libdir}/libbreakpad.a
+%{_libdir}/libbreakpad_client.a
 
 %prep
 %autosetup -n breakpad-%{version}
@@ -54,11 +56,6 @@ rm -rf %{buildroot}%{_docdir}/breakpad-0.1
 %{_bindir}/pid2md
 %{_bindir}/sym_upload
 %{_libexecdir}/core_handler
-
-%files -n %{name}-devel
-%{_includedir}/breakpad
-%{_libdir}/libbreakpad.a
-%{_libdir}/libbreakpad_client.a
 
 %changelog
 * Fri Jan 02 2026 Willow Reed <willow@willowidk.dev>
