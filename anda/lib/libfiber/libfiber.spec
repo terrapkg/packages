@@ -12,7 +12,7 @@ ExclusiveArch:  x86_64
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
-BuildRequires:  gcc-c++ make cmake git libev ninja-build
+BuildRequires:  gcc-c++ make
 
 %description
 The libfiber project comes from the coroutine module of the acl project in lib_fiber directory of which.
