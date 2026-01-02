@@ -59,8 +59,6 @@ rm -rf %{buildroot}%{_docdir}/breakpad-0.1
 %{_includedir}/breakpad
 %{_libdir}/libbreakpad.a
 %{_libdir}/libbreakpad_client.a
-%{_libdir}/pkgconfig/breakpad-client.pc
-%{_libdir}/pkgconfig/breakpad.pc
 
 %changelog
 * Fri Jan 02 2026 Willow Reed <willow@willowidk.dev>
