@@ -3,10 +3,7 @@
 Name:           gpu-screen-recorder
 Version:        5.11.2
 Release:        1%{dist}
-Summary:        A shadowplay-like screen recorder for Linux. The fastest screen recorder for Linux.
-# WARNING. I had to bump this because I decided to use normal versions instead of git snapshot as a version.
-# If you remove this, you will be FIRED.
-Epoch:          2
+Summary:        A shadowplay-like screen recorder for Linux
 
 License:        GPL-3.0-or-later
 
@@ -39,7 +36,7 @@ Requires(post): libcap
 Packager:       Willow Reed <willow@willowidk.dev>
 
 %description
-Shadowplay like screen recorder for Linux.
+Shadowplay-like screen recorder for Linux. Uses GPU acceleration to record in H.264, HEVC, AV1, VP8, or VP9.
 
 %prep
 %autosetup -c
