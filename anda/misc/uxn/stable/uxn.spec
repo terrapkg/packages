@@ -27,9 +27,9 @@ mkdir -p bin
 UXNEMU_LDFLAGS="-L/usr/local/lib $(sdl2-config --cflags --libs)"
 CFLAGS="%{build_cflags}"
 
-%{__cc} ${CFLAGS} src/%{name}asm.c -o bin/%{name}asm
-%{__cc} ${CFLAGS} src/%{name}.c src/devices/system.c src/devices/console.c src/devices/file.c src/devices/datetime.c src/devices/mouse.c src/devices/controller.c src/devices/screen.c src/devices/audio.c src/%{name}emu.c ${UXNEMU_LDFLAGS} ${FILE_LDFLAGS} -o bin/%{name}emu
-%{__cc} ${CFLAGS} src/%{name}.c src/devices/system.c src/devices/console.c src/devices/file.c src/devices/datetime.c src/%{name}cli.c ${FILE_LDFLAGS} -o bin/%{name}cli
+%{__cc} ${CFLAGS} src/%{name}asm.c %{build_ldflags} -o bin/%{name}asm
+%{__cc} ${CFLAGS} src/%{name}.c src/devices/system.c src/devices/console.c src/devices/file.c src/devices/datetime.c src/devices/mouse.c src/devices/controller.c src/devices/screen.c src/devices/audio.c src/%{name}emu.c ${UXNEMU_LDFLAGS} ${FILE_LDFLAGS} %{build_ldflags} -o bin/%{name}emu
+%{__cc} ${CFLAGS} src/%{name}.c src/devices/system.c src/devices/console.c src/devices/file.c src/devices/datetime.c src/%{name}cli.c ${FILE_LDFLAGS} %{build_ldflags} -o bin/%{name}cli
 
 %install
 install -Dm755 bin/%{name}asm %{buildroot}%{_bindir}/%{name}asm
