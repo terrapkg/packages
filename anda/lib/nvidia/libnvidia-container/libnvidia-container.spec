@@ -2,7 +2,7 @@
 
 Name:           libnvidia-container
 Version:        1.18.1
-Release:        1%?dist
+Release:        2%?dist
 Summary:        NVIDIA container runtime library
 License:        BSD-3-Clause AND Apache-2.0 AND GPL-3.0-or-later AND LGPL-3.0-or-later AND MIT AND GPL-2.0-only
 Vendor:         NVIDIA Corporation
@@ -45,7 +45,7 @@ make install DESTDIR=%{buildroot} REVISION=%{version} WITH_LIBELF=yes \
 
 %package -n %{name}%{_major}
 Summary:        NVIDIA container runtime library
-Requires:       nvidia-driver >= 340.29
+Requires:       (nvidia-driver or nvidia-driver-580)
 %description -n %{name}%{_major}
 The nvidia-container library provides an interface to configure containers using NVIDIA hardware.
 
@@ -55,21 +55,21 @@ The nvidia-container library provides an interface to configure containers using
 %package devel
 Requires:       %{name}%{_major}%{?_isa} = %{version}-%{release}
 Summary:        NVIDIA container runtime library development files
-Requires:       nvidia-driver >= 340.29
+Requires:       (nvidia-driver or nvidia-driver-580)
 %description devel
 This package contains the files required to compile programs with the library.
 
 %package static
 Requires:      %{name}-devel%{?_isa} = %{version}-%{release}
 Summary:        NVIDIA container runtime library static library
-Requires:       nvidia-driver >= 340.29
+Requires:       (nvidia-driver or nvidia-driver-580)
 %description static
 The nvidia-container library provides an interface to configure containers using NVIDIA hardware.
 
 %package tools
 Requires:       %{name}%{_major}%{?_isa} >= %{version}-%{release}
 Summary:        NVIDIA container runtime library command-line tools
-Requires:       nvidia-driver >= 340.29
+Requires:       (nvidia-driver or nvidia-driver-580)
 %description tools
 This package contains command-line tools that facilitate using the nvidia-container library.
 

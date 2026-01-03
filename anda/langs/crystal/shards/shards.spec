@@ -1,5 +1,5 @@
 Name:          shards
-Version:       0.19.1
+Version:       0.20.0
 Release:       1%?dist
 Summary:       Dependency manager for the Crystal language 
 License:       Apache-2.0

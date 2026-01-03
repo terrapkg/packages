@@ -1,17 +1,16 @@
-%global _distro_extra_cflags -Wno-uninitialized
-%global _distro_extra_cxxflags -include %_includedir/c++/*/cstdint
+# RPCS3 builds often break with GCC
+%global toolchain clang
 # Define which LLVM/Clang version RPCS3 needs
 %if 0%{?fedora} >= 45
 %global llvm_major 21
+%global __cc clang-%{llvm_major}
+%global __cxx clang++-%{llvm_major}
 %endif
 # GLIBCXX_ASSERTIONS is known to break RPCS3
-%global build_cflags %(echo %{__build_flags_lang_c} | sed 's/-Wp,-D_GLIBCXX_ASSERTIONS//g') %{?_distro_extra_cflags}
-%global build_cxxflags %(echo %{__build_flags_lang_cxx} | sed 's/-Wp,-D_GLIBCXX_ASSERTIONS//g') %{?_distro_extra_cxxflags}
-# Need to get rid of everything Clang can't use and undefine -Wunused-command-line-argument where possible due to the project's build flags
-%global build_cflags %(echo %{build_cflags} | sed 's:-Werror ::g' | sed 's:-Wunused-command-line-argument ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-hardened-ld ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-hardened-ld-errors ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-package-notes ::g') -Wno-unused-command-line-argument
-%global build_cxxflags %(echo %{build_cxxflags} | sed 's:-Werror ::g' | sed 's:-Wunused-command-line-argument ::g' | sed 's:-specs\=/usr/lib/rpm/redhat/redhat-annobin-cc1 ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-hardened-ld ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-hardened-ld-errors ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-package-notes ::g') -Wno-unused-command-line-argument
-%global commit 2b0456520e659adc6a1604f56a216d5c632e1dd3
-%global ver 0.0.38-18509
+%global build_cflags %(echo "%{__build_flags_lang_c}" | sed 's|-Wp,-D_GLIBCXX_ASSERTIONS ||g') %{?_distro_extra_cflags}
+%global build_cxxflags %(echo "%{__build_flags_lang_cxx}" | sed 's|-Wp,-D_GLIBCXX_ASSERTIONS ||g') %{?_distro_extra_cflags}
+%global commit 65273dde7621592205fa8251209c7e03f9294a0c
+%global ver 0.0.38-18582
 
 Name:           rpcs3
 Version:        %(echo %{ver} | sed 's/-/^/g')
@@ -19,7 +18,7 @@ Release:        1%?dist
 Summary:        PlayStation 3 emulator and debugger
 License:        GPL-2.0-only
 URL:            https://github.com/RPCS3/rpcs3
-%dnl Source0:        %url/archive/refs/tags/v%version.tar.gz
+Source0:        %{url}/archive/%{commit}/%{name}-%{commit}.tar.gz
 BuildRequires:  anda-srpm-macros glew openal-soft cmake vulkan-validation-layers git-core mold
 BuildRequires:  llvm%{?llvm_major}-devel
 BuildRequires:  clang%{?llvm_major}
@@ -92,8 +91,8 @@ export LLVM_DIR=%{_libdir}/llvm%{?llvm_major}/%{_lib}/cmake
     -DUSE_SYSTEM_FLATBUFFERS=OFF                              \
     -DUSE_SYSTEM_PUGIXML=OFF                                  \
     -DUSE_SYSTEM_WOLFSSL=OFF                                  \
-    -DCMAKE_C_COMPILER=clang%{?llvm_major:-%{llvm_major}}     \
-    -DCMAKE_CXX_COMPILER=clang++%{?llvm_major:-%{llvm_major}} \
+    -DCMAKE_C_COMPILER="$CC"                                  \
+    -DCMAKE_CXX_COMPILER="$CXX"                               \
     -DCMAKE_LINKER=mold                                       \
     -DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS -fuse-ld=mold"      \
     -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS -fuse-ld=mold"    

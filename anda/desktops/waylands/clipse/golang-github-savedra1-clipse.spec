@@ -12,7 +12,7 @@
 
 # https://github.com/savedra1/clipse
 %global goipath         github.com/savedra1/clipse
-Version:                1.1.0
+Version:                1.2.0
 
 %gometa -f
 
@@ -24,7 +24,7 @@ Configurable TUI clipboard manager for Unix.}
                         resources/test_data/top_secret_credentials.txt
 
 Name:           clipse
-Release:        3%?dist
+Release:        1%?dist
 Summary:        Configurable TUI clipboard manager for Unix
 Provides:       golang-github-savedra1-clipse = %evr
 Obsoletes:      golang-github-savedra1-clipse < 1.1.0-2

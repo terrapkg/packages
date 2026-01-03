@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name: dart
-Version: 3.10.4
+Version: 3.10.7
 Release: 1%?dist
 Summary: The Dart Language
 License: BSD-3-Clause
@@ -50,7 +50,7 @@ ln -sf %{_libdir}/dart/bin/dartaotruntime %{buildroot}%{_bindir}/dartaotruntime
 %doc README
 
 %changelog
-* Thu Nov 17 2022 windowsboy111 <windowsboy111@fyralabs.com> - 2.18.4-1
+* Thu Nov 17 2022 madonuko <mado@fyralabs.com> - 2.18.4-1
 - Bump
 
 * Tue Oct 11 2022 Cappy Ishihara <cappy@cappuchino.xyz> - 2.18.2-1

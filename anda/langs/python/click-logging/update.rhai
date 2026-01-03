@@ -1,1 +1,1 @@
-rpm.version(gh_tag("Toilal/click-logging"));
+rpm.version(pypi("click-logging"));

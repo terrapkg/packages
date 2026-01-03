@@ -58,9 +58,9 @@ export PATH="%{_builddir}/crystal-%{bootstrap_version}-%{_arch}-alpine-linux-mus
 * Mon Nov 03 2025 Carl Hörberg <carl@84codes.com> -  1.18.2-2
 - Build from source, support multiple architectures.
 
-* Sat Jun 17 2023 windowsboy111 <windowsboy111@fyralabs.com> - 1.8.2-2
+* Sat Jun 17 2023 madonuko <mado@fyralabs.com> - 1.8.2-2
 - Add devel package.
 
-* Sat Apr 15 2023 windowsboy111 <windowsboy111@fyralabs.com> - 1.8.0-1
+* Sat Apr 15 2023 madonuko <mado@fyralabs.com> - 1.8.0-1
 - Initial package.
 

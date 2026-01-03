@@ -184,5 +184,5 @@ mv "THSarabunNew.ttf"				"TH Sarabun New.ttf"
 - Use Fedora macros to build and install fonts
 - Auto-generate AppStream metadata for fonts
 
-* Sun Jun 11 2023 windowsboy111 <windowsboy111@fyralabs.com> - 20200217-1
+* Sun Jun 11 2023 madonuko <mado@fyralabs.com> - 20200217-1
 - Initial package
