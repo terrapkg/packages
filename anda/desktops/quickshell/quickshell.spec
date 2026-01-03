@@ -43,7 +43,7 @@ Flexible QtQuick based desktop shell toolkit
         -DASAN=ON \
 %endif
         -DBUILD_SHARED_LIBS=OFF \
-        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_BUILD_TYPE=RelWithDebInfo \
         -DDISTRIBUTOR="Fedora Terra" \
         -DDISTRIBUTOR_DEBUGINFO_AVAILABLE=YES \
         -DGIT_REVISION=%{commit} \
