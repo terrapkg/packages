@@ -22,6 +22,7 @@ Requires:       stardust-xr-magnetar
 Requires:       stardust-xr-non-spatial-input
 Requires:       stardust-xr-protostar
 Requires:       stardust-xr-server
+Requires:       stardust-xr-solar-sailer
 
 BuildArch:      noarch
 Provides:       telescope stardust-telescope
