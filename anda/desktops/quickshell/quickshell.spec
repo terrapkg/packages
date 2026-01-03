@@ -59,7 +59,7 @@ Flexible QtQuick based desktop shell toolkit.
 %{_bindir}/qs
 %{_bindir}/quickshell
 %{_appsdir}/org.quickshell.desktop
-%{_datadir}/icons/hicolor/scalable/apps/org.quickshell.svg
+%{_scalableiconsdir}/org.quickshell.svg
 %{_libdir}/qt6/qml/Quickshell
 
 %changelog
