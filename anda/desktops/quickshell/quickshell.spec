@@ -19,6 +19,7 @@ BuildRequires: qt6-qtbase-private-devel
 BuildRequires: spirv-tools
 BuildRequires: anda-srpm-macros
 BuildRequires: breakpad-devel
+BuildRequires: breakpad-static
 BuildRequires: pkgconfig
 BuildRequires: pkgconfig(jemalloc)
 BuildRequires: pkgconfig(libpipewire-0.3)
