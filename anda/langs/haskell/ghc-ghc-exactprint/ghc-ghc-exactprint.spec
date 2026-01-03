@@ -98,9 +98,6 @@ This package provides the Haskell %{pkg_name} profiling library.
 # Begin cabal-rpm setup:
 %setup -q -n %{pkgver}
 # End cabal-rpm setup
-sed -i -e 's/base >=4.18 && <4.19/base >=4.18/' \
-       -e '/fail/d' \
-       ghc-exactprint.cabal
 %build
 # Begin cabal-rpm build:
 %dnl %global cabal_configure_options --allow-newer=base,fail
