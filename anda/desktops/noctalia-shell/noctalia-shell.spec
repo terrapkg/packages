@@ -22,7 +22,7 @@ Recommends:	    matugen
 Recommends:	    power-profiles-daemon
 Recommends:	    wlsunset
 
-Packager:       Willow Reed (willow@willowidk.dev)
+Packager:       Willow Reed <willow@willowidk.dev>
 
 %description
 A beautiful, minimal desktop shell for Wayland that actually gets out of your way. Built on Quickshell with a warm lavender aesthetic that you can easily customize to match your vibe.
