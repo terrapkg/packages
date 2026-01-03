@@ -39,9 +39,6 @@ Flexible QtQuick based desktop shell toolkit
 
 %build
 %cmake  -GNinja \
-%if %{with asan}
-        -DASAN=ON \
-%endif
         -DBUILD_SHARED_LIBS=OFF \
         -DCMAKE_BUILD_TYPE=RelWithDebInfo \
         -DDISTRIBUTOR="Fedora Terra" \
