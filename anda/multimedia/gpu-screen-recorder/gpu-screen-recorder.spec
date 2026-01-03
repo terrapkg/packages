@@ -63,7 +63,7 @@ setcap cap_sys_admin+ep %{_bindir}/gsr-kms-server
 %{_bindir}/gpu-screen-recorder
 %{_bindir}/gsr-kms-server
 %{_includedir}/gsr/plugin.h
-/usr/lib/systemd/user/%{name}.service
+%{_userunitdir}/%{name}.service
 /usr/lib/modprobe.d/gsr-nvidia.conf
 %{_mandir}/man1/gsr-kms-server.1*
 %{_mandir}/man1/gpu-screen-recorder.1*
