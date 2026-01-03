@@ -24,9 +24,9 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %cargo_build
 
 %install
-mkdir -p %{buildroot}%{_datadir}/%{name}
+mkdir -p %{buildroot}%{_datadir}/%{name}/solar_sailer
 %cargo_install
-install -Dm644 res/solar_sailer/move_icon.glb %{buildroot}%{_datadir}/%{name}/move_icon.glb
+install -Dm644 res/solar_sailer/move_icon.glb %{buildroot}%{_datadir}/%{name}/solar_sailer/move_icon.glb
 %{cargo_license_online} > LICENSE.dependencies
 
 %files
@@ -34,7 +34,7 @@ install -Dm644 res/solar_sailer/move_icon.glb %{buildroot}%{_datadir}/%{name}/mo
 %license LICENSE
 %license LICENSE.dependencies
 %_bindir/solar-sailer
-%{_datadir}/%{name}/move_icon.glb
+%{_datadir}/%{name}/solar_sailer/move_icon.glb
 
 %changelog
 * Sat Jan 03 2026 Owen Zimmerman <owen@fyralabs.com>
