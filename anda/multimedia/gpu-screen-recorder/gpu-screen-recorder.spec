@@ -36,7 +36,7 @@ BuildRequires:  pkgconfig(libspa-0.2)
 BuildRequires:  pkgconfig(libglvnd)
 Requires(post): libcap
 
-Packager:       Willow Reed (willow@willowidk.dev)
+Packager:       Willow Reed <willow@willowidk.dev>
 
 %description
 Shadowplay like screen recorder for Linux.
