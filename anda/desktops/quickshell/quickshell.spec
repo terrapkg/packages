@@ -32,7 +32,7 @@ BuildRequires: pkgconfig(gbm)
 BuildRequires: pkgconfig(CLI11)
 
 %description
-Flexible QtQuick based desktop shell toolkit
+Flexible QtQuick based desktop shell toolkit.
 
 %prep
 %autosetup -n %{name}-%{version}
