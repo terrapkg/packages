@@ -32,6 +32,7 @@ BuildRequires:  pkgconfig(dbus-1)
 BuildRequires:  pkgconfig(libspa-0.2)
 BuildRequires:  pkgconfig(libglvnd)
 Requires(post): libcap
+BuildRequires:  systemd-rpm-macros
 
 Packager:       Willow Reed <willow@willowidk.dev>
 
@@ -52,16 +53,22 @@ Shadowplay-like screen recorder for Linux. Uses GPU acceleration to record in H.
 %meson_test
 
 %post
-setcap cap_sys_admin+ep %{_bindir}/gsr-kms-server
+%systemd_user_post gpu-screen-recorder.service
+
+%preun
+%systemd_user_preun gpu-screen-recorder.service
+
+%postun
+%systemd_user_postun gpu-screen-recorder.service
 
 %files
 %license LICENSE
 %doc README.md
 %{_bindir}/gpu-screen-recorder
-%{_bindir}/gsr-kms-server
+%caps(cap_sys_admin+ep) %{_bindir}/gsr-kms-server
 %{_includedir}/gsr/plugin.h
 %{_userunitdir}/%{name}.service
-/usr/lib/modprobe.d/gsr-nvidia.conf
+%config %{_modprobedir}/gsr-nvidia.conf/gsr-nvidia.conf
 %{_mandir}/man1/gsr-kms-server.1*
 %{_mandir}/man1/gpu-screen-recorder.1*
 
