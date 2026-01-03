@@ -8,7 +8,7 @@
 
 Name:           nvidia-kmod
 Version:        590.48.01
-Release:4        4%?dist
+Release:        4%?dist
 Summary:        NVIDIA display driver kernel module
 Epoch:          3
 License:        NVIDIA License
