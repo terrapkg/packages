@@ -4,7 +4,7 @@
 
 Name:           stardust-xr-telescope
 Version:        %commit_date.git~%shortcommit
-Release:        1%?dist
+Release:        2%?dist
 Summary:        See the stars! Easy stardust setups to run on your computer
 License:        MIT
 URL:            https://github.com/StardustXR/telescope
@@ -22,6 +22,7 @@ Requires:       stardust-xr-magnetar
 Requires:       stardust-xr-non-spatial-input
 Requires:       stardust-xr-protostar
 Requires:       stardust-xr-server
+Requires:       stardust-xr-solar-sailer
 
 BuildArch:      noarch
 Provides:       telescope stardust-telescope
