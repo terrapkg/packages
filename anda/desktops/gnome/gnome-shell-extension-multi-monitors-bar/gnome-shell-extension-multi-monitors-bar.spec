@@ -1,5 +1,5 @@
-%global commit daf7f76a28b9d18d3c50a972d86c6d5f16c2ac01
-%global commit_date 20260102
+%global commit fa8a73a208ced4a2376d692552ea6b3694d08d53
+%global commit_date 20260103
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %global extension   multi-monitors-bar
@@ -16,7 +16,6 @@ BuildArch:      noarch
 
 Source0:        %url/archive/%commit/multi-monitors-bar_fapv2-%commit.tar.gz
 # README declared the license, but they do not provide a license file
-Source1:        https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt
 
 Requires:       (gnome-shell >= 48~ with gnome-shell < 50~)
 Recommends:     gnome-extensions-app
@@ -28,8 +27,6 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %prep
 %autosetup -n multi-monitors-bar_fapv2-%commit
-
-cp %{SOURCE1} .
 
 %build
 
@@ -48,7 +45,7 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas/ &> /dev/null || :
 glib-compile-schemas %{_datadir}/glib-2.0/schemas/ &> /dev/null || :
 
 %files
-%license gpl-2.0.txt
+%license LICENSE
 %doc README.md
 %{_datadir}/gnome-shell/extensions/%{uuid}
 %{_datadir}/glib-2.0/schemas/*.gschema.xml
