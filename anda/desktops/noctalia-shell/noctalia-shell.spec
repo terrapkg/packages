@@ -28,7 +28,7 @@ Packager:       Willow Reed (willow@willowidk.dev)
 A beautiful, minimal desktop shell for Wayland that actually gets out of your way. Built on Quickshell with a warm lavender aesthetic that you can easily customize to match your vibe.
 
 %prep
-%autosetup -n noctalia-release -p1
+%autosetup -n noctalia-release 
 
 %install
 mkdir -p %{buildroot}%{_datadir}/quickshell/noctalia-shell/
