@@ -3,4 +3,7 @@ project pkg {
     rpm {
         spec = "gnome-shell-extension-multi-monitors-bar.spec"
     }
+    labels {
+        nightly = 1
+    }
 }
