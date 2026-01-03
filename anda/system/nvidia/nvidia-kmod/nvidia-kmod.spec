@@ -8,7 +8,7 @@
 
 Name:           nvidia-kmod
 Version:        590.48.01
-Release:        3%?dist
+Release:        4%?dist
 Summary:        NVIDIA display driver kernel module
 Epoch:          3
 License:        NVIDIA License
@@ -18,6 +18,7 @@ ExclusiveArch:  x86_64 aarch64
 Source0:        https://github.com/NVIDIA/open-gpu-kernel-modules/archive/%{version}/open-gpu-kernel-modules-%{version}.tar.gz
 Requires:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
 Requires:       akmods
+Requires:       gcc-c++
 Provides:       akmod-nvidia-open = %{?epoch:%{epoch}:}%{version}
 Obsoletes:      akmod-nvidia-open < %{?epoch:%{epoch}:}%{version}
 
