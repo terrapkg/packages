@@ -41,15 +41,10 @@ Packager:       Willow Reed <willow@willowidk.dev>
 OpenZFS userspace tools
 
 %package libs
-Summary:        OpenZFS libraries
-%description libs
-Libraries for OpenZFS filesystem utilities.
+%pkg_libs_files
 
 %package devel
-Summary:        OpenZFS development headers
-Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
-%description devel
-Development headers for OpenZFS libraries.
+%pkg_devel_files
 
 %prep
 %autosetup -n zfs-%{version}
@@ -79,12 +74,6 @@ Development headers for OpenZFS libraries.
 find %{buildroot} -name '*.la' -delete
 
 %files
-???
-
-%files libs
-???
-
-%files devel
 ???
 
 %post

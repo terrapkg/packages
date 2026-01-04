@@ -59,7 +59,7 @@ for kernel_version in %{?kernel_versions} ; do
 
   ./autogen.sh
   
-  %configure% \
+  %configure \
     --with-config=kernel \
     --with-linux=${kernel_version##*___} \
     --with-linux-obj=${kernel_version##*___}
