@@ -23,9 +23,10 @@ Buzz transcribes and translates audio offline on your personal computer. Powered
 
 %prep
 %git_clone https://github.com/chidiwilliams/buzz
+sed '/^requires-python/s@3\.13@3.15@' -i pyproject.toml
 
 %build
-%pyproject_wheel --ignore-requires-python
+%pyproject_wheel
 
 %install
 %pyproject_install
