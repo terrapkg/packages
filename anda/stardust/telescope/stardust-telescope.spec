@@ -1,10 +1,10 @@
-%global commit cf5f3bc5a4b97aeacfe072725433a66da5bca68d
-%global commit_date 20260102
+%global commit 3f6bbbb6bfaf28da8e3635a67a7d9502ae7a7b11
+%global commit_date 20260104
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           stardust-xr-telescope
 Version:        %commit_date.git~%shortcommit
-Release:        2%?dist
+Release:        1%?dist
 Summary:        See the stars! Easy stardust setups to run on your computer
 License:        MIT
 URL:            https://github.com/StardustXR/telescope
