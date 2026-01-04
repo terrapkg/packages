@@ -1,5 +1,5 @@
-%global commit cf5f3bc5a4b97aeacfe072725433a66da5bca68d
-%global commit_date 20260102
+%global commit 3f6bbbb6bfaf28da8e3635a67a7d9502ae7a7b11
+%global commit_date 20260104
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           stardust-xr-telescope
@@ -22,6 +22,7 @@ Requires:       stardust-xr-magnetar
 Requires:       stardust-xr-non-spatial-input
 Requires:       stardust-xr-protostar
 Requires:       stardust-xr-server
+Requires:       stardust-xr-solar-sailer
 
 BuildArch:      noarch
 Provides:       telescope stardust-telescope
