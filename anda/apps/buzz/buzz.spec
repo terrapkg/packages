@@ -17,6 +17,7 @@ BuildRequires:  python3dist(hatchling)
 BuildRequires:  glslc
 BuildRequires:  cmake gcc gcc-c++
 BuildRequires:  pkgconfig(vulkan)
+BuildRequires:  desktop-file-utils
 
 %description
 Buzz transcribes and translates audio offline on your personal computer. Powered by OpenAI's Whisper.
@@ -32,10 +33,21 @@ sed '/^requires-python/s@3\.13@3.15@' -i pyproject.toml
 %pyproject_install
 %pyproject_save_files buzz
 
+desktop-file-install \
+    --set-icon="%appid" \
+    --set-key=Exec --set-value=%name \
+    --dir=%buildroot%_appsdir \
+    share/applications/%appid.desktop
+
+%terra_appstream share/metainfo/%appid.metainfo.xml
+install -Dpm644 share/icons/%appid.svg -t %buildroot%_scalableiconsdir
+
 %files -f %{pyproject_files}
 %doc README.md
 %license LICENSE
-%{_appsdir}/buzz.desktop
+%_appsdir/%appid.desktop
+%_metainfodir/%appid.metainfo.xml
+%_scalableiconsdir/%appid.svg
 
 %changelog
 * Thu Jan 01 2026 madonuko <mado@fyralabs.com> - 1.3.3-1
