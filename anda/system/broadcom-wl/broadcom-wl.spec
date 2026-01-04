@@ -6,7 +6,7 @@
 
 Name:       broadcom-wl
 Version:    6.30.223.271
-Release:    1%{?dist}
+Release:    2%{?dist}
 Summary:    Common files for Broadcom 802.11 STA driver
 Group:      System Environment/Kernel
 License:    Redistributable, no modification permitted
@@ -61,9 +61,9 @@ grep -q Copyright ${fn} >/dev/null || sed -i "s%\(^<?xml.*$\)%\1\n${copyright_st
 %doc README_6.30.223.271.txt fedora.readme
 %license lib/LICENSE.txt
 %{_metainfodir}/com.broadcom.wireless.hybrid.driver.metainfo.xml
-%config %{_nmlibdir_conf_d}/90-broadcom-wl.conf
-%config(noreplace) %{_modprobe_d}/broadcom-wl-blacklist.conf
-%config(noreplace) %{_dracut_conf_d}/20-wl.conf
+%{_nmlibdir_conf_d}/90-broadcom-wl.conf
+%{_modprobe_d}/broadcom-wl-blacklist.conf
+%{_dracut_conf_d}/20-wl.conf
 
 %changelog
 %autochangelog
