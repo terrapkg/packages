@@ -22,7 +22,6 @@ URL:            https://ziglang.org
 Source0:        %{archive_name}
 Source1:        %{archive_name}.minisig
 Patch0:         0000-remove-native-lib-directories-from-rpath.patch
-Patch3:         0005-link.Elf-add-root-directory-of-libraries-to-linker-p.patch
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
