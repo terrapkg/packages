@@ -20,6 +20,7 @@ BuildRequires:  cmake(Qt6Keychain)
 BuildRequires:  cmake(LayerShellQt)
 BuildRequires:  pkgconfig(libqalculate)
 BuildRequires:  pkgconfig(protobuf)
+BuildRequires:  pkgconfig(icu-uc)
 BuildRequires:  wayland-devel
 BuildRequires:  nodejs-npm
 BuildRequires:  systemd-rpm-macros
