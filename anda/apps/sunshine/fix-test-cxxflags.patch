@@ -1,0 +1,15 @@
+diff --git a/tests/CMakeLists.txt b/tests/CMakeLists.txt
+index 9a570fd3..676334d1 100644
+--- a/tests/CMakeLists.txt
++++ b/tests/CMakeLists.txt
+@@ -16,8 +16,8 @@ include_directories("${GTEST_SOURCE_DIR}/googletest/include" "${GTEST_SOURCE_DIR
+ 
+ # coverage
+ # https://gcovr.com/en/stable/guide/compiling.html#compiler-options
+-set(CMAKE_CXX_FLAGS "-fprofile-arcs -ftest-coverage -ggdb -O0")
+-set(CMAKE_C_FLAGS "-fprofile-arcs -ftest-coverage -ggdb -O0")
++set(CMAKE_CXX_FLAGS "-fprofile-arcs -ftest-coverage -ggdb -O0 -fPIE")
++set(CMAKE_C_FLAGS "-fprofile-arcs -ftest-coverage -ggdb -O0 -fPIE")
+ 
+ # Find the correct libgcov library path matching the gcc compiler version
+ # This ensures the test executable links against the same libgcov version used during compilation
