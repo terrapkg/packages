@@ -1,3 +1,5 @@
+%bcond_without cuda
+
 Name:           sunshine
 Version:        2025.924.154138
 Release:        1%{?dist}
@@ -36,6 +38,10 @@ BuildRequires:  pkgconfig(numa)
 BuildRequires:  doxygen
 BuildRequires:  nodejs-npm
 
+%if %{with cuda}
+BuildRequires:  cuda
+%endif
+
 %description
 Sunshine is a self-hosted game stream host for Moonlight. Offering low-latency,
 cloud gaming server capabilities with support for AMD, Intel, and Nvidia GPUs
@@ -45,10 +51,11 @@ provided to allow configuration, and client pairing, from your favorite web
 browser. Pair from the local server or any mobile device.
 
 %prep
-%git_clone https://github.com/LizardByte/Sunshine.git
+%git_clone https://github.com/LizardByte/Sunshine.git v%{version}
+%autopatch -p1
 
 %build
-%cmake
+%cmake -DSUNSHINE_ENABLE_CUDA=%{?with_cuda:ON:OFF}
 %cmake_build
 
 %install
@@ -57,6 +64,6 @@ browser. Pair from the local server or any mobile device.
 %files
 
 %changelog
-* Sun Jan 04 2026 metcya <metcya@gmail.com> - {version}
+* Sun Jan 04 2026 metcya <metcya@gmail.com> - 2025.924.154138-1
 - Initial package 
 

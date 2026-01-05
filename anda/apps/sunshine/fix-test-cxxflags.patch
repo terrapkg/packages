@@ -1,5 +1,5 @@
 diff --git a/tests/CMakeLists.txt b/tests/CMakeLists.txt
-index 9a570fd3..676334d1 100644
+index 5a4ecd7f..b78a436f 100644
 --- a/tests/CMakeLists.txt
 +++ b/tests/CMakeLists.txt
 @@ -16,8 +16,8 @@ include_directories("${GTEST_SOURCE_DIR}/googletest/include" "${GTEST_SOURCE_DIR
@@ -11,5 +11,5 @@ index 9a570fd3..676334d1 100644
 +set(CMAKE_CXX_FLAGS "-fprofile-arcs -ftest-coverage -ggdb -O0 -fPIE")
 +set(CMAKE_C_FLAGS "-fprofile-arcs -ftest-coverage -ggdb -O0 -fPIE")
  
- # Find the correct libgcov library path matching the gcc compiler version
- # This ensures the test executable links against the same libgcov version used during compilation
+ # if windows
+ if (WIN32)
