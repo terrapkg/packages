@@ -28,6 +28,7 @@ install -Dm 755 target/rpm/socktop %{buildroot}%{_bindir}/socktop
 install -Dm 755 target/rpm/socktop_agent %{buildroot}%{_bindir}/socktop_agent
 install -Dm 644 target/rpm/libsocktop_connector.so %{buildroot}%{_libdir}/libsocktop_connector.so
 install -Dm 644 docs/socktop-agent.service %{buildroot}%{_unitdir}/socktop-agent.service
+%{cargo_license_online} > LICENSE.dependencies
 
 %post
 %systemd_post socktop-agent.service
@@ -41,6 +42,7 @@ install -Dm 644 docs/socktop-agent.service %{buildroot}%{_unitdir}/socktop-agent
 %files
 %doc README.md
 %license LICENSE
+%license LICENSE.dependencies
 %{_bindir}/socktop
 %{_bindir}/socktop_agent
 %{_libdir}/libsocktop_connector.so
