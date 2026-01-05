@@ -1,4 +1,4 @@
-%dnl %define debug_package %{nil}
+%define debug_package %{nil}
 
 Name:           ttop
 Version:        1.5.7
