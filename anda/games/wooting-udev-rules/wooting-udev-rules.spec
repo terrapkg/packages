@@ -2,10 +2,10 @@
 
 
 Name:           wooting-udev-rules
-Version:        1.1
+Version:        1
 Release:        1%{?dist}
 Summary:        Udev rules for wooting keyboards
-Provides: 8bitdo-udev = %{version}-%{release}
+Provides:       wooting-udev = %{version}-%{release}
 License:        Unlicense
 Source0:        70-wooting.rules
 BuildArch:      noarch
@@ -24,8 +24,7 @@ Udev rules for Wooting keyboards to enable device access for use with the Wootil
 
 %install
 install -D -p -m 644 %SOURCE0 %{buildroot}%{_udevrulesdir}/%{udev_order}-wooting.rules
-%terra_appstream -o %{SOURCE1}
-
+#
 %post
 %udev_rules_update
 
