@@ -1,0 +1,7 @@
+# Legacy Wootings
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03eb", MODE:="0660", TAG+="uaccess"
+SUBSYSTEM=="usb", ATTRS{idVendor}=="03eb", MODE:="0660", TAG+="uaccess"
+
+# Generic Wootings
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="31e3", MODE:="0660", TAG+="uaccess"
+SUBSYSTEM=="usb", ATTRS{idVendor}=="31e3", MODE:="0660", TAG+="uaccess"
