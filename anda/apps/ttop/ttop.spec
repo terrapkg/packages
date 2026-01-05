@@ -1,5 +1,3 @@
-%define debug_package %{nil}
-
 Name:           ttop
 Version:        1.5.7
 Release:        1%?dist
@@ -20,10 +18,10 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %nim_prep
 
 %build
-nimble -d:release build
+%nim_c src/ttop
 
 %install
-install -Dm755 ttop %{buildroot}%{_bindir}/ttop
+install -Dm755 src/ttop.out %{buildroot}%{_bindir}/ttop
 
 %files
 %doc README.md
