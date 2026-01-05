@@ -37,6 +37,8 @@ and uhid.
 %cmake_install
 
 %files
+%doc README.md
+%license LICENSE
 # huh?
 %{_libdir}/liblib%{name}.so.*
 
