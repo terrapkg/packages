@@ -9,28 +9,17 @@
 %global commit_date 20260107
 %global snapshot_info %{commit_date}.%{shortcommit}
 
-%bcond_without qt6
-
 # Change this variables if you want to use custom keys
 # Leave blank if you want to build Prism Launcher without MSA id or curseforge api key
 %define msa_id default
 %define curseforge_key default
 
-%if %{with qt6}
 %global qt_version 6
 %global min_qt_version 6
-%else
-%global qt_version 5
-%global min_qt_version 5.12
-%endif
 
 %global build_platform terra
 
-%if %{with qt6}
 Name:             prismlauncher-nightly
-%else
-Name:             prismlauncher-qt5-nightly
-%endif
 Version:          10.0^%{snapshot_info}
 Release:          1%?dist
 Summary:          Minecraft launcher with ability to manage multiple instances
@@ -71,14 +60,9 @@ BuildRequires:    cmake(Qt%{qt_version}Widgets) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Xml) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}NetworkAuth) >= %{min_qt_version}
 
-%if %{with qt6}
 BuildRequires:    cmake(Qt6Core5Compat)
-%endif
 
 BuildRequires:    pkgconfig(libcmark)
-%if 0%{fedora} < 38
-BuildRequires:    cmark
-%endif
 BuildRequires:    pkgconfig(scdoc)
 BuildRequires:    pkgconfig(zlib)
 
@@ -102,11 +86,8 @@ Recommends:       flite
 Suggests:         gamemode
 
 Conflicts:        %{real_name}
-Conflicts:        %{real_name}-qt5
-%if %{without qt6}
-Conflicts:        %{real_name}-nightly
-%endif
 
+Obsoletes:        %{real_name}-qt5 <= 9.4
 
 %description
 A custom launcher for Minecraft that allows you to easily manage
@@ -158,16 +139,19 @@ rm -f %{buildroot}%{_datadir}/metainfo/org.prismlauncher.PrismLauncher.metainfo.
 %{_datadir}/%{nice_name}/JavaCheck.jar
 %{_datadir}/%{nice_name}/qtlogging.ini
 %{_datadir}/%{nice_name}/NewLaunchLegacy.jar
-%{_datadir}/applications/org.prismlauncher.PrismLauncher.desktop
+%{_appsdir}/org.prismlauncher.PrismLauncher.desktop
 %{_metainfodir}/%{appid}.metainfo.xml
-%{_datadir}/icons/hicolor/scalable/apps/org.prismlauncher.PrismLauncher.svg
-%{_datadir}/icons/hicolor/256x256/apps/org.prismlauncher.PrismLauncher.png
+%{_scalableiconsdir}/org.prismlauncher.PrismLauncher.svg
+%{_hicolordir}/256x256/apps/org.prismlauncher.PrismLauncher.png
 %{_datadir}/mime/packages/modrinth-mrpack-mime.xml
 %{_datadir}/qlogging-categories%{qt_version}/prismlauncher.categories
 %{_mandir}/man?/prismlauncher.*
 
 
 %changelog
+* Tue Jan 06 2026 Owen Zimmerman <owen@fyralabs.com> - 10.0.0-1
+- Remove Qt5 version
+
 * Wed Jun 19 2024 Trung Lê <8 at tle dot id dot au> - 9.0^20240619.8014283-1
 - use system quazip-qt and tomlplusplus
 
