@@ -82,13 +82,13 @@ export TAG=v%{version}
 %terra_appstream
 
 %post
-%systemd_post %{name}.service
+%systemd_user_post %{name}.service
 
 %preun
-%systemd_preun %{name}.service
+%systemd_user_preun %{name}.service
 
 %postun
-%systemd_postun_with_restart %{name}.service
+%systemd_user_postun_with_restart %{name}.service
 
 %if %{with check}
 %check
@@ -110,5 +110,4 @@ desktop-file-validate %{buildroot}%{_appsdir}/%{appid}{,.terminal}.desktop
 
 %changelog
 * Sun Jan 04 2026 metcya <metcya@gmail.com> - 2025.924.154138-1
-- Initial package 
-
+- Initial package
