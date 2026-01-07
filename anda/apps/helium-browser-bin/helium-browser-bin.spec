@@ -12,7 +12,7 @@
 
 Name:           helium-browser-bin
 Version:        0.7.9.1
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Private, fast, and honest web browser based on Chromium
 
 URL:            https://helium.computer
@@ -39,11 +39,7 @@ Based on ungoogled-chromium with additional privacy and usability improvements.
 %autosetup -n helium-%{version}-%{arch}_linux
 tar --strip-components=1 -zxvf %{SOURCE1}
 
-sed -i \
-    -e 's/Exec=chromium/Exec=%{name}/' \
-    -e 's/Name=Helium$/Name=Helium Browser/' \
-    -e 's/Icon=helium/Icon=%{appid}/' \
-    helium.desktop
+sed -i 's/Exec=helium\b/Exec=helium-browser-bin/g' helium.desktop
 
 %build
 
