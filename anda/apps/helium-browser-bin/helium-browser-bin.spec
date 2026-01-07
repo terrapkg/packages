@@ -49,7 +49,7 @@ cp -a * %{buildroot}%{_libdir}/%{name}/
 sed -i 's/exists_desktop_file || generate_desktop_file/true/' \
     %{buildroot}%{_libdir}/%{name}/chrome-wrapper
 
-desktop-file-install --dir=%{buildroot}%{_datadir}/applications --set-key=Exec --set-value="helium-browser-bin %U" helium.desktop
+desktop-file-install --dir=%{buildroot}%{_datadir}/applications --set-key=Exec --set-value="helium-browser-bin %U" helium-browser-bin.desktop
 
 install -Dm644 helium.desktop %{buildroot}%{_datadir}/applications/%{name}.desktop
 install -Dm644 product_logo_256.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{appid}.png
