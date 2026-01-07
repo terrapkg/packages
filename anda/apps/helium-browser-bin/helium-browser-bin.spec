@@ -25,6 +25,7 @@ Source2:        net.imput.helium.metainfo.xml
 ExclusiveArch:  x86_64 aarch64
 
 BuildRequires:  terra-appstream-helper
+BuildRequires:  desktop-file-utils
 
 Requires:       xdg-utils
 Requires:       liberation-fonts
@@ -39,8 +40,6 @@ Based on ungoogled-chromium with additional privacy and usability improvements.
 %autosetup -n helium-%{version}-%{arch}_linux
 tar --strip-components=1 -zxvf %{SOURCE1}
 
-sed -i 's/Exec=helium\b/Exec=helium-browser-bin/g' helium.desktop
-
 %build
 
 %install
@@ -49,6 +48,8 @@ cp -a * %{buildroot}%{_libdir}/%{name}/
 
 sed -i 's/exists_desktop_file || generate_desktop_file/true/' \
     %{buildroot}%{_libdir}/%{name}/chrome-wrapper
+
+desktop-file-install --dir=%{buildroot}%{_datadir}/applications --set-key=Exec --set-value="helium-browser-bin %U" helium.desktop
 
 install -Dm644 helium.desktop %{buildroot}%{_datadir}/applications/%{name}.desktop
 install -Dm644 product_logo_256.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{appid}.png
