@@ -103,7 +103,7 @@ desktop-file-validate %{buildroot}%{_appsdir}/%{appid}{,.terminal}.desktop
 %{_userunitdir}/%{name}.service
 %{_udevrulesdir}/60-%{name}.rules
 %{_modulesloaddir}/60-%{name}.conf
-%{_hicolordir}/scalable/apps/%{name}.svg
+%{_scalableiconsdir}/%{name}.svg
 %{_hicolordir}/scalable/status/*.svg
 %{_appsdir}/*.desktop
 %{_metainfodir}/%{appid}.metainfo.xml
