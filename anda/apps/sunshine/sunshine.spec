@@ -11,6 +11,8 @@ Release:        1%{?dist}
 License:        GPL-3.0-only AND CC0-1.0
 URL:            http://app.lizardbyte.dev/Sunshine/
 Patch0:         fix-test-cxxflags.patch
+# 44 _should_ have boost-1.90.0, so this probably wont be needed
+Patch1:         downgrade-boost.patch
 Summary:        Self-hosted game stream host for Moonlight
 Packager:       metcya <metcya@gmail.com>
 
