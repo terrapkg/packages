@@ -31,6 +31,7 @@ sed '/^requires-python/s@3\.13@3.15@' -i pyproject.toml
 
 %install
 %pyproject_install
+%pyproject_save_files demucs
 %pyproject_save_files buzz
 
 desktop-file-install \
@@ -45,9 +46,11 @@ install -Dpm644 share/icons/%appid.svg -t %buildroot%_scalableiconsdir
 %files -f %{pyproject_files}
 %doc README.md
 %license LICENSE
+%_bindir/buzz
 %_appsdir/%appid.desktop
 %_metainfodir/%appid.metainfo.xml
 %_scalableiconsdir/%appid.svg
+%_libdir/python3.14/site-packages/demucs/
 
 %changelog
 * Thu Jan 01 2026 madonuko <mado@fyralabs.com> - 1.3.3-1
