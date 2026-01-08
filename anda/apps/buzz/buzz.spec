@@ -19,6 +19,8 @@ BuildRequires:  cmake gcc gcc-c++
 BuildRequires:  pkgconfig(vulkan)
 BuildRequires:  desktop-file-utils
 
+ExclusiveArch:  x86_64
+
 %description
 Buzz transcribes and translates audio offline on your personal computer. Powered by OpenAI's Whisper.
 
