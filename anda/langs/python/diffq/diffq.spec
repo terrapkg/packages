@@ -10,6 +10,7 @@ URL:			https://github.com/facebookresearch/diffq
 Source0:		%{pypi_source}
 
 BuildRequires:  python3-devel
+BuildRequires:  python3-pip
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
