@@ -12,6 +12,8 @@ Source0:		%{pypi_source}
 BuildRequires:  python3-devel
 BuildRequires:  python3-pip
 BuildRequires:  python3-setuptools
+BuildRequires:  cython
+BuildRequires:  gcc
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
