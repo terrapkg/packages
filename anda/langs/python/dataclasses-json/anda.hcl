@@ -1,6 +1,6 @@
 project pkg {
-    arches = ["x86_64"]
+  arches = ["x86_64"]
   rpm {
-	spec = "dataclasses-json.spec"
+    spec = "dataclasses-json.spec"
   }
 }
