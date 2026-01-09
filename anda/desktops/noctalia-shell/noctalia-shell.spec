@@ -2,7 +2,7 @@
 
 Name:           noctalia-shell
 Version:		3.8.2
-Release:        1%?dist
+Release:        2%?dist
 Summary:        A Quickshell-based custom shell setup
 
 License:        MIT
@@ -14,6 +14,7 @@ Requires:    	dejavu-sans-fonts
 Requires:    	gpu-screen-recorder
 Requires:	    qt6-qtmultimedia
 Requires:       quickshell
+Requires:       xdg-desktop-portal
 
 Recommends: 	cava
 Recommends:	    cliphist
