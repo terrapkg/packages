@@ -14,6 +14,7 @@ Requires:    	dejavu-sans-fonts
 Requires:    	gpu-screen-recorder
 Requires:	    qt6-qtmultimedia
 Requires:       quickshell
+Requires:       xdg-desktop-portal
 
 Recommends: 	cava
 Recommends:	    cliphist
