@@ -1,5 +1,5 @@
 project pkg {
 	rpm {
-		spec = "surface-dtx-daemon.spec"
+		spec = "system76-power.spec"
 	}
 }
