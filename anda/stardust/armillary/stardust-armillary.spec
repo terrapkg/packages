@@ -1,15 +1,13 @@
-%global commit c278020dc78587e887f91377a882b50d0b009c50
-%global commit_date 20251130
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-xr-armillary
-Version:        %commit_date.%shortcommit
-Release:        2%?dist
+Version:        0.50.0
+Release:        1%?dist
+Epoch:          1
 Summary:        Model viewer for Stardust XR
 URL:            https://github.com/StardustXR/armillary
-Source0:        %url/archive/%commit/armillary-%commit.tar.gz
+Source0:        %url/archive/refs/tags/%version.tar.gz
 License:        MIT
 BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold
 
@@ -20,7 +18,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 A model viewer for Stardust XR which works great for hand tracking, pointers, and controllers.
 
 %prep
-%autosetup -n armillary-%commit
+%autosetup -n armillary-%version
 %cargo_prep_online
 
 %build
@@ -38,5 +36,8 @@ A model viewer for Stardust XR which works great for hand tracking, pointers, an
 %doc README.md
 
 %changelog
+* Sat Jan 10 2026 Owen Zimmerman <owen@fyralabs.com>
+- Switch to version based
+
 * Sat Sep 7 2024 Owen-sz <owen@fyralabs.com>
 - Package StardustXR armillary
