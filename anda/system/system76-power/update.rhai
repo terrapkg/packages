@@ -1,0 +1,1 @@
+rpm.global("ver", gh("szydell/system76-power"));
