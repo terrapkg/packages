@@ -1,5 +1,1 @@
-rpm.global("commit", gh_commit("StardustXR/black-hole"));
-if rpm.changed() {
-  rpm.release();
-  rpm.global("commit_date", date());
-}
+rpm.version(gh_tag("StardustXR/black-hole"));
