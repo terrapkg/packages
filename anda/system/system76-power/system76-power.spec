@@ -1,5 +1,6 @@
 %global commit b3a8574841dfd6dfde13e187523a03b81facf554
 %global commit_date 202516
+%global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 # Based on syzdell's COPR specs and patches, modified for Terra
 
