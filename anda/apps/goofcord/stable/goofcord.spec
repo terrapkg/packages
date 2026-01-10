@@ -3,7 +3,7 @@
 %electronmeta
 
 Name:          goofcord
-Version:       1.11.4
+Version:       2.0.0
 Release:       1%?dist
 License:       OSL-3.0
 Summary:       A privacy-minded Legcord fork.
