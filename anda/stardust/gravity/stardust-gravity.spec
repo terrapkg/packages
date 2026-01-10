@@ -36,5 +36,8 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %doc README.md
 
 %changelog
+* Sat Jan 10 2026 Owen Zimmerman <owen@fyralabs.com>
+- Switch to version based
+
 * Wed Sep 11 2024 Owen-sz <owen@fyralabs.com>
 - Package StardustXR gravity
