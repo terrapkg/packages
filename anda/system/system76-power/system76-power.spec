@@ -1,13 +1,13 @@
 # Based on syzdell's COPR specs and patches, modified for Terra
 
 Name:       system76-power
-Version:    1.2.8
-Release:    1
+Version:    %commit_date.%shortcommit
+Release:    1%dist
 Summary:    Power Profiles and dGPU Hotplug for System76 Laptops
 License:    GPLv3
 Packager:   Jaiden Riordan <jade@fyralabs.com>
 URL:        https://github.com/szydell/system76-power
-Source0:     %url/archive/refs/tags/%ver.tar.gz
+Source0:     %url/archive/%commit/system76-power-%commit.tar.gz
 BuildRequires: cargo systemd-rpm-macros dbus-devel libusb-compat-0.1-devel
 Requires: dbus-common libusb libusb-compat-0.1 
 
@@ -15,7 +15,7 @@ Requires: dbus-common libusb libusb-compat-0.1
 %summary.
 
 %prep
-%autosetup -n system76-power-%ver
+%autosetup -n system76-power-%commit
 %cargo_prep_online
 
 %install
