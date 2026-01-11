@@ -31,7 +31,7 @@ This package contains the configuration files for Readymade to install Ultramari
 %prep
 %autosetup
 tar xf %{S:1}
-rmdir taidan_proc_macros && mv rdms_proc_macros* taidan_proc_macros
+rmdir crates/taidan_proc_macros && mv rdms_proc_macros* crates/taidan_proc_macros
 %cargo_prep_online
 
 %build
@@ -55,4 +55,3 @@ ln -sf %{_datadir}/applications/com.fyralabs.Readymade.desktop %{buildroot}%{_da
 %_datadir/applications/liveinst.desktop
 %ghost %_datadir/readymade
 %_datadir/icons/hicolor/scalable/apps/com.fyralabs.Readymade.svg
-

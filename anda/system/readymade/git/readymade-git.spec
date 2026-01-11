@@ -44,7 +44,7 @@ This package contains the configuration files for Readymade to install Ultramari
 %prep
 %autosetup -n readymade-%commit
 tar xf %{S:1}
-rmdir taidan_proc_macros && mv rdms_proc_macros* taidan_proc_macros
+rmdir crates/taidan_proc_macros && mv rdms_proc_macros* crates/taidan_proc_macros
 %cargo_prep_online
 
 %build
