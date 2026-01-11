@@ -15,7 +15,7 @@
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 %global crate zed
-%global appid dev.zed.Zed-nightly
+%global appid dev.zed.Zed-Nightly
 %global appstream_component desktop-application
 
 %global rustflags_debuginfo 0
@@ -110,7 +110,6 @@ export ZED_RELEASE_CHANNEL=nightly
 export BRANDING_LIGHT="#e9aa6a"
 export BRANDING_DARK="#1a5fb4"
 
-echo "StartupWMClass=$appid" >> crates/zed/resources/zed.desktop.in
 envsubst < "crates/zed/resources/zed.desktop.in" > %{appid}.desktop # from https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=zed-git#n52
 sed -i "s|@release_info@||g" "crates/zed/resources/flatpak/zed.metainfo.xml.in"
 
