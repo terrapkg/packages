@@ -1,15 +1,13 @@
-%global commit 7609cbfc07121b3b68d91bf2124b9c0afa57363d
-%global commit_date 20251218
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-xr-protostar
-Version:        %commit_date.%shortcommit
+Version:        0.50.0
 Release:        1%?dist
+Epoch:          1
 Summary:        Prototype application launcher for Stardust XR
 URL:            https://github.com/StardustXR/protostar
-Source0:        %url/archive/%commit/protostar-%commit.tar.gz
+Source0:        %url/archive/refs/tags/%version.tar.gz
 License:        MIT
 BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold libudev-devel g++ libinput-devel libxkbcommon-x11-devel
 
@@ -20,7 +18,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 Prototype application launcher for StardustXR, providing an easy to use crate to write applications launchers.
 
 %prep
-%autosetup -n protostar-%commit
+%autosetup -n protostar-%version
 %cargo_prep_online
 
 %build
@@ -51,5 +49,8 @@ cp -r res/* %buildroot%_datadir/
 %_datadir/protostar/
 
 %changelog
+* Sat Jan 10 2026 Owen Zimmerman <owen@fyralabs.com>
+- Switch to version based
+
 * Tue Sep 10 2024 Owen-sz <owen@fyralabs.com>
 - Package StardustXR protostar
