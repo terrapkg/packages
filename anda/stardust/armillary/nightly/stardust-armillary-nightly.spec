@@ -40,4 +40,4 @@ A model viewer for Stardust XR which works great for hand tracking, pointers, an
 
 %changelog
 * Sun Jan 11 2026 Owen Zimmerman <owen@fyralabs.com>
-- Initial commit
+- Initial commit (port from stable)
