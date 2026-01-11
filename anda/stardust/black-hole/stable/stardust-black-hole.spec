@@ -3,7 +3,7 @@
 
 Name:           stardust-xr-black-hole
 Version:        0.50.0
-Release:        2%?dist
+Release:        1%?dist
 Epoch:          1
 Summary:        Spatial storage for Stardust XR
 URL:            https://github.com/StardustXR/black-hole
@@ -12,7 +12,6 @@ License:        MIT
 BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold
 
 Provides:       black-hole stardust-black-hole
-Conflicts:      stardust-xr-black-hole-nightly
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
