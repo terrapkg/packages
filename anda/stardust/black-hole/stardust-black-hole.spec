@@ -1,15 +1,13 @@
-%global commit 5abca9d613fac7861803319b3191061b2d8ce067
-%global commit_date 20251130
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-xr-black-hole
-Version:        %commit_date.%shortcommit
-Release:        2%?dist
+Version:        0.50.0
+Release:        1%?dist
+Epoch:          1
 Summary:        Spatial storage for Stardust XR
 URL:            https://github.com/StardustXR/black-hole
-Source0:        %url/archive/%commit/black-hole-%commit.tar.gz
+Source0:        %url/archive/refs/tags/%version.tar.gz
 License:        MIT
 BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold
 
@@ -20,7 +18,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %summary.
 
 %prep
-%autosetup -n black-hole-%commit
+%autosetup -n black-hole-%version
 %cargo_prep_online
 
 %build
@@ -43,5 +41,8 @@ cp -r res/* %buildroot%_datadir/
 %_datadir/black_hole/
 
 %changelog
+* Sat Jan 10 2026 Owen Zimmerman <owen@fyralabs.com>
+- Switch to version based
+
 * Sat Sep 8 2024 Owen-sz <owen@fyralabs.com>
 - Package StardustXR black-hole
