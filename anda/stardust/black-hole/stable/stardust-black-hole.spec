@@ -3,7 +3,7 @@
 
 Name:           stardust-xr-black-hole
 Version:        0.50.0
-Release:        1%?dist
+Release:        2%?dist
 Epoch:          1
 Summary:        Spatial storage for Stardust XR
 URL:            https://github.com/StardustXR/black-hole
