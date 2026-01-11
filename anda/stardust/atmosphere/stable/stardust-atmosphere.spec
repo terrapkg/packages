@@ -12,6 +12,7 @@ License:        MIT
 BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold libudev-devel g++ libinput-devel libxkbcommon-x11-devel
 
 Provides:       atmosphere stardust-atmosphere
+Conflicts:      stardust-xr-atmosphere-nightly
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
