@@ -3,7 +3,7 @@
 
 Name:           stardust-xr-atmosphere
 Version:        0.5.0
-Release:        2%?dist
+Release:        1%?dist
 Epoch:          1
 Summary:        Environment, homespace, and setup client for Stardust XR
 URL:            https://github.com/StardustXR/atmosphere
@@ -12,7 +12,6 @@ License:        MIT
 BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold libudev-devel g++ libinput-devel libxkbcommon-x11-devel
 
 Provides:       atmosphere stardust-atmosphere
-Conflicts:      stardust-xr-atmosphere-nightly
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
