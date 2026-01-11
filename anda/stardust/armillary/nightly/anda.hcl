@@ -1,6 +1,6 @@
 project pkg {
 	rpm {
-		spec = "stardust-armillary.spec"
+		spec = "stardust-armillary-nightly.spec"
 	}
 	labels {
 		nightly = 1
