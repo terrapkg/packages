@@ -1,15 +1,13 @@
-%global commit 3a586815e1c057580674c147e27c3a4909b3b4c6
-%global commit_date 20251130
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-xr-non-spatial-input
-Version:        %commit_date.%shortcommit
-Release:        2%?dist
+Version:        0.50.0
+Release:        1%?dist
+Epoch:          1
 Summary:        Tools you can easily snap together to get non-spatial input into Stardust XR
 URL:            https://github.com/StardustXR/non-spatial-input
-Source0:        %url/archive/%commit/non-spatial-input-%commit.tar.gz
+Source0:        %url/archive/refs/tags/%version.tar.gz
 License:        MIT
 BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold libudev-devel g++ libinput-devel libxkbcommon-x11-devel
 
@@ -20,7 +18,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %summary.
 
 %prep
-%autosetup -n non-spatial-input-%commit
+%autosetup -n non-spatial-input-%version
 %cargo_prep_online
 
 %build
@@ -47,5 +45,8 @@ wait
 %doc README.md
 
 %changelog
+* Sat Jan 10 2026 Owen Zimmerman <owen@fyralabs.com>
+- Switch to version based
+
 * Mon Sep 9 2024 Owen-sz <owen@fyralabs.com>
 - Package StardustXR non-spatial-input
