@@ -1,15 +1,13 @@
-%global commit 52b442c42d8b2938f16adfe42ab1ac0b5d29a137
-%global commit_date 20251218
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-xr-comet
-Version:        %commit_date.%shortcommit
+Version:        0.50.0
 Release:        1%?dist
+Epoch:          1
 Summary:        Annotate things in Stardust XR
 URL:            https://github.com/StardustXR/comet
-Source0:        %url/archive/%commit/comet-%commit.tar.gz
+Source0:        %url/archive/refs/tags/%version.tar.gz
 License:        MIT
 BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold
 
@@ -20,7 +18,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %summary.
 
 %prep
-%autosetup -n comet-%commit
+%autosetup -n comet-%version
 %cargo_prep_online
 
 %build
@@ -38,5 +36,8 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %doc README.md
 
 %changelog
+* Sat Jan 10 2026 Owen Zimmerman <owen@fyralabs.com>
+- Switch to version based
+
 * Sat Sep 7 2024 Owen-sz <owen@fyralabs.com>
 - Package StardustXR comet
