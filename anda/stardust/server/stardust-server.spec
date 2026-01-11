@@ -1,15 +1,13 @@
-%global commit f0545414201aa1c825e2546ee98aae010100bffd
-%global commit_date 20251225
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-xr-server
-Version:        %commit_date.%shortcommit
+Version:        0.50.2
 Release:        1%?dist
+Epoch:          1
 Summary:        Usable Linux display server that reinvents human-computer interaction for all kinds of XR
 URL:            https://github.com/StardustXR/server
-Source0:        %url/archive/%commit/server-%commit.tar.gz
+Source0:        %url/archive/refs/tags/%version.tar.gz
 License:        GPL-2.0-only
 
 BuildRequires:  cargo
@@ -33,7 +31,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 Usable Linux display server that reinvents human-computer interaction for all kinds of XR, from putting 2D/XR apps into various 3D shells for varying uses to SDF-based interaction.
 
 %prep
-%autosetup -n server-%commit
+%autosetup -n server-%version
 %cargo_prep_online
 
 %build
@@ -51,6 +49,9 @@ install -Dm755 target/rpm/stardust-xr-server %{buildroot}%{_bindir}/stardust-xr-
 %doc README.md
 
 %changelog
+* Sat Jan 10 2026 Owen Zimmerman <owen@fyralabs.com>
+- Switch to version based
+
 * Tue Dec 02 2025 Owen Zimmerman <owen@fyralabs.com>
 - Update spec to reflect upstream changes, add LICENSE.dependencies
 
