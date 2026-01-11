@@ -3,7 +3,7 @@
 
 Name:           stardust-xr-comet
 Version:        0.50.0
-Release:        2%?dist
+Release:        1%?dist
 Epoch:          1
 Summary:        Annotate things in Stardust XR
 URL:            https://github.com/StardustXR/comet
@@ -12,7 +12,6 @@ License:        MIT
 BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold
 
 Provides:       comet stardust-comet
-Conflicts:      stardust-xr-comet-nightly
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
