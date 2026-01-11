@@ -5,7 +5,7 @@
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-xr-armillary-nightly
-Version:        %commit_date.%shortcommit
+Version:        0~%{commit_date}git.%{shortcommit}
 Release:        1%?dist
 Summary:        Model viewer for Stardust XR
 URL:            https://github.com/StardustXR/armillary
