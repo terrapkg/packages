@@ -5,7 +5,7 @@
 %global features "sound,clipboard"
 
 Name:           rust-bacon
-Version:        3.20.3
+Version:        3.21.0
 Release:        1%?dist
 Summary:        Background rust compiler
 Packager:       metcya <metcya@gmail.com>

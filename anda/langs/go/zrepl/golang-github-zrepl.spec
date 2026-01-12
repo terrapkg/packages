@@ -75,7 +75,7 @@ cp -a   config/samples                                  %{buildroot}%{_datadir}/
 %license LICENSE
 %doc README.md
 %{_bindir}/*
-%config %{_unitdir}/zrepl.service
+%{_unitdir}/zrepl.service
 %dir %{_sysconfdir}/zrepl
 %config(noreplace) %{_sysconfdir}/zrepl/zrepl.yml
 %{_datadir}/bash-completion/completions/zrepl

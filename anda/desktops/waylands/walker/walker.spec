@@ -4,7 +4,7 @@
 # prevent library files from being installed
 %global cargo_install_lib 0
 
-%global upstream_version v2.12.2
+%global upstream_version v2.13.0
 %global ver %{sub %upstream_version 2}
 
 Name:           walker

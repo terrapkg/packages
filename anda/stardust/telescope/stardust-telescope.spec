@@ -1,14 +1,11 @@
-%global commit cf5f3bc5a4b97aeacfe072725433a66da5bca68d
-%global commit_date 20260102
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
-
 Name:           stardust-xr-telescope
-Version:        %commit_date.git~%shortcommit
-Release:        3%?dist
+Version:        0.50.3
+Release:        1%?dist
+Epoch:          1
 Summary:        See the stars! Easy stardust setups to run on your computer
 License:        MIT
 URL:            https://github.com/StardustXR/telescope
-Source0:        %url/archive/%commit.tar.gz
+Source0:        %url/archive/refs/tags/%version.tar.gz
 
 Requires:       bash
 Requires:       xwayland-satellite
@@ -31,7 +28,7 @@ Provides:       telescope stardust-telescope
 See the stars! Easy stardust setups to run on your computer.
 
 %prep
-%autosetup -n telescope-%commit
+%autosetup -n telescope-%version
 
 %build
 
@@ -48,3 +45,7 @@ install -Dm644 org.stardustxr.Telescope.png      %buildroot%_hicolordir/512x512/
 %_libexecdir/_telescope_startup
 %_appsdir/org.stardustxr.Telescope.desktop
 %_hicolordir/512x512/apps/org.stardustxr.Telescope.png
+
+%changelog
+* Sat Jan 10 2026 Owen Zimmerman <owen@fyralabs.com>
+- Switch to version based
