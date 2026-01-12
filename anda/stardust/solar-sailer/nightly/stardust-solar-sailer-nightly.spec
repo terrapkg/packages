@@ -10,7 +10,7 @@ Version:        0~%{commit_date}git.%{shortcommit}
 Release:        1%?dist
 Summary:        Glide through space! This play space mover allows you to fly by dragging the space with momentum!
 URL:            https://github.com/StardustXR/solar-sailer
-Source0:        %url/archive/refs/tags/%version.tar.gz
+Source0:        %url/archive/%commit.tar.gz
 License:        MIT
 BuildRequires:  cargo anda-srpm-macros cargo-rpm-macros mold python3-devel
 
