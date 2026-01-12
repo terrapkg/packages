@@ -1,9 +1,9 @@
 project pkg {
 	rpm {
-		spec = "stardust-server.spec"
+		spec = "stardust-server-nightly.spec"
 	}
 	labels {
-	  nightly = 1
-		large = 1
+	    nightly = 1
+	    large = 1
 	}
 }
