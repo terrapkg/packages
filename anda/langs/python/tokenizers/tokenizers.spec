@@ -9,6 +9,7 @@ License:		Apache-2.0
 URL:			https://github.com/huggingface/tokenizers
 Source0:		%{pypi_source}
 Source1:        https://github.com/huggingface/tokenizers/blob/main/LICENSE
+Source2:        https://github.com/huggingface/tokenizers/blob/main/README.md
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-wheel
@@ -32,6 +33,7 @@ Summary:        %{summary}
 %prep
 %autosetup -n tokenizers-%{version}
 cp %{SOURCE1} .
+cp %{SOURCE2} .
 
 %build
 %pyproject_wheel
@@ -41,6 +43,7 @@ cp %{SOURCE1} .
 %pyproject_save_files tokenizers
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
+%doc README.md
 %license LICENSE
 
 %changelog
