@@ -1,6 +1,6 @@
 Name:           stardust-xr-telescope
 Version:        0.50.3
-Release:        1%?dist
+Release:        2%?dist
 Epoch:          1
 Summary:        See the stars! Easy stardust setups to run on your computer
 License:        MIT
