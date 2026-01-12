@@ -8,6 +8,7 @@ Summary:		Fast State-of-the-Art Tokenizers optimized for Research and Production
 License:		Apache-2.0
 URL:			https://github.com/huggingface/tokenizers
 Source0:		%{pypi_source}
+Source1:        https://github.com/huggingface/tokenizers/blob/main/LICENSE
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-wheel
@@ -30,6 +31,7 @@ Summary:        %{summary}
 
 %prep
 %autosetup -n tokenizers-%{version}
+cp %{SOURCE1} .
 
 %build
 %pyproject_wheel
@@ -39,7 +41,6 @@ Summary:        %{summary}
 %pyproject_save_files tokenizers
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%doc README.md
 %license LICENSE
 
 %changelog
