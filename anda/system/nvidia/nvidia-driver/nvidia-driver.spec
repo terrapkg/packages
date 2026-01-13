@@ -11,7 +11,7 @@
 
 Name:           nvidia-driver
 Version:        590.48.01
-Release:        3%?dist
+Release:        4%?dist
 Summary:        NVIDIA's proprietary display driver for NVIDIA graphic cards
 Epoch:          3
 License:        NVIDIA License
