@@ -51,13 +51,13 @@ install -D -m 0644 rog-anime/README.md %{buildroot}/%{_docdir}/%{name}/README-an
 install -D -m 0644 rog-anime/data/diagonal-template.png %{buildroot}/%{_docdir}/%{name}/diagonal-template.png
 %terra_appstream -o %{S:1}
 
-%{cargo_license_online} > LICENSE.dependancies
+%{cargo_license_online} > LICENSE.dependencies
 
 desktop-file-validate %{buildroot}/%{_datadir}/applications/rog-control-center.desktop
 
 %files
 %license LICENSE
-%license LICENSE.dependancies
+%license LICENSE.dependencies
 %{_datadir}/asusctl/LICENSE
 %{_bindir}/asusd
 %{_bindir}/asusd-user
@@ -104,7 +104,7 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/rog-control-center.d
 
 %changelog
 * Tue Jan 13 2026 Owen Zimmerman <owen@fyralabs.com> - 6.2.0-3
-- Add dependancy licenses
+- Add dependency licenses
 
 * Tue Dec 9 2025 Metcya <metcya@gmail.com> - 6.2.0
 - Add metainfo
