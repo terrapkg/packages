@@ -12,7 +12,7 @@
 
 Name:           %{real_name}-580
 Version:        580.126.09
-Release:        1%?dist
+Release:        2%?dist
 Summary:        NVIDIA's proprietary display driver for NVIDIA graphic cards
 Epoch:          3
 License:        NVIDIA License
@@ -84,6 +84,7 @@ Requires:       (%{name}-libs(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
 # dlopened
 Requires:       libnvidia-gpucomp-580%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       libnvidia-ml-580%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       %{name}-cuda-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 Conflicts:      nvidia-x11-drv-libs
 Conflicts:      nvidia-x11-drv-470xx-libs
@@ -98,6 +99,7 @@ Summary:        Libraries for %{name}-cuda
 Provides:       %{name}-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 Obsoletes:      %{name}-devel < %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       libnvidia-ml-580 = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       %{name}-cuda-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %ifarch x86_64 aarch64
 Requires:       libnvidia-cfg-580 = %{?epoch:%{epoch}:}%{version}-%{release}
