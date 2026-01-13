@@ -27,7 +27,6 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %define __cargo_common_opts %{?_smp_mflags} -Z avoid-dev-deps --locked
 export STARDUST_RES_PREFIXES=%_datadir
 %cargo_install
-%cargo_license_summary_online
 %{cargo_license_online} > LICENSE.dependencies
 
 mkdir -p %buildroot%_datadir
