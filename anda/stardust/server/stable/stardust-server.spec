@@ -3,12 +3,12 @@
 
 Name:           stardust-xr-server
 Version:        0.50.2
-Release:        1%?dist
+Release:        2%?dist
 Epoch:          1
 Summary:        Usable Linux display server that reinvents human-computer interaction for all kinds of XR
 URL:            https://github.com/StardustXR/server
 Source0:        %url/archive/refs/tags/%version.tar.gz
-License:        GPL-2.0-only
+License:        GPL-2.0-only AND (Apache-2.0 OR MIT) AND BSD-3-Clause AND (MIT OR Apache-2.0) AND Unicode-3.0 AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 AND MIT) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR GPL-2.0-only) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR MIT OR Apache-2.0) AND BSD-2-Clause AND (BSD-3-Clause OR Apache-2.0) AND (BSD-3-Clause OR MIT OR Apache-2.0) AND BSD-3-Clause AND (CC0-1.0 OR Apache-2.0 OR Apache-2.0 WITH LLVM-exception) AND (CC0-1.0 OR MIT-0 OR Apache-2.0) AND CC0-1.0 GPL-2.0-only AND ISC AND (MIT AND BSD-3-Clause) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Zlib OR Apache-2.0) AND MIT-0 AND MPL-2.0 AND (Unlicense OR MIT) AND Zlib AND (MIT OR Apache-2.0) AND (Zlib OR Apache-2.0 OR MIT)
 
 BuildRequires:  cargo
 BuildRequires:  cmake
@@ -39,7 +39,6 @@ Usable Linux display server that reinvents human-computer interaction for all ki
 
 %install
 install -Dm755 target/rpm/stardust-xr-server %{buildroot}%{_bindir}/stardust-xr-server
-%cargo_license_summary_online
 %{cargo_license_online} > LICENSE.dependencies
 
 %files
