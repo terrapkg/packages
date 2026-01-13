@@ -43,6 +43,7 @@ BuildRequires:  coreutils
 
 Requires:       nvidia-driver-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}
 Requires:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
+Requires:       %{name}-cuda-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 Conflicts:      nvidia-x11-drv
 Conflicts:      nvidia-x11-drv-470xx
@@ -89,6 +90,7 @@ This package provides the shared libraries for %{name}.
 
 %package cuda-libs
 Summary:        Libraries for %{name}-cuda
+Requires:       %{name}-cuda-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:       %{name}-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 Obsoletes:      %{name}-devel < %{?epoch:%{epoch}:}%{version}-%{release}
 
