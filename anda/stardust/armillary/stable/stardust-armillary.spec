@@ -3,12 +3,12 @@
 
 Name:           stardust-xr-armillary
 Version:        0.50.0
-Release:        1%?dist
+Release:        2%?dist
 Epoch:          1
 Summary:        Model viewer for Stardust XR
 URL:            https://github.com/StardustXR/armillary
 Source0:        %url/archive/refs/tags/%version.tar.gz
-License:        MIT
+License:        MIT AND (MIT OR Apache-2.0) AND Unicode-3.0 AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND BSD-3-Clause AND (BSD-3-Clause OR MIT OR Apache-2.0) AND ISC AND BSD-3-Clause AND LGPL-2.1-or-later AND (MIT OR Zlib OR Apache-2.0) AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT) AND Zlib
 BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold
 
 Provides:       armillary stardust-armillary
@@ -26,7 +26,6 @@ A model viewer for Stardust XR which works great for hand tracking, pointers, an
 %install
 %define __cargo_common_opts %{?_smp_mflags} -Z avoid-dev-deps --locked
 %cargo_install
-%cargo_license_summary_online
 %{cargo_license_online} > LICENSE.dependencies
 
 %files
