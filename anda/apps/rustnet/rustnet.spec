@@ -1,5 +1,3 @@
-%define __cargo_build /usr/bin/env CARGO_HOME=.cargo RUSTC_BOOTSTRAP=1 RUSTFLAGS='-Copt-level=3 -Cdebuginfo=2 -Ccodegen-units=1 -Cstrip=none -Cforce-frame-pointers=yes --cap-lints=warn' /usr/bin/cargo build -j${RPM_BUILD_NCPUS} --profile release
-
 Name:           rustnet
 Version:        0.18.0
 Release:        1%{?dist}
