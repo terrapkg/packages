@@ -1,1 +1,1 @@
-rpm.version(crates("tauri-cli"));
+rpm.version(npm("@tauri-apps/api"));

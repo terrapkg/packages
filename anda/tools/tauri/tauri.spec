@@ -2,8 +2,11 @@
 %undefine __brp_mangle_shebangs
 
 Name:           rust-tauri
-Version:        2.9.6
-Release:        3%{?dist}
+Version:        2.9.1
+Release:        1%{?dist}
+%if 0%{?fedora} <= 44
+Epoch:          1
+%endif
 Summary:        Command line interface for building Tauri apps
 License:        Apache-2.0 OR MIT
 URL:            https://crates.io/crates/create-tauri-app
