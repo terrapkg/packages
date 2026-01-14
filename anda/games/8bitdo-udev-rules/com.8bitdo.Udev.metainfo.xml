@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component type="driver">
   <id>com.8bitdo.Udev</id>
-  <name>udev Rules for 8BitDo devices</name>
+  <name>8BitDo Controller Support</name>
   <description>
     <p>Enables proper functionality and device access for 8BitDo devices.</p>
   </description>
