@@ -10,7 +10,7 @@ License:		BSD-3-Clause
 URL:			https://github.com/raspberrypi/utils
 Source0:		%{url}/archive/%{commit}.tar.gz
 Patch0:         dtoverlay-manpage.patch
-BuildRequires:	cmake dtc libfdt-devel gcc-c++
+BuildRequires:	cmake dtc libfdt-devel gcc-c++ gnutls-devel
 
 Requires:       %{name}-dtmerge = %{evr}
 Requires:       %{name}-eeptools = %{evr}
@@ -217,13 +217,13 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 %doc raspinfo/README.md
 
 %files rpifwcrypto
-%dnl %{_bindir}/rpi-fw-crypto
-%dnl %{_libdir}/librpifwcrypto.so.0
+%{_bindir}/rpi-fw-crypto
+%{_libdir}/librpifwcrypto.so.0
 %doc rpifwcrypto/README.md
 
 %files rpifwcrypto-devel
-%dnl %{_libdir}/librpifwcrypto.so
-%dnl %{_includedir}/rpifwcrypto.h
+%{_libdir}/librpifwcrypto.so
+%{_includedir}/rpifwcrypto.h
 
 %files vcgencmd
 %license LICENCE
