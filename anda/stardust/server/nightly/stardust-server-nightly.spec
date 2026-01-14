@@ -1,12 +1,12 @@
-%global commit f0545414201aa1c825e2546ee98aae010100bffd
-%global commit_date 20251225
+%global commit bfca9bae08aebd1dc2f2b5f34aecbb7389814c00
+%global commit_date 20260113
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-xr-server-nightly
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        2%?dist
+Release:        1%?dist
 Summary:        Usable Linux display server that reinvents human-computer interaction for all kinds of XR
 URL:            https://github.com/StardustXR/server
 Source0:        %url/archive/%commit/server-%commit.tar.gz
