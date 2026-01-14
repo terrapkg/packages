@@ -21,6 +21,7 @@ Requires:       %{name}-ovmerge = %{evr}
 Requires:       %{name}-pinctrl = %{evr}
 Requires:       %{name}-piolib = %{evr}
 Requires:       %{name}-raspinfo = %{evr}
+Requires:       %{name}-rpifwcrypto = %{evr}
 Requires:       %{name}-vcgencmd = %{evr}
 Requires:       %{name}-vclog = %{evr}
 Requires:       %{name}-vcmailbox = %{evr}
