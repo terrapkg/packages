@@ -1,7 +1,7 @@
 %undefine __brp_mangle_shebangs
 
 Name:           fresh
-Version:        0.1.76
+Version:        0.1.77
 Release:        1%?dist
 Summary:        Text editor for your terminal: easy, powerful and fast
 URL:            https://sinelaw.github.io/fresh/

@@ -1,5 +1,5 @@
 Name:           bitwarden-cli.bin
-Version:        2025.12.0
+Version:        2025.12.1
 Release:        1%?dist
 Summary:        Bitwarden command-line client
 License:        GPL-3.0-only
