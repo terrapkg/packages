@@ -222,8 +222,8 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 %doc rpifwcrypto/README.md
 
 %files rpifwcrypto-devel
-%{_libdir}/librpifwcrypto.so
-%{_includedir}/rpifwcrypto.h
+%dnl %{_libdir}/librpifwcrypto.so
+%dnl %{_includedir}/rpifwcrypto.h
 
 %files vcgencmd
 %license LICENCE
