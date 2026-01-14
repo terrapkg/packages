@@ -5,7 +5,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.1.8
-Release:		3%?dist
+Release:		4%?dist
 Summary:		A program to help users work with QMK
 License:		MIT
 URL:			https://github.com/qmk/qmk_cli
@@ -68,9 +68,6 @@ Provides:       qmk-cli
 %doc README.md SECURITY.md
 %license LICENSE
 %{_bindir}/qmk
-%ghost %python3_sitelib/__pycache__/*.cpython-*.pyc
-%ghost %python3_sitelib/%{name}/subcommands/__pycache__/*.cpython-*.pyc
-%python3_sitelib/qmk-%version.dist-info/*
 
 %changelog
 * Thu Sep 04 2025 Owen Zimmerman <owen@fyralabs.com>
