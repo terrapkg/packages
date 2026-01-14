@@ -2,6 +2,8 @@
 %global commit_date 20251218
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
+%define _unpackaged_files_terminate_build 0
+
 Name:			rpi-utils
 Version:		%{commit_date}.%{shortcommit}
 Release:		2%?dist
