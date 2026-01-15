@@ -31,7 +31,8 @@ This package contains delevoplent files for UwUFetch.
 
 %build
 export CFLAGS="$CFLAGS -Wno-unused-result"
-%make_build all
+%make_build ascii_debug
+%make_build
 
 %install
 %make_install DESTDIR=%{buildroot}%{_prefix}
