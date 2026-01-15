@@ -11,7 +11,7 @@ Release:       1%?dist
 Summary:       A meme system info tool for Linux, based on nyan/uwu trend on r/linuxmasterrace.
 License:       GPL-3.0
 URL:           https://github.com/ad-oliviero/uwufetch
-BuildRequires: make gcc git anda-srpm-macros
+BuildRequires: make gcc git anda-srpm-macros pciutils-devel
 Requires:      freecolor
 Requires:      xwininfo
 Recommends:    lshw
