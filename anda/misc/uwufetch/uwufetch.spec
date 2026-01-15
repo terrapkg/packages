@@ -31,7 +31,7 @@ This package contains delevoplent files for UwUFetch.
 
 %build
 export CFLAGS="$CFLAGS -Wno-unused-result"
-%make_build ascii_debug
+%make_build ascii_debug LOGO=fedora
 %make_build
 
 %install
