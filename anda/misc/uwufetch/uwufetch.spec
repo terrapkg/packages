@@ -30,6 +30,7 @@ This package contains delevoplent files for UwUFetch.
 %git_clone %{url} %{commit}
 
 %build
+export CFLAGS="$CFLAGS -Wno-unused-result"
 %make_build
 
 %install
