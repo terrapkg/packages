@@ -31,6 +31,8 @@ Packager:       Metcya <metcya@gmail.com>
 %package rog-gui
 Summary:    An experimental gui for %name
 Requires:   %name
+Provides:   rog-control-center
+Provides:   rog-gui
 
 %description rog-gui
 A one-stop-shop GUI tool for asusd/asusctl. It aims to provide most controls,
