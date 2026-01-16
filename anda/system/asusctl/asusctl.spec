@@ -3,7 +3,7 @@
 
 Name:           asusctl
 Version:        6.3.0
-Release:        1%?dist
+Release:        2%?dist
 Summary:        A control daemon, CLI tools, and a collection of crates for interacting with ASUS ROG laptops
 URL:            https://gitlab.com/asus-linux/asusctl
 Source0:        %url/-/archive/%version/asusctl-%version.tar.gz
@@ -103,6 +103,9 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/rog-control-center.d
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
+* Fri Jan 16 2026 metcya <metcya@gmail.com> - 6.3.0-2
+- Update ROG Control Center metainfo
+
 * Tue Jan 13 2026 Owen Zimmerman <owen@fyralabs.com> - 6.2.0-3
 - Add dependency licenses
 

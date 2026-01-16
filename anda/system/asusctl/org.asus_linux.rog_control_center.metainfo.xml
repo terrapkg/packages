@@ -3,8 +3,8 @@
   <id>org.asus_linux.rog_control_center</id>
   
   <name>Rog Control Center</name>
-  <summary>A one-stop-shop GUI tool for asusd/asusctl.</summary>
-  <icon type="local">/usr/share/icons/hicolor/512x512/apps/rog-control-center.png</icon>
+  <summary>A one-stop-shop GUI tool for asusd/asusctl</summary>
+  <icon type="remote">https://gitlab.com/asus-linux/asusctl/-/blob/main/rog-control-center/data/rog-control-center.png</icon>
   
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>MPL-2.0</project_license>
