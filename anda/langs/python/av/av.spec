@@ -45,7 +45,7 @@ Summary:        %{summary}
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md AUTHORS.rst
 %license LICENSE.txt
-%{python3_sitearch}/av-16.1.0.dist-info/licenses/__pycache__/*
+%{python3_sitearch}/av-%version.dist-info/licenses/__pycache__/*
 %{_bindir}/pyav
 
 %changelog
