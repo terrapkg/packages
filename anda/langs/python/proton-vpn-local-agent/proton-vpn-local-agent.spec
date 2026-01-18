@@ -29,7 +29,9 @@ Provides:       %{pypi_name}
 
 %prep
 %autosetup -n local-agent-rs-%{version}
+pushd %{name}
 %{cargo_prep_online}
+popd
 
 %build
 pushd %{name}
