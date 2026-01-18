@@ -29,11 +29,11 @@ Provides:       %{pypi_name}
 
 %prep
 %autosetup -n local-agent-rs-%{version}
+%{cargo_prep_online}
 
 %build
 pushd %{name}
-# Macro fails
-cargo build --release
+%{cargo_build}
 popd
 
 %install
