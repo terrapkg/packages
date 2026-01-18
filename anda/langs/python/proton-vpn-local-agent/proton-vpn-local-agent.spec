@@ -12,7 +12,7 @@ URL:			https://github.com/ProtonVPN/local-agent-rs
 Source0:		%url/archive/refs/tags/%version.tar.gz
 
 BuildRequires:  python3-devel
-BuildRequires:  cargo
+BuildRequires:  cargo-rpm-macros
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
