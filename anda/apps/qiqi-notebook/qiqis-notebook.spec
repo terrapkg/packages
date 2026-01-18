@@ -3,10 +3,6 @@
 # Make electron_license macro properly work
 %bcond bundled_electron 1
 
-# Exclude private libraries
-%global __requires_exclude libffmpeg.so
-%global __provides_exclude ^lib.*\\.so.*$
-
 
 Name:			qiqis-notebook
 %electronmeta
