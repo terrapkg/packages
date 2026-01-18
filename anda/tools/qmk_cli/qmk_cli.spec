@@ -1,5 +1,5 @@
 %define debug_package %nil
-%global pypi_name qmk_cli
+%global pypi_name qmk
 %global _desc The QMK CLI (command line interface) makes building and working with QMK keyboards easier. We have provided a number of commands to simplify and streamline tasks such as obtaining and compiling the QMK firmware, creating keymaps, and more.
 
 
@@ -49,9 +49,10 @@ Summary:        %{summary}
 Provides:       qmk
 Provides:       qmk_cli
 Provides:       qmk-cli
+Obsoletes:      python3-qmk_cli
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
-%description -n python3-%{pypi_name}
+%description -n python3-%{qmk-cli}
 %_desc
 
 %prep
