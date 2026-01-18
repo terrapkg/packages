@@ -1,1 +1,1 @@
-rpm.version(pypi("proton-vpn-api-core"));
+rpm.version(gh_tag("ProtonVPN/python-proton-vpn-api-core"));
