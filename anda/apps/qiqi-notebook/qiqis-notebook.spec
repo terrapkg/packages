@@ -17,20 +17,15 @@ URL:			https://qiqis-notebook.com/
 Source0:		https://github.com/Qiqis-Notebook/qnb-client/archive/refs/tags/v%{version}.tar.gz
 Source1:		qiqis-notebook.desktop
 License:		MIT AND %{electron_license}
-ExclusiveArch:	x86_64 aarch64
 
 BuildRequires:	 nodejs-npm
 
 Provides:       qnb-client
 
 %description
-A dekstop application for Qiqi's Notebook to launch routes on an 'always on top'
-window to see and control the route map while playing Genshin Impact or Wuthering Waves.
-
-The application supports keyboard shortcuts for navigation.
-All the functionalities works the same as the web version, panning, zooming, etc.
-
-This application is designed to be use with Genshin/WuWa in windowed mode.
+Qiqi's Notebook is an application used for launcing
+user created farming routes for Genshin Impact and
+Wuthering Waves
 
 %prep
 %autosetup -n  qnb-client-%{version}
