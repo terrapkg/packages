@@ -1,5 +1,5 @@
 %define debug_package %nil
-%global pypi_name qmk_cli
+%global pypi_name qmk
 %global _desc The QMK CLI (command line interface) makes building and working with QMK keyboards easier. We have provided a number of commands to simplify and streamline tasks such as obtaining and compiling the QMK firmware, creating keymaps, and more.
 
 
@@ -9,7 +9,7 @@ Release:		4%?dist
 Summary:		A program to help users work with QMK
 License:		MIT
 URL:			https://github.com/qmk/qmk_cli
-Source0:		%url/archive/refs/tags/%version.tar.gz
+Source0:		%{pypi_source}
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
@@ -49,13 +49,14 @@ Summary:        %{summary}
 Provides:       qmk
 Provides:       qmk_cli
 Provides:       qmk-cli
+Obsoletes:      python3-qmk_cli <= 1.1.8
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 %_desc
 
 %prep
-%autosetup -n qmk_cli-%version
+%autosetup -n %{pypi_name}-%version
 
 %build
 %pyproject_wheel
