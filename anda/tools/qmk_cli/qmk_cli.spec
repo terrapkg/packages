@@ -9,7 +9,7 @@ Release:		3%?dist
 Summary:		A program to help users work with QMK
 License:		MIT
 URL:			https://github.com/qmk/qmk_cli
-Source0:		%url/archive/refs/tags/%version.tar.gz
+Source0:		%{pypi_source}
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
@@ -56,7 +56,7 @@ Obsoletes:      python3-qmk_cli <= 1.1.8
 %_desc
 
 %prep
-%autosetup -n qmk_cli-%version
+%autosetup -n %{pypi_name}-%version
 
 %build
 %pyproject_wheel
