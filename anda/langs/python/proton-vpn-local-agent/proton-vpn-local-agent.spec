@@ -33,12 +33,12 @@ Provides:       %{pypi_name}
 %build
 pushd %{name}
 # Macro fails
-cargo build
+cargo build --release
 popd
 
 %install
 pushd %{name}
-install -Dm0644 target/debug/libpython_proton_vpn_local_agent.so %{buildroot}%{_libdir}/proton/local_agent.so
+install -Dm0644 target/release/libpython_proton_vpn_local_agent.so %{buildroot}%{_libdir}/proton/local_agent.so
 popd
 
 %files -n python3-%{pypi_name}
