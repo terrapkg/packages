@@ -17,6 +17,7 @@ URL:			https://qiqis-notebook.com/
 Source0:		https://github.com/Qiqis-Notebook/qnb-client/archive/refs/tags/v%{version}.tar.gz
 Source1:		qiqis-notebook.desktop
 License:		MIT AND %{electron_license}
+Packager:   Yoong Jin <solomoncyj@gmail.com>
 
 BuildRequires:	 nodejs-npm
 
