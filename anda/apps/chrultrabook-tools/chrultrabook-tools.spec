@@ -56,9 +56,6 @@ Packager:       Owen Zimmerman owen@fyralabs.com
 %autosetup -n Chrultrabook-Tools-%version
 
 %build
-export NODE_ENV=production
-npm ci
-npm install @angular/cli --no-save
 npm install
 npm run tauri build -- --no-bundle # no bundles
 
