@@ -63,7 +63,7 @@ install -Dm644 ./resources/app.asar %{buildroot}%{_libdir}/qiqis-notebook/resour
 install -Dm755 ./chrome-sandbox %{buildroot}%{_libdir}/qiqis-notebook/chrome-sandbox
 install -Dm755 ./chrome_crashpad_handler %{buildroot}%{_libdir}/qiqis-notebook/chrome_crashpad_handler
 install -Dm755 ./qiqis-notebook %{buildroot}%{_libdir}/qiqis-notebook/qiqis-notebook
-install -Dm755 ./qiqis-notebook %{buildroot}%{_libdir}/qiqis-notebook/qiqis-notebook
+
 
 mkdir  %{buildroot}%{_libdir}/qiqis-notebook/locales/
 cp -r locales/*  %{buildroot}%{_libdir}/qiqis-notebook/locales/
@@ -71,7 +71,7 @@ chmod -R 755 %{buildroot}%{_libdir}/qiqis-notebook/locales/
 
 cd ..
 
-install -Dm644 assets/logo.png %{buildroot}%{_iconsdir}/hicolor/1024x1024/qiqis-notebook.png
+install -Dm644 assets/logo.png %{buildroot}%{_hicolordir}/1024x1024/apps/qiqis-notebook.png
 
 install -Dm644 %{SOURCE1} %{buildroot}%{_appsdir}/qiqis-notebook.desktop
 
@@ -90,7 +90,7 @@ desktop-file-validate %{buildroot}%{_appsdir}/qiqis-notebook.desktop
 %{_bindir}/qiqis-notebook
 %{_libdir}/qiqis-notebook/
 %{_appsdir}/qiqis-notebook.desktop
-%{_iconsdir}/hicolor/1024x1024/qiqis-notebook.png
+%{_hicolordir}/1024x1024/apps/qiqis-notebook.png
 
 %changelog
 * Sat Jan 17 2026 Yoong Jin <solomoncyj@gmail.com> - 1.1.6
