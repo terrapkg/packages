@@ -2,7 +2,7 @@
 %global _desc A facade to the other Proton VPN components, exposing a uniform API to the available Proton VPN services.
 
 Name:			python-%{pypi_name}
-Version:		0.0.1
+Version:		4.14.1
 Release:		1%?dist
 Summary:		A facade to the other Proton VPN components
 License:		GPL-3.0-Only
