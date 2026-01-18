@@ -30,7 +30,7 @@ jobs:
       - name: Set workspace as safe
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: Generate build matrix
