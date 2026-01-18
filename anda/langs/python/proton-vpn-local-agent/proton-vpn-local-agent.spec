@@ -40,7 +40,7 @@ popd
 
 %install
 pushd %{name}
-install -Dm0644 target/release/libpython_proton_vpn_local_agent.so %{buildroot}%{_libdir}/proton/local_agent.so
+install -Dm0644 target/rpm/libpython_proton_vpn_local_agent.so %{buildroot}%{_libdir}/proton/local_agent.so
 popd
 
 %files -n python3-%{pypi_name}
