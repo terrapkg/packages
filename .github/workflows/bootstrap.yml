@@ -21,7 +21,7 @@ jobs:
           dnf5 swap -y --setopt=install_weak_deps=False systemd-standalone-sysusers systemd
           dnf5 install -y --setopt=install_weak_deps=False curl wget git-core openssl-devel cargo podman fuse-overlayfs dnf5-plugins rpmbuild script
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           ref: f${{ matrix.version }}
           fetch-depth: 1
