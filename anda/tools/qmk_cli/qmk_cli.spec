@@ -49,7 +49,7 @@ Summary:        %{summary}
 Provides:       qmk
 Provides:       qmk_cli
 Provides:       qmk-cli
-Obsoletes:      python3-qmk_cli
+Obsoletes:      python3-qmk_cli <= 1.1.8
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{qmk-cli}
