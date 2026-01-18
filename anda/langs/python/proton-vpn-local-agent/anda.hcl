@@ -1,5 +1,5 @@
   project pkg {
     rpm {
-	spec = "proton-vpn-local-agent.spec"
+	    spec = "proton-vpn-local-agent.spec"
     }
   }
