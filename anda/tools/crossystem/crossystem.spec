@@ -15,7 +15,7 @@ Patch0:         use-flashrom-cros.patch
 Patch1:         disable-werror.patch
 
 Requires:       flashrom-cros
-BuildRequires:  make gcc openssl-devel flashrom-devel libuuid-devel
+BuildRequires:  make gcc openssl-devel flashrom-cros-devel libuuid-devel
 
 Packager:       WeirdTreeThing <bradyn127@protonmail.com>
 
