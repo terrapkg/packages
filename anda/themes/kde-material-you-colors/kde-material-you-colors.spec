@@ -2,10 +2,6 @@
 %global developer "Luis Bocanegra"
 %global org "com.github.luisbocanegra"
 
-%dnl %global __requires_excludes python3\\.*dist\\(python-magic\\)
-
-%global __python %{__python3}
-
 Name:           kde-material-you-colors
 Version:        2.0.0
 Release:        2%?dist
@@ -24,7 +20,6 @@ BuildRequires:  generic-logos
 BuildRequires:  pyproject-rpm-macros
 BuildRequires:  python3-devel
 BuildRequires:  python-rpm-macros
-BuildRequires:  python3dist(file-magic)
 BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(setuptools) >= 61.0
 BuildRequires:  python3dist(wheel) >= 0.37.1
@@ -45,8 +40,6 @@ Automatic Material You Colors Generator from your wallpaper for the Plasma Deskt
 Summary:        Python files for %{name}
 Requires:       %{name} = %{version}-%{release}
 Requires:       python3-dbus
-Requires:       python3dist(file-magic)
-Requires:       python%{python_version}dist(file-magic)
 Requires:       python3dist(numpy) >= 1.20
 Requires:       python3dist(materialyoucolor) >= 2.0.9
 Requires:       python3dist(pywal16)
@@ -58,6 +51,7 @@ Python files for KDE Material You Colors.
 
 %prep
 %autosetup -p1 -n %{name}-%{version}
+sed -iE 's:\"python-magic.*\":\"file-magic\":' pyproject.toml
 
 %build
 %pyproject_wheel
