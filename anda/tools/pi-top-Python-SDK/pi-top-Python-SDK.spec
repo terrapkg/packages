@@ -190,73 +190,73 @@ popd
 
 pushd packages/battery
 %pyproject_install
-%pyproject_save_files -l battery_files pitop_battery
 popd
+%pyproject_save_files -l battery_files pitop_battery
 
 pushd packages/camera
 %pyproject_install
-%pyproject_save_files -l camera_files pitop_camera
 popd
+%pyproject_save_files -l camera_files pitop_camera
 
 pushd packages/cli
 %pyproject_install
-%pyproject_save_files -l cli_files pitop_cli
 popd
+%pyproject_save_files -l cli_files pitop_cli
 
 pushd packages/common
 %pyproject_install
-%pyproject_save_files -l common_files pitop_common
 popd
+%pyproject_save_files -l common_files pitop_common
 
 pushd packages/core
 %pyproject_install
-%pyproject_save_files -l core_files pitop_core
 popd
+%pyproject_save_files -l core_files pitop_core
 
 pushd packages/display
 %pyproject_install
-%pyproject_save_files -l display_files pitop_display
 popd
+%pyproject_save_files -l display_files pitop_display
 
 pushd packages/keyboard
 %pyproject_install
-%pyproject_save_files -l keyboard_files pitop_keyboard
 popd
+%pyproject_save_files -l keyboard_files pitop_keyboard
 
 pushd packages/miniscreen
 %pyproject_install
-%pyproject_save_files -l miniscreen_files pitop_miniscreen
 popd
+%pyproject_save_files -l miniscreen_files pitop_miniscreen
 
 pushd packages/pitop
 %pyproject_install
-%pyproject_save_files -l pitop_files pitop_pitop
 popd
+%pyproject_save_files -l pitop_files pitop_pitop
 
 pushd packages/pma
 %pyproject_install
-%pyproject_save_files -l pma_files pitop_pma
 popd
+%pyproject_save_files -l pma_files pitop_pam
 
 pushd packages/processing
 %pyproject_install
-%pyproject_save_files -l processing_files pitop_processing
 popd
+%pyproject_save_files -l processing_files pitop_processing
 
 pushd packages/robotics
 %pyproject_install
-%pyproject_save_files -l robotics_files pitop_robotics
 popd
+%pyproject_save_files -l robotics_files pitop_robotics
 
 pushd packages/simulation
 %pyproject_install
-%pyproject_save_files -l simulation_files pitop_simulation
 popd
+%pyproject_save_files -l simulation_files pitop_simulation
 
 pushd packages/system
 %pyproject_install
-%pyproject_save_files -l system_files pitop_system
 popd
+%pyproject_save_files -l system_files pitop_system
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
