@@ -246,62 +246,62 @@ popd
 %files -n python3-%{pypi_name}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/pitop-%{version}.dist-info/
+%{python3_sitelib}/pitop-*.dist-info/
 
 %files battery
-%{python3_sitelib}/pitop_battery-%{version}.dist-info/
+%{python3_sitelib}/pitop_battery-*.dist-info/
 %{python3_sitelib}/pitop/battery/
 
 %files camera
-%{python3_sitelib}/pitop_camera-%{version}.dist-info/
+%{python3_sitelib}/pitop_camera-*.dist-info/
 %{python3_sitelib}/pitop/camera/
 
 %files cli
-%{python3_sitelib}/pitop_cli-%{version}.dist-info/
+%{python3_sitelib}/pitop_cli-*.dist-info/
 %{python3_sitelib}/pitop/cli/
 
 %files common
-%{python3_sitelib}/pitop_common-%{version}.dist-info/
+%{python3_sitelib}/pitop_common-*.dist-info/
 %{python3_sitelib}/pitop/common/
 
 %files core
-%{python3_sitelib}/pitop_core-%{version}.dist-info/
+%{python3_sitelib}/pitop_core-*.dist-info/
 %{python3_sitelib}/pitop/core/
 
 %files display
-%{python3_sitelib}/pitop_display-%{version}.dist-info/
+%{python3_sitelib}/pitop_display-*.dist-info/
 %{python3_sitelib}/pitop/display/
 
 %files keyboard
-%{python3_sitelib}/pitop_keyboard-%{version}.dist-info/
+%{python3_sitelib}/pitop_keyboard-*.dist-info/
 %{python3_sitelib}/pitop/keyboard/
 
 %files miniscreen
-%{python3_sitelib}/pitop_miniscreen-%{version}.dist-info/
+%{python3_sitelib}/pitop_miniscreen-*.dist-info/
 %{python3_sitelib}/pitop/miniscreen/
 
 %files pitop
-%{python3_sitelib}/pitop_pitop-%{version}.dist-info/
+%{python3_sitelib}/pitop_pitop-*.dist-info/
 %{python3_sitelib}/pitop/pitop/
 
 %files pma
-%{python3_sitelib}/pitop_pma-%{version}.dist-info/
+%{python3_sitelib}/pitop_pma-*.dist-info/
 %{python3_sitelib}/pitop/pma/
 
 %files processing
-%{python3_sitelib}/pitop_processing-%{version}.dist-info/
+%{python3_sitelib}/pitop_processing-*.dist-info/
 %{python3_sitelib}/pitop/processing/
 
 %files robotics
-%{python3_sitelib}/pitop_robotics-%{version}.dist-info/
+%{python3_sitelib}/pitop_robotics-*.dist-info/
 %{python3_sitelib}/pitop/robotics/
 
 %files simulation
-%{python3_sitelib}/pitop_simulation-%{version}.dist-info/
+%{python3_sitelib}/pitop_simulation-*.dist-info/
 %{python3_sitelib}/pitop/simulation/
 
 %files system
-%{python3_sitelib}/pitop_system-%{version}.dist-info/
+%{python3_sitelib}/pitop_system-*.dist-info/
 %{python3_sitelib}/pitop/system/
 
 %changelog
