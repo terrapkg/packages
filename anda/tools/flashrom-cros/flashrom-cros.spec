@@ -49,8 +49,7 @@ install -Dm755 %{_vpath_builddir}/libflashrom.so.1.0.0 %{buildroot}%{_libdir}/li
 %{_bindir}/%{name}
 %license COPYING
 %doc README.rst README.chromiumos doc/
-%{_libdir}/libflashrom.so.1
-%{_libdir}/libflashrom.so.1.0.0
+%{_libdir}/libflashrom.so.*
 
 %files devel
 %{_includedir}/libflashrom.h
