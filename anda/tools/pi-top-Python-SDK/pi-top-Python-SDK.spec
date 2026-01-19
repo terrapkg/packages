@@ -188,54 +188,107 @@ popd
 %pyproject_install
 %pyproject_save_files pitop
 
-%dnl %pyproject_save_files battery
-%dnl %pyproject_save_files camera
-%dnl %pyproject_save_files cli
-%dnl %pyproject_save_files common
-%dnl %pyproject_save_files core
-%dnl %pyproject_save_files display
-%dnl %pyproject_save_files keyboard
-%dnl %pyproject_save_files miniscreen
-%dnl %pyproject_save_files pitop
-%dnl %pyproject_save_files pma
-%dnl %pyproject_save_files processing
-%dnl %pyproject_save_files robotics
-%dnl %pyproject_save_files simulation
-%dnl %pyproject_save_files system
+pushd packages/battery
+%pyproject_install
+%pyproject_save_files -l battery_files pitop_battery
+popd
+
+pushd packages/camera
+%pyproject_install
+%pyproject_save_files -l camera_files pitop_camera
+popd
+
+pushd packages/cli
+%pyproject_install
+%pyproject_save_files -l cli_files pitop_cli
+popd
+
+pushd packages/common
+%pyproject_install
+%pyproject_save_files -l common_files pitop_common
+popd
+
+pushd packages/core
+%pyproject_install
+%pyproject_save_files -l core_files pitop_core
+popd
+
+pushd packages/display
+%pyproject_install
+%pyproject_save_files -l display_files pitop_display
+popd
+
+pushd packages/keyboard
+%pyproject_install
+%pyproject_save_files -l keyboard_files pitop_keyboard
+popd
+
+pushd packages/miniscreen
+%pyproject_install
+%pyproject_save_files -l miniscreen_files pitop_miniscreen
+popd
+
+pushd packages/pitop
+%pyproject_install
+%pyproject_save_files -l pitop_files pitop_pitop
+popd
+
+pushd packages/pma
+%pyproject_install
+%pyproject_save_files -l pma_files pitop_pma
+popd
+
+pushd packages/processing
+%pyproject_install
+%pyproject_save_files -l processing_files pitop_processing
+popd
+
+pushd packages/robotics
+%pyproject_install
+%pyproject_save_files -l robotics_files pitop_robotics
+popd
+
+pushd packages/simulation
+%pyproject_install
+%pyproject_save_files -l simulation_files pitop_simulation
+popd
+
+pushd packages/system
+%pyproject_install
+%pyproject_save_files -l system_files pitop_system
+popd
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
-%ghost %python3_sitelib/__pycache__/*.cpython-*.pyc
-%ghost %python3_sitelib/%{name}/subcommands/__pycache__/*.cpython-*.pyc
 
-%files battery -f %{pyproject_files}
+%files battery -f battery_files
 
-%files camera -f %{pyproject_files}
+%files camera -f camera_files
 
-%files cli -f %{pyproject_files}
+%files cli -f cli_files
 
-%files common -f %{pyproject_files}
+%files common -f common_files
 
-%files core -f %{pyproject_files}
+%files core -f core_files
 
-%files display -f %{pyproject_files}
+%files display -f display_files
 
-%files keyboard -f %{pyproject_files}
+%files keyboard -f keyboard_files
 
-%files miniscreen -f %{pyproject_files}
+%files miniscreen -f miniscreen_files
 
-%files pitop -f %{pyproject_files}
+%files pitop -f pitop_files
 
-%files pma -f %{pyproject_files}
+%files pma -f pma_files
 
-%files processing -f %{pyproject_files}
+%files processing -f processing_files
 
-%files robotics -f %{pyproject_files}
+%files robotics -f robotics_files
 
-%files simulation -f %{pyproject_files}
+%files simulation -f simulation_files
 
-%files system -f %{pyproject_files}
+%files system -f system_files
 
 %changelog
 * Wed Oct 08 2025 Owen Zimmerman <owen@fyralabs.com>
