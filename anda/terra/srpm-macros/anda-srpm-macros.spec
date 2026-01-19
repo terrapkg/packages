@@ -40,6 +40,7 @@ install -Dpm755 *.sh -t %buildroot%_libexecdir/%name/
 %{_rpmmacrodir}/macros.zig_extra
 %{_rpmmacrodir}/macros.tauri
 %{_rpmmacrodir}/macros.webapps
+
 %changelog
 * Wed Aug 14 2024 madonuko <mado@fyralabs.com> - 0.1.7-2
 - Move sources outside of packages repo
