@@ -17,15 +17,17 @@ BuildRequires:  cmake >= 3.16
 BuildRequires:  extra-cmake-modules >= 6.0.0
 BuildRequires:  fdupes
 BuildRequires:  generic-logos
-BuildRequires:  libplasma-devel
-BuildRequires:  plasma5support-devel
 BuildRequires:  pyproject-rpm-macros
 BuildRequires:  python3-devel
 BuildRequires:  python-rpm-macros
 BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(setuptools) >= 61.0
 BuildRequires:  python3dist(wheel) >= 0.37.1
-BuildRequires:  qt5-qtbase-devel
+BuildRequires:  cmake(KF6KirigamiPlatform)
+BuildRequires:  cmake(Plasma)
+BuildRequires:  cmake(Plasma5Support)
+BuildRequires:  cmake(Qt5Core)
+BuildRequires:  pkgconfig(ocl-icd)
 Requires:       qt5-qtbase
 Requires:       kf6-filesystem >= 6.0.0
 Requires:       python3-%{name} = %{version}-%{release}
