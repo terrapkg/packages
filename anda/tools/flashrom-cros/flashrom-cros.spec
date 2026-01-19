@@ -9,7 +9,7 @@ Epoch:          1
 Summary:        Simple program for reading/writing flash chips content (ChromiumOS fork)
 License:        GPL-2.0-only
 URL:            https://chromium.googlesource.com/chromiumos/third_party/flashrom
-Source0:        %url/+archive/refs/heads/release-R130-16033.B.tar.gz
+Source0:        %url/+archive/%commit.tar.gz
 BuildRequires:  gcc gnupg2 libusb1-devel meson pciutils-devel python3-sphinx systemd zlib-devel dmidecode
 Requires:       dmidecode udev
 Conflicts:      flashrom
