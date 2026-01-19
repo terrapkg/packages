@@ -2,6 +2,8 @@
 %global developer "Luis Bocanegra"
 %global org "com.github.luisbocanegra"
 
+%__requires_excludes python3\\.*dist\\(python-magic\\)
+
 Name:           kde-material-you-colors
 Version:        2.0.0
 Release:        2%?dist
