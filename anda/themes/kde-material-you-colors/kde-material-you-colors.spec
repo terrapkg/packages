@@ -4,7 +4,7 @@
 
 Name:           kde-material-you-colors
 Version:        2.0.0
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Automatic Material You Colors Generator from your wallpaper for the Plasma Desktop
 License:        GPL-3.0-only
 URL:            https://github.com/luisbocanegra/%{name}
@@ -38,6 +38,7 @@ Automatic Material You Colors Generator from your wallpaper for the Plasma Deskt
 Summary:        Python files for %{name}
 Requires:       %{name} = %{version}-%{release}
 Requires:       python3-dbus
+Requires:       python3dist(file-magic)
 Requires:       python3dist(numpy) >= 1.20
 Requires:       python3dist(materialyoucolor) >= 2.0.9
 Requires:       python3dist(pywal16)
