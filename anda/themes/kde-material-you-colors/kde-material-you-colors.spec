@@ -2,7 +2,7 @@
 %global developer "Luis Bocanegra"
 %global org "com.github.luisbocanegra"
 
-%__requires_excludes python3\\.*dist\\(python-magic\\)
+%dnl %__requires_excludes python3\\.*dist\\(python-magic\\)
 
 Name:           kde-material-you-colors
 Version:        2.0.0
@@ -44,6 +44,7 @@ Summary:        Python files for %{name}
 Requires:       %{name} = %{version}-%{release}
 Requires:       python3-dbus
 Requires:       python3dist(file-magic)
+Requires:       python%{python_version}dist(file-magic)
 Requires:       python3dist(numpy) >= 1.20
 Requires:       python3dist(materialyoucolor) >= 2.0.9
 Requires:       python3dist(pywal16)
