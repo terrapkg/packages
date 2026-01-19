@@ -4,3 +4,5 @@ anda-build/
 **/*.zip
 **/*.minisig
 **/*.nupkg
+**/*.rpm
+**/*.kate-swp
