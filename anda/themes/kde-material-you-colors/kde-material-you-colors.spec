@@ -20,6 +20,7 @@ BuildRequires:  generic-logos
 BuildRequires:  pyproject-rpm-macros
 BuildRequires:  python3-devel
 BuildRequires:  python-rpm-macros
+BuildRequires:  python3dist(file-magic)
 BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(setuptools) >= 61.0
 BuildRequires:  python3dist(wheel) >= 0.37.1
@@ -64,7 +65,7 @@ Python files for KDE Material You Colors.
 %pyproject_install
 DESTDIR="%{buildroot}" %cmake_install
 
-sed -i "1{/^#!\/usr\/bin\/env python3/d}" %{buildroot}%{python3_sitelib}/kde_material_you_colors/main.py
+sed -Ei "s:^(#!.*)env (python.*)$:\1python3:" %{buildroot}%{python3_sitelib}/kde_material_you_colors/main.py
 %fdupes %{buildroot}%{python3_sitelib}/%{name}/
 
 %terra_appstream
