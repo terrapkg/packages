@@ -1,14 +1,15 @@
-%global commit_date 20240911
-%global commit c1ab7468d28d164a30d598eb3e42a5febaf73bbc
+%global commit_date 20251208
+%global commit 1c70ca25cdb62f9448e7e650be1faf32ab8f7f0c
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           flashrom-cros
-Version:        %shortcommit
+Version:        0~%{commit_date}git.%{shortcommit}
 Release:        1%{?dist}
+Epoch:          1
 Summary:        Simple program for reading/writing flash chips content (ChromiumOS fork)
 License:        GPL-2.0-only
 URL:            https://chromium.googlesource.com/chromiumos/third_party/flashrom
-Source0:        %url/+archive/refs/heads/release-R130-16033.B.tar.gz
+Source0:        %url/+archive/%commit.tar.gz
 BuildRequires:  gcc gnupg2 libusb1-devel meson pciutils-devel python3-sphinx systemd zlib-devel dmidecode
 Requires:       dmidecode udev
 Conflicts:      flashrom
@@ -48,15 +49,17 @@ install -Dm755 %{_vpath_builddir}/libflashrom.so.1.0.0 %{buildroot}%{_libdir}/li
 %{_bindir}/%{name}
 %license COPYING
 %doc README.rst README.chromiumos doc/
+%{_libdir}/libflashrom.so.*
 
 %files devel
 %{_includedir}/libflashrom.h
 %{_libdir}/libflashrom.so
-%{_libdir}/libflashrom.so.1
-%{_libdir}/libflashrom.so.1.0.0
 %{_libdir}/pkgconfig/flashrom.pc
 
 %changelog
+* Sun Jan 18 2026 Owen Zimmerman <owen@fyralabs.com>
+- Bump, install .so files correctly, use proper versioning name
+
 * Fri Jul 04 2025 Owen Zimmerman <owen@fyralabs.com>
 - Add back to terra, conflict with flashrom, add devel package, include other needed files
 
