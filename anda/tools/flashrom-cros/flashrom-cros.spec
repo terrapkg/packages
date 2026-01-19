@@ -5,6 +5,7 @@
 Name:           flashrom-cros
 Version:        0~%{commit_date}git.%{shortcommit}
 Release:        1%{?dist}
+Epoch:          1
 Summary:        Simple program for reading/writing flash chips content (ChromiumOS fork)
 License:        GPL-2.0-only
 URL:            https://chromium.googlesource.com/chromiumos/third_party/flashrom
