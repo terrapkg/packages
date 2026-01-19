@@ -43,3 +43,66 @@ jobs:
     with:
       packages: ${{ needs.manifest.outputs.build_matrix }}
       publish: ${{ github.event_name == 'push' }}
+
+  appstream:
+    needs: build
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/terrapkg/appstream-generator:main
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v7
+        with:
+          merge-multiple: true
+          path: ./artifacts
+      - name: Generate test catalog
+        # run appstream-builder, then add step summary
+        run: |
+          set -x
+          appstream-builder -v \
+            --packages-dir=artifacts/rpms \
+            --icons-dir=icons \
+            --include-failed \
+            --output-dir=output \
+            --uncompressed-icons \
+            --origin=test \
+            --basename=test \
+            --veto-ignore=missing-parents \
+            --veto-ignore=missing-info 2>&1 | tee asb.log
+      - name: Export logs
+        id: export_logs
+        run: |
+          echo "## AppStream Builder Log" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo '```log' >> $GITHUB_STEP_SUMMARY
+          cat asb.log >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo '---' >> $GITHUB_STEP_SUMMARY
+
+      - name: Report Summary
+        id: report_summary
+        run: |
+          echo "## AppStream Builder Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if grep -q "veto" asb.log; then
+            echo "::group::Vetoed packages"
+            echo "### Vetoed packages" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo '```xml' >> $GITHUB_STEP_SUMMARY
+            echo "$(grep -i 'veto' asb.log)" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "::warning file=asb.log::Some packages were vetoed during AppStream generation. Please review the 'Vetoed packages' section in the summary for details."
+            echo "::endgroup::"
+          fi
+          echo "## Full Data Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Generated Appstream files:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          for file in output/*.xml.gz; do
+            echo "#### \`$file\`" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo '```xml' >> $GITHUB_STEP_SUMMARY
+            zcat "$file" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          done
