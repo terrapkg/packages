@@ -43,13 +43,12 @@ Packager:       Owen Zimmerman owen@fyralabs.com
 %tauri_prep
 
 %build
-%tauri_build
+%npm_build -B
 # npm install
 # npm run tauri build -- --no-bundle # no bundles
 
 %install
 %tauri_install
-install -Dm755 Chrultrabook-Tools %{buildroot}%{_bindir}/chrultrabook-tools
 %tauri_cargo_license > LICENSE.dependencies
 
 %files
