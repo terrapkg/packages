@@ -29,6 +29,7 @@ info from a ChromeOS system
 %patch -P1 -p1
 
 %build
+export CFLAGS="$CFLAGS -Wno-implicit-function-declaration"
 %make_build
 
 %install
