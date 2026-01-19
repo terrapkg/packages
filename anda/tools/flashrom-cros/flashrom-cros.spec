@@ -4,7 +4,7 @@
 
 Name:           flashrom-cros
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Epoch:          1
 Summary:        Simple program for reading/writing flash chips content (ChromiumOS fork)
 License:        GPL-2.0-only
@@ -23,7 +23,7 @@ other programmer devices.
 
 %package devel
 Summary:    Development package for %{name}
-Requires:   %{name} = %{version}-%{release}
+Requires:   %{name} = %{evr}
 Conflicts:  flashrom-devel
 
 %description devel
