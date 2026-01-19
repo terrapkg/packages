@@ -1,5 +1,5 @@
 Name:			gradle
-Version:		9.2.1
+Version:		9.3.0
 Release:		1%?dist
 Summary:		Powerful build system for the JVM
 URL:			https://gradle.org/
@@ -96,5 +96,5 @@ cp -r dist/src/* %{buildroot}%{_javadir}/%{name}/src
 * Fri Dec 05 2025 Owen Zimmerman <owen@fyralabs.com>
 - Pull in adoptium repo, fix many build issues, change source to GitHub release artifacts
 
-* Tue Feb 7 2023 windowsboy111 <windowsboy111@fyralabs.com>
+* Tue Feb 7 2023 madonuko <mado@fyralabs.com>
 - Initial package

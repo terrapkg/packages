@@ -1,0 +1,13 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 2546b78..c6ca674 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -174,7 +174,7 @@ if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+                 @ONLY
+         )
+         install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libinputtino.pc
+-                DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/pkgconfig)
++                DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
+     endif ()
+ endif ()
+ 

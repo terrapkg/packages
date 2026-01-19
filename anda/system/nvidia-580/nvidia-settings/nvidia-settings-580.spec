@@ -1,8 +1,8 @@
 %global real_name nvidia-settings
 
 Name:           %{real_name}-580
-Version:        580.119.02
-Release:        2%?dist
+Version:        580.126.09
+Release:        1%?dist
 Summary:        Configure the NVIDIA graphics driver
 Epoch:          3
 License:        GPLv2+

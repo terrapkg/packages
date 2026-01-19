@@ -3,5 +3,5 @@ Name=CTWM
 Comment=Claude's Tab Window Manager
 TryExec=ctwm
 Exec=ctwm
-Type=Xsession
+Type=Application
 Encoding=UTF-8

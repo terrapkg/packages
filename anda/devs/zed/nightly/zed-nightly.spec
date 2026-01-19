@@ -1,7 +1,7 @@
-%global commit ca478226677e5f7190a5d8933277522780faaaf7
+%global commit e476af6417576903700f8a7645a7de3315b5ff6c
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20251224
-%global ver 0.219.0
+%global commit_date 20260119
+%global ver 0.221.0
 
 %bcond_with check
 %bcond_with debug_no_build
@@ -15,7 +15,7 @@
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 %global crate zed
-%global appid dev.zed.Zed-nightly
+%global appid dev.zed.Zed-Nightly
 %global appstream_component desktop-application
 
 %global rustflags_debuginfo 0
@@ -110,7 +110,6 @@ export ZED_RELEASE_CHANNEL=nightly
 export BRANDING_LIGHT="#e9aa6a"
 export BRANDING_DARK="#1a5fb4"
 
-echo "StartupWMClass=$appid" >> crates/zed/resources/zed.desktop.in
 envsubst < "crates/zed/resources/zed.desktop.in" > %{appid}.desktop # from https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=zed-git#n52
 sed -i "s|@release_info@||g" "crates/zed/resources/flatpak/zed.metainfo.xml.in"
 

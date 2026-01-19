@@ -1,9 +1,9 @@
---- a/src/main.zig	2025-04-25 06:01:31.337458939 -0500
-+++ b/src/main.zig	2025-04-25 06:03:02.239473385 -0500
-@@ -4072,6 +4072,15 @@
+--- a/src/main.zig	2025-12-27 19:19:30.000000000 -0600
++++ b/src/main.zig	2025-12-31 08:25:12.962257290 -0600
+@@ -3998,6 +3998,15 @@
  
              try create_module.lib_directories.ensureUnusedCapacity(arena, paths.lib_dirs.items.len);
-             for (paths.lib_dirs.items) |path| addLibDirectoryWarn2(&create_module.lib_directories, path, true);
+             for (paths.lib_dirs.items) |path| addLibDirectoryWarn2(io, &create_module.lib_directories, path, true);
 +
 +            for (paths.lib_dirs.items) |native_lib_dir| {
 +                for (0.., create_module.rpath_list.items) |i, rpath_dir| {

@@ -78,10 +78,10 @@ desktop-file-install --set-key=Exec --set-value="%{_datadir}/legcord/legcord %U"
 * Mon Aug 26 2024 madonuko <mado@fyralabs.com> - 3.3.0-1
 - Update to license.txt
 
-* Sat Jun 17 2023 windowsboy111 <windowsboy111@fyralabs.com> - 3.2.0-2
+* Sat Jun 17 2023 madonuko <mado@fyralabs.com> - 3.2.0-2
 - Remove libnotify dependency.
 - Fix desktop entry.
 - Set as noarch package because there are not binary files.
 
-* Sat May 6 2023 windowsboy111 <windowsboy111@fyralabs.com> - 3.1.7-1
+* Sat May 6 2023 madonuko <mado@fyralabs.com> - 3.1.7-1
 - Initial package

@@ -1,14 +1,14 @@
-%global commit 17d9b6a8939085d6e13b8c3ad684d28ca3166a02
+%global commit e34350de2d518498edff4b689ce153b337809b9f
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20251222
-%global ver 0.5.1
+%global commitdate 20260112
+%global ver 0.5.2
 %define buildforkernels akmod
 %global debug_package %{nil}
 %global modulename xone
 
 Name:           %{modulename}-nightly-kmod
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        2%?dist
+Release:        1%?dist
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Epoch:          1
 %endif

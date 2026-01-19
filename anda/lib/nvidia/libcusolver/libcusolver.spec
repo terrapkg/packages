@@ -6,7 +6,7 @@
 
 Name:           libcusolver
 Epoch:          2
-Version:        12.0.7.41
+Version:        12.0.9.81
 Release:        1%?dist
 Summary:        NVIDIA cuSOLVER library
 License:        CUDA Toolkit

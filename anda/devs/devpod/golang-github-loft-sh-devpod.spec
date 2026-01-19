@@ -41,6 +41,7 @@ BuildRequires:  pkgconfig(gdk-3.0)
 BuildRequires:  pkgconfig(javascriptcoregtk-4.1)
 BuildRequires:  pkgconfig(libsoup-3.0)
 BuildRequires:  pkgconfig(webkit2gtk-4.1)
+BuildRequires:	desktop-file-utils
 Requires:       libappindicator-gtk3
 
 %description desktop %{common_description}
@@ -86,8 +87,11 @@ install -m 0755 -vd                     %{buildroot}%{_bindir}
 install -m 0755 -vp bin/devpod          %{buildroot}%{_bindir}/devpod-cli
 # tauri
 install -Dm755 "desktop/src-tauri/target/rpm/DevPod Desktop" %buildroot%_bindir/dev-pod-desktop
-install -Dm644 %{S:1} -t %buildroot%_datadir/applications/
+install -Dm644 %{S:1} %buildroot%_appsdir/DevPod.desktop
 install -Dm644 desktop/devpod.png %buildroot%_datadir/pixmaps/dev-pod-desktop.png
+
+%check
+desktop-file-validate %buildroot%_appsdir/DevPod.desktop
 
 %files
 %license LICENSE
@@ -96,5 +100,5 @@ install -Dm644 desktop/devpod.png %buildroot%_datadir/pixmaps/dev-pod-desktop.pn
 
 %files desktop
 %_bindir/dev-pod-desktop
-%_datadir/applications/DevPod.desktop
+%_appsdir/DevPod.desktop
 %_datadir/pixmaps/dev-pod-desktop.png

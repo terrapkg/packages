@@ -7,7 +7,7 @@
 %define         llvm_compat 20
 %endif
 %global         llvm_version 20.0.0
-%global         ver 0.16.0-dev.1657+985a3565c
+%global         ver 0.16.0-dev.2261+d6b3dd25a
 %bcond bootstrap 1
 %bcond docs      %{without bootstrap}
 %bcond test      1
@@ -47,7 +47,6 @@ URL:            https://ziglang.org
 Source0:        %{archive_name}
 Source1:        %{archive_name}.minisig
 Patch0:         0000-remove-native-lib-directories-from-rpath.patch
-Patch3:         0005-link.Elf-add-root-directory-of-libraries-to-linker-p.patch
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
