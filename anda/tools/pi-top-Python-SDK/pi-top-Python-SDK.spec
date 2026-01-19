@@ -186,109 +186,123 @@ popd
 
 %install
 %pyproject_install
-%pyproject_save_files pitop
 
 pushd packages/battery
 %pyproject_install
 popd
-%pyproject_save_files -l battery_files pitop_battery
 
 pushd packages/camera
 %pyproject_install
 popd
-%pyproject_save_files -l camera_files pitop_camera
 
 pushd packages/cli
 %pyproject_install
 popd
-%pyproject_save_files -l cli_files pitop_cli
 
 pushd packages/common
 %pyproject_install
 popd
-%pyproject_save_files -l common_files pitop_common
 
 pushd packages/core
 %pyproject_install
 popd
-%pyproject_save_files -l core_files pitop_core
 
 pushd packages/display
 %pyproject_install
 popd
-%pyproject_save_files -l display_files pitop_display
 
 pushd packages/keyboard
 %pyproject_install
 popd
-%pyproject_save_files -l keyboard_files pitop_keyboard
 
 pushd packages/miniscreen
 %pyproject_install
 popd
-%pyproject_save_files -l miniscreen_files pitop_miniscreen
 
 pushd packages/pitop
 %pyproject_install
 popd
-%pyproject_save_files -l pitop_files pitop_pitop
 
 pushd packages/pma
 %pyproject_install
 popd
-%pyproject_save_files -l pma_files pitop_pam
 
 pushd packages/processing
 %pyproject_install
 popd
-%pyproject_save_files -l processing_files pitop_processing
 
 pushd packages/robotics
 %pyproject_install
 popd
-%pyproject_save_files -l robotics_files pitop_robotics
 
 pushd packages/simulation
 %pyproject_install
 popd
-%pyproject_save_files -l simulation_files pitop_simulation
 
 pushd packages/system
 %pyproject_install
 popd
-%pyproject_save_files -l system_files pitop_system
 
-%files -n python3-%{pypi_name} -f %{pyproject_files}
-%doc README.rst
+%files -n python3-%{pypi_name}
 %license LICENSE
+%doc README.rst
+%{python3_sitelib}/pitop-%{version}.dist-info/
 
-%files battery -f battery_files
+%files battery
+%{python3_sitelib}/pitop_battery-%{version}.dist-info/
+%{python3_sitelib}/pitop/battery/
 
-%files camera -f camera_files
+%files camera
+%{python3_sitelib}/pitop_camera-%{version}.dist-info/
+%{python3_sitelib}/pitop/camera/
 
-%files cli -f cli_files
+%files cli
+%{python3_sitelib}/pitop_cli-%{version}.dist-info/
+%{python3_sitelib}/pitop/cli/
 
-%files common -f common_files
+%files common
+%{python3_sitelib}/pitop_common-%{version}.dist-info/
+%{python3_sitelib}/pitop/common/
 
-%files core -f core_files
+%files core
+%{python3_sitelib}/pitop_core-%{version}.dist-info/
+%{python3_sitelib}/pitop/core/
 
-%files display -f display_files
+%files display
+%{python3_sitelib}/pitop_display-%{version}.dist-info/
+%{python3_sitelib}/pitop/display/
 
-%files keyboard -f keyboard_files
+%files keyboard
+%{python3_sitelib}/pitop_keyboard-%{version}.dist-info/
+%{python3_sitelib}/pitop/keyboard/
 
-%files miniscreen -f miniscreen_files
+%files miniscreen
+%{python3_sitelib}/pitop_miniscreen-%{version}.dist-info/
+%{python3_sitelib}/pitop/miniscreen/
 
-%files pitop -f pitop_files
+%files pitop
+%{python3_sitelib}/pitop_pitop-%{version}.dist-info/
+%{python3_sitelib}/pitop/pitop/
 
-%files pma -f pma_files
+%files pma
+%{python3_sitelib}/pitop_pma-%{version}.dist-info/
+%{python3_sitelib}/pitop/pma/
 
-%files processing -f processing_files
+%files processing
+%{python3_sitelib}/pitop_processing-%{version}.dist-info/
+%{python3_sitelib}/pitop/processing/
 
-%files robotics -f robotics_files
+%files robotics
+%{python3_sitelib}/pitop_robotics-%{version}.dist-info/
+%{python3_sitelib}/pitop/robotics/
 
-%files simulation -f simulation_files
+%files simulation
+%{python3_sitelib}/pitop_simulation-%{version}.dist-info/
+%{python3_sitelib}/pitop/simulation/
 
-%files system -f system_files
+%files system
+%{python3_sitelib}/pitop_system-%{version}.dist-info/
+%{python3_sitelib}/pitop/system/
 
 %changelog
 * Wed Oct 08 2025 Owen Zimmerman <owen@fyralabs.com>
