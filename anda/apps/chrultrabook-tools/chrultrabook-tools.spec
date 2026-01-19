@@ -6,8 +6,6 @@ URL:            https://github.com/death7654/Chrultrabook-Tools
 Source0:        %url/archive/refs/tags/%version.tar.gz
 License:        GPLv3
 
-BuildRequires:  rust
-BuildRequires:  nodejs-npm
 BuildRequires:  cargo
 BuildRequires:  glib2
 BuildRequires:  glib2-devel
@@ -17,29 +15,17 @@ BuildRequires:  javascriptcoregtk4.1
 BuildRequires:  javascriptcoregtk4.1-devel
 BuildRequires:  libsoup3
 BuildRequires:  libsoup3-devel
-BuildRequires:  webkit2gtk4.1
-BuildRequires:  webkit2gtk4.1-devel
-BuildRequires:  libappindicator
 BuildRequires:  libappindicator-gtk3
 BuildRequires:  libappindicator-devel
-BuildRequires:  libappindicator-gtk3-devel
 BuildRequires:  gstreamer1
 BuildRequires:  gstreamer1-devel
 BuildRequires:  patchelf
 BuildRequires:  libstdc++-static
-BuildRequires:  librsvg2-devel
 BuildRequires:  libxdo-devel
 BuildRequires:  anda-srpm-macros
-
-BuildRequires: nodejs
-BuildRequires: npm
-BuildRequires: cargo
-BuildRequires: rustc
-BuildRequires: pkgconfig
-BuildRequires: openssl-devel
-BuildRequires: gcc
-BuildRequires: gcc-c++
-BuildRequires: make
+BuildRequires:  rustc
+BuildRequires:  tauri
+BuildRequires:  %tauri_buildrequires
 
 Requires:       chromium-ectool
 Requires:       coreboot-utils-cbmem
@@ -54,21 +40,26 @@ Packager:       Owen Zimmerman owen@fyralabs.com
 
 %prep
 %autosetup -n Chrultrabook-Tools-%version
+%tauri_prep
 
 %build
-npm install
-npm run tauri build -- --no-bundle # no bundles
+%tauri_build
+# npm install
+# npm run tauri build -- --no-bundle # no bundles
 
 %install
+%tauri_install
 install -Dm755 Chrultrabook-Tools %{buildroot}%{_bindir}/chrultrabook-tools
+%tauri_cargo_license > LICENSE.dependencies
 
 %files
 %doc README.md
 %license LICENSE
+%license LICENSE.dependencies
 %_bindir/chrultrabook-tools
 %{_datadir}/applications/chrultrabook-tools.desktop
 %{_hicolordir}/*x*/apps/Chrultrabook-Tools.png
 
 %changelog
-* Mon Jun 23 2025 Owen Zimmerman owen@fyralabs.com
-- Initial Package
+* Mon Jan 19 2026 Owen Zimmerman <owen@fyralabs.com>
+- Initial commit
