@@ -19,7 +19,9 @@ BuildRequires: boost-filesystem
 BuildRequires: boost-iostreams
 BuildRequires: boost-program-options
 BuildRequires: boost-regex
+%if 0%{?fedora} < 44
 BuildRequires: boost-system
+%endif
 BuildRequires: boost-thread
 BuildRequires: brotli-devel
 BuildRequires: ccache
@@ -40,7 +42,7 @@ BuildRequires: git
 BuildRequires: glog-devel
 BuildRequires: gmock-devel
 BuildRequires: google-benchmark-devel
-BuildRequires: gtest-devel 
+BuildRequires: gtest-devel
 BuildRequires: jemalloc-devel
 BuildRequires: json-devel
 BuildRequires: libacl-devel
