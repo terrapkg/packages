@@ -30,7 +30,7 @@ Provides:      bundled(legendary) = %{legendary_version}
 Provides:      bundled(nile) = %{nile_version}
 Packager:      Gilver E. <rockgrub@disroot.org>
 
-%electronmeta
+%electronmeta -D
 
 %description
 Heroic is a Free and Open Source Epic, GOG, and Amazon Prime Games launcher for Linux, Windows, and macOS.
