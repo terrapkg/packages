@@ -41,6 +41,8 @@ cd ./out
 install -Dm755 ./libEGL.so %{buildroot}%{_libdir}/qiqis-notebook/libEGL.so
 install -Dm755 ./libGLESv2.so %{buildroot}%{_libdir}/qiqis-notebook/libGLESv2.so
 install -Dm755 ./libffmpeg.so %{buildroot}%{_libdir}/qiqis-notebook/libffmpeg.so
+install -Dm755 ./libvk_swiftshader.so %{buildroot}%{_libdir}/qiqis-notebook/libvk_swiftshader.so
+install -Dm755 ./libvulkan.so.1 %{buildroot}%{_libdir}/qiqis-notebook/libvulkan.so.1
 install -Dm644 ./icudtl.dat %{buildroot}%{_libdir}/qiqis-notebook/icudtl.dat
 install -Dm644 ./v8_context_snapshot.bin %{buildroot}%{_libdir}/qiqis-notebook/v8_context_snapshot.bin
 install -Dm644 ./chrome_100_percent.pak %{buildroot}%{_libdir}/qiqis-notebook/chrome_100_percent.pak
