@@ -21,6 +21,7 @@ BuildRequires: boost-filesystem >= 1.36.0
 BuildRequires: boost-devel >= 1.36.0
 BuildRequires: cmake >= 2.8.12.2
 BuildRequires: cpio
+BuildRequires: desktop-file-utils
 BuildRequires: gcc-c++
 BuildRequires: libharu
 BuildRequires: libjpeg-turbo-devel
@@ -68,7 +69,6 @@ for file in Standalone/lastusedsettings.cpp Standalone/defaultsettings.cpp Commo
   sed -i '/BOOST_NO_CXX11_RVALUE_REFERENCES/d' src/$file
 done
 
-%dnl #sed -i '/SET.*FLAGS/ s/")/ -Wno-template-body")/' src/ES2Command/Linux/CMakeLists.txt
 sed -i '/#include/ i #include <cmath>' src/Controller/Src/Filter/GrayToMono.hpp
 
 %build
@@ -82,8 +82,6 @@ sed -i '/#include/ i #include <cmath>' src/Controller/Src/Filter/GrayToMono.hpp
 %cmake_install
 
 # The CMakeLists.txt fails to do these steps correctly.
-# The file is also very annoying to patch. Thank God this doesn't seem to update anymore.
-mkdir -p %{buildroot}%{_udevrulesdir}
 %desktop_file_install desktop/rpm/x86_64/%{name}.desktop
 
 mkdir -p %{buildroot}%{_libdir}/sane
