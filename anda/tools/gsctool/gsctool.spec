@@ -15,6 +15,8 @@ BuildRequires:  pkgconfig(libusb-1.0)
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  gcc
 
+Packager:       Owen Zimmerman <owen@fyralabs.com>
+
 %description
 Chromium OS EC utilities
 
