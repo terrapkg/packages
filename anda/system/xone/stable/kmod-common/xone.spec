@@ -132,7 +132,7 @@ install -Dm644 %{name}.conf -t %{buildroot}%{_modulesloaddir}
 %changelog
 * Wed Dec 10 2025 Gilver E. <rockgrub@disroot.org> - 0.5.0-2
 - Added new firmware files
-* Thu Apr 17 2025 Gilver E. <rockgrub@disroot.org> - 0.3^20250418git.ecdd59e-3%{?dist}
+* Thu Apr 17 2025 Gilver E. <rockgrub@disroot.org> - 0.3^20250418git.ecdd59e-2
 - Added additional firmware needed for dongle pairing on some controllers
 * Thu Feb 27 2025 Gilver E. <rockgrub@disroot.org>
 - Initial package
