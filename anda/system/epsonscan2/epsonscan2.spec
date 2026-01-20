@@ -68,10 +68,6 @@ for file in Standalone/lastusedsettings.cpp Standalone/defaultsettings.cpp Commo
   sed -i '/BOOST_NO_CXX11_RVALUE_REFERENCES/d' src/$file
 done
 
-for dir in . src src/Standalone src/ScanSDK src/ScanSDK/Src/SDK/SCANSDKsample_C++ src/DetectAlert; do
-  sed -Ei '/cmake_minimum_required/ s/2\.([0-9]+|\.)+/4.0/' $dir/CMakeLists.txt
-done
-
 %dnl #sed -i '/SET.*FLAGS/ s/")/ -Wno-template-body")/' src/ES2Command/Linux/CMakeLists.txt
 sed -i '/#include/ i #include <cmath>' src/Controller/Src/Filter/GrayToMono.hpp
 
