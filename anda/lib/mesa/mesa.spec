@@ -116,9 +116,6 @@ Source15:       https://crates.io/api/v1/crates/rustc-hash/%{rustc_hash_ver}/dow
 # Teflon: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/38532
 Patch12:        mesa-38532.patch
 
-# SteamVR: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/38987
-Patch20:        mesa-38987.patch
-
 # Add required patches for Wine Wayland (From Proton-GE Release Notes)
 Patch21:        wine-wayland.patch
 
