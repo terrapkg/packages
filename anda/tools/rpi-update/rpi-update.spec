@@ -14,6 +14,8 @@ Source0:        %url/archive/%commit.tar.gz
 Requires:       bash
 ExclusiveArch:  aarch64
 
+Packager:       Owen Zimmerman <owen@fyralabs.com>
+
 %description
 %summary
 
