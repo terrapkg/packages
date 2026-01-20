@@ -20,7 +20,7 @@ Requires:      python3
 Requires:      chafa
 Recommends:    timg
 BuildArch:     noarch
-Packager:      Gilver E. <rockgrub@disroot.org>
+Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description
 A featureful shell program to show Pokémon sprites in the terminal.

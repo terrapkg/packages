@@ -53,7 +53,7 @@ Recommends:     xdg-utils
 Provides:       %{base_name}.git
 Conflicts:      %{base_name}
 BuildArch:      noarch
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description %_description
 

@@ -17,7 +17,7 @@ BuildRequires: nodejs-devel
 BuildRequires: nodejs-packaging
 BuildRequires: nodejs-npm
 ExclusiveArch: %{nodejs_arches} noarch
-Packager:      Gilver E. <rockgrub@disroot.org>
+Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description
 A simple CLI tool that automates the process of backporting commits on a GitHub repo.

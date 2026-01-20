@@ -19,7 +19,7 @@ Provides:   %{modulename}-kmod = %{version}
 Requires:   dkms
 Requires:   dkms-intel-ipu6
 BuildArch:  noarch
-Packager:   Gilver E. <rockgrub@disroot.org>
+Packager:   Gilver E. <roachy@fyralabs.com>
 
 %description
 This package enables USBIO Extension drivers on Intel Alder Lake, Raptor Lake, Meteor Lake and Lunar Lake platforms.

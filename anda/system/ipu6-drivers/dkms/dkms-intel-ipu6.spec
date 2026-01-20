@@ -22,7 +22,7 @@ Requires:       %{modulename}-kmod-common = %{?epoch:%{epoch}:}%{version}
 Requires:       dkms
 Requires:       dkms-usbio-drivers
 BuildArch:      noarch
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 This package enables the Intel IPU6 image processor.

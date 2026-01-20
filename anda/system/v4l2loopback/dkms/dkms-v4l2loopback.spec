@@ -17,7 +17,7 @@ Requires:       dkms
 Requires:       help2man
 Conflicts:      akmod-%{modulename}
 BuildArch:      noarch
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description %_description
 

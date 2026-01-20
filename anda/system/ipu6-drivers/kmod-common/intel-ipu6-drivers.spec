@@ -17,7 +17,7 @@ Requires:       ipu6-camera-bins
 Requires:       intel-ipu6-kmod = %{?epoch:%{epoch}:}%{version}
 Provides:       intel-ipu6-kmod-common = %{?epoch:%{epoch}:}%{version}-%{release}
 BuildArch:      noarch
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 Common files for the Intel IPU6 camera drivers.

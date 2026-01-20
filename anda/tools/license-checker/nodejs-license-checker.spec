@@ -16,7 +16,7 @@ BuildRequires: nodejs-npm
 BuildRequires: nodejs-packaging
 ExclusiveArch: %{nodejs_arches} noarch
 BuildArch:     noarch
-Packager:      Gilver E. <rockgrub@disroot.org>
+Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description
 Extract NPM package licenses.

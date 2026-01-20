@@ -21,7 +21,7 @@ Requires:      %{modulename} = %{?epoch:%{epoch}:}%{version}
 Requires:      dkms
 Conflicts:     akmod-%{modulename}
 BuildArch:     noarch
-Packager:      Gilver E. <rockgrub@disroot.org>
+Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description %_description
 

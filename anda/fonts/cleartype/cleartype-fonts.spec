@@ -113,7 +113,7 @@ Requires:       %{fontname}-constantia-fonts
 Requires:       %{fontname}-corbel-fonts
 Requires(post): fontconfig
 BuildArch:      noarch
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %fontpkg -a
 

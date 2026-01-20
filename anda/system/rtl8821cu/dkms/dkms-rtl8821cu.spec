@@ -26,7 +26,7 @@ Requires:      bc
 Requires:      make
 Provides:      %{modulename}-kmod
 Conflicts:     akmod-%{modulename}
-Packager:      Gilver E. <rockgrub@disroot.org>
+Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description %_description
 

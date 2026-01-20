@@ -23,7 +23,7 @@ Provides:       %{modulename}-kmod
 Obsoletes:      %{name} < %{?epoch:%{epoch}:}0.3.4
 %endif
 BuildArch:      noarch
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 Linux kernel driver for Xbox One and Xbox Series X|S accessories.

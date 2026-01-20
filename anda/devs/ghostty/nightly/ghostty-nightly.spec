@@ -55,7 +55,7 @@ Provides:       %{base_name}-tip = %{ver}^%{commit_date}git%{shortcommit}
 Provides:       %{name} = %{commit_date}.%{shortcommit}
 %endif
 Obsoletes:      %{name} = 20250130.04d3636
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 👻 Ghostty is a fast, feature-rich, and cross-platform terminal emulator that uses platform-native UI and GPU acceleration.

@@ -29,7 +29,7 @@ Obsoletes:     %{crate} < %{version}-%{release}
 %if %{with docs}
 Suggests:      %{name}-doc = %{version}-%{release}
 %endif
-Packager:      Gilver E. <rockgrub@disroot.org>
+Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description %_description
 

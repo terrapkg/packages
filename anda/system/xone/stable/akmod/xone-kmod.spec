@@ -22,7 +22,7 @@ Conflicts:      %{modulename}-nightly-kmod
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Obsoletes:      %{name} < %{?epoch:%{epoch}:}0.3.4
 %endif
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %{expand:%(kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 

@@ -31,7 +31,7 @@ BuildRequires:  python3dist(sphinx)
 # See https://fedoraproject.org/wiki/Changes/EncourageI686LeafRemoval
 ExcludeArch:    %{ix86}
 BuildArch:      noarch
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %global _desc %{expand:
 Jupyter-Sphinx enables running code embedded in Sphinx documentation and

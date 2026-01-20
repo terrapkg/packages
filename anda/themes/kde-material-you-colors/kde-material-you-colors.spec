@@ -31,7 +31,7 @@ BuildRequires:  pkgconfig(ocl-icd)
 Requires:       qt5-qtbase
 Requires:       kf6-filesystem >= 6.0.0
 Requires:       python3-%{name} = %{version}-%{release}
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 Automatic Material You Colors Generator from your wallpaper for the Plasma Desktop

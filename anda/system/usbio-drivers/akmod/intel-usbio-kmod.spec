@@ -21,7 +21,7 @@ BuildRequires:  kmodtool
 Requires:       %{modulename}-kmod-common = %{?epoch:%{epoch}:}%{version}
 Requires:       akmods
 Requires:       akmod-intel-ipu6
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %{expand:%(kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 

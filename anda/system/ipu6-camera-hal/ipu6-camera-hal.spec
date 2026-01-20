@@ -33,7 +33,7 @@ Requires:       ipu6-camera-bins >= 0.0-11
 Provides:       %{name} = %{commit_date}.%{shortcommit}-%{release}
 %endif
 ExclusiveArch:  x86_64
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 This package provides the basic Hardware Avstraction Layer (HAL) access APIs for IPU6.

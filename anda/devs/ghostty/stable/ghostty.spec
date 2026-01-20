@@ -41,7 +41,7 @@ Requires:       gtk4
 Requires:       gtk4-layer-shell
 Requires:       libadwaita
 Conflicts:      ghostty-nightly
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 👻 Ghostty is a fast, feature-rich, and cross-platform terminal emulator that uses platform-native UI and GPU acceleration.

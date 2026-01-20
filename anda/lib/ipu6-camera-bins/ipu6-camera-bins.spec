@@ -36,7 +36,7 @@ Provides:       %{name} = %{?epoch:%{epoch}:}%{commit_date}.%{shortcommit}-%{rel
 Obsoletes:      %{name} < %{?epoch:%{epoch}:}%{commit_date}.%{shortcommit}-2
 %endif
 ExclusiveArch:  x86_64
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 Provides binary libraries for Intel IPU6.

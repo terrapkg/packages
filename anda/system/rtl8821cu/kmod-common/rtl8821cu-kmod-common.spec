@@ -16,7 +16,7 @@ Source0:        %{url}/archive/%{commit}.tar.gz#/%{git_name}-%{shortcommit}.tar.
 BuildRequires:  systemd-rpm-macros
 Requires:       rtl8821cu-kmod = %{version}
 BuildArch:      noarch
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 Necessary files for the %{modulename} driver.

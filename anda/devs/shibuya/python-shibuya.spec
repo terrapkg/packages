@@ -30,7 +30,7 @@ BuildRequires:  python3dist(sphinx-design)
 BuildRequires:  python3dist(sphinx-togglebutton)
 %endif
 BuildArch:      noarch
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description %_description
 

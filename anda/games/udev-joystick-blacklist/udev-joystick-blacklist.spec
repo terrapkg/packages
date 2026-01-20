@@ -13,7 +13,7 @@ BuildRequires: systemd-rpm-macros
 Conflicts:     %{name}-rm
 Conflicts:     steam-device-rules <= 1.0.0.85
 BuildArch:     noarch
-Packager:      Gilver E. <rockgrub@disroot.org>
+Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description
 There are several devices that, although recognized by kernel as joysticks, are not joysticks.

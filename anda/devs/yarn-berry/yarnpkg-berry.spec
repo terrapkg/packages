@@ -19,7 +19,7 @@ BuildRequires: %{name}
 Provides:      yarn-berry
 Conflicts:     yarnpkg
 BuildArch:     noarch
-Packager:      Gilver E. <rockgrub@disroot.org>
+Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description
 The next, actively developed version of Yarn.

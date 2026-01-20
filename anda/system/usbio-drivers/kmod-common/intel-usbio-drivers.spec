@@ -14,7 +14,7 @@ BuildRequires: anda-srpm-macros
 Provides:      intel-usbio-kmod-common = %{evr}
 Requires:      intel-ipu6-kmod-common
 BuildArch:     noarch
-Packager:      Gilver E. <rockgrub@disroot.org>
+Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description
 This package contains the common files for the UBSIO kernel modules.

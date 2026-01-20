@@ -34,7 +34,7 @@ Suggests:       scx-scheds-nightly
 Obsoletes:      scxctl <= 0.3.4
 Provides:       scxctl = %{evr}
 Conflicts:      scx-tools
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 scx_loader: A D-Bus interface for managing sched_ext schedulers

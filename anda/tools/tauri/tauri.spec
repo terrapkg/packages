@@ -12,7 +12,7 @@ BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  mold
 Suggests:       libayatana-appindicator-gtk3
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 Build smaller, faster, and more secure desktop and mobile applications with a web frontend.

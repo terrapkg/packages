@@ -23,7 +23,7 @@ BuildRequires:  python3dist(pillow)
 BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(setuptools)
 BuildArch:      noarch
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %global _description %{expand:
 A Python module for grabbing the color palette from an image.}

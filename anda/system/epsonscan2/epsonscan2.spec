@@ -34,7 +34,7 @@ BuildRequires: rapidjson-devel
 BuildRequires: sane-backends-devel
 BuildRequires: systemd-rpm-macros
 Requires:      qt5-qtbase
-Packager:      Gilver E. <rockgrub@disroot.org>
+Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description
 This package contains all essential software to use Epson scanners.

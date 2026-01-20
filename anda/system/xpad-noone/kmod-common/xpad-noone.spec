@@ -19,7 +19,7 @@ Requires:      (akmod-%{name} = %{?epoch:%{epoch}:}%{version} or dkms-%{name} = 
 Conflicts:     xow <= 0.5
 Obsoletes:     xow <= 0.5
 BuildArch:     noarch
-Packager:      Gilver E. <rockgrub@disroot.org>
+Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description %_description
 

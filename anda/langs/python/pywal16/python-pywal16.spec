@@ -23,7 +23,7 @@ BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(setuptools)
 Obsoletes:      python3-pywal < 3.5.0-1
 BuildArch:      noarch
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 This project is a 16 colors fork of Pywal.

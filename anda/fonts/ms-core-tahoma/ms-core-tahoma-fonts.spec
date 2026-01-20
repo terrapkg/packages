@@ -30,7 +30,7 @@ BuildRequires:  fontpackages-devel
 Requires:       xorg-x11-font-utils
 Requires:       fontconfig
 BuildArch:      noarch
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %fontpkg -a
 

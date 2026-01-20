@@ -21,7 +21,7 @@ BuildRequires: cargo-rpm-macros
 BuildRequires: rustup
 %endif
 BuildRequires: mold
-Packager:      Gilver E. <rockgrub@disroot.org>
+Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description %_description
 

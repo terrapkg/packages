@@ -21,7 +21,7 @@ BuildRequires: systemd-rpm-macros
 Requires:      %{modulename}-kmod-common = %{version}
 Requires:      akmods
 Conflicts:     dkms-%{modulename}
-Packager:      Gilver E. <rockgrub@disroot.org>
+Packager:      Gilver E. <roachy@fyralabs.com>
 
 %{expand:%(kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 

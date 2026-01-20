@@ -50,7 +50,7 @@ Provides:       scx_layered
 Provides:       scx_rustland
 Provides:       scx_rusty
 Obsoletes:      scxctl <= 0.3.4
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 sched_ext is a Linux kernel feature which enables implementing kernel thread schedulers in BPF and dynamically loading them.

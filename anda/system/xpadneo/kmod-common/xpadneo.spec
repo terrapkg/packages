@@ -17,7 +17,7 @@ Requires:       (akmod-%{name} = %{?epoch:%{epoch}:}%{version} or dkms-%{name} =
 Provides:       %{name}-kmod-common = %{?epoch:%{epoch}:}%{version}
 Obsoletes:      %{name}-kmod-common < %{?epoch:%{epoch}:}0.9.7^20241224git.8d20a23-4%{?dist}
 BuildArch:      noarch
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 Advanced Linux Driver for Xbox One Wireless Gamepad common files.

@@ -9,7 +9,7 @@ Source0:       %{url}/archive/refs/tags/v%{version}.tar.gz
 BuildRequires: anda-srpm-macros
 BuildRequires: cargo-rpm-macros
 BuildRequires: mold
-Packager:      Gilver E. <rockgrub@disroot.org>
+Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description
 Krabby is mostly a Rust rewrite of phoney badger's pokemon-colorscripts with some extra features.

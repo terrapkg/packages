@@ -31,7 +31,7 @@ Obsoletes:      scxctl <= 0.3.4
 Provides:       scxctl = %{evr}
 Conflicts:      scx-tools-git
 Conflicts:      scx-tools-nightly
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 scx_loader: A D-Bus interface for managing sched_ext schedulers

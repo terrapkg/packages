@@ -192,7 +192,7 @@ Requires:        %{fontname}-webdings-fonts
 Requires:        xorg-x11-font-utils
 Requires(post):  fontconfig
 BuildArch:       noarch
-Packager:        Gilver E. <rockgrub@disroot.org>
+Packager:        Gilver E. <roachy@fyralabs.com>
 
 %fontpkg -a
 

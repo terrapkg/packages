@@ -88,7 +88,7 @@ Provides:       bundled(musl) = 1.2.5
 Provides:       bundled(wasi-libc) = d03829489904d38c624f6de9983190f1e5e7c9c5
 Conflicts:      zig
 ExclusiveArch:  %{zig_arches}
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 Zig is an open source alternative to C. 

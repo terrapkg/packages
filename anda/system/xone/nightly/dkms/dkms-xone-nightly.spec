@@ -27,7 +27,7 @@ Provides:       %{modulename}-nightly-kmod = %{?epoch:%{epoch}:}%{version}
 Obsoletes:      dkms-%{modulename} < %{?epoch:%{epoch}:}3.0^20250419git.c682b0c
 %endif
 BuildArch:      noarch
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 Linux kernel driver for Xbox One and Xbox Series X|S accessories.

@@ -17,7 +17,7 @@ BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(rich)
 BuildRequires:  python3dist(setuptools)
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 Material You color generation algorithms in Python.

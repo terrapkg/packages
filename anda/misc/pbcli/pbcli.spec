@@ -19,7 +19,7 @@ BuildRequires:  perl-File-Compare
 BuildRequires:  perl-File-Copy
 BuildRequires:  perl-IPC-Cmd
 BuildRequires:  perl-lib
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description %_description
 

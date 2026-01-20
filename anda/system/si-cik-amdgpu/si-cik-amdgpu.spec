@@ -13,7 +13,7 @@ BuildRequires:    systemd-rpm-macros
 Requires(post):   dracut
 Requires(postun): dracut
 BuildArch:        noarch
-Packager:         Gilver E. <rockgrub@disroot.org>
+Packager:         Gilver E. <roachy@fyralabs.com>
 
 %description
 %{summary}.
