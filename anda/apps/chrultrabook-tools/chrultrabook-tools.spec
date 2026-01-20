@@ -42,7 +42,7 @@ Packager:       Owen Zimmerman owen@fyralabs.com
 %tauri_prep
 
 %build
-%npm_build -B
+%npm_build -r build -B
 
 %install
 %tauri_install
