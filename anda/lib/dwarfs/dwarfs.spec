@@ -88,7 +88,7 @@ BuildArch:      noarch
 Zsh shell completion for dwarfs.
 
 %prep
-%autosetup
+%git_clone %{url}.git v%{version}
 
 %build
 %cmake \
