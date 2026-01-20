@@ -12,7 +12,7 @@
 
 Name:           helium-browser-bin
 Version:        0.8.2.1
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Private, fast, and honest web browser based on Chromium
 
 URL:            https://helium.computer
@@ -51,6 +51,9 @@ sed -i 's/exists_desktop_file || generate_desktop_file/true/' \
     %{buildroot}%{_libdir}/%{name}/chrome-wrapper
 
 install -Dm644 helium.desktop %{buildroot}%{_datadir}/applications/%{name}.desktop
+
+%__desktop_file_edit --set-icon=net.input.helium %{buildroot}%{_datadir}/applications/%{name}.desktop
+
 install -Dm644 product_logo_256.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{appid}.png
 
 rm -f %{buildroot}%{_libdir}/%{name}/helium.desktop
