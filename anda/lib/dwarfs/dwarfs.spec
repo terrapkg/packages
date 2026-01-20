@@ -44,7 +44,7 @@ BuildRequires: openssl-devel
 BuildRequires: pip
 BuildRequires: pkg-config
 BuildRequires: range-v3-devel
-BuildRequires: rubygem-ronn
+BuildRequires: rubygem-ronn-ng
 BuildRequires: utf8cpp-devel
 BuildRequires: xxhash-devel
 BuildRequires: xz-devel
