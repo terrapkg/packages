@@ -14,6 +14,7 @@ License:		MIT AND %{electron_license}
 Packager:   Yoong Jin <solomoncyj@gmail.com>
 
 BuildRequires:	 nodejs-npm
+BuildRequires:	 squashfs-tools
 
 Provides:       qnb-client
 
