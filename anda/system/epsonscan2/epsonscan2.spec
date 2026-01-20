@@ -1,24 +1,27 @@
-# Despite supposedly being a purely C++ project it will not build without this flag. Don't ask me.
-%global build_cflags %{__build_flags_lang_c} %{?_distro_extra_cflags} -Wno-implicit-function-declaration
-%global build_cxxflags %(%{__build_flags_lang_cxx}) %{?_distro_extra_cxxflags} -Wno-template-body
+%global source_release 1
 
 Name:          epsonscan2
-Version:       6.7.70.0
-Release:       1
+Version:       6.7.82.0
+Release:       1%{?dist}
 Summary:       Package for Epson scanner drivers and software
 # This was a licensing determination nightmare
 License:       LGPL-2.1-or-later AND MIT AND Zlib AND LicenseRef-SHA1
 URL:           https://support.epson.net/linux/en/epsonscan2.php
 # This software doesn't have versioned download links, absolute nightmare
-Source0:       https://download3.ebz.epson.net/dsc/f/03/00/16/60/70/c7fc14e41ec84255008c6125b63bcac40f55e11c/epsonscan2-%{version}-%{release}.src.tar.gz
+Source0:       https://download-center.epson.com/f/module/7406d656-d87b-43ae-8efe-16ab16c173c5/%{name}-%{version}-%{source_release}.src.tar.gz
 # The non-free-plugin should be redistributable as far as anything I can find in the license but it is NOT provided externally?? Repackage the RPM I guess.
 %ifarch x86_64
-Source1:       https://download3.ebz.epson.net/dsc/f/03/00/16/14/40/9cb99579f9fa7facf54f77f0ce6fe5600677f30a/epsonscan2-bundle-%{version}.x86_64.rpm.tar.gz
+Source1:       https://download-center.epson.com/f/module/98aba4e9-dc75-4096-9607-be35b5107668/%{name}-bundle-%{version}.x86_64.rpm.tar.gz
 %endif
+Patch0:        https://aur.archlinux.org/cgit/aur.git/plain/0002-Fix-crash.patch?h=epsonscan2#0002-Fix-crash.patch
+Patch1:        https://aur.archlinux.org/cgit/aur.git/plain/0003-Use-XDG-open-to-open-the-directory.patch?h=epsonscan2#0003-Use-XDG-open-to-open-the-directory.patch
+Patch2:        https://aur.archlinux.org/cgit/aur.git/tree/0004-Fix-a-crash-on-an-OOB-container-access.patch?h=epsonscan2#0004-Fix-a-crash-on-an-OOB-container-access.patch
+Patch3:        https://aur.archlinux.org/cgit/aur.git/plain/0005-Fix-folder-creation-crash.patch?h=epsonscan2#0005-Fix-folder-creation-crash.patch
 BuildRequires: boost-filesystem >= 1.36.0
 BuildRequires: boost-devel >= 1.36.0
 BuildRequires: cmake >= 2.8.12.2
 BuildRequires: cpio
+BuildRequires: desktop-file-utils
 BuildRequires: gcc-c++
 BuildRequires: libharu
 BuildRequires: libjpeg-turbo-devel
@@ -43,34 +46,43 @@ This package contains all essential software to use Epson scanners.
 %package      non-free-plugin
 License:      Epson End User Software License Agreement
 Summary:      Non free plugin for Epson scanners
-Requires:     %{name} = %{version}-%{release}
+Requires:     %{name} = %{evr}
 
 %description non-free-plugin
 Non-free but redistributable plugin for %{name}.
 %endif
 
 %prep
-%autosetup -n %{name}-%{version}-%{release}
+%autosetup -n %{name}-%{version}-%{source_release} -p1
 %ifarch x86_64
 gzip -dc '%{SOURCE1}' | tar -xof - --strip-components=1
 rpm2cpio plugins/*.rpm | cpio -idmv
 %endif
 
-%build
-# CMake macro fails to generate the build files somehow? This works however. I don't really understand.
-%cmake  \
-   -DBUILD_TYPE=Release
+sed -i 's|/lib/udev|${CMAKE_INSTALL_PREFIX}/lib/udev|' CMakeLists.txt
+sed -i '1 i #include "zlib.h"' src/CommonUtility/DbgLog.cpp
+sed -i '/zlib/d' src/Controller/CMakeLists.txt
 
+find . -type f -name CMakeLists.txt -exec sed -i '/BOOST_NO_CXX11_RVALUE_REFERENCES/d' {} \;
+
+for file in Standalone/lastusedsettings.cpp Standalone/defaultsettings.cpp CommonUtility/ESCommonTypedef.h Controller/Src/KeysValues/Key.hpp Controller/Src/KeysValues/KeyMgr.hpp; do
+  sed -i '/BOOST_NO_CXX11_RVALUE_REFERENCES/d' src/$file
+done
+
+sed -i '/#include/ i #include <cmath>' src/Controller/Src/Filter/GrayToMono.hpp
+
+%build
+%cmake  \
+   -DBUILD_TYPE=Release \
+   -DCMAKE_C_FLAGS="$CFLAGS -Wno-implicit-function-declaration" \
+   -DCMAKE_CXX_FLAGS="$CXXFLAGS -Wno-template-body"
 %cmake_build
 
 %install
 %cmake_install
 
 # The CMakeLists.txt fails to do these steps correctly.
-# The file is also very annoying to patch. Thank God this doesn't seem to update anymore.
-mkdir -p %{buildroot}%{_udevrulesdir}
-mv %{buildroot}/lib/udev/rules.d/60-%{name}.rules -t %{buildroot}%{_udevrulesdir}
-install -Dpm644 desktop/rpm/x86_64/%{name}.desktop -t %{buildroot}%{_datadir}/applications/
+%desktop_file_install desktop/rpm/x86_64/%{name}.desktop
 
 mkdir -p %{buildroot}%{_libdir}/sane
 ln -sf ../%{name}/libsane-%{name}.so %{buildroot}%{_libdir}/sane/libsane-%{name}.so.1
@@ -82,7 +94,7 @@ rm -rf %{buildroot}%{_defaultdocdir}/%{name}*
 %ifarch x86_64
 mv usr/share/doc/%{name}*/* -t plugins
 rm -rf usr/share/doc/%{name}*
-cp -pr usr %{buildroot}
+cp -pr usr -t %{buildroot}
 %endif
 
 %files
@@ -99,7 +111,7 @@ cp -pr usr %{buildroot}
 %{_libdir}/sane/*
 %{_udevrulesdir}/60-%{name}.rules
 %{_sysconfdir}/sane.d/dll.d/%{name}
-%{_datadir}/applications/%{name}.desktop
+%{_appsdir}/%{name}.desktop
 
 %ifarch x86_64
 %files   non-free-plugin
