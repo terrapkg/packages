@@ -72,7 +72,7 @@ for dir in . src src/Standalone src/ScanSDK src/ScanSDK/Src/SDK/SCANSDKsample_C+
   sed -Ei '/cmake_minimum_required/ s/2\.([0-9]+|\.)+/4.0/' $dir/CMakeLists.txt
 done
 
-sed -i '/SET.*FLAGS/ s/")/ -Wno-template-body")/' src/ES2Command/Linux/CMakeLists.txt"
+%dnl #sed -i '/SET.*FLAGS/ s/")/ -Wno-template-body")/' src/ES2Command/Linux/CMakeLists.txt"
 sed -i '/#include/ i #include <cmath>' src/Controller/Src/Filter/GrayToMono.hpp
 
 %build
