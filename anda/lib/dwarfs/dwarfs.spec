@@ -13,7 +13,11 @@ URL:           https://github.com/mhx/%{name}
 Source0:       https://github.com/mhx/%{name}/releases/download/v%{version}/%{name}-%{version}.tar.xz
 BuildRequires: binutils-devel
 BuildRequires: boost-devel
+%if 0%{?fedora} >= 44
 BuildRequires: boost-process
+%else
+BuildRequires: boost-system
+%endif
 BuildRequires: brotli-devel
 BuildRequires: bubblewrap
 BuildRequires: ccache
