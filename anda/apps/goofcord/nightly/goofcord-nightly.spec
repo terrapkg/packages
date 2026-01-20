@@ -17,7 +17,7 @@ BuildRequires: anda-srpm-macros >= 0.2.26
 BuildRequires: bun-bin
 Packager:      Gilver E. <rockgrub@disroot.org>
 
-%electronmeta
+%electronmeta -D
 
 %description
 A highly configurable and privacy minded Discord client.
