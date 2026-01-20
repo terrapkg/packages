@@ -13,6 +13,10 @@ Source0:       https://download-center.epson.com/f/module/7406d656-d87b-43ae-8ef
 %ifarch x86_64
 Source1:       https://download-center.epson.com/f/module/98aba4e9-dc75-4096-9607-be35b5107668/%{name}-bundle-%{version}.x86_64.rpm.tar.gz
 %endif
+Patch0:        https://aur.archlinux.org/cgit/aur.git/plain/0002-Fix-crash.patch?h=epsonscan2#0002-Fix-crash.patch
+Patch1:        https://aur.archlinux.org/cgit/aur.git/plain/0003-Use-XDG-open-to-open-the-directory.patch?h=epsonscan2#0003-Use-XDG-open-to-open-the-directory.patch
+Patch2:        https://aur.archlinux.org/cgit/aur.git/tree/0004-Fix-a-crash-on-an-OOB-container-access.patch?h=epsonscan2#0004-Fix-a-crash-on-an-OOB-container-access.patch
+Patch3:        https://aur.archlinux.org/cgit/aur.git/plain/0005-Fix-folder-creation-crash.patch?h=epsonscan2#0005-Fix-folder-creation-crash.patch
 BuildRequires: boost-filesystem >= 1.36.0
 BuildRequires: boost-devel >= 1.36.0
 BuildRequires: cmake >= 2.8.12.2
@@ -48,18 +52,34 @@ Non-free but redistributable plugin for %{name}.
 %endif
 
 %prep
-%autosetup -n %{name}-%{version}-%{source_release}
+%autosetup -n %{name}-%{version}-%{source_release} -p1
 %ifarch x86_64
 gzip -dc '%{SOURCE1}' | tar -xof - --strip-components=1
 rpm2cpio plugins/*.rpm | cpio -idmv
 %endif
+
+sed -i 's|/lib/udev|${CMAKE_INSTALL_PREFIX}/lib/udev|' CMakeLists.txt"
+sed -i '1 i #include "zlib.h"' src/CommonUtility/DbgLog.cpp
+sed -i '/zlib/d' src/Controller/CMakeLists.txt
+
+find . -type f -name CMakeLists.txt -exec sed -i '/BOOST_NO_CXX11_RVALUE_REFERENCES/d' {} \;
+
+for file in Standalone/lastusedsettings.cpp Standalone/defaultsettings.cpp CommonUtility/ESCommonTypedef.h Controller/Src/KeysValues/Key.hpp Controller/Src/KeysValues/KeyMgr.hpp; do
+  sed -i '/BOOST_NO_CXX11_RVALUE_REFERENCES/d' src/$file
+done
+
+for dir in . src src/Standalone src/ScanSDK src/ScanSDK/Src/SDK/SCANSDKsample_C++ src/DetectAlert; do
+  sed -Ei '/cmake_minimum_required/ s/2\.([0-9]+|\.)+/4.0/' $dir/CMakeLists.txt
+done
+
+sed -i '/SET.*FLAGS/ s/")/ -Wno-template-body")/' src/ES2Command/Linux/CMakeLists.txt"
+sed -i '/#include/ i #include <cmath>' src/Controller/Src/Filter/GrayToMono.hpp
 
 %build
 %cmake  \
    -DBUILD_TYPE=Release \
    -DCMAKE_C_FLAGS="$CFLAGS -Wno-implicit-function-declaration" \
    -DCMAKE_CXX_FLAGS="$CXXFLAGS -Wno-template-body"
-
 %cmake_build
 
 %install
