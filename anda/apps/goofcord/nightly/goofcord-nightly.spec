@@ -24,6 +24,9 @@ A highly configurable and privacy minded Discord client.
 
 %prep
 %autosetup -n %{git_name}-%{commit}
+%ifarch %{arm64} armv7l armv7hl armv7hnl
+sed -i '/\"x64\",/d' electron-builder.ts
+%endif
 
 %build
 %bun_build
