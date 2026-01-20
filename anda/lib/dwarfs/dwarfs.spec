@@ -98,9 +98,9 @@ Zsh shell completion for dwarfs.
 -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
 %cmake_build
 %ifarch aarch64
--DCMAKE_C_FLAGS="-fno-lto -fno-use-linker-plugin" \
--DCMAKE_CXX_FLAGS="-fno-lto -fno-use-linker-plugin" \
--DCMAKE_SHARED_LINKER_FLAGS="-fno-lto -fno-use-linker-plugin" \
+-DCMAKE_C_FLAGS="$CFLAGS -fno-lto -fno-use-linker-plugin" \
+-DCMAKE_CXX_FLAGS="$CXXFLAGS -fno-lto -fno-use-linker-plugin" \
+-DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS -fno-lto -fno-use-linker-plugin" \
 %endif
 %cmake_build
 
