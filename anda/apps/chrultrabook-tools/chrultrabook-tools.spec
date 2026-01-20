@@ -44,8 +44,6 @@ Packager:       Owen Zimmerman owen@fyralabs.com
 
 %build
 %npm_build -B
-# npm install
-# npm run tauri build -- --no-bundle # no bundles
 
 %install
 %tauri_install
