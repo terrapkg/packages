@@ -24,8 +24,7 @@ BuildRequires:  libstdc++-static
 BuildRequires:  libxdo-devel
 BuildRequires:  anda-srpm-macros
 BuildRequires:  rustc
-BuildRequires:  tauri
-BuildRequires:  %tauri_buildrequires
+BuildRequires:  %{tauri_buildrequires -a}
 
 Requires:       chromium-ectool
 Requires:       coreboot-utils-cbmem
