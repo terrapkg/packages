@@ -6,7 +6,7 @@
 
 Name:          pokeshell
 Version:       %{ver}^%{date}git.%{shortcommit}
-Release:       3%{?dist}
+Release:       4%{?dist}
 Summary:       A shell program to show Pokémon sprites in the terminal.
 License:       GPL-3.0-or-later
 URL:           https://github.com/acxz/pokeshell
@@ -31,7 +31,7 @@ Requires:      bash
 Requires:      %{name}
 Requires:      uv
 Recommends:    hyperfine
-Recommends:    pokeget-rs
+Recommends:    pokeget
 Recommends:    pokemon-colorscripts
 
 %description helper-scripts
