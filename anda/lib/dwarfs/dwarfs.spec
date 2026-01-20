@@ -98,6 +98,7 @@ Zsh shell completion for dwarfs.
 -DWITH_LIBDWARFS=ON \
 -DWITH_TOOLS=ON \
 -DWITH_FUSE_DRIVER=ON \
+-DBUILD_SHARED_LIBS=ON \
 -DWITH_MAN_OPTION=OFF \
 -DCMAKE_INSTALL_SBINDIR=%{_sbindir} \
 %cmake_build
