@@ -31,7 +31,7 @@ Provides:       NeoHtop
 %autosetup -n neohtop-%version
 
 %build
-npm install
+%__npm install
 %tauri_build
 
 %install
