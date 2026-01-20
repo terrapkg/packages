@@ -58,7 +58,7 @@ gzip -dc '%{SOURCE1}' | tar -xof - --strip-components=1
 rpm2cpio plugins/*.rpm | cpio -idmv
 %endif
 
-sed -i 's|/lib/udev|${CMAKE_INSTALL_PREFIX}/lib/udev|' CMakeLists.txt"
+sed -i 's|/lib/udev|${CMAKE_INSTALL_PREFIX}/lib/udev|' CMakeLists.txt
 sed -i '1 i #include "zlib.h"' src/CommonUtility/DbgLog.cpp
 sed -i '/zlib/d' src/Controller/CMakeLists.txt
 
@@ -72,7 +72,7 @@ for dir in . src src/Standalone src/ScanSDK src/ScanSDK/Src/SDK/SCANSDKsample_C+
   sed -Ei '/cmake_minimum_required/ s/2\.([0-9]+|\.)+/4.0/' $dir/CMakeLists.txt
 done
 
-%dnl #sed -i '/SET.*FLAGS/ s/")/ -Wno-template-body")/' src/ES2Command/Linux/CMakeLists.txt"
+%dnl #sed -i '/SET.*FLAGS/ s/")/ -Wno-template-body")/' src/ES2Command/Linux/CMakeLists.txt
 sed -i '/#include/ i #include <cmath>' src/Controller/Src/Filter/GrayToMono.hpp
 
 %build
