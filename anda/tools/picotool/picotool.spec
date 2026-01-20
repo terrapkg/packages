@@ -9,6 +9,8 @@ Source0:        https://github.com/raspberrypi/picotool/archive/%version.tar.gz#
 Source1:        https://github.com/raspberrypi/pico-sdk/archive/%sdk_version.tar.gz#/pico-sdk-%sdk_version.tar.gz
 BuildRequires:  cmake g++ libusb1-devel
 
+Packager:       Owen Zimmerman <owen@fyralabs.com>
+
 %description
 Picotool is a tool for inspecting RP2040 binaries, and interacting with RP2040 devices when they are in BOOTSEL mode.
 
