@@ -2,7 +2,7 @@
 The Deduplicating Warp-speed Advanced Read-only File System.
 
 A fast high compression read-only file system for Linux and Windows.}
-%global build_cxxflags _distro_extra_cxxflags -include %{_includedir}/c++/*/cstdint
+%global _distro_extra_cxxflags -include %{_includedir}/c++/*/cstdint
 
 Name:          dwarfs
 Version:       0.14.1
