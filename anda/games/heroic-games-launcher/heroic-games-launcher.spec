@@ -14,6 +14,7 @@ Summary:       A games launcher for GOG, Amazon, and Epic Games
 License:       GPL-3.0-only AND MIT AND BSD-3-Clause
 URL:           https://heroicgameslauncher.com
 BuildRequires: anda-srpm-macros
+BuildRequires: pnpm
 Requires:      alsa-lib
 Requires:      gtk3
 Requires:      hicolor-icon-theme
@@ -67,7 +68,8 @@ install -Dpm644 flatpak/templates/%{appid}.metainfo.xml.template %{buildroot}%{_
 %{_datadir}/%{shortname}/*
 %{_bindir}/%{shortname}
 %{_bindir}/%{name}
-%{_datadir}/applications/%{appid}.desktop
+%{_appsdir}/%{appid}.desktop
+%{_metainfodir}/%{appid}.metainfo.xml
 %{_hicolordir}/16x16/apps/%{appid}.png
 %{_hicolordir}/32x32/apps/%{appid}.png
 %{_hicolordir}/48x48/apps/%{appid}.png
