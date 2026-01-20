@@ -26,20 +26,13 @@ A highly configurable and privacy minded Discord client.
 %autosetup -n %{git_name}-%{commit}
 
 %build
-%ifarch %{arm64} armv7l armv7hl armv7hnl
-sed -i '/\"x64\",/d' electron-builder.ts
-%endif
-%ifnarch armv7l armv7hl armv7hnl
-sed -i '/\"armv7l\"/d' electron-builder.ts
-%endif
-
-%bun_build -R
+%bun_build
 
 %install
-%electron_install -d %{base_name} -s %{base_name} -i %{base_name} -D -O -U %U -E UseOzonePlatform,WaylandWindowDecorations
+%electron_install -d %{base_name} -s %{base_name} -i %{base_name} -D -O -U %U -E UseOzonePlatform,WaylandWindowDecorations -I
 
 %check
-desktop-file-validate %{buildroot}%{_datadir}/applications/%{base_name}.desktop
+%desktop_file_validate %{buildroot}%{_datadir}/applications/%{base_name}.desktop
 
 %files
 %doc README.md
@@ -47,14 +40,14 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{base_name}.desktop
 %{_bindir}/%{base_name}
 %{_datadir}/applications/%{base_name}.desktop
 %{_libdir}/%{base_name}/
-%{_iconsdir}/hicolor/16x16/apps/%{base_name}.png
-%{_iconsdir}/hicolor/32x32/apps/%{base_name}.png
-%{_iconsdir}/hicolor/48x48/apps/%{base_name}.png
-%{_iconsdir}/hicolor/64x64/apps/%{base_name}.png
-%{_iconsdir}/hicolor/128x128/apps/%{base_name}.png
-%{_iconsdir}/hicolor/256x256/apps/%{base_name}.png
-%{_iconsdir}/hicolor/512x512/apps/%{base_name}.png
-%{_iconsdir}/hicolor/1024x1024/apps/%{base_name}.png
+%{_hicolordir}/16x16/apps/%{base_name}.png
+%{_hicolordir}/32x32/apps/%{base_name}.png
+%{_hicolordir}/48x48/apps/%{base_name}.png
+%{_hicolordir}/64x64/apps/%{base_name}.png
+%{_hicolordir}/128x128/apps/%{base_name}.png
+%{_hicolordir}/256x256/apps/%{base_name}.png
+%{_hicolordir}/512x512/apps/%{base_name}.png
+%{_hicolordir}/1024x1024/apps/%{base_name}.png
 
 %changelog
 * Sat Jun 28 2025 Gilver E. <rockgrub@disroot.org> - 1.10.1^20250615.git.3f5eda1
