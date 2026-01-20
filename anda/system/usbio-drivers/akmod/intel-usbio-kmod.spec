@@ -12,9 +12,9 @@ Release:        2%?dist
 License:        GPL-2.0-only
 URL:            https://github.com/intel/usbio-drivers
 Source0:        %{url}/archive/%{commit}.tar.gz#/usbio-drivers-%{shortcommit}.tar.gz
-%dnl Patch0:         https://github.com/jwrdegoede/usbio-drivers/commit/d5f08986936a7fda0cce543c73fb8d9bab76eae2.patch
-%dnl Patch1:         https://github.com/jwrdegoede/usbio-drivers/commit/47b34a6f467eebb4e9fc59f5e25618fe760fbf33.patch
-Patch2:         https://github.com/jwrdegoede/usbio-drivers/commit/0eae85556558b410635ad03ed5eccb9648e11fce.patch
+Patch0:         0011-include-linux-mfd-usbio-Fix-missing-prototypes.patch
+Patch1:     01-387.patch
+Patch2:     23-38.patch
 BuildRequires:  elfutils-libelf-devel
 BuildRequires:  gcc
 BuildRequires:  kmodtool
