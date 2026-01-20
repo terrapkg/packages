@@ -4,6 +4,7 @@
 %global ver 2.0.1^
 %global base_name goofcord
 %global git_name GoofCord
+%global appid io.github.milkshiift.GoofCord
 
 Name:          %{base_name}-nightly
 Version:       %{ver}%{commit_date}.git.%{shortcommit}
@@ -33,6 +34,7 @@ sed -i '/\"x64\",/d' electron-builder.ts
 
 %install
 %electron_install -d %{base_name} -s %{base_name} -i %{base_name} -D -O -U %U -E UseOzonePlatform,WaylandWindowDecorations -I
+install -Dm644 assetsDev/%{appid}.metainfo.xml -t %{buildroot}%{_metainfodir}
 
 %check
 %desktop_file_validate %{buildroot}%{_datadir}/applications/%{base_name}.desktop
@@ -43,6 +45,7 @@ sed -i '/\"x64\",/d' electron-builder.ts
 %{_bindir}/%{base_name}
 %{_datadir}/applications/%{base_name}.desktop
 %{_libdir}/%{base_name}/
+%{_metainfodir}/%{appid}.metainfo.xml
 %{_hicolordir}/16x16/apps/%{base_name}.png
 %{_hicolordir}/32x32/apps/%{base_name}.png
 %{_hicolordir}/48x48/apps/%{base_name}.png
