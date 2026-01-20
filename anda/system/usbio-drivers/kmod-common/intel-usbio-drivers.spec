@@ -29,10 +29,8 @@ This package contains the common files for the UBSIO kernel modules.
 # Hi, I'm also empty!
 
 %files
-%doc CODE_OF_CONDUCT.md
 %doc README.md
 %doc SECURITY.md
-%doc security.md
 %license LICENSE.txt
 
 %changelog
