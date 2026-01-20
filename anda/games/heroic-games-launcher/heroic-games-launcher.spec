@@ -9,7 +9,7 @@
 
 Name:          %{shortname}-games-launcher
 Version:       2.18.1
-Release:       1%?dist
+Release:       2%{?dist}
 Summary:       A games launcher for GOG, Amazon, and Epic Games
 License:       GPL-3.0-only AND MIT AND BSD-3-Clause
 URL:           https://heroicgameslauncher.com
@@ -28,7 +28,7 @@ Provides:      bundled(comet) = %{comet_version}
 Provides:      bundled(gogdl) = %{gogdl_version}
 Provides:      bundled(legendary) = %{legendary_version}
 Provides:      bundled(nile) = %{nile_version}
-Packager:      Gilver E. <rockgrub@disroot.org>
+Packager:      Gilver E. <roachy@fyralabs.com>
 
 %electronmeta -D
 

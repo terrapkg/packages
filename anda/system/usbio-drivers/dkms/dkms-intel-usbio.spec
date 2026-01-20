@@ -6,7 +6,7 @@
 
 Name:       dkms-%{modulename}
 Version:    0^%{commit_date}git.%{shortcommit}
-Release:    1%?dist
+Release:    2%{?dist}
 Summary:    Kernel drivers for the USBIO Extension
 License:    GPL-2.0-only
 URL:        https://github.com/intel/usbio-drivers
@@ -16,7 +16,7 @@ Provides:   %{modulename}-kmod = %{version}
 Requires:   dkms
 Requires:   dkms-intel-ipu6
 BuildArch:  noarch
-Packager:   Gilver E. <rockgrub@disroot.org>
+Packager:   Gilver E. <roachy@fyralabs.com>
 
 %description
 This package enables USBIO Extension drivers on Intel Alder Lake, Raptor Lake, Meteor Lake and Lunar Lake platforms.

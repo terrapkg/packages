@@ -1,6 +1,6 @@
 Name:     nvm
 Version:  0.40.3
-Release:  5%{?dist}
+Release:  6%{?dist}
 Summary:  Node Version Manager
 License:  MIT
 URL:      https://github.com/nvm-sh/nvm
@@ -11,7 +11,7 @@ Patch0:   nvm-always-use-default-dir.patch
 # Only works with POSIX compliant shells
 Requires: bash
 BuildArch: noarch
-Packager:  Gilver E. <rockgrub@disroot.org>
+Packager:  Gilver E. <roachy@fyralabs.com>
 
 %description
 POSIX-compliant script to manage multiple active Node.js versions.

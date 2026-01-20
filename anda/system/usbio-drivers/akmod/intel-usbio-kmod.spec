@@ -8,7 +8,7 @@
 Name:           %{modulename}-kmod
 Summary:        Kernel drivers for the USBIO Extension
 Version:        0^%{commit_date}git.%{shortcommit}
-Release:        2%?dist
+Release:        3%{?dist}
 License:        GPL-2.0-only
 URL:            https://github.com/intel/usbio-drivers
 Source0:        %{url}/archive/%{commit}.tar.gz#/usbio-drivers-%{shortcommit}.tar.gz
@@ -18,7 +18,7 @@ BuildRequires:  kmodtool
 Requires:       %{modulename}-kmod-common = %{?epoch:%{epoch}:}%{version}
 Requires:       akmods
 Requires:       akmod-intel-ipu6
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %{expand:%(kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 

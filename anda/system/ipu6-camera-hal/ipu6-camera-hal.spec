@@ -9,7 +9,7 @@
 Name:           ipu6-camera-hal
 Summary:        Hardware abstraction layer for Intel IPU6
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
-Release:        2%?dist
+Release:        3%{?dist}
 License:        Apache-2.0
 URL:            https://github.com/intel/ipu6-camera-hal
 Source0:        %{url}/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
@@ -33,7 +33,7 @@ Requires:       ipu6-camera-bins >= 0.0-11
 Provides:       %{name} = %{commit_date}.%{shortcommit}-%{release}
 %endif
 ExclusiveArch:  x86_64
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 This package provides the basic Hardware Avstraction Layer (HAL) access APIs for IPU6.

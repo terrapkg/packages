@@ -4,7 +4,7 @@
 
 Name:          udev-joystick-blacklist
 Version:       0^%{commit_date}git%{shortcommit}
-Release:       3%{?dist}
+Release:       4%{?dist}
 Summary:       Fix for keyboard/mouse/tablet being detected as joysticks in Linux
 License:       Public Domain
 URL:           https://github.com/denilsonsa/udev-joystick-blacklist
@@ -13,7 +13,7 @@ BuildRequires: systemd-rpm-macros
 Conflicts:     %{name}-rm
 Conflicts:     steam-device-rules <= 1.0.0.85
 BuildArch:     noarch
-Packager:      Gilver E. <rockgrub@disroot.org>
+Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description
 There are several devices that, although recognized by kernel as joysticks, are not joysticks.
