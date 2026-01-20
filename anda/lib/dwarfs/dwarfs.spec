@@ -19,7 +19,9 @@ BuildRequires: boost-filesystem
 BuildRequires: boost-iostreams
 BuildRequires: boost-program-options
 BuildRequires: boost-regex
+%if 0%{?fedora} < 44
 BuildRequires: boost-system
+%endif
 BuildRequires: boost-thread
 BuildRequires: brotli-devel
 BuildRequires: ccache
