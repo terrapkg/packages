@@ -12,8 +12,7 @@ Release:        2%?dist
 License:        GPL-2.0-only
 URL:            https://github.com/intel/usbio-drivers
 Source0:        %{url}/archive/%{commit}.tar.gz#/usbio-drivers-%{shortcommit}.tar.gz
-Patch0:         01-387.patch
-Patch1:         23-38.patch
+Patch0:         23-38.patch
 BuildRequires:  elfutils-libelf-devel
 BuildRequires:  gcc
 BuildRequires:  kmodtool
