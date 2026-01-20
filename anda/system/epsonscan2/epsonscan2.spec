@@ -1,3 +1,5 @@
+%global source_release 1
+
 Name:          epsonscan2
 Version:       6.7.82.0
 Release:       1%{?dist}
@@ -6,7 +8,7 @@ Summary:       Package for Epson scanner drivers and software
 License:       LGPL-2.1-or-later AND MIT AND Zlib AND LicenseRef-SHA1
 URL:           https://support.epson.net/linux/en/epsonscan2.php
 # This software doesn't have versioned download links, absolute nightmare
-Source0:       https://download3.ebz.epson.net/dsc/f/03/00/16/60/70/c7fc14e41ec84255008c6125b63bcac40f55e11c/epsonscan2-%{version}-%{release}.src.tar.gz
+Source0:       https://download3.ebz.epson.net/dsc/f/03/00/16/60/70/c7fc14e41ec84255008c6125b63bcac40f55e11c/epsonscan2-%{version}-%{source_release}.src.tar.gz
 # The non-free-plugin should be redistributable as far as anything I can find in the license but it is NOT provided externally?? Repackage the RPM I guess.
 %ifarch x86_64
 Source1:       https://download3.ebz.epson.net/dsc/f/03/00/16/14/40/9cb99579f9fa7facf54f77f0ce6fe5600677f30a/epsonscan2-bundle-%{version}.x86_64.rpm.tar.gz
@@ -39,14 +41,14 @@ This package contains all essential software to use Epson scanners.
 %package      non-free-plugin
 License:      Epson End User Software License Agreement
 Summary:      Non free plugin for Epson scanners
-Requires:     %{name} = %{version}-%{release}
+Requires:     %{name} = %{evr}
 
 %description non-free-plugin
 Non-free but redistributable plugin for %{name}.
 %endif
 
 %prep
-%autosetup -n %{name}-%{version}-%{release}
+%autosetup -n %{name}-%{version}-%{source_release}
 %ifarch x86_64
 gzip -dc '%{SOURCE1}' | tar -xof - --strip-components=1
 rpm2cpio plugins/*.rpm | cpio -idmv
