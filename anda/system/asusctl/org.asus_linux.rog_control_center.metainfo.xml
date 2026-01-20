@@ -23,33 +23,25 @@
   <screenshots>
     <screenshot type="default">
       <caption>The Rog Control Center main window.</caption>
-      <image type="source" width="1800" height="1000">https://gitlab.com/asus-linux/website/-/blob/main/static/images/guides/gui-main.png</image>
+      <image type="source" width="1800" height="1000">https://gitlab.com/asus-linux/website/-/raw/main/static/images/guides/gui-main.png</image>
     </screenshot>
-    <screenshot type="default">
+    <screenshot>
       <caption>Fan curve selections.</caption>
-      <image type="source" width="1800" height="1000">https://gitlab.com/asus-linux/website/-/blob/main/static/images/guides/gui-fancurve.png</image>
+      <image type="source" width="1800" height="1000">https://gitlab.com/asus-linux/website/-/raw/main/static/images/guides/gui-fancurve.png</image>
     </screenshot>
   </screenshots>
 
   <description>
     <p>
-      A one-stop-shop GUI tool for asusd/asusctl. It aims to provide most controls, a notification service, and ability to run in the background.
+      Rog Control Center aims to provide most controls, a notification service, and ability to run in the background.
     </p>
   </description>
-
-  <releases>
-    <release version="6.2.0" date="2025-12-13" />
-  </releases>
 
   <keywords>
     <keyword>ASUS</keyword>
     <keyword>ROG</keyword>
     <keyword>asusctl</keyword>
   </keywords>
-
-  <provides>
-    <binary>rog-control-center</binary>
-  </provides>
 
   <launchable type="desktop-id">rog-control-center.desktop</launchable>
 </component>
