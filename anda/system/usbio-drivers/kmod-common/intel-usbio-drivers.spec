@@ -3,7 +3,7 @@
 %global commit_date 20251031
 %global debug_package %{nil}
 
-Name:          dkms-%{modulename}
+Name:          intel-usbio
 Version:       0^%{commit_date}git.%{shortcommit}
 Release:       1%?dist
 Summary:       Common files for the USBIO drivers
@@ -29,10 +29,8 @@ This package contains the common files for the UBSIO kernel modules.
 # Hi, I'm also empty!
 
 %files
-%doc CODE_OF_CONDUCT.md
 %doc README.md
 %doc SECURITY.md
-%doc security.md
 %license LICENSE.txt
 
 %changelog
