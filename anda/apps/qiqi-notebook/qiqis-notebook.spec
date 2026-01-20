@@ -27,7 +27,7 @@ Wuthering Waves
 %autosetup -n  qnb-client-%{version}
 
 %build
-%npm_build -B
+%npm_build -r package
 #npm i
 #npm run package
 cd "out/Qiqi's Notebook-linux-%{_electron_cpu}"
