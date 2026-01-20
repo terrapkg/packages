@@ -19,9 +19,7 @@ BuildRequires: boost-filesystem
 BuildRequires: boost-iostreams
 BuildRequires: boost-program-options
 BuildRequires: boost-regex
-%if 0%{?fedora} < 44
 BuildRequires: boost-system
-%endif
 BuildRequires: boost-thread
 BuildRequires: brotli-devel
 BuildRequires: ccache
@@ -42,7 +40,7 @@ BuildRequires: git
 BuildRequires: glog-devel
 BuildRequires: gmock-devel
 BuildRequires: google-benchmark-devel
-BuildRequires: gtest-devel
+BuildRequires: gtest-devel 
 BuildRequires: jemalloc-devel
 BuildRequires: json-devel
 BuildRequires: libacl-devel
@@ -65,7 +63,7 @@ Requires:      gflags
 Requires:      libattr
 Requires:      libxml2
 Requires:      libzstd
-Requires:      zlib-ng-compat
+Requires:      (zlib-ng-compat or zlib)
 Packager:      Gilver E. <rockgrub@disroot.org>
 
 %description %_description
@@ -102,13 +100,16 @@ Zsh shell completion for dwarfs.
 %autosetup
 
 %build
-%cmake -DWITH_TESTS=ON \
+%cmake \
+-DBUILD_SHARED_LIBS=ON \
+-DWITH_TESTS=ON \
 -DWITH_LIBDWARFS=ON \
 -DWITH_TOOLS=ON \
 -DWITH_FUSE_DRIVER=ON \
 -DBUILD_SHARED_LIBS=ON \
 -DWITH_MAN_OPTION=OFF \
 -DCMAKE_INSTALL_SBINDIR=%(echo %{_sbindir} | sed 's|^/usr||') \
+-DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
 %ifarch aarch64
 -DCMAKE_C_FLAGS="-fno-lto -fno-use-linker-plugin" \
 -DCMAKE_CXX_FLAGS="-fno-lto -fno-use-linker-plugin" \
