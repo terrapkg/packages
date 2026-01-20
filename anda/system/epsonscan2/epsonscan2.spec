@@ -8,7 +8,7 @@ Summary:       Package for Epson scanner drivers and software
 License:       LGPL-2.1-or-later AND MIT AND Zlib AND LicenseRef-SHA1
 URL:           https://support.epson.net/linux/en/epsonscan2.php
 # This software doesn't have versioned download links, absolute nightmare
-Source0:       https://download-center.epson.com/f/module/7406d656-d87b-43ae-8efe-16ab16c173c5/epsonscan2-%{version}-%{source_release}.src.tar.gz
+Source0:       https://download-center.epson.com/f/module/7406d656-d87b-43ae-8efe-16ab16c173c5/%{name}-%{version}-%{source_release}.src.tar.gz
 # The non-free-plugin should be redistributable as far as anything I can find in the license but it is NOT provided externally?? Repackage the RPM I guess.
 %ifarch x86_64
 Source1:       https://download3.ebz.epson.net/dsc/f/03/00/16/14/40/9cb99579f9fa7facf54f77f0ce6fe5600677f30a/epsonscan2-bundle-%{version}.x86_64.deb.tar.gz
