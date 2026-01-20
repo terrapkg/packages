@@ -24,6 +24,8 @@ Obsoletes:      readymade-nightly < 20250502.4dc78ec-3
 
 Requires:  efibootmgr
 
+Packager:       Owen Zimmerman <owen@fyralabs.com>
+
 %description
 Readymade is a simple Linux Distribution installer.
 
