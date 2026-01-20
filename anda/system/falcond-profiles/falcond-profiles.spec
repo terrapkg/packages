@@ -4,7 +4,7 @@
 
 Name:           falcond-profiles
 Version:        0^%{commit_date}git.%{shortcommit}
-Release:        5%?dist
+Release:        2%{?dist}
 Summary:        Profiles for falcond
 License:        MIT
 URL:            https://github.com/PikaOS-Linux/falcond-profiles

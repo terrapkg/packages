@@ -11,7 +11,7 @@
 
 Name:           xone-nightly
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        1%?dist
+Release:        2%{?dist}
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Epoch:          1
 %endif
@@ -38,7 +38,7 @@ Conflicts:      %{modulename}
 Conflicts:      xow <= 0.5
 Obsoletes:      xow <= 0.5
 BuildArch:      noarch
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 Linux kernel driver for Xbox One and Xbox Series X|S accessories common files.

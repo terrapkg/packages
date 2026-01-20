@@ -11,7 +11,7 @@ Linux Driver for USB Wi-Fi Adapters that are based on the RTL8811CU, RTL8821CU, 
 
 Name:          %{modulename}-kmod
 Version:       %{ver}^%{commit_date}git.%{shortcommit}
-Release:       2%?dist
+Release:       3%{?dist}
 Summary:       Linux Driver for USB Wi-Fi Adapters using RTL8821 chipsets
 License:       GPL-2.0-only
 URL:           https://github.com/morrownr/8821cu-20210916
@@ -21,7 +21,7 @@ BuildRequires: systemd-rpm-macros
 Requires:      %{modulename}-kmod-common = %{version}
 Requires:      akmods
 Conflicts:     dkms-%{modulename}
-Packager:      Gilver E. <rockgrub@disroot.org>
+Packager:      Gilver E. <roachy@fyralabs.com>
 
 %{expand:%(kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 

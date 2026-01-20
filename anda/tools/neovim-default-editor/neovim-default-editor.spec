@@ -19,7 +19,7 @@ Requires:      neovim
 # All default editor packages MUST provide this
 Provides:      system-default-editor
 BuildArch:     noarch
-Packager:      Gilver E. <rockgrub@disroot.org>
+Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description
 This package ensures the EDITOR shell variable

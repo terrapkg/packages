@@ -3,7 +3,7 @@
 
 Name:           rust-tauri
 Version:        2.9.6
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Command line interface for building Tauri apps
 License:        Apache-2.0 OR MIT
 URL:            https://crates.io/crates/create-tauri-app
@@ -12,7 +12,7 @@ BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  mold
 Suggests:       libayatana-appindicator-gtk3
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 Build smaller, faster, and more secure desktop and mobile applications with a web frontend.

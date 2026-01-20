@@ -5,7 +5,7 @@
 
 Name:          nodejs-license-checker
 Version:       4.4.2
-Release:       1%{?dist}
+Release:       2%{?dist}
 Summary:       Check NPM package licenses
 SourceLicense: BSD-3-Clause
 License:       Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND CC-BY-3.0 AND ISC AND (MIT AND CC-BY-3.0) AND MIT
@@ -16,7 +16,7 @@ BuildRequires: nodejs-npm
 BuildRequires: nodejs-packaging
 ExclusiveArch: %{nodejs_arches} noarch
 BuildArch:     noarch
-Packager:      Gilver E. <rockgrub@disroot.org>
+Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description
 Extract NPM package licenses.

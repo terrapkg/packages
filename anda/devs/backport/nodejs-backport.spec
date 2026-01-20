@@ -4,7 +4,7 @@
 
 Name:          node-%{module}
 Version:       10.2.0
-Release:       1%?dist
+Release:       2%{?dist}
 Summary:       Backport GitHub commits
 SourceLicense: Apache-2.0
 License:       Apache-2.0 AND
@@ -17,7 +17,7 @@ BuildRequires: nodejs-devel
 BuildRequires: nodejs-packaging
 BuildRequires: nodejs-npm
 ExclusiveArch: %{nodejs_arches} noarch
-Packager:      Gilver E. <rockgrub@disroot.org>
+Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description
 A simple CLI tool that automates the process of backporting commits on a GitHub repo.
