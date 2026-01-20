@@ -12,7 +12,7 @@
 
 Name:           helium-browser-bin
 Version:        0.8.2.1
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Private, fast, and honest web browser based on Chromium
 
 URL:            https://helium.computer
@@ -24,7 +24,7 @@ Source2:        net.imput.helium.metainfo.xml
 
 ExclusiveArch:  x86_64 aarch64
 
-BuildRequires:  terra-appstream-helper
+BuildRequires:  terra-appstream-helper desktop-file-utils
 
 Requires:       xdg-utils
 Requires:       liberation-fonts
@@ -50,8 +50,11 @@ cp -a * %{buildroot}%{_libdir}/%{name}/
 sed -i 's/exists_desktop_file || generate_desktop_file/true/' \
     %{buildroot}%{_libdir}/%{name}/chrome-wrapper
 
-install -Dm644 helium.desktop %{buildroot}%{_datadir}/applications/%{name}.desktop
-install -Dm644 product_logo_256.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{appid}.png
+install -Dm644 helium.desktop %{buildroot}%{_appsdir}/%{name}.desktop
+
+%__desktop_file_edit --set-icon=net.input.helium %{buildroot}%{_appsdir}/%{name}.desktop
+
+install -Dm644 product_logo_256.png %{buildroot}%{_hicolordir}/256x256/apps/%{appid}.png
 
 rm -f %{buildroot}%{_libdir}/%{name}/helium.desktop
 rm -f %{buildroot}%{_libdir}/%{name}/product_logo_256.png
@@ -110,8 +113,8 @@ chmod 755 %{buildroot}%{_bindir}/%{name}
 %license LICENSE LICENSE.ungoogled_chromium
 %{_libdir}/%{name}/
 %{_bindir}/%{name}
-%{_datadir}/applications/%{name}.desktop
-%{_datadir}/icons/hicolor/256x256/apps/%{appid}.png
+%{_appsdir}/%{name}.desktop
+%{_hicolordir}/256x256/apps/%{appid}.png
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
