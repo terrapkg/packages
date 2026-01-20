@@ -5,7 +5,7 @@
 
 Name:           java-binfmt
 Version:        1.0.0^%{commit_date}git%{shortcommit}
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Binfmt wrappers and utilities for Java and Jar files.
 ### License for the C file used in the binary.
 License:        GPL-2.0-or-later

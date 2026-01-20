@@ -4,7 +4,7 @@
 
 Name:             si-cik-amdgpu
 Version:          0^%{commit_date}git.%{shortcommit}
-Release:          1%{?dist}
+Release:          2%{?dist}
 Summary:          Modprobe config to enable the amdgpu drivers on Southern Islands (SI) and CIK (Sea Islands)
 License:          GPL-3.0-only
 URL:              https://github.com/terrapkg/pkg-si-cik-amdgpu

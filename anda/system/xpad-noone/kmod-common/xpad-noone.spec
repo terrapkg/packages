@@ -7,7 +7,7 @@ This is the original upstream xpad driver from the Linux kernel with support for
 
 Name:          xpad-noone
 Version:       %{ver}^%{commitdate}git.%{shortcommit}
-Release:       1%{?dist}
+Release:       2%{?dist}
 License:       GPL-2.0-or-later
 Summary:       xpad driver with support for XBox One controllers removed
 URL:           https://github.com/medusalix/xpad-noone

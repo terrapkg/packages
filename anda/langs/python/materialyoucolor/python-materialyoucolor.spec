@@ -3,7 +3,7 @@
 
 Name:           python-%{pypi_name}
 Version:        2.0.10
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Material You color generation algorithms in pure python!
 License:        MIT
 URL:            https://github.com/T-Dynamos/materialyoucolor-python

@@ -5,7 +5,7 @@
 
 Name:          dkms-%{modulename}
 Version:       0^%{commit_date}git.%{shortcommit}
-Release:       1%?dist
+Release:       2%{?dist}
 Summary:       Common files for the USBIO drivers
 License:       GPL-2.0-only
 URL:           https://github.com/intel/usbio-drivers

@@ -9,7 +9,7 @@
 Name:           intel-ipu6-drivers
 Summary:        Common files for Intel IPU6 drivers
 Version:        0^%{commit_date}git.%{shortcommit}
-Release:        1%?dist
+Release:        2%{?dist}
 License:        GPL-2.0-or-later
 URL:            https://github.com/intel/ipu6-drivers
 Source0:        https://github.com/intel/ipu6-drivers/archive/%{commit}/ipu6-drivers-%{shortcommit}.tar.gz

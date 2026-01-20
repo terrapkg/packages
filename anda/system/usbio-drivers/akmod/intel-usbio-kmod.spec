@@ -8,7 +8,7 @@
 Name:           %{modulename}-kmod
 Summary:        Kernel drivers for the USBIO Extension
 Version:        0^%{commit_date}git.%{shortcommit}
-Release:        2%?dist
+Release:        3%{?dist}
 License:        GPL-2.0-only
 URL:            https://github.com/intel/usbio-drivers
 Source0:        %{url}/archive/%{commit}.tar.gz#/usbio-drivers-%{shortcommit}.tar.gz

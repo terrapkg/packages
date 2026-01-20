@@ -1,6 +1,6 @@
 Name:     nvm
 Version:  0.40.3
-Release:  5%{?dist}
+Release:  6%{?dist}
 Summary:  Node Version Manager
 License:  MIT
 URL:      https://github.com/nvm-sh/nvm

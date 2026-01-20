@@ -6,7 +6,7 @@
 
 Name:           xone
 Version:        0.5.2
-Release:        1%?dist
+Release:        2%{?dist}
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Epoch:          2
 %endif
@@ -132,7 +132,7 @@ install -Dm644 %{name}.conf -t %{buildroot}%{_modulesloaddir}
 %changelog
 * Wed Dec 10 2025 Gilver E. <rockgrub@disroot.org> - 0.5.0-2
 - Added new firmware files
-* Thu Apr 17 2025 Gilver E. <rockgrub@disroot.org> - 0.3^20250418git.ecdd59e-2%{?dist}
+* Thu Apr 17 2025 Gilver E. <rockgrub@disroot.org> - 0.3^20250418git.ecdd59e-3%{?dist}
 - Added additional firmware needed for dongle pairing on some controllers
 * Thu Feb 27 2025 Gilver E. <rockgrub@disroot.org>
 - Initial package

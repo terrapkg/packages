@@ -9,7 +9,7 @@
 Name:           dkms-%{modulename}
 Summary:        DKMS module for %{modulename}
 Version:        0^%{commit_date}git.%{shortcommit}
-Release:        1%?dist
+Release:        2%{?dist}
 License:        GPL-2.0-or-later
 URL:            https://github.com/intel/ipu6-drivers
 Source0:        %{url}/archive/%{commit}.tar.gz#/ipu6-drivers-%{shortcommit}.tar.gz

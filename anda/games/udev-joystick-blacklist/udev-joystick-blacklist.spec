@@ -4,7 +4,7 @@
 
 Name:          udev-joystick-blacklist
 Version:       0^%{commit_date}git%{shortcommit}
-Release:       3%{?dist}
+Release:       4%{?dist}
 Summary:       Fix for keyboard/mouse/tablet being detected as joysticks in Linux
 License:       Public Domain
 URL:           https://github.com/denilsonsa/udev-joystick-blacklist

@@ -3,7 +3,7 @@
 
 Name:           rust-tauri
 Version:        2.9.6
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Command line interface for building Tauri apps
 License:        Apache-2.0 OR MIT
 URL:            https://crates.io/crates/create-tauri-app

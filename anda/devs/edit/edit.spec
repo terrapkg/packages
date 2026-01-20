@@ -8,7 +8,7 @@ An editor that pays homage to the classic MS-DOS Editor, but with a modern inter
 
 Name:          %{crate}
 Version:       1.2.1
-Release:       2%?dist
+Release:       3%{?dist}
 Summary:       A simple editor for simple needs.
 SourceLicense: MIT
 License:       MIT AND (MIT OR Apache-2.0)

@@ -9,7 +9,7 @@
 
 Name:           %{base_name}-nightly
 Version:        %{ver}~tip^%{commit_date}git%{shortcommit}
-Release:        1%?dist
+Release:        2%{?dist}
 %if 0%{?fedora} <= 41
 Epoch:          1
 %endif
@@ -318,10 +318,10 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 - Updated for Zig 0.14.0
 - Updated for ncurses-term compatibility in Fedora 42 and Rawhide
 * Wed Mar 05 2025 Gilver E. <rockgrub@disroot.org>
-- Update to 1.1.3~tip^20250305git66e8d91-2%{?dist}
+- Update to 1.1.3~tip^20250305git66e8d91-3%{?dist}
  * Ghostty now has localization support via gettext as well as corresponding localization files
 * Fri Jan 31 2025 Gilver E. <rockgrub@disroot.org>
-- Update to 1.1.1~tip^20250131git5508e7-1%{?dist}
+- Update to 1.1.1~tip^20250131git5508e7-2%{?dist}
  * Low GHSA-98wc-794w-gjx3: Ghostty leaked file descriptors allowing the shell and any of its child processes to impact other Ghostty terminal instances
  * Better Git versioning scheme
  * Ghostty terminfo source files are now a subpackage

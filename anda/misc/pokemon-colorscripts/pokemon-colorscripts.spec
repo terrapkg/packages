@@ -4,7 +4,7 @@
 
 Name:          pokemon-colorscripts
 Version:       0^%{commit_date}git.%{shortcommit}
-Release:       1%{?dist}
+Release:       2%{?dist}
 License:       MIT
 Summary:       CLI utility to print out images of Pokémon to the terminal
 URL:           https://gitlab.com/phoneybadger/%{name}
