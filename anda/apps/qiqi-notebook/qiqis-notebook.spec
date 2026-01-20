@@ -1,11 +1,9 @@
-%define	debug_package %{nil}
-
 # Make electron_license macro properly work
 %bcond bundled_electron 1
 
 
 Name:			qiqis-notebook
-%electronmeta
+%electronmeta -D
 Version:		1.1.6
 Release:		1%?dist
 Summary:		Qiqi's Notebook desktop app
