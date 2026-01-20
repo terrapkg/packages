@@ -124,7 +124,6 @@ Zsh shell completion for dwarfs.
 %{_bindir}/%{name}ck
 %{_bindir}/%{name}extract
 %{_bindir}/mk%{name}
-%{_sbindir}/mount.%{name}
 %{_libdir}/lib%{name}_*.so.*
 %{_mandir}/man1/%{name}.1*
 %{_mandir}/man1/%{name}ck.1*
@@ -132,7 +131,7 @@ Zsh shell completion for dwarfs.
 %{_mandir}/man1/mk%{name}.1*
 %{_mandir}/man5/%{name}-format.5*
 %{_mandir}/man7/%{name}-env.7*
-%{_datadir}/applications/%{name}-mount-handler.desktop
+%{_appsdir}/%{name}-mount-handler.desktop
 %{_datadir}/mime/packages/%{name}.xml
 
 %files devel
