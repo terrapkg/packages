@@ -2,14 +2,15 @@
 %global shortcommit %{sub %{commit} 1 7}
 %global commit_date 20251031
 %global debug_package %{nil}
+%global modulename intel-usbio
 
-Name:          dkms-%{modulename}
+Name:          %{modulename}
 Version:       0^%{commit_date}git.%{shortcommit}
 Release:       1%?dist
 Summary:       Common files for the USBIO drivers
 License:       GPL-2.0-only
 URL:           https://github.com/intel/usbio-drivers
-Source0:       %{url}/archive/%{commit}.tar.gz#/usbio-drivers-%{shortcommit}.tar.gz
+Source0:       %{url}/archive/%{commit}.tar.gz#/%{modulename}-%{shortcommit}.tar.gz
 BuildRequires: anda-srpm-macros
 Provides:      intel-usbio-kmod-common = %{evr}
 Requires:      intel-ipu6-kmod-common
@@ -20,7 +21,7 @@ Packager:      Gilver E. <rockgrub@disroot.org>
 This package contains the common files for the UBSIO kernel modules.
 
 %prep
-%autosetup -p1 -n usbio-drivers-%{commit}
+%autosetup -p1 -n %{modulename}-%{commit}
 
 %build
 # Hi, I'm empty.
