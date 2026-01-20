@@ -2,6 +2,7 @@
 The Deduplicating Warp-speed Advanced Read-only File System.
 
 A fast high compression read-only file system for Linux and Windows.}
+%global build_cxxflags _distro_extra_cxxflags -include %{_includedir}/c++/*/cstdint
 
 Name:          dwarfs
 Version:       0.14.1
@@ -102,7 +103,7 @@ Zsh shell completion for dwarfs.
 %cmake_build
 %ifarch aarch64
 -DCMAKE_C_FLAGS="$CFLAGS -fno-lto -fno-use-linker-plugin" \
--DCMAKE_CXX_FLAGS="$CXXFLAGS -fno-lto -fno-use-linker-plugin -include %{_includedir}/c++/*/cstdint" \
+-DCMAKE_CXX_FLAGS="$CXXFLAGS -fno-lto -fno-use-linker-plugin" \
 -DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS -fno-lto -fno-use-linker-plugin" \
 %endif
 %cmake_build
