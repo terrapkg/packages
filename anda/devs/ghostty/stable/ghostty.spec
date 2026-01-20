@@ -254,7 +254,7 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{name}
  * This is necessary to address licensing issues in the themes repo Ghostty uses
  * See: https://github.com/mbadolato/iTerm2-Color-Schemes/issues/638
 * Fri Jan 31 2025 Gilver E. <rockgrub@disroot.org>
-- Update to 1.1.0-2%{?dist}
+- Update to 1.1.0-1
  * Low GHSA-98wc-794w-gjx3: Ghostty leaked file descriptors allowing the shell and any of its child processes to impact other Ghostty terminal instances
  * Ghostty terminfo source files are now a subpackage
  * Shell integration and completion and terminfo subpackages are now properly noarch
