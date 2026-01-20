@@ -64,8 +64,8 @@ install -Dpm644 flatpak/templates/%{appid}.metainfo.xml.template %{buildroot}%{_
 %doc     CODE_OF_CONDUCT.md
 %license COPYING
 %license bundled_licenses/*
-%dir %{_datadir}/%{shortname}
-%{_datadir}/%{shortname}/*
+%dir %{_libdir}/%{shortname}
+%{_libdir}/%{shortname}/*
 %{_bindir}/%{shortname}
 %{_bindir}/%{name}
 %{_appsdir}/%{appid}.desktop
