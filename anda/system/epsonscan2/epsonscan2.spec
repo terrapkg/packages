@@ -2,7 +2,7 @@
 
 Name:          epsonscan2
 Version:       6.7.82.0
-Release:       1%{?dist}
+Release:       2%{?dist}
 Summary:       Package for Epson scanner drivers and software
 # This was a licensing determination nightmare
 License:       LGPL-2.1-or-later AND MIT AND Zlib AND LicenseRef-SHA1
