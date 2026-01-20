@@ -9,7 +9,7 @@
 
 Name:           %{base_name}-nightly
 Version:        %{ver}~tip^%{commit_date}git%{shortcommit}
-Release:        1%?dist
+Release:        2%{?dist}
 %if 0%{?fedora} <= 41
 Epoch:          1
 %endif
@@ -55,7 +55,7 @@ Provides:       %{base_name}-tip = %{ver}^%{commit_date}git%{shortcommit}
 Provides:       %{name} = %{commit_date}.%{shortcommit}
 %endif
 Obsoletes:      %{name} = 20250130.04d3636
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 👻 Ghostty is a fast, feature-rich, and cross-platform terminal emulator that uses platform-native UI and GPU acceleration.
@@ -318,10 +318,10 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 - Updated for Zig 0.14.0
 - Updated for ncurses-term compatibility in Fedora 42 and Rawhide
 * Wed Mar 05 2025 Gilver E. <rockgrub@disroot.org>
-- Update to 1.1.3~tip^20250305git66e8d91-2%{?dist}
+- Update to 1.1.3~tip^20250305git66e8d91-2
  * Ghostty now has localization support via gettext as well as corresponding localization files
 * Fri Jan 31 2025 Gilver E. <rockgrub@disroot.org>
-- Update to 1.1.1~tip^20250131git5508e7-1%{?dist}
+- Update to 1.1.1~tip^20250131git5508e7-1
  * Low GHSA-98wc-794w-gjx3: Ghostty leaked file descriptors allowing the shell and any of its child processes to impact other Ghostty terminal instances
  * Better Git versioning scheme
  * Ghostty terminfo source files are now a subpackage

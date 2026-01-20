@@ -2,7 +2,7 @@
 
 Name:          yarnpkg-berry
 Version:       4.12.0
-Release:       4%?dist
+Release:       5%{?dist}
 Summary:       Active development version of Yarn
 License:       BSD-2-Clause
 URL:           https://yarnpkg.com
@@ -19,7 +19,7 @@ BuildRequires: %{name}
 Provides:      yarn-berry
 Conflicts:     yarnpkg
 BuildArch:     noarch
-Packager:      Gilver E. <rockgrub@disroot.org>
+Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description
 The next, actively developed version of Yarn.

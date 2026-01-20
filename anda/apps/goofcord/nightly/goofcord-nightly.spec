@@ -8,7 +8,7 @@
 
 Name:          %{base_name}-nightly
 Version:       %{ver}%{commit_date}.git.%{shortcommit}
-Release:       1%?dist
+Release:       2%{?dist}
 License:       OSL-3.0
 Summary:       A privacy-minded Legcord fork.
 Group:         Applications/Internet
@@ -16,7 +16,7 @@ URL:           https://github.com/Milkshiift/%{git_name}
 Source0:       %{url}/archive/%{commit}/%{git_name}-%{commit}.tar.gz
 BuildRequires: anda-srpm-macros >= 0.2.26
 BuildRequires: bun-bin
-Packager:      Gilver E. <rockgrub@disroot.org>
+Packager:      Gilver E. <roachy@fyralabs.com>
 
 %electronmeta -D
 
