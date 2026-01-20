@@ -68,9 +68,8 @@ install -Dm644 icon/application-tracy.svg %buildroot%_iconsdir/hicolor/scalable/
 
 %files devel
 %_libdir/pkgconfig/tracy.pc
-%_includedir/common
-%_includedir/tracy
-%_includedir/client
+%dir %_includedir/tracy
+%_includedir/tracy/*
 
 %changelog
 * Mon Jan 19 2026 Owen Zimmerman <owen@fyralabs.com> - 0.13.1-1
