@@ -2,6 +2,7 @@
 The Deduplicating Warp-speed Advanced Read-only File System.
 
 A fast high compression read-only file system for Linux and Windows.}
+%global _distro_extra_cxxflags -include %{_includedir}/c++/*/cstdint
 
 Name:          dwarfs
 Version:       0.14.1
@@ -11,59 +12,55 @@ License:       GPL-3.0-or-later
 URL:           https://github.com/mhx/%{name}
 Source0:       https://github.com/mhx/%{name}/releases/download/v%{version}/%{name}-%{version}.tar.xz
 BuildRequires: binutils-devel
-BuildRequires: bison
-BuildRequires: boost-chrono
-BuildRequires: boost-context
 BuildRequires: boost-devel
-BuildRequires: boost-filesystem
-BuildRequires: boost-iostreams
-BuildRequires: boost-program-options
-BuildRequires: boost-regex
+%if 0%{?fedora} >= 44
+BuildRequires: boost-process
+%else
 BuildRequires: boost-system
-BuildRequires: boost-thread
+%endif
 BuildRequires: brotli-devel
+BuildRequires: bubblewrap
 BuildRequires: ccache
 BuildRequires: clang
 BuildRequires: cmake
-BuildRequires: date-devel
 BuildRequires: double-conversion-devel
-BuildRequires: elfutils-devel
-BuildRequires: file-devel
 BuildRequires: flac-devel
-BuildRequires: flex
 BuildRequires: fmt-devel
+BuildRequires: fuse
 BuildRequires: fuse3
 BuildRequires: fuse3-devel
+BuildRequires: fuse-devel
+BuildRequires: g++
 BuildRequires: gcc
-BuildRequires: gcc-c++
 BuildRequires: git
 BuildRequires: glog-devel
-BuildRequires: gmock-devel
-BuildRequires: google-benchmark-devel
-BuildRequires: gtest-devel
+BuildRequires: google-benchmark
 BuildRequires: jemalloc-devel
 BuildRequires: json-devel
-BuildRequires: libacl-devel
 BuildRequires: libarchive-devel
 BuildRequires: libdwarf-devel
 BuildRequires: libevent-devel
 BuildRequires: libunwind-devel
+BuildRequires: libzstd-devel
 BuildRequires: lz4-devel
 BuildRequires: make
+BuildRequires: man
 BuildRequires: ninja-build
 BuildRequires: openssl-devel
-BuildRequires: pkgconf
+BuildRequires: pip
+BuildRequires: pkg-config
 BuildRequires: range-v3-devel
 BuildRequires: rubygem-ronn-ng
 BuildRequires: utf8cpp-devel
 BuildRequires: xxhash-devel
 BuildRequires: xz-devel
+BuildRequires: zstd
 Requires:      bzip2-libs
 Requires:      gflags
 Requires:      libattr
 Requires:      libxml2
 Requires:      libzstd
-Requires:      zlib-ng-compat
+Requires:      (zlib-ng-compat or zlib)
 Packager:      Gilver E. <rockgrub@disroot.org>
 
 %description %_description
@@ -97,20 +94,22 @@ BuildArch:      noarch
 Zsh shell completion for dwarfs.
 
 %prep
-%autosetup
+%git_clone %{url}.git v%{version}
 
 %build
-%cmake -DWITH_TESTS=ON \
+%cmake \
+-DWITH_TESTS=ON \
 -DWITH_LIBDWARFS=ON \
 -DWITH_TOOLS=ON \
 -DWITH_FUSE_DRIVER=ON \
 -DBUILD_SHARED_LIBS=ON \
 -DWITH_MAN_OPTION=OFF \
--DCMAKE_INSTALL_SBINDIR=%(echo %{_sbindir} | sed 's|^/usr||') \
+-DCMAKE_INSTALL_SBINDIR="%(echo %{_sbindir} | sed 's|^/usr||')" \
+%cmake_build
 %ifarch aarch64
--DCMAKE_C_FLAGS="-fno-lto -fno-use-linker-plugin" \
--DCMAKE_CXX_FLAGS="-fno-lto -fno-use-linker-plugin" \
--DCMAKE_SHARED_LINKER_FLAGS="-fno-lto -fno-use-linker-plugin" \
+-DCMAKE_C_FLAGS="$CFLAGS -fno-lto -fno-use-linker-plugin" \
+-DCMAKE_CXX_FLAGS="$CXXFLAGS -fno-lto -fno-use-linker-plugin" \
+-DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS -fno-lto -fno-use-linker-plugin" \
 %endif
 %cmake_build
 
@@ -133,7 +132,7 @@ Zsh shell completion for dwarfs.
 %{_mandir}/man1/mk%{name}.1*
 %{_mandir}/man5/%{name}-format.5*
 %{_mandir}/man7/%{name}-env.7*
-%{_datadir}/applications/%{name}-mount-handler.desktop
+%{_appsdir}/%{name}-mount-handler.desktop
 %{_datadir}/mime/packages/%{name}.xml
 
 %files devel
