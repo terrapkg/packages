@@ -99,7 +99,6 @@ Zsh shell completion for dwarfs.
 -DWITH_FUSE_DRIVER=ON \
 -DWITH_MAN_OPTION=OFF \
 -DCMAKE_INSTALL_SBINDIR=%{_sbindir} \
--DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
 %cmake_build
 %ifarch aarch64
 -DCMAKE_C_FLAGS="$CFLAGS -fno-lto -fno-use-linker-plugin" \
