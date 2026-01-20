@@ -94,7 +94,6 @@ Zsh shell completion for dwarfs.
 
 %build
 %cmake \
--DCMAKE_POSITION_INDEPENDENT_CODE=ON \
 -DWITH_TESTS=ON \
 -DWITH_LIBDWARFS=ON \
 -DWITH_TOOLS=ON \
