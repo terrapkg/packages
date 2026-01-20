@@ -95,11 +95,10 @@ Zsh shell completion for dwarfs.
 %cmake \
 -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
 -DWITH_TESTS=ON \
--DWITH_TOOLS=ON \
 -DWITH_FUSE_DRIVER=ON \
 -DBUILD_SHARED_LIBS=ON \
 -DWITH_MAN_OPTION=OFF \
--DCMAKE_INSTALL_SBINDIR=%{_sbindir} \
+-DCMAKE_INSTALL_SBINDIR="%{_sbindir}" \
 %cmake_build
 %ifarch aarch64
 -DCMAKE_C_FLAGS="$CFLAGS -fno-lto -fno-use-linker-plugin" \
