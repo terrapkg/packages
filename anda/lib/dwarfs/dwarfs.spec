@@ -104,7 +104,7 @@ Zsh shell completion for dwarfs.
 -DWITH_FUSE_DRIVER=ON \
 -DBUILD_SHARED_LIBS=ON \
 -DWITH_MAN_OPTION=OFF \
--DCMAKE_INSTALL_SBINDIR="%{_sbindir}" \
+-DCMAKE_INSTALL_SBINDIR="%(echo %{_sbindir} | sed 's|^/usr||')" \
 %cmake_build
 %ifarch aarch64
 -DCMAKE_C_FLAGS="$CFLAGS -fno-lto -fno-use-linker-plugin" \
@@ -124,6 +124,7 @@ Zsh shell completion for dwarfs.
 %{_bindir}/%{name}ck
 %{_bindir}/%{name}extract
 %{_bindir}/mk%{name}
+%{_sbindir}/mount.%{name}
 %{_libdir}/lib%{name}_*.so.*
 %{_mandir}/man1/%{name}.1*
 %{_mandir}/man1/%{name}ck.1*
