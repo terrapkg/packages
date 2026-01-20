@@ -103,7 +103,7 @@ Zsh shell completion for dwarfs.
 %cmake_build
 %ifarch aarch64
 -DCMAKE_C_FLAGS="$CFLAGS -fno-lto -fno-use-linker-plugin" \
--DCMAKE_CXX_FLAGS="$CXXFLAGS -fno-lto -fno-use-linker-plugin" \
+-DCMAKE_CXX_FLAGS="$CXXFLAGS -fno-lto -fno-use-linker-plugin -include %{_includedir}/c++/*/cstdint" \
 -DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS -fno-lto -fno-use-linker-plugin" \
 %endif
 %cmake_build
