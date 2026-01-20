@@ -7,7 +7,7 @@ Version:        %sanitized_ver
 Release:        1%?dist
 Summary:        socktop is a remote system monitor with a rich TUI interface
 URL:            https://github.com/jasonwitty/socktop
-Source0:        %{url}/archive/refs/tags/v1.55.0-test2.tar.gz
+Source0:        %{url}/archive/refs/tags/%{ver}.tar.gz
 License:        MIT
 BuildRequires:  rust libdrm-devel systemd-rpm-macros cargo-rpm-macros
 Requires:       libdrm
