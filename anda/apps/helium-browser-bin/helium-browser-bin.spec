@@ -24,7 +24,7 @@ Source2:        net.imput.helium.metainfo.xml
 
 ExclusiveArch:  x86_64 aarch64
 
-BuildRequires:  terra-appstream-helper
+BuildRequires:  terra-appstream-helper desktop-file-utils
 
 Requires:       xdg-utils
 Requires:       liberation-fonts
