@@ -21,6 +21,7 @@ BuildRequires:  openssl-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  anda-srpm-macros
 BuildRequires:  terra-appstream-helper
+BuildRequires:  tauri
 
 Provides:       NeoHtop
 
