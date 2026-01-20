@@ -84,8 +84,7 @@ sed -i '/#include/ i #include <cmath>' src/Controller/Src/Filter/GrayToMono.hpp
 # The CMakeLists.txt fails to do these steps correctly.
 # The file is also very annoying to patch. Thank God this doesn't seem to update anymore.
 mkdir -p %{buildroot}%{_udevrulesdir}
-mv %{buildroot}/lib/udev/rules.d/60-%{name}.rules -t %{buildroot}%{_udevrulesdir}
-install -Dpm644 desktop/rpm/x86_64/%{name}.desktop -t %{buildroot}%{_datadir}/applications/
+%desktop_file_install desktop/rpm/x86_64/%{name}.desktop
 
 mkdir -p %{buildroot}%{_libdir}/sane
 ln -sf ../%{name}/libsane-%{name}.so %{buildroot}%{_libdir}/sane/libsane-%{name}.so.1
@@ -97,7 +96,7 @@ rm -rf %{buildroot}%{_defaultdocdir}/%{name}*
 %ifarch x86_64
 mv usr/share/doc/%{name}*/* -t plugins
 rm -rf usr/share/doc/%{name}*
-cp -pr usr %{buildroot}
+cp -pr usr -t %{buildroot}
 %endif
 
 %files
@@ -114,7 +113,7 @@ cp -pr usr %{buildroot}
 %{_libdir}/sane/*
 %{_udevrulesdir}/60-%{name}.rules
 %{_sysconfdir}/sane.d/dll.d/%{name}
-%{_datadir}/applications/%{name}.desktop
+%{_appsdir}/%{name}.desktop
 
 %ifarch x86_64
 %files   non-free-plugin
