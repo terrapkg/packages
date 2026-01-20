@@ -1,10 +1,6 @@
-# Despite supposedly being a purely C++ project it will not build without this flag. Don't ask me.
-%global build_cflags %{__build_flags_lang_c} %{?_distro_extra_cflags} -Wno-implicit-function-declaration
-%global build_cxxflags %(%{__build_flags_lang_cxx}) %{?_distro_extra_cxxflags} -Wno-template-body
-
 Name:          epsonscan2
-Version:       6.7.70.0
-Release:       1
+Version:       6.7.82.0
+Release:       1%{?dist}
 Summary:       Package for Epson scanner drivers and software
 # This was a licensing determination nightmare
 License:       LGPL-2.1-or-later AND MIT AND Zlib AND LicenseRef-SHA1
@@ -57,9 +53,10 @@ rpm2cpio plugins/*.rpm | cpio -idmv
 %endif
 
 %build
-# CMake macro fails to generate the build files somehow? This works however. I don't really understand.
 %cmake  \
-   -DBUILD_TYPE=Release
+   -DBUILD_TYPE=Release \
+   -DCMAKE_C_FLAGS="$CFLAGS -Wno-implicit-function-declaration" \
+   -DCMAKE_CXX_FLAGS="$CXXFLAGS -Wno-template-body"
 
 %cmake_build
 
