@@ -1,3 +1,5 @@
+%undefine __brp_mangle_shebangs
+
 Name:           chrultrabook-tools
 Version:        3.1.3
 Release:        1%?dist
