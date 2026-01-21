@@ -1,6 +1,6 @@
 Name:           vicinae
-Version:        0.17.3
-Release:        1%{?dist}
+Version:        0.19.0
+Release:        1%?dist
 License:        GPL-3.0
 URL:            https://docs.vicinae.com
 Source:         https://github.com/vicinaehq/%{name}/archive/refs/tags/v%{version}.tar.gz
@@ -20,6 +20,7 @@ BuildRequires:  cmake(Qt6Keychain)
 BuildRequires:  cmake(LayerShellQt)
 BuildRequires:  pkgconfig(libqalculate)
 BuildRequires:  pkgconfig(protobuf)
+BuildRequires:  pkgconfig(icu-uc)
 BuildRequires:  wayland-devel
 BuildRequires:  nodejs-npm
 BuildRequires:  systemd-rpm-macros

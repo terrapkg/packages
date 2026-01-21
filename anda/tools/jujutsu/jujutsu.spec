@@ -4,7 +4,7 @@
 %global __brp_mangle_shebangs %{nil}
 
 Name:           jujutsu
-Version:        0.36.0
+Version:        0.37.0
 Release:        1%?dist
 Summary:        Git-compatible DVCS that is both simple and powerful
 License:        Apache-2.0 AND CC-BY-4.0

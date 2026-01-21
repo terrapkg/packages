@@ -1,9 +1,9 @@
-%define osuresver 2025.1215.0
+%define osuresver 2026.108.0
 %global debug_package %{nil}
 %define __strip /bin/true
 
 Name:			osu-lazer
-Version:		2025.1218.0
+Version:		2026.119.0
 Release:		1%?dist
 Summary:		The future of osu! and the beginning of an open era! Commonly known by the codename osu!lazer. Pew pew.
 ExclusiveArch:	x86_64
@@ -54,5 +54,5 @@ desktop-file-validate %{buildroot}%{_appsdir}/osu-lazer-uri-handler.desktop
 %changelog
 * Wed Dec 24 2025 Owen Zimmerman <owen@fyralabs.com>
 - Use macros, add %check, clean up %install
-* Mon Feb 13 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2023.207.0-1
+* Mon Feb 13 2023 madonuko <mado@fyralabs.com> - 2023.207.0-1
 - Initial package

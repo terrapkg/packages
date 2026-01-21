@@ -26,5 +26,5 @@ install -D -m644 KanjiStrokeOrders_v%{version}.ttf %{buildroot}/%{_datadir}/font
 /%{_datadir}/fonts/TTF/KanjiStrokeOrders_v%{version}.ttf
 
 %changelog
-* Mon Nov 21 2022 windowsboy111 <windowsboy111@fyralabs.com> - 4.004
+* Mon Nov 21 2022 madonuko <mado@fyralabs.com> - 4.004
 - Initial package

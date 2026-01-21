@@ -24,12 +24,6 @@ BuildRequires: rpm_macro(cmake_build)
 BuildRequires: rpm_macro(cmake_install)
 BuildRequires: cmake
 BuildRequires: gcc-c++
-BuildRequires: pkgconfig(protobuf)
-BuildRequires: pkgconfig(libcurl)
-BuildRequires: cmake(yaml-cpp)
-BuildRequires: cmake(ZXing)
-BuildRequires: cmake(absl)
-BuildRequires: cmake(cpr)
 BuildRequires: cmake(Qt6)
 BuildRequires: cmake(Qt6Svg)
 BuildRequires: cmake(Qt6Linguist)

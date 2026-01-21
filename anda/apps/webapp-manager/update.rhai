@@ -1,1 +1,1 @@
-rpm.version(gh("linuxmint/webapp-manager"));
+rpm.version(gh_tag("linuxmint/webapp-manager"));

@@ -1,0 +1,1 @@
+rpm.version(gh("https://github.com/google/breakpad"));

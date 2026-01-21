@@ -4,7 +4,7 @@ Pywal is a tool that generates a color palette from the dominant colors in an im
 
 Name:           python-%{pypi_name}
 Version:        3.8.13
-Release:        1%?dist
+Release:        2%{?dist}
 Summary:        16 color fork of the original Pywal
 License:        MIT
 URL:            https://github.com/eylles/pywal16
@@ -23,7 +23,7 @@ BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(setuptools)
 Obsoletes:      python3-pywal < 3.5.0-1
 BuildArch:      noarch
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 This project is a 16 colors fork of Pywal.

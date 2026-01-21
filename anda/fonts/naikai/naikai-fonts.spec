@@ -46,5 +46,5 @@ install -Dm644 tw/*.ttf %{buildroot}/%{_datadir}/fonts/%{name}-tw/
 /%{_datadir}/fonts/%{name}-tw
 
 %changelog
-* Tue Nov 22 2022 windowsboy111 <windowsboy111@fyralabs.com> - 1.87
+* Tue Nov 22 2022 madonuko <mado@fyralabs.com> - 1.87
 - Initial package

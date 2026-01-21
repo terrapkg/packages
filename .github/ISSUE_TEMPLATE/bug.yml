@@ -1,0 +1,63 @@
+name: Package Bug Report
+description: Report an issue with a package.
+title: "[BUG] "
+labels: ["bug", "triage"]
+#projects: ["octo-org/1", "octo-org/44"]
+assignees:
+  - hamachitan
+#type: bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: input
+    id: pkg
+    attributes:
+      label: Full Package Name
+      description: If you report multiple packages, only the main package is needed if applicable, or separate them with spaces otherwise. Obtain the full package name using `rpm -qa pkg-name`.
+      placeholder: anda-0.4.14-1.fc43.x86_64
+    validations:
+      required: true
+  - type: dropdown
+    id: releasever
+    attributes:
+      label: Release Version
+      description: Which version of Terra are you using?
+      options:
+        - frawhide
+        - f43
+        - f42
+        - el10
+      default: 1
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the Bug
+      description: A clear and concise description of what the bug is. Please only report issues with packaging or Terra itself, report upstream bugs to the respective project.
+      placeholder: A bug happened!
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: To Reproduce
+      description: How can the bug be reproduced?
+      placeholder: |
+        1. `dnf install this-package`
+        2. run `this-package`
+        3. see error
+    validations:
+      required: true
+  - type: textarea
+    id: expect
+    attributes:
+      label: Expected Behavior
+      description: A clear and concise description of what you expected to happen.
+      placeholder: Running it should show hello world!
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant Log Output
+      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
+      render: shell

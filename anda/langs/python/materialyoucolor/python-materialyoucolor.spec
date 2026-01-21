@@ -3,7 +3,7 @@
 
 Name:           python-%{pypi_name}
 Version:        2.0.10
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Material You color generation algorithms in pure python!
 License:        MIT
 URL:            https://github.com/T-Dynamos/materialyoucolor-python
@@ -17,7 +17,7 @@ BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(rich)
 BuildRequires:  python3dist(setuptools)
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 Material You color generation algorithms in Python.

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Qiqi's Notebook
+Exec=qiqis-notebook --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime
+Terminal=false
+Type=Application
+Icon=qiqis-notebook
+StartupWMClass=qiqis-notebook
+Comment=Qiqi's Notebook desktop app

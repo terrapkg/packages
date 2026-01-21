@@ -1,5 +1,5 @@
 diff --git a/src/amd/vulkan/radv_instance.c b/src/amd/vulkan/radv_instance.c
-index c43b8f9a00c..fb0db9769e6 100644
+index 5cbfc6f344a..622406fee25 100644
 --- a/src/amd/vulkan/radv_instance.c
 +++ b/src/amd/vulkan/radv_instance.c
 @@ -154,7 +154,7 @@ static const struct debug_control trace_options[] = {
@@ -38,7 +38,7 @@ index 05ffad6424d..e32862161de 100644
        DRI_CONF_VK_X11_ENSURE_MIN_IMAGE_COUNT(false)
        DRI_CONF_VK_XWAYLAND_WAIT_READY(false)
 diff --git a/src/intel/vulkan/anv_instance.c b/src/intel/vulkan/anv_instance.c
-index a6f2c5985c0..b509fa21404 100644
+index 7967313f1f5..96cc0b5707e 100644
 --- a/src/intel/vulkan/anv_instance.c
 +++ b/src/intel/vulkan/anv_instance.c
 @@ -10,7 +10,7 @@
@@ -90,10 +90,10 @@ index bb425414bb1..39f137d5ab3 100644
        DRI_CONF_VK_X11_ENSURE_MIN_IMAGE_COUNT(false)
        DRI_CONF_VK_XWAYLAND_WAIT_READY(false)
 diff --git a/src/util/00-mesa-defaults.conf b/src/util/00-mesa-defaults.conf
-index 926db52670e..78c6934b829 100644
+index 1dc9d17af82..ce4d7d3399d 100644
 --- a/src/util/00-mesa-defaults.conf
 +++ b/src/util/00-mesa-defaults.conf
-@@ -645,24 +645,24 @@ TODO: document the other workarounds.
+@@ -649,24 +649,24 @@ TODO: document the other workarounds.
  
          <application name="gfxbench" executable="testfw_app">
              <option name="mesa_glthread_app_profile" value="0" />
@@ -122,7 +122,7 @@ index 926db52670e..78c6934b829 100644
              <option name="vk_x11_strict_image_count" value="true" />
          </application>
  
-@@ -723,10 +723,12 @@ TODO: document the other workarounds.
+@@ -727,10 +727,12 @@ TODO: document the other workarounds.
  
          <application name="Path of Exile" executable="PathOfExile_x64Steam.exe">
              <option name="vk_zero_vram" value="true" />
@@ -136,7 +136,7 @@ index 926db52670e..78c6934b829 100644
  
          <application name="X4 Foundations" executable="X4">
 diff --git a/src/util/driconf.h b/src/util/driconf.h
-index ab9aca4cb07..d6dd50f7539 100644
+index 8399c21e383..2d8fbcbd81f 100644
 --- a/src/util/driconf.h
 +++ b/src/util/driconf.h
 @@ -456,8 +456,8 @@
