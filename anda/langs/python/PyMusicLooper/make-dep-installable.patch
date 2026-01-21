@@ -1,0 +1,13 @@
+diff --git a/pyproject.toml b/pyproject.toml
+index 9b37b98..9cb6ad3 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -27,7 +27,7 @@ dependencies = [
+   "sounddevice>=0.5.0",
+   "rich-click>=1.8.0,<2",
+   "rich>= 13.4.2",
+-  "pytaglib>=3.0.0,<4",
++  "pytaglib>=2.0.0,<4",
+   "numba>=0.59.1",
+   "yt-dlp>=2025.01.26",
+   "click-params>=0.5.0,<0.6",

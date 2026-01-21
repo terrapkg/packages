@@ -28,5 +28,5 @@ install -Dm644 tw/*.ttf %buildroot/%_datadir/fonts/fakepearl/
 
 
 %changelog
-* Mon May 22 2023 windowsboy111 <windowsboy111@fyralabs.com> - 1.1
+* Mon May 22 2023 madonuko <mado@fyralabs.com> - 1.1
 - Initial package

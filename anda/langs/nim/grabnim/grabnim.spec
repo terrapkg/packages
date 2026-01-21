@@ -1,5 +1,5 @@
-%global commit 687f871b052ec7ef26e22d130b3d0f92837a59d2
-%global commit_date 20251223
+%global commit 10a4115ff79ec4f9f40191c76294c4f97f612849
+%global commit_date 20260115
 %global shortcommit %{sub %commit 1 7}
 
 Name:			grabnim

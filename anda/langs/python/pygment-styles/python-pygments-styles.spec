@@ -3,7 +3,7 @@
 
 Name:           python-%{real_name}
 Version:        0.3.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A collection of Pygments styles
 License:        BSD-3-Clause
 URL:            https://pygments-styles.org
@@ -13,7 +13,7 @@ BuildRequires:  python3-devel
 BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(setuptools)
 BuildArch:      noarch
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 A curated collection of Pygments styles based on VS Code themes.

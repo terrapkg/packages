@@ -1,7 +1,5 @@
 # Terra Sources
 
-[![Repository status](https://repology.org/badge/repository-big/terra_42.svg?header=Terra+42)](https://repology.org/repository/terra_42)
-[![Repository status](https://repology.org/badge/repository-big/terra_43.svg?header=Terra+43)](https://repology.org/repository/terra_43)
 [![Repository status](https://repology.org/badge/repository-big/terra_rawhide.svg?header=Terra+Rawhide)](https://repology.org/repository/terra_rawhide)
 
 Terra is a rolling-release Fedora repository for all the software you need.
@@ -52,8 +50,7 @@ First of all, thanks for being interested in contributing to Terra! If you have 
 
 - [Contribution Guide](https://developer.fyralabs.com/terra/contributing)
 - [FAQ](https://developer.fyralabs.com/terra/faq)
-- [Policy](https://developer.fyralabs.com/terra/policy)
-
+- [Guidelines](https://developer.fyralabs.com/terra/guidelines)
 
 ## Documentation
 
@@ -69,4 +66,4 @@ Feel free to reach out by [joining our community](https://wiki.ultramarine-linux
 
 - [Contribution Guide](https://developer.fyralabs.com/terra/contributing)
 - [FAQ](https://developer.fyralabs.com/terra/faq)
-- [Policy](https://developer.fyralabs.com/terra/policy)
+- [Guidelines](https://developer.fyralabs.com/terra/guidelines)

@@ -52,7 +52,7 @@
 %global fontdescription   %{expand:
 Versatile typeface for code, from code.}
 
-Version:		33.3.6
+Version:		34.0.0
 Release:		1%?dist
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
 Summary:		Versatile typeface for code, from code.

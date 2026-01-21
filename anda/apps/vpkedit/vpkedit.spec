@@ -1,3 +1,5 @@
+%define _unpackaged_files_terminate_build 0
+
 Name:           vpkedit
 Version:        5.0.0.4
 Release:        1%?dist
@@ -26,9 +28,9 @@ new VPKs.
 
 
 %build
-%cmake -DCMAKE_INSTALL_PREFIX=%_libdir/%name \
-   -DBUILD_SHARED_LIBS:BOOL=OFF              \
-   -DCMAKE_BUILD_TYPE=Release
+%cmake -DBUILD_SHARED_LIBS:BOOL=OFF          \
+   -DCMAKE_BUILD_TYPE=Release                \
+   -DCPACK_GENERATOR=RPM
 #   -DVPKEDIT_BUILD_LIBC=ON
 %cmake_build
 
@@ -38,18 +40,18 @@ new VPKs.
 pushd %buildroot%_libdir/%name
 rm -rf {libQt*,*.md,LICENSE}
 popd
+mkdir -p %buildroot%_bindir
 ln -sf %_libdir/vpkedit/vpkedit %buildroot%_bindir/vpkedit
 ln -sf %_libdir/vpkedit/vpkeditcli %buildroot%_bindir/vpkeditcli
 sed -i 's@Exec=/opt/vpkedit/@Exec=@g' %buildroot%_datadir/applications/vpkedit.desktop
 
 
 %files
-%doc README.md CREDITS.md
+%doc README.md CODE_OF_CONDUCT.md INSTALL.md CREDITS.md
 %license LICENSE
 %_bindir/vpkedit
 %_bindir/vpkeditcli
 %_libdir/%name/
 %_datadir/applications/vpkedit.desktop
-%_iconsdir/hicolor/128x128/mimetypes/application-x-vpkedit.png
+%_hicolordir/*x*/apps/vpkedit.png
 %_datadir/mime/packages/vpkedit.xml
-%_datadir/pixmaps/vpkedit.png

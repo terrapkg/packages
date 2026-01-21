@@ -1,6 +1,6 @@
-%global commit cecbf129676ee284817ddfe94af87405a3ed5d2b
-%global ver 1.8.59
-%global commit_date 20251220
+%global commit cb863c1600082404428f1a84e407b866b9d412a8
+%global ver 1.8.60
+%global commit_date 20260109
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:          tdlib-nightly
@@ -85,7 +85,7 @@ cp -r ../example %buildroot%_datadir/%{name}
 %_libdir/libtd*.a
 
 %changelog
-* Sun May 28 2023 windowsboy111 <windowsboy111@fyralabs.com> - 1.8.14^54b34e9180dabc017210ebe3995f01d0c2fbaef1-1
+* Sun May 28 2023 madonuko <mado@fyralabs.com> - 1.8.14^54b34e9180dabc017210ebe3995f01d0c2fbaef1-1
 - Repackaged for Terra
 
 * Sat Jan 21 2023 Fedora Release Engineering <releng@fedoraproject.org> - 1.8.0-3

@@ -1,5 +1,5 @@
-%global commit ebb5ad865f673ecbde1a628b75c5505bbd2bfd04
-%global commit_date 20250817
+%global commit 214f8b82ef78f2c3d54b3dc37075aadfc2da2bdf
+%global commit_date 20260121
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:			graftcp-nightly

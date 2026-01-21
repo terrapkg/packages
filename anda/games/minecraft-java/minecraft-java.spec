@@ -6,7 +6,7 @@
 
 Name:		minecraft-launcher
 Version:	2.3.2
-Release:	2%{?dist}
+Release:	3%{?dist}
 Summary:	Official launcher for Minecraft
 
 License:	https://www.minecraft.net/en-us/eula
@@ -19,7 +19,7 @@ Packager:   Cappy Ishihara <cappy@fyralabs.com>
 
 ExclusiveArch:	x86_64
 
-BuildRequires: terra-appstream-helper anda-srpm-macros
+BuildRequires: terra-appstream-helper anda-srpm-macros desktop-file-utils
 Requires:	java >= 1.8.0
 Requires:       gtk3
 Requires:       libgpg-error
@@ -35,15 +35,19 @@ The official Linux release of the launcher for Minecraft, a game about placing b
 
 %install
 install -Dm755 %{_builddir}/minecraft-launcher/minecraft-launcher %{buildroot}%{_bindir}/minecraft-launcher
-install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/applications/%{appid}.desktop
-install -Dm644 %{SOURCE2} %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/%{appid}.svg
+install -Dm644 %{SOURCE1} %{buildroot}%{_appsdir}/%{appid}.desktop
+install -Dm644 %{SOURCE2} %{buildroot}%{_scalableiconsdir}/%{appid}.svg
 
 %terra_appstream -o %{SOURCE3}
 cat %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
+
+%check
+desktop-file-validate %{buildroot}%{_appsdir}/%{appid}.desktop
+
 %files
 %{_bindir}/minecraft-launcher
-%{_datadir}/applications/%{appid}.desktop
-%{_datadir}/icons/hicolor/scalable/apps/%{appid}.svg
+%{_appsdir}/%{appid}.desktop
+%{_scalableiconsdir}/%{appid}.svg
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog

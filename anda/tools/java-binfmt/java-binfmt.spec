@@ -5,7 +5,7 @@
 
 Name:           java-binfmt
 Version:        1.0.0^%{commit_date}git%{shortcommit}
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Binfmt wrappers and utilities for Java and Jar files.
 ### License for the C file used in the binary.
 License:        GPL-2.0-or-later
@@ -18,7 +18,7 @@ Source5:        https://raw.githubusercontent.com/terrapkg/pkg-java-binfmt/%{com
 Source6:        https://raw.githubusercontent.com/terrapkg/pkg-java-binfmt/%{commit}/Applet-lib64.conf
 BuildRequires:  gcc
 BuildRequires:  systemd-rpm-macros
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 This package installs binfmt files for use with Java wrappers.

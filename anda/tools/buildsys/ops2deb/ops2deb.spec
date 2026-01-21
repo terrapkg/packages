@@ -39,5 +39,5 @@ rm -rf %buildroot/%python3_sitelib/*/__pycache__
 /usr/lib/python3*/site-packages/ops2deb*
 
 %changelog
-* Fri Apr 28 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2.4.1-1
+* Fri Apr 28 2023 madonuko <mado@fyralabs.com> - 2.4.1-1
 - Initial package.
