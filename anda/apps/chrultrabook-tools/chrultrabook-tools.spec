@@ -57,8 +57,10 @@ Packager:       Owen Zimmerman owen@fyralabs.com
 %license LICENSE
 %license LICENSE.dependencies
 %{_bindir}/chrultrabook-tools
+%{_bindir}/chrultrabook-tools-root
 %{_datadir}/applications/chrultrabook-tools.desktop
 %{_hicolordir}/*x*/apps/Chrultrabook-Tools.png
+%{_datadir}/polkit-1/actions/com.chrultrabook.tools.policy
 
 %changelog
 * Mon Jan 19 2026 Owen Zimmerman <owen@fyralabs.com>
