@@ -1,5 +1,6 @@
 %global npm_name backport
-%bcond test 1
+# Requires Jest so currently disabled
+%bcond test 0
 
 Name:          nodejs-%{npm_name}
 Version:       10.2.0
@@ -13,8 +14,10 @@ BuildRequires: anda-srpm-macros >= 0.3.0
 BuildRequires: nodejs-packaging
 BuildRequires: nodejs-npm
 BuildRequires: nodejs-license-checker
+%if %{with test}
+BuildRequires: yarnpkg
+%endif
 Obsoletes:     node-backport <= 10.2.0
-ExclusiveArch: %{nodejs_arches} noarch
 BuildArch:     noarch
 Packager:      Gilver E. <roachy@fyralabs.com>
 
@@ -34,9 +37,9 @@ A simple CLI tool that automates the process of backporting commits on a GitHub 
 %npm_license_summary
 %npm_license -o LICENSE.modules
 
-%check
 %if %{with test}
-%node_self_test
+%check
+%yarn_test
 %endif
 
 %files
@@ -47,5 +50,7 @@ A simple CLI tool that automates the process of backporting commits on a GitHub 
 %{_bindir}/%{npm_name}
 
 %changelog
+* Wed Jan 21 2026 Gilver E. <roachy@fyralabs.com> - 10.2.0-3
+- Fixed package name and licenses
 * Wed Jul 2 2025 Gilver E. <rockgrub@disroot.org> - 9.6.6-1
 - Initial package
