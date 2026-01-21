@@ -1,11 +1,12 @@
-%global __brp_mangle_shebangs %{nil}
+%undefine __brp_mangle_shebangs
 %global appid com.github.neohtop
 
 Name:           neohtop
 Version:        1.2.0
-Release:        2%?dist
+Release:        3%?dist
 Summary:        System monitoring on steroids
-License:        MIT
+SourceLicense:  MIT
+License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND (BSD-3-Clause AND MIT) AND (BSD-3-Clause OR MIT OR Apache-2.0) AND (BSD-3-Clause OR MIT) AND BSD-3-Clause AND (CC0-1.0 OR MIT-0 OR Apache-2.0) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MIT AND MPL-2.0 AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT)
 URL:            https://github.com/Abdenasser/neohtop
 Source0:        %url/archive/refs/tags/v%version.tar.gz
 Source1:        NeoHtop.desktop
@@ -35,8 +36,8 @@ Provides:       NeoHtop
 %npm_build -B
 
 %install
-install -Dpm755 src-tauri/target/release/NeoHtop %{buildroot}%{_bindir}/NeoHtop
-install -Dpm644 %{SOURCE1}                       %{buildroot}%{_appsdir}/NeoHtop.desktop
+install -Dpm755 src-tauri/target/rpm/NeoHtop %{buildroot}%{_bindir}/NeoHtop
+%desktop_file_install                            %{SOURCE1}
 # don't mind the numbers not matching, this is how the offical rpm installs these files
 install -Dpm644 src-tauri/icons/128x128@2x.png   %{buildroot}%{_hicolordir}/256x256@2/apps/NeoHtop.png
 install -Dpm644 src-tauri/icons/32x32.png        %{buildroot}%{_hicolordir}/32x32/apps/NeoHtop.png
@@ -44,12 +45,15 @@ install -Dpm644 src-tauri/icons/128x128.png      %{buildroot}%{_hicolordir}/128x
 
 %terra_appstream -o %{SOURCE2}
 
+%{tauri_cargo_license} > LICENSE.dependencies
+
 %check
-%__desktop_file_validate %{buildroot}%{_appsdir}/NeoHtop.desktop
+%desktop_file_validate %{buildroot}%{_appsdir}/NeoHtop.desktop
 
 %files
 %doc README.md
 %license LICENSE
+%license LICENSE.dependencies
 %{_bindir}/NeoHtop
 %{_appsdir}/NeoHtop.desktop
 %{_hicolordir}/256x256@2/apps/NeoHtop.png
