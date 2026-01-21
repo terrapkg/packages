@@ -37,7 +37,7 @@ Provides:       NeoHtop
 
 %install
 install -Dpm755 src-tauri/target/release/NeoHtop %{buildroot}%{_bindir}/NeoHtop
-install -Dpm644 %{SOURCE1}                       %{buildroot}%{_appsdir}/NeoHtop.desktop
+%desktop_file_install                           %{buildroot}%{_appsdir}/NeoHtop.desktop
 # don't mind the numbers not matching, this is how the offical rpm installs these files
 install -Dpm644 src-tauri/icons/128x128@2x.png   %{buildroot}%{_hicolordir}/256x256@2/apps/NeoHtop.png
 install -Dpm644 src-tauri/icons/32x32.png        %{buildroot}%{_hicolordir}/32x32/apps/NeoHtop.png
