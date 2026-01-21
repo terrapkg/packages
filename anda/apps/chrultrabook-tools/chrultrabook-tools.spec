@@ -25,6 +25,7 @@ BuildRequires:  libxdo-devel
 BuildRequires:  anda-srpm-macros
 BuildRequires:  rustc
 BuildRequires:  %{tauri_buildrequires -a}
+# This may seem weird, but https://github.com/nodejs/node/issues/51752#issuecomment-2970163641
 BuildRequires:  nodejs-full-i18n
 
 Requires:       chromium-ectool
@@ -53,7 +54,7 @@ Packager:       Owen Zimmerman owen@fyralabs.com
 %doc README.md
 %license LICENSE
 %license LICENSE.dependencies
-%_bindir/chrultrabook-tools
+%{_bindir}/chrultrabook-tools
 %{_datadir}/applications/chrultrabook-tools.desktop
 %{_hicolordir}/*x*/apps/Chrultrabook-Tools.png
 
