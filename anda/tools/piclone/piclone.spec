@@ -4,7 +4,7 @@
 
 Name:           piclone
 Version:        %commit_date.git~%shortcommit
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Utility to back up Pi to an SD card reader
 License:        BSD-3-Clause
 URL:            https://github.com/raspberrypi-ui/piclone
@@ -20,6 +20,8 @@ BuildRequires: pkgconfig
 BuildRequires: gcc
 
 Requires: parted dosfstools e2fsprogs coreutils util-linux-core uuid dbus-x11 gtk3
+
+Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
 SD Card backup program for Raspberry Pi.
