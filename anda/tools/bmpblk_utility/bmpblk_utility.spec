@@ -6,7 +6,7 @@
 
 Name:           bmpblk_utility
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A utility to create/modify the bmpfv in the GBB of chromebooks running old stock firmware
 
 License:        BSD-3-Clause
@@ -22,7 +22,7 @@ BuildRequires:  xz-devel
 BuildRequires:  libyaml
 BuildRequires:  libyaml-devel
 
-packager:       Owen Zimmerman <owen@fyralabs.com>
+Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
 %summary.

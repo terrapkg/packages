@@ -1,5 +1,5 @@
-%global commit 230d67ad28e74b17a42064453b2163991cb51a5e
-%global commit_date 20251218
+%global commit 1bb61832ece0d271a0a4ee9c04f1d7bcfaf3b65e
+%global commit_date 20260121
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:			rpi-utils
@@ -25,6 +25,8 @@ Requires:       %{name}-rpifwcrypto = %{evr}
 Requires:       %{name}-vcgencmd = %{evr}
 Requires:       %{name}-vclog = %{evr}
 Requires:       %{name}-vcmailbox = %{evr}
+
+Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
 %{summary}.
