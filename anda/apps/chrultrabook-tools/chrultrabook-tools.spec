@@ -6,7 +6,7 @@ Release:        1%?dist
 Summary:        User-friendly configuration utility for Chromebooks running an alternate OS
 URL:            https://github.com/death7654/Chrultrabook-Tools
 Source0:        %url/archive/refs/tags/%version.tar.gz
-License:        GPL-3.0-only
+License:        GPL-3.0-only AND (Unlicense/MIT) AND MPL-2.0 AND MIT-0 AND (CC0-1.0 OR MIT-0 OR Apache-2.0) AND (CC0-1.0 OR Apache-2.0) AND BSL-1.0 AND BlueOak-1.0.0 AND CC0-1.0 AND (BSD-3-Clause/MIT) AND (BSD-3-Clause OR Apache-2.0) AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND BSD-2-Clause AND ISC AND MIT AND (Apache-2.0 OR MIT) AND BSD-3-Clause AND NCSA AND Unicode-3.0 AND (0BSD OR MIT OR Apache-2.0) AND Apache-2.0 AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (Unlicense OR MIT) AND Zlib AND (Zlib OR Apache-2.0 OR MIT) AND (Apache-2.0/MIT) AND CDLA-Permissive-2.0 AND (MIT OR Zlib OR Apache-2.0) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Apache-2.0 OR BSD-1-Clause) AND
 
 BuildRequires:  cargo
 BuildRequires:  glib2
@@ -56,7 +56,6 @@ install -Dm644 src-tauri/icons/128x128.png                      %{buildroot}%{_h
 install -Dm644 src-tauri/icons/128x128@2x.png                   %{buildroot}%{_hicolordir}/128x128@2x/apps/Chrultrabook-Tools.png
 install -Dm644 src-tauri/icons/32x32.png                        %{buildroot}%{_hicolordir}/32x32/apps/Chrultrabook-Tools.png
 install -Dm644 src-tauri/linux/com.chrultrabook.tools.policy    %{buildroot}%{_datadir}/polkit-1/actions/com.chrultrabook.tools.policy
-%{tauri_cargo_license_summary}
 %{tauri_cargo_license} > LICENSE.dependencies
 
 %files
@@ -65,7 +64,7 @@ install -Dm644 src-tauri/linux/com.chrultrabook.tools.policy    %{buildroot}%{_d
 %license LICENSE.dependencies
 %{_bindir}/chrultrabook-tools
 %{_bindir}/chrultrabook-tools-root
-%{_datadir}/applications/chrultrabook-tools.desktop
+%{_appsdir}/chrultrabook-tools.desktop
 %{_hicolordir}/*x*/apps/Chrultrabook-Tools.png
 %{_datadir}/polkit-1/actions/com.chrultrabook.tools.policy
 
