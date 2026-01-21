@@ -3,7 +3,7 @@
 
 Name:           gnome-shell-extension-%{extension}
 Version:        9
-Release:        1%?dist
+Release:        2%?dist
 Summary:        GNOME extension that removes the 'Window is ready' notification and brings the window into focus instead
 License:        AGPL-3.0-only
 URL:            https://github.com/zalckos/GrandTheftFocus
@@ -14,6 +14,8 @@ Source0:        https://github.com/zalckos/GrandTheftFocus/archive/refs/tags/v%v
 
 Requires:       (gnome-shell >= 48~ with gnome-shell < 50~)
 Recommends:     gnome-extensions-app
+
+Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
 GNOME extension. Removes the 'Window is ready' notification and brings the window into focus instead.

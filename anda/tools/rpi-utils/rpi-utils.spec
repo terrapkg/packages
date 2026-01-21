@@ -26,6 +26,8 @@ Requires:       %{name}-vcgencmd = %{evr}
 Requires:       %{name}-vclog = %{evr}
 Requires:       %{name}-vcmailbox = %{evr}
 
+Packager:       Owen Zimmerman <owen@fyralabs.com>
+
 %description
 %{summary}.
 
