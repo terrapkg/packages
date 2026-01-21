@@ -21,8 +21,8 @@ Provides:       spotx spotx-linux spot-x spotx.sh
 
 %install
 mkdir -p %{buildroot}%{_bindir}
-install -Dm 755 spotx.sh %buildroot%{_bindir}/spotx
-%{__ln_s} -f %{_bindir}/spotx %{_bindir}/spotx.sh
+install -Dm 755 spotx.sh %{buildroot}%{_bindir}/spotx
+%{__ln_s} -f %{_bindir}/spotx %{buildroot}%{_bindir}/spotx.sh
 
 %files
 %doc README.md
