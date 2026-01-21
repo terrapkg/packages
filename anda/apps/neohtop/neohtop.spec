@@ -1,9 +1,9 @@
-%global __brp_mangle_shebangs %{nil}
+%undefine __brp_mangle_shebangs
 %global appid com.github.neohtop
 
 Name:           neohtop
 Version:        1.2.0
-Release:        2%?dist
+Release:        3%?dist
 Summary:        System monitoring on steroids
 License:        MIT
 URL:            https://github.com/Abdenasser/neohtop
@@ -43,6 +43,8 @@ install -Dpm644 src-tauri/icons/32x32.png        %{buildroot}%{_hicolordir}/32x3
 install -Dpm644 src-tauri/icons/128x128.png      %{buildroot}%{_hicolordir}/128x128/apps/NeoHtop.png
 
 %terra_appstream -o %{SOURCE2}
+
+%{tauri_cargo_license} > LICENSE.dependencies
 
 %check
 %__desktop_file_validate %{buildroot}%{_appsdir}/NeoHtop.desktop
