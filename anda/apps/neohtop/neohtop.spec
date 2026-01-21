@@ -12,9 +12,7 @@ Source1:        NeoHtop.desktop
 Source2:        com.github.neohtop.metainfo.xml
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 BuildRequires:  rust
-BuildRequires:  nodejs-npm
-BuildRequires:  webkit2gtk4.1-devel
-BuildRequires:  javascriptcoregtk4.1-devel
+BuildRequires:  %tauri_buildrequires
 BuildRequires:  libsoup3-devel
 BuildRequires:  gtk3-devel
 BuildRequires:  rust-gdk-pixbuf-sys-devel
@@ -31,10 +29,10 @@ Provides:       NeoHtop
 
 %prep
 %autosetup -n neohtop-%version
+%tauri_prep
 
 %build
-npm install
-npm run tauri build
+%npm_build -B
 
 %install
 install -Dpm755 src-tauri/target/release/NeoHtop %{buildroot}%{_bindir}/NeoHtop
@@ -47,7 +45,7 @@ install -Dpm644 src-tauri/icons/128x128.png      %{buildroot}%{_hicolordir}/128x
 %terra_appstream -o %{SOURCE2}
 
 %check
-desktop-file-validate %{buildroot}%{_appsdir}/NeoHtop.desktop
+%__desktop_file_validate %{buildroot}%{_appsdir}/NeoHtop.desktop
 
 %files
 %doc README.md

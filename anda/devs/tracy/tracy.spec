@@ -1,36 +1,37 @@
-%global _desc Tracy is a real time, nanosecond resolution, remote telemetry, hybrid frame and sampling profiler for games and other applications.
-
 Name:			tracy
 Version:		0.13.1
 Release:		1%?dist
-Summary:		A real time, nanosecond resolution, remote telemetry, hybrid frame and sampling profiler for games and other applications.
+Summary:		A real time, nanosecond resolution, remote telemetry, hybrid frame and sampling profiler for games and other applications
 License:		BSD-3-Clause
 URL:			https://github.com/wolfpld/tracy
 Source0:		https://github.com/wolfpld/tracy/archive/refs/tags/v%version.tar.gz
 BuildRequires:  pkgconfig(egl) pkgconfig(glfw3) pkgconfig(freetype2) pkgconfig(dbus-1) pkgconfig(libunwind) pkgconfig(libdebuginfod) pkgconfig(tbb) pkgconfig(wayland-client) pkgconfig(wayland-protocols) pkgconfig(xkbcommon) pkgconfig(capstone)
 BuildRequires:  cmake gcc gcc-c++ meson
 
+Packager:       Owen Zimmerman <owen@fyralabs.com>
+
 %description
-%_desc
+Tracy is a real time, nanosecond resolution, remote telemetry, hybrid frame and sampling profiler for games and other applications.
 
 %package devel
 Summary: Development files for the tracy package
 
 %description devel
-%_desc
-This package contains the development files for the tracy package.
+Development files for the tracy package.
 
 %prep
-%autosetup -p1
+%autosetup
 
 %build
-%meson
+%meson -Dcpp_std=c++17
 %meson_build
-
 for project in capture csvexport import update profiler
 do
     pushd $project
-    %cmake -DDOWNLOAD_CAPSTONE=0
+    %cmake -DDOWNLOAD_CAPSTONE=1 \
+           -DCMAKE_CXX_STANDARD=17 \
+           -DCMAKE_SKIP_RPATH=ON \
+           -DCMAKE_SKIP_INSTALL_RPATH=ON
     %cmake_build
     popd
 done
@@ -68,10 +69,12 @@ install -Dm644 icon/application-tracy.svg %buildroot%_iconsdir/hicolor/scalable/
 
 %files devel
 %_libdir/pkgconfig/tracy.pc
-%_includedir/common
-%_includedir/tracy
-%_includedir/client
+%dir %_includedir/tracy
+%_includedir/tracy/*
 
 %changelog
+* Mon Jan 19 2026 Owen Zimmerman <owen@fyralabs.com> - 0.13.1-1
+- Fix compile issues, update for 0.13.1
+
 * Wed Jul 24 2024 Owen Zimmerman <owen@fyralabs.com> - 0.11-1
 - Initial package.
