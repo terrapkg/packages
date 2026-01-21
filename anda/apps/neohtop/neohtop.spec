@@ -32,8 +32,8 @@ Provides:       NeoHtop
 %autosetup -n neohtop-%version
 
 %build
-%__npm install
-%tauri_build
+%{__npm} install
+%{__npm} run tauri build
 
 %install
 install -Dpm755 src-tauri/target/release/NeoHtop %{buildroot}%{_bindir}/NeoHtop
