@@ -1,0 +1,12 @@
+--- a/package.json	2025-12-23 23:24:39.954587295 -0600
++++ b/package.json	2025-12-23 23:31:32.388172516 -0600
+@@ -528,9 +528,6 @@
+         }
+       },
+       "artifactName": "${name}_${version}_${arch}.${ext}",
+-      "target": [
+-        "deb"
+-      ],
+       "icon": "build/icons/png",
+       "publish": [
+         {
