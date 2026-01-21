@@ -25,6 +25,7 @@ BuildRequires:  libxdo-devel
 BuildRequires:  anda-srpm-macros
 BuildRequires:  rustc
 BuildRequires:  %{tauri_buildrequires -a}
+BuildRequires:  nodejs-full-i18n
 
 Requires:       chromium-ectool
 Requires:       coreboot-utils-cbmem
