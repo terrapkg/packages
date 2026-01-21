@@ -4,7 +4,7 @@
 %global crate readymade
 Name:           readymade-git
 Version:        %commit_date.%shortcommit
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Install ready-made distribution images!
 License:        GPL-3.0-or-later
 URL:            https://github.com/FyraLabs/readymade
@@ -23,6 +23,8 @@ Conflicts:      readymade
 Obsoletes:      readymade-nightly < 20250502.4dc78ec-3
 
 Requires:  efibootmgr
+
+Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
 Readymade is a simple Linux Distribution installer.
