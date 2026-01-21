@@ -12,7 +12,7 @@ Source1:        NeoHtop.desktop
 Source2:        com.github.neohtop.metainfo.xml
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 BuildRequires:  rust
-BuildRequires:  %tauri_buildrequires -t
+BuildRequires:  %tauri_buildrequires
 BuildRequires:  libsoup3-devel
 BuildRequires:  gtk3-devel
 BuildRequires:  rust-gdk-pixbuf-sys-devel
