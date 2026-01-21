@@ -51,7 +51,7 @@ Packager:       Owen Zimmerman owen@fyralabs.com
 %install
 %tauri_install
 install -Dm755 src-tauri/linux/chrultrabook-tools-root          %{buildroot}%{_bindir}/chrultrabook-tools-root
-%__desktop_file_install src-tauri/linux/chrultrabook-tools.desktop
+install -Dm644 src-tauri/linux/chrultrabook-tools. desktop %{buildroot}%{_appsdir}/chrultrabook-tools.desktop
 install -Dm644 src-tauri/icons/128x128.png                      %{buildroot}%{_hicolordir}/128x128@/apps/Chrultrabook-Tools.png
 install -Dm644 src-tauri/icons/128x128@2x.png                   %{buildroot}%{_hicolordir}/128x128@2x/apps/Chrultrabook-Tools.png
 install -Dm644 src-tauri/icons/32x32.png                        %{buildroot}%{_hicolordir}/32x32/apps/Chrultrabook-Tools.png
