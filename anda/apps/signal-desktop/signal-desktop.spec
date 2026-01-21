@@ -22,6 +22,7 @@ BuildRequires:  anda-srpm-macros
 BuildRequires:	pnpm
 BuildRequires:  python3
 BuildRequires:  terra-appstream-helper
+BuildRequires:  nodejs-full-i18n
 
 Requires:		libwayland-cursor
 Requires:		libwayland-client
