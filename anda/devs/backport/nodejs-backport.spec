@@ -1,60 +1,56 @@
-%global debug_package %{nil}
-%global module backport
-%bcond test 1
+%global npm_name backport
+# Requires Jest so currently disabled
+%bcond test 0
 
-Name:          node-%{module}
+Name:          nodejs-%{npm_name}
 Version:       10.2.0
-Release:       2%{?dist}
+Release:       3%{?dist}
 Summary:       Backport GitHub commits
 SourceLicense: Apache-2.0
-License:       Apache-2.0 AND
-URL:           https://github.com/sorenlouv/%{module}
-%dnl Source0:       http://registry.npmjs.org/%{module}/-/%{module}-%{version}.tgz
-# Source the tests
-Source1:       tests-%{version}.tar.bz2
-BuildRequires: bsdtar
-BuildRequires: nodejs-devel
+License:       0BSD AND Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND ISC AND MIT AND (MIT OR CC0-1.0) AND (WTFPL OR ISC)
+URL:           https://github.com/sorenlouv/%{npm_name}
+Source0:       http://registry.npmjs.org/%{npm_name}/-/%{npm_name}-%{version}.tgz
+BuildRequires: anda-srpm-macros >= 0.3.0
 BuildRequires: nodejs-packaging
 BuildRequires: nodejs-npm
-ExclusiveArch: %{nodejs_arches} noarch
+BuildRequires: nodejs-license-checker
+%if %{with test}
+BuildRequires: yarnpkg
+%endif
+Obsoletes:     node-backport <= 10.2.0
+BuildArch:     noarch
 Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description
 A simple CLI tool that automates the process of backporting commits on a GitHub repo.
 
 %prep
-# Maybe I should make some NodeJS online macros...
-# Global flag is needed or the module WILL NOT WORK via commandline without some manual intervention
-npm install -g %{module}@%{version} --prefix=.
-%setup -T -D -n lib/node_modules/%{module}
-tar xjf %{SOURCE1}
+%npm_prep
+%fetch_node_tests /src/test/ /tests/
 
 %build
 # Empty build section, because RPM reasons
 
 %install
-mkdir -p %{buildroot}%{nodejs_sitelib}/%{module}
-mkdir -p %{buildroot}%{_bindir}
-cp -r ./* -t %{buildroot}%{nodejs_sitelib}/%{module}
-ln -sf %{nodejs_sitelib}/%{module}/bin/%{module}  %{buildroot}%{_bindir}/%{module}
+%npm_install
 
-# Should maybe package this so it's easier to call...
-npm install -g license-checker --prefix=.
-# This could also be made into a macro maybe?
-bin/license-checker | sed '/.*repository:.*/d;/.*publisher:.*/d;/.*email:.*/d;/.*url:.*/d;/.*path:.*/d;/.*licenseFile:.*/d;/.*noticeFile:.*/d' > LICENSE.modules
+%npm_license_summary
+%npm_license -o LICENSE.modules
 
-%check
 %if %{with test}
-NODE_ENV=test %{builddir}/bin/%{module} -R tests
+%check
+%yarn_test
 %endif
 
 %files
 %doc README.md
 %license LICENSE.txt
 %license LICENSE.modules
-%{nodejs_sitelib}/%{module}/
-%{_bindir}/%{module}
+%{nodejs_sitelib}/%{npm_name}/
+%{_bindir}/%{npm_name}
 
 %changelog
+* Wed Jan 21 2026 Gilver E. <roachy@fyralabs.com> - 10.2.0-3
+- Fixed package name and licenses
 * Wed Jul 2 2025 Gilver E. <rockgrub@disroot.org> - 9.6.6-1
 - Initial package
