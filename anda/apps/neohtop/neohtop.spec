@@ -32,7 +32,6 @@ Provides:       NeoHtop
 %tauri_prep
 
 %build
-%{__npm} install
 %npm_build -B
 
 %install
