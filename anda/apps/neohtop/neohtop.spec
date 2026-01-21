@@ -47,11 +47,12 @@ install -Dpm644 src-tauri/icons/128x128.png      %{buildroot}%{_hicolordir}/128x
 %{tauri_cargo_license} > LICENSE.dependencies
 
 %check
-%__desktop_file_validate %{buildroot}%{_appsdir}/NeoHtop.desktop
+%desktop_file_validate %{buildroot}%{_appsdir}/NeoHtop.desktop
 
 %files
 %doc README.md
 %license LICENSE
+%license LICENSE.dependencies
 %{_bindir}/NeoHtop
 %{_appsdir}/NeoHtop.desktop
 %{_hicolordir}/256x256@2/apps/NeoHtop.png
