@@ -32,7 +32,7 @@ Provides:       NeoHtop
 
 %build
 %{__npm} install
-%{__npm} run tauri build
+%tauri_build
 
 %install
 install -Dpm755 src-tauri/target/release/NeoHtop %{buildroot}%{_bindir}/NeoHtop
