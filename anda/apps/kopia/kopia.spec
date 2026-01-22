@@ -35,7 +35,7 @@ allows you to backup/restore any and all files/directories that you deem are
 important or critical.
 
 %description -n %{gui_name}
-A graphical user interface for %{name}
+A graphical user interface for %{name}.
 
 %prep
 %autosetup -p1
