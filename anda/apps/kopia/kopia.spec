@@ -65,7 +65,7 @@ mkdir -p %{buildroot}%{_libdir}/%{gui_name}/resources/server
 %terra_appstream -o %{S:2}
 
 %check
-%desktop_file_validate %{S:1}
+%desktop_file_validate %{buildroot}%{_appsdir}/%{appid}.desktop
 
 %files
 %license README.md
