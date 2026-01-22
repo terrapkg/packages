@@ -3,7 +3,7 @@ Version:        0.6.1
 Release:        1%{?dist}
 Summary:        Utility commands for niri
 
-License:        GPL-3.0-or-later AND
+License:        GPL-3.0-or-later AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND MIT AND (Unlicense OR MIT)
 URL:            https://git.sr.ht/~tsdh/nirius
 Source0:        %{url}/archive/%{name}-%{version}.tar.gz
 
