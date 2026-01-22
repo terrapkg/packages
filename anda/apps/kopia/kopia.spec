@@ -23,7 +23,7 @@ BuildRequires:  terra-appstream-helper
 
 %package -n %{gui_name}
 Summary:        GUI for %{name}
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name} = %{evr}
 ExclusiveArch:  %{electron_arches}
 
 %description
