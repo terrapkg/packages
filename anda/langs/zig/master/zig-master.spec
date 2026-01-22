@@ -13,8 +13,8 @@
 %global zig_cache_dir %{builddir}/zig-cache
 
 Name:           zig-master
-Version:        0.16.0~dev.2261+d6b3dd25a
-Release:        3%{?dist}
+Version:        0.16.0~dev.2290+200fb7c2a
+Release:        2%?dist
 Summary:        Master builds of the Zig language
 License:        MIT AND NCSA AND LGPL-2.1-or-later AND LGPL-2.1-or-later WITH GCC-exception-2.0 AND GPL-2.0-or-later AND GPL-2.0-or-later WITH GCC-exception-2.0 AND BSD-3-Clause AND Inner-Net-2.0 AND ISC AND LicenseRef-Fedora-Public-Domain AND GFDL-1.1-or-later AND ZPL-2.1
 URL:            https://ziglang.org
