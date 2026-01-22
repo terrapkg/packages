@@ -1,7 +1,7 @@
 Name:           nirius
 Version:        0.6.1
 Release:        1%{?dist}
-Summary:        Utility commands niri
+Summary:        Utility commands for niri
 
 License:        GPL-3.0-or-later AND
 URL:            https://git.sr.ht/~tsdh/nirius
