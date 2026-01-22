@@ -1,7 +1,7 @@
-%global commit ff35da22fbe67a65632a8009827f114262c76e4d
+%global commit 9ac94ce3e64b25441e66d7c610b3ea59853c1872
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260121
-%global ver 0.221.0
+%global commit_date 20260122
+%global ver 0.222.0
 
 %bcond_with check
 %bcond_with debug_no_build
