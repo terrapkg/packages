@@ -2,7 +2,7 @@
 %global _desc The code of the Arduino App Lab Bricks
 
 %global ver release/0.6.3
-%global sanitized_ver %(echo %{ver} | sed 's/release\\///')
+%global sanitized_ver %(echo %{ver} | sed 's|release/||')
 
 Name:			%{pypi_name}
 Version:		%sanitized_ver
