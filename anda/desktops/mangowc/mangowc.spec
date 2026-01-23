@@ -21,18 +21,13 @@ BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(libpcre2-8)
 BuildRequires:  pkgconfig(scenefx-0.4)
 
+BuildSystem:    meson
+
 %description
 MangoWC is a lightweight, high-performance Wayland compositor built on dwl, designed for speed, flexibility, and a modern, customizable desktop experience.
 
 %prep
 %autosetup
-
-%build
-%meson
-%meson_build
-
-%install
-%meson_install
 
 %files
 %doc README.md
