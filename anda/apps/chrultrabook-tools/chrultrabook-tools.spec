@@ -2,7 +2,7 @@
 
 Name:           chrultrabook-tools
 Version:        3.1.3
-Release:        1%?dist
+Release:        2%?dist
 Summary:        User-friendly configuration utility for Chromebooks running an alternate OS
 URL:            https://github.com/death7654/Chrultrabook-Tools
 Source0:        %url/archive/refs/tags/%version.tar.gz
@@ -51,10 +51,11 @@ Packager:       Owen Zimmerman owen@fyralabs.com
 %install
 %tauri_install
 install -Dm755 src-tauri/linux/chrultrabook-tools-root          %{buildroot}%{_bindir}/chrultrabook-tools-root
-install -Dm644 src-tauri/linux/chrultrabook-tools.desktop %{buildroot}%{_appsdir}/chrultrabook-tools.desktop
-install -Dm644 src-tauri/icons/128x128.png                      %{buildroot}%{_hicolordir}/128x128@/apps/Chrultrabook-Tools.png
-install -Dm644 src-tauri/icons/128x128@2x.png                   %{buildroot}%{_hicolordir}/128x128@2x/apps/Chrultrabook-Tools.png
-install -Dm644 src-tauri/icons/32x32.png                        %{buildroot}%{_hicolordir}/32x32/apps/Chrultrabook-Tools.png
+install -Dm644 src-tauri/linux/chrultrabook-tools.desktop       %{buildroot}%{_appsdir}/chrultrabook-tools.desktop
+install -Dm644 src-tauri/icons/128x128.png                      %{buildroot}%{_hicolordir}/128x128/apps/chrultrabook-tools.png
+# Not matching, but upstream does it this way. Working with upstream to correct this issue.
+install -Dm644 src-tauri/icons/128x128@2x.png                    %{buildroot}%{_hicolordir}/256x256@2/apps/chrultrabook-tools.png
+install -Dm644 src-tauri/icons/32x32.png                        %{buildroot}%{_hicolordir}/32x32/apps/chrultrabook-tools.png
 install -Dm644 src-tauri/linux/com.chrultrabook.tools.policy    %{buildroot}%{_datadir}/polkit-1/actions/com.chrultrabook.tools.policy
 %{tauri_cargo_license} > LICENSE.dependencies
 
@@ -65,7 +66,7 @@ install -Dm644 src-tauri/linux/com.chrultrabook.tools.policy    %{buildroot}%{_d
 %{_bindir}/chrultrabook-tools
 %{_bindir}/chrultrabook-tools-root
 %{_appsdir}/chrultrabook-tools.desktop
-%{_hicolordir}/*x*/apps/Chrultrabook-Tools.png
+%{_hicolordir}/*x*/apps/chrultrabook-tools.png
 %{_datadir}/polkit-1/actions/com.chrultrabook.tools.policy
 
 %changelog
