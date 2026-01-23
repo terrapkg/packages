@@ -3,7 +3,7 @@
 Name:			signal-desktop
 %electronmeta -aD
 Version:		7.86.0
-Release:		2%?dist
+Release:		3%?dist
 Summary:		A private messenger for Windows, macOS, and Linux
 URL:			https://signal.org
 Source0:		https://github.com/signalapp/Signal-Desktop/archive/refs/tags/v%{version}.tar.gz
@@ -87,7 +87,6 @@ done
 %doc README.md CONTRIBUTING.md ACKNOWLEDGMENTS.md
 %license bundled_licenses/*
 %{_bindir}/signal-desktop
-%dir %{_libdir}/signal-desktop
 %{_libdir}/signal-desktop/
 %{_datadir}/polkit-1/rules.d/org.signalapp.view-aep.policy
 %{_datadir}/polkit-1/rules.d/org.signalapp.enable-backups.policy

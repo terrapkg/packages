@@ -4,7 +4,7 @@
 
 Name:           click
 Version:        0.5.2
-Release:        1%?dist
+Release:        2%?dist
 Summary:        An app building method
 License:        LGPL-3.0
 URL:            https://gitlab.com/ubports/development/core/click
@@ -84,26 +84,19 @@ mv README %{buildroot}%_pkgdocdir
 %license LICENSE
 %config %{_sysconfdir}/dbus-1/system.d/com.lomiri.click.conf
 %{_libdir}/libclick-0.4.so.*
-%dir %{_libdir}/click
 %{_libdir}/click/libclickpreload.so
-%dir %{_libexecdir}/click
 %{_libexecdir}/click/click-service
 %{_datadir}/dbus-1/system-services/com.lomiri.click.service
 %{_libdir}/girepository-1.0/Click-0.4.typelib
 
 %files devel
-%dir %{_includedir}/click-0.4
 %{_includedir}/click-0.4/click.h
 %{_libdir}/libclick-0.4.so
 %{_libdir}/pkgconfig/click-0.4.pc
 %{_datarootdir}/gir-1.0/Click-0.4.gir
 
 %files -n python3-lomiri-click
-%dir %{_sysconfdir}/click
-%dir %{_sysconfdir}/click/databases
 %config %{_sysconfdir}/click/databases/*.conf
-%dir %{_sysconfdir}/schroot
-%dir %{_sysconfdir}/schroot/click
 %{_sysconfdir}/schroot/click/fstab
 %{_bindir}/dh_click
 %{_bindir}/click
@@ -112,38 +105,25 @@ mv README %{buildroot}%_pkgdocdir
 %{_datarootdir}/perl5/*
 %{_unitdir}/click-system-hooks.service
 %{_userunitdir}/click-user-hooks.service
-%dir %{python3_sitelib}/click_package
 %{python3_sitelib}/click_package/*.py
-%dir %{python3_sitelib}/click_package/tests
 %{python3_sitelib}/click_package/tests/*.py
-%dir %{python3_sitelib}/click_package/tests/integration
 %{python3_sitelib}/click_package/tests/integration/*.py
-%dir %{python3_sitelib}/click_package/tests/integration/__pycache__
 %{python3_sitelib}/click_package/tests/integration/__pycache__/*.pyc
-%dir %{python3_sitelib}/click_package/tests/__pycache__
 %{python3_sitelib}/click_package/tests/__pycache__/*.pyc
-%dir %{python3_sitelib}/click_package/commands
 %{python3_sitelib}/click_package/commands/*.py
-%dir %{python3_sitelib}/click_package/commands/__pycache__
 %{python3_sitelib}/click_package/commands/__pycache__/*.pyc
-%dir %{python3_sitelib}/click_package/__pycache__
 %{python3_sitelib}/click_package/__pycache__/*.pyc
-%dir %{python3_sitelib}/click-%{version}-py%{python3_version}.egg-info
 %{python3_sitelib}/click-%{version}-py%{python3_version}.egg-info/*.txt
 %{python3_sitelib}/click-%{version}-py%{python3_version}.egg-info/PKG-INFO
 
 %files doc
 %{_mandir}/man1/click.1.gz
-%dir %_pkgdocdir
 %_pkgdocdir/README
-%dir %_pkgdocdir/html
 %_pkgdocdir/html/*.html
 %_pkgdocdir/html/.buildinfo
 %_pkgdocdir/html/*inv
 %_pkgdocdir/html/*.js
-%dir %_pkgdocdir/html/_sources
 %_pkgdocdir/html/_sources/*.txt
-%dir %_pkgdocdir/html/_static
 %_pkgdocdir/html/_static/*.png
 %_pkgdocdir/html/_static/*.css
 %_pkgdocdir/html/_static/*.js
