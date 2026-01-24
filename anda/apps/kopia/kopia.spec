@@ -2,7 +2,7 @@
 %global appstream_component desktop-application
 
 Name:           kopia
-%electronmeta -aD
+%electronmeta -D
 Version:        0.22.3
 Release:        1%{?dist}
 Summary:        A backup/restore tool that allows you to create encrypted snapshots
