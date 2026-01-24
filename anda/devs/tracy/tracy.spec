@@ -5,7 +5,7 @@ Summary:		A real time, nanosecond resolution, remote telemetry, hybrid frame and
 License:		BSD-3-Clause
 URL:			https://github.com/wolfpld/tracy
 Source0:		https://github.com/wolfpld/tracy/archive/refs/tags/v%version.tar.gz
-BuildRequires:  pkgconfig(egl) pkgconfig(glfw3) pkgconfig(freetype2) pkgconfig(dbus-1) pkgconfig(libunwind) pkgconfig(libdebuginfod) pkgconfig(tbb) pkgconfig(wayland-client) pkgconfig(wayland-protocols) pkgconfig(xkbcommon) pkgconfig(capstone)
+BuildRequires:  pkgconfig(egl) pkgconfig(glfw3) pkgconfig(freetype2) pkgconfig(dbus-1) pkgconfig(libunwind) pkgconfig(libdebuginfod) pkgconfig(tbb) pkgconfig(wayland-client) pkgconfig(wayland-protocols) pkgconfig(xkbcommon) pkgconfig(capstone) pkgconfig(openssl) pkgconfig(pugixml) pkgconfig(libcurl) pkgconfig(libxslt) pkgconfig(libnghttp2) pkgconfig(libidn2) pkgconfig(libssh2) tbb expat libxml2 openssl-libs
 BuildRequires:  cmake gcc gcc-c++ meson
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
