@@ -34,7 +34,6 @@ new VPKs.
 #   -DVPKEDIT_BUILD_LIBC=ON
 %cmake_build
 
-
 %install
 %cmake_install
 pushd %buildroot%_libdir/%name
@@ -43,8 +42,10 @@ popd
 mkdir -p %buildroot%_bindir
 ln -sf %_libdir/vpkedit/vpkedit %buildroot%_bindir/vpkedit
 ln -sf %_libdir/vpkedit/vpkeditcli %buildroot%_bindir/vpkeditcli
-sed -i 's@Exec=/opt/vpkedit/@Exec=@g' %buildroot%_datadir/applications/vpkedit.desktop
+%desktop_file_edit -k Exec -v %{_libdir}/vpkedit/vpkedit %buildroot%_datadir/applications/vpkedit.desktop
 
+%check
+%desktop_file_validate %buildroot%_datadir/applications/vpkedit.desktop
 
 %files
 %doc README.md CODE_OF_CONDUCT.md INSTALL.md CREDITS.md
