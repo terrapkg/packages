@@ -1,0 +1,13 @@
+diff --git a/app/package.json b/app/package.json
+index bd3a699a..df05befa 100644
+--- a/app/package.json
++++ b/app/package.json
+@@ -45,7 +45,7 @@
+     ],
+     "directories": {
+       "buildResources": "assets",
+-      "output": "../dist/kopia-ui"
++      "output": "./dist"
+     },
+     "nsis": {
+       "oneClick": false,
