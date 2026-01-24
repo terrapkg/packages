@@ -46,8 +46,6 @@ sed -i 's/Exec=helium\b/Exec=helium-browser-bin/g' helium.desktop
 %install
 install -dm755 %{buildroot}%{_libdir}/%{name}
 cp -a * %{buildroot}%{_libdir}/%{name}/
-ls -la
-ls -la %{buildroot}%{_libdir}/%{name}/
 sed -i 's/exists_desktop_file || generate_desktop_file/true/' \
     %{buildroot}%{_libdir}/%{name}/helium-wrapper
 
