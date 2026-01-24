@@ -1,6 +1,6 @@
 Name:			tracy
 Version:		0.13.1
-Release:		1%?dist
+Release:		2%?dist
 Summary:		A real time, nanosecond resolution, remote telemetry, hybrid frame and sampling profiler for games and other applications
 License:		BSD-3-Clause
 URL:			https://github.com/wolfpld/tracy
@@ -69,7 +69,6 @@ install -Dm644 icon/application-tracy.svg %buildroot%_iconsdir/hicolor/scalable/
 
 %files devel
 %_libdir/pkgconfig/tracy.pc
-%dir %_includedir/tracy
 %_includedir/tracy/*
 
 %changelog

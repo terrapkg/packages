@@ -7,9 +7,9 @@
 %global compat_package	terra-wine-dev
 # Cannot use the _datadir macro here or it will cause mass macro recursion
 %global _prefix 	/usr/share/wine-dev
-%global srcmajor 11.0
+%global srcmajor 11.x
 # Make this as a variable instead in case of WINE RCs
-%global ver wine-11.0
+%global ver wine-11.1
 %global cleanver %(echo %{ver} | sed 's/v//g;s/wine-//g')
 
 # This is unfortunate but a lot of Fedora's/SUSE's hardening flags break WINE
