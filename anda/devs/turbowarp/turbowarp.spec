@@ -6,7 +6,7 @@ Version:          1.15.2
 Release:          1%?dist
 Summary:          A better offline editor for Scratch 3
 URL:              https://desktop.turbowarp.org/
-License:          GPL-3.0 AND %{electron_license}
+License:          GPL-3.0-only AND %{electron_license}
 
 BuildRequires:    anda-srpm-macros
 BuildRequires:    terra-appstream-helper
