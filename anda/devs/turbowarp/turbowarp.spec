@@ -2,9 +2,9 @@
 
 Name:             turbowarp-desktop
 %electronmeta -D
-Version:		      1.15.2
-Release:		      1%?dist
-Summary:		      A better offline editor for Scratch 3
+Version:          1.15.2
+Release:          1%?dist
+Summary:          A better offline editor for Scratch 3
 URL:              https://desktop.turbowarp.org/
 License:          GPL-3.0 AND %{electron_license}
 
