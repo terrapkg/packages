@@ -53,5 +53,5 @@ install -Dm 755 target/rpm/%{name} %{buildroot}%{_bindir}/%{name}
 
 %changelog
 * Fri Jan 9 2026 Jaiden Riordan <jade@fyralabs.com>
-- Package System76 Power
+- Port to Terra
 
