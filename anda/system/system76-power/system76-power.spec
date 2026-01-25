@@ -1,33 +1,37 @@
-%global commit b3a8574841dfd6dfde13e187523a03b81facf554
-%global commit_date 202516
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
+%global appid com.system76.PowerDaemon
 
-# Based on syzdell's COPR specs and patches, modified for Terra
+Name:           system76-power
+Version:        1.2.8
+Release:        1%{?dist}
+Summary:        Power Profiles and dGPU Hotplug for System76 Laptops
+License:        GPL-3.0-only
 
-Name:       system76-power
-Version:    %commit_date.%shortcommit
-Release:    1%dist
-Summary:    Power Profiles and dGPU Hotplug for System76 Laptops
-License:    GPLv3
-Packager:   Jaiden Riordan <jade@fyralabs.com>
-URL:        https://github.com/szydell/system76-power
-Source0:     %url/archive/%commit/system76-power-%commit.tar.gz
-BuildRequires: cargo systemd-rpm-macros dbus-devel libusb-compat-0.1-devel
-Requires: dbus-common libusb libusb-compat-0.1 
+Packager:       Jaiden Riordan <jade@fyralabs.com>
+URL:            https://github.com/pop-os/system76-power
+Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
+
+BuildRequires:  libusb-compat-0.1-devel
+BuildRequires:  dbus-devel 
+BuildRequires:  systemd-rpm-macros 
+BuildRequires:  cargo-rpm-macros
+BuildRequires:  mold
 
 %description
 %summary.
 
 %prep
-%autosetup -n system76-power-%commit
+%autosetup 
 %cargo_prep_online
 
-%install
-%cargo_install
+%build
+%cargo_build
 
-install -Dpm 0644 "completion/completion.sh" "%{buildroot}%{_datadir}/bash-completion/completions/%{name}"
-install -D -m 0644 "debian/%{name}-wake.service" "%{buildroot}/%{_unitdir}/%{name}-wake.service"
-install -D -m 0644 "data/com.system76.PowerDaemon.service" "%{buildroot}/%{_unitdir}/com.system76.PowerDaemon.service"
+%install
+install -Dm 644 data/%{appid}.conf %{buildroot}%{_datadir}/dbus-1/system.d/%{appid}.conf
+install -Dm 644 data/%{appid}.policy %{buildroot}%{_datadir}/polkit-1/actions/%{appid}.policy
+install -Dm 644 data/%{appid}.service %{buildroot}%{_unitdir}/%{appid}.service
+install -Dm 644 data/%{appid}.xml %{buildroot}%{_datadir}/dbus-1/interfaces/%{appid}.xml
+install -Dm 755 target/rpm/%{name} %{buildroot}%{_bindir}/%{name}
 
 %post
 %systemd_post com.system76.PowerDaemon.service
@@ -39,16 +43,13 @@ install -D -m 0644 "data/com.system76.PowerDaemon.service" "%{buildroot}/%{_unit
 %systemd_postun_with_restart com.system76.PowerDaemon.service
 
 %files
+%doc README.md TESTING.md
+%license LICENSE
 %{_bindir}/%{name}
-%{_unitdir}/%{name}-wake.service
-%{_datadir}/bash-completion/completions/%{name}
-%{_unitdir}/com.system76.PowerDaemon.service
-%{_datadir}/dbus-1/interfaces/com.system76.PowerDaemon.xml
-%{_datadir}/dbus-1/system.d/com.system76.PowerDaemon.conf
-%{_datadir}/polkit-1/actions/com.system76.PowerDaemon.policy
-
-%ghost %{_sysconfdir}/modprobe.d/%{name}.conf
-%ghost %{_sysconfdir}/modules-load.d/%{name}.conf
+%{_unitdir}/%{appid}.service
+%{_datadir}/dbus-1/interfaces/%{appid}.xml
+%{_datadir}/dbus-1/system.d/%{appid}.conf
+%{_datadir}/polkit-1/actions/%{appid}.policy
 
 %changelog
 * Fri Jan 9 2026 Jaiden Riordan <jade@fyralabs.com>
