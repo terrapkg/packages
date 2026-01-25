@@ -93,7 +93,7 @@ Packager:         junefish <june@fyralabs.com>
 %__desktop_file_edit linux-files/%appid.desktop --set-key=Exec --set-value=%{_bindir}/turbowarp-desktop
 
 %build
-%npm_build -c -B -r "webpack:prod"
+%npm_build -c -B -r fetch,webpack:prod
 
 %install
 %electron_install -i %appid -I build/
