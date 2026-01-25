@@ -90,26 +90,26 @@ Packager:         junefish <june@fyralabs.com>
 
 %prep
 %git_clone https://github.com/TurboWarp/desktop %version
-%__desktop_file_edit linux-files/org.turbowarp.TurboWarp.desktop --set-key=Exec --set-value=%{_bindir}/turbowarp-desktop
+%__desktop_file_edit linux-files/%appid.desktop --set-key=Exec --set-value=%{_bindir}/turbowarp-desktop
 
 %build
 %npm_build -c -B -r "webpack:prod"
 
 %install
-%electron_install -i org.turbowarp.TurboWarp -I build/
+%electron_install -i %appid -I build/
 
-%terra_appstream -o linux-files/org.turbowarp.TurboWarp.metainfo.xml
+%terra_appstream -o linux-files/%appid.metainfo.xml
 
-install -Dm644 linux-files/org.turbowarp.TurboWarp.desktop %{buildroot}%{_appsdir}/org.turbowarp.TurboWarp.desktop
+%__desktop_file_install linux-files/%appid.desktop
 
 %files
 %license LICENSE
 %doc README.md
 %{_bindir}/turbowarp-desktop
 %{_libdir}/turbowarp-desktop/
-%{_appsdir}/org.turbowarp.TurboWarp.desktop
-%{_hicolordir}/512x512/apps/org.turbowarp.TurboWarp.png
-%{_metainfodir}/org.turbowarp.TurboWarp.metainfo.xml
+%{_appsdir}/%appid.desktop
+%{_hicolordir}/512x512/apps/%appid.png
+%{_metainfodir}/%appid.metainfo.xml
 
 %changelog
 * Sat Jan 24 2026 june-fish <git@june.fish> - 1.15.2
