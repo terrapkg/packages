@@ -1,1 +1,1 @@
-rpm.global("ver", gh("szydell/system76-power"));
+rpm.version(gh_tag("pop-os/system76-power"));
