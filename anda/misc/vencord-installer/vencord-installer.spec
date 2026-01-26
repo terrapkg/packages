@@ -1,5 +1,8 @@
 
 %global debug_package %{nil}
+
+%bcond_without openasar
+
 %global appstream_component addon
 # https://github.com/vencord/installer
 %global goipath         github.com/Vencord/Installer
@@ -69,6 +72,35 @@ Requires(posttrans): %{name}-cli
 %description discord-ptb
 Automatic Discord integration for %{name} (ptb branch).
 
+%if %{with openasar}
+%package discord-stable+openasar
+Summary:        Automatic Discord integration for %{name} (stable, OpenAsar)
+Requires:       %{name}-cli
+Requires(posttrans): %{name}-cli
+Conflicts:      %{name}-discord-stable
+Conflicts:      discord-openasar
+%description discord-stable+openasar
+discord-stable+openasar Automatic Discord integration for %{name} (stable branch, OpenAsar).
+
+%package discord-canary+openasar
+Summary:        Automatic Discord integration for %{name} (canary, OpenAsar)
+Requires:       %{name}-cli
+Requires(posttrans): %{name}-cli
+Conflicts:      %{name}-discord-canary
+Conflicts:      discord-canary-openasar
+%description discord-canary+openasar
+discord-canary+openasar Automatic Discord integration for %{name} (canary branch, OpenAsar).
+
+%package discord-ptb+openasar
+Summary:        Automatic Discord integration for %{name} (ptb, OpenAsar)
+Requires:       %{name}-cli
+Requires(posttrans): %{name}-cli
+Conflicts:      %{name}-discord-ptb
+Conflicts:      discord-ptb-openasar
+%description discord-ptb+openasar
+Automatic Discord integration for %{name} (ptb branch, OpenAsar).
+%endif
+
 %gopkg
 
 %prep
@@ -114,6 +146,20 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %license LICENSE
 %doc README.md
 
+%if %{with openasar}
+%files discord-stable+openasar
+%license LICENSE
+%doc README.md
+
+%files discord-canary+openasar
+%license LICENSE
+%doc README.md
+
+%files discord-ptb+openasar
+%license LICENSE
+%doc README.md
+%endif
+
 %gopkgfiles
 
 
@@ -125,6 +171,17 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 
 %transfiletriggerin -n %{name}-discord-ptb -- /usr/share/discord-ptb
 %{_bindir}/vencord-installer-cli -install -location /usr/share/discord-ptb
+
+%if %{with openasar}
+%transfiletriggerin -n %{name}-discord-stable+openasar -- /usr/share/discord
+%{_bindir}/vencord-installer-cli -install -install-openasar -location /usr/share/discord
+
+%transfiletriggerin -n %{name}-discord-canary+openasar -- /usr/share/discord-canary
+%{_bindir}/vencord-installer-cli -install -install-openasar -location /usr/share/discord-canary
+
+%transfiletriggerin -n %{name}-discord-ptb+openasar -- /usr/share/discord-ptb
+%{_bindir}/vencord-installer-cli -install -install-openasar -location /usr/share/discord-ptb
+%endif
 
 %changelog
 %autochangelog
