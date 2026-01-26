@@ -18,7 +18,8 @@ BuildRequires:  python3-dbus
 BuildRequires:  python3-packaging
 BuildRequires:  gtk3
 BuildRequires:  libnotify
-BuildRequires:  python3-proton-vpn-api-core
+# Fails build
+%dnl BuildRequires:  python3-proton-vpn-api-core
 BuildRequires:  librsvg2
 
 Requires:       gtk3
