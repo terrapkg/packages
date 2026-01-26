@@ -1,14 +1,10 @@
-%global appid com.github.snow
-
 Name:           snow
 Version:        1.3.0
 Release:        1%?dist
 Summary:        Classic Macintosh emulator
 URL:            https://github.com/twvd/snow
 Source0:        %url/archive/refs/tags/v%version.tar.gz
-Source1:        snow.desktop
-Source2:        %appid.metainfo.xml
-License:        MIT
+License:        MIT AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT) AND Apache-2.0 AND BSD-2-Clause AND Zlib AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (BSD-3-Clause OR Apache-2.0) AND BSD-3-Clause AND BSL-1.0 AND CC0-1.0 OR MIT-0 OR Apache-2.0 AND ISC AND (Apache-2.0 OR BSL-1.0) AND (MIT OR Apache-2.0 OR Zlib) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND
 
 BuildRequires:  cargo
 BuildRequires:  gcc-c++
@@ -16,7 +12,6 @@ BuildRequires:  mold
 BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  desktop-file-utils
-BuildRequires:  terra-appstream-helper
 BuildRequires:  SDL2-devel
 Provides:       snowemu
 
@@ -43,25 +38,16 @@ Documentation files for %{name}
 
 %install
 mkdir -p %{buildroot}%{_pkgdocdir}
-install -Dm755 target/rpm/snow_frontend_egui %{buildroot}%{_bindir}/snowemu
+install -Dm755 target/rpm/snow_frontend_egui        %{buildroot}%{_bindir}/snowemu
+install -Dm644 assets/snow_icon.png                 %{buildroot}%{_hicolordir}/1024x1024/apps/snow_icon.png
+%desktop_file_install assets/snow.desktop
+install -Dm644 assets/dev.thomasw.snow.metainfo.xml %{buildroot}%{_metainfodir}/dev.thomasw.snow.metainfo.xml
 
-install -Dm644 docs/images/snow_icon.png     %{buildroot}%{_hicolordir}/1024x1024/apps/snow_icon.png
-
-install -Dm644 %{SOURCE1}                    %{buildroot}%{_appsdir}/snow.desktop
-
-cp -a docs/*                                 %{buildroot}%{_pkgdocdir}/
+cp -a docs/*                                        %{buildroot}%{_pkgdocdir}/
 rm %{buildroot}%{_pkgdocdir}/*.toml
-rm %{buildroot}%{_pkgdocdir}/images/*.icns
-rm %{buildroot}%{_pkgdocdir}/images/*.ico
 rm -r %{buildroot}%{_pkgdocdir}/theme
 
-%terra_appstream -o %{SOURCE2}
-
-%cargo_license_summary_online
 %{cargo_license_online} > LICENSE.dependencies
-
-%check
-desktop-file-validate %{buildroot}%{_appsdir}/snow.desktop
 
 %files
 %doc README.md
@@ -70,7 +56,7 @@ desktop-file-validate %{buildroot}%{_appsdir}/snow.desktop
 %{_bindir}/snowemu
 %{_hicolordir}/1024x1024/apps/snow_icon.png
 %{_appsdir}/snow.desktop
-%{_metainfodir}/%appid.metainfo.xml
+%{_metainfodir}/dev.thomasw.snow.metainfo.xml
 
 %files doc
 %license LICENSE
