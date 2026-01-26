@@ -11,6 +11,7 @@ BuildRequires:  gcc-c++
 BuildRequires:  mold
 BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo-rpm-macros
+BuildRequires:  desktop-file-utils
 BuildRequires:  SDL2-devel
 Provides:       snowemu
 
