@@ -19,14 +19,11 @@ BuildRequires:  rust
 BuildRequires:  rpm_macro(cargo_install)
 BuildRequires:  anda-srpm-macros mold
 
-%description
+%global _description %{expand:
 Keeping your system up to date usually involves invoking multiple package managers.
 This results in big, non-portable shell one-liners saved in your shell.
 To remedy this, Topgrade detects which tools you use and
-runs the appropriate commands to update them.
-
-%global _description %{expand:
-Upgrade all the things.}
+runs the appropriate commands to update them.}
 
 %description %{_description}
 
