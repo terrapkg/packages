@@ -7,7 +7,7 @@
 # https://github.com/vencord/installer
 %global goipath         github.com/Vencord/Installer
 Version:                1.4.0
-%global commit          d1023cf2acce418efaac6f597785587f11568db9
+%global commit          8bd9dfd8de2926bb55cf7709b8c31f0704372cec
 
 %global appid           dev.vencord.Installer
 
