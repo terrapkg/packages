@@ -33,7 +33,7 @@ install -Dm644 debian/%{name}.service -t %{buildroot}%{_unitdir}
 # When DNF supports microarchitectures the fallback option for -c can be used here instead
 DESTDIR="%{buildroot}" \
 %ifarch x86_64
-%{zig_build_target -r fast -c x86_64_v2 -s} \
+%{zig_build_target -r fast -cx86_64_v2 -s} \
 %elifarch aarch64
 %{zig_build_target -r fast -s} \
 %endif
