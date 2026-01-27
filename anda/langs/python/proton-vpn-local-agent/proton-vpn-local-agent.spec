@@ -11,7 +11,7 @@ License:		GPL-3.0-only
 URL:			https://github.com/ProtonVPN/local-agent-rs
 Source0:		%url/archive/refs/tags/%version.tar.gz
 
-BuildRequires:  python3-devel mold
+BuildRequires:  python3-devel
 BuildRequires:  cargo-rpm-macros
 
 # Really cursed but there is no pyproject.toml or setup.py in this package to auto-provide this, and proton-vpn needs this
