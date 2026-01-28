@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 %global commit d183902dc7d8e55c58a85bbc3e2f0607b6571e82
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global commit_date 20260116
 %global ver 0.221.0
+=======
+%global commit 06b5ec4664562505ab7a070c3d412ace635bb25d
+%global shortcommit %(c=%{commit}; echo ${c:0:7})
+%global commit_date 20260128
+%global ver 0.222.0
+>>>>>>> 93ea6f333 (chore: Bump out of sync packages (#9513))
 
 %bcond_with check
 %bcond_with debug_no_build

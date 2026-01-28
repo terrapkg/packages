@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 %global commit b3f3f1da2fa59a2cbdea73c75b7d67bc312ce2bc
 %global commit_date 20251115
+=======
+%global commit 605d9dd8c825b650deeaa614e1b83e8dbb41e87d
+%global commit_date 20260128
+>>>>>>> 93ea6f333 (chore: Bump out of sync packages (#9513))
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           appset

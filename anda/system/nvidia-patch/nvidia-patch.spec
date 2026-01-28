@@ -1,7 +1,7 @@
 %global debug_package %{nil}
-%global commit be3f1616b976c47d33b0abf2956f4129d759824a
+%global commit 2b16ade220d42021b32f7c9129a756fa246a7567
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260107
+%global commit_date 20260128
 
 
 %global patches %{_datadir}/src/nvidia-patch
