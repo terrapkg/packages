@@ -3,7 +3,7 @@
 %global commit  3483ce867ee10aa084843e97b8f31c9489d6e93d
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global ver 20260125
-%global commit_date 20260127
+%global commit_date 20260128
 
 Name:           winetricks-git
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
