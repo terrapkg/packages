@@ -1,6 +1,6 @@
 %define debug_package %{nil}
 Name:           bazzite-portal
-Version:        0.1.5
+Version:        0.1.6
 Release:        1%?dist
 Summary:        Bazzite Portal is a tabbed frontend for curated script execution, with a focus on distro specific QOL shortcuts
 URL:            https://github.com/ublue-os/yafti-gtk
@@ -27,8 +27,6 @@ install -Dm 755 yafti_gtk.py %{buildroot}%{_bindir}/yafti_gtk.py
 install -Dm 644 io.github.ublue_os.yafti_gtk.desktop %{buildroot}%{_appsdir}/io.github.ublue_os.yafti_gtk.desktop
 install -Dm 644 portal.svg %{buildroot}%{_scalableiconsdir}/io.github.ublue_os.yafti_gtk.svg
 install -Dm 644 io.github.ublue_os.yafti_gtk.metainfo.xml %{buildroot}%{_metainfodir}/io.github.ublue_os.yafti_gtk.metainfo.xml
-%__desktop_file_edit --set-key=Exec --set-value="yafti_gtk.py /usr/share/yafti/yafti.yml" %{buildroot}%{_appsdir}/io.github.ublue_os.yafti_gtk.desktop
-
 
 %files
 %{_bindir}/yafti_gtk.py
