@@ -1,6 +1,6 @@
 %define debug_package %{nil}
 Name:           bazzite-portal
-Version:        0.1.4
+Version:        0.1.5
 Release:        1%?dist
 Summary:        Bazzite Portal is a tabbed frontend for curated script execution, with a focus on distro specific QOL shortcuts
 URL:            https://github.com/ublue-os/yafti-gtk
@@ -9,7 +9,6 @@ License:        GPL-3.0-only
 BuildRequires:  desktop-file-utils
 Requires:       python3-gobject
 Requires:       python3-PyYAML
-Requires:       vte
 Requires:       gtk3
 Packager:       Zacharias Xenakis <xarishark@outlook.com>
 Provides:       Bazzite-Portal
