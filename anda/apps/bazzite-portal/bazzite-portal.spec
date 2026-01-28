@@ -15,6 +15,7 @@ Provides:       Bazzite-Portal
 %description
 %{summary}.
 
+%prep
 %autosetup -n yafti-gtk-%{version}
 
 
@@ -23,7 +24,7 @@ Provides:       Bazzite-Portal
 %install
 install -Dm 755 yafti_gtk.py %{buildroot}%{_bindir}/yafti_gtk.py
 install -Dm 644 io.github.ublue_os.yafti_gtk.desktop %{buildroot}%{_appsdir}/io.github.ublue_os.yafti_gtk.desktop
-install -Dm 644 assets/portal.svg %{buildroot}%{_scalableiconsdir}/io.github.ublue_os.yafti_gtk.svg
+install -Dm 644 portal.svg %{buildroot}%{_scalableiconsdir}/io.github.ublue_os.yafti_gtk.svg
 
 
 %files
