@@ -9,7 +9,7 @@
 
 Name:          %{shortname}-games-launcher
 Version:       2.19.1
-Release:       1%?dist
+Release:       2%?dist
 Summary:       A games launcher for GOG, Amazon, and Epic Games
 License:       GPL-3.0-only AND MIT AND BSD-3-Clause
 URL:           https://heroicgameslauncher.com
@@ -64,8 +64,7 @@ install -Dpm644 flatpak/templates/%{appid}.metainfo.xml.template %{buildroot}%{_
 %doc     CODE_OF_CONDUCT.md
 %license COPYING
 %license bundled_licenses/*
-%dir %{_libdir}/%{shortname}
-%{_libdir}/%{shortname}/*
+%{_libdir}/%{shortname}/
 %{_bindir}/%{shortname}
 %{_bindir}/%{name}
 %{_appsdir}/%{appid}.desktop
