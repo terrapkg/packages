@@ -1,3 +1,4 @@
+%define debug_package %{nil}
 Name:           bazzite-portal
 Version:        0.1.4
 Release:        1%?dist
@@ -18,14 +19,12 @@ Provides:       Bazzite-Portal
 %prep
 %autosetup -n yafti-gtk-%{version}
 
-
 %build
 
 %install
 install -Dm 755 yafti_gtk.py %{buildroot}%{_bindir}/yafti_gtk.py
 install -Dm 644 io.github.ublue_os.yafti_gtk.desktop %{buildroot}%{_appsdir}/io.github.ublue_os.yafti_gtk.desktop
 install -Dm 644 portal.svg %{buildroot}%{_scalableiconsdir}/io.github.ublue_os.yafti_gtk.svg
-
 
 %files
 %{_bindir}/yafti_gtk.py
