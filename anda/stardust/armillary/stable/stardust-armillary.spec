@@ -1,16 +1,14 @@
-%global commit 8ad02b636690170adbd4279fe3fc8265088cbcc2
-%global commit_date 20240726
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-xr-armillary
-Version:        %commit_date.%shortcommit
+Version:        0.50.0
 Release:        2%?dist
+Epoch:          1
 Summary:        Model viewer for Stardust XR
 URL:            https://github.com/StardustXR/armillary
-Source0:        %url/archive/%commit/armillary-%commit.tar.gz
-License:        MIT
+Source0:        %url/archive/refs/tags/%version.tar.gz
+License:        MIT AND (MIT OR Apache-2.0) AND Unicode-3.0 AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND BSD-3-Clause AND (BSD-3-Clause OR MIT OR Apache-2.0) AND ISC AND BSD-3-Clause AND LGPL-2.1-or-later AND (MIT OR Zlib OR Apache-2.0) AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT) AND Zlib
 BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold
 
 Provides:       armillary stardust-armillary
@@ -20,7 +18,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 A model viewer for Stardust XR which works great for hand tracking, pointers, and controllers.
 
 %prep
-%autosetup -n armillary-%commit
+%autosetup -n armillary-%version
 %cargo_prep_online
 
 %build
@@ -28,7 +26,6 @@ A model viewer for Stardust XR which works great for hand tracking, pointers, an
 %install
 %define __cargo_common_opts %{?_smp_mflags} -Z avoid-dev-deps --locked
 %cargo_install
-%cargo_license_summary_online
 %{cargo_license_online} > LICENSE.dependencies
 
 %files
@@ -38,5 +35,8 @@ A model viewer for Stardust XR which works great for hand tracking, pointers, an
 %doc README.md
 
 %changelog
+* Sat Jan 10 2026 Owen Zimmerman <owen@fyralabs.com>
+- Switch to version based
+
 * Sat Sep 7 2024 Owen-sz <owen@fyralabs.com>
 - Package StardustXR armillary
