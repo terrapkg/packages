@@ -25,6 +25,8 @@ Requires:       stardust-xr-solar-sailer
 BuildArch:      noarch
 Provides:       telescope stardust-telescope
 
+Packager:       Owen Zimmerman <owen@fyralabs.com>
+
 %description
 See the stars! Easy stardust setups to run on your computer.
 

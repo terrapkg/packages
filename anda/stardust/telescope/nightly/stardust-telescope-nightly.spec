@@ -29,6 +29,8 @@ BuildArch:      noarch
 Provides:       telescope-nightly stardust-telescope-nightly
 Conflicts:      stardust-xr-telescope
 
+Packager:       Owen Zimmerman <owen@fyralabs.com>
+
 %description
 See the stars! Easy stardust setups to run on your computer.
 
