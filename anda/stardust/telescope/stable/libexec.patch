@@ -6,4 +6,4 @@ index bad4436..50f7983 100644
  #!/bin/bash
  
 -stardust-xr-server -o 6 -e "$(which _telescope_startup)" "$@"
-+stardust-xr-server -o 6 -e "/usr/libexec/_telescope_startup" "$@"
++stardust-xr-server -o 6 -e "/usr/libexec/telescope_startup" "$@"
