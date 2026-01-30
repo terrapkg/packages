@@ -31,11 +31,12 @@ It is designed for use on AMD platforms with access to libryzenadj.
 %cargo_prep_online
 
 %build
+%{cargo_build} --locked
 %cargo_license_summary_online
 %{cargo_license_online} > LICENSE.dependencies
 
 %install
-%cargo_install
+%crate_install_bin
 
 # DBus system policy
 install -Dm644 rootfs%_datadir/dbus-1/system.d/org.shadowblip.PowerStation.conf \
