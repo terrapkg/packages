@@ -1,7 +1,7 @@
 %global         majorminor 1.0
 
 Name:           gstreamer1-plugins-ugly
-Version:        1.26.10
+Version:        1.28.0
 Release:        1%?dist
 Epoch:          2
 Summary:        GStreamer streaming media framework "ugly" plugins

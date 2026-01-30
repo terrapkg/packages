@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:           cloudflare-speed-cli
-Version:        0.6.0
+Version:        0.6.1
 Release:        1%?dist
 Summary:        CLI for internet speed test via cloudflare
 
