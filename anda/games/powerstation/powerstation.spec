@@ -10,6 +10,7 @@ Summary:        Daemon for controlling TDP and performance over DBus
 License:        GPL-3.0-or-later
 URL:            https://github.com/ShadowBlip/PowerStation
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
+Packager:       madonuko <mado@fyralabs.com>
 
 ExcludeArch:    %{ix86}
 
