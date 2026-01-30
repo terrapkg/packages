@@ -1,3 +1,5 @@
+%define debug_package %nil
+
 Name:           powerbuttond
 Version:        4.0
 Release:        1%?dist
@@ -27,12 +29,13 @@ Steam Deck power button daemon
 %autosetup -n powerbuttond-v%{version} -p1
 
 %build
-%make_build CFLAGS="$CFLAGS"
+%make_build CFLAGS="$CFLAGS -I%_includedir/libevdev-1.0" LDFLAGS="$LDFLAGS"
 
 %install
 %make_install
-sed -i 's/Requisite=gamescope-session.service//g' %{buildroot}/%{_userunitdir}/%{name}.service
+sed -i 's/Requisite=gamescope-session.service//g' %{buildroot}%{_userunitdir}/steamos-powerbuttond.service
 rm -r %{buildroot}/%{_userunitdir}/gamescope-session.service.wants
+rm %buildroot%_datadir/licenses/steamos-%name/LICENSE
 
 %post
 udevadm control --reload-rules
@@ -48,8 +51,8 @@ udevadm trigger
 %files
 %license LICENSE
 %dir %{_prefix}/lib/hwsupport
-%{_prefix}/lib/hwsupport/%{name}
-%{_userunitdir}/%{name}.service
+%{_prefix}/lib/hwsupport/steamos-%{name}
+%{_userunitdir}/steamos-%{name}.service
 %{_prefix}/lib/udev/rules.d/70-steamos-power-button.rules
 %dir %{_prefix}/lib/udev/hwdb.d
 %{_prefix}/lib/udev/hwdb.d/70-steamos-power-button.hwdb
