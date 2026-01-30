@@ -45,10 +45,8 @@ OpenBangla Keyboard for Fcitx5.
 
 
 %prep
-%autosetup -n OpenBangla-Keyboard-%commit
-rmdir src/engine/riti
-tar xf %SOURCE1 -C src/engine/
-mv src/engine/riti-master src/engine/riti
+%git_clone https://github.com/OpenBangla/OpenBangla-Keyboard.git %{commit}
+%cargo_prep_online
 
 %build
 if [[ -d build ]]; then rm -rf build; fi
@@ -59,7 +57,8 @@ if [[ -d build ]]; then rm -rf build; fi
 %cmake_install
 
 %files
-%doc README.adoc
+%lang(bn) %doc README.bn.adoc
+%lang(en) %doc README.adoc
 %license LICENSE
 %_bindir/openbangla-gui
 %_datadir/applications/openbangla-keyboard.desktop
