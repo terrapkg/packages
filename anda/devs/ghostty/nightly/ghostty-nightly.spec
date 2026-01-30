@@ -282,6 +282,7 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %{_datadir}/%{base_name}/shell-integration/bash/%{base_name}.bash
 %{_datadir}/%{base_name}/shell-integration/elvish/lib/%{base_name}-integration.elv
 %{_datadir}/%{base_name}/shell-integration/fish/vendor_conf.d/%{base_name}-shell-integration.fish
+%{_datadir}/%{base_name}/shell-integration/nushell/vendor/autoload/%{base_name}.nu
 %{_datadir}/%{base_name}/shell-integration/zsh/.zshenv
 %{_datadir}/%{base_name}/shell-integration/zsh/%{base_name}-integration
 
