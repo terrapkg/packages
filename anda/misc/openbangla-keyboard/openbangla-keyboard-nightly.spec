@@ -14,7 +14,7 @@ Source1:        https://github.com/OpenBangla/riti/archive/master.tar.gz
 BuildRequires:  cmake anda-srpm-macros rust-packaging git-core gcc-c++
 BuildRequires:  qt5-qtbase-devel qt5-qtdeclarative-devel pkgconfig(ibus-1.0) fcitx5-devel pkgconfig(libzstd)
 Requires:       qt5-qtbase hicolor-icon-theme zstd
-Requires:       openbangla-im = %version-%release
+Requires:       ibus
 Provides:       openbangla-keyboard = %version-%release
 Conflicts:      openbangla-keyboard
 Obsoletes:      ibus-openbangla <= 2.0.0^20260113.7c19213
