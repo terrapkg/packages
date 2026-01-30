@@ -1,5 +1,5 @@
-%global commit aa77dfc23e3e4f2122633ed6599d208d3c44791d
-%global commit_date 20260128
+%global commit eb345dfdfa338dc3626932f8a992423c3f6b3532
+%global commit_date 20260130
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           qdl
