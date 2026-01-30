@@ -1,0 +1,59 @@
+Name:           powerbuttond
+Version:        4.0
+Release:        1%?dist
+Summary:        Steam Deck power button daemon
+
+License:        BSD
+URL:            https://gitlab.steamos.cloud/holo/powerbuttond
+Source:		    %{url}/-/archive/v%{version}/powerbuttond-v%{version}.tar.gz
+Packager:       madonuko <mado@fyralabs.com>
+BuildRequires:  systemd-rpm-macros
+BuildRequires:  pkgconfig(libudev)
+BuildRequires:  pkgconfig(libevdev)
+BuildRequires:  make gcc
+
+Provides:       steam-powerbuttond
+Obsoletes:      steam-powerbuttond < 3.3
+Provides:       steamos-powerbuttond
+Obsoletes:      steamos-powerbuttond < 3.3
+Provides:       powerbuttond
+Obsoletes:      powerbuttond < 3.3
+Obsoletes:      gamescope-session-plus <= 0.2.git.201.5538cd66
+
+%description
+Steam Deck power button daemon
+
+%prep
+%autosetup -n powerbuttond-v%{version} -p1
+
+%build
+%make_build CFLAGS="$CFLAGS"
+
+%install
+%make_install
+sed -i 's/Requisite=gamescope-session.service//g' %{buildroot}/%{_userunitdir}/%{name}.service
+rm -r %{buildroot}/%{_userunitdir}/gamescope-session.service.wants
+
+%post
+udevadm control --reload-rules
+udevadm trigger
+%systemd_user_post %{name}.service
+
+%preun
+%systemd_user_preun %{name}.service
+
+%postun
+%systemd_user_postun %{name}.service
+
+%files
+%license LICENSE
+%dir %{_prefix}/lib/hwsupport
+%{_prefix}/lib/hwsupport/%{name}
+%{_userunitdir}/%{name}.service
+%{_prefix}/lib/udev/rules.d/70-steamos-power-button.rules
+%dir %{_prefix}/lib/udev/hwdb.d
+%{_prefix}/lib/udev/hwdb.d/70-steamos-power-button.hwdb
+
+%changelog
+* Fri Jan 30 2026 madonuko <mado@fyralabs.com> - 4.0-1
+- Ported from https://copr-dist-git.fedorainfracloud.org/packages/gloriouseggroll/nobara-43/steamos-powerbuttond.git/tree/steamos-powerbuttond.spec?h=f43&id=071012e4c4b4a1eda8606753615c9f4ceef33458
