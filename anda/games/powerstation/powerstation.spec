@@ -14,12 +14,10 @@ Packager:       madonuko <mado@fyralabs.com>
 
 ExcludeArch:    %{ix86}
 
-BuildRequires:  rust
-BuildRequires:  cargo
+BuildRequires:  rust-packaging
 BuildRequires:  pciutils-devel
 BuildRequires:  systemd-devel
 BuildRequires:  clang
-BuildRequires:  cmake
 Requires:       dbus
 Requires:       zlib-ng-compat
 
