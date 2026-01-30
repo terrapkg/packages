@@ -1,7 +1,7 @@
 %global pypi_name proton-vpn-api-core
 %global _desc A facade to the other Proton VPN components, exposing a uniform API to the available Proton VPN services.
 
-%global __require_excludes python3\\.14dist\\(proton-vpn-local-agent\\)
+%global __requires_exclude ^python3\\.14dist\\(proton-vpn-local-agent\\)$
 
 Name:			python-%{pypi_name}
 Version:		4.14.3
