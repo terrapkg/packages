@@ -34,7 +34,8 @@ methods such as Avro Phonetic, Probhat, Munir Optima, National (Jatiya) etc.
   -DCMAKE_BUILD_TYPE=None \
   -DCMAKE_SKIP_INSTALL_RPATH=YES \
   -DCMAKE_SKIP_RPATH=YES \
-  -DCMAKE_INSTALL_PREFIX=%{_prefix}
+  -DCMAKE_INSTALL_PREFIX=%{_prefix} \
+  -DBUILD_SHARED_LIBS:BOOL=OFF
 %cmake_build
 
 %install
