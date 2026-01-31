@@ -18,9 +18,7 @@ Provides:       steam-powerbuttond
 Obsoletes:      steam-powerbuttond < 3.3
 Provides:       steamos-powerbuttond
 Obsoletes:      steamos-powerbuttond < 3.3
-Provides:       powerbuttond
-Obsoletes:      powerbuttond < 3.3
-Obsoletes:      gamescope-session-plus <= 0.2.git.201.5538cd66
+Provides:       powerbuttond = %evr
 
 %description
 Steam Deck power button daemon.
@@ -40,13 +38,13 @@ rm %buildroot%_datadir/licenses/steamos-%name/LICENSE
 %post
 udevadm control --reload-rules
 udevadm trigger
-%systemd_user_post %{name}.service
+%systemd_user_post steamos-%{name}.service
 
 %preun
-%systemd_user_preun %{name}.service
+%systemd_user_preun steamos-%{name}.service
 
 %postun
-%systemd_user_postun %{name}.service
+%systemd_user_postun steamos-%{name}.service
 
 %files
 %license LICENSE
