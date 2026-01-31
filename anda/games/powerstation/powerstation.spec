@@ -50,7 +50,7 @@ echo 'enable powerstation.service' | install -Dm644 /dev/stdin %buildroot%_prese
 %_bindir/powerstation
 %_datadir/dbus-1/system.d/org.shadowblip.PowerStation.conf
 %_unitdir/powerstation.service
-%_presetdir/20-enable-powerstation.service
+%_presetdir/95-enable-powerstation.service
 
 %post
 %systemd_post powerstation.service
