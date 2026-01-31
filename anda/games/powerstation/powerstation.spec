@@ -1,7 +1,3 @@
-%define __spec_install_post %{nil}
-%define __os_install_post %{_dbpath}/brp-compress
-%define debug_package %{nil}
-
 Name:           powerstation
 Version:        0.7.0
 Release:        2%{?dist}
@@ -18,7 +14,7 @@ ExcludeArch:    %{ix86}
 BuildRequires:  rust-packaging
 BuildRequires:  pciutils-devel
 BuildRequires:  systemd-devel
-BuildRequires:  clang
+BuildRequires:  clang cmake
 Requires:       dbus
 Requires:       zlib-ng-compat
 
