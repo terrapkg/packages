@@ -42,7 +42,7 @@ install -Dm644 rootfs%_unitdir/powerstation.service -t %buildroot%_unitdir
 
 sed -i 's/After=graphical-session.target//g' %buildroot%_unitdir/powerstation.service
 
-echo 'enable powerstation.service' | install -Dm644 /dev/stdin %buildroot%_presetdir/95-enable-powerstation.service
+echo 'enable powerstation.service' | install -Dm644 /dev/stdin %buildroot%_presetdir/95-enable-powerstation.preset
 
 %files
 %license LICENSE LICENSE.dependencies
@@ -50,7 +50,7 @@ echo 'enable powerstation.service' | install -Dm644 /dev/stdin %buildroot%_prese
 %_bindir/powerstation
 %_datadir/dbus-1/system.d/org.shadowblip.PowerStation.conf
 %_unitdir/powerstation.service
-%_presetdir/95-enable-powerstation.service
+%_presetdir/95-enable-powerstation.preset
 
 %post
 %systemd_post powerstation.service
