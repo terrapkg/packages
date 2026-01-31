@@ -1,9 +1,11 @@
 %global pypi_name proton-vpn-api-core
 %global _desc A facade to the other Proton VPN components, exposing a uniform API to the available Proton VPN services.
 
+%global __requires_exclude ^python3\\.14dist\\(proton-vpn-local-agent\\)$
+
 Name:			python-%{pypi_name}
 Version:		4.14.3
-Release:		1%?dist
+Release:		2%?dist
 Summary:		A facade to the other Proton VPN components
 License:		GPL-3.0-Only
 URL:			https://github.com/ProtonVPN/python-proton-vpn-api-core
@@ -13,6 +15,8 @@ BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  python3-pip
 BuildRequires:  python3-setuptools
+
+Requires:       python3-proton-vpn-local-agent
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
