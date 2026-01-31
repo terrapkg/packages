@@ -23,7 +23,7 @@ Obsoletes:      powerbuttond < 3.3
 Obsoletes:      gamescope-session-plus <= 0.2.git.201.5538cd66
 
 %description
-Steam Deck power button daemon
+Steam Deck power button daemon.
 
 %prep
 %autosetup -n powerbuttond-v%{version} -p1
