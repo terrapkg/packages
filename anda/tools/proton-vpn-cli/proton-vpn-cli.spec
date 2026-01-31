@@ -4,7 +4,7 @@
 
 Name:			python-proton-vpn-cli
 Version:		0.1.5
-Release:		3%?dist
+Release:		1%?dist
 Summary:		Official ProtonVPN CLI Linux app
 License:		GPL-3.0-only
 URL:			https://github.com/ProtonVPN/proton-vpn-cli
