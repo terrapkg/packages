@@ -82,7 +82,7 @@
 
 Name:           %{srcname}
 Summary:        Mesa graphics libraries
-%global ver 25.3.3
+%global ver 25.3.4
 Epoch:          1
 Version:        %{lua:ver = string.gsub(rpm.expand("%{ver}"), "-", "~"); print(ver)}
 Release:        2
@@ -116,12 +116,8 @@ Source15:       https://crates.io/api/v1/crates/rustc-hash/%{rustc_hash_ver}/dow
 # Teflon: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/38532
 Patch12:        mesa-38532.patch
 
-# Add required patches for Wine Wayland (From Proton-GE Release Notes)
-Patch21:        wine-wayland.patch
-
-# SteamOS Patches
-Patch30:        gamescope.patch
-Patch31:        horizon5.patch
+# Open Gaming Collective Patches
+Patch30:        https://raw.githubusercontent.com/OpenGamingCollective/mesa/refs/heads/%{ver}/limiter.patch
 
 BuildRequires:  meson >= 1.3.0
 BuildRequires:  gcc
