@@ -37,8 +37,7 @@ Packager:      Owen Zimmerman <owen@fyralabs.com>
 %cargo_prep_online
 
 %build
-%set_build_flags
-cargo build --release --features bundled
+%cargo_build -f bundled
 
 %install
 mkdir -p %{buildroot}%{_datadir}/stremio-service
