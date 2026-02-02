@@ -1,1 +1,1 @@
-rpm.version(gitlab("gitlab.steamos.cloud", "995"));
+rpm.version(gitlab_tag("gitlab.steamos.cloud", "995"));
