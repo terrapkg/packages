@@ -120,6 +120,7 @@ Patch12:        mesa-38532.patch
 
 # Open Gaming Collective Patches
 Patch30:        https://raw.githubusercontent.com/OpenGamingCollective/mesa/refs/heads/%{ver}/limiter.patch
+Patch31:        https://raw.githubusercontent.com/OpenGamingCollective/mesa/refs/heads/%{ver}/radv-defaults.patch
 
 BuildRequires:  meson >= 1.3.0
 BuildRequires:  gcc
