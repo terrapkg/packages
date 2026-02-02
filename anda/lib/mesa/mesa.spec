@@ -5,16 +5,18 @@
 %ifnarch s390x
 %global with_hardware 1
 %global with_kmsro 1
-%global with_nvk 1
 %global with_radeonsi 1
 %global with_spirv_tools 1
 %global with_vmware 1
 %global with_vulkan_hw 1
-%global with_va 1
 %if !0%{?rhel}
 %global with_r300 1
 %global with_r600 1
 %global with_opencl 1
+%global with_va 1
+%endif
+%if !0%{?rhel} || 0%{?rhel} >= 9            
+%global with_nvk %{with_vulkan_hw}            
 %endif
 %global base_vulkan %{?with_vulkan_hw:,amd}%{!?with_vulkan_hw:%{nil}}
 %endif
@@ -85,7 +87,7 @@ Summary:        Mesa graphics libraries
 %global ver 25.3.4
 Epoch:          1
 Version:        %{lua:ver = string.gsub(rpm.expand("%{ver}"), "-", "~"); print(ver)}
-Release:        2
+Release:        1
 Packager:       Kyle Gospodnetich <me@kylegospodneti.ch>
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0
 URL:            http://www.mesa3d.org
