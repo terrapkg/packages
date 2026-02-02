@@ -1,4 +1,3 @@
-%define debug_package %{nil}
 Name:           bazzite-portal
 Version:        0.1.6
 Release:        1%?dist
@@ -10,6 +9,7 @@ Requires:       python3-gobject
 Requires:       python3-PyYAML
 Requires:       gtk3
 Provides:       Bazzite-Portal
+BuildArch:      noarch
 Packager:       Zacharias Xenakis <xarishark@outlook.com>
 
 %description
