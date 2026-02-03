@@ -62,7 +62,7 @@ cp %{S:2} gcc
 
 
 %global __cc %_builddir/%buildsubdir/gcc
-sed '/\[env\]/a CC="%__cc"' -i .cargo/config
+%dnl sed '/\[env\]/a CC="%__cc"' -i .cargo/config
 
 %build
 %{cargo_license_summary_online}
