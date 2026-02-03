@@ -29,7 +29,7 @@ Twintaillauncher is a multi-platform launcher that brings mod support, quality-o
 TTL is an all-in-one tool for downloading, managing, and launching your favorite anime games. It’s designed with flexibility, ease of use, and customization in mind.
 
 %prep
-%autosetup -n %{name}-ttl-v%{version}
+%autosetup -n TwintailLauncher-ttl-v%{version}
 %tauri_prep
 
 %build
