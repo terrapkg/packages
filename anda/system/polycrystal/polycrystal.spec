@@ -9,7 +9,7 @@ BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros systemd-rpm-macros
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
-%summary
+%summary.
 
 %prep
 %autosetup -n polycrystal-%version
