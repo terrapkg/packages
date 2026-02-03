@@ -25,8 +25,14 @@ If you are using immutable/atomic editions of Fedora, run the following commands
 curl -fsSL https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo | pkexec tee /etc/yum.repos.d/terra.repo
 sudo rpm-ostree install terra-release
 ```
+#### Subrepos
 
-Optionally, you can install `terra-release-extra` to use the Extras repository. This also installs the Nvidia, and Mesa streams but does not enable them.
+On Fedora, you can optionally install the Terra subrepos. Extra care and caution may be needed as some of these packages may conflict with other repositories such as RPM Fusion.
+
+Install `terra-release-extras` to enable the Extras subrepo. This repo contains packages which conflict with Fedora packages in some way, such as being a patched version of the same package.
+Install `terra-release-mesa` to install the Mesa subrepo which contains a patched and codec complete Mesa.
+Install `terra-release-nvidia` to install the NVIDIA subrepo which contains NVIDIA drivers.
+Install `terra-release-multimedia` for mutltimedia packages in Terra. This repository is currently considered a work in progress.
 
 ### Enterprise Linux (EL)
 
