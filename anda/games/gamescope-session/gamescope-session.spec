@@ -5,7 +5,7 @@
 %global commit_date 20260202
 
 Name:           gamescope-session
-Version:        %commit_date.%shortcommit
+Version:        0~%{commit_date}git.%{shortcommit}
 Release:        1%?dist
 Summary:        Gamescope session based on Valve's gamescope
 License:        MIT
@@ -13,6 +13,7 @@ URL:            https://github.com/OpenGamingCollective/gamescope-session
 Source0:        %url/archive/%commit.tar.gz
 BuildRequires:  systemd-rpm-macros
 Packager:       Tulip Blossom <tulilirockz@outlook.com>
+BuildArch:      noarch
 
 %description
 Gamescope session plus based on Valve's gamescope.
