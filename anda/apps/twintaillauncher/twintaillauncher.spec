@@ -24,6 +24,7 @@ BuildRequires:  webkit2gtk4.1-devel
 BuildRequires:       desktop-file-utils
 BuildRequires:       hicolor-icon-theme
 BuildRequires:       perl
+BuildRequires:       zlib-ng-devel
 
 %description
 Twintaillauncher is a multi-platform launcher that brings mod support, quality-of-life improvements, and advanced features to a variety of anime-styled games.
