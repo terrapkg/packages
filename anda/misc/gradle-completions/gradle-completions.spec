@@ -16,11 +16,13 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %package -n gradle-bash-completion
 Summary:    Bash completion for Gradle
+Recommends: gradle
 %description -n gradle-bash-completion
 %summary.
 
 %package -n gradle-zsh-completion
 Summary:    zsh completion for Gradle
+Recommends: gradle
 %description -n gradle-zsh-completion
 %summary.
 
