@@ -5,13 +5,14 @@
 %global commit_date 20241205
 
 Name:           gamescope-session-steam
-Version:        %commit_date.%shortcommit
+Version:        0~%{commit_date}git.%{shortcommit}
 Release:        1%?dist
 Summary:        gamescope-session-steam
 License:        MIT
 URL:            https://github.com/OpenGamingCollective/gamescope-session-steam
 Source0:        %url/archive/%commit.tar.gz
 Packager:       Tulip Blossom <tulilirockz@outlook.com>
+BuildArch:      noarch
 
 %description
 %summary.
@@ -32,7 +33,6 @@ install -Dpm0644 -t "%buildroot%_datadir/polkit-1/actions/" ".%_datadir/polkit-1
 install -Dpm0644 -t "%buildroot%_datadir/wayland-sessions/" ".%_datadir/wayland-sessions/gamescope-session-steam.desktop"
 install -Dpm0644 -t "%buildroot%_datadir/wayland-sessions/" ".%_datadir/wayland-sessions/gamescope-session.desktop"
 
-
 %files
 %license LICENSE
 %{_bindir}/steam-http-loader
@@ -46,4 +46,5 @@ install -Dpm0644 -t "%buildroot%_datadir/wayland-sessions/" ".%_datadir/wayland-
 %{_datadir}/wayland-sessions/gamescope-session.desktop
 
 %changelog
-%autochangelog
+* Mon Feb 03 2026 Tulip Blossom <tulilirockz@outlook.com> - 20241205.1a3fdb7f-1
+- Move to OGC source and clean up
