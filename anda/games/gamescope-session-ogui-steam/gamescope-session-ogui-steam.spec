@@ -5,7 +5,7 @@
 %global commit_date 20231030
 
 Name:           gamescope-session-ogui-steam
-Version:        %commit_date.%shortcommit
+Version:        0~%{commit_date}git.%{shortcommit}
 Release:        1%?dist
 Summary:        gamescope-session-steam
 License:        GPL-3.0-only
@@ -14,6 +14,7 @@ Source0:        %url/archive/%commit.tar.gz
 Requires:       gamescope-session-steam
 Requires:       opengamepadui
 Packager:       Tulip Blossom <tulilirockz@outlook.com>
+BuildArch:      noarch
 
 %description
 Gamescope Session for OpenGamepadUI in overlay mode with Steam
@@ -29,6 +30,7 @@ install -Dpm0644 -t "%buildroot%_datadir/wayland-sessions/" ".%_datadir/wayland-
 install -Dpm0644 -t "%buildroot%_datadir/wayland-sessions/" ".%_datadir/wayland-sessions/gamepadui-with-qam-session.desktop"
 
 %files
+%doc README.md
 %license LICENSE
 %{_datadir}/gamescope-session-plus/sessions.d/steam-plus
 %{_datadir}/wayland-sessions/gamescope-session-steam-plus.desktop
