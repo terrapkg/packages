@@ -53,8 +53,10 @@ install -Dm644 public/launcher-icon-128.png %{buildroot}%{_hicolordir}/128x128/a
 %doc README.md
 
 %{_bindir}/twintaillauncher
+%{_hicolordir}/ 512x512/apps/%{name}.png
 %{_hicolordir}/128x128/apps/%{name}.png
-%{_hicolordir}/128x128/apps/%{name}.png
+%_appsdir/twintaillauncher.desktop
+
 
 
 
