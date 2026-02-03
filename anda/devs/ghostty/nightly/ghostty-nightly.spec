@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-%global commit 26e243a9194f8653e0b44cf00b600629fcee8f46
+%global commit e06742b36ec971c32fffd4b890cf83746c3a9bf7
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global fulldate 2026-01-15
-=======
-%global commit 685daee01bbd18dc50c066ccfa85828509068a99
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global fulldate 2026-01-27
->>>>>>> 93ea6f333 (chore: Bump out of sync packages (#9513))
+%global fulldate 2026-02-03
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
 %global ver 1.3.0
@@ -15,7 +9,7 @@
 
 Name:           %{base_name}-nightly
 Version:        %{ver}~tip^%{commit_date}git%{shortcommit}
-Release:        2%{?dist}
+Release:        1%?dist
 %if 0%{?fedora} <= 41
 Epoch:          1
 %endif
