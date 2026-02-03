@@ -21,7 +21,7 @@ Source4:		osu-lazer-uri-handler.desktop
 %{summary}
 
 %prep
-cat <<EOF > osu-lazer
+cat <<'EOF' > osu-lazer
 #!/bin/sh
 env OSU_EXTERNAL_UPDATE_PROVIDER=1 /opt/osu-lazer/osu.AppImage "$@"
 EOF
