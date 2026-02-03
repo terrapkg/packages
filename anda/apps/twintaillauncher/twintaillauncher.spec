@@ -32,7 +32,7 @@ TTL is an all-in-one tool for downloading, managing, and launching your favorite
 %autosetup -n TwintailLauncher-ttl-v%{version}
 cd src-tauri
 cargo update
-..
+cd ..
 %tauri_prep
 
 %build
