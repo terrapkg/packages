@@ -23,7 +23,7 @@ exposed in any Linux distro that provides an implementation of this DBus API.
 
 %package gamescope-session-plus
 Summary:        Compatibility symlink service for starting steamos-manager on gamescope-session-plus
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name} = %{evr}
 
 %description gamescope-session-plus
 %summary.
@@ -38,7 +38,7 @@ Requires:       %{name} = %{version}-%{release}
 %install
 %cargo_license_summary_online
 %{cargo_license_online -a} > LICENSE.dependencies
-make install DESTDIR=%{buildroot}
+%make_install
 rm %{buildroot}%{_unitdir}/sddm.service.d/reset-oneshot-boot.conf # steamOS specific
 rm %{buildroot}%{_userunitdir}/orca.service # not used by anyone apparently, steamOS specific(?)
 install -d %{buildroot}%{_userunitdir}/gamescope-session-plus.service.wants/steamos-manager.service
