@@ -2,7 +2,7 @@ Name:           steamos-manager
 Version:        25.12.0
 Release:        1%?dist
 Summary:        SteamOS Manager is a system daemon that aims to abstract Steam's interactions with the operating system.
-License:        MPL-2.0
+License:        MIT
 URL:            https://gitlab.steamos.cloud/holo/steamos-manager
 Source0:        %url/-/archive/v%version/steamos-manager-v%version.tar.gz
 BuildRequires:  anda-srpm-macros
@@ -40,7 +40,7 @@ Requires:       %{name} = %{version}-%{release}
 %{cargo_license_online -a} > LICENSE.dependencies
 make install DESTDIR=%{buildroot}
 rm %{buildroot}%{_unitdir}/sddm.service.d/reset-oneshot-boot.conf # steamOS specific
-rm %{buildroot}%{_unitdir}/orca.service # not used by anyone apparently, steamOS specific(?)
+rm %{buildroot}%{_userunitdir}/orca.service # not used by anyone apparently, steamOS specific(?)
 install -d %{buildroot}%{_userunitdir}/gamescope-session-plus.service.wants/steamos-manager.service
 %{__ln_s} -f %{buildroot}%{_userunitdir}/gamescope-session-plus.service.wants/steamos-manager.service %{_userunitdir}/steamos-manager.service
 
