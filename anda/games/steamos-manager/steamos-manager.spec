@@ -70,7 +70,7 @@ install -d %{buildroot}%{_userunitdir}/gamescope-session-plus.service.wants/stea
 %{_userunitdir}/steamos-manager.service
 %{_userunitdir}/steamos-manager-session-cleanup.service
 
-%files -n gamescope-session-plus
+%files gamescope-session-plus
 %{_userunitdir}/gamescope-session-plus.service.wants/steamos-manager.service
 
 %changelog
