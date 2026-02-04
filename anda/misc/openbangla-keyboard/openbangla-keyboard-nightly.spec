@@ -29,7 +29,6 @@ Summary:    OpenBangla Keyboard for IBus
 Requires:   ibus
 Requires:   openbangla-keyboard = %version-%release
 Provides:   openbangla-im = %version-%release
-Conflicts:  openbangla-im
 
 %description -n ibus-openbangla
 OpenBangla Keyboard for IBus.
@@ -40,28 +39,26 @@ Summary:    OpenBangla Keyboard for Fcitx5
 Requires:   fcitx5
 Requires:   openbangla-keyboard = %version-%release
 Provides:   openbangla-im = %version-%release
-Conflicts:  openbangla-im
 
 %description -n fcitx5-openbangla
 OpenBangla Keyboard for Fcitx5.
 
 
 %prep
-%autosetup -n OpenBangla-Keyboard-%commit
-rmdir src/engine/riti
-tar xf %SOURCE1 -C src/engine/
-mv src/engine/riti-master src/engine/riti
+%git_clone https://github.com/OpenBangla/OpenBangla-Keyboard.git %{commit}
+%cargo_prep_online
 
 %build
 if [[ -d build ]]; then rm -rf build; fi
-%cmake -DENABLE_FCITX=YES -DENABLE_IBUS=YES
+%cmake -DENABLE_FCITX=YES -DENABLE_IBUS=YES -DBUILD_SHARED_LIBS:BOOL=OFF
 %cmake_build
 
 %install
 %cmake_install
 
 %files
-%doc README.adoc
+%lang(bn) %doc README.bn.adoc
+%lang(en) %doc README.adoc
 %license LICENSE
 %_bindir/openbangla-gui
 %_datadir/applications/openbangla-keyboard.desktop
