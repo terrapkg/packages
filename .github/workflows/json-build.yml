@@ -36,7 +36,7 @@ on:
         default: true
 
 env:
-  RUSTC_WRAPPER: sccache
+  RUSTC_WRAPPER: "/usr/bin/sccache"
   # SCCACHE_NO_DAEMON: "1"
   # Disable incremental compilation so sccache works better
   CARGO_INCREMENTAL: "false"
