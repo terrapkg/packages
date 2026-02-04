@@ -28,17 +28,6 @@ Requires:       %{name} = %{version}-%{release}
 %description gamescope-session-plus
 %summary.
 
-%package orca
-Summary:        Orca service unit for Gamescope session
-Requires:       %{name} = %{version}-%{release}
-Requires:       orca
-
-%description orca
-%summary.
-
-%description orca
-%summary.
-
 %prep
 %autosetup -n %name-v%version
 %cargo_prep_online
@@ -51,6 +40,7 @@ Requires:       orca
 %{cargo_license_online -a} > LICENSE.dependencies
 make install DESTDIR=%{buildroot}
 rm %{buildroot}%{_unitdir}/sddm.service.d/reset-oneshot-boot.conf # steamOS specific
+rm %{buildroot}%{_unitdir}/orca.service # not used by anyone apparently, steamOS specific(?)
 install -d %{buildroot}%{_userunitdir}/gamescope-session-plus.service.wants/steamos-manager.service
 %{__ln_s} -f %{buildroot}%{_userunitdir}/gamescope-session-plus.service.wants/steamos-manager.service %{_userunitdir}/steamos-manager.service
 
@@ -83,9 +73,6 @@ install -d %{buildroot}%{_userunitdir}/gamescope-session-plus.service.wants/stea
 %files -n gamescope-session-plus
 %{_userunitdir}/gamescope-session-plus.service.wants/steamos-manager.service
 
-%files -n orca
-%{_userunitdir}/orca.service
-
 %changelog
-*  Feb 03 2026 Tulip Blossom <tulilirockz@outlook.com> - 25.12.0-1
+* Wed Feb 04 2026 Tulip Blossom <tulilirockz@outlook.com> - 25.12.0-1
 - Intial Commit
