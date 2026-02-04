@@ -1,8 +1,8 @@
 %define debug_package %nil
 
-%global commit f9aafe5fd7ec7adedf7e7cd06d03709e5ec601ef
+%global commit 88087a086ab732211c466b41f5d64229ce51c050
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20240606
+%global commit_date 20260204
 
 Name:           gamescope-session-opengamepadui
 Version:        0~%{commit_date}git.%{shortcommit}
@@ -32,6 +32,7 @@ install -Dpm0644 -t "%buildroot%_datadir/wayland-sessions/" ".%_datadir/wayland-
 
 %files
 %doc README.md
+%license LICENSE
 %{_bindir}/opengamepadui-session-select
 %{_datadir}/gamescope-session-plus/sessions.d/opengamepadui
 %{_datadir}/polkit-1/actions/org.shadowblip.opengamepadui-session.policy
@@ -39,5 +40,5 @@ install -Dpm0644 -t "%buildroot%_datadir/wayland-sessions/" ".%_datadir/wayland-
 %{_datadir}/wayland-sessions/opengamepadui-session.desktop
 
 %changelog
-* Mon Feb 03 2026 Tulip Blossom <tulilirockz@outlook.com> - 20240606.f9aafe5f-1
+* Wed Feb 04 2026 Tulip Blossom <tulilirockz@outlook.com> - 20260204.88087a08-1
 - Initial package
