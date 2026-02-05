@@ -24,8 +24,7 @@ A manager script to make gamescope easier to use on the desktop (or if you use i
 %autosetup
 
 %install
-install -Dpm0755 -t %{buildroot}%{_bindir}/ bin/scopebuddy 
-%{__ln_s} -f %{_bindir}/scopebuddy %{_bindir}/scb
+install -Dpm0755 -t %{buildroot}%{_bindir}/ bin/scopebuddy bin/scb 
 
 %post
 
@@ -33,6 +32,7 @@ install -Dpm0755 -t %{buildroot}%{_bindir}/ bin/scopebuddy
 %doc README.md
 %license LICENSE
 %{_bindir}/scopebuddy
+%{_bindir}/scb
 
 %changelog
 * Thu Feb 05 2025 Tulip Blossom <tulilirockz@outlook.com>
