@@ -29,7 +29,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %install
 %cargo_install
-%{cargo_license_online -a} > LICENSE.dependencies
+%{cargo_license_online} > LICENSE.dependencies
 
 %files
 %doc README.md CHANGELOG.md
