@@ -18,7 +18,7 @@ URL:		https://vesktop.dev
 Group:		Applications/Internet
 Source0:    %{giturl}/archive/refs/tags/v%{version}.tar.gz
 Source1:    %{giturl}/releases/download/v%{version}/%{appid}.metainfo.xml
-Requires:   xdg-utils anda-srpm-macros
+Requires:   xdg-utils
 %if 0%{?fedora} >= 44
 BuildRequires: nodejs24-npm-bin git
 %else
