@@ -1,5 +1,7 @@
 %undefine __brp_mangle_shebangs
 
+%global toolchain clang
+
 Name:           twintaillauncher
 %electronmeta
 
