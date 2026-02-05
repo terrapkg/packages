@@ -3,7 +3,4 @@ project "pkg" {
     rpm {
         spec = "twintaillauncher.spec"
     }
-    labels {
-         mock = 1
-     }
 }
