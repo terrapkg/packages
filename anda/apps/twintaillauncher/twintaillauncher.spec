@@ -3,7 +3,6 @@
 %global toolchain clang
 
 Name:           twintaillauncher
-%electronmeta
 
 Version:        1.1.15
 Release:        1%{?dist}
