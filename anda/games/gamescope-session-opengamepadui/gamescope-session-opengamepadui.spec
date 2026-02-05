@@ -1,6 +1,6 @@
-%global commit 88087a086ab732211c466b41f5d64229ce51c050
+%global commit 1a3fdb7fa15a4bba7204bef69702b7a10a297828
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260204
+%global commit_date 20260205
 
 Name:           gamescope-session-opengamepadui
 Version:        0~%{commit_date}git.%{shortcommit}

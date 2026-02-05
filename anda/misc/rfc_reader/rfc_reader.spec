@@ -23,11 +23,15 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %cargo_prep_online
 
 %build
-%cargo_build
 
 %install
+<<<<<<< HEAD
 %crate_install_bin
 %{cargo_license_online -a} > LICENSE.dependencies
+=======
+%cargo_install
+%{cargo_license_online} > LICENSE.dependencies
+>>>>>>> 939d0f2e866c58e00e7561051d057cd46e82e845
 
 %files
 %doc README.md CHANGELOG.md
