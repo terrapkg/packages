@@ -19,27 +19,22 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %summary.
 
 %prep
-%autosetup -n rfc_reader-%{version}
+%autosetup -n %{name}-%{version}
 %cargo_prep_online
 
 %build
 
 %install
-<<<<<<< HEAD
 %crate_install_bin
 %{cargo_license_online -a} > LICENSE.dependencies
-=======
-%cargo_install
-%{cargo_license_online} > LICENSE.dependencies
->>>>>>> 939d0f2e866c58e00e7561051d057cd46e82e845
 
 %files
 %doc README.md CHANGELOG.md
 %license LICENSE
 %license LICENSE.dependencies
 %{_bindir}/rfc_reader
-%ghost %{_datadir}/cargo/registry/rfc_reader-%{version}/*
-%ghost %{_datadir}/cargo/registry/rfc_reader-%{version}/.cargo-checksum.json
+%ghost %{_datadir}/cargo/registry/%{name}-%{version}/*
+%ghost %{_datadir}/cargo/registry/%{name}-%{version}/.cargo-checksum.json
 
 %changelog
 * Thu Feb 05 2026 Owen Zimmerman <owen@fyralabs.com>
