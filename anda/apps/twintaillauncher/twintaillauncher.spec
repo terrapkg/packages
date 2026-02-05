@@ -49,7 +49,7 @@ cd ..
 
 
 %install
-%tauri_install
+%tauri_install_bin
 %tauri_cargo_license_summary
 %{tauri_cargo_license} > LICENSE.dependencies
 
@@ -58,7 +58,6 @@ cd ..
 install -Dm644   public/launcher-icon.png %{buildroot}%{_hicolordir}/512x512/apps/%{name}.png
 install -Dm644 public/launcher-icon-128.png %{buildroot}%{_hicolordir}/128x128/apps/%{name}.png
 
-rm -rf %{buildroot}%{_datadir}/cargo/registry/twintaillauncher
 
 
 %files
