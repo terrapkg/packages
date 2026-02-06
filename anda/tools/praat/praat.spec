@@ -9,7 +9,7 @@ Release:          1%{?dist}
 URL:              https://www.praat.org
 Source0:          https://github.com/praat/praat.github.io/archive/refs/tags/v%{version}.tar.gz
 Source1:          %appid.metainfo.xml
-License:          GPL-2.0-or-later OR GPL-3.0-or-later
+License:          GPL-3.0-or-later
 
 Requires:         gtk3 pulseaudio-libs alsa-lib pipewire-jack-audio-connection-kit
 BuildRequires:    gcc g++ gtk3-devel pulseaudio-libs-devel alsa-lib-devel pipewire-jack-audio-connection-kit-devel

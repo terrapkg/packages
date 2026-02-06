@@ -2,7 +2,7 @@
 <component>
   <id>org.praat.praat</id>
   <metadata_license>CC0-1.0</metadata_license>
-  <project_license>GPL-2.0-or-later OR GPL-3.0-or-later</project_license>
+  <project_license>GPL-3.0-or-later</project_license>
   <icon type="local">/usr/share/icons/hicolor/16x16/praat.png</icon>
 
   <name>Praat</name>
