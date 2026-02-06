@@ -46,7 +46,7 @@ fi
 
 %install
 install -pDm755 praat %{buildroot}%{_bindir}/praat
-desktop-file-install --dir=%{buildroot}%{_appsdir} main/praat.desktop
+%__desktop_file_install main/praat.desktop
 
 # https://build.opensuse.org/projects/openSUSE:Factory/packages/praat/files/praat.spec?expand=1
 icns2png -x -d32 main/Praat.icns
