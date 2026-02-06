@@ -30,7 +30,7 @@ Packager:         june-fish <june@fyralabs.com>
 %{summary}.
 
 %prep
-%autosetup -n praat.github.io-6.4.59
+%autosetup -n praat.github.io-%{version}
 
 %build
 # .LE makefile hardcodes little endian
