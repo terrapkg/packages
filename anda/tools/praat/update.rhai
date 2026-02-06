@@ -1,1 +1,1 @@
-rpm.global("ver", gh("praat/praat.github.io"));
+rpm.version(gh_tag("praat/praat.github.io"));
