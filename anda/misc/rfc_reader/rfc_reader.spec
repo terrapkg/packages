@@ -23,6 +23,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %cargo_prep_online
 
 %build
+%cargo_build
 
 %install
 %crate_install_bin
