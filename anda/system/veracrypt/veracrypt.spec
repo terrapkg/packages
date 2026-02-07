@@ -41,6 +41,7 @@ BuildArch:      noarch
 %package        doc
 Summary:        Documentation for %{name}
 Requires:       %{name} = %{evr}
+Supplements:    %{name}
 BuildArch:      noarch
 
 %description    doc
