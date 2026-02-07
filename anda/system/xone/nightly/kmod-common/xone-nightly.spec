@@ -1,6 +1,6 @@
-%global commit 10d12acb50e84145b7b5aef978695851040c05a4
+%global commit 2fe1386074c73deec984dd42c3781688913df2ea
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260206
+%global commitdate 20260207
 %global ver 0.5.5
 %global modulename xone
 %global _dracutconfdir %{_prefix}/lib/dracut/dracut.conf.d
