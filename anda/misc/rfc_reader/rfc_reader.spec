@@ -34,8 +34,6 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %license LICENSE
 %license LICENSE.dependencies
 %{_bindir}/rfc_reader
-%ghost %{_datadir}/cargo/registry/%{name}-%{version}/*
-%ghost %{_datadir}/cargo/registry/%{name}-%{version}/.cargo-checksum.json
 
 %changelog
 * Thu Feb 05 2026 Owen Zimmerman <owen@fyralabs.com>
