@@ -1,6 +1,6 @@
 Name:		    geist-font
-Version:	    1.7.0
-Release:	    2%?dist
+Version:	    geist@1.7.0
+Release:	    1%?dist
 URL:		    https://vercel.com/font
 Source0:	    https://github.com/vercel/geist-font/archive/refs/tags/%version.tar.gz
 License:	    OFL-1.1
