@@ -1,1 +1,1 @@
-rpm.version(gh_tag("Shopify/shadowenv"));
+rpm.version(gh("Shopify/shadowenv"));

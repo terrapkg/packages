@@ -1,7 +1,7 @@
 %global snapshot r1245.8e82100
 
 Name:           gpu-screen-recorder
-Version:        5.12.2
+Version:        5.12.3
 Release:        1%?dist
 Summary:        A shadowplay-like screen recorder for Linux
 

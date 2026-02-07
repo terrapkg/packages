@@ -1,5 +1,5 @@
 Name:		    geist-font
-Version:	    1.6.0
+Version:	    geist@1.7.0
 Release:	    1%?dist
 URL:		    https://vercel.com/font
 Source0:	    https://github.com/vercel/geist-font/archive/refs/tags/%version.tar.gz
@@ -18,7 +18,7 @@ that is based on the principles of classic Swiss typography. It is designed to b
 headlines, logos, posters, and other large display sizes.
 
 %package        mono
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name} = %{evr}
 Summary:        Geist Mono is a monospaced typeface that has been crafted to be the perfect partner to Geist Sans
 Provides:       geist-mono = %evr
 Provides:       geist-mono-fonts = %evr

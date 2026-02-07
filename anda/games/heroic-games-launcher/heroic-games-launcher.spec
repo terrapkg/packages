@@ -8,8 +8,8 @@
 %global comet_version 0.2.0
 
 Name:          %{shortname}-games-launcher
-Version:       2.19.0
-Release:       1%?dist
+Version:       2.19.1
+Release:       2%?dist
 Summary:       A games launcher for GOG, Amazon, and Epic Games
 License:       GPL-3.0-only AND MIT AND BSD-3-Clause
 URL:           https://heroicgameslauncher.com
@@ -52,7 +52,7 @@ rm -rf dist/linux-unpacked/resources/app.asar.unpacked/build/bin/arm64
 %endif
 
 %electron_install -d heroic -b heroic -S heroic -I -i %{appid} -l
-%desktop_file_install -k Exec -v /usr/share/%{shortname}/%{shortname} -u %u flatpak/%{appid}.desktop
+%desktop_file_install -k Exec -v %{_libdir}/%{shortname}/%{shortname} -u %u flatpak/%{appid}.desktop
 
 install -Dpm644 flatpak/templates/%{appid}.metainfo.xml.template %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 
@@ -64,8 +64,7 @@ install -Dpm644 flatpak/templates/%{appid}.metainfo.xml.template %{buildroot}%{_
 %doc     CODE_OF_CONDUCT.md
 %license COPYING
 %license bundled_licenses/*
-%dir %{_libdir}/%{shortname}
-%{_libdir}/%{shortname}/*
+%{_libdir}/%{shortname}/
 %{_bindir}/%{shortname}
 %{_bindir}/%{name}
 %{_appsdir}/%{appid}.desktop
