@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <component type="desktop-application">
-<component>
   <id>org.praat.praat</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license
     >GPL-3.0-or-later AND LGPL-2.1-or-later AND MIT AND GPL-2.0-or-later AND BSD-3-Clause AND Unicode-3.0 AND BSL-1.0</project_license>
-  <icon type="local">/usr/share/icons/hicolor/16x16/praat.png</icon>
+  <icon
+        type="remote"
+    >https://github.com/praat/praat.github.io/blob/master/main/praat-480.svg</icon>
 
   <name>Praat</name>
   <summary>Praat: Doing Phonetics By Computer</summary>
@@ -23,7 +24,7 @@
   <url type="homepage">https://www.praat.org</url>
 
   <releases>
-    <release version="6.4.59" />
+    <release version="6.4.59" date="2026-02-05" type="stable" />
   </releases>
 
   <keywords>
