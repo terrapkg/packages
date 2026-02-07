@@ -5,7 +5,7 @@
 
 Name:             praat
 Version:          6.4.59
-Release:          1%{?dist}
+Release:          2%{?dist}
 URL:              https://www.praat.org
 Source0:          https://github.com/praat/praat.github.io/archive/refs/tags/v%{version}.tar.gz
 Source1:          %appid.metainfo.xml
@@ -14,7 +14,7 @@ License:          GPL-3.0-or-later AND LGPL-2.1-or-later AND MIT AND GPL-2.0-or-
 Requires:         gtk3 pulseaudio-libs alsa-lib pipewire-jack-audio-connection-kit
 BuildRequires:    gcc g++ gtk3-devel pulseaudio-libs-devel alsa-lib-devel pipewire-jack-audio-connection-kit-devel
 # for lscpu check below
-BuildRequires:    util-linux 
+BuildRequires:    util-linux
 # to install desktop file
 BuildRequires:    desktop-file-utils
 # to generate the icon files
@@ -22,7 +22,7 @@ BuildRequires:    libicns-utils
 # to generate the appstream metadata
 BuildRequires:    terra-appstream-helper
 
-Summary:          Praat: Doing Phonetics By Computer 
+Summary:          Praat: Doing Phonetics By Computer
 
 Packager:         june-fish <june@fyralabs.com>
 
