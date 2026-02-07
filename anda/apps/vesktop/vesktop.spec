@@ -11,12 +11,11 @@ Name:		vesktop
 Obsoletes:  VencordDesktop < 1.5.8-1
 Obsoletes:  vencord-desktop < 1.5.8-1
 Version:	1.6.4
-Release:	2%?dist
-License:	GPL-3.0
+Release:	3%?dist
+License:	GPL-3.0-or-later
 Summary:	Vesktop is a cross platform desktop app aiming to give you a snappier Discord experience with Vencord pre-installed
 URL:		https://vesktop.dev
 Group:		Applications/Internet
-#Source1:	launch.sh
 Source0:    %{giturl}/archive/refs/tags/v%{version}.tar.gz
 Source1:    %{giturl}/releases/download/v%{version}/%{appid}.metainfo.xml
 Requires:   xdg-utils
@@ -25,18 +24,13 @@ BuildRequires: nodejs24-npm-bin git
 %else
 BuildRequires:	nodejs-npm git
 %endif
-# Conflicts:	vesktop-bin
 
 %description
 vesktop is a custom client designed to enhance your Discord experience
 while keeping everything lightweight.
 
 %prep
-git init
-git remote add origin %giturl || :
-git reset --hard
-git fetch
-git checkout v%version
+%git_clone %giturl v%version
 
 cat <<EOF > vesktop.desktop
 [Desktop Entry]
@@ -52,14 +46,11 @@ StartupWMClass=vesktop
 Keywords=discord;vesktop;vencord;shelter;armcord;electron;
 EOF
 
-
 %build
-npx pnpm install --no-frozen-lockfile
-npx pnpm package:dir
-
+%__npx pnpm install --no-frozen-lockfile
+%__npx pnpm package:dir
 
 %install
-
 mkdir -p %buildroot/usr/share/vesktop
 cp -r dist/*-unpacked/. %buildroot/usr/share/vesktop/.
 
@@ -87,4 +78,3 @@ install -Dm644 %{SOURCE1} %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 - Rename from vencord-desktop to vesktop and amend the spec file accordingly
 * Tue Nov 07 2023 Cappy Ishihara <cappy@cappuchino.xyz> - 0.4.3-1
 - Initial package
-
