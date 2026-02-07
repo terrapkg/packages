@@ -1,7 +1,7 @@
-%global commit adc17246571adadbc36aa5f168c96662f6ca6b8a
+%global commit 10d12acb50e84145b7b5aef978695851040c05a4
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260205
-%global ver 0.5.4
+%global commitdate 20260206
+%global ver 0.5.5
 %global modulename xone
 %global _dracutconfdir %{_prefix}/lib/dracut/dracut.conf.d
 %global firmware_hash0 080ce4091e53a4ef3e5fe29939f51fd91f46d6a88be6d67eb6e99a5723b3a223
