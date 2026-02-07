@@ -1,5 +1,5 @@
 Name: nerdfetch
-Version: 8.5.1
+Version: 8.5.2
 Release: 1%?dist
 Summary: A POSIX *nix fetch script using Nerdfonts 
 
