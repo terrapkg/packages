@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component type="desktop-application">
+  <id>jp.veracrypt.veracrypt</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>Apache-2.0 AND TrueCrypt-License-version-3.0 AND LGPL-3.0-only AND BSD-2-Clause AND Zlib AND BSD-3-Clause AND Public Domain</project_license>
+  <icon type="remote">https://github.com/veracrypt/VeraCrypt/blob/master/src/Resources/Icons/VeraCrypt.svg</icon>
+
+  <name>Veracrypt</name>
+  <summary>Disk encryption with strong security based on TrueCrypt</summary>
+
+  <description>
+    <p>
+      Free open source disk encryption software for Windows, Mac OSX and Linux. Brought to you by AM Crypto and based on TrueCrypt 7.1a.
+    </p>
+    <p>
+      VeraCrypt main features:
+
+          - Creates a virtual encrypted disk within a file and mounts it as a real disk.
+          - Encrypts an entire partition or storage device such as USB flash drive or hard drive.
+          - Encrypts a partition or drive where Windows is installed (pre-boot authentication).
+          - Encryption is automatic, real-time(on-the-fly) and transparent.
+          - Parallelization and pipelining allow data to be read and written as fast as if the drive was not encrypted.
+          - Encryption can be hardware-accelerated on modern processors.
+          - Provides plausible deniability, in case an adversary forces you to reveal the password: Hidden volume (steganography) and hidden operating system.
+          - More information about the features of VeraCrypt may be found in the documentation
+
+    </p>
+  </description>
+
+  <launchable type="desktop-id">veracrypt.desktop</launchable>
+
+  <url type="homepage">https://veracrypt.jp/en/Home.html</url>
+
+  <keywords>
+    <keyword>Encryption</keyword>
+  </keywords>
+</component>
