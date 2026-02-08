@@ -4,9 +4,7 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license
     >Apache-2.0 AND TrueCrypt-License-version-3.0 AND LGPL-3.0-only AND BSD-2-Clause AND Zlib AND BSD-3-Clause AND Public Domain</project_license>
-  <icon
-        type="remote"
-    >https://github.com/veracrypt/VeraCrypt/blob/master/src/Resources/Icons/VeraCrypt.svg</icon>
+  <icon type="remote">https://github.com/veracrypt/VeraCrypt/blob/master/src/Resources/Icons/VeraCrypt.svg</icon>
 
   <name>Veracrypt</name>
   <summary>Disk encryption with strong security based on TrueCrypt</summary>
