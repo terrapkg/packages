@@ -1,6 +1,6 @@
 Name:          stremio-service
 Version:       0.1.15
-Release:       1%?dist
+Release:       2%?dist
 Summary:       Lets you run Stremio server in the background
 License:       GPL-2.0-only AND MPL-2.0 AND (Apache-2.0 OR MIT) AND (Zlib OR Apache-2.0 OR MIT) AND BSD-3-Clause AND (Unlicense OR MIT) AND Unicode-3.0 AND (0BSD OR MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND CC0-1.0 AND ISC AND MIT AND (BSD-3-Clause OR MIT OR Apache-2.0) AND Apache-2.0 AND MIT AND (Apache-2.0 OR BSL-1.0) AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT)
 URL:           https://github.com/Stremio/stremio-service
@@ -22,8 +22,6 @@ Requires:      glibc
 Requires:      cairo
 Requires:      gtk3
 Requires:      glib2
-Recommends:    gnome-extensions-app
-Recommends:    gnome-shell-extension-appindicator
 # Build fails without this, all deps are listed above.
 AutoReqProv:   0
 
