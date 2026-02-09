@@ -5,7 +5,7 @@
 %global sanitized_ver %(echo %{ver} | sed 's/^VeraCrypt_//')
 
 Name:           veracrypt
-Version:        VeraCrypt_1.26.24
+Version:        %{sanitized_ver}
 Release:        1%?dist
 Summary:        Disk encryption with strong security based on TrueCrypt
 URL:            https://veracrypt.jp/en/Home.html
