@@ -1,1 +1,1 @@
-rpm.version(gh("veracrypt/VeraCrypt"));
+rpm.global("ver", gh("veracrypt/VeraCrypt"));
