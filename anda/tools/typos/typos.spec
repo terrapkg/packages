@@ -2,7 +2,7 @@
 %define debug_package %{nil}
 
 Name:           typos
-Version:        1.43.3
+Version:        1.43.4
 Release:        1%?dist
 Summary:        Source Code Spelling Correction
 
