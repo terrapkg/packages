@@ -6,7 +6,7 @@
 
 Name:           veracrypt
 Version:        %{sanitized_ver}
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Disk encryption with strong security based on TrueCrypt
 URL:            https://veracrypt.jp/en/Home.html
 Source0:        https://github.com/veracrypt/VeraCrypt/archive/refs/tags/VeraCrypt_%version.tar.gz
