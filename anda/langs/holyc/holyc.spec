@@ -37,5 +37,5 @@ Originally implemented in TempleOS as a general purpose programming language and
 %{_includedir}/tos.HH
 
 %changelog
-* Sun Feb 8 2026 Gilver E. <roachy@fyralabs.com> - 0.0.10~beta-1
+* Tue Feb 10 2026 Gilver E. <roachy@fyralabs.com> - 0.0.10~beta-1
 - Initial package
