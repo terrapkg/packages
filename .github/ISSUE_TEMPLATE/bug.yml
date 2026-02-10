@@ -14,9 +14,12 @@ body:
   - type: input
     id: pkg
     attributes:
-      label: Full Package Name
-      description: If you report multiple packages, only the main package is needed if applicable, or separate them with spaces otherwise. Obtain the full package name using `rpm -qa pkg-name`.
-      placeholder: anda-0.4.14-1.fc43.x86_64
+      label: Full Raw Package Name (e.g. anda-0.4.14-1.fcrawhide.x86_64)
+      description: |
+        If you report multiple packages, only the main package is needed if applicable, or separate them with spaces otherwise. Obtain the full package name using `rpm -qa pkg-name`.
+
+        **The format MUST BE LITERALLY THE SAME as `anda-0.4.14-1.fc43.x86_64`. Do NOT add anything else, not even backticks.**
+      placeholder: anda-0.4.14-1.fc43.x86_64 (MUST be under this format, no backticks)
     validations:
       required: true
   - type: dropdown
