@@ -4,15 +4,19 @@ name: Automatically build packages
 permissions:
   contents: read
 on:
-  push:
+  # push:
+  #   paths:
+  #     - anda/**
+  #   branches:
+  #     - frawhide
+  pull_request:
     paths:
       - anda/**
     branches:
       - frawhide
-  pull_request:
-    branches:
-      - frawhide
   merge_group:
+    paths:
+      - anda/**
     branches:
       - frawhide
   workflow_dispatch:
@@ -43,6 +47,14 @@ jobs:
     with:
       packages: ${{ needs.manifest.outputs.build_matrix }}
       publish: ${{ github.event_name == 'push' }}
+
+  automerge:
+    needs: build
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - name: Merge PR on Success Build
+        if: github.event.pull_request.commits == 1 && github.event.pull_request.user.login == 'raboneko'
+        run: gh pr merge ${{ github.event.number }} --admin --squash
 
   appstream:
     needs: build
