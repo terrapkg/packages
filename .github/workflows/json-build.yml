@@ -35,17 +35,6 @@ on:
         type: boolean
         default: true
 
-<<<<<<< HEAD
-env:
-  RUSTC_WRAPPER: "/usr/bin/sccache"
-  # SCCACHE_NO_DAEMON: "1"
-  # Disable incremental compilation so sccache works better
-  CARGO_INCREMENTAL: "false"
-  SCCACHE_GHA_ENABLED: "true"
-  SCCACHE_RECACHE: "${{ inputs.bust_cache == 'true' && 'true' || '' }}"
-
-=======
->>>>>>> 05feb6592 (feat: Toggleable sccache (#9773))
 jobs:
   build:
     strategy:
