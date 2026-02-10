@@ -13,7 +13,7 @@ Simple terminal UI for git commands.}
 %global godocs          docs README.md VISION.md
 
 Name:           golang-github-jesseduffield-lazygit
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Simple terminal UI for git commands
 
 License:        MIT
@@ -23,9 +23,18 @@ Packager:       sadlerm <lerm@chromebooks.lol>
 
 BuildRequires:  anda-srpm-macros
 
-Provides:       lazygit = %{version}-%{release}
+Provides:       lazygit = %{evr}
 
 %description %{common_description}
+
+
+%package        doc
+Summary:        Documentations for %{name}
+Requires:       %{name} = %{evr}
+BuildArch:      noarch
+
+%description    doc
+%{summary}.
 
 %gopkg
 
@@ -43,5 +52,8 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 
 %files
 %license LICENSE
-%doc docs README.md VISION.md
+%doc README.md
 %{_bindir}/lazygit
+
+%files doc
+%doc docs/ VISION.md CONTRIBUTING.md CODE-OF-CONDUCT.md
