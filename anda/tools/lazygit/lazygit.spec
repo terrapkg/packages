@@ -46,18 +46,18 @@ BuildArch:      noarch
 
 %build
 export GO111MODULE=on
-%gobuild -o %{gobuilddir}/%{name}
-go-md2man -in README.md -out %{name}.1
+%gobuild -o %{gobuilddir}/lazygit
+go-md2man -in README.md -out lazygit.1
 
 %install
 install -Dm755 %{gobuilddir}/lazygit %{buildroot}%{_bindir}/lazygit
-install -Dpm644 %{name}.1 %{buildroot}/%{_mandir}/man1/%{name}.1
+install -Dpm644 lazygit.1 %{buildroot}/%{_mandir}/man1/lazygit.1
 
 %files
 %doc README.md
 %license LICENSE
 %{_bindir}/lazygit
-%{_mandir}/man1/%{name}.1.*
+%{_mandir}/man1/lazygit.1.*
 
 %files doc
 %doc VISION.md CONTRIBUTING.md CODE-OF-CONDUCT.md docs/
