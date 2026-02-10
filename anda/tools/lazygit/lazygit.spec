@@ -7,7 +7,7 @@ Summary:        Simple terminal UI for git commands
 License:        MIT
 URL:            https://github.com/jesseduffield/lazygit
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
-BuildRequires:  golang go-rpm-macros
+BuildRequires:  golang go-rpm-macros go-md2man
 Requires:       git-core
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
@@ -31,14 +31,17 @@ BuildArch:      noarch
 %build
 export GO111MODULE=on
 %gobuild -o %{gobuilddir}/%{name}
+go-md2man -in README.md -out %{name}.1
 
 %install
 install -Dm755 %{gobuilddir}/lazygit %{buildroot}%{_bindir}/lazygit
+install -Dpm 0644 %{name}.1 %{buildroot}/%{_mandir}/man1/%{name}.1
 
 %files
 %doc README.md
 %license LICENSE
 %{_bindir}/lazygit
+%{_mandir}/man1/%{name}.1.*
 
 %files doc
 %doc VISION.md CONTRIBUTING.md CODE-OF-CONDUCT.md docs/
