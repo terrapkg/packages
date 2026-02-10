@@ -1,4 +1,5 @@
 %define debug_package %{nil}
+%define __python /usr/bin/python3
 
 %global pypi_name proton-vpn-local-agent
 %global _desc Proton VPN local agent written in Rust.
