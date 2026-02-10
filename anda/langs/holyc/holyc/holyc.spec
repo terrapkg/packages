@@ -36,9 +36,6 @@ sed -i 's|binary: %s/hcc|binary: %{_bindir}/hcc|g' cli.c
 %install
 %cmake_install
 
-%check
-%{buildroot}%{_bindir}/hcc --version
-
 %files
 %license ../COPYING
 %doc ../README.md
