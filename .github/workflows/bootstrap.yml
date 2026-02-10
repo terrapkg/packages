@@ -50,6 +50,9 @@ jobs:
       - name: Build terra-release
         run: anda build -D "vendor Terra" -rrpmbuild anda/terra/release/pkg
 
+      - name: Build terra-appstream-helper
+        run: anda build -D "vendor Terra" -rrpmbuild anda/terra/appstream-helper/pkg
+
       - name: Build Subatomic
         run: anda build -D "vendor Terra" -rrpmbuild anda/tools/buildsys/subatomic/pkg
       - name: Install Subatomic and anda-srpm-macros
