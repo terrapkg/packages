@@ -55,7 +55,7 @@ jobs:
         run: anda build -D "vendor Terra" -rrpmbuild anda/terra/release/pkg
 
       - name: Build terra-appstream-helper
-        run: anda build -D "vendor Terra" -rrpmbuild anda/terra/appstream-helper/pkg
+        run: anda build -D "vendor Terra" -D "__python %{__python3}" -rrpmbuild anda/terra/appstream-helper/pkg
 
       - name: Build Subatomic
         run: anda build -D "vendor Terra" -rrpmbuild anda/tools/buildsys/subatomic/pkg
