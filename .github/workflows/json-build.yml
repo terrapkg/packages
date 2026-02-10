@@ -75,10 +75,6 @@ jobs:
           dir=$(dirname ${{ matrix.pkg.pkg }})
           dnf5 builddep -y ${dir}/*.spec
 
-
-      - name: Run sccache-cache
-        uses: mozilla-actions/sccache-action@v0.0.9
-
       - name: Configure sccache
         run: |
           set -euo pipefail
