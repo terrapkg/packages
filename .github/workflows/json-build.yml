@@ -73,7 +73,7 @@ jobs:
         if: ${{ !contains(matrix.pkg.labels, 'sccache') }}
         run: |
           set -euo pipefail
-          echo "RUSTC_WRAPPER=/usr/bin/sccahe" >> $GITHUB_ENV
+          echo "RUSTC_WRAPPER=/usr/bin/sccache" >> $GITHUB_ENV
           echo "CARGO_INCREMENTAL=false" >> $GITHUB_ENV
           echo "SCCACHE_GHA_ENABLED=true" >> $GITHUB_ENV
           if [ "${{ inputs.bust_cache }}" = "true" ]; then
