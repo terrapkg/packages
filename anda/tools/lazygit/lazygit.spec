@@ -51,7 +51,7 @@ go-md2man -in README.md -out %{name}.1
 
 %install
 install -Dm755 %{gobuilddir}/lazygit %{buildroot}%{_bindir}/lazygit
-install -Dpm 0644 %{name}.1 %{buildroot}/%{_mandir}/man1/%{name}.1
+install -Dpm644 %{name}.1 %{buildroot}/%{_mandir}/man1/%{name}.1
 
 %files
 %doc README.md
