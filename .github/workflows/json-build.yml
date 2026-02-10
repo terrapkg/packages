@@ -35,12 +35,6 @@ on:
         type: boolean
         default: true
 
-env:
-  RUSTC_WRAPPER: "/usr/bin/sccache"
-  # SCCACHE_NO_DAEMON: "1"
-  # Disable incremental compilation so sccache works better
-  CARGO_INCREMENTAL: "false"
-
 jobs:
   build:
     strategy:
@@ -76,8 +70,11 @@ jobs:
           dnf5 builddep -y ${dir}/*.spec
 
       - name: Configure sccache
+        if: ${{ !contains(matrix.pkg.labels, 'sccache') }}
         run: |
           set -euo pipefail
+          echo "RUSTC_WRAPPER=/usr/bin/sccahe" >> $GITHUB_ENV
+          echo "CARGO_INCREMENTAL=false" >> $GITHUB_ENV
           echo "SCCACHE_GHA_ENABLED=true" >> $GITHUB_ENV
           if [ "${{ inputs.bust_cache }}" = "true" ]; then
             echo "SCCACHE_BUST_CACHE=true" >> $GITHUB_ENV
