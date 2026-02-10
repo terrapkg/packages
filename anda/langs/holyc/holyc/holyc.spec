@@ -2,7 +2,7 @@
 
 Name:          holyc
 Version:       %{ver}~beta
-Release:       1%{?dist}
+Release:       2%{?dist}
 Summary:       HolyC compiler and transpiler
 License:       BSD-2-Clause
 URL:           https://holyc-lang.com
@@ -19,7 +19,13 @@ HolyC is a fun recreational programming language designed by Terry A. Davis.
 Originally implemented in TempleOS as a general purpose programming language and scripting language for all manner of tasks.
 
 %prep
-%autosetup -n %{name}-lang-beta-v%{ver}/src
+# Currently needed to fetch the commit hash for hcc --version
+%git_clone https://github.com/Jamesbarford/holyc-lang.git beta-v%{ver}
+%setup -T -D -n holyc-lang/src
+# Make packaged versions of HolyC report the correct Git hash
+sed -i 's|git rev-parse main|git rev-parse HEAD|g' CMakeLists.txt
+# Make the binary correctly report its installed location as /usr/bin instead of /usr
+sed -i 's|binary: %s/hcc|binary: %{_bindir}/hcc|g' cli.c
 
 %build
 %cmake \
