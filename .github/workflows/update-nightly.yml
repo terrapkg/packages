@@ -10,7 +10,7 @@ jobs:
   autoupdate:
     runs-on: ubuntu-24.04-arm
     container:
-      image: ghcr.io/terrapkg/builder:frawhide
+      image: ghcr.io/terrapkg/builder:f44
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Checkout

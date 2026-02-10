@@ -8,13 +8,13 @@ on:
     paths:
       - anda/**
     branches:
-      - frawhide
+      - f44
   pull_request:
     branches:
-      - frawhide
+      - f44
   merge_group:
     branches:
-      - frawhide
+      - f44
   workflow_dispatch:
   workflow_call:
 
@@ -24,7 +24,7 @@ jobs:
     outputs:
       build_matrix: ${{ steps.generate_build_matrix.outputs.build_matrix }}
     container:
-      image: ghcr.io/terrapkg/builder:frawhide
+      image: ghcr.io/terrapkg/builder:f44
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Set workspace as safe

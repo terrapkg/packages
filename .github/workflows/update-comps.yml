@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - frawhide
+      - f44
       - f43
       - f42
       - el10
@@ -17,7 +18,7 @@ jobs:
   update-comps:
     runs-on: ubuntu-24.04-arm
     container:
-      image: ghcr.io/terrapkg/builder:frawhide
+      image: ghcr.io/terrapkg/builder:f44
     steps:
       - uses: actions/checkout@v6
       - name: Push to subatomic

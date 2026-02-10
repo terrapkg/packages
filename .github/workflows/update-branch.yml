@@ -13,11 +13,12 @@ jobs:
       matrix:
         branch:
           - frawhide
+          - f44
           - f43
           - f42
           - el10
     container:
-      image: ghcr.io/terrapkg/builder:frawhide
+      image: ghcr.io/terrapkg/builder:f44
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Checkout
