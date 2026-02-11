@@ -1,6 +1,6 @@
 Name:			proton-vpn-gtk-app
 Version:		4.14.1
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Official ProtonVPN Linux app
 License:		GPL-3.0-only
 URL:			https://protonvpn.com/download-linux
@@ -27,6 +27,7 @@ Requires:       python3-gobject
 Requires:       python3-dbus
 Requires:       python3-packaging
 Requires:       python3-proton-vpn-api-core
+Requires:       python3-proton-core >= 0.7.0
 Requires:       librsvg2
 
 Provides:       protonvpn
