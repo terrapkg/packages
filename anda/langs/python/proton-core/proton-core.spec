@@ -29,7 +29,6 @@ Summary: %{summary}
 
 %prep
 %autosetup
-#sed -i '/addopts = --cov=proton --cov-report html --cov-report term/d' setup.cfg
 
 %build
 %pyproject_wheel
