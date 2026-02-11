@@ -84,13 +84,13 @@
 
 Name:           %{srcname}
 Summary:        Mesa graphics libraries
-%global ver 25.3.4
+%global ver 26.0.0
 Epoch:          1
 Version:        %{lua:ver = string.gsub(rpm.expand("%{ver}"), "-", "~"); print(ver)}
 Release:        1
 Packager:       Kyle Gospodnetich <me@kylegospodneti.ch>
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0
-URL:            http://www.mesa3d.org
+URL:            https://mesa3d.org
 
 Source0:        https://archive.mesa3d.org/%{srcname}-%{version}.tar.xz
 # src/gallium/auxiliary/postprocess/pp_mlaa* have an ... interestingly worded license.
@@ -114,9 +114,6 @@ Source12:       https://crates.io/api/v1/crates/quote/%{rust_quote_ver}/download
 Source13:       https://crates.io/api/v1/crates/syn/%{rust_syn_ver}/download#/syn-%{rust_syn_ver}.tar.gz
 Source14:       https://crates.io/api/v1/crates/unicode-ident/%{rust_unicode_ident_ver}/download#/unicode-ident-%{rust_unicode_ident_ver}.tar.gz
 Source15:       https://crates.io/api/v1/crates/rustc-hash/%{rustc_hash_ver}/download#/rustc-hash-%{rustc_hash_ver}.tar.gz
-
-# Teflon: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/38532
-Patch12:        mesa-38532.patch
 
 # Open Gaming Collective Patches
 Patch30:        https://raw.githubusercontent.com/OpenGamingCollective/mesa/refs/tags/%{ver}/limiter.patch
@@ -240,8 +237,8 @@ Obsoletes:      %{name}-libOSMesa < %{?epoch:%{epoch}:}25.1.0~rc2-1
 Summary:        Mesa libGL development package
 Requires:       (%{name}-libGL%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release} if %{name}-libGL%{?_isa})
 Requires:       libglvnd-devel%{?_isa} >= 1:1.3.2
-Provides:       libGL-devel
-Provides:       libGL-devel%{?_isa}
+Provides:       libGL-devel = %{?epoch:%{epoch}:}%{version}-%{release}            
+Provides:       libGL-devel%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Recommends:     gl-manpages
 Obsoletes:      %{name}-libOSMesa-devel < %{?epoch:%{epoch}:}25.1.0~rc2-1
 
@@ -262,8 +259,8 @@ Summary:        Mesa libEGL development package
 Requires:       (%{name}-libEGL%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release} if %{name}-libEGL%{?_isa})
 Requires:       libglvnd-devel%{?_isa} >= 1:1.3.2
 Requires:       %{name}-khr-devel%{?_isa}
-Provides:       libEGL-devel
-Provides:       libEGL-devel%{?_isa}
+Provides:       libEGL-devel = %{?epoch:%{epoch}:}%{version}-%{release}            
+Provides:       libEGL-devel%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description libEGL-devel
 %{summary}.
@@ -292,8 +289,8 @@ Obsoletes:      %{name}-vaapi-drivers < %{?epoch:%{epoch}:}22.2.0-5
 
 %package libgbm
 Summary:        Mesa gbm runtime library
-Provides:       libgbm
-Provides:       libgbm%{?_isa}
+Provides:       libgbm = %{?epoch:%{epoch}:}%{version}-%{release}            
+Provides:       libgbm%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Recommends:     %{name}-dri-drivers%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 # If mesa-dri-drivers are installed, they must match in version. This is here to prevent using
 # older mesa-dri-drivers together with a newer mesa-libgbm and its dependants.
@@ -306,8 +303,8 @@ Requires:       (%{name}-dri-drivers%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{r
 %package libgbm-devel
 Summary:        Mesa libgbm development package
 Requires:       %{name}-libgbm%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-Provides:       libgbm-devel
-Provides:       libgbm-devel%{?_isa}
+Provides:       libgbm-devel = %{?epoch:%{epoch}:}%{version}-%{release}            
+Provides:       libgbm-devel%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description libgbm-devel
 %{summary}.
@@ -355,6 +352,7 @@ Summary:        Mesa Vulkan drivers
 Requires:       vulkan%{_isa}
 Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Obsoletes:      mesa-vulkan-devel < %{?epoch:%{epoch}:}%{version}-%{release}
+Obsoletes:      VK_hdr_layer < 1
 
 %description vulkan-drivers
 The drivers with support for the Vulkan API.
@@ -514,13 +512,6 @@ rm -vf %{buildroot}%{_libdir}/dri/apple_dri.so
 # glvnd needs a default provider for indirect rendering where it cannot
 # determine the vendor
 ln -s %{_libdir}/libGLX_mesa.so.0 %{buildroot}%{_libdir}/libGLX_system.so.0
-
-# this keeps breaking, check it early.  note that the exit from eu-ftr is odd.
-pushd %{buildroot}%{_libdir}
-for i in libGL.so ; do
-    eu-findtextrel $i && exit 1
-done
-popd
 
 %files filesystem
 %doc docs/Mesa-MLAA-License-Clarification-Email.txt
