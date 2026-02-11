@@ -2,7 +2,7 @@
 
 Name:          holyc
 Version:       %{ver}~beta
-Release:       2%{?dist}
+Release:       3%{?dist}
 Summary:       HolyC compiler and transpiler
 License:       BSD-2-Clause
 URL:           https://holyc-lang.com
@@ -25,7 +25,7 @@ Originally implemented in TempleOS as a general purpose programming language and
 # Make packaged versions of HolyC report the correct Git hash
 sed -i 's|git rev-parse main|git rev-parse HEAD|g' CMakeLists.txt
 # Make the binary correctly report its installed location as /usr/bin instead of /usr
-sed -i 's|binary: %s/hcc|binary: %{_bindir}/hcc|g' cli.c
+sed -i 's|binary: %%s/hcc|binary: %%s/bin/hcc|g' cli.c
 
 %build
 %cmake \
@@ -35,6 +35,9 @@ sed -i 's|binary: %s/hcc|binary: %{_bindir}/hcc|g' cli.c
 
 %install
 %cmake_install
+
+%check
+%{buildroot}%{_bindir}/hcc --version
 
 %files
 %license ../COPYING
