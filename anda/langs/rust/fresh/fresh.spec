@@ -8,6 +8,7 @@ URL:            https://sinelaw.github.io/fresh/
 Source0:        https://github.com/sinelaw/fresh/archive/refs/tags/v%version.tar.gz
 License:        GPL-2.0-Only
 BuildRequires:  cargo anda-srpm-macros cargo-rpm-macros mold
+BuildRequires:  clang-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
