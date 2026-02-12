@@ -4,10 +4,11 @@ Name:           fresh
 Version:        0.2.3
 Release:        1%?dist
 Summary:        Text editor for your terminal: easy, powerful and fast
-URL:            https://sinelaw.github.io/fresh/
+URL:            https://getfresh.dev
 Source0:        https://github.com/sinelaw/fresh/archive/refs/tags/v%version.tar.gz
-License:        GPL-2.0-Only
+License:        GPL-2.0-only
 BuildRequires:  cargo anda-srpm-macros cargo-rpm-macros mold
+BuildRequires:  clang-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
@@ -15,10 +16,10 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %{summary}.
 
 %package    doc
-Summary:    Documentaion for %{name}
+Summary:    Documentation for %{name}
 
 %description doc
-Documentaion for %{name}.
+Documentation for %{name}.
 
 %prep
 %autosetup
@@ -28,17 +29,17 @@ Documentaion for %{name}.
 %cargo_build
 
 %install
-install -Dm755 target/rpm/%{name}                           %{buildroot}%{_bindir}/%{name}
-install -Dm644 flatpak/io.github.sinelaw.fresh.svg          %{buildroot}%{_scalableiconsdir}/io.github.sinelaw.fresh.svg
-install -Dm644 flatpak/io.github.sinelaw.fresh.desktop      %{buildroot}%{_appsdir}/io.github.sinelaw.fresh.desktop
-install -Dm644 flatpak/io.github.sinelaw.fresh.metainfo.xml %{buildroot}%{_metainfodir}/io.github.sinelaw.fresh.metainfo.xml
+install -Dm755 target/rpm/%{name}                                               %{buildroot}%{_bindir}/%{name}
+install -Dm644 crates/fresh-editor/flatpak/io.github.sinelaw.fresh.svg          %{buildroot}%{_scalableiconsdir}/io.github.sinelaw.fresh.svg
+install -Dm644 crates/fresh-editor/flatpak/io.github.sinelaw.fresh.desktop      %{buildroot}%{_appsdir}/io.github.sinelaw.fresh.desktop
+install -Dm644 crates/fresh-editor/flatpak/io.github.sinelaw.fresh.metainfo.xml %{buildroot}%{_metainfodir}/io.github.sinelaw.fresh.metainfo.xml
 %{cargo_license_online} > LICENSE.dependencies
 mkdir -p %{buildroot}%{_pkgdocdir}
-cp -a docs/*                                                %{buildroot}%{_pkgdocdir}/
+cp -a docs/*                                                                    %{buildroot}%{_pkgdocdir}/
 
 %files
 %license LICENSE LICENSE.dependencies
-%doc README.md REFACTORING_PLAN.md CHANGELOG.md
+%doc README.md CHANGELOG.md
 %{_bindir}/%{name}
 %{_scalableiconsdir}/io.github.sinelaw.fresh.svg
 %{_appsdir}/io.github.sinelaw.fresh.desktop
