@@ -29,6 +29,8 @@ BuildRequires:       perl
 BuildRequires:       zlib-ng-devel
 BuildRequires:       clang
 BuildRequires:       mold
+BuildRequires:       ninja
+BuildRequires:       cmake
 
 
 
