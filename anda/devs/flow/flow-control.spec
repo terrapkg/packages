@@ -1,6 +1,6 @@
 Name:           flow-control
 Epoch:          1
-Version:        0.6.0
+Version:        0.7.0
 Release:        1%?dist
 Summary:        A programmer's text editor
 License:        MIT
