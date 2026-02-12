@@ -44,6 +44,7 @@ The application features a user-friendly interface with one-click mining setup.
 
 %build
 %pnpm_build
+ls target/rpm
 mv "target/rpm/Tari Universe (Alpha)" target/rpm/tari-universe
 
 %install
