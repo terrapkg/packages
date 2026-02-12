@@ -39,7 +39,7 @@ cp -a docs/*                                                                    
 
 %files
 %license LICENSE LICENSE.dependencies
-%doc README.md REFACTORING_PLAN.md CHANGELOG.md
+%doc README.md CHANGELOG.md
 %{_bindir}/%{name}
 %{_scalableiconsdir}/io.github.sinelaw.fresh.svg
 %{_appsdir}/io.github.sinelaw.fresh.desktop
