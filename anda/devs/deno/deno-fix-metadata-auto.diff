@@ -1,11 +1,11 @@
---- deno-2.6.3/Cargo.toml	1970-01-01T00:00:01+00:00
-+++ deno-2.6.3/Cargo.toml	2025-12-24T13:35:12.790326+00:00
-@@ -657,24 +657,3 @@
+--- deno-2.6.9/Cargo.toml	1970-01-01T00:00:01+00:00
++++ deno-2.6.9/Cargo.toml	2026-02-12T15:05:13.386522+00:00
+@@ -667,24 +667,3 @@
  [target."cfg(unix)".dependencies.shell-escape]
  version = "=0.1.5"
  
 -[target."cfg(windows)".dependencies.deno_subprocess_windows]
--version = "0.25.0"
+-version = "0.26.0"
 -
 -[target."cfg(windows)".dependencies.winapi]
 -version = "=0.3.9"
