@@ -1,4 +1,4 @@
-%global _distro_extra_cflags -Wno-discarded-qualifiers
+%global _distro_extra_cflags -Wno-discarded-qualifiers -Wno-maybe-uninitialized
 
 Name:           quickjs-ng
 Version:        0.12.0
