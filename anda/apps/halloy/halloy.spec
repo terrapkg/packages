@@ -33,7 +33,8 @@ BuildRequires: pkgconfig(xcb)
 %cargo_build
 
 %install
-%crate_install_bin
+install -Dm755 target/rpm/halloy %{buildroot}%{_bindir}/halloy
+%dnl %crate_install_bin
 desktop-file-install assets/linux/%{appid}.desktop
 install -Dpm644 assets/linux/%{appid}.appdata.xml -t %{buildroot}%{_datadir}/metainfo
 
