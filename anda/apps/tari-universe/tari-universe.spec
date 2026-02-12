@@ -44,8 +44,7 @@ The application features a user-friendly interface with one-click mining setup.
 
 %build
 %pnpm_build
-ls target
-mv "target/rpm/Tari Universe (Alpha)" target/rpm/tari-universe
+mv "src-tauri/target/rpm/Tari Universe (Alpha)" src-tauri/target/rpm/tari-universe
 
 %install
 %tauri_install_bin
