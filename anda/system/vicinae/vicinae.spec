@@ -23,7 +23,7 @@ BuildRequires:  pkgconfig(libqalculate)
 BuildRequires:  pkgconfig(protobuf)
 BuildRequires:  pkgconfig(icu-uc)
 BuildRequires:  wayland-devel
-BuildRequires:  nodejs-npm
+BuildRequires:  /usr/bin/npm
 BuildRequires:  systemd-rpm-macros
 
 Requires:       nodejs-npm
