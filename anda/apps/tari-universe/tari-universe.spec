@@ -44,7 +44,7 @@ The application features a user-friendly interface with one-click mining setup.
 
 %build
 %pnpm_build
-
+mv "target/rpm/Tari Universe (Alpha)" target/rpm/tari-universe
 
 %install
 %tauri_install_bin
@@ -62,7 +62,7 @@ install -Dm644   public/tari.svg %{buildroot}%{_hicolordir}/scalable/apps/
 %license LICENSE
 %doc README.md
 
-%{_bindir}/twintaillauncher
+%{_bindir}/tari-universe
 %{_hicolordir}/scalable/apps/tari.svg
 %_appsdir/tari-universe.desktop
 
