@@ -6,7 +6,7 @@ Release:        1%?dist
 Summary:        Text editor for your terminal: easy, powerful and fast
 URL:            https://sinelaw.github.io/fresh/
 Source0:        https://github.com/sinelaw/fresh/archive/refs/tags/v%version.tar.gz
-License:        GPL-2.0-Only
+License:        GPL-2.0-only
 BuildRequires:  cargo anda-srpm-macros cargo-rpm-macros mold
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
@@ -15,10 +15,10 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %{summary}.
 
 %package    doc
-Summary:    Documentaion for %{name}
+Summary:    Documentation for %{name}
 
 %description doc
-Documentaion for %{name}.
+Documentation for %{name}.
 
 %prep
 %autosetup
