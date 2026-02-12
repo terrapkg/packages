@@ -33,7 +33,7 @@ Tari Universe is a desktop application that allows users to mine Tari tokens (XT
 The application features a user-friendly interface with one-click mining setup.
 
 %prep
-%autosetup -n universe-v%{version}
+%autosetup -n universe-%{version}
 %tauri_prep
 
 %build
