@@ -23,6 +23,7 @@ BuildRequires:  python-rpm-macros
 BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(setuptools) >= 61.0
 BuildRequires:  python3dist(wheel) >= 0.37.1
+BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6KirigamiPlatform)
 BuildRequires:  cmake(Plasma)
 BuildRequires:  cmake(Plasma5Support)
