@@ -232,8 +232,8 @@ make -C utils check
 
 %files -n python3-LibAppArmor
 %doc README.md
-%{python3_sitearch}/LibAppArmor
-%{python3_sitearch}/LibAppArmor-*.egg-info
+#{python3_sitearch}/LibAppArmor
+#{python3_sitearch}/LibAppArmor-*.egg-info
 
 %files profiles
 %dir %{_sysconfdir}/apparmor.d/
