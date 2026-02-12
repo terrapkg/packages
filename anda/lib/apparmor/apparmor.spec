@@ -276,7 +276,7 @@ make -C utils check
 %{_bindir}/aa-exec
 %{_bindir}/aa-features-abi
 %{_sbindir}/aa-load
-%{_sbindir}/aa-show-usage
+#{_sbindir}/aa-show-usage
 %dnl %{_sbindir}/aa-teardown
 %dnl %{_unitdir}/apparmor.service
 %{_presetdir}/70-apparmor.preset
@@ -294,7 +294,7 @@ make -C utils check
 %{_mandir}/man7/apparmor.7.gz
 %{_mandir}/man7/apparmor_xattrs.7.gz
 %{_mandir}/man8/aa-load.8.gz
-%{_mandir}/man8/aa-show-usage.8.gz
+#{_mandir}/man8/aa-show-usage.8.gz
 %dnl %{_mandir}/man8/aa-teardown.8.gz
 %{_mandir}/man8/apparmor_parser.8.gz
 
