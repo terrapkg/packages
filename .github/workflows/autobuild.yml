@@ -118,3 +118,69 @@ jobs:
             echo '```' >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
           done
+
+  lintUpdate:
+    needs: manifest
+    runs-on: ubuntu-24.04-arm
+    permissions:
+      contents: read
+      pull-requests: write
+    container:
+      image: ghcr.io/terrapkg/builder:frawhide
+      options: --cap-add=SYS_ADMIN --privileged
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 2
+          ssh-key: ${{ secrets.SSH_AUTHENTICATION_KEY }}
+
+      - name: Install SSH signing key & Set up git repository
+        run: |
+          mkdir -p ${{ runner.temp }}
+          echo "${{ secrets.SSH_SIGNING_KEY }}" > ${{ runner.temp }}/signing_key
+          chmod 0700 ${{ runner.temp }}/signing_key
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - name: Collect update scripts from last commit
+        id: last_commit_update_scripts
+        run: |
+          scripts=$(git diff-tree --no-commit-id --name-only HEAD -r | grep -E '/update\.rhai$' || true)
+          scripts=$(printf "%s" "$scripts" | tr '\n' ' ')
+          echo "upd_scripts=${scripts}" >> $GITHUB_OUTPUT
+
+      - name: Run update scripts from last commit
+        if: steps.last_commit_update_scripts.outputs.upd_scripts != ''
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          pr_number="${{ github.event.pull_request.number }}"
+          for script in ${{ steps.last_commit_update_scripts.outputs.upd_scripts }}; do
+            echo "Running update script: $script"
+            dir=$(dirname "$script")
+            hcl="$dir/anda.hcl"
+            if [ ! -f "$hcl" ]; then
+              echo "Missing anda.hcl for $script"
+              continue
+            fi
+
+            backup="$hcl.autobuild_upd_test.bak"
+            cp $hcl $backup
+            if ! grep -qE 'labels {' $hcl; then
+              sed -E '/rpm\s*{/i labels { autobuild_upd_test = 1 }' -i $hcl
+            else
+              sed -E '/labels\s*{/a autobuild_upd_test = 1' -i $hcl
+            fi
+
+            output=$(anda run "$script" -f autobuild_upd_test=1 2>&1) || status=$?
+            status=${status:-0}
+            echo "$output"
+
+            mv "$backup" "$hcl" # do we want to commit this too?
+
+            if echo "$output" | grep -q "ERROR" || [ "$status" -ne 0 ]; then
+              gh pr comment ${{ github.event.pull_request.number }} --body "Update script failed: $script\n\n\`\`\`\n$output\n\`\`\`"
+              exit 1
+            fi
+          done
