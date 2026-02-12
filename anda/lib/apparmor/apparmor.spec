@@ -185,6 +185,9 @@ install -Dm644 %{SOURCE1} %{buildroot}%{_presetdir}/70-apparmor.preset
 
 find %{buildroot} \( -name "*.a" -o -name "*.la" \) -delete
 
+mkdir -p %buildroot%python3_sitearch/LibAppArmor
+mv %buildroot%python3_sitearch/{LibAppArmor.py,_LibAppArmor.cpython-*-linux-gnu.so,__pycache__/LibAppArmor.*} %buildroot%python3_sitearch/LibAppArmor/
+
 %find_lang aa-binutils
 %find_lang apparmor-parser
 %find_lang apparmor-utils
@@ -276,11 +279,11 @@ make -C utils check
 %{_bindir}/aa-exec
 %{_bindir}/aa-features-abi
 %{_sbindir}/aa-load
-%{_sbindir}/aa-show-usage
-%dnl %{_sbindir}/aa-teardown
-%dnl %{_unitdir}/apparmor.service
+#{_sbindir}/aa-show-usage
+%{_sbindir}/aa-teardown
+%{_unitdir}/apparmor.service
 %{_presetdir}/70-apparmor.preset
-%dnl %{_prefix}/lib/apparmor
+%{_prefix}/lib/apparmor
 %dir %{_sysconfdir}/apparmor
 # FIXME: the confusion…? how did this happen
 %config(noreplace) %{_sysconfdir}/apparmor/default_unconfined.template
@@ -294,8 +297,8 @@ make -C utils check
 %{_mandir}/man7/apparmor.7.gz
 %{_mandir}/man7/apparmor_xattrs.7.gz
 %{_mandir}/man8/aa-load.8.gz
-%{_mandir}/man8/aa-show-usage.8.gz
-%dnl %{_mandir}/man8/aa-teardown.8.gz
+#{_mandir}/man8/aa-show-usage.8.gz
+%{_mandir}/man8/aa-teardown.8.gz
 %{_mandir}/man8/apparmor_parser.8.gz
 
 %files utils -f apparmor-utils.lang
