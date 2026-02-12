@@ -23,6 +23,10 @@ BuildRequires:  pnpm
 BuildRequires: %{tauri_buildrequires}
 BuildRequires:       desktop-file-utils
 BuildRequires:       hicolor-icon-theme
+BuildRequires: protobuf-devel
+BuildRequires:  webkit2gtk4.1-devel
+BuildRequires:       perl
+BuildRequires:       zlib-ng-devel
 BuildRequires:       clang
 BuildRequires:       mold
 
