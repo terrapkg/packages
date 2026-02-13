@@ -52,8 +52,8 @@ mv "src-tauri/target/rpm/Tari Universe (Alpha)" src-tauri/target/rpm/tari-univer
 %{tauri_cargo_license} > LICENSE.dependencies
 
 %desktop_file_install -f  %{S:1}
-
-install -Dmt644   public/tari.svg %{buildroot}%{_hicolordir}/scalable/apps/
+mkdir -p %{buildroot}%{_scalableiconsdir}/
+install -Dm644   public/tari.svg %{buildroot}%{_hicolordir}/scalable/apps/
 
 
 
