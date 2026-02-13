@@ -9,6 +9,9 @@ Summary:        Material you color generation tool with templates
 License:        GPL-2.0
 URL:            https://crates.io/crates/matugen
 Source:         %{crates_source}
+Source1:        https://raw.githubusercontent.com/InioX/matugen/refs/tags/v%version/README.md
+Source1:        https://raw.githubusercontent.com/InioX/matugen/refs/tags/v%version/CHANGELOG.md
+Source1:        https://raw.githubusercontent.com/InioX/matugen/refs/tags/v%version/LICENSE
 
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros
@@ -56,6 +59,7 @@ use the "%{crate}" crate.
 %prep
 %autosetup -n %{crate}-%{version} -p1
 %cargo_prep_online
+cp %{S:1} %{S:2} %{S:3} .
 
 %build
 %{cargo_license_summary_online}
