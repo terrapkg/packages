@@ -53,7 +53,7 @@ mv "src-tauri/target/rpm/Tari Universe (Alpha)" src-tauri/target/rpm/tari-univer
 
 %desktop_file_install -f  %{S:1}
 
-install -Dm644   public/tari.svg %{buildroot}%{_hicolordir}/scalable/apps/
+install -Dmt644   public/tari.svg %{buildroot}%{_hicolordir}/scalable/apps/
 
 
 
