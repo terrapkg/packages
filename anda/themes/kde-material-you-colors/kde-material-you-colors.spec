@@ -69,8 +69,6 @@ DESTDIR="%{buildroot}" %cmake_install
 sed -Ei "s:^(#!.*)env (python.*)$:\1python3:" %{buildroot}%{python3_sitelib}/kde_material_you_colors/main.py
 %fdupes %{buildroot}%{python3_sitelib}/%{name}/
 
-%terra_appstream
-
 %files
 %doc CHANGELOG.md
 %doc README.md
