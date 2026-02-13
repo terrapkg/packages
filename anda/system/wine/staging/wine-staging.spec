@@ -369,6 +369,7 @@ done
 %{_mandir}/man?/winepath.?*
 %{_mandir}/man?/wineserver.?*
 %dir %{_datadir}/wine
+%{_datadir}/wine/winmd/
 %{_datadir}/wine/wine.inf
 %{_datadir}/wine/nls/*.nls
 %{_datadir}/applications/*.desktop
