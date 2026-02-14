@@ -10,8 +10,8 @@ License:        GPL-2.0
 URL:            https://crates.io/crates/matugen
 Source:         %{crates_source}
 Source1:        https://raw.githubusercontent.com/InioX/matugen/refs/tags/v%version/README.md
-Source1:        https://raw.githubusercontent.com/InioX/matugen/refs/tags/v%version/CHANGELOG.md
-Source1:        https://raw.githubusercontent.com/InioX/matugen/refs/tags/v%version/LICENSE
+Source2:        https://raw.githubusercontent.com/InioX/matugen/refs/tags/v%version/CHANGELOG.md
+Source3:        https://raw.githubusercontent.com/InioX/matugen/refs/tags/v%version/LICENSE
 
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros
