@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-%global commit 88fe0d0be3626218b1e47fffeebe812e6bd78e20
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260212
 %global commit 56483858768257405947d5f43a765770368fa416
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global commitdate 20260214
