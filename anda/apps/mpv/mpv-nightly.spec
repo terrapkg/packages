@@ -1,10 +1,6 @@
 # Disable X11 for RHEL 10+
 %bcond x11 %[%{undefined rhel} || 0%{?rhel} < 10]
 
-<<<<<<< HEAD
-%global commit 3847a8157f6e44d7788dea2d1c172bc20bc50120
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260210
 %global commit 102e693f49ce40fa10361d166392068c24fe5f15
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global commit_date 20260214
