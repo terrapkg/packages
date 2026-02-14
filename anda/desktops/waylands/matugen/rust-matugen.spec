@@ -59,7 +59,7 @@ use the "%{crate}" crate.
 %prep
 %autosetup -n %{crate}-%{version} -p1
 %cargo_prep_online
-cp %{S:1} %{S:2} %{S:3} .
+install -Dpm0644 -t . %{S:1} %{S:2} %{S:3}
 
 %build
 %{cargo_license_summary_online}
