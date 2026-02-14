@@ -29,7 +29,6 @@ speed-up the check-in process. To the attendees, it's faster, easier, and has a 
 %cargo_build
 
 %install
-ls -la
 install -Dm755 target/rpm/alipad %{buildroot}%{_bindir}/alipad
 
 %files
