@@ -11,7 +11,7 @@ Summary:        Robust event check-in system
 URL:            https://git.sr.ht/~malicean/alipad
 Source0:        https://git.sr.ht/~malicean/alipad/archive/%{commit}.tar.gz
 License:        BSD-3-Clause
-BuildRequires:  cargo-rpm-macros cargo gcc udev-devel
+BuildRequires:  cargo-rpm-macros cargo gcc rust-udev-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
