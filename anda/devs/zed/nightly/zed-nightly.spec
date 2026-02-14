@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 %global commit ee3f40fe25d206ca363b753e5b86e09ac6181eca
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global commit_date 20260212
+%global commit b90a370c864a76dc53bc19b650a2a07fbb36b043
+%global shortcommit %(c=%{commit}; echo ${c:0:7})
+%global commit_date 20260214
 %global ver 0.225.0
 
 %bcond_with check
