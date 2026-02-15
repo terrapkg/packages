@@ -47,7 +47,7 @@ tar --strip-components=1 -zxvf %{SOURCE1}
 install -dm755 %{buildroot}%{_libdir}/%{name}
 cp -a * %{buildroot}%{_libdir}/%{name}/
 
-install -Dm644 %{SOURCE3} %{buildroot}%{_appsdir}/%{appdir}.desktop
+install -Dm644 %{SOURCE3} %{buildroot}%{_appsdir}/%{appid}.desktop
 
 install -Dm644 product_logo_256.png %{buildroot}%{_hicolordir}/256x256/apps/%{appid}.png
 
