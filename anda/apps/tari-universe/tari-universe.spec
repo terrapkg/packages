@@ -59,7 +59,7 @@ install -Dm644   public/tari.svg %{buildroot}%{_hicolordir}/scalable/apps/
 
 %files
 %license LICENSE.dependencies
-%license LICENSE
+%license LICENSE.md
 %doc README.md
 
 %{_bindir}/tari-universe
