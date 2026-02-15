@@ -111,8 +111,8 @@ chmod 755 %{buildroot}%{_bindir}/%{name}
 %license LICENSE LICENSE.ungoogled_chromium
 %{_libdir}/%{name}/
 # shebang reasons
-%attr(0755,root,root) %{_bindir}/%{name}
-%{_appsdir}/%{name}.desktop
+%attr(0755,root,root) %{_bindir}/%{appid}
+%{_appsdir}/%{appid}.desktop
 %{_hicolordir}/256x256/apps/%{appid}.png
 %{_metainfodir}/%{appid}.metainfo.xml
 
