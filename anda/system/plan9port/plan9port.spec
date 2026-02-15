@@ -57,8 +57,8 @@ A port of many Plan 9 libraries and programs to Unix.
 %install
 mkdir -p %{buildroot}%{_bindir}/
 mkdir -p %{buildroot}%{_mandir}/
-cp -a bin/*                            %{buildroot}%{_bindir}/
-cp -a man/*                            %{buildroot}%{_mandir}/
+cp -r bin/*                            %{buildroot}%{_bindir}/
+cp -r man/*                            %{buildroot}%{_mandir}/
 install -Dm644 include/*.h          -t %{buildroot}%{_includedir}/
 install -Dm644 lib/*.a              -t %{buildroot}%{_libdir}/
 %desktop_file_install %{SOURCE1}
