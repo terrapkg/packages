@@ -47,7 +47,7 @@ tar --strip-components=1 -zxvf %{SOURCE1}
 install -dm755 %{buildroot}%{_libdir}/%{name}
 cp -a * %{buildroot}%{_libdir}/%{name}/
 
-install -Dm644 %{SOURCE3} %{buildroot}%{_appsdir}/%{name}.desktop
+install -Dm644 %{SOURCE3} %{buildroot}%{_appsdir}/%{appdir}.desktop
 
 install -Dm644 product_logo_256.png %{buildroot}%{_hicolordir}/256x256/apps/%{appid}.png
 
@@ -110,6 +110,7 @@ chmod 755 %{buildroot}%{_bindir}/%{name}
 %doc README.md
 %license LICENSE LICENSE.ungoogled_chromium
 %{_libdir}/%{name}/
+# shebang reasons
 %attr(0755,root,root) %{_bindir}/%{name}
 %{_appsdir}/%{name}.desktop
 %{_hicolordir}/256x256/apps/%{appid}.png
