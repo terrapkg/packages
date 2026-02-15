@@ -21,10 +21,12 @@ License:        GPL-3.0-only AND BSD-3-Clause
 Source0:        https://github.com/imputnet/helium-linux/releases/download/%{version}/helium-%{version}-%{arch}_linux.tar.xz
 Source1:        https://github.com/imputnet/helium-linux/archive/refs/tags/%{version}.tar.gz
 Source2:        net.imput.helium.metainfo.xml
+Source3:        net.imput.helium.desktop
 
 ExclusiveArch:  x86_64 aarch64
 
-BuildRequires:  terra-appstream-helper desktop-file-utils
+BuildRequires:  terra-appstream-helper
+BuildRequires:  desktop-file-utils
 
 Requires:       xdg-utils
 Requires:       liberation-fonts
@@ -39,20 +41,13 @@ Based on ungoogled-chromium with additional privacy and usability improvements.
 %autosetup -n helium-%{version}-%{arch}_linux
 tar --strip-components=1 -zxvf %{SOURCE1}
 
-sed -i 's/Exec=helium\b/Exec=helium-browser-bin/g' helium.desktop
-
 %build
 
 %install
 install -dm755 %{buildroot}%{_libdir}/%{name}
 cp -a * %{buildroot}%{_libdir}/%{name}/
 
-sed -i 's/exists_desktop_file || generate_desktop_file/true/' \
-    %{buildroot}%{_libdir}/%{name}/chrome-wrapper
-
-install -Dm644 helium.desktop %{buildroot}%{_appsdir}/%{name}.desktop
-
-%__desktop_file_edit --set-icon=net.input.helium %{buildroot}%{_appsdir}/%{name}.desktop
+install -Dm644 %{SOURCE3} %{buildroot}%{_appsdir}/%{appid}.desktop
 
 install -Dm644 product_logo_256.png %{buildroot}%{_hicolordir}/256x256/apps/%{appid}.png
 
@@ -60,49 +55,52 @@ rm -f %{buildroot}%{_libdir}/%{name}/helium.desktop
 rm -f %{buildroot}%{_libdir}/%{name}/product_logo_256.png
 
 install -dm755 %{buildroot}%{_bindir}
-cat > %{buildroot}%{_bindir}/%{name} << EOF
+cat > %{buildroot}%{_bindir}/%{name} << 'EOF'
+
 #!/bin/bash
 set -euo pipefail
 
-XDG_CONFIG_HOME="\${XDG_CONFIG_HOME:-\"\$HOME/.config\"}"
-
+XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-"$HOME/.config"}"
 SYS_CONF="%{_sysconfdir}/helium-browser-flags.conf"
-USR_CONF="\${XDG_CONFIG_HOME}/helium-browser-flags.conf"
+USR_CONF="${XDG_CONFIG_HOME}/helium-browser-flags.conf"
 
 FLAGS=()
 
 append_flags_file() {
-    local file="\$1"
-    [[ -r "\$file" ]] || return 0
+    local file="$1"
+    [[ -r "$file" ]] || return 0
     local line safe_line
     while IFS= read -r line; do
-        [[ "\$line" =~ ^[[:space:]]*(#|\$) ]] && continue
-        case "\$line" in
-            *'\$('*|*'\`'*)
-                echo "Warning: ignoring unsafe line in \$file: \$line" >&2
+        [[ "$line" =~ ^[[:space:]]*(#|$) ]] && continue
+        case "$line" in
+            *'$('*|*'`'*)
+                echo "Warning: ignoring unsafe line in $file: $line" >&2
                 continue
                 ;;
         esac
         set -f
-        safe_line=\${line//\$/\\\\\$}
-        safe_line=\${safe_line//~/\\\\~}
-        eval "set -- \$safe_line"
+        safe_line=${line//$/\\$}
+        safe_line=${safe_line//~/\\~}
+        eval "set -- $safe_line"
         set +f
-        for token in "\$@"; do
-            FLAGS+=("\$token")
+        for token in "$@"; do
+            FLAGS+=("$token")
         done
-    done < "\$file"
+    done < "$file"
 }
 
-append_flags_file "\$SYS_CONF"
-append_flags_file "\$USR_CONF"
+append_flags_file "$SYS_CONF"
+append_flags_file "$USR_CONF"
 
-if [[ -n "\${HELIUM_USER_FLAGS:-}" ]]; then
-    read -r -a ENV_FLAGS <<< "\$HELIUM_USER_FLAGS"
-    FLAGS+=("\${ENV_FLAGS[@]}")
+if [[ -n "${HELIUM_USER_FLAGS:-}" ]]; then
+    read -r -a ENV_FLAGS <<< "$HELIUM_USER_FLAGS"
+    FLAGS+=("${ENV_FLAGS[@]}")
 fi
 
-exec %{_libdir}/%{name}/chrome-wrapper "\${FLAGS[@]}" "\$@"
+export CHROME_WRAPPER="$(readlink -f "$0")"
+export CHROME_VERSION_EXTRA="stable"
+
+exec -a "$0" %{_libdir}/%{name}/chrome "${FLAGS[@]}" "$@"
 EOF
 chmod 755 %{buildroot}%{_bindir}/%{name}
 
@@ -112,11 +110,15 @@ chmod 755 %{buildroot}%{_bindir}/%{name}
 %doc README.md
 %license LICENSE LICENSE.ungoogled_chromium
 %{_libdir}/%{name}/
-%{_bindir}/%{name}
-%{_appsdir}/%{name}.desktop
+# shebang reasons
+%attr(0755,root,root) %{_bindir}/%{name}
+%{_appsdir}/%{appid}.desktop
 %{_hicolordir}/256x256/apps/%{appid}.png
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
+* Sun Feb 15 2026 Jaiden Rirordan <jade@fyralabs.com>
+- Use downstream desktop file and recombobulate
+
 * Wed Dec 03 2025 Nadia P <nyadiia@pm.me> - 0.6.9.1-1
 - Initial package
