@@ -63,4 +63,5 @@ EOF
 %{_datadir}/applications/%{name}.desktop
 
 %changelog
-%autochangelog
+* Sun Feb 15 2026 veuxit <erroor234@gmail.com> - 2025.3.2.4
+- Initial package release
