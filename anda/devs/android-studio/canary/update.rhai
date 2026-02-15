@@ -1,0 +1,1 @@
+rpm.version(find(`https://edgedl.me.gvt1.com/android/studio/ide-zips/([\d.]+)/android-studio-[\d.]+-linux.tar.gz`, get("https://developer.android.com/studio/preview"), 1));
