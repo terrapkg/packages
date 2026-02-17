@@ -79,7 +79,7 @@ install -Dm755 bin/mount                    %{buildroot}%{_bindir}/9mount
 install -Dm755 bin/nobs                     %{buildroot}%{_bindir}/nobs
 install -Dm755 bin/nroff                    %{buildroot}%{_bindir}/9nroff
 install -Dm755 bin/osxvers                  %{buildroot}%{_bindir}/osxvers
-install -Dm755 bin/9ps                      %{buildroot}%{_bindir}/9ps
+install -Dm755 bin/ps                       %{buildroot}%{_bindir}/9ps
 install -Dm755 bin/psfonts                  %{buildroot}%{_bindir}/psfonts
 install -Dm755 bin/psu                      %{buildroot}%{_bindir}/psu
 install -Dm755 bin/psv                      %{buildroot}%{_bindir}/psv
@@ -270,7 +270,7 @@ install -Dm755 bin/cmapcube                 %{buildroot}%{_bindir}/cmapcube
 install -Dm755 bin/colors                   %{buildroot}%{_bindir}/colors
 install -Dm755 bin/crop                     %{buildroot}%{_bindir}/crop
 install -Dm755 bin/gview                    %{buildroot}%{_bindir}/gviews
-install -Dm755 bin/9iconv                   %{buildroot}%{_bindir}/9iconv
+install -Dm755 bin/iconv                    %{buildroot}%{_bindir}/9iconv
 install -Dm755 bin/img                      %{buildroot}%{_bindir}/img
 install -Dm755 bin/mc                       %{buildroot}%{_bindir}/mc
 install -Dm755 bin/stats                    %{buildroot}%{_bindir}/stats
