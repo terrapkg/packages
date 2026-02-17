@@ -15,8 +15,9 @@ BuildRequires:  python3-setuptools
 BuildRequires:  python3-pip
 BuildRequires:  python3-build
 BuildRequires:  python3-wheel
-BuildRequires:  gcc
-BuildRequires:  rust
+BuildRequires:  python3-snakeoil
+BuildRequires:  python3-flit-core
+BuildRequires:  make
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
@@ -62,7 +63,7 @@ install -Dm755 data/lib/pkgcore/shell/bin/pkgcore-sh-helper                 %{bu
 %{_bindir}/pkgcore-ebuild-helper
 %{_bindir}/pkgcore-ipc-helper
 %{_bindir}/pkgcore-sh-helper
-%{_libdir}/%{pypi_name}/*
+%{_usr}/lib/%{pypi_name}/
 %{_datadir}/%{pypi_name}/*
 
 %changelog
