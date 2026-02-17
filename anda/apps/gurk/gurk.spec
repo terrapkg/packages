@@ -9,7 +9,7 @@ URL:            https://github.com/boxdot/gurk-rs
 Source:         %url/archive/refs/tags/v%version.tar.gz
 
 BuildRequires:  cargo-rpm-macros >= 24
-BuildRequires:  glibc-devel mold perl openssl-devel protobuf-devel sccache
+BuildRequires:  glibc-devel mold perl openssl-devel protobuf-devel
 Requires:       glibc libgcc sqlcipher
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
@@ -26,6 +26,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %install
 export LC_ALL=C.UTF-8
 export LANG=C
+unset RUSTC_WRAPPER
 %cargo_install
 %cargo_license_summary_online
 %{cargo_license_online} > LICENSE.dependencies
