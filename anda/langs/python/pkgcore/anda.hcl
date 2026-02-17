@@ -3,7 +3,4 @@ project pkg {
 	rpm {
       spec = "pkgcore.spec"
 	}
-  	labels {
-      mock = 1
-  }
 }
