@@ -12,7 +12,11 @@ URL:            https://9fans.github.io/plan9port/
 Source0:        https://github.com/9fans/plan9port/archive/%commit/armillary-%commit.tar.gz
 Source1:        acme.desktop
 License:        MIT AND bzip2-1.0.6
-BuildRequires:  gcc perl libXt-devel desktop-file-utils
+BuildRequires:  gcc
+BuildRequires:  perl
+BuildRequires:  libXt-devel
+BuildRequires:  fontconfig-devel
+BuildRequires:  desktop-file-utils
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 AutoReq:        0
 Conflicts:      bash
