@@ -347,7 +347,6 @@ install -Dm755 bin/vbackup                  %{buildroot}%{_bindir}/vbackup
 install -Dm755 bin/vcat                     %{buildroot}%{_bindir}/vcat
 install -Dm755 bin/vmount0                  %{buildroot}%{_bindir}/vmount0
 install -Dm755 bin/vnfs                     %{buildroot}%{_bindir}/vnfs
-cp -r bin/*                                 %{buildroot}%{_bindir}/
 cp -r man/*                                 %{buildroot}%{_mandir}/
 install -Dm644 include/*.h               -t %{buildroot}%{_includedir}/
 install -Dm644 lib/*.a                   -t %{buildroot}%{_libdir}/
