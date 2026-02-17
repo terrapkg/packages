@@ -2,7 +2,7 @@
 %global crate matugen
 
 Name:           rust-matugen
-Version:        3.1.0
+Version:        4.0.0
 Release:        1%?dist
 Summary:        Material you color generation tool with templates
 
