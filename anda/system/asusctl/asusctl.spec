@@ -1,6 +1,8 @@
 %global debug_package %{nil}
 %global appid org.asus_linux.rog_control_center
 
+%define _unpackaged_files_terminate_build 0
+
 Name:           asusctl
 Version:        6.3.2
 Release:        2%?dist
