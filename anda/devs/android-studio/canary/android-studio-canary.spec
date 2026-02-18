@@ -23,9 +23,9 @@ License:        Apache-2.0
 Packager:       veuxit <erroor234@gmail.com>
 URL:            https://developer.android.com/studio/preview
 
-%define suffix panda2-canary4
+%define suffixS panda2-canary4
 
-Source0:        https://dl.google.com/dl/android/studio/ide-zips/%{version}/android-studio-%{suffix}-linux.tar.gz
+Source0:        https://dl.google.com/dl/android/studio/ide-zips/%{version}/android-studio-%{suffixS}-linux.tar.gz
 
 Requires:       alsa-lib
 Requires:       freetype
