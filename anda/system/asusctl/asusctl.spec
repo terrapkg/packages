@@ -3,7 +3,7 @@
 
 Name:           asusctl
 Version:        6.3.2
-Release:        1%?dist
+Release:        2%?dist
 Epoch:          1
 Summary:        A control daemon, CLI tools, and a collection of crates for interacting with ASUS ROG laptops
 URL:            https://gitlab.com/asus-linux/asusctl
@@ -66,7 +66,6 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/rog-control-center.d
 %{_bindir}/asusd-user
 %{_bindir}/asusctl
 %{_unitdir}/asusd.service
-%{_userunitdir}/asusd-user.service
 %{_udevrulesdir}/99-asusd.rules
 %dnl %{_sysconfdir}/asusd/
 %{_datadir}/asusd/aura_support.ron
@@ -88,15 +87,12 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/rog-control-center.d
 
 %post
 %systemd_post asusd.service
-%systemd_user_post asusd-user.service
 
 %preun
 %systemd_preun asusd.service
-%systemd_user_preun asusd-user.service
 
 %postun
 %systemd_postun_with_restart asusd.service
-%systemd_user_postun_with_restart asusd-user.service
 
 %files rog-gui
 %{_bindir}/rog-control-center
@@ -106,6 +102,9 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/rog-control-center.d
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
+* Wed Feb 18 2026 Owen Zimmerman <owen@fyralabs.com> - 6.2.0-3
+- Remove asusd-user.service
+
 * Fri Jan 16 2026 metcya <metcya@gmail.com> - 6.3.0-2
 - Update ROG Control Center metainfo
 
