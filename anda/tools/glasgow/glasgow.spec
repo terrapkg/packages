@@ -9,8 +9,8 @@
 %global _udevrulesdir /usr/lib/udev/rules.d
 
 Name:			python-%{pypi_name}
-Version:		%commit_date.%shortcommit
-Release:		1%?dist
+Version:		0~%{commit_date}git.%{shortcommit}
+Release:		2%?dist
 Summary:		Scots Army Knife for electronics
 License:		0BSD AND Apache-2.0
 URL:			https://github.com/GlasgowEmbedded/glasgow
@@ -62,9 +62,6 @@ install -Dm644 config/70-glasgow.rules %{buildroot}%{_udevrulesdir}/70-glasgow.r
 %license LICENSE-0BSD.txt LICENSE-Apache-2.0.txt
 %{_bindir}/glasgow
 %{_udevrulesdir}/70-glasgow.rules
-%ghost %python3_sitelib/__pycache__/*.cpython-*.pyc
-%ghost %python3_sitelib/%{name}/subcommands/__pycache__/*.cpython-*.pyc
-%python3_sitelib/glasgow-*.dist-info/*
 
 %changelog
 * Mon Sep 29 2025 Owen Zimmerman <owen@fyralabs.com>
