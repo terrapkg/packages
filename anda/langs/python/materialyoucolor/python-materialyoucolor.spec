@@ -2,8 +2,8 @@
 %bcond test 0
 
 Name:           python-%{pypi_name}
-Version:        2.0.10
-Release:        2%{?dist}
+Version:        3.0.1
+Release:        1%?dist
 Summary:        Material You color generation algorithms in pure python!
 License:        MIT
 URL:            https://github.com/T-Dynamos/materialyoucolor-python

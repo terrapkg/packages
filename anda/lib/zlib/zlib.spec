@@ -1,5 +1,5 @@
 Name:           zlib
-Version:        1.3.1
+Version:        1.3.2
 Release:        1%?dist
 License:        Zlib
 URL:            https://zlib.net
