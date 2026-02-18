@@ -2,7 +2,7 @@ project pkg {
   rpm {
     spec = "android-studio-canary.spec"
   }
-  abels { 
+  labels { 
     nightly = "1" 
   }
 }
