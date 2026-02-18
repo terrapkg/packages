@@ -6,7 +6,7 @@
 Name:           android-studio-canary
 Version:        2025.3.2.4
 Release:        1%?dist
-Summary:        Official IDE for Android development - Canary release
+Summary:        Official IDE for Android development (Canary build)
 License:        Apache-2.0
 Packager:       veuxit <erroor234@gmail.com>
 URL:            https://developer.android.com/studio/preview
@@ -24,7 +24,7 @@ Requires:       libsecret
 Android Studio is the official IDE for Android development, and includes everything you need to build Android apps.
 
 %prep
-%setup -q -n android-studio
+%autosetup -n android-studio
 
 %install
 mkdir -p %{buildroot}%{_libexecdir}/%{name}
@@ -37,7 +37,7 @@ ln -s %{_libexecdir}/%{name}/bin/studio %{buildroot}%{_bindir}/%{name}
 mkdir -p %{buildroot}%{_licensedir}/%{name}
 install -Dm644 LICENSE.txt %{buildroot}%{_licensedir}/%{name}/LICENSE.txt
 
-install -Dm644 bin/studio.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
+install -Dm644 bin/studio.png %{buildroot}%{_datadir}/pixmaps/studio.png
 
 mkdir -p %{buildroot}%{_datadir}/applications
 cat > %{buildroot}%{_datadir}/applications/%{name}.desktop << 'EOF'
@@ -59,9 +59,12 @@ EOF
 %license %{_licensedir}/%{name}/LICENSE.txt
 %{_libexecdir}/%{name}
 %{_bindir}/%{name}
-%{_datadir}/pixmaps/%{name}.png
+%{_datadir}/pixmaps/studio.png
 %{_datadir}/applications/%{name}.desktop
 
 %changelog
+* Wed Feb 18 2026 veuxit <erroor234@gmail.com> - 2025.3.2.4
+- Update .spec file 
+
 * Sun Feb 15 2026 veuxit <erroor234@gmail.com> - 2025.3.2.4
 - Initial package release
