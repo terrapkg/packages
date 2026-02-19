@@ -35,6 +35,8 @@ Requires:       libXtst
 Requires:       glibc
 Requires:       libsecret
 
+BuildRequires:  desktop-file-utils
+
 %description
 Android Studio is the official IDE for Android development, and includes everything you need to build Android apps.
 
