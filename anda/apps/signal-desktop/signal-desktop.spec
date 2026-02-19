@@ -2,7 +2,7 @@
 
 Name:			signal-desktop
 %electronmeta -aD
-Version:		7.89.0
+Version:		7.90.0
 Release:		1%?dist
 Summary:		A private messenger for Windows, macOS, and Linux
 URL:			https://signal.org

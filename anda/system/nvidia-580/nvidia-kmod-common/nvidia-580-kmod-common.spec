@@ -5,7 +5,7 @@
 %global __brp_strip %{nil}
 
 Name:           nvidia-580-kmod-common
-Version:        580.126.16
+Version:        580.126.18
 Release:        1%?dist
 Summary:        Common file for NVIDIA's proprietary driver kernel modules
 Epoch:          3
