@@ -66,7 +66,6 @@ install -Dm 644 extra/%{name}-url-handler.desktop -t %{buildroot}%{_appsdir}
 %{_hicolordir}/512x512/apps/%{name}.png
 %{_sysconfdir}/chromium/native-messaging-hosts/com.vicinae.vicinae.json
 %{_prefix}/lib/mozilla/native-messaging-hosts/com.vicinae.vicinae.json
-#mozilla uses raw lib rather than lib64
 %{_datadir}/%{name}/native-messaging-hosts/com.vicinae.vicinae.chromium.json.in
 %{_datadir}/%{name}/native-messaging-hosts/com.vicinae.vicinae.firefox.json.in
 %{_libexecdir}/%{name}/vicinae-browser-link
