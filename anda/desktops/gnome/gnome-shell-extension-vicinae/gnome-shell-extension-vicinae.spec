@@ -11,6 +11,7 @@ Packager:       metcya <metcya@gmail.com>
 
 BuildArch:      noarch
 
+BuildRequires:  bun-bin glib2-devel
 Requires:       (gnome-shell >= 48~ with gnome-shell < 50~)
 Requires:       vicinae
 Recommends:     gnome-extensions-app
@@ -23,16 +24,18 @@ window management APIs, and paste-to-active-window capabilities.
 %prep
 %autosetup -n vicinae-gnome-extension-%{version}
 
+%build
+%{__bun} i && %{__bun} run build
+
 %install
-install -Dm 644 metadata.json %{buildroot}%{_datadir}/gnome-shell/extensions/%{uuid}/metadata.json
-install -Dm 644 src/extension.ts %{buildroot}%{_datadir}/gnome-shell/extensions/%{uuid}/extension.js
+mkdir -p %{buildroot}%{_datadir}/gnome-shell/extensions/%{uuid}
+cp -a src/ %{buildroot}%{_datadir}/gnome-shell/extensions/%{uuid}/
 
 %files
 %license LICENSE
 %doc README.md DEVELOPMENT.md
-%{_datadir}/gnome-shell/extensions/%{uuid}
+%{_datadir}/gnome-shell/extensions/%{uuid}/
 
 %changelog
 * Sat Dec 27 2025 metcya <metcya@gmail.com> - 1.5.3-1
-- Package 
-
+- Package
