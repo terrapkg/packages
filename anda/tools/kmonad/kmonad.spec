@@ -7,7 +7,7 @@ Summary:        An advanced keyboard manager
 
 License:        MIT
 URL:            https://hackage.haskell.org/package/%{name}
-Source0:        https://github.com/%{name}/%{name}/archive/%{version}.tar.gz
+Source0:        %{url}-%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires:  gcc-c++
 BuildRequires:  ghc-Cabal-devel
@@ -73,7 +73,7 @@ install -Dm644 startup/kmonad@.service -t %{buildroot}%{_unitdir}
 %doc doc/faq.md doc/quick-reference.md
 %{_bindir}/%{name}
 %{_unitdir}/%{name}@.service
-
+%{_docdir}/ghc/html/libraries/kmonad-%{version}/
 
 %files -n ghc-%{name} -f ghc-%{name}.files
 %license LICENSE
