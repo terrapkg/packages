@@ -45,7 +45,7 @@ your desktop — built with C++ and Qt.
 %cmake_install
 install -Dm 644 extra/%{name}.desktop -t %{buildroot}%{_appsdir}
 install -Dm 644 extra/%{name}-url-handler.desktop -t %{buildroot}%{_appsdir}
-%desktop_file_edit -k StartupWMClass -v vicinae-server
+%desktop_file_edit -k StartupWMClass -v vicinae-server -f %{buildroot}%{_appsdir}/%{name}.desktop
 %desktop_file_validate
 
 %post
