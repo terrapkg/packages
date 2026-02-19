@@ -6,7 +6,7 @@ Version:        4.0.0
 Release:        1%?dist
 Summary:        Material you color generation tool with templates
 
-License:        GPL-2.0
+License:        GPL-2.0-or-later
 URL:            https://crates.io/crates/matugen
 Source:         %{crates_source}
 Source1:        https://raw.githubusercontent.com/InioX/matugen/refs/tags/v%version/README.md
@@ -27,7 +27,7 @@ A material you color generation tool with templates.}
 
 %package     -n %{crate}
 Summary:        %{summary}
-License:        GPL-2.0
+License:        GPL-2.0-or-later
 # LICENSE.dependencies contains a full license breakdown
 
 %description -n %{crate} %{_description}
@@ -39,31 +39,13 @@ License:        GPL-2.0
 %doc README.md
 %{_bindir}/matugen
 
-
-%package        devel
-Summary:        %{summary}
-BuildArch:      noarch
-
-%description    devel %{_description}
-
-This package contains library source intended for building other packages which
-use the "%{crate}" crate.
-
-%files          devel
-%license %{crate_instdir}/LICENSE
-%doc %{crate_instdir}/CHANGELOG.md
-%doc %{crate_instdir}/README.md
-%{crate_instdir}/
-
-
 %prep
 %autosetup -n %{crate}-%{version} -p1
 %cargo_prep_online
 install -Dpm0644 -t . %{S:1} %{S:2} %{S:3}
 
 %build
-%{cargo_license_summary_online}
-%{cargo_license} > LICENSE.dependencies
+%{cargo_license_online} > LICENSE.dependencies
 
 %install
 %cargo_install
