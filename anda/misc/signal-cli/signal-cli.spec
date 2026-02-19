@@ -14,13 +14,13 @@ BuildArch:        noarch
 BuildRequires:    gcc-c++
 BuildRequires:    gradle
 BuildRequires:    anda-srpm-macros
-BuildRequires:    java-21-openjdk
-BuildRequires:    java-21-openjdk-devel
+BuildRequires:    java-latest-openjdk
+BuildRequires:    java-latest-openjdk-devel
 BuildRequires:    systemd-rpm-macros
 BuildRequires:    make
 BuildRequires:    asciidoc
 
-Recommends:       java-21-openjdk
+Recommends:       java-latest-openjdk
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
