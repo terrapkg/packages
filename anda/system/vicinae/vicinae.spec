@@ -46,6 +46,7 @@ your desktop — built with C++ and Qt.
 install -Dm 644 extra/%{name}.desktop -t %{buildroot}%{_appsdir}
 install -Dm 644 extra/%{name}-url-handler.desktop -t %{buildroot}%{_appsdir}
 %desktop_file_edit -k StartupWMClass -vicinae-server
+%desktop_file_validate
 
 %post
 %systemd_user_post %{name}.service
