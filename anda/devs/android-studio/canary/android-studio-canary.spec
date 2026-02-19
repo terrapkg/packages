@@ -63,7 +63,7 @@ cat > %{buildroot}%{_datadir}/applications/%{name}.desktop << 'EOF'
 Version=1.0
 Type=Application
 Name=Android Studio Canary
-Exec=android-studio-canary %f
+Exec=android-studio-canary
 Icon=android-studio-canary
 Comment=Official IDE for Android development (Canary build)
 Categories=Development;IDE;
@@ -72,6 +72,9 @@ StartupNotify=true
 StartupWMClass=jetbrains-studio-canary
 MimeType=application/x-extension-iml;
 EOF
+
+%check
+desktop-file-validate %{_datadir}/applications/%{name}.desktop
 
 %files
 %license %{_licensedir}/%{name}/LICENSE.txt
