@@ -25,7 +25,7 @@ window management APIs, and paste-to-active-window capabilities.
 
 %install
 install -Dm 644 metadata.json %{buildroot}%{_datadir}/gnome-shell/extensions/%{uuid}/metadata.json
-install -Dm 644 extension.js %{buildroot}%{_datadir}/gnome-shell/extensions/%{uuid}/extension.js
+install -Dm 644 src/extension.js %{buildroot}%{_datadir}/gnome-shell/extensions/%{uuid}/extension.js
 
 %files
 %license LICENSE
