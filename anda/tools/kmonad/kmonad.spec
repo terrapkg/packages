@@ -7,8 +7,7 @@ Summary:        An advanced keyboard manager
 
 License:        MIT
 URL:            https://hackage.haskell.org/package/%{name}
-Source0:        %{url}-%{version}/%{name}-%{version}.tar.gz
-Source1:        https://github.com/kmonad/kmonad/blob/master/startup/kmonad%40.service
+Source0:        https://github.com/%{name}/%{name}/archive/%{version}.tar.gz
 
 BuildRequires:  gcc-c++
 BuildRequires:  ghc-Cabal-devel
@@ -65,7 +64,7 @@ This package provides the Haskell %{name} profiling library.
 
 %install
 %ghc_lib_install
-install -Dm644 %{SOURCE1} %{buildroot}%{_unitdir}
+install -Dm644 startup/kmonad@.service -t %{buildroot}%{_unitdir}
 
 
 %files
