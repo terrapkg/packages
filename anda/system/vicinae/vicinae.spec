@@ -45,6 +45,7 @@ your desktop — built with C++ and Qt.
 %cmake_install
 install -Dm 644 extra/%{name}.desktop -t %{buildroot}%{_appsdir}
 install -Dm 644 extra/%{name}-url-handler.desktop -t %{buildroot}%{_appsdir}
+%desktop_file_edit -k StartupWMClass -vicinae-server
 
 %post
 %systemd_user_post %{name}.service
