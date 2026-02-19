@@ -48,9 +48,11 @@ cd ..
 
 
 %install
+%tauri_install_bin
 mkdir -p %{buildroot}/%{datadir}/twintaillauncher/resources
 mv %{buildroot}/%{datadir}/cargo/registry/twintaillauncher-%{version}/resources/ %{buildroot}/%{datadir}/twintaillauncher/resources
-%tauri_install_bin
+rm -rf %{buildroot}/%{datadir}/cargo/registry/twintaillauncher-%{version}
+
 
 %tauri_cargo_license_summary
 %{tauri_cargo_license} > LICENSE.dependencies
