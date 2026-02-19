@@ -48,7 +48,7 @@ cd ..
 
 
 %install
-%tauri_install_bin
+%tauri_install
 mkdir -p %{buildroot}/%{datadir}/twintaillauncher/resources
 mv %{buildroot}/%{datadir}/cargo/registry/twintaillauncher-%{version}/resources/ %{buildroot}/%{datadir}/twintaillauncher/resources
 rm -rf %{buildroot}/%{datadir}/cargo/registry/twintaillauncher-%{version}
