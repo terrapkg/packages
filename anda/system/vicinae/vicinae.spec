@@ -24,6 +24,7 @@ BuildRequires:  pkgconfig(icu-uc)
 BuildRequires:  wayland-devel
 BuildRequires:  nodejs-npm
 BuildRequires:  systemd-rpm-macros
+BuildRequires:  anda-srpm-macros
 BuildRequires:  ninja-build
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtbase-private-devel
@@ -46,7 +47,9 @@ your desktop — built with C++ and Qt.
 install -Dm 644 extra/%{name}.desktop -t %{buildroot}%{_appsdir}
 install -Dm 644 extra/%{name}-url-handler.desktop -t %{buildroot}%{_appsdir}
 %desktop_file_edit -k StartupWMClass -v vicinae-server -f %{buildroot}%{_appsdir}/%{name}.desktop
-%desktop_file_validate
+
+%check
+%desktop_file_validate -f %{buildroot}%{_appsdir}/%{name}.desktop
 
 %post
 %systemd_user_post %{name}.service
