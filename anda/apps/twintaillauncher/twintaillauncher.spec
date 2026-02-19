@@ -49,7 +49,7 @@ cd ..
 
 %install
 mkdir -p %{buildroot}/%{datadir}/twintaillauncher/resources
-mv %{buildroot}/%{datadir}/cargo/registry/twintaillauncher-%{version}/resources/* %{buildroot}/%{datadir}/twintaillauncher/resources/
+mv %{buildroot}/%{datadir}/cargo/registry/twintaillauncher-%{version}/resources/ %{buildroot}/%{datadir}/twintaillauncher/resources
 %tauri_install_bin
 
 %tauri_cargo_license_summary
@@ -77,7 +77,7 @@ install -Dm644 public/launcher-icon-128.png %{buildroot}%{_hicolordir}/128x128/a
 
 
 %changelog
-* Thu Feb 19 2026 Yoong Jin <solomoncyj@gmail.com> - 1.1.15-0
+* Thu Feb 19 2026 Yoong Jin <solomoncyj@gmail.com> - 1.1.15-1
 - Fix resources
 * Tue Feb 3 2026 Yoong Jin <solomoncyj@gmail.com> - 1.1.15-0
 - Initial Package
