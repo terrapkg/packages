@@ -76,7 +76,7 @@ MimeType=application/x-extension-iml;
 EOF
 
 %check
-desktop-file-validate %{_datadir}/applications/%{name}.desktop
+%desktop_file_validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 %files
 %license %{_licensedir}/%{name}/LICENSE.txt
