@@ -1,7 +1,7 @@
-%global commit 165bf4cdcecadc34e35468f26476571a344fcb7b
+%global commit 65d2814a74c6c1aef458924321c7e9e5dc7510b7
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20251227
-%global ver 1.0.19
+%global commitdate 20260219
+%global ver 1.0.20
 %undefine __brp_mangle_shebangs
 
 Name:           scx-scheds-nightly
@@ -53,7 +53,7 @@ Provides:       scx_layered
 Provides:       scx_rustland
 Provides:       scx_rusty
 Obsoletes:      scxctl <= 0.3.4
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 sched_ext is a Linux kernel feature which enables implementing kernel thread schedulers in BPF and dynamically loading them.

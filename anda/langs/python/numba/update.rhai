@@ -1,1 +1,1 @@
-rpm.version(gh("numba/numba"));
+rpm.version(pypi("numba"));

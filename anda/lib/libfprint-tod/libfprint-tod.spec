@@ -1,7 +1,7 @@
 %global appid org.freedesktop.libfprint
 
 Name:           libfprint-tod
-Version:        1.94.9+tod1
+Version:        1.94.10+tod1
 Release:        1%?dist
 URL:            https://gitlab.freedesktop.org/3v1n0/libfprint/
 Source:         %{url}/-/archive/v%{version}/libfprint-v%{version}.tar.gz

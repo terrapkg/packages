@@ -9,7 +9,7 @@
 %endif
 
 Name:           lovely-injector
-Version:        0.8.0
+Version:        0.9.0
 Release:        1%?dist
 Summary:        A runtime lua injector for games built with LÖVE
 

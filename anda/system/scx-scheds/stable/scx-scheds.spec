@@ -1,7 +1,7 @@
 %undefine __brp_mangle_shebangs
 
 Name:           scx-scheds
-Version:        1.0.19
+Version:        1.0.20
 Release:        1%?dist
 Summary:        sched_ext schedulers
 SourceLicense:  GPL-2.0-only
@@ -50,7 +50,7 @@ Provides:       scx_layered
 Provides:       scx_rustland
 Provides:       scx_rusty
 Obsoletes:      scxctl <= 0.3.4
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 sched_ext is a Linux kernel feature which enables implementing kernel thread schedulers in BPF and dynamically loading them.

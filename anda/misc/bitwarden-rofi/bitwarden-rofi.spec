@@ -1,8 +1,8 @@
 Name:           bitwarden-rofi
 Version:        0.5
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Wrapper for Bitwarden cli and Rofi
-License:        GPL-3.0
+License:        GPL-3.0-only
 URL:            https://github.com/mattydebie/bitwarden-rofi
 Source0:        %url/archive/refs/tags/%version.tar.gz
 Requires:       bash

@@ -1,5 +1,5 @@
 Name:           terra-appstream-helper
-Version:        0.1.9
+Version:        0.1.10
 Release:        1%?dist
 Summary:        Scripts and RPM macros to help with AppStream metadata generation for Terra
 License:        GPL-3.0-or-Later

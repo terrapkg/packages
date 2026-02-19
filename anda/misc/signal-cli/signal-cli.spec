@@ -3,7 +3,7 @@
 %define debug_package %{nil}
 
 Name:             signal-cli
-Version:          0.13.22
+Version:          0.13.24
 Release:          1%?dist
 Summary:          signal-cli provides an unofficial commandline, JSON-RPC and dbus interface for the Signal messenger
 License:          GPL-3.0-only
@@ -21,6 +21,8 @@ BuildRequires:    make
 BuildRequires:    asciidoc
 
 Recommends:       java-21-openjdk
+
+Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
 signal-cli is a commandline interface for the Signal messenger.

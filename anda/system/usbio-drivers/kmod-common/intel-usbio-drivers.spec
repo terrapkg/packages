@@ -3,9 +3,9 @@
 %global commit_date 20251031
 %global debug_package %{nil}
 
-Name:          dkms-%{modulename}
+Name:          intel-usbio
 Version:       0^%{commit_date}git.%{shortcommit}
-Release:       1%?dist
+Release:       2%{?dist}
 Summary:       Common files for the USBIO drivers
 License:       GPL-2.0-only
 URL:           https://github.com/intel/usbio-drivers
@@ -14,7 +14,7 @@ BuildRequires: anda-srpm-macros
 Provides:      intel-usbio-kmod-common = %{evr}
 Requires:      intel-ipu6-kmod-common
 BuildArch:     noarch
-Packager:      Gilver E. <rockgrub@disroot.org>
+Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description
 This package contains the common files for the UBSIO kernel modules.
@@ -29,10 +29,8 @@ This package contains the common files for the UBSIO kernel modules.
 # Hi, I'm also empty!
 
 %files
-%doc CODE_OF_CONDUCT.md
 %doc README.md
 %doc SECURITY.md
-%doc security.md
 %license LICENSE.txt
 
 %changelog

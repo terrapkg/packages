@@ -1,5 +1,5 @@
-%global commit 7c016872bf24ee5357f9621f1136955443f0a8a3
-%global commit_date 20251227
+%global commit 88419bc38514b9e9c3aefeb3db4804d5b64981f2
+%global commit_date 20260213
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           spotx-bash
@@ -21,15 +21,14 @@ Provides:       spotx spotx-linux spot-x spotx.sh
 
 %install
 mkdir -p %{buildroot}%{_bindir}
-install -Dm 755 spotx.sh %buildroot%{_bindir}/spotx
-
-%post
-%{__ln_s} -f %{_bindir}/spotx %{_bindir}/spotx.sh
+install -Dm 755 spotx.sh %{buildroot}%{_bindir}/spotx
+%{__ln_s} -f %{_bindir}/spotx %{buildroot}%{_bindir}/spotx.sh
 
 %files
 %doc README.md
 %license LICENSE
-%_bindir/spotx
+%{_bindir}/spotx.sh
+%{_bindir}/spotx
 
 %changelog
 * Sat Dec 14 2024 Its-J

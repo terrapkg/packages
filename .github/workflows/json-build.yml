@@ -35,12 +35,6 @@ on:
         type: boolean
         default: true
 
-env:
-  RUSTC_WRAPPER: sccache
-  # SCCACHE_NO_DAEMON: "1"
-  # Disable incremental compilation so sccache works better
-  CARGO_INCREMENTAL: "false"
-
 jobs:
   build:
     strategy:
@@ -54,7 +48,7 @@ jobs:
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -75,13 +69,12 @@ jobs:
           dir=$(dirname ${{ matrix.pkg.pkg }})
           dnf5 builddep -y ${dir}/*.spec
 
-
-      - name: Run sccache-cache
-        uses: mozilla-actions/sccache-action@v0.0.9
-
       - name: Configure sccache
+        if: ${{ !contains(matrix.pkg.labels, 'sccache') }}
         run: |
           set -euo pipefail
+          echo "RUSTC_WRAPPER=/usr/bin/sccache" >> $GITHUB_ENV
+          echo "CARGO_INCREMENTAL=false" >> $GITHUB_ENV
           echo "SCCACHE_GHA_ENABLED=true" >> $GITHUB_ENV
           if [ "${{ inputs.bust_cache }}" = "true" ]; then
             echo "SCCACHE_BUST_CACHE=true" >> $GITHUB_ENV
@@ -89,7 +82,7 @@ jobs:
 
 
       - name: Build with Andaman
-        run: anda build -D "vendor Terra" ${{ matrix.pkg.pkg }} -c terra-${{ matrix.version }}-${{ matrix.pkg.arch }} ${{ !matrix.pkg.labels.mock == '1' && '-rrpmbuild' || '' }}
+        run: anda build -D "vendor Terra" -D "__python %{__python3}" ${{ matrix.pkg.pkg }} -c terra-${{ matrix.version }}-${{ matrix.pkg.arch }} ${{ !matrix.pkg.labels.mock == '1' && '-rrpmbuild' || '' }}
 
       - name: Generating artifact name
         id: art
@@ -98,7 +91,7 @@ jobs:
           x=${NAME//\//@}
           echo "name=$x" >> $GITHUB_OUTPUT
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: ${{ steps.art.outputs.name }}
           compression-level: 0 # The RPMs are already compressed :p

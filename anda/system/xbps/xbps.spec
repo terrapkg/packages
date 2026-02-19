@@ -1,7 +1,7 @@
 %global _distro_extra_cflags -Wno-discarded-qualifiers
 
 Name:           xbps
-Version:        0.60.6
+Version:        0.60.7
 Release:        1%?dist
 License:        BSD-2-Clause AND BSD-3-Clause AND ISC
 Summary:        A binary package system designed and implemented from scratch

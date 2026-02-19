@@ -1,8 +1,8 @@
 %global buildforkernels akmod
 %global debug_package %{nil}
-%global commit 9766e218112f4173be9b0f06dfae27cb40c54f40
+%global commit cde4eb446b9750d7a01f3258e99470df4606976b
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20251113
+%global commit_date 20260204
 %global modulename intel-ipu6
 # Actual "release" version, currently unused as the release versions are back and forth on if on if they use 1.0.0 or 1.0.1
 %global ver 1.0.1
@@ -10,7 +10,7 @@
 Name:           %{modulename}-kmod
 Summary:        Akmods module for %{modulename}
 Version:        0^%{commit_date}git.%{shortcommit}
-Release:        2%?dist
+Release:        1%?dist
 License:        GPL-2.0-or-later
 URL:            https://github.com/intel/ipu6-drivers
 Source0:        https://github.com/intel/ipu6-drivers/archive/%{commit}/ipu6-drivers-%{shortcommit}.tar.gz

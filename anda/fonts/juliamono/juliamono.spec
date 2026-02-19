@@ -1,5 +1,5 @@
 Name:      juliamono-fonts
-Version:   0.061
+Version:   0.062
 Release:   1%?dist
 URL:       https://juliamono.netlify.app/
 Source0:   https://github.com/cormullion/juliamono/archive/refs/tags/v%{version}.tar.gz

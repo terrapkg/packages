@@ -1,5 +1,5 @@
-%global commit baf407ce7cf37b279999ca22ca03b06a44415da7
-%global commit_date 20251216
+%global commit 018467f2ea1f558052ef2c4046b517eaa94ae2dd
+%global commit_date 20260218
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global debug_package %nil
 %global __strip /bin/true
@@ -82,10 +82,10 @@ desktop-file-install --set-key=Exec --set-value="%{_datadir}/legcord/legcord %U"
 * Mon Aug 26 2024 madonuko <mado@fyralabs.com> - 3.3.0-1
 - Update to license.txt
 
-* Sat Jun 17 2023 windowsboy111 <windowsboy111@fyralabs.com> - 3.2.0-2
+* Sat Jun 17 2023 madonuko <mado@fyralabs.com> - 3.2.0-2
 - Remove libnotify dependency.
 - Fix desktop entry.
 - Set as noarch package because there are not binary files.
 
-* Sat May 6 2023 windowsboy111 <windowsboy111@fyralabs.com> - 3.1.7-1
+* Sat May 6 2023 madonuko <mado@fyralabs.com> - 3.1.7-1
 - Initial package

@@ -1,7 +1,7 @@
 #? https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=throne-git
 
 Name: throne
-Version: 1.0.12
+Version: 1.0.13
 Release: 1%?dist
 Summary: Qt based cross-platform GUI proxy configuration manager (backend: sing-box)
 URL: https://github.com/throneproj/Throne
@@ -24,12 +24,6 @@ BuildRequires: rpm_macro(cmake_build)
 BuildRequires: rpm_macro(cmake_install)
 BuildRequires: cmake
 BuildRequires: gcc-c++
-BuildRequires: pkgconfig(protobuf)
-BuildRequires: pkgconfig(libcurl)
-BuildRequires: cmake(yaml-cpp)
-BuildRequires: cmake(ZXing)
-BuildRequires: cmake(absl)
-BuildRequires: cmake(cpr)
 BuildRequires: cmake(Qt6)
 BuildRequires: cmake(Qt6Svg)
 BuildRequires: cmake(Qt6Linguist)
