@@ -49,9 +49,9 @@ cd ..
 
 %install
 %tauri_install
-mkdir -p %{buildroot}/%{datadir}/twintaillauncher/resources
-mv %{buildroot}/%{datadir}/cargo/registry/twintaillauncher-%{version}/resources/ %{buildroot}/%{datadir}/twintaillauncher/resources
-rm -rf %{buildroot}/%{datadir}/cargo/registry/twintaillauncher-%{version}
+mkdir -p %{buildroot}/%{_datadir}/twintaillauncher/resources
+mv %{buildroot}/%{_datadir}/cargo/registry/twintaillauncher-%{version}/resources/ %{buildroot}/%{_datadir}/twintaillauncher/resources
+rm -rf %{buildroot}/%{_datadir}/cargo/registry/twintaillauncher-%{version}
 
 
 %tauri_cargo_license_summary
@@ -70,7 +70,7 @@ install -Dm644 public/launcher-icon-128.png %{buildroot}%{_hicolordir}/128x128/a
 %doc README.md
 
 %{_bindir}/twintaillauncher
-%{datadir}/twintaillauncher/resources
+%{_datadir}/twintaillauncher/resources
 %{_hicolordir}/512x512/apps/%{name}.png
 %{_hicolordir}/128x128/apps/%{name}.png
 %_appsdir/twintaillauncher.desktop
