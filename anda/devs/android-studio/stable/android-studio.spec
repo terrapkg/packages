@@ -21,6 +21,7 @@ Release:        1%?dist
 Summary:        Official IDE for Android development
 License:        Apache-2.0
 Packager:       veuxit <erroor234@gmail.com>
+ExclusiveArch:  x86_64
 URL:            https://developer.android.com/studio
 
 %define suffixS panda1-patch1
