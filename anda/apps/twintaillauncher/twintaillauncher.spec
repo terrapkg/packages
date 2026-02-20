@@ -1,5 +1,7 @@
 %undefine __brp_mangle_shebangs
 
+%global _build_id_links none
+
 %global toolchain clang
 
 Name:           twintaillauncher
