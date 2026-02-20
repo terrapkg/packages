@@ -2,8 +2,8 @@
 
 Name:          micro-default-editor
 # Version, release, and epoch are inherited from the editor package just like other default editors
-Version:       2.0.11
-Release: 10%?dist
+Version:       2.0.15
+Release: 2%?dist
 Epoch: 0
 # Inherited from Micro itself
 License:       MIT and ASL 2.0
