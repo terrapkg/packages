@@ -1,6 +1,5 @@
 name: Update GPG keys
 permissions:
-  contents: read
   contents: write
 
 on:
@@ -21,7 +20,6 @@ jobs:
       image: ghcr.io/terrapkg/builder:frawhide
       options: --cap-add=SYS_ADMIN --privileged
     steps:
-          steps:
       - name: Checkout
         uses: actions/checkout@v6
         with:
