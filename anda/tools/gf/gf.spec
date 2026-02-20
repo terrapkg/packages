@@ -15,7 +15,7 @@ Source0:        %{forgesource}
 BuildRequires:  gcc-c++
 BuildRequires:  freetype-devel
 BuildRequires:  libX11-devel
-# the build script wants gdb to be installed when its executed
+# the build script wants gdb to be installed when it's executed
 BuildRequires:  gdb
 Requires:       gdb
 
