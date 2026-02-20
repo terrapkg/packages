@@ -6,6 +6,10 @@ caching in remote storage environments, including various cloud storage
 options, or alternatively, in local storage.
 This build actually enables caching to remote storage.}
 
+%ifarch x86_64
+%bcond dist
+%endif
+
 Name:          terra-sccache
 Version:       0.14.0
 Release:       1%{?dist}
@@ -32,13 +36,15 @@ Packager:      Gilver E. <roachy@fyralabs.com>
 %cargo_prep_online
 
 %build
-%cargo_build -f all,dist-server
+%cargo_build -f all%{?with_dist:,dist-server}
 
 %install
-%crate_install_bin
+find target/rpm \
+    -maxdepth 1 -type f -executable ! -name '*.so' \
+    -exec install -Dm755 -t %{buildroot}%{_bindir} {} +
 
-%cargo_license_summary_online -f all,dist-server
-%{cargo_license_online -f all,dist-server} > LICENSE.dependencies
+%cargo_license_summary_online -f all%{?with_dist:,dist-server}
+%{cargo_license_online -f all%{?with_dist:,dist-server}} > LICENSE.dependencies
 
 %files
 %license LICENSE
