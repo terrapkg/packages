@@ -5,10 +5,8 @@ avoids compilation when possible. Sccache has the capability to utilize
 caching in remote storage environments, including various cloud storage
 options, or alternatively, in local storage.
 This build actually enables caching to remote storage.}
+%bcond dist %["%{_target_cpu}" == "x86_64"]
 
-%ifarch x86_64
-%bcond dist
-%endif
 
 Name:          terra-sccache
 Version:       0.14.0
