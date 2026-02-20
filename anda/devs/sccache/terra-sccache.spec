@@ -7,7 +7,6 @@ options, or alternatively, in local storage.
 This build actually enables caching to remote storage.}
 %bcond dist %["%{_target_cpu}" == "x86_64"]
 
-
 Name:          terra-sccache
 Version:       0.14.0
 Release:       1%{?dist}
@@ -50,6 +49,9 @@ find target/rpm \
 %doc CODE_OF_CONDUCT.md
 %doc README.md
 %{_bindir}/sccache
+%if %{with dist}
+%{_bindir}/sccache-dist
+%endif
 
 %changelog
 * Fri Feb 20 2026 Gilver E. <roachy@fyralabs.com> - 0.14.0-1
