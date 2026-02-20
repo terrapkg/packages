@@ -26,7 +26,6 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %install
 export LC_ALL=C.UTF-8
 export LANG=C
-unset RUSTC_WRAPPER
 %cargo_install
 %{cargo_license_online} > LICENSE.dependencies
 
