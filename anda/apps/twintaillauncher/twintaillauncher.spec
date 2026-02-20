@@ -1,4 +1,6 @@
 %undefine __brp_mangle_shebangs
+# Disable debuginfo, since we package a stripped upstream binary.
+%global debug_package %{nil}
 
 %global toolchain clang
 
