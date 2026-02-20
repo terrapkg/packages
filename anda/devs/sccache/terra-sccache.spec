@@ -31,13 +31,13 @@ Packager:      Gilver E. <roachy@fyralabs.com>
 %cargo_prep_online
 
 %build
-%cargo_build
+%cargo_build -a
 
 %install
 %crate_install_bin
 
-%cargo_license_summary_online
-%{cargo_license_online} > LICENSE.dependencies
+%cargo_license_summary_online -a
+%{cargo_license_online -a} > LICENSE.dependencies
 
 %files
 %license LICENSE
