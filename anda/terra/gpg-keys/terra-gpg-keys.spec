@@ -1,8 +1,8 @@
 %undefine dist
 
 Name:           terra-gpg-keys
-Version:        45
-Release:        3%?dist
+Version:        %{?fedora:%{fedora}}%{?rhel:%{rhel}}
+Release:        1%?dist
 Summary:        GPG keys for Terra
 Requires:       filesystem >= 3.18-6
 
