@@ -43,6 +43,7 @@ The application features a user-friendly interface with one-click mining setup.
 %tauri_prep
 
 %build
+export TARI_TARGET_NETWORK=mainnet
 %pnpm_build
 mv "src-tauri/target/rpm/Tari Universe (Alpha)" src-tauri/target/rpm/tari-universe
 
