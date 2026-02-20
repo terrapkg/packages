@@ -1,0 +1,44 @@
+%global forgeurl https://github.com/nakst/gf
+%global commit 9a5dbcc90dc9ca9580f6ce2854cd67e2e507b0c1
+
+%forgemeta
+
+Name:           gf
+Version:        0
+Release:        1%{?dist}
+Summary:        A GDB frontend for Linux
+
+License:        MIT
+URL:            %{forgeurl}
+Source0:        %{forgesource}
+
+BuildRequires:  gcc-c++
+BuildRequires:  freetype-devel
+BuildRequires:  libX11-devel
+# the build script wants gdb to be installed when its executed
+BuildRequires:  gdb
+Requires:       gdb
+
+Packager:       metcya <metcya@gmail.com>
+
+%description
+%{summary}.
+
+%prep
+%forgesetup
+
+%build
+export extra_flags="%optflags"
+./build.sh
+
+%install
+install -Dm 755 gf2 %{buildroot}%{_bindir}/gf2
+
+%files
+%license LICENSE
+%doc README.md
+%{_bindir}/gf2
+
+%changelog
+* Thu Feb 19 2026 metcya <metcya@gmail.com>
+- Initial package
