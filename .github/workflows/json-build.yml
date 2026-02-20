@@ -70,7 +70,7 @@ jobs:
           dnf5 builddep -y ${dir}/*.spec
 
       - name: Configure sccache
-        if: ${{ !contains(matrix.pkg.labels, 'sccache') }}
+        if: matrix.pkg.labels['sccache'] != '0'
         run: |
           set -euo pipefail
           echo "RUSTC_WRAPPER=/usr/bin/sccache" >> $GITHUB_ENV
