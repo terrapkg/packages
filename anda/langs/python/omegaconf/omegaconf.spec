@@ -14,7 +14,7 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-pip
 BuildRequires:  python3-setuptools
 BuildRequires:  python3-wheel
-BuildRequires:  java-21-openjdk-devel
+BuildRequires:  java-latest-openjdk-devel
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
