@@ -9,6 +9,14 @@ on:
 jobs:
   update-gpg-keys:
     runs-on: ubuntu-24.04-arm
+    strategy:
+      matrix:
+        branch:
+          - frawhide
+          - f44
+          - f43
+          - f42
+          - el10
     container:
       image: ghcr.io/terrapkg/builder:frawhide
       options: --cap-add=SYS_ADMIN --privileged
@@ -50,7 +58,7 @@ jobs:
               curl -s https://repos.fyralabs.com/terra$releasever-nvidia-source/key.asc > anda/terra/gpg-keys/RPM-GPG-KEY-terra$releasever-nvidia-source
             fi
           done
-          anda update --filters keys=1
+          anda update --filters keys=1 --labels branch=${{ matrix.branch }}
 
       - name: Save
         run: |
@@ -60,15 +68,5 @@ jobs:
             git config gpg.format "ssh"
             git config user.signingkey "${{ runner.temp }}/signing_key"
             git commit -S -a -m "bump(manual): terra-gpg-keys"
-            git format-patch HEAD^
-            copy_over () {
-              git checkout $1
-              git apply *.patch || true
-              git add anda
-              git commit -S -a -m "$msg"
-            }
-            copy_over f43 || true
-            copy_over f42 || true
-            copy_over el10 || true
             git push -u origin --all
           fi
