@@ -14,6 +14,7 @@ Summary:        A GDB frontend for Linux
 License:        MIT
 URL:            %{forgeurl}
 Source0:        %{forgesource}
+Patch0:         01-fix-designated-initializers.patch
 
 BuildRequires:  gcc-c++
 BuildRequires:  freetype-devel
@@ -28,7 +29,7 @@ Packager:       metcya <metcya@gmail.com>
 %{summary}.
 
 %prep
-%forgesetup
+%forgeautosetup -p1
 
 %build
 export extra_flags="%optflags"
