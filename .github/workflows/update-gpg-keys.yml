@@ -28,6 +28,7 @@ jobs:
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
       - name: Update GPG keys
+        env: ${{ secrets.GITHUB_TOKEN }}
         run: |
           for branch in $(sed -n 's/- \(f.*\)/\1/p;s/- \(el.*\)/\1/p' .github/workflows/update-branch.yml | tr -d ' '); do
             if [[ $branch == f* ]]; then
@@ -49,6 +50,7 @@ jobs:
               curl -s https://repos.fyralabs.com/terra$releasever-nvidia-source/key.asc > anda/terra/gpg-keys/RPM-GPG-KEY-terra$releasever-nvidia-source
             fi
           done
+          anda update --filters keys=1
 
       - name: Save
         run: |
@@ -57,7 +59,6 @@ jobs:
             git config user.email "raboneko@fyralabs.com"
             git config gpg.format "ssh"
             git config user.signingkey "${{ runner.temp }}/signing_key"
-            anda update --filters keys=1
             git commit -S -a -m "bump(manual): terra-gpg-keys"
             git format-patch HEAD^
             copy_over () {
