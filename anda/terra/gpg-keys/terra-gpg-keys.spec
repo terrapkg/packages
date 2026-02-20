@@ -16,7 +16,7 @@ BuildArch:      noarch
 GPG keys for Terra, used for verifying RPM package signatures.
 
 %prep
-%autosetup -n keys
+%autosetup -n .
 
 %build
 
