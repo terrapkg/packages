@@ -7,7 +7,7 @@
 %forgemeta
 
 Name:           gf
-Version:        0^%{commitdate}.%{shortcommit}
+Version:        0^%{commitdate}.git%{shortcommit}
 Release:        1%{?dist}
 Summary:        A GDB frontend for Linux
 
