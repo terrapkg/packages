@@ -18,6 +18,7 @@ BuildRequires: anda-srpm-macros
 BuildRequires: cargo
 BuildRequires: cargo-rpm-macros
 BuildRequires: mold
+BuildRequires: perl
 BuildRequires: rust
 BuildRequires: rust-srpm-macros
 BuildRequires: pkgconfig(openssl)
