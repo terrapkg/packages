@@ -42,7 +42,7 @@ Requires:       %{name}-libs%{?_isa} = %{evr}
 %pkg_static_files
 
 %prep
-%autosetup
+%autosetup -n chafa-%{version}
 
 %build
 autoreconf -ivf
