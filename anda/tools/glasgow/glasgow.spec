@@ -1,5 +1,5 @@
-%global commit 84f4e151d80eef8bbb60e696f107dde9a13393c3
-%global commit_date 20260217
+%global commit abefa46f019050ea2c2abf6baa8fd0d3e0e75878
+%global commit_date 20260221
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %global pypi_name glasgow
@@ -10,7 +10,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0~%{commit_date}git.%{shortcommit}
-Release:		2%?dist
+Release:		1%?dist
 Summary:		Scots Army Knife for electronics
 License:		0BSD AND Apache-2.0
 URL:			https://github.com/GlasgowEmbedded/glasgow

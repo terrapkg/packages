@@ -14,7 +14,7 @@
 %global appid com.vscodium.VSCodium
 
 Name:			codium
-Version:		1.109.41146
+Version:		1.109.51242
 Release:		1%?dist
 Summary:		Code editing. Redefined.
 License:		MIT
