@@ -18,7 +18,7 @@ BuildRequires:  libwebp-devel
 BuildRequires:  libpng-devel
 BuildRequires:  anda-srpm-macros
 Requires:       %{name}-libs%{?_isa} = %{evr}
-Provides:       chafa = ℅{evr}
+Provides:       chafa = %{evr}
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
