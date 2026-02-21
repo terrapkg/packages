@@ -1,4 +1,4 @@
-Name:           chafa
+Name:          terra-chafa
 Version:        1.18.1
 Release:        1%?dist
 Summary:        Terminal graphics for the 21st century
@@ -34,7 +34,7 @@ optimal output.
 %pkg_libs_files
 
 %package devel
-Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
+Requires:       %{name}-libs%{?_isa} = %{evr}
 %pkg_devel_files
 %{_libdir}/chafa/include/chafaconfig.h
 
@@ -58,8 +58,8 @@ find %{buildroot} -name "*.la" -delete
 %files
 %doc AUTHORS COPYING.LESSER README* NEWS
 %license COPYING.LESSER COPYING
-%{_bindir}/%{name}
-%{_mandir}/man1/%{name}.1*
+%{_bindir}/chafa
+%{_mandir}/man1/chafa.1*
 
 %changelog
 * Fri Feb 20 2026 Owen Zimmerman <owen@fyralabs.com>
