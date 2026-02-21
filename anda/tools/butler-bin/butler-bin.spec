@@ -1,5 +1,5 @@
 Name:           butler-bin
-Version:        15.25.0
+Version:        15.26.0
 Release:        1%?dist
 Summary:        Command-line itch.io helper.
 URL:            https://itch.io/docs/butler
