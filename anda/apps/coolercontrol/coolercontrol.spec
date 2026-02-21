@@ -46,7 +46,7 @@ supported devices. It has an API that services client programs like the coolerco
 %autosetup
 
 pushd coolercontrold
-%cargo_prep_online &
+%cargo_prep_online
 popd
 
 pushd coolercontrol-ui
@@ -63,11 +63,11 @@ popd
 
 pushd coolercontrol
 %cmake
-%cmake_build &
+%cmake_build
 popd
 
 pushd coolercontrold
-%{cargo_license_online} > LICENSE.dependencies &
+%{cargo_license_online} > LICENSE.dependencies
 wait
 cp -rfp ../coolercontrol-ui/dist/* resources/app/
 %cargo_build
