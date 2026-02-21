@@ -20,7 +20,7 @@ Version:        2025.3.1.8
 Release:        1%?dist
 Summary:        Official IDE for Android development
 License:        Apache-2.0
-Packager:       veuxit <erroor234@gmail.com>
+Packager:       veuxit <erroor234@gmail.com>, like-engels <higashikataengels@icloud.com>
 ExclusiveArch:  x86_64
 URL:            https://developer.android.com/studio
 
