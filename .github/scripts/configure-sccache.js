@@ -1,8 +1,8 @@
 // Configure sccache environment variables for GitHub Actions cache integration
-//
+// 
 // This script is still unused until we build terra-sccache with this supported,
 // Turns out that Fedora's sccache build has the GHA feature support disabled.
-//
+// 
 // Note: ACTIONS_CACHE_SERVICE_V2 and SCCACHE_GHA_ENABLED are set at workflow level
 module.exports = async ({ github, context, core, exec }) => {
   // Find sccache path (try which command)
@@ -37,7 +37,7 @@ module.exports = async ({ github, context, core, exec }) => {
 
   // Disable Cargo incremental builds to not interfere with caching
   core.exportVariable("CARGO_INCREMENTAL", "false");
-
+  
   // Debug: Show what environment variables are available
   core.info("=== Environment Variables Diagnostic ===");
   core.info(`SCCACHE_GHA_ENABLED: ${process.env.SCCACHE_GHA_ENABLED}`);
@@ -93,16 +93,16 @@ module.exports = async ({ github, context, core, exec }) => {
 
   // Check if cache busting is enabled
   const inputs =
-  (github &&
-  github.context &&
-  github.context.payload &&
-  github.context.payload.inputs) ||
-  {};
+    (github &&
+      github.context &&
+      github.context.payload &&
+      github.context.payload.inputs) ||
+    {};
   const rawBustCache =
-  inputs.bust_cache ??
-  inputs.bustCache ??
-  process.env.INPUT_BUST_CACHE ??
-  process.env.BUST_CACHE;
+    inputs.bust_cache ??
+    inputs.bustCache ??
+    process.env.INPUT_BUST_CACHE ??
+    process.env.BUST_CACHE;
   let bustCache = false;
 
   if (typeof rawBustCache === "string") {
