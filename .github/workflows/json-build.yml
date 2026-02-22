@@ -56,6 +56,7 @@ jobs:
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
       - name: Configure sccache
+        id: sccache
         if: ${{ !contains(matrix.pkg.labels.sccache, '0') }}
         uses: actions/github-script@v8
         env:
@@ -82,6 +83,14 @@ jobs:
 
       - name: Build with Andaman
         run: anda build -D "vendor Terra" -D "__python %{__python3}" ${{ matrix.pkg.pkg }} -c terra-${{ matrix.version }}-${{ matrix.pkg.arch }} ${{ !matrix.pkg.labels.mock == '1' && '-rrpmbuild' || '' }}
+
+      - name: Report Cache Summary
+        if: steps.sccache.outcome == 'success'
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const script = require('./.github/scripts/sccache-stats.js')
+            await script({github, context, core, exec})
 
       - name: Generating artifact name
         id: art
