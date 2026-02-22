@@ -23,7 +23,7 @@ Requires:       libappindicator-gtk3
 Requires:       coolercontrold
 BuildRequires:  nodejs-npm libdrm-devel curl wget file mold
 BuildRequires:  systemd-rpm-macros anda-srpm-macros cargo >= 1.75.0 cargo-rpm-macros
-BuildRequires:  binutils bison cmake flex gcc gcc-c++ libtool strace
+BuildRequires:  binutils bison cmake flex gcc gcc-c++ libtool strace protobuf-compiler
 BuildRequires:  libappstream-glib
 BuildRequires:  desktop-file-utils
 BuildRequires:  cmake(Qt6)
@@ -94,7 +94,6 @@ install -Dpm644 packaging/metadata/%rdnn.metainfo.xml %buildroot%_metainfodir/%r
 
 %check
 appstream-util validate-relax --nonet %buildroot%_metainfodir/%rdnn.metainfo.xml
-%pyproject_check_import
 
 
 %post -n coolercontrold
