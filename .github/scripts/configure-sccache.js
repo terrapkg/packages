@@ -6,7 +6,7 @@
 // Note: ACTIONS_CACHE_SERVICE_V2 and SCCACHE_GHA_ENABLED are set at workflow level
 module.exports = async ({ github, context, core, exec }) => {
   // Find sccache path (try which command)
-  let sccachePath = "sccache";
+  let sccachePath = "/usr/bin/sccache";
   try {
     const result = await exec.getExecOutput("which", ["sccache"], {
       ignoreReturnCode: true,
