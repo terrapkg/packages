@@ -70,6 +70,7 @@ jobs:
           dnf5 builddep -y ${dir}/*.spec
 
       - name: Configure sccache
+        if: ${{ matrix.pkg.labels.sccache != '0' }}
         uses: actions/github-script@v7
         env:
           SCCACHE_GHA_VERSION: ${{ matrix.version }}-${{ matrix.pkg.arch }}-${{ matrix.pkg.pkg }}
