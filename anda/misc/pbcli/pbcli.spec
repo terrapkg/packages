@@ -1,6 +1,7 @@
 %global _description %{expand:
 pbcli is a command line client which allows to upload and download pastes from privatebin directly from the command line.}
 
+
 Name:           pbcli
 Version:        2.8.0
 Release:        4%{?dist}
