@@ -23,22 +23,12 @@ Requires:       libappindicator-gtk3
 Requires:       coolercontrold
 BuildRequires:  nodejs-npm libdrm-devel curl wget file mold
 BuildRequires:  systemd-rpm-macros anda-srpm-macros cargo >= 1.75.0 cargo-rpm-macros
-BuildRequires:  binutils bison cmake flex gcc gcc-c++ libtool strace
+BuildRequires:  binutils bison cmake flex gcc gcc-c++ libtool strace protobuf-compiler
 BuildRequires:  libappstream-glib
 BuildRequires:  desktop-file-utils
 BuildRequires:  cmake(Qt6)
 BuildRequires:  cmake(Qt6WebEngineWidgets)
 %description %_desc
-
-%package liqctld
-Summary:        CoolerControl daemon for interacting with liquidctl devices on a system level
-Requires:       coolercontrold
-BuildRequires:  python3-devel python3-wheel python3-liquidctl python3-setproctitle python3-fastapi python3-uvicorn python3-pip
-%description liqctld %_desc
-coolercontrol-liqctld is a CoolerControl daemon for interacting with liquidctl devices on a system level, and is
-installed as the coolercontrol-liqctld application. Its main purpose is to wrap the underlying
-liquidctl library providing an API interface that the main coolercontrol daemon interacts with.
-It also enables parallel device communication and access to specific device properties.
 
 %package -n coolercontrold
 Summary:        Monitor and control your cooling devices.
@@ -56,7 +46,7 @@ supported devices. It has an API that services client programs like the coolerco
 %autosetup
 
 pushd coolercontrold
-%cargo_prep_online &
+%cargo_prep_online
 popd
 
 pushd coolercontrol-ui
@@ -71,29 +61,23 @@ pushd coolercontrol-ui
 npm run build-only &
 popd
 
-pushd coolercontrol-liqctld
-%pyproject_wheel
-popd
-
 pushd coolercontrol
 %cmake
-%cmake_build &
+%cmake_build
+popd
+
+pushd coolercontrol-ui
+%make_build
 popd
 
 pushd coolercontrold
-%{cargo_license_online} > LICENSE.dependencies &
+%{cargo_license_online} > LICENSE.dependencies
 wait
 cp -rfp ../coolercontrol-ui/dist/* resources/app/
 %cargo_build
 popd
 
 %install
-pushd coolercontrol-liqctld
-#define _pyproject_wheeldir .
-%pyproject_install
-%pyproject_save_files coolercontrol_liqctld
-popd
-
 pushd coolercontrold
 install -Dpm755 target/rpm/coolercontrold %buildroot%_bindir/coolercontrold
 install -Dpm644 LICENSE.dependencies %buildroot%_datadir/licenses/coolercontrold/LICENSE.dependencies
@@ -103,7 +87,6 @@ pushd coolercontrol/
 %cmake_install
 popd
 
-install -Dpm644 packaging/systemd/coolercontrol-liqctld.service %buildroot%_unitdir/coolercontrol-liqctld.service
 desktop-file-install --dir=%buildroot%_datadir/applications packaging/metadata/%rdnn.desktop
 install -Dpm644 packaging/metadata/%rdnn.svg %buildroot%_iconsdir/hicolor/scalable/apps/%rdnn.svg
 install -Dpm644 packaging/metadata/%rdnn.png %buildroot%_iconsdir/hicolor/256x256/apps/%rdnn.svg
@@ -115,7 +98,6 @@ install -Dpm644 packaging/metadata/%rdnn.metainfo.xml %buildroot%_metainfodir/%r
 
 %check
 appstream-util validate-relax --nonet %buildroot%_metainfodir/%rdnn.metainfo.xml
-%pyproject_check_import
 
 
 %post -n coolercontrold
@@ -126,10 +108,6 @@ appstream-util validate-relax --nonet %buildroot%_metainfodir/%rdnn.metainfo.xml
 
 %postun -n coolercontrold
 %systemd_postun_with_restart coolercontrold.service
-
-# coolercontrold.service automatically uses the liqctld service, so there are
-# no scriptlets for liqctld.
-
 
 %files
 %doc README.md
@@ -145,12 +123,6 @@ appstream-util validate-relax --nonet %buildroot%_metainfodir/%rdnn.metainfo.xml
 %license LICENSE.dependencies
 %_bindir/coolercontrold
 %_unitdir/coolercontrold.service
-
-%files liqctld -f %pyproject_files
-%doc coolercontrol-liqctld/README.md
-%license LICENSE
-%_bindir/coolercontrol-liqctld
-%_unitdir/coolercontrol-liqctld.service
 
 %changelog
 * Thu Aug 15 2024 madonuko <mado@fyralabs.com> - 1.4.0-1
