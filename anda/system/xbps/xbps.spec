@@ -2,7 +2,7 @@
 
 Name:           xbps
 Version:        0.60.7
-Release:        1%?dist
+Release:        2%?dist
 License:        BSD-2-Clause AND BSD-3-Clause AND ISC
 Summary:        A binary package system designed and implemented from scratch
 URL:            https://github.com/void-linux/xbps
@@ -15,7 +15,7 @@ BuildRequires:  pkgconfig(pkgconf)
 BuildRequires:  pkgconfig(zlib)
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pkgconfig(libarchive) >= 3.3.3
-Requires:       %name-lib = %evr
+Requires:       %name-libs = %evr
 
 %pkg_completion -B xbps xbps-checkvers xbps-create xbps-dgraph xbps-install xbps-pkgdb xbps-query xbps-reconfigure xbps-remove xbps-rindex
 %pkg_completion -z xbps xbps_src
@@ -71,5 +71,8 @@ featureful and portable as much as possible.
 /var/db/%name/keys/*.plist
 
 %changelog
+* Tue Feb 24 2026 Metcya <metcya@gmail.com> - 0.60.7-2
+- Fix broken dependency
+
 * Fri Dec 12 2025 Metcya <metcya@gmail.com> - 0.60.6
 - package xbps
