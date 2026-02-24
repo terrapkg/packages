@@ -15,7 +15,7 @@ BuildRequires:  pkgconfig(pkgconf)
 BuildRequires:  pkgconfig(zlib)
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pkgconfig(libarchive) >= 3.3.3
-Requires:       %name-lib = %evr
+Requires:       %name-libs = %evr
 
 %pkg_completion -B xbps xbps-checkvers xbps-create xbps-dgraph xbps-install xbps-pkgdb xbps-query xbps-reconfigure xbps-remove xbps-rindex
 %pkg_completion -z xbps xbps_src
