@@ -2,7 +2,7 @@
 
 Name:           xbps
 Version:        0.60.7
-Release:        1%?dist
+Release:        2%?dist
 License:        BSD-2-Clause AND BSD-3-Clause AND ISC
 Summary:        A binary package system designed and implemented from scratch
 URL:            https://github.com/void-linux/xbps
@@ -71,5 +71,8 @@ featureful and portable as much as possible.
 /var/db/%name/keys/*.plist
 
 %changelog
+* Tue Feb 24 2026 Metcya <metcya@gmail.com> - 0.60.7-2
+- Fix broken dependency
+
 * Fri Dec 12 2025 Metcya <metcya@gmail.com> - 0.60.6
 - package xbps
