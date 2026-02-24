@@ -66,6 +66,10 @@ pushd coolercontrol
 %cmake_build
 popd
 
+pushd coolercontrol-ui
+%make_build
+popd
+
 pushd coolercontrold
 %{cargo_license_online} > LICENSE.dependencies
 wait
