@@ -32,7 +32,6 @@ BuildRequires:  cmake(Qt6WebEngineWidgets)
 
 %package -n coolercontrold
 Summary:        Monitor and control your cooling devices.
-Requires:       coolercontrol-liqctld
 BuildRequires:  pkgconfig(webkit2gtk-4.1) pkgconfig(openssl) pkgconfig(librsvg-2.0)
 BuildRequires:  libappindicator-gtk3-devel
 %description -n coolercontrold %_desc
