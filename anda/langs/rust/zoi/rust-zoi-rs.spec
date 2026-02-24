@@ -1,7 +1,7 @@
 %define __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 %global crate zoi-rs
-%global crate_version 1.4.0
+%global crate_version 1.5.0
 
 Name:           rust-zoi-rs
 Version:        %(echo %crate_version | sed 's/-/~/g')
