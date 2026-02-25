@@ -3,7 +3,7 @@
 
 Name:           gnome-shell-extension-%{extension}
 Version:        12
-Release:        2%?dist
+Release:        3%?dist
 Summary:        GNOME Shell extension to bring back the app menu
 License:        GPL-3.0-only
 URL:            https://github.com/fthx/appmenu-is-back
@@ -22,12 +22,12 @@ This extension brings back the app menu in the top panel, for GNOME 45 and later
 %autosetup -n appmenu-is-back-%{version} -p1
 
 %install
-install -Dm644 metadata.json %{buildroot}%{_datadir}/gnome-shell/extensions/%{uuid}/metadata.json
-install -Dm644 extension.js %{buildroot}%{_datadir}/gnome-shell/extensions/%{uuid}/extension.js
+install -Dm644 metadata.json %{buildroot}%{_gnomeextensionsdir}/metadata.json
+install -Dm644 extension.js %{buildroot}%{_gnomeextensionsdir}/extension.js
 
 %files
 %license LICENSE
-%{_datadir}/gnome-shell/extensions/%{uuid}
+%{_gnomeextensionsdir}
 
 %changelog
 * Thu Nov 16 2023 Lleyton Gray <lleyton@fyralabs.com> - 2-1
