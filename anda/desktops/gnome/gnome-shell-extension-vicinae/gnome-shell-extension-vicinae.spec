@@ -2,7 +2,7 @@
 
 Name:           gnome-shell-extension-vicinae
 Version:        1.5.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        MIT
 URL:            https://github.com/dagimg-dot/vicinae-gnome-extension
 Source:         %{url}/archive/refs/tags/v%{version}.tar.gz
@@ -28,13 +28,13 @@ window management APIs, and paste-to-active-window capabilities.
 %{__bun} i && %{__bun} run build
 
 %install
-mkdir -p %{buildroot}%{_datadir}/gnome-shell/extensions/%{uuid}
-cp -a src/ %{buildroot}%{_datadir}/gnome-shell/extensions/%{uuid}/
+mkdir -p %{buildroot}%{_gnomeextensionsdir}
+cp -a src/ %{buildroot}%{_gnomeextensionsdir}/
 
 %files
 %license LICENSE
 %doc README.md DEVELOPMENT.md
-%{_datadir}/gnome-shell/extensions/%{uuid}/
+%{_gnomeextensionsdir}/
 
 %changelog
 * Sat Dec 27 2025 metcya <metcya@gmail.com> - 1.5.3-1

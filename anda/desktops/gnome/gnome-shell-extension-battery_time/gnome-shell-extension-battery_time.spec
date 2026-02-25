@@ -7,7 +7,7 @@
 
 Name:           gnome-shell-extension-%{extension}
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Battery remaining time extension for GNOME Shell
 License:        GPL-2.0-only
 URL:            https://github.com/pomoke/battery_time
@@ -31,14 +31,14 @@ Remaining time is shown inline, so no additional menu item is created (currently
 %autosetup -n %{extension}-%{commit}
 
 %install
-install -Dm644 metadata.json %{buildroot}%{_datadir}/gnome-shell/extensions/%{uuid}/metadata.json
-install -Dm644 extension.js %{buildroot}%{_datadir}/gnome-shell/extensions/%{uuid}/extension.js
+install -Dm644 metadata.json %{buildroot}%{_gnomeextensionsdir}/metadata.json
+install -Dm644 extension.js %{buildroot}%{_gnomeextensionsdir}/extension.js
 cp %{SOURCE1} LICENSE
 
 %files
 %doc README.md
 %license LICENSE
-%{_datadir}/gnome-shell/extensions/%{uuid}
+%{_gnomeextensionsdir}
 
 %changelog
 * Mon Jan 05 2026 Owen Zimmerman <owen@fyralabs.com>
