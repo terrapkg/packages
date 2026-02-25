@@ -26,13 +26,13 @@ GPU Profile switcher Gnome-Shell-Extension for ASUS laptops using Supergfxctl
 %autosetup -n GPU-Switcher-Supergfxctl-%{commit} -p1
 
 %install
-install -Dm644 metadata.json %{buildroot}%{_datadir}/gnome-shell/extensions/%{uuid}/metadata.json
-install -Dm644 extension.js %{buildroot}%{_datadir}/gnome-shell/extensions/%{uuid}/extension.js
+install -Dm644 metadata.json %{buildroot}%{_gnomeextensionsdir}/metadata.json
+install -Dm644 extension.js %{buildroot}%{_gnomeextensionsdir}/extension.js
 
 %files
 %license LICENSE
 %doc README.md
-%{_datadir}/gnome-shell/extensions/%{uuid}
+%{_gnomeextensionsdir}
 
 %changelog
 * Mon Oct 27 2025 june-fish <june@fyralabs.com> - 11
