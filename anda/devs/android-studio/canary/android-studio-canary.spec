@@ -17,7 +17,7 @@
 
 Name:           android-studio-canary
 Version:        2025.3.3.1
-Release:        2%?dist
+Release:        1%?dist
 Summary:        Official IDE for Android development (Canary build)
 License:        Apache-2.0
 Packager:       veuxit <erroor234@gmail.com>
