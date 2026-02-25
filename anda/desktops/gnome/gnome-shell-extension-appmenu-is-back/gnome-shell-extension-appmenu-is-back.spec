@@ -27,7 +27,7 @@ install -Dm644 extension.js %{buildroot}%{_gnomeextensionsdir}/extension.js
 
 %files
 %license LICENSE
-%{_gnomeextensionsdir}/
+%{_gnomeextensionsdir}
 
 %changelog
 * Thu Nov 16 2023 Lleyton Gray <lleyton@fyralabs.com> - 2-1
