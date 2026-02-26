@@ -157,7 +157,7 @@ install -Dm755 bin/core                     %{buildroot}%{_bindir}/core
 install -Dm755 bin/date                     %{buildroot}%{_bindir}/9date
 install -Dm755 bin/dc                       %{buildroot}%{_bindir}/9dc
 install -Dm755 bin/dd                       %{buildroot}%{_bindir}/9dd
-install -Dm755 bin/delatex                  %{buildroot}%{_bindir}/deltex
+install -Dm755 bin/delatex                  %{buildroot}%{_bindir}/delatex
 install -Dm755 bin/deroff                   %{buildroot}%{_bindir}/deroff
 install -Dm755 bin/dial                     %{buildroot}%{_bindir}/dial
 install -Dm755 bin/du                       %{buildroot}%{_bindir}/9du
@@ -269,7 +269,7 @@ install -Dm755 bin/clock                    %{buildroot}%{_bindir}/9clock
 install -Dm755 bin/cmapcube                 %{buildroot}%{_bindir}/cmapcube
 install -Dm755 bin/colors                   %{buildroot}%{_bindir}/colors
 install -Dm755 bin/crop                     %{buildroot}%{_bindir}/crop
-install -Dm755 bin/gview                    %{buildroot}%{_bindir}/gviews
+install -Dm755 bin/gview                    %{buildroot}%{_bindir}/9gview
 install -Dm755 bin/iconv                    %{buildroot}%{_bindir}/9iconv
 install -Dm755 bin/img                      %{buildroot}%{_bindir}/img
 install -Dm755 bin/mc                       %{buildroot}%{_bindir}/mc
@@ -298,7 +298,7 @@ install -Dm755 bin/png                      %{buildroot}%{_bindir}/png
 install -Dm755 bin/topng                    %{buildroot}%{_bindir}/topng
 install -Dm755 bin/yuv                      %{buildroot}%{_bindir}/yuv
 install -Dm755 bin/ico                      %{buildroot}%{_bindir}/ico
-install -Dm755 bin/toico                    %{buildroot}%{_bindir}/ioico
+install -Dm755 bin/toico                    %{buildroot}%{_bindir}/toico
 install -Dm755 bin/bmp                      %{buildroot}%{_bindir}/bmp
 install -Dm755 bin/mapd                     %{buildroot}%{_bindir}/mapd
 install -Dm755 bin/mk                       %{buildroot}%{_bindir}/mk
@@ -306,7 +306,7 @@ install -Dm755 bin/dns                      %{buildroot}%{_bindir}/dns
 install -Dm755 bin/dnsquery                 %{buildroot}%{_bindir}/dnsquery
 install -Dm755 bin/dnsdebug                 %{buildroot}%{_bindir}/dnsdebug
 install -Dm755 bin/dnstcp                   %{buildroot}%{_bindir}/dnstcp
-install -Dm755 bin/ndbmkdb                  %{buildroot}%{_bindir}/mdbmkdb
+install -Dm755 bin/ndbmkdb                  %{buildroot}%{_bindir}/ndbmkdb
 install -Dm755 bin/ndbquery                 %{buildroot}%{_bindir}/ndbquery
 install -Dm755 bin/ndbmkhash                %{buildroot}%{_bindir}/ndbmkhash
 install -Dm755 bin/ndbmkhosts               %{buildroot}%{_bindir}/ndbmkhosts
@@ -590,7 +590,7 @@ install -Dm644 lib/*.a                   -t %{buildroot}%{_libdir}/
 %{_bindir}/cmapcube
 %{_bindir}/colors
 %{_bindir}/crop
-%{_bindir}/gview
+%{_bindir}/9gview
 %{_bindir}/9iconv
 %{_bindir}/img
 %{_bindir}/mc
