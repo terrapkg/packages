@@ -7,7 +7,7 @@ License:        MIT AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception 
 URL:            https://github.com/paulrobello/termflix
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 
-BuildRequires:  cargo-rpm-macros >= 24 mold
+BuildRequires:  cargo-rpm-macros >= 24
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
