@@ -1,1 +1,1 @@
-rpm.version(gh("paulrobello/termflix"));
+rpm.version(crates("termflix"));
