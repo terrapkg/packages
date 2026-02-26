@@ -1,5 +1,7 @@
 %undefine __brp_mangle_shebangs
 
+%global _build_id_links none
+
 %global toolchain clang
 
 Name:           twintaillauncher
@@ -48,7 +50,12 @@ cd ..
 
 
 %install
-%tauri_install_bin
+%tauri_install
+mkdir -p %{buildroot}/%{_libdir}/twintaillauncher/resources
+mv %{buildroot}/%{_datadir}/cargo/registry/twintaillauncher-%{version}/resources/ %{buildroot}/%{_libdir}/twintaillauncher/resources
+rm -rf %{buildroot}/%{_datadir}/cargo/registry/twintaillauncher-%{version}
+
+
 %tauri_cargo_license_summary
 %{tauri_cargo_license} > LICENSE.dependencies
 
@@ -65,6 +72,7 @@ install -Dm644 public/launcher-icon-128.png %{buildroot}%{_hicolordir}/128x128/a
 %doc README.md
 
 %{_bindir}/twintaillauncher
+%{_libdir}/twintaillauncher/resources
 %{_hicolordir}/512x512/apps/%{name}.png
 %{_hicolordir}/128x128/apps/%{name}.png
 %_appsdir/twintaillauncher.desktop
@@ -73,5 +81,7 @@ install -Dm644 public/launcher-icon-128.png %{buildroot}%{_hicolordir}/128x128/a
 
 
 %changelog
+* Thu Feb 19 2026 Yoong Jin <solomoncyj@gmail.com> - 1.1.15-1
+- Fix resources
 * Tue Feb 3 2026 Yoong Jin <solomoncyj@gmail.com> - 1.1.15-0
 - Initial Package

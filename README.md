@@ -32,7 +32,7 @@ On Fedora, you can optionally install the Terra subrepos. Extra care and caution
 - Install `terra-release-extras` to enable the Extras subrepo. This repo contains packages which conflict with Fedora packages in some way, such as being a patched version of the same package.
 - Install `terra-release-mesa` to install the Mesa subrepo which contains a patched and codec complete Mesa.
 - Install `terra-release-nvidia` to install the NVIDIA subrepo which contains NVIDIA drivers.
-- Install `terra-release-multimedia` for mutltimedia packages in Terra. This repository is currently considered a work in progress.
+- Install `terra-release-multimedia` for multimedia packages in Terra. This repository is currently considered a work in progress.
 
 ### Enterprise Linux (EL)
 

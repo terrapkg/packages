@@ -3,7 +3,7 @@
 %global modulename xone
 
 Name:           %{modulename}-kmod
-Version:        0.5.5
+Version:        0.5.6
 Release:        1%?dist
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Epoch:          2

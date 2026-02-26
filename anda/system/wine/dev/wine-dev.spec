@@ -9,7 +9,7 @@
 %global _prefix 	/usr/share/wine-dev
 %global srcmajor 11.x
 # Make this as a variable instead in case of WINE RCs
-%global ver wine-11.2
+%global ver wine-11.3
 %global cleanver %(echo %{ver} | sed 's/v//g;s/wine-//g')
 
 # This is unfortunate but a lot of Fedora's/SUSE's hardening flags break WINE
