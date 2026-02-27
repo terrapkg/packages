@@ -10,6 +10,8 @@ Summary:        A language server that offers Lua language support
 
 BuildRequires:  gcc-c++ make ninja-build glibc lua gcc cmake libstdc++-devel libstdc++-static libcxx libcxx-devel
 
+Packager:       Owen Zimmerman <owen@fyralabs.com>
+
 %description
 A language server that offers Lua language support - programmed in Lua.
 
