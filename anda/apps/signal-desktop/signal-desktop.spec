@@ -59,10 +59,10 @@ Signal Desktop links with Signal on Android or iOS and lets you message from you
 
 %build
 export SIGNAL_ENV=production
-%{__pnpm} install
+%{__pnpm} install --frozen-lockfile
 %{__pnpm} run clean-transpile
 pushd sticker-creator
-%{__pnpm} install
+%{__pnpm} install --frozen-lockfile
 %{__pnpm} run build
 popd
 %pnpm_build -r generate,prepare-beta-build
