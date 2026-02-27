@@ -1,5 +1,5 @@
 Name:           vicinae
-Version:        0.20.0
+Version:        0.20.1
 Release:        1%?dist
 License:        GPL-3.0
 URL:            https://docs.vicinae.com
