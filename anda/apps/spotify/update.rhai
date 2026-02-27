@@ -1,0 +1,10 @@
+let html = get("https://repository-origin.spotify.com/pool/non-free/s/spotify-client");
+let pattern = `spotify-client_([0-9\.]+)\.(.+?)_amd64\.deb`;
+let nofilter = find(pattern, html, 0);
+let version = find(pattern, html, 1);
+let suffixS = find(pattern, html, 2);
+print(nofilter);
+print(version);
+print(suffixS);
+rpm.version(version);
+rpm.define("suffixS", suffixS);
