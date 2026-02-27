@@ -50,6 +50,9 @@ ln -s %{_datadir}/spotify/spotify %{buildroot}%{_bindir}/spotify
 
 cp usr/share/spotify/spotify.desktop %{buildroot}%{_datadir}/applications/
 
+%check
+%desktop_file_validate %{buildroot}%{_datadir}/applications/spotify.desktop
+
 %files
 %{_bindir}/spotify
 %{_datadir}/spotify/
