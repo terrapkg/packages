@@ -30,7 +30,7 @@ BuildRequires: pkgconfig(pam)
 BuildRequires: pkgconfig(libdrm)
 BuildRequires: pkgconfig(gbm)
 BuildRequires: pkgconfig(CLI11)
-BuildRequires: glib2
+BuildRequires: glib2-devel
 
 Obsoletes:     quickshell
 
@@ -61,8 +61,8 @@ Flexible QtQuick based desktop shell toolkit.
 %doc changelog/v%{version}.md
 %{_bindir}/qs
 %{_bindir}/quickshell
-%{_appsdir}/org.quickshell.desktop
-%{_scalableiconsdir}/org.quickshell.svg
+%{_appsdir}/dev.noctalia.noctalia-qs.desktop
+%{_scalableiconsdir}/dev.noctalia.noctalia-qs.svg
 %{_libdir}/qt6/qml/Quickshell
 
 %changelog
