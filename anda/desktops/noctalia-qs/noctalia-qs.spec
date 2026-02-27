@@ -6,7 +6,7 @@ License:	LGPL-3.0-only AND GPL-3.0-only
 URL:		https://github.com/noctalia-dev/noctalia-qs
 Source0:	https://github.com/noctalia-dev/noctalia-qs/archive/refs/tags/v%{version}.tar.gz
 
-Packager:   Willow Reed (willow@willowidk.dev)
+Packager:       Willow C Reed (willow@willowidk.dev)
 
 BuildRequires: cmake
 BuildRequires: cmake(Qt6Core)
@@ -30,6 +30,9 @@ BuildRequires: pkgconfig(pam)
 BuildRequires: pkgconfig(libdrm)
 BuildRequires: pkgconfig(gbm)
 BuildRequires: pkgconfig(CLI11)
+BuildRequires: glib2
+
+Obsoletes: quickshell
 
 %description
 Flexible QtQuick based desktop shell toolkit.
@@ -63,5 +66,5 @@ Flexible QtQuick based desktop shell toolkit.
 %{_libdir}/qt6/qml/Quickshell
 
 %changelog
-* Fri Jan 02 2026 Willow C Reed <willow@willowidk.dev>
-- Initial commit
+* Fri Feb 27 2026 Willow C Reed <willow@willowidk.dev>
+- Initial commit based on quickshell spec

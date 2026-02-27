@@ -2,7 +2,7 @@
 
 Name:           noctalia-shell
 Version:		4.5.0
-Release:        1%?dist
+Release:        2%?dist
 Summary:        A Quickshell-based custom shell setup
 
 License:        MIT
@@ -13,7 +13,7 @@ Requires:	    brightnessctl
 Requires:    	dejavu-sans-fonts
 Requires:    	gpu-screen-recorder
 Requires:	    qt6-qtmultimedia
-Requires:       quickshell
+Requires:       noctalia-qs
 Requires:       xdg-desktop-portal
 
 Recommends: 	cava
@@ -45,3 +45,6 @@ cp -r ./* %{buildroot}/etc/xdg/quickshell/noctalia-shell/
 %changelog
 * Fri Jan 02 2026 Willow Reed <willow@willowidk.dev>
 - Initial commit
+
+* Fri Feb 27 2026 Willow C Reed <willow@willowidk.dev>
+- Change required quickshell to Noctalia's version
