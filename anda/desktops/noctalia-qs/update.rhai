@@ -1,1 +1,1 @@
-rpm.version(gh("https://github.com/noctalia-dev/noctalia-qs"));
+rpm.version(gh("noctalia-dev/noctalia-qs"));
