@@ -32,7 +32,7 @@ BuildRequires: pkgconfig(gbm)
 BuildRequires: pkgconfig(CLI11)
 BuildRequires: glib2
 
-Obsoletes: quickshell
+Obsoletes:     quickshell
 
 %description
 Flexible QtQuick based desktop shell toolkit.
