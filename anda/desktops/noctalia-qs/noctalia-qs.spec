@@ -59,7 +59,7 @@ Flexible QtQuick based desktop shell toolkit.
 %doc BUILD.md
 %doc CONTRIBUTING.md
 %doc README.md
-%doc changelog/v%{version}.md
+%doc changelog/next.md
 %{_bindir}/qs
 %{_bindir}/quickshell
 %{_appsdir}/dev.noctalia.noctalia-qs.desktop
