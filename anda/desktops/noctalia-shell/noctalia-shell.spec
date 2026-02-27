@@ -43,8 +43,8 @@ cp -r ./* %{buildroot}/etc/xdg/quickshell/noctalia-shell/
 %{_sysconfdir}/xdg/quickshell/noctalia-shell/
 
 %changelog
-* Fri Jan 02 2026 Willow Reed <willow@willowidk.dev>
-- Initial commit
-
 * Fri Feb 27 2026 Willow C Reed <willow@willowidk.dev>
 - Change required quickshell to Noctalia's version
+
+* Fri Jan 02 2026 Willow Reed <willow@willowidk.dev>
+- Initial commit
