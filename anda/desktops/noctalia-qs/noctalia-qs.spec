@@ -31,7 +31,7 @@ BuildRequires: pkgconfig(libdrm)
 BuildRequires: pkgconfig(gbm)
 BuildRequires: pkgconfig(CLI11)
 BuildRequires: glib2-devel
-BuildRequires: polkit
+BuildRequires: polkit-devel
 
 Obsoletes:     quickshell
 
