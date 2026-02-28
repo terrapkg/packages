@@ -45,7 +45,7 @@ install -Dm644 contrib/spotify-launcher.desktop %{buildroot}%{_appsdir}/spotify-
 
 install -Dm644 contrib/icons/spotify-linux-256.png "%{buildroot}/%{_datadir}/pixmaps/spotify-launcher.png"
 
-install -Dm644 contrib/spotify-launcher.conf %{buildroot}/etc/spotify-launcher.conf
+install -Dm644 contrib/spotify-launcher.conf %{buildroot}%{_sysconfdir}/spotify-launcher.conf
 
 for size in 22 24 32 48 64 128 256 512; do
   install -Dm644 contrib/icons/spotify-linux-${size}.png %{buildroot}%{_hicolordir}/${size}x${size}/apps/spotify-launcher.png
@@ -56,7 +56,7 @@ done
 
 %files
 %{_appsdir}/%{name}.desktop
-/etc/spotify-launcher.conf
+%{_sysconfdir}/spotify-launcher.conf
 %{_datadir}/pixmaps/spotify-launcher.png
 %{_hicolordir}/22x22/apps/spotify-launcher.png
 %{_hicolordir}/24x24/apps/spotify-launcher.png
