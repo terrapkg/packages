@@ -38,17 +38,17 @@ One of the major design goals of psd is a completely transparent user experience
 %{_bindir}/profile-sync-daemon
 %{_bindir}/psd-suspend-sync
 %{_bindir}/psd
-/usr/share/zsh/site-functions/_psd
-/usr/share/psd/browsers
-/usr/share/psd/psd.conf
-/usr/share/psd/contrib
-/usr/lib/systemd/user/psd.service
-/usr/lib/systemd/user/psd-resync.service
-/usr/lib/systemd/user/psd-resync.timer
-/usr/share/man/man1/profile-sync-daemon.1.gz
-/usr/share/man/man1/psd.1.gz
-/usr/bin/psd-overlay-helper
-/usr/share/man/man1/psd-overlay-helper.1.gz
+%{_datadir}/zsh/site-functions/_psd
+%{_datadir}/psd/browsers
+%{_datadir}/psd/psd.conf
+%{_datadir}/psd/contrib
+%{_userunitdir}/psd.service
+%{_userunitdir}/psd-resync.service
+%{_userunitdir}/psd-resync.timer
+%{_mandir}/man1/profile-sync-daemon.1.gz
+%{_mandir}/man1/psd.1.gz
+%{_bindir}/psd-overlay-helper
+%{_datadir}/man/man1/psd-overlay-helper.1.gz
 
 
 %changelog
