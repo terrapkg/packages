@@ -26,7 +26,7 @@ Requires:       sequoia-sqv zenity alsa-lib gtk3 desktop-file-utils openssl nss 
 
 
 %description
-Spotify is a social music platform that gives you access to millions of songs
+%{summary}.
 
 %prep
 %autosetup -n %{name}-%{version}
@@ -50,6 +50,7 @@ install -Dm644 contrib/spotify-launcher.conf %{buildroot}%{_sysconfdir}/spotify-
 for size in 22 24 32 48 64 128 256 512; do
   install -Dm644 contrib/icons/spotify-linux-${size}.png %{buildroot}%{_hicolordir}/${size}x${size}/apps/spotify-launcher.png
 done
+%{cargo_license_summary_online} > LICENSE.dependencies
 
 %check
 %desktop_file_validate %{buildroot}%{_appsdir}/spotify-launcher.desktop
@@ -68,6 +69,8 @@ done
 %{_hicolordir}/512x512/apps/spotify-launcher.png
 %{_bindir}/spotify-launcher
 %{_datadir}/spotify-launcher/keyring.pgp
+%license LICENSE-MIT LICENSE-APACHE LICENSE.dependencies
+%doc README.md
 
 %changelog
 * Fri Feb 27 2026 veux <erroor234@gmail.com> - 0.6.5
