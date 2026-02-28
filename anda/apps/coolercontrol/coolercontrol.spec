@@ -31,7 +31,7 @@ BuildRequires:  cmake(Qt6WebChannel)
 
 %package -n coolercontrold
 Summary:        Monitor and control your cooling devices.
-License:        GPL-3.0-or-later
+License:        GPL-3.0-or-later AND (Apache-2.0 OR MIT) AND (MIT OR Apache-2.0) AND Unicode-3.0 AND (0BSD OR MIT OR Apache-2.0) AND AGPL-3.0-or-later AND Apache-2.0 AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND BSD-2-Clause AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR MIT OR Apache-2.0) AND BSD-3-Clause AND MIT AND (BSD-3-Clause OR Apache-2.0) AND (BSD-3-Clause OR MIT) AND (CC0-1.0 OR Apache-2.0) AND ISC AND (MIT OR Apache-2.0) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Zlib OR Apache-2.0) AND (Unlicense OR MIT) AND Zlib AND (Zlib OR Apache-2.0 OR MIT)
 BuildRequires:  anda-srpm-macros cargo-rpm-macros rust-srpm-macros
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  pkgconfig(libdrm_amdgpu)
