@@ -38,7 +38,7 @@ Documentation files for %{name}
 
 %install
 mkdir -p %{buildroot}%{_pkgdocdir}
-install -Dm755 target/rpm/snow_frontend_egui        %{buildroot}%{_bindir}/snowemu
+install -Dm755 target/rpm/snowemu                   %{buildroot}%{_bindir}/snowemu
 install -Dm644 assets/snow_icon.png                 %{buildroot}%{_hicolordir}/1024x1024/apps/snow_icon.png
 %desktop_file_install assets/snow.desktop
 install -Dm644 assets/dev.thomasw.snow.metainfo.xml %{buildroot}%{_metainfodir}/dev.thomasw.snow.metainfo.xml
