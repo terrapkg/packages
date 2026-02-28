@@ -1,5 +1,5 @@
 Name:           termflix
-Version:        0.4.1
+Version:        0.4.2
 Release:        1%?dist
 Summary:        Terminal animation player with 43 procedurally generated animations, multiple render modes, and true color support
 
