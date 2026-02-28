@@ -1,0 +1,1 @@
+// rpm.version(gh_tag("graysky2/profile-sync-daemon"));
