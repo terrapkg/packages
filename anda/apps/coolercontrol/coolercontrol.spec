@@ -31,6 +31,7 @@ BuildRequires:  cmake(Qt6WebChannel)
 
 %package -n coolercontrold
 Summary:        Monitor and control your cooling devices.
+License:        GPL-3.0-or-later
 BuildRequires:  anda-srpm-macros cargo-rpm-macros rust-srpm-macros
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  pkgconfig(libdrm_amdgpu)
