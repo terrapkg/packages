@@ -67,7 +67,7 @@ done
 /usr/share/icons/hicolor/256x256/apps/spotify-launcher.png
 /usr/share/icons/hicolor/512x512/apps/spotify-launcher.png
 %{_bindir}/spotify-launcher
-/usr/share/spotify-launcher/keyring.pgp
+%{_datadir}/spotify-launcher/keyring.pgp
 
 %changelog
 * Fri Feb 27 2026 veux <erroor234@gmail.com> - 0.6.5
