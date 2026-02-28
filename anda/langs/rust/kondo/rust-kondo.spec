@@ -4,8 +4,8 @@
 %global crate kondo
 
 Name:           rust-kondo
-Version:        0.8
-Release:        1%{?dist}
+Version:        0.9
+Release:        1%?dist
 Summary:        Filesystem cleaning tool for projects
 
 License:        MIT

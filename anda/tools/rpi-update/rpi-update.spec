@@ -6,13 +6,15 @@
 
 Name:           rpi-update
 Version:        %commit_date.git~%shortcommit
-Release:        1%?dist
+Release:        2%?dist
 Summary:        An easier way to update the firmware of your Raspberry Pi. 
 License:        MIT
 URL:            https://github.com/raspberrypi/rpi-update
 Source0:        %url/archive/%commit.tar.gz
 Requires:       bash
 ExclusiveArch:  aarch64
+
+Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
 %summary

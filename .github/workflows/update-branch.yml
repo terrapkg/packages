@@ -13,6 +13,7 @@ jobs:
       matrix:
         branch:
           - frawhide
+          - f44
           - f43
           - f42
           - el10
@@ -21,7 +22,7 @@ jobs:
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: ${{ matrix.branch }}
           fetch-depth: 0

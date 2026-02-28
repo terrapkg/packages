@@ -8,7 +8,7 @@
 
 Name:           %{real_name}-devel
 Epoch:          1
-Version:        13.1.80
+Version:        13.1.115
 Release:        1%?dist
 Summary:        CUDA nvptxcompiler
 License:        CUDA Toolkit

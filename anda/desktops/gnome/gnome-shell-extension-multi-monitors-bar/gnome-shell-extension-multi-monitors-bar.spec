@@ -1,5 +1,5 @@
-%global commit fa8a73a208ced4a2376d692552ea6b3694d08d53
-%global commit_date 20260103
+%global commit c3fdb58e398ce387892919d56fc995d74b949349
+%global commit_date 20260224
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %global extension   multi-monitors-bar
@@ -7,7 +7,7 @@
 
 Name:           gnome-shell-extension-%{extension}
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Add multiple monitors overview and panel for GNOME Shell. This is an updated fork with GNOME 46 compatibility
 License:        GPL-2.0-or-later
 URL:            https://github.com/FrederykAbryan/multi-monitors-bar_fapv2
@@ -32,10 +32,10 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %install
 find . -name "*.gschema.xml"
-mkdir -p %{buildroot}%{_datadir}/gnome-shell/extensions/%{uuid}
-install -Dm644 *.json %{buildroot}%{_datadir}/gnome-shell/extensions/%{uuid}/
-install -Dm644 *.js %{buildroot}%{_datadir}/gnome-shell/extensions/%{uuid}/
-install -Dm644 *.css %{buildroot}%{_datadir}/gnome-shell/extensions/%{uuid}/
+mkdir -p %{buildroot}%{_gnomeextensionsdir}
+install -Dm644 *.json %{buildroot}%{_gnomeextensionsdir}/
+install -Dm644 *.js %{buildroot}%{_gnomeextensionsdir}/
+install -Dm644 *.css %{buildroot}%{_gnomeextensionsdir}/
 install -Dm644 schemas/*.gschema.xml -t %{buildroot}%{_datadir}/glib-2.0/schemas/
 
 %post
@@ -47,7 +47,7 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas/ &> /dev/null || :
 %files
 %license LICENSE
 %doc README.md
-%{_datadir}/gnome-shell/extensions/%{uuid}
+%{_gnomeextensionsdir}
 %{_datadir}/glib-2.0/schemas/*.gschema.xml
 
 %changelog

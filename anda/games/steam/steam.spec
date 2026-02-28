@@ -5,7 +5,7 @@
 
 Name:           steam
 Version:        1.0.0.85
-Release:        2%?dist
+Release:        3%?dist
 Summary:        Installer for the Steam software distribution service
 # Redistribution and repackaging for Linux is allowed, see license file. udev rules are MIT.
 License:        Steam License Agreement and MIT
@@ -43,6 +43,7 @@ BuildRequires:  systemd
 # Required to run the initial setup
 Requires:       tar
 Requires:       zenity
+Requires:       xz
 
 # Most games use OpenGL, some games already use Vulkan. Vulkan is also required
 # for Steam Play to run Windows games through emulation. i686 version of these
@@ -174,6 +175,12 @@ desktop-file-edit --remove-key=X-KDE-RunOnDiscreteGpu %{buildroot}%{_datadir}/ap
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%{appstream_id}.metainfo.xml
+
+%if 0%{?fedora} >= 44
+%post
+# Workaround for https://fedoraproject.org/wiki/Changes/droppingOfCertPemFile#Temporary_fix
+update-ca-trust extract --rhbz2387674
+%endif
 
 %files
 %license COPYING steam_subscriber_agreement.txt

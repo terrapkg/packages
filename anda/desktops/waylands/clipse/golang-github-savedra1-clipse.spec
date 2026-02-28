@@ -12,7 +12,7 @@
 
 # https://github.com/savedra1/clipse
 %global goipath         github.com/savedra1/clipse
-Version:                1.2.0
+Version:                1.2.1
 
 %gometa -f
 

@@ -8,7 +8,7 @@
 
 Name:           %(echo %real_name | tr '_' '-')-devel
 Epoch:          1
-Version:        13.1.68
+Version:        13.1.115
 Release:        1%?dist
 Summary:        CUDA Culibos Math development library
 License:        CUDA Toolkit

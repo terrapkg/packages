@@ -8,7 +8,7 @@
 
 Name:           %{modulename}-kmod
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        1%?dist
+Release:        2%{?dist}
 Summary:        Advanced Linux Driver for Xbox One Wireless Gamepad
 License:        GPL-3.0
 URL:            https://atar-axis.github.io/xpadneo
@@ -21,7 +21,7 @@ Requires:       bluez-tools
 Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
 Requires:       %{modulename}-akmod-modules = %{?epoch:%{epoch}:}%{version}
 Conflicts:      dkms-%{modulename}
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %{expand:%(kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 

@@ -1,5 +1,5 @@
-%global commit aa05b7f4ce69e23098e5a4cd591642d463453aa1
-%global commit_date 20251229
+%global commit d16d5cece73e686b3776457a45523dad64a1165e
+%global commit_date 20260227
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %global pypi_name glasgow
@@ -9,7 +9,7 @@
 %global _udevrulesdir /usr/lib/udev/rules.d
 
 Name:			python-%{pypi_name}
-Version:		%commit_date.%shortcommit
+Version:		0~%{commit_date}git.%{shortcommit}
 Release:		1%?dist
 Summary:		Scots Army Knife for electronics
 License:		0BSD AND Apache-2.0
@@ -62,9 +62,6 @@ install -Dm644 config/70-glasgow.rules %{buildroot}%{_udevrulesdir}/70-glasgow.r
 %license LICENSE-0BSD.txt LICENSE-Apache-2.0.txt
 %{_bindir}/glasgow
 %{_udevrulesdir}/70-glasgow.rules
-%ghost %python3_sitelib/__pycache__/*.cpython-*.pyc
-%ghost %python3_sitelib/%{name}/subcommands/__pycache__/*.cpython-*.pyc
-%python3_sitelib/glasgow-*.dist-info/*
 
 %changelog
 * Mon Sep 29 2025 Owen Zimmerman <owen@fyralabs.com>

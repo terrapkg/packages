@@ -1,7 +1,7 @@
-%global commit 122cdb289d09fc960ba7e24dc6bec10326b424e9
+%global commit 30b4540650f0283136c875efb4cd449686a87995
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20251209
-%global ver 1.0.19
+%global commitdate 20260218
+%global ver 1.0.20
 %global appid com.sched_ext.scx
 %global developer "sched-ext Contributors"
 %global org "com.sched_ext"
@@ -34,7 +34,7 @@ Suggests:       scx-scheds-nightly
 Obsoletes:      scxctl <= 0.3.4
 Provides:       scxctl = %{evr}
 Conflicts:      scx-tools
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 scx_loader: A D-Bus interface for managing sched_ext schedulers
@@ -80,7 +80,7 @@ install -Dm755 target/rpm/*.so -t %{buildroot}%{_libdir} || :
 %{_datadir}/dbus-1/system-services/org.scx.Loader.service
 %{_datadir}/dbus-1/system.d/org.scx.Loader.conf
 %{_datadir}/polkit-1/actions/org.scx.Loader.policy
-%config(noreplace) %{_datadir}/scx_loader/config.toml
+%{_datadir}/scx_loader/config.toml
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog

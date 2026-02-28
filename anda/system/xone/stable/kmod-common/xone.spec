@@ -5,7 +5,7 @@
 %global firmware_hash3 e2710daf81e7b36d35985348f68a81d18bc537a2b0c508ffdfde6ac3eae1bad7
 
 Name:           xone
-Version:        0.5.1
+Version:        0.5.7
 Release:        1%?dist
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Epoch:          2
@@ -37,7 +37,7 @@ Obsoletes:      xow <= 0.5
 Obsoletes:      %{name} < %{?epoch:%{epoch}:}0.3.4
 %endif
 BuildArch:      noarch
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 Linux kernel driver for Xbox One and Xbox Series X|S accessories common files.
@@ -132,7 +132,7 @@ install -Dm644 %{name}.conf -t %{buildroot}%{_modulesloaddir}
 %changelog
 * Wed Dec 10 2025 Gilver E. <rockgrub@disroot.org> - 0.5.0-2
 - Added new firmware files
-* Thu Apr 17 2025 Gilver E. <rockgrub@disroot.org> - 0.3^20250418git.ecdd59e-2%{?dist}
+* Thu Apr 17 2025 Gilver E. <rockgrub@disroot.org> - 0.3^20250418git.ecdd59e-2
 - Added additional firmware needed for dongle pairing on some controllers
 * Thu Feb 27 2025 Gilver E. <rockgrub@disroot.org>
 - Initial package

@@ -1,14 +1,14 @@
-%global commit 17d9b6a8939085d6e13b8c3ad684d28ca3166a02
+%global commit 725a46c45f06475bf7631d9ca1852f9778df128f
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20251222
-%global ver 0.5.1
+%global commitdate 20260216
+%global ver 0.5.5
 %define buildforkernels akmod
 %global debug_package %{nil}
 %global modulename xone
 
 Name:           %{modulename}-nightly-kmod
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        2%?dist
+Release:        1%?dist
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Epoch:          1
 %endif
@@ -26,7 +26,7 @@ Conflicts:      %{modulename}-kmod
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Obsoletes:      %{name} < %{?epoch:%{epoch}:}3.0^20250419git.c682b0c
 %endif
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %{expand:%(kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 

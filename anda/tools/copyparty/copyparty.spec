@@ -1,7 +1,7 @@
 %global pypi_name copyparty
 
 Name:           %{pypi_name}
-Version:        1.20.0
+Version:        1.20.10
 Release:        1%?dist
 Summary:        Portable, featureful, and fast file server 
 URL:            https://github.com/9001/copyparty
@@ -13,7 +13,7 @@ BuildRequires:  python3-devel python3-pip pyproject-rpm-macros
 BuildRequires:  python3dist(wheel) python3dist(build) python3dist(jinja2)
 BuildRequires:  python3dist(setuptools) python3dist(installer)
 Requires:       python3-%{name} = %{evr}
-Suggests:       ffmpeg python3dist(fuse)
+Suggests:       ffmpeg python3dist(fuse) golang-github-cloudflare-cfssl
 BuildArch:		noarch
 Packager:       Riley Loo <dev@zackerthescar.com>
 

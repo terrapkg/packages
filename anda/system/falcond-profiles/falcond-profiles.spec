@@ -1,10 +1,10 @@
-%global commit 0f87c748cf34a9bcbc4351ad051bcef8cce79158
+%global commit a3e0e63303c0a310a504c5f3e2a9d71496d7aaab
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260101
+%global commit_date 20260206
 
 Name:           falcond-profiles
 Version:        0^%{commit_date}git.%{shortcommit}
-Release:        4%?dist
+Release:        1%?dist
 Summary:        Profiles for falcond
 License:        MIT
 URL:            https://github.com/PikaOS-Linux/falcond-profiles
@@ -35,10 +35,10 @@ install -dm2775 %{buildroot}%{_datadir}/falcond/profiles/user
 %doc README.md
 %license LICENSE
 %dir %{_datadir}/falcond
-%config %{_datadir}/falcond/system.conf
-%config %{_datadir}/falcond/profiles/*.conf
-%config %{_datadir}/falcond/profiles/handheld/*.conf
-%config %{_datadir}/falcond/profiles/htpc/*.conf
+%{_datadir}/falcond/system.conf
+%{_datadir}/falcond/profiles/*.conf
+%{_datadir}/falcond/profiles/handheld/*.conf
+%{_datadir}/falcond/profiles/htpc/*.conf
 %attr(2775, root, falcond) %dir %{_datadir}/falcond/profiles/user
 
 %changelog

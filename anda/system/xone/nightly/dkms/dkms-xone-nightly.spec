@@ -1,7 +1,7 @@
-%global commit 17d9b6a8939085d6e13b8c3ad684d28ca3166a02
+%global commit 725a46c45f06475bf7631d9ca1852f9778df128f
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20251222
-%global ver 0.5.1
+%global commitdate 20260216
+%global ver 0.5.5
 %global debug_package %{nil}
 %global modulename xone
 
@@ -27,7 +27,7 @@ Provides:       %{modulename}-nightly-kmod = %{?epoch:%{epoch}:}%{version}
 Obsoletes:      dkms-%{modulename} < %{?epoch:%{epoch}:}3.0^20250419git.c682b0c
 %endif
 BuildArch:      noarch
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 Linux kernel driver for Xbox One and Xbox Series X|S accessories.

@@ -1,7 +1,7 @@
 %global __brp_mangle_shebangs %{nil}
 
 Name:           inputplumber
-Version:        0.70.1
+Version:        0.75.0
 Release:        1%?dist
 Summary:        Open source input router and remapper daemon for Linux
 License:        GPL-3.0-or-later
@@ -51,3 +51,10 @@ keyboards) and translate their input to a variety of virtual device formats.
 %_udevrulesdir/90-inputplumber-autostart.rules
 %_datadir/dbus-1/system.d/org.shadowblip.InputPlumber.conf
 %_datadir/inputplumber/
+%{_udevrulesdir}/99-inputplumber-device-setup.rules
+%{_datadir}/polkit-1/actions/org.shadowblip.InputPlumber.policy
+%{_datadir}/polkit-1/rules.d/org.shadowblip.InputPlumber.rules
+
+%changelog
+* Sun Feb 01 2026 Owen Zimmerman <owen@fyralabs.com>
+- Add more files from 0.73.0 release

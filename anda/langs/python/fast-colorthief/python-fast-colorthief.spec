@@ -6,7 +6,7 @@
 
 Name:           python-%{pypi_name}
 Version:        0.0.5
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Faster version of Colorthief
 License:        MIT
 URL:            https://github.com/bedapisl/fast-colorthief
@@ -35,7 +35,7 @@ BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(sphinx)
 BuildRequires:  python3dist(sphinxcontrib-moderncmakedomain)
 BuildRequires:  python3dist(sphinx-copybutton)
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 A Python module for selecting most dominant colors in the image.

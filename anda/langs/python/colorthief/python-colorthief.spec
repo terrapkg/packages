@@ -8,7 +8,7 @@ ExcludeArch: %{ix86}
 
 Name:           python-%{pypi_name}
 Version:        0.2.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Grabs the dominant color or a representative color palette from an image
 
 # https://gitlab.com/fedora/legal/fedora-license-data/-/issues/382
@@ -23,7 +23,7 @@ BuildRequires:  python3dist(pillow)
 BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(setuptools)
 BuildArch:      noarch
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %global _description %{expand:
 A Python module for grabbing the color palette from an image.}

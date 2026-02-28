@@ -1,6 +1,6 @@
 Name:           gstreamer1-plugin-vaapi
-Version:        1.26.9
-Release:        3%?dist
+Version:        1.26.10
+Release:        1%?dist
 Epoch:          1
 Summary:        GStreamer VA-API integration
 License:        LGPLv2+

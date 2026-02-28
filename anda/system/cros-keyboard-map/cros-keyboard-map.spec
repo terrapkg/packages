@@ -11,7 +11,7 @@
 
 Name:           cros-keyboard-map
 Version:        %commit_date.%tree_shortcommit.%um_shortcommit
-Release:        1%?dist
+Release:        2%?dist
 
 License:        BSD-3-Clause and GPLv3
 Summary:        Utility to generate keyd configurations for use on Chromebooks
@@ -22,6 +22,8 @@ Source1:        https://github.com/Ultramarine-Linux/cros-keyboard-map/archive/%
 %{?systemd_requires}
 BuildRequires:  systemd-rpm-macros
 Requires:       keyd python3 python3-libfdt
+
+Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
 Bash script and systemd service to apply WeirdTreeThing's Chromebook keyboard maps.
@@ -59,9 +61,11 @@ chmod +x %buildroot%{_bindir}/um-generate-cros-keymap
 %{_bindir}/um-generate-cros-keymap
 
 %changelog
-* Sat Oct 12 2024 Owen-sz <owen@fyralabs.com>
+* Sat Oct 12 2024 Owen Zimmerman <owen@fyralabs.com>
 - Fix the systemd preset application
+
 * Sat Aug 24 2024 junefish <june@fyralabs.com>
 - Split off into seperate git repo.
-* Sat May 4 2024 Owen-sz <owen@fyralabs.com>
+
+* Sat May 4 2024 Owen Zimmerman <owen@fyralabs.com>
 - Initial package.

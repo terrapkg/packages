@@ -11,7 +11,7 @@
 
 Name:           nvidia-driver
 Version:        590.48.01
-Release:        3%?dist
+Release:        4%?dist
 Summary:        NVIDIA's proprietary display driver for NVIDIA graphic cards
 Epoch:          3
 License:        NVIDIA License
@@ -77,6 +77,7 @@ Requires:       vulkan-loader
 #  dlopened:
 Requires:       libnvidia-gpucomp%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       libnvidia-ml%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       %{name}-cuda-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 Conflicts:      nvidia-x11-drv-libs
 Conflicts:      nvidia-x11-drv-470xx-libs
@@ -88,6 +89,7 @@ This package provides the shared libraries for %{name}.
 
 %package cuda-libs
 Summary:        Libraries for %{name}-cuda
+Requires:       %{name}-cuda-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:       %{name}-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 Obsoletes:      %{name}-devel < %{?epoch:%{epoch}:}%{version}-%{release}
 

@@ -5,7 +5,7 @@
 %global crate mise
 
 Name:           rust-mise
-Version:        2025.12.13
+Version:        2026.2.22
 Release:        1%?dist
 Summary:        Front-end to your dev env
 
@@ -91,9 +91,10 @@ Zsh command line completion support for %{crate}.
 %build
 %{cargo_license_summary_online}
 %{cargo_license_online} > LICENSE.dependencies
+%{cargo_build} --locked
 
 %install
-%cargo_install
+%crate_install_bin
 install -Dm644 %SOURCE1 %buildroot%_mandir/man1/mise.1
 install -Dm644 %SOURCE2 %buildroot%bash_completions_dir/mise.bash
 install -Dm644 %SOURCE3 %buildroot%fish_completions_dir/mise.fish

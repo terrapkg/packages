@@ -2,9 +2,9 @@
 
 Name:          rustypaste
 Version:       0.16.1
-Release:       1%?dist
+Release:       2%?dist
 Summary:       A minimal file upload/pastebin service
-License:       MIT
+License:       MIT AND Apache-2.0 AND (Apache-2.0 OR MIT) AND BSD-3-Clause AND (0BSD OR MIT OR Apache-2.0) AND Apache-2.0 AND ISC AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (BSD-3-Clause OR MIT) AND (CC0-1.0 OR Artistic-2.0) AND CC0-1.0 AND ISC AND (MIT OR Zlib OR Apache-2.0) AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT) AND Zlib
 URL:           https://github.com/orhun/rustypaste
 Source0:       %url/archive/refs/tags/v%{version}.tar.gz
 
@@ -34,7 +34,6 @@ install -Dm644 extra/systemd/rustypaste.env %{buildroot}%{_sysconfdir}/rustypast
 install -Dm644 extra/systemd/rustypaste.service %{buildroot}/usr/lib/systemd/system/rustypaste.service
 install -Dm644 extra/systemd257+/rustypaste.sysusers %{buildroot}/usr/lib/sysusers.d/rustypaste.conf
 install -Dm644 extra/systemd/rustypaste.tmpfiles %{buildroot}/usr/lib/tmpfiles.d/rustypaste.conf
-%cargo_license_summary_online
 %{cargo_license_online -a} > LICENSE.dependencies
 
 %post
@@ -58,5 +57,8 @@ install -Dm644 extra/systemd/rustypaste.tmpfiles %{buildroot}/usr/lib/tmpfiles.d
 %{_tmpfilesdir}/rustypaste.conf
 
 %changelog
+* Tue Jan 13 2026 Owen Zimmerman <owen@fyralabs.com>
+- Add dependency licenses
+
 * Thu Nov 13 2025 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit

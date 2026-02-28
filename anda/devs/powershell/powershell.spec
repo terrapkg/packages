@@ -19,7 +19,7 @@
 
 Name:          powershell
 Version:       7.5.4
-Release:       1%{?dist}
+Release:       2%{?dist}
 Summary:       A cross-platform automation and configuration tool/framework
 SourceLicense: MIT
 License:       Apache-2.0 AND BSD-2-Clause AND MIT
@@ -44,7 +44,7 @@ Requires:      dotnet-hostfxr-%{dotnet_version}
 Requires:      dotnet-runtime-%{dotnet_version}
 # .NET versioning
 Provides:      mono(pwsh) = %{version}.0
-Packager:      Gilver E. <rockgrub@disroot.org>
+Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description
 %{git_name} is a cross-platform automation and configuration tool/framework.

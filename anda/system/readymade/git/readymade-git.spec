@@ -1,5 +1,5 @@
-%global commit 3ad158ad7ab2f36e104d93378c2938d572cec92d
-%global commit_date 20251216
+%global commit 92cc65b61fd5325d47be8793466b66c71ddc75ea
+%global commit_date 20260220
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global crate readymade
 Name:           readymade-git
@@ -12,6 +12,7 @@ Source0:        %url/archive/%commit.tar.gz
 Source1:        https://github.com/FyraLabs/rdms_proc_macros/archive/HEAD.tar.gz
 BuildRequires:	anda-srpm-macros rust-packaging mold
 BuildRequires:  pkgconfig(libhelium-1)
+BuildRequires:  pkgconfig(openssl)
 BuildRequires:  clang-devel
 BuildRequires:  gcc
 BuildRequires:  cmake
@@ -23,6 +24,8 @@ Conflicts:      readymade
 Obsoletes:      readymade-nightly < 20250502.4dc78ec-3
 
 Requires:  efibootmgr
+
+Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
 Readymade is a simple Linux Distribution installer.
@@ -44,7 +47,7 @@ This package contains the configuration files for Readymade to install Ultramari
 %prep
 %autosetup -n readymade-%commit
 tar xf %{S:1}
-rmdir taidan_proc_macros && mv rdms_proc_macros* taidan_proc_macros
+rmdir crates/taidan_proc_macros && mv rdms_proc_macros* crates/taidan_proc_macros
 %cargo_prep_online
 
 %build

@@ -1,6 +1,6 @@
 Name:           SwayOSD
-Version:        0.2.1
-Release:        2%?dist
+Version:        0.3.0
+Release:        1%?dist
 Summary:        A GTK based on screen display for keyboard shortcuts like caps-lock and volume
 License:        GPL-3.0-only
 URL:            https://github.com/ErikReider/SwayOSD

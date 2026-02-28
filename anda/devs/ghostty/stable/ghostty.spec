@@ -4,7 +4,7 @@
 
 Name:           ghostty
 Version:        1.2.3
-Release:        3%?dist
+Release:        4%{?dist}
 Summary:        A fast, native terminal emulator written in Zig.
 License:        MIT AND MPL-2.0 AND OFL-1.1 AND (WTFPL OR CC0-1.0) AND Apache-2.0
 URL:            https://ghostty.org/
@@ -41,7 +41,7 @@ Requires:       gtk4
 Requires:       gtk4-layer-shell
 Requires:       libadwaita
 Conflicts:      ghostty-nightly
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 👻 Ghostty is a fast, feature-rich, and cross-platform terminal emulator that uses platform-native UI and GPU acceleration.
@@ -254,7 +254,7 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{name}
  * This is necessary to address licensing issues in the themes repo Ghostty uses
  * See: https://github.com/mbadolato/iTerm2-Color-Schemes/issues/638
 * Fri Jan 31 2025 Gilver E. <rockgrub@disroot.org>
-- Update to 1.1.0-1%{?dist}
+- Update to 1.1.0-1
  * Low GHSA-98wc-794w-gjx3: Ghostty leaked file descriptors allowing the shell and any of its child processes to impact other Ghostty terminal instances
  * Ghostty terminfo source files are now a subpackage
  * Shell integration and completion and terminfo subpackages are now properly noarch
