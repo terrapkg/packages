@@ -14,7 +14,7 @@ Name:           spotify-launcher
 Version:        0.6.5
 Release:        1%?dist
 Summary:        Client for spotify's apt repository in Rust
-License:        Apache-2.0 AND MIT
+License:        Apache-2.0 AND MIT AND ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND BSD-3-Clause AND CDLA-Permissive-2.0 AND ISC AND (ISC AND (Apache-2.0 OR ISC)) AND (ISC AND (Apache-2.0 OR ISC) AND OpenSSL) AND (MIT OR Apache-2.0) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT) AND Zlib
 Packager:       veuxit <erroor234@gmail.com>
 ExclusiveArch:  x86_64
 URL:            https://github.com/kpcyrd/spotify-launcher
@@ -50,7 +50,7 @@ install -Dm644 contrib/spotify-launcher.conf %{buildroot}%{_sysconfdir}/spotify-
 for size in 22 24 32 48 64 128 256 512; do
   install -Dm644 contrib/icons/spotify-linux-${size}.png %{buildroot}%{_hicolordir}/${size}x${size}/apps/spotify-launcher.png
 done
-%{cargo_license_summary_online} > LICENSE.dependencies
+%{cargo_license_online} > LICENSE.dependencies
 
 %check
 %desktop_file_validate %{buildroot}%{_appsdir}/spotify-launcher.desktop
