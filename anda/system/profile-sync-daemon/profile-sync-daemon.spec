@@ -48,7 +48,7 @@ One of the major design goals of psd is a completely transparent user experience
 %{_mandir}/man1/profile-sync-daemon.1.gz
 %{_mandir}/man1/psd.1.gz
 %{_bindir}/psd-overlay-helper
-%{_datadir}/man/man1/psd-overlay-helper.1.gz
+%{_mandir}/man1/psd-overlay-helper.1.gz
 
 
 %changelog
