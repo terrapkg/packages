@@ -134,5 +134,8 @@ appstream-util validate-relax --nonet %buildroot%_metainfodir/%rdnn.metainfo.xml
 %_unitdir/coolercontrold.service
 
 %changelog
+* Sat Feb 28 2026 Guy Boldon <gb@guyboldon.com> - 3.1.1-2
+- Updated dependencies and build to match current version
+
 * Thu Aug 15 2024 madonuko <mado@fyralabs.com> - 1.4.0-1
 - Initial package
