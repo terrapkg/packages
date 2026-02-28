@@ -14,7 +14,6 @@ Summary:    Ayatana Application Indicators Shared Library
 Version:    2.0.1
 Release:    1%?dist
 License:    GPL-3.0
-ExclusiveArch:  x86_64
 URL:        https://github.com/AyatanaIndicators/libayatana-appindicator-glib
 Source0:    %{url}/archive/refs/tags/%{version}.tar.gz
 
