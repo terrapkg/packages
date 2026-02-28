@@ -4,7 +4,7 @@
 %global org "org.praat"
 
 Name:             praat
-Version:          6.4.60
+Version:          6.4.61
 Release:          1%?dist
 URL:              https://www.praat.org
 Source0:          https://github.com/praat/praat.github.io/archive/refs/tags/v%{version}.tar.gz
