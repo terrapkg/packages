@@ -3,12 +3,12 @@
 
 Name:           neohtop
 Version:        1.2.0
-Release:        3%?dist
+Release:        4%?dist
 Summary:        System monitoring on steroids
 SourceLicense:  MIT
 License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND (BSD-3-Clause AND MIT) AND (BSD-3-Clause OR MIT OR Apache-2.0) AND (BSD-3-Clause OR MIT) AND BSD-3-Clause AND (CC0-1.0 OR MIT-0 OR Apache-2.0) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MIT AND MPL-2.0 AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT)
-URL:            https://github.com/Abdenasser/neohtop
-Source0:        %url/archive/refs/tags/v%version.tar.gz
+URL:            https://abdenasser.github.io/neohtop/
+Source0:        https://github.com/Abdenasser/neohtop/archive/refs/tags/v%version.tar.gz
 Source1:        NeoHtop.desktop
 Source2:        com.github.neohtop.metainfo.xml
 Packager:       Owen Zimmerman <owen@fyralabs.com>

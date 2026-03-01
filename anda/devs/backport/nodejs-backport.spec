@@ -3,8 +3,8 @@
 %bcond test 0
 
 Name:          nodejs-%{npm_name}
-Version:       10.2.0
-Release:       3%{?dist}
+Version:       10.4.0
+Release:       1%?dist
 Summary:       Backport GitHub commits
 SourceLicense: Apache-2.0
 License:       0BSD AND Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND ISC AND MIT AND (MIT OR CC0-1.0) AND (WTFPL OR ISC)

@@ -4,7 +4,7 @@
 
 Name:           kde-material-you-colors
 Version:        2.0.0
-Release:        3%{?dist}
+Release:        4%?dist
 Summary:        Automatic Material You Colors Generator from your wallpaper for the Plasma Desktop
 License:        GPL-3.0-only
 URL:            https://github.com/luisbocanegra/%{name}
@@ -23,6 +23,8 @@ BuildRequires:  python-rpm-macros
 BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(setuptools) >= 61.0
 BuildRequires:  python3dist(wheel) >= 0.37.1
+BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6Service)
 BuildRequires:  cmake(KF6KirigamiPlatform)
 BuildRequires:  cmake(Plasma)
 BuildRequires:  cmake(Plasma5Support)
@@ -67,15 +69,12 @@ DESTDIR="%{buildroot}" %cmake_install
 sed -Ei "s:^(#!.*)env (python.*)$:\1python3:" %{buildroot}%{python3_sitelib}/kde_material_you_colors/main.py
 %fdupes %{buildroot}%{python3_sitelib}/%{name}/
 
-%terra_appstream
-
 %files
 %doc CHANGELOG.md
 %doc README.md
 %license LICENSE
 %{_bindir}/%{name}-screenshot-helper
 %{_datadir}/applications/%{name}-screenshot-helper.desktop
-%{_metainfodir}/luisbocanegra.kdematerialyou.colors.metainfo.xml
 %{_datadir}/plasma/plasmoids/luisbocanegra.kdematerialyou.colors/
 
 %files -n python3-%{name}

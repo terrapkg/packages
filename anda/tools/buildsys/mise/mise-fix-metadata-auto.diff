@@ -1,6 +1,6 @@
---- mise-2025.9.15/Cargo.toml	1970-01-01T00:00:01+00:00
-+++ mise-2025.9.15/Cargo.toml	2025-09-22T01:33:34.763933+00:00
-@@ -507,27 +507,6 @@
+--- mise-2026.2.10/Cargo.toml	2006-07-24T01:21:28+00:00
++++ mise-2026.2.10/Cargo.toml	2026-02-12T15:02:18.584012+00:00
+@@ -575,30 +575,6 @@
  optional = true
  default-features = false
  
@@ -25,10 +25,13 @@
 -    "minwindef",
 -]
 -
+-[target."cfg(windows)".dependencies.zipsign-api]
+-version = "0.1"
+-
  [lints.clippy]
  borrowed_box = "allow"
  
-@@ -544,3 +523,4 @@
+@@ -615,3 +591,4 @@
  [profile.serious]
  lto = true
  inherits = "release"

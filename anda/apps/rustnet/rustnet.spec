@@ -1,6 +1,6 @@
 Name:           rustnet
-Version:        0.18.0
-Release:        1%{?dist}
+Version:        1.0.0
+Release:        1%?dist
 Summary:        A cross-platform network monitoring terminal UI tool built with Rust
 License:        Apache-2.0 AND (MIT OR Apache-2.0) AND Unicode-3.0 AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 AND ISC) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND BSD-2-Clause AND (BSD-3-Clause OR Apache-2.0) AND BSL-1.0 AND ISC AND (LGPL-2.1-only OR BSD-2-Clause) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Zlib OR Apache-2.0) AND MIT AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT) AND Zlib
 URL:            https://github.com/domcyrus/rustnet

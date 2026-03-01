@@ -1,5 +1,5 @@
-%global commit 95678dd702dd91a8f0f37c9d3e217ea6edb89300
-%global commit_date 20260116
+%global commit 93bd38c27325f8c9c0fbe4114ee061cfa6970cb7
+%global commit_date 20260228
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %global extension   multi-monitors-bar
@@ -32,10 +32,10 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %install
 find . -name "*.gschema.xml"
-mkdir -p %{buildroot}%{_datadir}/gnome-shell/extensions/%{uuid}
-install -Dm644 *.json %{buildroot}%{_datadir}/gnome-shell/extensions/%{uuid}/
-install -Dm644 *.js %{buildroot}%{_datadir}/gnome-shell/extensions/%{uuid}/
-install -Dm644 *.css %{buildroot}%{_datadir}/gnome-shell/extensions/%{uuid}/
+mkdir -p %{buildroot}%{_gnomeextensionsdir}
+install -Dm644 *.json %{buildroot}%{_gnomeextensionsdir}/
+install -Dm644 *.js %{buildroot}%{_gnomeextensionsdir}/
+install -Dm644 *.css %{buildroot}%{_gnomeextensionsdir}/
 install -Dm644 schemas/*.gschema.xml -t %{buildroot}%{_datadir}/glib-2.0/schemas/
 
 %post
@@ -47,7 +47,7 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas/ &> /dev/null || :
 %files
 %license LICENSE
 %doc README.md
-%{_datadir}/gnome-shell/extensions/%{uuid}
+%{_gnomeextensionsdir}
 %{_datadir}/glib-2.0/schemas/*.gschema.xml
 
 %changelog

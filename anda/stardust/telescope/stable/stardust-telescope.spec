@@ -1,11 +1,12 @@
 Name:           stardust-xr-telescope
 Version:        0.50.3
-Release:        1%?dist
+Release:        2%?dist
 Epoch:          1
 Summary:        See the stars! Easy stardust setups to run on your computer
 License:        MIT
 URL:            https://github.com/StardustXR/telescope
 Source0:        %url/archive/refs/tags/%version.tar.gz
+Patch0:         libexec.patch
 
 Requires:       bash
 Requires:       xwayland-satellite
@@ -24,17 +25,19 @@ Requires:       stardust-xr-solar-sailer
 BuildArch:      noarch
 Provides:       telescope stardust-telescope
 
+Packager:       Owen Zimmerman <owen@fyralabs.com>
+
 %description
 See the stars! Easy stardust setups to run on your computer.
 
 %prep
-%autosetup -n telescope-%version
+%autosetup -n telescope-%version -p1
 
 %build
 
 %install
 install -Dm755 scripts/telescope                 %buildroot%_bindir/telescope
-install -Dm755 scripts/_telescope_startup        %buildroot%_bindir/_telescope_startup
+install -Dm755 scripts/_telescope_startup        %buildroot%_libexecdir/telescope_startup
 install -Dm644 org.stardustxr.Telescope.desktop  %buildroot%_appsdir/org.stardustxr.Telescope.desktop
 install -Dm644 org.stardustxr.Telescope.png      %buildroot%_hicolordir/512x512/apps/org.stardustxr.Telescope.png
 
@@ -42,7 +45,7 @@ install -Dm644 org.stardustxr.Telescope.png      %buildroot%_hicolordir/512x512/
 %doc README.md
 %license LICENSE
 %_bindir/telescope
-%_bindir/_telescope_startup
+%_libexecdir/telescope_startup
 %_appsdir/org.stardustxr.Telescope.desktop
 %_hicolordir/512x512/apps/org.stardustxr.Telescope.png
 

@@ -1,5 +1,5 @@
-%global commit 2e3859fe3afd65c89eeacb63bdaf7c432f2df30d
-%global commit_date 20251202
+%global commit 9d5396972bb5557c427a79309ce5c00f91bc9211
+%global commit_date 20260130
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           raindrop
@@ -10,8 +10,6 @@ License:        BSD-3-Clause
 URL:            https://github.com/raspberrypi-ui/raindrop
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 Source0:        %url/archive/%commit.tar.gz
-Source1:        org.raspberrypi.raindrop.configure-display.policy
-Patch0:         desktop-file-call-pkexec.patch
 
 BuildRequires: meson
 BuildRequires: ninja-build
@@ -30,7 +28,7 @@ Screen configuration tool for Raspberry Pi Desktop,
 GTK screen configuration tool for labwc and openbox environments.
 
 %prep
-%autosetup -n raindrop-%commit -p0
+%autosetup -n raindrop-%commit
 
 %build
 %meson
@@ -38,15 +36,15 @@ GTK screen configuration tool for labwc and openbox environments.
 
 %install
 %meson_install
-install -Dm644 %{SOURCE1} %{buildroot}/%{_datadir}/polkit-1/actions/org.raspberrypi.raindrop.configure-display.policy
-%find_lang %{name}
+%find_lang rpcc_%{name}
 
-%files -f %{name}.lang
+%files -f rpcc_%{name}.lang
 %license debian/copyright
-%{_bindir}/raindrop
-%{_datadir}/polkit-1/actions/org.raspberrypi.raindrop.configure-display.policy
-%{_datadir}/applications/raindrop.desktop
-%{_datadir}/raindrop/ui/raindrop.ui
+%doc README
+%{_libdir}/rpcc/librpcc_raindrop.so
+%{_datadir}/rpcc/ui/minus.png
+%{_datadir}/rpcc/ui/plus.png
+%{_datadir}/rpcc/ui/raindrop.ui
 
 %changelog
 * Thu Aug 07 2025 Owen Zimmerman <owen@fyralabs.com>

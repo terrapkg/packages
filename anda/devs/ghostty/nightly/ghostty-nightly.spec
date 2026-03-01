@@ -1,6 +1,6 @@
-%global commit 685daee01bbd18dc50c066ccfa85828509068a99
+%global commit 71cb9debb9e47077a9b8d67fde35908db7ae7d85
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global fulldate 2026-01-27
+%global fulldate 2026-02-27
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
 %global ver 1.3.0
@@ -282,6 +282,7 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %{_datadir}/%{base_name}/shell-integration/bash/%{base_name}.bash
 %{_datadir}/%{base_name}/shell-integration/elvish/lib/%{base_name}-integration.elv
 %{_datadir}/%{base_name}/shell-integration/fish/vendor_conf.d/%{base_name}-shell-integration.fish
+%{_datadir}/%{base_name}/shell-integration/nushell/vendor/autoload/%{base_name}.nu
 %{_datadir}/%{base_name}/shell-integration/zsh/.zshenv
 %{_datadir}/%{base_name}/shell-integration/zsh/%{base_name}-integration
 

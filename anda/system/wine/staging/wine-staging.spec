@@ -18,7 +18,7 @@
 
 
 Name:       wine-staging
-Version:    11.1
+Version:    11.3
 Release:    1%?dist
 Epoch:      1
 Summary:    WINE Is Not An Emulator - runs MS Windows programs
@@ -369,6 +369,7 @@ done
 %{_mandir}/man?/winepath.?*
 %{_mandir}/man?/wineserver.?*
 %dir %{_datadir}/wine
+%{_datadir}/wine/winmd/
 %{_datadir}/wine/wine.inf
 %{_datadir}/wine/nls/*.nls
 %{_datadir}/applications/*.desktop
