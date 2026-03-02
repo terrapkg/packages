@@ -14,8 +14,7 @@ Source3:        terra-mesa.repo
 Source4:        terra-multimedia.repo
 BuildArch:      noarch
 
-%dnl We probably shouldn't do this in Rawhide!
-%dnl Requires:       system-release(%{version})
+Requires:       system-release(%{version})
 
 Requires:       terra-gpg-keys
 
