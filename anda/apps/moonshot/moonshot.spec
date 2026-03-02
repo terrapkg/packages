@@ -10,7 +10,7 @@ URL:            https://github.com/FyraLabs/moonshot
 Source0:        %url/archive/refs/tags/v%version.tar.gz
 Source1:        com.github.moonshot.metainfo.xml
 
-BuildRequires:  wails-v3
+BuildRequires:  wails3
 BuildRequires:  webkit2gtk4.1
 BuildRequires:  golang
 
