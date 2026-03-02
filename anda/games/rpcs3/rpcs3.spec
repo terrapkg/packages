@@ -1,7 +1,7 @@
 # RPCS3 builds often break with GCC
 %global toolchain clang
 # Define which LLVM/Clang version RPCS3 needs
-%if 0%{?fedora} >= 45
+%if 0%{?fedora} >= 46
 %global llvm_major 21
 %global __cc clang-%{llvm_major}
 %global __cxx clang++-%{llvm_major}
@@ -14,7 +14,7 @@
 
 Name:           rpcs3
 Version:        %(echo %{ver} | sed 's/-/^/g')
-Release:        1%?dist
+Release:        2%?dist
 Summary:        PlayStation 3 emulator and debugger
 License:        GPL-2.0-only
 URL:            https://github.com/RPCS3/rpcs3
