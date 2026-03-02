@@ -2,7 +2,7 @@
 
 Name:           arduino-app-lab-bin
 Version:        0.5.0
-Release:        1%{?dist}
+Release:        1%?dist
 Summary:        A powerful visual environment for managing the Arduino UNO Q
 
 Provides:       arduino-app-lab
