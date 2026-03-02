@@ -2,7 +2,7 @@
 
 Name:           terra-release
 Version:        %{?fedora:%{fedora}}%{?rhel:%{rhel}}
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Release package for Terra
 
 License:        MIT
@@ -15,6 +15,8 @@ BuildArch:      noarch
 Requires:       (epel-release-latest-%{version} or epel-release)
 
 Requires:       terra-gpg-keys
+
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 Release package for Terra, containing the Terra repository configuration.
