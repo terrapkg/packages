@@ -1,6 +1,6 @@
 Name:           terra-appstream-helper
 Version:        0.1.10
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Scripts and RPM macros to help with AppStream metadata generation for Terra
 License:        GPL-3.0-or-Later
 URL:            https://github.com/terrapkg/appstream-helper
@@ -8,6 +8,8 @@ Source:         %{url}/archive/refs/tags/v%version.tar.gz
 BuildArch:      noarch
 Requires:       python3-%{name} = %{evr}
 BuildRequires:  anda-srpm-macros python3-devel python3-installer pyproject-rpm-macros python3dist(pip) python3dist(setuptools) python3dist(wheel)
+
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 %{summary}.
