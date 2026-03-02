@@ -35,8 +35,7 @@ Provides:       wails3
 %build
 pushd v3/cmd/wails3
 GO111MODULE=on go build
-%dnl %define gomodulesmode GO111MODULE=on
-%dnl %gobuild -o %{gobuilddir}/v3/cmd/wails3/ %{goipath}/cmd/wails
+popd
 
 %install
 install -Dm 0755 v3/cmd/wails3/wails3 %{buildroot}%{_bindir}/wails3
