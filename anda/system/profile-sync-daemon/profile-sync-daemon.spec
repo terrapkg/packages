@@ -11,6 +11,7 @@ Release:        1%?dist
 Summary:        Symlinks and syncs browser profile dirs to RAM thus reducing HDD/SDD calls and speeding-up browsers
 URL:            https://github.com/graysky2/profile-sync-daemon
 License:        MIT
+BuildArch:      noarch
 Packager:       veuxit <erroor234@gmail.com>
 
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
