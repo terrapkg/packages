@@ -2,7 +2,7 @@
 
 Name:           terra-release
 Version:        %{?fedora:%{fedora}}%{?rhel:%{rhel}}
-Release:        2%?dist
+Release:        8
 Summary:        Release package for Terra
 
 License:        MIT
