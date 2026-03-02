@@ -28,7 +28,7 @@ Why?
 %autosetup
 
 %build
-wails3 build
+EXTRA_TAGS=gtk4 wails3 build
 
 %install
 install -Dm755 bin/moonshot                 %{buildroot}%{_bindir}/moonshot
