@@ -342,7 +342,8 @@ Summary:        Mesa Vulkan drivers
 Requires:       vulkan%{_isa}
 Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Obsoletes:      mesa-vulkan-devel < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes:      VK_hdr_layer < 1
+# Bad change from upstream Fedora
+#Obsoletes:      VK_hdr_layer < 1
 
 %description vulkan-drivers
 The drivers with support for the Vulkan API.
