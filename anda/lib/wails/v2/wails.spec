@@ -20,7 +20,6 @@ Requires:       glibc
 Requires:       /usr/bin/npm
 Requires:       webkit2gtk4.1
 Requires:       gtk3
-Provides:       wails3
 
 %description
 %{summary}.
