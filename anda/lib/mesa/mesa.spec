@@ -84,7 +84,7 @@
 
 Name:           %{srcname}
 Summary:        Mesa graphics libraries
-%global ver 26.0.0
+%global ver 26.0.1
 Epoch:          1
 Version:        %{lua:ver = string.gsub(rpm.expand("%{ver}"), "-", "~"); print(ver)}
 Release:        1
@@ -103,10 +103,10 @@ Source1:        Mesa-MLAA-License-Clarification-Email.txt
 # https://gitlab.freedesktop.org/mesa/mesa/-/tree/main/subprojects
 # but we generally want the latest compatible versions
 %global rust_paste_ver 1.0.15
-%global rust_proc_macro2_ver 1.0.101
-%global rust_quote_ver 1.0.40
-%global rust_syn_ver 2.0.106
-%global rust_unicode_ident_ver 1.0.18
+%global rust_proc_macro2_ver 1.0.106
+%global rust_quote_ver 1.0.44
+%global rust_syn_ver 2.0.115
+%global rust_unicode_ident_ver 1.0.23
 %global rustc_hash_ver 2.1.1
 Source10:       https://crates.io/api/v1/crates/paste/%{rust_paste_ver}/download#/paste-%{rust_paste_ver}.tar.gz
 Source11:       https://crates.io/api/v1/crates/proc-macro2/%{rust_proc_macro2_ver}/download#/proc-macro2-%{rust_proc_macro2_ver}.tar.gz
@@ -268,24 +268,15 @@ Provides:       libEGL-devel%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 %package dri-drivers
 Summary:        Mesa-based DRI drivers
 Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-%if 0%{?with_va}
-Recommends:     %{name}-va-drivers%{?_isa}
-%endif
 Obsoletes:      %{name}-libglapi < %{?epoch:%{epoch}:}25.0.0~rc2-1
 Provides:       %{name}-libglapi >= %{?epoch:%{epoch}:}25.0.0~rc2-1
 
-%description dri-drivers
-%{summary}.
-
-%if 0%{?with_va}
-%package        va-drivers
-Summary:        Mesa-based VA-API video acceleration drivers
-Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Obsoletes:      %{name}-va-drivers < 26.0.0-5
+Provides:       %{name}-va-drivers >= 26.0.0-5
 Obsoletes:      %{name}-vaapi-drivers < %{?epoch:%{epoch}:}22.2.0-5
 
-%description va-drivers
+%description dri-drivers
 %{summary}.
-%endif
 
 %package libgbm
 Summary:        Mesa gbm runtime library
@@ -352,7 +343,8 @@ Summary:        Mesa Vulkan drivers
 Requires:       vulkan%{_isa}
 Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Obsoletes:      mesa-vulkan-devel < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes:      VK_hdr_layer < 1
+# Bad change from upstream Fedora
+#Obsoletes:      VK_hdr_layer < 1
 
 %description vulkan-drivers
 The drivers with support for the Vulkan API.
@@ -662,9 +654,7 @@ ln -s %{_libdir}/libGLX_mesa.so.0 %{buildroot}%{_libdir}/libGLX_system.so.0
 %if 0%{?with_vulkan_hw}
 %{_libdir}/dri/zink_dri.so
 %endif
-
 %if 0%{?with_va}
-%files va-drivers
 %{_libdir}/dri/nouveau_drv_video.so
 %if 0%{?with_r600}
 %{_libdir}/dri/r600_drv_video.so
