@@ -6,7 +6,7 @@ Version:        %{sanitized_ver}
 
 %gometa -f
 
-Name:           wails-v3
+Name:           wails3
 Release:        1%?dist
 Summary:        Create beautiful applications using Go
 
@@ -24,7 +24,7 @@ Requires:       glibc
 Requires:       /usr/bin/npm
 Requires:       webkit2gtk4.1
 Requires:       gtk3
-Provides:       wails3
+Provides:       wails-v3
 
 %description
 %{summary}.
