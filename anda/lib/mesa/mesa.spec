@@ -271,8 +271,8 @@ Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{rel
 Obsoletes:      %{name}-libglapi < %{?epoch:%{epoch}:}25.0.0~rc2-1
 Provides:       %{name}-libglapi >= %{?epoch:%{epoch}:}25.0.0~rc2-1
 
-Obsoletes:      %{name}-va-drivers < 26.0.0-5
-Provides:       %{name}-va-drivers >= 26.0.0-5
+Obsoletes:      %{name}-va-drivers < %{?epoch:%{epoch}:}26.0.0-5
+Provides:       %{name}-va-drivers >= %{?epoch:%{epoch}:}26.0.0-5
 Obsoletes:      %{name}-vaapi-drivers < %{?epoch:%{epoch}:}22.2.0-5
 
 %description dri-drivers
