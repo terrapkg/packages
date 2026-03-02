@@ -1,8 +1,8 @@
 diff --git a/software/pyproject.toml b/software/pyproject.toml
-index c1151748..c3302e60 100644
+index b2280cc8..6d5f8f68 100644
 --- a/software/pyproject.toml
 +++ b/software/pyproject.toml
-@@ -29,30 +29,30 @@ requires-python = ">=3.11, <4"
+@@ -29,32 +29,32 @@ requires-python = ">=3.13, <4"
  dependencies = [
    # We use `typing` features not available in the lowest Python version we support. The library
    # `typing_extensions` provides shims for such features. It uses SemVer.
@@ -32,6 +32,9 @@ index c1151748..c3302e60 100644
    # system.
 -  "cobs>=1.2.1",
 +  "cobs",
+   # `tqdm` is used to compute and render progress indicatrs. It uses SemVer.
+-  "tqdm>=4.67.3",
++  "tqdm",
    # `pyvcd` is used in the applet analyzer to dump waveform files. It is also a dependency of
    # Amaranth, and the version range here must be compatible with Amaranth's.
 -  "pyvcd>=0.4.1,<0.5",
