@@ -31,7 +31,7 @@ BuildRequires:  desktop-file-utils
 Requires:       xdg-utils
 Requires:       liberation-fonts
 
-Packager:       Nadia P <nyadiia@pm.me>
+Packager:       Nadia P <nyadiia@pm.me>, Jaiden Riordan <jade@fyralabs.com>
 
 %description
 Private, fast, and honest web browser based on Chromium.
