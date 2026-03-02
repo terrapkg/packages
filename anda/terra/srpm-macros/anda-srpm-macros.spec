@@ -13,6 +13,8 @@ Obsoletes:      fyra-srpm-macros < 0.1.1-1
 Provides:       fyra-srpm-macros = %{version}-%{release}
 BuildArch:      noarch
 
+Packager:       Terra Packaging Team <terra@fyralabs.com>
+
 %description
 %{summary}
 

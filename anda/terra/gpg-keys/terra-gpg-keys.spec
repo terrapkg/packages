@@ -2,7 +2,7 @@
 
 Name:           terra-gpg-keys
 Version:        %{?fedora:%{fedora}}%{?rhel:%{rhel}}
-Release:        1%?dist
+Release:        2%?dist
 Summary:        GPG keys for Terra
 Requires:       filesystem >= 3.18-6
 
@@ -52,6 +52,8 @@ Source39:       RPM-GPG-KEY-terra44-source
 Source40:       RPM-GPG-KEY-terrael10
 Source41:       RPM-GPG-KEY-terrael10-source
 BuildArch:      noarch
+
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 GPG keys for Terra, used for verifying RPM package signatures.
