@@ -20,7 +20,7 @@ A cross platform gui/cli app for installing Vencord.}
 %global godocs          README.md
 
 Name:           vencord-installer
-Release:        1%{?dist}
+Release:        2%{?dist}
 Provides:       golang-github-vencord-installer = %{version}-%{release}
 Summary:        A cross platform gui/cli app for installing Vencord
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
