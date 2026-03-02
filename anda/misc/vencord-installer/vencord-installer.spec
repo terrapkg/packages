@@ -28,6 +28,8 @@ License:        GPL-3.0-only
 URL:            %{gourl}
 Source:         %{gosource}
 Source1:        %appid.metainfo.xml
+Source2:        dev.vencord.Installer.desktop
+Source3:        dev.vencord.Installer.policy
 BuildRequires:  go-rpm-macros
 BuildRequires:  go-srpm-macros
 BuildRequires:  anda-srpm-macros
@@ -122,12 +124,17 @@ export CGO_LDFLAGS="${LDFLAGS}"
 install -m 0755 -vd                     %{buildroot}%{_bindir}
 install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %terra_appstream -o %{SOURCE1}
+%__desktop_file_install -f dev.vencord.Installer.desktop
+install -Dm644 %{SOURCE3} %{buildroot}%{_datadir}/polkit-1/actions/dev.vencord.Installer.policy
 
 %files
 %license LICENSE
 %doc README.md
 %{_bindir}/vencord-installer
 %{_datadir}/metainfo/%appid.metainfo.xml
+%{_datadir}/applications/dev.vencord.Installer.desktop
+%{_datadir}/polkit-1/actions/dev.vencord.Installer.policy
+
 
 %files cli
 %license LICENSE
