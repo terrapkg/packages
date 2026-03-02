@@ -1,12 +1,12 @@
-Name:		quickshell
-Version:	0.2.1
+Name:		noctalia-qs
+Version:	0.0.4
 Release:	1%?dist
 Summary:	Flexible QtQuick based desktop shell toolkit
 License:	LGPL-3.0-only AND GPL-3.0-only
-URL:		https://github.com/quickshell-mirror/quickshell
-Source0:	https://github.com/quickshell-mirror/quickshell/archive/v%{version}/%{name}-%{version}.tar.gz
+URL:		https://github.com/noctalia-dev/noctalia-qs
+Source0:	https://github.com/noctalia-dev/noctalia-qs/archive/refs/tags/v%{version}.tar.gz
 
-Packager:   Willow Reed (willow@willowidk.dev)
+Packager:       Willow C Reed (willow@willowidk.dev)
 
 BuildRequires: cmake
 BuildRequires: cmake(Qt6Core)
@@ -30,6 +30,10 @@ BuildRequires: pkgconfig(pam)
 BuildRequires: pkgconfig(libdrm)
 BuildRequires: pkgconfig(gbm)
 BuildRequires: pkgconfig(CLI11)
+BuildRequires: glib2-devel
+BuildRequires: polkit-devel
+
+Obsoletes:     quickshell
 
 %description
 Flexible QtQuick based desktop shell toolkit.
@@ -55,13 +59,13 @@ Flexible QtQuick based desktop shell toolkit.
 %doc BUILD.md
 %doc CONTRIBUTING.md
 %doc README.md
-%doc changelog/v%{version}.md
+%doc changelog/next.md
 %{_bindir}/qs
 %{_bindir}/quickshell
-%{_appsdir}/org.quickshell.desktop
-%{_scalableiconsdir}/org.quickshell.svg
+%{_appsdir}/dev.noctalia.noctalia-qs.desktop
+%{_scalableiconsdir}/dev.noctalia.noctalia-qs.svg
 %{_libdir}/qt6/qml/Quickshell
 
 %changelog
-* Fri Jan 02 2026 Willow Reed <willow@willowidk.dev>
-- Initial commit
+* Fri Feb 27 2026 Willow C Reed <willow@willowidk.dev>
+- Initial commit based on quickshell spec

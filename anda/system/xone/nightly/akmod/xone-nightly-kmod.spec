@@ -1,7 +1,7 @@
-%global commit 725a46c45f06475bf7631d9ca1852f9778df128f
+%global commit a16304ccdecc5bfc7aafdeb759c706da314d15fa
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260216
-%global ver 0.5.5
+%global commitdate 20260228
+%global ver 0.5.7
 %define buildforkernels akmod
 %global debug_package %{nil}
 %global modulename xone

@@ -1,14 +1,14 @@
-%global commit fc1b13afc8dbaf85fc8ea8dadac460cee1ebda06
+%global commit 202ade26afb845d80e0f754ea934ec5b76ad6516
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20251229
-%global ver 0.9.7
+%global commitdate 20260302
+%global ver 0.9.8
 %define buildforkernels akmod
 %global debug_package %{nil}
 %global modulename xpadneo
 
 Name:           %{modulename}-kmod
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        2%{?dist}
+Release:        1%?dist
 Summary:        Advanced Linux Driver for Xbox One Wireless Gamepad
 License:        GPL-3.0
 URL:            https://atar-axis.github.io/xpadneo

@@ -2,14 +2,14 @@
 
 Name:			signal-desktop
 %electronmeta -aD
-Version:		7.90.0
-Release:		1%?dist
+Version:		8.0.0
+Release:		3%?dist
 Summary:		A private messenger for Windows, macOS, and Linux
 URL:			https://signal.org
 Source0:		https://github.com/signalapp/Signal-Desktop/archive/refs/tags/v%{version}.tar.gz
 Source1:		signal.desktop
 Source2:        org.signal.Signal.metainfo.xml
-License:		AGPL-3.0 AND %{electron_license}
+License:		AGPL-3.0-only AND %{electron_license}
 
 BuildRequires:	pulseaudio-libs-devel
 BuildRequires:  libX11-devel
@@ -59,10 +59,10 @@ Signal Desktop links with Signal on Android or iOS and lets you message from you
 
 %build
 export SIGNAL_ENV=production
-%{__pnpm} install
+%{__pnpm} install --frozen-lockfile
 %{__pnpm} run clean-transpile
 pushd sticker-creator
-%{__pnpm} install
+%{__pnpm} install --frozen-lockfile
 %{__pnpm} run build
 popd
 %pnpm_build -r generate,prepare-beta-build

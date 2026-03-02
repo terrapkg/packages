@@ -1,7 +1,7 @@
 %global appid cc.arduino.AppLab
 
 Name:           arduino-app-lab-bin
-Version:        al.0.4.0
+Version:        al.0.5.0
 Release:        1%?dist
 Summary:        A powerful visual environment for managing the Arduino UNO Q
 

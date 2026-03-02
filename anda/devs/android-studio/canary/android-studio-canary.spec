@@ -16,7 +16,7 @@
 %global __requires_exclude ^libaaudio\\.so.*|^libandroid\\.so.*|^libmediandk\\.so.*|^liblog\\.so.*|^libc\\.so.*|^libm\\.so.*|^libdl\\.so.*|^libcrypt\\.so.*|^libstdc\\+\\+\\.so.*|^libncursesw\\.so.*|^libtinfo\\.so.*|^libnsl\\.so.*|^libpanelw\\.so.*$
 
 Name:           android-studio-canary
-Version:        2025.3.3.1
+Version:        2025.3.3.2
 Release:        1%?dist
 Summary:        Official IDE for Android development (Canary build)
 License:        Apache-2.0
@@ -24,7 +24,7 @@ Packager:       veuxit <erroor234@gmail.com>
 ExclusiveArch:  x86_64
 URL:            https://developer.android.com/studio/preview
 
-%define suffixS panda3-canary1
+%define suffixS panda3-canary2
 
 Source0:        https://dl.google.com/dl/android/studio/ide-zips/%{version}/android-studio-%{suffixS}-linux.tar.gz
 
