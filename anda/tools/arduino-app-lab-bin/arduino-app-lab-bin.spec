@@ -1,7 +1,7 @@
 %global appid cc.arduino.AppLab
 
 Name:           arduino-app-lab-bin
-Version:        al.0.5.0
+Version:        0.5.0
 Release:        1%?dist
 Summary:        A powerful visual environment for managing the Arduino UNO Q
 
@@ -20,7 +20,7 @@ Requires:       android-tools
 
 BuildRequires:  terra-appstream-helper desktop-file-utils
 
-Suggests:       arduino-flasher-cli arduino-app-cli  
+Suggests:       arduino-flasher-cli arduino-app-cli
 
 Packager:       Jaiden Riordan <jade@fyralabs.com>
 
