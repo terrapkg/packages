@@ -34,6 +34,15 @@ One of the major design goals of psd is a completely transparent user experience
 %install
 %make_install
 
+%post
+%systemd_user_post psd.service
+
+%preun
+%systemd_user_preun psd.service
+
+%postun
+%systemd_user_postun_with_reload psd.service
+
 %files
 %{_bindir}/profile-sync-daemon
 %{_bindir}/psd-suspend-sync
