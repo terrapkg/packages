@@ -58,7 +58,8 @@ One of the major design goals of psd is a completely transparent user experience
 %{_mandir}/man1/psd.1.gz
 %{_bindir}/psd-overlay-helper
 %{_mandir}/man1/psd-overlay-helper.1.gz
-
+%doc README.md
+%license MIT
 
 %changelog
 * Sat Feb 28 2026 veux <erroor234@gmail.com> - 6.55
