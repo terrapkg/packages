@@ -23,12 +23,12 @@ as a reliable drop-in replacement on other platforms. Notable features:
 %forgeautosetup
 
 %build
-cc $CFLAGS \
-   $CPPFLAGS \
-   -DPKG_CONFIG_LIBDIR="\"%{_libdir}/pkgconfig\"" \
-   $LDFLAGS \
-   -o u-config \
-   main_posix.c
+%__cc $CFLAGS \
+      $CPPFLAGS \
+      -DPKG_CONFIG_LIBDIR="\"%{_libdir}/pkgconfig\"" \
+      $LDFLAGS \
+      -o u-config \
+      main_posix.c
 
 %install
 install -Dm 755 u-config %{buildroot}%{_bindir}/u-config
