@@ -10,6 +10,8 @@ License:        Unlicense
 URL:            %{forgeurl}
 Source0:        %{forgesource}
 
+Packager:       metcya <metcya@gmail.com>
+
 BuildRequires:  gcc
 
 %description
