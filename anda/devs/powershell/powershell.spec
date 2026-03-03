@@ -19,7 +19,7 @@
 
 Name:          powershell
 Version:       7.5.4
-Release:       2%{?dist}
+Release:       3%{?dist}
 Summary:       A cross-platform automation and configuration tool/framework
 SourceLicense: MIT
 License:       Apache-2.0 AND BSD-2-Clause AND MIT

@@ -1,5 +1,5 @@
 Name:           steamos-manager
-Version:        25.12.0
+Version:        26.0.0
 Release:        1%?dist
 Summary:        SteamOS Manager is a system daemon that aims to abstract Steam's interactions with the operating system.
 License:        MIT AND (MIT OR Apache-2.0) AND Unicode-3.0 AND Apache-2.0 OR BSL-1.0 AND Apache-2.0 OR MIT AND Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT AND BSD-3-Clause OR MIT OR Apache-2.0 AND ISC AND LGPL-2.1 OR MIT OR Apache-2.0 AND MIT AND MIT OR Apache-2.0 AND MIT OR Apache-2.0 OR LGPL-2.1-or-later AND Unlicense OR MIT AND Zlib OR Apache-2.0 OR MIT

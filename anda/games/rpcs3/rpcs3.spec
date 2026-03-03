@@ -1,7 +1,7 @@
 # RPCS3 builds often break with GCC
 %global toolchain clang
 # Define which LLVM/Clang version RPCS3 needs
-%if 0%{?fedora} >= 45
+%if 0%{?fedora} >= 46
 %global llvm_major 21
 %global __cc clang-%{llvm_major}
 %global __cxx clang++-%{llvm_major}
@@ -9,8 +9,8 @@
 # GLIBCXX_ASSERTIONS is known to break RPCS3
 %global build_cflags %(echo "%{__build_flags_lang_c}" | sed 's|-Wp,-D_GLIBCXX_ASSERTIONS ||g') %{?_distro_extra_cflags}
 %global build_cxxflags %(echo "%{__build_flags_lang_cxx}" | sed 's|-Wp,-D_GLIBCXX_ASSERTIONS ||g') %{?_distro_extra_cflags}
-%global commit 928856567670d123b88b458f450bae0051deecb7
-%global ver 0.0.39-18870
+%global commit 595e42c4f3bfa11b8585ea029e1aa9d2c9c68fd1
+%global ver 0.0.40-18871
 
 Name:           rpcs3
 Version:        %(echo %{ver} | sed 's/-/^/g')
