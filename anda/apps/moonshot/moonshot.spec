@@ -11,8 +11,13 @@ Source0:        %url/archive/refs/tags/v%version.tar.gz
 Source1:        com.github.moonshot.metainfo.xml
 
 BuildRequires:  wails3
-BuildRequires:  webkit2gtk4.1
 BuildRequires:  golang
+BuildRequires:  bun-bin
+BuildRequires:  pkgconfig(webkit2gtk-4.1)
+BuildRequires:  pkgconfig(gtk4)
+BuildRequires:  pkgconfig(webkitgtk-6.0)
+BuildRequires:  pkgconfig(gio-unix-2.0)
+BuildRequires:  pkgconfig(libsoup-3.0)
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
