@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <component type="desktop-application">
-  <id>com.github.moonshot</id>
+  <id>com.fyralabs.moonshot</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
   <icon type="local">/usr/share/icons/hicolor/512x512/apps/moonshot.png</icon>
@@ -9,7 +9,8 @@
   <summary>A beautiful cross-platform flashing tool</summary>
 
   <screenshots>
-    <screenshot type="default"><image>https://github.com/FyraLabs/moonshot/blob/main/build/screenshot.png</image></screenshot>
+    <screenshot type="default"><image
+            >https://github.com/FyraLabs/moonshot/blob/main/build/screenshot.png</image></screenshot>
   </screenshots>
 
   <description>
@@ -37,9 +38,13 @@
     <keyword>disk flashing</keyword>
     <keyword>imaging</keyword>
     <keyword>flashing tool</keyword>
+    <keyword>flasher</keyword>
+    <keyword>etcher</keyword>
+    <keyword>usb</keyword>
+    <keyword>sd card</keyword>
   </keywords>
 
-  <developer id="com.github.moonshot">
+  <developer id="com.fyralabs.moonshot">
     <name>Fyra Labs</name>
   </developer>
 </component>
