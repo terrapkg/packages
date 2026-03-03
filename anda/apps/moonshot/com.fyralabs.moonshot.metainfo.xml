@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component type="desktop-application">
+  <id>com.fyralabs.moonshot</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <icon type="local">/usr/share/icons/hicolor/512x512/apps/moonshot.png</icon>
+
+  <name>Moonshot</name>
+  <summary>A beautiful cross-platform flashing tool</summary>
+
+  <screenshots>
+    <screenshot type="default"><image
+            >https://github.com/FyraLabs/moonshot/blob/main/build/screenshot.png</image></screenshot>
+  </screenshots>
+
+  <description>
+    <p>
+    A beautiful cross-platform flashing tool.
+    Why?
+
+        - Community frustration with existing flashing tools.
+        - We have unique ideas that we want to implement in the future, ex: selecting distro images from within the app.
+        - For fun.
+    </p>
+  </description>
+
+  <launchable type="desktop-id">moonshot.desktop</launchable>
+
+  <url type="homepage">https://github.com/FyraLabs/moonshot</url>
+  <url type="bugtracker">https://github.com/FyraLabs/moonshot/issues</url>
+  <url type="donation">https://github.com/sponsors/FyraLabs</url>
+  <url type="contact">https://fyralabs.com/contact/</url>
+  <provides>
+    <binary>moonshot</binary>
+  </provides>
+
+  <keywords>
+    <keyword>disk flashing</keyword>
+    <keyword>imaging</keyword>
+    <keyword>flashing tool</keyword>
+    <keyword>flasher</keyword>
+    <keyword>etcher</keyword>
+    <keyword>usb</keyword>
+    <keyword>sd card</keyword>
+  </keywords>
+
+  <developer id="com.fyralabs.moonshot">
+    <name>Fyra Labs</name>
+  </developer>
+</component>
