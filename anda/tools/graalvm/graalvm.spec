@@ -95,11 +95,11 @@ chmod +x %buildroot/usr/lib/jvm/java-*-graalvm/lib/*.so
 /usr/lib/jvm/java-17-graalvm/lib/polyglot/polyglot_types.h
 
 %changelog
-* Sat Jun 17 2023 windowsboy111 <windowsboy111@fyralabs.com> - 22.3.2-2
+* Sat Jun 17 2023 madonuko <mado@fyralabs.com> - 22.3.2-2
 - Add devel packages.
 
-* Thu May 11 2023 windowsboy111 <windowsboy111@fyralabs.com> - 22.3.2-1
+* Thu May 11 2023 madonuko <mado@fyralabs.com> - 22.3.2-1
 - Remove jdk19
     
-* Thu Feb 9 2023 windowsboy111 <windowsboy111@fyralabs.com> - 22.3.1-1
+* Thu Feb 9 2023 madonuko <mado@fyralabs.com> - 22.3.1-1
 - Initial package

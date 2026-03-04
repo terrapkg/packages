@@ -1,15 +1,13 @@
 %define debug_package %nil
 
 Name:			alsa-ucm-cros
-Version:		0.7
-Release:		1%?dist
+Version:		0.8
+Release:		2%?dist
 Summary:		ALSA Use Case Manager configuration
 License:		BSD-3-Clause
 URL:			https://github.com/WeirdTreeThing/alsa-ucm-conf-cros/tree/standalone
 Source0:		https://github.com/WeirdTreeThing/alsa-ucm-conf-cros/archive/refs/tags/%version.tar.gz
 BuildArch:		noarch
-Provides:     alsa-ucm
-Conflicts:    alsa-ucm
 
 %description
 %summary for chromebooks.

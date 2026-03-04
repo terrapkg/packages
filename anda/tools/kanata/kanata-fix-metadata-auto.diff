@@ -1,0 +1,116 @@
+--- kanata-1.11.0/Cargo.toml	1970-01-01T00:00:01+00:00
++++ kanata-1.11.0/Cargo.toml	2026-02-12T16:56:59.169531+00:00
+@@ -47,23 +47,9 @@
+     "kanata-parser/gui",
+     "win_sendinput_send_scancodes",
+     "win_llhook_read_scancodes",
+-    "dep:muldiv",
+-    "dep:strip-ansi-escapes",
+     "dep:open",
+-    "dep:windows-sys",
+-    "winapi/processthreadsapi",
+-    "native-windows-gui/tray-notification",
+-    "native-windows-gui/message-window",
+-    "native-windows-gui/menu",
+-    "native-windows-gui/cursor",
+-    "native-windows-gui/high-dpi",
+-    "native-windows-gui/embed-resource",
+-    "native-windows-gui/image-decoder",
+-    "native-windows-gui/notice",
+-    "native-windows-gui/animation-timer",
+ ]
+ interception_driver = [
+-    "dep:kanata-interception",
+     "kanata-parser/interception_driver",
+ ]
+ passthru_ahk = [
+@@ -202,88 +188,9 @@
+ [target.'cfg(not(any(target_arch = "wasm32", target_os = "android")))'.dependencies.arboard]
+ version = "3.4"
+ 
+-[target.'cfg(target_os = "macos")'.dependencies.core-graphics]
+-version = "0.24.0"
+-
+-[target.'cfg(target_os = "macos")'.dependencies.karabiner-driverkit]
+-version = "0.2.0"
+-
+-[target.'cfg(target_os = "macos")'.dependencies.libc]
+-version = "0.2"
+-
+-[target.'cfg(target_os = "macos")'.dependencies.objc]
+-version = "0.2.7"
+-
+-[target.'cfg(target_os = "macos")'.dependencies.open]
+-version = "5"
+-optional = true
+-
+-[target.'cfg(target_os = "macos")'.dependencies.os_pipe]
+-version = "1.2.1"
+-
+-[target.'cfg(target_os = "windows")'.dependencies.encode_unicode]
+-version = "0.3.6"
+-
+-[target.'cfg(target_os = "windows")'.dependencies.kanata-interception]
+-version = "0.3.0"
+-optional = true
+-
+-[target.'cfg(target_os = "windows")'.dependencies.muldiv]
+-version = "1.0.1"
+-optional = true
+-
+-[target.'cfg(target_os = "windows")'.dependencies.native-windows-gui]
+-version = "1.0.13"
+-default-features = false
+-
+-[target.'cfg(target_os = "windows")'.dependencies.open]
+-version = "5"
+-features = ["shellexecute-on-windows"]
+-optional = true
+-
+-[target.'cfg(target_os = "windows")'.dependencies.regex]
+-version = "1.10.4"
+-optional = true
+-
+-[target.'cfg(target_os = "windows")'.dependencies.strip-ansi-escapes]
+-version = "0.2.0"
+-optional = true
+-
+-[target.'cfg(target_os = "windows")'.dependencies.winapi]
+-version = "0.3.9"
+-features = [
+-    "wincon",
+-    "timeapi",
+-    "mmsystem",
+-    "winuser",
+-    "windef",
+-    "minwindef",
+-]
+-
+-[target.'cfg(target_os = "windows")'.dependencies.windows-sys]
+-version = "0.52.0"
+-features = [
+-    "Win32_Devices_DeviceAndDriverInstallation",
+-    "Win32_Devices_Usb",
+-    "Win32_Foundation",
+-    "Win32_Graphics_Gdi",
+-    "Win32_Security",
+-    "Win32_System_Diagnostics_Debug",
+-    "Win32_System_Registry",
+-    "Win32_System_Threading",
+-    "Win32_UI_Controls",
+-    "Win32_UI_Shell",
+-    "Win32_UI_HiDpi",
+-    "Win32_UI_WindowsAndMessaging",
+-    "Win32_System_SystemInformation",
+-    "Wdk",
+-    "Wdk_System",
+-    "Wdk_System_SystemServices",
+-]
+-optional = true
+-
+ [profile.release]
+ opt-level = "z"
+ lto = "fat"
+ codegen-units = 1
+ panic = "abort"
++

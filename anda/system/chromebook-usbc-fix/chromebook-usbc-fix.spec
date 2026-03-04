@@ -19,6 +19,8 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %{?systemd_requires}
 BuildRequires:  systemd-rpm-macros
 
+ExclusiveArch:  x86_64
+
 %description
 %summary
 
@@ -44,7 +46,8 @@ install -Dm755 chromebook-usbc.service %buildroot%{_unitdir}/chromebook-usbc.ser
 %{_unitdir}/chromebook-usbc.service
 
 %changelog
-* Sat Oct 12 2024 Owen-sz <owen@fyralabs.com>
+* Sat Oct 12 2024 Owen Zimmerman <owen@fyralabs.com>
 - Fix the systemd preset application
-* Sat Oct 5 2024 Owen-sz <owen@fyralabs.com>
+
+* Sat Oct 5 2024 Owen Zimmerman <owen@fyralabs.com>
 - Initial package.

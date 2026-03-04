@@ -3,12 +3,12 @@
 Name:       kwin-system76-scheduler-integration
 
 %global forgeurl https://github.com/maxiberta/%{name}
-%global commit e00f1b74998d6513552633c791ea23ffa3fe78a0
-%global date 20240425
+%global commit 8375d843afbd2fe20780a79a473cabddbaff3602
+%global date 20250728
 %forgemeta
 
 Version:    0.1
-Release:    2%?dist
+Release:    1%?dist
 Summary:    Notify the System76 Scheduler which app has focus so it can be prioritized
 License:    MIT
 URL:        %forgeurl

@@ -6,7 +6,7 @@
 %global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 Name:           discord-openasar
-Version:        0.0.80
+Version:        0.0.127
 Release:        1%?dist
 Summary:        A snappier Discord rewrite with features like further customization and theming
 License:        MIT AND https://discord.com/terms
@@ -54,5 +54,5 @@ ln -s %_datadir/discord-openasar/Discord %buildroot%_bindir/discord-openasar
 
 
 %changelog
-* Sat Jan 21 2023 windowsboy111 <windowsboy111@fyralabs.com> - 0.0.38-1
+* Sat Jan 21 2023 madonuko <mado@fyralabs.com> - 0.0.38-1
 - Initial package

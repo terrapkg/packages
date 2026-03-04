@@ -1,12 +1,15 @@
+%global __brp_mangle_shebangs %{nil}
+
 Name:           inputplumber
-Version:        0.40.0
+Version:        0.75.0
 Release:        1%?dist
 Summary:        Open source input router and remapper daemon for Linux
 License:        GPL-3.0-or-later
 URL:            https://github.com/ShadowBlip/InputPlumber
 Source0:        %{url}/archive/refs/tags/v%version.tar.gz
+Patch0:         make-install-dont-build.patch
 BuildRequires:  libevdev-devel libiio-devel git make cargo libudev-devel llvm-devel clang-devel
-BuildRequires:  rust-packaging cargo-rpm-macros mold rpm_macro(cargo_prep_online)
+BuildRequires:  rust-packaging cargo-rpm-macros mold rpm_macro(cargo_prep_online) systemd-rpm-macros
 Requires:       libevdev libiio
 Recommends:     steam gamescope-session linuxconsoletools
 Packager:       madonuko <mado@fyralabs.com>
@@ -44,5 +47,14 @@ keyboards) and translate their input to a variety of virtual device formats.
 %_unitdir/inputplumber.service
 %_unitdir/inputplumber-suspend.service
 %_udevhwdbdir/59-inputplumber.hwdb
+%_udevhwdbdir/60-inputplumber-autostart.hwdb
+%_udevrulesdir/90-inputplumber-autostart.rules
 %_datadir/dbus-1/system.d/org.shadowblip.InputPlumber.conf
 %_datadir/inputplumber/
+%{_udevrulesdir}/99-inputplumber-device-setup.rules
+%{_datadir}/polkit-1/actions/org.shadowblip.InputPlumber.policy
+%{_datadir}/polkit-1/rules.d/org.shadowblip.InputPlumber.rules
+
+%changelog
+* Sun Feb 01 2026 Owen Zimmerman <owen@fyralabs.com>
+- Add more files from 0.73.0 release

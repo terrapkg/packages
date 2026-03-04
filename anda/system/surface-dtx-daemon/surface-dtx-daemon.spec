@@ -1,24 +1,27 @@
 %global debug_package %{nil}
-%global ver v0.3.8-1
+%global ver v0.3.11-1
 %global ver2 %(echo %{ver} | sed 's/^v//')
 
-Name:           surface-dtx-daemon
+Name:           terra-surface-dtx-daemon
 Version:        %(echo %ver | sed 's/-/~/g')
-Release:        2%{?dist}
+Release:        4%{?dist}
 Summary:        Surface Detachment System (DTX) Daemon
 License:        MIT
 URL:            https://github.com/linux-surface/surface-dtx-daemon
 Source:         %url/archive/refs/tags/%ver.tar.gz
 BuildRequires:  rust cargo dbus-devel anda-srpm-macros cargo-rpm-macros mold
 Packager:       Owen Zimmerman <owen@fyralabs.com>
+Obsoletes:      surface-dtx-daemon < 0.3.8~1-3
 
 %description
 Linux User-Space Detachment System (DTX) Daemon for the Surface ACPI Driver
 (and Surface Books). Currently only the Surface Book 2 is supported, due to
 lack of driver-support on the Surface Book 1. This may change in the future.
 
+%pkg_completion -Bfz surface-dtx-daemon surface-dtx-userd
+
 %prep
-%autosetup -n %{name}-%{ver2}
+%autosetup -n surface-dtx-daemon-%{ver2}
 %cargo_prep_online
 
 %build
@@ -70,13 +73,10 @@ install -D -m644 "target/surface-dtx-userd.fish" "%{buildroot}/usr/share/fish/ve
 /usr/bin/surface-dtx-userd
 /usr/lib/systemd/system/surface-dtx-daemon.service
 /usr/lib/systemd/user/surface-dtx-userd.service
-/usr/share/bash-completion/completions/surface-dtx-daemon
-/usr/share/bash-completion/completions/surface-dtx-userd
-/usr/share/zsh/site-functions/_surface-dtx-daemon
-/usr/share/zsh/site-functions/_surface-dtx-userd
-/usr/share/fish/vendor_completions.d/surface-dtx-daemon.fish
-/usr/share/fish/vendor_completions.d/surface-dtx-userd.fish
 
 %changelog
+* Wed Feb 5 2025 Owen Zimmerman <owen@fyralabs.com>
+- rename to terra-surface-dtx-daemon
+
 * Sat Oct 5 2024 Owen Zimmerman <owen@fyralabs.com>
 - Package surface-dtx-daemon

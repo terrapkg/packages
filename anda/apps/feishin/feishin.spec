@@ -6,14 +6,15 @@
 %global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 Name:			feishin
-Version:		0.12.1
+Version:		1.6.0
 Release:		1%?dist
 Summary:		A modern self-hosted music player
 License:		GPL-3.0
 URL:			https://github.com/jeffvli/feishin
 Source0:		%url/archive/refs/tags/v%version.tar.gz
 Requires:		fuse mpv
-BuildRequires:	nodejs-npm jq libxcrypt-compat
+Packager:		madonuko <mado@fyralabs.com>
+BuildRequires:	jq libxcrypt-compat pnpm
 
 %description
 %summary.
@@ -38,9 +39,9 @@ Keywords=Music;Jellyfin;Audio;Stream;Sonixd
 EOF
 
 %build
-npm install --legacy-peer-deps
-npm run postinstall
-npm run build
+pnpm i
+pnpm run postinstall
+pnpm run build
 %ifarch x86_64
 
 %define a linux
@@ -48,11 +49,11 @@ npm run build
 %define a arm64
 %endif
 
-npx electron-builder --linux dir --%a
+pnpm exec electron-builder --linux dir --%a
 
 %install
 mkdir -p %buildroot%_datadir/{pixmaps,applications} %buildroot%_bindir
-mv release/build/*-unpacked %buildroot%_datadir/feishin
+mv dist/*-unpacked %buildroot%_datadir/feishin
 install -Dm644 assets/icons/icon.png %buildroot%_datadir/pixmaps/feishin.png
 ln -s %_datadir/feishin/feishin %buildroot%_bindir/feishin
 install -Dm644 feishin.desktop %buildroot%_datadir/applications/

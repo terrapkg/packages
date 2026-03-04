@@ -1,0 +1,31 @@
+--- a/source/CMakeLists.txt
++++ b/source/CMakeLists.txt
+@@ -611,7 +611,15 @@
+     if(MSVC)
+         set_target_properties(x265-shared PROPERTIES OUTPUT_NAME libx265)
+     else()
+-        set_target_properties(x265-shared PROPERTIES OUTPUT_NAME x265)
++        if(HIGH_BIT_DEPTH)
++            if(MAIN12)
++                set_target_properties(x265-shared PROPERTIES OUTPUT_NAME x265_main12)
++            else()
++                set_target_properties(x265-shared PROPERTIES OUTPUT_NAME x265_main10)
++            endif()
++        else()
++            set_target_properties(x265-shared PROPERTIES OUTPUT_NAME x265)
++        endif(HIGH_BIT_DEPTH)
+     endif()
+     if(UNIX)
+         set_target_properties(x265-shared PROPERTIES VERSION ${X265_BUILD})
+--- a/source/encoder/api.cpp
++++ b/source/encoder/api.cpp
+@@ -704,7 +704,7 @@
+ #define ext ".dylib"
+ #else
+ #include <dlfcn.h>
+-#define ext ".so"
++#define ext ".so." xstr(X265_BUILD)
+ #endif
+ #if defined(__GNUC__) && __GNUC__ >= 8
+ #pragma GCC diagnostic ignored "-Wcast-function-type"
+

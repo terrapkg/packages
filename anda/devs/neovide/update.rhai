@@ -1,1 +1,1 @@
-rpm.version(gh("neovide/neovide"));
+rpm.version(crates("neovide"));

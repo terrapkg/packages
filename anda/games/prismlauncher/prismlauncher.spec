@@ -1,28 +1,19 @@
 %global real_name prismlauncher
 %global nice_name PrismLauncher
-%bcond_without qt6
+%global appid org.prismlauncher.PrismLauncher
 
 # Change this variables if you want to use custom keys
 # Leave blank if you want to build Prism Launcher without MSA id or curseforge api key
 %define msa_id default
 %define curseforge_key default
 
-%if %{with qt6}
 %global qt_version 6
 %global min_qt_version 6
-%else
-%global qt_version 5
-%global min_qt_version 5.12
-%endif
 
 %global build_platform terra
 
-%if %{with qt6}
 Name:             prismlauncher
-%else
-Name:             prismlauncher-qt5
-%endif
-Version:          9.2
+Version:          10.0.5
 Release:          1%?dist
 Summary:          Minecraft launcher with ability to manage multiple instances
 # see COPYING.md for more information
@@ -45,6 +36,7 @@ BuildRequires:    temurin-17-jdk
 %else
 BuildRequires:    java-17-openjdk-devel
 %endif
+BuildRequires:    anda-srpm-macros
 BuildRequires:    desktop-file-utils
 BuildRequires:    libappstream-glib
 BuildRequires:    cmake(ghc_filesystem)
@@ -57,14 +49,11 @@ BuildRequires:    cmake(Qt%{qt_version}Widgets) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Xml) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}NetworkAuth) >= %{min_qt_version}
 BuildRequires:    tomlplusplus-devel
+BuildRequires:    pkgconfig(libqrencode)
+BuildRequires:    pkgconfig(libarchive)
+BuildRequires:    pkgconfig(gamemode)
 
-%if %{with qt6}
 BuildRequires:    cmake(Qt6Core5Compat)
-BuildRequires:    quazip-qt6-devel
-%else
-BuildRequires:    quazip-qt5-devel
-%endif
-
 
 BuildRequires:    pkgconfig(libcmark)
 BuildRequires:    pkgconfig(scdoc)
@@ -91,9 +80,7 @@ Recommends:       flite
 # Prism supports enabling gamemode
 Suggests:         gamemode
 
-%if %{without qt6}
-Conflicts:        %{real_name}
-%endif
+Obsoletes:        %{real_name}-qt5-nightly <= 9.4
 
 %description
 A custom launcher for Minecraft that allows you to easily manage
@@ -129,7 +116,7 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 
 %install
 %cmake_install
-
+%terra_appstream
 
 %check
 %ctest
@@ -144,8 +131,9 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 %{_datadir}/%{nice_name}/JavaCheck.jar
 %{_datadir}/%{nice_name}/qtlogging.ini
 %{_datadir}/%{nice_name}/NewLaunchLegacy.jar
-%{_datadir}/applications/org.prismlauncher.PrismLauncher.desktop
-%{_datadir}/icons/hicolor/scalable/apps/org.prismlauncher.PrismLauncher.svg
+%{_appsdir}/org.prismlauncher.PrismLauncher.desktop
+%{_scalableiconsdir}/org.prismlauncher.PrismLauncher.svg
+%{_hicolordir}/256x256/apps/org.prismlauncher.PrismLauncher.png
 %{_datadir}/mime/packages/modrinth-mrpack-mime.xml
 %{_datadir}/qlogging-categories%{qt_version}/prismlauncher.categories
 %{_mandir}/man?/prismlauncher.*
@@ -153,6 +141,9 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 
 
 %changelog
+* Tue Jan 06 2026 Owen Zimmerman <owen@fyralabs.com> - 10.0.0-1
+- Update to 10.0.0, remove Qt5 version
+
 * Sun Jun 23 2024 Trung Lê <8@tle.id.au> - 8.2-2
 - update to 8.4. Add quazip-qt deps
 

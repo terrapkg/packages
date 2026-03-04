@@ -1,0 +1,18 @@
+diff --git a/chrome/patches/boringssl.patch b/chrome/patches/boringssl.patch
+index d3adf2d..a7cf3a6 100644
+--- a/chrome/patches/boringssl.patch
++++ b/chrome/patches/boringssl.patch
+@@ -8,6 +8,13 @@ index 000000000..678d1ca41
+ +
+ +git diff d24a382 > boringssl.patch
+ +mv boringssl.patch ../curl-impersonate/chrome/patches/boringssl.patch
++diff --git a/CMakeLists.txt b/CMakeLists.txt
++index ee5cc0466..32d1c8cca 100644
++--- a/CMakeLists.txt
+++++ b/CMakeLists.txt
++@@ -143 +143 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CLANG)
++-  set(C_CXX_FLAGS "-Werror -Wformat=2 -Wsign-compare -Wwrite-strings -Wvla -Wshadow -Wtype-limits")
+++  set(C_CXX_FLAGS "-Wformat=2 -Wsign-compare -Wwrite-strings -Wvla -Wshadow -Wtype-limits")
+ diff --git a/include/openssl/ssl.h b/include/openssl/ssl.h
+ index e500dd76e..e75bca26b 100644
+ --- a/include/openssl/ssl.h

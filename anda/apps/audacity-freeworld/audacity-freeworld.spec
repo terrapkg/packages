@@ -1,8 +1,11 @@
 %global __requires_exclude ^lib-.*.so            
 %global __provides_exclude ^lib-.*.so
 
+%global ver Audacity-3.7.7
+%global sanitized_ver %(echo %{ver} | sed 's/Audacity-//g')
+
 Name:    audacity-freeworld
-Version: Audacity.3.7.1
+Version: %{sanitized_ver}
 Release: 1%?dist
 Summary: Multitrack audio editor
 License: GPLv2

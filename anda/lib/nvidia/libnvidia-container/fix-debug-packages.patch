@@ -1,0 +1,32 @@
+--- a/Makefile
++++ b/Makefile
+@@ -219,22 +219,14 @@
+ -include $(DEPENDENCIES)
+ 
+ $(LIB_SHARED): $(LIB_OBJS)
+-	$(MKDIR) -p $(DEBUG_DIR)
+ 	$(CC) $(LIB_CFLAGS) $(LIB_CPPFLAGS) $(LIB_LDFLAGS) $(OUTPUT_OPTION) $^ $(LIB_SCRIPT) $(LIB_LDLIBS)
+-	$(OBJCPY) --only-keep-debug $@ $(LIB_SONAME)
+-	$(OBJCPY) --add-gnu-debuglink=$(LIB_SONAME) $@
+-	$(MV) $(LIB_SONAME) $(DEBUG_DIR)
+-	$(STRIP) --strip-unneeded -R .comment $@
+ 
+ $(LIB_STATIC_OBJ): $(LIB_OBJS)
+ 	# FIXME Handle user-defined LDFLAGS and LDLIBS
+ 	$(LD) -d -r --exclude-libs ALL -L$(DEPS_DIR)$(libdir) $(OUTPUT_OPTION) $^ $(LIB_LDLIBS_STATIC)
+-	$(OBJCPY) --localize-hidden $@
+-	$(STRIP) --strip-unneeded -R .comment $@
+ 
+ $(BIN_NAME): $(BIN_OBJS)
+ 	$(CC) $(BIN_CFLAGS) $(BIN_CPPFLAGS) $(BIN_LDFLAGS) $(OUTPUT_OPTION) $^ $(BIN_SCRIPT) $(BIN_LDLIBS)
+-	$(STRIP) --strip-unneeded -R .comment $@
+ 
+ ##### Public rules #####
+ 
+@@ -281,6 +281,4 @@ endif
+ 	$(LDCONFIG) -n $(DESTDIR)$(libdir)
+-	# Install debugging symbols
+-	$(INSTALL) -m 644 $(DEBUG_DIR)/$(LIB_SONAME) $(DESTDIR)$(libdbgdir)
+ 	# Install configuration files
+ 	$(MAKE_DIR)/$(LIB_PKGCFG).in "$(strip $(VERSION))" "$(strip $(LIB_LDLIBS_SHARED))" > $(DESTDIR)$(pkgconfdir)/$(LIB_PKGCFG)
+ 	# Install binary files

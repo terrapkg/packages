@@ -1,5 +1,5 @@
 Name:		groovy-docs
-Version:	4.0.24
+Version:	5.0.4
 Release:	1%?dist
 Summary:	Documentation for the Groovy programming language
 URL:		https://groovy-lang.org/
@@ -27,5 +27,5 @@ cp -r groovy-%{version} %{buildroot}/usr/share/doc/
 /usr/share/doc/groovy-%{version}
 
 %changelog
-* Tue Feb 7 2023 windowsboy111 <windowsboy111@fyralabs.com>
+* Tue Feb 7 2023 madonuko <mado@fyralabs.com>
 - Initial package

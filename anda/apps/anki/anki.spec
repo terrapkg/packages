@@ -1,5 +1,5 @@
 Name:           anki
-Version:        24.11
+Version:        25.09.2
 Release:        1%?dist
 Summary:        Flashcard program for using space repetition learning
 License:        AGPL-3.0-or-later AND GPL-3.0-or-later AND LGPL-3.0-or-later AND MIT AND BSD-3-Clause AND CC-BY-SA-3.0 AND CC-BY-3.0 AND Apache-2.0 AND CC-BY-2.5
@@ -9,7 +9,7 @@ BuildRequires:  python3-distro python3-flask-cors python3-jsonschema python3-sen
 BuildRequires:  python3-installer make mold cargo git rsync ninja-build libxcrypt-compat nodejs python3.9 python-unversioned-command gcc python3-pyqt6-webengine
 Requires:       hicolor-icon-theme python3-sqlalchemy python3-simplejson python3-matplotlib python3-decorator python3-markdown python3-send2trash
 Requires:       python3-requests python3-pygame python3-beautifulsoup4 python3-httplib2 python3-pyaudio python3-jsonschema sox libxcrypt-compat python3-pyqt6-webengine
-Recommends:     mpv
+Recommends:     (mpv or mpv-nightly)
 Obsoletes:      anki <= 2.1.15
 Conflicts:      anki-qt5
 Patch0:         0001-No-update.patch
@@ -68,5 +68,5 @@ chmod 755 %{buildroot}%{_bindir}/anki
 
 
 %changelog
-* Tue Jan 3 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2.1.60
+* Tue Jan 3 2023 madonuko <mado@fyralabs.com> - 2.1.60
 - Initial package

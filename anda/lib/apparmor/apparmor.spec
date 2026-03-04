@@ -1,11 +1,12 @@
 %{?python_enable_dependency_generator}
 
 %global __arch_install_post /bin/true
+%global _sbindir /usr/sbin
 
 %bcond_with tests
 
 Name:           apparmor
-Version:        4.1.0~beta3
+Version:        5.0.0~beta1
 Release:        1%?dist
 Summary:        AppArmor userspace components
 
@@ -184,6 +185,9 @@ install -Dm644 %{SOURCE1} %{buildroot}%{_presetdir}/70-apparmor.preset
 
 find %{buildroot} \( -name "*.a" -o -name "*.la" \) -delete
 
+mkdir -p %buildroot%python3_sitearch/LibAppArmor
+mv %buildroot%python3_sitearch/{LibAppArmor.py,_LibAppArmor.cpython-*-linux-gnu.so,__pycache__/LibAppArmor.*} %buildroot%python3_sitearch/LibAppArmor/
+
 %find_lang aa-binutils
 %find_lang apparmor-parser
 %find_lang apparmor-utils
@@ -275,6 +279,7 @@ make -C utils check
 %{_bindir}/aa-exec
 %{_bindir}/aa-features-abi
 %{_sbindir}/aa-load
+#{_sbindir}/aa-show-usage
 %{_sbindir}/aa-teardown
 %{_unitdir}/apparmor.service
 %{_presetdir}/70-apparmor.preset
@@ -291,6 +296,8 @@ make -C utils check
 %{_mandir}/man5/apparmor.vim.5.gz
 %{_mandir}/man7/apparmor.7.gz
 %{_mandir}/man7/apparmor_xattrs.7.gz
+%{_mandir}/man8/aa-load.8.gz
+#{_mandir}/man8/aa-show-usage.8.gz
 %{_mandir}/man8/aa-teardown.8.gz
 %{_mandir}/man8/apparmor_parser.8.gz
 
@@ -303,6 +310,7 @@ make -C utils check
 %config(noreplace) %{_sysconfdir}/apparmor/logprof.conf
 %config(noreplace) %{_sysconfdir}/apparmor/notify.conf
 %config(noreplace) %{_sysconfdir}/apparmor/severity.db
+%{_bindir}/aa-easyprof
 %{_sbindir}/aa-audit
 %{_sbindir}/aa-autodep
 %{_sbindir}/aa-cleanprof
@@ -318,11 +326,10 @@ make -C utils check
 %{_sbindir}/aa-status
 %{_sbindir}/aa-unconfined
 %{_sbindir}/apparmor_status
-%{_bindir}/aa-easyprof
 %dir %{_datadir}/apparmor
 %{_datadir}/apparmor/easyprof
 %{_datadir}/apparmor/apparmor.vim
-%{_datadir}/polkit-1/actions/com.ubuntu.pkexec.aa-notify.policy
+%{_datadir}/polkit-1/actions/net.apparmor.pkexec.aa-notify.policy
 %{_mandir}/man5/logprof.conf.5.gz
 %{_mandir}/man8/aa-audit.8.gz
 %{_mandir}/man8/aa-autodep.8.gz

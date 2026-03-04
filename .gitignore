@@ -1,2 +1,8 @@
 anda-build/
 **/*.tar*
+**/*.crate
+**/*.zip
+**/*.minisig
+**/*.nupkg
+**/*.rpm
+**/*.kate-swp

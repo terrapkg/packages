@@ -6,10 +6,10 @@
 %global __requires_exclude_from ^/usr/lib/opentabletdriver/.*$
 %global __os_install_post %{nil}
 %global dotnet_sdk_version 8.0
-%global dotnet_runtime_version 6.0
+%global dotnet_runtime_version 8.0
 
 Name: opentabletdriver
-Version: 0.6.5.0
+Version: 0.6.6.2
 Release: 1%?dist
 Summary: A cross-platform open source tablet driver
 License: LGPLv3
@@ -19,7 +19,7 @@ Packager: Cappy Ishihara <cappy@fyralabs.com>
 
 
 # This package can be built using a newer .NET SDK version, but you
-# specifically need .NET 6.0 to run it.
+# specifically need .NET 8.0 to run it.
 BuildRequires: dotnet-sdk-%{dotnet_sdk_version}
 BuildRequires: git jq systemd-rpm-macros
 BuildRequires: gtk3-devel
@@ -69,6 +69,7 @@ cp -r bin "%{buildroot}/%{_prefix}/lib/opentabletdriver"
 %{_bindir}/otd
 %{_bindir}/otd-daemon
 %{_bindir}/otd-gui
+%{_datadir}/libinput/30-vendor-opentabletdriver.quirks
 %{_prefix}/lib/modprobe.d/99-opentabletdriver.conf
 %{_prefix}/lib/modules-load.d/opentabletdriver.conf
 %{_prefix}/lib/opentabletdriver/*

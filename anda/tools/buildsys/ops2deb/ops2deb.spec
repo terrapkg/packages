@@ -2,8 +2,8 @@
 %define _python_dist_allow_version_zero # upstream issue?
 
 Name:			python3-ops2deb
-Version:		2.5.0
-Release:		1%{?dist}
+Version:		2.7.0
+Release:		1%?dist
 Summary:		Generate Debian packages for common devops tools
 License:		MIT
 URL:			https://github.com/upciti/ops2deb
@@ -39,5 +39,5 @@ rm -rf %buildroot/%python3_sitelib/*/__pycache__
 /usr/lib/python3*/site-packages/ops2deb*
 
 %changelog
-* Fri Apr 28 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2.4.1-1
+* Fri Apr 28 2023 madonuko <mado@fyralabs.com> - 2.4.1-1
 - Initial package.
