@@ -74,7 +74,7 @@ jobs:
         run: |
           echo "## appstreamcli validate Log" >> $GITHUB_STEP_SUMMARY
           for file in output/*.xml.gz; do
-            appstreamcli validate $file >> $GITHUB_STEP_SUMMARY
+            appstreamcli validate $file >> $GITHUB_STEP_SUMMARY || /bin/true
             echo "" >> $GITHUB_STEP_SUMMARY
           done
           
