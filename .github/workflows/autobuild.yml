@@ -69,6 +69,18 @@ jobs:
             --basename=test \
             --veto-ignore=missing-parents \
             --veto-ignore=missing-info 2>&1 | tee asb.log
+
+      - name: Run appstreamcli validate
+        run: |
+          echo "## AppStream MetaInfo Validation" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo '```xml' >> $GITHUB_STEP_SUMMARY
+          for file in output/test.xml.gz; do
+            appstreamcli validate $file >> $GITHUB_STEP_SUMMARY || true
+            echo "" >> $GITHUB_STEP_SUMMARY
+          done
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          
       - name: Export logs
         id: export_logs
         run: |
