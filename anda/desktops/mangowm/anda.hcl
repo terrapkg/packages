@@ -1,5 +1,5 @@
 project pkg {
   rpm {
-    spec = "mangowc.spec"
+    spec = "mangowm.spec"
   }
 }

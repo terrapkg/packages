@@ -1,11 +1,14 @@
-Name:           mangowc
+Name:           mangowm
 Version:        0.12.5
-Release:        1%?dist
-Summary:        wayland compositor base wlroots and scenefx (dwm but wayland)
+Release:        2%?dist
+Summary:        Practical and Powerful wayland compositor (dwm but wayland)
 License:        GPL-3.0
 Packager:       metcya <metcya@gmail.com>
-URL:            https://github.com/DreamMaoMao/mangowc
-Source:         %{url}/archive/%{version}.tar.gz
+URL:            https://mangowm.github.io
+Source:         https://github.com/mangowm/mango/archive/%{version}.tar.gz
+
+Provides:       mangowc = %evr
+Obsoletes:      mangowc < 0.12.5-2
 
 BuildRequires:  meson
 BuildRequires:  gcc
@@ -22,7 +25,7 @@ BuildRequires:  pkgconfig(libpcre2-8)
 BuildRequires:  pkgconfig(scenefx-0.4)
 
 %description
-MangoWC is a lightweight, high-performance Wayland compositor built on dwl, designed for speed, flexibility, and a modern, customizable desktop experience.
+MangoWM is a lightweight, high-performance Wayland compositor built on dwl, designed for speed, flexibility, and a modern, customizable desktop experience.
 
 %prep
 %autosetup
