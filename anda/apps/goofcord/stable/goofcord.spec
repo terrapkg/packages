@@ -3,7 +3,7 @@
 
 Name:          goofcord
 Version:       2.1.0
-Release:       1%?dist
+Release:       2%?dist
 License:       OSL-3.0
 Summary:       A privacy-minded Legcord fork.
 Group:         Applications/Internet
