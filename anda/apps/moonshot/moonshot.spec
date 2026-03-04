@@ -33,6 +33,7 @@ Why?
 %autosetup
 
 %build
+%set_javascript_build_flags
 EXTRA_TAGS=gtk4 wails3 build
 
 %install
