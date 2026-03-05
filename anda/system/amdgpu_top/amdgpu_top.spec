@@ -1,7 +1,4 @@
 %undefine __brp_add_determinism
-%global debug_package %{nil}
-%global __strip /bin/true
-%global _build_id_links none
 
 Name:           amdgpu_top
 Version:        0.11.2
