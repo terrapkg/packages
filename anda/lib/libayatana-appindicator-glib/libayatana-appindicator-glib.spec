@@ -1,13 +1,4 @@
 %undefine __brp_add_determinism
-# disable debuginfo subpackage
-%global debug_package %{nil}
-# Disable build-id symlinks to avoid conflicts
-%global _build_id_links none
-# don't strip bundled binaries because pycharm checks length (!!!) of binary fsnotif
-# and if you strip debug stuff from it, it will complain
-%global __strip /bin/true
-# disable rpath checks
-%define __brp_check_rpaths %{nil}
 
 Name:       libayatana-appindicator-glib
 Summary:    Ayatana Application Indicators Shared Library
