@@ -1,12 +1,14 @@
-Name:		noctalia-qs
-Version:	0.0.5
-Release:	1%?dist
-Summary:	Flexible QtQuick based desktop shell toolkit
-License:	LGPL-3.0-only AND GPL-3.0-only
-URL:		https://github.com/noctalia-dev/noctalia-qs
-Source0:	https://github.com/noctalia-dev/noctalia-qs/archive/refs/tags/v%{version}.tar.gz
+%global commit 1a02ba2ee11b1afa8ec9a94f8b6b652bf4f14e1d
 
-Packager:       Willow C Reed (willow@willowidk.dev)
+Name:	       noctalia-qs
+Version:       0.0.5
+Release:       2%?dist
+Summary:       Flexible QtQuick based desktop shell toolkit
+License:       LGPL-3.0-only AND GPL-3.0-only
+URL:	       https://github.com/noctalia-dev/noctalia-qs
+Source0:       https://github.com/noctalia-dev/noctalia-qs/archive/refs/tags/v%{version}.tar.gz
+
+Packager:      Willow C Reed (willow@willowidk.dev)
 
 BuildRequires: cmake
 BuildRequires: cmake(Qt6Core)
@@ -33,7 +35,7 @@ BuildRequires: pkgconfig(CLI11)
 BuildRequires: glib2-devel
 BuildRequires: polkit-devel
 
-Obsoletes:     quickshell
+Provides:     quickshell
 
 %description
 Flexible QtQuick based desktop shell toolkit.
