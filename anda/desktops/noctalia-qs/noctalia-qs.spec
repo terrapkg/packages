@@ -35,6 +35,7 @@ BuildRequires: pkgconfig(CLI11)
 BuildRequires: glib2-devel
 BuildRequires: polkit-devel
 
+Conflicts:    quickshell
 Provides:     quickshell
 
 %description
@@ -69,5 +70,9 @@ Flexible QtQuick based desktop shell toolkit.
 %{_libdir}/qt6/qml/Quickshell
 
 %changelog
+* Thu Mar 05 2026 Willow C Reed <willow@willowidk.dev>
+- Fix reision to actually be defined as a specific git commit since it never gets initialized rn
+- Also fix that noctalia-qs is replacing quickshell overall and not just for noctlaia users
+
 * Fri Feb 27 2026 Willow C Reed <willow@willowidk.dev>
 - Initial commit based on quickshell spec
