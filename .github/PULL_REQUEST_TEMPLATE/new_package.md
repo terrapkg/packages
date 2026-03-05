@@ -6,3 +6,9 @@ A clear and concise description of why you want this package. Would this provide
 
 **Additional context**
 Add any other context about the package submission here. Link to any relavent issues.
+
+**Checklist**
+- [] I have tested at least the `x86_64` version of the package
+- [] I have read through any relevant [Terra](https://developer.fyralabs.com/terra) and [Fedora packaging](https://docs.fedoraproject.org/en-US/packaging-guidelines/) documentation/policies/guidelines
+- [] I have made sure there are no security issues with this package to the best of my ability
+- [] I have made sure this is not in Fedora (unless adding to the [extras repo](https://developer.fyralabs.com/terra/installing#extras)).
