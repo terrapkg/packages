@@ -18,7 +18,7 @@ BuildRequires:  libdrm-devel
 BuildRequires:  cargo cargo-rpm-macros anda-srpm-macros
 
 %description
-%summary
+%summary.
 
 %prep
 %autosetup -n %{name}-%{version}
