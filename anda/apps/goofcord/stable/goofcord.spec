@@ -20,7 +20,7 @@ Packager:      Gilver E. <roachy@fyralabs.com>
 A highly configurable and privacy minded Discord client.
 
 %prep
-%autosetup -n -p1 %{git_name}-%{version}
+%autosetup -p1 -n %{git_name}-%{version}
 %ifarch %{arm64} armv7hl armv7l
 sed -i '/\"x64\",/d' electron-builder.ts
 %endif
