@@ -4,7 +4,7 @@ Name:           mangowm
 Version:        0.12.5
 Release:        2%{?dist}
 Summary:        A modern, lightweight, high-performance Wayland compositor built on dwl
-License:        GPL-3.0
+License:        GPL-3.0-or-later AND MIT AND X11 AND CC0-1.0
 Packager:       metcya <metcya@gmail.com>
 URL:            https://github.com/mangowm/mango
 Source:         %{url}/archive/%{version}.tar.gz
