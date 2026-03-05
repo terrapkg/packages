@@ -1,0 +1,77 @@
+%global appid com.jaoushingan.WaydroidHelper
+
+Name:           waydroid-helper
+Version:        0.2.9
+Release:        1%?dist
+Summary:        User-friendly way to configure Waydroid and install extensions
+License:        GPL-3.0-only
+URL:            https://github.com/waydroid-helper/waydroid-helper
+Source0:        %url/archive/refs/tags/v%version.tar.gz
+Packager:       madonuko <mado@fyralabs.com>
+
+# https://github.com/waydroid-helper/waydroid-helper/blob/main/waydroid-helper.spec
+
+Recommends:     bindfs
+BuildRequires:  meson
+BuildRequires:  ninja-build
+BuildRequires:  pkgconfig
+BuildRequires:  gcc
+BuildRequires:  python3-devel
+BuildRequires:  cairo-devel
+BuildRequires:  gtk4-devel
+BuildRequires:  libadwaita-devel
+BuildRequires:  gobject-introspection-devel
+BuildRequires:  gettext
+BuildRequires:  dbus-devel
+BuildRequires:  systemd
+BuildRequires:  desktop-file-utils
+
+%description
+Waydroid Helper is a graphical user interface application written in Python using PyGObject. It provides a user-friendly way to configure Waydroid and install extensions, including Magisk and ARM translation.
+
+%prep
+%autosetup
+
+%build
+%meson
+%meson_build
+
+%install
+%meson_install
+
+%terra_appstream
+%find_lang %name
+
+
+%post
+%systemd_post waydroid-mount.service
+%systemd_user_post waydroid-monitor.service
+
+%preun
+%systemd_preun waydroid-mount.service
+%systemd_user_preun waydroid-monitor.service
+
+%postun
+%systemd_postun_with_restart waydroid-mount.service
+%systemd_user_postun_with_restart waydroid-monitor.service
+
+
+%files -f %name.lang
+%license COPYING
+%doc README.md
+%_bindir/waydroid-helper
+%_bindir/waydroid-cli
+%_datadir/waydroid-helper/
+%_datadir/applications/%appid.desktop
+%_scalableiconsdir/%appid.svg
+%_iconsdir/hicolor/symbolic/apps/%appid-symbolic.svg
+%_datadir/metainfo/%appid.metainfo.xml
+%_datadir/glib-2.0/schemas/%appid.gschema.xml
+%_datadir/polkit-1/actions/%appid.policy
+%_datadir/dbus-1/system.d/id.waydro.Mount.conf
+%_datadir/dbus-1/system-services/id.waydro.Mount.service
+%_unitdir/waydroid-mount.service
+%_userunitdir/waydroid-monitor.service
+
+%changelog
+%autochangelog
