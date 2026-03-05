@@ -16,8 +16,6 @@ Requires:	    qt6-qtmultimedia
 Requires:       noctalia-qs
 Requires:       xdg-desktop-portal
 
-Conflicts:      quickshell
-
 Recommends: 	cava
 Recommends:	    cliphist
 Recommends:	    ddcutil
