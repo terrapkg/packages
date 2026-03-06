@@ -1,1 +1,1 @@
-// rpm.version(("Umio-Yasuno/amdgpu_top"));
+rpm.version(gh("Umio-Yasuno/amdgpu_top"));
