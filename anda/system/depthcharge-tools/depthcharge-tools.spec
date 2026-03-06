@@ -1,12 +1,13 @@
 Name:			depthcharge-tools
 Version:		0.6.3
-Release:		3%?dist
+Release:		4%?dist
 Summary:		Tools to manage the Chrome OS bootloader
 License:		GPL-2.0-or-later
 URL:			https://gitlab.postmarketos.org/postmarketOS/depthcharge-tools
 Source0:		%url/-/archive/v%version/%name-v%version.tar.gz
 Requires:		vboot-utils dtc gzip lz4 python3-setuptools uboot-tools vboot-utils xz python3-importlib-resources
 BuildRequires:	python3-setuptools python3-rpm-macros pyproject-rpm-macros python3dist(pip) systemd-rpm-macros redhat-rpm-config python3-docutils python3-importlib-resources
+Patch0:         fix-importlib.patch
 BuildArch:		noarch
 
 %description
@@ -16,7 +17,7 @@ with depthcharge, the Chrome OS bootloader.
 %pkg_completion -Bz mkdepthcharge depthchargectl
 
 %prep
-%autosetup -n %name-v%version
+%autosetup -n %name-v%version -p1
 
 %build
 %pyproject_wheel
