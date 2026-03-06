@@ -1,8 +1,8 @@
 %undefine __brp_mangle_shebangs
 
 Name:           fresh
-Version:        0.2.5
-Release:        1%?dist
+Version:        0.2.14
+Release:        1%{?dist}
 Summary:        Text editor for your terminal: easy, powerful and fast
 URL:            https://getfresh.dev
 Source0:        https://github.com/sinelaw/fresh/archive/refs/tags/v%version.tar.gz

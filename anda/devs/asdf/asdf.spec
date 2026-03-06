@@ -12,7 +12,7 @@
 
 # https://github.com/asdf-vm/asdf
 %global goipath         github.com/asdf-vm/asdf
-Version:                0.18.0
+Version:                0.18.1
 
 %gometa -f
 
@@ -25,7 +25,7 @@ more.}
                         SECURITY.md ballad-of-asdf.md help.txt version.txt
 
 Name:           asdf
-Release:        %autorelease
+Release:        1%?dist
 Summary:        Extendable version manager with support for Ruby, Node.js, Elixir, Erlang & more
 
 License:        MIT

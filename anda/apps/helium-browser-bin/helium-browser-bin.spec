@@ -11,8 +11,8 @@
 %endif
 
 Name:           helium-browser-bin
-Version:        0.9.2.1
-Release:        1%?dist
+Version:        0.9.4.1
+Release:        2%?dist
 Summary:        Private, fast, and honest web browser based on Chromium
 
 URL:            https://helium.computer
@@ -31,7 +31,7 @@ BuildRequires:  desktop-file-utils
 Requires:       xdg-utils
 Requires:       liberation-fonts
 
-Packager:       Nadia P <nyadiia@pm.me>
+Packager:       Nadia P <nyadiia@pm.me>, Jaiden Riordan <jade@fyralabs.com>
 
 %description
 Private, fast, and honest web browser based on Chromium.

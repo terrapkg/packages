@@ -6,9 +6,12 @@ Version:        4.0.0
 Release:        1%?dist
 Summary:        Material you color generation tool with templates
 
-License:        GPL-2.0
+License:        GPL-2.0-or-later
 URL:            https://crates.io/crates/matugen
 Source:         %{crates_source}
+Source1:        https://raw.githubusercontent.com/InioX/matugen/refs/tags/v%version/README.md
+Source2:        https://raw.githubusercontent.com/InioX/matugen/refs/tags/v%version/CHANGELOG.md
+Source3:        https://raw.githubusercontent.com/InioX/matugen/refs/tags/v%version/LICENSE
 
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros
@@ -24,7 +27,7 @@ A material you color generation tool with templates.}
 
 %package     -n %{crate}
 Summary:        %{summary}
-License:        GPL-2.0
+License:        GPL-2.0-or-later AND Zlib AND MPL-2.0 AND Unlicense AND (Unlicense OR MIT) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Apache-2.0 OR NCSA) AND MIT AND (MIT OR Apache-2.0 OR CC0-1.0) AND (MIT OR Apache-2.0) AND Unicode-DFS-2016 AND (0BSD OR MIT OR Apache-2.0) AND Apache-2.0 AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (CC0-1.0 OR Apache-2.0) AND BSD-3-Clause AND BSD-2-Clause AND (Zlib OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR Apache-2.0 OR MIT) (Apache-2.0 WITH LLVM-exception) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT)
 # LICENSE.dependencies contains a full license breakdown
 
 %description -n %{crate} %{_description}
@@ -36,30 +39,14 @@ License:        GPL-2.0
 %doc README.md
 %{_bindir}/matugen
 
-
-%package        devel
-Summary:        %{summary}
-BuildArch:      noarch
-
-%description    devel %{_description}
-
-This package contains library source intended for building other packages which
-use the "%{crate}" crate.
-
-%files          devel
-%license %{crate_instdir}/LICENSE
-%doc %{crate_instdir}/CHANGELOG.md
-%doc %{crate_instdir}/README.md
-%{crate_instdir}/
-
-
 %prep
 %autosetup -n %{crate}-%{version} -p1
 %cargo_prep_online
+install -Dpm0644 -t . %{S:1} %{S:2} %{S:3}
 
 %build
-%{cargo_license_summary_online}
-%{cargo_license} > LICENSE.dependencies
+%cargo_license_summary_online
+%{cargo_license_online} > LICENSE.dependencies
 
 %install
 %cargo_install

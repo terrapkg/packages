@@ -1,8 +1,8 @@
-%define archive unity_7.7.0+23.04.20230222.2-0ubuntu9.tar.xz
+%define archive unity_7.7.1+26.04.20260306-0ubuntu1.tar.xz
 
 Name:		unity-shell
-Version:	7.7.0
-Release:	1%?dist
+Version:	7.7.1
+Release:	1%{?dist}
 Summary:	Unity is a shell that sings
 
 License:	GPL-3.0-or-later

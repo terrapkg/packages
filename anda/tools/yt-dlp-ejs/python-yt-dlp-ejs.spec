@@ -1,5 +1,5 @@
 Name:           python-yt-dlp-ejs
-Version:        0.4.0
+Version:        0.5.0
 Release:        1%?dist
 Summary:        External JavaScript for yt-dlp supporting many runtimes
 

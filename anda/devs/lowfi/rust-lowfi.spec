@@ -2,8 +2,8 @@
 %global crate lowfi
 
 Name:           rust-lowfi
-Version:        2.0.1
-Release:        1%?dist
+Version:        2.0.4
+Release:        1%{?dist}
 Summary:        Extremely simple lofi player
 
 License:        MIT
