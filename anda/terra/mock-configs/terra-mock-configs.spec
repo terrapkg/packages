@@ -10,6 +10,7 @@ Source0:        %url/archive/refs/tags/v%version.tar.gz
 
 BuildRequires:  mock-core-configs
 Requires:       mock-core-configs
+Requires:       terra-mock-gpg-keys
 BuildArch:      noarch
 
 Provides: anda-mock-configs = %{epoch}:%{version}-%{release}
