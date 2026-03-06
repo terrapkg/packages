@@ -1,0 +1,12 @@
+diff --git a/depthcharge_tools/__init__.py b/depthcharge_tools/__init__.py
+index fabb79d..2b7d7d5 100644
+--- a/depthcharge_tools/__init__.py
++++ b/depthcharge_tools/__init__.py
+@@ -9,6 +9,7 @@ import glob
+ import logging
+ import pathlib
+ import importlib
++import importlib.resources
+ import importlib_metadata
+ from packaging.version import parse as parse_version
+ import re
