@@ -35,7 +35,7 @@ rst2man mkdepthcharge.rst | gzip > mkdepthcharge.1.gz
 rst2man depthchargectl.rst | gzip > depthchargectl.1.gz
 install -Dm644 *.1.gz %buildroot%_mandir/man1/
 
-%files -f depthcharge_tools
+%files -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
 %_bindir/{mkdepthcharge,depthchargectl}
