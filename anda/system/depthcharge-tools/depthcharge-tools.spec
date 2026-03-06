@@ -41,8 +41,7 @@ install -Dm644 *.1.gz %buildroot%_mandir/man1/
 %_mandir/man1/{mkdepthcharge,depthchargectl}.1.gz
 /usr/lib/kernel/install.d/90-depthcharge-tools.install
 %_unitdir/depthchargectl-bless.service
-%_prefix/lib/python%python3_version/site-packages/depthcharge_tools-%version-py%python3_version.egg-info/
-%_prefix/lib/python%python3_version/site-packages/depthcharge_tools/
+%{python3_sitelib}/depthcharge_tools/
 
 %changelog
 %autochangelog
