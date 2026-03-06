@@ -23,6 +23,7 @@ with depthcharge, the Chrome OS bootloader.
 
 %install
 %pyproject_install
+%pypproject_save_files
 mkdir -p %buildroot/usr/lib/kernel/install.d %buildroot{%_unitdir,%bash_completions_dir,%zsh_completions_dir,%_mandir/man1}
 install -Dm644 systemd/*.install %buildroot/usr/lib/kernel/install.d/
 install -Dm644 systemd/*.service %buildroot%_unitdir/
@@ -34,14 +35,13 @@ rst2man mkdepthcharge.rst | gzip > mkdepthcharge.1.gz
 rst2man depthchargectl.rst | gzip > depthchargectl.1.gz
 install -Dm644 *.1.gz %buildroot%_mandir/man1/
 
-%files
+%files -f depthcharge_tools
 %doc README.rst
 %license LICENSE
 %_bindir/{mkdepthcharge,depthchargectl}
 %_mandir/man1/{mkdepthcharge,depthchargectl}.1.gz
 /usr/lib/kernel/install.d/90-depthcharge-tools.install
 %_unitdir/depthchargectl-bless.service
-%{python3_sitelib}/depthcharge_tools/
 
 %changelog
 %autochangelog
