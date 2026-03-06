@@ -16,6 +16,7 @@ Summary:        BPF/tracing tools for auto-tuning Linux
 License:        GPLv2 WITH Linux-syscall-note
 Packager:       veuxit <erroor234@gmail.com>
 URL:            https://github.com/oracle/bpftune
+Conflicts:      bpftune-git
 
 Source0:        %{url}/archive/refs/tags/%{version}-%{releaseS}.tar.gz
 
@@ -39,7 +40,7 @@ support auto-tuning of Linux via BPF observability.
 
 %package devel
 Summary:    Development files for %{name}
-Requires:   %{name} = %{version}-%{releaseS}
+Requires:   %{name} = %{version}-%{release}
 Requires:   libbpf-devel >= 0.6
 Requires:   libcap-devel
 Requires:   bpftool
@@ -51,7 +52,7 @@ developing BPF shared object tuners that use %{name}
 
 %package pcp-pmda
 Summary:	Performance Co-Pilot PMDA for bpftune
-Requires:   %{name} = %{version}-%{releaseS}
+Requires:   %{name} = %{version}-%{release}
 Requires:	pcp
 Requires:   python3-pcp 
 
