@@ -1,6 +1,6 @@
 Name:			depthcharge-tools
 Version:		0.6.3
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Tools to manage the Chrome OS bootloader
 License:		GPL-2.0-or-later
 URL:			https://gitlab.postmarketos.org/postmarketOS/depthcharge-tools
