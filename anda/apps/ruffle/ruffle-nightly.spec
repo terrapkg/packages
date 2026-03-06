@@ -1,4 +1,4 @@
-%global ver 2026-03-04
+%global ver 2026-03-06
 %global goodver %(echo %ver | sed 's/-//g')
 %global __brp_mangle_shebangs %{nil}
 %bcond_without mold
@@ -9,7 +9,7 @@ language. Ruffle targets both the desktop and the web using WebAssembly.}
 
 Name:           ruffle-nightly
 Version:        %goodver
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        A Flash Player emulator written in Rust
 License:        Apache-2.0 OR MIT
 URL:            https://ruffle.rs/

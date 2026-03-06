@@ -1,12 +1,12 @@
-%global commit cd2ca2ecbec1fd9470b286d36886ce6c872b9abf
+%global commit d75e7da4a91e6ffca5add748a97099b6a1e31a04
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260305
+%global commitdate 20260306
 %global ver 1.0.20
 %undefine __brp_mangle_shebangs
 
 Name:           scx-scheds-nightly
 Version:        %{ver}^%{commitdate}.git.%{shortcommit}
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Nightly builds of sched_ext schedulers and tools
 SourceLicense:  GPL-2.0-only
 License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND BSD-2-Clause AND BSD-3-Clause AND GPL-2.0-only AND ISC AND (LGPL-2.1-only OR BSD-2-Clause) AND LGPL-2.1 AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MIT AND (MPL-2.0 OR MIT OR Apache-2.0) AND MPL-2.0-only and MPL-2.0-or-later AND (Unlicense OR MIT) AND Zlib

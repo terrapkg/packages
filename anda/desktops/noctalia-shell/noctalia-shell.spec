@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           noctalia-shell
-Version:		4.6.3
-Release:        1%?dist
+Version:		4.6.4
+Release:        1%{?dist}
 Summary:        A Quickshell-based custom shell setup
 
 License:        MIT
