@@ -11,7 +11,7 @@
 
 Name:           bpftune
 Version:        0.4
-Release:        3%?dist
+Release:        2%?dist
 Summary:        BPF/tracing tools for auto-tuning Linux
 License:        GPLv2 WITH Linux-syscall-note
 Packager:       veuxit <erroor234@gmail.com>
