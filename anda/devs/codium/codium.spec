@@ -1,29 +1,18 @@
-%define debug_package %nil
-%global _build_id_links none
-
-# Exclude private libraries
-%global __requires_exclude libffmpeg.so|libcurl.so|libmsalruntime.so
-%global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
-
-%ifarch x86_64
-%define a x64
-%elifarch aarch64
-%define a arm64
-%endif
-
 %global appid com.vscodium.VSCodium
 
-Name:			codium
-Version:		1.109.51242
-Release:		1%?dist
-Summary:		Code editing. Redefined.
-License:		MIT
-URL:			https://vscodium.com/
-Source0:		https://github.com/VSCodium/vscodium/releases/download/%version/VSCodium-linux-%a-%version.tar.gz
-Source1:		https://raw.githubusercontent.com/VSCodium/vscodium/%version/README.md
-Source2:		https://raw.githubusercontent.com/VSCodium/vscodium/%version/LICENSE
-Requires:		at-spi2-atk cairo expat gtk3 xrandr mesa-libgbm nspr nss nss-util xdg-utils
-Provides:       vscodium = %evr
+Name:			      codium
+Version:		    1.110.11602
+%electronmeta -D
+%global __requires_exclude %{__requires_exclude}|libcurl.so|libmsalruntime.so
+Release:		    2%{?dist}
+Summary:		    Code editing. Redefined.
+License:	      %{electron_license}
+URL:            https://vscodium.com/
+Source0:        https://github.com/VSCodium/vscodium/releases/download/%{version}/VSCodium-linux-%{_electron_cpu}-%{version}.tar.gz
+Source1:        https://raw.githubusercontent.com/VSCodium/vscodium/%{version}/README.md
+Source2:		    https://raw.githubusercontent.com/VSCodium/vscodium/%{version}/LICENSE
+Requires:		    at-spi2-atk cairo expat gtk3 xrandr mesa-libgbm nspr nss nss-util xdg-utils
+Provides:       vscodium = %{evr}
 BuildRequires:	rpm_macro(fdupes)
 
 %description
@@ -35,7 +24,7 @@ with what developers need for the core edit-build-debug cycle.
 %prep
 mkdir stuff
 cd stuff
-tar xf %SOURCE0
+tar xf %{SOURCE0}
 
 cat <<EOF > vscodium-bin-uri-handler.desktop
 [Desktop Entry]
@@ -78,40 +67,40 @@ EOF
 
 %install
 cd stuff
-mkdir -p %buildroot%_datadir/doc/%name/ %buildroot%_datadir/licenses/%name
-install -Dm644 %SOURCE1 %buildroot%_docdir/%name/
-install -Dm644 %SOURCE2 %buildroot%_datadir/licenses/%name/
-install -dm755 %buildroot%_datadir/%name
-install -dm755 %buildroot%_bindir
-install -dm755 %buildroot%_datadir/{applications,pixmaps}
-cp -r * %buildroot%_datadir/%name
-rm -rf %buildroot%_datadir/%name/*.desktop
-ln -s %_datadir/%name/bin/codium %buildroot%_bindir/codium
-ln -s %_datadir/%name/bin/codium %buildroot%_bindir/vscodium
-install -D -m644 vscodium-bin.desktop %buildroot%_datadir/applications/codium.desktop
-install -D -m644 vscodium-bin-uri-handler.desktop %buildroot%_datadir/applications/codium-uri-handler.desktop
-install -D -m644 resources/app/resources/linux/code.png %buildroot%_datadir/pixmaps/vscodium.png
+mkdir -p %{buildroot}%{_datadir}/doc/%{name}/ %{buildroot}%{_datadir}/licenses/%{name}
+install -Dm644 %{SOURCE1} %{buildroot}%{_docdir}/%{name}/
+install -Dm644 %{SOURCE2} %{buildroot}%{_datadir}/licenses/%{name}/
+install -dm755 %{buildroot}%{_datadir}/%{name}
+install -dm755 %{buildroot}%{_bindir}
+install -dm755 %{buildroot}%{_datadir}/{applications,pixmaps}
+cp -r * %{buildroot}%{_datadir}/%{name}
+rm -rf %{buildroot}%{_datadir}/%{name}/*.desktop
+ln -s %{_datadir}/%{name}/bin/codium %{buildroot}%{_bindir}/codium
+ln -s %{_datadir}/%{name}/bin/codium %{buildroot}%{_bindir}/vscodium
+install -D -m644 vscodium-bin.desktop %{buildroot}%{_datadir}/applications/codium.desktop
+install -D -m644 vscodium-bin-uri-handler.desktop %{buildroot}%{_datadir}/applications/codium-uri-handler.desktop
+install -D -m644 resources/app/resources/linux/code.png %{buildroot}%{_datadir}/pixmaps/vscodium.png
 
 # Symlink shell completions
-install -dm755 %buildroot%_datadir/zsh/site-functions
-install -dm755 %buildroot%_datadir/bash-completion/completions
-ln -s %_datadir/%name/resources/completions/zsh/_codium %buildroot%_datadir/zsh/site-functions
-ln -s %_datadir/%name/resources/completions/bash/codium %buildroot%_datadir/bash-completion/completions
+install -dm755 %{buildroot}%{_datadir}/zsh/site-functions
+install -dm755 %{buildroot}%{_datadir}/bash-completion/completions
+ln -s %{_datadir}/%{name}/resources/completions/zsh/_codium %{buildroot}%{_datadir}/zsh/site-functions
+ln -s %{_datadir}/%{name}/resources/completions/bash/codium %{buildroot}%{_datadir}/bash-completion/completions
 
-%fdupes %_datadir/%name/resources/app/extensions/
+%fdupes %{_datadir}/%{name}/resources/app/extensions/
 
 #terra_appstream
 
 %files
 %doc README.md
 %license LICENSE
-%_datadir/%name
-%_bindir/codium
-%_bindir/vscodium
-%_datadir/applications/codium.desktop
-%_datadir/applications/codium-uri-handler.desktop
-%_datadir/pixmaps/vscodium.png
-%dnl %_metainfodir/%appid.metainfo.xml
+%{_datadir}/%{name}
+%{_bindir}/codium
+%{_bindir}/vscodium
+%{_datadir}/applications/codium.desktop
+%{_datadir}/applications/codium-uri-handler.desktop
+%{_datadir}/pixmaps/vscodium.png
+%dnl %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
 * Sat Jun 17 2023 madonuko <mado@fyralabs.com> - 1.79.2.23166-2
