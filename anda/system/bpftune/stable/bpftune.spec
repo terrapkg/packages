@@ -19,7 +19,7 @@ Packager:       veuxit <erroor234@gmail.com>
 URL:            https://github.com/oracle/bpftune
 Conflicts:      bpftune-nightly
 
-Source0:        %{url}/archive/refs/tags/%{version.tar.gz
+Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 
 Group:          Development/Tools
 Requires:       libbpf >= 0.6
