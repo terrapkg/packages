@@ -100,12 +100,8 @@ to Performance Co-Pilot (PCP)
 %{_libdir}/libbpftune.so
 %{_includedir}/bpftune
 
-%license LICENSE.txt
-
 %files pcp-pmda
 %{pcpdir}/%{name}/*
-
-%license LICENSE.txt
 
 %changelog
 * Fri Mar 6 2026 veuxit <erroor234@gmail.com> - 0.4-2
