@@ -1,6 +1,6 @@
 project pkg {
   rpm {
-    spec = "bpftune-git.spec"
+    spec = "bpftune-nightly.spec"
   }
   labels {
     nightly = 1

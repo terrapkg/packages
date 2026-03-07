@@ -17,7 +17,7 @@ Summary:        BPF/tracing tools for auto-tuning Linux
 License:        GPLv2-only WITH Linux-syscall-note
 Packager:       veuxit <erroor234@gmail.com>
 URL:            https://github.com/oracle/bpftune
-Conflicts:      bpftune-git
+Conflicts:      bpftune-nightly
 
 Source0:        %{url}/archive/refs/tags/%{version.tar.gz
 

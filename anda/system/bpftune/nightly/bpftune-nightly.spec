@@ -12,7 +12,7 @@
 %global ver 0.4
 %global commit_date 20260227
 
-Name:           bpftune-git
+Name:           bpftune-nightly
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
 Release:        1%?dist
 Summary:        BPF/tracing tools for auto-tuning Linux
