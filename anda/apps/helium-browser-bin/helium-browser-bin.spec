@@ -12,7 +12,7 @@
 
 Name:           helium-browser-bin
 Version:        0.9.4.1
-Release:        2%?dist
+Release:        3%?dist
 Summary:        Private, fast, and honest web browser based on Chromium
 
 URL:            https://helium.computer
@@ -56,7 +56,6 @@ rm -f %{buildroot}%{_libdir}/%{name}/product_logo_256.png
 
 install -dm755 %{buildroot}%{_bindir}
 cat > %{buildroot}%{_bindir}/%{name} << 'EOF'
-
 #!/bin/bash
 set -euo pipefail
 
