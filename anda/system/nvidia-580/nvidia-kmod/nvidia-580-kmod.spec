@@ -1,10 +1,10 @@
 # Build only the akmod package and no kernel module packages:
 %define buildforkernels akmod
-%global real_name nvidia-kmod
+%global real_name nvidia-580-kmod
 
 %global debug_package %{nil}
 
-Name:           nvidia-580-kmod
+Name:           %{real_name}
 Version:        580.119.02
 Release:        1%?dist
 Summary:        NVIDIA display driver kernel module
