@@ -1,5 +1,7 @@
 # BPF-based auto-tuning SPEC file
 
+%global ver 0.4-2
+
 %define pcpdir	    /var/lib/pcp/pmdas
 %define _sbindir    /usr/sbin
 
@@ -10,8 +12,8 @@
 %bcond_with openrc
 
 Name:           bpftune
-Version:        0.4
-Release:        2%?dist
+Version:        %(echo '%ver' | sed 's/-/~/g')
+Release:        1%?dist
 Summary:        BPF/tracing tools for auto-tuning Linux
 License:        GPLv2-only WITH Linux-syscall-note
 Packager:       veuxit <erroor234@gmail.com>
