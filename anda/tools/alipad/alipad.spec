@@ -6,7 +6,7 @@
 
 Name:           alipad
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Robust event check-in system
 URL:            https://git.sr.ht/~malicean/alipad
 Source0:        https://git.sr.ht/~malicean/alipad/archive/%{commit}.tar.gz
