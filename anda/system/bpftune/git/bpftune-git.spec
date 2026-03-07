@@ -14,7 +14,7 @@
 
 Name:           bpftune-git
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
-Release:        2%?dist
+Release:        1%?dist
 Summary:        BPF/tracing tools for auto-tuning Linux
 License:        GPLv2 WITH Linux-syscall-note
 Packager:       veuxit <erroor234@gmail.com>
