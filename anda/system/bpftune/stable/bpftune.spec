@@ -11,15 +11,15 @@
 %bcond_with openrc
 
 Name:           bpftune
-Version:        %(echo '%ver' | sed 's/-/~/g')
-Release:        1%?dist
+Version:        %(echo '%ver' | sed 's/-.*//')
+Release:        %{releaseS}%?dist
 Summary:        BPF/tracing tools for auto-tuning Linux
 License:        GPLv2-only WITH Linux-syscall-note
 Packager:       veuxit <erroor234@gmail.com>
 URL:            https://github.com/oracle/bpftune
 Conflicts:      bpftune-nightly
 
-Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
+Source0:        %{url}/archive/refs/tags/%{ver}.tar.gz
 
 Group:          Development/Tools
 Requires:       libbpf >= 0.6
@@ -62,7 +62,7 @@ The %{name}-pcp-pmda exports tunables and metrics from bpftune
 to Performance Co-Pilot (PCP)
 
 %prep
-%autosetup -n %{name}-%{version}-%{releaseS}
+%autosetup -n %{name}-%{ver}
 
 %build
 %make_build
