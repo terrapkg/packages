@@ -1,13 +1,12 @@
 # BPF-based auto-tuning SPEC file
 
 %global ver 0.4-2
+%global releaseS %(echo '%ver' | sed -E 's/^[^-]+-//')
 
 %define pcpdir	    /var/lib/pcp/pmdas
 %define _sbindir    /usr/sbin
 
 %undefine __brp_add_determinism
-
-%define releaseS 2
 
 %bcond_with openrc
 
@@ -20,7 +19,7 @@ Packager:       veuxit <erroor234@gmail.com>
 URL:            https://github.com/oracle/bpftune
 Conflicts:      bpftune-git
 
-Source0:        %{url}/archive/refs/tags/%{version}-%{releaseS}.tar.gz
+Source0:        %{url}/archive/refs/tags/%{version.tar.gz
 
 Group:          Development/Tools
 Requires:       libbpf >= 0.6
