@@ -21,7 +21,7 @@ Packager:       veuxit <erroor234@gmail.com>
 URL:            https://github.com/oracle/bpftune
 Conflicts:      bpftune
 
-Source0:        https://github.com/oracle/bpftune/archive/refs/heads/main.zip
+Source0:        %{url}/archive/%{commit}/bpftune-%{commit}.tar.gz
 
 Group:          Development/Tools
 Requires:       libbpf >= 0.6
