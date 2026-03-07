@@ -1,1 +1,1 @@
-// rpm.version(gh("oracle/bpftune"));
+rpm.global("ver", gh("oracle/bpftune"));
