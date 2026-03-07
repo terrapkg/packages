@@ -47,7 +47,7 @@ jobs:
           git commit -a -m "tmp"
           b=$(anda ci | sed -E 's@^build_matrix=@@')
           if [ "${{ inputs.architecture }}" != "" ]; then
-            # e.g.: [ unique_by(.pkg)[] | (.arch="x86_64", .arch="aarch64") ]
+            # e.g.: [ unique_by(.pkg)[] | (.arch="x86_64", .arch="aarch64", .arch="riscv64") ]
             filter=`echo -n "${{ inputs.architecture }}" | tr '[:space:]' '\n' | sed -E '/^$/d; s@^.+$@.arch="\0"@' | tr '\n' ', '`
             b=`echo $b | jq -c '[unique_by(.pkg)[] | ('"$filter"')]'`
           elif [ "${{ inputs.custom_builder }}" != "" ]; then
