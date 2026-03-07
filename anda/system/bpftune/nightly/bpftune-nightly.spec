@@ -107,5 +107,5 @@ to Performance Co-Pilot (PCP)
 %{pcpdir}/%{nameR}/*
 
 %changelog
-* Fri Mar 6 2026 veuxit <erroor234@gmail.com> - 0.4-2
+* Fri Mar 6 2026 veuxit <erroor234@gmail.com> - 0.4^20260227git.4712347-1
 - Initial package release
