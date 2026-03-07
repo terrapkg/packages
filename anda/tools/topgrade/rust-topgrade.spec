@@ -12,7 +12,6 @@ License:        ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache
 URL:            https://crates.io/crates/topgrade
 Source:         %crates_source
 # Automatically generated patch to strip dependencies and normalize metadata
-Patch:          topgrade-fix-metadata-auto.diff
 
 BuildRequires:  cargo
 BuildRequires:  rust
@@ -35,7 +34,6 @@ Summary:        %{summary}
 %files       -n %{crate}
 %license LICENSE
 %license LICENSE.dependencies
-%doc BREAKINGCHANGES.md
 %doc CHANGELOG.md
 %doc CODE_OF_CONDUCT.md
 %doc CONTRIBUTING.md
@@ -45,7 +43,7 @@ Summary:        %{summary}
 %{_bindir}/topgrade
 
 %prep
-%autosetup -n %{crate}-%{version} -p1
+%autosetup -n %{crate}-%{version}
 %cargo_prep_online
 
 %build
