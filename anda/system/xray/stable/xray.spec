@@ -1,0 +1,51 @@
+%global debug_package %{nil}
+# Disabled because compiled without debug
+
+%global goipath         github.com/XTLS/Xray-core
+Version:                26.2.6
+
+%global golicenses      LICENSE
+%global godocs          README.md SECURITY.md CODE_OF_CONDUCT.md
+
+Name:           xray
+Release:        1%?dist
+Summary:        High-performance, open-source network proxy engine and toolset designed to bypass internet censorship and enhance privacy
+License:        MPL-2.0
+Packager:       veuxit <erroor234@gmail.com>
+URL:            https://github.com/XTLS/Xray-core
+Conflicts:      Xray-core-nightly
+
+Source0:        https://github.com/XTLS/Xray-core/archive/refs/tags/v%{version}.tar.gz
+
+BuildRequires:  go go-rpm-macros go-srpm-macros anda-srpm-macros
+
+%description
+%summary.
+
+%gopkg
+
+%prep
+%goprep_online -Ae
+%autosetup -n Xray-core-%{version}
+
+
+%build
+export CGO_ENABLED=0
+%gobuild -o xray -trimpath -buildvcs=false -ldflags "-s -w -buildid=" ./main
+
+%install
+%gopkginstall
+install -Dm755 xray %{buildroot}%{_bindir}/xray
+
+%files
+%doc README.md
+%doc SECURITY.md
+%doc CODE_OF_CONDUCT.md
+%license LICENSE
+%{_bindir}/xray
+
+%gopkgfiles
+
+%changelog
+* Sun Mar 8 2026 veuxit <erroor234@gmail.com> - 
+- Initial package release
