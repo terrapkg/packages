@@ -1,14 +1,10 @@
-%global forgeurl https://gitlab.com/ubports/development/core/gsettings-qt
-%global commit d5e002d7e0bce46c315bcc99a44a8bd51f49f488
-%forgemeta
-
 Name:       gsettings-qt-lomiri
-Version:    0.2
-Release:    %autorelease
+Version:    1.1.1
+Release:    2%{?dist}
 Summary:    QML Bindings for GSettings
-License:    LGPL-3.0
+License:    LGPL-3.0-or-later
 URL:        https://gitlab.com/ubports/development/core/gsettings-qt
-Source0:    %{url}/-/archive/%commit/gsettings-qt-%commit.tar.gz
+Source0:    %{url}/-/archive/v%{version}/gsettings-qt-v%{version}.tar.gz?ref_type=tags
 
 BuildRequires: gcc-c++
 BuildRequires: glib2-devel
@@ -23,7 +19,7 @@ applications.
 
 %package devel
 Summary: Development files for %{name}
-Requires: %{name}%{?_isa} = %{version}-%{release}
+Requires: %{name}%{?_isa} = %{evr}
 
 %description devel
 The %{name}-devel package contains libraries and header files for
