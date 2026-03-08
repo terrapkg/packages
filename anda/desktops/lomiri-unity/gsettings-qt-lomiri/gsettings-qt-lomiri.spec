@@ -1,6 +1,6 @@
 Name:       gsettings-qt-lomiri
 Version:    1.1.1
-Release:    2%{?dist}
+Release:    1%{?dist}
 Summary:    QML Bindings for GSettings
 License:    LGPL-3.0-or-later
 URL:        https://gitlab.com/ubports/development/core/gsettings-qt
