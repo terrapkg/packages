@@ -29,12 +29,11 @@ developing applications that use %{name}.
 %autosetup -n gsettings-qt-v%{version}
 
 %build
-%qmake_qt5
-
-%make_build
+%cmake
+%cmake_build
 
 %install
-%make_install INSTALL_ROOT=%{buildroot}
+%cmake_install INSTALL_ROOT=%{buildroot}
 # Files underneath are part of coreutils and cpptest packages
 rm -rf %{buildroot}/usr/tests
 
