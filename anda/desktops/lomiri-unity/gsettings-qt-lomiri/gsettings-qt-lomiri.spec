@@ -26,7 +26,7 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %prep
-%autosetup -n gsettings-qt-%commit
+%autosetup -n gsettings-qt-v%{version}
 
 %build
 %qmake_qt5
