@@ -5,12 +5,12 @@
 %global cmd_name soft
 
 %global goipath github.com/charmbracelet/soft-serve
-Version:        0.11.3
+Version:        0.11.5
 
 %gometa -f
 
 Name:           soft-serve
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        The mighty, self-hostable Git server for the command line
 URL:            https://github.com/charmbracelet/%{name}
 Source0:        https://github.com/charmbracelet/%{name}/archive/refs/tags/v%{version}.tar.gz

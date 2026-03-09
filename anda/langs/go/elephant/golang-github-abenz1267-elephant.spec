@@ -14,7 +14,7 @@
 
 # https://github.com/abenz1267/elephant
 %global goipath         github.com/abenz1267/elephant
-Version:                2.19.3
+Version:                2.20.2
 
 %gometa -f
 
@@ -26,7 +26,7 @@ Elephant - cuz it's phat - is a powerful data provider service and backend for b
 %global godocs          README.md
 
 Name:           elephant
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        None
 
 License:        GPL-3.0-only

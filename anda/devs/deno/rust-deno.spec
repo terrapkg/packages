@@ -6,8 +6,8 @@
 %global crate deno
 
 Name:           rust-deno
-Version:        2.7.3
-Release:        1%?dist
+Version:        2.7.4
+Release:        1%{?dist}
 Summary:        Deno executable
 
 License:        MIT

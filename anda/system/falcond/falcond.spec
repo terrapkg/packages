@@ -1,8 +1,8 @@
 %global _include_minidebuginfo 0
 
 Name:           falcond
-Version:        1.2.3
-Release:        3%{?dist}
+Version:        2.0.0
+Release:        1%{?dist}
 Summary:        Advanced Linux Gaming Performance Daemon
 License:        MIT
 URL:            https://git.pika-os.com/general-packages/falcond
