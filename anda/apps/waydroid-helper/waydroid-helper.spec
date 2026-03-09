@@ -13,17 +13,17 @@ Packager:       madonuko <mado@fyralabs.com>
 # https://github.com/waydroid-helper/waydroid-helper/blob/main/waydroid-helper.spec
 
 Recommends:     bindfs
+BuildRequires:  pkgconfig(python3)
+BuildRequires:  pkgconfig(cairo)
+BuildRequires:  pkgconfig(gtk4)
+BuildRequires:  libadwaita-devel
+BuildRequires:  pkgconfig(gobject-introspection-1.0)
+BuildRequires:  pkgconfig(dbus-1)
 BuildRequires:  meson
 BuildRequires:  ninja-build
 BuildRequires:  pkgconfig
 BuildRequires:  gcc
-BuildRequires:  python3-devel
-BuildRequires:  cairo-devel
-BuildRequires:  gtk4-devel
-BuildRequires:  libadwaita-devel
-BuildRequires:  gobject-introspection-devel
 BuildRequires:  gettext
-BuildRequires:  dbus-devel
 BuildRequires:  systemd
 BuildRequires:  desktop-file-utils
 
