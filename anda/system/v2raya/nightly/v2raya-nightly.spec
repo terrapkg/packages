@@ -39,7 +39,7 @@ BuildRequires:  go go-rpm-macros go-srpm-macros anda-srpm-macros nodejs yarnpkg 
 CurrentDir="$(pwd)"
 
 cd "$CurrentDir"/gui && yarn --ignore-engines && OUTPUT_DIR="$CurrentDir"/service/server/router/web yarn --ignore-engines build
-cd "$CurrentDir"/service && CGO_ENABLED=0 %gobuild -tags "with_gvisor" -ldflags "-X github.com/v2rayA/v2rayA/conf.Version=$version -s -w" -o "$CurrentDir"/v2raya
+cd "$CurrentDir"/service && CGO_ENABLED=0 %gobuild -tags "with_gvisor" -ldflags "-X github.com/v2rayA/v2rayA/conf.Version=%{ver} -s -w" -o "$CurrentDir"/v2raya
 
 %install
 %gopkginstall
