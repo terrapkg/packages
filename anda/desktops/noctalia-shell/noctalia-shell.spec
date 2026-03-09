@@ -7,7 +7,7 @@ Summary:        A Quickshell-based custom shell setup
 
 License:        MIT
 URL:            https://github.com/noctalia-dev/noctalia-shell
-Source0:        https://github.com/noctalia-dev/noctalia-shell/releases/download/%{version}/noctalia-%{version}.tar.gz
+Source0:        https://github.com/noctalia-dev/noctalia-shell/releases/download/v%{version}/noctalia-v%{version}.tar.gz
 
 Requires:	    brightnessctl
 Requires:    	dejavu-sans-fonts
