@@ -17,7 +17,7 @@ Conflicts:      v2raya-nightly
 
 Source0:        https://github.com/v2rayA/v2rayA/archive/refs/tags/v%{version}.tar.gz
 
-Requires:       v2ray-geoip v2ray-domain-list-community (v2ray or xray)
+Requires:       v2ray-geoip v2ray-domain-list-community ((v2ray or v2ray-nightly) or (xray or xray-nightly))
 
 BuildRequires:  go go-rpm-macros go-srpm-macros anda-srpm-macros nodejs yarnpkg desktop-file-utils
 
