@@ -41,6 +41,7 @@ Provides:       %{pypi_name}
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
+%{_bindir}/pyprojectize
 
 %changelog
 * Mon Mar 09 2026 Owen Zimmerman <owen@fyralabs.com> - 1a7-1
