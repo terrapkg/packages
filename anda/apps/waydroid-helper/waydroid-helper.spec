@@ -1,4 +1,5 @@
 %global appid com.jaoushingan.WaydroidHelper
+%define debug_package %{nil}
 
 Name:           waydroid-helper
 Version:        0.2.9
@@ -74,4 +75,5 @@ Waydroid Helper is a graphical user interface application written in Python usin
 %_userunitdir/waydroid-monitor.service
 
 %changelog
-%autochangelog
+* Mon Mar 05 2026 madonuko <mado@fyralabs.com> - 0.2.9-1
+- Initial package
