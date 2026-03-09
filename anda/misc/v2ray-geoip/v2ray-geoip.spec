@@ -54,5 +54,5 @@ install -Dm644 output/geoip.dat %{buildroot}%{_datadir}/v2ray/geoip.dat
 %{_datadir}/v2ray/geoip.dat
 
 %changelog
-* Mon Mar 9 2026 veuxit <erroor234@gmail.com> - 
+* Mon Mar 9 2026 veuxit <erroor234@gmail.com> - 202603050223^20260122git.7a6498a-1
 - Initial package release

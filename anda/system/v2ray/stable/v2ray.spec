@@ -67,5 +67,5 @@ install -Dm644 release/config/*.json -t %{buildroot}/%{_sysconfdir}/v2ray/
 %gopkgfiles
 
 %changelog
-* Sun Mar 8 2026 veuxit <erroor234@gmail.com> - 
+* Sun Mar 8 2026 veuxit <erroor234@gmail.com> - 5.44.1-1
 - Initial package release

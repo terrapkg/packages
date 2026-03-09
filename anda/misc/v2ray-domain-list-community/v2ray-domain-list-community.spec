@@ -44,5 +44,5 @@ install -Dm644 dlc.dat %{buildroot}%{_datadir}/v2ray/geosite.dat
 %{_datadir}/v2ray/geosite.dat
 
 %changelog
-* Mon Mar 9 2026 veuxit <erroor234@gmail.com> - 
+* Mon Mar 9 2026 veuxit <erroor234@gmail.com> - 20260309041918^20260309git.6bb4a68-1
 - Initial package release

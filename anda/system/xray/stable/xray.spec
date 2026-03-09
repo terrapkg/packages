@@ -74,5 +74,5 @@ install -Dm644 %{SOURCE4} -t %{buildroot}/%{_unitdir}
 %gopkgfiles
 
 %changelog
-* Sun Mar 8 2026 veuxit <erroor234@gmail.com> - 
+* Sun Mar 8 2026 veuxit <erroor234@gmail.com> - 26.2.6-1
 - Initial package release

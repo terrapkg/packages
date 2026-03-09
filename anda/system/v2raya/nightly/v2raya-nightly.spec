@@ -75,5 +75,5 @@ install -Dm 644 gui/public/img/icons/android-chrome-512x512.png %{buildroot}/%{_
 %gopkgfiles
 
 %changelog
-* Sun Mar 8 2026 veuxit <erroor234@gmail.com> - 
+* Sun Mar 8 2026 veuxit <erroor234@gmail.com> - 2.2.7.5^20260305git.d92dbf9-1
 - Initial package release
