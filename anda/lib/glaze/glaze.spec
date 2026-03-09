@@ -2,8 +2,8 @@
 %global debug_package %{nil}
 
 Name:           glaze-devel
-Version:        7.1.0
-Release:        1%?dist
+Version:        7.1.1
+Release:        1%{?dist}
 License:        MIT
 URL:            https://stephenberry.github.io/glaze
 Source:         https://github.com/stephenberry/glaze/archive/refs/tags/v%{version}.tar.gz

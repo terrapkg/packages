@@ -1,10 +1,10 @@
 # Build only the akmod package and no kernel module packages:
 %define buildforkernels akmod
-%global real_name nvidia-kmod
+%global modulename nvidia-580
 
 %global debug_package %{nil}
 
-Name:           nvidia-580-kmod
+Name:           %{modulename}-kmod
 Version:        580.119.02
 Release:        1%?dist
 Summary:        NVIDIA display driver kernel module
@@ -22,7 +22,7 @@ Requires:       akmods
 BuildRequires:  kmodtool
 
 # kmodtool does its magic here:
-%{expand:%(kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{real_name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
+%{expand:%(kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 
 %description
 The NVidia %{version} display driver kernel module for kernel %{kversion}.
@@ -31,7 +31,7 @@ The NVidia %{version} display driver kernel module for kernel %{kversion}.
 # Error out if there was something wrong with kmodtool:
 %{?kmodtool_check}
 # Print kmodtool output for debugging purposes:
-kmodtool  --target %{_target_cpu}  --repo terra.fyralabs.com --kmodname %{real_name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
+kmodtool  --target %{_target_cpu}  --repo terra.fyralabs.com --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
 sh %{SOURCE0} -x --target %{real_name}-%{version}-%{_arch}
 %setup -T -D -n %{real_name}-%{version}-%{_arch}

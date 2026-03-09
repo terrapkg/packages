@@ -41,23 +41,29 @@ Requires:       %{name} = %{evr}
 rm %{buildroot}%{_unitdir}/sddm.service.d/reset-oneshot-boot.conf # steamOS specific
 rm %{buildroot}%{_userunitdir}/orca.service # not used by anyone apparently, steamOS specific(?)
 install -d %{buildroot}%{_userunitdir}/gamescope-session-plus.service.wants/steamos-manager.service
-%{__ln_s} -f %{buildroot}%{_userunitdir}/gamescope-session-plus.service.wants/steamos-manager.service %{_userunitdir}/steamos-manager.service
+ln -s %{_userunitdir}/steamos-manager.service %{buildroot}%{_userunitdir}/gamescope-session-plus.service.wants/steamos-manager.service
 
 %post
 %systemd_post steamos-manager.service
+%systemd_post steamos-manager-configure-cecd.service
+%systemd_post steamos-manager-session-cleanup.service
 
 %preun
 %systemd_preun steamos-manager.service
+%systemd_preun steamos-manager-configure-cecd.service
+%systemd_preun steamos-manager-session-cleanup.service
 
 %postun
 %systemd_postun_with_restart steamos-manager.service
+%systemd_postun_with_restart steamos-manager-configure-cecd.service
+%systemd_postun_with_restart steamos-manager-session-cleanup.service
 
 %files
 %license %{_datadir}/licenses/steamos-manager/LICENSE
 %license LICENSE.dependencies
 %doc README.md
 %{_bindir}/steamosctl
-%{_datadir}/dbus-1/interfaces/com.steampowered.SteamOSManager1.Manager.xml
+#{_datadir}/dbus-1/interfaces/com.steampowered.SteamOSManager1.Manager.xml
 %{_datadir}/dbus-1/interfaces/com.steampowered.SteamOSManager1.xml
 %{_datadir}/dbus-1/services/com.steampowered.SteamOSManager1.service
 %{_datadir}/dbus-1/system.d/com.steampowered.SteamOSManager1.conf
@@ -67,6 +73,7 @@ install -d %{buildroot}%{_userunitdir}/gamescope-session-plus.service.wants/stea
 %{_prefix}/lib/steamos-manager
 %{_unitdir}/steamos-manager.service
 %{_userunitdir}/steamos-manager.service
+%{_userunitdir}/steamos-manager-configure-cecd.service
 %{_userunitdir}/steamos-manager-session-cleanup.service
 
 %files gamescope-session-plus
