@@ -1,10 +1,10 @@
 %global pypi_name pyprojectize
-%global _desc Convert a spec file from %py3_build etc. macros to %pyproject_*.
+%global _desc Convert a spec file from %%py3_build etc. macros to %%pyproject_*.
 
 Name:			python-%{pypi_name}
 Version:		1a7
 Release:		1%?dist
-Summary:		Convert a spec file from %py3_build etc. macros to %pyproject_*
+Summary:		Convert a spec file from %%py3_build etc. macros to %%pyproject_*
 License:		MIT-0
 URL:			https://github.com/hroncok/pyprojectize
 Source0:		%{pypi_source}
