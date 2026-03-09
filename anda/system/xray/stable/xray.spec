@@ -17,9 +17,7 @@ Conflicts:      xray-nightly
 
 Source0:        https://github.com/XTLS/Xray-core/archive/refs/tags/v%{version}.tar.gz
 Source1:        xray.service
-Source2:        xray.sysusers
-Source3:        xray.tmpfiles
-Source4:        xray@.service
+Source2:        xray@.service
 
 Requires:       v2ray-geoip v2ray-domain-list-community
 
@@ -44,10 +42,8 @@ export CGO_ENABLED=0
 install -Dm755 xray %{buildroot}%{_bindir}/xray
 install -d "%{buildroot}/etc/xray" "%{buildroot}%{_datadir}/xray"
 ln -s %{_datadir}/v2ray/geo{ip,site}.dat -t "%{buildroot}%{_datadir}/xray"
-install -Dm644 %{SOURCE2} %{buildroot}/%{_sysusersdir}/xray.conf
-install -Dm644 %{SOURCE3} %{buildroot}/usr/lib/tmpfiles.d/xray.conf
 install -Dm644 %{SOURCE1} -t %{buildroot}/%{_unitdir}
-install -Dm644 %{SOURCE4} -t %{buildroot}/%{_unitdir}
+install -Dm644 %{SOURCE2} -t %{buildroot}/%{_unitdir}
 
 %post
 %systemd_post xray.service
@@ -66,8 +62,6 @@ install -Dm644 %{SOURCE4} -t %{buildroot}/%{_unitdir}
 %{_bindir}/xray
 %{_datadir}/xray/geoip.dat
 %{_datadir}/xray/geosite.dat
-%{_sysusersdir}/xray.conf
-/usr/lib/tmpfiles.d/xray.conf
 %{_unitdir}/xray.service
 %{_unitdir}/xray@.service
 
