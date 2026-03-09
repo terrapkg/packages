@@ -18,7 +18,7 @@ Summary:        High-performance, open-source network proxy engine and toolset d
 License:        MPL-2.0
 Packager:       veuxit <erroor234@gmail.com>
 URL:            https://github.com/XTLS/Xray-core
-Conflicts:      Xray-core
+Conflicts:      xray
 
 Source0:        %{url}/archive/%{commit}/Xray-core-%{commit}.tar.gz
 Source1:        xray.service
