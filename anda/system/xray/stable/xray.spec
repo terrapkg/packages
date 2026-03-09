@@ -17,6 +17,8 @@ Conflicts:      Xray-core-nightly
 
 Source0:        https://github.com/XTLS/Xray-core/archive/refs/tags/v%{version}.tar.gz
 
+Requires:       v2ray-geoip v2ray-domain-list-community
+
 BuildRequires:  go go-rpm-macros go-srpm-macros anda-srpm-macros
 
 %description
@@ -36,6 +38,8 @@ export CGO_ENABLED=0
 %install
 %gopkginstall
 install -Dm755 xray %{buildroot}%{_bindir}/xray
+install -d "%{buildroot}/etc/xray" "%{buildroot}%{_datadir}/xray"
+ln -s %{_datadir}/v2ray/geo{ip,site}.dat -t "%{buildroot}%{_datadir}/xray"
 
 %files
 %doc README.md
@@ -43,6 +47,8 @@ install -Dm755 xray %{buildroot}%{_bindir}/xray
 %doc CODE_OF_CONDUCT.md
 %license LICENSE
 %{_bindir}/xray
+%{_datadir}/xray/geoip.dat
+%{_datadir}/xray/geosite.dat
 
 %gopkgfiles
 
