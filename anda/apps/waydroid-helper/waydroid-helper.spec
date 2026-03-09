@@ -5,7 +5,7 @@ Name:           waydroid-helper
 Version:        0.2.9
 Release:        1%?dist
 Summary:        User-friendly way to configure Waydroid and install extensions
-License:        GPL-3.0-only
+License:        GPL-3.0-or-later
 URL:            https://github.com/waydroid-helper/waydroid-helper
 Source0:        %url/archive/refs/tags/v%version.tar.gz
 Packager:       madonuko <mado@fyralabs.com>
@@ -43,7 +43,6 @@ Waydroid Helper is a graphical user interface application written in Python usin
 %terra_appstream
 %find_lang %name
 
-
 %post
 %systemd_post waydroid-mount.service
 %systemd_user_post waydroid-monitor.service
@@ -55,7 +54,6 @@ Waydroid Helper is a graphical user interface application written in Python usin
 %postun
 %systemd_postun_with_restart waydroid-mount.service
 %systemd_user_postun_with_restart waydroid-monitor.service
-
 
 %files -f %name.lang
 %license COPYING
