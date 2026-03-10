@@ -40,20 +40,17 @@ Service consisting of daemon (bpftune) and plugins which
 support auto-tuning of Linux via BPF observability.
 
 %package devel
-Summary:    Development files for %{name}
-Requires:   %{name} = %{version}-%{release}
+Requires:   %{name} = %{evr}
 Requires:   libbpf-devel >= 0.6
 Requires:   libcap-devel
 Requires:   bpftool
 Requires:   libnl3-devel
 
-%description devel
-The %{name}-devel package contains libraries and header files for
-developing BPF shared object tuners that use %{name}
+%pkg_devel_files
 
 %package pcp-pmda
 Summary:	Performance Co-Pilot PMDA for bpftune
-Requires:   %{name} = %{version}-%{release}
+Requires:   %{name} = %{evr}
 Requires:	pcp
 Requires:   python3-pcp 
 
@@ -80,6 +77,8 @@ to Performance Co-Pilot (PCP)
 %systemd_postun_with_restart bpftune.service
 
 %files
+%doc README.md TROUBLESHOOTING.md SECURITY.md
+%license LICENSE.txt
 %defattr(-,root,root)
 %{_sysconfdir}/ld.so.conf.d/libbpftune.conf
 %{_sbindir}/bpftune
@@ -94,12 +93,6 @@ to Performance Co-Pilot (PCP)
 %exclude %{_sysconfdir}/conf.d/bpftune
 %exclude %{_sysconfdir}/init.d/bpftune
 %endif
-
-%license LICENSE.txt
-
-%files devel
-%{_libdir}/libbpftune.so
-%{_includedir}/bpftune
 
 %files pcp-pmda
 %{pcpdir}/%{name}/*
