@@ -4,15 +4,16 @@ Version:                2.2.7.5
 %global golicenses      LICENSE
 %global godocs          README.md 
 
+%gometa -f
+
 Name:           v2raya
 Release:        1%?dist
 Summary:        A web GUI client of Project V which supports VMess, VLESS, SS, SSR, Trojan, Tuic and Juicity protocols
 License:        AGPL-3.0-only
+URL:            %{gourl}
+Source:         %{gosource}
 Packager:       veuxit <erroor234@gmail.com>
-URL:            https://github.com/v2rayA/v2rayA/
 Conflicts:      v2raya-nightly
-
-Source0:        https://github.com/v2rayA/v2rayA/archive/refs/tags/v%{version}.tar.gz
 
 Requires:       v2ray-geoip v2ray-domain-list-community ((v2ray or v2ray-nightly) or (xray or xray-nightly))
 

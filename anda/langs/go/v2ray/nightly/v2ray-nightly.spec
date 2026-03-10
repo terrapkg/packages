@@ -9,12 +9,15 @@ Version:                %{ver}^%{commit_date}git.%{shortcommit}
 %global golicenses      LICENSE
 %global godocs          README.md SECURITY.md 
 
+%gometa -f
+
 Name:           v2ray-nightly
 Release:        1%?dist
 Summary:        A platform for building proxies to bypass network restrictions
 License:        MIT
 Packager:       veuxit <erroor234@gmail.com>
-URL:            https://github.com/v2fly/v2ray-core
+URL:            %{gourl}
+Source:         %{gosource}
 Conflicts:      v2ray
 
 Source0:        %{url}/archive/%{commit}/v2ray-core-%{commit}.tar.gz
@@ -29,11 +32,10 @@ BuildRequires:  go go-rpm-macros go-srpm-macros anda-srpm-macros
 %gopkg
 
 %prep
-%goprep_online -Ae
+%goprep_online -A
 
 
 %build
-%define gomodulesmode GO111MODULE=on
 %gobuild -o v2ray ./main
 
 

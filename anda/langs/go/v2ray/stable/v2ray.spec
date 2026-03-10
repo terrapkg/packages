@@ -4,15 +4,16 @@ Version:                5.44.1
 %global golicenses      LICENSE
 %global godocs          README.md SECURITY.md 
 
+%gometa -f
+
 Name:           v2ray
 Release:        1%?dist
 Summary:        A platform for building proxies to bypass network restrictions
 License:        MIT
 Packager:       veuxit <erroor234@gmail.com>
-URL:            https://github.com/v2fly/v2ray-core
+URL:            %{gourl}
+Source:         %{gosource}
 Conflicts:      v2ray-nightly
-
-Source0:        https://github.com/v2fly/v2ray-core/archive/refs/tags/v%{version}.tar.gz
 
 Requires:       v2ray-geoip v2ray-domain-list-community
 
@@ -24,11 +25,10 @@ BuildRequires:  go go-rpm-macros go-srpm-macros anda-srpm-macros
 %gopkg
 
 %prep
-%goprep_online -Ae
+%goprep_online -A
 
 
 %build
-%define gomodulesmode GO111MODULE=on
 %gobuild -o v2ray ./main
 
 

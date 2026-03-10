@@ -14,10 +14,9 @@ Release:        1%?dist
 Summary:        A web GUI client of Project V which supports VMess, VLESS, SS, SSR, Trojan, Tuic and Juicity protocols
 License:        AGPL-3.0-only
 Packager:       veuxit <erroor234@gmail.com>
-URL:            https://github.com/v2rayA/v2rayA/
+URL:            %{gourl}
+Source:         %{gosource}
 Conflicts:      v2raya
-
-Source0:        %{url}/archive/%{commit}/v2raya-%{commit}.tar.gz
 
 Requires:       v2ray-geoip v2ray-domain-list-community ((v2ray or v2ray-nightly) or (xray or xray-nightly))
 
@@ -29,7 +28,7 @@ BuildRequires:  go go-rpm-macros go-srpm-macros anda-srpm-macros nodejs yarnpkg 
 %gopkg
 
 %prep
-%goprep_online -Ae
+%goprep_online -A
 
 %build
 pushd gui
@@ -37,7 +36,6 @@ yarn --ignore-engines && OUTPUT_DIR="$CurrentDir"/service/server/router/web yarn
 popd
 
 pushd service
-%define gomodulesmode GO111MODULE=on
 %define currentgoldflags -w -s -X github.com/v2rayA/v2rayA/conf.Version=%{version}
 export GO_BUILDTAGS="with_gvisor"
 %gobuild -o ../v2raya
