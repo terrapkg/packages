@@ -28,6 +28,7 @@ BuildRequires:  anda-srpm-macros
 BuildRequires:  ninja-build
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtbase-private-devel
+BuildRequires:  qt6-qtdeclarative-devel
 BuildRequires:  desktop-file-utils
 
 Requires:       nodejs-npm
