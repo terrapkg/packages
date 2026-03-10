@@ -15,7 +15,7 @@ Version:                %{ver}^%{commit_date}git.%{shortcommit}
 Name:           v2raya-nightly
 Release:        1%?dist
 Summary:        A web GUI client of Project V which supports VMess, VLESS, SS, SSR, Trojan, Tuic and Juicity protocols
-License:        AGPL-3.0
+License:        AGPL-3.0-only
 Packager:       veuxit <erroor234@gmail.com>
 URL:            https://github.com/v2rayA/v2rayA/
 Conflicts:      v2raya
