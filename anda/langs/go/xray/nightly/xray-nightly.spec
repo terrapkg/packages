@@ -20,6 +20,8 @@ Conflicts:      xray
 Source0:        %{url}/archive/%{commit}/Xray-core-%{commit}.tar.gz
 Source1:        xray.service
 Source2:        xray@.service
+Source3:        xray.sysusers
+Source4:        xray.tmpfiles
 
 Requires:       v2ray-geoip v2ray-domain-list-community
 
@@ -49,6 +51,8 @@ ln -s %{_datadir}/v2ray/geo{ip,site}.dat -t "%{buildroot}%{_datadir}/xray"
 
 install -Dm644 %{SOURCE1} -t %{buildroot}/%{_unitdir}
 install -Dm644 %{SOURCE2} -t %{buildroot}/%{_unitdir}
+install -Dm644 %{SOURCE3} %{buildroot}/%{_sysusersdir}/xray.conf
+install -Dm644 %{SOURCE4} %{buildroot}/usr/lib/tmpfiles.d/xray.conf
 
 %post
 %systemd_post xray.service
@@ -69,6 +73,8 @@ install -Dm644 %{SOURCE2} -t %{buildroot}/%{_unitdir}
 %{_datadir}/xray/geosite.dat
 %{_unitdir}/xray.service
 %{_unitdir}/xray@.service
+%{_sysusersdir}/xray.conf
+/usr/lib/tmpfiles.d/xray.conf
 
 %gopkgfiles
 
