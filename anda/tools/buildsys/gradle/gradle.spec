@@ -69,11 +69,7 @@ install -m644 dist/init.d/*.* "%{buildroot}%{_javadir}/%{name}/init.d"
 mkdir -p "%{buildroot}/%{_bindir}"
 ln -s %{_javadir}/%{name}/bin/%{name} "%{buildroot}%{_bindir}/%{name}"
 
-install -d %{buildroot}%{_javadir}/%{name}/docs
-cp -r dist/docs/* %{buildroot}%{_javadir}/%{name}/docs
-
-install -d %{buildroot}%{_javadir}/%{name}/src
-cp -r dist/src/* %{buildroot}%{_javadir}/%{name}/src
+cp -r dist/* %{buildroot}%{_javadir}/%{name}/
 
 %files
 %doc README.md
