@@ -2,21 +2,21 @@
 
 %define pcpdir	    /var/lib/pcp/pmdas
 
-%define releaseS 2
+%global ver 0.4-2
+%global releaseS %(echo '%ver' | sed -E 's/^[^-]+-//')
 %define nameR    bpftune
 
 %bcond_with openrc
 
 %global commit  4712347f2da0b7d4a5fbdb0d81d071c1704b3f20
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global ver 0.4
 %global commit_date 20260227
 
 Name:           bpftune-nightly
-Version:        %{ver}^%{commit_date}git.%{shortcommit}
+Version:        %(echo '%ver' | sed 's/-/~/g')^%{commit_date}git.%{shortcommit}
 Release:        1%?dist
 Summary:        BPF/tracing tools for auto-tuning Linux
-License:        GPLv2-only WITH Linux-syscall-note
+License:        GPL-2.0-only WITH Linux-syscall-note
 Packager:       veuxit <erroor234@gmail.com>
 URL:            https://github.com/oracle/bpftune
 Conflicts:      bpftune
@@ -86,7 +86,7 @@ to Performance Co-Pilot (PCP)
 %{_sysconfdir}/ld.so.conf.d/libbpftune.conf
 %{_bindir}/bpftune
 %{_unitdir}/bpftune.service
-%{_libdir}/libbpftune.so.%{ver}.%{releaseS}
+%{_libdir}/libbpftune.so.%(echo '%ver' | sed 's/-/./g')
 %{_libdir}/bpftune/*
 %{_mandir}/*/*
 %if %{with openrc}
@@ -107,5 +107,5 @@ to Performance Co-Pilot (PCP)
 %{pcpdir}/%{nameR}/*
 
 %changelog
-* Fri Mar 6 2026 veuxit <erroor234@gmail.com> - 0.4^20260227git.4712347-1
+* Fri Mar 6 2026 veuxit <erroor234@gmail.com> - 0.4-2
 - Initial package release

@@ -11,10 +11,10 @@
 %bcond_with openrc
 
 Name:           bpftune
-Version:        %(echo '%ver' | sed 's/-.*//')
-Release:        %{releaseS}%?dist
+Version:        %(echo '%ver' | sed 's/-/~/g')
+Release:        1%?dist
 Summary:        BPF/tracing tools for auto-tuning Linux
-License:        GPLv2-only WITH Linux-syscall-note
+License:        GPL-2.0-only WITH Linux-syscall-note
 Packager:       veuxit <erroor234@gmail.com>
 URL:            https://github.com/oracle/bpftune
 Conflicts:      bpftune-nightly
@@ -84,7 +84,7 @@ to Performance Co-Pilot (PCP)
 %{_sysconfdir}/ld.so.conf.d/libbpftune.conf
 %{_sbindir}/bpftune
 %{_unitdir}/bpftune.service
-%{_libdir}/libbpftune.so.%{version}.%{releaseS}
+%{_libdir}/libbpftune.so.%(echo '%ver' | sed 's/-/./g')
 %{_libdir}/bpftune/*
 %{_mandir}/*/*
 %if %{with openrc}
