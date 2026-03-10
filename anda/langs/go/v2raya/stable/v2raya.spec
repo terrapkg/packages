@@ -25,7 +25,6 @@ BuildRequires:  go go-rpm-macros go-srpm-macros anda-srpm-macros nodejs yarnpkg 
 
 %prep
 %goprep_online -Ae
-%autosetup -n v2rayA-%{version}
 
 %build
 pushd gui

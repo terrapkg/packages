@@ -25,11 +25,9 @@ BuildRequires:  go go-rpm-macros go-srpm-macros anda-srpm-macros
 
 %prep
 %goprep_online -Ae
-%autosetup -n v2ray-core-%{version}
 
 
 %build
-export CGO_ENABLED=0
 %define gomodulesmode GO111MODULE=on
 %gobuild -o v2ray ./main
 

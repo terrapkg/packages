@@ -30,7 +30,6 @@ BuildRequires:  go go-rpm-macros go-srpm-macros anda-srpm-macros
 
 %prep
 %goprep_online -Ae
-%autosetup -n v2ray-core-%{commit}
 
 
 %build
