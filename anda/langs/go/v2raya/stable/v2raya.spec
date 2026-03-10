@@ -29,7 +29,7 @@ BuildRequires:  go go-rpm-macros go-srpm-macros anda-srpm-macros nodejs yarnpkg 
 
 %build
 pushd gui
-yarn --ignore-engines && OUTPUT_DIR="$CurrentDir"/service/server/router/web yarn --ignore-engines build
+yarn --ignore-engines && OUTPUT_DIR=$(pwd)/../service/server/router/web yarn --ignore-engines build
 popd
 
 pushd service
