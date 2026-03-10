@@ -4,8 +4,8 @@
 %global ver 202603050223
 %global commit_date 20260122
 
-%global year %{gsub %ver %%d%%d%%d%%d$ %nil}
-%global month %{gsub %ver %%d%%d%%d%%d(%%d%%d)%%d%%d %%1}
+%global year %{gsub %commit_date %%d%%d%%d%%d$ %{quote:}}
+%global month %{gsub %commit_date %%d%%d%%d%%d(%%d%%d)%%d%%d %%1}
 
 Name:           v2ray-geoip
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
@@ -25,9 +25,8 @@ BuildRequires:  golang
 
 %prep
 %autosetup -n geoip-%{commit}
-gzip -d %SOURCE1
 mkdir -p db-ip
-mv dbip-country-lite*.mmdb ./db-ip/dbip-country-lite.mmdb
+gzip -d %SOURCE1 -c > ./db-ip/dbip-country-lite.mmdb
 
 %build
 go run ./ -c ./config.json
