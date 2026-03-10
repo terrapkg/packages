@@ -76,6 +76,13 @@ BuildArch:      noarch
 %description    zsh-completion
 Zsh shell completion for Ghostty.
 
+%package        devel
+Summary:        Development files for Ghostty.
+Requires:       %{name} = %{evr}
+
+%description    devel
+This package includes the development files for Ghostty.
+
 %package        kio
 Summary:        KIO support for Ghostty
 Requires:       %{name} = %{evr}
@@ -145,6 +152,19 @@ BuildArch:      noarch
 %description    terminfo
 Ghostty's terminfo. Needed for basic terminal function.
 
+%package -n     libghostty-vt
+Summary:        The libghostty-vt libraries
+
+%description -n libghostty-vt
+This package contains the libghostty-vt libraries, the first of many libghostty libaries in development.
+
+%package -n     libghostty-vt-devel
+Summary:        Development files for libghostty-vt
+Requires:       libghostty-vt = %{evr}
+
+%description -n libghostty-vt-devel
+This package contains the libraries and header files that are needed for developing with libghostty-vt.
+
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
 %autosetup
@@ -203,6 +223,9 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{name}
 %files zsh-completion
 %{zsh_completions_dir}/_%{name}
 
+%files devel
+%{_includedir}/ghostty/
+
 %files kio
 %{_datadir}/kio/servicemenus/%{appid}.desktop
 
@@ -230,6 +253,7 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{name}
 %{_datadir}/%{name}/shell-integration/bash/%{name}.bash
 %{_datadir}/%{name}/shell-integration/elvish/lib/%{name}-integration.elv
 %{_datadir}/%{name}/shell-integration/fish/vendor_conf.d/%{name}-shell-integration.fish
+%{_datadir}/%{name}/shell-integration/nushell/vendor/autoload/%{name}.nu
 %{_datadir}/%{name}/shell-integration/zsh/.zshenv
 %{_datadir}/%{name}/shell-integration/zsh/%{name}-integration
 
@@ -247,6 +271,13 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{name}
 
 %postun
 %systemd_user_postun app-%{appid}.service
+
+%files -n libghostty-vt
+%{_libdir}/libghostty-vt.so.*
+
+%files -n libghostty-vt-devel
+%{_libdir}/libghostty-vt.so
+%{_datadir}/pkgconfig/libghostty-vt.pc
 
 %changelog
 * Tue Oct 28 2025 Gilver E. <rockgrub@disroot.org> - 1.2.3-2
