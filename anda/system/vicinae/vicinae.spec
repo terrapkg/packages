@@ -29,6 +29,8 @@ BuildRequires:  ninja-build
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtbase-private-devel
 BuildRequires:  qt6-qtdeclarative-devel
+BuildRequires:  kf6-syntax-highlighting-devel
+
 BuildRequires:  desktop-file-utils
 
 Requires:       nodejs-npm
