@@ -1,6 +1,3 @@
-%global debug_package %{nil}
-# Disabled because compiled without debug
-
 %global goipath         github.com/v2fly/v2ray-core
 Version:                5.44.1
 
@@ -33,6 +30,7 @@ BuildRequires:  go go-rpm-macros go-srpm-macros anda-srpm-macros
 
 %build
 export CGO_ENABLED=0
+%define gomodulesmode GO111MODULE=on
 %gobuild -o v2ray -trimpath -ldflags "-s -w -buildid=" ./main
 
 

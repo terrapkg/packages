@@ -1,4 +1,3 @@
-%global debug_package %{nil}
 # Disabled because compiled without debug
 
 %global goipath         github.com/XTLS/Xray-core
@@ -35,6 +34,7 @@ BuildRequires:  go go-rpm-macros go-srpm-macros anda-srpm-macros
 
 %build
 export CGO_ENABLED=0
+%define gomodulesmode GO111MODULE=on
 %gobuild -o xray -trimpath -buildvcs=false -ldflags "-s -w -buildid=" ./main
 
 %install

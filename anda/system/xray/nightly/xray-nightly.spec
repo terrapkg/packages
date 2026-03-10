@@ -1,6 +1,3 @@
-%global debug_package %{nil}
-# Disabled because compiled without debug
-
 %global commit  acb06e831bb7bf0e4b8346c933a14cdaab305a0d
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global ver 26.2.2
@@ -35,13 +32,12 @@ BuildRequires:  go-rpm-macros go-srpm-macros anda-srpm-macros
 %gopkg
 
 %prep
-
 %autosetup -n Xray-core-%{commit}
-
 %goprep_online -Ae
 
 %build
 export CGO_ENABLED=0
+%define gomodulesmode GO111MODULE=on
 %gobuild -o xray -trimpath -buildvcs=false -ldflags "-s -w -buildid=" ./main
 
 %install

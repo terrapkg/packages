@@ -1,6 +1,3 @@
-%global debug_package %{nil}
-# Disabled
-
 %global commit  d92dbf9c499a18ae8d18c8f3c93cef87dc921bf7
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global ver 2.2.7.5
@@ -33,9 +30,9 @@ BuildRequires:  go go-rpm-macros go-srpm-macros anda-srpm-macros nodejs yarnpkg 
 
 %prep
 %goprep_online -Ae
-%autosetup -n v2rayA-%{commit}
 
 %build
+%define gomodulesmode GO111MODULE=on
 CurrentDir="$(pwd)"
 
 cd "$CurrentDir"/gui && yarn --ignore-engines && OUTPUT_DIR="$CurrentDir"/service/server/router/web yarn --ignore-engines build

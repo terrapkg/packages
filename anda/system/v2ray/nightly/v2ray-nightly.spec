@@ -1,6 +1,3 @@
-%global debug_package %{nil}
-# Disabled because compiled without debug
-
 %global commit  9cf6a45519995778b8b50a63cf0b263e35b70419
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global ver 5.44.1
@@ -38,7 +35,8 @@ BuildRequires:  go go-rpm-macros go-srpm-macros anda-srpm-macros
 
 %build
 export CGO_ENABLED=0
-%gobuild -o v2ray -trimpath -ldflags "-s -w -buildid=" ./main
+%define gomodulesmode GO111MODULE=on
+%gobuild -o v2ray ./main
 
 
 %install

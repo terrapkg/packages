@@ -1,6 +1,3 @@
-%global debug_package %{nil}
-# Disabled
-
 %global goipath         github.com/v2rayA/v2rayA
 Version:                2.2.7.5
 
@@ -34,6 +31,7 @@ BuildRequires:  go go-rpm-macros go-srpm-macros anda-srpm-macros nodejs yarnpkg 
 CurrentDir="$(pwd)"
 
 cd "$CurrentDir"/gui && yarn --ignore-engines && OUTPUT_DIR="$CurrentDir"/service/server/router/web yarn --ignore-engines build
+%define gomodulesmode GO111MODULE=on
 cd "$CurrentDir"/service && CGO_ENABLED=0 %gobuild -tags "with_gvisor" -ldflags "-X github.com/v2rayA/v2rayA/conf.Version=%{version} -s -w" -o "$CurrentDir"/v2raya
 
 %install
