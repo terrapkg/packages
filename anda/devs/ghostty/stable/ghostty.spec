@@ -216,6 +216,9 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{name}
 %files zsh-completion
 %{zsh_completions_dir}/_%{name}
 
+%files devel
+%{_includedir}/ghostty/
+
 %files kio
 %{_datadir}/kio/servicemenus/%{appid}.desktop
 
@@ -243,6 +246,7 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{name}
 %{_datadir}/%{name}/shell-integration/bash/%{name}.bash
 %{_datadir}/%{name}/shell-integration/elvish/lib/%{name}-integration.elv
 %{_datadir}/%{name}/shell-integration/fish/vendor_conf.d/%{name}-shell-integration.fish
+%{_datadir}/%{name}/shell-integration/nushell/vendor/autoload/%{name}.nu
 %{_datadir}/%{name}/shell-integration/zsh/.zshenv
 %{_datadir}/%{name}/shell-integration/zsh/%{name}-integration
 
