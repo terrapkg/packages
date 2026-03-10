@@ -14,7 +14,7 @@ Name:           bpftune
 Version:        %(echo '%ver' | sed 's/-.*//')
 Release:        %{releaseS}%?dist
 Summary:        BPF/tracing tools for auto-tuning Linux
-License:        GPLv2-only WITH Linux-syscall-note
+License:        GPL-2.0-only WITH Linux-syscall-note
 Packager:       veuxit <erroor234@gmail.com>
 URL:            https://github.com/oracle/bpftune
 Conflicts:      bpftune-nightly
