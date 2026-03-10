@@ -145,6 +145,19 @@ BuildArch:      noarch
 %description    terminfo
 Ghostty's terminfo. Needed for basic terminal function.
 
+%package -n     libghostty-vt
+Summary:        The libghostty-vt libraries
+
+%description -n libghostty-vt
+This package contains the libghostty-vt libraries, the first of many linghostty libaries in development.
+
+%package -n     libghostty-vt-devel
+Summary:        Development files for libghostty-vt
+Requires:       libghostty-vt = %{evr}
+
+%description -n libghostty-vt-nightly-devel
+This package contains the libraries and header files that are needed for developing with libghostty-vt.
+
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
 %autosetup
@@ -247,6 +260,13 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{name}
 
 %postun
 %systemd_user_postun app-%{appid}.service
+
+%files -n libghostty-vt
+%{_libdir}/libghostty-vt.so.*
+
+%files -n libghostty-vt-devel
+%{_libdir}/libghostty-vt.so
+%{_datadir}/pkgconfig/libghostty-vt.pc
 
 %changelog
 * Tue Oct 28 2025 Gilver E. <rockgrub@disroot.org> - 1.2.3-2
