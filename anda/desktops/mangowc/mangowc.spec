@@ -1,6 +1,6 @@
 Name:           mangowc
-Version:        0.12.5
-Release:        1%?dist
+Version:        0.12.6
+Release:        1%{?dist}
 Summary:        wayland compositor base wlroots and scenefx (dwm but wayland)
 License:        GPL-3.0
 Packager:       metcya <metcya@gmail.com>

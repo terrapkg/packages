@@ -1,7 +1,7 @@
 %global appid com.vscodium.VSCodium
 
 Name:			      codium
-Version:		    1.110.11607
+Version:		    1.110.11631
 %electronmeta -D
 %global __requires_exclude %{__requires_exclude}|libcurl.so|libmsalruntime.so
 Release:		    1%{?dist}

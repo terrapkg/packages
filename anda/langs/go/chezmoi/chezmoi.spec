@@ -4,7 +4,7 @@
 
 # https://github.com/twpayne/chezmoi
 %global goipath         github.com/twpayne/chezmoi
-Version:                2.69.4
+Version:                2.70.0
 
 %gometa -f
 
@@ -27,7 +27,7 @@ Manage your dotfiles across multiple diverse machines, securely.}
                         assets/chezmoi.io/snippets/common-flags/tree.md
 
 Name:           chezmoi
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Manage your dotfiles across multiple diverse machines, securely
 
 License:        MIT
