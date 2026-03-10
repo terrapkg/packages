@@ -76,6 +76,13 @@ BuildArch:      noarch
 %description    zsh-completion
 Zsh shell completion for Ghostty.
 
+%package        devel
+Summary:        Development files for Ghostty.
+Requires:       %{name} = %{evr}
+
+%description    devel
+This package includes the development files for Ghostty.
+
 %package        kio
 Summary:        KIO support for Ghostty
 Requires:       %{name} = %{evr}
