@@ -28,11 +28,15 @@ BuildRequires:  go go-rpm-macros go-srpm-macros anda-srpm-macros nodejs yarnpkg 
 %autosetup -n v2rayA-%{version}
 
 %build
-CurrentDir="$(pwd)"
+pushd gui
+yarn --ignore-engines && OUTPUT_DIR="$CurrentDir"/service/server/router/web yarn --ignore-engines build
+popd
 
-cd "$CurrentDir"/gui && yarn --ignore-engines && OUTPUT_DIR="$CurrentDir"/service/server/router/web yarn --ignore-engines build
+pushd service
 %define gomodulesmode GO111MODULE=on
-cd "$CurrentDir"/service && CGO_ENABLED=0 %gobuild -tags "with_gvisor" -ldflags "-X github.com/v2rayA/v2rayA/conf.Version=%{version} -s -w" -o "$CurrentDir"/v2raya
+%define currentgoldflags -w -s -X github.com/v2rayA/v2rayA/conf.Version=%{version}
+export GO_BUILDTAGS="with_gvisor"
+%gobuild -o ../v2raya
 
 %install
 %gopkginstall

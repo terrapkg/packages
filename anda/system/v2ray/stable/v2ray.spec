@@ -31,7 +31,7 @@ BuildRequires:  go go-rpm-macros go-srpm-macros anda-srpm-macros
 %build
 export CGO_ENABLED=0
 %define gomodulesmode GO111MODULE=on
-%gobuild -o v2ray -trimpath -ldflags "-s -w -buildid=" ./main
+%gobuild -o v2ray ./main
 
 
 %install
