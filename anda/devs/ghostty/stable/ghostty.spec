@@ -155,7 +155,7 @@ This package contains the libghostty-vt libraries, the first of many linghostty 
 Summary:        Development files for libghostty-vt
 Requires:       libghostty-vt = %{evr}
 
-%description -n libghostty-vt-nightly-devel
+%description -n libghostty-vt-devel
 This package contains the libraries and header files that are needed for developing with libghostty-vt.
 
 %prep
