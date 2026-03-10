@@ -1,5 +1,3 @@
-%global debug_package %nil
-
 %global commit  6bb4a68f2f1323998c84754ba56341f8e31efc26
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global ver 20260309041918
@@ -12,6 +10,7 @@ Summary:        Community managed domain list (geosite.dat) for V2Ray
 License:        MIT
 Packager:       veuxit <erroor234@gmail.com>
 URL:            https://github.com/v2fly/domain-list-community
+BuildArch:      noarch
 
 Source0:        %{url}/archive/%{commit}/%{ver}-%{commit}.tar.gz
 

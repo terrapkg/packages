@@ -1,4 +1,3 @@
-%global debug_package %nil
 %global commit  7a6498ae1cacdc6ec3356ad29d9566d7f0242f56
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global ver 202603050223
@@ -14,6 +13,7 @@ Summary:        GeoIP for V2Ray
 License:        CC-BY-SA-4.0
 Packager:       veuxit <erroor234@gmail.com>
 URL:            https://github.com/v2fly/geoip
+BuildArch:      noarch
 
 Source0:        %{url}/archive/%{commit}/%{ver}-%{commit}.tar.gz
 Source1:        https://download.db-ip.com/free/dbip-country-lite-%year-%month.mmdb.gz
