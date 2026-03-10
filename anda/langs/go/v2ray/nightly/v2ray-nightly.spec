@@ -20,8 +20,6 @@ URL:            %{gourl}
 Source:         %{gosource}
 Conflicts:      v2ray
 
-Source0:        %{url}/archive/%{commit}/v2ray-core-%{commit}.tar.gz
-
 Requires:       v2ray-geoip v2ray-domain-list-community
 
 BuildRequires:  go go-rpm-macros go-srpm-macros anda-srpm-macros
