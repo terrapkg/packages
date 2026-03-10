@@ -9,6 +9,8 @@ Version:                %{ver}^%{commit_date}git.%{shortcommit}
 %global golicenses      LICENSE
 %global godocs          README.md 
 
+%gometa -f
+
 Name:           v2raya-nightly
 Release:        1%?dist
 Summary:        A web GUI client of Project V which supports VMess, VLESS, SS, SSR, Trojan, Tuic and Juicity protocols

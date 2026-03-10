@@ -25,7 +25,7 @@ BuildRequires:  go go-rpm-macros go-srpm-macros anda-srpm-macros nodejs yarnpkg 
 %gopkg
 
 %prep
-%goprep_online -Ae
+%goprep_online -A
 
 %build
 pushd gui
