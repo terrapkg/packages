@@ -4,6 +4,7 @@ Release:		2%?dist
 Summary:		Powerful build system for the JVM
 URL:			https://gradle.org/
 Source0:		https://github.com/gradle/gradle/archive/refs/tags/v%{version}.tar.gz
+Packager:		madonuko <mado@fyralabs.com>
 License:		Apache-2.0
 Requires:		java coreutils findutils sed which bash
 BuildRequires:	java-21-openjdk-devel asciidoc xmlto groovy unzip git
@@ -76,6 +77,8 @@ cp -r dist/* %{buildroot}%{_javadir}/%{name}/
 %license LICENSE
 %{_sysconfdir}/profile.d/gradle.sh
 %{_javadir}/%{name}/
+%exclude %{_javadir}/%{name}/docs
+%exclude %{_javadir}/%{name}/src
 %{_bindir}/%{name}
 
 %files doc
