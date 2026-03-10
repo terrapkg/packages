@@ -38,7 +38,7 @@ yarn --ignore-engines && OUTPUT_DIR=$(pwd)/../service/server/router/web yarn --i
 popd
 
 pushd service
-%define currentgoldflags -w -s -X github.com/v2rayA/v2rayA/conf.Version=%{version}
+%define currentgoldflags -X github.com/v2rayA/v2rayA/conf.Version=%{version}
 export GO_BUILDTAGS="with_gvisor"
 %gobuild -o ../v2raya
 

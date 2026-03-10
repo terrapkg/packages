@@ -34,7 +34,7 @@ popd
 
 pushd service
 %define gomodulesmode GO111MODULE=on
-%define currentgoldflags -w -s -X github.com/v2rayA/v2rayA/conf.Version=%{version}
+%define currentgoldflags -X github.com/v2rayA/v2rayA/conf.Version=%{version}
 export GO_BUILDTAGS="with_gvisor"
 %gobuild -o ../v2raya
 
