@@ -9,7 +9,7 @@
 
 Name:           %{base_name}-nightly
 Version:        %{ver}~tip^%{commit_date}git%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 %if 0%{?fedora} <= 41
 Epoch:          1
 %endif
@@ -185,7 +185,7 @@ Ghostty's terminfo. Needed for basic terminal function.
 Summary:        The libghostty-vt libraries
 
 %description -n libghostty-vt-nightly
-This package contains the libghostty-vt libraries, the first of many linghostty libaries in development.
+This package contains the libghostty-vt libraries, the first of many libghostty libaries in development.
 
 %package -n     libghostty-vt-nightly-devel
 Summary:        Development files for libghostty-vt
