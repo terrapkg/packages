@@ -54,6 +54,7 @@ install -Dm644 %{SOURCE2} -t %{buildroot}/%{_unitdir}
 install -Dm644 %{SOURCE3} %{buildroot}/%{_sysusersdir}/xray.conf
 install -Dm644 %{SOURCE4} %{buildroot}/usr/lib/tmpfiles.d/xray.conf
 
+
 %post
 %systemd_post xray.service
 
