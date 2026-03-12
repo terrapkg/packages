@@ -1,12 +1,13 @@
 Name:               xdg-terminal-exec-nautilus
 Version:            0.1.0
-Release:            2%?dist
+Release:            1%?dist
 Summary:            xdg-terminal-exec extension for nautilus-python
 License:            Apache-2.0
 Group:              System
 URL:                https://github.com/zirconium-dev/xdg-terminal-exec-nautilus
 Source0:            %{url}/archive/refs/tags/%{version}.tar.gz
 
+BuildArch:          noarch
 Requires:           nautilus-python
 Packager:           Tulip Blossom (tulilirockz@outlook.com)
 

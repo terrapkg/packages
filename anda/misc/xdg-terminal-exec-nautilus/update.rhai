@@ -1,1 +1,1 @@
-rpm.version(gh("https://github.com/zirconium-dev/xdg-terminal-exec-nautilus"));
+rpm.version(gh("zirconium-dev/xdg-terminal-exec-nautilus"));
