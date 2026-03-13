@@ -12,7 +12,7 @@ Requires:           nautilus-python
 Packager:           Tulip Blossom (tulilirockz@outlook.com)
 
 %description
-xdg-terminal-exec extension for nautilus-python
+%{summary}.
 
 %prep
 %autosetup -n xdg-terminal-exec-nautilus-%{version}
@@ -21,8 +21,6 @@ xdg-terminal-exec extension for nautilus-python
 
 %install
 install -Dpm0644 -t %{buildroot}%{_datadir}/nautilus-python/extensions/ ./xdg-terminal-exec-nautilus.py
-install -Dpm0644 -t %{buildroot}%{_datadir}/licenses/xdg-terminal-exec-nautilus/ ./LICENSE
-install -Dpm0644 -t %{buildroot}%{_datadir}/doc/xdg-terminal-exec-nautilus/ ./README.md
 
 %files
 %license LICENSE
@@ -30,5 +28,5 @@ install -Dpm0644 -t %{buildroot}%{_datadir}/doc/xdg-terminal-exec-nautilus/ ./RE
 %{_datadir}/nautilus-python/extensions/xdg-terminal-exec-nautilus.py
 
 %changelog
-* Thu Mar 12 2026 Tulip Blossom <tulilirockz@outlook.com>
+* Fri Mar 13 2026 Tulip Blossom <tulilirockz@outlook.com>
 - Initial commit
