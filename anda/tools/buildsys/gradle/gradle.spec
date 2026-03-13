@@ -1,9 +1,10 @@
 Name:			gradle
 Version:		9.4.0
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Powerful build system for the JVM
 URL:			https://gradle.org/
 Source0:		https://github.com/gradle/gradle/archive/refs/tags/v%{version}.tar.gz
+Packager:		madonuko <mado@fyralabs.com>
 License:		Apache-2.0
 Requires:		java coreutils findutils sed which bash
 BuildRequires:	java-21-openjdk-devel asciidoc xmlto groovy unzip git
@@ -69,17 +70,15 @@ install -m644 dist/init.d/*.* "%{buildroot}%{_javadir}/%{name}/init.d"
 mkdir -p "%{buildroot}/%{_bindir}"
 ln -s %{_javadir}/%{name}/bin/%{name} "%{buildroot}%{_bindir}/%{name}"
 
-install -d %{buildroot}%{_javadir}/%{name}/docs
-cp -r dist/docs/* %{buildroot}%{_javadir}/%{name}/docs
-
-install -d %{buildroot}%{_javadir}/%{name}/src
-cp -r dist/src/* %{buildroot}%{_javadir}/%{name}/src
+cp -r dist/* %{buildroot}%{_javadir}/%{name}/
 
 %files
 %doc README.md
 %license LICENSE
 %{_sysconfdir}/profile.d/gradle.sh
 %{_javadir}/%{name}/
+%exclude %{_javadir}/%{name}/docs
+%exclude %{_javadir}/%{name}/src
 %{_bindir}/%{name}
 
 %files doc
