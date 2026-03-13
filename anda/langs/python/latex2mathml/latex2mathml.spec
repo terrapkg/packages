@@ -17,6 +17,7 @@ BuildRequires:  python3-pip
 BuildRequires:  python3-poetry-core
 BuildRequires:  python3-installer
 BuildRequires:  python3-build
+BuildRequires:  python3-hatchling
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
