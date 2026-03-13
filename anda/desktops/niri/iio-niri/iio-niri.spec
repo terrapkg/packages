@@ -8,6 +8,7 @@ BuildRequires:  cargo-rpm-macros
 BuildRequires:  dbus-devel
 Requires:       iio-sensor-proxy
 LICENSE:        (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND GPL-3.0-or-later AND MIT OR Apache-2.0 AND (Unlicense OR MIT) 
+Packager:       Tulip Blossom <tulilirockz@outlook.com>
 
 %description
 %{summary}.
@@ -21,11 +22,10 @@ LICENSE:        (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND GPL-3.0-or-l
 
 %install
 %cargo_install
-install -Dpm0644 -t %{_datadir}/%{name}/ LICENSE
 
 %files
 %doc README.md
-%license LICENSE
+%license LICENSE.md
 %{_bindir}/%{name}
 
 %changelog
