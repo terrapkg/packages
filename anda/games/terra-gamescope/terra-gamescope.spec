@@ -20,9 +20,12 @@ Conflicts:      gamescope
 # Create stb.pc to satisfy dependency('stb')
 Source0:        stb.pc
 
-Patch0:         0001-cstdint.patch
+Patch0:         Use-system-stb-glm.patch
 
-Patch1:         Use-system-stb-glm.patch 
+Patch1:         0001-cstdint.patch
+
+# Fix build with libinput >= 1.27 / GCC 16 (-Werror=switch)
+Patch2:         0002-wlroots-libinput-switch-keypad-slide.patch
 
 BuildRequires:  cmake
 BuildRequires:  gcc
