@@ -2,18 +2,17 @@
 
 %global _default_patch_fuzz 2
 %global build_timestamp %(date +"%Y%m%d")
-#global gamescope_tag 3.15.11
-%global gamescope_commit 2f30679c80791844c29402d232462874fe23dd46
+%global gamescope_commit 0fd7f48010fd0cf9cb577d7e282facb8e611a288
 %define short_commit %(echo %{gamescope_commit} | cut -c1-8)
 
 Name:           terra-gamescope
 #Version:        100.%{gamescope_tag}
-Version:        134.%{short_commit}
+Version:        135.%{short_commit}
 Release:        1%?dist
 Summary:        Micro-compositor for video games on Wayland
 
 License:        BSD
-URL:            https://github.com/ValveSoftware/gamescope
+URL:            https://github.com/OpenGamingCollective/gamescope
 
 Provides:       gamescope = %{version}-%{release}
 Conflicts:      gamescope
@@ -21,68 +20,65 @@ Conflicts:      gamescope
 # Create stb.pc to satisfy dependency('stb')
 Source0:        stb.pc
 
-Patch0:         0001-cstdint.patch
+Patch0:         Use-system-stb-glm.patch
 
-# https://hhd.dev/
-# https://github.com/ChimeraOS/gamescope
-Patch1:         handheld.patch
+Patch1:         0001-cstdint.patch
 
-#Patch2:         https://github.com/ValveSoftware/gamescope/pull/1867.patch
+# Fix build with libinput >= 1.27 / GCC 16 (-Werror=switch)
+Patch2:         0002-wlroots-libinput-switch-keypad-slide.patch
 
-BuildRequires:  meson >= 0.54.0
-BuildRequires:  ninja-build
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
+BuildRequires:  git-core
 BuildRequires:  glm-devel
 BuildRequires:  google-benchmark-devel
-BuildRequires:  libXmu-devel
 BuildRequires:  libXcursor-devel
-BuildRequires:  libeis-devel
-BuildRequires:  pixman-devel
+BuildRequires:  libXmu-devel
+BuildRequires:  meson >= 0.54.0
+BuildRequires:  ninja-build
+BuildRequires:  pkgconfig(hwdata)
+BuildRequires:  pkgconfig(libavif)
+BuildRequires:  pkgconfig(libcap)
+BuildRequires:  pkgconfig(libdecor-0)
 BuildRequires:  pkgconfig(libdisplay-info)
-BuildRequires:  pkgconfig(pixman-1)
+BuildRequires:  pkgconfig(libdrm)
+BuildRequires:  pkgconfig(libeis-1.0)
+BuildRequires:  (pkgconfig(libliftoff) >= %{libliftoff_minver} with pkgconfig(libliftoff) < 0.6)
+BuildRequires:  pkgconfig(libpipewire-0.3)
+BuildRequires:  pkgconfig(libudev)
+BuildRequires:  pkgconfig(luajit)
+#BuildRequires:  pkgconfig(openvr) >= 2.7
+BuildRequires:  pkgconfig(sdl2)
+BuildRequires:  pkgconfig(vulkan)
+BuildRequires:  pkgconfig(wayland-protocols) >= 1.17
+BuildRequires:  pkgconfig(wayland-scanner)
+BuildRequires:  pkgconfig(wayland-server)
+BuildRequires:  pkgconfig(wlroots-0.18)
 BuildRequires:  pkgconfig(x11)
-BuildRequires:  pkgconfig(xdamage)
 BuildRequires:  pkgconfig(xcomposite)
-BuildRequires:  pkgconfig(xrender)
+BuildRequires:  pkgconfig(xdamage)
 BuildRequires:  pkgconfig(xext)
 BuildRequires:  pkgconfig(xfixes)
-BuildRequires:  pkgconfig(xxf86vm)
-BuildRequires:  pkgconfig(xtst)
-BuildRequires:  pkgconfig(xres)
-BuildRequires:  pkgconfig(libdrm)
-BuildRequires:  pkgconfig(vulkan)
-BuildRequires:  pkgconfig(wayland-scanner)
-BuildRequires:  pkgconfig(wayland-server) >= 1.23.0
-BuildRequires:  pkgconfig(wayland-protocols) >= 1.17
 BuildRequires:  pkgconfig(xkbcommon)
-BuildRequires:  pkgconfig(sdl2)
-BuildRequires:  pkgconfig(libpipewire-0.3)
-BuildRequires:  pkgconfig(libavif)
-BuildRequires:  pkgconfig(wlroots)
-BuildRequires:  pkgconfig(libliftoff)
-BuildRequires:  pkgconfig(libcap)
-BuildRequires:  pkgconfig(hwdata)
-BuildRequires:  pkgconfig(lcms2)
-BuildRequires:  pkgconfig(luajit)
+BuildRequires:  pkgconfig(xrender)
+BuildRequires:  pkgconfig(xres)
+BuildRequires:  pkgconfig(xtst)
+BuildRequires:  pkgconfig(xxf86vm)
 BuildRequires:  spirv-headers-devel
 # Enforce the the minimum EVR to contain fixes for all of:
 # CVE-2021-28021 CVE-2021-42715 CVE-2021-42716 CVE-2022-28041 CVE-2023-43898
 # CVE-2023-45661 CVE-2023-45662 CVE-2023-45663 CVE-2023-45664 CVE-2023-45666
-# CVE-2023-45667
-BuildRequires:  stb_image-devel >= 2.28^20231011gitbeebb24-12
+# CVE-2023-45667, upstream issues #1860, #1861
+BuildRequires:  stb_image-devel >= 2.30^20251025gitf1c79c0-2
 # Header-only library: -static is for tracking per guidelines
 BuildRequires:  stb_image-static
 BuildRequires:  stb_image_resize-devel
 BuildRequires:  stb_image_resize-static
 BuildRequires:  stb_image_write-devel
 BuildRequires:  stb_image_write-static
+#BuildRequires:  vkroots-devel
 BuildRequires:  /usr/bin/glslangValidator
-BuildRequires:  libdecor-devel
-BuildRequires:  libXdamage-devel
-BuildRequires:  xorg-x11-server-Xwayland-devel
-BuildRequires:  git
 
 # libliftoff hasn't bumped soname, but API/ABI has changed for 0.2.0 release
 Requires:       libliftoff%{?_isa} >= %{libliftoff_minver}
@@ -93,6 +89,17 @@ Requires:       terra-gamescope-libs(x86-32) = %{version}-%{release}
 %endif
 Recommends:     mesa-dri-drivers
 Recommends:     mesa-vulkan-drivers
+
+# submodule deps
+BuildRequires:  pkgconfig(lcms2)
+BuildRequires:  pkgconfig(libinput) >= 1.21.0
+BuildRequires:  pkgconfig(libseat)
+BuildRequires:  pkgconfig(x11-xcb)
+BuildRequires:  pkgconfig(xcb)
+BuildRequires:  pkgconfig(xcb-errors)
+BuildRequires:  pkgconfig(xcb-icccm)
+BuildRequires:  pkgconfig(xcb-renderutil)
+BuildRequires:  pkgconfig(xwayland)
 
 %description
 %{name} is the micro-compositor optimized for running video games on Wayland.
@@ -140,5 +147,8 @@ export PKG_CONFIG_PATH=pkgconfig
 %{_datadir}/vulkan/implicit_layer.d/VkLayer_FROG_gamescope_wsi.*.json
 
 %changelog
+* Fri Mar 13 2026 Kyle Gospodnetich <me@kylegospodneti.ch>
+- Switch to OGC sources
+
 * Thu Jan 2 2025 Owen-sz <owen@fyralabs.com>
 - Package gamescope, port from Bazzite
