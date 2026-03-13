@@ -9,7 +9,7 @@
 Name:           terra-gamescope
 #Version:        100.%{gamescope_tag}
 Version:        134.%{short_commit}
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Micro-compositor for video games on Wayland
 
 License:        BSD
@@ -27,7 +27,10 @@ Patch0:         0001-cstdint.patch
 # https://github.com/ChimeraOS/gamescope
 Patch1:         handheld.patch
 
-#Patch2:         https://github.com/ValveSoftware/gamescope/pull/1867.patch
+# Fix build with libinput >= 1.27 / GCC 16 (-Werror=switch)
+Patch2:         0002-wlroots-libinput-switch-keypad-slide.patch
+
+#Patch3:         https://github.com/ValveSoftware/gamescope/pull/1867.patch
 
 BuildRequires:  meson >= 0.54.0
 BuildRequires:  ninja-build
