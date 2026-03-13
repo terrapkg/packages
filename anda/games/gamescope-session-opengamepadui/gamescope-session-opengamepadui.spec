@@ -4,7 +4,7 @@
 
 Name:           gamescope-session-opengamepadui
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Gamescope session for OpenGamepadUI
 License:        GPL-3.0-only
 URL:            https://github.com/OpenGamingCollective/gamescope-session-opengamepadui
