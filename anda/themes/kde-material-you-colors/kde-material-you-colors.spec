@@ -4,12 +4,13 @@
 
 Name:           kde-material-you-colors
 Version:        2.0.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Automatic Material You Colors Generator from your wallpaper for the Plasma Desktop
 License:        GPL-3.0-only
 URL:            https://github.com/luisbocanegra/%{name}
 # The PyPi source is a more generic install and lacks the Plasmoid config
 Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
+Patch0:         %{url}/commit/4888f8570b1aa12e3ab7aee51ab72ad7a7f35b95.patch
 BuildRequires:  anda-srpm-macros
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
