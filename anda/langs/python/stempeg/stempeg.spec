@@ -2,7 +2,7 @@
 %global _desc Python I/O for STEM audio files.
 
 Name:			python-%{pypi_name}
-Version:		0.2.4
+Version:		0.2.6
 Release:		1%?dist
 Summary:		Python I/O for STEM audio files
 License:		MIT

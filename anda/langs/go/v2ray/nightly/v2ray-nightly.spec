@@ -1,7 +1,7 @@
-%global commit  9cf6a45519995778b8b50a63cf0b263e35b70419
+%global commit  e93e5ac7d935ce70b18a806ae67f27d703b5fca2
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global ver 5.44.1
-%global commit_date 20260228
+%global ver v5.46.0
+%global commit_date 20260312
 
 %global goipath         github.com/v2fly/v2ray-core
 Version:                %{ver}^%{commit_date}git.%{shortcommit}
@@ -12,7 +12,7 @@ Version:                %{ver}^%{commit_date}git.%{shortcommit}
 %gometa -f
 
 Name:           v2ray-nightly
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        A platform for building proxies to bypass network restrictions
 License:        MIT
 Packager:       veuxit <erroor234@gmail.com>

@@ -1,14 +1,14 @@
 # https://github.com/nats-io/natscli
 %global goipath         github.com/nats-io/natscli
-%global commit          2ceb7ec4c190ea026bb4e9cfe49f489c67eb515d
-%global commit_date     20260214
+%global commit          b1c492425d41ed17c6245b3be393ef30d8b6cbaf
+%global commit_date     20260314
 %global shortcommit     %{sub %{commit} 1 7}
 
 %gometa -f
 
 Name:           natscli
 Version:        0~%{commit_date}git.%shortcommit
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        The NATS Command Line Interface
 
 License:        Apache-2.0

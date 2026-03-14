@@ -18,8 +18,8 @@
 
 
 Name:       wine-staging
-Version:    11.2
-Release:    1%?dist
+Version:    11.4
+Release:    1%{?dist}
 Epoch:      1
 Summary:    WINE Is Not An Emulator - runs MS Windows programs
 License:    LGPL-2.0-or-later

@@ -5,8 +5,8 @@
 %global crate anda
 
 Name:           rust-anda
-Version:        0.5.0
-Release:        1%?dist
+Version:        0.5.1
+Release:        1%{?dist}
 Summary:        Andaman Build toolchain
 
 License:        MIT

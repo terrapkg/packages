@@ -5,7 +5,7 @@
 %global cmd_name soft
 
 %global goipath github.com/charmbracelet/soft-serve
-Version:        0.11.4
+Version:        0.11.5
 
 %gometa -f
 

@@ -1,7 +1,7 @@
-%global commit  acb06e831bb7bf0e4b8346c933a14cdaab305a0d
+%global commit  e86c36557241dc43989887a6006d8464d234fd27
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global ver 26.2.2
-%global commit_date 20260307
+%global ver v26.2.6
+%global commit_date 20260312
 
 %global goipath         github.com/XTLS/Xray-core
 Version:                %{ver}^%{commit_date}git.%{shortcommit}
@@ -10,7 +10,7 @@ Version:                %{ver}^%{commit_date}git.%{shortcommit}
 %global godocs          README.md SECURITY.md CODE_OF_CONDUCT.md
 
 Name:           xray-nightly
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        High-performance, open-source network proxy engine and toolset designed to bypass internet censorship and enhance privacy
 License:        MPL-2.0
 Packager:       veuxit <erroor234@gmail.com>

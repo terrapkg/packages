@@ -1,5 +1,5 @@
 Name:          mdBook
-Version:       0.5.0
+Version:       0.5.2
 Release:       1%?dist
 Summary:       Create a book from markdown files
 License:       MPL-2.0 AND MIT AND (Apache-2.0 OR MIT) AND Apache-2.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND CC0-1.0 AND ISC AND (MIT OR Zlib OR Apache-2.0) AND Unicode-3.0 AND (Apache-2.0 OR BSL-1.0) AND (MIT AND BSD-3-Clause)

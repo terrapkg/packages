@@ -1,13 +1,13 @@
 %global csrc_commit 561b417c65791cd8356b5f73620914ceff845d10
-%global commit 97fed258ed3287a17c6b798fd7ffe16508bd69d9
+%global commit 1a1586a5fb891aeb522a490ccacde3fc02753541
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global ver 2.3.1
-%global commit_date 20260214
+%global commit_date 20260314
 %global debug_package %nil
 
 Name:			nim-nightly
 Version:		%ver^%commit_date.%shortcommit
-Release:		1%?dist
+Release:		1%{?dist}
 Summary:		Imperative, multi-paradigm, compiled programming language
 License:		MIT and BSD
 URL:			https://nim-lang.org

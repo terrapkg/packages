@@ -1,7 +1,7 @@
 %global pypi_name app-bricks-py
 %global _desc The code of the Arduino App Lab Bricks
 
-%global ver release/0.8.0rc2
+%global ver release/0.8.0rc3
 %global sanitized_ver %(echo %{ver} | sed 's|release/||')
 
 Name:			%{pypi_name}
