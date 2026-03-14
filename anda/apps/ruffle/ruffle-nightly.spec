@@ -9,7 +9,7 @@ language. Ruffle targets both the desktop and the web using WebAssembly.}
 
 Name:           ruffle-nightly
 Version:        %goodver
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A Flash Player emulator written in Rust
 License:        Apache-2.0 OR MIT
 URL:            https://ruffle.rs/
