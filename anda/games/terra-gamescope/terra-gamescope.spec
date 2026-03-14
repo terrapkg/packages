@@ -141,6 +141,7 @@ export PKG_CONFIG_PATH=pkgconfig
 %{_bindir}/gamescopectl
 %{_bindir}/gamescopestream
 %{_bindir}/gamescopereaper
+%{_bindir}/gamescope-type
 %{_datadir}/gamescope/*
 
 %files libs
