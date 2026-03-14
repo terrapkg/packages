@@ -41,6 +41,7 @@ Summary:        %{summary}
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE
+%{_bindir}/whey
 
 %changelog
 * Sat Mar 14 2026 Owen Zimmerman <owen@fyralabs.com>
