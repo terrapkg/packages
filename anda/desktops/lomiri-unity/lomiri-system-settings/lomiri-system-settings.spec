@@ -4,7 +4,7 @@
 
 Name:       lomiri-system-settings
 Version:    1.3.2
-Release:    1%?dist
+Release:    2%?dist
 Summary:    The system settings application for Lomiri
 License:    GPLv3
 URL:        https://gitlab.com/ubports/development/core/lomiri-system-settings
