@@ -1,5 +1,5 @@
 %global goipath         github.com/v2rayA/v2rayA
-Version:                2.2.7.5
+Version:                2.3.3
 
 %global golicenses      LICENSE
 %global godocs          README.md 
@@ -7,7 +7,7 @@ Version:                2.2.7.5
 %gometa -f
 
 Name:           v2raya
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        A web GUI client of Project V which supports VMess, VLESS, SS, SSR, Trojan, Tuic and Juicity protocols
 License:        AGPL-3.0-only
 URL:            %{gourl}
