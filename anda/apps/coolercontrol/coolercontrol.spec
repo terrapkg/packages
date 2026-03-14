@@ -9,7 +9,7 @@ for background device management, as well as a GUI to expertly customize your se
 
 Name:           coolercontrol
 Version:        4.0.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Cooling device control for Linux
 ExclusiveArch:  x86_64 aarch64
 License:        GPL-3.0-or-later
