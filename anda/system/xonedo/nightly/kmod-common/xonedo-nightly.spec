@@ -1,7 +1,8 @@
 %global commit 982cbcb019ae4d2bee5ae69385223409ee555c88
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global commitdate 20260314
-%global ver 0.5.7
+%global relver 0.5.7-ogc1
+%global ver %(echo %{relver} | sed 's/-/^/g')
 %global modulename xonedo
 %global _dracutconfdir %{_prefix}/lib/dracut/dracut.conf.d
 %global firmware_hash0 080ce4091e53a4ef3e5fe29939f51fd91f46d6a88be6d67eb6e99a5723b3a223
