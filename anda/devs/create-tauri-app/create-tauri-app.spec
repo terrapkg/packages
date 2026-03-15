@@ -2,7 +2,7 @@
 
 Name:           rust-create-tauri-app
 Version:        4.7.0
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Rapidly scaffold out a new tauri app project
 License:        Apache-2.0 OR MIT
 URL:            https://crates.io/crates/create-tauri-app
@@ -11,6 +11,7 @@ BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  mold
 Suggests:       tauri
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 %{summary}.
@@ -44,4 +45,5 @@ install -Dpm755 target/rpm/cargo-%{crate} %{buildroot}%{_bindir}/%{crate}
 %{_bindir}/%{crate}
 
 %changelog
-%autochangelog
+* Fri Dec 26 2025 Gilver E. <roachy@fyralabs.com> - 4.6.2-1
+- Initial package

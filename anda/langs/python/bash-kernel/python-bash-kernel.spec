@@ -5,7 +5,7 @@
 
 Name:           python-%{real_name}
 Version:        0.10.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Bash kernel for Jupyter
 License:        BSD-3-Clause
 URL:            https://github.com/takluyver/bash_kernel
@@ -21,7 +21,7 @@ BuildRequires:  %{py3_dist docutils}
 # See https://fedoraproject.org/wiki/Changes/EncourageI686LeafRemoval
 ExcludeArch:    %{ix86}
 BuildArch:      noarch
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 This package contains a Jupyter kernel for bash.

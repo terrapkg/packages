@@ -4,7 +4,7 @@
 
 # https://github.com/zrepl/zrepl
 %global goipath         github.com/zrepl/zrepl
-Version:                0.6.1
+Version:                0.7.0
 
 %gometa -f
 

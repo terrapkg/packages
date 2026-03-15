@@ -4,14 +4,14 @@
 
 Name:          pokemon-colorscripts
 Version:       0^%{commit_date}git.%{shortcommit}
-Release:       1%{?dist}
+Release:       2%{?dist}
 License:       MIT
 Summary:       CLI utility to print out images of Pokémon to the terminal
 URL:           https://gitlab.com/phoneybadger/%{name}
 Source0:       %{url}/-/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
 BuildArch:     noarch
 Requires:      python3
-Packager:      Gilver E. <rockgrub@disroot.org>
+Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description
 A utility that prints unicode sprites of images of Pokémon to the terminal.

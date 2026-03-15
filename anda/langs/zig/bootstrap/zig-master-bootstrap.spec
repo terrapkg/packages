@@ -7,7 +7,7 @@
 %define         llvm_compat 20
 %endif
 %global         llvm_version 20.0.0
-%global         ver 0.16.0-dev.2135+7c0b42ba0
+%global         ver 0.16.0-dev.2905+5d71e3051
 %bcond bootstrap 1
 %bcond docs      %{without bootstrap}
 %bcond test      1
@@ -40,7 +40,7 @@
 
 Name:           zig-master
 Version:        %(echo %{ver} | sed 's/-/~/g')
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Bootstrapped build of Zig from master.
 License:        MIT AND NCSA AND LGPL-2.1-or-later AND LGPL-2.1-or-later WITH GCC-exception-2.0 AND GPL-2.0-or-later AND GPL-2.0-or-later WITH GCC-exception-2.0 AND BSD-3-Clause AND Inner-Net-2.0 AND ISC AND LicenseRef-Fedora-Public-Domain AND GFDL-1.1-or-later AND ZPL-2.1
 URL:            https://ziglang.org
@@ -88,7 +88,7 @@ Provides:       bundled(musl) = 1.2.5
 Provides:       bundled(wasi-libc) = d03829489904d38c624f6de9983190f1e5e7c9c5
 Conflicts:      zig
 ExclusiveArch:  %{zig_arches}
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 Zig is an open source alternative to C. 

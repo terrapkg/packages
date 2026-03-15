@@ -1,1 +1,0 @@
-rpm.version(gh("https://github.com/quickshell-mirror/quickshell"));

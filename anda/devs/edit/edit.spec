@@ -8,7 +8,7 @@ An editor that pays homage to the classic MS-DOS Editor, but with a modern inter
 
 Name:          %{crate}
 Version:       1.2.1
-Release:       2%?dist
+Release:       4%{?dist}
 Summary:       A simple editor for simple needs.
 SourceLicense: MIT
 License:       MIT AND (MIT OR Apache-2.0)
@@ -21,7 +21,7 @@ BuildRequires: cargo-rpm-macros
 BuildRequires: rustup
 %endif
 BuildRequires: mold
-Packager:      Gilver E. <rockgrub@disroot.org>
+Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description %_description
 
@@ -58,4 +58,3 @@ install -Dm644 assets/%{appid}.desktop %{buildroot}%{_datadir}/applications/%{ap
 %changelog
 * Thu May 22 2025 Gilver E. <rockgrub@disroot.org> - 1.0.0-1
 - Initial package
-

@@ -6,8 +6,8 @@
 %global crate deno
 
 Name:           rust-deno
-Version:        2.6.4
-Release:        1%?dist
+Version:        2.7.5
+Release:        1%{?dist}
 Summary:        Deno executable
 
 License:        MIT
@@ -62,7 +62,7 @@ cp %{S:2} gcc
 
 
 %global __cc %_builddir/%buildsubdir/gcc
-sed '/\[env\]/a CC="%__cc"' -i .cargo/config
+%dnl sed '/\[env\]/a CC="%__cc"' -i .cargo/config
 
 %build
 %{cargo_license_summary_online}

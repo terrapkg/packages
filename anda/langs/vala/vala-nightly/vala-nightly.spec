@@ -3,16 +3,16 @@
 %global priority 90
 
 %global real_name vala
-%global commit d680994c54dd34b8bd3bd808f0023be19ea647da
+%global commit f50a83eece8b92acf64818ba8c7d743818c1145b
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global repo https://gitlab.gnome.org/GNOME/%{real_name}.git
 
-%global commit_date 20250903
+%global commit_date 20260308
 %global snapshot_info %{commit_date}.%{shortcommit}
 
 Name:           vala-nightly
 Version:        0.58.0^%{snapshot_info}
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        A modern programming language for GNOME
 
 # Most files are LGPLv2.1+, curses.vapi is 2-clause BSD

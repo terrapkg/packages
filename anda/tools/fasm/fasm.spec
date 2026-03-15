@@ -2,7 +2,7 @@
 
 Name:           fasm
 Release:        1%?dist
-Version:        1.73.34
+Version:        1.73.35
 Summary:        Fast assembler for the x86 and x86-64 architectures
 License:        BSD-2-Clause
 URL:            https://flatassembler.net

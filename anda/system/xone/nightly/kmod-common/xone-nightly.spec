@@ -1,7 +1,7 @@
-%global commit 17d9b6a8939085d6e13b8c3ad684d28ca3166a02
+%global commit f2aa9fe01103d7600553b505b298ff0bd47ff280
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20251222
-%global ver 0.5.1
+%global commitdate 20260314
+%global ver 0.5.7
 %global modulename xone
 %global _dracutconfdir %{_prefix}/lib/dracut/dracut.conf.d
 %global firmware_hash0 080ce4091e53a4ef3e5fe29939f51fd91f46d6a88be6d67eb6e99a5723b3a223
@@ -11,7 +11,7 @@
 
 Name:           xone-nightly
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        1%?dist
+Release:        1%{?dist}
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Epoch:          1
 %endif
@@ -38,7 +38,7 @@ Conflicts:      %{modulename}
 Conflicts:      xow <= 0.5
 Obsoletes:      xow <= 0.5
 BuildArch:      noarch
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 Linux kernel driver for Xbox One and Xbox Series X|S accessories common files.

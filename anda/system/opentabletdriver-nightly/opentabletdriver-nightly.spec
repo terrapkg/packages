@@ -1,6 +1,6 @@
-%global commit 32ec33bc41abdea3b879a9cc29994c9e62b54f79
+%global commit e04f93672bc22e4dc6a972fe6f367c261b9fb6d8
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260111
+%global commit_date 20260314
 %global ver 0.6.6.2
 
 # We aren't using Mono but RPM expected Mono
@@ -11,7 +11,7 @@
 
 Name:           opentabletdriver-nightly
 Version:        %ver^%commit_date.git~%shortcommit
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Open source, cross-platform, user-mode tablet driver
 License:        LGPL-3.0-or-later
 Conflicts:      opentabletdriver

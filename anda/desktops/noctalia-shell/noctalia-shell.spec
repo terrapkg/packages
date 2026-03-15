@@ -1,19 +1,18 @@
 %global debug_package %{nil}
 
 Name:           noctalia-shell
-Version:		4.0.0
-Release:        1%?dist
+Version:		4.6.7
+Release:        1%{?dist}
 Summary:        A Quickshell-based custom shell setup
 
 License:        MIT
 URL:            https://github.com/noctalia-dev/noctalia-shell
-Source0:        https://github.com/noctalia-dev/noctalia-shell/releases/latest/download/noctalia-latest.tar.gz
+Source0:        https://github.com/noctalia-dev/noctalia-shell/releases/download/v%{version}/noctalia-v%{version}.tar.gz
 
 Requires:	    brightnessctl
 Requires:    	dejavu-sans-fonts
-Requires:    	gpu-screen-recorder
 Requires:	    qt6-qtmultimedia
-Requires:       quickshell
+Requires:       noctalia-qs
 Requires:       xdg-desktop-portal
 
 Recommends: 	cava
@@ -22,6 +21,7 @@ Recommends:	    ddcutil
 Recommends:	    matugen
 Recommends:	    power-profiles-daemon
 Recommends:	    wlsunset
+Recommends:    	gpu-screen-recorder
 
 Packager:       Willow Reed <willow@willowidk.dev>
 
@@ -43,5 +43,11 @@ cp -r ./* %{buildroot}/etc/xdg/quickshell/noctalia-shell/
 %{_sysconfdir}/xdg/quickshell/noctalia-shell/
 
 %changelog
+* Mon Mar 09 2026 Willow C Reed <willow@willowidk.dev>
+- switch gpu-screen-recorder to be recommended as it's a plugin and not required anymore. also switched source to be based on version.
+
+* Fri Feb 27 2026 Willow C Reed <willow@willowidk.dev>
+- Change required quickshell to Noctalia's version
+
 * Fri Jan 02 2026 Willow Reed <willow@willowidk.dev>
 - Initial commit

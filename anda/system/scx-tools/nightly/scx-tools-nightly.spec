@@ -1,14 +1,14 @@
-%global commit 122cdb289d09fc960ba7e24dc6bec10326b424e9
+%global commit 6573b6284df3f6c8faf29c3a446abec1ecdf7966
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20251209
-%global ver 1.0.19
+%global commitdate 20260312
+%global ver 1.1.0
 %global appid com.sched_ext.scx
 %global developer "sched-ext Contributors"
 %global org "com.sched_ext"
 
 Name:           scx-tools-nightly
 Version:        %{ver}^%{commitdate}.git.%{shortcommit}
-Release:        2%?dist
+Release:        1%{?dist}
 Summary:        Sched_ext Tools
 License:        ((MIT OR Apache-2.0) AND Unicode-3.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND GPL-2.0-only AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0) AND MIT AND MPL-2.0 AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT)
 SourceLicense:  GPL-2.0-only
@@ -34,7 +34,7 @@ Suggests:       scx-scheds-nightly
 Obsoletes:      scxctl <= 0.3.4
 Provides:       scxctl = %{evr}
 Conflicts:      scx-tools
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 scx_loader: A D-Bus interface for managing sched_ext schedulers

@@ -1,6 +1,6 @@
 # https://github.com/arduino/arduino-cli
 %global goipath github.com/arduino/arduino-cli
-Version:        1.4.0
+Version:        1.4.1
 
 %gometa -f
 

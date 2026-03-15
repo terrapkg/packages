@@ -1,7 +1,7 @@
 # RPCS3 builds often break with GCC
 %global toolchain clang
 # Define which LLVM/Clang version RPCS3 needs
-%if 0%{?fedora} >= 45
+%if 0%{?fedora} >= 46
 %global llvm_major 21
 %global __cc clang-%{llvm_major}
 %global __cxx clang++-%{llvm_major}
@@ -9,12 +9,12 @@
 # GLIBCXX_ASSERTIONS is known to break RPCS3
 %global build_cflags %(echo "%{__build_flags_lang_c}" | sed 's|-Wp,-D_GLIBCXX_ASSERTIONS ||g') %{?_distro_extra_cflags}
 %global build_cxxflags %(echo "%{__build_flags_lang_cxx}" | sed 's|-Wp,-D_GLIBCXX_ASSERTIONS ||g') %{?_distro_extra_cflags}
-%global commit cd6dfc82a27844860d3596f5e031214ef354d849
-%global ver 0.0.39-18668
+%global commit b734ceb2e7ad279567bd2fad88c8e778f27264e9
+%global ver 0.0.40-18948
 
 Name:           rpcs3
 Version:        %(echo %{ver} | sed 's/-/^/g')
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        PlayStation 3 emulator and debugger
 License:        GPL-2.0-only
 URL:            https://github.com/RPCS3/rpcs3

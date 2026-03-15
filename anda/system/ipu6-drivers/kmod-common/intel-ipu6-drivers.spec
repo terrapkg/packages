@@ -1,7 +1,7 @@
 %global debug_package %{nil}
-%global commit 9766e218112f4173be9b0f06dfae27cb40c54f40
+%global commit da921f79f673d816b99c1f974dfc895e8ede3f64
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20251113
+%global commit_date 20260303
 # Actual "release" version, currently unused as the release versions are back and forth on if on if they use 1.0.0 or 1.0.1
 # Use this if they ever stop doing that I guess
 %global ver 1.0.1
@@ -17,7 +17,7 @@ Requires:       ipu6-camera-bins
 Requires:       intel-ipu6-kmod = %{?epoch:%{epoch}:}%{version}
 Provides:       intel-ipu6-kmod-common = %{?epoch:%{epoch}:}%{version}-%{release}
 BuildArch:      noarch
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 Common files for the Intel IPU6 camera drivers.

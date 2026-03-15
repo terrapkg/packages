@@ -2,7 +2,7 @@
 
 Name:          neovim-default-editor
 # Version, release, and epoch are inherited from the editor package just like other default editors
-Version:       0.11.5
+Version:       0.11.6
 Release:       1%?dist
 Epoch: 0
 # Inherited from Neovim itself
@@ -19,7 +19,7 @@ Requires:      neovim
 # All default editor packages MUST provide this
 Provides:      system-default-editor
 BuildArch:     noarch
-Packager:      Gilver E. <rockgrub@disroot.org>
+Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description
 This package ensures the EDITOR shell variable
