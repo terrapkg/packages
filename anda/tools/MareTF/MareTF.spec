@@ -18,7 +18,6 @@ BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(vorbis)
 BuildRequires:  pkgconfig(zlib)
 BuildRequires:  cmake(Qt6LinguistTools)
-BuildRequires:  webkit2gtk4.1-devel
 BuildRequires:  ninja-build
 BuildRequires:  vulkan-headers
 
