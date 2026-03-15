@@ -62,13 +62,14 @@ Shadowplay-like screen recorder for Linux. Uses GPU acceleration to record in H.
 %files
 %license LICENSE
 %doc README.md
-%{_bindir}/gpu-screen-recorder
+%{_bindir}/%{name}
 %caps(cap_sys_admin+ep) %{_bindir}/gsr-kms-server
+%{_datadir}/%{name}/scripts/*.sh
 %{_includedir}/gsr/plugin.h
 %{_userunitdir}/%{name}.service
 %{_modprobedir}/gsr-nvidia.conf
 %{_mandir}/man1/gsr-kms-server.1*
-%{_mandir}/man1/gpu-screen-recorder.1*
+%{_mandir}/man1/%{name}.1*
 
 %changelog
 * Sun Mar 15 2026 Willow C Reed <terra@willowidk.dev>
