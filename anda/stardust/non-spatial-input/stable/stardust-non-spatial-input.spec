@@ -2,8 +2,8 @@
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-xr-non-spatial-input
-Version:        0.50.0
-Release:        2%?dist
+Version:        0.51.0
+Release:        1%{?dist}
 Epoch:          1
 Summary:        Tools you can easily snap together to get non-spatial input into Stardust XR
 URL:            https://github.com/StardustXR/non-spatial-input
