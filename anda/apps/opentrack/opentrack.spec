@@ -11,8 +11,8 @@ License:        ISC AND BSD-3-Clause AND BSD-2-Clause AND LGPL-2.1-only AND GPL-
 URL:            https://github.com/%{name}/%{name}
 Source0:        %{url}/archive/refs/tags/%{name}-%{version}.tar.gz
 Source1:        https://github.com/ValveSoftware/openvr/archive/refs/tags/v%{openvr_ver}.tar.gz
-Source2:        opentrack.desktop
-Source3:        com.github.opentrack.metainfo.xml
+Source2:        %{appid}.desktop
+Source3:        %{appid}.metainfo.xml
 
 Patch0:         fix-qt6-resolve.patch
 
