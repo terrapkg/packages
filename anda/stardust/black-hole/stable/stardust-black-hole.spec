@@ -2,8 +2,8 @@
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-xr-black-hole
-Version:        0.50.0
-Release:        2%?dist
+Version:        0.51.0
+Release:        1%{?dist}
 Epoch:          1
 Summary:        Spatial storage for Stardust XR
 URL:            https://github.com/StardustXR/black-hole

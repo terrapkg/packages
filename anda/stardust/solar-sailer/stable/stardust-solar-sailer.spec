@@ -2,8 +2,8 @@
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-xr-solar-sailer
-Version:        0.50.0
-Release:        2%?dist
+Version:        0.51.0
+Release:        1%{?dist}
 Summary:        Glide through space! This play space mover allows you to fly by dragging the space with momentum!
 URL:            https://github.com/StardustXR/solar-sailer
 Source0:        %url/archive/refs/tags/%version.tar.gz
