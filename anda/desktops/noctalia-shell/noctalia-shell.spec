@@ -2,7 +2,7 @@
 
 Name:           noctalia-shell
 Version:		4.6.7
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A Quickshell-based custom shell setup
 
 License:        MIT
