@@ -41,5 +41,5 @@ Summary:        %{summary}
 %license LICENSE
 
 %changelog
-* Wed Jan 07 2026 Owen Zimmerman <owen@fyralabs.com>
+* Sat Mar 14 2026 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit
