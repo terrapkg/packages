@@ -51,7 +51,7 @@ opentrack is a program for tracking user's head rotation and transmitting it to 
 %autosetup -n %{name}-%{name}-%{version} -p1
 tar -xf %{SOURCE1}
 
-# Copy the OpenVR license so we can include it in the RPM
+# Rename the OpenVR license so we can include it in the RPM
 cp openvr-%{openvr_ver}/LICENSE LICENSE-OpenVR
 
 mkdir -p external-include/include/oscpack/osc
@@ -83,6 +83,8 @@ ln -s /usr/lib/libOSCFaust.so external-include/lib/liboscpack.so
 mkdir -p %{buildroot}%{_libdir}/%{name}
 install -Dm755 openvr-%{openvr_ver}/bin/linux64/libopenvr_api.so %{buildroot}%{_libdir}/%{name}/
 
+install -Dm644 gui/images/opentrack.png %{buildroot}%{_hicolordir}/256x256/apps/opentrack.png
+
 %desktop_file_install %{S:2}
 
 %check
@@ -96,6 +98,7 @@ install -Dm755 openvr-%{openvr_ver}/bin/linux64/libopenvr_api.so %{buildroot}%{_
 %{_libdir}/%{name}/libopenvr_api.so
 %{_datadir}/%{name}/
 %{_datadir}/applications/%{name}.desktop
+%{_hicolordir}/256x256/apps/opentrack.png
 
 %changelog
 * Sun Mar 15 2026 Owen Zimmerman <owen@fyralabs.com> - 2026.1.0-1
