@@ -9,7 +9,7 @@ Summary:        Head tracking software for MS Windows, Linux, and Apple OSX
 License:        ISC and BSD-3-Clause AND BSD-2-Clause AND LGPL-2.1-only AND GPL-3.0-only AND LGPL-2.1-or-later AND MIT AND LGPL-3.0-or-later AND
 URL:            https://github.com/%{name}/%{name}
 Source0:        %{url}/archive/refs/tags/%{name}-%{version}.tar.gz
-%dnl Source1:        https://github.com/ValveSoftware/openvr/archive/refs/tags/v%{openvr_ver}.tar.gz
+Source1:        https://github.com/ValveSoftware/openvr/archive/refs/tags/v%{openvr_ver}.tar.gz
 Source2:        opentrack.desktop
 Patch0:         fix-qt6-resolve.patch
 
@@ -52,7 +52,7 @@ opentrack is a program for tracking user's head rotation and transmitting it to 
 tar -xf %{SOURCE1}
 
 # Copy the OpenVR license so we can include it in the RPM
-%dnl cp openvr-%{openvr_ver}/LICENSE LICENSE-OpenVR
+cp openvr-%{openvr_ver}/LICENSE LICENSE-OpenVR
 
 mkdir -p external-include/include/oscpack/osc
 mkdir -p external-include/lib
