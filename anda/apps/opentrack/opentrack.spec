@@ -16,7 +16,7 @@ Source3:        %{appid}.metainfo.xml
 
 Patch0:         fix-qt6-resolve.patch
 
-%dnl ExcludeArch:    %{ix86}
+ExcludeArch:    %{ix86}
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
