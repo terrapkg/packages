@@ -1,16 +1,19 @@
 %global debug_package %{nil}
 %global openvr_ver 2.12.14
+%global appid com.github.opentrack
 
 Name:           opentrack
 Version:        2026.1.0
 Release:        1%{?dist}
 Summary:        Head tracking software for MS Windows, Linux, and Apple OSX
 
-License:        ISC and BSD-3-Clause AND BSD-2-Clause AND LGPL-2.1-only AND GPL-3.0-only AND LGPL-2.1-or-later AND MIT AND LGPL-3.0-or-later AND
+License:        ISC AND BSD-3-Clause AND BSD-2-Clause AND LGPL-2.1-only AND GPL-3.0-only AND LGPL-2.1-or-later AND MIT AND LGPL-3.0-or-later
 URL:            https://github.com/%{name}/%{name}
 Source0:        %{url}/archive/refs/tags/%{name}-%{version}.tar.gz
 Source1:        https://github.com/ValveSoftware/openvr/archive/refs/tags/v%{openvr_ver}.tar.gz
 Source2:        opentrack.desktop
+Source3:        com.github.opentrack.metainfo.xml
+
 Patch0:         fix-qt6-resolve.patch
 
 ExcludeArch:    %{ix86}
@@ -87,6 +90,8 @@ install -Dm644 gui/images/opentrack.png %{buildroot}%{_hicolordir}/256x256/apps/
 
 %desktop_file_install %{S:2}
 
+%terra_appstream -o %{S:3}
+
 %check
 %desktop_file_validate %{buildroot}%{_appsdir}/%{appid}.desktop
 
@@ -97,8 +102,9 @@ install -Dm644 gui/images/opentrack.png %{buildroot}%{_hicolordir}/256x256/apps/
 %{_libexecdir}/%{name}/
 %{_libdir}/%{name}/libopenvr_api.so
 %{_datadir}/%{name}/
-%{_datadir}/applications/%{name}.desktop
+%{_datadir}/applications/%{appid}.desktop
 %{_hicolordir}/256x256/apps/opentrack.png
+%{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
 * Sun Mar 15 2026 Owen Zimmerman <owen@fyralabs.com> - 2026.1.0-1
