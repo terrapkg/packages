@@ -1,20 +1,19 @@
-%global commit e159faa800848989fff4465210496d05c0dc5dae
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260309
-%global ver 0.10
-%global debug_package %{nil}
 %global modulename xpadneo
 
 Name:           dkms-%{modulename}
-Version:        %{ver}^%{commitdate}git.%{shortcommit}
+Version:        0.10
 Release:        1%{?dist}
+%if 0%{?fedora} <= 45
+Epoch:          1
+%endif
 Summary:        Advanced Linux Driver for Xbox One Wireless Gamepad
-License:        GPL-3.0
+License:        GPL-2.0-only AND GPL-3.0-or-later
 URL:            https://atar-axis.github.io/%{modulename}
 Source0:        https://github.com/atar-axis/%{modulename}/archive/%{commit}.tar.gz#/%{modulename}-%{shortcommit}.tar.gz
 Source1:        %{name}.conf
 Source2:        no-weak-modules.conf
 BuildRequires:  sed
+Provides:       %{modulename}-kmod
 Requires:       bluez
 Requires:       bluez-tools
 Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
@@ -42,7 +41,7 @@ sed -i -e 's/$(VERSION)/v%{version}/g' hid-xpadneo/src/Makefile
 mkdir -p %{buildroot}%{_usrsrc}/%{modulename}-%{version}/
 cp -fr hid-xpadneo/src/* %{buildroot}%{_usrsrc}/%{modulename}-%{version}/
 
-%if 0%{?fedora}
+%if %{defined fedora}
 # Do not enable weak modules support in Fedora (no kABI):
 install -Dpm644 %{SOURCE2} %{buildroot}%{_sysconfdir}/dkms/%{modulename}.conf
 %endif
@@ -59,10 +58,10 @@ dkms remove -m %{modulename} -v %{version} -q --all --rpm_safe_upgrade || :
 
 %files
 %{_usrsrc}/%{modulename}-%{version}
-%if 0%{?fedora}
+%if %{defined fedora}
 %{_sysconfdir}/dkms/%{modulename}.conf
 %endif
 
 %changelog
-* Thu Feb 27 2025 Gilver E. <rockgrub@disroot.org>
-- Initial package
+* Sun Mar 15 2026 Gilver E. <roachy@fyralabs.com> - 1:0.10-1
+- Initial stable package

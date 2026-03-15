@@ -1,16 +1,15 @@
-%global commit e159faa800848989fff4465210496d05c0dc5dae
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260309
-%global ver 0.10
+%global appid io.github.xpadneo
 
 Name:           xpadneo
-Version:        %{ver}^%{commitdate}git.%{shortcommit}
+Version:        0.10
 Release:        1%{?dist}
+%if 0%{?fedora} <= 45
+Epoch:          1
+%endif
 Summary:        Advanced Linux Driver for Xbox One Wireless Gamepad common files
-License:        GPL-3.0
+License:        GPL-2.0-only AND GPL-3.0-or-later
 URL:            https://atar-axis.github.io/%{name}
 Source0:        https://github.com/atar-axis/%{name}/archive/%{commit}.tar.gz#/%{name}-%{shortcommit}.tar.gz
-Source1:        io.github.%{name}.metainfo.xml
 BuildRequires:  sed
 BuildRequires:  systemd-rpm-macros
 Requires:       (akmod-%{name} = %{?epoch:%{epoch}:}%{version} or dkms-%{name} = %{?epoch:%{epoch}:}%{version})
@@ -32,7 +31,7 @@ Akmods modules for the akmod-%{name} package.
  
 %prep
 %autosetup -p1 -n %{name}-%{commit}
-/usr/bin/sed -nE '/^BUILT_MODULE_NAME/{s@^.+"(.+)"@\1@; s|-|_|g; p}' hid-%{name}/dkms.conf.in > %{name}.conf
+%{__sed} -nE '/^BUILT_MODULE_NAME/{s@^.+"(.+)"@\1@; s|-|_|g; p}' hid-%{name}/dkms.conf.in > %{name}.conf
 
 %install
 # Aliases:
@@ -42,7 +41,7 @@ install -Dpm644 hid-%{name}/etc-modprobe.d/%{name}.conf -t %{buildroot}%{_modpro
 install -Dpm644 hid-%{name}/etc-udev-rules.d/*.rules -t %{buildroot}%{_udevrulesdir}/
 
 # Metadata
-install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/metainfo/io.github.%{name}.metainfo.xml
+install -Dm644 xpadneo.metainfo.xml %{buildroot}%{_datadir}/metainfo/%{appid}.metainfo.xml
 
 # Akmods modules
 install -Dm644 %{name}.conf -t %{buildroot}%{_modulesloaddir}
@@ -53,11 +52,11 @@ install -Dm644 %{name}.conf -t %{buildroot}%{_modulesloaddir}
 %{_modprobedir}/%{name}.conf
 %{_udevrulesdir}/60-%{name}.rules
 %{_udevrulesdir}/70-%{name}-disable-hidraw.rules
-%{_datadir}/metainfo/io.github.%{name}.metainfo.xml
+%{_datadir}/metainfo/%{appid}.metainfo.xml
 
 %files akmod-modules
 %{_modulesloaddir}/%{name}.conf
 
 %changelog
-* Fri Mar 07 2025 Gilver E. <rockgrub@disroot.org>
-- Package refactoring
+* Sun Mar 15 2026 Gilver E. <roachy@fyralabs.com> - 1:0.10-1
+- Initial stable package
