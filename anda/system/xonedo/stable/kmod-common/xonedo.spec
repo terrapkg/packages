@@ -3,10 +3,10 @@
 %global firmware_hash1 48084d9fa53b9bb04358f3bb127b7495dc8f7bb0b3ca1437bd24ef2b6eabdf66
 %global firmware_hash2 0023a7bae02974834500c665a281e25b1ba52c9226c84989f9084fa5ce591d9b
 %global firmware_hash3 e2710daf81e7b36d35985348f68a81d18bc537a2b0c508ffdfde6ac3eae1bad7
-%global ogcversion 1
+%global ver 0.5.7-ogc1
 
 Name:           xonedo
-Version:        0.5.7
+Version:        %(echo %{ver} | sed 's/-/^/g')
 Release:        1%?dist
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Epoch:          2
