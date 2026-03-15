@@ -16,7 +16,7 @@ Source3:        com.github.opentrack.metainfo.xml
 
 Patch0:         fix-qt6-resolve.patch
 
-ExcludeArch:    %{ix86}
+%dnl ExcludeArch:    %{ix86}
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
