@@ -14,6 +14,7 @@ BuildRequires:  pyproject-rpm-macros
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(pillow)
 BuildRequires:  python3dist(pip)
+BuildRequires:  python3dist(pybind11)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(rich)
 BuildRequires:  python3dist(setuptools)
