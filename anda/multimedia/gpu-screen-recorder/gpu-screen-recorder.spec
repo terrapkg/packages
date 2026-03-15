@@ -34,7 +34,7 @@ BuildRequires:  pkgconfig(libglvnd)
 Requires(post): libcap
 BuildRequires:  systemd-rpm-macros
 
-Packager:       Willow Reed <willow@willowidk.dev>
+Packager:       Willow Reed <terra@willowidk.dev>
 
 %description
 Shadowplay-like screen recorder for Linux. Uses GPU acceleration to record in H.264, HEVC, AV1, VP8, or VP9.
@@ -73,5 +73,5 @@ Shadowplay-like screen recorder for Linux. Uses GPU acceleration to record in H.
 %{_mandir}/man1/gpu-screen-recorder.1*
 
 %changelog
-* Fri Jan 02 2026 Willow Reed <willow@willowidk.dev>
+* Fri Jan 02 2026 Willow Reed <terra@willowidk.dev>
 - Initial commit
