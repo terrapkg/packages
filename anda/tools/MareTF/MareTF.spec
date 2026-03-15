@@ -15,11 +15,8 @@ BuildRequires:  cmake
 BuildRequires:  pkgconfig(freetype2)
 BuildRequires:  pkgconfig(flac)
 BuildRequires:  pkgconfig(gtk+-3.0)
-BuildRequires:  pkgconfig(libjpeg)
-BuildRequires:  pkgconfig(libpng)
 BuildRequires:  pkgconfig(vorbis)
 BuildRequires:  pkgconfig(zlib)
-BuildRequires:  pkgconfig(libcurl)
 BuildRequires:  cmake(Qt6LinguistTools)
 BuildRequires:  webkit2gtk4.1-devel
 BuildRequires:  ninja-build
