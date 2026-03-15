@@ -17,7 +17,6 @@ BuildRequires:  pkgconfig(freetype2)
 BuildRequires:  pkgconfig(flac)
 BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(jack)
-BuildRequires:  ladspa-devel
 BuildRequires:  pkgconfig(libjpeg)
 BuildRequires:  pkgconfig(libpng)
 BuildRequires:  pkgconfig(vorbis)
