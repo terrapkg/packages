@@ -1,5 +1,3 @@
-%global snapshot r1245.8e82100
-
 Name:           gpu-screen-recorder
 Version:        5.12.5
 Release:        2%?dist
@@ -9,7 +7,7 @@ License:        GPL-3.0-or-later
 
 URL:            https://git.dec05eba.com/%{name}/about
 
-Source:         https://dec05eba.com/snapshot/%{name}.git.%{snapshot}.tar.gz
+Source:         https://dec05eba.com/snapshot/%{name}.git.%{version}.tar.gz
 
 BuildRequires:  gcc
 BuildRequires:  (gcc-g++ or gcc-c++)
@@ -73,5 +71,8 @@ Shadowplay-like screen recorder for Linux. Uses GPU acceleration to record in H.
 %{_mandir}/man1/gpu-screen-recorder.1*
 
 %changelog
+* Sun Mar 15 2026 Willow C Reed <terra@willowidk.dev>
+- Fix package source
+
 * Fri Jan 02 2026 Willow Reed <terra@willowidk.dev>
 - Initial commit
