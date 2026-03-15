@@ -5,6 +5,7 @@ Summary:        Out-Of-Box-Experience (OOBE) and Welcome App
 SourceLicense:  GPL-3.0-or-later AND GPL-2.0-or-later
 License:        (0BSD OR MIT OR Apache-2.0) AND Apache-2.0 AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND MIT AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND Unicode-3.0 AND (Unlicense OR MIT) AND Zlib AND GPL-3.0-or-later AND GPL-2.0-or-later
 URL:            https://github.com/Ultramarine-Linux/taidan
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 Conflicts:      initial-setup
 Requires:       (glib2 or (/usr/bin/plasma-apply-colorscheme and kf6-kconfig))
 Requires:       shadow-utils
@@ -56,3 +57,7 @@ DESTDIR=%buildroot ./scripts/install.sh
 %_unitdir/taidan-initial-setup-reconfiguration.service
 %dir %_prefix/lib/taidan/
 %_prefix/lib/taidan/labwc/*
+
+%changelog
+* Sun Mar 15 2026 Tulip Blossom <tulilirockz@outlook.com>
+- Port manifest from Ultramarine repos to Terra
