@@ -10,6 +10,7 @@ License:            GPL-3.0-or-later
 URL:                https://github.com/andyholmes/valent
 Source0:            %{url}/archive/%{commit}/valent-%{commit}.tar.gz
 Source1:            https://gitlab.gnome.org/GNOME/libgnome-volume-control/-/archive/master/libgnome-volume-control-master.tar.gz
+Packager:           Tulip Blossom <tulilirockz@outlook.com>
 
 Provides:           bundled(gvc)
 BuildRequires:      desktop-file-utils
@@ -34,30 +35,17 @@ BuildRequires:      pkgconfig(tracker-sparql-3.0)
 %{summary}.
 
 %package devel
-Summary:           Development files for building against %{name}
-Requires:          %{name}%{?_isa} = %{version}-%{release}
-Requires:          evolution-data-server-devel
-Requires:          libphonenumber-devel
-Requires:          pkgconfig(glycin-2)
-Requires:          pkgconfig(glycin-gtk4-2)
-Requires:          pkgconfig(gnutls)
-Requires:          pkgconfig(gstreamer-1.0)
-Requires:          pkgconfig(json-glib-1.0)
-Requires:          pkgconfig(libadwaita-1)
-Requires:          pkgconfig(libpeas-2)
-Requires:          pkgconfig(libpipewire-0.3)
-Requires:          pkgconfig(libportal-gtk4)
-Requires:          pkgconfig(libpulse)
-Requires:          pkgconfig(tracker-sparql-3.0)
+%pkg_devel_files
+%{_datadir}/vala/vapi/libvalent-1.deps
+%{_datadir}/vala/vapi/libvalent-1.vapi
+%{_libdir}/libvalent-1.so.0
+%{_libdir}/libvalent-1.so.1.0.0
 
-%description devel
-Development files needed for building things which link against %{name}.
- 
 %package langpacks
 Summary:           Translations for %{name}
 BuildArch:         noarch
-Requires:          %{name} = %{version}-%{release}
- 
+Requires:          %{name} = %{evr}
+
 %description langpacks
 This package contains translations for %{name}.
 
@@ -79,14 +67,6 @@ mv subprojects/libgnome-volume-control* subprojects/gvc
 %files langpacks
 %{_datadir}/locale
 
-%files devel
-%{_datadir}/vala/vapi/libvalent-1.deps
-%{_datadir}/vala/vapi/libvalent-1.vapi
-%{_includedir}/libvalent-1
-%{_libdir}/libvalent-1.so
-%{_libdir}/libvalent-1.so.0
-%{_libdir}/libvalent-1.so.1.0.0
-%{_libdir}/pkgconfig/libvalent-1.pc
 
 %files
 %license LICENSE
