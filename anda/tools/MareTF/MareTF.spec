@@ -12,11 +12,9 @@ Provides:       maretf
 
 BuildRequires:  gcc-c++
 BuildRequires:  cmake
-BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(freetype2)
 BuildRequires:  pkgconfig(flac)
 BuildRequires:  pkgconfig(gtk+-3.0)
-BuildRequires:  pkgconfig(jack)
 BuildRequires:  pkgconfig(libjpeg)
 BuildRequires:  pkgconfig(libpng)
 BuildRequires:  pkgconfig(vorbis)
