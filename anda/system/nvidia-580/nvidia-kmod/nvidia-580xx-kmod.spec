@@ -1,12 +1,12 @@
 # Build only the akmod package and no kernel module packages:
 %define buildforkernels akmod
-%global modulename nvidia-580
+%global modulename nvidia-580xx
 
 %global debug_package %{nil}
 
 Name:           %{modulename}-kmod
-Version:        580.119.02
-Release:        1%?dist
+Version:        580.142
+Release:        1%{?dist}
 Summary:        NVIDIA display driver kernel module
 Epoch:          3
 License:        NVIDIA License
@@ -14,15 +14,17 @@ URL:            http://www.nvidia.com/object/unix.html
 ExclusiveArch:  x86_64 aarch64
 
 Source0:        http://download.nvidia.com/XFree86/Linux-%{_arch}/%{version}/NVIDIA-Linux-%{_arch}-%{version}.run
-Requires:       nvidia-580-kmod-common = %{?epoch:%{epoch}:}%{version}
+Patch0:         0001-Enable-atomic-kernel-modesetting-by-default.patch
+Requires:       nvidia-580xx-kmod-common = %{?epoch:%{epoch}:}%{version}
 Requires:       akmods
+Provides:       akmod-nvidia-580 = %{evr}
 
 
 # Get the needed BuildRequires (in parts depending on what we build for):
 BuildRequires:  kmodtool
 
 # kmodtool does its magic here:
-%{expand:%(kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
+%{expand:%(kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 
 %description
 The NVidia %{version} display driver kernel module for kernel %{kversion}.
@@ -35,7 +37,10 @@ kmodtool  --target %{_target_cpu}  --repo terra.fyralabs.com --kmodname %{module
 
 sh %{SOURCE0} -x --target %{real_name}-%{version}-%{_arch}
 %setup -T -D -n %{real_name}-%{version}-%{_arch}
+
+pushd kernel-open
 %autopatch -p1
+popd
 
 rm -f */dkms.conf
 

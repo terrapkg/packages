@@ -3,10 +3,11 @@
 # gsp_*.bin: ELF 64-bit LSB executable, UCB RISC-V
 %global _binaries_in_noarch_packages_terminate_build 0
 %global __brp_strip %{nil}
+%global modulename nvidia-580xx
 
-Name:           nvidia-580-kmod-common
+Name:           %{modulename}-kmod-common
 Version:        580.142
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Common file for NVIDIA's proprietary driver kernel modules
 Epoch:          3
 License:        NVIDIA License
@@ -25,11 +26,12 @@ Source21:       99-nvidia.conf
 BuildRequires:  systemd-rpm-macros
 
 Requires:       dracut
-Requires:       nvidia-modprobe-580
-Requires:       nvidia-driver-580 = %{?epoch:%{epoch}:}%{version}
-Requires:       nvidia-driver-580-libs = %{?epoch:%{epoch}:}%{version}
-Requires:       nvidia-580-kmod = %{?epoch:%{epoch}:}%{version}
-Provides:       nvidia-580-kmod-common = %{?epoch:%{epoch}:}%{version}
+Requires:       nvidia-modprobe-580xx
+Requires:       nvidia-driver-580xx = %{?epoch:%{epoch}:}%{version}
+Requires:       nvidia-driver-580xx-libs = %{?epoch:%{epoch}:}%{version}
+Requires:       %{modulename}-kmod = %{?epoch:%{epoch}:}%{version}
+Provides:       %{modulename}-kmod-common = %{?epoch:%{epoch}:}%{version}
+Provides:       nvidia-580-kmod-common = %{evr}
 Obsoletes:      cuda-nvidia-kmod-common < %{?epoch:%{epoch}:}%{version}
 
 %description

@@ -3,22 +3,25 @@
 # RPM inexplicably thinks this package deps on a version of libcrypto it does not?
 %global __requires_exclude (libcrypto\\.so\\.1\\.1.*)$
 %global debug_package %{nil}
-%global modulename nvidia
+%global modulename nvidia-580xx
 
-Name:           dkms-%{modulename}-580
-Version:        580.119.02
-Release:        1%?dist
+Name:           dkms-%{modulename}
+Version:        580.142
+Release:        1%{?dist}
 Summary:        NVIDIA display driver kernel module
 Epoch:          3
 License:        NVIDIA License
 URL:            https://www.nvidia.com/object/unix.html
 Source0:        https://download.nvidia.com/XFree86/Linux-%{_arch}/%{version}/NVIDIA-Linux-%{_arch}-%{version}.run
-Source1:        dkms-%{modulename}.conf
+Source1:        dkms-nvidia.conf
+Patch0:         0001-Enable-atomic-kernel-modesetting-by-default.patch
 BuildRequires:  sed
-Provides:       %{modulename}-580-kmod = %{?epoch:%{epoch}:}%{version}
-Requires:       %{modulename}-580-kmod-common = %{?epoch:%{epoch}:}%{version}
+Provides:       %{modulename}-kmod = %{?epoch:%{epoch}:}%{version}
+Requires:       %{modulename}-kmod-common = %{?epoch:%{epoch}:}%{version}
 Requires:       dkms
 Conflicts:      akmod-nvidia
+Conflicts:      akmod-nvidia-580xx
+Provides:       dkms-nvidia-580 = %{evr}
 # Unlike most DKMS packages, this package is NOT noarch!
 ExclusiveArch:  x86_64 aarch64
 
@@ -28,7 +31,10 @@ This package provides the proprietary NVIDIA kernel driver modules.
 %prep
 sh %{SOURCE0} -x --target dkms-nvidia-%{version}-%{_arch}
 %setup -T -D -n dkms-nvidia-%{version}-%{_arch}
+
+pushd kernel-open
 %autopatch -p1
+popd
 
 cp -f %{SOURCE1} dkms.conf
 
