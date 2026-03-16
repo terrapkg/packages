@@ -1,8 +1,8 @@
 %global real_name nvidia-persistenced
 
-Name:           %{real_name}-580
+Name:           %{real_name}-580xx
 Version:        580.142
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A daemon to maintain persistent software state in the NVIDIA driver
 Epoch:          3
 License:        GPLv2+
@@ -21,7 +21,9 @@ BuildRequires:      systemd-devel
 Requires(post):     systemd
 Requires(preun):    systemd
 Requires(postun):   systemd
-Requires:           libnvidia-cfg-580%{?_isa} >= %{?epoch:%{epoch}:}%{version}
+Requires:           libnvidia-cfg-580xx%{?_isa} >= %{?epoch:%{epoch}:}%{version}
+
+Provides:           %{real_name}-580 = %{evr}
 
 %description
 The %{real_name} utility is used to enable persistent software state in the NVIDIA
