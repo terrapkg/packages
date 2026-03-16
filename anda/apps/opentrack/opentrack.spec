@@ -6,7 +6,7 @@
 
 Name:           opentrack
 Version:        %{sanitized_ver}
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Head tracking software for MS Windows, Linux, and Apple OSX
 
 License:        ISC AND BSD-3-Clause AND BSD-2-Clause AND LGPL-2.1-only AND GPL-3.0-only AND LGPL-2.1-or-later AND MIT AND LGPL-3.0-or-later
