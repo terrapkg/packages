@@ -2,7 +2,7 @@
 %global openvr_ver 2.12.14
 %global appid com.github.opentrack
 %global ver opentrack-2026.1.0
-%global sanitized_ver %(echo %{ver} | sed 's/opentrack\.//')
+%global sanitized_ver %(echo %{ver} | sed 's/opentrack\-//')
 
 Name:           opentrack
 Version:        %{sanitized_ver}
