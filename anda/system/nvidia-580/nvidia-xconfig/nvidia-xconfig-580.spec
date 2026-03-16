@@ -1,8 +1,8 @@
 %global real_name nvidia-xconfig
 
-Name:           %{real_name}-580
+Name:           %{real_name}-580xx
 Version:        580.142
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        NVIDIA X configuration file editor
 Epoch:          3
 License:        GPLv2+
@@ -15,8 +15,10 @@ BuildRequires:  gcc
 BuildRequires:  libpciaccess-devel
 BuildRequires:  m4
 
-Requires:       libnvidia-cfg-580%{?_isa} >= %{?epoch:%{epoch}:}%{version}
-Requires:       xorg-x11-nvidia-580%{?_isa} >= %{?epoch:%{epoch}:}%{version}
+Requires:       libnvidia-cfg-580xx%{?_isa} >= %{?epoch:%{epoch}:}%{version}
+Requires:       xorg-x11-nvidia-580xx%{?_isa} >= %{?epoch:%{epoch}:}%{version}
+
+Provides:       %{real_name}-580 = %{evr}
 
 %description
 %{real_name} is a command line tool intended to provide basic control over
