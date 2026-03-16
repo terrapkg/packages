@@ -1,9 +1,11 @@
 %global debug_package %{nil}
 %global openvr_ver 2.12.14
 %global appid com.github.opentrack
+%global ver opentrack-2026.1.0
+%global sanitized_ver %(echo %{ver} | sed 's/opentrack\-//')
 
 Name:           opentrack
-Version:        2026.1.0
+Version:        %{sanitized_ver}
 Release:        1%{?dist}
 Summary:        Head tracking software for MS Windows, Linux, and Apple OSX
 
