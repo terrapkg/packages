@@ -2,7 +2,7 @@
 
 Name:           %{real_name}-580xx
 Version:        580.142
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Configure the NVIDIA graphics driver
 Epoch:          3
 License:        GPLv2+
