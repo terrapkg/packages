@@ -34,9 +34,13 @@ install -Dpm644 *.cfg -t %{buildroot}%{_sysconfdir}/mock/
 %config %{_sysconfdir}/mock/templates/terra-rawhide.tpl
 %config %{_sysconfdir}/mock/terra-*-x86_64.cfg
 %config %{_sysconfdir}/mock/terra-*-aarch64.cfg
+%config %{_sysconfdir}/mock/terra-*-riscv64.cfg
 %config %{_sysconfdir}/mock/terra-*-i386.cfg
 
 %changelog
+* Sat Mar 07 2026 Owen Zimmerman <owen@fyralabs.com> - 2.2.5-1
+- Add riscv64 configs
+
 * Fri Jul 26 2024 madonuko <mado@fyralabs.com> - 1:1.1.0-1
 - Include mock files for Terra 41
 
