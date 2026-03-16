@@ -1,1 +1,1 @@
-rpm.version(gh("opentrack/opentrack"));
+rpm.global("ver", gh("opentrack/opentrack"));
