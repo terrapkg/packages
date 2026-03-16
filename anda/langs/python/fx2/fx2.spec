@@ -50,8 +50,6 @@ popd
 %doc README.md
 %license LICENSE-0BSD.txt
 %{_bindir}/fx2tool
-%ghost %python3_sitelib/__pycache__/*.cpython-*.pyc
-%ghost %python3_sitelib/%{name}/subcommands/__pycache__/*.cpython-*.pyc
 
 %changelog
 * Sun Sep 28 2025 Owen Zimmerman <owen@fyralabs.com>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component type="desktop-application">
+  <id>com.github.opentrack</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license
+    >ISC AND BSD-3-Clause AND BSD-2-Clause AND LGPL-2.1-only AND GPL-3.0-only AND LGPL-2.1-or-later AND MIT AND LGPL-3.0-or-later</project_license>
+  <icon type="local">/usr/share/icons/hicolor/256x256/apps/opentrack.png</icon>
+
+  <name>opentrack</name>
+  <summary>Head tracking software for MS Windows, Linux, and Apple OSX</summary>
+
+  <description>
+    <p>
+    opentrack is a program for tracking user's head rotation and transmitting it to flight simulation software and military-themed video games.
+    </p>
+  </description>
+
+  <launchable type="desktop-id">com.github.opentrack.desktop</launchable>
+
+  <url type="homepage">https://github.com/opentrack/opentrack</url>
+  <provides>
+    <binary>opentrack</binary>
+  </provides>
+
+  <keywords>
+    <keyword>head tracking</keyword>
+    <keyword>tracking</keyword>
+    <keyword>body tracking</keyword>
+  </keywords>
+</component>

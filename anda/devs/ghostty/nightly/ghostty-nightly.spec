@@ -1,9 +1,9 @@
-%global commit 472b926a4d7abbacad4deea17aa0a0c69ffc12d3
+%global commit 41c7321e94995347d74a66c9847ad0e2d45c4ad0
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global fulldate 2026-03-07
+%global fulldate 2026-03-16
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
-%global ver 1.3.0
+%global ver 1.3.2
 %global base_name ghostty
 %global appid com.mitchellh.%{base_name}
 
@@ -185,7 +185,7 @@ Ghostty's terminfo. Needed for basic terminal function.
 Summary:        The libghostty-vt libraries
 
 %description -n libghostty-vt-nightly
-This package contains the libghostty-vt libraries, the first of many linghostty libaries in development.
+This package contains the libghostty-vt libraries, the first of many libghostty libaries in development.
 
 %package -n     libghostty-vt-nightly-devel
 Summary:        Development files for libghostty-vt

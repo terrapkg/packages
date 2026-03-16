@@ -1,6 +1,6 @@
 Name:    zapret
-Version: 72.10
-Release: 1%?dist
+Version: 72.12
+Release: 1%{?dist}
 Summary: A multi-platform Deep Packet Inspection (DPI) bypass tool
 License: MIT 
 ExcludeArch: s390x

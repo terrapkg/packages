@@ -1,14 +1,14 @@
-%global commit b58414209fce1669cff818e50468e926613baa10
+%global commit d5209a6b5fe8c6dff8d530e820c96f09830011e3
 
 Name:	       noctalia-qs
-Version:       0.0.6
-Release:       1%{?dist}
+Version:       0.0.8
+Release:       2%{?dist}
 Summary:       Flexible QtQuick based desktop shell toolkit
 License:       LGPL-3.0-only AND GPL-3.0-only
 URL:	       https://github.com/noctalia-dev/noctalia-qs
 Source0:       https://github.com/noctalia-dev/noctalia-qs/archive/refs/tags/v%{version}.tar.gz
 
-Packager:      Willow C Reed (willow@willowidk.dev)
+Packager:      Willow C Reed <terra@willowidk.dev>
 
 BuildRequires: cmake
 BuildRequires: cmake(Qt6Core)
@@ -70,9 +70,9 @@ Flexible QtQuick based desktop shell toolkit.
 %{_libdir}/qt6/qml/Quickshell
 
 %changelog
-* Thu Mar 05 2026 Willow C Reed <willow@willowidk.dev>
+* Thu Mar 05 2026 Willow C Reed <terra@willowidk.dev>
 - Fix reision to actually be defined as a specific git commit since it never gets initialized rn
 - Also fix that noctalia-qs is replacing quickshell overall and not just for noctlaia users
 
-* Fri Feb 27 2026 Willow C Reed <willow@willowidk.dev>
+* Fri Feb 27 2026 Willow C Reed <terra@willowidk.dev>
 - Initial commit based on quickshell spec
