@@ -2,7 +2,7 @@
 
 Name:           MareTF
 Version:        0.9.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        MIT
 Summary:        A utility to create, edit, and display every type of VTF file ever made
 URL:            https://github.com/craftablescience/MareTF
@@ -29,8 +29,10 @@ BuildRequires:  vulkan-headers
 
 %conf
 %cmake \
-   -DMARETF_BUILD_INSTALLER=ON \
-   -DCPACK_GENERATOR=RPM
+    -DCMAKE_BUILD_TYPE=Release \
+    -DMARETF_BUILD_INSTALLER=ON \
+    -DCPACK_GENERATOR=RPM \
+    -DMARETF_BUILD_INSTALLER=ON
 
 %build
 %cmake_build
@@ -49,5 +51,8 @@ BuildRequires:  vulkan-headers
 %{_datadir}/mime/packages/maretf.xml
 
 %changelog
+* Sun Mar 15 2026 Owen Zimmerman <owen@fyralabs.com>
+- Build release build
+
 * Sat Mar 14 2026 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit
