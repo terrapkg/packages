@@ -36,8 +36,7 @@ BuildRequires:  python3dist(pyqt5)
 BuildRequires:  /usr/bin/lrelease-qt5
 BuildRequires:  protobuf-compiler
 BuildRequires:  pkgconfig(libnetfilter_queue)
-#BuildRequires:  protoc-gen-go
-#BuildRequires:  /usr/bin/protoc-gen-go-grpc
+BuildRequires:  qt6-linguist
 
 %description %{common_description}
 
@@ -46,7 +45,6 @@ BuildRequires:  pkgconfig(libnetfilter_queue)
 
 %prep
 %goprep -A
-%autopatch -p1
 
 export GOBIN=$(go env GOPATH | sed -E 's/:.+$//')/bin
 echo $GOBIN > %_builddir/gobin
@@ -83,26 +81,15 @@ popd
 install -Dm755 opensnitchd -t %buildroot%_bindir
 
 pushd ui
-%if 0%{?fedora} <= 41
-%py3_install
-%else
 %pyproject_install
 %pyproject_save_files %name
-%endif
 popd
 
 rm -rf %buildroot%python3_sitelib/tests/
 cp -r %buildroot%python3_sitelib%_usr/ %buildroot%_usr/ --preserve=all --no-target-directory
 rm -rf %buildroot%python3_sitelib%_usr
 
-
-%if 0%{?fedora} <= 41
-%files
-%{python3_sitelib}/%name/
-%{python3_sitelib}/%name-%{version}-py%{python3_version}.egg-info/
-%else
 %files -f %{pyproject_files}
-%endif
 %license LICENSE
 %doc README.md
 %_bindir/opensnitch-ui
@@ -113,7 +100,10 @@ rm -rf %buildroot%python3_sitelib%_usr
 %_iconsdir/hicolor/scalable/apps/opensnitch-ui.svg
 %_datadir/kservices5/kcm_opensnitch.desktop
 %_metainfodir/io.github.evilsocket.opensnitch.appdata.xml
-
-/usr/share/icons/hicolor/scalable/apps/opensnitch-ui.svg
+%_scalableiconsdir/opensnitch-ui.svg
 
 %gopkgfiles
+
+%changelog
+* Mon Mar 16 2026 Owen Zimmerman <owen@fyralabs.com>
+- Fix build, clean up spec
