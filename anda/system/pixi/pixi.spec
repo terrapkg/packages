@@ -28,7 +28,8 @@ but for any language.
 for shell in bash elvish fish zsh; do
     target/rpm/%{name} completion --shell $shell > completions.$shell
 done
-%dnl %cargo_license_online > LICENSE.dependencies
+%cargo_license_summary_online
+%{cargo_license_online} > LICENSE.dependencies
 
 %install
 install -Dm 755 target/rpm/%{name} %{buildroot}%{_bindir}/%{name}
@@ -39,9 +40,12 @@ install -Dm 644 completions.zsh %{buildroot}%{zsh_completions_dir}/_%{name}
 
 %files
 %doc README.md SECURITY.md CHANGELOG.md CODE_OF_CONDUCT.md CONTRIBUTING.md
-%license LICENSE
+%license LICENSE LICENSE.dependencies
 %{_bindir}/%{name}
 
 %changelog
-* Wed Dec 17 2025 metcya <metcya@gmail.com> - 0.62.0
+* Tue Mar 17 2026 Owen Zimmerman <owen@fyralabs.com> - 0.66.0-1
+- Add dependency licenses
+
+* Wed Dec 17 2025 metcya <metcya@gmail.com> - 0.62.0-1
 - Initial package
