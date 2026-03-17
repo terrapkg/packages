@@ -23,8 +23,10 @@ Patch0:         Use-system-stb-glm.patch
 
 Patch1:         0001-cstdint.patch
 
+%if 0%{?fedora} >= 44
 # Fix build with libinput >= 1.27 / GCC 16 (-Werror=switch)
 Patch2:         0002-wlroots-libinput-switch-keypad-slide.patch
+%endif
 
 BuildRequires:  cmake
 BuildRequires:  gcc
@@ -139,6 +141,7 @@ export PKG_CONFIG_PATH=pkgconfig
 %{_bindir}/gamescopectl
 %{_bindir}/gamescopestream
 %{_bindir}/gamescopereaper
+%{_bindir}/gamescope-type
 %{_datadir}/gamescope/*
 
 %files libs

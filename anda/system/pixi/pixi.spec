@@ -1,6 +1,6 @@
 Name:           pixi
-Version:        0.65.0
-Release:        1%?dist
+Version:        0.66.0
+Release:        1%{?dist}
 Summary:        A cross-platform, multi-language package manager
 License:        BSD-3-Clause
 URL:            https://pixi.sh

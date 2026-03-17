@@ -2,8 +2,8 @@
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-xr-atmosphere
-Version:        0.50.0
-Release:        2%?dist
+Version:        0.51.1
+Release:        1%{?dist}
 Epoch:          1
 Summary:        Environment, homespace, and setup client for Stardust XR
 URL:            https://github.com/StardustXR/atmosphere
@@ -29,7 +29,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %{cargo_license_online} > LICENSE.dependencies
 
 %files
-%_bindir/%{name}
+%_bindir/atmosphere
 %license LICENSE
 %license LICENSE.dependencies
 %doc README.md

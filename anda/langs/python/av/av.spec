@@ -2,8 +2,8 @@
 %global _desc Pythonic bindings for FFmpeg's libraries.
 
 Name:			python-%{pypi_name}
-Version:		16.1.0
-Release:		1%?dist
+Version:		17.0.0
+Release:		1%{?dist}
 Summary:		Pythonic bindings for FFmpeg's libraries
 License:		BSD-3-Clause
 URL:			https://pyav.basswood-io.com/docs/stable/

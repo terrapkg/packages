@@ -1,8 +1,8 @@
 %global appid org.freedesktop.libfprint
 
 Name:           libfprint-tod
-Version:        1.94.10+tod1
-Release:        1%?dist
+Version:        1.95.1+tod1
+Release:        1%{?dist}
 URL:            https://gitlab.freedesktop.org/3v1n0/libfprint/
 Source:         %{url}/-/archive/v%{version}/libfprint-v%{version}.tar.gz
 Summary:        a light fork of libfprint to expose internal Drivers API in order to create drivers as shared libraries
