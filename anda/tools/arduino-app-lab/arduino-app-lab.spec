@@ -14,10 +14,6 @@ Source0:        https://github.com/arduino/arduino-app-lab/archive/refs/tags/al-
 Source1:        cc.arduino.AppLab.desktop
 Source2:        cc.arduino.AppLab.metainfo.xml
 
-ExclusiveArch:  x86_64
-
-Requires:       android-tools
-
 BuildRequires:  desktop-file-utils
 BuildRequires:  yarnpkg
 BuildRequires:  wails
