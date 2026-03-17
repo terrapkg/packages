@@ -8,6 +8,7 @@ Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 BuildRequires:  cargo-rpm-macros
+BuildRequires:  systemd-rpm-macros
 
 %description
 Binder IPC Linux userspace root service... binder objects bound to files (like unix domain sockets!).
