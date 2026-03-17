@@ -1,6 +1,3 @@
-# disable debuginfo subpackage
-%global debug_package %{nil}
-
 Name:           spotify-launcher
 Version:        0.6.5
 Release:        2%?dist
@@ -65,7 +62,7 @@ done
 
 %changelog
 * Tue Mar 17 2026 veux <erroor234@gmail.com> - 0.6.5-2
-- Fix big package size
+- Fix big package size and enable debug subpackages
 
 * Fri Feb 27 2026 veux <erroor234@gmail.com> - 0.6.5-1
 - Initial package release
