@@ -4,7 +4,7 @@ Release:        1%{?dist}
 Summary:        Binder IPC Linux userspace root service
 License:        MIT AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (Unlicense OR MIT)
 URL:            https://github.com/technobaboo/pion
-Sourceo:        %{url}/archive/refs/tags/%{version}.tar.gz
+Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 BuildRequires:  cargo-rpm-macros
