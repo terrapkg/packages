@@ -1,18 +1,6 @@
-%undefine __brp_add_determinism
-# disable debuginfo subpackage
-%global debug_package %{nil}
-# Disable build-id symlinks to avoid conflicts
-%global _build_id_links none
-# don't strip bundled binaries because pycharm checks length (!!!) of binary fsnotif
-# and if you strip debug stuff from it, it will complain
-%global __strip /bin/true
-# disable rpath checks
-%define __brp_check_rpaths %{nil}
-%define _missing_build_ids_terminate_build 0
-
 Name:           spotify-launcher
 Version:        0.6.5
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Client for spotify's apt repository in Rust
 License:        Apache-2.0 AND MIT AND ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND BSD-3-Clause AND CDLA-Permissive-2.0 AND ISC AND (ISC AND (Apache-2.0 OR ISC)) AND (ISC AND (Apache-2.0 OR ISC) AND OpenSSL) AND (MIT OR Apache-2.0) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT) AND Zlib
 Packager:       veuxit <erroor234@gmail.com>
@@ -73,5 +61,8 @@ done
 %doc README.md
 
 %changelog
-* Fri Feb 27 2026 veux <erroor234@gmail.com> - 0.6.5
+* Tue Mar 17 2026 veux <erroor234@gmail.com> - 0.6.5-2
+- Fix big package size and enable debug subpackages
+
+* Fri Feb 27 2026 veux <erroor234@gmail.com> - 0.6.5-1
 - Initial package release
