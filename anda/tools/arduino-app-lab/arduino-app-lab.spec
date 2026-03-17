@@ -27,6 +27,8 @@ Suggests:       arduino-app-cli
 
 Obsoletes:      arduino-app-lab-bin < 0.5.0-2
 
+Requires:       android-tools
+
 Packager:       Jaiden Riordan <jade@fyralabs.com>, Owen Zimmerman <owen@fyralabs.com>
 
 %description
