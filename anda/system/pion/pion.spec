@@ -21,7 +21,17 @@ Binder IPC Linux userspace root service... binder objects bound to files (like u
 %{cargo_license_online} > LICENSE.dependencies
 
 %install
-install -Dm 755 target/rpm/pion-binder %{buildroot}%{_bindir}/pion-binder
+install -Dm755 target/rpm/pion-binder   %{buildroot}%{_bindir}/pion-binder
+install -Dm644 dist/pion-binder.service %{buildroot}%{_unitdir}/pion-binder.service
+
+%post
+%systemd_post pion-binder.service
+
+%preun
+%systemd_preun pion-binder.service
+
+%postun
+%systemd_postun_with_restart pion-binder.service
 
 %files
 %doc README.md
