@@ -25,7 +25,7 @@ jobs:
           git config --global commit.gpgsign true
 
       - name: Backport Action
-        uses: sorenlouv/backport-github-action@v10.4.0
+        uses: sorenlouv/backport-github-action@9460b7102fea25466026ce806c9ebf873ac48721 # v11.0.0
         with:
           github_token: ${{ secrets.RABONEKO_BACKPORT_GITHUB_TOKEN }}
           auto_backport_label_prefix: sync-
