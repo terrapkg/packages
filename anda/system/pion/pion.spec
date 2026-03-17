@@ -24,6 +24,7 @@ Binder IPC Linux userspace root service... binder objects bound to files (like u
 %install
 install -Dm755 target/rpm/pion-binder   %{buildroot}%{_bindir}/pion-binder
 install -Dm644 dist/pion-binder.service %{buildroot}%{_unitdir}/pion-binder.service
+install -Dm644 dist/dev-binderfs.mount  %{buildroot}%{_unitdir}/dev-binderfs.mount
 
 %post
 %systemd_post pion-binder.service
@@ -38,6 +39,8 @@ install -Dm644 dist/pion-binder.service %{buildroot}%{_unitdir}/pion-binder.serv
 %doc README.md
 %license LICENSE LICENSE.dependencies
 %{_bindir}/pion-binder
+%{_unitdir}/pion-binder.service
+%{_unitdir}/dev-binderfs.mount
 
 %changelog
 * Tue Mar 17 2026 Owen Zimmerman <owen@fyralabs.com>
