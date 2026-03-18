@@ -55,4 +55,5 @@ official Spotify client.}
 %crate_install_bin
 
 %changelog
-%autochangelog
+* Wed Mar 18 2026 like-engels <higashikataengels@icloud.com> - 1.3.3-1
+- Initial package
