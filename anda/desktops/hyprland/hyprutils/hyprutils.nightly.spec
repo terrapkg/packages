@@ -3,8 +3,8 @@
 %global realname hyprutils
 %global ver 0.11.0
 
-%global commit 5e228db6821380a5875d5643176c5c46a47b8134
-%global commit_date 20260314
+%global commit 6b4c47661ea7f6f298353137ae6334a53a08d67c
+%global commit_date 20260318
 %global shortcommit %{sub %commit 1 7}
 
 Name:           %realname.nightly
