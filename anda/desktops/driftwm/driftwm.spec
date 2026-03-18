@@ -28,17 +28,18 @@ BuildRequires:  mesa-libgbm-devel
 %{cargo_license_online} > LICENSE.dependencies
 
 %install
+export PREFIX=/usr
 %make_install
 
 %files
 %doc README.md
 %license LICENSE LICENSE.dependencies
-%dnl %{_bindir}/driftwm
-%dnl %{_bindir}/driftwm-session
-%dnl %{_datadir}/wayland-sessions/driftwm.desktop
-%dnl %{_datadir}/xdg-desktop-portal/driftwm-portals.conf
-%dnl %{_sysconfdir}/driftwm/config.toml
-%dnl %{_datadir}/driftwm/wallpapers/*.glsl
+%{_bindir}/driftwm
+%{_bindir}/driftwm-session
+%{_datadir}/wayland-sessions/driftwm.desktop
+%{_datadir}/xdg-desktop-portal/driftwm-portals.conf
+%{_sysconfdir}/driftwm/config.toml
+%{_datadir}/driftwm/wallpapers/*.glsl
 
 %changelog
 * Tue Mar 17 2026 Owen Zimmerman <owen@fyralabs.com> - 0.1.0-1
