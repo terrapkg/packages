@@ -5,10 +5,17 @@ Name:           ncspot
 Version:        1.3.3
 Release:        1%{?dist}
 Summary:        Cross-platform ncurses Spotify client written in Rust
-
+Packager:       like-engels <higashikataengels@icloud.com>
 License:        BSD-2-Clause
 URL:            https://crates.io/crates/%{crate}
 Source0:        %{crates_source}
+
+Requires:	dbus
+Requires:	glibc
+Requires:	libxcb
+Requires:	pipewire-pulseaudio
+Requires:	pulseaudio-libs
+Requires:	openssl
 
 BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo-rpm-macros >= 24
