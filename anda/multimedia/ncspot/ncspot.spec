@@ -1,0 +1,51 @@
+%global crate ncspot
+%global cargo_features cover
+
+Name:           ncspot
+Version:        1.3.3
+Release:        1%{?dist}
+Summary:        Cross-platform ncurses Spotify client written in Rust
+
+License:        BSD-2-Clause
+URL:            https://crates.io/crates/%{crate}
+Source0:        %{crates_source}
+
+BuildRequires:  anda-srpm-macros
+BuildRequires:  cargo-rpm-macros >= 24
+BuildRequires:  gcc
+BuildRequires:  binutils
+BuildRequires:  mold
+BuildRequires:  dbus-devel
+BuildRequires:  libxcb-devel
+BuildRequires:  ncurses-devel
+BuildRequires:  openssl-devel
+BuildRequires:  pulseaudio-libs-devel
+
+%global _description %{expand:
+ncurses Spotify client written in Rust using librespot.
+It is heavily inspired by ncurses MPD clients, such as ncmpc.
+It provides a simple and resource-friendly alternative to the
+official Spotify client.}
+
+%description %{_description}
+
+%files -n %{crate}
+%license LICENSE
+%license LICENSE.dependencies
+%doc README.md
+%{_bindir}/%{crate}
+
+%prep
+%autosetup -n %{crate}-%{version}
+%cargo_prep_online
+
+%build
+%cargo_build -f "%{cargo_features}"
+%{cargo_license_summary_online}
+%{cargo_license_online} > LICENSE.dependencies
+
+%install
+%crate_install_bin
+
+%changelog
+%autochangelog
