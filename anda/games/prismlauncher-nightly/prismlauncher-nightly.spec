@@ -143,7 +143,7 @@ rm -f %{buildroot}%{_datadir}/metainfo/org.prismlauncher.PrismLauncher.metainfo.
 %{_metainfodir}/%{appid}.metainfo.xml
 %{_scalableiconsdir}/org.prismlauncher.PrismLauncher.svg
 %{_hicolordir}/256x256/apps/org.prismlauncher.PrismLauncher.png
-%{_datadir}/mime/packages/org.prismlauncher.PrismLauncher.mime.xml
+%{_datadir}/mime/packages/org.prismlauncher.PrismLauncher.xml
 %{_datadir}/qlogging-categories%{qt_version}/prismlauncher.categories
 %{_mandir}/man?/prismlauncher.*
 
