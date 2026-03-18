@@ -12,6 +12,7 @@ BuildRequires:  pkgconfig(libudev)
 BuildRequires:  pkgconfig(libseat)
 BuildRequires:  pkgconfig(libdisplay-info)
 BuildRequires:  libinput-devel
+BuildRequires:  libxkbcommon-devel
 
 %description
 %{summary}.
