@@ -5,7 +5,7 @@
 %global git_name PowerShell
 # Not currently tracked, all PowerShell specifies is a version under 4.99
 %global pester_version 4.10.1
-%global dotnet_version 9.0
+%global dotnet_version 10.0
 # Arch defined by .NET
 %ifarch %{x86_64}
 %global darch x64
@@ -18,7 +18,7 @@
 %bcond test 1
 
 Name:          powershell
-Version:       7.5.5
+Version:       7.6.0
 Release:       1%{?dist}
 Summary:       A cross-platform automation and configuration tool/framework
 SourceLicense: MIT
