@@ -11,7 +11,7 @@ BuildRequires:  cargo-rpm-macros
 BuildRequires:  systemd-rpm-macros
 
 %description
-Binder IPC Linux userspace root service... binder objects bound to files (like unix domain sockets!).
+Binder IPC Linux userspace root service... Binder objects bound to files (like UNIX domain sockets!).
 
 %prep
 %autosetup
