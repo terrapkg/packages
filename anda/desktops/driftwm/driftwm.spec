@@ -38,5 +38,5 @@ BuildRequires:  pkgconfig(libdisplay-info)
 %{_datadir}/driftwm/wallpapers/*.glsl
 
 %changelog
-* Tue Mar 17 2026 Owen Zimmerman <owen@fyralabs.com>
+* Tue Mar 17 2026 Owen Zimmerman <owen@fyralabs.com> - 0.1.0-1
 - Initial commit
