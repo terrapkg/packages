@@ -13,6 +13,7 @@ BuildRequires:  pkgconfig(libseat)
 BuildRequires:  pkgconfig(libdisplay-info)
 BuildRequires:  libinput-devel
 BuildRequires:  libxkbcommon-devel
+BuildRequires:  mesa-libgbm-devel
 
 %description
 %{summary}.
