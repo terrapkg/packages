@@ -7,10 +7,11 @@ URL:            https://github.com/malbiruk/driftwm
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
-BuildRequires:  cargo-rpm-macros mold
+BuildRequires:  cargo-rpm-macros
 BuildRequires:  pkgconfig(libudev)
 BuildRequires:  pkgconfig(libseat)
 BuildRequires:  pkgconfig(libdisplay-info)
+BuildRequires:  libinput-devel
 
 %description
 %{summary}.
