@@ -1,7 +1,7 @@
-%global commit  d92dbf9c499a18ae8d18c8f3c93cef87dc921bf7
+%global commit  981e9cbec25ae8994ff6ab53ddb38eab75630984
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global ver 2.2.7.5
-%global commit_date 20260305
+%global ver v2.2.7.5
+%global commit_date 20260318
 
 %global goipath         github.com/v2rayA/v2rayA
 Version:                %{ver}^%{commit_date}git.%{shortcommit}
@@ -12,7 +12,7 @@ Version:                %{ver}^%{commit_date}git.%{shortcommit}
 %gometa -f
 
 Name:           v2raya-nightly
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        A web GUI client of Project V which supports VMess, VLESS, SS, SSR, Trojan, Tuic and Juicity protocols
 License:        AGPL-3.0-only
 Packager:       veuxit <erroor234@gmail.com>
