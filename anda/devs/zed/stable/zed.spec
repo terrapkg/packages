@@ -15,7 +15,7 @@
 %global rustflags_debuginfo 0
 
 Name:           zed
-Version:        0.227.1
+Version:        0.228.0
 Release:        1%{?dist}
 Summary:        Zed is a high-performance, multiplayer code editor
 SourceLicense:  AGPL-3.0-only AND Apache-2.0 AND GPL-3.0-or-later
