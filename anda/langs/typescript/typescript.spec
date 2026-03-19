@@ -1,6 +1,6 @@
 %if 0%{?rhel}
 Name:           typescript
-Version:        5.7.3
+Version:        5.9.3
 Release:        %autorelease
 Summary:        A language for application scale JavaScript development
 License:        Apache-2.0
