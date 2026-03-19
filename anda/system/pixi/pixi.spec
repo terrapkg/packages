@@ -12,7 +12,7 @@ BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  mold
 
-%pkg_completion -Befz
+%pkg_completion -BefNz
 
 %description
 pixi is a cross-platform, multi-language package manager and workflow tool
@@ -26,7 +26,7 @@ but for any language.
 
 %build
 %cargo_build
-for shell in bash elvish fish zsh; do
+for shell in bash elvish fish nushell zsh; do
     target/rpm/%{name} completion --shell $shell > completions.$shell
 done
 %{cargo_license_online} > LICENSE.dependencies
@@ -36,6 +36,7 @@ install -Dm 755 target/rpm/%{name} %{buildroot}%{_bindir}/%{name}
 install -Dm 644 completions.bash %{buildroot}%{bash_completions_dir}/%{name}
 install -Dm 644 completions.elvish %{buildroot}%{elvish_completions_dir}/%{name}.elv
 install -Dm 644 completions.fish %{buildroot}%{fish_completions_dir}/%{name}.fish
+install -Dm 644 completions.nushell %{buildroot}%{nushell_completions_dir}/%{name}.nu
 install -Dm 644 completions.zsh %{buildroot}%{zsh_completions_dir}/_%{name}
 
 %files
