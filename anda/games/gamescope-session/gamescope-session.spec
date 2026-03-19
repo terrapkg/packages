@@ -10,6 +10,8 @@ Release:        1%?dist
 Summary:        Gamescope session based on Valve's gamescope
 License:        MIT
 URL:            https://github.com/OpenGamingCollective/gamescope-session
+Requires:       gamescope
+Recommends:     switcheroo-control
 Source0:        %url/archive/%commit.tar.gz
 BuildRequires:  systemd-rpm-macros
 Packager:       Tulip Blossom <tulilirockz@outlook.com>
