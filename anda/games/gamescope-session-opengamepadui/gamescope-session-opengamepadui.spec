@@ -10,6 +10,7 @@ License:        GPL-3.0-only
 URL:            https://github.com/OpenGamingCollective/gamescope-session-opengamepadui
 Source0:        %url/archive/%commit.tar.gz
 Packager:       Tulip Blossom <tulilirockz@outlook.com>
+Requires:       gamescope-session
 Requires:       opengamepadui
 BuildArch:      noarch
 
