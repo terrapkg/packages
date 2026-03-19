@@ -1,0 +1,1 @@
+print(npm("typescript"));
