@@ -1,13 +1,13 @@
-%global commit 81e1d500211483e01edde6c2b985c45499aec500
+%global commit 8b5bb14a7a2c6e5dd86f13efce6bc242639265ef
 %global shortcommit %{sub %{commit} 0 7}
-%global commitdate 20260312
+%global commitdate 20260319
 
 Name:           steamos-manager-powerstation
 Version:        0~%{commitdate}.git%{shortcommit}
 Release:        1%{?dist}
 Summary:        SteamOS Manager is a system daemon that aims to abstract Steam's interactions with the operating system
 License:        MIT AND (MIT OR Apache-2.0) AND Unicode-3.0 AND (Apache-2.0 OR BSL-1.0) AND Apache-2.0 OR MIT AND )Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (BSD-3-Clause OR MIT OR Apache-2.0) AND ISC AND (LGPL-2.1 OR MIT OR Apache-2.0) AND MIT AND (MIT OR Apache-2.0) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT)
-URL:            https://github.com/honjow/steamos-manager
+URL:            https://github.com/OpenGamingCollective/steamos-manager
 Source0:        %{url}/archive/%{commit}.tar.gz
 BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo-rpm-macros
@@ -22,13 +22,15 @@ Packager:       Kyle Gospodnetich <me@kylegospodneti.ch>
 Provides:       steamos-manager
 Conflicts:      steamos-manager
 Requires:       powerstation
+Requires:       gamescope-session-ogui-steam
 
 %description
 SteamOS Manager is a system daemon that aims to abstract Steam's interactions
 with the operating system. The goal is to have a standardized interface so that
 SteamOS specific features in the Steam client, e.g. TDP management, can be
 exposed in any Linux distro that provides an implementation of this DBus API.
-This version has been patched with additional compatibility with powerstation.
+This version has been patched with additional compatibility with powerstation
+and OGC gamescope-sessions.
 
 %package gamescope-session-plus
 Summary:        Compatibility symlink service for starting steamos-manager on gamescope-session-plus
