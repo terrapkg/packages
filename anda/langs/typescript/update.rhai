@@ -1,1 +1,1 @@
-print(npm("typescript"));
+rpm.version(npm("typescript"));
