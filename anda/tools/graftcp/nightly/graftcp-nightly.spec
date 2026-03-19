@@ -1,10 +1,10 @@
-%global commit 214f8b82ef78f2c3d54b3dc37075aadfc2da2bdf
-%global commit_date 20260121
+%global commit ed57ff8136d4f86c1de6bb17e176f31852e26c44
+%global commit_date 20260308
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:			graftcp-nightly
 Version:		0~%{commit_date}git.%{shortcommit}
-Release:		1%?dist
+Release:		1%{?dist}
 Summary:		A flexible tool for redirecting a given program's TCP traffic to SOCKS5 or HTTP proxy
 URL:			https://github.com/hmgle/graftcp
 License:		GPL-3.0

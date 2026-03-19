@@ -35,12 +35,6 @@ on:
         type: boolean
         default: true
 
-env:
-  RUSTC_WRAPPER: sccache
-  # SCCACHE_NO_DAEMON: "1"
-  # Disable incremental compilation so sccache works better
-  CARGO_INCREMENTAL: "false"
-
 jobs:
   build:
     strategy:
@@ -61,6 +55,18 @@ jobs:
       - name: Set up git repository
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
+      - name: Configure sccache
+        id: sccache
+        if: ${{ !contains(matrix.pkg.labels.sccache, '0') }}
+        uses: actions/github-script@v8
+        env:
+          SCCACHE_GHA_VERSION: ${{ matrix.version }}-${{ matrix.pkg.arch }}-${{ matrix.pkg.pkg }}
+          SCCACHE_GHA_CACHE_FROM: ${{ matrix.version }}-${{ matrix.pkg.arch }}-${{ matrix.pkg.pkg }}
+        with:
+          script: |
+            const script = require('./.github/scripts/configure-sccache.js')
+            await script({github, context, core, exec})
+
       - name: CI Setup Script
         if: ${{ !contains(matrix.pkg.labels, 'mock') }}
         run: |
@@ -75,21 +81,16 @@ jobs:
           dir=$(dirname ${{ matrix.pkg.pkg }})
           dnf5 builddep -y ${dir}/*.spec
 
-
-      - name: Run sccache-cache
-        uses: mozilla-actions/sccache-action@v0.0.9
-
-      - name: Configure sccache
-        run: |
-          set -euo pipefail
-          echo "SCCACHE_GHA_ENABLED=true" >> $GITHUB_ENV
-          if [ "${{ inputs.bust_cache }}" = "true" ]; then
-            echo "SCCACHE_BUST_CACHE=true" >> $GITHUB_ENV
-          fi
-
-
       - name: Build with Andaman
-        run: anda build -D "vendor Terra" ${{ matrix.pkg.pkg }} -c terra-${{ matrix.version }}-${{ matrix.pkg.arch }} ${{ !matrix.pkg.labels.mock == '1' && '-rrpmbuild' || '' }}
+        run: anda build -D "vendor Terra" -D "__python %{__python3}" ${{ matrix.pkg.pkg }} -c terra-${{ matrix.version }}-${{ matrix.pkg.arch }} ${{ !matrix.pkg.labels.mock == '1' && '-rrpmbuild' || '' }}
+
+      - name: Report Cache Summary
+        if: steps.sccache.outcome == 'success'
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const script = require('./.github/scripts/sccache-stats.js')
+            await script({github, context, core, exec})
 
       - name: Generating artifact name
         id: art
@@ -98,7 +99,7 @@ jobs:
           x=${NAME//\//@}
           echo "name=$x" >> $GITHUB_OUTPUT
 
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v7
         with:
           name: ${{ steps.art.outputs.name }}
           compression-level: 0 # The RPMs are already compressed :p

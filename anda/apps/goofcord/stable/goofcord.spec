@@ -2,8 +2,8 @@
 %global appid io.github.milkshiift.GoofCord
 
 Name:          goofcord
-Version:       2.0.1
-Release:       2%{?dist}
+Version:       2.1.1
+Release:       1%{?dist}
 License:       OSL-3.0
 Summary:       A privacy-minded Legcord fork.
 Group:         Applications/Internet
@@ -19,7 +19,7 @@ Packager:      Gilver E. <roachy@fyralabs.com>
 A highly configurable and privacy minded Discord client.
 
 %prep
-%autosetup -n %{git_name}-%{version}
+%autosetup -p1 -n %{git_name}-%{version}
 %ifarch %{arm64} armv7hl armv7l
 sed -i '/\"x64\",/d' electron-builder.ts
 %endif

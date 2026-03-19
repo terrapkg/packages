@@ -8,7 +8,7 @@
 
 Name:           nvidia-kmod
 Version:        590.48.01
-Release:        4%?dist
+Release:        5%{?dist}
 Summary:        NVIDIA display driver kernel module
 Epoch:          3
 License:        NVIDIA License
@@ -16,9 +16,10 @@ URL:            http://www.nvidia.com/object/unix.html
 ExclusiveArch:  x86_64 aarch64
 
 Source0:        https://github.com/NVIDIA/open-gpu-kernel-modules/archive/%{version}/open-gpu-kernel-modules-%{version}.tar.gz
+Patch0:         0001-Enable-atomic-kernel-modesetting-by-default.patch
+Patch1:         6.19-590.patch
 Requires:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
 Requires:       akmods
-Requires:       gcc-c++
 Provides:       akmod-nvidia-open = %{?epoch:%{epoch}:}%{version}
 Obsoletes:      akmod-nvidia-open < %{?epoch:%{epoch}:}%{version}
 
@@ -38,7 +39,11 @@ The NVidia %{version} display driver kernel module for kernel %{kversion}.
 # Print kmodtool output for debugging purposes:
 kmodtool  --target %{_target_cpu}  --repo terra.fyralabs.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
-%autosetup -p1 -c
+%setup -c
+
+pushd open-gpu-kernel-modules-%{version}
+%autopatch -p1
+popd
 
 rm -f open-gpu-kernel-modules-%{version}/dkms.conf
 

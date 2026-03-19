@@ -4,7 +4,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.0.8
-Release:		2%?dist
+Release:		3%?dist
 Summary:		Python interface to the awesome mpv media player
 License:		GPL-2.0+ OR LGPL-2.1+
 URL:			https://github.com/jaseg/python-mpv
@@ -60,8 +60,6 @@ EOL
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
 %license LICENSE.GPL LICENSE.LGPL
-%ghost %python3_sitelib/__pycache__/mpv.cpython-*.pyc
-%python3_sitelib/mpv.py
 %endif
 
 %changelog

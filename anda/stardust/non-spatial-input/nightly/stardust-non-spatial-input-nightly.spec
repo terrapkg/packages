@@ -1,12 +1,12 @@
-%global commit 3a586815e1c057580674c147e27c3a4909b3b4c6
-%global commit_date 20251130
+%global commit d4b1094da4b5257240e3e60e33332b7b559ef4c5
+%global commit_date 20260318
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-xr-non-spatial-input-nightly
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        2%?dist
+Release:        1%{?dist}
 Summary:        Tools you can easily snap together to get non-spatial input into Stardust XR
 URL:            https://github.com/StardustXR/non-spatial-input
 Source0:        %url/archive/%commit/non-spatial-input-%commit.tar.gz

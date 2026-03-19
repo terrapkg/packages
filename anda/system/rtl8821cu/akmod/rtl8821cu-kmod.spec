@@ -44,7 +44,7 @@ sed -i 's/CONFIG_PLATFORM_ARM64_RPI = n/CONFIG_PLATFORM_ARM64_RPI = y/g' Makefil
 
 for kernel_version in %{?kernel_versions}; do
     mkdir _kmod_build_${kernel_version%%___*}
-    cp -fr core hal include os_dep platform Kconfig Makefile halmac.mk _kmod_build_${kernel_version%%___*}
+    cp -fr core hal include os_dep platform Kconfig Makefile halmac.mk rtl8821c.mk _kmod_build_${kernel_version%%___*}
 done
 
 %build

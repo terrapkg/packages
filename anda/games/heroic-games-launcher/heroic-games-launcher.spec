@@ -2,14 +2,14 @@
 %global git_name %(echo %{org_name} | sed 's/-//g')
 %global appid com.heroicgameslauncher.hgl
 %global shortname heroic
-%global legendary_version 0.20.37
-%global gogdl_version 1.1.2
+%global legendary_version 0.20.42
+%global gogdl_version 1.2.1
 %global nile_version 1.1.2
 %global comet_version 0.2.0
 
 Name:          %{shortname}-games-launcher
-Version:       2.18.1
-Release:       2%{?dist}
+Version:       2.20.1
+Release:       1%?dist
 Summary:       A games launcher for GOG, Amazon, and Epic Games
 License:       GPL-3.0-only AND MIT AND BSD-3-Clause
 URL:           https://heroicgameslauncher.com
@@ -52,7 +52,7 @@ rm -rf dist/linux-unpacked/resources/app.asar.unpacked/build/bin/arm64
 %endif
 
 %electron_install -d heroic -b heroic -S heroic -I -i %{appid} -l
-%desktop_file_install -k Exec -v /usr/share/%{shortname}/%{shortname} -u %u flatpak/%{appid}.desktop
+%desktop_file_install -k Exec -v %{_libdir}/%{shortname}/%{shortname} -u %u flatpak/%{appid}.desktop
 
 install -Dpm644 flatpak/templates/%{appid}.metainfo.xml.template %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 
@@ -64,8 +64,7 @@ install -Dpm644 flatpak/templates/%{appid}.metainfo.xml.template %{buildroot}%{_
 %doc     CODE_OF_CONDUCT.md
 %license COPYING
 %license bundled_licenses/*
-%dir %{_libdir}/%{shortname}
-%{_libdir}/%{shortname}/*
+%{_libdir}/%{shortname}/
 %{_bindir}/%{shortname}
 %{_bindir}/%{name}
 %{_appsdir}/%{appid}.desktop

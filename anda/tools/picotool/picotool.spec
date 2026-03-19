@@ -4,7 +4,7 @@
 
 Name:           picotool
 Version:        %sanitized_ver
-Release:        2%?dist
+Release:        3%?dist
 Summary:        Tool to inspect RP2040 binaries
 License:        BSD-3-Clause
 URL:            https://github.com/raspberrypi/picotool
@@ -33,9 +33,7 @@ mv %buildroot{%_prefix/lib,%_libdir}
 %doc README.md
 %license LICENSE.TXT
 %_bindir/picotool
-%dir %_libdir/cmake/picotool
 %_libdir/cmake/picotool/*
-%dir %_datadir/picotool
 %_datadir/picotool/*
 
 %changelog

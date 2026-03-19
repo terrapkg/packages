@@ -1,7 +1,7 @@
 %global goipath github.com/arduino/remoteocd
 
-%global commit 6e375c835fe319e8eef3f40578bf8de044156ce1
-%global commit_date 20251105
+%global commit 3cf11b106f040493ea3589ddaf56df9c6396d17f
+%global commit_date 20260224
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Version:        0^%commit_date.%shortcommit

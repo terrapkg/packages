@@ -1,11 +1,11 @@
 Name:			tracy
 Version:		0.13.1
-Release:		1%?dist
+Release:		2%?dist
 Summary:		A real time, nanosecond resolution, remote telemetry, hybrid frame and sampling profiler for games and other applications
 License:		BSD-3-Clause
 URL:			https://github.com/wolfpld/tracy
 Source0:		https://github.com/wolfpld/tracy/archive/refs/tags/v%version.tar.gz
-BuildRequires:  pkgconfig(egl) pkgconfig(glfw3) pkgconfig(freetype2) pkgconfig(dbus-1) pkgconfig(libunwind) pkgconfig(libdebuginfod) pkgconfig(tbb) pkgconfig(wayland-client) pkgconfig(wayland-protocols) pkgconfig(xkbcommon) pkgconfig(capstone)
+BuildRequires:  pkgconfig(egl) pkgconfig(glfw3) pkgconfig(freetype2) pkgconfig(dbus-1) pkgconfig(libunwind) pkgconfig(libdebuginfod) pkgconfig(tbb) pkgconfig(wayland-client) pkgconfig(wayland-protocols) pkgconfig(xkbcommon) pkgconfig(capstone) pkgconfig(openssl) pkgconfig(pugixml) pkgconfig(libcurl) pkgconfig(libxslt) pkgconfig(libnghttp2) pkgconfig(libidn2) pkgconfig(libssh2) tbb expat libxml2 openssl-libs
 BuildRequires:  cmake gcc gcc-c++ meson
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
@@ -69,7 +69,6 @@ install -Dm644 icon/application-tracy.svg %buildroot%_iconsdir/hicolor/scalable/
 
 %files devel
 %_libdir/pkgconfig/tracy.pc
-%dir %_includedir/tracy
 %_includedir/tracy/*
 
 %changelog

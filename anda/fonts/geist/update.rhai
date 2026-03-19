@@ -1,1 +1,1 @@
-rpm.version(gh("vercel/geist-font"));
+rpm.global("ver", gh("vercel/geist-font"));

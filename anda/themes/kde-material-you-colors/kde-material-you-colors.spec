@@ -3,13 +3,14 @@
 %global org "com.github.luisbocanegra"
 
 Name:           kde-material-you-colors
-Version:        2.0.0
-Release:        3%{?dist}
+Version:        2.0.2
+Release:        2%{?dist}
 Summary:        Automatic Material You Colors Generator from your wallpaper for the Plasma Desktop
 License:        GPL-3.0-only
 URL:            https://github.com/luisbocanegra/%{name}
 # The PyPi source is a more generic install and lacks the Plasmoid config
 Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
+Patch0:         %{url}/commit/4888f8570b1aa12e3ab7aee51ab72ad7a7f35b95.patch
 BuildRequires:  anda-srpm-macros
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
@@ -23,6 +24,8 @@ BuildRequires:  python-rpm-macros
 BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(setuptools) >= 61.0
 BuildRequires:  python3dist(wheel) >= 0.37.1
+BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6Service)
 BuildRequires:  cmake(KF6KirigamiPlatform)
 BuildRequires:  cmake(Plasma)
 BuildRequires:  cmake(Plasma5Support)
@@ -67,15 +70,12 @@ DESTDIR="%{buildroot}" %cmake_install
 sed -Ei "s:^(#!.*)env (python.*)$:\1python3:" %{buildroot}%{python3_sitelib}/kde_material_you_colors/main.py
 %fdupes %{buildroot}%{python3_sitelib}/%{name}/
 
-%terra_appstream
-
 %files
 %doc CHANGELOG.md
 %doc README.md
 %license LICENSE
 %{_bindir}/%{name}-screenshot-helper
 %{_datadir}/applications/%{name}-screenshot-helper.desktop
-%{_metainfodir}/luisbocanegra.kdematerialyou.colors.metainfo.xml
 %{_datadir}/plasma/plasmoids/luisbocanegra.kdematerialyou.colors/
 
 %files -n python3-%{name}

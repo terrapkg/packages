@@ -1,12 +1,12 @@
-%global commit 52b442c42d8b2938f16adfe42ab1ac0b5d29a137
-%global commit_date 20251218
+%global commit 228888a86c5898055f0897398368d90f72624e51
+%global commit_date 20260316
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-xr-comet-nightly
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        2%?dist
+Release:        1%{?dist}
 Summary:        Annotate things in Stardust XR
 URL:            https://github.com/StardustXR/comet
 Source0:        %url/archive/%commit/comet-%commit.tar.gz

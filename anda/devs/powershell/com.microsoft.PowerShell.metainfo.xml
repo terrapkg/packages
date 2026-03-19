@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component type="console-application">
   <id>com.microsoft.PowerShell</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
   <name>Microsoft PowerShell</name>
   <summary>PowerShell for every system!</summary>
   <screenshots>
-    <image type="source">https://github.com/PowerShell/PowerShell/blob/master/assets/Powershell_256.png</image>
+    <screenshot type="default"><image>https://github.com/PowerShell/PowerShell/blob/master/assets/Powershell_256.png</image></screenshot>
   </screenshots>
   <description>
     <p>
@@ -16,4 +18,5 @@
     <name>Microsoft Corporation</name>
   </developer>
   <icon type="stock">com.microsoft.PowerShell</icon>
+  <url type="homepage">https://microsoft.com/PowerShell</url>
 </component>
