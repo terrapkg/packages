@@ -6,7 +6,7 @@
 
 Name:           gamescope-session-ogui-steam
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        1%?dist
+Release:        2%?dist
 Summary:        gamescope-session-steam
 License:        GPL-3.0-only
 URL:            https://github.com/OpenGamingCollective/gamescope-session-ogui-steam
