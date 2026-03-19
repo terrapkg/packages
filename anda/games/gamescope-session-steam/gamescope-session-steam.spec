@@ -11,6 +11,7 @@ Summary:        gamescope-session-steam
 License:        MIT
 URL:            https://github.com/OpenGamingCollective/gamescope-session-steam
 Source0:        %url/archive/%commit.tar.gz
+Requires:       gamescope-session
 Packager:       Tulip Blossom <tulilirockz@outlook.com>
 BuildArch:      noarch
 
