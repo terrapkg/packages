@@ -11,6 +11,8 @@ License:        ISC
 URL:            https://github.com/max-baz/yubikey-touch-detector
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 
+Packager:       metcya <metcya@gmail.com>
+
 BuildRequires:  go-rpm-macros
 BuildRequires:  scdoc
 BuildRequires:  pkgconfig(gpgme)
@@ -61,4 +63,4 @@ install -Dm 644 service.conf.example %{buildroot}%{_sysconfdir}/%{name}/service.
 
 %changelog
 * Wed Mar 18 2026 metcya <metcya@gmail.com>
-- 
+- Initial package
