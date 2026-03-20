@@ -44,6 +44,7 @@ BuildRequires: ninja-build
 BuildRequires: openssl-devel
 BuildRequires: pkg-config
 BuildRequires: range-v3-devel
+BuildRequires: rubygem-ronn-ng
 BuildRequires: utf8cpp-devel
 BuildRequires: xxhash-devel
 BuildRequires: xz-devel
