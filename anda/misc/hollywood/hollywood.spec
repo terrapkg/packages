@@ -5,7 +5,6 @@ Summary:        Fill your console with Hollywood melodrama technobabble
 URL:            https://github.com/dustinkirkland/hollywood
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 License:        Apache-2.0
-%dnl BuildRequires:
 Recommends:     apg
 Recommends:     bmon
 Recommends:     byobu
