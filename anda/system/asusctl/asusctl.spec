@@ -109,7 +109,6 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/rog-control-center.d
 * Mon Mar 23 2026 Owen Zimmerman <owen@fyralabs.com> - 6.3.5-2
 - Add asus-shutdown.service
 
-
 * Wed Feb 18 2026 Owen Zimmerman <owen@fyralabs.com> - 6.2.0-3
 - Remove asusd-user.service
 
