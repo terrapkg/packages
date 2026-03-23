@@ -65,6 +65,7 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/rog-control-center.d
 %{_bindir}/asusd
 %{_bindir}/asusd-user
 %{_bindir}/asusctl
+%{_bindir}/asus-shutdown
 %{_unitdir}/asusd.service
 %{_unitdir}/asus-shutdown.service
 %{_udevrulesdir}/99-asusd.rules
