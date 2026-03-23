@@ -1,6 +1,6 @@
 name: Update per branch
 permissions:
-  contents: write
+  contents: read
 on:
   schedule:
     - cron: "*/30 * * * *"
@@ -8,6 +8,8 @@ on:
 
 jobs:
   autoupdate:
+    permissions:
+      contents: write
     runs-on: ubuntu-24.04-arm
     strategy:
       matrix:

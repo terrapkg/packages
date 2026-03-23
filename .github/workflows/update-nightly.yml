@@ -1,6 +1,6 @@
 name: Nightly Update
 permissions:
-  contents: write
+  contents: read
 on:
   schedule:
     - cron: "0 0 * * *"
@@ -8,6 +8,8 @@ on:
 
 jobs:
   autoupdate:
+    permissions:
+      contents: write
     runs-on: ubuntu-24.04-arm
     container:
       image: ghcr.io/terrapkg/builder:frawhide
