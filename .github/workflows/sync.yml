@@ -1,13 +1,15 @@
 name: Automatic backport/sync action
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 on:
   pull_request_target:
     types: ["labeled", "closed"]
 
 jobs:
   backport:
+    permissions:
+      contents: write
+      pull-requests: write
     name: Backport/sync PR
     runs-on: ubuntu-22.04
     if: github.event.pull_request.merged
