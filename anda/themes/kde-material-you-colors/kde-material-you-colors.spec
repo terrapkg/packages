@@ -52,7 +52,7 @@ BuildArch:      noarch
 Python files for KDE Material You Colors.
 
 %prep
-%autosetup -p1 -n %{name}-%{version}
+%autosetup -n %{name}-%{version}
 sed -iE 's:\"python-magic.*\":\"file-magic\":' pyproject.toml
 
 %build
