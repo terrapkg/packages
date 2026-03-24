@@ -6,7 +6,7 @@
 
 Name:           gamescope-session
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        2%?dist
+Release:        3%?dist
 Summary:        Gamescope session based on Valve's gamescope
 License:        MIT
 URL:            https://github.com/OpenGamingCollective/gamescope-session
@@ -31,7 +31,7 @@ install -Dpm0755 -t "%buildroot%_bindir/" ".%_bindir/gamescope-session-plus"
 install -Dpm0644 -t "%buildroot%_userunitdir/" ".%_userunitdir/gamescope-session-plus@.service"
 install -Dpm0644 -t "%buildroot%_userunitdir/" ".%_userunitdir/gamescope-session.target"
 install -Dpm0644 -t "%buildroot%_datadir/gamescope-session-plus/" ".%_datadir/gamescope-session-plus/device-quirks"
-install -Dpm0644 -t "%buildroot%_datadir/gamescope-session-plus/" ".%_datadir/gamescope-session-plus/gamescope-session-plus"
+install -Dpm0755 -t "%buildroot%_datadir/gamescope-session-plus/" ".%_datadir/gamescope-session-plus/gamescope-session-plus"
 install -Dpm0644 -t "%buildroot%_datadir/gamescope/scripts/50-custom/50-disable-explicit-sync.lua" ".%_datadir/gamescope/scripts/50-custom/50-disable-explicit-sync.lua"
 
 %files
