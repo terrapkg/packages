@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Signal
-Exec=signal-desktop %U
+Exec=signal-desktop --use-tray-icon %U
 Terminal=false
 Type=Application
 Icon=signal
@@ -8,6 +8,3 @@ StartupWMClass=Signal
 Comment=Private messaging from your desktop
 MimeType=x-scheme-handler/sgnl;x-scheme-handler/signalcaptcha;
 Categories=Network;InstantMessaging;Chat;
-X-Desktop-File-Install-Version=0.27
-X-Purism-FormFactor=Workstation;Mobile;
-X-Flatpak-RenamedFrom=signal-desktop.desktop;
