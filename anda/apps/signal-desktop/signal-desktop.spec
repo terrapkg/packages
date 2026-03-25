@@ -56,6 +56,7 @@ Signal Desktop links with Signal on Android or iOS and lets you message from you
 
 %prep
 %autosetup -n Signal-Desktop-%{version}
+sed -i 's/--config.directories.output=release//g' package.json
 
 %build
 export SIGNAL_ENV=production
