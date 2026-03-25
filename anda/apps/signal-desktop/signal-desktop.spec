@@ -3,7 +3,7 @@
 Name:			signal-desktop
 %electronmeta -aD
 Version:		8.4.0
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		A private messenger for Windows, macOS, and Linux
 URL:			https://signal.org
 Source0:		https://github.com/signalapp/Signal-Desktop/archive/refs/tags/v%{version}.tar.gz
@@ -18,7 +18,7 @@ BuildRequires:  anda-srpm-macros
 BuildRequires:	pnpm
 BuildRequires:  python3
 BuildRequires:  terra-appstream-helper
-BuildRequires:  nodejs-full-i18n
+BuildRequires:  libxcrypt-compat
 
 Requires:		libwayland-cursor
 Requires:		libwayland-client
@@ -59,13 +59,16 @@ Signal Desktop links with Signal on Android or iOS and lets you message from you
 
 %build
 export SIGNAL_ENV=production
+export SOURCE_DATE_EPOCH="$(date +"%s")"
 %{__pnpm} install --frozen-lockfile
 %{__pnpm} run clean-transpile
 pushd sticker-creator
 %{__pnpm} install --frozen-lockfile
 %{__pnpm} run build
 popd
-%pnpm_build -r generate,prepare-beta-build
+%dnl %pnpm_build -r generate,build:policy-files,generate,build:esbuild:prod
+%{__pnpm} run generate
+%{__pnpm} run build-linux
 
 %install
 %electron_install -i signal -l -I build/icons/png
