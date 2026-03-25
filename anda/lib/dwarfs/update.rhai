@@ -1,1 +1,1 @@
-rpm.version(gh("mhx/dwarfs"));
+rpm.version(gh_tag("mhx/dwarfs"));

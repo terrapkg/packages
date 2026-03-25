@@ -5,12 +5,12 @@ A fast high compression read-only file system for Linux and Windows.}
 %global _distro_extra_cxxflags -include %{_includedir}/c++/*/cstdint
 
 Name:          dwarfs
-Version:       0.15.0
+Version:       0.15.1
 Release:       1%{?dist}
 Summary:       A fast high compression read-only file system for Linux, Windows and macOS
 License:       GPL-3.0-or-later
 URL:           https://github.com/mhx/%{name}
-Source0:       https://github.com/mhx/%{name}/releases/download/v%{version}/%{name}-%{version}.tar.xz
+Source0:       %{url}/archive/refs/tags/v%{version}.tar.gz
 BuildRequires: binutils-devel
 BuildRequires: boost-devel
 %if 0%{?fedora} >= 44
@@ -86,7 +86,8 @@ BuildArch:      noarch
 Zsh shell completion for dwarfs.
 
 %prep
-%git_clone %{url}.git v%{version}
+%autosetup
+%dnl %git_clone %{url}.git v%{version}
 
 %build
 %cmake \
