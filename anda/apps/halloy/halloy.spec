@@ -4,8 +4,8 @@
 %global crate halloy
 
 Name:           halloy
-Version:        2026.4
-Release:        1%?dist
+Version:        2026.5
+Release:        1%{?dist}
 Summary:        An open-source IRC client written in Rust, with the Iced GUI library
 Packager:      Yoong jin <solomoncyj@gmail.com>
 SourceLicense:  GPL-3.0-or-later

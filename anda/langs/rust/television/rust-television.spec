@@ -5,8 +5,8 @@
 %global crate television
 
 Name:           rust-television
-Version:        0.14.5
-Release:        1%?dist
+Version:        0.15.4
+Release:        1%{?dist}
 Summary:        Very fast, portable and hackable fuzzy finder for the terminal
 
 License:        MIT

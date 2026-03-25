@@ -1,6 +1,6 @@
-%global commit 8b5bb14a7a2c6e5dd86f13efce6bc242639265ef
+%global commit de5604a5ae7ca11412d32914c68653ea9ffe007b
 %global shortcommit %{sub %{commit} 0 7}
-%global commitdate 20260319
+%global commitdate 20260324
 
 Name:           steamos-manager-powerstation
 Version:        0~%{commitdate}.git%{shortcommit}

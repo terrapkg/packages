@@ -2,8 +2,8 @@
 %global crate matugen
 
 Name:           rust-matugen
-Version:        4.0.0
-Release:        1%?dist
+Version:        4.1.0
+Release:        1%{?dist}
 Summary:        Material you color generation tool with templates
 
 License:        GPL-2.0-or-later

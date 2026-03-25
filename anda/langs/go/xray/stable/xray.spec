@@ -1,13 +1,13 @@
 # Disabled because compiled without debug
 
 %global goipath         github.com/XTLS/Xray-core
-Version:                26.2.6
+Version:                26.3.23
 
 %global golicenses      LICENSE
 %global godocs          README.md SECURITY.md CODE_OF_CONDUCT.md
 
 Name:           xray
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        High-performance, open-source network proxy engine and toolset designed to bypass internet censorship and enhance privacy
 License:        MPL-2.0
 Packager:       veuxit <erroor234@gmail.com>
