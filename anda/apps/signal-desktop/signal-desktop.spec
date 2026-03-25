@@ -9,6 +9,7 @@ URL:			https://signal.org
 Source0:		https://github.com/signalapp/Signal-Desktop/archive/refs/tags/v%{version}.tar.gz
 Source1:		signal.desktop
 Source2:        org.signal.Signal.metainfo.xml
+Patch0:      fix-runtime.patch
 License:		AGPL-3.0-only AND %{electron_license}
 
 BuildRequires:	pulseaudio-libs-devel
