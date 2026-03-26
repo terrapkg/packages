@@ -1,7 +1,7 @@
 Name:           cloud-hypervisor
 License:        Apache-2.0 AND MPL-2.0 AND (Unlicense OR MIT) AND (MIT OR Zlib OR Apache-2.0) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND MIT AND BSD-3-Clause AND (BSD-3-Clause OR Apache-2.0) AND (BSD-3-Clause OR MIT OR Apache-2.0) AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND BSD-3-Clause AND CC-BY-4.0 AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSD-3-Clause) AND (Apache-2.0 OR MIT)
 Version:        51.1
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A Virtual Machine Monitor for modern Cloud workloads
 URL:            https://github.com/cloud-hypervisor/cloud-hypervisor
 Source0:        https://github.com/cloud-hypervisor/cloud-hypervisor/archive/refs/tags/v%{version}.tar.gz
@@ -42,8 +42,8 @@ install -Dm755 target/rpm/vhost_user_net %{buildroot}%{_bindir}/vhost_user_net
 %files
 %license LICENSE.dependencies LICENSES/
 %doc CODEOWNERS CODE_OF_CONDUCT.md CONTRIBUTING.md CREDITS.md MAINTAINERS.md README.md release-notes.md
+%caps(cap_net_admin=ep) %{_bindir}/cloud-hypervisor
 %{_bindir}/ch-remote
-%{_bindir}/cloud-hypervisor
 %{_bindir}/vhost_user_block
 %{_bindir}/vhost_user_net
 
