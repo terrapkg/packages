@@ -34,7 +34,6 @@ Requires:       %{name} = %{evr}
 %install
 install -Dm755 target/rpm/cloud-hypervisor %{buildroot}%{_bindir}/cloud-hypervisor
 install -Dm755 target/rpm/ch-remote %{buildroot}%{_bindir}/ch-remote
-install -Dm755 target/rpm/performance-metrics %{buildroot}%{_bindir}/performance-metrics
 install -Dm755 target/rpm/vhost_user_block %{buildroot}%{_bindir}/vhost_user_block
 install -Dm755 target/rpm/vhost_user_net %{buildroot}%{_bindir}/vhost_user_net
 
@@ -45,7 +44,6 @@ install -Dm755 target/rpm/vhost_user_net %{buildroot}%{_bindir}/vhost_user_net
 %doc CODEOWNERS CODE_OF_CONDUCT.md CONTRIBUTING.md CREDITS.md MAINTAINERS.md README.md release-notes.md
 %{_bindir}/ch-remote
 %{_bindir}/cloud-hypervisor
-%{_bindir}/performance-metrics
 %{_bindir}/vhost_user_block
 %{_bindir}/vhost_user_net
 
