@@ -6,7 +6,7 @@ A fast high compression read-only file system for Linux and Windows.}
 
 Name:          dwarfs
 Version:       0.14.1
-Release:       5%{?dist}
+Release:       6%{?dist}
 Summary:       A fast high compression read-only file system for Linux, Windows and macOS
 License:       GPL-3.0-or-later
 URL:           https://github.com/mhx/%{name}
