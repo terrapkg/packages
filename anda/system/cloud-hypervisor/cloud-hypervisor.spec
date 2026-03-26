@@ -7,7 +7,6 @@ URL:            https://github.com/cloud-hypervisor/cloud-hypervisor
 Source0:        https://github.com/cloud-hypervisor/cloud-hypervisor/archive/refs/tags/v%{version}.tar.gz
 BuildRequires:  perl
 BuildRequires:  cargo-rpm-macros
-BuildRequires:  anda-srpm-macros mold
 BuildRequires:  pkgconfig(openssl)
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
