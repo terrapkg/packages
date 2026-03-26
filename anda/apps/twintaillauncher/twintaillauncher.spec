@@ -51,9 +51,7 @@ TTL is an all-in-one tool for downloading, managing, and launching your favorite
 
 %prep
 %autosetup -n TwintailLauncher-ttl-v%{version}
-cd src-tauri
-cargo update
-cd ..
+
 %tauri_prep
 
 %build
@@ -85,7 +83,7 @@ install -Dm644 public/launcher-icon-128.png %{buildroot}%{_hicolordir}/128x128/a
 %doc README.md
 
 %{_bindir}/twintaillauncher
-%{_libdir}/twintaillauncher/resources
+/usr/lib/twintaillauncher/resources
 %{_hicolordir}/512x512/apps/%{name}.png
 %{_hicolordir}/128x128/apps/%{name}.png
 %_appsdir/twintaillauncher.desktop
