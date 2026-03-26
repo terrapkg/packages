@@ -1,0 +1,11 @@
+--- a/package.json	2026-03-23 09:45:41.545576312 +0100
++++ b/package.json	2026-03-23 09:46:51.714180613 +0100
+@@ -424,7 +424,7 @@
+     ]
+   },
+   "engines": {
+-    "node": "24.14.0"
++    "node": ">= 22"
+   },
+   "build": {
+     "appId": "org.whispersystems.signal-desktop",
