@@ -18,7 +18,6 @@ Source0:        https://github.com/TwintailTeam/TwintailLauncher/archive/refs/ta
 
 ExclusiveArch: x86_64
 
-Requires:       hicolor-icon-theme
 Requires:       cairo
 Requires:       desktop-file-utils
 Requires:       gdk-pixbuf2
