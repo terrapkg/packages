@@ -39,10 +39,10 @@ install -Dm755 target/rpm/performance-metrics %{buildroot}%{_bindir}/performance
 install -Dm755 target/rpm/vhost_user_block %{buildroot}%{_bindir}/vhost_user_block
 install -Dm755 target/rpm/vhost_user_net %{buildroot}%{_bindir}/vhost_user_net
 
-%{cargo_license_online} > LICENSE.dependancies
+%{cargo_license_online} > LICENSE.dependencies
 
 %files
-%license LICENSE.dependancies LICENSES/
+%license LICENSE.dependencies LICENSES/
 %doc CODEOWNERS CODE_OF_CONDUCT.md CONTRIBUTING.md CREDITS.md MAINTAINERS.md README.md release-notes.md
 %{_bindir}/ch-remote
 %{_bindir}/cloud-hypervisor
