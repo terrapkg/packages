@@ -1,6 +1,6 @@
 Name:			proton-vpn-gtk-app
 Version:		4.15.1
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Official ProtonVPN Linux app
 License:		GPL-3.0-only
 URL:			https://protonvpn.com/download-linux
@@ -51,13 +51,17 @@ with the user signup process handled on the website.
 %pyproject_save_files proton
 install -Dm644 rpmbuild/SOURCES/proton-vpn-logo.svg %{buildroot}%{_scalableiconsdir}/proton-vpn-logo.svg
 install -Dm644 %{SOURCE1} %{buildroot}%{_metainfodir}/com.protonvpn.www.metainfo.xml
-# Match metainfo
-install -Dm644 rpmbuild/SOURCES/proton.vpn.app.gtk.desktop %{buildroot}%{_appsdir}/com.protonvpn.www.desktop
+install -Dm644 rpmbuild/SOURCES/proton.vpn.app.gtk.desktop %{buildroot}%{_appsdir}/proton.vpn.app.gtk.desktop
+
+# We pull in a metainfo file that often changes upstream, that calls the .desktop file what we are symlinking it to.
+# If we install the .desktop file with the new name, the icon does not show properly on KDE Plasma.
+%{__ln_s} -f %{_appsdir}/proton.vpn.app.gtk.desktop %{buildroot}%{_appsdir}/com.protonvpn.www.desktop
 
 %files -f %{pyproject_files}
 %doc README.md CONTRIBUTING.md CODEOWNERS
 %license LICENSE COPYING.md
 %{_bindir}/protonvpn-app
+%{_appsdir}/proton.vpn.app.gtk.desktop
 %{_appsdir}/com.protonvpn.www.desktop
 %{_scalableiconsdir}/proton-vpn-logo.svg
 %{_metainfodir}/com.protonvpn.www.metainfo.xml
