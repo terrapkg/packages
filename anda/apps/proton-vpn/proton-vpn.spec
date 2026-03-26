@@ -8,7 +8,7 @@ License:		GPL-3.0-only
 URL:			https://protonvpn.com/download-linux
 Source0:		https://github.com/ProtonVPN/proton-vpn-gtk-app/archive/refs/tags/v%version.tar.gz
 # So cursed but makes our lives easier
-Source1:        https://github.com/flathub/com.protonvpn.www/archive/%{commit}/com.protonvpn.www-%{commit}.tar.gz
+Source1:        https://github.com/flathub/com.protonvpn.www/archive/%{metainfo_commit}/com.protonvpn.www-%{metainfo_commit}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
@@ -54,7 +54,7 @@ tar -xvf %{SOURCE1}
 %pyproject_install
 %pyproject_save_files proton
 install -Dm644 rpmbuild/SOURCES/proton-vpn-logo.svg %{buildroot}%{_scalableiconsdir}/proton-vpn-logo.svg
-install -Dm644 com.protonvpn.www-%{commit}/com.protonvpn.www.metainfo.xml %{buildroot}%{_metainfodir}/com.protonvpn.www.metainfo.xml
+install -Dm644 com.protonvpn.www-%{metainfo_commit}/com.protonvpn.www.metainfo.xml %{buildroot}%{_metainfodir}/com.protonvpn.www.metainfo.xml
 install -Dm644 rpmbuild/SOURCES/proton.vpn.app.gtk.desktop %{buildroot}%{_appsdir}/proton.vpn.app.gtk.desktop
 
 # We pull in a metainfo file that often changes upstream, that calls the .desktop file what we are symlinking it to.
