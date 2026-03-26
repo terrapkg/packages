@@ -19,6 +19,18 @@ Source0:        https://github.com/TwintailTeam/TwintailLauncher/archive/refs/ta
 ExclusiveArch: x86_64
 
 Requires:       hicolor-icon-theme
+Requires:       cairo
+Requires:       desktop-file-utils
+Requires:       gdk-pixbuf2
+Requires:       glib2
+Requires:       gtk3
+Requires:       hicolor-icon-theme
+Requires:       libappindicator-gtk3
+Requires:       libayatana-appindicator-gtk3
+Requires:       pango
+Requires:       webkit2gtk4.1
+Requires:       mangohud
+Requires:       gamemode
 
 # Build requires
 BuildRequires:  pnpm
@@ -52,7 +64,9 @@ cd ..
 %install
 %tauri_install
 mkdir -p %{buildroot}/%{_libdir}/twintaillauncher/resources
-mv %{buildroot}/%{_datadir}/cargo/registry/twintaillauncher-%{version}/resources/ %{buildroot}/%{_libdir}/twintaillauncher/resources
+
+#app expects files to be present there
+mv -r %{buildroot}/%{_datadir}/cargo/registry/twintaillauncher-%{version}/resources/* %{buildroot}/usr/lib/twintaillauncher/resources
 rm -rf %{buildroot}/%{_datadir}/cargo/registry/twintaillauncher-%{version}
 
 
