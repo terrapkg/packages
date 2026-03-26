@@ -1,0 +1,194 @@
+policy_module(steamos_manager, 1.0.0)
+
+########################################
+# Init
+########################################
+
+type steamos_manager_t;
+type steamos_manager_exec_t;
+type steamos_manager_data_t;
+type steamos_manager_conf_t;
+
+# Mark as a domain and entry point
+init_daemon_domain(steamos_manager_t, steamos_manager_exec_t)
+
+# Mark data and config as file types
+files_type(steamos_manager_data_t)
+files_config_file(steamos_manager_conf_t)
+
+# Allow systemd to manage the service (start/stop/status)
+init_dbus_chat(steamos_manager_t)
+
+########################################
+# Process permissions
+########################################
+
+# Standard process operations
+allow steamos_manager_t self:process { signal signull getsched setsched };
+
+# Forking for script execution
+allow steamos_manager_t self:fifo_file { read write getattr };
+
+# Notify socket for Type=notify-reload (sd_notify)
+init_dgram_send(steamos_manager_t)
+
+########################################
+# DBus access
+########################################
+
+dbus_system_bus_client(steamos_manager_t)
+dbus_session_bus_client(steamos_manager_t)
+dbus_connect_system_bus(steamos_manager_t)
+dbus_connect_session_bus(steamos_manager_t)
+
+# Own the service name
+allow steamos_manager_t self:dbus { send_msg acquire_svc };
+
+# Talk to systemd
+optional_policy(`
+	systemd_dbus_chat_logind(steamos_manager_t)
+')
+
+########################################
+# Sysfs access (hardware management)
+########################################
+
+# Read/write sysfs for TDP, GPU, backlight, power_supply, CPU scaling,
+# hwmon, firmware-attributes, platform-profile, hidraw, drm, DMI
+dev_read_sysfs(steamos_manager_t)
+dev_rw_sysfs(steamos_manager_t)
+
+########################################
+# Procfs access
+########################################
+
+# Read /proc/cpuinfo
+kernel_read_system_state(steamos_manager_t)
+
+# Read /proc/{pid}/comm, environ, stat, fd/ for display sleep inhibition
+domain_read_all_domains_state(steamos_manager_t)
+
+########################################
+# Tracefs and debugfs
+########################################
+
+# ftrace access: /sys/kernel/tracing/instances/steamos-manager/
+# debugfs access: /sys/kernel/debug/ath11k/
+kernel_read_debugfs(steamos_manager_t)
+kernel_manage_debugfs(steamos_manager_t)
+
+########################################
+# Device access
+########################################
+
+# /dev/uinput — virtual input devices
+optional_policy(`
+	gen_require(`
+		type uinput_device_t;
+	')
+	allow steamos_manager_t uinput_device_t:chr_file { open read write ioctl getattr };
+')
+
+# /dev/hidraw* — DualSense controller inhibitor
+optional_policy(`
+	gen_require(`
+		type hidraw_device_t;
+	')
+	allow steamos_manager_t hidraw_device_t:chr_file { open read write getattr ioctl };
+')
+
+# /dev/input/event* — inputplumber
+dev_rw_input_dev(steamos_manager_t)
+
+# Udev events via netlink socket
+allow steamos_manager_t self:netlink_kobject_uevent_socket { create bind getattr read setopt };
+
+# Watch /dev/ directory via inotify for device creation
+dev_list_all_dev_nodes(steamos_manager_t)
+allow steamos_manager_t device_t:dir { watch };
+
+########################################
+# Configuration & Data Files
+########################################
+
+# Data Files
+allow steamos_manager_t steamos_manager_data_t:dir list_dir_perms;
+allow steamos_manager_t steamos_manager_data_t:file read_file_perms;
+
+# Config files
+allow steamos_manager_t steamos_manager_conf_t:dir list_dir_perms;
+allow steamos_manager_t steamos_manager_conf_t:file read_file_perms;
+
+########################################
+# System configuration writes
+########################################
+
+# /etc/sddm.conf.d/, /etc/NetworkManager/conf.d/
+allow steamos_manager_t etc_t:dir { add_name remove_name write search create };
+allow steamos_manager_t etc_t:file { create write unlink open getattr rename };
+
+# /etc/systemd/system/iwd.service.d/
+optional_policy(`
+	systemd_manage_all_unit_files(steamos_manager_t)
+')
+
+########################################
+# User state and runtime files
+########################################
+
+# XDG_STATE_HOME
+userdom_manage_user_home_content_files(steamos_manager_t)
+userdom_manage_user_home_content_dirs(steamos_manager_t)
+
+# XDG_RUNTIME_DIR
+# XDG_CONFIG_HOME
+userdom_manage_user_tmp_dirs(steamos_manager_t)
+userdom_manage_user_tmp_files(steamos_manager_t)
+
+# /usr/share/wayland-sessions/ and /usr/share/xsessions/
+files_read_usr_files(steamos_manager_t)
+
+# /tmp/
+files_manage_generic_tmp_files(steamos_manager_t)
+files_tmp_filetrans(steamos_manager_t, tmp_t, file)
+
+# /var/lib/steamos-log-submitter/data/
+files_search_var_lib(steamos_manager_t)
+files_manage_var_lib_files(steamos_manager_t)
+files_manage_var_lib_dirs(steamos_manager_t)
+
+########################################
+# External command execution
+########################################
+
+# Execute system binaries
+corecmd_exec_bin(steamos_manager_t)
+corecmd_exec_shell(steamos_manager_t)
+
+# Execute libraries/scripts under /usr/lib/ paths
+libs_exec_lib_files(steamos_manager_t)
+
+########################################
+# Network and IPC
+########################################
+
+# Unix domain sockets for DBus
+allow steamos_manager_t self:unix_stream_socket { create connect read write getattr shutdown };
+allow steamos_manager_t self:unix_dgram_socket { create connect read write getattr sendto };
+
+# Speech-dispatcher and dconf-service connections
+corenet_tcp_connect_all_ports(steamos_manager_t)
+
+########################################
+# Logging
+########################################
+
+logging_send_syslog_msg(steamos_manager_t)
+
+########################################
+# Miscellaneous
+########################################
+
+# Read locale and system state
+miscfiles_read_localization(steamos_manager_t)
+kernel_read_kernel_sysctls(steamos_manager_t)
