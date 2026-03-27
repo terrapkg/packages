@@ -60,7 +60,7 @@ pnpm import
 
 %install
 %tauri_install
-mkdir -p %{buildroot}/%{_libdir}/twintaillauncher/resources
+mkdir -p %{buildroot}//usr/lib/twintaillauncher/resources
 
 #app expects files to be present there
 mv  %{buildroot}/%{_datadir}/cargo/registry/twintaillauncher-%{version}/resources %{buildroot}/usr/lib/twintaillauncher/resources
