@@ -7,7 +7,7 @@
 Name:           twintaillauncher
 
 Version:        1.1.15
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A multi-platform launcher for your anime games
 Packager:        Yoong Jin <solomoncyj@gmail.com>
 
@@ -91,6 +91,8 @@ install -Dm644 public/launcher-icon-128.png %{buildroot}%{_hicolordir}/128x128/a
 
 
 %changelog
+* Fri Mar 27 2026 Yoong Jin <solomoncyj@gmail.com> - 2.1.15-1
+- Fix folders
 * Thu Feb 19 2026 Yoong Jin <solomoncyj@gmail.com> - 1.1.15-1
 - Fix resources
 * Tue Feb 3 2026 Yoong Jin <solomoncyj@gmail.com> - 1.1.15-0
