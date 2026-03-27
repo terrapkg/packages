@@ -54,7 +54,7 @@ TTL is an all-in-one tool for downloading, managing, and launching your favorite
 %tauri_prep
 
 %build
-%npm_build -c
+%npm_build -c -B
 
 
 %install
