@@ -32,7 +32,7 @@ Requires:       mangohud
 Requires:       gamemode
 
 # Build requires
-BuildRequires:  pnpm
+BuildRequires:  nodejs-npm
 BuildRequires: %{tauri_buildrequires}
 BuildRequires: protobuf-devel
 BuildRequires:  webkit2gtk4.1-devel
@@ -54,7 +54,7 @@ TTL is an all-in-one tool for downloading, managing, and launching your favorite
 %tauri_prep
 
 %build
-%pnpm_build -F
+%pnpm_build -c
 
 
 %install
