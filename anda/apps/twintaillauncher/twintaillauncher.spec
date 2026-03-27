@@ -33,6 +33,7 @@ Requires:       gamemode
 
 # Build requires
 BuildRequires:  nodejs-npm
+BuildRequires:  pnpm
 BuildRequires: %{tauri_buildrequires}
 BuildRequires: protobuf-devel
 BuildRequires:  webkit2gtk4.1-devel
