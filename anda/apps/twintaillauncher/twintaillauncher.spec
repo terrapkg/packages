@@ -32,7 +32,6 @@ Requires:       mangohud
 Requires:       gamemode
 
 # Build requires
-BuildRequires:  nodejs-npm
 BuildRequires:  pnpm
 BuildRequires: %{tauri_buildrequires}
 BuildRequires: protobuf-devel
@@ -53,9 +52,10 @@ TTL is an all-in-one tool for downloading, managing, and launching your favorite
 %prep
 %autosetup -n TwintailLauncher-ttl-v%{version}
 %tauri_prep
+pnpm import
 
 %build
-%npm_build -c -B
+%pnpm_build -F
 
 
 %install
@@ -63,7 +63,7 @@ TTL is an all-in-one tool for downloading, managing, and launching your favorite
 mkdir -p %{buildroot}/%{_libdir}/twintaillauncher/resources
 
 #app expects files to be present there
-mv -r %{buildroot}/%{_datadir}/cargo/registry/twintaillauncher-%{version}/resources/* %{buildroot}/usr/lib/twintaillauncher/resources
+mv  %{buildroot}/%{_datadir}/cargo/registry/twintaillauncher-%{version}/resources %{buildroot}/usr/lib/twintaillauncher/resources
 rm -rf %{buildroot}/%{_datadir}/cargo/registry/twintaillauncher-%{version}
 
 
