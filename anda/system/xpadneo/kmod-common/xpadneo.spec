@@ -48,7 +48,7 @@ install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/metainfo/io.github.%{name}.met
 install -Dm644 %{name}.conf -t %{buildroot}%{_modulesloaddir}
 
 %files
-%license LICENSE
+%license LICENSE.md LICENSES
 %doc docs/*.md
 %{_modprobedir}/%{name}.conf
 %{_udevrulesdir}/60-%{name}.rules
