@@ -14,6 +14,7 @@ BuildRequires:  python3-wheel
 BuildRequires:  python3-setuptools
 BuildRequires:  python3-pip
 BuildRequires:  gcc-c++
+BuildRequires:  cmake
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
