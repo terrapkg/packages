@@ -1,5 +1,5 @@
 project pkg {
-  arches = ["x86_64", "aarch64"]
+  arches = ["x86_64", "aarch64", "i386"]
   rpm {
     spec = "libfreeaptx.spec"
   }

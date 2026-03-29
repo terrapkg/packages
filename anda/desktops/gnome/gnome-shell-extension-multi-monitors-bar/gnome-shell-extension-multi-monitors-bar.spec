@@ -1,5 +1,5 @@
-%global commit a6a8b8a717f2255c3c1b3af4ce205ebc3a65e0af
-%global commit_date 20260130
+%global commit 376fe37ca7e6b8535fa7de1629cdca5d311cef88
+%global commit_date 20260328
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %global extension   multi-monitors-bar
@@ -7,7 +7,7 @@
 
 Name:           gnome-shell-extension-%{extension}
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        2%?dist
+Release:        1%{?dist}
 Summary:        Add multiple monitors overview and panel for GNOME Shell. This is an updated fork with GNOME 46 compatibility
 License:        GPL-2.0-or-later
 URL:            https://github.com/FrederykAbryan/multi-monitors-bar_fapv2

@@ -1,6 +1,6 @@
-%global commit 1b540bb7562206d33a3646b698fba899e50ba29d
+%global commit df82168bc37ad1ec700c66b0f0f5dfd7a07be485
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260315
+%global commit_date 20260316
 
 Name:               valent
 Version:            0~%{commit_date}git.%{shortcommit}

@@ -1,7 +1,7 @@
-%global commit b58414209fce1669cff818e50468e926613baa10
+%global commit 12dba9653ae2c0dd24bf2633e2572a8093b0df5e
 
 Name:	       noctalia-qs
-Version:       0.0.6
+Version:       0.0.10
 Release:       1%{?dist}
 Summary:       Flexible QtQuick based desktop shell toolkit
 License:       LGPL-3.0-only AND GPL-3.0-only

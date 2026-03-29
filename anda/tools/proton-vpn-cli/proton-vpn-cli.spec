@@ -3,8 +3,8 @@
 %global __requires_exclude ^python3\\.14dist\\(proton-vpn-local-agent\\)$
 
 Name:			python-proton-vpn-cli
-Version:		0.1.6
-Release:		1%?dist
+Version:		0.1.8
+Release:		1%{?dist}
 Summary:		Official ProtonVPN CLI Linux app
 License:		GPL-3.0-only
 URL:			https://github.com/ProtonVPN/proton-vpn-cli

@@ -1,7 +1,7 @@
-%global commit 2fe1386074c73deec984dd42c3781688913df2ea
+%global commit f2aa9fe01103d7600553b505b298ff0bd47ff280
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260207
-%global ver 0.5.5
+%global commitdate 20260314
+%global ver 0.5.7
 %global modulename xone
 %global _dracutconfdir %{_prefix}/lib/dracut/dracut.conf.d
 %global firmware_hash0 080ce4091e53a4ef3e5fe29939f51fd91f46d6a88be6d67eb6e99a5723b3a223
@@ -11,7 +11,7 @@
 
 Name:           xone-nightly
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        1%?dist
+Release:        1%{?dist}
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Epoch:          1
 %endif
@@ -59,7 +59,7 @@ BuildArch:       noarch
 
 %description     firmware
 Proprietary firmware for XBox controller dongles.
-
+ 
 %prep
 %autosetup -p1 -n %{modulename}-%{commit}
 /usr/bin/sed -nE '/^BUILT_MODULE_NAME/{s@^.+"(.+)"@\1@; s|-|_|g; p}' dkms.conf > %{modulename}.conf

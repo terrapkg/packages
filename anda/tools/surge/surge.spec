@@ -1,10 +1,10 @@
 %global goipath github.com/surge-downloader/surge
-Version:        0.6.10
+Version:        0.7.5
 
 %gometa
 
 Name:           surge
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Blazing fast TUI download manager built in Go for power users
 
 License:        MIT

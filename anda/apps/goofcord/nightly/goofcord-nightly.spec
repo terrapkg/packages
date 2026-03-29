@@ -1,14 +1,14 @@
-%global commit 4ea08fb13e496995af3490d7e501aee2f3c20b4d
+%global commit 779d684b0f37775c8d4889d8b61a5d2db7925896
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260211
-%global ver 2.0.1^
+%global commit_date 20260315
+%global ver 2.1.1^
 %global base_name goofcord
 %global git_name GoofCord
 %global appid io.github.milkshiift.GoofCord
 
 Name:          %{base_name}-nightly
 Version:       %{ver}%{commit_date}.git.%{shortcommit}
-Release:       1%?dist
+Release:       1%{?dist}
 License:       OSL-3.0
 Summary:       A privacy-minded Legcord fork.
 Group:         Applications/Internet

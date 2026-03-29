@@ -1,11 +1,9 @@
 %global debug_package %{nil}
 %global appid org.asus_linux.rog_control_center
 
-%define _unpackaged_files_terminate_build 0
-
 Name:           asusctl
-Version:        6.3.2
-Release:        2%?dist
+Version:        6.3.5
+Release:        2%{?dist}
 Epoch:          1
 Summary:        A control daemon, CLI tools, and a collection of crates for interacting with ASUS ROG laptops
 URL:            https://gitlab.com/asus-linux/asusctl
@@ -67,7 +65,9 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/rog-control-center.d
 %{_bindir}/asusd
 %{_bindir}/asusd-user
 %{_bindir}/asusctl
+%{_bindir}/asus-shutdown
 %{_unitdir}/asusd.service
+%{_unitdir}/asus-shutdown.service
 %{_udevrulesdir}/99-asusd.rules
 %dnl %{_sysconfdir}/asusd/
 %{_datadir}/asusd/aura_support.ron
@@ -89,12 +89,15 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/rog-control-center.d
 
 %post
 %systemd_post asusd.service
+%systemd_post asus-shutdown.service
 
 %preun
 %systemd_preun asusd.service
+%systemd_preun asus-shutdown.service
 
 %postun
 %systemd_postun_with_restart asusd.service
+%systemd_postun_with_restart asus-shutdown.service
 
 %files rog-gui
 %{_bindir}/rog-control-center
@@ -104,6 +107,9 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/rog-control-center.d
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
+* Mon Mar 23 2026 Owen Zimmerman <owen@fyralabs.com> - 6.3.5-2
+- Add asus-shutdown.service
+
 * Wed Feb 18 2026 Owen Zimmerman <owen@fyralabs.com> - 6.2.0-3
 - Remove asusd-user.service
 

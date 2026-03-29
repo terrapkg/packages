@@ -1,5 +1,5 @@
 %global goipath         github.com/v2fly/v2ray-core
-Version:                5.44.1
+Version:                5.48.0
 
 %global golicenses      LICENSE
 %global godocs          README.md SECURITY.md 
@@ -7,7 +7,7 @@ Version:                5.44.1
 %gometa -f
 
 Name:           v2ray
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        A platform for building proxies to bypass network restrictions
 License:        MIT
 Packager:       veuxit <erroor234@gmail.com>

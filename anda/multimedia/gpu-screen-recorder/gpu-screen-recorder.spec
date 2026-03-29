@@ -1,15 +1,13 @@
-%global snapshot r1245.8e82100
-
 Name:           gpu-screen-recorder
 Version:        5.12.5
-Release:        1%?dist
+Release:        3%?dist
 Summary:        A shadowplay-like screen recorder for Linux
 
 License:        GPL-3.0-or-later
 
 URL:            https://git.dec05eba.com/%{name}/about
 
-Source:         https://dec05eba.com/snapshot/%{name}.git.%{snapshot}.tar.gz
+Source:         https://dec05eba.com/snapshot/%{name}.git.%{version}.tar.gz
 
 BuildRequires:  gcc
 BuildRequires:  (gcc-g++ or gcc-c++)
@@ -64,14 +62,18 @@ Shadowplay-like screen recorder for Linux. Uses GPU acceleration to record in H.
 %files
 %license LICENSE
 %doc README.md
-%{_bindir}/gpu-screen-recorder
+%{_bindir}/%{name}
 %caps(cap_sys_admin+ep) %{_bindir}/gsr-kms-server
+%{_datadir}/%{name}/scripts/*.sh
 %{_includedir}/gsr/plugin.h
 %{_userunitdir}/%{name}.service
 %{_modprobedir}/gsr-nvidia.conf
 %{_mandir}/man1/gsr-kms-server.1*
-%{_mandir}/man1/gpu-screen-recorder.1*
+%{_mandir}/man1/%{name}.1*
 
 %changelog
+* Sun Mar 15 2026 Willow C Reed <terra@willowidk.dev>
+- Fix package source
+
 * Fri Jan 02 2026 Willow Reed <terra@willowidk.dev>
 - Initial commit

@@ -1,10 +1,10 @@
-%global commit 704b4f83c8c0ca4e5fbd8e3cd151c2308e1af4bd
-%global commit_date 20260211
+%global commit 1848c39566fb23666e1125f467fb9caf648489c8
+%global commit_date 20260328
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           spotx-bash
 Version:        %commit_date.git~%shortcommit
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Adblock for the Spotify desktop client on Linux.
 License:        MIT
 URL:            https://github.com/SpotX-Official/SpotX-Bash

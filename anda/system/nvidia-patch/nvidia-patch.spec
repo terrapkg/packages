@@ -1,13 +1,13 @@
 %global debug_package %{nil}
-%global commit 23c3b8b3d35ae3cd5acdbc42aeb6986472ad28e2
+%global commit d0240212254372a5a7bb9984c8c2345492893a1e
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260201
+%global commit_date 20260328
 
 
 %global patches %{_datadir}/src/nvidia-patch
 Name:           nvidia-patch
 Version:        0^%commit_date.%{shortcommit}
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        NVENC and NvFBC patches for NVIDIA drivers
 
 License:        EULA

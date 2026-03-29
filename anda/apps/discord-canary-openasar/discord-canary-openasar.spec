@@ -6,8 +6,8 @@
 %global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 Name:           discord-canary-openasar
-Version:        0.0.886
-Release:        1%?dist
+Version:        0.0.930
+Release:        1%{?dist}
 Summary:        A snappier Discord rewrite with features like further customization and theming
 License:        MIT AND https://discord.com/terms
 URL:            https://github.com/GooseMod/OpenAsar

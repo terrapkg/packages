@@ -3,8 +3,8 @@
 
 Name:           rust-topgrade
 # renovate: datasource=github-releases depName=topgrade-rs/topgrade
-Version:        16.8.0
-Release:        1%?dist
+Version:        17.1.0
+Release:        1%{?dist}
 Summary:        Upgrade all the things
 
 SourceLicense:  GPL-3.0-or-later

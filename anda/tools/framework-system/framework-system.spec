@@ -1,5 +1,5 @@
 Name:           framework-system
-Version:        0.6.0
+Version:        0.6.1
 Release:        1%{?dist}
 Summary:        Rust libraries and tools to interact with the Framework Computer systems
 URL:            https://github.com/FrameworkComputer/framework-system

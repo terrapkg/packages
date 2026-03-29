@@ -4,7 +4,7 @@
 
 # https://github.com/evilsocket/opensnitch
 %global goipath         github.com/evilsocket/opensnitch
-Version:                1.7.0.0
+Version:                1.8.0
 
 %gometa -f
 
@@ -20,7 +20,7 @@ Snitch.}
                         utils/packaging/ui/deb/debian/changelog
 
 Name:           opensnitch
-Release:        %autorelease
+Release:        1%{?dist}
 Summary:        OpenSnitch is a GNU/Linux interactive application firewall inspired by Little Snitch
 
 License:        GPL-3.0-only AND LGPL-2.1-or-later

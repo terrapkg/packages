@@ -1,8 +1,8 @@
 %define debug_package %{nil}
 
 Name:           MareTF
-Version:        0.9.3
-Release:        2%{?dist}
+Version:        0.10.0
+Release:        1%{?dist}
 License:        MIT
 Summary:        A utility to create, edit, and display every type of VTF file ever made
 URL:            https://github.com/craftablescience/MareTF

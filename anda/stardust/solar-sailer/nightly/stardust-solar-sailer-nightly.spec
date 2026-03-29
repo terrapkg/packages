@@ -1,5 +1,5 @@
-%global commit e9ff298d261d13c69b560a3993a8cd00b3da56ee
-%global commit_date 20260125
+%global commit e0b27dda48f204883c52ecb3e1f436e31200f6e5
+%global commit_date 20260320
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 # Exclude input files from mangling
@@ -7,7 +7,7 @@
 
 Name:           stardust-xr-solar-sailer-nightly
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Glide through space! This play space mover allows you to fly by dragging the space with momentum!
 URL:            https://github.com/StardustXR/solar-sailer
 Source0:        %url/archive/%commit.tar.gz

@@ -3,7 +3,7 @@
 %bcond test 0
 
 Name:          nodejs-%{npm_name}
-Version:       11.0.0
+Version:       11.0.1
 Release:       1%{?dist}
 Summary:       Backport GitHub commits
 SourceLicense: Apache-2.0

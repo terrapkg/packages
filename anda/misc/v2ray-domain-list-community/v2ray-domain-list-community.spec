@@ -1,11 +1,11 @@
-%global commit  6bb4a68f2f1323998c84754ba56341f8e31efc26
+%global commit  af7fd77ebcd4dcc740fcb26cb6a2407236f6e24c
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global ver 20260309041918
-%global commit_date 20260309
+%global ver 20260326050832
+%global commit_date 20260327
 
 Name:           v2ray-domain-list-community
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Community managed domain list (geosite.dat) for V2Ray
 License:        MIT
 Packager:       veuxit <erroor234@gmail.com>

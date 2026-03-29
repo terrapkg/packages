@@ -1,10 +1,10 @@
-%global commit 02ac25638105d17d822500b735cd5cb2ac8d2414
-%global commit_date 20260214
+%global commit e5fd0250d79bcf1cd9b7ca07d2720401f6aa797a
+%global commit_date 20260329
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-
+%global crate readymade
 Name:           readymade-git
 Version:        %commit_date.%shortcommit
-Release:        2%?dist
+Release:        1%{?dist}
 Summary:        Install ready-made distribution images!
 License:        GPL-3.0-or-later
 URL:            https://github.com/FyraLabs/readymade
@@ -12,6 +12,7 @@ Source0:        %url/archive/%commit.tar.gz
 Source1:        https://github.com/FyraLabs/rdms_proc_macros/archive/HEAD.tar.gz
 BuildRequires:	anda-srpm-macros rust-packaging mold
 BuildRequires:  pkgconfig(libhelium-1)
+BuildRequires:  pkgconfig(openssl)
 BuildRequires:  clang-devel
 BuildRequires:  gcc
 BuildRequires:  cmake

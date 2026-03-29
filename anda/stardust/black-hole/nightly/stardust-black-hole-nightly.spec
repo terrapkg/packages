@@ -1,12 +1,12 @@
-%global commit 49fbf32f330b324c9b9d8582e80582378fc57e3c
-%global commit_date 20260214
+%global commit e5b7778ed23b1e9b57e2292f16c9db10ca0eb1ad
+%global commit_date 20260320
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-xr-black-hole-nightly
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        2%?dist
+Release:        1%{?dist}
 Summary:        Spatial storage for Stardust XR
 URL:            https://github.com/StardustXR/black-hole
 Source0:        %url/archive/%commit/black-hole-%commit.tar.gz

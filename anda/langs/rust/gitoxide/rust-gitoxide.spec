@@ -5,8 +5,8 @@
 %global crate gitoxide
 
 Name:           rust-gitoxide
-Version:        0.51.0
-Release:        1%?dist
+Version:        0.52.0
+Release:        1%{?dist}
 Summary:        Command-line application for interacting with git repositories
 
 License:        MIT OR Apache-2.0

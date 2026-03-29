@@ -4,7 +4,7 @@
 %define debug_package %{nil}
 
 Name:			python-%{pypi_name}
-Version:		1.3.2
+Version:		1.2.0
 Release:		1%?dist
 Summary:		Hydra is a framework for elegantly configuring complex applications
 License:		MIT

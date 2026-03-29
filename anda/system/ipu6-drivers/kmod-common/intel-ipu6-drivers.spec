@@ -1,7 +1,7 @@
 %global debug_package %{nil}
-%global commit cde4eb446b9750d7a01f3258e99470df4606976b
+%global commit 51fe72485032c779a261430a8100eaad5d8696b8
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260204
+%global commit_date 20260328
 # Actual "release" version, currently unused as the release versions are back and forth on if on if they use 1.0.0 or 1.0.1
 # Use this if they ever stop doing that I guess
 %global ver 1.0.1
@@ -9,7 +9,7 @@
 Name:           intel-ipu6-drivers
 Summary:        Common files for Intel IPU6 drivers
 Version:        0^%{commit_date}git.%{shortcommit}
-Release:        1%?dist
+Release:        1%{?dist}
 License:        GPL-2.0-or-later
 URL:            https://github.com/intel/ipu6-drivers
 Source0:        https://github.com/intel/ipu6-drivers/archive/%{commit}/ipu6-drivers-%{shortcommit}.tar.gz

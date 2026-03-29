@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           noctalia-shell
-Version:		4.6.5
-Release:        1%?dist
+Version:		4.7.1
+Release:        1%{?dist}
 Summary:        A Quickshell-based custom shell setup
 
 License:        MIT
@@ -11,7 +11,6 @@ Source0:        https://github.com/noctalia-dev/noctalia-shell/releases/download
 
 Requires:	    brightnessctl
 Requires:    	dejavu-sans-fonts
-Requires:    	gpu-screen-recorder
 Requires:	    qt6-qtmultimedia
 Requires:       noctalia-qs
 Requires:       xdg-desktop-portal
@@ -22,6 +21,7 @@ Recommends:	    ddcutil
 Recommends:	    matugen
 Recommends:	    power-profiles-daemon
 Recommends:	    wlsunset
+Recommends:    	gpu-screen-recorder
 
 Packager:       Willow Reed <terra@willowidk.dev>
 
