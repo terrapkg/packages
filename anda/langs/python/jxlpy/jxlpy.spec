@@ -15,6 +15,7 @@ BuildRequires:  python3-setuptools
 BuildRequires:  python3-pip
 BuildRequires:  python3-cython
 BuildRequires:  libjxl-devel
+BuildRequires:  gcc-c++
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
