@@ -2,7 +2,7 @@
 
 Name:           %{real_name}-580xx
 Version:        580.142
-Release:        3%{?dist}
+Release:        2%{?dist}
 Summary:        A daemon to maintain persistent software state in the NVIDIA driver
 Epoch:          3
 License:        GPLv2+

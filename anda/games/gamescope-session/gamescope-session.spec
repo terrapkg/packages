@@ -6,7 +6,7 @@
 
 Name:           gamescope-session
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        4%?dist
+Release:        3%?dist
 Summary:        Gamescope session based on Valve's gamescope
 License:        MIT
 URL:            https://github.com/OpenGamingCollective/gamescope-session

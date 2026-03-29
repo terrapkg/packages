@@ -3,10 +3,10 @@
 %global name_pretty %{quote:Prism Launcher (Nightly)}
 %global appid org.prismlauncher.PrismLauncher-nightly
 
-%global commit 04786023b028a7c703c5da7e0c597c1117f781b0
+%global commit 01a4a6a528765b4302ff9e17ed8c247f4b5f90a1
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
-%global commit_date 20260319
+%global commit_date 20260329
 %global snapshot_info %{commit_date}.%{shortcommit}
 
 # Change this variables if you want to use custom keys
@@ -143,7 +143,7 @@ rm -f %{buildroot}%{_datadir}/metainfo/org.prismlauncher.PrismLauncher.metainfo.
 %{_metainfodir}/%{appid}.metainfo.xml
 %{_scalableiconsdir}/org.prismlauncher.PrismLauncher.svg
 %{_hicolordir}/256x256/apps/org.prismlauncher.PrismLauncher.png
-%{_datadir}/mime/packages/modrinth-mrpack-mime.xml
+%{_datadir}/mime/packages/org.prismlauncher.PrismLauncher.xml
 %{_datadir}/qlogging-categories%{qt_version}/prismlauncher.categories
 %{_mandir}/man?/prismlauncher.*
 
