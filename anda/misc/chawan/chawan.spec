@@ -1,12 +1,12 @@
-%global commit 2723e63772e83595c22ac0691aa5b018f2305a05
-%global commit_date 20251210
+%global commit 1f904096e3c6fe2e825d78f1245f14855db23cb6
+%global commit_date 20260322
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %define debug_package %nil
 
 Name:           chawan
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        TUI web (and (S)FTP, Gopher, Gemini, ...) browser with CSS, inline image and JavaScript support
 URL:            https://github.com/kachick/chawan
 Source0:        %url/archive/%commit/chawan-%commit.tar.gz
