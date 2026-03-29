@@ -1,5 +1,4 @@
 %define debug_package %{nil}
-%define __python /usr/bin/python3
 
 %global pypi_name proton-vpn-local-agent
 %global _desc Proton VPN local agent written in Rust.
@@ -44,12 +43,12 @@ popd
 
 %install
 pushd %{name}
-install -Dm0644 target/release/libpython_proton_vpn_local_agent.so %{buildroot}%{python_sitearch}/proton/vpn/local_agent.so
+install -Dm0644 target/release/libpython_proton_vpn_local_agent.so %{buildroot}%{python3_sitearch}/proton/vpn/local_agent.so
 popd
 
 %files -n python3-%{pypi_name}
 %doc README.md CODEOWNERS
-%{python_sitearch}/proton/vpn/local_agent.so
+%{python3_sitearch}/proton/vpn/local_agent.so
 
 %changelog
 * Sun Jan 18 2026 Owen Zimmerman <owen@fyralabs.com>
