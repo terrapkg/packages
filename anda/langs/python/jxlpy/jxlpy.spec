@@ -42,11 +42,7 @@ Summary:        %{summary}
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
-%ifarch x86_64
-%{_libdir}/python3.14/site-packages/_jxlpy.cpython-314-x86_64-linux-gnu.so
-%elifarch aarch64
-%{_libdir}/python3.14/site-packages/_jxlpy.cpython-314-aarch64-linux-gnu.so
-%endif
+%{python3_sitelib}/_jxlpy.cpython-314-%{_arch}-linux-gnu.so
 
 %changelog
 * Sat Mar 28 2026 Owen Zimmerman <owen@fyralabs.com>
