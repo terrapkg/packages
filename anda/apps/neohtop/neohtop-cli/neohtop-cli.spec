@@ -18,7 +18,7 @@ BuildRequires:  golang
 %make_build
 
 %install
-%make_install
+install -Dm755 neohtop-cli %{buildroot}%{_bindir}/neohtop-cli
 
 %files
 %doc README.md CONTRIBUTING.md
