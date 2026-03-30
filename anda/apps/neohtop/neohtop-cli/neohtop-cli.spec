@@ -1,3 +1,5 @@
+%define debug_package %{nil}
+
 Name:           neohtop-cli
 Version:        0.1.12
 Release:        1%?dist
