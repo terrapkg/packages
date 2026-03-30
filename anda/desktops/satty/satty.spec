@@ -7,7 +7,7 @@ Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  libadwaita-devel
 BuildRequires:  libepoxy-devel
-License:        MPL-2.0
+License:        MPL-2.0 AND (MIT OR Apache-2.0) AND Unicode-3.0 AND Apache-2.0 AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (BSD-3-Clause OR Apache-2.0) AND CC0-1.0 AND (CC0-1.0 OR Apache-2.0) AND ISC AND MIT AND (MIT OR Apache-2.0) AND (MIT OR Apache-2.0 OR Zlib) AND (Unlicense OR MIT) AND Zlib AND (Zlib OR Apache-2.0 OR MIT)
 Packager:       Tulip Blossom <tulilirockz@outlook.com>
 
 %description
