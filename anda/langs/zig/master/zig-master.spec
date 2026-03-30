@@ -2,18 +2,17 @@
 %global         zig_arches x86_64 aarch64 riscv64 %{mips64}
 # Signing key from https://ziglang.org/download/
 %global         public_key RWSGOq2NVecA2UPNdBUZykf1CCb147pkmdtYxgb3Ti+JO/wCYvhbAb/U
-# Not needed yet
-%if 0%{?fedora} >= 42 || 0%{?rhel} >= 9
-%define         llvm_compat 20
+%if 0%{?fedora} >= 44
+%define         llvm_compat 21
 %endif
-%global         llvm_version 20.0.0
+%global         llvm_version 21.0.0
 %bcond bootstrap 0
 %bcond docs      %{without bootstrap}
 %bcond test      1
 %global zig_cache_dir %{builddir}/zig-cache
 
 Name:           zig-master
-Version:        0.16.0~dev.2736+3b515fbed
+Version:        0.16.0~dev.2694+74f361a5c
 Release:        2%{?dist}
 Summary:        Master builds of the Zig language
 License:        MIT AND NCSA AND LGPL-2.1-or-later AND LGPL-2.1-or-later WITH GCC-exception-2.0 AND GPL-2.0-or-later AND GPL-2.0-or-later WITH GCC-exception-2.0 AND BSD-3-Clause AND Inner-Net-2.0 AND ISC AND LicenseRef-Fedora-Public-Domain AND GFDL-1.1-or-later AND ZPL-2.1
@@ -125,6 +124,10 @@ rm -f stage1/zig1.wasm
 %endif
 
 %build
+# Force the correct LLVM version
+%if %{defined llvm_compat}
+export LLVM_DIR=%{_libdir}/llvm%{?llvm_compat}/%{_lib}/cmake
+%endif
 # zig doesn't know how to dynamically link llvm on its own so we need cmake to generate a header ahead of time
 # if we provide the header we need to also build zigcpp
 
