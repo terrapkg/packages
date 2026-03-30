@@ -2,11 +2,10 @@
 %global         zig_arches x86_64 aarch64 riscv64 %{mips64}
 # Signing key from https://ziglang.org/download/
 %global         public_key RWSGOq2NVecA2UPNdBUZykf1CCb147pkmdtYxgb3Ti+JO/wCYvhbAb/U
-# Not needed yet
-%if 0%{?fedora} >= 42 || 0%{?rhel} >= 9
-%define         llvm_compat 20
+%if 0%{?fedora} >= 44
+%define         llvm_compat 21
 %endif
-%global         llvm_version 20.0.0
+%global         llvm_version 21.0.0
 %global         ver 0.16.0-dev.3039+b490412cd
 %bcond bootstrap 1
 %bcond docs      %{without bootstrap}
@@ -51,9 +50,9 @@ BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  libxml2-devel
-BuildRequires:  llvm-devel
-BuildRequires:  clang-devel
-BuildRequires:  lld-devel
+BuildRequires:  llvm%{?llvm_compat}-devel
+BuildRequires:  clang%{?llvm_compat}-devel
+BuildRequires:  lld%{?llvm_compat}-devel
 BuildRequires:  zlib-devel
 # for man page generation
 BuildRequires:  help2man
@@ -113,6 +112,10 @@ rm -f stage1/zig1.wasm
 %endif
 
 %build
+# Force the correct LLVM version
+%if %{defined llvm_compat}
+export LLVM_DIR=%{_libdir}/llvm%{?llvm_compat}/%{_lib}/cmake
+%endif
 # zig doesn't know how to dynamically link llvm on its own so we need cmake to generate a header ahead of time
 # if we provide the header we need to also build zigcpp
 
