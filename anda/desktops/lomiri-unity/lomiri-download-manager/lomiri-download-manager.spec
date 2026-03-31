@@ -20,6 +20,7 @@ BuildRequires: qt5-doctools
 BuildRequires: qt5-qtbase-devel
 BuildRequires: qt5-qtbase-private-devel
 BuildRequires: qt5-qtdeclarative-devel
+BuildRequires: gflags-devel
 BuildRequires: pkgconfig(dbus-1)
 BuildRequires: pkgconfig(libglog)
 BuildRequires: pkgconfig(liblomiri-api)
