@@ -38,7 +38,7 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 
 %files
 %license LICENSE
-%doc README.md AUTH.md LOCAL_DEVELOPMENT.md cli/cheats/*
+%doc README.md AUTH.md CODE-OF-CONDUCT.md GOVERNANCE.md cli/cheats/*
 %{_bindir}/nats
 
 %changelog
