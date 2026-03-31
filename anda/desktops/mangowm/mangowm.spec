@@ -2,7 +2,7 @@
 
 Name:           mangowm
 Version:        0.12.8
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A modern, lightweight, high-performance Wayland compositor built on dwl
 License:        GPL-3.0-or-later AND MIT AND X11 AND CC0-1.0
 Packager:       metcya <metcya@gmail.com>
@@ -21,7 +21,7 @@ BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  pkgconfig(libinput)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(libpcre2-8)
-BuildRequires:  pkgconfig(scenefx-0.4)
+BuildRequires:  scenefx-devel
 
 Conflicts:      mangowc < %{mangowc_ver}
 Obsoletes:      mangowc < %{mangowc_ver}
