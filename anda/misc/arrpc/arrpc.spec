@@ -1,10 +1,10 @@
 %define debug_package %nil
 %define __strip /bin/true
-%global commit 87c7c6f67ab8ad440e2ca0bdabce9626226bc25b
+%global commit d4ce31f313eaf864f46576ee98fbf88c9ef47036
 
 Name:			arrpc
-Version:		3.6.0
-Release:		1%?dist
+Version:		3.7.0
+Release:		1%{?dist}
 Summary:		Open Discord RPC server for atypical setups
 License:		MIT
 URL:			https://arrpc.openasar.dev
