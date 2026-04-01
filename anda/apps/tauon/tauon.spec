@@ -9,6 +9,7 @@ Summary:		A music player for the desktop. Designed to be powerful and streamline
 License:		GPL-3.0-or-later
 URL:			https://tauonmusicbox.rocks/
 Source0:		https://github.com/Taiko2k/Tauon/archive/refs/tags/v%{version}.tar.gz
+Patch0:		    remove-reqed-version.patch
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-wheel
@@ -39,6 +40,7 @@ Summary:        %{summary}
 
 %prep
 %git_clone https://github.com/Taiko2k/Tauon v%{version}
+%patch -P0 -p1
 
 %build
 %pyproject_wheel
