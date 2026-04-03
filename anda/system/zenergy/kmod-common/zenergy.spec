@@ -12,7 +12,7 @@ Source0:        %{url}/archive/%{commit}.tar.gz#/%{name}-%{shortcommit}.tar.gz
 Source1:        com.github.zenergy.metainfo.xml
 BuildRequires:  sed
 BuildRequires:  systemd-rpm-macros
-Requires:       (akmod-%{name} = %{?epoch:%{epoch}:}%{version} or dkms-%{name} = %{?epoch:%{epoch}:}%{version})
+Requires:       %{name}-kmod = %{?epoch:%{epoch}:}%{version}
 Provides:       %{name}-kmod-common = %{?epoch:%{epoch}:}%{version}
 BuildArch:      noarch
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
