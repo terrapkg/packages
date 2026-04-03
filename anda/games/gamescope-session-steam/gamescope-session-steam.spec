@@ -6,7 +6,7 @@
 
 Name:           gamescope-session-steam
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        gamescope-session-steam
 License:        MIT
 URL:            https://github.com/OpenGamingCollective/gamescope-session-steam
@@ -28,6 +28,10 @@ BuildArch:      noarch
 install -Dpm0755 -t "%buildroot%_bindir/" ".%_bindir/steam-http-loader"
 install -Dpm0755 -t "%buildroot%_bindir/" ".%_bindir/steamos-select-branch"
 install -Dpm0755 -t "%buildroot%_bindir/" ".%_bindir/steamos-session-select"
+install -Dpm0755 -t "%buildroot%_bindir/" ".%_bindir/steamos-update"
+install -Dpm0755 -t "%buildroot%_bindir/steamos-polkit-helpers/" ".%_bindir/steamos-polkit-helpers/jupiter-biosupdate"
+install -Dpm0755 -t "%buildroot%_bindir/steamos-polkit-helpers/" ".%_bindir/steamos-polkit-helpers/steamos-select-branch"
+install -Dpm0755 -t "%buildroot%_bindir/steamos-polkit-helpers/" ".%_bindir/steamos-polkit-helpers/steamos-update"
 install -Dpm0644 -t "%buildroot%_datadir/applications/" ".%_datadir/applications/steam_http_loader.desktop"
 install -Dpm0644 -t "%buildroot%_datadir/applications/" ".%_datadir/applications/gamescope-mimeapps.list"
 install -Dpm0755 -t "%buildroot%_datadir/gamescope-session-plus/sessions.d/" ".%_datadir/gamescope-session-plus/sessions.d/steam"
@@ -40,6 +44,10 @@ install -Dpm0644 -t "%buildroot%_datadir/wayland-sessions/" ".%_datadir/wayland-
 %{_bindir}/steam-http-loader
 %{_bindir}/steamos-select-branch
 %{_bindir}/steamos-session-select
+%{_bindir}/steamos-update
+%{_bindir}/steamos-polkit-helpers/jupiter-biosupdate
+%{_bindir}/steamos-polkit-helpers/steamos-select-branch
+%{_bindir}/steamos-polkit-helpers/steamos-update
 %{_datadir}/applications/gamescope-mimeapps.list
 %{_datadir}/applications/steam_http_loader.desktop
 %{_datadir}/gamescope-session-plus/sessions.d/steam
