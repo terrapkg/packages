@@ -7,7 +7,7 @@
 
 Name:           dkms-%{modulename}
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Fanatec force feedback kernel module (DKMS)
 License:        GPL-2.0-only
 URL:            https://github.com/gotzl/%{modulename}

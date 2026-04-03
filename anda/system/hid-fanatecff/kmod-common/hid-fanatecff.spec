@@ -5,7 +5,7 @@
 
 Name:           hid-fanatecff
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Fanatec force feedback driver common files
 License:        GPL-2.0-only
 URL:            https://github.com/gotzl/%{name}
