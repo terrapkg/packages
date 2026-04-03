@@ -4,7 +4,7 @@
 
 Name:           zenergy
 Version:        1.0^%{commitdate}git.%{shortcommit}
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Exposes the energy counters that are reported via the Running Average Power Limit (RAPL) Model-specific Registers (MSRs) via the hardware monitor (HWMON) sysfs interface.
 License:        GPL-2.0
 URL:            https://github.com/BoukeHaarsma23/zenergy
