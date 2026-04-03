@@ -49,7 +49,6 @@ is not possible to boot all the way into the OS.
 # cat /builddir/build/BUILD/rust-hypervisor-firmware-0.4.2-build/.rustup/settings.toml
 # export RUSTFLAGS="-C linker=lld -C linker-flavor=ld.lld";
 # CARGO_HOME=/home/owen/rpmbuild/BUILD/.cargo RUSTUP_HOME=/home/owen/rpmbuild/BUILD/.rustup
-rustup default nightly
 cargo build --release --target x86_64-unknown-none.json -Zbuild-std=core -Zbuild-std-features=compiler-builtins-mem
 
 %install
