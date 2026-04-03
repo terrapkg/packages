@@ -8,13 +8,13 @@
 
 Name:           hid-tmff2
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Thrustmaster Force Feedback driver common files
 License:        GPL-2.0-only
 URL:            https://github.com/Kimplul/%{name}
 Source0:        %{url}/archive/%{commit}.tar.gz#/%{name}-%{shortcommit}.tar.gz
 Source1:        https://github.com/Kimplul/hid-tminit/archive/%{tminit_commit}.tar.gz#/hid-tminit-%{tminit_shortcommit}.tar.gz
-Requires:       (akmod-%{name} = %{?epoch:%{epoch}:}%{version} or dkms-%{name} = %{?epoch:%{epoch}:}%{version})
+Requires:       %{name}-kmod = %{?epoch:%{epoch}:}%{version}
 Provides:       %{name}-kmod-common = %{?epoch:%{epoch}:}%{version}
 BuildArch:      noarch
 
