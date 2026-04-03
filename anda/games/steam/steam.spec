@@ -5,7 +5,7 @@
 
 Name:           steam
 Version:        1.0.0.85
-Release:        3%?dist
+Release:        6%?dist
 Summary:        Installer for the Steam software distribution service
 # Redistribution and repackaging for Linux is allowed, see license file. udev rules are MIT.
 License:        Steam License Agreement and MIT
@@ -177,7 +177,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%{appstream_id}.metainfo.xml
 
 %if 0%{?fedora} >= 44
-%post
+%triggerin -- ca-certificates
 # Workaround for https://fedoraproject.org/wiki/Changes/droppingOfCertPemFile#Temporary_fix
 update-ca-trust extract --rhbz2387674
 %endif
