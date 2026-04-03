@@ -17,6 +17,7 @@ Source2:        no-weak-modules.conf
 Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
 Requires:       dkms
 Conflicts:      akmod-%{modulename}
+Provides:       %{modulename}-kmod
 BuildArch:      noarch
 
 %description
