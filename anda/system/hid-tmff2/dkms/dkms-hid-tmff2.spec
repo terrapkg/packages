@@ -11,7 +11,7 @@
 
 Name:           dkms-%{modulename}
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Thrustmaster Force Feedback kernel module (DKMS)
 License:        GPL-2.0-only
 URL:            https://github.com/Kimplul/%{modulename}
@@ -22,6 +22,7 @@ Source3:        no-weak-modules.conf
 Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
 Requires:       dkms
 Conflicts:      akmod-%{modulename}
+Provides:       %{modulename}-kmod
 BuildArch:      noarch
 
 %description
