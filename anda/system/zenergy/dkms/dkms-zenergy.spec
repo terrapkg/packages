@@ -19,6 +19,7 @@ BuildArch:      x86_64
 Requires:       dkms
 Requires:       help2man
 Conflicts:      akmod-%{modulename}
+Provides:       %{modulename}-kmod
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
 
 %description
