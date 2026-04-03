@@ -12,7 +12,6 @@ BuildRequires:  rust-udev-devel
 BuildRequires:  rust
 BuildRequires:  systemd-devel
 BuildRequires:  hidapi-devel
-Requires:       rustup
 Provides:       framework_tool
 ExclusiveArch:  x86_64
 
