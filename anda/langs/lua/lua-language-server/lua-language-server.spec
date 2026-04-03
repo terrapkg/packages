@@ -1,8 +1,8 @@
 %define debug_package %{nil}
 
 Name:           lua-language-server
-Version:        3.17.1
-Release:        2%?dist
+Version:        3.18.0
+Release:        1%{?dist}
 License:        MIT
 URL:            https://luals.github.io/
 Source:         https://github.com/LuaLS/lua-language-server/archive/refs/tags/%version.tar.gz
