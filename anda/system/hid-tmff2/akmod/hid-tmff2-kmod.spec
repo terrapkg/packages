@@ -14,7 +14,7 @@ Name:           %{modulename}-kmod
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
 Release:        1%{?dist}
 Summary:        Thrustmaster Force Feedback kernel module
-License:        GPL-3.0
+License:        GPL-2.0-only
 URL:            https://github.com/Kimplul/%{modulename}
 Source0:        %{url}/archive/%{commit}.tar.gz#/%{modulename}-%{shortcommit}.tar.gz
 Source1:        https://github.com/Kimplul/hid-tminit/archive/%{tminit_commit}.tar.gz#/hid-tminit-%{tminit_shortcommit}.tar.gz
@@ -24,7 +24,7 @@ Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
 Requires:       %{modulename}-akmod-modules = %{?epoch:%{epoch}:}%{version}
 Conflicts:      dkms-%{modulename}
 
-%{expand:%(kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
+%{expand:%(kmodtool --target %{_target_cpu} --repo terrapkg.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 
 %description
 Linux kernel module for Thrustmaster T300RS, T248 and (experimental) TX, T128,
@@ -32,7 +32,7 @@ T598, T-GT II and TS-XW wheels.
 
 %prep
 %{?kmodtool_check}
-kmodtool  --target %{_target_cpu}  --repo terra.fyralabs.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
+kmodtool  --target %{_target_cpu}  --repo terrapkg.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
 %autosetup -p1 -n %{modulename}-%{commit}
 
@@ -64,5 +64,5 @@ done
 %{?akmod_install}
 
 %changelog
-* Wed Apr 02 2025 Kyle Gospodnetich <me@kylegospodneti.ch>
+* Thu Apr 02 2026 Kyle Gospodnetich <me@kylegospodneti.ch>
 - Initial package

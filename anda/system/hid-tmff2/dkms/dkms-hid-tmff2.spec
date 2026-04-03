@@ -13,7 +13,7 @@ Name:           dkms-%{modulename}
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
 Release:        1%{?dist}
 Summary:        Thrustmaster Force Feedback kernel module (DKMS)
-License:        GPL-3.0
+License:        GPL-2.0-only
 URL:            https://github.com/Kimplul/%{modulename}
 Source0:        %{url}/archive/%{commit}.tar.gz#/%{modulename}-%{shortcommit}.tar.gz
 Source1:        https://github.com/Kimplul/hid-tminit/archive/%{tminit_commit}.tar.gz#/hid-tminit-%{tminit_shortcommit}.tar.gz
@@ -68,5 +68,5 @@ dkms remove -m %{modulename} -v %{version} -q --all --rpm_safe_upgrade || :
 %endif
 
 %changelog
-* Wed Apr 02 2025 Kyle Gospodnetich <me@kylegospodneti.ch>
+* Thu Apr 02 2026 Kyle Gospodnetich <me@kylegospodneti.ch>
 - Initial package

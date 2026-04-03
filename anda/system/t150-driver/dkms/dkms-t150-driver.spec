@@ -9,7 +9,7 @@ Name:           dkms-%{modulename}
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
 Release:        1%{?dist}
 Summary:        Thrustmaster T150 steering wheel kernel module (DKMS)
-License:        GPL-2.0
+License:        GPL-2.0-only
 URL:            https://github.com/scarburato/t150_driver
 Source0:        %{url}/archive/%{commit}.tar.gz#/t150_driver-%{shortcommit}.tar.gz
 Source1:        %{name}.conf
@@ -53,5 +53,5 @@ dkms remove -m %{modulename} -v %{version} -q --all --rpm_safe_upgrade || :
 %endif
 
 %changelog
-* Wed Apr 02 2025 Kyle Gospodnetich <me@kylegospodneti.ch>
+* Thu Apr 02 2026 Kyle Gospodnetich <me@kylegospodneti.ch>
 - Initial package

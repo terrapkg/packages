@@ -10,7 +10,7 @@ Name:           %{modulename}-kmod
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
 Release:        1%{?dist}
 Summary:        Thrustmaster T150 steering wheel kernel module
-License:        GPL-2.0
+License:        GPL-2.0-only
 URL:            https://github.com/scarburato/t150_driver
 Source0:        %{url}/archive/%{commit}.tar.gz#/t150_driver-%{shortcommit}.tar.gz
 BuildRequires:  kmodtool
@@ -19,14 +19,14 @@ Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
 Requires:       %{modulename}-akmod-modules = %{?epoch:%{epoch}:}%{version}
 Conflicts:      dkms-%{modulename}
 
-%{expand:%(kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
+%{expand:%(kmodtool --target %{_target_cpu} --repo terrapkg.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 
 %description
 Linux driver for Thrustmaster T150 Steering Wheel USB.
 
 %prep
 %{?kmodtool_check}
-kmodtool  --target %{_target_cpu}  --repo terra.fyralabs.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
+kmodtool  --target %{_target_cpu}  --repo terrapkg.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
 %autosetup -p1 -n t150_driver-%{commit}
 
@@ -51,5 +51,5 @@ done
 %{?akmod_install}
 
 %changelog
-* Wed Apr 02 2025 Kyle Gospodnetich <me@kylegospodneti.ch>
+* Thu Apr 02 2026 Kyle Gospodnetich <me@kylegospodneti.ch>
 - Initial package

@@ -7,7 +7,7 @@ Name:           new-lg4ff
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
 Release:        1%{?dist}
 Summary:        Logitech force feedback driver common files
-License:        GPL-2.0
+License:        GPL-2.0-only
 URL:            https://github.com/berarma/%{name}
 Source0:        %{url}/archive/%{commit}.tar.gz#/%{name}-%{shortcommit}.tar.gz
 Requires:       (akmod-%{name} = %{?epoch:%{epoch}:}%{version} or dkms-%{name} = %{?epoch:%{epoch}:}%{version})
@@ -43,5 +43,5 @@ install -Dm644 %{name}.conf -t %{buildroot}%{_modulesloaddir}
 %{_modulesloaddir}/%{name}.conf
 
 %changelog
-* Wed Apr 02 2025 Kyle Gospodnetich <me@kylegospodneti.ch>
+* Thu Apr 02 2026 Kyle Gospodnetich <me@kylegospodneti.ch>
 - Initial package
