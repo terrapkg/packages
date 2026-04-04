@@ -1,33 +1,28 @@
-%global commit 93621f104dfe6a1690cf72f0f4fd074a0a86acce
+%global commit f1f5a722ccbdfc571450d9397e5e1b85da31f9d3
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260325
-%global ver 0.10.1
+%global commitdate 20260321
+%global ver 0
 %define buildforkernels akmod
 %global debug_package %{nil}
-%global modulename xpadneo
+%global modulename sc0710
 
 Name:           %{modulename}-kmod
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        2%{?dist}
-Summary:        Advanced Linux Driver for Xbox One Wireless Gamepad
-License:        GPL-3.0
-URL:            https://atar-axis.github.io/xpadneo
-Source0:        https://github.com/atar-axis/xpadneo/archive/%{commit}.tar.gz#/xpadneo-%{shortcommit}.tar.gz
+Release:        1%{?dist}
+Summary:        Elgato 4K60 Pro MK.2 / 4K Pro capture card driver
+License:        GPL-2.0-only
+URL:            https://github.com/Nakildias/sc0710
+Source0:        https://github.com/Nakildias/sc0710/archive/%{commit}.tar.gz#/sc0710-%{shortcommit}.tar.gz
 BuildRequires:  kmodtool
-BuildRequires:  systemd-rpm-macros
 Requires:       akmods
-Requires:       bluez
-Requires:       bluez-tools
 Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
-Requires:       %{modulename}-akmod-modules = %{?epoch:%{epoch}:}%{version}
 Conflicts:      dkms-%{modulename}
-Provides:       %{modulename}-kmod
-Packager:       Gilver E. <roachy@fyralabs.com>
+Packager:       Kyle Gospodnetich <me@kylegospodneti.ch>
 
 %{expand:%(kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 
 %description
-Advanced Linux Driver for Xbox One Wireless Gamepad.
+Elgato 4K60 Pro MK.2 / 4K Pro capture card driver.
 
 %prep
 %{?kmodtool_check}
@@ -37,7 +32,7 @@ kmodtool  --target %{_target_cpu}  --repo terra.fyralabs.com --kmodname %{name} 
 
 for kernel_version in %{?kernel_versions}; do
     mkdir _kmod_build_${kernel_version%%___*}
-    cp -fr hid-xpadneo/src/* _kmod_build_${kernel_version%%___*}
+    cp -fr lib Makefile _kmod_build_${kernel_version%%___*}
 done
 
 %build
@@ -56,5 +51,5 @@ done
 %{?akmod_install}
 
 %changelog
-* Thu Feb 27 2025 Gilver E. <rockgrub@disroot.org>
-- Package refactoring for alternative DKMS package compatibility
+* Fri Apr 03 2026 Kyle Gospodnetich <me@kylegospodneti.ch>
+- Initial package
