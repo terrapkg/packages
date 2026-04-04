@@ -1,6 +1,6 @@
 Name:           spotify-launcher
 Version:        0.6.5
-Release:        2%?dist
+Release:        3%?dist
 Summary:        Client for spotify's apt repository in Rust
 License:        Apache-2.0 AND MIT AND ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND BSD-3-Clause AND CDLA-Permissive-2.0 AND ISC AND (ISC AND (Apache-2.0 OR ISC)) AND (ISC AND (Apache-2.0 OR ISC) AND OpenSSL) AND (MIT OR Apache-2.0) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT) AND Zlib
 Packager:       veuxit <erroor234@gmail.com>
@@ -10,7 +10,7 @@ URL:            https://github.com/kpcyrd/spotify-launcher
 Source0:        https://github.com/kpcyrd/spotify-launcher/archive/refs/tags/v%{version}.tar.gz
 
 BuildRequires:  cargo cargo-rpm-macros anda-srpm-macros pkgconfig(liblzma) desktop-file-utils
-Requires:       sequoia-sqv zenity alsa-lib gtk3 desktop-file-utils openssl nss at-spi2-atk libcurl libSM 
+Requires:       sequoia-sqv zenity alsa-lib gtk3 desktop-file-utils openssl nss at-spi2-atk libcurl libSM libayatana-appindicator-gtk3
 
 
 %description
