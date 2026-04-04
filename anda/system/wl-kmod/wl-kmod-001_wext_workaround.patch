@@ -1,0 +1,31 @@
+diff -Naur hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/Makefile hybrid-v35_64-nodebug-pcoem-6_30_223_271/Makefile
+--- hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/Makefile	2015-09-19 00:47:30.000000000 +0200
++++ hybrid-v35_64-nodebug-pcoem-6_30_223_271/Makefile	2015-10-14 18:30:11.979644333 +0200
+@@ -18,6 +18,8 @@
+ #
+ # $Id: Makefile_kbuild_portsrc 580354 2015-08-18 23:42:37Z $
+ 
++API_ETC_FILE := /etc/akmods/akmod-wl/api
++
+ ifneq ($(KERNELRELEASE),)
+ 
+   LINUXVER_GOODFOR_CFG80211:=$(strip $(shell \
+@@ -36,6 +38,18 @@
+     fi \
+   ))
+ 
++  API_FILE:=$(strip $(shell \
++    if [ -r "$(API_ETC_FILE)" ]; then \
++      echo TRUE; \
++    else \
++      echo FALSE; \
++    fi \
++  ))
++
++  ifeq ($(API_FILE), TRUE)
++    include $(API_ETC_FILE)
++  endif
++  
+   ifneq ($(API),)
+     ifeq ($(API), CFG80211)
+       APICHOICE := FORCE_CFG80211
