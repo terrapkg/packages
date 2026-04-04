@@ -1,86 +1,96 @@
-%undefine __brp_mangle_shebangs
-
-%global _build_id_links none
-
-%global toolchain clang
-
 Name:           twintaillauncher
-
-Version:        1.1.15
+Version:        2.0.0
 Release:        1%{?dist}
 Summary:        A multi-platform launcher for your anime games
-Packager:        Yoong Jin <solomoncyj@gmail.com>
+Packager:       TukanDev <contact@tukandev.com>
 
-SourceLicense: GPL-3.0-or-later
-License:        GPL-3.0-or-later AND (((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR Apache-2.0 OR MIT) AND (Apache-2.0) AND (Apache-2.0 AND ISC) AND (Apache-2.0 AND MIT) AND (Apache-2.0 OR Apache-2.0 WITH LLVM-exception OR CC0-1.0) AND (Apache-2.0 OR Apache-2.0 WITH LLVM-exception OR MIT) AND (Apache-2.0 OR BSD-2-Clause OR MIT) AND (Apache-2.0 OR BSD-3-Clause) AND (Apache-2.0 OR BSD-3-Clause OR MIT) AND (Apache-2.0 OR BSL-1.0 OR MIT) AND (Apache-2.0 OR CC0-1.0 OR MIT-0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR LGPL-2.1-or-later OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 OR MIT OR Zlib) AND (Apache-2.0 WITH LLVM-exception) AND (BSD-2-Clause) AND (BSD-3-Clause) AND (BSD-3-Clause AND MIT) AND (BSD-3-Clause OR MIT) AND CC0-1.0 AND (CC0-1.0 OR MIT-0) AND (CDLA-Permissive-2.0) AND ISC AND (ISC AND (Apache-2.0 OR ISC)) AND (ISC AND (Apache-2.0 OR ISC) AND OpenSSL) AND (LGPL-3.0-or-later OR MIT) AND MIT AND (MIT OR Unlicense) AND MPL-2.0 AND  Unicode-3.0 AND Zlib AND bzip2-1.0.6)
+License:        GPL-3.0-or-later
 URL:            https://twintaillauncher.app/
-Source0:        https://github.com/TwintailTeam/TwintailLauncher/archive/refs/tags/ttl-v%{version}.tar.gz
+Source0:        https://github.com/TwintailTeam/TwintailLauncher/releases/download/ttl-v%{version}/twintaillauncher_%{version}_amd64.deb
 
 ExclusiveArch: x86_64
 
+# Dependencies based on Arch Linux PKGBUILD
+Requires:       cairo
+Requires:       desktop-file-utils
+Requires:       gdk-pixbuf2
+Requires:       glib2
+Requires:       gtk3
 Requires:       hicolor-icon-theme
+Requires:       libappindicator-gtk3
+Requires:       libayatana-appindicator-gtk3
+Requires:       pango
+Requires:       webkit2gtk4.1
+Requires:       mangohud
+Requires:       gamemode
 
-# Build requires
-BuildRequires:  pnpm
-BuildRequires: %{tauri_buildrequires}
-BuildRequires: protobuf-devel
-BuildRequires:  webkit2gtk4.1-devel
-BuildRequires:       desktop-file-utils
-BuildRequires:       hicolor-icon-theme
-BuildRequires:       perl
-BuildRequires:       zlib-ng-devel
-BuildRequires:       clang
-BuildRequires:       mold
-
-Provides: ttl
+# Build requires for extract DEB
+BuildRequires:  binutils
+BuildRequires:  tar
+BuildRequires:  gzip
 
 %description
 Twintaillauncher is a multi-platform launcher that brings mod support, quality-of-life improvements, and advanced features to a variety of anime-styled games.
 TTL is an all-in-one tool for downloading, managing, and launching your favorite anime games. It’s designed with flexibility, ease of use, and customization in mind.
 
 %prep
-%autosetup -n TwintailLauncher-ttl-v%{version}
-cd src-tauri
-cargo update
-cd ..
-%tauri_prep
+# Extract .deb file
+ar x %{SOURCE0}
+tar -xzf data.tar.gz
 
 %build
-%pnpm_build
-
+# No build stuff
 
 %install
-%tauri_install
-mkdir -p %{buildroot}/%{_libdir}/twintaillauncher/resources
-mv %{buildroot}/%{_datadir}/cargo/registry/twintaillauncher-%{version}/resources/ %{buildroot}/%{_libdir}/twintaillauncher/resources
-rm -rf %{buildroot}/%{_datadir}/cargo/registry/twintaillauncher-%{version}
+rm -rf %{buildroot}
+
+# Copying stuff to buildroot
+mkdir -p %{buildroot}%{_bindir}
+mkdir -p %{buildroot}%{_datadir}/applications
+mkdir -p %{buildroot}%{_datadir}/icons/hicolor/{32x32,128x128,256x256@2}/apps
+mkdir -p %{buildroot}/usr/lib/twintaillauncher/resources
+
+# Actual files
+cp -p usr/bin/twintaillauncher %{buildroot}%{_bindir}/twintaillauncher
+cp -p usr/share/applications/twintaillauncher.desktop %{buildroot}%{_datadir}/applications/
+cp -p usr/share/icons/hicolor/32x32/apps/twintaillauncher.png \
+   %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/
+cp -p usr/share/icons/hicolor/128x128/apps/twintaillauncher.png \
+   %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/
+cp -p usr/share/icons/hicolor/256x256@2/apps/twintaillauncher.png \
+   %{buildroot}%{_datadir}/icons/hicolor/256x256@2/apps/
+cp -p usr/lib/twintaillauncher/resources/winetricks %{buildroot}/usr/lib/twintaillauncher/resources/
+cp -p usr/lib/twintaillauncher/resources/reaper %{buildroot}/usr/lib/twintaillauncher/resources/
+cp -p usr/lib/twintaillauncher/resources/hkrpg_patch.dll %{buildroot}/usr/lib/twintaillauncher/resources/
 
 
-%tauri_cargo_license_summary
-%{tauri_cargo_license} > LICENSE.dependencies
+%post
+# Update desktop database & icon cache
+update-desktop-database %{_datadir}/applications &> /dev/null || :
+touch --no-create %{_datadir}/icons/hicolor &> /dev/null || :
 
-%desktop_file_install -f  ./twintaillauncher.desktop
+%postun
+# Update desktop database & icon cache after uninstall
+update-desktop-database %{_datadir}/applications &> /dev/null || :
+if [ $1 -eq 0 ] ; then
+    touch --no-create %{_datadir}/icons/hicolor &> /dev/null || :
+    gtk-update-icon-cache %{_datadir}/icons/hicolor &> /dev/null || :
+fi
 
-install -Dm644   public/launcher-icon.png %{buildroot}%{_hicolordir}/512x512/apps/%{name}.png
-install -Dm644 public/launcher-icon-128.png %{buildroot}%{_hicolordir}/128x128/apps/%{name}.png
-
-
+%posttrans
+gtk-update-icon-cache %{_datadir}/icons/hicolor &> /dev/null || :
 
 %files
-%license LICENSE.dependencies
-%license LICENSE
-%doc README.md
-
 %{_bindir}/twintaillauncher
-%{_libdir}/twintaillauncher/resources
-%{_hicolordir}/512x512/apps/%{name}.png
-%{_hicolordir}/128x128/apps/%{name}.png
-%_appsdir/twintaillauncher.desktop
-
-
-
+%{_datadir}/applications/twintaillauncher.desktop
+%{_datadir}/icons/hicolor/32x32/apps/twintaillauncher.png
+%{_datadir}/icons/hicolor/128x128/apps/twintaillauncher.png
+%{_datadir}/icons/hicolor/256x256@2/apps/twintaillauncher.png
+/usr/lib/twintaillauncher/resources/*
 
 %changelog
+* Sat Apr 4 2026 TukanDev <contact@tukandev.com> - 2.0.0-0
+- Major release & also promote terra package as official
 * Thu Feb 19 2026 Yoong Jin <solomoncyj@gmail.com> - 1.1.15-1
 - Fix resources
 * Tue Feb 3 2026 Yoong Jin <solomoncyj@gmail.com> - 1.1.15-0
