@@ -18,41 +18,40 @@ URL:        https://www.broadcom.com/support/download-search?pg=Legacy+Products&
 Source0:    https://docs.broadcom.com/docs-and-downloads/docs/linux_sta/hybrid-v35-nodebug-pcoem-6_30_223_271.tar.gz
 Source1:    https://docs.broadcom.com/docs-and-downloads/docs/linux_sta/hybrid-v35_64-nodebug-pcoem-6_30_223_271.tar.gz
 Source11:   wl-kmod-kmodtool-excludekernel-filterfile
-Patch0:     wl-kmod-001_wext_workaround.patch
-Patch1:     wl-kmod-002_kernel_3.18_null_pointer.patch
-Patch2:     wl-kmod-003_gcc_4.9_remove_TIME_DATE_macros.patch
-Patch3:     wl-kmod-004_kernel_4.3_rdtscl_to_rdtsc.patch
-Patch4:     wl-kmod-005_kernel_4.7_IEEE80211_BAND_to_NL80211_BAND.patch
-Patch5:     wl-kmod-006_gcc_6_fix_indentation_warnings.patch
-Patch6:     wl-kmod-007_kernel_4.8_add_cfg80211_scan_info_struct.patch
-Patch7:     wl-kmod-008_fix_kernel_warnings.patch
-Patch8:     wl-kmod-009_kernel_4.11_remove_last_rx_in_net_device_struct.patch
-Patch9:     wl-kmod-010_kernel_4.12_add_cfg80211_roam_info_struct.patch
-Patch10:    wl-kmod-011_kernel_4.14_new_kernel_read_function_prototype.patch
-Patch11:    wl-kmod-012_kernel_4.15_new_timer.patch
-Patch12:    wl-kmod-013_gcc8_fix_bounds_check_warnings.patch
-Patch13:    wl-kmod-014_kernel_read_pos_increment_fix.patch
-Patch14:    wl-kmod-015_kernel_5.1_get_ds_removed.patch
-Patch15:    wl-kmod-016_fix_unsupported_mesh_point.patch
-Patch16:    wl-kmod-017_fix_gcc_fallthrough_warning.patch
-Patch17:    wl-kmod-018_kernel_5.6_adaptations.patch
-Patch18:    wl-kmod-019_kernel_5.9_segment_eq_removed.patch
-Patch19:    wl-kmod-020_kernel_5.10_get_set_fs_removed.patch
-Patch20:    wl-kmod-021_kernel_5.17_adaptation.patch
-Patch21:    wl-kmod-022_kernel_5.18_adaptation.patch
-Patch22:    wl-kmod-023_kernel_6.0_adaptation.patch
-Patch23:    wl-kmod-024_kernel_6.1_adaptation.patch
-Patch24:    wl-kmod-025_kernel_6.5_adaptation.patch
-Patch25:    wl-kmod-026_kernel_6.10_fix_empty_body_in_if_warning.patch
-Patch26:    wl-kmod-027_wpa_supplicant-2.11_add_max_scan_ie_len.patch
-Patch27:    wl-kmod-028_kernel_6.12_adaptation.patch
-Patch28:    wl-kmod-029_kernel_6.13_adaptation.patch
-Patch29:    wl-kmod-030_kernel_6.14_adaptation.patch
-Patch30:    wl-kmod-031_replace_EXTRA_CFLAGS_EXTRA_LDFLAGS_with_ccflags-y_ldflags-y.patch
-Patch31:    wl-kmod-032_add_MODULE_DESCRIPTION_macro.patch
-Patch32:    wl-kmod-033_disable_objtool_add_warning_unmaintained.patch
-Patch33:    wl-kmod-034_kernel_6.15_adaptation_replace_del_timer_with_timer_delete.patch
-Patch34:    wl-kmod-035_kernel_6.17_adaptation_fix_functions_prototypes.patch
+Patch0:     wl-kmod-002_kernel_3.18_null_pointer.patch
+Patch1:     wl-kmod-003_gcc_4.9_remove_TIME_DATE_macros.patch
+Patch2:     wl-kmod-004_kernel_4.3_rdtscl_to_rdtsc.patch
+Patch3:     wl-kmod-005_kernel_4.7_IEEE80211_BAND_to_NL80211_BAND.patch
+Patch4:     wl-kmod-006_gcc_6_fix_indentation_warnings.patch
+Patch5:     wl-kmod-007_kernel_4.8_add_cfg80211_scan_info_struct.patch
+Patch6:     wl-kmod-008_fix_kernel_warnings.patch
+Patch7:     wl-kmod-009_kernel_4.11_remove_last_rx_in_net_device_struct.patch
+Patch8:     wl-kmod-010_kernel_4.12_add_cfg80211_roam_info_struct.patch
+Patch9:    wl-kmod-011_kernel_4.14_new_kernel_read_function_prototype.patch
+Patch10:    wl-kmod-012_kernel_4.15_new_timer.patch
+Patch11:    wl-kmod-013_gcc8_fix_bounds_check_warnings.patch
+Patch12:    wl-kmod-014_kernel_read_pos_increment_fix.patch
+Patch13:    wl-kmod-015_kernel_5.1_get_ds_removed.patch
+Patch14:    wl-kmod-016_fix_unsupported_mesh_point.patch
+Patch15:    wl-kmod-017_fix_gcc_fallthrough_warning.patch
+Patch16:    wl-kmod-018_kernel_5.6_adaptations.patch
+Patch17:    wl-kmod-019_kernel_5.9_segment_eq_removed.patch
+Patch18:    wl-kmod-020_kernel_5.10_get_set_fs_removed.patch
+Patch19:    wl-kmod-021_kernel_5.17_adaptation.patch
+Patch20:    wl-kmod-022_kernel_5.18_adaptation.patch
+Patch21:    wl-kmod-023_kernel_6.0_adaptation.patch
+Patch22:    wl-kmod-024_kernel_6.1_adaptation.patch
+Patch23:    wl-kmod-025_kernel_6.5_adaptation.patch
+Patch24:    wl-kmod-026_kernel_6.10_fix_empty_body_in_if_warning.patch
+Patch25:    wl-kmod-027_wpa_supplicant-2.11_add_max_scan_ie_len.patch
+Patch26:    wl-kmod-028_kernel_6.12_adaptation.patch
+Patch27:    wl-kmod-029_kernel_6.13_adaptation.patch
+Patch28:    wl-kmod-030_kernel_6.14_adaptation.patch
+Patch29:    wl-kmod-031_replace_EXTRA_CFLAGS_EXTRA_LDFLAGS_with_ccflags-y_ldflags-y.patch
+Patch30:    wl-kmod-032_add_MODULE_DESCRIPTION_macro.patch
+Patch31:    wl-kmod-033_disable_objtool_add_warning_unmaintained.patch
+Patch32:    wl-kmod-034_kernel_6.15_adaptation_replace_del_timer_with_timer_delete.patch
+Patch33:    wl-kmod-035_kernel_6.17_adaptation_fix_functions_prototypes.patch
 ExclusiveArch:  i686 x86_64
 BuildRequires:  kmodtool
 BuildRequires:  elfutils-libelf-devel
@@ -78,41 +77,40 @@ pushd %{name}-%{version}-src
 %else
  tar xzf %{SOURCE1}
 %endif
-%patch -P 0  -p1 -b .wext_workaround.patch
-%patch -P 1  -p1 -b .kernel_3.18_null_pointer.patch
-%patch -P 2  -p1 -b .gcc_4.9_remove_TIME_DATE_macros
-%patch -P 3  -p1 -b .kernel_4.3_rdtscl_to_rdtsc.patch
-%patch -P 4  -p1 -b .kernel_4.7_IEEE80211_BAND_to_NL80211_BAND
-%patch -P 5  -p1 -b .gcc_6_fix_indentation_warnings
-%patch -P 6  -p1 -b .kernel_4.8_add_cfg80211_scan_info_struct
-%patch -P 7  -p1 -b .fix_kernel_warnings
-%patch -P 8  -p1 -b .kernel_4.11_remove_last_rx_in_net_device_struct
-%patch -P 9  -p1 -b .kernel_4.12_add_cfg80211_roam_info_struct
-%patch -P 10 -p1 -b .kernel_4.14_new_kernel_read_function_prototype
-%patch -P 11 -p1 -b .kernel_4.15_new_timer
-%patch -P 12 -p1 -b .gcc8_fix_bounds_check_warnings
-%patch -P 13 -p1 -b .kernel_read_pos_increment_fix
-%patch -P 14 -p1 -b .kernel_5.1_get_ds_removed
-%patch -P 15 -p1 -b .fix_unsupported_mesh_point
-%patch -P 16 -p1 -b .fix_gcc_fallthrough_warning.patch
-%patch -P 17 -p1 -b .kernel_5.6_adaptations.patch
-%patch -P 18 -p1 -b .kernel_5.9_segment_eq_removed
-%patch -P 19 -p1 -b .kernel_5.10_get_set_fs_removed
-%patch -P 20 -p1 -b .kernel_5.17_adaptation
-%patch -P 21 -p1 -b .kernel_5.18_adaptation
-%patch -P 22 -p1 -b .kernel_6.0_adaptation
-%patch -P 23 -p1 -b .kernel_6.1_adaptation
-%patch -P 24 -p1 -b .kernel_6.5_adaptation
-%patch -P 25 -p1 -b .kernel_6.10_adaptation
-%patch -P 26 -p1 -b .wpa_supplicant-2.11_adaptation
-%patch -P 27 -p1 -b .kernel_6.12_adaptation
-%patch -P 28 -p1 -b .kernel_6.13_adaptation
-%patch -P 29 -p1 -b .kernel_6.14_adaptation
-%patch -P 30 -p1 -b .EXTRA_CFLAGS_EXTRA_LDFLAGS
-%patch -P 31 -p1 -b .MODULE_DESCRIPTION
-%patch -P 32 -p1 -b .disable_objtool
-%patch -P 33 -p1 -b .kernel_6.15_adaptation
-%patch -P 34 -p1 -b .kernel_6.17_adaptation
+%patch -P 0  -p1 -b .kernel_3.18_null_pointer.patch
+%patch -P 1  -p1 -b .gcc_4.9_remove_TIME_DATE_macros
+%patch -P 2  -p1 -b .kernel_4.3_rdtscl_to_rdtsc.patch
+%patch -P 3  -p1 -b .kernel_4.7_IEEE80211_BAND_to_NL80211_BAND
+%patch -P 4  -p1 -b .gcc_6_fix_indentation_warnings
+%patch -P 5  -p1 -b .kernel_4.8_add_cfg80211_scan_info_struct
+%patch -P 6  -p1 -b .fix_kernel_warnings
+%patch -P 7  -p1 -b .kernel_4.11_remove_last_rx_in_net_device_struct
+%patch -P 8  -p1 -b .kernel_4.12_add_cfg80211_roam_info_struct
+%patch -P 9 -p1 -b .kernel_4.14_new_kernel_read_function_prototype
+%patch -P 10 -p1 -b .kernel_4.15_new_timer
+%patch -P 11 -p1 -b .gcc8_fix_bounds_check_warnings
+%patch -P 12 -p1 -b .kernel_read_pos_increment_fix
+%patch -P 13 -p1 -b .kernel_5.1_get_ds_removed
+%patch -P 14 -p1 -b .fix_unsupported_mesh_point
+%patch -P 15 -p1 -b .fix_gcc_fallthrough_warning.patch
+%patch -P 16 -p1 -b .kernel_5.6_adaptations.patch
+%patch -P 17 -p1 -b .kernel_5.9_segment_eq_removed
+%patch -P 18 -p1 -b .kernel_5.10_get_set_fs_removed
+%patch -P 19 -p1 -b .kernel_5.17_adaptation
+%patch -P 20 -p1 -b .kernel_5.18_adaptation
+%patch -P 21 -p1 -b .kernel_6.0_adaptation
+%patch -P 22 -p1 -b .kernel_6.1_adaptation
+%patch -P 23 -p1 -b .kernel_6.5_adaptation
+%patch -P 24 -p1 -b .kernel_6.10_adaptation
+%patch -P 25 -p1 -b .wpa_supplicant-2.11_adaptation
+%patch -P 26 -p1 -b .kernel_6.12_adaptation
+%patch -P 27 -p1 -b .kernel_6.13_adaptation
+%patch -P 28 -p1 -b .kernel_6.14_adaptation
+%patch -P 29 -p1 -b .EXTRA_CFLAGS_EXTRA_LDFLAGS
+%patch -P 30 -p1 -b .MODULE_DESCRIPTION
+%patch -P 31 -p1 -b .disable_objtool
+%patch -P 32 -p1 -b .kernel_6.15_adaptation
+%patch -P 33 -p1 -b .kernel_6.17_adaptation
 
 # Manual patching to build for RHEL - inspired by CentOS wl-kmod.spec
 # Actually works for RHEL 6.x and 7.x
