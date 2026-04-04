@@ -4,7 +4,7 @@ Release:        1%{?dist}
 Summary:        A multi-platform launcher for your anime games
 Packager:       TukanDev <contact@tukandev.com>
 
-License:        GPL-3.0-or-later
+License:        GPL-3.0-only
 URL:            https://twintaillauncher.app/
 Source0:        https://github.com/TwintailTeam/TwintailLauncher/releases/download/ttl-v%{version}/twintaillauncher_%{version}_amd64.deb
 
