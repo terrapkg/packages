@@ -12,6 +12,7 @@ License:        GPL-2.0-only
 URL:            https://github.com/mescon/%{modulename}
 Source0:        %{url}/archive/%{commit}.tar.gz#/%{name}-%{shortcommit}.tar.gz
 Patch0:         fix-dkms-conf.patch
+BuildRequires:  sed
 BuildRequires:  systemd-rpm-macros
 Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
 Provides:       %{name}-kmod-common = %{?epoch:%{epoch}:}%{version}
