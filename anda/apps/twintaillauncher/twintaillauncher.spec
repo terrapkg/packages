@@ -6,13 +6,13 @@
 
 Name:           twintaillauncher
 
-Version:        1.1.15
-Release:        2%{?dist}
+Version:        2.0.0
+Release:        0%{?dist}
 Summary:        A multi-platform launcher for your anime games
 Packager:        Yoong Jin <solomoncyj@gmail.com>
 
-SourceLicense: GPL-3.0-or-later
-License:        GPL-3.0-or-later AND (((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR Apache-2.0 OR MIT) AND (Apache-2.0) AND (Apache-2.0 AND ISC) AND (Apache-2.0 AND MIT) AND (Apache-2.0 OR Apache-2.0 WITH LLVM-exception OR CC0-1.0) AND (Apache-2.0 OR Apache-2.0 WITH LLVM-exception OR MIT) AND (Apache-2.0 OR BSD-2-Clause OR MIT) AND (Apache-2.0 OR BSD-3-Clause) AND (Apache-2.0 OR BSD-3-Clause OR MIT) AND (Apache-2.0 OR BSL-1.0 OR MIT) AND (Apache-2.0 OR CC0-1.0 OR MIT-0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR LGPL-2.1-or-later OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 OR MIT OR Zlib) AND (Apache-2.0 WITH LLVM-exception) AND (BSD-2-Clause) AND (BSD-3-Clause) AND (BSD-3-Clause AND MIT) AND (BSD-3-Clause OR MIT) AND CC0-1.0 AND (CC0-1.0 OR MIT-0) AND (CDLA-Permissive-2.0) AND ISC AND (ISC AND (Apache-2.0 OR ISC)) AND (ISC AND (Apache-2.0 OR ISC) AND OpenSSL) AND (LGPL-3.0-or-later OR MIT) AND MIT AND (MIT OR Unlicense) AND MPL-2.0 AND  Unicode-3.0 AND Zlib AND bzip2-1.0.6)
+SourceLicense: GPL-3.0-only
+License:        GPL-3.0-only AND (((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR Apache-2.0 OR MIT) AND (Apache-2.0) AND (Apache-2.0 AND ISC) AND (Apache-2.0 AND MIT) AND (Apache-2.0 OR Apache-2.0 WITH LLVM-exception OR CC0-1.0) AND (Apache-2.0 OR Apache-2.0 WITH LLVM-exception OR MIT) AND (Apache-2.0 OR BSD-2-Clause OR MIT) AND (Apache-2.0 OR BSD-3-Clause) AND (Apache-2.0 OR BSD-3-Clause OR MIT) AND (Apache-2.0 OR BSL-1.0 OR MIT) AND (Apache-2.0 OR CC0-1.0 OR MIT-0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR LGPL-2.1-or-later OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 OR MIT OR Zlib) AND (Apache-2.0 WITH LLVM-exception) AND (BSD-2-Clause) AND (BSD-3-Clause) AND (BSD-3-Clause AND MIT) AND (BSD-3-Clause OR MIT) AND CC0-1.0 AND (CC0-1.0 OR MIT-0) AND (CDLA-Permissive-2.0) AND ISC AND (ISC AND (Apache-2.0 OR ISC)) AND (ISC AND (Apache-2.0 OR ISC) AND OpenSSL) AND (LGPL-3.0-or-later OR MIT) AND MIT AND (MIT OR Unlicense) AND MPL-2.0 AND  Unicode-3.0 AND Zlib AND bzip2-1.0.6)
 URL:            https://twintaillauncher.app/
 Source0:        https://github.com/TwintailTeam/TwintailLauncher/archive/refs/tags/ttl-v%{version}.tar.gz
 
@@ -77,6 +77,23 @@ install -Dm644 public/launcher-icon-128.png %{buildroot}%{_hicolordir}/128x128/a
 
 
 
+%post
+# Update desktop database & icon cache
+update-desktop-database %{_datadir}/applications &> /dev/null || :
+touch --no-create %{_datadir}/icons/hicolor &> /dev/null || :
+
+%postun
+# Update desktop database & icon cache after uninstall
+update-desktop-database %{_datadir}/applications &> /dev/null || :
+if [ $1 -eq 0 ] ; then
+    touch --no-create %{_datadir}/icons/hicolor &> /dev/null || :
+    gtk-update-icon-cache %{_datadir}/icons/hicolor &> /dev/null || :
+fi
+
+%posttrans
+gtk-update-icon-cache %{_datadir}/icons/hicolor &> /dev/null || :
+
+
 %files
 %license LICENSE.dependencies
 %license LICENSE
@@ -92,6 +109,8 @@ install -Dm644 public/launcher-icon-128.png %{buildroot}%{_hicolordir}/128x128/a
 
 
 %changelog
+* Sat Apr 4 2026 Yoong Jin <solomoncyj@gmail.com> - 2.0.0-0
+- Major release 
 * Fri Mar 27 2026 Yoong Jin <solomoncyj@gmail.com> - 2.1.15-1
 - Fix folders
 * Thu Feb 19 2026 Yoong Jin <solomoncyj@gmail.com> - 1.1.15-1
