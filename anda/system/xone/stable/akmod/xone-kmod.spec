@@ -4,7 +4,7 @@
 
 Name:           %{modulename}-kmod
 Version:        0.5.8
-Release:        1%{?dist}
+Release:        2%{?dist}
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Epoch:          2
 %endif

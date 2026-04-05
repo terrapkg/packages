@@ -7,7 +7,7 @@
 
 Name:           dkms-%{modulename}
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Logitech force feedback kernel module (DKMS)
 License:        GPL-2.0-only
 URL:            https://github.com/berarma/%{modulename}

@@ -8,7 +8,7 @@
 
 Name:           %{modulename}-kmod
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        3%{?dist}
 Summary:        Fanatec force feedback kernel module
 License:        GPL-2.0-only
 URL:            https://github.com/gotzl/%{modulename}
