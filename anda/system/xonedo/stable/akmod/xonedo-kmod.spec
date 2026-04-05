@@ -5,7 +5,7 @@
 
 Name:           %{modulename}-kmod
 Version:        0.5.7
-Release:        1%?dist
+Release:        2%?dist
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Epoch:          2
 %endif
@@ -22,6 +22,7 @@ Conflicts:      dkms-%{modulename}
 Conflicts:      %{modulename}-nightly-kmod
 Conflicts:      dkms-xone
 Conflicts:      xone-nightly-kmod
+Provides:       %{modulename}-kmod
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Obsoletes:      %{name} < %{?epoch:%{epoch}:}0.3.4
 %endif
