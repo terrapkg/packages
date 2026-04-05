@@ -3,7 +3,7 @@
 %define debug_package %{nil}
 
 Name:             signal-cli
-Version:          0.14.1
+Version:          0.14.2
 Release:          1%{?dist}
 Summary:          signal-cli provides an unofficial commandline, JSON-RPC and dbus interface for the Signal messenger
 License:          GPL-3.0-only

@@ -1,8 +1,8 @@
 %undefine __brp_add_determinism
 
 Name:           amdgpu_top
-Version:        0.11.2
-Release:        1%?dist
+Version:        0.11.3
+Release:        1%{?dist}
 Summary:        Tool to display AMDGPU usage
 License:        MIT
 Packager:       veuxit <erroor234@gmail.com>

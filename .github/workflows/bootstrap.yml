@@ -1,6 +1,9 @@
 name: Bootstrap Andaman and Subatomic
 permissions:
   contents: read
+  attestations: write
+  artifact-metadata: write
+  id-token: write
 on:
   workflow_dispatch:
 
@@ -79,3 +82,10 @@ jobs:
             --server https://subatomic.fyralabs.com \
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
             terra${{ matrix.version }}-source anda-build/rpm/srpm/*
+
+      - name: Attest build provenance
+        uses: actions/attest-build-provenance@a2bbfa25375fe432b6a289bc6b6cd05ecd0c4c32 # v4.1.0
+        with:
+          subject-path: |
+            anda-build/rpm/rpms/*
+            anda-build/rpm/srpm/*

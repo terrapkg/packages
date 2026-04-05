@@ -1,10 +1,10 @@
 %global goipath github.com/arduino/arduino-app-cli
-Version:        0.8.3
+Version:        0.8.4
 
 %gometa -f
 
 Name:           arduino-app-cli
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        The CLI and service that manages and runs Arduino Apps on UNO Q
 License:        GPL-3.0-only
 
