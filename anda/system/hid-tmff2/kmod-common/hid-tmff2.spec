@@ -8,7 +8,7 @@
 
 Name:           hid-tmff2
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Thrustmaster Force Feedback driver common files
 License:        GPL-2.0-only
 URL:            https://github.com/Kimplul/%{name}
@@ -25,7 +25,7 @@ between the akmod and dkms variants.
 
 %package       akmod-modules
 Summary:       Modules for Akmods
-Requires:      akmod-%{name}
+Requires:      %{name}-kmod = %{?epoch:%{epoch}:}%{version}
 BuildArch:     noarch
 
 %description   akmod-modules

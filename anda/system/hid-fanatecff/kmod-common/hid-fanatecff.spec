@@ -5,7 +5,7 @@
 
 Name:           hid-fanatecff
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Fanatec force feedback driver common files
 License:        GPL-2.0-only
 URL:            https://github.com/gotzl/%{name}
@@ -21,7 +21,7 @@ akmod and dkms variants.
 
 %package       akmod-modules
 Summary:       Modules for Akmods
-Requires:      akmod-%{name}
+Requires:      %{name}-kmod = %{?epoch:%{epoch}:}%{version}
 BuildArch:     noarch
 
 %description   akmod-modules
