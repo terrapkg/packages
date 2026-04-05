@@ -7,7 +7,7 @@
 Name:           twintaillauncher
 
 Version:        2.0.0
-Release:        0%{?dist}
+Release:        2%{?dist}
 Summary:        A multi-platform launcher for your anime games
 Packager:        Yoong Jin <solomoncyj@gmail.com>
 
@@ -52,7 +52,7 @@ TTL is an all-in-one tool for downloading, managing, and launching your favorite
 %prep
 %autosetup -n TwintailLauncher-ttl-v%{version}
 %tauri_prep
-pnpm import
+%{__pnpm} import
 
 %build
 %pnpm_build -F
@@ -109,10 +109,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &> /dev/null || :
 
 
 %changelog
-* Sat Apr 4 2026 Yoong Jin <solomoncyj@gmail.com> - 2.0.0-0
-- Major release 
-* Fri Mar 27 2026 Yoong Jin <solomoncyj@gmail.com> - 2.1.15-1
+* Sat Apr 4 2026 Yoong Jin <solomoncyj@gmail.com> - 2.0.0-2
 - Fix folders
+- Update License
 * Thu Feb 19 2026 Yoong Jin <solomoncyj@gmail.com> - 1.1.15-1
 - Fix resources
 * Tue Feb 3 2026 Yoong Jin <solomoncyj@gmail.com> - 1.1.15-0
