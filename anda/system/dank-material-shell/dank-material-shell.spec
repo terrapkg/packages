@@ -1,8 +1,5 @@
 %global goipath github.com/AvengeMedia/%{name}/core
 
-# Can't run tests in the network restricted buildenv
-%bcond check 0
-
 Name:           DankMaterialShell
 Version:        1.4.4
 Release:        1%{?dist}
@@ -51,20 +48,16 @@ Packager:       Its-J <jonah@fyralabs.com>
 DankMaterialShell is a complete desktop shell for Wayland compositors.
 It replaces a variety of tools used to stitch together to make a desktop.
 
-It features notifications, an app launcher, wallpaper customization, and is
+dms features notifications, an app launcher, wallpaper customization, and is
 fully customizable with plugins.
 
 It includes auto-theming for GTK/Qt apps with matugen, 20+ customizable widgets,
 process monitoring, notification center, clipboard history, dock, control center,
 lock screen, and comprehensive plugin system.
 
-
 %prep
 %autosetup -C
 %goprep
-
-%generate_buildrequires
-
 
 %build
 pushd core
@@ -77,8 +70,14 @@ mkdir -p %{_vpath_builddir}/bin
 %gobuild -o %{_vpath_builddir}/bin/dms ./cmd/dms
 popd
 
+# Generate shell completions during build due to bug in dms disallowing it to be ran as root
+mkdir -p _completions
+core/%{_vpath_builddir}/bin/dms completion bash > _completions/dms
+core/%{_vpath_builddir}/bin/dms completion fish > _completions/dms.fish
+core/%{_vpath_builddir}/bin/dms completion zsh  > _completions/_dms
+
 # Install dms cli shell completions
-%pkg_completion -Bfz dms
+%dnl %pkg_completion -Bfz dms
 
 %install
 # Install dms
@@ -91,27 +90,28 @@ mkdir -p %{buildroot}%{_datadir}/quickshell/dms
 cp -a quickshell/* %{buildroot}%{_datadir}/quickshell/dms/
 echo "%{evr}" > %{buildroot}%{_datadir}/quickshell/dms/VERSION
 
-
 # Install dms cli
 mkdir -p %{buildroot}%{_bindir}
 install -pm0755 core/%{_vpath_builddir}/bin/dms %{buildroot}%{_bindir}/dms
 
 # Install dms cli shell completions
-mkdir -p %{buildroot}%{bash_completions_dir}
-mkdir -p %{buildroot}%{fish_completions_dir}
-mkdir -p %{buildroot}%{zsh_completions_dir}
-core/%{_vpath_builddir}/bin/dms completion bash > %{buildroot}%{bash_completions_dir}/dms
-core/%{_vpath_builddir}/bin/dms completion fish > %{buildroot}%{fish_completions_dir}/dms.fish
-core/%{_vpath_builddir}/bin/dms completion zsh > %{buildroot}%{zsh_completions_dir}/_dms
+install -Dm644 _completions/dms %{buildroot}%{bash_completions_dir}/dms
+install -Dm644 _completions/dms.fish %{buildroot}%{fish_completions_dir}/dms.fish
+install -Dm644 _completions/_dms %{buildroot}%{zsh_completions_dir}/_dms
 
 %check
 pushd core
-# Not sure how to make this work properly...
-%if %{with check}
 %gotest ./...
-%endif
 popd
 
+%post
+%systemd_user_post dms.service
+
+%preun
+%systemd_user_preun dms.service
+
+%postun
+%systemd_user_postun_with_restart dms.service
 
 %posttrans
 # Signal running DMS instances to reload
@@ -126,6 +126,9 @@ pkill -USR1 -x dms || :
 %{_userunitdir}/dms.service
 %{_datadir}/applications/dms-open.desktop
 %{_datadir}/icons/hicolor/scalable/apps/danklogo.svg
+%{bash_completions_dir}/dms
+%{fish_completions_dir}/dms.fish
+%{zsh_completions_dir}/_dms
 
 %changelog
 * Sat Mar 28 2026 Its-J <jonah@fyralabs.com> - 1.4.4-1
