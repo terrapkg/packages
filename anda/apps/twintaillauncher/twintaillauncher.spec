@@ -77,23 +77,6 @@ install -Dm644 public/launcher-icon-128.png %{buildroot}%{_hicolordir}/128x128/a
 
 
 
-%post
-# Update desktop database & icon cache
-update-desktop-database %{_datadir}/applications &> /dev/null || :
-touch --no-create %{_datadir}/icons/hicolor &> /dev/null || :
-
-%postun
-# Update desktop database & icon cache after uninstall
-update-desktop-database %{_datadir}/applications &> /dev/null || :
-if [ $1 -eq 0 ] ; then
-    touch --no-create %{_datadir}/icons/hicolor &> /dev/null || :
-    gtk-update-icon-cache %{_datadir}/icons/hicolor &> /dev/null || :
-fi
-
-%posttrans
-gtk-update-icon-cache %{_datadir}/icons/hicolor &> /dev/null || :
-
-
 %files
 %license LICENSE.dependencies
 %license LICENSE
