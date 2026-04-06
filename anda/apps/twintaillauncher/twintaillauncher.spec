@@ -60,7 +60,7 @@ TTL is an all-in-one tool for downloading, managing, and launching your favorite
 
 %install
 %tauri_install
-mkdir -p %{buildroot}//usr/lib/twintaillauncher/resources
+mkdir -p %{buildroot}/usr/lib/twintaillauncher/resources
 
 #app expects files to be present there
 mv  %{buildroot}/%{_datadir}/cargo/registry/twintaillauncher-%{version}/resources %{buildroot}/usr/lib/twintaillauncher/resources
