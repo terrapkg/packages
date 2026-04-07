@@ -4,6 +4,7 @@ project pkg {
 		spec = "dkms-logitech-rs50-linux-driver.spec"
 	}
 	labels {
-		nightly = 1
+		updbranch = 1
+		mock = 1
 	}
 }

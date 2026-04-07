@@ -2,11 +2,11 @@
 %global debug_package %{nil}
 %global modulename logitech-rs50-linux-driver
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260227
+%global commitdate 20260407
 
 Name:           dkms-%{modulename}
 Version:        1.0^%{commitdate}git.%{shortcommit}
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Linux kernel driver for the Logitech RS50 Direct Drive Wheel Base (USB ID 046d:c276)
 License:        GPL-2.0-only
 URL:            https://github.com/mescon/%{modulename}
@@ -15,10 +15,10 @@ Patch0:         fix-dkms-conf.patch
 BuildRequires:  sed
 BuildRequires:  systemd-rpm-macros
 Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
-Provides:       %{name}-kmod-common = %{?epoch:%{epoch}:}%{version}
-BuildArch:      x86_64
 Requires:       dkms
 Conflicts:      akmod-%{modulename}
+Provides:       %{name}-kmod-common = %{?epoch:%{epoch}:}%{version}
+BuildArch:      x86_64
 Provides:       %{modulename}-kmod
 
 %description

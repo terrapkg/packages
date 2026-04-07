@@ -1,10 +1,10 @@
 %global commit 34eb21e66a687ea8961f185ecd54bc7e7edae0f8
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260227
+%global commitdate 20260407
 
 Name:           logitech-rs50-linux-driver
 Version:        1.0^%{commitdate}git.%{shortcommit}
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Linux kernel driver for the Logitech RS50 Direct Drive Wheel Base (USB ID 046d:c276)
 License:        GPL-2.0-only
 URL:            https://github.com/mescon/%{name}
@@ -22,7 +22,7 @@ Note: This driver replaces the in-kernel hid-logitech-hidpp module and continues
 
 %package       akmod-modules
 Summary:       Modules for Akmods
-Requires:      akmod-%{name}
+Requires:      %{name}-kmod = %{?epoch:%{epoch}:}%{version}
 BuildArch:     noarch
 
 %description   akmod-modules
