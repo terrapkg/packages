@@ -1,7 +1,7 @@
 %global goipath github.com/AvengeMedia/%{name}/core
 
 Name:           DankMaterialShell
-Version:        1.4.4
+Version:        1.4.4.1
 Release:        1%{?dist}
 Summary:        Desktop shell for Wayland compositors built on QuickShell
 
@@ -70,14 +70,8 @@ mkdir -p %{_vpath_builddir}/bin
 %gobuild -o %{_vpath_builddir}/bin/dms ./cmd/dms
 popd
 
-# Generate shell completions during build due to bug in dms disallowing it to be ran as root
-mkdir -p _completions
-core/%{_vpath_builddir}/bin/dms completion bash > _completions/dms
-core/%{_vpath_builddir}/bin/dms completion fish > _completions/dms.fish
-core/%{_vpath_builddir}/bin/dms completion zsh  > _completions/_dms
-
 # Install dms cli shell completions
-%dnl %pkg_completion -Bfz dms
+%pkg_completion -Bfz dms
 
 %install
 # Install dms
@@ -95,9 +89,12 @@ mkdir -p %{buildroot}%{_bindir}
 install -pm0755 core/%{_vpath_builddir}/bin/dms %{buildroot}%{_bindir}/dms
 
 # Install dms cli shell completions
-install -Dm644 _completions/dms %{buildroot}%{bash_completions_dir}/dms
-install -Dm644 _completions/dms.fish %{buildroot}%{fish_completions_dir}/dms.fish
-install -Dm644 _completions/_dms %{buildroot}%{zsh_completions_dir}/_dms
+mkdir -p %{buildroot}%{bash_completions_dir}
+mkdir -p %{buildroot}%{fish_completions_dir}
+mkdir -p %{buildroot}%{zsh_completions_dir}
+core/%{_vpath_builddir}/bin/dms completion bash > %{buildroot}%{bash_completions_dir}/dms
+core/%{_vpath_builddir}/bin/dms completion fish > %{buildroot}%{fish_completions_dir}/dms.fish
+core/%{_vpath_builddir}/bin/dms completion zsh > %{buildroot}%{zsh_completions_dir}/_dms
 
 %check
 pushd core
@@ -126,9 +123,6 @@ pkill -USR1 -x dms || :
 %{_userunitdir}/dms.service
 %{_datadir}/applications/dms-open.desktop
 %{_datadir}/icons/hicolor/scalable/apps/danklogo.svg
-%{bash_completions_dir}/dms
-%{fish_completions_dir}/dms.fish
-%{zsh_completions_dir}/_dms
 
 %changelog
 * Sat Mar 28 2026 Its-J <jonah@fyralabs.com> - 1.4.4-1
