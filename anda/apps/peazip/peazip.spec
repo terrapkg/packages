@@ -2,8 +2,8 @@
 %define debug_package %nil
 
 Name:           peazip
-Version:        10.9.0
-Release:        1%?dist
+Version:        11.0.0
+Release:        1%{?dist}
 Summary:        Free Zip / Unzip software and Rar file extractor. Cross-platform file and archive manager
 License:        LGPL-3.0-only
 URL:            https://peazip.github.io

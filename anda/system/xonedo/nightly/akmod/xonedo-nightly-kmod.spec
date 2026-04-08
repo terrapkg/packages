@@ -8,7 +8,7 @@
 
 Name:           %{modulename}-nightly-kmod
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Epoch:          1
 %endif
@@ -25,6 +25,7 @@ Conflicts:      dkms-%{modulename}-nightly
 Conflicts:      %{modulename}-kmod
 Conflicts:      dkms-xone-nightly
 Conflicts:      xone-kmod
+Provides:       %{modulename}-nightly-kmod
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Obsoletes:      %{name} < %{?epoch:%{epoch}:}3.0^20250419git.c682b0c
 %endif

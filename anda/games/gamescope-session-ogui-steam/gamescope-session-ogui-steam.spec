@@ -1,8 +1,8 @@
 %define debug_package %nil
 
-%global commit 6835776876a2b9e5fc819bd8d98f06ae51fa6394
+%global commit fbdc7682f39088b4fe480a9285808ca81b3f9d03
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20231030
+%global commit_date 20260325
 
 Name:           gamescope-session-ogui-steam
 Version:        0~%{commit_date}git.%{shortcommit}
@@ -25,14 +25,16 @@ Gamescope Session for OpenGamepadUI in overlay mode with Steam
 %build
 
 %install
-install -Dpm0755 -t "%buildroot%_datadir/gamescope-session-plus/sessions.d/" ".%_datadir/gamescope-session-plus/sessions.d/steam-plus"
+install -Dpm0755 -t "%buildroot%_datadir/gamescope-session-plus/sessions.d/" ".%_datadir/gamescope-session-plus/sessions.d/ogui-steam"
+install -Dpm0644 -t "%buildroot%_datadir/wayland-sessions/" ".%_datadir/wayland-sessions/gamescope-session-ogui-steam.desktop"
 install -Dpm0644 -t "%buildroot%_datadir/wayland-sessions/" ".%_datadir/wayland-sessions/gamescope-session-steam-plus.desktop"
 install -Dpm0644 -t "%buildroot%_datadir/wayland-sessions/" ".%_datadir/wayland-sessions/gamepadui-with-qam-session.desktop"
 
 %files
 %doc README.md
 %license LICENSE
-%{_datadir}/gamescope-session-plus/sessions.d/steam-plus
+%{_datadir}/gamescope-session-plus/sessions.d/ogui-steam
+%{_datadir}/wayland-sessions/gamescope-session-ogui-steam.desktop
 %{_datadir}/wayland-sessions/gamescope-session-steam-plus.desktop
 %{_datadir}/wayland-sessions/gamepadui-with-qam-session.desktop
 

@@ -1,5 +1,5 @@
 project pkg {
 	rpm {
-		spec = "chezmoi.spec"
+		spec = "driftwm.spec"
 	}
 }
