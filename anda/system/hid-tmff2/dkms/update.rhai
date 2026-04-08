@@ -9,7 +9,4 @@ if rpm.changed() {
     let v = sh("cat anda/system/hid-tmff2/kmod-common/hid-tmff2.spec | grep '%global ver' | sed -E 's/.+ver //'", #{"stdout": "piped"}).ctx.stdout;
     v.pop();
     rpm.global("ver", v);
-    let t = sh("cat anda/system/hid-tmff2/kmod-common/hid-tmff2.spec | grep '%global tminit_commit ' | sed -E 's/.+tminit_commit //'", #{"stdout": "piped"}).ctx.stdout;
-    t.pop();
-    rpm.global("tminit_commit", t);
 }
