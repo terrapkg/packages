@@ -1,6 +1,6 @@
 Name:             libde265
 Summary:          Open H.265 video codec implementation
-Version:          1.0.17
+Version:          1.0.18
 Release:          1%{?dist}
 License:          LGPL-3.0-or-later
 URL:              https://www.libde265.org/

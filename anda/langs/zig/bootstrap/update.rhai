@@ -8,4 +8,7 @@ if rpm.changed() {
    // Update the Zig version in the script
    let dir = sub(`/[^/]+$`, "", __script_path);
    sh(`sed -i 's|version=.*|version=${v}|' setup.sh`, #{ "cwd": dir });
+   // Update the needed LLVM version
+   let rawfile = codeberg_rawfile("ziglang/zig", "master", "README.md");
+   rpm.global("llvm_version", find(`download.html#([\d.]+)`, rawfile, 1));
 }

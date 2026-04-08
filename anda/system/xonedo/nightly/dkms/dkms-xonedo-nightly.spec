@@ -7,7 +7,7 @@
 
 Name:           dkms-%{modulename}-nightly
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Epoch:          1
 %endif

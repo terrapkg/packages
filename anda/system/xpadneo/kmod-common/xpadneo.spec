@@ -1,11 +1,11 @@
-%global commit ee5c0d491405b57c6740e4d45b8af26671e598ac
+%global commit 93621f104dfe6a1690cf72f0f4fd074a0a86acce
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260318
-%global ver 0.10
+%global commitdate 20260325
+%global ver 0.10.1
 
 Name:           xpadneo
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Advanced Linux Driver for Xbox One Wireless Gamepad common files
 License:        GPL-3.0
 URL:            https://atar-axis.github.io/%{name}
@@ -13,7 +13,7 @@ Source0:        https://github.com/atar-axis/%{name}/archive/%{commit}.tar.gz#/%
 Source1:        io.github.%{name}.metainfo.xml
 BuildRequires:  sed
 BuildRequires:  systemd-rpm-macros
-Requires:       (akmod-%{name} = %{?epoch:%{epoch}:}%{version} or dkms-%{name} = %{?epoch:%{epoch}:}%{version})
+Requires:       %{name}-kmod = %{?epoch:%{epoch}:}%{version}
 Provides:       %{name}-kmod-common = %{?epoch:%{epoch}:}%{version}
 Obsoletes:      %{name}-kmod-common < %{?epoch:%{epoch}:}0.9.7^20241224git.8d20a23-5%{?dist}
 BuildArch:      noarch
@@ -48,7 +48,7 @@ install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/metainfo/io.github.%{name}.met
 install -Dm644 %{name}.conf -t %{buildroot}%{_modulesloaddir}
 
 %files
-%license LICENSE
+%license LICENSE.md LICENSES
 %doc docs/*.md
 %{_modprobedir}/%{name}.conf
 %{_udevrulesdir}/60-%{name}.rules
