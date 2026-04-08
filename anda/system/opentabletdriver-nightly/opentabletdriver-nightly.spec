@@ -37,7 +37,7 @@ OpenTabletDriver is an open source, cross platform, user mode tablet driver. The
 %autosetup -n OpenTabletDriver-%commit
 
 %build
-./eng/linux/package.sh --output bin
+./eng/bash/package.sh --output bin
 
 %install
 export DONT_STRIP=1
