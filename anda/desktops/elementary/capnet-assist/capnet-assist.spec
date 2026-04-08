@@ -37,6 +37,8 @@ Log into captive portals—like Wi-Fi networks at coffee shops, airports, and tr
 %desktop_file_validate %buildroot%_appsdir/%appid.desktop
 
 %files -f %appid.lang
+%doc README.md
+%license COPYING
 %_bindir/%appid
 %_appsdir/%appid.desktop
 %_datadir/glib-2.0/schemas/%appid.gschema.xml
