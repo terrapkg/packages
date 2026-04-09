@@ -3,6 +3,7 @@ Version:	2.0.7
 Release:	2%?dist
 URL:		https://github.com/ful1e5/Bibata_Cursor
 Source0:	%{url}/releases/download/v%{version}/Bibata.tar.xz
+Source1:	https://raw.githubusercontent.com/ful1e5/Bibata_Cursor/v%{version}/README.md
 License:	GPL-3.0-or-later
 Summary:	Open source, compact, and material designed cursor set
 BuildArch:	noarch
@@ -23,6 +24,8 @@ tar xf %{SOURCE0}
 %install
 mkdir -p %{buildroot}/%{_datadir}/icons/
 mv Bibata-* %{buildroot}/%{_datadir}/icons/
+mkdir -p %{buildroot}/%{_datadir}/doc/%{name}/
+cp %{SOURCE1} %{buildroot}/%{_datadir}/doc/%{name}/README.md
 %fdupes %buildroot%_datadir/icons/
 
 %files
