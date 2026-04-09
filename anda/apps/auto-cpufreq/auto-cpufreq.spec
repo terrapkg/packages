@@ -2,11 +2,12 @@
 
 Name:			python-auto-cpufreq
 Version:		3.0.0
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Automatic CPU speed & power optimizer for Linux
 License:		LGPL-3.0-or-later
 URL:			https://foolcontrol.org/?p=4603
 Source0:		https://github.com/AdnanHodzic/auto-cpufreq/archive/refs/tags/v%{version}.tar.gz
+Patch0:         prevent-install-and-copy.patch
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-wheel
@@ -32,6 +33,7 @@ Summary:        %{summary}
 
 %prep
 %git_clone https://github.com/AdnanHodzic/auto-cpufreq.git %{version}
+%patch -P0 -p1
 
 %build
 %pyproject_wheel
@@ -44,16 +46,16 @@ install -Dm644 scripts/org.auto-cpufreq.pkexec.policy %{buildroot}%{_datadir}/po
 install -Dm644 images/icon.png %{buildroot}%{_hicolordir}/512x512/apps/auto-cpufreq.png
 install -Dm644 images/icon.png %{buildroot}%{_datadir}/%{name}/icon.png
 
-mkdir -p %{buildroot}%{_datadir}/%{name}/scripts/
+mkdir -p %{buildroot}%{_datadir}/auto-cpufreq/scripts/
 mkdir -p %{buildroot}/opt/auto-cpufreq/
 mkdir -p %{buildroot}%{_appsdir}/
 mkdir -p %{buildroot}%{_unitdir}/
 
-install -Dm755 scripts/auto-cpufreq-install.sh %{buildroot}%{_datadir}/%{name}/scripts/
-install -Dm755 scripts/auto-cpufreq-remove.sh %{buildroot}%{_datadir}/%{name}/scripts/
+install -Dm755 scripts/auto-cpufreq-install.sh %{buildroot}%{_datadir}/auto-cpufreq/scripts/
+install -Dm755 scripts/auto-cpufreq-remove.sh %{buildroot}%{_datadir}/auto-cpufreq/scripts/
 install -Dm644 scripts/auto-cpufreq.service %{buildroot}%{_unitdir}/auto-cpufreq.service
-install -Dm755 scripts/cpufreqctl.sh %{buildroot}%{_datadir}/%{name}/scripts/
-install -Dm644 scripts/style.css %{buildroot}%{_datadir}/%{name}/scripts/
+install -Dm755 scripts/cpufreqctl.sh %{buildroot}%{_datadir}/auto-cpufreq/scripts/
+install -Dm644 scripts/style.css %{buildroot}%{_datadir}/auto-cpufreq/scripts/
 install -Dm644 scripts/auto-cpufreq-gtk.desktop %{buildroot}%{_appsdir}/
 
 %post
@@ -74,9 +76,12 @@ install -Dm644 scripts/auto-cpufreq-gtk.desktop %{buildroot}%{_appsdir}/
 %{_hicolordir}/512x512/apps/auto-cpufreq.png
 %{_datadir}/%{name}/icon.png
 %{_unitdir}/auto-cpufreq.service
-%{_datadir}/%{name}/scripts/
+%{_datadir}/auto-cpufreq/scripts/
 %{_appsdir}/auto-cpufreq-gtk.desktop
 
 %changelog
+* Tue Apr 07 2026 Owen Zimmerman <owen@fyralabs.com>
+- Add install fix patch
+
 * Sun Apr 05 2026 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit
