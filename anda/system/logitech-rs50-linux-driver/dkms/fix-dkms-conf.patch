@@ -1,0 +1,17 @@
+diff --git a/dkms.conf b/dkms.conf
+index 437e5fd..2c4f3a4 100644
+--- a/dkms.conf
++++ b/dkms.conf
+@@ -1,8 +1,8 @@
+-PACKAGE_NAME="hid-logitech-hidpp"
+-PACKAGE_VERSION="1.0"
++PACKAGE_NAME="logitech-rs50-linux-driver"
++PACKAGE_VERSION="__VERSION_STRING"
+ MAKE[0]="make -C ${kernel_source_dir} M=${dkms_tree}/${PACKAGE_NAME}/${PACKAGE_VERSION}/build modules"
+ CLEAN="make -C ${kernel_source_dir} M=${dkms_tree}/${PACKAGE_NAME}/${PACKAGE_VERSION}/build clean"
+ BUILT_MODULE_NAME[0]="hid-logitech-hidpp"
+ DEST_MODULE_NAME[0]="hid-logitech-hidpp"
+ DEST_MODULE_LOCATION[0]="/updates/dkms"
+-AUTOINSTALL="yes"
+\ No newline at end of file
++AUTOINSTALL="yes"

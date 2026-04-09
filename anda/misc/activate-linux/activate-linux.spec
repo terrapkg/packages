@@ -1,5 +1,5 @@
-%global commit 347a579411fe871a6a1a4b9989384dddcd477ad5
-%global date 20251104
+%global commit f3fecf216fd3571821b38a684efab9911ec4f886
+%global date 20260407
 %global short %(c=%{commit}; echo ${c:0:7})
 %global ver 1.1.0
 
@@ -7,7 +7,7 @@ Name:           activate-linux
 Summary:        The "Activate Windows" watermark ported to Linux
 Version:        %{ver}^%{date}git.%{short}
 License:        GPL-3.0-only
-Release:        1%?dist
+Release:        1%{?dist}
 URL:            https://github.com/MrGlockenspiel/activate-linux
 Source0:        %{url}/archive/%{commit}.tar.gz
 BuildRequires:  clang 
