@@ -3,7 +3,7 @@
 
 # https://github.com/charmbracelet/glow
 %global goipath         github.com/charmbracelet/glow
-Version:                2.1.1
+Version:                2.1.2
 
 %gometa -f
 
@@ -15,7 +15,7 @@ Render markdown on the CLI, with pizzazz! 💅🏻.}
 %global godocs          README.md
 
 Name:           %{goname}
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Render markdown on the CLI, with pizzazz! 💅🏻
 
 License:        MIT
