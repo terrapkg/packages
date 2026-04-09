@@ -7,7 +7,7 @@ Summary:        Captive Network Assistant automatically opens to help you get co
 License:        GPL-3.0-only
 URL:            https://github.com/elementary/capnet-assist
 Source0:        %url/archive/refs/tags/%version.tar.gz
-BuildRequires:  meson gettext vala
+BuildRequires:  meson gettext vala desktop-file-utils
 BuildRequires:  pkgconfig(gcr-4)
 BuildRequires:  pkgconfig(gio-2.0)
 BuildRequires:  pkgconfig(glib-2.0)
