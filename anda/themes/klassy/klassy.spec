@@ -12,13 +12,13 @@ License:        GPL-2.0-or-later
 Group:          System/GUI/KDE
 URL:            %{forgeurl}
 Source:         %{forgesource}
-Patch0:         https://github.com/paulmcauley/klassy/pull/178.patch
 
 Obsoletes:      classikstyles <= %{version}
 Obsoletes:      classik <= %{version}
 
 BuildRequires:  cmake >= 3.16
 BuildRequires:  extra-cmake-modules >= 5.102.0
+BuildRequires:  gettext
 
 BuildRequires:  kf5-rpm-macros
 BuildRequires:  kf5-filesystem
@@ -80,13 +80,29 @@ Klassy (formerly ClassiK/ClassikStyles) is a highly customizable binary Window D
 %forgeautosetup -p1
 
 %build
-%cmake
+mkdir -p qt6-build
+pushd qt6-build
+%cmake_kf6 -S .. -DBUILD_QT6=ON -DBUILD_QT5=OFF
 %cmake_build
+popd
+mkdir -p qt5-build
+pushd qt5-build
+%cmake_kf5 -S .. -DBUILD_QT6=OFF -DBUILD_QT5=ON
+%cmake_build
+popd
 
 %install
+pushd qt5-build
 %cmake_install
+popd
+pushd qt6-build
+%cmake_install
+popd
 
-%files
+%find_lang  %{name}_style_config
+%find_lang  %{name}_kwin_deco
+
+%files -f %{name}_style_config.lang -f %{name}_kwin_deco.lang
 %license LICENSES/*.txt
 
 %{_bindir}/%{name}-settings
@@ -102,18 +118,19 @@ Klassy (formerly ClassiK/ClassikStyles) is a highly customizable binary Window D
 %{_kf6_qtplugindir}/kstyle_config/klassystyleconfig.so
 %{_kf6_qtplugindir}/org.kde.kdecoration3/org.kde.klassy.so
 %{_kf6_qtplugindir}/org.kde.kdecoration3.kcm/kcm_klassydecoration.so
-%{_kf6_qtplugindir}/org.kde.kdecoration2.kcm/klassydecoration/presets/*
+%{_kf6_qtplugindir}/org.kde.kdecoration3.kcm/klassydecoration/presets/*
 
 %{_kf6_datadir}/applications/kcm_klassydecoration.desktop
 %{_kf6_datadir}/applications/klassystyleconfig.desktop
 %{_kf6_datadir}/applications/klassy-settings.desktop
 
 %{_kf6_datadir}/color-schemes/Klassy*.colors
+%{_kf6_datadir}/color-schemes/OpalFruits*.colors
 
 %{_datadir}/icons/hicolor/
 %{_datadir}/icons/%{name}/
 %{_datadir}/icons/%{name}-dark/
-%{_datadir}/plasma/desktoptheme/%{name}/
+%{_datadir}/plasma/desktoptheme/kite-*/
 
 %{_kf6_datadir}/kstyle/themes/%{name}.themerc
 
@@ -122,4 +139,3 @@ Klassy (formerly ClassiK/ClassikStyles) is a highly customizable binary Window D
 
 %changelog
 %autochangelog
-
