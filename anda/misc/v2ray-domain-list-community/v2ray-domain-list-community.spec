@@ -1,7 +1,7 @@
-%global commit  68b57828a1602b1af6a430d0dd0fd98f216e082e
+%global commit  78f87bc8a9e7796a3728fda49594f28c9198b9da
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global ver 20260404050103
-%global commit_date 20260405
+%global ver 20260409151144
+%global commit_date 20260410
 
 Name:           v2ray-domain-list-community
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
