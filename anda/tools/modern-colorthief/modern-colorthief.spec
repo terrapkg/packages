@@ -26,7 +26,6 @@ BuildRequires: python3dist(myst-parser)
 BuildRequires: python3dist(shibuya)
 BuildRequires: python3dist(sphinx)
 %endif
-Requires:      python3dist(modern-colorthief)
 
 %description
 Colorthief but with modern code.
