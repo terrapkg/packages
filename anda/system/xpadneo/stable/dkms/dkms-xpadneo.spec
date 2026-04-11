@@ -1,7 +1,7 @@
 %global modulename xpadneo
 
 Name:           dkms-%{modulename}
-Version:        0.10
+Version:        0.10.2
 Release:        1%{?dist}
 %if 0%{?fedora} <= 45
 Epoch:          1
@@ -9,7 +9,7 @@ Epoch:          1
 Summary:        Advanced Linux Driver for Xbox One Wireless Gamepad
 License:        GPL-2.0-only AND GPL-3.0-or-later
 URL:            https://atar-axis.github.io/%{modulename}
-Source0:        https://github.com/atar-axis/%{modulename}/archive/%{commit}.tar.gz#/%{modulename}-%{shortcommit}.tar.gz
+Source0:        https://github.com/atar-axis/xpadneo/archive/refs/tags/v%{version}.tar.gz
 Source1:        %{name}.conf
 Source2:        no-weak-modules.conf
 BuildRequires:  sed
@@ -19,6 +19,7 @@ Requires:       bluez-tools
 Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
 Requires:       dkms
 Conflicts:      akmod-%{modulename}
+Provides:       %{modulename}-kmod
 BuildArch:      noarch
 Packager:       Gilver E. <roachy@fyralabs.com>
 
@@ -26,7 +27,7 @@ Packager:       Gilver E. <roachy@fyralabs.com>
 Advanced Linux Driver for Xbox One Wireless Gamepad.
 
 %prep
-%autosetup -p1 -n %{modulename}-%{commit}
+%autosetup -p1 -n %{modulename}-%{version}
 
 
 cp -f %{SOURCE1} hid-xpadneo/src/dkms.conf
@@ -63,5 +64,5 @@ dkms remove -m %{modulename} -v %{version} -q --all --rpm_safe_upgrade || :
 %endif
 
 %changelog
-* Sun Mar 15 2026 Gilver E. <roachy@fyralabs.com> - 1:0.10-1
+* Fri Apr 10 2026 Gilver E. <roachy@fyralabs.com> - 1:0.10.2-1
 - Initial stable package

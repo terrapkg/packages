@@ -1,13 +1,13 @@
-%global commit e159faa800848989fff4465210496d05c0dc5dae
+%global commit d8f6e10395b2fa5f036a9f5e0f62a5b910b9edd9
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260309
-%global ver 0.10
+%global commitdate 20260410
+%global ver 0.10.2
 %define buildforkernels akmod
 %global debug_package %{nil}
-%global modulename xpadneo-nightly
+%global modulename xpadneo
 
-Name:           %{modulename}-kmod
-Version:        %{ver}^%{commitdate}git.%{shortcommit}
+Name:           %{modulename}-nightly-kmod
+Version:        %{ver}^%{commitdate}git%{shortcommit}
 Release:        1%{?dist}
 Summary:        Advanced Linux Driver for Xbox One Wireless Gamepad
 License:        GPL-2.0-only AND GPL-3.0-or-later
@@ -18,8 +18,8 @@ BuildRequires:  systemd-rpm-macros
 Requires:       akmods
 Requires:       bluez
 Requires:       bluez-tools
-Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
-Requires:       %{modulename}-akmod-modules = %{?epoch:%{epoch}:}%{version}
+Requires:       %{modulename}-nightly-kmod-common = %{?epoch:%{epoch}:}%{version}
+Requires:       %{modulename}-nightly-akmod-modules = %{?epoch:%{epoch}:}%{version}
 Conflicts:      dkms-%{modulename}
 Packager:       Gilver E. <roachy@fyralabs.com>
 

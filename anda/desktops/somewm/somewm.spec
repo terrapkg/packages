@@ -1,6 +1,6 @@
 Name:           somewm
-Version:        0.5.0
-Release:        1%?dist
+Version:        1.4.0
+Release:        1%{?dist}
 Summary:        Wayland compositor that brings AwesomeWM's Lua API to Wayland
 License:        GPL-3.0
 URL:            https://github.com/trip-zip/somewm

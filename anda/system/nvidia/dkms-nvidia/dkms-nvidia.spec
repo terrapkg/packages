@@ -4,14 +4,16 @@
 %global modulename nvidia
 
 Name:           dkms-%{modulename}
-Version:        590.48.01
-Release:        2%?dist
+Version:        595.58.03
+Release:        1%{?dist}
 Summary:        NVIDIA display driver kernel module
 Epoch:          3
 License:        NVIDIA License
 URL:            https://www.nvidia.com/object/unix.html
 Source0:        https://github.com/NVIDIA/open-gpu-kernel-modules/archive/%{version}/open-gpu-kernel-modules-%{version}.tar.gz
 Source1:        %{name}.conf
+Patch0:         0001-Enable-atomic-kernel-modesetting-by-default.patch
+Patch1:         6.19-590.patch
 BuildRequires:  sed
 Provides:       %{modulename}-kmod = %{?epoch:%{epoch}:}%{version}
 Requires:       %{modulename}-kmod-common = %{?epoch:%{epoch}:}%{version}

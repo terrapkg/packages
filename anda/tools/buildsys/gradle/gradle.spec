@@ -1,6 +1,6 @@
 Name:			gradle
-Version:		9.4.0
-Release:		2%?dist
+Version:		9.4.1
+Release:		1%{?dist}
 Summary:		Powerful build system for the JVM
 URL:			https://gradle.org/
 Source0:		https://github.com/gradle/gradle/archive/refs/tags/v%{version}.tar.gz

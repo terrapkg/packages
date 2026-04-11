@@ -1,8 +1,8 @@
 diff --git a/software/pyproject.toml b/software/pyproject.toml
-index b2280cc8..6d5f8f68 100644
+index 3ecbad5f..06ea059e 100644
 --- a/software/pyproject.toml
 +++ b/software/pyproject.toml
-@@ -29,32 +29,32 @@ requires-python = ">=3.13, <4"
+@@ -29,34 +29,34 @@ requires-python = ">=3.13, <4"
  dependencies = [
    # We use `typing` features not available in the lowest Python version we support. The library
    # `typing_extensions` provides shims for such features. It uses SemVer.
@@ -39,6 +39,9 @@ index b2280cc8..6d5f8f68 100644
    # Amaranth, and the version range here must be compatible with Amaranth's.
 -  "pyvcd>=0.4.1,<0.5",
 +  "pyvcd",
+   # `enum-tools` is used for documenting enums. It is unclear which versioning scheme it uses.
+-  "enum-tools==0.13.0",
++  "enum-tools",
    # `importlib_resources` is used to shim over Python API incompatibilities. It uses SemVer.
 -  "importlib_resources~=6.5.2",
 +  "importlib_resources",

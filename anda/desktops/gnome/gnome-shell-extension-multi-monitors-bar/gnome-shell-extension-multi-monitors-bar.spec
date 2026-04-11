@@ -1,5 +1,5 @@
-%global commit 911134bb3a8c7153095dc9d3b53af6a097a9d719
-%global commit_date 20260306
+%global commit d939f0ee9178017f83b02833387eece715b08df2
+%global commit_date 20260409
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %global extension   multi-monitors-bar

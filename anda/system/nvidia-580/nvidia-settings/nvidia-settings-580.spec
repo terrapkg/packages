@@ -1,8 +1,8 @@
 %global real_name nvidia-settings
 
-Name:           %{real_name}-580
+Name:           %{real_name}-580xx
 Version:        580.142
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Configure the NVIDIA graphics driver
 Epoch:          3
 License:        GPLv2+
@@ -35,10 +35,12 @@ BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  vulkan-headers
 
-Requires:       nvidia-libXNVCtrl-580%{?_isa} = %{?epoch}:%{version}-%{release}
-Requires:       nvidia-driver-580%{?_isa} = %{?epoch}:%{version}
+Requires:       nvidia-libXNVCtrl-580xx%{?_isa} = %{?epoch}:%{version}-%{release}
+Requires:       nvidia-driver-580xx%{?_isa} = %{?epoch}:%{version}
 # Loaded at runtime
 Requires:       libvdpau%{?_isa} >= 0.9
+
+Provides:       %{real_name}-580 = %{evr}
 
 %description
 The %{real_name} utility is a tool for configuring the NVIDIA graphics
@@ -47,21 +49,24 @@ updating state as appropriate.
 
 This communication is done with the NV-CONTROL X extension.
 
-%package -n nvidia-libXNVCtrl-580
+%package -n nvidia-libXNVCtrl-580xx
 Summary:        Library providing the NV-CONTROL API
 Obsoletes:      libXNVCtrl < %{?epoch}:%{version}-%{release}
+Provides:       libXNVCtrl-580xx = %{?epoch}:%{version}-%{release}
+Provides:       nvidia-libXNVCtrl-580 = %{?epoch}:%{version}-%{release}
 Provides:       libXNVCtrl-580 = %{?epoch}:%{version}-%{release}
 
-%description -n nvidia-libXNVCtrl-580
+%description -n nvidia-libXNVCtrl-580xx
 This library provides the NV-CONTROL API for communicating with the proprietary
 NVidia xorg driver. It is required for proper operation of the %{real_name} utility.
 
-%package -n nvidia-libXNVCtrl-580-devel
+%package -n nvidia-libXNVCtrl-580xx-devel
 Summary:        Development files for libXNVCtrl
-Requires:       nvidia-libXNVCtrl-580 = %{?epoch}:%{version}-%{release}
+Requires:       nvidia-libXNVCtrl-580xx = %{?epoch}:%{version}-%{release}
 Requires:       libX11-devel
+Provides:       nvidia-libXNVCtrl-580-devel = %{evr}
 
-%description -n nvidia-libXNVCtrl-580-devel
+%description -n nvidia-libXNVCtrl-580xx-devel
 This devel package contains libraries and header files for
 developing applications that use the NV-CONTROL API.
 
@@ -126,11 +131,11 @@ appstream-util validate-relax --nonet %{buildroot}/%{_metainfodir}/%{real_name}.
 %{_mandir}/man1/%{real_name}.*
 %{_sysconfdir}/xdg/autostart/%{real_name}-load.desktop
 
-%files -n nvidia-libXNVCtrl-580
+%files -n nvidia-libXNVCtrl-580xx
 %license COPYING
 %{_libdir}/libXNVCtrl.so.*
 
-%files -n nvidia-libXNVCtrl-580-devel
+%files -n nvidia-libXNVCtrl-580xx-devel
 %doc doc/NV-CONTROL-API.txt doc/FRAMELOCK.txt
 %{_includedir}/NVCtrl
 %{_libdir}/libXNVCtrl.so

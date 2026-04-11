@@ -1,8 +1,8 @@
 %undefine __brp_mangle_shebangs
 
 Name:           chdig
-Version:        26.2.3
-Release:        1%?dist
+Version:        26.3.1
+Release:        1%{?dist}
 Summary:        Dig into ClickHouse with TUI interface
 URL:            https://github.com/azat/chdig
 Source0:        %url/archive/refs/tags/v%{version}.tar.gz

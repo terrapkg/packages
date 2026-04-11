@@ -2,8 +2,8 @@
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 Name:           kotlin-native
-Version:        2.3.10
-Release:        1%?dist
+Version:        2.3.20
+Release:        1%{?dist}
 Summary:        LLVM backend for the Kotlin compiler
 ExclusiveArch:  x86_64
 

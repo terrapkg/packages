@@ -1,12 +1,12 @@
 %define debug_package %{nil}
 
 %global goipath github.com/carapace-sh/carapace-bin
-Version:        1.6.3
+Version:        1.6.4
 
 %gometa -f
 
 Name:           carapace
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        A multi-shell completion binary
 
 License:        MIT

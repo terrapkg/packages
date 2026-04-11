@@ -1,14 +1,14 @@
-%global commit d5209a6b5fe8c6dff8d530e820c96f09830011e3
+%global commit fb0cc1557d8321fb2e3f34e94beddefe56211e04
 
 Name:	       noctalia-qs
-Version:       0.0.8
+Version:       0.0.12
 Release:       1%{?dist}
 Summary:       Flexible QtQuick based desktop shell toolkit
 License:       LGPL-3.0-only AND GPL-3.0-only
 URL:	       https://github.com/noctalia-dev/noctalia-qs
 Source0:       https://github.com/noctalia-dev/noctalia-qs/archive/refs/tags/v%{version}.tar.gz
 
-Packager:      Willow C Reed (willow@willowidk.dev)
+Packager:      Willow C Reed <terra@willowidk.dev>
 
 BuildRequires: cmake
 BuildRequires: cmake(Qt6Core)
@@ -37,6 +37,9 @@ BuildRequires: polkit-devel
 
 Conflicts:    quickshell
 Provides:     quickshell
+
+Provides:     desktop-notification-daemon
+Provides:     PolicyKit-authentication-agent
 
 %description
 Flexible QtQuick based desktop shell toolkit.
@@ -70,9 +73,12 @@ Flexible QtQuick based desktop shell toolkit.
 %{_libdir}/qt6/qml/Quickshell
 
 %changelog
-* Thu Mar 05 2026 Willow C Reed <willow@willowidk.dev>
+* Sun Mar 29 2026 Willow C Reed <terra@willowidk.dev>
+- Add provides for a polkit agent and desktop notification daemon (so gnome doesn't get installed)
+
+* Thu Mar 05 2026 Willow C Reed <terra@willowidk.dev>
 - Fix reision to actually be defined as a specific git commit since it never gets initialized rn
 - Also fix that noctalia-qs is replacing quickshell overall and not just for noctlaia users
 
-* Fri Feb 27 2026 Willow C Reed <willow@willowidk.dev>
+* Fri Feb 27 2026 Willow C Reed <terra@willowidk.dev>
 - Initial commit based on quickshell spec

@@ -1,8 +1,8 @@
 %global real_name nvidia-modprobe
 
-Name:           %{real_name}-580
+Name:           %{real_name}-580xx
 Version:        580.142
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        NVIDIA kernel module loader
 Epoch:          3
 License:        GPLv2+
@@ -14,6 +14,8 @@ Patch0:         %{real_name}-man-page-permissions.patch
 
 BuildRequires:  gcc
 BuildRequires:  m4
+
+Provides:      %{real_name}-580 = %{evr}
 
 %description
 This utility is used by user-space NVIDIA driver components to make sure the

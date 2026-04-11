@@ -1,6 +1,6 @@
 Name:       gstreamer1-plugin-libav
-Version:    1.28.1
-Release:    1%?dist
+Version:    1.28.2
+Release:    1%{?dist}
 Epoch:      1
 Summary:    GStreamer Libav plugin
 License:    LGPL-2.0-or-later
