@@ -26,6 +26,7 @@ BuildRequires: python3dist(myst-parser)
 BuildRequires: python3dist(shibuya)
 BuildRequires: python3dist(sphinx)
 %endif
+Requires:      python3dist(modern-colorthief)
 
 %description
 Colorthief but with modern code.
@@ -68,12 +69,15 @@ done
 
 %{cargo_license_online} > LICENSE.dependencies
 
-%files -n python3-%{name}
+%files
 %doc DIFFERENCES.md
-%doc PKG-INFO
 %doc README.md
 %license LICENSE
 %license LICENSE.dependencies
+%{_bindir}/%{name}
+
+%files -n python3-%{name}
+%doc PKG-INFO
 %{python3_sitearch}/%{pypi_name}
 %{python3_sitearch}/%{pypi_name}-%{version}.dist-info/
 
