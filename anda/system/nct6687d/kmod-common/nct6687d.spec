@@ -6,7 +6,7 @@ Name:           nct6687d
 Version:        1.0^%{commitdate}git.%{shortcommit}
 Release:        1%{?dist}
 Summary:        Linux kernel driver for the NCT6687D hardware monitoring chip
-License:        GPL-2.0
+License:        GPL-2.0-or-later
 URL:            https://github.com/Fred78290/%{name}
 Source0:        %{url}/archive/%{commit}.tar.gz#/%{name}-%{shortcommit}.tar.gz
 Source1:        com.github.nct6687d.metainfo.xml

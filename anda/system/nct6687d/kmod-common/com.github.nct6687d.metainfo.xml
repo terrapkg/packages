@@ -13,7 +13,7 @@ The implementation is minimalist and was done by reverse coding of Windows 10 so
   <url type="homepage">https://github.com/Fred78290/nct6687d</url>
   <metadata_license>CC0-1.0</metadata_license>
   <!-- gplv2 -->
-  <project_license>GPL-2.0</project_license>
+  <project_license>GPL-2.0-or-later</project_license>
 
   <developer id="com.github.Fred78290">
     <name>Fred78290</name>
