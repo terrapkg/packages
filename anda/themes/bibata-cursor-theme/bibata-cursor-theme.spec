@@ -1,11 +1,10 @@
 Name:		bibata-cursor-theme
 Version:	2.0.7
-Release:	1%?dist
+Release:	2%?dist
 URL:		https://github.com/ful1e5/Bibata_Cursor
 Source0:	%{url}/releases/download/v%{version}/Bibata.tar.xz
 Source1:	https://raw.githubusercontent.com/ful1e5/Bibata_Cursor/v%{version}/README.md
-Source2:	https://raw.githubusercontent.com/ful1e5/Bibata_Cursor/v%{version}/LICENSE
-License:	GPL-3.0
+License:	GPL-3.0-or-later
 Summary:	Open source, compact, and material designed cursor set
 BuildArch:	noarch
 BuildRequires:	rpm_macro(fdupes)
@@ -25,9 +24,8 @@ tar xf %{SOURCE0}
 %install
 mkdir -p %{buildroot}/%{_datadir}/icons/
 mv Bibata-* %{buildroot}/%{_datadir}/icons/
-mkdir -p %{buildroot}/%{_datadir}/{doc,licenses}/%{name}/
+mkdir -p %{buildroot}/%{_datadir}/doc/%{name}/
 cp %{SOURCE1} %{buildroot}/%{_datadir}/doc/%{name}/README.md
-cp %{SOURCE2} %{buildroot}/%{_datadir}/licenses/%{name}/LICENSE
 %fdupes %buildroot%_datadir/icons/
 
 %files

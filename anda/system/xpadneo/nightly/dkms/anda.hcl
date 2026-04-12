@@ -1,9 +1,10 @@
 project pkg {
         arches = ["x86_64"]
 	rpm {
-		spec = "xpadneo.spec"
+		spec = "dkms-xpadneo-nightly.spec"
 	}
 	labels {
-		nightly = 1
+		mock = 1
+		updbranch = 1
 	}
 }

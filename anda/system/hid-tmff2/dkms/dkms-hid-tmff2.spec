@@ -3,22 +3,18 @@
 %global commitdate 20260310
 %global ver 0.83
 
-%global tminit_commit 8c4547288a6c182ed4ff131e36f710f11a76c4a9
-%global tminit_shortcommit %(c=%{tminit_commit}; echo ${c:0:7})
-
 %global debug_package %{nil}
 %global modulename hid-tmff2
 
 Name:           dkms-%{modulename}
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        2%{?dist}
+Release:        4%{?dist}
 Summary:        Thrustmaster Force Feedback kernel module (DKMS)
 License:        GPL-2.0-only
 URL:            https://github.com/Kimplul/%{modulename}
 Source0:        %{url}/archive/%{commit}.tar.gz#/%{modulename}-%{shortcommit}.tar.gz
-Source1:        https://github.com/Kimplul/hid-tminit/archive/%{tminit_commit}.tar.gz#/hid-tminit-%{tminit_shortcommit}.tar.gz
-Source2:        %{name}.conf
-Source3:        no-weak-modules.conf
+Source1:        %{name}.conf
+Source2:        no-weak-modules.conf
 Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
 Requires:       dkms
 Conflicts:      akmod-%{modulename}
@@ -32,11 +28,11 @@ T598, T-GT II and TS-XW wheels.
 %prep
 %autosetup -p1 -n %{modulename}-%{commit}
 
-# Populate the hid-tminit submodule
+# Stub out the hid-tminit submodule (superseded by in-kernel hid-thrustmaster)
 mkdir -p deps/hid-tminit
-tar xf %{SOURCE1} --strip-components=1 -C deps/hid-tminit
+printf 'all:\ninstall:\nclean:\n' > deps/hid-tminit/Makefile
 
-cp -f %{SOURCE2} dkms/dkms.conf
+cp -f %{SOURCE1} dkms/dkms.conf
 sed -i -e 's/__VERSION_STRING/%{version}/g' dkms/dkms.conf
 
 %build
@@ -49,7 +45,7 @@ install -Dpm644 dkms/dkms.conf %{buildroot}%{_usrsrc}/%{modulename}-%{version}/d
 
 %if 0%{?fedora}
 # Do not enable weak modules support in Fedora (no kABI):
-install -Dpm644 %{SOURCE3} %{buildroot}%{_sysconfdir}/dkms/%{modulename}.conf
+install -Dpm644 %{SOURCE2} %{buildroot}%{_sysconfdir}/dkms/%{modulename}.conf
 %endif
 
 %post
