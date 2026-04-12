@@ -53,7 +53,7 @@ Source40:       RPM-GPG-KEY-terrael10
 Source41:       RPM-GPG-KEY-terrael10-source
 BuildArch:      noarch
 
-Packager:       Terra Packaging Team <terrapkg.com>
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 GPG keys for Terra, used for verifying RPM package signatures.
