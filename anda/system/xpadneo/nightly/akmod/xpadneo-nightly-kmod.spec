@@ -1,16 +1,16 @@
-%global commit 45f39820edc2c3fc5605bfe4daea471263678ed1
+%global commit d8f6e10395b2fa5f036a9f5e0f62a5b910b9edd9
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260411
+%global commitdate 20260410
 %global ver 0.10.2
 %define buildforkernels akmod
 %global debug_package %{nil}
 %global modulename xpadneo
 
-Name:           %{modulename}-kmod
-Version:        %{ver}^%{commitdate}git.%{shortcommit}
+Name:           %{modulename}-nightly-kmod
+Version:        %{ver}^%{commitdate}git%{shortcommit}
 Release:        1%{?dist}
 Summary:        Advanced Linux Driver for Xbox One Wireless Gamepad
-License:        GPL-3.0
+License:        GPL-2.0-only AND GPL-3.0-or-later
 URL:            https://atar-axis.github.io/xpadneo
 Source0:        https://github.com/atar-axis/xpadneo/archive/%{commit}.tar.gz#/xpadneo-%{shortcommit}.tar.gz
 BuildRequires:  kmodtool
@@ -18,20 +18,19 @@ BuildRequires:  systemd-rpm-macros
 Requires:       akmods
 Requires:       bluez
 Requires:       bluez-tools
-Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
-Requires:       %{modulename}-akmod-modules = %{?epoch:%{epoch}:}%{version}
+Requires:       %{modulename}-nightly-kmod-common = %{?epoch:%{epoch}:}%{version}
+Requires:       %{modulename}-nightly-akmod-modules = %{?epoch:%{epoch}:}%{version}
 Conflicts:      dkms-%{modulename}
-Provides:       %{modulename}-kmod
 Packager:       Gilver E. <roachy@fyralabs.com>
 
-%{expand:%(kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
+%{expand:%(kmodtool --target %{_target_cpu} --repo terrapkg.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 
 %description
 Advanced Linux Driver for Xbox One Wireless Gamepad.
 
 %prep
 %{?kmodtool_check}
-kmodtool  --target %{_target_cpu}  --repo terra.fyralabs.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
+kmodtool  --target %{_target_cpu}  --repo terrapkg.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
 %autosetup -p1 -n %{modulename}-%{commit}
 
@@ -56,5 +55,7 @@ done
 %{?akmod_install}
 
 %changelog
+* Sat Apr 11 2026 Gilver E. <roachy@fyralabs.com> - 0.10.2^45f3982git20260411
+- Separated nightly builds into their own packages
 * Thu Feb 27 2025 Gilver E. <rockgrub@disroot.org>
 - Package refactoring for alternative DKMS package compatibility
