@@ -8,7 +8,7 @@
 
 Name:           %{modulename}-nightly-kmod
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        3%{?dist}
+Release:        4%{?dist}
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Epoch:          1
 %endif
@@ -31,14 +31,14 @@ Obsoletes:      %{name} < %{?epoch:%{epoch}:}3.0^20250419git.c682b0c
 %endif
 Packager:       Kyle Gospodnetich <me@kylegospodneti.ch>
 
-%{expand:%(kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
+%{expand:%(kmodtool --target %{_target_cpu} --repo terrapkg.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 
 %description
 Linux kernel driver for Xbox One and Xbox Series X|S accessories. Compatible with the xpad kernel module.
 
 %prep
 %{?kmodtool_check}
-kmodtool  --target %{_target_cpu}  --repo terra.fyralabs.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
+kmodtool  --target %{_target_cpu}  --repo terrapkg.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
 %autosetup -p1 -n %{modulename}-%{commit}
 

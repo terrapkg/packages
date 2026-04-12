@@ -14,7 +14,7 @@
 
 Name:           %{modulename}-kmod
 Version:        1.0^%{commitdate}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Linux kernel driver for the Logitech RS50 Direct Drive Wheel Base (USB ID 046d:c276)
 License:        GPL-2.0-only
 URL:            https://github.com/mescon/logitech-rs50-linux-driver
@@ -30,7 +30,7 @@ Requires:       %{modulename}-akmod-modules = %{?epoch:%{epoch}:}%{version}
 Requires:       kernel-devel
 Conflicts:      dkms-%{modulename}
 
-%{expand:%(kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
+%{expand:%(kmodtool --target %{_target_cpu} --repo terrapkg.com --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 
 %description
 Linux kernel driver for the Logitech RS50 Direct Drive Wheel Base (USB ID 046d:c276).
@@ -42,7 +42,7 @@ Note: This driver replaces the in-kernel hid-logitech-hidpp module and continues
 %{?kmodtool_check}
 
 # print kmodtool output for debugging purposes:
-kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
+kmodtool --target %{_target_cpu} --repo terrapkg.com --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
 %setup -q -c -n %{modulename}-%{commit}
 
