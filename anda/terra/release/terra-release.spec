@@ -16,7 +16,7 @@ Requires:       (epel-release-latest-%{version} or epel-release)
 
 Requires:       terra-gpg-keys
 
-Packager:       Terra Packaging Team <terrapkg.com>
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 Release package for Terra, containing the Terra repository configuration.
