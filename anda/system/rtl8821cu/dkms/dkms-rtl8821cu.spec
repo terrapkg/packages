@@ -4,7 +4,6 @@
 %global ver 5.12.0.4
 %global modulename rtl8821cu
 %global git_name 8821cu-20210916
-%global debug_package %{nil}
 %global _description %{expand:
 Linux Driver for USB Wi-Fi Adapters that are based on the RTL8811CU, RTL8821CU, RTL8821CUH, and RTL8731AU chipsets.}
 
@@ -26,6 +25,7 @@ Requires:      bc
 Requires:      make
 Provides:      %{modulename}-kmod
 Conflicts:     akmod-%{modulename}
+BuildArch:     noarch
 Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description %_description
