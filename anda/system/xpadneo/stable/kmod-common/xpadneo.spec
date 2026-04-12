@@ -53,5 +53,5 @@ install -Dm644 %{name}.conf -t %{buildroot}%{_modulesloaddir}
 %{_modulesloaddir}/%{name}.conf
 
 %changelog
-* Fri Apr 10 2026 Gilver E. <roachy@fyralabs.com> - 1:0.10.2-1
+* Sat Apr 11 2026 Gilver E. <roachy@fyralabs.com> - 1:0.10.2-1
 - Initial stable package

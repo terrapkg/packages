@@ -55,5 +55,7 @@ done
 %{?akmod_install}
 
 %changelog
+* Sat Apr 11 2026 Gilver E. <roachy@fyralabs.com> - 0.10.2^45f3982git20260411
+- Separated nightly builds into their own packages
 * Thu Feb 27 2025 Gilver E. <rockgrub@disroot.org>
 - Package refactoring for alternative DKMS package compatibility
