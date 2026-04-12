@@ -3,7 +3,6 @@
 %global gtk4_version        4.14.4
 %global libadwaita_version  1.5.1
 %global pure_protobuf_version 2.0.0
-%global raw_ver v50.2.0
 
 Name:           komikku
 Version:        50.2.0
@@ -15,7 +14,7 @@ BuildArch:      noarch
 
 License:        GPL-3.0-or-later
 URL:            https://apps.gnome.org/Komikku/
-Source0:        https://codeberg.org/valos/%{appname}/archive/%{raw_ver}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        https://codeberg.org/valos/%{appname}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  intltool
