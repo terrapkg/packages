@@ -23,14 +23,14 @@ Requires:       %{modulename}-nightly-akmod-modules = %{?epoch:%{epoch}:}%{versi
 Conflicts:      dkms-%{modulename}
 Packager:       Gilver E. <roachy@fyralabs.com>
 
-%{expand:%(kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
+%{expand:%(kmodtool --target %{_target_cpu} --repo terrapkg.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 
 %description
 Advanced Linux Driver for Xbox One Wireless Gamepad.
 
 %prep
 %{?kmodtool_check}
-kmodtool  --target %{_target_cpu}  --repo terra.fyralabs.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
+kmodtool  --target %{_target_cpu}  --repo terrapkg.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
 %autosetup -p1 -n %{modulename}-%{commit}
 
