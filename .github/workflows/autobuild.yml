@@ -77,7 +77,6 @@ jobs:
           echo '```xml' >> $GITHUB_STEP_SUMMARY
           appstreamcli validate output/test.xml.gz >> $GITHUB_STEP_SUMMARY || true
           echo "" >> $GITHUB_STEP_SUMMARY
-          done
           echo '```' >> $GITHUB_STEP_SUMMARY
           
       - name: Export logs
