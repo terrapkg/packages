@@ -38,7 +38,7 @@ GStreamer plugin containing libav library code.
 #export CFLAGS="%{optflags} -Wno-error=attributes"
 %meson \
   -D package-name="Fedora GStreamer-plugins-ugly package" \
-  -D package-origin="https://terra.fyralabs.com" \
+  -D package-origin="https://terrapkg.com" \
   -D doc=disabled
 %meson_build
 
