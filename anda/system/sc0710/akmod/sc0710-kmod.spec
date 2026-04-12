@@ -8,7 +8,7 @@
 
 Name:           %{modulename}-kmod
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Elgato 4K60 Pro MK.2 / 4K Pro capture card driver
 License:        GPL-2.0-only
 URL:            https://github.com/Nakildias/sc0710
@@ -19,14 +19,14 @@ Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
 Conflicts:      dkms-%{modulename}
 Packager:       Kyle Gospodnetich <me@kylegospodneti.ch>
 
-%{expand:%(kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
+%{expand:%(kmodtool --target %{_target_cpu} --repo terrapkg.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 
 %description
 Elgato 4K60 Pro MK.2 / 4K Pro capture card driver.
 
 %prep
 %{?kmodtool_check}
-kmodtool  --target %{_target_cpu}  --repo terra.fyralabs.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
+kmodtool  --target %{_target_cpu}  --repo terrapkg.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
 %autosetup -p1 -n %{modulename}-%{commit}
 
