@@ -134,7 +134,7 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 %{_appsdir}/org.prismlauncher.PrismLauncher.desktop
 %{_scalableiconsdir}/org.prismlauncher.PrismLauncher.svg
 %{_hicolordir}/256x256/apps/org.prismlauncher.PrismLauncher.png
-%{_datadir}/mime/packages/modrinth-mrpack-mime.xml
+%{_datadir}/mime/packages/org.prismlauncher.PrismLauncher.xml
 %{_datadir}/qlogging-categories%{qt_version}/prismlauncher.categories
 %{_mandir}/man?/prismlauncher.*
 %{_metainfodir}/org.prismlauncher.PrismLauncher.metainfo.xml
