@@ -51,4 +51,5 @@ install -Dm 0644 nct6683_blacklist.conf -t %{buildroot}%{_modprobedir}
 %{_modulesloaddir}/%{name}.conf
 
 %changelog
-%autochangelog
+* Sat Apr 11 2026 Luan Oliveira <luanv.oliveira@outlook.com> - 1.0^20260411git.cedda8b-1
+- Initial package

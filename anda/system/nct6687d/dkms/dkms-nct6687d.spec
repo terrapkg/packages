@@ -57,4 +57,5 @@ dkms remove -m %{modulename} -v %{version} -q --all --rpm_safe_upgrade || :
 
 
 %changelog
-%autochangelog
+* Sat Apr 11 2026 Luan Oliveira <luanv.oliveira@outlook.com> - 1.0^20260411git.cedda8b-1
+- Initial package
