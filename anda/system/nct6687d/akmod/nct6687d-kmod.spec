@@ -14,7 +14,7 @@
 
 Name:           %{modulename}-kmod
 Version:        1.0^%{commitdate}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Linux kernel driver for the NCT6687D hardware monitoring chip
 License:        GPL-2.0-or-later
 URL:            https://github.com/Fred78290/%{modulename}
@@ -31,7 +31,7 @@ Requires:       %{modulename}-akmod-modules = %{?epoch:%{epoch}:}%{version}
 Requires:       kernel-devel
 Conflicts:      dkms-%{modulename}
 
-%{expand:%(kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
+%{expand:%(kmodtool --target %{_target_cpu} --repo terrapkg.com --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 
 %description
 Linux kernel driver for the NCT6687D hardware monitoring chip.
@@ -43,7 +43,7 @@ The implementation is minimalist and was done by reverse coding of Windows 10 so
 %{?kmodtool_check}
 
 # print kmodtool output for debugging purposes:
-kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
+kmodtool --target %{_target_cpu} --repo terrapkg.com --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
 %setup -q -c -n %{modulename}-%{commit}
 

@@ -8,7 +8,7 @@
 
 Name:           nvidia-kmod
 Version:        590.48.01
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        NVIDIA display driver kernel module
 Epoch:          3
 License:        NVIDIA License
@@ -28,7 +28,7 @@ BuildRequires:  gcc-c++
 BuildRequires:  kmodtool
 
 # kmodtool does its magic here:
-%{expand:%(kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
+%{expand:%(kmodtool --target %{_target_cpu} --repo terrapkg.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 
 %description
 The NVidia %{version} display driver kernel module for kernel %{kversion}.
@@ -37,7 +37,7 @@ The NVidia %{version} display driver kernel module for kernel %{kversion}.
 # Error out if there was something wrong with kmodtool:
 %{?kmodtool_check}
 # Print kmodtool output for debugging purposes:
-kmodtool  --target %{_target_cpu}  --repo terra.fyralabs.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
+kmodtool  --target %{_target_cpu}  --repo terrapkg.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
 %setup -c
 
