@@ -1,16 +1,16 @@
-%global commit 45f39820edc2c3fc5605bfe4daea471263678ed1
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260411
-%global ver 0.10.2
+%global appid io.github.atar_axis.xpadneo
 
 Name:           xpadneo
-Version:        %{ver}^%{commitdate}git.%{shortcommit}
+Version:        0.10.2
 Release:        1%{?dist}
+%if 0%{?fedora} <= 45
+Epoch:          1
+%endif
 Summary:        Advanced Linux Driver for Xbox One Wireless Gamepad common files
-License:        GPL-3.0
+License:        GPL-2.0-only AND GPL-3.0-or-later
 URL:            https://atar-axis.github.io/%{name}
-Source0:        https://github.com/atar-axis/%{name}/archive/%{commit}.tar.gz#/%{name}-%{shortcommit}.tar.gz
-Source1:        io.github.%{name}.metainfo.xml
+Source0:        https://github.com/atar-axis/xpadneo/archive/refs/tags/v%{version}.tar.gz
+BuildRequires:  make
 BuildRequires:  sed
 BuildRequires:  systemd-rpm-macros
 Requires:       %{name}-kmod = %{?epoch:%{epoch}:}%{version}
@@ -31,33 +31,27 @@ BuildArch:     noarch
 Akmods modules for the akmod-%{name} package.
  
 %prep
-%autosetup -p1 -n %{name}-%{commit}
-/usr/bin/sed -nE '/^BUILT_MODULE_NAME/{s@^.+"(.+)"@\1@; s|-|_|g; p}' hid-%{name}/dkms.conf.in > %{name}.conf
+%autosetup -p1 -n %{name}-%{version}
+%{__sed} -nE '/^BUILT_MODULE_NAME/{s@^.+"(.+)"@\1@; s|-|_|g; p}' hid-%{name}/dkms.conf.in > %{name}.conf
 
 %install
-# Aliases:
-install -Dpm644 hid-%{name}/etc-modprobe.d/%{name}.conf -t %{buildroot}%{_modprobedir}
-
-# UDev rules:
-install -Dpm644 hid-%{name}/etc-udev-rules.d/*.rules -t %{buildroot}%{_udevrulesdir}/
-
-# Metadata
-install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/metainfo/io.github.%{name}.metainfo.xml
+%{__make} install-all PREFIX="%{buildroot}" ETC_PREFIX="%{_prefix}/lib" VERSION="%{version}"
 
 # Akmods modules
 install -Dm644 %{name}.conf -t %{buildroot}%{_modulesloaddir}
 
 %files
-%license LICENSE.md LICENSES
-%doc docs/*.md
+%license LICENSE.md
+# Let RPM handle the docs
+%doc %{_docdir}/%{name}/*
 %{_modprobedir}/%{name}.conf
 %{_udevrulesdir}/60-%{name}.rules
 %{_udevrulesdir}/70-%{name}-disable-hidraw.rules
-%{_datadir}/metainfo/io.github.%{name}.metainfo.xml
+%{_metainfodir}/%{appid}.metainfo.xml
 
 %files akmod-modules
 %{_modulesloaddir}/%{name}.conf
 
 %changelog
-* Fri Mar 07 2025 Gilver E. <rockgrub@disroot.org>
-- Package refactoring
+* Sat Apr 11 2026 Gilver E. <roachy@fyralabs.com> - 1:0.10.2-1
+- Initial stable package
