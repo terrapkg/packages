@@ -2,12 +2,12 @@
 
 Name:           terra-gpg-keys
 Version:        %{?fedora:%{fedora}}%{?rhel:%{rhel}}
-Release:        2%?dist
+Release:        3%{?dist}
 Summary:        GPG keys for Terra
 Requires:       filesystem >= 3.18-6
 
 License:        MIT
-URL:            https://terra.fyralabs.com
+URL:            https://terrapkg.com
 # We aren't pulling keys from the origin URLs, since they shouldn't change and this is easier to audit.
 Source0:        RPM-GPG-KEY-terrarawhide
 Source1:        RPM-GPG-KEY-terrarawhide-extras
@@ -53,7 +53,7 @@ Source40:       RPM-GPG-KEY-terrael10
 Source41:       RPM-GPG-KEY-terrael10-source
 BuildArch:      noarch
 
-Packager:       Terra Packaging Team <terra@fyralabs.com>
+Packager:       Terra Packaging Team <terrapkg.com>
 
 %description
 GPG keys for Terra, used for verifying RPM package signatures.
