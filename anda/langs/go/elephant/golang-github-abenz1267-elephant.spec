@@ -10,11 +10,11 @@
 %global __requires_exclude %{?__requires_exclude:%{__requires_exclude}|}^golang\\(.*\\)$
 %endif
 
-%global providers 1password archlinuxpkgs bitwarden bluetooth bookmarks calc clipboard desktopapplications dnfpackages files menus niriactions nirisessions providerlist runner snippets symbols todo unicode websearch windows wireplumber
+%global providers 1password archlinuxpkgs bitwarden bluetooth bookmarks calc clipboard desktopapplications dnfpackages files menus niriactions nirisessions playerctl providerlist runner snippets symbols todo unicode websearch windows wireplumber
 
 # https://github.com/abenz1267/elephant
 %global goipath         github.com/abenz1267/elephant
-Version:                2.20.3
+Version:                2.21.0
 
 %gometa -f
 

@@ -40,7 +40,7 @@ This module contains a set of plugins that have good quality and are well tested
 %build
 %meson \
   -D package-name="Fedora GStreamer-plugins-ugly package" \
-  -D package-origin="https://terra.fyralabs.com" \
+  -D package-origin="https://terrapkg.com" \
   -D a52dec=enabled \
   -D asfdemux=enabled \
   -D cdio=enabled \

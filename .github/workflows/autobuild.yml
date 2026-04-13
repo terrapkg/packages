@@ -78,10 +78,8 @@ jobs:
           echo "## AppStream MetaInfo Validation" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo '```xml' >> $GITHUB_STEP_SUMMARY
-          for file in output/test.xml.gz; do
-            appstreamcli validate $file >> $GITHUB_STEP_SUMMARY || true
-            echo "" >> $GITHUB_STEP_SUMMARY
-          done
+          appstreamcli validate output/test.xml.gz >> $GITHUB_STEP_SUMMARY || true
+          echo "" >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
           
       - name: Export logs
@@ -117,7 +115,7 @@ jobs:
             echo "#### \`$file\`" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
             echo '```xml' >> $GITHUB_STEP_SUMMARY
-            zcat "$file" >> $GITHUB_STEP_SUMMARY
+            zcat "$file" >> $GITHUB_STEP_SUMMARY || true
             echo '```' >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
           done

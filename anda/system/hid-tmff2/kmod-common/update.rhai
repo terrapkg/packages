@@ -5,7 +5,4 @@ if rpm.changed() {
     let ver = gh("Kimplul/hid-tmff2");
     ver.crop(0);
     rpm.global("ver", ver);
-
-    let tminit = gh_commit("Kimplul/hid-tminit");
-    rpm.global("tminit_commit", tminit);
 }

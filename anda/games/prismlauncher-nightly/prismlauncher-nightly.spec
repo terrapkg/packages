@@ -3,10 +3,10 @@
 %global name_pretty %{quote:Prism Launcher (Nightly)}
 %global appid org.prismlauncher.PrismLauncher-nightly
 
-%global commit 194b72f180f82f8d6596b7ca310d4d47afbe1341
+%global commit a17a45c748231cb66f4a31f1dd37af35e361c945
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
-%global commit_date 20260407
+%global commit_date 20260412
 %global snapshot_info %{commit_date}.%{shortcommit}
 
 # Change this variables if you want to use custom keys
@@ -26,7 +26,6 @@ Summary:          Minecraft launcher with ability to manage multiple instances
 License:          GPL-3.0-only AND Apache-2.0 AND LGPL-3.0-only AND GPL-3.0-or-later AND GPL-2.0-or-later AND ISC AND OFL-1.1 AND LGPL-2.1-only AND MIT AND BSD-2-Clause-FreeBSD AND BSD-3-Clause AND LGPL-3.0-or-later
 Group:            Amusements/Games
 URL:              https://prismlauncher.org/
-Patch0:           0001-find-cmark-with-pkgconfig.patch
 Source2:          nightly.xml
 
 BuildRequires:    cmake >= 3.15
@@ -47,7 +46,7 @@ BuildRequires:    anda-srpm-macros
 BuildRequires:    desktop-file-utils
 BuildRequires:    libappstream-glib
 BuildRequires:    tomlplusplus-devel
-BuildRequires:    cmake(ghc_filesystem)
+BuildRequires:    vulkan-headers
 BuildRequires:    pkgconfig(libqrencode)
 BuildRequires:    pkgconfig(libarchive)
 BuildRequires:    pkgconfig(gamemode)
@@ -59,8 +58,6 @@ BuildRequires:    cmake(Qt%{qt_version}Test) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Widgets) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Xml) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}NetworkAuth) >= %{min_qt_version}
-
-BuildRequires:    cmake(Qt6Core5Compat)
 
 BuildRequires:    pkgconfig(libcmark)
 BuildRequires:    pkgconfig(scdoc)
@@ -96,8 +93,6 @@ multiple installations of Minecraft at once (Fork of MultiMC)
 
 %prep
 %git_clone https://github.com/%{nice_name}/%{nice_name}.git %{commit}
-
-rm -rf libraries/{extra-cmake-modules,zlib}/
 
 # Do not set RPATH
 sed -i "s|\$ORIGIN/||" CMakeLists.txt

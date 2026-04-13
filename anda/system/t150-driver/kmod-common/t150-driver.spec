@@ -5,7 +5,7 @@
 
 Name:           t150-driver
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Thrustmaster T150 steering wheel driver common files
 License:        GPL-2.0-only
 URL:            https://github.com/scarburato/t150_driver
@@ -20,7 +20,7 @@ common files shared between the akmod and dkms variants.
 
 %package       akmod-modules
 Summary:       Modules for Akmods
-Requires:      akmod-%{name}
+Requires:      %{name}-kmod = %{?epoch:%{epoch}:}%{version}
 BuildArch:     noarch
 
 %description   akmod-modules

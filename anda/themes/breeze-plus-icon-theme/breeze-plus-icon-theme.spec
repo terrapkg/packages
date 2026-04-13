@@ -1,10 +1,10 @@
 Name:           breeze-plus-icon-theme
 Version:        6.19.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Breeze icon theme with additional icons
 Packager:       Amy King <amy@amyrom.tech>
 
-License:        LGPL-2.1-only
+License:        LGPL-2.1-or-later
 URL:            https://github.com/mjkim0727/breeze-plus
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 BuildArch:      noarch
