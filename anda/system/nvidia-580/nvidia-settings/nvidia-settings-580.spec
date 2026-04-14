@@ -2,13 +2,11 @@
 
 Name:           %{real_name}-580xx
 Version:        580.142
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Configure the NVIDIA graphics driver
 Epoch:          3
-License:        GPLv2+
+License:        GPL-2.0-or-later
 URL:            http://www.nvidia.com/object/unix.html
-ExclusiveArch:  x86_64 aarch64
-
 Source0:        https://download.nvidia.com/XFree86/%{real_name}/%{real_name}-%{version}.tar.bz2
 Source1:        %{real_name}-load.desktop
 Source2:        %{real_name}.appdata.xml
@@ -17,7 +15,6 @@ Patch1:         %{real_name}-lib-permissions.patch
 Patch2:         %{real_name}-link-order.patch
 Patch3:         %{real_name}-libXNVCtrl.patch
 Patch4:         %{real_name}-ld-dep-remove.patch
-
 BuildRequires:  desktop-file-utils
 BuildRequires:  dbus-devel
 BuildRequires:  gcc
@@ -34,13 +31,13 @@ BuildRequires:  mesa-libGL-devel
 BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  vulkan-headers
-
 Requires:       nvidia-libXNVCtrl-580xx%{?_isa} = %{?epoch}:%{version}-%{release}
 Requires:       nvidia-driver-580xx%{?_isa} = %{?epoch}:%{version}
 # Loaded at runtime
 Requires:       libvdpau%{?_isa} >= 0.9
-
 Provides:       %{real_name}-580 = %{evr}
+ExclusiveArch:  x86_64 aarch64
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 The %{real_name} utility is a tool for configuring the NVIDIA graphics
@@ -141,4 +138,5 @@ appstream-util validate-relax --nonet %{buildroot}/%{_metainfodir}/%{real_name}.
 %{_libdir}/libXNVCtrl.so
 
 %changelog
-%autochangelog
+* Mon Apr 13 2026 Gilver E. <roachy@fyralabs.com> - 3:580.142-3
+- Update spec for Terra packaging team

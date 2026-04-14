@@ -1,29 +1,26 @@
 %global real_name nvidia-persistenced
 
-Name:           %{real_name}-580xx
-Version:        580.142
-Release:        2%{?dist}
-Summary:        A daemon to maintain persistent software state in the NVIDIA driver
-Epoch:          3
-License:        GPLv2+
-URL:            http://www.nvidia.com/object/unix.html
-ExclusiveArch:  x86_64 aarch64
-
-Source0:        https://download.nvidia.com/XFree86/%{real_name}/%{real_name}-%{version}.tar.bz2
-Source1:        %{real_name}.service
-
-BuildRequires:  gcc
-BuildRequires:  libtirpc-devel
-BuildRequires:  m4
-
+Name:             %{real_name}-580xx
+Version:          580.142
+Release:          3%{?dist}
+Summary:          A daemon to maintain persistent software state in the NVIDIA driver
+Epoch:            3
+License:          GPL-2.0-or-later
+URL:              http://www.nvidia.com/object/unix.html
+ExclusiveArch:    x86_64 aarch64
+Source0:          https://download.nvidia.com/XFree86/%{real_name}/%{real_name}-%{version}.tar.bz2
+Source1:          %{real_name}.service
+BuildRequires:    gcc
+BuildRequires:    libtirpc-devel
+BuildRequires:    m4
 # For Fedora systemd-rpm-macros would be enough:
-BuildRequires:      systemd-devel
-Requires(post):     systemd
-Requires(preun):    systemd
-Requires(postun):   systemd
-Requires:           libnvidia-cfg-580xx%{?_isa} >= %{?epoch:%{epoch}:}%{version}
-
-Provides:           %{real_name}-580 = %{evr}
+BuildRequires:    systemd-devel
+Requires:         libnvidia-cfg-580xx%{?_isa} >= %{?epoch:%{epoch}:}%{version}
+Requires(post):   systemd
+Requires(preun):  systemd
+Requires(postun): systemd
+Provides:         %{real_name}-580 = %{evr}
+Packager:         Terra Packaging Team <terra@fyralabs.com>
 
 %description
 The %{real_name} utility is used to enable persistent software state in the NVIDIA
@@ -80,4 +77,5 @@ install -p -m 644 -D %{SOURCE1} %{buildroot}%{_unitdir}/%{real_name}.service
 %{_sharedstatedir}/%{real_name}
 
 %changelog
-%autochangelog
+* Mon Apr 13 2026 Gilver E. <roachy@fyralabs.com> - 3:580.142-3
+- Update spec for Terra packaging team

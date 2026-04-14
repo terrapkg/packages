@@ -7,24 +7,19 @@
 
 Name:           %{modulename}-kmod-common
 Version:        580.142
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Common file for NVIDIA's proprietary driver kernel modules
 Epoch:          3
 License:        NVIDIA License
 URL:            http://www.nvidia.com/object/unix.html
-
-BuildArch:      noarch
-
 Source0:        http://download.nvidia.com/XFree86/Linux-x86_64/%{version}/NVIDIA-Linux-x86_64-%{version}.run
 Source17:       nvidia-boot-update
 Source18:       nvidia-modeset.conf
 Source19:       nvidia.conf
 Source20:       60-nvidia.rules
 Source21:       99-nvidia.conf
-
 # UDev rule location (_udevrulesdir) and systemd macros:
 BuildRequires:  systemd-rpm-macros
-
 Requires:       dracut
 Requires:       nvidia-modprobe-580xx
 Requires:       nvidia-driver-580xx = %{?epoch:%{epoch}:}%{version}
@@ -33,6 +28,8 @@ Requires:       %{modulename}-kmod = %{?epoch:%{epoch}:}%{version}
 Provides:       %{modulename}-kmod-common = %{?epoch:%{epoch}:}%{version}
 Provides:       nvidia-580-kmod-common = %{evr}
 Obsoletes:      cuda-nvidia-kmod-common < %{?epoch:%{epoch}:}%{version}
+BuildArch:      noarch
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 This package provides the common files required by all NVIDIA kernel module
@@ -95,4 +92,5 @@ dracut --regenerate-all --force || :
 %{_udevrulesdir}/60-nvidia.rules
 
 %changelog
-%autochangelog
+* Mon Apr 13 2026 Gilver E. <roachy@fyralabs.com> - 3:580.142-3
+- Update spec for Terra packaging team
