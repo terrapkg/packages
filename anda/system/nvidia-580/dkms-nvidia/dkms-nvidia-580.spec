@@ -16,14 +16,16 @@ Source0:        https://download.nvidia.com/XFree86/Linux-%{_arch}/%{version}/NV
 Source1:        dkms-nvidia.conf
 Patch0:         0001-Enable-atomic-kernel-modesetting-by-default.patch
 BuildRequires:  sed
-Provides:       %{modulename}-kmod = %{?epoch:%{epoch}:}%{version}
 Requires:       %{modulename}-kmod-common = %{?epoch:%{epoch}:}%{version}
 Requires:       dkms
-Conflicts:      akmod-nvidia
-Conflicts:      akmod-nvidia-580xx
+Provides:       %{modulename}-kmod = %{?epoch:%{epoch}:}%{version}
+Provides:       nvidia-580-kmod = %{?epoch:%{epoch}:}%{version}
 Provides:       dkms-nvidia-580 = %{evr}
+Conflicts:      akmod-nvidia-580xx
+Conflicts:      nvidia-kmod
 # Unlike most DKMS packages, this package is NOT noarch!
 ExclusiveArch:  x86_64 aarch64
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 This package provides the proprietary NVIDIA kernel driver modules.
@@ -65,4 +67,5 @@ fi
 %{_usrsrc}/%{modulename}-%{version}
 
 %changelog
-%autochangelog
+* Mon Apr 13 2026 Gilver E. <roachy@fyralabs.com> - 3:580.142-1
+- Update spec for Terra packaging team

@@ -10,23 +10,19 @@
 
 Name:           nvidia-driver
 Version:        595.58.03
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        NVIDIA's proprietary display driver for NVIDIA graphic cards
 Epoch:          3
 License:        NVIDIA License
 URL:            http://www.nvidia.com/object/unix.html
-ExclusiveArch:  %{ix86} x86_64 aarch64
 Source8:        70-nvidia-driver.preset
 Source9:        70-nvidia-driver-cuda.preset
 Source10:       10-nvidia.conf
 Source13:       alternate-install-present
-
 Source40:       com.nvidia.driver.metainfo.xml
 Source41:       parse-supported-gpus.py
 Source42:       com.nvidia.driver.png
-
 Source99:       nvidia-generate-tarballs.sh
-
 %ifarch x86_64 aarch64
 BuildRequires:  libappstream-glib
 %if 0%{?rhel} == 8
@@ -39,14 +35,14 @@ BuildRequires:  systemd-rpm-macros
 %endif
 BuildRequires:  wget
 BuildRequires:  coreutils
-
 Requires:       nvidia-driver-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}
 Requires:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
-
 Conflicts:      nvidia-x11-drv
 Conflicts:      nvidia-x11-drv-470xx
 Conflicts:      xorg-x11-drv-nvidia
 Conflicts:      xorg-x11-drv-nvidia-470xx
+ExclusiveArch:  %{ix86} x86_64 aarch64
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 This package provides the most recent NVIDIA display driver which allows for
@@ -77,7 +73,6 @@ Requires:       vulkan-loader
 Requires:       libnvidia-gpucomp%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       libnvidia-ml%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       %{name}-cuda-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-
 Conflicts:      nvidia-x11-drv-libs
 Conflicts:      nvidia-x11-drv-470xx-libs
 Conflicts:      xorg-x11-drv-nvidia-libs
@@ -91,7 +86,6 @@ Summary:        Libraries for %{name}-cuda
 Requires:       %{name}-cuda-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:       %{name}-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 Obsoletes:      %{name}-devel < %{?epoch:%{epoch}:}%{version}-%{release}
-
 # dlopened:
 %ifarch x86_64 aarch64
 Requires:       libnvidia-cfg = %{?epoch:%{epoch}:}%{version}-%{release}
@@ -103,7 +97,6 @@ Requires:       libnvidia-ml = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       (%{name}-cuda-libs(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
 %endif
 %endif
-
 Conflicts:      xorg-x11-drv-nvidia-cuda-libs
 Conflicts:      xorg-x11-drv-nvidia-470xx-cuda-libs
 
@@ -171,7 +164,6 @@ Requires:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
 Requires:       nvidia-persistenced = %{?epoch:%{epoch}:}%{version}
 Requires:       (ocl-icd or OpenCL-ICD-Loader)
 Requires:       opencl-filesystem
-
 Conflicts:      xorg-x11-drv-nvidia-cuda
 Conflicts:      xorg-x11-drv-nvidia-470xx-cuda
 
@@ -184,7 +176,6 @@ Summary:        X.org X11 NVIDIA driver and extensions
 Requires:       %{name}%{?_isa} = %{?epoch:%{epoch}:}%{version}
 Requires:       xorg-x11-server-Xorg%{?_isa}
 Supplements:    (nvidia-driver and xorg-x11-server-Xorg)
-
 Conflicts:      xorg-x11-drv-nvidia
 Conflicts:      xorg-x11-drv-nvidia-470xx
 
@@ -514,4 +505,5 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %{_libdir}/libnvidia-ml.so.%{version}
 
 %changelog
-%autochangelog
+* Mon Apr 13 2026 Gilver E. <roachy@fyralabs.com> - 3:595.58.03-2
+- Update spec for Terra packaging team

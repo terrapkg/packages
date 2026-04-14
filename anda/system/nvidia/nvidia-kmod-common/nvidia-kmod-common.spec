@@ -6,24 +6,19 @@
 
 Name:           nvidia-kmod-common
 Version:        595.58.03
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Common file for NVIDIA's proprietary driver kernel modules
 Epoch:          3
 License:        NVIDIA License
 URL:            http://www.nvidia.com/object/unix.html
-
-BuildArch:      noarch
-
 Source0:        http://download.nvidia.com/XFree86/Linux-x86_64/%{version}/NVIDIA-Linux-x86_64-%{version}.run
 Source17:       nvidia-boot-update
 Source19:       nvidia-modeset.conf
 Source20:       nvidia.conf
 Source21:       60-nvidia.rules
 Source24:       99-nvidia.conf
-
 # UDev rule location (_udevrulesdir) and systemd macros:
 BuildRequires:  systemd-rpm-macros
-
 Requires:       dracut
 Requires:       nvidia-modprobe
 Requires:       nvidia-driver = %{?epoch:%{epoch}:}%{version}
@@ -33,6 +28,8 @@ Requires:       gcc-c++
 Provides:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
 Obsoletes:      nvidia-open-kmod-common < %{?epoch:%{epoch}:}%{version}
 Obsoletes:      cuda-nvidia-kmod-common < %{?epoch:%{epoch}:}%{version}
+BuildArch:      noarch
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 This package provides the common files required by all NVIDIA kernel module
@@ -88,4 +85,5 @@ fi ||:
 %{_udevrulesdir}/60-nvidia.rules
 
 %changelog
-%autochangelog
+* Mon Apr 13 2026 Gilver E. <roachy@fyralabs.com> - 3:595.58.03-2
+- Update spec for Terra packaging team
