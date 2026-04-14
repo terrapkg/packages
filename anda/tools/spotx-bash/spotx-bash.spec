@@ -12,6 +12,7 @@ Source0:        %url/archive/%commit.tar.gz
 Requires:       bash
 BuildArch:      noarch
 Provides:       spotx spotx-linux spot-x spotx.sh
+Packager:       Its-J <jonah@fyralabs.com>
 
 %description
 %summary
@@ -31,5 +32,5 @@ install -Dm 755 spotx.sh %{buildroot}%{_bindir}/spotx
 %{_bindir}/spotx
 
 %changelog
-* Sat Dec 14 2024 Its-J
+* Sat Dec 14 2024 Its-J <jonah@fyralabs.com>
 - Package SpotX-Bash

@@ -8,7 +8,7 @@ Source0:        https://raw.githubusercontent.com/magnus-ISU/aur-scripts/master/
 Requires:       bash
 BuildArch:      noarch
 
-Packager:       Its-J
+Packager:       Its-J <jonah@fyralabs.com>
 
 %description
 %{summary}.
@@ -24,5 +24,5 @@ install -Dm 755 %{SOURCE0} %{buildroot}%{_bindir}/shitpost
 %{_bindir}/shitpost
 
 %changelog
-* Sun Nov 09 2025 Its-J
+* Sun Nov 09 2025 Its-J <jonah@fyralabs.com>
 - Package shitpost

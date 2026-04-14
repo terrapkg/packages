@@ -8,7 +8,7 @@ Summary:   A monospaced font with reasonable unicode support
 Requires:  xorg-x11-font-utils
 BuildArch: noarch
 Provides:  JuliaMono-fonts
-Packager:  Its-J
+Packager:  Its-J <jonah@fyralabs.com>
 
 
 %description
@@ -29,5 +29,5 @@ install -Dm644 *.ttf %{buildroot}%{_fontbasedir}/juliamono/
 %{_fontbasedir}/juliamono/*.ttf
 
 %changelog
-* Fri Nov 21 2025 Its-J
+* Fri Nov 21 2025 Its-J <jonah@fyralabs.com>
 - Package JuliaMono

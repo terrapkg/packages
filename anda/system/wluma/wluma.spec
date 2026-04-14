@@ -6,7 +6,7 @@ URL:            https://github.com/max-baz/wluma
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 License:        ISC
 BuildRequires:  cargo anda-srpm-macros cargo-rpm-macros mold v4l-utils libv4l-devel rust-libudev-devel vulkan-loader-devel dbus-devel clang systemd-rpm-macros
-Packager:       Its-J
+Packager:       Its-J <jonah@fyralabs.com>
 
 %description
 %{summary}.
@@ -48,5 +48,5 @@ install -Dm 644 config.toml %{buildroot}%{_datadir}/%{name}/config.toml
 * Sat Nov 29 2025 metcya <metcya@gmail.com>
 - Package systemd service, example config, and udev rules
 
-* Fri Nov 28 2025 Its-J
+* Fri Nov 28 2025 Its-J <jonah@fyralabs.com>
 - Package wluma
