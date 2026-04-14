@@ -12,13 +12,11 @@
 
 Name:           %{real_name}-580xx
 Version:        580.142
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        NVIDIA's proprietary display driver for NVIDIA graphic cards
 Epoch:          3
 License:        NVIDIA License
 URL:            http://www.nvidia.com/object/unix.html
-ExclusiveArch:  %{ix86} x86_64 aarch64
-
 %dnl Source0:        %{name}-%{version}-i386.tar.xz
 %dnl Source1:        %{name}-%{version}-x86_64.tar.xz
 %dnl Source2:        %{name}-%{version}-aarch64.tar.xz
@@ -26,12 +24,12 @@ Source8:        70-%{real_name}.preset
 Source9:        70-%{real_name}-cuda.preset
 Source10:       10-nvidia.conf
 Source13:       alternate-install-present
-
 Source40:       com.nvidia.driver.metainfo.xml
 Source41:       parse-supported-gpus.py
 Source42:       com.nvidia.driver.png
-
 Source99:       nvidia-generate-tarballs.sh
+ExclusiveArch:  %{ix86} x86_64 aarch64
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %ifarch x86_64 aarch64
 BuildRequires:  libappstream-glib
@@ -207,12 +205,10 @@ This package provides the CUDA integration components for %{name}.
 Summary:        X.org X11 NVIDIA driver and extensions
 Requires:       %{name}%{?_isa} = %{?epoch:%{epoch}:}%{version}
 Requires:       xorg-x11-server-Xorg%{?_isa}
-Supplements:    (%{real_name}-580xx and xorg-x11-server-Xorg)
-
 Conflicts:      xorg-x11-drv-nvidia
 Conflicts:      xorg-x11-drv-nvidia-470xx
-
 Provides:       xorg-x11-nvidia-580 = %{evr}
+Supplements:    (%{real_name}-580xx and xorg-x11-server-Xorg)
 
 %description -n xorg-x11-nvidia-580xx
 The NVIDIA X.org X11 driver and associated components.
@@ -548,4 +544,5 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %{_libdir}/libnvidia-ml.so.%{version}
 
 %changelog
-%autochangelog
+* Mon Apr 13 2026 Gilver E. <roachy@fyralabs.com> - 3:580.142-2
+- Update spec for Terra packaging team

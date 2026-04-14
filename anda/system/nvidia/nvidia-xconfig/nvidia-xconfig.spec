@@ -1,21 +1,19 @@
 Name:           nvidia-xconfig
 Version:        595.58.03
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        NVIDIA X configuration file editor
 Epoch:          3
 License:        GPL-2.0-or-later
 URL:            http://www.nvidia.com/object/unix.html
-ExclusiveArch:  x86_64 aarch64
-
 Source0:        https://download.nvidia.com/XFree86/%{name}/%{name}-%{version}.tar.bz2
-
 BuildRequires:  gcc
 BuildRequires:  libpciaccess-devel
 BuildRequires:  m4
 BuildRequires:  sed
-
 Requires:       libnvidia-cfg%{?_isa} >= %{?epoch:%{epoch}:}%{version}
 Requires:       xorg-x11-nvidia%{?_isa} >= %{?epoch:%{epoch}:}%{version}
+ExclusiveArch:  x86_64 aarch64
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 %{name} is a command line tool intended to provide basic control over
@@ -49,4 +47,5 @@ make %{?_smp_mflags} \
 %{_mandir}/man1/%{name}.1*
 
 %changelog
-%autochangelog
+* Mon Apr 13 2026 Gilver E. <roachy@fyralabs.com> - 3:595.58.03-2
+- Update spec for Terra packaging team

@@ -5,17 +5,15 @@ Version:        580.142
 Release:        2%{?dist}
 Summary:        NVIDIA kernel module loader
 Epoch:          3
-License:        GPLv2+
+License:        GPL-2.0-or-later
 URL:            http://www.nvidia.com/object/unix.html
-ExclusiveArch:  x86_64 aarch64
-
 Source0:        https://download.nvidia.com/XFree86/%{real_name}/%{real_name}-%{version}.tar.bz2
 Patch0:         %{real_name}-man-page-permissions.patch
-
 BuildRequires:  gcc
 BuildRequires:  m4
-
-Provides:      %{real_name}-580 = %{evr}
+Provides:       %{real_name}-580 = %{evr}
+ExclusiveArch:  x86_64 aarch64
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 This utility is used by user-space NVIDIA driver components to make sure the
@@ -48,4 +46,5 @@ make %{?_smp_mflags} \
 %{_mandir}/man1/%{real_name}.1.*
 
 %changelog
-%autochangelog
+* Mon Apr 13 2026 Gilver E. <roachy@fyralabs.com> - 3:580.142-2
+- Update spec for Terra packaging team
