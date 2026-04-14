@@ -1,6 +1,6 @@
 Name:           supergfxctl
 Version:        5.2.7
-Release:        1%?dist
+Release:        2%?dist
 Summary:        GPU Utility for ASUS ROG Laptops
 URL:            https://gitlab.com/asus-linux/supergfxctl
 Source0:        %url/-/archive/%{version}/supergfxctl-%{version}.tar.gz
@@ -52,5 +52,8 @@ install -Dm 0644 data/supergfxd.service -t %buildroot%_unitdir
 %ghost %{_presetdir}/99-supergfxd.preset
 
 %changelog
+* Tue Apr 14 2026 Its-J <jonah@fyralabs.com>
+- Add email to my previous contributor attributions
+
 * Sun Oct 26 2025 Its-J <jonah@fyralabs.com>
 - Package SuperGFXctl

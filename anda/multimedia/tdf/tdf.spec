@@ -1,6 +1,6 @@
 Name:           tdf
 Version:        0.5.0
-Release:        1%?dist
+Release:        2%?dist
 Summary:        A tui-based PDF viewer
 URL:            https://github.com/itsjunetime/tdf
 Source0:        %url/archive/refs/tags/v%{version}.tar.gz
@@ -38,5 +38,8 @@ install -Dm755 target/rpm/tdf %{buildroot}%{_bindir}/tdf
 %{_bindir}/tdf
 
 %changelog
+* Tue Apr 14 2026 Its-J <jonah@fyralabs.com>
+- Add email to my previous contributor attributions
+
 * Wed Oct 22 2025 Its-J <jonah@fyralabs.com>
 - Intial Commit
