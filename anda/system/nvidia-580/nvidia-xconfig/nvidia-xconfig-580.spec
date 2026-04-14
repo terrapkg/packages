@@ -2,23 +2,20 @@
 
 Name:           %{real_name}-580xx
 Version:        580.142
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        NVIDIA X configuration file editor
 Epoch:          3
-License:        GPLv2+
+License:        GPL-2.0-or-later
 URL:            http://www.nvidia.com/object/unix.html
-ExclusiveArch:  x86_64 aarch64
-
 Source0:        https://download.nvidia.com/XFree86/%{real_name}/%{real_name}-%{version}.tar.bz2
-
 BuildRequires:  gcc
 BuildRequires:  libpciaccess-devel
 BuildRequires:  m4
-
 Requires:       libnvidia-cfg-580xx%{?_isa} >= %{?epoch:%{epoch}:}%{version}
 Requires:       xorg-x11-nvidia-580xx%{?_isa} >= %{?epoch:%{epoch}:}%{version}
-
 Provides:       %{real_name}-580 = %{evr}
+ExclusiveArch:  x86_64 aarch64
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 %{real_name} is a command line tool intended to provide basic control over
@@ -52,4 +49,5 @@ make %{?_smp_mflags} \
 %{_mandir}/man1/%{real_name}.1*
 
 %changelog
-%autochangelog
+* Mon Apr 13 2026 Gilver E. <roachy@fyralabs.com> - 3:580.142-3
+- Update spec for Terra packaging team
