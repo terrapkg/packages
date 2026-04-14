@@ -4,7 +4,7 @@
 
 Name:           spotx-bash
 Version:        %commit_date.git~%shortcommit
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Adblock for the Spotify desktop client on Linux.
 License:        MIT
 URL:            https://github.com/SpotX-Official/SpotX-Bash
@@ -12,6 +12,7 @@ Source0:        %url/archive/%commit.tar.gz
 Requires:       bash
 BuildArch:      noarch
 Provides:       spotx spotx-linux spot-x spotx.sh
+Packager:       Its-J <jonah@fyralabs.com>
 
 %description
 %summary
@@ -31,5 +32,8 @@ install -Dm 755 spotx.sh %{buildroot}%{_bindir}/spotx
 %{_bindir}/spotx
 
 %changelog
-* Sat Dec 14 2024 Its-J
+* Tue Apr 14 2026 Its-J <jonah@fyralabs.com>
+- Add email to my previous contributor attributions
+
+* Sat Dec 14 2024 Its-J <jonah@fyralabs.com>
 - Package SpotX-Bash
