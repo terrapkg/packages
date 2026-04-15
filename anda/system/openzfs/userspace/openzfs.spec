@@ -16,6 +16,7 @@ BuildRequires:  automake
 BuildRequires:  libtool
 BuildRequires:  libuuid-devel
 BuildRequires:  libblkid-devel
+BuildRequires:  libudev-devel
 BuildRequires:  openssl-devel
 BuildRequires:  libtirpc-devel
 BuildRequires:  libattr-devel
@@ -29,6 +30,8 @@ BuildRequires:  python3-setuptools
 BuildRequires:  python3-cffi
 
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
+Requires:  util-linux
+Requires:  sysstat
 
 Recommends:     akmod-openzfs
 
@@ -54,17 +57,22 @@ OpenZFS userspace tools
 
 %configure \
     --with-config=user \
-    --with-systemdunitdir=%{_unitdir} \
-    --with-systemdpresetdir=%{_presetdir} \
-    --with-systemdgeneratordir=%{_systemdgeneratordir} \
+    --with-udevdir=%{_udevdir} \
+    --with-udevruledir=%{_udevrulesdir} \
+    --with-dracutdir=%{_dracutdir} \
+    --with-pamconfigsdir=%{_datadir}/pam-configs \
+    --with-pammoduledir=%{_libdir}/security \
+    --with-python=%{__python} \
+    --with-pkgconfigdir=%{_pkgconfigdir} \
     --with-mounthelperdir=%{_sbindir} \
-    --with-pamdir=%{_libdir}/security \
-    --with-pamconfdir=%{_sysconfdir}/security \
-    --with-udevdir=%{_udevrulesdir} \
-    --with-pkgconfigdir=%{_libdir}/pkgconfig \
-    --enable-systemd \
-    --enable-pyzfs \
-    --disable-static
+    --disable-static \
+    %{debug} \
+    %{debuginfo} \
+    %{asan} \
+    %{ubsan} \
+    %{systemd} \
+    %{pam} \
+    %{pyzfs}
 
 %make_build
 
@@ -78,7 +86,7 @@ find %{buildroot} -name '*.la' -delete
 
 %post
 %systemd_post zfs-import-cache.service
-%systemd_post zfs-import-scan.service  
+%systemd_post zfs-import-scan.service
 %systemd_post zfs-mount.service
 %systemd_post zfs-share.service
 %systemd_post zfs-zed.service
@@ -87,7 +95,7 @@ find %{buildroot} -name '*.la' -delete
 %preun
 %systemd_preun zfs-import-cache.service
 %systemd_preun zfs-import-scan.service
-%systemd_preun zfs-mount.service  
+%systemd_preun zfs-mount.service
 %systemd_preun zfs-share.service
 %systemd_preun zfs-zed.service
 %systemd_preun zfs.target

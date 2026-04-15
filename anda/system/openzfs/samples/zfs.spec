@@ -1,4 +1,3 @@
-%global _sbindir    /sbin
 %global _libdir     /%{_lib}
 
 # Set the default udev directory based on distribution.
@@ -7,24 +6,6 @@
 %global _udevdir    %{_prefix}/lib/udev
 %else
 %global _udevdir    /lib/udev
-%endif
-%endif
-
-# Set the default udevrule directory based on distribution.
-%if %{undefined _udevruledir}
-%if 0%{?rhel}%{?fedora}%{?centos}%{?suse_version}%{?openEuler}
-%global _udevruledir    %{_prefix}/lib/udev/rules.d
-%else
-%global _udevruledir    /lib/udev/rules.d
-%endif
-%endif
-
-# Set the default _bashcompletiondir directory based on distribution.
-%if %{undefined _bashcompletiondir}
-%if 0%{?rhel}%{?fedora}%{?centos}%{?suse_version}%{?openEuler}
-%global _bashcompletiondir    /etc/bash_completion.d
-%else
-%global _bashcompletiondir    /usr/share/bash-completion
 %endif
 %endif
 
@@ -39,26 +20,6 @@
 
 %if %{undefined _initconfdir}
 %global _initconfdir /etc/sysconfig
-%endif
-
-%if %{undefined _unitdir}
-%global _unitdir %{_prefix}/lib/systemd/system
-%endif
-
-%if %{undefined _presetdir}
-%global _presetdir %{_prefix}/lib/systemd/system-preset
-%endif
-
-%if %{undefined _modulesloaddir}
-%global _modulesloaddir %{_prefix}/lib/modules-load.d
-%endif
-
-%if %{undefined _systemdgeneratordir}
-%global _systemdgeneratordir %{_prefix}/lib/systemd/system-generators
-%endif
-
-%if %{undefined _pkgconfigdir}
-%global _pkgconfigdir %{_prefix}/%{_lib}/pkgconfig
 %endif
 
 %bcond_with    debug
@@ -113,7 +74,6 @@ Source0:        %{name}-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Requires:       libzpool7%{?_isa} = %{version}-%{release}
 Requires:       libnvpair3%{?_isa} = %{version}-%{release}
-Requires:       libuutil3%{?_isa} = %{version}-%{release}
 Requires:       libzfs7%{?_isa} = %{version}-%{release}
 Requires:       %{name}-kmod = %{version}
 Provides:       %{name}-kmod-common = %{version}-%{release}
@@ -199,29 +159,6 @@ to write self describing data structures on disk.
 %postun -n libnvpair3 -p /sbin/ldconfig
 %endif
 
-%package -n libuutil3
-Summary:        Solaris userland utility library for Linux
-Group:          System Environment/Kernel
-Obsoletes:      libuutil1 <= %{version}
-
-%description -n libuutil3
-This library provides a variety of compatibility functions for OpenZFS:
- * libspl: The Solaris Porting Layer userland library, which provides APIs
-   that make it possible to run Solaris user code in a Linux environment
-   with relatively minimal modification.
- * libavl: The Adelson-Velskii Landis balanced binary tree manipulation
-   library.
- * libefi: The Extensible Firmware Interface library for GUID disk
-   partitioning.
- * libshare: NFS, SMB, and iSCSI service integration for ZFS.
-
-%if %{defined ldconfig_scriptlets}
-%ldconfig_scriptlets -n libuutil3
-%else
-%post -n libuutil3 -p /sbin/ldconfig
-%postun -n libuutil3 -p /sbin/ldconfig
-%endif
-
 # The library version is encoded in the package name.  When updating the
 # version information it is important to add an obsoletes line below for
 # the previous version of the package.
@@ -249,10 +186,8 @@ Group:          System Environment/Kernel
 Requires:       libzfs7%{?_isa} = %{version}-%{release}
 Requires:       libzpool7%{?_isa} = %{version}-%{release}
 Requires:       libnvpair3%{?_isa} = %{version}-%{release}
-Requires:       libuutil3%{?_isa} = %{version}-%{release}
 Provides:       libzpool7-devel = %{version}-%{release}
 Provides:       libnvpair3-devel = %{version}-%{release}
-Provides:       libuutil3-devel = %{version}-%{release}
 Obsoletes:      zfs-devel <= %{version}
 Obsoletes:      libzfs2-devel <= %{version}
 Obsoletes:      libzfs4-devel <= %{version}
@@ -413,12 +348,13 @@ support for unlocking datasets on user login.
 %configure \
     --with-config=user \
     --with-udevdir=%{_udevdir} \
-    --with-udevruledir=%{_udevruledir} \
+    --with-udevruledir=%{_udevrulesdir} \
     --with-dracutdir=%{_dracutdir} \
     --with-pamconfigsdir=%{_datadir}/pam-configs \
     --with-pammoduledir=%{_libdir}/security \
     --with-python=%{__python} \
     --with-pkgconfigdir=%{_pkgconfigdir} \
+    --with-mounthelperdir=%{_sbindir} \
     --disable-static \
     %{debug} \
     %{debuginfo} \
@@ -547,17 +483,14 @@ systemctl --system daemon-reload >/dev/null || true
 %config(noreplace) %{_sysconfdir}/%{name}/vdev_id.conf.*.example
 %attr(440, root, root) %config(noreplace) %{_sysconfdir}/sudoers.d/*
 
-%config(noreplace) %{_bashcompletiondir}/zfs
-%config(noreplace) %{_bashcompletiondir}/zpool
+%config(noreplace) %{bash_completions_dir}/zfs
+%config(noreplace) %{bash_completions_dir}/zpool
 
 %files -n libzpool7
 %{_libdir}/libzpool.so.*
 
 %files -n libnvpair3
 %{_libdir}/libnvpair.so.*
-
-%files -n libuutil3
-%{_libdir}/libuutil.so.*
 
 %files -n libzfs7
 %{_libdir}/libzfs*.so.*
