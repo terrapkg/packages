@@ -63,7 +63,7 @@ TTL is an all-in-one tool for downloading, managing, and launching your favorite
 mkdir -p %{buildroot}/usr/lib/twintaillauncher/resources
 
 #app expects files to be present there
-mv  %{buildroot}/%{_datadir}/cargo/registry/twintaillauncher-%{version}/resources %{buildroot}/usr/lib/twintaillauncher/resources
+mv  %{buildroot}/%{_datadir}/cargo/registry/twintaillauncher-%{version}/resources %{buildroot}/usr/lib/twintaillauncher
 rm -rf %{buildroot}/%{_datadir}/cargo/registry/twintaillauncher-%{version}
 
 
@@ -87,6 +87,9 @@ install -Dm644 public/launcher-icon-128.png %{buildroot}%{_hicolordir}/128x128/a
 %{_hicolordir}/512x512/apps/%{name}.png
 %{_hicolordir}/128x128/apps/%{name}.png
 %_appsdir/twintaillauncher.desktop
+
+%attr(0755, root, root) /usr/lib/twintaillauncher/resources 
+%attr(0755, root, root) %{_bindir}/twintaillauncher
 
 
 
