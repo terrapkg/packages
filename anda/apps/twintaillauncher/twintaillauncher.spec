@@ -7,7 +7,7 @@
 Name:           twintaillauncher
 
 Version:        2.0.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A multi-platform launcher for your anime games
 Packager:        Yoong Jin <solomoncyj@gmail.com>
 
@@ -63,7 +63,7 @@ TTL is an all-in-one tool for downloading, managing, and launching your favorite
 mkdir -p %{buildroot}/usr/lib/twintaillauncher/resources
 
 #app expects files to be present there
-mv  %{buildroot}/%{_datadir}/cargo/registry/twintaillauncher-%{version}/resources %{buildroot}/usr/lib/twintaillauncher/resources
+mv  %{buildroot}/%{_datadir}/cargo/registry/twintaillauncher-%{version}/resources %{buildroot}/usr/lib/twintaillauncher
 rm -rf %{buildroot}/%{_datadir}/cargo/registry/twintaillauncher-%{version}
 
 
@@ -75,6 +75,7 @@ rm -rf %{buildroot}/%{_datadir}/cargo/registry/twintaillauncher-%{version}
 install -Dm644   public/launcher-icon.png %{buildroot}%{_hicolordir}/512x512/apps/%{name}.png
 install -Dm644 public/launcher-icon-128.png %{buildroot}%{_hicolordir}/128x128/apps/%{name}.png
 
+chmod 0755 %{buildroot}/usr/lib/twintaillauncher/resources -R
 
 
 %files
@@ -91,7 +92,11 @@ install -Dm644 public/launcher-icon-128.png %{buildroot}%{_hicolordir}/128x128/a
 
 
 
+
 %changelog
+* Wed Apr 15 2026 Yoong Jin <solomoncyj@gmail.com> - 2.0.0-3
+- Fix folders
+- filx perms
 * Sat Apr 4 2026 Yoong Jin <solomoncyj@gmail.com> - 2.0.0-2
 - Fix folders
 - Update License
