@@ -1,8 +1,8 @@
 %global uuid vicinae@dagimg-dot.netlify.app
 
 Name:           gnome-shell-extension-vicinae
-Version:        1.5.3
-Release:        2%{?dist}
+Version:        1.6.1
+Release:        1%{?dist}
 License:        MIT
 URL:            https://github.com/dagimg-dot/vicinae-gnome-extension
 Source:         %{url}/archive/refs/tags/v%{version}.tar.gz

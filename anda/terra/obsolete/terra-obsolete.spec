@@ -4,11 +4,13 @@ Version:    %{?fedora:%{fedora}}%{?rhel:%{rhel}}
 # The dist number is the version here, it is intentionally not repeated in the release
 %global dist %nil
 
-Release:    1%?dist
+Release:    2%?dist
 Summary:    A package to obsolete retired packages, based on Fedora's equivalent package
 
 License:    LicenseRef-Fedora-Public-Domain
 BuildArch:  noarch
+
+Packager:   Terra Packaging Team <terra@fyralabs.com>
 
 # ===============================================================================
 # Skip down below these convenience macros

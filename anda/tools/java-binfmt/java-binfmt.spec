@@ -1,11 +1,11 @@
-%global commit 4bbeadf096d853ef36155e725020d99c2add14cd
+%global commit e12372ea5776a0e0a8acee3ea1e56f0f81c56fca
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260127
+%global commit_date 20260330
 %global _binfmtdir %{_exec_prefix}/lib/binfmt.d
 
 Name:           java-binfmt
 Version:        1.0.0^%{commit_date}git%{shortcommit}
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Binfmt wrappers and utilities for Java and Jar files.
 ### License for the C file used in the binary.
 License:        GPL-2.0-or-later

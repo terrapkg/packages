@@ -11,8 +11,8 @@
 %endif
 
 Name:           helium-browser-bin
-Version:        0.9.4.1
-Release:        1%?dist
+Version:        0.11.2.1
+Release:        1%{?dist}
 Summary:        Private, fast, and honest web browser based on Chromium
 
 URL:            https://helium.computer
@@ -21,7 +21,7 @@ License:        GPL-3.0-only AND BSD-3-Clause
 Source0:        https://github.com/imputnet/helium-linux/releases/download/%{version}/helium-%{version}-%{arch}_linux.tar.xz
 Source1:        https://github.com/imputnet/helium-linux/archive/refs/tags/%{version}.tar.gz
 Source2:        net.imput.helium.metainfo.xml
-Source3:        net.imput.helium.desktop
+Source3:        helium.desktop
 
 ExclusiveArch:  x86_64 aarch64
 
@@ -31,7 +31,7 @@ BuildRequires:  desktop-file-utils
 Requires:       xdg-utils
 Requires:       liberation-fonts
 
-Packager:       Nadia P <nyadiia@pm.me>
+Packager:       Nadia P <nyadiia@pm.me>, Jaiden Riordan <jade@fyralabs.com>
 
 %description
 Private, fast, and honest web browser based on Chromium.
@@ -47,7 +47,7 @@ tar --strip-components=1 -zxvf %{SOURCE1}
 install -dm755 %{buildroot}%{_libdir}/%{name}
 cp -a * %{buildroot}%{_libdir}/%{name}/
 
-install -Dm644 %{SOURCE3} %{buildroot}%{_appsdir}/%{appid}.desktop
+%desktop_file_install %{S:3}
 
 install -Dm644 product_logo_256.png %{buildroot}%{_hicolordir}/256x256/apps/%{appid}.png
 
@@ -56,7 +56,6 @@ rm -f %{buildroot}%{_libdir}/%{name}/product_logo_256.png
 
 install -dm755 %{buildroot}%{_bindir}
 cat > %{buildroot}%{_bindir}/%{name} << 'EOF'
-
 #!/bin/bash
 set -euo pipefail
 
@@ -112,7 +111,7 @@ chmod 755 %{buildroot}%{_bindir}/%{name}
 %{_libdir}/%{name}/
 # shebang reasons
 %attr(0755,root,root) %{_bindir}/%{name}
-%{_appsdir}/%{appid}.desktop
+%{_appsdir}/helium.desktop
 %{_hicolordir}/256x256/apps/%{appid}.png
 %{_metainfodir}/%{appid}.metainfo.xml
 

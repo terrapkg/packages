@@ -1,10 +1,10 @@
-%global commit a1ace571823be5979c135e9cb8e9ae103c7641ac
+%global commit 1c5c9ccb69ea4ae42251aaa4c5a40a54766e6551
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250715
+%global commit_date 20260415
 
 Name:          udev-joystick-blacklist
 Version:       0^%{commit_date}git%{shortcommit}
-Release:       4%{?dist}
+Release:       1%{?dist}
 Summary:       Fix for keyboard/mouse/tablet being detected as joysticks in Linux
 License:       Public Domain
 URL:           https://github.com/denilsonsa/udev-joystick-blacklist

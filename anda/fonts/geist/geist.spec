@@ -1,4 +1,4 @@
-%global ver geist@1.7.0
+%global ver 1.8.0
 
 Name:		    geist-font
 Version:	    %(echo %ver | sed 's/^geist@//')
@@ -30,7 +30,7 @@ Geist Mono is a monospaced typeface that has been crafted to be the perfect part
 It is designed to be used in code editors, diagrams, terminals, and other textbased interfaces where code is represented.
 
 %prep
-%autosetup -n %name-geist-%version
+%autosetup
 
 %build
 %make_build

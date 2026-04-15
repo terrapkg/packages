@@ -1,6 +1,6 @@
 Name:           vicinae
-Version:        0.20.1
-Release:        1%?dist
+Version:        0.20.12
+Release:        1%{?dist}
 License:        GPL-3.0
 URL:            https://docs.vicinae.com
 Source:         https://github.com/vicinaehq/%{name}/archive/refs/tags/v%{version}.tar.gz

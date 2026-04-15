@@ -3,6 +3,9 @@
 name: Automatically build packages
 permissions:
   contents: read
+  attestations: write
+  artifact-metadata: write
+  id-token: write
 on:
   push:
     paths:
@@ -30,7 +33,7 @@ jobs:
       - name: Set workspace as safe
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 0
       - name: Generate build matrix
@@ -51,7 +54,7 @@ jobs:
       image: ghcr.io/terrapkg/appstream-generator:main
     steps:
       - name: Download artifacts
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           merge-multiple: true
           path: ./artifacts
@@ -69,6 +72,16 @@ jobs:
             --basename=test \
             --veto-ignore=missing-parents \
             --veto-ignore=missing-info 2>&1 | tee asb.log
+
+      - name: Run appstreamcli validate
+        run: |
+          echo "## AppStream MetaInfo Validation" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo '```xml' >> $GITHUB_STEP_SUMMARY
+          appstreamcli validate output/test.xml.gz >> $GITHUB_STEP_SUMMARY || true
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          
       - name: Export logs
         id: export_logs
         run: |
@@ -102,7 +115,7 @@ jobs:
             echo "#### \`$file\`" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
             echo '```xml' >> $GITHUB_STEP_SUMMARY
-            zcat "$file" >> $GITHUB_STEP_SUMMARY
+            zcat "$file" >> $GITHUB_STEP_SUMMARY || true
             echo '```' >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
           done

@@ -1,6 +1,6 @@
 Name:           gradle-completions
-Version:        9.3.1
-Release:        1%?dist
+Version:        9.4.1
+Release:        1%{?dist}
 Summary:        Gradle tab completion for bash and zsh
 License:        MIT
 URL:            https://github.com/gradle/gradle-completion

@@ -3,8 +3,8 @@
 %global org "com.github.luisbocanegra"
 
 Name:           kde-material-you-colors
-Version:        2.0.0
-Release:        4%?dist
+Version:        2.2.0
+Release:        2%{?dist}
 Summary:        Automatic Material You Colors Generator from your wallpaper for the Plasma Desktop
 License:        GPL-3.0-only
 URL:            https://github.com/luisbocanegra/%{name}
@@ -52,7 +52,7 @@ BuildArch:      noarch
 Python files for KDE Material You Colors.
 
 %prep
-%autosetup -p1 -n %{name}-%{version}
+%autosetup -n %{name}-%{version}
 sed -iE 's:\"python-magic.*\":\"file-magic\":' pyproject.toml
 
 %build

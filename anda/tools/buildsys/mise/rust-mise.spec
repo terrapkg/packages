@@ -5,8 +5,8 @@
 %global crate mise
 
 Name:           rust-mise
-Version:        2026.2.22
-Release:        1%?dist
+Version:        2026.4.14
+Release:        1%{?dist}
 Summary:        Front-end to your dev env
 
 License:        MIT

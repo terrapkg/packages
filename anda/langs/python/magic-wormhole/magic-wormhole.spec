@@ -2,8 +2,8 @@
 %global _desc get things from one computer to another, safely.
 
 Name:			python-%{pypi_name}
-Version:		0.22.0
-Release:		1%?dist
+Version:		0.23.0
+Release:		1%{?dist}
 Summary:		get things from one computer to another, safely
 License:		MIT
 URL:			https://github.com/magic-wormhole/magic-wormhole
@@ -52,9 +52,6 @@ rm %{buildroot}%{_usr}/wormhole_complete.*
 %{_bindir}/magic-wormhole
 %{_bindir}/wormhole
 %{_mandir}/man1/wormhole.1.gz
-%ghost %python3_sitelib/__pycache__/*.cpython-*.pyc
-%ghost %python3_sitelib/%{name}/subcommands/__pycache__/*.cpython-*.pyc
-%python3_sitelib/magic_wormhole-%version.dist-info/*
 
 %changelog
 * Mon Nov 03 2025 Owen Zimmerman <owen@fyralabs.com>
