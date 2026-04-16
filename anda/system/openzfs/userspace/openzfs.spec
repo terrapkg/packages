@@ -58,16 +58,30 @@ OpenZFS userspace tools
 
 %configure \
     --with-config=user \
+    --bindir=%{_bindir} \
+    --sbindir=%{_sbindir} \
+    --libexecdir=%{_libexecdir} \
+    --sysconfdir=%{_sysconfdir} \
+    --sharedstatedir=%{_sharedstatedir} \
+    --localstatedir=%{_localstatedir} \
+    --runstatedir=%{_runstatedir} \
+    --libdir=%{_libdir} \
+    --includedir=%{_includedir} \
+    --datarootdir=%{_datadir} \
+    --mandir=%{_mandir} \
+    --docdir=%{_docdir} \
     --with-udevdir=%{_udevdir} \
     --with-udevruledir=%{_udevrulesdir} \
     --with-dracutdir=%{_dracutdir} \
-    --with-pamconfigsdir=%{_datadir}/pam-configs \
-    --with-pammoduledir=%{_libdir}/security \
+    --with-pamconfigsdir=%{_pam_confdir} \
+    --with-pammoduledir=%{_pam_secconfdir} \
     --with-pkgconfigdir=%{_pkgconfigdir} \
     --with-mounthelperdir=%{_sbindir} \
-    --disable-static \
-    CFLAGS="-fuse-ld=mold" \
-    CXXFLAGS="-fuse-ld=mold"
+    --with-systemdunitdir=%{_unitdir} \
+    --with-systemdpresetdir=%{_presetdir} \
+    --with-systemdmodulesloaddir=%{_modulesloaddir} \
+    --with-systemdgeneratordir=%{_systemdgeneratordir} \
+    --disable-static
 
 %make_build
 
@@ -78,23 +92,22 @@ find %{buildroot} -name '*.la' -delete
 
 %files
 %doc AUTHORS COPYRIGHT LICENSE *.md
-/sbin/mount.zfs
-%{_sbindir}/*
-%{_bindir}/*
-%{_libdir}/lib*
-%{_mandir}/man?/*
-%{_sysconfdir}/init.d/*
+%{_sbindir}
+%{_bindir}
+%{_libdir}
+%{_mandir}
+%{_sysconfdir}/init.d
 %{_sysconfdir}/zfs
-/usr/lib/systemd/system-preset/*
-/usr/lib/systemd/system/*
-/usr/lib/systemd/system-generators/zfs-mount-generator
-/lib/udev/rules.d/*
-/lib/udev/*_id
-%{_datadir}/zfs/*
-/etc/sudoers.d/zfs
-/etc/sysconfig/zfs
-/etc/bash_completion.d/zfs
-%{python3_sitelib}/*
+%{_presetdir}/
+%{_unitdir}/
+%{_systemdgeneratordir}/zfs-mount-generator
+%{_libdir}/udev/rules.d
+%{_libdir}/udev/*_id
+%{_datadir}/zfs
+%{_sysconfdir}/sudoers.d/zfs
+%{_sysconfdir}/sysconfig/zfs
+%{bash_completions_dir}/zfs
+%{python3_sitelib}
 %{_libdir}/security/pam_zfs_key.so
 %{_datadir}/pam-configs/zfs_key
 %{_sysconfdir}/bash_completion.d/zpool
