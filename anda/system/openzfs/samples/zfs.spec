@@ -49,16 +49,8 @@
 %define __python_pkg_version      %{__use_python_pkg_version}
 %endif
 %define __python_sitelib          %(%{__python} -Esc "
-import sysconfig;
-if hasattr(sysconfig, 'get_default_scheme'):
-    scheme = sysconfig.get_default_scheme()
-else:
-    scheme = sysconfig._get_default_scheme()
-if scheme == 'posix_local':
-    scheme = 'posix_prefix'
+scheme = 'posix_prefix'
 prefix = '%{_prefix}'
-if prefix == 'NONE':
-    prefix = '%{ac_default_prefix}'
 sitedir = sysconfig.get_path('purelib', scheme, vars={'base': prefix})
 print(sitedir);" 2>/dev/null || %{__python} -Esc "from distutils import sysconfig; print(sysconfig.get_python_lib(0,0))")
 
