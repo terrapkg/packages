@@ -1,5 +1,6 @@
 %global debug_package %{nil}
 %global __brp_mangle_shebangs %{nil}
+%global __python %{__python3}
 
 Name:           openzfs
 Version:        2.4.0
