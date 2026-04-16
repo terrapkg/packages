@@ -77,7 +77,27 @@ OpenZFS userspace tools
 find %{buildroot} -name '*.la' -delete
 
 %files
-
+%doc AUTHORS COPYRIGHT LICENSE *.md
+/sbin/mount.zfs
+%{_sbindir}/*
+%{_bindir}/*
+%{_libdir}/lib*
+%{_mandir}/man?/*
+%{_sysconfdir}/init.d/*
+%{_sysconfdir}/zfs
+/usr/lib/systemd/system-preset/*
+/usr/lib/systemd/system/*
+/usr/lib/systemd/system-generators/zfs-mount-generator
+/lib/udev/rules.d/*
+/lib/udev/*_id
+%{_datadir}/zfs/*
+/etc/sudoers.d/zfs
+/etc/sysconfig/zfs
+/etc/bash_completion.d/zfs
+%{python3_sitelib}/*
+%{_libdir}/security/pam_zfs_key.so
+%{_datadir}/pam-configs/zfs_key
+%{_sysconfdir}/bash_completion.d/zpool
 
 %post
 %systemd_post zfs-import-cache.service
