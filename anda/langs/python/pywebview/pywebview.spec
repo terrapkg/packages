@@ -2,7 +2,7 @@
 %global _desc Build GUI for your Python program with JavaScript, HTML, and CSS.
 
 Name:			python-%{pypi_name}
-Version:		6.2
+Version:		6.2.1
 Release:		1%{?dist}
 Summary:		Build GUI for your Python program with JavaScript, HTML, and CSS
 License:		BSD-3-Clause

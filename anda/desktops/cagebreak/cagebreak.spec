@@ -1,4 +1,4 @@
-%global tag 3.1.0
+%global tag 3.2.0
 %global forgeurl https://github.com/project-repo/cagebreak
 %forgemeta
 

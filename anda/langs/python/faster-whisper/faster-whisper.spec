@@ -1,16 +1,20 @@
-%global pypi_name posthog
-%global _desc Send usage data from your Python code to PostHog.
+%global pypi_name faster-whisper
+%global _desc Faster Whisper transcription with CTranslate2.
 
 Name:			python-%{pypi_name}
-Version:		7.12.0
-Release:		1%{?dist}
-Summary:		Send usage data from your Python code to PostHog
+Version:		1.2.1
+Release:		1%?dist
+Summary:		Faster Whisper transcription with CTranslate2
 License:		MIT
-URL:			https://posthog.com/docs/libraries/python
-Source0:		%{pypi_source}
+URL:			https://github.com/SYSTRAN/faster-whisper
+Source0:		%url/archive/refs/tags/v%version.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
+BuildRequires:  python3-build
+BuildRequires:  python3-installer
+BuildRequires:  python3-wheel
+BuildRequires:  python3-poetry-core
 BuildRequires:  python3-pip
 BuildRequires:  python3-setuptools
 
@@ -21,26 +25,25 @@ Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-Provides:       %{pypi_name}
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 %_desc
 
 %prep
-%autosetup -n %{pypi_name}-%{version}
+%autosetup -n faster-whisper-%{version}
 
 %build
 %pyproject_wheel
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files faster_whisper
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
 
 %changelog
-* Sat Jan 10 2026 Owen Zimmerman <owen@fyralabs.com>
+* Sun Apr 12 2026 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit

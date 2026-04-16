@@ -1,4 +1,4 @@
-%global ver v3.0.0-alpha.74
+%global ver v3.0.0-alpha.75
 %global sanitized_ver %(echo %{ver} | sed 's/-/~/g')
 
 %global goipath github.com/wailsapp/wails/v3
