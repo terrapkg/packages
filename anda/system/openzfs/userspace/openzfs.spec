@@ -63,10 +63,11 @@ OpenZFS userspace tools
     --with-dracutdir=%{_dracutdir} \
     --with-pamconfigsdir=%{_datadir}/pam-configs \
     --with-pammoduledir=%{_libdir}/security \
-    --with-python=%{__python} \
     --with-pkgconfigdir=%{_pkgconfigdir} \
     --with-mounthelperdir=%{_sbindir} \
-    --disable-static
+    --disable-static \
+    CFLAGS="-fuse-ld=mold" \
+    CXXFLAGS="-fuse-ld=mold"
 
 %make_build
 
@@ -76,7 +77,7 @@ OpenZFS userspace tools
 find %{buildroot} -name '*.la' -delete
 
 %files
-???
+
 
 %post
 %systemd_post zfs-import-cache.service
