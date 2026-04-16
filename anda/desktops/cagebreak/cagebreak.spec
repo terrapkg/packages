@@ -5,7 +5,7 @@
 Name:           cagebreak
 Version:        %{tag}
 Release:        1%{?dist}
-Summary:        A wayland tiling compositor inspired by Ratpoison 
+Summary:        A wayland tiling compositor inspired by Ratpoison
 
 License:        MIT
 URL:            %{forgeurl}
@@ -16,7 +16,7 @@ Packager:       metcya <metcya@gmail.com>
 BuildRequires:  meson
 BuildRequires:  gcc
 BuildRequires:  scdoc
-BuildRequires:  pkgconfig(wlroots-0.19)
+BuildRequires:  pkgconfig(wlroots-0.20)
 BuildRequires:  pkgconfig(wayland-protocols)
 BuildRequires:  pkgconfig(wayland-server)
 BuildRequires:  pkgconfig(wayland-cursor)
@@ -43,7 +43,7 @@ conceptually based on the X11 window manager ratpoison.
 
 %build
 %meson -Dxwayland=true -Dman-pages=true
-%meson_build 
+%meson_build
 
 %install
 %meson_install
