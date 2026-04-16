@@ -66,14 +66,7 @@ OpenZFS userspace tools
     --with-python=%{__python} \
     --with-pkgconfigdir=%{_pkgconfigdir} \
     --with-mounthelperdir=%{_sbindir} \
-    --disable-static \
-    %{debug} \
-    %{debuginfo} \
-    %{asan} \
-    %{ubsan} \
-    %{systemd} \
-    %{pam} \
-    %{pyzfs}
+    --disable-static
 
 %make_build
 
