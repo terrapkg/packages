@@ -41,9 +41,11 @@ Various sample and test applications using %{name} are provided by this package.
 %prep
 %autosetup
 
-%build
+%conf
 autoreconf -vif
 %configure --disable-silent-rules --disable-static --enable-encoder
+
+%build
 %make_build
 
 %install
