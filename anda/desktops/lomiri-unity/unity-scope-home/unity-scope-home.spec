@@ -1,7 +1,7 @@
 Name:    unity-scope-home
 Summary: Home scope that aggregates results from multiple scopes
 Version: 19.04.20190412
-Release: %autorelease
+Release: 1%{?dist}
 License: GPL-3.0
 URL:     https://launchpad.net/unity-scope-home
 Source0: http://archive.ubuntu.com/ubuntu/pool/universe/u/unity-scope-home/unity-scope-home_6.8.2+%{version}.orig.tar.gz
@@ -32,12 +32,14 @@ Theme and icons for Unity.
 %prep
 %autosetup -c -p1
 
-%build
+%conf
 NOCONFIGURE=1 \
 ./autogen.sh
 
 # Cannot build with Fedora's libunity
 %configure --disable-static
+
+%build
 %make_build
 
 %install
