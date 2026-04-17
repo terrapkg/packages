@@ -1,6 +1,6 @@
-%global commit 51e965aafd4b25f28061b85cbbe68e0839ac1e3b
+%global commit 504690d51311ba657fc60c88b7ed3ea419aee7dd
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260409
+%global commitdate 20260417
 %global ver 0
 %define buildforkernels akmod
 %global debug_package %{nil}
@@ -8,7 +8,7 @@
 
 Name:           %{modulename}-kmod
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Elgato 4K60 Pro MK.2 / 4K Pro capture card driver
 License:        GPL-2.0-only
 URL:            https://github.com/Nakildias/sc0710

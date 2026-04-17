@@ -49,7 +49,7 @@ This package contains the shared library development files.
 %autosetup 
 %endif
 
-%build
+%conf
 cd build/linux
 export CFLAGS="%{optflags} -Wno-incompatible-pointer-types"
 %configure \
@@ -67,6 +67,8 @@ sed -i \
     -e 's|CFLAGS=.*%{optflags}|CFLAGS=%{optflags}|g' \
     config.mak
 
+%build
+cd build/linux
 %make_build
 
 %install

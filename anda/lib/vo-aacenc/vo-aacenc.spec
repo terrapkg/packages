@@ -24,8 +24,10 @@ developing applications that use %{name}.
 %prep
 %autosetup -n %{name}-%{version}
 
-%build
+%conf
 %configure --disable-static
+
+%build
 make %{?_smp_mflags}
 
 %install
