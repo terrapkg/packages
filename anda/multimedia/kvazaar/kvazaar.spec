@@ -57,7 +57,7 @@ rm -fr %{buildroot}%{_docdir}
 %license LICENSE*
 %doc README.md CREDITS
 %{_libdir}/lib%{name}.so.7
-%{_libdir}/lib%{name}.so.7.4.0
+%{_libdir}/lib%{name}.so.7.5.0
 
 %files devel
 %{_includedir}/%{name}.h
