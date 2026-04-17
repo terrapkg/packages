@@ -3,7 +3,7 @@
 
 Name:           mjpegtools
 Version:        2.2.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Tools to manipulate MPEG data
 License:        GPL-2.0-or-later
 URL:            http://mjpeg.sourceforge.net/
