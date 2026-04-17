@@ -32,11 +32,13 @@ mkdir -p src/third_party/lss
 cd src/third_party/lss
 tar -xzf %{SOURCE1} --strip-components=0
 
-%build
+%conf
 export CFLAGS="$CFLAGS -Wno-error"
 export CXXFLAGS="$CXXFLAGS -Wno-error"
 
 %configure
+
+%build
 %make_build
 
 %install
