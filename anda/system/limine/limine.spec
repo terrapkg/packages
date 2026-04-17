@@ -17,8 +17,10 @@ the reference implementation for the Limine boot protocol.
 %autosetup
 cp %{S:1} .
 
-%build
+%conf
 %configure --enable-all CC_FOR_TARGET=clang LD_FOR_TARGET=ld.lld
+
+%build
 %make_build
 
 %install
