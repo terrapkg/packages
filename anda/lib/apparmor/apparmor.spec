@@ -38,6 +38,7 @@ BuildRequires:  systemd-rpm-macros
 BuildRequires:  autoconf-archive
 BuildRequires:  gawk
 BuildRequires:  which
+BuildRequires:  libzstd-devel
 %if %{with tests}
 BuildRequires:  %{_bindir}/runtest
 BuildRequires:  %{_bindir}/prove
