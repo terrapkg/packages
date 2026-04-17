@@ -53,6 +53,8 @@ Provides:       rtaudio-devel = %version-%release
 
 %prep
 %autosetup -n rtaudio-%commit
+
+%conf
 # Fix encoding issues
 for file in tests/teststops.cpp; do
    sed 's|\r||' $file > $file.tmp
@@ -61,11 +63,11 @@ for file in tests/teststops.cpp; do
    mv -f $file.tmp2 $file
 done
 
-
-%build
 export CFLAGS="%optflags -fPIC"
 NOCONFIGURE=1 ./autogen.sh
 %configure --with-jack --with-alsa --with-pulse --enable-shared --disable-static --verbose
+
+%build
 %make_build
 
 %install
