@@ -71,13 +71,13 @@ This package contains development files for building applications that use
 %prep 
 %autosetup -p1
 
-%conf
 sed -i -e 's/ARCHFLAGS=.*/ARCHFLAGS=/g' configure*
 sed -i -e 's|/lib /usr/lib|/%{_lib} %{_libdir}|' configure
 for f in docs/yuvfps.1 ; do
     iconv -f iso-8859-1 -t utf-8 $f > $f.utf8 ; mv $f.utf8 $f
 done
 
+%conf
 autoreconf -vif
 %configure \
   --disable-static \
