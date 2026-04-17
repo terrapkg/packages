@@ -28,8 +28,10 @@ This is used to relay the input GStreamer source to an output source or a V4L2 d
 %autosetup -p1 -n %{name}-%{commit}
 autoreconf --force --install --verbose
 
-%build
+%conf
 %configure
+
+%build
 %make_build
 
 %install
