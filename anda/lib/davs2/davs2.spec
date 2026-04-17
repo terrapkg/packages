@@ -68,6 +68,7 @@ sed -i \
     config.mak
 
 %build
+cd build/linux
 %make_build
 
 %install
