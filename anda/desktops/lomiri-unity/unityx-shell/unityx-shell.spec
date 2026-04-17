@@ -6,10 +6,10 @@
 
 Name:          unityx-shell
 Version:       1.7.7
-Release:       1%?dist
+Release:       2%?dist
 Summary:       UnityX is a smaller shell based on Unity7
 
-License:       GPL-3.0 AND LGPL-3.0
+License:       GPL-3.0-or-later AND LGPL-3.0-or-later
 URL:           https://gitlab.com/ubuntu-unity/unity-x/unityx
 Source0:       %{url}/-/archive/%commit/unityx-%commit.tar.bz2
 Source2:       https://gitlab.xfce.org/panel-plugins/xfce4-windowck-plugin/-/commit/dee596492f006d02e2b39abd072ddd7b37fefe82.diff
@@ -31,8 +31,6 @@ BuildRequires: terra-libindicator-gtk3-devel
 BuildRequires: json-glib-devel
 BuildRequires: libnotify-devel
 BuildRequires: libsigc++20-devel
-#BuildRequires: xpathselect-devel
-#BuildRequires: libunity-devel
 BuildRequires: doxygen
 BuildRequires: pam-devel
 BuildRequires: boost-devel
@@ -109,7 +107,7 @@ needed for writing automated tests in Python.
 %prep
 %autosetup -n unityx-%commit -p1
 
-%build
+%conf
 # Wrong paths
 sed -i 's!lib/{arch}-linux-gnu!%{_lib}!' unityx/unityx
 sed -i 's!%{_lib}/bamf/bamfdaemon!libexec/bamf/bamfdaemon!' unityx/unityx
@@ -123,13 +121,11 @@ sed -i 's/'--all', //' unityx/unityx
 rm -fv unityx/windowck-plugin/po/.intltool-merge-cache*
 
 %cmake -DENABLE_X_SUPPORT=ON -DUNITY_PROTOCOL_PRIVATE_LIB=%{_libdir}/libunity/libunity-protocol-private.so.0.0.0 -DCOMPIZ_BUILD_WITH_RPATH=FALSE -DCOMPIZ_PACKAGING_ENABLED=TRUE -DCOMPIZ_PLUGIN_INSTALL_TYPE=package -DUSE_GSETTINGS=TRUE -DENABLE_UNIT_TESTS=FALSE
-%cmake_build
 
 pushd unityx/plotinus
 # Wrong path again
 sed -i 's/LIBRARY DESTINATION lib/LIBRARY DESTINATION %{_lib}/' CMakeLists.txt
 %cmake
-%cmake_build
 popd
 
 pushd unityx/windowck-plugin
@@ -140,6 +136,16 @@ NOCONFIGURE=1 \
 ./autogen.sh
 
 %configure --disable-static
+popd
+
+%build
+%cmake_build
+
+pushd unityx/plotinus
+%cmake_build
+popd
+
+pushd unityx/windowck-plugin
 %make_build
 popd
 
