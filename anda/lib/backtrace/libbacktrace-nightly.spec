@@ -36,13 +36,15 @@ This package contains the development files for the %name package.
 %prep
 %autosetup -n libbacktrace-%commit
 
-%build
+%conf
 autoreconf -fiv
 %configure \
   --disable-static \
   --enable-shared \
   --with-system-libunwind \
   --enable-silent-rules
+
+%build
 %make_build
 
 %check
