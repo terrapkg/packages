@@ -17,6 +17,7 @@ BuildRequires:  pkgconfig(gobject-introspection-1.0)
 BuildRequires:  vala-devel
 BuildRequires:  vala
 BuildRequires:  intltool
+BuildRequires:  gcc-c++
 
 %description
 The Ayatana Indicators project is the continuation of Application Indicators
