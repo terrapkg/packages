@@ -21,6 +21,7 @@ URL:            https://github.com/RPCS3/rpcs3
 Source0:        %{url}/archive/%{commit}/%{name}-%{commit}.tar.gz
 BuildRequires:  anda-srpm-macros glew openal-soft cmake vulkan-validation-layers git-core mold
 BuildRequires:  llvm%{?llvm_major}-devel
+# Looking at the CMakeLists.txt, this is the intended compiler and there are no fixes for GCC on aarch64
 BuildRequires:  clang%{?llvm_major}
 BuildRequires:  cmake(FAudio)
 BuildRequires:  cmake(OpenAL)
@@ -64,8 +65,7 @@ BuildRequires:  qt6-qtbase-private-devel vulkan-devel jack-audio-connection-kit-
 %prep
 %git_clone %url %commit
 
-%build
-# Looking at the CMakeLists.txt, this is the intended compiler and there are no fixes for GCC on aarch64
+%conf
 %if %{defined llvm_major}
 export LLVM_DIR=%{_libdir}/llvm%{?llvm_major}/%{_lib}/cmake
 %endif
@@ -95,7 +95,9 @@ export LLVM_DIR=%{_libdir}/llvm%{?llvm_major}/%{_lib}/cmake
     -DCMAKE_CXX_COMPILER="$CXX"                               \
     -DCMAKE_LINKER=mold                                       \
     -DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS -fuse-ld=mold"      \
-    -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS -fuse-ld=mold"    
+    -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS -fuse-ld=mold" 
+
+%build
 %cmake_build
 
 %install
