@@ -36,8 +36,10 @@ A number of packages contain plugins which are installed as standard on Raspberr
 %prep
 %autosetup -n rpcc-%commit
 
-%build
+%conf
 %meson
+
+%build
 %meson_build
 
 %install
