@@ -58,6 +58,8 @@ install -D -m 0644 rog-anime/data/diagonal-template.png %{buildroot}/%{_docdir}/
 
 desktop-file-validate %{buildroot}/%{_datadir}/applications/rog-control-center.desktop
 
+mkdir -p %{_sysconfdir}/asusd
+
 %files
 %license LICENSE
 %license LICENSE.dependencies
@@ -69,7 +71,7 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/rog-control-center.d
 %{_unitdir}/asusd.service
 %{_unitdir}/asus-shutdown.service
 %{_udevrulesdir}/99-asusd.rules
-%dir %{_sysconfdir}/asusd/
+%dir %{_sysconfdir}/asusd
 %{_datadir}/asusd/aura_support.ron
 %{_datadir}/dbus-1/system.d/asusd.conf
 %{_datadir}/icons/hicolor/512x512/apps/asus_notif_yellow.png
