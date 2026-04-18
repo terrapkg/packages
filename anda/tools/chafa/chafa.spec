@@ -45,9 +45,10 @@ Requires:       %{name}-libs%{?_isa} = %{evr}
 %prep
 %autosetup -n chafa-%{version}
 
-%build
 autoreconf -ivf
 %configure --disable-rpath
+
+%build
 %make_build
 
 %install
