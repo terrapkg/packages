@@ -18,6 +18,7 @@ BuildRequires:  vala-devel
 BuildRequires:  vala
 BuildRequires:  intltool
 BuildRequires:  gcc-c++
+BuildRequires:  gtest-devel
 
 %description
 The Ayatana Indicators project is the continuation of Application Indicators
