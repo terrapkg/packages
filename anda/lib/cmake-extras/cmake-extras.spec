@@ -4,9 +4,9 @@
 
 Name:       cmake-extras
 Version:    1.9
-Release:    1%?dist
+Release:    2%?dist
 Summary:    A collection of add-ons for the CMake build tool
-License:    GPL-3.0
+License:    GPL-3.0-or-later
 URL:        https://gitlab.com/ubports/development/core/cmake-extras
 Source0:    %{url}/-/archive/%commit/cmake-extras-%commit.tar.gz
 BuildArch:  noarch

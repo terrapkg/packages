@@ -4,9 +4,9 @@
 
 Name:       deviceinfo
 Version:    0.2.4
-Release:    1%?dist
+Release:    2%?dist
 Summary:    Library to detect and configure devices
-License:    GPLv3+
+License:    GPL-3.0-or-later
 URL:        https://gitlab.com/ubports/development/core/deviceinfo
 Source0:    %{url}/-/archive/%commit/deviceinfo-%commit.tar.gz
 Source1:    https://salsa.debian.org/ubports-team/deviceinfo/-/raw/master/debian/device-info.1
@@ -30,8 +30,10 @@ developing applications that use %{name}.
 %prep
 %autosetup -n deviceinfo-%commit
 
-%build
+%conf
 %cmake
+
+%build
 %cmake_build
 
 %install

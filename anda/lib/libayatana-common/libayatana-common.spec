@@ -1,8 +1,8 @@
 Name:       libayatana-common
 Summary:    Common functions for Ayatana System Indicators
 Version:    0.9.11
-Release:    2%?dist
-License:    GPL-3.0
+Release:    3%?dist
+License:    GPL-3.0-or-later
 URL:        https://github.com/AyatanaIndicators/libayatana-common
 Source0:    %{url}/archive/refs/tags/%{version}.tar.gz
 
@@ -33,11 +33,12 @@ This package contains the development header files for %{name}.
 %prep
 %autosetup -n %{name}-%{version}
 
-%build
+%conf
 %cmake -DENABLE_LOMIRI_FEATURES=ON \
        -DENABLE_TESTS=ON \
        -DENABLE_COVERAGE=OFF
 
+%build
 %cmake_build
 
 %install
