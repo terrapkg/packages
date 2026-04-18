@@ -32,14 +32,17 @@ developing applications that use %{name}.
 
 %prep
 %autosetup -n libunity-misc-%{version}+14.04.20140115
+
+%conf
 find ./ -type f -exec sed -i 's/-Werror//' {} \;
 NOCONFIGURE=1 \
 ./autogen.sh
 
-%build
 %configure \
 	--disable-silent-rules \
 	--disable-static
+
+%build
 %make_build
 
 %install
