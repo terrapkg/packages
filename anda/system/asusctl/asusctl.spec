@@ -58,7 +58,7 @@ install -D -m 0644 rog-anime/data/diagonal-template.png %{buildroot}/%{_docdir}/
 
 desktop-file-validate %{buildroot}/%{_datadir}/applications/rog-control-center.desktop
 
-mkdir -p %{_sysconfdir}/asusd
+mkdir -p %{buildroot}%{_sysconfdir}/asusd
 
 %files
 %license LICENSE
