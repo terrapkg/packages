@@ -13,6 +13,9 @@ BuildRequires:  gcc-c++
 BuildRequires:  meson
 BuildRequires:  cmake
 BuildRequires:  gtk-doc
+BuildRequires:  gdb
+BuildRequires:  valgrind
+BuildRequires:  appstream
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(gio-unix-2.0)
 BuildRequires:  pkgconfig(gobject-2.0)
@@ -22,6 +25,7 @@ BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pkgconfig(gudev-1.0)
 BuildRequires:  pkgconfig(udev)
 BuildRequires:  pkgconfig(pixman-1)
+BuildRequires:  pkgconfig(cairo)
 BuildRequires:  terra-appstream-helper
 
 Packager:       metcya <metcya@gmail.com>
