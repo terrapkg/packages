@@ -2,7 +2,7 @@
 %global _desc Batteries-Included Python 3 CLI Framework.
 
 Name:			python-%{pypi_name}
-Version:		1.10.0
+Version:		1.11.0
 Release:		1%{?dist}
 Summary:		Batteries-Included Python 3 CLI Framework
 License:		MIT
