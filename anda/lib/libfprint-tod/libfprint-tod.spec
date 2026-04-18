@@ -6,7 +6,7 @@ Release:        2%{?dist}
 URL:            https://gitlab.freedesktop.org/3v1n0/libfprint/
 Source:         %{url}/-/archive/v%{version}/libfprint-v%{version}.tar.gz
 Summary:        a light fork of libfprint to expose internal Drivers API in order to create drivers as shared libraries
-License:        GPL-2.1-or-later
+License:        LGPL-2.1-or-later
 Conflicts:      libfprint
 
 BuildRequires:  gcc-c++
