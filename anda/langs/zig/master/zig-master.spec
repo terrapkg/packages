@@ -9,6 +9,12 @@
 %bcond bootstrap 0
 %bcond docs      %{without bootstrap}
 %bcond test      1
+# GCC < 16.0 miscompiles on RISC-V
+%ifarch riscv64
+%if 0%{?fedora} < 44
+%global toolchain clang
+%endif
+%endif
 %global zig_cache_dir %{builddir}/zig-cache
 
 Name:           zig-master
@@ -21,7 +27,16 @@ URL:            https://ziglang.org
 Source0:        %{archive_name}
 Source1:        %{archive_name}.minisig
 Patch0:         0000-remove-native-lib-directories-from-rpath.patch
+%if %{defined rhel}
+Patch1:         0001-Remove-unsupported-LLVM-targets-for-EPEL.patch
+%endif
 BuildRequires:  cmake
+%if %["%{toolchain}" == "clang"]
+BuildRequires:  clang
+%else
+BuildRequires:  gcc
+BuildRequires:  gcc-c++
+%endif
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  libxml2-devel
@@ -47,7 +62,7 @@ Requires:       %{name}-libs = %{version}
 # Apache-2.0 WITH LLVM-exception OR NCSA OR MIT
 Provides:       bundled(compiler-rt) = %{llvm_version}
 # LGPL-2.1-or-later AND SunPro AND LGPL-2.1-or-later WITH GCC-exception-2.0 AND BSD-3-Clause AND GPL-2.0-or-later AND LGPL-2.1-or-later WITH GNU-compiler-exception AND GPL-2.0-only AND ISC AND LicenseRef-Fedora-Public-Domain AND HPND AND CMU-Mach AND LGPL-2.0-or-later AND Unicode-3.0 AND GFDL-1.1-or-later AND GPL-1.0-or-later AND FSFUL AND MIT AND Inner-Net-2.0 AND X11 AND GPL-2.0-or-later WITH GCC-exception-2.0 AND GFDL-1.3-only AND GFDL-1.1-only
-Provides:       bundled(glibc) = 2.41
+Provides:       bundled(glibc) = 2.43
 # Apache-2.0 WITH LLVM-exception OR MIT OR NCSA
 Provides:       bundled(libcxx) = %{llvm_version}
 # Apache-2.0 WITH LLVM-exception OR MIT OR NCSA
