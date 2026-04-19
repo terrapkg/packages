@@ -3,10 +3,10 @@
 %global name_pretty %{quote:Prism Launcher (Nightly)}
 %global appid org.prismlauncher.PrismLauncher-nightly
 
-%global commit f40cbf816e1c594584587a981d29971692e615ab
+%global commit e7a03d311c11cce9626204fd29f84750b97d04cd
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
-%global commit_date 20260417
+%global commit_date 20260418
 %global snapshot_info %{commit_date}.%{shortcommit}
 
 # Change this variables if you want to use custom keys
@@ -20,7 +20,7 @@
 %global build_platform terra
 
 Name:             prismlauncher-nightly
-Version:          11.0^%{snapshot_info}
+Version:          12.0^%{snapshot_info}
 Release:          1%{?dist}
 Summary:          Minecraft launcher with ability to manage multiple instances
 License:          GPL-3.0-only AND Apache-2.0 AND LGPL-3.0-only AND GPL-3.0-or-later AND GPL-2.0-or-later AND ISC AND OFL-1.1 AND LGPL-2.1-only AND MIT AND BSD-2-Clause-FreeBSD AND BSD-3-Clause AND LGPL-3.0-or-later
