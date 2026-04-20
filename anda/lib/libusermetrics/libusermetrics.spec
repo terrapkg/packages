@@ -20,6 +20,7 @@ BuildRequires: pkgconfig(libqtdbustest-1)
 BuildRequires: pkgconfig(libapparmor)
 BuildRequires: qdjango-devel
 BuildRequires: fdupes
+BuildRequires: gmock-devel
 BuildRequires: gtest-devel
 
 %description
