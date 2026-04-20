@@ -4,9 +4,9 @@
 
 Name:       cmake-extras
 Version:    1.9
-Release:    1%?dist
+Release:    2%?dist
 Summary:    A collection of add-ons for the CMake build tool
-License:    GPL-3.0
+License:    GPL-3.0-or-later
 URL:        https://gitlab.com/ubports/development/core/cmake-extras
 Source0:    %{url}/-/archive/%commit/cmake-extras-%commit.tar.gz
 BuildArch:  noarch
@@ -31,8 +31,14 @@ sed -i 's/#!\/bin\/sh/#!\/usr\/bin\/sh/' src/CopyrightTest/check_copyright.sh
 sed -i 's/python/python3/' src/IncludeChecker/include_checker.py
 sed -i 'sX/usr/lib/qt5X${CMAKE_LIBDIR}/qt5X' src/QmlPlugins/QmlPluginsConfig.cmake
 
+%conf
+%if 0%{?fedora} >= 44
+      %cmake -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+%else
+			%cmake
+%endif
+
 %build
-%cmake
 %cmake_build
 
 %install
