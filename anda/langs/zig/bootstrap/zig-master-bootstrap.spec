@@ -124,7 +124,7 @@ Zig Standard Library
 rm -f stage1/zig1.wasm
 %endif
 
-%build
+%conf
 # Force the correct LLVM version
 %if %{defined llvm_compat}
 export LLVM_DIR=%{_libdir}/llvm%{?llvm_compat}/%{_lib}/cmake
@@ -148,6 +148,7 @@ export LLVM_DIR=%{_libdir}/llvm%{?llvm_compat}/%{_lib}/cmake
     \
     -DZIG_VERSION:STRING="%(v=%{ver}; echo ${v:0:6})"
 
+%build
 %if %{with bootstrap}
 %cmake_build --target stage3
 %else

@@ -37,8 +37,6 @@ BuildRequires:  clang
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
 %endif
-BuildRequires:  gcc
-BuildRequires:  gcc-c++
 BuildRequires:  libxml2-devel
 BuildRequires:  llvm%{?llvm_compat}-devel
 BuildRequires:  clang%{?llvm_compat}-devel
@@ -138,7 +136,7 @@ Documentation for Zig. For more information, visit %{url}
 rm -f stage1/zig1.wasm
 %endif
 
-%build
+%conf
 # Force the correct LLVM version
 %if %{defined llvm_compat}
 export LLVM_DIR=%{_libdir}/llvm%{?llvm_compat}/%{_lib}/cmake
@@ -162,6 +160,8 @@ export LLVM_DIR=%{_libdir}/llvm%{?llvm_compat}/%{_lib}/cmake
     \
     -DZIG_VERSION:STRING="%(v=%{version_no_tilde}; echo ${v:0:6})"
 
+
+%build
 %if %{with bootstrap}
 %cmake_build --target stage3
 %else
