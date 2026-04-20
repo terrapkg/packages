@@ -139,7 +139,7 @@ export LLVM_DIR=%{_libdir}/llvm%{?llvm_compat}/%{_lib}/cmake
     -DCMAKE_C_FLAGS_RELWITHDEBINFO:STRING="-DNDEBUG -Wno-unused" \
     -DCMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING="-DNDEBUG -Wno-unused" \
     \
-    -DZIG_EXTRA_BUILD_ARGS:STRING="--verbose;--build-id=sha1" \
+    -DZIG_EXTRA_BUILD_ARGS:STRING="--verbose;--build-id=sha1;-Dno-langref=true" \
     -DZIG_SHARED_LLVM:BOOL=true \
     -DZIG_PIE:BOOL=true \
     \
@@ -168,11 +168,11 @@ attempt=1
 while ./zig-out/bin/zig build docs \
     --verbose \
     --global-cache-dir "%{zig_cache_dir}" \
-    -Dversion-string="%(v=%{ver}; echo ${v:0:6})"; [[ $? -ne 0 ]];
+    -Dversion-string="%(v=%{ver}; echo ${v:0:6})"; [[ $? != 0 ]];
 do
-  echo "Transitive failure. Trying again."
+  echo "Transitive failure. Trying again." >&2
 
-  if [[ $attempt -eq $max ]]
+  if [[ $attempt == $max ]]
   then
     break
   fi
