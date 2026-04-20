@@ -197,14 +197,14 @@ Summary:    Plugin for drumsynth
 %prep
 %autosetup -p1 -n DISTRHO-Ports-%{github_release}
 
-%build
+%conf
 %meson -Dbuild-vst2=true -Dbuild-vst3=true -Dbuild-lv2=true
+
+%build
 %meson_build
 
 %install
 %meson_install
-
-
 
 %files dexed
 %doc README.md
