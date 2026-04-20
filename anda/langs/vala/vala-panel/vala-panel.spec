@@ -36,8 +36,10 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 %prep
 %forgeautosetup
 
-%build
+%conf
 %meson -Dwnck=enabled -Dplatforms='wayland,x11'
+
+%build
 %meson_build
 
 %install
@@ -58,8 +60,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.valapanel.applica
 %config %{_sysconfdir}/xdg/vala-panel/
 %{_bindir}/vala-*
 %{_libdir}/libvalapanel.so.*
-%dir %{_libdir}/vala-panel
-%dir %{_libdir}/vala-panel/applets
 %{_libdir}/vala-panel/applets/*.so
 %{_datadir}/appdata/org.valapanel.application.appdata.xml
 %{_datadir}/applications/org.valapanel.application.desktop
@@ -67,17 +67,13 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.valapanel.applica
 %{_datadir}/icons/hicolor/96x96/apps/vala-panel.png
 %{_datadir}/icons/hicolor/scalable/apps/vala-panel.svg
 %{_datadir}/man/man1/*.1.gz
-%dir %{_datadir}/vala-panel
-%dir %{_datadir}/vala-panel/applets
 %{_datadir}/vala-panel/applets/*.plugin
-%dir %{_datadir}/vala-panel/images
 %{_datadir}/vala-panel/images/background.png
 %{_libdir}/girepository-1.0/ValaPanel-*.typelib
 
 %files devel
 %doc README.md
 %license LICENSE
-%dir %{_includedir}/vala-panel
 %{_includedir}/vala-panel/*.h
 %{_libdir}/libvalapanel.so
 %{_libdir}/pkgconfig/vala-panel.pc
