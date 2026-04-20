@@ -15,6 +15,7 @@ BuildRequires: cmake-extras
 BuildRequires: pkgconfig(yaml-cpp)
 BuildRequires: gcc-c++
 BuildRequires: gtest-devel
+BuildRequires: gmock-devel
 
 %description
 Library to detect and configure devices for Lomiri.
