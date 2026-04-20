@@ -9,7 +9,7 @@ Summary:    Library to detect and configure devices
 License:    GPL-3.0-or-later
 URL:        https://gitlab.com/ubports/development/core/deviceinfo
 Source0:    %{url}/-/archive/%commit/deviceinfo-%commit.tar.gz
-Source1:    https://salsa.debian.org/ubports-team/deviceinfo/-/raw/master/debian/device-info.1
+%dnl Source1:    https://salsa.debian.org/ubports-team/deviceinfo/-/raw/master/debian/device-info.1
 
 BuildRequires: cmake
 BuildRequires: cmake-extras
