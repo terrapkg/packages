@@ -59,6 +59,7 @@ jobs:
           merge-multiple: true
           path: ./artifacts
       - name: Generate test catalog
+        id: catalog
         # run appstream-builder, then add step summary
         run: |
           set -x
@@ -74,48 +75,64 @@ jobs:
             --veto-ignore=missing-info 2>&1 | tee asb.log
 
       - name: Run appstreamcli validate
+        if: steps.catalog.outcome == 'success'
         run: |
-          echo "## AppStream MetaInfo Validation" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo '```xml' >> $GITHUB_STEP_SUMMARY
-          appstreamcli validate output/test.xml.gz >> $GITHUB_STEP_SUMMARY || true
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo '```' >> $GITHUB_STEP_SUMMARY
+          if stat output/test.xml.gz &>/dev/null; then
+            echo "## AppStream MetaInfo Validation" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo '```xml' >> $GITHUB_STEP_SUMMARY
+            appstreamcli validate output/test.xml.gz >> $GITHUB_STEP_SUMMARY | true
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          else
+            echo "Nothing to do."
+          fi
+          
           
       - name: Export logs
         id: export_logs
+        if: steps.catalog.outcome == 'success'
         run: |
-          echo "## AppStream Builder Log" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo '```log' >> $GITHUB_STEP_SUMMARY
-          cat asb.log >> $GITHUB_STEP_SUMMARY
-          echo '```' >> $GITHUB_STEP_SUMMARY
-          echo '---' >> $GITHUB_STEP_SUMMARY
+          if stat output/*.xml.gz &>/dev/null; then
+            echo "## AppStream Builder Log" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo '```log' >> $GITHUB_STEP_SUMMARY
+            cat asb.log >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo '---' >> $GITHUB_STEP_SUMMARY
+          else
+            echo "Nothing to do."
+          fi
 
       - name: Report Summary
         id: report_summary
+        if: steps.export_logs.outcome == 'success'
         run: |
           echo "## AppStream Builder Report" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          if grep -q "veto" asb.log; then
-            echo "::group::Vetoed packages"
-            echo "### Vetoed packages" >> $GITHUB_STEP_SUMMARY
+          if stat output/*.xml.gz &>/dev/null; then
+            if grep -q "veto" asb.log; then
+              echo "::group::Vetoed packages"
+              echo "### Vetoed packages" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo '```xml' >> $GITHUB_STEP_SUMMARY
+              echo "$(grep -i 'veto' asb.log)" >> $GITHUB_STEP_SUMMARY
+              echo '```' >> $GITHUB_STEP_SUMMARY
+              echo "::warning file=asb.log::Some packages were vetoed during AppStream generation. Please review the 'Vetoed packages' section in the summary for details."
+              echo "::endgroup::"
+            fi
+            echo "## Full Data Summary" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
-            echo '```xml' >> $GITHUB_STEP_SUMMARY
-            echo "$(grep -i 'veto' asb.log)" >> $GITHUB_STEP_SUMMARY
-            echo '```' >> $GITHUB_STEP_SUMMARY
-            echo "::warning file=asb.log::Some packages were vetoed during AppStream generation. Please review the 'Vetoed packages' section in the summary for details."
-            echo "::endgroup::"
+            echo "### Generated Appstream files:" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            for file in output/*.xml.gz; do
+              echo "#### \`$file\`" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo '```xml' >> $GITHUB_STEP_SUMMARY
+              zcat "$file" >> $GITHUB_STEP_SUMMARY || true
+              echo '```' >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+            done
+          else
+            echo "No appstream files found." >> $GITHUB_STEP_SUMMARY
           fi
-          echo "## Full Data Summary" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### Generated Appstream files:" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          for file in output/*.xml.gz; do
-            echo "#### \`$file\`" >> $GITHUB_STEP_SUMMARY
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo '```xml' >> $GITHUB_STEP_SUMMARY
-            zcat "$file" >> $GITHUB_STEP_SUMMARY || true
-            echo '```' >> $GITHUB_STEP_SUMMARY
-            echo "" >> $GITHUB_STEP_SUMMARY
-          done
