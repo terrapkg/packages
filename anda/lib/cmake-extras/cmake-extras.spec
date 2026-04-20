@@ -32,7 +32,7 @@ sed -i 's/python/python3/' src/IncludeChecker/include_checker.py
 sed -i 'sX/usr/lib/qt5X${CMAKE_LIBDIR}/qt5X' src/QmlPlugins/QmlPluginsConfig.cmake
 
 %conf
-%cmake \
+%cmake
 %if 0%{?fedora} >= 44
        -DCMAKE_POLICY_VERSION_MINIMUM=3.5
 %endif
