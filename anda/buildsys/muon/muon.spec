@@ -36,7 +36,7 @@ BuildRequires:  python3-pyyaml
 BuildRequires:  mandoc
 BuildRequires:  mdbook
 
-BuildRequires:  tracy
+Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
 An implementation of the meson build system in c99 with minimal dependencies.
@@ -46,7 +46,6 @@ An implementation of the meson build system in c99 with minimal dependencies.
 
 %conf
 %meson --wrap-mode=nofallback \
-
 %if %{?fedora} >= 44
 -Dtracy=disabled
 %endif
