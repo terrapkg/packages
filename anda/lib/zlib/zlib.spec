@@ -37,5 +37,8 @@ BuildRequires:  gcc
 %_libdir/libz.so.*
 
 %changelog
+* Tue Apr 21 2026 Owen Zimmerman <owen@fyralabs.com>
+- Use %conf and %configure
+
 * Wed Nov 26 2025 metcya <metcya@gmail.com>
 - package zlib
