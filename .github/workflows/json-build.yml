@@ -43,12 +43,24 @@ jobs:
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 0
 
       - name: Set up git repository
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - name: Configure sccache
+        id: sccache
+        if: ${{ !contains(matrix.pkg.labels.sccache, '0') }}
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        env:
+          SCCACHE_GHA_VERSION: ${{ matrix.version }}-${{ matrix.pkg.arch }}-${{ matrix.pkg.pkg }}
+          SCCACHE_GHA_CACHE_FROM: ${{ matrix.version }}-${{ matrix.pkg.arch }}-${{ matrix.pkg.pkg }}
+        with:
+          script: |
+            const script = require('./.github/scripts/configure-sccache.js')
+            await script({github, context, core, exec})
 
       - name: CI Setup Script
         if: ${{ !contains(matrix.pkg.labels, 'mock') }}
@@ -67,6 +79,14 @@ jobs:
       - name: Build with Andaman
         run: anda build -D "vendor Terra" ${{ matrix.pkg.pkg }} -c terra-el${{ matrix.version }}-${{ matrix.pkg.arch }} ${{ !matrix.pkg.labels.mock == '1' && '-rrpmbuild' || '' }}
 
+      - name: Report Cache Summary
+        if: steps.sccache.outcome == 'success'
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const script = require('./.github/scripts/sccache-stats.js')
+            await script({github, context, core, exec})
+
       - name: Generating artifact name
         id: art
         run: |
@@ -74,7 +94,7 @@ jobs:
           x=${NAME//\//@}
           echo "name=$x" >> $GITHUB_OUTPUT
 
-      - uses: actions/upload-artifact@v7
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: ${{ steps.art.outputs.name }}
           compression-level: 0 # The RPMs are already compressed :p
