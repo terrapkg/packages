@@ -1,6 +1,6 @@
 Name:           muon
 Version:        0.5.0
-Release:        2%?dist
+Release:        1%?dist
 Summary:        A meson-compatible build system
 
 # https://git.sr.ht/~lattis/muon/tree/master/item/LICENSES
@@ -35,6 +35,8 @@ BuildRequires:  pkgconfig(libacl)
 BuildRequires:  python3-pyyaml
 BuildRequires:  mandoc
 BuildRequires:  mdbook
+
+Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
 An implementation of the meson build system in c99 with minimal dependencies.
