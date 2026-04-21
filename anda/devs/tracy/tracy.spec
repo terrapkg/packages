@@ -5,8 +5,37 @@ Summary:		A real time, nanosecond resolution, remote telemetry, hybrid frame and
 License:		BSD-3-Clause
 URL:			https://github.com/wolfpld/tracy
 Source0:		https://github.com/wolfpld/tracy/archive/refs/tags/v%version.tar.gz
-BuildRequires:  pkgconfig(egl) pkgconfig(glfw3) pkgconfig(freetype2) pkgconfig(dbus-1) pkgconfig(libunwind) pkgconfig(libdebuginfod) pkgconfig(tbb) pkgconfig(wayland-client) pkgconfig(wayland-protocols) pkgconfig(xkbcommon) pkgconfig(capstone) pkgconfig(openssl) pkgconfig(pugixml) pkgconfig(libcurl) pkgconfig(libxslt) pkgconfig(libnghttp2) pkgconfig(libidn2) pkgconfig(libssh2) tbb expat libxml2 openssl-libs
-BuildRequires:  cmake gcc gcc-c++ meson
+BuildRequires:  pkgconfig(egl)
+BuildRequires:  pkgconfig(glfw3)
+BuildRequires:  pkgconfig(freetype2)
+BuildRequires:  pkgconfig(dbus-1)
+BuildRequires:  pkgconfig(libunwind)
+BuildRequires:  pkgconfig(libdebuginfod)
+BuildRequires:  pkgconfig(tbb)
+BuildRequires:  pkgconfig(wayland-client)
+BuildRequires:  pkgconfig(wayland-protocols)
+BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:  pkgconfig(capstone)
+BuildRequires:  pkgconfig(openssl)
+BuildRequires:  pkgconfig(pugixml)
+BuildRequires:  pkgconfig(libcurl)
+BuildRequires:  pkgconfig(libxslt)
+BuildRequires:  pkgconfig(libnghttp2)
+BuildRequires:  pkgconfig(libidn2)
+BuildRequires:  pkgconfig(libssh2)
+BuildRequires:  tbb
+BuildRequires:  expat
+BuildRequires:  libxml2
+BuildRequires:  openssl-libs
+BuildRequires:  cmake
+BuildRequires:  meson
+%if 0%{?fedora} >= 44
+BuildRequires:  gcc15
+BuildRequires:  gcc15-c++
+%else
+BuildRequires:  gcc
+BuildRequires:  gcc-c++
+%endif
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
@@ -24,6 +53,10 @@ Development files for the tracy package.
 %autosetup
 
 %build
+%if 0%{?fedora} >= 44
+export CC=gcc-15
+export CXX=g++-15
+%endif
 %meson -Dcpp_std=c++17
 %meson_build
 for project in capture csvexport import update profiler
@@ -73,6 +106,9 @@ install -Dm644 icon/application-tracy.svg %buildroot%_iconsdir/hicolor/scalable/
 %_includedir/tracy/*
 
 %changelog
+* Tue Apr 21 2026 Owen Zimmerman <owen@fyralabs.com> - 0.13.1-2
+- Make gcc15 the default compiler on Fedora 44+
+
 * Mon Jan 19 2026 Owen Zimmerman <owen@fyralabs.com> - 0.13.1-1
 - Fix compile issues, update for 0.13.1
 
