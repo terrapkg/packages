@@ -1,3 +1,9 @@
+%if 0%{?fedora} >= 44
+%global gcc_compat 15
+%global __cc gcc-%{gcc_compat}
+%global __cxx g++-%{gcc_compat}
+%endif
+
 Name:			tracy
 Version:		0.13.1
 Release:		3%?dist
@@ -29,13 +35,8 @@ BuildRequires:  libxml2
 BuildRequires:  openssl-libs
 BuildRequires:  cmake
 BuildRequires:  meson
-%if 0%{?fedora} >= 44
-BuildRequires:  gcc15
-BuildRequires:  gcc15-c++
-%else
-BuildRequires:  gcc
-BuildRequires:  gcc-c++
-%endif
+BuildRequires:  gcc%{?gcc_compat}
+BuildRequires:  gcc%{?gcc_compat}-c++
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
@@ -53,10 +54,6 @@ Development files for the tracy package.
 %autosetup
 
 %conf
-%if 0%{?fedora} >= 44
-export CC=gcc-15
-export CXX=g++-15
-%endif
 %meson -Dcpp_std=c++17
 
 %build
@@ -64,11 +61,7 @@ export CXX=g++-15
 for project in capture csvexport import update profiler
 do
     pushd $project
-    %if 0%{?fedora} >= 44
-    CC=gcc-15 CXX=g++-15 %cmake -DDOWNLOAD_CAPSTONE=1 \
-    %else
     %cmake -DDOWNLOAD_CAPSTONE=1 \
-    %endif
            -DCMAKE_CXX_STANDARD=17 \
            -DCMAKE_SKIP_RPATH=ON \
            -DCMAKE_SKIP_INSTALL_RPATH=ON
