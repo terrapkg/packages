@@ -1,6 +1,6 @@
 name: Nightly Update
 permissions:
-  contents: write
+  contents: read
 on:
   schedule:
     - cron: "0 0 * * *"
@@ -8,13 +8,14 @@ on:
 
 jobs:
   autoupdate:
+    contents: write
     runs-on: ubuntu-22.04
     container:
       image: ghcr.io/terrapkg/builder:frawhide
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 0
           ssh-key: ${{ secrets.SSH_AUTHENTICATION_KEY }}
