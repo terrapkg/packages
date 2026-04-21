@@ -1,0 +1,13 @@
+diff --git a/include/tracy.h b/include/tracy.h
+index 8bbc923f..ae58c877 100644
+--- a/include/tracy.h
++++ b/include/tracy.h
+@@ -4,7 +4,7 @@
+  */
+ 
+ #ifdef TRACY_ENABLE
+-#include "tracy/TracyC.h"
++#include "tracy/tracy/TracyC.h"
+ 
+ #define TracyCZoneAutoS TracyCZoneN(tctx_func, __func__, true)
+ #define TracyCZoneAutoE TracyCZoneEnd(tctx_func)
