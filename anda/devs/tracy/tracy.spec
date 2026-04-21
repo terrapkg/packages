@@ -1,6 +1,6 @@
 Name:			tracy
 Version:		0.13.1
-Release:		2%?dist
+Release:		3%?dist
 Summary:		A real time, nanosecond resolution, remote telemetry, hybrid frame and sampling profiler for games and other applications
 License:		BSD-3-Clause
 URL:			https://github.com/wolfpld/tracy
@@ -15,6 +15,7 @@ Tracy is a real time, nanosecond resolution, remote telemetry, hybrid frame and 
 
 %package devel
 Summary: Development files for the tracy package
+Requires:    tracy = %{evr}
 
 %description devel
 Development files for the tracy package.
