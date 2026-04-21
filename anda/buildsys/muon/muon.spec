@@ -7,25 +7,55 @@ Summary:        A meson-compatible build system
 License:        GPL-3.0-only AND Apache-2.0 AND Unlicense AND MIT AND Python-2.0
 URL:            https://muon.build/
 Source:         https://git.sr.ht/~lattis/muon/archive/%{version}.tar.gz
+Patch0:         fix-tracy-header-placement-quirk.patch
+# mdbook removed multilingual support, this patch can be removed when this package next bumps
+Patch1:         remove-multilingual-field.patch
 
 BuildRequires:  meson
 BuildRequires:  gcc
+BuildRequires:  gcc-c++
 BuildRequires:  cmake
 BuildRequires:  libcurl-devel
 BuildRequires:  libarchive-devel
 BuildRequires:  libpkgconf-devel
 BuildRequires:  scdoc
 BuildRequires:  git-core
+%if %{?fedora} < 44
+BuildRequires:  pkgconfig(tracy) %dnl Temporary fix while Tracy does not build for 44+
+%endif
+BuildRequires:  pkgconfig(libattr)
+BuildRequires:  pkgconfig(bzip2)
+BuildRequires:  pkgconfig(libb2)
+BuildRequires:  pkgconfig(liblz4)
+BuildRequires:  pkgconfig(libzstd)
+BuildRequires:  pkgconfig(liblzma)
+BuildRequires:  pkgconfig(lzo2)
+BuildRequires:  pkgconfig(libxml-2.0)
+BuildRequires:  pkgconfig(libacl)
+BuildRequires:  python3-pyyaml
+BuildRequires:  mandoc
+BuildRequires:  mdbook
+
 BuildRequires:  tracy
 
 %description
 An implementation of the meson build system in c99 with minimal dependencies.
 
+%package devel
+%pkg_devel_files
+
+%package static
+%pkg_static_files
+
 %prep
-%autosetup
+%autosetup -p1
 
 %conf
-%meson -Ddocs=disabled
+%meson --wrap-mode=forcefallback \
+
+%if %{?fedora} >= 44
+-Dtracy=disabled
+%endif
 
 %build
 %meson_build
@@ -40,4 +70,4 @@ An implementation of the meson build system in c99 with minimal dependencies.
 
 %changelog
 * Mon Apr 20 2026 Owen Zimmerman <owen@fyralabs.com>
-- Update spec
+- Update spec, add tracy patch
