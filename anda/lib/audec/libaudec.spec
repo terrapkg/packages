@@ -32,8 +32,10 @@ This package contains the development files for the %name package.
 rm -r tests
 %endif
 
-%build
+%conf
 %meson
+
+%build
 %meson_build
 
 %install
