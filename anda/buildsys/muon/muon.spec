@@ -36,8 +36,6 @@ BuildRequires:  python3-pyyaml
 BuildRequires:  mandoc
 BuildRequires:  mdbook
 
-BuildRequires:  tracy
-
 %description
 An implementation of the meson build system in c99 with minimal dependencies.
 
