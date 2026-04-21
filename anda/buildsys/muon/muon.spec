@@ -45,8 +45,7 @@ An implementation of the meson build system in c99 with minimal dependencies.
 %autosetup -p1
 
 %conf
-%meson \ 
---wrap-mode=nofallback \
+%meson --wrap-mode=nofallback \
 %if %{?fedora} >= 44
 -Dtracy=disabled
 %endif
