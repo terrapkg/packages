@@ -41,17 +41,11 @@ BuildRequires:  tracy
 %description
 An implementation of the meson build system in c99 with minimal dependencies.
 
-%package devel
-%pkg_devel_files
-
-%package static
-%pkg_static_files
-
 %prep
 %autosetup -p1
 
 %conf
-%meson --wrap-mode=forcefallback \
+%meson --wrap-mode=nofallback \
 
 %if %{?fedora} >= 44
 -Dtracy=disabled
@@ -67,6 +61,7 @@ An implementation of the meson build system in c99 with minimal dependencies.
 %{_bindir}/muon
 %{_mandir}/man1/muon*
 %{_mandir}/man5/meson*
+%{_mandir}/man3/meson-reference.3.*
 
 %changelog
 * Mon Apr 20 2026 Owen Zimmerman <owen@fyralabs.com>
