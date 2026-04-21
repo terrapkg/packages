@@ -34,8 +34,10 @@ The goal is 100% compatibility with AwesomeWM's Lua configuration.
 %prep
 %autosetup
 
-%build
+%conf
 %meson -Dwerror=false
+
+%build
 %meson_build
 
 %install
