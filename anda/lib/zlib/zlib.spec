@@ -19,10 +19,10 @@ BuildRequires:  gcc
 %pkg_static_files
 
 %prep
-%autosetup 
-export CFLAGS="%optflags"
-export LDFLAGS="%build_ldflags"
-./configure --libdir=%_libdir \
+%autosetup
+
+%conf
+%configure --libdir=%_libdir \
             --includedir=%_includedir \
             --sysconfdir=%_sysconfdir \
             --localstatedir=%_localstatedir \
