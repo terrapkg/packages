@@ -52,12 +52,14 @@ Development files for the tracy package.
 %prep
 %autosetup
 
-%build
+%conf
 %if 0%{?fedora} >= 44
 export CC=gcc-15
 export CXX=g++-15
 %endif
 %meson -Dcpp_std=c++17
+
+%build
 %meson_build
 for project in capture csvexport import update profiler
 do
