@@ -64,7 +64,11 @@ export CXX=g++-15
 for project in capture csvexport import update profiler
 do
     pushd $project
+    %if 0%{?fedora} >= 44
+    CC=gcc-15 CXX=g++-15 %cmake -DDOWNLOAD_CAPSTONE=1 \
+    %else
     %cmake -DDOWNLOAD_CAPSTONE=1 \
+    %endif
            -DCMAKE_CXX_STANDARD=17 \
            -DCMAKE_SKIP_RPATH=ON \
            -DCMAKE_SKIP_INSTALL_RPATH=ON
