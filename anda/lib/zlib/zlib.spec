@@ -22,11 +22,7 @@ BuildRequires:  gcc
 %autosetup
 
 %conf
-%configure --libdir=%_libdir \
-            --includedir=%_includedir \
-            --sysconfdir=%_sysconfdir \
-            --localstatedir=%_localstatedir \
-            --prefix=%_prefix
+%configure
 
 %build
 %make_build
