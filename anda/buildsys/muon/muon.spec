@@ -16,6 +16,7 @@ BuildRequires:  libarchive-devel
 BuildRequires:  libpkgconf-devel
 BuildRequires:  scdoc
 BuildRequires:  git-core
+BuildRequires:  tracy
 
 %description
 An implementation of the meson build system in c99 with minimal dependencies.
@@ -24,7 +25,7 @@ An implementation of the meson build system in c99 with minimal dependencies.
 %autosetup
 
 %build
-%meson -Dtracy=disabled
+%meson -Ddocs=disabled
 %meson_build
 
 %install
