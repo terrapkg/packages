@@ -179,10 +179,12 @@ help2man --no-discard-stderr --no-info "./zig-out/bin/zig" --version-option=vers
 # Zig has an extremely annoying issue with transitive failures when trying to build the docs, retry until it succeeds
 max=3
 attempt=1
-while ./zig-out/bin/zig build docs \
+while
+  ./zig-out/bin/zig build docs \
     --verbose \
     --global-cache-dir "%{zig_cache_dir}" \
-    -Dversion-string="%(v=%{version_no_tilde}; echo ${v:0:6})"; [[ $? != 0 ]];
+    -Dversion-string="%(v=%{version_no_tilde}; echo ${v:0:6})"
+  [[ $? != 0 ]]
 do
   echo "Transitive failure. Trying again." >&2
 
