@@ -12,6 +12,7 @@ Source:  %{forgesource}
 
 BuildRequires: fdupes
 BuildRequires: meson
+BuildRequires: cmake
 BuildRequires: vala
 BuildRequires: desktop-file-utils
 BuildRequires: libappstream-glib
