@@ -25,8 +25,10 @@ Ayatana Application Indicators Shared Library (GLib-2.0 reimplementation, 100% G
 %prep
 %autosetup -n %{name}-%{version}
 
+%conf
+%cmake
+
 %build
-%cmake 
 %cmake_build
 
 %install
