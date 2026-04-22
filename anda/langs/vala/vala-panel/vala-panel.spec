@@ -21,6 +21,7 @@ BuildRequires: pkgconfig(gmodule-2.0)
 BuildRequires: pkgconfig(libwnck-3.0)
 BuildRequires: pkgconfig(x11)
 BuildRequires: pkgconfig(libpeas-gtk-1.0)
+BuildRequires: pkgconfig(appmenu-glib-translator)
 BuildRequires: gtk-layer-shell-devel
 
 %description
