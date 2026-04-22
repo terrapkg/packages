@@ -182,11 +182,11 @@ attempt=1
 while ./zig-out/bin/zig build docs \
     --verbose \
     --global-cache-dir "%{zig_cache_dir}" \
-    -Dversion-string="%(v=%{version_no_tilde}; echo ${v:0:6})"; [[ $? -ne 0 ]];
+    -Dversion-string="%(v=%{version_no_tilde}; echo ${v:0:6})"; [[ $? != 0 ]];
 do
   echo "Transitive failure. Trying again." >&2
 
-  if [[ $attempt -eq $max ]]
+  if [[ $attempt == $max ]]
   then
     break
   fi
