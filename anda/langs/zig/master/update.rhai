@@ -8,7 +8,7 @@ if rpm.changed() {
   rpm.release(r + 1);
   // Update the needed LLVM version
   let rawfile = codeberg_rawfile("ziglang/zig", "master", "README.md");
-  let l = find(`download.html#([\d.]+)`, rawfile, 1);
+  let l = find(`releases\.llvm\.org/download\.html#([\d.]+)`, rawfile, 1);
   rpm.global("llvm_version", l);
   l.truncate(2);
   rpm.global("llvm_compat", l);
