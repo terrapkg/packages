@@ -20,9 +20,7 @@ BuildRequires:  libarchive-devel
 BuildRequires:  libpkgconf-devel
 BuildRequires:  scdoc
 BuildRequires:  git-core
-%if %{?fedora} < 44
-BuildRequires:  pkgconfig(tracy) %dnl Temporary fix while Tracy does not build for 44+
-%endif
+BuildRequires:  pkgconfig(tracy)
 BuildRequires:  pkgconfig(libattr)
 BuildRequires:  pkgconfig(bzip2)
 BuildRequires:  pkgconfig(libb2)
@@ -45,10 +43,7 @@ An implementation of the meson build system in c99 with minimal dependencies.
 %autosetup -p1
 
 %conf
-%meson --wrap-mode=nofallback \
-%if %{?fedora} >= 44
--Dtracy=disabled
-%endif
+%meson --wrap-mode=nofallback
 
 %build
 %meson_build
