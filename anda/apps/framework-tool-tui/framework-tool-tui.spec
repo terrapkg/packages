@@ -10,6 +10,7 @@ License:        MIT
 BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  pkgconfig(libudev)
+BuildArch:      x86_64
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
