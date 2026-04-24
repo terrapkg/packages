@@ -64,5 +64,8 @@ macOS Launchpad, COSMIC, and Pantheon.
 %{_metainfodir}/dev.xarbit.appgrid.metainfo.xml
 
 %changelog
+* Sat Apr 25 2026 hilltty <49129010+hilltty@users.noreply.github.com> - 1.7.8-1
+- Update to 1.7.8
+
 * Thu Apr 24 2026 hilltty <49129010+hilltty@users.noreply.github.com> - 1.2.1-1
 - Initial package
