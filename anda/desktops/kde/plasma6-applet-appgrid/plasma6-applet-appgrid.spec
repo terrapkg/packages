@@ -44,8 +44,10 @@ macOS Launchpad, COSMIC, and Pantheon.
 %prep
 %autosetup -n plasma6-applet-appgrid-%{version}
 
-%build
+%conf
 %cmake
+
+%build
 %cmake_build
 
 %install
@@ -62,4 +64,5 @@ macOS Launchpad, COSMIC, and Pantheon.
 %{_metainfodir}/dev.xarbit.appgrid.metainfo.xml
 
 %changelog
-%autochangelog
+* Thu Apr 24 2026 hilltty <49129010+hilltty@users.noreply.github.com> - 1.2.1-1
+- Initial package
