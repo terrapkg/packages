@@ -1,5 +1,5 @@
 Name:           plasma6-applet-appgrid
-Version:        1.2.1
+Version:        1.7.8
 Release:        1%{?dist}
 Summary:        A modern application launcher for KDE Plasma, inspired by macOS and COSMIC
 # Main code: GPL-2.0-or-later
@@ -64,5 +64,8 @@ macOS Launchpad, COSMIC, and Pantheon.
 %{_metainfodir}/dev.xarbit.appgrid.metainfo.xml
 
 %changelog
+* Sat Apr 25 2026 hilltty <49129010+hilltty@users.noreply.github.com> - 1.7.8-1
+- Update to 1.7.8
+
 * Thu Apr 24 2026 hilltty <49129010+hilltty@users.noreply.github.com> - 1.2.1-1
 - Initial package
