@@ -6,6 +6,7 @@ Summary:        A modern application launcher for KDE Plasma, inspired by macOS 
 # dev.xarbit.appgrid.metainfo.xml: CC0-1.0
 License:        GPL-2.0-or-later AND CC0-1.0
 URL:            https://github.com/xarbit/plasma6-applet-appgrid
+Packager:       hilltty <49129010+hilltty@users.noreply.github.com>
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
 BuildRequires:  cmake
