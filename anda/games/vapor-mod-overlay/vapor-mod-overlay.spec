@@ -1,6 +1,6 @@
 Name:      vapor-mod-overlay
 Version:   0.0.1
-Release:   2%{?dist}
+Release:   1%{?dist}
 Summary:   A fairly basic OverlayFS powered mod loader for Steam
 License:   MIT
 URL:       https://github.com/ChristianSilvermoon/vapor-mod-overlay

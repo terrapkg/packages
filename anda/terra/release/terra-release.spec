@@ -2,11 +2,11 @@
 
 Name:           terra-release
 Version:        %{?fedora:%{fedora}}%{?rhel:%{rhel}}
-Release:        8
+Release:        9%{?dist}
 Summary:        Release package for Terra
 
 License:        MIT
-URL:            https://terra.fyralabs.com
+URL:            https://terrapkg.com
 Source0:        terra.repo
 Source1:        terra-extras.repo
 Source2:        terra-nvidia.repo

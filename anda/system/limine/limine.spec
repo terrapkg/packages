@@ -1,5 +1,5 @@
 Name:		limine
-Version:	10.8.5
+Version:	11.2.1
 Release:	1%{?dist}
 Summary:	Modern, advanced, portable, multiprotocol bootloader
 License:	BSD-2-Clause
@@ -17,8 +17,10 @@ the reference implementation for the Limine boot protocol.
 %autosetup
 cp %{S:1} .
 
-%build
+%conf
 %configure --enable-all CC_FOR_TARGET=clang LD_FOR_TARGET=ld.lld
+
+%build
 %make_build
 
 %install

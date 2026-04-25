@@ -3,7 +3,7 @@
 Name:       libayatana-appindicator-glib
 Summary:    Ayatana Application Indicators Shared Library
 Version:    2.0.1
-Release:    2%?dist
+Release:    4%?dist
 License:    GPL-3.0-or-later
 Packager:   veuxit <erroor234@gmail.com>
 URL:        https://github.com/AyatanaIndicators/libayatana-appindicator-glib
@@ -25,8 +25,10 @@ Ayatana Application Indicators Shared Library (GLib-2.0 reimplementation, 100% G
 %prep
 %autosetup -n %{name}-%{version}
 
+%conf
+%cmake
+
 %build
-%cmake 
 %cmake_build
 
 %install

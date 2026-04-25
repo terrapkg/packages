@@ -5,8 +5,8 @@
 %global firmware_hash3 e2710daf81e7b36d35985348f68a81d18bc537a2b0c508ffdfde6ac3eae1bad7
 
 Name:           xone
-Version:        0.5.7
-Release:        1%?dist
+Version:        0.5.8
+Release:        2%{?dist}
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Epoch:          2
 %endif
@@ -44,7 +44,7 @@ Linux kernel driver for Xbox One and Xbox Series X|S accessories common files.
 
 %package        akmod-modules
 Summary:        Modules for Akmods
-Requires:       akmod-%{name}
+Requires:       %{name}-kmod = %{?epoch:%{epoch}:}%{version}
 BuildArch:      noarch
 
 %description    akmod-modules

@@ -52,9 +52,6 @@ rm %{buildroot}%{_usr}/wormhole_complete.*
 %{_bindir}/magic-wormhole
 %{_bindir}/wormhole
 %{_mandir}/man1/wormhole.1.gz
-%ghost %python3_sitelib/__pycache__/*.cpython-*.pyc
-%ghost %python3_sitelib/%{name}/subcommands/__pycache__/*.cpython-*.pyc
-%python3_sitelib/magic_wormhole-%version.dist-info/*
 
 %changelog
 * Mon Nov 03 2025 Owen Zimmerman <owen@fyralabs.com>
