@@ -3,9 +3,9 @@
 # Signing key from https://ziglang.org/download/
 %global         public_key RWSGOq2NVecA2UPNdBUZykf1CCb147pkmdtYxgb3Ti+JO/wCYvhbAb/U
 %if 0%{?fedora} >= 44
-%define         llvm_compat 21
+%define         llvm_compat 22
 %endif
-%global         llvm_version 21.0.0
+%global         llvm_version 22.0.0
 %global         ver 0.17.0-dev.131+73c51c142
 %bcond bootstrap 1
 %bcond docs      %{without bootstrap}
