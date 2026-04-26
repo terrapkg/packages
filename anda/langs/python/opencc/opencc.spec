@@ -2,8 +2,8 @@
 %global _desc Open Chinese Convert.
 
 Name:			python-%{pypi_name}
-Version:		1.2.0
-Release:		1%?dist
+Version:		1.3.0
+Release:		1%{?dist}
 Summary:		Open Chinese Convert
 License:		Apache-2.0
 URL:			https://github.com/BYVoid/OpenCC

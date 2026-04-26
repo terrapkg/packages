@@ -1,5 +1,5 @@
 project pkg {
 	rpm {
-		spec = "muon.spec"
+		spec = "uupd.spec"
 	}
 }

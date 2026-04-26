@@ -44,12 +44,14 @@ Development files for the GStreamer IPU6 camera plugin.
 
 %prep
 %autosetup -p1 -n icamerasrc-%{commit}
-autoreconf -vif
 
-%build
+%conf
+autoreconf -vif
 export CHROME_SLIM_CAMHAL=ON
 export STRIP_VIRTUAL_CHANNEL_CAMHAL=ON
 %configure --enable-gstdrmformat --with-haladaptor
+
+%build
 %make_build
 
 %install

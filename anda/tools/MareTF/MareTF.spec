@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:           MareTF
-Version:        0.10.3
+Version:        0.10.4
 Release:        1%{?dist}
 License:        MIT
 Summary:        A utility to create, edit, and display every type of VTF file ever made
