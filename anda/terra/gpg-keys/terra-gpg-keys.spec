@@ -2,7 +2,7 @@
 
 Name:           terra-gpg-keys
 Version:        %{?fedora:%{fedora}}%{?rhel:%{rhel}}
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        GPG keys for Terra
 Requires:       filesystem >= 3.18-6
 
@@ -52,17 +52,12 @@ Source39:       RPM-GPG-KEY-terra44-source
 Source40:       RPM-GPG-KEY-terrael10
 Source41:       RPM-GPG-KEY-terrael10-source
 BuildArch:      noarch
+Obsoletes:      terra-mock-gpg-keys < %{version}-5
 
 Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 GPG keys for Terra, used for verifying RPM package signatures.
-
-%package -n     terra-mock-gpg-keys
-Summary:        Terra GPG keys for Mock
-
-%description -n terra-mock-gpg-keys
-Terra GPG key copies for use in Mock.
 
 %prep
 
@@ -72,13 +67,6 @@ Terra GPG key copies for use in Mock.
 install -d -m 755 $RPM_BUILD_ROOT/etc/pki/rpm-gpg
 install -m 644 %{_sourcedir}/RPM-GPG-KEY* $RPM_BUILD_ROOT/etc/pki/rpm-gpg/
 
-install -d -m 755 $RPM_BUILD_ROOT/etc/pki/mock
-install -m 644 %{_sourcedir}/RPM-GPG-KEY* $RPM_BUILD_ROOT/etc/pki/mock/
-
 %files
 %dir /etc/pki/rpm-gpg
 /etc/pki/rpm-gpg/RPM-GPG-KEY-*
-
-%files -n terra-mock-gpg-keys
-%dir /etc/pki/mock
-/etc/pki/mock/RPM-GPG-KEY-*
