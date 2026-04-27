@@ -6,7 +6,7 @@
 %define         llvm_compat 22
 %endif
 %global         llvm_version 22.0.0
-%global         ver 0.17.0-dev.131+73c51c142
+%global         ver 0.17.0-dev.135+9df02121d
 %bcond bootstrap 1
 %bcond docs      %{without bootstrap}
 %bcond test      1
@@ -45,7 +45,7 @@
 
 Name:           zig-master
 Version:        %(echo %{ver} | sed 's/-/~/g')
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Bootstrapped build of Zig from master.
 License:        MIT AND NCSA AND LGPL-2.1-or-later AND LGPL-2.1-or-later WITH GCC-exception-2.0 AND GPL-2.0-or-later AND GPL-2.0-or-later WITH GCC-exception-2.0 AND BSD-3-Clause AND Inner-Net-2.0 AND ISC AND LicenseRef-Fedora-Public-Domain AND GFDL-1.1-or-later AND ZPL-2.1
 URL:            https://ziglang.org
