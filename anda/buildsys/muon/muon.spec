@@ -1,6 +1,6 @@
 Name:           muon
 Version:        0.5.0
-Release:        2%?dist
+Release:        4%{?dist}
 Summary:        A meson-compatible build system
 
 # https://git.sr.ht/~lattis/muon/tree/master/item/LICENSES
@@ -52,6 +52,8 @@ An implementation of the meson build system in c99 with minimal dependencies.
 %meson_install
 
 %files
+%license LICENSES/
+%doc README.md
 %{_bindir}/muon
 %{_mandir}/man1/muon*
 %{_mandir}/man5/meson*
