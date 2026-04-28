@@ -25,6 +25,8 @@ BuildRequires:  ghc-base-prof
 %endif
 # End cabal-rpm deps
 
+Packager:       Owen Zimmerman <owen@fyralabs.com>
+
 %description
 Bit-vectors implemented as a thin wrapper over integers.
 
