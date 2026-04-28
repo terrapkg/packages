@@ -10,6 +10,7 @@ Summary:        Mesa graphics libraries - legacy compatibility libraries
 %global ver 25.0.7
 Version:        %{lua:ver = string.gsub(rpm.expand("%{ver}"), "-", "~"); print(ver)}
 Release:        3%{?dist}
+Epoch:          1
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0
 URL:            http://www.mesa3d.org
 Source0:        https://archive.mesa3d.org/mesa-%{ver}.tar.xz
