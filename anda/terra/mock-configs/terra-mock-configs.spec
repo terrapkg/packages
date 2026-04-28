@@ -1,6 +1,6 @@
 Name:           terra-mock-configs
 Version:        2.4.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Epoch:          1
 Summary:        Mock configs for Terra repos
 
@@ -9,8 +9,7 @@ URL:            https://github.com/terrapkg/mock-configs
 Source0:        %url/archive/refs/tags/v%version.tar.gz
 
 BuildRequires:  mock-core-configs
-Requires:       mock-core-configs
-Requires:       terra-mock-gpg-keys
+Requires:       mock-core-configss
 BuildArch:      noarch
 
 Provides: anda-mock-configs = %{epoch}:%{version}-%{release}
