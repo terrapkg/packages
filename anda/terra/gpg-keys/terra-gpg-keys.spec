@@ -2,7 +2,7 @@
 
 Name:           terra-gpg-keys
 Version:        %{?fedora:%{fedora}}%{?rhel:%{rhel}}
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        GPG keys for Terra
 Requires:       filesystem >= 3.18-6
 
@@ -52,7 +52,7 @@ Source39:       RPM-GPG-KEY-terra44-source
 Source40:       RPM-GPG-KEY-terrael10
 Source41:       RPM-GPG-KEY-terrael10-source
 BuildArch:      noarch
-Obsoletes:      terra-mock-gpg-keys < %{version}-5
+Obsoletes:      terra-mock-gpg-keys < %{version}-6
 
 Packager:       Terra Packaging Team <terra@fyralabs.com>
 
