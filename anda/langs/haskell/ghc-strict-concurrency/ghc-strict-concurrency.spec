@@ -115,5 +115,5 @@ dos2unix -k -n %{SOURCE1} %{pkg_name}.cabal
 
 
 %changelog
-* Sun Apr 26 2026 Owen-sz <owen@fyralabs.com> - 0.2.4.3-1
+* Sun Apr 26 2026 Owen Zimmerman <owen@fyralabs.com> - 0.2.4.3-1
 - Initial commit
