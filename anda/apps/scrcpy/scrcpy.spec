@@ -19,8 +19,8 @@
 %endif
 
 Name:			scrcpy
-Version:		3.3.3
-Release:		2%?dist
+Version:		3.3.4
+Release:		1%?dist
 Summary:		Display and control your Android device
 License:		Apache-2.0 AND Proprietary
 URL:			https://github.com/Genymobile/scrcpy

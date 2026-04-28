@@ -5,8 +5,8 @@
 %global         cuda_version 12
 
 Name:           cuda-cudnn
-Version:        9.17.0.29
-Release:        1%?dist
+Version:        9.21.1.3
+Release:        1%{?dist}
 Epoch:          1
 Summary:        NVIDIA CUDA Deep Neural Network library (cuDNN)
 License:        NVIDIA Software Development Kit

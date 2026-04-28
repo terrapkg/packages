@@ -5,7 +5,7 @@
 %global altdiffname cococonscious-%{crate}
 
 Name:           rust-koji
-Version:        3.3.1
+Version:        3.4.0
 Release:        1%?dist
 Summary:        Interactive CLI for creating conventional commits
 

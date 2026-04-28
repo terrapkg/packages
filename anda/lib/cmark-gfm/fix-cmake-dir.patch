@@ -1,0 +1,13 @@
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 84dd2a0..d8f5ffa 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -175,7 +175,7 @@ if(CMARK_SHARED OR CMARK_STATIC)
+     DESTINATION include
+     )
+ 
+-  install(EXPORT cmark-gfm DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake)
++  install(EXPORT cmark-gfm DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/cmark-gfm)
+ endif()
+ 
+ # Feature tests

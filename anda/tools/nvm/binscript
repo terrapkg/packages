@@ -1,5 +1,5 @@
-#!/usr/bin/sh
+#!/usr/bin/bash
 
-. /etc/profile.d/nvm.sh
+\. /etc/profile.d/nvm.sh --no-use
 
 nvm $@

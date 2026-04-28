@@ -1,7 +1,7 @@
 %global goipath github.com/arduino/remoteocd
 
-%global commit 6e375c835fe319e8eef3f40578bf8de044156ce1
-%global commit_date 20251105
+%global commit f0c6a133ea43a8df9bb5b37fb228ec01eefd57b1
+%global commit_date 20260428
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Version:        0^%commit_date.%shortcommit
@@ -9,7 +9,7 @@ Version:        0^%commit_date.%shortcommit
 %gometa -f
 
 Name:           remoteocd
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Flexible firmware flashing for the Arduino UNO Q Microcontroller
 License:        GPL-3.0-only
 

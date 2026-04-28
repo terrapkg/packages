@@ -1,5 +1,5 @@
-%global commit 1815ad67432803843058a3cf7eefbf376e9c02c9
-%global commit_date 20251029
+%global commit 0fee3911afdaabbdcf4e8214e3472198a1c0c9db
+%global commit_date 20260304
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           rpinters

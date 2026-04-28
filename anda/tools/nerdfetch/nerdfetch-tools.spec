@@ -1,6 +1,6 @@
 Name: nerdfetch
-Version: 8.4.2
-Release: 1%?dist
+Version: 8.5.4
+Release: 1%{?dist}
 Summary: A POSIX *nix fetch script using Nerdfonts 
 
 License: MIT

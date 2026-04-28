@@ -1,7 +1,7 @@
 import "andax/bump_extras.rhai" as bump;
 import "andax/spec.rhai" as spec;
 
-rpm.version(pypi("kde-material-you-colors"));
+rpm.version(find(`version = \"([\d.]+)\"`, gh_rawfile("luisbocanegra/kde-material-you-colors", "main", "pyproject.toml"), 1));
 
 open_file("anda/themes/kde-material-you-colors/VERSION_qt6-qtbase.txt", "w").write(bump::bodhi("qt6-qtbase", bump::as_bodhi_ver(labels.branch)));
 

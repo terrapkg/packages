@@ -1,10 +1,10 @@
-%global commit a822eb767a330711e67714428c1c56cf3c82f044
-%global commit_date 20251118
+%global commit b8a8e25fdc8a9f7c479535144ca8f99a31aa299f
+%global commit_date 20260325
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           appset
 Version:        0~%commit_date.git~%shortcommit
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Application for customisation of appearance of Raspberry Pi Desktop
 License:        BSD-3-Clause
 URL:            https://github.com/raspberrypi-ui/appset

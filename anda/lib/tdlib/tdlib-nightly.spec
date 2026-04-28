@@ -1,11 +1,11 @@
-%global commit 889bdf06029f98f3d04cac874dafab6f4f847c47
-%global ver 1.8.58
-%global commit_date 20251205
+%global commit 8fc2344f3e3daf55983032a44c4156bd8a1a7533
+%global ver 1.8.63
+%global commit_date 20260426
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:          tdlib-nightly
 Version:       %ver^%commit_date.%shortcommit
-Release:       1%?dist
+Release:       1%{?dist}
 License:       BSL-1.0
 URL:           https://github.com/tdlib/td
 Summary:       Cross-platform library for building Telegram clients
@@ -85,7 +85,7 @@ cp -r ../example %buildroot%_datadir/%{name}
 %_libdir/libtd*.a
 
 %changelog
-* Sun May 28 2023 windowsboy111 <windowsboy111@fyralabs.com> - 1.8.14^54b34e9180dabc017210ebe3995f01d0c2fbaef1-1
+* Sun May 28 2023 madonuko <mado@fyralabs.com> - 1.8.14^54b34e9180dabc017210ebe3995f01d0c2fbaef1-1
 - Repackaged for Terra
 
 * Sat Jan 21 2023 Fedora Release Engineering <releng@fedoraproject.org> - 1.8.0-3

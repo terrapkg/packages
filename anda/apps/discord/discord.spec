@@ -6,8 +6,8 @@
 %global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 Name:			discord
-Version:		0.0.118
-Release:		1%?dist
+Version:		0.0.135
+Release:		1%{?dist}
 Summary:		Free Voice and Text Chat for Gamers
 URL:			https://discord.com
 Source0:		https://dl.discordapp.net/apps/linux/%{version}/discord-%{version}.tar.gz
@@ -46,5 +46,5 @@ ln -s %_datadir/discord/Discord %buildroot%_bindir/discord
 %{_datadir}/pixmaps/discord.png
 
 %changelog
-* Thu Jan 19 2023 windowsboy111 <wboy111@outlook.com> - 0.0.143-1
+* Thu Jan 19 2023 madonuko <mado@fyralabs.com> - 0.0.143-1
 - Initial package

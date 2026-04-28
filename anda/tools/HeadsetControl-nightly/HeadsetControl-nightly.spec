@@ -1,12 +1,12 @@
 %global _udevrulesdir /usr/lib/udev/rules.d
 
-%global commit      abe3ac8a6a561b1711769b9f747c1ad330b826dd
+%global commit      07311fa2f2b58976a2fe2e613aa6d81aa1b64cf3
 %global commitdate  20251121
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           HeadsetControl-nightly
 Version:        0^%{commitdate}.%{shortcommit}
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        A tool to control certain aspects of USB-connected headsets on Linux
 URL:            https://github.com/Sapd/HeadsetControl
 Source:         %{url}/archive/%{commit}.tar.gz

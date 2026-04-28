@@ -55,5 +55,5 @@ install -Dm644 %{SOURCE3} "%{buildroot}/%{_datadir}/doc/%{name}/README.md"
 /usr/share/applications/%{name}.desktop
 
 %changelog
-* Tue Feb 7 2023 windowsboy111 <windowsboy111@fyralabs.com> - 0.16.1-1
+* Tue Feb 7 2023 madonuko <mado@fyralabs.com> - 0.16.1-1
 - Initial package

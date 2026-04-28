@@ -1,8 +1,8 @@
-%global swayVersion 1.10.1
+%global swayVersion 1.11
 
 Name:           swayfx
 Version:        0.5.2
-Release:        1%?dist
+Release:        2%?dist
 
 Summary:        SwayFX: Sway, but with eye candy!
 URL:            https://github.com/WillPower3309/swayfx

@@ -1,0 +1,10 @@
+<component type="addon">
+  <id>dev.vencord.Installer</id>
+  <extends>com.discordapp.Discord</extends>
+  <name>Vencord Installer</name>
+  <summary>Installer for Vencord</summary>
+  <project_license>GPL-3.0+</project_license>
+  <categories>
+    <category>Internet</category>
+  </categories>
+</component>
