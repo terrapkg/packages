@@ -3,7 +3,7 @@
 %global appid moe.launcher.an-anime-game-launcher
 Name:           %{crate}
 Version:        3.19.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        An Anime Game Launcher for Linux with automatic patching and telemetry disabling
 
 License:        GPL-3.0-or-later
