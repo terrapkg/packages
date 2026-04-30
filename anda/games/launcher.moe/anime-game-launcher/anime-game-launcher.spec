@@ -3,7 +3,7 @@
 %global appid moe.launcher.an-anime-game-launcher
 Name:           %{crate}
 Version:        3.19.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        An Anime Game Launcher for Linux with automatic patching and telemetry disabling
 
 License:        GPL-3.0-or-later
@@ -53,6 +53,7 @@ BuildRequires: protobuf-devel protobuf-compiler
 %install
 %crate_install_bin
 
+install -Dm644 assets/moe.launcher.an-anime-game-launcher.metainfo.xml %{buildroot}%{_metainfodir}/moe.launcher.an-anime-game-launcher.metainfo.xml
 install -Dm644 assets/images/icon.png %{buildroot}%{_datadir}/icons/hicolor/512x512/apps/%{appid}.png
 desktop-file-install \
     --set-icon="%{appid}" \
@@ -70,7 +71,11 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/anime-game-launcher.
 %{_datadir}/applications/anime-game-launcher.desktop
 %{_bindir}/%{crate}
 %{_datadir}/icons/hicolor/512x512/apps/%{appid}.png
+%{_metainfodir}/moe.launcher.an-anime-game-launcher.metainfo.xml
 
 %changelog
+* Mon Dec 08 2025 Owen Zimmerman <owen@fyralabs.com>
+- Install metainfo
+
 * Sat Sep 20 2025 Cappy Ishihara <cappy@cappuchino.xyz>
 - Initial package

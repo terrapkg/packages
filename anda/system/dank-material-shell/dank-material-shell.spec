@@ -1,7 +1,7 @@
 %global goipath github.com/AvengeMedia/%{name}/core
 
 Name:           DankMaterialShell
-Version:        1.4.5
+Version:        1.4.6
 Release:        1%{?dist}
 Summary:        Desktop shell for Wayland compositors built on QuickShell
 

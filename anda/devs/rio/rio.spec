@@ -4,7 +4,7 @@ A hardware-accelerated terminal emulator focusing to run in desktops and browser
 %bcond docs 1
 
 Name:          rio
-Version:       0.3.11
+Version:       0.4.1
 Release:       1%{?dist}
 Summary:       A hardware-accelerated terminal written in Rust.
 SourceLicense: MIT
