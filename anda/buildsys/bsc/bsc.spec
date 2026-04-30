@@ -51,8 +51,6 @@ invariants, and let the compiler pick a scheduler.
 %git_clone %{url} %{version}
 
 %build
-export CFLAGS="$CFLAGS -Wno-error"
-export CXXFLAGS="$CXXFLAGS -Wno-error"
 %make_build install-src GHCJOBS=%{_smp_build_ncpus}
 
 %install
