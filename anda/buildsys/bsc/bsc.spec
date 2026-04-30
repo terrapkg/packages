@@ -10,9 +10,6 @@ Summary:        Bluespec Compiler (BSC)
 License:        BSD-3-Clause AND BSD-2-Clause AND MIT AND LGPL-2.0-or-later AND AND BSL-1.0
 URL:            https://github.com/B-Lang-org/bsc
 Source:         %{url}/archive/refs/tags/%{version}.tar.gz
-%ifarch aarch64
-Patch0:         ctime.patch
-%endif
 
 BuildRequires:  ghc
 BuildRequires:  ghc-regex-compat-devel
@@ -52,7 +49,6 @@ invariants, and let the compiler pick a scheduler.
 
 %prep
 %git_clone %{url} %{version}
-%patch -P0 -p1
 
 %build
 export CFLAGS="$CFLAGS -Wno-error"
