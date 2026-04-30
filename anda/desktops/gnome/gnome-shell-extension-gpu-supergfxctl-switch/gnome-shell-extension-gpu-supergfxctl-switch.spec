@@ -21,6 +21,8 @@ Recommends:     gnome-extensions-app
 
 BuildArch:	noarch
 
+Packager:       june-fish <june@fyralabs.com>
+
 %description
 GPU Profile switcher Gnome-Shell-Extension for ASUS laptops using Supergfxctl
 
