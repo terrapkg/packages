@@ -2,7 +2,7 @@
 
 Name:           gnome-shell-extension-vicinae
 Version:        1.6.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        MIT
 URL:            https://github.com/dagimg-dot/vicinae-gnome-extension
 Source:         %{url}/archive/refs/tags/v%{version}.tar.gz
@@ -12,7 +12,7 @@ Packager:       metcya <metcya@gmail.com>
 BuildArch:      noarch
 
 BuildRequires:  bun-bin glib2-devel
-Requires:       (gnome-shell >= 48~ with gnome-shell < 50~)
+Requires:       gnome-shell >= 48~
 Requires:       vicinae
 Recommends:     gnome-extensions-app
 Provides:       gnome-shell-extension-vicinae-gnome-extension
