@@ -55,6 +55,8 @@ invariants, and let the compiler pick a scheduler.
 %patch -P0 -p1
 
 %build
+export CFLAGS="$CFLAGS -Wno-error"
+export CXXFLAGS="$CXXFLAGS -Wno-error"
 %make_build install-src GHCJOBS=%{_smp_build_ncpus}
 
 %install
