@@ -1,0 +1,12 @@
+diff --git a/src/vendor/stp/src/sat/cryptominisat2/MersenneTwister.h b/src/vendor/stp/src/sat/cryptominisat2/MersenneTwister.h
+index 964ecc73..4e551dc5 100644
+--- a/src/vendor/stp/src/sat/cryptominisat2/MersenneTwister.h
++++ b/src/vendor/stp/src/sat/cryptominisat2/MersenneTwister.h
+@@ -62,6 +62,7 @@
+ #include <stdio.h>
+ #include <time.h>
+ #include <math.h>
++#include <ctime>
+ 
+ namespace MINISAT
+ {
