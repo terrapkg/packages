@@ -4,7 +4,7 @@ project pkg {
     spec = "libtrueforce.spec"
   }
   labels {
-        nightly = 1
+        updbranch = 1
         mock = 1
     }
 }
