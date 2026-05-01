@@ -66,5 +66,5 @@ install -D -m644 %{name}.a %{buildroot}%{_libdir}/
 
 
 %changelog
-* Fri May 01 2026 libtrueforce - 1.3.11^20260430git.df7f149-1
+* Fri May 01 2026 Luan V. <luanv.oliveira@outlook.com> - 1.3.11^20260430git.df7f149-1
 - Initial package

@@ -78,5 +78,7 @@ fi
 %{_modulesloaddir}/%{name}.conf
 
 %changelog
-* Fri May 01 2026  - logitech-rs50-linux-driver 1.0^20260430git.df7f149-2
-- fix udev rules filename and add posttrans script to reload udev rules and trigger devices on install
+* Fri May 01 2026 Luan V. <luanv.oliveira@outlook.com> - 1.0^20260430git.df7f149-2
+- add logi-rs50-proton-setup script together with a readme which explains where to put the necessary files.
+- and add udev rules together with a posttrans script to reload and trigger devices on install
+- fix spec warnings: add Packager tag and remove autochangelog
