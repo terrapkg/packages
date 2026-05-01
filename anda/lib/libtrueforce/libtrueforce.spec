@@ -71,4 +71,5 @@ fi
 
 
 %changelog
-%autochangelog
+* Fri May 01 2026 (none)(none)(none) - 1.3.11^20260430git.df7f149-11.3.11^20260430git.df7f149-11.3.11^20260430git.df7f149-1
+- Initial package
