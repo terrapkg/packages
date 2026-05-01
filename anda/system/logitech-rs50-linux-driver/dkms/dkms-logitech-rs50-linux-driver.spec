@@ -20,6 +20,7 @@ Conflicts:      akmod-%{modulename}
 Provides:       %{name}-kmod-common = %{?epoch:%{epoch}:}%{version}
 BuildArch:      x86_64
 Provides:       %{modulename}-kmod
+Packager:       Luan V. <luanv.oliveira@outlook.com>
 
 %description
 Linux kernel driver for the Logitech RS50 Direct Drive Wheel Base (USB ID 046d:c276).

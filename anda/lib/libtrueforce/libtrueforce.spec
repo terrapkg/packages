@@ -14,6 +14,8 @@ BuildRequires:  gcc
 BuildRequires:  make
 Requires:       logitech-rs50-linux-driver
 Provides:       trueforce-sdk = %{?epoch:%{epoch}:}%{version}
+Packager:       Luan V. <luanv.oliveira@outlook.com>
+
 
 %description
 Native Linux implementation of the Logitech Trueforce SDK

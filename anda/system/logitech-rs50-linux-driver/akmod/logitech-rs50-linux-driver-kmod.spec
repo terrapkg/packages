@@ -23,6 +23,7 @@ BuildArch:      x86_64
 BuildRequires:  gcc
 BuildRequires:  make
 BuildRequires:  kmodtool
+Packager:       Luan V. <luanv.oliveira@outlook.com>
 
 Requires:       akmods
 Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
