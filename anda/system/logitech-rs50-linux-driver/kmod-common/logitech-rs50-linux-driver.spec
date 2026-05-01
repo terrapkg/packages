@@ -38,6 +38,7 @@ mv sdk/README.md README-SDK.md
 %install
 install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/metainfo/com.github.rs50.metainfo.xml
 install -Dm644 udev/70-logitech-rs50.rules -t %{buildroot}%{_udevrulesdir}/
+install -D -m644 userspace/libtrueforce/udev/99-logitech-rs50-trueforce.rules %{buildroot}/%{_udevrulesdir}/70-logitech-rs50-trueforce.rules
 
 # Akmods modules
 install -Dm644 %{name}.conf -t %{buildroot}%{_modulesloaddir}
@@ -54,6 +55,8 @@ fi
 %doc README.md README-SDK.md CHANGELOG.md rs-wheel-hub-button-layout.png docs/*
 %{_datadir}/metainfo/com.github.rs50.metainfo.xml
 %{_udevrulesdir}/70-logitech-rs50.rules
+%{_udevrulesdir}/70-logitech-rs50-trueforce.rules
+
 %files akmod-modules
 %{_modulesloaddir}/%{name}.conf
 
