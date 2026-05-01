@@ -37,7 +37,7 @@ Akmods modules for the akmod-%{name} package.
 
 echo hid-logitech-hidpp > %{name}.conf
 mv sdk/README.md README-SDK.md
-mv %{SOURCE3} README.terra.md
+cp %{SOURCE3} README.terra.md
 
 %install
 install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/metainfo/com.github.rs50.metainfo.xml
