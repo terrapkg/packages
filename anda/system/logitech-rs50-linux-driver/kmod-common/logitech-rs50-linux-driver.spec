@@ -4,7 +4,7 @@
 
 Name:           logitech-rs50-linux-driver
 Version:        1.0^%{commitdate}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Linux kernel driver for the Logitech RS50 Direct Drive Wheel Base (USB ID 046d:c276)
 License:        GPL-2.0-only
 URL:            https://github.com/mescon/%{name}
@@ -35,14 +35,16 @@ echo hid-logitech-hidpp > %{name}.conf
 
 %install
 install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/metainfo/com.github.rs50.metainfo.xml
+install -Dm644 udev/70-logitech-rs50.rules -t %{buildroot}%{_udevrulesdir}/
 
 # Akmods modules
 install -Dm644 %{name}.conf -t %{buildroot}%{_modulesloaddir}
 
 
 %files
-%doc README.md rs-wheel-hub-button-layout.png docs/*
+%doc README.md CHANGELOG.md rs-wheel-hub-button-layout.png docs/*
 %{_datadir}/metainfo/com.github.rs50.metainfo.xml
+%{_udevrulesdir}/70-logitech-rs50.rules
 
 %files akmod-modules
 %{_modulesloaddir}/%{name}.conf

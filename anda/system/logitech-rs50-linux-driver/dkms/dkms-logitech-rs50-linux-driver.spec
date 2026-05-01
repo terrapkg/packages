@@ -6,7 +6,7 @@
 
 Name:           dkms-%{modulename}
 Version:        1.0^%{commitdate}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Linux kernel driver for the Logitech RS50 Direct Drive Wheel Base (USB ID 046d:c276)
 License:        GPL-2.0-only
 URL:            https://github.com/mescon/%{modulename}
@@ -37,13 +37,14 @@ Akmods modules for the akmod-%{name} package.
 
 %prep
 %autosetup -p1 -n %{modulename}-%{commit}
-mv mainline/* ./
+pushd mainline
 mkdir build
 sed -i -e 's/__VERSION_STRING/%{version}/g' dkms.conf
+popd
 
 %install
 mkdir -p %{buildroot}%{_usrsrc}/%{modulename}-%{version}
-cp -fr ./ %{buildroot}%{_usrsrc}/%{modulename}-%{version}/
+cp -fr ./mainline/* %{buildroot}%{_usrsrc}/%{modulename}-%{version}/
 
 %post
 dkms add -m %{modulename} -v %{version} -q --rpm_safe_upgrade || :
@@ -56,7 +57,6 @@ dkms remove -m %{modulename} -v %{version} -q --all --rpm_safe_upgrade || :
 
 %files
 %{_usrsrc}/%{modulename}-%{version}
-%doc README.md rs-wheel-hub-button-layout.png docs/*
 
 
 %changelog
