@@ -7,7 +7,7 @@
 
 Name:           discord-ptb
 Version:        1.0.189
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Free Voice and Text Chat for Gamers.
 URL:            https://discord.com
 Source0:        https://dl-ptb.discordapp.net/apps/linux/%{version}/discord-ptb-%{version}.tar.gz
@@ -37,7 +37,7 @@ mkdir -p %{buildroot}%{_datadir}/applications/
 mkdir -p %{buildroot}%{_datadir}/pixmaps
 ln -s %_datadir/discord-ptb/discord-ptb.desktop %{buildroot}%{_datadir}/applications/
 ln -s %_datadir/discord-ptb/discord.png %{buildroot}%{_datadir}/pixmaps/discord-ptb.png
-ln -s %_datadir/discord-ptb/Discord %buildroot%_bindir/discord-ptb
+ln -s %_datadir/discord-ptb/discord-ptb %buildroot%_bindir/discord-ptb
 
 %files
 %_bindir/discord-ptb
