@@ -40,6 +40,13 @@ install -Dm644 udev/70-logitech-rs50.rules -t %{buildroot}%{_udevrulesdir}/
 # Akmods modules
 install -Dm644 %{name}.conf -t %{buildroot}%{_modulesloaddir}
 
+%posttrans
+### Skip triggering if udevd isn't accessible
+if [ -S /run/udev/control ]; then
+    /usr/bin/udevadm control --reload
+    /usr/bin/udevadm trigger --subsystem-match=hid
+fi
+
 
 %files
 %doc README.md README-SDK.md CHANGELOG.md rs-wheel-hub-button-layout.png docs/*
