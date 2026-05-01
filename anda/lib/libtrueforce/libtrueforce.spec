@@ -55,7 +55,7 @@ install -D -m644 udev/99-logitech-rs50-trueforce.rules %{buildroot}%{_udevrulesd
 ### Skip triggering if udevd isn't accessible
 if [ -S /run/udev/control ]; then
     /usr/bin/udevadm control --reload
-    /usr/bin/udevadm trigger --subsystem-match=hid
+    /usr/bin/udevadm trigger --subsystem-match=hidraw
 fi
 
 %files

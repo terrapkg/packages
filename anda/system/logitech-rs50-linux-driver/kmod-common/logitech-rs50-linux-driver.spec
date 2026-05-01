@@ -45,7 +45,7 @@ install -Dm644 %{name}.conf -t %{buildroot}%{_modulesloaddir}
 ### Skip triggering if udevd isn't accessible
 if [ -S /run/udev/control ]; then
     /usr/bin/udevadm control --reload
-    /usr/bin/udevadm trigger --subsystem-match=hid
+    /usr/bin/udevadm trigger --subsystem-match=hidraw
 fi
 
 
