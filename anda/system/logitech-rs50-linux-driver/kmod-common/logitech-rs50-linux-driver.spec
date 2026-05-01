@@ -11,6 +11,7 @@ URL:            https://github.com/mescon/%{name}
 Source0:        %{url}/archive/%{commit}.tar.gz#/%{name}-%{shortcommit}.tar.gz
 Source1:        com.github.rs50.metainfo.xml
 BuildRequires:  systemd-rpm-macros
+Recommends:     trueforce-sdk
 Requires:       %{name}-kmod = %{?epoch:%{epoch}:}%{version}
 Provides:       %{name}-kmod-common = %{?epoch:%{epoch}:}%{version}
 BuildArch:      noarch
