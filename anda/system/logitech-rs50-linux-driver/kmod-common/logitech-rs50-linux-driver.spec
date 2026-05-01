@@ -10,6 +10,8 @@ License:        GPL-2.0-only
 URL:            https://github.com/mescon/%{name}
 Source0:        %{url}/archive/%{commit}.tar.gz#/%{name}-%{shortcommit}.tar.gz
 Source1:        com.github.rs50.metainfo.xml
+Source2:        logi-rs50-proton-setup.sh
+Source3:        README.terra.md
 BuildRequires:  systemd-rpm-macros
 Recommends:     trueforce-sdk
 Requires:       %{name}-kmod = %{?epoch:%{epoch}:}%{version}
@@ -35,10 +37,21 @@ Akmods modules for the akmod-%{name} package.
 
 echo hid-logitech-hidpp > %{name}.conf
 mv sdk/README.md README-SDK.md
+mv %{SOURCE3} README.terra.md
+
 %install
 install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/metainfo/com.github.rs50.metainfo.xml
+
+mkdir -p %{buildroot}%{_bindir}
+mkdir -p %{buildroot}%{_datadir}/%{name}/tools
+mkdir -p %{buildroot}%{_sharedstatedir}/%{name}/Logi
+ln -sr %_sharedstatedir/%{name} %{buildroot}%{_datadir}/%{name}/sdk
+
+install -Dm755 tools/install-tf-shim.sh %{buildroot}%{_datadir}/%{name}/tools/
+install -Dm755 %{SOURCE2} %{buildroot}%{_bindir}/logi-rs50-proton-setup
+
 install -Dm644 udev/70-logitech-rs50.rules -t %{buildroot}%{_udevrulesdir}/
-install -D -m644 userspace/libtrueforce/udev/99-logitech-rs50-trueforce.rules %{buildroot}/%{_udevrulesdir}/70-logitech-rs50-trueforce.rules
+install -D -m644 userspace/libtrueforce/udev/99-logitech-rs50-trueforce.rules %{buildroot}%{_udevrulesdir}/70-logitech-rs50-trueforce.rules
 
 # Akmods modules
 install -Dm644 %{name}.conf -t %{buildroot}%{_modulesloaddir}
@@ -52,10 +65,14 @@ fi
 
 
 %files
-%doc README.md README-SDK.md CHANGELOG.md rs-wheel-hub-button-layout.png docs/*
+%doc README.terra.md README.md README-SDK.md CHANGELOG.md rs-wheel-hub-button-layout.png docs/*
 %{_datadir}/metainfo/com.github.rs50.metainfo.xml
 %{_udevrulesdir}/70-logitech-rs50.rules
 %{_udevrulesdir}/70-logitech-rs50-trueforce.rules
+%{_datadir}/%{name}/tools/*
+%{_bindir}/logi-rs50-proton-setup
+%{_datadir}/%{name}/sdk
+%dir %{_sharedstatedir}/%{name}/Logi
 
 %files akmod-modules
 %{_modulesloaddir}/%{name}.conf
