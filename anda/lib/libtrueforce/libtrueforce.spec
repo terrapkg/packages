@@ -41,6 +41,7 @@ developing applications that use %{name}.
 %prep
 %autosetup -c -n %{name}-%{commit}
 mv ./logitech-rs50-linux-driver-%{commit}/userspace/%{name}/* .
+mv ./logitech-rs50-linux-driver-%{commit}/docs/TRUEFORCE_PROTOCOL.md .
 rm -rf ./logitech-rs50-linux-driver-%{commit}
 
 %build
@@ -59,7 +60,7 @@ if [ -S /run/udev/control ]; then
 fi
 
 %files
-%doc README.md
+%doc README.md TRUEFORCE_PROTOCOL.md
 %{_libdir}/*.so.*
 %{_udevrulesdir}/70-logitech-rs50-trueforce.rules
 %files devel
