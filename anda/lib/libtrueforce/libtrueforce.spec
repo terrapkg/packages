@@ -12,6 +12,7 @@ URL:            https://github.com/mescon/logitech-rs50-linux-driver
 Source0:        %{url}/archive/%{commit}.tar.gz#/%{name}-%{shortcommit}.tar.gz
 BuildRequires:  gcc
 BuildRequires:  make
+BuildRequires:  systemd-rpm-macros
 Requires:       logitech-rs50-linux-driver
 Provides:       trueforce-sdk = %{?epoch:%{epoch}:}%{version}
 Packager:       Luan V. <luanv.oliveira@outlook.com>
@@ -52,7 +53,7 @@ rm -rf ./logitech-rs50-linux-driver-%{commit}
 %install
 %make_install PREFIX=%{_prefix} LIBDIR=%{_libdir}
 install -D -m644 %{name}.a %{buildroot}%{_libdir}/
-install -D -m644 udev/99-logitech-rs50-trueforce.rules %{buildroot}%{_udevrulesdir}/70-logitech-rs50-trueforce.rules
+install -D -m644 ./udev/99-logitech-rs50-trueforce.rules %{buildroot}/%{_udevrulesdir}/70-logitech-rs50-trueforce.rules
 
 %posttrans
 ### Skip triggering if udevd isn't accessible
@@ -65,9 +66,11 @@ fi
 %doc README.md TRUEFORCE_PROTOCOL.md
 %{_libdir}/*.so.*
 %{_udevrulesdir}/70-logitech-rs50-trueforce.rules
+
 %files devel
 %{_libdir}/*.so
 %{_includedir}/trueforce.h
+
 %files static
 %{_libdir}/*.a
 
