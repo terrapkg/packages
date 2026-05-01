@@ -32,7 +32,7 @@ Akmods modules for the akmod-%{name} package.
 %autosetup -p1 -n %{name}-%{commit}
 
 echo hid-logitech-hidpp > %{name}.conf
-
+mv sdk/README.md README-SDK.md
 %install
 install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/metainfo/com.github.rs50.metainfo.xml
 install -Dm644 udev/70-logitech-rs50.rules -t %{buildroot}%{_udevrulesdir}/
@@ -42,10 +42,9 @@ install -Dm644 %{name}.conf -t %{buildroot}%{_modulesloaddir}
 
 
 %files
-%doc README.md CHANGELOG.md rs-wheel-hub-button-layout.png docs/*
+%doc README.md README-SDK.md CHANGELOG.md rs-wheel-hub-button-layout.png docs/*
 %{_datadir}/metainfo/com.github.rs50.metainfo.xml
 %{_udevrulesdir}/70-logitech-rs50.rules
-
 %files akmod-modules
 %{_modulesloaddir}/%{name}.conf
 
