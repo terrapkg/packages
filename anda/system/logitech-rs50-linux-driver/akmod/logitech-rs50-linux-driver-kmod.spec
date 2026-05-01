@@ -66,4 +66,5 @@ done
 %{?akmod_install}
 
 %changelog
-%autochangelog
+* Fri May 01 2026  - logitech-rs50-linux-driver 1.0^20260430git.df7f149-2
+- fix udev rules filename and add posttrans script to reload udev rules and trigger devices on install

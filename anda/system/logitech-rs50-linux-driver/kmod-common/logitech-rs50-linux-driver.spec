@@ -14,6 +14,7 @@ BuildRequires:  systemd-rpm-macros
 Recommends:     trueforce-sdk
 Requires:       %{name}-kmod = %{?epoch:%{epoch}:}%{version}
 Provides:       %{name}-kmod-common = %{?epoch:%{epoch}:}%{version}
+Packager:       Luan V. <luanv.oliveira@outlook.com>
 BuildArch:      noarch
 
 %description
@@ -57,4 +58,5 @@ fi
 %{_modulesloaddir}/%{name}.conf
 
 %changelog
-%autochangelog
+* Fri May 01 2026  - logitech-rs50-linux-driver 1.0^20260430git.df7f149-2
+- fix udev rules filename and add posttrans script to reload udev rules and trigger devices on install
