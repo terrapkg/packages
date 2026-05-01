@@ -14,7 +14,7 @@
 
 Name:           %{modulename}-kmod
 Version:        1.0^%{commitdate}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Linux kernel driver for the Logitech RS50 Direct Drive Wheel Base (USB ID 046d:c276)
 License:        GPL-2.0-only
 URL:            https://github.com/mescon/logitech-rs50-linux-driver
@@ -23,6 +23,7 @@ BuildArch:      x86_64
 BuildRequires:  gcc
 BuildRequires:  make
 BuildRequires:  kmodtool
+Packager:       Luan V. <luanv.oliveira@outlook.com>
 
 Requires:       akmods
 Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
@@ -66,4 +67,5 @@ done
 %{?akmod_install}
 
 %changelog
-%autochangelog
+* Fri May 01 2026 Luan V. <luanv.oliveira@outlook.com> - 1.0^20260430git.df7f149-2
+- fix spec warnings: add Packager tag and remove autochangelog
