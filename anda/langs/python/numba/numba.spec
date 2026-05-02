@@ -2,12 +2,13 @@
 
 Name:			python-%{pypi_name}
 Version:		0.65.1
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:	    NumPy aware dynamic Python compiler using LLVM
 License:		BSD-2-Clause AND MIT AND BSD-3-Clause
 URL:			https://numba.pydata.org
 # PyPi source does not include all files
 Source0:		https://github.com/numba/numba/archive/refs/tags/%version.tar.gz
+Patch0:		    remove-llvmlite-version-req.patch
 # This package is intentionally not noarch
 
 BuildRequires:  python3-devel
@@ -36,7 +37,7 @@ Numba is an open source, NumPy-aware optimizing compiler for Python sponsored by
 Numba can compile a large subset of numerically-focused Python, including many NumPy functions. Additionally, Numba has support for automatic parallelization of loops, generation of GPU-accelerated code, and creation of ufuncs and C callbacks.
 
 %prep
-%autosetup -n numba-%{version}
+%autosetup -n numba-%{version} -p1
 
 %build
 %pyproject_wheel
