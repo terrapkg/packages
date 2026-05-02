@@ -79,6 +79,7 @@ License:       GPL-2.0-only
 
 %install
 %install_cargo_bins
+%install_cargo_devel_libs
 
 %{cargo_license_online -a} > LICENSE.dependencies
 
