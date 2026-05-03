@@ -27,7 +27,9 @@ A simple CLI tool that automates the process of backporting commits on a GitHub 
 
 %prep
 %npm_prep
+%if %{with test}
 %fetch_node_tests /src/test/ /tests/
+%endif
 
 %build
 # Empty build section, because RPM reasons
