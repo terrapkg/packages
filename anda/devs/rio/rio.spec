@@ -60,7 +60,7 @@ sed -i 's/Exec=.*/Exec=%{crate}/g' misc/%{name}.desktop
 %install
 install -Dm755 target/rpm/%{name} %{buildroot}%{_bindir}/%{crate}
 install -Dm755 target/rpm/*.so -t %{buildroot}%{_libdir}
-install -Dm644 docs/static/assets/%{name}-logo.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps/%{name}.svg
+install -Dm644 misc/logo.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps/%{name}.svg
 desktop-file-install misc/%{name}.desktop
 %{cargo_license_online -a} > LICENSE.dependencies
 
