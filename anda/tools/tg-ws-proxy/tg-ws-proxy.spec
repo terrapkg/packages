@@ -25,7 +25,7 @@ Packager:       veuxit <erroor234@gmail.com>
 
 
 %build
-python -m venv .venv
+python -m venv --system-site-packages .venv
     .venv/bin/pip install --upgrade pip 
     .venv/bin/pip install "."
     .venv/bin/pip install "pyinstaller"
