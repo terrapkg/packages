@@ -66,6 +66,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 %{_bindir}/%{crate}
 %{_datadir}/applications/%{name}.desktop
 %{_iconsdir}/hicolor/scalable/apps/%{name}.svg
+%{_metainfodir}/%{appid}.metainfo.xml
 
 %files devel
 %{_libdir}/librio_backend.so
