@@ -4,7 +4,6 @@
 %global ver 5.12.0.4
 %global modulename rtl8821cu
 %global git_name 8821cu-20210916
-%global debug_package %{nil}
 
 Name:           %{modulename}-kmod-common
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
