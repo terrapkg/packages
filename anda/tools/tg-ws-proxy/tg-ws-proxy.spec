@@ -11,7 +11,7 @@ Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 Source1:        tg-ws-proxy.desktop
 Source2:        tg-ws-proxy.service
 
-BuildRequires:  python3 python3-tkinter python3-pip libappindicator libayatana-appindicator-gtk3 ImageMagick
+BuildRequires:  python3 python3-tkinter python3-gobject python3-pip libappindicator libayatana-appindicator-gtk3 ImageMagick
 
 Requires:       python3 python3-tkinter libappindicator libayatana-appindicator-gtk3
 
