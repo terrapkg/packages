@@ -51,6 +51,8 @@ A simple CLI tool that automates the process of backporting commits on a GitHub 
 %{_bindir}/%{npm_name}
 
 %changelog
+* Sun May 3 2026 Gilver E. <roachy@fyralabs.com> - 12.0.0-2
+- Added explicit dependency on git-core
 * Wed Jan 21 2026 Gilver E. <roachy@fyralabs.com> - 10.2.0-3
 - Fixed package name and licenses
 * Wed Jul 2 2025 Gilver E. <rockgrub@disroot.org> - 9.6.6-1
