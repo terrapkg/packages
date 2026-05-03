@@ -1,5 +1,5 @@
 project pkg {
 	rpm {
-		spec = "rust-anda.spec"
+		spec = "anda.spec"
 	}
 }
