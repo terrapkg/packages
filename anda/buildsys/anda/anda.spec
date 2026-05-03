@@ -66,6 +66,7 @@ install -Dm644 $COMPDIR/fish/anda.fish -t %{buildroot}%{fish_completions_dir}
 install -Dm644 target/assets/man_pages/* -t %{buildroot}%{_mandir}/man1
 
 %files
+%doc README.md
 %license LICENSE.dependencies LICENSE.md
 %{_bindir}/anda
 %{_mandir}/man1/anda*.1.*
