@@ -11,7 +11,7 @@ Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 Source1:        tg-ws-proxy.desktop
 Source2:        tg-ws-proxy.service
 
-BuildRequires:  python3 python3-tkinter python3-gobject python3-pip libappindicator libayatana-appindicator-gtk3 ImageMagick
+BuildRequires:  python3 python3-devel python3-tkinter python3-gobject python3-pip libappindicator libayatana-appindicator-gtk3 ImageMagick
 
 Requires:       python3 python3-tkinter libappindicator libayatana-appindicator-gtk3
 
@@ -28,7 +28,7 @@ Packager:       veuxit <erroor234@gmail.com>
 python3 -m venv --system-site-packages .venv
     .venv/bin/pip install --upgrade pip 
     .venv/bin/pip install "."
-    .venv/bin/pip install "pyinstaller==6.13.0"
+    .venv/bin/pip install "pyinstaller"
     .venv/bin/pyinstaller --noconfirm packaging/linux.spec
 
 rm -rf .venv
