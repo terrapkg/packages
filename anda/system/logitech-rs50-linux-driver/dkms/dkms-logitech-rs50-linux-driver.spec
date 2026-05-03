@@ -6,12 +6,12 @@
 
 Name:           dkms-%{modulename}
 Version:        1.0^%{commitdate}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Linux kernel driver for the Logitech RS50 Direct Drive Wheel Base (USB ID 046d:c276)
 License:        GPL-2.0-only
 URL:            https://github.com/mescon/%{modulename}
 Source0:        %{url}/archive/%{commit}.tar.gz#/%{name}-%{shortcommit}.tar.gz
-Patch0:         fix-dkms-conf.patch
+Source1:        dkms.conf
 BuildRequires:  sed
 BuildRequires:  systemd-rpm-macros
 Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
@@ -27,7 +27,6 @@ Linux kernel driver for the Logitech RS50 Direct Drive Wheel Base (USB ID 046d:c
 This is a patched version of the hid-logitech-hidpp driver that adds RS50 support with force feedback (FF_CONSTANT) and exposes all G Hub settings via sysfs for runtime configuration.
 Note: This driver replaces the in-kernel hid-logitech-hidpp module and continues to support all other Logitech HID++ devices (mice, keyboards, other racing wheels like the G29, G920, G923, etc.).
 
-
 %package       akmod-modules
 Summary:       Modules for Akmods
 Requires:      akmod-%{name}
@@ -40,6 +39,7 @@ Akmods modules for the akmod-%{name} package.
 %autosetup -p1 -n %{modulename}-%{commit}
 pushd mainline
 mkdir build
+cp %{SOURCE1} ./dkms.conf
 sed -i -e 's/__VERSION_STRING/%{version}/g' dkms.conf
 popd
 
@@ -59,8 +59,9 @@ dkms remove -m %{modulename} -v %{version} -q --all --rpm_safe_upgrade || :
 %files
 %{_usrsrc}/%{modulename}-%{version}
 
-
 %changelog
+* Sun May 03 2026 Luan V. <luanv.oliveira@outlook.com> - 1.0^20260502git.7296717-2
+- ship our own dkms.conf, allowing full cleanup on uninstall
 * Fri May 01 2026 Luan V. <luanv.oliveira@outlook.com> - 1.0^20260430git.df7f149-2
 - fix build due to upstream changes
 - resolve spec warnings: add Packager tag, remove autochangelog
