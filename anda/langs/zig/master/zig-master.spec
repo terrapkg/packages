@@ -2,7 +2,7 @@
 %global         zig_arches x86_64 aarch64 riscv64 %{mips64}
 # Signing key from https://ziglang.org/download/
 %global         public_key RWSGOq2NVecA2UPNdBUZykf1CCb147pkmdtYxgb3Ti+JO/wCYvhbAb/U
-%if 0%{?fedora} >= 44
+%if 0%{?fedora} >= 46
 %define         llvm_compat 22
 %endif
 %global         llvm_version 22.0.0
