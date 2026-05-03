@@ -1,0 +1,13 @@
+[Unit]
+Description=Local MTProto proxy server for partial bypassing of Telegram loading
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/tg-ws-proxy
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
