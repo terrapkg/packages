@@ -17,6 +17,7 @@ BuildRequires: desktop-file-utils
 BuildRequires: freetype-devel
 BuildRequires: cmake
 BuildRequires: gcc-c++
+BuildRequires: glslc
 BuildRequires: libxcb-devel
 BuildRequires: libxkbcommon-devel
 BuildRequires: mold
