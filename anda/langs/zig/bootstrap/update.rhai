@@ -13,5 +13,5 @@ if rpm.changed() {
    let l = find(`releases\.llvm\.org/download\.html#([\d.]+)`, rawfile, 1);
    rpm.global("llvm_version", l);
    l.truncate(2);
-   rpm.global("llvm_compat", l);
+   rpm.define("llvm_compat", l);
 }
