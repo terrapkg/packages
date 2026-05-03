@@ -32,7 +32,7 @@ Provides:       wails-v3
 %gopkg
 
 %prep
-%git_clone https://github.com/wailsapp/wails v3-alpha
+%git_clone https://github.com/wailsapp/wails v3-beta
 
 %build
 pushd v3/cmd/wails3
