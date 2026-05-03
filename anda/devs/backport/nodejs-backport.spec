@@ -7,7 +7,7 @@ Version:       12.0.0
 Release:       2%{?dist}
 Summary:       Backport GitHub commits
 SourceLicense: Apache-2.0
-License:       0BSD AND Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND ISC AND MIT AND (MIT OR CC0-1.0) AND (WTFPL OR ISC)
+License:       MIT AND ISC AND Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause
 URL:           https://github.com/sorenlouv/%{npm_name}
 Source0:       http://registry.npmjs.org/%{npm_name}/-/%{npm_name}-%{version}.tgz
 BuildRequires: anda-srpm-macros >= 0.3.0
