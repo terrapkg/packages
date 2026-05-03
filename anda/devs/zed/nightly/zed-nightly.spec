@@ -1,8 +1,6 @@
-%global toolchain clang
-
-%global commit 9155bf4e1795131339ccf9e5e8e491d35ab9cfdd
+%global commit c97ad4692f99df4cc5eaa0a83a91afaefb641076
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260502
+%global commit_date 20260503
 %global ver 1.2.0
 
 %bcond_with check
