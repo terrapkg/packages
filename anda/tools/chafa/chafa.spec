@@ -1,6 +1,6 @@
 Name:          terra-chafa
-Version:        1.18.1
-Release:        1%?dist
+Version:        1.18.2
+Release:        1%{?dist}
 Summary:        Terminal graphics for the 21st century
 License:        LGPL-3.0-or-later AND GPL-3.0-or-later
 URL:            https://hpjansson.org/chafa/

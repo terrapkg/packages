@@ -1,5 +1,5 @@
 Name:           somewm
-Version:        1.4.0
+Version:        1.4.1
 Release:        1%{?dist}
 Summary:        Wayland compositor that brings AwesomeWM's Lua API to Wayland
 License:        GPL-3.0

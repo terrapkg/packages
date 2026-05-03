@@ -1,8 +1,8 @@
-%global commit a99847b098621cb2d686cea0b7b56cc851a6c764
+%global commit 729671701c486cb050925e85337e921d27f3e25c
 %global debug_package %{nil}
 %global modulename logitech-rs50-linux-driver
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260423
+%global commitdate 20260502
 
 Name:           dkms-%{modulename}
 Version:        1.0^%{commitdate}git.%{shortcommit}
@@ -20,6 +20,7 @@ Conflicts:      akmod-%{modulename}
 Provides:       %{name}-kmod-common = %{?epoch:%{epoch}:}%{version}
 BuildArch:      x86_64
 Provides:       %{modulename}-kmod
+Packager:       Luan V. <luanv.oliveira@outlook.com>
 
 %description
 Linux kernel driver for the Logitech RS50 Direct Drive Wheel Base (USB ID 046d:c276).
@@ -37,13 +38,14 @@ Akmods modules for the akmod-%{name} package.
 
 %prep
 %autosetup -p1 -n %{modulename}-%{commit}
-mv mainline/* ./
+pushd mainline
 mkdir build
 sed -i -e 's/__VERSION_STRING/%{version}/g' dkms.conf
+popd
 
 %install
 mkdir -p %{buildroot}%{_usrsrc}/%{modulename}-%{version}
-cp -fr ./ %{buildroot}%{_usrsrc}/%{modulename}-%{version}/
+cp -fr ./mainline/* %{buildroot}%{_usrsrc}/%{modulename}-%{version}/
 
 %post
 dkms add -m %{modulename} -v %{version} -q --rpm_safe_upgrade || :
@@ -56,8 +58,9 @@ dkms remove -m %{modulename} -v %{version} -q --all --rpm_safe_upgrade || :
 
 %files
 %{_usrsrc}/%{modulename}-%{version}
-%doc README.md rs-wheel-hub-button-layout.png docs/*
 
 
 %changelog
-%autochangelog
+* Fri May 01 2026 Luan V. <luanv.oliveira@outlook.com> - 1.0^20260430git.df7f149-2
+- fix build due to upstream changes
+- resolve spec warnings: add Packager tag, remove autochangelog

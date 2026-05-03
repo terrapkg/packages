@@ -7,8 +7,8 @@
 %global debug_package %{nil}
 %endif
 
-%global commit a99847b098621cb2d686cea0b7b56cc851a6c764
-%global commitdate 20260423
+%global commit 729671701c486cb050925e85337e921d27f3e25c
+%global commitdate 20260502
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global modulename logitech-rs50-linux-driver
 
@@ -23,6 +23,7 @@ BuildArch:      x86_64
 BuildRequires:  gcc
 BuildRequires:  make
 BuildRequires:  kmodtool
+Packager:       Luan V. <luanv.oliveira@outlook.com>
 
 Requires:       akmods
 Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
@@ -66,4 +67,5 @@ done
 %{?akmod_install}
 
 %changelog
-%autochangelog
+* Fri May 01 2026 Luan V. <luanv.oliveira@outlook.com> - 1.0^20260430git.df7f149-2
+- fix spec warnings: add Packager tag and remove autochangelog

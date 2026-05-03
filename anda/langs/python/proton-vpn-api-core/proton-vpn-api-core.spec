@@ -4,7 +4,7 @@
 %global __requires_exclude ^python3\\.14dist\\(proton-vpn-local-agent\\)$
 
 Name:			python-%{pypi_name}
-Version:		5.0.1
+Version:		5.1.2
 Release:		1%{?dist}
 Summary:		A facade to the other Proton VPN components
 License:		GPL-3.0-Only

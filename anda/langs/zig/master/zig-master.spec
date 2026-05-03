@@ -3,12 +3,18 @@
 # Signing key from https://ziglang.org/download/
 %global         public_key RWSGOq2NVecA2UPNdBUZykf1CCb147pkmdtYxgb3Ti+JO/wCYvhbAb/U
 %if 0%{?fedora} >= 44
-%define         llvm_compat 21
+%define         llvm_compat 22
 %endif
-%global         llvm_version 21.0.0
+%global         llvm_version 22.0.0
 %bcond bootstrap 0
 %bcond docs      %{without bootstrap}
 %bcond test      1
+# GCC < 16.0 miscompiles on RISC-V
+%ifarch riscv64
+%if 0%{?fedora} < 44
+%global toolchain clang
+%endif
+%endif
 %global zig_cache_dir %{builddir}/zig-cache
 
 Name:           zig-master
@@ -21,9 +27,16 @@ URL:            https://ziglang.org
 Source0:        %{archive_name}
 Source1:        %{archive_name}.minisig
 Patch0:         0000-remove-native-lib-directories-from-rpath.patch
+%if %{defined rhel}
+Patch1:         0001-Remove-unsupported-LLVM-targets-for-EPEL.patch
+%endif
 BuildRequires:  cmake
+%if %["%{toolchain}" == "clang"]
+BuildRequires:  clang
+%else
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
+%endif
 BuildRequires:  libxml2-devel
 BuildRequires:  llvm%{?llvm_compat}-devel
 BuildRequires:  clang%{?llvm_compat}-devel
@@ -47,7 +60,7 @@ Requires:       %{name}-libs = %{version}
 # Apache-2.0 WITH LLVM-exception OR NCSA OR MIT
 Provides:       bundled(compiler-rt) = %{llvm_version}
 # LGPL-2.1-or-later AND SunPro AND LGPL-2.1-or-later WITH GCC-exception-2.0 AND BSD-3-Clause AND GPL-2.0-or-later AND LGPL-2.1-or-later WITH GNU-compiler-exception AND GPL-2.0-only AND ISC AND LicenseRef-Fedora-Public-Domain AND HPND AND CMU-Mach AND LGPL-2.0-or-later AND Unicode-3.0 AND GFDL-1.1-or-later AND GPL-1.0-or-later AND FSFUL AND MIT AND Inner-Net-2.0 AND X11 AND GPL-2.0-or-later WITH GCC-exception-2.0 AND GFDL-1.3-only AND GFDL-1.1-only
-Provides:       bundled(glibc) = 2.41
+Provides:       bundled(glibc) = 2.43
 # Apache-2.0 WITH LLVM-exception OR MIT OR NCSA
 Provides:       bundled(libcxx) = %{llvm_version}
 # Apache-2.0 WITH LLVM-exception OR MIT OR NCSA
@@ -123,7 +136,7 @@ Documentation for Zig. For more information, visit %{url}
 rm -f stage1/zig1.wasm
 %endif
 
-%build
+%conf
 # Force the correct LLVM version
 %if %{defined llvm_compat}
 export LLVM_DIR=%{_libdir}/llvm%{?llvm_compat}/%{_lib}/cmake
@@ -138,7 +151,7 @@ export LLVM_DIR=%{_libdir}/llvm%{?llvm_compat}/%{_lib}/cmake
     -DCMAKE_C_FLAGS_RELWITHDEBINFO:STRING="-DNDEBUG -Wno-unused" \
     -DCMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING="-DNDEBUG -Wno-unused" \
     \
-    -DZIG_EXTRA_BUILD_ARGS:STRING="--verbose;--build-id=sha1" \
+    -DZIG_EXTRA_BUILD_ARGS:STRING="--verbose;--build-id=sha1;-Dno-langref=true" \
     -DZIG_SHARED_LLVM:BOOL=true \
     -DZIG_PIE:BOOL=true \
     \
@@ -147,6 +160,8 @@ export LLVM_DIR=%{_libdir}/llvm%{?llvm_compat}/%{_lib}/cmake
     \
     -DZIG_VERSION:STRING="%(v=%{version_no_tilde}; echo ${v:0:6})"
 
+
+%build
 %if %{with bootstrap}
 %cmake_build --target stage3
 %else
@@ -164,14 +179,16 @@ help2man --no-discard-stderr --no-info "./zig-out/bin/zig" --version-option=vers
 # Zig has an extremely annoying issue with transitive failures when trying to build the docs, retry until it succeeds
 max=3
 attempt=1
-while ./zig-out/bin/zig build docs \
+while
+  ./zig-out/bin/zig build docs \
     --verbose \
     --global-cache-dir "%{zig_cache_dir}" \
-    -Dversion-string="%(v=%{version_no_tilde}; echo ${v:0:6})"; [[ $? -ne 0 ]];
+    -Dversion-string="%(v=%{version_no_tilde}; echo ${v:0:6})"
+  [[ $? != 0 ]]
 do
-  echo "Transitive failure. Trying again."
+  echo "Transitive failure. Trying again." >&2
 
-  if [[ $attempt -eq $max ]]
+  if [[ $attempt == $max ]]
   then
     break
   fi
