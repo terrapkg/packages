@@ -1,9 +1,9 @@
 Name:           anda-srpm-macros
 Version:        0.3.7
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        SRPM macros for extra Fedora packages
 
-License:        MIT
+License:        GPL-3.0-or-later
 URL:            https://github.com/terrapkg/srpm-macros
 Source0:        %url/archive/refs/tags/v%{version}.tar.gz
 
