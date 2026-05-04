@@ -31,7 +31,7 @@ Packager:       Tulip Blossom <tulilirockz@outlook.com>
 
 %changelog
 * Fri May 05 2026 Tulip Blossom <tulilirockz@outlook.com> - 2.0.0-1
-- Initial commit
+- Update package and add autoupdate definitions
 
 * Fri Mar 13 2026 Tulip Blossom <tulilirockz@outlook.com>
 - Initial commit

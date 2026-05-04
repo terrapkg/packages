@@ -1,1 +1,1 @@
-rpm.version(gh_tag("Zhaith-Izaliel/iio-niri"));
+rpm.version(find(`version = "([\d.]+)"`, gh_rawfile("Zhaith-Izaliel/iio-niri", "master", "Cargo.toml"), 1));
