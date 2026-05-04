@@ -29,7 +29,7 @@ It allows you to easily manage and update various compatibility
 tools like Proton, Wine, DXVK, and VKD3D across different launchers.
 
 %prep
-%autosetup -n %{name}-%{version}
+%autosetup -n ProtonPlus-%{version}
 
 %conf
 %meson
