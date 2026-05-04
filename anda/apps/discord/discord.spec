@@ -22,7 +22,7 @@ both your desktop and phone.
 
 %install
 mkdir -p %{buildroot}%{_bindir}
-install -Dpm755 ./* -t %{buildroot}%{_datatdir}/discord
+install -Dpm755 ./* -t %{buildroot}%{_datadir}/discord
 mkdir -p %{buildroot}%{_appsdir}
 mkdir -p %{buildroot}%{_datadir}/pixmaps
 mv %{buildroot}%{_datadir}/discord/discord.desktop -t %{buildroot}%{_appsdir}
