@@ -33,9 +33,10 @@ mkdir -p %{buildroot}%{_datadir}/pixmaps
 mv %{buildroot}%{_libdir}/discord/discord.desktop -t %{buildroot}%{_appsdir}
 mv %{buildroot}%{_libdir}/discord/discord.png -t %{buildroot}%{_datadir}/pixmaps
 ln -s %{_libdir}/discord/discord %{buildroot}%{_bindir}/discord
+cp %{SOURCE1} -t .
 
 %files
-%license %{SOURCE1}
+%license terms.html
 %{_bindir}/discord
 %{_libdir}/discord/
 %{_appsdir}/discord.desktop
