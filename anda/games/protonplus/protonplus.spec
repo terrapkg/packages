@@ -12,7 +12,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 BuildRequires:  meson
 BuildRequires:  ninja-build
 BuildRequires:  gcc
-BuildRequires:  valac
+BuildRequires:  vala
 BuildRequires:  pkgconfig(gtk4)
 BuildRequires:  pkgconfig(libadwaita-1)
 BuildRequires:  pkgconfig(json-glib-1.0)
