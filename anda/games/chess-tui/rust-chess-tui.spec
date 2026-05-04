@@ -14,6 +14,7 @@ Source:         %{crates_source}
 
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  pkgconfig(openssl)
+BuildRequires:  pkgconfig(alsa)
 
 %global _description %{expand:
 A rusty chess game in your terminal 🦀.}
