@@ -1,5 +1,4 @@
 Name:			discord
-%electronmeta -D
 Version:		1.0.136
 Release:		2%{?dist}
 Summary:		Free Voice and Text Chat for Gamers
@@ -13,6 +12,9 @@ Requires:		libX11 >= 1.6
 Requires:		libXtst >= 1.2
 Group:			Applications/Internet
 ExclusiveArch:	x86_64
+
+%electronmeta -D
+
 %description
 All-in-one voice and text chat for gamers that's free, secure, and works on
 both your desktop and phone.
@@ -38,5 +40,7 @@ ln -s %{_libdir}/discord/discord %{buildroot}%{_bindir}/discord
 %{_datadir}/pixmaps/discord.png
 
 %changelog
+* Mon May 4 2026 Gilver E. <roachy@fyralabs.com> - 1.0.136-2
+- Updated /usr/bin symlink
 * Thu Jan 19 2023 madonuko <mado@fyralabs.com> - 0.0.143-1
 - Initial package
