@@ -33,7 +33,7 @@ cp %{SOURCE1} -t .
 %files
 %license terms.html
 %{_bindir}/discord
-%{_datatdir}/discord/
+%{_datadir}/discord/
 %{_appsdir}/discord.desktop
 %{_datadir}/pixmaps/discord.png
 
