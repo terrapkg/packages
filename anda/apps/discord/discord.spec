@@ -29,8 +29,8 @@ mkdir -p %{buildroot}%{_bindir}
 install -Dpm755 ./* -t %{buildroot}%{_libdir}/discord
 mkdir -p %{buildroot}%{_appsdir}
 mkdir -p %{buildroot}%{_datadir}/pixmaps
-mv %{_libdir}/discord/discord.desktop -t %{buildroot}%{_appsdir}
-mv %{_libdir}/discord/discord.png -t %{buildroot}%{_datadir}/pixmaps
+mv %{buildroot}%{_libdir}/discord/discord.desktop -t %{buildroot}%{_appsdir}
+mv %{buildroot}%{_libdir}/discord/discord.png -t %{buildroot}%{_datadir}/pixmaps
 ln -s %{_libdir}/discord/discord %{buildroot}%{_bindir}/discord
 
 %files
