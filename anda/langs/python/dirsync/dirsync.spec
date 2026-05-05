@@ -1,18 +1,18 @@
-%global pypi_name python-mpv-jsonipc
-%global _desc Python API to MPV using JSON IPC.
+%global pypi_name dirsync
+%global _desc Advanced directory tree synchronisation tool.
 
 Name:			python-%{pypi_name}
-Version:		1.2.2
+Version:		2.2.6
 Release:		1%{?dist}
-Summary:		Python API to MPV using JSON IPC
-License:		Apache-2.0
-URL:			https://github.com/iwalton3/python-mpv-jsonipc
+Summary:		Advanced directory tree synchronisation tool
+License:		MIT
+URL:			https://github.com/domdfcoding/deprecation-alias
 Source0:		%{pypi_source}
-BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  python3-pip
+BuildRequires:  python3-setuptools
+BuildArch:      noarch
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
@@ -21,7 +21,6 @@ Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-Provides:       python-mpv-jsonipc
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
@@ -35,12 +34,13 @@ Provides:       python-mpv-jsonipc
 
 %install
 %pyproject_install
-%pyproject_save_files python_mpv_jsonipc
+%pyproject_save_files %{pypi_name}
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%doc README.md
-%license LICENSE.md
+%doc README.rst
+%license LICENSE.txt
+%{_bindir}/%{pypi_name}
 
 %changelog
-* Sun Dec 07 2025 Owen Zimmerman <owen@fyralabs.com>
+* Mon May 04 2026 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit
