@@ -1,6 +1,6 @@
 Name:           supergfxctl
 Version:        5.2.7
-Release:        1%?dist
+Release:        2%?dist
 Summary:        GPU Utility for ASUS ROG Laptops
 URL:            https://gitlab.com/asus-linux/supergfxctl
 Source0:        %url/-/archive/%{version}/supergfxctl-%{version}.tar.gz
@@ -8,7 +8,7 @@ SourceLicense:  MPL-2.0
 License:        ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND MIT AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MPL-2.0 AND (Unlicense OR MIT)
 BuildRequires:  cargo anda-srpm-macros cargo-rpm-macros mold rust-udev-devel
 BuildRequires:  rpm_macro(systemd_post)
-Packager:       Its-J
+Packager:       Its-J <jonah@fyralabs.com>
 
 %description
 %{summary}.
@@ -52,5 +52,8 @@ install -Dm 0644 data/supergfxd.service -t %buildroot%_unitdir
 %ghost %{_presetdir}/99-supergfxd.preset
 
 %changelog
-* Sun Oct 26 2025 Its-J
+* Tue Apr 14 2026 Its-J <jonah@fyralabs.com>
+- Add email to my previous contributor attributions
+
+* Sun Oct 26 2025 Its-J <jonah@fyralabs.com>
 - Package SuperGFXctl

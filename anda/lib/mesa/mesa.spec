@@ -84,10 +84,10 @@
 
 Name:           %{srcname}
 Summary:        Mesa graphics libraries
-%global ver 26.0.2
+%global ver 26.0.5
 Epoch:          1
 Version:        %{lua:ver = string.gsub(rpm.expand("%{ver}"), "-", "~"); print(ver)}
-Release:        3
+Release:        1%{?dist}
 Packager:       Kyle Gospodnetich <me@kylegospodneti.ch>
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0
 URL:            https://mesa3d.org
@@ -343,8 +343,6 @@ Summary:        Mesa Vulkan drivers
 Requires:       vulkan%{_isa}
 Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Obsoletes:      mesa-vulkan-devel < %{?epoch:%{epoch}:}%{version}-%{release}
-# Bad change from upstream Fedora
-#Obsoletes:      VK_hdr_layer < 1
 
 %description vulkan-drivers
 The drivers with support for the Vulkan API.
@@ -503,7 +501,7 @@ rm -vf %{buildroot}%{_libdir}/dri/apple_dri.so
 
 # glvnd needs a default provider for indirect rendering where it cannot
 # determine the vendor
-ln -s %{_libdir}/libGLX_mesa.so.0 %{buildroot}%{_libdir}/libGLX_system.so.0
+ln -s libGLX_mesa.so.0 %{buildroot}%{_libdir}/libGLX_system.so.0
 
 %files filesystem
 %doc docs/Mesa-MLAA-License-Clarification-Email.txt

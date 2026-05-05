@@ -1,10 +1,10 @@
 %global goipath github.com/wailsapp/wails/v2
-Version:        2.11.0
+Version:        2.12.0
 
 %gometa -f
 
 Name:           wails
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Create beautiful applications using Go
 
 License:        MIT

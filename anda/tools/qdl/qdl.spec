@@ -1,6 +1,6 @@
 Name:           qdl
-Version:        2.5
-Release:        1%?dist
+Version:        2.6
+Release:        1%{?dist}
 Summary:        This tool communicates with USB devices of id 05c6:9008 to upload a flash loader and use this to flash images
 URL:            https://github.com/linux-msm/qdl
 Source0:        %url/archive/refs/tags/v%version.tar.gz

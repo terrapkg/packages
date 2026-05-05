@@ -8,7 +8,7 @@
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
-Version:        13.2.51
+Version:        13.2.78
 Release:        1%{?dist}
 Summary:        CUDA crt
 License:        CUDA Toolkit

@@ -13,8 +13,8 @@
 %global build_platform terra
 
 Name:             prismlauncher
-Version:          10.0.5
-Release:          1%?dist
+Version:          11.0.2
+Release:          1%{?dist}
 Summary:          Minecraft launcher with ability to manage multiple instances
 # see COPYING.md for more information
 # each file in the source also contains a SPDX-License-Identifier header that declares its license
@@ -39,7 +39,6 @@ BuildRequires:    java-17-openjdk-devel
 BuildRequires:    anda-srpm-macros
 BuildRequires:    desktop-file-utils
 BuildRequires:    libappstream-glib
-BuildRequires:    cmake(ghc_filesystem)
 BuildRequires:    cmake(Qt%{qt_version}Concurrent) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Core) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Gui) >= %{min_qt_version}
@@ -49,11 +48,10 @@ BuildRequires:    cmake(Qt%{qt_version}Widgets) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Xml) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}NetworkAuth) >= %{min_qt_version}
 BuildRequires:    tomlplusplus-devel
+BuildRequires:    vulkan-headers
 BuildRequires:    pkgconfig(libqrencode)
 BuildRequires:    pkgconfig(libarchive)
 BuildRequires:    pkgconfig(gamemode)
-
-BuildRequires:    cmake(Qt6Core5Compat)
 
 BuildRequires:    pkgconfig(libcmark)
 BuildRequires:    pkgconfig(scdoc)
@@ -89,8 +87,6 @@ multiple installations of Minecraft at once (Fork of MultiMC)
 
 %prep
 %autosetup -n PrismLauncher-%{version}
-
-rm -rf libraries/{extra-cmake-modules,filesystem,zlib}
 
 # Do not set RPATH
 sed -i "s|\$ORIGIN/||" CMakeLists.txt
@@ -134,7 +130,7 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 %{_appsdir}/org.prismlauncher.PrismLauncher.desktop
 %{_scalableiconsdir}/org.prismlauncher.PrismLauncher.svg
 %{_hicolordir}/256x256/apps/org.prismlauncher.PrismLauncher.png
-%{_datadir}/mime/packages/modrinth-mrpack-mime.xml
+%{_datadir}/mime/packages/org.prismlauncher.PrismLauncher.xml
 %{_datadir}/qlogging-categories%{qt_version}/prismlauncher.categories
 %{_mandir}/man?/prismlauncher.*
 %{_metainfodir}/org.prismlauncher.PrismLauncher.metainfo.xml

@@ -5,7 +5,7 @@ This module allows you to create \"virtual video devices.\" Normal \(v4l2\) appl
 
 Name:           dkms-%{modulename}
 Version:        0.15.3
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Utils for V4L2 loopback devices
 License:        GPL-2.0-or-later
 URL:            https://github.com/v4l2loopback/v4l2loopback

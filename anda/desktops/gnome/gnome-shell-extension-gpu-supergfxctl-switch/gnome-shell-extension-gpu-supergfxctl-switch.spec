@@ -7,17 +7,21 @@
 
 Name:           gnome-shell-extension-%{extension}
 Version:        %ver^%commit_date.%shortcommit
-Release:        2%?dist
+Release:        3%{?dist}
 Summary:        GPU Profile switcher Gnome-Shell-Extension for ASUS laptops using Supergfxctl
 License:        GPL-3.0-only
 URL:            https://github.com/chikobara/GPU-Switcher-Supergfxctl
 
 Source0:        %url/archive/%commit.tar.gz
 
-Requires:       (gnome-shell >= 48~ with gnome-shell < 50~) asusctl supergfxctl
+Requires:       gnome-shell >= 48~
+Requires:       asusctl
+Requires:       supergfxctl
 Recommends:     gnome-extensions-app
 
 BuildArch:	noarch
+
+Packager:       june-fish <june@fyralabs.com>
 
 %description
 GPU Profile switcher Gnome-Shell-Extension for ASUS laptops using Supergfxctl

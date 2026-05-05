@@ -1,8 +1,8 @@
 Name:       qmenumodel
 Version:    0.9.2
-Release:    %autorelease
+Release:    2%{?dist}
 Summary:    Qt5 renderer for Ayatana Indicators
-License:    LGPL-3.0
+License:    LGPL-3.0-or-later
 URL:        https://github.com/AyatanaIndicators/qmenumodel
 Source0:    https://releases.ayatana-indicators.org/source/qmenumodel/qmenumodel-%{version}.tar.gz
 
@@ -32,8 +32,10 @@ developing applications that use %{name}.
 %prep
 %autosetup -n qmenumodel-%{version} -p1
 
-%build
+%conf
 %cmake -DENABLE_TESTS=ON -DENABLE_COVERAGE=ON -DGENERATE_DOC=ON
+
+%build
 %cmake_build
 
 %install
@@ -43,12 +45,10 @@ developing applications that use %{name}.
 %doc README
 %license COPYING.LGPL
 %{_libdir}/libqmenumodel.so.*
-%dir %{_qt5_qmldir}/QMenuModel.1
 %{_qt5_qmldir}/QMenuModel.1/libqmenumodel-qml.so
 %{_qt5_qmldir}/QMenuModel.1/qmldir
 
 %files devel
-%dir %{_includedir}/qmenumodel
 %{_includedir}/qmenumodel/*.h
 %{_libdir}/libqmenumodel.so
 %{_libdir}/pkgconfig/qmenumodel.pc
