@@ -1,7 +1,7 @@
 %global appid io.github.chidiwilliams.Buzz
 
 Name:           buzz
-Version:        1.3.3
+Version:        1.4.4
 Release:        1%?dist
 Summary:        Buzz transcribes and translates audio offline on your personal computer
 License:        MIT
@@ -12,6 +12,7 @@ BuildRequires:  python3-wheel
 BuildRequires:  python3-pip
 BuildRequires:  python3-setuptools
 BuildRequires:  python3-setuptools_scm
+BuildRequires:  python3-pybind11
 BuildRequires:  python3dist(polib)
 BuildRequires:  python3dist(hatchling)
 BuildRequires:  glslc
@@ -52,8 +53,14 @@ install -Dpm644 share/icons/%appid.svg -t %buildroot%_scalableiconsdir
 %_appsdir/%appid.desktop
 %_metainfodir/%appid.metainfo.xml
 %_scalableiconsdir/%appid.svg
-%_libdir/python3.14/site-packages/demucs/
+%{python3_sitearch}/demucs/
+%{python3_sitearch}/ctc_forced_aligner/
+%{python3_sitearch}/deepmultilingualpunctuation/
+%{python3_sitearch}/whisper_diarization/
 
 %changelog
+* Mon May 04 2026 Owen Zimmerman <owen@fyralabs.com>
+- Update for 1.4.4
+
 * Thu Jan 01 2026 madonuko <mado@fyralabs.com> - 1.3.3-1
 - Initial commit
