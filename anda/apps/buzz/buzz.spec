@@ -2,7 +2,7 @@
 
 Name:           buzz
 Version:        1.4.4
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Buzz transcribes and translates audio offline on your personal computer
 License:        MIT
 URL:            https://chidiwilliams.github.io/buzz
@@ -43,23 +43,23 @@ desktop-file-install \
     --dir=%buildroot%_appsdir \
     share/applications/%appid.desktop
 
-%terra_appstream share/metainfo/%appid.metainfo.xml
-install -Dpm644 share/icons/%appid.svg -t %buildroot%_scalableiconsdir
+%terra_appstream share/metainfo/%{appid}.metainfo.xml
+install -Dpm644 share/icons/%{appid}.svg -t %{buildroot}%{_scalableiconsdir}
 
 %files -f %{pyproject_files}
 %doc README.md
 %license LICENSE
-%_bindir/buzz
-%_appsdir/%appid.desktop
-%_metainfodir/%appid.metainfo.xml
-%_scalableiconsdir/%appid.svg
+%{_bindir}/buzz
+%{_appsdir}/%appid.desktop
+%{_metainfodir}/%appid.metainfo.xml
+%{_scalableiconsdir}/%appid.svg
 %{python3_sitearch}/demucs/
 %{python3_sitearch}/ctc_forced_aligner/
 %{python3_sitearch}/deepmultilingualpunctuation/
 %{python3_sitearch}/whisper_diarization/
 
 %changelog
-* Mon May 04 2026 Owen Zimmerman <owen@fyralabs.com>
+* Mon May 04 2026 Owen Zimmerman <owen@fyralabs.com> - 1.4.4-1
 - Update for 1.4.4
 
 * Thu Jan 01 2026 madonuko <mado@fyralabs.com> - 1.3.3-1
