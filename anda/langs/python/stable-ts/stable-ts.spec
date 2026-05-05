@@ -7,7 +7,7 @@ Release:		1%{?dist}
 Summary:		Transcription, forced alignment, and audio indexing with OpenAI's Whisper
 License:		MIT
 URL:			https://github.com/jianfch/stable-ts
-Source0:		%{pypi_source}
+Source0:		%{pypi_source} stable_ts
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
