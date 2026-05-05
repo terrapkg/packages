@@ -30,7 +30,6 @@ Summary:        %{summary}
 %prep
 %autosetup -n %{pypi_name}-%{version}
 sed -i "s/openai-whisper==20230308/openai-whisper/" setup.py
-cat setup.py
 
 %build
 %pyproject_wheel
