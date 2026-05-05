@@ -24,7 +24,7 @@ both your desktop and phone.
 %install
 install -Dpm755 updater_bootstrap -t %{buildroot}%{_datadir}/%{name}
 install -Dpm755 %{name} -t %{buildroot}%{_bindir}
-install -Dpm644 discord.png -t %{buildroot}%{_datadir}/pixmaps
+install -Dpm644 discord.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
 %desktop_file_install %{name}.desktop
 cp %{SOURCE1} -t .
 
@@ -33,7 +33,7 @@ cp %{SOURCE1} -t .
 %{_bindir}/%{name}
 %{_datadir}/%{name}/
 %{_appsdir}/%{name}.desktop
-%{_datadir}/pixmaps/discord.png
+%{_datadir}/pixmaps/%{name}.png
 
 %changelog
 * Tue May 5 2026 Gilver E. <roachy@fyralabs.com> - 1.0.189-2
