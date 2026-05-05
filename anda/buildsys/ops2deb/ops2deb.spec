@@ -8,6 +8,7 @@ Summary:		Generate Debian packages for common devops tools such as kubectl, kust
 License:		MIT
 URL:			https://github.com/upciti/ops2deb
 Source0:		%{pypi_source}
+Patch0:			versions.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
@@ -27,8 +28,7 @@ Summary:        %{summary}
 %_desc
 
 %prep
-%autosetup -n %{pypi_name}-%{version}
-sed -i 's/python = ">=3.10,<3.12"/python = ">=3.10"/' pyproject.toml
+%autosetup -n %{pypi_name}-%{version} -p1
 
 %build
 %pyproject_wheel
