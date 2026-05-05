@@ -2,12 +2,13 @@
 %global _desc The model-definition framework for state-of-the-art machine learning models.
 
 Name:			python-%{pypi_name}
-Version:		4.57.3
+Version:		5.7.0
 Release:		1%?dist
 Summary:		The model-definition framework for state-of-the-art machine learning models
 License:		Apache-2.0
 URL:			https://huggingface.co/docs/transformers/index
 Source0:		%{pypi_source}
+Patch0:			versions.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
@@ -28,7 +29,7 @@ Provides:       synapse-s3-storage-provider
 %_desc
 
 %prep
-%autosetup -n %{pypi_name}-%{version}
+%autosetup -n %{pypi_name}-%{version} -p1
 
 %build
 %pyproject_wheel
@@ -41,8 +42,10 @@ Provides:       synapse-s3-storage-provider
 %doc README.md
 %license LICENSE
 %{_bindir}/transformers
-%{_bindir}/transformers-cli
 
 %changelog
+* Mon May 04 2026 Owen Zimmerman <owen@fyralabs.com>
+- Update spec for version 5.7.0
+
 * Sat Jan 10 2026 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit
