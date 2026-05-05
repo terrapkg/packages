@@ -45,7 +45,7 @@ Summary:        %{summary}
 
 %changelog
 * Mon May 04 2026 Owen Zimmerman <owen@fyralabs.com>
-- Switch to git source
+- Switch to git source, clean up spec
 
 * Wed Jan 07 2026 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit
