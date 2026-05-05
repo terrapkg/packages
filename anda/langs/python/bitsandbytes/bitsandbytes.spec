@@ -14,6 +14,9 @@ BuildRequires:  python3-setuptools
 BuildRequires:  python3-scikit-build-core
 BuildRequires:  python3-pip
 BuildRequires:  python3-hatchling
+BuildRequires:  python3-wheel
+BuildRequires:  python3-cmake
+BuildRequires:  gcc-c++
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
