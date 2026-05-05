@@ -1,4 +1,4 @@
-%global pypi_name stable-ts
+%global pypi_name stable_ts
 %global _desc Transcription, forced alignment, and audio indexing with OpenAI's Whisper.
 
 Name:			python-%{pypi_name}
@@ -41,7 +41,7 @@ sed -i "s/openai-whisper==20230308/openai-whisper/" setup.py
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
-%{_bindir}/%{pypi_name}
+%{_bindir}/stable-ts
 
 %changelog
 * Mon May 04 2026 Owen Zimmerman <owen@fyralabs.com>
