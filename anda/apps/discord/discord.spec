@@ -1,6 +1,6 @@
 Name:			discord
-Version:		1.0.136
-Release:		3%{?dist}
+Version:		1.0.137
+Release:		1%{?dist}
 Summary:		Free Voice and Text Chat for Gamers
 URL:			https://discord.com
 Source0:		https://dl.discordapp.net/apps/linux/%{version}/discord-%{version}.tar.gz
