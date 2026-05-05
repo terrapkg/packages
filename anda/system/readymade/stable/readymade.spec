@@ -1,7 +1,7 @@
 %global crate readymade
 Name:           readymade
-Version:        0.13.0
-Release:        1%?dist
+Version:        0.14.0
+Release:        1%{?dist}
 Summary:        Install ready-made distribution images!
 License:        GPL-3.0-or-later
 URL:            https://github.com/FyraLabs/readymade

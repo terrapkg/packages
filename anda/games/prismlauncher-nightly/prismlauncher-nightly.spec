@@ -3,10 +3,10 @@
 %global name_pretty %{quote:Prism Launcher (Nightly)}
 %global appid org.prismlauncher.PrismLauncher-nightly
 
-%global commit 14da23b06fd50e5632f3930824123b5bfdad8c46
+%global commit 031015b3327b41d64b7e5ee54734cc93eb69c4ec
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
-%global commit_date 20260314
+%global commit_date 20260423
 %global snapshot_info %{commit_date}.%{shortcommit}
 
 # Change this variables if you want to use custom keys
@@ -20,13 +20,12 @@
 %global build_platform terra
 
 Name:             prismlauncher-nightly
-Version:          11.0^%{snapshot_info}
+Version:          12.0^%{snapshot_info}
 Release:          1%{?dist}
 Summary:          Minecraft launcher with ability to manage multiple instances
 License:          GPL-3.0-only AND Apache-2.0 AND LGPL-3.0-only AND GPL-3.0-or-later AND GPL-2.0-or-later AND ISC AND OFL-1.1 AND LGPL-2.1-only AND MIT AND BSD-2-Clause-FreeBSD AND BSD-3-Clause AND LGPL-3.0-or-later
 Group:            Amusements/Games
 URL:              https://prismlauncher.org/
-Patch0:           0001-find-cmark-with-pkgconfig.patch
 Source2:          nightly.xml
 
 BuildRequires:    cmake >= 3.15
@@ -47,7 +46,7 @@ BuildRequires:    anda-srpm-macros
 BuildRequires:    desktop-file-utils
 BuildRequires:    libappstream-glib
 BuildRequires:    tomlplusplus-devel
-BuildRequires:    cmake(ghc_filesystem)
+BuildRequires:    vulkan-headers
 BuildRequires:    pkgconfig(libqrencode)
 BuildRequires:    pkgconfig(libarchive)
 BuildRequires:    pkgconfig(gamemode)
@@ -59,8 +58,6 @@ BuildRequires:    cmake(Qt%{qt_version}Test) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Widgets) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Xml) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}NetworkAuth) >= %{min_qt_version}
-
-BuildRequires:    cmake(Qt6Core5Compat)
 
 BuildRequires:    pkgconfig(libcmark)
 BuildRequires:    pkgconfig(scdoc)
@@ -96,8 +93,6 @@ multiple installations of Minecraft at once (Fork of MultiMC)
 
 %prep
 %git_clone https://github.com/%{nice_name}/%{nice_name}.git %{commit}
-
-rm -rf libraries/{extra-cmake-modules,zlib}/
 
 # Do not set RPATH
 sed -i "s|\$ORIGIN/||" CMakeLists.txt
@@ -143,7 +138,7 @@ rm -f %{buildroot}%{_datadir}/metainfo/org.prismlauncher.PrismLauncher.metainfo.
 %{_metainfodir}/%{appid}.metainfo.xml
 %{_scalableiconsdir}/org.prismlauncher.PrismLauncher.svg
 %{_hicolordir}/256x256/apps/org.prismlauncher.PrismLauncher.png
-%{_datadir}/mime/packages/modrinth-mrpack-mime.xml
+%{_datadir}/mime/packages/org.prismlauncher.PrismLauncher.xml
 %{_datadir}/qlogging-categories%{qt_version}/prismlauncher.categories
 %{_mandir}/man?/prismlauncher.*
 

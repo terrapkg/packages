@@ -2,10 +2,10 @@
 
 Name:           scx-scheds
 Version:        1.1.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        sched_ext schedulers
 SourceLicense:  GPL-2.0-only
-License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND BSD-2-Clause AND BSD-3-Clause AND GPL-2.0-only AND ISC AND (LGPL-2.1-only OR BSD-2-Clause) AND LGPL-2.1 AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MIT AND (MPL-2.0 OR MIT OR Apache-2.0) AND MPL-2.0-only and MPL-2.0-or-later AND (Unlicense OR MIT) AND Zlib
+License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND BSD-2-Clause AND BSD-3-Clause AND BSL-1.0 AND GPL-2.0-only AND ISC AND (LGPL-2.1-only OR BSD-2-Clause) AND LGPL-2.1-only AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MIT AND (MPL-2.0 OR MIT OR Apache-2.0) AND MPL-2.0-or-later AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT) AND Zlib
 URL:            https://github.com/sched-ext/scx
 Source0:        %{URL}/archive/refs/tags/v%{version}.tar.gz
 BuildRequires:  anda-srpm-macros
@@ -78,13 +78,10 @@ License:       GPL-2.0-only
      --exclude scx_arena_selftests
 
 %install
-find target/rpm \
-    -maxdepth 1 -type f -executable ! -name '*.so' \
-    -exec install -Dm755 -t %{buildroot}%{_bindir} {} +
+%install_cargo_bins
+%install_cargo_devel_libs
 
-install -Dm755 target/rpm/*.so -t %{buildroot}%{_libdir}
-
-%{cargo_license_online} > LICENSE.dependencies
+%{cargo_license_online -a} > LICENSE.dependencies
 
 %files
 %doc OVERVIEW.md
@@ -94,5 +91,7 @@ install -Dm755 target/rpm/*.so -t %{buildroot}%{_libdir}
 %{_bindir}/scx*
 
 %changelog
+* Sat May 2 2026 Gilver E. <roachy@fyralabs.com> - 1.1.0-2
+- Update licenses
 * Sun Jun 15 2025 Gilver E. <rockgrub@disroot.org> - 1.0.13-1
 - Initial package

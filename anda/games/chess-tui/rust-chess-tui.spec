@@ -4,8 +4,8 @@
 %global crate chess-tui
 
 Name:           rust-chess-tui
-Version:        2.5.1
-Release:        1%?dist
+Version:        2.6.2
+Release:        1%{?dist}
 Summary:        Rusty chess game in your terminal 🦀
 
 License:        MIT

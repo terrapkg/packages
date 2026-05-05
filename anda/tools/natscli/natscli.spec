@@ -1,7 +1,7 @@
 # https://github.com/nats-io/natscli
 %global goipath         github.com/nats-io/natscli
-%global commit          b1c492425d41ed17c6245b3be393ef30d8b6cbaf
-%global commit_date     20260314
+%global commit          b1b4c4d40fc2bbc82bfb7e915ae5969ed14ac9e6
+%global commit_date     20260503
 %global shortcommit     %{sub %{commit} 1 7}
 
 %gometa -f
@@ -38,7 +38,7 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 
 %files
 %license LICENSE
-%doc README.md AUTH.md LOCAL_DEVELOPMENT.md cli/cheats/*
+%doc README.md AUTH.md CODE-OF-CONDUCT.md GOVERNANCE.md cli/cheats/*
 %{_bindir}/nats
 
 %changelog

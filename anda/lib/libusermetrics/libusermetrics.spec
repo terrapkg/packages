@@ -1,8 +1,8 @@
 Name:       libusermetrics
 Version:    1.4.1
-Release:    1%?dist
+Release:    2%?dist
 Summary:    library for retrieving anonymous metrics about users
-License:    GPLv3 AND LGPLv3 AND LGPLv2
+License:    GPL-3.0-or-later AND LGPL-3.0-or-later AND LGPL-2.1-or-later
 URL:        https://gitlab.com/ubports/development/core/libusermetrics
 Source0:    %url/-/archive/%version/libusermetrics-%version.tar.gz
 
@@ -20,6 +20,8 @@ BuildRequires: pkgconfig(libqtdbustest-1)
 BuildRequires: pkgconfig(libapparmor)
 BuildRequires: qdjango-devel
 BuildRequires: fdupes
+BuildRequires: gmock-devel
+BuildRequires: gtest-devel
 
 %description
 library for retrieving anonymous metrics about users
@@ -55,7 +57,7 @@ The %{name}-doc contains documentation for %{name}.
 %files -f %{name}.lang
 %doc ChangeLog
 %license LGPL_EXCEPTION.txt LICENSE.GPL LICENSE.LGPL LICENSE.LGPL-3
-%{_sysconfdir}/dbus-1/system.d/com.lomiri.UserMetrics.conf
+%{_datadir}/dbus-1/system.d/com.lomiri.UserMetrics.conf
 %{_bindir}/usermetricsinput
 %{_bindir}/usermetricsinput-increment
 %{_libdir}/libusermetricsinput.so.*
