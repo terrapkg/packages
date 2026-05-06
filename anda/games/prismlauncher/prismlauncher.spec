@@ -105,7 +105,7 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
   -DLauncher_CURSEFORGE_API_KEY="%{curseforge_key}" \
   %endif
   -DBUILD_TESTING=OFF
-  -DCMAKE_CXX_FLAGS="-Wno-error=sfinae-incomplete="
+  -DCMAKE_CXX_FLAGS:STRING="-Wno-error=sfinae-incomplete="
 
 %build
 %cmake_build
