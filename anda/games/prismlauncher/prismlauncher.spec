@@ -14,7 +14,7 @@
 
 Name:             prismlauncher
 Version:          11.0.2
-Release:          1%{?dist}
+Release:          2%{?dist}
 Summary:          Minecraft launcher with ability to manage multiple instances
 # see COPYING.md for more information
 # each file in the source also contains a SPDX-License-Identifier header that declares its license
@@ -63,7 +63,7 @@ Requires(postun): desktop-file-utils
 Requires:         qt%{qt_version}-qtimageformats
 Requires:         qt%{qt_version}-qtsvg
 Requires:         javapackages-filesystem
-Recommends:       java-21-openjdk
+Recommends:       java-25-openjdk
 # See note above
 %if 0%{?fedora} && 0%{?fedora} < 42
 Recommends:       java-17-openjdk
