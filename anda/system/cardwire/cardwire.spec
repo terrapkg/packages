@@ -4,7 +4,6 @@ Release:        1%{?dist}
 Summary:        A GPU Manager for linux that uses eBPF LSM hooks to block GPUs
 URL:            https://opengamingcollective.github.io/cardwire/
 Source0:        https://github.com/OpenGamingCollective/cardwire/archive/refs/tags/v%{version}.tar.gz
-Patch0:		make-makefile-work-in-rpm-environment.patch
 License:	GPL-3.0-or-later
 BuildRequires:  cargo-rpm-macros
 BuildRequires:	systemd-rpm-macros
@@ -20,7 +19,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %{summary}.
 
 %prep
-%autosetup -p1
+%autosetup
 %cargo_prep_online
 
 %build
