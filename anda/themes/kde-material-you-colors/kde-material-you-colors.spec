@@ -64,7 +64,7 @@ Python files for KDE Material You Colors.
 %install
 %pyproject_install
 %pyproject_save_files %{pypi_name}
-DESTDIR="%{buildroot}" %cmake_install
+%cmake_install
 
 %files
 %doc CHANGELOG.md
