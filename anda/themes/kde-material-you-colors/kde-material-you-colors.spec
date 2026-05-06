@@ -1,10 +1,11 @@
 %global appid luisbocanegra.kdematerialyou.colors
 %global developer "Luis Bocanegra"
 %global org "com.github.luisbocanegra"
+%global pypi_name kde_material_you_colors
 
 Name:           kde-material-you-colors
 Version:        2.2.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Automatic Material You Colors Generator from your wallpaper for the Plasma Desktop
 License:        GPL-3.0-only
 URL:            https://github.com/luisbocanegra/%{name}
@@ -15,7 +16,6 @@ BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  cmake >= 3.16
 BuildRequires:  extra-cmake-modules >= 6.0.0
-BuildRequires:  fdupes
 BuildRequires:  generic-logos
 BuildRequires:  pyproject-rpm-macros
 BuildRequires:  python3-devel
@@ -32,7 +32,7 @@ BuildRequires:  cmake(Qt5Core)
 BuildRequires:  pkgconfig(ocl-icd)
 Requires:       qt5-qtbase
 Requires:       kf6-filesystem >= 6.0.0
-Requires:       python3-%{name} = %{version}-%{release}
+Requires:       python3-%{name} = %{evr}
 Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
@@ -40,12 +40,9 @@ Automatic Material You Colors Generator from your wallpaper for the Plasma Deskt
 
 %package -n     python3-%{name}
 Summary:        Python files for %{name}
-Requires:       %{name} = %{version}-%{release}
-Requires:       python3-dbus
-Requires:       python3dist(numpy) >= 1.20
-Requires:       python3dist(materialyoucolor) >= 2.0.9
-Requires:       python3dist(pywal16)
-Requires:       python3dist(pillow)
+Requires:       %{name} = %{evr}
+Requires:       python%{python3_version}dist(file-magic)
+Requires:       python%{python3_version}dist(pywal16)
 BuildArch:      noarch
 
 %description -n python3-%{name}
@@ -53,35 +50,35 @@ Python files for KDE Material You Colors.
 
 %prep
 %autosetup -n %{name}-%{version}
-sed -iE 's:\"python-magic.*\":\"file-magic\":' pyproject.toml
+%pyproject_patch_dependency python-magic:ignore
+
+%conf
+%cmake \
+   -DCMAKE_INSTALL_PREFIX="%{_prefix}" \
+   -DINSTALL_PLASMOID="ON"
 
 %build
 %pyproject_wheel
-%cmake \
-   -DCMAKE_INSTALL_PREFIX=%{_prefix} \
-   -DINSTALL_PLASMOID=ON
 %cmake_build
 
 %install
 %pyproject_install
-DESTDIR="%{buildroot}" %cmake_install
-
-sed -Ei "s:^(#!.*)env (python.*)$:\1python3:" %{buildroot}%{python3_sitelib}/kde_material_you_colors/main.py
-%fdupes %{buildroot}%{python3_sitelib}/%{name}/
+%pyproject_save_files %{pypi_name}
+%cmake_install
 
 %files
 %doc CHANGELOG.md
 %doc README.md
 %license LICENSE
 %{_bindir}/%{name}-screenshot-helper
-%{_datadir}/applications/%{name}-screenshot-helper.desktop
-%{_datadir}/plasma/plasmoids/luisbocanegra.kdematerialyou.colors/
+%{_appsdir}/%{name}-screenshot-helper.desktop
+%{_datadir}/plasma/plasmoids/%{appid}/
 
-%files -n python3-%{name}
+%files -n python3-%{name} -f %{pyproject_files}
 %{_bindir}/%{name}
-%{python3_sitelib}/kde_material_you_colors/
-%{python3_sitelib}/kde_material_you_colors-%{version}.dist-info/
 
 %changelog
+* Tue May 5 2026 Gilver E. <roachy@fyralabs.com> - 2.2.0-4
+- Refactor build around new RPM macros
 * Wed May 28 2025 Gilver E. <rockgrub@disroot.org>
 - Initial package
