@@ -14,8 +14,8 @@ BuildArch:        noarch
 BuildRequires:    gcc-c++
 BuildRequires:    gradle
 BuildRequires:    anda-srpm-macros
-BuildRequires:    java-latest-openjdk
-BuildRequires:    java-latest-openjdk-devel
+BuildRequires:    java-25-openjdk
+BuildRequires:    java-25-openjdk-devel
 BuildRequires:    systemd-rpm-macros
 BuildRequires:    make
 BuildRequires:    asciidoc
