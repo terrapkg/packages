@@ -8,6 +8,10 @@
   <name>NeoHtop</name>
   <summary>System monitoring on steroids</summary>
 
+  <screenshots>
+    <screenshot type="default"><image>https://github.com/Abdenasser/neohtop/blob/main/screenshot.png</image></screenshot>
+  </screenshots>
+
   <description>
     <p>
         A modern, cross-platform system monitor built on top of Svelte, Rust, and Tauri.

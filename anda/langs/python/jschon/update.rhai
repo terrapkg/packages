@@ -1,1 +1,1 @@
-rpm.version(gh("marksparkza/jschon"));
+rpm.version(pypi("jschon"));

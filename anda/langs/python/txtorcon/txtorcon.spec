@@ -46,8 +46,6 @@ Provides:       txtorcon
 %python3_sitelib/txtorcon-%version.dist-info/*
 %python3_sitelib/twisted/plugins/*.py
 %{_datadir}/txtorcon/*
-%ghost %python3_sitelib/__pycache__/*.cpython-*.pyc
-%ghost %python3_sitelib/%{name}/subcommands/__pycache__/*.cpython-*.pyc
 
 %changelog
 * Mon Nov 03 2025 Owen Zimmerman <owen@fyralabs.com>

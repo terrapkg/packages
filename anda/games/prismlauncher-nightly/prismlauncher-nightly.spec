@@ -3,41 +3,29 @@
 %global name_pretty %{quote:Prism Launcher (Nightly)}
 %global appid org.prismlauncher.PrismLauncher-nightly
 
-%global commit 8abf5ed7b1f31a89fad1b8d7fb1703639ca08426
+%global commit 4f58197edb50eeef29438378671f764e62144f80
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
-%global commit_date 20251123
+%global commit_date 20260506
 %global snapshot_info %{commit_date}.%{shortcommit}
-
-%bcond_without qt6
 
 # Change this variables if you want to use custom keys
 # Leave blank if you want to build Prism Launcher without MSA id or curseforge api key
 %define msa_id default
 %define curseforge_key default
 
-%if %{with qt6}
 %global qt_version 6
 %global min_qt_version 6
-%else
-%global qt_version 5
-%global min_qt_version 5.12
-%endif
 
 %global build_platform terra
 
-%if %{with qt6}
 Name:             prismlauncher-nightly
-%else
-Name:             prismlauncher-qt5-nightly
-%endif
-Version:          10.0^%{snapshot_info}
-Release:          1%?dist
+Version:          12.0^%{snapshot_info}
+Release:          1%{?dist}
 Summary:          Minecraft launcher with ability to manage multiple instances
 License:          GPL-3.0-only AND Apache-2.0 AND LGPL-3.0-only AND GPL-3.0-or-later AND GPL-2.0-or-later AND ISC AND OFL-1.1 AND LGPL-2.1-only AND MIT AND BSD-2-Clause-FreeBSD AND BSD-3-Clause AND LGPL-3.0-or-later
 Group:            Amusements/Games
 URL:              https://prismlauncher.org/
-Patch0:           0001-find-cmark-with-pkgconfig.patch
 Source2:          nightly.xml
 
 BuildRequires:    cmake >= 3.15
@@ -58,8 +46,10 @@ BuildRequires:    anda-srpm-macros
 BuildRequires:    desktop-file-utils
 BuildRequires:    libappstream-glib
 BuildRequires:    tomlplusplus-devel
-BuildRequires:    cmake(ghc_filesystem)
-BuildRequires:    qrencode-devel
+BuildRequires:    vulkan-headers
+BuildRequires:    pkgconfig(libqrencode)
+BuildRequires:    pkgconfig(libarchive)
+BuildRequires:    pkgconfig(gamemode)
 BuildRequires:    cmake(Qt%{qt_version}Concurrent) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Core) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Gui) >= %{min_qt_version}
@@ -69,17 +59,7 @@ BuildRequires:    cmake(Qt%{qt_version}Widgets) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Xml) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}NetworkAuth) >= %{min_qt_version}
 
-%if %{with qt6}
-BuildRequires:    cmake(Qt6Core5Compat)
-BuildRequires:    quazip-qt6-devel
-%else
-BuildRequires:    quazip-qt5-devel
-%endif
-
 BuildRequires:    pkgconfig(libcmark)
-%if 0%{fedora} < 38
-BuildRequires:    cmark
-%endif
 BuildRequires:    pkgconfig(scdoc)
 BuildRequires:    pkgconfig(zlib)
 
@@ -103,11 +83,8 @@ Recommends:       flite
 Suggests:         gamemode
 
 Conflicts:        %{real_name}
-Conflicts:        %{real_name}-qt5
-%if %{without qt6}
-Conflicts:        %{real_name}-nightly
-%endif
 
+Obsoletes:        %{real_name}-qt5 <= 9.4
 
 %description
 A custom launcher for Minecraft that allows you to easily manage
@@ -116,8 +93,6 @@ multiple installations of Minecraft at once (Fork of MultiMC)
 
 %prep
 %git_clone https://github.com/%{nice_name}/%{nice_name}.git %{commit}
-
-rm -rf libraries/{extra-cmake-modules,zlib}/
 
 # Do not set RPATH
 sed -i "s|\$ORIGIN/||" CMakeLists.txt
@@ -159,15 +134,19 @@ rm -f %{buildroot}%{_datadir}/metainfo/org.prismlauncher.PrismLauncher.metainfo.
 %{_datadir}/%{nice_name}/JavaCheck.jar
 %{_datadir}/%{nice_name}/qtlogging.ini
 %{_datadir}/%{nice_name}/NewLaunchLegacy.jar
-%{_datadir}/applications/org.prismlauncher.PrismLauncher.desktop
+%{_appsdir}/org.prismlauncher.PrismLauncher.desktop
 %{_metainfodir}/%{appid}.metainfo.xml
-%{_datadir}/icons/hicolor/scalable/apps/org.prismlauncher.PrismLauncher.svg
-%{_datadir}/mime/packages/modrinth-mrpack-mime.xml
+%{_scalableiconsdir}/org.prismlauncher.PrismLauncher.svg
+%{_hicolordir}/256x256/apps/org.prismlauncher.PrismLauncher.png
+%{_datadir}/mime/packages/org.prismlauncher.PrismLauncher.xml
 %{_datadir}/qlogging-categories%{qt_version}/prismlauncher.categories
 %{_mandir}/man?/prismlauncher.*
 
 
 %changelog
+* Tue Jan 06 2026 Owen Zimmerman <owen@fyralabs.com> - 10.0.0-1
+- Remove Qt5 version
+
 * Wed Jun 19 2024 Trung Lê <8 at tle dot id dot au> - 9.0^20240619.8014283-1
 - use system quazip-qt and tomlplusplus
 

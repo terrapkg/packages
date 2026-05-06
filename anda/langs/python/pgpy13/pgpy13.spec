@@ -10,7 +10,6 @@ URL:			https://github.com/memory/PGPy
 Source0:		https://files.pythonhosted.org/packages/source/P/PGPy13/pgpy13-%{version}.tar.gz
 BuildArch:      noarch
 
-BuildRequires:  python3
 BuildRequires:  python3.10
 BuildRequires:  python3-build
 BuildRequires:  python3-installer

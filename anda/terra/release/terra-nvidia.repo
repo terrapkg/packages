@@ -5,7 +5,7 @@ metalink=https://tetsudou.fyralabs.com/metalink?repo=terra$releasever-nvidia&arc
 metadata_expire=6h
 type=rpm
 gpgcheck=1
-gpgkey=https://repos.fyralabs.com/terra$releasever-nvidia/key.asc
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-terra$releasever-nvidia
 repo_gpgcheck=1
 enabled=1
 enabled_metadata=1
@@ -19,7 +19,7 @@ metalink=https://tetsudou.fyralabs.com/metalink?repo=terra$releasever-nvidia-sou
 metadata_expire=6h
 type=rpm
 gpgcheck=1
-gpgkey=https://repos.fyralabs.com/terra$releasever-nvidia-source/key.asc
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-terra$releasever-nvidia-source
 repo_gpgcheck=1
 enabled=0
 enabled_metadata=0

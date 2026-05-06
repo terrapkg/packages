@@ -1,0 +1,10 @@
+diff --git a/bin/pygrun b/bin/pygrun
+index 96f1b40..dd01add 100755
+--- a/bin/pygrun
++++ b/bin/pygrun
+@@ -1,4 +1,4 @@
+-#!python
++#!/usr/bin/env python3
+ __author__ = 'jszheng'
+ import optparse
+ import sys

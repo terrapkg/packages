@@ -6,8 +6,8 @@
 %bcond_with tests
 
 Name:           apparmor
-Version:        5.0.0~alpha4
-Release:        1%?dist
+Version:        5.0.0
+Release:        1%{?dist}
 Summary:        AppArmor userspace components
 
 %define baseversion %(echo %{version} | cut -d. -f-2)
@@ -38,6 +38,7 @@ BuildRequires:  systemd-rpm-macros
 BuildRequires:  autoconf-archive
 BuildRequires:  gawk
 BuildRequires:  which
+BuildRequires:  libzstd-devel
 %if %{with tests}
 BuildRequires:  %{_bindir}/runtest
 BuildRequires:  %{_bindir}/prove
@@ -143,10 +144,11 @@ changehat abilities exposed through libapparmor.
 
 %prep
 %autosetup -p1 -n %name-v%normver
+
+%conf
 sed -i 's/@VERSION@/%normver/g' libraries/libapparmor/swig/python/setup.py.in
 sed -i 's/${VERSION}/%normver/g' utils/Makefile
 
-%build
 export PYTHON=%{__python3}
 export PYTHON_VERSION=3
 export PYTHON_VERSIONS=python3
@@ -154,8 +156,12 @@ export PYTHON_VERSIONS=python3
 pushd libraries/libapparmor
 ./autogen.sh
 %configure \
-    --with-python \
+    --with-python
+popd
 
+%build
+
+pushd libraries/libapparmor
 %make_build VERSION=%normver
 popd
 
@@ -184,6 +190,9 @@ mkdir -p %buildroot%_datadir/polkit-1/actions/
 install -Dm644 %{SOURCE1} %{buildroot}%{_presetdir}/70-apparmor.preset
 
 find %{buildroot} \( -name "*.a" -o -name "*.la" \) -delete
+
+mkdir -p %buildroot%python3_sitearch/LibAppArmor
+mv %buildroot%python3_sitearch/{LibAppArmor.py,_LibAppArmor.cpython-*-linux-gnu.so,__pycache__/LibAppArmor.*} %buildroot%python3_sitearch/LibAppArmor/
 
 %find_lang aa-binutils
 %find_lang apparmor-parser
@@ -276,6 +285,7 @@ make -C utils check
 %{_bindir}/aa-exec
 %{_bindir}/aa-features-abi
 %{_sbindir}/aa-load
+#{_sbindir}/aa-show-usage
 %{_sbindir}/aa-teardown
 %{_unitdir}/apparmor.service
 %{_presetdir}/70-apparmor.preset
@@ -293,6 +303,7 @@ make -C utils check
 %{_mandir}/man7/apparmor.7.gz
 %{_mandir}/man7/apparmor_xattrs.7.gz
 %{_mandir}/man8/aa-load.8.gz
+#{_mandir}/man8/aa-show-usage.8.gz
 %{_mandir}/man8/aa-teardown.8.gz
 %{_mandir}/man8/apparmor_parser.8.gz
 

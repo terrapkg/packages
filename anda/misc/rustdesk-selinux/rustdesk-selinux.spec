@@ -9,12 +9,12 @@ restorecon -R /usr/lib/rustdesk/rustdesk; \
 
 Name:   rustdesk-selinux
 Version:	1.0
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	SELinux policy module for rustdesk
 
 Group:	System Environment/Base		
 License:	GPLv2+	
-URL:		http://rustdesk.com
+URL:		https://rustdesk.com
 Source0:	rustdesk.te
 
 Requires: policycoreutils, libselinux-utils

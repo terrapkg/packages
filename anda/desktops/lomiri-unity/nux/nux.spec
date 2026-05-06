@@ -1,6 +1,6 @@
 Name:           nux
 Version:        4.0.8
-Release:        %autorelease
+Release:        1%{?dist}
 Summary:        An OpenGL toolkit
 
 License:        GPL-3.0-or-later AND LGPL-3.0-or-later AND LGPL-2.0-or-later
@@ -51,7 +51,7 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 %autosetup -n nux-%{version} -p1
 for i in debian/patches/*.patch; do patch -p1 < $i; done
 
-%build
+%conf
 NOCONFIGURE=1 \
 ./autogen.sh
 
@@ -60,6 +60,7 @@ NOCONFIGURE=1 \
   --disable-silent-rules \
   --disable-static
 
+%build
 %make_build
 
 %install

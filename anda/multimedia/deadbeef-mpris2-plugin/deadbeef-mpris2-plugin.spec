@@ -30,13 +30,14 @@ will only support version two.
 
 %prep
 %autosetup
+
+%conf
 autoreconf -fiv
-
-
-%build
 %configure \
  --disable-silent-rules \
  --disable-static
+
+%build
 %{make_build}
 
 

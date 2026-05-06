@@ -4,7 +4,7 @@
 %global crate wild-linker
 
 Name:           rust-wild-linker
-Version:        0.7.0
+Version:        0.8.0
 Release:        1%?dist
 Summary:        Very fast linker for Linux
 

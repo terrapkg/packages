@@ -1,13 +1,15 @@
 name: Automatic backport/sync action
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 on:
   pull_request_target:
     types: ["labeled", "closed"]
 
 jobs:
   backport:
+    permissions:
+      contents: write
+      pull-requests: write
     name: Backport/sync PR
     runs-on: ubuntu-22.04
     if: github.event.pull_request.merged
@@ -25,7 +27,7 @@ jobs:
           git config --global commit.gpgsign true
 
       - name: Backport Action
-        uses: sorenlouv/backport-github-action@v10.2.0
+        uses: sorenlouv/backport-github-action@85813678d776774a19ec5af56bd3a04305946f8a # v12.0.0
         with:
           github_token: ${{ secrets.RABONEKO_BACKPORT_GITHUB_TOKEN }}
           auto_backport_label_prefix: sync-

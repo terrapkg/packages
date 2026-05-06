@@ -1,15 +1,15 @@
 diff --git a/software/pyproject.toml b/software/pyproject.toml
-index c1151748..c3302e60 100644
+index 3ecbad5f..06ea059e 100644
 --- a/software/pyproject.toml
 +++ b/software/pyproject.toml
-@@ -29,30 +29,30 @@ requires-python = ">=3.11, <4"
+@@ -29,34 +29,34 @@ requires-python = ">=3.13, <4"
  dependencies = [
    # We use `typing` features not available in the lowest Python version we support. The library
    # `typing_extensions` provides shims for such features. It uses SemVer.
 -  "typing_extensions>=4.8,<5",
 +  "typing_extensions",
    # Amaranth is the core of the Glasgow software/gateware interoperability layer. It uses SemVer.
--  "amaranth>=0.5.7,<0.6",
+-  "amaranth>=0.5.8,<0.6",
 +  "amaranth",
    # `packaging` is used in the plugin system, `support.plugin`. It uses CalVer: the major version
    # is the two last digits of the year and the minor version is the release within that year.
@@ -32,10 +32,16 @@ index c1151748..c3302e60 100644
    # system.
 -  "cobs>=1.2.1",
 +  "cobs",
+   # `tqdm` is used to compute and render progress indicatrs. It uses SemVer.
+-  "tqdm>=4.67.3",
++  "tqdm",
    # `pyvcd` is used in the applet analyzer to dump waveform files. It is also a dependency of
    # Amaranth, and the version range here must be compatible with Amaranth's.
 -  "pyvcd>=0.4.1,<0.5",
 +  "pyvcd",
+   # `enum-tools` is used for documenting enums. It is unclear which versioning scheme it uses.
+-  "enum-tools==0.13.0",
++  "enum-tools",
    # `importlib_resources` is used to shim over Python API incompatibilities. It uses SemVer.
 -  "importlib_resources~=6.5.2",
 +  "importlib_resources",

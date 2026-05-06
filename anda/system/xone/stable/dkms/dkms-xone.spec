@@ -2,8 +2,8 @@
 %global modulename xone
 
 Name:           dkms-%{modulename}
-Version:        0.4.11
-Release:        1%?dist
+Version:        0.5.8
+Release:        2%{?dist}
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Epoch:          2
 %endif
@@ -23,7 +23,7 @@ Provides:       %{modulename}-kmod
 Obsoletes:      %{name} < %{?epoch:%{epoch}:}0.3.4
 %endif
 BuildArch:      noarch
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 Linux kernel driver for Xbox One and Xbox Series X|S accessories.

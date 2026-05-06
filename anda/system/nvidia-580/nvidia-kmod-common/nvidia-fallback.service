@@ -1,0 +1,17 @@
+[Unit]
+Description=Fallback to nouveau as nvidia did not load
+After=akmods.service
+Before=display-manager.service
+ConditionKernelCommandLine=rd.driver.blacklist=nouveau
+ConditionPathExists=!/sys/module/nvidia
+
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=-/sbin/modprobe nouveau
+ExecStartPost=-/bin/plymouth message --text="NVIDIA kernel module missing. Falling back to Nouveau."
+
+
+[Install]
+WantedBy=graphical.target

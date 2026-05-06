@@ -24,10 +24,6 @@
 <launchable type="desktop-id">senpai.desktop</launchable>
 
   <url type="homepage">https://sr.ht/~taiite/senpai/</url>
-  <provides>
-      <mediatype>text/javascript</mediatype>
-      <mediatype>text/typescript</mediatype>
-  </provides>
 
   <releases>
     <release version="0.4.1" />
