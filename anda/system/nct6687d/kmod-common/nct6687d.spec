@@ -4,7 +4,7 @@
 
 Name:           nct6687d
 Version:        1.0^%{commitdate}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Linux kernel driver for the NCT6687D hardware monitoring chip
 License:        GPL-2.0-or-later
 URL:            https://github.com/Fred78290/%{name}
@@ -31,7 +31,7 @@ Akmods modules for the akmod-%{name} package.
 %prep
 %autosetup -p1 -n %{name}-%{commit}
 
-echo %{name} > %{name}.conf
+echo nct6687 > %{name}.conf
 echo "blacklist nct6683" > nct6683_blacklist.conf
 
 %install
@@ -46,10 +46,10 @@ install -Dm 0644 nct6683_blacklist.conf -t %{buildroot}%{_modprobedir}
 %doc README.md images/* TESTING_RESULTS.md
 %{_modprobedir}/nct6683_blacklist.conf
 %{_datadir}/metainfo/com.github.nct6687d.metainfo.xml
-
-%files akmod-modules
 %{_modulesloaddir}/%{name}.conf
 
 %changelog
+* Wed May 06 2026 Luan Oliveira <luanv.oliveira@outlook.com> - 1.0^20260411git.cedda8b-2
+- fix module load file
 * Sat Apr 11 2026 Luan Oliveira <luanv.oliveira@outlook.com> - 1.0^20260411git.cedda8b-1
 - Initial package
