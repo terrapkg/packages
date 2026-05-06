@@ -1,6 +1,11 @@
 Name:           discord-canary
+<<<<<<< gil/chore/discord
 Version:        1.0.1028
 Release:        2%{?dist}
+=======
+Version:        1.0.1033
+Release:        1%{?dist}
+>>>>>>> frawhide
 Summary:        Free Voice and Text Chat for Gamers
 URL:            discord.com
 Source0:        https://dl-canary.discordapp.net/apps/linux/%{version}/%{name}-%{version}.tar.gz
