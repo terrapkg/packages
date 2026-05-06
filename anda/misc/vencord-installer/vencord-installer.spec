@@ -127,7 +127,7 @@ export CGO_LDFLAGS="${LDFLAGS}"
 install -m 0755 -vd                     %{buildroot}%{_bindir}
 install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %terra_appstream -o %{SOURCE1}
-%__desktop_file_install -f %{appid}
+%__desktop_file_install %{appid}
 install -Dm644 %{SOURCE3} %{buildroot}%{_datadir}/polkit-1/actions/%{appid}
 
 %files
