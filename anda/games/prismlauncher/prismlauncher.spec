@@ -104,7 +104,7 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
   %if "%{curseforge_key}" != "default"
   -DLauncher_CURSEFORGE_API_KEY="%{curseforge_key}" \
   %endif
-  -DBUILD_TESTING=OFF
+  -DBUILD_TESTING=OFF \
   -DCMAKE_CXX_FLAGS="$CXXFLAGS -Wno-error=sfinae-incomplete"
 
 %build
