@@ -11,22 +11,16 @@ URL:            https://github.com/Fred78290/%{name}
 Source0:        %{url}/archive/%{commit}.tar.gz#/%{name}-%{shortcommit}.tar.gz
 Source1:        com.github.nct6687d.metainfo.xml
 BuildRequires:  systemd-rpm-macros
+BuildRequires:  anda-srpm-macros
 Requires:       %{name}-kmod = %{?epoch:%{epoch}:}%{version}
 Provides:       %{name}-kmod-common = %{?epoch:%{epoch}:}%{version}
+Obsoletes:      %{name}-akmods-modules < %{evr}
 BuildArch:      noarch
 
 %description
 Linux kernel driver for the NCT6687D hardware monitoring chip.
 This kernel module permit to recognize the chipset Nuvoton NCT6687-R in lm-sensors package. This sensor is present on some B550 motherboard such as MSI or ASUS.
 The implementation is minimalist and was done by reverse coding of Windows 10 source code from LibreHardwareMonitor
-
-%package       akmod-modules
-Summary:       Modules for Akmods
-Requires:      %{name}-kmod = %{?epoch:%{epoch}:}%{version}
-BuildArch:     noarch
-
-%description   akmod-modules
-Akmods modules for the akmod-%{name} package.
 
 %prep
 %autosetup -p1 -n %{name}-%{commit}
