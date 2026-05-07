@@ -19,7 +19,6 @@ BuildRequires:  python3-setuptools
 BuildRequires:  python3-setuptools_scm
 BuildRequires:  python3-pip
 BuildRequires:  python3-devel
-BuildRequires:  python3-installer
 BuildRequires:  git
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
@@ -39,271 +38,260 @@ Provides:       pitop-sdk
 %description -n python3-%{pypi_name}
 %_desc
 
-%package    battery
+%package -n python3-pitop-battery
 Summary:    Battery support for the pi-top sdk
 Requires:   python3-pitop
 
-%description battery
+%description -n python3-pitop-battery
 Battery support for the pi-top sdk.
 
-%package    camera
+%package    -n python3-pitop-camera
 Summary:    Camera support for the pi-top sdk
 Requires:   python3-pitop
 
-%description camera
+%description -n python3-pitop-camera
 Camera support for the pi-top sdk.
 
-%package    cli
+%package    -n python3-pitopcli
 Summary:    cli support for the pi-top sdk
 Requires:   python3-pitop
 
-%description cli
+%description -n python3-pitopcli
 cli support for the pi-top sdk.
 
-%package    core
+%package    -n python3-pitop-core
 Summary:    core for the pi-top sdk
 Requires:   python3-pitop
 
-%description core
+%description -n python3-pitop-core
 core for the pi-top sdk.
 
-%package    common
+%package    -n python3-pitop-common
 Summary:    Support for the pi-top sdk
 Requires:   python3-pitop
 
-%description common
+%description -n python3-pitop-common
 Support for the pi-top sdk.
 
-%package    display
+%package    -n python3-pitop-display
 Summary:    Display support for the pi-top sdk
 Requires:   python3-pitop
 
-%description display
+%description -n python3-pitop-display
 Display support for the pi-top sdk.
 
-%package    keyboard
+%package    -n python3-pitop-keyboard
 Summary:    Keyboard support for the pi-top sdk
 Requires:   python3-pitop
 
-%description keyboard
+%description -n python3-pitop-keyboard
 Keyboard support for the pi-top sdk.
 
-%package    miniscreen
+%package    -n python3-pitop-miniscreen
 Summary:    Miniscreen support for the pi-top sdk
 Requires:   python3-pitop
 
-%description miniscreen
+%description -n python3-pitop-miniscreen
 Miniscreen support for the pi-top sdk.
 
-%package    pitop
-Summary:    pitop support for the pi-top sdk
-Requires:   python3-pitop
-
-%description pitop
-pitop support for the pi-top sdk.
-
-%package    pma
+%package    -n python3-pitop-pma
 Summary:    pma support for the pi-top sdk
 Requires:   python3-pitop
 
-%description pma
+%description -n python3-pitop-pma
 pma support for the pi-top sdk.
 
-%package    processing
+%package    -n python3-pitop-processing
 Summary:    Processing support for the pi-top sdk
 Requires:   python3-pitop
 
-%description processing
+%description -n python3-pitop-processing
 Processing support for the pi-top sdk.
 
-%package    robotics
+%package    -n python3-pitop-robotics
 Summary:    Robotics support for the pi-top sdk
 Requires:   python3-pitop
 
-%description robotics
+%description -n python3-pitop-robotics
 Robotics support for the pi-top sdk.
 
-%package    simulation
+%package    -n python3-pitop-simulation
 Summary:    Simulation support for the pi-top sdk
 Requires:   python3-pitop
 
-%description simulation
+%description -n python3-pitop-simulation
 Simulation support for the pi-top sdk.
 
-%package    system
+%package    -n python3-pitop-system
 Summary:    System support for the pi-top sdk
 Requires:   python3-pitop
 
-%description system
+%description -n python3-pitop-system
 System support for the pi-top sdk.
 
 %prep
 %autosetup -n pi-top-Python-SDK-%{ver}
 
+%pyproject_patch_dependency flask:drop_constraints
+%pyproject_patch_dependency flask-cors:drop_constraints
+%pyproject_patch_dependency gevent:drop_constraints
+%pyproject_patch_dependency gpiozero:drop_constraints
+
 %build
-%pyproject_wheel
-pushd packages
-pushd battery
+pushd packages/battery
 %pyproject_wheel
 popd
-pushd cli
+pushd packages/camera
 %pyproject_wheel
 popd
-pushd common
+pushd packages/cli
 %pyproject_wheel
 popd
-pushd core
+pushd packages/common
 %pyproject_wheel
 popd
-pushd display
+pushd packages/core
 %pyproject_wheel
 popd
-pushd keyboard
+pushd packages/display
 %pyproject_wheel
 popd
-pushd miniscreen
+pushd packages/keyboard
 %pyproject_wheel
 popd
-pushd pitop
+pushd packages/miniscreen
 %pyproject_wheel
 popd
-pushd pma
+pushd packages/pitop
 %pyproject_wheel
 popd
-pushd processing
+pushd packages/pma
 %pyproject_wheel
 popd
-pushd robotics
+pushd packages/processing
 %pyproject_wheel
 popd
-pushd simulation
+pushd packages/robotics
 %pyproject_wheel
 popd
-pushd system
+pushd packages/simulation
 %pyproject_wheel
 popd
+pushd packages/system
+%pyproject_wheel
 popd
 
 %install
 %pyproject_install
-
 pushd packages/battery
 %pyproject_install
 popd
-
 pushd packages/camera
 %pyproject_install
 popd
-
 pushd packages/cli
 %pyproject_install
 popd
-
 pushd packages/common
 %pyproject_install
 popd
-
 pushd packages/core
 %pyproject_install
 popd
-
 pushd packages/display
 %pyproject_install
 popd
-
 pushd packages/keyboard
 %pyproject_install
 popd
-
 pushd packages/miniscreen
 %pyproject_install
 popd
-
-pushd packages/pitop
-%pyproject_install
-popd
-
 pushd packages/pma
 %pyproject_install
 popd
-
 pushd packages/processing
 %pyproject_install
 popd
-
 pushd packages/robotics
 %pyproject_install
 popd
-
 pushd packages/simulation
 %pyproject_install
 popd
-
 pushd packages/system
 %pyproject_install
 popd
+
+rm -rf %{buildroot}/usr/lib/python3.14/site-packages/pitop/protoplus/
 
 %files -n python3-%{pypi_name}
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/pitop-*.dist-info/
+%{python3_sitelib}/pitop/__pycache__/
+%{python3_sitelib}/pitop/__init__.py
+%{python3_sitelib}/pitop/*.py
+%{python3_sitelib}/pitop/labs/
+%{python3_sitelib}/pitop/pulse/
 
-%files battery
+%files -n python3-pitop-battery
 %{python3_sitelib}/pitop_battery-*.dist-info/
 %{python3_sitelib}/pitop/battery/
 
-%files camera
+%files -n python3-pitop-camera
 %{python3_sitelib}/pitop_camera-*.dist-info/
 %{python3_sitelib}/pitop/camera/
 
-%files cli
-%{python3_sitelib}/pitop_cli-*.dist-info/
-%{python3_sitelib}/pitop/cli/
+%files -n python3-pitopcli
+%{python3_sitelib}/pitopcli-*.dev1.dist-info/
+%{_bindir}/pi-top
+%{_bindir}/pt
+%{python3_sitelib}/pitopcli/
 
-%files common
+%files -n python3-pitop-common
 %{python3_sitelib}/pitop_common-*.dist-info/
 %{python3_sitelib}/pitop/common/
 
-%files core
+%files -n python3-pitop-core
 %{python3_sitelib}/pitop_core-*.dist-info/
 %{python3_sitelib}/pitop/core/
 
-%files display
+%files -n python3-pitop-display
 %{python3_sitelib}/pitop_display-*.dist-info/
 %{python3_sitelib}/pitop/display/
 
-%files keyboard
+%files -n python3-pitop-keyboard
 %{python3_sitelib}/pitop_keyboard-*.dist-info/
 %{python3_sitelib}/pitop/keyboard/
 
-%files miniscreen
+%files -n python3-pitop-miniscreen
 %{python3_sitelib}/pitop_miniscreen-*.dist-info/
 %{python3_sitelib}/pitop/miniscreen/
 
-%files pitop
-%{python3_sitelib}/pitop_pitop-*.dist-info/
-%{python3_sitelib}/pitop/pitop/
-
-%files pma
+%files -n python3-pitop-pma
 %{python3_sitelib}/pitop_pma-*.dist-info/
 %{python3_sitelib}/pitop/pma/
 
-%files processing
+%files -n python3-pitop-processing
 %{python3_sitelib}/pitop_processing-*.dist-info/
 %{python3_sitelib}/pitop/processing/
 
-%files robotics
+%files -n python3-pitop-robotics
 %{python3_sitelib}/pitop_robotics-*.dist-info/
 %{python3_sitelib}/pitop/robotics/
 
-%files simulation
+%files -n python3-pitop-simulation
 %{python3_sitelib}/pitop_simulation-*.dist-info/
 %{python3_sitelib}/pitop/simulation/
 
-%files system
+%files -n python3-pitop-system
 %{python3_sitelib}/pitop_system-*.dist-info/
 %{python3_sitelib}/pitop/system/
 
 %changelog
+* Wed May 06 2026 Owen Zimmerman <owen@fyralabs.com>
+- Update files and build/prep steps
+
 * Wed Oct 08 2025 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit
