@@ -1,5 +1,8 @@
 {
   "recommendations": [
-    "rhaiscript.vscode-rhai"
+    "rhaiscript.vscode-rhai",
+    "1dot75cm.rpmspec",
+    "hashicorp.hcl",
+    "redhat.vscode-xml"
   ]
 }

@@ -4,6 +4,7 @@ project pkg {
         spec = "uavs3d.spec"
     }
     labels {
-        mock =1
+        mock = 1
+        subrepo = "multimedia"
     }
 }

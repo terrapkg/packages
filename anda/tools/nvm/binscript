@@ -1,0 +1,5 @@
+#!/usr/bin/bash
+
+\. /etc/profile.d/nvm.sh --no-use
+
+nvm $@

@@ -1,0 +1,11 @@
+--- a/nvm.sh	2025-04-23 18:34:31.000000000 -0500
++++ b/nvm.sh	2025-12-01 07:26:54.550237797 -0600
+@@ -449,7 +449,7 @@
+     NVM_SCRIPT_SOURCE="${BASH_SOURCE}"
+   fi
+   # shellcheck disable=SC2086
+-  NVM_DIR="$(nvm_cd ${NVM_CD_FLAGS} "$(dirname "${NVM_SCRIPT_SOURCE:-$0}")" >/dev/null && \pwd)"
++  NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+   export NVM_DIR
+ else
+   # https://unix.stackexchange.com/a/198289

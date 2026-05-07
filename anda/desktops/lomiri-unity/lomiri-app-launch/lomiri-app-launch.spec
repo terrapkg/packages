@@ -1,5 +1,5 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-app-launch
-%global commit ca7670c0a74c42f03c0bb4196773519c270a0d75
+%global commit c40aaeecbc1a1634f961ed6ce2b5f5cb0e5196e3
 %forgemeta
 
 Name:           lomiri-app-launch

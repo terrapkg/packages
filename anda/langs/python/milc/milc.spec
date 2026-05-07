@@ -2,8 +2,8 @@
 %global _desc Batteries-Included Python 3 CLI Framework.
 
 Name:			python-%{pypi_name}
-Version:		1.9.1
-Release:		1%?dist
+Version:		2.0.0
+Release:		1%{?dist}
 Summary:		Batteries-Included Python 3 CLI Framework
 License:		MIT
 URL:			https://github.com/clueboard/milc

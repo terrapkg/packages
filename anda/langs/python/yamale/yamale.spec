@@ -2,8 +2,8 @@
 %global _desc A schema and validator for YAML.
 
 Name:			python-%{pypi_name}
-Version:		6.0.0
-Release:		1%?dist
+Version:		6.1.0
+Release:		2%?dist
 Summary:		A schema and validator for YAML
 License:		MIT
 URL:			https://github.com/23andMe/Yamale
@@ -42,8 +42,6 @@ Provides:       yamale
 %doc README.md SECURITY.md
 %license LICENSE
 %{_bindir}/yamale
-%ghost %python3_sitelib/__pycache__/*.cpython-*.pyc
-%ghost %python3_sitelib/%{name}/subcommands/__pycache__/*.cpython-*.pyc
 %python3_sitelib/yamale-%version.dist-info/*
 
 %changelog

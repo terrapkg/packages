@@ -1,12 +1,13 @@
 Name:		dracut-strip-trigger
 Version:	0
-Release:	6%?dist
+Release:	7%?dist
 Summary:	Strip initramfs aggressively
 License:	GPL-3.0-only
 Requires:	dracut installonlypkg(kernel)
 Conflicts:  dracut-config-generic
 Source0:	LICENSE
 Source1:    01-aggressive-strip.conf
+BuildArch: noarch
 
 %global _desc %{expand:
 Strip initramfs automatically for each kernel update using --hostonly --aggressive-strip.

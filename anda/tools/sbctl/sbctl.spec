@@ -1,11 +1,15 @@
+%global appid  dev.linderud.sbctl
+%global appstream_component console-application
+%global patch_commit 14c4027270589b8d6f39cbca97569e6b13e40a05
 Name:           sbctl
 Version:        0.18
-Release:        1%?dist
+Release:        4%?dist
 Summary:        Secure Boot key manager
 
 License:        MIT
 URL:            https://github.com/Foxboron/sbctl
 Source0:        https://github.com/Foxboron/sbctl/releases/download/%{version}/sbctl-%{version}.tar.gz
+Patch1:         https://github.com/Foxboron/sbctl/compare/master...%{patch_commit}.patch
 ## Based on CachyOS's batch sign script
 # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/bin/sbctl-batch-sign
 Source1:        %{name}-batch-sign
@@ -21,6 +25,7 @@ Recommends:     systemd-udev
 BuildRequires:  asciidoc
 BuildRequires:  git
 BuildRequires:  go-rpm-macros
+BuildRequires:  anda-srpm-macros
 BuildRequires:  pkgconfig(libpcsclite)
 
 %description
@@ -46,10 +51,9 @@ export GOPATH=%{_builddir}/go
 %make_install PREFIX=%{_prefix}
 install -Dm755 %{SOURCE1} -t %{buildroot}%{_bindir}
 
-# This script is actually broken on Fedora, while new Debian installkernel hook works fine
-# for kernel-install, thanks to Fedora's kernel-install hook adding support for
-# postinst.d hooks.
-rm -f %{buildroot}%{_prefix}/lib/kernel/install.d/91-sbctl.install
+# We don't want the Debian script
+rm -f %{buildroot}%{_prefix}/lib/kernel/postinst.d/91-sbctl.install
+%terra_appstream
 
 %transfiletriggerin -P 1 -- /efi /usr/lib /usr/libexec
 if [[ ! -f /run/ostree-booted ]] && grep -q -m 1 -e '\.efi$' -e '/vmlinuz$'; then
@@ -63,12 +67,13 @@ fi
 %doc README.md
 %{_bindir}/sbctl
 %{_bindir}/sbctl-batch-sign
-%{_prefix}/lib/kernel/postinst.d/91-sbctl.install
+%{_prefix}/lib/kernel/install.d/91-sbctl.install
 %{_mandir}/man8/sbctl.8*
 %{_mandir}/man5/sbctl.conf.5*
 %{_datadir}/bash-completion/completions/sbctl
 %{_datadir}/fish/vendor_completions.d/sbctl.fish
 %{_datadir}/zsh/site-functions/_sbctl
+%{_metainfodir}/%{appid}.metainfo.xml
 
 
 %changelog

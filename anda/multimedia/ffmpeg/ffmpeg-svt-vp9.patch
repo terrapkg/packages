@@ -1,6 +1,6 @@
-diff -Naur ffmpeg-7.1.1.old/configure ffmpeg-7.1.1/configure
---- ffmpeg-7.1.1.old/configure	2025-03-24 10:54:38.202757211 +0100
-+++ ffmpeg-7.1.1/configure	2025-03-24 10:54:38.618546808 +0100
+diff -Naur ffmpeg-7.1.2.old/configure ffmpeg-7.1.2/configure
+--- ffmpeg-7.1.2.old/configure	2025-10-27 10:07:00.645474486 +0100
++++ ffmpeg-7.1.2/configure	2025-10-27 10:07:01.726484024 +0100
 @@ -278,6 +278,7 @@
    --enable-libsrt          enable Haivision SRT protocol via libsrt [no]
    --enable-libssh          enable SFTP protocol via libssh [no]
@@ -9,7 +9,7 @@ diff -Naur ffmpeg-7.1.1.old/configure ffmpeg-7.1.1/configure
    --enable-libtensorflow   enable TensorFlow as a DNN module backend
                             for DNN based filters like sr [no]
    --enable-libtesseract    enable Tesseract, needed for ocr filter [no]
-@@ -1953,6 +1954,7 @@
+@@ -1955,6 +1956,7 @@
      libshaderc
      libshine
      libsmbclient
@@ -17,7 +17,7 @@ diff -Naur ffmpeg-7.1.1.old/configure ffmpeg-7.1.1/configure
      libsnappy
      libsoxr
      libspeex
-@@ -3575,6 +3577,7 @@
+@@ -3579,6 +3581,7 @@
  libvpx_vp8_encoder_deps="libvpx"
  libvpx_vp9_decoder_deps="libvpx"
  libvpx_vp9_encoder_deps="libvpx"
@@ -25,17 +25,17 @@ diff -Naur ffmpeg-7.1.1.old/configure ffmpeg-7.1.1/configure
  libvvenc_encoder_deps="libvvenc"
  libwebp_encoder_deps="libwebp"
  libwebp_anim_encoder_deps="libwebp"
-@@ -6997,6 +7000,7 @@
- enabled libspeex          && require_pkg_config libspeex speex speex/speex.h speex_decoder_init
- enabled libsrt            && require_pkg_config libsrt "srt >= 1.3.0" srt/srt.h srt_socket
- enabled libsvtav1         && require_pkg_config libsvtav1 "SvtAv1Enc >= 0.9.0" EbSvtAv1Enc.h svt_av1_enc_init_handle
+@@ -7028,6 +7031,7 @@
+                                die "ERROR: libtwolame must be installed and version must be >= 0.3.10"; }
+ enabled libuavs3d         && require_pkg_config libuavs3d "uavs3d >= 1.1.41" uavs3d.h uavs3d_decode
+ enabled libv4l2           && require_pkg_config libv4l2 libv4l2 libv4l2.h v4l2_ioctl
 +enabled libsvtvp9         && require_pkg_config libsvtvp9 SvtVp9Enc EbSvtVp9Enc.h       eb_vp9_svt_init_handle
- enabled libtensorflow     && require libtensorflow tensorflow/c/c_api.h TF_Version -ltensorflow
- enabled libtesseract      && require_pkg_config libtesseract tesseract tesseract/capi.h TessBaseAPICreate
- enabled libtheora         && require libtheora theora/theoraenc.h th_info_init -ltheoraenc -ltheoradec -logg
-diff -Naur ffmpeg-7.1.1.old/libavcodec/allcodecs.c ffmpeg-7.1.1/libavcodec/allcodecs.c
---- ffmpeg-7.1.1.old/libavcodec/allcodecs.c	2025-03-24 10:54:38.119756212 +0100
-+++ ffmpeg-7.1.1/libavcodec/allcodecs.c	2025-03-24 10:54:38.619934060 +0100
+ enabled libvidstab        && require_pkg_config libvidstab "vidstab >= 0.98" vid.stab/libvidstab.h vsMotionDetectInit
+ enabled libvmaf           && require_pkg_config libvmaf "libvmaf >= 2.0.0" libvmaf.h vmaf_init
+ enabled libvmaf           && check_pkg_config libvmaf_cuda "libvmaf >= 2.0.0" libvmaf_cuda.h vmaf_cuda_state_init
+diff -Naur ffmpeg-7.1.2.old/libavcodec/allcodecs.c ffmpeg-7.1.2/libavcodec/allcodecs.c
+--- ffmpeg-7.1.2.old/libavcodec/allcodecs.c	2025-10-27 10:07:00.517473357 +0100
++++ ffmpeg-7.1.2/libavcodec/allcodecs.c	2025-10-27 10:07:01.728697010 +0100
 @@ -796,6 +796,7 @@
  extern const FFCodec ff_libvo_amrwbenc_encoder;
  extern const FFCodec ff_libvorbis_encoder;
@@ -44,9 +44,9 @@ diff -Naur ffmpeg-7.1.1.old/libavcodec/allcodecs.c ffmpeg-7.1.1/libavcodec/allco
  extern const FFCodec ff_libvpx_vp8_encoder;
  extern const FFCodec ff_libvpx_vp8_decoder;
  extern FFCodec ff_libvpx_vp9_encoder;
-diff -Naur ffmpeg-7.1.1.old/libavcodec/libsvt_vp9.c ffmpeg-7.1.1/libavcodec/libsvt_vp9.c
---- ffmpeg-7.1.1.old/libavcodec/libsvt_vp9.c	1970-01-01 01:00:00.000000000 +0100
-+++ ffmpeg-7.1.1/libavcodec/libsvt_vp9.c	2025-03-24 10:54:38.620176868 +0100
+diff -Naur ffmpeg-7.1.2.old/libavcodec/libsvt_vp9.c ffmpeg-7.1.2/libavcodec/libsvt_vp9.c
+--- ffmpeg-7.1.2.old/libavcodec/libsvt_vp9.c	1970-01-01 01:00:00.000000000 +0100
++++ ffmpeg-7.1.2/libavcodec/libsvt_vp9.c	2025-10-27 10:07:01.729099438 +0100
 @@ -0,0 +1,701 @@
 +/*
 +* Scalable Video Technology for VP9 encoder library plugin
@@ -260,11 +260,11 @@ diff -Naur ffmpeg-7.1.1.old/libavcodec/libsvt_vp9.c ffmpeg-7.1.1/libavcodec/libs
 +        param->intra_period  = avctx->gop_size - 1;
 +
 +    if (avctx->framerate.num > 0 && avctx->framerate.den > 0) {
-+        param->frame_rate_numerator     = avctx->framerate.num;
-+        param->frame_rate_denominator   = avctx->framerate.den * avctx->ticks_per_frame;
++        param->frame_rate_numerator   = avctx->framerate.num;
++        param->frame_rate_denominator = avctx->framerate.den;
 +    } else {
-+        param->frame_rate_numerator     = avctx->time_base.den;
-+        param->frame_rate_denominator   = avctx->time_base.num * avctx->ticks_per_frame;
++        param->frame_rate_numerator   = avctx->time_base.den;
++        param->frame_rate_denominator = avctx->time_base.num;
 +    }
 +
 +    if (param->rate_control_mode) {
@@ -749,9 +749,9 @@ diff -Naur ffmpeg-7.1.1.old/libavcodec/libsvt_vp9.c ffmpeg-7.1.1/libavcodec/libs
 +    .defaults         = eb_enc_defaults,
 +    .p.wrapper_name   = "libsvt_vp9",
 +};
-diff -Naur ffmpeg-7.1.1.old/libavcodec/Makefile ffmpeg-7.1.1/libavcodec/Makefile
---- ffmpeg-7.1.1.old/libavcodec/Makefile	2025-03-24 10:54:37.935753999 +0100
-+++ ffmpeg-7.1.1/libavcodec/Makefile	2025-03-24 10:54:38.620394147 +0100
+diff -Naur ffmpeg-7.1.2.old/libavcodec/Makefile ffmpeg-7.1.2/libavcodec/Makefile
+--- ffmpeg-7.1.2.old/libavcodec/Makefile	2025-10-27 10:07:00.259471080 +0100
++++ ffmpeg-7.1.2/libavcodec/Makefile	2025-10-27 10:07:01.729297932 +0100
 @@ -1157,6 +1157,7 @@
  OBJS-$(CONFIG_LIBVORBIS_DECODER)          += libvorbisdec.o
  OBJS-$(CONFIG_LIBVORBIS_ENCODER)          += libvorbisenc.o \

@@ -1,5 +1,5 @@
-%global commit 71a73d9ac15b3c50c80f1a4cffd657f304da79a8
-%global commit_date 20251015
+%global commit e55cd408f7eee7d1009a5c0bb4003914292f082d
+%global commit_date 20260427
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global debug_package %nil
 %global __strip /bin/true
@@ -12,7 +12,7 @@
 
 Name:           legcord-nightly
 Version:        %commit_date.%shortcommit
-Release:        1%?dist
+Release:        1%{?dist}
 License:        OSL-3.0
 Summary:        Custom lightweight Discord client designed to enhance your experience
 URL:            https://github.com/Legcord/Legcord
@@ -82,10 +82,10 @@ desktop-file-install --set-key=Exec --set-value="%{_datadir}/legcord/legcord %U"
 * Mon Aug 26 2024 madonuko <mado@fyralabs.com> - 3.3.0-1
 - Update to license.txt
 
-* Sat Jun 17 2023 windowsboy111 <windowsboy111@fyralabs.com> - 3.2.0-2
+* Sat Jun 17 2023 madonuko <mado@fyralabs.com> - 3.2.0-2
 - Remove libnotify dependency.
 - Fix desktop entry.
 - Set as noarch package because there are not binary files.
 
-* Sat May 6 2023 windowsboy111 <windowsboy111@fyralabs.com> - 3.1.7-1
+* Sat May 6 2023 madonuko <mado@fyralabs.com> - 3.1.7-1
 - Initial package

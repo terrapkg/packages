@@ -4,7 +4,7 @@
 %global crate typst
 
 Name:           rust-typst
-Version:        0.14.0
+Version:        0.14.2
 Release:        1%?dist
 Summary:        New markup-based typesetting system that is powerful and easy to learn
 
@@ -35,8 +35,10 @@ Provides:       %crate-cli = %version-%release
 %doc README.md
 %_bindir/typst
 %_mandir/man1/typst-compile.1.gz
+%_mandir/man1/typst-completions.1.gz
 %_mandir/man1/typst-fonts.1.gz
 %_mandir/man1/typst-init.1.gz
+%_mandir/man1/typst-info.1.gz
 %_mandir/man1/typst-query.1.gz
 %_mandir/man1/typst-update.1.gz
 %_mandir/man1/typst-watch.1.gz

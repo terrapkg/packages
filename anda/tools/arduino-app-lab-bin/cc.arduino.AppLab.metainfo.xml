@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component type="runtime">
+  <id>cc.arduino.AppLab</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0</project_license>
+
+  <name>Arduino App Lab</name>
+  <summary
+    >A powerful visual environment for managing the Arduino UNO Q</summary>
+
+  <icon type="local">
+  /usr/share/icons/hicolor/scalable/apps/cc.arduino.AppLab.svg
+  </icon>
+  <description>
+    <p>
+    A powerful visual environment for managing your UNO Q board — combine prebuilt modules, called Bricks, with AI models to define your board’s behavior with ease.
+    App Lab supports both classic C++ sketches via the Arduino IDE and Python, giving you full flexibility to develop the way you prefer.
+    </p>
+  </description>
+  <url type="homepage">https://arduino.cc</url>
+
+  <releases>
+    <release version="0.2.4" />
+  </releases>
+</component>

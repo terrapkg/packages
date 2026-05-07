@@ -1,0 +1,30 @@
+<component type="driver">
+  <id>com.github.zenergy</id>
+  <name>zenergy</name>
+  <pkgname>zenergy</pkgname>
+  <summary>Exposes the energy counters that are reported via the Running Average Power Limit (RAPL)</summary>
+  <description>
+    <p>
+    Based on AMD_ENERGY driver, but with some jiffies added so non-root users can read it safely.
+    Exposes the energy counters that are reported via the Running Average Power Limit (RAPL) Model-specific Registers (MSRs)
+    via the hardware monitor (HWMON) sysfs interface.
+    </p>
+  </description>
+  <url type="homepage">https://github.com/BoukeHaarsma23/zenergy</url>
+  <metadata_license>CC0-1.0</metadata_license>
+  <!-- gplv2 -->
+  <project_license>GPL-2.0</project_license>
+
+  <developer id="com.github.zenergy">
+    <name>BoukeHaarsma23</name>
+  </developer>
+  
+
+  <provides>
+  <!-- /class/hwmon/hwmon*/energy* -->
+    <modalias>platform:zenergy</modalias>
+    <modalias>cpu:type:x86,ven0002fam0017mod*:feature:*</modalias>
+    <modalias>cpu:type:x86,ven0002fam0019mod*:feature:*</modalias>
+    <modalias>cpu:type:x86,ven0002fam001Amod*:feature:*</modalias>
+  </provides>
+</component>
