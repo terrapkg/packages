@@ -1,12 +1,12 @@
 %dnl %define debug_package %{nil}
 
 %global goipath github.com/nwg-piotr/nwg-look
-Version:        1.0.6
+Version:        1.1.0
 
 %gometa -f
 
 Name:           nwg-look
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        GTK3 settings editor adapted to work in the wlroots environment
 
 License:        MIT
