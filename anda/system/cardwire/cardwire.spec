@@ -11,7 +11,6 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  rust
 BuildRequires:	libbpf-devel
 BuildRequires:	clang-devel
-ExclusiveArch:  x86_64
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
