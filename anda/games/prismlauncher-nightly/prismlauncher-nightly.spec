@@ -37,11 +37,7 @@ BuildRequires:    terra-appstream-helper
 # Make sure you have Adoptium's repositories enabled
 # https://fedoraproject.org/wiki/Changes/ThirdPartyLegacyJdks
 # https://adoptium.net/installation/linux/#_centosrhelfedora_instructions
-%if 0%{?fedora} > 41
 BuildRequires:    temurin-17-jdk
-%else
-BuildRequires:    java-17-openjdk-devel
-%endif
 BuildRequires:    anda-srpm-macros
 BuildRequires:    desktop-file-utils
 BuildRequires:    libappstream-glib
@@ -69,11 +65,6 @@ Requires(postun): desktop-file-utils
 Requires:         qt%{qt_version}-qtimageformats
 Requires:         qt%{qt_version}-qtsvg
 Requires:         javapackages-filesystem
-# See note above
-%if 0%{?fedora} && 0%{?fedora} < 42
-Recommends:       java-17-openjdk
-Suggests:         java-1.8.0-openjdk
-%endif
 
 # xrandr needed for LWJGL [2.9.2, 3) https://github.com/LWJGL/lwjgl/issues/128
 Recommends:       xrandr
@@ -98,7 +89,7 @@ multiple installations of Minecraft at once (Fork of MultiMC)
 sed -i "s|\$ORIGIN/||" CMakeLists.txt
 
 
-%build
+%conf
 %cmake \
   -DLauncher_QT_VERSION_MAJOR="%{qt_version}" \
   -DLauncher_BUILD_PLATFORM="%{build_platform}" \
@@ -111,8 +102,10 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
   %if "%{curseforge_key}" != "default"
   -DLauncher_CURSEFORGE_API_KEY="%{curseforge_key}" \
   %endif
-  -DBUILD_TESTING=OFF
-
+  -DBUILD_TESTING=OFF \
+  -DCMAKE_CXX_FLAGS="$CXXFLAGS -Wno-error=sfinae-incomplete"
+  
+%build
 %cmake_build
 
 
