@@ -135,7 +135,7 @@ install -Dm644 %{SOURCE3} %{buildroot}%{_datadir}/polkit-1/actions/%{appid}
 %doc README.md
 %{_bindir}/vencord-installer
 %{_datadir}/metainfo/%appid.metainfo.xml
-%{_datadir}/applications/%{appid}
+%{_datadir}/applications/%{appid}.desktop
 %{_datadir}/polkit-1/actions/%{appid}
 
 
