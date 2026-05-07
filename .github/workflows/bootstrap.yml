@@ -1,6 +1,9 @@
 name: Bootstrap Andaman and Subatomic
 permissions:
   contents: read
+  attestations: write
+  artifact-metadata: write
+  id-token: write
 on:
   workflow_dispatch:
 
@@ -85,3 +88,10 @@ jobs:
             -H "Authorization: Bearer ${{ secrets.MADOGUCHI_JWT }}" \
             -H "Content-Type: application/json" \
             -d '{"link":"https://repos.fyralabs.com/terra'${{ matrix.version }}'/","gh":"https://github.com/terrapkg/packages/tree/f'${{ matrix.version }}'"}' --fail-with-body
+
+      - name: Attest build provenance
+        uses: actions/attest-build-provenance@a2bbfa25375fe432b6a289bc6b6cd05ecd0c4c32 # v4.1.0
+        with:
+          subject-path: |
+            anda-build/rpm/rpms/*
+            anda-build/rpm/srpm/*

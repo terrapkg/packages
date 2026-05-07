@@ -3,6 +3,9 @@
 name: Automatically build packages
 permissions:
   contents: read
+  attestations: write
+  artifact-metadata: write
+  id-token: write
 on:
   push:
     paths:

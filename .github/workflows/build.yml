@@ -1,6 +1,9 @@
 name: Manual Builds
 permissions:
   contents: read
+  attestations: write
+  artifact-metadata: write
+  id-token: write
 on:
   workflow_dispatch:
     inputs:
