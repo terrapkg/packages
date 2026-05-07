@@ -103,7 +103,9 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
   -DLauncher_CURSEFORGE_API_KEY="%{curseforge_key}" \
   %endif
   -DBUILD_TESTING=OFF \
+%if 0%{?fedora} > 43
   -DCMAKE_CXX_FLAGS="$CXXFLAGS -Wno-error=sfinae-incomplete"
+%endif
   
 %build
 %cmake_build
