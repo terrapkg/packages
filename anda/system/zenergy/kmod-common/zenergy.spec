@@ -4,7 +4,7 @@
 
 Name:           zenergy
 Version:        1.0^%{commitdate}git.%{shortcommit}
-Release:        1%?dist
+Release:        3%?dist
 Summary:        Exposes the energy counters that are reported via the Running Average Power Limit (RAPL) Model-specific Registers (MSRs) via the hardware monitor (HWMON) sysfs interface.
 License:        GPL-2.0
 URL:            https://github.com/BoukeHaarsma23/zenergy
@@ -12,7 +12,7 @@ Source0:        %{url}/archive/%{commit}.tar.gz#/%{name}-%{shortcommit}.tar.gz
 Source1:        com.github.zenergy.metainfo.xml
 BuildRequires:  sed
 BuildRequires:  systemd-rpm-macros
-Requires:       (akmod-%{name} = %{?epoch:%{epoch}:}%{version} or dkms-%{name} = %{?epoch:%{epoch}:}%{version})
+Requires:       %{name}-kmod = %{?epoch:%{epoch}:}%{version}
 Provides:       %{name}-kmod-common = %{?epoch:%{epoch}:}%{version}
 BuildArch:      noarch
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
@@ -25,7 +25,7 @@ via the hardware monitor (HWMON) sysfs interface.
 
 %package       akmod-modules
 Summary:       Modules for Akmods
-Requires:      akmod-%{name}
+Requires:      %{name}-kmod = %{?epoch:%{epoch}:}%{version}
 BuildArch:     noarch
 
 %description   akmod-modules

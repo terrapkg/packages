@@ -1,11 +1,11 @@
 %global ver 2.0.0
-%global commit 018c30253648dbf56bee79c280535a72604f3d8a
-%global commit_date 20260302
+%global commit 0db9d248e61600053eb6ec96d639da54a0bd06f8
+%global commit_date 20260324
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           openbangla-keyboard-nightly
 Version:        %ver^%commit_date.%shortcommit
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        An OpenSource, Unicode compliant Bengali Input Method 
 License:        GPL-3.0-or-later
 URL:            https://openbangla.github.io/

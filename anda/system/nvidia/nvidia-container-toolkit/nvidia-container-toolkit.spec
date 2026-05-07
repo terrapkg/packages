@@ -1,6 +1,6 @@
 Name:             nvidia-container-toolkit
-Version:          1.18.2
-Release:          1%?dist
+Version:          1.19.0
+Release:          1%{?dist}
 Summary:          NVIDIA Container Toolkit
 License:          Apache-2.0
 Group:            Development/Tools/Other

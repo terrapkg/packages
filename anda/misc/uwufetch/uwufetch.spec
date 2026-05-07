@@ -1,13 +1,13 @@
-%global commit fe9c53ffc6570454a3b2bf8431fd713e9953597e
+%global commit b02d6d4ed86129f87dff0be9e0abe091ea7e159f
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global fulldate 2026-01-14
+%global fulldate 2026-04-14
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global ver 2.1
 %global debug_package %{nil}
 
 Name:          uwufetch
 Version:       %{ver}^%{commit_date}git.%{shortcommit}
-Release:       1%?dist
+Release:       1%{?dist}
 Summary:       A meme system info tool for Linux, based on nyan/uwu trend on r/linuxmasterrace.
 License:       GPL-3.0
 URL:           https://github.com/ad-oliviero/uwufetch

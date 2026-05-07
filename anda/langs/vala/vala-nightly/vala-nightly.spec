@@ -3,11 +3,11 @@
 %global priority 90
 
 %global real_name vala
-%global commit f50a83eece8b92acf64818ba8c7d743818c1145b
+%global commit a3e522fdef952cb4449e51b1bc00316186b47a5e
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global repo https://gitlab.gnome.org/GNOME/%{real_name}.git
 
-%global commit_date 20260308
+%global commit_date 20260417
 %global snapshot_info %{commit_date}.%{shortcommit}
 
 Name:           vala-nightly
@@ -138,12 +138,15 @@ cd %{real_name}-%{commit}
 git checkout %{commit}
 
 
-%build
+%conf
 cd %{real_name}-%{commit}
 ./autogen.sh --help
 %configure
 # Don't use rpath!
 sed -i 's|/lib /usr/lib|/lib /usr/lib /lib64 /usr/lib64|' libtool
+
+%build
+cd %{real_name}-%{commit}
 %make_build
 
 %install

@@ -84,10 +84,10 @@
 
 Name:           %{srcname}
 Summary:        Mesa graphics libraries
-%global ver 26.0.1
+%global ver 26.0.5
 Epoch:          1
 Version:        %{lua:ver = string.gsub(rpm.expand("%{ver}"), "-", "~"); print(ver)}
-Release:        2
+Release:        1%{?dist}
 Packager:       Kyle Gospodnetich <me@kylegospodneti.ch>
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0
 URL:            https://mesa3d.org
@@ -343,8 +343,6 @@ Summary:        Mesa Vulkan drivers
 Requires:       vulkan%{_isa}
 Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Obsoletes:      mesa-vulkan-devel < %{?epoch:%{epoch}:}%{version}-%{release}
-# Bad change from upstream Fedora
-#Obsoletes:      VK_hdr_layer < 1
 
 %description vulkan-drivers
 The drivers with support for the Vulkan API.
@@ -480,7 +478,7 @@ rewrite_wrap_file rustc-hash
 
 %if 0%{?with_nvk}
 %cargo_license_summary
-%{cargo_license} > LICENSE.dependencies
+%{cargo_license} > LICENSE.dependencies.%{_arch}
 %if 0%{?vendor_nvk_crates}
 %cargo_vendor_manifest
 %endif
@@ -503,7 +501,7 @@ rm -vf %{buildroot}%{_libdir}/dri/apple_dri.so
 
 # glvnd needs a default provider for indirect rendering where it cannot
 # determine the vendor
-ln -s %{_libdir}/libGLX_mesa.so.0 %{buildroot}%{_libdir}/libGLX_system.so.0
+ln -s libGLX_mesa.so.0 %{buildroot}%{_libdir}/libGLX_system.so.0
 
 %files filesystem
 %doc docs/Mesa-MLAA-License-Clarification-Email.txt
@@ -677,7 +675,7 @@ ln -s %{_libdir}/libGLX_mesa.so.0 %{buildroot}%{_libdir}/libGLX_system.so.0
 
 %files vulkan-drivers
 %if 0%{?with_nvk}
-%license LICENSE.dependencies
+%license LICENSE.dependencies.%{_arch}
 %if 0%{?vendor_nvk_crates}
 %license cargo-vendor.txt
 %endif
@@ -727,4 +725,5 @@ ln -s %{_libdir}/libGLX_mesa.so.0 %{buildroot}%{_libdir}/libGLX_system.so.0
 %endif
 
 %changelog
-%autochangelog
+* Sun Mar 15 2026 Tulip Blossom <tulilirockz@outlook.com>
+- Split out cargo dependencies into architecture-specific files to prevent conflicts with i386 and amd64 package installs

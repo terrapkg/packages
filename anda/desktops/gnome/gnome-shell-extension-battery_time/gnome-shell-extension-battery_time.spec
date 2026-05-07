@@ -7,7 +7,7 @@
 
 Name:           gnome-shell-extension-%{extension}
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        2%?dist
+Release:        3%{?dist}
 Summary:        Battery remaining time extension for GNOME Shell
 License:        GPL-2.0-only
 URL:            https://github.com/pomoke/battery_time
@@ -18,7 +18,7 @@ Source0:        %url/archive/%commit/battery_time-%commit.tar.gz
 # License declared in README
 Source1:        https://scancode-licensedb.aboutcode.org/gpl-2.0.LICENSE
 
-Requires:       (gnome-shell >= 48~ with gnome-shell < 50~)
+Requires:       gnome-shell >= 48~
 Recommends:     gnome-extensions-app
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
