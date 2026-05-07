@@ -1,12 +1,12 @@
-%global pypi_name pysdl3
-%global _desc A pure Python wrapper for SDL3.
+%global pypi_name gevent-websocket
+%global _desc gevent-websocket is a WebSocket library for the gevent networking library.
 
 Name:			python-%{pypi_name}
-Version:		0.9.11b1
+Version:		0.10.1
 Release:		1%{?dist}
-Summary:		A pure Python wrapper for SDL3
-License:		MIT
-URL:			https://pysdl3.readthedocs.io/
+Summary:		gevent-websocket is a WebSocket library for the gevent networking library
+License:		Apache-2.0
+URL:			https://github.com/cynepiaadmin/geventwebsocket
 Source0:		%{pypi_source}
 BuildArch:      noarch
 
@@ -34,12 +34,12 @@ Summary:        %{summary}
 
 %install
 %pyproject_install
-%pyproject_save_files sdl3
+%pyproject_save_files geventwebsocket
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%doc README.md
+%doc README.rst
 %license LICENSE
 
 %changelog
-* Sun Mar 29 2026 Owen Zimmerman <owen@fyralabs.com>
+* Thu May 07 2026 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit
