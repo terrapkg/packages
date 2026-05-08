@@ -43,8 +43,11 @@ your desktop — built with C++ and Qt.
 %prep
 %autosetup
 
+%conf
+%cmake -G Ninja -DCMAKE_BUILD_TYPE=None -DBUILD_SHARED_LIBS=OFF -DNOSTRIP=ON \
+       -D__cpp_lib_saturation_arithmetic=0
+
 %build
-%cmake -G Ninja -DCMAKE_BUILD_TYPE=None -DBUILD_SHARED_LIBS=OFF -DNOSTRIP=ON
 %cmake_build
 
 %install
