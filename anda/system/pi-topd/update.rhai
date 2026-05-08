@@ -1,1 +1,1 @@
-rpm.global("ver",gh("pi-top/pi-topd"));
+rpm.global("ver", gh("pi-top/pi-topd"));
