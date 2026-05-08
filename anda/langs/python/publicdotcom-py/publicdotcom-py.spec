@@ -28,7 +28,7 @@ Summary:        %{summary}
 %_desc
 
 %prep
-%autosetup -n %{real_name}-%{version}
+%autosetup -n %{pypi_name}-%{version}
 
 %build
 %pyproject_wheel
