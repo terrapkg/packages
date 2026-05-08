@@ -70,7 +70,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 %files devel
 %{_libdir}/librio_backend.so
-%{_libdir}/librio_proc_macros.so
 %{_libdir}/libsugarloaf.so
 
 %changelog
