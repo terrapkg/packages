@@ -45,7 +45,7 @@ your desktop — built with C++ and Qt.
 
 %conf
 %cmake -G Ninja -DCMAKE_BUILD_TYPE=None -DBUILD_SHARED_LIBS=OFF -DNOSTRIP=ON \
-       -D__cpp_lib_saturation_arithmetic=0
+       -DCMAKE_CXX_FLAGS="%{optflags} -D__cpp_lib_saturation_arithmetic=0 -Wno-maybe-uninitialized"
 
 %build
 %cmake_build
