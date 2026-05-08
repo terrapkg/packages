@@ -17,7 +17,7 @@ BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(setuptools)
 BuildRequires:  systemd-rpm-macros
 BuildArch:      noarch
-Packager:       Jaiden Riordan <jade@fyralabs.com>
+Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %global _description %{expand:
 %summary.
