@@ -36,7 +36,7 @@ Summary:        %{summary}
 
 %install
 %pyproject_install
-%pyproject_save_files publicdotcom_cli
+%pyproject_save_files %{pypi_name}
 
 %files -n python3-%{real_name} -f %{pyproject_files}
 %doc README.md
