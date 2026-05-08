@@ -1,6 +1,7 @@
 %global pypi_name pi-topd
 %global ver v5.7.0-1
 %global sanitized_ver %(echo %{ver} | sed 's/-//g')
+%global setup_ver %(echo %{ver} | sed 's/^v//')
 
 Name:           python-%{pypi_name}
 Version:        %{sanitized_ver}
@@ -9,7 +10,7 @@ Summary:        Daemon for managing pi-top functionality by managing the pi-top 
 
 License:        Apache-2.0
 URL:            https://github.com/pi-top/pi-topd
-Source0:        %{url}/archive/refs/tags/v%{ver}.tar.gz
+Source0:        %{url}/archive/refs/tags/%{ver}.tar.gz
 Source1:        Apache-2.0.txt
 BuildRequires:  pyproject-rpm-macros
 BuildRequires:  python3-devel
@@ -31,7 +32,7 @@ Summary:        %{summary}
 %description -n python3-%{pypi_name} %_description
 
 %prep
-%autosetup -n %{pypi_name}-%{ver}
+%autosetup -n %{pypi_name}-%{setup_ver}
 
 %pyproject_patch_dependency pyee:drop_constraints
 %pyproject_patch_dependency pyzmq:drop_constraints
@@ -70,12 +71,10 @@ install -Dm644 %{S:1} %{buildroot}%{_defaultlicensedir}/python3-%{pypi_name}/LIC
 %{_bindir}/pi-topd
 %{_bindir}/pt-poweroff
 %{_bindir}/pt-reboot
-%python3_sitelib/tests/__init__.py
-%python3_sitelib/tests/__pycache__/*.cpython-*.pyc
-%python3_sitelib/tests/test_config_parser.py
 %{_unitdir}/pi-topd.service
 %{_unitdir}/pt-reboot.service
 %{_unitdir}/pt-poweroff.service
+%python3_sitelib/tests/*
 
 %changelog
 * Thu May 07 2026 Owen Zimmerman <owen@fyralabs.com> - 5.7.0-1
