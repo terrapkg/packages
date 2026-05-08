@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+  <id>nvidia-settings.desktop</id>
+  <name>NVIDIA Graphics Drivers Control Panel</name>
+  <summary>Accelerated Linux Graphics Driver Control Panel</summary>
+  <description>
+    <p>
+      The NVIDIA Accelerated Linux Graphics Driver brings accelerated 2D
+      functionality and high-performance OpenGL support to Linux with the
+      use of NVIDIA graphics processing units.
+    </p>
+    <p>
+      These drivers provide optimized hardware acceleration for OpenGL and X
+      applications and support nearly all recent NVIDIA GPU products.
+      The NVIDIA graphics driver uses a Unified Driver Architecture: the single
+      graphics driver supports all modern NVIDIA GPUs.
+    </p>
+    <p>
+      The nvidia-settings utility is a tool for configuring the NVIDIA graphics
+      driver. It operates by communicating with the NVIDIA X driver, querying
+      and updating state as appropriate. This communication is done via the
+      NV-CONTROL, GLX, XVideo, and RandR X extensions.
+    </p>
+    <p>
+      Values such as brightness and gamma, XVideo attributes, temperature, and
+      OpenGL settings can be queried and configured via nvidia-settings.
+    </p>
+  </description>
+  <translation/>
+  <url type="homepage">http://www.nvidia.com/</url>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-2.0+</project_license>
+  <developer_name>NVIDIA Corporation</developer_name>
+  <screenshots>
+    <screenshot type="default">
+      <caption>The nvidia-settings utility main window</caption>
+      <image type="source" width="1158" height="664">https://negativo17.org/appstream/nvidia-settings-0.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Monitoring GPU status</caption>
+      <image type="source" width="1414" height="884">https://negativo17.org/appstream/nvidia-settings-1.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Application profiles creation</caption>
+      <image type="source" width="1638" height="984">https://negativo17.org/appstream/nvidia-settings-2.png</image>
+    </screenshot>
+  </screenshots>
+  <keywords>
+    <keyword>NVIDIA</keyword>
+    <keyword>driver</keyword>
+    <keyword>GeForce</keyword>
+    <keyword>Quadro</keyword>
+    <keyword>Vulkan</keyword>
+    <keyword>OpenGL</keyword>
+  </keywords>
+  <update_contact>negativo17@gmail.com</update_contact>
+</component>

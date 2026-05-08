@@ -48,6 +48,8 @@ jobs:
               git add anda
               git commit -S -a -m "$msg"
             }
+            copy_over f43 || true
+            copy_over f42 || true
             copy_over f41 || true
             copy_over el10 || true
             git push -u origin --all

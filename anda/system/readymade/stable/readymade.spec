@@ -1,5 +1,6 @@
+%global crate readymade
 Name:           readymade
-Version:        0.12.5
+Version:        0.12.6
 Release:        1%?dist
 Summary:        Install ready-made distribution images!
 License:        GPL-3.0-or-later

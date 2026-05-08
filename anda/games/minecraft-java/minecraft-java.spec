@@ -1,8 +1,12 @@
 %global debug_package %{nil}
 
+%global appid com.mojang.Minecraft
+%global developer Mojang Studios
+%global org com.mojang
+
 Name:		minecraft-launcher
-Version:	2.1.3
-Release:	1%{?dist}
+Version:	2.3.2
+Release:	2%{?dist}
 Summary:	Official launcher for Minecraft
 
 License:	https://www.minecraft.net/en-us/eula
@@ -10,10 +14,12 @@ URL:		https://minecraft.net
 Source0:	https://launcher.mojang.com/download/Minecraft.tar.gz
 Source1:	minecraft-launcher.desktop
 Source2:	https://launcher.mojang.com/download/minecraft-launcher.svg
+Source3:	com.mojang.Minecraft.metainfo.xml
 Packager:   Cappy Ishihara <cappy@fyralabs.com>
 
 ExclusiveArch:	x86_64
 
+BuildRequires: terra-appstream-helper anda-srpm-macros
 Requires:	java >= 1.8.0
 Requires:       gtk3
 Requires:       libgpg-error
@@ -28,20 +34,17 @@ The official Linux release of the launcher for Minecraft, a game about placing b
 %build
 
 %install
-mkdir -p %{buildroot}%{_bindir}
-mkdir -p %{buildroot}%{_datadir}/icons/hicolor/symbolic/apps/
-mkdir -p %{buildroot}%{_datadir}/applications/
+install -Dm755 %{_builddir}/minecraft-launcher/minecraft-launcher %{buildroot}%{_bindir}/minecraft-launcher
+install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/applications/%{appid}.desktop
+install -Dm644 %{SOURCE2} %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/%{appid}.svg
 
-mv %{_builddir}/minecraft-launcher/minecraft-launcher %{buildroot}%{_bindir}/minecraft-launcher
-chmod 755 %{buildroot}%{_bindir}/minecraft-launcher
-
-install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/applications/minecraft-launcher.desktop
-install -Dm644 %{SOURCE2} %{buildroot}%{_datadir}/icons/hicolor/symbolic/apps/minecraft-launcher.svg
-
+%terra_appstream -o %{SOURCE3}
+cat %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 %files
 %{_bindir}/minecraft-launcher
-%{_datadir}/applications/minecraft-launcher.desktop
-%{_datadir}/icons/hicolor/symbolic/apps/minecraft-launcher.svg
+%{_datadir}/applications/%{appid}.desktop
+%{_datadir}/icons/hicolor/scalable/apps/%{appid}.svg
+%{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
 * Tue Mar 08 2022 Thomas Batten <stenstorpmc@gmail.com> - 1121-2

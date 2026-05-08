@@ -1,11 +1,13 @@
 %global framework kio
 
 %global stable_kf6 stable
-%global majmin_ver_kf6 6.15
+%global majmin_ver_kf6 6.18
+%global ecm_ver 6.18.0
+%global ecm_rel 1
 
 Name:    kf6-%{framework}
 Version: %{majmin_ver_kf6}.0
-Release: 2%{?dist}.switcheroo
+Release: 1%{?dist}.switcheroo
 Summary: KDE Frameworks 6 Tier 3 solution for filesystem abstraction
 
 Obsoletes: kf6-%{framework}.switcheroo < 6.14.0-4
@@ -27,9 +29,6 @@ Patch0:  0001-Give-the-kuriikwsfiltereng_private-a-VERSION-and-SOV.patch
 # on the docbook stack.
 Patch101: kio-no-help-protocol.patch
 %endif
-
-# https://invent.kde.org/frameworks/kio/-/merge_requests/1556
-Patch201: 1556.patch
 
 Provides:       kf6-%{framework}
 BuildRequires:  extra-cmake-modules
@@ -178,7 +177,7 @@ Developer Documentation files for %{name} for use with KDevelop or QtCreator.
 Summary:        Developer Documentation files for %{name}
 BuildArch:      noarch
 %description    html
-Developer Documentation files for %{name} in HTML format 
+Developer Documentation files for %{name} in HTML format
 
 
 %prep
@@ -239,15 +238,15 @@ Developer Documentation files for %{name} in HTML format
 %{_kf6_datadir}/kdevappwizard/templates/kioworker6.tar.bz2
 %{_kf6_qtplugindir}/designer/kio6widgets.so
 %{_qt6_docdir}/*/*.tags
-%{_qt6_docdir}/*/*.index 
- 
+%{_qt6_docdir}/*/*.index
+
 %files qch-doc
 %{_qt6_docdir}/*.qch
 
 %files html
 %{_qt6_docdir}/*/*
 %exclude %{_qt6_docdir}/*/*.tags
-%exclude %{_qt6_docdir}/*/*.index 
+%exclude %{_qt6_docdir}/*/*.index
 
 %changelog
 * Fri Feb 07 2025 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 6.11.0-1
@@ -310,7 +309,7 @@ Developer Documentation files for %{name} in HTML format
 
 * Fri Mar 15 2024 Marie Loise Nolden <loise@kde.org> - 6.0.0-5
 - add 6e7775d315f389df0a440ed62b842ce83dc9a27e.patch
-[kterminallauncherjob] Inherit default process environment from parent 
+[kterminallauncherjob] Inherit default process environment from parent
 
 * Mon Mar 11 2024 Yaakov Selkowitz <yselkowi@redhat.com> - 6.0.0-4
 - Soften switcheroo-control dependency

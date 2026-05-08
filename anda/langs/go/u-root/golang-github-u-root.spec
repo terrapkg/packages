@@ -12,7 +12,7 @@
 
 # https://github.com/u-root/u-root
 %global goipath         github.com/u-root/u-root
-Version:                0.14.0
+Version:                0.15.0
 %global commit          5721ed3ad38a5c889e6c1ed5bbf5242f98a4b591
 
 %gometa -f
@@ -35,7 +35,7 @@ file system (initramfs) containing a busybox-like set of tools written in Go.}
                         buildstatus/README.md tools/tinygobb/README.md
 
 Name:           golang-github-u-root
-Release:        2%?dist
+Release:        1%?dist
 Summary:        A fully Go userland with Linux bootloaders! u-root can create a one-binary root file system (initramfs) containing a busybox-like set of tools written in Go
 
 License:        BSD-3-Clause

@@ -3,4 +3,7 @@ project pkg {
 	rpm {
 		spec = "terra-release.spec"
 	}
+	labels {
+		updbranch = 1
+	}
 }

@@ -4,7 +4,7 @@
 %global crate sheldon
 
 Name:           rust-sheldon
-Version:        0.8.4
+Version:        0.8.5
 Release:        1%?dist
 Summary:        Fast, configurable, shell plugin manager
 

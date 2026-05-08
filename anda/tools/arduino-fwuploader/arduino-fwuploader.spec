@@ -12,7 +12,7 @@ The Arduino Firmware Uploader is a tool made to update the firmware and/or add S
 %global godocs          README.md
 
 Name:           arduino-fwuploader
-Release:        2%?dist
+Release:        3%?dist
 Summary:        Update the firmware and/or add SSL certificates for any Arduino board equipped with WINC or NINA Wi-Fi module
 License:        AGPL-3.0
 Packager:       Owen Zimmerman <owen@fyralabs.com>
@@ -27,8 +27,7 @@ BuildRequires:  anda-srpm-macros python3-devel go-task
 %gopkg
 
 %prep
-%goprep
-%go_prep_online
+%goprep -A
 
 %build
 %define gomodulesmode GO111MODULE=on

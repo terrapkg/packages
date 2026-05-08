@@ -1,6 +1,6 @@
 %global tarball_version %%(echo %{version} | tr '~' '.')
 %global major_version 47
-%global minor_version 6
+%global minor_version 10
 
 %if 0%{?rhel}
 %global portal_helper 0

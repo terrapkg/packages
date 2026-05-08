@@ -1,0 +1,80 @@
+diff --git a/examples/launch_tor_endpoint2.py b/examples/launch_tor_endpoint2.py
+index 72a24c4..30fc34e 100755
+--- a/examples/launch_tor_endpoint2.py
++++ b/examples/launch_tor_endpoint2.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ 
+ # Here we set up a Twisted Web server and then launch a slave tor
+ # with a configured hidden service directed at the Web server we set
+diff --git a/examples/launch_tor_with_simplehttpd.py b/examples/launch_tor_with_simplehttpd.py
+index 6c799c7..1edae61 100755
+--- a/examples/launch_tor_with_simplehttpd.py
++++ b/examples/launch_tor_with_simplehttpd.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ # -*- coding: utf-8 -*-
+ '''Create a new tor node and add a simple http server to it, serving a given
+ directory over http. The server is single-threaded and very limited.
+diff --git a/examples/minimal_endpoint.py b/examples/minimal_endpoint.py
+index fc8115d..5fd2499 100755
+--- a/examples/minimal_endpoint.py
++++ b/examples/minimal_endpoint.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ 
+ from twisted.internet import reactor
+ from twisted.internet.endpoints import serverFromString
+diff --git a/examples/monitor.py b/examples/monitor.py
+index 1f4237c..2e06475 100755
+--- a/examples/monitor.py
++++ b/examples/monitor.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ 
+ # Just listens for a few EVENTs from Tor (INFO NOTICE WARN ERR) and
+ # prints out the contents, so functions like a log monitor.
+diff --git a/examples/stem_relay_descriptor.py b/examples/stem_relay_descriptor.py
+index 2c9d1cf..08bd7b4 100755
+--- a/examples/stem_relay_descriptor.py
++++ b/examples/stem_relay_descriptor.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ 
+ # This shows how to get the detailed information about a
+ # relay descriptor and parse it into Stem's RelayDescriptor
+diff --git a/examples/stream_circuit_logger.py b/examples/stream_circuit_logger.py
+index 50a98a1..00949ec 100755
+--- a/examples/stream_circuit_logger.py
++++ b/examples/stream_circuit_logger.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ 
+ # This uses an IStreamListener and an ICircuitListener to log all
+ # built circuits and all streams that succeed.
+diff --git a/examples/tor_info.py b/examples/tor_info.py
+index e1cc8fa..a46244c 100755
+--- a/examples/tor_info.py
++++ b/examples/tor_info.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ 
+ # Simple usage example of TorInfo. This class does some magic so that
+ # once it's set up, all the attributes it has (or appears to) are
+diff --git a/examples/webui_server.py b/examples/webui_server.py
+index 28d0367..293989d 100755
+--- a/examples/webui_server.py
++++ b/examples/webui_server.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ 
+ from twisted.internet import reactor
+ from nevow.appserver import NevowSite

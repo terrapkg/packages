@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component type="driver">
+  <id>com.8bitdo.Udev</id>
+  <name>udev Rules for 8BitDo devices</name>
+  <description>
+    <p>Udev rules for 8BitDo controllers to enable proper functionality and device access on Linux systems.</p>
+  </description>
+  <developer id="com.8bitdo">
+    <name>Shenzhen 8BitDo Tech Co., Ltd.</name>
+  </developer>
+  <provides>
+    <modalias>hid:v00002DC8p*</modalias>
+    <modalias>hid:b0003v00002DC8p*</modalias>
+    <modalias>hid:b0005v00002DC8p*</modalias>
+  </provides>
+</component>

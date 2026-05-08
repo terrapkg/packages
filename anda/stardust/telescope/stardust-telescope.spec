@@ -1,22 +1,28 @@
-%define debug_package %nil
-
-%global commit e33764c69179e35b60ad03931544a87357e1e81f
-%global commit_date 20250413
+%global commit 7e5abd236c6345ad305d97bcb038582770783222
+%global commit_date 20251218
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           stardust-xr-telescope
 Version:        %commit_date.git~%shortcommit
-Release:        1%?dist
-Summary:        See the stars! Easy stardust setups to run on your computer. 
+Release:        2%?dist
+Summary:        See the stars! Easy stardust setups to run on your computer
 License:        MIT
 URL:            https://github.com/StardustXR/telescope
 Source0:        %url/archive/%commit.tar.gz
+
 Requires:       bash
-Requires:       stardust-xr-server
-Requires:       stardust-xr-gravity
-Requires:       stardust-xr-black-hole
-Requires:       stardust-xr-protostar
 Requires:       xwayland-satellite
+Requires:       stardust-xr-armillary
+Requires:       stardust-xr-atmosphere
+Requires:       stardust-xr-black-hole
+Requires:       stardust-xr-comet
+Requires:       stardust-xr-flatland
+Requires:       stardust-xr-gravity
+Requires:       stardust-xr-magnetar
+Requires:       stardust-xr-non-spatial-input
+Requires:       stardust-xr-protostar
+Requires:       stardust-xr-server
+
 BuildArch:      noarch
 Provides:       telescope stardust-telescope
 

@@ -8,14 +8,15 @@ This is the original upstream xpad driver from the Linux kernel with support for
 
 Name:          dkms-%{modulename}
 Version:       %{ver}^%{commitdate}git.%{shortcommit}
-Release:       1%?dist
+Release:       2%?dist
 License:       GPL-2.0-or-later
 Summary:       xpad driver with support for XBox One controllers removed
 URL:           https://github.com/medusalix/xpad-noone
 Source0:       %{url}/archive/%{commit}/%{modulename}-%{commit}.tar.gz#/%{modulename}-%{shortcommit}.tar.gz
 Source1:       no-weak-modules.conf
-# Extra support for controllers that register as XBox 360 controllers
-Patch0:        0000.patch
+# Fix kmod compilation on kernel 6.18+
+Patch0:        https://github.com/medusalix/xpad-noone/pull/8.patch
+Patch1:        https://github.com/medusalix/xpad-noone/pull/9.patch
 Requires:      %{modulename} = %{?epoch:%{epoch}:}%{version}
 Requires:      dkms
 Conflicts:     akmod-%{modulename}
@@ -25,7 +26,7 @@ Packager:      Gilver E. <rockgrub@disroot.org>
 %description %_description
 
 %prep
-%autosetup -n %{modulename}-%{commit}
+%autosetup -n %{modulename}-%{commit} -p1
 
 %build
 

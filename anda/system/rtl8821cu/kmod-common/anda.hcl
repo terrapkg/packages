@@ -4,6 +4,6 @@ project pkg {
         spec = "rtl8821cu-kmod-common.spec"
     }
    	labels {
-		nightly = "1"
+		nightly = 1
 	}
 }

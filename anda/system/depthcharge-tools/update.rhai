@@ -1,1 +1,1 @@
-rpm.version(gh("alpernebbi/depthcharge-tools"));
+rpm.version(gitlab_tag("gitlab.postmarketos.org", "685"));

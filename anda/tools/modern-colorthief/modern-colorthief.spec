@@ -1,11 +1,12 @@
 %global pypi_name modern_colorthief
-%bcond docs 1
-%bcond test 1
+%bcond bootstrap 0
+%bcond docs %{without bootstrap}
+%bcond test %{without bootstrap}
 
 # The srcrpm is not prefixed with Python because the source is mostly Rust
 Name:          modern-colorthief
-Version:       0.1.7
-Release:       1%{?dist}
+Version:       0.1.8
+Release:       1%?dist
 Summary:       ColorThief reimagined
 SourceLicense: MIT
 License:       (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception) AND BSD-2-Clause AND (CC0-1.0 OR Apache-2.0) AND (MIT OR Apache-2.0 OR NCSA) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MIT AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT)
@@ -57,7 +58,7 @@ Documentation for Modern Colorthief.
 %endif
 
 %prep
-%autosetup -n %{pypi_name}-%{version}
+%autosetup -p1 -n %{pypi_name}-%{version}
 %cargo_prep_online
 
 %build
@@ -105,5 +106,7 @@ poetry run pytest
 %endif
 
 %changelog
+* Mon Sep 1 2025 Gilver E. <rockgrub@disroot.org> - 0.1.7-2
+- Rebuilt for Python 3.14
 * Tue May 13 2025 Gilver E. <rockgrub@disroot.org> - 0.1.7-1
 - Initial package

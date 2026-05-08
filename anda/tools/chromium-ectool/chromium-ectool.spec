@@ -7,9 +7,9 @@ License:        BSD-3-Clause
 URL:            https://chromium.googlesource.com/chromiumos/platform/ec/
 
 Version:        %shortcommit
-Release:        14526.B%{?dist}
+Release:        2%{?dist}
 Source0:        https://github.com/coreboot/chrome-ec/archive/refs/heads/release-R100-14526.B-main.tar.gz
-Provides:       ectool
+Conflicts:      ectool
 
 BuildRequires:  make gcc libftdi-devel libusb1-devel hostname
 
@@ -31,5 +31,7 @@ install -Dm755 build/host/util/ectool %{buildroot}%{_bindir}/ectool
 %{_bindir}/ectool
 
 %changelog
+* Sat Aug 09 2025 Owen Zimmerman <owen@fyralabs.com.com>
+- Conflict with coreboot ectool.
 * Tue Jan 2 2024 infinitebash <terra@infinitebash.com>
 - Initial package.

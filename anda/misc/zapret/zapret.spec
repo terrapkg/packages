@@ -1,5 +1,5 @@
 Name:    zapret
-Version: 71.2
+Version: 72.5
 Release: 1%?dist
 Summary: A multi-platform Deep Packet Inspection (DPI) bypass tool
 License: MIT 
@@ -138,6 +138,9 @@ END
 %{_unitdir}/tpws@.service
 
 %changelog
+* Fri Jul 18 2025 libffi <contact@ffi.lol> - 71.2
+- Bump upstream.
+- Fix build.
 * Mon May 26 2025 libffi <contact@ffi.lol> - 71
 - Bump upstream.
 * Thu May 1 2025 libffi <contact@ffi.lol> - 70.6-6

@@ -1,6 +1,8 @@
+%global dist %{nil}
+
 Name:           terra-release
-Version:        41
-Release:        4
+Version:        %{?fedora:%{fedora}}%{?rhel:%{rhel}}
+Release:        6
 Summary:        Release package for Terra
 
 License:        MIT

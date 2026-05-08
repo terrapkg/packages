@@ -1,0 +1,12 @@
+Index: nvidia-settings-545.13/utils.mk
+===================================================================
+--- nvidia-settings-545.13.orig/utils.mk
++++ nvidia-settings-545.13/utils.mk
+@@ -584,7 +584,6 @@ define READ_ONLY_OBJECT_FROM_FILE_RULE
+ 	$(at_if_quiet)$$(MKDIR) $$(OUTPUTDIR)
+ 	$(at_if_quiet)cd $$(dir $(1)); \
+ 	$$(call quiet_cmd_no_at,LD) -r -z noexecstack --format=binary \
+-	    $$(LD_TARGET_EMULATION_FLAG) \
+ 	    $$(notdir $(1)) -o $$(OUTPUTDIR_ABSOLUTE)/$$(notdir $$@)
+ 	$$(call quiet_cmd,OBJCOPY) \
+ 	    --rename-section .data=.rodata,contents,alloc,load,data,readonly \
