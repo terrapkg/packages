@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		5.8.0
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		The model-definition framework for state-of-the-art machine learning models
 License:		Apache-2.0
 URL:			https://huggingface.co/docs/transformers/index
@@ -22,7 +22,6 @@ Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-Provides:       synapse-s3-storage-provider
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
