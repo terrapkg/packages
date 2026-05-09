@@ -2,10 +2,11 @@
 
 Name:           lact
 Version:        0.9.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Linux GPU Configuration And Monitoring Tool
 URL:            https://github.com/ilya-zlobintsev/LACT
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
+SourceLicense:  MIT
 License:        MIT AND Zlib AND (MIT OR Zlib OR Apache-2.0) AND MPL-2.0 AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND BSD-3-Clause AND CC0-1.0 AND CDLA-Permissive-2.0 AND LGPL-3.0-or-later AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 OR ISC OR MIT) AND (MIT OR Apache-2.0) AND Unicode-3.0 AND (0BSD OR MIT OR Apache-2.0) AND Apache-2.0 AND ISC AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR GPL-2.0-only)
 BuildRequires:  cargo-rpm-macros
 BuildRequires:	systemd-rpm-macros
@@ -19,6 +20,13 @@ BuildRequires:	pkgconfig(graphene-gobject-1.0)
 BuildRequires:	pkgconfig(hwdata)
 BuildRequires:	pkgconfig(gtk4)
 BuildRequires:	pkgconfig(gdk-pixbuf-2.0)
+
+Requires:       gtk4
+Requires:       libdrm
+Requires:       ocl-icd
+Requires:       hwdata
+Requires:       vulkan-tools
+Requires:       libadwaita
 
 Provides:       LACT
 
