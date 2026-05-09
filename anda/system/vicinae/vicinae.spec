@@ -1,3 +1,9 @@
+%if 0%{?fedora} > 43
+%global gcc_compat 15
+%global __cc gcc-%{gcc_compat}
+%global __cxx g++-%{gcc_compat}
+%endif
+
 Name:           vicinae
 Version:        0.20.15
 Release:        1%{?dist}
@@ -8,7 +14,8 @@ Summary:        A high-performance, native launcher for Linux
 Packager:       metcya <metcya@gmail.com>
 
 BuildRequires:  cmake
-BuildRequires:  gcc-c++
+BuildRequires:  gcc%{?gcc_compat}
+BuildRequires:  gcc%{?gcc_compat}-c++
 BuildRequires:  kf6-syntax-highlighting-devel
 BuildRequires:  cmake(absl)
 BuildRequires:  openssl-devel
