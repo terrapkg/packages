@@ -1,6 +1,6 @@
 Name:           anda-srpm-macros
 Version:        0.3.7
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        SRPM macros for extra Fedora packages
 
 License:        GPL-3.0-or-later
@@ -31,6 +31,8 @@ install -Dpm755 *.sh -t %buildroot%_libexecdir/%name/
 
 %files
 %attr(0755, root, root) %_libexecdir/%name/*.sh
+%doc README.md
+%license LICENSE
 %{_rpmmacrodir}/macros.anda
 %{_rpmmacrodir}/macros.caching
 %{_rpmmacrodir}/macros.cargo_extra
