@@ -23,7 +23,7 @@ BuildRequires:	pkgconfig(gdk-pixbuf-2.0)
 
 Requires:       gtk4
 Requires:       libdrm
-Requires:       (ocl-icd OR OpenCL-ICD-Loader)
+Requires:       (ocl-icd or OpenCL-ICD-Loader)
 Requires:       hwdata
 Requires:       vulkan-tools
 Requires:       libadwaita
