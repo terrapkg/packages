@@ -10,7 +10,7 @@ Summary:        Daemon for managing pi-top functionality by managing the pi-top 
 
 License:        Apache-2.0
 URL:            https://github.com/pi-top/pi-topd
-Source0:        %{url}/archive/refs/tags/%{ver}.tar.gz
+Source0:        %{url}/archive/refs/tags/v%{setup_ver}.tar.gz
 Source1:        Apache-2.0.txt
 BuildRequires:  pyproject-rpm-macros
 BuildRequires:  python3-devel
