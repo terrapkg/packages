@@ -21,7 +21,7 @@ BuildRequires:  gcc-c++
 BuildRequires:  autoconf
 BuildRequires:  flex
 BuildRequires:  bison
-BuildRequires:  zlib-devel
+BuildRequires:  zlib-ng-compat-devel
 BuildRequires:  tcl-devel
 
 # For check
