@@ -1,6 +1,12 @@
+%if 0%{?fedora} > 43
+%global gcc_compat 15
+%global __cc gcc-%{gcc_compat}
+%global __cxx g++-%{gcc_compat}
+%endif
+
 Name:           vicinae
 Version:        0.20.15
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPL-3.0
 URL:            https://docs.vicinae.com
 Source:         https://github.com/vicinaehq/%{name}/archive/refs/tags/v%{version}.tar.gz
@@ -8,13 +14,16 @@ Summary:        A high-performance, native launcher for Linux
 Packager:       metcya <metcya@gmail.com>
 
 BuildRequires:  cmake
-BuildRequires:  gcc-c++
+BuildRequires:  gcc%{?gcc_compat}
+BuildRequires:  gcc%{?gcc_compat}-c++
+BuildRequires:  kf6-syntax-highlighting-devel
 BuildRequires:  cmake(absl)
 BuildRequires:  openssl-devel
 BuildRequires:  cmark-gfm-devel
 BuildRequires:  cmake(glaze)
 BuildRequires:  cmake(minizip)
 BuildRequires:  cmake(Qt6)
+BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  cmake(Qt6Keychain)
 BuildRequires:  cmake(LayerShellQt)
@@ -78,8 +87,13 @@ install -Dm 644 extra/%{name}-url-handler.desktop -t %{buildroot}%{_appsdir}
 %{_libexecdir}/%{name}/vicinae-data-control-server
 %{_libexecdir}/%{name}/vicinae-server
 %{_libexecdir}/%{name}/vicinae-snippet-server
+%{_modulesloaddir}/vicinae.conf
+%{_udevrulesdir}/70-vicinae.rules
 
 %changelog
+* Sat May 09 2026 Olivia <git@olivia.sh> - 0.20.15-2
+- fix missing files
+
 * Wed Feb 18 2026 Jaiden Riordan <jade@fyralabs.com> - 0.19.8
 - Fixup desktop file and xdgpp
 * Fri Dec 26 2025 metcya <metcya@gmail.com> - 0.17.3
