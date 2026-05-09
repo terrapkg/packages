@@ -6,7 +6,7 @@
 
 Name:           vicinae
 Version:        0.20.15
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPL-3.0
 URL:            https://docs.vicinae.com
 Source:         https://github.com/vicinaehq/%{name}/archive/refs/tags/v%{version}.tar.gz
@@ -91,6 +91,9 @@ install -Dm 644 extra/%{name}-url-handler.desktop -t %{buildroot}%{_appsdir}
 %{_udevrulesdir}/70-vicinae.rules
 
 %changelog
+* Sat May 09 2026 Olivia <git@olivia.sh> - 0.20.15-2
+- fix missing files
+
 * Wed Feb 18 2026 Jaiden Riordan <jade@fyralabs.com> - 0.19.8
 - Fixup desktop file and xdgpp
 * Fri Dec 26 2025 metcya <metcya@gmail.com> - 0.17.3
