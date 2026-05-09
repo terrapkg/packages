@@ -9,12 +9,14 @@ Packager:       metcya <metcya@gmail.com>
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
+BuildRequires:  kf6-syntax-highlighting-devel
 BuildRequires:  cmake(absl)
 BuildRequires:  openssl-devel
 BuildRequires:  cmark-gfm-devel
 BuildRequires:  cmake(glaze)
 BuildRequires:  cmake(minizip)
 BuildRequires:  cmake(Qt6)
+BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  cmake(Qt6Keychain)
 BuildRequires:  cmake(LayerShellQt)
@@ -78,6 +80,8 @@ install -Dm 644 extra/%{name}-url-handler.desktop -t %{buildroot}%{_appsdir}
 %{_libexecdir}/%{name}/vicinae-data-control-server
 %{_libexecdir}/%{name}/vicinae-server
 %{_libexecdir}/%{name}/vicinae-snippet-server
+%{_modulesloaddir}/vicinae.conf
+%{_udevrulesdir}/70-vicinae.rules
 
 %changelog
 * Wed Feb 18 2026 Jaiden Riordan <jade@fyralabs.com> - 0.19.8
