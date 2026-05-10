@@ -1,3 +1,6 @@
+%global commit 454a6e24af830a1f434385fc3faebec19c0cbefa
+%global shortcommit %(c=%{commit}; echo ${c:0:7})
+
 %define appid io.github.ilya_zlobintsev.LACT
 
 Name:           lact
@@ -40,7 +43,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %cargo_prep_online
 
 %build
-%cargo_build VERGEN_GIT_SHA=454a6e2
+%cargo_build VERGEN_GIT_SHA=%{shortcommit}
 
 %install
 install -Dm755 target/rpm/lact %{buildroot}%{_bindir}/lact
