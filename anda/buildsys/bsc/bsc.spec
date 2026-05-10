@@ -16,6 +16,7 @@ BuildRequires:  ghc-regex-compat-devel
 BuildRequires:  ghc-syb-devel
 BuildRequires:  ghc-old-time-devel
 BuildRequires:  ghc-split-devel
+BuildRequires:  ghc-strict-concurrency-devel
 BuildRequires:  gperf
 BuildRequires:  gcc-c++
 BuildRequires:  autoconf
