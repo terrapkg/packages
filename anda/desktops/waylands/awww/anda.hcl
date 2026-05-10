@@ -1,5 +1,5 @@
 project pkg {
     rpm {
-        spec = "swww.spec"
+        spec = "awww.spec"
     }
 }
