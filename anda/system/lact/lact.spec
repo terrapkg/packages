@@ -43,7 +43,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %cargo_prep_online
 
 %build
-%cargo_build VERGEN_GIT_SHA=%{shortcommit}
+VERGEN_GIT_SHA=%{shortcommit} %cargo_build
 
 %install
 install -Dm755 target/rpm/lact %{buildroot}%{_bindir}/lact
