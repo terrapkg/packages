@@ -1,5 +1,4 @@
-project "pkg" {
-    arches = ["x86_64"]
+project pkg {
     rpm {
         spec = "twintaillauncher.spec"
     }
