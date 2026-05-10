@@ -50,7 +50,7 @@ BuildArch:      noarch
 Zsh command-line completion support for %{name}.
 
 %prep
-%setup -q -n awww
+%autosetup -n awww
 %cargo_prep_online
 
 %build
