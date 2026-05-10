@@ -15,7 +15,7 @@ BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(wayland-protocols)
 
-obsoletes:      swww
+Obsoletes:      swww < %{evr}
 
 %description
 awww is a wallpaper daemon for Wayland that is controlled
