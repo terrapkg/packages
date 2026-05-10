@@ -2,7 +2,7 @@
 
 Name:           lact
 Version:        0.9.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Linux GPU Configuration And Monitoring Tool
 URL:            https://github.com/ilya-zlobintsev/LACT
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
@@ -23,7 +23,7 @@ BuildRequires:	pkgconfig(gdk-pixbuf-2.0)
 
 Requires:       gtk4
 Requires:       libdrm
-Requires:       ocl-icd
+Requires:       (ocl-icd or OpenCL-ICD-Loader)
 Requires:       hwdata
 Requires:       vulkan-tools
 Requires:       libadwaita

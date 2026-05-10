@@ -1,5 +1,5 @@
 Name:           cardwire
-Version:        0.6.0
+Version:        0.7.0
 Release:        1%{?dist}
 Summary:        A GPU Manager for linux that uses eBPF LSM hooks to block GPUs
 URL:            https://opengamingcollective.github.io/cardwire/
