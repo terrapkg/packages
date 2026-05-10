@@ -5,7 +5,7 @@
 
 Name:           lact
 Version:        0.9.0
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Linux GPU Configuration And Monitoring Tool
 URL:            https://github.com/ilya-zlobintsev/LACT
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
@@ -43,7 +43,8 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %cargo_prep_online
 
 %build
-VERGEN_GIT_SHA=%{shortcommit} %cargo_build
+export VERGEN_GIT_SHA=%{shortcommit}
+%cargo_build
 
 %install
 install -Dm755 target/rpm/lact %{buildroot}%{_bindir}/lact
