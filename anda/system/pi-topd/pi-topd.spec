@@ -1,7 +1,6 @@
 %global pypi_name pi-topd
-%global ver v5.7.0-1
-%global sanitized_ver %(echo %{ver} | sed 's/-//g')
-%global setup_ver %(echo %{ver} | sed 's/^v//')
+%global ver 5.7.0-1
+%global sanitized_ver %(echo %{ver} | sed 's/-/^/g')
 
 Name:           python-%{pypi_name}
 Version:        %{sanitized_ver}
@@ -10,7 +9,7 @@ Summary:        Daemon for managing pi-top functionality by managing the pi-top 
 
 License:        Apache-2.0
 URL:            https://github.com/pi-top/pi-topd
-Source0:        %{url}/archive/refs/tags/v%{setup_ver}.tar.gz
+Source0:        %{url}/archive/refs/tags/v%{ver}.tar.gz
 Source1:        Apache-2.0.txt
 BuildRequires:  pyproject-rpm-macros
 BuildRequires:  python3-devel
@@ -32,7 +31,7 @@ Summary:        %{summary}
 %description -n python3-%{pypi_name} %_description
 
 %prep
-%autosetup -n %{pypi_name}-%{setup_ver}
+%autosetup -n %{pypi_name}-%{ver}
 
 %pyproject_patch_dependency pyee:drop_constraints
 %pyproject_patch_dependency pyzmq:drop_constraints
