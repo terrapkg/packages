@@ -1,7 +1,7 @@
 %global pypi_name pitop
 %global _desc A simple, modular interface for interacting with a pi-top and its related accessories and components.
-%global ver v0.35.0-4
-%global sanitized_ver %(echo %{ver} | sed 's/-//g')
+%global ver 0.35.0-4
+%global sanitized_ver %(echo %{ver} | sed 's/-/^/g')
 
 Name:			python-%{pypi_name}
 Version:		%{sanitized_ver}
