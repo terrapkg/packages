@@ -1,5 +1,5 @@
 %global pypi_name pi-topd
-%global ver 5.7.0-1
+%global ver v5.7.0-1
 %global sanitized_ver %(echo %{ver} | sed 's/-//g')
 %global setup_ver %(echo %{ver} | sed 's/^v//')
 
