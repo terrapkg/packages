@@ -1,6 +1,6 @@
 Name:           muon
 Version:        0.5.0
-Release:        1%?dist
+Release:        4%{?dist}
 Summary:        A meson-compatible build system
 
 # https://git.sr.ht/~lattis/muon/tree/master/item/LICENSES
@@ -20,9 +20,7 @@ BuildRequires:  libarchive-devel
 BuildRequires:  libpkgconf-devel
 BuildRequires:  scdoc
 BuildRequires:  git-core
-%if %{?fedora} < 44
-BuildRequires:  pkgconfig(tracy) %dnl Temporary fix while Tracy does not build for 44+
-%endif
+BuildRequires:  pkgconfig(tracy)
 BuildRequires:  pkgconfig(libattr)
 BuildRequires:  pkgconfig(bzip2)
 BuildRequires:  pkgconfig(libb2)
@@ -36,7 +34,7 @@ BuildRequires:  python3-pyyaml
 BuildRequires:  mandoc
 BuildRequires:  mdbook
 
-BuildRequires:  tracy
+Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
 An implementation of the meson build system in c99 with minimal dependencies.
@@ -45,11 +43,7 @@ An implementation of the meson build system in c99 with minimal dependencies.
 %autosetup -p1
 
 %conf
-%meson --wrap-mode=nofallback \
-
-%if %{?fedora} >= 44
--Dtracy=disabled
-%endif
+%meson --wrap-mode=nofallback
 
 %build
 %meson_build
@@ -58,6 +52,8 @@ An implementation of the meson build system in c99 with minimal dependencies.
 %meson_install
 
 %files
+%license LICENSES/
+%doc README.md
 %{_bindir}/muon
 %{_mandir}/man1/muon*
 %{_mandir}/man5/meson*

@@ -4,8 +4,8 @@
 %global crate dysk
 
 Name:           rust-dysk
-Version:        3.6.0
-Release:        1%?dist
+Version:        3.6.1
+Release:        1%{?dist}
 Summary:        Give information on mounted filesystems
 
 License:        MIT

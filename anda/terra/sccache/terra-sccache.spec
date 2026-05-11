@@ -8,7 +8,7 @@ This build actually enables caching to remote storage.}
 %bcond dist %["%{_target_cpu}" == "x86_64"]
 
 Name:          terra-sccache
-Version:       0.14.0
+Version:       0.15.0
 Release:       1%{?dist}
 Summary:       Remote caching enabled builds of sccache
 SourceLicense: Apache-2.0 AND (Apache-2.0 OR MIT)
