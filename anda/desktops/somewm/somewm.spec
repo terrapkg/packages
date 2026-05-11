@@ -4,7 +4,7 @@ Release:        1%{?dist}
 Summary:        Wayland compositor that brings AwesomeWM's Lua API to Wayland
 License:        GPL-3.0-or-later
 URL:            https://github.com/trip-zip/somewm
-Source:         %{url}/archive/%{version}.tar.gz
+Source:         %{url}/archive/refs/tags/v%{version}.tar.gz
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
