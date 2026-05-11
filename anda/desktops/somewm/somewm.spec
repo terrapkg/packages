@@ -11,7 +11,6 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  meson
-BuildRequires:  pkgconfig(wlroots)
 BuildRequires:  pkgconfig(luajit)
 BuildRequires:  lua-lgi-compat
 BuildRequires:  pkgconfig(wlroots-0.19)
