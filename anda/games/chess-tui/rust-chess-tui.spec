@@ -33,7 +33,7 @@ License:        (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 
 %license LICENSE.dependencies
 %doc CONTRIBUTING.md
 %doc README.md
-%{_bindir}/chess-tui
+%dnl %{_bindir}/chess-tui
 
 %package        devel
 Summary:        %{summary}
