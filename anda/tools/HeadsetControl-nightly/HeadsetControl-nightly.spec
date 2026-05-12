@@ -24,6 +24,9 @@ state, controlling LEDs, and setting the inactive time.
 %package devel
 %pkg_devel_files
 
+%package static
+%pkg_static_files
+
 %prep
 %autosetup -n HeadsetControl-%{commit}
 
