@@ -1,4 +1,4 @@
-Name:          zsh-autocomplete
+Name:         zsh-autocomplete
 Version:        25.03.19
 Release:        1%?dist
 Summary:        Real-time type-ahead completion for Zsh
