@@ -21,6 +21,9 @@ A tool to control certain aspects of USB-connected headsets on Linux.
 Currently, support is provided for adjusting sidetone, getting battery
 state, controlling LEDs, and setting the inactive time.
 
+%package devel
+%pkg_devel_files
+
 %prep
 %autosetup -n HeadsetControl-%{commit}
 
