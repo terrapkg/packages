@@ -8,7 +8,7 @@ Version:        2.6.2
 Release:        1%{?dist}
 Summary:        Rusty chess game in your terminal 🦀
 
-License:        MIT
+License:        MIT AND ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND Apache-2.0 AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR MIT OR Apache-2.0) AND BSD-3-Clause AND (BSD-3-Clause OR MIT OR Apache-2.0) AND CDLA-Permissive-2.0 AND GPL-3.0 AND GPL-3.0+ AND ISC AND (ISC AND (Apache-2.0 OR ISC)) AND (ISC AND (Apache-2.0 OR ISC) AND Apache-2.0 AND MIT AND BSD-3-Clause AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR ISC OR MIT-0)) AND MIT AND (MIT OR Apache-2.0) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT) AND Zlib AND (Zlib OR Apache-2.0 OR MIT)
 URL:            https://crates.io/crates/chess-tui
 Source:         %{crates_source}
 
@@ -77,9 +77,9 @@ use the "chess-tui" feature of the "%{crate}" crate.
 %prep
 %autosetup -n %{crate}-%{version} -p1
 %cargo_prep_online
+sed -i 's/chess-tui/chess_tui/g' Cargo.toml
 
 %build
-%{cargo_license_summary_online}
 %{cargo_license_online} > LICENSE.dependencies
 
 %install
