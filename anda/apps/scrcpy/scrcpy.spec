@@ -46,7 +46,7 @@ BuildRequires:  python3-sdkmanager
 Requires:       %{name}-server
 # Gradle here really wants Java 21-23 to work properly
 # Java 25 breaks the build
-BuildRequires:  java-21-openjdk-devel
+BuildRequires:  java-latest-openjdk-devel
 BuildConflicts:	dkms-nvidia akmod-nvidia
 Requires:       android-tools
 

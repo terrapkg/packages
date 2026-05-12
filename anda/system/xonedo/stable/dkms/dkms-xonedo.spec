@@ -4,7 +4,7 @@
 
 Name:           dkms-%{modulename}
 Version:        0.5.7
-Release:        2%?dist
+Release:        3%?dist
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Epoch:          2
 %endif

@@ -1,5 +1,5 @@
 Name:		groovy-docs
-Version:	5.0.5
+Version:	5.0.6
 Release:	1%{?dist}
 Summary:	Documentation for the Groovy programming language
 URL:		https://groovy-lang.org/

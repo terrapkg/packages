@@ -6,7 +6,7 @@
 %global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 Name:           discord-ptb
-Version:        0.0.185
+Version:        1.0.190
 Release:        1%{?dist}
 Summary:        Free Voice and Text Chat for Gamers.
 URL:            https://discord.com
@@ -37,7 +37,7 @@ mkdir -p %{buildroot}%{_datadir}/applications/
 mkdir -p %{buildroot}%{_datadir}/pixmaps
 ln -s %_datadir/discord-ptb/discord-ptb.desktop %{buildroot}%{_datadir}/applications/
 ln -s %_datadir/discord-ptb/discord.png %{buildroot}%{_datadir}/pixmaps/discord-ptb.png
-ln -s %_datadir/discord-ptb/Discord %buildroot%_bindir/discord-ptb
+ln -s %_datadir/discord-ptb/discord-ptb %buildroot%_bindir/discord-ptb
 
 %files
 %_bindir/discord-ptb
