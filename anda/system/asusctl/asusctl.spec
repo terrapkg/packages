@@ -3,17 +3,20 @@
 
 Name:           asusctl
 Version:        6.3.7
-Release:        2%{?dist}
+Release:        3%{?dist}
 Epoch:          1
 Summary:        A control daemon, CLI tools, and a collection of crates for interacting with ASUS ROG laptops
 URL:            https://gitlab.com/asus-linux/asusctl
 Source0:        %url/-/archive/%version/asusctl-%version.tar.gz
 Source1:        %{appid}.metainfo.xml
 License:        MPL-2.0 AND (MIT OR Apache-2.0) AND NCSA AND Unicode-3.0 AND (0BSD OR MIT OR Apache-2.0) AND Apache-2.0 AND MIT AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 OR Zlib) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND BSD-2-Clause (BSD-2-Clause OR Apache-2.0 OR MIT) AND (BSD-3-Clause OR Apache-2.0) AND BSD-3-Clause AND BSL-1.0 AND (CC0-1.0 OR Apache-2.0) AND (GPL-3.0-only OR LicenseRef-Slint-Royalty-free-2.0 OR LicenseRef-Slint-Software-3.0) AND ISC AND MIT AND Zlib AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0 OR Zlib) AND Unlicense AND (Zlib OR Apache-2.0 OR MIT)
-BuildRequires:  anda-srpm-macros cargo-rpm-macros systemd-rpm-macros mold rust-udev-devel clang-devel
+BuildRequires:  anda-srpm-macros
+BuildRequires:  cargo-rpm-macros
+BuildRequires:  systemd-rpm-macros
+BuildRequires:  rust-udev-devel
+BuildRequires:  clang-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  cmake
-BuildRequires:  rust
 BuildRequires:  rust-std-static
 BuildRequires:  pkgconfig(gbm)
 BuildRequires:  pkgconfig(libinput)
@@ -24,7 +27,7 @@ BuildRequires:  pkgconfig(libzstd)
 BuildRequires:  pkgconfig(fontconfig)
 ExclusiveArch:  x86_64
 
-Packager:       Metcya <metcya@gmail.com>
+Packager:       Metcya <metcya@gmail.com>, Owen Zimmerman <owen@fyralabs.com>
 
 %description
 %summary.
@@ -56,14 +59,14 @@ install -D -m 0644 rog-anime/data/diagonal-template.png %{buildroot}/%{_docdir}/
 
 %{cargo_license_online} > LICENSE.dependencies
 
-desktop-file-validate %{buildroot}/%{_datadir}/applications/rog-control-center.desktop
+%desktop_file_validate %{buildroot}/%{_appsdir}/rog-control-center.desktop
 
 mkdir -p %{buildroot}%{_sysconfdir}/asusd
 
 %files
 %license LICENSE
 %license LICENSE.dependencies
-%{_datadir}/asusctl/LICENSE
+%license %{_datadir}/asusctl/LICENSE
 %{_bindir}/asusd
 %{_bindir}/asusd-user
 %{_bindir}/asusctl
@@ -74,18 +77,18 @@ mkdir -p %{buildroot}%{_sysconfdir}/asusd
 %dir %{_sysconfdir}/asusd
 %{_datadir}/asusd/aura_support.ron
 %{_datadir}/dbus-1/system.d/asusd.conf
-%{_datadir}/icons/hicolor/512x512/apps/asus_notif_yellow.png
-%{_datadir}/icons/hicolor/512x512/apps/asus_notif_green.png
-%{_datadir}/icons/hicolor/512x512/apps/asus_notif_red.png
-%{_datadir}/icons/hicolor/512x512/apps/asus_notif_blue.png
-%{_datadir}/icons/hicolor/512x512/apps/asus_notif_orange.png
-%{_datadir}/icons/hicolor/512x512/apps/asus_notif_white.png
-%{_datadir}/icons/hicolor/scalable/status/gpu-compute.svg
-%{_datadir}/icons/hicolor/scalable/status/gpu-hybrid.svg
-%{_datadir}/icons/hicolor/scalable/status/gpu-integrated.svg
-%{_datadir}/icons/hicolor/scalable/status/gpu-nvidia.svg
-%{_datadir}/icons/hicolor/scalable/status/gpu-vfio.svg
-%{_datadir}/icons/hicolor/scalable/status/notification-reboot.svg
+%{_hicolordir}/512x512/apps/asus_notif_yellow.png
+%{_hicolordir}/512x512/apps/asus_notif_green.png
+%{_hicolordir}/512x512/apps/asus_notif_red.png
+%{_hicolordir}/512x512/apps/asus_notif_blue.png
+%{_hicolordir}/512x512/apps/asus_notif_orange.png
+%{_hicolordir}/512x512/apps/asus_notif_white.png
+%{_hicolordir}/scalable/status/gpu-compute.svg
+%{_hicolordir}/scalable/status/gpu-hybrid.svg
+%{_hicolordir}/scalable/status/gpu-integrated.svg
+%{_hicolordir}/scalable/status/gpu-nvidia.svg
+%{_hicolordir}/scalable/status/gpu-vfio.svg
+%{_hicolordir}/scalable/status/notification-reboot.svg
 %{_docdir}/%{name}/
 %{_datadir}/asusd/
 
@@ -103,12 +106,15 @@ mkdir -p %{buildroot}%{_sysconfdir}/asusd
 
 %files rog-gui
 %{_bindir}/rog-control-center
-%{_datadir}/applications/rog-control-center.desktop
-%{_datadir}/icons/hicolor/512x512/apps/rog-control-center.png
+%{_appsdir}/rog-control-center.desktop
+%{_hicolordir}/512x512/apps/rog-control-center.png
 %{_datadir}/rog-gui
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
+* Fri May 08 2026 Owen Zimmerman <owen@fyralabs.com> - 6.3.7-3
+- Use new macros, clean some stuff up
+
 * Mon Mar 23 2026 Owen Zimmerman <owen@fyralabs.com> - 6.3.5-2
 - Add asus-shutdown.service
 
