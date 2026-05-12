@@ -11,7 +11,7 @@ License:        GPL-3.0-or-later
 URL:            https://openbangla.github.io/
 Source0:        https://github.com/OpenBangla/OpenBangla-Keyboard/archive/%commit.tar.gz
 Source1:        https://github.com/OpenBangla/riti/archive/master.tar.gz
-BuildRequires:  cmake anda-srpm-macros rust-packaging git-core gcc-c++
+BuildRequires:  cmake anda-srpm-macros rust-packaging rust cargo git-core gcc-c++
 BuildRequires:  qt5-qtbase-devel pkgconfig(ibus-1.0) fcitx5-devel pkgconfig(libzstd)
 Requires:       qt5-qtbase hicolor-icon-theme zstd
 Requires:       openbangla-im = %version-%release
@@ -50,7 +50,8 @@ OpenBangla Keyboard for Fcitx5.
 
 %build
 if [[ -d build ]]; then rm -rf build; fi
-%cmake -DENABLE_FCITX=YES -DENABLE_IBUS=YES -DBUILD_SHARED_LIBS:BOOL=OFF
+%cmake -DENABLE_FCITX=YES -DENABLE_IBUS=YES -DBUILD_SHARED_LIBS:BOOL=OFF -DCMAKE_EXPERIMENTAL_ENABLE_RUST_AND_SWIFT=ON
+
 %cmake_build
 
 %install
