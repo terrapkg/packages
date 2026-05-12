@@ -29,6 +29,7 @@ BuildRequires:  meson
 BuildRequires:  pkgconfig(dbus-1)
 BuildRequires:  pkgconfig(libspa-0.2)
 BuildRequires:  pkgconfig(libglvnd)
+BuildRequires:  pkgconfig(vulkan)
 Requires(post): libcap
 BuildRequires:  systemd-rpm-macros
 
