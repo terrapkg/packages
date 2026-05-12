@@ -72,6 +72,8 @@ popd
 %{__pnpm} run generate
 %{__pnpm} run build-linux
 
+echo "Electron Builder" > %{rpmbuilddir}/webapp-tool.txt
+
 %install
 %electron_install -i signal -l -I build/icons/png
 
