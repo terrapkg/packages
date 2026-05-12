@@ -2,7 +2,7 @@
 %global _desc get things from one computer to another, safely.
 
 Name:			python-%{pypi_name}
-Version:		0.23.0
+Version:		0.24.0
 Release:		1%{?dist}
 Summary:		get things from one computer to another, safely
 License:		MIT
