@@ -1,20 +1,17 @@
-%define debug_package %{nil}
-%global _build_id_links none
-
-# Exclude private libraries
-%global __requires_exclude libffmpeg.so
-%global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
-
 Name:           discord-canary
 Version:        1.0.1065
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Free Voice and Text Chat for Gamers
 URL:            discord.com
-Source0:        https://dl-canary.discordapp.net/apps/linux/%{version}/discord-canary-%{version}.tar.gz
-License:        https://discord.com/terms
-Requires:       glibc GConf2 nspr >= 4.13 nss >= 3.27 libX11 >= 1.6 libXtst >= 1.2
+Source0:        https://dl-canary.discordapp.net/apps/linux/%{version}/%{name}-%{version}.tar.gz
+Source1:        https://discord.com/terms#/terms.html
+License:        Proprietary
+Requires:       zenity
 Group:          Applications/Internet
 ExclusiveArch:  x86_64
+
+%electronmeta -D
+
 %description
 All-in-one voice and text chat for gamers that's free, secure, and works on
 both your desktop and phone.
@@ -25,23 +22,23 @@ both your desktop and phone.
 %build
 
 %install
-rm -rf $RPM_BUILD_ROOT
-mkdir -p %{buildroot}%{_bindir}
-mkdir -p %{buildroot}%{_datadir}/discord-canary
-cp -rv * %{buildroot}%{_datadir}/discord-canary
-mkdir -p %{buildroot}%{_datadir}/applications/
-mkdir -p %{buildroot}%{_datadir}/pixmaps
-ln -s %_datadir/discord-canary/discord-canary.desktop %{buildroot}%{_datadir}/applications/
-ln -s %_datadir/discord-canary/discord.png %{buildroot}%{_datadir}/pixmaps/discord-canary.png
-ln -s %_datadir/discord-canary/DiscordCanary %buildroot%_bindir/discord-canary
+install -Dpm755 updater_bootstrap -t %{buildroot}%{_datadir}/%{name}
+install -Dpm755 %{name} -t %{buildroot}%{_bindir}
+install -Dpm644 discord.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
+%desktop_file_install %{name}.desktop
+cp %{SOURCE1} -t .
 
 %files
-%_bindir/discord-canary
-%{_datadir}/discord-canary/
-%{_datadir}/applications/discord-canary.desktop
-%{_datadir}/pixmaps/discord-canary.png
+%license terms.html
+%{_bindir}/%{name}
+%{_datadir}/%{name}/
+%{_appsdir}/%{name}.desktop
+%{_datadir}/pixmaps/%{name}.png
 
 %changelog
+* Tue May 5 2026 Gilver E. <roachy@fyralabs.com> - 1.0.1025-2
+- Update build for new bootstrap format
+
 * Thu Dec 01 2022 root - 0.0.144-1
 - new version
 
