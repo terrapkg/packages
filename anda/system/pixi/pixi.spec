@@ -38,7 +38,7 @@ install -Dm 644 completions.fish %{buildroot}%{fish_completions_dir}/%{name}.fis
 install -Dm 644 completions.zsh %{buildroot}%{zsh_completions_dir}/_%{name}
 
 %files
-%doc README.md SECURITY.md CHANGELOG.md CODE_OF_CONDUCT.md CONTRIBUTING.md
+%doc README.md CHANGELOG.md
 %license LICENSE
 %{_bindir}/%{name}
 
