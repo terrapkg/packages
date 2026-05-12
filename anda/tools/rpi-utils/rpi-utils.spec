@@ -10,7 +10,7 @@ License:		BSD-3-Clause
 URL:			https://github.com/raspberrypi/utils
 Source0:		%{url}/archive/%{commit}.tar.gz
 Patch0:         dtoverlay-manpage.patch
-BuildRequires:	cmake dtc libfdt-devel gcc-c++ gnutls-devel
+BuildRequires:	cmake dtc libfdt-devel gcc-c++ gnutls-devel ncurses-devel
 
 Requires:       %{name}-dtmerge = %{evr}
 Requires:       %{name}-eeptools = %{evr}
