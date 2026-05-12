@@ -14,7 +14,7 @@ License:        GPL-3.0
 Provides:       headsetcontrol-nightly
 Conflicts:      headsetcontrol
 
-BuildRequires:  cmake gcc hidapi-devel
+BuildRequires:  cmake gcc gcc-c++ hidapi-devel
 
 %description
 A tool to control certain aspects of USB-connected headsets on Linux.
