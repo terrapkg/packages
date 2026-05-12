@@ -18,7 +18,7 @@
 %bcond test 1
 
 Name:          powershell
-Version:       7.6.0
+Version:       7.6.1
 Release:       1%{?dist}
 Summary:       A cross-platform automation and configuration tool/framework
 SourceLicense: MIT

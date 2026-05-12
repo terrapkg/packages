@@ -1,7 +1,7 @@
 Name:           juce
 Version:        8.0.12
-Release:        3%{?dist}
-License:        AGPL-3.0
+Release:        4%{?dist}
+License:        AGPL-3.0-or-later
 Summary:        framework for audio application and plug-in development
 URL:            https://juce.com
 Source:         https://github.com/juce-framework/JUCE/archive/refs/tags/%{version}.tar.gz
@@ -46,10 +46,12 @@ Documentation files for %{name}
 %prep
 %autosetup -p1 -n JUCE-%{version}
 
-%build
+%conf
 %cmake -DJUCER_ENABLE_GPL_MODE=1    \
        -DJUCE_BUILD_EXTRAS=ON       \
        -DJUCE_TOOL_INSTALL_DIR=bin
+
+%build
 %cmake_build
 
 pushd docs/doxygen

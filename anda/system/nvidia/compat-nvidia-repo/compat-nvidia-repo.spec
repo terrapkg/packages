@@ -1,7 +1,7 @@
 Name:           compat-nvidia-repo
-Version:        595.58.03
+Version:        595.71.05
 Epoch:          3
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Compatibility package required by official CUDA packages
 License:        NVIDIA License
 URL:            https://developer.nvidia.com/cuda-toolkit

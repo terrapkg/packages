@@ -1,11 +1,11 @@
-%global commit 1db292d2fc4e74604bf07e9f7a859aa26ab6ea9b
+%global commit 1a2e50e3f222ae7d223acf718d2e8384a9b7fbe6
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260420
-%global ver 0.234.0
+%global commit_date 20260512
+%global ver 1.3.0
 
 %bcond_with check
 %bcond_with debug_no_build
-%bcond nightly 1
+%bcond nightly 0
 
 %if 0%{?with_debug_no_build}
 %global debug_package %{nil}
@@ -19,6 +19,7 @@
 %global appstream_component desktop-application
 
 %global rustflags_debuginfo 0
+%global toolchain clang
 
 Name:           zed-nightly
 Version:        %ver^%commit_date.%shortcommit

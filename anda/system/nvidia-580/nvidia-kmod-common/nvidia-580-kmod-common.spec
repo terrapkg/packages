@@ -6,8 +6,8 @@
 %global modulename nvidia-580xx
 
 Name:           %{modulename}-kmod-common
-Version:        580.142
-Release:        3%{?dist}
+Version:        580.159.03
+Release:        1%{?dist}
 Summary:        Common file for NVIDIA's proprietary driver kernel modules
 Epoch:          3
 License:        NVIDIA License
