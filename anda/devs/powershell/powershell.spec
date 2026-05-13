@@ -116,12 +116,12 @@ grep 'Microsoft.NETCore.App' "$INCFILE" | sed 's/;//' | while read -r assembly; 
     install -Dm755 -t lib/ref "$assembly"
 done
 
-cp -a $NUGET_PACKAGES/microsoft.powershell.archive/1.2.5/. lib/Modules/Microsoft.PowerShell.Archive
-cp -a $NUGET_PACKAGES/microsoft.powershell.psresourceget/1.1.1/. lib/Modules/Microsoft.PowerShell.PSResourceGet
-cp -a $NUGET_PACKAGES/packagemanagement/1.4.8.1/. lib/Modules/PackageManagement
-cp -a $NUGET_PACKAGES/powershellget/2.2.5/. lib/Modules/PowerShellGet
-cp -a $NUGET_PACKAGES/psreadline/2.3.6/. lib/Modules/PSReadLine
-cp -a $NUGET_PACKAGES/threadjob/2.0.3/. lib/Modules/ThreadJob
+cp -a "$NUGET_PACKAGES/microsoft.powershell.archive/1.2.5/." lib/Modules/Microsoft.PowerShell.Archive
+cp -a "$NUGET_PACKAGES/microsoft.powershell.psresourceget/1.2.0/." lib/Modules/Microsoft.PowerShell.PSResourceGet
+cp -a "$NUGET_PACKAGES/packagemanagement/1.4.8.1/." lib/Modules/PackageManagement
+cp -a "$NUGET_PACKAGES/powershellget/2.2.5/." lib/Modules/PowerShellGet
+cp -a "$NUGET_PACKAGES/psreadline/2.4.5/." lib/Modules/PSReadLine
+cp -a "$NUGET_PACKAGES/microsoft.powershell.threadjob/2.2.0/." lib/Modules/Microsoft.PowerShell.ThreadJob
 
 # Restore-PSPester
 unzip -ud temp_pester %{SOURCE1}
@@ -235,5 +235,7 @@ lib/pwsh -noprofile -command '
 %doc ADOPTERS.md
 
 %changelog
+* Wed May 13 2026 Gilver E. <roachy@fyralabs.com> - 7.6.1-1
+- Update to 7.6.1
 * Wed Dec 24 2025 Gilver E. <rockgrub@disroot.org> - 7.5.4-1
 - Initial package
