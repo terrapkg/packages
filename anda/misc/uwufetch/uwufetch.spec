@@ -7,9 +7,9 @@
 
 Name:          uwufetch
 Version:       %{ver}^%{commit_date}git.%{shortcommit}
-Release:       1%{?dist}
+Release:       2%{?dist}
 Summary:       A meme system info tool for Linux, based on nyan/uwu trend on r/linuxmasterrace.
-License:       GPL-3.0
+License:       GPL-3.0-or-later
 URL:           https://github.com/ad-oliviero/uwufetch
 BuildRequires: make gcc git anda-srpm-macros pciutils-devel
 Requires:      freecolor
