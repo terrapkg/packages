@@ -1,5 +1,5 @@
-%global commit 13a00815aec535ca50d2ac0e4abdb4f52cf8904d
-%global commit_date 20260509
+%global commit 6745396fbf6b578a1aff1fa0d1240da4a42ec2f6
+%global commit_date 20260513
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           raindrop

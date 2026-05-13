@@ -1,7 +1,7 @@
-%global commit  3211cac2e6f92fc7d5e0ac492de433b2a1153af2
+%global commit  ce6485980843245f8dc13ec0d0b2258fb04435d2
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global ver 202604200545
-%global commit_date 20260421
+%global ver 202605120112
+%global commit_date 20260512
 
 %global year %{gsub %commit_date %%d%%d%%d%%d$ %{quote:}}
 %global month %{gsub %commit_date %%d%%d%%d%%d(%%d%%d)%%d%%d %%1}
