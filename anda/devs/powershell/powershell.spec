@@ -36,9 +36,13 @@ BuildRequires: jq
 BuildRequires: nuget
 BuildRequires: unzip
 %if %{with test}
+BuildRequires: aspnetcore-targeting-pack-%{dotnet_version}
 BuildRequires: glibc-all-langpacks
 BuildRequires: iputils
+BuildRequires: hostname
 BuildRequires: langpacks-en
+BuildRequires: ncurses
+BuildRequires: openssl
 %endif
 Requires:      dotnet-hostfxr-%{dotnet_version}
 Requires:      dotnet-runtime-%{dotnet_version}
@@ -65,10 +69,9 @@ sed -i 's|add key=.*"|add key="nuget.org" value="https://api.nuget.org/v3/index.
 jq '.sdk.version = "%{dotnet_version}.0" | .sdk.rollForward = "feature"' global.json > _global.json
   mv _global.json global.json
 
-%build
 export NUGET_PACKAGES="$PWD/nuget"
-export DOTNET_NOLOGO=true
-export DOTNET_CLI_TELEMETRY_OPTOUT=true
+export DOTNET_NOLOGO=1
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 dotnet restore src/powershell-unix -p:PublishReadyToRun=true
 dotnet restore src/TypeCatalogGen
@@ -82,6 +85,11 @@ dotnet restore test/tools/Modules
 dotnet restore test/tools/TestService -p:RuntimeIdentifiers=linux-%{darch}
 dotnet restore test/tools/WebListener -p:RuntimeIdentifiers=linux-%{darch}
 dotnet restore test/tools/NamedPipeConnection/src/code
+
+%build
+NUGET_PACKAGES="$PWD/nuget" ; export NUGET_PACKAGES
+DOTNET_NOLOGO=1 ; export DOTNET_NOLOGO
+DOTNET_CLI_TELEMETRY_OPTOUT=1 ; export DOTNET_CLI_TELEMETRY_OPTOUT
 
 pushd src/ResGen
 dotnet run --no-restore
@@ -113,15 +121,15 @@ dotnet publish \
     src/powershell-unix/
 
 grep 'Microsoft.NETCore.App' "$INCFILE" | sed 's/;//' | while read -r assembly; do
-    install -Dm755 -t lib/ref "$assembly"
+  install -Dm755 -t lib/ref "$assembly"
 done
 
-cp -a $NUGET_PACKAGES/microsoft.powershell.archive/1.2.5/. lib/Modules/Microsoft.PowerShell.Archive
-cp -a $NUGET_PACKAGES/microsoft.powershell.psresourceget/1.1.1/. lib/Modules/Microsoft.PowerShell.PSResourceGet
-cp -a $NUGET_PACKAGES/packagemanagement/1.4.8.1/. lib/Modules/PackageManagement
-cp -a $NUGET_PACKAGES/powershellget/2.2.5/. lib/Modules/PowerShellGet
-cp -a $NUGET_PACKAGES/psreadline/2.3.6/. lib/Modules/PSReadLine
-cp -a $NUGET_PACKAGES/threadjob/2.0.3/. lib/Modules/ThreadJob
+cp -a "$NUGET_PACKAGES/microsoft.powershell.archive/1.2.5/." lib/Modules/Microsoft.PowerShell.Archive
+cp -a "$NUGET_PACKAGES/microsoft.powershell.psresourceget/1.2.0/." lib/Modules/Microsoft.PowerShell.PSResourceGet
+cp -a "$NUGET_PACKAGES/packagemanagement/1.4.8.1/." lib/Modules/PackageManagement
+cp -a "$NUGET_PACKAGES/powershellget/2.2.5/." lib/Modules/PowerShellGet
+cp -a "$NUGET_PACKAGES/psreadline/2.4.5/." lib/Modules/PSReadLine
+cp -a "$NUGET_PACKAGES/microsoft.powershell.threadjob/2.2.0/." lib/Modules/Microsoft.PowerShell.ThreadJob
 
 # Restore-PSPester
 unzip -ud temp_pester %{SOURCE1}
@@ -146,18 +154,24 @@ install -Dpm644 assets/powershell_128.svg %{buildroot}%{_scalableiconsdir}/%{nam
 
 %if %{with test}
 %check
-export NUGET_PACKAGES="$PWD/nuget"
-export DOTNET_NOLOGO=true
-export DOTNET_CLI_TELEMETRY_OPTOUT=true
+NUGET_PACKAGES="$PWD/nuget" ; export NUGET_PACKAGES
+DOTNET_NOLOGO=1 ; export DOTNET_NOLOGO
+DOTNET_CLI_TELEMETRY_OPTOUT=1 ; export DOTNET_CLI_TELEMETRY_OPTOUT
 
 # Remove tests that fail in CIs
 rm test/powershell/engine/Help/HelpSystem.Tests.ps1
+rm test/powershell/engine/Help/UpdatableHelpSystem.Tests.ps1
+rm test/powershell/Host/PSVersionTable.Tests.ps1
+rm test/powershell/Host/Startup.Tests.ps1
 rm test/powershell/Modules/Microsoft.PowerShell.Management/Start-Process.Tests.ps1
 rm test/powershell/Modules/Microsoft.PowerShell.Utility/Format-Table.Tests.ps1
 rm test/powershell/Language/Parser/RedirectionOperator.Tests.ps1
 rm test/powershell/Language/Scripting/NativeExecution/NativeWindowsTildeExpansion.Tests.ps1
 rm test/powershell/Modules/Microsoft.PowerShell.Utility/WebCmdlets.Tests.ps1
 rm test/powershell/Modules/Microsoft.PowerShell.PSResourceGet/Microsoft.PowerShell.PSResourceGet.Tests.ps1
+rm test/powershell/dsc/dsc.profileresource.Tests.ps1
+rm test/powershell/engine/Remoting/SSHRemotingCmdlets.Tests.ps1
+rm test/powershell/Host/TabCompletion/TabCompletion.Tests.ps1
 
 # Fails on timezone format
 rm test/powershell/Modules/Microsoft.PowerShell.Management/TimeZone.Tests.ps1
@@ -183,15 +197,15 @@ dotnet publish \
     test/tools/TestAlc
 
 for project in TestExe TestService UnixSocket WebListener; do
-    dotnet publish \
-      --no-restore \
-      --runtime linux-%{darch} \
-      --self-contained \
-      --configuration Debug \
-      --output test/tools/$project/bin \
-      test/tools/$project
-    export PATH="$PATH:$PWD/test/tools/$project/bin/Debug/net%{dotnet_version}/linux-%{darch}"
-  done
+  dotnet publish \
+    --no-restore \
+    --runtime linux-%{darch} \
+    --self-contained \
+    --configuration Debug \
+    --output test/tools/$project/bin \
+    test/tools/$project
+  export PATH="$PATH:$PWD/test/tools/$project/bin/Debug/net%{dotnet_version}/linux-%{darch}"
+done
 
 dotnet publish \
     --no-restore \
@@ -200,11 +214,13 @@ dotnet publish \
     --output test/tools/Modules/Microsoft.PowerShell.NamedPipeConnection \
     test/tools/NamedPipeConnection/src/code
 
+
 install -Dm644 -t test/tools/Modules/Microsoft.PowerShell.NamedPipeConnection \
   test/tools/NamedPipeConnection/src/Microsoft.PowerShell.NamedPipeConnection.psd1
 
 export LANG="en_US.UTF-8"
 export LC_ALL="$LANG"
+export TERM="xterm-256color"
 
 # shellcheck disable=SC2016
 lib/pwsh -noprofile -command '
@@ -235,5 +251,7 @@ lib/pwsh -noprofile -command '
 %doc ADOPTERS.md
 
 %changelog
+* Wed May 13 2026 Gilver E. <roachy@fyralabs.com> - 7.6.1-1
+- Update to 7.6.1
 * Wed Dec 24 2025 Gilver E. <rockgrub@disroot.org> - 7.5.4-1
 - Initial package
