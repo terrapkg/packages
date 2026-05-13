@@ -39,8 +39,10 @@ BuildRequires: unzip
 BuildRequires: aspnetcore-targeting-pack-%{dotnet_version}
 BuildRequires: glibc-all-langpacks
 BuildRequires: iputils
+BuildRequires: hostname
 BuildRequires: langpacks-en
 BuildRequires: ncurses
+BuildRequires: openssl
 %endif
 Requires:      dotnet-hostfxr-%{dotnet_version}
 Requires:      dotnet-runtime-%{dotnet_version}
@@ -68,8 +70,8 @@ jq '.sdk.version = "%{dotnet_version}.0" | .sdk.rollForward = "feature"' global.
   mv _global.json global.json
 
 export NUGET_PACKAGES="$PWD/nuget"
-export DOTNET_NOLOGO=true
-export DOTNET_CLI_TELEMETRY_OPTOUT=true
+export DOTNET_NOLOGO=1
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 dotnet restore src/powershell-unix -p:PublishReadyToRun=true
 dotnet restore src/TypeCatalogGen
@@ -85,9 +87,9 @@ dotnet restore test/tools/WebListener -p:RuntimeIdentifiers=linux-%{darch}
 dotnet restore test/tools/NamedPipeConnection/src/code
 
 %build
-export NUGET_PACKAGES="$PWD/nuget"
-export DOTNET_NOLOGO=true
-export DOTNET_CLI_TELEMETRY_OPTOUT=true
+NUGET_PACKAGES="$PWD/nuget" ; export NUGET_PACKAGES
+DOTNET_NOLOGO=1 ; export DOTNET_NOLOGO
+DOTNET_CLI_TELEMETRY_OPTOUT=1 ; export DOTNET_CLI_TELEMETRY_OPTOUT
 
 pushd src/ResGen
 dotnet run --no-restore
@@ -152,9 +154,9 @@ install -Dpm644 assets/powershell_128.svg %{buildroot}%{_scalableiconsdir}/%{nam
 
 %if %{with test}
 %check
-export NUGET_PACKAGES="$PWD/nuget"
-export DOTNET_NOLOGO=true
-export DOTNET_CLI_TELEMETRY_OPTOUT=true
+NUGET_PACKAGES="$PWD/nuget" ; export NUGET_PACKAGES
+DOTNET_NOLOGO=1 ; export DOTNET_NOLOGO
+DOTNET_CLI_TELEMETRY_OPTOUT=1 ; export DOTNET_CLI_TELEMETRY_OPTOUT
 
 # Remove tests that fail in CIs
 rm test/powershell/engine/Help/HelpSystem.Tests.ps1
@@ -218,6 +220,7 @@ install -Dm644 -t test/tools/Modules/Microsoft.PowerShell.NamedPipeConnection \
 
 export LANG="en_US.UTF-8"
 export LC_ALL="$LANG"
+export TERM="xterm-256color"
 
 # shellcheck disable=SC2016
 lib/pwsh -noprofile -command '
