@@ -36,9 +36,11 @@ BuildRequires: jq
 BuildRequires: nuget
 BuildRequires: unzip
 %if %{with test}
+BuildRequires: aspnetcore-targeting-pack-%{dotnet_version}
 BuildRequires: glibc-all-langpacks
 BuildRequires: iputils
 BuildRequires: langpacks-en
+BuildRequires: ncurses
 %endif
 Requires:      dotnet-hostfxr-%{dotnet_version}
 Requires:      dotnet-runtime-%{dotnet_version}
