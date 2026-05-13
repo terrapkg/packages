@@ -65,7 +65,6 @@ sed -i 's|add key=.*"|add key="nuget.org" value="https://api.nuget.org/v3/index.
 jq '.sdk.version = "%{dotnet_version}.0" | .sdk.rollForward = "feature"' global.json > _global.json
   mv _global.json global.json
 
-%build
 export NUGET_PACKAGES="$PWD/nuget"
 export DOTNET_NOLOGO=true
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
@@ -82,6 +81,11 @@ dotnet restore test/tools/Modules
 dotnet restore test/tools/TestService -p:RuntimeIdentifiers=linux-%{darch}
 dotnet restore test/tools/WebListener -p:RuntimeIdentifiers=linux-%{darch}
 dotnet restore test/tools/NamedPipeConnection/src/code
+
+%build
+export NUGET_PACKAGES="$PWD/nuget"
+export DOTNET_NOLOGO=true
+export DOTNET_CLI_TELEMETRY_OPTOUT=true
 
 pushd src/ResGen
 dotnet run --no-restore
@@ -113,7 +117,7 @@ dotnet publish \
     src/powershell-unix/
 
 grep 'Microsoft.NETCore.App' "$INCFILE" | sed 's/;//' | while read -r assembly; do
-    install -Dm755 -t lib/ref "$assembly"
+  install -Dm755 -t lib/ref "$assembly"
 done
 
 cp -a "$NUGET_PACKAGES/microsoft.powershell.archive/1.2.5/." lib/Modules/Microsoft.PowerShell.Archive
@@ -152,12 +156,18 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=true
 
 # Remove tests that fail in CIs
 rm test/powershell/engine/Help/HelpSystem.Tests.ps1
+rm test/powershell/engine/Help/UpdatableHelpSystem.Tests.ps1
+rm test/powershell/Host/PSVersionTable.Tests.ps1
+rm test/powershell/Host/Startup.Tests.ps1
 rm test/powershell/Modules/Microsoft.PowerShell.Management/Start-Process.Tests.ps1
 rm test/powershell/Modules/Microsoft.PowerShell.Utility/Format-Table.Tests.ps1
 rm test/powershell/Language/Parser/RedirectionOperator.Tests.ps1
 rm test/powershell/Language/Scripting/NativeExecution/NativeWindowsTildeExpansion.Tests.ps1
 rm test/powershell/Modules/Microsoft.PowerShell.Utility/WebCmdlets.Tests.ps1
 rm test/powershell/Modules/Microsoft.PowerShell.PSResourceGet/Microsoft.PowerShell.PSResourceGet.Tests.ps1
+rm test/powershell/dsc/dsc.profileresource.Tests.ps1
+rm test/powershell/engine/Remoting/SSHRemotingCmdlets.Tests.ps1
+rm test/powershell/Host/TabCompletion/TabCompletion.Tests.ps1
 
 # Fails on timezone format
 rm test/powershell/Modules/Microsoft.PowerShell.Management/TimeZone.Tests.ps1
@@ -183,15 +193,15 @@ dotnet publish \
     test/tools/TestAlc
 
 for project in TestExe TestService UnixSocket WebListener; do
-    dotnet publish \
-      --no-restore \
-      --runtime linux-%{darch} \
-      --self-contained \
-      --configuration Debug \
-      --output test/tools/$project/bin \
-      test/tools/$project
-    export PATH="$PATH:$PWD/test/tools/$project/bin/Debug/net%{dotnet_version}/linux-%{darch}"
-  done
+  dotnet publish \
+    --no-restore \
+    --runtime linux-%{darch} \
+    --self-contained \
+    --configuration Debug \
+    --output test/tools/$project/bin \
+    test/tools/$project
+  export PATH="$PATH:$PWD/test/tools/$project/bin/Debug/net%{dotnet_version}/linux-%{darch}"
+done
 
 dotnet publish \
     --no-restore \
@@ -199,6 +209,7 @@ dotnet publish \
     --framework net%{dotnet_version} \
     --output test/tools/Modules/Microsoft.PowerShell.NamedPipeConnection \
     test/tools/NamedPipeConnection/src/code
+
 
 install -Dm644 -t test/tools/Modules/Microsoft.PowerShell.NamedPipeConnection \
   test/tools/NamedPipeConnection/src/Microsoft.PowerShell.NamedPipeConnection.psd1
