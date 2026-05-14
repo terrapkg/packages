@@ -316,6 +316,9 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 %{_mandir}/man7/raspirev.7.gz
 
 %changelog
+* Thu May 14 2026 Owen Zimmerman <owen@fyralabs.com>
+- Add new subpackages, tidy up
+
 * Tue Jan 13 2026 Owen Zimmerman <owen@fyralabs.com>
 - Seperate needed files into -devel packages, add more packages/files, install all files.
 
