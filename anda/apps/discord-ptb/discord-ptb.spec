@@ -1,6 +1,6 @@
 Name:           discord-ptb
-Version:        1.0.190
-Release:        2%{?dist}
+Version:        1.0.191
+Release:        1%{?dist}
 Summary:        Free Voice and Text Chat for Gamers.
 URL:            https://discord.com
 Source0:        https://dl-ptb.discordapp.net/apps/linux/%{version}/%{name}-%{version}.tar.gz

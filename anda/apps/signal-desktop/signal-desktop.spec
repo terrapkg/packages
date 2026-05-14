@@ -2,7 +2,7 @@
 
 Name:			signal-desktop
 %electronmeta -aD
-Version:		8.9.1
+Version:		8.10.0
 Release:		1%{?dist}
 Summary:		A private messenger for Windows, macOS, and Linux
 URL:			https://signal.org
@@ -70,7 +70,8 @@ pushd sticker-creator
 popd
 %dnl %pnpm_build -r generate,build:policy-files,generate,build:esbuild:prod
 %{__pnpm} run generate
-%{__pnpm} run build-linux
+%{__pnpm} run build-linux --%{_electron_cpu} --linux AppImage
+echo "Electron Builder" > %{rpmbuilddir}/webapp-tool.txt
 
 %install
 %electron_install -i signal -l -I build/icons/png

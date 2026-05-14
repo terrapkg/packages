@@ -43,6 +43,7 @@ A graphical user interface for %{name}.
 %build
 %global gomodulesmode GO111MODULE=on
 %gobuild -o %{name} .
+echo "Electron Builder" > %{rpmbuilddir}/webapp-tool.txt
 
 pushd app
 %npm_build -B
