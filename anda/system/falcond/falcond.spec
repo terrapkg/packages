@@ -62,7 +62,8 @@ usermod -aG 'falcond' root || :
 
 %changelog
 * Thu May  14 2026 Gilver E. <roachy@fyralabs.com> - 2.0.6-2
-- Updated build for Zig and zig-rpm-macros 0.16.0
+- Updated for Zig and zig-rpm-macros 0.16.0
+- Updated for anda-srpm-macros 0.3.9
 * Thu Jan 1 2026 Gilver E. <roachy@fyralabs.com> - 1.2.1-2
 - Disabled service by default in favor of user enablement via falcond-gui
 - Added weak dep on falcond-gui
