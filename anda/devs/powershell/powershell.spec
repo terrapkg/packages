@@ -19,7 +19,7 @@
 
 Name:          powershell
 Version:       7.6.1
-Release:       1%{?dist}
+Release:       2%{?dist}
 Summary:       A cross-platform automation and configuration tool/framework
 SourceLicense: MIT
 License:       Apache-2.0 AND BSD-2-Clause AND MIT
@@ -56,6 +56,7 @@ Packager:      Gilver E. <roachy@fyralabs.com>
 %package       doc
 Summary:       Documentation files for PowerShell
 Requires:      %{name} = %{evr}
+BuildArch:     noarch
 
 %description   doc
 This package contains documentation for PowerShell.
