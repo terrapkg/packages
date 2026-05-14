@@ -80,16 +80,16 @@ install -Dm 644 extra/%{name}-url-handler.desktop -t %{buildroot}%{_appsdir}
 %{_appsdir}/%{name}.desktop
 %{_appsdir}/%{name}-url-handler.desktop
 %{_hicolordir}/512x512/apps/%{name}.png
-%{_sysconfdir}/chromium/native-messaging-hosts/com.vicinae.vicinae.json
-%{_prefix}/lib/mozilla/native-messaging-hosts/com.vicinae.vicinae.json
-%{_datadir}/%{name}/native-messaging-hosts/com.vicinae.vicinae.chromium.json.in
-%{_datadir}/%{name}/native-messaging-hosts/com.vicinae.vicinae.firefox.json.in
+%dnl %{_sysconfdir}/chromium/native-messaging-hosts/com.vicinae.vicinae.json
+%dnl %{_prefix}/lib/mozilla/native-messaging-hosts/com.vicinae.vicinae.json
+%dnl %{_datadir}/%{name}/native-messaging-hosts/com.vicinae.vicinae.chromium.json.in
+%dnl %{_datadir}/%{name}/native-messaging-hosts/com.vicinae.vicinae.firefox.json.in
 %{_libexecdir}/%{name}/vicinae-browser-link
 %{_libexecdir}/%{name}/vicinae-data-control-server
 %{_libexecdir}/%{name}/vicinae-server
-%{_libexecdir}/%{name}/vicinae-snippet-server
+%dnl %{_libexecdir}/%{name}/vicinae-snippet-server
 %{_modulesloaddir}/vicinae.conf
-%{_udevrulesdir}/70-vicinae.rules
+%dnl %{_udevrulesdir}/70-vicinae.rules
 
 %changelog
 * Thu May 14 2026 Owen Zimmerman <owen@fyralabs.com> - 0.21.0-1
