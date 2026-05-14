@@ -15,6 +15,7 @@ BuildRequires:	cmake dtc libfdt-devel gcc-c++ gnutls-devel ncurses-devel
 Requires:       %{name}-dtmerge = %{evr}
 Requires:       %{name}-eeptools = %{evr}
 Requires:       %{name}-kdtc = %{evr}
+Requires:       %{name}-otamaker = %{evr}
 Requires:       %{name}-otpset = %{evr}
 Requires:       %{name}-overlaycheck = %{evr}
 Requires:       %{name}-ovmerge = %{evr}
@@ -37,7 +38,7 @@ Summary:        A tool for applying compiled DT overlays (*.dtbo) to base Device
 %{summary}. Also includes the dtoverlay and dtparam utilities.
 
 %package        dtmerge-devel
-Summary:        Development files for %{name}-dtmerge-devel
+Summary:        Development files for %{name}-dtmerge
 Requires:       %{name}-dtmerge = %{evr}
 
 %description    dtmerge-devel
@@ -52,6 +53,11 @@ Summary:        Tools for creating and managing EEPROMs for HAT+ and HAT board
 Requires:       dtc
 Summary:        A tool for compiling overlays with #includes, etc., as used in the kernel tree
 %description    kdtc
+%{summary}.
+
+%package        otamaker
+Summary:        Tool for building Remote Update/Over-The-Air packages for Raspberry Pi Connect Remote Update
+%description    otamaker
 %{summary}.
 
 %package        otpset
@@ -80,7 +86,7 @@ Summary:        A more powerful replacement for raspi-gpio, a tool for displayin
 %pkg_completion -Bn %name-pinctrl pinctrl
 
 %package        pinctrl-devel
-Summary:        Development files for %{name}-pinctrl-devel
+Summary:        Development files for %{name}-pinctrl
 Requires:       %{name}-pinctrl = %{evr}
 
 %description    pinctrl-devel
@@ -92,7 +98,7 @@ Summary:        A library for accessing the Pi 5's PIO hardware
 %{summary}.
 
 %package        piolib-devel
-Summary:        Development files for %{name}-piolib-devel
+Summary:        Development files for %{name}-piolib
 Requires:       %{name}-piolib = %{evr}
 
 %description    piolib-devel
@@ -103,15 +109,37 @@ Summary:        A short script to dump information about the Pi. Intended for th
 %description    raspinfo
 %{summary}.
 
+%package        rpieepromab
+Summary:        Mailbox based API that allows you to update and manage the AB EEPROM partitions
+%description    rpieepromab
+The Raspberry Pi EEPROM AB service is a mailbox based API that allows you to update and manage the AB EEPROM partitions.
+
+Although this service can be used via raw vcmailbox commands the recommended API is the command line rpi-eeprom-ab application.
+
+%package        rpieepromab-devel
+Summary:        Development files for %{name}-rpieepromab
+Requires:       %{name}-rpieepromab = %{evr}
+
+%description    rpieepromab-devel
+%{summary}.
+
 %package        rpifwcrypto
 Summary:        A command line application and shared library for the firmware cryptography service
 %description    rpifwcrypto
 %{summary}.
 
 %package -n     %{name}-rpifwcrypto-devel
-Summary:        Development files for %{name}-rpifwcrypto-devel
+Summary:        Development files for %{name}-rpifwcrypto
 Requires:       %{name}-rpifwcrypto = %{evr}
 %description -n %{name}-rpifwcrypto-devel
+
+%package        rpi-gpu-usage
+Summary:        Simple tool for showing the per-process usage of the V3D GPU on Raspberry Pi 4 and 5
+%description    rpi-gpu-usage
+A simple tool for showing the per-process usage of the V3D GPU on Raspberry Pi 4 and 5.
+It works by parsing the /proc/*/fdinfo/* information to find the processes that have drm stats information.
+
+%pkg_completion -Bn %name-rpi-gpu-usage rpi-gpu-usage
 
 %package        vcgencmd
 Summary:        Query the VideoCore for information
@@ -132,7 +160,7 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 %{summary}.
 
 %prep
-%autosetup -p1 -n utils-%commit
+%autosetup -p1 -n utils-%{commit}
 
 %build
 %cmake -DBUILD_SHARED_LIBS=1
@@ -168,6 +196,11 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 %doc kdtc/README.md
 %license LICENCE
 %{_bindir}/kdtc
+
+%files otamaker
+%doc otamaker/README.md
+%license LICENCE
+%{_bindir}/otamaker
 
 %files otpset
 %doc otpset/README.md
@@ -219,6 +252,16 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 %{_bindir}/raspinfo
 %doc raspinfo/README.md
 
+%files rpieepromab
+%{_bindir}/rpi-eeprom-ab
+%{_libdir}/librpieepromab.so.0
+%doc rpieepromab/README.md
+%license LICENCE
+
+%files rpieepromab-devel
+%{_includedir}/rpieepromab.h
+%{_libdir}/librpieepromab.so
+
 %files rpifwcrypto
 %{_bindir}/rpi-fw-crypto
 %{_libdir}/librpifwcrypto.so.0
@@ -227,6 +270,12 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 %files rpifwcrypto-devel
 %{_libdir}/librpifwcrypto.so
 %{_includedir}/rpifwcrypto.h
+
+%files rpi-gpu-usage
+%{_bindir}/rpi-gpu-usage
+%{_mandir}/man1/rpi-gpu-usage.1.*
+%doc rpi-gpu-usage/README.md
+%license LICENCE
 
 %files vcgencmd
 %license LICENCE
