@@ -11,8 +11,6 @@ SourceLicense:  Apache-2.0
 License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND (0BSD OR MIT OR Apache-2.0) AND Apache-2.0 AND (Apache-2.0 AND ISC) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND BSD-2-Clause AND BSD-3-Clause AND BSL-1.0 AND CDLA-Permissive-2.0 AND ISC AND LGPL-2.0-or-later AND MIT AND (MIT OR Apache-2.0) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Zlib OR Apache-2.0) AND MPL-2.0 AND MPL-2.0+ AND Unicode-3.0 AND (Unlicense OR MIT) AND Zlib
 URL:            https://crates.io/crates/zoi-rs
 Source:         %{crates_source %{crate} %{crate_version}}
-# Automatically generated patch to strip dependencies and normalize metadata
-Patch:          zoi-rs-fix-metadata-auto.diff
 BuildRequires:  cargo
 BuildRequires:  gcc-c++
 BuildRequires:  rpm_macro(cargo_install)
