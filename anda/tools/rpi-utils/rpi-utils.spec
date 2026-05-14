@@ -322,11 +322,11 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 * Tue Jan 13 2026 Owen Zimmerman <owen@fyralabs.com>
 - Seperate needed files into -devel packages, add more packages/files, install all files.
 
-* Mon May 19 2025 Owen-sz <owen@fyralabs.com>
+* Mon May 19 2025 Owen Zimmerman <owen@fyralabs.com>
 - Build shared libraries
 
 * Tue Dec 17 2024 sadlerm <sad_lerm@hotmail.com>
 - Split into individual subpackages and no longer package raspinfo
 
-* Mon Nov 18 2024 Owen-sz <owen@fyralabs.com>
+* Mon Nov 18 2024 Owen Zimmerman <owen@fyralabs.com>
 - Package Raspberry Pi Utils
