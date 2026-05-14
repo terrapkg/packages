@@ -27,6 +27,7 @@ BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  cmake(Qt6Keychain)
 BuildRequires:  cmake(LayerShellQt)
+BuildRequires:  cmake(Qt6ShaderTools)
 BuildRequires:  pkgconfig(libqalculate)
 BuildRequires:  pkgconfig(protobuf)
 BuildRequires:  pkgconfig(icu-uc)
@@ -91,10 +92,14 @@ install -Dm 644 extra/%{name}-url-handler.desktop -t %{buildroot}%{_appsdir}
 %{_udevrulesdir}/70-vicinae.rules
 
 %changelog
+* Thu May 14 2026 Owen Zimmerman <owen@fyralabs.com> - 0.21.0-1
+- Bdep cmake(Qt6ShaderTools)
+
 * Sat May 09 2026 Olivia <git@olivia.sh> - 0.20.15-2
 - fix missing files
 
 * Wed Feb 18 2026 Jaiden Riordan <jade@fyralabs.com> - 0.19.8
 - Fixup desktop file and xdgpp
+
 * Fri Dec 26 2025 metcya <metcya@gmail.com> - 0.17.3
 - Package vicinae
