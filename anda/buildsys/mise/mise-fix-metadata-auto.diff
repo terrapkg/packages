@@ -1,15 +1,16 @@
---- mise-2026.2.10/Cargo.toml	2006-07-24T01:21:28+00:00
-+++ mise-2026.2.10/Cargo.toml	2026-02-12T15:02:18.584012+00:00
-@@ -575,30 +575,6 @@
+--- mise-2026.5.6/Cargo.toml	2006-07-24T01:21:28+00:00
++++ mise-2026.5.6/Cargo.toml	2026-05-13T07:19:23.400768+00:00
+@@ -624,31 +624,6 @@
  optional = true
  default-features = false
  
 -[target."cfg(windows)".dependencies.self_update]
--version = "0.42"
+-version = "0.44"
 -features = [
 -    "archive-zip",
 -    "compression-zip-deflate",
 -    "signatures",
+-    "reqwest",
 -    "rustls",
 -]
 -optional = true
@@ -26,12 +27,12 @@
 -]
 -
 -[target."cfg(windows)".dependencies.zipsign-api]
--version = "0.1"
+-version = "0.2"
 -
  [lints.clippy]
  borrowed_box = "allow"
  
-@@ -615,3 +591,4 @@
+@@ -663,3 +638,4 @@
  [profile.serious]
  lto = true
  inherits = "release"
