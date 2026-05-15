@@ -12,7 +12,7 @@
 
 Name:           %{real_name}-580xx
 Version:        580.159.03
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        NVIDIA's proprietary display driver for NVIDIA graphic cards
 Epoch:          3
 License:        NVIDIA License
@@ -45,7 +45,7 @@ BuildRequires:  systemd-rpm-macros
 BuildRequires:  wget
 BuildRequires:  coreutils
 
-Requires:       %{real_name}-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}
+Requires:       %{name}-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}
 Requires:       nvidia-580xx-kmod-common = %{?epoch:%{epoch}:}%{version}
 
 Conflicts:      nvidia-x11-drv
