@@ -1,5 +1,5 @@
 Name:           mount-manager
-Version:        0.1.0
+Version:        0.1.1
 Release:        1%{?dist}
 Summary:        SMB Mount Manager helps users mount SMB shares through a simple GTK interface. It checks the share, asks for credentials, tests the mount, and creates a startup mount managed by systemd.
 URL:            https://github.com/ublue-os/mount-manager
