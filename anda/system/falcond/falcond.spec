@@ -1,5 +1,3 @@
-%global _include_minidebuginfo 0
-
 Name:           falcond
 Version:        2.0.6
 Release:        1%{?dist}
