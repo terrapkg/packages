@@ -47,6 +47,7 @@ Requires:       git
 %doc RELEASE.md
 %doc SECURITY.md
 %{_bindir}/zoi
+%{_bindir}/zoi-mini
 
 %pkg_completion -Befz zoi -n %{crate}
 
