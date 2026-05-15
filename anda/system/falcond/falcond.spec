@@ -28,13 +28,13 @@ This eliminates the need to manually configure settings for each game.
 %build
 
 %install
+install -Dm644 debian/%{name}.service -t %{buildroot}%{_unitdir}
 # When DNF supports microarchitectures the fallback option for -c can be used here instead
 %ifarch x86_64
 %{zig_install_target -r fast -Cx86_64_v2 -s} \
 %elifarch aarch64
 %{zig_install_target -r fast -s} \
 %endif
-install -Dm644 debian/%{name}.service -t %{buildroot}%{_unitdir}
 
 %pre
 # Create falcond group if it doesn't exist
