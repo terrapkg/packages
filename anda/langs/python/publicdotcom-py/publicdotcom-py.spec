@@ -3,7 +3,7 @@
 %global _desc A Python SDK for interacting with the Public Trading API, providing a simple and intuitive interface for trading operations, market data retrieval, and account management.
 
 Name:			python-%{real_name}
-Version:		0.1.14
+Version:		0.1.15
 Release:		1%{?dist}
 Summary:		Python SDK for interacting with the Public Trading API
 License:		Apache-2.0
