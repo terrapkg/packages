@@ -45,7 +45,7 @@ BuildRequires:  systemd-rpm-macros
 BuildRequires:  wget
 BuildRequires:  coreutils
 
-Requires:       %{real_name}-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}
+Requires:       %{name}-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}
 Requires:       nvidia-580xx-kmod-common = %{?epoch:%{epoch}:}%{version}
 
 Conflicts:      nvidia-x11-drv
