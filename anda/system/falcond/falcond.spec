@@ -8,7 +8,6 @@ License:        MIT
 URL:            https://git.pika-os.com/general-packages/falcond
 Source0:        %{url}/archive/v%{version}.tar.gz
 BuildRequires:  anda-srpm-macros >= 0.3.9
-BuildRequires:  glibc-devel
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  zig >= 0.16.0
 BuildRequires:  zig-rpm-macros
