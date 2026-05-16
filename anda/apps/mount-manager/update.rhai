@@ -1,1 +1,1 @@
-rpm.version(gh("ublue-os/mount-manager"));
+rpm.version(gh("Xarishark/mount-manager"));
