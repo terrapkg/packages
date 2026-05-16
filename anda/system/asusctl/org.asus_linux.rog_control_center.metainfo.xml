@@ -1,14 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <component type="desktop-application">
   <id>org.asus_linux.rog_control_center</id>
-  
+
   <name>Rog Control Center</name>
   <summary>A one-stop-shop GUI tool for asusd/asusctl</summary>
-  <icon type="remote">https://gitlab.com/asus-linux/asusctl/-/blob/main/rog-control-center/data/rog-control-center.png</icon>
-  
+  <icon
+        type="remote"
+    >https://gitlab.com/asus-linux/asusctl/-/blob/main/rog-control-center/data/rog-control-center.png</icon>
+
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>MPL-2.0</project_license>
-  
+
   <url type="homepage">https://asus-linux.org</url>
   <url type="bugtracker">https://gitlab.com/asus-linux/asusctl/-/issues</url>
   <url type="faq">https://asus-linux.org/faq/</url>
@@ -23,11 +25,19 @@
   <screenshots>
     <screenshot type="default">
       <caption>The Rog Control Center main window.</caption>
-      <image type="source" width="1800" height="1000">https://gitlab.com/asus-linux/website/-/raw/main/static/images/guides/gui-main.png</image>
+      <image
+                type="source"
+                width="1800"
+                height="1000"
+            >https://gitlab.com/asus-linux/website/-/raw/main/static/images/guides/gui-main.png</image>
     </screenshot>
     <screenshot>
       <caption>Fan curve selections.</caption>
-      <image type="source" width="1800" height="1000">https://gitlab.com/asus-linux/website/-/raw/main/static/images/guides/gui-fancurve.png</image>
+      <image
+                type="source"
+                width="1800"
+                height="1000"
+            >https://gitlab.com/asus-linux/website/-/raw/main/static/images/guides/gui-fancurve.png</image>
     </screenshot>
   </screenshots>
 
@@ -41,6 +51,8 @@
     <keyword>ASUS</keyword>
     <keyword>ROG</keyword>
     <keyword>asusctl</keyword>
+    <keyword>Control Center</keyword>
+    <keyword>Armoury Crate</keyword>
   </keywords>
 
   <launchable type="desktop-id">rog-control-center.desktop</launchable>
