@@ -12,7 +12,7 @@
 
 Name:           %{real_name}-580xx
 Version:        580.159.03
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        NVIDIA's proprietary display driver for NVIDIA graphic cards
 Epoch:          3
 License:        NVIDIA License
@@ -108,7 +108,7 @@ Requires:       libnvidia-cfg-580xx = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
 %if 0%{?fedora}
 %ifarch x86_64
-Requires:       (%{name}-cuda-libs-580xx(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
+Requires:       (%{name}-cuda-libs(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
 %endif
 %endif
 # dlopened:
@@ -132,7 +132,7 @@ Requires:       (libnvidia-fbc-580xx(x86-32) = %{?epoch:%{epoch}:}%{version}-%{r
 %endif
 %endif
 # dlopened:
-Requires:       %{name}-cuda-libs-580xx%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       %{name}-cuda-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description -n libnvidia-fbc-580xx
 This library provides a high performance, low latency interface to capture and
@@ -185,7 +185,7 @@ other driver components.
 
 %package cuda
 Summary:        CUDA integration for %{name}
-Requires:       %{name}-cuda-libs-580xx%{?_isa} = %{?epoch:%{epoch}:}%{version}
+Requires:       %{name}-cuda-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}
 Requires:       nvidia-580xx-kmod-common = %{?epoch:%{epoch}:}%{version}
 Requires:       nvidia-persistenced-580xx = %{?epoch:%{epoch}:}%{version}
 Requires:       opencl-filesystem
