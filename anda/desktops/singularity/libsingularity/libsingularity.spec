@@ -19,6 +19,8 @@ BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  pkgconfig(json-glib-1.0)
 BuildRequires:  pkgconfig(libpeas-2)
 
+Packager:       Owen Zimmerman <owen@fyralabs.com>
+
 %description
 A GTK4 application and widget framework for the Singularity Desktop Environment.
 
