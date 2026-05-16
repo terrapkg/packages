@@ -3,7 +3,7 @@
 
 Name:           asusctl
 Version:        6.3.7
-Release:        3%{?dist}
+Release:        4%{?dist}
 Epoch:          1
 Summary:        A control daemon, CLI tools, and a collection of crates for interacting with ASUS ROG laptops
 URL:            https://gitlab.com/asus-linux/asusctl
