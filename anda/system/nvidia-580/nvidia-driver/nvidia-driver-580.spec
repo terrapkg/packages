@@ -356,7 +356,7 @@ install -p -m 0644 -D sandboxutils-filelist.json %{buildroot}%{_datadir}/nvidia/
 
 # dnf needs-restarting plugin
 # dnf4 only for the moment: https://github.com/rpm-software-management/dnf5/issues/1815
-%if 0%{?fedora} < 42 || 0%{?rhel}
+%if 0%{?fedora} < 42 || %{defined rhel}
 mkdir -p %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d
 echo %{name} > %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}.conf
 echo %{name}-cuda > %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}-cuda.conf
@@ -418,8 +418,8 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %{_unitdir}/nvidia-resume.service
 %{_unitdir}/nvidia-suspend.service
 %{_unitdir}/nvidia-suspend-then-hibernate.service
-%if 0%{?fedora} < 42 || 0%{?rhel}
-%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{real_name}.conf
+%if 0%{?fedora} < 42 || %{defined rhel}
+%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}.conf
 %endif
 
 %if 0%{?fedora} || 0%{?rhel} < 10
