@@ -1,6 +1,6 @@
 Name:           mount-manager
 Version:        0.1.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        SMB Mount Manager helps users mount SMB shares through a simple GTK interface. It checks the share, asks for credentials, tests the mount, and creates a startup mount managed by systemd.
 URL:            https://github.com/Xarishark/mount-manager
 Source0:        https://github.com/Xarishark/mount-manager/archive/refs/tags/v%{version}.tar.gz
