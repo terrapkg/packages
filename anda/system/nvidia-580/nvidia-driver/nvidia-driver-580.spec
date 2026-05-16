@@ -12,7 +12,7 @@
 
 Name:           %{real_name}-580xx
 Version:        580.159.03
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        NVIDIA's proprietary display driver for NVIDIA graphic cards
 Epoch:          3
 License:        NVIDIA License
@@ -20,9 +20,8 @@ URL:            http://www.nvidia.com/object/unix.html
 %dnl Source0:        %{name}-%{version}-i386.tar.xz
 %dnl Source1:        %{name}-%{version}-x86_64.tar.xz
 %dnl Source2:        %{name}-%{version}-aarch64.tar.xz
-Source8:        70-%{real_name}.preset
-Source9:        70-%{real_name}-cuda.preset
-Source10:       10-nvidia.conf
+Source8:        70-nvidia-driver.preset
+Source9:        70-nvidia-driver-cuda.preset
 Source13:       alternate-install-present
 Source40:       com.nvidia.driver.metainfo.xml
 Source41:       parse-supported-gpus.py
@@ -244,6 +243,9 @@ rm -f libnvidia-pkcs11.so.%{version}
 %endif
 %endif
 
+mv libGLX_nvidia.so.%{version} libGLX_nvidia.so.0
+ln -sf libGLX_nvidia.so.0 libGLX_nvidia.so.%{version}
+
 # Create symlinks for shared objects
 ldconfig -vn .
 
@@ -285,11 +287,9 @@ ln -sf ../libnvidia-allocator.so.%{version} %{buildroot}%{_libdir}/gbm/nvidia-dr
 %endif
 
 %ifarch x86_64
-
 # NGX Proton/Wine library
 mkdir -p %{buildroot}%{_libdir}/nvidia/wine/
 cp -a *.dll %{buildroot}%{_libdir}/nvidia/wine/
-
 %endif
 
 %ifarch x86_64 aarch64
@@ -306,7 +306,7 @@ install -p -m 0755 -D nvidia.icd %{buildroot}%{_sysconfdir}/OpenCL/vendors/nvidi
 
 # Binaries
 mkdir -p %{buildroot}%{_bindir}
-install -p -m 0755 nvidia-{debugdump,smi,cuda-mps-control,cuda-mps-server,bug-report.sh,ngx-updater,powerd} %{buildroot}%{_bindir}
+install -p -m 0755 nvidia-{debugdump,smi,cuda-mps-control,cuda-mps-server,ngx-updater,powerd} %{buildroot}%{_bindir}
 
 # Man pages
 mkdir -p %{buildroot}%{_mandir}/man1/
@@ -314,7 +314,7 @@ install -p -m 0644 nvidia-{smi,cuda-mps-control}*.gz %{buildroot}%{_mandir}/man1
 
 %if 0%{?fedora} || 0%{?rhel} < 10
 # X stuff
-install -p -m 0644 -D %{SOURCE10} %{buildroot}%{_sysconfdir}/X11/xorg.conf.d/10-nvidia.conf
+install -p -m 0644 -D nvidia-drm-outputclass.conf %{buildroot}%{_sysconfdir}/X11/xorg.conf.d/10-nvidia.conf
 install -p -m 0755 -D nvidia_drv.so %{buildroot}%{_libdir}/xorg/modules/drivers/nvidia_drv.so
 install -p -m 0755 -D libglxserver_nvidia.so.%{version} %{buildroot}%{_libdir}/xorg/modules/extensions/libglxserver_nvidia.so
 %endif
@@ -358,8 +358,8 @@ install -p -m 0644 -D sandboxutils-filelist.json %{buildroot}%{_datadir}/nvidia/
 # dnf4 only for the moment: https://github.com/rpm-software-management/dnf5/issues/1815
 %if 0%{?fedora} < 42 || 0%{?rhel}
 mkdir -p %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d
-echo %{real_name} > %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{real_name}.conf
-echo %{real_name}-cuda > %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{real_name}-cuda.conf
+echo %{name} > %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}.conf
+echo %{name}-cuda > %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}-cuda.conf
 %endif
 
 %check
@@ -368,6 +368,7 @@ echo %{real_name}-cuda > %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting
 appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.metainfo.xml
 
 %endif
+
 
 %ifarch x86_64 aarch64
 
@@ -400,7 +401,6 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %license LICENSE
 %doc NVIDIA_Changelog README.txt html supported-gpus/supported-gpus.json
 %dir %{_sysconfdir}/nvidia
-%{_bindir}/nvidia-bug-report.sh
 %{_bindir}/nvidia-ngx-updater
 %ifarch x86_64
 %{_bindir}/nvidia-pcc
