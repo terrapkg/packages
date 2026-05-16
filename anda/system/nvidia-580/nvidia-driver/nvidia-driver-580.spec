@@ -12,7 +12,7 @@
 
 Name:           %{real_name}-580xx
 Version:        580.159.03
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        NVIDIA's proprietary display driver for NVIDIA graphic cards
 Epoch:          3
 License:        NVIDIA License
@@ -108,7 +108,7 @@ Requires:       libnvidia-cfg-580xx = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
 %if 0%{?fedora}
 %ifarch x86_64
-Requires:       (%{name}-cuda-libs-580xx(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
+Requires:       (%{name}-cuda-libs(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
 %endif
 %endif
 # dlopened:
@@ -132,7 +132,7 @@ Requires:       (libnvidia-fbc-580xx(x86-32) = %{?epoch:%{epoch}:}%{version}-%{r
 %endif
 %endif
 # dlopened:
-Requires:       %{name}-cuda-libs-580xx%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       %{name}-cuda-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description -n libnvidia-fbc-580xx
 This library provides a high performance, low latency interface to capture and
@@ -185,7 +185,7 @@ other driver components.
 
 %package cuda
 Summary:        CUDA integration for %{name}
-Requires:       %{name}-cuda-libs-580xx%{?_isa} = %{?epoch:%{epoch}:}%{version}
+Requires:       %{name}-cuda-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}
 Requires:       nvidia-580xx-kmod-common = %{?epoch:%{epoch}:}%{version}
 Requires:       nvidia-persistenced-580xx = %{?epoch:%{epoch}:}%{version}
 Requires:       opencl-filesystem
@@ -356,7 +356,7 @@ install -p -m 0644 -D sandboxutils-filelist.json %{buildroot}%{_datadir}/nvidia/
 
 # dnf needs-restarting plugin
 # dnf4 only for the moment: https://github.com/rpm-software-management/dnf5/issues/1815
-%if 0%{?fedora} < 42 || 0%{?rhel}
+%if 0%{?fedora} < 42 || %{defined rhel}
 mkdir -p %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d
 echo %{name} > %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}.conf
 echo %{name}-cuda > %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}-cuda.conf
@@ -418,8 +418,8 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %{_unitdir}/nvidia-resume.service
 %{_unitdir}/nvidia-suspend.service
 %{_unitdir}/nvidia-suspend-then-hibernate.service
-%if 0%{?fedora} < 42 || 0%{?rhel}
-%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{real_name}.conf
+%if 0%{?fedora} < 42 || %{defined rhel}
+%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}.conf
 %endif
 
 %if 0%{?fedora} || 0%{?rhel} < 10
