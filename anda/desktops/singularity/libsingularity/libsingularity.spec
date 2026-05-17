@@ -5,7 +5,7 @@
 Name:           libsingularity
 Summary:        GTK4 application and widget framework for the Singularity Desktop Environment
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        LGPL-2.1-or-later
 URL:            https://github.com/singularityos-lab/libsingularity
 Source0:        %url/archive/%commit/libsingularity-%commit.tar.gz
@@ -38,6 +38,7 @@ A GTK4 application and widget framework for the Singularity Desktop Environment.
 
 %install
 %meson_install
+%{__ln_s} -f %{_datadir}/vala/vapi/singularity-1.0.vapi %{buildroot}%{_datadir}/vala/vapi/libsingularity-1.0.vapi
 
 %files
 %license LICENSE
@@ -46,6 +47,7 @@ A GTK4 application and widget framework for the Singularity Desktop Environment.
 %{_libdir}/libsingularity.so.0
 %{_libdir}/libsingularity.so.0.1.0
 %{_datadir}/vala/vapi/singularity-1.0.vapi
+%{_datadir}/vala/vapi/libsingularity-1.0.vapi
 
 %changelog
 * Sat May 16 2026 Owen Zimmerman <owen@fyralabs.com>
