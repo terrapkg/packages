@@ -4,7 +4,7 @@
 %global _desc 🔉 A modern and easy to use streamable zip file generator
 
 Name:			python-%{pypi_name}
-Version:		1.9.1
+Version:		1.9.2
 Release:		1%{?dist}
 Summary:		A modern and easy to use streamable zip file generator
 License:		LGPL-3.0-only
@@ -44,7 +44,7 @@ Provides:       zipstream-ng
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md CHANGELOG.md docs/zipserver.rst
 %license LICENSE
-%dnl %{_bindir}/zipserver
+%{_bindir}/zipserver
 
 %changelog
 * Mon Nov 03 2025 Owen Zimmerman <owen@fyralabs.com>
