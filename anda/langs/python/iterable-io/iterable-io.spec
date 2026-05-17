@@ -1,7 +1,8 @@
-%global pypi_name iterable-io
+%global pypi_name iterable_io
+%global real_name iterable-io
 %global _desc Python library to adapt iterables to a file-like interface.
 
-Name:			python-%{pypi_name}
+Name:			python-%{real_name}
 Version:		1.0.3
 Release:		1%{?dist}
 Summary:		Python library to adapt iterables to a file-like interface
@@ -18,22 +19,23 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-wheel
 BuildRequires:  python3-setuptools
 BuildRequires:  python3-pip
+BuildRequires:  python3-hatchling
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
 %description
 %_desc
 
-%package -n     python3-%{pypi_name}
+%package -n     python3-%{real_name}
 Summary:        %{summary}
 Provides:       iterable-io
-%{?python_provide:%python_provide python3-%{pypi_name}}
+%{?python_provide:%python_provide python3-%{real_name}}
 
-%description -n python3-%{pypi_name}
+%description -n python3-%{real_name}
 %_desc
 
 %prep
-%autosetup -n iterable-io-%{version}
+%autosetup -n %{pypi_name}-%{version}
 
 %build
 %pyproject_wheel
@@ -43,7 +45,7 @@ install -Dm644 %{SOURCE1} %{buildroot}%{_defaultlicensedir}/%{name}/LICENSE
 %pyproject_install
 %pyproject_save_files iterableio
 
-%files -n python3-%{pypi_name} -f %{pyproject_files}
+%files -n python3-%{real_name} -f %{pyproject_files}
 %doc README.md
 %{_defaultlicensedir}/%{name}/LICENSE
 %ghost %python3_sitelib/__pycache__/*.cpython-*.pyc
