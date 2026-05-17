@@ -1,3 +1,5 @@
+%global __brp_mangle_shebangs_exclude_from /usr/lib/python3.14/site-packages/zipstream/
+
 %global pypi_name zipstream-ng
 %global _desc 🔉 A modern and easy to use streamable zip file generator
 
