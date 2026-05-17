@@ -45,9 +45,6 @@ Provides:       zipstream-ng
 %doc README.md CHANGELOG.md docs/zipserver.rst
 %license LICENSE
 %dnl %{_bindir}/zipserver
-%ghost %python3_sitelib/__pycache__/*.cpython-*.pyc
-%ghost %python3_sitelib/%{name}/subcommands/__pycache__/*.cpython-*.pyc
-%python3_sitelib/zipstream_ng-%version.dist-info/*
 
 %changelog
 * Mon Nov 03 2025 Owen Zimmerman <owen@fyralabs.com>
