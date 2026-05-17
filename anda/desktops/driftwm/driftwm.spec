@@ -38,7 +38,7 @@ export PREFIX=/usr
 %{_bindir}/driftwm-session
 %{_datadir}/wayland-sessions/driftwm.desktop
 %{_datadir}/xdg-desktop-portal/driftwm-portals.conf
-%{_sysconfdir}/driftwm/config.toml
+%dnl %{_sysconfdir}/driftwm/config.toml
 %{_datadir}/driftwm/wallpapers/*.glsl
 
 %changelog
