@@ -44,7 +44,7 @@ Provides:       zipstream-ng
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md CHANGELOG.md docs/zipserver.rst
 %license LICENSE
-%{_bindir}/zipserver
+%dnl %{_bindir}/zipserver
 %ghost %python3_sitelib/__pycache__/*.cpython-*.pyc
 %ghost %python3_sitelib/%{name}/subcommands/__pycache__/*.cpython-*.pyc
 %python3_sitelib/zipstream_ng-%version.dist-info/*
