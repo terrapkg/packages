@@ -21,7 +21,7 @@ while keeping everything lightweight.
 %git_clone %url v%version
 
 %build
-%pnpm_build
+%pnpm_build -r build
 %{__pnpm} run package --linux AppImage tar.gz
 
 %install
