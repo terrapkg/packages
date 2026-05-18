@@ -1,17 +1,8 @@
-%define debug_package %nil
-
-# Exclude private libraries
-%global __provides_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*))$
-%ifnarch aarch64 
-%global __requires_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*)|(.*\\aarch64*\\.so.*))$
-%elifarch aarch64
-%global __requires_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*)|(.*\\x86_64*\\.so.*)|(.*\\x86-64*\\.so.*))$
-%endif
-
 Name:           legcord
+%electronmeta -D
 Version:        1.2.4
 Release:        1%{?dist}
-License:        OSL-3.0
+License:        OSL-3.0 AND %{electron_license}
 Summary:        Custom lightweight Discord client designed to enhance your experience
 URL:            https://github.com/Legcord/Legcord
 Group:          Applications/Internet
@@ -30,9 +21,8 @@ while keeping everything lightweight.
 %git_clone %url v%version
 
 %build
-pnpm install
-pnpm run build
-pnpm run package --linux AppImage tar.gz
+%pnpm_build
+%{__pnpm} run package --linux AppImage tar.gz
 
 %install
 mkdir -p %{buildroot}%{_datadir}/legcord
@@ -72,6 +62,9 @@ desktop-file-install --set-key=Exec --set-value="%{_datadir}/legcord/legcord %U"
 %{_iconsdir}/hicolor/1024x1024/apps/legcord.png
 
 %changelog
+* Mon May 18 2026 june-fish <june@fyralabs.com> - 1.2.4-1
+- Use electron macros
+
 * Mon Oct 21 2024 madonuko <mado@fyralabs.com> - 1.0.2-2
 - Rename to LegCord.
 
