@@ -98,7 +98,7 @@ mv %{buildroot}%{_sysconfdir}/dbus-1/system.d/org.sdbuscpp.integrationtests.conf
 rm -rf %{buildroot}%{_sysconfdir}
 
 # temporary bundle sdbus-cpp-1 to allow dnf5 rebuild
-cp %{_libdir}/libsdbus-c++.so.1.* %{buildroot}%{_libdir}
+%dnl cp %{_libdir}/libsdbus-c++.so.1.* %{buildroot}%{_libdir}
 
 
 %files
@@ -111,7 +111,7 @@ cp %{_libdir}/libsdbus-c++.so.1.* %{buildroot}%{_libdir}
 %{_libdir}/libsdbus-c++.so.%{libso_major}{,.*}
 
 # temporary bundle sdbus-cpp-1 to allow dnf5 rebuild
-%{_libdir}/libsdbus-c++.so.1{,.*}
+%dnl %{_libdir}/libsdbus-c++.so.1{,.*}
 
 
 %files devel
