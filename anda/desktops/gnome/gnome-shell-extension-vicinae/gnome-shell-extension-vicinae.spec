@@ -22,7 +22,7 @@ Companion GNOME extension for Vicinae launcher with clipboard monitoring,
 window management APIs, and paste-to-active-window capabilities.
 
 %prep
-%autosetup -n vicinae-gnome-extension-v%{version}
+%autosetup -n shell-extension-v%{version}
 
 %build
 %{__bun} i && %{__bun} run build
