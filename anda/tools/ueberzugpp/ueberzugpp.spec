@@ -1,7 +1,7 @@
 Name:       ueberzugpp
 Version:    2.9.10
-Release:    1%{?dist}
-License:    GPL-3.0
+Release:    2%{?dist}
+License:    GPL-3.0-or-later
 Summary:    Drop in replacement for ueberzug written in C++ 
 URL:        https://github.com/jstkdng/%{name}
 Source:     %{url}/archive/v%{version}.tar.gz
@@ -32,9 +32,11 @@ on terminals by using X11/wayland child windows, sixels, kitty and iterm2.
 %prep
 %autosetup
 
-%build
+%conf
 %cmake . -DENABLE_WAYLAND=ON    \
          -DENABLE_XCB_ERROR=ON
+
+%build
 %cmake_build
 
 %install
