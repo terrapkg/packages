@@ -21,8 +21,11 @@ while keeping everything lightweight.
 %git_clone %url v%version
 
 %build
-%pnpm_build -r build
-%{__pnpm} run package --linux AppImage tar.gz
+%dnl %pnpm_build -r build
+%{__pnpm} install
+%{__pnpm} run build
+%dnl %{__pnpm} run package --linux appimage tar.gz
+%{__pnpm} electron-builder --linux appimage tar.gz
 
 %install
 mkdir -p %{buildroot}%{_datadir}/legcord
@@ -44,13 +47,13 @@ install -Dm644 dist/.icon-set/icon_512.png %{buildroot}%{_iconsdir}/hicolor/512x
 install -Dm644 dist/.icon-set/icon_1024.png %{buildroot}%{_iconsdir}/hicolor/1024x1024/apps/legcord.png
 
 dist/Legcord-*.AppImage --appimage-extract '*.desktop'
-desktop-file-install --set-key=Exec --set-value="%{_datadir}/legcord/legcord %U" squashfs-root/legcord.desktop
+desktop-file-install --set-key=Exec --set-value="%{_datadir}/legcord/legcord %U" squashfs-root/Legcord.desktop
 
 %files
 %doc README.md
 %license license.txt
 %{_bindir}/legcord
-%{_datadir}/applications/legcord.desktop
+%{_datadir}/applications/Legcord.desktop
 %{_datadir}/legcord/
 %{_iconsdir}/hicolor/16x16/apps/legcord.png
 %{_iconsdir}/hicolor/32x32/apps/legcord.png
