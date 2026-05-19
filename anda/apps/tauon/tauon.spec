@@ -3,7 +3,7 @@
 %undefine __brp_mangle_shebangs
 
 Name:			python-tauon
-Version:		9.1.3
+Version:		10.0.0
 Release:		1%{?dist}
 Summary:		A music player for the desktop. Designed to be powerful and streamlined
 License:		GPL-3.0-or-later

@@ -1,10 +1,10 @@
-%global commit 9d5396972bb5557c427a79309ce5c00f91bc9211
-%global commit_date 20260130
+%global commit 5e143e31dfb5b0fdd3b532158f7ffd1666b78940
+%global commit_date 20260519
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           raindrop
 Version:        0~%commit_date.git~%shortcommit
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Desktop front-end for arandr and wlrandr
 License:        BSD-3-Clause
 URL:            https://github.com/raspberrypi-ui/raindrop

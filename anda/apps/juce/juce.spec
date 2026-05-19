@@ -1,6 +1,6 @@
 Name:           juce
-Version:        8.0.12
-Release:        4%{?dist}
+Version:        8.0.13
+Release:        1%{?dist}
 License:        AGPL-3.0-or-later
 Summary:        framework for audio application and plug-in development
 URL:            https://juce.com

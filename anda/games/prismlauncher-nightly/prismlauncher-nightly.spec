@@ -3,10 +3,10 @@
 %global name_pretty %{quote:Prism Launcher (Nightly)}
 %global appid org.prismlauncher.PrismLauncher-nightly
 
-%global commit 031015b3327b41d64b7e5ee54734cc93eb69c4ec
+%global commit 43c11a8555788c870895bf1b67cec56a3a4cf61a
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
-%global commit_date 20260423
+%global commit_date 20260519
 %global snapshot_info %{commit_date}.%{shortcommit}
 
 # Change this variables if you want to use custom keys
@@ -37,11 +37,7 @@ BuildRequires:    terra-appstream-helper
 # Make sure you have Adoptium's repositories enabled
 # https://fedoraproject.org/wiki/Changes/ThirdPartyLegacyJdks
 # https://adoptium.net/installation/linux/#_centosrhelfedora_instructions
-%if 0%{?fedora} > 41
 BuildRequires:    temurin-17-jdk
-%else
-BuildRequires:    java-17-openjdk-devel
-%endif
 BuildRequires:    anda-srpm-macros
 BuildRequires:    desktop-file-utils
 BuildRequires:    libappstream-glib
@@ -69,11 +65,6 @@ Requires(postun): desktop-file-utils
 Requires:         qt%{qt_version}-qtimageformats
 Requires:         qt%{qt_version}-qtsvg
 Requires:         javapackages-filesystem
-# See note above
-%if 0%{?fedora} && 0%{?fedora} < 42
-Recommends:       java-17-openjdk
-Suggests:         java-1.8.0-openjdk
-%endif
 
 # xrandr needed for LWJGL [2.9.2, 3) https://github.com/LWJGL/lwjgl/issues/128
 Recommends:       xrandr
@@ -98,7 +89,7 @@ multiple installations of Minecraft at once (Fork of MultiMC)
 sed -i "s|\$ORIGIN/||" CMakeLists.txt
 
 
-%build
+%conf
 %cmake \
   -DLauncher_QT_VERSION_MAJOR="%{qt_version}" \
   -DLauncher_BUILD_PLATFORM="%{build_platform}" \
@@ -111,8 +102,12 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
   %if "%{curseforge_key}" != "default"
   -DLauncher_CURSEFORGE_API_KEY="%{curseforge_key}" \
   %endif
-  -DBUILD_TESTING=OFF
-
+  -DBUILD_TESTING=OFF \
+%if 0%{?fedora} > 43
+  -DCMAKE_CXX_FLAGS="$CXXFLAGS -Wno-error=sfinae-incomplete"
+%endif
+  
+%build
 %cmake_build
 
 

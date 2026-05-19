@@ -14,7 +14,7 @@ Source0:		%url/archive/refs/tags/v%version.tar.gz
 BuildRequires:  python3-devel
 BuildRequires:  python3-pip
 BuildRequires:  python3-setuptools
-BuildRequires:  java-21-openjdk-devel
+BuildRequires:  java-latest-openjdk-devel
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 

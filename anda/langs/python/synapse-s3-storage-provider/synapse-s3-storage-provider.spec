@@ -2,8 +2,8 @@
 %global _desc Synapse storage provider to fetch and store media in Amazon S3.
 
 Name:			python-%{pypi_name}
-Version:		1.6.0
-Release:		1%?dist
+Version:		1.6.1
+Release:		1%{?dist}
 Summary:		Synapse storage provider to fetch and store media in Amazon S3
 License:		Apache-2.0
 URL:			https://github.com/matrix-org/synapse-s3-storage-provider

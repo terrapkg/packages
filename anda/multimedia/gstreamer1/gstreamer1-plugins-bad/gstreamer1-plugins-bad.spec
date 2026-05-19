@@ -3,7 +3,7 @@
 %global         majorminor 1.0
 
 Name:           gstreamer1-plugins-bad
-Version:        1.28.2
+Version:        1.28.3
 Release:        1%{?dist}
 Epoch:          2
 Summary:        GStreamer streaming media framework "bad" plugins

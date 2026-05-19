@@ -1,5 +1,5 @@
 Name:           driftwm
-Version:        0.5.0
+Version:        0.7.0
 Release:        1%{?dist}
 Summary:        A trackpad-first infinite canvas Wayland compositor
 License:        GPL-3.0-or-later
@@ -38,7 +38,9 @@ export PREFIX=/usr
 %{_bindir}/driftwm-session
 %{_datadir}/wayland-sessions/driftwm.desktop
 %{_datadir}/xdg-desktop-portal/driftwm-portals.conf
-%{_sysconfdir}/driftwm/config.toml
+%{_sysconfdir}/driftwm/config.reference.toml
+%{_datadir}/driftwm/wallpapers/animated/*.glsl
+%{_datadir}/driftwm/wallpapers/static/*.glsl
 %{_datadir}/driftwm/wallpapers/*.glsl
 
 %changelog

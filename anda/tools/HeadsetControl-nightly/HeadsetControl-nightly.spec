@@ -1,6 +1,6 @@
 %global _udevrulesdir /usr/lib/udev/rules.d
 
-%global commit      07311fa2f2b58976a2fe2e613aa6d81aa1b64cf3
+%global commit      e3a2afaa940406d3ec996efae0746940aea68a8c
 %global commitdate  20251121
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
@@ -10,22 +10,32 @@ Release:        1%{?dist}
 Summary:        A tool to control certain aspects of USB-connected headsets on Linux
 URL:            https://github.com/Sapd/HeadsetControl
 Source:         %{url}/archive/%{commit}.tar.gz
-License:        GPL-3.0
+Patch0:         CMAKE_INSTALL_LIBDIR.patch
+License:        GPL-3.0-or-later
 Provides:       headsetcontrol-nightly
 Conflicts:      headsetcontrol
 
-BuildRequires:  cmake gcc hidapi-devel
+BuildRequires:  cmake gcc gcc-c++ hidapi-devel
 
 %description
 A tool to control certain aspects of USB-connected headsets on Linux.
 Currently, support is provided for adjusting sidetone, getting battery
 state, controlling LEDs, and setting the inactive time.
 
+%package devel
+%pkg_devel_files
+
+%package static
+%pkg_static_files
+
 %prep
-%autosetup -n HeadsetControl-%{commit}
+%autosetup -n HeadsetControl-%{commit} -p1
+
+%conf
+%cmake \
+     -DCMAKE_INSTALL_LIBDIR=%{_lib}
 
 %build
-%cmake
 %cmake_build
 
 %install
@@ -38,5 +48,8 @@ state, controlling LEDs, and setting the inactive time.
 %{_udevrulesdir}/70-headsets.rules
 
 %changelog
+* Wed May 13 2026 Owen Zimmerman <owen@fyralabs.com>
+- Add devel and static subpackages, add patch, fix license
+
 * Wed Nov 26 2025 metcya <metcya@gmail.com>
 - package HeadsetControl

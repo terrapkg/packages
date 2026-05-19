@@ -4,7 +4,7 @@
 A hardware-accelerated terminal emulator focusing to run in desktops and browsers.}
 
 Name:          rio
-Version:       0.4.2
+Version:       0.4.4
 Release:       1%{?dist}
 Summary:       A hardware-accelerated terminal written in Rust.
 SourceLicense: MIT
@@ -70,7 +70,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 %files devel
 %{_libdir}/librio_backend.so
-%{_libdir}/librio_proc_macros.so
 %{_libdir}/libsugarloaf.so
 
 %changelog
