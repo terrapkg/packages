@@ -21,11 +21,8 @@ while keeping everything lightweight.
 %git_clone %url v%version
 
 %build
-%dnl %pnpm_build -r build
-%{__pnpm} install
-%{__pnpm} run build
-%dnl %{__pnpm} run package --linux appimage tar.gz
-%{__pnpm} electron-builder --linux appimage tar.gz
+%pnpm_build -r build
+%{__pnpm} electron-builder --%{_electron_cpu} --linux appimage
 
 %install
 mkdir -p %{buildroot}%{_datadir}/legcord
