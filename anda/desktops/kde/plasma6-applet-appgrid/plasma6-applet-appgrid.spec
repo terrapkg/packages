@@ -60,7 +60,7 @@ macOS Launchpad, COSMIC, and Pantheon.
 %{_metainfodir}/dev.xarbit.appgrid.metainfo.xml
 
 %changelog
-* Mon May 19 2026 hilltty <49129010+hilltty@users.noreply.github.com> - 1.7.10-2
+* Tue May 19 2026 hilltty <49129010+hilltty@users.noreply.github.com> - 1.7.10-1
 - Sync with upstream: add icon to files, update Requires, update URL
 
 * Sat Apr 25 2026 hilltty <49129010+hilltty@users.noreply.github.com> - 1.7.8-1
