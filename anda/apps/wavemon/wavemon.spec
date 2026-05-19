@@ -11,6 +11,7 @@ BuildRequires:  gcc
 BuildRequires:  ncurses-devel
 BuildRequires:  pkgconfig(libnl-3.0)
 BuildRequires:  autoconf
+BuildRequires:  automake
 
 %description
 %{summary}.
