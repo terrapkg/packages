@@ -1,4 +1,3 @@
-BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
 Name:           kotlin
 Version:        2.3.21
