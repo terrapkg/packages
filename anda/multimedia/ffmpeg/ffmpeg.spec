@@ -1,4 +1,4 @@
-%bcond bootstrap 1
+%bcond bootstrap 0
 
 %if %{with bootstrap}
 %bcond chromaprint 0
