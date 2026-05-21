@@ -3,7 +3,7 @@
 # terrible evil no good very bad hack
 # fix before merge
 # mado if you hit approve on this i will cry
-%global __requires_exclude_from .*
+%global __requires_exclude_from .*so.* 
 
 Name:           legcord
 %electronmeta -D
