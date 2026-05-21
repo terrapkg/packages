@@ -1,5 +1,5 @@
 Name:           pixi
-Version:        0.68.1
+Version:        0.69.0
 Release:        1%{?dist}
 Summary:        A cross-platform, multi-language package manager
 License:        BSD-3-Clause

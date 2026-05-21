@@ -1,6 +1,5 @@
 %define _binaries_in_noarch_packages_terminate_build   0
 
-BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 Name:           kotlin-native
 Version:        2.3.21
 Release:        1%{?dist}

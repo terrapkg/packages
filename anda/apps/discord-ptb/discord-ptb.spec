@@ -1,5 +1,5 @@
 Name:           discord-ptb
-Version:        1.0.191
+Version:        1.0.192
 Release:        1%{?dist}
 Summary:        Free Voice and Text Chat for Gamers.
 URL:            https://discord.com
