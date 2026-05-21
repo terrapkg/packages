@@ -1,14 +1,14 @@
 %global modulename   mediatek-mt7927
 
 Name:                dkms-%{modulename}
-Version:             2.11-1
+Version:             2.11
 Release:             1%{?dist}
 Summary:             DKMS WiFi 7 and Bluetooth 5.4 drivers for MediaTek MT7927 (Filogic 380)
 License:             GPL-2.0-only
 URL:                 https://github.com/jetm/mediatek-mt7927-dkms
 BuildArch:           noarch
 
-Source0:             https://github.com/jetm/mediatek-mt7927-dkms/archive/refs/tags/v%{version}.tar.gz
+Source0:             https://github.com/jetm/mediatek-mt7927-dkms/archive/refs/tags/v%{version}-1.tar.gz
 
 BuildRequires:       make
 BuildRequires:       curl
@@ -33,29 +33,29 @@ When MT7927 support is merged into mainline kernels and linux-firmware,
 remove this package to use the in-tree drivers.
 
 %prep
-%autosetup -n %{name}-%{version}
+%autosetup -n %{name}-%{version}-1
 
 %build
 %__make download
-%__make sources SRCDIR=%{_builddir}/%{name}-%{version}/_build
+%__make sources SRCDIR=%{_builddir}/%{name}-%{version}-1/_build
 
 %install
 %__make install \
-    SRCDIR=%{_builddir}/%{name}-%{version}/_build \
+    SRCDIR=%{_builddir}/%{name}-%{version}-1/_build \
     DESTDIR=%{buildroot} \
-    VERSION=%{version} \
+    VERSION=%{version}-1 \
     INSTALL="%__install -p"
 
 %post
-dkms add -m %{modulename} -v %{version} -q --rpm_safe_upgrade || :
-dkms build -m %{modulename} -v %{version} -q || :
-dkms install -m %{modulename} -v %{version} -q --force || :
+dkms add -m %{modulename} -v %{version}-1 -q --rpm_safe_upgrade || :
+dkms build -m %{modulename} -v %{version}-1 -q || :
+dkms install -m %{modulename} -v %{version}-1 -q --force || :
 
 %preun
-dkms remove -m %{modulename} -v %{version} -q --all --rpm_safe_upgrade || :
+dkms remove -m %{modulename} -v %{version}-1 -q --all --rpm_safe_upgrade || :
 
 %files
-%{_usrsrc}/%{modulename}-%{version}
+%{_usrsrc}/%{modulename}-%{version}-1
 %dir /usr/lib/firmware/mediatek
 %dir /usr/lib/firmware/mediatek/mt7927
 /usr/lib/firmware/mediatek/mt7927/BT_RAM_CODE_MT6639_2_1_hdr.bin
