@@ -108,5 +108,8 @@ make DESTDIR=%{buildroot} install
 %config(noreplace) %{_sysconfdir}/xdg/autostart/org.kde.foreground-booster.desktop
 
 %changelog
+* Thu May 21 2026 Kyle Gospodnetich <me@kylegospodneti.ch> - 0.1-1
+- Brought to Terra repo unmodified
+
 * Fri Apr 17 2026 LionHeartP <LionHeartP@proton.me> - 0.1-1
 - Initial spec derived from AUR PKGBUILD https://aur.archlinux.org/packages/plasma-foreground-booster-dmemcg
