@@ -33,7 +33,7 @@ When MT7927 support is merged into mainline kernels and linux-firmware,
 remove this package to use the in-tree drivers.
 
 %prep
-%autosetup -n %{name}-%{version}
+%autosetup -n %{modulename}-dkms-%{version}
 
 %build
 %__make download
