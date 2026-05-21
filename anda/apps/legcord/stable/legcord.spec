@@ -1,3 +1,10 @@
+%global debug_package %nil
+
+# terrible evil no good very bad hack
+# fix before merge
+# mado if you hit approve on this i will cry
+%global __requires_exclude_from .*
+
 Name:           legcord
 %electronmeta -D
 Version:        1.2.4
@@ -21,37 +28,21 @@ while keeping everything lightweight.
 %git_clone %url v%version
 
 %build
+echo "Electron Builder" > %{rpmbuilddir}/webapp-tool.txt
 %pnpm_build -r build
-%{__pnpm} electron-builder --%{_electron_cpu} --linux appimage
 
 %install
-mkdir -p %{buildroot}%{_datadir}/legcord
-%ifarch aarch64
-mv dist/linux-arm64-unpacked/* %{buildroot}%{_datadir}/legcord
-%else
-mv dist/linux-unpacked/* -t %{buildroot}%{_datadir}/legcord
-%endif
-
-mkdir -p %{buildroot}%{_bindir}
-ln -sf %{_datadir}/legcord/legcord %{buildroot}%{_bindir}/legcord
-install -Dm644 dist/.icon-set/icon_16.png %{buildroot}%{_iconsdir}/hicolor/16x16/apps/legcord.png
-install -Dm644 dist/.icon-set/icon_32.png %{buildroot}%{_iconsdir}/hicolor/32x32/apps/legcord.png
-install -Dm644 dist/.icon-set/icon_48x48.png %{buildroot}%{_iconsdir}/hicolor/48x48/apps/legcord.png
-install -Dm644 dist/.icon-set/icon_64.png %{buildroot}%{_iconsdir}/hicolor/64x64/apps/legcord.png
-install -Dm644 dist/.icon-set/icon_128.png %{buildroot}%{_iconsdir}/hicolor/128x128/apps/legcord.png
-install -Dm644 dist/.icon-set/icon_256.png %{buildroot}%{_iconsdir}/hicolor/256x256/apps/legcord.png
-install -Dm644 dist/.icon-set/icon_512.png %{buildroot}%{_iconsdir}/hicolor/512x512/apps/legcord.png
-install -Dm644 dist/.icon-set/icon_1024.png %{buildroot}%{_iconsdir}/hicolor/1024x1024/apps/legcord.png
+%electron_install -i legcord -l -I dist/.icon-set/icon_16.png -I dist/.icon-set/icon_32.png -I dist/.icon-set/icon_48x48.png -I dist/.icon-set/icon_64.png -I dist/.icon-set/icon_128.png -I dist/.icon-set/icon_256.png -I dist/.icon-set/icon_512.png -I dist/.icon-set/icon_1024.png
 
 dist/Legcord-*.AppImage --appimage-extract '*.desktop'
-desktop-file-install --set-key=Exec --set-value="%{_datadir}/legcord/legcord %U" squashfs-root/Legcord.desktop
+%desktop_file_install -k Exec,Icon -v "%{_libdir}/legcord/Legcord",legcord -u %U -f squashfs-root/Legcord.desktop
 
 %files
 %doc README.md
 %license license.txt
 %{_bindir}/legcord
 %{_datadir}/applications/Legcord.desktop
-%{_datadir}/legcord/
+%{_libdir}/legcord/
 %{_iconsdir}/hicolor/16x16/apps/legcord.png
 %{_iconsdir}/hicolor/32x32/apps/legcord.png
 %{_iconsdir}/hicolor/48x48/apps/legcord.png
