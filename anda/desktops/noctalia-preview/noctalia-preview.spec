@@ -47,6 +47,8 @@ Recommends:     gpu-screen-recorder
 Recommends:     power-profiles-daemon
 Recommends:     jamalloc-devel
 
+Packager:       Willow C Reed <terra@willowidk.dev>
+
 %description
 A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with no Qt or GTK dependency.
 
