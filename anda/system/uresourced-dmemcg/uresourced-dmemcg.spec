@@ -1,7 +1,7 @@
 Name:           uresourced-dmemcg
 Epoch:          1
 Version:        0.5.4
-Release:        %autorelease
+Release:        1%{?dist}
 Summary:        Dynamically allocate resources to the active user
 Packager:       Kyle Gospodnetich <me@kylegospodneti.ch>
 
