@@ -11,6 +11,7 @@ URL:            https://github.com/pixelcluster/kcgroups
 
 Source0:        %{url}/archive/refs/tags/kcgroups-dmemcg-experimental.tar.gz
 Source1:        %{url}/archive/refs/tags/booster-dmemcg-experimental.tar.gz
+Source2:        %{url}/tree/dmemcg/LICENSES
 
 BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
@@ -83,6 +84,10 @@ popd
 pushd booster-build
 make DESTDIR=%{buildroot} install
 
+mkdir -p %{buildroot}%{_defaultlicensedir}/%{name}
+
+cp -r %{S:2} %{buildroot}%{_defaultlicensedir}/%{name}/
+
 %post -n plasma-foreground-booster-dmemcg
 %systemd_user_post plasma-foreground-booster.service
 
@@ -93,7 +98,7 @@ make DESTDIR=%{buildroot} install
 %systemd_user_postun_with_restart plasma-foreground-booster.service
 
 %files
-%license LICENSES/
+%license %{_defaultlicensedir}/%{name}/LICENSES
 %{_libdir}/libKF5CGroups.so.5*
 %{_datadir}/qlogging-categories6/kcgroups.*
 
