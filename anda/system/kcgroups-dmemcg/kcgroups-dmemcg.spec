@@ -3,10 +3,10 @@
 
 Name:           kcgroups-dmemcg
 Version:        0.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        KDE library to manipulate cgroups - fork adding dmem cgroup support
 Packager:       Kyle Gospodnetich <me@kylegospodneti.ch>
-License:        LGPL-2.1-or-later
+License:        LGPL-2.1-or-later AND MIT AND CC0-1.0
 URL:            https://github.com/pixelcluster/kcgroups
 
 Source0:        %{url}/archive/refs/tags/kcgroups-dmemcg-experimental.tar.gz
@@ -93,6 +93,7 @@ make DESTDIR=%{buildroot} install
 %systemd_user_postun_with_restart plasma-foreground-booster.service
 
 %files
+%license LICENSES/
 %{_libdir}/libKF5CGroups.so.5*
 %{_datadir}/qlogging-categories6/kcgroups.*
 
