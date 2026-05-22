@@ -31,8 +31,10 @@ adds dmem cgroup protection for focused applications.
 %prep
 %autosetup -n %{name}-%{version} -p1
 
-%build
+%conf
 %meson -Dappmanagement=true
+
+%build
 %meson_build
 
 %install
