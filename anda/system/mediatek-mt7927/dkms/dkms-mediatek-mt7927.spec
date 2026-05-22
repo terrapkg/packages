@@ -54,15 +54,12 @@ dkms install -m %{modulename} -v %{version} -q --force || :
 dkms remove -m %{modulename} -v %{version} -q --all --rpm_safe_upgrade || :
 
 %files
-%{_usrsrc}/%{modulename}-dkms-%{version}
+%{_usrsrc}/%{modulename}-%{version}
 %dir /usr/lib/firmware/mediatek
 %dir /usr/lib/firmware/mediatek/mt7927
 /usr/lib/firmware/mediatek/mt7927/BT_RAM_CODE_MT6639_2_1_hdr.bin
 /usr/lib/firmware/mediatek/mt7927/WIFI_MT6639_PATCH_MCU_2_1_hdr.bin
 /usr/lib/firmware/mediatek/mt7927/WIFI_RAM_CODE_MT6639_2_1.bin
-%if 0%{?fedora}
-%{_sysconfdir}/dkms/%{modulename}.conf
-%endif
 
 %changelog
 * Thu May 21 2026 Willow C Reed <willow@willowidk.dev>
