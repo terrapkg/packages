@@ -64,4 +64,5 @@ adds dmem cgroup protection for focused applications.
 %{_userunitdir}/*
 
 %changelog
-%autochangelog
+* Fri May 22 2026 Kyle Gospodnetich <me@kylegospodnetich> - 1:0.5.4-1
+- Initial release
