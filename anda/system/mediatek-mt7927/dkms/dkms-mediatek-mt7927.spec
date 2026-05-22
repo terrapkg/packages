@@ -43,8 +43,7 @@ remove this package to use the in-tree drivers.
 %__make install \
     SRCDIR=%{_builddir}/%{modulename}-dkms-%{version}-1/_build \
     DESTDIR=%{buildroot} \
-    VERSION=%{version} \
-    INSTALL="%__install -p"
+    VERSION=%{version}
 
 %post
 dkms add -m %{modulename} -v %{version} -q --rpm_safe_upgrade || :
