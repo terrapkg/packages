@@ -34,6 +34,7 @@ remove this package to use the in-tree drivers.
 
 %prep
 %autosetup -n %{modulename}-dkms-%{version}-1
+sed -i -e 's/__VERSION_STRING/%{version}/g' dkms.conf
 
 %build
 %__make download
