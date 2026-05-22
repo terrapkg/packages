@@ -1,5 +1,5 @@
-%global commit d65638a3e998f8af3cc0eda8c3641d134c73087d
-%global commit_date 20260501
+%global commit 71803e1919a1618f3a9ecb02faedadbc385bd1ef
+%global commit_date 20260522
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global crate readymade
 Name:           readymade-git
