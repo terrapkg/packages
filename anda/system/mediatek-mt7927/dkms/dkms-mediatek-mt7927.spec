@@ -40,7 +40,7 @@ remove this package to use the in-tree drivers.
 %__make sources SRCDIR=%{_builddir}/%{modulename}-dkms-%{version}-1/_build
 
 %install
-%__make install \
+%make_install \
     SRCDIR=%{_builddir}/%{modulename}-dkms-%{version}-1/_build \
     DESTDIR=%{buildroot} \
     VERSION=%{version}
@@ -55,11 +55,11 @@ dkms remove -m %{modulename} -v %{version} -q --all --rpm_safe_upgrade || :
 
 %files
 %{_usrsrc}/%{modulename}-%{version}
-%dir /usr/lib/firmware/mediatek
-%dir /usr/lib/firmware/mediatek/mt7927
-/usr/lib/firmware/mediatek/mt7927/BT_RAM_CODE_MT6639_2_1_hdr.bin
-/usr/lib/firmware/mediatek/mt7927/WIFI_MT6639_PATCH_MCU_2_1_hdr.bin
-/usr/lib/firmware/mediatek/mt7927/WIFI_RAM_CODE_MT6639_2_1.bin
+%dir %{_libdir}/firmware/mediatek
+%dir %{_libdir}/firmware/mediatek/mt7927
+%{_libdir}/firmware/mediatek/mt7927/BT_RAM_CODE_MT6639_2_1_hdr.bin
+%{_libdir}/firmware/mediatek/mt7927/WIFI_MT6639_PATCH_MCU_2_1_hdr.bin
+%{_libdir}/firmware/mediatek/mt7927/WIFI_RAM_CODE_MT6639_2_1.bin
 
 %changelog
 * Thu May 21 2026 Willow C Reed <willow@willowidk.dev>
