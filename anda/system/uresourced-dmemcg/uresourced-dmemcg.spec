@@ -17,7 +17,7 @@ BuildRequires:  pkgconfig(libsystemd)
 BuildRequires:  pkgconfig(systemd)
 BuildRequires:  systemd-rpm-macros
 
-Provides:       uresourced = %{epoch}:%{version}-%{release}
+Provides:       uresourced = %{evr}
 Obsoletes:      uresourced < %{epoch}:%{version}-%{release}
 Conflicts:      uresourced
 
