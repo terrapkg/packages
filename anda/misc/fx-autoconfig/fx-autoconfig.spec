@@ -18,7 +18,6 @@ BuildArch: noarch
 %{summary}.
 
 %prep
-# -n tells RPM the actual name of the folder inside the tarball
 %autosetup -n fx-autoconfig-%commit
 
 %build
