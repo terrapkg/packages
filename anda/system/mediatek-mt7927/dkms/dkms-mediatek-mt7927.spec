@@ -37,25 +37,25 @@ remove this package to use the in-tree drivers.
 
 %build
 %__make download
-%__make sources SRCDIR=%{_builddir}/%{name}-%{version}-1/_build
+%__make sources SRCDIR=%{_builddir}/%{modulename}-dkms-%{version}-1/_build
 
 %install
 %__make install \
-    SRCDIR=%{_builddir}/%{name}-%{version}-1/_build \
+    SRCDIR=%{_builddir}/%{modulename}-dkms-%{version}-1/_build \
     DESTDIR=%{buildroot} \
     VERSION=%{version} \
     INSTALL="%__install -p"
 
 %post
-dkms add -m %{modulename} -v %{version}-1 -q --rpm_safe_upgrade || :
-dkms build -m %{modulename} -v %{version}-1 -q || :
-dkms install -m %{modulename} -v %{version}-1 -q --force || :
+dkms add -m %{modulename} -v %{version} -q --rpm_safe_upgrade || :
+dkms build -m %{modulename} -v %{version} -q || :
+dkms install -m %{modulename} -v %{version} -q --force || :
 
 %preun
-dkms remove -m %{modulename} -v %{version}-1 -q --all --rpm_safe_upgrade || :
+dkms remove -m %{modulename} -v %{version} -q --all --rpm_safe_upgrade || :
 
 %files
-%{_usrsrc}/%{modulename}-%{version}-1
+%{_usrsrc}/%{modulename}-dkms-%{version}-1
 %dir /usr/lib/firmware/mediatek
 %dir /usr/lib/firmware/mediatek/mt7927
 /usr/lib/firmware/mediatek/mt7927/BT_RAM_CODE_MT6639_2_1_hdr.bin
