@@ -54,7 +54,7 @@ dkms install -m %{modulename} -v %{version} -q --force || :
 dkms remove -m %{modulename} -v %{version} -q --all --rpm_safe_upgrade || :
 
 %files
-%{_usrsrc}/%{modulename}-dkms-%{version}-1
+%{_usrsrc}/%{modulename}-dkms-%{version}
 %dir /usr/lib/firmware/mediatek
 %dir /usr/lib/firmware/mediatek/mt7927
 /usr/lib/firmware/mediatek/mt7927/BT_RAM_CODE_MT6639_2_1_hdr.bin
