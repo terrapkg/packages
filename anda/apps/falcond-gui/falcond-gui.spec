@@ -37,7 +37,7 @@ install -Dm644 res/%{appid}.png -t %{buildroot}%{_hicolordir}/512x512/apps/
 %{cargo_license_online} > LICENSE.dependencies
 
 %check
-%desktop_file_validate %{buildroot}%{_datadir}/applications/%{name}.desktop
+%desktop_file_validate %{buildroot}%{_datadir}/applications/%{appid}.desktop
 
 %posttrans
 /usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor/ &>/dev/null || :
