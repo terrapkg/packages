@@ -21,6 +21,7 @@ BuildRequires:  gdk-pixbuf2
 BuildRequires:  gdk-pixbuf2-devel
 BuildRequires:  wireplumber
 
+Suggests: mangowm
 Packager:       Its-J <jonah@fyralabs.com>
 
 %description
