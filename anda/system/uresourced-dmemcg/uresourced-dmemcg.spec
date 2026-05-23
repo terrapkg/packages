@@ -6,7 +6,7 @@ Summary:        Dynamically allocate resources to the active user
 Packager:       Kyle Gospodnetich <me@kylegospodneti.ch>
 
 License:        LGPL-2.1-or-later
-URL:            https://github.com/KyleGospo/uresourced-dmemcg
+URL:            https://github.com/OpenGamingCollective/uresourced-dmemcg
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 
 BuildRequires:  gcc
