@@ -1,1 +1,1 @@
-rpm.version(gh("KyleGospo/uresourced-dmemcg"));
+rpm.version(gh("OpenGamingCollective/uresourced-dmemcg"));
