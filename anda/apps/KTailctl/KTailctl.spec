@@ -62,7 +62,7 @@ go mod vendor
 %{_libdir}/qt6/qml/org/fkoehler/KTailctl/Components/*.version
 %{_libdir}/qt6/qml/org/fkoehler/KTailctl/Components/*.qmltypes
 %{_libdir}/qt6/qml/org/fkoehler/KTailctl/Components/qmldir
-# Private libs that the package needs to run
+# Exclusive libs that the package needs to run
 %{_libdir}/qt6/qml/org/fkoehler/KTailctl/Components/libktailctl_components.so
 %{_libdir}/libktailctl_wrapper_logging.so
 %{_appsdir}/org.fkoehler.KTailctl.desktop
