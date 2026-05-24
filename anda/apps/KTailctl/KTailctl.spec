@@ -39,7 +39,6 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %package static
 %pkg_static_files
-%{_libdir}/libktailctl_wrapper.a
 
 %prep
 %autosetup -n KTailctl-%{version}
