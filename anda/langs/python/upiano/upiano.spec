@@ -17,6 +17,8 @@ BuildRequires:  python3-setuptools
 BuildRequires:  python3-pip
 BuildRequires:  python3-poetry-core
 
+Requires:       fluidsynth
+
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
 %description
