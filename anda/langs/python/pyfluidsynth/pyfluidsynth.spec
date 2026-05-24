@@ -28,7 +28,7 @@ Summary:        %{summary}
 %_desc
 
 %prep
-%autosetup -n pyfluidsynth-%{version}
+%autosetup -n fluidsynth-%{version}
 
 %build
 %pyproject_wheel
