@@ -13,6 +13,7 @@ Source1:        https://github.com/FyraLabs/rdms_proc_macros/archive/HEAD.tar.gz
 BuildRequires:	anda-srpm-macros rust-packaging mold
 BuildRequires:  pkgconfig(libhelium-1)
 BuildRequires:  pkgconfig(openssl)
+BuildRequires:  pkgconfig(libacl)
 BuildRequires:  clang-devel
 BuildRequires:  gcc
 BuildRequires:  cmake
