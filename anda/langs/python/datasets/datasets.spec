@@ -12,6 +12,7 @@ Source0:		%{pypi_source}
 BuildRequires:  python3-devel
 BuildRequires:  python3-pip
 BuildRequires:  python3-importlib-metadata
+BuildRequires:  python3-wheel
 BuildArch:      noarch
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
