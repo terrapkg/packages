@@ -19,6 +19,9 @@ files_config_file(steamos_manager_conf_t)
 # Allow systemd to manage the service (start/stop/status)
 init_dbus_chat(steamos_manager_t)
 
+# Query systemd and overall system status (init_t:system status)
+init_status(steamos_manager_t)
+
 ########################################
 # Process permissions
 ########################################
@@ -76,6 +79,18 @@ domain_read_all_domains_state(steamos_manager_t)
 # debugfs access: /sys/kernel/debug/ath11k/
 kernel_read_debugfs(steamos_manager_t)
 kernel_manage_debugfs(steamos_manager_t)
+
+gen_require(`
+	type tracefs_t;
+')
+allow steamos_manager_t tracefs_t:dir search;
+
+########################################
+# Cgroup access
+########################################
+
+# Search the cgroup hierarchy under /sys/fs/cgroup
+fs_search_cgroup_dirs(steamos_manager_t)
 
 ########################################
 # Device access
@@ -184,6 +199,27 @@ corenet_tcp_connect_all_ports(steamos_manager_t)
 ########################################
 
 logging_send_syslog_msg(steamos_manager_t)
+
+########################################
+# bootupd (bootloader management)
+########################################
+
+# steamos-manager invokes bootupctl, which runs in its own bootupd_t domain.
+optional_policy(`
+	gen_require(`
+		type bootupd_t;
+		type mount_var_run_t;
+	')
+
+	# NSS user/group lookups: /etc/passwd, systemd-userdbd, systemd-homed
+	auth_use_nsswitch(bootupd_t)
+
+	# Read /proc system state
+	kernel_read_system_state(bootupd_t)
+
+	# Search the mount runtime directory under /run
+	allow bootupd_t mount_var_run_t:dir search;
+')
 
 ########################################
 # Miscellaneous
