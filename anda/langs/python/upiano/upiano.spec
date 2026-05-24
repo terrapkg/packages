@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.1.2
-Release:		2%?dist
+Release:		3%?dist
 Summary:		Terminal Piano App
 License:		MIT
 URL:			https://github.com/eliasdorneles/upiano
@@ -16,6 +16,8 @@ BuildRequires:  python3-wheel
 BuildRequires:  python3-setuptools
 BuildRequires:  python3-pip
 BuildRequires:  python3-poetry-core
+
+Requires:       fluidsynth
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
