@@ -29,6 +29,21 @@ Buzz transcribes and translates audio offline on your personal computer. Powered
 %git_clone https://github.com/chidiwilliams/buzz
 sed '/^requires-python/s@3\.13@3.15@' -i pyproject.toml
 
+%pyproject_patch_dependency cmake:drop_constraints
+%pyproject_patch_dependency flake8:drop_constraints
+%pyproject_patch_dependency hydra-colorlog:drop_constraints
+%pyproject_patch_dependency numpy:drop_constraints
+%pyproject_patch_dependency posthog:drop_constraints
+%pyproject_patch_dependency submitit:drop_constraints
+%pyproject_patch_dependency torch:drop_constraints
+%pyproject_patch_dependency torchaudio:drop_constraints
+%pyproject_patch_dependency transformers:drop_constraints
+%pyproject_patch_dependency certifi:drop_constraints
+%pyproject_patch_dependency coverage:drop_constraints
+%pyproject_patch_dependency nltk:drop_constraints
+%pyproject_patch_dependency onnx:drop_constraints
+%pyproject_patch_dependency onnxruntime:drop_constraints
+
 %build
 %pyproject_wheel
 
