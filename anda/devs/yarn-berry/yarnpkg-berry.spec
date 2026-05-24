@@ -1,4 +1,4 @@
-%bcond bootstrap 0
+%bcond bootstrap 1
 
 Name:          yarnpkg-berry
 Version:       4.15.0
