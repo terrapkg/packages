@@ -1,5 +1,5 @@
 Name:           terra-scripts
-Version:        0.1.3
+Version:        0.1.4
 Release:        1%{?dist}
 Summary:        Helpful scripts for contributing to Terra
 License:        GPL-3.0-or-later
@@ -19,6 +19,7 @@ Packager:       Its-J <jonah@fyralabs.com>
 install -Dm 755 format-license.sh %{buildroot}%{_bindir}/format-license
 install -Dm 755 ldd-dnf.sh %{buildroot}%{_bindir}/ldd-dnf
 install -Dm 755 changelog.sh %{buildroot}%{_bindir}/changelog
+install -Dm 755 getcommit.sh %{buildroot}%{_bindir}/getcommit
 
 %files
 %doc README.md
@@ -26,7 +27,10 @@ install -Dm 755 changelog.sh %{buildroot}%{_bindir}/changelog
 %{_bindir}/format-license
 %{_bindir}/ldd-dnf
 %{_bindir}/changelog
+%{_bindir}/getcommit
 
 %changelog
+* Sun May 24 2026 Its-J <jonah@fyralabs.com>
+- Add getcommit.sh
 * Sat May 23 2026 Its-J <jonah@fyralabs.com>
 - Package terra-scripts
