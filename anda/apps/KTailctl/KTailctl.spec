@@ -37,8 +37,8 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %description
 %{summary}.
 
-%package devel
-%pkg_devel_files
+%package static
+%pkg_static_files
 %{_libdir}/libktailctl_wrapper.a
 
 %prep
