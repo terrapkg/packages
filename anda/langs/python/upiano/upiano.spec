@@ -33,6 +33,9 @@ Summary:        %{summary}
 %autosetup -n upiano-%{version}
 cp %{SOURCE1} .
 
+%pyproject_patch_dependency pyfluidsynth:drop_constraints
+%pyproject_patch_dependency textual:drop_constraints
+
 %build
 %pyproject_wheel
 
