@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.1.2
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Terminal Piano App
 License:		MIT
 URL:			https://github.com/eliasdorneles/upiano
@@ -32,6 +32,9 @@ Summary:        %{summary}
 %prep
 %autosetup -n upiano-%{version}
 cp %{SOURCE1} .
+
+%pyproject_patch_dependency pyfluidsynth:drop_constraints
+%pyproject_patch_dependency textual:drop_constraints
 
 %build
 %pyproject_wheel
