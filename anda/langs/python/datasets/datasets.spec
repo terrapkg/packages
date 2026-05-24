@@ -13,6 +13,7 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-pip
 BuildRequires:  python3-importlib-metadata
 BuildRequires:  python3-wheel
+BuildRequires:  python3-setuptools
 BuildArch:      noarch
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
