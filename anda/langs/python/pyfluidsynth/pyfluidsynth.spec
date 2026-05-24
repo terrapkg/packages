@@ -28,14 +28,14 @@ Summary:        %{summary}
 %_desc
 
 %prep
-%autosetup -n fluidsynth-%{version}
+%autosetup -n pyfluidsynth-%{version}
 
 %build
 %pyproject_wheel
 
 %install
 %pyproject_install
-%pyproject_save_files %{pypi_name}
+%pyproject_save_files fluidsynth
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
