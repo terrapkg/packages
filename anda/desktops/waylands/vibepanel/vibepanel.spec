@@ -1,6 +1,6 @@
 Name:           vibepanel
 Version:        0.14.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        GTK4 panel for Wayland with notifications, OSD, and quick settings – between a status bar and a desktop shell
 URL:            https://github.com/prankstr/vibepanel
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
@@ -38,7 +38,7 @@ Packager:       Its-J <jonah@fyralabs.com>
 %cargo_build
 
 %install
-install -Dm 755 target/release/vibepanel %{buildroot}%{_bindir}/vibepanel
+install -Dm 755 target/rpm/vibepanel %{buildroot}%{_bindir}/vibepanel
 %{cargo_license_online} > LICENSE.dependencies
 
 %files
