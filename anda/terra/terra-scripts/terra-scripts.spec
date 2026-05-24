@@ -1,6 +1,6 @@
 Name:           terra-scripts
 Version:        0.1.4
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Helpful scripts for contributing to Terra
 License:        GPL-3.0-or-later
 URL:            https://github.com/terrapkg/cli-tools
