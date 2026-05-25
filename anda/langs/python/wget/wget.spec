@@ -16,6 +16,7 @@ BuildArch:      noarch
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-pip
+BuildRequires:  python3-importlib-metadata
 
 Packager:	    Its-J <jonah@fyralabs.com>
 
