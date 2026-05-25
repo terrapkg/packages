@@ -6,7 +6,7 @@
 
 Name:           vicinae
 Version:        0.21.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPL-3.0
 URL:            https://docs.vicinae.com
 Source:         https://github.com/vicinaehq/%{name}/archive/refs/tags/v%{version}.tar.gz
@@ -41,6 +41,7 @@ BuildRequires:  qt6-qtbase-private-devel
 BuildRequires:  desktop-file-utils
 
 Requires:       nodejs-npm
+Requires:       layer-shell-qt
 
 %description
 Vicinae (pronounced "vih-SIN-ay") is a high-performance, native launcher for
@@ -93,6 +94,10 @@ install -Dm 644 extra/%{name}-url-handler.desktop -t %{buildroot}%{_appsdir}
 %dnl %{_udevrulesdir}/70-vicinae.rules
 
 %changelog
+* Sun May 24 2026 Aamir Ahmad <aamirahmad@outlook.com> - 0.21.1-2
+- Add layer-shell-qt runtime Requires (loaded as QML plugin, not
+  auto-detected by rpm dep generator)
+
 * Thu May 14 2026 Owen Zimmerman <owen@fyralabs.com> - 0.21.0-1
 - Update spec for 0.21.0
 
