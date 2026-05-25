@@ -1,4 +1,4 @@
-%bcond bootstrap 0
+%bcond bootstrap 1
 %global bootstrap_version 1.17.1
 
 Name:          crystal
