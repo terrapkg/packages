@@ -86,7 +86,7 @@ koch tools --skipUserCfg --skipParentCfg --hints:off -d:release -t:-fPIE -l:-pie
 wait
 
 # generate man pages
-local h2m_args=(
+h2m_args=(
   --section=1
   --no-info
   --version-string="$pkgver"
