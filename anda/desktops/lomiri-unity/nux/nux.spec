@@ -26,7 +26,7 @@ BuildRequires: mesa-libGLU-devel
 BuildRequires: glew-devel
 BuildRequires: libXxf86vm-devel
 BuildRequires: libXinerama-devel
-BuildRequires: pcre-devel
+BuildRequires: pcre2-devel
 BuildRequires: libXcomposite-devel
 BuildRequires: libXdamage-devel
 BuildRequires: pciutils-devel
