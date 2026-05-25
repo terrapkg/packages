@@ -14,6 +14,7 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-pip
 BuildRequires:  python3-wheel
 BuildRequires:  python3-hatchling
+BuildRequires:  python3-importlib-metainfo
 BuildArch:      noarch
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
