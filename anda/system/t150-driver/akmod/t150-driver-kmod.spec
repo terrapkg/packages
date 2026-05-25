@@ -8,7 +8,7 @@
 
 Name:           %{modulename}-kmod
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        3%{?dist}
 Summary:        Thrustmaster T150 steering wheel kernel module
 License:        GPL-2.0-only
 URL:            https://github.com/scarburato/t150_driver

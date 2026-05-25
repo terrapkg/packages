@@ -4,8 +4,8 @@
 %global crate ouch
 
 Name:           rust-ouch
-Version:        0.6.1
-Release:        1%?dist
+Version:        0.7.1
+Release:        1%{?dist}
 Summary:        Command-line utility for easily compressing and decompressing files and directories
 
 License:        MIT

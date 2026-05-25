@@ -1,9 +1,9 @@
-%bcond bootstrap 0
+%bcond bootstrap 1
 %global bootstrap_version 1.17.1
 
 Name:          crystal
-Version:       1.19.1
-Release:       1%?dist
+Version:       1.20.2
+Release:       1%{?dist}
 Summary:       A general-purpose, object-oriented programming language
 License:       Apache-2.0
 Packager:      Carl Hörberg <carl@84codes.com>

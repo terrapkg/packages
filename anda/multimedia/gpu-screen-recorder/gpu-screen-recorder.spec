@@ -1,6 +1,6 @@
 Name:           gpu-screen-recorder
-Version:        5.12.5
-Release:        3%?dist
+Version:        5.13.8
+Release:        1%{?dist}
 Summary:        A shadowplay-like screen recorder for Linux
 
 License:        GPL-3.0-or-later
@@ -29,6 +29,7 @@ BuildRequires:  meson
 BuildRequires:  pkgconfig(dbus-1)
 BuildRequires:  pkgconfig(libspa-0.2)
 BuildRequires:  pkgconfig(libglvnd)
+BuildRequires:  pkgconfig(vulkan)
 Requires(post): libcap
 BuildRequires:  systemd-rpm-macros
 

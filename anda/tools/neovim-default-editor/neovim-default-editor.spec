@@ -2,8 +2,8 @@
 
 Name:          neovim-default-editor
 # Version, release, and epoch are inherited from the editor package just like other default editors
-Version:       0.11.6
-Release:       1%?dist
+Version:       0.12.2
+Release:       2%{?dist}
 Epoch: 0
 # Inherited from Neovim itself
 License:       Apache-2.0 AND Vim AND MIT

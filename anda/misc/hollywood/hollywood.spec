@@ -48,6 +48,7 @@ background of any excellent schlock technothriller.
 
 %build
 
+%global _libdir /usr/lib
 %install
 mkdir -p %{buildroot}%{_libdir}/hollywood
 mkdir -p %{buildroot}%{_datadir}/wallstreet

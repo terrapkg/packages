@@ -28,8 +28,10 @@ This is used to relay the input GStreamer source to an output source or a V4L2 d
 %autosetup -p1 -n %{name}-%{commit}
 autoreconf --force --install --verbose
 
-%build
+%conf
 %configure
+
+%build
 %make_build
 
 %install
@@ -40,12 +42,15 @@ install -p -D -m 0644 %{SOURCE1} %{buildroot}%{_presetdir}/95-v4l2-relayd.preset
 
 %post
 %systemd_post v4l2-relayd.service
+%systemd_post v4l2-relayd@.service
 
 %preun
 %systemd_preun v4l2-relayd.service
+%systemd_preun v4l2-relayd@.service
 
 %postun
 %systemd_postun_with_restart v4l2-relayd.service
+%systemd_postun_with_restart v4l2-relayd@.service
 
 %files
 %license LICENSE
@@ -54,7 +59,10 @@ install -p -D -m 0644 %{SOURCE1} %{buildroot}%{_presetdir}/95-v4l2-relayd.preset
 %{_modprobedir}/v4l2-relayd.conf
 %{_modulesloaddir}/v4l2-relayd.conf
 %{_unitdir}/v4l2-relayd.service
+%{_unitdir}/v4l2-relayd@.service
 %{_presetdir}/95-v4l2-relayd.preset
+%{_systemdgeneratordir}/v4l2-relayd-generator
+
 
 %changelog
 %autochangelog

@@ -1,8 +1,8 @@
 %define __brp_mangle_shebangs %{nil}
 
 Name:          rustypaste
-Version:       0.16.1
-Release:       2%?dist
+Version:       0.17.0
+Release:       1%{?dist}
 Summary:       A minimal file upload/pastebin service
 License:       MIT AND Apache-2.0 AND (Apache-2.0 OR MIT) AND BSD-3-Clause AND (0BSD OR MIT OR Apache-2.0) AND Apache-2.0 AND ISC AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (BSD-3-Clause OR MIT) AND (CC0-1.0 OR Artistic-2.0) AND CC0-1.0 AND ISC AND (MIT OR Zlib OR Apache-2.0) AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT) AND Zlib
 URL:           https://github.com/orhun/rustypaste

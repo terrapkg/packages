@@ -39,12 +39,14 @@ svn co https://svn.code.sf.net/p/xavs/code/trunk %{name}
 %setup -T -D -n %{name}
 %autopatch -p1
 
-%build
+%conf
 %configure \
     --disable-asm \
     --enable-pic \
     --enable-shared \
     --extra-cflags="-Wno-int-conversion -Wno-declaration-missing-parameter-type"
+
+%build
 %make_build
 
 %install

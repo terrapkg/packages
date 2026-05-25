@@ -1,6 +1,6 @@
 Name:       gstreamer1-plugin-libav
-Version:    1.28.1
-Release:    1%?dist
+Version:    1.28.3
+Release:    1%{?dist}
 Epoch:      1
 Summary:    GStreamer Libav plugin
 License:    LGPL-2.0-or-later
@@ -38,7 +38,7 @@ GStreamer plugin containing libav library code.
 #export CFLAGS="%{optflags} -Wno-error=attributes"
 %meson \
   -D package-name="Fedora GStreamer-plugins-ugly package" \
-  -D package-origin="https://terra.fyralabs.com" \
+  -D package-origin="https://terrapkg.com" \
   -D doc=disabled
 %meson_build
 

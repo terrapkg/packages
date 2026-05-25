@@ -9,8 +9,8 @@
 %endif
 
 Name:           legcord
-Version:        1.2.2
-Release:        1%?dist
+Version:        1.2.4
+Release:        1%{?dist}
 License:        OSL-3.0
 Summary:        Custom lightweight Discord client designed to enhance your experience
 URL:            https://github.com/Legcord/Legcord

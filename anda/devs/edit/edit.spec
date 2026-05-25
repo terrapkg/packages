@@ -7,8 +7,8 @@ An editor that pays homage to the classic MS-DOS Editor, but with a modern inter
 %global appstream_component console-application
 
 Name:          %{crate}
-Version:       1.2.1
-Release:       4%{?dist}
+Version:       2.0.0
+Release:       1%{?dist}
 Summary:       A simple editor for simple needs.
 SourceLicense: MIT
 License:       MIT AND (MIT OR Apache-2.0)

@@ -5,7 +5,7 @@
 
 Name:           new-lg4ff
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Logitech force feedback driver common files
 License:        GPL-2.0-only
 URL:            https://github.com/berarma/%{name}
@@ -20,7 +20,7 @@ common files shared between the akmod and dkms variants.
 
 %package       akmod-modules
 Summary:       Modules for Akmods
-Requires:      akmod-%{name}
+Requires:      %{name}-kmod = %{?epoch:%{epoch}:}%{version}
 BuildArch:     noarch
 
 %description   akmod-modules

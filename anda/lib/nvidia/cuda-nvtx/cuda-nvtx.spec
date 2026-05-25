@@ -8,7 +8,7 @@
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
-Version:        13.2.20
+Version:        13.2.75
 Release:        1%{?dist}
 Summary:        NVIDIA Tools Extension (NVTX) library
 License:        CUDA Toolkit

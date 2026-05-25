@@ -2,10 +2,10 @@
 
 Name:           fluent-icon-theme
 Version:        20250821
-Release:        3%?dist
+Release:        4%?dist
 Summary:        Fluent icon theme for linux desktops
 
-License:        GPL-3.0
+License:        GPL-3.0-or-later
 URL:            https://github.com/vinceliuice/Fluent-icon-theme/
 Source0:        %url/archive/refs/tags/%tag.tar.gz
 

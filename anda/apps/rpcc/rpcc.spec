@@ -1,5 +1,5 @@
-%global commit 7b4843db7b7774110077760973e8050b4e632f86
-%global commit_date 20260331
+%global commit 0e6cd08585bccd8f56c69bf8785777c2e3e67c4a
+%global commit_date 20260520
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           rpcc
@@ -36,8 +36,10 @@ A number of packages contain plugins which are installed as standard on Raspberr
 %prep
 %autosetup -n rpcc-%commit
 
-%build
+%conf
 %meson
+
+%build
 %meson_build
 
 %install

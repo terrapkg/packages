@@ -1,5 +1,5 @@
-%global commit a083c4d225584c44608ab9e6260a1b2b2cf59ff2
-%global commit_date 20260408
+%global commit fa8730d16e7acfb70744be677ac9b7aa3e3eaf3c
+%global commit_date 20260523
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           spotx-bash
@@ -12,6 +12,7 @@ Source0:        %url/archive/%commit.tar.gz
 Requires:       bash
 BuildArch:      noarch
 Provides:       spotx spotx-linux spot-x spotx.sh
+Packager:       Its-J <jonah@fyralabs.com>
 
 %description
 %summary
@@ -31,5 +32,8 @@ install -Dm 755 spotx.sh %{buildroot}%{_bindir}/spotx
 %{_bindir}/spotx
 
 %changelog
-* Sat Dec 14 2024 Its-J
+* Tue Apr 14 2026 Its-J <jonah@fyralabs.com>
+- Add email to my previous contributor attributions
+
+* Sat Dec 14 2024 Its-J <jonah@fyralabs.com>
 - Package SpotX-Bash
