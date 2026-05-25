@@ -89,7 +89,7 @@ wait
 h2m_args=(
   --section=1
   --no-info
-  --version-string="$pkgver"
+  --version-string=%version"
 )
 help2man --name='Nim Language Compiler' "${h2m_args[@]}" -o nim.1 ./bin/nim
 help2man --name='Nimsuggest' "${h2m_args[@]}" -o nimsuggest.1 ./bin/nimsuggest
