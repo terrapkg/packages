@@ -10,10 +10,8 @@ Summary:        NVIDIA display driver kernel module
 Epoch:          3
 License:        NVIDIA License
 URL:            https://www.nvidia.com/object/unix.html
-Source0:        https://github.com/NVIDIA/open-gpu-kernel-modules/archive/%{version}/open-gpu-kernel-modules-%{version}.tar.gz
+Source0:        https://download.nvidia.com/XFree86/NVIDIA-kernel-module-source/NVIDIA-kernel-module-source-%{version}.tar.xz
 Source1:        %{name}.conf
-Patch0:         https://github.com/CachyOS/open-gpu-kernel-modules/commit/211f012865b8ea2ba62c3422f5519cb32395c3e0.patch
-Patch1:         https://github.com/CachyOS/open-gpu-kernel-modules/commit/92789a5709f64008bee34bb044e33a3de9702eb7.patch
 BuildRequires:  sed
 Requires:       %{modulename}-kmod-common = %{?epoch:%{epoch}:}%{version}
 Requires:       dkms
@@ -30,7 +28,7 @@ Packager:       Terra Packaging Team <terra@fyralabs.com>
 This package provides the NVIDIA kernel driver modules.
 
 %prep
-%autosetup -p1 -n open-gpu-kernel-modules-%{version}
+%autosetup -p1 -n NVIDIA-kernel-module-source-%{version}
 
 cp -f %{SOURCE1} dkms.conf
 

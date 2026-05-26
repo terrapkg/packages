@@ -13,9 +13,7 @@ Summary:        NVIDIA display driver kernel module
 Epoch:          3
 License:        NVIDIA License
 URL:            http://www.nvidia.com/object/unix.html
-Source0:        https://github.com/NVIDIA/open-gpu-kernel-modules/archive/%{version}/open-gpu-kernel-modules-%{version}.tar.gz
-Patch0:         https://github.com/CachyOS/open-gpu-kernel-modules/commit/211f012865b8ea2ba62c3422f5519cb32395c3e0.patch
-Patch1:         https://github.com/CachyOS/open-gpu-kernel-modules/commit/92789a5709f64008bee34bb044e33a3de9702eb7.patch
+Source0:        https://download.nvidia.com/XFree86/NVIDIA-kernel-module-source/NVIDIA-kernel-module-source-%{version}.tar.xz
 BuildRequires:  gcc-c++
 BuildRequires:  kmodtool
 Requires:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
@@ -41,14 +39,14 @@ kmodtool  --target %{_target_cpu}  --repo terrapkg.com --kmodname %{name} %{?bui
 
 %setup -c
 
-pushd open-gpu-kernel-modules-%{version}
+pushd NVIDIA-kernel-module-source-%{version}
 %autopatch -p1
 popd
 
-rm -f open-gpu-kernel-modules-%{version}/dkms.conf
+rm -f NVIDIA-kernel-module-source-%{version}/dkms.conf
 
 for kernel_version in %{?kernel_versions}; do
-    cp -fr open-gpu-kernel-modules-%{version} _kmod_build_${kernel_version%%___*}
+    cp -fr NVIDIA-kernel-module-source-%{version} _kmod_build_${kernel_version%%___*}
 done
 
 %build
