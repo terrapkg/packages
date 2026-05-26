@@ -2,7 +2,7 @@
 
 Name:	       noctalia-qs
 Version:       0.0.12
-Release:       4%{?dist}
+Release:       5%{?dist}
 Summary:       Flexible QtQuick based desktop shell toolkit
 License:       LGPL-3.0-only AND GPL-3.0-only
 URL:	       https://github.com/noctalia-dev/noctalia-qs
@@ -73,11 +73,14 @@ Flexible QtQuick based desktop shell toolkit.
 %{_libdir}/qt6/qml/Quickshell
 
 %changelog
+* Thu May 21 2026  Willow C Reed <terra@willowidk.dev>
+- Add update script so that release bumps when Qt updates its minor version, triggering a rebuild
+
 * Sun Mar 29 2026 Willow C Reed <terra@willowidk.dev>
 - Add provides for a polkit agent and desktop notification daemon (so gnome doesn't get installed)
 
 * Thu Mar 05 2026 Willow C Reed <terra@willowidk.dev>
-- Fix reision to actually be defined as a specific git commit since it never gets initialized rn
+- Fix revision to actually be defined as a specific git commit since it never gets initialized rn
 - Also fix that noctalia-qs is replacing quickshell overall and not just for noctlaia users
 
 * Fri Feb 27 2026 Willow C Reed <terra@willowidk.dev>
