@@ -10,7 +10,7 @@ if rpm.changed() {
   rpm.global("commit", commit);
 }
 
-open_file("anda/desktops/noctalia-qs/VERSION_qt6-qtbase.txt", "w").write(bump::bodhi("qt6-qtbase", bump::as_bodhi_ver(labels.branch)));; // will trig rebuild when changed
+open_file("anda/desktops/noctalia-qs/VERSION_qt6-qtbase.txt", "w").write(bump::bodhi("qt6-qtbase", bump::as_bodhi_ver(labels.branch))); // will trig rebuild when changed
 
 let dir = sub(`/[^/]+$`, "", __script_path);
 if sh("[[ `git status " + dir + " --porcelain` ]] && exit 1 || exit 0", #{}).ctx.rc == 1 {
