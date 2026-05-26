@@ -16,6 +16,7 @@ Source:         %{crates_source}
 
 BuildRequires:  anda-srpm-macros cargo-rpm-macros >= 24
 BuildRequires:  gcc-c++
+BuildRequires:  clang-devel
 
 %global _description %{expand:
 A command-line utility for easily compressing and decompressing files
