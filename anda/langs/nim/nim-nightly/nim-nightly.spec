@@ -171,4 +171,6 @@ cp -r %buildroot%_prefix/lib/nim/dist %buildroot%_datadir/nim/
 
 %changelog
 * Wed May 27 2026 madonuko <mado@fyralabs.com> - 2.3.1^20260522.561b417
-- Initial package.
+- more manfiles
+- no more nimgrep manfile (cannot generate)
+- no longer dep on pcre
