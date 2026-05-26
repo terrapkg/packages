@@ -12,7 +12,7 @@ License:        MIT
 URL:            https://crates.io/crates/ouch
 Source:         %{crates_source}
 # Automatically generated patch to strip dependencies and normalize metadata
-Patch:          ouch-fix-metadata-auto.diff
+%dnl Patch:          ouch-fix-metadata-auto.diff
 
 BuildRequires:  anda-srpm-macros cargo-rpm-macros >= 24
 BuildRequires:  gcc-c++
@@ -39,7 +39,7 @@ License:        (0BSD OR MIT OR Apache-2.0) AND Apache-2.0 AND (Apache-2.0 OR MI
 %{_bindir}/ouch
 
 %prep
-%autosetup -n %{crate}-%{version} -p1
+%autosetup -n %{crate}-%{version}
 %cargo_prep_online
 
 %build
