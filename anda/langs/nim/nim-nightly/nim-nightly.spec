@@ -55,7 +55,10 @@ order of priority).
 This package provides documentation and reference manual for the language
 and its standard library.
 
-%pkg_completion -Bz nim
+%pkg_completion -Bz nim nimble
+%pkg_completion -Bn nimgrep
+%pkg_completion -Bn nimpretty
+%pkg_completion -Bn nimsuggest
 %endif
 
 %prep
@@ -150,7 +153,7 @@ cp -r %buildroot%_prefix/lib/nim/dist %buildroot%_datadir/nim/
 %license copying.txt dist/nimble/license.txt
 %doc doc/readme.txt
 %_bindir/nim
-%_mandir/man1/nim.1.*
+%_mandir/man1/nim{,ble}.1.*
 %_datadir/nim/
 %_prefix/lib/nim/
 %_sysconfdir/nim/
@@ -159,9 +162,13 @@ cp -r %buildroot%_prefix/lib/nim/dist %buildroot%_datadir/nim/
 %license copying.txt
 %_bindir/atlas
 %_bindir/nim{grep,suggest,pretty}
-%_mandir/man1/nimsuggest.1*
+%_mandir/man1/{atlas,nimsuggest,nimpretty}.1*
 
 %ifarch x86_64
 %files doc
 %doc %_docdir/%name
 %endif
+
+%changelog
+* Wed May 27 2026 madonuko <mado@fyralabs.com> - 2.3.1^20260522.561b417
+- Initial package.
