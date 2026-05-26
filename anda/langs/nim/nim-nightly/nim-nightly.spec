@@ -104,7 +104,7 @@ h2m_args=(
 )
 help2man --name='Nim Language Compiler' "${h2m_args[@]}" -o nim.1 ./bin/nim
 help2man --name='Nimsuggest' "${h2m_args[@]}" -o nimsuggest.1 ./bin/nimsuggest
-help2man --name='Nimgrep' "${h2m_args[@]}" -o nimgrep.1 ./bin/nimgrep
+#help2man --name='Nimgrep' "${h2m_args[@]}" -o nimgrep.1 ./bin/nimgrep
 help2man --name='Nimpretty' "${h2m_args[@]}" -o nimpretty.1 ./bin/nimpretty
 help2man --name='Nim Package Installer' "${h2m_args[@]}" -o nimble.1 ./bin/nimble
 help2man --name='Atlas' "${h2m_args[@]}" -o atlas.1 ./bin/atlas
@@ -159,7 +159,7 @@ cp -r %buildroot%_prefix/lib/nim/dist %buildroot%_datadir/nim/
 %license copying.txt
 %_bindir/atlas
 %_bindir/nim{grep,suggest,pretty}
-%_mandir/man1/nim{grep,suggest}.1*
+%_mandir/man1/nimsuggest.1*
 
 %ifarch x86_64
 %files doc
