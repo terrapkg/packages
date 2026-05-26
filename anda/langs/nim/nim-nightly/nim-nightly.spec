@@ -85,6 +85,17 @@ koch boot -d:release -d:nimStrictMode --lib:lib
 koch tools --skipUserCfg --skipParentCfg --hints:off -d:release -t:-fPIE -l:-pie &
 wait
 
+# generate install.sh
+./koch distrohelper
+
+%install
+export PATH="$(pwd):$(pwd)/bin:${PATH}"
+
+# --main:compiler/nim.nim
+mold -run bin/nim cc -d:nimCallDepthLimit=10000 -r tools/niminst/niminst --var:version=%ver --var:mingw=none scripts compiler/installer.ini
+
+sh ./install.sh %buildroot/usr/bin
+
 # generate man pages
 h2m_args=(
   --section=1
@@ -97,17 +108,6 @@ help2man --name='Nimgrep' "${h2m_args[@]}" -o nimgrep.1 ./bin/nimgrep
 help2man --name='Nimpretty' "${h2m_args[@]}" -o nimpretty.1 ./bin/nimpretty
 help2man --name='Nim Package Installer' "${h2m_args[@]}" -o nimble.1 ./bin/nimble
 help2man --name='Atlas' "${h2m_args[@]}" -o atlas.1 ./bin/atlas
-
-# generate install.sh
-./koch distrohelper
-
-%install
-export PATH="$(pwd):$(pwd)/bin:${PATH}"
-
-# --main:compiler/nim.nim
-mold -run bin/nim cc -d:nimCallDepthLimit=10000 -r tools/niminst/niminst --var:version=%ver --var:mingw=none scripts compiler/installer.ini
-
-sh ./install.sh %buildroot/usr/bin
 
 mkdir -p %buildroot/%_bindir %buildroot/%_datadir/bash-completion/completions %buildroot/usr/lib/nim %buildroot%_datadir
 install -Dpm755 bin/nim{grep,suggest,pretty} bin/atlas %buildroot/%_bindir
