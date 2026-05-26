@@ -6,7 +6,7 @@ Packager:       Kyle Gospodnetich <me@kylegospodneti.ch>
 
 License:        MIT
 URL:            https://github.com/Korthos-Software/low_latency_layer
-Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
