@@ -1,5 +1,5 @@
 Name:           plasma6-applet-appgrid
-Version:        1.7.10
+Version:        1.8.1
 Release:        1%{?dist}
 Summary:        A modern fullscreen application launcher for KDE Plasma
 # Main code: GPL-2.0-or-later
@@ -28,6 +28,8 @@ BuildRequires:  cmake(Plasma)
 BuildRequires:  cmake(PlasmaQuick)
 BuildRequires:  cmake(LayerShellQt)
 BuildRequires:  cmake(KF6IconThemes)
+BuildRequires:  cmake(PlasmaActivities)
+BuildRequires:  cmake(LibKWorkspace)
 
 Requires:       plasma-workspace
 Requires:       plasma-desktop
@@ -58,8 +60,12 @@ macOS Launchpad, COSMIC, and Pantheon.
 %{_datadir}/plasma/plasmoids/dev.xarbit.appgrid/
 %{_datadir}/plasma/plasmoids/dev.xarbit.appgrid.panel/
 %{_metainfodir}/dev.xarbit.appgrid.metainfo.xml
+%{_datadir}/icons/hicolor/scalable/apps/dev.xarbit.appgrid.svg
 
 %changelog
+* Mon May 25 2026 hilltty <49129010+hilltty@users.noreply.github.com> - 1.8.0-1
+- fix: add cmake(PlasmaActivities) BuildRequires, add icon to files
+
 * Tue May 19 2026 hilltty <49129010+hilltty@users.noreply.github.com> - 1.7.10-1
 - Sync with upstream: add icon to files, update Requires, update URL
 

@@ -6,7 +6,7 @@
 
 Name:           libcudla
 Epoch:          1
-Version:        13.2.75
+Version:        13.3.29
 Release:        1%{?dist}
 Summary:        NVIDIA CUDA Deep Learning Accelerator (DLA) engines (Jetson Xavier + Orin)
 License:        CUDA Toolkit
