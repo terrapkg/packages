@@ -89,7 +89,7 @@ wait
 h2m_args=(
   --section=1
   --no-info
-  --version-string=%version"
+  --version-string=%version
 )
 help2man --name='Nim Language Compiler' "${h2m_args[@]}" -o nim.1 ./bin/nim
 help2man --name='Nimsuggest' "${h2m_args[@]}" -o nimsuggest.1 ./bin/nimsuggest
@@ -114,10 +114,10 @@ install -Dpm755 bin/nim{grep,suggest,pretty} bin/atlas %buildroot/%_bindir
 install -Dpm644 tools/nim.bash-completion %buildroot%bash_completions_dir/nim
 install -Dpm644 tools/nim.zsh-completion %buildroot%zsh_completions_dir/_nim
 for comp in {tools,dist/nimble}/*.bash-completion; do
-  install -Dm 644 "${comp}" "%buildroot%bash_completions_dir/$(basename "${comp/.bash-completion}")"
+  install -Dm 644 ${comp} "%buildroot%bash_completions_dir/$(basename "${comp/.bash-completion}")"
 done
 for comp in {tools,dist/nimble}/*.zsh-completion; do
-  install -Dm 644 "${comp}" "%buildroot%zsh_completions_dir/_$(basename "${comp/.zsh-completion}")"
+  install -Dm 644 ${comp} "%buildroot%zsh_completions_dir/_$(basename "${comp/.zsh-completion}")"
 done
 install -Dpm644 -t%buildroot/%_mandir/man1 *.1
 mv %buildroot%_bindir/nim %buildroot%_datadir/
