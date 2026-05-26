@@ -95,8 +95,7 @@ install -Dm 644 extra/%{name}-url-handler.desktop -t %{buildroot}%{_appsdir}
 
 %changelog
 * Sun May 24 2026 Aamir Ahmad <aamirahmad@outlook.com> - 0.21.1-2
-- Add layer-shell-qt runtime Requires (loaded as QML plugin, not
-  auto-detected by rpm dep generator)
+- Add layer-shell-qt runtime Requires
 
 * Thu May 14 2026 Owen Zimmerman <owen@fyralabs.com> - 0.21.0-1
 - Update spec for 0.21.0
