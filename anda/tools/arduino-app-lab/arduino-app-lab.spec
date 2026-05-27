@@ -16,6 +16,7 @@ Source2:        cc.arduino.AppLab.metainfo.xml
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  yarnpkg
+BuildRequires:  pnpm
 BuildRequires:  wails
 BuildRequires:  webkit2gtk4.1-devel
 BuildRequires:  golang
