@@ -269,8 +269,12 @@ workspaces.
 %prep
 %autosetup -p1
 
-%build
+find . -name "meson.build" -exec sed -i "s/dependency('budgie-1.0')/dependency('budgie-3.0')/g" {} +
+
+%conf
 %meson
+
+%build
 %meson_build
 
 %install
