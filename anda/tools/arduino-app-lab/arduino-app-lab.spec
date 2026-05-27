@@ -39,6 +39,7 @@ Packager:       Jaiden Riordan <jade@fyralabs.com>, Owen Zimmerman <owen@fyralab
 
 %conf
 %{__yarn}
+%set_javascript_build_flags
 
 pushd standalone-apps/app-lab-desktop/internal/board/
 ./download_resources.sh
