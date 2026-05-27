@@ -1,0 +1,13 @@
+diff --git a/meson.build b/meson.build
+index cd709410..3c00cec7 100644
+--- a/meson.build
++++ b/meson.build
+@@ -72,7 +72,7 @@ conf.set_quoted('PACKAGE_SHAREDIR', datadir)
+ for_wayland = get_option('for-wayland')
+ 
+ if for_wayland == false
+-	budgie_dep = dependency('budgie-1.0')
++	budgie_dep = dependency('budgie-3.0')
+ 	peas_dep = dependency('libpeas-1.0')
+ 	python_loader = 'python3'
+ else
