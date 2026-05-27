@@ -22,7 +22,7 @@ Patch:          deno-fix-metadata-auto.diff
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros
 BuildRequires:  protobuf-compiler
-BuildRequires:  llvm17-devel
+BuildRequires:  llvm19-devel
 BuildRequires:  python3
 BuildRequires:  cmake
 BuildRequires:  gcc
