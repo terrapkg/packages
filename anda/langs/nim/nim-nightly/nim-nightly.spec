@@ -55,11 +55,12 @@ order of priority).
 This package provides documentation and reference manual for the language
 and its standard library.
 
+%endif
+
 %pkg_completion -Bz nim nimble
 %pkg_completion -Bn nimgrep
 %pkg_completion -Bn nimpretty
 %pkg_completion -Bn nimsuggest
-%endif
 
 %prep
 %autosetup -n Nim-%commit
