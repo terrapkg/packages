@@ -152,10 +152,10 @@ Packager:   Terra Packaging Team <terra@fyralabs.com>
 %obsolete terra-surface-dtx-daemon v0.3.10~1-5
 
 %obsolete_ticket https://github.com/terrapkg/packages/pull/12665
-%obsolete supergfxctl
+%obsolete supergfxctl 5.2.7-3
 
 %obsolete_ticket https://github.com/terrapkg/packages/pull/12665
-%obsolete gnome-shell-extension-gpu-switcher-supergfxctl
+%obsolete gnome-shell-extension-gpu-switcher-supergfxctl 11^20250925.1de26db-4
 
 %obsolete_ticket https://github.com/terrapkg/packages/pull/7521
 %obsolete x264-bash-completion 0.165-18.20250609gitb35605ac
