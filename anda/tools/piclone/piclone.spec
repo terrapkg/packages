@@ -1,10 +1,10 @@
-%global commit 7d705d0a65c027bb39825bf428fe7c5316411197
-%global commit_date 20251014
+%global commit 608a168f74d6552b391ac4952f7f4fc36f0779f1
+%global commit_date 20260522
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           piclone
 Version:        %commit_date.git~%shortcommit
-Release:        2%?dist
+Release:        1%{?dist}
 Summary:        Utility to back up Pi to an SD card reader
 License:        BSD-3-Clause
 URL:            https://github.com/raspberrypi-ui/piclone

@@ -4,7 +4,7 @@ Version:    %{?fedora:%{fedora}}%{?rhel:%{rhel}}
 # The dist number is the version here, it is intentionally not repeated in the release
 %global dist %nil
 
-Release:    2%?dist
+Release:    4%{?dist}
 Summary:    A package to obsolete retired packages, based on Fedora's equivalent package
 
 License:    LicenseRef-Fedora-Public-Domain
@@ -150,6 +150,12 @@ Packager:   Terra Packaging Team <terra@fyralabs.com>
 
 %obsolete_ticket https://github.com/terrapkg/packages/pull/7098
 %obsolete terra-surface-dtx-daemon v0.3.10~1-5
+
+%obsolete_ticket https://github.com/terrapkg/packages/pull/12665
+%obsolete supergfxctl 5.2.7-3
+
+%obsolete_ticket https://github.com/terrapkg/packages/pull/12665
+%obsolete gnome-shell-extension-gpu-switcher-supergfxctl 11^20250925.1de26db-4
 
 %obsolete_ticket https://github.com/terrapkg/packages/pull/7521
 %obsolete x264-bash-completion 0.165-18.20250609gitb35605ac

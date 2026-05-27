@@ -7,7 +7,7 @@ Source0:        https://github.com/frankmorgner/vsmartcard/releases/download/%na
 License:        GPL-3.0-only
 BuildRequires:  pcsc-lite-devel gcc libtool pkg-config qrencode-devel python3-devel help2man
 
-Requires:       qrencode-libs python3
+Requires:       qrencode-libs
 Packager:       june-fish <git@june.fish>
 
 %description
@@ -15,6 +15,8 @@ Virtual Smart Card emulates a smart card and makes it accessible through PC/SC. 
  
 %prep
 %autosetup
+
+%conf
 autoreconf --verbose --install
 %configure prefix=NONE pythondir=%{python3_sitelib} bindir=%{_bindir}
  

@@ -1,7 +1,7 @@
 %global uuid vicinae@dagimg-dot.netlify.app
 
 Name:           gnome-shell-extension-vicinae
-Version:        1.6.1
+Version:        1.6.2
 Release:        1%{?dist}
 License:        MIT
 URL:            https://github.com/dagimg-dot/vicinae-gnome-extension
@@ -12,7 +12,7 @@ Packager:       metcya <metcya@gmail.com>
 BuildArch:      noarch
 
 BuildRequires:  bun-bin glib2-devel
-Requires:       (gnome-shell >= 48~ with gnome-shell < 50~)
+Requires:       gnome-shell >= 48~
 Requires:       vicinae
 Recommends:     gnome-extensions-app
 Provides:       gnome-shell-extension-vicinae-gnome-extension
@@ -22,7 +22,7 @@ Companion GNOME extension for Vicinae launcher with clipboard monitoring,
 window management APIs, and paste-to-active-window capabilities.
 
 %prep
-%autosetup -n vicinae-gnome-extension-%{version}
+%autosetup -n gnome-extension-%{version}
 
 %build
 %{__bun} i && %{__bun} run build

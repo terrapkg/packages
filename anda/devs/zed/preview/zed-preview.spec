@@ -1,3 +1,5 @@
+%global toolchain clang
+
 %bcond_with check
 %bcond_with debug_no_build
 
@@ -5,7 +7,7 @@
 %global debug_package %{nil}
 %endif
 
-%global ver 0.233.1-pre
+%global ver 1.5.0-pre
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 

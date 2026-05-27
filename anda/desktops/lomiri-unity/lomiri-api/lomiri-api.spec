@@ -3,7 +3,7 @@
 %forgemeta
 
 Name:          lomiri-api
-Version:       0.3.1
+Version:       0.3.2
 Release:       1%{?dist}
 Summary:       API for Lomiri
 

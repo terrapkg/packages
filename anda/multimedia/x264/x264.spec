@@ -51,7 +51,7 @@ applications that use %{name}.
 %prep
 %git_clone https://code.videolan.org/videolan/x264.git %{commit}
 
-%build
+%conf
 %configure \
     --enable-bashcompletion \
     --enable-debug \
@@ -60,6 +60,7 @@ applications that use %{name}.
     --bit-depth=all \
     --system-libx264
 
+%build
 %make_build
 
 %install

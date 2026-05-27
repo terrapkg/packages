@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name: dart
-Version: 3.11.5
+Version: 3.12.1
 Release: 1%{?dist}
 Summary: The Dart Language
 License: BSD-3-Clause

@@ -1,5 +1,5 @@
 Name:           gpu-screen-recorder
-Version:        5.13.0
+Version:        5.13.8
 Release:        1%{?dist}
 Summary:        A shadowplay-like screen recorder for Linux
 
@@ -29,6 +29,7 @@ BuildRequires:  meson
 BuildRequires:  pkgconfig(dbus-1)
 BuildRequires:  pkgconfig(libspa-0.2)
 BuildRequires:  pkgconfig(libglvnd)
+BuildRequires:  pkgconfig(vulkan)
 Requires(post): libcap
 BuildRequires:  systemd-rpm-macros
 

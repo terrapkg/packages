@@ -2,7 +2,7 @@
 
 Name:             turbowarp-desktop
 %electronmeta -D
-Version:          1.15.5
+Version:          1.16.0
 Release:          1%{?dist}
 Summary:          A better offline editor for Scratch 3
 URL:              https://desktop.turbowarp.org/
@@ -94,6 +94,7 @@ Packager:         junefish <june@fyralabs.com>
 
 %build
 %npm_build -c -B -r fetch,webpack:prod
+echo "Electron Builder" > %{rpmbuilddir}/webapp-tool.txt
 
 %install
 %electron_install -i %appid -I build/

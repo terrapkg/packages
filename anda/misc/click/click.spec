@@ -4,9 +4,9 @@
 
 Name:           click
 Version:        0.5.2
-Release:        2%?dist
+Release:        3%?dist
 Summary:        An app building method
-License:        LGPL-3.0
+License:        LGPL-3.0-or-later
 URL:            https://gitlab.com/ubports/development/core/click
 Source0:        %{url}/-/archive/%commit/click-%commit.tar.gz
 
@@ -58,12 +58,14 @@ Provides HTML and Manpage (documentation) for Click.
 %prep
 %autosetup -n click-%commit
 
-%build
+%conf
 NOCONFIGURE=1 \
 ./autogen.sh
 
 export CFLAGS="$CFLAGS -Wno-implicit-function-declaration"
 %configure
+
+%build
 %make_build
 
 %install

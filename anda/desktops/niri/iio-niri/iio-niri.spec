@@ -1,5 +1,5 @@
 Name:           iio-niri
-Version:        1.3.0
+Version:        2.0.0
 Release:        1%{?dist}
 Summary:        Autorotation daemon for niri
 URL:            https://github.com/Zhaith-Izaliel/iio-niri
@@ -30,5 +30,8 @@ Packager:       Tulip Blossom <tulilirockz@outlook.com>
 %{_bindir}/%{name}
 
 %changelog
+* Fri May 05 2026 Tulip Blossom <tulilirockz@outlook.com> - 2.0.0-1
+- Update package and add autoupdate definitions
+
 * Fri Mar 13 2026 Tulip Blossom <tulilirockz@outlook.com>
 - Initial commit

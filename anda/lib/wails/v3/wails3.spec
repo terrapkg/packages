@@ -1,4 +1,4 @@
-%global ver v3.0.0-alpha.76
+%global ver webview2/v1.0.24
 %global sanitized_ver %(echo %{ver} | sed 's/-/~/g')
 
 %global goipath github.com/wailsapp/wails/v3
@@ -32,7 +32,7 @@ Provides:       wails-v3
 %gopkg
 
 %prep
-%git_clone https://github.com/wailsapp/wails v3-alpha
+%git_clone https://github.com/wailsapp/wails v3-beta
 
 %build
 pushd v3/cmd/wails3

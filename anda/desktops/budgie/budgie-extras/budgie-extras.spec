@@ -14,7 +14,7 @@ BuildRequires:  meson
 BuildRequires:  vala
 BuildRequires:  intltool
 
-BuildRequires:  pkgconfig(budgie-1.0)
+BuildRequires:  pkgconfig(budgie-3.0)
 BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  pkgconfig(gnome-settings-daemon)
 BuildRequires:  pkgconfig(json-glib-1.0)
@@ -25,6 +25,9 @@ BuildRequires:  pkgconfig(libnma)
 BuildRequires:  pkgconfig(libnotify)
 BuildRequires:  pkgconfig(libsoup-2.4)
 BuildRequires:  pkgconfig(libwnck-3.0)
+BuildRequires:  pkgconfig(libpeas-1.0)
+BuildRequires:  pkgconfig(libxfce4windowing-0)
+BuildRequires:  pkgconfig(gtk-layer-shell-0)
 
 BuildRequires:  pkgconfig(appstream)
 BuildRequires:  pkgconfig(granite)
@@ -266,8 +269,12 @@ workspaces.
 %prep
 %autosetup -p1
 
-%build
+find . -name "meson.build" -exec sed -i "s/dependency('budgie-1.0')/dependency('budgie-3.0')/g" {} +
+
+%conf
 %meson
+
+%build
 %meson_build
 
 %install
