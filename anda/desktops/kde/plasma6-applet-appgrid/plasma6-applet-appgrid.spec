@@ -1,5 +1,5 @@
 Name:           plasma6-applet-appgrid
-Version:        1.8.1
+Version:        1.8.3
 Release:        1%{?dist}
 Summary:        A modern fullscreen application launcher for KDE Plasma
 # Main code: GPL-2.0-or-later

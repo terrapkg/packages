@@ -1,18 +1,20 @@
-%global pypi_name posthog
-%global _desc Send usage data from your Python code to PostHog.
+%global pypi_name datasets
+%global _desc The largest hub of ready-to-use datasets for AI models with fast, easy-to-use and efficient data manipulation tools.
 
 Name:			python-%{pypi_name}
-Version:		7.16.1
+Version:		4.8.5
 Release:		1%{?dist}
-Summary:		Send usage data from your Python code to PostHog
-License:		MIT
-URL:			https://posthog.com/docs/libraries/python
+Summary:		The largest hub of ready-to-use datasets for AI models with fast, easy-to-use and efficient data manipulation tools
+License:		Apache-2.0
+URL:			https://github.com/huggingface/datasets
 Source0:		%{pypi_source}
-BuildArch:      noarch
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-pip
+BuildRequires:  python3-importlib-metadata
+BuildRequires:  python3-wheel
 BuildRequires:  python3-setuptools
+BuildArch:      noarch
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
@@ -21,7 +23,6 @@ Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-Provides:       %{pypi_name}
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
@@ -29,6 +30,8 @@ Provides:       %{pypi_name}
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
+
+%pyproject_patch_dependency pyarrow:drop_constraints
 
 %build
 %pyproject_wheel
@@ -40,7 +43,8 @@ Provides:       %{pypi_name}
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
+%{_bindir}/datasets-cli
 
 %changelog
-* Sat Jan 10 2026 Owen Zimmerman <owen@fyralabs.com>
+* Sun May 24 2026 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit

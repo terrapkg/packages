@@ -1,18 +1,18 @@
-%global pypi_name posthog
-%global _desc Send usage data from your Python code to PostHog.
+%global pypi_name lhotse
+%global _desc Tools for handling multimodal data in machine learning projects.
 
 Name:			python-%{pypi_name}
-Version:		7.16.1
+Version:		1.33.0
 Release:		1%{?dist}
-Summary:		Send usage data from your Python code to PostHog
-License:		MIT
-URL:			https://posthog.com/docs/libraries/python
+Summary:		Tools for handling multimodal data in machine learning projects
+License:        Apache-2.0
+URL:			https://lhotse.readthedocs.io/en/latest/
 Source0:		%{pypi_source}
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-pip
 BuildRequires:  python3-setuptools
+BuildRequires:  python3-pip
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
@@ -21,14 +21,13 @@ Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-Provides:       %{pypi_name}
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 %_desc
 
 %prep
-%autosetup -n %{pypi_name}-%{version}
+%git_clone https://github.com/lhotse-speech/lhotse.git %{version}
 
 %build
 %pyproject_wheel
@@ -40,7 +39,8 @@ Provides:       %{pypi_name}
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
+%{_bindir}/lhotse
 
 %changelog
-* Sat Jan 10 2026 Owen Zimmerman <owen@fyralabs.com>
+* Sun May 24 2026 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit
