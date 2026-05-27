@@ -17,7 +17,7 @@ Source1:        https://raw.githubusercontent.com/denoland/deno/refs/tags/v%vers
 Source2:        gcc-wrapper.sh
 Source3:        land.deno.deno.metainfo.xml
 # Automatically generated patch to strip dependencies and normalize metadata
-Patch:          deno-fix-metadata-auto.diff
+%dnl Patch:          deno-fix-metadata-auto.diff
 
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros
