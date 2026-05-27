@@ -26,6 +26,7 @@ BuildRequires:  pkgconfig(libnma)
 BuildRequires:  pkgconfig(libnotify)
 BuildRequires:  pkgconfig(libsoup-2.4)
 BuildRequires:  pkgconfig(libwnck-3.0)
+BuildRequires:  pkgconfig(libpeas-1.0)
 
 BuildRequires:  pkgconfig(appstream)
 BuildRequires:  pkgconfig(granite)
