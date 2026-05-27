@@ -14,7 +14,7 @@ BuildRequires:  meson
 BuildRequires:  vala
 BuildRequires:  intltool
 
-BuildRequires:  pkgconfig(budgie-1.0)
+BuildRequires:  budgie-desktop-devel
 BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  pkgconfig(gnome-settings-daemon)
 BuildRequires:  pkgconfig(json-glib-1.0)
