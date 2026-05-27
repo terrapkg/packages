@@ -7,7 +7,6 @@ Summary:        Additional Budgie Desktop enhancements for user experience
 URL:            https://ubuntubudgie.org/
 
 Source0:        https://github.com/UbuntuBudgie/budgie-extras/releases/download/v%{version}/budgie-extras-%{version}.tar.xz
-Patch0:         fix-budgie-3.0-name.patch
 
 BuildRequires:  rpm_macro(fdupes)
 BuildRequires:  cmake
@@ -28,6 +27,7 @@ BuildRequires:  pkgconfig(libsoup-2.4)
 BuildRequires:  pkgconfig(libwnck-3.0)
 BuildRequires:  pkgconfig(libpeas-1.0)
 BuildRequires:  pkgconfig(libxfce4windowing-0)
+BuildRequires:  pkgconfig(gtk-layer-shell-0)
 
 BuildRequires:  pkgconfig(appstream)
 BuildRequires:  pkgconfig(granite)
