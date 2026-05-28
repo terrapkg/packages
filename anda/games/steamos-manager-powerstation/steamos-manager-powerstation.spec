@@ -1,10 +1,10 @@
-%global commit 7b4d0f49351a60d1f93d48f081b4c0e35e10fa6d
+%global commit 37d1cb6f98e02b76221190b10af3c6e1c6b7534d
 %global shortcommit %{sub %{commit} 0 7}
-%global commitdate 20260325
+%global commitdate 20260528
 
 Name:             steamos-manager-powerstation
 Version:          0~%{commitdate}.git%{shortcommit}
-Release:          4%{?dist}
+Release:          1%{?dist}
 Summary:          SteamOS Manager is a system daemon that aims to abstract Steam's interactions with the operating system
 License:          MIT AND (MIT OR Apache-2.0) AND Unicode-3.0 AND (Apache-2.0 OR BSL-1.0) AND Apache-2.0 OR MIT AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (BSD-3-Clause OR MIT OR Apache-2.0) AND ISC AND (LGPL-2.1 OR MIT OR Apache-2.0) AND MIT AND (MIT OR Apache-2.0) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT)
 URL:              https://github.com/OpenGamingCollective/steamos-manager
