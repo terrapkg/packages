@@ -84,6 +84,7 @@ gen_require(`
 	type tracefs_t;
 ')
 allow steamos_manager_t tracefs_t:dir search;
+allow steamos_manager_t tracefs_t:dir write;
 
 ########################################
 # Cgroup access
