@@ -8,6 +8,7 @@ Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 Requires:       bash
 BuildArch:      noarch
 Packager:       Its-J <jonah@fyralabs.com>
+Reccomends:     podman
 
 %description
 %{summary}.
