@@ -20,6 +20,8 @@ install -Dm 755 format-license.sh %{buildroot}%{_bindir}/format-license
 install -Dm 755 ldd-dnf.sh %{buildroot}%{_bindir}/ldd-dnf
 install -Dm 755 changelog.sh %{buildroot}%{_bindir}/changelog
 install -Dm 755 getcommit.sh %{buildroot}%{_bindir}/getcommit
+install -Dm 755 panda.sh %{buildroot}%{_bindir}/panda
+
 
 %files
 %doc README.md
@@ -28,8 +30,11 @@ install -Dm 755 getcommit.sh %{buildroot}%{_bindir}/getcommit
 %{_bindir}/ldd-dnf
 %{_bindir}/changelog
 %{_bindir}/getcommit
+%{_bindir}/panda
 
 %changelog
+* Fri May 29 2026 Jaiden Riordan <jade@fyralabs.com>
+- Add panda.sh
 * Sun May 24 2026 Its-J <jonah@fyralabs.com>
 - Add getcommit.sh
 * Sat May 23 2026 Its-J <jonah@fyralabs.com>
