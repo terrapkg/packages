@@ -5,6 +5,9 @@
 %global appstream_component runtime
 %global crate deno
 
+%global debug_level 1
+%dnl %undefine _debugsource_packages
+
 Name:           rust-deno
 Version:        2.8.1
 Release:        1%{?dist}
