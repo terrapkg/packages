@@ -36,14 +36,15 @@ Requires:       plasma-desktop
 Requires:       kf6-kiconthemes
 
 %description
-AppGrid is a modern application launcher for KDE Plasma 6, inspired by
-macOS Launchpad, COSMIC, and Pantheon.
+A modern application launcher for KDE Plasma. It offers unified
+search, favorites, categories, and both a panel and a centered popup
+presentation.
 
 %prep
 %autosetup -n plasma6-applet-appgrid-%{version}
 
 %conf
-%cmake
+%cmake -DAPPGRID_VERSION_OVERRIDE=%{version}
 
 %build
 %cmake_build
@@ -63,6 +64,9 @@ macOS Launchpad, COSMIC, and Pantheon.
 %{_datadir}/icons/hicolor/scalable/apps/dev.xarbit.appgrid.svg
 
 %changelog
+* Thu May 29 2026 hilltty <49129010+hilltty@users.noreply.github.com> - 1.8.5-1
+- pass version to cmake, update description
+
 * Mon May 25 2026 hilltty <49129010+hilltty@users.noreply.github.com> - 1.8.0-1
 - fix: add cmake(PlasmaActivities) BuildRequires, add icon to files
 
