@@ -22,7 +22,6 @@ install -Dm 755 changelog.sh %{buildroot}%{_bindir}/changelog
 install -Dm 755 getcommit.sh %{buildroot}%{_bindir}/getcommit
 install -Dm 755 panda.sh %{buildroot}%{_bindir}/panda
 
-
 %files
 %doc README.md
 %license LICENSE
