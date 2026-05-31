@@ -30,6 +30,8 @@ BuildRequires:  pkgconfig(polkit-gobject-1)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(wayland-protocols)
 BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:  pkgconfig(libqalculate)
+BuildRequires:  pkgconfig(libxml-2.0)
 
 Provides:       desktop-notification-daemon
 Provides:       PolicyKit-authentication-agent
