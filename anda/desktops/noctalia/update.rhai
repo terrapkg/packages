@@ -1,3 +1,6 @@
-let commit = get(`https://api.github.com/repos/noctalia-dev/noctalia-qs/commits?sha=v5`).json_arr()[0];
+let v = gh("noctalia-dev/noctalia-shell");
+v.crop(1);
 
-rpm.global("commit", release.sha);
+if v >= "5" {
+  rpm.version(v);
+}
