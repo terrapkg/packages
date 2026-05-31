@@ -96,6 +96,7 @@ configure_cmake() {
 %ifarch x86_64
   -DENABLE_LIBVMAF=ON \
   -DVMAF_INCLUDE_DIR=%{_includedir}/libvmaf \
+%endif
 %ifarch %{ix86}
   -DENABLE_ASSEMBLY=OFF \
 %endif
