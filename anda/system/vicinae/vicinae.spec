@@ -5,12 +5,9 @@
 %endif
 
 Name:           vicinae
-Version:        0.21.4
-Release:        2%{?dist}
 License:        GPL-3.0-or-later
 Version:        0.21.5
 Release:        2%{?dist}
-License:        GPL-3.0
 URL:            https://docs.vicinae.com
 Source:         https://github.com/vicinaehq/%{name}/archive/refs/tags/v%{version}.tar.gz
 Summary:        A high-performance, native launcher for Linux
