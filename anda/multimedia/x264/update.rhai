@@ -1,5 +1,5 @@
 let domain = `code.videolan.org`;
-let c = gitlab_commit_domain(domain, "videolan/x264");
+let c = gitlab_commit(domain, "536", "master");
 
 rpm.global("commit", c);
 
