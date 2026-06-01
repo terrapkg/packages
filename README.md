@@ -13,7 +13,7 @@ This monorepo contains the package manifests for all packages in Terra.
 
 ## Installation
 
-The latest detailed instructions are available in our Devdocs: https://developer.fyralabs.com/terra/installing
+The latest detailed instructions are available in our docs: https://docs.terrapkg.com/usage/installing
 
 ### Fedora
 
