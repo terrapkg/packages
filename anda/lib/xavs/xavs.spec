@@ -7,7 +7,7 @@ Name:           xavs
 Version:        0.1.55^%{date}svn%{commit}
 Release:        2%{?dist}
 Summary:        AVS1 (First-generation AVS Standards) library
-License:        GPLv2
+License:        GPL-2.0-only
 URL:            https://xavs.sourceforge.net/
 Patch0:         %{name}-cflags.patch
 BuildRequires:  autoconf
