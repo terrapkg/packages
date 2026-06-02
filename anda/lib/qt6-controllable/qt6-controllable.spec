@@ -50,8 +50,6 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/%{orgname}
 %files
 %license LICENSE.txt
 %doc README.md
-
-
 %{_kf6_metainfodir}/%{appid}.*.xml
 %{_kf6_libdir}/libqt6-controllable.so
 %{_kf6_qmldir}/io/github/rfrench3/controllable/*
