@@ -15,7 +15,7 @@ BuildRequires:  automake
 BuildRequires:  gcc
 BuildRequires:  libtool
 BuildRequires:  subversion
-BuildRequires:  yasm
+%dnl BuildRequires:  yasm
 
 %description
 AVS is a complete standard system including system, video, audio, and digital
