@@ -1,4 +1,4 @@
-policy_module(steamos_manager, 1.0.0)
+policy_module(steamos_manager, 1.0.1)
 
 ########################################
 # Init
@@ -21,6 +21,12 @@ init_dbus_chat(steamos_manager_t)
 
 # Query systemd and overall system status (init_t:system status)
 init_status(steamos_manager_t)
+
+# D-Bus
+gen_require(`
+	type systemd_unit_file_t;
+')
+allow steamos_manager_t systemd_unit_file_t:service status;
 
 ########################################
 # Process permissions
@@ -75,16 +81,16 @@ domain_read_all_domains_state(steamos_manager_t)
 # Tracefs and debugfs
 ########################################
 
-# ftrace access: /sys/kernel/tracing/instances/steamos-manager/
-# debugfs access: /sys/kernel/debug/ath11k/
+# ftrace access
+# debugfs access
 kernel_read_debugfs(steamos_manager_t)
 kernel_manage_debugfs(steamos_manager_t)
 
 gen_require(`
 	type tracefs_t;
 ')
-allow steamos_manager_t tracefs_t:dir search;
-allow steamos_manager_t tracefs_t:dir write;
+allow steamos_manager_t tracefs_t:dir { search write getattr setattr read open create add_name remove_name rmdir };
+allow steamos_manager_t tracefs_t:file { getattr setattr create open read write append unlink };
 
 ########################################
 # Cgroup access
@@ -92,6 +98,12 @@ allow steamos_manager_t tracefs_t:dir write;
 
 # Search the cgroup hierarchy under /sys/fs/cgroup
 fs_search_cgroup_dirs(steamos_manager_t)
+
+# Read cgroup interface files
+gen_require(`
+	type cgroup_t;
+')
+allow steamos_manager_t cgroup_t:file { getattr open read };
 
 ########################################
 # Device access
@@ -110,11 +122,34 @@ optional_policy(`
 	gen_require(`
 		type hidraw_device_t;
 	')
-	allow steamos_manager_t hidraw_device_t:chr_file { open read write getattr ioctl };
+	allow steamos_manager_t hidraw_device_t:chr_file { open read write getattr ioctl watch watch_reads };
+')
+
+optional_policy(`
+	gen_require(`
+		type usb_device_t;
+	')
+	allow steamos_manager_t usb_device_t:chr_file { getattr watch watch_reads };
 ')
 
 # /dev/input/event* — inputplumber
 dev_rw_input_dev(steamos_manager_t)
+dev_getattr_all_chr_files(steamos_manager_t)
+dev_getattr_all_blk_files(steamos_manager_t)
+
+optional_policy(`
+	gen_require(`
+		type hugetlbfs_t;
+	')
+	allow steamos_manager_t hugetlbfs_t:dir getattr;
+')
+
+optional_policy(`
+	gen_require(`
+		type proc_kcore_t;
+	')
+	allow steamos_manager_t proc_kcore_t:file getattr;
+')
 
 # Udev events via netlink socket
 allow steamos_manager_t self:netlink_kobject_uevent_socket { create bind getattr read setopt };
@@ -183,6 +218,17 @@ corecmd_exec_shell(steamos_manager_t)
 
 # Execute libraries/scripts under /usr/lib/ paths
 libs_exec_lib_files(steamos_manager_t)
+
+optional_policy(`
+	gen_require(`
+		type dmidecode_exec_t;
+	')
+	can_exec(steamos_manager_t, dmidecode_exec_t)
+')
+
+optional_policy(`
+	sysnet_exec_ifconfig(steamos_manager_t)
+')
 
 ########################################
 # Network and IPC

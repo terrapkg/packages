@@ -7,5 +7,6 @@ project pkg {
     labels {
         mock = 1
         subrepo = "multimedia"
+        updbranch = 1
    }
 }
