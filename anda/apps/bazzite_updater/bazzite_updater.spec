@@ -1,4 +1,4 @@
-%global orgname io.github.rfrench3.bazzite_updater
+%global appid io.github.rfrench3.bazzite_updater
 
 Name:           bazzite_updater
 Version:        0.7.2
@@ -40,7 +40,7 @@ Requires:       which%{?_isa}
 Requires:       qt6-controllable%{?_isa}
 Requires:       uupd%{?_isa}
 
-Provides:       bazzite_updater = %{version}-%{release}
+Provides:       bazzite_updater = %{evr}
 
 %description
 This is a convenient, easy-to-use interface for updating your Bazzite system.
@@ -50,8 +50,10 @@ This is a convenient, easy-to-use interface for updating your Bazzite system.
 %prep
 %autosetup
 
+%conf
+%cmake
+
 %build
-%cmake 
 %cmake_build
 
 %install
