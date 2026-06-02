@@ -1,4 +1,4 @@
-%global orgname io.github.rfrench3.controllable
+%global appid io.github.rfrench3.controllable
 
 Name:           qt6-controllable
 Version:        0.2.0
@@ -27,7 +27,7 @@ BuildRequires:  cmake(KF6I18n)
 
 Requires:       kf6-ki18n
 
-Provides:       qt6-controllable = %{version}-%{release}
+Provides:       qt6-controllable = %{evr}
 
 %description
 A QML module that provides support for controllers.
@@ -35,8 +35,10 @@ A QML module that provides support for controllers.
 %prep
 %autosetup -n controllable-%{version}
 
-%build
+%conf
 %cmake
+
+%build
 %cmake_build
 
 %install
@@ -50,7 +52,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/%{orgname}
 %doc README.md
 
 
-%{_kf6_metainfodir}/%{orgname}.*.xml
+%{_kf6_metainfodir}/%{appid}.*.xml
 %{_kf6_libdir}/libqt6-controllable.so
 %{_kf6_qmldir}/io/github/rfrench3/controllable/*
 
