@@ -46,14 +46,9 @@ svn co -r %{commit} https://svn.code.sf.net/p/xavs/code/trunk %{name}
 
 %conf
 %configure \
-%ifarch x86_64
-    --enable-asm \
-    --extra-cflags="-Wno-implicit-function-declaration -Wno-incompatible-pointer-types" \
-%else
     --disable-asm \
-%endif
     --enable-pic \
-    --enable-shared 
+    --enable-shared
 
 %build
 %make_build
