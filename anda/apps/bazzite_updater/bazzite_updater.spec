@@ -1,12 +1,12 @@
-%global appid io.github.rfrench3.bazzite_updater
+%global appid io.github.rfrench3.bazzite-updater
 
-Name:           bazzite_updater
-Version:        0.7.2
+Name:           bazzite-updater
+Version:        0.7.3
 Release:        1%{?dist}
 Summary:        Update your Bazzite system
 
 License:        GPL-2.0-or-later
-URL:            https://github.com/rfrench3/bazzite_updater
+URL:            https://github.com/rfrench3/bazzite-updater
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 
 Packager:       Robert French <frenchrobertm@outlook.com>
@@ -40,7 +40,7 @@ Requires:       which%{?_isa}
 Requires:       qt6-controllable%{?_isa}
 Requires:       uupd%{?_isa}
 
-Provides:       bazzite_updater = %{evr}
+Provides:       bazzite-updater = %{evr}
 
 %description
 This is a convenient, easy-to-use interface for updating your Bazzite system.
@@ -66,7 +66,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/%{orgname}.deskto
 %files
 %license LICENSES/{BSD-3-Clause.txt,CC0-1.0.txt,GPL-2.0-or-later.txt,FSFAP.txt}
 %doc README.md
-%{_bindir}/bazzite_updater
+%{_bindir}/bazzite-updater
 %{_appsdir}/%{orgname}.desktop
 %{_metainfodir}/%{orgname}.*.xml
 %{_scalableiconsdir}/%{orgname}.svg
