@@ -60,16 +60,16 @@ This is a convenient, easy-to-use interface for updating your Bazzite system.
 %cmake_install
 
 %check
-appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/%{orgname}.*.xml || :
-desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/%{orgname}.desktop
+appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/%{appid}.*.xml || :
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/%{appid}.desktop
 
 %files
 %license LICENSES/{BSD-3-Clause.txt,CC0-1.0.txt,GPL-2.0-or-later.txt,FSFAP.txt}
 %doc README.md
 %{_bindir}/bazzite-updater
-%{_appsdir}/%{orgname}.desktop
-%{_metainfodir}/%{orgname}.*.xml
-%{_scalableiconsdir}/%{orgname}.svg
+%{_appsdir}/%{appid}.desktop
+%{_metainfodir}/%{appid}.*.xml
+%{_scalableiconsdir}/%{appid}.svg
 
 %changelog
 * Thu Feb 05 2026 Robert French
