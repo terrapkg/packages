@@ -1,0 +1,26 @@
+From 8551dd3f2914cda19cfe4389b1167f45ddbf8190 Mon Sep 17 00:00:00 2001
+From: Terra Packaging Team <terra@fyralabs.com>
+Date: Mon, 1 Jun 2026 23:19:47 -0500
+Subject: [PATCH] Fix VapourSynth dlopen
+
+See: https://bugzilla.redhat.com/show_bug.cgi?id=2345698
+---
+ libavformat/vapoursynth.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/libavformat/vapoursynth.c b/libavformat/vapoursynth.c
+index 0fa5aff..e6ac20b 100644
+--- a/libavformat/vapoursynth.c
++++ b/libavformat/vapoursynth.c
+@@ -49,7 +49,7 @@
+ #else
+   #include <dlfcn.h>
+   #define VSSCRIPT_NAME "libvapoursynth-script"
+-  #define VSSCRIPT_LIB VSSCRIPT_NAME SLIBSUF
++  #define VSSCRIPT_LIB VSSCRIPT_NAME SLIBSUF ".0"
+ #endif
+ 
+ struct VSState {
+-- 
+2.54.0
+
