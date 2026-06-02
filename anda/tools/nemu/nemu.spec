@@ -1,5 +1,3 @@
-%global debug_package %nil
-
 Name:           nemu
 Version:        3.4.0
 Release:        1%?dist
@@ -31,7 +29,7 @@ Requires:       tigervnc
 
 %prep
 %autosetup 
-%cmake -DNM_WITH_NETWORK_MAP=ON -DNM_WITH_DBUS=ON -DNM_WITH_REMOTE=ON -DNM_WITH_USB=ON
+%cmake -DNM_WITH_NETWORK_MAP=ON -DNM_WITH_DBUS=ON -DNM_WITH_REMOTE=ON -DNM_WITH_USB=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo
 
 %build
 %cmake_build

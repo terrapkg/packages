@@ -1,8 +1,8 @@
 %define debug_package %nil
 
 Name:		args-hxx
-Version:	6.4.7
-Release:	1%?dist
+Version:	6.4.16
+Release:	1%{?dist}
 Summary:	A simple header-only C++ argument parser library
 License:	MIT
 URL:		https://github.com/Taywee/args

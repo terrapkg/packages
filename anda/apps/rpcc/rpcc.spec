@@ -1,10 +1,10 @@
-%global commit 9527e92f697ad380ce8669a2b6c61260abafab19
-%global commit_date 20251126
+%global commit 0e6cd08585bccd8f56c69bf8785777c2e3e67c4a
+%global commit_date 20260520
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           rpcc
 Version:        0~%commit_date.git~%shortcommit
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Raspberry Pi Control Centre - an extensible settings application for the Raspberry Pi Desktop
 License:        BSD-3-Clause
 URL:            https://github.com/raspberrypi-ui/rpcc
@@ -36,8 +36,10 @@ A number of packages contain plugins which are installed as standard on Raspberr
 %prep
 %autosetup -n rpcc-%commit
 
-%build
+%conf
 %meson
+
+%build
 %meson_build
 
 %install

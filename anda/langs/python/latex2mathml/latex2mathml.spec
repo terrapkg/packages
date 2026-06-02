@@ -2,8 +2,8 @@
 %global _desc Pure Python library for LaTeX to MathML conversion.
 
 Name:			python-%{pypi_name}
-Version:		3.78.1
-Release:		1%?dist
+Version:		3.81.0
+Release:		1%{?dist}
 Summary:		Pure Python library for LaTeX to MathML conversion
 License:		MIT
 URL:			https://github.com/roniemartinez/latex2mathml
@@ -17,6 +17,7 @@ BuildRequires:  python3-pip
 BuildRequires:  python3-poetry-core
 BuildRequires:  python3-installer
 BuildRequires:  python3-build
+BuildRequires:  python3-hatchling
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 

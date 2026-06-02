@@ -1,13 +1,13 @@
-Summary: Lightweight window manager with virtual workspaces
 Name: ctwm
+Summary: Lightweight window manager with virtual workspaces
 Version: 4.1.0
-Release: 1%?dist
+Release: 2%?dist
 URL: https://ctwm.org
-BuildRequires: libjpeg-turbo-devel libX11-devel libXext-devel libXmu-devel libXpm-devel libXt-devel libXrandr-devel cmake gcc m4
+BuildRequires: libjpeg-turbo-devel libX11-devel libXext-devel libXmu-devel libXpm-devel libXt-devel libXrandr-devel cmake gcc m4 desktop-file-utils
 Source0: https://www.ctwm.org/dist/%{name}-%{version}.tar.xz
 Source1: %{name}.desktop
 License: MIT
-Requires: m4 
+Requires: m4
 # Derived from RPMSphere's packaging
 
 %description
@@ -22,7 +22,10 @@ CTWM is a window manager based on TWM (with virtual workspaces added).
 
 %install
 %cmake_install
-%{__install} -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/xsessions/%{name}.desktop
+install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/xsessions/%{name}.desktop
+
+%check
+desktop-file-validate %{buildroot}%{_datadir}/xsessions/%{name}.desktop
 
 %files
 %doc README.md CHANGES.md
@@ -35,6 +38,8 @@ CTWM is a window manager based on TWM (with virtual workspaces added).
 %{_datadir}/examples/ctwm/system.ctwmrc
 
 %changelog
+* Wed Dec 24 2025 Owen Zimmerman <owen@fyralabs.com>
+- Add %check section
 * Tue Dec 17 2024 Owen Zimmerman <owen@fyralabs.com>
 - Add .desktop and .rhai file, fix dependancies, and switch to .tar.xz source (smaller download)
 * Thu Jun 27 2024 Jaiden Riordan <jade@fyralabs.com> - 4.1.0
@@ -52,4 +57,3 @@ CTWM is a window manager based on TWM (with virtual workspaces added).
 * Tue May  3 2005 Richard Levitte <richard@levitte.org>
 - Received the original from Johan Vromans. Adjusted it to become
   an official .spec file.
-  

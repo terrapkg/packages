@@ -52,8 +52,8 @@
 %global fontdescription   %{expand:
 Versatile typeface for code, from code.}
 
-Version:		33.3.5
-Release:		1%?dist
+Version:		34.6.1
+Release:		1%{?dist}
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
 Summary:		Versatile typeface for code, from code.
 BuildRequires:  rpm_macro(fontpkg)

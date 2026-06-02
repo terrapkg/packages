@@ -5,34 +5,31 @@
 %global __brp_strip %{nil}
 
 Name:           nvidia-kmod-common
-Version:        580.105.08
-Release:        1%?dist
+Version:        610.43.02
+Release:        1%{?dist}
 Summary:        Common file for NVIDIA's proprietary driver kernel modules
 Epoch:          3
 License:        NVIDIA License
 URL:            http://www.nvidia.com/object/unix.html
-
-BuildArch:      noarch
-
 Source0:        http://download.nvidia.com/XFree86/Linux-x86_64/%{version}/NVIDIA-Linux-x86_64-%{version}.run
-Source16:       MODULE_VARIANT.txt
 Source17:       nvidia-boot-update
-Source18:       nvidia-modeset.conf
-Source19:       nvidia.conf
-Source20:       60-nvidia.rules
-Source21:       99-nvidia.conf
-
+Source19:       nvidia-modeset.conf
+Source20:       nvidia.conf
+Source21:       60-nvidia.rules
+Source24:       99-nvidia.conf
 # UDev rule location (_udevrulesdir) and systemd macros:
 BuildRequires:  systemd-rpm-macros
-
 Requires:       dracut
 Requires:       nvidia-modprobe
 Requires:       nvidia-driver = %{?epoch:%{epoch}:}%{version}
 Requires:       nvidia-driver-libs = %{?epoch:%{epoch}:}%{version}
-Requires:       (nvidia-open-kmod = %{?epoch:%{epoch}:}%{version} or nvidia-kmod = %{?epoch:%{epoch}:}%{version})
+Requires:       nvidia-kmod = %{?epoch:%{epoch}:}%{version}
+Requires:       gcc-c++
 Provides:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
-Provides:       nvidia-open-kmod-common = %{?epoch:%{epoch}:}%{version}
+Obsoletes:      nvidia-open-kmod-common < %{?epoch:%{epoch}:}%{version}
 Obsoletes:      cuda-nvidia-kmod-common < %{?epoch:%{epoch}:}%{version}
+BuildArch:      noarch
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 This package provides the common files required by all NVIDIA kernel module
@@ -47,47 +44,37 @@ sh %{SOURCE0} -x --target nvidia-kmod-%{version}-x86_64
 install -p -m 0755 -D %{SOURCE17} %{buildroot}%{_bindir}/nvidia-boot-update
 
 # Nvidia modesetting support:
-install -p -m 0644 -D %{SOURCE18} %{buildroot}%{_sysconfdir}/modprobe.d/nvidia-modeset.conf
+install -p -m 0644 -D %{SOURCE19} %{buildroot}%{_sysconfdir}/modprobe.d/nvidia-modeset.conf
 
 # Load nvidia-uvm, enable complete power management:
-install -p -m 0644 -D %{SOURCE19} %{buildroot}%{_modprobedir}/nvidia.conf
+install -p -m 0644 -D %{SOURCE20} %{buildroot}%{_modprobedir}/nvidia.conf
 
 # Avoid Nvidia modules getting in the initrd:
-install -p -m 0644 -D %{SOURCE21} %{buildroot}%{_dracut_conf_d}/99-nvidia.conf
+install -p -m 0644 -D %{SOURCE24} %{buildroot}%{_dracut_conf_d}/99-nvidia.conf
 
 # UDev rules
 # https://github.com/NVIDIA/nvidia-modprobe/blob/master/modprobe-utils/nvidia-modprobe-utils.h#L33-L46
 # https://github.com/negativo17/nvidia-kmod-common/issues/11
 # https://github.com/negativo17/nvidia-driver/issues/27
-install -p -m 644 -D %{SOURCE20} %{buildroot}%{_udevrulesdir}/60-nvidia.rules
+install -p -m 644 -D %{SOURCE21} %{buildroot}%{_udevrulesdir}/60-nvidia.rules
 
 # Firmware files:
 mkdir -p %{buildroot}%{_prefix}/lib/firmware/nvidia/%{version}/
 install -p -m 644 firmware/* %{buildroot}%{_prefix}/lib/firmware/nvidia/%{version}
 
+# Bug report script
+install -p -m 755 -D nvidia-bug-report.sh %{buildroot}%{_bindir}/nvidia-bug-report.sh
+
 %post
 %{_bindir}/nvidia-boot-update post
 
-# Old kernel.conf rewritten as a doc file.
-cp %{SOURCE18} .
-
-# Fallback service. Fall back to Nouveau if NVIDIA drivers fail.
-# This is actually from RPM Fusion.
-%dnl install -Dm644 %{SOURCE22} -t %{buildroot}%{_unitdir}
-%dnl install -Dm644 %{SOURCE23} -t %{buildroot}%{_udevrulesdir}
-
-%pre
-# Remove the kernel command line adjustments one last time when doing an upgrade
-# from a version that was still setting up the command line parameters:
-if [ "$1" -eq "2" ] && [ -x %{_bindir}/nvidia-boot-update ]; then
+%preun
+if [ "$1" -eq "0" ]; then
   %{_bindir}/nvidia-boot-update preun
-
 fi ||:
 
-%triggerin -- nvidia-kmod,nvidia-open-kmod
-dracut --regenerate-all --force
-
 %files
+%{_bindir}/nvidia-bug-report.sh
 %{_dracut_conf_d}/99-nvidia.conf
 %{_modprobedir}/nvidia.conf
 %dir %{_prefix}/lib/firmware
@@ -98,4 +85,5 @@ dracut --regenerate-all --force
 %{_udevrulesdir}/60-nvidia.rules
 
 %changelog
-%autochangelog
+* Mon Apr 13 2026 Gilver E. <roachy@fyralabs.com> - 3:595.58.03-2
+- Update spec for Terra packaging team

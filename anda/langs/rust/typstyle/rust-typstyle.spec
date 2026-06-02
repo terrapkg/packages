@@ -4,7 +4,7 @@
 %global crate typstyle
 
 Name:           rust-typstyle
-Version:        0.14.0
+Version:        0.14.4
 Release:        1%?dist
 Summary:        CLI for Typstyle
 

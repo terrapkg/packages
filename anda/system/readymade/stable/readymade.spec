@@ -1,7 +1,7 @@
 %global crate readymade
 Name:           readymade
-Version:        0.12.6
-Release:        1%?dist
+Version:        0.14.1
+Release:        1%{?dist}
 Summary:        Install ready-made distribution images!
 License:        GPL-3.0-or-later
 URL:            https://github.com/FyraLabs/readymade
@@ -9,6 +9,9 @@ Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 Source1:        https://github.com/FyraLabs/rdms_proc_macros/archive/HEAD.tar.gz
 BuildRequires:	anda-srpm-macros rust-packaging mold
 BuildRequires:  pkgconfig(libhelium-1)
+BuildRequires:  pkgconfig(openssl)
+BuildRequires:  glibc-all-langpacks
+BuildRequires:  pkgconfig(libacl)
 BuildRequires:  clang-devel
 BuildRequires:  cmake
 
@@ -32,7 +35,7 @@ This package contains the configuration files for Readymade to install Ultramari
 %prep
 %autosetup
 tar xf %{S:1}
-rmdir taidan_proc_macros && mv rdms_proc_macros* taidan_proc_macros
+rmdir crates/taidan_proc_macros && mv rdms_proc_macros* crates/taidan_proc_macros
 %cargo_prep_online
 
 %build
@@ -56,4 +59,3 @@ ln -sf %{_datadir}/applications/com.fyralabs.Readymade.desktop %{buildroot}%{_da
 %_datadir/applications/liveinst.desktop
 %ghost %_datadir/readymade
 %_datadir/icons/hicolor/scalable/apps/com.fyralabs.Readymade.svg
-

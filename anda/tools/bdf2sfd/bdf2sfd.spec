@@ -1,5 +1,5 @@
 Name:			bdf2sfd
-Version:		1.1.9
+Version:		1.2.0
 Release:		1%?dist
 Summary:		BDF to SFD converter, allowing to vectorize bitmap fonts
 License:		BSD-2-Clause

@@ -2,7 +2,7 @@
 
 Name:			senpai
 Version:		0.4.1
-Release:		2%?dist
+Release:		3%?dist
 Summary:		Your everyday IRC student
 License:		ISC
 URL:			https://sr.ht/~delthas/senpai/

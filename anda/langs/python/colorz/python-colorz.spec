@@ -2,7 +2,7 @@
 
 Name:           python-%{pypi_name}
 Version:        1.0.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Color scheme generator
 License:        MIT
 URL:            https://github.com/metakirby5/colorz
@@ -12,7 +12,7 @@ BuildRequires:  python3-devel
 BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(setuptools)
 BuildArch:      noarch
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 A k-means color scheme generator.

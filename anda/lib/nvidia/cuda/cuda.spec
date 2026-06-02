@@ -2,8 +2,8 @@
 %global major_package_version 13-0
 
 Name:           cuda
-Version:        13.0.85
-Release:        5%{?dist}
+Version:        13.3.40
+Release:        1%{?dist}
 Summary:        NVIDIA Compute Unified Device Architecture Toolkit
 Epoch:          1
 License:        CUDA Toolkit
@@ -58,7 +58,7 @@ Requires:       libnvjpeg%{?_isa}
 Conflicts:      %{name}-driver-devel-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
 Conflicts:      %{name}-libraries-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
 # Explicitly declare the dependency or libcuda.so.1()(64bit) will pull in xorg-x11-drv-cuda-libs
-Requires:       nvidia-driver-cuda-libs%{_isa}
+Requires:       (nvidia-driver-cuda-libs%{_isa} or nvidia-driver-580-cuda-libs%{_isa})
 
 %description libs
 Contains the CUDA run-time library required to run CUDA application natively.

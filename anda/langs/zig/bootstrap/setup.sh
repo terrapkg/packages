@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-version=0.16.0-dev.1484+d0ba6642b
+version=0.17.0-dev.639+284ab0ad8
 
 mirrors=()
 
@@ -21,8 +21,8 @@ if [ "$1" == "fetch" ]; then
      randomize_mirrors
    done
    echo -e "\033[0;32mNote:\033[0m Selected mirror $mirror"
-   curl -A "rpmdev-spectool" -H "Accept-Encoding: identity" -O ${mirror}/zig-${version}.tar.xz
-   curl -A "rpmdev-spectool" -H "Accept-Encoding: identity" -O ${mirror}/zig-${version}.tar.xz.minisig
+   curl -A "rpmdev-spectool" -H "Accept-Encoding: identity" -O ${mirror}/zig-${version}.tar.xz?source=terrapkg.com
+   curl -A "rpmdev-spectool" -H "Accept-Encoding: identity" -O ${mirror}/zig-${version}.tar.xz.minisig?source=terrapkg.com
 elif [ "$1" == "version" ]; then
    echo $version
 # Grab a random mirror. For debugging purposes.

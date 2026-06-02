@@ -14,12 +14,12 @@
 %define _prefix 	/usr/share/wine-staging
 %undefine _hardened_build
 
-%global srcmajor 10.x
+%global srcmajor 11.x
 
 
 Name:       wine-staging
-Version:    10.20
-Release:    1%?dist
+Version:    11.10
+Release:    1%{?dist}
 Epoch:      1
 Summary:    WINE Is Not An Emulator - runs MS Windows programs
 License:    LGPL-2.0-or-later
@@ -369,6 +369,7 @@ done
 %{_mandir}/man?/winepath.?*
 %{_mandir}/man?/wineserver.?*
 %dir %{_datadir}/wine
+%{_datadir}/wine/winmd/
 %{_datadir}/wine/wine.inf
 %{_datadir}/wine/nls/*.nls
 %{_datadir}/applications/*.desktop

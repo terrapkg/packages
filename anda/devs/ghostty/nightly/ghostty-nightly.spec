@@ -1,15 +1,15 @@
-%global commit 9baf37a9b2a1119c697b0eabf32391bfb41ef287
+%global commit 5758e149319d244cbf2d21d1ae8d1376adaf1f91
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global fulldate 2025-11-28
+%global fulldate 2026-06-01
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
-%global ver 1.3.0
+%global ver 1.3.2
 %global base_name ghostty
 %global appid com.mitchellh.%{base_name}
 
 Name:           %{base_name}-nightly
 Version:        %{ver}~tip^%{commit_date}git%{shortcommit}
-Release:        1%?dist
+Release:        1%{?dist}
 %if 0%{?fedora} <= 41
 Epoch:          1
 %endif
@@ -55,7 +55,7 @@ Provides:       %{base_name}-tip = %{ver}^%{commit_date}git%{shortcommit}
 Provides:       %{name} = %{commit_date}.%{shortcommit}
 %endif
 Obsoletes:      %{name} = 20250130.04d3636
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 👻 Ghostty is a fast, feature-rich, and cross-platform terminal emulator that uses platform-native UI and GPU acceleration.
@@ -118,6 +118,7 @@ This package allows Ghostty to interact with KIO.
 Summary:        Nautilus menu support for Ghostty
 Supplements:    (%{name} and nautilus)
 Requires:       %{name} = %{evr}
+Requires:       nautilus-python
 BuildArch:      noarch
 
 %description    nautilus
@@ -184,7 +185,7 @@ Ghostty's terminfo. Needed for basic terminal function.
 Summary:        The libghostty-vt libraries
 
 %description -n libghostty-vt-nightly
-This package contains the libghostty-vt libraries, the first of many linghostty libaries in development.
+This package contains the libghostty-vt libraries, the first of many libghostty libaries in development.
 
 %package -n     libghostty-vt-nightly-devel
 Summary:        Development files for libghostty-vt
@@ -281,6 +282,7 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %{_datadir}/%{base_name}/shell-integration/bash/%{base_name}.bash
 %{_datadir}/%{base_name}/shell-integration/elvish/lib/%{base_name}-integration.elv
 %{_datadir}/%{base_name}/shell-integration/fish/vendor_conf.d/%{base_name}-shell-integration.fish
+%{_datadir}/%{base_name}/shell-integration/nushell/vendor/autoload/%{base_name}.nu
 %{_datadir}/%{base_name}/shell-integration/zsh/.zshenv
 %{_datadir}/%{base_name}/shell-integration/zsh/%{base_name}-integration
 
@@ -317,10 +319,10 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 - Updated for Zig 0.14.0
 - Updated for ncurses-term compatibility in Fedora 42 and Rawhide
 * Wed Mar 05 2025 Gilver E. <rockgrub@disroot.org>
-- Update to 1.1.3~tip^20250305git66e8d91-2%{?dist}
+- Update to 1.1.3~tip^20250305git66e8d91-2
  * Ghostty now has localization support via gettext as well as corresponding localization files
 * Fri Jan 31 2025 Gilver E. <rockgrub@disroot.org>
-- Update to 1.1.1~tip^20250131git5508e7-1%{?dist}
+- Update to 1.1.1~tip^20250131git5508e7-1
  * Low GHSA-98wc-794w-gjx3: Ghostty leaked file descriptors allowing the shell and any of its child processes to impact other Ghostty terminal instances
  * Better Git versioning scheme
  * Ghostty terminfo source files are now a subpackage

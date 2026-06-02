@@ -2,33 +2,45 @@
 %global         zig_arches x86_64 aarch64 riscv64 %{mips64}
 # Signing key from https://ziglang.org/download/
 %global         public_key RWSGOq2NVecA2UPNdBUZykf1CCb147pkmdtYxgb3Ti+JO/wCYvhbAb/U
-# Not needed yet
-%if 0%{?fedora} >= 42 || 0%{?rhel} >= 9
-%define         llvm_compat 20
+%if 0%{?fedora} >= 46
+%define         llvm_compat 22
 %endif
-%global         llvm_version 20.0.0
+%global         llvm_version 22.0.0
 %bcond bootstrap 0
 %bcond docs      %{without bootstrap}
 %bcond test      1
+# GCC < 16.0 miscompiles on RISC-V
+%ifarch riscv64
+%if 0%{?fedora} < 44
+%global toolchain clang
+%endif
+%endif
 %global zig_cache_dir %{builddir}/zig-cache
 
 Name:           zig-master
-Version:        0.16.0~dev.1484+d0ba6642b
-Release:        2%?dist
+Version:        0.17.0~dev.639+284ab0ad8
+Release:        2%{?dist}
 Summary:        Master builds of the Zig language
 License:        MIT AND NCSA AND LGPL-2.1-or-later AND LGPL-2.1-or-later WITH GCC-exception-2.0 AND GPL-2.0-or-later AND GPL-2.0-or-later WITH GCC-exception-2.0 AND BSD-3-Clause AND Inner-Net-2.0 AND ISC AND LicenseRef-Fedora-Public-Domain AND GFDL-1.1-or-later AND ZPL-2.1
 URL:            https://ziglang.org
-Source0:        zig-%{version_no_tilde}.tar.xz
-Source1:        zig-%{version_no_tilde}.tar.xz.minisig
+%global archive_name zig-%{version_no_tilde}.tar.xz
+Source0:        %{archive_name}
+Source1:        %{archive_name}.minisig
 Patch0:         0000-remove-native-lib-directories-from-rpath.patch
-Patch3:         0005-link.Elf-add-root-directory-of-libraries-to-linker-p.patch
+%if %{defined rhel}
+Patch1:         0001-Remove-unsupported-LLVM-targets-for-EPEL.patch
+%endif
 BuildRequires:  cmake
+%if %["%{toolchain}" == "clang"]
+BuildRequires:  clang
+%else
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
+%endif
 BuildRequires:  libxml2-devel
-BuildRequires:  llvm-devel
-BuildRequires:  clang-devel
-BuildRequires:  lld-devel
+BuildRequires:  llvm%{?llvm_compat}-devel
+BuildRequires:  clang%{?llvm_compat}-devel
+BuildRequires:  lld%{?llvm_compat}-devel
 BuildRequires:  zlib-devel
 # for man page generation
 BuildRequires:  help2man
@@ -48,7 +60,7 @@ Requires:       %{name}-libs = %{version}
 # Apache-2.0 WITH LLVM-exception OR NCSA OR MIT
 Provides:       bundled(compiler-rt) = %{llvm_version}
 # LGPL-2.1-or-later AND SunPro AND LGPL-2.1-or-later WITH GCC-exception-2.0 AND BSD-3-Clause AND GPL-2.0-or-later AND LGPL-2.1-or-later WITH GNU-compiler-exception AND GPL-2.0-only AND ISC AND LicenseRef-Fedora-Public-Domain AND HPND AND CMU-Mach AND LGPL-2.0-or-later AND Unicode-3.0 AND GFDL-1.1-or-later AND GPL-1.0-or-later AND FSFUL AND MIT AND Inner-Net-2.0 AND X11 AND GPL-2.0-or-later WITH GCC-exception-2.0 AND GFDL-1.3-only AND GFDL-1.1-only
-Provides:       bundled(glibc) = 2.41
+Provides:       bundled(glibc) = 2.43
 # Apache-2.0 WITH LLVM-exception OR MIT OR NCSA
 Provides:       bundled(libcxx) = %{llvm_version}
 # Apache-2.0 WITH LLVM-exception OR MIT OR NCSA
@@ -63,7 +75,7 @@ Provides:       bundled(musl) = 1.2.5
 Provides:       bundled(wasi-libc) = d03829489904d38c624f6de9983190f1e5e7c9c5
 Conflicts:      zig
 ExclusiveArch:  %{zig_arches}
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 # Must be defined AFTER the version is
 %global zig_build_options %{shrink: \
@@ -117,14 +129,18 @@ Documentation for Zig. For more information, visit %{url}
 %endif
 
 %prep
-/usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
+/usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key} | grep -F -C5 "file:%{archive_name}" || exit 1
 %autosetup -p1 -n zig-%{version_no_tilde}
 %if %{without bootstrap}
 # Ensure that the pre-build stage1 binary is not used
 rm -f stage1/zig1.wasm
 %endif
 
-%build
+%conf
+# Force the correct LLVM version
+%if %{defined llvm_compat}
+export LLVM_DIR=%{_libdir}/llvm%{?llvm_compat}/%{_lib}/cmake
+%endif
 # zig doesn't know how to dynamically link llvm on its own so we need cmake to generate a header ahead of time
 # if we provide the header we need to also build zigcpp
 
@@ -135,7 +151,7 @@ rm -f stage1/zig1.wasm
     -DCMAKE_C_FLAGS_RELWITHDEBINFO:STRING="-DNDEBUG -Wno-unused" \
     -DCMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING="-DNDEBUG -Wno-unused" \
     \
-    -DZIG_EXTRA_BUILD_ARGS:STRING="--verbose;--build-id=sha1" \
+    -DZIG_EXTRA_BUILD_ARGS:STRING="--verbose;--build-id=sha1;-Dno-langref=true" \
     -DZIG_SHARED_LLVM:BOOL=true \
     -DZIG_PIE:BOOL=true \
     \
@@ -144,6 +160,8 @@ rm -f stage1/zig1.wasm
     \
     -DZIG_VERSION:STRING="%(v=%{version_no_tilde}; echo ${v:0:6})"
 
+
+%build
 %if %{with bootstrap}
 %cmake_build --target stage3
 %else
@@ -161,14 +179,16 @@ help2man --no-discard-stderr --no-info "./zig-out/bin/zig" --version-option=vers
 # Zig has an extremely annoying issue with transitive failures when trying to build the docs, retry until it succeeds
 max=3
 attempt=1
-while ./zig-out/bin/zig build docs \
+while
+  ./zig-out/bin/zig build docs \
     --verbose \
     --global-cache-dir "%{zig_cache_dir}" \
-    -Dversion-string="%(v=%{version_no_tilde}; echo ${v:0:6})"; [[ $? -ne 0 ]];
+    -Dversion-string="%(v=%{version_no_tilde}; echo ${v:0:6})"
+  [[ $? != 0 ]]
 do
-  echo "Transitive failure. Trying again."
+  echo "Transitive failure. Trying again." >&2
 
-  if [[ $attempt -eq $max ]]
+  if [[ $attempt == $max ]]
   then
     break
   fi

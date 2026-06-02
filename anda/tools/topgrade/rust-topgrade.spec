@@ -3,8 +3,8 @@
 
 Name:           rust-topgrade
 # renovate: datasource=github-releases depName=topgrade-rs/topgrade
-Version:        16.6.0
-Release:        1%?dist
+Version:        17.5.1
+Release:        1%{?dist}
 Summary:        Upgrade all the things
 
 SourceLicense:  GPL-3.0-or-later
@@ -12,21 +12,17 @@ License:        ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache
 URL:            https://crates.io/crates/topgrade
 Source:         %crates_source
 # Automatically generated patch to strip dependencies and normalize metadata
-Patch:          topgrade-fix-metadata-auto.diff
 
 BuildRequires:  cargo
 BuildRequires:  rust
 BuildRequires:  rpm_macro(cargo_install)
 BuildRequires:  anda-srpm-macros mold
 
-%description
+%global _description %{expand:
 Keeping your system up to date usually involves invoking multiple package managers.
 This results in big, non-portable shell one-liners saved in your shell.
 To remedy this, Topgrade detects which tools you use and
-runs the appropriate commands to update them.
-
-%global _description %{expand:
-Upgrade all the things.}
+runs the appropriate commands to update them.}
 
 %description %{_description}
 
@@ -38,7 +34,6 @@ Summary:        %{summary}
 %files       -n %{crate}
 %license LICENSE
 %license LICENSE.dependencies
-%doc BREAKINGCHANGES.md
 %doc CHANGELOG.md
 %doc CODE_OF_CONDUCT.md
 %doc CONTRIBUTING.md
@@ -48,7 +43,7 @@ Summary:        %{summary}
 %{_bindir}/topgrade
 
 %prep
-%autosetup -n %{crate}-%{version} -p1
+%autosetup -n %{crate}-%{version}
 %cargo_prep_online
 
 %build

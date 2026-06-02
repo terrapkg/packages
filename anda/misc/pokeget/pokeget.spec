@@ -5,7 +5,7 @@
 
 Name:          %{crate}
 Version:       1.6.7
-Release:       1%?dist
+Release:       2%{?dist}
 SourceLicense: MIT
 License:       (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND BSD-2-Clause AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MIT AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT)
 Summary:       A better Rust version of pokeget.
@@ -16,7 +16,7 @@ BuildRequires: cargo-rpm-macros
 BuildRequires: mold
 Provides:      bundled(%{pname}) = %{pcommit}
 Obsoletes:     %{crate}-rs < %{version}-%{release}
-Packager:      Gilver E. <rockgrub@disroot.org>, madonuko <mado@fyralabs.com>
+Packager:      Gilver E. <roachy@fyralabs.com>, madonuko <mado@fyralabs.com>
 
 %description
 Successor to pokeget, written in Rust.

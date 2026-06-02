@@ -1,25 +1,24 @@
-Name:           nvidia-persistenced
-Version:        580.105.08
-Release:        1%?dist
-Summary:        A daemon to maintain persistent software state in the NVIDIA driver
-Epoch:          3
-License:        GPLv2+
-URL:            http://www.nvidia.com/object/unix.html
-ExclusiveArch:  x86_64 aarch64
-
-Source0:        https://download.nvidia.com/XFree86/%{name}/%{name}-%{version}.tar.bz2
-Source1:        %{name}.service
-
-BuildRequires:  gcc
-BuildRequires:  libtirpc-devel
-BuildRequires:  m4
-
-# For Fedora systemd-rpm-macros would be enough:
-BuildRequires:      systemd-devel
-Requires(post):     systemd
-Requires(preun):    systemd
-Requires(postun):   systemd
-Requires:           libnvidia-cfg%{?_isa} >= %{?epoch:%{epoch}:}%{version}
+Name:             nvidia-persistenced
+Version:          610.43.02
+Release:          1%{?dist}
+Summary:          A daemon to maintain persistent software state in the NVIDIA driver
+Epoch:            3
+License:          GPL-2.0-or-later
+URL:              http://www.nvidia.com/object/unix.html
+Source0:          https://download.nvidia.com/XFree86/%{name}/%{name}-%{version}.tar.bz2
+Source1:          %{name}.service
+Source2:          %{name}-sysusers.conf
+BuildRequires:    gcc
+BuildRequires:    libtirpc-devel
+BuildRequires:    m4
+BuildRequires:    sed
+BuildRequires:    systemd-rpm-macros
+Requires:         libnvidia-cfg%{?_isa} >= %{?epoch:%{epoch}:}%{version}
+Requires(post):   systemd
+Requires(preun):  systemd
+Requires(postun): systemd
+ExclusiveArch:    x86_64 aarch64
+Packager:         Terra Packaging Team <terra@fyralabs.com>
 
 %description
 The %{name} utility is used to enable persistent software state in the NVIDIA
@@ -47,13 +46,11 @@ make %{?_smp_mflags} \
     PREFIX=%{_prefix} \
     STRIP_CMD=true
 
-%if 0%{?fedora} < 42
-mv %{buildroot}%{_bindir} %{buildroot}%{_sbindir}
-%endif
-mkdir -p %{buildroot}%{_sharedstatedir}/%{name}
-
 # Systemd unit files
-install -p -m 644 -D %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
+install -Dpm644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
+
+# Systemd user
+install -Dpm644 %{SOURCE2} %{buildroot}%{_sysusersdir}/%{name}.conf
 
 %post
 %systemd_post %{name}.service
@@ -67,13 +64,10 @@ install -p -m 644 -D %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 %files
 %license COPYING
 %{_mandir}/man1/%{name}.1.*
-%if 0%{?fedora} < 42
-%{_sbindir}/%{name}
-%else
 %{_bindir}/%{name}
-%endif
 %{_unitdir}/%{name}.service
-%{_sharedstatedir}/%{name}
+%{_sysusersdir}/%{name}.conf
 
 %changelog
-%autochangelog
+* Mon Apr 13 2026 Gilver E. <roachy@fyralabs.com> - 3:595.58.03-2
+- Update spec for Terra packaging team

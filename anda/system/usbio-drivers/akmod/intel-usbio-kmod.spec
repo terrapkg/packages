@@ -8,22 +8,19 @@
 Name:           %{modulename}-kmod
 Summary:        Kernel drivers for the USBIO Extension
 Version:        0^%{commit_date}git.%{shortcommit}
-Release:        1%?dist
+Release:        4%{?dist}
 License:        GPL-2.0-only
 URL:            https://github.com/intel/usbio-drivers
 Source0:        %{url}/archive/%{commit}.tar.gz#/usbio-drivers-%{shortcommit}.tar.gz
-Patch0:         https://github.com/jwrdegoede/usbio-drivers/commit/d5f08986936a7fda0cce543c73fb8d9bab76eae2.patch
-Patch1:         https://github.com/jwrdegoede/usbio-drivers/commit/47b34a6f467eebb4e9fc59f5e25618fe760fbf33.patch
-Patch2:         https://github.com/jwrdegoede/usbio-drivers/commit/0eae85556558b410635ad03ed5eccb9648e11fce.patch
 BuildRequires:  elfutils-libelf-devel
 BuildRequires:  gcc
 BuildRequires:  kmodtool
 Requires:       %{modulename}-kmod-common = %{?epoch:%{epoch}:}%{version}
 Requires:       akmods
 Requires:       akmod-intel-ipu6
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
-%{expand:%(kmodtool --target %{_target_cpu} --repo terra --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
+%{expand:%(kmodtool --target %{_target_cpu} --repo terrapkg.com --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 
 %description
 This package enables USBIO Extension drivers on Intel Alder Lake, Raptor Lake, Meteor Lake and Lunar Lake platforms.
@@ -33,7 +30,7 @@ This package enables USBIO Extension drivers on Intel Alder Lake, Raptor Lake, M
 %{?kmodtool_check}
 
 # print kmodtool output for debugging purposes:
-kmodtool  --target %{_target_cpu} --repo terra --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
+kmodtool  --target %{_target_cpu} --repo terrapkg.com --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
 %autosetup -p1 -n usbio-drivers-%{commit}
 rm -fr .github

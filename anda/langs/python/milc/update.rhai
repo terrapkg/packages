@@ -1,1 +1,1 @@
-rpm.version(gh("clueboard/milc"));
+rpm.version(pypi("milc"));

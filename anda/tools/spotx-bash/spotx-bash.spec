@@ -1,10 +1,10 @@
-%global commit e0d76eef942f3e7754ef79e03036c5a6bb32d5c1
-%global commit_date 20251121
+%global commit fa8730d16e7acfb70744be677ac9b7aa3e3eaf3c
+%global commit_date 20260523
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           spotx-bash
 Version:        %commit_date.git~%shortcommit
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Adblock for the Spotify desktop client on Linux.
 License:        MIT
 URL:            https://github.com/SpotX-Official/SpotX-Bash
@@ -12,6 +12,7 @@ Source0:        %url/archive/%commit.tar.gz
 Requires:       bash
 BuildArch:      noarch
 Provides:       spotx spotx-linux spot-x spotx.sh
+Packager:       Its-J <jonah@fyralabs.com>
 
 %description
 %summary
@@ -21,16 +22,18 @@ Provides:       spotx spotx-linux spot-x spotx.sh
 
 %install
 mkdir -p %{buildroot}%{_bindir}
-install -Dm 755 spotx.sh %buildroot%{_bindir}/spotx
-
-%post
-%{__ln_s} -f %{_bindir}/spotx %{_bindir}/spotx.sh
+install -Dm 755 spotx.sh %{buildroot}%{_bindir}/spotx
+%{__ln_s} -f %{_bindir}/spotx %{buildroot}%{_bindir}/spotx.sh
 
 %files
 %doc README.md
 %license LICENSE
-%_bindir/spotx
+%{_bindir}/spotx.sh
+%{_bindir}/spotx
 
 %changelog
-* Sat Dec 14 2024 Its-J
+* Tue Apr 14 2026 Its-J <jonah@fyralabs.com>
+- Add email to my previous contributor attributions
+
+* Sat Dec 14 2024 Its-J <jonah@fyralabs.com>
 - Package SpotX-Bash

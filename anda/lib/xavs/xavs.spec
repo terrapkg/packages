@@ -42,7 +42,7 @@ svn co -r %{commit} https://svn.code.sf.net/p/xavs/code/trunk %{name}
 %setup -T -D -n %{name}
 %autopatch -p1
 
-%build
+%conf
 %configure \
 %ifarch x86_64
     --enable-asm \
@@ -52,7 +52,10 @@ svn co -r %{commit} https://svn.code.sf.net/p/xavs/code/trunk %{name}
     --extra-cflags="-Wno-int-conversion -Wno-declaration-missing-parameter-type" \
 %endif
     --enable-pic \
-    --enable-shared 
+    --enable-shared \
+    --extra-cflags="-Wno-int-conversion -Wno-declaration-missing-parameter-type"
+
+%build
 %make_build
 
 %install

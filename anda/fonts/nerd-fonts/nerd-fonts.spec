@@ -86,5 +86,5 @@ end
 
 
 %changelog
-* Wed Jan 4 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2.2.2-1
+* Wed Jan 4 2023 madonuko <mado@fyralabs.com> - 2.2.2-1
 - Initial package

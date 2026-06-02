@@ -1,8 +1,8 @@
 #? https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=throne-git
 
 Name: throne
-Version: 1.0.11
-Release: 1%?dist
+Version: 1.1.4
+Release: 1%{?dist}
 Summary: Qt based cross-platform GUI proxy configuration manager (backend: sing-box)
 URL: https://github.com/throneproj/Throne
 License: GPLv3
@@ -24,12 +24,6 @@ BuildRequires: rpm_macro(cmake_build)
 BuildRequires: rpm_macro(cmake_install)
 BuildRequires: cmake
 BuildRequires: gcc-c++
-BuildRequires: pkgconfig(protobuf)
-BuildRequires: pkgconfig(libcurl)
-BuildRequires: cmake(yaml-cpp)
-BuildRequires: cmake(ZXing)
-BuildRequires: cmake(absl)
-BuildRequires: cmake(cpr)
 BuildRequires: cmake(Qt6)
 BuildRequires: cmake(Qt6Svg)
 BuildRequires: cmake(Qt6Linguist)
@@ -39,6 +33,7 @@ BuildRequires: sed
 BuildRequires: golang
 BuildRequires: rpm_macro(gobuildflags)
 BuildRequires: protobuf-compiler
+BuildRequires: desktop-file-utils
 Requires: %{name}-core
 %define core Core
 
@@ -86,17 +81,20 @@ popd
 install -Dm755 %__cmake_builddir/Throne %buildroot%_libdir/%name/%name
 install -Dm755 %__cmake_builddir/%core %buildroot%_libdir/%name/%core
 install -Dpm755 %{SOURCE4} %{buildroot}%{_bindir}/%{name}
-install -Dpm644 %{SOURCE3} %{buildroot}%{_datadir}/applications/%{name}.desktop
+install -Dpm644 %{SOURCE3} %{buildroot}%{_appsdir}/%{name}.desktop
 install -Dpm644 res/Throne.ico -t %buildroot%_iconsdir/
 install -Dpm644 res/public/Throne.png -t %buildroot%_datadir/pixmaps/
 patchelf --remove-rpath %{buildroot}%{_libdir}/%{name}/%{name}
 patchelf --remove-rpath %{buildroot}%{_libdir}/%{name}/%{core}
 
+%check
+desktop-file-validate %{buildroot}%{_appsdir}/%{name}.desktop
+
 %files
 %attr(0755, -, -) %{_bindir}/%{name}
 %attr(0755, -, -) %{_libdir}/%{name}/%{name}
-%attr(0644, -, -) %{_datadir}/icons/Throne.ico
-%attr(0644, -, -) %{_datadir}/applications/%{name}.desktop
+%attr(0644, -, -) %{_iconsdir}/Throne.ico
+%attr(0644, -, -) %{_appsdir}/%{name}.desktop
 %_datadir/pixmaps/Throne.png
 
 %files core

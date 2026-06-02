@@ -4,8 +4,8 @@
 %global crate usage-cli
 
 Name:           rust-usage-cli
-Version:        2.8.0
-Release:        1%?dist
+Version:        3.4.0
+Release:        1%{?dist}
 Summary:        CLI for working with usage-based CLIs
 
 License:        MIT

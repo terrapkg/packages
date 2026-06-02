@@ -1,28 +1,27 @@
-%global _distro_extra_cflags -Wno-uninitialized
-%global _distro_extra_cxxflags -include %_includedir/c++/*/cstdint
+# RPCS3 builds often break with GCC
+%global toolchain clang
 # Define which LLVM/Clang version RPCS3 needs
-%if %{?fedora} >= 43
-%global llvm_major 20
-%bcond llvm_compat 1
+%if 0%{?fedora} >= 46
+%global llvm_major 21
+%global __cc clang-%{llvm_major}
+%global __cxx clang++-%{llvm_major}
 %endif
 # GLIBCXX_ASSERTIONS is known to break RPCS3
-%global build_cflags %(echo %{__build_flags_lang_c} | sed 's/-Wp,-D_GLIBCXX_ASSERTIONS//g') %{?_distro_extra_cflags}
-%global build_cxxflags %(echo %{__build_flags_lang_cxx} | sed 's/-Wp,-D_GLIBCXX_ASSERTIONS//g') %{?_distro_extra_cxxflags}
-# Need to get rid of everything Clang can't use and undefine -Wunused-command-line-argument where possible due to the project's build flags
-%global build_cflags %(echo %{build_cflags} | sed 's:-Werror ::g' | sed 's:-Wunused-command-line-argument ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-hardened-ld ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-hardened-ld-errors ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-package-notes ::g') -Wno-unused-command-line-argument
-%global build_cxxflags %(echo %{build_cxxflags} | sed 's:-Werror ::g' | sed 's:-Wunused-command-line-argument ::g' | sed 's:-specs\=/usr/lib/rpm/redhat/redhat-annobin-cc1 ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-hardened-ld ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-hardened-ld-errors ::g' | sed 's:-specs=/usr/lib/rpm/redhat/redhat-package-notes ::g') -Wno-unused-command-line-argument
-%global commit e09be04df6ec35c2b2bedb0c62bc6d1bc55f5b28
-%global ver 0.0.38-18414
+%global build_cflags %(echo "%{__build_flags_lang_c}" | sed 's|-Wp,-D_GLIBCXX_ASSERTIONS ||g') %{?_distro_extra_cflags}
+%global build_cxxflags %(echo "%{__build_flags_lang_cxx}" | sed 's|-Wp,-D_GLIBCXX_ASSERTIONS ||g') %{?_distro_extra_cflags}
+%global commit f8a5a6ad932b88efd5977f3f5c2e0fbbcffcc0a8
+%global ver 0.0.40-19421
 
 Name:           rpcs3
 Version:        %(echo %{ver} | sed 's/-/^/g')
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        PlayStation 3 emulator and debugger
 License:        GPL-2.0-only
 URL:            https://github.com/RPCS3/rpcs3
-%dnl Source0:        %url/archive/refs/tags/v%version.tar.gz
+Source0:        %{url}/archive/%{commit}/%{name}-%{commit}.tar.gz
 BuildRequires:  anda-srpm-macros glew openal-soft cmake vulkan-validation-layers git-core mold
 BuildRequires:  llvm%{?llvm_major}-devel
+# Looking at the CMakeLists.txt, this is the intended compiler and there are no fixes for GCC on aarch64
 BuildRequires:  clang%{?llvm_major}
 BuildRequires:  cmake(FAudio)
 BuildRequires:  cmake(OpenAL)
@@ -66,43 +65,34 @@ BuildRequires:  qt6-qtbase-private-devel vulkan-devel jack-audio-connection-kit-
 %prep
 %git_clone %url %commit
 
-%build
-# Looking at the CMakeLists.txt, this is the intended compiler and there are no fixes for GCC on aarch64
-%if %{with llvm_compat}
+%conf
+%if %{defined llvm_major}
 export LLVM_DIR=%{_libdir}/llvm%{?llvm_major}/%{_lib}/cmake
 %endif
-%cmake -DDISABLE_LTO=TRUE                                \
-    -DZSTD_BUILD_STATIC=ON                               \
-    -DCMAKE_SKIP_RPATH=ON                                \
-    -DBUILD_SHARED_LIBS:BOOL=OFF                         \
-    -DUSE_NATIVE_INSTRUCTIONS=OFF                        \
-    -DCMAKE_C_FLAGS="$CFLAGS"                            \
-    -DCMAKE_CXX_FLAGS="$CXXFLAGS"                        \
-    -DSTATIC_LINK_LLVM=OFF                               \
-    -DUSE_SYSTEM_FAUDIO=ON                               \
-    -DUSE_SDL=ON                                         \
-    -DUSE_SYSTEM_SDL=ON                                  \
-    -DBUILD_LLVM=OFF                                     \
-    -DUSE_PRECOMPILED_HEADERS=OFF                        \
-    -DUSE_DISCORD_RPC=ON                                 \
-    -DUSE_SYSTEM_FFMPEG=ON                               \
-    -DUSE_SYSTEM_LIBPNG=ON                               \
-    -DUSE_SYSTEM_ZLIB=ON                                 \
-    -DUSE_SYSTEM_OPENCV=ON                               \
-    -DUSE_SYSTEM_CURL=ON                                 \
-    -DUSE_SYSTEM_FLATBUFFERS=OFF                         \
-    -DUSE_SYSTEM_PUGIXML=OFF                             \
-    -DUSE_SYSTEM_WOLFSSL=OFF                             \
-%if %{with llvm_compat}
-    -DCMAKE_C_COMPILER=clang-%{?llvm_major}              \
-    -DCMAKE_CXX_COMPILER=clang++-%{?llvm_major}          \
-%else
-    -DCMAKE_C_COMPILER=clang                             \
-    -DCMAKE_CXX_COMPILER=clang++                         \
-%endif
-    -DCMAKE_LINKER=mold                                  \
-    -DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS -fuse-ld=mold" \
-    -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS -fuse-ld=mold"    
+%cmake -DDISABLE_LTO=TRUE                                     \
+    -DZSTD_BUILD_STATIC=ON                                    \
+    -DCMAKE_SKIP_RPATH=ON                                     \
+    -DBUILD_SHARED_LIBS:BOOL=OFF                              \
+    -DUSE_NATIVE_INSTRUCTIONS=OFF                             \
+    -DSTATIC_LINK_LLVM=OFF                                    \
+    -DUSE_SYSTEM_FAUDIO=ON                                    \
+    -DUSE_SDL=ON                                              \
+    -DUSE_SYSTEM_SDL=ON                                       \
+    -DBUILD_LLVM=OFF                                          \
+    -DUSE_PRECOMPILED_HEADERS=OFF                             \
+    -DUSE_DISCORD_RPC=ON                                      \
+    -DUSE_SYSTEM_FFMPEG=ON                                    \
+    -DUSE_SYSTEM_LIBPNG=ON                                    \
+    -DUSE_SYSTEM_ZLIB=ON                                      \
+    -DUSE_SYSTEM_OPENCV=ON                                    \
+    -DUSE_SYSTEM_CURL=ON                                      \
+    -DUSE_SYSTEM_PUGIXML=OFF                                  \
+    -DUSE_SYSTEM_WOLFSSL=OFF                                  \
+    -DCMAKE_LINKER=mold                                       \
+    -DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS -fuse-ld=mold"      \
+    -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS -fuse-ld=mold" 
+
+%build
 %cmake_build
 
 %install

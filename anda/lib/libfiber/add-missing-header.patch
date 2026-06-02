@@ -1,0 +1,12 @@
+diff --git a/cpp/include/fiber/go_fiber.hpp b/cpp/include/fiber/go_fiber.hpp
+index 5e1df06..8d6ad2a 100644
+--- a/cpp/include/fiber/go_fiber.hpp
++++ b/cpp/include/fiber/go_fiber.hpp
+@@ -15,6 +15,7 @@
+ #include <utility>
+ #include "fiber.hpp"
+ #include "fiber_tbox.hpp"
++#include <memory>
+ 
+ struct ACL_FIBER;
+ 

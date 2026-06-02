@@ -50,8 +50,10 @@ This package contains the object files necessary to develop %{name}.
 %prep
 %autosetup -n curl-impersonate-%{version} -p1
 
-%build
+%conf
 %configure
+
+%build
 %{__make} chrome-build
 
 %check

@@ -4,11 +4,13 @@ Version:    %{?fedora:%{fedora}}%{?rhel:%{rhel}}
 # The dist number is the version here, it is intentionally not repeated in the release
 %global dist %nil
 
-Release:    4
+Release:    4%{?dist}
 Summary:    A package to obsolete retired packages, based on Fedora's equivalent package
 
 License:    LicenseRef-Fedora-Public-Domain
 BuildArch:  noarch
+
+Packager:   Terra Packaging Team <terra@fyralabs.com>
 
 # ===============================================================================
 # Skip down below these convenience macros
@@ -147,18 +149,24 @@ BuildArch:  noarch
 %obsolete switchboard-plug-wacom 8.0.0-2
 
 %obsolete_ticket https://github.com/terrapkg/packages/pull/7098
-%obsolete terra-surface-dtx-daemon 0.3.10-1
+%obsolete terra-surface-dtx-daemon v0.3.10~1-5
+
+%obsolete_ticket https://github.com/terrapkg/packages/pull/12665
+%obsolete supergfxctl 5.2.7-3
+
+%obsolete_ticket https://github.com/terrapkg/packages/pull/12665
+%obsolete gnome-shell-extension-gpu-switcher-supergfxctl 11^20250925.1de26db-4
 
 %obsolete_ticket https://github.com/terrapkg/packages/pull/7521
-%obsolete x264-bash-completion 0.165-17.20250609gitb35605ac
+%obsolete x264-bash-completion 0.165-18.20250609gitb35605ac
 
 %obsolete_ticket https://github.com/terrapkg/packages/pull/7659
-%obsolete x264-bootstrap 0.0.165-17.20250609gitb35605ac_bootstrap
-%obsolete x264-bootstrap-libs 0.0.165-17.20250609gitb35605ac_bootstrap
-%obsolete x264-bootstrap-devel 0.0.165-17.20250609gitb35605ac_bootstrap
+%obsolete x264-bootstrap 0.0.165-18.20250609gitb35605ac_bootstrap
+%obsolete x264-bootstrap-libs 0.0.165-18.20250609gitb35605ac_bootstrap
+%obsolete x264-bootstrap-devel 0.0.165-18.20250609gitb35605ac_bootstrap
 
 %obsolete_ticket https://github.com/terrapkg/packages/pull/7503
-%obsolete zig-master-bootstrap 0.16.0~dev.1484+d0ba6642b-2
+%obsolete zig-master-bootstrap 0.16.0~dev.1484+d0ba6642b-3
 
 %description
 Currently obsoleted packages:

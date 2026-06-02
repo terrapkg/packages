@@ -26,5 +26,5 @@ install -D -m644 ukai.ttc %{buildroot}/%{_datadir}/fonts/arphic-ukai/ukai.ttc
 /%{_datadir}/fonts/arphic-ukai/ukai.ttc
 
 %changelog
-* Mon Nov 21 2022 windowsboy111 <windowsboy111@fyralabs.com> - 0.2.20080216.2-1
+* Mon Nov 21 2022 madonuko <mado@fyralabs.com> - 0.2.20080216.2-1
 - Initial package

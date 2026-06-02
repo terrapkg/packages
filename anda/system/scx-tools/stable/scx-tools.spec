@@ -3,7 +3,7 @@
 %global org "com.sched_ext"
 
 Name:           scx-tools
-Version:        1.0.18
+Version:        1.1.1
 Release:        1%{?dist}
 Summary:        Sched_ext Tools
 License:        ((MIT OR Apache-2.0) AND Unicode-3.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND GPL-2.0-only AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0) AND MIT AND MPL-2.0 AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT)
@@ -31,7 +31,7 @@ Obsoletes:      scxctl <= 0.3.4
 Provides:       scxctl = %{evr}
 Conflicts:      scx-tools-git
 Conflicts:      scx-tools-nightly
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 scx_loader: A D-Bus interface for managing sched_ext schedulers
@@ -73,10 +73,11 @@ install -Dm755 target/rpm/*.so -t %{buildroot}%{_libdir} || :
 %doc README.md
 %{_bindir}/scx*
 %{_unitdir}/scx_loader.service
+%{_datadir}/dbus-1/interfaces/org.scx.Loader.xml
 %{_datadir}/dbus-1/system-services/org.scx.Loader.service
 %{_datadir}/dbus-1/system.d/org.scx.Loader.conf
 %{_datadir}/polkit-1/actions/org.scx.Loader.policy
-%config(noreplace) %{_datadir}/scx_loader/config.toml
+%{_datadir}/scx_loader/config.toml
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
