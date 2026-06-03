@@ -1,11 +1,13 @@
+%define debug_package %{nil}
+
 Name:			graftcp
 Version:		0.8.0
 Release:		1%{?dist}
 Summary:		A flexible tool for redirecting a given program's TCP traffic to SOCKS5 or HTTP proxy
 URL:			https://github.com/hmgle/graftcp
-License:		GPL-3.0
-Source0:        %url/archive/refs/tags/v%version.tar.gz
-BuildRequires:	gcc mold make golang systemd-rpm-macros
+License:		GPL-3.0-or-later
+Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
+BuildRequires:	gcc make golang systemd-rpm-macros
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 Conflicts:      graftcp-nightly
 
@@ -17,36 +19,29 @@ linked programs, e.g., applications built by Go can not be hook by proxychains-n
 connect by ptrace(2), so it is workable for any program. The principle will be explained in this paragraph of how does it work.
 
 %prep
-%autosetup  -n graftcp-%{version}
+%autosetup
 
 %build
 %make_build
 
 %install
-install -Dm755 graftcp                                      %{buildroot}%{_bindir}/graftcp
-install -Dm755 local/graftcp-local                          %{buildroot}%{_bindir}/graftcp-local
-install -Dm755 local/mgraftcp                               %{buildroot}%{_bindir}/mgraftcp
-install -Dm644 local/contrib/systemd/graftcp-local.service  %{buildroot}%{_unitdir}/graftcp-local.service
-install -Dm644 local/example-graftcp-local.conf             %{buildroot}%{_sysconfdir}/graftcp-local/example-graftcp-local.conf
-
-%post
-%systemd_post graftcp-local.service
-
-%preun
-%systemd_preun graftcp-local.service
-
-%postun
-%systemd_postun_with_restart graftcp-local.service
+mkdir -p %{buildroot}%{_bindir}
+%make_install PREFIX=%{_prefix}
+install -Dm644 example-graftcp.conf             %{buildroot}%{_sysconfdir}/graftcp/example-graftcp.conf
+install -Dm644 example-mgraftcp.conf            %{buildroot}%{_sysconfdir}/graftcp/example-mgraftcp.conf
 
 %files
-%doc README.md README.zh-CN.md
+%doc README.md
+%lang(zh_CN) %doc README.zh-CN.md
 %license COPYING
 %{_bindir}/graftcp
-%{_bindir}/graftcp-local
 %{_bindir}/mgraftcp
-%{_unitdir}/graftcp-local.service
-%{_sysconfdir}/graftcp-local/example-graftcp-local.conf
+%{_sysconfdir}/graftcp/example-graftcp.conf
+%{_sysconfdir}/graftcp/example-mgraftcp.conf
 
 %changelog
+* Tue Jun 02 2026 Owen Zimmerman <owen@fyralabs.com> - 0.8.0-1
+- Update for 0.8.0
+
 * Fri Oct 24 2025 Owen Zimmerman <owen@fyralabs.com>
 - initial commit
