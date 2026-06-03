@@ -4,7 +4,7 @@
 
 Name:             steamos-manager-powerstation
 Version:          0~%{commitdate}.git%{shortcommit}
-Release:          2%{?dist}
+Release:          3%{?dist}
 Summary:          SteamOS Manager is a system daemon that aims to abstract Steam's interactions with the operating system
 License:          MIT AND (MIT OR Apache-2.0) AND Unicode-3.0 AND (Apache-2.0 OR BSL-1.0) AND Apache-2.0 OR MIT AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (BSD-3-Clause OR MIT OR Apache-2.0) AND ISC AND (LGPL-2.1 OR MIT OR Apache-2.0) AND MIT AND (MIT OR Apache-2.0) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT)
 URL:              https://github.com/OpenGamingCollective/steamos-manager
@@ -58,7 +58,6 @@ make -f /usr/share/selinux/devel/Makefile -C data/selinux steamos_manager.pp
 %install
 %{cargo_license_online -a} > LICENSE.dependencies
 %make_install
-rm %{buildroot}%{_unitdir}/sddm.service.d/reset-oneshot-boot.conf # steamOS specific
 rm %{buildroot}%{_userunitdir}/orca.service # not used by anyone apparently, steamOS specific(?)
 install -D -m644 data/selinux/steamos_manager.pp %{buildroot}%{_datadir}/selinux/packages/steamos_manager.pp
 install -d %{buildroot}%{_userunitdir}/gamescope-session-plus.service.wants/steamos-manager.service
@@ -101,6 +100,7 @@ fi
 %{_datadir}/steamos-manager/platform.toml
 %{_prefix}/lib/steamos-manager
 %{_unitdir}/steamos-manager.service
+%{_unitdir}/sddm.service.d/reset-oneshot-boot.conf
 %{_userunitdir}/steamos-manager.service
 %{_userunitdir}/steamos-manager-configure-cecd.service
 %{_userunitdir}/steamos-manager-session-cleanup.service
