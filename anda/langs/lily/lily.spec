@@ -22,8 +22,10 @@ Requires:      %{name}
 %prep
 %autosetup -n %{name}-%{version}
 
-%build
+%conf
 %cmake
+
+%build
 %cmake_build
 
 %install

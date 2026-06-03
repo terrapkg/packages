@@ -1,6 +1,6 @@
 Name:			graftcp
-Version:		0.7.1
-Release:		1%?dist
+Version:		0.8.0
+Release:		1%{?dist}
 Summary:		A flexible tool for redirecting a given program's TCP traffic to SOCKS5 or HTTP proxy
 URL:			https://github.com/hmgle/graftcp
 License:		GPL-3.0
