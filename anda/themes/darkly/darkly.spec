@@ -60,10 +60,6 @@ Requires:       kf6-plasma
 %doc README.md
 %license COPYING
 %{_bindir}/darkly-settings6
-%{_libdir}/qt6/plugins/kstyle_config/darklystyleconfig.so
-%{_libdir}/qt6/plugins/org.kde.kdecoration3.kcm/kcm_darklydecoration.so
-%{_libdir}/qt6/plugins/org.kde.kdecoration3/org.kde.darkly.so
-%{_libdir}/qt6/plugins/styles/darkly6.so
 %{_appsdir}/darklystyleconfig.desktop
 %{_appsdir}/kcm_darklydecoration.desktop
 %{_datadir}/color-schemes/Darkly.colors
