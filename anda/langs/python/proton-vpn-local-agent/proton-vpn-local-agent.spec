@@ -4,7 +4,7 @@
 %global _desc Proton VPN local agent written in Rust.
 
 Name:			python-%{pypi_name}
-Version:		1.6.1
+Version:		1.6.2
 Release:		1%{?dist}
 Summary:		Proton VPN local agent written in Rust
 License:		GPL-3.0-only

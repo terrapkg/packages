@@ -1,8 +1,8 @@
 %bcond bootstrap 0
 
 Name:          yarnpkg-berry
-Version:       4.15.0
-Release:       2%{?dist}
+Version:       4.16.0
+Release:       1%{?dist}
 Summary:       Active development version of Yarn
 License:       BSD-2-Clause
 URL:           https://yarnpkg.com

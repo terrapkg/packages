@@ -1,5 +1,5 @@
-%global commit 546ca2a939542c397b6668e1fc1883046126b6fe
-%global commit_date 20260523
+%global commit 0099e4234f7f6f1f34d884c208279551ac8b5a08
+%global commit_date 20260602
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           libsingularity
