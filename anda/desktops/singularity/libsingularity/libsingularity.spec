@@ -50,6 +50,7 @@ A GTK4 application and widget framework for the Singularity Desktop Environment.
 %{_libdir}/libsingularity.so.0.1.0
 %{_datadir}/vala/vapi/singularity-1.0.vapi
 %{_datadir}/vala/vapi/libsingularity-1.0.vapi
+%{_datadir}/vala/vapi/singularity-1.0.deps
 
 %changelog
 * Sat May 16 2026 Owen Zimmerman <owen@fyralabs.com>
