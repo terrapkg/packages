@@ -4,7 +4,7 @@
 %bcond test 0
 
 Name:          nodejs-license-checker
-Version:       5.0.0
+Version:       5.0.1
 Release:       1%{?dist}
 Summary:       Check NPM package licenses
 SourceLicense: BSD-3-Clause
