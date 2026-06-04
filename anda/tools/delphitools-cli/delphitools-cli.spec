@@ -38,7 +38,8 @@ install -Dm 644 man/*.1 -t %{buildroot}%{_mandir}/man1/
 %{_bindir}/delphi
 %{_bindir}/delphitools
 %{_bindir}/dt
-%{_mandir}/man1/*.1.gz
+%{_mandir}/man1/delphi-*.1.*
+%{_mandir}/man1/delphi.1.*
 %license LICENSE
 %license LICENSE.dependencies
 %doc README.md
