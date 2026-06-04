@@ -11,6 +11,7 @@ BuildRequires:  rust
 BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  pkgconfig(openssl)
+BuildRequires:  libstdc++-devel
 
 Packager:       Its-J <jonah@fyralabs.com>
 
