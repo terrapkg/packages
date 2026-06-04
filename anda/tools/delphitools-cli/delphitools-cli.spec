@@ -11,10 +11,6 @@ BuildRequires:  rust
 BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo-rpm-macros
 
-Provides:       delphi
-Provides:       delphitools
-Provides:       dt
-
 Packager:       Its-J <jonah@fyralabs.com>
 
 %description
