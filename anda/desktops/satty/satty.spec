@@ -28,9 +28,9 @@ Packager:       Tulip Blossom <tulilirockz@outlook.com>
 install -Dpm0755 -t %{buildroot}%{_bindir} ./target/rpm/satty
 install -Dpm0644 -t %{buildroot}%{_appsdir}/ ./satty.desktop
 install -Dpm0644 -t %{buildroot}%{_scalableiconsdir}/ ./assets/satty.svg
-install -Dpm0644 -t %{buildroot}%{_datadir}/fish/vendor_completions.d/ ./completions/satty.fish
-install -Dpm0644 -t %{buildroot}%{_datadir}/zsh/site-functions/ ./completions/_satty
-install -Dpm0644 ./completions/satty.bash %{buildroot}%{_datadir}/bash-completion/completions/satty
+install -Dpm0644 -t %{buildroot}%{fish_completions_dir}/ ./completions/satty.fish
+install -Dpm0644 -t %{buildroot}%{zsh_completions_dir}/ ./completions/_satty
+install -Dpm0644 ./completions/satty.bash %{buildroot}%{bash_completions_dir}/satty
 install -Dpm0644 -t %{buildroot}%{elvish_completions_dir}/ ./completions/satty.elv
 install -Dpm0644 -t %{buildroot}%{nushell_completions_dir}/ ./completions/satty.nu
 
