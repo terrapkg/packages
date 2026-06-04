@@ -33,6 +33,7 @@ install -Dpm0644 -t %{buildroot}%{zsh_completions_dir}/ ./completions/_satty
 install -Dpm0644 ./completions/satty.bash %{buildroot}%{bash_completions_dir}/satty
 install -Dpm0644 -t %{buildroot}%{elvish_completions_dir}/ ./completions/satty.elv
 install -Dpm0644 -t %{buildroot}%{nushell_completions_dir}/ ./completions/satty.nu
+install -Dpm0644 -t %{buildroot}%{_metainfodir}/ ./org.satty.Satty.metainfo.xml
 
 %files
 %doc README.md
@@ -40,6 +41,7 @@ install -Dpm0644 -t %{buildroot}%{nushell_completions_dir}/ ./completions/satty.
 %{_bindir}/%{name}
 %{_appsdir}/satty.desktop
 %{_scalableiconsdir}/satty.svg
+%{_metainfodir}/org.satty.Satty.metainfo.xml
 
 %changelog
 * Thu Jun 04 2026 Owen Zimmerman <owen@fyralabs.com> 0.21.0-1
