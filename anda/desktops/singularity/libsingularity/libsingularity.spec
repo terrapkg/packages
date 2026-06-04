@@ -19,6 +19,7 @@ BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  pkgconfig(json-glib-1.0)
 BuildRequires:  pkgconfig(libpeas-2)
 BuildRequires:  pkgconfig(libsoup-3.0)
+BuildRequires:  pkgconfig(gtksourceview-5)
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
@@ -49,6 +50,7 @@ A GTK4 application and widget framework for the Singularity Desktop Environment.
 %{_libdir}/libsingularity.so.0.1.0
 %{_datadir}/vala/vapi/singularity-1.0.vapi
 %{_datadir}/vala/vapi/libsingularity-1.0.vapi
+%{_datadir}/vala/vapi/singularity-1.0.deps
 
 %changelog
 * Sat May 16 2026 Owen Zimmerman <owen@fyralabs.com>
