@@ -10,6 +10,7 @@ License:        %{sourcelicense} AND ((MIT OR Apache-2.0) AND NCSA) AND (Apache-
 BuildRequires:  rust
 BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo-rpm-macros
+BuildRequires:  pkgconfig(openssl)
 
 Packager:       Its-J <jonah@fyralabs.com>
 
