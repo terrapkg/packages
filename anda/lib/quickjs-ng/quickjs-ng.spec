@@ -33,7 +33,7 @@ Requires:   %{name}-libs%{_isa} = %evr
 %pkg_devel_files
 
 %files devel
-%dnl %{_libdir}/cmake/quickjs/*.cmake
+%{_libdir}/cmake/qjs/*.cmake
 
 
 %package examples
