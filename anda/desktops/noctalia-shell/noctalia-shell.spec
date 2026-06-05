@@ -23,7 +23,7 @@ Recommends:	    power-profiles-daemon
 Recommends:	    wlsunset
 Recommends:    	gpu-screen-recorder
 
-Packager:       Willow Reed <terra@willowidk.dev>
+Packager:       Cypress Reed <cypress@fyralabs.com>
 
 %description
 A beautiful, minimal desktop shell for Wayland that actually gets out of your way. Built on Quickshell with a warm lavender aesthetic that you can easily customize to match your vibe.
@@ -43,11 +43,14 @@ cp -r ./* %{buildroot}/etc/xdg/quickshell/noctalia-shell/
 %{_sysconfdir}/xdg/quickshell/noctalia-shell/
 
 %changelog
-* Mon Mar 09 2026 Willow C Reed <terra@willowidk.dev>
+* Thu Jun 04 2026 Cypress Reed <cypress@fyralabs.com>
+- Update email and name (was Willow Reed or Willow C Reed) (I'm official now!)
+
+* Mon Mar 09 2026 Cypress Reed <cypress@fyralabs.com>
 - switch gpu-screen-recorder to be recommended as it's a plugin and not required anymore. also switched source to be based on version.
 
-* Fri Feb 27 2026 Willow C Reed <terra@willowidk.dev>
+* Fri Feb 27 2026 Cypress Reed <cypress@fyralabs.com>
 - Change required quickshell to Noctalia's version
 
-* Fri Jan 02 2026 Willow Reed <terra@willowidk.dev>
+* Fri Jan 02 2026 Cypress Reed <cypress@fyralabs.com>
 - Initial commit
