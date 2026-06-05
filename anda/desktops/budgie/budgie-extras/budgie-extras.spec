@@ -1,8 +1,8 @@
 Name:           budgie-extras
 Version:        2.2.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 
-License:        GPL-3.0
+License:        GPL-3.0-or-later
 Summary:        Additional Budgie Desktop enhancements for user experience
 URL:            https://ubuntubudgie.org/
 
@@ -41,22 +41,16 @@ Requires:       budgie-applet-clockworks
 Requires:       budgie-applet-countdown
 Requires:       budgie-applet-dropby
 Requires:       budgie-applet-fuzzyclock
-Requires:       budgie-applet-hotcorners
 Requires:       budgie-applet-kangaroo
-Requires:       budgie-applet-keyboard-autoswitch
 Requires:       budgie-applet-network-manager
 Requires:       budgie-applet-quickchar
 Requires:       budgie-applet-quicknote
 Requires:       budgie-applet-recentlyused
-Requires:       budgie-applet-rotation-lock
 Requires:       budgie-applet-showtime
 Requires:       budgie-applet-takeabreak
 Requires:       budgie-applet-visualspace
 Requires:       budgie-applet-wallstreet
 Requires:       budgie-applet-weathershow
-Requires:       budgie-applet-window-shuffler
-Requires:       budgie-applet-workspace-stopwatch
-Requires:       budgie-applet-wpreviews
 Requires:       budgie-applet-wswitcher
 # Fix for https://github.com/UbuntuBudgie/budgie-extras/issues/233, don't know how stenstorp did not notice this
 Requires:       xinput
