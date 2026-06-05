@@ -22,7 +22,7 @@ Requires(preun):     dkms
 Conflicts:           btusb-mt7925-dkms
 Conflicts:           btusb-mt7927-dkms
 
-Packager:            Willow C Reed <terra@willowidk.dev>
+Packager:            Cypress Reed <cypress@fyralabs.com>
 
 %description
 DKMS package for MediaTek MT7927 (Filogic 380) combo WiFi 7 + BT 5.4.
@@ -57,11 +57,11 @@ dkms remove -m %{modulename} -v %{version} -q --all --rpm_safe_upgrade || :
 %files
 %license LICENSE*
 %{_usrsrc}/%{modulename}-%{version}
-%dir %{_libdir}/firmware/mediatek
-%dir %{_libdir}/firmware/mediatek/mt7927
-%{_libdir}/firmware/mediatek/mt7927/BT_RAM_CODE_MT6639_2_1_hdr.bin
-%{_libdir}/firmware/mediatek/mt7927/WIFI_MT6639_PATCH_MCU_2_1_hdr.bin
-%{_libdir}/firmware/mediatek/mt7927/WIFI_RAM_CODE_MT6639_2_1.bin
+%dir /usr/lib/firmware/mediatek
+%dir /usr/lib/firmware/mediatek/mt7927
+/usr/lib/firmware/mediatek/mt7927/BT_RAM_CODE_MT6639_2_1_hdr.bin
+/usr/lib/firmware/mediatek/mt7927/WIFI_MT6639_PATCH_MCU_2_1_hdr.bin
+/usr/lib/firmware/mediatek/mt7927/WIFI_RAM_CODE_MT6639_2_1.bin
 
 %changelog
 * Thu May 21 2026 Willow C Reed <willow@willowidk.dev>
