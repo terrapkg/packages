@@ -55,7 +55,7 @@ dkms install -m %{modulename} -v %{version} -q --force || :
 dkms remove -m %{modulename} -v %{version} -q --all --rpm_safe_upgrade || :
 
 %files
-%license LICENSE*
+%license LICENSE
 %{_usrsrc}/%{modulename}-%{version}
 %dir /usr/lib/firmware/mediatek
 %dir /usr/lib/firmware/mediatek/mt7927
