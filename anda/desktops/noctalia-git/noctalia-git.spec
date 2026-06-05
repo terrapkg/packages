@@ -58,8 +58,10 @@ A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with 
 # Manually insert commit hash
 sed -i "s/'unknown'/'%{shortcommit}'/g" meson.build
 
-%build
+%conf
 %meson
+
+%build
 %meson_build
 
 %install
