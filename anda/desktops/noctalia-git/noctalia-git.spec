@@ -53,6 +53,7 @@ Packager:       Cypress Reed <cypress@fyralabs.com>
 %description
 A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with no Qt or GTK dependency.
 
+%prep
 %autosetup -n %{upstreamname}-%{commit}
 # Manually insert commit hash
 sed -i "s/'unknown'/'%{shortcommit}'/g" meson.build
