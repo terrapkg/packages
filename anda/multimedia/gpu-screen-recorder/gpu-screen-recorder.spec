@@ -33,7 +33,7 @@ BuildRequires:  pkgconfig(vulkan)
 Requires(post): libcap
 BuildRequires:  systemd-rpm-macros
 
-Packager:       Willow Reed <terra@willowidk.dev>
+Packager:       Cypress Reed <cypress@fyralabs.com>
 
 %description
 Shadowplay-like screen recorder for Linux. Uses GPU acceleration to record in H.264, HEVC, AV1, VP8, or VP9.
@@ -73,8 +73,11 @@ Shadowplay-like screen recorder for Linux. Uses GPU acceleration to record in H.
 %{_mandir}/man1/%{name}.1*
 
 %changelog
-* Sun Mar 15 2026 Willow C Reed <terra@willowidk.dev>
+* Thu Jun 04 2026 Cypress Reed <cypress@fyralabs.com>
+- Update email and name (was Willow Reed or Willow C Reed) (I'm official now!)
+
+* Sun Mar 15 2026 Cypress Reed <cypress@fyralabs.com>
 - Fix package source
 
-* Fri Jan 02 2026 Willow Reed <terra@willowidk.dev>
+* Fri Jan 02 2026 Cypress Reed <cypress@fyralabs.com>
 - Initial commit
