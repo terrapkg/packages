@@ -31,6 +31,15 @@ BuildRequires:  mesa-libgbm-devel
 export PREFIX=/usr
 %make_install
 
+%post
+%systemd_user_post driftwm.service
+
+%preun
+%systemd_user_preun driftwm.service
+
+%postun
+%systemd_user_postun_with_restart driftwm.service
+
 %files
 %doc README.md
 %license LICENSE LICENSE.dependencies
@@ -41,7 +50,10 @@ export PREFIX=/usr
 %{_sysconfdir}/driftwm/config.reference.toml
 %{_datadir}/driftwm/wallpapers/animated/*.glsl
 %{_datadir}/driftwm/wallpapers/static/*.glsl
+%{_datadir}/driftwm/wallpapers/textured/*.glsl
 %{_datadir}/driftwm/wallpapers/*.glsl
+%{_userunitdir}/driftwm-shutdown.target
+%{_userunitdir}/driftwm.service
 
 %changelog
 * Tue Mar 17 2026 Owen Zimmerman <owen@fyralabs.com> - 0.1.0-1
