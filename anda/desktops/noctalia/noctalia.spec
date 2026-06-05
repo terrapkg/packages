@@ -1,13 +1,14 @@
 %global debug_package %{nil}
+%global upstreamname  noctalia-shell
 
-Name:   	noctalia-preview
-Version:	5.0.0
+Name:   	noctalia
+Version:	4.9.9
 Release:	1%{?dist}
 Summary:	A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with no Qt or GTK dependency.
 
 License:	MIT
-URL:		https://github.com/noctalia-dev/noctalia-shell
-Source0:	https://github.com/noctalia-dev/noctalia-shell/releases/download/v%{version}/noctalia-v%{version}.tar.gz
+URL:		https://github.com/noctalia-dev/%{upstreamname}
+Source0:	https://github.com/noctalia-dev/%{upstreamname}/releases/download/v%{version}/noctalia-v%{version}.tar.gz
 
 BuildRequires:  meson
 BuildRequires:  gcc-c++
@@ -22,16 +23,16 @@ BuildRequires:  pkgconfig(glesv2)
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(jemalloc)
 BuildRequires:  pkgconfig(libcurl)
+BuildRequires:  pkgconfig(libqalculate)
 BuildRequires:  pkgconfig(librsvg-2.0)
 BuildRequires:  pkgconfig(libwebp)
+BuildRequires:  pkgconfig(libxml-2.0)
 BuildRequires:  pkgconfig(pam)
 BuildRequires:  pkgconfig(pango)
 BuildRequires:  pkgconfig(polkit-gobject-1)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(wayland-protocols)
 BuildRequires:  pkgconfig(xkbcommon)
-BuildRequires:  pkgconfig(libqalculate)
-BuildRequires:  pkgconfig(libxml-2.0)
 
 Provides:       desktop-notification-daemon
 Provides:       PolicyKit-authentication-agent
@@ -43,19 +44,14 @@ Requires:       libwebp
 Recommends:     ddcutil
 Recommends:     gpu-screen-recorder
 Recommends:     power-profiles-daemon
-Recommends:     jamalloc-devel
 
-Conflicts:      noctalia-shell
-
-Packager:       Willow C Reed <terra@willowidk.dev>
+Packager:       Cypress Reed <cypress@fyralabs.com>
 
 %description
 A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with no Qt or GTK dependency.
 
 %prep
-%autosetup -n %{upstreamname}-%{commit}
-# Manually insert commit hash
-sed -i "s/'unknown'/'%{shortcommit}'/g" meson.build
+%autosetup -n noctalia-release
 
 %build
 %meson
@@ -80,5 +76,5 @@ done
 %{_datadir}/noctalia/
 
 %changelog
-* Wed May 20 2026 Willow C Reed <terra@willowidk.dev>
+* Fri Jun 05 2026 Cypress Reed <cypress@fyralabs.com>
 - Port to terra from Fedora COPR lionheartp/Hyprland
