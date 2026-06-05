@@ -42,6 +42,8 @@ Requires:       kf6-plasma
 
 %package devel
 %pkg_devel_files
+%{_libdir}/cmake/Darkly
+%{_qt6_plugindir}/*/*darkly*
 
 %prep
 %autosetup -n Darkly-%{version}
