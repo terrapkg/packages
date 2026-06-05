@@ -7,7 +7,7 @@
 Name:   	noctalia-git
 Version:	5.0.0
 Release:	0.140.git%{shortcommit}%{?dist}
-Summary:	A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with no Qt or GTK dependency.
+Summary:	A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with no Qt or GTK dependency
 
 License:	MIT
 URL:		https://github.com/noctalia-dev/%{upstreamname}
