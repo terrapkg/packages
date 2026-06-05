@@ -9,6 +9,7 @@ URL:                 https://github.com/jetm/mediatek-mt7927-dkms
 BuildArch:           noarch
 
 Source0:             https://github.com/jetm/mediatek-mt7927-dkms/archive/refs/tags/v%{version}-1.tar.gz
+Source1:             LICENSE
 
 BuildRequires:       make
 BuildRequires:       curl
@@ -54,6 +55,7 @@ dkms install -m %{modulename} -v %{version} -q --force || :
 dkms remove -m %{modulename} -v %{version} -q --all --rpm_safe_upgrade || :
 
 %files
+%license LICENSE*
 %{_usrsrc}/%{modulename}-%{version}
 %dir %{_libdir}/firmware/mediatek
 %dir %{_libdir}/firmware/mediatek/mt7927
