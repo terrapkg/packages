@@ -35,6 +35,7 @@ remove this package to use the in-tree drivers.
 
 %prep
 %autosetup -n %{modulename}-dkms-%{version}-1
+cp %{SOURCE1} -t .
 
 %build
 %__make download
