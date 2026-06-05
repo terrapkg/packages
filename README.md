@@ -13,7 +13,7 @@ This monorepo contains the package manifests for all packages in Terra.
 
 ## Installation
 
-The latest detailed instructions are available in our Devdocs: https://developer.fyralabs.com/terra/installing
+The latest detailed instructions are available in our docs: https://docs.terrapkg.com/usage/installing
 
 ### Fedora
 
@@ -56,13 +56,13 @@ sudo dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/t
 
 First of all, thanks for being interested in contributing to Terra! If you have any questions about contributing, please [join our chats](https://wiki.ultramarine-linux.org/en/community/community/).
 
-- [Contribution Guide](https://developer.fyralabs.com/terra/contributing)
-- [FAQ](https://developer.fyralabs.com/terra/faq)
-- [Guidelines](https://developer.fyralabs.com/terra/guidelines)
+- [Contribution Guide](https://docs.terrapkg.com/contributing/getting-started)
+- [FAQ](https://docs.terrapkg.com/reference/faq)
+- [Guidelines](https://docs.terrapkg.com/contributing/guidelines)
 
 ## Documentation
 
-Our documentation can be found on our [Devdocs](https://developer.fyralabs.com/terra/).
+Our documentation can be found on our [docs site](https://docs.terrapkg.com).
 
 ## Searching Packages
 
@@ -72,6 +72,6 @@ Our documentation can be found on our [Devdocs](https://developer.fyralabs.com/t
 
 Feel free to reach out by [joining our community](https://wiki.ultramarine-linux.org/en/community/community/). We're always happy to help!
 
-- [Contribution Guide](https://developer.fyralabs.com/terra/contributing)
-- [FAQ](https://developer.fyralabs.com/terra/faq)
-- [Guidelines](https://developer.fyralabs.com/terra/guidelines)
+- [Contribution Guide](https://docs.terrapkg.com/contributing/getting-started)
+- [FAQ](https://docs.terrapkg.com/reference/faq)
+- [Guidelines](https://docs.terrapkg.com/contributing/guidelines)
