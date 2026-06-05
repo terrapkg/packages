@@ -9,8 +9,8 @@
 # GLIBCXX_ASSERTIONS is known to break RPCS3
 %global build_cflags %(echo "%{__build_flags_lang_c}" | sed 's|-Wp,-D_GLIBCXX_ASSERTIONS ||g') %{?_distro_extra_cflags}
 %global build_cxxflags %(echo "%{__build_flags_lang_cxx}" | sed 's|-Wp,-D_GLIBCXX_ASSERTIONS ||g') %{?_distro_extra_cflags}
-%global commit 67464f97df8679d5d540256987551f34fe00d4cc
-%global ver 0.0.40-19389
+%global commit 8112c7cc19c3a4d6ddef10572ce9f42bd928bfd7
+%global ver 0.0.41-19439
 
 Name:           rpcs3
 Version:        %(echo %{ver} | sed 's/-/^/g')
@@ -74,8 +74,6 @@ export LLVM_DIR=%{_libdir}/llvm%{?llvm_major}/%{_lib}/cmake
     -DCMAKE_SKIP_RPATH=ON                                     \
     -DBUILD_SHARED_LIBS:BOOL=OFF                              \
     -DUSE_NATIVE_INSTRUCTIONS=OFF                             \
-    -DCMAKE_C_FLAGS="$CFLAGS"                                 \
-    -DCMAKE_CXX_FLAGS="$CXXFLAGS"                             \
     -DSTATIC_LINK_LLVM=OFF                                    \
     -DUSE_SYSTEM_FAUDIO=ON                                    \
     -DUSE_SDL=ON                                              \
@@ -88,11 +86,8 @@ export LLVM_DIR=%{_libdir}/llvm%{?llvm_major}/%{_lib}/cmake
     -DUSE_SYSTEM_ZLIB=ON                                      \
     -DUSE_SYSTEM_OPENCV=ON                                    \
     -DUSE_SYSTEM_CURL=ON                                      \
-    -DUSE_SYSTEM_FLATBUFFERS=OFF                              \
     -DUSE_SYSTEM_PUGIXML=OFF                                  \
     -DUSE_SYSTEM_WOLFSSL=OFF                                  \
-    -DCMAKE_C_COMPILER="$CC"                                  \
-    -DCMAKE_CXX_COMPILER="$CXX"                               \
     -DCMAKE_LINKER=mold                                       \
     -DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS -fuse-ld=mold"      \
     -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS -fuse-ld=mold" 
