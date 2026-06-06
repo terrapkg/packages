@@ -157,6 +157,13 @@ and screenshot functionality, and many social features.
 
 This package contains the installer for the Steam software distribution service.
 
+%package arch-transition
+Summary: Transition package for migrating Steam from i686 to x86_64
+Requires: %{name} = %{evr}
+Provides: steam = 1.0.0.85-11
+Obsoletes: steam < 1.0.0.85-11
+BuildArch: noarch
+
 %description arch-transition
 This package is used to migrate Steam installations from the
 legacy i686 package layout to the x86_64 package layout.
