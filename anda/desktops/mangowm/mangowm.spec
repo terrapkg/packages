@@ -55,6 +55,7 @@ dwl — crafted for speed, flexibility, and a customizable desktop experience.
 %{_sysconfdir}/mango/config.conf
 %{_datadir}/wayland-sessions/mango.desktop
 %{_datadir}/xdg-desktop-portal/mango-portals.conf
+%{_mandir}/man1/mmsg.1.*
 
 %changelog
 * Wed Mar 04 2026 metcya <metcya@gmail.com> - 0.12.5-1
