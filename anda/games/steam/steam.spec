@@ -215,7 +215,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%{appid}.metai
 %{_datadir}/pixmaps/%{name}.png
 %{_datadir}/pixmaps/%{name}_tray_mono.png
 %{_prefix}/lib/%{name}/
-%{_libdir}/%{name}/
+%{_prefix}/lib/%{name}/
 %{_mandir}/man6/%{name}.*
 %{_metainfodir}/%{appid}.metainfo.xml
 %config(noreplace) %{_sysconfdir}/profile.d/%{name}.*sh
