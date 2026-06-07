@@ -40,7 +40,7 @@ Summary:        documentation for python3-%{pypi_name}
 documentation for python3-%{pypi_name}.
 
 %prep
-%autosetup -n xet-core-%{version}
+%autosetup -n hf_xet-%{version}
 
 %build
 %pyproject_wheel
