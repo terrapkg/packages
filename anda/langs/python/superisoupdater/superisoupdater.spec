@@ -2,7 +2,7 @@
 %global _desc A powerful tool to conveniently update all of your ISOs!
 
 Name:			python-%{pypi_name}
-Version:		2.3.0
+Version:		2.4.0
 Release:		2%{?dist}
 Summary:		%{_desc}
 License:		GPL-3.0-or-later
