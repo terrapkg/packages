@@ -23,6 +23,7 @@ BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(libudev)
 BuildRequires:  pkgconfig(xcb-cursor)
+BuildRequires:  pkgconfig(openssl)
 Packager:       madonuko <mado@fyralabs.com>
 
 %description %_description
