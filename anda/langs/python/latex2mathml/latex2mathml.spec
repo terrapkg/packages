@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		3.81.0
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Pure Python library for LaTeX to MathML conversion
 License:		MIT
 URL:			https://github.com/roniemartinez/latex2mathml

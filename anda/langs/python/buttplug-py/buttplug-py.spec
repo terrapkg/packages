@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.0.0
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Python implementation of core message system and client for the Buttplug Sex Toy Protocol Standard
 License:		BSD-3-Clause AND MIT AND Apache-2.0 AND X11
 URL:			buttplug-py.docs.buttplug.io

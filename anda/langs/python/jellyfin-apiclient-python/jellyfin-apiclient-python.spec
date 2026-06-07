@@ -3,9 +3,9 @@
 
 Name:			python-%{pypi_name}
 Version:		1.12.0
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Python API Client for Jellyfin
-License:		GPL-3.0
+License:		GPL-3.0-or-later
 URL:			https://github.com/jellyfin/jellyfin-apiclient-python
 Source0:		%url/archive/refs/tags/v%version.tar.gz
 BuildArch:      noarch

@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.5.4
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Python 3.8+ toolbox for submitting jobs to Slurm
 License:		MIT
 URL:			https://github.com/facebookincubator/submitit

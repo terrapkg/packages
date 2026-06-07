@@ -5,7 +5,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.6.3
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Proton VPN local agent written in Rust
 License:		GPL-3.0-only
 URL:			https://github.com/ProtonVPN/local-agent-rs

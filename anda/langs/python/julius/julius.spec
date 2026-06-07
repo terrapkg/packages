@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.2.8
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Fast PyTorch based DSP for audio and 1D signals
 License:		MIT
 URL:			https://github.com/adefossez/julius

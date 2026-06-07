@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.13
-Release:		2%?dist
+Release:		3%?dist
 Summary:		Chip support package for Cypress EZ-USB FX2 series microcontrollers
 License:		0BSD
 URL:			https://github.com/whitequark/libfx2
