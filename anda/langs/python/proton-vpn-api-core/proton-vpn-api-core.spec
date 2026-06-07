@@ -5,7 +5,7 @@
 
 Name:			python-%{pypi_name}
 Version:		5.2.4
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		A facade to the other Proton VPN components
 License:		GPL-3.0-Only
 URL:			https://github.com/ProtonVPN/python-proton-vpn-api-core

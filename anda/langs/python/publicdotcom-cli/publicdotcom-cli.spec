@@ -4,13 +4,12 @@
 
 Name:			python-%{real_name}
 Version:		1.1.0
-Release:		1%{?dist}
+Release:		2%?dist
 Summary:		Command-line client for the Public.com Trading API
 License:		Apache-2.0
 URL:			https://github.com/PublicDotCom/publicdotcom-cli
 Source0:		%{pypi_source}
 BuildArch:      noarch
-
 BuildRequires:  python3-devel
 BuildRequires:  python3-pip
 BuildRequires:  python3-setuptools
@@ -40,7 +39,6 @@ Summary:        %{summary}
 
 %files -n python3-%{real_name} -f %{pyproject_files}
 %doc README.md
-%license LICENSE
 %{_bindir}/public
 
 %changelog

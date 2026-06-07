@@ -7,7 +7,7 @@
 
 Name:           python-%{srcname}
 Version:        1.3.0
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Python library for working with HEIF images and plugin for Pillow
 
 License:        BSD-3-Clause
