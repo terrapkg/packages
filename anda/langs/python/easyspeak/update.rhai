@@ -1,1 +1,1 @@
-rpm.version(pypi("easyspeak"));
+rpm.version(pypi("easyspeak-linux"));
