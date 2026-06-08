@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.4.0
-Release:		1%?dist
+Release:		2%?dist
 Summary:		A wrapper around 'deprecation' providing support for deprecated aliases
 License:		Apache-2.0
 URL:			https://github.com/domdfcoding/deprecation-alias

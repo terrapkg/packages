@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		7.18.0
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Send usage data from your Python code to PostHog
 License:		MIT
 URL:			https://posthog.com/docs/libraries/python

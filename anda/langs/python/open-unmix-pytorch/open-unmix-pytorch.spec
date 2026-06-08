@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.3.0
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Open-Unmix - Music Source Separation for PyTorch
 License:		MIT
 URL:			https://github.com/sigsep/open-unmix-pytorch

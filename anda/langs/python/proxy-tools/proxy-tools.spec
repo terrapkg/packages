@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.1.0
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Simple (hopefuly useful) Proxy (as in the GoF design pattern) implementation for Python
 License:		BSD-2-clause
 URL:			https://github.com/jtushman/proxy_tools

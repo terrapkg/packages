@@ -3,9 +3,9 @@
 
 Name:			python-%{pypi_name}
 Version:		2.4.0
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		%{_desc}
-License:		GPLv3
+License:		GPL-3.0-or-later
 URL:			https://github.com/JoshuaVandaele/SuperISOUpdater
 Source0:		%url/archive/refs/tags/%{version}.tar.gz
 BuildArch:      noarch
