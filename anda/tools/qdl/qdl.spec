@@ -28,8 +28,6 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %meson_build
 
 %install
-ls -la
-ls -la redhat-linux-build
 install -Dm755 redhat-linux-build/qdl %{buildroot}%{_bindir}/qdl
 install -Dm755 redhat-linux-build/qdl-ramdump %{buildroot}%{_bindir}/qdl-ramdump
 install -Dm755 redhat-linux-build/qdl-ks %{buildroot}%{_bindir}/qdl-ks
