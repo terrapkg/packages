@@ -28,13 +28,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %meson_build
 
 %install
-install -Dm755 redhat-linux-build/qdl %{buildroot}%{_bindir}/qdl
-install -Dm755 redhat-linux-build/qdl-ramdump %{buildroot}%{_bindir}/qdl-ramdump
-install -Dm755 redhat-linux-build/qdl-ks %{buildroot}%{_bindir}/qdl-ks
-mkdir -p %{buildroot}%{_mandir}/man1
-install -Dm644 redhat-linux-build/qdl.1 %{buildroot}%{_mandir}/man1/qdl.1
-install -Dm644 redhat-linux-build/qdl-ramdump.1 %{buildroot}%{_mandir}/man1/qdl-ramdump.1
-install -Dm644 redhat-linux-build/qdl-ks.1 %{buildroot}%{_mandir}/man1/qdl-ks.1
+%meson_install
 
 %files
 %{_bindir}/qdl
