@@ -41,12 +41,11 @@ Requires:       kf6-plasma
 %{summary}.
 
 %package devel
-%pkg_devel_files
-%{_libdir}/cmake/Darkly
-%{_qt6_plugindir}/kstyle_config/darklystyleconfig.so
-%{_qt6_plugindir}/org.kde.kdecoration3/org.kde.darkly.so
-%{_qt6_plugindir}/org.kde.kdecoration3.kcm/kcm_darklydecoration.so
-%{_qt6_plugindir}/styles/darkly6.so
+Summary:       Development files for %{name}
+Requires:      %{name} = %{evr}
+
+%description   devel
+This package contains the development libraries for %{name}.
 
 
 %prep
@@ -73,6 +72,13 @@ Requires:       kf6-plasma
 %{_datadir}/kservices6/darklydecorationconfig.desktop
 %{_datadir}/kstyle/themes/darkly.themerc
 %{_datadir}/plasma/desktoptheme/darkly/*
+
+%files devel
+%{_libdir}/cmake/Darkly/
+%{_qt6_plugindir}/kstyle_config/darklystyleconfig.so
+%{_qt6_plugindir}/org.kde.kdecoration3/org.kde.darkly.so
+%{_qt6_plugindir}/org.kde.kdecoration3.kcm/kcm_darklydecoration.so
+%{_qt6_plugindir}/styles/darkly6.so
 
 %changelog
 * Tue Jun 02 2026 Owen Zimmerman <owen@fyralabs.com> - 0.5.37-1
