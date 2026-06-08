@@ -29,6 +29,7 @@ Summary:        %{summary}
 
 %prep
 %autosetup -n easyspeak-%{version}
+sed -E '/^requires-python/c requires-python = ">=3.10"' -i pyproject.toml
 
 %build
 %pyproject_wheel
