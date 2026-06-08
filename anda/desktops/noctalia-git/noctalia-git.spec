@@ -5,7 +5,6 @@
 %global commit          af17dadff2a721a0ba0276eb35303e22a972ab2f
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
 %global commitdate      20260608
-%global upstreamname    noctalia-shell
 
 Name:   	noctalia-git
 Version:	%{ver}^%{commitdate}git.%{shortcommit}
@@ -13,8 +12,8 @@ Release:	1%{?dist}
 Summary:	A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with no Qt or GTK dependency
 
 License:	MIT
-URL:		https://github.com/noctalia-dev/%{upstreamname}
-Source0:	https://github.com/noctalia-dev/%{upstreamname}/archive/%{commit}/%{upstreamname}-%{commit}.tar.gz
+URL:		https://github.com/noctalia-dev/noctalia
+Source0:	https://github.com/noctalia-dev/noctalia/archive/%{commit}/noctalia-%{commit}.tar.gz
 
 BuildRequires:  meson
 BuildRequires:  gcc-c++
@@ -57,7 +56,7 @@ Packager:       Cypress Reed <cypress@fyralabs.com>
 A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with no Qt or GTK dependency.
 
 %prep
-%autosetup -n %{upstreamname}-%{commit}
+%autosetup -n noctalia-%{commit}
 # Manually insert commit hash
 sed -i "s/'unknown'/'%{shortcommit}'/g" meson.build
 
