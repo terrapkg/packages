@@ -2,7 +2,7 @@
 
 %global ver 5.0.0
 
-%global commit          d3e2593224e72ebb1de84b283dc70aa40a879433
+%global commit          af17dadff2a721a0ba0276eb35303e22a972ab2f
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
 %global commitdate      20260608
 %global upstreamname    noctalia-shell
