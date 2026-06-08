@@ -10,7 +10,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0~%{commit_date}git.%{shortcommit}
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Scots Army Knife for electronics
 License:		0BSD AND Apache-2.0
 URL:			https://github.com/GlasgowEmbedded/glasgow

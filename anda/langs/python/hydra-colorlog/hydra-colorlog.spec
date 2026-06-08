@@ -5,7 +5,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.2.0
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Hydra is a framework for elegantly configuring complex applications
 License:		MIT
 URL:			https://github.com/facebookresearch/hydra

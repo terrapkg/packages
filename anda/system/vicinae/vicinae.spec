@@ -6,8 +6,8 @@
 
 Name:           vicinae
 License:        GPL-3.0-or-later
-Version:        0.21.5
-Release:        2%{?dist}
+Version:        0.21.6
+Release:        1%{?dist}
 URL:            https://docs.vicinae.com
 Source:         https://github.com/vicinaehq/%{name}/archive/refs/tags/v%{version}.tar.gz
 Summary:        A high-performance, native launcher for Linux
@@ -38,6 +38,7 @@ BuildRequires:  anda-srpm-macros
 BuildRequires:  ninja-build
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtbase-private-devel
+BuildRequires:  xcb-util-keysyms-devel
 BuildRequires:  desktop-file-utils
 
 Requires:       nodejs-npm
@@ -89,6 +90,7 @@ install -Dm 644 extra/%{name}-url-handler.desktop -t %{buildroot}%{_appsdir}
 %{_libexecdir}/%{name}/vicinae-server
 %dnl %{_libexecdir}/%{name}/vicinae-snippet-server
 %{_libexecdir}/%{name}/vicinae-input-server
+%{_libexecdir}/%{name}/vicinae-file-indexer
 %{_modulesloaddir}/vicinae.conf
 %dnl %{_udevrulesdir}/70-vicinae.rules
 

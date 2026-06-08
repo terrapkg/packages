@@ -9,7 +9,7 @@
 
 Name:			python-%{pypi_name}
 Version:		%{ver}^%{commit_date}git.%{shortcommit}
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Python 3 runtime libraries for ANTLR 4
 License:		BSD
 URL:			https://www.antlr.org/
