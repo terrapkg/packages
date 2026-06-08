@@ -1,18 +1,20 @@
-%global pypi_name treetable
-%global _desc Print in ascii art a table with a tree-like structure.
+%global pypi_name asyncclick
+%global _desc Python composable command line utility, trio-compatible version.
 
 Name:			python-%{pypi_name}
-Version:		0.2.6
-Release:		2%?dist
-Summary:		Print in ascii art a table with a tree-like structure
-License:		Unlicense
-URL:			https://github.com/adefossez/treetable
+Version:		8.3.0.7
+Release:		1%{?dist}
+Summary:		Python composable command line utility, trio-compatible version
+License:		BSD-3-Clause
+URL:			https://github.com/python-trio/asyncclick/
 Source0:		%{pypi_source}
-BuildArch:      noarch
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
 BuildRequires:  python3-pip
+BuildRequires:  python3-wheel
+BuildRequires:  python3-flit-core
+BuildArch:      noarch
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
@@ -34,12 +36,12 @@ Summary:        %{summary}
 
 %install
 %pyproject_install
-%pyproject_save_files treetable
+%pyproject_save_files %{pypi_name}
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
-%license LICENSE
+%license LICENSE.txt
 
 %changelog
-* Fri Jan 09 2026 Owen Zimmerman <owen@fyralabs.com>
+* Sun Jun 07 2026 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit

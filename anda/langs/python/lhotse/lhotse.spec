@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.33.0
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Tools for handling multimodal data in machine learning projects
 License:        Apache-2.0
 URL:			https://lhotse.readthedocs.io/en/latest/

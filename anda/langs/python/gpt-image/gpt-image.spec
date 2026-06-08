@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.9.1
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Tool to create GPT disk image files
 License:		MIT
 URL:			https://github.com/swysocki/gpt-image

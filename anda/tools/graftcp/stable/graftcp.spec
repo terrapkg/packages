@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:			graftcp
-Version:		0.8.0
+Version:		0.8.1
 Release:		1%{?dist}
 Summary:		A flexible tool for redirecting a given program's TCP traffic to SOCKS5 or HTTP proxy
 URL:			https://github.com/hmgle/graftcp

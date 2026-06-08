@@ -4,7 +4,7 @@
 
 Name:			python-%{real_name}
 Version:		0.1.15
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Python SDK for interacting with the Public Trading API
 License:		Apache-2.0
 URL:			https://github.com/PublicDotCom/publicdotcom-py

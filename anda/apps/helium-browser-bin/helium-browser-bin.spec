@@ -11,7 +11,7 @@
 %endif
 
 Name:           helium-browser-bin
-Version:        0.12.5.1
+Version:        0.13.1.1
 Release:        1%{?dist}
 Summary:        Private, fast, and honest web browser based on Chromium
 
