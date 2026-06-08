@@ -26,7 +26,6 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %build
 %meson_build
-# make manpages
 
 %install
 ls -la
