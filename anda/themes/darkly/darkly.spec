@@ -42,8 +42,12 @@ Requires:       kf6-plasma
 
 %package devel
 %pkg_devel_files
-%dnl %{_libdir}/cmake/Darkly
-%{_qt6_plugindir}/*/*darkly*
+%{_libdir}/cmake/Darkly
+%{_qt6_plugindir}/kstyle_config/darklystyleconfig.so
+%{_qt6_plugindir}/org.kde.kdecoration3/org.kde.darkly.so
+%{_qt6_plugindir}/org.kde.kdecoration3.kcm/kcm_darklydecoration.so
+%{_qt6_plugindir}/styles/darkly6.so
+
 
 %prep
 %autosetup -n Darkly-%{version}
