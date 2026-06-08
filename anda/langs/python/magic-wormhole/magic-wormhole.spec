@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.24.0
-Release:		2%{?dist}
+Release:		3%{?dist}
 Summary:		get things from one computer to another, safely
 License:		MIT
 URL:			https://github.com/magic-wormhole/magic-wormhole
