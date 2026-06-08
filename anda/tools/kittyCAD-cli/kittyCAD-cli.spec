@@ -1,7 +1,7 @@
 %undefine __brp_mangle_shebangs
 
 Name:           kittyCAD-cli
-Version:        0.2.174
+Version:        0.2.175
 Release:        1%{?dist}
 Summary:        The Zoo command line tool for KittyCAD
 URL:            https://github.com/KittyCAD/cli
