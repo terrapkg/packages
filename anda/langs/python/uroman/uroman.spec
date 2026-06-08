@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.3.1.1
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Universal Romanizer that can convert any unicode script to roman (latin) script
 License:		GPL-3.0-or-later
 URL:			https://github.com/isi-nlp/uroman

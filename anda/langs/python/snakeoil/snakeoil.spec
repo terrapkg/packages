@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.11.0
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Implements optimized versions of common functionality
 License:		BSD-3-Clause
 URL:			https://pkgcore.github.io/snakeoil

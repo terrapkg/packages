@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		2.3.0
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Flexible Python configuration system. The last one you will ever need
 License:		BSD-3-Clause
 URL:			https://github.com/omry/omegaconf
