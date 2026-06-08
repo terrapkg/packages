@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.23.1
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Fast State-of-the-Art Tokenizers optimized for Research and Production
 License:		Apache-2.0
 URL:			https://github.com/huggingface/tokenizers

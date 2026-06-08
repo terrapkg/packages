@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.49.2
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Accessible large language models via k-bit quantization for PyTorch
 License:		MIT
 URL:			https://huggingface.co/docs/bitsandbytes/main/en/index
