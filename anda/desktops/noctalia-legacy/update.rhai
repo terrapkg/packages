@@ -1,4 +1,4 @@
-let v = gh("noctalia-dev/noctalia-shell");
+let v = gh("noctalia-dev/noctalia");
 v.crop(1);
 
 if v < "5" {
