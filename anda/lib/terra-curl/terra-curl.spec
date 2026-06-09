@@ -17,15 +17,14 @@ Release: 1%{?dist}
 License: curl
 Source0: https://curl.se/download/%{name}-%{version_no_tilde}.tar.xz
 Source1: https://curl.se/download/%{name}-%{version_no_tilde}.tar.xz.asc
-# The curl download page ( https://curl.se/download.html ) links
-# to Daniel's address page https://daniel.haxx.se/address.html for the GPG Key,
-# which points to the GPG key as of April 7th 2016 of https://daniel.haxx.se/mykey.asc
-Source2: mykey.asc
+
+# grabbed this from ubuntu's keyserver as stated on https://curl.se/docs/verify.html.
+Source2: key.asc
 
 Packager: Cypress Reed <cypress@fyralabs.com>
 
 # patch making libcurl multilib ready
-Patch1: 0101-curl-7.32.0-multilib.patch
+Patch1: 0001-libcurl-multilib.patch
 
 Provides: curl-full = %{version}-%{release}
 # do not fail when trying to install curl-minimal after drop
@@ -53,24 +52,30 @@ BuildRequires: gcc
 BuildRequires: krb5-devel
 BuildRequires: libidn2-devel
 BuildRequires: libnghttp2-devel
+
 %if %{with http3}
 BuildRequires: libnghttp3-devel
 %endif
+
 BuildRequires: libpsl-devel
 BuildRequires: libssh-devel
 BuildRequires: libtool
 BuildRequires: make
+
 %if %{with http3}
 BuildRequires: ngtcp2-crypto-ossl-devel
 %endif
+
 BuildRequires: openldap-devel
 BuildRequires: openssh-clients
 BuildRequires: openssh-server
 BuildRequires: openssl
 BuildRequires: openssl-devel
+
 %if %{with openssl_engine_support} && 0%{?fedora} >= 41
 BuildRequires:  openssl-devel-engine
 %endif
+
 BuildRequires: perl-interpreter
 BuildRequires: pkgconfig
 BuildRequires: python-unversioned-command
@@ -186,15 +191,20 @@ resume, proxy tunneling and a busload of other useful tricks.
 %package -n libcurl
 Summary: A library for getting files from web servers
 Requires: libnghttp2%{?_isa} >= %{libnghttp2_version}
+
 %if %{with http3}
 Requires: libnghttp3%{?_isa} >= %{libnghttp3_version}
 %endif
+
 Requires: libpsl%{?_isa} >= %{libpsl_version}
 Requires: libssh%{?_isa} >= %{libssh_version}
+
 %if %{with http3}
 Requires: ngtcp2%{?_isa} >= %{ngtcp2_version}
 %endif
+
 Requires: openssl-libs%{?_isa} >= 1:%{openssl_version}
+
 Provides: libcurl-full = %{version}-%{release}
 Provides: libcurl-full%{?_isa} = %{version}-%{release}
 
@@ -236,7 +246,6 @@ comes with a limited set of features compared to the 'libcurl' package.  On the
 other hand, the package is smaller and requires fewer run-time dependencies to
 be installed.
 
-%prep
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -n %{name}-%{version_no_tilde} -p1
