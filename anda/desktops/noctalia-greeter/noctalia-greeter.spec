@@ -41,7 +41,7 @@ Requires:       greetd
 Packager:       Cypress Reed <cypress@fyralabs.com>
 
 %description
-Noctalia Greeter is the screen you see before your desktop session starts. 
+Noctalia Greeter is the screen you see before your desktop session starts.
 It lets you pick a user, enter your password, choose a Wayland session, and pick a color scheme - with the same visual language as Noctalia Shell.
 
 %prep
