@@ -23,7 +23,7 @@ Recommends:	    power-profiles-daemon
 Recommends:	    wlsunset
 Recommends:    	gpu-screen-recorder
 
-Obsoletes:      noctalia-shell
+Obsoletes:      noctalia-shell <= 4.7.7-1
 
 Packager:       Cypress Reed <cypress@fyralabs.com>
 
