@@ -37,7 +37,7 @@ jobs:
           dnf5 install -y ./anda-build/rpm/rpms/anda-*.rpm
 
       - name: Install build dependencies
-        run: dnf5 builddep -y anda/terra/{mock-configs,srpm-macros}/*.spec anda/buildsys/{anda,subatomic}/*.spec
+        run: dnf5 builddep -y anda/terra/{mock-configs,srpm-macros}/*.spec anda/{buildsys/anda,tools/subatomic}/*.spec
 
       - name: Install Anda
         run: |
@@ -61,7 +61,7 @@ jobs:
         run: anda build -D "vendor Terra" -D "__python %{__python3}" -rrpmbuild anda/terra/appstream-helper/pkg
 
       - name: Build Subatomic
-        run: anda build -D "vendor Terra" -rrpmbuild anda/buildsys/subatomic/pkg
+        run: anda build -D "vendor Terra" -rrpmbuild anda/tools/subatomic/pkg
       - name: Install Subatomic
         run: dnf5 install -y ./anda-build/rpm/rpms/subatomic-*.rpm
 
