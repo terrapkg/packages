@@ -22,6 +22,8 @@ Source1: https://curl.se/download/%{name}-%{version_no_tilde}.tar.xz.asc
 # which points to the GPG key as of April 7th 2016 of https://daniel.haxx.se/mykey.asc
 Source2: mykey.asc
 
+Packager: Cypress Reed <cypress@fyralabs.com>
+
 # patch making libcurl multilib ready
 Patch1: 0101-curl-7.32.0-multilib.patch
 
