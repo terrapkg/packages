@@ -1,3 +1,5 @@
+%global upstream_name curl
+
 # OpenSSL ENGINE support
 # This is deprecated by OpenSSL since OpenSSL 3.0 and by Fedora since Fedora 41
 # https://fedoraproject.org/wiki/Changes/OpensslDeprecateEngine
@@ -15,8 +17,8 @@ Name:    terra-curl
 Version: 8.21.1~rc2
 Release: 1%{?dist}
 License: curl
-Source0: https://curl.se/download/%{name}-%{version_no_tilde}.tar.xz
-Source1: https://curl.se/download/%{name}-%{version_no_tilde}.tar.xz.asc
+Source0: https://curl.se/download/%{upstream-name}-%{version_no_tilde}.tar.xz
+Source1: https://curl.se/download/%{upstream-name}-%{version_no_tilde}.tar.xz.asc
 
 # grabbed this from ubuntu's keyserver as stated on https://curl.se/docs/verify.html.
 Source2: key.asc
@@ -248,7 +250,7 @@ be installed.
 
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{name}-%{version_no_tilde} -p1
+%autosetup -n %{upstream-name}-%{version_no_tilde} -p1
 
 # disable test 1801
 # <https://github.com/bagder/curl/commit/21e82bd6#commitcomment-12226582>
