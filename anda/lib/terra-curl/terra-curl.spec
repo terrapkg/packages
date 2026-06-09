@@ -43,6 +43,9 @@ Recommends: wcurl
 # For more details, see https://bugzilla.redhat.com/show_bug.cgi?id=2262096
 Obsoletes: curl-minimal < 8.6.0-4
 
+Provides:      curl
+Conflicts:     curl
+
 BuildRequires: automake
 BuildRequires: brotli-devel
 BuildRequires: coreutils
