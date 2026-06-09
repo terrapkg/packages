@@ -1,4 +1,4 @@
-%global upstream_name curl
+%global upstream-name curl
 
 # OpenSSL ENGINE support
 # This is deprecated by OpenSSL since OpenSSL 3.0 and by Fedora since Fedora 41
