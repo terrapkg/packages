@@ -46,9 +46,11 @@ Noctalia Greeter is the screen you see before your desktop session starts. It le
 %prep
 %autosetup -n noctalia-greeter-%{commit}
 
-%build
+%conf
 export LDFLAGS="%{__global_ldflags} -Wl,-z,notext"
 %meson
+
+%build
 %meson_build
 
 %install
