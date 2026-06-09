@@ -41,6 +41,7 @@ export PATH="/usr/lib/jvm/java-21-openjdk/bin:${PATH}"
 	-Pgradle_installPath="$(pwd)/dist" \
 	-Porg.gradle.ignoreBuildJavaVersionCheck=true \
 	--warning-mode all \
+	-Dorg.gradle.unsafe.isolated-projects=false \
 	--no-configuration-cache
 
 %install
