@@ -1,6 +1,6 @@
 %global forgeurl https://github.com/nakst/gf
 
-%global commit 46174e9b25850c9898ca0c2de90af31ad83122d7
+%global commit 56c97f66769ec8109a9aff2e475a86c9a6781742
 %global shortcommit %{sub %{commit} 0 7}
 %global commitdate 20251231
 

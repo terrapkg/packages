@@ -1,6 +1,6 @@
 Name:			run0-sudo-shim
-Version:		1.2.0
-Release:		1%?dist
+Version:		1.3.0
+Release:		1%{?dist}
 Summary:		An imitation of sudo, using run0 internally
 SourceLicense:	BSD-3-Clause
 License:		(Apache-2.0 OR MIT) AND BSD-3-Clause AND MIT
