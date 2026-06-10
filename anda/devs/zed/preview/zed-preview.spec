@@ -166,7 +166,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%appid.desktop
 %files
 %doc CODE_OF_CONDUCT.md
 %doc README.md
-%license LICENSE-AGPL
 %license LICENSE-APACHE
 %license LICENSE-GPL
 %if %{without debug_no_build}
