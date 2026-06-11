@@ -46,7 +46,7 @@ jobs:
           dnf5 install -y ./anda-build/rpm/rpms/anda-*.rpm
 
       - name: Install build dependencies
-        run: dnf5 builddep -y anda/terra/{mock-configs,srpm-macros}/*.spec anda/{buildsys/anda,tools/subatomic}/*.spec
+        run: dnf5 builddep -y anda/terra/{mock-configs,srpm-macros,appstream-helper}/*.spec anda/{buildsys/anda,tools/subatomic}/*.spec
 
       - name: Install Anda
         run: |
