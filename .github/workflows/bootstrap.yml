@@ -29,6 +29,15 @@ jobs:
           ref: f${{ matrix.version }}
           fetch-depth: 1
 
+      - name: Setup build environment
+        run: |
+          sed -i 's/.fc%{fedora}/.fcrawhide/g' /usr/lib/rpm/macros.d/macros.dist
+          cat<<EOF >> /etc/dnf/dnf.conf
+          gpgcheck=1
+          install_weak_deps=0
+          max_parallel_downloads=20
+          EOF
+
       - name: Build anda-srpm-macros
         run: |
           mkdir -p anda-build/rpm/rpms
