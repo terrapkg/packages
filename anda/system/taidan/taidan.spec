@@ -37,6 +37,7 @@ Linux, written in Rust and the Helium toolkit.
 %package default-configs
 Summary:        Default configurations for Taidan
 Provides:       %name-configs
+BuildArch:      noarch
 
 %description default-configs
 This package contains the default configuration files for taidan.
