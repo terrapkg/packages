@@ -32,7 +32,7 @@ scripts/dkms.mkconf -n %{module} -v %{version} -f dkms.conf
 
 %install
 mkdir -p %{buildroot}%{_usrsrc}/%{modulename}-%{version}/
-cp -rf lib Makefile dkms.conf %{buildroot}%{_usrsrc}/%{modulename}-%{version}/
+cp -rf lib dkms.conf %{buildroot}%{_usrsrc}/%{modulename}-%{version}/
 
 %files
 %defattr(-,root,root)
