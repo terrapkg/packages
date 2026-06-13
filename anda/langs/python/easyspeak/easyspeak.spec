@@ -2,7 +2,7 @@
 %global _desc Voice control for Linux desktops. Fully local, no cloud, Wayland-native.
 
 Name:			python-%{pypi_name}
-Version:		0.2.0
+Version:		0.3.0
 Release:		1%{?dist}
 Summary:		Voice control for Linux desktops. Fully local, no cloud, Wayland-native
 License:		GPL-3.0-or-later
