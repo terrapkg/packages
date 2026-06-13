@@ -1,9 +1,11 @@
+%global __brp_mangle_shebangs_exclude_from /usr/lib/python3.14/site-packages/zipstream/
+
 %global pypi_name zipstream-ng
 %global _desc 🔉 A modern and easy to use streamable zip file generator
 
 Name:			python-%{pypi_name}
-Version:		1.9.0
-Release:		1%?dist
+Version:		1.9.2
+Release:		2%{?dist}
 Summary:		A modern and easy to use streamable zip file generator
 License:		LGPL-3.0-only
 URL:			https://github.com/pR0Ps/zipstream-ng
@@ -14,6 +16,7 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-wheel
 BuildRequires:  python3-setuptools
 BuildRequires:  python3-pip
+BuildRequires:  python3-hatchling
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
@@ -42,9 +45,6 @@ Provides:       zipstream-ng
 %doc README.md CHANGELOG.md docs/zipserver.rst
 %license LICENSE
 %{_bindir}/zipserver
-%ghost %python3_sitelib/__pycache__/*.cpython-*.pyc
-%ghost %python3_sitelib/%{name}/subcommands/__pycache__/*.cpython-*.pyc
-%python3_sitelib/zipstream_ng-%version.dist-info/*
 
 %changelog
 * Mon Nov 03 2025 Owen Zimmerman <owen@fyralabs.com>

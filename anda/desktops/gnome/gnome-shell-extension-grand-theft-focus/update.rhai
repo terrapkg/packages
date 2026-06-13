@@ -1,1 +1,1 @@
-rpm.version(gh_tag("zalckos/GrandTheftFocus"));
+rpm.version(gnome_extensions("grand-theft-focus@zalckos.github.com"));

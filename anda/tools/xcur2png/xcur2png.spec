@@ -20,8 +20,10 @@ xcur2png is a program which let you take PNG image from X cursor, and generate c
 %prep
 %autosetup
 
-%build
+%conf
 %configure
+
+%build
 %make_build
 
 %install

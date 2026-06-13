@@ -1,0 +1,26 @@
+diff -Naur x265_4.2.old/source/CMakeLists.txt x265_4.2/source/CMakeLists.txt
+--- x265_4.2.old/source/CMakeLists.txt	2026-05-22 09:31:41.492277260 +0200
++++ x265_4.2/source/CMakeLists.txt	2026-05-22 09:31:41.494071992 +0200
+@@ -178,6 +178,7 @@
+     option(ENABLE_LIBVMAF "Enable VMAF" OFF)
+     if(ENABLE_LIBVMAF)
+         add_definitions(-DENABLE_LIBVMAF)
++        include_directories(${VMAF_INCLUDE_DIR})
+     endif()
+     if(X64)
+         option(ENABLE_CET "Enable Control-flow Enforcement" OFF)
+@@ -1068,10 +1069,13 @@
+     if(EXTRA_LIB)
+         target_link_libraries(x265-shared ${EXTRA_LIB})
+     endif()
+-	 target_link_libraries(x265-shared ${PLATFORM_LIBS})
++        target_link_libraries(x265-shared ${PLATFORM_LIBS})
+     if(SVTHEVC_FOUND)
+         target_link_libraries(x265-shared ${SVT_HEVC_LIBRARY})
+     endif(SVTHEVC_FOUND)
++    if(ENABLE_LIBVMAF)
++        target_link_libraries(x265-shared ${VMAF})
++    endif(ENABLE_LIBVMAF)
+     if(MSVC)
+         set_target_properties(x265-shared PROPERTIES OUTPUT_NAME libx265)
+     else()

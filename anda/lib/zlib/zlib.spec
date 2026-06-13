@@ -19,14 +19,10 @@ BuildRequires:  gcc
 %pkg_static_files
 
 %prep
-%autosetup 
-export CFLAGS="%optflags"
-export LDFLAGS="%build_ldflags"
-./configure --libdir=%_libdir \
-            --includedir=%_includedir \
-            --sysconfdir=%_sysconfdir \
-            --localstatedir=%_localstatedir \
-            --prefix=%_prefix
+%autosetup
+
+%conf
+%configure
 
 %build
 %make_build
@@ -41,5 +37,8 @@ export LDFLAGS="%build_ldflags"
 %_libdir/libz.so.*
 
 %changelog
+* Tue Apr 21 2026 Owen Zimmerman <owen@fyralabs.com>
+- Use %conf and %configure
+
 * Wed Nov 26 2025 metcya <metcya@gmail.com>
 - package zlib

@@ -1,6 +1,6 @@
-%global commit 7b4d0f49351a60d1f93d48f081b4c0e35e10fa6d
+%global commit 37d1cb6f98e02b76221190b10af3c6e1c6b7534d
 %global shortcommit %{sub %{commit} 0 7}
-%global commitdate 20260325
+%global commitdate 20260528
 
 Name:             steamos-manager-powerstation
 Version:          0~%{commitdate}.git%{shortcommit}
@@ -58,7 +58,6 @@ make -f /usr/share/selinux/devel/Makefile -C data/selinux steamos_manager.pp
 %install
 %{cargo_license_online -a} > LICENSE.dependencies
 %make_install
-rm %{buildroot}%{_unitdir}/sddm.service.d/reset-oneshot-boot.conf # steamOS specific
 rm %{buildroot}%{_userunitdir}/orca.service # not used by anyone apparently, steamOS specific(?)
 install -D -m644 data/selinux/steamos_manager.pp %{buildroot}%{_datadir}/selinux/packages/steamos_manager.pp
 install -d %{buildroot}%{_userunitdir}/gamescope-session-plus.service.wants/steamos-manager.service
@@ -101,6 +100,7 @@ fi
 %{_datadir}/steamos-manager/platform.toml
 %{_prefix}/lib/steamos-manager
 %{_unitdir}/steamos-manager.service
+%{_unitdir}/sddm.service.d/reset-oneshot-boot.conf
 %{_userunitdir}/steamos-manager.service
 %{_userunitdir}/steamos-manager-configure-cecd.service
 %{_userunitdir}/steamos-manager-session-cleanup.service

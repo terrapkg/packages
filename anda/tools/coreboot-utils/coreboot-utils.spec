@@ -499,6 +499,13 @@ Requires:       coreboot-utils = %{evr}
 %patch -P0 -p1
 %patch -P1 -p1
 
+%conf
+%ifarch x86_64
+pushd msrtool
+%configure
+popd
+%endif
+
 %build
 %if 0%{?fedora} >= 42
 export CC=gcc-14
@@ -534,6 +541,9 @@ pushd util
 %endif
 %make_build -C kbc1126
 %ifarch x86_64
+%make_build -C msrtool
+%endif
+%ifarch x86_64
 %make_build -C nvramtool LDFLAGS="-fPIE"
 %endif
 %ifarch x86_64
@@ -556,13 +566,6 @@ pushd autoport
 export GOFLAGS="-buildmode=pie -trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw"
 %gobuild -o %{_builddir}/autoport
 popd
-
-%ifarch x86_64
-pushd msrtool
-%configure
-%make_build
-popd
-%endif
 
 pushd coreboot-configurator
 %meson

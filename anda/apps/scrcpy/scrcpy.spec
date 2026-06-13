@@ -19,8 +19,8 @@
 %endif
 
 Name:			scrcpy
-Version:		3.3.4
-Release:		1%?dist
+Version:		4.0
+Release:		1%{?dist}
 Summary:		Display and control your Android device
 License:		Apache-2.0 AND Proprietary
 URL:			https://github.com/Genymobile/scrcpy
@@ -46,7 +46,7 @@ BuildRequires:  python3-sdkmanager
 Requires:       %{name}-server
 # Gradle here really wants Java 21-23 to work properly
 # Java 25 breaks the build
-BuildRequires:  java-21-openjdk-devel
+BuildRequires:  java-latest-openjdk-devel
 BuildConflicts:	dkms-nvidia akmod-nvidia
 Requires:       android-tools
 

@@ -84,10 +84,10 @@
 
 Name:           %{srcname}
 Summary:        Mesa graphics libraries
-%global ver 26.0.4
+%global ver 26.1.0
 Epoch:          1
 Version:        %{lua:ver = string.gsub(rpm.expand("%{ver}"), "-", "~"); print(ver)}
-Release:        1
+Release:        1%{?dist}
 Packager:       Kyle Gospodnetich <me@kylegospodneti.ch>
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0
 URL:            https://mesa3d.org
@@ -130,7 +130,7 @@ BuildRequires:  systemd-devel
 # We only check for the minimum version of pkgconfig(libdrm) needed so that the
 # SRPMs for each arch still have the same build dependencies. See:
 # https://bugzilla.redhat.com/show_bug.cgi?id=1859515
-BuildRequires:  pkgconfig(libdrm) >= 2.4.122
+BuildRequires:  pkgconfig(libdrm) >= 2.4.133
 %if 0%{?with_libunwind}
 BuildRequires:  pkgconfig(libunwind)
 %endif
@@ -191,6 +191,9 @@ BuildRequires:  rust-toolset
 BuildRequires:  cargo-rpm-macros
 %endif
 %endif
+%if 0%{?with_opencl}
+BuildRequires:  libstdc++-static
+%endif 
 %if 0%{?with_nvk}
 BuildRequires:  cbindgen
 %endif
@@ -207,7 +210,7 @@ BuildRequires:  glslang
 BuildRequires:  pkgconfig(vulkan)
 %endif
 %if 0%{?with_d3d12}
-BuildRequires:  pkgconfig(DirectX-Headers) >= 1.618.1
+BuildRequires:  pkgconfig(DirectX-Headers) >= 1.619.1
 %endif
 
 %description
@@ -268,11 +271,11 @@ Provides:       libEGL-devel%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 %package dri-drivers
 Summary:        Mesa-based DRI drivers
 Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       %{name}-libgbm%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Obsoletes:      %{name}-libglapi < %{?epoch:%{epoch}:}25.0.0~rc2-1
-Provides:       %{name}-libglapi >= %{?epoch:%{epoch}:}25.0.0~rc2-1
-
 Obsoletes:      %{name}-va-drivers < %{?epoch:%{epoch}:}26.0.0-5
-Provides:       %{name}-va-drivers >= %{?epoch:%{epoch}:}26.0.0-5
+Provides:       %{name}-va-drivers = %{?epoch:%{epoch}:}%{version}-%{release}            
+Provides:       %{name}-va-drivers%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Obsoletes:      %{name}-vaapi-drivers < %{?epoch:%{epoch}:}22.2.0-5
 
 %description dri-drivers
@@ -343,8 +346,6 @@ Summary:        Mesa Vulkan drivers
 Requires:       vulkan%{_isa}
 Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Obsoletes:      mesa-vulkan-devel < %{?epoch:%{epoch}:}%{version}-%{release}
-# Bad change from upstream Fedora
-#Obsoletes:      VK_hdr_layer < 1
 
 %description vulkan-drivers
 The drivers with support for the Vulkan API.

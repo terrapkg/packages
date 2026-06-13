@@ -1,1 +1,1 @@
-rpm.version(gh("https://github.com/google/breakpad"));
+rpm.version(gh("google/breakpad"));

@@ -7,10 +7,10 @@
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
-Version:        13.2.75
+Version:        13.3.27
 Release:        1%{?dist}
 Summary:        CUDA GDB
-License:        GPLv3+ and GPLv3+ with exceptions and GPLv2+ and GPLv2+ with exceptions and GPL+ and LGPLv2+ and LGPLv3+ and BSD and Public Domain and GFDL
+License:        GPL-3.0-or-later AND GPL-3.0-or-later with exceptions AND GPL-2.0-or-later AND GPL-2.0-or-later with exceptions AND GPL-1.0-or-later AND LGPL-2.0-or-later AND LGPL-3.0-or-later AND BSD AND LicenseRef-Fedora-Public-Domain AND GFDL
 URL:            https://developer.nvidia.com/cuda-toolkit
 ExclusiveArch:  x86_64 aarch64
 

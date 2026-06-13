@@ -1,1 +1,1 @@
-rpm.version(gh("delthas/senpai"));
+rpm.version(gh_tag("delthas/senpai"));

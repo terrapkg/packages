@@ -5,7 +5,7 @@
 %global         cuda_version 13
 
 Name:           libcusparselt
-Version:        0.9.0.3
+Version:        0.9.1.1
 Release:        1%{?dist}
 Summary:        CUDA Library for Sparse Matrix-Matrix Multiplication
 License:        NVIDIA License
