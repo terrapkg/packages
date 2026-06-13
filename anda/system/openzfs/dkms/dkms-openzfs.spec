@@ -4,7 +4,7 @@
 %define module openzfs
 
 Name:           %{module}-dkms
-Version:        2.4.0
+Version:        2.4.3
 Release:        1%?dist
 Summary:        ZFS DKMS Kernel Modules
 URL:            https://github.com/openzfs/zfs
@@ -31,11 +31,8 @@ This package contains the dkms ZFS kernel modules.
 scripts/dkms.mkconf -n %{module} -v %{version} -f dkms.conf
 
 %install
-if [ "$RPM_BUILD_ROOT" != "/" ]; then
-    rm -rf $RPM_BUILD_ROOT
-fi
-mkdir -p $RPM_BUILD_ROOT/usr/src/
-cp -rf ${RPM_BUILD_DIR}/%{module}-%{version} $RPM_BUILD_ROOT/usr/src/
+mkdir -p %{buildroot}%{_usrsrc}/%{modulename}-%{version}/
+cp -rf lib Makefile dkms.conf %{buildroot}%{_usrsrc}/%{modulename}-%{version}/
 
 %files
 %defattr(-,root,root)

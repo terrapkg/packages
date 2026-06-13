@@ -4,7 +4,7 @@
 
 Name:           akmod-openzfs
 Summary:        Kernel module (kmod) for OpenZFS filesystem
-Version:        2.4.0
+Version:        2.4.3
 Release:        1%?dist
 License:        CDDL-1.0
 URL:            https://github.com/openzfs/zfs
@@ -58,21 +58,21 @@ for kernel_version in %{?kernel_versions} ; do
   cd _kmod_build_${kernel_version%%___*}
 
   ./autogen.sh
-  
+
   %configure \
     --with-config=kernel \
     --with-linux=${kernel_version##*___} \
     --with-linux-obj=${kernel_version##*___}
-  
+
   make %{?_smp_mflags} -C ${kernel_version##*___} M=${PWD}/module modules
-  
+
   cd ..
 done
 
 %install
 for kernel_version in %{?kernel_versions}; do
  mkdir -p %{buildroot}%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
- 
+
  install -D -m 755 _kmod_build_${kernel_version%%___*}/module/avl/zavl.ko %{buildroot}%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
  install -D -m 755 _kmod_build_${kernel_version%%___*}/module/nvpair/znvpair.ko %{buildroot}%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
  install -D -m 755 _kmod_build_${kernel_version%%___*}/module/unicode/zunicode.ko %{buildroot}%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
@@ -81,7 +81,7 @@ for kernel_version in %{?kernel_versions}; do
  install -D -m 755 _kmod_build_${kernel_version%%___*}/module/icp/icp.ko %{buildroot}%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
  install -D -m 755 _kmod_build_${kernel_version%%___*}/module/spl/spl.ko %{buildroot}%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
  install -D -m 755 _kmod_build_${kernel_version%%___*}/module/zfs/zfs.ko %{buildroot}%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
- 
+
  chmod a+x %{buildroot}%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/*.ko
 done
 %{?akmod_install}
