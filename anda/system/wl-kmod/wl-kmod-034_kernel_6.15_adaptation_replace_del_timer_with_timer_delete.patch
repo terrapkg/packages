@@ -1,0 +1,35 @@
+From ddfac506c7060e7514952c6ec340b34ee0273864 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Nicolas=20Vi=C3=A9ville?= <nicolas.vieville@uphf.fr>
+Date: Tue, 17 Jun 2025 15:12:03 +0200
+Subject: [PATCH] wl_linux.c: fix compatibility with kernel >= 6.15 replace
+ del_timer function with timer_delete function - related to commit "treewide:
+ Switch/rename to timer_delete[_sync]()" (Thomas Gleixner, 5 Apr 2025)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Nicolas Viéville <nicolas.vieville@uphf.fr>
+---
+ src/wl/sys/wl_linux.c | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/src/wl/sys/wl_linux.c b/src/wl/sys/wl_linux.c
+index 59873e1..4512f73 100644
+--- a/src/wl/sys/wl_linux.c
++++ b/src/wl/sys/wl_linux.c
+@@ -2501,7 +2501,12 @@ wl_del_timer(wl_info_t *wl, wl_timer_t *t)
+ 	ASSERT(t);
+ 	if (t->set) {
+ 		t->set = FALSE;
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 15, 0)
++		// Rel. commit "treewide: Switch/rename to timer_delete[_sync]()" (Thomas Gleixner, 5 Apr 2025)
++		if (!timer_delete(&t->timer)) {
++#else
+ 		if (!del_timer(&t->timer)) {
++#endif
+ #ifdef BCMDBG
+ 			WL_INFORM(("wl%d: Failed to delete timer %s\n", wl->unit, t->name));
+ #endif
+-- 
+2.49.0
+

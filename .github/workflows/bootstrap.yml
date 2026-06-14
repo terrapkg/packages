@@ -1,6 +1,9 @@
 name: Bootstrap Andaman and Subatomic
 permissions:
   contents: read
+  attestations: write
+  artifact-metadata: write
+  id-token: write
 on:
   workflow_dispatch:
 
@@ -21,7 +24,7 @@ jobs:
           dnf5 swap -y --setopt=install_weak_deps=False systemd-standalone-sysusers systemd
           dnf5 install -y --setopt=install_weak_deps=False curl wget git-core openssl-devel cargo podman fuse-overlayfs dnf5-plugins rpmbuild script
 
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
           ref: f${{ matrix.version }}
           fetch-depth: 1
@@ -34,11 +37,11 @@ jobs:
           dnf5 install -y ./anda-build/rpm/rpms/anda-*.rpm
 
       - name: Install build dependencies
-        run: dnf5 builddep -y anda/terra/{mock-configs,srpm-macros}/*.spec anda/tools/buildsys/{anda,subatomic}/*.spec
+        run: dnf5 builddep -y anda/terra/{mock-configs,srpm-macros}/*.spec anda/{buildsys/anda,tools/subatomic}/*.spec
 
       - name: Install Anda
         run: |
-          rpmbuild -bb anda/tools/buildsys/anda/*.spec --undefine=_disable_source_fetch -D "_sourcedir $(pwd)/anda/tools/buildsys/anda/" -D "_rpmdir $(pwd)/anda-build/rpm/rpms/"
+          rpmbuild -bb anda/buildsys/anda/*.spec --undefine=_disable_source_fetch -D "_sourcedir $(pwd)/anda/buildsys/anda/" -D "_rpmdir $(pwd)/anda-build/rpm/rpms/"
           mv ./anda-build/rpm/rpms/*/anda-*.rpm ./anda-build/rpm/rpms/
           dnf5 install -y ./anda-build/rpm/rpms/anda-*.rpm
 
@@ -58,7 +61,7 @@ jobs:
         run: anda build -D "vendor Terra" -D "__python %{__python3}" -rrpmbuild anda/terra/appstream-helper/pkg
 
       - name: Build Subatomic
-        run: anda build -D "vendor Terra" -rrpmbuild anda/tools/buildsys/subatomic/pkg
+        run: anda build -D "vendor Terra" -rrpmbuild anda/tools/subatomic/pkg
       - name: Install Subatomic
         run: dnf5 install -y ./anda-build/rpm/rpms/subatomic-*.rpm
 
@@ -79,3 +82,10 @@ jobs:
             --server https://subatomic.fyralabs.com \
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
             terra${{ matrix.version }}-source anda-build/rpm/srpm/*
+
+      - name: Attest build provenance
+        uses: actions/attest-build-provenance@a2bbfa25375fe432b6a289bc6b6cd05ecd0c4c32 # v4.1.0
+        with:
+          subject-path: |
+            anda-build/rpm/rpms/*
+            anda-build/rpm/srpm/*

@@ -2,8 +2,8 @@
 %global realname subtitleedit
 
 Name:           %realname.bin
-Version:        4.0.15
-Release:        1%?dist
+Version:        4.0.16
+Release:        1%{?dist}
 Summary:        An advanced subtitle editor and converter
 License:        GPL-3.0-only
 URL:            https://www.nikse.dk/SubtitleEdit

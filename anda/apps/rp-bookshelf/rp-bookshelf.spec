@@ -1,10 +1,10 @@
-%global commit a720bf5041fd832a278378fd6f5cf9a0b3f8cc6f
-%global commit_date 20251217
+%global commit 8d837571ef02a4c1c4d74e419ebc59d66b47b685
+%global commit_date 20260521
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           rp-bookshelf
 Version:        0~%commit_date.git~%shortcommit
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Browser for Raspberry Pi Press publications in PDF format
 License:        BSD-3-Clause
 URL:            https://github.com/raspberrypi-ui/bookshelf

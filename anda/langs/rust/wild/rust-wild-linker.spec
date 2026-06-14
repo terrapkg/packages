@@ -4,8 +4,8 @@
 %global crate wild-linker
 
 Name:           rust-wild-linker
-Version:        0.8.0
-Release:        1%?dist
+Version:        0.9.0
+Release:        1%{?dist}
 Summary:        Very fast linker for Linux
 
 License:        MIT OR Apache-2.0

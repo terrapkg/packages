@@ -8,7 +8,7 @@ ExcludeArch: %{ix86}
 
 Name:           python-%{pypi_name}
 Version:        0.2.1
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Grabs the dominant color or a representative color palette from an image
 
 # https://gitlab.com/fedora/legal/fedora-license-data/-/issues/382

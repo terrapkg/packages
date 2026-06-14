@@ -1,10 +1,10 @@
 project "pkg" {
+        arches = ["x86_64"]
     rpm {
         spec = "nvidia-580-kmod-common.spec"
     }
-    arches = ["x86_64"]
     labels = {
         subrepo = "nvidia"
-        weekly = 4
+        updbranch = 1
     }
 }
