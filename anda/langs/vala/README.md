@@ -1,3 +1,3 @@
 # Terra langs/vala Folder
 
-This folder is for vala packages.
+This folder is for Vala packages.
