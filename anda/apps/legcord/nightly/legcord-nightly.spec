@@ -2,18 +2,15 @@
 %global commit_date 20260614
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global debug_package %nil
-%global __strip /bin/true
-%global __provides_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*))$
-%ifnarch aarch64 
-%global __requires_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*)|(.*\\aarch64*\\.so.*))$
-%elifarch aarch64
-%global __requires_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*)|(.*\\x86_64*\\.so.*)|(.*\\x86-64*\\.so.*))$
-%endif
+# terrible evil no good very bad hack
+# fix one day
+%global __requires_exclude_from (.*)lib(.*)so(.*)
 
 Name:           legcord-nightly
+%electronmeta -D
 Version:        %commit_date.%shortcommit
 Release:        1%{?dist}
-License:        OSL-3.0
+License:        OSL-3.0 AND %{electron_license}
 Summary:        Custom lightweight Discord client designed to enhance your experience
 URL:            https://github.com/Legcord/Legcord
 Group:          Applications/Internet
@@ -31,38 +28,21 @@ while keeping everything lightweight.
 %git_clone %{url}.git %{commit}
 
 %build
-pnpm install
-pnpm run build
-pnpm run package --linux AppImage tar.gz
+echo "Electron Builder" > %{rpmbuilddir}/webapp-tool.txt
+%pnpm_build -r build
 
 %install
-mkdir -p %{buildroot}%{_datadir}/legcord
-%ifarch aarch64
-mv dist/linux-arm64-unpacked/* %{buildroot}%{_datadir}/legcord
-%else
-mv dist/linux-unpacked/* -t %{buildroot}%{_datadir}/legcord
-%endif
-
-mkdir -p %{buildroot}%{_bindir}
-ln -sf %{_datadir}/legcord/legcord %{buildroot}%{_bindir}/legcord
-install -Dm644 dist/.icon-set/icon_16.png %{buildroot}%{_iconsdir}/hicolor/16x16/apps/legcord.png
-install -Dm644 dist/.icon-set/icon_32.png %{buildroot}%{_iconsdir}/hicolor/32x32/apps/legcord.png
-install -Dm644 dist/.icon-set/icon_48x48.png %{buildroot}%{_iconsdir}/hicolor/48x48/apps/legcord.png
-install -Dm644 dist/.icon-set/icon_64.png %{buildroot}%{_iconsdir}/hicolor/64x64/apps/legcord.png
-install -Dm644 dist/.icon-set/icon_128.png %{buildroot}%{_iconsdir}/hicolor/128x128/apps/legcord.png
-install -Dm644 dist/.icon-set/icon_256.png %{buildroot}%{_iconsdir}/hicolor/256x256/apps/legcord.png
-install -Dm644 dist/.icon-set/icon_512.png %{buildroot}%{_iconsdir}/hicolor/512x512/apps/legcord.png
-install -Dm644 dist/.icon-set/icon_1024.png %{buildroot}%{_iconsdir}/hicolor/1024x1024/apps/legcord.png
+%electron_install -i legcord -l -I dist/.icon-set/icon_16.png -I dist/.icon-set/icon_32.png -I dist/.icon-set/icon_48x48.png -I dist/.icon-set/icon_64.png -I dist/.icon-set/icon_128.png -I dist/.icon-set/icon_256.png -I dist/.icon-set/icon_512.png -I dist/.icon-set/icon_1024.png
 
 dist/Legcord-*.AppImage --appimage-extract '*.desktop'
-desktop-file-install --set-key=Exec --set-value="%{_datadir}/legcord/legcord %U" squashfs-root/legcord.desktop
+%desktop_file_install -k Exec,Icon -v "%{_libdir}/legcord-nightly/Legcord",legcord -u %U -f squashfs-root/Legcord.desktop
 
 %files
 %doc README.md
 %license license.txt
-%{_bindir}/legcord
-%{_datadir}/applications/legcord.desktop
-%{_datadir}/legcord/
+%{_bindir}/legcord-nightly
+%{_datadir}/applications/Legcord.desktop
+%{_libdir}/legcord-nightly/
 %{_iconsdir}/hicolor/16x16/apps/legcord.png
 %{_iconsdir}/hicolor/32x32/apps/legcord.png
 %{_iconsdir}/hicolor/48x48/apps/legcord.png
@@ -73,6 +53,9 @@ desktop-file-install --set-key=Exec --set-value="%{_datadir}/legcord/legcord %U"
 %{_iconsdir}/hicolor/1024x1024/apps/legcord.png
 
 %changelog
+* Mon May 18 2026 june-fish <june@fyralabs.com> - 1.2.4-1
+- Use electron macros
+
 * Fri Nov 22 2024 owen <owen@fyralabs.com> - 1.0.2-2
 - Add nightly package.
 
