@@ -1,13 +1,13 @@
 Name:           tdf
 Version:        0.5.0
-Release:        1%?dist
+Release:        2%?dist
 Summary:        A tui-based PDF viewer
 URL:            https://github.com/itsjunetime/tdf
 Source0:        %url/archive/refs/tags/v%{version}.tar.gz
 License:        AGPL-3.0
 BuildRequires:  cargo anda-srpm-macros cargo-rpm-macros mold fontconfig-devel mupdf glib2 libgcc clang python
 
-Packager:       Its-J
+Packager:       Its-J <jonah@fyralabs.com>
 
 %description
 A terminal-based PDF viewer.
@@ -38,5 +38,8 @@ install -Dm755 target/rpm/tdf %{buildroot}%{_bindir}/tdf
 %{_bindir}/tdf
 
 %changelog
-* Wed Oct 22 2025 Its-J
+* Tue Apr 14 2026 Its-J <jonah@fyralabs.com>
+- Add email to my previous contributor attributions
+
+* Wed Oct 22 2025 Its-J <jonah@fyralabs.com>
 - Intial Commit

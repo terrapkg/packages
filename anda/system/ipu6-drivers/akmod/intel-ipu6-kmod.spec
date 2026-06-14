@@ -1,8 +1,8 @@
 %global buildforkernels akmod
 %global debug_package %{nil}
-%global commit 51fe72485032c779a261430a8100eaad5d8696b8
+%global commit c313a9e539f49e983f8ff5d50c0ff192d3544a8a
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260328
+%global commit_date 20260605
 %global modulename intel-ipu6
 # Actual "release" version, currently unused as the release versions are back and forth on if on if they use 1.0.0 or 1.0.1
 %global ver 1.0.1
@@ -25,7 +25,7 @@ Provides:       %{name} = %{commitdate}.%{shortcommit}-%{release}
 Provides:       akmod-%{modulename} = %{commitdate}.%{shortcommit}-%{release}
 %endif
 
-%{expand:%(kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
+%{expand:%(kmodtool --target %{_target_cpu} --repo terrapkg.com --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 
 %description
 This package enables the Intel IPU6 image processor.
@@ -34,7 +34,7 @@ This package enables the Intel IPU6 image processor.
 # Error out if there was something wrong with kmodtool:
 %{?kmodtool_check}
 # Print kmodtool output for debugging purposes:
-kmodtool  --target %{_target_cpu}  --repo terra.fyralabs.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
+kmodtool  --target %{_target_cpu}  --repo terrapkg.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
 %autosetup -p1 -n ipu6-drivers-%{commit}
 patch -p1 -i patches/*.patch

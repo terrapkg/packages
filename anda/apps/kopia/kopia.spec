@@ -3,7 +3,7 @@
 
 Name:           kopia
 %electronmeta -D
-Version:        0.22.3
+Version:        0.23.0
 Release:        1%{?dist}
 Summary:        A backup/restore tool that allows you to create encrypted snapshots
 
@@ -43,6 +43,7 @@ A graphical user interface for %{name}.
 %build
 %global gomodulesmode GO111MODULE=on
 %gobuild -o %{name} .
+echo "Electron Builder" > %{rpmbuilddir}/webapp-tool.txt
 
 pushd app
 %npm_build -B

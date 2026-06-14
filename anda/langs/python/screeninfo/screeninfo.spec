@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.8.1
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Fetch location and size of physical screens
 License:		MIT
 URL:			https://github.com/rr-/screeninfo

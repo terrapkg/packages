@@ -9,8 +9,8 @@
 # GLIBCXX_ASSERTIONS is known to break RPCS3
 %global build_cflags %(echo "%{__build_flags_lang_c}" | sed 's|-Wp,-D_GLIBCXX_ASSERTIONS ||g') %{?_distro_extra_cflags}
 %global build_cxxflags %(echo "%{__build_flags_lang_cxx}" | sed 's|-Wp,-D_GLIBCXX_ASSERTIONS ||g') %{?_distro_extra_cflags}
-%global commit aa7cf5ea153ececef87d0dc0982522ea690b281e
-%global ver 0.0.40-19125
+%global commit 0fda2dd60f2293750cc9cae210c4fdf703f2e716
+%global ver 0.0.41-19467
 
 Name:           rpcs3
 Version:        %(echo %{ver} | sed 's/-/^/g')
@@ -21,6 +21,7 @@ URL:            https://github.com/RPCS3/rpcs3
 Source0:        %{url}/archive/%{commit}/%{name}-%{commit}.tar.gz
 BuildRequires:  anda-srpm-macros glew openal-soft cmake vulkan-validation-layers git-core mold
 BuildRequires:  llvm%{?llvm_major}-devel
+# Looking at the CMakeLists.txt, this is the intended compiler and there are no fixes for GCC on aarch64
 BuildRequires:  clang%{?llvm_major}
 BuildRequires:  cmake(FAudio)
 BuildRequires:  cmake(OpenAL)
@@ -64,8 +65,7 @@ BuildRequires:  qt6-qtbase-private-devel vulkan-devel jack-audio-connection-kit-
 %prep
 %git_clone %url %commit
 
-%build
-# Looking at the CMakeLists.txt, this is the intended compiler and there are no fixes for GCC on aarch64
+%conf
 %if %{defined llvm_major}
 export LLVM_DIR=%{_libdir}/llvm%{?llvm_major}/%{_lib}/cmake
 %endif
@@ -74,8 +74,6 @@ export LLVM_DIR=%{_libdir}/llvm%{?llvm_major}/%{_lib}/cmake
     -DCMAKE_SKIP_RPATH=ON                                     \
     -DBUILD_SHARED_LIBS:BOOL=OFF                              \
     -DUSE_NATIVE_INSTRUCTIONS=OFF                             \
-    -DCMAKE_C_FLAGS="$CFLAGS"                                 \
-    -DCMAKE_CXX_FLAGS="$CXXFLAGS"                             \
     -DSTATIC_LINK_LLVM=OFF                                    \
     -DUSE_SYSTEM_FAUDIO=ON                                    \
     -DUSE_SDL=ON                                              \
@@ -88,14 +86,13 @@ export LLVM_DIR=%{_libdir}/llvm%{?llvm_major}/%{_lib}/cmake
     -DUSE_SYSTEM_ZLIB=ON                                      \
     -DUSE_SYSTEM_OPENCV=ON                                    \
     -DUSE_SYSTEM_CURL=ON                                      \
-    -DUSE_SYSTEM_FLATBUFFERS=OFF                              \
     -DUSE_SYSTEM_PUGIXML=OFF                                  \
     -DUSE_SYSTEM_WOLFSSL=OFF                                  \
-    -DCMAKE_C_COMPILER="$CC"                                  \
-    -DCMAKE_CXX_COMPILER="$CXX"                               \
     -DCMAKE_LINKER=mold                                       \
     -DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS -fuse-ld=mold"      \
-    -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS -fuse-ld=mold"    
+    -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS -fuse-ld=mold" 
+
+%build
 %cmake_build
 
 %install

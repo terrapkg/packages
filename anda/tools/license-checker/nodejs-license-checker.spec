@@ -4,8 +4,8 @@
 %bcond test 0
 
 Name:          nodejs-license-checker
-Version:       4.4.2
-Release:       2%{?dist}
+Version:       5.0.1
+Release:       1%{?dist}
 Summary:       Check NPM package licenses
 SourceLicense: BSD-3-Clause
 License:       Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND CC-BY-3.0 AND ISC AND (MIT AND CC-BY-3.0) AND MIT

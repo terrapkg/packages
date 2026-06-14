@@ -29,14 +29,6 @@ fn alma(pkg, repo, branch) {
   return(vr[1]);
 }
 
-fn codeberg_commit(repo) {
-    return get(`https://codeberg.org/api/v1/repos/${repo}/commits?stat=false&verification=false&files=false&limit=1`).json_arr()[0].sha;
-}
-
-fn codeberg(repo) {
-    return get(`https://codeberg.org/api/v1/repos/${repo}/releases/latest`).json().tag_name;
-}
-
 fn as_bodhi_ver(branch) {
     if branch.starts_with("el") {
         branch.crop(2);

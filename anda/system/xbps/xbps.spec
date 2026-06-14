@@ -37,8 +37,10 @@ featureful and portable as much as possible.
 %prep
 %autosetup
 
-%build
+%conf
 %configure
+
+%build
 %make_build
 
 %install
