@@ -1,3 +1,3 @@
 # Terra langs/kotlin Folder
 
-This folder is for all kotlin packages.
+This folder is for all Kotlin packages.
