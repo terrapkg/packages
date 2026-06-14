@@ -1,1 +1,1 @@
-rpm.version(gh("KittyCAD/cli"));
+rpm.version(gh("Adembc/lazyssh"));
