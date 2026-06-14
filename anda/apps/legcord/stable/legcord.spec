@@ -1,8 +1,7 @@
 %global debug_package %nil
 
 # terrible evil no good very bad hack
-# fix before merge
-# mado if you hit approve on this i will cry
+# fix one day
 %global __requires_exclude_from (.*)lib(.*)so(.*)
 
 Name:           legcord
