@@ -104,6 +104,9 @@ mv LICENSE LICENSE.signal-desktop
 %{_metainfodir}/org.signal.Signal.metainfo.xml
 
 %changelog
+* Sun Jun 14 2026 june-fish <git@june.fish>
+- Fix license name conflicts
+
 * Mon Dec 22 2025 Owen Zimmerman <owen@fyralabs.com>
 - Use more electron macros, correct build failures
 
