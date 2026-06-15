@@ -1,1 +1,1 @@
-rpm.version(gh("loteran/Arctis-Sound-Manager"));
+rpm.version(pypi("arctis-sound-manager"));
