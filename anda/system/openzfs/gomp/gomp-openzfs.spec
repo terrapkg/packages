@@ -90,8 +90,6 @@ BuildRequires:  automake
 BuildRequires:  libtool
 
 BuildRequires:  python%{python3_pkgversion}-devel >= 3.6
-
-BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-cffi
 BuildRequires:  python%{python3_pkgversion}-packaging
 
@@ -348,7 +346,7 @@ autoreconf -fiv
 
 # Due to quirks about the pyzfs build, we need to do it over again...
 pushd contrib/pyzfs
-%py3_build
+%pyproject_wheel
 popd
 
 %install
@@ -369,7 +367,7 @@ rm -rf %{buildroot}%{_usrsrc}/*
 # Due to quirks about pyzfs install, we need to do it over again...
 pushd contrib/pyzfs
 rm -rf %{buildroot}%{python3_sitelib}
-%py3_install
+%pyproject_install
 popd
 
 # Kill all libtool .la files
