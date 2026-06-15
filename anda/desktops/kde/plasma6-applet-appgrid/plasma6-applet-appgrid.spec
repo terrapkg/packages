@@ -1,5 +1,3 @@
-%global debug_package %{nil}
-
 Name:           plasma6-applet-appgrid
 Version:        1.9.0
 Release:        1%{?dist}
@@ -49,8 +47,10 @@ presentation.
 %prep
 %autosetup -n %{name}-%{version}
 
-%build
+%conf
 %cmake -DAPPGRID_VERSION_OVERRIDE=%{version}
+
+%build
 %cmake_build
 
 %install
