@@ -2,7 +2,7 @@
 
 %global ver 5.0.0
 
-%global commit          65e127f88a528a953ca87ba9011665303ee35d24
+%global commit          deaae83724bb5707124f98904e907a670d1ffc0f
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
 %global commitdate      20260608
 

@@ -1,6 +1,6 @@
 Name:           plasma6-applet-appgrid
-Version:        1.8.5
-Release:        2%{?dist}
+Version:        1.9.0
+Release:        1%{?dist}
 Summary:        A modern fullscreen application launcher for KDE Plasma
 # Main code: GPL-2.0-or-later
 # dev.xarbit.appgrid.metainfo.xml: CC0-1.0
