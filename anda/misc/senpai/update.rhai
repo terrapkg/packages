@@ -1,1 +1,1 @@
-rpm.version(gh_tag("delthas/senpai"));
+rpm.version(sourcehut("~delthas/senpai"));
