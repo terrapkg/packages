@@ -1,0 +1,2 @@
+Conflicts:	%{dkmsname}
+Requires:	%{name}-kmod-common = %{version}-%{release}
