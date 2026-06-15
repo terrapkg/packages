@@ -458,7 +458,6 @@ fi
 %config(noreplace) %{_sysconfdir}/zfs/*.example
 %config(noreplace) %{_sysconfdir}/zfs/zed.d/*
 %config(noreplace) %{_sysconfdir}/zfs/zpool.d/*
-%config(noreplace) %{_sysconfdir}/sudoers.d/zfs
 %{_datadir}/bash-completion/completions/zfs
 
 %files -n %{pamzfs}
