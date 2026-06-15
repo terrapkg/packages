@@ -442,7 +442,8 @@ fi
 %config(noreplace) %{_sysconfdir}/zfs/*.example
 %config(noreplace) %{_sysconfdir}/zfs/zed.d/*
 %config(noreplace) %{_sysconfdir}/zfs/zpool.d/*
-%{_datadir}/bash-completion/completions/zfs
+%{bash_completions_dir}/zfs
+%{bash_completions_dir}/zpool
 
 %files -n %{pamzfs}
 %license COPYRIGHT LICENSE NOTICE

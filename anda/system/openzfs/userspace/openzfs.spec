@@ -128,6 +128,7 @@ find %{buildroot} -name '*.la' -delete
 %{_sysconfdir}/sudoers.d/zfs
 %{_sysconfdir}/sysconfig/zfs
 %{bash_completions_dir}/zfs
+%{bash_completions_dir}/zpool
 %{python3_sitelib}
 %{_libdir}/security/pam_zfs_key.so
 %{_datadir}/pam-configs/zfs_key
