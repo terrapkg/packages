@@ -43,7 +43,7 @@
 %global zfscore_sover 3
 %global libname_zfscore libzfs_core%{zfscore_sover}
 
-%global zpool_sover 5
+%global zpool_sover 6
 %global libname_zpool libzpool%{zpool_sover}
 
 %global zfsbootenv_sover 1
@@ -411,7 +411,6 @@ fi
 %license COPYRIGHT LICENSE NOTICE
 %doc AUTHORS README.md
 %{_bindir}/*
-%{_sbindir}/*
 %{_libexecdir}/zfs/zed.d
 %{_libexecdir}/zfs/zfs_prepare_disk
 %{_libexecdir}/zfs/zpool.d
