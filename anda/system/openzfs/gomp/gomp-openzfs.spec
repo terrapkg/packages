@@ -36,14 +36,14 @@
 %global pamzfs pam_zfs
 
 # library names
-%global zfs_sover 4
+%global zfs_sover 7
 %global libname_zfs libzfs%{zfs_sover}
 
 # Not a stable library yet
 %global zfscore_sover 3
 %global libname_zfscore libzfs_core%{zfscore_sover}
 
-%global zpool_sover 6
+%global zpool_sover 7
 %global libname_zpool libzpool%{zpool_sover}
 
 %global zfsbootenv_sover 1
@@ -175,6 +175,10 @@ OpenZFS for Linux that is managed by DKMS.
 
 %package -n %{libname_zpool}
 Summary:        Native ZFS pool library for Linux
+Obsoletes:      libzpool2 <= %{version}-%{release}
+Obsoletes:      libzpool4 <= %{version}-%{release}
+Obsoletes:      libzpool5 <= %{version}-%{release}
+Obsoletes:      libzpool6 <= %{version}-%{release}
 Requires:       %{libname_nvpair}%{?_isa} = %{version}-%{release}
 Requires:       %{libname_zfs}%{?_isa} = %{version}-%{release}
 
@@ -240,6 +244,10 @@ This library provides a variety of compatibility functions for OpenZFS on Linux:
 
 %package -n %{libname_zfs}
 Summary:        Native ZFS filesystem library for Linux
+Obsoletes:      libzfs2 <= %{version}-%{release}
+Obsoletes:      libzfs4 <= %{version}-%{release}
+Obsoletes:      libzfs5 <= %{version}-%{release}
+Obsoletes:      libzfs6 <= %{version}-%{release}
 Requires:       %{libname_nvpair}%{?_isa} = %{version}-%{release}
 Requires:       %{libname_uutil}%{?_isa} = %{version}-%{release}
 
