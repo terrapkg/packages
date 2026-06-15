@@ -10,7 +10,7 @@
 %global zfs_systemd_units zfs-import-cache.service zfs-import-scan.service zfs-mount.service zfs-share.service zfs-zed.service zfs.target zfs-import.target zfs-volume-wait.service zfs-volumes.target
 
 Name:           openzfs
-Version:        2.4.4
+Version:        2.4.3
 Release:        1%{?dist}
 Summary:        OpenZFS filesystem userspace utilities
 License:        CDDL-1.0

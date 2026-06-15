@@ -4,7 +4,7 @@
 
 Name:           akmod-openzfs
 Summary:        Kernel module (kmod) for OpenZFS filesystem
-Version:        2.4.4
+Version:        2.4.3
 Release:        1%{?dist}
 License:        CDDL-1.0
 URL:            https://github.com/openzfs/zfs

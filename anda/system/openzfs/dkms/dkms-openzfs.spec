@@ -7,7 +7,7 @@
 %define _kmod_src_root %{_usrsrc}/%{module}-%{version}
 
 Name:           dkms-%{module}
-Version:        2.4.4
+Version:        2.4.3
 Release:        1%{?dist}
 Summary:        ZFS DKMS Kernel Modules
 URL:            https://github.com/openzfs/zfs
