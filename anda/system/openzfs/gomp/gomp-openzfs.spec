@@ -1,5 +1,3 @@
-%global __brp_mangle_shebangs %{nil}
-
 %global dkmsname dkms-%{name}
 
 %global rpm_dkms_opt 1
