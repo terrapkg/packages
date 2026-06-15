@@ -32,7 +32,7 @@ Provides:       dkms-openzfs = %{version}-%{release}
 Conflicts:      akmod-openzfs
 RemovePathPostfixes: .dkms
 
-Packager:       Willow Reed <willow@willowidk.dev>
+Packager:       Cypress Reed <cypress@fyralabs.com>
 
 %description
 This package contains the DKMS-managed OpenZFS kernel modules.
@@ -111,5 +111,5 @@ if [ "$1" = "0" -o "$1" = "remove" -o "$1" = "purge" ] ; then
 fi
 
 %changelog
-* Thu Jan 01 2026 Willow Reed <willow@willowidk.dev>
+* Thu Jan 01 2026 Cypress Reed <cypress@fyralabs.com>
 - Initial package

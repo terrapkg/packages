@@ -134,6 +134,7 @@ Requires:       %{kmodname} = %{version}-%{release}
 Requires:       %{dkmsname} = %{version}-%{release}
 %endif
 
+Packager:       Cypress Reed <cypress@fyralabs.com>
 
 %description
 ZFS is an advanced file system and volume manager

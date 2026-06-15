@@ -36,7 +36,7 @@ Provides:       akmod-%{modulename} = %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:       akmod-openzfs = %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:       %{modulename}-kmod-common = %{?epoch:%{epoch}:}%{version}-%{release}
 
-Packager:       Willow Reed <willow@willowidk.dev>
+Packager:       Cypress Reed <cypress@fyralabs.com>
 
 %{expand:%(kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 
@@ -87,5 +87,5 @@ done
 %{?akmod_install}
 
 %changelog
-* Thu Jan 01 2026 Willow Reed <willow@willowidk.dev>
+* Thu Jan 01 2026 Cypress Reed <cypress@fyralabs.com>
 - Initial package
