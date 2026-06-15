@@ -4,8 +4,8 @@
 
 Name:           akmod-openzfs
 Summary:        Kernel module (kmod) for OpenZFS filesystem
-Version:        2.4.3
-Release:        1%?dist
+Version:        2.4.4
+Release:        1%{?dist}
 License:        CDDL-1.0
 URL:            https://github.com/openzfs/zfs
 Source0:        https://github.com/openzfs/zfs/releases/download/zfs-%{version}/zfs-%{version}.tar.gz
@@ -31,7 +31,7 @@ Requires:       akmods
 Requires:       kernel-devel
 Requires:       openzfs = %{?epoch:%{epoch}:}%{version}-%{release}
 Conflicts:      %{modulename}-dkms
-Conflicts:      dkms-zfs
+Conflicts:      dkms-openzfs
 Provides:       akmod-%{modulename} = %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:       akmod-openzfs = %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:       %{modulename}-kmod-common = %{?epoch:%{epoch}:}%{version}-%{release}
@@ -87,5 +87,5 @@ done
 %{?akmod_install}
 
 %changelog
-* Thu Jan 01 2026 Willow Reed <willow@willowidk.dev> - 2.4.0-1
+* Thu Jan 01 2026 Willow Reed <willow@willowidk.dev>
 - Initial package

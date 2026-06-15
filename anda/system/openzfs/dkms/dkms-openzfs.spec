@@ -2,27 +2,40 @@
 %global __brp_mangle_shebangs %{nil}
 
 %define module openzfs
+%define modulename %{module}
+%define source_name zfs
+%define _kmod_src_root %{_usrsrc}/%{module}-%{version}
 
-Name:           %{module}-dkms
-Version:        2.4.3
-Release:        1%?dist
+Name:           dkms-%{module}
+Version:        2.4.4
+Release:        1%{?dist}
 Summary:        ZFS DKMS Kernel Modules
 URL:            https://github.com/openzfs/zfs
 Source0:        https://github.com/openzfs/zfs/releases/download/zfs-%{version}/zfs-%{version}.tar.gz
 License:        CDDL-1.0
 BuildArch:      noarch
 
-Requires:       dkms >= 2.2.0.3
-Requires:       gcc, make, perl, diffutils, kernel-devel, kernel-modules
-Requires:       openzfs = %{?epoch:%{epoch}:}%{version}
+BuildRequires:  make
+BuildRequires:  perl
 
-Provides:       %{module}-kmod = %{version}
+Requires:       dkms >= 2.2.0.3
+Requires:       gcc
+Requires:       make
+Requires:       perl
+Requires:       diffutils
+Requires:       kernel-devel
+Requires:       kernel-modules
+Requires:       openzfs = %{?epoch:%{epoch}:}%{version}-%{release}
+
+Provides:       %{module}-kmod = %{version}-%{release}
+Provides:       dkms-openzfs = %{version}-%{release}
 Conflicts:      akmod-openzfs
+RemovePathPostfixes: .dkms
 
 Packager:       Willow Reed <willow@willowidk.dev>
 
 %description
-This package contains the dkms ZFS kernel modules.
+This package contains the DKMS-managed OpenZFS kernel modules.
 
 %prep
 %autosetup -n zfs-%{version}
@@ -31,15 +44,30 @@ This package contains the dkms ZFS kernel modules.
 scripts/dkms.mkconf -n %{module} -v %{version} -f dkms.conf
 
 %install
-mkdir -p %{buildroot}%{_usrsrc}/%{modulename}-%{version}/
-cp -rf lib dkms.conf %{buildroot}%{_usrsrc}/%{modulename}-%{version}/
+INITIAL_ENVDIR=`pwd`
+
+make distdir
+cd %{source_name}-%{version}
+for file in $(find cmd dracut etc lib man rpm udev tests -type f); do \
+    rm "$file"; \
+    test "$file" != "${file%%.in}" && printf "\x25:\n\t#\n" > "$file"; \
+    true; \
+done
+cd $INITIAL_ENVDIR
+
+printf "#!/bin/sh\ncp \"$@\"\n" > %{source_name}-%{version}/cp
+chmod 755 %{source_name}-%{version}/cp
+
+mkdir -p %{buildroot}%{_usrsrc}
+mv %{source_name}-%{version} %{buildroot}%{_kmod_src_root}.dkms
+cp dkms.conf %{buildroot}%{_kmod_src_root}.dkms
 
 %files
 %defattr(-,root,root)
-/usr/src/%{module}-%{version}
+%{_kmod_src_root}.dkms
 
 %pre
-# Remove any existing zfs dkms modules
+# Remove any existing openzfs dkms modules
 dkms_root=/var/lib/dkms
 if [ -d ${dkms_root}/%{module} ]; then
     cd ${dkms_root}/%{module}
@@ -83,5 +111,5 @@ if [ "$1" = "0" -o "$1" = "remove" -o "$1" = "purge" ] ; then
 fi
 
 %changelog
-* Thu Jan 01 2026 Willow Reed <willow@willowidk.dev> - 2.4.0-1
+* Thu Jan 01 2026 Willow Reed <willow@willowidk.dev>
 - Initial package
