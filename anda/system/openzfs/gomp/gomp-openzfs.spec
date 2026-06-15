@@ -73,7 +73,7 @@
 
 
 Name:           zfs
-Version:        2.4.0
+Version:        2.4.3
 Release:        1%{?dist}
 Summary:        OpenZFS for Linux
 License:        CDDL-1.0
@@ -529,7 +529,7 @@ fi
 %{_dracutdir}/modules.d/*
 
 %changelog
-* Mon Jun 15 2026 Cypress Reed <cypress@fyralabs.com> - 2.4.0
+* Mon Jun 15 2026 Cypress Reed <cypress@fyralabs.com>
 - Port to Terra from https://codeberg.org/Conan_Kudo/openzfs-linux-packaging/src/branch/main
 
 * Sat Dec 02 2023 Neal Gompa <neal@gompa.dev> - 2.2.2
