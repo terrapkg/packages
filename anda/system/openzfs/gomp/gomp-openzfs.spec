@@ -29,7 +29,7 @@
 	   --with-systemdunitdir=%{_unitdir} --with-systemdpresetdir=%{_presetdir} \\\
 	   --with-systemdmodulesloaddir=%{_modulesloaddir} --with-systemdgeneratordir=%{_systemdgeneratordir} \\\
 	   --with-dracutdir=%{_dracutdir} --with-mounthelperdir=%{_sbindir} --with-pammoduledir=%{_libdir}/security \\\
-	   --disable-static --disable-sysvinit --enable-pam --enable-pyzfs --enable-systemd \\\
+	   --disable-static --disable-sysvinit --enable-pam --enable-systemd \\\
 	   %{nil}
 
 # Set up the correct PAM module name, following proper conventions
@@ -295,19 +295,6 @@ Requires:       rng-tools
 This package contains test infrastructure and support scripts for
 validating the file system.
 
-%package -n python%{python3_pkgversion}-pyzfs
-Summary:        Python %{python3_version} wrapper for libzfs_core
-License:        Apache-2.0
-BuildArch:      noarch
-%{?python_provide:%python_provide python%{python3_pkgversion}-pyzfs}
-Requires:       %{libname_zfs} = %{version}-%{release}
-Requires:       %{libname_nvpair} = %{version}-%{release}
-Requires:       python%{python3_pkgversion}
-Requires:       python%{python3_pkgversion}-cffi
-
-%description -n python%{python3_pkgversion}-pyzfs
-This package provides a python wrapper for the libzfs_core C library.
-
 %package dracut
 Summary:        Dracut module
 Requires:       %{name}%{?_isa} = %{version}-%{release}
@@ -344,11 +331,6 @@ autoreconf -fiv
 %configure --with-config=user %{zfs_common_configure_opts}
 %make_build
 
-# Due to quirks about the pyzfs build, we need to do it over again...
-pushd contrib/pyzfs
-%pyproject_wheel
-popd
-
 %install
 INITIAL_ENVDIR=`pwd`
 
@@ -363,12 +345,6 @@ rm -rf %{buildroot}%{_usrsrc}/*
 %endif
 
 %make_install
-
-# Due to quirks about pyzfs install, we need to do it over again...
-pushd contrib/pyzfs
-rm -rf %{buildroot}%{python3_sitelib}
-%pyproject_install
-popd
 
 # Kill all libtool .la files
 find %{buildroot} -name '*.la' -print -delete
@@ -514,12 +490,6 @@ fi
 
 %files test
 %{_datadir}/%{name}
-
-%files -n python%{python3_pkgversion}-pyzfs
-%license contrib/pyzfs/LICENSE
-%doc contrib/pyzfs/README
-%{python3_sitelib}/libzfs_core/*
-%{python3_sitelib}/pyzfs*
 
 %files dracut
 %doc contrib/dracut/README.md
