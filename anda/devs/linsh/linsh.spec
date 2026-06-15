@@ -28,3 +28,7 @@ install -Dm755 linsh %{buildroot}%{_bindir}/linsh
 %license LICENSE
 %doc README.txt
 %{_bindir}/linsh
+
+%changelog
+* Mon Jun 15 2026 Owen Zimmerman <owen@fyralabs.com> - 0.02-1
+- Initial package
