@@ -1,7 +1,7 @@
 %global appid org.sr.ht.delthas.senpai
 
 Name:			senpai
-Version:		0.0.0
+Version:		0.5.0
 Release:		1%{?dist}
 Summary:		Your everyday IRC student
 License:		ISC
