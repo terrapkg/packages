@@ -54,7 +54,6 @@ sed -i 's~add_library(qhotkey 3rdparty/QHotkey/qhotkey.cpp)~add_library(qhotkey 
 pushd core/server
 export GOBIN=$(pwd)/gobin
 export PATH="${PATH}:${GOBIN}"
-go mod tidy
 go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 go install github.com/chai2010/protorpc/protoc-gen-protorpc@latest
 
@@ -75,6 +74,7 @@ export PATH="${PATH}:${GOBIN}"
 %define build_ldflags %nil
 export GO_LDFLAGS=' '
 export GO_BUILDTAGS="with_clash_api with_gvisor with_quic with_wireguard with_utls with_dhcp with_tailscale"
+go mod tidy
 %gobuild -o $DEST -mod=readonly -modcacherw
 popd
 
