@@ -13,8 +13,6 @@ License:          GPL-3.0-or-later AND LGPL-2.1-or-later AND MIT AND GPL-2.0-or-
 
 Requires:         gtk3 pulseaudio-libs alsa-lib pipewire-jack-audio-connection-kit
 BuildRequires:    gcc g++ gtk3-devel pulseaudio-libs-devel alsa-lib-devel pipewire-jack-audio-connection-kit-devel
-# for lscpu check below
-BuildRequires:    util-linux
 # to install desktop file
 BuildRequires:    desktop-file-utils
 # to generate the icon files
@@ -33,16 +31,11 @@ Packager:         june-fish <june@fyralabs.com>
 %autosetup -n praat.github.io-%{version}
 
 %build
-# .LE makefile hardcodes little endian
-if [[ "$(lscpu | grep Endian)" == *"Little Endian"* ]]
-then
-  cp makefiles/makefile.defs.linux.pulse-gcc.LE ./makefile.defs
-elif [[ "%{lscpu | grep Endian}" == *"Big Endian"* ]]
-then
-  cp makefiles/makefile.defs.linux.pulse-gcc.BE ./makefile.defs
-fi
-
-%make_build
+%ifarch x86_64
+%make_build PRAAT_ARCH=x64v1
+%else
+%make_build PRAAT_ARCH=native
+%endif
 
 %install
 install -pDm755 praat %{buildroot}%{_bindir}/praat
