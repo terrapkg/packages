@@ -1,5 +1,3 @@
-%define debug_package %{nil}
-
 Name:          linsh
 Version:       0.02
 Release:       1%{?dist}
