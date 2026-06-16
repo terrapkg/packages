@@ -19,7 +19,7 @@ BuildRequires: gcc
 %autosetup
 
 %build
-%make_build
+%make_build CC="%__cc %build_cflags %build_ldflags"
 
 %install
 install -Dm755 linsh %{buildroot}%{_bindir}/linsh
