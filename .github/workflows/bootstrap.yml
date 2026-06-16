@@ -26,8 +26,16 @@ jobs:
 
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
-          ref: f${{ matrix.version }}
           fetch-depth: 1
+
+      - name: Setup build environment
+        run: |
+          sed -i 's/.fc%{fedora}/.fcrawhide/g' /usr/lib/rpm/macros.d/macros.dist
+          cat<<EOF >> /etc/dnf/dnf.conf
+          gpgcheck=1
+          install_weak_deps=0
+          max_parallel_downloads=20
+          EOF
 
       - name: Build anda-srpm-macros
         run: |
@@ -37,7 +45,7 @@ jobs:
           dnf5 install -y ./anda-build/rpm/rpms/anda-*.rpm
 
       - name: Install build dependencies
-        run: dnf5 builddep -y anda/terra/{mock-configs,srpm-macros}/*.spec anda/{buildsys/anda,tools/subatomic}/*.spec
+        run: dnf5 builddep -y anda/terra/{mock-configs,srpm-macros,appstream-helper,sccache}/*.spec anda/{buildsys/anda,tools/subatomic}/*.spec
 
       - name: Install Anda
         run: |
@@ -59,6 +67,9 @@ jobs:
 
       - name: Build terra-appstream-helper
         run: anda build -D "vendor Terra" -D "__python %{__python3}" -rrpmbuild anda/terra/appstream-helper/pkg
+
+      - name: Build terra-sccache
+        run: anda build -D "vendor Terra" -rrpmbuild anda/terra/sccache/pkg
 
       - name: Build Subatomic
         run: anda build -D "vendor Terra" -rrpmbuild anda/tools/subatomic/pkg
