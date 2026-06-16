@@ -1,4 +1,7 @@
 %global dkmsname dkms-%{name}
+%if 0%{?fedora}
+%global dkmsname akmod-%{name}
+%endif
 
 %global rpm_dkms_opt 1
 
@@ -28,7 +31,7 @@
 	   --with-python=%{__python3} --with-udevdir=%{_udevdir} --with-udevruledir=%{_udevrulesdir} \\\
 	   --with-systemdunitdir=%{_unitdir} --with-systemdpresetdir=%{_presetdir} \\\
 	   --with-systemdmodulesloaddir=%{_modulesloaddir} --with-systemdgeneratordir=%{_systemdgeneratordir} \\\
-	   --with-dracutdir=%{_dracutdir} --with-mounthelperdir=%{_sbindir} --with-pammoduledir=%{_libdir}/security \\\
+	   --with-dracutdir=%{_dracutdir} --with-mounthelperdir=%{_bindir} --with-pammoduledir=%{_libdir}/security \\\
 	   --disable-static --disable-sysvinit --enable-pam --enable-systemd \\\
 	   %{nil}
 
@@ -69,7 +72,11 @@
 %{!?python3_pkgversion: %global python3_pkgversion 3}
 
 # kmod install path
-%define _kmod_src_root %{_usrsrc}/%{name}-%{version}
+%if 0%{?fedora}
+%define _kmod_src_root %{_usrsrc}/%{name}-%{version}.akmods
+%else
+%define _kmod_src_root %{_usrsrc}/%{name}-%{version}.dkms
+%endif
 
 
 Name:           zfs
@@ -92,6 +99,9 @@ BuildRequires:  libtool
 BuildRequires:  python%{python3_pkgversion}-devel >= 3.6
 BuildRequires:  python%{python3_pkgversion}-cffi
 BuildRequires:  python%{python3_pkgversion}-packaging
+%if 0%{?fedora}
+BuildRequires:  kmodtool
+%endif
 
 BuildRequires:  libaio-devel
 BuildRequires:  libblkid-devel
@@ -152,14 +162,21 @@ This package contains the common kernel module files
 for OpenZFS on Linux.
 
 %package -n %{dkmsname}
-Summary:        Kernel module sources for %{name} managed by DKMS
+Summary:        Kernel module sources for %{name} managed by DKMS or Akmods
 # ZFS modules are CDDL and SPL modules are GPLv2+
 License:        CDDL-1.0 and GPL-2.0-or-later
 BuildArch:      noarch
 # elfutils' libelf is required now for newer kernels
 Requires:       elfutils-libelf-devel
 Requires:       diffutils
+%if 0%{?fedora}
+Requires:       akmods
+Conflicts:      dkms-%{name}
+RemovePathPostfixes: .akmods
+%else
 Requires:       dkms >= 2.2.0.3
+RemovePathPostfixes: .dkms
+%endif
 Requires:       gcc
 Requires:       make
 Requires:       perl
@@ -167,11 +184,11 @@ Requires:       python%{python3_pkgversion}
 
 Provides:       %{name}-kmod = %{version}-%{release}
 Requires:       %{name}-kmod-common = %{version}-%{release}
-RemovePathPostfixes: .dkms
 
 %description -n %{dkmsname}
 This package contains the kernel module sources for
-OpenZFS for Linux that is managed by DKMS.
+OpenZFS for Linux that is managed by DKMS on non-Fedora systems
+and Akmods on Fedora.
 
 %package -n %{libname_zpool}
 Summary:        Native ZFS pool library for Linux
@@ -187,10 +204,10 @@ This package contains the zpool library, which provides support
 for managing zpools
 
 %post -n %{libname_zpool}
-/sbin/ldconfig
+{_bindir}/ldconfig
 
 %postun -n %{libname_zpool}
-/sbin/ldconfig
+{_bindir}/ldconfig
 
 %package -n %{libname_zfsbootenv}
 Summary:        Native ZFS boot environment library for Linux
@@ -202,10 +219,10 @@ This package contains the zfsbootenv library, which provides support
 for managing zfs boot environments
 
 %post -n %{libname_zfsbootenv}
-/sbin/ldconfig
+{_bindir}/ldconfig
 
 %postun -n %{libname_zfsbootenv}
-/sbin/ldconfig
+{_bindir}/ldconfig
 
 %package -n %{libname_nvpair}
 Summary:        Solaris name-value library for Linux
@@ -217,10 +234,10 @@ process boundaries, between kernel and user space, and can be used
 to write self describing data structures on disk.
 
 %post -n %{libname_nvpair}
-/sbin/ldconfig
+{_bindir}/ldconfig
 
 %postun -n %{libname_nvpair}
-/sbin/ldconfig
+{_bindir}/ldconfig
 
 %package -n %{libname_uutil}
 Summary:        Solaris userland utility library for Linux
@@ -237,10 +254,10 @@ This library provides a variety of compatibility functions for OpenZFS on Linux:
  * libshare: NFS, SMB, and iSCSI service integration for ZFS.
 
 %post -n %{libname_uutil}
-/sbin/ldconfig
+{_bindir}/ldconfig
 
 %postun -n %{libname_uutil}
-/sbin/ldconfig
+{_bindir}/ldconfig
 
 %package -n %{libname_zfs}
 Summary:        Native ZFS filesystem library for Linux
@@ -255,10 +272,10 @@ Requires:       %{libname_uutil}%{?_isa} = %{version}-%{release}
 This package provides support for managing ZFS filesystems
 
 %post -n %{libname_zfs}
-/sbin/ldconfig
+{_bindir}/ldconfig
 
 %postun -n %{libname_zfs}
-/sbin/ldconfig
+{_bindir}/ldconfig
 
 %package -n %{devname_zfs}
 Summary:        Development headers
@@ -377,8 +394,8 @@ chmod 755 %{name}-%{version}/cp
 
 # Install kernel sources
 mkdir -p %{buildroot}%{_usrsrc}
-mv %{name}-%{version} %{buildroot}%{_kmod_src_root}.dkms
-cp dkms.conf %{buildroot}%{_kmod_src_root}.dkms
+mv %{name}-%{version} %{buildroot}%{_kmod_src_root}
+cp dkms.conf %{buildroot}%{_kmod_src_root}
 
 # Erase initramfs-tools on non-Debian
 rm -rf %{buildroot}%{_initramfstoolsdir}
@@ -393,18 +410,30 @@ mkdir -p %{buildroot}%{_datadir}/bash-completion/completions
 mv %{buildroot}%{_sysconfdir}/bash_completion.d/* %{buildroot}%{_datadir}/bash-completion/completions/
 rmdir %{buildroot}%{_sysconfdir}/bash_completion.d
 
+%if 0%{?fedora}
+%{?akmod_install}
+%endif
+
 %preun -n %{dkmsname}
+%if 0%{?fedora}
+:
+%else
 if [  "$(dkms status -m %{name} -v %{version})" ]; then
    dkms remove -m %{name} -v %{version} --all %{?rpm_dkms_opt:--rpm_safe_upgrade}
 fi
+%endif
 
 %post -n %{dkmsname}
+%if 0%{?fedora}
+:
+%else
 if [ "$1" -ge "1" ]; then
    if [ -f /usr/lib/dkms/common.postinst ]; then
       /usr/lib/dkms/common.postinst %{name} %{version}
       exit $?
    fi
 fi
+%endif
 
 %post
 %systemd_post %{zfs_systemd_units}
@@ -495,7 +524,7 @@ fi
 %doc AUTHORS README.md
 
 %files -n %{dkmsname}
-%{_kmod_src_root}.dkms
+%{_kmod_src_root}
 
 %files test
 %{_datadir}/%{name}
