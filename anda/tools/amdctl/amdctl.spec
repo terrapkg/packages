@@ -5,13 +5,11 @@ URL:        https://github.com/kevinlekiller/%{name}
 Version:    0.11
 Release:    2%{?dist}
 Source0:    https://github.com/kevinlekiller/%{name}/archive/refs/tags/v%{version}.tar.gz
-# Remove hardcoded CFLAGS and CC
-Patch0:     0001-RPM-makefile-Remove-unused-Makefile-variables.patch
 
 BuildRequires: make
 BuildRequires: gcc
 BuildRequires: kernel-headers
-BuildRequires: glibc-headers
+BuildRequires: glibc-headers cmake-rpm-macros cmake gcc-c++ systemd-rpm-macros
 Requires: kernel-core
 Requires: systemd-udev
 Requires: coreutils
@@ -21,15 +19,18 @@ Tool for changing voltages and clock speeds for AMD processors with
 control over every power state and CPU core.
 
 %prep
-%autosetup -p1
+%autosetup
+
+%conf
+%cmake -DCMAKE_POLICY_VERSION_MINIMUM=3.5
 
 %build
-%make_build
+%cmake_build
 
 %install
 # install the 'amdctl' binary
 mkdir -p %{buildroot}/%{_bindir}
-install -m 0755 ./%{name} %{buildroot}/%{_bindir}/
+install -m 0755 redhat-linux-build/%{name} %{buildroot}/%{_bindir}/
 
 # add modules.load.d entry
 mkdir -p %{buildroot}/%{_modulesloaddir}/
