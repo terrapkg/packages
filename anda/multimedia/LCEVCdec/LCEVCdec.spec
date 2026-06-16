@@ -131,12 +131,7 @@ python3 src/func_tests/run_tests.py
 
 # Static:
 %{_libdir}/liblcevc_dec_api_utility.a
-%{_libdir}/liblcevc_dec_common.a
-%{_libdir}/liblcevc_dec_enhancement.a
 %{_libdir}/liblcevc_dec_extract.a
-%{_libdir}/liblcevc_dec_pipeline.a
-%{_libdir}/liblcevc_dec_pixel_processing.a
-%{_libdir}/liblcevc_dec_sequencer.a
 %{_libdir}/liblcevc_dec_unit_test_utilities.a
 %{_libdir}/liblcevc_dec_utility.a
 %{_libdir}/pkgconfig/lcevc_dec.pc
