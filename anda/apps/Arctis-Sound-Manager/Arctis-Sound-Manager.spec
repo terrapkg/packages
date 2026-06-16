@@ -19,6 +19,7 @@ BuildRequires:  python3-pip
 BuildRequires:  python3-importlib-metadata
 BuildRequires:  python3-uv-build
 BuildRequires:  systemd-rpm-macros
+BuildRequires:  python3-ruamel-yaml
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
