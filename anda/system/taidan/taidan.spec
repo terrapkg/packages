@@ -8,7 +8,6 @@ URL:            https://github.com/Ultramarine-Linux/taidan
 Packager:       Terra Packaging Team <terra@fyralabs.com>
 Requires:       %name-configs
 Suggests:       %name-default-configs
-Conflicts:      initial-setup
 Requires:       dbus-daemon
 Requires:       (glib2 or (/usr/bin/plasma-apply-colorscheme and kf6-kconfig))
 Requires:       shadow-utils
@@ -73,6 +72,10 @@ DESTDIR=%buildroot ./scripts/install.sh
 %config %_datadir/taidan/
 
 %changelog
+* Tue Jun 17 2026 madonuko <mado@fyralabs.com> - 0.2.1-2
+- split config files to separate subpkg
+- remove conflict with initial-setup
+
 * Sun Mar 15 2026 Tulip Blossom <tulilirockz@outlook.com>
 - Add dbus-daemon as runtime dependency
 
