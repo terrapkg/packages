@@ -1,7 +1,7 @@
 %global pypi_name arctis-sound-manager
 %global _desc Linux GUI for SteelSeries Arctis headsets — Nova Pro Wireless & Wired, Nova Pro Omni, Nova Elite, Nova 7/7P/5/3, Arctis 7/7+/9/Pro Wireless. Device settings, Sonar EQ, 4-channel Game/Chat/Media mixer, PipeWire routing.
 
-%global arctis-sound-manager-services arctis-manager.service arctis-video-router.service arctis-gui.service
+%global arctis_sound_manager_services arctis-manager.service arctis-video-router.service arctis-gui.service
 
 Name:			python-%{pypi_name}
 Version:		1.1.74
