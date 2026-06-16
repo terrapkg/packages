@@ -14,6 +14,7 @@ URL:            https://fluxer.app
 License:        AGPL-3.0-or-later AND %electron_license
 Source0:        https://github.com/fluxerapp/fluxer/archive/%{commit}/fluxer-%{commit}.tar.gz
 BuildRequires:  rust-packaging nodejs nodejs-npm nodejs-packaging pnpm
+BuildRequires:  xorg-x11-proto-devel
 
 %description
 %summary.
