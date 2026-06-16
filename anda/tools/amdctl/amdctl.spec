@@ -1,28 +1,30 @@
-Name: amdctl
-Summary: Set P-State voltages and clock speeds on recent AMD CPUs on Linux
-License: GPLv3
-URL: https://github.com/kevinlekiller/%{name}
-
-Version: 0.11
-Release: 2%{?dist}
-Source0: https://github.com/kevinlekiller/%{name}/archive/refs/tags/v%{version}.tar.gz
+Name:       amdctl
+Summary:    Set P-State voltages and clock speeds on recent AMD CPUs on Linux
+License:    GPL-3.0-or-later
+URL:        https://github.com/kevinlekiller/%{name}
+Version:    0.11
+Release:    2%{?dist}
+Source0:    https://github.com/kevinlekiller/%{name}/archive/refs/tags/v%{version}.tar.gz
 # Remove hardcoded CFLAGS and CC
-Patch0: 0001-RPM-makefile-Remove-unused-Makefile-variables.patch
+%dnl Patch0:     0001-RPM-makefile-Remove-unused-Makefile-variables.patch
 
-# `msr` is a builtin kernel module
-Requires: kernel-core systemd-udev coreutils
-BuildRequires: make gcc kernel-headers glibc-headers
+BuildRequires: make
+BuildRequires: gcc
+BuildRequires: kernel-headers
+BuildRequires: glibc-headers
+Requires: kernel-core
+Requires: systemd-udev
+Requires: coreutils
 
 %description
 Tool for changing voltages and clock speeds for AMD processors with
 control over every power state and CPU core.
 
 %prep
-%setup -qn %{name}-%{version}
-patch -p1 -i %{PATCH0}
+%autosetup
+%dnl patch -p1 -i %{PATCH0}
 
 %build
-%set_build_flags
 %make_build
 
 %install
@@ -51,12 +53,15 @@ EOF
 %files
 %license LICENSE
 %doc README.md
-/%{_bindir}/%{name}
-/%{_libexecdir}/%{name}
-/%{_modulesloaddir}/%{name}.conf
-/%{_udevrulesdir}/99-%{name}.rules
+%{_bindir}/%{name}
+%{_libexecdir}/%{name}
+%{_modulesloaddir}/%{name}.conf
+%{_udevrulesdir}/99-%{name}.rules
 
 %changelog
+* Tue Jun 16 2026 Owen-sz <owen@fyralabs.com> - 0.11-2
+- Clean up spec
+
 * Sat Nov 4 2023 <rmnscnce@ya.ru> - 0.11-1
 - Track upstream to 0.11
 
