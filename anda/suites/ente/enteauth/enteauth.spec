@@ -18,6 +18,7 @@ BuildRequires:  flutter
 %autosetup -n ente-%tag
 
 %build
+pushd mobile/apps/auth
 flutter config --enable-linux-desktop
 flutter build linux --release
 

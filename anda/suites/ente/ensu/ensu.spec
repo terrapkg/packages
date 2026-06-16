@@ -25,7 +25,7 @@ cd rust/apps/ensu
 
 %build
 cd rust/apps/ensu
-%npm_build -B
+%npm_build -Bc
 install -Dpm755 src-tauri/target/rpm/ensu -t %buildroot%_bindir
 %desktop_file_install %{S:1}
 install -Dpm644 src-tauri/icons/icon.png %buildroot%_hicolordir/1024x1024/apps/ensu.png

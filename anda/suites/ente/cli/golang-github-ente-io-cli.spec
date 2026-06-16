@@ -41,7 +41,8 @@ Source:         %{gosource}
 
 %if %{without bootstrap}
 %build
-%go_build_online -o %{gobuilddir}/bin/ente %{goipath}/cli
+%global gomodulesmode GO111MODULE=on
+%gobuild -o %{gobuilddir}/bin/ente %{goipath}/cli
 %endif
 
 %install
