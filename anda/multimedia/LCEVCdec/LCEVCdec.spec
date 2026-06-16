@@ -127,11 +127,7 @@ python3 src/func_tests/run_tests.py
 %files devel
 %{_includedir}/LCEVC
 %{_libdir}/liblcevc_dec_api.so
-%{_libdir}/liblcevc_dec_legacy.so
 %{_libdir}/liblcevc_dec_pipeline_cpu.so
-%{_libdir}/liblcevc_dec_pipeline_legacy.so
-%{_libdir}/liblcevc_dec_legacy.so
-%{_libdir}/liblcevc_dec_pipeline_legacy.so
 
 # Static:
 %{_libdir}/liblcevc_dec_api_utility.a
@@ -143,11 +139,6 @@ python3 src/func_tests/run_tests.py
 %{_libdir}/liblcevc_dec_sequencer.a
 %{_libdir}/liblcevc_dec_unit_test_utilities.a
 %{_libdir}/liblcevc_dec_utility.a
-%{_libdir}/liblcevc_dec_common.a
-%{_libdir}/liblcevc_dec_enhancement.a
-%{_libdir}/liblcevc_dec_pipeline.a
-%{_libdir}/liblcevc_dec_pixel_processing.a
-%{_libdir}/liblcevc_dec_sequencer.a
 %{_libdir}/pkgconfig/lcevc_dec.pc
 
 %files samples
