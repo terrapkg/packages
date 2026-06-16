@@ -1,6 +1,6 @@
 Name:           plasma6-applet-appgrid
 Version:        1.9.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A modern application launcher for KDE Plasma
 # Main code: GPL-2.0-or-later
 # dev.xarbit.appgrid.metainfo.xml: CC0-1.0
@@ -66,7 +66,7 @@ presentation.
 %{_datadir}/icons/hicolor/scalable/apps/dev.xarbit.appgrid.svg
 
 %changelog
-* Mon Jun 15 2026 hilltty <49129010+hilltty@users.noreply.github.com> - 1.9.0-1
+* Mon Jun 15 2026 hilltty <49129010+hilltty@users.noreply.github.com> - 1.9.0-2
 - Sync with upstream
 
 * Fri May 29 2026 hilltty <49129010+hilltty@users.noreply.github.com> - 1.8.5-1
