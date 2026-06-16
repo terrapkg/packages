@@ -9,8 +9,8 @@
 %bcond docs 0
 
 Name:           LCEVCdec
-Version:        4.1.0
-Release:        2%{?dist}
+Version:        4.2.0
+Release:        1%{?dist}
 Summary:        MPEG-5 LCEVC Decoder
 License:        BSD-3-Clause-Clear
 URL:            https://docs.v-nova.com/v-nova/lcevc/lcevc-sdk-overview
