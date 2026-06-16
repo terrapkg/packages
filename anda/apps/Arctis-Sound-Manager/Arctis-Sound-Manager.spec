@@ -20,6 +20,7 @@ BuildRequires:  python3-importlib-metadata
 BuildRequires:  python3-uv-build
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  python3-ruamel-yaml
+BuildRequires:  desktop-file-utils
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
@@ -66,7 +67,6 @@ install -Dm755 scripts/asm-diag-dinit.py %{buildroot}%{_bindir}/asm-diag-dinit
 # Desktop entry
 install -Dm644 src/arctis_sound_manager/desktop/ArctisManager.desktop \
     %{buildroot}%{_datadir}/applications/ArctisManager.desktop
-desktop-file-validate %{buildroot}%{_appsdir}/ArctisManager.desktop
 
 # Icon
 install -Dm644 src/arctis_sound_manager/gui/images/steelseries_logo.svg \
@@ -85,6 +85,9 @@ install -Dm644 scripts/filter-chain.service \
 # First-run autostart (triggers asm-setup on first graphical login)
 install -Dm644 debian/asm-first-run.desktop \
     %{buildroot}%{_sysconfdir}/xdg/autostart/asm-first-run.desktop
+
+%check
+%desktop_file_validate %{buildroot}%{_appsdir}/ArctisManager.desktop
 
 %post
 %systemd_user_post %{arctis_sound_manager_services}
