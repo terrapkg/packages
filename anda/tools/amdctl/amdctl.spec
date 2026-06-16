@@ -6,7 +6,7 @@ Version:    0.11
 Release:    2%{?dist}
 Source0:    https://github.com/kevinlekiller/%{name}/archive/refs/tags/v%{version}.tar.gz
 # Remove hardcoded CFLAGS and CC
-%dnl Patch0:     0001-RPM-makefile-Remove-unused-Makefile-variables.patch
+Patch0:     0001-RPM-makefile-Remove-unused-Makefile-variables.patch
 
 BuildRequires: make
 BuildRequires: gcc
@@ -21,8 +21,7 @@ Tool for changing voltages and clock speeds for AMD processors with
 control over every power state and CPU core.
 
 %prep
-%autosetup
-%dnl patch -p1 -i %{PATCH0}
+%autosetup -p1
 
 %build
 %make_build
