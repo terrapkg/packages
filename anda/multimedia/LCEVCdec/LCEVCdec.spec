@@ -123,18 +123,21 @@ python3 src/func_tests/run_tests.py
 %doc README.md
 %{_libdir}/liblcevc_dec_api.so.4
 %{_libdir}/liblcevc_dec_api.so.%{version}
+%{_libdir}/liblcevc_dec_pipeline_cpu.so.1
 
 %files devel
 %{_includedir}/LCEVC
 %{_libdir}/liblcevc_dec_api.so
 %{_libdir}/liblcevc_dec_pipeline_cpu.so
+%{_libdir}/pkgconfig/lcevc_dec.pc
+%{_libdir}/pkgconfig/lcevc_dec_extract.pc
+%{_libdir}/pkgconfig/lcevc_dec_utility.pc
 
 # Static:
 %{_libdir}/liblcevc_dec_api_utility.a
 %{_libdir}/liblcevc_dec_extract.a
 %{_libdir}/liblcevc_dec_unit_test_utilities.a
 %{_libdir}/liblcevc_dec_utility.a
-%{_libdir}/pkgconfig/lcevc_dec.pc
 
 %files samples
 %{_bindir}/lcevc_dec_common_test_unit
