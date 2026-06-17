@@ -57,6 +57,7 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %if %{without bootstrap}
 %if %{with check}
 %check
+cd cli
 %gocheck
 %endif
 %endif
