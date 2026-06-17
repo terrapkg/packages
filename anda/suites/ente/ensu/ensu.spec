@@ -5,10 +5,10 @@
 %global appstream_component desktop-application
 
 
-# the original version of %_package_note_flags expects cc/gcc to parse the ld flags,
+# the original version of %%_package_note_flags expects cc/gcc to parse the ld flags,
 # but for wasm the `lld -flavor wasm` linker is called directly
-# so I extracted the contents of the spec at /usr/lib/rpm/redhat/redhat-package-notes
-%define _package_note_flags --package-metadata={\\"type\\":\\"rpm\\",\\"name\\":\\"%name\\",\\"version\\":\\"%version-%release\\",\\"architecture\\":\\"$RPM_ARCH\\",\\"osCpe\\":\\"cpe:/o:fedoraproject:fedora:%fedora\\"}
+#--package-metadata={\\"type\\":\\"rpm\\",\\"name\\":\\"%name\\",\\"version\\":\\"%version-%release\\",\\"architecture\\":\\"$RPM_ARCH\\",\\"osCpe\\":\\"cpe:/o:fedoraproject:fedora:%fedora\\"}
+%undefine _package_note_flags
 %define terra_rustflags %build_rustflags
 %bcond_with mold
 
