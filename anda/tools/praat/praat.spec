@@ -65,5 +65,7 @@ done
 %{_metainfodir}/%appid.metainfo.xml
 
 %changelog
+* Wed Jun 17 2026 june-fish <git@june.fish> - 6.4.67
+- use new praat build process
 * Fri Feb 06 2026 june-fish <git@june.fish> - 6.4.59
 - Initial Package
