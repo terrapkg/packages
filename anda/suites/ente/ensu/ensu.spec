@@ -4,6 +4,12 @@
 %global org                 "io.ente"
 %global appstream_component desktop-application
 
+
+# the original version of %_package_note_flags expects cc/gcc to parse the ld flags,
+# but for wasm the `lld -flavor wasm` linker is called directly
+# so I extracted the contents of the spec at /usr/lib/rpm/redhat/redhat-package-notes
+%define _package_note_flags --package-metadata={\"type\":\"rpm\",\"name\":\"%name\",\"version\":\"%version-%release\",\"architecture\":\"$RPM_ARCH\",\"osCpe\":\"cpe:/o:fedoraproject:fedora:%fedora\"}
+%define terra_rustflags %build_rustflags
 %bcond_with mold
 
 Name:           ensu
@@ -31,10 +37,6 @@ cd rust/apps/ensu
 
 %build
 cd rust/apps/ensu
-# the original version of %_package_note_flags expects cc/gcc to parse the ld flags,
-# but for wasm the `lld -flavor wasm` linker is called directly
-# so I extracted the contents of the spec at /usr/lib/rpm/redhat/redhat-package-notes
-%define _package_note_flags --package-metadata={\"type\":\"rpm\",\"name\":\"%name\",\"version\":\"%version-%release\",\"architecture\":\"$RPM_ARCH\",\"osCpe\":\"cpe:/o:fedoraproject:fedora:%fedora\"}
 %npm_build -Bc
 install -Dpm755 src-tauri/target/rpm/ensu -t %buildroot%_bindir
 %desktop_file_install %{S:1}
