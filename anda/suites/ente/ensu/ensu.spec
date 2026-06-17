@@ -7,7 +7,7 @@
 
 # the original version of %%_package_note_flags expects cc/gcc to parse the ld flags,
 # but for wasm the `lld -flavor wasm` linker is called directly
-#--package-metadata={\\"type\\":\\"rpm\\",\\"name\\":\\"%name\\",\\"version\\":\\"%version-%release\\",\\"architecture\\":\\"$RPM_ARCH\\",\\"osCpe\\":\\"cpe:/o:fedoraproject:fedora:%fedora\\"}
+%dnl --package-metadata={\\"type\\":\\"rpm\\",\\"name\\":\\"%name\\",\\"version\\":\\"%version-%release\\",\\"architecture\\":\\"$RPM_ARCH\\",\\"osCpe\\":\\"cpe:/o:fedoraproject:fedora:%fedora\\"}
 %define _package_note_flags %nil
 %undefine _package_note_status
 %define terra_rustflags %build_rustflags
@@ -40,7 +40,9 @@ cd rust/apps/ensu
 %build
 cd rust/apps/ensu
 %npm_build -Bc
-install -Dpm755 src-tauri/target/rpm/ensu -t %buildroot%_bindir
+
+%install
+install -Dpm755 rust/target/rpm/Ensu -t %buildroot%_bindir
 %desktop_file_install %{S:1}
 install -Dpm644 src-tauri/icons/icon.png %buildroot%_hicolordir/1024x1024/apps/ensu.png
 %terra_appstream
@@ -48,7 +50,7 @@ install -Dpm644 src-tauri/icons/icon.png %buildroot%_hicolordir/1024x1024/apps/e
 %files
 %doc README.md CONTRIBUTING.md CODE_OF_CONDUCT.md SECURITY.md SUPPORT.md
 %license LICENSE
-%_bindir/ensu
+%_bindir/Ensu
 %_appsdir/ensu.desktop
 %_hicolordir/*/apps/ensu.png
 %_metainfodir/%appid.metainfo.xml
