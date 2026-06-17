@@ -5,11 +5,11 @@
 
 Name:           asusctl
 Version:        6.3.8
-Release:        2%{?dist}
+Release:        3%{?dist}
 Epoch:          1
 Summary:        A control daemon, CLI tools, and a collection of crates for interacting with ASUS ROG laptops
-URL:            https://gitlab.com/asus-linux/asusctl
-Source0:        %url/-/archive/%version/asusctl-%version.tar.gz
+URL:            https://github.com/OpenGamingCollective/asusctl
+Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 Source1:        %{appid}.metainfo.xml
 License:        MPL-2.0 AND (MIT OR Apache-2.0) AND NCSA AND Unicode-3.0 AND (0BSD OR MIT OR Apache-2.0) AND Apache-2.0 AND MIT AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 OR Zlib) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND BSD-2-Clause (BSD-2-Clause OR Apache-2.0 OR MIT) AND (BSD-3-Clause OR Apache-2.0) AND BSD-3-Clause AND BSL-1.0 AND (CC0-1.0 OR Apache-2.0) AND (GPL-3.0-only OR LicenseRef-Slint-Royalty-free-2.0 OR LicenseRef-Slint-Software-3.0) AND ISC AND MIT AND Zlib AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0 OR Zlib) AND Unlicense AND (Zlib OR Apache-2.0 OR MIT)
 BuildRequires:  anda-srpm-macros
@@ -45,7 +45,7 @@ A one-stop-shop GUI tool for asusd/asusctl. It aims to provide most controls,
 a notification service, and ability to run in the background.
 
 %prep
-%autosetup -n asusctl-%version
+%autosetup
 %cargo_prep_online
 
 %build
@@ -111,8 +111,11 @@ mkdir -p %{buildroot}%{_sysconfdir}/asusd
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
+* Thu Jun 18 2026 Owen Zimmerman <owen@fyralabs.com> - 6.3.8-3
+- Switch to OGC upstream
+
 * Wed Jun 17 2026 Owen Zimmerman <owen@fyralabs.com> - 6.3.8-2
-- define %{asus_system_units} to make rhe spec a bit cleaner
+- Define %{asus_system_units} to make rhe spec a bit cleaner
 - and only call %%systemd_* once
 
 * Fri May 08 2026 Owen Zimmerman <owen@fyralabs.com> - 6.3.7-3
