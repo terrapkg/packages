@@ -42,7 +42,8 @@ Source:         %{gosource}
 %if %{without bootstrap}
 %build
 %global gomodulesmode GO111MODULE=on
-%gobuild -o %{gobuilddir}/bin/ente %{goipath}/cli
+cd cli
+%gobuild -o %{gobuilddir}/bin/ente .
 %endif
 
 %install

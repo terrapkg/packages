@@ -22,6 +22,7 @@ BuildRequires:  cmake %tauri_buildrequires
 %autosetup -n ente-%tag
 cd rust/apps/ensu
 %tauri_prep
+cd web && npm ci
 
 %build
 cd rust/apps/ensu
