@@ -9,6 +9,7 @@
 # but for wasm the `lld -flavor wasm` linker is called directly
 #--package-metadata={\\"type\\":\\"rpm\\",\\"name\\":\\"%name\\",\\"version\\":\\"%version-%release\\",\\"architecture\\":\\"$RPM_ARCH\\",\\"osCpe\\":\\"cpe:/o:fedoraproject:fedora:%fedora\\"}
 %define _package_note_flags %nil
+%undefine _package_note_status
 %define terra_rustflags %build_rustflags
 %bcond_with mold
 
