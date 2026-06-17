@@ -24,6 +24,7 @@ Source1:        ensu.desktop
 Packager:       madonuko <mado@fyralabs.com>
 BuildRequires:  cmake %tauri_buildrequires
 BuildRequires:  rust-std-static-wasm32-unknown-unknown
+BuildRequires:  clang-devel
 
 %description
 %summary.
