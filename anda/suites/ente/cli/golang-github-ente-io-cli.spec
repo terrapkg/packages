@@ -11,7 +11,7 @@
 %endif
 
 # https://github.com/ente-io/ente
-%global goipath         github.com/ente-io/ente
+%global goipath         github.com/ente-io/ente/cli
 %global tag             cli-v0.2.3
 Version:                %(echo %tag | sed 's/^cli-v//')
 
@@ -47,6 +47,7 @@ cd cli
 %endif
 
 %install
+cd cli
 %gopkginstall
 %if %{without bootstrap}
 install -m 0755 -vd                     %{buildroot}%{_bindir}
