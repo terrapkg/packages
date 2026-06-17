@@ -20,9 +20,11 @@ BuildRequires:  cmake %tauri_buildrequires
 
 %prep
 %autosetup -n ente-%tag
+pushd web
+npm ci
+popd
 cd rust/apps/ensu
 %tauri_prep
-npm ci
 
 %build
 cd rust/apps/ensu
