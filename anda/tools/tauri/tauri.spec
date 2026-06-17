@@ -2,7 +2,7 @@
 %undefine __brp_mangle_shebangs
 
 Name:           rust-tauri
-Version:        2.11.2
+Version:        2.11.3
 Release:        1%{?dist}
 Summary:        Command line interface for building Tauri apps
 License:        Apache-2.0 OR MIT
