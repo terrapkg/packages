@@ -2,8 +2,8 @@
 %global _desc xet client tech, used in huggingface_hub.
 
 Name:			python-%{pypi_name}
-Version:		1.5.0
-Release:		2%{?dist}
+Version:		1.5.1
+Release:		1%{?dist}
 Summary:		xet client tech, used in huggingface_hub
 License:		Apache-2.0
 URL:			https://github.com/huggingface/xet-core

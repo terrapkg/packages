@@ -1,5 +1,5 @@
 Name:           darkly
-Version:        0.5.37
+Version:        0.5.38
 Release:        1%{?dist}
 License:        GPL-2.0-or-later
 Summary:        Forked from the lightly theme, this style brings a fresh and unique look to your applications
