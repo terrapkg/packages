@@ -12,6 +12,7 @@
 %undefine _package_note_status
 %define terra_rustflags %build_rustflags
 %bcond_with mold
+%global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           ensu
 Version:        %(echo %tag | sed 's/^ensu-v//')
