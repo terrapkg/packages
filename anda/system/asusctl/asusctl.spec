@@ -1,9 +1,11 @@
 %global debug_package %{nil}
 %global appid org.asus_linux.rog_control_center
 
+%global asus_system_units asusd.service asus-shutdown.service
+
 Name:           asusctl
 Version:        6.3.8
-Release:        1%{?dist}
+Release:        2%{?dist}
 Epoch:          1
 Summary:        A control daemon, CLI tools, and a collection of crates for interacting with ASUS ROG laptops
 URL:            https://gitlab.com/asus-linux/asusctl
@@ -93,16 +95,13 @@ mkdir -p %{buildroot}%{_sysconfdir}/asusd
 %{_datadir}/asusd/
 
 %post
-%systemd_post asusd.service
-%systemd_post asus-shutdown.service
+%systemd_post %{asus_system_units}
 
 %preun
-%systemd_preun asusd.service
-%systemd_preun asus-shutdown.service
+%systemd_preun %{asus_system_units}
 
 %postun
-%systemd_postun_with_restart asusd.service
-%systemd_postun_with_restart asus-shutdown.service
+%systemd_postun_with_restart %{asus_system_units}
 
 %files rog-gui
 %{_bindir}/rog-control-center
@@ -112,6 +111,10 @@ mkdir -p %{buildroot}%{_sysconfdir}/asusd
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
+* Wed Jun 17 2026 Owen Zimmerman <owen@fyralabs.com> - 6.3.8-2
+- define %{asus_system_units} to make rhe spec a bit cleaner
+- and only call %%systemd_* once
+
 * Fri May 08 2026 Owen Zimmerman <owen@fyralabs.com> - 6.3.7-3
 - Use new macros, clean some stuff up
 
