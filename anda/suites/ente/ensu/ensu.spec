@@ -44,7 +44,7 @@ cd rust/apps/ensu
 %install
 install -Dpm755 rust/target/rpm/Ensu -t %buildroot%_bindir
 %desktop_file_install %{S:1}
-install -Dpm644 src-tauri/icons/icon.png %buildroot%_hicolordir/1024x1024/apps/ensu.png
+install -Dpm644 rust/apps/ensu/src-tauri/icons/icon.png %buildroot%_hicolordir/1024x1024/apps/ensu.png
 %terra_appstream
 
 %files
