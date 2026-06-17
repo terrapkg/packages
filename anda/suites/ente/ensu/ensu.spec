@@ -14,6 +14,7 @@ Source0:        https://github.com/ente-io/ente/archive/refs/tags/%tag.tar.gz
 Source1:        ensu.desktop
 Packager:       madonuko <mado@fyralabs.com>
 BuildRequires:  cmake %tauri_buildrequires
+BuildRequires:  rust-std-static-wasm32-unknown-unknown
 
 %description
 %summary.
