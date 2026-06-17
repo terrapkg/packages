@@ -69,11 +69,10 @@ DEST=$PWD/%{__cmake_builddir}/%{core}
 pushd core/server
 export GOBIN=$(pwd)/gobin
 export PATH="${PATH}:${GOBIN}"
-%define currentgoldflags -w -s -X github.com/sagernet/sing-box/constant.Version=%{singbox_version}
+# https://github.com/throneproj/Throne/blob/dev/script/build_go.sh
+%define currentgoldflags -w -s -X github.com/sagernet/sing-box/constant.Version=%{singbox_version} -X 'internal/godebug.defaultGODEBUG=multipathtcp=0' -checklinkname=0
 %define gomodulesmode GO111MODULE=on
-%define build_ldflags %nil
-export GO_LDFLAGS=' '
-export GO_BUILDTAGS="with_clash_api with_gvisor with_quic with_wireguard with_utls with_dhcp with_tailscale"
+export GO_BUILDTAGS="with_clash_api with_gvisor with_quic with_wireguard with_utls with_dhcp with_tailscale badlinkname tfogo_checklinkname0 with_naive_outbound"
 go mod tidy
 %gobuild -o $DEST -mod=readonly -modcacherw
 popd
