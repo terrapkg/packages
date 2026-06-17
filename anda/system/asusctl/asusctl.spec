@@ -111,8 +111,11 @@ mkdir -p %{buildroot}%{_sysconfdir}/asusd
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
+* Thu Jun 18 2026 Owen Zimmerman <owen@fyralabs.com> - 6.3.8-3
+- Switch to OGC upstream
+
 * Wed Jun 17 2026 Owen Zimmerman <owen@fyralabs.com> - 6.3.8-2
-- define %{asus_system_units} to make rhe spec a bit cleaner
+- Define %{asus_system_units} to make rhe spec a bit cleaner
 - and only call %%systemd_* once
 
 * Fri May 08 2026 Owen Zimmerman <owen@fyralabs.com> - 6.3.7-3
