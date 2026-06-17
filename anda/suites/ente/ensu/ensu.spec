@@ -8,7 +8,7 @@
 # the original version of %%_package_note_flags expects cc/gcc to parse the ld flags,
 # but for wasm the `lld -flavor wasm` linker is called directly
 #--package-metadata={\\"type\\":\\"rpm\\",\\"name\\":\\"%name\\",\\"version\\":\\"%version-%release\\",\\"architecture\\":\\"$RPM_ARCH\\",\\"osCpe\\":\\"cpe:/o:fedoraproject:fedora:%fedora\\"}
-%undefine _package_note_flags
+%define _package_note_flags %nil
 %define terra_rustflags %build_rustflags
 %bcond_with mold
 
