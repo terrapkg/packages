@@ -23,7 +23,7 @@ The Ente CLI is a Command Line Utility for exporting data from Ente. It also doe
 %global golicenses      LICENSE
 %global godocs          CODE_OF_CONDUCT.md CONTRIBUTING.md cli/README.md SECURITY.md SUPPORT.md
 Name:           ente
-Release:        %autorelease
+Release:        1%?dist
 Summary:        💚 End-to-end encrypted cloud for everything
 Packager:       madonuko <mado@fyralabs.com>
 
