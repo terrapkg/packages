@@ -35,7 +35,7 @@ BuildRequires: rpm_macro(gobuildflags)
 BuildRequires: protobuf-compiler
 BuildRequires: desktop-file-utils
 Requires: %{name}-core
-%define core Core
+%define core ThroneCore
 
 %package core
 Summary: %{summary}
