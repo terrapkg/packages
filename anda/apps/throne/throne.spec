@@ -58,7 +58,10 @@ go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 go install github.com/chai2010/protorpc/protoc-gen-protorpc@latest
 
 cd gen
-protoc -I . --go_out=. --protorpc_out=. libcore.proto
+go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+
+cd gen
+protoc -I . --go_out=. --go-grpc_out=. libcore.proto
 
 %build
 mkdir -p %__cmake_builddir
