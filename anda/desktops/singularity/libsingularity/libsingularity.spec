@@ -13,6 +13,7 @@ BuildRequires:  meson
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  vala
+BuildRequires:  sassc
 BuildRequires:  pkgconfig(gtk4)
 BuildRequires:  pkgconfig(gtk4-layer-shell-0)
 BuildRequires:  pkgconfig(gee-0.8)
@@ -51,6 +52,7 @@ A GTK4 application and widget framework for the Singularity Desktop Environment.
 %{_datadir}/vala/vapi/singularity-1.0.vapi
 %{_datadir}/vala/vapi/libsingularity-1.0.vapi
 %{_datadir}/vala/vapi/singularity-1.0.deps
+%{_datadir}/themes/Singularity/
 
 %changelog
 * Sat May 16 2026 Owen Zimmerman <owen@fyralabs.com>
