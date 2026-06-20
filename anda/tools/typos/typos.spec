@@ -8,7 +8,7 @@ Summary:        Source Code Spelling Correction
 
 License:        MIT OR Apache-2.0
 URL:            https://crates.io/crates/typos-cli
-Source0:        %{crates_source}
+Source0:        %{terra_crates_source}
 Source1:        https://raw.githubusercontent.com/crate-ci/%{name}/refs/tags/v%{version}/LICENSE-MIT
 Source2:        https://raw.githubusercontent.com/crate-ci/%{name}/refs/tags/v%{version}/LICENSE-APACHE
 

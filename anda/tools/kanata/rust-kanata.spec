@@ -10,7 +10,7 @@ Summary:        Multi-layer keyboard customization
 
 License:        LGPL-3.0-only
 URL:            https://crates.io/crates/kanata
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 # Automatically generated patch to strip dependencies and normalize metadata
 Patch:          kanata-fix-metadata-auto.diff
 Packager:       madonuko <mado@fyralabs.com>
