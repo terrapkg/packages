@@ -6,7 +6,7 @@
 %define         llvm_compat 22
 %endif
 %global         llvm_version 22.0.0
-%global         ver 0.17.0-dev.889+e6be5cfe3
+%global         ver 0.17.0-dev.892+54537285c
 %bcond bootstrap 1
 %bcond docs      %{without bootstrap}
 %bcond test      1
