@@ -48,7 +48,7 @@ find %{buildroot} -name "*.la" -delete
 
 %files
 %license COPYING
-%doc AUTHORS NEWS README.md
+%doc README.md
 %{_libdir}/gstreamer-1.0/libgstlibav.so
 
 %changelog
