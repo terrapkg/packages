@@ -29,7 +29,6 @@ Requires:       mock
 Requires:       rpm-build
 Requires:       createrepo_c
 Requires:       git-core
-Requires:       libgit2
 %if 0%{?fedora} >= 42
 Requires:       mock-filesystem
 Requires:       util-linux-script
