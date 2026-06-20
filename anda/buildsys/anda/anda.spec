@@ -18,11 +18,8 @@ BuildRequires:  gcc
 BuildRequires:  rust-packaging >= 21
 BuildRequires:  anda-srpm-macros
 BuildRequires:  openssl-devel
-%if %{defined fedora}
-BuildRequires:  openssl-devel-engine
-%endif
 BuildRequires:  git-core
-BuildRequires:  libgit2-devel
+BuildRequires:  libgit2_1.9-devel
 BuildRequires:  libssh2-devel
 BuildRequires:  mold
 Requires:       mock
