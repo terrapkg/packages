@@ -11,7 +11,7 @@ Summary:        Command-line utility for easily compressing and decompressing fi
 
 License:        MIT
 URL:            https://crates.io/crates/ouch
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 # Automatically generated patch to strip dependencies and normalize metadata
 %dnl Patch:          ouch-fix-metadata-auto.diff
 
