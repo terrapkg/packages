@@ -10,7 +10,7 @@ Summary:        Container runtime written in Rust
 
 License:        None
 URL:            https://crates.io/crates/youki
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 
 BuildRequires:  anda-srpm-macros cargo-rpm-macros >= 24
 BuildRequires:  pkg-config
