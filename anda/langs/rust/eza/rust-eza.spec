@@ -10,7 +10,7 @@ Summary:        Modern replacement for ls
 
 License:        EUPL-1.2
 URL:            https://crates.io/crates/eza
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 # Automatically generated patch to strip dependencies and normalize metadata
 Patch:          eza-fix-metadata-auto.diff
 

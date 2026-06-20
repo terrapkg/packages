@@ -12,7 +12,7 @@ Summary:        Deno executable
 
 License:        MIT
 URL:            https://crates.io/crates/deno
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 Source1:        https://raw.githubusercontent.com/denoland/deno/refs/tags/v%version/LICENSE.md
 Source2:        gcc-wrapper.sh
 Source3:        land.deno.deno.metainfo.xml
