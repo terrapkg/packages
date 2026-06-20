@@ -19,7 +19,7 @@ BuildRequires:  rust-packaging >= 21
 BuildRequires:  anda-srpm-macros
 BuildRequires:  openssl-devel
 BuildRequires:  git-core
-BuildRequires:  libgit2_1.9-devel
+BuildRequires:  pkgconfig(libgit2)
 BuildRequires:  libssh2-devel
 BuildRequires:  mold
 Requires:       mock
