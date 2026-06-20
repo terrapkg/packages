@@ -23,7 +23,7 @@ unzip %{S:0}
 %build
 
 %install
-install -Dpm644 SourceHanSerif-*.ttc -t %buildroot%_datadir/fonts/%name
+install -Dpm644 OTC/SourceHanSerif-*.ttc -t %buildroot%_datadir/fonts/%name
 
 %files
 %license LICENSE.txt

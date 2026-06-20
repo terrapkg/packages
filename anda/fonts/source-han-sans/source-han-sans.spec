@@ -23,7 +23,7 @@ unzip %{S:0}
 %build
 
 %install
-install -Dpm644 SourceHanSans-*.ttc -t %buildroot%_datadir/fonts/%name
+install -Dpm644 OTC/SourceHanSans-*.ttc -t %buildroot%_datadir/fonts/%name
 
 %files
 %license LICENSE.txt
