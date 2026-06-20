@@ -71,6 +71,8 @@ export GOBIN=$(pwd)/gobin
 export PATH="${PATH}:${GOBIN}"
 # https://github.com/throneproj/Throne/blob/dev/script/build_go.sh
 %define currentgoldflags -w -s -X github.com/sagernet/sing-box/constant.Version=%{singbox_version} -X 'internal/godebug.defaultGODEBUG=multipathtcp=0' -checklinkname=0
+%define build_ldflags %nil
+export GO_LDFLAGS=' '
 %define gomodulesmode GO111MODULE=on
 export GO_BUILDTAGS="with_clash_api with_gvisor with_quic with_wireguard with_utls with_dhcp with_tailscale badlinkname tfogo_checklinkname0 with_naive_outbound"
 go mod tidy
