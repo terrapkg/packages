@@ -7,7 +7,7 @@ Release:        1%?dist
 Summary:        Source Han Serif | 思源宋体 | 思源宋體 | 思源宋體 香港 | 源ノ明朝 | 본명조
 License:        OFL-1.1
 URL:            https://github.com/adobe-fonts/source-han-serif
-Source0:        %url/releases/download/%version/03_SourceHanSerifOTC.zip
+Source0:        %url/releases/download/%ver/03_SourceHanSerifOTC.zip
 Packager:       madonuko <mado@fyralabs.com>
 BuildArch:      noarch
 BuildRequires:  unzip

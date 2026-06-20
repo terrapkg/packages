@@ -7,7 +7,7 @@ Release:        1%?dist
 Summary:        Source Han Sans | 思源黑体 | 思源黑體 | 思源黑體 香港 | 源ノ角ゴシック | 본고딕
 License:        OFL-1.1
 URL:            https://github.com/adobe-fonts/source-han-sans
-Source0:        %url/releases/download/%version/03_SourceHanSansOTC.zip
+Source0:        %url/releases/download/%ver/03_SourceHanSansOTC.zip
 Packager:       madonuko <mado@fyralabs.com>
 BuildArch:      noarch
 BuildRequires:  unzip
