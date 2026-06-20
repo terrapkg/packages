@@ -1,7 +1,7 @@
 %define debug_package %nil
 %global ver 2.005R
 
-Name:           source-han-sans
+Name:           source-han-sans-fonts
 Version:        %(echo %ver | sed -E 's/R$//')
 Release:        1%?dist
 Summary:        Source Han Sans | 思源黑体 | 思源黑體 | 思源黑體 香港 | 源ノ角ゴシック | 본고딕

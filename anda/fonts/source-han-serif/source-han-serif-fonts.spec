@@ -1,7 +1,7 @@
 %define debug_package %nil
 %global ver 2.003R
 
-Name:           source-han-serif
+Name:           source-han-serif-fonts
 Version:        %(echo %ver | sed -E 's/R$//')
 Release:        1%?dist
 Summary:        Source Han Serif | 思源宋体 | 思源宋體 | 思源宋體 香港 | 源ノ明朝 | 본명조
