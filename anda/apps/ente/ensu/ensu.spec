@@ -13,6 +13,7 @@
 %define terra_rustflags %build_rustflags
 %bcond_with mold
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
+%global _distro_extra_cxxflags -fno-permissive
 
 Name:           ensu
 Version:        %(echo %tag | sed 's/^ensu-v//')
