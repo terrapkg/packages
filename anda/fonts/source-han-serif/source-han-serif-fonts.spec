@@ -23,108 +23,110 @@ This package ships the Static OTC versions.
 %_datadir/fonts/%name/
 
 
-%dnl ╭── %global fpkg(vhst:)
-%global fpkg(vhst:) %{quote:
-%package %{?-h:hw-}%{?-v:vf-}%{?-s:subset-}%{-t*}
-Summary: %name: %{?-h:half-width }%{?-v:variable }%{?-s:subset }%{upper:%{-t*}} font files
+%dnl DO NOT CHANGE THIS TO `%global`, I REPEAT, DO NOT USE `%global`, OTHERWISE MACROS LIKE `%{-h}` DO NOT EXPAND.
+%dnl Parameterized macros cannot be defined using `%global`. Guess I'm today years old. — mado
+%dnl ╭── %define fpkg(vhs)
+%define fpkg(vhs)                                                                                   \
+%package %{-h:hw-}%{-v:vf-}%{-s:subset-}%1                                                          \
+Summary: %name: %{-h:half-width }%{-v:variable }%{-s:subset }%{upper:%1} font files                 \
+                                                                                                    \
+%description %{-h:hw-}%{-v:vf-}%{-s:subset-}%1                                                      \
+This package provides a specific font type of %name.                                                \
+%{-v:VF: variable font: Variable font weights are supported.                                        \
+}%{-h:HW: half-width: some proportional punctuations are turned into half-width.                    \
+The list can be seen here, at page 19~20, section "Proportional & Half-Width CJK Punctuation":      \
+https://github.com/adobe-fonts/source-han-sans/blob/release/SourceHanSansReadMe.pdf                 \
+}%{-s:Subset: The fonts are split into regional-specific subset fonts.                              \
+}                                                                                                   \
+                                                                                                    \
+%files %{-h:hw-}%{-v:vf-}%{-s:subset-}%1                                                            \
+%license LICENSE.txt
+%dnl ╰── %define fpkg(vhs)
 
-%description %{?-h:hw-}%{?-v:vf-}%{?-s:subset-}%{-t*}
-This package provides a specific font type of %name.
-%{?-v:VF: variable font: Variable font weights are supported.
-}%{?-h:HW: half-width: some proportional punctuations are turned into half-width.
-The list can be seen here, at page 19~20, section "Proportional & Half-Width CJK Punctuation":
-https://github.com/adobe-fonts/source-han-sans/blob/release/SourceHanSansReadMe.pdf
-}%{?-s:Subset: The fonts are split into regional-specific subset fonts.
-}
-
-%files %{?-h:hw-}%{?-v:vf-}%{?-s:subset-}%{-t*}
-%license LICENSE.txt}
-%dnl ╰── %fpkg(vhst:)
-
-%fpkg -vt otc
+%fpkg -v otc
 %_datadir/fonts/%name/SourceHanSerif-VF.*.ttc
 
-%fpkg -vht otc
+%fpkg -vh otc
 %_datadir/fonts/%name/SourceHanSerifHW-VF.*.ttc
 
-%fpkg -vt otf
+%fpkg -v otf
 %_datadir/fonts/%name/SourceHanSerif-VF.otf
 %_datadir/fonts/%name/SourceHanSerifHC-VF.otf
 %_datadir/fonts/%name/SourceHanSerifK-VF.otf
 %_datadir/fonts/%name/SourceHanSerifSC-VF.otf
 %_datadir/fonts/%name/SourceHanSerifTC-VF.otf
 
-%fpkg -vht otf
+%fpkg -vh otf
 %_datadir/fonts/%name/SourceHanSerifHW-VF.otf
 %_datadir/fonts/%name/SourceHanSerifHWHC-VF.otf
 %_datadir/fonts/%name/SourceHanSerifHWK-VF.otf
 %_datadir/fonts/%name/SourceHanSerifHWSC-VF.otf
 %_datadir/fonts/%name/SourceHanSerifHWTC-VF.otf
 
-%fpkg -vst otf
+%fpkg -vs otf
 %_datadir/fonts/%name/SourceHanSerifCN-VF.otf
 %_datadir/fonts/%name/SourceHanSerifHK-VF.otf
 %_datadir/fonts/%name/SourceHanSerifJP-VF.otf
 %_datadir/fonts/%name/SourceHanSerifKR-VF.otf
 %_datadir/fonts/%name/SourceHanSerifTW-VF.otf
 
-%fpkg -vt ttf
+%fpkg -v ttf
 %_datadir/fonts/%name/SourceHanSerif-VF.ttf
 %_datadir/fonts/%name/SourceHanSerifHC-VF.ttf
 %_datadir/fonts/%name/SourceHanSerifK-VF.ttf
 %_datadir/fonts/%name/SourceHanSerifSC-VF.ttf
 %_datadir/fonts/%name/SourceHanSerifTC-VF.ttf
 
-%fpkg -vht ttf
+%fpkg -vh ttf
 %_datadir/fonts/%name/SourceHanSerifHW-VF.ttf
 %_datadir/fonts/%name/SourceHanSerifHWHC-VF.ttf
 %_datadir/fonts/%name/SourceHanSerifHWK-VF.ttf
 %_datadir/fonts/%name/SourceHanSerifHWSC-VF.ttf
 %_datadir/fonts/%name/SourceHanSerifHWTC-VF.ttf
 
-%fpkg -vst ttf
+%fpkg -vs ttf
 %_datadir/fonts/%name/SourceHanSerifCN-VF.ttf
 %_datadir/fonts/%name/SourceHanSerifHK-VF.ttf
 %_datadir/fonts/%name/SourceHanSerifJP-VF.ttf
 %_datadir/fonts/%name/SourceHanSerifKR-VF.ttf
 %_datadir/fonts/%name/SourceHanSerifTW-VF.ttf
 
-%fpkg -vt otf-woff2
+%fpkg -v otf-woff2
 %_datadir/fonts/%name/SourceHanSerif-VF.otf.woff2
 %_datadir/fonts/%name/SourceHanSerifHC-VF.otf.woff2
 %_datadir/fonts/%name/SourceHanSerifK-VF.otf.woff2
 %_datadir/fonts/%name/SourceHanSerifSC-VF.otf.woff2
 %_datadir/fonts/%name/SourceHanSerifTC-VF.otf.woff2
 
-%fpkg -vht otf-woff2
+%fpkg -vh otf-woff2
 %_datadir/fonts/%name/SourceHanSerifHW-VF.otf.woff2
 %_datadir/fonts/%name/SourceHanSerifHWHC-VF.otf.woff2
 %_datadir/fonts/%name/SourceHanSerifHWK-VF.otf.woff2
 %_datadir/fonts/%name/SourceHanSerifHWSC-VF.otf.woff2
 %_datadir/fonts/%name/SourceHanSerifHWTC-VF.otf.woff2
 
-%fpkg -vst otf-woff2
+%fpkg -vs otf-woff2
 %_datadir/fonts/%name/SourceHanSerifCN-VF.otf.woff2
 %_datadir/fonts/%name/SourceHanSerifHK-VF.otf.woff2
 %_datadir/fonts/%name/SourceHanSerifJP-VF.otf.woff2
 %_datadir/fonts/%name/SourceHanSerifKR-VF.otf.woff2
 %_datadir/fonts/%name/SourceHanSerifTW-VF.otf.woff2
 
-%fpkg -vt ttf-woff2
+%fpkg -v ttf-woff2
 %_datadir/fonts/%name/SourceHanSerif-VF.ttf.woff2
 %_datadir/fonts/%name/SourceHanSerifHC-VF.ttf.woff2
 %_datadir/fonts/%name/SourceHanSerifK-VF.ttf.woff2
 %_datadir/fonts/%name/SourceHanSerifSC-VF.ttf.woff2
 %_datadir/fonts/%name/SourceHanSerifTC-VF.ttf.woff2
 
-%fpkg -vht ttf-woff2
+%fpkg -vh ttf-woff2
 %_datadir/fonts/%name/SourceHanSerifHW-VF.ttf.woff2
 %_datadir/fonts/%name/SourceHanSerifHWHC-VF.ttf.woff2
 %_datadir/fonts/%name/SourceHanSerifHWK-VF.ttf.woff2
 %_datadir/fonts/%name/SourceHanSerifHWSC-VF.ttf.woff2
 %_datadir/fonts/%name/SourceHanSerifHWTC-VF.ttf.woff2
 
-%fpkg -vst ttf-woff2
+%fpkg -vs ttf-woff2
 %_datadir/fonts/%name/SourceHanSerifCN-VF.ttf.woff2
 %_datadir/fonts/%name/SourceHanSerifHK-VF.ttf.woff2
 %_datadir/fonts/%name/SourceHanSerifJP-VF.ttf.woff2
