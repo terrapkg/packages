@@ -136,7 +136,7 @@ https://github.com/adobe-fonts/source-han-sans/blob/release/SourceHanSansReadMe.
 
 %prep
 unzip %{S:0}
-unzip %{S:1}
+yes | unzip %{S:1}
 
 %build
 
