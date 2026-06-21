@@ -9,7 +9,7 @@ URL:            https://muon.build/
 Source:         https://git.sr.ht/~lattis/muon/archive/%{version}.tar.gz
 Patch0:         fix-tracy-header-placement-quirk.patch
 # mdbook removed multilingual support, this patch can be removed when this package next bumps
-Patch1:         remove-multilingual-field.patch
+%dnl Patch1:         remove-multilingual-field.patch
 
 BuildRequires:  meson
 BuildRequires:  gcc
