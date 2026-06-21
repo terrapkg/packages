@@ -46,22 +46,12 @@ https://github.com/adobe-fonts/source-han-sans/blob/release/SourceHanSansReadMe.
 %fpkg -v otc
 %_datadir/fonts/%name/SourceHanSerif-VF.*.ttc
 
-%fpkg -vh otc
-%_datadir/fonts/%name/SourceHanSerifHW-VF.*.ttc
-
 %fpkg -v otf
 %_datadir/fonts/%name/SourceHanSerif-VF.otf
 %_datadir/fonts/%name/SourceHanSerifHC-VF.otf
 %_datadir/fonts/%name/SourceHanSerifK-VF.otf
 %_datadir/fonts/%name/SourceHanSerifSC-VF.otf
 %_datadir/fonts/%name/SourceHanSerifTC-VF.otf
-
-%fpkg -vh otf
-%_datadir/fonts/%name/SourceHanSerifHW-VF.otf
-%_datadir/fonts/%name/SourceHanSerifHWHC-VF.otf
-%_datadir/fonts/%name/SourceHanSerifHWK-VF.otf
-%_datadir/fonts/%name/SourceHanSerifHWSC-VF.otf
-%_datadir/fonts/%name/SourceHanSerifHWTC-VF.otf
 
 %fpkg -vs otf
 %_datadir/fonts/%name/SourceHanSerifCN-VF.otf
@@ -77,13 +67,6 @@ https://github.com/adobe-fonts/source-han-sans/blob/release/SourceHanSansReadMe.
 %_datadir/fonts/%name/SourceHanSerifSC-VF.ttf
 %_datadir/fonts/%name/SourceHanSerifTC-VF.ttf
 
-%fpkg -vh ttf
-%_datadir/fonts/%name/SourceHanSerifHW-VF.ttf
-%_datadir/fonts/%name/SourceHanSerifHWHC-VF.ttf
-%_datadir/fonts/%name/SourceHanSerifHWK-VF.ttf
-%_datadir/fonts/%name/SourceHanSerifHWSC-VF.ttf
-%_datadir/fonts/%name/SourceHanSerifHWTC-VF.ttf
-
 %fpkg -vs ttf
 %_datadir/fonts/%name/SourceHanSerifCN-VF.ttf
 %_datadir/fonts/%name/SourceHanSerifHK-VF.ttf
@@ -98,13 +81,6 @@ https://github.com/adobe-fonts/source-han-sans/blob/release/SourceHanSansReadMe.
 %_datadir/fonts/%name/SourceHanSerifSC-VF.otf.woff2
 %_datadir/fonts/%name/SourceHanSerifTC-VF.otf.woff2
 
-%fpkg -vh otf-woff2
-%_datadir/fonts/%name/SourceHanSerifHW-VF.otf.woff2
-%_datadir/fonts/%name/SourceHanSerifHWHC-VF.otf.woff2
-%_datadir/fonts/%name/SourceHanSerifHWK-VF.otf.woff2
-%_datadir/fonts/%name/SourceHanSerifHWSC-VF.otf.woff2
-%_datadir/fonts/%name/SourceHanSerifHWTC-VF.otf.woff2
-
 %fpkg -vs otf-woff2
 %_datadir/fonts/%name/SourceHanSerifCN-VF.otf.woff2
 %_datadir/fonts/%name/SourceHanSerifHK-VF.otf.woff2
@@ -118,13 +94,6 @@ https://github.com/adobe-fonts/source-han-sans/blob/release/SourceHanSansReadMe.
 %_datadir/fonts/%name/SourceHanSerifK-VF.ttf.woff2
 %_datadir/fonts/%name/SourceHanSerifSC-VF.ttf.woff2
 %_datadir/fonts/%name/SourceHanSerifTC-VF.ttf.woff2
-
-%fpkg -vh ttf-woff2
-%_datadir/fonts/%name/SourceHanSerifHW-VF.ttf.woff2
-%_datadir/fonts/%name/SourceHanSerifHWHC-VF.ttf.woff2
-%_datadir/fonts/%name/SourceHanSerifHWK-VF.ttf.woff2
-%_datadir/fonts/%name/SourceHanSerifHWSC-VF.ttf.woff2
-%_datadir/fonts/%name/SourceHanSerifHWTC-VF.ttf.woff2
 
 %fpkg -vs ttf-woff2
 %_datadir/fonts/%name/SourceHanSerifCN-VF.ttf.woff2
@@ -143,7 +112,7 @@ yes | unzip %{S:1}
 %install
 install -Dpm644 OTC/SourceHanSerif-*.ttc -t %buildroot%_datadir/fonts/%name
 install -Dpm644 Variable/OTC/*.* -t %buildroot%_datadir/fonts/%name
-install -Dpm644 Variable/{,WOFF2/}{OTF,TTF}/{,HW/,Subset/}*.* -t %buildroot%_datadir/fonts/%name
+install -Dpm644 Variable/{,WOFF2/}{OTF,TTF}/{,Subset/}*.* -t %buildroot%_datadir/fonts/%name
 
 %changelog
 * Sat Jun 20 2026 madonuko <mado@fyralabs.com> - 2.005R-1
