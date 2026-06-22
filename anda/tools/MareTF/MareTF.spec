@@ -43,12 +43,15 @@ BuildRequires:  vulkan-headers
 %files
 %doc README.md
 %license LICENSE
+%license %{_defaultlicensedir}/maretf/CREDITS
 %{_bindir}/maretf
 %{_bindir}/maretf_gui
+%{_bindir}/maretf_thumbnailer
 %{_appsdir}/maretf.desktop
 %{_hicolordir}/512x512/apps/maretf.png
 %{_defaultlicensedir}/maretf/LICENSE
 %{_datadir}/mime/packages/maretf.xml
+%{_datadir}/thumbnailers/maretf.thumbnailer
 
 %changelog
 * Sun Mar 15 2026 Owen Zimmerman <owen@fyralabs.com>
