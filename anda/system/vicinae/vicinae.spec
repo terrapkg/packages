@@ -7,7 +7,7 @@
 Name:           vicinae
 License:        GPL-3.0-or-later
 Version:        0.22.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 URL:            https://docs.vicinae.com
 Source:         https://github.com/vicinaehq/%{name}/archive/refs/tags/v%{version}.tar.gz
 Summary:        A high-performance, native launcher for Linux
@@ -42,6 +42,7 @@ BuildRequires:  xcb-util-keysyms-devel
 BuildRequires:  desktop-file-utils
 
 Requires:       nodejs-npm
+Requires:       layer-shell-qt
 
 %description
 Vicinae (pronounced "vih-SIN-ay") is a high-performance, native launcher for
