@@ -42,7 +42,8 @@ BuildRequires:  vulkan-headers
 
 %files
 %doc README.md
-%license LICENSE %{_defaultlicensedir}/maretf/CREDITS
+%license LICENSE
+%license %{_defaultlicensedir}/maretf/CREDITS
 %{_bindir}/maretf
 %{_bindir}/maretf_gui
 %{_bindir}/maretf_thumbnailer
