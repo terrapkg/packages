@@ -6,22 +6,13 @@ License:		BSD-2-Clause
 URL:			https://github.com/fcambus/bdf2sfd
 Source0:		%url/archive/refs/tags/%version.tar.gz
 BuildRequires:	cmake gcc
+BuildSystem:  cmake
 
 %description
 bdf2sfd is a BDF to SFD converter, allowing to vectorize bitmap fonts.
 
 It works by converting each pixel of a glyph to a polygon, which produces
 large and unoptimized SFD files that should be post-processed using FontForge.
-
-%prep
-%autosetup
-
-%build
-%cmake
-%cmake_build
-
-%install
-%cmake_install
 
 %files
 %doc README.md ChangeLog AUTHORS THANKS
