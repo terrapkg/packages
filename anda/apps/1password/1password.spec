@@ -2,6 +2,10 @@
 %global policy_owners unix-group:wheel
 %global appdir %{_datadir}/1password
 
+# Exclude private Electron libraries bundled in the app payload.
+%global __provides_exclude libffmpeg.so|libvk_swiftshader.so|libvulkan.so|libEGL.so|libGLESv2.so
+%global __requires_exclude libffmpeg.so|libvk_swiftshader.so|libvulkan.so|libEGL.so|libGLESv2.so
+
 %ifarch x86_64
 %global tararch x64
 %elifarch aarch64
@@ -10,7 +14,7 @@
 
 Name:           1password
 Version:        8.12.24
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Password manager and secure wallet
 
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
@@ -66,16 +70,24 @@ rm -f %{buildroot}%{appdir}/com.1password.1Password.policy \
   %{buildroot}%{appdir}/install.sh \
   %{buildroot}%{appdir}/install_biometrics_policy.sh
 
-mkdir -p %{buildroot}%{_bindir}
+mkdir -p %{buildroot}%{_bindir} %{buildroot}%{_libexecdir}
 ln -sr %{buildroot}%{appdir}/%{name} %{buildroot}%{_bindir}/%{name}
+ln -sr %{buildroot}%{appdir}/1Password-Crash-Handler %{buildroot}%{_libexecdir}/1Password-Crash-Handler
+ln -sr %{buildroot}%{appdir}/1Password-BrowserSupport %{buildroot}%{_libexecdir}/1Password-BrowserSupport
+ln -sr %{buildroot}%{appdir}/1Password-LastPass-Exporter %{buildroot}%{_libexecdir}/1Password-LastPass-Exporter
+ln -sr %{buildroot}%{appdir}/op-ssh-sign %{buildroot}%{_libexecdir}/op-ssh-sign
 chmod 4755 %{buildroot}%{appdir}/chrome-sandbox
 chmod 2755 %{buildroot}%{appdir}/1Password-BrowserSupport
 if [ -f %{buildroot}%{appdir}/onepassword-mcp ]; then
+  ln -sr %{buildroot}%{appdir}/onepassword-mcp %{buildroot}%{_libexecdir}/onepassword-mcp
   chmod 2755 %{buildroot}%{appdir}/onepassword-mcp
 fi
 find %{buildroot}%{appdir} -type f \
   ! -name chrome-sandbox \
+  ! -name 1Password-Crash-Handler \
   ! -name 1Password-BrowserSupport \
+  ! -name 1Password-LastPass-Exporter \
+  ! -name op-ssh-sign \
   ! -name onepassword-mcp \
   -printf '/%%P\n' | sed "s|^/|%{appdir}/|" > app.files
 
@@ -84,9 +96,17 @@ find %{buildroot}%{appdir} -type f \
 
 %files -f app.files
 %{_bindir}/%{name}
+%{_libexecdir}/1Password-Crash-Handler
+%{_libexecdir}/1Password-BrowserSupport
+%{_libexecdir}/1Password-LastPass-Exporter
+%{_libexecdir}/op-ssh-sign
+%{_libexecdir}/onepassword-mcp
 %dir %{appdir}
 %attr(4755,root,root) %{appdir}/chrome-sandbox
+%{appdir}/1Password-Crash-Handler
 %attr(2755,root,onepassword) %{appdir}/1Password-BrowserSupport
+%{appdir}/1Password-LastPass-Exporter
+%{appdir}/op-ssh-sign
 %attr(2755,root,onepassword-mcp) %{appdir}/onepassword-mcp
 %{_datadir}/icons/hicolor/32x32/apps/1password.png
 %{_datadir}/icons/hicolor/64x64/apps/1password.png
