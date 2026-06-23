@@ -37,7 +37,6 @@ Source:         %{gosource}
 
 %prep
 %goprep_online -A
-%autopatch -p1
 
 %if %{without bootstrap}
 %build
