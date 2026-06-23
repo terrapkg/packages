@@ -1,5 +1,3 @@
-%define debug_package %nil
-
 Name:           coreboot-utils
 Version:        26.06
 Release:        1%{?dist}
@@ -32,6 +30,7 @@ BuildRequires:  glibc-devel
 BuildRequires:  ncurses-devel
 BuildRequires:  libfl-devel
 BuildRequires:  pciutils-devel
+BuildRequires:  zlib-ng-devel
 BuildRequires:  libxcrypt-devel
 BuildRequires:  yaml-cpp-devel
 BuildRequires:  openssl-devel
@@ -45,10 +44,6 @@ BuildRequires:  acpica-tools
 BuildRequires:  binutils
 BuildRequires:  python3
 
-%if 0%{?fedora} >= 42
-BuildRequires:  gcc14 gcc14-c++
-%endif
-
 %description
 %summary.
 
@@ -59,7 +54,7 @@ Requires:       %{name}-abuild
 Requires:       %{name}-amdfwtool
 Requires:       %{name}-amdtools
 Requires:       %{name}-apcb
-%dnl Requires:       %{name}-archive
+Requires:       %{name}-archive
 Requires:       %{name}-autoport
 Requires:       %{name}-bincfg
 Requires:       %{name}-board_status
@@ -156,11 +151,11 @@ and GPIO selection pins.
 apcb_edit - This tool allows patching an existing APCB binary with specific SPDs and GPIO selection pins.
 apcb_v3_edit - This tool allows patching an existing APCB v3 binary with up to  16 specific SPDs.
 
-%dnl %package archive - ### Currently bugged and does not compile ###
-%dnl Requires:       coreboot-utils = %{evr}
-%dnl Summary:        Concatenate files and create an archive
-%dnl %description    archive
-%dnl %summary.
+%package        archive
+Requires:       coreboot-utils = %{evr}
+Summary:        Concatenate files and create an archive
+%description    archive
+%summary.
 
 %package        autoport
 Summary:        Porting coreboot using autoport
@@ -501,20 +496,19 @@ Requires:       coreboot-utils = %{evr}
 
 %conf
 %ifarch x86_64
-pushd msrtool
+pushd util/msrtool
 %configure
 popd
 %endif
 
-%build
-%if 0%{?fedora} >= 42
-export CC=gcc-14
-export CXX=g++-14
-%endif
+pushd util/coreboot-configurator
+%meson
+popd
 
+%build
 pushd util
 %make_build -C amdfwtool LDFLAGS="-fPIE -lcrypto"
-%dnl %make_build -C archive # bugged upstream, does not build
+%make_build -C archive CFLAGS="-O2 -Wall -Wextra -Wshadow -Werror -Wno-nonnull"
 %make_build -C bincfg
 %ifarch x86_64
 %make_build -C bucts LDFLAGS="-fPIE"
@@ -524,7 +518,7 @@ pushd util
 %ifarch x86_64
 %make_build -C ectool LDFLAGS="-fPIE"
 %endif
-%make_build -C futility
+%make_build -C futility CFLAGS="$CFLAGS -DEC_EFS=0"
 %make_build -C hda-decoder
 %make_build -C ifdtool
 %ifarch x86_64
@@ -534,7 +528,7 @@ pushd util
 %make_build -C intelp2m
 %endif
 %ifarch x86_64
-%make_build -C inteltool
+%make_build -C inteltool CFLAGS="-O2 -fkeep-inline-functions"
 %endif
 %ifarch x86_64
 %make_build -C intelvbttool
@@ -568,7 +562,6 @@ export GOFLAGS="-buildmode=pie -trimpath -ldflags=-linkmode=external -mod=readon
 popd
 
 pushd coreboot-configurator
-%meson
 %meson_build
 popd
 popd
@@ -589,7 +582,7 @@ install -Dm 755 util/apcb/apcb_edit.py %{buildroot}%{_bindir}/apcb_edit.py
 install -Dm 755 util/apcb/apcb_v3a_edit.py %{buildroot}%{_bindir}/apcb_v3a_edit.py
 install -Dm 755 util/apcb/apcb_v3_edit.py %{buildroot}%{_bindir}/apcb_v3_edit.py
 
-%dnl install -Dm 777 util/archive/archive %{buildroot}%{_bindir}/archive
+install -Dm 777 util/archive/archive %{buildroot}%{_bindir}/archive
 
 install -Dm 755 %{_builddir}/autoport %{buildroot}%{_bindir}/autoport
 
@@ -647,7 +640,7 @@ install -Dm 755 util/hda-decoder/hda-decoder %{buildroot}%{_bindir}/hda-decoder
 install -Dm 755 util/ifdtool/ifdtool %{buildroot}%{_bindir}/ifdtool
 
 %ifarch x86_64
-install -Dm 755 util/intelmetool/intelmetool %{buildroot}%{_bindir}/intelmetool
+install -Dm 755 util/intelmetool/build/intelmetool %{buildroot}%{_bindir}/intelmetool
 %endif
 
 %ifarch x86_64
@@ -849,6 +842,10 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 %{_bindir}/apcb_v3_edit.py
 %doc util/apcb/README
 %doc util/apcb/description.md
+
+%files archive
+%{_bindir}/archive
+%doc util/archive/description.md
 
 %files autoport
 %{_bindir}/autoport
@@ -1130,6 +1127,9 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 %doc util/xcompile/description.md
 
 %changelog
+* Mon Jun 22 2026 Owen Zimmerman <owen@fyralabs.com>
+- Update for 26.06, build archive subpackage
+
 * Sun Dec 28 2025 Owen Zimmerman <owen@fyralabs.com>
 - Update macros, add %post symlinks
 
