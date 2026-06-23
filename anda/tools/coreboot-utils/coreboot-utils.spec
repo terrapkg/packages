@@ -32,6 +32,7 @@ BuildRequires:  glibc-devel
 BuildRequires:  ncurses-devel
 BuildRequires:  libfl-devel
 BuildRequires:  pciutils-devel
+BuildRequires:  zlib-ng-devel
 BuildRequires:  libxcrypt-devel
 BuildRequires:  yaml-cpp-devel
 BuildRequires:  openssl-devel
@@ -44,10 +45,6 @@ BuildRequires:  flex
 BuildRequires:  acpica-tools
 BuildRequires:  binutils
 BuildRequires:  python3
-
-%if 0%{?fedora} >= 42
-BuildRequires:  gcc14 gcc14-c++
-%endif
 
 %description
 %summary.
@@ -501,17 +498,16 @@ Requires:       coreboot-utils = %{evr}
 
 %conf
 %ifarch x86_64
-pushd msrtool
+pushd util/msrtool
 %configure
 popd
 %endif
 
-%build
-%if 0%{?fedora} >= 42
-export CC=gcc-14
-export CXX=g++-14
-%endif
+pushd util/coreboot-configurator
+%meson
+popd
 
+%build
 pushd util
 %make_build -C amdfwtool LDFLAGS="-fPIE -lcrypto"
 %dnl %make_build -C archive # bugged upstream, does not build
@@ -524,7 +520,7 @@ pushd util
 %ifarch x86_64
 %make_build -C ectool LDFLAGS="-fPIE"
 %endif
-%make_build -C futility
+%make_build -C futility CFLAGS="$CFLAGS -DEC_EFS=0"
 %make_build -C hda-decoder
 %make_build -C ifdtool
 %ifarch x86_64
@@ -534,7 +530,7 @@ pushd util
 %make_build -C intelp2m
 %endif
 %ifarch x86_64
-%make_build -C inteltool
+%make_build -C inteltool CFLAGS="-O2 -fkeep-inline-functions"
 %endif
 %ifarch x86_64
 %make_build -C intelvbttool
@@ -568,7 +564,6 @@ export GOFLAGS="-buildmode=pie -trimpath -ldflags=-linkmode=external -mod=readon
 popd
 
 pushd coreboot-configurator
-%meson
 %meson_build
 popd
 popd
@@ -647,7 +642,7 @@ install -Dm 755 util/hda-decoder/hda-decoder %{buildroot}%{_bindir}/hda-decoder
 install -Dm 755 util/ifdtool/ifdtool %{buildroot}%{_bindir}/ifdtool
 
 %ifarch x86_64
-install -Dm 755 util/intelmetool/intelmetool %{buildroot}%{_bindir}/intelmetool
+install -Dm 755 util/intelmetool/build/intelmetool %{buildroot}%{_bindir}/intelmetool
 %endif
 
 %ifarch x86_64
@@ -1130,6 +1125,9 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 %doc util/xcompile/description.md
 
 %changelog
+* Mon Jun 22 2026 Owen Zimmerman <owen@fyralabs.com>
+- Update for 26.06
+
 * Sun Dec 28 2025 Owen Zimmerman <owen@fyralabs.com>
 - Update macros, add %post symlinks
 
