@@ -27,10 +27,10 @@ This package ships the Static OTC versions.
 %dnl Parameterized macros cannot be defined using `%global`. Guess I'm today years old. — mado
 %dnl ╭── %define fpkg(vhs)
 %define fpkg(vhs)                                                                                   \
-%package %{-h:hw-}%{-v:vf-}%{-s:subset-}%1-fonts                                                    \
+%package -n source-han-sans-%{-h:hw-}%{-v:vf-}%{-s:subset-}%1-fonts                                 \
 Summary: %name: %{-h:half-width }%{-v:variable }%{-s:subset }%{upper:%1} font files                 \
                                                                                                     \
-%description %{-h:hw-}%{-v:vf-}%{-s:subset-}%1-fonts                                                \
+%description -n source-han-sans-%{-h:hw-}%{-v:vf-}%{-s:subset-}%1-fonts                             \
 This package provides a specific font type of %name.                                                \
 %{-v:VF: variable font: Variable font weights are supported.                                        \
 }%{-h:HW: half-width: some proportional punctuations are turned into half-width.                    \
@@ -39,7 +39,7 @@ https://github.com/adobe-fonts/source-han-sans/blob/release/SourceHanSansReadMe.
 }%{-s:Subset: The fonts are split into regional-specific subset fonts.                              \
 }                                                                                                   \
                                                                                                     \
-%files %{-h:hw-}%{-v:vf-}%{-s:subset-}%1-fonts                                                      \
+%files -n source-han-sans-%{-h:hw-}%{-v:vf-}%{-s:subset-}%1-fonts                                   \
 %license LICENSE.txt
 %dnl ╰── %define fpkg(vhs)
 
