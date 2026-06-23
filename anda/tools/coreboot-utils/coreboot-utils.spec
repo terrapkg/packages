@@ -54,7 +54,7 @@ Requires:       %{name}-abuild
 Requires:       %{name}-amdfwtool
 Requires:       %{name}-amdtools
 Requires:       %{name}-apcb
-%dnl Requires:       %{name}-archive
+Requires:       %{name}-archive
 Requires:       %{name}-autoport
 Requires:       %{name}-bincfg
 Requires:       %{name}-board_status
@@ -151,11 +151,11 @@ and GPIO selection pins.
 apcb_edit - This tool allows patching an existing APCB binary with specific SPDs and GPIO selection pins.
 apcb_v3_edit - This tool allows patching an existing APCB v3 binary with up to  16 specific SPDs.
 
-%dnl %package archive - ### Currently bugged and does not compile ###
-%dnl Requires:       coreboot-utils = %{evr}
-%dnl Summary:        Concatenate files and create an archive
-%dnl %description    archive
-%dnl %summary.
+%package        archive
+Requires:       coreboot-utils = %{evr}
+Summary:        Concatenate files and create an archive
+%description    archive
+%summary.
 
 %package        autoport
 Summary:        Porting coreboot using autoport
@@ -508,7 +508,7 @@ popd
 %build
 pushd util
 %make_build -C amdfwtool LDFLAGS="-fPIE -lcrypto"
-%dnl %make_build -C archive # bugged upstream, does not build
+%make_build -C archive CFLAGS="-O2 -Wall -Wextra -Wshadow -Werror -Wno-nonnull"
 %make_build -C bincfg
 %ifarch x86_64
 %make_build -C bucts LDFLAGS="-fPIE"
@@ -582,7 +582,7 @@ install -Dm 755 util/apcb/apcb_edit.py %{buildroot}%{_bindir}/apcb_edit.py
 install -Dm 755 util/apcb/apcb_v3a_edit.py %{buildroot}%{_bindir}/apcb_v3a_edit.py
 install -Dm 755 util/apcb/apcb_v3_edit.py %{buildroot}%{_bindir}/apcb_v3_edit.py
 
-%dnl install -Dm 777 util/archive/archive %{buildroot}%{_bindir}/archive
+install -Dm 777 util/archive/archive %{buildroot}%{_bindir}/archive
 
 install -Dm 755 %{_builddir}/autoport %{buildroot}%{_bindir}/autoport
 
@@ -842,6 +842,10 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 %{_bindir}/apcb_v3_edit.py
 %doc util/apcb/README
 %doc util/apcb/description.md
+
+%files archive
+%{_bindir}/archive
+%doc util/archive/description.md
 
 %files autoport
 %{_bindir}/autoport
@@ -1124,7 +1128,7 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 
 %changelog
 * Mon Jun 22 2026 Owen Zimmerman <owen@fyralabs.com>
-- Update for 26.06
+- Update for 26.06, build archive subpackage
 
 * Sun Dec 28 2025 Owen Zimmerman <owen@fyralabs.com>
 - Update macros, add %post symlinks
