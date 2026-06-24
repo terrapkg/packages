@@ -2,7 +2,7 @@
 %global _desc A framework for package management.
 
 Name:			python-%{pypi_name}
-Version:		0.12.34
+Version:		0.12.35
 Release:		1%{?dist}
 Summary:		A framework for package management
 License:		BSD-3-Clause
