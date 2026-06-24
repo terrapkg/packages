@@ -12,7 +12,7 @@ Summary:        Arguably a Terminal API Client
 
 License:        MIT
 URL:            https://crates.io/crates/atac
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 
 Packager:       xiaoshihou <xiaoshihou@tutamail.com>
 BuildRequires:  anda-srpm-macros cargo-rpm-macros mold

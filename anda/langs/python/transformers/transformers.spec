@@ -2,8 +2,8 @@
 %global _desc The model-definition framework for state-of-the-art machine learning models.
 
 Name:			python-%{pypi_name}
-Version:		5.10.2
-Release:		2%{?dist}
+Version:		5.12.1
+Release:		1%{?dist}
 Summary:		The model-definition framework for state-of-the-art machine learning models
 License:		Apache-2.0
 URL:			https://huggingface.co/docs/transformers/index
