@@ -1,13 +1,13 @@
 %global debug_package %{nil}
 
-Name:           noctalia-shell
+Name:           noctalia-legacy
 Version:		4.7.7
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A Quickshell-based custom shell setup
 
 License:        MIT
-URL:            https://github.com/noctalia-dev/noctalia-shell
-Source0:        https://github.com/noctalia-dev/noctalia-shell/releases/download/v%{version}/noctalia-v%{version}.tar.gz
+URL:            https://github.com/noctalia-dev/noctalia
+Source0:        https://github.com/noctalia-dev/noctalia/releases/download/v%{version}/noctalia-v%{version}.tar.gz
 
 Requires:	    brightnessctl
 Requires:    	dejavu-sans-fonts
@@ -22,6 +22,8 @@ Recommends:	    matugen
 Recommends:	    power-profiles-daemon
 Recommends:	    wlsunset
 Recommends:    	gpu-screen-recorder
+
+Obsoletes:      noctalia-shell <= 4.7.7-1
 
 Packager:       Cypress Reed <cypress@fyralabs.com>
 
@@ -41,6 +43,10 @@ cp -r ./* %{buildroot}/etc/xdg/quickshell/noctalia-shell/
 %doc README.md
 %license LICENSE
 %{_sysconfdir}/xdg/quickshell/noctalia-shell/
+
+%post
+echo "noctalia-shell has been renamed to noctalia"
+echo "noctalia v5 is coming soon! keep an eye out as this legacy package will become obsolete"
 
 %changelog
 * Thu Jun 04 2026 Cypress Reed <cypress@fyralabs.com>
