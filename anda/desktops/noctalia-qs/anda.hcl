@@ -1,5 +1,8 @@
 project pkg {
-  rpm {
-    spec = "noctalia-qs.spec"
-  }
+    rpm {
+        spec = "noctalia-qs.spec"
+    }
+    labels {
+        updbranch = 1
+    }
 }

@@ -1,7 +1,7 @@
 %global mangowc_ver 0.12.5-1
 
 Name:           mangowm
-Version:        0.13.0
+Version:        0.14.4
 Release:        1%{?dist}
 Summary:        A modern, lightweight, high-performance Wayland compositor built on dwl
 License:        GPL-3.0-or-later AND MIT AND X11 AND CC0-1.0
@@ -21,6 +21,7 @@ BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  pkgconfig(libinput)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(libpcre2-8)
+BuildRequires:  pkgconfig(libcjson)
 BuildRequires:  scenefx-devel
 
 Conflicts:      mangowc < %{mangowc_ver}
@@ -54,6 +55,7 @@ dwl — crafted for speed, flexibility, and a customizable desktop experience.
 %{_sysconfdir}/mango/config.conf
 %{_datadir}/wayland-sessions/mango.desktop
 %{_datadir}/xdg-desktop-portal/mango-portals.conf
+%{_mandir}/man1/mmsg.1.*
 
 %changelog
 * Wed Mar 04 2026 metcya <metcya@gmail.com> - 0.12.5-1

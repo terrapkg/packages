@@ -2,8 +2,8 @@
 %global _desc Python bindings for FluidSynth.
 
 Name:			python-%{pypi_name}
-Version:		1.3.6
-Release:		1%{?dist}
+Version:		1.4.0
+Release:		2%{?dist}
 Summary:		Python bindings for FluidSynth
 License:		LGPL-2.1
 URL:			https://github.com/nwhitehead/pyfluidsynth

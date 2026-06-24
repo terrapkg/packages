@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.3.1
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Open Chinese Convert
 License:		Apache-2.0
 URL:			https://github.com/BYVoid/OpenCC

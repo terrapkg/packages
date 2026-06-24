@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.10.1
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		gevent-websocket is a WebSocket library for the gevent networking library
 License:		Apache-2.0
 URL:			https://github.com/cynepiaadmin/geventwebsocket
