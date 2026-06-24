@@ -1,19 +1,18 @@
 %global ver 1.0.0
 
-%global commit          db60c06b5f6ff5da4d5f1126eff312b2a41ef614
+%global commit          fca79eb56d45370949d20beb6f740e7e5daaee5b
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
-%global commitdate      20260609
+%global commitdate      20260621
 
 Name:   	noctalia-greeter
 Version:	%{ver}^%{commitdate}git.%{shortcommit}
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	A minimal login greeter for greetd that matches the look and feel of Noctalia Shell.
 
-License:    shortcommit
-URL:        https://github.com/noctalia-dev/noctalia-greeter
-Source0:    https://github.com/noctalia-dev/noctalia-greeter/archive/%{commit}/noctalia-greeter-%{commit}.tar.gz
+License:	MIT
+URL:		https://github.com/noctalia-dev/%{name}
+Source0:	%{url}/archive/%{commit}/%{name}-%{commit}.tar.gz
 
-BuildRequires:  cage
 BuildRequires:  dbus
 BuildRequires:  gcc-c++
 BuildRequires:  greetd
@@ -32,11 +31,11 @@ BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(wayland-protocols)
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  polkit
-BuildRequires:  wlr-randr
+BuildRequires:  wlroots-devel >= 0.20
 
-Requires:       cage
 Requires:       dbus
 Requires:       greetd
+Requires:       wlroots >= 0.20
 
 Packager:       Cypress Reed <cypress@fyralabs.com>
 
@@ -48,25 +47,37 @@ It lets you pick a user, enter your password, choose a Wayland session, and pick
 %autosetup -n noctalia-greeter-%{commit}
 
 %conf
-export LDFLAGS="%{__global_ldflags} -Wl,-z,notext"
-%meson
+%meson -Db_pie=true
 
 %build
 %meson_build
 
 %install
 %meson_install
+install -d %{buildroot}%{_licensedir}/%{name}/third_party
+find third_party -type f \( -name "LICENSE*" -o -name "COPYING*" -o -name "NOTICE*" \) | while read -r file; do
+    # Create the destination subdirectory
+    dest_dir="%{buildroot}%{_licensedir}/%{name}/$(dirname "$file")"
+    install -d "$dest_dir"
+    # Copy the file to its specific subfolder
+    install -p -m 0644 "$file" "$dest_dir/"
+done
 
 %files
 %doc README.md
 %license LICENSE
+%{_licensedir}/%{name}/third_party/
 %{_bindir}/%{name}
 %{_bindir}/%{name}-apply-appearance
+%{_bindir}/%{name}-compositor
 %{_bindir}/%{name}-print-greetd-config
 %{_bindir}/%{name}-session
 %{_datadir}/%{name}/*
 %{_datadir}/polkit-1/actions/org.noctalia.greeter.apply-appearance.policy
 
 %changelog
+* Fri Jun 19 2026 Cypress Reed <cypress@fyralabs.com>
+- Update dependencies and files for built-in compositor
+
 * Tue Jun 09 2026 Cypress Reed <cypress@fyralabs.com>
 - Port to terra from Fedora COPR lionheartp/Hyprland
