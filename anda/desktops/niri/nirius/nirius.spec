@@ -1,5 +1,5 @@
 Name:           nirius
-Version:        0.7.2
+Version:        0.7.3
 Release:        1%{?dist}
 Summary:        Utility commands for niri
 

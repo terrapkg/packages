@@ -11,7 +11,7 @@ Summary:        Terminal file manager inspired by ranger
 
 License:        LGPL-3.0
 URL:            https://crates.io/crates/joshuto
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 
 BuildRequires:  anda-srpm-macros rust-packaging >= 21
 

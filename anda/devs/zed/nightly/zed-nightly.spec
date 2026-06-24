@@ -1,7 +1,7 @@
-%global commit c3c38c5c09d887817229b133d904e6eb3f7e7011
+%global commit c49a29f46179525358eb74dbce67fddb2aafa1f0
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260616
-%global ver 1.8.0
+%global commit_date 20260624
+%global ver 1.9.0
 
 %bcond_with check
 %bcond_with debug_no_build
@@ -51,9 +51,6 @@ BuildRequires:  fontconfig-devel
 BuildRequires:  wayland-devel
 BuildRequires:  libxkbcommon-x11-devel
 BuildRequires:  openssl-devel
-%if 0%{?fedora}
-BuildRequires:  openssl-devel-engine
-%endif
 BuildRequires:  libzstd-devel
 BuildRequires:  perl-FindBin
 BuildRequires:  perl-IPC-Cmd

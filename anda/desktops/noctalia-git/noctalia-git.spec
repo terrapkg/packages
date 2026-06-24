@@ -2,9 +2,9 @@
 
 %global ver 5.0.0
 
-%global commit          de82488dc60db736acd5bf95fb448405ea99f404
+%global commit          a5eeef13338167fb85ecf8ea7c2fabb4c5536010
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
-%global commitdate      20260608
+%global commitdate      20260623
 
 Name:   	noctalia-git
 Version:	%{ver}^%{commitdate}git.%{shortcommit}
@@ -18,6 +18,7 @@ Source0:	https://github.com/noctalia-dev/noctalia/archive/%{commit}/noctalia-%{c
 BuildRequires:  meson
 BuildRequires:  gcc-c++
 BuildRequires:  git
+BuildRequires:  desktop-file-utils
 BuildRequires:  pipewire-devel
 BuildRequires:  sdbus-cpp-devel
 BuildRequires:  pkgconfig(cairo)
@@ -77,13 +78,21 @@ find third_party -type f \( -name "LICENSE*" -o -name "COPYING*" -o -name "NOTIC
     install -p -m 0644 "$file" "$dest_dir/"
 done
 
+%check
+%desktop_file_validate %{buildroot}%{_appsdir}/dev.noctalia.Noctalia.desktop
+
 %files
 %doc README.md
 %license LICENSE
 %{_licensedir}/%{name}/third_party/
 %{_bindir}/noctalia
 %{_datadir}/noctalia/
+%{_appsdir}/dev.noctalia.Noctalia.desktop
+%{_scalableiconsdir}/noctalia.svg
 
 %changelog
+* Wed Jun 24 2026 Cypress Reed <cypress@fyralabs.com>
+- Add desktop file and icon
+
 * Fri Jun 05 2026 Cypress Reed <cypress@fyralabs.com>
 - Port to terra from Fedora COPR lionheartp/Hyprland

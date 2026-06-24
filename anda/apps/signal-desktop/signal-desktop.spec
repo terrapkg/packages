@@ -2,14 +2,13 @@
 
 Name:			signal-desktop
 %electronmeta -aD
-Version:		8.14.0
+Version:		8.16.0
 Release:		1%{?dist}
 Summary:		A private messenger for Windows, macOS, and Linux
 URL:			https://signal.org
 Source0:		https://github.com/signalapp/Signal-Desktop/archive/refs/tags/v%{version}.tar.gz
 Source1:		signal.desktop
 Source2:        org.signal.Signal.metainfo.xml
-Patch0:      fix-runtime.patch
 License:		AGPL-3.0-only AND %{electron_license}
 
 BuildRequires:	pulseaudio-libs-devel
@@ -75,6 +74,7 @@ echo "Electron Builder" > %{rpmbuilddir}/webapp-tool.txt
 
 %install
 mv ./packages/mute-state-change/LICENSE ./packages/mute-state-change/LICENSE.mute-state-change
+mv ./packages/windows-ucv/LICENSE ./packages/mute-state-change/LICENSE.windows-ucv
 %electron_install -i signal -l -I build/icons/png
 
 %desktop_file_install %{SOURCE1}
@@ -104,6 +104,9 @@ mv LICENSE LICENSE.signal-desktop
 %{_metainfodir}/org.signal.Signal.metainfo.xml
 
 %changelog
+* Thu Jun 25 2026 Owen Zimmerman <owen@fyralabs.com>
+- Fix more license name conflicts, remove patch
+
 * Sun Jun 14 2026 june-fish <git@june.fish>
 - Fix license name conflicts
 

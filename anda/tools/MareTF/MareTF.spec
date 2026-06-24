@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:           MareTF
-Version:        0.11.0
+Version:        0.12.0
 Release:        1%{?dist}
 License:        MIT
 Summary:        A utility to create, edit, and display every type of VTF file ever made
@@ -43,12 +43,15 @@ BuildRequires:  vulkan-headers
 %files
 %doc README.md
 %license LICENSE
+%license %{_defaultlicensedir}/maretf/CREDITS
 %{_bindir}/maretf
 %{_bindir}/maretf_gui
+%{_bindir}/maretf_thumbnailer
 %{_appsdir}/maretf.desktop
 %{_hicolordir}/512x512/apps/maretf.png
 %{_defaultlicensedir}/maretf/LICENSE
 %{_datadir}/mime/packages/maretf.xml
+%{_datadir}/thumbnailers/maretf.thumbnailer
 
 %changelog
 * Sun Mar 15 2026 Owen Zimmerman <owen@fyralabs.com>

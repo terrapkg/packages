@@ -1,8 +1,8 @@
 %global buildforkernels akmod
 %global debug_package %{nil}
-%global commit c313a9e539f49e983f8ff5d50c0ff192d3544a8a
+%global commit 0d5ba31069ead844e231ed1ac637ac8ef571d63a
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260605
+%global commit_date 20260618
 %global modulename intel-ipu6
 # Actual "release" version, currently unused as the release versions are back and forth on if on if they use 1.0.0 or 1.0.1
 %global ver 1.0.1

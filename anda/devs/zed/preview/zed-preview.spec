@@ -7,7 +7,7 @@
 %global debug_package %{nil}
 %endif
 
-%global ver 1.7.2-pre
+%global ver 1.9.0-pre
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
@@ -46,9 +46,6 @@ BuildRequires:  fontconfig-devel
 BuildRequires:  wayland-devel
 BuildRequires:  libxkbcommon-x11-devel
 BuildRequires:  openssl-devel
-%if 0%{?fedora}
-BuildRequires:  openssl-devel-engine
-%endif
 BuildRequires:  libzstd-devel
 BuildRequires:  perl-FindBin
 BuildRequires:  perl-IPC-Cmd
