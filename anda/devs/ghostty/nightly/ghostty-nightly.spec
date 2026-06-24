@@ -196,7 +196,7 @@ This package contains the libraries and header files that are needed for develop
 
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
-%autosetup -n %{base_name}-source
+%autosetup -C
 
 ZIG_GLOBAL_CACHE_DIR="%{_zig_cache_dir}" ./nix/build-support/fetch-zig-cache.sh
 
