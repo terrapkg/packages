@@ -105,7 +105,7 @@ mv LICENSE LICENSE.signal-desktop
 
 %changelog
 * Thu Jun 25 2026 Owen Zimmerman <owen@fyralabs.com>
-- Fix more license name conflicts
+- Fix more license name conflicts, remove patch
 
 * Sun Jun 14 2026 june-fish <git@june.fish>
 - Fix license name conflicts
