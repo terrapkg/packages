@@ -31,7 +31,7 @@ Source10:       https://github.com/Genymobile/scrcpy/releases/download/v%{versio
 %endif
 Packager:		madonuko <mado@fyralabs.com>
 BuildRequires:	meson ninja-build cmake nasm gcc
-BuildRequires:	pkgconfig(sdl2)
+BuildRequires:	pkgconfig(sdl3)
 BuildRequires:	pkgconfig(libavcodec)
 BuildRequires:	pkgconfig(libavdevice)
 BuildRequires:	pkgconfig(libavformat)
