@@ -79,7 +79,7 @@ find third_party -type f \( -name "LICENSE*" -o -name "COPYING*" -o -name "NOTIC
 done
 
 %check
-%desktop_file_validate %{buildroot}%{_datadir}/applications/dev.noctalia.Noctalia.desktop
+%desktop-file-validate %{buildroot}%{_appsdir}/dev.noctalia.Noctalia.desktop
 
 %files
 %doc README.md
@@ -87,8 +87,8 @@ done
 %{_licensedir}/%{name}/third_party/
 %{_bindir}/noctalia
 %{_datadir}/noctalia/
-%{_datadir}/applications/dev.noctalia.Noctalia.desktop
-%{_datadir}/icons/hicolor/scalable/apps/noctalia.svg
+%{_appsdir}/dev.noctalia.Noctalia.desktop
+%{_scalableiconsdir}/noctalia.svg
 
 %changelog
 * Wed Jun 24 2026 Cypress Reed <cypress@fyralabs.com>
