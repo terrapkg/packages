@@ -79,7 +79,7 @@ find third_party -type f \( -name "LICENSE*" -o -name "COPYING*" -o -name "NOTIC
 done
 
 %check
-%desktop-file-validate %{buildroot}%{_appsdir}/dev.noctalia.Noctalia.desktop
+%desktop_file_validate %{buildroot}%{_appsdir}/dev.noctalia.Noctalia.desktop
 
 %files
 %doc README.md
