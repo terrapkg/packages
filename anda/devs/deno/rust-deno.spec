@@ -6,7 +6,7 @@
 %global crate deno
 
 %global debug_level 1
-%dnl %undefine _debugsource_packages
+%undefine _debugsource_packages
 
 Name:           rust-deno
 Version:        2.8.3
