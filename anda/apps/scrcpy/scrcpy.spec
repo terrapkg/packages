@@ -123,6 +123,7 @@ install -Dm 644 %{SOURCE1} %{buildroot}%{_datadir}/licenses/LICENSE.android-sdk-
 %_datadir/applications/scrcpy.desktop
 %_datadir/bash-completion/completions/scrcpy
 %_iconsdir/hicolor/*/apps/scrcpy.png
+%_iconsdir/hicolor/256x256/apps/disconnected.png
 %_metainfodir/%{appid}.metainfo.xml
 %_mandir/man1/scrcpy.1.*
 
