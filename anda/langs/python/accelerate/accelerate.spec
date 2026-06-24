@@ -4,8 +4,8 @@
 %global _desc A simple way to launch, train, and use PyTorch models on almost any device and distributed configuration, automatic mixed precision (including fp8), and easy-to-configure FSDP and DeepSpeed support.
 
 Name:			python-%{pypi_name}
-Version:		1.13.0
-Release:		1%?dist
+Version:		1.14.0
+Release:		1%{?dist}
 Summary:		A simple way to launch, train, and use PyTorch models on almost any device and distributed configuration
 License:		Apache-2.0
 URL:			https://github.com/huggingface/accelerate

@@ -2,13 +2,12 @@
 %global _desc A powerful tool to conveniently update all of your ISOs!
 
 Name:			python-%{pypi_name}
-Version:		2.3.0
+Version:		2.4.1
 Release:		1%{?dist}
 Summary:		%{_desc}
-License:		GPLv3
+License:		GPL-3.0-or-later
 URL:			https://github.com/JoshuaVandaele/SuperISOUpdater
 Source0:		%url/archive/refs/tags/%{version}.tar.gz
-Patch0:         remove-version-reqs.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
@@ -33,7 +32,9 @@ Provides:       superisoupdater
 %{_desc}
 
 %prep
-%autosetup -p1 -n SuperISOUpdater-%{version}
+%autosetup -n SuperISOUpdater-%{version}
+
+%pyproject_patch_dependency requests-cache:drop_constraints
 
 %build
 %pyproject_wheel
@@ -46,17 +47,17 @@ Provides:       superisoupdater
 %doc README.md
 %license LICENSE
 %{_bindir}/sisou
-%ghost %{python3_sitelib}/__pycache__/*.cpython-*.pyc
-%ghost %{python3_sitelib}/%{name}/subcommands/__pycache__/*.cpython-*.pyc
 %{python3_sitelib}/sisou-%{version}.dist-info/*
 %{python3_sitelib}/config/*.py
 %{python3_sitelib}/config/__pycache__/*.cpython-*.pyc
 %{python3_sitelib}/config/__pycache__/*.cpython-*.*-*.pyc
-%{python3_sitelib}/config/config.toml.default
 %{python3_sitelib}/modules/*.py
+%{python3_sitelib}/config/sisou.toml.default
+%{python3_sitelib}/modules/mirrors/
 %{python3_sitelib}/modules/__pycache__/*.pyc
 %{python3_sitelib}/modules/updaters/*.py
 %{python3_sitelib}/modules/updaters/__pycache__/*.pyc
+%{_prefix}/sisou/config/sisou.toml.default
 
 %changelog
 * Wed Oct 08 2025 Owen Zimmerman <owen@fyralabs.com>

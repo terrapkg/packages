@@ -3,8 +3,8 @@
 %global         majorminor 1.0
 
 Name:           gstreamer1-plugins-bad
-Version:        1.28.3
-Release:        1%{?dist}
+Version:        1.28.4
+Release:        2%{?dist}
 Epoch:          2
 Summary:        GStreamer streaming media framework "bad" plugins
 License:        LGPL-2.0-or-later and LGPL-2.0-only
