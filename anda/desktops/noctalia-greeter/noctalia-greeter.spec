@@ -54,10 +54,19 @@ It lets you pick a user, enter your password, choose a Wayland session, and pick
 
 %install
 %meson_install
+install -d %{buildroot}%{_licensedir}/%{name}/third_party
+find third_party -type f \( -name "LICENSE*" -o -name "COPYING*" -o -name "NOTICE*" \) | while read -r file; do
+    # Create the destination subdirectory
+    dest_dir="%{buildroot}%{_licensedir}/%{name}/$(dirname "$file")"
+    install -d "$dest_dir"
+    # Copy the file to its specific subfolder
+    install -p -m 0644 "$file" "$dest_dir/"
+done
 
 %files
 %doc README.md
 %license LICENSE
+%{_licensedir}/%{name}/third_party/
 %{_bindir}/%{name}
 %{_bindir}/%{name}-apply-appearance
 %{_bindir}/%{name}-compositor
