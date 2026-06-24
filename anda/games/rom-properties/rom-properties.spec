@@ -1,5 +1,5 @@
 Name:           rom-properties
-Version:        2.7.1
+Version:        2.8
 Release:        1%{?dist}
 Summary:        File browser extension for managing video game ROM and disc images
 License:        GPL-2.0-only

@@ -5,13 +5,13 @@
 %global crate mise
 
 Name:           rust-mise
-Version:        2026.5.18
+Version:        2026.6.13
 Release:        1%{?dist}
 Summary:        Front-end to your dev env
 
 License:        MIT
 URL:            https://crates.io/crates/mise
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 Source1:        https://raw.githubusercontent.com/jdx/mise/refs/tags/v%version/man/man1/mise.1
 Source2:        https://raw.githubusercontent.com/jdx/mise/refs/tags/v%version/completions/mise.bash
 Source3:        https://raw.githubusercontent.com/jdx/mise/refs/tags/v%version/completions/mise.fish

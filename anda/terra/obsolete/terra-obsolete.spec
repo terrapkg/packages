@@ -4,7 +4,7 @@ Version:    %{?fedora:%{fedora}}%{?rhel:%{rhel}}
 # The dist number is the version here, it is intentionally not repeated in the release
 %global dist %nil
 
-Release:    4%{?dist}
+Release:    5%{?dist}
 Summary:    A package to obsolete retired packages, based on Fedora's equivalent package
 
 License:    LicenseRef-Fedora-Public-Domain
@@ -135,7 +135,8 @@ Packager:   Terra Packaging Team <terra@fyralabs.com>
 %obsolete terra-libindicator-gtk3 16.10.0-3
 %obsolete terra-libindicator-gtk3-devel 16.10.0-3
 %obsolete terra-blueprint-compiler 0.16.0-3
-%obsolete nushell 0.101.0-3
+# See #12808 for why this obsoletion is retracted
+#obsolete nushell 0.101.0-3
 %obsolete uutils-coreutils-util-linux 0.0.29-2
 %obsolete uutils-coreutils-util-linux-replace 0.0.29-2
 # pantheon packages only packaged in terra

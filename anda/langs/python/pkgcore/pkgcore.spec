@@ -2,8 +2,8 @@
 %global _desc A framework for package management.
 
 Name:			python-%{pypi_name}
-Version:		0.12.33
-Release:		1%?dist
+Version:		0.12.35
+Release:		1%{?dist}
 Summary:		A framework for package management
 License:		BSD-3-Clause
 URL:			https://pkgcore.github.io/pkgcore

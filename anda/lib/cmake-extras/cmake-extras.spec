@@ -3,8 +3,8 @@
 %forgemeta
 
 Name:       cmake-extras
-Version:    1.9
-Release:    2%?dist
+Version:    1.10
+Release:    1%{?dist}
 Summary:    A collection of add-ons for the CMake build tool
 License:    GPL-3.0-or-later
 URL:        https://gitlab.com/ubports/development/core/cmake-extras

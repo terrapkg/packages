@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.4.1
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Python package for writing Value Change Dump (VCD) files
 License:		MIT
 URL:			https://github.com/SanDisk-Open-Source/pyvcd
