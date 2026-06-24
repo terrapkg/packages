@@ -18,6 +18,7 @@ Source0:	https://github.com/noctalia-dev/noctalia/archive/%{commit}/noctalia-%{c
 BuildRequires:  meson
 BuildRequires:  gcc-c++
 BuildRequires:  git
+BuildRequires:  desktop-file-utils
 BuildRequires:  pipewire-devel
 BuildRequires:  sdbus-cpp-devel
 BuildRequires:  pkgconfig(cairo)
@@ -77,13 +78,21 @@ find third_party -type f \( -name "LICENSE*" -o -name "COPYING*" -o -name "NOTIC
     install -p -m 0644 "$file" "$dest_dir/"
 done
 
+%check
+%desktop_file_validate %{buildroot}%{_appsdir}/dev.noctalia.Noctalia.desktop
+
 %files
 %doc README.md
 %license LICENSE
 %{_licensedir}/%{name}/third_party/
 %{_bindir}/noctalia
 %{_datadir}/noctalia/
+%{_appsdir}/dev.noctalia.Noctalia.desktop
+%{_scalableiconsdir}/noctalia.svg
 
 %changelog
+* Wed Jun 24 2026 Cypress Reed <cypress@fyralabs.com>
+- Add desktop file and icon
+
 * Fri Jun 05 2026 Cypress Reed <cypress@fyralabs.com>
 - Port to terra from Fedora COPR lionheartp/Hyprland
