@@ -1,6 +1,6 @@
 Name:           coreboot-utils
 Version:        26.06
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Various coreboot utilities
 URL:            https://doc.coreboot.org
 License:        BSD-3-Clause AND Apache-2.0 AND CC-BY-SA-3.0 AND GPL-2.0-only AND GPL-3.0-or-later AND ISC AND BSD-2-Clause-Patent AND BSD-4-Clause-UC AND CC-PDDC AND GPL-2.0-or-later AND HPND-sell-varient AND LGPL-2.1-or-later AND BSD-2-Clause AND CC-BY-4.0 AND GPL-3.0-only AND HPND AND X11 AND MIT
@@ -124,6 +124,12 @@ Obsoletes:      abuild <= 25.06
 %description    abuild
 %summary.
 
+%package        acpi
+Summary:        Walk through all ACPI tables with their addresses
+Requires:       coreboot-utils = %{evr}
+%description    acpi
+%summary.
+
 %package        amdfwtool
 Summary:        Create AMD Firmware combination
 Requires:       coreboot-utils = %{evr}
@@ -193,9 +199,18 @@ Requires:       coreboot-utils = %{evr}
 %summary.
 %endif
 
+%package        cavium
+Summary:        Devicetree_convert Tool to convert a DTB to a static C file
+Requires:       coreboot-utils = %{evr}
+Provides:       %{name}-devicetree_convert
+Provides:       %{name}-devicetree-convert
+%description    cavium
+%summary.
+
 %package        cbfstool
 Summary:        Management utility for CBFS formatted ROM images
 Requires:       coreboot-utils = %{evr}
+Requires:       python3-pytest
 Conflicts:      cbfstool <= 25.06
 Obsoletes:      cbfstool <= 25.06
 %description    cbfstool
@@ -569,6 +584,8 @@ popd
 %install
 install -Dm 755 util/abuild/abuild %{buildroot}%{_bindir}/abuild
 
+install -Dm 755 util/acpi/acpidump-all %{buildroot}%{_bindir}/acpidump-all
+
 install -Dm 755 util/amdfwtool/amdfwtool %{buildroot}%{_bindir}/amdfwtool
 install -Dm 755 util/amdfwtool/amdfwread %{buildroot}%{_bindir}/amdfwread
 
@@ -596,7 +613,18 @@ install -Dm 755 util/board_status/set_up_live_image.sh %{buildroot}%{_bindir}/se
 install -Dm 755 util/bucts/bucts %{buildroot}%{_bindir}/bucts
 %endif
 
+install -Dm 755 util/cavium/devicetree_convert.py %{buildroot}%{_bindir}/devicetree_convert
+
 install -Dm 755 util/cbfstool/cbfstool %{buildroot}%{_bindir}/cbfstool
+install -Dm 755 util/cbfstool/cbfs-compression-tool %{buildroot}%{_bindir}/cbfs-compression-tool
+install -Dm 755 util/cbfstool/cse_fpt %{buildroot}%{_bindir}/cse_fpt
+install -Dm 755 util/cbfstool/cse_serger %{buildroot}%{_bindir}/cse_serger
+install -Dm 755 util/cbfstool/elogtool %{buildroot}%{_bindir}/elogtool
+install -Dm 755 util/cbfstool/fmaptool %{buildroot}%{_bindir}/fmaptool
+install -Dm 755 util/cbfstool/ifittool %{buildroot}%{_bindir}/ifittool
+install -Dm 755 util/cbfstool/ifwitool %{buildroot}%{_bindir}/ifwitool
+install -Dm 755 util/cbfstool/rmodtool %{buildroot}%{_bindir}/rmodtool
+install -Dm 755 util/cbfstool/test %{buildroot}%{_bindir}/cbfstool-test
 
 install -Dm 755 util/cbfstool/tests/conftest.py %{buildroot}%{_bindir}/conftest.py
 install -Dm 755 util/cbfstool/tests/elogtool_test.py %{buildroot}%{_bindir}/elogtool_test.py
@@ -759,6 +787,8 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 %{__ln_s} -f %{_bindir}/getrevision %{buildroot}%{_bindir}/getrevision.sh
 %{__ln_s} -f %{_bindir}/set_up_live_image %{buildroot}%{_bindir}/set_up_live_image.sh
 
+%{__ln_s} -f %{_bindir}/devicetree_convert %{buildroot}%{_bindir}/devicetree_convert.py
+
 %{__ln_s} -f %{_bindir}/conftest.py %{buildroot}%{_bindir}/conftest
 %{__ln_s} -f %{_bindir}/elogtool_test.py %{buildroot}%{_bindir}/elogtool_test
 
@@ -815,6 +845,10 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 %files abuild
 %{_bindir}/abuild
 
+%files acpi
+%{_bindir}/acpidump-all
+%doc util/acpi/*.md
+
 %files all
 
 %files amdfwtool
@@ -870,8 +904,22 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 %doc util/bucts/*.md
 %endif
 
+%files cavium
+%{_bindir}/devicetree_convert
+%{_bindir}/devicetree_convert.py
+%doc util/cavium/*.md
+
 %files cbfstool
 %{_bindir}/cbfstool
+%{_bindir}/cbfs-compression-tool
+%{_bindir}/cse_fpt
+%{_bindir}/cse_serger
+%{_bindir}/elogtool
+%{_bindir}/fmaptool
+%{_bindir}/ifittool
+%{_bindir}/ifwitool
+%{_bindir}/rmodtool
+%{_bindir}/cbfstool-test
 %doc util/cbfstool/description.md
 
 %files cbfstool-tests
@@ -1127,6 +1175,9 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 %doc util/xcompile/description.md
 
 %changelog
+* Thu Jun 25 2026 Owen Zimmerman <owen@fyralabs.com>
+- Add more subpackages, add more cbfstool files
+
 * Mon Jun 22 2026 Owen Zimmerman <owen@fyralabs.com>
 - Update for 26.06, build archive subpackage
 
