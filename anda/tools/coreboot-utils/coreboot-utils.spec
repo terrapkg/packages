@@ -582,7 +582,7 @@ popd
 popd
 
 %install
-install -Dm 777 util/abuild/abuild %{buildroot}%{_bindir}/abuild
+install -Dm 755 util/abuild/abuild %{buildroot}%{_bindir}/abuild
 
 install -Dm 755 util/acpi/acpidump-all %{buildroot}%{_bindir}/acpidump-all
 
@@ -599,7 +599,7 @@ install -Dm 755 util/apcb/apcb_edit.py %{buildroot}%{_bindir}/apcb_edit.py
 install -Dm 755 util/apcb/apcb_v3a_edit.py %{buildroot}%{_bindir}/apcb_v3a_edit.py
 install -Dm 755 util/apcb/apcb_v3_edit.py %{buildroot}%{_bindir}/apcb_v3_edit.py
 
-install -Dm 777 util/archive/archive %{buildroot}%{_bindir}/archive
+install -Dm 755 util/archive/archive %{buildroot}%{_bindir}/archive
 
 install -Dm 755 %{_builddir}/autoport %{buildroot}%{_bindir}/autoport
 
