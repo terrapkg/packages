@@ -4,7 +4,7 @@
 
 Name:           fluent-kde-theme
 Version:        %commit_date.%shortcommit
-Release:        2%?dist
+Release:        3%?dist
 Summary:        Fluent design theme for KDE
 
 License:        GPL-3.0-only
@@ -67,6 +67,7 @@ popd
 
 %files sddm
 %license LICENSE
+%_datadir/sddm/themes/*
 
 %changelog
 * Sat Jun 27 2026 madonuko <mado@fyralabs.com> - 20251110.44794f2-2
