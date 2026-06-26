@@ -23,6 +23,7 @@ BuildRequires:	pkgconfig(graphene-gobject-1.0)
 BuildRequires:	pkgconfig(hwdata)
 BuildRequires:	pkgconfig(gtk4)
 BuildRequires:	pkgconfig(gdk-pixbuf-2.0)
+BuildRequires:  pkgconfig(libdisplay-info)
 
 Requires:       gtk4
 Requires:       libdrm
