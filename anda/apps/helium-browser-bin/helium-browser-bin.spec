@@ -12,7 +12,7 @@
 
 Name:           helium-browser-bin
 Version:        0.13.6.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Private, fast, and honest web browser based on Chromium
 
 URL:            https://helium.computer
