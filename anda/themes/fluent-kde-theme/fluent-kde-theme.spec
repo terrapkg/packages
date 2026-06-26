@@ -4,7 +4,7 @@
 
 Name:           fluent-kde-theme
 Version:        %commit_date.%shortcommit
-Release:        2%?dist
+Release:        3%?dist
 Summary:        Fluent design theme for KDE
 
 License:        GPL-3.0-only
@@ -49,6 +49,7 @@ sed -i "s|^[[:space:]]*WALLPAPER_DIR=.*|WALLPAPER_DIR=%{buildroot}%{_datadir}/wa
 ./install.sh
 
 pushd sddm
+mkdir -p %{buildroot}%{_datadir}/sddm/themes
 sed -i "s|^[[:space:]]*THEME_DIR=.*|THEME_DIR=%{buildroot}%{_datadir}/sddm/themes|" install.sh
 ./install.sh
 popd
@@ -67,6 +68,7 @@ popd
 
 %files sddm
 %license LICENSE
+%_datadir/sddm/themes/*
 
 %changelog
 * Sat Jun 27 2026 madonuko <mado@fyralabs.com> - 20251110.44794f2-2
