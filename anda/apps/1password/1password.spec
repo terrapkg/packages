@@ -14,7 +14,7 @@
 
 Name:           1password
 Version:        8.12.24
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Password manager and secure wallet
 
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
@@ -34,6 +34,8 @@ Requires:       hicolor-icon-theme
 Requires:       nss
 Requires:       polkit
 Requires:       xdg-utils
+Requires(post): /usr/bin/chown
+Requires(post): /usr/bin/chmod
 
 %description
 %{summary}
@@ -94,6 +96,12 @@ find %{buildroot}%{appdir} -type f \
 %pre
 %sysusers_create_package %{name} %{SOURCE2}
 
+%post
+/usr/bin/chown root:onepassword %{appdir}/1Password-BrowserSupport
+/usr/bin/chmod 2755 %{appdir}/1Password-BrowserSupport
+/usr/bin/chown root:onepassword-mcp %{appdir}/onepassword-mcp
+/usr/bin/chmod 2755 %{appdir}/onepassword-mcp
+
 %files -f app.files
 %{_bindir}/%{name}
 %{_libexecdir}/1Password-Crash-Handler
@@ -104,10 +112,10 @@ find %{buildroot}%{appdir} -type f \
 %dir %{appdir}
 %attr(4755,root,root) %{appdir}/chrome-sandbox
 %{appdir}/1Password-Crash-Handler
-%attr(2755,root,onepassword) %{appdir}/1Password-BrowserSupport
+%{appdir}/1Password-BrowserSupport
 %{appdir}/1Password-LastPass-Exporter
 %{appdir}/op-ssh-sign
-%attr(2755,root,onepassword-mcp) %{appdir}/onepassword-mcp
+%{appdir}/onepassword-mcp
 %{_datadir}/icons/hicolor/32x32/apps/1password.png
 %{_datadir}/icons/hicolor/64x64/apps/1password.png
 %{_datadir}/icons/hicolor/256x256/apps/1password.png
