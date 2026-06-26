@@ -49,7 +49,7 @@ sed -i "s|^[[:space:]]*WALLPAPER_DIR=.*|WALLPAPER_DIR=%{buildroot}%{_datadir}/wa
 ./install.sh
 
 pushd sddm
-sed -i "s|^[[:space:]]*THEME_DIR=.*|THEME_DIR=%{buildroot}%{_datadir}/sddm/themes" install.sh
+sed -i "s|^[[:space:]]*THEME_DIR=.*|THEME_DIR=%{buildroot}%{_datadir}/sddm/themes|" install.sh
 ./install.sh
 popd
 
