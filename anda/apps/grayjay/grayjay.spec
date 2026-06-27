@@ -55,3 +55,7 @@ install -Dm644 grayjay.desktop -t %buildroot%_datadir/applications
 %_datadir/applications/grayjay.desktop
 %_datadir/grayjay/
 %_iconsdir/hicolor/256x256/apps/grayjay.ico
+
+%changelog
+* Sat Jun 27 2026 madonuko <madonuko@outlook.com> - 18-1
+- Initial package.
