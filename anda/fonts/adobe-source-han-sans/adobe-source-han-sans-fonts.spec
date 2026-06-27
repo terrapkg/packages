@@ -1,7 +1,7 @@
 %define debug_package %nil
 %global ver 2.005R
 
-Name:           source-han-sans-fonts
+Name:           adobe-source-han-sans-fonts
 Version:        %(echo %ver | sed -E 's/R$//')
 Release:        1%?dist
 Summary:        Source Han Sans | 思源黑体 | 思源黑體 | 思源黑體 香港 | 源ノ角ゴシック | 본고딕
@@ -27,10 +27,10 @@ This package ships the Static OTC versions.
 %dnl Parameterized macros cannot be defined using `%global`. Guess I'm today years old. — mado
 %dnl ╭── %define fpkg(vhs)
 %define fpkg(vhs)                                                                                   \
-%package %{-h:hw-}%{-v:vf-}%{-s:subset-}%1                                                          \
+%package -n adobe-source-han-sans-%{-h:hw-}%{-v:vf-}%{-s:subset-}%1-fonts                           \
 Summary: %name: %{-h:half-width }%{-v:variable }%{-s:subset }%{upper:%1} font files                 \
                                                                                                     \
-%description %{-h:hw-}%{-v:vf-}%{-s:subset-}%1                                                      \
+%description -n adobe-source-han-sans-%{-h:hw-}%{-v:vf-}%{-s:subset-}%1-fonts                       \
 This package provides a specific font type of %name.                                                \
 %{-v:VF: variable font: Variable font weights are supported.                                        \
 }%{-h:HW: half-width: some proportional punctuations are turned into half-width.                    \
@@ -39,7 +39,7 @@ https://github.com/adobe-fonts/source-han-sans/blob/release/SourceHanSansReadMe.
 }%{-s:Subset: The fonts are split into regional-specific subset fonts.                              \
 }                                                                                                   \
                                                                                                     \
-%files %{-h:hw-}%{-v:vf-}%{-s:subset-}%1                                                            \
+%files -n adobe-source-han-sans-%{-h:hw-}%{-v:vf-}%{-s:subset-}%1-fonts                             \
 %license LICENSE.txt
 %dnl ╰── %define fpkg(vhs)
 

@@ -2,7 +2,7 @@
 %global oldpkgname yt-dlp-nightly
 
 Name:           yt-dlp-git
-Version:        2026.06.26.165241
+Version:        2026.06.26.230708
 Release:        1%{?dist}
 Summary:        A command-line program to download videos from online video platforms
 
