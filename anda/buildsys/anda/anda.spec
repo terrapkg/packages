@@ -4,7 +4,7 @@
 
 Name:           anda
 Version:        0.7.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Andaman Build toolchain
 SourceLicense:  MIT
 License:        ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 AND ISC) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND BSD-3-Clause AND BSL-1.0 AND CDLA-Permissive-2.0 AND ISC AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MIT AND MPL-2.0-or-later AND MPL-2.0-only AND Unicode-3.0 AND (Unlicense OR MIT)
@@ -18,18 +18,14 @@ BuildRequires:  gcc
 BuildRequires:  rust-packaging >= 21
 BuildRequires:  anda-srpm-macros
 BuildRequires:  openssl-devel
-%if %{defined fedora}
-BuildRequires:  openssl-devel-engine
-%endif
 BuildRequires:  git-core
-BuildRequires:  libgit2-devel
+BuildRequires:  pkgconfig(libgit2)
 BuildRequires:  libssh2-devel
 BuildRequires:  mold
 Requires:       mock
 Requires:       rpm-build
 Requires:       createrepo_c
 Requires:       git-core
-Requires:       libgit2
 %if 0%{?fedora} >= 42
 Requires:       mock-filesystem
 Requires:       util-linux-script
