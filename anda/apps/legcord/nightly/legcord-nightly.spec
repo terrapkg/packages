@@ -1,7 +1,6 @@
 %global commit 7d933c652919899e46a6dfa0ac08dac36c492d95
 %global commit_date 20260614
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global debug_package %nil
 # terrible evil no good very bad hack
 # fix one day
 %global __requires_exclude_from (.*)lib(.*)so(.*)
@@ -29,7 +28,6 @@ while keeping everything lightweight.
 %vendor_nodejs -v 26
 
 %build
-echo "Electron Builder" > %{rpmbuilddir}/webapp-tool.txt
 %pnpm_build -r build
 
 %install
