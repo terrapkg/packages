@@ -6,7 +6,7 @@
 %global __requires_exclude_from (.*)lib(.*)so(.*)
 
 Name:           legcord-nightly
-%electronmeta -D
+%electronmeta -aD
 Version:        %commit_date.%shortcommit
 Release:        1%{?dist}
 License:        OSL-3.0 AND %{electron_license}
