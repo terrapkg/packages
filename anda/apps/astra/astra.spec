@@ -39,5 +39,5 @@ mv ./dist/*.AppImage dist/%name.%["%_arch" == "x86_64" ? "x86_64" : "arm64"].App
 %_hicolordir/*/apps/%name.png
 
 %changelog
-* Sat Jun 06 2026 madonuko <madonuko@outlook.com> - 0.6.1~beta
+* Sat Jun 28 2026 madonuko <madonuko@outlook.com> - 0.6.1~beta
 - Initial package.
