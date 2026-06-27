@@ -1,6 +1,6 @@
-%global commit 6970c40930bedd8b58d0764894e0d5f04813b7c5
+%global commit da247eb378287b435fa2963bfaee634bda96caac
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20240109
+%global commitdate 20260627
 %global ver 1.0
 %global modulename xpad-noone
 %global debug_package %{nil}
@@ -10,14 +10,11 @@ This is the original upstream xpad driver from the Linux kernel with support for
 
 Name:          %{modulename}-kmod
 Version:       %{ver}^%{commitdate}git.%{shortcommit}
-Release:       6%{?dist}
+Release:       7%{?dist}
 License:       GPL-2.0-or-later
 Summary:       xpad driver with support for XBox One controllers removed
-URL:           https://github.com/medusalix/xpad-noone
+URL:           https://github.com/Jan200101/xpad-noone
 Source0:       %{url}/archive/%{commit}/%{modulename}-%{commit}.tar.gz#/%{modulename}-%{shortcommit}.tar.gz
-# Fix kmod compilation on kernel 6.18+
-Patch0:        https://github.com/medusalix/xpad-noone/pull/8.patch
-Patch1:        https://github.com/medusalix/xpad-noone/pull/9.patch
 BuildRequires: gcc
 BuildRequires: kmodtool
 BuildRequires: make
@@ -37,7 +34,7 @@ Packager:      Gilver E. <roachy@fyralabs.com>
 
 kmodtool --target %{_target_cpu} --repo terrapkg.com --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
-%autosetup -n %{modulename}-%{commit} -p1
+%autosetup -c %{modulename}-%{commit}
 
 for kernel_version  in %{?kernel_versions} ; do
   cp -a %{modulename}-%{commit} _kmod_build_${kernel_version%%___*}
@@ -57,5 +54,8 @@ done
 %{?akmod_install}
 
 %changelog
+* Sat Jun 27 2026 Jan200101 <sentrycraft123@gmail.com> - 1.0^20260627git.da247eb-7
+- Update package to use updated fork
+
 * Fri Mar 07 2025 Gilver E. <rockgrub@disroot.org>
 - Initial package
