@@ -15,7 +15,7 @@ BuildRequires:  desktop-file-utils
 Grayjay is a multi-platform media application that allows you to watch content from multiple platforms in a single application. Using an extendable plugin system developers can make new integrations with additional platforms. Plugins are cross-compatible between Android and Desktop.
 
 %prep
-%git_clone https://github.com/futo-org/Grayjay.Desktop
+%git_clone https://gitlab.futo.org/videostreaming/syncserver
 
 %build
 pushd Grayjay.Desktop.Web
