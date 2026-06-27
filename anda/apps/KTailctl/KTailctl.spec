@@ -25,6 +25,7 @@ BuildRequires:  kf6-kwindowsystem-devel
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtdeclarative-devel
 BuildRequires:  qt6-qtsvg-devel
+BuildRequires:  cmake(KF6IconThemes)
 
 Requires:       tailscale
 Requires:       kf5-qqc2-desktop-style
