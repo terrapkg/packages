@@ -70,7 +70,6 @@ popd
 %dnl %pnpm_build -r generate,build:policy-files,generate,build:esbuild:prod
 %{__pnpm} run generate
 %{__pnpm} run build-linux --%{_electron_cpu} --linux AppImage
-echo "Electron Builder" > %{rpmbuilddir}/webapp-tool.txt
 
 %install
 mv ./packages/mute-state-change/LICENSE ./packages/mute-state-change/LICENSE.mute-state-change
