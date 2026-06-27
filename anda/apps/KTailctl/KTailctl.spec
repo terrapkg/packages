@@ -42,7 +42,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %prep
 %autosetup -n KTailctl-%{version}
-cd src/wrapper
+cd src/tailscale/wrapper
 go mod vendor
 
 %conf
