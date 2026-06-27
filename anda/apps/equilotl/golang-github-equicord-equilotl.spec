@@ -30,7 +30,7 @@ License:        GPL-3.0-only
 URL:            %{gourl}
 Source:         %{gosource}
 Packager:       madonuko <mado@fyralabs.com>
-BuildRequires:  pkg-config libGL-devel libXxf86vm-devel
+BuildRequires:  pkg-config libGL-devel libXxf86vm-devel gcc-c++
 BuildRequires:  wayland-devel libxkbcommon-devel wayland-protocols-devel extra-cmake-modules
 BuildRequires:  libXcursor-devel libXi-devel libXinerama-devel libXrandr-devel
 RemovePathPostFixes: .wayland
