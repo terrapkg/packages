@@ -59,12 +59,12 @@ go mod vendor
 %doc README.md
 %license LICENSE.txt
 %{_bindir}/ktailctl
-%{_libdir}/qt6/qml/org/fkoehler/KTailctl/Components/*.qml
-%{_libdir}/qt6/qml/org/fkoehler/KTailctl/Components/*.version
-%{_libdir}/qt6/qml/org/fkoehler/KTailctl/Components/*.qmltypes
-%{_libdir}/qt6/qml/org/fkoehler/KTailctl/Components/qmldir
+%dnl %{_libdir}/qt6/qml/org/fkoehler/KTailctl/Components/*.qml
+%dnl %{_libdir}/qt6/qml/org/fkoehler/KTailctl/Components/*.version
+%dnl %{_libdir}/qt6/qml/org/fkoehler/KTailctl/Components/*.qmltypes
+%dnl %{_libdir}/qt6/qml/org/fkoehler/KTailctl/Components/qmldir
 # Exclusive libs that the package needs to run
-%{_libdir}/qt6/qml/org/fkoehler/KTailctl/Components/libktailctl_components.so
+%dnl %{_libdir}/qt6/qml/org/fkoehler/KTailctl/Components/libktailctl_components.so
 %{_libdir}/libktailctl_wrapper_logging.so
 %{_appsdir}/org.fkoehler.KTailctl.desktop
 %{_scalableiconsdir}/org.fkoehler.KTailctl.svg
