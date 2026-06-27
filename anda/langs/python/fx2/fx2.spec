@@ -34,7 +34,7 @@ Provides:       python3-libfx2
 %_desc
 
 %prep
-%autosetup -n libfx2-%{version}
+%autosetup -n libfx2-v%{version}
 
 %build
 export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
