@@ -2,12 +2,12 @@
 %global _desc Chip support package for Cypress EZ-USB FX2 series microcontrollers.
 
 Name:			python-%{pypi_name}
-Version:		0.15
+Version:		0.16
 Release:		1%{?dist}
 Summary:		Chip support package for Cypress EZ-USB FX2 series microcontrollers
 License:		0BSD
-URL:			https://github.com/whitequark/libfx2
-Source0:		%url/archive/refs/tags/v%version.tar.gz
+URL:			https://glasgowembedded.codeberg.page/libfx2/
+Source0:		https://codeberg.org/GlasgowEmbedded/libfx2/archive/v%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
