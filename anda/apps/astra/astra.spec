@@ -24,7 +24,7 @@ echo "$WEBAPP_BUILD_TOOL" > ../webapp-tool.txt
 %__nodejs ./scripts/build/writeAppBuildMetadata.cjs
 
 %install
-mv ./dist/*.AppImage dist/%name.%_arch.AppImage
+mv ./dist/*.AppImage dist/%name.%["%_arch" == "x86_64" ? "x86_64" : "arm64"].AppImage
 %electron_install -I -D
 
 %terra_appstream
