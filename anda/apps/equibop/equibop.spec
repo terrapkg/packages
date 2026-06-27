@@ -9,6 +9,8 @@ License:        GPL-3.0-only AND %electron_license
 URL:            https://equibop.org
 Source0:        https://github.com/Equicord/Equibop/archive/refs/tags/v%version.tar.gz
 BuildRequires:  bun-bin
+BuildRequires:  pkgconfig(glib-2.0)
+BuildRequires:  pkgconfig(gio-2.0)
 
 %description
 Equibop is a custom Discord App aiming to give you better performance and improve linux support.
