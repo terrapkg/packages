@@ -42,8 +42,6 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %prep
 %autosetup -n KTailctl-%{version}
-cd src/wrapper
-go mod vendor
 
 %conf
 %cmake
