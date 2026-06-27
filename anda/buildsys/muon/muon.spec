@@ -1,3 +1,6 @@
+%global _distro_extra_cflags -Wno-implicit-function-declaration
+%global _distro_extra_cxxflags -Wno-implicit-function-declaration
+
 Name:           muon
 Version:        0.6.0
 Release:        1%{?dist}
