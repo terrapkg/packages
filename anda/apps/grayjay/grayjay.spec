@@ -2,7 +2,7 @@
 %define debug_package %nil
 
 Name:           grayjay
-Version:        5
+Version:        18
 Release:        1%?dist
 Summary:        Watch content on your own terms, ensuring you retain full ownership and control over what you watch
 License:        SFL-1.1
