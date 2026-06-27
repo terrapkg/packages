@@ -57,11 +57,11 @@ RemovePathPostFixes: .x11
 %build
 %define gomodulesmode GO111MODULE=on
 export GO_BUILDTAGS="wayland"
-%gobuild -o %{gobuilddir}/bin/Equilotl.wayland %{goipath}
+%gobuild -o %{gobuilddir}/bin/Equilotl.wayland equilotl
 export GO_BUILDTAGS=""
-%gobuild -o %{gobuilddir}/bin/Equilotl.x11     %{goipath}
+%gobuild -o %{gobuilddir}/bin/Equilotl.x11     equilotl
 export GO_BUILDTAGS="cli"
-%gobuild -o %{gobuilddir}/bin/Equilotl.cli     %{goipath}
+%gobuild -o %{gobuilddir}/bin/Equilotl.cli     equilotl
 %endif
 
 %install
