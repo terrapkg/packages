@@ -94,7 +94,6 @@ Packager:         junefish <june@fyralabs.com>
 
 %build
 %npm_build -c -B -r fetch,webpack:prod
-echo "Electron Builder" > %{rpmbuilddir}/webapp-tool.txt
 
 %install
 %electron_install -i %appid -I build/
