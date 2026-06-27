@@ -83,3 +83,5 @@ pushd %{buildroot}%{_bindir}
 ./deno x --install-alias
 popd
 %terra_appstream -o %{SOURCE3}
+
+rm -rf target # save space
