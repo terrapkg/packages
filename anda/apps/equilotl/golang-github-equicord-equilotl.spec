@@ -22,7 +22,7 @@ A cross platform gui/cli app for installing Equicord.}
 %global golicenses      LICENSE
 %global godocs          README.md
 
-Name:           golang-github-equicord-equilotl
+Name:           equilotl
 Release:        %autorelease
 Summary:        A cross platform gui app for installing Equicord
 
@@ -40,21 +40,22 @@ RemovePathPostFixes: .wayland
 %package cli
 Summary:        A cross platform cli app for installing Equicord
 RemovePathPostFixes: .cli
-%description %{common_description}
+%description cli %{common_description}
 
 %package x11
 Summary:        A cross platform gui (X11) app for installing Equicord
 RemovePathPostFixes: .x11
-%description %{common_description}
+%description x11 %{common_description}
 
 %gopkg
 
 %prep
-%goprep_online -A
+%goprep -A
 %autopatch -p1
 
 %if %{without bootstrap}
 %build
+%define gomodulesmode GO111MODULE=on
 export GO_BUILDTAGS="wayland"
 %gobuild -o %{gobuilddir}/bin/Equilotl.wayland %{goipath}
 export GO_BUILDTAGS=""
