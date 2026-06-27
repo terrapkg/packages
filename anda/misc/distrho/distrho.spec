@@ -3,8 +3,10 @@
 %define _disable_source_fetch 0
 %global github_release 2021-03-15
 %global rel_tag 2021_03_15
-%global _distro_extra_cflags -fno-permissive
-%global _distro_extra_cxxflags -fno-permissive
+# apparently -pedantic is the opposite of -fpermissive
+# https://stackoverflow.com/questions/10932479/in-gcc-how-can-i-mute-the-fpermissive-warning#51447005
+%global _distro_extra_cflags -pedantic
+%global _distro_extra_cxxflags -pedantic
 
 Name:       distrho
 Version:    0
