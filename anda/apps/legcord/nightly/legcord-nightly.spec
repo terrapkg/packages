@@ -1,78 +1,61 @@
-%global commit 1833760c8be5b5fd4a76bbcd0cf1632d7bff0216
-%global commit_date 20250215
+%global commit 0a022f149000bdaed644c2609e19aa7b8badf825
+%global commit_date 20260626
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%define debug_package %nil
+%global debug_package %nil
+# terrible evil no good very bad hack
+# fix one day
+%global __requires_exclude_from (.*)lib(.*)so(.*)
 
 Name:           legcord-nightly
+%electronmeta -D
 Version:        %commit_date.%shortcommit
-Release:        1%?dist
-License:        OSL-3.0
+Release:        1%{?dist}
+License:        OSL-3.0 AND %{electron_license}
 Summary:        Custom lightweight Discord client designed to enhance your experience
 URL:            https://github.com/Legcord/Legcord
 Group:          Applications/Internet
-Source0:        %url/archive/%commit/Legcord-%commit.tar.gz
-Source1:        launch.sh
 Packager:       Owen <owen@fyralabs.com>
-Requires:       electron xdg-utils
-Provides:       armcord-nightly
+Requires:       xdg-utils
 Obsoletes:      armcord < 3.3.2-1
-Conflicts:      legcord-bin
 Conflicts:      legcord
-BuildArch:      noarch
-BuildRequires:  anda-srpm-macros pnpm
+BuildRequires:  anda-srpm-macros pnpm nodejs-npm git-core gcc gcc-c++ make desktop-file-utils zlib-ng-compat-devel
 
 %description
 Legcord is a custom client designed to enhance your Discord experience
 while keeping everything lightweight.
 
 %prep
-%autosetup -n Legcord-%commit
-
-cat <<EOF > legcord.desktop
-[Desktop Entry]
-Name=Legcord
-Comment=%summary
-GenericName=Internet Messenger
-Type=Application
-Exec=/usr/bin/legcord
-Icon=legcord
-Categories=Network;InstantMessaging;
-StartupWMClass=legcord
-Keywords=discord;armcord;legcord;vencord;shelter;electron;
-EOF
-
+%git_clone %{url}.git %{commit}
 
 %build
-pnpm install --no-frozen-lockfile
-pnpm run packageQuick
-
+echo "Electron Builder" > %{rpmbuilddir}/webapp-tool.txt
+%pnpm_build -r build
 
 %install
-install -Dm644 dist/*-unpacked/resources/app.asar %buildroot/usr/share/legcord/app.asar
+%electron_install -i legcord -l -I dist/.icon-set/icon_16.png -I dist/.icon-set/icon_32.png -I dist/.icon-set/icon_48x48.png -I dist/.icon-set/icon_64.png -I dist/.icon-set/icon_128.png -I dist/.icon-set/icon_256.png -I dist/.icon-set/icon_512.png -I dist/.icon-set/icon_1024.png
 
-install -Dm755 %SOURCE1 %buildroot/usr/bin/legcord
-install -Dm644 legcord.desktop %buildroot/usr/share/applications/LegCord.desktop
-install -Dm644 build/icon.png %buildroot/usr/share/pixmaps/legcord.png
-
-ln -s %_datadir/legcord %buildroot%_datadir/armcord
-
-# HACK: rpm bug for unability to replace existing files on system.
-%pre
-if [ -d %_datadir/armcord ] && [ ! -L %_datadir/armcord ]; then
-  echo "Found old %_datadir/armcord directory, removing…"
-  rm -rf %_datadir/armcord
-fi
+dist/Legcord-*.AppImage --appimage-extract '*.desktop'
+%desktop_file_install -k Exec,Icon -v "%{_libdir}/legcord-nightly/Legcord",legcord -u %U -f squashfs-root/Legcord.desktop
 
 %files
 %doc README.md
 %license license.txt
-/usr/bin/legcord
-/usr/share/applications/LegCord.desktop
-/usr/share/pixmaps/legcord.png
-/usr/share/legcord/app.asar
-/usr/share/armcord
+%{_bindir}/legcord-nightly
+%{_datadir}/applications/Legcord.desktop
+%{_libdir}/legcord-nightly/
+%{_iconsdir}/hicolor/16x16/apps/legcord.png
+%{_iconsdir}/hicolor/32x32/apps/legcord.png
+%{_iconsdir}/hicolor/48x48/apps/legcord.png
+%{_iconsdir}/hicolor/64x64/apps/legcord.png
+%{_iconsdir}/hicolor/128x128/apps/legcord.png
+%{_iconsdir}/hicolor/256x256/apps/legcord.png
+%{_iconsdir}/hicolor/512x512/apps/legcord.png
+%{_iconsdir}/hicolor/1024x1024/apps/legcord.png
 
 %changelog
+* Mon May 18 2026 june-fish <june@fyralabs.com> - 1.2.4-1
+- Use electron macros
+
 * Fri Nov 22 2024 owen <owen@fyralabs.com> - 1.0.2-2
 - Add nightly package.
 
@@ -82,10 +65,10 @@ fi
 * Mon Aug 26 2024 madonuko <mado@fyralabs.com> - 3.3.0-1
 - Update to license.txt
 
-* Sat Jun 17 2023 windowsboy111 <windowsboy111@fyralabs.com> - 3.2.0-2
+* Sat Jun 17 2023 madonuko <mado@fyralabs.com> - 3.2.0-2
 - Remove libnotify dependency.
 - Fix desktop entry.
 - Set as noarch package because there are not binary files.
 
-* Sat May 6 2023 windowsboy111 <windowsboy111@fyralabs.com> - 3.1.7-1
+* Sat May 6 2023 madonuko <mado@fyralabs.com> - 3.1.7-1
 - Initial package

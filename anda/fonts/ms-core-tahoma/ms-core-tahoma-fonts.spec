@@ -18,19 +18,19 @@ package.
 ### Different name because of font package and setup macro weirdness
 Name:           mscore-tahoma-fonts
 Version:        1.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Microsoft core Tahoma fonts for better Windows compatibility
 License:        LicenseRef-MS-Core-Fonts
-URL:            https://github.com/leamas/lpf
+URL:            https://mscorefonts2.sourceforge.net
 Group:          User Interface/X
-Source0:        http://downloads.sourceforge.net/corefonts/the%%20fonts/final/wd97vwr32.exe
+Source0:        https://downloads.sourceforge.net/corefonts/the%%20fonts/final/wd97vwr32.exe
 Source1:        61-ms-core-tahoma.conf
 BuildRequires:  cabextract
 BuildRequires:  fontpackages-devel
 Requires:       xorg-x11-font-utils
 Requires:       fontconfig
 BuildArch:      noarch
-Packager:       ShinyGil <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %fontpkg -a
 
@@ -62,5 +62,5 @@ cabextract Viewer1.cab
 %files
 
 %changelog
-* Mon Feb 24 2025 ShinyGil <rockgrub@disroot.org>
+* Mon Feb 24 2025 Gilver E. <rockgrub@disroot.org>
 - Initial package

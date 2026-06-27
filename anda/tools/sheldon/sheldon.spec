@@ -4,13 +4,13 @@
 %global crate sheldon
 
 Name:           rust-sheldon
-Version:        0.8.1
+Version:        0.8.5
 Release:        1%?dist
 Summary:        Fast, configurable, shell plugin manager
 
 License:        MIT OR Apache-2.0
 URL:            https://sheldon.cli.rs
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros

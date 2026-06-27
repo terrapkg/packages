@@ -1,26 +1,29 @@
 %define debug_package %nil
 %ifarch x86_64
-%global a x64
+%global a x64-baseline
 %elifarch aarch64
 %global a aarch64
 %endif
 
+%global appid sh.oven.bun
+
 Name:			bun-bin
-Version:		1.2.4
-Release:		1%?dist
+Version:		1.3.14
+Release:		1%{?dist}
 Summary:		Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one
 License:		MIT
 URL:			https://bun.sh
 Source0:		https://github.com/oven-sh/bun/releases/download/bun-v%version/bun-linux-%a.zip
-BuildRequires:	unzip
+Source1:        sh.oven.bun.metainfo.xml
+BuildRequires:	unzip anda-srpm-macros terra-appstream-helper
 
 %description
 %summary.
 
+%pkg_completion -bfz bun
+
 %prep
-unzip %SOURCE0
-%global buildsubdir bun-linux-%a
-cd %buildsubdir
+%autosetup -n bun-linux-%a
 cat<<EOF > LICENSE
 MIT License
 
@@ -57,10 +60,10 @@ install -Dm644 bun.bash -t %buildroot%bash_completions_dir
 install -Dm644 bun.fish -t %buildroot%fish_completions_dir
 ln -s bun %buildroot%_bindir/bunx
 
+%terra_appstream -o %{SOURCE1}
+
 %files
 %license LICENSE
 %_bindir/bun
 %_bindir/bunx
-%bash_completions_dir/bun.bash
-%fish_completions_dir/bun.fish
-%zsh_completions_dir/_bun
+%{_datadir}/metainfo/sh.oven.bun.metainfo.xml

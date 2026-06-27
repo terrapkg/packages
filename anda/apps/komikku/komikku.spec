@@ -5,16 +5,16 @@
 %global pure_protobuf_version 2.0.0
 
 Name:           komikku
-Version:        1.70.0
+Version:        50.8.0
 %forgemeta
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        A manga reader for GNOME
 
 BuildArch:      noarch
 
 License:        GPL-3.0-or-later
-URL:            https://valos.gitlab.io/Komikku
-Source0:        https://codeberg.org/valos/%{appname}/archive/v%{version}.tar.gz#/%{name}-v%{version}.tar.gz
+URL:            https://apps.gnome.org/Komikku/
+Source0:        https://codeberg.org/valos/%{appname}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  intltool
@@ -22,6 +22,7 @@ BuildRequires:  libappstream-glib
 BuildRequires:  meson >= 0.59.0
 BuildRequires:  python3-devel >= 3.8
 BuildRequires:  blueprint-compiler
+BuildRequires:  cmake
 
 BuildRequires:  pkgconfig(gobject-introspection-1.0) >= 1.35.9
 BuildRequires:  pkgconfig(gtk4) >= %{gtk4_version}
@@ -34,7 +35,7 @@ Requires:       libnotify
 Requires:       webkitgtk6.0
 Requires:       python3-beautifulsoup4
 Requires:       python3-brotli
-Requires:       python3-colorthief
+Requires:       python3-modern-colorthief
 Requires:       python3-dateparser  %dnl >= 1.1.4 | https://bugzilla.redhat.com/show_bug.cgi?id=2115204
 Requires:       python3-emoji
 Requires:       python3-gobject
@@ -92,11 +93,12 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 
 %files -f %{name}.lang
-%license LICENSE
+%license LICENSES/*
 %doc README.md
 %{_bindir}/%{name}
 %{_datadir}/%{name}/
 %{_datadir}/applications/*.desktop
+%{_datadir}/dbus-1/services/%{uuid}.service
 %{_datadir}/glib-2.0/schemas/*.gschema.xml
 %{_datadir}/icons/hicolor/scalable/*/*.svg
 %{_datadir}/icons/hicolor/symbolic/*/*.svg

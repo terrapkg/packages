@@ -1,6 +1,6 @@
 Name:			keyd
-Version:		2.5.0
-Release:		2%?dist
+Version:		2.6.0
+Release:		1%?dist
 Summary:		Key remapping daemon for linux
 URL:			https://github.com/rvaiya/keyd
 License:		MIT
@@ -15,14 +15,14 @@ level input primitives (evdev, uinput).
 %prep
 %autosetup
 cat<<EOF > keyd.conf
-g keyd
+g keyd -
 EOF
 
 %build
 %make_build PREFIX=%_prefix LDFLAGS="$LDFLAGS -fuse-ld=mold"
 
 %install
-%make_install PREFIX=%_prefix LDFLAGS="$LDFLAGS -fuse-ld=mold"
+%make_install PREFIX=%_prefix LDFLAGS="$LDFLAGS -fuse-ld=mold" FORCE_SYSTEMD=1
 install -Dm644 keyd.service %buildroot%_unitdir/keyd.service
 install -Dm644 keyd.conf -t %buildroot%_sysusersdir
 install -Dm755 scripts/dump-xkb-config -t %buildroot%_datadir/keyd/

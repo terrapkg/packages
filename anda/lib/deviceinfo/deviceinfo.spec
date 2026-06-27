@@ -1,20 +1,21 @@
 %global forgeurl https://gitlab.com/ubports/development/core/deviceinfo
-%global commit e42f12b96d1745286f3c3c88b4a19bd7c3ead9ef
+%global commit 41a4e2b50c18a4650cd3c3dae83cce72017fa74b
 %forgemeta
 
 Name:       deviceinfo
-Version:    0.2.2
-Release:    1%{?dist}
+Version:    0.2.4
+Release:    2%?dist
 Summary:    Library to detect and configure devices
-License:    GPLv3+
+License:    GPL-3.0-or-later
 URL:        https://gitlab.com/ubports/development/core/deviceinfo
 Source0:    %{url}/-/archive/%commit/deviceinfo-%commit.tar.gz
-Source1:    https://salsa.debian.org/ubports-team/deviceinfo/-/raw/master/debian/device-info.1
 
 BuildRequires: cmake
 BuildRequires: cmake-extras
 BuildRequires: pkgconfig(yaml-cpp)
 BuildRequires: gcc-c++
+BuildRequires: gtest-devel
+BuildRequires: gmock-devel
 
 %description
 Library to detect and configure devices for Lomiri.
@@ -30,13 +31,15 @@ developing applications that use %{name}.
 %prep
 %autosetup -n deviceinfo-%commit
 
-%build
+%conf
 %cmake
+
+%build
 %cmake_build
 
 %install
 %cmake_install
-install -Dm644 '%{SOURCE1}' %{buildroot}%{_mandir}/man1/device-info.1
+install -Dm644 tools/device-info.1 %{buildroot}%{_mandir}/man1/device-info.1
 
 %files
 %license LICENSE

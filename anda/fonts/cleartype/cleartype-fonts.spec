@@ -89,12 +89,12 @@ in the PowerPointViewer package, still available on the Microsoft website.
 
 Name:           %{fontname}-fonts
 Version:        1.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Package containing ClearType fonts.
 License:        LicenseRef-MS-Core-Fonts
-URL:            http://mscorefonts2.sourceforge.net
+URL:            https://mscorefonts2.sourceforge.net
 Group:          User Interface/X
-Source0:        http://sourceforge.net/projects/mscorefonts2/files/cabs/PowerPointViewer.exe
+Source0:        https://sourceforge.net/projects/mscorefonts2/files/cabs/PowerPointViewer.exe
 Source1:        61-%{fontname}-calibri.conf
 Source2:        61-%{fontname}-cambria.conf
 Source3:        61-%{fontname}-candara.conf
@@ -113,7 +113,7 @@ Requires:       %{fontname}-constantia-fonts
 Requires:       %{fontname}-corbel-fonts
 Requires(post): fontconfig
 BuildArch:      noarch
-Packager:       ShinyGil <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %fontpkg -a
 
@@ -142,5 +142,5 @@ cabextract ppviewer.cab
 %files
 
 %changelog
-* Mon Feb 24 2025 ShinyGil <rockgrub@disroot.org>
+* Mon Feb 24 2025 Gilver E. <rockgrub@disroot.org>
 - Initial package

@@ -4,6 +4,7 @@ project pkg {
     spec = "rtmpdump.spec"
   }
   labels {
-    mock =1
+    mock = 1
+    subrepo = "multimedia"
   }
 }

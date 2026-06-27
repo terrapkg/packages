@@ -1,9 +1,9 @@
 Name:           anda-srpm-macros
-Version:        0.2.7
-Release:        1%?dist
+Version:        0.3.12
+Release:        1%{?dist}
 Summary:        SRPM macros for extra Fedora packages
 
-License:        MIT
+License:        GPL-3.0-or-later
 URL:            https://github.com/terrapkg/srpm-macros
 Source0:        %url/archive/refs/tags/v%{version}.tar.gz
 
@@ -12,6 +12,8 @@ Requires:       git-core
 Obsoletes:      fyra-srpm-macros < 0.1.1-1
 Provides:       fyra-srpm-macros = %{version}-%{release}
 BuildArch:      noarch
+
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 %{summary}
@@ -25,14 +27,22 @@ BuildArch:      noarch
 for file in ./macros.*; do
     install -Dpm644 -t %buildroot%_rpmmacrodir $file
 done
+install -Dpm755 *.sh -t %buildroot%_libexecdir/%name/
 
 %files
+%attr(0755, root, root) %_libexecdir/%name/*.sh
+%doc README.md
+%license LICENSE
 %{_rpmmacrodir}/macros.anda
 %{_rpmmacrodir}/macros.caching
 %{_rpmmacrodir}/macros.cargo_extra
+%{_rpmmacrodir}/macros.electron
 %{_rpmmacrodir}/macros.go_extra
 %{_rpmmacrodir}/macros.nim_extra
-
+%{_rpmmacrodir}/macros.nodejs_extra
+%{_rpmmacrodir}/macros.zig_extra
+%{_rpmmacrodir}/macros.tauri
+%{_rpmmacrodir}/macros.webapps
 
 %changelog
 * Wed Aug 14 2024 madonuko <mado@fyralabs.com> - 0.1.7-2

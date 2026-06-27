@@ -1,10 +1,42 @@
 name: JSON Build
+permissions:
+  contents: read
+  attestations: write
+  artifact-metadata: write
+  id-token: write
 on:
+  workflow_call:
+    inputs:
+      packages:
+        description: "Packages to Build"
+        required: true
+        type: string
+      publish:
+        description: "Whether the package should be published"
+        required: false
+        type: boolean
+        default: true
+      custom_builder:
+        description: "Custom Builder"
+        required: false
+        type: string
+        default: ""
+      bust_cache:
+        description: "Whether to bust the cache"
+        required: false
+        type: boolean
+        default: false
   workflow_dispatch:
     inputs:
       packages:
         description: "Packages to Build"
         required: true
+        type: string
+      publish:
+        description: "Whether the package should be published"
+        required: false
+        type: boolean
+        default: true
 
 jobs:
   build:
@@ -13,18 +45,30 @@ jobs:
         pkg: ${{ fromJson(inputs.packages) }}
         version: ["rawhide"]
       fail-fast: false
-    runs-on: ${{ (matrix.pkg.arch == 'aarch64' && matrix.pkg.labels['large']) && 'arm64-lg' || matrix.pkg.arch == 'aarch64' && 'ubuntu-22.04-arm' || matrix.pkg.labels['large'] && 'x86-64-lg' || 'ubuntu-22.04' }}
+    runs-on: ${{ inputs.custom_builder && inputs.custom_builder || (matrix.pkg.arch == 'aarch64' && matrix.pkg.labels['large']) && format('cirun-arm64-lg--{0}', github.run_id) || matrix.pkg.arch == 'aarch64' && 'ubuntu-22.04-arm' || matrix.pkg.labels['large'] && format('cirun-x86-64-lg--{0}', github.run_id) || 'ubuntu-22.04' }}
     container:
       image: ghcr.io/terrapkg/builder:f${{ matrix.version }}
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           fetch-depth: 0
 
       - name: Set up git repository
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - name: Configure sccache
+        id: sccache
+        if: ${{ !contains(matrix.pkg.labels.sccache, '0') }}
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        env:
+          SCCACHE_GHA_VERSION: ${{ matrix.version }}-${{ matrix.pkg.arch }}-${{ matrix.pkg.pkg }}
+          SCCACHE_GHA_CACHE_FROM: ${{ matrix.version }}-${{ matrix.pkg.arch }}-${{ matrix.pkg.pkg }}
+        with:
+          script: |
+            const script = require('./.github/scripts/configure-sccache.js')
+            await script({github, context, core, exec})
 
       - name: CI Setup Script
         if: ${{ !contains(matrix.pkg.labels, 'mock') }}
@@ -35,13 +79,21 @@ jobs:
           fi
 
       - name: Install Build Dependencies
-        if: ${{ !contains(matrix.pkg.labels, 'mock') }}
+        if: ${{ matrix.pkg.labels.mock != '1' }}
         run: |
           dir=$(dirname ${{ matrix.pkg.pkg }})
           dnf5 builddep -y ${dir}/*.spec
 
       - name: Build with Andaman
-        run: anda build ${{ matrix.pkg.pkg }} -c terra-${{ matrix.version }}-${{ matrix.pkg.arch }} ${{ contains(matrix.pkg.labels, 'mock') && '' || '-rrpmbuild' }}
+        run: anda build -D "vendor Terra" -D "__python %{__python3}" ${{ matrix.pkg.pkg }} -c terra-${{ matrix.version }}-${{ matrix.pkg.arch }} ${{ !matrix.pkg.labels.mock == '1' && '-rrpmbuild' || '' }}
+
+      - name: Report Cache Summary
+        if: steps.sccache.outcome == 'success'
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const script = require('./.github/scripts/sccache-stats.js')
+            await script({github, context, core, exec})
 
       - name: Generating artifact name
         id: art
@@ -50,7 +102,7 @@ jobs:
           x=${NAME//\//@}
           echo "name=$x" >> $GITHUB_OUTPUT
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: ${{ steps.art.outputs.name }}
           compression-level: 0 # The RPMs are already compressed :p
@@ -59,6 +111,7 @@ jobs:
             anda-build/rpm/srpm/*
 
       - name: Upload packages to subatomic
+        if: inputs.publish
         run: |
           subrepo="${{ matrix.pkg.labels.subrepo }}"
           subatomic-cli upload --prune \
@@ -67,6 +120,7 @@ jobs:
             terra${{ matrix.version }}${{ matrix.pkg.labels['subrepo'] && '-$subrepo' || '' }} anda-build/rpm/rpms/*
 
       - name: Upload source packages to subatomic
+        if: inputs.publish && matrix.pkg.labels['no_upload_srpms'] != '1'
         run: |
           subrepo="${{ matrix.pkg.labels.subrepo }}"
           subatomic-cli upload --prune \
@@ -74,9 +128,17 @@ jobs:
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
             terra${{ matrix.version }}${{ matrix.pkg.labels['subrepo'] && '-$subrepo' || '' }}-source anda-build/rpm/srpm/*
 
+      - name: Attest build provenance
+        if: inputs.publish
+        uses: actions/attest-build-provenance@a2bbfa25375fe432b6a289bc6b6cd05ecd0c4c32 # v4.1.0
+        with:
+          subject-path: |
+            anda-build/rpm/rpms/*
+            anda-build/rpm/srpm/*
+
       - name: Notify Madoguchi (Success)
-        if: success()
-        run: ./.github/workflows/mg.sh true ${{matrix.pkg.pkg}} ${{matrix.version}} ${{matrix.pkg.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}} $GITHUB_SHA
+        if: inputs.publish && success()
+        run: ./.github/workflows/mg.sh true "${{matrix.pkg.pkg}}" "${{matrix.version}}" "${{matrix.pkg.arch}}" "${{github.run_id}}" "${{secrets.MADOGUCHI_JWT}}" "$GITHUB_SHA"
       - name: Notify Madoguchi (Failure)
-        if: cancelled() || failure()
-        run: ./.github/workflows/mg.sh false ${{matrix.pkg.pkg}} ${{matrix.version}} ${{matrix.pkg.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}} $GITHUB_SHA
+        if: inputs.publish && (cancelled() || failure())
+        run: ./.github/workflows/mg.sh false "${{matrix.pkg.pkg}}" "${{matrix.version}}" "${{matrix.pkg.arch}}" "${{github.run_id}}" "${{secrets.MADOGUCHI_JWT}}" "$GITHUB_SHA"

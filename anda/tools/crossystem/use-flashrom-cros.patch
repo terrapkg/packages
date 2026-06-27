@@ -11,16 +11,3 @@ index 6a80201..c67a99d 100644
 
  /**
   * Helper to create a temporary file, and optionally write some data
-diff --git a/host/lib/include/flashrom.h b/host/lib/include/flashrom.h
-index 81d6ba9..6b760d6 100644
---- a/host/lib/include/flashrom.h
-+++ b/host/lib/include/flashrom.h
-@@ -10,7 +10,7 @@
- #include "2return_codes.h"
- #include "fmap.h"
-
--#define FLASHROM_PROGRAMMER_INTERNAL_AP "host"
-+#define FLASHROM_PROGRAMMER_INTERNAL_AP "internal"
- #define FLASHROM_PROGRAMMER_INTERNAL_EC "ec"
-
- /* Utilities for firmware images and (FMAP) sections */

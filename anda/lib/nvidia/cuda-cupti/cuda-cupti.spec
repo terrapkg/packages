@@ -8,7 +8,7 @@
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
-Version:        12.6.80
+Version:        13.3.35
 Release:        1%{?dist}
 Summary:        NVIDIA CUDA Profiling Tools Interface (CUPTI) library
 License:        CUDA Toolkit
@@ -51,8 +51,6 @@ This package contains static libraries for NVIDIA CUDA Profiling Tools Interface
 %setup -q -T -b 1 -n %{real_name}-linux-sbsa-%{version}-archive
 %endif
 
-%{?ldconfig_scriptlets}
-
 %install
 mkdir -p %{buildroot}%{_includedir}
 mkdir -p %{buildroot}%{_libdir}
@@ -80,4 +78,3 @@ cp -fr lib/* %{buildroot}%{_libdir}/
 
 %changelog
 %autochangelog
-

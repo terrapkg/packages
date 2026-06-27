@@ -1,0 +1,1 @@
+rpm.version(find_all(`/gpu-screen-recorder/tag/\?h=([\d.]+)`, get(`https://git.dec05eba.com/gpu-screen-recorder/refs/`))[0][1]);

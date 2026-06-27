@@ -4,11 +4,11 @@
 %global __strip /bin/true
 %global _missing_build_ids_terminate_build 0
 %global _build_id_links none
-%global major_package_version 12-6
+%global major_package_version 13-0
 
 Name:           cuda-nvml
 Epoch:          1
-Version:        12.6.77
+Version:        13.3.29
 Release:        1%{?dist}
 Summary:        NVIDIA Management library (NVML)
 License:        CUDA Toolkit
@@ -19,7 +19,6 @@ Source0:        https://developer.download.nvidia.com/compute/cuda/redist/%{real
 Source1:        https://developer.download.nvidia.com/compute/cuda/redist/%{real_name}/linux-sbsa/%{real_name}-linux-sbsa-%{version}-archive.tar.xz
 Source3:        nvidia-ml.pc
 
-Requires(post): ldconfig
 Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description
@@ -65,8 +64,6 @@ sed -i \
     -e 's|LIBDIR|%{_libdir}|g' \
     -e 's|INCLUDE_DIR|%{_includedir}|g' \
     %{buildroot}/%{_libdir}/pkgconfig/*.pc
-
-%{?ldconfig_scriptlets}
 
 %files devel
 %license LICENSE

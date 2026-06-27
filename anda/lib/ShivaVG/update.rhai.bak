@@ -1,0 +1,5 @@
+rpm.global("commit", gh_commit("vpxyz/ShivaVG"));
+if rpm.changed() {
+  rpm.release();
+  rpm.global("commit_date", date());
+}

@@ -1,0 +1,26 @@
+Description: In Debian, use Noto Sans font, not Ubuntu font.
+Author: Mike Gabriel <mike.gabriel@das-netzwerkteam.de>
+Forwarded: not needed, Debian-specific
+
+--- a/plugins/background/Components/ListItemsHeader.qml
++++ b/plugins/background/Components/ListItemsHeader.qml
+@@ -44,7 +44,7 @@
+             }
+ 
+             color: theme.palette.normal.foregroundText
+-            font.family: "Ubuntu"
++            font.family: "Noto Sans"
+             fontSize: "medium"
+             elide: Text.ElideRight
+             textFormat: Text.PlainText
+--- a/plugins/battery/PageComponent.qml
++++ b/plugins/battery/PageComponent.qml
+@@ -138,7 +138,7 @@
+                     ctx.lineWidth = units.dp(2)
+ 
+                     var fontHeight = FontUtils.sizeToPixels("small")
+-                    ctx.font="%1px Ubuntu".arg(fontHeight)
++                    ctx.font="%1px Noto Sans".arg(fontHeight)
+ 
+                     ctx.translate(0, 1)
+ 

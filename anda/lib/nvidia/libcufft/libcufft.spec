@@ -2,11 +2,11 @@
 %global __strip /bin/true
 %global _missing_build_ids_terminate_build 0
 %global _build_id_links none
-%global major_package_version 12-6
+%global major_package_version 13-0
 
 Name:           libcufft
 Epoch:          2
-Version:        11.3.0.4
+Version:        12.3.0.29
 Release:        1%{?dist}
 Summary:        NVIDIA CUDA Fast Fourier Transform library (cuFFT) libraries
 License:        CUDA Toolkit
@@ -18,7 +18,6 @@ Source1:        https://developer.download.nvidia.com/compute/cuda/redist/%{name
 Source3:        cufft.pc
 Source4:        cufftw.pc
 
-Requires(post): ldconfig
 Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
 # Drop in 11.7:
 Provides:       cuda-cufft = %{?epoch:%{epoch}:}%{version}-%{release}
@@ -78,8 +77,6 @@ sed -i \
     -e 's|INCLUDE_DIR|%{_includedir}|g' \
     %{buildroot}/%{_libdir}/pkgconfig/*.pc
 
-%{?ldconfig_scriptlets}
-
 %files
 %license LICENSE
 %{_libdir}/libcufft.so.*
@@ -97,9 +94,7 @@ sed -i \
 
 %files static
 %{_libdir}/libcufft_static.a
-%{_libdir}/libcufft_static_nocallback.a
 %{_libdir}/libcufftw_static.a
 
 %changelog
 %autochangelog
-

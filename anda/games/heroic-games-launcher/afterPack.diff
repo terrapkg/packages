@@ -1,7 +1,0 @@
---- a/electron-builder.yml
-+++ b/electron-builder.yml
-@@ -3,3 +3,3 @@ appId: com.heroicgameslauncher.hgl
- productName: Heroic
--afterSign: sign/afterSign.js
-+afterPack: sign/afterSign.js
- files:

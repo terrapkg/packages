@@ -1,10 +1,10 @@
-%global ver 1.8.24
+%global ver 1.8.72
 
 Summary:        tauOS GTK/GNOME Shell Themes
 Name:           helium-gtk-theme
 Version:        %(echo %ver | sed 's/-/./g')
-Release:        2%{?dist}
-License:        GPL-3.0
+Release:        3%{?dist}
+License:        GPL-3.0-or-later
 URL:            https://github.com/tau-OS/tau-helium
 Source0:        https://github.com/tau-OS/tau-helium/archive/refs/tags/%{ver}.tar.gz
 BuildArch:      noarch

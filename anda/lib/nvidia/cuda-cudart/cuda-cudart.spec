@@ -8,7 +8,7 @@
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
-Version:        12.6.77
+Version:        13.3.29
 Release:        1%{?dist}
 Summary:        CUDA Runtime API library
 License:        CUDA Toolkit
@@ -19,7 +19,6 @@ Source0:        https://developer.download.nvidia.com/compute/cuda/redist/%{real
 Source1:        https://developer.download.nvidia.com/compute/cuda/redist/%{real_name}/linux-sbsa/%{real_name}-linux-sbsa-%{version}-archive.tar.xz
 Source3:        cudart.pc
 
-Requires(post): ldconfig
 Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description
@@ -67,8 +66,6 @@ sed -i \
     -e 's|INCLUDE_DIR|%{_includedir}|g' \
     %{buildroot}/%{_libdir}/pkgconfig/*.pc
 
-%{?ldconfig_scriptlets}
-
 %files
 %license LICENSE
 %{_libdir}/libcudart.so.*
@@ -77,7 +74,6 @@ sed -i \
 %{_includedir}/*
 %{_libdir}/libcudadevrt.a
 %{_libdir}/libcudart.so
-%{_libdir}/libculibos.a
 %{_libdir}/pkgconfig/cudart.pc
 
 %files static

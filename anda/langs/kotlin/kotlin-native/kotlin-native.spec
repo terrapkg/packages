@@ -1,9 +1,8 @@
 %define _binaries_in_noarch_packages_terminate_build   0
 
-BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 Name:           kotlin-native
-Version:        2.1.10
-Release:        1%?dist
+Version:        2.4.0
+Release:        1%{?dist}
 Summary:        LLVM backend for the Kotlin compiler
 ExclusiveArch:  x86_64
 

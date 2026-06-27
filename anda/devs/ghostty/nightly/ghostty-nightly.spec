@@ -1,26 +1,25 @@
-%global commit c6485b9fd5514992e9acf8f6986e7986195dc3fc
+%global commit 9f62873bf195e4d8a762d768a1405a5f2f7b1697
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global fulldate 2025-02-28
+%global fulldate 2026-06-26
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
-%global ver 1.1.3
-%if 0%{?fedora} <= 40
-%global cache_dir %{_builddir}/zig-cache
-%else
-%global cache_dir %{builddir}/zig-cache
-%endif
+%global ver 1.3.2
+%global base_name ghostty
+%global appid com.mitchellh.%{base_name}
 
-Name:           ghostty-nightly
+Name:           %{base_name}-nightly
 Version:        %{ver}~tip^%{commit_date}git%{shortcommit}
-Release:        1%?dist
+Release:        1%{?dist}
 %if 0%{?fedora} <= 41
 Epoch:          1
 %endif
 Summary:        A fast, native terminal emulator written in Zig; this is the Tip (nightly) build.
 License:        MIT AND MPL-2.0 AND OFL-1.1 AND (WTFPL OR CC0-1.0) AND Apache-2.0
-URL:            https://ghostty.org/
-Source0:        https://github.com/ghostty-org/ghostty/releases/download/tip/ghostty-source.tar.gz
-Source1:        https://github.com/ghostty-org/ghostty/releases/download/tip/ghostty-source.tar.gz.minisig
+URL:            https://%{base_name}.org
+Source0:        https://github.com/%{base_name}-org/%{base_name}/releases/download/tip/%{base_name}-source.tar.gz
+Source1:        https://github.com/%{base_name}-org/%{base_name}/releases/download/tip/%{base_name}-source.tar.gz.minisig
+BuildRequires:  anda-srpm-macros >= 0.2.15
+BuildRequires:  gettext
 BuildRequires:  gtk4-devel
 BuildRequires:  libadwaita-devel
 BuildRequires:  libX11-devel
@@ -28,29 +27,35 @@ BuildRequires:  minisign
 BuildRequires:  ncurses
 BuildRequires:  ncurses-devel
 BuildRequires:  pandoc-cli
-BuildRequires:  zig
+BuildRequires:  systemd-rpm-macros
+BuildRequires:  zig >= 0.14.0
+BuildRequires:  zig-rpm-macros
 BuildRequires:  pkgconfig(blueprint-compiler)
 BuildRequires:  pkgconfig(bzip2)
 BuildRequires:  pkgconfig(freetype2)
 BuildRequires:  pkgconfig(fontconfig)
 BuildRequires:  pkgconfig(gtk4)
+BuildRequires:  pkgconfig(gtk4-layer-shell-0)
 BuildRequires:  pkgconfig(harfbuzz)
 BuildRequires:  pkgconfig(libadwaita-1)
 BuildRequires:  pkgconfig(libpng)
 BuildRequires:  pkgconfig(libxml-2.0)
 BuildRequires:  pkgconfig(oniguruma)
 BuildRequires:  pkgconfig(zlib)
-Requires:       %{name}-terminfo
-Requires:       %{name}-shell-integration
+Requires:       %{name}-terminfo = %{evr}
+Requires:       %{name}-shell-integration = %{evr}
+Requires:       (%{name}-kio = %{evr} if kf5-kio-core)
+Requires:       (%{name}-kio = %{evr} if kf6-kio-core)
 Requires:       gtk4
+Requires:       gtk4-layer-shell
 Requires:       libadwaita
-Conflicts:      ghostty
-Provides:       ghostty-tip = %{version}-%{release}
+Conflicts:      %{base_name}
+Provides:       %{base_name}-tip = %{ver}^%{commit_date}git%{shortcommit}
 %if 0%{?fedora} <= 41
 Provides:       %{name} = %{commit_date}.%{shortcommit}
 %endif
 Obsoletes:      %{name} = 20250130.04d3636
-Packager:       ShinyGil <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 👻 Ghostty is a fast, feature-rich, and cross-platform terminal emulator that uses platform-native UI and GPU acceleration.
@@ -94,6 +99,62 @@ BuildArch:      noarch
 %description    zsh-completion
 Zsh shell completion for Ghostty.
 
+%package        devel
+Summary:        Development files for Ghostty.
+Requires:       %{name} = %{evr}
+
+%description    devel
+This package includes the development files for Ghostty.
+
+%package        kio
+Summary:        KIO support for Ghostty
+Requires:       %{name} = %{evr}
+BuildArch:      noarch
+
+%description    kio
+This package allows Ghostty to interact with KIO.
+
+%package        nautilus
+Summary:        Nautilus menu support for Ghostty
+Supplements:    (%{name} and nautilus)
+Requires:       %{name} = %{evr}
+Requires:       nautilus-python
+BuildArch:      noarch
+
+%description    nautilus
+This package enables Nautilus integration for Ghostty.
+
+%package        vim
+Summary:        Vim plugins for Ghostty
+Supplements:    (%{name} and vim-filesystem)
+Requires:       %{name} = %{evr}
+Requires:       vim-enhanced
+Requires:       vim-filesystem
+BuildArch:      noarch
+
+%description    vim
+This package provides the Ghostty Vim plugins.
+
+%package        neovim
+Summary:        Neovim plugins for Ghostty
+Supplements:    (%{name} and neovim)
+Requires:       %{name} = %{evr}
+Requires:       neovim
+BuildArch:      noarch
+
+%description    neovim
+This package provides the Neovim plugins for Ghostty.
+
+%package        bat-syntax
+Summary:        Bat syntax for Ghostty
+Supplements:    (%{name} and bat)
+Requires:       %{name} = %{evr}
+Requires:       bat
+BuildArch:      noarch
+
+%description    bat-syntax
+This package provides the Bat syntax files for Ghostty.
+
 %package        shell-integration
 Summary:        Ghostty shell integration
 Supplements:    %{name}
@@ -107,115 +168,168 @@ This package contains files allowing Ghostty to integrate with various shells.
 
 %package        terminfo
 Summary:        Ghostty terminfo
+%if 0%{?fedora} >= 42
+Requires:       ncurses-term >= 6.5-5.20250125
+%endif
 Supplements:    %{name}
 %if 0%{?fedora} <= 41
 Provides:       %{name}-terminfo = %{commit_date}.%{shortcommit}
 %endif
+Obsoletes:      %{name}-terminfo-source < %{evr}
 BuildArch:      noarch
 
 %description    terminfo
 Ghostty's terminfo. Needed for basic terminal function.
 
-%package        terminfo-source
-Summary:        Source files for Ghostty's terminfo
-Requires:       %{name}
-Requires:       %{name}-terminfo
-BuildArch:      noarch
+%package -n     libghostty-vt-nightly
+Summary:        The libghostty-vt libraries
 
-%description    terminfo-source
-This package contains files for Ghostty's terminfo. Available for debugging use.
+%description -n libghostty-vt-nightly
+This package contains the libghostty-vt libraries, the first of many libghostty libaries in development.
+
+%package -n     libghostty-vt-nightly-devel
+Summary:        Development files for libghostty-vt
+Requires:       libghostty-vt-nightly = %{evr}
+
+%description -n libghostty-vt-nightly-devel
+This package contains the libraries and header files that are needed for developing with libghostty-vt.
 
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
-%autosetup -n ghostty-source
+%autosetup -n %{base_name}-%{ver}-main+%{shortcommit}
 
-ZIG_GLOBAL_CACHE_DIR="%{cache_dir}" ./nix/build-support/fetch-zig-cache.sh
+ZIG_GLOBAL_CACHE_DIR="%{_zig_cache_dir}" ./nix/build-support/fetch-zig-cache.sh
 
 %build
 
 %install
 DESTDIR="%{buildroot}" \
-zig build \
-    --summary all \
-    --release=fast \
-    --system "%{cache_dir}/p" \
+%{zig_build_target -r fast} \
     --prefix "%{_prefix}" --prefix-lib-dir "%{_libdir}" \
     --prefix-exe-dir "%{_bindir}" --prefix-include-dir "%{_includedir}" \
-    --verbose \
     -Dversion-string="%{ver}-dev+%{shortcommit}" \
-    -Dcpu=baseline \
     -Dstrip=false \
     -Dpie=true \
     -Demit-docs \
-    -Demit-termcap \
-    -Demit-terminfo
+    -Demit-themes=false
 
-%files
+# Don't conflict with ncurses-term on F42 and up
+%if 0%{?fedora} >= 42
+rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
+%endif
+
+%find_lang %{appid}
+
+%files -f %{appid}.lang
 %doc README.md
 %license LICENSE
-%_bindir/ghostty
-%_datadir/applications/com.mitchellh.ghostty.desktop
-%_datadir/bat/syntaxes/ghostty.sublime-syntax
-%_datadir/ghostty/
-%_datadir/kio/servicemenus/com.mitchellh.ghostty.desktop
-%_datadir/nautilus-python/extensions/ghostty.py
-%_datadir/nvim/site/compiler/ghostty.vim
-%_datadir/nvim/site/ftdetect/ghostty.vim
-%_datadir/nvim/site/ftplugin/ghostty.vim
-%_datadir/nvim/site/syntax/ghostty.vim
-%_datadir/vim/vimfiles/compiler/ghostty.vim
-%_datadir/vim/vimfiles/ftdetect/ghostty.vim
-%_datadir/vim/vimfiles/ftplugin/ghostty.vim
-%_datadir/vim/vimfiles/syntax/ghostty.vim
-%_iconsdir/hicolor/16x16/apps/com.mitchellh.ghostty.png
-%_iconsdir/hicolor/16x16@2/apps/com.mitchellh.ghostty.png
-%_iconsdir/hicolor/32x32/apps/com.mitchellh.ghostty.png
-%_iconsdir/hicolor/32x32@2/apps/com.mitchellh.ghostty.png
-%_iconsdir/hicolor/128x128/apps/com.mitchellh.ghostty.png
-%_iconsdir/hicolor/128x128@2/apps/com.mitchellh.ghostty.png
-%_iconsdir/hicolor/256x256/apps/com.mitchellh.ghostty.png
-%_iconsdir/hicolor/256x256@2/apps/com.mitchellh.ghostty.png
-%_iconsdir/hicolor/512x512/apps/com.mitchellh.ghostty.png
-%_iconsdir/hicolor/1024x1024/apps/com.mitchellh.ghostty.png
-%_mandir/man1/ghostty.1.gz
-%_mandir/man5/ghostty.5.gz
+%{_bindir}/%{base_name}
+%{_datadir}/applications/%{appid}.desktop
+%dir %{_datadir}/%{base_name}
+%{_datadir}/%{base_name}/doc
+%{_datadir}/metainfo/%{appid}.metainfo.xml
+%{_datadir}/dbus-1/services/%{appid}.service
+%{_iconsdir}/hicolor/16x16/apps/%{appid}.png
+%{_iconsdir}/hicolor/16x16@2/apps/%{appid}.png
+%{_iconsdir}/hicolor/32x32/apps/%{appid}.png
+%{_iconsdir}/hicolor/32x32@2/apps/%{appid}.png
+%{_iconsdir}/hicolor/128x128/apps/%{appid}.png
+%{_iconsdir}/hicolor/128x128@2/apps/%{appid}.png
+%{_iconsdir}/hicolor/256x256/apps/%{appid}.png
+%{_iconsdir}/hicolor/256x256@2/apps/%{appid}.png
+%{_iconsdir}/hicolor/512x512/apps/%{appid}.png
+%{_iconsdir}/hicolor/1024x1024/apps/%{appid}.png
+%{_mandir}/man1/%{base_name}.1.gz
+%{_mandir}/man5/%{base_name}.5.gz
+%{_userunitdir}/app-%{appid}.service
 
 %files bash-completion
-%bash_completions_dir/ghostty.bash
+%{bash_completions_dir}/%{base_name}.bash
 
 %files fish-completion
-%fish_completions_dir/ghostty.fish
+%{fish_completions_dir}/%{base_name}.fish
 
 %files zsh-completion
-%zsh_completions_dir/_ghostty
+%{zsh_completions_dir}/_%{base_name}
+
+%files devel
+%{_includedir}/ghostty/
+
+%files kio
+%{_datadir}/kio/servicemenus/%{appid}.desktop
+
+%files nautilus
+%{_datadir}/nautilus-python/extensions/%{base_name}.py
+
+%files vim
+%{_datadir}/vim/vimfiles/compiler/%{base_name}.vim
+%{_datadir}/vim/vimfiles/ftdetect/%{base_name}.vim
+%{_datadir}/vim/vimfiles/ftplugin/%{base_name}.vim
+%{_datadir}/vim/vimfiles/syntax/%{base_name}.vim
+
+%files neovim
+%{_datadir}/nvim/site/compiler/%{base_name}.vim
+%{_datadir}/nvim/site/ftdetect/%{base_name}.vim
+%{_datadir}/nvim/site/ftplugin/%{base_name}.vim
+%{_datadir}/nvim/site/syntax/%{base_name}.vim
+
+%files bat-syntax
+%{_datadir}/bat/syntaxes/%{base_name}.sublime-syntax
 
 %files shell-integration
-%_datadir/ghostty/shell-integration/bash/bash-preexec.sh
-%_datadir/ghostty/shell-integration/bash/ghostty.bash
-%_datadir/ghostty/shell-integration/elvish/lib/ghostty-integration.elv
-%_datadir/ghostty/shell-integration/fish/vendor_conf.d/ghostty-shell-integration.fish
-%_datadir/ghostty/shell-integration/zsh/.zshenv
-%_datadir/ghostty/shell-integration/zsh/ghostty-integration
+%dir %{_datadir}/%{base_name}/shell-integration
+%{_datadir}/%{base_name}/shell-integration/bash/bash-preexec.sh
+%{_datadir}/%{base_name}/shell-integration/bash/%{base_name}.bash
+%{_datadir}/%{base_name}/shell-integration/elvish/lib/%{base_name}-integration.elv
+%{_datadir}/%{base_name}/shell-integration/fish/vendor_conf.d/%{base_name}-shell-integration.fish
+%{_datadir}/%{base_name}/shell-integration/nushell/vendor/autoload/%{base_name}.nu
+%{_datadir}/%{base_name}/shell-integration/zsh/.zshenv
+%{_datadir}/%{base_name}/shell-integration/zsh/%{base_name}-integration
 
 %files terminfo
-%_datadir/terminfo/g/ghostty
-%_datadir/terminfo/x/xterm-ghostty
+%if 0%{?fedora} < 42
+%{_datadir}/terminfo/g/%{base_name}
+%endif
+%{_datadir}/terminfo/x/xterm-%{base_name}
 
-%files terminfo-source
-%_datadir/terminfo/ghostty.termcap
-%_datadir/terminfo/ghostty.terminfo
+%files -n libghostty-vt-nightly
+%{_libdir}/libghostty-vt.so.*
+
+%files -n libghostty-vt-nightly-devel
+%{_libdir}/libghostty-vt.so
+%{_datadir}/pkgconfig/libghostty-vt.pc
+
+%post
+%systemd_user_post app-%{appid}.service
+
+%preun
+%systemd_user_preun app-%{appid}.service
+
+%postun
+%systemd_user_postun app-%{appid}.service
 
 %changelog
-* Fri Jan 31 2025 ShinyGil <rockgrub@disroot.org>
-- Update to 1.1.1-1%{?dist}.20250131tipc5508e7
+* Sat Nov 29 2025 Gilver E. <rockgrub@disroot.org> - 1.3.0~tip^20251128git9baf37a-1
+- Initial libghostty-vt packages
+* Tue Oct 28 2025 Gilver E. <rockgrub@disroot.org> - 1.3.0~tip^20251027gitd40321a-2
+- Disabled bundled themes
+ * This is necessary to address licensing issues in the themes repo Ghostty uses
+ * See: https://github.com/mbadolato/iTerm2-Color-Schemes/issues/638
+* Sat May 31 2025 Gilver E. <rockgrub@disroot.org> - 1.1.4~tip^20250531git1ff9162
+- Updated for Zig 0.14.0
+- Updated for ncurses-term compatibility in Fedora 42 and Rawhide
+* Wed Mar 05 2025 Gilver E. <rockgrub@disroot.org>
+- Update to 1.1.3~tip^20250305git66e8d91-2
+ * Ghostty now has localization support via gettext as well as corresponding localization files
+* Fri Jan 31 2025 Gilver E. <rockgrub@disroot.org>
+- Update to 1.1.1~tip^20250131git5508e7-1
  * Low GHSA-98wc-794w-gjx3: Ghostty leaked file descriptors allowing the shell and any of its child processes to impact other Ghostty terminal instances
  * Better Git versioning scheme
  * Ghostty terminfo source files are now a subpackage
  * Shell integration and completion and terminfo subpackages are now properly noarch
-* Tue Dec 31 2024 ShinyGil <rockgrub@disroot.org>
+* Tue Dec 31 2024 Gilver E. <rockgrub@disroot.org>
 - Update to 20241231.3f7c3af
  * High CVE-2003-0063: Allows execution of arbitrary commands
  * Medium CVE-2003-0070: Allows execution of arbitrary commands
-
-* Thu Dec 26 2024 ShinyGil <rockgrub@disroot.org>
+* Thu Dec 26 2024 Gilver E. <rockgrub@disroot.org>
 - Initial package

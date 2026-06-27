@@ -2,8 +2,8 @@
 %global debug_package %{nil}
 
 Name:			nim
-Version:		2.2.2
-Release:		1%?dist
+Version:		2.2.10
+Release:		1%{?dist}
 Summary:		Imperative, multi-paradigm, compiled programming language
 License:		MIT and BSD
 URL:			https://nim-lang.org
@@ -11,9 +11,11 @@ Source1:		nim.1
 Source2:		nimgrep.1
 Source3:		nimble.1
 Source4:		nimsuggest.1
-BuildRequires:	gcc mold git-core gcc-c++ nodejs openssl-devel pkgconfig(bash-completion) gc-devel pcre-devel
+BuildRequires:	gcc mold git-core gcc-c++ nodejs openssl-devel pkgconfig(bash-completion) gc-devel pcre2-devel
 BuildRequires:  redhat-rpm-config anda-srpm-macros
 Requires:		gcc
+Recommends:		nim-tools
+Conflicts:		nimble
 
 
 %description
@@ -21,6 +23,8 @@ Nim is a compiled, garbage-collected systems programming language with a
 design that focuses on efficiency, expressiveness, and elegance (in that
 order of priority).
 
+
+%pkg_completion -B nim nimble
 
 %package tools
 Summary:	Tools for Nim programming language
@@ -70,10 +74,6 @@ koch docs &
 koch tools -t:-fPIE -l:-pie &
 nim c -d:danger -t:-fPIE -l:-pie nimsuggest/nimsuggest.nim &
 wait
-
-%ifarch x86_64
-sed -i '/<link.*fonts.googleapis.com/d' doc/html/*.html
-%endif
 
 
 %install
@@ -142,8 +142,6 @@ cp -r %buildroot%_prefix/lib/nim/dist %buildroot%_datadir/nim/
 %_includedir/cycle.h
 %_includedir/nimbase.h
 %_datadir/nim
-%bash_completions_dir/nim
-%bash_completions_dir/nimble
 
 %files tools
 %license copying.txt

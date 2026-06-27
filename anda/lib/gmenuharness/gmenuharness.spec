@@ -4,9 +4,9 @@
 
 Name:       gmenuharness
 Version:    0.1.4
-Release:    %autorelease
+Release:    2%{?dist}
 Summary:    GMenu harness library
-License:    LGPLv3
+License:    LGPL-3.0-or-later
 URL:        https://gitlab.com/ubports/development/core/gmenuharness
 Source0:    %{url}/-/archive/%commit/gmenuharness-%commit.tar.gz
 

@@ -4,11 +4,11 @@
 %global __strip /bin/true
 %global _missing_build_ids_terminate_build 0
 %global _build_id_links none
-%global major_package_version 12-6
+%global major_package_version 13-0
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
-Version:        12.6.77
+Version:        13.3.29
 Release:        1%{?dist}
 Summary:        Utility to extract information from CUDA binary files
 License:        CUDA Toolkit
@@ -45,4 +45,3 @@ install -m 0755 -p -D bin/cuobjdump %{buildroot}%{_bindir}/cuobjdump
 
 %changelog
 %autochangelog
-

@@ -1,12 +1,14 @@
 name: Push comps updates
+permissions:
+  contents: read
 
 on:
   push:
     branches:
       - frawhide
+      - f44
+      - f43
       - f42
-      - f41
-      - f40
       - el10
     paths:
       - comps.xml
@@ -14,11 +16,11 @@ on:
 
 jobs:
   update-comps:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04-arm
     container:
       image: ghcr.io/terrapkg/builder:frawhide
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
       - name: Push to subatomic
         run: |
           branch=${{ github.ref_name }}

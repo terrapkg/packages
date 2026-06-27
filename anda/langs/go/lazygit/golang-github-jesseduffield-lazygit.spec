@@ -2,7 +2,7 @@
 
 # https://github.com/jesseduffield/lazygit
 %global goipath         github.com/jesseduffield/lazygit
-Version:                0.48.0
+Version:                0.62.2
 
 %gometa -f
 
@@ -13,7 +13,7 @@ Simple terminal UI for git commands.}
 %global godocs          docs README.md VISION.md
 
 Name:           golang-github-jesseduffield-lazygit
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Simple terminal UI for git commands
 
 License:        MIT
@@ -23,25 +23,28 @@ Packager:       sadlerm <lerm@chromebooks.lol>
 
 BuildRequires:  anda-srpm-macros
 
-Provides:       lazygit = %{version}-%{release}
+Provides:       lazygit = %{evr}
 
 %description %{common_description}
+
+
+%package        doc
+Summary:        Documentations for %{name}
+Requires:       %{name} = %{evr}
+BuildArch:      noarch
+
+%description    doc
+%{summary}.
 
 %gopkg
 
 %prep
-%goprep
-%go_prep_online
+%goprep -A
 
 %build
-go build -buildmode pie -compiler gc -tags="rpm_crashtraceback ${GO_BUILDTAGS-${BUILDTAGS-}}" -a -x \
-         -ldflags "-X main.version=%{version} \
-                   -B 0x$(echo "%{name}-%{version}-%{release}-${SOURCE_DATE_EPOCH:-}" | sha1sum | cut -d ' ' -f1) \
-                   -compressdwarf=false -linkmode=external \
-                   -extldflags '-Wl,-z,relro -Wl,--as-needed -Wl,-z,pack-relative-relocs -Wl,-z,now \
-                                -specs=/usr/lib/rpm/redhat/redhat-hardened-ld -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 \
-                                -Wl,--build-id=sha1'" \
-         -o %{gobuilddir}/bin/lazygit %{goipath}
+%define currentgoldflags -X main.version=%version
+%define gomodulesmode GO111MODULE=on
+%gobuild -o %{gobuilddir}/bin/lazygit %{goipath}
 
 %install
 install -m 0755 -vd                     %{buildroot}%{_bindir}
@@ -49,6 +52,8 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 
 %files
 %license LICENSE
-%doc docs README.md VISION.md
+%doc README.md
 %{_bindir}/lazygit
 
+%files doc
+%doc docs/ VISION.md CONTRIBUTING.md CODE-OF-CONDUCT.md

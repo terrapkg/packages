@@ -1,11 +1,11 @@
-%global commit 9b3c3202435720ad5d76928c94c8f1c6e22693b7
+%global commit e12372ea5776a0e0a8acee3ea1e56f0f81c56fca
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250131
+%global commit_date 20260330
 %global _binfmtdir %{_exec_prefix}/lib/binfmt.d
 
 Name:           java-binfmt
 Version:        1.0.0^%{commit_date}git%{shortcommit}
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Binfmt wrappers and utilities for Java and Jar files.
 ### License for the C file used in the binary.
 License:        GPL-2.0-or-later
@@ -18,7 +18,7 @@ Source5:        https://raw.githubusercontent.com/terrapkg/pkg-java-binfmt/%{com
 Source6:        https://raw.githubusercontent.com/terrapkg/pkg-java-binfmt/%{commit}/Applet-lib64.conf
 BuildRequires:  gcc
 BuildRequires:  systemd-rpm-macros
-Packager:       ShinyGil <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 This package installs binfmt files for use with Java wrappers.
@@ -109,5 +109,5 @@ install -Dpm644 %{SOURCE6} %{buildroot}%{_binfmtdir}/Applet-lib64.conf
 /bin/systemctl --system try-restart systemd-binfmt.service &>/dev/null || :
 
 %changelog
-* Thu Jan 30 2025 ShinyGil <rockgrub@disroot.org>
+* Thu Jan 30 2025 Gilver E. <rockgrub@disroot.org>
 - Initial package

@@ -1,11 +1,11 @@
 %global real_name cuda_cccl
 
 %global debug_package %{nil}
-%global major_package_version 12-6
+%global major_package_version 13-0
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
-Version:        12.6.77
+Version:        13.2.75
 Release:        1%{?dist}
 Summary:        CXX Core Compute Libraries
 License:        CUDA Toolkit
@@ -41,8 +41,6 @@ mkdir -p %{buildroot}%{_includedir}
 mkdir -p %{buildroot}%{_libdir}/cmake
 
 cp -fr include/* %{buildroot}%{_includedir}/
-# Conflict with rocthrust-devel in main repositories:
-mv %{buildroot}%{_includedir}/thrust %{buildroot}%{_includedir}/cuda/
 
 cp -fr lib/cmake/* %{buildroot}%{_libdir}/cmake
 rm -f %{buildroot}%{_libdir}/cmake/thrust/README.md
@@ -55,4 +53,3 @@ rm -f %{buildroot}%{_libdir}/cmake/thrust/README.md
 
 %changelog
 %autochangelog
-

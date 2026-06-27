@@ -1,7 +1,7 @@
 %global pkg_name kmonad
 
 Name:           %{pkg_name}
-Version:        0.4.3
+Version:        0.4.5
 Release:        1%{?dist}
 Summary:        An advanced keyboard manager
 
@@ -73,7 +73,7 @@ install -Dm644 startup/kmonad@.service -t %{buildroot}%{_unitdir}
 %doc doc/faq.md doc/quick-reference.md
 %{_bindir}/%{name}
 %{_unitdir}/%{name}@.service
-
+%doc %{_docdir}/ghc/html/libraries/kmonad-%{version}/
 
 %files -n ghc-%{name} -f ghc-%{name}.files
 %license LICENSE

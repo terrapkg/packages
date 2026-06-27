@@ -4,7 +4,7 @@ Nerd Fonts is a project that patches developer targeted fonts with a high
 number of glyphs (icons).}
 
 Name:		nerd-fonts
-Version:	3.3.0
+Version:	3.4.0
 Release:	1%?dist
 URL:		https://nerdfonts.com/
 Source0:	https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v%version/readme.md
@@ -86,5 +86,5 @@ end
 
 
 %changelog
-* Wed Jan 4 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2.2.2-1
+* Wed Jan 4 2023 madonuko <mado@fyralabs.com> - 2.2.2-1
 - Initial package

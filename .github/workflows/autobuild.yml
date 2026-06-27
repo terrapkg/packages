@@ -1,6 +1,11 @@
 # for each folder in anda/
 # generate a new workflow for each folder in anda/
 name: Automatically build packages
+permissions:
+  contents: read
+  attestations: write
+  artifact-metadata: write
+  id-token: write
 on:
   push:
     paths:
@@ -18,7 +23,7 @@ on:
 
 jobs:
   manifest:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04-arm
     outputs:
       build_matrix: ${{ steps.generate_build_matrix.outputs.build_matrix }}
     container:
@@ -28,7 +33,7 @@ jobs:
       - name: Set workspace as safe
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           fetch-depth: 0
       - name: Generate build matrix
@@ -36,77 +41,98 @@ jobs:
         run: anda ci >> $GITHUB_OUTPUT
   build:
     needs: manifest
-    strategy:
-      matrix:
-        pkg: ${{ fromJson(needs.manifest.outputs.build_matrix) }}
-        version: ["rawhide"]
-      fail-fast: false
-    runs-on: ${{ (matrix.pkg.arch == 'aarch64' && matrix.pkg.labels['large']) && 'arm64-lg' || matrix.pkg.arch == 'aarch64' && 'ubuntu-22.04-arm' || matrix.pkg.labels['large'] && 'x86-64-lg' || 'ubuntu-22.04' }}
+    uses: ./.github/workflows/json-build.yml
+    secrets: inherit
+    with:
+      packages: ${{ needs.manifest.outputs.build_matrix }}
+      publish: ${{ github.event_name == 'push' }}
+
+  appstream:
+    needs: build
+    runs-on: ubuntu-latest
     container:
-      image: ghcr.io/terrapkg/builder:f${{ matrix.version }}
-      options: --cap-add=SYS_ADMIN --privileged
+      image: ghcr.io/terrapkg/appstream-generator:main
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Download artifacts
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
-          fetch-depth: 0
-
-      - name: Set up git repository
-        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
-
-      - name: CI Setup Script
-        if: ${{ matrix.pkg.labels.mock != '1' }}
+          merge-multiple: true
+          path: ./artifacts
+      - name: Generate test catalog
+        id: catalog
+        # run appstream-builder, then add step summary
         run: |
-          dir=$(dirname ${{ matrix.pkg.pkg }})
-          if [ -f $dir/ci_setup.rhai ]; then
-            anda run $dir/ci_setup.rhai --labels script_path=$dir/ci_setup.rhai
+          set -x
+          appstream-builder -v \
+            --packages-dir=artifacts/rpms \
+            --icons-dir=icons \
+            --include-failed \
+            --output-dir=output \
+            --uncompressed-icons \
+            --origin=test \
+            --basename=test \
+            --veto-ignore=missing-parents \
+            --veto-ignore=missing-info 2>&1 | tee asb.log
+
+      - name: Run appstreamcli validate
+        if: steps.catalog.outcome == 'success'
+        run: |
+          if stat output/test.xml.gz &>/dev/null; then
+            echo "## AppStream MetaInfo Validation" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo '```xml' >> $GITHUB_STEP_SUMMARY
+            appstreamcli validate output/test.xml.gz >> $GITHUB_STEP_SUMMARY | true
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          else
+            echo "Nothing to do."
+          fi
+          
+          
+      - name: Export logs
+        id: export_logs
+        if: steps.catalog.outcome == 'success'
+        run: |
+          if stat output/*.xml.gz &>/dev/null; then
+            echo "## AppStream Builder Log" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo '```log' >> $GITHUB_STEP_SUMMARY
+            cat asb.log >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo '---' >> $GITHUB_STEP_SUMMARY
+          else
+            echo "Nothing to do."
           fi
 
-      - name: Install Build Dependencies
-        if: ${{ matrix.pkg.labels.mock != '1' }}
+      - name: Report Summary
+        id: report_summary
+        if: steps.export_logs.outcome == 'success'
         run: |
-          dir=$(dirname ${{ matrix.pkg.pkg }})
-          dnf5 builddep -y ${dir}/*.spec
-
-      - name: Build with Andaman
-        run: anda build ${{ matrix.pkg.pkg }} -c terra-${{ matrix.version }}-${{ matrix.pkg.arch }} ${{ !matrix.pkg.labels.mock == '1' && '-rrpmbuild' || '' }}
-
-      - name: Generating artifact name
-        id: art
-        run: |
-          NAME=${{ matrix.pkg.pkg }}-${{ matrix.pkg.arch }}-${{ matrix.version }}
-          x=${NAME//\//@}
-          echo "name=$x" >> $GITHUB_OUTPUT
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: ${{ steps.art.outputs.name }}
-          compression-level: 0 # The RPMs are already compressed :p
-          path: |
-            anda-build/rpm/rpms/*
-            anda-build/rpm/srpm/*
-
-      - name: Upload packages to subatomic
-        if: github.event_name == 'push'
-        run: |
-          subrepo="${{ matrix.pkg.labels.subrepo }}"
-          subatomic-cli upload --prune \
-            --server https://subatomic.fyralabs.com \
-            --token ${{ secrets.SUBATOMIC_TOKEN }} \
-            terra${{ matrix.version }}${{ matrix.pkg.labels['subrepo'] && '-$subrepo' || '' }} anda-build/rpm/rpms/*
-
-      - name: Upload source packages to subatomic
-        if: github.event_name == 'push'
-        run: |
-          subrepo="${{ matrix.pkg.labels.subrepo }}"
-          subatomic-cli upload --prune \
-            --server https://subatomic.fyralabs.com \
-            --token ${{ secrets.SUBATOMIC_TOKEN }} \
-            terra${{ matrix.version }}${{ matrix.pkg.labels['subrepo'] && '-$subrepo' || '' }}-source anda-build/rpm/srpm/*
-
-      - name: Notify Madoguchi (Success)
-        if: success() && github.event_name == 'push'
-        run: ./.github/workflows/mg.sh true ${{matrix.pkg.pkg}} ${{matrix.version}} ${{matrix.pkg.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}} $GITHUB_SHA
-      - name: Notify Madoguchi (Failure)
-        if: ( cancelled() || failure() ) && github.event_name == 'push'
-        run: ./.github/workflows/mg.sh false ${{matrix.pkg.pkg}} ${{matrix.version}} ${{matrix.pkg.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}} $GITHUB_SHA
+          echo "## AppStream Builder Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if stat output/*.xml.gz &>/dev/null; then
+            if grep -q "veto" asb.log; then
+              echo "::group::Vetoed packages"
+              echo "### Vetoed packages" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo '```xml' >> $GITHUB_STEP_SUMMARY
+              echo "$(grep -i 'veto' asb.log)" >> $GITHUB_STEP_SUMMARY
+              echo '```' >> $GITHUB_STEP_SUMMARY
+              echo "::warning file=asb.log::Some packages were vetoed during AppStream generation. Please review the 'Vetoed packages' section in the summary for details."
+              echo "::endgroup::"
+            fi
+            echo "## Full Data Summary" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### Generated Appstream files:" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            for file in output/*.xml.gz; do
+              echo "#### \`$file\`" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo '```xml' >> $GITHUB_STEP_SUMMARY
+              zcat "$file" >> $GITHUB_STEP_SUMMARY || true
+              echo '```' >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+            done
+          else
+            echo "No appstream files found." >> $GITHUB_STEP_SUMMARY
+          fi

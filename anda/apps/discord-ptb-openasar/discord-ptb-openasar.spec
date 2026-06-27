@@ -6,8 +6,8 @@
 %global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 Name:           discord-ptb-openasar
-Version:        0.0.132
-Release:        1%?dist
+Version:        1.0.197
+Release:        1%{?dist}
 Summary:        A snappier Discord rewrite with features like further customization and theming
 License:        MIT AND https://discord.com/terms
 URL:            https://github.com/GooseMod/OpenAsar
@@ -56,5 +56,5 @@ ln -s %_datadir/discord-ptb-openasar/Discord %buildroot%_bindir/discord-ptb-open
 
 
 %changelog
-* Sat Jan 21 2023 windowsboy111 <windowsboy111@fyralabs.com> - 0.0.38-1
+* Sat Jan 21 2023 madonuko <mado@fyralabs.com> - 0.0.38-1
 - Initial package

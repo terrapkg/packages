@@ -1,8 +1,8 @@
 %define debug_package %nil
 
 # Exclude private libraries since this is bundled with electron
-%global __requires_exclude libffmpeg.so
-%global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
+%global __provides_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*))$
+%global __requires_exclude ^((libffmpeg[.]so.*)|(lib.*\\.so.*))$
 
 # macro shorthand for calling pnpm
 %global pnpm npx pnpm@%{pnpm_version}
@@ -12,8 +12,8 @@
 %global vendor_pnpm 1
 
 Name:           youtube-music
-Version:        3.7.5
-Release:        2%?dist
+Version:        3.11.0
+Release:        1%?dist
 Summary:        YouTube Music Desktop App bundled with custom plugins (and built-in ad blocker / downloader)
 Source1:        youtube-music.desktop
 License:        MIT
@@ -24,13 +24,17 @@ Packager:       Cappy Ishihara <cappy@fyralabs.com>
 # todo: investigate why
 #ExclusiveArch: x86_64
 
-BuildRequires:  git-core gcc make
+BuildRequires:  git-core gcc make desktop-file-utils
 # Required for usocket native module built with node-gyp
 BuildRequires:  python3 gcc-c++
 
 %if !0%{?vendor_pnpm}
 BuildRequires:  pnpm nodejs20
 %endif
+
+Requires:       nss
+Requires:       libXext
+Requires:       libXfixes
 
 %description
 YouTube Music Desktop App bundled with custom plugins (and built-in ad blocker / downloader)
@@ -49,7 +53,7 @@ git checkout v%{version}
 %if 0%{?vendor_pnpm}
 curl -fsSL https://get.pnpm.io/install.sh | sh -
 source $HOME/.bashrc
-pnpm env use --global 20
+pnpm env use --global 22
 %endif
 pnpm install
 pnpm build
@@ -86,7 +90,10 @@ install -d -m 0755 %{buildroot}%{_bindir}
 ln -svf %{_datadir}/youtube-music/youtube-music %{buildroot}%{_bindir}/youtube-music
 
 # Install desktop file
-install -D -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/applications/youtube-music.desktop
+install -D -m 0644 %{SOURCE1} %{buildroot}%{_appsdir}/youtube-music.desktop
+
+%check
+desktop-file-validate %{buildroot}%{_appsdir}/youtube-music.desktop
 
 %files
 %license license
@@ -95,10 +102,10 @@ install -D -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/applications/youtube-music
 %{_bindir}/youtube-music
 %{_datadir}/youtube-music
 %{_datadir}/icons/hicolor/*/apps/youtube-music*
-%{_datadir}/applications/youtube-music.desktop
-
-
+%{_appsdir}/youtube-music.desktop
 
 %changelog
+* Thu Dec 25 2025 Owen Zimmerman <owen@fyralabs.com>
+- Add %check
 * Sat Aug 03 2024 Cappy Ishihara <cappy@cappuchino.xyz>
 - Initial Release

@@ -4,13 +4,13 @@
 %global __strip /bin/true
 %global _missing_build_ids_terminate_build 0
 %global _build_id_links none
-%global major_package_version 12-6
+%global major_package_version 13-0
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
-Version:        12.6.77
+Version:        13.3.29
 Release:        1%{?dist}
-Summary:        CUDA tool to prune host object files and libraries
+Summary:        CUDA nvprune
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
 ExclusiveArch:  x86_64 aarch64
@@ -42,4 +42,3 @@ install -m 0755 -p -D bin/nvprune %{buildroot}%{_bindir}/nvprune
 
 %changelog
 %autochangelog
-

@@ -1,20 +1,20 @@
 %global real_name vala-language-server
 
-%global commit 31cb5116a4a138365feb709ebb7b8670db604991
+%global commit 8fab39f867a15dc3f1d24bc0ae455f6e019230bd
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
-%global commit_date 20240605
+%global commit_date 20260508
 %global snapshot_info %{commit_date}.%{shortcommit}
 %global verrel 0.48.7
 
 Name:			vala-language-server-nightly
 Summary:		Language server for the Vala programming language
 Version:		0.48.7^%{snapshot_info}
-Release:		1%?dist
+Release:		1%{?dist}
 # The entire source is LGPLv2+, except plugins/gnome-builder/vala_langserv.py, which is GPLv3+.
 # It is not installed when the "plugins" meson option is set to false.
 # Since GNOME Builder 41, the VLS the plugin has been included.
-License:		LGPL-2.0+
+License:		LGPL-2.0-or-later
 
 URL:			https://github.com/vala-lang/vala-language-server
 Source0:		https://github.com/vala-lang/vala-language-server/archive/%{commit}/%{real_name}-%{shortcommit}.tar.gz

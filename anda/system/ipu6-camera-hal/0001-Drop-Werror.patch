@@ -1,0 +1,36 @@
+From 1ec565d6b067d165cfbf8f68fc008e68fa94cfc0 Mon Sep 17 00:00:00 2001
+From: Hans de Goede <hdegoede@redhat.com>
+Date: Sun, 2 Feb 2025 08:52:52 +0100
+Subject: [PATCH] Drop -Werror
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Drop -Werror to stop the following false-positive gcc-15 warning
+breaking the build:
+
+/builddir/build/BUILD/ipu6-camera-hal-0.0-build/ipu6-camera-hal-b6f6eeb68f06cd0d4a2463b8950847b1b98cebaa/src/core/psysprocessor/PGCommon.cpp: In member function ‘icamera::PGCommon::init()’:
+/builddir/build/BUILD/ipu6-camera-hal-0.0-build/ipu6-camera-hal-b6f6eeb68f06cd0d4a2463b8950847b1b98cebaa/src/core/psysprocessor/PGCommon.cpp:122:73: error: argument 1 range [18446744071562067968, 18446744073709551615] exceeds maximum object size 9223372036854775807 [-Werror=alloc-size-larger-than=]
+  122 |     mPgTerminals = std::unique_ptr<uint8_t[]>(new uint8_t[mTerminalCount]);
+      |                                                                         ^
+
+Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+---
+ CMakeLists.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index f7b515a..27a20fa 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -80,7 +80,6 @@ message(STATUS "install prefix: " ${CMAKE_INSTALL_PREFIX})
+ set (CMAKE_CXX_STANDARD 11)
+ add_compile_options(
+     -Wall
+-    -Werror
+     -fstack-protector
+     -fPIE
+     -fPIC
+-- 
+2.48.1
+

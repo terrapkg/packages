@@ -5,13 +5,13 @@
 %global crate zellij
 
 Name:           rust-zellij
-Version:        0.41.2
-Release:        1%?dist
+Version:        0.44.3
+Release:        1%{?dist}
 Summary:        Terminal workspace with batteries included
 
 License:        MIT
 URL:            https://crates.io/crates/zellij
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 
 ExclusiveArch:  %{rust_arches}
 

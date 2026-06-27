@@ -2,10 +2,10 @@
 %global         __strip /bin/true
 %global         _missing_build_ids_terminate_build 0
 %global         _build_id_links none
-%global         cuda_version 12
+%global         cuda_version 13
 
 Name:           cuda-cudnn
-Version:        9.6.0.74
+Version:        9.23.2.1
 Release:        1%{?dist}
 Epoch:          1
 Summary:        NVIDIA CUDA Deep Neural Network library (cuDNN)
@@ -58,8 +58,6 @@ chmod 644 %{buildroot}%{_libdir}/*.a
 mkdir -p %{buildroot}%{_includedir}
 cp -a include/* %{buildroot}%{_includedir}/
 chmod 644 %{buildroot}%{_includedir}/*
-
-%{?ldconfig_scriptlets}
 
 %files
 %license LICENSE

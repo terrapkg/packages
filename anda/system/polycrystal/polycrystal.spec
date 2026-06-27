@@ -1,15 +1,15 @@
 Name:           polycrystal
 Version:        0.2.0
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Barebones "automatic" Flatpak installer for distribution-default Flatpak packages.
 URL:            https://github.com/Ultramarine-Linux/polycrystal
 Source0:        %url/archive/refs/tags/v%version.tar.gz
-License:        GPL
+License:        GPL-3.0-only
 BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros systemd-rpm-macros mold glib2-devel flatpak-devel
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
-%summary
+%summary.
 
 %prep
 %autosetup -n polycrystal-%version

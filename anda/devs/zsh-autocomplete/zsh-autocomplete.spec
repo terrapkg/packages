@@ -1,13 +1,12 @@
-%define debug_package %nil
-
 Name:           zsh-autocomplete
-Version:        24.09.04
+Version:        25.03.19
 Release:        1%?dist
 Summary:        Real-time type-ahead completion for Zsh
 License:        MIT
 URL:            https://github.com/marlonrichert/zsh-autocomplete
 Source0:        %url/archive/refs/tags/%version.tar.gz
 Packager:       madonuko <mado@fyralabs.com>
+BuildArch:      noarch
 
 %description
 This plugin for Zsh adds real-time type-ahead autocompletion to your command

@@ -3,6 +3,6 @@ project pkg {
 	  spec = "mpv-nightly.spec"
   }
   labels {
-    nightly = "1"
+    nightly = 1
   }
 }

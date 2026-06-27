@@ -1,16 +1,28 @@
 # Tiger Lake
-SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{device}=="0x9a19", RUN+="/usr/bin/echo /usr/lib64/ipu_tgl > /etc/ld.so.conf.d/ipu6-x86_64.conf"
+SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{device}=="0x9a19", GOTO="ipu6_tgl"
 # Alder Lake-N
-SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{device}=="0x465d", RUN+="/usr/bin/echo /usr/lib64/ipu_adl > /etc/ld.so.conf.d/ipu6-x86_64.conf"
+SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{device}=="0x465d", GOTO="ipu6_adl"
 # Alder Lake-P
-SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{device}=="0x462e", RUN+="/usr/bin/echo /usr/lib64/ipu_adl > /etc/ld.so.conf.d/ipu6-x86_64.conf"
+SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{device}=="0x462e", GOTO="ipu6_adl"
 # Raptor Lake-P
-SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{device}=="0xa75d", RUN+="/usr/bin/echo /usr/lib64/ipu_adl > /etc/ld.so.conf.d/ipu6-x86_64.conf"
+SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{device}=="0xa75d", GOTO="ipu6_adl"
 # Meteor Lake
-SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{device}=="0x7d19", RUN+="/usr/bin/echo /usr/lib64/ipu_mtl > /etc/ld.so.conf.d/ipu6-x86_64.conf"
-# Lunar Lake
-SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{device}=="0x645d", RUN+="/usr/bin/echo /usr/lib64/ipu_lnl > /etc/ld.so.conf.d/ipu6-x86_64.conf"
-# Jasper Lake
-SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{device}=="0x4e19", RUN+="/usr/bin/echo /usr/lib64/ipu_jsl > /etc/ld.so.conf.d/ipu6-x86_64.conf"
+SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{device}=="0x7d19", GOTO="ipu6_mtl"
+
+GOTO="ipu6_end"
+
+LABEL="ipu6_tgl"
+RUN+="/bin/ln -sf /usr/share/defaults/etc/camera/ipu6/v4l2-relayd /run/v4l2-relayd"
+GOTO="ipu6_end"
+
+LABEL="ipu6_adl"
+RUN+="/bin/ln -sf /usr/share/defaults/etc/camera/ipu6ep/v4l2-relayd /run/v4l2-relayd"
+GOTO="ipu6_end"
+
+LABEL="ipu6_mtl"
+RUN+="/bin/ln -sf /usr/share/defaults/etc/camera/ipu6epmtl/v4l2-relayd /run/v4l2-relayd"
+GOTO="ipu6_end"
+
+LABEL="ipu6_end"
 
 KERNEL=="ipu-psys0", TAG+="uaccess"

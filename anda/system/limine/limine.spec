@@ -1,11 +1,13 @@
 Name:		limine
-Version:	9.0.1
-Release:	1%?dist
+Version:	12.3.3
+Release:	1%{?dist}
 Summary:	Modern, advanced, portable, multiprotocol bootloader
 License:	BSD-2-Clause
 URL:		https://limine-bootloader.org
-Source0:	https://github.com/limine-bootloader/limine/releases/download/v%version/limine-%version.tar.gz
-Source1:	https://raw.githubusercontent.com/limine-bootloader/limine/v%version/README.md
+Source0:	https://github.com/Limine-Bootloader/Limine/releases/download/v%{version}/%{name}-%{version}.tar.gz
+Source1:    https://github.com/Limine-Bootloader/Limine/releases/download/v%{version}/limine-%{version}.tar.gz.sig
+Source2:    https://raw.githubusercontent.com/Limine-Bootloader/Limine/refs/tags/v%{version}/README.md
+Packager:	madonuko <mado@fyralabs.com>
 BuildRequires:	nasm mtools llvm lld clang make
 
 %description
@@ -14,22 +16,24 @@ the reference implementation for the Limine boot protocol.
 
 %prep
 %autosetup
-cp %SOURCE1 .
+cp %{S:2} .
+gpg --keyserver hkps://keyserver.ubuntu.com --recv-keys 05D29860D0A0668AAEFB9D691F3C021BECA23821
+gpg --verify %{S:1} %{S:0} || exit 1
+
+%conf
+%configure --enable-all CC_FOR_TARGET=clang LD_FOR_TARGET=ld.lld
 
 %build
-%configure --enable-all TOOLCHAIN_FOR_TARGET=llvm
 %make_build
 
 %install
 %make_install
 
+
 %files
-%doc README.md CONFIG.md PHILOSOPHY.md PROTOCOL.md COPYING USAGE.md
+%doc README.md 3RDPARTY.md FAQ.md CONFIG.md COPYING USAGE.md ChangeLog
+%license %_datadir/doc/limine/LICENSES/LicenseRef-scancode-bsd-no-disclaimer-unmodified.txt
 %license COPYING
 %_bindir/limine
-%_includedir/limine.h
 %_datadir/limine/
-%_mandir/man1/limine.1.gz
-
-%changelog
-%autochangelog
+%_mandir/man1/limine.1.*

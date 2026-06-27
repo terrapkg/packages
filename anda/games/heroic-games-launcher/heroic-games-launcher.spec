@@ -1,92 +1,86 @@
-%global debug_package %{nil}
-%global __requires_exclude libffmpeg.so
-%global __provides_exclude_from %{_datadir}/heroic/.*\\.so
-%global __provides_exclude_from %{_datadir}/heroic/.*\\.so.1
-%define _build_id_links none
-%global git_name HeroicGamesLauncher
+%global org_name Heroic-Games-Launcher
+%global git_name %(echo %{org_name} | sed 's/-//g')
+%global appid com.heroicgameslauncher.hgl
+%global shortname heroic
+%global legendary_version 0.20.43
+%global gogdl_version 1.2.1
+%global nile_version 1.1.2
+%global comet_version 0.2.0
 
-Name:          heroic-games-launcher
-Version:       2.15.2
+Name:          %{shortname}-games-launcher
+Version:       2.22.0
 Release:       1%{?dist}
 Summary:       A games launcher for GOG, Amazon, and Epic Games
 License:       GPL-3.0-only AND MIT AND BSD-3-Clause
 URL:           https://heroicgameslauncher.com
-Source0:       https://github.com/Heroic-Games-Launcher/%{git_name}/archive/refs/tags/v%{version}.tar.gz
-Source1:       https://raw.githubusercontent.com/Heroic-Games-Launcher/%{git_name}/refs/heads/main/flatpak/com.heroicgameslauncher.hgl.desktop
-### Makes it actually sign the package, though will say it was skipped first.
-Patch0:        afterPack.diff
-BuildRequires: bsdtar
-BuildRequires: desktop-file-utils
-### Electron builder builds some things with GCC(++) and Make
-BuildRequires: gcc
-BuildRequires: gcc-c++
-BuildRequires: libxcrypt-compat
-BuildRequires: make
-BuildRequires: nodejs
+BuildRequires: anda-srpm-macros
 BuildRequires: pnpm
-BuildRequires: python3
 Requires:      alsa-lib
 Requires:      gtk3
 Requires:      hicolor-icon-theme
 Requires:      nss
 Requires:      python3
 Requires:      which
-Recommends:    gamemode
+Recommends:    (falcond or gamemode)
 Recommends:    mangohud
 Recommends:    umu-launcher
-Packager:      ShinyGil <rockgrub@disroot.org>
+Provides:      bundled(comet) = %{comet_version}
+Provides:      bundled(gogdl) = %{gogdl_version}
+Provides:      bundled(legendary) = %{legendary_version}
+Provides:      bundled(nile) = %{nile_version}
+Packager:      Gilver E. <roachy@fyralabs.com>
+
+%electronmeta -D
 
 %description
 Heroic is a Free and Open Source Epic, GOG, and Amazon Prime Games launcher for Linux, Windows, and macOS.
 
 %prep
-%autosetup -n %{git_name}-%{version} -p1
-sed -i 's/Exec=.*%u/Exec=\/usr\/share\/heroic\/heroic %u/g' %{SOURCE1}
-sed -i 's/Icon=.*/Icon=heroic/g' %{SOURCE1}
+%git_clone https://github.com/%{org_name}/%{git_name} v%{version}
 
 %build
-pnpm install
-pnpm run download-helper-binaries
-### RPM doesn't work and it needs a package format to generate icons, AppImage isn't a good option for packaging because it will try to self update
-pnpm dist:linux pacman
+%pnpm_build -r download-helper-binaries -v
 
 %install
-mkdir -p %{buildroot}%{_datadir}/heroic
-mv dist/linux-unpacked/* %{buildroot}%{_datadir}/heroic
-mkdir -p %{buildroot}%{_bindir}
-ln -sr %{_datadir}/heroic/heroic %{buildroot}%{_bindir}/%{name}
-install -Dm644 public/icon.png %{buildroot}%{_datadir}/pixmaps/heroic.png
-install -Dm644 dist/.icon-set/icon_16x16.png %{buildroot}%{_iconsdir}/hicolor/16x16/heroic.png
-install -Dm644 dist/.icon-set/icon_32x32.png %{buildroot}%{_iconsdir}/hicolor/32x32/heroic.png
-install -Dm644 dist/.icon-set/icon_48x48.png %{buildroot}%{_iconsdir}/hicolor/48x48/heroic.png
-install -Dm644 dist/.icon-set/icon_64x64.png %{buildroot}%{_iconsdir}/hicolor/64x64/heroic.png
-install -Dm644 dist/.icon-set/icon_128x128.png %{buildroot}%{_iconsdir}/hicolor/128x128/heroic.png
-install -Dm644 dist/.icon-set/icon_256x256.png %{buildroot}%{_iconsdir}/hicolor/256x256/heroic.png
-install -Dm644 dist/.icon-set/icon_512x512.png %{buildroot}%{_iconsdir}/hicolor/512x512/heroic.png
-install -Dm644 dist/.icon-set/icon_1024.png %{buildroot}%{_iconsdir}/hicolor/1024x1024/heroic.png
-install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/applications/heroic.desktop
+rm -rf dist/linux-unpacked/resources/app.asar.unpacked/node_modules/font-list/libs/{darwin,win32}
+rm -rf dist/linux-unpacked/resources/app.asar.unpacked/node_modules/font-list/libs/{darwin,win32}
+%ifarch aarch64
+# Keep the x86_64 Windows binaries run through Wine just in case
+rm -rf dist/linux-unpacked/resources/app.asar.unpacked/build/bin/x64/{darwin,linux}
+%else
+rm -rf dist/linux-unpacked/resources/app.asar.unpacked/build/bin/arm64
+%endif
+
+%electron_install -d heroic -b heroic -S heroic -I -i %{appid} -l
+%desktop_file_install -k Exec -v %{_libdir}/%{shortname}/%{shortname} -u %u flatpak/%{appid}.desktop
+
+install -Dpm644 flatpak/templates/%{appid}.metainfo.xml.template %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 
 %check
-desktop-file-validate %{buildroot}%{_datadir}/applications/heroic.desktop
+%desktop_file_validate %{buildroot}%{_datadir}/applications/%{appid}.desktop
 
 %files
 %doc     README.md
 %doc     CODE_OF_CONDUCT.md
 %license COPYING
-%_datadir/heroic
-%_datadir/pixmaps/heroic.png
-%_bindir/heroic-games-launcher
-%_datadir/applications/heroic.desktop
-%_iconsdir/hicolor/16x16/heroic.png
-%_iconsdir/hicolor/32x32/heroic.png
-%_iconsdir/hicolor/48x48/heroic.png
-%_iconsdir/hicolor/64x64/heroic.png
-%_iconsdir/hicolor/128x128/heroic.png
-%_iconsdir/hicolor/256x256/heroic.png
-%_iconsdir/hicolor/512x512/heroic.png
-%_iconsdir/hicolor/1024x1024/heroic.png
+%license bundled_licenses/*
+%{_libdir}/%{shortname}/
+%{_bindir}/%{shortname}
+%{_bindir}/%{name}
+%{_appsdir}/%{appid}.desktop
+%{_metainfodir}/%{appid}.metainfo.xml
+%{_hicolordir}/16x16/apps/%{appid}.png
+%{_hicolordir}/32x32/apps/%{appid}.png
+%{_hicolordir}/48x48/apps/%{appid}.png
+%{_hicolordir}/64x64/apps/%{appid}.png
+%{_hicolordir}/128x128/apps/%{appid}.png
+%{_hicolordir}/256x256/apps/%{appid}.png
+%{_hicolordir}/512x512/apps/%{appid}.png
+%{_hicolordir}/1024x1024/apps/%{appid}.png
 
 %changelog
-* Thu Jan 30 2025 ShinyGil <rockgrub@disroot.org>
+* Sun Mar 02 2025 Gilver E. <rockgrub@disroot.org>
+- Update to 2.16.0
+- Fix incorrect RPM dependencies
+* Thu Jan 30 2025 Gilver E. <rockgrub@disroot.org>
 - Initial package
-

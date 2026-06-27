@@ -1,6 +1,6 @@
 # https://github.com/arduino/arduino-language-server
 %global goipath github.com/arduino/arduino-language-server
-Version:        0.7.6
+Version:        0.7.7
 
 %gometa -f
 
@@ -27,8 +27,7 @@ BuildRequires:  anda-srpm-macros clang
 %gopkg
 
 %prep
-%goprep
-%go_prep_online
+%goprep -A
 
 %build
 %define gomodulesmode GO111MODULE=on

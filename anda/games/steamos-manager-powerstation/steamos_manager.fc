@@ -1,0 +1,13 @@
+# steamos-manager SELinux file contexts
+
+# Daemon binary
+/usr/lib/steamos-manager		--	gen_context(system_u:object_r:steamos_manager_exec_t,s0)
+
+# CLI tool
+/usr/bin/steamosctl			--	gen_context(system_u:object_r:steamos_manager_exec_t,s0)
+
+# Data directory
+/usr/share/steamos-manager(/.*)?		gen_context(system_u:object_r:steamos_manager_data_t,s0)
+
+# Configuration directory
+/etc/steamos-manager(/.*)?			gen_context(system_u:object_r:steamos_manager_conf_t,s0)

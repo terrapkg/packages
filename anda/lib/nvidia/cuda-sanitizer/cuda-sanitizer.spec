@@ -4,11 +4,11 @@
 %global __strip /bin/true
 %global _missing_build_ids_terminate_build 0
 %global _build_id_links none
-%global major_package_version 12-6
+%global major_package_version 13-0
 
 Name:           cuda-sanitizer
 Epoch:          1
-Version:        12.6.77
+Version:        13.3.27
 Release:        1%{?dist}
 Summary:        CUDA Compute Sanitizer API
 License:        CUDA Toolkit
@@ -20,7 +20,6 @@ Source1:        https://developer.download.nvidia.com/compute/cuda/redist/%{real
 
 BuildRequires:  chrpath
 
-Requires(post): ldconfig
 Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description
@@ -60,8 +59,6 @@ cp -fr compute-sanitizer/x86/Tree* %{buildroot}%{_bindir}/
 cp -fr compute-sanitizer/lib* %{buildroot}%{_libdir}/
 cp -fr compute-sanitizer/Tree* compute-sanitizer/compute-sanitizer %{buildroot}%{_bindir}/
 %endif
-
-%{?ldconfig_scriptlets}
 
 %files
 %license LICENSE

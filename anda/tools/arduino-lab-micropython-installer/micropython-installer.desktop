@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=micropython-installer
+Comment=A tool to flash MicroPython onto supported Arduino boards.
+GenericName=micropython-installer
+Exec=micropython-installer %U
+Icon=micropython-installer
+Type=Application
+StartupNotify=true
+Categories=GNOME;GTK;Utility;
+

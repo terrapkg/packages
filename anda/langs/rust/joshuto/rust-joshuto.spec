@@ -2,15 +2,16 @@
 %bcond_without check
 
 %global crate joshuto
+%global __brp_mangle_shebangs %{nil}
 
 Name:           rust-joshuto
-Version:        0.9.7
+Version:        0.9.9
 Release:        1%?dist
 Summary:        Terminal file manager inspired by ranger
 
 License:        LGPL-3.0
 URL:            https://crates.io/crates/joshuto
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 
 BuildRequires:  anda-srpm-macros rust-packaging >= 21
 

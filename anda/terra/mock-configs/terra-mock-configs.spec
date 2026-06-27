@@ -1,6 +1,6 @@
 Name:           terra-mock-configs
-Version:        1.4.1
-Release:        2%?dist
+Version:        2.4.0
+Release:        3%{?dist}
 Epoch:          1
 Summary:        Mock configs for Terra repos
 
@@ -15,30 +15,31 @@ BuildArch:      noarch
 Provides: anda-mock-configs = %{epoch}:%{version}-%{release}
 Obsoletes: anda-mock-configs < 3-2%{?dist}
 
+Packager:       Terra Packaging Team <terra@fyralabs.com>
+
 %description
 %{summary}
 
 %prep
 %autosetup -n mock-configs-%version
 
-%build
-
 %install
-mkdir -p %{buildroot}%{_sysusersdir}
-mkdir -p %{buildroot}%{_sysconfdir}/mock/templates
-
-# not copying terra-el.tpl as that might be a duplicate
-cp -v -t %{buildroot}%{_sysconfdir}/mock/templates/ terra.tpl terra-el-dev.tpl
-cp -v *.cfg %{buildroot}%{_sysconfdir}/mock/
+install -Dpm644 *.tpl -t %{buildroot}%{_sysconfdir}/mock/templates/
+install -Dpm644 *.cfg -t %{buildroot}%{_sysconfdir}/mock/
 
 %files
 %config %{_sysconfdir}/mock/templates/terra.tpl
-%config %{_sysconfdir}/mock/templates/terra-el-dev.tpl
+%config %{_sysconfdir}/mock/templates/terra-el.tpl
+%config %{_sysconfdir}/mock/templates/terra-rawhide.tpl
 %config %{_sysconfdir}/mock/terra-*-x86_64.cfg
 %config %{_sysconfdir}/mock/terra-*-aarch64.cfg
+%config %{_sysconfdir}/mock/terra-*-riscv64.cfg
 %config %{_sysconfdir}/mock/terra-*-i386.cfg
 
 %changelog
+* Sat Mar 07 2026 Owen Zimmerman <owen@fyralabs.com> - 2.2.5-1
+- Add riscv64 configs
+
 * Fri Jul 26 2024 madonuko <mado@fyralabs.com> - 1:1.1.0-1
 - Include mock files for Terra 41
 

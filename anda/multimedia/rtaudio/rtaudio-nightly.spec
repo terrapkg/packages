@@ -1,14 +1,20 @@
 #? https://src.fedoraproject.org/rpms/rtaudio/blob/db1aa72863ccbfd480e22c2f7aefb41ebb8e2360/f/rtaudio.spec
+%global commit e5f0774b2156082ec3db998bd6b2a94b66ade8ac
+%global shortcommit %(c=%{commit}; echo ${c:0:7})
+%global commit_date 20260228
+%global ver .0.1
 
 Name:           rtaudio-nightly
-Version:        6.0.1
+Version:        %{ver}^%{commit_date}.git.%{shortcommit}
 Release:        1%?dist
 Summary:        Real-time Audio I/O Library
 License:        MIT
-URL:            https://www.music.mcgill.ca/~gary/rtaudio/
-Source0:        %url/release/rtaudio-%version.tar.gz
+URL:            https://github.com/thestk/rtaudio
+Source0:        %url/archive/%commit.tar.gz
 Packager:       madonuko <mado@fyralabs.com>
 BuildRequires:  alsa-lib-devel
+BuildRequires:  autoconf
+BuildRequires:  automake
 BuildRequires:  doxygen
 BuildRequires:  gcc-c++
 BuildRequires:  jack-audio-connection-kit-devel
@@ -46,7 +52,9 @@ Provides:       rtaudio-devel = %version-%release
 
 
 %prep
-%autosetup -n rtaudio-%version
+%autosetup -n rtaudio-%commit
+
+%conf
 # Fix encoding issues
 for file in tests/teststops.cpp; do
    sed 's|\r||' $file > $file.tmp
@@ -55,12 +63,12 @@ for file in tests/teststops.cpp; do
    mv -f $file.tmp2 $file
 done
 
+export CFLAGS="%optflags -fPIC"
+NOCONFIGURE=1 ./autogen.sh
+%configure --with-jack --with-alsa --with-pulse --enable-shared --disable-static --verbose
 
 %build
-export CFLAGS="%optflags -fPIC"
-%configure --with-jack --with-alsa --with-pulse --enable-shared --disable-static --verbose
 %make_build
-
 
 %install
 %make_install

@@ -4,6 +4,6 @@ project pkg {
     spec = "ipu6-camera-hal.spec"
   }
   labels {
-        weekly = 1
+        nightly = 1
     }
 }

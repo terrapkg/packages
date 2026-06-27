@@ -4,13 +4,13 @@
 %global crate xplr
 
 Name:           rust-xplr
-Version:        0.21.10
-Release:        1%{?dist}
+Version:        1.1.0
+Release:        1%?dist
 Summary:        Hackable, minimal, fast TUI file explorer
 
 License:        MIT
 URL:            https://crates.io/crates/xplr
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  mold

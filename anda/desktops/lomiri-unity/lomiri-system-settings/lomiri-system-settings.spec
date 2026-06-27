@@ -1,16 +1,17 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-system-settings
-%global commit 1b3d0ee6c1142d928a2b08a929723dbc41dc7fea
+%global commit a1bee4359f0544c9cea46d1744a7ff828b193725
 %forgemeta
 
 Name:       lomiri-system-settings
-Version:    1.3.0
-Release:    1%?dist
+Version:    1.4.0
+Release:    1%{?dist}
 Summary:    The system settings application for Lomiri
 License:    GPLv3
 URL:        https://gitlab.com/ubports/development/core/lomiri-system-settings
 Source0:    %{url}/-/archive/%commit/lomiri-system-settings-%commit.tar.gz
-Patch0:     https://sources.debian.org/data/main/l/lomiri-system-settings/1.0.1-2/debian/patches/1001_use-maliit-keyboard-for-language-plugin.patch
-Patch1:     https://sources.debian.org/data/main/l/lomiri-system-settings/1.0.1-2/debian/patches/2001_disable-current-language-switching.patch
+Patch0:     2002_use-Noto-font-instead-of-Ubuntu-font.patch
+Patch1:     2011_build-without-trust-store.patch
+Patch2:     2013_show-hotspot-on-desktop.patch
 
 BuildRequires: cmake
 BuildRequires: gcc-c++
@@ -73,10 +74,10 @@ developing applications that use %{name}.
 %dir %{_datadir}/lomiri-system-settings
 %{_datadir}/lomiri-system-settings/*.settings
 %{_datadir}/lomiri-system-settings/*.svg
-%{_datadir}/lomiri-system-settings/*.png
+%dnl %{_datadir}/lomiri-system-settings/*.png
 %{_datadir}/lomiri-system-settings/url-map.ini
-%dir %{_datadir}/lomiri-system-settings/icons
-%{_datadir}/lomiri-system-settings/icons/*.svg
+%dnl %dir %{_datadir}/lomiri-system-settings/icons
+%dnl %{_datadir}/lomiri-system-settings/icons/*.svg
 %{_datadir}/lomiri-system-settings/qml-plugins/
 %{_datadir}/lomiri-url-dispatcher/urls/lomiri-system-settings.url-dispatcher
 

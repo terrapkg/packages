@@ -1,4 +1,6 @@
 name: Update per branch
+permissions:
+  contents: read
 on:
   schedule:
     - cron: "*/30 * * * *"
@@ -6,13 +8,15 @@ on:
 
 jobs:
   autoupdate:
-    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    runs-on: ubuntu-24.04-arm
     strategy:
       matrix:
         branch:
           - frawhide
-          - f40
-          - f41
+          - f44
+          - f43
           - f42
           - el10
     container:
@@ -20,7 +24,7 @@ jobs:
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           ref: ${{ matrix.branch }}
           fetch-depth: 0
@@ -49,7 +53,7 @@ jobs:
             git config user.email "raboneko@fyralabs.com"
             git config gpg.format "ssh"
             git config user.signingkey "${{ runner.temp }}/signing_key"
-            msg="bump(branch): $(git status | grep modified | sed -r 's@.+/([^/]+)/[^/]+\n?@\1 @g' | tr -d '\n')"
+            msg="bump(branch): $(anda run andax/ci/update_commit_message.rhai)"
             git commit -S -a -m "$msg"
             git push -u origin --all
           fi

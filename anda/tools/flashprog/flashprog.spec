@@ -4,12 +4,12 @@ flashprog is a utility for detecting, reading, writing, verifying and erasing fl
 It supports a wide range of flash chips (most commonly found in SOIC8, DIP8, SOIC16, WSON8, PLCC32, DIP32, TSOP32, and TSOP40 packages), which use various protocols such as LPC, FWH, parallel flash, or SPI.}
 
 Name:           flashprog
-Version:        1.3
-Release:        1%{?dist}
+Version:        1.4
+Release:        2%{?dist}
 Summary:        Utility for detecting, reading, writing, verifying and erasing flash chips
 
-License:        GPL-2.0
-URL:            https://review.sourcearcade.org/flashprog
+License:        GPL-2.0-only
+URL:            https://flashprog.org
 
 Packager:       sadlerm <lerm@chromebooks.lol>
 
@@ -42,7 +42,7 @@ Summary:        Development headers for flashprog
 
 
 %prep
-%git_clone %{url} v%{version}
+%git_clone https://review.sourcearcade.org/flashprog v%{version}
 
 %build
 %make_build PREFIX=%{_prefix}

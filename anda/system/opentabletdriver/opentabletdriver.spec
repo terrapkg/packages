@@ -5,12 +5,12 @@
 # We aren't using Mono but RPM expected Mono
 %global __requires_exclude_from ^/usr/lib/opentabletdriver/.*$
 %global __os_install_post %{nil}
-%global dotnet_sdk_version 8.0
-%global dotnet_runtime_version 6.0
+%global dotnet_sdk_version 10.0
+%global dotnet_runtime_version 8.0
 
 Name: opentabletdriver
-Version: 0.6.5.1
-Release: 1%?dist
+Version: 0.6.7
+Release: 1%{?dist}
 Summary: A cross-platform open source tablet driver
 License: LGPLv3
 URL: https://github.com/OpenTabletDriver/OpenTabletDriver
@@ -19,7 +19,7 @@ Packager: Cappy Ishihara <cappy@fyralabs.com>
 
 
 # This package can be built using a newer .NET SDK version, but you
-# specifically need .NET 6.0 to run it.
+# specifically need .NET 8.0 to run it.
 BuildRequires: dotnet-sdk-%{dotnet_sdk_version}
 BuildRequires: git jq systemd-rpm-macros
 BuildRequires: gtk3-devel
@@ -41,12 +41,12 @@ git clone -b v%version %url .
 
 %build
 cd %{otddir}
-./eng/linux/package.sh --output bin
+./eng/bash/package.sh --output bin
 
 %install
 cd %{otddir}
 export DONT_STRIP=1
-PREFIX="%{_prefix}" ./eng/linux/package.sh --package Generic --build false
+PREFIX="%{_prefix}" ./eng/bash/package.sh --package Generic --build false
 mkdir -p "%{buildroot}"
 mv ./dist/files/* "%{buildroot}"/
 rm -rf ./dist

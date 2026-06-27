@@ -1,10 +1,10 @@
-%global commit 9d6b7d4733707c38f72e8a614528f1df591419f3
-%global commit_date 20240827
+%global commit 44794f29c89de994b0179aebabd2f5776c90d236
+%global commit_date 20251110
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           fluent-kde-theme
 Version:        %commit_date.%shortcommit
-Release:        1%?dist
+Release:        3%?dist
 Summary:        Fluent design theme for KDE
 
 License:        GPL-3.0-only
@@ -16,6 +16,13 @@ BuildRequires:  fdupes
 
 %description
 %summary
+
+%package sddm
+Summary:        Fluent sddm theme for KDE
+Supplements:    (sddm and fluent-kde-theme)
+
+%description sddm
+Fluent sddm theme for KDE Plasma desktop.
 
 %prep
 %autosetup -n Fluent-kde-%{commit}
@@ -41,6 +48,12 @@ sed -i "s|^[[:space:]]*WALLPAPER_DIR=.*|WALLPAPER_DIR=%{buildroot}%{_datadir}/wa
 # Invoke the installer now that variables are patched
 ./install.sh
 
+pushd sddm
+mkdir -p %{buildroot}%{_datadir}/sddm/themes
+sed -i "s|^[[:space:]]*THEME_DIR=.*|THEME_DIR=%{buildroot}%{_datadir}/sddm/themes|" install.sh
+./install.sh
+popd
+
 %fdupes %buildroot%_datadir
 
 %files
@@ -53,5 +66,10 @@ sed -i "s|^[[:space:]]*WALLPAPER_DIR=.*|WALLPAPER_DIR=%{buildroot}%{_datadir}/wa
 %{_datadir}/Kvantum/Fluent*/
 %{_datadir}/wallpapers/Fluent*/
 
+%files sddm
+%license LICENSE
+%_datadir/sddm/themes/*
+
 %changelog
-%autochangelog
+* Sat Jun 27 2026 madonuko <mado@fyralabs.com> - 20251110.44794f2-2
+- add sddm subpkg.
