@@ -1,7 +1,7 @@
 # Disabled because compiled without debug
 
 %global goipath         github.com/XTLS/Xray-core
-Version:                26.6.22
+Version:                26.6.27
 
 %global golicenses      LICENSE
 %global godocs          README.md SECURITY.md CODE_OF_CONDUCT.md

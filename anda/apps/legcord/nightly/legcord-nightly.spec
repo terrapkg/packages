@@ -1,5 +1,5 @@
-%global commit 158f537e7d4ce13ff7df49b6cb09c0cd27b8a517
-%global commit_date 20260616
+%global commit 0a022f149000bdaed644c2609e19aa7b8badf825
+%global commit_date 20260626
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global debug_package %nil
 # terrible evil no good very bad hack

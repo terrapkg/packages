@@ -1,7 +1,7 @@
 %define appid com.vysp3r.ProtonPlus
 
 Name:           protonplus
-Version:        0.5.20
+Version:        0.5.21
 Release:        1%{?dist}
 Summary:        A modern compatibility tools manager
 License:        GPL-3.0-or-later

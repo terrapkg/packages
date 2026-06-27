@@ -1,7 +1,7 @@
 %global real_name nvidia-xconfig
 
 Name:           %{real_name}-580xx
-Version:        580.167.08
+Version:        580.173.02
 Release:        1%{?dist}
 Summary:        NVIDIA X configuration file editor
 Epoch:          3

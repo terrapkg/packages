@@ -4,7 +4,7 @@
 %global commit_date 20260621
 
 %global goipath         github.com/v2fly/v2ray-core
-Version:                %{ver}^%{commit_date}git.%{shortcommit}
+Version:                %(echo %ver | sed -E 's/^v//')^%{commit_date}git.%{shortcommit}
 
 %global golicenses      LICENSE
 %global godocs          README.md SECURITY.md 
