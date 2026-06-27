@@ -20,23 +20,12 @@ BuildRequires:  pkgconfig(libarchive)
 BuildRequires:  pkgconfig(libzstd)
 BuildRequires:  pkgconfig(faad2)
 BuildRequires:  pkgconfig(libenet)
+BuildSystem:    cmake
 
 Provides:       melonDS
 
 %description
 %{summary}.
-
-%prep
-%autosetup -C
-
-%conf
-%cmake
-
-%build
-%cmake_build
-
-%install
-%cmake_install
 
 %files
 %doc README.md
