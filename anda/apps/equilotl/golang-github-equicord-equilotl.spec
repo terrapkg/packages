@@ -97,5 +97,5 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %gopkgfiles
 
 %changelog
-* Sat Jun 27 2026 madonuko <mado@fyralabs.com>madonuko <mado@fyralabs.com>(none)(none) - 2.2.6-12.2.6-1(none)-(none)(none)-(none)
+* Sat Jun 27 2026 madonuko <mado@fyralabs.com> - 2.2.6-1
 - Initial package
