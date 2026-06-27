@@ -22,7 +22,7 @@ BuildRequires:  kf6-kirigami-addons-devel
 BuildRequires:  kf6-kirigami-devel
 BuildRequires:  kf6-knotifications-devel
 BuildRequires:  kf6-kwindowsystem-devel
-BuildRequires:  kf6-kiconthemes-devel
+BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtdeclarative-devel
 BuildRequires:  qt6-qtsvg-devel
