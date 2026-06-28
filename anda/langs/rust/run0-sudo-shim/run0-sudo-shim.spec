@@ -1,6 +1,6 @@
 Name:			run0-sudo-shim
 Version:		1.3.1
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		An imitation of sudo, using run0 internally
 SourceLicense:	BSD-3-Clause
 License:		(Apache-2.0 OR MIT) AND BSD-3-Clause AND MIT
@@ -8,6 +8,7 @@ URL:			https://github.com/LordGrimmauld/run0-sudo-shim
 Source0:		%url/archive/refs/tags/%version.tar.gz
 BuildRequires:	rpm_macro(cargo_install) rust-packaging
 Conflicts:		sudo
+Provides:		sudo = %evr
 
 %description
 run0-sudo-shim attempts to imitate sudo as close as possible, while actually using run0 in the back.
