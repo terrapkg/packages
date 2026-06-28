@@ -36,5 +36,5 @@ ln -s %_bindir/run0-sudo-shim %buildroot%_bindir/sudo
 %_bindir/sudo
 
 %changelog
-* Sun Jun 28 2026 madonuko <madonuko@outlook.com> - 1.3.1-2
+* Sun Jun 28 2026 madonuko <mado@fyralabs.com> - 1.3.1-2
 - add provides sudo
