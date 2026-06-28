@@ -10,6 +10,7 @@ Packager:       madonuko <mado@fyralabs.com>
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
+BuildRequires:  python3-pip
 
 
 %global _description %{expand:
