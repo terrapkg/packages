@@ -59,17 +59,14 @@ go mod vendor
 %doc README.md
 %license LICENSE.txt
 %{_bindir}/ktailctl
-%dnl %{_libdir}/qt6/qml/org/fkoehler/KTailctl/Components/*.qml
-%dnl %{_libdir}/qt6/qml/org/fkoehler/KTailctl/Components/*.version
-%dnl %{_libdir}/qt6/qml/org/fkoehler/KTailctl/Components/*.qmltypes
-%dnl %{_libdir}/qt6/qml/org/fkoehler/KTailctl/Components/qmldir
-# Exclusive libs that the package needs to run
-%dnl %{_libdir}/qt6/qml/org/fkoehler/KTailctl/Components/libktailctl_components.so
 %{_libdir}/libktailctl_wrapper_logging.so
 %{_appsdir}/org.fkoehler.KTailctl.desktop
 %{_scalableiconsdir}/org.fkoehler.KTailctl.svg
 %{_metainfodir}/org.fkoehler.KTailctl.metainfo.xml
 
 %changelog
+* Sat Jun 27 2026 Owen Zimmerman <owen@fyralabs.com> - 0.22.0-1
+- Update spec for 0.22.0
+
 * Sat May 23 2026 Owen Zimmerman <owen@fyralabs.com> - 0.21.5-1
 - Initial commit
