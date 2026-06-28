@@ -22,6 +22,7 @@ BuildRequires:  kf6-kirigami-addons-devel
 BuildRequires:  kf6-kirigami-devel
 BuildRequires:  kf6-knotifications-devel
 BuildRequires:  kf6-kwindowsystem-devel
+BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtdeclarative-devel
 BuildRequires:  qt6-qtsvg-devel
@@ -42,7 +43,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %prep
 %autosetup -n KTailctl-%{version}
-cd src/wrapper
+cd src/tailscale/wrapper
 go mod vendor
 
 %conf
@@ -58,17 +59,14 @@ go mod vendor
 %doc README.md
 %license LICENSE.txt
 %{_bindir}/ktailctl
-%{_libdir}/qt6/qml/org/fkoehler/KTailctl/Components/*.qml
-%{_libdir}/qt6/qml/org/fkoehler/KTailctl/Components/*.version
-%{_libdir}/qt6/qml/org/fkoehler/KTailctl/Components/*.qmltypes
-%{_libdir}/qt6/qml/org/fkoehler/KTailctl/Components/qmldir
-# Exclusive libs that the package needs to run
-%{_libdir}/qt6/qml/org/fkoehler/KTailctl/Components/libktailctl_components.so
 %{_libdir}/libktailctl_wrapper_logging.so
 %{_appsdir}/org.fkoehler.KTailctl.desktop
 %{_scalableiconsdir}/org.fkoehler.KTailctl.svg
 %{_metainfodir}/org.fkoehler.KTailctl.metainfo.xml
 
 %changelog
+* Sat Jun 27 2026 Owen Zimmerman <owen@fyralabs.com> - 0.22.0-1
+- Update spec for 0.22.0
+
 * Sat May 23 2026 Owen Zimmerman <owen@fyralabs.com> - 0.21.5-1
 - Initial commit
