@@ -21,6 +21,8 @@ ExclusiveArch:  x86_64 aarch64
 
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  unzip
+Requires(post): /usr/bin/chown
+Requires(post): /usr/bin/chmod
 Recommends:     1password
 Recommends:     polkit
 
