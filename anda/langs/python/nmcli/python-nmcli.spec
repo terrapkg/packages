@@ -45,5 +45,5 @@ Summary:        %{summary}
 
 
 %changelog
-* Sun Jun 28 2026 madonuko <mado@fyralabs.com>madonuko <mado@fyralabs.com> - 1.8.0-1
+* Sun Jun 28 2026 madonuko <mado@fyralabs.com> - 1.8.0-1
 - Initial package
