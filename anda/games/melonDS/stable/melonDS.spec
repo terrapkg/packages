@@ -1,12 +1,13 @@
 %define debug_package %{nil}
 
 
-Name:           melonds-nightly
+Name:           melonds
 Version:        1.1
 Release:        1%{?dist}
 Summary:        DS emulator, sorta
 License:        GPL-3.0-or-later
 URL:            https://melonds.kuribo64.net/
+Source0:        https://github.com/melonDS-emu/melonDS/archive/refs/tags/%{version}.tar.gz
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
