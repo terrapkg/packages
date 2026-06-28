@@ -1,6 +1,5 @@
 %define debug_package %{nil}
 
-
 Name:           melonds
 Version:        1.1
 Release:        1%{?dist}
