@@ -6,6 +6,7 @@ SourceLicense:	BSD-3-Clause
 License:		(Apache-2.0 OR MIT) AND BSD-3-Clause AND MIT
 URL:			https://github.com/LordGrimmauld/run0-sudo-shim
 Source0:		%url/archive/refs/tags/%version.tar.gz
+Packager:		madonuko <mado@fyralabs.com>
 BuildRequires:	rpm_macro(cargo_install) rust-packaging
 Conflicts:		sudo
 Provides:		sudo = %evr
