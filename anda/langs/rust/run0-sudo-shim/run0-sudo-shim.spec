@@ -34,3 +34,7 @@ ln -s %_bindir/run0-sudo-shim %buildroot%_bindir/sudo
 %license LICENSE.dependencies
 %_bindir/run0-sudo-shim
 %_bindir/sudo
+
+%changelog
+* Sun Jun 28 2026 madonuko <madonuko@outlook.com> - 1.3.1-2
+- add provides sudo
