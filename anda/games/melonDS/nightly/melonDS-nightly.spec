@@ -1,12 +1,18 @@
 %define debug_package %{nil}
 
-Name:           melonds-nightly
-Version:        1.1
+%global commit 10a173b5536fc75cd93f8a3868349dad963542ef
+%global commit_date 20260607
+%global shortcommit %(c=%{commit}; echo ${c:0:7})
+
+%global ver 1.1
+
+Name:           melonds
+Version:        %{ver}^%{commit_date}git.%{shortcommit}
 Release:        1%{?dist}
 Summary:        DS emulator, sorta
 License:        GPL-3.0-or-later
 URL:            https://melonds.kuribo64.net/
-Source0:        https://github.com/melonDS-emu/melonDS/archive/refs/tags/%{version}.tar.gz
+Source0:        https://github.com/melonDS-emu/melonDS/archive/%{commit}/melonDS-%{commit}.tar.gz
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
