@@ -13,6 +13,7 @@ Source2:        https://raw.githubusercontent.com/s-adi-dev/nmgui/refs/heads/mai
 BuildRequires:  python3-devel
 BuildRequires:  python3-pip
 BuildRequires:  python3-setuptools
+BuildRequires:  desktop-file-utils
 BuildArch:      noarch
 Packager:       madonuko <mado@fyralabs.com>
 
