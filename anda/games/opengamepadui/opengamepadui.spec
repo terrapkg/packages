@@ -56,7 +56,7 @@ rm -rf %{build_dir}
 git clone %{url} %{build_dir} -b v%{version}
 cd %{build_dir}
 git checkout tags/v%{version}
-%patch0 -p1
+%patch 0 -p1
 
 %build
 cd %{build_dir}
