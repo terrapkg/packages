@@ -6,9 +6,9 @@
 
 %global ver 1.1
 
-Name:           melonds
+Name:           melonds-nightly
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        DS emulator, sorta
 License:        GPL-3.0-or-later
 URL:            https://melonds.kuribo64.net/
