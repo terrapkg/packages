@@ -16,6 +16,7 @@ BuildRequires:  python3-setuptools
 BuildRequires:  python3-pip
 BuildRequires:  python3-hatchling
 BuildRequires:  maturin
+BuildRequires:  pkgconfig(openssl)
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
