@@ -1,1 +1,1 @@
-rpm.version(pypi("magika"));
+rpm.version(gh("google/magika"));
