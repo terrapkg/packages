@@ -23,6 +23,7 @@ BuildRequires:  pkgconfig(libsoup-3.0)
 BuildRequires:  pkgconfig(gtksourceview-5)
 BuildRequires:  pkgconfig(libpulse)
 BuildRequires:  pkgconfig(gudev-1.0)
+BuildRequires:  pkgconfig(upower-glib)
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
