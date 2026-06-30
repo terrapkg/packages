@@ -1,6 +1,6 @@
 %global forgeurl https://github.com/nakst/gf
 
-%global commit 9a5dbcc90dc9ca9580f6ce2854cd67e2e507b0c1
+%global commit 1c04ed95d45d49fb4b06cbc620c61acd58818977
 %global shortcommit %{sub %{commit} 0 7}
 %global commitdate 20251231
 
@@ -14,7 +14,6 @@ Summary:        A GDB frontend for Linux
 License:        MIT
 URL:            %{forgeurl}
 Source0:        %{forgesource}
-Patch0:         01-fix-designated-initializers.patch
 
 BuildRequires:  gcc-c++
 BuildRequires:  freetype-devel

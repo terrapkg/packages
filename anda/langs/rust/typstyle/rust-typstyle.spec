@@ -4,13 +4,13 @@
 %global crate typstyle
 
 Name:           rust-typstyle
-Version:        0.14.4
-Release:        1%?dist
+Version:        0.15.0
+Release:        1%{?dist}
 Summary:        CLI for Typstyle
 
 License:        Apache-2.0
 URL:            https://crates.io/crates/typstyle
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 Source1:        https://raw.githubusercontent.com/typstyle-rs/typstyle/v%{version}/LICENSE
 Packager:       metcya <metcya@gmail.com>
 

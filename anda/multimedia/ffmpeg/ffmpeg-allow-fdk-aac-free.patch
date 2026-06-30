@@ -1,0 +1,33 @@
+From 26eb0232fa41d603a2f016faf5610de79f694c02 Mon Sep 17 00:00:00 2001
+From: Andreas Schneider <asn@cryptomilk.org>
+Date: Sun, 10 May 2026 00:10:38 +0200
+Subject: [PATCH] fdk-aac-free-devel is GPL compatible
+
+See https://bugzilla.redhat.com/show_bug.cgi?id=1501522#c112
+---
+ configure | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/configure b/configure
+index 1759694..6cf4f08 100755
+--- a/configure
++++ b/configure
+@@ -2003,7 +2003,6 @@ EXTERNAL_LIBRARY_GPL_LIST="
+ 
+ EXTERNAL_LIBRARY_NONFREE_LIST="
+     decklink
+-    libfdk_aac
+     libmpeghdec
+ "
+ 
+@@ -2044,6 +2043,7 @@ EXTERNAL_LIBRARY_LIST="
+     libcodec2
+     libdav1d
+     libdc1394
++    libfdk_aac
+     libflite
+     libfontconfig
+     libfreetype
+-- 
+2.54.0
+

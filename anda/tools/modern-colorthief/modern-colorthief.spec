@@ -1,12 +1,11 @@
 %global pypi_name modern_colorthief
 %bcond bootstrap 0
 %bcond docs %{without bootstrap}
-%bcond test %{without bootstrap}
 
 # The srcrpm is not prefixed with Python because the source is mostly Rust
 Name:          modern-colorthief
-Version:       0.1.12
-Release:       1%?dist
+Version:       0.3.0
+Release:       1%{?dist}
 Summary:       ColorThief reimagined
 SourceLicense: MIT
 License:       (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception) AND BSD-2-Clause AND (CC0-1.0 OR Apache-2.0) AND (MIT OR Apache-2.0 OR NCSA) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MIT AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT)
@@ -26,15 +25,6 @@ BuildRequires: python3dist(modern-colorthief)
 BuildRequires: python3dist(myst-parser)
 BuildRequires: python3dist(shibuya)
 BuildRequires: python3dist(sphinx)
-%endif
-%if %{with test}
-%if 0%{?fedora} > 40
-BuildRequires: poetry
-BuildRequires: python3dist(poetry)
-%endif
-BuildRequires: python3dist(colorthief)
-BuildRequires: python3dist(fast-colorthief)
-BuildRequires: python3dist(pytest)
 %endif
 
 %description
@@ -78,25 +68,13 @@ done
 
 %{cargo_license_online} > LICENSE.dependencies
 
-%if %{with test}
-%check
-# Poetry doesn't exist on EL and is too old on 40
-%if 0%{?fedora} <= 40 || 0%{?rhel}
-%pytest tests/*.py
-%else
-# This is in the wrong spot in pyproject.toml and Poetry hates it
-# May seem like defeating the purpose of testing but the other tests can be useful
-sed -iE 's/python = ">=3.9,<3.14"//' pyproject.toml
-poetry run pytest
-%endif
-%endif
-
 %files -n python3-%{name}
 %doc DIFFERENCES.md
 %doc PKG-INFO
 %doc README.md
 %license LICENSE
 %license LICENSE.dependencies
+%{_bindir}/%{name}
 %{python3_sitearch}/%{pypi_name}
 %{python3_sitearch}/%{pypi_name}-%{version}.dist-info/
 

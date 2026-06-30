@@ -2,13 +2,13 @@
 %global crate matugen
 
 Name:           rust-matugen
-Version:        4.0.0
-Release:        1%?dist
+Version:        4.1.0
+Release:        1%{?dist}
 Summary:        Material you color generation tool with templates
 
 License:        GPL-2.0-or-later
 URL:            https://crates.io/crates/matugen
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 Source1:        https://raw.githubusercontent.com/InioX/matugen/refs/tags/v%version/README.md
 Source2:        https://raw.githubusercontent.com/InioX/matugen/refs/tags/v%version/CHANGELOG.md
 Source3:        https://raw.githubusercontent.com/InioX/matugen/refs/tags/v%version/LICENSE

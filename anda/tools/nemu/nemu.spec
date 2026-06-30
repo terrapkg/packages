@@ -1,6 +1,6 @@
 Name:           nemu
-Version:        3.4.0
-Release:        1%?dist
+Version:        3.5.0
+Release:        1%{?dist}
 Summary:        Ncurses UI for QEMU
 
 URL:            https://github.com/nemuTUI/nemu

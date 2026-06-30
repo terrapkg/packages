@@ -11,7 +11,7 @@ Summary:        Display current network utilization by process, connection and r
 
 License:        MIT
 URL:            https://crates.io/crates/bandwhich
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 # Automatically generated patch to strip dependencies and normalize metadata
 Patch:          bandwhich-fix-metadata-auto.diff
 

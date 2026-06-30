@@ -10,28 +10,25 @@
 %global _systemd_util_dir %{_prefix}/lib/systemd
 %endif
 
-Name:           %{real_name}-580
-Version:        580.126.20
-Release:        1%?dist
+Name:           %{real_name}-580xx
+Version:        580.173.02
+Release:        1%{?dist}
 Summary:        NVIDIA's proprietary display driver for NVIDIA graphic cards
 Epoch:          3
 License:        NVIDIA License
 URL:            http://www.nvidia.com/object/unix.html
-ExclusiveArch:  %{ix86} x86_64 aarch64
-
 %dnl Source0:        %{name}-%{version}-i386.tar.xz
 %dnl Source1:        %{name}-%{version}-x86_64.tar.xz
 %dnl Source2:        %{name}-%{version}-aarch64.tar.xz
-Source8:        70-%{real_name}.preset
-Source9:        70-%{real_name}-cuda.preset
-Source10:       10-nvidia.conf
+Source8:        70-nvidia-driver.preset
+Source9:        70-nvidia-driver-cuda.preset
 Source13:       alternate-install-present
-
 Source40:       com.nvidia.driver.metainfo.xml
 Source41:       parse-supported-gpus.py
 Source42:       com.nvidia.driver.png
-
 Source99:       nvidia-generate-tarballs.sh
+ExclusiveArch:  %{ix86} x86_64 aarch64
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %ifarch x86_64 aarch64
 BuildRequires:  libappstream-glib
@@ -47,13 +44,15 @@ BuildRequires:  systemd-rpm-macros
 BuildRequires:  wget
 BuildRequires:  coreutils
 
-Requires:       %{real_name}-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}
-Requires:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
+Requires:       %{name}-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}
+Requires:       nvidia-580xx-kmod-common = %{?epoch:%{epoch}:}%{version}
 
 Conflicts:      nvidia-x11-drv
 Conflicts:      nvidia-x11-drv-470xx
 Conflicts:      xorg-x11-drv-nvidia
 Conflicts:      xorg-x11-drv-nvidia-470xx
+
+Provides:       %{real_name}-580 = %{evr}
 
 %description
 This package provides the most recent NVIDIA display driver which allows for
@@ -74,7 +73,7 @@ Requires:       libglvnd-egl%{?_isa} >= 1.0
 Requires:       libglvnd-gles%{?_isa} >= 1.0
 Requires:       libglvnd-glx%{?_isa} >= 1.0
 Requires:       libglvnd-opengl%{?_isa} >= 1.0
-Requires:       libnvidia-ml-580%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       libnvidia-ml-580xx%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       vulkan-loader
 %if 0%{?fedora}
 %ifarch x86_64
@@ -82,14 +81,16 @@ Requires:       (%{name}-libs(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
 %endif
 # dlopened
-Requires:       libnvidia-gpucomp-580%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-Requires:       libnvidia-ml-580%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       libnvidia-gpucomp-580xx%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       libnvidia-ml-580xx%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       %{name}-cuda-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 Conflicts:      nvidia-x11-drv-libs
 Conflicts:      nvidia-x11-drv-470xx-libs
 Conflicts:      xorg-x11-drv-nvidia-libs
 Conflicts:      xorg-x11-drv-nvidia-470xx-libs
+
+Provides:       %{real_name}-580-libs = %{evr}
 
 %description libs
 This package provides the shared libraries for %{name}.
@@ -98,20 +99,21 @@ This package provides the shared libraries for %{name}.
 Summary:        Libraries for %{name}-cuda
 Provides:       %{name}-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 Obsoletes:      %{name}-devel < %{?epoch:%{epoch}:}%{version}-%{release}
-Requires:       libnvidia-ml-580 = %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:       %{real_name}-580-cuda-libs = %{evr}
+Requires:       libnvidia-ml-580xx = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       %{name}-cuda-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %ifarch x86_64 aarch64
-Requires:       libnvidia-cfg-580 = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       libnvidia-cfg-580xx = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
 %if 0%{?fedora}
 %ifarch x86_64
-Requires:       (%{name}-cuda-libs-580(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
+Requires:       (%{name}-cuda-libs(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
 %endif
 %endif
 # dlopened:
-Requires:       libnvidia-gpucomp-580%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-Requires:       libnvidia-ml-580 = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       libnvidia-gpucomp-580xx%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       libnvidia-ml-580xx = %{?epoch:%{epoch}:}%{version}-%{release}
 
 Conflicts:      xorg-x11-drv-nvidia-cuda-libs
 Conflicts:      xorg-x11-drv-nvidia-470xx-cuda-libs
@@ -119,48 +121,51 @@ Conflicts:      xorg-x11-drv-nvidia-470xx-cuda-libs
 %description cuda-libs
 This package provides the CUDA libraries for %{name}-cuda.
 
-%package -n libnvidia-fbc-580
+%package -n libnvidia-fbc-580xx
 Summary:        NVIDIA OpenGL-based Framebuffer Capture libraries
-Provides:       %{real_name}-NvFBCOpenGL-580 = %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:       %{real_name}-NvFBCOpenGL-580xx = %{?epoch:%{epoch}:}%{version}-%{release}
 Obsoletes:      %{real_name}-NvFBCOpenGL < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:       libnvidia-fbc-580 = %{evr}
 %if 0%{?fedora}
 %ifarch x86_64
-Requires:       (libnvidia-fbc-580(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
+Requires:       (libnvidia-fbc-580xx(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
 %endif
 %endif
 # dlopened:
-Requires:       %{name}-cuda-libs-580%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       %{name}-cuda-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 
-%description -n libnvidia-fbc-580
+%description -n libnvidia-fbc-580xx
 This library provides a high performance, low latency interface to capture and
 optionally encode the composited framebuffer of an X screen. NvFBC are private
 APIs that are only available to NVIDIA approved partners for use in remote
 graphics scenarios.
 
-%package -n libnvidia-gpucomp-580
+%package -n libnvidia-gpucomp-580xx
 Summary:        NVIDIA library for shader compilation (nvgpucomp)
 %if 0%{?fedora}
 %ifarch x86_64
-Requires:       (libnvidia-gpucomp-580(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
+Requires:       (libnvidia-gpucomp-580xx(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
 %endif
 %endif
+Provides:       libnvidia-gpucomp-580 = %{evr}
 
-%description -n libnvidia-gpucomp-580
+%description -n libnvidia-gpucomp-580xx
 This package contains the private libnvidia-gpucomp runtime library which is used by
 other driver components.
 
-%package -n libnvidia-ml-580
+%package -n libnvidia-ml-580xx
 Summary:        NVIDIA Management Library (NVML)
-Provides:       cuda-nvml-580%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-Provides:       %{real_name}-NVML-580 = %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:       cuda-nvml-580xx%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:       %{real_name}-NVML-580xx = %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:       libnvidia-ml-580 = %{evr}
 %if 0%{?fedora}
 %ifarch x86_64
-Requires:       (libnvidia-ml-580(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
+Requires:       (libnvidia-ml-580xx(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
 %endif
 %endif
 Obsoletes:      %{real_name}-NVML < %{?epoch:%{epoch}:}%{version}-%{release}
 
-%description -n libnvidia-ml-580
+%description -n libnvidia-ml-580xx
 A C-based API for monitoring and managing various states of the NVIDIA GPU
 devices. It provides a direct access to the queries and commands exposed via
 nvidia-smi. The run-time version of NVML ships with the NVIDIA display driver,
@@ -170,38 +175,41 @@ to be a platform for building 3rd party applications.
 
 %ifarch x86_64 aarch64
 
-%package -n libnvidia-cfg-580
+%package -n libnvidia-cfg-580xx
 Summary:        NVIDIA Config public interface (nvcfg)
+Provides:       libnvidia-cfg-580 = %{evr}
 
-%description -n libnvidia-cfg-580
+%description -n libnvidia-cfg-580xx
 This package contains the private libnvidia-cfg runtime library which is used by
 other driver components.
 
 %package cuda
 Summary:        CUDA integration for %{name}
-Requires:       %{name}-cuda-libs-580%{?_isa} = %{?epoch:%{epoch}:}%{version}
-Requires:       nvidia-580-kmod-common = %{?epoch:%{epoch}:}%{version}
-Requires:       nvidia-persistenced-580 = %{?epoch:%{epoch}:}%{version}
+Requires:       %{name}-cuda-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}
+Requires:       nvidia-580xx-kmod-common = %{?epoch:%{epoch}:}%{version}
+Requires:       nvidia-persistenced-580xx = %{?epoch:%{epoch}:}%{version}
 Requires:       opencl-filesystem
 Requires:       ocl-icd
 
 Conflicts:      xorg-x11-drv-nvidia-cuda
 Conflicts:      xorg-x11-drv-nvidia-470xx-cuda
 
+Provides:       %{real_name}-580-cuda = %{evr}
+
 %description cuda
 This package provides the CUDA integration components for %{name}.
 
 %if 0%{?fedora} || 0%{?rhel} < 10
-%package -n xorg-x11-nvidia-580
+%package -n xorg-x11-nvidia-580xx
 Summary:        X.org X11 NVIDIA driver and extensions
 Requires:       %{name}%{?_isa} = %{?epoch:%{epoch}:}%{version}
 Requires:       xorg-x11-server-Xorg%{?_isa}
-Supplements:    (%{real_name}-580 and xorg-x11-server-Xorg)
-
 Conflicts:      xorg-x11-drv-nvidia
 Conflicts:      xorg-x11-drv-nvidia-470xx
+Provides:       xorg-x11-nvidia-580 = %{evr}
+Supplements:    (%{real_name}-580xx and xorg-x11-server-Xorg)
 
-%description -n xorg-x11-nvidia-580
+%description -n xorg-x11-nvidia-580xx
 The NVIDIA X.org X11 driver and associated components.
 %endif
 
@@ -234,6 +242,9 @@ rm -f libnvidia-pkcs11-openssl3.so.%{version}
 rm -f libnvidia-pkcs11.so.%{version}
 %endif
 %endif
+
+mv libGLX_nvidia.so.%{version} libGLX_nvidia.so.0
+ln -sf libGLX_nvidia.so.0 libGLX_nvidia.so.%{version}
 
 # Create symlinks for shared objects
 ldconfig -vn .
@@ -276,11 +287,9 @@ ln -sf ../libnvidia-allocator.so.%{version} %{buildroot}%{_libdir}/gbm/nvidia-dr
 %endif
 
 %ifarch x86_64
-
 # NGX Proton/Wine library
 mkdir -p %{buildroot}%{_libdir}/nvidia/wine/
 cp -a *.dll %{buildroot}%{_libdir}/nvidia/wine/
-
 %endif
 
 %ifarch x86_64 aarch64
@@ -297,7 +306,7 @@ install -p -m 0755 -D nvidia.icd %{buildroot}%{_sysconfdir}/OpenCL/vendors/nvidi
 
 # Binaries
 mkdir -p %{buildroot}%{_bindir}
-install -p -m 0755 nvidia-{debugdump,smi,cuda-mps-control,cuda-mps-server,bug-report.sh,ngx-updater,powerd} %{buildroot}%{_bindir}
+install -p -m 0755 nvidia-{debugdump,smi,cuda-mps-control,cuda-mps-server,ngx-updater,powerd} %{buildroot}%{_bindir}
 
 # Man pages
 mkdir -p %{buildroot}%{_mandir}/man1/
@@ -305,7 +314,7 @@ install -p -m 0644 nvidia-{smi,cuda-mps-control}*.gz %{buildroot}%{_mandir}/man1
 
 %if 0%{?fedora} || 0%{?rhel} < 10
 # X stuff
-install -p -m 0644 -D %{SOURCE10} %{buildroot}%{_sysconfdir}/X11/xorg.conf.d/10-nvidia.conf
+install -p -m 0644 -D nvidia-drm-outputclass.conf %{buildroot}%{_sysconfdir}/X11/xorg.conf.d/10-nvidia.conf
 install -p -m 0755 -D nvidia_drv.so %{buildroot}%{_libdir}/xorg/modules/drivers/nvidia_drv.so
 install -p -m 0755 -D libglxserver_nvidia.so.%{version} %{buildroot}%{_libdir}/xorg/modules/extensions/libglxserver_nvidia.so
 %endif
@@ -347,10 +356,10 @@ install -p -m 0644 -D sandboxutils-filelist.json %{buildroot}%{_datadir}/nvidia/
 
 # dnf needs-restarting plugin
 # dnf4 only for the moment: https://github.com/rpm-software-management/dnf5/issues/1815
-%if 0%{?fedora} < 42 || 0%{?rhel}
+%if 0%{?fedora} < 42 || %{defined rhel}
 mkdir -p %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d
-echo %{real_name} > %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{real_name}.conf
-echo %{real_name}-cuda > %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{real_name}-cuda.conf
+echo %{name} > %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}.conf
+echo %{name}-cuda > %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}-cuda.conf
 %endif
 
 %check
@@ -359,6 +368,7 @@ echo %{real_name}-cuda > %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting
 appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.metainfo.xml
 
 %endif
+
 
 %ifarch x86_64 aarch64
 
@@ -391,7 +401,6 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %license LICENSE
 %doc NVIDIA_Changelog README.txt html supported-gpus/supported-gpus.json
 %dir %{_sysconfdir}/nvidia
-%{_bindir}/nvidia-bug-report.sh
 %{_bindir}/nvidia-ngx-updater
 %ifarch x86_64
 %{_bindir}/nvidia-pcc
@@ -409,18 +418,18 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %{_unitdir}/nvidia-resume.service
 %{_unitdir}/nvidia-suspend.service
 %{_unitdir}/nvidia-suspend-then-hibernate.service
-%if 0%{?fedora} < 42 || 0%{?rhel}
-%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{real_name}.conf
+%if 0%{?fedora} < 42 || %{defined rhel}
+%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}.conf
 %endif
 
 %if 0%{?fedora} || 0%{?rhel} < 10
-%files -n xorg-x11-nvidia-580
+%files -n xorg-x11-nvidia-580xx
 %config(noreplace) %{_sysconfdir}/X11/xorg.conf.d/10-nvidia.conf
 %{_libdir}/xorg/modules/extensions/libglxserver_nvidia.so
 %{_libdir}/xorg/modules/drivers/nvidia_drv.so
 %endif
 
-%files -n libnvidia-cfg-580
+%files -n libnvidia-cfg-580xx
 %{_libdir}/libnvidia-cfg.so.1
 %{_libdir}/libnvidia-cfg.so.%{version}
 
@@ -523,16 +532,17 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %endif
 %endif
 
-%files -n libnvidia-fbc-580
+%files -n libnvidia-fbc-580xx
 %{_libdir}/libnvidia-fbc.so.1
 %{_libdir}/libnvidia-fbc.so.%{version}
 
-%files -n libnvidia-gpucomp-580
+%files -n libnvidia-gpucomp-580xx
 %{_libdir}/libnvidia-gpucomp.so.%{version}
 
-%files -n libnvidia-ml-580
+%files -n libnvidia-ml-580xx
 %{_libdir}/libnvidia-ml.so.1
 %{_libdir}/libnvidia-ml.so.%{version}
 
 %changelog
-%autochangelog
+* Mon Apr 13 2026 Gilver E. <roachy@fyralabs.com> - 3:580.142-2
+- Update spec for Terra packaging team

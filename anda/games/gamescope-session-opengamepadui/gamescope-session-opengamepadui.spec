@@ -1,15 +1,16 @@
-%global commit 1a3fdb7fa15a4bba7204bef69702b7a10a297828
+%global commit 88087a086ab732211c466b41f5d64229ce51c050
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260205
+%global commit_date 20260411
 
 Name:           gamescope-session-opengamepadui
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Gamescope session for OpenGamepadUI
 License:        GPL-3.0-only
 URL:            https://github.com/OpenGamingCollective/gamescope-session-opengamepadui
 Source0:        %url/archive/%commit.tar.gz
 Packager:       Tulip Blossom <tulilirockz@outlook.com>
+Requires:       gamescope-session
 Requires:       opengamepadui
 BuildArch:      noarch
 

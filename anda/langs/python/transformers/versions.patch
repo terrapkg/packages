@@ -1,0 +1,22 @@
+diff --git a/setup.py b/setup.py
+index d24f3bb665..0f0a2803a1 100644
+--- a/setup.py
++++ b/setup.py
+@@ -86,7 +86,7 @@ _deps = [
+     "fugashi>=1.0",
+     "GitPython<3.1.19",
+     "hf-doc-builder",
+-    "huggingface-hub>=1.5.0,<2.0",
++    "huggingface-hub",
+     "ipadic>=1.0.0,<2.0",
+     "jinja2>=3.1.0",
+     "jmespath>=1.0.1",
+@@ -147,7 +147,7 @@ _deps = [
+     "tomli",
+     "tiktoken",
+     "timm>=1.0.23",
+-    "tokenizers>=0.22.0,<=0.23.0",
++    "tokenizers>=0.22.0",
+     "torch>=2.4",
+     "torchaudio",
+     "torchvision",

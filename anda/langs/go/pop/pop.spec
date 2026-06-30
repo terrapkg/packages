@@ -1,12 +1,12 @@
 %global debug_package %{nil}
 
 %global goipath github.com/charmbracelet/pop
-Version:        0.2.0
+Version:        0.2.1
 
 %gometa -f
 
 Name:           pop
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Send emails from your terminal
 URL:            https://github.com/charmbracelet/%{name}
 Source0:        https://github.com/charmbracelet/%{name}/archive/refs/tags/v%{version}.tar.gz

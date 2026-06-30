@@ -1,7 +1,7 @@
 %global debug_package %{nil}
-%global commit da921f79f673d816b99c1f974dfc895e8ede3f64
+%global commit 0d5ba31069ead844e231ed1ac637ac8ef571d63a
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260303
+%global commit_date 20260618
 %global modulename intel-ipu6
 # Actual "release" version, currently unused as the release versions are back and forth on if on if they use 1.0.0 or 1.0.1
 %global ver 1.0.1
@@ -9,7 +9,7 @@
 Name:           dkms-%{modulename}
 Summary:        DKMS module for %{modulename}
 Version:        0^%{commit_date}git.%{shortcommit}
-Release:        1%?dist
+Release:        1%{?dist}
 License:        GPL-2.0-or-later
 URL:            https://github.com/intel/ipu6-drivers
 Source0:        %{url}/archive/%{commit}.tar.gz#/ipu6-drivers-%{shortcommit}.tar.gz

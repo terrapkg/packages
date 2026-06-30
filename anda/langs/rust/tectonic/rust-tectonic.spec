@@ -4,13 +4,13 @@
 %global crate tectonic
 
 Name:           rust-tectonic
-Version:        0.15.0
+Version:        0.16.9
 Release:        1%{?dist}
 Summary:        Modernized, complete, embeddable TeX/LaTeX engine
 
 License:        MIT
 URL:            https://crates.io/crates/tectonic
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 
 BuildRequires:  pkgconfig(fontconfig) g++ libicu-devel freetype-devel openssl-devel graphite2-devel anda-srpm-macros rust-packaging >= 21
 

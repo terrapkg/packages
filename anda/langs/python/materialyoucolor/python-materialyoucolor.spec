@@ -3,7 +3,7 @@
 
 Name:           python-%{pypi_name}
 Version:        3.0.2
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Material You color generation algorithms in pure python!
 License:        MIT
 URL:            https://github.com/T-Dynamos/materialyoucolor-python
@@ -14,6 +14,7 @@ BuildRequires:  pyproject-rpm-macros
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(pillow)
 BuildRequires:  python3dist(pip)
+BuildRequires:  python3dist(pybind11)
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(rich)
 BuildRequires:  python3dist(setuptools)

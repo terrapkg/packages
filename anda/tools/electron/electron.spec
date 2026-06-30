@@ -1,7 +1,7 @@
 Name:			electron
 %electronmeta
-Version:		40.7.0
-Release:		1%?dist
+Version:		42.5.1
+Release:		1%{?dist}
 Summary:		Build cross platform desktop apps with web technologies
 License:		%{electron_license}
 URL:			https://electronjs.org/

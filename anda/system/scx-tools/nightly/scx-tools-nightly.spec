@@ -1,14 +1,14 @@
-%global commit 30b4540650f0283136c875efb4cd449686a87995
+%global commit 0e383bcd2889c91f8d5a0829f2944894c94708d8
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260218
-%global ver 1.0.20
+%global commitdate 20260529
+%global ver 1.1.1
 %global appid com.sched_ext.scx
 %global developer "sched-ext Contributors"
 %global org "com.sched_ext"
 
 Name:           scx-tools-nightly
 Version:        %{ver}^%{commitdate}.git.%{shortcommit}
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Sched_ext Tools
 License:        ((MIT OR Apache-2.0) AND Unicode-3.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND GPL-2.0-only AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0) AND MIT AND MPL-2.0 AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT)
 SourceLicense:  GPL-2.0-only
