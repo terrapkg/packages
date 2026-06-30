@@ -29,7 +29,6 @@ Requires:       %{name} = %evr
 Requires:       glew-devel
 Requires:       mesa-libGL-devel
 %pkg_devel_files
-%_libdir/cmake/OpenVG/
 
 %package static
 Requires:       %{name} = %evr
