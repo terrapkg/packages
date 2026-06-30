@@ -24,6 +24,7 @@ BuildRequires:  pkgconfig(gtksourceview-5)
 BuildRequires:  pkgconfig(libpulse)
 BuildRequires:  pkgconfig(gudev-1.0)
 BuildRequires:  pkgconfig(upower-glib)
+BuildRequires:  pkgconfig(libnm)
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
