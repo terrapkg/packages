@@ -2,7 +2,7 @@
 
 %global ver 5.0.0
 
-%global commit          c5042b9edf23fae3d90b7c8ae291ed9b577001dd
+%global commit          195c43f9561750b6fe03f46dcd5fb3bd13a2e56f
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
 %global commitdate      20260630
 
@@ -21,6 +21,7 @@ BuildRequires:  git
 BuildRequires:  desktop-file-utils
 BuildRequires:  pipewire-devel
 BuildRequires:  sdbus-cpp-devel
+BuildRequires:  tomlplusplus-devel
 BuildRequires:  pkgconfig(cairo)
 BuildRequires:  pkgconfig(egl)
 BuildRequires:  pkgconfig(freetype2)
@@ -58,11 +59,15 @@ A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with 
 
 %prep
 %autosetup -n noctalia-%{commit}
+
 # Manually insert commit hash
 sed -i "s/'unknown'/'%{shortcommit}'/g" meson.build
 
+# Remove bundled libs that we have system copies of
+rm -r third_party/tomlplusplus
+
 %conf
-%meson
+%meson -Dsystem_tomlplusplus=true
 
 %build
 %meson_build
@@ -91,6 +96,9 @@ done
 %{_scalableiconsdir}/noctalia.svg
 
 %changelog
+* Tue Jun 30 2026 Cypress Reed <cypress@fyralabs.com>
+- Add tomlplusplus as a sytem library
+
 * Wed Jun 24 2026 Cypress Reed <cypress@fyralabs.com>
 - Add desktop file and icon
 
