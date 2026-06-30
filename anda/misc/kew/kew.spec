@@ -19,6 +19,7 @@ BuildRequires:  pkgconfig(opusfile)
 BuildRequires:  pkgconfig(vorbis)
 BuildRequires:  pkgconfig(vorbisfile)
 BuildRequires:  pkgconfig(ogg)
+Requires:       hicolor-icon-theme
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
@@ -43,7 +44,12 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %{_bindir}/kew
 %{_datadir}/kew/themes/*.theme
 %{_datadir}/kew/themes/*.txt
+%{_datadir}/kew/themes/*.md
 %{_mandir}/man1/kew.1.*
+%{_appsdir}/kew.desktop
+%{_hicolordir}/512x512/apps/kew.png
+%{_datadir}/kew/layouts/LAYOUTS-HOWTO.md
+%{_datadir}/kew/layouts/*.layout
 
 %changelog
 * Thu Apr 09 2026 Owen Zimmerman <owen@fyralabs.com>
