@@ -21,6 +21,7 @@ BuildRequires:  git
 BuildRequires:  desktop-file-utils
 BuildRequires:  pipewire-devel
 BuildRequires:  sdbus-cpp-devel
+BuildRequires:  tomlplusplus-devel
 BuildRequires:  pkgconfig(cairo)
 BuildRequires:  pkgconfig(egl)
 BuildRequires:  pkgconfig(freetype2)
@@ -62,7 +63,7 @@ A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with 
 sed -i "s/'unknown'/'%{shortcommit}'/g" meson.build
 
 %conf
-%meson
+%meson -Dsystem_tomlplusplus=true
 
 %build
 %meson_build
@@ -91,6 +92,9 @@ done
 %{_scalableiconsdir}/noctalia.svg
 
 %changelog
+* Tue Jun 30 2026 Cypress Reed <cypress@fyralabs.com>
+- Add tomlplusplus as a sytem library
+
 * Wed Jun 24 2026 Cypress Reed <cypress@fyralabs.com>
 - Add desktop file and icon
 
