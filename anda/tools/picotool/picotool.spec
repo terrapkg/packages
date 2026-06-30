@@ -17,6 +17,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %description
 Picotool is a tool for inspecting RP2040 binaries, and interacting with RP2040 devices when they are in BOOTSEL mode.
 
+%package devel
 %pkg_devel_files
 
 %prep
