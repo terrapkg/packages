@@ -12,10 +12,10 @@ Summary:        Front-end to your dev env
 License:        MIT
 URL:            https://crates.io/crates/mise
 Source:         %{terra_crates_source}
-Source1:        https://raw.githubusercontent.com/jdx/mise/refs/tags/main/man/man1/mise.1
-Source2:        https://raw.githubusercontent.com/jdx/mise/refs/tags/main/completions/mise.bash
-Source3:        https://raw.githubusercontent.com/jdx/mise/refs/tags/main/completions/mise.fish
-Source4:        https://raw.githubusercontent.com/jdx/mise/refs/tags/main/completions/_mise
+Source1:        https://raw.githubusercontent.com/jdx/mise/main/man/man1/mise.1
+Source2:        https://raw.githubusercontent.com/jdx/mise/main/completions/mise.bash
+Source3:        https://raw.githubusercontent.com/jdx/mise/main/completions/mise.fish
+Source4:        https://raw.githubusercontent.com/jdx/mise/main/completions/_mise
 Packager:       madonuko <mado@fyralabs.com>
 
 BuildRequires:  anda-srpm-macros mold cargo-rpm-macros >= 24
