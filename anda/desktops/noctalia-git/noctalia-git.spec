@@ -59,8 +59,12 @@ A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with 
 
 %prep
 %autosetup -n noctalia-%{commit}
+
 # Manually insert commit hash
 sed -i "s/'unknown'/'%{shortcommit}'/g" meson.build
+
+# Remove bundled libs that we have system copies of
+rm -r third_party/tomlplusplus
 
 %conf
 %meson -Dsystem_tomlplusplus=true
