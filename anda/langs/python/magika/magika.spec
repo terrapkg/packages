@@ -17,7 +17,7 @@ BuildRequires:  python3-pip
 BuildRequires:  python3-hatchling
 BuildRequires:  maturin
 BuildRequires:  pkgconfig(openssl)
-BuildRequires:  gcc-c++-devel
+BuildRequires:  gcc-c++
 BuildRequires:  libstdc++-devel
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
