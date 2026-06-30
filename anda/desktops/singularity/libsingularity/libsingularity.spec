@@ -21,6 +21,7 @@ BuildRequires:  pkgconfig(json-glib-1.0)
 BuildRequires:  pkgconfig(libpeas-2)
 BuildRequires:  pkgconfig(libsoup-3.0)
 BuildRequires:  pkgconfig(gtksourceview-5)
+BuildRequires:  pkgconfig(libpulse)
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
