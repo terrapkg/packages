@@ -22,6 +22,7 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  pipewire-devel
 BuildRequires:  sdbus-cpp-devel
 BuildRequires:  tomlplusplus-devel
+BuildRequires:  md4c-devel
 BuildRequires:  wireplumber-devel
 BuildRequires:  pkgconfig(cairo)
 BuildRequires:  pkgconfig(egl)
@@ -66,9 +67,10 @@ sed -i "s/'unknown'/'%{shortcommit}'/g" meson.build
 
 # Remove bundled libs that we have system copies of
 rm -r third_party/tomlplusplus
+rm -r third_party/md4c
 
 %conf
-%meson -Dsystem_tomlplusplus=true
+%meson -Dsystem_tomlplusplus=true -Dsystem_md4c=true
 
 %build
 %meson_build
