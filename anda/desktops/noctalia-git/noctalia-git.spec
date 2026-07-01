@@ -2,13 +2,13 @@
 
 %global ver 5.0.0
 
-%global commit          5f636c6cbed0ee6858fa6b83a9981a455c6d4d2c
+%global commit          d8d9f8a836dc07ad856c07e5e87896c9cb508b53
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
 %global commitdate      20260701
 
 Name:   	noctalia-git
 Version:	%{ver}^%{commitdate}git.%{shortcommit}
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with no Qt or GTK dependency
 
 License:	MIT
@@ -22,6 +22,7 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  pipewire-devel
 BuildRequires:  sdbus-cpp-devel
 BuildRequires:  tomlplusplus-devel
+BuildRequires:  wireplumber-devel
 BuildRequires:  pkgconfig(cairo)
 BuildRequires:  pkgconfig(egl)
 BuildRequires:  pkgconfig(freetype2)
