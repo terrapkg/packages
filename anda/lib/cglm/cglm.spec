@@ -39,9 +39,6 @@ Requires:       %{name} = %{version}
 %{_libdir}/libcglm.so.%{version}
 %{_libdir}/libcglm.so.0
 
-%files devel
-%{_libdir}/cmake/cglm/
-
 %changelog
 * Mon Jun 29 2026 Jan200101 <sentrycraft123@gmail.com>
 - Initial package
