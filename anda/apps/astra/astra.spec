@@ -3,12 +3,12 @@
 
 Name:           astra
 %electronmeta -D
-Version:        %(echo %ver | sed 's/-/~/')
+Version:        %(echo %ver | sed 's/-/~/;s/^v//')
 Release:        1%?dist
 Summary:        A desktop music player for people who still have a music library
 License:        GPL-3.0-only AND %electron_license
 URL:            https://astramusic.dev
-Source0:        https://github.com/Boof2015/astra/archive/refs/tags/v%ver.tar.gz
+Source0:        https://github.com/Boof2015/astra/archive/refs/tags/%ver.tar.gz
 BuildRequires:  nodejs-npm nodejs-packaging
 
 %description
