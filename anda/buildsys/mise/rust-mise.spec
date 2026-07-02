@@ -12,12 +12,10 @@ Summary:        Front-end to your dev env
 License:        MIT
 URL:            https://crates.io/crates/mise
 Source:         %{terra_crates_source}
-Source1:        https://raw.githubusercontent.com/jdx/mise/refs/tags/v%version/man/man1/mise.1
-Source2:        https://raw.githubusercontent.com/jdx/mise/refs/tags/v%version/completions/mise.bash
-Source3:        https://raw.githubusercontent.com/jdx/mise/refs/tags/v%version/completions/mise.fish
-Source4:        https://raw.githubusercontent.com/jdx/mise/refs/tags/v%version/completions/_mise
-# Automatically generated patch to strip dependencies and normalize metadata
-Patch:          mise-fix-metadata-auto.diff
+Source1:        https://raw.githubusercontent.com/jdx/mise/main/man/man1/mise.1
+Source2:        https://raw.githubusercontent.com/jdx/mise/main/completions/mise.bash
+Source3:        https://raw.githubusercontent.com/jdx/mise/main/completions/mise.fish
+Source4:        https://raw.githubusercontent.com/jdx/mise/main/completions/_mise
 Packager:       madonuko <mado@fyralabs.com>
 
 BuildRequires:  anda-srpm-macros mold cargo-rpm-macros >= 24
@@ -85,7 +83,7 @@ Zsh command line completion support for %{crate}.
 
 
 %prep
-%autosetup -n %{crate}-%{version} -p1
+%autosetup -n %{crate}-%{version}
 %cargo_prep_online
 
 %build

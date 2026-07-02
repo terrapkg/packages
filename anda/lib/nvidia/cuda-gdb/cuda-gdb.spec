@@ -7,7 +7,7 @@
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
-Version:        13.3.27
+Version:        13.3.73
 Release:        1%{?dist}
 Summary:        CUDA GDB
 License:        GPL-3.0-or-later AND GPL-3.0-or-later with exceptions AND GPL-2.0-or-later AND GPL-2.0-or-later with exceptions AND GPL-1.0-or-later AND LGPL-2.0-or-later AND LGPL-3.0-or-later AND BSD AND LicenseRef-Fedora-Public-Domain AND GFDL

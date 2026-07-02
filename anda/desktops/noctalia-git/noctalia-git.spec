@@ -2,9 +2,9 @@
 
 %global ver 5.0.0
 
-%global commit          dfa00a4d316fa846f3b60760ad02faa7cacfdcbc
+%global commit          8d2c6881d3e1e7f1e894fc2e811c36fe9ffa6989
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
-%global commitdate      20260628
+%global commitdate      20260702
 
 Name:   	noctalia-git
 Version:	%{ver}^%{commitdate}git.%{shortcommit}
@@ -21,6 +21,9 @@ BuildRequires:  git
 BuildRequires:  desktop-file-utils
 BuildRequires:  pipewire-devel
 BuildRequires:  sdbus-cpp-devel
+BuildRequires:  tomlplusplus-devel
+BuildRequires:  md4c-devel
+BuildRequires:  wireplumber-devel
 BuildRequires:  pkgconfig(cairo)
 BuildRequires:  pkgconfig(egl)
 BuildRequires:  pkgconfig(freetype2)
@@ -58,11 +61,16 @@ A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with 
 
 %prep
 %autosetup -n noctalia-%{commit}
+
 # Manually insert commit hash
 sed -i "s/'unknown'/'%{shortcommit}'/g" meson.build
 
+# Remove bundled libs that we have system copies of
+rm -r third_party/tomlplusplus
+rm -r third_party/md4c
+
 %conf
-%meson
+%meson -Dsystem_tomlplusplus=true -Dsystem_md4c=true
 
 %build
 %meson_build
@@ -91,6 +99,13 @@ done
 %{_scalableiconsdir}/noctalia.svg
 
 %changelog
+* Wed Jul 01 2026 Cypress Reed <cypress@fyralabs.com>
+- Add md4c as a system library
+- Add wireplumber build requirement
+
+* Tue Jun 30 2026 Cypress Reed <cypress@fyralabs.com>
+- Add tomlplusplus as a sytem library
+
 * Wed Jun 24 2026 Cypress Reed <cypress@fyralabs.com>
 - Add desktop file and icon
 

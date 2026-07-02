@@ -1,0 +1,24 @@
+From a3a4839724f9cf7be546fa441ba12afc95da2743 Mon Sep 17 00:00:00 2001
+From: Svitkona <svitkona5@gmail.com>
+Date: Fri, 19 Jun 2026 16:22:34 -0400
+Subject: [PATCH] fix: use path.get_base_dir() instead of manual split + join
+
+---
+ core/systems/input/input_plumber_profile.gd | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/core/systems/input/input_plumber_profile.gd b/core/systems/input/input_plumber_profile.gd
+index 7ac5eb37..bdb0adee 100644
+--- a/core/systems/input/input_plumber_profile.gd
++++ b/core/systems/input/input_plumber_profile.gd
+@@ -159,9 +159,7 @@ static func get_target_device(target_device_str: String) -> TargetDevice:
+ func save(path: String) -> Error:
+ 	if path.begins_with("user://") or path.begins_with("res://"):
+ 		path = ProjectSettings.globalize_path(path)
+-	var path_parts := Array(path.split("/", false))
+-	path_parts.pop_back()
+-	var base_path := "/".join(path_parts)
++	var base_path := path.get_base_dir()
+ 	
+ 	if DirAccess.make_dir_recursive_absolute(base_path) != OK:
+ 		print("Failed to mkdir")

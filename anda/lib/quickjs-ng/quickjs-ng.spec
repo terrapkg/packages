@@ -32,10 +32,6 @@ intent of reigniting its development.
 Requires:   %{name}-libs%{_isa} = %evr
 %pkg_devel_files
 
-%files devel
-%{_libdir}/cmake/qjs/*.cmake
-
-
 %package examples
 Summary:    Example files for %{name}
 

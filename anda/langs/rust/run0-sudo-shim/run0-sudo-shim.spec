@@ -1,5 +1,5 @@
 Name:			run0-sudo-shim
-Version:		1.3.1
+Version:		1.4.2
 Release:		2%{?dist}
 Summary:		An imitation of sudo, using run0 internally
 SourceLicense:	BSD-3-Clause

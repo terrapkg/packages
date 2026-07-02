@@ -1,8 +1,8 @@
 %global pypi_name numba
 
 Name:			python-%{pypi_name}
-Version:		0.65.1
-Release:		3%{?dist}
+Version:		0.66.0
+Release:		1%{?dist}
 Summary:	    NumPy aware dynamic Python compiler using LLVM
 License:		BSD-2-Clause AND MIT AND BSD-3-Clause
 URL:			https://numba.pydata.org

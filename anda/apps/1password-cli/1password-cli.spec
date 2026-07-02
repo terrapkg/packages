@@ -8,7 +8,7 @@
 
 Name:           1password-cli
 Version:        2.34.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        1Password command-line tool
 
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
@@ -21,6 +21,8 @@ ExclusiveArch:  x86_64 aarch64
 
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  unzip
+Requires(post): /usr/bin/chown
+Requires(post): /usr/bin/chmod
 Recommends:     1password
 Recommends:     polkit
 
@@ -40,8 +42,12 @@ install -Dm0644 %{SOURCE1} %{buildroot}%{_sysusersdir}/%{name}.conf
 %pre
 %sysusers_create_package %{name} %{SOURCE1}
 
+%post
+/usr/bin/chown root:onepassword-cli %{_bindir}/op
+/usr/bin/chmod 2755 %{_bindir}/op
+
 %files
-%attr(2755,root,onepassword-cli) %{_bindir}/op
+%{_bindir}/op
 %{_sysusersdir}/%{name}.conf
 
 %changelog
