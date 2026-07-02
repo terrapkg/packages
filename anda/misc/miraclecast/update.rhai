@@ -1,4 +1,4 @@
-rpm.global("ver", gh("albfan/miraclecast"));
+rpm.global("ver", gh_tag("albfan/miraclecast"));
 
 rpm.global("commit", gh_commit("albfan/miraclecast"));
 if rpm.changed() {
