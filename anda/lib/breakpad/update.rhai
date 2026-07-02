@@ -1,1 +1,1 @@
-rpm.version(gh("google/breakpad"));
+rpm.version(gh_tag("google/breakpad"));
