@@ -7,7 +7,7 @@ Summary:        A powerful visual environment for managing the Arduino UNO Q
 
 Provides:       arduino-app-lab
 URL:            https://www.arduino.cc/en/software
-License:        GPL-3.0
+License:        GPL-3.0-or-later
 
 Source0:        https://downloads.arduino.cc/AppLab/Stable/ArduinoAppLab_%{version}_Linux_x86-64.tar.gz
 Source1:        https://github.com/arduino/arduino-app-lab/archive/refs/tags/al-%{version}.zip
