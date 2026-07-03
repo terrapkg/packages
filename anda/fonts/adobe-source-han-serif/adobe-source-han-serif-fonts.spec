@@ -26,6 +26,7 @@ This package ships the Static OTC versions.
 %_datadir/fonts/%name/SourceHanSerif-Light.ttc
 %_datadir/fonts/%name/SourceHanSerif-Medium.ttc
 %_datadir/fonts/%name/SourceHanSerif-Regular.ttc
+%_datadir/fonts/%name/SourceHanSerif-SemiBold.ttc
 
 
 %dnl DO NOT CHANGE THIS TO `%global`, I REPEAT, DO NOT USE `%global`, OTHERWISE MACROS LIKE `%{-h}` DO NOT EXPAND.
