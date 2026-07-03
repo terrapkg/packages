@@ -33,6 +33,7 @@ BuildRequires:  libXcursor-devel
 BuildRequires:  libXmu-devel
 BuildRequires:  meson >= 0.54.0
 BuildRequires:  ninja-build
+BuildRequires:  pkgconfig(catch2-with-main)
 BuildRequires:  pkgconfig(hwdata)
 BuildRequires:  pkgconfig(libavif)
 BuildRequires:  pkgconfig(libcap)
