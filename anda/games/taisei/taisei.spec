@@ -21,6 +21,7 @@ BuildRequires:  pkgconfig(libzstd)
 BuildRequires:  python3-zstandard
 BuildRequires:  pkgconfig(gamemode)
 BuildRequires:  pkgconfig(mimalloc)
+BuildRequires:  pkgconfig(libunibreak)
 # shader validation
 BuildRequires:  glslc
 # documentation
@@ -58,7 +59,6 @@ sed -i "/'strip=true'/d" meson.build
 %conf
 %meson \
     -Dallocator=mimalloc \
-    -Dvfs_zip=enabled \
     -Dpackage_data=enabled \
     -Dinstall_relocatable=disabled \
     -Dinstall_freedesktop=enabled \
@@ -78,7 +78,7 @@ sed -i "/'strip=true'/d" meson.build
 %meson_test
 
 %files
-%license COPYING
+%license COPYING.txt
 %{_bindir}/taisei
 %{_appsdir}/org.taisei_project.Taisei.desktop
 %{_appsdir}/org.taisei_project.Taisei.tsr.desktop
@@ -91,7 +91,7 @@ sed -i "/'strip=true'/d" meson.build
 %{_docdir}/taisei
 
 %files data
-%license COPYING
+%license COPYING.txt
 %{_datadir}/taisei
 
 %changelog
