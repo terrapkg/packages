@@ -65,4 +65,4 @@ rm tests/resource/images/hyprland.jpg
 %files
 %license LICENSE
 %doc README.md
-%{_libdir}/libhyprgraphics.so.
+%{_libdir}/libhyprgraphics.so.*
