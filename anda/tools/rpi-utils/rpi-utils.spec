@@ -164,8 +164,10 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 %prep
 %autosetup -p1 -n utils-%{commit}
 
-%build
+%conf
 %cmake -DBUILD_SHARED_LIBS=1
+
+%build
 %cmake_build
 
 %install
