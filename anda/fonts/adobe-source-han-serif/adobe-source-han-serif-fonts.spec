@@ -3,7 +3,7 @@
 
 Name:           adobe-source-han-serif-fonts
 Version:        %(echo %ver | sed -E 's/R$//')
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Source Han Serif | 思源宋体 | 思源宋體 | 思源宋體 香港 | 源ノ明朝 | 본명조
 License:        OFL-1.1
 URL:            https://github.com/adobe-fonts/source-han-serif
@@ -20,7 +20,13 @@ This package ships the Static OTC versions.
 
 %files
 %license LICENSE.txt
-%_datadir/fonts/%name/
+%_datadir/fonts/%name/SourceHanSerif-Bold.ttc
+%_datadir/fonts/%name/SourceHanSerif-ExtraLight.ttc
+%_datadir/fonts/%name/SourceHanSerif-Heavy.ttc
+%_datadir/fonts/%name/SourceHanSerif-Light.ttc
+%_datadir/fonts/%name/SourceHanSerif-Medium.ttc
+%_datadir/fonts/%name/SourceHanSerif-Regular.ttc
+%_datadir/fonts/%name/SourceHanSerif-SemiBold.ttc
 
 
 %dnl DO NOT CHANGE THIS TO `%global`, I REPEAT, DO NOT USE `%global`, OTHERWISE MACROS LIKE `%{-h}` DO NOT EXPAND.
