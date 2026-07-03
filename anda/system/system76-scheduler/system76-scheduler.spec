@@ -58,6 +58,9 @@ just rootdir=%buildroot sysconfdir=%_datadir install
 %_unitdir/com.system76.Scheduler.service
 
 %changelog
+* Fri Jul 03 2026 madonuko <madonuko@outlook.com> - 2.0.2-2
+- undep bcc-tools
+
 * Tue Sep 26 2023 Cappy Ishihara <cappy@cappuchino.xyz> - 2.0.1-2
 - Move default configurations to /usr/share/system76-scheduler
 - Add Requires: bcc-tools so execsnoop is available
