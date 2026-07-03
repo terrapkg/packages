@@ -25,7 +25,6 @@ This package ships the Static OTC versions.
 %_datadir/fonts/%name/SourceHanSerif-Heavy.ttc
 %_datadir/fonts/%name/SourceHanSerif-Light.ttc
 %_datadir/fonts/%name/SourceHanSerif-Medium.ttc
-%_datadir/fonts/%name/SourceHanSerif-Normal.ttc
 %_datadir/fonts/%name/SourceHanSerif-Regular.ttc
 
 
