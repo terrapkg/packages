@@ -35,6 +35,8 @@ Packager:	    Its-J <jonah@fyralabs.com>
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
+Requires: python3-magika
+Requires: python3-markdownify
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
@@ -103,9 +105,6 @@ popd
 %{python3_sitelib}/%{pypi_name}/*.py
 %{python3_sitelib}/%{pypi_name}/py.typed
 %{python3_sitelib}/%{pypi_name}/__pycache__/*.pyc
-%dnl %{python3_sitelib}/%{pypi_name}/converter/*.py
-%dnl %{python3_sitelib}/%{pypi_name}/converter/__pycache__/*.pyc
-%dnl %{python3_sitelib}/%{pypi_name}/converter/py.typed
 %{python3_sitelib}/%{pypi_name}/converter_utils/*.py
 %{python3_sitelib}/%{pypi_name}/converter_utils/__pycache__/*.pyc
 %{python3_sitelib}/%{pypi_name}/converter_utils/docx/*.py
