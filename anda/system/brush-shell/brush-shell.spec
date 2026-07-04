@@ -1,5 +1,7 @@
+%global ver brush-shell-v0.4.0
+
 Name:           brush-shell
-Version:        brush.shell.v0.4.0
+Version:        %(echo %ver | sed 's/brush-shell-v//')
 Release:        1%{?dist}
 Summary:        bash/POSIX-compatible shell implemented in Rust
 URL:            https://github.com/reubeno/brush
