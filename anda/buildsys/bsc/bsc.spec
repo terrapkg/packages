@@ -4,13 +4,11 @@
 
 Name:           bsc
 Version:        2026.01
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Bluespec Compiler (BSC)
-
-License:        BSD-3-Clause AND BSD-2-Clause AND MIT AND LGPL-2.0-or-later AND AND BSL-1.0
+License:        BSD-3-Clause AND BSD-2-Clause AND MIT AND LGPL-2.0-or-later AND BSL-1.0
 URL:            https://github.com/B-Lang-org/bsc
 Source:         %{url}/archive/refs/tags/%{version}.tar.gz
-
 BuildRequires:  ghc
 BuildRequires:  ghc-regex-compat-devel
 BuildRequires:  ghc-syb-devel
