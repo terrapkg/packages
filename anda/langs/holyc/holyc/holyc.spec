@@ -30,7 +30,8 @@ sed -i 's|binary: %%s/hcc|binary: %%s/bin/hcc|g' cli.c
 %build
 %cmake \
   -DCMAKE_BUILD_TYPE="Release" \
-  -DHCC_LINK_SQLITE3="1"
+  -DHCC_LINK_SQLITE3="1" \
+  -DHCC_ENABLE_JIT="ON"
 %cmake_build
 
 %install
