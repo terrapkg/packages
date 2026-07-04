@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.0.0
-Release:		2%?dist
+Release:		3%?dist
 Summary:		Python implementation of core message system and client for the Buttplug Sex Toy Protocol Standard
 License:		BSD-3-Clause AND MIT AND Apache-2.0 AND X11
 URL:			buttplug-py.docs.buttplug.io
@@ -42,5 +42,8 @@ Summary:        %{summary}
 %license LICENSE
 
 %changelog
-* Fri Apr 17 2026 Owen Zimmerman <owen@fyralabs.com>
+* Fri Jul 03 2026 23:34:00 -0500 ItsJ <jonah@fyralabs.com> - 1.0.0-3
+- Wokeify this spec
+
+* Fri Apr 17 2026 Owen Zimmerman <owen@fyralabs.com> - 1.0.0-1
 - Initial commit
