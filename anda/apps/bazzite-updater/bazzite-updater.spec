@@ -72,6 +72,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/%{appid}.desktop
 %{_appsdir}/%{appid}.desktop
 %{_metainfodir}/%{appid}.*.xml
 %{_scalableiconsdir}/%{appid}.svg
+%config %{_prefix}/etc/bazzite-updater/config.ini
 %{_prefix}/etc/bazzite-updater
 
 %changelog
