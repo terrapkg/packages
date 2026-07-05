@@ -72,7 +72,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/%{appid}.desktop
 %{_appsdir}/%{appid}.desktop
 %{_metainfodir}/%{appid}.*.xml
 %{_scalableiconsdir}/%{appid}.svg
-/usr/etc/bazzite-updater
+%{_prefix}/etc/bazzite-updater
 
 %changelog
 * Sat Jul 04 2026 Robert French - 0.8.0
