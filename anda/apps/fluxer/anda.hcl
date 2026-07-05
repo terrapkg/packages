@@ -1,6 +1,6 @@
 project pkg {
   rpm {
-    spec = "fluxer-nightly.spec"
+    spec = "fluxer.spec"
   }
   labels {
     nightly = 1

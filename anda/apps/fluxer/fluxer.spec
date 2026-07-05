@@ -1,10 +1,7 @@
 %global appid app.fluxer.Fluxer
-%global commit ee1f27fe1a372b5291aead8042944afd706bf5db
-%global shortcommit %{sub %commit 1 7}
-%global commit_date 20260409
 
-Name:           fluxer-nightly
-Version:        0~%{commit_date}git.%{shortcommit}
+Name:           fluxer
+Version:        2026.703.173023
 Release:        1%?dist
 Summary:        Fluxer is a free and open source instant messaging and VoIP platform built for friends, groups, and communities
 URL:            https://fluxer.app
@@ -12,7 +9,7 @@ URL:            https://fluxer.app
 %electronmeta -D
 
 License:        AGPL-3.0-or-later AND %electron_license
-Source0:        https://github.com/fluxerapp/fluxer/archive/%{commit}/fluxer-%{commit}.tar.gz
+Source0:        https://github.com/fluxerapp/fluxer/archive/refs/tags/%version.tar.gz
 BuildRequires:  rust-packaging nodejs nodejs-npm nodejs-packaging pnpm
 BuildRequires:  xorg-x11-proto-devel
 
@@ -20,7 +17,7 @@ BuildRequires:  xorg-x11-proto-devel
 %summary.
 
 %prep
-%autosetup -n fluxer-%commit
+%autosetup
 
 %build
 pushd fluxer_desktop
@@ -55,5 +52,5 @@ install -Dm644 packaging/linux/%appid.svg %{buildroot}%{_scalableiconsdir}/%appi
 %_metainfodir/%appid.metainfo.xml
 
 %changelog
-* Mon Jun 15 2026 madonuko <mado@fyralabs.com> - 0~20260409git.ee1f27f-1
+* Mon Jun 15 2026 madonuko <mado@fyralabs.com> - 2026.703.173023-1
 - Initial package.
