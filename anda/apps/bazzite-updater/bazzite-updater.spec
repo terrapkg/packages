@@ -3,7 +3,7 @@
 Name:           bazzite-updater
 Version:        0.8.0
 Release:        1%{?dist}
-Summary:        Update your Bazzite system
+Summary:        Update your system
 
 License:        GPL-2.0-or-later AND BSD-3-Clause AND CC0-1.0
 URL:            https://github.com/rfrench3/bazzite-updater
@@ -36,17 +36,18 @@ BuildRequires:  cmake(KF6KirigamiAddons)
 Requires:       kf6-kirigami%{?_isa}
 Requires:       kf6-kirigami-addons%{?_isa}
 Requires:       kf6-qqc2-desktop-style%{?_isa}
-Requires:       which%{?_isa}
 Requires:       qt6-controllable%{?_isa}
-Requires:       uupd%{?_isa}
 Requires:       hicolor-icon-theme
+Requires:       systemd%{?_isa} >= 258
 
 Provides:       bazzite-updater = %{evr}
 
 %description
-This is a convenient, easy-to-use interface for updating your Bazzite system.
+This is a convenient, easy-to-use interface for updating a Linux system.
+By default, it is configured for Bazzite.
 - Simple and powerful
 - Full support for all input types (keyboard/mouse, controller, touchscreen)
+- Configurable update and update-rollback commands
 
 %prep
 %autosetup
@@ -71,7 +72,12 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/%{appid}.desktop
 %{_appsdir}/%{appid}.desktop
 %{_metainfodir}/%{appid}.*.xml
 %{_scalableiconsdir}/%{appid}.svg
+%config %{_prefix}/etc/bazzite-updater/config.ini
+%{_prefix}/etc/bazzite-updater
 
 %changelog
+* Sat Jul 04 2026 Robert French - 0.8.0
+- Added config file support
+
 * Thu Feb 05 2026 Robert French
 - Initial rpm build of Bazzite Updater
