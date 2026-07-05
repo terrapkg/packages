@@ -13,6 +13,7 @@ Source0:        https://github.com/fluxerapp/fluxer/archive/refs/tags/%version.t
 BuildRequires:  rust-packaging nodejs nodejs-npm nodejs-packaging pnpm
 BuildRequires:  xorg-x11-proto-devel
 BuildRequires:  pkgconfig(openssl)
+BuildRequires:  pkgconfig(libfido2)
 
 %description
 %summary.
