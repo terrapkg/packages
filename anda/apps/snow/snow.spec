@@ -13,6 +13,7 @@ BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  desktop-file-utils
 BuildRequires:  SDL2-devel
+BuildRequires:  pkgconfig(alsa)
 Provides:       snowemu
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
