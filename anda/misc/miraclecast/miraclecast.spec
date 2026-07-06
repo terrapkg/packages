@@ -2,7 +2,7 @@
 %global commit_date 20260702
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
-%global ver v1.0
+%global ver 1.0
 
 Name:               miraclecast
 Version:            %{ver}^%{commit_date}git.%{shortcommit}
