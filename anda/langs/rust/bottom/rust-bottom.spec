@@ -12,8 +12,6 @@ Summary:        Customizable cross-platform graphical process/system monitor for
 License:        MIT
 URL:            https://crates.io/crates/bottom
 Source:         %{terra_crates_source}
-# Automatically generated patch to strip dependencies and normalize metadata
-Patch:          bottom-fix-metadata-auto.diff
 
 BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo-rpm-macros >= 24
