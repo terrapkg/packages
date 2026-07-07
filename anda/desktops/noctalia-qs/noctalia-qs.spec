@@ -8,7 +8,7 @@ License:       LGPL-3.0-only AND GPL-3.0-only
 URL:	       https://github.com/noctalia-dev/noctalia-qs
 Source0:       https://github.com/noctalia-dev/noctalia-qs/archive/refs/tags/v%{version}.tar.gz
 
-Packager:      Willow C Reed <terra@willowidk.dev>
+Packager:      Cypress Reed <cypress@fyralabs.com>
 
 BuildRequires: cmake
 BuildRequires: cmake(Qt6Core)
@@ -73,15 +73,18 @@ Flexible QtQuick based desktop shell toolkit.
 %{_libdir}/qt6/qml/Quickshell
 
 %changelog
-* Thu May 21 2026  Willow C Reed <terra@willowidk.dev>
+* Thu Jun 04 2026 Cypress Reed <cypress@fyralabs.com>
+- Update email and name (was Willow Reed or Willow C Reed) (I'm official now!)
+
+* Thu May 21 2026 Cypress Reed <cypress@fyralabs.com>
 - Add update script so that release bumps when Qt updates its minor version, triggering a rebuild
 
-* Sun Mar 29 2026 Willow C Reed <terra@willowidk.dev>
+* Sun Mar 29 2026 Cypress Reed <cypress@fyralabs.com>
 - Add provides for a polkit agent and desktop notification daemon (so gnome doesn't get installed)
 
-* Thu Mar 05 2026 Willow C Reed <terra@willowidk.dev>
+* Thu Mar 05 2026 Cypress Reed <cypress@fyralabs.com>
 - Fix revision to actually be defined as a specific git commit since it never gets initialized rn
 - Also fix that noctalia-qs is replacing quickshell overall and not just for noctlaia users
 
-* Fri Feb 27 2026 Willow C Reed <terra@willowidk.dev>
+* Fri Feb 27 2026 Cypress Reed <cypress@fyralabs.com>
 - Initial commit based on quickshell spec

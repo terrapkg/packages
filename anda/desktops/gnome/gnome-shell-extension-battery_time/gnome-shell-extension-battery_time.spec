@@ -3,11 +3,11 @@
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %global extension   battery_time
-%global uuid        %{extension}@pomoke
+%global uuid        %{extension}@typeof.pw
 
 Name:           gnome-shell-extension-%{extension}
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Battery remaining time extension for GNOME Shell
 License:        GPL-2.0-only
 URL:            https://github.com/pomoke/battery_time

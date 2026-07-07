@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.3.4
-Release:		2%?dist
+Release:		3%?dist
 Summary:		Colour your text / terminal to be more gay
 License:		MIT
 URL:			https://github.com/ms-jpq/gay

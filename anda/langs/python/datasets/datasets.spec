@@ -2,8 +2,8 @@
 %global _desc The largest hub of ready-to-use datasets for AI models with fast, easy-to-use and efficient data manipulation tools.
 
 Name:			python-%{pypi_name}
-Version:		4.8.5
-Release:		1%{?dist}
+Version:		5.0.0
+Release:		2%{?dist}
 Summary:		The largest hub of ready-to-use datasets for AI models with fast, easy-to-use and efficient data manipulation tools
 License:		Apache-2.0
 URL:			https://github.com/huggingface/datasets

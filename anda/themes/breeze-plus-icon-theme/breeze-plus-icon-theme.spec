@@ -1,5 +1,5 @@
 Name:           breeze-plus-icon-theme
-Version:        6.26.0
+Version:        6.28.0
 Release:        1%{?dist}
 Summary:        Breeze icon theme with additional icons
 Packager:       Amy King <amy@amyrom.tech>

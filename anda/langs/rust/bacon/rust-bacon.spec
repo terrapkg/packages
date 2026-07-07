@@ -12,7 +12,7 @@ Packager:       metcya <metcya@gmail.com>
 
 License:        AGPL-3.0
 URL:            https://crates.io/crates/bacon
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 
 BuildRequires:  anda-srpm-macros 
 BuildRequires:  mold

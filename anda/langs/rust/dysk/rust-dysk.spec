@@ -10,7 +10,7 @@ Summary:        Give information on mounted filesystems
 
 License:        MIT
 URL:            https://crates.io/crates/dysk
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 Packager:       madonuko <mado@fyralabs.com>
 
 BuildRequires:  cargo-rpm-macros >= 24

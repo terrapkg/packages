@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.14.0
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Parser for 'pyproject.toml'
 License:		MIT
 URL:			https://pyproject-parser.readthedocs.io/en/latest/

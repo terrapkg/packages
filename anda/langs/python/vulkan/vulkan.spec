@@ -5,7 +5,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.3.275.1
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		The ultimate Python binding for Vulkan API
 License:		Apache-2.0
 URL:			https://github.com/realitix/vulkan

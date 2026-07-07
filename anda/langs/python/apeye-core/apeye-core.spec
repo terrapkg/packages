@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.1.5
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Core (offline) functionality for the apeye library
 License:		BSD-3-Clause
 URL:			https://github.com/domdfcoding/apeye-core

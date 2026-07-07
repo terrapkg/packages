@@ -6,7 +6,7 @@ Haishoku is a development tool for grabbing the dominant color or representative
 
 Name:           python-%{pypi_name}
 Version:        1.1.8
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A development tool for grabbing the dominant color or representative color palette from an image
 License:        MIT
 URL:            https://github.com/LanceGin/haishoku

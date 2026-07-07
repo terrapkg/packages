@@ -1,5 +1,5 @@
-%global ver webview2/v1.0.24
-%global sanitized_ver %(echo %{ver} | sed 's/-/~/g')
+%global ver webview2/v1.0.28
+%global sanitized_ver %(echo %{ver} | sed 's|.*/||')
 
 %global goipath github.com/wailsapp/wails/v3
 Version:        %{sanitized_ver}

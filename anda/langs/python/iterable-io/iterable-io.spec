@@ -4,7 +4,7 @@
 
 Name:			python-%{real_name}
 Version:		1.0.4
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Python library to adapt iterables to a file-like interface
 
 # According to README

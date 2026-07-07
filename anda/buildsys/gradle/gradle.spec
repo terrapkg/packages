@@ -1,5 +1,5 @@
 Name:			gradle
-Version:		9.5.1
+Version:		9.6.1
 Release:		1%{?dist}
 Summary:		Powerful build system for the JVM
 URL:			https://gradle.org/
@@ -41,6 +41,7 @@ export PATH="/usr/lib/jvm/java-21-openjdk/bin:${PATH}"
 	-Pgradle_installPath="$(pwd)/dist" \
 	-Porg.gradle.ignoreBuildJavaVersionCheck=true \
 	--warning-mode all \
+	-Dorg.gradle.unsafe.isolated-projects=false \
 	--no-configuration-cache
 
 %install
