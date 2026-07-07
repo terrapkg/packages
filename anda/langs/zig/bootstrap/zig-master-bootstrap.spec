@@ -6,7 +6,7 @@
 %define         llvm_compat 22
 %endif
 %global         llvm_version 22.0.0
-%global         ver 0.17.0-dev.338+0d4f3cc67
+%global         ver 0.17.0-dev.1267+300116b02
 %bcond bootstrap 1
 %bcond docs      %{without bootstrap}
 %bcond test      1
@@ -25,11 +25,9 @@
     \
     -Dtarget=native \
     -Dcpu=baseline \
-    --zig-lib-dir lib \
     --build-id=sha1 \
     \
     --cache-dir "%{zig_cache_dir}" \
-    --global-cache-dir "%{zig_cache_dir}" \
     \
     -Dversion-string="%(v=%{ver}; echo ${v:0:6})" \
     -Dstatic-llvm=false \
@@ -149,6 +147,13 @@ export LLVM_DIR=%{_libdir}/llvm%{?llvm_compat}/%{_lib}/cmake
     -DZIG_VERSION:STRING="%(v=%{ver}; echo ${v:0:6})"
 
 %build
+# Zig generates a large C file for bootstrapping which does not
+# behave well with ccache so explicitly disable it.
+export CCACHE_DISABLE=1
+
+export ZIG_GLOBAL_CACHE_DIR="%{zig_cache_dir}"
+export ZIG_LIB_DIR="lib"
+
 %if %{with bootstrap}
 %cmake_build --target stage3
 %else
@@ -169,7 +174,6 @@ attempt=1
 while
   ./zig-out/bin/zig build docs \
     --verbose \
-    --global-cache-dir "%{zig_cache_dir}" \
     -Dversion-string="%(v=%{ver}; echo ${v:0:6})"
   [[ $? != 0 ]]
 do
@@ -186,6 +190,9 @@ done
 %endif
 
 %install
+export ZIG_GLOBAL_CACHE_DIR="%{zig_cache_dir}"
+export ZIG_LIB_DIR="lib"
+
 %if %{with bootstrap}
 %cmake_install
 %else

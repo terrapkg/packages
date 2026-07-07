@@ -11,7 +11,7 @@
 %endif
 
 Name:           helium-browser-bin
-Version:        0.12.4.1
+Version:        0.14.3.1
 Release:        1%{?dist}
 Summary:        Private, fast, and honest web browser based on Chromium
 
@@ -31,6 +31,7 @@ BuildRequires:  desktop-file-utils
 Requires:       xdg-utils
 Requires:       liberation-fonts
 
+Conflicts:      helium-bin
 Packager:       Nadia P <nyadiia@pm.me>, Jaiden Riordan <jade@fyralabs.com>
 
 %description
@@ -116,6 +117,9 @@ chmod 755 %{buildroot}%{_bindir}/%{name}
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
+* Fri Jun 26 2026 Jaiden Riordan <jade@fyralabs.com>
+- Conflict helium-bin to avoid messing with people who use upstream's COPR
+
 * Sun Feb 15 2026 Jaiden Rirordan <jade@fyralabs.com>
 - Use downstream desktop file and recombobulate
 

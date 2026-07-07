@@ -7,7 +7,7 @@ Summary:        Visualize code contributions in a GitHub-style graph.
 
 License:        GPL-3.0
 URL:            https://crates.io/crates/git-biance
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 
 Packager:       xiaoshihou <xiaoshihou@tutamail.com>
 BuildRequires:  anda-srpm-macros cargo-rpm-macros mold

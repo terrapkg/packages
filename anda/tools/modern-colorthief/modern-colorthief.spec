@@ -4,7 +4,7 @@
 
 # The srcrpm is not prefixed with Python because the source is mostly Rust
 Name:          modern-colorthief
-Version:       0.2.1
+Version:       0.3.0
 Release:       1%{?dist}
 Summary:       ColorThief reimagined
 SourceLicense: MIT

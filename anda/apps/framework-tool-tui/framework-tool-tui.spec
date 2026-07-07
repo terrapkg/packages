@@ -1,7 +1,7 @@
 %undefine __brp_mangle_shebangs
 
 Name:           framework-tool-tui
-Version:        0.8.3
+Version:        0.8.4
 Release:        1%{?dist}
 Summary:        A TUI for controlling and monitoring Framework Computers hardware built in Rust
 URL:            https://github.com/grouzen/framework-tool-tui

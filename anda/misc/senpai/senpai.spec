@@ -1,8 +1,8 @@
 %global appid org.sr.ht.delthas.senpai
 
 Name:			senpai
-Version:		0.4.1
-Release:		3%?dist
+Version:		0.5.0
+Release:		1%{?dist}
 Summary:		Your everyday IRC student
 License:		ISC
 URL:			https://sr.ht/~delthas/senpai/

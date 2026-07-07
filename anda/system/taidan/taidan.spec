@@ -1,12 +1,13 @@
 Name:           taidan
-Version:        0.2.1
+Version:        0.2.6
 Release:        1%{?dist}
 Summary:        Out-Of-Box-Experience (OOBE) and Welcome App
 SourceLicense:  GPL-3.0-or-later AND GPL-2.0-or-later
 License:        (0BSD OR MIT OR Apache-2.0) AND Apache-2.0 AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND MIT AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND Unicode-3.0 AND (Unlicense OR MIT) AND Zlib AND GPL-3.0-or-later AND GPL-2.0-or-later
 URL:            https://github.com/Ultramarine-Linux/taidan
 Packager:       Terra Packaging Team <terra@fyralabs.com>
-Conflicts:      initial-setup
+Requires:       %name-configs
+Suggests:       %name-default-configs
 Requires:       dbus-daemon
 Requires:       (glib2 or (/usr/bin/plasma-apply-colorscheme and kf6-kconfig))
 Requires:       shadow-utils
@@ -18,7 +19,7 @@ Requires:       libwebp
 Requires:       webp-pixbuf-loader
 Requires:       xhost
 Requires:       kwin-wayland swaybg
-Requires:       netto network-manager-applet
+Requires:       nmgui network-manager-applet
 Requires:       polkit
 BuildRequires:  anda-srpm-macros mold cargo rust-packaging perl systemd-rpm-macros
 BuildRequires:  pkgconfig(libhelium-1)
@@ -31,6 +32,14 @@ BuildRequires:  glibc-all-langpacks
 %description
 Taidan is a GUI Out-Of-Box-Experience (OOBE) and Welcome App for Ultramarine
 Linux, written in Rust and the Helium toolkit.
+
+%package default-configs
+Summary:        Default configurations for Taidan
+Provides:       %name-configs
+BuildArch:      noarch
+
+%description default-configs
+This package contains the default configuration files for taidan.
 
 %prep
 %git_clone
@@ -51,7 +60,6 @@ DESTDIR=%buildroot ./scripts/install.sh
 %_datadir/polkit-1/rules.d/100-taidan.rules
 %_datadir/taidan/
 %_presetdir/95-taidan.preset
-%_sysconfdir/com.fyralabs.Taidan/
 %_sysconfdir/pam.d/taidan
 %_sysusersdir/taidan.conf
 %_unitdir/taidan-initial-setup.service
@@ -59,7 +67,15 @@ DESTDIR=%buildroot ./scripts/install.sh
 %dir %_prefix/lib/taidan/
 %_prefix/lib/taidan/labwc/*
 
+%files default-configs
+%config %_sysconfdir/com.fyralabs.Taidan/
+%config %_datadir/taidan/
+
 %changelog
+* Tue Jun 17 2026 madonuko <mado@fyralabs.com> - 0.2.1-2
+- split config files to separate subpkg
+- remove conflict with initial-setup
+
 * Sun Mar 15 2026 Tulip Blossom <tulilirockz@outlook.com>
 - Add dbus-daemon as runtime dependency
 

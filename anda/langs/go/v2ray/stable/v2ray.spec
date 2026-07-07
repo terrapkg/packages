@@ -1,5 +1,5 @@
 %global goipath         github.com/v2fly/v2ray-core
-Version:                5.51.2
+Version:                5.52.0
 
 %global golicenses      LICENSE
 %global godocs          README.md SECURITY.md 

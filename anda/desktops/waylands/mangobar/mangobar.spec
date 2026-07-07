@@ -1,5 +1,5 @@
-%global commit e5e8e35953c03e07e163a4967feda7af6aba7803
-%global commit_date 20260509
+%global commit c0138d9067d6a779c753aa7da72ce85d44f528da
+%global commit_date 20260527
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           mangobar

@@ -20,7 +20,7 @@ BuildRequires:  ncurses
 BuildRequires:  ncurses-devel
 BuildRequires:  pandoc-cli
 BuildRequires:  systemd-rpm-macros
-BuildRequires:  zig >= 0.14.0
+BuildRequires:  zig0.15
 BuildRequires:  zig-rpm-macros
 BuildRequires:  pkgconfig(blueprint-compiler)
 BuildRequires:  pkgconfig(bzip2)
@@ -170,6 +170,8 @@ This package contains the libraries and header files that are needed for develop
 %autosetup
 
 ZIG_GLOBAL_CACHE_DIR="%{_zig_cache_dir}" ./nix/build-support/fetch-zig-cache.sh
+# Workaround for 0.16 macros working around zig problem
+mv "%{_zig_cache_dir}/p" "zig-pkg"
 
 %build
 

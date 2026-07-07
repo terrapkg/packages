@@ -11,7 +11,7 @@ Summary:        Displays the content you're currently watching on Discord!
 
 License:        GPL-3.0-or-later
 URL:            https://crates.io/crates/jellyfin-rpc-cli
-Source0:        %{crates_source}
+Source0:        %{terra_crates_source}
 Source1:        https://raw.githubusercontent.com/Radiicall/jellyfin-rpc/%version/LICENSE
 Packager:       madonuko <mado@fyralabs.com>
 

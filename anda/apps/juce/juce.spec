@@ -1,5 +1,5 @@
 Name:           juce
-Version:        8.0.13
+Version:        8.0.14
 Release:        1%{?dist}
 License:        AGPL-3.0-or-later
 Summary:        framework for audio application and plug-in development

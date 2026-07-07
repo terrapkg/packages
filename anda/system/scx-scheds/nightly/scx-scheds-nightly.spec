@@ -1,7 +1,7 @@
-%global commit 6a19de9c8fe192c14412c5e1ad7ca6fa259ce168
+%global commit d624f3322427cd30c29b8c8f507eb005fe546468
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260523
-%global ver 1.1.1
+%global commitdate 20260703
+%global ver 1.1.2
 %undefine __brp_mangle_shebangs
 
 Name:           scx-scheds-nightly
@@ -33,6 +33,7 @@ BuildRequires:  rust
 BuildRequires:  systemd
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  zlib-ng-compat
+BuildRequires:  pkgconfig(openssl)
 Requires:       (scx-tools or scx-tools-nightly)
 Suggests:       scx-tools-nightly
 Requires:       elfutils-libelf

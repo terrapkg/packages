@@ -1,12 +1,12 @@
-%global ver 0.0.12
+%global ver 0.0.14-beta
 
 Name:          holyc
-Version:       %{ver}~beta
+Version:       %(echo "%{ver}" | sed 's/-/~/g')
 Release:       1%{?dist}
 Summary:       HolyC compiler and transpiler
 License:       BSD-2-Clause
 URL:           https://holyc-lang.com
-Source0:       https://github.com/Jamesbarford/holyc-lang/archive/refs/tags/beta-v%{ver}.tar.gz
+Source0:       https://github.com/Jamesbarford/holyc-lang/archive/refs/tags/v%{ver}.tar.gz
 BuildRequires: cmake
 BuildRequires: cmake-rpm-macros
 BuildRequires: gcc
@@ -20,7 +20,7 @@ Originally implemented in TempleOS as a general purpose programming language and
 
 %prep
 # Currently needed to fetch the commit hash for hcc --version
-%git_clone https://github.com/Jamesbarford/holyc-lang.git beta-v%{ver}
+%git_clone https://github.com/Jamesbarford/holyc-lang.git v%{ver}
 %setup -T -D -n holyc-lang/src
 # Make packaged versions of HolyC report the correct Git hash
 sed -i 's|git rev-parse main|git rev-parse HEAD|g' CMakeLists.txt
@@ -30,7 +30,8 @@ sed -i 's|binary: %%s/hcc|binary: %%s/bin/hcc|g' cli.c
 %build
 %cmake \
   -DCMAKE_BUILD_TYPE="Release" \
-  -DHCC_LINK_SQLITE3="1"
+  -DHCC_LINK_SQLITE3="1" \
+  -DHCC_ENABLE_JIT="ON"
 %cmake_build
 
 %install
@@ -46,5 +47,7 @@ sed -i 's|binary: %%s/hcc|binary: %%s/bin/hcc|g' cli.c
 %{_includedir}/tos.HH
 
 %changelog
+* Sat Jul 4 2026 Gilver E. <roachy@fyralabs.com> - 0.0.14~beta-1
+- Update to 0.0.14 beta
 * Tue Feb 10 2026 Gilver E. <roachy@fyralabs.com> - 0.0.10~beta-1
 - Initial package

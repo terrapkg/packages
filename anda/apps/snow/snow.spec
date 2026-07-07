@@ -1,5 +1,5 @@
 Name:           snow
-Version:        1.4.1
+Version:        1.5.0
 Release:        1%{?dist}
 Summary:        Classic Macintosh emulator
 URL:            https://github.com/twvd/snow
@@ -13,6 +13,7 @@ BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  desktop-file-utils
 BuildRequires:  SDL2-devel
+BuildRequires:  pkgconfig(alsa)
 Provides:       snowemu
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>

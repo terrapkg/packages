@@ -1,6 +1,6 @@
 BuildArch:      noarch
 Name:           kotlin
-Version:        2.3.21
+Version:        2.4.0
 Release:        1%{?dist}
 Summary:        Statically typed programming language
 

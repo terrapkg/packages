@@ -37,7 +37,9 @@ Packager:      Gilver E. <roachy@fyralabs.com>
 
 %install
 %crate_install_bin
-%{cargo_license_online} > LICENSE.dependencies
+pushd crates/edit
+%{cargo_license_online} > ../../LICENSE.dependencies
+popd
 install -Dm644 assets/edit.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps/%{appid}.svg
 
 sed -i "s|^Icon=edit$|Icon=%{appid}|g" assets/%{appid}.desktop

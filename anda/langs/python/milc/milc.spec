@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		2.0.0
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Batteries-Included Python 3 CLI Framework
 License:		MIT
 URL:			https://github.com/clueboard/milc

@@ -1,0 +1,264 @@
+diff -Naur x265_4.2.old/doc/reST/cli.rst x265_4.2/doc/reST/cli.rst
+--- x265_4.2.old/doc/reST/cli.rst	2026-05-22 09:31:41.392908256 +0200
++++ x265_4.2/doc/reST/cli.rst	2026-05-22 09:31:41.566332687 +0200
+@@ -2410,6 +2410,8 @@
+ 	13. chroma-derived-c
+ 	14. ictcp
+ 	15. ipt-pq-c2
++	16. ycgco-re
++	17. ycgco-ro
+ 
+ .. option:: --chromaloc <0..5>
+ 
+diff -Naur x265_4.2.old/source/CMakeLists.txt x265_4.2/source/CMakeLists.txt
+--- x265_4.2.old/source/CMakeLists.txt	2026-05-22 09:31:41.511324918 +0200
++++ x265_4.2/source/CMakeLists.txt	2026-05-22 09:31:41.564187955 +0200
+@@ -890,6 +890,9 @@
+ 	elseif(ARM64 OR CROSS_COMPILE_ARM64)
+     # compile ARM64 arch asm files here
+         enable_language(ASM)
++        if(APPLE)
++            set(ARM_ARGS ${ARM_ARGS} -arch ${CMAKE_OSX_ARCHITECTURES})
++        endif()
+         foreach(ASM ${ARM_ASMS})
+             set(ASM_SRC ${CMAKE_CURRENT_SOURCE_DIR}/common/aarch64/${ASM})
+             list(APPEND ASM_SRCS ${ASM_SRC})
+diff -Naur x265_4.2.old/source/common/frame.cpp x265_4.2/source/common/frame.cpp
+--- x265_4.2.old/source/common/frame.cpp	2026-05-22 09:31:41.405483833 +0200
++++ x265_4.2/source/common/frame.cpp	2026-05-22 09:31:41.561815253 +0200
+@@ -378,6 +378,11 @@
+         delete[] m_userSEI.payloads;
+     }
+ 
++    if (m_rpu.payloadSize)
++    {
++        delete[] m_rpu.payload;
++    }
++
+     if (m_ctuInfo)
+     {
+         uint32_t widthInCU = (m_param->sourceWidth + m_param->maxCUSize - 1) >> m_param->maxLog2CUSize;
+diff -Naur x265_4.2.old/source/common/param.cpp x265_4.2/source/common/param.cpp
+--- x265_4.2.old/source/common/param.cpp	2026-05-22 09:31:41.406483841 +0200
++++ x265_4.2/source/common/param.cpp	2026-05-22 09:31:41.566608597 +0200
+@@ -408,6 +408,7 @@
+     param->preferredTransferCharacteristics = -1;
+     param->pictureStructure = -1;
+     param->bEmitCLL = 1;
++    param->bEmitAmbientViewingEnvironment = 0;
+ 
+     param->bEnableFrameDuplication = 0;
+     param->dupThreshold = 70;
+@@ -1815,10 +1816,10 @@
+           " smpte170m, smpte240m, linear, log100, log316, iec61966-2-4, bt1361e,"
+           " iec61966-2-1, bt2020-10, bt2020-12, smpte-st-2084, smpte-st-428 or arib-std-b67");
+     CHECK(param->vui.matrixCoeffs < 0
+-          || param->vui.matrixCoeffs > 15
++          || param->vui.matrixCoeffs > 17
+           || param->vui.matrixCoeffs == 3,
+           "Matrix Coefficients must be unknown, bt709, fcc, bt470bg, smpte170m,"
+-          " smpte240m, gbr, ycgco, bt2020nc, bt2020c, smpte-st-2085, chroma-nc, chroma-c, ictcp or ipt-pq-c2");
++          " smpte240m, gbr, ycgco, bt2020nc, bt2020c, smpte-st-2085, chroma-nc, chroma-c, ictcp, ipt-pq-c2, ycgco-re, or ycgco-ro");
+     CHECK(param->vui.chromaSampleLocTypeTopField < 0
+           || param->vui.chromaSampleLocTypeTopField > 5,
+           "Chroma Sample Location Type Top Field must be 0-5");
+@@ -1980,6 +1981,7 @@
+                      || param->bEmitIDRRecoverySEI
+                    || !!param->interlaceMode
+                      || param->preferredTransferCharacteristics > 1
++                     || param->bEmitAmbientViewingEnvironment
+                      || strlen(param->toneMapFile)
+                      || strlen(param->naluFile));
+ 
+@@ -2941,6 +2943,10 @@
+     dst->bEmitCLL = src->bEmitCLL;
+     dst->maxCLL = src->maxCLL;
+     dst->maxFALL = src->maxFALL;
++    dst->ambientIlluminance = src->ambientIlluminance;
++    dst->ambientLightX = src->ambientLightX;
++    dst->ambientLightY = src->ambientLightY;
++    dst->bEmitAmbientViewingEnvironment = src->bEmitAmbientViewingEnvironment;
+     dst->log2MaxPocLsb = src->log2MaxPocLsb;
+     dst->bEmitVUIHRDInfo = src->bEmitVUIHRDInfo;
+     dst->bEmitVUITimingInfo = src->bEmitVUITimingInfo;
+diff -Naur x265_4.2.old/source/common/threadpool.cpp x265_4.2/source/common/threadpool.cpp
+--- x265_4.2.old/source/common/threadpool.cpp	2026-05-22 09:31:41.414483910 +0200
++++ x265_4.2/source/common/threadpool.cpp	2026-05-22 09:31:41.556420957 +0200
+@@ -125,12 +125,6 @@
+ {
+     THREAD_NAME("Worker", m_id);
+ 
+-#if _WIN32
+-    SetThreadPriority(GetCurrentThread(), THREAD_PRIORITY_BELOW_NORMAL);
+-#else
+-    __attribute__((unused)) int val = nice(10);
+-#endif
+-
+     m_pool.setCurrentThreadAffinity();
+ 
+     sleepbitmap_t idBit = (sleepbitmap_t)1 << m_id;
+@@ -835,10 +829,16 @@
+     else if (cpuCount >= 32)
+         return (p->sourceHeight > 2000) ? 6 : 5; 
+     else if (cpuCount >= 16)
+-        return 4; 
++#if MACOS && X265_ARCH_ARM64
++        return 16;
++#else
++        return 4;
++#endif
+     else if (cpuCount >= 8)
+ #if _WIN32 && X265_ARCH_ARM64
+         return cpuCount;
++#elif MACOS && X265_ARCH_ARM64
++        return 8;
+ #else
+         return 3;
+ #endif
+diff -Naur x265_4.2.old/source/encoder/encoder.cpp x265_4.2/source/encoder/encoder.cpp
+--- x265_4.2.old/source/encoder/encoder.cpp	2026-05-22 09:31:41.432484066 +0200
++++ x265_4.2/source/encoder/encoder.cpp	2026-05-22 09:31:41.562115269 +0200
+@@ -1768,11 +1768,20 @@
+         }
+         copyUserSEIMessages(inFrame[0], inputPic[0]);
+ 
+-        /*Copy Dolby Vision RPU from inputPic to frame*/
++        /* Copy Dolby Vision RPU from inputPic to frame. */
++        if (inFrame[0]->m_rpu.payload && inFrame[0]->m_rpu.payloadSize < inputPic[0]->rpu.payloadSize)
++        {
++            delete[] inFrame[0]->m_rpu.payload;
++            inFrame[0]->m_rpu.payload = NULL;
++        }
++
+         if (inputPic[0]->rpu.payloadSize)
+         {
++            if (inFrame[0]->m_rpu.payload == NULL)
++            {
++                inFrame[0]->m_rpu.payload = new uint8_t[inputPic[0]->rpu.payloadSize];
++            }
+             inFrame[0]->m_rpu.payloadSize = inputPic[0]->rpu.payloadSize;
+-            inFrame[0]->m_rpu.payload = new uint8_t[inputPic[0]->rpu.payloadSize];
+             memcpy(inFrame[0]->m_rpu.payload, inputPic[0]->rpu.payload, inputPic[0]->rpu.payloadSize);
+         }
+ 
+@@ -3475,6 +3484,15 @@
+         }
+     }
+ 
++    if (m_param->bEmitAmbientViewingEnvironment)
++    {
++        SEIAmbientViewingEnvironment ambientsei;
++        ambientsei.ambientIlluminance = m_param->ambientIlluminance;
++        ambientsei.ambientLightX = m_param->ambientLightX;
++        ambientsei.ambientLightY = m_param->ambientLightY;
++        ambientsei.writeSEImessages(bs, m_sps, NAL_UNIT_PREFIX_SEI, list, m_param->bSingleSeiNal);
++    }
++
+     if (m_param->bEmitInfoSEI)
+     {
+         char *opts = x265_param2string(m_param, m_sps.conformanceWindow.rightOffset, m_sps.conformanceWindow.bottomOffset);
+diff -Naur x265_4.2.old/source/encoder/entropy.cpp x265_4.2/source/encoder/entropy.cpp
+--- x265_4.2.old/source/encoder/entropy.cpp	2026-05-22 09:31:41.433484074 +0200
++++ x265_4.2/source/encoder/entropy.cpp	2026-05-22 09:31:41.565040953 +0200
+@@ -2104,8 +2104,9 @@
+ void Entropy::codeMvd(const CUData& cu, uint32_t absPartIdx, int list)
+ {
+     const MV& mvd = cu.m_mvd[list][absPartIdx];
+-    const int hor = mvd.x;
+-    const int ver = mvd.y;
++    // to ensure the mvdLX is in the range of [-2^15, 2^15-1]
++    const int16_t hor = (int16_t)mvd.x;
++    const int16_t ver = (int16_t)mvd.y;
+ 
+     encodeBin(hor != 0 ? 1 : 0, m_contextState[OFF_MV_RES_CTX]);
+     encodeBin(ver != 0 ? 1 : 0, m_contextState[OFF_MV_RES_CTX]);
+diff -Naur x265_4.2.old/source/encoder/sei.h x265_4.2/source/encoder/sei.h
+--- x265_4.2.old/source/encoder/sei.h	2026-05-22 09:31:41.437484109 +0200
++++ x265_4.2/source/encoder/sei.h	2026-05-22 09:31:41.558216982 +0200
+@@ -726,6 +726,25 @@
+     }
+ };
+ 
++class SEIAmbientViewingEnvironment : public SEI
++{
++public:
++    SEIAmbientViewingEnvironment()
++    {
++        m_payloadType = AMBIENT_VIEWING_ENVIRONMENT;
++        m_payloadSize = 8;
++    }
++    uint32_t ambientIlluminance;
++    uint16_t ambientLightX;
++    uint16_t ambientLightY;
++    void writeSEI(const SPS&)
++    {
++        WRITE_CODE(ambientIlluminance, 32, "ambient_illuminance");
++        WRITE_CODE(ambientLightX,      16, "ambient_light_x");
++        WRITE_CODE(ambientLightY,      16, "ambient_light_y");
++    }
++};
++
+ class SEIDecodedPictureHash : public SEI
+ {
+ public:
+diff -Naur x265_4.2.old/source/x265cli.cpp x265_4.2/source/x265cli.cpp
+--- x265_4.2.old/source/x265cli.cpp	2026-05-22 09:31:41.443484161 +0200
++++ x265_4.2/source/x265cli.cpp	2026-05-22 09:31:41.567013470 +0200
+@@ -328,7 +328,7 @@
+         H0("                                 smpte240m, linear, log100, log316, iec61966-2-4, bt1361e, iec61966-2-1,\n");
+         H0("                                 bt2020-10, bt2020-12, smpte2084, smpte428, arib-std-b67. Default unknown\n");
+         H1("   --colormatrix <string>        Specify color matrix setting from unknown, bt709, fcc, bt470bg, smpte170m,\n");
+-        H1("                                 smpte240m, gbr, ycgco, bt2020nc, bt2020c, smpte2085, chroma-derived-nc, chroma-derived-c, ictcp, ipt-pq-c2. Default unknown\n");
++        H1("                                 smpte240m, gbr, ycgco, bt2020nc, bt2020c, smpte2085, chroma-derived-nc, chroma-derived-c, ictcp, ipt-pq-c2, ycgco-re, ycgco-ro. Default unknown\n");
+         H1("   --chromaloc <integer>         Specify chroma sample location (0 to 5). Default of %d\n", param->vui.chromaSampleLocTypeTopField);
+         H0("   --master-display <string>     SMPTE ST 2086 master display color volume info SEI (HDR)\n");
+         H0("                                    format: G(x,y)B(x,y)R(x,y)WP(x,y)L(max,min)\n");
+@@ -1508,4 +1508,4 @@
+ 
+ #ifdef __cplusplus
+ }
+-#endif
+\ No newline at end of file
++#endif
+diff -Naur x265_4.2.old/source/x265.h x265_4.2/source/x265.h
+--- x265_4.2.old/source/x265.h	2026-05-22 09:31:41.443484161 +0200
++++ x265_4.2/source/x265.h	2026-05-22 09:31:41.566832268 +0200
+@@ -378,6 +378,7 @@
+     MASTERING_DISPLAY_INFO               = 137,
+     CONTENT_LIGHT_LEVEL_INFO             = 144,
+     ALTERNATIVE_TRANSFER_CHARACTERISTICS = 147,
++    AMBIENT_VIEWING_ENVIRONMENT          = 148,
+     ALPHA_CHANNEL_INFO                   = 165,
+     THREE_DIMENSIONAL_REFERENCE_DISPLAYS_INFO = 176,
+     MULTIVIEW_SCENE_INFO                 = 178,
+@@ -753,7 +754,7 @@
+                                                     "log316", "iec61966-2-4", "bt1361e", "iec61966-2-1", "bt2020-10", "bt2020-12",
+                                                     "smpte2084", "smpte428", "arib-std-b67", 0 };
+ static const char * const x265_colmatrix_names[] = { "gbr", "bt709", "unknown", "", "fcc", "bt470bg", "smpte170m", "smpte240m",
+-                                                     "ycgco", "bt2020nc", "bt2020c", "smpte2085", "chroma-derived-nc", "chroma-derived-c", "ictcp", "ipt-pq-c2", 0 };
++                                                     "ycgco", "bt2020nc", "bt2020c", "smpte2085", "chroma-derived-nc", "chroma-derived-c", "ictcp", "ipt-pq-c2", "ycgco-re", "ycgco-ro", 0 };
+ static const char * const x265_sar_names[] = { "unknown", "1:1", "12:11", "10:11", "16:11", "40:33", "24:11", "20:11",
+                                                "32:11", "80:33", "18:11", "15:11", "64:33", "160:99", "4:3", "3:2", "2:1", 0 };
+ static const char * const x265_interlace_names[] = { "prog", "tff", "bff", 0 };
+@@ -1978,6 +1979,11 @@
+      * value to that value. */
+     uint16_t maxLuma;
+ 
++    /* ISO/IEC 23008-2:2017, D.2.39 ambient viewing environment SEI message */
++    uint32_t ambientIlluminance;
++    uint16_t ambientLightX;
++    uint16_t ambientLightY;
++
+     /* Maximum of the picture order count */
+     int log2MaxPocLsb;
+ 
+@@ -2189,6 +2195,9 @@
+     /*Emit content light level info SEI*/
+     int         bEmitCLL;
+ 
++    /* Emit ambient viewing environment SEI */
++    int         bEmitAmbientViewingEnvironment;
++
+     /*
+     * Signals picture structure SEI timing message for every frame
+     * picture structure 7 is signalled for frame doubling

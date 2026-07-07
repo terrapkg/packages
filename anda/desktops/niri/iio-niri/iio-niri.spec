@@ -1,5 +1,5 @@
 Name:           iio-niri
-Version:        2.0.0
+Version:        2.3.1
 Release:        1%{?dist}
 Summary:        Autorotation daemon for niri
 URL:            https://github.com/Zhaith-Izaliel/iio-niri

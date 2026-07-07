@@ -1,7 +1,7 @@
 %global _distro_extra_cflags -Wno-discarded-qualifiers -Wno-maybe-uninitialized
 
 Name:           quickjs-ng
-Version:        0.15.0
+Version:        0.15.1
 Release:        1%{?dist}
 License:        MIT
 Summary:        A mighty JavaScript engine
@@ -31,10 +31,6 @@ intent of reigniting its development.
 %package devel
 Requires:   %{name}-libs%{_isa} = %evr
 %pkg_devel_files
-
-%files devel
-%{_libdir}/cmake/quickjs/*.cmake
-
 
 %package examples
 Summary:    Example files for %{name}

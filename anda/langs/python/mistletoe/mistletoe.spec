@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.5.1
-Release:		1%?dist
+Release:		2%?dist
 Summary:		A rough port of Node.js's EventEmitter to Python with a few tricks of its own
 License:		MIT
 URL:			https://github.com/miyuchina/mistletoe

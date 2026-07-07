@@ -24,10 +24,19 @@ jobs:
           dnf5 swap -y --setopt=install_weak_deps=False systemd-standalone-sysusers systemd
           dnf5 install -y --setopt=install_weak_deps=False curl wget git-core openssl-devel cargo podman fuse-overlayfs dnf5-plugins rpmbuild script
 
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           ref: f${{ matrix.version }}
           fetch-depth: 1
+
+      - name: Setup build environment
+        run: |
+          sed -i 's/.fc%{fedora}/.fcrawhide/g' /usr/lib/rpm/macros.d/macros.dist
+          cat<<EOF >> /etc/dnf/dnf.conf
+          gpgcheck=1
+          install_weak_deps=0
+          max_parallel_downloads=20
+          EOF
 
       - name: Build anda-srpm-macros
         run: |
@@ -37,11 +46,11 @@ jobs:
           dnf5 install -y ./anda-build/rpm/rpms/anda-*.rpm
 
       - name: Install build dependencies
-        run: dnf5 builddep -y anda/terra/{mock-configs,srpm-macros}/*.spec anda/tools/buildsys/{anda,subatomic}/*.spec
+        run: dnf5 builddep -y anda/terra/{mock-configs,srpm-macros,appstream-helper}/*.spec anda/{buildsys/anda,tools/subatomic}/*.spec
 
       - name: Install Anda
         run: |
-          rpmbuild -bb anda/tools/buildsys/anda/*.spec --undefine=_disable_source_fetch -D "_sourcedir $(pwd)/anda/tools/buildsys/anda/" -D "_rpmdir $(pwd)/anda-build/rpm/rpms/"
+          rpmbuild -bb anda/buildsys/anda/*.spec --undefine=_disable_source_fetch -D "_sourcedir $(pwd)/anda/buildsys/anda/" -D "_rpmdir $(pwd)/anda-build/rpm/rpms/"
           mv ./anda-build/rpm/rpms/*/anda-*.rpm ./anda-build/rpm/rpms/
           dnf5 install -y ./anda-build/rpm/rpms/anda-*.rpm
 
@@ -61,7 +70,7 @@ jobs:
         run: anda build -D "vendor Terra" -D "__python %{__python3}" -rrpmbuild anda/terra/appstream-helper/pkg
 
       - name: Build Subatomic
-        run: anda build -D "vendor Terra" -rrpmbuild anda/tools/buildsys/subatomic/pkg
+        run: anda build -D "vendor Terra" -rrpmbuild anda/tools/subatomic/pkg
       - name: Install Subatomic
         run: dnf5 install -y ./anda-build/rpm/rpms/subatomic-*.rpm
 
@@ -84,7 +93,7 @@ jobs:
             terra${{ matrix.version }}-source anda-build/rpm/srpm/*
 
       - name: Attest build provenance
-        uses: actions/attest-build-provenance@a2bbfa25375fe432b6a289bc6b6cd05ecd0c4c32 # v4.1.0
+        uses: actions/attest-build-provenance@0f67c3f4856b2e3261c31976d6725780e5e4c373 # v4.1.1
         with:
           subject-path: |
             anda-build/rpm/rpms/*
