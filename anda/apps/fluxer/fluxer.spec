@@ -15,6 +15,7 @@ BuildRequires:  xorg-x11-proto-devel
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pkgconfig(libfido2)
 BuildRequires:  pkgconfig(glib-2.0)
+BuildRequires:  pkgconfig(libudev)
 BuildRequires:  clang-devel
 BuildRequires:  pipewire-devel
 
