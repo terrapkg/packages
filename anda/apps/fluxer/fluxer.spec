@@ -40,7 +40,7 @@ popd
 
 %install
 pushd fluxer_desktop
-mv dist-electron/linux-unpacked dist/
+mv dist-electron/*unpacked dist/
 %electron_install -b fluxer_desktop -i app.fluxer.Fluxer -s fluxer -I packaging/linux/%appid.svg
 
 %desktop_file_install -k Exec,Icon -v fluxer,%appid -u %U packaging/linux/%appid.desktop
