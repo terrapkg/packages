@@ -34,7 +34,6 @@ Packager:       Ben Woods <git@ben.woods.am>
 %license LICENSE.dependencies
 %doc README.md
 %{_bindir}/btm
-%{_bindir}/schema
 %{_mandir}/man1/btm.1*
 
 %pkg_completion -Bfz -n %crate btm
