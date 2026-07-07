@@ -14,6 +14,7 @@ BuildRequires:  rust-packaging nodejs nodejs-npm nodejs-packaging pnpm
 BuildRequires:  xorg-x11-proto-devel
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pkgconfig(libfido2)
+BuildRequires:  clang-devel
 
 %description
 %summary.
