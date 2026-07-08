@@ -1,8 +1,10 @@
 %global appid app.fluxer.Fluxer
 
+%global __provides_excludes %{__provides_excludes}|libcbor\.so|libcrypto\.so|libfido2\.so|libudev\.so|libz\.so
+
 Name:           fluxer
 Version:        2026.707.150855
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Fluxer is a free and open source instant messaging and VoIP platform built for friends, groups, and communities
 URL:            https://fluxer.app
 
