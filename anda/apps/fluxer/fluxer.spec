@@ -24,6 +24,7 @@ BuildRequires:  pipewire-devel
 
 %prep
 %autosetup
+%cargo_prep_online
 
 %build
 pushd fluxer_desktop
