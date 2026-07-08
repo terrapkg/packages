@@ -8,7 +8,7 @@ Release:        2%?dist
 Summary:        Fluxer is a free and open source instant messaging and VoIP platform built for friends, groups, and communities
 URL:            https://fluxer.app
 
-%electronmeta
+%electronmeta -D
 
 License:        AGPL-3.0-or-later AND %electron_license
 Source0:        https://github.com/fluxerapp/fluxer/archive/refs/tags/%version.tar.gz
