@@ -19,6 +19,11 @@ BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(libudev)
 BuildRequires:  clang-devel
 BuildRequires:  pipewire-devel
+Provides:       bundled(libcbor)
+Provides:       bundled(libfido2)
+Provides:       bundled(libudev1)
+Provides:       bundled(openssl)
+Provides:       bundled(zlib)
 
 %description
 %summary.
