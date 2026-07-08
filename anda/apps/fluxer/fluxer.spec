@@ -7,7 +7,7 @@ Summary:        Fluxer is a free and open source instant messaging and VoIP plat
 URL:            https://fluxer.app
 
 %electronmeta -D
-%global __provides_excludes %{__provides_excludes}|libcbor\.so|libcrypto\.so|libfido2\.so|libudev\.so|libz\.so
+%global __provides_excludes %{__provides_excludes}|libcbor\.so.*|libcrypto\.so.*|libfido2\.so.*|libudev\.so.*|libz\.so.*
 
 License:        AGPL-3.0-or-later AND %electron_license
 Source0:        https://github.com/fluxerapp/fluxer/archive/refs/tags/%version.tar.gz
