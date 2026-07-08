@@ -5,7 +5,7 @@ A fast high compression read-only file system for Linux and Windows.}
 %global _distro_extra_cxxflags -include %{_includedir}/c++/*/cstdint
 
 Name:          dwarfs
-Version:       0.15.3
+Version:       0.15.4
 Release:       1%{?dist}
 Summary:       A fast high compression read-only file system for Linux, Windows and macOS
 License:       GPL-3.0-or-later
