@@ -82,10 +82,10 @@ install -Dm 644 extra/%{name}-url-handler.desktop -t %{buildroot}%{_appsdir}
 %{_appsdir}/%{name}.desktop
 %{_appsdir}/%{name}-url-handler.desktop
 %{_hicolordir}/512x512/apps/%{name}.png
-%{_datadir}/%{name}/native-host/chromium/com.vicinae.vicinae.json
-%{_datadir}/%{name}/native-host/com.vicinae.vicinae.chromium.json.in
-%{_datadir}/%{name}/native-host/com.vicinae.vicinae.firefox.json.in
-%{_datadir}/%{name}/native-host/firefox/com.vicinae.vicinae.json
+%dnl %{_datadir}/%{name}/native-host/chromium/com.vicinae.vicinae.json
+%dnl %{_datadir}/%{name}/native-host/com.vicinae.vicinae.chromium.json.in
+%dnl %{_datadir}/%{name}/native-host/com.vicinae.vicinae.firefox.json.in
+%dnl %{_datadir}/%{name}/native-host/firefox/com.vicinae.vicinae.json
 %{_libexecdir}/%{name}/vicinae-browser-link
 %{_libexecdir}/%{name}/vicinae-data-control-server
 %{_libexecdir}/%{name}/vicinae-server
