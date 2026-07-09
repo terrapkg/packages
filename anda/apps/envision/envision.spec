@@ -1,3 +1,5 @@
+%global _distro_extra_cflags -fPIE
+%global _distro_extra_cxxflags -fPIE
 %global commit aa84e48e8de86dd12d62604340a29748b599d298
 %global commit_date 20260709
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
