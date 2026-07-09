@@ -7,7 +7,7 @@
 Name:           libcusolver
 Epoch:          2
 Version:        12.2.6.9
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        NVIDIA cuSOLVER library
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -19,6 +19,8 @@ Source3:        cusolver.pc
 
 Requires:       libgomp%{_isa}
 Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
+
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 The NVIDIA cuSOLVER library provides a collection of dense and sparse direct
@@ -88,4 +90,5 @@ sed -i \
 %{_libdir}/libcusolver_static.a
 
 %changelog
-%autochangelog
+* Wed Jul 8 2026 Gilver E. <roachy@fyralabs.com> - 2:12.2.6.9-2
+- Mass update CUDA components

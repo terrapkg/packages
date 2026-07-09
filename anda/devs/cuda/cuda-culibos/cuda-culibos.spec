@@ -19,6 +19,8 @@ Source0:        https://developer.download.nvidia.com/compute/cuda/redist/%{real
 Source1:        https://developer.download.nvidia.com/compute/cuda/redist/%{real_name}/linux-sbsa/%{real_name}-linux-sbsa-%{version}-archive.tar.xz
 
 Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
+
+Packager:       Terra Packaging Team <terra@fyralabs.com>
  
 %description
 CUDA CULIBOS is a Math Libraries fork of the cuos library.
@@ -40,4 +42,5 @@ install -p -m 0755 -D lib/libculibos.a %{buildroot}%{_libdir}/libculibos.a
 %{_libdir}/libculibos.a
 
 %changelog
-%autochangelog
+* Wed Jul 8 2026 Gilver E. <roachy@fyralabs.com> - 1:13.3.33-2
+- Mass update CUDA components

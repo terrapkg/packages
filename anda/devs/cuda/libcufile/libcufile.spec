@@ -7,7 +7,7 @@
 Name:           libcufile
 Epoch:          1
 Version:        1.18.1.6
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        NVIDIA GPUDirect Storage library (cuFile)
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -18,6 +18,8 @@ Source1:        https://developer.download.nvidia.com/compute/cuda/redist/%{name
 Source2:        cufile.pc
 
 Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
+
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 NVIDIA GPUDirect Storage library is used in applications and frameworks to
@@ -119,4 +121,5 @@ sed -i \
 %{_bindir}/gds_stats
 
 %changelog
-%autochangelog
+* Wed Jul 8 2026 Gilver E. <roachy@fyralabs.com> - 1:1.18.1.6-2
+- Mass update CUDA components

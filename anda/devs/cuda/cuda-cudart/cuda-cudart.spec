@@ -9,7 +9,7 @@
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
 Version:        13.3.29
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        CUDA Runtime API library
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -20,6 +20,8 @@ Source1:        https://developer.download.nvidia.com/compute/cuda/redist/%{real
 Source3:        cudart.pc
 
 Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
+
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 CUDA Runtime (cudart).
@@ -80,4 +82,5 @@ sed -i \
 %{_libdir}/libcudart_static.a
 
 %changelog
-%autochangelog
+* Wed Jul 8 2026 Gilver E. <roachy@fyralabs.com> - 1:13.3.29-2
+- Mass update CUDA components

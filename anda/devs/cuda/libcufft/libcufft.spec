@@ -7,7 +7,7 @@
 Name:           libcufft
 Epoch:          2
 Version:        12.3.0.29
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        NVIDIA CUDA Fast Fourier Transform library (cuFFT) libraries
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -22,6 +22,8 @@ Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}
 # Drop in 11.7:
 Provides:       cuda-cufft = %{?epoch:%{epoch}:}%{version}-%{release}
 Obsoletes:      cuda-cufft < %{?epoch:%{epoch}:}%{version}-%{release}
+
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 The NVIDIA CUDA Fast Fourier Transform libraries (cuFFT) provide a simple
@@ -97,4 +99,5 @@ sed -i \
 %{_libdir}/libcufftw_static.a
 
 %changelog
-%autochangelog
+* Wed Jul 8 2026 Gilver E. <roachy@fyralabs.com> - 2:12.3.0.29-2
+- Mass update CUDA components

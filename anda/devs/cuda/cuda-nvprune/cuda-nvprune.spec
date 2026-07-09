@@ -9,7 +9,7 @@
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
 Version:        13.3.29
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        CUDA nvprune
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -19,6 +19,8 @@ Source0:        https://developer.download.nvidia.com/compute/cuda/redist/%{real
 Source1:        https://developer.download.nvidia.com/compute/cuda/redist/%{real_name}/linux-sbsa/%{real_name}-linux-sbsa-%{version}-archive.tar.xz
 
 Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
+
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 nvprune prunes host object files and libraries to only contain device code for
@@ -41,4 +43,5 @@ install -m 0755 -p -D bin/nvprune %{buildroot}%{_bindir}/nvprune
 %{_bindir}/nvprune
 
 %changelog
-%autochangelog
+* Wed Jul 8 2026 Gilver E. <roachy@fyralabs.com> - 1:13.3.29-2
+- Mass update CUDA components

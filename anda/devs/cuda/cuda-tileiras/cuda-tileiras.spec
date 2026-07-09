@@ -20,6 +20,8 @@ Source1:        https://developer.download.nvidia.com/compute/cuda/redist/%{real
 
 Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
 
+Packager:       Terra Packaging Team <terra@fyralabs.com>
+
 %description
 A portable, low-level tile virtual machine and instruction set that models the
 GPU as a tile-based processor. Unlike the traditional SIMT machine model, Tile
@@ -49,4 +51,4 @@ install -p -m 0755 -D bin/tileiras %{buildroot}%{_bindir}/tileiras
 
 %changelog
 * Wed Jul 8 2026 Gilver E. <roachy@fyralabs.com> - 1:13.2.51-1
-- Port to Terra
+- Initial package

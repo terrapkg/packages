@@ -9,7 +9,7 @@
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
 Version:        13.3.29
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        CUDA cuxxfilt (demangler)
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -17,6 +17,8 @@ ExclusiveArch:  x86_64 aarch64
 
 Source0:        https://developer.download.nvidia.com/compute/cuda/redist/%{real_name}/linux-x86_64/%{real_name}-linux-x86_64-%{version}-archive.tar.xz
 Source1:        https://developer.download.nvidia.com/compute/cuda/redist/%{real_name}/linux-sbsa/%{real_name}-linux-sbsa-%{version}-archive.tar.xz
+
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 CUDA cuxxfilt (demangler).
@@ -49,4 +51,5 @@ install -m 0644 -p -D lib/libcufilt.a %{buildroot}%{_libdir}/libcufilt.a
 %{_libdir}/libcufilt.a
 
 %changelog
-%autochangelog
+* Wed Jul 8 2026 Gilver E. <roachy@fyralabs.com> - 1:13.3.29-2
+- Mass update CUDA components

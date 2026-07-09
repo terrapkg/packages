@@ -9,7 +9,7 @@
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
 Version:        12.9.79
-Release:        1%?dist
+Release:        2%{?dist}
 Summary:        CUDA command line profiling tool
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -20,6 +20,8 @@ Source3:        accinj%{__isa_bits}.pc
 Source4:        cuinj%{__isa_bits}.pc
 
 Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
+
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 The nvprof profiling tool enables you to collect and view profiling data from
@@ -71,4 +73,5 @@ sed -i \
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
-%autochangelog
+* Wed Jul 8 2026 Gilver E. <roachy@fyralabs.com> - 1:12.9.79-2
+- Mass update CUDA components

@@ -6,7 +6,7 @@
 Name:           cuda-profiler
 Epoch:          1
 Version:        13.3.27
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        CUDA Profiler API
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -14,6 +14,8 @@ BuildArch:      noarch
 
 # Different tarballs per architecture but they all contain the same headers:
 Source0:        https://developer.download.nvidia.com/compute/cuda/redist/%{real_name}/linux-x86_64/%{real_name}-linux-x86_64-%{version}-archive.tar.xz
+
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 NVIDIA CUDA API for profiling.
@@ -37,4 +39,5 @@ cp -f include/* %{buildroot}%{_includedir}/
 %{_includedir}/*
 
 %changelog
-%autochangelog
+* Wed Jul 8 2026 Gilver E. <roachy@fyralabs.com> - 1:13.3.27-2
+- Mass update CUDA components

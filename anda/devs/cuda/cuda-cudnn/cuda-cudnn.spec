@@ -6,7 +6,7 @@
 
 Name:           cuda-cudnn
 Version:        9.24.0.43
-Release:        1%{?dist}
+Release:        2%{?dist}
 Epoch:          1
 Summary:        NVIDIA CUDA Deep Neural Network library (cuDNN)
 License:        NVIDIA Software Development Kit
@@ -15,6 +15,8 @@ ExclusiveArch:  x86_64 aarch64
 
 Source0:        https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/linux-x86_64/cudnn-linux-x86_64-%{version}_cuda%{cuda_version}-archive.tar.xz
 Source1:        https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/linux-sbsa/cudnn-linux-sbsa-%{version}_cuda%{cuda_version}-archive.tar.xz
+
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 The NVIDIA CUDA Deep Neural Network library (cuDNN) is a GPU-accelerated
@@ -71,4 +73,5 @@ chmod 644 %{buildroot}%{_includedir}/*
 %{_libdir}/libcudnn*.a
 
 %changelog
-%autochangelog
+* Wed Jul 8 2026 Gilver E. <roachy@fyralabs.com> - 1:9.24.0.43-2
+- Mass update CUDA components

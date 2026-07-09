@@ -7,7 +7,7 @@
 Name:           libcusparse
 Epoch:          1
 Version:        12.8.2.51
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        NVIDIA CUDA Sparse Matrix library (cuSPARSE) library
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -18,6 +18,8 @@ Source1:        https://developer.download.nvidia.com/compute/cuda/redist/%{name
 Source3:        cusparse.pc
 
 Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
+
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 The NVIDIA CUDA Sparse Matrix library (cuSPARSE) provides a collection of basic
@@ -84,4 +86,5 @@ sed -i \
 %{_libdir}/libcusparse_static.a
 
 %changelog
-%autochangelog
+* Wed Jul 8 2026 Gilver E. <roachy@fyralabs.com> - 1:12.8.2.51-2
+- Mass update CUDA components

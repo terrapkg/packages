@@ -2,7 +2,7 @@
 
 Name:           cuda-gcc
 Version:        14.3.1
-Release:        1%?dist
+Release:        2%{?dist}
 Summary:        GNU Compiler Collection CUDA compatibility package
 License:        BSD
 URL:            http://gcc.gnu.org
@@ -17,6 +17,8 @@ Provides:       cuda-gcc-c++ = %{version}-%{release}
 Obsoletes:      cuda-gcc-c++ < %{version}-%{release}
 Provides:       cuda-gcc-gfortran = %{version}-%{release}
 Obsoletes:      cuda-gcc-gfortran < %{version}-%{release}
+
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 The %{name} package contains scripts that are sourced in the environment to use
@@ -44,4 +46,5 @@ EOF
 %config(noreplace) %{_sysconfdir}/profile.d/%{name}.sh
 
 %changelog
-%autochangelog
+* Wed Jul 8 2026 Gilver E. <roachy@fyralabs.com> - 14.3.1-2
+- Mass update CUDA components

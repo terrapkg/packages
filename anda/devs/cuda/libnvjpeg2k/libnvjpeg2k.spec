@@ -5,7 +5,7 @@
 
 Name:           libnvjpeg2k
 Version:        0.11.0.51
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        NVIDIA JPEG 2K decoder (nvJPEG2000)
 License:        NVIDIA EULA
 URL:            https://developer.nvidia.com/nvjpeg
@@ -20,6 +20,8 @@ Obsoletes:      cuda-nvjpeg2k < %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:       cuda-nvjpeg2k = %{?epoch:%{epoch}:}%{version}-%{release}
 
 Conflicts:      libnvjpeg2k0 < %{?epoch:%{epoch}:}%{version}-%{release}
+
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 The nvJPEG2000 library accelerates the decoding of JPEG 2000 images on NVIDIA
@@ -91,4 +93,5 @@ sed -i \
 %{_libdir}/pkgconfig/nvjpeg2k.pc
 
 %changelog
-%autochangelog
+* Wed Jul 8 2026 Gilver E. <roachy@fyralabs.com> - 0.11.0.51-2
+- Mass update CUDA components

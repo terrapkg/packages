@@ -9,7 +9,7 @@
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
 Version:        13.3.33
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        CUDA runtime compilation library (NVRTC)
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -20,6 +20,8 @@ Source1:        https://developer.download.nvidia.com/compute/cuda/redist/%{real
 Source3:        nvrtc.pc
 
 Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
+
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 NVRTC is a runtime compilation library for CUDA C++. It accepts CUDA C++ source
@@ -99,4 +101,5 @@ sed -i \
 %{_libdir}/libnvrtc_static.a
 
 %changelog
-%autochangelog
+* Wed Jul 8 2026 Gilver E. <roachy@fyralabs.com> - 1:13.3.33-2
+- Mass update CUDA components

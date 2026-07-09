@@ -7,7 +7,7 @@
 Name:           libcudla
 Epoch:          1
 Version:        13.3.29
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        NVIDIA CUDA Deep Learning Accelerator (DLA) engines (Jetson Xavier + Orin)
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -15,6 +15,8 @@ ExclusiveArch:  aarch64
 
 Source0:        https://developer.download.nvidia.com/compute/cuda/redist/%{name}/linux-aarch64/%{name}-linux-aarch64-%{version}-archive.tar.xz
 Source1:        cudla.pc
+
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 Low-level driver for the Deep Learning Accelerator (DLA) engine for Jetson
@@ -59,4 +61,5 @@ sed -i \
 %{_libdir}/pkgconfig/cudla.pc
 
 %changelog
-%autochangelog
+* Wed Jul 8 2026 Gilver E. <roachy@fyralabs.com> - 1:13.3.29-2
+- Mass update CUDA components

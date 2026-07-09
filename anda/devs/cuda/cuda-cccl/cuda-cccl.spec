@@ -6,7 +6,7 @@
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
 Version:        13.2.75
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        CXX Core Compute Libraries
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -17,6 +17,8 @@ Source1:        https://developer.download.nvidia.com/compute/cuda/redist/%{real
 
 Requires:       cmake-filesystem
 Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}
+
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 CXX Core Compute Libraries.
@@ -52,4 +54,5 @@ rm -f %{buildroot}%{_libdir}/cmake/thrust/README.md
 %{_libdir}/cmake/*
 
 %changelog
-%autochangelog
+* Wed Jul 8 2026 Gilver E. <roachy@fyralabs.com> - 1:13.2.75-2
+- Mass update CUDA components

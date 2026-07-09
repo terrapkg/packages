@@ -3,7 +3,7 @@
 
 Name:           cuda
 Version:        13.3.73
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        NVIDIA Compute Unified Device Architecture Toolkit
 Epoch:          1
 License:        CUDA Toolkit
@@ -19,6 +19,8 @@ Source21:       cuda.pc
 Requires:       %{name}-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
 Conflicts:      %{name}-minimal-build-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
+
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 CUDA is a parallel computing platform and programming model that enables
@@ -142,4 +144,5 @@ sed -i \
 %{_libdir}/pkgconfig/cuda.pc
 
 %changelog
-%autochangelog
+* Wed Jul 8 2026 Gilver E. <roachy@fyralabs.com> - 1:13.3.73-2
+- Mass update CUDA components

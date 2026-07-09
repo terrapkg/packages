@@ -8,7 +8,7 @@
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
 Version:        13.3.73
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        CUDA GDB
 License:        GPL-3.0-or-later AND GPL-3.0-or-later with exceptions AND GPL-2.0-or-later AND GPL-2.0-or-later with exceptions AND GPL-1.0-or-later AND LGPL-2.0-or-later AND LGPL-3.0-or-later AND BSD AND LicenseRef-Fedora-Public-Domain AND GFDL
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -20,6 +20,8 @@ Source1:        https://developer.download.nvidia.com/compute/cuda/redist/%{real
 BuildRequires:  chrpath
 Requires:       gdb
 Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
+
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 CUDA-GDB is the NVIDIA tool for debugging CUDA applications. It's an extension
@@ -57,4 +59,5 @@ cp -f extras/Debugger/include/* %{buildroot}%{_includedir}/
 %{_includedir}/cuda_stdint.h
 
 %changelog
-%autochangelog
+* Wed Jul 8 2026 Gilver E. <roachy@fyralabs.com> - 1:13.3.73-2
+- Mass update CUDA components

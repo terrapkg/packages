@@ -7,7 +7,7 @@
 Name:           libnvjpeg
 Epoch:          1
 Version:        13.2.1.68
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        CUDA NVIDIA JPEG decoder (nvJPEG)
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -18,6 +18,8 @@ Source1:        https://developer.download.nvidia.com/compute/cuda/redist/%{name
 Source3:        nvjpeg.pc
 
 Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
+
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 nvJPEG is a high-performance GPU-accelerated library for JPEG decoding. nvJPEG
@@ -80,4 +82,5 @@ sed -i \
 %{_libdir}/libnvjpeg_static.a
 
 %changelog
-%autochangelog
+* Wed Jul 8 2026 Gilver E. <roachy@fyralabs.com> - 1:13.2.1.68-2
+- Mass update CUDA components

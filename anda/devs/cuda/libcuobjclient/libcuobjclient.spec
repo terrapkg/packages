@@ -19,6 +19,8 @@ Source3:        cuobjclient.pc
 
 Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
 
+Packager:       Terra Packaging Team <terra@fyralabs.com>
+
 %description
 asd
 

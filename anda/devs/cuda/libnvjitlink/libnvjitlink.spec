@@ -7,7 +7,7 @@
 Name:           libnvjitlink
 Epoch:          1
 Version:        13.3.33
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        NVIDIA compiler library for JIT LTO functionality
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -18,6 +18,8 @@ Source1:        https://developer.download.nvidia.com/compute/cuda/redist/%{name
 Source3:        nvjitlink.pc
 
 Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
+
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 NVJIT link compiler LTO functionality native runtime library.
@@ -79,4 +81,5 @@ sed -i \
 %{_libdir}/libnvJitLink_static.a
 
 %changelog
-%autochangelog
+* Wed Jul 8 2026 Gilver E. <roachy@fyralabs.com> - 1:13.3.33-2
+- Mass update CUDA components

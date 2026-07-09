@@ -9,7 +9,7 @@
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
 Version:        13.3.73
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        CUDA Compiler (NVCC)
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -34,6 +34,8 @@ Requires:       cuda-crt
 Requires:       cuda-cudart-devel
 Requires:       libnvptxcompiler-devel
 Requires:       libnvvm-devel
+
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 The compilation trajectory involves several splitting, compilation,
@@ -87,4 +89,5 @@ sed -i \
 %{_includedir}/fatbinary_section.h
 
 %changelog
-%autochangelog
+* Wed Jul 8 2026 Gilver E. <roachy@fyralabs.com> - 1:13.3.73-2
+- Mass update CUDA components

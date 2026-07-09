@@ -7,7 +7,7 @@
 Name:           libnpp
 Epoch:          1
 Version:        13.1.2.81
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        NVIDIA Performance Primitives libraries
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -31,6 +31,8 @@ Source21:       nppitc.pc
 Source22:       npps.pc
 
 Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
+
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 The NVIDIA Performance Primitives library (NPP) is a collection of
@@ -147,4 +149,5 @@ sed -i \
 %{_libdir}/libnpps_static.a
 
 %changelog
-%autochangelog
+* Wed Jul 8 2026 Gilver E. <roachy@fyralabs.com> - 1:13.1.2.81-2
+- Mass update CUDA components

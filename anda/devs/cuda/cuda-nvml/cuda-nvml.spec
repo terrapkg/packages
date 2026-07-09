@@ -9,7 +9,7 @@
 Name:           cuda-nvml
 Epoch:          1
 Version:        13.3.29
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        NVIDIA Management library (NVML)
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -20,6 +20,8 @@ Source1:        https://developer.download.nvidia.com/compute/cuda/redist/%{real
 Source3:        nvidia-ml.pc
 
 Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
+
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 A C-based API for monitoring and managing various states of the NVIDIA GPU
@@ -73,4 +75,5 @@ sed -i \
 %{_libdir}/pkgconfig/nvidia-ml.pc
 
 %changelog
-%autochangelog
+* Wed Jul 8 2026 Gilver E. <roachy@fyralabs.com> - 1:13.3.29-2
+- Mass update CUDA components
