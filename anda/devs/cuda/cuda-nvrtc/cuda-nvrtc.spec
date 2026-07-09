@@ -85,10 +85,6 @@ sed -i \
 %{_libdir}/pkgconfig/nvrtc.pc
 
 %files static
-%ifarch x86_64
-%{_libdir}/libnvrtc-builtins_static.alt.a
-%{_libdir}/libnvrtc_static.alt.a
-%endif
 %{_libdir}/libnvrtc-builtins_static.a
 %{_libdir}/libnvrtc_static.a
 
