@@ -97,6 +97,9 @@ done
 %{_scalableiconsdir}/noctalia.svg
 
 %changelog
+* Wed Jul 09 2026 Cypress Reed <cypress@fyralabs.com>
+- Noctalia requires system libraries now, so remove the meson options
+
 * Wed Jul 01 2026 Cypress Reed <cypress@fyralabs.com>
 - Add md4c as a system library
 - Add wireplumber build requirement
