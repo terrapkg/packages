@@ -20,7 +20,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
 Odin is a general-purpose programming language with distinct
-yping, built for high performance, modern systems, and built-in
+typing, built for high performance, modern systems, and built-in
 data-oriented data types. The Odin Programming Language,
 the C alternative for the joy of programming.
 
