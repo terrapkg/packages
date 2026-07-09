@@ -22,6 +22,7 @@ BuildRequires:  pkgconfig(libinput)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(libpcre2-8)
 BuildRequires:  pkgconfig(libcjson)
+BuildRequires:  pkgconfig(pangocairo)
 BuildRequires:  scenefx-devel
 
 Conflicts:      mangowc < %{mangowc_ver}
