@@ -12,7 +12,7 @@
 
 # https://github.com/daeuniverse/dae
 %global goipath         github.com/daeuniverse/dae
-Version:                1.1.0
+Version:                2.0.0
 
 %gometa -f
 
