@@ -14,9 +14,10 @@
 
 Name:           cursor
 Version:        3.10.20
+%electronmeta -D
 Release:        1%{?dist}
 Summary:        The AI Code Editor
-License:        Proprietary
+License:        Proprietary AND %{electron_license}
 URL:            https://cursor.com
 Source0:        https://downloads.cursor.com/production/%{commit}/linux/%{platform}/deb/%{debarch}/deb/cursor_%{version}_%{debarch}.deb
 ExclusiveArch:  x86_64 aarch64
@@ -28,10 +29,10 @@ Requires:       ca-certificates
 
 Packager:       Addison LeClair <me@addi.lol>
 
-%electronmeta -D
-
 %description
 The AI Code Editor.
+
+%pkg_completion -Bz
 
 %prep
 %autosetup -Tc
@@ -58,8 +59,6 @@ cp -p usr/share/cursor/resources/app/LICENSE.txt .
 %{_metainfodir}/%{name}.appdata.xml
 %{_datadir}/mime/packages/%{name}-workspace.xml
 %{_datadir}/pixmaps/co.anysphere.cursor.png
-%{_datadir}/bash-completion/completions/%{name}
-%{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
 * Thu Jul 09 2026 Addison LeClair <me@addi.lol> - 3.10.20-1
