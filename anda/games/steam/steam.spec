@@ -197,9 +197,12 @@ install -m 644 -p %{SOURCE6} %{buildroot}%{_prefix}/lib/systemd/system.conf.d/
 install -m 644 -p %{SOURCE6} %{buildroot}%{_prefix}/lib/systemd/user.conf.d/
 install -m 775 -p %{SOURCE7} %{buildroot}%{_bindir}/steamrestart
 
+%if 0%{?fedora} < 43 || %{defined rhel}
 # https://github.com/ValveSoftware/steam-for-linux/issues/9940
-desktop-file-edit --remove-key=PrefersNonDefaultGPU %{buildroot}%{_datadir}/applications/%{name}.desktop
-desktop-file-edit --remove-key=X-KDE-RunOnDiscreteGpu %{buildroot}%{_datadir}/applications/%{name}.desktop
+# Fedora 43 and above ship everything needed to make this behave correct-er
+%__desktop_file_edit --remove-key=PrefersNonDefaultGPU %{buildroot}%{_datadir}/applications/%{name}.desktop
+%__desktop_file_edit --remove-key=X-KDE-RunOnDiscreteGpu %{buildroot}%{_datadir}/applications/%{name}.desktop
+%endif
 
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
