@@ -30,7 +30,7 @@
 
 # Metadata.
 Name:    brew-proxy
-Version: 0.3.1
+Version: 0.3.2
 Release: 1%{?dist}
 Summary: DBus-activated proxy service for a more secure Homebrew setup on Linux 
 License:        %{shrink:

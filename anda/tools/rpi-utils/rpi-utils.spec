@@ -1,5 +1,5 @@
-%global commit a30e7c7b227d9a5e6dbedc1d343077be7ad92959
-%global commit_date 20260624
+%global commit 5edd399260b5081f9c1c96fc7f369b920d6732d1
+%global commit_date 20260709
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:			rpi-utils
@@ -164,8 +164,10 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 %prep
 %autosetup -p1 -n utils-%{commit}
 
-%build
+%conf
 %cmake -DBUILD_SHARED_LIBS=1
+
+%build
 %cmake_build
 
 %install

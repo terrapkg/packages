@@ -1,6 +1,6 @@
-%global commit b514bd4454ddca2c40bf5522b3083cf079c9764e
+%global commit d35d54933644b921e6ddfae1a4ab65f25c4acc81
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260413
+%global commitdate 20260707
 %global ver 0.10.2
 %global modulename xpadneo
 

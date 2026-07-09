@@ -1,7 +1,7 @@
 %undefine __brp_mangle_shebangs
 
 Name:           fresh
-Version:        0.4.2
+Version:        0.4.3
 Release:        1%{?dist}
 Summary:        Text editor for your terminal: easy, powerful and fast
 URL:            https://getfresh.dev

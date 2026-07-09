@@ -97,6 +97,10 @@ done
 %{_scalableiconsdir}/noctalia.svg
 
 %changelog
+* Wed Jul 01 2026 Cypress Reed <cypress@fyralabs.com>
+- Add md4c as a system library
+- Add wireplumber build requirement
+
 * Tue Jun 30 2026 Cypress Reed <cypress@fyralabs.com>
 - Add tomlplusplus as a sytem library
 

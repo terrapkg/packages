@@ -1,7 +1,7 @@
 %global modulename   mediatek-mt7927
 
 Name:                dkms-%{modulename}
-Version:             2.12.2
+Version:             2.13.1
 Release:             1%{?dist}
 Summary:             DKMS WiFi 7 and Bluetooth 5.4 drivers for MediaTek MT7927 (Filogic 380)
 License:             GPL-2.0-only

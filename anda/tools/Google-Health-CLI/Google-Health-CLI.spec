@@ -1,5 +1,5 @@
 %global goipath github.com/rudrankriyam/Google-Health-CLI
-Version:        1.0.0
+Version:        1.0.1
 
 %gometa -f
 
