@@ -1,11 +1,11 @@
-%global commit b1bbf0f4652d9c29a0a0afa230478bccc5aea7bb
-%global commit_date 20260704
+%global commit 71e5c3b49c9e473b6017db8c9ec2675a473a5ab5
+%global commit_date 20260709
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
-%global ver 26.6.0-alpha.1
+%global ver v26.6.0-alpha.1
 
 Name:           continuwuity-nightly
-Version:        %(echo "%{ver}" | sed 's/-/~/g')^%{commit_date}git.%{shortcommit}
+Version:        %(echo "%{ver}" | sed 's/-/~/g;s/v//')^%{commit_date}git.%{shortcommit}
 Release:        1%{?dist}
 Summary:        A Matrix homeserver written in Rust.
 License:        (MIT OR Apache-2.0 OR BSD-3-Clause) AND ((MIT OR Apache-2.0) AND NCSA) AND Unlicense AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 OR BSL-1.0) AND (MIT OR Apache-2.0 OR Zlib) AND (0BSD OR MIT OR Apache-2.0) AND CDLA-Permissive-2.0 AND BSD-2-Clause AND Zlib AND MIT AND (MIT OR Apache-2.0 OR BSD-1-Clause) AND BlueOak-1.0.0 AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND MPL-2.0 AND Unicode-3.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (CC0-1.0 OR Apache-2.0) AND Apache-2.0 AND ISC AND (BSD-3-Clause OR Apache-2.0) AND BSD-3-Clause AND MIT AND ISC AND ((MIT OR Apache-2.0) AND Apache-2.0) AND 0BSD AND BSD-3-Clause AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (Unlicense OR MIT)
