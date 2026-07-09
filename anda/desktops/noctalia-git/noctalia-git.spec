@@ -2,7 +2,7 @@
 
 %global ver 5.0.0
 
-%global commit          b7094a1e10b2413d6da5495f1e41294aff1e4f87
+%global commit          c2aac465cf24ea0e924fbe405425dec1818db91d
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
 %global commitdate      20260709
 
@@ -22,7 +22,9 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  pipewire-devel
 BuildRequires:  sdbus-cpp-devel
 BuildRequires:  tomlplusplus-devel
+BuildRequires:  json-devel
 BuildRequires:  md4c-devel
+BuildRequires:  stb-devel
 BuildRequires:  wireplumber-devel
 BuildRequires:  pkgconfig(cairo)
 BuildRequires:  pkgconfig(egl)
@@ -65,12 +67,8 @@ A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with 
 # Manually insert commit hash
 sed -i "s/'unknown'/'%{shortcommit}'/g" meson.build
 
-# Remove bundled libs that we have system copies of
-rm -r third_party/tomlplusplus
-rm -r third_party/md4c
-
 %conf
-%meson -Dsystem_tomlplusplus=true -Dsystem_md4c=true
+%meson
 
 %build
 %meson_build
@@ -99,6 +97,9 @@ done
 %{_scalableiconsdir}/noctalia.svg
 
 %changelog
+* Wed Jul 09 2026 Cypress Reed <cypress@fyralabs.com>
+- Noctalia requires system libraries now, so remove the meson options
+
 * Wed Jul 01 2026 Cypress Reed <cypress@fyralabs.com>
 - Add md4c as a system library
 - Add wireplumber build requirement
