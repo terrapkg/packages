@@ -2,11 +2,12 @@
 
 Name:           fluxer
 Version:        2026.707.150855
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Fluxer is a free and open source instant messaging and VoIP platform built for friends, groups, and communities
 URL:            https://fluxer.app
 
 %electronmeta -D
+%global __provides_exclude %{__provides_exclude}|libcbor\.so.*|libcrypto\.so.*|libfido2\.so.*|libudev\.so.*|libz\.so.*
 
 License:        AGPL-3.0-or-later AND %electron_license
 Source0:        https://github.com/fluxerapp/fluxer/archive/refs/tags/%version.tar.gz
@@ -18,6 +19,11 @@ BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(libudev)
 BuildRequires:  clang-devel
 BuildRequires:  pipewire-devel
+Provides:       bundled(libcbor)
+Provides:       bundled(libfido2)
+Provides:       bundled(libudev1)
+Provides:       bundled(openssl)
+Provides:       bundled(zlib)
 
 %description
 %summary.
