@@ -80,10 +80,6 @@ sed -i \
 
 %files devel
 %{_includedir}/nvrtc.h
-%ifarch x86_64
-%{_libdir}/libnvrtc-builtins.alt.so
-%{_libdir}/libnvrtc.alt.so
-%endif
 %{_libdir}/libnvrtc-builtins.so
 %{_libdir}/libnvrtc.so
 %{_libdir}/pkgconfig/nvrtc.pc

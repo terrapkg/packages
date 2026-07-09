@@ -63,7 +63,6 @@ This package contains static libraries for NVIDIA JPEG 2K decoder (nvJPEG2000).
 mkdir -p %{buildroot}/%{_libdir}/pkgconfig/
 mkdir -p %{buildroot}/%{_includedir}/cuda/
 
-%dnl cp -a lib/12/* %{buildroot}/%{_libdir}/
 cp -a lib/* %{buildroot}/%{_libdir}/
 chmod 755 %{buildroot}/%{_libdir}/*.so*
 
