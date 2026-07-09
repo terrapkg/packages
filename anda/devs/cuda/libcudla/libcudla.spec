@@ -13,7 +13,8 @@ License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
 ExclusiveArch:  aarch64
 
-Source0:        https://developer.download.nvidia.com/compute/cuda/redist/%{name}/linux-aarch64/%{name}-linux-aarch64-%{version}-archive.tar.xz
+%dnl Source0:        https://developer.download.nvidia.com/compute/cuda/redist/%{name}/linux-aarch64/%{name}-linux-aarch64-%{version}-archive.tar.xz
+Source0:        https://developer.download.nvidia.com/compute/cuda/redist/%{name}/linux-sbsa/%{name}-linux-sbsa-%{version}-archive.tar.xz
 Source1:        cudla.pc
 
 Packager:       Terra Packaging Team <terra@fyralabs.com>
