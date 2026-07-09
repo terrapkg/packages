@@ -33,7 +33,8 @@ This package provides development files for the CUDA Deep Learning Accelerator
 (DLA) engines.
 
 %prep
-%autosetup -n %{name}-linux-aarch64-%{version}-archive
+%dnl %autosetup -n %{name}-linux-aarch64-%{version}-archive
+%autosetup -n %{name}-linux-sbsa-%{version}-archive
 
 %install
 mkdir -p %{buildroot}%{_includedir}
