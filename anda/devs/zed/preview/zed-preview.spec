@@ -35,6 +35,8 @@ BuildRequires:  libedit(x86-64)
 %endif
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros
+BuildRequires:  python3-terra-appstream-helper
+BuildRequires:  terra-appstream-helper
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  gettext-envsubst
