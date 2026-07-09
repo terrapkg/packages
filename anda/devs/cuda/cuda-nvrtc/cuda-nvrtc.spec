@@ -75,10 +75,6 @@ sed -i \
 
 %files
 %license LICENSE
-%ifarch x86_64
-%{_libdir}/libnvrtc-builtins.alt.so.*
-%{_libdir}/libnvrtc.alt.so.*
-%endif
 %{_libdir}/libnvrtc-builtins.so.*
 %{_libdir}/libnvrtc.so.*
 

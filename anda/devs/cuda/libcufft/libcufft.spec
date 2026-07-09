@@ -89,6 +89,7 @@ sed -i \
 %{_includedir}/cufft.h
 %{_includedir}/cufftw.h
 %{_includedir}/cufftXt.h
+%{_includedir}/cufft_device.h
 %{_libdir}/libcufft.so
 %{_libdir}/libcufftw.so
 %{_libdir}/pkgconfig/cufft.pc
