@@ -22,6 +22,10 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  pipewire-devel
 BuildRequires:  sdbus-cpp-devel
 BuildRequires:  tomlplusplus-devel
+BuildRequires:  json-devel
+BuildRequires:  md4c-devel
+BuildRequires:  stb-devel
+BuildRequires:  wireplumber-devel
 BuildRequires:  pkgconfig(cairo)
 BuildRequires:  pkgconfig(egl)
 BuildRequires:  pkgconfig(freetype2)
@@ -63,11 +67,8 @@ A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with 
 # Manually insert commit hash
 sed -i "s/'unknown'/'%{shortcommit}'/g" meson.build
 
-# Remove bundled libs that we have system copies of
-rm -r third_party/tomlplusplus
-
 %conf
-%meson -Dsystem_tomlplusplus=true
+%meson
 
 %build
 %meson_build
