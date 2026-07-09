@@ -28,7 +28,7 @@ BuildRequires:  ncurses
 BuildRequires:  ncurses-devel
 BuildRequires:  pandoc-cli
 BuildRequires:  systemd-rpm-macros
-BuildRequires:  zig >= 0.14.0
+BuildRequires:  zig0.15
 BuildRequires:  zig-rpm-macros
 BuildRequires:  pkgconfig(blueprint-compiler)
 BuildRequires:  pkgconfig(bzip2)
