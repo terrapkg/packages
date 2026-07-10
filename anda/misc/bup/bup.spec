@@ -1,5 +1,5 @@
 Name:			bup
-Version:		0.25.rc2
+Version:		0.33.10
 Release:		1%{?dist}
 Summary:		Efficient backup system based on the git packfile format
 License:		LGPL-2.0-only
@@ -7,7 +7,8 @@ URL:			https://bup.github.io
 Source0:		https://github.com/bup/bup/archive/refs/tags/%version.tar.gz
 Packager:		madonuko <mado@fyralabs.com>
 BuildRequires:  python3-devel
-BuildRequires:	gcc-c++ git-core
+BuildRequires:	gcc-c++
+BuildRequires:	git-core
 BuildRequires:  pandoc
 BuildRequires:	pkgconfig(readline)
 BuildRequires:	pkgconfig(libacl)
@@ -25,8 +26,10 @@ HTML documentations for %name.
 %prep
 %autosetup
 
-%build
+%conf
 ./configure
+
+%build
 %make_build
 
 %install
@@ -76,7 +79,7 @@ HTML documentations for %name.
 
 %files
 %license LICENSE
-%doc README.md DESIGN HACKING 
+%doc README.md DESIGN HACKING
 %_bindir/bup
 %_libdir/bup/
 %_mandir/man1/bup-bloom.1.*
@@ -118,3 +121,7 @@ HTML documentations for %name.
 %_mandir/man1/bup-web.1.*
 %_mandir/man1/bup.1.*
 %_mandir/man5/bup-config.5.*
+
+%changelog
+* Fri Jul 10 2026 Owen Zimmerman <owen@fyralabs.com>
+- Clean up spec
