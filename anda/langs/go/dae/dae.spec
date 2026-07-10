@@ -22,7 +22,7 @@ EBPF-based Linux high-performance transparent proxy solution.}
                         hack/templates/example-config.md
 
 Name:           dae
-Release:        %autorelease
+Release:        1%?dist
 Summary:        EBPF-based Linux high-performance transparent proxy solution
 
 License:        AGPL-3.0-only
