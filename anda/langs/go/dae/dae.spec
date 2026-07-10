@@ -28,7 +28,7 @@ Summary:        EBPF-based Linux high-performance transparent proxy solution
 License:        AGPL-3.0-only
 URL:            %{gourl}
 Source:         %{gosource}
-Packager:       madonuko <mado@fyralabs.com
+Packager:       madonuko <mado@fyralabs.com>
 BuildRequires:  clang
 
 %description %{common_description}
