@@ -3,7 +3,7 @@
 
 Name:           rust-topgrade
 # renovate: datasource=github-releases depName=topgrade-rs/topgrade
-Version:        17.6.2
+Version:        17.7.0
 Release:        1%{?dist}
 Summary:        Upgrade all the things
 
