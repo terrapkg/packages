@@ -49,7 +49,6 @@ install -Dm644 assetsDev/%{appid}.metainfo.xml -t %{buildroot}%{_metainfodir}
 %{_hicolordir}/128x128/apps/%{name}.png
 %{_hicolordir}/256x256/apps/%{name}.png
 %{_hicolordir}/512x512/apps/%{name}.png
-%{_hicolordir}/1024x1024/apps/%{name}.png
 
 %changelog
 * Sat Jun 28 2025 Gilver E. <rockgrub@disroot.org> - 1.10.1-1
