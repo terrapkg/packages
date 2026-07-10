@@ -27,7 +27,7 @@ HTML documentations for %name.
 %autosetup
 
 %conf
-.configure
+./configure
 
 %build
 %make_build
