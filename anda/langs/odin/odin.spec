@@ -1,4 +1,4 @@
-%global ver dev-2026-07
+%global ver dev-2026-07a
 %global sanitized_ver %(echo %{ver} | sed -E 's/^dev-([0-9]{4})-([0-9]{2})$/\1.\2/')
 
 %global __requires_exclude_from ^%{_libexecdir}/Odin/vendor/.*$

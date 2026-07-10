@@ -3,7 +3,7 @@
 %global modulename xpadneo
 
 Name:           %{modulename}-kmod
-Version:        0.10.3.1
+Version:        0.10.4
 Release:        1%{?dist}
 %if 0%{?fedora} <= 45
 Epoch:          1
