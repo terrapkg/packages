@@ -26,7 +26,7 @@ the C alternative for the joy of programming.
 
 %prep
 %autosetup -n Odin-%{ver}
-rm `find . -name *.dll`
+find . -name '*.dll' -delete
 
 %build
 export CC=clang
