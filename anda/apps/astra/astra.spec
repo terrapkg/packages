@@ -15,7 +15,7 @@ BuildRequires:  nodejs-npm nodejs-packaging
 Audiophile music player with gapless playback, parametric EQ, AutoEQ import, and real-time DSP visualizers.
 
 %prep
-%autosetup -n %name-%ver
+%autosetup -n %name-%(echo %ver | sed 's/^v//')
 
 %build
 %npm_build -BV -M production
