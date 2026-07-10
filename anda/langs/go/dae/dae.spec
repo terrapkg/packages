@@ -2,9 +2,7 @@
 %bcond check 1
 %bcond bootstrap 0
 
-%if %{with bootstrap}
 %global debug_package %{nil}
-%endif
 
 %if %{with bootstrap}
 %global __requires_exclude %{?__requires_exclude:%{__requires_exclude}|}^golang\\(.*\\)$
@@ -36,15 +34,18 @@ Source:         %{gosource}
 %gopkg
 
 %prep
-%goprep_online -A
+%git_clone
+%goprep_online -Ae
 
 %if %{without bootstrap}
 %build
-%dnl for cmd in cmd/* ; do
-%dnl   %gobuild -o %{gobuilddir}/bin/$(basename $cmd) %{goipath}/$cmd
-%dnl done
 %define gomodulesmode GO111MODULE=on
-%gobuild -o %{gobuilddir}/bin/dae %{goipath}
+cat<<EOF > edit.sed
+s@go build@%{?gobuilddir:GOPATH="%{gobuilddir}:${GOPATH:+${GOPATH}:}%{?gopath}"} %{?gomodulesmode} go build %{gobuildflags}@g
+/^BUILD_ARGS/{s@-s -w@@g; s@-trimpath@@g}
+EOF
+sed -f edit.sed -i Makefile
+%make_build VERSION="%version" NOSTRIP="y" OUTPUT="%{gobuilddir}/bin/dae"
 %endif
 
 %install
