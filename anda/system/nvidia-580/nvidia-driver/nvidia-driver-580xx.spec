@@ -12,7 +12,7 @@
 
 Name:           %{real_name}-580xx
 Version:        580.173.02
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        NVIDIA's proprietary display driver for NVIDIA graphic cards
 Epoch:          3
 License:        NVIDIA License
@@ -20,6 +20,7 @@ URL:            http://www.nvidia.com/object/unix.html
 %dnl Source0:        %{name}-%{version}-i386.tar.xz
 %dnl Source1:        %{name}-%{version}-x86_64.tar.xz
 %dnl Source2:        %{name}-%{version}-aarch64.tar.xz
+Source7:        nvidia-powerd.service
 Source8:        70-nvidia-driver.preset
 Source9:        70-nvidia-driver-cuda.preset
 Source13:       alternate-install-present
@@ -48,9 +49,7 @@ Requires:       %{name}-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}
 Requires:       nvidia-580xx-kmod-common = %{?epoch:%{epoch}:}%{version}
 
 Conflicts:      nvidia-x11-drv
-Conflicts:      nvidia-x11-drv-470xx
 Conflicts:      xorg-x11-drv-nvidia
-Conflicts:      xorg-x11-drv-nvidia-470xx
 
 Provides:       %{real_name}-580 = %{evr}
 
@@ -63,27 +62,26 @@ version %{version}.
 
 %package libs
 Summary:        Libraries for %{name}
-Requires:       egl-gbm%{?_isa} >= 2:1.1.2.1
-Requires:       (egl-wayland%{?_isa} >= 1.1.20 or egl-wayland2%{?_isa} >= 1.0.0~20250806gitd4deb7c-3)
-Suggests:       egl-wayland%{?_isa} >= 1.1.20
-Requires:       egl-x11%{?_isa} >= 1.0.3
+Requires:       egl-gbm%{?_isa} >= 2:1.1.3
+Requires:       egl-wayland%{?_isa} >= 1.1.21
+Requires:       egl-x11%{?_isa} >= 1.0.4
 Requires:       libvdpau%{?_isa} >= 1.5
 Requires:       libglvnd%{?_isa} >= 1.0
 Requires:       libglvnd-egl%{?_isa} >= 1.0
 Requires:       libglvnd-gles%{?_isa} >= 1.0
 Requires:       libglvnd-glx%{?_isa} >= 1.0
 Requires:       libglvnd-opengl%{?_isa} >= 1.0
-Requires:       libnvidia-ml-580xx%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       libnvidia-ml-580xx%{?_isa} = %{evr}
 Requires:       vulkan-loader
 %if 0%{?fedora}
 %ifarch x86_64
-Requires:       (%{name}-libs(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
+Requires:       (%{name}-libs(x86-32) = %{evr} if steam)
 %endif
 %endif
 # dlopened
-Requires:       libnvidia-gpucomp-580xx%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-Requires:       libnvidia-ml-580xx%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-Requires:       %{name}-cuda-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       libnvidia-gpucomp-580xx%{?_isa} = %{evr}
+Requires:       libnvidia-ml-580xx%{?_isa} = %{evr}
+Requires:       %{name}-cuda-libs%{?_isa} = %{evr}
 
 Conflicts:      nvidia-x11-drv-libs
 Conflicts:      nvidia-x11-drv-470xx-libs
@@ -97,23 +95,23 @@ This package provides the shared libraries for %{name}.
 
 %package cuda-libs
 Summary:        Libraries for %{name}-cuda
-Provides:       %{name}-devel = %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes:      %{name}-devel < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:       %{name}-devel = %{evr}
+Obsoletes:      %{name}-devel < %{evr}
 Provides:       %{real_name}-580-cuda-libs = %{evr}
-Requires:       libnvidia-ml-580xx = %{?epoch:%{epoch}:}%{version}-%{release}
-Requires:       %{name}-cuda-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       libnvidia-ml-580xx = %{evr}
+Requires:       %{name}-cuda-libs%{?_isa} = %{evr}
 
 %ifarch x86_64 aarch64
-Requires:       libnvidia-cfg-580xx = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       libnvidia-cfg-580xx = %{evr}
 %endif
 %if 0%{?fedora}
 %ifarch x86_64
-Requires:       (%{name}-cuda-libs(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
+Requires:       (%{name}-cuda-libs(x86-32) = %{evr} if steam)
 %endif
 %endif
 # dlopened:
-Requires:       libnvidia-gpucomp-580xx%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-Requires:       libnvidia-ml-580xx = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       libnvidia-gpucomp-580xx%{?_isa} = %{evr}
+Requires:       libnvidia-ml-580xx = %{evr}
 
 Conflicts:      xorg-x11-drv-nvidia-cuda-libs
 Conflicts:      xorg-x11-drv-nvidia-470xx-cuda-libs
@@ -123,16 +121,16 @@ This package provides the CUDA libraries for %{name}-cuda.
 
 %package -n libnvidia-fbc-580xx
 Summary:        NVIDIA OpenGL-based Framebuffer Capture libraries
-Provides:       %{real_name}-NvFBCOpenGL-580xx = %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes:      %{real_name}-NvFBCOpenGL < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:       %{real_name}-NvFBCOpenGL-580xx = %{evr}
+Obsoletes:      %{real_name}-NvFBCOpenGL < %{evr}
 Provides:       libnvidia-fbc-580 = %{evr}
 %if 0%{?fedora}
 %ifarch x86_64
-Requires:       (libnvidia-fbc-580xx(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
+Requires:       (libnvidia-fbc-580xx(x86-32) = %{evr} if steam)
 %endif
 %endif
 # dlopened:
-Requires:       %{name}-cuda-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       %{name}-cuda-libs%{?_isa} = %{evr}
 
 %description -n libnvidia-fbc-580xx
 This library provides a high performance, low latency interface to capture and
@@ -144,7 +142,7 @@ graphics scenarios.
 Summary:        NVIDIA library for shader compilation (nvgpucomp)
 %if 0%{?fedora}
 %ifarch x86_64
-Requires:       (libnvidia-gpucomp-580xx(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
+Requires:       (libnvidia-gpucomp-580xx(x86-32) = %{evr} if steam)
 %endif
 %endif
 Provides:       libnvidia-gpucomp-580 = %{evr}
@@ -155,15 +153,15 @@ other driver components.
 
 %package -n libnvidia-ml-580xx
 Summary:        NVIDIA Management Library (NVML)
-Provides:       cuda-nvml-580xx%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-Provides:       %{real_name}-NVML-580xx = %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:       cuda-nvml-580xx%{?_isa} = %{evr}
+Provides:       %{real_name}-NVML-580xx = %{evr}
 Provides:       libnvidia-ml-580 = %{evr}
 %if 0%{?fedora}
 %ifarch x86_64
-Requires:       (libnvidia-ml-580xx(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
+Requires:       (libnvidia-ml-580xx(x86-32) = %{evr} if steam)
 %endif
 %endif
-Obsoletes:      %{real_name}-NVML < %{?epoch:%{epoch}:}%{version}-%{release}
+Obsoletes:      %{real_name}-NVML < %{evr}
 
 %description -n libnvidia-ml-580xx
 A C-based API for monitoring and managing various states of the NVIDIA GPU
@@ -189,7 +187,7 @@ Requires:       %{name}-cuda-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}
 Requires:       nvidia-580xx-kmod-common = %{?epoch:%{epoch}:}%{version}
 Requires:       nvidia-persistenced-580xx = %{?epoch:%{epoch}:}%{version}
 Requires:       opencl-filesystem
-Requires:       ocl-icd
+Requires:       (ocl-icd or OpenCL-ICD-Loader)
 
 Conflicts:      xorg-x11-drv-nvidia-cuda
 Conflicts:      xorg-x11-drv-nvidia-470xx-cuda
@@ -334,13 +332,10 @@ mkdir -p %{buildroot}%{_systemd_util_dir}/system-preset/
 install -p -m 0644 %{SOURCE8} %{SOURCE9} %{buildroot}%{_systemd_util_dir}/system-preset/
 mkdir -p %{buildroot}%{_unitdir}/
 install -p -m 0644 systemd/system/*.service %{buildroot}%{_unitdir}/
+install -p -m 0644 %{SOURCE7} %{buildroot}%{_unitdir}/
 install -p -m 0755 systemd/nvidia-sleep.sh %{buildroot}%{_bindir}/
 install -p -m 0755 -D systemd/system-sleep/nvidia %{buildroot}%{_systemd_util_dir}/system-sleep/nvidia
 install -p -m 0644 -D nvidia-dbus.conf %{buildroot}%{_datadir}/dbus-1/system.d/nvidia-dbus.conf
-
-# Ignore powerd binary exiting if hardware is not present
-# We should check for information in the DMI table
-sed -i -e 's/ExecStart=/ExecStart=-/g' %{buildroot}%{_unitdir}/nvidia-powerd.service
 
 # Vulkan layer
 install -p -m 0644 -D nvidia_layers.json %{buildroot}%{_datadir}/vulkan/implicit_layer.d/nvidia_layers.json
@@ -471,7 +466,6 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %{_libdir}/libnvidia-glcore.so.%{version}
 %{_libdir}/libnvidia-glsi.so.%{version}
 %{_libdir}/libnvidia-glvkspirv.so.%{version}
-%{_libdir}/libnvidia-gpucomp.so.%{version}
 %{_libdir}/libnvidia-tls.so.%{version}
 %{_libdir}/vdpau/libvdpau_nvidia.so.1
 %{_libdir}/vdpau/libvdpau_nvidia.so.%{version}
@@ -518,9 +512,7 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %ifarch x86_64 aarch64
 %{_libdir}/libcudadebugger.so.1
 %{_libdir}/libcudadebugger.so.%{version}
-%if v"%{version}" > v"570.144"
 %{_libdir}/libnvidia-nvvm70.so.4
-%endif
 %{_libdir}/libnvidia-sandboxutils.so.1
 %{_libdir}/libnvidia-sandboxutils.so.%{version}
 %endif
@@ -544,5 +536,7 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %{_libdir}/libnvidia-ml.so.%{version}
 
 %changelog
+* Fri Jul 10 2026 Gilver E. <roachy@fyralabs.com> - 3:580.173.02-2
+- Update build
 * Mon Apr 13 2026 Gilver E. <roachy@fyralabs.com> - 3:580.142-2
 - Update spec for Terra packaging team
