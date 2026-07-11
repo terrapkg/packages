@@ -1,0 +1,8 @@
+libdir=LIBDIR
+includedir=INCLUDE_DIR
+
+Name: npps
+Description: NVIDIA Performance Primitives - Signal Processing
+Version: CUDA_VERSION
+Libs: -L${libdir} -lnpps
+Cflags: -I${includedir}

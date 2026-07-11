@@ -1,0 +1,8 @@
+libdir=LIBDIR
+includedir=INCLUDE_DIR
+
+Name: nppitc
+Description: NVIDIA Performance Primitives - Image Processing - Threshold and Compare
+Version: CUDA_VERSION
+Libs: -L${libdir} -lnppitc
+Cflags: -I${includedir}

@@ -1,0 +1,8 @@
+libdir=LIBDIR
+includedir=INCLUDE_DIR
+
+Name: cublas
+Description: CUDA Basic Linear Algebra Subprograms Lite
+Version: CUDA_VERSION
+Libs: -L${libdir} -lcublasLt
+Cflags: -I${includedir}
