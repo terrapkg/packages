@@ -52,7 +52,7 @@ make %{?_smp_mflags} \
 # Systemd unit files
 install -Dpm644 %{SOURCE1} -t %{buildroot}%{_unitdir}
 
-install -Dpm644 %{SOURCE2} -t %{buildroot}%{_sysusersdir}
+install -Dpm644 %{SOURCE2} %{buildroot}%{_sysusersdir}/%{real_name}.conf
 
 %post
 %systemd_post %{real_name}.service
