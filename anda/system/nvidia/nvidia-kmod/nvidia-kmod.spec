@@ -8,14 +8,16 @@
 
 Name:           nvidia-kmod
 Version:        610.43.03
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        NVIDIA display driver kernel module
 Epoch:          3
 License:        NVIDIA License
 URL:            http://www.nvidia.com/object/unix.html
 Source0:        https://download.nvidia.com/XFree86/NVIDIA-kernel-module-source/NVIDIA-kernel-module-source-%{version}.tar.xz
+BuildRequires:  elfutils-libelf-devel
 BuildRequires:  gcc-c++
 BuildRequires:  kmodtool
+%global AkmodsBuildRequires elfutils-libelf-devel, gcc-c++, kmodtool
 Requires:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
 Requires:       akmods
 Provides:       akmod-nvidia-open = %{?epoch:%{epoch}:}%{version}
@@ -65,6 +67,8 @@ done
 %{?akmod_install}
 
 %changelog
+* Fri Jul 10 2026 Gilver E. <roachy@fyralabs.com> - 3:610.43.03-2
+- Use AkmodsBuildRequires
 * Mon Apr 13 2026 Gilver E. <roachy@fyralabs.com> - 3:595.58.03-3
 - Update patches for DSC functionality
 - Update spec for Terra packaging team
