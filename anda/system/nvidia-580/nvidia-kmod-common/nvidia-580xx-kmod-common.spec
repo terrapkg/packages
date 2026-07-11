@@ -7,7 +7,7 @@
 
 Name:           %{modulename}-kmod-common
 Version:        580.159.04
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Common file for NVIDIA's proprietary driver kernel modules
 Epoch:          3
 License:        NVIDIA License
@@ -67,21 +67,18 @@ install -p -m 644 firmware/* %{buildroot}%{_prefix}/lib/firmware/nvidia/%{versio
 %dnl install -Dm644 %{SOURCE22} -t %{buildroot}%{_unitdir}
 %dnl install -Dm644 %{SOURCE23} -t %{buildroot}%{_udevrulesdir}
 
+install -Dpm755 nvidia-bug-report.sh -t %{buildroot}%{_bindir}
+
 %post
-%{_bindir}/nvidia-boot-update post || :
+%{_bindir}/nvidia-boot-update post
 
-%pre
-# Remove the kernel command line adjustments one last time when doing an upgrade
-# from a version that was still setting up the command line parameters:
-if [ "$1" -eq "2" ] && [ -x %{_bindir}/nvidia-boot-update ]; then
+%preun
+if [ "$1" -eq "0" ]; then
   %{_bindir}/nvidia-boot-update preun || :
-
 fi ||:
 
-%triggerin -- nvidia-kmod,nvidia-open-kmod
-dracut --regenerate-all --force || :
-
 %files
+%{_bindir}/nvidia-bug-report.sh
 %{_dracut_conf_d}/99-nvidia.conf
 %{_modprobedir}/nvidia.conf
 %dir %{_prefix}/lib/firmware
@@ -92,5 +89,7 @@ dracut --regenerate-all --force || :
 %{_udevrulesdir}/60-nvidia.rules
 
 %changelog
+* Fri Jul 10 2026 Gilver E. <roachy@fyralabs.com> - 3:580.159.04-2
+- Update files
 * Mon Apr 13 2026 Gilver E. <roachy@fyralabs.com> - 3:580.142-3
 - Update spec for Terra packaging team

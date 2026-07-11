@@ -7,7 +7,7 @@
 
 Name:           dkms-%{modulename}
 Version:        580.159.04
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        NVIDIA display driver kernel module
 Epoch:          3
 License:        NVIDIA License
@@ -54,13 +54,12 @@ dracut --regenerate-all --force --quiet
 %preun
 # Remove all versions from DKMS registry:
 dkms remove -m %{modulename} -v %{version} -q --all --rpm_safe_upgrade || :
-if [ "$1" == 0 ]; then
-    dracut --regenerate-all --force --quiet
-fi
 
 %files
 %{_usrsrc}/%{modulename}-%{version}
 
 %changelog
+* Fri Jul 10 2026 Gilver E. <roachy@fyralabs.com> - 3:580.159.04-2
+- Remove dracut post script
 * Mon Apr 13 2026 Gilver E. <roachy@fyralabs.com> - 3:580.142-1
 - Update spec for Terra packaging team
