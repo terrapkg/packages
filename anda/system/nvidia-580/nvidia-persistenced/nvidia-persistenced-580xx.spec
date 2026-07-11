@@ -10,6 +10,7 @@ URL:              http://www.nvidia.com/object/unix.html
 ExclusiveArch:    x86_64 aarch64
 Source0:          https://download.nvidia.com/XFree86/%{real_name}/%{real_name}-%{version}.tar.bz2
 Source1:          %{real_name}.service
+Source2:          %{real_name}-sysusers.conf
 BuildRequires:    gcc
 BuildRequires:    libtirpc-devel
 BuildRequires:    m4
@@ -48,13 +49,10 @@ make %{?_smp_mflags} \
     PREFIX=%{_prefix} \
     STRIP_CMD=true
 
-%if 0%{?fedora} < 42
-mv %{buildroot}%{_bindir} %{buildroot}%{_sbindir}
-%endif
-mkdir -p %{buildroot}%{_sharedstatedir}/%{real_name}
-
 # Systemd unit files
-install -p -m 644 -D %{SOURCE1} %{buildroot}%{_unitdir}/%{real_name}.service
+install -Dpm644 %{SOURCE1} -t %{buildroot}%{_unitdir}
+
+install -Dpm644 %{SOURCE2} %{buildroot}%{_sysusersdir}/%{real_name}.conf
 
 %post
 %systemd_post %{real_name}.service
@@ -68,14 +66,12 @@ install -p -m 644 -D %{SOURCE1} %{buildroot}%{_unitdir}/%{real_name}.service
 %files
 %license COPYING
 %{_mandir}/man1/%{real_name}.1.*
-%if 0%{?fedora} < 42
-%{_sbindir}/%{real_name}
-%else
 %{_bindir}/%{real_name}
-%endif
 %{_unitdir}/%{real_name}.service
-%{_sharedstatedir}/%{real_name}
+%{_sysusersdir}/%{real_name}.conf
 
 %changelog
+* Fri Jul 10 2026 Gilver E. <roachy@fyralabs.com> - 3:580.173.02-2
+- Update files
 * Mon Apr 13 2026 Gilver E. <roachy@fyralabs.com> - 3:580.142-3
 - Update spec for Terra packaging team
