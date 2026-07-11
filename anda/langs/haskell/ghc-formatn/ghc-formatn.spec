@@ -35,11 +35,6 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 This package provides support for number formatting styles, especially styles
 involving significant figure calculations.
 
-== Usage
-
->>> import Data.FormatN >>> comma (Just 3) 1234 1,230.
-
-
 %package devel
 Summary:        Haskell %{pkg_name} library development files
 Provides:       %{name}-static = %{version}-%{release}
