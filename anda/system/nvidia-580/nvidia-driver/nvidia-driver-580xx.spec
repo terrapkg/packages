@@ -20,6 +20,7 @@ URL:            http://www.nvidia.com/object/unix.html
 %dnl Source0:        %{name}-%{version}-i386.tar.xz
 %dnl Source1:        %{name}-%{version}-x86_64.tar.xz
 %dnl Source2:        %{name}-%{version}-aarch64.tar.xz
+Source7:        nvidia-powerd.service
 Source8:        70-nvidia-driver.preset
 Source9:        70-nvidia-driver-cuda.preset
 Source13:       alternate-install-present
