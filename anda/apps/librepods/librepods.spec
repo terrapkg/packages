@@ -3,7 +3,7 @@
 Name:           librepods
 Summary:        AirPods liberated from Apple's ecosystem
 Version:        0.1.0
-Release:        1%?dist
+Release:        1%{?dist}
 License:        GPL-3.0-only
 URL:            https://github.com/kavishdevar/librepods
 Source0:        %url/archive/refs/tags/linux-v%version.tar.gz
@@ -37,9 +37,13 @@ premium features you paid for but Apple locked to their ecosystem.
 %prep
 %autosetup -n %{name}-linux-v%{version}
 
-%build
+%conf
 pushd linux
 %cmake
+popd
+
+%build
+pushd linux
 %cmake_build
 popd
 
@@ -54,9 +58,9 @@ popd
 %doc README.md linux/README.md CHANGELOG.md
 %license LICENSE
 %{_bindir}/librepods
-%{_datadir}/applications/me.kavishdevar.librepods.desktop
+%{_appsdir}/me.kavishdevar.librepods.desktop
 %{_metainfodir}/com.github.librepods.metainfo.xml
-%{_iconsdir}/hicolor/512x512/apps/librepods.png
+%{_hicolordir}/512x512/apps/librepods.png
 
 %changelog
 * Wed Nov 19 2025 Owen Zimmerman <owen@fyralabs.com>
