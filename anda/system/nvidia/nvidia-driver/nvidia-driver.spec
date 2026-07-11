@@ -245,7 +245,7 @@ mkdir -p %{buildroot}%{_sysconfdir}/nvidia/
 install -p -m 0755 -D nvidia.icd %{buildroot}%{_sysconfdir}/OpenCL/vendors/nvidia.icd
 
 # Binaries
-install -Dpm755 nvidia-{bug-report.sh,debugdump,smi,cuda-mps-control,cuda-mps-server,ngx-updater,powerd} -t %{buildroot}%{_bindir}
+install -Dpm755 nvidia-{%{dnl bug-report.sh,}debugdump,smi,cuda-mps-control,cuda-mps-server,ngx-updater,powerd} -t %{buildroot}%{_bindir}
 
 # Man pages
 mkdir -p %{buildroot}%{_mandir}/man1/
@@ -367,7 +367,7 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %ifarch x86_64 aarch64
 %{_systemd_util_dir}/system-preset/70-nvidia-driver.preset
 %{_unitdir}/nvidia-powerd.service
-%{_bindir}/nvidia-bug-report.sh
+%dnl %{_bindir}/nvidia-bug-report.sh
 %{_bindir}/nvidia-powerd
 %{_datadir}/dbus-1/system.d/nvidia-dbus.conf
 %{_datadir}/nvidia/nvidia-powerd
