@@ -22,7 +22,7 @@ BuildRequires:  pipewire-devel
 Provides:       bundled(libcap)
 Provides:       bundled(libcbor)
 Provides:       bundled(libfido2)
-Provides:       bundled(libudev1)
+Provides:       bundled(libudev)
 Provides:       bundled(openssl)
 Provides:       bundled(zlib)
 
