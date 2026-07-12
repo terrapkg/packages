@@ -41,6 +41,7 @@ Summary:        %{summary}
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md AUTHORS
 %license LICENSE
+%{_bindir}/opencc
 
 %changelog
 * Sun Mar 29 2026 Owen Zimmerman <owen@fyralabs.com>
