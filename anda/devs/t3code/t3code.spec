@@ -1,6 +1,4 @@
 %undefine __brp_mangle_shebangs
-%global __strip /bin/true
-%global _build_id_links none
 
 Name:           t3code
 %electronmeta -D
@@ -35,6 +33,7 @@ dd if=/dev/zero of="$appimage" bs=1 count=3 seek=8 conv=notrunc
 
 install -dm755 %{buildroot}%{_libdir}/%{name}
 cp -pr squashfs-root/. %{buildroot}%{_libdir}/%{name}/
+find %{buildroot}%{_libdir}/%{name} -path '*musl*' -delete
 rm -rf %{buildroot}%{_libdir}/%{name}/AppRun \
        %{buildroot}%{_libdir}/%{name}/usr \
        %{buildroot}%{_libdir}/%{name}/.DirIcon \
