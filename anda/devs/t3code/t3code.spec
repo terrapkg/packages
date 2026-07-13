@@ -34,6 +34,7 @@ dd if=/dev/zero of="$appimage" bs=1 count=3 seek=8 conv=notrunc
 install -dm755 %{buildroot}%{_libdir}/%{name}
 cp -pr squashfs-root/. %{buildroot}%{_libdir}/%{name}/
 find %{buildroot}%{_libdir}/%{name} -path '*musl*' -delete
+chmod -R a+rX %{buildroot}%{_libdir}/%{name}
 rm -rf %{buildroot}%{_libdir}/%{name}/AppRun \
        %{buildroot}%{_libdir}/%{name}/usr \
        %{buildroot}%{_libdir}/%{name}/.DirIcon \
