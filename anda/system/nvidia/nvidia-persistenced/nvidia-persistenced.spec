@@ -1,6 +1,6 @@
 Name:             nvidia-persistenced
 Version:          610.43.03
-Release:          1%{?dist}
+Release:          2%{?dist}
 Summary:          A daemon to maintain persistent software state in the NVIDIA driver
 Epoch:            3
 License:          GPL-2.0-or-later
@@ -13,7 +13,7 @@ BuildRequires:    libtirpc-devel
 BuildRequires:    m4
 BuildRequires:    sed
 BuildRequires:    systemd-rpm-macros
-Requires:         libnvidia-cfg%{?_isa} >= %{?epoch:%{epoch}:}%{version}
+Requires:         nvidia-driver-common%{?_isa} >= %{?epoch:%{epoch}:}%{version}
 Requires(post):   systemd
 Requires(preun):  systemd
 Requires(postun): systemd
