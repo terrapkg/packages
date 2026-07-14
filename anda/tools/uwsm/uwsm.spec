@@ -38,8 +38,10 @@ manage standalone Wayland compositor sessions.
 %prep
 %autosetup -p1
 
-%build
+%conf
 %meson -Duuctl=enabled -Dfumon=enabled -Duwsm-app=enabled
+
+%build
 %meson_build
 
 %install
