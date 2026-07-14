@@ -36,7 +36,7 @@ Provides a set of Systemd units and helpers to set up the environment and
 manage standalone Wayland compositor sessions.
 
 %prep
-%autosetup -p1
+%autosetup
 
 %conf
 %meson -Duuctl=enabled -Dfumon=enabled -Duwsm-app=enabled
