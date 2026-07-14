@@ -85,4 +85,5 @@ manage standalone Wayland compositor sessions.
 %{_userpresetdir}/80-fumon.preset
 
 %changelog
-%autochangelog
+* Tue Jul 14 2026 Marcelo dos Santos Mafra <msmafra@gmail.com> - 0.26.6-3
+- Initial package
