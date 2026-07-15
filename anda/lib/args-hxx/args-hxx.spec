@@ -37,6 +37,7 @@ make installman DESTDIR=%buildroot%_prefix
 %files
 %_includedir/args
 %{_datadir}/cmake/args/args-*.cmake
+%{_datadir}/pkgconfig/args.pc
 
 %files doc
 %_mandir/man3/args*
