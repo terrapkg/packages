@@ -1,6 +1,6 @@
 Name:      juliamono-fonts
-Version:   0.062
-Release:   2%?dist
+Version:   0.63
+Release:   1%{?dist}
 URL:       https://juliamono.netlify.app/
 Source0:   https://github.com/cormullion/juliamono/archive/refs/tags/v%{version}.tar.gz
 License:   OFL-1.1
