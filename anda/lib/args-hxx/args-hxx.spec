@@ -37,7 +37,7 @@ Summary:	Documentations for args-hxx
 make installman DESTDIR=%buildroot%_prefix
 
 %files
-%_includedir/args
+%_includedir/args.hxx
 %{_datadir}/cmake/args/args-*.cmake
 %{_datadir}/pkgconfig/args.pc
 
