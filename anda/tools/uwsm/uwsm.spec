@@ -49,7 +49,7 @@ manage standalone Wayland compositor sessions.
 %py_byte_compile %{python3} %{buildroot}%{_datadir}/%{name}/modules
 
 %check
-%desktop_file_validate %{_datadir}/applications/*.desktop
+%desktop_file_validate %{buildroot}%{_datadir}/applications/*.desktop
 
 %post
 %systemd_user_post fumon.service
