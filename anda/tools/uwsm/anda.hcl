@@ -1,5 +1,5 @@
 project pkg {
-    arches = ["noarch"]
+    arches = ["x86_64"]
     rpm {
         spec = "uwsm.spec"
     }
