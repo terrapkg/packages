@@ -25,10 +25,12 @@ Summary:	Documentations for args-hxx
 %prep
 %autosetup -n args-%version
 
-%build
+%conf
 %cmake
+
+%build
 %cmake_build
-make doc/man
+%__make doc/man
 
 %install
 %cmake_install
