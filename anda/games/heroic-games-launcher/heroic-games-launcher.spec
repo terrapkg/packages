@@ -15,6 +15,7 @@ License:       GPL-3.0-only AND MIT AND BSD-3-Clause
 URL:           https://heroicgameslauncher.com
 BuildRequires: anda-srpm-macros
 BuildRequires: pnpm
+BuildRequires: openjpeg-tools
 Requires:      alsa-lib
 Requires:      gtk3
 Requires:      hicolor-icon-theme
