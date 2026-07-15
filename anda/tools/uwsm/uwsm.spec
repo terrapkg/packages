@@ -1,7 +1,6 @@
 Name:           uwsm
 Version:        0.26.6
-Release:        %autorelease -b3
-#Release:        1%{?dist}
+Release:        1%{?dist}
 Summary:        Universal Wayland Session Manager
 URL:            https://github.com/Vladimir-csp/uwsm
 Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
