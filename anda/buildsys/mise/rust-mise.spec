@@ -87,6 +87,7 @@ Zsh command line completion support for %{crate}.
 %cargo_prep_online
 
 %build
+export LDFLAGS="$LDFLAGS -fPIE"
 %{cargo_license_summary_online}
 %{cargo_license_online} > LICENSE.dependencies
 %{cargo_build} --locked
