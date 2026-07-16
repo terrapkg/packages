@@ -48,6 +48,8 @@ Requires:       hicolor-icon-theme
 Requires:       dejavu-sans-fonts
 Requires:       libwebp
 
+Conflicts:      noctalia-git
+
 Recommends:     ddcutil
 Recommends:     gpu-screen-recorder
 Recommends:     power-profiles-daemon
@@ -58,7 +60,7 @@ Packager:       Cypress Reed <cypress@fyralabs.com>
 A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with no Qt or GTK dependency.
 
 %prep
-%autosetup -n noctalia-%{commit}
+%autosetup -n noctalia-%{ver}
 
 %conf
 %meson
@@ -93,7 +95,7 @@ done
 * Thu Jul 16 2026 Cypress Reed <cypress@fyralabs.com>
 - Create noctalia package based on noctalia-git
 
-* Wed Jul 09 2026 Cypress Reed <cypress@fyralabs.com>
+* Thu Jul 09 2026 Cypress Reed <cypress@fyralabs.com>
 - Noctalia requires system libraries now, so remove the meson options
 
 * Wed Jul 01 2026 Cypress Reed <cypress@fyralabs.com>
