@@ -14,7 +14,7 @@ Source1:       https://dev.alpinelinux.org/archive/crystal/crystal-%{bootstrap_v
 %else
 BuildRequires: crystal
 %endif
-BuildRequires: gcc gcc-c++ make gc-devel llvm-devel
+BuildRequires: gcc gcc-c++ make gc-devel llvm-devel rubygem-asciidoctor
 BuildRequires: pcre2-devel libyaml-devel libffi-devel
 Requires:      gcc pkgconfig gc-devel
 Requires:      pcre2-devel openssl-devel zlib-devel
