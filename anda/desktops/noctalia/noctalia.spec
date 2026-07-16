@@ -60,7 +60,7 @@ Packager:       Cypress Reed <cypress@fyralabs.com>
 A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with no Qt or GTK dependency.
 
 %prep
-%autosetup -n noctalia-%{ver}
+%autosetup -n noctalia-release
 
 %conf
 %meson
