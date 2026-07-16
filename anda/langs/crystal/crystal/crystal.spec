@@ -29,6 +29,8 @@ Crystal is a programming language with the following goals:
 - Have compile-time evaluation and generation of code, to avoid boilerplate code
 - Compile to efficient native code
 
+%pkg_completions -Bf
+
 %prep
 %setup -q
 %if %{with bootstrap}
@@ -50,11 +52,24 @@ export PATH="%{_builddir}/crystal-%{bootstrap_version}-%{_arch}-alpine-linux-mus
 %{_bindir}/crystal
 %{_datadir}/crystal
 %{_datadir}/zsh/site-functions/_crystal
-%{_datadir}/bash-completion/completions/crystal
-%{_datadir}/fish/vendor_completions.d/crystal.fish
 %{_mandir}/man1/crystal.1.gz
+%{_mandir}/man1/crystal-build.1.gz
+%{_mandir}/man1/crystal-docs.1.gz
+%{_mandir}/man1/crystal-env.1.gz
+%{_mandir}/man1/crystal-eval.1.gz
+%{_mandir}/man1/crystal-init.1.gz
+%{_mandir}/man1/crystal-play.1.gz
+%{_mandir}/man1/crystal-run.1.gz
+%{_mandir}/man1/crystal-spec.1.gz
+%{_mandir}/man1/crystal-tool-dependencies.1.gz
+%{_mandir}/man1/crystal-tool-format.1.gz
+%{_mandir}/man1/crystal-tool-macro_code_coverage.1.gz
+%{_mandir}/man1/crystal-tool-unreachable.1.gz
 
 %changelog
+* Thu Jul 16 2026 Owen Zimmerman <owen@fyralabs.com> - 1.21.0-1 
+- Update for 1.21.0, use %%pkg_completions
+
 * Mon Nov 03 2025 Carl Hörberg <carl@84codes.com> -  1.18.2-2
 - Build from source, support multiple architectures.
 
