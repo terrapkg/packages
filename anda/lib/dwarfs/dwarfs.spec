@@ -88,7 +88,7 @@ Zsh shell completion for dwarfs.
 %prep
 %git_clone %{url}.git v%{version}
 
-%build
+%conf
 %cmake \
 -DWITH_TESTS=ON \
 -DWITH_LIBDWARFS=ON \
@@ -96,13 +96,9 @@ Zsh shell completion for dwarfs.
 -DWITH_FUSE_DRIVER=ON \
 -DBUILD_SHARED_LIBS=ON \
 -DWITH_MAN_OPTION=OFF \
--DCMAKE_INSTALL_SBINDIR="%(echo %{_sbindir} | sed 's|^/usr||')" \
-%cmake_build
-%ifarch aarch64
--DCMAKE_C_FLAGS="$CFLAGS -fno-lto -fno-use-linker-plugin" \
--DCMAKE_CXX_FLAGS="$CXXFLAGS -fno-lto -fno-use-linker-plugin" \
--DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS -fno-lto -fno-use-linker-plugin" \
-%endif
+-DCMAKE_INSTALL_SBINDIR="%(echo %{_sbindir} | sed 's|^/usr||')"
+
+%build
 %cmake_build
 
 %install
