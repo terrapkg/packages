@@ -99,6 +99,9 @@ done
 %{_scalableiconsdir}/noctalia.svg
 
 %changelog
+* Thu Jul 16 2026 Cypress Reed <cypress@fyralabs.com>
+- Add conflicts with noctalia
+
 * Thu Jul 09 2026 Cypress Reed <cypress@fyralabs.com>
 - Noctalia requires system libraries now, so remove the meson options
 
