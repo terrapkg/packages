@@ -42,7 +42,7 @@ Crystal is a programming language with the following goals:
 - Have compile-time evaluation and generation of code, to avoid boilerplate code
 - Compile to efficient native code
 
-%pkg_completions -Bf
+%pkg_completion -Bf
 
 %prep
 %setup -q
