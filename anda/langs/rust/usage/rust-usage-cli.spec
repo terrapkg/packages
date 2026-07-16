@@ -4,13 +4,13 @@
 %global crate usage-cli
 
 Name:           rust-usage-cli
-Version:        3.4.0
+Version:        3.5.5
 Release:        1%{?dist}
 Summary:        CLI for working with usage-based CLIs
 
 License:        MIT
 URL:            https://crates.io/crates/usage-cli
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 Source1:        https://raw.githubusercontent.com/jdx/usage/refs/tags/v%version/LICENSE
 Packager:       madonuko <mado@fyralabs.com>
 

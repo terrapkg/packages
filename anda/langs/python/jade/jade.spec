@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.1.0
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Exoplanet evolution code
 License:		LGPL-3.0
 URL:			https://gitlab.unige.ch/spice_dune/jade

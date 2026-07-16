@@ -1,16 +1,15 @@
 # Binary package, no debuginfo should be generated
 %global debug_package %{nil}
-
-%global appstream_id com.valvesoftware.Steam
+%global appid com.valvesoftware.Steam
 
 Name:           steam
-Version:        1.0.0.85
-Release:        7%{?dist}
+Version:        1.0.0.87
+Release:        1%{?dist}
 Summary:        Installer for the Steam software distribution service
 # Redistribution and repackaging for Linux is allowed, see license file. udev rules are MIT.
 License:        Steam License Agreement and MIT
 URL:            http://www.steampowered.com/
-ExclusiveArch:  i686
+ExclusiveArch:  x86_64
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
 
 Source0:        https://repo.steampowered.com/%{name}/archive/beta/%{name}_%{version}.tar.gz
@@ -40,79 +39,94 @@ BuildRequires:  libappstream-glib
 BuildRequires:  make
 BuildRequires:  systemd
 
+# Required for the basic runtime
+Requires:       glibc(x86-32)
+Requires:       libdrm(x86-32)
+Requires:       libglvnd-glx(x86-32)
+Requires:       libnsl(x86-32)
+
 # Required to run the initial setup
 Requires:       tar
 Requires:       zenity
 Requires:       xz
 
-# Most games use OpenGL, some games already use Vulkan. Vulkan is also required
-# for Steam Play to run Windows games through emulation. i686 version of these
-# packages are necessary even on x86_64 systems for running 32bit games. Pull in
-# native arch drivers as well, by not specifying _isa macro, native arch
-# packages are preferred. This will make sure people have all necessary drivers
-# for both i686 and x86_64 games.
-Requires:       mesa-dri-drivers%{?_isa}
+# Required for basic gaming, also for native 32 bit games:
 Requires:       mesa-dri-drivers
-Requires:       mesa-vulkan-drivers%{?_isa}
+Requires:       mesa-dri-drivers(x86-32)
 Requires:       mesa-vulkan-drivers
-Requires:       vulkan-loader%{?_isa}
+Requires:       mesa-vulkan-drivers(x86-32)
 Requires:       vulkan-loader
+Requires:       vulkan-loader(x86-32)
 
-# Minimum requirements for starting the steam client using system libraries
-Requires:       alsa-lib%{?_isa}
-Requires:       fontconfig%{?_isa}
-Requires:       gtk2%{?_isa}
-Requires:       libICE%{?_isa}
-Requires:       libnsl%{?_isa}
-Requires:       libpng%{?_isa}
-Requires:       libXext%{?_isa}
-Requires:       libXinerama%{?_isa}
-Requires:       libXtst%{?_isa}
-Requires:       libXScrnSaver%{?_isa}
-Requires:       mesa-libGL%{?_isa}
-Requires:       mesa-libEGL%{?_isa}
-Requires:       NetworkManager-libnm%{?_isa}
-Requires:       nss%{?_isa}
-Requires:       pulseaudio-libs%{?_isa}
+# Hardware stuff (permissions on devices, hardware updater, etc.):
+Recommends:     hidapi
+Requires:       steam-devices
 
-# Required for sending out crash reports to Valve
-Requires:       libcurl%{?_isa}
-
-# Workaround for mesa-libGL dependency bug:
-# https://bugzilla.redhat.com/show_bug.cgi?id=1168475
-Requires:       systemd-libs%{?_isa}
+# These libraries are also part of the Ubuntu runtime at:
+#   ~/.local/share/Steam/ubuntu12_32
+#   ~/.local/share/Steam/ubuntu12_64
+# Steam client uses the system ones if available; so override where there is a
+# benefit using the native system libaries or just to match when the native 64
+# bit packages are already installed.
+Requires:       bzip2-libs
+Requires:       bzip2-libs(x86-32)
+Requires:       fontconfig
+Requires:       fontconfig(x86-32)
+Requires:       libICE
+Requires:       libICE(x86-32)
+Requires:       libnsl
+Requires:       libnsl(x86-32)
+Requires:       libXext
+Requires:       libXext(x86-32)
+Requires:       libXinerama
+Requires:       libXinerama(x86-32)
+Requires:       libXtst
+Requires:       libXtst(x86-32)
+Requires:       libva
+Requires:       libva(x86-32)
+Requires:       libvdpau
+Requires:       libvdpau(x86-32)
+Requires:       mesa-libGL
+Requires:       mesa-libGL(x86-32)
+Requires:       NetworkManager-libnm
+Requires:       NetworkManager-libnm(x86-32)
+Requires:       nss
+Requires:       nss(x86-32)
+Requires:       openal-soft
+Requires:       openal-soft(x86-32)
+Requires:       pipewire-libs
+Requires:       pipewire-libs(x86-32)
+Requires:       pulseaudio-libs
+Requires:       pulseaudio-libs(x86-32)
+%if %{defined fedora}
+Requires:       SDL3
+Requires:       SDL3(x86-32)
+%endif
+# The client does not override only the ones linked at:
+#   ~/.local/share/Steam/ubuntu12_32/steam-runtime/pinned_libs_32
+#   ~/.local/share/Steam/ubuntu12_32/steam-runtime/pinned_libs_64
+# At the moment of writing, the pinned ones belong to these packages:
+#   gtk2
+#   libcurl
+#   libdbusmenu
+#   libdbusmenu-gtk2
+#   mesa-libGLU
+# And yes, the "ubuntu12_32" directory twice above is not a typo. Windows style (system32...).
 
 # Required for the firewall rules
 # http://fedoraproject.org/wiki/PackagingDrafts/ScriptletSnippets/Firewalld
 Requires:       firewalld-filesystem
 Requires(post): firewalld-filesystem
 
-# Required for hardware encoding/decoding during Remote Play (intel/radeon/amdgpu/nouveau)
-Requires:       libva%{?_isa}
-Requires:       libvdpau%{?_isa}
-
-# Required for having a functioning menu on the tray icon
-Requires:       libdbusmenu-gtk3%{?_isa} >= 16.04.0
-
 # Required by Feral interactive games
-Requires:       libatomic%{?_isa}
+Requires:       libatomic
+Requires:       libatomic(x86-32)
 
 # Required by Shank
-Requires:       (alsa-plugins-pulseaudio%{?_isa} if pulseaudio)
-Requires:       (pipewire-alsa%{?_isa} if pipewire)
-
-# Patched for Wayland
-# https://github.com/ValveSoftware/steam-for-linux/issues/8853
-# https://github.com/negativo17/steam/issues/9
-%if 0%{?fedora} >= 40
-Requires:       SDL2%{?_isa}
-%endif
+Requires:       (alsa-plugins-pulseaudio if pulseaudio)
 
 # Game performance is increased with gamemode (for games that support it)
 Recommends:     (falcond or gamemode)
-Recommends:     (gamemode%{?_isa} if gamemode(x86-64))
-Recommends:     (gnome-shell-extension-appindicator if gnome-shell)
-
 Recommends:     (gnome-shell-extension-appindicator if gnome-shell)
 
 # Proton uses xdg-desktop-portal to open URLs from inside a container
@@ -127,8 +141,8 @@ Recommends:     xdg-user-dirs
 # Allow using Steam Runtime Launch Options
 Recommends:     gobject-introspection
 
-Requires:       steam-devices
-
+# Automatic loading of the ntsync module
+Recommends:     ntsync-autoload
 # -rm is usually better for Steam
 Recommends:     udev-joystick-blacklist-rm
 Requires:       (udev-joystick-blacklist-rm or udev-joystick-blacklist)
@@ -142,6 +156,21 @@ installation, automatic updates, achievements, SteamCloud synchronized savegame
 and screenshot functionality, and many social features.
 
 This package contains the installer for the Steam software distribution service.
+
+%package arch-transition
+Summary: Transition package for migrating Steam from i686 to x86_64
+Requires: %{name} = %{evr}
+Provides: steam = 1.0.0.85-11
+Obsoletes: steam < 1.0.0.85-11
+BuildArch: noarch
+
+%description arch-transition
+This package is used to migrate Steam installations from the
+legacy i686 package layout to the x86_64 package layout.
+
+It exists only to handle package replacement and dependency
+changes during upgrades, and can be safely removed once the
+transition is complete.
 
 %prep
 %autosetup -p1 -n %{name}-launcher
@@ -168,19 +197,16 @@ install -m 644 -p %{SOURCE6} %{buildroot}%{_prefix}/lib/systemd/system.conf.d/
 install -m 644 -p %{SOURCE6} %{buildroot}%{_prefix}/lib/systemd/user.conf.d/
 install -m 775 -p %{SOURCE7} %{buildroot}%{_bindir}/steamrestart
 
+%if 0%{?fedora} < 43 || %{defined rhel}
 # https://github.com/ValveSoftware/steam-for-linux/issues/9940
-desktop-file-edit --remove-key=PrefersNonDefaultGPU %{buildroot}%{_datadir}/applications/%{name}.desktop
-desktop-file-edit --remove-key=X-KDE-RunOnDiscreteGpu %{buildroot}%{_datadir}/applications/%{name}.desktop
+# Fedora 43 and above ship everything needed to make this behave correct-er
+%__desktop_file_edit --remove-key=PrefersNonDefaultGPU %{buildroot}%{_datadir}/applications/%{name}.desktop
+%__desktop_file_edit --remove-key=X-KDE-RunOnDiscreteGpu %{buildroot}%{_datadir}/applications/%{name}.desktop
+%endif
 
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
-appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%{appstream_id}.metainfo.xml
-
-%if 0%{?fedora} >= 44
-%triggerin -- ca-certificates
-# Workaround for https://fedoraproject.org/wiki/Changes/droppingOfCertPemFile#Temporary_fix
-update-ca-trust extract --rhbz2387674
-%endif
+appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 
 %files
 %license COPYING steam_subscriber_agreement.txt
@@ -192,16 +218,19 @@ update-ca-trust extract --rhbz2387674
 %{_datadir}/pixmaps/%{name}.png
 %{_datadir}/pixmaps/%{name}_tray_mono.png
 %{_prefix}/lib/%{name}/
-%{_libdir}/%{name}/
 %{_mandir}/man6/%{name}.*
-%{_metainfodir}/%{appstream_id}.metainfo.xml
+%{_metainfodir}/%{appid}.metainfo.xml
 %config(noreplace) %{_sysconfdir}/profile.d/%{name}.*sh
 %dir %{_prefix}/lib/systemd/system.conf.d/
 %{_prefix}/lib/systemd/system.conf.d/01-steam.conf
 %dir %{_prefix}/lib/systemd/user.conf.d/
 %{_prefix}/lib/systemd/user.conf.d/01-steam.conf
 
+%files arch-transition
+
 %changelog
+* Fri Jun 5 2026 Gilver E. <roachy@fyralabs.com> - 1.0.0.85-11
+- Update for architecture transition
 * Sun Sep 01 2024 Simone Caronni <negativo17@gmail.com> - 1.0.0.81-1
 - Update to 1.0.0.81.
 

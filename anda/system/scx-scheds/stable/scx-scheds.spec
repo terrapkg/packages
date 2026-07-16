@@ -1,7 +1,7 @@
 %undefine __brp_mangle_shebangs
 
 Name:           scx-scheds
-Version:        1.1.1
+Version:        1.1.2
 Release:        1%{?dist}
 Summary:        sched_ext schedulers
 SourceLicense:  GPL-2.0-only
@@ -29,6 +29,7 @@ BuildRequires:  rust
 BuildRequires:  systemd
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  zlib-ng-compat
+BuildRequires:  pkgconfig(openssl)
 Requires:       (scx-tools or scx-tools-nightly)
 Suggests:       scx-tools
 Requires:       elfutils-libelf

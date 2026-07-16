@@ -3,14 +3,14 @@
 
 Name:           rust-topgrade
 # renovate: datasource=github-releases depName=topgrade-rs/topgrade
-Version:        17.5.1
+Version:        17.8.0
 Release:        1%{?dist}
 Summary:        Upgrade all the things
 
 SourceLicense:  GPL-3.0-or-later
 License:        ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND GPL-3.0 AND GPL-3.0-only AND MIT AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MPL-2.0 AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT)
 URL:            https://crates.io/crates/topgrade
-Source:         %crates_source
+Source:         %terra_crates_source
 # Automatically generated patch to strip dependencies and normalize metadata
 
 BuildRequires:  cargo

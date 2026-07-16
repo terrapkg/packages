@@ -1,7 +1,5 @@
-%define debug_package %{nil}
-
 Name:           kew
-Version:        4.0.0
+Version:        4.2.6
 Release:        1%{?dist}
 Summary:        Music for the Shell
 URL:            https://codeberg.org/ravachol/kew
@@ -29,7 +27,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %git_clone https://codeberg.org/ravachol/kew.git v%{version}
 
 %build
-%make_build
+%make_build CC="%__cc %build_cflags" CXX="%__cxx %build_cxxflags" SYMBOLS=1
 
 %install
 %make_install PREFIX=/usr
@@ -41,9 +39,10 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %doc README.md
 %lang(zh_CN) %doc README_zh_CN.md
 %{_bindir}/kew
-%{_datadir}/kew/themes/*.theme
-%{_datadir}/kew/themes/*.txt
+%{_datadir}/kew/
 %{_mandir}/man1/kew.1.*
+%{_appsdir}/kew.desktop
+%{_hicolordir}/*/apps/kew.png
 
 %changelog
 * Thu Apr 09 2026 Owen Zimmerman <owen@fyralabs.com>

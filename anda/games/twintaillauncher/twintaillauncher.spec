@@ -6,9 +6,9 @@
 
 Name:           twintaillauncher
 
-Version:        2.2.1
-Release:        1%{?dist}
-Summary:        A multi-platform launcher for your anime games
+Version:        2.3.0
+Release:        2%{?dist}
+Summary:       Your anime games, one launcher
 Packager:        Yoong Jin <solomoncyj@gmail.com>
 
 SourceLicense: GPL-3.0-only
@@ -28,6 +28,8 @@ Requires:       pango
 Requires:       webkit2gtk4.1
 Requires:       mangohud
 Requires:       gamemode
+
+Recommends:       /usr/bin/gamescope
 
 # Build requires
 BuildRequires:  pnpm
@@ -85,6 +87,8 @@ install -Dm644 public/launcher-icon-128.png %{buildroot}%{_hicolordir}/128x128/a
 %{_appsdir}/%{name}.desktop
 
 %changelog
+* Tue Jul 7 2026 Yoong Jin <solomoncyj@gmail.com> - 2.3.0 -2
+- add new recommends and update pkg desc in preparation for 2.4.0
 * Sat May 9 2026 Gilver E. <roachy@fyralabs.com> - 2.1.0-2
 - Enable aarch64 builds
 * Wed Apr 15 2026 Yoong Jin <solomoncyj@gmail.com> - 2.0.0-3

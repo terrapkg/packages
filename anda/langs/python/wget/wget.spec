@@ -7,7 +7,7 @@
 
 Name:			python-%{pypi_name}
 Version:		3.2
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Pure Python download utility
 License:	    LicenseRef-Fedora-Public-Domain
 URL:			https://pypi.org/project/wget/

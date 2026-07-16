@@ -1,5 +1,5 @@
 Name:           falcond
-Version:        2.0.8
+Version:        2.0.12
 Release:        1%{?dist}
 Summary:        Advanced Linux Gaming Performance Daemon
 License:        MIT

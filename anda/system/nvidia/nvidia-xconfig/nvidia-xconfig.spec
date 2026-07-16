@@ -1,5 +1,5 @@
 Name:           nvidia-xconfig
-Version:        610.43.02
+Version:        610.43.03
 Release:        1%{?dist}
 Summary:        NVIDIA X configuration file editor
 Epoch:          3
@@ -10,7 +10,7 @@ BuildRequires:  gcc
 BuildRequires:  libpciaccess-devel
 BuildRequires:  m4
 BuildRequires:  sed
-Requires:       libnvidia-cfg%{?_isa} >= %{?epoch:%{epoch}:}%{version}
+Requires:       nvidia-driver-common%{?_isa} >= %{?epoch:%{epoch}:}%{version}
 Requires:       xorg-x11-nvidia%{?_isa} >= %{?epoch:%{epoch}:}%{version}
 ExclusiveArch:  x86_64 aarch64
 Packager:       Terra Packaging Team <terra@fyralabs.com>
@@ -47,5 +47,7 @@ make %{?_smp_mflags} \
 %{_mandir}/man1/%{name}.1*
 
 %changelog
+* Fri Jul 10 2026 Gilver E. <roachy@fyralabs.com> - 3:610.43.03-2
+- Update for dependency changes
 * Mon Apr 13 2026 Gilver E. <roachy@fyralabs.com> - 3:595.58.03-2
 - Update spec for Terra packaging team

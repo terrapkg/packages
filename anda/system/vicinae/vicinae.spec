@@ -6,8 +6,8 @@
 
 Name:           vicinae
 License:        GPL-3.0-or-later
-Version:        0.21.5
-Release:        2%{?dist}
+Version:        0.23.1
+Release:        1%{?dist}
 URL:            https://docs.vicinae.com
 Source:         https://github.com/vicinaehq/%{name}/archive/refs/tags/v%{version}.tar.gz
 Summary:        A high-performance, native launcher for Linux
@@ -38,9 +38,11 @@ BuildRequires:  anda-srpm-macros
 BuildRequires:  ninja-build
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtbase-private-devel
+BuildRequires:  xcb-util-keysyms-devel
 BuildRequires:  desktop-file-utils
 
 Requires:       nodejs-npm
+Requires:       layer-shell-qt
 
 %description
 Vicinae (pronounced "vih-SIN-ay") is a high-performance, native launcher for
@@ -80,15 +82,16 @@ install -Dm 644 extra/%{name}-url-handler.desktop -t %{buildroot}%{_appsdir}
 %{_appsdir}/%{name}.desktop
 %{_appsdir}/%{name}-url-handler.desktop
 %{_hicolordir}/512x512/apps/%{name}.png
-%{_datadir}/%{name}/native-host/chromium/com.vicinae.vicinae.json
-%{_datadir}/%{name}/native-host/com.vicinae.vicinae.chromium.json.in
-%{_datadir}/%{name}/native-host/com.vicinae.vicinae.firefox.json.in
-%{_datadir}/%{name}/native-host/firefox/com.vicinae.vicinae.json
+%dnl %{_datadir}/%{name}/native-host/chromium/com.vicinae.vicinae.json
+%dnl %{_datadir}/%{name}/native-host/com.vicinae.vicinae.chromium.json.in
+%dnl %{_datadir}/%{name}/native-host/com.vicinae.vicinae.firefox.json.in
+%dnl %{_datadir}/%{name}/native-host/firefox/com.vicinae.vicinae.json
 %{_libexecdir}/%{name}/vicinae-browser-link
 %{_libexecdir}/%{name}/vicinae-data-control-server
 %{_libexecdir}/%{name}/vicinae-server
 %dnl %{_libexecdir}/%{name}/vicinae-snippet-server
 %{_libexecdir}/%{name}/vicinae-input-server
+%{_libexecdir}/%{name}/vicinae-file-indexer
 %{_modulesloaddir}/vicinae.conf
 %dnl %{_udevrulesdir}/70-vicinae.rules
 

@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.4.0
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Python bindings for FluidSynth
 License:		LGPL-2.1
 URL:			https://github.com/nwhitehead/pyfluidsynth

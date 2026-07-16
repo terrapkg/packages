@@ -1,5 +1,5 @@
 Name:           terra-scripts
-Version:        0.2.0
+Version:        0.2.1
 Release:        1%{?dist}
 Summary:        Helpful scripts for contributing to Terra
 License:        GPL-3.0-or-later

@@ -10,7 +10,7 @@ Summary:        Very fast linker for Linux
 
 License:        MIT OR Apache-2.0
 URL:            https://crates.io/crates/wild-linker
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 Source1:        https://github.com/davidlattimore/wild/archive/refs/tags/%version.tar.gz
 
 BuildRequires:  cargo-rpm-macros >= 24

@@ -1,8 +1,8 @@
 %global         majorminor 1.0
 
 Name:           gstreamer1-plugins-ugly
-Version:        1.28.3
-Release:        2%{?dist}
+Version:        1.28.5
+Release:        1%{?dist}
 Epoch:          2
 Summary:        GStreamer streaming media framework "ugly" plugins
 License:        LGPL-2.0-or-later and LGPL-2.0-only

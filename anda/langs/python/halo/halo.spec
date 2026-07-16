@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.0.31
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Beautiful spinners for terminal, IPython and Jupyter
 License:		MIT
 URL:			https://github.com/manrajgrover/halo

@@ -1,9 +1,9 @@
 %global pypi_name copyparty
 
 Name:           %{pypi_name}
-Version:        1.20.16
+Version:        1.20.18
 Release:        1%{?dist}
-Summary:        Portable, featureful, and fast file server 
+Summary:        Portable, featureful, and fast file server
 URL:            https://github.com/9001/copyparty
 Source0:        %{pypi_source}
 License:        MIT
@@ -18,7 +18,7 @@ BuildArch:		noarch
 Packager:       Riley Loo <dev@zackerthescar.com>
 
 %description
-Portable file server with accelerated resumable uploads, dedup, WebDAV, 
+Portable file server with accelerated resumable uploads, dedup, WebDAV,
 FTP, TFTP, zeroconf, media indexer, thumbnails++ all in one file, no deps.
 
 %package -n     python3-%{pypi_name}
@@ -27,9 +27,9 @@ Summary:        %{summary}
 Requires:       %{name} = %{evr}
 
 %description -n python3-%{pypi_name}
-Portable file server with accelerated resumable uploads, dedup, WebDAV, 
+Portable file server with accelerated resumable uploads, dedup, WebDAV,
 FTP, TFTP, zeroconf, media indexer, thumbnails++ all in one file, no deps.
- 
+
 %prep
 %autosetup -n copyparty-%version
 

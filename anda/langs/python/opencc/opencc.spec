@@ -2,7 +2,7 @@
 %global _desc Open Chinese Convert.
 
 Name:			python-%{pypi_name}
-Version:		1.3.1
+Version:		1.4.1
 Release:		1%{?dist}
 Summary:		Open Chinese Convert
 License:		Apache-2.0
@@ -41,6 +41,7 @@ Summary:        %{summary}
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md AUTHORS
 %license LICENSE
+%{_bindir}/opencc
 
 %changelog
 * Sun Mar 29 2026 Owen Zimmerman <owen@fyralabs.com>

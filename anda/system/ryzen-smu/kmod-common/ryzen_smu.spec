@@ -1,6 +1,6 @@
-%global commit 0bb95d961664c7a0ac180f849fa16fe7da71922d
+%global commit 1be4fb1cd9d60b5ddefc2a4201a898766a731400
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260425
+%global commitdate 20260626
 
 Name:           ryzen_smu
 Version:        0.1.7^%{commitdate}git.%{shortcommit}

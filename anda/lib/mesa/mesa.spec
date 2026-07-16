@@ -84,10 +84,10 @@
 
 Name:           %{srcname}
 Summary:        Mesa graphics libraries
-%global ver 26.1.0
+%global ver 26.1.5
 Epoch:          1
 Version:        %{lua:ver = string.gsub(rpm.expand("%{ver}"), "-", "~"); print(ver)}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Packager:       Kyle Gospodnetich <me@kylegospodneti.ch>
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0
 URL:            https://mesa3d.org
@@ -108,12 +108,12 @@ Source1:        Mesa-MLAA-License-Clarification-Email.txt
 %global rust_syn_ver 2.0.115
 %global rust_unicode_ident_ver 1.0.23
 %global rustc_hash_ver 2.1.1
-Source10:       https://crates.io/api/v1/crates/paste/%{rust_paste_ver}/download#/paste-%{rust_paste_ver}.tar.gz
-Source11:       https://crates.io/api/v1/crates/proc-macro2/%{rust_proc_macro2_ver}/download#/proc-macro2-%{rust_proc_macro2_ver}.tar.gz
-Source12:       https://crates.io/api/v1/crates/quote/%{rust_quote_ver}/download#/quote-%{rust_quote_ver}.tar.gz
-Source13:       https://crates.io/api/v1/crates/syn/%{rust_syn_ver}/download#/syn-%{rust_syn_ver}.tar.gz
-Source14:       https://crates.io/api/v1/crates/unicode-ident/%{rust_unicode_ident_ver}/download#/unicode-ident-%{rust_unicode_ident_ver}.tar.gz
-Source15:       https://crates.io/api/v1/crates/rustc-hash/%{rustc_hash_ver}/download#/rustc-hash-%{rustc_hash_ver}.tar.gz
+Source10:       https://static.crates.io/crates/paste/paste-%{rust_paste_ver}.crate
+Source11:       https://static.crates.io/crates/proc-macro2/proc-macro2-%{rust_proc_macro2_ver}.crate
+Source12:       https://static.crates.io/crates/quote/quote-%{rust_quote_ver}.crate
+Source13:       https://static.crates.io/crates/syn/syn-%{rust_syn_ver}.crate
+Source14:       https://static.crates.io/crates/unicode-ident/unicode-ident-%{rust_unicode_ident_ver}.crate
+Source15:       https://static.crates.io/crates/rustc-hash/rustc-hash-%{rustc_hash_ver}.crate
 
 # Open Gaming Collective Patches
 Patch30:        https://raw.githubusercontent.com/OpenGamingCollective/mesa/refs/tags/%{ver}/limiter.patch

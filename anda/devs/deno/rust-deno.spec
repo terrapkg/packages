@@ -5,24 +5,27 @@
 %global appstream_component runtime
 %global crate deno
 
+%global debug_level 1
+%undefine _debugsource_packages
+
 Name:           rust-deno
-Version:        2.8.2
+Version:        2.9.3
 Release:        1%{?dist}
 Summary:        Deno executable
 
 License:        MIT
 URL:            https://crates.io/crates/deno
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 Source1:        https://raw.githubusercontent.com/denoland/deno/refs/tags/v%version/LICENSE.md
 Source2:        gcc-wrapper.sh
 Source3:        land.deno.deno.metainfo.xml
 # Automatically generated patch to strip dependencies and normalize metadata
-Patch:          deno-fix-metadata-auto.diff
+%dnl Patch:          deno-fix-metadata-auto.diff
 
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros
 BuildRequires:  protobuf-compiler
-BuildRequires:  llvm17-devel
+BuildRequires:  llvm19-devel
 BuildRequires:  python3
 BuildRequires:  cmake
 BuildRequires:  gcc
@@ -80,3 +83,5 @@ pushd %{buildroot}%{_bindir}
 ./deno x --install-alias
 popd
 %terra_appstream -o %{SOURCE3}
+
+rm -rf target # save space

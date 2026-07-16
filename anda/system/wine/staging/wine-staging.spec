@@ -18,7 +18,7 @@
 
 
 Name:       wine-staging
-Version:    11.10
+Version:    11.13
 Release:    1%{?dist}
 Epoch:      1
 Summary:    WINE Is Not An Emulator - runs MS Windows programs

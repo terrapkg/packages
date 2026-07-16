@@ -3,7 +3,7 @@
 %global crate anda
 
 Name:           anda
-Version:        0.7.0
+Version:        0.7.3
 Release:        1%{?dist}
 Summary:        Andaman Build toolchain
 SourceLicense:  MIT
@@ -18,18 +18,14 @@ BuildRequires:  gcc
 BuildRequires:  rust-packaging >= 21
 BuildRequires:  anda-srpm-macros
 BuildRequires:  openssl-devel
-%if %{defined fedora}
-BuildRequires:  openssl-devel-engine
-%endif
 BuildRequires:  git-core
-BuildRequires:  libgit2-devel
+BuildRequires:  pkgconfig(libgit2)
 BuildRequires:  libssh2-devel
 BuildRequires:  mold
 Requires:       mock
 Requires:       rpm-build
 Requires:       createrepo_c
 Requires:       git-core
-Requires:       libgit2
 %if 0%{?fedora} >= 42
 Requires:       mock-filesystem
 Requires:       util-linux-script

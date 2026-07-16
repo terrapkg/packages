@@ -2,7 +2,7 @@
 %global crate anime-game-launcher
 %global appid moe.launcher.an-anime-game-launcher
 Name:           %{crate}
-Version:        3.19.6
+Version:        3.19.7
 Release:        1%{?dist}
 Summary:        An Anime Game Launcher for Linux with automatic patching and telemetry disabling
 
