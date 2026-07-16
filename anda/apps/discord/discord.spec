@@ -1,5 +1,5 @@
 Name:           discord
-Version:        1.0.147
+Version:        1.0.148
 Release:        1%{?dist}
 Summary:        Free Voice and Text Chat for Gamers
 URL:            https://discord.com
