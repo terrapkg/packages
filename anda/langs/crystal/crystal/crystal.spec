@@ -14,11 +14,24 @@ Source1:       https://dev.alpinelinux.org/archive/crystal/crystal-%{bootstrap_v
 %else
 BuildRequires: crystal
 %endif
-BuildRequires: gcc gcc-c++ make gc-devel llvm-devel rubygem-asciidoctor
-BuildRequires: pcre2-devel libyaml-devel libffi-devel
-Requires:      gcc pkgconfig gc-devel
-Requires:      pcre2-devel openssl-devel zlib-devel
-Requires:      libyaml-devel libxml2-devel gmp-devel
+BuildRequires: gcc
+BuildRequires: gcc-c++
+BuildRequires: make
+BuildRequires: gc-devel
+BuildRequires: llvm-devel
+BuildRequires: rubygem-asciidoctor
+BuildRequires: pcre2-devel
+BuildRequires: libyaml-devel
+BuildRequires: libffi-devel
+Requires:      gcc
+Requires:      pkgconfig
+Requires:      gc-devel
+Requires:      pcre2-devel
+Requires:      openssl-devel
+Requires:      zlib-devel
+Requires:      libyaml-devel
+Requires:      libxml2-devel
+Requires:      gmp-devel
 Suggests:      shards
 
 %description
