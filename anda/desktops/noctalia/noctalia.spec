@@ -1,20 +1,25 @@
-%global debug_package %{nil}
-%global upstreamname  noctalia-shell
+%global debug_package   %{nil}
 
 Name:   	noctalia
-Version:	4.9.9
+Version:	5.0.0-beta.3
 Release:	1%{?dist}
-Summary:	A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with no Qt or GTK dependency.
+Summary:	A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with no Qt or GTK dependency
 
 License:	MIT
-URL:		https://github.com/noctalia-dev/%{upstreamname}
-Source0:	https://github.com/noctalia-dev/%{upstreamname}/releases/download/v%{version}/noctalia-v%{version}.tar.gz
+URL:		https://github.com/noctalia-dev/noctalia
+Source0:	https://github.com/noctalia-dev/noctalia/releases/download/v%{version}/noctalia-v%{version}.tar.gz
 
 BuildRequires:  meson
 BuildRequires:  gcc-c++
 BuildRequires:  git
+BuildRequires:  desktop-file-utils
 BuildRequires:  pipewire-devel
 BuildRequires:  sdbus-cpp-devel
+BuildRequires:  tomlplusplus-devel
+BuildRequires:  json-devel
+BuildRequires:  md4c-devel
+BuildRequires:  stb-devel
+BuildRequires:  wireplumber-devel
 BuildRequires:  pkgconfig(cairo)
 BuildRequires:  pkgconfig(egl)
 BuildRequires:  pkgconfig(freetype2)
@@ -51,10 +56,12 @@ Packager:       Cypress Reed <cypress@fyralabs.com>
 A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with no Qt or GTK dependency.
 
 %prep
-%autosetup -n noctalia-release
+%autosetup -n noctalia-%{commit}
+
+%conf
+%meson
 
 %build
-%meson
 %meson_build
 
 %install
@@ -68,13 +75,34 @@ find third_party -type f \( -name "LICENSE*" -o -name "COPYING*" -o -name "NOTIC
     install -p -m 0644 "$file" "$dest_dir/"
 done
 
+%check
+%desktop_file_validate %{buildroot}%{_appsdir}/dev.noctalia.Noctalia.desktop
+
 %files
 %doc README.md
 %license LICENSE
 %{_licensedir}/%{name}/third_party/
 %{_bindir}/noctalia
 %{_datadir}/noctalia/
+%{_appsdir}/dev.noctalia.Noctalia.desktop
+%{_scalableiconsdir}/noctalia.svg
 
 %changelog
+* Thu Jul 16 2026 Cypress Reed <cypress@fyralabs.com>
+- Create noctalia package based on noctalia-git
+
+* Wed Jul 09 2026 Cypress Reed <cypress@fyralabs.com>
+- Noctalia requires system libraries now, so remove the meson options
+
+* Wed Jul 01 2026 Cypress Reed <cypress@fyralabs.com>
+- Add md4c as a system library
+- Add wireplumber build requirement
+
+* Tue Jun 30 2026 Cypress Reed <cypress@fyralabs.com>
+- Add tomlplusplus as a sytem library
+
+* Wed Jun 24 2026 Cypress Reed <cypress@fyralabs.com>
+- Add desktop file and icon
+
 * Fri Jun 05 2026 Cypress Reed <cypress@fyralabs.com>
 - Port to terra from Fedora COPR lionheartp/Hyprland
