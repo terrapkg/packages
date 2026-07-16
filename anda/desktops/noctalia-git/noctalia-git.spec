@@ -8,7 +8,7 @@
 
 Name:   	noctalia-git
 Version:	%{ver}^%{commitdate}git.%{shortcommit}
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with no Qt or GTK dependency
 
 License:	MIT
@@ -51,6 +51,8 @@ Provides:       PolicyKit-authentication-agent
 Requires:       hicolor-icon-theme
 Requires:       dejavu-sans-fonts
 Requires:       libwebp
+
+Conflicts:      noctalia
 
 Recommends:     ddcutil
 Recommends:     gpu-screen-recorder
