@@ -1,13 +1,15 @@
 %global debug_package   %{nil}
 
+%global ver 5.0.0-beta.3
+
 Name:   	noctalia
-Version:	5.0.0-beta.3
+Version:	5.0.0~beta.3
 Release:	1%{?dist}
 Summary:	A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with no Qt or GTK dependency
 
 License:	MIT
 URL:		https://github.com/noctalia-dev/noctalia
-Source0:	https://github.com/noctalia-dev/noctalia/releases/download/v%{version}/noctalia-v%{version}.tar.gz
+Source0:	https://github.com/noctalia-dev/noctalia/releases/download/v%{ver}/noctalia-v%{ver}.tar.gz
 
 BuildRequires:  meson
 BuildRequires:  gcc-c++
