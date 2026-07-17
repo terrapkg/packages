@@ -1,7 +1,12 @@
 %global debug_package %{nil}
 %global __brp_strip %{nil}
 %global __brp_ldconfig %{nil}
-%define _build_id_links none
+
+%bcond selinux 1
+
+%if %{with selinux}
+%global selinuxtype targeted
+%endif
 
 # systemd 248+
 %if 0%{?rhel} == 8
@@ -10,7 +15,7 @@
 
 Name:           nvidia-driver
 Version:        610.43.03
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        NVIDIA's proprietary display driver for NVIDIA graphic cards
 Epoch:          3
 License:        NVIDIA License
@@ -21,6 +26,7 @@ Source13:       alternate-install-present
 Source40:       com.nvidia.driver.metainfo.xml
 Source41:       parse-supported-gpus.py
 Source42:       com.nvidia.driver.png
+Source43:       %{name}.te
 Source99:       nvidia-generate-tarballs.sh
 %ifarch x86_64 aarch64
 BuildRequires:  libappstream-glib
@@ -34,6 +40,10 @@ BuildRequires:  systemd-rpm-macros
 %endif
 BuildRequires:  wget
 BuildRequires:  coreutils
+%if %{with selinux}
+BuildRequires:  bzip2
+BuildRequires:  selinux-policy-devel
+%endif
 Requires:       nvidia-driver-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}
 Requires:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
 Conflicts:      nvidia-x11-drv
@@ -149,6 +159,20 @@ The NVIDIA X.org X11 driver and associated components.
 
 %endif
 
+%if %{with selinux}
+%package        selinux
+Summary:        SELinux policies for the NVIDIA drivers
+Requires:       selinux-policy-targeted
+Requires(post): libselinux-utils
+Requires(post): policycoreutils
+Requires(post): policycoreutils-python-utils
+Requires(post): selinux-policy-base
+BuildArch:      noarch
+
+%description    selinux
+SELinux policies that allow functionality of the NVIDIA driver.
+%endif
+
 %prep
 source %{SOURCE99}
 export VERSION=%{version}
@@ -196,7 +220,18 @@ ln -sf libnvcuvid.so.%{version} libnvcuvid.so
 # Required for building against CUDA
 ln -sf libcuda.so.%{version} libcuda.so
 
+%if %{with selinux}
+# Needed to build the SELinux policy
+cp %{SOURCE43} -t .
+%endif
+
 %build
+%if %{with selinux}
+# https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/using_selinux/writing-a-custom-selinux-policy_using-selinux#creating-and-enforcing-an-selinux-policy-for-a-custom-application_writing-a-custom-selinux-policy
+make -f %{_datadir}/selinux/devel/Makefile %{name}.pp
+
+bzip2 -9 %{name}.pp
+%endif
 
 %install
 # EGL loader
@@ -205,6 +240,11 @@ install -p -m 0644 -D 10_nvidia.json %{buildroot}%{_datadir}/glvnd/egl_vendor.d/
 # Vulkan loader
 install -p -m 0644 -D nvidia_icd.json %{buildroot}%{_datadir}/vulkan/icd.d/nvidia_icd.%{_target_cpu}.json
 sed -i -e 's|libGLX_nvidia|%{_libdir}/libGLX_nvidia|g' %{buildroot}%{_datadir}/vulkan/icd.d/nvidia_icd.%{_target_cpu}.json
+
+%if %{with selinux}
+# SELinux policy
+install -Dpm644 %{name}.pp.* -t %{buildroot}%{_datadir}/selinux/packages/%{selinuxtype}
+%endif
 
 %ifarch x86_64
 # Vulkan SC loader and compiler
@@ -313,6 +353,22 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %postun common
 %systemd_postun nvidia-powerd.service
 
+%endif
+
+%if %{with selinux}
+%pre selinux
+%selinux_relabel_pre -s %{selinuxtype}
+
+%post selinux
+%selinux_modules_install -s %{selinuxtype} %{_datadir}/selinux/packages/%{selinuxtype}/%{name}.pp.bz2
+
+%postun selinux
+if [ $1 == 0 ]; then
+    %selinux_modules_uninstall -s %{selinuxtype} %{name}
+fi
+
+%posttrans selinux
+%selinux_relabel_post -s %{selinuxtype}
 %endif
 
 %ifarch x86_64 aarch64
@@ -466,6 +522,14 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %{_libdir}/libnvidia-fbc.so.1
 %{_libdir}/libnvidia-fbc.so.%{version}
 
+%if %{with selinux}
+%files selinux
+%{_datadir}/selinux/packages/%{selinuxtype}/%{name}.pp.*
+%ghost %verify(not md5 size mode mtime) %{_sharedstatedir}/selinux/%{selinuxtype}/active/modules/200/%{name}
+%endif
+
 %changelog
+* Thu Jul 16 2026 Gilver E. <roachy@fyralabs.com> - 3:610.43.03-2
+- Update for SELinux policies
 * Mon Apr 13 2026 Gilver E. <roachy@fyralabs.com> - 3:595.58.03-2
 - Update spec for Terra packaging team
