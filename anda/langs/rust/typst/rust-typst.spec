@@ -43,7 +43,7 @@ Provides:       %crate-cli = %version-%release
 %_mandir/man1/typst-update.1.gz
 %_mandir/man1/typst-watch.1.gz
 %_mandir/man1/typst.1.gz
-
+%_mandir/man1/typst-eval.1.gz
 
 %pkg_completion -Bfzn %crate
 
