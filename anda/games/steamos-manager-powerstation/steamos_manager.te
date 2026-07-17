@@ -1,4 +1,4 @@
-policy_module(steamos_manager, 1.0.1)
+policy_module(steamos_manager, 1.0.2)
 
 ########################################
 # Init
@@ -67,6 +67,11 @@ optional_policy(`
 dev_read_sysfs(steamos_manager_t)
 dev_rw_sysfs(steamos_manager_t)
 
+gen_require(`
+     type sysfs_t;
+')
+allow steamos_manager_t sysfs_t:dir write;
+
 ########################################
 # Procfs access
 ########################################
@@ -129,7 +134,7 @@ optional_policy(`
 	gen_require(`
 		type usb_device_t;
 	')
-	allow steamos_manager_t usb_device_t:chr_file { getattr watch watch_reads };
+	allow steamos_manager_t usb_device_t:chr_file { read getattr watch watch_reads };
 ')
 
 # /dev/input/event* — inputplumber
