@@ -10,7 +10,7 @@ jobs:
   autoupdate:
     permissions:
       contents: write
-    runs-on: ubuntu-24.04-arm
+    runs-on: arc-runner-set
     container:
       image: ghcr.io/terrapkg/builder:frawhide
       options: --cap-add=SYS_ADMIN --privileged
