@@ -7,8 +7,8 @@
 %endif
 
 Name:           1password-cli
-Version:        2.34.1
-Release:        2%{?dist}
+Version:        2.35.0
+Release:        1%{?dist}
 Summary:        1Password command-line tool
 
 Packager:       Cappy Ishihara <cappy@fyralabs.com>

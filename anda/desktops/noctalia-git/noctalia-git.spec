@@ -2,13 +2,13 @@
 
 %global ver 5.0.0
 
-%global commit          985871ead24de1ecb04f48c6bb07fde7a1eee0a2
+%global commit          44a6eba543656e3833c110873ec1de5f6d34d95f
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
-%global commitdate      20260713
+%global commitdate      20260717
 
 Name:   	noctalia-git
 Version:	%{ver}^%{commitdate}git.%{shortcommit}
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with no Qt or GTK dependency
 
 License:	MIT
@@ -51,6 +51,8 @@ Provides:       PolicyKit-authentication-agent
 Requires:       hicolor-icon-theme
 Requires:       dejavu-sans-fonts
 Requires:       libwebp
+
+Conflicts:      noctalia
 
 Recommends:     ddcutil
 Recommends:     gpu-screen-recorder
@@ -97,7 +99,10 @@ done
 %{_scalableiconsdir}/noctalia.svg
 
 %changelog
-* Wed Jul 09 2026 Cypress Reed <cypress@fyralabs.com>
+* Thu Jul 16 2026 Cypress Reed <cypress@fyralabs.com>
+- Add conflicts with noctalia
+
+* Thu Jul 09 2026 Cypress Reed <cypress@fyralabs.com>
 - Noctalia requires system libraries now, so remove the meson options
 
 * Wed Jul 01 2026 Cypress Reed <cypress@fyralabs.com>

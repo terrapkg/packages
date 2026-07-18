@@ -5,7 +5,7 @@
 %global crate mise
 
 Name:           rust-mise
-Version:        2026.7.5
+Version:        2026.7.10
 Release:        1%{?dist}
 Summary:        Front-end to your dev env
 
@@ -87,6 +87,7 @@ Zsh command line completion support for %{crate}.
 %cargo_prep_online
 
 %build
+export LDFLAGS="$LDFLAGS -fPIE"
 %{cargo_license_summary_online}
 %{cargo_license_online} > LICENSE.dependencies
 %{cargo_build} --locked
