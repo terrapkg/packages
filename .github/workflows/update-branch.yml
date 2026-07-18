@@ -10,7 +10,7 @@ jobs:
   autoupdate:
     permissions:
       contents: write
-    runs-on: ubuntu-24.04-arm
+    runs-on: arc-runner-set
     strategy:
       matrix:
         branch:
