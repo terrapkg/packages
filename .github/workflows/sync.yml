@@ -11,7 +11,7 @@ jobs:
       contents: write
       pull-requests: write
     name: Backport/sync PR
-    runs-on: ubuntu-22.04
+    runs-on: arc-runner-set
     if: github.event.pull_request.merged
     steps:
       - name: Install SSH signing key
