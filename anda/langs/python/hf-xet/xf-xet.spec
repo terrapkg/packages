@@ -7,8 +7,7 @@ Release:		1%{?dist}
 Summary:		xet client tech, used in huggingface_hub
 License:		Apache-2.0
 URL:			https://github.com/huggingface/xet-core
-Source0:		%{url}/releases/download/%{version}/hf_xet-%{version}.tar.gz
-
+Source0:		%{url}/archive/refs/tags/v%{version}.tar.gz
 BuildRequires:  python3-devel
 BuildRequires:  python3-pip
 BuildRequires:  python3-setuptools
@@ -40,14 +39,18 @@ Summary:        documentation for python3-%{pypi_name}
 documentation for python3-%{pypi_name}.
 
 %prep
-%autosetup -n hf_xet-%{version}
+%autosetup -C
 
 %build
+pushd hf_xet
 %pyproject_wheel
+popd
 
 %install
+pushd hf_xet
 %pyproject_install
 %pyproject_save_files hf_xet
+popd
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc *.md
