@@ -41,6 +41,7 @@ mkdir -p %{buildroot}%{_datadir}/applications/
 mkdir -p %{buildroot}%{_datadir}/pixmaps
 ln -s %_datadir/discord-canary-openasar/discord-canary.desktop %{buildroot}%{_datadir}/applications/discord-canary-openasar.desktop
 ln -s %_datadir/discord-canary-openasar/discord.png %{buildroot}%{_datadir}/pixmaps/discord-canary-openasar.png
+mkdir -p %{buildroot}%{_datadir}/discord-canary-openasar/resources
 cp -v %{SOURCE1} %{buildroot}%{_datadir}/discord-canary-openasar/resources/app.asar
 chmod o+w %{buildroot}%{_datadir}/discord-canary-openasar/resources -R
 ln -s %_datadir/discord-canary-openasar/DiscordCanary %buildroot%_bindir/discord-canary-openasar
