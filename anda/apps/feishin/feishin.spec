@@ -1,4 +1,3 @@
-%define debug_package %nil
 %global _build_id_links none
 
 # Exclude private libraries
@@ -6,10 +5,11 @@
 %global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 Name:			feishin
+%electronmeta -aD
 Version:		1.15.0
 Release:		1%{?dist}
 Summary:		A modern self-hosted music player
-License:		GPL-3.0
+License:		GPL-3.0-or-later
 URL:			https://github.com/jeffvli/feishin
 Source0:		%url/archive/refs/tags/v%version.tar.gz
 Requires:		fuse mpv
