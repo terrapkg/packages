@@ -9,6 +9,7 @@ Version:        %{ver}^%{date}git.%{short}
 License:        GPL-3.0-only
 Release:        2%{?dist}
 URL:            https://github.com/MrGlockenspiel/activate-linux
+Patch0:         0001-Install-manpage-to-correct-location.patch
 Source0:        %{url}/archive/%{commit}.tar.gz
 BuildRequires:  clang 
 BuildRequires:  pkgconfig(pango)
@@ -37,13 +38,11 @@ Maintained by MrGlockenspiel.
 %make_build
 
 %install
-# ewwww
-export PREFIX=""
-export BINDIR=%{_bindir}
-%make_install
+%make_install PREFIX=%{_usr}
 
 %files
 %{_bindir}/activate-linux
+%{_mandir}/man1/activate-linux.1.*
 %license LICENSE.md
 %doc ARGS.md README.md
 

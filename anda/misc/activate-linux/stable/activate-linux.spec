@@ -1,10 +1,11 @@
 Name:           activate-linux
 Summary:        The "Activate Windows" watermark ported to Linux
-Version:        1.3.0
+Version:        1.2.0
 License:        GPL-3.0-only
 Release:        2%{?dist}
 URL:            https://github.com/MrGlockenspiel/activate-linux
-Source0:        %{url}/archive/%{commit}.tar.gz
+Patch0:         0001-Install-manpage-to-correct-location.patch
+Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 BuildRequires:  clang 
 BuildRequires:  pkgconfig(pango)
 BuildRequires:  libconfig-devel
@@ -26,24 +27,22 @@ The "Activate Windows" watermark ported to Linux with Xlib and cairo in C
 Maintained by MrGlockenspiel.
 
 %prep
-%autosetup -n activate-linux-%{commit}
+%autosetup
 
 %build
 %make_build
 
 %install
-# ewwww
-export PREFIX=""
-export BINDIR=%{_bindir}
-%make_install
+%make_install PREFIX=%{_usr}
 
 %files
 %{_bindir}/activate-linux
+%{_mandir}/man1/activate-linux.1.*
 %license LICENSE.md
 %doc ARGS.md README.md
 
 %changelog
-* Sun Jul 19 2026 Olivia <git@olivia.sh> - 1.3.0-2
+* Sun Jul 19 2026 Olivia <git@olivia.sh> - 1.2.0-2
 - Add stable channel
 
 * Sun Nov 2 2025 Metcya <metcya@gmail.com>
