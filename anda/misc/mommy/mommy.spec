@@ -8,6 +8,7 @@ Patch0:         fix-makefile.patch
 License:        Unlicense
 BuildArch:      noarch
 BuildRequires:  make
+Packager:       Olivia <git@olivia.sh>
 
 %description
 mommy's here to support you! mommy will compliment you if things go well, and will encourage you if things are not going so well~

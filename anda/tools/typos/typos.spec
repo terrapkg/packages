@@ -15,6 +15,8 @@ Source2:        https://raw.githubusercontent.com/crate-ci/%{name}/refs/tags/v%{
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  mold
 
+Packager:       Olivia <git@olivia.sh>
+
 %description
 Finds and corrects spelling mistakes among source code.
 
