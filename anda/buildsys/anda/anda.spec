@@ -40,7 +40,7 @@ Andaman Build toolchain.
 %prep
 %autosetup -n %{crate}-%{version}
 %cargo_prep_online
-%{__cargo} fetch --locked
+%{__cargo} fetch
 
 %build
 %{cargo_build} --frozen
