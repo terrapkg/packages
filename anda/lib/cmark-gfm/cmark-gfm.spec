@@ -1,12 +1,12 @@
 Name:           cmark-gfm
 Version:        0.29.0.gfm.13
-Release:        2%{?dist}
+Release:        3%{?dist}
 License:        BSD-2-Clause AND MIT
 URL:            https://github.com/github/cmark-gfm
 Source:         %{url}/archive/refs/tags/%{version}.tar.gz
 Patch0:         fix-cmake-dir.patch
 Summary:        GitHub's fork of cmark, a CommonMark parsing and rendering library and program in C
-Packager:       metcya <metcya@gmail.com>
+Packager:       Olivia <git@olivia.sh>
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
@@ -61,8 +61,11 @@ Development files for %{name}.
 %{_libdir}/cmake-gfm-extensions/
 
 %changelog
-* Thu Dec 25 2025 metcya <metcya@gmail.com> - 0.29.0.gfm.13-2
+* Sun Jul 19 2026 Olivia <git@olivia.sh> - 0.29.0.gfm.13-3
+- Update packager
+
+* Thu Dec 25 2025 Olivia <git@olivia.sh> - 0.29.0.gfm.13-2
 - Fix cmake install directories
 
-* Wed Dec 24 2025 metcya <metcya@gmail.com> - 0.29.0.gfm.13-1
+* Wed Dec 24 2025 Olivia <git@olivia.sh> - 0.29.0.gfm.13-1
 - Package cmark-gfm
