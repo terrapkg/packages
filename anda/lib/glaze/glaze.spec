@@ -3,12 +3,12 @@
 
 Name:           glaze-devel
 Version:        7.9.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        MIT
 URL:            https://stephenberry.github.io/glaze
 Source:         https://github.com/stephenberry/glaze/archive/refs/tags/v%{version}.tar.gz
 Summary:        in memory JSON parsing and reflection library for modern C++
-Packager:       metcya <metcya@gmail.com>
+Packager:       Olivia <git@olivia.sh>
 
 BuildRequires:  cmake
 # even though we're not building anything, cmake still wants a c++ compiler
@@ -52,9 +52,12 @@ popd
 %{_pkgdocdir}/
 
 %changelog
-* Thu Dec 25 2025 metcya <metcya@gmail.com> - 6.4.0-2
+* Sun Jul 19 2026 Olivia <git@olivia.sh> - 7.9.1-2
+- Update packager
+
+* Thu Dec 25 2025 Olivia <git@olivia.sh> - 6.4.0-2
 - Install cmake files to correct location
 
-* Wed Dec 24 2025 metcya <metcya@gmail.com> - 6.4.0-1
+* Wed Dec 24 2025 Olivia <git@olivia.sh> - 6.4.0-1
 - Package glaze
 

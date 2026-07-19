@@ -1,6 +1,6 @@
 Name:       webapp-manager
 Version:    master.mint22
-Release:    1%?dist
+Release:    2%?dist
 Summary:    Web Application Manager
 License:    GPL-3.0-or-later
 URL:        https://github.com/linuxmint/webapp-manager
@@ -21,7 +21,7 @@ BuildRequires:  make
 BuildRequires:  python3-devel
 BuildRequires:  desktop-file-utils
 
-Packager:       metcya <metcya@gmail.com>
+Packager:       Olivia <git@olivia.sh>
 
 %description
 Launch websites as if they were apps.
@@ -70,8 +70,11 @@ desktop-file-validate %{buildroot}%{_appsdir}/%{name}.desktop
 %{_datadir}/locale/*/*/webapp-manager.mo
 
 %changelog
+* Sun Jul 19 2026 Olivia <git@olivia.sh> - master.mint22-2
+- Update packager
+
 * Mon Dec 22 2025 Owen Zimmerman <owen@fyralabs.com>
 - Build fixes
 
-* Fri Dec 19 2025 metcya <metcya@gmail.com>
+* Fri Dec 19 2025 Olivia <git@olivia.sh>
 - Port to Terra
