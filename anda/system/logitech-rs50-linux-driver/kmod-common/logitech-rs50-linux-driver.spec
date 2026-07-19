@@ -33,7 +33,7 @@ BuildArch:     noarch
 Akmods modules for the akmod-%{name} package.
 
 %prep
-%autosetup -p1 -n %{name}-%{commit}
+%autosetup -p1 -n logitech-trueforce-linux-driver-%{commit}
 
 echo hid-logitech-hidpp > %{name}.conf
 mv sdk/README.md README-SDK.md
