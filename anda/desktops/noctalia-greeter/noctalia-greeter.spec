@@ -74,6 +74,7 @@ done
 %{_bindir}/%{name}-session
 %{_datadir}/%{name}/*
 %{_datadir}/polkit-1/actions/org.noctalia.greeter.apply-appearance.policy
+%config %{_prefix}/lib/tmpfiles.d/noctalia-greeter.conf
 
 %changelog
 * Fri Jun 19 2026 Cypress Reed <cypress@fyralabs.com>
