@@ -39,7 +39,7 @@ Summary:        documentation for python3-%{pypi_name}
 documentation for python3-%{pypi_name}.
 
 %prep
-%autosetup -n hf_xet-%{version}
+%autosetup -n %{pypi_name}-%{version}
 
 %build
 %pyproject_wheel
