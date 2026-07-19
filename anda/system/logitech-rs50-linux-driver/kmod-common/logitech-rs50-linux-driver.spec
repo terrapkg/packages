@@ -66,7 +66,7 @@ fi
 
 
 %files
-%doc README.terra.md README.md README-SDK.md CHANGELOG.md rs-wheel-hub-button-layout.png docs/*
+%doc README.terra.md README.md README-SDK.md CHANGELOG.md docs/*
 %{_datadir}/metainfo/com.github.rs50.metainfo.xml
 %{_udevrulesdir}/70-logitech-trueforce.rules
 %{_udevrulesdir}/71-logi-ffb-uhid.rules
