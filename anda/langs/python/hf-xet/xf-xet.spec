@@ -39,7 +39,7 @@ Summary:        documentation for python3-%{pypi_name}
 documentation for python3-%{pypi_name}.
 
 %prep
-%autosetup -n %{pypi_name}-v%{version}
+%autosetup -C
 
 %build
 %pyproject_wheel
