@@ -43,6 +43,7 @@ ln -s %_datadir/discord-ptb-openasar/discord-ptb.desktop %{buildroot}%{_datadir}
 ln -s %_datadir/discord-ptb-openasar/discord.png %{buildroot}%{_datadir}/pixmaps/discord-ptb-openasar.png
 install discord-ptb.desktop %{buildroot}%{_datadir}/applications/discord-ptb-openasar.desktop
 install discord.png %{buildroot}%{_datadir}/pixmaps/discord-ptb-openasar.png
+mkdir -p %{buildroot}%{_datadir}/discord-ptb-openasar/resources
 cp -v %{SOURCE1} %{buildroot}%{_datadir}/discord-ptb-openasar/resources/app.asar
 chmod o+w %{buildroot}%{_datadir}/discord-ptb-openasar/resources -R
 ln -s %_datadir/discord-ptb-openasar/Discord %buildroot%_bindir/discord-ptb-openasar
