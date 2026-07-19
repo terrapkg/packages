@@ -42,11 +42,15 @@ documentation for python3-%{pypi_name}.
 %autosetup -C
 
 %build
+pushd hf_xet
 %pyproject_wheel
+popd
 
 %install
+pushd hf_xet
 %pyproject_install
 %pyproject_save_files hf_xet
+popd
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc *.md
