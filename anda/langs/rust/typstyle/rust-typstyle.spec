@@ -5,14 +5,14 @@
 
 Name:           rust-typstyle
 Version:        0.15.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        CLI for Typstyle
 
 License:        Apache-2.0
 URL:            https://crates.io/crates/typstyle
 Source:         %{terra_crates_source}
 Source1:        https://raw.githubusercontent.com/typstyle-rs/typstyle/v%{version}/LICENSE
-Packager:       metcya <metcya@gmail.com>
+Packager:       Olivia <git@olivia.sh>
 
 BuildRequires:  anda-srpm-macros rust-packaging >= 24 mold
 
@@ -61,4 +61,7 @@ install -Dm644 "completions/%{crate}-completion.fish" "%{buildroot}/%{fish_compl
 %endif
 
 %changelog
+* Sun Jul 19 2026 Olivia <git@olivia.sh> - 0.15.0-2
+- Update packager
+
 %autochangelog
