@@ -3,11 +3,11 @@
 %global short %(c=%{commit}; echo ${c:0:7})
 %global ver 1.2.0
 
-Name:           activate-linux
+Name:           activate-linux-nightly
 Summary:        The "Activate Windows" watermark ported to Linux
 Version:        %{ver}^%{date}git.%{short}
 License:        GPL-3.0-only
-Release:        1%{?dist}
+Release:        2%{?dist}
 URL:            https://github.com/MrGlockenspiel/activate-linux
 Source0:        %{url}/archive/%{commit}.tar.gz
 BuildRequires:  clang 
@@ -48,5 +48,8 @@ export BINDIR=%{_bindir}
 %doc ARGS.md README.md
 
 %changelog
+* Sun Jul 19 2026 Olivia <git@olivia.sh> - 1.2.0^20260719git.a3e2346-2
+- Change to nightly
+
 * Sun Nov 2 2025 Metcya <metcya@gmail.com>
 - Package activate-linux
