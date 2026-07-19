@@ -47,6 +47,7 @@ install -Dm644 assetsDev/%{appid}.metainfo.xml -t %{buildroot}%{_metainfodir}
 %{_libdir}/%{base_name}/
 %{_metainfodir}/%{appid}.metainfo.xml
 %{_hicolordir}/16x16/apps/%{base_name}.png
+%{_hicolordir}/24x24/apps/%{base_name}.png
 %{_hicolordir}/32x32/apps/%{base_name}.png
 %{_hicolordir}/48x48/apps/%{base_name}.png
 %{_hicolordir}/64x64/apps/%{base_name}.png
