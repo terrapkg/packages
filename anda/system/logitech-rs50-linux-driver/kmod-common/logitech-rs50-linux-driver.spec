@@ -50,8 +50,9 @@ ln -sr %_sharedstatedir/%{name} %{buildroot}%{_datadir}/%{name}/sdk
 install -Dm755 tools/install-tf-shim.sh %{buildroot}%{_datadir}/%{name}/tools/
 install -Dm755 %{SOURCE2} %{buildroot}%{_bindir}/logi-rs50-proton-setup
 
-install -Dm644 udev/70-logitech-rs50.rules -t %{buildroot}%{_udevrulesdir}/
-install -D -m644 userspace/libtrueforce/udev/99-logitech-rs50-trueforce.rules %{buildroot}%{_udevrulesdir}/70-logitech-rs50-trueforce.rules
+install -Dm644 udev/70-logitech-trueforce.rules -t %{buildroot}%{_udevrulesdir}/
+install -Dm644 udev/71-logi-ffb-uhid.rules -t %{buildroot}%{_udevrulesdir}/
+install -D -m644 userspace/libtrueforce/udev/99-logitech-trueforce.rules %{buildroot}%{_udevrulesdir}/70-logitech-rs50-trueforce.rules
 
 # Akmods modules
 install -Dm644 %{name}.conf -t %{buildroot}%{_modulesloaddir}
@@ -67,7 +68,8 @@ fi
 %files
 %doc README.terra.md README.md README-SDK.md CHANGELOG.md rs-wheel-hub-button-layout.png docs/*
 %{_datadir}/metainfo/com.github.rs50.metainfo.xml
-%{_udevrulesdir}/70-logitech-rs50.rules
+%{_udevrulesdir}/70-logitech-trueforce.rules
+%{_udevrulesdir}/71-logi-ffb-uhid.rules
 %{_udevrulesdir}/70-logitech-rs50-trueforce.rules
 %{_datadir}/%{name}/tools/*
 %{_bindir}/logi-rs50-proton-setup
