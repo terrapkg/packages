@@ -54,6 +54,8 @@ It lets you pick a user, enter your password, choose a Wayland session, and pick
 
 %install
 %meson_install
+# Delete the unneeded tmpfiles.d fallback configuration
+rm -f %{buildroot}%{_tmpfilesdir}/noctalia-greeter.conf
 install -d %{buildroot}%{_licensedir}/%{name}/third_party
 find third_party -type f \( -name "LICENSE*" -o -name "COPYING*" -o -name "NOTICE*" \) | while read -r file; do
     # Create the destination subdirectory
