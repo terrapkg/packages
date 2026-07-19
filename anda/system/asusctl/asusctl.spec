@@ -5,7 +5,7 @@
 
 Name:           asusctl
 Version:        1.0.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Epoch:          1
 Summary:        A control daemon, CLI tools, and a collection of crates for interacting with ASUS ROG laptops
 URL:            https://github.com/OpenGamingCollective/asusctl
@@ -29,7 +29,7 @@ BuildRequires:  pkgconfig(libzstd)
 BuildRequires:  pkgconfig(fontconfig)
 ExclusiveArch:  x86_64
 
-Packager:       Metcya <metcya@gmail.com>, Owen Zimmerman <owen@fyralabs.com>
+Packager:       Olivia <git@olivia.sh>, Owen Zimmerman <owen@fyralabs.com>
 
 %description
 %summary.
@@ -111,6 +111,9 @@ mkdir -p %{buildroot}%{_sysconfdir}/asusd
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
+* Sun Jul 19 2026 Olivia <git@olivia.sh> - 1:1.0.1-2
+- Update packager
+
 * Thu Jun 18 2026 Owen Zimmerman <owen@fyralabs.com> - 6.3.8-3
 - Switch to OGC upstream
 
@@ -127,20 +130,20 @@ mkdir -p %{buildroot}%{_sysconfdir}/asusd
 * Wed Feb 18 2026 Owen Zimmerman <owen@fyralabs.com> - 6.2.0-3
 - Remove asusd-user.service
 
-* Fri Jan 16 2026 metcya <metcya@gmail.com> - 6.3.0-2
+* Fri Jan 16 2026 Olivia <git@olivia.sh> - 6.3.0-2
 - Update ROG Control Center metainfo
 
 * Tue Jan 13 2026 Owen Zimmerman <owen@fyralabs.com> - 6.2.0-3
 - Add dependency licenses
 
-* Tue Dec 9 2025 Metcya <metcya@gmail.com> - 6.2.0
+* Tue Dec 9 2025 Olivia <git@olivia.sh> - 6.2.0
 - Add metainfo
 
-* Mon Dec 1 2025 Metcya <metcya@gmail.com>
+* Mon Dec 1 2025 Olivia <git@olivia.sh>
 - Add systemd scriptlets
 
-* Tue Nov 18 2025 Metcya <metcya@gmail.com>
+* Tue Nov 18 2025 Olivia <git@olivia.sh>
 - Remove unnecessary patch
 
-* Sun Oct 26 2025 Metcya <metcya@gmail.com>
+* Sun Oct 26 2025 Olivia <git@olivia.sh>
 - Package asusctl
