@@ -1,7 +1,7 @@
-%global commit 517843c838668c13c98c03693b6d921ee8d1bc8c
+%global commit 152b74fa54860ea24ac73b6185e7b96b988b2a31
 %global date 20260719
 %global short %(c=%{commit}; echo ${c:0:7})
-%global ver 1.1.0
+%global ver 1.2.0
 
 Name:           activate-linux
 Summary:        The "Activate Windows" watermark ported to Linux
