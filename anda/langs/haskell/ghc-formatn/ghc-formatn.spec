@@ -6,7 +6,7 @@
 %{?haskell_setup}
 
 Name:           ghc-%{pkg_name}
-Version:        0.3.3.1
+Version:        0.3.4.0
 Release:        1%{?dist}
 Summary:        Formatting of doubles
 
