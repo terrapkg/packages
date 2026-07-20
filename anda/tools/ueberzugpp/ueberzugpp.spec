@@ -1,11 +1,11 @@
 Name:       ueberzugpp
-Version:    2.9.8
-Release:    1%?dist
-License:    GPL-3.0
+Version:    2.9.10
+Release:    3%{?dist}
+License:    GPL-3.0-or-later
 Summary:    Drop in replacement for ueberzug written in C++ 
 URL:        https://github.com/jstkdng/%{name}
 Source:     %{url}/archive/v%{version}.tar.gz
-Packager:   metcya <metcya@gmail.com>
+Packager:   Olivia <git@olivia.sh>
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++ 
@@ -32,9 +32,11 @@ on terminals by using X11/wayland child windows, sixels, kitty and iterm2.
 %prep
 %autosetup
 
-%build
+%conf
 %cmake . -DENABLE_WAYLAND=ON    \
          -DENABLE_XCB_ERROR=ON
+
+%build
 %cmake_build
 
 %install
@@ -53,5 +55,8 @@ on terminals by using X11/wayland child windows, sixels, kitty and iterm2.
 %ctest
 
 %changelog
-* Tue Nov 11 2025 metcya <metcya@gmail.com>
+* Sun Jul 19 2026 Olivia <git@olivia.sh> - 2.9.10-3
+- Update packager
+
+* Tue Nov 11 2025 Olivia <git@olivia.sh>
 - Package ueberzugpp

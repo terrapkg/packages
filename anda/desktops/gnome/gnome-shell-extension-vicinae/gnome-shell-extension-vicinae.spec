@@ -1,13 +1,13 @@
 %global uuid vicinae@dagimg-dot.netlify.app
 
 Name:           gnome-shell-extension-vicinae
-Version:        1.6.1
+Version:        1.6.2
 Release:        2%{?dist}
 License:        MIT
 URL:            https://github.com/dagimg-dot/vicinae-gnome-extension
 Source:         %{url}/archive/refs/tags/v%{version}.tar.gz
 Summary:        Companion GNOME extension for Vicinae launcher
-Packager:       metcya <metcya@gmail.com>
+Packager:       Olivia <git@olivia.sh>
 
 BuildArch:      noarch
 
@@ -22,7 +22,7 @@ Companion GNOME extension for Vicinae launcher with clipboard monitoring,
 window management APIs, and paste-to-active-window capabilities.
 
 %prep
-%autosetup -n vicinae-gnome-extension-%{version}
+%autosetup -n gnome-extension-%{version}
 
 %build
 %{__bun} i && %{__bun} run build
@@ -37,5 +37,8 @@ cp -a src/ %{buildroot}%{_gnomeextensionsdir}/
 %{_gnomeextensionsdir}/
 
 %changelog
-* Sat Dec 27 2025 metcya <metcya@gmail.com> - 1.5.3-1
+* Sun Jul 19 2026 Olivia <git@olivia.sh> - 1.6.2-2
+- Update packager
+
+* Sat Dec 27 2025 Olivia <git@olivia.sh> - 1.5.3-1
 - Package

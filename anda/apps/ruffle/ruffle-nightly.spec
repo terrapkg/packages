@@ -1,4 +1,4 @@
-%global ver 2026-05-13
+%global ver 2026-07-19
 %global goodver %(echo %ver | sed 's/-//g')
 %global __brp_mangle_shebangs %{nil}
 %bcond_without mold
@@ -23,6 +23,7 @@ BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(libudev)
 BuildRequires:  pkgconfig(xcb-cursor)
+BuildRequires:  pkgconfig(openssl)
 Packager:       madonuko <mado@fyralabs.com>
 
 %description %_description

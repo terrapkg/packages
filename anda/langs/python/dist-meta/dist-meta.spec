@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.9.0
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Parse and create Python distribution metadata
 License:		MIT
 URL:			https://dist-meta.readthedocs.io/en/latest/

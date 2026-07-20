@@ -5,7 +5,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.1.0
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Fast and high quality sample-rate conversion library for Python
 License:		LGPL-2.1
 URL:			https://github.com/dofuuz/python-soxr

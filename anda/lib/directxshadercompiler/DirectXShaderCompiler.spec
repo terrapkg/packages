@@ -3,7 +3,7 @@
 
 # Metadata.
 Name:           DirectXShaderCompiler
-Version:        1.10.2605.2
+Version:        1.10.2605.24
 Release:        1%{?dist}
 Summary:        A Direct X Shader compiler.
 License:        MIT

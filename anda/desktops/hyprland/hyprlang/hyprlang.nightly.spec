@@ -1,14 +1,14 @@
 #? https://src.fedoraproject.org/rpms/hyprlang/blob/rawhide/f/hyprlang.spec
 
 %global realname hyprlang
-%global ver 0.6.3
-%global commit 4dafa28d4f79877d67a7d1a654cddccf8ebf15da
-%global commit_date 20250927
+%global ver 0.6.8
+%global commit 090117506ddc3d7f26e650ff344d378c2ec329cc
+%global commit_date 20260718
 %global shortcommit %{sub %commit 1 7}
 
 Name:           %realname.nightly
 Version:        %ver^%{commit_date}git.%shortcommit
-Release:        1%?dist
+Release:        4%{?dist}
 Summary:        The official implementation library for the hypr config language
 
 License:        LGPL-3.0-only
