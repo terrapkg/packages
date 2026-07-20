@@ -1,0 +1,70 @@
+name: Update GPG keys
+permissions:
+  contents: write
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update-gpg-keys:
+    runs-on: ubuntu-24.04-arm
+    strategy:
+      matrix:
+        branch:
+          - frawhide
+          - f44
+          - f43
+          - f42
+          - el10
+    container:
+      image: ghcr.io/terrapkg/builder:frawhide
+      options: --cap-add=SYS_ADMIN --privileged
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          ssh-key: ${{ secrets.SSH_AUTHENTICATION_KEY }}
+
+      - name: Install SSH signing key & set up Git repository
+        run: |
+          mkdir -p ${{ runner.temp }}
+          echo "${{ secrets.SSH_SIGNING_KEY }}" > ${{ runner.temp }}/signing_key
+          chmod 0700 ${{ runner.temp }}/signing_key
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - name: Update GPG keys
+        env: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          for branch in $(sed -n 's/- \(f.*\)/\1/p;s/- \(el.*\)/\1/p' .github/workflows/update-branch.yml | tr -d ' '); do
+            if [[ $branch == f* ]]; then
+              export releasever=${branch/f/}
+            else
+              export releasever=$branch
+            fi
+
+            curl -s https://repos.fyralabs.com/terra$releasever/key.asc > anda/terra/gpg-keys/RPM-GPG-KEY-terra$releasever
+            curl -s https://repos.fyralabs.com/terra$releasever-source/key.asc > anda/terra/gpg-keys/RPM-GPG-KEY-terra$releasever-source
+            if [[ $releasever != el* ]]; then
+              curl -s https://repos.fyralabs.com/terra$releasever-extras/key.asc > anda/terra/gpg-keys/RPM-GPG-KEY-terra$releasever-extras
+              curl -s https://repos.fyralabs.com/terra$releasever-extras-source/key.asc > anda/terra/gpg-keys/RPM-GPG-KEY-terra$releasever-extras-source
+              curl -s https://repos.fyralabs.com/terra$releasever-mesa/key.asc > anda/terra/gpg-keys/RPM-GPG-KEY-terra$releasever-mesa
+              curl -s https://repos.fyralabs.com/terra$releasever-mesa-source/key.asc > anda/terra/gpg-keys/RPM-GPG-KEY-terra$releasever-mesa-source
+              curl -s https://repos.fyralabs.com/terra$releasever-multimedia/key.asc > anda/terra/gpg-keys/RPM-GPG-KEY-terra$releasever-multimedia
+              curl -s https://repos.fyralabs.com/terra$releasever-multimedia-source/key.asc > anda/terra/gpg-keys/RPM-GPG-KEY-terra$releasever-multimedia-source
+              curl -s https://repos.fyralabs.com/terra$releasever-nvidia/key.asc > anda/terra/gpg-keys/RPM-GPG-KEY-terra$releasever-nvidia
+              curl -s https://repos.fyralabs.com/terra$releasever-nvidia-source/key.asc > anda/terra/gpg-keys/RPM-GPG-KEY-terra$releasever-nvidia-source
+            fi
+          done
+          anda update --filters keys=1 --labels branch=${{ matrix.branch }}
+
+      - name: Save
+        run: |
+          if [[ `git status --porcelain` ]]; then
+            git config user.name "Raboneko"
+            git config user.email "raboneko@fyralabs.com"
+            git config gpg.format "ssh"
+            git config user.signingkey "${{ runner.temp }}/signing_key"
+            git commit -S -a -m "bump(manual): terra-gpg-keys"
+            git push -u origin --all
+          fi
