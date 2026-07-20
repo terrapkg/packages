@@ -27,6 +27,8 @@ BuildRequires:  ghc-monad-control-devel
 BuildRequires:  ghc-transformers-devel
 BuildRequires:  ghc-transformers-base-devel
 BuildRequires:  ghc-unliftio-core-devel
+BuildRequires:  ghc-primitive-devel
+BuildRequires:  ghc-vault-devel
 %if %{with ghc_prof}
 BuildRequires:  ghc-async-prof
 BuildRequires:  ghc-base-prof
