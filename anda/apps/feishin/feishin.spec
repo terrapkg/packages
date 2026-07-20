@@ -6,7 +6,7 @@
 
 Name:			feishin
 %electronmeta -aD
-Version:		1.15.0
+Version:		1.15.1
 Release:		1%{?dist}
 Summary:		A modern self-hosted music player
 License:		GPL-3.0-or-later
