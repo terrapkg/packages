@@ -8,7 +8,7 @@
 %bcond tests 1
 
 Name:           ghc-%{pkg_name}
-Version:        0.1.2.0
+Version:        0.8.0.0
 Release:        1%{?dist}
 Summary:        The Bluefin effect system, internals
 
