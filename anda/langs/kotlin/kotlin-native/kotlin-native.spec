@@ -2,11 +2,11 @@
 
 Name:           kotlin-native
 Version:        2.4.10
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        LLVM backend for the Kotlin compiler
 ExclusiveArch:  x86_64
 
-License:        ASL 2.0
+License:        Apache-2.0
 URL:            https://kotlinlang.org/docs/reference/native-overview.html
 Source0:        https://github.com/JetBrains/kotlin/releases/download/v%version/kotlin-native-prebuilt-linux-x86_64-%version.tar.gz
 
