@@ -11,6 +11,7 @@ URL:     https://github.com/bol-van/%{name}
 Source0: https://github.com/bol-van/%{name}/archive/refs/tags/v%{version}.tar.gz
 
 BuildRequires: luajit
+BuildRequires: compat-lua
 
 # Build tools.
 BuildRequires: gcc
