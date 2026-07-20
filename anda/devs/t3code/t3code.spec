@@ -23,6 +23,9 @@ Cursor, and OpenCode.
 
 %build
 export T3CODE_DESKTOP_VERSION=%{version}
+export T3CODE_DESKTOP_PLATFORM=linux
+export T3CODE_DESKTOP_TARGET=tar.xz
+export T3CODE_DESKTOP_ARCH=%{_electron_cpu}
 %pnpm_build -F -r dist:desktop:artifact
 
 %install
