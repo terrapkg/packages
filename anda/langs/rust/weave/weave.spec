@@ -39,3 +39,7 @@ cd crates/weave-cli
 %license LICENSE-APACHE LICENSE-MIT LICENSE.dependencies
 %doc README.md
 %_bindir/weave
+
+%changelog
+* Mon Jul 20 2026 madonuko <mado@fyralabs.com> - 0.3.6-1
+- Initial package
