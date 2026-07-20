@@ -48,7 +48,7 @@ use the "%{crate}" crate.
 %license LICENSE
 %doc CONTRIBUTING.md
 %doc README.md
-%{crate_instdir}/
+%dnl %{crate_instdir}/
 
 %package     -n %{name}+default-devel
 Summary:        %{summary}
