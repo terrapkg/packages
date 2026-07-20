@@ -99,7 +99,7 @@ END
 %_unitdir/zapret2.service
 %_unitdir/zapret2-list-update.service
 %_unitdir/zapret2-list-update.timer
-%_sysusersdir/zapret2.conf
+%config %_sysusersdir/zapret2.conf
 %_datadir/zapret2/
 
 %changelog
