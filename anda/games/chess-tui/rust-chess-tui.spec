@@ -35,6 +35,59 @@ License:        (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 
 %doc README.md
 %{_bindir}/chess_tui
 
+%package        devel
+Summary:        %{summary}
+BuildArch:      noarch
+
+%description    devel %{_description}
+
+This package contains library source intended for building other packages which
+use the "%{crate}" crate.
+
+%files          devel
+%license %{crate_instdir}/LICENSE
+%doc %{crate_instdir}/CODE_OF_CONDUCT.md
+%doc %{crate_instdir}/CONTRIBUTING.md
+%doc %{crate_instdir}/README.md
+%doc %{crate_instdir}/SECURITY.md
+%{crate_instdir}/
+
+%package     -n %{name}+default-devel
+Summary:        %{summary}
+BuildArch:      noarch
+
+%description -n %{name}+default-devel %{_description}
+
+This package contains library source intended for building other packages which
+use the "default" feature of the "%{crate}" crate.
+
+%files       -n %{name}+default-devel
+%ghost %{crate_instdir}/Cargo.toml
+
+%package     -n %{name}+rodio-devel
+Summary:        %{summary}
+BuildArch:      noarch
+
+%description -n %{name}+rodio-devel %{_description}
+
+This package contains library source intended for building other packages which
+use the "rodio" feature of the "%{crate}" crate.
+
+%files       -n %{name}+rodio-devel
+%ghost %{crate_instdir}/Cargo.toml
+
+%package     -n %{name}+sound-devel
+Summary:        %{summary}
+BuildArch:      noarch
+
+%description -n %{name}+sound-devel %{_description}
+
+This package contains library source intended for building other packages which
+use the "sound" feature of the "%{crate}" crate.
+
+%files       -n %{name}+sound-devel
+%ghost %{crate_instdir}/Cargo.toml
+
 %prep
 %autosetup -n %{crate}-%{version} -p1
 %cargo_prep_online
