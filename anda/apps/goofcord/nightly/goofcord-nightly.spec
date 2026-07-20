@@ -47,13 +47,13 @@ install -Dm644 assetsDev/%{appid}.metainfo.xml -t %{buildroot}%{_metainfodir}
 %{_libdir}/%{base_name}/
 %{_metainfodir}/%{appid}.metainfo.xml
 %{_hicolordir}/16x16/apps/%{base_name}.png
+%{_hicolordir}/24x24/apps/%{base_name}.png
 %{_hicolordir}/32x32/apps/%{base_name}.png
 %{_hicolordir}/48x48/apps/%{base_name}.png
 %{_hicolordir}/64x64/apps/%{base_name}.png
 %{_hicolordir}/128x128/apps/%{base_name}.png
 %{_hicolordir}/256x256/apps/%{base_name}.png
 %{_hicolordir}/512x512/apps/%{base_name}.png
-%{_hicolordir}/1024x1024/apps/%{base_name}.png
 
 %changelog
 * Sat Jun 28 2025 Gilver E. <rockgrub@disroot.org> - 1.10.1^20250615.git.3f5eda1
