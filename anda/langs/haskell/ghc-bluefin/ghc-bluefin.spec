@@ -6,7 +6,7 @@
 %{?haskell_setup}
 
 Name:           ghc-%{pkg_name}
-Version:        0.0.17.1
+Version:        0.7.0.1
 Release:        1%{?dist}
 Summary:        The Bluefin effect system
 
