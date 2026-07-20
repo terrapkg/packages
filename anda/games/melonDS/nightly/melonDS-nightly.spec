@@ -1,14 +1,14 @@
 %define debug_package %{nil}
 
-%global commit 10a173b5536fc75cd93f8a3868349dad963542ef
-%global commit_date 20260607
+%global commit 82fdbc78483f43b310e920e21acc47787cb43564
+%global commit_date 20260720
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %global ver 1.1
 
 Name:           melonds-nightly
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        DS emulator, sorta
 License:        GPL-3.0-or-later
 URL:            https://melonds.kuribo64.net/
