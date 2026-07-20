@@ -17,6 +17,7 @@ BuildRequires:  gtk3-devel
 BuildRequires:  libxml2-devel
 BuildRequires:  intltool
 BuildRequires:  gcc
+BuildRequires:  pkgconfig(wayland-protocols)
 
 Requires:       libxml2
 Requires:       gtk3
