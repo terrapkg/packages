@@ -9,7 +9,8 @@ Summary:        A desktop music player for people who still have a music library
 License:        GPL-3.0-only AND %electron_license
 URL:            https://astramusic.dev
 Source0:        https://github.com/Boof2015/astra/archive/refs/tags/%ver.tar.gz
-BuildRequires:  nodejs-npm nodejs-packaging alsa-lib
+BuildRequires:  nodejs-npm nodejs-packaging
+BuildRequires:  alsa-lib-devel
 
 %description
 Audiophile music player with gapless playback, parametric EQ, AutoEQ import, and real-time DSP visualizers.
