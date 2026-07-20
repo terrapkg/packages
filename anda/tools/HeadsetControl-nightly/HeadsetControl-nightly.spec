@@ -1,12 +1,12 @@
 %global _udevrulesdir /usr/lib/udev/rules.d
 
-%global commit      da4477e4a9f09b4df8de8c7e0864166b8683327c
+%global commit      fe086cda8fc50d15c3aea90c748c8f3346b6e601
 %global commitdate  20251121
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           HeadsetControl-nightly
 Version:        0^%{commitdate}.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A tool to control certain aspects of USB-connected headsets on Linux
 URL:            https://github.com/Sapd/HeadsetControl
 Source:         %{url}/archive/%{commit}.tar.gz
@@ -48,8 +48,11 @@ state, controlling LEDs, and setting the inactive time.
 %{_udevrulesdir}/70-headsets.rules
 
 %changelog
+* Sun Jul 19 2026 Olivia <git@olivia.sh> - 0^20251121.fe086cd-2
+- Update packager
+
 * Wed May 13 2026 Owen Zimmerman <owen@fyralabs.com>
 - Add devel and static subpackages, add patch, fix license
 
-* Wed Nov 26 2025 metcya <metcya@gmail.com>
+* Wed Nov 26 2025 Olivia <git@olivia.sh>
 - package HeadsetControl

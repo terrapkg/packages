@@ -18,7 +18,7 @@
 %global zig_cache_dir %{builddir}/zig-cache
 
 Name:           zig-master
-Version:        0.17.0~dev.857+2b2b85c5f
+Version:        0.17.0~dev.1426+58a94eaae
 Release:        2%{?dist}
 Summary:        Master builds of the Zig language
 License:        MIT AND NCSA AND LGPL-2.1-or-later AND LGPL-2.1-or-later WITH GCC-exception-2.0 AND GPL-2.0-or-later AND GPL-2.0-or-later WITH GCC-exception-2.0 AND BSD-3-Clause AND Inner-Net-2.0 AND ISC AND LicenseRef-Fedora-Public-Domain AND GFDL-1.1-or-later AND ZPL-2.1
@@ -85,11 +85,9 @@ Packager:       Gilver E. <roachy@fyralabs.com>
     \
     -Dtarget=native \
     -Dcpu=baseline \
-    --zig-lib-dir lib \
     --build-id=sha1 \
     \
     --cache-dir "%{zig_cache_dir}" \
-    --global-cache-dir "%{zig_cache_dir}" \
     \
     -Dversion-string="%(v=%{version_no_tilde}; echo ${v:0:6})" \
     -Dstatic-llvm=false \
@@ -162,6 +160,13 @@ export LLVM_DIR=%{_libdir}/llvm%{?llvm_compat}/%{_lib}/cmake
 
 
 %build
+# Zig generates a large C file for bootstrapping which does not
+# behave well with ccache so explicitly disable it.
+export CCACHE_DISABLE=1
+
+export ZIG_GLOBAL_CACHE_DIR="%{zig_cache_dir}"
+export ZIG_LIB_DIR="lib"
+
 %if %{with bootstrap}
 %cmake_build --target stage3
 %else
@@ -182,7 +187,6 @@ attempt=1
 while
   ./zig-out/bin/zig build docs \
     --verbose \
-    --global-cache-dir "%{zig_cache_dir}" \
     -Dversion-string="%(v=%{version_no_tilde}; echo ${v:0:6})"
   [[ $? != 0 ]]
 do
@@ -199,6 +203,9 @@ done
 %endif
 
 %install
+export ZIG_GLOBAL_CACHE_DIR="%{zig_cache_dir}"
+export ZIG_LIB_DIR="lib"
+
 %if %{with bootstrap}
 %cmake_install
 %else

@@ -3,8 +3,8 @@
 
 Name:           kopia
 %electronmeta -D
-Version:        0.23.0
-Release:        1%{?dist}
+Version:        0.23.1
+Release:        2%{?dist}
 Summary:        A backup/restore tool that allows you to create encrypted snapshots
 
 License:        Apache-2.0 AND CC0-1.0 AND %{electron_license}
@@ -14,7 +14,7 @@ Source1:        io.kopia.ui.desktop
 Source2:        io.kopia.ui.metainfo.xml
 Patch0:         fix-electron-output-dir.patch
 ExclusiveArch:  %{golang_arches_future}
-Packager:       metcya <metcya@gmail.com>
+Packager:       Olivia <git@olivia.sh>
 
 BuildRequires:  go-rpm-macros
 BuildRequires:  terra-appstream-helper
@@ -43,7 +43,6 @@ A graphical user interface for %{name}.
 %build
 %global gomodulesmode GO111MODULE=on
 %gobuild -o %{name} .
-echo "Electron Builder" > %{rpmbuilddir}/webapp-tool.txt
 
 pushd app
 %npm_build -B
@@ -81,5 +80,8 @@ mkdir -p %{buildroot}%{_libdir}/%{gui_name}/resources/server
 %{_hicolordir}/*/apps/kopia.png
 
 %changelog
-* Thu Jan 22 2026 metcya <metcya@gmail.com> - 0.22.3-1
+* Sun Jul 19 2026 Olivia <git@olivia.sh> - 0.23.1-2
+- Update packager
+
+* Thu Jan 22 2026 Olivia <git@olivia.sh> - 0.22.3-1
 - Initial package

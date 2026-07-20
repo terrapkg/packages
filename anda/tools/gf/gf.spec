@@ -1,6 +1,6 @@
 %global forgeurl https://github.com/nakst/gf
 
-%global commit 56c97f66769ec8109a9aff2e475a86c9a6781742
+%global commit 1c04ed95d45d49fb4b06cbc620c61acd58818977
 %global shortcommit %{sub %{commit} 0 7}
 %global commitdate 20251231
 
@@ -8,13 +8,12 @@
 
 Name:           gf
 Version:        0^%{commitdate}.git%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A GDB frontend for Linux
 
 License:        MIT
 URL:            %{forgeurl}
 Source0:        %{forgesource}
-Patch0:         01-fix-designated-initializers.patch
 
 BuildRequires:  gcc-c++
 BuildRequires:  freetype-devel
@@ -23,7 +22,7 @@ BuildRequires:  libX11-devel
 BuildRequires:  gdb
 Requires:       gdb
 
-Packager:       metcya <metcya@gmail.com>
+Packager:       Olivia <git@olivia.sh>
 
 %description
 %{summary}.
@@ -44,5 +43,8 @@ install -Dm 755 gf2 %{buildroot}%{_bindir}/gf2
 %{_bindir}/gf2
 
 %changelog
-* Thu Feb 19 2026 metcya <metcya@gmail.com>
+* Sun Jul 19 2026 Olivia <git@olivia.sh> - 0^20251231.git1c04ed9-2
+- Update packager
+
+* Thu Feb 19 2026 Olivia <git@olivia.sh>
 - Initial package

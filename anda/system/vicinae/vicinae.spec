@@ -6,12 +6,12 @@
 
 Name:           vicinae
 License:        GPL-3.0-or-later
-Version:        0.21.7
-Release:        1%{?dist}
+Version:        0.23.2
+Release:        2%{?dist}
 URL:            https://docs.vicinae.com
 Source:         https://github.com/vicinaehq/%{name}/archive/refs/tags/v%{version}.tar.gz
 Summary:        A high-performance, native launcher for Linux
-Packager:       metcya <metcya@gmail.com>
+Packager:       Olivia <git@olivia.sh>
 
 BuildRequires:  cmake
 BuildRequires:  gcc%{?gcc_compat}
@@ -42,6 +42,7 @@ BuildRequires:  xcb-util-keysyms-devel
 BuildRequires:  desktop-file-utils
 
 Requires:       nodejs-npm
+Requires:       layer-shell-qt
 
 %description
 Vicinae (pronounced "vih-SIN-ay") is a high-performance, native launcher for
@@ -81,10 +82,10 @@ install -Dm 644 extra/%{name}-url-handler.desktop -t %{buildroot}%{_appsdir}
 %{_appsdir}/%{name}.desktop
 %{_appsdir}/%{name}-url-handler.desktop
 %{_hicolordir}/512x512/apps/%{name}.png
-%{_datadir}/%{name}/native-host/chromium/com.vicinae.vicinae.json
-%{_datadir}/%{name}/native-host/com.vicinae.vicinae.chromium.json.in
-%{_datadir}/%{name}/native-host/com.vicinae.vicinae.firefox.json.in
-%{_datadir}/%{name}/native-host/firefox/com.vicinae.vicinae.json
+%dnl %{_datadir}/%{name}/native-host/chromium/com.vicinae.vicinae.json
+%dnl %{_datadir}/%{name}/native-host/com.vicinae.vicinae.chromium.json.in
+%dnl %{_datadir}/%{name}/native-host/com.vicinae.vicinae.firefox.json.in
+%dnl %{_datadir}/%{name}/native-host/firefox/com.vicinae.vicinae.json
 %{_libexecdir}/%{name}/vicinae-browser-link
 %{_libexecdir}/%{name}/vicinae-data-control-server
 %{_libexecdir}/%{name}/vicinae-server
@@ -95,6 +96,9 @@ install -Dm 644 extra/%{name}-url-handler.desktop -t %{buildroot}%{_appsdir}
 %dnl %{_udevrulesdir}/70-vicinae.rules
 
 %changelog
+* Sun Jul 19 2026 Olivia <git@olivia.sh> - 0.23.2-2
+- Update packager
+
 * Thu May 14 2026 Owen Zimmerman <owen@fyralabs.com> - 0.21.0-1
 - Update spec for 0.21.0
 
@@ -104,5 +108,5 @@ install -Dm 644 extra/%{name}-url-handler.desktop -t %{buildroot}%{_appsdir}
 * Wed Feb 18 2026 Jaiden Riordan <jade@fyralabs.com> - 0.19.8
 - Fixup desktop file and xdgpp
 
-* Fri Dec 26 2025 metcya <metcya@gmail.com> - 0.17.3
+* Fri Dec 26 2025 Olivia <git@olivia.sh> - 0.17.3
 - Package vicinae

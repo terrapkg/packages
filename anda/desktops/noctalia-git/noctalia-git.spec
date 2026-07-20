@@ -2,9 +2,9 @@
 
 %global ver 5.0.0
 
-%global commit          deaae83724bb5707124f98904e907a670d1ffc0f
+%global commit          c589fd3474483e4da1af9214ab9103ee3cbab6f9
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
-%global commitdate      20260608
+%global commitdate      20260720
 
 Name:   	noctalia-git
 Version:	%{ver}^%{commitdate}git.%{shortcommit}
@@ -18,8 +18,14 @@ Source0:	https://github.com/noctalia-dev/noctalia/archive/%{commit}/noctalia-%{c
 BuildRequires:  meson
 BuildRequires:  gcc-c++
 BuildRequires:  git
+BuildRequires:  desktop-file-utils
 BuildRequires:  pipewire-devel
 BuildRequires:  sdbus-cpp-devel
+BuildRequires:  tomlplusplus-devel
+BuildRequires:  json-devel
+BuildRequires:  md4c-devel
+BuildRequires:  stb-devel
+BuildRequires:  wireplumber-devel
 BuildRequires:  pkgconfig(cairo)
 BuildRequires:  pkgconfig(egl)
 BuildRequires:  pkgconfig(freetype2)
@@ -46,6 +52,8 @@ Requires:       hicolor-icon-theme
 Requires:       dejavu-sans-fonts
 Requires:       libwebp
 
+Conflicts:      noctalia
+
 Recommends:     ddcutil
 Recommends:     gpu-screen-recorder
 Recommends:     power-profiles-daemon
@@ -57,6 +65,7 @@ A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with 
 
 %prep
 %autosetup -n noctalia-%{commit}
+
 # Manually insert commit hash
 sed -i "s/'unknown'/'%{shortcommit}'/g" meson.build
 
@@ -77,13 +86,34 @@ find third_party -type f \( -name "LICENSE*" -o -name "COPYING*" -o -name "NOTIC
     install -p -m 0644 "$file" "$dest_dir/"
 done
 
+%check
+%desktop_file_validate %{buildroot}%{_appsdir}/dev.noctalia.Noctalia.desktop
+
 %files
 %doc README.md
 %license LICENSE
 %{_licensedir}/%{name}/third_party/
 %{_bindir}/noctalia
 %{_datadir}/noctalia/
+%{_appsdir}/dev.noctalia.Noctalia.desktop
+%{_scalableiconsdir}/noctalia.svg
 
 %changelog
+* Thu Jul 16 2026 Cypress Reed <cypress@fyralabs.com>
+- Add conflicts with noctalia
+
+* Thu Jul 09 2026 Cypress Reed <cypress@fyralabs.com>
+- Noctalia requires system libraries now, so remove the meson options
+
+* Wed Jul 01 2026 Cypress Reed <cypress@fyralabs.com>
+- Add md4c as a system library
+- Add wireplumber build requirement
+
+* Tue Jun 30 2026 Cypress Reed <cypress@fyralabs.com>
+- Add tomlplusplus as a sytem library
+
+* Wed Jun 24 2026 Cypress Reed <cypress@fyralabs.com>
+- Add desktop file and icon
+
 * Fri Jun 05 2026 Cypress Reed <cypress@fyralabs.com>
 - Port to terra from Fedora COPR lionheartp/Hyprland

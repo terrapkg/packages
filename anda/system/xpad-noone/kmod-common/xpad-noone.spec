@@ -1,16 +1,16 @@
-%global commit 6970c40930bedd8b58d0764894e0d5f04813b7c5
+%global commit da247eb378287b435fa2963bfaee634bda96caac
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20240109
+%global commitdate 20260627
 %global ver 1.0
 %global _description %{expand:
 This is the original upstream xpad driver from the Linux kernel with support for XBox One controllers removed. If you are running the xone driver you may have to replace the xpad kernel module with this one to retain the functionality of XBox and XBox 360 controllers.}
 
 Name:          xpad-noone
 Version:       %{ver}^%{commitdate}git.%{shortcommit}
-Release:       3%{?dist}
+Release:       4%{?dist}
 License:       GPL-2.0-or-later
 Summary:       xpad driver with support for XBox One controllers removed
-URL:           https://github.com/medusalix/xpad-noone
+URL:           https://github.com/Jan200101/xpad-noone
 Source0:       %{url}/archive/%{commit}/%{name}-%{commit}.tar.gz#/%{name}-%{shortcommit}.tar.gz
 BuildRequires: sed
 BuildRequires: systemd-rpm-macros
@@ -48,5 +48,8 @@ install -Dm644 %{name}.conf -t %{buildroot}%{_modulesloaddir}
 %{_modulesloaddir}/%{name}.conf
 
 %changelog
+* Sat Jun 27 2026 Jan200101 <sentrycraft123@gmail.com> - 1.0^20260627git.da247eb-4
+- Update package to use updated fork
+
 * Fri Mar 07 2025 Gilver E. <rockgrub@disroot.org>
 - Initial package

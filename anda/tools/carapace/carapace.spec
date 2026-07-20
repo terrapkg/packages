@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 %global goipath github.com/carapace-sh/carapace-bin
-Version:        1.7.0
+Version:        1.7.3
 
 %gometa -f
 

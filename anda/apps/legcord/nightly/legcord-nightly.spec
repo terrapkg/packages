@@ -1,13 +1,12 @@
-%global commit 7d933c652919899e46a6dfa0ac08dac36c492d95
-%global commit_date 20260614
+%global commit a934aa50b11916ce42fb027ddc47306b3362a82c
+%global commit_date 20260720
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global debug_package %nil
 # terrible evil no good very bad hack
 # fix one day
 %global __requires_exclude_from (.*)lib(.*)so(.*)
 
 Name:           legcord-nightly
-%electronmeta -D
+%electronmeta -aD
 Version:        %commit_date.%shortcommit
 Release:        1%{?dist}
 License:        OSL-3.0 AND %{electron_license}
@@ -18,7 +17,7 @@ Packager:       Owen <owen@fyralabs.com>
 Requires:       xdg-utils
 Obsoletes:      armcord < 3.3.2-1
 Conflicts:      legcord
-BuildRequires:  anda-srpm-macros pnpm nodejs-npm git-core gcc gcc-c++ make desktop-file-utils zlib-ng-compat-devel
+BuildRequires:  anda-srpm-macros pnpm nodejs-npm git-core gcc gcc-c++ make desktop-file-utils zlib-ng-compat-devel nvm
 
 %description
 Legcord is a custom client designed to enhance your Discord experience
@@ -26,22 +25,22 @@ while keeping everything lightweight.
 
 %prep
 %git_clone %{url}.git %{commit}
+%vendor_nodejs -v 26
 
 %build
-echo "Electron Builder" > %{rpmbuilddir}/webapp-tool.txt
 %pnpm_build -r build
 
 %install
 %electron_install -i legcord -l -I dist/.icon-set/icon_16.png -I dist/.icon-set/icon_32.png -I dist/.icon-set/icon_48x48.png -I dist/.icon-set/icon_64.png -I dist/.icon-set/icon_128.png -I dist/.icon-set/icon_256.png -I dist/.icon-set/icon_512.png -I dist/.icon-set/icon_1024.png
 
 dist/Legcord-*.AppImage --appimage-extract '*.desktop'
-%desktop_file_install -k Exec,Icon -v "%{_libdir}/legcord-nightly/Legcord",legcord -u %U -f squashfs-root/Legcord.desktop
+%desktop_file_install -k Exec,Icon -v "%{_libdir}/legcord-nightly/Legcord",legcord -u %U -f squashfs-root/legcord.desktop
 
 %files
 %doc README.md
 %license license.txt
 %{_bindir}/legcord-nightly
-%{_datadir}/applications/Legcord.desktop
+%{_datadir}/applications/legcord.desktop
 %{_libdir}/legcord-nightly/
 %{_iconsdir}/hicolor/16x16/apps/legcord.png
 %{_iconsdir}/hicolor/32x32/apps/legcord.png

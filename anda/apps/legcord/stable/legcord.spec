@@ -1,5 +1,3 @@
-%global debug_package %nil
-
 # terrible evil no good very bad hack
 # fix one day
 %global __requires_exclude_from (.*)lib(.*)so(.*)
@@ -27,7 +25,6 @@ while keeping everything lightweight.
 %git_clone %url v%version
 
 %build
-echo "Electron Builder" > %{rpmbuilddir}/webapp-tool.txt
 %pnpm_build -r build
 
 %install

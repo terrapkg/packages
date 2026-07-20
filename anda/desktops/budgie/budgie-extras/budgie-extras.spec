@@ -1,6 +1,6 @@
 Name:           budgie-extras
 Version:        2.2.3
-Release:        2%{?dist}
+Release:        3%{?dist}
 
 License:        GPL-3.0-or-later
 Summary:        Additional Budgie Desktop enhancements for user experience
@@ -43,9 +43,9 @@ Requires:       budgie-applet-dropby
 Requires:       budgie-applet-fuzzyclock
 Requires:       budgie-applet-kangaroo
 Requires:       budgie-applet-network-manager
-Requires:       budgie-applet-quickchar
 Requires:       budgie-applet-quicknote
 Requires:       budgie-applet-recentlyused
+Requires:       budgie-applet-screencast
 Requires:       budgie-applet-showtime
 Requires:       budgie-applet-takeabreak
 Requires:       budgie-applet-visualspace
@@ -140,14 +140,6 @@ Summary:        A fork of Wingpanel Network Indicator, ported to budgie desktop
 %description -n	budgie-applet-network-manager
 %{summary}
 
-%package -n	budgie-applet-quickchar
-Requires:       budgie-extras-common
-Requires:       budgie-extras-daemon
-Summary:        A mini-app to quickly choose and insert equivalents of ascii characters
-%description -n	budgie-applet-quickchar
-QuickChar is a mini-app to quickly choose and insert equivalents of ascii
-characters. QuickChar is activated via the Budgie Menu.
-
 %package -n	budgie-applet-quicknote
 Requires:       budgie-extras-common
 Summary:        Applet providing simple notes capability for the Budgie Desktop
@@ -234,14 +226,9 @@ find . -name "meson.build" -exec sed -i "s/dependency('libpeas-gtk-1.0')/depende
 %install
 %meson_install
 
-# Remove absolute symlink and replace with relative symlink
-rm -f %{buildroot}%{_bindir}/quickchar
-
 %fdupes %{buildroot}%{_datadir}/budgie-desktop/budgie-weathershow/weather_icons
 
 %post
-
-%{__ln_s} -fv %{_bindir}/quickchar %{_libdir}/quickchar/quickchar
 
 %files
 
@@ -300,9 +287,6 @@ rm -f %{buildroot}%{_bindir}/quickchar
 
 %files -n budgie-applet-network-manager
 %{_libdir}/budgie-desktop/plugins/budgie-network-manager
-
-%files -n budgie-applet-quickchar
-%ghost %{_bindir}/quickchar
 
 %files -n budgie-applet-quicknote
 %{_libdir}/budgie-desktop/plugins/budgie-quicknote

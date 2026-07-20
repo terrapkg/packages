@@ -1,7 +1,7 @@
 %define debug_package %nil
 
 Name:		args-hxx
-Version:	6.4.16
+Version:	6.5.0
 Release:	1%{?dist}
 Summary:	A simple header-only C++ argument parser library
 License:	MIT
@@ -25,10 +25,12 @@ Summary:	Documentations for args-hxx
 %prep
 %autosetup -n args-%version
 
-%build
+%conf
 %cmake
+
+%build
 %cmake_build
-make doc/man
+%__make doc/man
 
 %install
 %cmake_install
@@ -36,15 +38,11 @@ make installman DESTDIR=%buildroot%_prefix
 
 %files
 %_includedir/args.hxx
-/usr/lib/cmake/args/args-config-version.cmake
-/usr/lib/cmake/args/args-config.cmake
-%_libdir/pkgconfig/args.pc
+%{_datadir}/cmake/args/args-*.cmake
+%{_datadir}/pkgconfig/args.pc
 
 %files doc
 %_mandir/man3/args*
-%_mandir/man3/DoublesReader.3.gz
-%_mandir/man3/StringAssignable.3.gz
-%_mandir/man3/ToLowerReader.3.gz
 %_mandir/man3/conanfile_ArgsConan.3.gz
 %_mandir/man3/md_CONTRIBUTING.3.gz
 
