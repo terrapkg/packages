@@ -100,3 +100,7 @@ END
 %_unitdir/zapret2-list-update.timer
 %_sysusersdir/zapret2.conf
 %_datadir/zapret2/
+
+%changelog
+* Mon Jul 20 2026 madonuko <mado@fyralabs.com> - 1.0.2-1
+- Initial package
