@@ -31,7 +31,6 @@ This package contains delevoplent files for UwUFetch.
 
 %build
 %make_build -C src/ascii_preproc run 2>/dev/null || true
-%make_build -C src/ascii_embed.h
 
 %make_build
 
