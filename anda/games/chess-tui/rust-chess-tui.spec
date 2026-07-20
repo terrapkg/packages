@@ -35,45 +35,6 @@ License:        (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 
 %doc README.md
 %{_bindir}/chess_tui
 
-%package        devel
-Summary:        %{summary}
-BuildArch:      noarch
-
-%description    devel %{_description}
-
-This package contains library source intended for building other packages which
-use the "%{crate}" crate.
-
-%files          devel
-%license LICENSE
-%doc CONTRIBUTING.md
-%doc README.md
-%dnl %{crate_instdir}/
-
-%package     -n %{name}+default-devel
-Summary:        %{summary}
-BuildArch:      noarch
-
-%description -n %{name}+default-devel %{_description}
-
-This package contains library source intended for building other packages which
-use the "default" feature of the "%{crate}" crate.
-
-%files       -n %{name}+default-devel
-%ghost %{crate_instdir}/Cargo.toml
-
-%package     -n %{name}+chess-tui-devel
-Summary:        %{summary}
-BuildArch:      noarch
-
-%description -n %{name}+chess-tui-devel %{_description}
-
-This package contains library source intended for building other packages which
-use the "chess-tui" feature of the "%{crate}" crate.
-
-%files       -n %{name}+chess-tui-devel
-%ghost %{crate_instdir}/Cargo.toml
-
 %prep
 %autosetup -n %{crate}-%{version} -p1
 %cargo_prep_online
