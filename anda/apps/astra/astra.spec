@@ -36,5 +36,5 @@ Audiophile music player with gapless playback, parametric EQ, AutoEQ import, and
 %_hicolordir/*/apps/%name.png
 
 %changelog
-* Sat Jun 28 2026 madonuko <madonuko@outlook.com> - 0.6.1~beta
+* Sun Jun 28 2026 madonuko <madonuko@outlook.com> - 0.6.1~beta
 - Initial package.
