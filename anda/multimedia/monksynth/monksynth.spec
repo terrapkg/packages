@@ -1,5 +1,5 @@
+%define debug_package %nil
 %global ver v0.2.0-beta.15
-%global _distro_extra_cxxflags -I%_includedir/c++/*/cstdint
 
 Name:           monksynth
 Version:        %(echo %ver | sed 's/^v//;s/-/~/g')
