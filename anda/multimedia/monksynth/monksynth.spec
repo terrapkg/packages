@@ -11,6 +11,7 @@ URL:            https://github.com/JonET/monksynth
 Packager:       madonuko <mado@fyralabs.com>
 Source0:        %url/archive/refs/tags/%ver.tar.gz
 BuildRequires:  gcc gcc-c++
+BuildRequires:  cmake-rpm-macros
 BuildRequires:  pkgconfig(wayland-protocols)
 BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(xcb-cursor)
