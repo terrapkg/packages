@@ -66,6 +66,14 @@ EOF
 %build
 
 %install
+%ifnarch %{x86_64}
+find . -name "x64" -type d -prune -exec rm -rf "{}" ";"
+%endif
+
+%ifnarch %{arm64}
+find . -name "arm64" -type d -prune -exec rm -rf "{}" ";"
+%endif
+
 cd stuff
 mkdir -p %{buildroot}%{_datadir}/doc/%{name}/ %{buildroot}%{_datadir}/licenses/%{name}
 install -Dm644 %{SOURCE1} %{buildroot}%{_docdir}/%{name}/
