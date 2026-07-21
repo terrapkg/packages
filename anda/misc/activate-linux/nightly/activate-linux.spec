@@ -1,5 +1,5 @@
-%global commit a3e2346a56a6ddab771e5971e71641913944dd54
-%global date 20260719
+%global commit 203ee66e8e2a614266d59921d5493ea681b11a74
+%global date 20260721
 %global short %(c=%{commit}; echo ${c:0:7})
 %global ver 1.2.0
 
@@ -7,7 +7,7 @@ Name:           activate-linux-nightly
 Summary:        The "Activate Windows" watermark ported to Linux
 Version:        %{ver}^%{date}git.%{short}
 License:        GPL-3.0-only
-Release:        3%{?dist}
+Release:        1%{?dist}
 URL:            https://github.com/MrGlockenspiel/activate-linux
 Patch0:         0001-Install-manpage-to-correct-location.patch
 Source0:        %{url}/archive/%{commit}.tar.gz
