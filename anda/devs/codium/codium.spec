@@ -4,7 +4,7 @@ Name:			      codium
 Version:		    1.126.04524
 %electronmeta -D
 %global __requires_exclude %{__requires_exclude}|libcurl.so|libmsalruntime.so
-Release:		    1%{?dist}
+Release:		    2%{?dist}
 Summary:		    Code editing. Redefined.
 License:	      %{electron_license}
 URL:            https://vscodium.com/
