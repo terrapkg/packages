@@ -3,7 +3,7 @@
 
 Name:           monksynth
 Version:        %(echo %ver | sed 's/^v//;s/-/~/g')
-Release:        %autorelease
+Release:        1%?dist
 Summary:        A monophonic vocal synthesizer using FOF synthesis, inspired by Delay Lama
 
 License:        MIT
