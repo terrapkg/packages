@@ -52,6 +52,7 @@ keyboards) and translate their input to a variety of virtual device formats.
 %_datadir/dbus-1/system.d/org.shadowblip.InputPlumber.conf
 %_datadir/inputplumber/
 %{_udevrulesdir}/99-inputplumber-device-setup.rules
+%{_udevrulesdir}/60-inputplumber-uaccess.rules
 %{_udevrulesdir}/50-8bitdo-u2-controller.rules
 %{_datadir}/polkit-1/actions/org.shadowblip.InputPlumber.policy
 %{_datadir}/polkit-1/rules.d/org.shadowblip.InputPlumber.rules
