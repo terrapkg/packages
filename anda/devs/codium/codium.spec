@@ -89,7 +89,13 @@ ln -s %{_datadir}/%{name}/resources/completions/bash/codium %{buildroot}%{_datad
 
 %fdupes %{_datadir}/%{name}/resources/app/extensions/
 
-find . -name "x64" -type d -exec rm -rf "{}" ";" 
+%ifnarch %{x86_64}
+find . -name "x64" -type d -exec rm -rf "{}" ";"
+%endif
+
+%ifnarch %{arm64}
+find . -name "arm64" -type d -exec rm -rf "{}" ";"
+%endif
 
 #terra_appstream
 
