@@ -66,6 +66,14 @@ EOF
 %build
 
 %install
+%ifnarch %{x86_64}
+find . -name "x64" -type d -exec rm -rf "{}" ";"
+%endif
+
+%ifnarch %{arm64}
+find . -name "arm64" -type d -exec rm -rf "{}" ";"
+%endif
+
 cd stuff
 mkdir -p %{buildroot}%{_datadir}/doc/%{name}/ %{buildroot}%{_datadir}/licenses/%{name}
 install -Dm644 %{SOURCE1} %{buildroot}%{_docdir}/%{name}/
@@ -88,14 +96,6 @@ ln -s %{_datadir}/%{name}/resources/completions/zsh/_codium %{buildroot}%{_datad
 ln -s %{_datadir}/%{name}/resources/completions/bash/codium %{buildroot}%{_datadir}/bash-completion/completions
 
 %fdupes %{_datadir}/%{name}/resources/app/extensions/
-
-%ifnarch %{x86_64}
-find . -name "x64" -type d -exec rm -rf "{}" ";"
-%endif
-
-%ifnarch %{arm64}
-find . -name "arm64" -type d -exec rm -rf "{}" ";"
-%endif
 
 #terra_appstream
 
