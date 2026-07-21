@@ -9,7 +9,6 @@ Version:        %{ver}^%{date}git.%{short}
 License:        GPL-3.0-only
 Release:        1%{?dist}
 URL:            https://github.com/MrGlockenspiel/activate-linux
-Patch0:         0001-Install-manpage-to-correct-location.patch
 Source0:        %{url}/archive/%{commit}.tar.gz
 BuildRequires:  clang 
 BuildRequires:  pkgconfig(pango)
