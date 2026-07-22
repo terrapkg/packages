@@ -37,6 +37,7 @@ BuildRequires:  ghc-transformers-prof
 BuildRequires:  ghc-transformers-base-prof
 BuildRequires:  ghc-unliftio-core-prof
 BuildRequires:  ghc-vault-prof
+BuildRequires:  ghc-primitive-prof
 %endif
 # End cabal-rpm deps
 
