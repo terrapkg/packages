@@ -1,4 +1,4 @@
-%global metainfo_commit c5aa8d8a8c843554a703781ca26bb28b1defd81c
+%global metainfo_commit 1b11dc65e8f92932514b80cf96c6965c82613d67
 
 Name:			proton-vpn-gtk-app
 Version:		4.16.5
