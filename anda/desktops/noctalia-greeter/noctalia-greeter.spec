@@ -30,6 +30,9 @@ BuildRequires:  pkgconfig(pango)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(wayland-protocols)
 BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:  pkgconfig(tomlplusplus)
+BuildRequires:  pkgconfig(nlohmann_json)
+BuildRequires:  stb-devel
 BuildRequires:  polkit
 BuildRequires:  wlroots-devel >= 0.20
 
