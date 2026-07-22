@@ -4,7 +4,7 @@
 %global crate usage-cli
 
 Name:           rust-usage-cli
-Version:        3.5.5
+Version:        3.5.6
 Release:        1%{?dist}
 Summary:        CLI for working with usage-based CLIs
 
