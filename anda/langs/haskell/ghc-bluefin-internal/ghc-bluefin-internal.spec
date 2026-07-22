@@ -27,6 +27,8 @@ BuildRequires:  ghc-monad-control-devel
 BuildRequires:  ghc-transformers-devel
 BuildRequires:  ghc-transformers-base-devel
 BuildRequires:  ghc-unliftio-core-devel
+BuildRequires:  ghc-primitive-devel
+BuildRequires:  ghc-vault-devel
 %if %{with ghc_prof}
 BuildRequires:  ghc-async-prof
 BuildRequires:  ghc-base-prof
@@ -34,6 +36,8 @@ BuildRequires:  ghc-monad-control-prof
 BuildRequires:  ghc-transformers-prof
 BuildRequires:  ghc-transformers-base-prof
 BuildRequires:  ghc-unliftio-core-prof
+BuildRequires:  ghc-vault-prof
+BuildRequires:  ghc-primitive-prof
 %endif
 # End cabal-rpm deps
 
