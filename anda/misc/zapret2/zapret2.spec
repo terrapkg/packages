@@ -10,7 +10,7 @@ Packager: madonuko <mado@fyralabs.com>
 URL:     https://github.com/bol-van/%{name}
 Source0: https://github.com/bol-van/%{name}/archive/refs/tags/v%{version}.tar.gz
 
-BuildRequires: lua lua-libs
+BuildRequires: compat-lua-devel
 
 # Build tools.
 BuildRequires: gcc
