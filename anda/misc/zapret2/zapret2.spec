@@ -93,7 +93,7 @@ END
 
 %files
 %doc changes.txt changes_compat.txt LICENSE.txt manual.en.md manual.md readme.md
-%license docs/LICENSE.txt
+%license docs/LICENSE.txt LICENSE
 %_bindir/zapret2
 %_bindir/nfqws2
 %_unitdir/nfqws2@.service
