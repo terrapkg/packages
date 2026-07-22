@@ -113,6 +113,8 @@ pushd %{name}-%{version}-src
 %patch -P 31 -p1 -b .disable_objtool
 %patch -P 32 -p1 -b .kernel_6.15_adaptation
 %patch -P 33 -p1 -b .kernel_6.17_adaptation
+%patch -P 34 -p1 -b .kernel_7.1_adaptation
+%patch -P 35 -p1 -b .flush_scheduled_work
 
 # Manual patching to build for RHEL - inspired by CentOS wl-kmod.spec
 # Actually works for RHEL 6.x and 7.x
