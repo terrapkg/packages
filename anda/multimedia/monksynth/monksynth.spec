@@ -1,9 +1,9 @@
+%define debug_package %nil
 %global ver v0.2.0-beta.15
-%global _distro_extra_cxxflags -I%_includedir/c++/*/cstdint
 
 Name:           monksynth
 Version:        %(echo %ver | sed 's/^v//;s/-/~/g')
-Release:        %autorelease
+Release:        1%?dist
 Summary:        A monophonic vocal synthesizer using FOF synthesis, inspired by Delay Lama
 
 License:        MIT
@@ -11,6 +11,7 @@ URL:            https://github.com/JonET/monksynth
 Packager:       madonuko <mado@fyralabs.com>
 Source0:        %url/archive/refs/tags/%ver.tar.gz
 BuildRequires:  gcc gcc-c++
+BuildRequires:  cmake-rpm-macros cmake
 BuildRequires:  pkgconfig(wayland-protocols)
 BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(xcb-cursor)

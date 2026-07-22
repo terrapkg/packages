@@ -1,7 +1,7 @@
 %global appid io.github.rfrench3.bazzite-updater
 
 Name:           bazzite-updater
-Version:        0.8.0
+Version:        0.8.1
 Release:        1%{?dist}
 Summary:        Update your system
 
@@ -72,8 +72,8 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/%{appid}.desktop
 %{_appsdir}/%{appid}.desktop
 %{_metainfodir}/%{appid}.*.xml
 %{_scalableiconsdir}/%{appid}.svg
-%config %{_prefix}/etc/bazzite-updater/config.ini
-%{_prefix}/etc/bazzite-updater
+%config(noreplace) %{_sysconfdir}/%{name}/config.ini
+%{_sysconfdir}/%{name}
 
 %changelog
 * Sat Jul 04 2026 Robert French - 0.8.0
