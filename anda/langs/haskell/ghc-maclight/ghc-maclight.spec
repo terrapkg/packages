@@ -121,5 +121,5 @@ sed -i 's/optparse-applicative[^,]*/optparse-applicative >= 0.5/g' %{pkg_name}.c
 
 
 %changelog
-* Wed Jul 2022026 Owen Zimmerman <owen@fyralabs.com> - 0.1.0.0-1
+* Wed Jul 22 2026 Owen Zimmerman <owen@fyralabs.com> - 0.1.0.0-1
 - Initial commit
