@@ -11,7 +11,8 @@ URL:     https://github.com/bol-van/%{name}
 Source0: https://github.com/bol-van/%{name}/archive/refs/tags/v%{version}.tar.gz
 
 BuildRequires: pkgconfig(luajit)
-BuildRequires: pkgconfig(zlib)
+BuildRequires: pkgconfig(zlib
+BuildRequires: pkgconfig(libnetfilter_queue)
 
 # Build tools.
 BuildRequires: gcc
