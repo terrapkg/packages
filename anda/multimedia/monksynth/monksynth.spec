@@ -34,6 +34,7 @@ BuildRequires:  pkgconfig(sqlite3)
 BuildRequires:  pkgconfig(gtk+-3.0)
 
 BuildSystem:        cmake
+BuildOption(conf):  -DSMTG_PLUGIN_TARGET_PATH=%buildroot/usr/lib/vst3/%name/
 BuildOption(build): --target MonkSynth
 
 
@@ -45,7 +46,6 @@ cd cpp
 
 %build -p
 cd cpp
-export SMTG_PLUGIN_TARGET_PATH=%buildroot/usr/lib/vst3/%name/
 sed -i '1a #include <cstdint>' redhat-linux-build/_deps/vst3sdk-src/vstgui4/vstgui/lib/platform/*.h
 
 %install -p
