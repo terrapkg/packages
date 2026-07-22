@@ -1,7 +1,7 @@
 %define debug_package %nil
 
 Name:    zapret2
-Version: 1.0.2
+Version: 1.0.3
 Release: 1%{?dist}
 Summary: A multi-platform Deep Packet Inspection (DPI) bypass tool
 License: MIT 
