@@ -1,5 +1,5 @@
-%global commit d469a80f12e286c0e937d8b93c01dfc2d55dca8f
-%global commit_date 20260504
+%global commit dfdab5684faffc112b76ccb1d8cab7f75da0102c
+%global commit_date 20260723
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name: fx-autoconfig
