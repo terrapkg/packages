@@ -44,6 +44,7 @@ A monophonic vocal synthesizer that sounds like a monk chanting. Built using for
 
 %conf -p
 cd cpp
+mkdir -p %buildroot/usr/lib/vst3/%name
 ln %buildroot/usr/lib/vst3/%name/ ~/.vst3
 export SMTG_PLUGIN_TARGET_PATH=%buildroot/usr/lib/vst3/%name/
 
