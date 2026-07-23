@@ -28,6 +28,7 @@ BuildRequires: libXrandr-devel
 BuildRequires: libXinerama-devel
 BuildRequires: libXcursor-devel
 BuildRequires: qt6-qtbase-devel
+BuildRequires: qtcanvaspainter6-devel
 BuildRequires: pkgconfig(carla-host-plugin) >= 2.6.0
 BuildRequires: pkgconfig(gtk4)
 BuildRequires: pkgconfig(gtksourceview-5)
@@ -106,7 +107,7 @@ various plugin and file formats.
 %autosetup -n %name-%v
 
 
-%build
+%conf
 CFLAGS=$(echo "$CFLAGS -fuse-ld=mold -Wno-incompatible-pointer-types" | sed -E "s@\b-Werror\b@@")
 CXXFLAGS=$(echo "$CFLAGS -fuse-ld=mold" | sed -E "s@\b-Werror\b@@")
 
@@ -116,6 +117,8 @@ CXXFLAGS=$(echo "$CFLAGS -fuse-ld=mold" | sed -E "s@\b-Werror\b@@")
        -Dsdl=enabled \
        -Dlsp_dsp=disabled \
        -Dgraphviz=enabled
+
+%build
 %cmake_build
 
 %install
