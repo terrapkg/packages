@@ -35,7 +35,7 @@ BuildRequires:  pkgconfig(sqlite3)
 BuildRequires:  pkgconfig(gtk+-3.0)
 
 BuildSystem:        cmake
-BuildOption(conf):  -DSMTG_PLUGIN_TARGET_PATH=%buildroot/usr/lib/vst3/%name/
+%dnl BuildOption(conf):  -DSMTG_PLUGIN_TARGET_PATH=%buildroot/usr/lib/vst3/%name/
 BuildOption(build): --target MonkSynth
 
 
@@ -46,7 +46,7 @@ A monophonic vocal synthesizer that sounds like a monk chanting. Built using for
 cd cpp
 mkdir -p %buildroot/usr/lib/vst3/%name
 ln %buildroot/usr/lib/vst3/%name/ ~/.vst3
-export SMTG_PLUGIN_TARGET_PATH=%buildroot/usr/lib/vst3/%name/
+%dnl export SMTG_PLUGIN_TARGET_PATH=%buildroot/usr/lib/vst3/%name/
 
 %build -p
 cd cpp
