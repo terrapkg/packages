@@ -2,7 +2,7 @@
 
 Name:           terra-gpg-keys
 Version:        %{?fedora:%{fedora}}%{?rhel:%{rhel}}
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        GPG keys for Terra
 Requires:       filesystem >= 3.18-6
 
@@ -51,6 +51,16 @@ Source38:       RPM-GPG-KEY-terra44-nvidia-source
 Source39:       RPM-GPG-KEY-terra44-source
 Source40:       RPM-GPG-KEY-terrael10
 Source41:       RPM-GPG-KEY-terrael10-source
+Source50:       RPM-GPG-KEY-terra45
+Source51:       RPM-GPG-KEY-terra45-extras
+Source52:       RPM-GPG-KEY-terra45-extras-source
+Source53:       RPM-GPG-KEY-terra45-mesa
+Source54:       RPM-GPG-KEY-terra45-mesa-source
+Source55:       RPM-GPG-KEY-terra45-multimedia
+Source56:       RPM-GPG-KEY-terra45-multimedia-source
+Source57:       RPM-GPG-KEY-terra45-nvidia
+Source58:       RPM-GPG-KEY-terra45-nvidia-source
+Source59:       RPM-GPG-KEY-terra45-source
 BuildArch:      noarch
 Obsoletes:      terra-mock-gpg-keys < %{version}-6
 
@@ -64,9 +74,13 @@ GPG keys for Terra, used for verifying RPM package signatures.
 %build
 
 %install
-install -d -m 755 $RPM_BUILD_ROOT/etc/pki/rpm-gpg
-install -m 644 %{_sourcedir}/RPM-GPG-KEY* $RPM_BUILD_ROOT/etc/pki/rpm-gpg/
+install -d -m 755 $RPM_BUILD_ROOT%{_sysconfdir}/pki/rpm-gpg
+install -m 644 %{_sourcedir}/RPM-GPG-KEY* $RPM_BUILD_ROOT%{_sysconfdir}/pki/rpm-gpg/
 
 %files
-%dir /etc/pki/rpm-gpg
-/etc/pki/rpm-gpg/RPM-GPG-KEY-*
+%dir %{_sysconfdir}/pki/rpm-gpg
+%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-*
+
+%changelog
+* Wed Jul 22 2026 Owen Zimmerman <owen@fyralabs.com>
+- Add Terra 45 keys
