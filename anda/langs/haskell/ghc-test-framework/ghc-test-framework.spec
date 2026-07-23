@@ -130,5 +130,5 @@ cp -bp %{SOURCE1} %{pkg_name}.cabal
 
 
 %changelog
-* Thu Jul 23 2026 Owen-sz <owen@fyralabs.com> - 0.8.2.3-1
+* Thu Jul 23 2026 Owen Zimmerman <owen@fyralabs.com> - 0.8.2.3-1
 - Initial commit
