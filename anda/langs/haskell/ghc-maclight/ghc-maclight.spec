@@ -90,7 +90,7 @@ This package provides the Haskell %{pkg_name} profiling library.
 %setup -q -n %{pkgver}
 cp -bp %{SOURCE1} %{pkg_name}.cabal
 # End cabal-rpm setup
-
+sed -i 's/optparse-applicative[^,]*/optparse-applicative >= 0.5/g' %{pkg_name}.cabal
 
 %build
 # Begin cabal-rpm build:
@@ -133,5 +133,5 @@ PATH=%{buildroot}%{_bindir}:$PATH
 
 
 %changelog
-* Thu Jul 23 2026 Owen-sz <owen@fyralabs.com> - 0.1.0.0-1
+* Wed Jul 22 2026 Owen Zimmerman <owen@fyralabs.com> - 0.1.0.0-1
 - Initial commit
