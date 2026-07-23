@@ -28,6 +28,8 @@ BuildRequires: pkgconfig(systemd)
 BuildRequires: fdupes
 BuildRequires: apparmor-devel
 BuildRequires: gmock-devel
+BuildRequires: xvfb-run
+BuildRequires: dbus-test-runner
 
 %description
 Upload Download Manager performs uploads and downloads from a centralized
