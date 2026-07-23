@@ -28,7 +28,7 @@ BuildRequires: pkgconfig(systemd)
 BuildRequires: fdupes
 BuildRequires: apparmor-devel
 BuildRequires: gmock-devel
-BuildRequires: xvfb-run
+BuildRequires: xorg-x11-server-Xvfb
 BuildRequires: dbus-test-runner
 
 %description
