@@ -12,6 +12,8 @@ BuildRequires: qt5-qtbase-devel
 BuildRequires: qt5-qtdeclarative
 BuildRequires: qt5-qtdeclarative-devel
 BuildRequires: cmake(QmlPlugins)
+BuildRequires: qt5-qtdeclarative-devel
+BuildRequires: qt-devel
 
 %description
 gsettings-qt provides Qt binding to GSettings, a high-level API
