@@ -615,7 +615,6 @@ echo "%{_bindir}/true" > test/run_vlc.sh
 
 touch src/revision.txt
 
-
 %build
 export LIVE555_PREFIX=%{_prefix}
 %configure                                            \
