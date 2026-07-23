@@ -1,6 +1,6 @@
 %define debug_package %nil
 Name:			sops
-Version:		3.13.2
+Version:		3.13.3
 Release:		1%{?dist}
 Summary:		Simple and flexible tool for managing secrets
 License:		MPL-2.0
