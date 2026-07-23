@@ -27,7 +27,7 @@ BuildRequires: pkgconfig(liblomiri-api)
 BuildRequires: pkgconfig(systemd)
 BuildRequires: fdupes
 BuildRequires: apparmor-devel
-BuildRequires: gmock
+BuildRequires: gmock-devel
 
 %description
 Upload Download Manager performs uploads and downloads from a centralized
