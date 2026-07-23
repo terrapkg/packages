@@ -26,11 +26,7 @@ This package contains the shared libraries.
 %autosetup -n libqtdbustest-%{version}
 
 %conf
-%cmake # \
-#   -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
-#   -DCMAKE_CXX_STANDARD=17 \
-#   -DCMAKE_CXX_STANDARD_REQUIRED=ON \
-#   -DCMAKE_CXX_EXTENSIONS=OFF
+%cmake
 
 %build
 %cmake_build
