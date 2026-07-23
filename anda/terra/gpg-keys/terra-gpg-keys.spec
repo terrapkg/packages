@@ -2,7 +2,7 @@
 
 Name:           terra-gpg-keys
 Version:        %{?fedora:%{fedora}}%{?rhel:%{rhel}}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        GPG keys for Terra
 Requires:       filesystem >= 3.18-6
 
@@ -51,16 +51,16 @@ Source38:       RPM-GPG-KEY-terra44-nvidia-source
 Source39:       RPM-GPG-KEY-terra44-source
 Source40:       RPM-GPG-KEY-terrael10
 Source41:       RPM-GPG-KEY-terrael10-source
-Source50:       RPM-GPG-KEY-terra44
-Source51:       RPM-GPG-KEY-terra44-extras
-Source52:       RPM-GPG-KEY-terra44-extras-source
-Source53:       RPM-GPG-KEY-terra44-mesa
-Source54:       RPM-GPG-KEY-terra44-mesa-source
-Source55:       RPM-GPG-KEY-terra44-multimedia
-Source56:       RPM-GPG-KEY-terra44-multimedia-source
-Source57:       RPM-GPG-KEY-terra44-nvidia
-Source58:       RPM-GPG-KEY-terra44-nvidia-source
-Source59:       RPM-GPG-KEY-terra44-source
+Source50:       RPM-GPG-KEY-terra45
+Source51:       RPM-GPG-KEY-terra45-extras
+Source52:       RPM-GPG-KEY-terra45-extras-source
+Source53:       RPM-GPG-KEY-terra45-mesa
+Source54:       RPM-GPG-KEY-terra45-mesa-source
+Source55:       RPM-GPG-KEY-terra45-multimedia
+Source56:       RPM-GPG-KEY-terra45-multimedia-source
+Source57:       RPM-GPG-KEY-terra45-nvidia
+Source58:       RPM-GPG-KEY-terra45-nvidia-source
+Source59:       RPM-GPG-KEY-terra45-source
 BuildArch:      noarch
 Obsoletes:      terra-mock-gpg-keys < %{version}-6
 
