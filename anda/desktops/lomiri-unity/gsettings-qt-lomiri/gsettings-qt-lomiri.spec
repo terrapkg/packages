@@ -13,7 +13,7 @@ BuildRequires: qt5-qtdeclarative
 BuildRequires: qt5-qtdeclarative-devel
 BuildRequires: cmake(QmlPlugins)
 BuildRequires: qt5-qtdeclarative-devel
-BuildRequires: qt-devel
+BuildRequires: qt-devel libxkbcommon-x11 libxcb libX11-xcb
 
 %description
 gsettings-qt provides Qt binding to GSettings, a high-level API
