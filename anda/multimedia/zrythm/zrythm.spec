@@ -26,6 +26,7 @@ BuildRequires: ladspa-devel
 BuildRequires: graphviz-devel
 BuildRequires: libXrandr-devel
 BuildRequires: libXinerama-devel
+BuildRequires: libXcursor-devel
 BuildRequires: pkgconfig(carla-host-plugin) >= 2.6.0
 BuildRequires: pkgconfig(gtk4)
 BuildRequires: pkgconfig(gtksourceview-5)
