@@ -26,8 +26,10 @@ Requires: %{name}%{?_isa} = %{evr}
 %prep
 %autosetup -n gsettings-qt-v%{version}
 
-%build
+%conf
 %cmake
+
+%build
 %cmake_build
 
 %install
