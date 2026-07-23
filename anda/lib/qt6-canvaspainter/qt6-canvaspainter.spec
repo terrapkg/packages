@@ -1,7 +1,7 @@
 %global ver v6.12.0-beta2
 %global sanitized_ver %(echo %{ver} | sed 's/^v//; s/-beta2//')
 
-Name:			    qtcanvaspainter6
+Name:			    qt6-canvaspainter
 Version:		    %{sanitized_ver}
 Release:		    1%?dist
 Summary:		    Accelerated 2D painting solution for Qt Quick and QRhi-based render targets
@@ -23,8 +23,8 @@ BuildRequires:      cmake(Qt6ShaderTools)
 BuildRequires:      cmake(Qt6ShaderToolsPrivate)
 BuildRequires:      cmake(Qt6Widgets)
 BuildRequires:      cmake(Qt6WidgetsPrivate)
+BuildRequires:      kf6-rpm-macros
 BuildSystem:        cmake
-BuildOption(conf):  -DQT_NO_PACKAGE_VERSION_CHECK=TRUE
 
 Packager:           Owen Zimmerman <owen@fyralabs.com>
 
@@ -33,30 +33,33 @@ Packager:           Owen Zimmerman <owen@fyralabs.com>
 
 %package devel
 %pkg_devel_files
-%{_libdir}/qt6/qml/QtCanvas2D/libcanvas2dplugin.so
+%{_kf6_qmldir}/QtCanvas2D/libcanvas2dplugin.so
 
 %prep
 %autosetup -C
 find . -name "CMakeLists.txt" -exec sed -i 's/qt_standard_project_setup(REQUIRES 6\.12)/qt_standard_project_setup(REQUIRES 6.11)/g' {} +
 
+%conf
+%cmake_kf6 -DQT_NO_PACKAGE_VERSION_CHECK=TRUE
+
 %files
 %doc CONTRIBUTING.md
 # No license file upstream, so this will have to do
 %license REUSE.toml
-%{_libdir}/libQt6Canvas2D.prl
-%{_libdir}/libQt6Canvas2D.so.6
-%{_libdir}/libQt6Canvas2D.so.%{sanitized_ver}
-%{_libdir}/libQt6CanvasPainter.so.6
-%{_libdir}/libQt6CanvasPainter.so.%{sanitized_ver}
-%{_libdir}/libQt6CanvasPainter.prl
-%{_libdir}/qt6/bin/qcshadergen
-%{_libdir}/qt6/examples/*
-%{_libdir}/qt6/metatypes/*.json
-%{_libdir}/qt6/mkspecs/modules/*.pri
-%{_libdir}/qt6/modules/*.json
-%{_libdir}/qt6/qml/QtCanvas2D/plugins.qmltypes
-%{_libdir}/qt6/qml/QtCanvas2D/qmldir
-%{_libdir}/qt6/sbom/qtcanvaspainter-%{sanitized_ver}.spdx
+%{_kf6_libdir}/libQt6Canvas2D.prl
+%{_kf6_libdir}/libQt6Canvas2D.so.6
+%{_kf6_libdir}/libQt6Canvas2D.so.%{sanitized_ver}
+%{_kf6_libdir}/libQt6CanvasPainter.so.6
+%{_kf6_libdir}/libQt6CanvasPainter.so.%{sanitized_ver}
+%{_kf6_libdir}/libQt6CanvasPainter.prl
+%{_kf6_archdatadir}/bin/qcshadergen
+%{_kf6_archdatadir}/examples/*
+%{_kf6_archdatadir}/metatypes/*.json
+%{_kf6_archdatadir}/mkspecs/modules/*.pri
+%{_kf6_archdatadir}/modules/*.json
+%{_kf6_qmldir}/QtCanvas2D/plugins.qmltypes
+%{_kf6_qmldir}/QtCanvas2D/qmldir
+%{_kf6_archdatadir}/sbom/qtcanvaspainter-%{sanitized_ver}.spdx
 
 %changelog
 * Thu Jul 23 2026 Owen Zimmerman <owen@fyralabs.com>
