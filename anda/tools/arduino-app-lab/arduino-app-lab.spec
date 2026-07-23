@@ -38,6 +38,7 @@ Packager:       Jaiden Riordan <jade@fyralabs.com>, Owen Zimmerman <owen@fyralab
 
 %prep
 %autosetup -n %{name}-al-%{version}
+touch .env
 
 %build
 %{__yarn}
@@ -58,7 +59,7 @@ install -Dm644 standalone-apps/app-lab-desktop/build/appicon.png        %{buildr
 %terra_appstream -o %{S:2}
 
 %check
-desktop-file-validate %{buildroot}%{_appsdir}/%{appid}.desktop
+%desktop_file_validate %{buildroot}%{_appsdir}/%{appid}.desktop
 
 %files
 %license LICENSE
@@ -73,7 +74,7 @@ desktop-file-validate %{buildroot}%{_appsdir}/%{appid}.desktop
 - Build from source, clean some stuff up, add third party licenses
 
 * Thu Dec 25 2025 Owen Zimmerman <owen@fyralabs.com>
-- Add %check, update macros
+- Add %%check, update macros
 
 * Thu Dec 4 2025 Jaiden Riordan <jade@fyralabs.com>
 - Package arduino-app-lab-bin
