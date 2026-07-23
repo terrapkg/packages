@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		6.1.0
-Release:		2%?dist
+Release:		3%?dist
 Summary:		A schema and validator for YAML
 License:		MIT
 URL:			https://github.com/23andMe/Yamale

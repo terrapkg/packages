@@ -6,3 +6,4 @@ anda-build/
 **/*.nupkg
 **/*.rpm
 **/*.kate-swp
+**/.DS_Store

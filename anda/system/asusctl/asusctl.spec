@@ -1,21 +1,24 @@
 %global debug_package %{nil}
 %global appid org.asus_linux.rog_control_center
 
-%define _unpackaged_files_terminate_build 0
+%global asus_system_units asusd.service asus-shutdown.service
 
 Name:           asusctl
-Version:        6.3.4
-Release:        1%?dist
+Version:        1.0.1
+Release:        2%{?dist}
 Epoch:          1
 Summary:        A control daemon, CLI tools, and a collection of crates for interacting with ASUS ROG laptops
-URL:            https://gitlab.com/asus-linux/asusctl
-Source0:        %url/-/archive/%version/asusctl-%version.tar.gz
+URL:            https://github.com/OpenGamingCollective/asusctl
+Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 Source1:        %{appid}.metainfo.xml
 License:        MPL-2.0 AND (MIT OR Apache-2.0) AND NCSA AND Unicode-3.0 AND (0BSD OR MIT OR Apache-2.0) AND Apache-2.0 AND MIT AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 OR Zlib) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND BSD-2-Clause (BSD-2-Clause OR Apache-2.0 OR MIT) AND (BSD-3-Clause OR Apache-2.0) AND BSD-3-Clause AND BSL-1.0 AND (CC0-1.0 OR Apache-2.0) AND (GPL-3.0-only OR LicenseRef-Slint-Royalty-free-2.0 OR LicenseRef-Slint-Software-3.0) AND ISC AND MIT AND Zlib AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0 OR Zlib) AND Unlicense AND (Zlib OR Apache-2.0 OR MIT)
-BuildRequires:  anda-srpm-macros cargo-rpm-macros systemd-rpm-macros mold rust-udev-devel clang-devel
+BuildRequires:  anda-srpm-macros
+BuildRequires:  cargo-rpm-macros
+BuildRequires:  systemd-rpm-macros
+BuildRequires:  rust-udev-devel
+BuildRequires:  clang-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  cmake
-BuildRequires:  rust
 BuildRequires:  rust-std-static
 BuildRequires:  pkgconfig(gbm)
 BuildRequires:  pkgconfig(libinput)
@@ -26,7 +29,7 @@ BuildRequires:  pkgconfig(libzstd)
 BuildRequires:  pkgconfig(fontconfig)
 ExclusiveArch:  x86_64
 
-Packager:       Metcya <metcya@gmail.com>
+Packager:       Olivia <git@olivia.sh>, Owen Zimmerman <owen@fyralabs.com>
 
 %description
 %summary.
@@ -42,7 +45,7 @@ A one-stop-shop GUI tool for asusd/asusctl. It aims to provide most controls,
 a notification service, and ability to run in the background.
 
 %prep
-%autosetup -n asusctl-%version
+%autosetup
 %cargo_prep_online
 
 %build
@@ -58,69 +61,89 @@ install -D -m 0644 rog-anime/data/diagonal-template.png %{buildroot}/%{_docdir}/
 
 %{cargo_license_online} > LICENSE.dependencies
 
-desktop-file-validate %{buildroot}/%{_datadir}/applications/rog-control-center.desktop
+%desktop_file_validate %{buildroot}/%{_appsdir}/rog-control-center.desktop
+
+mkdir -p %{buildroot}%{_sysconfdir}/asusd
 
 %files
 %license LICENSE
 %license LICENSE.dependencies
-%{_datadir}/asusctl/LICENSE
+%license %{_datadir}/asusctl/LICENSE
 %{_bindir}/asusd
 %{_bindir}/asusd-user
 %{_bindir}/asusctl
+%{_bindir}/asus-shutdown
 %{_unitdir}/asusd.service
+%{_unitdir}/asus-shutdown.service
 %{_udevrulesdir}/99-asusd.rules
-%dnl %{_sysconfdir}/asusd/
+%dir %{_sysconfdir}/asusd
 %{_datadir}/asusd/aura_support.ron
 %{_datadir}/dbus-1/system.d/asusd.conf
-%{_datadir}/icons/hicolor/512x512/apps/asus_notif_yellow.png
-%{_datadir}/icons/hicolor/512x512/apps/asus_notif_green.png
-%{_datadir}/icons/hicolor/512x512/apps/asus_notif_red.png
-%{_datadir}/icons/hicolor/512x512/apps/asus_notif_blue.png
-%{_datadir}/icons/hicolor/512x512/apps/asus_notif_orange.png
-%{_datadir}/icons/hicolor/512x512/apps/asus_notif_white.png
-%{_datadir}/icons/hicolor/scalable/status/gpu-compute.svg
-%{_datadir}/icons/hicolor/scalable/status/gpu-hybrid.svg
-%{_datadir}/icons/hicolor/scalable/status/gpu-integrated.svg
-%{_datadir}/icons/hicolor/scalable/status/gpu-nvidia.svg
-%{_datadir}/icons/hicolor/scalable/status/gpu-vfio.svg
-%{_datadir}/icons/hicolor/scalable/status/notification-reboot.svg
+%{_hicolordir}/512x512/apps/asus_notif_yellow.png
+%{_hicolordir}/512x512/apps/asus_notif_green.png
+%{_hicolordir}/512x512/apps/asus_notif_red.png
+%{_hicolordir}/512x512/apps/asus_notif_blue.png
+%{_hicolordir}/512x512/apps/asus_notif_orange.png
+%{_hicolordir}/512x512/apps/asus_notif_white.png
+%{_hicolordir}/scalable/status/gpu-compute.svg
+%{_hicolordir}/scalable/status/gpu-hybrid.svg
+%{_hicolordir}/scalable/status/gpu-integrated.svg
+%{_hicolordir}/scalable/status/gpu-nvidia.svg
+%{_hicolordir}/scalable/status/gpu-vfio.svg
+%{_hicolordir}/scalable/status/notification-reboot.svg
 %{_docdir}/%{name}/
 %{_datadir}/asusd/
 
 %post
-%systemd_post asusd.service
+%systemd_post %{asus_system_units}
 
 %preun
-%systemd_preun asusd.service
+%systemd_preun %{asus_system_units}
 
 %postun
-%systemd_postun_with_restart asusd.service
+%systemd_postun_with_restart %{asus_system_units}
 
 %files rog-gui
 %{_bindir}/rog-control-center
-%{_datadir}/applications/rog-control-center.desktop
-%{_datadir}/icons/hicolor/512x512/apps/rog-control-center.png
+%{_appsdir}/rog-control-center.desktop
+%{_hicolordir}/512x512/apps/rog-control-center.png
 %{_datadir}/rog-gui
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
+* Sun Jul 19 2026 Olivia <git@olivia.sh> - 1:1.0.1-2
+- Update packager
+
+* Thu Jun 18 2026 Owen Zimmerman <owen@fyralabs.com> - 6.3.8-3
+- Switch to OGC upstream
+
+* Wed Jun 17 2026 Owen Zimmerman <owen@fyralabs.com> - 6.3.8-2
+- Define %{asus_system_units} to make rhe spec a bit cleaner
+- and only call %%systemd_* once
+
+* Fri May 08 2026 Owen Zimmerman <owen@fyralabs.com> - 6.3.7-3
+- Use new macros, clean some stuff up
+
+* Mon Mar 23 2026 Owen Zimmerman <owen@fyralabs.com> - 6.3.5-2
+- Add asus-shutdown.service
+
 * Wed Feb 18 2026 Owen Zimmerman <owen@fyralabs.com> - 6.2.0-3
 - Remove asusd-user.service
 
-* Fri Jan 16 2026 metcya <metcya@gmail.com> - 6.3.0-2
+* Fri Jan 16 2026 Olivia <git@olivia.sh> - 6.3.0-2
 - Update ROG Control Center metainfo
 
 * Tue Jan 13 2026 Owen Zimmerman <owen@fyralabs.com> - 6.2.0-3
 - Add dependency licenses
 
-* Tue Dec 9 2025 Metcya <metcya@gmail.com> - 6.2.0
+* Tue Dec 9 2025 Olivia <git@olivia.sh> - 6.2.0
 - Add metainfo
 
-* Mon Dec 1 2025 Metcya <metcya@gmail.com>
+* Mon Dec 1 2025 Olivia <git@olivia.sh>
 - Add systemd scriptlets
 
-* Tue Nov 18 2025 Metcya <metcya@gmail.com>
+* Tue Nov 18 2025 Olivia <git@olivia.sh>
 - Remove unnecessary patch
 
-* Sun Oct 26 2025 Metcya <metcya@gmail.com>
+* Sun Oct 26 2025 Olivia <git@olivia.sh>
 - Package asusctl

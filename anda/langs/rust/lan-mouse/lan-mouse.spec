@@ -3,8 +3,8 @@
 %global rustflags_debuginfo 1
 
 Name:           lan-mouse
-Version:        0.10.0
-Release:        %autorelease
+Version:        0.11.0
+Release:        1%{?dist}
 Summary:        Software KVM Switch / mouse & keyboard sharing software for Local Area Networks
 
 License:        GPL-3.0-or-later

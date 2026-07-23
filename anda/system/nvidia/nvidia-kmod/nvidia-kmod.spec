@@ -7,27 +7,28 @@
 %undefine _auto_set_build_flags
 
 Name:           nvidia-kmod
-Version:        590.48.01
-Release:        4%?dist
+Version:        610.43.03
+Release:        2%{?dist}
 Summary:        NVIDIA display driver kernel module
 Epoch:          3
 License:        NVIDIA License
 URL:            http://www.nvidia.com/object/unix.html
-ExclusiveArch:  x86_64 aarch64
-
-Source0:        https://github.com/NVIDIA/open-gpu-kernel-modules/archive/%{version}/open-gpu-kernel-modules-%{version}.tar.gz
-Requires:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
-Requires:       akmods
-Requires:       gcc-c++
-Provides:       akmod-nvidia-open = %{?epoch:%{epoch}:}%{version}
-Obsoletes:      akmod-nvidia-open < %{?epoch:%{epoch}:}%{version}
-
-
+Source0:        https://download.nvidia.com/XFree86/NVIDIA-kernel-module-source/NVIDIA-kernel-module-source-%{version}.tar.xz
+BuildRequires:  elfutils-libelf-devel
 BuildRequires:  gcc-c++
 BuildRequires:  kmodtool
+%global AkmodsBuildRequires elfutils-libelf-devel, gcc-c++, kmodtool
+Requires:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
+Requires:       akmods
+Provides:       akmod-nvidia-open = %{?epoch:%{epoch}:}%{version}
+Obsoletes:      akmod-nvidia-open < %{?epoch:%{epoch}:}%{version}
+Conflicts:      dkms-nvidia
+Conflicts:      nvidia-kmod-580xx
+ExclusiveArch:  x86_64 aarch64
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 # kmodtool does its magic here:
-%{expand:%(kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
+%{expand:%(kmodtool --target %{_target_cpu} --repo terrapkg.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 
 %description
 The NVidia %{version} display driver kernel module for kernel %{kversion}.
@@ -36,14 +37,18 @@ The NVidia %{version} display driver kernel module for kernel %{kversion}.
 # Error out if there was something wrong with kmodtool:
 %{?kmodtool_check}
 # Print kmodtool output for debugging purposes:
-kmodtool  --target %{_target_cpu}  --repo terra.fyralabs.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
+kmodtool  --target %{_target_cpu}  --repo terrapkg.com --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
-%autosetup -p1 -c
+%setup -c
 
-rm -f open-gpu-kernel-modules-%{version}/dkms.conf
+pushd NVIDIA-kernel-module-source-%{version}
+%autopatch -p1
+popd
+
+rm -f NVIDIA-kernel-module-source-%{version}/dkms.conf
 
 for kernel_version in %{?kernel_versions}; do
-    cp -fr open-gpu-kernel-modules-%{version} _kmod_build_${kernel_version%%___*}
+    cp -fr NVIDIA-kernel-module-source-%{version} _kmod_build_${kernel_version%%___*}
 done
 
 %build
@@ -62,4 +67,8 @@ done
 %{?akmod_install}
 
 %changelog
-%autochangelog
+* Fri Jul 10 2026 Gilver E. <roachy@fyralabs.com> - 3:610.43.03-2
+- Use AkmodsBuildRequires
+* Mon Apr 13 2026 Gilver E. <roachy@fyralabs.com> - 3:595.58.03-3
+- Update patches for DSC functionality
+- Update spec for Terra packaging team

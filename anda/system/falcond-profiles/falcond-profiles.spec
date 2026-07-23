@@ -1,10 +1,10 @@
-%global commit a3e0e63303c0a310a504c5f3e2a9d71496d7aaab
+%global commit 2c521cbe01a3fb092ef3ddf61b111a600ef9f673
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260206
+%global commit_date 20260709
 
 Name:           falcond-profiles
 Version:        0^%{commit_date}git.%{shortcommit}
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Profiles for falcond
 License:        MIT
 URL:            https://github.com/PikaOS-Linux/falcond-profiles

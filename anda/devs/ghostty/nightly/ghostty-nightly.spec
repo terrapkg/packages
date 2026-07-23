@@ -1,9 +1,9 @@
-%global commit 472b926a4d7abbacad4deea17aa0a0c69ffc12d3
+%global commit ab0b9da9e88fcb4b0533a1854e84628f663930af
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global fulldate 2026-03-07
+%global fulldate 2026-07-22
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
-%global ver 1.3.0
+%global ver 1.3.2
 %global base_name ghostty
 %global appid com.mitchellh.%{base_name}
 
@@ -28,7 +28,7 @@ BuildRequires:  ncurses
 BuildRequires:  ncurses-devel
 BuildRequires:  pandoc-cli
 BuildRequires:  systemd-rpm-macros
-BuildRequires:  zig >= 0.14.0
+BuildRequires:  zig0.15
 BuildRequires:  zig-rpm-macros
 BuildRequires:  pkgconfig(blueprint-compiler)
 BuildRequires:  pkgconfig(bzip2)
@@ -185,7 +185,7 @@ Ghostty's terminfo. Needed for basic terminal function.
 Summary:        The libghostty-vt libraries
 
 %description -n libghostty-vt-nightly
-This package contains the libghostty-vt libraries, the first of many linghostty libaries in development.
+This package contains the libghostty-vt libraries, the first of many libghostty libaries in development.
 
 %package -n     libghostty-vt-nightly-devel
 Summary:        Development files for libghostty-vt
@@ -196,7 +196,7 @@ This package contains the libraries and header files that are needed for develop
 
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
-%autosetup -n %{base_name}-%{ver}-main+%{shortcommit}
+%autosetup -n %{base_name}-%{ver}-main-+%{shortcommit}
 
 ZIG_GLOBAL_CACHE_DIR="%{_zig_cache_dir}" ./nix/build-support/fetch-zig-cache.sh
 

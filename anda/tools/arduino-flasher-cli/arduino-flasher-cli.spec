@@ -1,5 +1,5 @@
 %global goipath         github.com/arduino/arduino-flasher-cli
-Version:                0.5.0
+Version:                0.5.1
 
 %gometa -f
 
@@ -10,7 +10,7 @@ CLI tool to flash UNO Q boards with the latest Arduino Linux image.}
 %global godocs          README.md
 
 Name:           arduino-flasher-cli
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        CLI tool to flash UNO Q boards with the latest Arduino Linux image
 License:        GPL-3.0-only
 URL:            %{gourl}

@@ -1,13 +1,13 @@
-%global commit ba7204d4b1989acb8d63bb7fc9f98fe58ec6aa58
+%global commit 566a2b690e7c32a92fa1830c6ddc2a6d6ed872b7
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260307
-%global ver 0.6.6.2
+%global commit_date 20260721
+%global ver 0.6.7
 
 # We aren't using Mono but RPM expected Mono
 %global __requires_exclude_from ^/usr/lib/opentabletdriver/.*$
 %global __os_install_post %{nil}
 %define debug_package %nil
-%global dotnet_runtime_version 8.0
+%global dotnet_runtime_version 10.0
 
 Name:           opentabletdriver-nightly
 Version:        %ver^%commit_date.git~%shortcommit
@@ -37,11 +37,11 @@ OpenTabletDriver is an open source, cross platform, user mode tablet driver. The
 %autosetup -n OpenTabletDriver-%commit
 
 %build
-./eng/linux/package.sh --output bin
+./eng/bash/package.sh --output bin
 
 %install
 export DONT_STRIP=1
-PREFIX="%{_prefix}" ./eng/linux/package.sh --package Generic --build false
+PREFIX="%{_prefix}" ./eng/bash/package.sh --package Generic --build false
 mkdir -p "%{buildroot}"
 mv ./dist/files/* "%{buildroot}"/
 rm -rf ./dist

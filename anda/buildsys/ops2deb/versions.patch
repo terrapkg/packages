@@ -1,0 +1,18 @@
+diff --git a/pyproject.toml b/pyproject.toml
+index 29b753f..926abf8 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -18,10 +18,10 @@ packages = [
+ ]
+ 
+ [tool.poetry.dependencies]
+-python = ">=3.10,<3.12"
++python = ">=3.10"
+ httpx = ">=0.20.0"
+-semver = "3.0.2"
+-"ruamel.yaml" = "0.18.14"
++semver = ">3.0.2"
++"ruamel.yaml" = ">0.18.14"
+ python-debian = ">=0.1.42"
+ PyYAML = "^6"
+ typer = ">=0.6.1"

@@ -1,6 +1,6 @@
 Name:           gsettings-ubuntu-touch-schemas
 Version:        0.0.7+21.10.20210712
-Release:        %autorelease
+Release:        1%{?dist}
 Summary:        Shared GSettings schemas for Ubuntu touch and Unity
 BuildArch:      noarch
 
@@ -23,11 +23,13 @@ settings shared by various components of a Ubuntu environment.
 %prep
 %autosetup -c
 
-%build
+%conf
 NOCONFIGURE=1 \
 ./autogen.sh
 
 %configure
+
+%build
 %make_build
 
 %install

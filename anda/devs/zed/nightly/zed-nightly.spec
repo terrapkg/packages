@@ -1,11 +1,11 @@
-%global commit 8d083a639cf42c760fe337ab4486d9f6eb55ddd1
+%global commit aba12fc8a0fe44a0742acc0d096e843d07385962
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260308
-%global ver 0.228.0
+%global commit_date 20260723
+%global ver 1.14.0
 
 %bcond_with check
 %bcond_with debug_no_build
-%bcond nightly 1
+%bcond nightly 0
 
 %if 0%{?with_debug_no_build}
 %global debug_package %{nil}
@@ -19,13 +19,14 @@
 %global appstream_component desktop-application
 
 %global rustflags_debuginfo 0
+%global toolchain clang
 
 Name:           zed-nightly
 Version:        %ver^%commit_date.%shortcommit
 Release:        1%{?dist}
 Summary:        Zed is a high-performance, multiplayer code editor
-SourceLicense:  AGPL-3.0-only AND Apache-2.0 AND GPL-3.0-or-later
-License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 AND ISC) AND AGPL.3.0-only AND AGPL-3.0-or-later AND (Apache-2.0 OR BSL-1.0 OR MIT) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception) AND Apache-2.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR MIT OR Apache-2.0) AND BSD-2-Clause AND (CC0-1.0 OR Apache-2.0 OR Apache-2.0 WITH LLVM-exception) AND (CC0-1.0 OR Apache-2.0) AND (CC0-1.0 OR MIT-0 OR Apache-2.0) AND CC0-1.0 AND GPL-3.0-or-later AND (ISC AND (Apache-2.0 OR ISC) AND OpenSSL) AND (ISC AND (Apache-2.0 OR ISC)) AND ISC AND (MIT AND (MIT OR Apache-2.0)) AND (MIT AND BSD-3-Clause) AND (MIT OR Apache-2.0 OR CC0-1.0) AND (MIT OR Apache-2.0 OR NCSA) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MIT AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT) AND Zlib
+SourceLicense:  Apache-2.0 AND GPL-3.0-or-later
+License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND NCSA) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 AND ISC) AND (Apache-2.0 OR BSL-1.0 OR MIT) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR GPL-2.0-only) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 OR MIT/BSL-1.0/CC0-1.0) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception) AND Apache-2.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR MIT OR Apache-2.0) AND BSD-2-Clause AND (CC0-1.0 OR Apache-2.0 OR Apache-2.0 WITH LLVM-exception) AND (CC0-1.0 OR Apache-2.0) AND (CC0-1.0 OR MIT-0 OR Apache-2.0) AND CC0-1.0 AND GPL-3.0-or-later AND (ISC AND (Apache-2.0 OR ISC) AND OpenSSL) AND (ISC AND (Apache-2.0 OR ISC)) AND ISC AND (MIT AND (MIT OR Apache-2.0)) AND (MIT AND BSD-3-Clause) AND (MIT OR Apache-2.0 OR CC0-1.0) AND (MIT OR Apache-2.0 OR NCSA) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MIT AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT) AND Zlib
 URL:            https://zed.dev/
 Source0:        https://github.com/zed-industries/zed/archive/%{commit}.tar.gz
 Source1:        override.xml
@@ -50,9 +51,6 @@ BuildRequires:  fontconfig-devel
 BuildRequires:  wayland-devel
 BuildRequires:  libxkbcommon-x11-devel
 BuildRequires:  openssl-devel
-%if 0%{?fedora}
-BuildRequires:  openssl-devel-engine
-%endif
 BuildRequires:  libzstd-devel
 BuildRequires:  perl-FindBin
 BuildRequires:  perl-IPC-Cmd
@@ -174,7 +172,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%appid.desktop
 %files
 %doc CODE_OF_CONDUCT.md
 %doc README.md
-%license LICENSE-AGPL
 %license LICENSE-APACHE
 %license LICENSE-GPL
 %if %{without debug_no_build}

@@ -1,4 +1,4 @@
-%global swayVersion 1.11
+%global swayVersion 1.12
 
 Name:           swayfx
 Version:        0.5.2

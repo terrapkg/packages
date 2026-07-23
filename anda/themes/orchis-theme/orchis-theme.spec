@@ -1,12 +1,12 @@
 %define theme_name orchis
 %define original_theme_name Orchis
 
-%global ver 2025-04-25
+%global ver 2026-07-07
 %global sanitized_ver %(echo %{ver} | sed 's/-//g')
 
 Name: gtk-theme-%theme_name
 Version: %{sanitized_ver}
-Release: 2%?dist
+Release: 3%{?dist}
 Summary: Orchis is a Material Design theme for GNOME/GTK based desktop environments
 License: GPL-3.0-only
 Url: https://github.com/vinceliuice/Orchis-theme/
@@ -24,6 +24,8 @@ Requires: xfwm4-theme-%theme_name
 Requires: sassc
 
 BuildArch: noarch
+
+Packager:  Owen Zimmerman <owen@fyralabs.com>
 
 %description
 Orchis is a Material Design theme for GNOME/GTK based desktop environments.

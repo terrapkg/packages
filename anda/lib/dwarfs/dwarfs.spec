@@ -5,12 +5,12 @@ A fast high compression read-only file system for Linux and Windows.}
 %global _distro_extra_cxxflags -include %{_includedir}/c++/*/cstdint
 
 Name:          dwarfs
-Version:       0.14.1
-Release:       5%{?dist}
+Version:       0.15.5
+Release:       1%{?dist}
 Summary:       A fast high compression read-only file system for Linux, Windows and macOS
 License:       GPL-3.0-or-later
 URL:           https://github.com/mhx/%{name}
-Source0:       https://github.com/mhx/%{name}/releases/download/v%{version}/%{name}-%{version}.tar.xz
+Source0:       %{url}/archive/refs/tags/v%{version}.tar.gz
 BuildRequires: binutils-devel
 BuildRequires: boost-devel
 %if 0%{?fedora} >= 44
@@ -23,7 +23,6 @@ BuildRequires: bubblewrap
 BuildRequires: ccache
 BuildRequires: clang
 BuildRequires: cmake
-BuildRequires: double-conversion-devel
 BuildRequires: flac-devel
 BuildRequires: fmt-devel
 BuildRequires: fuse
@@ -33,21 +32,16 @@ BuildRequires: fuse-devel
 BuildRequires: g++
 BuildRequires: gcc
 BuildRequires: git
-BuildRequires: glog-devel
 BuildRequires: google-benchmark
 BuildRequires: jemalloc-devel
 BuildRequires: json-devel
 BuildRequires: libarchive-devel
-BuildRequires: libdwarf-devel
-BuildRequires: libevent-devel
-BuildRequires: libunwind-devel
 BuildRequires: libzstd-devel
 BuildRequires: lz4-devel
 BuildRequires: make
 BuildRequires: man
 BuildRequires: ninja-build
 BuildRequires: openssl-devel
-BuildRequires: pip
 BuildRequires: pkg-config
 BuildRequires: range-v3-devel
 BuildRequires: rubygem-ronn-ng
@@ -55,8 +49,6 @@ BuildRequires: utf8cpp-devel
 BuildRequires: xxhash-devel
 BuildRequires: xz-devel
 BuildRequires: zstd
-Requires:      bzip2-libs
-Requires:      gflags
 Requires:      libattr
 Requires:      libxml2
 Requires:      libzstd
@@ -96,7 +88,7 @@ Zsh shell completion for dwarfs.
 %prep
 %git_clone %{url}.git v%{version}
 
-%build
+%conf
 %cmake \
 -DWITH_TESTS=ON \
 -DWITH_LIBDWARFS=ON \
@@ -104,13 +96,9 @@ Zsh shell completion for dwarfs.
 -DWITH_FUSE_DRIVER=ON \
 -DBUILD_SHARED_LIBS=ON \
 -DWITH_MAN_OPTION=OFF \
--DCMAKE_INSTALL_SBINDIR="%(echo %{_sbindir} | sed 's|^/usr||')" \
-%cmake_build
-%ifarch aarch64
--DCMAKE_C_FLAGS="$CFLAGS -fno-lto -fno-use-linker-plugin" \
--DCMAKE_CXX_FLAGS="$CXXFLAGS -fno-lto -fno-use-linker-plugin" \
--DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS -fno-lto -fno-use-linker-plugin" \
-%endif
+-DCMAKE_INSTALL_SBINDIR="%(echo %{_sbindir} | sed 's|^/usr||')"
+
+%build
 %cmake_build
 
 %install

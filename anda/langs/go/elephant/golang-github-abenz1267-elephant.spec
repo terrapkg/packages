@@ -10,11 +10,11 @@
 %global __requires_exclude %{?__requires_exclude:%{__requires_exclude}|}^golang\\(.*\\)$
 %endif
 
-%global providers archlinuxpkgs calc clipboard desktopapplications files menus providerlist runner symbols websearch
+%global providers 1password aptpackages archlinuxpkgs bitwarden bluetooth bookmarks calc clipboard desktopapplications dnfpackages files menus niriactions nirisessions playerctl protonpass providerlist runner snippets symbols todo unicode websearch windows wireplumber
 
 # https://github.com/abenz1267/elephant
 %global goipath         github.com/abenz1267/elephant
-Version:                2.20.0
+Version:                2.22.0
 
 %gometa -f
 
@@ -27,7 +27,7 @@ Elephant - cuz it's phat - is a powerful data provider service and backend for b
 
 Name:           elephant
 Release:        1%{?dist}
-Summary:        None
+Summary:        Data provider service and backend for building custom application launchers & desktop utilities
 
 License:        GPL-3.0-only
 URL:            %{gourl}
