@@ -32,7 +32,7 @@
 
 Name:       vlc
 Epoch:      2
-Version:    3.0.21
+Version:    3.0.23
 Release:    1%{?dist}
 Summary:    The cross-platform open-source multimedia framework, player and server
 License:    GPL-2.0-or-later AND LGPL-2.1-or-later AND BSD-2-Clause AND BSD-3-Clause
