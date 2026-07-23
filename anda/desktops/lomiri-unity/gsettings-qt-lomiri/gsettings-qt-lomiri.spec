@@ -29,10 +29,10 @@ Requires: %{name}%{?_isa} = %{evr}
 %autosetup -n gsettings-qt-v%{version}
 
 %conf
+export QT_QPA_PLATFORM=offscreen
 %cmake
 
 %build
-export QT_QPA_PLATFORM=offscreen
 %cmake_build
 
 %install
