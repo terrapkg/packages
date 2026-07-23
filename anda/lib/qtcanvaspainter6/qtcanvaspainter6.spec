@@ -26,6 +26,8 @@ BuildRequires:      cmake(Qt6WidgetsPrivate)
 BuildSystem:        cmake
 BuildOption(conf):  -DQT_NO_PACKAGE_VERSION_CHECK=TRUE
 
+Packager:           Owen Zimmerman <owen@fyralabs.com>
+
 %description
 %{summary}.
 
