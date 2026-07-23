@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.2.2
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Python API to MPV using JSON IPC
 License:		Apache-2.0
 URL:			https://github.com/iwalton3/python-mpv-jsonipc

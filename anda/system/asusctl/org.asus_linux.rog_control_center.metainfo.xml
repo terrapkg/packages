@@ -41,6 +41,8 @@
     <keyword>ASUS</keyword>
     <keyword>ROG</keyword>
     <keyword>asusctl</keyword>
+    <keyword>Control Center</keyword>
+    <keyword>Armoury Crate</keyword>
   </keywords>
 
   <launchable type="desktop-id">rog-control-center.desktop</launchable>

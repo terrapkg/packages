@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		6.1.1
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Spotify Web API client for Python 3
 License:		MIT
 URL:			https://tekore.readthedocs.io/en/stable/

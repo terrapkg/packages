@@ -2,14 +2,13 @@
 
 Name:			signal-desktop
 %electronmeta -aD
-Version:		8.9.1
+Version:		8.20.0
 Release:		1%{?dist}
 Summary:		A private messenger for Windows, macOS, and Linux
 URL:			https://signal.org
 Source0:		https://github.com/signalapp/Signal-Desktop/archive/refs/tags/v%{version}.tar.gz
 Source1:		signal.desktop
 Source2:        org.signal.Signal.metainfo.xml
-Patch0:      fix-runtime.patch
 License:		AGPL-3.0-only AND %{electron_license}
 
 BuildRequires:	pulseaudio-libs-devel
@@ -70,9 +69,13 @@ pushd sticker-creator
 popd
 %dnl %pnpm_build -r generate,build:policy-files,generate,build:esbuild:prod
 %{__pnpm} run generate
-%{__pnpm} run build-linux
+%{__pnpm} run build-linux --%{_electron_cpu} --linux AppImage
+echo "Electron Builder" > %{rpmbuilddir}/webapp-tool.txt
 
 %install
+mv ./packages/mute-state-change/LICENSE ./packages/mute-state-change/LICENSE.mute-state-change
+mv ./packages/windows-ucv/LICENSE ./packages/mute-state-change/LICENSE.windows-ucv
+mv ./packages/types/LICENSE ./packages/mute-state-change/LICENSE.types
 %electron_install -i signal -l -I build/icons/png
 
 %desktop_file_install %{SOURCE1}
@@ -82,13 +85,15 @@ install -Dm644 $OUTDIR/resources/$policy %{buildroot}%{_datadir}/polkit-1/rules.
 rm $OUTDIR/resources/$policy
 done
 
+mv LICENSE LICENSE.signal-desktop
+
 %terra_appstream -o %{SOURCE2}
 
 %check
 %desktop_file_validate %{buildroot}%{_appsdir}/signal.desktop
 
 %files
-%license LICENSE
+%license LICENSE.signal-desktop
 %doc README.md CONTRIBUTING.md ACKNOWLEDGMENTS.md
 %license bundled_licenses/*
 %{_bindir}/signal-desktop
@@ -100,6 +105,12 @@ done
 %{_metainfodir}/org.signal.Signal.metainfo.xml
 
 %changelog
+* Thu Jun 25 2026 Owen Zimmerman <owen@fyralabs.com>
+- Fix more license name conflicts, remove patch
+
+* Sun Jun 14 2026 june-fish <git@june.fish>
+- Fix license name conflicts
+
 * Mon Dec 22 2025 Owen Zimmerman <owen@fyralabs.com>
 - Use more electron macros, correct build failures
 

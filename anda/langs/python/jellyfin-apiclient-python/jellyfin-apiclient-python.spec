@@ -2,12 +2,12 @@
 %global _desc Python API Client for Jellyfin.
 
 Name:			python-%{pypi_name}
-Version:		1.12.0
+Version:		1.15.0
 Release:		1%{?dist}
 Summary:		Python API Client for Jellyfin
-License:		GPL-3.0
+License:		GPL-3.0-or-later
 URL:			https://github.com/jellyfin/jellyfin-apiclient-python
-Source0:		%url/archive/refs/tags/v%version.tar.gz
+Source0:		%{pypi_source jellyfin_apiclient_python}
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
@@ -29,7 +29,7 @@ Provides:       jellyfin-apiclient
 %_desc
 
 %prep
-%autosetup -n %{pypi_name}-%{version}
+%autosetup -C
 
 %build
 %pyproject_wheel

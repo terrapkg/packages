@@ -1,7 +1,7 @@
 %global debug_package %{nil}
-%global commit 51fe72485032c779a261430a8100eaad5d8696b8
+%global commit c09fa9a6e98b951ea4ab9d4100aa85281a659074
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260328
+%global commit_date 20260714
 # Actual "release" version, currently unused as the release versions are back and forth on if on if they use 1.0.0 or 1.0.1
 # Use this if they ever stop doing that I guess
 %global ver 1.0.1

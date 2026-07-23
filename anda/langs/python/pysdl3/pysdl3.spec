@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.9.11b1
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		A pure Python wrapper for SDL3
 License:		MIT
 URL:			https://pysdl3.readthedocs.io/

@@ -5,22 +5,20 @@
 %global crate mise
 
 Name:           rust-mise
-Version:        2026.5.6
+Version:        2026.7.12
 Release:        1%{?dist}
 Summary:        Front-end to your dev env
 
 License:        MIT
 URL:            https://crates.io/crates/mise
-Source:         %{crates_source}
-Source1:        https://raw.githubusercontent.com/jdx/mise/refs/tags/v%version/man/man1/mise.1
-Source2:        https://raw.githubusercontent.com/jdx/mise/refs/tags/v%version/completions/mise.bash
-Source3:        https://raw.githubusercontent.com/jdx/mise/refs/tags/v%version/completions/mise.fish
-Source4:        https://raw.githubusercontent.com/jdx/mise/refs/tags/v%version/completions/_mise
-# Automatically generated patch to strip dependencies and normalize metadata
-Patch:          mise-fix-metadata-auto.diff
+Source:         %{terra_crates_source}
+Source1:        https://raw.githubusercontent.com/jdx/mise/main/man/man1/mise.1
+Source2:        https://raw.githubusercontent.com/jdx/mise/main/completions/mise.bash
+Source3:        https://raw.githubusercontent.com/jdx/mise/main/completions/mise.fish
+Source4:        https://raw.githubusercontent.com/jdx/mise/main/completions/_mise
 Packager:       madonuko <mado@fyralabs.com>
 
-BuildRequires:  anda-srpm-macros mold cargo-rpm-macros >= 24
+BuildRequires:  anda-srpm-macros cmake mold cargo-rpm-macros >= 24
 BuildRequires:  pkgconfig(openssl)
 
 %global _description %{expand:
@@ -85,10 +83,11 @@ Zsh command line completion support for %{crate}.
 
 
 %prep
-%autosetup -n %{crate}-%{version} -p1
+%autosetup -n %{crate}-%{version}
 %cargo_prep_online
 
 %build
+export LDFLAGS="$LDFLAGS -fPIE"
 %{cargo_license_summary_online}
 %{cargo_license_online} > LICENSE.dependencies
 %{cargo_build} --locked
