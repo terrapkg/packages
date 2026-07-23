@@ -91,6 +91,10 @@ jobs:
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
             terra${{ matrix.version }}-source anda-build/rpm/srpm/*
 
+      - name: Create Madoguchi Repository
+        run: |
+          curl -H "Authorization: Bearer ${{ secrets.MADOGUCHI_JWT }}" https://madoguchi.fyralabs.com/v4/repos/terra${{ matrix.version }} -X PUT -H "Content-Type: application/json" -d '{"gh":"https://github.com/terrapkg/packages/tree/${{ matrix.version }}","link":"https://repos.fyralabs.com/terra${{ matrix.version }}/"}' --fail-with-body
+
       - name: Attest build provenance
         uses: actions/attest-build-provenance@0f67c3f4856b2e3261c31976d6725780e5e4c373 # v4.1.1
         with:
