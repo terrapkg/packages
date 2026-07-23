@@ -24,6 +24,7 @@ BuildRequires: boost-devel
 BuildRequires: (ffmpeg-free-devel or ffmpeg-devel)
 BuildRequires: ladspa-devel
 BuildRequires: graphviz-devel
+BuildRequires: libXrandr-devel
 BuildRequires: pkgconfig(carla-host-plugin) >= 2.6.0
 BuildRequires: pkgconfig(gtk4)
 BuildRequires: pkgconfig(gtksourceview-5)
