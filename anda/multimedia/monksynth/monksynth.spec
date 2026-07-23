@@ -56,3 +56,7 @@ cd cpp
 %files
 %license LICENSE
 %doc README.md SECURITY.md
+
+%changelog
+* Thu Jul 23 2026 madonuko <mado@fyralabs.com> - 0.2.0~beta.15-1
+- Initial package
