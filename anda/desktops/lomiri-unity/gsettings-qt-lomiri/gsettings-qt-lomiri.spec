@@ -32,6 +32,7 @@ Requires: %{name}%{?_isa} = %{evr}
 %cmake
 
 %build
+export QT_QPA_PLATFORM=offscreen
 %cmake_build
 
 %install
