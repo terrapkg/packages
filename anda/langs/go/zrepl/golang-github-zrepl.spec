@@ -4,7 +4,7 @@
 
 # https://github.com/zrepl/zrepl
 %global goipath         github.com/zrepl/zrepl
-Version:                0.6.1
+Version:                0.7.0
 
 %gometa -f
 
@@ -75,7 +75,7 @@ cp -a   config/samples                                  %{buildroot}%{_datadir}/
 %license LICENSE
 %doc README.md
 %{_bindir}/*
-%config %{_unitdir}/zrepl.service
+%{_unitdir}/zrepl.service
 %dir %{_sysconfdir}/zrepl
 %config(noreplace) %{_sysconfdir}/zrepl/zrepl.yml
 %{_datadir}/bash-completion/completions/zrepl

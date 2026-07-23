@@ -1,8 +1,10 @@
+%global ver v1.7.2
+
 Name:		    geist-font
-Version:	    1.6.0
+Version:	    %(echo %ver | sed 's/^geist@//')
 Release:	    1%?dist
 URL:		    https://vercel.com/font
-Source0:	    https://github.com/vercel/geist-font/archive/refs/tags/%version.tar.gz
+Source0:	    https://github.com/vercel/geist-font/archive/refs/tags/%ver.tar.gz
 License:	    OFL-1.1
 Summary:	    Geist is a new font family for Vercel, created by Vercel in collaboration with Basement Studio
 BuildRequires:  make python3 python3.10 python3.10-devel meson cairo cairo-devel gcc
@@ -18,7 +20,7 @@ that is based on the principles of classic Swiss typography. It is designed to b
 headlines, logos, posters, and other large display sizes.
 
 %package        mono
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name} = %{evr}
 Summary:        Geist Mono is a monospaced typeface that has been crafted to be the perfect partner to Geist Sans
 Provides:       geist-mono = %evr
 Provides:       geist-mono-fonts = %evr
@@ -28,7 +30,7 @@ Geist Mono is a monospaced typeface that has been crafted to be the perfect part
 It is designed to be used in code editors, diagrams, terminals, and other textbased interfaces where code is represented.
 
 %prep
-%autosetup -n %name-%version
+%autosetup
 
 %build
 %make_build

@@ -1,13 +1,13 @@
 # Fedora sometimes sources the snapshots under stable versions and just bumps release
 # For user clarity I have separated these into different packages
-%global commit  533f41704766765cfb3706fb2aa197acbb05df32
+%global commit  08304e81f9ac9a83c552a6bd78689040d174bf95
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global ver 20250102
-%global commit_date 20251105
+%global ver 20260125
+%global commit_date 20260531
 
 Name:           winetricks-git
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Work around common problems in Wine; Winetricks Git builds
 License:        LGPL-2.1-or-later
 URL:            https://github.com/Winetricks/winetricks

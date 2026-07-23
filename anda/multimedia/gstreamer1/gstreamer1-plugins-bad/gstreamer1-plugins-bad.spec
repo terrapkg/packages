@@ -3,8 +3,8 @@
 %global         majorminor 1.0
 
 Name:           gstreamer1-plugins-bad
-Version:        1.26.9
-Release:        2%?dist
+Version:        1.28.5
+Release:        1%{?dist}
 Epoch:          2
 Summary:        GStreamer streaming media framework "bad" plugins
 License:        LGPL-2.0-or-later and LGPL-2.0-only
@@ -395,7 +395,7 @@ Provides:       %{name}-free-devel%{?_isa} = %{?epoch}:%{version}-%{release}
   -D opus=enabled \
   -D orc=enabled \
   -D package-name="Fedora GStreamer-plugins-bad package" \
-  -D package-origin="https://terra.fyralabs.com" \
+  -D package-origin="https://terrapkg.com" \
   -D pcapparse=enabled \
   -D pnm=enabled \
   -D proxy=enabled \

@@ -3,8 +3,8 @@
 %define debug_package %{nil}
 
 Name:             signal-cli
-Version:          0.13.22
-Release:          1%?dist
+Version:          0.14.6
+Release:          1%{?dist}
 Summary:          signal-cli provides an unofficial commandline, JSON-RPC and dbus interface for the Signal messenger
 License:          GPL-3.0-only
 URL:              https://github.com/AsamK/signal-cli
@@ -14,13 +14,15 @@ BuildArch:        noarch
 BuildRequires:    gcc-c++
 BuildRequires:    gradle
 BuildRequires:    anda-srpm-macros
-BuildRequires:    java-21-openjdk
-BuildRequires:    java-21-openjdk-devel
+BuildRequires:    java-25-openjdk
+BuildRequires:    java-25-openjdk-devel
 BuildRequires:    systemd-rpm-macros
 BuildRequires:    make
 BuildRequires:    asciidoc
 
 Recommends:       java-21-openjdk
+
+Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
 signal-cli is a commandline interface for the Signal messenger.

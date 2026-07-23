@@ -3,8 +3,8 @@
 %global appid com.mitchellh.ghostty
 
 Name:           ghostty
-Version:        1.2.3
-Release:        2%?dist
+Version:        1.3.1
+Release:        1%{?dist}
 Summary:        A fast, native terminal emulator written in Zig.
 License:        MIT AND MPL-2.0 AND OFL-1.1 AND (WTFPL OR CC0-1.0) AND Apache-2.0
 URL:            https://ghostty.org/
@@ -20,7 +20,7 @@ BuildRequires:  ncurses
 BuildRequires:  ncurses-devel
 BuildRequires:  pandoc-cli
 BuildRequires:  systemd-rpm-macros
-BuildRequires:  zig >= 0.14.0
+BuildRequires:  zig0.15
 BuildRequires:  zig-rpm-macros
 BuildRequires:  pkgconfig(blueprint-compiler)
 BuildRequires:  pkgconfig(bzip2)
@@ -41,7 +41,7 @@ Requires:       gtk4
 Requires:       gtk4-layer-shell
 Requires:       libadwaita
 Conflicts:      ghostty-nightly
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 👻 Ghostty is a fast, feature-rich, and cross-platform terminal emulator that uses platform-native UI and GPU acceleration.
@@ -76,6 +76,13 @@ BuildArch:      noarch
 %description    zsh-completion
 Zsh shell completion for Ghostty.
 
+%package        devel
+Summary:        Development files for Ghostty.
+Requires:       %{name} = %{evr}
+
+%description    devel
+This package includes the development files for Ghostty.
+
 %package        kio
 Summary:        KIO support for Ghostty
 Requires:       %{name} = %{evr}
@@ -88,6 +95,7 @@ This package allows Ghostty to interact with KIO.
 Summary:        Nautilus menu support for Ghostty
 Supplements:    (%{name} and nautilus)
 Requires:       %{name} = %{evr}
+Requires:       nautilus-python
 BuildArch:      noarch
 
 %description    nautilus
@@ -144,11 +152,26 @@ BuildArch:      noarch
 %description    terminfo
 Ghostty's terminfo. Needed for basic terminal function.
 
+%package -n     libghostty-vt
+Summary:        The libghostty-vt libraries
+
+%description -n libghostty-vt
+This package contains the libghostty-vt libraries, the first of many libghostty libaries in development.
+
+%package -n     libghostty-vt-devel
+Summary:        Development files for libghostty-vt
+Requires:       libghostty-vt = %{evr}
+
+%description -n libghostty-vt-devel
+This package contains the libraries and header files that are needed for developing with libghostty-vt.
+
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
 %autosetup
 
 ZIG_GLOBAL_CACHE_DIR="%{_zig_cache_dir}" ./nix/build-support/fetch-zig-cache.sh
+# Workaround for 0.16 macros working around zig problem
+mv "%{_zig_cache_dir}/p" "zig-pkg"
 
 %build
 
@@ -202,6 +225,9 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{name}
 %files zsh-completion
 %{zsh_completions_dir}/_%{name}
 
+%files devel
+%{_includedir}/ghostty/
+
 %files kio
 %{_datadir}/kio/servicemenus/%{appid}.desktop
 
@@ -229,6 +255,7 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{name}
 %{_datadir}/%{name}/shell-integration/bash/%{name}.bash
 %{_datadir}/%{name}/shell-integration/elvish/lib/%{name}-integration.elv
 %{_datadir}/%{name}/shell-integration/fish/vendor_conf.d/%{name}-shell-integration.fish
+%{_datadir}/%{name}/shell-integration/nushell/vendor/autoload/%{name}.nu
 %{_datadir}/%{name}/shell-integration/zsh/.zshenv
 %{_datadir}/%{name}/shell-integration/zsh/%{name}-integration
 
@@ -247,13 +274,20 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{name}
 %postun
 %systemd_user_postun app-%{appid}.service
 
+%files -n libghostty-vt
+%{_libdir}/libghostty-vt.so.*
+
+%files -n libghostty-vt-devel
+%{_libdir}/libghostty-vt.so
+%{_datadir}/pkgconfig/libghostty-vt.pc
+
 %changelog
 * Tue Oct 28 2025 Gilver E. <rockgrub@disroot.org> - 1.2.3-2
 - Disabled bundled themes
  * This is necessary to address licensing issues in the themes repo Ghostty uses
  * See: https://github.com/mbadolato/iTerm2-Color-Schemes/issues/638
 * Fri Jan 31 2025 Gilver E. <rockgrub@disroot.org>
-- Update to 1.1.0-1%{?dist}
+- Update to 1.1.0-1
  * Low GHSA-98wc-794w-gjx3: Ghostty leaked file descriptors allowing the shell and any of its child processes to impact other Ghostty terminal instances
  * Ghostty terminfo source files are now a subpackage
  * Shell integration and completion and terminfo subpackages are now properly noarch

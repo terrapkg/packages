@@ -1,17 +1,17 @@
-%global commit 9417838c91aab6088778089b9a3e8330bca53fbd
+%global commit b02d6d4ed86129f87dff0be9e0abe091ea7e159f
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global fulldate 2024-02-14T09:28:02Z
+%global fulldate 2026-04-14
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global ver 2.1
 %global debug_package %{nil}
 
 Name:          uwufetch
 Version:       %{ver}^%{commit_date}git.%{shortcommit}
-Release:       1%?dist
+Release:       1%{?dist}
 Summary:       A meme system info tool for Linux, based on nyan/uwu trend on r/linuxmasterrace.
 License:       GPL-3.0
 URL:           https://github.com/ad-oliviero/uwufetch
-BuildRequires: make gcc git anda-srpm-macros
+BuildRequires: make gcc git anda-srpm-macros pciutils-devel
 Requires:      freecolor
 Requires:      xwininfo
 Recommends:    lshw

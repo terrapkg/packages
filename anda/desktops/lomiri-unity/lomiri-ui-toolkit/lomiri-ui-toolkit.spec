@@ -1,10 +1,10 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-ui-toolkit
-%global commit 4789df7ca73f4d945279d6c28dab8c5efbac4b18
+%global commit 74d94596a8b273dc02dc6d5a44d614a16bb2383b
 %forgemeta
 
 Name:           lomiri-ui-toolkit
-Version:        1.3.5900
-Release:        1%?dist
+Version:        1.3.5907
+Release:        1%{?dist}
 Summary:        QML components to ease the creation of beautiful applications in QML for Lomiri
 
 License:        LGPL-3.0

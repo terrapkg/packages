@@ -2,8 +2,8 @@
 %global _desc Twisted-based asynchronous Tor control protocol implementation. Includes unit-tests, examples, state-tracking code and configuration abstraction.
 
 Name:			python-%{pypi_name}
-Version:		24.8.0
-Release:		1%?dist
+Version:		26.6.0
+Release:		2%{?dist}
 Summary:		Twisted-based asynchronous Tor control protocol implementation. Includes unit-tests, examples, state-tracking code and configuration abstraction
 License:		MIT
 URL:			https://github.com/meejah/txtorcon
@@ -46,8 +46,6 @@ Provides:       txtorcon
 %python3_sitelib/txtorcon-%version.dist-info/*
 %python3_sitelib/twisted/plugins/*.py
 %{_datadir}/txtorcon/*
-%ghost %python3_sitelib/__pycache__/*.cpython-*.pyc
-%ghost %python3_sitelib/%{name}/subcommands/__pycache__/*.cpython-*.pyc
 
 %changelog
 * Mon Nov 03 2025 Owen Zimmerman <owen@fyralabs.com>

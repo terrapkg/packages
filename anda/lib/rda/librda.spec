@@ -1,9 +1,9 @@
 Name:			librda
 Version:		0.0.5
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Remote Desktop Awareness Shared Library
 Group:			System Environment/Libraries
-License:		LGPL2.1+ or GPL3+
+License:		LGPL-2.1-or-later AND GPL-3.0-or-later
 URL:			https://github.com/ArcticaProject/librda
 Source0:		%url/archive/refs/tags/%version.tar.gz
 Requires:		glib2 glibc
@@ -16,10 +16,12 @@ BuildRequires:	clang gcc make autoconf libtool gettext-devel
 %prep
 %autosetup
 
-%build
+%conf
 autoupdate
 autoreconf -vfi
 %configure --disable-static --enable-x2go --enable-ogon
+
+%build
 %make_build
 
 %install

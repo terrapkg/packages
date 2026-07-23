@@ -1,6 +1,7 @@
---- a/source/CMakeLists.txt
-+++ b/source/CMakeLists.txt
-@@ -611,7 +611,15 @@
+diff -Naur x265_4.2.old/source/CMakeLists.txt x265_4.2/source/CMakeLists.txt
+--- x265_4.2.old/source/CMakeLists.txt	2026-05-22 09:31:41.395284685 +0200
++++ x265_4.2/source/CMakeLists.txt	2026-05-22 09:31:41.446248583 +0200
+@@ -1075,7 +1075,15 @@
      if(MSVC)
          set_target_properties(x265-shared PROPERTIES OUTPUT_NAME libx265)
      else()
@@ -17,9 +18,10 @@
      endif()
      if(UNIX)
          set_target_properties(x265-shared PROPERTIES VERSION ${X265_BUILD})
---- a/source/encoder/api.cpp
-+++ b/source/encoder/api.cpp
-@@ -704,7 +704,7 @@
+diff -Naur x265_4.2.old/source/encoder/api.cpp x265_4.2/source/encoder/api.cpp
+--- x265_4.2.old/source/encoder/api.cpp	2026-05-22 09:31:41.431540093 +0200
++++ x265_4.2/source/encoder/api.cpp	2026-05-22 09:31:41.446517920 +0200
+@@ -1119,7 +1119,7 @@
  #define ext ".dylib"
  #else
  #include <dlfcn.h>
@@ -28,4 +30,3 @@
  #endif
  #if defined(__GNUC__) && __GNUC__ >= 8
  #pragma GCC diagnostic ignored "-Wcast-function-type"
-

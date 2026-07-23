@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.9
-Release:		1%?dist
+Release:		2%?dist
 Summary:		pure-python implementation of the SPAKE2 Password-Authenticated Key Exchange algorithm
 License:		MIT
 URL:			https://github.com/warner/python-spake2
@@ -40,9 +40,6 @@ Summary:        %{summary}
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
-%ghost %python3_sitelib/__pycache__/*.cpython-*.pyc
-%ghost %python3_sitelib/%{name}/subcommands/__pycache__/*.cpython-*.pyc
-%python3_sitelib/spake2-%version.dist-info/*
 
 %changelog
 * Mon Nov 03 2025 Owen Zimmerman <owen@fyralabs.com>

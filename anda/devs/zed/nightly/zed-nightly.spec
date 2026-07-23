@@ -1,11 +1,11 @@
-%global commit 63cc90cd2c0d26697d9175fda8eb01a09af65921
+%global commit aba12fc8a0fe44a0742acc0d096e843d07385962
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20251208
-%global ver 0.217.0
+%global commit_date 20260723
+%global ver 1.14.0
 
 %bcond_with check
 %bcond_with debug_no_build
-%bcond nightly 1
+%bcond nightly 0
 
 %if 0%{?with_debug_no_build}
 %global debug_package %{nil}
@@ -15,17 +15,18 @@
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 %global crate zed
-%global appid dev.zed.Zed-nightly
+%global appid dev.zed.Zed-Nightly
 %global appstream_component desktop-application
 
 %global rustflags_debuginfo 0
+%global toolchain clang
 
 Name:           zed-nightly
 Version:        %ver^%commit_date.%shortcommit
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Zed is a high-performance, multiplayer code editor
-SourceLicense:  AGPL-3.0-only AND Apache-2.0 AND GPL-3.0-or-later
-License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 AND ISC) AND AGPL.3.0-only AND AGPL-3.0-or-later AND (Apache-2.0 OR BSL-1.0 OR MIT) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception) AND Apache-2.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR MIT OR Apache-2.0) AND BSD-2-Clause AND (CC0-1.0 OR Apache-2.0 OR Apache-2.0 WITH LLVM-exception) AND (CC0-1.0 OR Apache-2.0) AND (CC0-1.0 OR MIT-0 OR Apache-2.0) AND CC0-1.0 AND GPL-3.0-or-later AND (ISC AND (Apache-2.0 OR ISC) AND OpenSSL) AND (ISC AND (Apache-2.0 OR ISC)) AND ISC AND (MIT AND (MIT OR Apache-2.0)) AND (MIT AND BSD-3-Clause) AND (MIT OR Apache-2.0 OR CC0-1.0) AND (MIT OR Apache-2.0 OR NCSA) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MIT AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT) AND Zlib
+SourceLicense:  Apache-2.0 AND GPL-3.0-or-later
+License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND NCSA) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 AND ISC) AND (Apache-2.0 OR BSL-1.0 OR MIT) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR GPL-2.0-only) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 OR MIT/BSL-1.0/CC0-1.0) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception) AND Apache-2.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR MIT OR Apache-2.0) AND BSD-2-Clause AND (CC0-1.0 OR Apache-2.0 OR Apache-2.0 WITH LLVM-exception) AND (CC0-1.0 OR Apache-2.0) AND (CC0-1.0 OR MIT-0 OR Apache-2.0) AND CC0-1.0 AND GPL-3.0-or-later AND (ISC AND (Apache-2.0 OR ISC) AND OpenSSL) AND (ISC AND (Apache-2.0 OR ISC)) AND ISC AND (MIT AND (MIT OR Apache-2.0)) AND (MIT AND BSD-3-Clause) AND (MIT OR Apache-2.0 OR CC0-1.0) AND (MIT OR Apache-2.0 OR NCSA) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MIT AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT) AND Zlib
 URL:            https://zed.dev/
 Source0:        https://github.com/zed-industries/zed/archive/%{commit}.tar.gz
 Source1:        override.xml
@@ -50,9 +51,6 @@ BuildRequires:  fontconfig-devel
 BuildRequires:  wayland-devel
 BuildRequires:  libxkbcommon-x11-devel
 BuildRequires:  openssl-devel
-%if 0%{?fedora}
-BuildRequires:  openssl-devel-engine
-%endif
 BuildRequires:  libzstd-devel
 BuildRequires:  perl-FindBin
 BuildRequires:  perl-IPC-Cmd
@@ -63,7 +61,7 @@ BuildRequires:  perl-lib
 BuildRequires:  rustup
 %endif
 BuildRequires:  vulkan-loader
-Requires: (%name-rename-zeditor if zfs else %name-cli)
+Requires: (%name-cli-compat-zfs if zfs else %name-cli)
 Suggests: %name-cli
 
 %description
@@ -73,33 +71,21 @@ Code at the speed of thought - Zed is a high-performance, multiplayer code edito
 Summary: Provides the /usr/bin/zed binary
 Conflicts: zfs
 Supplements: (%name unless zfs)
-%description cli
-This package provides the /usr/bin/zed binary. If you use zfs, install %name-rename-zeditor instead.
-%files cli
-%if %{without debug_no_build}
-%_bindir/zed
-%endif
-%{_datadir}/icons/hicolor/512x512/apps/%appid.png
-%{_datadir}/applications/%appid.desktop
-%{_metainfodir}/%appid.metainfo.xml
 
-%package rename-zeditor
+%description cli
+This package provides the /usr/bin/zed binary. If you use zfs, install %name-cli-compat-zfs instead.
+
+%package cli-compat-zfs
 Summary: Rename zed to zeditor to prevent collision with zfs
 Provides: %name-cli
 Conflicts: %name-cli
+Obsoletes: %{name}-rename-zeditor <= 0.217.3
 Supplements: (%name and zfs)
 RemovePathPostFixes: .zeditor
-%description rename-zeditor
+
+%description cli-compat-zfs
 This package provides the %_bindir/zeditor binary instead of %_bindir/zed. This avoids conflicts with the zfs package.
 The normal package is %name-cli.
-%files rename-zeditor
-%if %{without debug_no_build}
-%_bindir/zeditor
-%endif
-%{_datadir}/icons/hicolor/512x512/apps/%appid.png
-%_datadir/applications/%appid.desktop.zeditor
-%{_metainfodir}/%appid.metainfo.xml
-
 
 %prep
 %autosetup -n %{crate}-%{commit} -p1
@@ -122,7 +108,6 @@ export ZED_RELEASE_CHANNEL=nightly
 export BRANDING_LIGHT="#e9aa6a"
 export BRANDING_DARK="#1a5fb4"
 
-echo "StartupWMClass=$appid" >> crates/zed/resources/zed.desktop.in
 envsubst < "crates/zed/resources/zed.desktop.in" > %{appid}.desktop # from https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=zed-git#n52
 sed -i "s|@release_info@||g" "crates/zed/resources/flatpak/zed.metainfo.xml.in"
 
@@ -187,7 +172,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%appid.desktop
 %files
 %doc CODE_OF_CONDUCT.md
 %doc README.md
-%license LICENSE-AGPL
 %license LICENSE-APACHE
 %license LICENSE-GPL
 %if %{without debug_no_build}
@@ -202,6 +186,22 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%appid.desktop
 %if %{without debug_no_build}
 %{_libexecdir}/zed-editor
 %endif
+
+%files cli
+%if %{without debug_no_build}
+%_bindir/zed
+%endif
+%{_datadir}/icons/hicolor/512x512/apps/%appid.png
+%{_datadir}/applications/%appid.desktop
+%{_metainfodir}/%appid.metainfo.xml
+
+%files cli-compat-zfs
+%if %{without debug_no_build}
+%_bindir/zeditor
+%endif
+%{_datadir}/icons/hicolor/512x512/apps/%appid.png
+%_datadir/applications/%appid.desktop.zeditor
+%{_metainfodir}/%appid.metainfo.xml
 
 %changelog
 %autochangelog

@@ -3,9 +3,9 @@
 
 Name:           mjpegtools
 Version:        2.2.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Tools to manipulate MPEG data
-License:        GPLv2
+License:        GPL-2.0-or-later
 URL:            http://mjpeg.sourceforge.net/
 Source0:        https://downloads.sourceforge.net/sourceforge/mjpeg/%{name}-%{version}.tar.gz
 BuildRequires:  autoconf
@@ -77,7 +77,7 @@ for f in docs/yuvfps.1 ; do
     iconv -f iso-8859-1 -t utf-8 $f > $f.utf8 ; mv $f.utf8 $f
 done
 
-%build
+%conf
 autoreconf -vif
 %configure \
   --disable-static \
@@ -90,6 +90,7 @@ autoreconf -vif
   --with-v4l \
   --without-sdlgfx
 
+%build
 %make_build
 
 %install

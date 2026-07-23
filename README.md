@@ -1,15 +1,19 @@
 # Terra Sources
 
+[![Repository status](https://repology.org/badge/repository-big/terra_rawhide.svg?header=Terra+Rawhide)](https://repology.org/repository/terra_rawhide)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/terrapkg/packages/badge)](https://scorecard.dev/viewer/?uri=github.com/terrapkg/packages) 
+
+
 Terra is a rolling-release Fedora repository for all the software you need.
 With Terra, you can install the latest packages knowing that quality and security are assured.
 
-See the introduction at [our website](https://terra.fyralabs.com).
+See the introduction at [our website](https://terrapkg.com).
 
 This monorepo contains the package manifests for all packages in Terra.
 
 ## Installation
 
-The latest detailed instructions are available in our Devdocs: https://developer.fyralabs.com/terra/installing
+The latest detailed instructions are available in our docs: https://docs.terrapkg.com/usage/installing
 
 ### Fedora
 
@@ -23,8 +27,14 @@ If you are using immutable/atomic editions of Fedora, run the following commands
 curl -fsSL https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo | pkexec tee /etc/yum.repos.d/terra.repo
 sudo rpm-ostree install terra-release
 ```
+#### Subrepos
 
-Optionally, you can install `terra-release-extra` to use the Extras repository. This also installs the Nvidia, and Mesa streams but does not enable them.
+On Fedora, you can optionally install the Terra subrepos. Extra care and caution may be needed as some of these packages may conflict with other repositories such as RPM Fusion.
+
+- Install `terra-release-extras` to enable the Extras subrepo. This repo contains packages which conflict with Fedora packages in some way, such as being a patched version of the same package.
+- Install `terra-release-mesa` to install the Mesa subrepo which contains a patched and codec complete Mesa.
+- Install `terra-release-nvidia` to install the NVIDIA subrepo which contains NVIDIA drivers.
+- Install `terra-release-multimedia` for multimedia packages in Terra. **This repository is currently considered unstable and a work in progress.**
 
 ### Enterprise Linux (EL)
 
@@ -46,23 +56,22 @@ sudo dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/t
 
 First of all, thanks for being interested in contributing to Terra! If you have any questions about contributing, please [join our chats](https://wiki.ultramarine-linux.org/en/community/community/).
 
-- [Contribution Guide](https://developer.fyralabs.com/terra/contributing)
-- [FAQ](https://developer.fyralabs.com/terra/faq)
-- [Policy](https://developer.fyralabs.com/terra/policy)
-
+- [Contribution Guide](https://docs.terrapkg.com/contributing/getting-started)
+- [FAQ](https://docs.terrapkg.com/reference/faq)
+- [Guidelines](https://docs.terrapkg.com/contributing/guidelines)
 
 ## Documentation
 
-Our documentation can be found on our [Devdocs](https://developer.fyralabs.com/terra/).
+Our documentation can be found on our [docs site](https://docs.terrapkg.com).
 
-## pkgs.org
+## Searching Packages
 
-pkgs.org provides a list of the packages available in the main stream: https://fedora.pkgs.org/rawhide/terra/
+[pkgs.org](https://fedora.pkgs.org/rawhide/terra/) and [Repology](https://repology.org/) provide a list of the packages available in Terra.
 
 ## Questions?
 
 Feel free to reach out by [joining our community](https://wiki.ultramarine-linux.org/en/community/community/). We're always happy to help!
 
-- [Contribution Guide](https://developer.fyralabs.com/terra/contributing)
-- [FAQ](https://developer.fyralabs.com/terra/faq)
-- [Policy](https://developer.fyralabs.com/terra/policy)
+- [Contribution Guide](https://docs.terrapkg.com/contributing/getting-started)
+- [FAQ](https://docs.terrapkg.com/reference/faq)
+- [Guidelines](https://docs.terrapkg.com/contributing/guidelines)

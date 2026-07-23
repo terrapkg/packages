@@ -1,6 +1,6 @@
-%global commit 6970c40930bedd8b58d0764894e0d5f04813b7c5
+%global commit da247eb378287b435fa2963bfaee634bda96caac
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20240109
+%global commitdate 20260627
 %global ver 1.0
 %global modulename xpad-noone
 %global _description %{expand:
@@ -8,19 +8,17 @@ This is the original upstream xpad driver from the Linux kernel with support for
 
 Name:          dkms-%{modulename}
 Version:       %{ver}^%{commitdate}git.%{shortcommit}
-Release:       1%?dist
+Release:       5%{?dist}
 License:       GPL-2.0-or-later
 Summary:       xpad driver with support for XBox One controllers removed
-URL:           https://github.com/medusalix/xpad-noone
+URL:           https://github.com/Jan200101/xpad-noone
 Source0:       %{url}/archive/%{commit}/%{modulename}-%{commit}.tar.gz#/%{modulename}-%{shortcommit}.tar.gz
 Source1:       no-weak-modules.conf
-# Extra support for controllers that register as XBox 360 controllers
-Patch0:        0000.patch
 Requires:      %{modulename} = %{?epoch:%{epoch}:}%{version}
 Requires:      dkms
 Conflicts:     akmod-%{modulename}
 BuildArch:     noarch
-Packager:      Gilver E. <rockgrub@disroot.org>
+Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description %_description
 
@@ -53,5 +51,8 @@ dkms remove -m %{modulename} -v %{version} -q --all --rpm_safe_upgrade || :
 %endif
 
 %changelog
+* Sat Jun 27 2026 Jan200101 <sentrycraft123@gmail.com> - 1.0^20260627git.da247eb-5
+- Update package to use updated fork
+
 * Fri Mar 07 2025 Gilver E. <rockgrub@disroot.org>
 - Initial package
