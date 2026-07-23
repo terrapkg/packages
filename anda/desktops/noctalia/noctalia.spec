@@ -1,9 +1,9 @@
 %global debug_package   %{nil}
 
-%global ver 5.0.0-beta.3
+%global ver 5.0.0-beta.4
 
 Name:   	noctalia
-Version:	5.0.0~beta.3
+Version:	5.0.0~beta.4
 Release:	1%{?dist}
 Summary:	A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with no Qt or GTK dependency
 
