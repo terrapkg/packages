@@ -5,7 +5,7 @@
 %global pkgver %{pkg_name}-%{version}
 %{?haskell_setup}
 
-# testsuite missing deps: test-framework test-framework-hunit
+%bcond tests 1
 
 Name:           ghc-%{pkg_name}
 Version:        0.1.0.0
@@ -35,6 +35,11 @@ BuildRequires:  ghc-filepath-prof
 BuildRequires:  ghc-optparse-applicative-prof
 BuildRequires:  ghc-parsec-prof
 BuildRequires:  ghc-strict-prof
+%endif
+%if %{with tests}
+BuildRequires:  ghc-HUnit-devel
+BuildRequires:  ghc-test-framework-devel
+BuildRequires:  ghc-test-framework-hunit-devel
 %endif
 # End cabal-rpm deps
 
@@ -85,7 +90,7 @@ This package provides the Haskell %{pkg_name} profiling library.
 %setup -q -n %{pkgver}
 cp -bp %{SOURCE1} %{pkg_name}.cabal
 # End cabal-rpm setup
-sed -i 's/optparse-applicative[^,]*/optparse-applicative >= 0.5/g' %{pkg_name}.cabal
+
 
 %build
 # Begin cabal-rpm build:
@@ -97,6 +102,13 @@ sed -i 's/optparse-applicative[^,]*/optparse-applicative >= 0.5/g' %{pkg_name}.c
 # Begin cabal-rpm install
 %ghc_lib_install
 # End cabal-rpm install
+
+
+%check
+%if %{with tests}
+PATH=%{buildroot}%{_bindir}:$PATH
+%cabal_test
+%endif
 
 
 %files -f %{name}.files
@@ -121,5 +133,5 @@ sed -i 's/optparse-applicative[^,]*/optparse-applicative >= 0.5/g' %{pkg_name}.c
 
 
 %changelog
-* Wed Jul 22 2026 Owen Zimmerman <owen@fyralabs.com> - 0.1.0.0-1
+* Thu Jul 23 2026 Owen-sz <owen@fyralabs.com> - 0.1.0.0-1
 - Initial commit
