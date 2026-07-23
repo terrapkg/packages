@@ -45,12 +45,12 @@ Note: This driver replaces the in-kernel hid-logitech-hidpp module and continues
 # print kmodtool output for debugging purposes:
 kmodtool --target %{_target_cpu} --repo terrapkg.com --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
-%setup -q -c -n %{modulename}-%{commit}
+%setup -q -c -n logitech-trueforce-linux-driver-%{commit}
 
-mv %{modulename}-%{commit}/mainline/* %{modulename}-%{commit}/
+mv logitech-trueforce-linux-driver-%{commit}/mainline/* logitech-trueforce-linux-driver-%{commit}/
 
 for kernel_version  in %{?kernel_versions} ; do
-  cp -a %{modulename}-%{commit} _kmod_build_${kernel_version%%___*}
+  cp -a logitech-trueforce-linux-driver-%{commit} _kmod_build_${kernel_version%%___*}
 done
 
 %build
