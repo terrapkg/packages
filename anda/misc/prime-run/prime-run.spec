@@ -1,10 +1,10 @@
 Name:           prime-run
 Version:        1.0.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A simple script to run an application with NVIDIA PRIME GPU offloading
 
 License:        MIT
-URL:            https://terra.fyralabs.com
+URL:            https://terrapkg.com
 Source0:        prime-run.sh
 
 # Bash script

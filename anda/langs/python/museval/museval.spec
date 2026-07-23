@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.4.1
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Source separation evaluation tools for python
 License:		MIT
 URL:			https://github.com/sigsep/sigsep-mus-eval

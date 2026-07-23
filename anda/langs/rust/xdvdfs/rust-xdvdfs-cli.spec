@@ -10,7 +10,7 @@ Summary:        Tool for interacting with XISO/XDVDFS images
 
 License:        MIT
 URL:            https://crates.io/crates/xdvdfs-cli
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 Source1:		https://raw.githubusercontent.com/antangelo/xdvdfs/v%version/LICENSE
 Packager:		madonuko <mado@fyralabs.com>
 

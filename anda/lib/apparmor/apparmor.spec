@@ -6,7 +6,7 @@
 %bcond_with tests
 
 Name:           apparmor
-Version:        4.1.7
+Version:        5.0.2
 Release:        1%{?dist}
 Summary:        AppArmor userspace components
 
@@ -38,6 +38,7 @@ BuildRequires:  systemd-rpm-macros
 BuildRequires:  autoconf-archive
 BuildRequires:  gawk
 BuildRequires:  which
+BuildRequires:  libzstd-devel
 %if %{with tests}
 BuildRequires:  %{_bindir}/runtest
 BuildRequires:  %{_bindir}/prove
@@ -143,10 +144,11 @@ changehat abilities exposed through libapparmor.
 
 %prep
 %autosetup -p1 -n %name-v%normver
+
+%conf
 sed -i 's/@VERSION@/%normver/g' libraries/libapparmor/swig/python/setup.py.in
 sed -i 's/${VERSION}/%normver/g' utils/Makefile
 
-%build
 export PYTHON=%{__python3}
 export PYTHON_VERSION=3
 export PYTHON_VERSIONS=python3
@@ -154,8 +156,12 @@ export PYTHON_VERSIONS=python3
 pushd libraries/libapparmor
 ./autogen.sh
 %configure \
-    --with-python \
+    --with-python
+popd
 
+%build
+
+pushd libraries/libapparmor
 %make_build VERSION=%normver
 popd
 
@@ -280,10 +286,11 @@ make -C utils check
 %{_bindir}/aa-features-abi
 %{_sbindir}/aa-load
 #{_sbindir}/aa-show-usage
-%{_sbindir}/aa-teardown
-%{_unitdir}/apparmor.service
+%dnl %{_sbindir}/aa-teardown
+%{_sbindir}/aa-show-usage
+%dnl %{_unitdir}/apparmor.service
 %{_presetdir}/70-apparmor.preset
-%{_prefix}/lib/apparmor
+%dnl %{_prefix}/lib/apparmor
 %dir %{_sysconfdir}/apparmor
 # FIXME: the confusion…? how did this happen
 %config(noreplace) %{_sysconfdir}/apparmor/default_unconfined.template
@@ -298,7 +305,8 @@ make -C utils check
 %{_mandir}/man7/apparmor_xattrs.7.gz
 %{_mandir}/man8/aa-load.8.gz
 #{_mandir}/man8/aa-show-usage.8.gz
-%{_mandir}/man8/aa-teardown.8.gz
+%dnl %{_mandir}/man8/aa-teardown.8.gz
+%{_mandir}/man8/aa-show-usage.8.gz
 %{_mandir}/man8/apparmor_parser.8.gz
 
 %files utils -f apparmor-utils.lang

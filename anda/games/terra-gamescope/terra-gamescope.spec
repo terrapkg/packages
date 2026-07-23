@@ -2,11 +2,11 @@
 
 %global _default_patch_fuzz 2
 %global build_timestamp %(date +"%Y%m%d")
-%global gamescope_commit 402bfb81bc25943cac9061eb022fe229c5414f5e
+%global gamescope_commit 9b0214868571b4ae9cae2dab36e22fff4ee33674
 %define short_commit %(echo %{gamescope_commit} | cut -c1-8)
 
 Name:           terra-gamescope
-Version:        136.%{short_commit}
+Version:        137.%{short_commit}
 Release:        1%?dist
 Summary:        Micro-compositor for video games on Wayland
 
@@ -23,11 +23,6 @@ Patch0:         Use-system-stb-glm.patch
 
 Patch1:         0001-cstdint.patch
 
-%if 0%{?fedora} >= 44
-# Fix build with libinput >= 1.27 / GCC 16 (-Werror=switch)
-Patch2:         0002-wlroots-libinput-switch-keypad-slide.patch
-%endif
-
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
@@ -38,6 +33,7 @@ BuildRequires:  libXcursor-devel
 BuildRequires:  libXmu-devel
 BuildRequires:  meson >= 0.54.0
 BuildRequires:  ninja-build
+BuildRequires:  pkgconfig(catch2-with-main)
 BuildRequires:  pkgconfig(hwdata)
 BuildRequires:  pkgconfig(libavif)
 BuildRequires:  pkgconfig(libcap)

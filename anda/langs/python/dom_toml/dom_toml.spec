@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		2.3.0
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Dom's tools for Tom's Obvious, Minimal Language
 License:		MIT
 URL:			https://dom-toml.readthedocs.io/en/latest/

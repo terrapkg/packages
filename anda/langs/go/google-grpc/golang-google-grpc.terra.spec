@@ -11,7 +11,7 @@
 # https://github.com/grpc/grpc-go
 %global goipath         google.golang.org/grpc
 %global forgeurl        https://github.com/grpc/grpc-go
-Version:                1.79.3
+Version:                1.82.1
 
 %gometa -L
 

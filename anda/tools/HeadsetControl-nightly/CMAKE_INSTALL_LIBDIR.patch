@@ -1,0 +1,13 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 2e9d6f8..75f8cf9 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -292,7 +292,7 @@ if(PROJECT_IS_TOP_LEVEL)
+     # ------------------------------------------------------------------------------
+ 
+     install(TARGETS headsetcontrol DESTINATION bin)
+-    install(TARGETS headsetcontrol_lib DESTINATION lib)
++    install(TARGETS headsetcontrol_lib DESTINATION ${CMAKE_INSTALL_LIBDIR})
+ 
+     # Install shared library if built
+     if(BUILD_SHARED_LIBRARY)

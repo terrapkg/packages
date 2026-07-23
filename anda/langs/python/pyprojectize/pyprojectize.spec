@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1a7
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Convert a spec file from py3_build etc. macros to pyproject_*
 License:		MIT-0
 URL:			https://github.com/hroncok/pyprojectize
