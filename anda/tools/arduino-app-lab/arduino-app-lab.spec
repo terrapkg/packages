@@ -2,7 +2,7 @@
 %define debug_package %{nil}
 
 Name:           arduino-app-lab
-Version:        0.5.0
+Version:        0.9.0
 Release:        2%?dist
 Summary:        A powerful visual environment for managing the Arduino UNO Q
 
@@ -14,9 +14,12 @@ Source0:        https://github.com/arduino/arduino-app-lab/archive/refs/tags/al-
 Source1:        cc.arduino.AppLab.desktop
 Source2:        cc.arduino.AppLab.metainfo.xml
 
+ExclusiveArch:  x86_64
+
+Requires:       android-tools
+
 BuildRequires:  desktop-file-utils
 BuildRequires:  yarnpkg
-BuildRequires:  pnpm
 BuildRequires:  wails
 BuildRequires:  webkit2gtk4.1-devel
 BuildRequires:  golang
@@ -26,9 +29,7 @@ BuildRequires:  jq
 Suggests:       arduino-flasher-cli
 Suggests:       arduino-app-cli
 
-Obsoletes:      arduino-app-lab-bin < 0.5.0-2
-
-Requires:       android-tools
+Obsoletes:      arduino-app-lab-bin < 0.9.0-1
 
 Packager:       Jaiden Riordan <jade@fyralabs.com>, Owen Zimmerman <owen@fyralabs.com>
 
@@ -38,15 +39,11 @@ Packager:       Jaiden Riordan <jade@fyralabs.com>, Owen Zimmerman <owen@fyralab
 %prep
 %autosetup -n %{name}-al-%{version}
 
-%conf
+%build
 %{__yarn}
-%set_javascript_build_flags
-
 pushd standalone-apps/app-lab-desktop/internal/board/
 ./download_resources.sh
 popd
-
-%build
 pushd standalone-apps/app-lab-desktop
 wails build -tags webkit2_41
 popd
