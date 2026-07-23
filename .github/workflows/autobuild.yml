@@ -11,13 +11,13 @@ on:
     paths:
       - anda/**
     branches:
-      - frawhide
+      - f45
   pull_request:
     branches:
-      - frawhide
+      - f45
   merge_group:
     branches:
-      - frawhide
+      - f45
   workflow_dispatch:
   workflow_call:
 
