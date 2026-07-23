@@ -1,1 +1,1 @@
-rpm.version(gh("JoshuaVandaele/SuperISOUpdater"));
+rpm.version(pypi("sisou"));

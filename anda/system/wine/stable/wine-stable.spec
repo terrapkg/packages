@@ -11,8 +11,8 @@
 %undefine _hardened_build
 
 Name:       wine-stable
-Version:    10.0
-Release:    2%{?dist}
+Version:    11.0
+Release:    1%?dist
 Epoch:      1
 Summary:    WINE Is Not An Emulator - runs MS Windows programs
 License:    LGPL-2.0-or-later

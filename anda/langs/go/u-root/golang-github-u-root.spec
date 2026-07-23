@@ -12,7 +12,7 @@
 
 # https://github.com/u-root/u-root
 %global goipath         github.com/u-root/u-root
-Version:                0.15.0
+Version:                0.16.0
 %global commit          5721ed3ad38a5c889e6c1ed5bbf5242f98a4b591
 
 %gometa -f

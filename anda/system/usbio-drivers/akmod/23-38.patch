@@ -1,0 +1,49 @@
+From 1e2311383bb5fdc857664d1e30700dd3496a5a11 Mon Sep 17 00:00:00 2001
+From: You-Sheng Yang <vicamo@gmail.com>
+Date: Wed, 13 Aug 2025 14:58:19 +0800
+Subject: [PATCH] backport: fix build against kernel >= 6.17
+
+v6.17-rc1 commit 98ce1eb1fd87e ("gpiolib: introduce gpio_chip setters
+that return values") added two new APIs `set_rv` and `set_multiple_rv`
+to `struct gpio_irq_chip` that duplicate existing `set` and
+`set_multiple` without return values. They then completely replace the
+no-return-value APIs in same v6.17-rc1 commit d9d87d90cc0b1
+("treewide: rename GPIO set callbacks back to their original names").
+
+Bug-Ubuntu: https://bugs.launchpad.net/bugs/2120461
+Signed-off-by: You-Sheng Yang <vicamo@gmail.com>
+---
+ drivers/gpio/gpio-usbio.c | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpio/gpio-usbio.c b/drivers/gpio/gpio-usbio.c
+index 625558b..9c904e7 100644
+--- a/drivers/gpio/gpio-usbio.c
++++ b/drivers/gpio/gpio-usbio.c
+@@ -175,8 +175,13 @@ static int usbio_gpio_get_value(struct gpio_chip *chip, unsigned int offset)
+ 	return usbio_gpio_read(usbio_gpio, offset);
+ }
+ 
+-static void usbio_gpio_set_value(struct gpio_chip *chip, unsigned int offset,
+-				int val)
++static
++#if LINUX_VERSION_CODE < KERNEL_VERSION(6, 17, 0)
++void
++#else
++int
++#endif
++usbio_gpio_set_value(struct gpio_chip *chip, unsigned int offset, int val)
+ {
+ 	struct usbio_gpio_dev *usbio_gpio = gpiochip_get_data(chip);
+ 	int ret;
+@@ -186,6 +191,10 @@ static void usbio_gpio_set_value(struct gpio_chip *chip, unsigned int offset,
+ 		dev_err(chip->parent,
+ 			"%s offset:%d val:%d set value failed %d\n", __func__,
+ 			offset, val, ret);
++
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 17, 0)
++	return ret;
++#endif
+ }
+ 
+ static int usbio_gpio_direction_input(struct gpio_chip *chip,

@@ -1,0 +1,12 @@
+diff -Naur xeve-0.5.1.old/app/xeve_app_util.h xeve-0.5.1/app/xeve_app_util.h
+--- xeve-0.5.1.old/app/xeve_app_util.h	2025-09-09 14:10:13.815762327 +0200
++++ xeve-0.5.1/app/xeve_app_util.h	2025-11-04 13:43:37.496372293 +0100
+@@ -73,7 +73,7 @@
+     len = (pre == NULL)? 0: (int)strlen(pre);
+     if(len > 0)
+     {
+-        sprintf(str + 3, " %s ", pre);
++        snprintf(str + 3, sizeof(str) - 3, " %.73s ", pre);
+         len = (int)strlen(str);
+     }
+ 

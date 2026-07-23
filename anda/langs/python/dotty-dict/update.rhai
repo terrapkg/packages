@@ -1,1 +1,1 @@
-rpm.version(gh("pawelzny/dotty_dict"));
+rpm.version(pypi("dotty_dict"));

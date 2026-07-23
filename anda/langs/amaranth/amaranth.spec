@@ -1,11 +1,11 @@
 %global pypi_name amaranth
-%global _desc Scots A modern hardware definition language and toolchain based on Python.
+%global _desc A modern hardware definition language and toolchain based on Python.
 
 %define _python_dist_allow_version_zero 1
 
 Name:			python-%{pypi_name}
-Version:		0.5.8
-Release:		1%?dist
+Version:		0.5.9
+Release:		1%{?dist}
 Summary:		A modern hardware definition language and toolchain based on Python
 License:		BSD-2-Clause
 URL:			https://github.com/amaranth-lang/amaranth
@@ -19,7 +19,6 @@ BuildRequires:  python3-setuptools_scm
 BuildRequires:  python3-packaging
 BuildRequires:  python3-pip
 
-Requires:       python3
 Requires:       python3-jinja2
 Requires:       python3-jschon
 Requires:       python3-pyvcd
@@ -55,8 +54,6 @@ export PDM_BUILD_SCM_VERSION=%{version}
 %doc README.md CONTRIBUTING.txt
 %license LICENSE.txt
 %{_bindir}/amaranth-rpc
-%ghost %python3_sitelib/__pycache__/*.cpython-*.pyc
-%ghost %python3_sitelib/%{name}/subcommands/__pycache__/*.cpython-*.pyc
 
 %changelog
 * Sun Sep 28 2025 Owen Zimmerman <owen@fyralabs.com>

@@ -1,6 +1,6 @@
 %global tarball_version %%(echo %{version} | tr '~' '.')
-%global major_version 49
-%global minor_version 0
+%global major_version 50
+%global minor_version 2
 
 %if 0%{?rhel}
 %global portal_helper 0
@@ -214,7 +214,6 @@ mkdir -p %{buildroot}%{_datadir}/gnome-shell/search-providers
 %find_lang gnome-shell
 
 %check
-desktop-file-validate %{buildroot}%{_datadir}/applications/org.gnome.Shell.desktop
 desktop-file-validate %{buildroot}%{_datadir}/applications/org.gnome.Shell.Extensions.desktop
 
 %if %{portal_helper}
@@ -230,7 +229,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.gnome.Shell.Porta
 %{_bindir}/gnome-shell-test-tool
 %{_datadir}/glib-2.0/schemas/00_org.gnome.shell.gschema.override
 %{_datadir}/applications/org.gnome.Shell.Extensions.desktop
-%{_datadir}/applications/org.gnome.Shell.desktop
 %{_datadir}/bash-completion/completions/gnome-extensions
 %{_datadir}/gnome-control-center/keybindings/50-gnome-shell-launchers.xml
 %{_datadir}/gnome-control-center/keybindings/50-gnome-shell-screenshots.xml
@@ -242,6 +240,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.gnome.Shell.Porta
 %{_datadir}/dbus-1/services/org.gnome.Shell.HotplugSniffer.service
 %{_datadir}/dbus-1/services/org.gnome.Shell.Notifications.service
 %{_datadir}/dbus-1/services/org.gnome.Shell.Screencast.service
+%{_datadir}/dbus-1/interfaces/org.gnome.Shell.Brightness.xml
 %{_datadir}/dbus-1/interfaces/org.gnome.Shell.Extensions.xml
 %{_datadir}/dbus-1/interfaces/org.gnome.Shell.Introspect.xml
 %{_datadir}/dbus-1/interfaces/org.gnome.Shell.PadOsd.xml
@@ -257,7 +256,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.gnome.Shell.Porta
 %{_userunitdir}/org.gnome.Shell-disable-extensions.service
 %{_userunitdir}/org.gnome.Shell.target
 %{_userunitdir}/org.gnome.Shell@wayland.service
-%{_userunitdir}/org.gnome.Shell@x11.service
 %{_libdir}/gnome-shell/
 %{_libexecdir}/gnome-shell-calendar-server
 %{_libexecdir}/gnome-shell-perf-helper

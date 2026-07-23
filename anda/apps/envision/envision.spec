@@ -1,10 +1,10 @@
-%global commit 5470662f25a0fc9cdb024d2e3dce4108f5cc529a
-%global commit_date 20250917
+%global commit aa84e48e8de86dd12d62604340a29748b599d298
+%global commit_date 20260709
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           envision-nightly
 Version:        %commit_date.%shortcommit
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        UI for building, configuring and running Monado, the open source OpenXR runtime
 SourceLicense:  AGPL-3.0-or-later
 License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache-2.0) AND AGPL-3.0-or-later AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND ISC AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MIT AND Unicode-3.0 AND (Unlicense OR MIT) AND Zlib

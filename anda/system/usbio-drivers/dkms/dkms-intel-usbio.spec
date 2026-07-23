@@ -1,25 +1,22 @@
-%global commit 774890f017eaa000df0647965a627f8738dcea71
+%global commit ee221ecae757d43ab3fb39433f389373b2026109
 %global shortcommit %{sub %{commit} 1 7}
-%global commit_date 20251011
+%global commit_date 20251031
 %global debug_package %{nil}
 %global modulename intel-usbio
 
 Name:       dkms-%{modulename}
 Version:    0^%{commit_date}git.%{shortcommit}
-Release:    1%?dist
+Release:    2%{?dist}
 Summary:    Kernel drivers for the USBIO Extension
 License:    GPL-2.0-only
 URL:        https://github.com/intel/usbio-drivers
 Source0:    %{url}/archive/%{commit}.tar.gz#/usbio-drivers-%{shortcommit}.tar.gz
 Source2:    %{name}.conf
-Patch0:     https://github.com/jwrdegoede/usbio-drivers/commit/d5f08986936a7fda0cce543c73fb8d9bab76eae2.patch
-Patch1:     https://github.com/jwrdegoede/usbio-drivers/commit/47b34a6f467eebb4e9fc59f5e25618fe760fbf33.patch
-Patch2:     https://github.com/jwrdegoede/usbio-drivers/commit/0eae85556558b410635ad03ed5eccb9648e11fce.patch
 Provides:   %{modulename}-kmod = %{version}
 Requires:   dkms
 Requires:   dkms-intel-ipu6
 BuildArch:  noarch
-Packager:   Gilver E. <rockgrub@disroot.org>
+Packager:   Gilver E. <roachy@fyralabs.com>
 
 %description
 This package enables USBIO Extension drivers on Intel Alder Lake, Raptor Lake, Meteor Lake and Lunar Lake platforms.

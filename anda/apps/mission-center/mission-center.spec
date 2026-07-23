@@ -1,9 +1,9 @@
 %global forgeurl0 https://gitlab.com/mission-center-devs/mission-center
-Version: 1.0.2
+Version: 1.1.0
 %global tag0 v%{version}
 
 %global forgeurl1 https://gitlab.com/mission-center-devs/gng
-%global commit1 319d95d29cbc3c373ae61cff228e8440fbaadbbb
+%global commit1 1a8916cfeb06a3d63eefa8b17972eb2988e16da3
 
 
 %forgemeta -a

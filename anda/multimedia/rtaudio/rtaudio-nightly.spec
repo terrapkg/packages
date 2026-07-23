@@ -1,7 +1,7 @@
 #? https://src.fedoraproject.org/rpms/rtaudio/blob/db1aa72863ccbfd480e22c2f7aefb41ebb8e2360/f/rtaudio.spec
-%global commit 2b00d1adc3d254e5dcd6f7c860d8c60b5ec7b43f
+%global commit e5f0774b2156082ec3db998bd6b2a94b66ade8ac
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20251020
+%global commit_date 20260228
 %global ver .0.1
 
 Name:           rtaudio-nightly
@@ -53,6 +53,8 @@ Provides:       rtaudio-devel = %version-%release
 
 %prep
 %autosetup -n rtaudio-%commit
+
+%conf
 # Fix encoding issues
 for file in tests/teststops.cpp; do
    sed 's|\r||' $file > $file.tmp
@@ -61,11 +63,11 @@ for file in tests/teststops.cpp; do
    mv -f $file.tmp2 $file
 done
 
-
-%build
 export CFLAGS="%optflags -fPIC"
 NOCONFIGURE=1 ./autogen.sh
 %configure --with-jack --with-alsa --with-pulse --enable-shared --disable-static --verbose
+
+%build
 %make_build
 
 %install

@@ -3,14 +3,13 @@
 
 Name:			python-%{pypi_name}
 Version:		0.6.1rc1
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Pretty Good Privacy for Python
 License:		BSD-3-Clause
 URL:			https://github.com/memory/PGPy
 Source0:		https://files.pythonhosted.org/packages/source/P/PGPy13/pgpy13-%{version}.tar.gz
 BuildArch:      noarch
 
-BuildRequires:  python3
 BuildRequires:  python3.10
 BuildRequires:  python3-build
 BuildRequires:  python3-installer

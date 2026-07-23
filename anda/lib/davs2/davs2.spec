@@ -4,10 +4,10 @@
 
 Name:       davs2
 Version:    1.7
-Release:    1%{?shortcommit:.%{date}git%{shortcommit}}%{?dist}
+Release:    2%{?shortcommit:.%{date}git%{shortcommit}}%{?dist}
 Summary:    An open-source decoder of AVS2-P2/IEEE1857.4 video coding standard
 URL:        https://github.com/pkuvcl/%{name}
-License:    GPLv2
+License:    GPL-2.0-or-later
 
 %if %len %{commit0} != 0
 Source0:    https://github.com/pkuvcl/%{name}/archive/%{commit0}/%{name}-%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
@@ -50,7 +50,7 @@ This package contains the shared library development files.
 %autosetup
 %endif
 
-%build
+%conf
 cd build/linux
 %configure \
     --bit-depth='8' \
@@ -67,6 +67,8 @@ sed -i \
     -e 's|CFLAGS=.*%{optflags}|CFLAGS=%{optflags}|g' \
     config.mak
 
+%build
+cd build/linux
 %make_build
 
 %install
