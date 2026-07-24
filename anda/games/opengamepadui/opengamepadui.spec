@@ -1,9 +1,9 @@
 Name:           opengamepadui
 Version:        0.45.1
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Open source gamepad-native game launcher and overlay
 
-License:        GPLv3
+License:        GPL-3.0-or-later
 URL:            https://github.com/ShadowBlip/OpenGamepadUI
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
 
@@ -46,30 +46,26 @@ Recommends:     powerstation
 %global build_dir %{name}-%{version}
 
 %description
-Open Gamepad UI is a free and open source game launcher and overlay written using the Godot Game Engine 4 designed with a gamepad native experience in mind. Its goal is to provide an open and extendable foundation to launch and play games. It also implements a gamepad input system that can allow you to
-remap gamepad input to mouse and keyboard inputs.
+Open Gamepad UI is a free and open source game launcher and overlay
+written using the Godot Game Engine 4 designed with a gamepad native
+experience in mind. Its goal is to provide an open and extendable
+foundation to launch and play games. It also implements a gamepad
+input system that can allow you to remap
+gamepad input to mouse and keyboard inputs.
 
 %prep
-
-# We clone the repo from Git here because the build script requires
-# submodules to be present in the source directory.
-rm -rf %{build_dir}
-git clone %{url} %{build_dir} -b v%{version}
-cd %{build_dir}
-git checkout tags/v%{version}
+%git_clone %{url} tags/v%{version}
 %patch 0 -p1
 %patch 1 -p1
 
 %build
 cd %{build_dir}
-make import
+%make_build import
 %make_build
-
 
 %install
 cd %{build_dir}
 %make_install PREFIX=%{buildroot}%{_prefix} INSTALL_PREFIX=%{_prefix}
-
 
 %files
 %license %{build_dir}/LICENSE
@@ -80,7 +76,6 @@ cd %{build_dir}
 %{_datadir}/icons/hicolor/scalable/apps/opengamepadui.svg
 %{_datadir}/polkit-1/actions/*
 %{_userunitdir}/*
-
 
 %changelog
 * Fri Jul 24 2026 HikariKnight <2557889+HikariKnight@users.noreply.github.com>
