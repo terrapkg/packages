@@ -83,5 +83,8 @@ cd %{build_dir}
 
 
 %changelog
+* Fri Jul 24 2026 HikariKnight <2557889+HikariKnight@users.noreply.github.com>
+- Add patch to disable manage_all for inputplumber in overlay mode
+
 * Sun Oct 20 2024 Cappy Ishihara <cappy@cappuchino.xyz>
 - Initial Package
