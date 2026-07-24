@@ -9,6 +9,7 @@ Packager:       Cappy Ishihara <cappy@fyralabs.com>
 
 # https://patch-diff.githubusercontent.com/raw/ShadowBlip/OpenGamepadUI/pull/523
 Patch0:         523.patch
+Patch1:         disable-manage-all.patch
 
 BuildRequires:  godot
 BuildRequires:  scons
@@ -57,6 +58,7 @@ git clone %{url} %{build_dir} -b v%{version}
 cd %{build_dir}
 git checkout tags/v%{version}
 %patch 0 -p1
+%patch 1 -p1
 
 %build
 cd %{build_dir}
