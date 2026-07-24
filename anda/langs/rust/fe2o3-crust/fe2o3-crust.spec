@@ -46,7 +46,6 @@ cp %{S:1} UNLICENSE
 
 %files devel
 %{crate_instdir}/
-%dnl %{cargo_registry}/%{crate}-%{version}/
 
 %changelog
 * Fri Jul 24 2026 Owen Zimmerman <owen@fyralabs.com>
