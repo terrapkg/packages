@@ -44,7 +44,7 @@ find . -name "CMakeLists.txt" -exec sed -i 's/qt_standard_project_setup(REQUIRES
 
 %files
 %doc CONTRIBUTING.md
-%license LICENSES/
+%license LICENSES/*
 %{_kf6_libdir}/libQt6Canvas2D.prl
 %{_kf6_libdir}/libQt6Canvas2D.so.6
 %{_kf6_libdir}/libQt6Canvas2D.so.%{sanitized_ver}
