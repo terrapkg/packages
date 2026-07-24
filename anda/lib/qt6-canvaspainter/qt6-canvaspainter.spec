@@ -1,5 +1,5 @@
 %global ver v6.12.0-beta2
-%global sanitized_ver %(echo %{ver} | sed 's/^v//; s/-beta2//')
+%global sanitized_ver %(echo %{ver} | sed 's/^v//; s/-/~/')
 
 Name:			    qt6-canvaspainter
 Version:		    %{sanitized_ver}
