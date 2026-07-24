@@ -1,5 +1,6 @@
 %global ver v6.12.0-beta2
 %global sanitized_ver %(echo %{ver} | sed 's/^v//; s/-/~/')
+%global numerical_ver %(echo %{ver} | sed 's/^v//; s/-beta2//')
 
 Name:			    qt6-canvaspainter
 Version:		    %{sanitized_ver}
@@ -47,9 +48,9 @@ find . -name "CMakeLists.txt" -exec sed -i 's/qt_standard_project_setup(REQUIRES
 %license LICENSES/*
 %{_kf6_libdir}/libQt6Canvas2D.prl
 %{_kf6_libdir}/libQt6Canvas2D.so.6
-%{_kf6_libdir}/libQt6Canvas2D.so.%{sanitized_ver}
+%{_kf6_libdir}/libQt6Canvas2D.so.%{numerical_ver}
 %{_kf6_libdir}/libQt6CanvasPainter.so.6
-%{_kf6_libdir}/libQt6CanvasPainter.so.%{sanitized_ver}
+%{_kf6_libdir}/libQt6CanvasPainter.so.%{numerical_ver}
 %{_kf6_libdir}/libQt6CanvasPainter.prl
 %{_kf6_archdatadir}/bin/qcshadergen
 %{_kf6_archdatadir}/examples/*
@@ -58,7 +59,7 @@ find . -name "CMakeLists.txt" -exec sed -i 's/qt_standard_project_setup(REQUIRES
 %{_kf6_archdatadir}/modules/*.json
 %{_kf6_qmldir}/QtCanvas2D/plugins.qmltypes
 %{_kf6_qmldir}/QtCanvas2D/qmldir
-%{_kf6_archdatadir}/sbom/qtcanvaspainter-%{sanitized_ver}.spdx
+%{_kf6_archdatadir}/sbom/qtcanvaspainter-%{numerical_ver}.spdx
 
 %changelog
 * Thu Jul 23 2026 Owen Zimmerman <owen@fyralabs.com>
