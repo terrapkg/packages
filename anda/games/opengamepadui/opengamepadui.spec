@@ -43,8 +43,6 @@ Requires:       godot-runner
 Recommends:     inputplumber
 Recommends:     powerstation
 
-%global build_dir %{name}-%{version}
-
 %description
 Open Gamepad UI is a free and open source game launcher and overlay
 written using the Godot Game Engine 4 designed with a gamepad native
@@ -59,17 +57,15 @@ gamepad input to mouse and keyboard inputs.
 %patch 1 -p0
 
 %build
-cd %{build_dir}
 %make_build import
 %make_build
 
 %install
-cd %{build_dir}
 %make_install PREFIX=%{buildroot}%{_prefix} INSTALL_PREFIX=%{_prefix}
 
 %files
-%license %{build_dir}/LICENSE
-%doc %{build_dir}/docs/
+%license /LICENSE
+%doc /docs/
 %{_bindir}/opengamepadui
 %{_datadir}/opengamepadui/
 %{_datadir}/applications/opengamepadui.desktop
