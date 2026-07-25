@@ -37,10 +37,10 @@ use the "%{crate}" crate.
 %install
 %cargo_install
 %{cargo_license_online} > LICENSE.dependencies
-cp %{S:1} UNLICENSE
+cp %{S:1} LICENSE
 
 %files
-%license UNLICENSE
+%license LICENSE
 %license LICENSE.dependencies
 %doc README.md
 
