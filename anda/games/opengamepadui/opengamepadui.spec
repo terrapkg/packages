@@ -52,7 +52,7 @@ input system that can allow you to remap
 gamepad input to mouse and keyboard inputs.
 
 %prep
-%git_clone %{url} tags/v%{version}
+%git_clone
 %patch 0 -p0
 %patch 1 -p0
 
