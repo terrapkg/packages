@@ -53,8 +53,8 @@ gamepad input to mouse and keyboard inputs.
 
 %prep
 %git_clone
-%patch 0 -p0
-%patch 1 -p0
+%patch 0 -p1
+%patch 1 -p1
 
 %build
 %make_build import
