@@ -56,7 +56,7 @@ gamepad input to mouse and keyboard inputs.
 %prep
 %git_clone %{url} tags/v%{version}
 %patch 0 -p1
-%patch 1 -p1
+%patch 1 -p0
 
 %build
 cd %{build_dir}
