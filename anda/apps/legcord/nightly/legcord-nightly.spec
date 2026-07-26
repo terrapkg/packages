@@ -31,7 +31,7 @@ while keeping everything lightweight.
 %pnpm_build -r build
 
 %install
-%electron_install -i legcord -l -I dist/.icon-set/icon_16.png -I dist/.icon-set/icon_32.png -I dist/.icon-set/icon_48x48.png -I dist/.icon-set/icon_64.png -I dist/.icon-set/icon_128.png -I dist/.icon-set/icon_256.png -I dist/.icon-set/icon_512.png -I dist/.icon-set/icon_1024.png
+%electron_install -i legcord -l -I dist/.icon-set/
 
 dist/Legcord-*.AppImage --appimage-extract '*.desktop'
 %desktop_file_install -k Exec,Icon -v "%{_libdir}/legcord-nightly/Legcord",legcord -u %U -f squashfs-root/legcord.desktop
@@ -43,19 +43,19 @@ dist/Legcord-*.AppImage --appimage-extract '*.desktop'
 %{_datadir}/applications/legcord.desktop
 %{_libdir}/legcord-nightly/
 %{_iconsdir}/hicolor/16x16/apps/legcord.png
+%{_iconsdir}/hicolor/24x24/apps/legcord.png
 %{_iconsdir}/hicolor/32x32/apps/legcord.png
 %{_iconsdir}/hicolor/48x48/apps/legcord.png
 %{_iconsdir}/hicolor/64x64/apps/legcord.png
 %{_iconsdir}/hicolor/128x128/apps/legcord.png
 %{_iconsdir}/hicolor/256x256/apps/legcord.png
 %{_iconsdir}/hicolor/512x512/apps/legcord.png
-%{_iconsdir}/hicolor/1024x1024/apps/legcord.png
 
 %changelog
 * Mon May 18 2026 june-fish <june@fyralabs.com> - 1.2.4-1
 - Use electron macros
 
-* Fri Nov 22 2024 owen <owen@fyralabs.com> - 1.0.2-2
+* Fri Nov 22 2024 Owen Zimmerman <owen@fyralabs.com> - 1.0.2-2
 - Add nightly package.
 
 * Mon Oct 21 2024 madonuko <mado@fyralabs.com> - 1.0.2-2
