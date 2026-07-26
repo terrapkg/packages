@@ -3,7 +3,7 @@
 %forgemeta
 
 Name:       qtdbusmock
-Version:    0.9.0
+Version:    0.10.0
 Release:    1%{?dist}
 Summary:    Library for mocking DBus interactions using Qt
 License:    LGPL-3.0-or-later

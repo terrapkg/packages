@@ -4,7 +4,7 @@
 
 Name:           legcord
 %electronmeta -D
-Version:        1.2.4
+Version:        1.3.0
 Release:        1%{?dist}
 License:        OSL-3.0 AND %{electron_license}
 Summary:        Custom lightweight Discord client designed to enhance your experience
@@ -28,8 +28,9 @@ while keeping everything lightweight.
 %pnpm_build -r build
 
 %install
-%electron_install -i legcord -l -I dist/.icon-set/icon_16.png -I dist/.icon-set/icon_32.png -I dist/.icon-set/icon_48x48.png -I dist/.icon-set/icon_64.png -I dist/.icon-set/icon_128.png -I dist/.icon-set/icon_256.png -I dist/.icon-set/icon_512.png -I dist/.icon-set/icon_1024.png
+%electron_install -i legcord -l -I dist/.icon-set/
 
+ls -la squashfs-root/
 dist/Legcord-*.AppImage --appimage-extract '*.desktop'
 %desktop_file_install -k Exec,Icon -v "%{_libdir}/legcord/Legcord",legcord -u %U -f squashfs-root/Legcord.desktop
 
@@ -40,13 +41,13 @@ dist/Legcord-*.AppImage --appimage-extract '*.desktop'
 %{_datadir}/applications/Legcord.desktop
 %{_libdir}/legcord/
 %{_iconsdir}/hicolor/16x16/apps/legcord.png
+%{_iconsdir}/hicolor/24x24/apps/legcord.png
 %{_iconsdir}/hicolor/32x32/apps/legcord.png
 %{_iconsdir}/hicolor/48x48/apps/legcord.png
 %{_iconsdir}/hicolor/64x64/apps/legcord.png
 %{_iconsdir}/hicolor/128x128/apps/legcord.png
 %{_iconsdir}/hicolor/256x256/apps/legcord.png
 %{_iconsdir}/hicolor/512x512/apps/legcord.png
-%{_iconsdir}/hicolor/1024x1024/apps/legcord.png
 
 %changelog
 * Mon May 18 2026 june-fish <june@fyralabs.com> - 1.2.4-1

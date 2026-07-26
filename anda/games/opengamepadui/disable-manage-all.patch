@@ -1,0 +1,15 @@
+diff --git a/core/ui/card_ui_overlay_mode/card_ui_overlay_mode.gd b/core/ui/card_ui_overlay_mode/card_ui_overlay_mode.gd
+index 08a6fde4..d9055acb 100644
+--- a/core/ui/card_ui_overlay_mode/card_ui_overlay_mode.gd
++++ b/core/ui/card_ui_overlay_mode/card_ui_overlay_mode.gd
+@@ -190,8 +190,8 @@ func _setup_overlay_mode(args: PackedStringArray) -> void:
+ 	_remove_children(remove_list, quick_bar_menu)
+ 	_remove_children(settings_remove_list, settings_menu)
+ 
+-	# Enable InputPlumber management of all supported input devices
+-	input_plumber.manage_all_devices = true
++	# Disable InputPlumber management of all supported input devices
++	input_plumber.manage_all_devices = false
+ 
+ 	# Setup inputplumber to receive guide presses.
+ 	input_plumber.set_intercept_mode(InputPlumberInstance.INTERCEPT_MODE_PASS)
