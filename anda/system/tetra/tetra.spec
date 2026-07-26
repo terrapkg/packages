@@ -62,5 +62,5 @@ install -Dm644 systemd/tetra.service %{buildroot}%{_unitdir}/tetra.service
 %dir %attr(0750, root, root) %{_sharedstatedir}/tetra/identity
 
 %changelog
-* Sun July 26 2026 Cypress Reed <cypress@fyralabs.com>
+* Sun Jul 26 2026 Cypress Reed <cypress@fyralabs.com>
 - Initial package release
