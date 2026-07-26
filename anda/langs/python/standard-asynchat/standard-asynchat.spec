@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		3.13.0
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Standard library asynchat redistribution
 License:		PSF-2.0
 URL:			https://github.com/youknowone/python-deadlib

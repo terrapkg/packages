@@ -2,6 +2,7 @@
 <component type="desktop-application">
   <id>com.mojang.Minecraft</id>
   <name>Minecraft</name>
+  <icon type="remote">https://minecraft.wiki/images/Minecraft_social_icon.png?fcb53</icon>
   <name xml:lang="ar">ماين كرافت</name>
   <name xml:lang="bn">মাইনক্রাফ্ট</name>
   <name xml:lang="es">Minecraft</name>

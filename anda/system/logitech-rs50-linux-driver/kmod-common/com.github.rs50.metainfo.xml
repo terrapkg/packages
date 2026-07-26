@@ -1,0 +1,26 @@
+<component type="driver">
+  <id>com.github.rs50</id>
+  <name>logitech rs50 linux driver</name>
+  <pkgname>logitech-rs50-linux-driver</pkgname>
+  <summary>Linux kernel driver for the Logitech RS50 Direct Drive Wheel Base (USB ID 046d:c276).</summary>
+  <description>
+    <p>
+    Linux kernel driver for the Logitech RS50 Direct Drive Wheel Base (USB ID 046d:c276).
+    This is a patched version of the hid-logitech-hidpp driver that adds RS50 support with force feedback (FF_CONSTANT) and exposes all G Hub settings via sysfs for runtime configuration.
+    Note: This driver replaces the in-kernel hid-logitech-hidpp module and continues to support all other Logitech HID++ devices (mice, keyboards, other racing wheels like the G29, G920, G923, etc.).
+    </p>
+  </description>
+  <url type="homepage">https://github.com/mescon/logitech-rs50-linux-driver</url>
+  <metadata_license>CC0-1.0</metadata_license>
+  <!-- gplv2-only -->
+  <project_license>GPL-2.0-only</project_license>
+
+  <developer id="com.github.rs50">
+    <name>mescon</name>
+  </developer>
+
+
+  <provides>
+    <modalias>usb:v046dpc276*</modalias>
+  </provides>
+</component>

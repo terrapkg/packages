@@ -1,1 +1,2 @@
-rpm.version(gitlab("20328305"));
+rpm.version(gh_tag("OpenGamingCollective/asusctl"));
+

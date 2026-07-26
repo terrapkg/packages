@@ -1,0 +1,20 @@
+--- a/util/cbi-util.c	2026-07-17 08:21:42.672670295 -0700
++++ b/util/cbi-util.c	2026-07-17 08:22:07.533924407 -0700
+@@ -229,7 +229,7 @@
+ {
+ 	uint64_t val;
+ 	char *e;
+-	char *ch;
++	const char *ch;
+ 
+ 	val = strtoull(arg, &e, 0);
+ 	if (val > UINT32_MAX || !*arg || (e && *e && *e != ':')) {
+@@ -264,7 +264,7 @@
+ {
+ 	uint64_t val;
+ 	char *e;
+-	char *ch;
++	const char *ch;
+ 
+ 	val = strtoul(arg, &e, 0);
+ 	/* strtoul sets an errno for invalid input. If the value read is out of

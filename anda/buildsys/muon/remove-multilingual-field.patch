@@ -1,0 +1,25 @@
+From 776a9a30eded21206df1e643d888233472a2dbbf Mon Sep 17 00:00:00 2001
+From: Stone Tickle <lattis@mochiro.moe>
+Date: Thu, 27 Nov 2025 09:14:02 -0500
+Subject: [PATCH] remove multilingual field
+
+Signed-off-by: Owen-sz <owen@fyralabs.com>
+---
+ doc/book/book.toml | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/doc/book/book.toml b/doc/book/book.toml
+index f51e1836..b96e9792 100644
+--- a/doc/book/book.toml
++++ b/doc/book/book.toml
+@@ -1,7 +1,6 @@
+ [book]
+ authors = ["Stone Tickle"]
+ language = "en"
+-multilingual = false
+ src = "src"
+ title = "Muon Docs"
+ 
+-- 
+2.53.0
+

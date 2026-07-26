@@ -1,11 +1,15 @@
 Name:           opengamepadui
-Version:        0.44.2
-Release:        1%?dist
+Version:        0.46.0
+Release:        1%{?dist}
 Summary:        Open source gamepad-native game launcher and overlay
 
 License:        GPLv3
 URL:            https://github.com/ShadowBlip/OpenGamepadUI
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
+
+# https://patch-diff.githubusercontent.com/raw/ShadowBlip/OpenGamepadUI/pull/523
+Patch0:         523.patch
+Patch1:         disable-manage-all.patch
 
 BuildRequires:  godot
 BuildRequires:  scons
@@ -33,6 +37,7 @@ BuildRequires:  pkgconfig(xau)
 BuildRequires:  pkgconfig(xtst)
 BuildRequires:  pkgconfig(xdmcp)
 BuildRequires:  systemd-rpm-macros
+BuildRequires:  patch
 
 Requires:       godot-runner
 Recommends:     inputplumber
@@ -52,6 +57,8 @@ rm -rf %{build_dir}
 git clone %{url} %{build_dir} -b v%{version}
 cd %{build_dir}
 git checkout tags/v%{version}
+%patch 0 -p1
+%patch 1 -p1
 
 %build
 cd %{build_dir}
@@ -76,5 +83,8 @@ cd %{build_dir}
 
 
 %changelog
+* Fri Jul 24 2026 HikariKnight <2557889+HikariKnight@users.noreply.github.com>
+- Add patch to disable manage_all for inputplumber in overlay mode
+
 * Sun Oct 20 2024 Cappy Ishihara <cappy@cappuchino.xyz>
 - Initial Package

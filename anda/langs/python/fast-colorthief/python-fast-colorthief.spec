@@ -6,7 +6,7 @@
 
 Name:           python-%{pypi_name}
 Version:        0.0.5
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Faster version of Colorthief
 License:        MIT
 URL:            https://github.com/bedapisl/fast-colorthief

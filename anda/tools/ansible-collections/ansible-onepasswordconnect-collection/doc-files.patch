@@ -1,0 +1,10 @@
+diff --git a/galaxy.yml b/galaxy.yml
+index f068ebc..6ef0f71 100644
+--- a/galaxy.yml
++++ b/galaxy.yml
+@@ -31,4 +31,4 @@ issues: https://github.com/1Password/ansible-onepasswordconnect-collection/issue
+ 
+ # A list of file glob-like patterns used to filter any files or directories that should not be included in the build
+ # artifact.
+-build_ignore: [scripts, .venv, venv, .*, tests]
++build_ignore: [.md, .rst, scripts, .venv, venv, .*, tests]

@@ -1,1 +1,1 @@
-rpm.version(gh("bup/bup"));
+rpm.version(gh_tag("bup/bup"));

@@ -1,11 +1,9 @@
 %global pypi_name dora-search
 %global _desc Dora is an experiment management framework. It expresses grid searches as pure python files as part of your repo. It identifies experiments with a unique hash signature. Scale up to hundreds of experiments without losing your sanity.
 
-%define debug_package %{nil}
-
 Name:			python-%{pypi_name}
 Version:		0.1.12
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Experiment management framework
 License:		MIT
 URL:			https://github.com/facebookresearch/dora
@@ -14,6 +12,7 @@ Source0:		%url/archive/refs/tags/v%version.tar.gz
 BuildRequires:  python3-devel
 BuildRequires:  python3-pip
 BuildRequires:  python3-setuptools
+BuildArch:      noarch
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 

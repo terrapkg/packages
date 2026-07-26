@@ -17,11 +17,13 @@ Atmel chips with USB support.
 
 %prep
 %autosetup -p1
+
+%conf
 touch ./ChangeLog
 autoreconf -fiv
+%configure
 
 %build
-%configure
 %make_build
 
 %install

@@ -3,13 +3,12 @@
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global build_cflags %{__build_flags_lang_c} %{?_distro_extra_cflags} -Wno-alloc-size-larger-than
 %global build_cxxflags %{__build_flags_lang_cxx} %{?_distro_extra_cxxflags} -Wno-alloc-size-larger-than
-%global __cmake_in_source_build 1
 %global ver 1.0.1
 
 Name:           ipu6-camera-hal
 Summary:        Hardware abstraction layer for Intel IPU6
-Version:        %{ver}^%{commit_date}git.%{shortcommit}
-Release:        1%?dist
+Version:        %{ver}^%{commit_date}git%{shortcommit}
+Release:        2%{?dist}
 License:        Apache-2.0
 URL:            https://github.com/intel/ipu6-camera-hal
 Source0:        %{url}/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
@@ -49,13 +48,18 @@ This provides the necessary header files for IPU6 HAL development.
 %prep
 %autosetup -p1 -n %{name}-%{commit}
 
-%build
+%conf
 %cmake -DCMAKE_BUILD_TYPE=Release \
        -DCMAKE_INSTALL_SYSCONFDIR:PATH="%{_datadir}/defaults/etc" \
        -DBUILD_CAMHAL_ADAPTOR=ON \
        -DBUILD_CAMHAL_PLUGIN=ON \
        -DIPU_VERSIONS="ipu6;ipu6ep;ipu6epmtl" \
-       -DUSE_PG_LITE_PIPE=ON
+       -DUSE_PG_LITE_PIPE=ON \
+%if 0%{?fedora} >= 44
+       -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+%endif
+
+%build
 %cmake_build
 
 %install
@@ -98,4 +102,5 @@ fi
 
 
 %changelog
-%autochangelog
+* Sat Apr 18 2026 Gilver E. <roachy@fyralabs.com> - 1.0.1^20260121git9899efa
+- Updated build

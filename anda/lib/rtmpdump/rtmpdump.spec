@@ -4,10 +4,9 @@
 
 Name:           rtmpdump
 Version:        2.6^%{commit_date}git%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Toolkit for RTMP streams
-# The tools are GPLv2+, but the he library is LGPLv2+.
-License:        GPLv2+
+License:        GPL-2.0-or-later AND LGPL-2.0-or-later
 URL:            https://git.ffmpeg.org/gitweb/%{name}.git
 BuildRequires:  gcc
 BuildRequires:  git

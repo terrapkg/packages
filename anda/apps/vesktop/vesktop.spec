@@ -11,7 +11,7 @@ Name:		vesktop
 Obsoletes:  VencordDesktop < 1.5.8-1
 Obsoletes:  vencord-desktop < 1.5.8-1
 Version:	1.6.5
-Release:	1%?dist
+Release:	2%?dist
 License:	GPL-3.0-or-later
 Summary:	Vesktop is a cross platform desktop app aiming to give you a snappier Discord experience with Vencord pre-installed
 URL:		https://vesktop.dev
@@ -24,6 +24,7 @@ BuildRequires: nodejs24-npm-bin git
 %else
 BuildRequires:	nodejs-npm git
 %endif
+Recommends:	arrpc
 
 %description
 vesktop is a custom client designed to enhance your Discord experience

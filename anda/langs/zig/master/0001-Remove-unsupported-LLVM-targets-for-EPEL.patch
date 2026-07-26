@@ -1,0 +1,254 @@
+From 803935baf6a4730426afbb746adfd00c0ffc0f39 Mon Sep 17 00:00:00 2001
+From: Jan200101 <sentrycraft123@gmail.com>
+Date: Tue, 14 Apr 2026 19:20:26 +0200
+Subject: [PATCH 2/2] Remove unsupported LLVM targets for RHEL
+
+LLVM for RHEL is only build with a subset of targets
+this blocks zig at the configuration stage.
+This commit simply swaps them out with the one from
+https://src.fedoraproject.org/rpms/llvm/blob/rawhide/f/llvm.spec
+
+Signed-off-by: Jan200101 <sentrycraft123@gmail.com>
+---
+ cmake/Findllvm.cmake |  2 +-
+ src/codegen/llvm.zig | 97 ++++++++++----------------------------------
+ src/target.zig       | 43 +++++++++++---------
+ 3 files changed, 45 insertions(+), 97 deletions(-)
+
+diff --git a/cmake/Findllvm.cmake b/cmake/Findllvm.cmake
+index 0c08d4f0ac..ed4da12044 100644
+--- a/cmake/Findllvm.cmake
++++ b/cmake/Findllvm.cmake
+@@ -83,7 +83,7 @@ if(ZIG_USE_LLVM_CONFIG)
+       OUTPUT_STRIP_TRAILING_WHITESPACE)
+     string(REPLACE " " ";" LLVM_TARGETS_BUILT "${LLVM_TARGETS_BUILT_SPACES}")
+ 
+-    set(ZIG_LLVM_REQUIRED_TARGETS "AArch64;AMDGPU;ARM;AVR;BPF;Hexagon;Lanai;LoongArch;Mips;MSP430;NVPTX;PowerPC;RISCV;SPIRV;Sparc;SystemZ;VE;WebAssembly;X86;XCore")
++    set(ZIG_LLVM_REQUIRED_TARGETS "X86;AMDGPU;PowerPC;NVPTX;SystemZ;AArch64;BPF;WebAssembly;RISCV")
+ 
+     set(ZIG_LLVM_REQUIRED_TARGETS_ENABLED TRUE)
+     foreach(TARGET_NAME IN LISTS ZIG_LLVM_REQUIRED_TARGETS)
+diff --git a/src/codegen/llvm.zig b/src/codegen/llvm.zig
+index 1ba3b272da..1ac1f6adc8 100644
+--- a/src/codegen/llvm.zig
++++ b/src/codegen/llvm.zig
+@@ -4736,20 +4736,6 @@ pub fn initializeLLVMTarget(arch: std.Target.Cpu.Arch) void {
+             bindings.LLVMInitializeAMDGPUAsmPrinter();
+             bindings.LLVMInitializeAMDGPUAsmParser();
+         },
+-        .thumb, .thumbeb, .arm, .armeb => {
+-            bindings.LLVMInitializeARMTarget();
+-            bindings.LLVMInitializeARMTargetInfo();
+-            bindings.LLVMInitializeARMTargetMC();
+-            bindings.LLVMInitializeARMAsmPrinter();
+-            bindings.LLVMInitializeARMAsmParser();
+-        },
+-        .avr => {
+-            bindings.LLVMInitializeAVRTarget();
+-            bindings.LLVMInitializeAVRTargetInfo();
+-            bindings.LLVMInitializeAVRTargetMC();
+-            bindings.LLVMInitializeAVRAsmPrinter();
+-            bindings.LLVMInitializeAVRAsmParser();
+-        },
+         .bpfel, .bpfeb => {
+             bindings.LLVMInitializeBPFTarget();
+             bindings.LLVMInitializeBPFTargetInfo();
+@@ -4757,34 +4743,6 @@ pub fn initializeLLVMTarget(arch: std.Target.Cpu.Arch) void {
+             bindings.LLVMInitializeBPFAsmPrinter();
+             bindings.LLVMInitializeBPFAsmParser();
+         },
+-        .hexagon => {
+-            bindings.LLVMInitializeHexagonTarget();
+-            bindings.LLVMInitializeHexagonTargetInfo();
+-            bindings.LLVMInitializeHexagonTargetMC();
+-            bindings.LLVMInitializeHexagonAsmPrinter();
+-            bindings.LLVMInitializeHexagonAsmParser();
+-        },
+-        .lanai => {
+-            bindings.LLVMInitializeLanaiTarget();
+-            bindings.LLVMInitializeLanaiTargetInfo();
+-            bindings.LLVMInitializeLanaiTargetMC();
+-            bindings.LLVMInitializeLanaiAsmPrinter();
+-            bindings.LLVMInitializeLanaiAsmParser();
+-        },
+-        .mips, .mipsel, .mips64, .mips64el => {
+-            bindings.LLVMInitializeMipsTarget();
+-            bindings.LLVMInitializeMipsTargetInfo();
+-            bindings.LLVMInitializeMipsTargetMC();
+-            bindings.LLVMInitializeMipsAsmPrinter();
+-            bindings.LLVMInitializeMipsAsmParser();
+-        },
+-        .msp430 => {
+-            bindings.LLVMInitializeMSP430Target();
+-            bindings.LLVMInitializeMSP430TargetInfo();
+-            bindings.LLVMInitializeMSP430TargetMC();
+-            bindings.LLVMInitializeMSP430AsmPrinter();
+-            bindings.LLVMInitializeMSP430AsmParser();
+-        },
+         .nvptx, .nvptx64 => {
+             bindings.LLVMInitializeNVPTXTarget();
+             bindings.LLVMInitializeNVPTXTargetInfo();
+@@ -4806,13 +4764,6 @@ pub fn initializeLLVMTarget(arch: std.Target.Cpu.Arch) void {
+             bindings.LLVMInitializeRISCVAsmPrinter();
+             bindings.LLVMInitializeRISCVAsmParser();
+         },
+-        .sparc, .sparc64 => {
+-            bindings.LLVMInitializeSparcTarget();
+-            bindings.LLVMInitializeSparcTargetInfo();
+-            bindings.LLVMInitializeSparcTargetMC();
+-            bindings.LLVMInitializeSparcAsmPrinter();
+-            bindings.LLVMInitializeSparcAsmParser();
+-        },
+         .s390x => {
+             bindings.LLVMInitializeSystemZTarget();
+             bindings.LLVMInitializeSystemZTargetInfo();
+@@ -4843,13 +4794,6 @@ pub fn initializeLLVMTarget(arch: std.Target.Cpu.Arch) void {
+                 bindings.LLVMInitializeXtensaAsmParser();
+             }
+         },
+-        .xcore => {
+-            bindings.LLVMInitializeXCoreTarget();
+-            bindings.LLVMInitializeXCoreTargetInfo();
+-            bindings.LLVMInitializeXCoreTargetMC();
+-            bindings.LLVMInitializeXCoreAsmPrinter();
+-            // There is no LLVMInitializeXCoreAsmParser function.
+-        },
+         .m68k => {
+             if (build_options.llvm_has_m68k) {
+                 bindings.LLVMInitializeM68kTarget();
+@@ -4868,13 +4812,6 @@ pub fn initializeLLVMTarget(arch: std.Target.Cpu.Arch) void {
+                 bindings.LLVMInitializeCSKYAsmParser();
+             }
+         },
+-        .ve => {
+-            bindings.LLVMInitializeVETarget();
+-            bindings.LLVMInitializeVETargetInfo();
+-            bindings.LLVMInitializeVETargetMC();
+-            bindings.LLVMInitializeVEAsmPrinter();
+-            bindings.LLVMInitializeVEAsmParser();
+-        },
+         .arc => {
+             if (build_options.llvm_has_arc) {
+                 bindings.LLVMInitializeARCTarget();
+@@ -4884,21 +4821,29 @@ pub fn initializeLLVMTarget(arch: std.Target.Cpu.Arch) void {
+                 // There is no LLVMInitializeARCAsmParser function.
+             }
+         },
+-        .loongarch32, .loongarch64 => {
+-            bindings.LLVMInitializeLoongArchTarget();
+-            bindings.LLVMInitializeLoongArchTargetInfo();
+-            bindings.LLVMInitializeLoongArchTargetMC();
+-            bindings.LLVMInitializeLoongArchAsmPrinter();
+-            bindings.LLVMInitializeLoongArchAsmParser();
+-        },
++
++        // Disabled LLVM targets
++        .thumb,
++        .thumbeb,
++        .arm,
++        .armeb,
++        .avr,
++        .hexagon,
++        .lanai,
++        .mips,
++        .mipsel,
++        .mips64,
++        .mips64el,
++        .msp430,
++        .sparc,
++        .sparc64,
++        .xcore,
++        .ve,
++        .loongarch32,
++        .loongarch64,
+         .spirv32,
+         .spirv64,
+-        => {
+-            bindings.LLVMInitializeSPIRVTarget();
+-            bindings.LLVMInitializeSPIRVTargetInfo();
+-            bindings.LLVMInitializeSPIRVTargetMC();
+-            bindings.LLVMInitializeSPIRVAsmPrinter();
+-        },
++        => unreachable,
+ 
+         // LLVM does does not have a backend for these.
+         .alpha,
+diff --git a/src/target.zig b/src/target.zig
+index 3d04c06f5e..9e19836815 100644
+--- a/src/target.zig
++++ b/src/target.zig
+@@ -185,23 +185,12 @@ pub fn hasLlvmSupport(target: *const std.Target, ofmt: std.Target.ObjectFormat)
+     }
+ 
+     return switch (target.cpu.arch) {
+-        .arm,
+-        .armeb,
+         .aarch64,
+         .aarch64_be,
+         .arc,
+-        .avr,
+         .bpfel,
+         .bpfeb,
+-        .hexagon,
+-        .loongarch32,
+-        .loongarch64,
+         .m68k,
+-        .mips,
+-        .mipsel,
+-        .mips64,
+-        .mips64el,
+-        .msp430,
+         .powerpc,
+         .powerpcle,
+         .powerpc64,
+@@ -211,24 +200,38 @@ pub fn hasLlvmSupport(target: *const std.Target, ofmt: std.Target.ObjectFormat)
+         .riscv32be,
+         .riscv64,
+         .riscv64be,
+-        .sparc,
+-        .sparc64,
+-        .spirv32,
+-        .spirv64,
+         .s390x,
+-        .thumb,
+-        .thumbeb,
+         .x86,
+         .x86_64,
+-        .xcore,
+         .nvptx,
+         .nvptx64,
+-        .lanai,
+         .wasm32,
+         .wasm64,
+-        .ve,
+         => true,
+ 
++        // Disabled LLVM targets
++        .thumb,
++        .thumbeb,
++        .arm,
++        .armeb,
++        .avr,
++        .hexagon,
++        .lanai,
++        .mips,
++        .mipsel,
++        .mips64,
++        .mips64el,
++        .msp430,
++        .sparc,
++        .sparc64,
++        .xcore,
++        .ve,
++        .loongarch32,
++        .loongarch64,
++        .spirv32,
++        .spirv64,
++        => false,
++
+         // LLVM backend exists but can produce neither assembly nor object files.
+         .csky,
+         .xtensa,
+-- 
+2.53.0
+

@@ -1,0 +1,13 @@
+diff --git a/tracker-neuralnet/env.cpp b/tracker-neuralnet/env.cpp
+index 563c9c1..21b1d58 100644
+--- a/tracker-neuralnet/env.cpp	
++++ b/tracker-neuralnet/env.cpp
+@@ -20,7 +20,7 @@ void NeuralNetTracker::maybe_load_onnxruntime_dynamically()
+         std::abort();
+     }
+ 
+-    void* fn_OrtGetApiBase = lib.resolve("OrtGetApiBase");
++    void* fn_OrtGetApiBase = reinterpret_cast<void*>(lib.resolve("OrtGetApiBase"));
+     if (!fn_OrtGetApiBase)
+     {
+         qDebug().nospace() << "tracker/nn: can't find OrtGetApiBase in onnxruntime: " << lib.errorString() << ". now crashing.";

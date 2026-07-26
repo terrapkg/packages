@@ -74,7 +74,7 @@ sed -i "s|size_t|std::size_t|" external/ddb_dsp_libretro/sinc_resampler.h
 sed -i -re 's/^(.*)\s+([-]msse3)\s+(.*)$/\1 \3/g' external/ddb_dsp_libretro/Makefile.am
 %endif
 
-# Regenerate the build files
+%conf
 autoreconf -fiv
 
 # Remove exec permission from source files
@@ -86,7 +86,6 @@ do
     sed -i "s|$data Shortcut Group|X-$data Shortcut Group|" deadbeef.desktop.in
 done
 
-%build
 %configure \
     --enable-ffmpeg \
     --docdir=%{_defaultdocdir}/%{name}-%{version} \
@@ -102,8 +101,9 @@ done
     --enable-gtk3 \
     --disable-pulse \
     --enable-pipewire
-%make_build
 
+%build
+%make_build
 
 %install
 %make_install
@@ -119,7 +119,6 @@ sed -i -e "s!MP3!MP3;!" %{buildroot}%{_datadir}/applications/%{name}.desktop
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
-
 %files -f %{name}.lang
 %doc README ChangeLog AUTHORS
 %license COPYING
@@ -131,12 +130,10 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.png
 %{_iconsdir}/hicolor/*/apps/*
 
-
 %files plugins
 %{_libdir}/%{name}/convpresets
 %{_libdir}/%{name}/*.so
 %{_libdir}/%{name}/data68
-
 
 %changelog
 * Fri May 30 2025 Leigh Scott <leigh123linux@gmail.com> - 1.10.0-2

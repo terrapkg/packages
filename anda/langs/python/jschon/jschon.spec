@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.11.1
-Release:		2%?dist
+Release:		3%?dist
 Summary:		An object-oriented JSON Schema implementation for Python
 License:		MIT
 URL:			https://github.com/marksparkza/jschon

@@ -4,9 +4,9 @@
 Name:    qt5-qtsystems
 Summary: Qt5 Mobility Framework
 Version: 5.15
-Release: %autorelease
+Release: 2%{?dist}
 
-License: GPL-3.0
+License: GPL-3.0-or-later
 URL:     https://invent.kde.org/qt/qt/qtsystems
 Source0: %{url}/-/archive/%commit/qt5-mobility-%commit.tar.gz
 Source1: https://salsa.debian.org/qt-kde-team/qt/qtsystems/-/archive/master/qtsystems-master.tar.gz
@@ -136,15 +136,12 @@ cp -a ./include/* %{buildroot}%{_qt5_includedir}
 %{_libdir}/libQt5SystemInfo.so.*
 %{_qt5_bindir}/servicefw
 %{_qt5_bindir}/sfwlisten
-%dir %{_qt5_qmldir}/QtPublishSubscribe
 %{_qt5_qmldir}/QtPublishSubscribe/*.so
 %{_qt5_qmldir}/QtPublishSubscribe/qmldir
 %{_qt5_qmldir}/QtPublishSubscribe/*.qmltypes
-%dir %{_qt5_qmldir}/QtServiceFramework
 %{_qt5_qmldir}/QtServiceFramework/*.so
 %{_qt5_qmldir}/QtServiceFramework/qmldir
 %{_qt5_qmldir}/QtServiceFramework/*.qmltypes
-%dir %{_qt5_qmldir}/QtSystemInfo
 %{_qt5_qmldir}/QtSystemInfo/*.so
 %{_qt5_qmldir}/QtSystemInfo/qmldir
 %{_qt5_qmldir}/QtSystemInfo/*.qmltypes
@@ -156,11 +153,8 @@ cp -a ./include/* %{buildroot}%{_qt5_includedir}
 %{_libdir}/libQt5ServiceFramework.so
 %{_libdir}/libQt5SystemInfo.so
 %{_libdir}/pkgconfig/*.pc
-%dir %{_libdir}/cmake/Qt5PublishSubscribe
 %{_libdir}/cmake/Qt5PublishSubscribe/*.cmake
-%dir %{_libdir}/cmake/Qt5ServiceFramework
 %{_libdir}/cmake/Qt5ServiceFramework/*.cmake
-%dir %{_libdir}/cmake/Qt5SystemInfo
 %{_libdir}/cmake/Qt5SystemInfo/*.cmake
 %{_qt5_archdatadir}/mkspecs/modules/*.pri
 %{_qt5_includedir}/QtPublishSubscribe/
@@ -175,7 +169,6 @@ cp -a ./include/* %{buildroot}%{_qt5_includedir}
 %{_qt5_docdir}/html/qtsysteminfo/
 
 %files examples
-%dir %{_qt5_examplesdir}/systeminfo
 %{_qt5_examplesdir}/systeminfo/*.pro
 %{_qt5_examplesdir}/systeminfo/inputinfo/
 %{_qt5_examplesdir}/systeminfo/qml-battery/
