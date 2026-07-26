@@ -19,12 +19,10 @@ Packager:       Cypress Reed <cypress@fyralabs.com>
 
 %description
 Tetra is a modular host agent that exposes host-management operations
-through a typed command envelope. It serves the Ultramarine Server
-dashboard, local OOBE, and on-host tooling for settings, users, services,
-storage, networking, and more.
+through a typed command envelope.
 
 %prep
-%git_clone
+%autoprep
 %cargo_prep_online
 
 %build
