@@ -2,7 +2,7 @@
 %global crate fe2o3-crust
 
 Name:           rust-fe2o3-crust
-Version:        0.1.33
+Version:        0.1.46
 Release:        1%{?dist}
 Summary:        Rust TUI library
 URL:            https://github.com/isene/crust
