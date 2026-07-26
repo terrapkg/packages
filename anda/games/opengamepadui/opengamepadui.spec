@@ -7,9 +7,7 @@ License:        GPLv3
 URL:            https://github.com/ShadowBlip/OpenGamepadUI
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
 
-# https://patch-diff.githubusercontent.com/raw/ShadowBlip/OpenGamepadUI/pull/523
-Patch0:         523.patch
-Patch1:         disable-manage-all.patch
+Patch0:         disable-manage-all.patch
 
 BuildRequires:  godot
 BuildRequires:  scons
@@ -60,7 +58,6 @@ cd %{build_dir}
 # Temporary while some final issues are resolved, same version as above.
 git checkout pastaq/bazzite_crashes
 %patch 0 -p1
-%patch 1 -p1
 
 %build
 cd %{build_dir}
