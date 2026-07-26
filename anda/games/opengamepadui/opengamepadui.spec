@@ -1,15 +1,13 @@
 Name:           opengamepadui
-Version:        0.45.1
-Release:        3%{?dist}
+Version:        0.46.0
+Release:        1%{?dist}
 Summary:        Open source gamepad-native game launcher and overlay
 
 License:        GPL-3.0-or-later
 URL:            https://github.com/ShadowBlip/OpenGamepadUI
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
 
-# https://patch-diff.githubusercontent.com/raw/ShadowBlip/OpenGamepadUI/pull/523
-Patch0:         523.patch
-Patch1:         disable-manage-all.patch
+Patch0:         disable-manage-all.patch
 
 BuildRequires:  godot
 BuildRequires:  scons
@@ -52,8 +50,14 @@ input system that can allow you to remap
 gamepad input to mouse and keyboard inputs.
 
 %prep
-%git_clone
-%autopatch -p1
+
+# We clone the repo from Git here because the build script requires
+# submodules to be present in the source directory.
+%git_clone %{url} v%{version}
+%dnl git checkout tags/v%{version}
+# Temporary while some final issues are resolved, same version as above.
+git checkout pastaq/bazzite_crashes
+%patch 0 -p1
 
 %build
 %make_build import
