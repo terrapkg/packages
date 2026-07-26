@@ -4,7 +4,7 @@
 
 Name:           legcord
 %electronmeta -D
-Version:        1.2.4
+Version:        1.3.0
 Release:        1%{?dist}
 License:        OSL-3.0 AND %{electron_license}
 Summary:        Custom lightweight Discord client designed to enhance your experience
