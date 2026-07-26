@@ -67,8 +67,8 @@ git checkout pastaq/bazzite_crashes
 %make_install PREFIX=%{buildroot}%{_prefix} INSTALL_PREFIX=%{_prefix}
 
 %files
-%license /LICENSE
-%doc /docs/
+%license LICENSE
+%doc docs/
 %{_bindir}/opengamepadui
 %{_datadir}/opengamepadui/
 %{_datadir}/applications/opengamepadui.desktop
