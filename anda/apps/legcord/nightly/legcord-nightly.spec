@@ -31,7 +31,6 @@ while keeping everything lightweight.
 %pnpm_build -r build
 
 %install
-ls dist/.icon-set/
 %electron_install -i legcord -l -I dist/.icon-set/
 
 dist/Legcord-*.AppImage --appimage-extract '*.desktop'
