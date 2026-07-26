@@ -1,0 +1,64 @@
+Name:           tetra
+Version:        0.1.0
+Release:        1%{?dist}
+Summary:        Modular host agent for Ultramarine Server and cloud hosts
+SourceLicense:  LGPL-2.1-or-later
+License:        LGPL-2.1-or-later AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND MIT AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND Zlib
+URL:            https://github.com/Ultramarine-Linux/tetra
+
+BuildRequires:  anda-srpm-macros
+BuildRequires:  rust-packaging
+BuildRequires:  gcc
+BuildRequires:  pkgconfig(openssl)
+BuildRequires:  systemd-rpm-macros
+
+Requires:       podman
+Requires:       systemd
+
+Packager:       Cypress Reed <cypress@fyralabs.com>
+
+%description
+Tetra is a modular host agent that exposes host-management operations
+through a typed command envelope. It serves the Ultramarine Server
+dashboard, local OOBE, and on-host tooling for settings, users, services,
+storage, networking, and more.
+
+%prep
+%git_clone
+%cargo_prep_online
+
+%build
+%{cargo_license_online} > LICENSE.dependencies
+%{cargo_build} --locked
+
+%install
+%cargo_install
+
+# State directories
+mkdir -p %{buildroot}%{_sharedstatedir}/tetra
+mkdir -p %{buildroot}%{_sharedstatedir}/tetra/identity
+
+# Config directory & example transport
+mkdir -p %{buildroot}%{_sysconfdir}/tetra
+install -Dm644 examples/transport.json %{buildroot}%{_sysconfdir}/tetra/transport.json.example
+
+# systemd service
+install -Dm644 systemd/tetra.service %{buildroot}%{_unitdir}/tetra.service
+
+%post
+%systemd_post tetra.service
+
+%preun
+%systemd_preun tetra.service
+
+%postun
+%systemd_postun_with_restart tetra.service
+
+%files
+%license LICENSE LICENSE.dependencies
+%doc README.md
+%{_bindir}/tetra
+%{_unitdir}/tetra.service
+%config(noreplace) %{_sysconfdir}/tetra/transport.json.example
+%dir %attr(0750, root, root) %{_sharedstatedir}/tetra
+%dir %attr(0750, root, root) %{_sharedstatedir}/tetra/identity
