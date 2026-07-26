@@ -28,7 +28,7 @@ while keeping everything lightweight.
 %pnpm_build -r build
 
 %install
-%electron_install -i legcord -l -I dist/.icon-set/icon_16.png -I dist/.icon-set/icon_32.png -I dist/.icon-set/icon_48x48.png -I dist/.icon-set/icon_64.png -I dist/.icon-set/icon_128.png -I dist/.icon-set/icon_256.png -I dist/.icon-set/icon_512.png -I dist/.icon-set/icon_1024.png
+%electron_install -i legcord -l -I dist/.icon-set/
 
 dist/Legcord-*.AppImage --appimage-extract '*.desktop'
 %desktop_file_install -k Exec,Icon -v "%{_libdir}/legcord/Legcord",legcord -u %U -f squashfs-root/Legcord.desktop
