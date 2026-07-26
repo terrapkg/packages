@@ -5,7 +5,7 @@ Epoch:              1
 Summary:		    Accelerated 2D painting solution for Qt Quick and QRhi-based render targets
 License:		    GPL-3.0-only AND OFL-1.1 AND (LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0) AND BSD-3-Clause AND (LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only)
 URL:			    https://github.com/qt/qtcanvaspainter
-Source0:		    %{url}/archive/refs/tags/%{version}.tar.gz
+Source0:		    %{url}/archive/refs/tags/v%{version}.tar.gz
 BuildRequires:	    cmake
 BuildRequires:      gcc
 BuildRequires:      gcc-c++
