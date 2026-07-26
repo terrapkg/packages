@@ -12,7 +12,7 @@
 %global commit fff0c96bf38d1ada075e524c4753a7f263c06449
 %global ver 
 
-Name:           rpcs3
+
 Version:        %(echo %{ver} | sed 's/-/^/g')
 Release:        1%{?dist}
 Summary:        PlayStation 3 emulator and debugger
