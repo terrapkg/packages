@@ -10,7 +10,7 @@ Source:         %{url}/archive/refs/tags/v%{version}.tar.gz
 BuildRequires:  nasm
 BuildRequires:  make
 Packager:       Owen Zimmerman <owen@fyralabs.com>
-ExclusiveArch:  x86_64 i686
+ExclusiveArch:  x86_64
 
 %description
 Interactive shell in x86_64 Linux assembly. No libc, no runtime, pure syscalls.
