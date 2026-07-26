@@ -27,7 +27,6 @@ through a typed command envelope.
 %cargo_prep_online
 
 %build
-%cargo_build
 
 %install
 %cargo_install
@@ -44,12 +43,11 @@ mkdir -p %{buildroot}%{_sharedstatedir}/tetra
 mkdir -p %{buildroot}%{_sharedstatedir}/tetra/identity
 
 # Config directory & example transport
-mkdir -p %{buildroot}%{_sysconfdir}/tetra
 install -Dm644 examples/transport.json %{buildroot}%{_sysconfdir}/tetra/transport.json.example
 
 # Data files (templates)
 mkdir -p %{buildroot}%{_datadir}/tetra
-cp -r templates %{buildroot}%{_datadir}/tetra/
+cp -pr templates %{buildroot}%{_datadir}/tetra/
 
 # Systemd service
 install -Dm644 systemd/tetra.service %{buildroot}%{_unitdir}/tetra.service
@@ -65,7 +63,7 @@ install -Dm644 systemd/tetra.service %{buildroot}%{_unitdir}/tetra.service
 
 %files
 %license LICENSE LICENSE.dependencies
-%doc README.md SECURITY.md elements.md docs/agent-protocol.md
+%doc README.md SECURITY.md elements.md docs/*
 %{_bindir}/tetra
 %{_unitdir}/tetra.service
 %{_datadir}/tetra/templates
