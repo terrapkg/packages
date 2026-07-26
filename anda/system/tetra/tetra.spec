@@ -23,7 +23,7 @@ Tetra is a modular host agent that exposes host-management operations
 through a typed command envelope.
 
 %prep
-%autoprep
+%autosetup -n srpm-macros-%version
 %cargo_prep_online
 
 %build
