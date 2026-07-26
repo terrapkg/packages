@@ -31,7 +31,7 @@ while keeping everything lightweight.
 %pnpm_build -r build
 
 %install
-%electron_install -i legcord -l -I dist/.icon-set/icon_16.png -I dist/.icon-set/icon_32.png -I dist/.icon-set/icon_48x48.png -I dist/.icon-set/icon_64.png -I dist/.icon-set/icon_128.png -I dist/.icon-set/icon_256.png -I dist/.icon-set/icon_512.png -I dist/.icon-set/icon_1024.png
+%electron_install -i legcord -l -I dist/.icon-set/icon_32.png -I dist/.icon-set/icon_48x48.png -I dist/.icon-set/icon_64.png -I dist/.icon-set/icon_128.png -I dist/.icon-set/icon_256.png -I dist/.icon-set/icon_512.png -I dist/.icon-set/icon_1024.png
 
 dist/Legcord-*.AppImage --appimage-extract '*.desktop'
 %desktop_file_install -k Exec,Icon -v "%{_libdir}/legcord-nightly/Legcord",legcord -u %U -f squashfs-root/legcord.desktop
@@ -42,7 +42,6 @@ dist/Legcord-*.AppImage --appimage-extract '*.desktop'
 %{_bindir}/legcord-nightly
 %{_datadir}/applications/legcord.desktop
 %{_libdir}/legcord-nightly/
-%{_iconsdir}/hicolor/16x16/apps/legcord.png
 %{_iconsdir}/hicolor/32x32/apps/legcord.png
 %{_iconsdir}/hicolor/48x48/apps/legcord.png
 %{_iconsdir}/hicolor/64x64/apps/legcord.png
