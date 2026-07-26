@@ -30,6 +30,7 @@ while keeping everything lightweight.
 %install
 %electron_install -i legcord -l -I dist/.icon-set/
 
+ls -la squashfs-root/
 dist/Legcord-*.AppImage --appimage-extract '*.desktop'
 %desktop_file_install -k Exec,Icon -v "%{_libdir}/legcord/Legcord",legcord -u %U -f squashfs-root/Legcord.desktop
 
@@ -40,13 +41,13 @@ dist/Legcord-*.AppImage --appimage-extract '*.desktop'
 %{_datadir}/applications/Legcord.desktop
 %{_libdir}/legcord/
 %{_iconsdir}/hicolor/16x16/apps/legcord.png
+%{_iconsdir}/hicolor/24x24/apps/legcord.png
 %{_iconsdir}/hicolor/32x32/apps/legcord.png
 %{_iconsdir}/hicolor/48x48/apps/legcord.png
 %{_iconsdir}/hicolor/64x64/apps/legcord.png
 %{_iconsdir}/hicolor/128x128/apps/legcord.png
 %{_iconsdir}/hicolor/256x256/apps/legcord.png
 %{_iconsdir}/hicolor/512x512/apps/legcord.png
-%{_iconsdir}/hicolor/1024x1024/apps/legcord.png
 
 %changelog
 * Mon May 18 2026 june-fish <june@fyralabs.com> - 1.2.4-1
