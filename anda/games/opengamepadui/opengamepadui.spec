@@ -56,7 +56,9 @@ remap gamepad input to mouse and keyboard inputs.
 rm -rf %{build_dir}
 git clone %{url} %{build_dir} -b v%{version}
 cd %{build_dir}
-git checkout tags/v%{version}
+#git checkout tags/v%{version}
+# Temporary while some final issues are resolved, same version as above.
+git checkout pastaq/bazzite_crashes
 %patch 0 -p1
 %patch 1 -p1
 
