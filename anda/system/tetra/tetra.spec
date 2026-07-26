@@ -2,7 +2,8 @@ Name:           tetra
 Version:        0.1.0
 Release:        1%{?dist}
 Summary:        Modular host agent for Ultramarine Server and cloud hosts
-License:        LGPL-2.1-or-later
+SourceLicense:  LGPL-2.1-or-later
+License:        LGPL-2.1-or-later AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND MIT AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND Zlib
 URL:            https://github.com/Ultramarine-Linux/tetra
 Source0:        https://github.com/Ultramarine-Linux/tetra/archive/refs/tags/v%{version}.tar.gz
 
