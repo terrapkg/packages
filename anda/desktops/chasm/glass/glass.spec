@@ -1,5 +1,5 @@
-%global debug_package %{nil}
 %global glyph_ver 0.5.0
+%global _hardened_ldflags %nil
 
 Name:           glass
 Release:        1%{?dist}
@@ -22,6 +22,7 @@ Pure assembly terminal emulator. x86_64 Linux, no libc, X11 wire protocol. Part 
 %autosetup
 mkdir ../glyph
 tar -xf %{SOURCE1} -C ../glyph --strip-components=1
+sed '/^\s*nasm/s/nasm /nasm -g /;/^\s*ld/s@ld @gcc -nostdlib -fuse-ld=mold -Wl,-z,muldefs %build_ldflags@' -i Makefile
 
 %build
 %make_build
