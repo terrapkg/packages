@@ -47,7 +47,7 @@ install -Dm 644 completions.zsh %{buildroot}%{zsh_completions_dir}/_%{name}
     --prefix none                                                           \
     --format "{l}: {p}"                                                     \
     | sed -e "s: ($(pwd)[^)]*)::g" -e "s: / :/:g" -e "/\/.*:/{s/\// OR /}"  \
-    | sed -e '/.*(\*).*/d' -e '/^: pet/ s/./MIT&/'                          \
+    | sed -e '/.*(\*).*/d'.                                                 \
     | sort -u                                                               \
 > LICENSE.dependencies
 
