@@ -9,7 +9,7 @@ License:        Unlicense
 URL:            https://github.com/isene/glass
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 Source1:        https://github.com/isene/glyph/archive/refs/tags/v%{glyph_ver}.tar.gz
-BuildRequires:  nasm
+BuildRequires:  nasm gcc
 BuildRequires:  make
 Requires:       xorg-x11-server-Xorg
 Packager:       Owen Zimmerman <owen@fyralabs.com>
