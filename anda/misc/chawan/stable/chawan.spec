@@ -27,7 +27,7 @@ which can nevertheless display many websites in a manner similar to major graphi
 It can also be used as a terminal pager.
 
 %prep
-%autosetup -n chawan-%{version}
+%autosetup -C
 
 %build
 %make_build
