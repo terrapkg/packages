@@ -7,7 +7,7 @@ Name:           wego
 Release:        1%{?dist}
 Summary:        weather app for the terminal
 
-License:        MIT
+License:        ISC
 URL:            https://github.com/schachmat/wego
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 
