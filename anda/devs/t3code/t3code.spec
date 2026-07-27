@@ -14,8 +14,8 @@ BuildRequires:  ImageMagick
 BuildRequires:  pnpm
 
 Requires:       git-core
-Recommends:     gh
-Recommends:     glab
+Suggests:       gh
+Suggests:       glab
 
 Packager:       Addison LeClair <me@addi.lol>
 
