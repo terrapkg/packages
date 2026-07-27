@@ -48,6 +48,7 @@ It can also be used as a terminal pager.
 %{_mandir}/man5/cha-mailcap.5.*
 %{_mandir}/man5/cha-mime.types.5.*
 %{_mandir}/man5/cha-urimethodmap.5.*
+%{_mandir}/man5/cha-cgi.5.*
 %{_mandir}/man7/cha-api.7.*
 %{_mandir}/man7/cha-css.7.*
 %{_mandir}/man7/cha-image.7.*
