@@ -35,7 +35,7 @@ install -Dm755 %{gobuilddir}/wego %{buildroot}%{_bindir}/wego
 
 %files
 %license LICENSE
-%doc README.md
+%doc README.md CONTRIBUTING.md
 %{_bindir}/wego
 
 %changelog
