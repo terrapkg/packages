@@ -13,6 +13,10 @@ BuildRequires:  anda-srpm-macros
 BuildRequires:  ImageMagick
 BuildRequires:  pnpm
 
+Requires:       git-core
+Recommends:     gh
+Recommends:     glab
+
 Packager:       Addison LeClair <me@addi.lol>
 
 %description
@@ -32,38 +36,31 @@ export T3CODE_DESKTOP_ARCH=%{_electron_cpu}
 %install
 archive="$(find release -maxdepth 1 -name '*.tar.xz' -print -quit)"
 mkdir -p dist
-tar -xJf "$archive" -C dist
-
-# electron-builder tar targets can extract either flat or under one top-level
-# directory. Normalize the archive to a flat app payload in dist/.
-topdir="$(find dist -mindepth 1 -maxdepth 1 -type d -print -quit)"
-if [ -n "$topdir" ] && [ "$(find dist -mindepth 1 -maxdepth 1 -print | wc -l)" -eq 1 ]; then
-    mv "$topdir" dist.tmp
-    rm -rf dist
-    mv dist.tmp dist
-fi
+tar -xJf "$archive" -C dist --strip-components=1
 
 find dist -path '*musl*' -delete
-chmod -R a+rX dist
 
 install -dm755 %{buildroot}%{_libdir}/%{name}
 cp -pr dist/. %{buildroot}%{_libdir}/%{name}/
+chmod 4755 %{buildroot}%{_libdir}/%{name}/chrome-sandbox
 
 install -dm755 %{buildroot}%{_bindir}
 ln -sf %{_libdir}/%{name}/%{name} %{buildroot}%{_bindir}/%{name}
 
 install -Dm644 apps/desktop/resources/icon.png %{buildroot}%{_hicolordir}/512x512/apps/%{name}.png
 
-echo '[Desktop Entry]' > %{name}.desktop
-echo 'Name=T3 Code' >> %{name}.desktop
-echo 'Comment=Minimal web GUI for coding agents' >> %{name}.desktop
-echo 'Exec=%{name} --ozone-platform-hint=auto %U' >> %{name}.desktop
-echo 'Icon=%{name}' >> %{name}.desktop
-echo 'Terminal=false' >> %{name}.desktop
-echo 'Type=Application' >> %{name}.desktop
-echo 'Categories=Development;' >> %{name}.desktop
-echo 'StartupWMClass=t3code' >> %{name}.desktop
-echo 'MimeType=x-scheme-handler/t3code;x-scheme-handler/t3code-dev;' >> %{name}.desktop
+cat <<EOF > %{name}.desktop
+[Desktop Entry]
+Name=T3 Code
+Comment=%{summary}
+Exec=%{name} --ozone-platform-hint=auto %U
+Icon=%{name}
+Terminal=false
+Type=Application
+Categories=Development;
+StartupWMClass=%{name}
+MimeType=x-scheme-handler/t3code;x-scheme-handler/t3code-dev;
+EOF
 
 %desktop_file_install %{name}.desktop
 
@@ -72,7 +69,6 @@ echo 'MimeType=x-scheme-handler/t3code;x-scheme-handler/t3code-dev;' >> %{name}.
 %license LICENSE
 %{_bindir}/%{name}
 %{_libdir}/%{name}/
-%attr(4755, root, root) %{_libdir}/%{name}/chrome-sandbox
 %{_appsdir}/*.desktop
 %{_iconsdir}/hicolor/*/apps/%{name}.png
 
