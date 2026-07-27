@@ -1,4 +1,4 @@
-%global debug_package %{nil}
+%global _hardened_ldflags %nil
 
 Name:           bolt-screen-locker
 Release:        1%{?dist}
@@ -20,7 +20,7 @@ Pure-asm screen locker for the CHasm desktop suite (x86_64 NASM, no libc).
 %autosetup -C
 
 %build
-%make_build
+%make_build NASM="nasm -g" LD="gcc -nostdlib -fuse-ld=mold -Wl,-z,muldefs %build_ldflags" CFLAGS="%build_cflags"
 
 %install
 %make_install PREFIX=%{_prefix}
