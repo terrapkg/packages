@@ -21,11 +21,8 @@ Pure assembly terminal emulator. x86_64 Linux, no libc, X11 wire protocol. Part 
 
 %prep
 %autosetup
-
 mkdir ../glyph
-
 tar -xf %{SOURCE1} -C ../glyph --strip-components=1
-
 
 %build
 %make_build
