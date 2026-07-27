@@ -42,7 +42,6 @@ It can also be used as a terminal pager.
 %{_mandir}/man1/cha.1.*
 %{_mandir}/man1/mancha.1.*
 %{_mandir}/man5/cha-config.5.*
-%{_mandir}/man5/cha-localcgi.5.*
 %{_mandir}/man5/cha-mailcap.5.*
 %{_mandir}/man5/cha-mime.types.5.*
 %{_mandir}/man5/cha-urimethodmap.5.*
