@@ -1,4 +1,4 @@
-%global debug_package %{nil}
+%global _hardened_ldflags %nil
 
 Name:           glyph
 Release:        1%{?dist}
@@ -20,7 +20,7 @@ Handles composite glyphs, UTF-8, OpenType variable fonts. Part of CHasm.
 %autosetup -C
 
 %build
-%make_build
+%make_build NASM="nasm -g" LD="gcc -nostdlib -fuse-ld=mold -Wl,-z,muldefs %build_ldflags"
 
 %install
 install -Dm755 glyph %{buildroot}%{_bindir}/glyph
