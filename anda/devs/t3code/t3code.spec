@@ -20,7 +20,7 @@ T3 Code is a minimal web GUI for coding agents such as Codex, Claude Code,
 Cursor, and OpenCode.
 
 %prep
-%git_clone %url v%version
+%autosetup -n %{name}-%{version}
 
 %build
 export T3CODE_DESKTOP_VERSION=%{version}
