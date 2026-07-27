@@ -29,32 +29,42 @@ export T3CODE_DESKTOP_ARCH=%{_electron_cpu}
 %pnpm_build -F -r dist:desktop:artifact
 
 %install
-appimage="$(find release -maxdepth 1 -name '*.AppImage' -print -quit)"
-chmod +x "$appimage"
-dd if=/dev/zero of="$appimage" bs=1 count=3 seek=8 conv=notrunc
-"$appimage" --appimage-extract
+archive="$(find release -maxdepth 1 -name '*.tar.xz' -print -quit)"
+mkdir -p dist
+tar -xJf "$archive" -C dist
+
+# electron-builder tar targets can extract either flat or under one top-level
+# directory. Normalize the archive to a flat app payload in dist/.
+topdir="$(find dist -mindepth 1 -maxdepth 1 -type d -print -quit)"
+if [ -n "$topdir" ] && [ "$(find dist -mindepth 1 -maxdepth 1 -print | wc -l)" -eq 1 ]; then
+    mv "$topdir" dist.tmp
+    rm -rf dist
+    mv dist.tmp dist
+fi
+
+find dist -path '*musl*' -delete
+chmod -R a+rX dist
 
 install -dm755 %{buildroot}%{_libdir}/%{name}
-cp -pr squashfs-root/. %{buildroot}%{_libdir}/%{name}/
-find %{buildroot}%{_libdir}/%{name} -path '*musl*' -delete
-chmod -R a+rX %{buildroot}%{_libdir}/%{name}
-rm -rf %{buildroot}%{_libdir}/%{name}/AppRun \
-       %{buildroot}%{_libdir}/%{name}/usr \
-       %{buildroot}%{_libdir}/%{name}/.DirIcon \
-       %{buildroot}%{_libdir}/%{name}/*.desktop
-
-install -dm755 %{buildroot}%{_datadir}
-cp -pr squashfs-root/usr/share/icons %{buildroot}%{_datadir}/
-
-sed -i '/AppImage/d' squashfs-root/*.desktop
-desktop-file-install \
-    --set-key=Exec --set-value="%{name} --ozone-platform-hint=auto %U" \
-    --set-key=Icon --set-value=%{name} \
-    --dir=%{buildroot}%{_appsdir} \
-    squashfs-root/*.desktop
+cp -pr dist/. %{buildroot}%{_libdir}/%{name}/
 
 install -dm755 %{buildroot}%{_bindir}
 ln -sf %{_libdir}/%{name}/%{name} %{buildroot}%{_bindir}/%{name}
+
+install -Dm644 apps/desktop/resources/icon.png %{buildroot}%{_hicolordir}/512x512/apps/%{name}.png
+
+echo '[Desktop Entry]' > %{name}.desktop
+echo 'Name=T3 Code' >> %{name}.desktop
+echo 'Comment=Minimal web GUI for coding agents' >> %{name}.desktop
+echo 'Exec=%{name} --ozone-platform-hint=auto %U' >> %{name}.desktop
+echo 'Icon=%{name}' >> %{name}.desktop
+echo 'Terminal=false' >> %{name}.desktop
+echo 'Type=Application' >> %{name}.desktop
+echo 'Categories=Development;' >> %{name}.desktop
+echo 'StartupWMClass=t3code' >> %{name}.desktop
+echo 'MimeType=x-scheme-handler/t3code;x-scheme-handler/t3code-dev;' >> %{name}.desktop
+
+%desktop_file_install %{name}.desktop
 
 %files
 %doc README.md
