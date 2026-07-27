@@ -1,4 +1,4 @@
-%global debug_package %{nil}
+%global _hardened_ldflags %nil
 
 Name:           chasm-bits
 Release:        1%{?dist}
@@ -10,6 +10,7 @@ Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 Source1:        https://unlicense.org/UNLICENSE
 BuildRequires:  nasm
 BuildRequires:  make
+BuildRequires:  gcc
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 ExclusiveArch:  x86_64
 
@@ -30,6 +31,8 @@ them and switches GC foreground per text-run.
 
 %prep
 %autosetup -C
+
+sed '/^\s*nasm/s/nasm /nasm -g /;/^\s*ld/s@ld @gcc -nostdlib -fuse-ld=mold -Wl,-z,muldefs %build_ldflags@' -i Makefile
 
 %build
 %make_build
