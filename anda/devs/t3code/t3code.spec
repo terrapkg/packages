@@ -14,6 +14,7 @@ BuildRequires:  ImageMagick
 BuildRequires:  pnpm
 
 Requires:       git-core
+Suggests:       azure-cli
 Suggests:       gh
 Suggests:       glab
 
