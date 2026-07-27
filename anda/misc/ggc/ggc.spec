@@ -23,6 +23,8 @@ Requires:       glibc
 
 %gopkg
 
+%pkg_completion -bfz
+
 %prep
 %autosetup
 
@@ -31,7 +33,10 @@ Requires:       glibc
 %gobuild -o %{gobuilddir}/cmd/ %{goipath}
 
 %install
-install -Dm755 %{gobuilddir}/cmd/ggc %{buildroot}%{_bindir}/ggc
+install -Dm755 %{gobuilddir}/cmd/ggc    %{buildroot}%{_bindir}/ggc
+install -Dm644 cmd/completions/ggc.bash %{buildroot}%{bash_completions_dir}/ggc.bash
+install -Dm644 cmd/completions/ggc.fish %{buildroot}%{fish_completions_dir}/ggc.fish
+install -Dm644 cmd/completions/ggc.zsh  %{buildroot}%{zsh_completions_dir}/_ggc
 
 %files
 %license LICENSE
