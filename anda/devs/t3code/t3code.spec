@@ -7,6 +7,7 @@ Release:        1%{?dist}
 Summary:        Minimal web GUI for coding agents
 License:        MIT AND %{electron_license}
 URL:            https://github.com/pingdotgg/t3code
+Source0:        https://github.com/pingdotgg/t3code/archive/refs/tags/v%{version}.tar.gz
 
 BuildRequires:  anda-srpm-macros
 BuildRequires:  ImageMagick
