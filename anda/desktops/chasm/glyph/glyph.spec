@@ -7,7 +7,7 @@ Summary:        Pure assembly TrueType font rasterizer
 License:        Unlicense
 URL:            https://github.com/isene/glyph
 Source:         %{url}/archive/refs/tags/v%{version}.tar.gz
-BuildRequires:  nasm
+BuildRequires:  nasm gcc
 BuildRequires:  make
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 ExclusiveArch:  x86_64
