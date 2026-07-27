@@ -29,7 +29,6 @@ but for any language.
 for shell in bash elvish fish nushell zsh; do
     target/rpm/%{name} completion --shell $shell > completions.$shell
 done
-%{cargo_license_online} > LICENSE.dependencies
 
 %install
 install -Dm 755 target/rpm/%{name} %{buildroot}%{_bindir}/%{name}
@@ -38,6 +37,19 @@ install -Dm 644 completions.elvish %{buildroot}%{elvish_completions_dir}/%{name}
 install -Dm 644 completions.fish %{buildroot}%{fish_completions_dir}/%{name}.fish
 install -Dm 644 completions.nushell %{buildroot}%{nushell_completions_dir}/%{name}.nu
 install -Dm 644 completions.zsh %{buildroot}%{zsh_completions_dir}/_%{name}
+
+%{__cargo} tree                                                             \
+    -Z avoid-dev-deps                                                       \
+    --workspace                                                             \
+    --edges no-build,no-dev,no-proc-macro                                   \
+    --target all                                                            \
+    %{__cargo_parse_opts %{-n} %{-a} %{-f:-f%{-f*}}}                        \
+    --prefix none                                                           \
+    --format "{l}: {p}"                                                     \
+    | sed -e "s: ($(pwd)[^)]*)::g" -e "s: / :/:g" -e "/\/.*:/{s/\// OR /}"  \
+    | sed -e '/.*(\*).*/d'.                                                 \
+    | sort -u                                                               \
+> LICENSE.dependencies
 
 %files
 %doc README.md CHANGELOG.md
