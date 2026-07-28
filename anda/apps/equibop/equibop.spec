@@ -1,14 +1,15 @@
-%global debug_package %{nil}
 %global appid org.equicord.equibop
 
 Name:           equibop
 Version:        3.2.2
 Release:        1%{?dist}
 Summary:        Custom Discord client focused on performance and Linux support
-%electronmeta
+Packager:       bangetto <bangettoyou2@gmail.com>
 License:        GPL-3.0-only AND %electron_license
 URL:            https://equibop.org
 Source0:        https://github.com/Equicord/Equibop/archive/refs/tags/v%{version}.tar.gz
+
+%electronmeta -D
 
 BuildRequires:  bun-bin
 BuildRequires:  jq
@@ -39,3 +40,7 @@ mv package.json.tmp package.json
 %{_bindir}/%{name}
 %{_libdir}/%{name}/
 %{_metainfodir}/%{appid}.metainfo.xml
+
+%changelog
+* Tue Jul 28 2026 bangetto <bangettoyou2@gmail.com> - 3.2.2-1
+- Initial package release
