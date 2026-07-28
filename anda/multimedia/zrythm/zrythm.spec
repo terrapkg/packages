@@ -30,7 +30,7 @@ BuildRequires: libXcursor-devel
 BuildRequires: qt6-qtbase-devel
 BuildRequires: qt6-canvaspainter-devel
 BuildRequires: json-devel
-BuildRequires:  json-schema-validator
+BuildRequires:  json-schema-validator-devel
 BuildRequires: pkgconfig(carla-host-plugin) >= 2.6.0
 BuildRequires: pkgconfig(gtk4)
 BuildRequires: pkgconfig(gtksourceview-5)
