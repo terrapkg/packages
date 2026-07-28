@@ -35,11 +35,11 @@ mv package.json.tmp package.json
 %electron_install
 
 # Install desktop entry and icons under official AppID and symlink short name. Also hint window managers.
-install -Dm644 build/%{appid}.desktop %{buildroot}%_appsdir/%{appid}.desktop
-ln -sf %{appid}.desktop %{buildroot}%_appsdir/%{name}.desktop
-desktop-file-edit --set-key=StartupWMClass --set-value=equibop %{buildroot}%_appsdir/%{appid}.desktop
-install -Dm644 build/icon.svg %{buildroot}%_scalableiconsdir/%{appid}.svg
-ln -sf %{appid}.svg %{buildroot}%_scalableiconsdir/%{name}.svg
+install -Dm644 build/%{appid}.desktop %{buildroot}%{_appsdir}/%{appid}.desktop
+ln -sf %{appid}.desktop %{buildroot}%{_appsdir}/%{name}.desktop
+desktop-file-edit --set-key=StartupWMClass --set-value=equibop %{buildroot}%{_appsdir}/%{appid}.desktop
+install -Dm644 build/icon.svg %{buildroot}%{_scalableiconsdir}/%{appid}.svg
+ln -sf %{appid}.svg %{buildroot}%{_scalableiconsdir}/%{name}.svg
 
 %terra_appstream
 
@@ -48,8 +48,8 @@ ln -sf %{appid}.svg %{buildroot}%_scalableiconsdir/%{name}.svg
 %doc README.md
 %{_bindir}/%{name}
 %{_libdir}/%{name}/
-%{_datadir}/applications/*.desktop
-%{_datadir}/icons/hicolor/*/apps/*
+%{__appsdir}/*.desktop
+%{_hicolordir}/*/apps/*
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
