@@ -1,15 +1,12 @@
-%global commit 1f904096e3c6fe2e825d78f1245f14855db23cb6
-%global commit_date 20260322
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
-
 %define debug_package %nil
 
-Name:           chawan
-Version:        0~%{commit_date}git.%{shortcommit}
+Name:           chawan-nightly
+Version:        0.4.4
 Release:        1%{?dist}
+Epoch:          1
 Summary:        TUI web (and (S)FTP, Gopher, Gemini, ...) browser with CSS, inline image and JavaScript support
-URL:            https://github.com/kachick/chawan
-Source0:        %url/archive/%commit/chawan-%commit.tar.gz
+URL:            https://git.sr.ht/~bptato/chawan
+Source0:        %{url}/archive/v%{version}.tar.gz
 License:        Unlicense
 BuildRequires: nim
 BuildRequires: gcc
@@ -18,6 +15,7 @@ BuildRequires: openssl-devel
 BuildRequires: brotli-devel
 BuildRequires: pkgconf-pkg-config
 BuildRequires: make
+Conflicts:     chawan-nightly
 Packager: apolunar <ijholm@tuta.io>
 
 %description
@@ -29,7 +27,7 @@ which can nevertheless display many websites in a manner similar to major graphi
 It can also be used as a terminal pager.
 
 %prep
-%autosetup -n chawan-%commit
+%autosetup -C
 
 %build
 %make_build
@@ -44,10 +42,10 @@ It can also be used as a terminal pager.
 %{_mandir}/man1/cha.1.*
 %{_mandir}/man1/mancha.1.*
 %{_mandir}/man5/cha-config.5.*
-%{_mandir}/man5/cha-localcgi.5.*
 %{_mandir}/man5/cha-mailcap.5.*
 %{_mandir}/man5/cha-mime.types.5.*
 %{_mandir}/man5/cha-urimethodmap.5.*
+%{_mandir}/man5/cha-cgi.5.gz
 %{_mandir}/man7/cha-api.7.*
 %{_mandir}/man7/cha-css.7.*
 %{_mandir}/man7/cha-image.7.*
@@ -58,5 +56,8 @@ It can also be used as a terminal pager.
 %doc README.md
 
 %changelog
+* Sun Jul 26 2026 Owen Zimmerman <owen@fyralabs.com>
+- Split into nightly and stable
+
 * Fri Mar 20 2026 apolunar <ijholm@tuta.io>
 - Initial commit
