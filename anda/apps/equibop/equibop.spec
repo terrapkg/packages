@@ -12,6 +12,7 @@ Source0:        https://github.com/Equicord/Equibop/archive/refs/tags/v%{version
 %electronmeta -D
 
 BuildRequires:  bun-bin
+BuildRequires:  desktop-file-utils
 BuildRequires:  jq
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(gio-2.0)
@@ -32,6 +33,14 @@ mv package.json.tmp package.json
 
 %install
 %electron_install
+
+# Install desktop entry and icons under official AppID and symlink short name. Also hint window managers.
+install -Dm644 build/%{appid}.desktop %{buildroot}%{_datadir}/applications/%{appid}.desktop
+ln -sf %{appid}.desktop %{buildroot}%{_datadir}/applications/%{name}.desktop
+desktop-file-edit --set-key=StartupWMClass --set-value=equibop %{buildroot}%{_datadir}/applications/%{appid}.desktop
+install -Dm644 build/icon.svg %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/%{appid}.svg
+ln -sf %{appid}.svg %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
+
 %terra_appstream
 
 %files
@@ -39,6 +48,8 @@ mv package.json.tmp package.json
 %doc README.md
 %{_bindir}/%{name}
 %{_libdir}/%{name}/
+%{_datadir}/applications/*.desktop
+%{_datadir}/icons/hicolor/*/apps/*
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
