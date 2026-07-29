@@ -1,5 +1,5 @@
 %global goipath github.com/surge-downloader/surge
-Version:        ext.v2.1.1
+Version:        0.11.0
 
 %gometa
 
