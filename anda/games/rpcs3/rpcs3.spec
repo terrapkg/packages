@@ -14,7 +14,7 @@
 
 
 
-Release:        1%{?dist}
+
 Summary:        PlayStation 3 emulator and debugger
 License:        GPL-2.0-only
 URL:            https://github.com/RPCS3/rpcs3
