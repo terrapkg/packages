@@ -48,7 +48,7 @@ ln -sf %{appid}.svg %{buildroot}%{_scalableiconsdir}/%{name}.svg
 %doc README.md
 %{_bindir}/%{name}
 %{_libdir}/%{name}/
-%{__appsdir}/*.desktop
+%{_appsdir}/*.desktop
 %{_hicolordir}/*/apps/*
 %{_metainfodir}/%{appid}.metainfo.xml
 
