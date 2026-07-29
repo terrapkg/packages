@@ -1,6 +1,6 @@
 Name:           opengamepadui
 Version:        0.46.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Open source gamepad-native game launcher and overlay
 
 License:        GPLv3
@@ -8,6 +8,7 @@ URL:            https://github.com/ShadowBlip/OpenGamepadUI
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
 
 Patch0:         disable-manage-all.patch
+Patch1:         pid-check.patch
 
 BuildRequires:  godot
 BuildRequires:  scons
@@ -58,6 +59,7 @@ cd %{build_dir}
 # Temporary while some final issues are resolved, same version as above.
 git checkout pastaq/bazzite_crashes
 %patch 0 -p1
+%patch 1 -p1
 
 %build
 cd %{build_dir}
