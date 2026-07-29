@@ -108,6 +108,9 @@ mkdir -p %{buildroot}%{_sysconfdir}/asusd
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
+* Wed July 29 2026 Owen Zimmerman <owen@fyralabs.com> - 6.3.10-1
+- Remove upstreamed metainfo file, switch to new App ID
+
 * Sun Jul 19 2026 Olivia <git@olivia.sh> - 1:1.0.1-2
 - Update packager
 
