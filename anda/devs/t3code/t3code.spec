@@ -2,7 +2,7 @@
 
 Name:           t3code
 %electronmeta -D
-Version:        0.0.30
+Version:        0.0.31
 Release:        1%{?dist}
 Summary:        Minimal web GUI for coding agents
 License:        MIT AND %{electron_license}
