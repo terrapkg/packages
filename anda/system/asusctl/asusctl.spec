@@ -4,7 +4,7 @@
 %global asus_system_units asusd.service asus-shutdown.service
 
 Name:           asusctl
-Version:        6.3.10
+Version:        6.3.11
 Release:        1%{?dist}
 Epoch:          1
 Summary:        A control daemon, CLI tools, and a collection of crates for interacting with ASUS ROG laptops
