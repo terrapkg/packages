@@ -9,13 +9,13 @@
 # GLIBCXX_ASSERTIONS is known to break RPCS3
 %global build_cflags %(echo "%{__build_flags_lang_c}" | sed 's|-Wp,-D_GLIBCXX_ASSERTIONS ||g') %{?_distro_extra_cflags}
 %global build_cxxflags %(echo "%{__build_flags_lang_cxx}" | sed 's|-Wp,-D_GLIBCXX_ASSERTIONS ||g') %{?_distro_extra_cflags}
-%global commit fff0c96bf38d1ada075e524c4753a7f263c06449
+%global commit cf9133abedd619efb16715f38a0efe1f92fb92b6
 %global ver 
 
 
 
 
-Summary:        PlayStation 3 emulator and debugger
+0.0.41-19652
 License:        GPL-2.0-only
 URL:            https://github.com/RPCS3/rpcs3
 Source0:        %{url}/archive/%{commit}/%{name}-%{commit}.tar.gz
