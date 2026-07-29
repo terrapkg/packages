@@ -1,8 +1,8 @@
 %global ver 1.0.0
 
-%global commit          b0069df8a896a185dc0fc9e698741d17c7e31259
+%global commit          c6a48ead9ddb1d0cfd8d304c7c338eebc937cff7
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
-%global commitdate      20260720
+%global commitdate      20260729
 
 Name:   	noctalia-greeter
 Version:	%{ver}^%{commitdate}git.%{shortcommit}
@@ -30,6 +30,9 @@ BuildRequires:  pkgconfig(pango)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(wayland-protocols)
 BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:  pkgconfig(tomlplusplus)
+BuildRequires:  pkgconfig(nlohmann_json)
+BuildRequires:  stb-devel
 BuildRequires:  polkit
 BuildRequires:  wlroots-devel >= 0.20
 

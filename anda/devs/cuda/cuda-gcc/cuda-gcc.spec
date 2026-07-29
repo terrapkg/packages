@@ -1,7 +1,7 @@
 %global gcc_major 15
 
 Name:           cuda-gcc
-Version:        15.2.1
+Version:        15.3.1
 Release:        1%{?dist}
 Summary:        GNU Compiler Collection CUDA compatibility package
 License:        BSD

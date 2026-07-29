@@ -3,7 +3,7 @@
 %global _desc Command-line client for the Public.com Trading API.
 
 Name:			python-%{real_name}
-Version:		1.2.2
+Version:		1.3.0
 Release:		1%{?dist}
 Summary:		Command-line client for the Public.com Trading API
 License:		Apache-2.0

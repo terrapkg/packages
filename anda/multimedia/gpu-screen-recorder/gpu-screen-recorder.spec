@@ -1,5 +1,5 @@
 Name:           gpu-screen-recorder
-Version:        5.15.1
+Version:        5.15.2
 Release:        1%{?dist}
 Summary:        A shadowplay-like screen recorder for Linux
 

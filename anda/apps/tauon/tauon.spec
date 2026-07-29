@@ -58,7 +58,8 @@ install -Dm755 extra/tauonmb.sh %{buildroot}/opt/tauon/tauonmb.sh
 %doc README.md CHANGELOG.md CONTRIBUTING.md
 %license LICENSE
 %{_bindir}/tauonmb
-%{python3_sitearch}/phazor.cpython-314-*-linux-gnu.so
+%{python3_sitearch}/phazor.cpython-*-linux-gnu.so
+%dnl %{python3_sitearch}/phazor-pw.cpython-*-linux-gnu.so
 %{_appsdir}/tauonmb.desktop
 %{_scalableiconsdir}/tauonmb-symbolic.svg
 %{_scalableiconsdir}/tauonmb.svg

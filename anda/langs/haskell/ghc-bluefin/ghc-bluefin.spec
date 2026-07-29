@@ -69,7 +69,7 @@ This package provides the Haskell %{pkg_name} profiling library.
 # Begin cabal-rpm setup:
 %setup -q -n %{pkgver}
 # End cabal-rpm setup
-
+sed -i 's/.*bluefin-internal >= 0.1.* && < 0.9.*/    bluefin-internal >= 0.1/' %{pkg_name}.cabal
 
 %build
 # Begin cabal-rpm build:

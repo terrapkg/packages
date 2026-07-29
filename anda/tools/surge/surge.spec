@@ -1,5 +1,5 @@
 %global goipath github.com/surge-downloader/surge
-Version:        0.10.0
+Version:        0.11.0
 
 %gometa
 

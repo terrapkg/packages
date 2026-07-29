@@ -2,8 +2,8 @@
 %global _desc PEFT: State-of-the-art Parameter-Efficient Fine-Tuning.
 
 Name:			python-%{pypi_name}
-Version:		0.19.1
-Release:		2%{?dist}
+Version:		0.20.0
+Release:		1%{?dist}
 Summary:		PEFT: State-of-the-art Parameter-Efficient Fine-Tuning
 License:		Apache-2.0
 URL:			https://github.com/huggingface/peft
