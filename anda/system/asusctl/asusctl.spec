@@ -1,5 +1,5 @@
 %global debug_package %{nil}
-%global appid org.asus_linux.rog_control_center
+%global appid org.opengamingcollective.rog-control-center
 
 %global asus_system_units asusd.service asus-shutdown.service
 
@@ -61,8 +61,7 @@ install -D -m 0644 rog-anime/data/diagonal-template.png %{buildroot}%{_docdir}/%
 
 %{cargo_license_online} > LICENSE.dependencies
 
-%desktop_file_validate %{buildroot}%{_appsdir}/rog-control-center.desktop
-
+%desktop_file_validate %{buildroot}%{_appsdir}/%{appid}.desktop
 mkdir -p %{buildroot}%{_sysconfdir}/asusd
 
 %files
@@ -105,7 +104,7 @@ mkdir -p %{buildroot}%{_sysconfdir}/asusd
 
 %files rog-gui
 %{_bindir}/rog-control-center
-%{_appsdir}/rog-control-center.desktop
+%{_appsdir}/%{appid}.desktop
 %{_hicolordir}/512x512/apps/rog-control-center.png
 %{_datadir}/rog-gui
 %{_metainfodir}/%{appid}.metainfo.xml
