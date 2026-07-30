@@ -96,7 +96,7 @@ Requires:       %{name}-pinctrl = %{evr}
 
 %package        piolib
 Summary:        A library for accessing the Pi 5's PIO hardware
-%description    
+%description    piolib
 %{summary}.
 
 %package        piolib-devel
