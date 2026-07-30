@@ -9,6 +9,7 @@ License:        (BSD-3-Clause OR MIT OR Apache-2.0) AND Apache-2.0 AND MIT AND (
 Summary:        Animated desktop wallpapers for COSMIC — play any video or GIF as your background
 URL:            https://www.franz-e.net/cosmic-ext-flux/
 Source0:        https://github.com/franz-net/cosmic-ext-flux/archive/refs/tags/v%{version}.tar.gz
+Source1:        %{appid}.metainfo.xml
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  wayland-devel
 BuildRequires:  gstreamer1-plugins-base-devel
@@ -17,6 +18,7 @@ Requires:       cosmic-osd
 Requires:       gstreamer1-plugins-base
 Requires:       gstreamer1-plugins-good
 Requires:       gstreamer1-plugins-bad
+Requires:       hicolor-icon-theme
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
@@ -38,6 +40,8 @@ install -Dm644 applet/resources/icon.svg %{buildroot}%{_scalableiconsdir}/%{appi
 install -Dm644 applet/resources/icon-stopped.svg %{buildroot}%{_scalableiconsdir}/%{appid}-stopped.svg
 install -Dm644 data/cosmic-ext-flux-daemon.service %{buildroot}%{_userunitdir}/cosmic-ext-flux-daemon.service
 
+%terra_appstream -o %{S:1}
+
 %post
 %systemd_user_post cosmic-ext-flux-daemon.service
 
@@ -56,6 +60,7 @@ install -Dm644 data/cosmic-ext-flux-daemon.service %{buildroot}%{_userunitdir}/c
 %{_scalableiconsdir}/%{appid}.svg
 %{_scalableiconsdir}/%{appid}-stopped.svg
 %{_userunitdir}/cosmic-ext-flux-daemon.service
+%{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
 * Wed Jul 29 2026 Owen Zimmerman <owen@fyralabs.com>
