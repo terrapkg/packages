@@ -13,6 +13,7 @@ BuildRequires:  cargo-rpm-macros
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  pkgconfig(libcamera)
 BuildRequires:  pkgconfig(glib-2.0)
+BuildRequires:  pkgconfig(gstreamer-1.0)
 Requires:       cosmic-osd
 Requires:       hicolor-icon-theme
 Packager:       Owen Zimmerman <owen@fyralabs.com>
