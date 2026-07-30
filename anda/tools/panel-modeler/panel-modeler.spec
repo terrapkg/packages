@@ -25,7 +25,7 @@ The program takes two command-line arguments — an input file and an output
 file, both in CSV format.
 
 %prep
-%autosetup -n %{name}-%{version}
+%autosetup
 
 %conf
 %meson --native-file clang.ini
