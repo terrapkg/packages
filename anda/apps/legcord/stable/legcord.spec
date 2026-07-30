@@ -9,6 +9,7 @@ Release:        1%{?dist}
 License:        OSL-3.0 AND %{electron_license}
 Summary:        Custom lightweight Discord client designed to enhance your experience
 URL:            https://github.com/Legcord/Legcord
+Source0:        Legcord.desktop
 Group:          Applications/Internet
 Packager:       madonuko <mado@fyralabs.com>
 Requires:       xdg-utils
@@ -29,10 +30,10 @@ while keeping everything lightweight.
 
 %install
 %electron_install -i legcord -l -I dist/.icon-set/
+%desktop_file_install %{S:0}
 
-ls -la squashfs-root/
-dist/Legcord-*.AppImage --appimage-extract '*.desktop'
-%desktop_file_install -k Exec,Icon -v "%{_libdir}/legcord/Legcord",legcord -u %U -f squashfs-root/Legcord.desktop
+%check
+%desktop_file_validate %{buildroot}%{_appsdir}/Legcord.desktop
 
 %files
 %doc README.md
