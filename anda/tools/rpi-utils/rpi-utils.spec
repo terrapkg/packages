@@ -237,11 +237,18 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 %doc piolib/README.md
 %license LICENCE
 %{_bindir}/apitest
+%{_bindir}/blockingtest
 %{_bindir}/dpi_csync
+%{_bindir}/irqhog
+%{_bindir}/irqtest
+%{_bindir}/irqtest2
 %{_bindir}/piopwm
 %{_bindir}/pioseq
 %{_bindir}/piotest
 %{_bindir}/piows2812
+%{_bindir}/rxsource
+%{_bindir}/txcount
+%{_bindir}/txsink
 %{_bindir}/quadenc
 %{_bindir}/rp1sm
 %{_libdir}/libpio.so.0
