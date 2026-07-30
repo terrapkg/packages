@@ -1,4 +1,4 @@
-%global goipath github.com/surge-downloader/surge
+%global goipath github.com/SurgeDM/Surge
 Version:        0.11.0
 
 %gometa
@@ -8,7 +8,7 @@ Release:        1%{?dist}
 Summary:        Blazing fast TUI download manager built in Go for power users
 
 License:        MIT
-URL:            https://github.com/surge-downloader/Surge
+URL:            https://github.com/SurgeDM/Surge
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
