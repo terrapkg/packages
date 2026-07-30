@@ -21,7 +21,7 @@ ExclusiveArch:  x86_64 aarch64
 
 License:        Proprietary
 URL:            https://www.tracktion.com/products/waveform-free
-Source0:        https://downloads.tracktion.com/w%{majver}/%{truncated_ver}b/waveform%{majver}_%{version}_%{pkgarch}.deb
+Source0:        https://downloads.tracktion.com/w%{majver}/%{truncated_ver}/waveform%{majver}_%{version}_%{pkgarch}.deb
 
 BuildRequires:  tar
 BuildRequires:  binutils
