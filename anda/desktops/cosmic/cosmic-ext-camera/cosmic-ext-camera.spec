@@ -11,7 +11,7 @@ URL:            https://github.com/cosmic-utils/cosmic-ext-camera
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  pkgconfig(xkbcommon)
-BuildRequires:  pkgconfig(libcamera-sys)
+BuildRequires:  pkgconfig(libcamera)
 Requires:       cosmic-osd
 Requires:       hicolor-icon-theme
 Packager:       Owen Zimmerman <owen@fyralabs.com>
