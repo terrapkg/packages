@@ -9,7 +9,7 @@ Summary:        A menu applet for COSMIC Desktop
 URL:            https://github.com/championpeak87/cosmic-ext-classic-menu
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 BuildRequires:  cargo-rpm-macros
-BuildRequires:  rust-xkbcommon-devel
+BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  just
 Requires:       cosmic-osd
 Packager:       Owen Zimmerman <owen@fyralabs.com>
