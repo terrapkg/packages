@@ -15,6 +15,7 @@ BuildRequires:  pkgconfig(libcamera)
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(gstreamer-1.0)
 BuildRequires:  pkgconfig(gstreamer-app-1.0)
+BuildRequires:  gcc-c++
 Requires:       cosmic-osd
 Requires:       hicolor-icon-theme
 Packager:       Owen Zimmerman <owen@fyralabs.com>
