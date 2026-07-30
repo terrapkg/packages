@@ -17,6 +17,9 @@ BuildRequires:  pkgconfig(gstreamer-1.0)
 BuildRequires:  pkgconfig(gstreamer-app-1.0)
 BuildRequires:  gcc-c++
 BuildRequires:  cmake
+BuildRequires:  clang-devel
+BuildRequires:  clang-libs
+BuildRequires:  llvm-devel
 Requires:       cosmic-osd
 Requires:       hicolor-icon-theme
 Packager:       Owen Zimmerman <owen@fyralabs.com>
