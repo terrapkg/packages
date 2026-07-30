@@ -5,7 +5,7 @@
 
 Name:           asusctl
 Version:        6.3.11
-Release:        1%{?dist}
+Release:        2%{?dist}
 Epoch:          1
 Summary:        A control daemon, CLI tools, and a collection of crates for interacting with ASUS ROG laptops
 URL:            https://github.com/OpenGamingCollective/asusctl
@@ -63,6 +63,7 @@ install -D -m 0644 rog-anime/data/diagonal-template.png %{buildroot}%{_docdir}/%
 mkdir -p %{buildroot}%{_sysconfdir}/asusd
 
 %files
+%doc README.md CHANGELOG.md
 %license LICENSE
 %license LICENSE.dependencies
 %license %{_datadir}/asusctl/LICENSE
