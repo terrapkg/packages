@@ -100,8 +100,8 @@ Summary:        A library for accessing the Pi 5's PIO hardware
 %{summary}.
 
 %package        piolib-devel
-Summary:        Development files for %{name}-
-Requires:       %{name}- = %{evr}
+Summary:        Development files for %{name}-piolib
+Requires:       %{name}-piolib = %{evr}
 
 %description    piolib-devel
 %{summary}.
