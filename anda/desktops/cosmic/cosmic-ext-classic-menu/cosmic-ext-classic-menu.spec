@@ -8,6 +8,7 @@ License:        GPL-3.0-or-later (BSD-3-Clause OR MIT OR Apache-2.0) AND Apache-
 Summary:        A menu applet for COSMIC Desktop
 URL:            https://github.com/championpeak87/cosmic-ext-classic-menu
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
+Source1:        %{appid}.metainfo.xml
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  rust-xkbcommon-devel
 BuildRequires:  just
@@ -27,6 +28,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %install
 just rootdir=%{buildroot} install
+%terra_appstream %{S:1}
 
 %files
 %doc README.md
@@ -37,6 +39,7 @@ just rootdir=%{buildroot} install
 %{_metainfodir}/%{appid}.metainfo.xml
 %{_scalableiconsdir}/%{appid}.svg
 %{_datadir}/cosmic/%{appid}/applet-buttons/*
+%{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
 * Wed Jul 29 2026 Owen Zimmerman <owen@fyralabs.com>
