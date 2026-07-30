@@ -10,7 +10,6 @@ License:        MIT AND %{electron_license}
 URL:            https://www.usebruno.com
 Source0:        https://github.com/usebruno/%{name}/archive/refs/tags/v%{version}.tar.gz
 
-BuildRequires:  anda-srpm-macros
 # Electron dlopens this for safeStorage, so it is not picked up automatically
 Requires:       libsecret
 
@@ -84,7 +83,7 @@ EOF
 %{_bindir}/%{name}
 %{_libdir}/%{name}/
 %{_appsdir}/%{name}.desktop
-%{_iconsdir}/hicolor/*/apps/%{name}.png
+%{_hicolordir}/*/apps/%{name}.png
 
 %changelog
 * Thu Jul 30 2026 NichSchlagen <tim-rosenhagen@web.de>
