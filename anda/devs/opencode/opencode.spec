@@ -59,11 +59,31 @@ install -Dm644 opencode.fish %{buildroot}%{fish_completions_dir}/opencode.fish
 
 %files
 %license LICENSE
+%doc README.md
+%lang(ar) %doc README.ar.md
+%lang(bn) %doc README.bn.md
+%lang(pt_BR) %doc README.br.md
+%lang(bs) %doc README.bs.md
+%lang(da) %doc README.da.md
+%lang(de) %doc README.de.md
+%lang(es) %doc README.es.md
+%lang(fr) %doc README.fr.md
+%lang(el) %doc README.gr.md
+%lang(it) %doc README.it.md
+%lang(ja) %doc README.ja.md
+%lang(ko) %doc README.ko.md
+%lang(nb) %doc README.no.md
+%lang(pl) %doc README.pl.md
+%lang(ru) %doc README.ru.md
+%lang(th) %doc README.th.md
+%lang(tr) %doc README.tr.md
+%lang(uk) %doc README.uk.md
+%lang(vi) %doc README.vi.md
+%lang(zh_CN) %doc README.zh.md
+%lang(zh_TW) %doc README.zht.md
 %{_bindir}/opencode
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
 * Thu Jul 30 2026 Caio Bruno <cbrunofb@gmail.com>
-- Build from source instead of the prebuilt binary
-* Wed Jul 29 2026 Caio Bruno <cbrunofb@gmail.com>
-- Initial package
+- Build from source
