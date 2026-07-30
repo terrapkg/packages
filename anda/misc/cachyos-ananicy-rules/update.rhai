@@ -1,1 +1,1 @@
-rpm.version(gh_tag("M0Rf30/android-udev-rules"));
+rpm.version(gh_tag("CachyOS/ananicy-rules"));
