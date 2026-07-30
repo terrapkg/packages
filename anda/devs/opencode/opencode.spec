@@ -23,7 +23,7 @@ Source0:		https://github.com/anomalyco/opencode/archive/refs/tags/v%{version}.ta
 Source1:		%{appid}.metainfo.xml
 Packager:		Caio Bruno <cbrunofb@gmail.com>
 
-BuildRequires:	bun-bin gcc-c++ make python3
+BuildRequires:	bun-bin gcc-c++ make python3 python-unversioned-command nodejs-npm
 
 %description
 opencode is an open source AI coding agent that helps you write code in your
@@ -37,6 +37,11 @@ login, and the Model Context Protocol (MCP).
 %autosetup -n opencode-%{version}
 
 %build
+# Provide node-gyp for native modules (tree-sitter-*) when no prebuilt matches.
+export npm_config_prefix=%{_builddir}/.npm-global
+%__npm install -g node-gyp
+export PATH=%{_builddir}/.npm-global/bin:$PATH
+
 %__bun install
 cd packages/opencode
 OPENCODE_VERSION=%{version} OPENCODE_CHANNEL=latest %__bun run script/build.ts --single --skip-install
