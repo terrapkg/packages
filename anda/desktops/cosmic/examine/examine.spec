@@ -41,5 +41,5 @@ install -Dm0644 res/icons/hicolor/scalable/apps/%{appid}.svg    %{buildroot}%{_s
 %{_scalableiconsdir}/%{appid}.svg
 
 %changelog
-* Wed Jul 29 2026 Owen Zimmerman <owen@fyralabs.com>
+* Thu Jul 30 2026 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit
