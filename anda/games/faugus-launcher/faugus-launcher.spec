@@ -21,8 +21,10 @@ A simple and lightweight app for running Windows games using UMU-Launcher/UMU-Pr
 %prep
 %autosetup -n %{name}-%{version}
 
-%build
+%conf
 %meson
+
+%build
 %meson_build
 
 %install
@@ -32,12 +34,12 @@ A simple and lightweight app for running Windows games using UMU-Launcher/UMU-Pr
 %license LICENSE
 %{_bindir}/faugus-launcher
 %{python3_sitelib}/faugus/
-%{_datadir}/applications/*.desktop
-%{_datadir}/icons/hicolor/scalable/actions/*.svg
-%{_datadir}/icons/hicolor/scalable/apps/*.svg
+%{_appsdir}/*.desktop
+%{_hicolordir}/scalable/actions/*.svg
+%{_hicolordir}/scalable/apps/*.svg
 %{_datadir}/faugus-launcher/*
 %{_datadir}/locale/*/LC_MESSAGES/*.mo
-%{_datadir}/metainfo/io.github.Faugus.faugus-launcher.metainfo.xml
+%{_metainfodir}/io.github.Faugus.faugus-launcher.metainfo.xml
 
 %changelog
 * Thu Jul 30 2026 Caio Bruno <cbrunofb@gmail.com>
