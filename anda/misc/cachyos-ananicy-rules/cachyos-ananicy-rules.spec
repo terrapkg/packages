@@ -10,7 +10,7 @@ URL:            https://github.com/CachyOS/ananicy-rules
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 Requires:       ananicy-cpp
 Packager:       Owen Zimmerman <owen@fyralabs.com>
-BuildArch:      aarch64
+BuildArch:      x86_64
 
 %description
 %{summary}.
