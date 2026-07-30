@@ -1,0 +1,81 @@
+Author: DuckSoft <realducksoft@gmail.com>
+
+I just cannot stand such a dirty package. 
+Let me do some optimisations.
+
+If you are interested to improve this patch, welcome to mail me.
+
+diff -Npur a/tool/ventoy_lib.sh b/tool/ventoy_lib.sh
+--- a/tool/ventoy_lib.sh	2026-04-05 09:27:04.000000000 -0600
++++ b/tool/ventoy_lib.sh	2026-04-06 10:03:00.691008472 -0600
+@@ -51,31 +51,6 @@ vtoy_gen_uuid() {
+ }
+ 
+ check_tool_work_ok() {
+-    
+-    if echo 1 | hexdump > /dev/null; then
+-        vtdebug "hexdump test ok ..."
+-    else
+-        vtdebug "hexdump test fail ..."
+-        ventoy_false
+-        return
+-    fi
+-   
+-    if mkexfatfs -V > /dev/null; then        
+-        vtdebug "mkexfatfs test ok ..."
+-    else
+-        vtdebug "mkexfatfs test fail ..."
+-        ventoy_false
+-        return
+-    fi
+-    
+-    if vtoycli fat -T; then
+-        vtdebug "vtoycli fat test ok ..."
+-    else
+-        vtdebug "vtoycli fat test fail ..."
+-        ventoy_false
+-        return
+-    fi
+-    
+     vtdebug "tool check success ..."
+     ventoy_true
+ }
+diff -Npur a/VentoyPlugson.sh b/VentoyPlugson.sh
+--- a/VentoyPlugson.sh	2026-04-05 09:27:04.000000000 -0600
++++ b/VentoyPlugson.sh	2026-04-06 10:03:00.692415370 -0600
+@@ -34,8 +34,6 @@ if echo $machine | grep -E -q 'aarch64|a
+     TOOLDIR=aarch64
+ elif echo $machine | grep -E -q 'x86_64|amd64'; then
+     TOOLDIR=x86_64
+-elif echo $machine | grep -E -q 'mips64'; then
+-    TOOLDIR=mips64el
+ elif echo $machine | grep -E -q 'i[3-6]86'; then
+     TOOLDIR=i386
+ else
+diff -Npur a/VentoyWeb.sh b/VentoyWeb.sh
+--- a/VentoyWeb.sh	2026-04-05 09:27:04.000000000 -0600
++++ b/VentoyWeb.sh	2026-04-06 10:03:00.692673550 -0600
+@@ -15,12 +15,6 @@ print_err() {
+     echo ""
+ }
+ 
+-uid=$(id -u)
+-if [ $uid -ne 0 ]; then
+-    print_err "Please use sudo or run the script as root."
+-    exit 1
+-fi
+-
+ OLDDIR=$(pwd)
+ 
+ if uname -m | grep -E -q 'aarch64|arm64'; then
+@@ -85,8 +79,8 @@ if ps -ef | grep "V2DServer.*$HOST.*$POR
+     exit 1
+ fi
+ 
+-LOGFILE=log.txt
+-#delete the log.txt if it's more than 8MB
++LOGFILE=/var/log/ventoy.log
++#delete the ventoy.log if it's more than 8MB
+ if [ -f $LOGFILE ]; then
+     logsize=$(stat -c '%s' $LOGFILE)
+     if [ $logsize -gt 8388608 ]; then
