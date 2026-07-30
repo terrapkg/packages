@@ -3,7 +3,7 @@
 %global         __strip /bin/true
 
 Name:           tracktion-waveform
-Version:        13.5.13
+Version:        13.5.25
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
 Release:        1%{?dist}
 Summary:        Tracktion Waveform DAW
