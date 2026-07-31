@@ -73,11 +73,6 @@ install -Dpm0644 usr/share/icons/hicolor/256x256@2/apps/%{appname}.png \
 
 %post
 %systemd_post %{appname}.service
-# Mirror upstream's .deb: enable+start the root daemon on install (the GUI fails
-# silently without it, since it talks to it on 127.0.0.1:63150).
-if [ $1 -eq 1 ]; then
-    systemctl enable --now %{appname}.service >/dev/null 2>&1 || :
-fi
 
 %preun
 %systemd_preun %{appname}.service
