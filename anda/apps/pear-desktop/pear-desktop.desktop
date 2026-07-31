@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Pear Desktop
+GenericName=YouTube Music Client
+Exec=/usr/bin/pear-desktop --no-sandbox %U
+TryExec=/usr/bin/pear-desktop
+Icon=pear-desktop
+Terminal=false
+Type=Application
+StartupWMClass=com.github.th_ch.youtube_music
+Comment=YouTube Music desktop app with custom plugins
+Categories=AudioVideo;
