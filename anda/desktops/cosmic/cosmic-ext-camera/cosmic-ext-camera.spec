@@ -49,7 +49,7 @@ done
 %doc README.md
 %license LICENSE.md LICENSE.dependencies
 %{_bindir}/camera
-%{_appid}.desktop
+%{_appsdir}%{appid}.desktop
 %{_metainfodir}/%{appid}.metainfo.xml
 %{_scalableiconsdir}/%{appid}.svg
 %{_hicolordir}/*x*/apps/%{appid}.png
