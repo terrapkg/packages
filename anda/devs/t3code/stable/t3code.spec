@@ -7,9 +7,8 @@ Release:        1%{?dist}
 Summary:        Minimal web GUI for coding agents
 License:        MIT AND %{electron_license}
 URL:            https://github.com/pingdotgg/t3code
-Source0:        https://github.com/pingdotgg/t3code/archive/refs/tags/v%{version}.tar.gz
+Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 
-BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo
 BuildRequires:  ImageMagick
 BuildRequires:  pnpm
@@ -69,13 +68,16 @@ EOF
 
 %desktop_file_install %{name}.desktop
 
+%check
+%desktop_file_validate %{buildroot}%{_appsdir}/*.desktop
+
 %files
 %doc README.md
 %license LICENSE
 %{_bindir}/%{name}
 %{_libdir}/%{name}/
-%{_appsdir}/*.desktop
-%{_iconsdir}/hicolor/*/apps/%{name}.png
+%{_appsdir}/%{name}.desktop
+%{_hicolordir}/*/apps/%{name}.png
 
 %changelog
 * Sun Jul 12 2026 Addison LeClair <me@addi.lol> - 0.0.28-1
