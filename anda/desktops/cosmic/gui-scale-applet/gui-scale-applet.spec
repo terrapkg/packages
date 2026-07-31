@@ -32,7 +32,7 @@ install -Dm0644 data/com.bhh32.gui-scale-applet.metainfo.xml                %{bu
 install -Dm0644 data/icons/scalable/apps/com.bhh32.gui-scale-applet.png     %{buildroot}%{_hicolordir}/256x256/apps/%{appid}.png
 
 %files
-%doc README.md docs/*
+%doc README.md
 %license LICENSE LICENSE.dependencies
 %{_bindir}/%{name}
 %{_appsdir}/%{appid}.desktop
