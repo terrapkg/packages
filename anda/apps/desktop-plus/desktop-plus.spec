@@ -25,7 +25,8 @@ ExclusiveArch:  x86_64 aarch64
 
 BuildRequires:  anda-srpm-macros
 BuildRequires:  cpio
-Recommends:     (gnome-keyring or kf6-kwallet or kf5-wallet)
+BuildRequires:  terra-appstream-helper
+Recommends:     (gnome-keyring or kf6-kwallet)
 
 %description
 Desktop Plus is a community fork of GitHub Desktop with additional features:
@@ -35,12 +36,12 @@ commit graph, multiple stashes per branch, and more.
 %prep
 %autosetup -Tc
 rpm2cpio %{SOURCE0} | cpio -idm
-chmod -R a+rX,u+w,go-w .
 
 %build
 
 %install
 cp -pr usr %{buildroot}/
+rm -f %{buildroot}%{_prefix}/lib/%{name}/chrome-sandbox
 find %{buildroot}%{_prefix}/lib/%{name} -type f -executable -exec \
   sed -i 's/libcurl-gnutls\.so\.4/libcurl.so.4\x00\x00\x00\x00\x00\x00\x00/g' {} \;
 chmod 0755 %{buildroot}%{_prefix}/lib/%{name}/resources/app/static/desktop-plus-cli
@@ -54,7 +55,6 @@ cp -p usr/lib/%{name}/LICENSE .
 %{_bindir}/%{name}
 %{_bindir}/desktop-plus-cli
 %{_prefix}/lib/%{name}/
-%attr(4755, root, root) %{_prefix}/lib/%{name}/chrome-sandbox
 %{_appsdir}/%{name}.desktop
 %{_hicolordir}/*/apps/gh-desktop-plus.png
 %{_metainfodir}/%{name}.metainfo.xml
