@@ -5,7 +5,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.2.19
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		GUI for SteelSeries Arctis headsets
 License:		GPL-3.0-or-later
 # GitHub pages URL 404s
@@ -21,6 +21,33 @@ BuildRequires:  python3-uv-build
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  python3-ruamel-yaml
 BuildRequires:  desktop-file-utils
+
+# ── Runtime dependencies ─────────────────────────────────────────────────────
+# Kept in sync with the upstream spec at
+# https://github.com/loteran/Arctis-Sound-Manager/blob/main/arctis-sound-manager.spec
+# The Python bindings are omitted on purpose: they are declared in
+# pyproject.toml, so RPM generates them automatically. Everything below is
+# reached through the filesystem or dlopen, where nothing can infer it.
+#
+# Audio stack the daemon drives directly.
+Requires:       pipewire
+Requires:       pipewire-pulseaudio
+Requires:       wireplumber
+Requires:       libusb1
+Requires:       pulseaudio-libs
+# The `pactl` CLI (used at GUI startup and for EQ/Sonar routing) ships in
+# pulseaudio-utils, NOT in pipewire-pulseaudio or pulseaudio-libs. Without it
+# a clean install crashes on launch with FileNotFoundError: 'pactl'.
+# https://github.com/loteran/Arctis-Sound-Manager/issues/117
+Requires:       pulseaudio-utils
+# Fedora ships the Steve Harris SWH LADSPA pack as `ladspa-swh-plugins`.
+# Required by the HeSuVi 7.1 virtual surround graph (`plate_1423` reverb);
+# Spatial Audio loads nothing and stays silent without it.
+# https://github.com/loteran/Arctis-Sound-Manager/issues/23
+Requires:       ladspa-swh-plugins
+# Used by asm-setup to fetch the HRIR file on first run; without it Spatial
+# Audio has no impulse response to convolve with.
+Requires:       curl
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
@@ -124,5 +151,10 @@ install -Dm644 debian/asm-first-run.desktop \
 %{_datadir}/python-arctis-sound-manager/dinit/arctis-gui
 
 %changelog
+* Fri Jul 31 2026 loteran <https://github.com/loteran> - 1.2.19-2
+- Declare the runtime dependencies RPM cannot infer: the audio stack the daemon
+  drives, pulseaudio-utils for pactl (issue #117), ladspa-swh-plugins for the
+  virtual surround graph (issue #23), and curl for the first-run HRIR download
+
 * Mon Jun 15 2026 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit
