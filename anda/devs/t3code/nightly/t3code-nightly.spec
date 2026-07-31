@@ -4,12 +4,13 @@
 %global commit df78cda8bf9c0971300e1bf35251774d9fbc833a
 %global commit_date 20260730
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global electron_version %{latest_stable_version}-nightly.%{commit_date}.%{shortcommit}
+%global buildnum %(printf '%d' 0x%{shortcommit})
+%global electron_version %{latest_stable_version}-nightly.%{commit_date}.%{buildnum}
 
 Name:           t3code-nightly
 %electronmeta -D
 Version:        %{latest_stable_version}^%{commit_date}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Minimal web GUI for coding agents
 License:        MIT AND %{electron_license}
 URL:            https://github.com/pingdotgg/t3code
@@ -44,6 +45,11 @@ export T3CODE_DESKTOP_VERSION=%{electron_version}
 export T3CODE_DESKTOP_PLATFORM=linux
 export T3CODE_DESKTOP_TARGET=tar.xz
 export T3CODE_DESKTOP_ARCH=%{_electron_cpu}
+# needed for t3 connect (pulled from action runs)
+export T3CODE_CLERK_PUBLISHABLE_KEY=pk_live_Y2xlcmsudDMuY29kZXMk
+export T3CODE_CLERK_JWT_TEMPLATE=t3-relay
+export T3CODE_CLERK_CLI_OAUTH_CLIENT_ID=hzxSgY2cH10sDU2r
+export T3CODE_RELAY_URL=https://relay.t3.codes
 %pnpm_build -F -r dist:desktop:artifact
 
 %install
@@ -58,13 +64,13 @@ cp -pr dist/. %{buildroot}%{_libdir}/%{name}/
 chmod 4755 %{buildroot}%{_libdir}/%{name}/chrome-sandbox
 
 install -dm755 %{buildroot}%{_bindir}
-ln -sf %{_libdir}/%{name}/%{name} %{buildroot}%{_bindir}/%{name}
+ln -sf %{_libdir}/%{name}/t3code %{buildroot}%{_bindir}/%{name}
 
 install -Dm644 apps/desktop/resources/icon.png %{buildroot}%{_hicolordir}/512x512/apps/%{name}.png
 
 cat <<EOF > %{name}.desktop
 [Desktop Entry]
-Name=T3 Code
+Name=T3 Code (Nightly)
 Comment=%{summary}
 Exec=%{name} --ozone-platform-hint=auto %U
 Icon=%{name}
@@ -89,6 +95,11 @@ EOF
 %{_hicolordir}/*/apps/%{name}.png
 
 %changelog
+* Thu Jul 30 2026 Addison LeClair <me@addi.lol>
+- Fix T3 Connect by adding missing auth variables
+- Fix .desktop title to match upstream
+- Fix version string to enable in-app nightly display.
+
 * Thu Jul 30 2026 Owen Zimmerman <owen@fyralabs.com>
 - Make nightly package
 
