@@ -9,9 +9,9 @@
 %endif
 
 Name:           desktop-plus
-%global appid   desktop-plus
+%global appid desktop-plus
 Version:        3.6.4.1
-%electronmeta   -D
+%electronmeta -D
 %global __requires_exclude %{?__requires_exclude:%{__requires_exclude}|}CURL_GNUTLS
 Release:        1%{?dist}
 Summary:        A GitHub Desktop fork with advanced functionality and improvements
