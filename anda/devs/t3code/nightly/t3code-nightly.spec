@@ -1,15 +1,19 @@
 %undefine __brp_mangle_shebangs
 
-Name:           t3code
+%global latest_stable_version 0.0.31
+%global commit df78cda8bf9c0971300e1bf35251774d9fbc833a
+%global commit_date 20260730
+%global shortcommit %(c=%{commit}; echo ${c:0:7})
+
+Name:           t3code-nightly
 %electronmeta -D
-Version:        0.0.31
+Version:        %{latest_stable_version}^%{commit_date}git.%{shortcommit}
 Release:        1%{?dist}
 Summary:        Minimal web GUI for coding agents
 License:        MIT AND %{electron_license}
 URL:            https://github.com/pingdotgg/t3code
-Source0:        https://github.com/pingdotgg/t3code/archive/refs/tags/v%{version}.tar.gz
+Source0:        %{url}/archive/%{commit}/t3code-%{commit}.tar.gz
 
-BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo
 BuildRequires:  ImageMagick
 BuildRequires:  pnpm
@@ -19,14 +23,16 @@ Suggests:       azure-cli
 Suggests:       gh
 Suggests:       glab
 
-Packager:       Addison LeClair <me@addi.lol>
+Conflicts:      t3code
+
+Packager:       Addison LeClair <me@addi.lol>, Owen Zimmerman <owen@fyralabs.com>
 
 %description
 T3 Code is a minimal web GUI for coding agents such as Codex, Claude Code,
 Cursor, and OpenCode.
 
 %prep
-%autosetup -n %{name}-%{version}
+%autosetup -n %{name}-%{commit}
 for manifest in apps/server/package.json apps/desktop/package.json apps/web/package.json packages/contracts/package.json; do
   node -e 'const fs = require("fs"); const [file, version] = process.argv.slice(1); const pkg = JSON.parse(fs.readFileSync(file, "utf8")); pkg.version = version; fs.writeFileSync(file, JSON.stringify(pkg, null, 2) + "\n");' "$manifest" %{version}
 done
@@ -69,14 +75,20 @@ EOF
 
 %desktop_file_install %{name}.desktop
 
+%check
+%desktop_file_validate %{buildroot}%{_appsdir}/*.desktop
+
 %files
 %doc README.md
 %license LICENSE
 %{_bindir}/%{name}
 %{_libdir}/%{name}/
-%{_appsdir}/*.desktop
-%{_iconsdir}/hicolor/*/apps/%{name}.png
+%{_appsdir}/%{name}.desktop
+%{_hicolordir}/*/apps/%{name}.png
 
 %changelog
+* Thu Jul 30 2026 Owen Zimmerman <owen@fyralabs.com>
+- Make nightly package
+
 * Sun Jul 12 2026 Addison LeClair <me@addi.lol> - 0.0.28-1
 - Initial package
