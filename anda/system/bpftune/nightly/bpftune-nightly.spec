@@ -8,9 +8,9 @@
 
 %bcond_with openrc
 
-%global commit  1abd0d87967da3e235238a68fe34bbba77c39332
+%global commit  1a0eb92d68f96abb46801e4863d9b1776e9fb3c7
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260730
+%global commit_date 20260731
 
 Name:           bpftune-nightly
 Version:        %(echo '%ver' | sed 's/-/~/g')^%{commit_date}git.%{shortcommit}
