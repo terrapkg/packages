@@ -69,7 +69,7 @@ install -Dm644 apps/desktop/resources/icon.png %{buildroot}%{_hicolordir}/512x51
 
 cat <<EOF > %{name}.desktop
 [Desktop Entry]
-Name=T3 Code
+Name=T3 Code (Nightly)
 Comment=%{summary}
 Exec=%{name} --ozone-platform-hint=auto %U
 Icon=%{name}
