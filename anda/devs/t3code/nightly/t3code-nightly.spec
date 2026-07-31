@@ -17,6 +17,7 @@ Source0:        %{url}/archive/%{commit}/t3code-%{commit}.tar.gz
 BuildRequires:  cargo
 BuildRequires:  ImageMagick
 BuildRequires:  pnpm
+BuildRequires:  nodejs24
 
 Requires:       git-core
 Suggests:       azure-cli
