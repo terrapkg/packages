@@ -4,7 +4,8 @@
 %global commit df78cda8bf9c0971300e1bf35251774d9fbc833a
 %global commit_date 20260730
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global electron_version %{latest_stable_version}-nightly.%{commit_date}.%{shortcommit}
+%global buildnum %(printf '%d' 0x%{shortcommit})
+%global electron_version %{latest_stable_version}-nightly.%{commit_date}.%{buildnum}
 
 Name:           t3code-nightly
 %electronmeta -D
