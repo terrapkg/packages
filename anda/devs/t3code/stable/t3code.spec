@@ -3,7 +3,7 @@
 Name:           t3code
 %electronmeta -D
 Version:        0.0.31
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Minimal web GUI for coding agents
 License:        MIT AND %{electron_license}
 URL:            https://github.com/pingdotgg/t3code
@@ -89,6 +89,7 @@ EOF
 %changelog
 * Thu Jul 30 2026 Addison LeClair <me@addi.lol> - 0.0.31-1
 - Fix T3 Connect by adding missing auth variables
+- Fix .desktop title to match upstream
 - Use correct icon
 
 * Sun Jul 12 2026 Addison LeClair <me@addi.lol> - 0.0.28-1

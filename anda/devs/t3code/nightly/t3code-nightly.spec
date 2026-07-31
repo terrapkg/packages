@@ -10,7 +10,7 @@
 Name:           t3code-nightly
 %electronmeta -D
 Version:        %{latest_stable_version}^%{commit_date}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Minimal web GUI for coding agents
 License:        MIT AND %{electron_license}
 URL:            https://github.com/pingdotgg/t3code
@@ -97,6 +97,8 @@ EOF
 %changelog
 * Thu Jul 30 2026 Addison LeClair <me@addi.lol>
 - Fix T3 Connect by adding missing auth variables
+- Fix .desktop title to match upstream
+- Fix version string to enable in-app nightly display.
 
 * Thu Jul 30 2026 Owen Zimmerman <owen@fyralabs.com>
 - Make nightly package
