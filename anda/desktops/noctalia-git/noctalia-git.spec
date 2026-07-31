@@ -16,6 +16,7 @@ URL:		https://github.com/noctalia-dev/noctalia
 Source0:	https://github.com/noctalia-dev/noctalia/archive/%{commit}/noctalia-%{commit}.tar.gz
 
 BuildRequires:  meson
+BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  git
 BuildRequires:  desktop-file-utils
