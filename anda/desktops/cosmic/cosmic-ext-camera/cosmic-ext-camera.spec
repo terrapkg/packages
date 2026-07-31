@@ -38,7 +38,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %install
 install -Dm0755 target/rpm/camera                                   %{buildroot}%{_bindir}/camera
-install -Dm0644 resources/%{appid}.desktop                          %{buildroot}%{_appid}.desktop
+install -Dm0644 resources/%{appid}.desktop                          %{buildroot}%{_appsdir}/%{_appid}.desktop
 install -Dm0644 resources/%{appid}.metainfo.xml                     %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 install -Dm0644 resources/icons/hicolor/scalable/apps/%{appid}.svg  %{buildroot}%{_scalableiconsdir}/%{appid}.svg
 for size in 16x16 24x24 32x32 48x48 64x64 128x128 256x256 512x512 1024x1024; do \
