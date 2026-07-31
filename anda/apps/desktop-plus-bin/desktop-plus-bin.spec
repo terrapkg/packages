@@ -8,8 +8,9 @@
 %global rpmarch arm64
 %endif
 
-Name:           desktop-plus
-%global appid desktop-plus
+Name:           desktop-plus-bin
+%global appname desktop-plus
+%global appid   org.desktop-plus.DesktopPlus
 Version:        3.6.4.1
 %electronmeta -D
 %global __requires_exclude %{?__requires_exclude:%{__requires_exclude}|}CURL_GNUTLS
@@ -18,7 +19,7 @@ Summary:        A GitHub Desktop fork with advanced functionality and improvemen
 License:        MIT AND %{electron_license}
 URL:            https://desktop-plus.org
 Source0:        https://github.com/desktop-plus/desktop-plus/releases/download/v%{version}/DesktopPlus-v%{version}-linux-%{rpmarch}.rpm
-Source1:        %{name}.metainfo.xml
+Source1:        %{appid}.metainfo.xml
 Packager:       Caio Bruno <cbrunofb@gmail.com>
 
 ExclusiveArch:  x86_64 aarch64
@@ -41,23 +42,23 @@ rpm2cpio %{SOURCE0} | cpio -idm
 
 %install
 cp -pr usr %{buildroot}/
-rm -f %{buildroot}%{_prefix}/lib/%{name}/chrome-sandbox
-find %{buildroot}%{_prefix}/lib/%{name} -type f -executable -exec \
+rm -f %{buildroot}%{_prefix}/lib/%{appname}/chrome-sandbox
+find %{buildroot}%{_prefix}/lib/%{appname} -type f -executable -exec \
   sed -i 's/libcurl-gnutls\.so\.4/libcurl.so.4\x00\x00\x00\x00\x00\x00\x00/g' {} \;
-chmod 0755 %{buildroot}%{_prefix}/lib/%{name}/resources/app/static/desktop-plus-cli
-ln -sf %{_prefix}/lib/%{name}/resources/app/static/desktop-plus-cli %{buildroot}%{_bindir}/desktop-plus-cli
-rm -f %{buildroot}%{_datadir}/doc/%{name}/copyright
-cp -p usr/lib/%{name}/LICENSE .
+chmod 0755 %{buildroot}%{_prefix}/lib/%{appname}/resources/app/static/desktop-plus-cli
+ln -sf %{_prefix}/lib/%{appname}/resources/app/static/desktop-plus-cli %{buildroot}%{_bindir}/desktop-plus-cli
+rm -f %{buildroot}%{_datadir}/doc/%{appname}/copyright
+cp -p usr/lib/%{appname}/LICENSE .
 %terra_appstream -o %{SOURCE1}
 
 %files
 %license LICENSE
-%{_bindir}/%{name}
+%{_bindir}/%{appname}
 %{_bindir}/desktop-plus-cli
-%{_prefix}/lib/%{name}/
-%{_appsdir}/%{name}.desktop
+%{_prefix}/lib/%{appname}/
+%{_appsdir}/%{appname}.desktop
 %{_hicolordir}/*/apps/gh-desktop-plus.png
-%{_metainfodir}/%{name}.metainfo.xml
+%{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
 * Thu Jul 30 2026 Caio Bruno <cbrunofb@gmail.com>
