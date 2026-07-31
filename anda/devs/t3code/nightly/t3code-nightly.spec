@@ -44,6 +44,11 @@ export T3CODE_DESKTOP_VERSION=%{electron_version}
 export T3CODE_DESKTOP_PLATFORM=linux
 export T3CODE_DESKTOP_TARGET=tar.xz
 export T3CODE_DESKTOP_ARCH=%{_electron_cpu}
+# needed for t3 connect (pulled from action runs)
+export T3CODE_CLERK_PUBLISHABLE_KEY=pk_live_Y2xlcmsudDMuY29kZXMk
+export T3CODE_CLERK_JWT_TEMPLATE=t3-relay
+export T3CODE_CLERK_CLI_OAUTH_CLIENT_ID=hzxSgY2cH10sDU2r
+export T3CODE_RELAY_URL=https://relay.t3.codes
 %pnpm_build -F -r dist:desktop:artifact
 
 %install
@@ -89,6 +94,9 @@ EOF
 %{_hicolordir}/*/apps/%{name}.png
 
 %changelog
+* Thu Jul 30 2026 Addison LeClair <me@addi.lol>
+- Fix T3 Connect by adding missing auth variables
+
 * Thu Jul 30 2026 Owen Zimmerman <owen@fyralabs.com>
 - Make nightly package
 

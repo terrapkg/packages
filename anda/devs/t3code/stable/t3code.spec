@@ -35,6 +35,11 @@ export T3CODE_DESKTOP_VERSION=%{version}
 export T3CODE_DESKTOP_PLATFORM=linux
 export T3CODE_DESKTOP_TARGET=tar.xz
 export T3CODE_DESKTOP_ARCH=%{_electron_cpu}
+# needed for t3 connect (pulled from action runs)
+export T3CODE_CLERK_PUBLISHABLE_KEY=pk_live_Y2xlcmsudDMuY29kZXMk
+export T3CODE_CLERK_JWT_TEMPLATE=t3-relay
+export T3CODE_CLERK_CLI_OAUTH_CLIENT_ID=hzxSgY2cH10sDU2r
+export T3CODE_RELAY_URL=https://relay.t3.codes
 %pnpm_build -F -r dist:desktop:artifact
 
 %install
@@ -51,7 +56,7 @@ chmod 4755 %{buildroot}%{_libdir}/%{name}/chrome-sandbox
 install -dm755 %{buildroot}%{_bindir}
 ln -sf %{_libdir}/%{name}/%{name} %{buildroot}%{_bindir}/%{name}
 
-install -Dm644 apps/desktop/resources/icon.png %{buildroot}%{_hicolordir}/512x512/apps/%{name}.png
+install -Dm644 assets/prod/black-universal-1024.png %{buildroot}%{_hicolordir}/1024x1024/apps/%{name}.png
 
 cat <<EOF > %{name}.desktop
 [Desktop Entry]
@@ -80,5 +85,9 @@ EOF
 %{_hicolordir}/*/apps/%{name}.png
 
 %changelog
+* Thu Jul 30 2026 Addison LeClair <me@addi.lol> - 0.0.31-1
+- Fix T3 Connect by adding missing auth variables
+- Use correct icon
+
 * Sun Jul 12 2026 Addison LeClair <me@addi.lol> - 0.0.28-1
 - Initial package
