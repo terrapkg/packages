@@ -48,6 +48,7 @@ done
 %files
 %doc README.md
 %license LICENSE LICENSE.dependencies
+%license %{_defaultlicensedir}/cosmic-ext-camera/LICENSE
 %{_bindir}/camera
 %{_appid}.desktop
 %{_metainfodir}/%{appid}.metainfo.xml
