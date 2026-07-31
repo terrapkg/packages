@@ -47,6 +47,7 @@ BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  pkgconfig(libsecret-1)
 BuildRequires:  pkgconfig(libsodium)
 BuildRequires:  pkgconfig(libjxl)
+BuildRequires:  pkgconfig(libical)
 
 Provides:       desktop-notification-daemon
 Provides:       PolicyKit-authentication-agent
