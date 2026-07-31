@@ -25,6 +25,7 @@ Requires:       %{name}-raspinfo = %{evr}
 Requires:       %{name}-rpieepromab = %{evr}
 Requires:       %{name}-rpi-gpu-usage = %{evr}
 Requires:       %{name}-rpifwcrypto = %{evr}
+Requires:       %{name}-splashasm = %{evr}
 Requires:       %{name}-vcgencmd = %{evr}
 Requires:       %{name}-vclog = %{evr}
 Requires:       %{name}-vcmailbox = %{evr}
