@@ -18,6 +18,8 @@ Suggests:       azure-cli
 Suggests:       gh
 Suggests:       glab
 
+Conflicts:      t3code-nightly
+
 Packager:       Addison LeClair <me@addi.lol>
 
 %description
