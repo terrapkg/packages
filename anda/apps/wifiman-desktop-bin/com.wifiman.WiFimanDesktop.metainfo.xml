@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.wifiman.WiFimanDesktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>LicenseRef-proprietary</project_license>
+
+  <name>WiFiman</name>
+  <summary>Ubiquiti desktop client for network scanning and UniFi Teleport VPN</summary>
+
+  <description>
+    <p>
+    WiFiman Desktop analyzes Wi-Fi and wired networks: it detects nearby
+    devices, runs download/upload speed tests, and connects to a UniFi network
+    remotely over the Teleport VPN. A WebKitGTK front-end drives a root system
+    daemon that bundles its own WireGuard userspace tools.
+    </p>
+  </description>
+
+  <categories>
+    <category>Network</category>
+    <category>Utility</category>
+  </categories>
+
+  <url type="homepage">https://wifiman.com</url>
+  <url type="bugtracker">https://github.com/terrapkg/packages/issues</url>
+  <developer id="com.ubiquiti">
+    <name>Ubiquiti, Inc.</name>
+  </developer>
+  <launchable type="desktop-id">wifiman-desktop.desktop</launchable>
+
+  <releases>
+    <release version="1.2.8" date="2025-12-01" />
+  </releases>
+
+  <content_rating type="oars-1.1" />
+</component>
