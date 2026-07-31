@@ -62,7 +62,7 @@ install -Dm644 assets/prod/black-universal-1024.png %{buildroot}%{_hicolordir}/1
 
 cat <<EOF > %{name}.desktop
 [Desktop Entry]
-Name=T3 Code
+Name=T3 Code (Alpha)
 Comment=%{summary}
 Exec=%{name} --ozone-platform-hint=auto %U
 Icon=%{name}
