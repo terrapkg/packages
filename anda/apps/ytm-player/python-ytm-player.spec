@@ -9,7 +9,7 @@ BuildArch:		noarch
 
 License:		MIT
 URL:			https://github.com/peternaame-boop/ytm-player
-Source0:		https://github.com/peternaame-boop/ytm-player/releases/download/v%{version}/ytm_player-%{version}.tar.gz
+Source0:		%{pypi_source}
 
 Packager:		Caio Bruno <cbrunofb@gmail.com>
 
@@ -24,8 +24,8 @@ BuildRequires:	python3-hatchling
 %package -n		python3-%{pypi_name}
 Summary:		%{summary}
 Requires:		libmpv.so.2
-Provides:		ytm-player = %{version}-%{release}
-Provides:		ytm = %{version}-%{release}
+Provides:		ytm-player = %{evr}
+Provides:		ytm = %{evr}
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n	python3-%{pypi_name}
@@ -41,7 +41,6 @@ sed -i 's/python-mpv/mpv/' pyproject.toml
 %install
 %pyproject_install
 %pyproject_save_files %{pypi_name}
-chmod 0644 README.md
 
 %files -n		python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
