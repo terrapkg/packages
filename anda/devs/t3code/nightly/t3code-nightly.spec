@@ -40,7 +40,7 @@ for manifest in apps/server/package.json apps/desktop/package.json apps/web/pack
 done
 
 %build
-export T3CODE_DESKTOP_VERSION=%{version}
+export T3CODE_DESKTOP_VERSION=%{electron_version}
 export T3CODE_DESKTOP_PLATFORM=linux
 export T3CODE_DESKTOP_TARGET=tar.xz
 export T3CODE_DESKTOP_ARCH=%{_electron_cpu}
