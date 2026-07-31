@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Legcord
+Exec=/usr/lib64/legcord/Legcord %U
+Terminal=false
+Type=Application
+Icon=legcord
+StartupWMClass=legcord
+Comment=Legcord is a custom client designed to enhance your Discord experience while keeping everything lightweight.
+MimeType=x-scheme-handler/discord;
+Categories=Network;
+X-Desktop-File-Install-Version=0.28

@@ -1,9 +1,9 @@
 %global debug_package   %{nil}
 
-%global ver 5.0.0-beta.5
+%global ver 5.0.0-beta.7
 
 Name:   	noctalia
-Version:	5.0.0~beta.5
+Version:	5.0.0~beta.7
 Release:	1%{?dist}
 Summary:	A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with no Qt or GTK dependency
 
@@ -42,6 +42,7 @@ BuildRequires:  pkgconfig(wayland-protocols)
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  pkgconfig(libsecret-1)
 BuildRequires:  pkgconfig(libsodium)
+BuildRequires:  pkgconfig(libjxl)
 
 Provides:       desktop-notification-daemon
 Provides:       PolicyKit-authentication-agent

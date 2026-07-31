@@ -2,9 +2,9 @@
 
 %global ver 5.0.0
 
-%global commit          8c0deca5334affe0b9f5d4581d486c9ffc482aa3
+%global commit          eaa207e7d62d8a57458d2caece7c86b994ebf153
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
-%global commitdate      20260726
+%global commitdate      20260731
 
 Name:   	noctalia-git
 Version:	%{ver}^%{commitdate}git.%{shortcommit}
@@ -46,6 +46,7 @@ BuildRequires:  pkgconfig(wayland-protocols)
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  pkgconfig(libsecret-1)
 BuildRequires:  pkgconfig(libsodium)
+BuildRequires:  pkgconfig(libjxl)
 
 Provides:       desktop-notification-daemon
 Provides:       PolicyKit-authentication-agent
