@@ -32,7 +32,7 @@ T3 Code is a minimal web GUI for coding agents such as Codex, Claude Code,
 Cursor, and OpenCode.
 
 %prep
-%autosetup -n %{name}-%{commit}
+%autosetup -n t3code-%{commit}
 for manifest in apps/server/package.json apps/desktop/package.json apps/web/package.json packages/contracts/package.json; do
   node -e 'const fs = require("fs"); const [file, version] = process.argv.slice(1); const pkg = JSON.parse(fs.readFileSync(file, "utf8")); pkg.version = version; fs.writeFileSync(file, JSON.stringify(pkg, null, 2) + "\n");' "$manifest" %{version}
 done
