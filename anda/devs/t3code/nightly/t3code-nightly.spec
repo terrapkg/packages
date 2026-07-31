@@ -63,7 +63,7 @@ cp -pr dist/. %{buildroot}%{_libdir}/%{name}/
 chmod 4755 %{buildroot}%{_libdir}/%{name}/chrome-sandbox
 
 install -dm755 %{buildroot}%{_bindir}
-ln -sf %{_libdir}/%{name}/%{name} %{buildroot}%{_bindir}/%{name}
+ln -sf %{_libdir}/%{name}/t3code %{buildroot}%{_bindir}/%{name}
 
 install -Dm644 apps/desktop/resources/icon.png %{buildroot}%{_hicolordir}/512x512/apps/%{name}.png
 
