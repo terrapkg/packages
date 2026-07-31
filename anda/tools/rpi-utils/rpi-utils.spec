@@ -298,7 +298,7 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 %license LICENCE
 
 %files splashasm
-%license LICENSE
+%license LICENCE
 %doc splashasm/README.md
 %{_bindir}/parse_splash_bin
 %{_bindir}/splash-assembler
