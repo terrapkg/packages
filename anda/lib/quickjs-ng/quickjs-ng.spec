@@ -1,8 +1,8 @@
 %global _distro_extra_cflags -Wno-discarded-qualifiers -Wno-maybe-uninitialized
 
 Name:           quickjs-ng
-Version:        0.15.1
-Release:        2%{?dist}
+Version:        0.16.0
+Release:        1%{?dist}
 License:        MIT
 Summary:        A mighty JavaScript engine
 URL:            https://github.com/quickjs-ng/quickjs
