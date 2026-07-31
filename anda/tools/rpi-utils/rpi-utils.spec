@@ -1,5 +1,5 @@
-%global commit 12ac746950849ea51256d73b3daa9d9359a4c9cf
-%global commit_date 20260730
+%global commit 4acc2a9f0839839d8d6bbfbe45a3399d274440e3
+%global commit_date 20260731
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:			rpi-utils
