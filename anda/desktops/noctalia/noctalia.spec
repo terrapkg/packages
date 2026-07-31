@@ -12,6 +12,7 @@ URL:		https://github.com/noctalia-dev/noctalia
 Source0:	https://github.com/noctalia-dev/noctalia/releases/download/v%{ver}/noctalia-v%{ver}.tar.gz
 
 BuildRequires:  meson
+BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  git
 BuildRequires:  desktop-file-utils
@@ -43,6 +44,8 @@ BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  pkgconfig(libsecret-1)
 BuildRequires:  pkgconfig(libsodium)
 BuildRequires:  pkgconfig(libjxl)
+BuildRequires:  pkgconfig(libical)
+BuildRequires:  pkgconfig(sndfile)
 
 Provides:       desktop-notification-daemon
 Provides:       PolicyKit-authentication-agent
@@ -95,6 +98,9 @@ done
 %{_scalableiconsdir}/noctalia.svg
 
 %changelog
+* Thu Jul 30 2026 Cypress Reed <cypress@fyralabs.com>
+- add dependencies
+
 * Thu Jul 16 2026 Cypress Reed <cypress@fyralabs.com>
 - Create noctalia package based on noctalia-git
 
