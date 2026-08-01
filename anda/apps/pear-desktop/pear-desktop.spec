@@ -11,7 +11,7 @@ Summary:        Pear Desktop, a YouTube Music desktop app with custom plugins
 Source1:        pear-desktop.desktop
 License:        MIT
 URL:            https://github.com/pear-devs/pear-desktop
-Packager:       Cappy Ishihara <cappy@fyralabs.com>
+Packager:       Caio Bruno <cbrunofb@gmail.com>
 
 Provides:       youtube-music = %{version}-%{release}
 Obsoletes:      youtube-music < 3.11.0-2
@@ -69,8 +69,9 @@ install -D -m 0644 %{SOURCE1} %{buildroot}%{_appsdir}/pear-desktop.desktop
 
 %changelog
 * Fri Jul 31 2026 Caio Bruno <cbrunofb@gmail.com>
-- Rename package to pear-desktop (upstream rebrand to pear-devs/pear-desktop)
-- Install pnpm@latest + node-gyp via npm instead of the curl hack; use %git_clone
+- Rename to pear-desktop (upstream rebrand to pear-devs/pear-desktop)
+- Build from source (pnpm@latest via %__npm; %git_clone)
+- Change maintainer due to complete rewrite
 
 * Thu Dec 25 2025 Owen Zimmerman <owen@fyralabs.com>
 - Add %check
