@@ -22,6 +22,7 @@ BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(hatchling)
 BuildRequires:  python3dist(hatch-vcs)
 BuildRequires:  python3dist(setuptools)
+BuildRequires:  python3-setuptools_scm
 
 %global _description %{expand:
 %summary.}
