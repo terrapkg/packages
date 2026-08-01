@@ -20,6 +20,7 @@ BuildRequires:  pkgconfig(libpulse)
 BuildRequires:  python3dist(meson-python)
 BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(hatchling)
+BuildRequires:  python3dist(hatch-vcs)
 
 %global _description %{expand:
 %summary.}
