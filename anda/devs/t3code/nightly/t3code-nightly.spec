@@ -1,8 +1,8 @@
 %undefine __brp_mangle_shebangs
 
-%global latest_stable_version 0.0.31
-%global commit df78cda8bf9c0971300e1bf35251774d9fbc833a
-%global commit_date 20260730
+%global latest_stable_version v0.0.31
+%global commit 0ad91b6e7fc1fcb6d5f4bc736d84c337e912bc62
+%global commit_date 20260801
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global buildnum %(printf '%d' 0x%{shortcommit})
 %global electron_version %{latest_stable_version}-nightly.%{commit_date}.%{buildnum}
@@ -10,7 +10,7 @@
 Name:           t3code-nightly
 %electronmeta -D
 Version:        %{latest_stable_version}^%{commit_date}git.%{shortcommit}
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Minimal web GUI for coding agents
 License:        MIT AND %{electron_license}
 URL:            https://github.com/pingdotgg/t3code
