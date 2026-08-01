@@ -19,6 +19,7 @@ BuildRequires:  pkgconfig(gtk4-layer-shell-0)
 BuildRequires:  pkgconfig(libpulse)
 BuildRequires:  python3dist(meson-python)
 BuildRequires:  python3dist(pip)
+BuildRequires:  python3dist(hatchling)
 
 %global _description %{expand:
 %summary.}
