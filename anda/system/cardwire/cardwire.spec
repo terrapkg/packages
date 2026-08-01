@@ -78,7 +78,7 @@ done
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
-* Sat Aug 01 2026 Owen-sz <owen@fyralabs.com>
+* Sat Aug 01 2026 Owen Zimmerman <owen@fyralabs.com>
 - Add cardwire-gui subpackage
 
 * Wed May 06 2026 Owen Zimmerman <owen@fyralabs.com>
