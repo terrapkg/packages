@@ -42,16 +42,14 @@ pnpm build
 pnpm electron-builder --linux --dir
 
 %install
-install -d -m 0755 %{buildroot}%{_hicolordir}/1024x1024/apps
-install -d -m 0755 %{buildroot}%{_hicolordir}/scalable/apps
-install -m 0644 assets/icon.png %{buildroot}%{_hicolordir}/1024x1024/apps/pear-desktop.png
-install -m 0644 assets/icon.svg %{buildroot}%{_hicolordir}/scalable/apps/pear-desktop.svg
+install -D -m 0644 assets/icon.png %{buildroot}%{_hicolordir}/1024x1024/apps/pear-desktop.png
+install -D -m 0644 assets/icon.svg %{buildroot}%{_hicolordir}/scalable/apps/pear-desktop.svg
 
 # Inner binary is still "youtube-music" upstream; expose it as pear-desktop.
-install -d -m 0755 %{buildroot}%{_libdir}/pear-desktop
-cp -rv pack/linux*-unpacked/* %{buildroot}%{_libdir}/pear-desktop
-install -d -m 0755 %{buildroot}%{_bindir}
-ln -svf %{_libdir}/pear-desktop/youtube-music %{buildroot}%{_bindir}/pear-desktop
+install -d %{buildroot}%{_libdir}/pear-desktop
+cp -r pack/linux*-unpacked/* %{buildroot}%{_libdir}/pear-desktop
+install -d %{buildroot}%{_bindir}
+ln -sf %{_libdir}/pear-desktop/youtube-music %{buildroot}%{_bindir}/pear-desktop
 
 install -D -m 0644 %{SOURCE1} %{buildroot}%{_appsdir}/pear-desktop.desktop
 
