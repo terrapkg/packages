@@ -21,6 +21,7 @@ BuildRequires:  python3dist(meson-python)
 BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(hatchling)
 BuildRequires:  python3dist(hatch-vcs)
+BuildRequires:  python3dist(setuptools)
 
 %global _description %{expand:
 %summary.}
