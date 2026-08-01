@@ -6,7 +6,7 @@
   <!-- Temporary until we have an icon -->
   <icon type="local">/usr/share/icons/hicolor/scalable/apps/com.github.opengamingcollective.cardwire.tray.svg</icon>
 
-  <name>cardwire-gui</name>
+  <name>Cardwire</name>
   <summary>A GPU Manager for linux that uses eBPF LSM hooks to block GPUs</summary>
 
   <!-- <screenshots>
