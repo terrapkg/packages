@@ -5,7 +5,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.2.19
-Release:		2%{?dist}
+Release:		3%{?dist}
 Summary:		GUI for SteelSeries Arctis headsets
 License:		GPL-3.0-or-later
 # GitHub pages URL 404s
@@ -60,6 +60,7 @@ Provides:       Arctis-Sound-Manager
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
+Provides:       arctis-sound-manager = %{evr}
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
