@@ -48,6 +48,8 @@ install -D -m 0644 assets/icon.svg %{buildroot}%{_hicolordir}/scalable/apps/pear
 # Inner binary is still "youtube-music" upstream; expose it as pear-desktop.
 install -d %{buildroot}%{_libdir}/pear-desktop
 cp -r pack/linux*-unpacked/* %{buildroot}%{_libdir}/pear-desktop
+# Setuid chrome-sandbox enables the Chromium sandbox (Electron: keep sandbox on in production).
+chmod 4755 %{buildroot}%{_libdir}/pear-desktop/chrome-sandbox
 install -d %{buildroot}%{_bindir}
 ln -sf %{_libdir}/pear-desktop/youtube-music %{buildroot}%{_bindir}/pear-desktop
 

@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Pear Desktop
 GenericName=YouTube Music Client
-Exec=/usr/bin/pear-desktop --no-sandbox %U
+Exec=/usr/bin/pear-desktop --ozone-platform-hint=auto %U
 TryExec=/usr/bin/pear-desktop
 Icon=pear-desktop
 Terminal=false
