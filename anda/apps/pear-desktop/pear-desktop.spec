@@ -14,7 +14,7 @@ URL:            https://github.com/pear-devs/pear-desktop
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
 
 Provides:       youtube-music = %{version}-%{release}
-Obsoletes:      youtube-music < %{version}-%{release}
+Obsoletes:      youtube-music < 3.11.0-2
 
 BuildRequires:  git-core gcc make desktop-file-utils
 BuildRequires:  nodejs nodejs-npm
