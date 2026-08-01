@@ -8,7 +8,7 @@ Name:           pear-desktop
 Version:        3.12.0
 Release:        1%{?dist}
 Summary:        Pear Desktop, a YouTube Music desktop app with custom plugins
-Source1:        pear-desktop.desktop
+Source1:        com.github.th-ch.youtube-music.desktop
 License:        MIT
 URL:            https://github.com/pear-devs/pear-desktop
 Packager:       Caio Bruno <cbrunofb@gmail.com>
@@ -53,10 +53,10 @@ chmod 4755 %{buildroot}%{_libdir}/pear-desktop/chrome-sandbox
 install -d %{buildroot}%{_bindir}
 ln -sf %{_libdir}/pear-desktop/youtube-music %{buildroot}%{_bindir}/pear-desktop
 
-install -D -m 0644 %{SOURCE1} %{buildroot}%{_appsdir}/pear-desktop.desktop
+install -D -m 0644 %{SOURCE1} %{buildroot}%{_appsdir}/com.github.th-ch.youtube-music.desktop
 
 %check
-%desktop_file_validate %{buildroot}%{_appsdir}/pear-desktop.desktop
+%desktop_file_validate %{buildroot}%{_appsdir}/com.github.th-ch.youtube-music.desktop
 
 %files
 %license license
@@ -65,7 +65,7 @@ install -D -m 0644 %{SOURCE1} %{buildroot}%{_appsdir}/pear-desktop.desktop
 %{_libdir}/pear-desktop/
 %{_hicolordir}/1024x1024/apps/pear-desktop.png
 %{_hicolordir}/scalable/apps/pear-desktop.svg
-%{_appsdir}/pear-desktop.desktop
+%{_appsdir}/com.github.th-ch.youtube-music.desktop
 
 %changelog
 * Fri Jul 31 2026 Caio Bruno <cbrunofb@gmail.com>
