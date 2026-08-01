@@ -1,3 +1,5 @@
+%global debug_package %{nil}
+
 Name:           python-ignis
 Version:        0.6.0
 Release:        1%{?dist}
@@ -44,6 +46,7 @@ Summary:        %{summary}
 
 
 %build
+export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
 %pyproject_wheel
 
 
