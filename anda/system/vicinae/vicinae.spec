@@ -5,7 +5,7 @@ Release:        1%{?dist}
 URL:            https://docs.vicinae.com
 Source:         https://github.com/vicinaehq/%{name}/archive/refs/tags/v%{version}.tar.gz
 Summary:        A high-performance, native launcher for Linux
-Packager:       Olivia <git@olivia.sh>
+Packager:       Olivia <git@olivia.sh>, Jaiden Riordan <jade@fyralabs.com>
 
 BuildRequires:  cmake
 BuildRequires:  gcc
