@@ -27,7 +27,7 @@ install -Dm644 completions/fisher.fish  %{buildroot}%{_datadir}/fish/vendor_comp
 %files
 %license LICENSE.md
 %doc README.md
-%{_datadir}/fish/vendor_functions.d/fisher.fish
+%{fish_functions_dir}/fisher.fish
 %{fish_completions_dir}/fisher.fish
 
 %changelog
