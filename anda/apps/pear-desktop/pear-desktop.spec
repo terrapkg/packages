@@ -1,7 +1,6 @@
 %define debug_package %nil
 
-# Exclude only the Electron/Chromium libs bundled inside the app (NOT every
-# lib*.so — the app still needs system gtk/cairo/cups/alsa/etc. as Requires).
+# Only the bundled libs — system deps (gtk/cairo/cups/alsa/...) must stay Required.
 %global __provides_exclude libffmpeg\\.so.*|libEGL\\.so.*|libGLESv2\\.so.*|libvk_swiftshader\\.so.*|libvulkan\\.so.*
 %global __requires_exclude libffmpeg\\.so.*|libEGL\\.so.*|libGLESv2\\.so.*|libvk_swiftshader\\.so.*|libvulkan\\.so.*
 
@@ -14,8 +13,6 @@ License:        MIT
 URL:            https://github.com/pear-devs/pear-desktop
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
 
-# Replacement for the former "youtube-music" package (upstream rebranded to
-# pear-devs/pear-desktop). Take over upgrades from the old name.
 Provides:       youtube-music = %{version}-%{release}
 Obsoletes:      youtube-music < %{version}-%{release}
 
@@ -35,8 +32,7 @@ custom plugins, including a built-in ad blocker and downloader.
 %git_clone %{url} v%{version}
 
 %build
-# Install a current pnpm (project needs >=11; Fedora ships 10.x) and node-gyp
-# (for the usocket native module) into the builddir. Nothing writes to $HOME.
+# pnpm@latest (project needs >=11; Fedora has 10.x) + node-gyp (usocket), into the builddir.
 export npm_config_prefix=%{_builddir}/.npm-global
 %__npm install -g pnpm@latest node-gyp
 export PATH=%{_builddir}/.npm-global/bin:$PATH
@@ -46,16 +42,12 @@ pnpm build
 pnpm electron-builder --linux --dir
 
 %install
-# App icons ship as assets/icon.{png,svg} upstream (the rebrand dropped the
-# youtube-music.* names); install them under the pear-desktop identity.
 install -d -m 0755 %{buildroot}%{_hicolordir}/1024x1024/apps
 install -d -m 0755 %{buildroot}%{_hicolordir}/scalable/apps
 install -m 0644 assets/icon.png %{buildroot}%{_hicolordir}/1024x1024/apps/pear-desktop.png
 install -m 0644 assets/icon.svg %{buildroot}%{_hicolordir}/scalable/apps/pear-desktop.svg
 
-# Install the bundled Electron app. The inner executable is still named
-# "youtube-music" (upstream hasn't renamed the binary yet); expose it as
-# pear-desktop via a symlink in %{_bindir}.
+# Inner binary is still "youtube-music" upstream; expose it as pear-desktop.
 install -d -m 0755 %{buildroot}%{_libdir}/pear-desktop
 cp -rv pack/linux*-unpacked/* %{buildroot}%{_libdir}/pear-desktop
 install -d -m 0755 %{buildroot}%{_bindir}
