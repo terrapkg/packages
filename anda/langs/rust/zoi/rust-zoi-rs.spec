@@ -13,6 +13,7 @@ URL:            https://crates.io/crates/zoi-rs
 Source:         https://static.crates.io/crates/%{crate}/%{crate}-%{crate_version}.crate
 BuildRequires:  cargo
 BuildRequires:  gcc-c++
+BuildRequires:  clang-devel
 BuildRequires:  rpm_macro(cargo_install)
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  perl(FindBin)
