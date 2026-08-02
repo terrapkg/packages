@@ -41,6 +41,6 @@ monitor without opening the workspace overview.
 %{_scalableiconsdir}/%{appid}.svg
 
 %changelog
-* Sat Aug 01 2026 Olivia <git@olivia.sh> - 0.2.1-4
+* Sun Aug 02 00:04:46 -0500 Olivia <git@olivia.sh> - 1.2.0-1
 - Initial package
 
