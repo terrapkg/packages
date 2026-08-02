@@ -44,7 +44,7 @@ Requires:       git
 %license LICENSE.dependencies
 %doc README.md
 %{_bindir}/zoi
-%{_bindir}/zoi-mini
+%dnl %{_bindir}/zoi-mini
 
 %pkg_completion -Befz zoi -n %{crate}
 
