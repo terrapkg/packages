@@ -25,6 +25,7 @@ Requires:       %{name}-raspinfo = %{evr}
 Requires:       %{name}-rpieepromab = %{evr}
 Requires:       %{name}-rpi-gpu-usage = %{evr}
 Requires:       %{name}-rpifwcrypto = %{evr}
+Requires:       %{name}-splashasm = %{evr}
 Requires:       %{name}-vcgencmd = %{evr}
 Requires:       %{name}-vclog = %{evr}
 Requires:       %{name}-vcmailbox = %{evr}
@@ -143,6 +144,13 @@ It works by parsing the /proc/*/fdinfo/* information to find the processes that 
 
 %pkg_completion -Bn %name-rpi-gpu-usage rpi-gpu-usage
 
+%package        splashasm
+Summary:        A toy language and binary format for describing SPI & I2C dumps
+%description    splashasm
+A toy language and binary format for describing SPI & I2C dumps, aimed at putting
+splash screens on SPI & I2C displays during vc4 boot on Raspberry Pis.
+This currently only supports non RP1 RPis, i.e. everything but the Pi 5.
+
 %package        vcgencmd
 Summary:        Query the VideoCore for information
 %description    vcgencmd
@@ -222,6 +230,7 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 %doc ovmerge/README.md
 %license LICENCE
 %{_bindir}/ovmerge
+%{_bindir}/ovmerge_engine.py
 
 %files pinctrl
 %doc pinctrl/README.md
@@ -287,6 +296,12 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 %{_mandir}/man1/rpi-gpu-usage.1.*
 %doc rpi-gpu-usage/README.md
 %license LICENCE
+
+%files splashasm
+%license LICENCE
+%doc splashasm/README.md
+%{_bindir}/parse_splash_bin
+%{_bindir}/splash-assembler
 
 %files vcgencmd
 %license LICENCE
