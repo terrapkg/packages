@@ -6,7 +6,7 @@ URL:            https://github.com/SeaDve/Kooha
 Source0:        %url/archive/refs/tags/v%{version}.tar.gz
 Patch0:         libadwaita-version-change.patch
 SourceLicense:  GPL-3.0-or-later
-License:        %{sourcelicense}
+License:        %{sourcelicense} OR (Apache-2.0 OR MIT) AND (Apache-2.0 OR BSL-1.0) AND MIT AND MPL-2.0 AND (Unlicense OR MIT)
 
 BuildRequires:  cargo
 BuildRequires:  cargo-rpm-macros
