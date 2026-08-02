@@ -24,7 +24,6 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %install
 %crate_install_bin
-%dnl install -Dm755 target/rpm/%{name} %{buildroot}%{_bindir}/%{name}
 %cargo_license_summary_online
 %{cargo_license_online} > LICENSE.dependencies
 
