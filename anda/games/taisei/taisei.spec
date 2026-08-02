@@ -1,5 +1,5 @@
 Name:           taisei
-Version:        1.4.5
+Version:        1.4.6
 Release:        1%{?dist}
 Summary:        A free and open-source Touhou Project fangame
 Packager:       Jan200101 <sentrycraft123@gmail.com>
