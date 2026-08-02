@@ -1,5 +1,5 @@
 Name:           resources
-Version:        1.10.2
+Version:        51.beta
 Release:        1%{?dist}
 Summary:        Keep an eye on system resources
 License:        GPL-3.0-or-later
