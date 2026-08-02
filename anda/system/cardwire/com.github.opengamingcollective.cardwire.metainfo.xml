@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component type="desktop-application">
+  <id>com.github.opengamingcollective.cardwire</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <!-- Temporary until we have an icon -->
+  <icon type="local">/usr/share/icons/hicolor/scalable/apps/com.github.opengamingcollective.cardwire.tray.svg</icon>
+
+  <name>Cardwire</name>
+  <summary>A GPU Manager for linux that uses eBPF LSM hooks to block GPUs</summary>
+
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/OpenGamingCollective/cardwire/metainfo-screenshot/assets/com.github.opengamingcollective.cardwire.screenshot.png</image>
+    </screenshot>
+  </screenshots>
+
+  <description>
+    <p>
+        cardwire GUI is a GPU manager for Linux using eBPF LSM hooks to block GPUs.
+    </p>
+  </description>
+
+  <launchable type="desktop-id">cardwire-gui.desktop</launchable>
+
+  <url type="homepage">https://github.com/OpenGamingCollective/cardwire</url>
+  <provides>
+    <binary>cardwire-gui</binary>
+  </provides>
+
+  <keywords>
+    <keyword>GPU</keyword>
+    <keyword>GPU manager</keyword>
+    <keyword>eBPF LSM</keyword>
+    <keyword>asusctl</keyword>
+    <keyword>switcheroo-control</keyword>
+    <keyword>supergfxctl</keyword>
+  </keywords>
+
+  <releases>
+    <release version="0.11.1" />
+  </releases>
+</component>
