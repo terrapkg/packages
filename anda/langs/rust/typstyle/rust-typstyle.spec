@@ -4,8 +4,8 @@
 %global crate typstyle
 
 Name:           rust-typstyle
-Version:        0.15.0
-Release:        2%{?dist}
+Version:        0.15.1
+Release:        1%{?dist}
 Summary:        CLI for Typstyle
 
 License:        Apache-2.0
