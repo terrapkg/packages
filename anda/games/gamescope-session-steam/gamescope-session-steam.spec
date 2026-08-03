@@ -52,7 +52,6 @@ install -Dpm0644 -t "%buildroot%_datadir/wayland-sessions/" ".%_datadir/wayland-
 %{_datadir}/gamescope-session-plus/sessions.d/steam
 %{_datadir}/polkit-1/actions/org.chimeraos.update.policy
 %{_datadir}/wayland-sessions/gamescope-session-steam.desktop
-%{_datadir}/wayland-sessions/gamescope-session.desktop
 
 %changelog
 * Mon Feb 03 2026 Tulip Blossom <tulilirockz@outlook.com> - 20241205.1a3fdb7f-1
