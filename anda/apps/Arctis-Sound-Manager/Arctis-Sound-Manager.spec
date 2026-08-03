@@ -135,6 +135,7 @@ install -Dm644 debian/asm-first-run.desktop \
 %{_bindir}/asm-gui
 %{_bindir}/asm-router
 %{_bindir}/asm-setup
+%{_bindir}/asm-stream-guard
 %{_udevrulesdir}/91-steelseries-arctis.rules
 %{_userunitdir}/arctis-manager.service
 %{_userunitdir}/arctis-video-router.service
