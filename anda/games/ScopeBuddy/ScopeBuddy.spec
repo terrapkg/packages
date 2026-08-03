@@ -1,5 +1,5 @@
 Name:           ScopeBuddy
-Version:        1.4.0
+Version:        1.5.0
 Release:        2%?dist
 Summary:        A manager script to make gamescope easier to use on desktop
 License:        Apache-2.0
@@ -9,6 +9,7 @@ BuildArch:      noarch
 
 Requires:       bash
 Requires:       perl
+Requires:       awk
 Requires:       (gamescope or terra-gamescope)
 Suggests:       (kscreen-doctor or gnome-randr)
 Suggests:       jq
