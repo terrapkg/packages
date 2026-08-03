@@ -1,5 +1,5 @@
 Name:           discord-canary
-Version:        1.0.1575
+Version:        1.0.1576
 Release:        1%{?dist}
 Summary:        Free Voice and Text Chat for Gamers
 URL:            discord.com
