@@ -1,8 +1,8 @@
 %define debug_package %nil
 
-%global commit 1019f9a2a98b7aaa180c3739901244854b126787
+%global commit 55e541aa3adb80ee751220c886b9d133504f6e20
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260518
+%global commit_date 20260803
 
 Name:           gamescope-session-steam
 Version:        0~%{commit_date}git.%{shortcommit}
@@ -37,7 +37,6 @@ install -Dpm0644 -t "%buildroot%_datadir/applications/" ".%_datadir/applications
 install -Dpm0755 -t "%buildroot%_datadir/gamescope-session-plus/sessions.d/" ".%_datadir/gamescope-session-plus/sessions.d/steam"
 install -Dpm0644 -t "%buildroot%_datadir/polkit-1/actions/" ".%_datadir/polkit-1/actions/org.chimeraos.update.policy"
 install -Dpm0644 -t "%buildroot%_datadir/wayland-sessions/" ".%_datadir/wayland-sessions/gamescope-session-steam.desktop"
-install -Dpm0644 -t "%buildroot%_datadir/wayland-sessions/" ".%_datadir/wayland-sessions/gamescope-session.desktop"
 
 %files
 %license LICENSE
@@ -53,7 +52,6 @@ install -Dpm0644 -t "%buildroot%_datadir/wayland-sessions/" ".%_datadir/wayland-
 %{_datadir}/gamescope-session-plus/sessions.d/steam
 %{_datadir}/polkit-1/actions/org.chimeraos.update.policy
 %{_datadir}/wayland-sessions/gamescope-session-steam.desktop
-%{_datadir}/wayland-sessions/gamescope-session.desktop
 
 %changelog
 * Mon Feb 03 2026 Tulip Blossom <tulilirockz@outlook.com> - 20241205.1a3fdb7f-1
