@@ -37,7 +37,6 @@ install -Dpm0644 -t "%buildroot%_datadir/applications/" ".%_datadir/applications
 install -Dpm0755 -t "%buildroot%_datadir/gamescope-session-plus/sessions.d/" ".%_datadir/gamescope-session-plus/sessions.d/steam"
 install -Dpm0644 -t "%buildroot%_datadir/polkit-1/actions/" ".%_datadir/polkit-1/actions/org.chimeraos.update.policy"
 install -Dpm0644 -t "%buildroot%_datadir/wayland-sessions/" ".%_datadir/wayland-sessions/gamescope-session-steam.desktop"
-install -Dpm0644 -t "%buildroot%_datadir/wayland-sessions/" ".%_datadir/wayland-sessions/gamescope-session.desktop"
 
 %files
 %license LICENSE
