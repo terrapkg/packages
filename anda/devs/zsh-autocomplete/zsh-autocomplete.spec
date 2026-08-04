@@ -1,5 +1,5 @@
 Name:           zsh-autocomplete
-Version:        26.08.03
+Version:        26.08.04
 Release:        1%{?dist}
 Summary:        Real-time type-ahead completion for Zsh
 License:        MIT
