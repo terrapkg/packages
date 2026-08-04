@@ -55,8 +55,7 @@ rm %{buildroot}%{_docdir}/quickjs/LICENSE
 %{_bindir}/qjs
 %{_bindir}/qjsc
 %{_mandir}/man1/qjs.1/qjs.man.*
-%{_mandir}/man1/qjsc.1/qjsc.man.*
-
+%dnl %{_mandir}/man1/qjsc.1/qjsc.man.*
 
 %files examples
 %license LICENSE
