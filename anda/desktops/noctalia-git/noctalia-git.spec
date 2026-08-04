@@ -2,13 +2,13 @@
 
 %global ver 5.0.0
 
-%global commit          5aae077a3563da6fda3fc2a2b8ce9162e3a42019
+%global commit          e41c99439605df6d2fa62409139f96ded6ac7345
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
-%global commitdate      20260803
+%global commitdate      20260804
 
 Name:   	noctalia-git
 Version:	%{ver}^%{commitdate}git.%{shortcommit}
-Release:	2%{?dist}
+Release:	1%{?dist}
 Summary:	A sleek, customizable desktop shell crafted for Wayland
 
 License:	MIT
