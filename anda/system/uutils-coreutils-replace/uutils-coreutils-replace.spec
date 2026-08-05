@@ -5,7 +5,7 @@
 %endif
 
 Name:           uutils-coreutils-replace
-Version:        0.9.0
+Version:        0.10.0
 Release:        1%{?dist}
 Summary:        Cross-platform Rust rewrite of the GNU coreutils
 License:        MIT
