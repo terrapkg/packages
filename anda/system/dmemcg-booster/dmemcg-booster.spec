@@ -11,8 +11,6 @@ BuildRequires:  systemd-rpm-macros
 BuildRequires:  dbus-devel
 Packager:       Tulip Blossom <tulilirockz@outlook.com>
 
-Patch:          0001-License-under-MIT.patch
-
 %description
 %summary.
 
@@ -25,7 +23,6 @@ Patch:          0001-License-under-MIT.patch
 
 %install
 %cargo_install
-install -Dpm0644 -t %{buildroot}%{_datadir}/licenses/dmemcg-booster/ ./LICENSE
 install -Dpm0644 -t %{buildroot}%{_userunitdir}/ ./dmemcg-booster-user.service
 install -Dpm0644 -t %{buildroot}%{_unitdir}/ ./dmemcg-booster-system.service
 
@@ -39,7 +36,7 @@ install -Dpm0644 -t %{buildroot}%{_unitdir}/ ./dmemcg-booster-system.service
 %systemd_postun_with_restart dmemcg-booster.service
 
 %files
-%license %{_datadir}/licenses/dmemcg-booster/LICENSE
+%license LICENSE
 %license LICENSE.dependencies
 %{_bindir}/dmemcg-booster
 %{_userunitdir}/dmemcg-booster-user.service
