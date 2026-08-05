@@ -11,8 +11,6 @@ BuildRequires:  systemd-rpm-macros
 BuildRequires:  dbus-devel
 Packager:       Tulip Blossom <tulilirockz@outlook.com>
 
-%dnl Patch:          0001-License-under-MIT.patch
-
 %description
 %summary.
 
