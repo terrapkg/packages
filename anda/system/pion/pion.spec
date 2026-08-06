@@ -40,7 +40,7 @@ install -Dm644 dist/dev-binderfs.mount  %{buildroot}%{_unitdir}/dev-binderfs.mou
 %license LICENSE LICENSE.dependencies
 %{_bindir}/pion-binder
 %{_unitdir}/pion-binder.service
-%{_unitdir}/dev-binderfs.mount
+%{_unitdir}/dev-pionfs.mount
 
 %changelog
 * Tue Mar 17 2026 Owen Zimmerman <owen@fyralabs.com>
