@@ -1,4 +1,4 @@
-policy_module(steamos_manager, 1.0.4)
+policy_module(steamos_manager, 1.0.5)
 
 ########################################
 # Init
@@ -71,6 +71,7 @@ gen_require(`
      type sysfs_t;
 ')
 allow steamos_manager_t sysfs_t:dir { write add_name remove_name };
+allow steamos_manager_t sysfs_t:file { create setattr unlink };
 
 ########################################
 # Procfs access
