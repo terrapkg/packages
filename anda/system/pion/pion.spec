@@ -1,5 +1,5 @@
 Name:           pion
-Version:        0.1.1
+Version:        0.2.0
 Release:        1%{?dist}
 Summary:        Binder IPC Linux userspace root service
 License:        MIT AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (Unlicense OR MIT)
