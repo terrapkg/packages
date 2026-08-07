@@ -20,6 +20,7 @@ Source1:        apparmor.preset
 Patch01:        0001-fix-avahi-daemon-authselect-denial-in-fedora.patch
 Patch02:        0001-fix-denial-on-dnsmask-for-nsswitch.patch
 Patch03:        0001-fix-apparmor-waydroid-denials.patch
+Patch04:        0001-fix-swig-new_copy_array-removed-in-swig-4.5.0.patch
 
 BuildRequires:  gcc
 BuildRequires:  automake
