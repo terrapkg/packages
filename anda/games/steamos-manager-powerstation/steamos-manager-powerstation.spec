@@ -39,13 +39,6 @@ exposed in any Linux distro that provides an implementation of this DBus API.
 This version has been patched with additional compatibility with powerstation
 and OGC gamescope-sessions.
 
-%package gamescope-session-plus
-Summary:        Compatibility symlink service for starting steamos-manager on gamescope-session-plus
-Requires:       %{name} = %{evr}
-
-%description gamescope-session-plus
-%summary.
-
 %prep
 %autosetup -n steamos-manager-%{commit}
 install -Dp -m644 -t data/selinux %{SOURCE1} %{SOURCE2} %{SOURCE3}
@@ -109,10 +102,8 @@ fi
 %{_userunitdir}/steamos-manager-session-cleanup.service
 %{_userunitdir}/graphical-session-pre.target.wants/steamos-manager-session-cleanup.service
 %{_userunitdir}/cecd.service.wants/steamos-manager-configure-cecd.service
-%{_datadir}/selinux/packages/steamos_manager.pp
-
-%files gamescope-session-plus
 %{_userunitdir}/gamescope-session-plus@ogui-steam.service.wants/steamos-manager.service
+%{_datadir}/selinux/packages/steamos_manager.pp
 
 %changelog
 * Wed Aug 17 2026 Kyle Gospodnetich <me@kylegospodneti.ch> - 26.0.1-4
