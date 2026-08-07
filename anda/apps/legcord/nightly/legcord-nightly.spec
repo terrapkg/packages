@@ -8,7 +8,7 @@
 Name:           legcord-nightly
 %electronmeta -aD
 Version:        %commit_date.%shortcommit
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        OSL-3.0 AND %{electron_license}
 Summary:        Custom lightweight Discord client designed to enhance your experience
 URL:            https://github.com/Legcord/Legcord
