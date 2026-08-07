@@ -1,12 +1,12 @@
 Name:           juce
-Version:        8.0.12
-Release:        3%{?dist}
-License:        AGPL-3.0
+Version:        9.0.0
+Release:        1%{?dist}
+License:        AGPL-3.0-or-later
 Summary:        framework for audio application and plug-in development
 URL:            https://juce.com
 Source:         https://github.com/juce-framework/JUCE/archive/refs/tags/%{version}.tar.gz
 Patch0:         fix-install-dirs.patch
-Packager:       metcya <metcya@gmail.com>
+Packager:       Olivia <git@olivia.sh>
 
 BuildRequires:  gcc-c++
 BuildRequires:  cmake
@@ -46,10 +46,12 @@ Documentation files for %{name}
 %prep
 %autosetup -p1 -n JUCE-%{version}
 
-%build
+%conf
 %cmake -DJUCER_ENABLE_GPL_MODE=1    \
        -DJUCE_BUILD_EXTRAS=ON       \
        -DJUCE_TOOL_INSTALL_DIR=bin
+
+%build
 %cmake_build
 
 pushd docs/doxygen
@@ -76,8 +78,11 @@ popd
 %doc %{_pkgdocdir}/*
 
 %changelog
+* Sun Jul 19 2026 Olivia <git@olivia.sh> - 8.0.14-2
+- Update packager
+
 * Tue Dec 23 2025 Owen Zimmerman <owen@fyralabs.com>
 - Install doc subpackage license
 
-* Fri Dec 19 2025 metcya <metcya@gmail.com> - 8.0.12
+* Fri Dec 19 2025 Olivia <git@olivia.sh> - 8.0.12
 - Package juce

@@ -1,5 +1,5 @@
 %global tarball_version %%(echo %{version} | tr '~' '.')
-%global major_version 49
+%global major_version 50
 %global minor_version 2
 
 %if 0%{?rhel}

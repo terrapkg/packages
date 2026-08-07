@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		3.6.0
-Release:		1%?dist
+Release:		2%?dist
 Summary:		A python program for repeating music endlessly and creating seamless music loops, with play/export/tagging support
 License:		MIT
 URL:			https://github.com/arkrow/PyMusicLooper

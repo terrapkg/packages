@@ -1,0 +1,11 @@
+[Unit]
+Description=nvidia-powerd service
+ConditionPathExistsGlob=/dev/nvidia*
+
+[Service]
+Type=simple
+# Not all the hardware can use nvidia-powerd
+ExecStart=-/usr/bin/nvidia-powerd
+
+[Install]
+WantedBy=multi-user.target

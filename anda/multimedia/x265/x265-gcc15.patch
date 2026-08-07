@@ -1,0 +1,11 @@
+diff -Naur x265_4.2.old/source/dynamicHDR10/json11/json11.cpp x265_4.2/source/dynamicHDR10/json11/json11.cpp
+--- x265_4.2.old/source/dynamicHDR10/json11/json11.cpp	2026-05-22 09:31:41.430924883 +0200
++++ x265_4.2/source/dynamicHDR10/json11/json11.cpp	2026-05-22 09:31:41.531899433 +0200
+@@ -25,6 +25,7 @@
+ #include <cstdlib>
+ #include <cstdio>
+ #include <limits>
++#include <cstdint>
+ 
+ #if _MSC_VER
+ #pragma warning(disable: 4510) //const member cannot be default initialized

@@ -1,10 +1,10 @@
-%global commit 353e04bf0bc1866cba1f599cd76050890d33ba23
-%global commit_date 20260123
+%global commit e2d6d64f8cd35bf887b3ed7534bf2c245394c1ea
+%global commit_date 20260806
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           rpcc
 Version:        0~%commit_date.git~%shortcommit
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Raspberry Pi Control Centre - an extensible settings application for the Raspberry Pi Desktop
 License:        BSD-3-Clause
 URL:            https://github.com/raspberrypi-ui/rpcc
@@ -17,6 +17,7 @@ BuildRequires:  gtk3-devel
 BuildRequires:  libxml2-devel
 BuildRequires:  intltool
 BuildRequires:  gcc
+BuildRequires:  pkgconfig(wayland-protocols)
 
 Requires:       libxml2
 Requires:       gtk3
@@ -36,8 +37,10 @@ A number of packages contain plugins which are installed as standard on Raspberr
 %prep
 %autosetup -n rpcc-%commit
 
-%build
+%conf
 %meson
+
+%build
 %meson_build
 
 %install

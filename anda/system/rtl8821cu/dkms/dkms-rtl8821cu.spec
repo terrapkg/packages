@@ -4,13 +4,12 @@
 %global ver 5.12.0.4
 %global modulename rtl8821cu
 %global git_name 8821cu-20210916
-%global debug_package %{nil}
 %global _description %{expand:
 Linux Driver for USB Wi-Fi Adapters that are based on the RTL8811CU, RTL8821CU, RTL8821CUH, and RTL8731AU chipsets.}
 
 Name:          dkms-%{modulename}
 Version:       %{ver}^%{commit_date}git.%{shortcommit}
-Release:       2%{?dist}
+Release:       3%{?dist}
 Summary:       Linux Driver for USB Wi-Fi Adapters using RTL8821 chipsets
 License:       GPL-2.0-only
 URL:           https://github.com/morrownr/8821cu-20210916
@@ -26,6 +25,7 @@ Requires:      bc
 Requires:      make
 Provides:      %{modulename}-kmod
 Conflicts:     akmod-%{modulename}
+BuildArch:     noarch
 Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description %_description
@@ -50,7 +50,7 @@ sed -i 's/CONFIG_PLATFORM_ARM64_RPI = n/CONFIG_PLATFORM_ARM64_RPI = y/g' Makefil
 
 %install
 mkdir -p %{buildroot}%{_usrsrc}/%{modulename}-%{version}/
-cp -fr core hal include os_dep platform Kconfig Makefile halmac.mk dkms-make.sh dkms.conf %{buildroot}%{_usrsrc}/%{modulename}-%{version}/
+cp -fr core hal include os_dep platform Kconfig Makefile halmac.mk rtl8821c.mk dkms-make.sh dkms.conf %{buildroot}%{_usrsrc}/%{modulename}-%{version}/
 
 %if 0%{?fedora}
 # Do not enable weak modules support in Fedora (no kABI):

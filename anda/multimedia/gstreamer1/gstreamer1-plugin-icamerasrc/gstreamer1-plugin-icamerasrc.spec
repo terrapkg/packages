@@ -1,5 +1,5 @@
-%global fulldate 2025-09-26
-%global commit 4fb31db76b618aae72184c59314b839dedb42689
+%global fulldate 2026-06-17
+%global commit fe01f98a09b7b864c36ef60a146cdc4e1bf125a6
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
@@ -44,12 +44,14 @@ Development files for the GStreamer IPU6 camera plugin.
 
 %prep
 %autosetup -p1 -n icamerasrc-%{commit}
-autoreconf -vif
 
-%build
+%conf
+autoreconf -vif
 export CHROME_SLIM_CAMHAL=ON
 export STRIP_VIRTUAL_CHANNEL_CAMHAL=ON
 %configure --enable-gstdrmformat --with-haladaptor
+
+%build
 %make_build
 
 %install

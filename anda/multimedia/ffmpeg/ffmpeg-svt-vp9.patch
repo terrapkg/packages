@@ -1,15 +1,24 @@
-diff -Naur ffmpeg-7.1.2.old/configure ffmpeg-7.1.2/configure
---- ffmpeg-7.1.2.old/configure	2025-10-27 10:07:00.645474486 +0100
-+++ ffmpeg-7.1.2/configure	2025-10-27 10:07:01.726484024 +0100
-@@ -278,6 +278,7 @@
-   --enable-libsrt          enable Haivision SRT protocol via libsrt [no]
-   --enable-libssh          enable SFTP protocol via libssh [no]
-   --enable-libsvtav1       enable AV1 encoding via SVT [no]
-+  --enable-libsvtvp9       enable VP9 encoding via svt [no]
-   --enable-libtensorflow   enable TensorFlow as a DNN module backend
-                            for DNN based filters like sr [no]
-   --enable-libtesseract    enable Tesseract, needed for ocr filter [no]
-@@ -1955,6 +1956,7 @@
+From fed3505f256f4eecc967f9bec4252cb1b15375bd Mon Sep 17 00:00:00 2001
+From: Terra Packaging Team <terra@fyralabs.com>
+Date: Sun, 31 May 2026 03:01:18 -0500
+Subject: [PATCH] Patch for SVT-VP9 plugin
+
+See: https://github.com/OpenVisualCloud/SVT-VP9/tree/master/ffmpeg_plugin
+---
+ configure               |   3 +
+ configure.rej           |  10 +
+ libavcodec/Makefile     |   1 +
+ libavcodec/allcodecs.c  |   1 +
+ libavcodec/libsvt_vp9.c | 701 ++++++++++++++++++++++++++++++++++++++++
+ 5 files changed, 716 insertions(+)
+ create mode 100644 configure.rej
+ create mode 100644 libavcodec/libsvt_vp9.c
+
+diff --git a/configure b/configure
+index 1759694..4b63d8e 100755
+--- a/configure
++++ b/configure
+@@ -2083,6 +2083,7 @@ EXTERNAL_LIBRARY_LIST="
      libshaderc
      libshine
      libsmbclient
@@ -17,7 +26,7 @@ diff -Naur ffmpeg-7.1.2.old/configure ffmpeg-7.1.2/configure
      libsnappy
      libsoxr
      libspeex
-@@ -3579,6 +3581,7 @@
+@@ -3825,6 +3826,7 @@ libvpx_vp8_decoder_deps="libvpx"
  libvpx_vp8_encoder_deps="libvpx"
  libvpx_vp9_decoder_deps="libvpx"
  libvpx_vp9_encoder_deps="libvpx"
@@ -25,7 +34,7 @@ diff -Naur ffmpeg-7.1.2.old/configure ffmpeg-7.1.2/configure
  libvvenc_encoder_deps="libvvenc"
  libwebp_encoder_deps="libwebp"
  libwebp_anim_encoder_deps="libwebp"
-@@ -7028,6 +7031,7 @@
+@@ -7387,6 +7389,7 @@ enabled libtwolame        && require libtwolame twolame.h twolame_init -ltwolame
                                 die "ERROR: libtwolame must be installed and version must be >= 0.3.10"; }
  enabled libuavs3d         && require_pkg_config libuavs3d "uavs3d >= 1.1.41" uavs3d.h uavs3d_decode
  enabled libv4l2           && require_pkg_config libv4l2 libv4l2 libv4l2.h v4l2_ioctl
@@ -33,10 +42,39 @@ diff -Naur ffmpeg-7.1.2.old/configure ffmpeg-7.1.2/configure
  enabled libvidstab        && require_pkg_config libvidstab "vidstab >= 0.98" vid.stab/libvidstab.h vsMotionDetectInit
  enabled libvmaf           && require_pkg_config libvmaf "libvmaf >= 2.0.0" libvmaf.h vmaf_init
  enabled libvmaf           && check_pkg_config libvmaf_cuda "libvmaf >= 2.0.0" libvmaf_cuda.h vmaf_cuda_state_init
-diff -Naur ffmpeg-7.1.2.old/libavcodec/allcodecs.c ffmpeg-7.1.2/libavcodec/allcodecs.c
---- ffmpeg-7.1.2.old/libavcodec/allcodecs.c	2025-10-27 10:07:00.517473357 +0100
-+++ ffmpeg-7.1.2/libavcodec/allcodecs.c	2025-10-27 10:07:01.728697010 +0100
-@@ -796,6 +796,7 @@
+diff --git a/configure.rej b/configure.rej
+new file mode 100644
+index 0000000..3de8351
+--- /dev/null
++++ b/configure.rej
+@@ -0,0 +1,10 @@
++--- configure	2026-03-10 10:00:58.102559577 +0100
+++++ configure	2026-03-10 10:00:58.530928613 +0100
++@@ -278,6 +278,7 @@
++   --enable-libsrt          enable Haivision SRT protocol via libsrt [no]
++   --enable-libssh          enable SFTP protocol via libssh [no]
++   --enable-libsvtav1       enable AV1 encoding via SVT [no]
+++  --enable-libsvtvp9       enable VP9 encoding via svt [no]
++   --enable-libtensorflow   enable TensorFlow as a DNN module backend
++                            for DNN based filters like sr [no]
++   --enable-libtesseract    enable Tesseract, needed for ocr filter [no]
+diff --git a/libavcodec/Makefile b/libavcodec/Makefile
+index 1410bd8..9310a97 100644
+--- a/libavcodec/Makefile
++++ b/libavcodec/Makefile
+@@ -1217,6 +1217,7 @@ OBJS-$(CONFIG_LIBVO_AMRWBENC_ENCODER)     += libvo-amrwbenc.o
+ OBJS-$(CONFIG_LIBVORBIS_DECODER)          += libvorbisdec.o
+ OBJS-$(CONFIG_LIBVORBIS_ENCODER)          += libvorbisenc.o \
+                                              vorbis_data.o
++OBJS-$(CONFIG_LIBSVT_VP9_ENCODER)         += libsvt_vp9.o
+ OBJS-$(CONFIG_LIBVPX_VP8_DECODER)         += libvpxdec.o
+ OBJS-$(CONFIG_LIBVPX_VP8_ENCODER)         += libvpxenc.o
+ OBJS-$(CONFIG_LIBVPX_VP9_DECODER)         += libvpxdec.o
+diff --git a/libavcodec/allcodecs.c b/libavcodec/allcodecs.c
+index 695214f..8eaa76a 100644
+--- a/libavcodec/allcodecs.c
++++ b/libavcodec/allcodecs.c
+@@ -826,6 +826,7 @@ extern const FFCodec ff_libuavs3d_decoder;
  extern const FFCodec ff_libvo_amrwbenc_encoder;
  extern const FFCodec ff_libvorbis_encoder;
  extern const FFCodec ff_libvorbis_decoder;
@@ -44,9 +82,11 @@ diff -Naur ffmpeg-7.1.2.old/libavcodec/allcodecs.c ffmpeg-7.1.2/libavcodec/allco
  extern const FFCodec ff_libvpx_vp8_encoder;
  extern const FFCodec ff_libvpx_vp8_decoder;
  extern FFCodec ff_libvpx_vp9_encoder;
-diff -Naur ffmpeg-7.1.2.old/libavcodec/libsvt_vp9.c ffmpeg-7.1.2/libavcodec/libsvt_vp9.c
---- ffmpeg-7.1.2.old/libavcodec/libsvt_vp9.c	1970-01-01 01:00:00.000000000 +0100
-+++ ffmpeg-7.1.2/libavcodec/libsvt_vp9.c	2025-10-27 10:07:01.729099438 +0100
+diff --git a/libavcodec/libsvt_vp9.c b/libavcodec/libsvt_vp9.c
+new file mode 100644
+index 0000000..90ed5cb
+--- /dev/null
++++ b/libavcodec/libsvt_vp9.c
 @@ -0,0 +1,701 @@
 +/*
 +* Scalable Video Technology for VP9 encoder library plugin
@@ -749,14 +789,6 @@ diff -Naur ffmpeg-7.1.2.old/libavcodec/libsvt_vp9.c ffmpeg-7.1.2/libavcodec/libs
 +    .defaults         = eb_enc_defaults,
 +    .p.wrapper_name   = "libsvt_vp9",
 +};
-diff -Naur ffmpeg-7.1.2.old/libavcodec/Makefile ffmpeg-7.1.2/libavcodec/Makefile
---- ffmpeg-7.1.2.old/libavcodec/Makefile	2025-10-27 10:07:00.259471080 +0100
-+++ ffmpeg-7.1.2/libavcodec/Makefile	2025-10-27 10:07:01.729297932 +0100
-@@ -1157,6 +1157,7 @@
- OBJS-$(CONFIG_LIBVORBIS_DECODER)          += libvorbisdec.o
- OBJS-$(CONFIG_LIBVORBIS_ENCODER)          += libvorbisenc.o \
-                                              vorbis_data.o
-+OBJS-$(CONFIG_LIBSVT_VP9_ENCODER)         += libsvt_vp9.o
- OBJS-$(CONFIG_LIBVPX_VP8_DECODER)         += libvpxdec.o
- OBJS-$(CONFIG_LIBVPX_VP8_ENCODER)         += libvpxenc.o
- OBJS-$(CONFIG_LIBVPX_VP9_DECODER)         += libvpxdec.o
+-- 
+2.54.0
+
