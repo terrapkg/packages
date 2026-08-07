@@ -22,6 +22,8 @@ BuildRequires:  gcc
 BuildRequires:  automake
 BuildRequires:  libtool
 BuildRequires:  autoconf-archive
+BuildRequires:  flex
+BuildRequires:  bison
 BuildRequires:  gawk
 BuildRequires:  which
 BuildRequires:  libzstd-devel
