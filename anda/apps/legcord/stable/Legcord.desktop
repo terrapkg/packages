@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Legcord
-Exec=/usr/lib64/legcord/Legcord %U
+Exec=/usr/lib64/legcord/legcord %U
 Terminal=false
 Type=Application
 Icon=legcord
