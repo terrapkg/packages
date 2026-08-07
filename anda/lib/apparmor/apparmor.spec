@@ -4,8 +4,11 @@
 %global _sbindir /usr/sbin
 
 # Rakuos's fork hit a debuginfo Name collision with apparmor-libs32.spec
-# on EL10 CI. Disabled defensively here too.
+# on EL10 CI. Fedora branches build fine with debuginfo enabled, so only
+# disable it there.
+%if 0%{?rhel}
 %global debug_package %{nil}
+%endif
 
 %bcond_with tests
 
