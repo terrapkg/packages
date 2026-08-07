@@ -3,6 +3,10 @@
 %global __arch_install_post /bin/true
 %global _sbindir /usr/sbin
 
+# Rakuos's fork hit a debuginfo Name collision with apparmor-libs32.spec
+# on EL10 CI. Disabled defensively here too.
+%global debug_package %{nil}
+
 %bcond_with tests
 
 Name:           apparmor
@@ -203,7 +207,7 @@ install -dm755 %{buildroot}%{_localstatedir}/cache/apparmor
 
 # init/ installs aa-teardown, apparmor.service, and the rc.apparmor.functions
 # helpers into APPARMOR_BIN_PREFIX - none of this is covered by the parser
-# install above (their Makefiles are separate), so %files parser's
+# install above (their Makefiles are separate), so the parser package's
 # aa-teardown/apparmor.service/%{_prefix}/lib/apparmor entries need it.
 # Without this, nothing ever loads profiles into the kernel at boot - the
 # LSM comes up with zero profiles, and anything execing with
