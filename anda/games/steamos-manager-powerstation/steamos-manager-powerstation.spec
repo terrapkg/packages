@@ -4,7 +4,7 @@
 
 Name:             steamos-manager-powerstation
 Version:          0~%{commitdate}.git%{shortcommit}
-Release:          2%{?dist}
+Release:          4%{?dist}
 Summary:          SteamOS Manager is a system daemon that aims to abstract Steam's interactions with the operating system
 License:          MIT AND (MIT OR Apache-2.0) AND Unicode-3.0 AND (Apache-2.0 OR BSL-1.0) AND Apache-2.0 OR MIT AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (BSD-3-Clause OR MIT OR Apache-2.0) AND ISC AND (LGPL-2.1 OR MIT OR Apache-2.0) AND MIT AND (MIT OR Apache-2.0) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT)
 URL:              https://github.com/OpenGamingCollective/steamos-manager
@@ -39,13 +39,6 @@ exposed in any Linux distro that provides an implementation of this DBus API.
 This version has been patched with additional compatibility with powerstation
 and OGC gamescope-sessions.
 
-%package gamescope-session-plus
-Summary:        Compatibility symlink service for starting steamos-manager on gamescope-session-plus
-Requires:       %{name} = %{evr}
-
-%description gamescope-session-plus
-%summary.
-
 %prep
 %autosetup -n steamos-manager-%{commit}
 install -Dp -m644 -t data/selinux %{SOURCE1} %{SOURCE2} %{SOURCE3}
@@ -60,8 +53,12 @@ make -f /usr/share/selinux/devel/Makefile -C data/selinux steamos_manager.pp
 %make_install
 rm %{buildroot}%{_userunitdir}/orca.service # not used by anyone apparently, steamOS specific(?)
 install -D -m644 data/selinux/steamos_manager.pp %{buildroot}%{_datadir}/selinux/packages/steamos_manager.pp
-install -d %{buildroot}%{_userunitdir}/gamescope-session-plus.service.wants/steamos-manager.service
-ln -s %{_userunitdir}/steamos-manager.service %{buildroot}%{_userunitdir}/gamescope-session-plus.service.wants/steamos-manager.service
+install -d -m0755 %{buildroot}%{_userunitdir}/graphical-session-pre.target.wants
+ln -s ../steamos-manager-session-cleanup.service %{buildroot}%{_userunitdir}/graphical-session-pre.target.wants/steamos-manager-session-cleanup.service
+install -d -m0755 %{buildroot}%{_userunitdir}/cecd.service.wants
+ln -s ../steamos-manager-configure-cecd.service %{buildroot}%{_userunitdir}/cecd.service.wants/steamos-manager-configure-cecd.service
+install -d -m0755 %{buildroot}%{_userunitdir}/gamescope-session-plus@ogui-steam.service.wants
+ln -s ../steamos-manager.service %{buildroot}%{_userunitdir}/gamescope-session-plus@ogui-steam.service.wants/steamos-manager.service
 
 %post
 %systemd_post steamos-manager.service
@@ -91,7 +88,6 @@ fi
 %license LICENSE.dependencies
 %doc README.md
 %{_bindir}/steamosctl
-#{_datadir}/dbus-1/interfaces/com.steampowered.SteamOSManager1.Manager.xml
 %{_datadir}/dbus-1/interfaces/com.steampowered.SteamOSManager1.xml
 %{_datadir}/dbus-1/services/com.steampowered.SteamOSManager1.service
 %{_datadir}/dbus-1/system.d/com.steampowered.SteamOSManager1.conf
@@ -104,11 +100,14 @@ fi
 %{_userunitdir}/steamos-manager.service
 %{_userunitdir}/steamos-manager-configure-cecd.service
 %{_userunitdir}/steamos-manager-session-cleanup.service
+%{_userunitdir}/graphical-session-pre.target.wants/steamos-manager-session-cleanup.service
+%{_userunitdir}/cecd.service.wants/steamos-manager-configure-cecd.service
+%{_userunitdir}/gamescope-session-plus@ogui-steam.service.wants/steamos-manager.service
 %{_datadir}/selinux/packages/steamos_manager.pp
 
-%files gamescope-session-plus
-%{_userunitdir}/gamescope-session-plus.service.wants/steamos-manager.service
-
 %changelog
+* Wed Aug 07 2026 Kyle Gospodnetich <me@kylegospodneti.ch> - 26.0.1-4
+- Properly handle wants for various gamescope-session-plus services
+
 * Wed Mar 18 2026 Kyle Gospodnetich <me@kylegospodneti.ch> - 26.0.1-1
 - Intial Commit
