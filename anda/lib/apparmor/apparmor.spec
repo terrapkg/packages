@@ -7,7 +7,7 @@
 
 Name:           apparmor
 Version:        5.0.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        AppArmor userspace components
 
 %define baseversion %(echo %{version} | cut -d. -f-2)
@@ -18,6 +18,8 @@ URL:            https://gitlab.com/apparmor/apparmor
 Source0:        %url/-/archive/v%normver/apparmor-v%normver.tar.gz
 Source1:        apparmor.preset
 Patch01:        0001-fix-avahi-daemon-authselect-denial-in-fedora.patch
+Patch02:        0001-fix-denial-on-dnsmask-for-nsswitch.patch
+Patch03:        0001-fix-apparmor-waydroid-denials.patch
 
 BuildRequires:  gcc
 BuildRequires:  automake
@@ -116,6 +118,12 @@ program profiles to the AppArmor Security kernel module.
 Summary:        AppArmor User-Level Utilities
 Requires:       python3-apparmor = %{version}
 Requires:       python3-notify2
+Requires:       %{name}-parser
+# SELinux troubleshooting tools have no equivalent purpose once AppArmor is
+# the active LSM, and aa-notify/aa-status already cover the same ground.
+Obsoletes:      setroubleshoot
+Obsoletes:      setroubleshoot-server
+Obsoletes:      setroubleshoot-plugins
 
 %description    utils
 This package provides the aa-logprof, aa-genprof, aa-autodep,
@@ -180,6 +188,32 @@ mkdir -p %buildroot%_datadir/polkit-1/actions/
 %make_install -C parser \
     APPARMOR_BIN_PREFIX=%{buildroot}%{_prefix}/lib/apparmor \
     SBINDIR=%{buildroot}%{_sbindir}
+
+# Enable parser cache writing/compression by default so profile loads at
+# boot (rc.apparmor.functions parses 1500+ profiles) don't re-parse from
+# source every time, and point the cache at a dedicated /var/cache/apparmor
+# instead of the default /etc/apparmor.d/cache (read-only image /etc).
+sed -i \
+    -e 's/^#write-cache$/write-cache/' \
+    -e 's/^#Optimize=compress-fast$/Optimize=compress-fast/' \
+    %{buildroot}%{_sysconfdir}/apparmor/parser.conf
+echo 'cache-loc /var/cache/apparmor' >> %{buildroot}%{_sysconfdir}/apparmor/parser.conf
+install -dm755 %{buildroot}%{_localstatedir}/cache/apparmor
+
+# init/ installs aa-teardown, apparmor.service, and the rc.apparmor.functions
+# helpers into APPARMOR_BIN_PREFIX - none of this is covered by the parser
+# install above (their Makefiles are separate), so %files parser's
+# aa-teardown/apparmor.service/%{_prefix}/lib/apparmor entries need it.
+# Without this, nothing ever loads profiles into the kernel at boot - the
+# LSM comes up with zero profiles, and anything execing with
+# AppArmorProfile= (e.g. dbus-broker's systemd drop-in) fails outright
+# because the profile it expects was never loaded.
+%make_install -C init \
+    DISTRO=redhat \
+    APPARMOR_BIN_PREFIX=%{buildroot}%{_prefix}/lib/apparmor \
+    SBINDIR=%{buildroot}%{_sbindir} \
+    USR_SBINDIR=%{buildroot}%{_sbindir} \
+    SYSTEMD_UNIT_DIR=%{buildroot}%{_unitdir}
 %make_install -C profiles
 %make_install -C utils
 %make_install -C changehat/pam_apparmor \
@@ -193,6 +227,14 @@ find %{buildroot} \( -name "*.a" -o -name "*.la" \) -delete
 
 mkdir -p %buildroot%python3_sitearch/LibAppArmor
 mv %buildroot%python3_sitearch/{LibAppArmor.py,_LibAppArmor.cpython-*-linux-gnu.so,__pycache__/LibAppArmor.*} %buildroot%python3_sitearch/LibAppArmor/
+# Without this, the moved-into-a-subdir LibAppArmor.py is never executed on
+# `import LibAppArmor` - Python just treats the directory as an empty
+# implicit namespace package, so callers (e.g. apparmor-utils'
+# logparser.py, which does `import LibAppArmor` then
+# `LibAppArmor.parse_record(...)`) get "module 'LibAppArmor' has no
+# attribute 'parse_record'" even though the real SWIG bindings are right
+# there on disk.
+echo 'from .LibAppArmor import *' > %buildroot%python3_sitearch/LibAppArmor/__init__.py
 
 %find_lang aa-binutils
 %find_lang apparmor-parser
@@ -246,32 +288,14 @@ make -C utils check
 
 %files profiles
 %dir %{_sysconfdir}/apparmor.d/
-%dir %{_sysconfdir}/apparmor.d/abi
-%config(noreplace) %{_sysconfdir}/apparmor.d/abi/3.0
-%config(noreplace) %{_sysconfdir}/apparmor.d/abi/4.0
-%config(noreplace) %{_sysconfdir}/apparmor.d/abi/kernel-5.4-outoftree-network
-%config(noreplace) %{_sysconfdir}/apparmor.d/abi/kernel-5.4-vanilla
-%config(noreplace) %{_sysconfdir}/apparmor.d/php-fpm
-%config(noreplace) %{_sysconfdir}/apparmor.d/samba-bgqd
-%config(noreplace) %{_sysconfdir}/apparmor.d/samba-dcerpcd
-%config(noreplace) %{_sysconfdir}/apparmor.d/samba-rpcd
-%config(noreplace) %{_sysconfdir}/apparmor.d/samba-rpcd-classic
-%config(noreplace) %{_sysconfdir}/apparmor.d/samba-rpcd-spoolss
-%config(noreplace) %{_sysconfdir}/apparmor.d/zgrep
-%dir %{_sysconfdir}/apparmor.d/abstractions
-%config(noreplace) %{_sysconfdir}/apparmor.d/abstractions/*
-%dir %{_sysconfdir}/apparmor.d/disable
-%dir %{_sysconfdir}/apparmor.d/local
-%dir %{_sysconfdir}/apparmor.d/tunables
-%config(noreplace) %{_sysconfdir}/apparmor.d/tunables/*
-%dir %{_sysconfdir}/apparmor.d/apache2.d
-%config(noreplace) %{_sysconfdir}/apparmor.d/apache2.d/phpsysinfo
-%config(noreplace) %{_sysconfdir}/apparmor.d/bin.*
-%config(noreplace) %{_sysconfdir}/apparmor.d/sbin.*
-%config(noreplace) %{_sysconfdir}/apparmor.d/usr.*
-%config(noreplace) %{_sysconfdir}/apparmor.d/lsb_release
-%config(noreplace) %{_sysconfdir}/apparmor.d/nvidia_modprobe
-%config(noreplace) %{_sysconfdir}/apparmor.d/local/*
+# Everything under apparmor.d/ (the flat sample profiles, abi/,
+# abstractions/, local/, tunables/, apache2.d/) is claimed recursively by
+# this single glob instead of being enumerated by name - upstream adds and
+# removes bundled sample profiles between releases (5.0.2 ships ~150 of
+# them, not the dozen this list used to hardcode), and an enumerated list
+# silently drifts out of sync, leaving newly-added files unpackaged and
+# build failing with "Installed (but unpackaged) file(s) found".
+%config(noreplace) %{_sysconfdir}/apparmor.d/*
 %dir %{_datadir}/apparmor/
 %{_datadir}/apparmor/extra-profiles
 
@@ -285,17 +309,15 @@ make -C utils check
 %{_bindir}/aa-exec
 %{_bindir}/aa-features-abi
 %{_sbindir}/aa-load
-#{_sbindir}/aa-show-usage
-%dnl %{_sbindir}/aa-teardown
 %{_sbindir}/aa-show-usage
-%dnl %{_unitdir}/apparmor.service
+%{_sbindir}/aa-teardown
+%{_unitdir}/apparmor.service
 %{_presetdir}/70-apparmor.preset
-%dnl %{_prefix}/lib/apparmor
+%{_prefix}/lib/apparmor
 %dir %{_sysconfdir}/apparmor
-# FIXME: the confusion…? how did this happen
 %config(noreplace) %{_sysconfdir}/apparmor/default_unconfined.template
-%config(noreplace) %{_sysconfdir}/apparmor.d/
 %config(noreplace) %{_sysconfdir}/apparmor/parser.conf
+%dir %{_localstatedir}/cache/apparmor
 %{_mandir}/man1/aa-enabled.1.gz
 %{_mandir}/man1/aa-exec.1.gz
 %{_mandir}/man1/aa-features-abi.1.gz
@@ -304,9 +326,8 @@ make -C utils check
 %{_mandir}/man7/apparmor.7.gz
 %{_mandir}/man7/apparmor_xattrs.7.gz
 %{_mandir}/man8/aa-load.8.gz
-#{_mandir}/man8/aa-show-usage.8.gz
-%dnl %{_mandir}/man8/aa-teardown.8.gz
 %{_mandir}/man8/aa-show-usage.8.gz
+%{_mandir}/man8/aa-teardown.8.gz
 %{_mandir}/man8/apparmor_parser.8.gz
 
 %files utils -f apparmor-utils.lang
