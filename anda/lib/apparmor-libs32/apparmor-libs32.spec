@@ -55,7 +55,11 @@ pushd libraries/libapparmor
 ./autogen.sh
 # Built inside a real i686 arch mock chroot (native i686 gcc, no -m32/
 # multilib hack needed) - plain %%configure is a native build here.
-%configure || \
+# --disable-man-pages: podchecker (perl-Pod-Checker) isn't guaranteed on
+# every builder image, and man pages are arch-independent content already
+# owned by the main apparmor-devel package - shipping them again here would
+# just be a duplicate-file install conflict for no reason.
+%configure --disable-man-pages || \
   { cat config.log; exit 1; }
 popd
 
@@ -77,8 +81,6 @@ find %{buildroot} \( -name "*.a" -o -name "*.la" \) -delete
 %{_includedir}/aalogparse
 %{_includedir}/sys/apparmor*
 %{_libdir}/pkgconfig/libapparmor.pc
-%{_mandir}/man2/aa_*.2.gz
-%{_mandir}/man3/aa_*.3.gz
 
 %changelog
 * Fri Aug 07 2026 CatPieLeaf <catpieleaf@proton.me>
