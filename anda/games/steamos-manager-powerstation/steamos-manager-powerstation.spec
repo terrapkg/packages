@@ -2,6 +2,8 @@
 %global shortcommit %{sub %{commit} 0 7}
 %global commitdate 20260807
 
+%global steamos_manager_systemd_user_units steamos-manager.service steamos-manager-configure-cecd.service steamos-manager-session-cleanup.service
+
 Name:             steamos-manager-powerstation
 Version:          0~%{commitdate}.git%{shortcommit}
 Release:          4%{?dist}
@@ -62,23 +64,17 @@ ln -s ../steamos-manager.service %{buildroot}%{_userunitdir}/gamescope-session-p
 
 %post
 %systemd_post steamos-manager.service
-%systemd_user_post steamos-manager.service
-%systemd_user_post steamos-manager-configure-cecd.service
-%systemd_user_post steamos-manager-session-cleanup.service
+%systemd_user_post %{steamos_manager_systemd_user_units}
 semodule -i %{_datadir}/selinux/packages/steamos_manager.pp 2>/dev/null || :
 restorecon -R /usr/lib/steamos-manager /usr/bin/steamosctl /usr/share/steamos-manager /etc/steamos-manager 2>/dev/null || :
 
 %preun
 %systemd_preun steamos-manager.service
-%systemd_user_preun steamos-manager.service
-%systemd_user_preun steamos-manager-configure-cecd.service
-%systemd_user_preun steamos-manager-session-cleanup.service
+%systemd_user_preun %{steamos_manager_systemd_user_units}
 
 %postun
 %systemd_postun_with_restart steamos-manager.service
-%systemd_user_postun steamos-manager.service
-%systemd_user_postun steamos-manager-configure-cecd.service
-%systemd_user_postun steamos-manager-session-cleanup.service
+%systemd_user_postun %{steamos_manager_systemd_user_units}
 if [ $1 -eq 0 ]; then
     semodule -r steamos_manager 2>/dev/null || :
 fi
