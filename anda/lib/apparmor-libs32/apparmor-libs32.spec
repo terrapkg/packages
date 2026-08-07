@@ -6,6 +6,10 @@
 # executables" autoconf sanity check before anything of ours even runs.
 %undefine _annotated_build
 
+# Shares Name: apparmor with the main spec - caused a debuginfo Name
+# collision on Rakuos's fork of this spec. Disabled defensively.
+%global debug_package %{nil}
+
 Name:           apparmor
 Version:        5.0.2
 Release:        1%{?dist}
