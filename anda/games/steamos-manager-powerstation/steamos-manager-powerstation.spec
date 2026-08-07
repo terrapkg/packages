@@ -106,7 +106,7 @@ fi
 %{_datadir}/selinux/packages/steamos_manager.pp
 
 %changelog
-* Wed Aug 17 2026 Kyle Gospodnetich <me@kylegospodneti.ch> - 26.0.1-4
+* Wed Aug 07 2026 Kyle Gospodnetich <me@kylegospodneti.ch> - 26.0.1-4
 - Properly handle wants for various gamescope-session-plus services
 
 * Wed Mar 18 2026 Kyle Gospodnetich <me@kylegospodneti.ch> - 26.0.1-1
