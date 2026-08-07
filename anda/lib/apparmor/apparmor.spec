@@ -17,7 +17,7 @@ Summary:        AppArmor userspace components
 %define baseversion %(echo %{version} | cut -d. -f-2)
 %global normver %(echo %version | sed 's/~/-/')
 
-License:        GPL-2.0
+License:        GPL-2.0-only
 URL:            https://gitlab.com/apparmor/apparmor
 Source0:        %url/-/archive/v%normver/apparmor-v%normver.tar.gz
 Source1:        apparmor.preset
