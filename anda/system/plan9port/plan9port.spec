@@ -9,6 +9,7 @@ Summary:        Plan 9 from User Space
 URL:            https://9fans.github.io/plan9port/
 Source0:        https://github.com/9fans/plan9port/archive/%{commit}/plan9port-%{commit}.tar.gz
 Source1:        acme.desktop
+Source2:        sam.desktop
 License:        MIT AND bzip2-1.0.6
 BuildRequires:  gcc
 BuildRequires:  perl
@@ -661,15 +662,18 @@ install -Dm644 man/man8/venti.8           %{buildroot}%{_mandir}/man8/9venti.8
 install -Dm644 include/*.h               -t %{buildroot}%{_includedir}/
 install -Dm644 lib/*.a                   -t %{buildroot}%{_libdir}/
 
-%desktop_file_install %{SOURCE1}
+%desktop_file_install %{S:1}
+%desktop_file_install %{S:2}
 
 %check
 %desktop_file_validate %{buildroot}%{_appsdir}/acme.desktop
+%desktop_file_validate %{buildroot}%{_appsdir}/sam.desktop
 
 %files
 %doc README.md CONTRIBUTING.md CONTRIBUTORS
 %license LICENSE src/cmd/bzip2/LICENSE
 %{_appsdir}/acme.desktop
+%{_appsdir}/sam.desktop
 %{_bindir}/9
 %{_bindir}/9.rc
 %{_bindir}/9ar
