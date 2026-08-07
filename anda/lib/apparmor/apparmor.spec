@@ -394,4 +394,21 @@ make -C utils check
 %{_mandir}/man8/mod_apparmor.8.gz
 
 %changelog
+* Fri Aug 07 2026 CatPieLeaf <catpieleaf@proton.me> - 5.0.2-2
+- Package the apparmor.service systemd unit (init/ was never built, so
+  nothing ever loaded profiles into the kernel at boot); fix a %files
+  parser/profiles file-conflict landmine; replace the stale enumerated
+  %files profiles list with a recursive glob so it can't drift out of
+  sync with upstream again; enable parser cache write/compression;
+  fix LibAppArmor's __init__.py; utils Requires apparmor-parser and
+  Obsoletes setroubleshoot; two more upstream sample-profile patches
+  (dnsmasq nsswitch, waydroid).
+- Patch SWIG's removed %new_copy_array macro (swig 4.5.0+ breaks the
+  python bindings build otherwise).
+- Fix two EL10/CentOS Stream 10 CI parse failures shared with
+  apparmor-libs32.spec: a debuginfo Name collision (now scoped to
+  rhel builds only, per review - Fedora keeps normal debuginfo) and
+  RPM macro-expanding install/files section tokens inside comments.
+- Use the proper SPDX GPL-2.0-only identifier instead of bare GPL-2.0.
+
 %autochangelog
