@@ -2,7 +2,7 @@
 
 %global commit          bf5feefee3d90922952c1850eebdf93d1c0c7f01
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
-%global commitdate      20260807
+%global commitdate      20260808
 
 Name:   	noctalia-greeter
 Version:	%{ver}^%{commitdate}git.%{shortcommit}
