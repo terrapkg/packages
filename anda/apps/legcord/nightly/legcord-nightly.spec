@@ -1,5 +1,5 @@
-%global commit 23ad6bd57f5ee00651b41c11080c7f5a98cf33ca
-%global commit_date 20260729
+%global commit df7fc5328ff6294762ed1199225392f57b5584f5
+%global commit_date 20260801
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 # terrible evil no good very bad hack
 # fix one day
@@ -8,7 +8,7 @@
 Name:           legcord-nightly
 %electronmeta -aD
 Version:        %commit_date.%shortcommit
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        OSL-3.0 AND %{electron_license}
 Summary:        Custom lightweight Discord client designed to enhance your experience
 URL:            https://github.com/Legcord/Legcord
@@ -17,7 +17,7 @@ Packager:       Owen <owen@fyralabs.com>
 Requires:       xdg-utils
 Obsoletes:      armcord < 3.3.2-1
 Conflicts:      legcord
-BuildRequires:  anda-srpm-macros pnpm nodejs-npm git-core gcc gcc-c++ make desktop-file-utils zlib-ng-compat-devel nvm
+BuildRequires:  anda-srpm-macros nvm pnpm git-core gcc gcc-c++ make desktop-file-utils zlib-ng-compat-devel nvm
 
 %description
 Legcord is a custom client designed to enhance your Discord experience
@@ -34,7 +34,7 @@ while keeping everything lightweight.
 %electron_install -i legcord -l -I dist/.icon-set/
 
 dist/Legcord-*.AppImage --appimage-extract '*.desktop'
-%desktop_file_install -k Exec,Icon -v "%{_libdir}/legcord-nightly/Legcord",legcord -u %U -f squashfs-root/legcord.desktop
+%desktop_file_install -k Exec,Icon -v "%{_libdir}/legcord-nightly/legcord",legcord -u %U -f squashfs-root/legcord.desktop
 
 %files
 %doc README.md

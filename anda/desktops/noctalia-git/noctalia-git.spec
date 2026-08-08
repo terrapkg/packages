@@ -2,20 +2,21 @@
 
 %global ver 5.0.0
 
-%global commit          df43de5fc9c4c316223fd2537a1b409d5e3dcf26
+%global commit          e9230c81beb2513e4a4b09884f37e4f22fc246de
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
-%global commitdate      20260729
+%global commitdate      20260808
 
 Name:   	noctalia-git
 Version:	%{ver}^%{commitdate}git.%{shortcommit}
 Release:	1%{?dist}
-Summary:	A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with no Qt or GTK dependency
+Summary:	A sleek, customizable desktop shell crafted for Wayland
 
 License:	MIT
 URL:		https://github.com/noctalia-dev/noctalia
 Source0:	https://github.com/noctalia-dev/noctalia/archive/%{commit}/noctalia-%{commit}.tar.gz
 
 BuildRequires:  meson
+BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  git
 BuildRequires:  desktop-file-utils
@@ -47,6 +48,8 @@ BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  pkgconfig(libsecret-1)
 BuildRequires:  pkgconfig(libsodium)
 BuildRequires:  pkgconfig(libjxl)
+BuildRequires:  pkgconfig(libical)
+BuildRequires:  pkgconfig(sndfile)
 
 Provides:       desktop-notification-daemon
 Provides:       PolicyKit-authentication-agent
@@ -64,7 +67,7 @@ Recommends:     power-profiles-daemon
 Packager:       Cypress Reed <cypress@fyralabs.com>
 
 %description
-A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with no Qt or GTK dependency.
+%{Summary}.
 
 %prep
 %autosetup -n noctalia-%{commit}
@@ -102,6 +105,9 @@ done
 %{_scalableiconsdir}/noctalia.svg
 
 %changelog
+* Mon Aug 03 2026 Cypress Reed <cypress@fyralabs.com>
+- Update description and summary per developer's request
+
 * Thu Jul 16 2026 Cypress Reed <cypress@fyralabs.com>
 - Add conflicts with noctalia
 

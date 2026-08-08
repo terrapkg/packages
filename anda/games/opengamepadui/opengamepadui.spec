@@ -1,6 +1,6 @@
 Name:           opengamepadui
 Version:        0.46.0
-Release:        2%{?dist}
+Release:        4%{?dist}
 Summary:        Open source gamepad-native game launcher and overlay
 
 License:        GPLv3
