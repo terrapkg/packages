@@ -42,6 +42,7 @@ BuildRequires:  pkgconfig(libpcre2-8)
 BuildRequires:  pkgconfig(cairo)
 BuildRequires:  pkgconfig(pango)
 BuildRequires:  pkgconfig(gdk-pixbuf-2.0)
+BuildRequires:  readline-devel
 
 Provides:       sway-scroll
 
