@@ -4,5 +4,5 @@
 # truth for anything except "which tag", and builds stay reproducible
 # against a fixed ref instead of whatever's currently on the moving
 # main branch.
-%global tag v0.4910.0-3
+%global tag v0.4910.0-4
 %include %(f=$(mktemp); curl -fsSL https://raw.githubusercontent.com/CatPieLeaf/apparmor.d-fedora/%{tag}/dists/apparmor.d-fedora.spec -o "$f"; echo "$f")

@@ -3,5 +3,5 @@
 # same tag (not main), so this file is never the source of truth for
 # anything except "which tag", and builds stay reproducible against a
 # fixed ref instead of whatever's currently on the moving main branch.
-%global tag 7.2.0-52.rc6.p03.13
+%global tag 7.2.0-52.rc6.p03.14
 %include %(f=$(mktemp); curl -fsSL https://raw.githubusercontent.com/CatPieLeaf/linux-p03/%{tag}/sources/kernel-p03/kernel-p03-gcc.spec -o "$f"; echo "$f")
