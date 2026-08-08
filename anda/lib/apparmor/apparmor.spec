@@ -129,9 +129,9 @@ Requires:       python3-notify2
 Requires:       %{name}-parser
 # SELinux troubleshooting tools have no equivalent purpose once AppArmor is
 # the active LSM, and aa-notify/aa-status already cover the same ground.
-Obsoletes:      setroubleshoot
-Obsoletes:      setroubleshoot-server
-Obsoletes:      setroubleshoot-plugins
+Provides:       setroubleshoot
+Provides:       setroubleshoot-server
+Provides:       setroubleshoot-plugins
 
 %description    utils
 This package provides the aa-logprof, aa-genprof, aa-autodep,
