@@ -1,1 +1,1 @@
-rpm.version(gh-tag("noctalia-dev/noctalia-greeter"));
+rpm.version(gh_tag("noctalia-dev/noctalia-greeter"));
