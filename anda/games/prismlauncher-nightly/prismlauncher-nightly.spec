@@ -6,7 +6,7 @@
 %global commit d60fce6058a77b37eca6518fb2195a9d2ad813a8
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
-%global commit_date 20260807
+%global commit_date 20260808
 %global snapshot_info %{commit_date}.%{shortcommit}
 
 # Change this variables if you want to use custom keys
