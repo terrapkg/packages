@@ -63,7 +63,7 @@ install -Dm644 systemd/tetra.service %{buildroot}%{_unitdir}/tetra.service
 
 %files
 %license LICENSE LICENSE.dependencies
-%doc README.md SECURITY.md elements.md docs/*
+%doc README.md SECURITY.md docs/*
 %{_bindir}/tetra
 %{_unitdir}/tetra.service
 %{_datadir}/tetra/templates
