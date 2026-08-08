@@ -3,7 +3,7 @@
 %global ver 14.0.0
 %global commit 52260408e3a3b810095d8e7661ca2911cb46ea57
 %global shortcommit %{sub %{commit} 1 7}
-%global commit_date 20260807
+%global commit_date 20260808
 %global devel_name QtColorWidgets
 %global _distro_extra_cflags -fuse-ld=mold
 %global _distro_extra_cxxflags -fuse-ld=mold
