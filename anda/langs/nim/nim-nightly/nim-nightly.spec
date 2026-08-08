@@ -2,7 +2,7 @@
 %global commit 050b38c74916d1b622225139923f10b6f3e14e0b
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global ver 2.3.1
-%global commit_date 20260807
+%global commit_date 20260808
 %global debug_package %nil
 
 Name:			nim-nightly
