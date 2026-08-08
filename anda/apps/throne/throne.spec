@@ -74,7 +74,7 @@ export PATH="${PATH}:${GOBIN}"
 %define build_ldflags %nil
 export GO_LDFLAGS=' '
 export GO_BUILDTAGS="with_clash_api with_gvisor with_quic with_wireguard with_utls with_dhcp with_tailscale"
-%gobuild -o $DEST -mod=readonly -modcacherw
+%gobuild -o $DEST -modcacherw
 popd
 
 %install
