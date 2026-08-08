@@ -14,7 +14,7 @@
 
 Name:           apparmor
 Version:        5.0.2
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        AppArmor userspace components
 
 %define baseversion %(echo %{version} | cut -d. -f-2)
@@ -127,11 +127,6 @@ Summary:        AppArmor User-Level Utilities
 Requires:       python3-apparmor = %{version}
 Requires:       python3-notify2
 Requires:       %{name}-parser
-# SELinux troubleshooting tools have no equivalent purpose once AppArmor is
-# the active LSM, and aa-notify/aa-status already cover the same ground.
-Obsoletes:      setroubleshoot
-Obsoletes:      setroubleshoot-server
-Obsoletes:      setroubleshoot-plugins
 
 %description    utils
 This package provides the aa-logprof, aa-genprof, aa-autodep,
@@ -410,5 +405,8 @@ make -C utils check
   rhel builds only, per review - Fedora keeps normal debuginfo) and
   RPM macro-expanding install/files section tokens inside comments.
 - Use the proper SPDX GPL-2.0-only identifier instead of bare GPL-2.0.
+
+* Sat Aug 08 2026 CatPieLeaf <catpieleaf@proton.me> - 5.0.2-3
+- Hotfix: Removed "Obsoletes: setroubleshoot"
 
 %autochangelog
