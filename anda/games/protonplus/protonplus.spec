@@ -2,11 +2,12 @@
 
 Name:           protonplus
 Version:        0.6.1.1
+%global downloadver %(echo %{version} | sed -E 's/\.([^.]*)$/-\1/')
 Release:        1%{?dist}
 Summary:        A modern compatibility tools manager
 License:        GPL-3.0-or-later
 URL:            https://github.com/Vysp3r/ProtonPlus
-Source0:        %{url}/archive/refs/tags/v0.6.1-1.tar.gz
+Source0:        %{url}/archive/refs/tags/v%{downloadver}.tar.gz
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 BuildRequires:  meson
