@@ -54,5 +54,5 @@ install -Dm755 target/rpm/stardust-xr-server %{buildroot}%{_bindir}/stardust-xr-
 * Tue Dec 02 2025 Owen Zimmerman <owen@fyralabs.com>
 - Update spec to reflect upstream changes, add LICENSE.dependencies
 
-* Sat Sep 14 2024 Owen-sz <owen@fyralabs.com>
+* Sat Sep 14 2024 Owen Zimmerman <owen@fyralabs.com>
 - Package StardustXR Server
