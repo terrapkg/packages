@@ -21,6 +21,7 @@ BuildRequires:  pkgconfig(libsoup-3.0)
 BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  pkgconfig(libarchive)
 BuildRequires:  pkgconfig(sdl3)
+BuildRequires:  pkgconfig(libnotify)
 BuildRequires:  desktop-file-utils
 
 Provides:       ProtonPlus
