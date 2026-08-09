@@ -43,7 +43,8 @@ install -Dm644 polycrystal.service %{buildroot}%{_unitdir}/polycrystal.service
 %doc README.md
 
 %changelog
-* Tue Nov 19 2024 Owen-sz <owen@fyralabs.com>
+* Tue Nov 19 2024 Owen Zimmerman <owen@fyralabs.com>
 - Switch from commit based to release based, and add systemd services
-* Fri Nov 15 2024 Owen-sz <owen@fyralabs.com>
+
+* Fri Nov 15 2024 Owen Zimmerman <owen@fyralabs.com>
 - Package Polycrystal

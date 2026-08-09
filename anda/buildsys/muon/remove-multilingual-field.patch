@@ -3,7 +3,7 @@ From: Stone Tickle <lattis@mochiro.moe>
 Date: Thu, 27 Nov 2025 09:14:02 -0500
 Subject: [PATCH] remove multilingual field
 
-Signed-off-by: Owen-sz <owen@fyralabs.com>
+Signed-off-by: Owen Zimmerman <owen@fyralabs.com>
 ---
  doc/book/book.toml | 1 -
  1 file changed, 1 deletion(-)
