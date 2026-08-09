@@ -1,3 +1,4 @@
+%global debug_package %{nil}
 %define npm_name @earendil-works/pi-coding-agent
 
 Name:           pi
