@@ -19,13 +19,6 @@ Requires:       ripgrep
 
 Packager:       June Fish <june@fyralabs.com>
 
-%ifarch aarch64
-%define platform "linux-arm64"
-%endif
-%ifarch x86_64
-%define platform "linux-x64"
-%endif
-
 %description
 %summary.
 
