@@ -25,6 +25,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %build
 %cargo_build
+%cargo_license_summary_online
 %{cargo_license_online} > LICENSE.dependencies
 
 %install
