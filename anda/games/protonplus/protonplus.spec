@@ -22,6 +22,7 @@ BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  pkgconfig(libarchive)
 BuildRequires:  pkgconfig(sdl3)
 BuildRequires:  pkgconfig(libnotify)
+BuildRequires:  pkgconfig(appstream)
 BuildRequires:  desktop-file-utils
 
 Provides:       ProtonPlus
