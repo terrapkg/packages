@@ -6,7 +6,7 @@ Release:        1%{?dist}
 Summary:        A modern compatibility tools manager
 License:        GPL-3.0-or-later
 URL:            https://github.com/Vysp3r/ProtonPlus
-Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
+Source0:        %{url}/archive/refs/tags/v0.6.1-1.tar.gz
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 BuildRequires:  meson
