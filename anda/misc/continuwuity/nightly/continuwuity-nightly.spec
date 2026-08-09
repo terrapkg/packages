@@ -1,5 +1,5 @@
-%global commit 8481efb4825705c5942b175de0ce350d5559a709
-%global commit_date 20260802
+%global commit 18139ea891e2bff97af7a51d90d55a3ce4e39a0c
+%global commit_date 20260809
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %global ver v26.7.2

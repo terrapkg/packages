@@ -1,5 +1,5 @@
 Name:           tetra
-Version:        0.1.0
+Version:        0.2.0
 Release:        1%{?dist}
 Summary:        Modular host agent for Ultramarine Server and cloud hosts
 SourceLicense:  LGPL-2.1-or-later
@@ -63,7 +63,7 @@ install -Dm644 systemd/tetra.service %{buildroot}%{_unitdir}/tetra.service
 
 %files
 %license LICENSE LICENSE.dependencies
-%doc README.md SECURITY.md elements.md docs/*
+%doc README.md SECURITY.md docs/*
 %{_bindir}/tetra
 %{_unitdir}/tetra.service
 %{_datadir}/tetra/templates
