@@ -1,1 +1,1 @@
-rpm.version(gh("earendil-works/pi"));
+rpm.version(npm("@earendil-works/pi-coding-agent"));
