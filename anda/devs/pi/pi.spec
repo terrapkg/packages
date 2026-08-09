@@ -47,5 +47,5 @@ ln -sf %{nodejs_sitelib}/%{npm_name}/dist/cli.js %{buildroot}%{_bindir}/pi
 %{_bindir}/pi
 
 %changelog
-* Sat Aug 8 2026 June Fish <june@fyralabs.com> - 0.84.1
+* Sat Aug 8 2026 June Fish <june@fyralabs.com> - 0.84.1-1
 - Initial Package
