@@ -148,5 +148,5 @@ export PKG_CONFIG_PATH=pkgconfig
 * Fri Mar 13 2026 Kyle Gospodnetich <me@kylegospodneti.ch>
 - Switch to OGC sources
 
-* Thu Jan 2 2025 Owen-sz <owen@fyralabs.com>
+* Thu Jan 2 2025 Owen Zimmerman <owen@fyralabs.com>
 - Package gamescope, port from Bazzite
