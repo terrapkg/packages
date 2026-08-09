@@ -8,6 +8,7 @@ Summary:        Coding agent CLI with read, bash, edit, write tools and session 
 License:        MIT
 URL:            https://pi.dev
 Source0:        http://registry.npmjs.org/%{npm_name}/-/pi-coding-agent-%{version}.tgz
+Source1:        https://raw.githubusercontent.com/earendil-works/pi/refs/heads/main/LICENSE
 ExclusiveArch:  x86_64 aarch64
 
 BuildRequires:  nodejs-packaging
@@ -32,10 +33,12 @@ Packager:       June Fish <june@fyralabs.com>
 ln -sf %{nodejs_sitelib}/%{npm_name}/dist/cli.js %{buildroot}%{_bindir}/pi
 
 %npm_license -o LICENSE.modules
+cp %{SOURCE1} LICENSE
 
 %files
 %doc README.md
 %license LICENSE.modules
+%license LICENSE
 %{nodejs_sitelib}/%{npm_name}/
 %{_bindir}/pi
 
