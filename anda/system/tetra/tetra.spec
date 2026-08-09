@@ -2,8 +2,8 @@ Name:           tetra
 Version:        0.2.1
 Release:        1%{?dist}
 Summary:        Modular host agent for Ultramarine Server and cloud hosts
-SourceLicense:  LGPL-2.1-or-later
-License:        LGPL-2.1-or-later AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND MIT AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND Zlib
+SourceLicense:  AGPL-3.0-or-later
+License:        AGPL-3.0-or-later AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND MIT AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND Zlib
 URL:            https://github.com/Ultramarine-Linux/tetra
 Source0:        https://github.com/Ultramarine-Linux/tetra/archive/refs/tags/v%{version}.tar.gz
 
@@ -72,5 +72,8 @@ install -Dm644 systemd/tetra.service %{buildroot}%{_unitdir}/tetra.service
 %dir %attr(0750, root, root) %{_sharedstatedir}/tetra/identity
 
 %changelog
+* Sun Aug 09 2026 Cypress Reed <cypress@fyralabs.com>
+- Change license to AGPL
+
 * Sun Jul 26 2026 Cypress Reed <cypress@fyralabs.com>
 - Initial package release
