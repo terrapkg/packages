@@ -1,8 +1,8 @@
 %global appid com.github.opengamingcollective.cardwire
 
 Name:           cardwire
-Version:        0.11.1
-Release:        2%{?dist}
+Version:        0.12.0
+Release:        1%{?dist}
 Summary:        A GPU Manager for linux that uses eBPF LSM hooks to block GPUs
 URL:            https://opengamingcollective.github.io/cardwire/
 Source0:        https://github.com/OpenGamingCollective/cardwire/archive/refs/tags/v%{version}.tar.gz
