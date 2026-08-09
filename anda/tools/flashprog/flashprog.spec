@@ -4,7 +4,7 @@ flashprog is a utility for detecting, reading, writing, verifying and erasing fl
 It supports a wide range of flash chips (most commonly found in SOIC8, DIP8, SOIC16, WSON8, PLCC32, DIP32, TSOP32, and TSOP40 packages), which use various protocols such as LPC, FWH, parallel flash, or SPI.}
 
 Name:           flashprog
-Version:        1.5
+Version:        p1.6
 Release:        1%{?dist}
 Summary:        Utility for detecting, reading, writing, verifying and erasing flash chips
 

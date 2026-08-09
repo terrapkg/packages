@@ -1,11 +1,11 @@
-%global commit 8187920ed261c7024826f8204cc7bea45153a3da
+%global commit 9d8577ba2a2c8e3d96cfdb7be4201e4e230e210f
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260310
+%global commitdate 20260809
 %global ver 0.83
 
 Name:           hid-tmff2
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        4%{?dist}
+Release:        1%{?dist}
 Summary:        Thrustmaster Force Feedback driver common files
 License:        GPL-2.0-only
 URL:            https://github.com/Kimplul/%{name}

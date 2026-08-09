@@ -1,8 +1,8 @@
 %global swayVersion 1.12
 
 Name:           swayfx
-Version:        0.5.2
-Release:        2%?dist
+Version:        0.6
+Release:        1%{?dist}
 
 Summary:        SwayFX: Sway, but with eye candy!
 URL:            https://github.com/WillPower3309/swayfx
@@ -33,7 +33,7 @@ BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(wayland-cursor)
 BuildRequires:  pkgconfig(wayland-server) >= 1.21.0
 BuildRequires:  pkgconfig(wayland-protocols) >= 1.24
-BuildRequires:  pkgconfig(scenefx-0.4)
+BuildRequires:  pkgconfig(scenefx-0.5)
 BuildRequires:  pkgconfig(wlroots-0.19)
 BuildRequires:  pkgconfig(xcb)
 BuildRequires:  pkgconfig(xcb-icccm)
