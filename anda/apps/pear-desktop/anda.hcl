@@ -1,8 +1,8 @@
 project pkg {
 	rpm {
-		spec = "youtube-music.spec"
+		spec = "pear-desktop.spec"
 	}
-	
+
 	labels = {
 	    mock = 1
 	}
