@@ -8,7 +8,8 @@ Release:        1%{?dist}
 Summary:        BPF static linker built with Rust nightly
 URL:            https://github.com/aya-rs/bpf-linker
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
-License:        MIT OR Apache-2.0
+SourceLicense:  MIT OR Apache-2.0
+License:        (Apache-2.0 OR MIT) AND MIT AND (MIT OR Apache-2.0)
 
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  rustup
