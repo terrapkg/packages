@@ -23,6 +23,8 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %cargo_prep_online
 
 %build
+# aws-lc-sys runs compiler feature probes that intentionally use non-PIE objects for some reason
+export LDFLAGS="%{build_ldflags} -fPIE"
 %cargo_build
 %{cargo_license_online} > LICENSE.dependencies
 
