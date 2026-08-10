@@ -56,6 +56,7 @@ gamepad input to mouse and keyboard inputs.
 # We clone the repo from Git here because the build script requires
 # submodules to be present in the source directory.
 # %git_clone %{url} v%{version}
+# %dnl git checkout tags/v%{version}
 # Temporary while some final issues are resolved, same version as above.
 %git_clone %{url} pastaq/bazzite_crashes
 %patch 0 -p1
