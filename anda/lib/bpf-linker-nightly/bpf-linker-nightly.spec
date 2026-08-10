@@ -17,6 +17,8 @@ BuildRequires:  clang-devel
 
 Conflicts:      bpf-linker
 
+Packager:       Cypress Reed <cypress@fyralabs.com>
+
 %description
 bpf-linker is a bitcode linker for statically linking BPF object files and
 performing optimizations needed to target older kernels. This package is built
@@ -69,5 +71,5 @@ install -Dm644 rust-toolchain %{buildroot}%{_datadir}/%{name}/rust-toolchain
 %{_datadir}/%{name}/rust-toolchain
 
 %changelog
-* Mon Aug 10 2026 Terra Packaging <packages@terrapkg.com> - 0.10.4-1
-- Initial nightly package
+* Mon Aug 10 2026 Cypress Reed <cypress@fyralabs.com>
+- Initial package
