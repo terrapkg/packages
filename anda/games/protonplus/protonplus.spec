@@ -1,7 +1,7 @@
 %define appid com.vysp3r.ProtonPlus
 
 Name:           protonplus
-Version:        0.6.1.1
+Version:        0.6.2
 %global downloadver %(echo %{version} | sed -E 's/\.([^.]*)$/-\1/')
 Release:        1%{?dist}
 Summary:        A modern compatibility tools manager
