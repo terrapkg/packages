@@ -52,7 +52,7 @@ while keeping everything lightweight.
 %{_iconsdir}/hicolor/512x512/apps/legcord.png
 
 %changelog
-* Thu Jul 30 2026 Owen-sz <owen@fyralabs.com> - 1.3.0-1
+* Thu Jul 30 2026 Owen Zimmerman <owen@fyralabs.com> - 1.3.0-1
 - Vendor our own .desktop file
 
 * Mon May 18 2026 june-fish <june@fyralabs.com> - 1.2.4-1
