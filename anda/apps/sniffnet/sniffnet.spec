@@ -14,6 +14,7 @@ BuildRequires:  pkgconfig(alsa)
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
+%{summary}.
 
 %prep
 %autosetup -C
