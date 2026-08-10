@@ -1,10 +1,10 @@
-%global commit adfc53104329c4a4ec81ac30552ccddb3a9fc5eb
-%global commit_date 20260330
+%global commit 644d9650359eaef9d82bdd2cb146a54e891a0538
+%global commit_date 20260810
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           jqjq
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        jq implementation of jq
 License:        MIT
 URL:            https://github.com/wader/jqjq
