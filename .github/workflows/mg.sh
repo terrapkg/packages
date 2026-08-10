@@ -2,14 +2,13 @@ set -x
 
 dirs=$2
 dirs=${dirs/\/pkg/}
-export p="{\"id\":\"$5\",\"ver\":\"%v\",\"rel\":\"%r\",\"arch\":\"$4\",\"dirs\":\"$dirs\",\"succ\":$1,\"commit\":\"$7\"}"
 
-if [[ $1 == false ]]; then
-	d=${p/\%v/?}
-	d=${d/\%r/?}
-	curl -H "Authorization: Bearer $6" https://madoguchi.fyralabs.com/ci5/terra$3/builds/f -X PUT -H "Content-Type: application/json" -d "$d" --fail-with-body
-	exit 0
+pings=
+if [ -f "$dirs/discord_pings" ]; then
+    pings=$(cat "$dirs/discord_pings")
 fi
+
+export p="{\"id\":\"$5\",\"ver\":\"%v\",\"rel\":\"%r\",\"arch\":\"$4\",\"dirs\":\"$dirs\",\"succ\":$1,\"commit\":\"$7\",\"discord_pings\":\"$pings\"}"
 
 for f in anda-build/rpm/rpms/*; do
 	n=$(lesspipe.sh $f | grep -E "Name\s*: " | sed "s@Name\s*: @@" | head -n1)
