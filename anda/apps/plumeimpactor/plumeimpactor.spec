@@ -10,6 +10,7 @@ SourceLicense:  MIT AND BSD-3-Clause
 License:        MIT AND BSD-3-Clause
 BuildRequires:  cargo
 BuildRequires:  cargo-rpm-macros
+BuildRequires:  pkgconfig(glib-2.0)
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
