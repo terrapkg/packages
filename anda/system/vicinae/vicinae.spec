@@ -35,7 +35,7 @@ BuildRequires:  qt6-qtbase-private-devel
 BuildRequires:  cmake(Qt6LinguistTools)
 BuildRequires:  xcb-util-keysyms-devel
 BuildRequires:  desktop-file-utils
-BuildRequire:   pkgconfig(wayland-protocols)
+BuildRequires:   pkgconfig(wayland-protocols)
 
 Requires:       nodejs-npm
 Requires:       layer-shell-qt
