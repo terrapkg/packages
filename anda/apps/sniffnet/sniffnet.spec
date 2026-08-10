@@ -8,6 +8,7 @@ SourceLicense:  MIT AND Apache-2.0
 License:        MIT AND Apache-2.0
 BuildRequires:  cargo
 BuildRequires:  cargo-rpm-macros
+BuildRequires:  gcc
 BuildRequires:  pkgconfig(alsa)
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
