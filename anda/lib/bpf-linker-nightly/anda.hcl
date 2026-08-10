@@ -3,7 +3,6 @@ project pkg {
     spec = "bpf-linker-nightly.spec"
   }
   labels {
-    nightly = 1
     updbranch = 1
   }
 }
