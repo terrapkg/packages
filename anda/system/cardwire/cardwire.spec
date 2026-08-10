@@ -1,4 +1,5 @@
 %global appid org.opengamingcollective.cardwire
+%bcond rust_nightly 0
 
 Name:           cardwire
 Version:        0.12.0
@@ -15,6 +16,9 @@ BuildRequires:  systemd-rpm-macros
 BuildRequires:  systemd-devel
 BuildRequires:  libbpf-devel
 BuildRequires:  clang-devel
+%if %{with rust_nightly}
+BuildRequires:  rustup
+%endif
 
 Requires: hwdata
 Requires: upower
@@ -33,6 +37,9 @@ Requires:       %{name} = %{evr}
 
 %prep
 %autosetup
+%if %{with rust_nightly}
+%rustup_nightly
+%endif
 %cargo_prep_online
 
 %build
