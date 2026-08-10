@@ -1,5 +1,5 @@
-%global commit df7fc5328ff6294762ed1199225392f57b5584f5
-%global commit_date 20260801
+%global commit d2df28394b5811fb5bb78b115645dd22ca4cb39a
+%global commit_date 20260810
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 # terrible evil no good very bad hack
 # fix one day
@@ -8,7 +8,7 @@
 Name:           legcord-nightly
 %electronmeta -aD
 Version:        %commit_date.%shortcommit
-Release:        2%{?dist}
+Release:        1%{?dist}
 License:        OSL-3.0 AND %{electron_license}
 Summary:        Custom lightweight Discord client designed to enhance your experience
 URL:            https://github.com/Legcord/Legcord
