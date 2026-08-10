@@ -10,6 +10,7 @@ BuildRequires:  cargo
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  gcc-c++
 BuildRequires:  pkgconfig(alsa)
+BuildRequires:  pkgconfig(libpcap)
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
