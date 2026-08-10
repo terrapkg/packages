@@ -1,3 +1,5 @@
+%global debug_package %{nil}
+
 Name:           opengamepadui
 Version:        0.46.0
 Release:        5%{?dist}
@@ -53,10 +55,9 @@ gamepad input to mouse and keyboard inputs.
 
 # We clone the repo from Git here because the build script requires
 # submodules to be present in the source directory.
-%git_clone %{url} v%{version}
-%dnl git checkout tags/v%{version}
+# %git_clone %{url} v%{version}
 # Temporary while some final issues are resolved, same version as above.
-git checkout pastaq/bazzite_crashes
+%git_clone %{url} pastaq/bazzite_crashes
 %patch 0 -p1
 
 %build
