@@ -5,7 +5,7 @@
 %global debug_package %{nil}
 
 Name:           %{modulename}-kmod
-Version:        580.173.02
+Version:        580.178.04
 Release:        1%{?dist}
 Summary:        NVIDIA display driver kernel module
 Epoch:          3
