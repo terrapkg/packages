@@ -1,19 +1,24 @@
-From d21ec02cfb699cd041196354f5aa75a52d22ba68 Mon Sep 17 00:00:00 2001
+From b63c9f95987dd83e7629f0f96cff52eaa4b59f38 Mon Sep 17 00:00:00 2001
 From: "Derek J. Clark" <derekjohn.clark@gmail.com>
 Date: Sat, 8 Aug 2026 12:47:41 -0700
-Subject: [PATCH] fix(Hardware Support) Improve support for GPD Win 4 - Adds
- support for 2023 (7640u/7840u) versions - Adds back paddle support. GPD Win
- 4devices use the same back paddle   device as the win mini. - All devices
- have a dedicated guide button. Remove the QAM mapping to   allow full support
- of both paddles. (Win Mini, Win 4) - Generalize the driver name for the GPD
- paddle device.
+Subject: [PATCH] fix(Hardware Support) Improve support for GPD Devices - Adds
+ support for GPD Win 4 2023 (7640u/7840u) version. - Adds support for GPD Win
+ 5 2025 version. - Adds support for GPD Win Mini 2025 version. - Adds back
+ paddle support. GPD Win 4 and Win 5 devices use the same back   paddle device
+ as the win mini. - All devices have a dedicated guide button. Remove the QAM
+ mapping to   allow full support of both paddles. (Win Mini, Win 4, Win 5) -
+ Generalize the driver name for the GPD paddle device. - Remove unused GPD
+ capability maps, rename gpd4 -> gpd2.
 
 ---
- .../capability_maps/gpd_type3.yaml            | 44 ++++++++++++-
+ .../hwdb.d/60-inputplumber-autostart.hwdb     |  2 +
+ .../capability_maps/gpd_type2.yaml            | 37 ++++++++++-
+ .../capability_maps/gpd_type3.yaml            | 25 --------
  .../capability_maps/gpd_type4.yaml            | 63 -------------------
  .../inputplumber/devices/50-gpd_win4.yaml     | 23 ++++++-
  .../inputplumber/devices/50-gpd_win5.yaml     |  2 +-
- .../inputplumber/devices/50-gpd_winmini.yaml  |  3 -
+ .../inputplumber/devices/50-gpd_winmax2.yaml  | 44 ++++++++-----
+ .../inputplumber/devices/50-gpd_winmini.yaml  | 44 ++++++++-----
  .../{gpd_win_mini => gpd_device}/event.rs     |  0
  .../hid_report.rs                             |  0
  .../macro_keyboard_driver.rs                  |  0
@@ -23,7 +28,8 @@ Subject: [PATCH] fix(Hardware Support) Improve support for GPD Win 4 - Adds
  src/input/source/hidraw.rs                    | 41 ++++++------
  ...acro_keyboard.rs => gpd_macro_keyboard.rs} | 36 +++++------
  ...d_win_mini_touchpad.rs => gpd_touchpad.rs} | 62 +++++++++---------
- 14 files changed, 127 insertions(+), 149 deletions(-)
+ 17 files changed, 181 insertions(+), 200 deletions(-)
+ delete mode 100644 rootfs/usr/share/inputplumber/capability_maps/gpd_type3.yaml
  delete mode 100644 rootfs/usr/share/inputplumber/capability_maps/gpd_type4.yaml
  rename src/drivers/{gpd_win_mini => gpd_device}/event.rs (100%)
  rename src/drivers/{gpd_win_mini => gpd_device}/hid_report.rs (100%)
@@ -33,29 +39,41 @@ Subject: [PATCH] fix(Hardware Support) Improve support for GPD Win 4 - Adds
  rename src/input/source/hidraw/{gpd_win_mini_macro_keyboard.rs => gpd_macro_keyboard.rs} (69%)
  rename src/input/source/hidraw/{gpd_win_mini_touchpad.rs => gpd_touchpad.rs} (69%)
 
-diff --git a/rootfs/usr/share/inputplumber/capability_maps/gpd_type3.yaml b/rootfs/usr/share/inputplumber/capability_maps/gpd_type3.yaml
-index 3fde9148..88d5bfbf 100644
---- a/rootfs/usr/share/inputplumber/capability_maps/gpd_type3.yaml
-+++ b/rootfs/usr/share/inputplumber/capability_maps/gpd_type3.yaml
-@@ -13,10 +13,48 @@ id: gpd3
- 
- # List of mapped events that are activated by a specific set of activation keys.
+diff --git a/rootfs/usr/lib/udev/hwdb.d/60-inputplumber-autostart.hwdb b/rootfs/usr/lib/udev/hwdb.d/60-inputplumber-autostart.hwdb
+index 0f47149b..40b94f91 100644
+--- a/rootfs/usr/lib/udev/hwdb.d/60-inputplumber-autostart.hwdb
++++ b/rootfs/usr/lib/udev/hwdb.d/60-inputplumber-autostart.hwdb
+@@ -64,8 +64,10 @@ dmi:*svnGPD:pnG1618-04:*
+ dmi:*svnGPD:pnG1618-05:*
+ # GPD Win Max 2
+ dmi:*svnGPD:pnG1619-04:*
++dmi:*svnGPD:pnG1619-05:*
+ # GPD Win Mini
+ dmi:*svnGPD:pnG1617-01:*
++dmi:*svnGPD:pnG1617-02:*
+ # KONKR Fit
+ dmi:*svnKONKR:pnKONKRFIT:*
+ # Lenovo Legion Go
+diff --git a/rootfs/usr/share/inputplumber/capability_maps/gpd_type2.yaml b/rootfs/usr/share/inputplumber/capability_maps/gpd_type2.yaml
+index 0bfceea8..ad36637a 100644
+--- a/rootfs/usr/share/inputplumber/capability_maps/gpd_type2.yaml
++++ b/rootfs/usr/share/inputplumber/capability_maps/gpd_type2.yaml
+@@ -15,16 +15,49 @@ id: gpd2
  mapping:
--  - name: Quick Access
-+  - name: Left Paddle
+   - name: Left Paddle
      source_events:
--      - gamepad:
--          button: RightPaddle1
+-      - keyboard: Key0
 +      - keyboard: KeyF14
-+    target_event:
-+      gamepad:
-+        button: LeftPaddle1
-+  - name: Right Paddle
-+    source_events:
+     target_event:
+       gamepad:
+         button: LeftPaddle1
+   - name: Right Paddle
+     source_events:
+-      - keyboard: Key9
 +      - keyboard: KeyF15
-+    target_event:
-+      gamepad:
-+        button: RightPaddle1
+     target_event:
+       gamepad:
+         button: RightPaddle1
 +  - name: Mode Switch
 +    source_events:
 +      - keyboard: KeyF13
@@ -86,9 +104,43 @@ index 3fde9148..88d5bfbf 100644
 +  - name: Keyboard (Long Press)
 +    source_events:
 +      - keyboard: KeyDelete
-     target_event:
-       gamepad:
-         button: QuickAccess
++    target_event:
++      gamepad:
++        button: QuickAccess
+ 
+ # List of events to filter from the source devices
+ filtered_events: []
+diff --git a/rootfs/usr/share/inputplumber/capability_maps/gpd_type3.yaml b/rootfs/usr/share/inputplumber/capability_maps/gpd_type3.yaml
+deleted file mode 100644
+index 3fde9148..00000000
+--- a/rootfs/usr/share/inputplumber/capability_maps/gpd_type3.yaml
++++ /dev/null
+@@ -1,25 +0,0 @@
+-# yaml-language-server: $schema=https://raw.githubusercontent.com/ShadowBlip/InputPlumber/main/rootfs/usr/share/inputplumber/schema/capability_map_v1.json
+-# Schema version number
+-version: 1
+-
+-# The type of configuration schema
+-kind: CapabilityMap
+-
+-# Name for the device event map
+-name: GPD Type 3
+-
+-# Unique identifier of the capability mapping
+-id: gpd3
+-
+-# List of mapped events that are activated by a specific set of activation keys.
+-mapping:
+-  - name: Quick Access
+-    source_events:
+-      - gamepad:
+-          button: RightPaddle1
+-    target_event:
+-      gamepad:
+-        button: QuickAccess
+-
+-# List of events to filter from the source devices
+-filtered_events: []
 diff --git a/rootfs/usr/share/inputplumber/capability_maps/gpd_type4.yaml b/rootfs/usr/share/inputplumber/capability_maps/gpd_type4.yaml
 deleted file mode 100644
 index 89694dd8..00000000
@@ -159,7 +211,7 @@ index 89694dd8..00000000
 -# List of events to filter from the source devices
 -filtered_events: []
 diff --git a/rootfs/usr/share/inputplumber/devices/50-gpd_win4.yaml b/rootfs/usr/share/inputplumber/devices/50-gpd_win4.yaml
-index 93994267..6374008e 100644
+index 93994267..b4533f15 100644
 --- a/rootfs/usr/share/inputplumber/devices/50-gpd_win4.yaml
 +++ b/rootfs/usr/share/inputplumber/devices/50-gpd_win4.yaml
 @@ -22,6 +22,12 @@ matches:
@@ -191,7 +243,7 @@ index 93994267..6374008e 100644
 +  - group: gamepad
 +    evdev:
 +      name: "Microsoft X-Box 360 pad"
-+      phys_path: usb-0000:63:00.3-4.1/input0
++      phys_path: usb-0000:63:00.3-3.1/input0
 +      handler: event*
 +  - group: keyboard
 +    blocked: true
@@ -218,7 +270,7 @@ index 93994267..6374008e 100644
 -# The ID of a device event mapping in the 'event_maps' folder
 -capability_map_id: gpd3
 diff --git a/rootfs/usr/share/inputplumber/devices/50-gpd_win5.yaml b/rootfs/usr/share/inputplumber/devices/50-gpd_win5.yaml
-index e5949af3..5945b276 100644
+index e5949af3..0cda82ed 100644
 --- a/rootfs/usr/share/inputplumber/devices/50-gpd_win5.yaml
 +++ b/rootfs/usr/share/inputplumber/devices/50-gpd_win5.yaml
 @@ -65,4 +65,4 @@ target_devices:
@@ -226,12 +278,169 @@ index e5949af3..5945b276 100644
  
  # The ID of a device event mapping in the 'event_maps' folder
 -capability_map_id: gpd4
-+capability_map_id: gpd3
++capability_map_id: gpd2
+diff --git a/rootfs/usr/share/inputplumber/devices/50-gpd_winmax2.yaml b/rootfs/usr/share/inputplumber/devices/50-gpd_winmax2.yaml
+index 87a48ad1..02cf7be8 100644
+--- a/rootfs/usr/share/inputplumber/devices/50-gpd_winmax2.yaml
++++ b/rootfs/usr/share/inputplumber/devices/50-gpd_winmax2.yaml
+@@ -18,49 +18,64 @@ matches:
+   - dmi_data:
+       product_name: G1619-04
+       sys_vendor: GPD
++  - dmi_data:
++      product_name: G1619-05
++      sys_vendor: GPD
+ 
+ # One or more source devices to combine into a single virtual device. The events
+ # from these devices will be watched and translated according to the key map.
+ source_devices:
++  # Back paddles
++  - group: keyboard
++    hidraw:
++      vendor_id: 0x2f24
++      product_id: 0x0135
++      interface_num: 1
++  # Older models, TODO: Look up specific years for each
+   - group: gamepad
+     evdev:
+       name: "Microsoft X-Box 360 pad"
+       phys_path: usb-0000:74:00.3-3/input0
+       handler: event*
+-  - group: gamepad
++  - group: keyboard
++    blocked: true
+     evdev:
+-      name: "Microsoft X-Box 360 pad"
+-      phys_path: usb-0000:65:00.3-3/input0
++      name: "  Mouse for Windows"
++      phys_path: usb-0000:74:00.3-4/input1
+       handler: event*
+   - group: gamepad
+     evdev:
+       name: "Microsoft X-Box 360 pad"
+-      phys_path: usb-0000:73:00.3-3/input0
++      phys_path: usb-0000:65:00.3-3/input0
+       handler: event*
+   - group: keyboard
++    blocked: true
+     evdev:
+       name: "  Mouse for Windows"
+-      phys_path: usb-0000:74:00.3-4/input1
++      phys_path: usb-0000:65:00.3-4/input1
+       handler: event*
+-  - group: keyboard
++  - group: gamepad
+     evdev:
+-      name: "  Mouse for Windows"
+-      phys_path: usb-0000:65:00.3-4/input0
++      name: "Microsoft X-Box 360 pad"
++      phys_path: usb-0000:73:00.3-3/input0
+       handler: event*
+   - group: keyboard
++    blocked: true
+     evdev:
+       name: "  Mouse for Windows"
+-      phys_path: usb-0000:65:00.3-4/input1
++      phys_path: usb-0000:73:00.3-4/input1
+       handler: event*
+-  - group: keyboard
++  # Win Max 2 (2025)
++  - group: gamepad
+     evdev:
+-      name: "  Mouse for Windows"
+-      phys_path: usb-0000:73:00.3-4/input0
++      name: "Microsoft X-Box 360 pad"
++      phys_path: usb-0000:c7:00.0-3/input0
+       handler: event*
+   - group: keyboard
++    blocked: true
+     evdev:
+       name: "  Mouse for Windows"
+-      phys_path: usb-0000:73:00.3-4/input1
++      phys_path: usb-0000:c7:00.0-4/input1
+       handler: event*
+   - group: imu
+     iio:
+@@ -78,6 +93,3 @@ target_devices:
+   - xbox-elite
+   - mouse
+   - keyboard
+-
+-# The ID of a device event mapping in the 'event_maps' folder
+-capability_map_id: gpd2
 diff --git a/rootfs/usr/share/inputplumber/devices/50-gpd_winmini.yaml b/rootfs/usr/share/inputplumber/devices/50-gpd_winmini.yaml
-index 2fc42d62..a90650c3 100644
+index 2fc42d62..3dffbda0 100644
 --- a/rootfs/usr/share/inputplumber/devices/50-gpd_winmini.yaml
 +++ b/rootfs/usr/share/inputplumber/devices/50-gpd_winmini.yaml
-@@ -70,6 +70,3 @@ target_devices:
+@@ -18,37 +18,56 @@ matches:
+   - dmi_data:
+       product_name: G1617-01
+       sys_vendor: GPD
++  - dmi_data:
++      product_name: G1617-02
++      sys_vendor: GPD
+ 
+ # One or more source devices to combine into a single virtual device. The events
+ # from these devices will be watched and translated according to the key map.
+ source_devices:
++  # Win Mini (2023)
+   - group: gamepad
+     evdev:
+       name: "Microsoft X-Box 360 pad"
+       phys_path: "{usb-0000:63:00.3-5/input0,usb-0000:c3:00.3-5/input0}"
+       handler: event*
+-  - group: keyboard
+-    hidraw:
+-      vendor_id: 0x2f24
+-      product_id: 0x0135
+-      interface_num: 1
+   - group: keyboard
+     blocked: true
+     evdev:
+       name: "  Mouse for Windows"
+       phys_path: usb-0000:63:00.3-3/input1
+       handler: event*
+-  - group: mouse
+-    hidraw:
+-      vendor_id: 0x093A
+-      product_id: 0x0255
+-      interface_num: 0
++  # Win Mini (2025)
++  - group: gamepad
++    evdev:
++      name: "Microsoft X-Box 360 pad"
++      phys_path: usb-0000:c6:00.0-3.1/input0
++      handler: event*
++  - group: keyboard
++    blocked: true
++    evdev:
++      name: "  Keyboard for Windows"
++      phys_path: usb-0000:c6:00.0-3.3/input0
++      handler: event*
++  # All devices
+   - group: mouse
+     unique: false
+     blocked: true
+     evdev:
+-      name: "{HTIX5288:00 093A:0255 Mouse,HTIX5288:00 093A:0255 Touchpad}"
++      name: "{HTIX5288:00*}"
+       handler: event*
++  # Back Paddles
++  - group: keyboard
++    hidraw:
++      vendor_id: 0x2f24
++      product_id: 0x0135
++      interface_num: 1
++  # Touchpad
++  - group: mouse
++    hidraw:
++      vendor_id: 0x093A
++      product_id: 0x0255
++      interface_num: 0
+   - group: imu
+     iio:
+       name: "{i2c-BMI0160:00,bmi260}"
+@@ -70,6 +89,3 @@ target_devices:
    - mouse
    - keyboard
    - touchpad
