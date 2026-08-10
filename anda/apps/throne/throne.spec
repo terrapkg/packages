@@ -75,7 +75,7 @@ export PATH="${PATH}:${GOBIN}"
 export GO_LDFLAGS=' '
 %define gomodulesmode GO111MODULE=on
 export GO_BUILDTAGS="with_clash_api with_gvisor with_quic with_wireguard with_utls with_dhcp with_tailscale badlinkname tfogo_checklinkname0 with_naive_outbound"
-%dnl go mod tidy
+go mod tidy
 %gobuild -o $DEST -modcacherw
 popd
 
