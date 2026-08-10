@@ -25,6 +25,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %cargo_build
 
 %install
+ls -laH target/rpm/
 %make_install PROFILE=rpm PREFIX=%{_prefix}
 
 %cargo_license_summary_online
