@@ -2,7 +2,7 @@
 %global _desc Python package for writing Value Change Dump (VCD) files.
 
 Name:			python-%{pypi_name}
-Version:		0.4.2
+Version:		0.5.0
 Release:		1%{?dist}
 Summary:		Python package for writing Value Change Dump (VCD) files
 License:		MIT
