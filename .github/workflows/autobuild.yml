@@ -95,11 +95,14 @@ jobs:
         if: steps.catalog.outcome == 'success'
         run: |
           if stat output/*.xml.gz &>/dev/null; then
-            echo "## AppStream Builder Log" >> $GITHUB_STEP_SUMMARY
+            echo "<details>" >> $GITHUB_STEP_SUMMARY
+            echo "<summary>AppStream Builder Log</summary>" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
             echo '```log' >> $GITHUB_STEP_SUMMARY
             cat asb.log >> $GITHUB_STEP_SUMMARY
             echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "</details>" >> $GITHUB_STEP_SUMMARY
             echo '---' >> $GITHUB_STEP_SUMMARY
           else
             echo "Nothing to do."
