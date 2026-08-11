@@ -26,8 +26,12 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %install
 ls -laH target/rpm/
-%make_install PROFILE=rpm PREFIX=%{_prefix}
-
+install -Dm755 target/rpm/plumesign 					%{buildroot}%{_bindir}/plumesign
+install -Dm755 target/rpm/plumeimpactor 				%{buildroot}%{_bindir}/plumeimpactor
+install -Dm644 package/linux/%{appid}.desktop 				%{buildroot}%{_appsdir}/%{appid}.desktop
+for size in 16 32 48 64 128 256 512; do
+	install -Dm644 package/linux/icons/hicolor/$(size)/apps/%{appid}.png %{buildroot}%{_hicolordir}/$(size)/apps/%{appid}.png
+done
 %cargo_license_summary_online
 %{cargo_license_online} > LICENSE.dependencies
 
