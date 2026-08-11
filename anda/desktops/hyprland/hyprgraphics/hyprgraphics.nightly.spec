@@ -2,7 +2,7 @@
 
 %global realname hyprgraphics
 %global ver 0.5.1
-%global commit 344aff614cddd4b2286315e122a81e4f79e1282a
+%global commit 7c895c44e3ca6d28ed68ddd80ec02b02b925e7fc
 %global commit_date 20260811
 %global shortcommit %{sub %commit 1 7}
 
