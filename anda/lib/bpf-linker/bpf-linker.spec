@@ -1,4 +1,4 @@
-%global llvm_version 22.1.8
+%global llvm_version 21.1.8
 
 Name:           bpf-linker
 Version:        0.10.4
