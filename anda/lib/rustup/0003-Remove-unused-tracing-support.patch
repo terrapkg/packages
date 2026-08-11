@@ -1,0 +1,154 @@
+From 8c386a72139a5d8684ad0fd27f77173186b9a922 Mon Sep 17 00:00:00 2001
+From: Fabio Valentini <decathorpe@gmail.com>
+Date: Thu, 23 May 2024 18:01:37 +0200
+Subject: [PATCH 3/8] Remove unused tracing support
+
+---
+ Cargo.toml              |  1 -
+ src/bin/rustup-init.rs  | 10 ----------
+ src/diskio/immediate.rs |  3 ---
+ src/diskio/mod.rs       |  8 --------
+ src/lib.rs              |  3 ---
+ 5 files changed, 25 deletions(-)
+
+diff --git a/Cargo.toml b/Cargo.toml
+index 9369ae86..0793cb7f 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -78,7 +78,6 @@ regex = "1"
+ remove_dir_all = { version = "1.0.0", features = ["parallel"] }
+ reqwest = { version = "0.13", default-features = false, features = ["blocking", "gzip", "http2", "socks", "stream"], optional = true }
+ retry = { version = "2", default-features = false, features = ["random"] }
+-rs_tracing = { version = "1.1", features = ["rs_tracing"] }
+ rustls = { version = "0.23", optional = true, default-features = false, features = ["logging", "aws_lc_rs", "tls12"] }
+ rustls-platform-verifier = { version = "0.6", optional = true }
+ same-file = "1"
+diff --git a/src/bin/rustup-init.rs b/src/bin/rustup-init.rs
+index e844ddc1..62f50abf 100644
+--- a/src/bin/rustup-init.rs
++++ b/src/bin/rustup-init.rs
+@@ -17,10 +17,6 @@ use std::process::ExitCode;
+ 
+ use anyhow::{Context, Result, anyhow};
+ use cfg_if::cfg_if;
+-// Public macros require availability of the internal symbols
+-use rs_tracing::{
+-    close_trace_file, close_trace_file_internal, open_trace_file, trace_to_file_internal,
+-};
+ use tracing_subscriber::{EnvFilter, Registry, reload::Handle};
+ 
+ use rustup::cli::errors::CliError;
+@@ -67,13 +63,7 @@ async fn run_rustup(
+     process: &Process,
+     console_filter: Handle<EnvFilter, Registry>,
+ ) -> Result<utils::ExitCode> {
+-    if let Ok(dir) = process.var("RUSTUP_TRACE_DIR") {
+-        open_trace_file!(dir)?;
+-    }
+     let result = run_rustup_inner(process, console_filter).await;
+-    if process.var("RUSTUP_TRACE_DIR").is_ok() {
+-        close_trace_file!();
+-    }
+     result
+ }
+ 
+diff --git a/src/diskio/immediate.rs b/src/diskio/immediate.rs
+index 2c7dd518..bfa7de4f 100644
+--- a/src/diskio/immediate.rs
++++ b/src/diskio/immediate.rs
+@@ -166,7 +166,6 @@ impl IncrementalFileWriter {
+         let path = path.as_ref();
+         let path_display = format!("{}", path.display());
+         let file = Some({
+-            trace_scoped!("creat", "name": path_display);
+             opts.write(true).create(true).truncate(true).open(path)?
+         });
+         Ok(IncrementalFileWriter {
+@@ -208,11 +207,9 @@ impl IncrementalFileWriter {
+         };
+         // Length 0 vector is used for clean EOF signalling.
+         if chunk.is_empty() {
+-            trace_scoped!("close", "name:": self.path_display);
+             drop(std::mem::take(&mut self.file));
+             state.finished = true;
+         } else {
+-            trace_scoped!("write_segment", "name": self.path_display, "len": chunk.len());
+             file.write_all(&chunk)?;
+ 
+             state.completed_chunks.push(chunk.len());
+diff --git a/src/diskio/mod.rs b/src/diskio/mod.rs
+index f2400ed1..5b307ffa 100644
+--- a/src/diskio/mod.rs
++++ b/src/diskio/mod.rs
+@@ -372,17 +372,14 @@ pub(crate) fn write_file<P: AsRef<Path>, C: AsRef<[u8]>>(
+     let path = path.as_ref();
+     let path_display = format!("{}", path.display());
+     let mut f = {
+-        trace_scoped!("creat", "name": path_display);
+         opts.write(true).create(true).truncate(true).open(path)?
+     };
+     let contents = contents.as_ref();
+     let len = contents.len();
+     {
+-        trace_scoped!("write", "name": path_display, "len": len);
+         f.write_all(contents)?;
+     }
+     {
+-        trace_scoped!("close", "name:": path_display);
+         drop(f);
+     }
+     Ok(())
+@@ -404,7 +401,6 @@ pub(crate) fn write_file_incremental<P: AsRef<Path>, F: Fn(usize)>(
+     let path = path.as_ref();
+     let path_display = format!("{}", path.display());
+     let mut f = {
+-        trace_scoped!("creat", "name": path_display);
+         opts.write(true).create(true).truncate(true).open(path)?
+     };
+     if let IncrementalFile::ThreadedReceiver(recv) = content_callback {
+@@ -415,12 +411,10 @@ pub(crate) fn write_file_incremental<P: AsRef<Path>, F: Fn(usize)>(
+             let len = contents.len();
+             // Length 0 vector is used for clean EOF signalling.
+             if len == 0 {
+-                trace_scoped!("EOF_chunk", "name": path_display, "len": len);
+                 drop(contents);
+                 chunk_complete_callback(len);
+                 break;
+             } else {
+-                trace_scoped!("write_segment", "name": path_display, "len": len);
+                 f.write_all(&contents)?;
+                 drop(contents);
+                 chunk_complete_callback(len);
+@@ -430,7 +424,6 @@ pub(crate) fn write_file_incremental<P: AsRef<Path>, F: Fn(usize)>(
+         unreachable!();
+     }
+     {
+-        trace_scoped!("close", "name:": path_display);
+         drop(f);
+     }
+     Ok(())
+@@ -439,7 +432,6 @@ pub(crate) fn write_file_incremental<P: AsRef<Path>, F: Fn(usize)>(
+ pub(crate) fn create_dir<P: AsRef<Path>>(path: P) -> io::Result<()> {
+     let path = path.as_ref();
+     let path_display = format!("{}", path.display());
+-    trace_scoped!("create_dir", "name": path_display);
+     std::fs::create_dir(path)
+ }
+ 
+diff --git a/src/lib.rs b/src/lib.rs
+index 7192d9ea..8ec4f534 100644
+--- a/src/lib.rs
++++ b/src/lib.rs
+@@ -14,9 +14,6 @@ use anyhow::{Result, anyhow};
+ use errors::RustupError;
+ use itertools::{Itertools, chain};
+ 
+-#[macro_use]
+-extern crate rs_tracing;
+-
+ // A list of all binaries which Rustup will proxy.
+ pub static TOOLS: &[&str] = &[
+     "rustc",
+-- 
+2.55.0
+

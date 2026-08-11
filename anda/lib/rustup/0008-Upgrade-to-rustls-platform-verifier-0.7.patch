@@ -1,0 +1,26 @@
+From c39bd8047ff9249109b8cdbe3c3a89f10a0674e2 Mon Sep 17 00:00:00 2001
+From: Dirkjan Ochtman <dirkjan@ochtman.nl>
+Date: Sun, 12 Apr 2026 12:19:32 +0200
+Subject: [PATCH 8/8] Upgrade to rustls-platform-verifier 0.7
+
+(without changes to Cargo.lock)
+---
+ Cargo.toml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Cargo.toml b/Cargo.toml
+index 2334b86c..e37cddf6 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -78,7 +78,7 @@ remove_dir_all = { version = "1.0.0", features = ["parallel"] }
+ reqwest = { version = "0.13", default-features = false, features = ["blocking", "gzip", "http2", "socks", "stream"], optional = true }
+ retry = { version = "2", default-features = false, features = ["random"] }
+ rustls = { version = "0.23", optional = true, default-features = false, features = ["logging", "ring", "tls12"] }
+-rustls-platform-verifier = { version = "0.6", optional = true }
++rustls-platform-verifier = { version = "0.7", optional = true }
+ same-file = "1"
+ semver = "1.0"
+ serde = { version = "1.0", features = ["derive"] }
+-- 
+2.55.0
+
