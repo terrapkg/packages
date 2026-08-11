@@ -31,7 +31,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 install -Dm755 target/rpm/plumeimpactor 				%{buildroot}%{_bindir}/plumeimpactor
 install -Dm644 package/linux/%{appid}.desktop 				%{buildroot}%{_appsdir}/%{appid}.desktop
 for size in 16 32 48 64 128 256 512; do
-	install -Dm644 package/linux/icons/hicolor/${size}x${size}/apps/%{appid}.png %{buildroot}%{_hicolordir}/$size/apps/%{appid}.png
+	install -Dm644 package/linux/icons/hicolor/${size}x${size}/apps/%{appid}.png %{buildroot}%{_hicolordir}/${size}x${size}/apps/%{appid}.png
 done
 %cargo_license_summary_online
 %{cargo_license_online} > LICENSE.dependencies
@@ -41,7 +41,7 @@ done
 %license LICENSE LICENSE_ELLEKIT
 %{_bindir}/plumeimpactor
 %{_hicolordir}/*x*/apps/%{appid}.png
-%{appid}.desktop
+%{_appsdir}/%{appid}.desktop
 
 %changelog
 * Mon Aug 10 2026 Owen Zimmerman <owen@fyralabs.com>
