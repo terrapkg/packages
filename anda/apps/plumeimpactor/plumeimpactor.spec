@@ -1,4 +1,5 @@
 %global appid dev.khcrysalis.PlumeImpactor
+%undefine __brp_mangle_shebangs
 
 Name:           plumeimpactor
 Version:        2.6.0
