@@ -32,7 +32,7 @@ BuildRequires:  git-core
 go mod download
 
 %build
-go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w" -buildmode=pie -o %{gobuilddir}/bin/glow %{goipath}/v2
+go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w" -buildmode=pie -o %{gobuilddir}/bin/glow %{goipath}
 
 %install
 %gopkginstall
