@@ -45,7 +45,7 @@ Provides:       pyvcd
 %pyproject_save_files vcd
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%doc README.rst CODE_OF_CONDUCT.md CHANGELOG.rst
+%doc README.rst CHANGELOG.rst
 %license LICENSE.txt
 %python3_sitelib/pyvcd-%version.dist-info/*
 
