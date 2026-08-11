@@ -2,8 +2,8 @@
 
 %global realname hyprgraphics
 %global ver 0.5.1
-%global commit 8699c38f0e4a1ca3bfc84f84ba020509ced1f133
-%global commit_date 20260804
+%global commit 344aff614cddd4b2286315e122a81e4f79e1282a
+%global commit_date 20260811
 %global shortcommit %{sub %commit 1 7}
 
 %bcond libjxl 1
