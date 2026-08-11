@@ -12,6 +12,7 @@ BuildRequires:  cargo
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(gdk-3.0)
+Requires:       hicolor-icon-theme
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
@@ -25,8 +26,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %cargo_build
 
 %install
-ls -laH target/rpm/
-install -Dm755 target/rpm/plumesign 					%{buildroot}%{_bindir}/plumesign
+%dnl install -Dm755 target/rpm/plumesign 					%{buildroot}%{_bindir}/plumesign
 install -Dm755 target/rpm/plumeimpactor 				%{buildroot}%{_bindir}/plumeimpactor
 install -Dm644 package/linux/%{appid}.desktop 				%{buildroot}%{_appsdir}/%{appid}.desktop
 for size in 16 32 48 64 128 256 512; do
@@ -38,6 +38,8 @@ done
 %files
 %doc README.md SECURITY.md
 %license LICENSE LICENSE_ELLEKIT
+%{_bindir}/plumeimpactor
+%{_hicolordir}/*x*/%{appid}.png
 %{appid}.desktop
 
 %changelog
