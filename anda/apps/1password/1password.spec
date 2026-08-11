@@ -13,7 +13,7 @@
 %endif
 
 Name:           1password
-Version:        8.12.30
+Version:        8.12.32
 Release:        1%{?dist}
 Summary:        Password manager and secure wallet
 
