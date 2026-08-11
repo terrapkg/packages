@@ -9,6 +9,8 @@ Source0:        https://github.com/warpdotdev/warp/archive/refs/tags/v%{version}
 SourceLicense:  AGPL-3.0-only
 License:        AGPL-3.0-only
 BuildRequires:  cargo
+BuildRequires:  gcc
+BuildRequires:  gcc-c++
 BuildRequires:  cargo-rpm-macros
 BuildRequires:	protobuf-devel
 Packager:       Owen Zimmerman <owen@fyralabs.com>
