@@ -1,5 +1,5 @@
 %global crate bpf-linker
-%global llvm_version 22.1.8
+%global llvm_version 21.1.8
 %bcond check 0
 
 Name:           bpf-linker-nightly
