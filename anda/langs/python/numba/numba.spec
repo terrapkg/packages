@@ -8,7 +8,7 @@ License:		BSD-2-Clause AND MIT AND BSD-3-Clause
 URL:			https://numba.pydata.org
 # PyPi source does not include all files
 Source0:		https://github.com/numba/numba/archive/refs/tags/%version.tar.gz
-Patch0:		    remove-llvmlite-version-req.patch
+%dnl Patch0:		    remove-llvmlite-version-req.patch
 # This package is intentionally not noarch
 
 BuildRequires:  python3-devel
