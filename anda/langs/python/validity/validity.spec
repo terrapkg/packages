@@ -38,6 +38,19 @@ Summary:        %{summary}
 %install
 %pyproject_install
 %pyproject_save_files %{pkg_name}sensor
+install -Dm 0600 etc/python-validity/dbus-service.yaml %{buildroot}%{_sysconfdir}/python-validity/dbus-service.yaml
+install -Dm 0644 debian/python3-validity.service       %{buildroot}%{_prefix}/lib/systemd/system/python3-validity.service
+install -Dm 0644 debian/python3-validity.udev          %{buildroot}%{_prefix}/lib/udev/rules.d/40-python3-validity.udev
+install -Dm 0644 selinux/python3-validity.pp.bz2       %{buildroot}%{_datadir}/selinux/packages/python3-validity.pp.bz2
+
+%post
+%systemd_post python3-validity.service
+
+%preun
+%systemd_preun python3-validity.service
+
+%postun
+%systemd_postun_with_restart python3-validity.service
 
 %files -n python3-%{pkg_name} -f %{pyproject_files}
 %doc README.md
@@ -48,6 +61,10 @@ Summary:        %{summary}
 %config %{_datadir}/dbus-1/system.d/io.github.uunicorn.Fprint.conf
 %{_datadir}/python-validity/playground/__pycache__/*.pyc
 %{_datadir}/python-validity/playground/*.py
+%config(noreplace) %{_sysconfdir}/python-validity/dbus-service.yaml
+%{_prefix}/lib/systemd/system/python3-validity.service
+%{_udevrulesdir}/40-python3-validity.udev
+%{_datadir}/selinux/packages/python3-validity.pp.bz2
 
 %changelog
 * Tue Aug 11 2026 Owen Zimmerman <owen@fyralabs.com>
