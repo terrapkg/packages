@@ -11,16 +11,23 @@
 
 %define _disable_source_fetch 0
 
-# Numeric release for the Source0 tag name (v<VERSION>-<tag_release>); must match the git tag
+# Upstream apparmor.d version this fork is based on.
+%global upstream_version 0.4910.0
+
+# Fork's own release counter, independent of RPM Release below (terrapkg
+# owns that field). Bumped per fork change; embedded in the Source0 tag
+# name (v<upstream_version>-<tag_release>), must match the git tag, and
+# shown in Version below (via ^) so the fork's own version is visible in
+# the built package (e.g. 0.4910.0^5) instead of only the upstream one.
 %global tag_release 5
 
 Name:           apparmor.d-fedora
-Version:        0.4910.0
-Release:        %{tag_release}%{?dist}
+Version:        %{upstream_version}^%{tag_release}
+Release:        1%{?dist}
 Summary:        Full set of AppArmor policies
 License:        GPL-2.0-only
 URL:            https://github.com/CatPieLeaf/apparmor.d-fedora
-Source0:        %{url}/archive/refs/tags/v%{version}-%{tag_release}.tar.gz
+Source0:        %{url}/archive/refs/tags/v%{upstream_version}-%{tag_release}.tar.gz
 
 Requires:       apparmor-profiles
 Requires:       apparmor-parser
@@ -46,7 +53,7 @@ you have already validated this profile set in complain mode.
 %endif
 
 %prep
-%autosetup -n apparmor.d-fedora-%{version}-%{tag_release}
+%autosetup -n apparmor.d-fedora-%{upstream_version}-%{tag_release}
 
 %build
 %if %{_complain} == 1
