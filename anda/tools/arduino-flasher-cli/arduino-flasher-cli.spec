@@ -44,7 +44,7 @@ install -Dm755 %{gobuilddir}/cmd/arduino-flasher-cli -t %buildroot%{_bindir}
 %files
 %license LICENSE
 %doc README.md
-%{_bindir}/arduino-cli
+%{_bindir}/arduino-flasher-cli
 
 %changelog
 * Fri Nov 14 2025 Jaiden Riordan <jade@fyralabs.com>
