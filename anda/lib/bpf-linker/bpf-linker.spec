@@ -1,7 +1,7 @@
 %global llvm_version 22.1.8
 
 Name:           bpf-linker
-Version:        0.10.4
+Version:        0.11.0
 Release:        1%{?dist}
 Summary:        BPF static linker
 URL:            https://github.com/aya-rs/bpf-linker
