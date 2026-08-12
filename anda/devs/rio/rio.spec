@@ -33,6 +33,7 @@ Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description %_description
 
+%package       devel
 %pkg_devel_files
 
 %prep
