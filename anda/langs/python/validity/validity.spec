@@ -16,6 +16,12 @@ BuildRequires:  python3-wheel
 BuildRequires:  python3-setuptools
 BuildRequires:  python3-pip
 BuildRequires:  python3-hatchling
+BuildRequires:  policycoreutils
+BuildRequires:  checkpolicy
+BuildRequires:  bzip2
+Requires:       policycoreutils
+Requires:       innoextract
+Requires:       open-fprintd
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
@@ -35,6 +41,12 @@ Summary:        %{summary}
 %build
 %pyproject_wheel
 
+pushd selinux
+checkmodule -M -m -o python3-validity.mod python3-validity.te
+semodule_package -o python3-validity.pp -m python3-validity.mod
+bzip2 python3-validity.pp
+popd
+
 %install
 %pyproject_install
 %pyproject_save_files %{pkg_name}sensor
@@ -43,14 +55,21 @@ install -Dm 0644 debian/python3-validity.service       %{buildroot}%{_prefix}/li
 install -Dm 0644 debian/python3-validity.udev          %{buildroot}%{_prefix}/lib/udev/rules.d/40-python3-validity.udev
 install -Dm 0644 selinux/python3-validity.pp.bz2       %{buildroot}%{_datadir}/selinux/packages/python3-validity.pp.bz2
 
-%post
+%post -n python3-%{pkg_name}
+%selinux_modules_install %{_datadir}/selinux/packages/python3-validity.pp.bz2
+/usr/bin/validity-sensors-firmware || true
+udevadm control --reload-rules || true
+udevadm trigger || true
 %systemd_post python3-validity.service
 
-%preun
+%preun -n python3-%{pkg_name}
 %systemd_preun python3-validity.service
 
-%postun
+%postun -n python3-%{pkg_name}
 %systemd_postun_with_restart python3-validity.service
+if [ $1 -eq 0 ]; then
+    %selinux_modules_uninstall %{_datadir}/selinux/packages/python3-validity.pp.bz2
+fi
 
 %files -n python3-%{pkg_name} -f %{pyproject_files}
 %doc README.md
