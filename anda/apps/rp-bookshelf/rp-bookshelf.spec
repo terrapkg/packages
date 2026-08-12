@@ -42,10 +42,13 @@ Requires: libcurl gtk3
 %doc README
 %license debian/copyright
 %{_bindir}/rp-bookshelf
-%{_datadir}/icons/hicolor/16x16/apps/bookshelf.png
-%{_datadir}/icons/hicolor/24x24/apps/bookshelf.png
-%{_datadir}/icons/hicolor/32x32/apps/bookshelf.png
-%{_datadir}/icons/hicolor/48x48/apps/bookshelf.png
+%{_hicolordir}/16x16/apps/bookshelf.png
+%{_hicolordir}/24x24/apps/bookshelf.png
+%{_hicolordir}/32x32/apps/bookshelf.png
+%{_hicolordir}/48x48/apps/bookshelf.png
+%{_hicolordir}/64x64/apps/bookshelf.png
+%{_hicolordir}/96x96/apps/bookshelf.png
+%{_scalableiconsdir}/bookshelf.svg
 %{_datadir}/applications/rp-bookshelf.desktop
 %{_datadir}/rp-bookshelf/*
 
