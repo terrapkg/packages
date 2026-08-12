@@ -18,7 +18,6 @@ BuildRequires: gtk3-devel
 BuildRequires: libcurl-devel
 BuildRequires: intltool
 BuildRequires: gcc
-BuildRequires:  
 
 Requires: libcurl gtk3
 
