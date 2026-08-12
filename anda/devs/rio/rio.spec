@@ -71,6 +71,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 %files devel
 %{_libdir}/librio_backend.so
 %{_libdir}/libsugarloaf.so
+%{_libdir}/liblibrio_wasm.so
 
 %changelog
 * Mon May 5 2025 Gilver E. <rockgrub@disroot.org> - 0.2.13-1
