@@ -49,7 +49,7 @@ jobs:
 
   appstream:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: arc-runner-set
     container:
       image: ghcr.io/terrapkg/appstream-generator:main
     steps:
