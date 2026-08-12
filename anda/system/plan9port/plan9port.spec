@@ -4,7 +4,7 @@
 
 Name:           plan9port
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Plan 9 from User Space
 URL:            https://9fans.github.io/plan9port/
 Source0:        https://github.com/9fans/plan9port/archive/%{commit}/plan9port-%{commit}.tar.gz
@@ -164,7 +164,7 @@ install -Dm755 bin/ed                       %{buildroot}%{_bindir}/9ed
 install -Dm755 bin/factor                   %{buildroot}%{_bindir}/9factor
 install -Dm755 bin/file                     %{buildroot}%{_bindir}/9file
 install -Dm755 bin/fmt                      %{buildroot}%{_bindir}/9fmt
-install -Dm755 bin/fortune                  %{buildroot}%{_bindir}/fortune
+install -Dm755 bin/fortune                  %{buildroot}%{_bindir}/9fortune
 install -Dm755 bin/freq                     %{buildroot}%{_bindir}/freq
 install -Dm755 bin/fsize                    %{buildroot}%{_bindir}/fsize
 install -Dm755 bin/getflags                 %{buildroot}%{_bindir}/getflags
@@ -802,7 +802,7 @@ install -Dm644 lib/*.a                   -t %{buildroot}%{_libdir}/
 %{_bindir}/9factor
 %{_bindir}/9file
 %{_bindir}/9fmt
-%{_bindir}/fortune
+%{_bindir}/9fortune
 %{_bindir}/freq
 %{_bindir}/fsize
 %{_bindir}/getflags
