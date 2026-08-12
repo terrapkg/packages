@@ -2,7 +2,7 @@
 
 Name:           opengamepadui
 Version:        0.46.0
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        Open source gamepad-native game launcher and overlay
 
 License:        GPL-3.0-or-later
@@ -12,6 +12,7 @@ Packager:       Cappy Ishihara <cappy@fyralabs.com>
 Patch0:         disable-manage-all.patch
 Patch1:         gnome.patch
 Patch2:         steam-overlay.patch
+Patch3:         user-controller.patch
 
 BuildRequires:  godot
 BuildRequires:  scons
@@ -64,6 +65,7 @@ gamepad input to mouse and keyboard inputs.
 %patch 0 -p1
 %patch 1 -p1
 %patch 2 -p1
+%patch 3 -p1
 
 %build
 %make_build import
