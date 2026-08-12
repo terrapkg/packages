@@ -69,6 +69,12 @@ just destdir="%{buildroot}" install-prebuilt
 just destdir="%{buildroot}" install-base
 just destdir="%{buildroot}" install-tools
 
+# install-tools ships zsh completions with a .zsh suffix; %%pkg_completion -z
+# expects them extensionless (_aa-log, not _aa-log.zsh).
+for f in %{buildroot}%{_datadir}/zsh/site-functions/_aa-*.zsh; do
+    mv "$f" "${f%.zsh}"
+done
+
 %posttrans
 apparmor_parser --purge-cache || :
 systemctl daemon-reload || :
