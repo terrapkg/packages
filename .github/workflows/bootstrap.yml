@@ -1,4 +1,4 @@
-name: Bootstrap Andaman and Subatomic
+name: Bootstrap Core Terra Packages
 permissions:
   contents: read
   attestations: write
