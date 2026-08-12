@@ -1,6 +1,6 @@
 %global _udevrulesdir /usr/lib/udev/rules.d
 
-%global commit      fe086cda8fc50d15c3aea90c748c8f3346b6e601
+%global commit      9ab503180df2b172812fcc8ae26818af5f6525eb
 %global commitdate  20251121
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
@@ -48,8 +48,11 @@ state, controlling LEDs, and setting the inactive time.
 %{_udevrulesdir}/70-headsets.rules
 
 %changelog
+* Sun Jul 19 2026 Olivia <git@olivia.sh> - 0^20251121.fe086cd-2
+- Update packager
+
 * Wed May 13 2026 Owen Zimmerman <owen@fyralabs.com>
 - Add devel and static subpackages, add patch, fix license
 
-* Wed Nov 26 2025 metcya <metcya@gmail.com>
+* Wed Nov 26 2025 Olivia <git@olivia.sh>
 - package HeadsetControl

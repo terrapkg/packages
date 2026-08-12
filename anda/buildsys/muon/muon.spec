@@ -7,20 +7,18 @@ Summary:        A meson-compatible build system
 License:        GPL-3.0-only AND Apache-2.0 AND Unlicense AND MIT AND Python-2.0
 URL:            https://muon.build/
 Source:         https://git.sr.ht/~lattis/muon/archive/%{version}.tar.gz
-Patch0:         fix-tracy-header-placement-quirk.patch
-# mdbook removed multilingual support, this patch can be removed when this package next bumps
-Patch1:         remove-multilingual-field.patch
+Patch0:         fix-dladdr-feature-macro.patch
 
 BuildRequires:  meson
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  cmake
+BuildRequires:  glibc-devel
 BuildRequires:  libcurl-devel
 BuildRequires:  libarchive-devel
 BuildRequires:  libpkgconf-devel
 BuildRequires:  scdoc
 BuildRequires:  git-core
-BuildRequires:  pkgconfig(tracy)
 BuildRequires:  pkgconfig(libattr)
 BuildRequires:  pkgconfig(bzip2)
 BuildRequires:  pkgconfig(libb2)
@@ -43,7 +41,7 @@ An implementation of the meson build system in c99 with minimal dependencies.
 %autosetup -p1
 
 %conf
-%meson --wrap-mode=nofallback
+%meson --wrap-mode=nofallback -Dtracy=disabled
 
 %build
 %meson_build
@@ -60,5 +58,8 @@ An implementation of the meson build system in c99 with minimal dependencies.
 %{_mandir}/man3/meson-reference.3.*
 
 %changelog
+* Sun Aug 09 2026 Owen Zimmerman <owen@fyralabs.com> - VERSION-RELEASE
+- Update for 0.6.0 by removing the multilingual patch
+
 * Mon Apr 20 2026 Owen Zimmerman <owen@fyralabs.com>
 - Update spec, add tracy patch

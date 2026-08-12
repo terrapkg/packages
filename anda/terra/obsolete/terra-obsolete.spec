@@ -169,6 +169,9 @@ Packager:   Terra Packaging Team <terra@fyralabs.com>
 %obsolete_ticket https://github.com/terrapkg/packages/pull/7503
 %obsolete zig-master-bootstrap 0.16.0~dev.1484+d0ba6642b-3
 
+%obsolete_ticket https://github.com/terrapkg/packages/pull/14943
+%obsolete dkms-mediatek-mt7927 2.13.1-2
+
 %description
 Currently obsoleted packages:
 

@@ -1,6 +1,6 @@
 Name:           wluma
 Version:        4.11.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Automatic brightness adjustment based on screen contents and ALS
 URL:            https://github.com/max-baz/wluma
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
@@ -45,10 +45,13 @@ install -Dm 644 config.toml %{buildroot}%{_datadir}/%{name}/config.toml
 %{_datadir}/%{name}/config.toml
 
 %changelog
+* Sun Jul 19 2026 Olivia <git@olivia.sh> - 4.11.1-2
+- Update packager
+
 * Tue Apr 14 2026 Its-J <jonah@fyralabs.com>
 - Add email to my previous contributor attributions
 
-* Sat Nov 29 2025 metcya <metcya@gmail.com>
+* Sat Nov 29 2025 Olivia <git@olivia.sh>
 - Package systemd service, example config, and udev rules
 
 * Fri Nov 28 2025 Its-J <jonah@fyralabs.com>

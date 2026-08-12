@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 %global goipath github.com/charmbracelet/pop
-Version:        0.3.0
+Version:        0.4.0
 
 %gometa -f
 

@@ -1,16 +1,16 @@
-%global commit b887f6a37a4f6babea66ee7b9a79bc8f520d7554
+%global commit d28ec79eb63324e68d73a7de22bcb5ff0a6f6bf8
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global commitdate 20250816
 
 Name:           inputtino
 Version:        0^%{commitdate}.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        MIT
 URL:            https://github.com/games-on-whales/%{name}
 Source:         %{url}/archive/%{commit}.tar.gz
 Patch0:         fix-pkgconfig-install-location.patch
 Summary:        A virtual input library: supports mouse, keyboard, joypad, trackpad and more 
-Packager:       metcya <metcya@gmail.com>
+Packager:       Olivia <git@olivia.sh>
 
 BuildRequires:  gcc-c++
 BuildRequires:  cmake
@@ -43,6 +43,9 @@ and uhid.
 %{_libdir}/liblib%{name}.so.*
 
 %changelog
-* Mon Jan 05 2026 metcya <metcya@gmail.com> - 0^20250816.504f0ab
+* Sun Jul 19 2026 Olivia <git@olivia.sh> - 0^20250816.d28ec79-2
+- Update packager
+
+* Mon Jan 05 2026 Olivia <git@olivia.sh> - 0^20250816.504f0ab
 - Initial package 
 

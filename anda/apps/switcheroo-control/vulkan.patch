@@ -1,0 +1,481 @@
+From a94a742cc9fe5a907be3ad970646abe1b8e39f80 Mon Sep 17 00:00:00 2001
+From: Jan200101 <sentrycraft123@gmail.com>
+Date: Thu, 9 Jul 2026 19:10:36 +0200
+Subject: [PATCH] Add Vulkan discrete detection
+
+This implementation differs a little from the others, there is no way
+to get a Vulkan device from a DRM handle so instead we make use of
+the VK_EXT_physical_device_drm extension and find which Vulkan device
+matches our major and minor number, any matching devices will then have
+its VkPhysicalDeviceType checked to see if it is discrete or not.
+
+Signed-off-by: Jan200101 <sentrycraft123@gmail.com>
+---
+ .gitlab-ci.yml                         |   1 +
+ data/30-discrete-gpu.rules.in          |   4 +
+ meson.build                            |   1 +
+ meson_options.txt                      |   6 +
+ src/discrete-detection/meson.build     |  11 ++
+ src/discrete-detection/vulkan.c        | 166 +++++++++++++++++++++++++
+ tests/discrete-detection/meson.build   |  47 +++++++
+ tests/discrete-detection/vulkan_mock.c | 147 ++++++++++++++++++++++
+ 8 files changed, 383 insertions(+)
+ create mode 100644 src/discrete-detection/vulkan.c
+ create mode 100644 tests/discrete-detection/vulkan_mock.c
+
+diff --git a/.gitlab-ci.yml b/.gitlab-ci.yml
+index 4d482b6..87571a8 100644
+--- a/.gitlab-ci.yml
++++ b/.gitlab-ci.yml
+@@ -4,6 +4,7 @@ variables:
+   DEPENDENCIES: glib2-devel
+                 libgudev-devel
+                 libdrm-devel
++                vulkan-loader-devel
+                 systemd
+                 gtk-doc
+                 gcc
+diff --git a/data/30-discrete-gpu.rules.in b/data/30-discrete-gpu.rules.in
+index 01eed08..917b95f 100644
+--- a/data/30-discrete-gpu.rules.in
++++ b/data/30-discrete-gpu.rules.in
+@@ -1,5 +1,9 @@
++# driver specific detection
+ DRIVERS=="amdgpu", SUBSYSTEM=="drm", PROGRAM="@libexecdir@/switcheroo-control-check-discrete-amdgpu $env{DEVNAME}", TAG+="switcheroo-discrete-gpu"
+ DRIVERS=="nouveau", SUBSYSTEM=="drm", PROGRAM="@libexecdir@/switcheroo-control-check-discrete-nouveau $env{DEVNAME}", TAG+="switcheroo-discrete-gpu"
+ DRIVERS=="nvidia", SUBSYSTEM=="drm", TAG+="switcheroo-discrete-gpu"
+ DRIVERS=="i915", SUBSYSTEM=="drm", DEVPATH!="/devices/pci0000:00/0000:00:02.0/drm/*", TAG+="switcheroo-discrete-gpu"
+ DRIVERS=="xe", SUBSYSTEM=="drm", PROGRAM="@libexecdir@/switcheroo-control-check-discrete-xe $env{DEVNAME}", TAG+="switcheroo-discrete-gpu"
++
++# generic vulkan detection
++SUBSYSTEM=="drm", PROGRAM="@libexecdir@/switcheroo-control-check-discrete-vulkan $env{DEVNAME}", TAG+="switcheroo-discrete-gpu"
+diff --git a/meson.build b/meson.build
+index b736b9c..75e53c4 100644
+--- a/meson.build
++++ b/meson.build
+@@ -24,6 +24,7 @@ libdrm = dependency('libdrm', version: '>= 2.4.97', required: get_option('libdrm
+ libdrm_nouveau = dependency('libdrm_nouveau', version: '>= 2.4.97', required: get_option('libdrm_nouveau'))
+ libdrm_amdgpu = dependency('libdrm_amdgpu', version: '>= 2.4.97', required: get_option('libdrm_amdgpu'))
+ drm_xe = cc.has_header('drm/xe_drm.h', include_directories: include_directories(libdrm.get_pkgconfig_variable('includedir')), dependencies: [libdrm], required: get_option('drm_xe'))
++vulkan = dependency('vulkan', required: get_option('vulkan'))
+ 
+ systemd_systemunitdir = get_option('systemdsystemunitdir')
+ if systemd_systemunitdir == ''
+diff --git a/meson_options.txt b/meson_options.txt
+index 058dbdd..aff38c0 100644
+--- a/meson_options.txt
++++ b/meson_options.txt
+@@ -51,3 +51,9 @@ option('drm_xe',
+   type: 'feature',
+   value: 'auto'
+ )
++
++option('vulkan',
++  description: 'Whether to use Vulkan to discover ',
++  type: 'feature',
++  value: 'auto'
++)
+diff --git a/src/discrete-detection/meson.build b/src/discrete-detection/meson.build
+index 985c90b..a3ea7a3 100644
+--- a/src/discrete-detection/meson.build
++++ b/src/discrete-detection/meson.build
+@@ -29,3 +29,14 @@ if libdrm.found() and drm_xe
+     install_dir: libexecdir,
+   )
+ endif
++
++if vulkan.found()
++  vulkan_deps = [gio, gudev, vulkan]
++  vulkan_discrete = executable('switcheroo-control-check-discrete-vulkan',
++    files('vulkan.c'),
++    dependencies: vulkan_deps,
++    include_directories: libdrm.get_pkgconfig_variable('includedir'),
++    install: true,
++    install_dir: libexecdir,
++  )
++endif
+diff --git a/src/discrete-detection/vulkan.c b/src/discrete-detection/vulkan.c
+new file mode 100644
+index 0000000..e845f31
+--- /dev/null
++++ b/src/discrete-detection/vulkan.c
+@@ -0,0 +1,166 @@
++#include <fcntl.h>
++#include <stdlib.h>
++#include <locale.h>
++#include <sys/sysmacros.h>
++#include <gio/gio.h>
++#include <gudev/gudev.h>
++#include <glib.h>
++#include <glib/gstdio.h>
++#include <vulkan/vulkan.h>
++
++static void
++destroyInstance (VkInstance instance)
++{
++	vkDestroyInstance(instance, NULL);
++}
++G_DEFINE_AUTO_CLEANUP_FREE_FUNC(VkInstance, destroyInstance, NULL);
++
++static gboolean
++has_drm_extension (VkPhysicalDevice device)
++{
++	g_autofree VkExtensionProperties* available_extensions = NULL;
++	uint32_t extension_count = 0;
++
++	vkEnumerateDeviceExtensionProperties (device, NULL, &extension_count, NULL);
++
++	available_extensions = g_malloc (sizeof(VkLayerProperties) * extension_count);
++
++	vkEnumerateDeviceExtensionProperties (device, NULL, &extension_count, available_extensions);
++
++	for (uint32_t i = 0; i < extension_count; ++i) {
++		if (!strcmp(available_extensions[i].extensionName, "VK_EXT_physical_device_drm"))
++			return TRUE;
++	}
++
++	return FALSE;
++
++}
++
++static int
++check_vulkan_device (int fd)
++{
++	g_auto(VkInstance) instance = NULL;
++	VkApplicationInfo app_info;
++	VkInstanceCreateInfo create_info;
++	g_autofree VkPhysicalDevice *devices = NULL;
++	uint32_t device_count = 0;
++	VkPhysicalDeviceDrmPropertiesEXT drm_properties;
++	VkPhysicalDeviceProperties2 device_properties;
++	int64_t expected_major, expected_minor;
++	struct stat st;
++	gboolean found_device;
++
++	if (fstat(fd, &st) != 0)
++		return 0;
++
++	if (!S_ISCHR(st.st_mode))
++		return 0;
++
++	expected_major = major(st.st_rdev);
++	expected_minor = minor(st.st_rdev);
++
++	printf("major = %lu\n", expected_major);
++	printf("minor = %lu\n", expected_minor);
++
++	memset(&app_info, 0, sizeof(app_info));
++	memset(&create_info, 0, sizeof(create_info));
++
++	app_info.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
++	app_info.applicationVersion = VK_MAKE_VERSION(1, 0, 0);
++	app_info.engineVersion = VK_MAKE_VERSION(1, 0, 0);
++	app_info.apiVersion = VK_API_VERSION_1_1;
++
++	create_info.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
++	create_info.pApplicationInfo = &app_info;
++	create_info.enabledExtensionCount = 0;
++	create_info.enabledLayerCount = 0;
++
++	VkResult result = vkCreateInstance (&create_info, NULL, &instance);
++	if (result != VK_SUCCESS) {
++		g_printerr ("Failed to create a vulkan instance (%i)\n", result);
++		return 0;
++	}
++
++	vkEnumeratePhysicalDevices (instance, &device_count, NULL);
++
++	if (device_count == 0)
++		return 0;
++
++	devices = g_malloc (sizeof(VkPhysicalDevice) * device_count);
++	vkEnumeratePhysicalDevices (instance, &device_count, devices);
++
++	for (uint32_t i = 0; i < device_count; ++i) {
++		found_device = FALSE;
++
++		if (!has_drm_extension (devices[i]))
++			continue;
++
++		printf("has extension\n");
++
++		memset(&drm_properties, 0, sizeof(drm_properties));
++		memset(&device_properties, 0, sizeof(device_properties));
++
++		drm_properties.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DRM_PROPERTIES_EXT;
++		device_properties.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROPERTIES_2;
++		device_properties.pNext = &drm_properties;
++
++		vkGetPhysicalDeviceProperties2 (devices[i], &device_properties);
++
++		if (drm_properties.hasPrimary == VK_TRUE) {
++			printf("primary major = %lu\n", drm_properties.primaryMajor);
++			printf("primary minor = %lu\n", drm_properties.primaryMinor);
++
++			if (drm_properties.primaryMajor == expected_major && drm_properties.primaryMinor == expected_minor)
++				found_device = TRUE;
++		}
++
++		if (!found_device && drm_properties.hasRender == VK_TRUE) {
++			printf("render major = %lu\n", drm_properties.renderMajor);
++			printf("render minor = %lu\n", drm_properties.renderMinor);
++
++			if (drm_properties.renderMajor == expected_major && drm_properties.renderMinor == expected_minor)
++				found_device = TRUE;
++		}
++
++		if (found_device) {
++			if (device_properties.properties.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU)
++				return 1;
++			else
++				return 0;
++		}
++	}
++
++	return 0;
++}
++
++int main (int argc, char **argv)
++{
++	const char *devname;
++	g_autofd int fd = -1;
++	g_autoptr(GOptionContext) option_context = NULL;
++	g_autoptr(GError) error = NULL;
++
++	setlocale (LC_ALL, "");
++	option_context = g_option_context_new ("");
++
++	if (!g_option_context_parse (option_context, &argc, &argv, &error)) {
++		g_printerr ("Failed to parse arguments: %s\n", error->message);
++		return EXIT_FAILURE;
++	}
++
++	if (argc < 2) {
++		g_printerr ("%s\n", g_option_context_get_help (option_context, TRUE, NULL));
++		return EXIT_FAILURE;
++	}
++	devname = argv[1];
++
++	fd = open (devname, O_RDWR);
++	if (fd < 0)
++		return EXIT_FAILURE;
++	printf("Opened device\n");
++
++	if (check_vulkan_device (fd))
++		return EXIT_SUCCESS;
++
++	return EXIT_FAILURE;
++}
+\ No newline at end of file
+diff --git a/tests/discrete-detection/meson.build b/tests/discrete-detection/meson.build
+index 69ad340..e90e522 100644
+--- a/tests/discrete-detection/meson.build
++++ b/tests/discrete-detection/meson.build
+@@ -117,3 +117,50 @@ if drm_xe
+     )
+ 
+ endif
++
++if vulkan.found()
++    vulkan_mock_lib = shared_library(
++        'vulkan_mock',
++        files('vulkan_mock.c')
++    )
++
++    test(
++        'test vulkan detection with invalid device',
++        vulkan_discrete,
++        args: ['NO_GPU'],
++        env: environment({'LD_PRELOAD': vulkan_mock_lib.full_path()}),
++        should_fail: true
++    )
++
++    test(
++        'test vulkan detection with integrated GPU',
++        vulkan_discrete,
++        args: ['IGPU'],
++        env: environment({'LD_PRELOAD': vulkan_mock_lib.full_path()}),
++        should_fail: true
++    )
++
++    test(
++        'test vulkan detection with discrete GPU',
++        vulkan_discrete,
++        args: ['DGPU'],
++        env: environment({'LD_PRELOAD': vulkan_mock_lib.full_path()}),
++        should_fail: false
++    )
++
++    test(
++        'test vulkan detection with virtual GPU',
++        vulkan_discrete,
++        args: ['VGPU'],
++        env: environment({'LD_PRELOAD': vulkan_mock_lib.full_path()}),
++        should_fail: true
++    )
++
++    test(
++        'test vulkan detection with CPU',
++        vulkan_discrete,
++        args: ['CPU'],
++        env: environment({'LD_PRELOAD': vulkan_mock_lib.full_path()}),
++        should_fail: true
++    )
++endif
+diff --git a/tests/discrete-detection/vulkan_mock.c b/tests/discrete-detection/vulkan_mock.c
+new file mode 100644
+index 0000000..78a8b38
+--- /dev/null
++++ b/tests/discrete-detection/vulkan_mock.c
+@@ -0,0 +1,147 @@
++#define _DEFAULT_SOURCE
++
++#include <stdio.h>
++#include <string.h>
++#include <assert.h>
++#include <sys/stat.h>
++#include <sys/types.h>
++#include <vulkan/vulkan.h>
++
++enum {
++	IGPU,
++	DGPU,
++	VGPU,
++	CPU,
++
++	DEVICE_COUNT,
++};
++
++/* Mock open(2) so we can test multiple devices configurations */
++int
++open (const char *pathname,
++	  int         flags)
++{
++	if (!strcmp (pathname, "IGPU"))
++		return IGPU;
++	if (!strcmp (pathname, "DGPU"))
++		return DGPU;
++	if (!strcmp (pathname, "VGPU"))
++		return VGPU;
++	if (!strcmp (pathname, "CPU"))
++		return CPU;
++
++	return -1;
++}
++
++/* open64 may be used for large file support */
++int
++open64 (const char *pathname,
++		int         flags)
++{
++	return open (pathname, flags);
++}
++
++int
++fstat(int          fd,
++	  struct stat *statbuf)
++{
++	statbuf->st_rdev = fd;
++	statbuf->st_mode = S_IFCHR;
++
++	return 0;
++}
++
++VkResult
++vkCreateInstance(const VkInstanceCreateInfo*    pCreateInfo,
++				 const VkAllocationCallbacks*   pAllocator,
++				 VkInstance*                    pInstance)
++{
++	/* vkGetPhysicalDeviceProperties2 is provided by VK 1.1 */
++	assert(pCreateInfo->pApplicationInfo->apiVersion >= VK_API_VERSION_1_1);
++
++	return VK_SUCCESS;
++}
++
++VkResult
++vkEnumeratePhysicalDevices(VkInstance           instance,
++						   uint32_t*            pPhysicalDeviceCount,
++						   VkPhysicalDevice*    pPhysicalDevices)
++{
++	assert(pPhysicalDeviceCount);
++	*pPhysicalDeviceCount = DEVICE_COUNT;
++
++	if (pPhysicalDevices) {
++		for (uint32_t i = IGPU; i < DEVICE_COUNT; ++i) {
++			pPhysicalDevices[i] = (VkPhysicalDevice)i;
++		}
++	}
++
++	return VK_SUCCESS;
++}
++
++VkResult
++vkEnumerateDeviceExtensionProperties(VkPhysicalDevice           physicalDevice,
++									 const char*                pLayerName,
++									 uint32_t*                  pPropertyCount,
++									 VkExtensionProperties*     pProperties)
++{
++	assert(pPropertyCount);
++	*pPropertyCount = 1;
++
++	if (pProperties)
++		strncpy(pProperties[0].extensionName, "VK_EXT_physical_device_drm", VK_MAX_EXTENSION_NAME_SIZE);
++
++	return VK_SUCCESS;
++}
++
++void vkGetPhysicalDeviceProperties2(
++	VkPhysicalDevice                            physicalDevice,
++	VkPhysicalDeviceProperties2*                pProperties)
++{
++	int device_id = (int)physicalDevice;
++	VkPhysicalDeviceDrmPropertiesEXT *drm_properties;
++
++	switch (device_id) {
++		case IGPU:
++			pProperties->properties.deviceType = VK_PHYSICAL_DEVICE_TYPE_INTEGRATED_GPU;
++			break;
++
++		case DGPU:
++			pProperties->properties.deviceType = VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU;
++			break;
++
++		case VGPU:
++			pProperties->properties.deviceType = VK_PHYSICAL_DEVICE_TYPE_VIRTUAL_GPU;
++			break;
++
++		case CPU:
++			pProperties->properties.deviceType = VK_PHYSICAL_DEVICE_TYPE_CPU;
++			break;
++
++		default:
++			assert(0);
++	}
++
++
++	VkBaseOutStructure *node = (VkBaseOutStructure*)pProperties->pNext;
++	while (node != NULL) {
++		switch (node->sType) {
++			case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DRM_PROPERTIES_EXT:
++				drm_properties = (VkPhysicalDeviceDrmPropertiesEXT*)node;
++
++				drm_properties->hasPrimary = VK_TRUE;
++				drm_properties->primaryMajor = 0;
++				drm_properties->primaryMinor = device_id;
++
++				drm_properties->hasRender = VK_TRUE;
++				drm_properties->renderMajor = 0;
++				drm_properties->renderMinor = device_id;
++
++				break;
++
++			default:
++				break;
++		}
++		node = node->pNext;
++	}
++}
+\ No newline at end of file
+-- 
+2.55.0
+

@@ -2,7 +2,7 @@
 
 %global _default_patch_fuzz 2
 %global build_timestamp %(date +"%Y%m%d")
-%global gamescope_commit 9b0214868571b4ae9cae2dab36e22fff4ee33674
+%global gamescope_commit c466c5d5cad88f6d80c3776294bbb8926fea7873
 %define short_commit %(echo %{gamescope_commit} | cut -c1-8)
 
 Name:           terra-gamescope
@@ -148,5 +148,5 @@ export PKG_CONFIG_PATH=pkgconfig
 * Fri Mar 13 2026 Kyle Gospodnetich <me@kylegospodneti.ch>
 - Switch to OGC sources
 
-* Thu Jan 2 2025 Owen-sz <owen@fyralabs.com>
+* Thu Jan 2 2025 Owen Zimmerman <owen@fyralabs.com>
 - Package gamescope, port from Bazzite

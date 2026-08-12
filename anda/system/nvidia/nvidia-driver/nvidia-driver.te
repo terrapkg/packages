@@ -1,0 +1,9 @@
+policy_module(nvidia-driver, 1.0)
+
+gen_require(`
+  type systemd_sleep_t;
+  type tmp_t;
+')
+
+fs_rw_tmpfs_files(systemd_sleep_t)
+allow systemd_sleep_t tmp_t:file { open write };

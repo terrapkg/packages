@@ -2,27 +2,30 @@
 
 %global ver 5.0.0
 
-%global commit          a5727de5bb3914d49c7ef85f424b7c8a48f4682f
+%global commit          451c391cb0cdf3303f4f74473c4129c22dcd0e46
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
-%global commitdate      20260707
+%global commitdate      20260812
 
 Name:   	noctalia-git
 Version:	%{ver}^%{commitdate}git.%{shortcommit}
 Release:	1%{?dist}
-Summary:	A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with no Qt or GTK dependency
+Summary:	A sleek, customizable desktop shell crafted for Wayland
 
 License:	MIT
 URL:		https://github.com/noctalia-dev/noctalia
 Source0:	https://github.com/noctalia-dev/noctalia/archive/%{commit}/noctalia-%{commit}.tar.gz
 
 BuildRequires:  meson
+BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  git
 BuildRequires:  desktop-file-utils
 BuildRequires:  pipewire-devel
 BuildRequires:  sdbus-cpp-devel
 BuildRequires:  tomlplusplus-devel
+BuildRequires:  json-devel
 BuildRequires:  md4c-devel
+BuildRequires:  stb-devel
 BuildRequires:  wireplumber-devel
 BuildRequires:  pkgconfig(cairo)
 BuildRequires:  pkgconfig(egl)
@@ -42,6 +45,11 @@ BuildRequires:  pkgconfig(polkit-gobject-1)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(wayland-protocols)
 BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:  pkgconfig(libsecret-1)
+BuildRequires:  pkgconfig(libsodium)
+BuildRequires:  pkgconfig(libjxl)
+BuildRequires:  pkgconfig(libical)
+BuildRequires:  pkgconfig(sndfile)
 
 Provides:       desktop-notification-daemon
 Provides:       PolicyKit-authentication-agent
@@ -50,6 +58,8 @@ Requires:       hicolor-icon-theme
 Requires:       dejavu-sans-fonts
 Requires:       libwebp
 
+Conflicts:      noctalia
+
 Recommends:     ddcutil
 Recommends:     gpu-screen-recorder
 Recommends:     power-profiles-daemon
@@ -57,7 +67,7 @@ Recommends:     power-profiles-daemon
 Packager:       Cypress Reed <cypress@fyralabs.com>
 
 %description
-A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with no Qt or GTK dependency.
+%{Summary}.
 
 %prep
 %autosetup -n noctalia-%{commit}
@@ -65,12 +75,8 @@ A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with 
 # Manually insert commit hash
 sed -i "s/'unknown'/'%{shortcommit}'/g" meson.build
 
-# Remove bundled libs that we have system copies of
-rm -r third_party/tomlplusplus
-rm -r third_party/md4c
-
 %conf
-%meson -Dsystem_tomlplusplus=true -Dsystem_md4c=true
+%meson
 
 %build
 %meson_build
@@ -99,6 +105,15 @@ done
 %{_scalableiconsdir}/noctalia.svg
 
 %changelog
+* Mon Aug 03 2026 Cypress Reed <cypress@fyralabs.com>
+- Update description and summary per developer's request
+
+* Thu Jul 16 2026 Cypress Reed <cypress@fyralabs.com>
+- Add conflicts with noctalia
+
+* Thu Jul 09 2026 Cypress Reed <cypress@fyralabs.com>
+- Noctalia requires system libraries now, so remove the meson options
+
 * Wed Jul 01 2026 Cypress Reed <cypress@fyralabs.com>
 - Add md4c as a system library
 - Add wireplumber build requirement

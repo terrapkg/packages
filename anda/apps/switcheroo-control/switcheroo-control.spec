@@ -1,15 +1,16 @@
 Name:           switcheroo-control
 Version:        3.0
-Release:        1%?dist
+Release:        2%?dist
 Summary:        D-Bus service to check the availability of dual-GPU
+Packager:       Jan200101 <sentrycraft123@gmail.com>
 
-License:        GPLv3
+License:        GPL-3.0-only
 URL:            https://gitlab.freedesktop.org/hadess/switcheroo-control/
 # URL from https://gitlab.freedesktop.org/hadess/switcheroo-control/-/releases
-Source0:        https://gitlab.freedesktop.org/hadess/switcheroo-control/uploads/86ea54ac7ddb901b6bf6e915209151f8/switcheroo-control-2.6.tar.xz
-# Adds proper discrete GPU detection to switcheroo-control
-# https://gitlab.freedesktop.org/hadess/switcheroo-control/-/merge_requests/69
-Patch:					discrete.patch
+Source0:        https://gitlab.freedesktop.org/hadess/%{name}/-/releases/%{version}/downloads/%{name}-%{version}.tar.xz
+# Adds discrete GPU detection via Vulkan
+# https://gitlab.freedesktop.org/hadess/switcheroo-control/-/merge_requests/76
+Patch:					vulkan.patch
 
 
 BuildRequires:  gcc
@@ -22,6 +23,7 @@ BuildRequires:  libdrm-devel
 BuildRequires:  kernel-headers
 BuildRequires:  python3-dbusmock
 BuildRequires:  umockdev
+BuildRequires:  pkgconfig(vulkan)
 
 %{?systemd_requires}
 
@@ -39,14 +41,17 @@ This package contains the documentation for %{name}.
 %prep
 %autosetup -p1
 
+%conf
+%meson -Dgtk_doc=true -Dtests=true
 
 %build
-%meson -Dgtk_doc=true
 %meson_build
-
 
 %install
 %meson_install
+
+%check
+%meson_test
 
 %post
 if [ $1 -eq 2 ] && [ -x /usr/bin/systemctl ] ; then
@@ -69,12 +74,13 @@ fi
 %{_datadir}/dbus-1/system.d/net.hadess.SwitcherooControl.conf
 %{_unitdir}/switcheroo-control.service
 %{_libexecdir}/switcheroo-control
+%{_libexecdir}/switcheroo-control-check-discrete-amdgpu
+%{_libexecdir}/switcheroo-control-check-discrete-nouveau
+%{_libexecdir}/switcheroo-control-check-discrete-xe
+%{_libexecdir}/switcheroo-control-check-discrete-vulkan
 %{_udevhwdbdir}/30-pci-intel-gpu.hwdb
+%{_udevrulesdir}/30-discrete-gpu.rules	
 %{_mandir}/man1/switcherooctl.1*
-%{_libexecdir}/check-discrete-amdgpu
-%{_libexecdir}/check-discrete-nouveau
-%{_libexecdir}/check-discrete-xe
-%{_udevrulesdir}/30-discrete-gpu.rules
 
 %files docs
 %dir %{_datadir}/gtk-doc/
@@ -82,8 +88,14 @@ fi
 %{_datadir}/gtk-doc/html/%{name}/
 
 %changelog
-* Tue Apr 29 2025 Jan200101 <sentrycraft123@gmail.com> - 2.6-9
-- Update discrete patch
+* Thu Jul 09 2026 Jan200101 <sentrycraft123@gmail.com> - 3.0-2
+- Add vulkan discrete patch
+
+* Sat Aug 30 2025 Jan200101 <sentrycraft123@gmail.com> - 3.0-1
+- Update to 3.0
+
+* Fri Jul 25 2025 Fedora Release Engineering <releng@fedoraproject.org> - 2.6-9
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_43_Mass_Rebuild
 
 * Sun Jan 19 2025 Fedora Release Engineering <releng@fedoraproject.org> - 2.6-8
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_42_Mass_Rebuild

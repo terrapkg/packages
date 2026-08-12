@@ -1,8 +1,8 @@
 %global _desc Automatic CPU speed & power optimizer for Linux.
 
 Name:			python-auto-cpufreq
-Version:		3.0.0
-Release:		3%?dist
+Version:		3.1.0
+Release:		1%{?dist}
 Summary:		Automatic CPU speed & power optimizer for Linux
 License:		LGPL-3.0-or-later
 URL:			https://foolcontrol.org/?p=4603

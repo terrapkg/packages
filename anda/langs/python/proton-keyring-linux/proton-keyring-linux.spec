@@ -1,7 +1,7 @@
 %global _desc Python3 Proton linux keyring base implementation.
 
 Name:			python-proton-keyring-linux
-Version:		0.2.2
+Version:		0.2.3
 Release:		1%{?dist}
 Summary:		Python3 Proton linux keyring base implementation
 License:		GPL-3.0-or-later

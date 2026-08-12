@@ -1,6 +1,6 @@
-%global commit 5023a846980685812334586ae265f8f6a1ded38b
+%global commit 2c521cbe01a3fb092ef3ddf61b111a600ef9f673
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260523
+%global commit_date 20260709
 
 Name:           falcond-profiles
 Version:        0^%{commit_date}git.%{shortcommit}

@@ -1,6 +1,6 @@
-%global commit 20f5014842402feb7696e4e5b8b3e255cf185206
+%global commit 4190da026a2fb15123a6a6577ed41e3bb721fc21
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260707
+%global commitdate 20260812
 %global debug_package %{nil}
 
 Name:           libtrueforce
@@ -42,9 +42,9 @@ developing applications that use %{name}.
 
 %prep
 %autosetup -c -n %{name}-%{commit}
-mv ./logitech-rs50-linux-driver-%{commit}/userspace/%{name}/* .
-mv ./logitech-rs50-linux-driver-%{commit}/docs/TRUEFORCE_PROTOCOL.md .
-rm -rf ./logitech-rs50-linux-driver-%{commit}
+mv ./logitech-trueforce-linux-driver-%{commit}/userspace/%{name}/* .
+mv ./logitech-trueforce-linux-driver-%{commit}/docs/TRUEFORCE_PROTOCOL.md .
+rm -rf ./logitech-trueforce-linux-driver-%{commit}
 
 %build
 %make_build PREFIX=%{_prefix} LIBDIR=%{_libdir} CFLAGS="%{build_cflags}"
@@ -55,6 +55,7 @@ install -D -m644 %{name}.a %{buildroot}%{_libdir}/
 
 %files
 %doc README.md TRUEFORCE_PROTOCOL.md
+%license COPYING
 %{_libdir}/*.so.*
 
 %files devel

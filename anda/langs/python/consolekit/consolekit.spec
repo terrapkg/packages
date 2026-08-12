@@ -2,8 +2,8 @@
 %global _desc Additional utilities for click.
 
 Name:			python-%{pypi_name}
-Version:		1.13.0
-Release:		2%?dist
+Version:		2.0.0
+Release:		1%{?dist}
 Summary:		Additional utilities for click
 License:		MIT
 URL:			https://consolekit.readthedocs.io/en/latest/

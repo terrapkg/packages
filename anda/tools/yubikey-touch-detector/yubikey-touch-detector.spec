@@ -4,14 +4,14 @@ Version:        1.13.0
 %gometa
 
 Name:           yubikey-touch-detector
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A tool to detect when your YubiKey is waiting for a touch
 
 License:        ISC
 URL:            https://github.com/max-baz/yubikey-touch-detector
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 
-Packager:       metcya <metcya@gmail.com>
+Packager:       Olivia <git@olivia.sh>
 
 BuildRequires:  go-rpm-macros
 BuildRequires:  scdoc
@@ -62,5 +62,8 @@ install -Dm 644 service.conf.example %{buildroot}%{_sysconfdir}/%{name}/service.
 %{_sysconfdir}/%{name}/service.conf
 
 %changelog
-* Wed Mar 18 2026 metcya <metcya@gmail.com>
+* Sun Jul 19 2026 Olivia <git@olivia.sh> - 1.13.0-2
+- Update packager
+
+* Wed Mar 18 2026 Olivia <git@olivia.sh>
 - Initial package
