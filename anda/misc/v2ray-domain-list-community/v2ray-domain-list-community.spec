@@ -1,6 +1,6 @@
-%global commit  90b6bb94709c014918d83a4eb63f3593b7d00eb8
+%global commit  be33634fee958b9bafd8dfeba54f47a0626f7fa6
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global ver 20260811100354
+%global ver 20260812055957
 %global commit_date 20260812
 
 Name:           v2ray-domain-list-community
