@@ -60,8 +60,12 @@ jobs:
           export PATH=$PATH:/github/home/.cargo/bin
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           anda build -D "vendor Terra" -rrpmbuild anda/terra/mock-configs/pkg
+
       - name: Install terra-mock-configs
         run: dnf5 install -y anda-build/rpm/rpms/terra-mock-configs*.rpm
+
+      - name: Build terra-gpg-keys
+        run: anda build -D "vendor Terra" -rrpmbuild anda/terra/gpg-keys/pkg
 
       - name: Build terra-release
         run: anda build -D "vendor Terra" -rrpmbuild anda/terra/release/pkg
