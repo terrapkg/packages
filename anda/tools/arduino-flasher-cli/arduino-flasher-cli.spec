@@ -16,7 +16,7 @@ License:        GPL-3.0-only
 URL:            %{gourl}
 Source0:        %{gosource}
 Source1:        https://raw.githubusercontent.com/arduino/arduino-flasher-cli/refs/heads/main/README.md
-BuildRequires:  anda-srpm-macros qdl
+BuildRequires:  qdl
 ExclusiveArch:  x86_64
 
 %description %{common_description}
@@ -30,11 +30,11 @@ ExclusiveArch:  x86_64
 mkdir -p updater/artifacts/resources_linux_amd64
 cp %{_bindir}/qdl updater/artifacts/resources_linux_amd64/qdl
 %define gomodulesmode GO111MODULE=on
-%gobuild -o %{gobuilddir}/bin/arduino-cli %{goipath}
+%gobuild -o %{gobuilddir}/cmd/arduino-flasher-cli %{goipath}/cmd/arduino-flasher-cli
 
 %install
 cp %{S:1} README.md
-install -Dm755 %{gobuilddir}/bin/arduino-cli -t %buildroot%{_bindir}
+install -Dm755 %{gobuilddir}/cmd/arduino-flasher-cli/arduino-flasher-cli -t %buildroot%{_bindir}
 
 %files
 %license LICENSE
