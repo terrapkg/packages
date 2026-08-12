@@ -45,8 +45,10 @@ Provides:       swayosd
 %prep
 %autosetup -n SwayOSD-%{version}
 
-%build
+%conf
 %meson
+
+%build
 %meson_build
 
 %install
