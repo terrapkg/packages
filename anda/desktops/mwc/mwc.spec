@@ -11,6 +11,7 @@ Summary:        Tiling Wayland compositor based on wlroots and scenefx
 License:        MIT
 URL:            https://github.com/dqrk0jeste/mwc
 Source0:        %{url}/archive/%{commit}.tar.gz
+Patch0:         fix-scenefx-pkgconfig-ver.patch
 
 BuildRequires:  meson
 BuildRequires:  gcc
@@ -31,7 +32,7 @@ Requires:       xdg-desktop-portal-wlr
 
 Recommends:     waybar kitty rofi-wayland
 
-Packager:       sadlerm <lerm@chromebooks.lol>
+Packager:       sadlerm <lerm@chromebooks.lol>, Owen Zimmerman <owen@fyralabs.com>
 
 Provides:       owl = %{version}-%{release}
 Obsoletes:      owl < 0^20250124.9999999
@@ -40,7 +41,7 @@ Obsoletes:      owl < 0^20250124.9999999
 %{summary}.
 
 %prep
-%autosetup -n %{name}-%{commit}
+%autosetup -n %{name}-%{commit} -p1
 
 %conf
 %meson
@@ -62,10 +63,13 @@ install -Dm644 examples/example.conf %{buildroot}%{_datadir}/%{name}/example.con
 %{_datadir}/wayland-sessions/%{name}.desktop
 %{_datadir}/xdg-desktop-portal/%{name}-portals.conf
 
-
 %changelog
+* Wed Aug 12 2026 Owen Zimmerman <owen@fyralabs.com>
+- Fix build
+
 * Thu Feb 27 2025 sadlerm <lerm@chromebooks.lol>
 - New upstream name
 - Package is now built with meson
+
 * Fri Jan 31 2025 sadlerm <lerm@chromebooks.lol>
 - Initial package

@@ -1,0 +1,13 @@
+diff --git a/meson.build b/meson.build
+index 0c96e61..893573a 100644
+--- a/meson.build
++++ b/meson.build
+@@ -66,7 +66,7 @@ inc = [
+ 
+ deps = [
+   dependency('wayland-server'),
+-  dependency('scenefx-0.2', version: '>=0.2.0', fallback: 'scenefx'),
++  dependency('scenefx-0.5', version: '>=0.5.0', fallback: 'scenefx'),
+   dependency('wlroots-0.18', version: ['>=0.18.0', '<0.19.0'], fallback: 'wlroots'),
+   dependency('xkbcommon'),
+   dependency('libinput'),
