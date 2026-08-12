@@ -23,7 +23,7 @@ on:
 
 jobs:
   manifest:
-    runs-on: ubuntu-24.04-arm
+    runs-on: arc-runner-set
     outputs:
       build_matrix: ${{ steps.generate_build_matrix.outputs.build_matrix }}
     container:
@@ -49,7 +49,7 @@ jobs:
 
   appstream:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: arc-runner-set
     container:
       image: ghcr.io/terrapkg/appstream-generator:main
     steps:
