@@ -26,8 +26,10 @@ Requires: libcurl gtk3
 %prep
 %autosetup -n bookshelf-%commit
 
-%build
+%conf
 %meson
+
+%build
 %meson_build
 
 %install
