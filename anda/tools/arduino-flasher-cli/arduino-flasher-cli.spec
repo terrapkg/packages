@@ -32,7 +32,7 @@ BuildRequires:  qdl
 
 %build
 mkdir -p internal/updater/artifacts/resources_linux_%{arch}
-%{__ln_s} -f /usr/bin/qdl internal/updater/artifacts/resources_linux_%{arch}/qdl
+cp %{_bindir}/qdl internal/updater/artifacts/resources_linux_%{arch}/qdl
 %define gomodulesmode GO111MODULE=on
 %gobuild -o %{gobuilddir}/cmd/arduino-flasher-cli %{goipath}/cmd/arduino-flasher-cli
 
