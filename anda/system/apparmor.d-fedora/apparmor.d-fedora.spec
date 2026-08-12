@@ -52,6 +52,8 @@ Built in ENFORCE mode: violations are actively blocked. Make sure
 you have already validated this profile set in complain mode.
 %endif
 
+%pkg_completion -Bz aa-log aa-mode
+
 %prep
 %autosetup -n apparmor.d-fedora-%{upstream_version}-%{tag_release}
 
@@ -86,11 +88,6 @@ fi
 %config /etc/apparmor.d/
 %{_bindir}/aa-log
 %{_bindir}/aa-mode
-
-%dir %{_datadir}/zsh
-%dir %{_datadir}/zsh/site-functions
-%{_datadir}/zsh/site-functions/_aa-*.zsh
-%{_datadir}/bash-completion/completions/aa-*
 %doc %{_mandir}/man1/aa-*.1.gz
 %doc %{_mandir}/man8/aa-*.8.gz
 
