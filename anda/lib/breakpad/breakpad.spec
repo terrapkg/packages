@@ -14,7 +14,7 @@ BuildRequires:      pkgconfig(gtest)
 BuildRequires:      pkgconfig(zlib)
 BuildRequires:      anda-srpm-macros
 
-Packager:           Willow Reed <terra@willowidk.dev>
+Packager:           Cypress Reed <cypress@fyralabs.com>
 
 %description
 A set of client and server components which implement a crash-reporting system.
@@ -61,5 +61,8 @@ rm -rf %{buildroot}%{_docdir}/breakpad-0.1
 %{_libexecdir}/core_handler
 
 %changelog
-* Fri Jan 02 2026 Willow Reed <terra@willowidk.dev>
+* Thu Jun 04 2026 Cypress Reed <cypress@fyralabs.com>
+- Update email and name (was Willow Reed or Willow C Reed) (I'm official now!)
+
+* Fri Jan 02 2026 Cypress Reed <cypress@fyralabs.com>
 - Initial commit

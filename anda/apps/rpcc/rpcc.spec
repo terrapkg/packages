@@ -1,5 +1,5 @@
-%global commit 7b4843db7b7774110077760973e8050b4e632f86
-%global commit_date 20260331
+%global commit 3ef37947b87e4f99d5ecaaca14354435fc91c80a
+%global commit_date 20260808
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           rpcc
@@ -17,6 +17,7 @@ BuildRequires:  gtk3-devel
 BuildRequires:  libxml2-devel
 BuildRequires:  intltool
 BuildRequires:  gcc
+BuildRequires:  pkgconfig(wayland-protocols)
 
 Requires:       libxml2
 Requires:       gtk3

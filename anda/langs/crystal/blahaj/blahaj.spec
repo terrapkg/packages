@@ -5,7 +5,7 @@ Summary:        Gay sharks at your local terminal - lolcat-like CLI tool
 License:        BSD-2-Clause
 URL:            https://blahaj.geopjr.dev/
 Source0:        https://codeberg.org/GeopJr/BLAHAJ/archive/v%{version}.tar.gz
-BuildRequires:  crystal shards make gcc libyaml-devel pcre-devel libgc-devel libevent-devel bash
+BuildRequires:  crystal shards make gcc libyaml-devel pcre2-devel libgc-devel libevent-devel bash
 ExclusiveArch:  x86_64
 
 %description

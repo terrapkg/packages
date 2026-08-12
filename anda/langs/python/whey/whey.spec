@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.1.1
-Release:		1%?dist
+Release:		2%?dist
 Summary:		A simple Python wheel builder for simple projects
 License:		MIT
 URL:			https://github.com/deepin-community/python-whey

@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.8.11
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Python API for TIDAL music streaming service
 License:		LGPL-3.0-or-later
 URL:			https://github.com/matrix-org/synapse-s3-storage-provider

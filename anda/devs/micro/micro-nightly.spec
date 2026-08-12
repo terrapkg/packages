@@ -12,13 +12,13 @@
 
 # Naming variable as something other than "commit" is necessary
 # to stop %%gometa from putting commit hash in release
-%global commit_hash 5dabe17e33a5b6b5ed5d4e06b37ae884122a64df
-%global commit_date 20260405
+%global commit_hash 1c8b82b32e408a5faf340039ed92d5266bea3293
+%global commit_date 20260810
 %global shortcommit %{sub %{commit_hash} 1 7}
 %global ver 2.0.15
 
-# https://github.com/zyedidia/micro
-%global goipath         github.com/zyedidia/micro
+# https://github.com/micro-editor/micro
+%global goipath         github.com/micro-editor/micro
 Version:                %{ver}^%{commit_date}git.%{shortcommit}
 
 %gometa -f
@@ -34,7 +34,7 @@ micro is a terminal-based text editor that aims to be easy to use and intuitive,
                         runtime/help/tutorial.md
 
 Name:           micro.nightly
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A modern and intuitive terminal-based text editor
 
 License:        MIT

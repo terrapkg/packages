@@ -1,10 +1,10 @@
-%global commit 0fee3911afdaabbdcf4e8214e3472198a1c0c9db
-%global commit_date 20260304
+%global commit 697168fa320f7d0cabeb5edcf9778fff48e32be2
+%global commit_date 20260519
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           rpinters
 Version:        0~%commit_date.git~%shortcommit
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Raspberry Pi printing utility module
 License:        GPL-2+ AND BSD-3-Clause
 URL:            https://github.com/raspberrypi-ui/rpinters

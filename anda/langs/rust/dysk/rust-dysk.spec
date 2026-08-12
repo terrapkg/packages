@@ -4,13 +4,13 @@
 %global crate dysk
 
 Name:           rust-dysk
-Version:        3.6.0
-Release:        1%?dist
+Version:        3.6.1
+Release:        1%{?dist}
 Summary:        Give information on mounted filesystems
 
 License:        MIT
 URL:            https://crates.io/crates/dysk
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 Packager:       madonuko <mado@fyralabs.com>
 
 BuildRequires:  cargo-rpm-macros >= 24

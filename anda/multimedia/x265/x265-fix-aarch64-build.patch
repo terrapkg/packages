@@ -1,0 +1,11 @@
+diff -Naur x265_4.2.old/source/common/aarch64/asm-primitives.cpp x265_4.2/source/common/aarch64/asm-primitives.cpp
+--- x265_4.2.old/source/common/aarch64/asm-primitives.cpp	2026-05-22 09:31:41.396956906 +0200
++++ x265_4.2/source/common/aarch64/asm-primitives.cpp	2026-05-22 09:31:41.512336554 +0200
+@@ -31,6 +31,7 @@
+ 
+ extern "C" {
+ #include "fun-decls.h"
++#include "../arm/ipfilter8.h"
+ }
+ 
+ #define ALL_LUMA_TU_TYPED(prim, fncdef, fname, cpu) \

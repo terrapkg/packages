@@ -1,6 +1,6 @@
 %global tarball_version %%(echo %{version} | tr '~' '.')
 %global major_version 50
-%global minor_version 0
+%global minor_version 2
 
 %if 0%{?rhel}
 %global portal_helper 0
@@ -10,7 +10,7 @@
 
 Name:           gnome-shell
 Version:        %{major_version}.%{minor_version}
-Release:        1%{?dist}.switcheroo
+Release:        2%{?dist}.switcheroo
 Summary:        Window management and application launching for GNOME
 
 Provides:       gnome-shell.switcheroo = %version-%release

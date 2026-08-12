@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.8.0
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Detect OS Dark Mode from Python
 License:		BSD-3-Clause
 URL:			https://github.com/albertosottile/darkdetect

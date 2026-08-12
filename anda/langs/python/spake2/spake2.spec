@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.9
-Release:		1%?dist
+Release:		2%?dist
 Summary:		pure-python implementation of the SPAKE2 Password-Authenticated Key Exchange algorithm
 License:		MIT
 URL:			https://github.com/warner/python-spake2

@@ -5,7 +5,7 @@
 
 Name:			python-%{pypi_name}
 Version:		27.1.0
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Python bindings for zeromq
 License:		MIT
 URL:			https://github.com/zeromq/pyzmq

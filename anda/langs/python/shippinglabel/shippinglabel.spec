@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		2.3.0
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Utilities for handling packages
 License:		MIT
 URL:			https://shippinglabel.readthedocs.io/en/latest/

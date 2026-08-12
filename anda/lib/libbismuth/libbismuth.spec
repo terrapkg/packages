@@ -33,13 +33,13 @@ for writing applications with libbismuth.
 %prep
 %autosetup -n libbismuth-%{version}
 
-%build
+%conf
 %meson
+
+%build
 %meson_build
 
 %install
-# Install licenses
-mkdir -p licenses
 %meson_install
 
 rm -rf %{buildroot}%{_bindir}/blueprint-compiler

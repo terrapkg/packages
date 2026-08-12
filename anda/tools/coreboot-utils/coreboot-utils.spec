@@ -1,8 +1,6 @@
-%define debug_package %nil
-
 Name:           coreboot-utils
-Version:        26.03
-Release:        1%{?dist}
+Version:        26.06
+Release:        3%{?dist}
 Summary:        Various coreboot utilities
 URL:            https://doc.coreboot.org
 License:        BSD-3-Clause AND Apache-2.0 AND CC-BY-SA-3.0 AND GPL-2.0-only AND GPL-3.0-or-later AND ISC AND BSD-2-Clause-Patent AND BSD-4-Clause-UC AND CC-PDDC AND GPL-2.0-or-later AND HPND-sell-varient AND LGPL-2.1-or-later AND BSD-2-Clause AND CC-BY-4.0 AND GPL-3.0-only AND HPND AND X11 AND MIT
@@ -32,6 +30,7 @@ BuildRequires:  glibc-devel
 BuildRequires:  ncurses-devel
 BuildRequires:  libfl-devel
 BuildRequires:  pciutils-devel
+BuildRequires:  zlib-ng-devel
 BuildRequires:  libxcrypt-devel
 BuildRequires:  yaml-cpp-devel
 BuildRequires:  openssl-devel
@@ -45,10 +44,6 @@ BuildRequires:  acpica-tools
 BuildRequires:  binutils
 BuildRequires:  python3
 
-%if 0%{?fedora} >= 42
-BuildRequires:  gcc14 gcc14-c++
-%endif
-
 %description
 %summary.
 
@@ -59,7 +54,7 @@ Requires:       %{name}-abuild
 Requires:       %{name}-amdfwtool
 Requires:       %{name}-amdtools
 Requires:       %{name}-apcb
-%dnl Requires:       %{name}-archive
+Requires:       %{name}-archive
 Requires:       %{name}-autoport
 Requires:       %{name}-bincfg
 Requires:       %{name}-board_status
@@ -129,6 +124,12 @@ Obsoletes:      abuild <= 25.06
 %description    abuild
 %summary.
 
+%package        acpi
+Summary:        Walk through all ACPI tables with their addresses
+Requires:       coreboot-utils = %{evr}
+%description    acpi
+%summary.
+
 %package        amdfwtool
 Summary:        Create AMD Firmware combination
 Requires:       coreboot-utils = %{evr}
@@ -156,11 +157,11 @@ and GPIO selection pins.
 apcb_edit - This tool allows patching an existing APCB binary with specific SPDs and GPIO selection pins.
 apcb_v3_edit - This tool allows patching an existing APCB v3 binary with up to  16 specific SPDs.
 
-%dnl %package archive - ### Currently bugged and does not compile ###
-%dnl Requires:       coreboot-utils = %{evr}
-%dnl Summary:        Concatenate files and create an archive
-%dnl %description    archive
-%dnl %summary.
+%package        archive
+Requires:       coreboot-utils = %{evr}
+Summary:        Concatenate files and create an archive
+%description    archive
+%summary.
 
 %package        autoport
 Summary:        Porting coreboot using autoport
@@ -198,9 +199,18 @@ Requires:       coreboot-utils = %{evr}
 %summary.
 %endif
 
+%package        cavium
+Summary:        Devicetree_convert Tool to convert a DTB to a static C file
+Requires:       coreboot-utils = %{evr}
+Provides:       %{name}-devicetree_convert
+Provides:       %{name}-devicetree-convert
+%description    cavium
+%summary.
+
 %package        cbfstool
 Summary:        Management utility for CBFS formatted ROM images
 Requires:       coreboot-utils = %{evr}
+Requires:       python3-pytest
 Conflicts:      cbfstool <= 25.06
 Obsoletes:      cbfstool <= 25.06
 %description    cbfstool
@@ -501,20 +511,19 @@ Requires:       coreboot-utils = %{evr}
 
 %conf
 %ifarch x86_64
-pushd msrtool
+pushd util/msrtool
 %configure
 popd
 %endif
 
-%build
-%if 0%{?fedora} >= 42
-export CC=gcc-14
-export CXX=g++-14
-%endif
+pushd util/coreboot-configurator
+%meson
+popd
 
+%build
 pushd util
 %make_build -C amdfwtool LDFLAGS="-fPIE -lcrypto"
-%dnl %make_build -C archive # bugged upstream, does not build
+%make_build -C archive CFLAGS="-O2 -Wall -Wextra -Wshadow -Werror -Wno-nonnull"
 %make_build -C bincfg
 %ifarch x86_64
 %make_build -C bucts LDFLAGS="-fPIE"
@@ -524,7 +533,7 @@ pushd util
 %ifarch x86_64
 %make_build -C ectool LDFLAGS="-fPIE"
 %endif
-%make_build -C futility
+%make_build -C futility CFLAGS="$CFLAGS -DEC_EFS=0"
 %make_build -C hda-decoder
 %make_build -C ifdtool
 %ifarch x86_64
@@ -534,7 +543,7 @@ pushd util
 %make_build -C intelp2m
 %endif
 %ifarch x86_64
-%make_build -C inteltool
+%make_build -C inteltool CFLAGS="-O2 -fkeep-inline-functions"
 %endif
 %ifarch x86_64
 %make_build -C intelvbttool
@@ -568,13 +577,14 @@ export GOFLAGS="-buildmode=pie -trimpath -ldflags=-linkmode=external -mod=readon
 popd
 
 pushd coreboot-configurator
-%meson
 %meson_build
 popd
 popd
 
 %install
-install -Dm 777 util/abuild/abuild %{buildroot}%{_bindir}/abuild
+install -Dm 755 util/abuild/abuild %{buildroot}%{_bindir}/abuild
+
+install -Dm 755 util/acpi/acpidump-all %{buildroot}%{_bindir}/acpidump-all
 
 install -Dm 755 util/amdfwtool/amdfwtool %{buildroot}%{_bindir}/amdfwtool
 install -Dm 755 util/amdfwtool/amdfwread %{buildroot}%{_bindir}/amdfwread
@@ -589,7 +599,7 @@ install -Dm 755 util/apcb/apcb_edit.py %{buildroot}%{_bindir}/apcb_edit.py
 install -Dm 755 util/apcb/apcb_v3a_edit.py %{buildroot}%{_bindir}/apcb_v3a_edit.py
 install -Dm 755 util/apcb/apcb_v3_edit.py %{buildroot}%{_bindir}/apcb_v3_edit.py
 
-%dnl install -Dm 777 util/archive/archive %{buildroot}%{_bindir}/archive
+install -Dm 755 util/archive/archive %{buildroot}%{_bindir}/archive
 
 install -Dm 755 %{_builddir}/autoport %{buildroot}%{_bindir}/autoport
 
@@ -603,7 +613,18 @@ install -Dm 755 util/board_status/set_up_live_image.sh %{buildroot}%{_bindir}/se
 install -Dm 755 util/bucts/bucts %{buildroot}%{_bindir}/bucts
 %endif
 
+install -Dm 755 util/cavium/devicetree_convert.py %{buildroot}%{_bindir}/devicetree_convert
+
 install -Dm 755 util/cbfstool/cbfstool %{buildroot}%{_bindir}/cbfstool
+install -Dm 755 util/cbfstool/cbfs-compression-tool %{buildroot}%{_bindir}/cbfs-compression-tool
+install -Dm 755 util/cbfstool/cse_fpt %{buildroot}%{_bindir}/cse_fpt
+install -Dm 755 util/cbfstool/cse_serger %{buildroot}%{_bindir}/cse_serger
+install -Dm 755 util/cbfstool/elogtool %{buildroot}%{_bindir}/elogtool
+install -Dm 755 util/cbfstool/fmaptool %{buildroot}%{_bindir}/fmaptool
+install -Dm 755 util/cbfstool/ifittool %{buildroot}%{_bindir}/ifittool
+install -Dm 755 util/cbfstool/ifwitool %{buildroot}%{_bindir}/ifwitool
+install -Dm 755 util/cbfstool/rmodtool %{buildroot}%{_bindir}/rmodtool
+install -Dm 755 util/cbfstool/test %{buildroot}%{_bindir}/cbfstool-test
 
 install -Dm 755 util/cbfstool/tests/conftest.py %{buildroot}%{_bindir}/conftest.py
 install -Dm 755 util/cbfstool/tests/elogtool_test.py %{buildroot}%{_bindir}/elogtool_test.py
@@ -647,7 +668,7 @@ install -Dm 755 util/hda-decoder/hda-decoder %{buildroot}%{_bindir}/hda-decoder
 install -Dm 755 util/ifdtool/ifdtool %{buildroot}%{_bindir}/ifdtool
 
 %ifarch x86_64
-install -Dm 755 util/intelmetool/intelmetool %{buildroot}%{_bindir}/intelmetool
+install -Dm 755 util/intelmetool/build/intelmetool %{buildroot}%{_bindir}/intelmetool
 %endif
 
 %ifarch x86_64
@@ -766,6 +787,8 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 %{__ln_s} -f %{_bindir}/getrevision %{buildroot}%{_bindir}/getrevision.sh
 %{__ln_s} -f %{_bindir}/set_up_live_image %{buildroot}%{_bindir}/set_up_live_image.sh
 
+%{__ln_s} -f %{_bindir}/devicetree_convert %{buildroot}%{_bindir}/devicetree_convert.py
+
 %{__ln_s} -f %{_bindir}/conftest.py %{buildroot}%{_bindir}/conftest
 %{__ln_s} -f %{_bindir}/elogtool_test.py %{buildroot}%{_bindir}/elogtool_test
 
@@ -822,6 +845,10 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 %files abuild
 %{_bindir}/abuild
 
+%files acpi
+%{_bindir}/acpidump-all
+%doc util/acpi/*.md
+
 %files all
 
 %files amdfwtool
@@ -850,6 +877,10 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 %doc util/apcb/README
 %doc util/apcb/description.md
 
+%files archive
+%{_bindir}/archive
+%doc util/archive/description.md
+
 %files autoport
 %{_bindir}/autoport
 %doc util/autoport/*.md
@@ -873,8 +904,22 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 %doc util/bucts/*.md
 %endif
 
+%files cavium
+%{_bindir}/devicetree_convert
+%{_bindir}/devicetree_convert.py
+%doc util/cavium/*.md
+
 %files cbfstool
 %{_bindir}/cbfstool
+%{_bindir}/cbfs-compression-tool
+%{_bindir}/cse_fpt
+%{_bindir}/cse_serger
+%{_bindir}/elogtool
+%{_bindir}/fmaptool
+%{_bindir}/ifittool
+%{_bindir}/ifwitool
+%{_bindir}/rmodtool
+%{_bindir}/cbfstool-test
 %doc util/cbfstool/description.md
 
 %files cbfstool-tests
@@ -1130,6 +1175,12 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 %doc util/xcompile/description.md
 
 %changelog
+* Thu Jun 25 2026 Owen Zimmerman <owen@fyralabs.com>
+- Add more subpackages, add more cbfstool files
+
+* Mon Jun 22 2026 Owen Zimmerman <owen@fyralabs.com>
+- Update for 26.06, build archive subpackage
+
 * Sun Dec 28 2025 Owen Zimmerman <owen@fyralabs.com>
 - Update macros, add %post symlinks
 

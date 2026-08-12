@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.6.1
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		A drop-in replacement for smbus-cffi/smbus-python in pure Python
 License:		MIT
 URL:			https://github.com/kplindegaard/smbus2

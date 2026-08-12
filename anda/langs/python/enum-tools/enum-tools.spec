@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.13.0
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Tools to expand Python's enum module
 License:		LGPL-3.0-or-later
 URL:			https://enum-tools.readthedocs.io/en/latest/

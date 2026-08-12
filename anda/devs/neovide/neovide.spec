@@ -8,7 +8,7 @@ Summary:        No Nonsense Neovim Client in Rust
 
 License:        MIT
 URL:            https://crates.io/crates/neovide
-Source0:        %{crates_source}
+Source0:        %{terra_crates_source}
 Source1:        %{raw_forgeurl}/%{version}/assets/%{crate}-16x16.png
 Source2:        %{raw_forgeurl}/%{version}/assets/%{crate}-32x32.png
 Source3:        %{raw_forgeurl}/%{version}/assets/%{crate}-48x48.png

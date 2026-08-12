@@ -2,7 +2,7 @@
 
 %global _default_patch_fuzz 2
 %global build_timestamp %(date +"%Y%m%d")
-%global gamescope_commit 7c5ebe991af905c17fa26f6287704ff07dcf69ca
+%global gamescope_commit c466c5d5cad88f6d80c3776294bbb8926fea7873
 %define short_commit %(echo %{gamescope_commit} | cut -c1-8)
 
 Name:           terra-gamescope
@@ -23,11 +23,6 @@ Patch0:         Use-system-stb-glm.patch
 
 Patch1:         0001-cstdint.patch
 
-%if 0%{?fedora} >= 44
-# Fix build with libinput >= 1.27 / GCC 16 (-Werror=switch)
-Patch2:         0002-wlroots-libinput-switch-keypad-slide.patch
-%endif
-
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
@@ -38,6 +33,7 @@ BuildRequires:  libXcursor-devel
 BuildRequires:  libXmu-devel
 BuildRequires:  meson >= 0.54.0
 BuildRequires:  ninja-build
+BuildRequires:  pkgconfig(catch2-with-main)
 BuildRequires:  pkgconfig(hwdata)
 BuildRequires:  pkgconfig(libavif)
 BuildRequires:  pkgconfig(libcap)
@@ -152,5 +148,5 @@ export PKG_CONFIG_PATH=pkgconfig
 * Fri Mar 13 2026 Kyle Gospodnetich <me@kylegospodneti.ch>
 - Switch to OGC sources
 
-* Thu Jan 2 2025 Owen-sz <owen@fyralabs.com>
+* Thu Jan 2 2025 Owen Zimmerman <owen@fyralabs.com>
 - Package gamescope, port from Bazzite
