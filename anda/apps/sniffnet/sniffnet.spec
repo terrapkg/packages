@@ -1,11 +1,11 @@
 Name:           sniffnet
 Version:        1.5.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Comfortably monitor your Internet traffic
 URL:            https://github.com/GyulyVGC/sniffnet
 Source0:        %url/archive/refs/tags/v%version.tar.gz
 SourceLicense:  MIT AND Apache-2.0
-License:        MIT AND Apache-2.0
+License:        MIT AND Apache-2.0 AND (Apache-2.0 OR MIT) AND BSD-3-Clause AND (MIT OR Apache-2.0) AND NCSA AND (MIT OR Apache-2.0) AND Unicode-3.0 AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR GPL-2.0-only) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND BSD-2-Clause AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR MIT OR Apache-2.0) AND BSD-3-Clause AND (BSD-3-Clause OR Apache-2.0) AND (BSD-3-Clause OR MIT OR Apache-2.0) AND BSL-1.0 AND CC0-1.0 AND (CC0-1.0 OR Apache-2.0) AND CDLA-Permissive-2.0 AND ISC AND (ISC AND (Apache-2.0 OR ISC)) AND (ISC AND (Apache-2.0 OR ISC) AND Apache-2.0 AND MIT AND BSD-3-Clause AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR ISC OR MIT-0)) AND (MIT AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later)) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR X11 OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT) AND Zlib AND (Zlib OR Apache-2.0 OR MIT)
 BuildRequires:  cargo
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  gcc-c++
