@@ -42,8 +42,10 @@ Obsoletes:      owl < 0^20250124.9999999
 %prep
 %autosetup -n %{name}-%{commit}
 
-%build
+%conf
 %meson
+
+%build
 %meson_build
 
 %install
