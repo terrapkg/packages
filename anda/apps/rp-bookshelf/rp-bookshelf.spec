@@ -12,11 +12,13 @@ Source0:        %url/archive/%commit.tar.gz
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 BuildRequires: meson
+BuildRequires: cmake
 BuildRequires: ninja-build
 BuildRequires: gtk3-devel
 BuildRequires: libcurl-devel
 BuildRequires: intltool
 BuildRequires: gcc
+BuildRequires:  
 
 Requires: libcurl gtk3
 
