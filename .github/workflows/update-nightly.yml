@@ -12,7 +12,7 @@ jobs:
       contents: write
     runs-on: arc-runner-set
     container:
-      image: ghcr.io/terrapkg/builder:frawhide
+      image: ghcr.io/terrapkg/builder:f45
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Checkout

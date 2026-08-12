@@ -20,7 +20,7 @@ jobs:
           - f43
           - el10
     container:
-      image: ghcr.io/terrapkg/builder:frawhide
+      image: ghcr.io/terrapkg/builder:f45
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Checkout
