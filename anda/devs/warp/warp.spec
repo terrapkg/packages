@@ -30,14 +30,14 @@ install -Dm755 target/rpm/warp-oss                          %{buildroot}%{_bindi
 install -Dm644 app/channels/oss/%{appid}.desktop            %{buildroot}%{_appsdir}/%{appid}.desktop
 install -Dm644 app/channels/oss/icon/no-padding/512x512.png %{buildroot}%{_hicolordir}/512x512/apps/%{appid}.png
 
-# Launcher: picks up ~/.config/${pkgname}-flags.conf, mirroring upstream.
+# Launcher: picks up ~/.config/%{name}-flags.conf, mirroring upstream.
 cat > %{buildroot}%{_bindir}/warp-terminal <<EOF
 #!/bin/bash
 XDG_CONFIG_HOME=\${XDG_CONFIG_HOME:-~/.config}
-if [[ -f \$XDG_CONFIG_HOME/${pkgname}-flags.conf ]]; then
-WARP_USER_FLAGS="\$(grep -v '^#' \$XDG_CONFIG_HOME/${pkgname}-flags.conf)"
+if [[ -f \$XDG_CONFIG_HOME/%{name}-flags.conf ]]; then
+WARP_USER_FLAGS="\$(grep -v '^#' \$XDG_CONFIG_HOME/%{name}-flags.conf)"
 fi
-exec ${opt_dir}/warp-oss \$WARP_USER_FLAGS "\$@"
+exec %{_bindir}/warp-terminal-oss \$WARP_USER_FLAGS "\$@"
 EOF
 
 %cargo_license_summary_online
