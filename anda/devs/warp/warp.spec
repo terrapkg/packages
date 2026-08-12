@@ -1,4 +1,5 @@
 %global appid dev.warp.WarpOss
+%undefine __brp_mangle_shebangs
 
 Name:           warp
 Version:        0.2026.06.09.19.54
@@ -46,6 +47,7 @@ EOF
 %files
 %doc README.md SECURITY.md
 %license LICENSE-AGPL LICENSE-MIT
+%{_bindir}/warp-terminal
 %{_bindir}/warp-terminal-oss
 %{_appsdir}/%{appid}.desktop
 %{_hicolordir}/512x512/apps/%{appid}.png
