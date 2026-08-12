@@ -78,10 +78,11 @@ for i in LICENSE README.md ; do
 done
 
 
-%build
+%conf
 %meson \
  %{?!_with_test:-Dbuild-test=false}
 
+%build
 %meson_build
 
 %mingw_meson
