@@ -2,8 +2,8 @@
 
 Name:           t3code
 %electronmeta -D
-Version:        0.0.31
-Release:        2%{?dist}
+Version:        0.0.33
+Release:        1%{?dist}
 Summary:        Minimal web GUI for coding agents
 License:        MIT AND %{electron_license}
 URL:            https://github.com/pingdotgg/t3code
