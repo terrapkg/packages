@@ -38,7 +38,8 @@ cp %{_bindir}/qdl internal/updater/artifacts/resources_linux_%{arch}/qdl
 
 %install
 cp %{S:1} README.md
-install -Dm755 %{gobuilddir}/cmd/arduino-flasher-cli/arduino-flasher-cli -t %buildroot%{_bindir}
+ls -laH %{gobuilddir}/cmd/
+install -Dm755 %{gobuilddir}/cmd/arduino-flasher-cli -t %buildroot%{_bindir}
 
 %files
 %license LICENSE
