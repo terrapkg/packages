@@ -15,7 +15,7 @@ Source0:        %{url}/archive/%{commit}.tar.gz
 BuildRequires:  meson
 BuildRequires:  gcc
 BuildRequires:  pkgconfig(libinput)
-BuildRequires:  pkgconfig(scenefx-0.2)
+BuildRequires:  pkgconfig(scenefx-0.5)
 BuildRequires:  pkgconfig(wlroots-0.18)
 BuildRequires:  pkgconfig(wayland-protocols)
 BuildRequires:  pkgconfig(xkbcommon)
