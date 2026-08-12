@@ -18,6 +18,7 @@ BuildRequires: gtk3-devel
 BuildRequires: libcurl-devel
 BuildRequires: intltool
 BuildRequires: gcc
+BuildRequires: pkgconfig(wayland-protocols)
 
 Requires: libcurl gtk3
 
