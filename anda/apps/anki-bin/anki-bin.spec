@@ -3,7 +3,7 @@
 %global qurl https://files.pythonhosted.org/packages/a7/5f/7d08084d5c97b1bad03b9bd64d24246b0918e94faf22ddd5e76fa2e52f7f/aqt-26.8.1-py3-none-any.whl
 
 Name:			anki-bin
-Version:		26.8.1
+Version:		26.08.1
 Release:		1%{?dist}
 Summary:		Flashcard program for using space repetition learning (Installed with wheel)
 License:		AGPL-3.0-or-later AND GPL-3.0-or-later AND LGPL-3.0-or-later AND MIT AND BSD-3-Clause AND CC-BY-SA-3.0 AND CC-BY-3.0 AND Apache-2.0 AND CC-BY-2.5
@@ -25,8 +25,8 @@ Source0:                %aurl
 %endif
 Source1:		%qurl
 Source2:		https://raw.githubusercontent.com/ankitects/anki/%{version}/qt/runanki.py
-Source3:		https://raw.githubusercontent.com/ankitects/anki/%{version}/qt/bundle/lin/anki.desktop
-Source4:                https://raw.githubusercontent.com/ankitects/anki/%{version}/qt/bundle/lin/anki.png
+Source3:    https://raw.githubusercontent.com/ankitects/anki/%{version}/qt/installer/linux-template/%7B%7B%20cookiecutter.format%20%7D%7D/%7B%7B%20cookiecutter.app_name%20%7D%7D/anki.desktop
+Source4:    https://raw.githubusercontent.com/ankitects/anki/%{version}/qt/aqt/data/qt/icons/anki.png
 Source5:		https://raw.githubusercontent.com/ankitects/anki/%{version}/LICENSE
 Source6:		https://raw.githubusercontent.com/ankitects/anki/%{version}/README.md
 
