@@ -25,8 +25,8 @@ Source0:                %aurl
 %endif
 Source1:		%qurl
 Source2:		https://raw.githubusercontent.com/ankitects/anki/%{version}/qt/runanki.py
-Source3:		https://raw.githubusercontent.com/ankitects/anki/%{version}/qt/bundle/lin/anki.desktop
-Source4:                https://raw.githubusercontent.com/ankitects/anki/%{version}/qt/bundle/lin/anki.png
+Source3:    https://raw.githubusercontent.com/ankitects/anki/%{version}/qt/installer/linux-template/%7B%7B%20cookiecutter.format%20%7D%7D/%7B%7B%20cookiecutter.app_name%20%7D%7D/anki.desktop
+Source4:    https://raw.githubusercontent.com/ankitects/anki/%{version}/qt/aqt/data/qt/icons/anki.png
 Source5:		https://raw.githubusercontent.com/ankitects/anki/%{version}/LICENSE
 Source6:		https://raw.githubusercontent.com/ankitects/anki/%{version}/README.md
 
