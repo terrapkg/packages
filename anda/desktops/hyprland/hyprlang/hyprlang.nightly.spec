@@ -2,13 +2,13 @@
 
 %global realname hyprlang
 %global ver 0.6.8
-%global commit 090117506ddc3d7f26e650ff344d378c2ec329cc
-%global commit_date 20260720
+%global commit 9508458be316a0d70d37ebed1ab725ccd10411ff
+%global commit_date 20260812
 %global shortcommit %{sub %commit 1 7}
 
 Name:           %realname.nightly
 Version:        %ver^%{commit_date}git.%shortcommit
-Release:        5%{?dist}
+Release:        8%{?dist}
 Summary:        The official implementation library for the hypr config language
 
 License:        LGPL-3.0-only

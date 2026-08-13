@@ -1,5 +1,5 @@
-%global ver dev-2026-07a
-%global sanitized_ver %(echo %{ver} | sed -E 's/^dev-([0-9]{4})-([0-9]{2})$/\1.\2/')
+%global ver dev-2026-08
+%global sanitized_ver %(echo %{ver} | sed -E 's/^dev-([0-9]{4})-([0-9]{2})[a-z]?$/\1.\2/')
 
 %global __requires_exclude_from ^%{_libexecdir}/Odin/vendor/.*$
 
@@ -49,5 +49,8 @@ cp -a odin core vendor %{buildroot}%{_libexecdir}/Odin
 %{_libexecdir}/Odin
 
 %changelog
-* Sat Feb 14 2026 Owen Zimmerman <owen@fyralabs.com>
+* Thu Jul 23 2026 Owen Zimmerman <owen@fyralabs.com>
+- Fix sanitized_ver sed script
+
+* Thu Jul 09 2026 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit

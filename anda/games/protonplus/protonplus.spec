@@ -1,7 +1,7 @@
 %define appid com.vysp3r.ProtonPlus
 
 Name:           protonplus
-Version:        0.5.21
+Version:        0.6.3
 Release:        1%{?dist}
 Summary:        A modern compatibility tools manager
 License:        GPL-3.0-or-later
@@ -10,6 +10,7 @@ Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 BuildRequires:  meson
+BuildRequires:  cmake
 BuildRequires:  ninja-build
 BuildRequires:  gcc
 BuildRequires:  vala
@@ -19,6 +20,9 @@ BuildRequires:  pkgconfig(json-glib-1.0)
 BuildRequires:  pkgconfig(libsoup-3.0)
 BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  pkgconfig(libarchive)
+BuildRequires:  pkgconfig(sdl3)
+BuildRequires:  pkgconfig(libnotify)
+BuildRequires:  pkgconfig(appstream)
 BuildRequires:  desktop-file-utils
 
 Provides:       ProtonPlus
@@ -29,7 +33,7 @@ It allows you to easily manage and update various compatibility
 tools like Proton, Wine, DXVK, and VKD3D across different launchers.
 
 %prep
-%autosetup -n ProtonPlus-%{version}
+%autosetup -C
 
 %conf
 %meson

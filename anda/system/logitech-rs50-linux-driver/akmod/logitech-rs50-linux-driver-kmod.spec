@@ -7,8 +7,8 @@
 %global debug_package %{nil}
 %endif
 
-%global commit eab8073fd623513d567f57c440347897d7c7a85d
-%global commitdate 20260721
+%global commit 4190da026a2fb15123a6a6577ed41e3bb721fc21
+%global commitdate 20260812
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global modulename logitech-rs50-linux-driver
 
@@ -45,12 +45,12 @@ Note: This driver replaces the in-kernel hid-logitech-hidpp module and continues
 # print kmodtool output for debugging purposes:
 kmodtool --target %{_target_cpu} --repo terrapkg.com --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
-%setup -q -c -n %{modulename}-%{commit}
+%setup -q -c -n logitech-trueforce-linux-driver-%{commit}
 
-mv %{modulename}-%{commit}/mainline/* %{modulename}-%{commit}/
+mv logitech-trueforce-linux-driver-%{commit}/mainline/* logitech-trueforce-linux-driver-%{commit}/
 
 for kernel_version  in %{?kernel_versions} ; do
-  cp -a %{modulename}-%{commit} _kmod_build_${kernel_version%%___*}
+  cp -a logitech-trueforce-linux-driver-%{commit} _kmod_build_${kernel_version%%___*}
 done
 
 %build

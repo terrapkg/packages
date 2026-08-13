@@ -1,14 +1,14 @@
-%global commit 8b3be67860004eb9cc1aedf74abcb645981c7f6a
-%global commit_date 20260720
+%global commit 08d3d8445f3c7c23e1a779ed8555be56b1a95742
+%global commit_date 20260812
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
-%global ver v26.6.2
+%global ver v26.7.3
 
 Name:           continuwuity-nightly
 Version:        %(echo "%{ver}" | sed 's/-/~/g;s/v//')^%{commit_date}git.%{shortcommit}
 Release:        1%{?dist}
 Summary:        A Matrix homeserver written in Rust.
-License:	(ISC AND (Apache-2.0 OR ISC)) AND (MIT OR Apache-2.0 OR BSD-3-Clause) AND Unlicense AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 OR BSL-1.0) AND (MIT OR Apache-2.0 OR Zlib) AND (0BSD OR MIT OR Apache-2.0) AND CDLA-Permissive-2.0 AND BSD-2-Clause AND Zlib AND (ISC AND (Apache-2.0 OR ISC) AND Apache-2.0 AND MIT AND BSD-3-Clause AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR ISC OR MIT-0)) AND MIT AND (MIT OR Apache-2.0 OR BSD-1-Clause) AND BlueOak-1.0.0 AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND MPL-2.0 AND Unicode-3.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND Apache-2.0 AND ISC AND (BSD-3-Clause OR Apache-2.0) AND BSD-3-Clause AND MIT AND ISC AND ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND Apache-2.0) AND 0BSD AND BSD-3-Clause AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (Unlicense OR MIT)
+License:	(MIT OR Apache-2.0 OR BSD-3-Clause) AND Unlicense AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 OR BSL-1.0) AND (MIT OR Apache-2.0 OR Zlib) AND (0BSD OR MIT OR Apache-2.0) AND CDLA-Permissive-2.0 AND BSD-2-Clause AND Zlib AND MIT AND (MIT OR Apache-2.0 OR BSD-1-Clause) AND BlueOak-1.0.0 AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND MPL-2.0 AND Unicode-3.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND Apache-2.0 AND ISC AND (BSD-3-Clause OR Apache-2.0) AND BSD-3-Clause AND MIT AND ISC AND ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND Apache-2.0) AND 0BSD AND BSD-3-Clause AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (Unlicense OR MIT)
 
 URL:            https://continuwuity.org
 Source0:        https://forgejo.ellis.link/continuwuation/continuwuity/archive/%{commit}.tar.gz
@@ -78,6 +78,9 @@ install -Dpm0600 conduwuit-example.toml %{buildroot}%{_sysconfdir}/conduwuit/con
 %systemd_postun_with_restart conduwuit.service
 
 %changelog
+* Thu Jul 30 2026 julian45 <julian@julian45.net>
+- Update license string
+
 * Fri Jul 10 2026 julian45 <julian@julian45.net>
 - Update license string due to new dependencies
 

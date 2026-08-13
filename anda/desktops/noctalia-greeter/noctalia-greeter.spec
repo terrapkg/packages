@@ -1,17 +1,11 @@
-%global ver 1.0.0
-
-%global commit          873268ee327baecff84e4c87b876cc317a84891c
-%global shortcommit     %(c=%{commit}; echo ${c:0:7})
-%global commitdate      20260721
-
 Name:   	noctalia-greeter
-Version:	%{ver}^%{commitdate}git.%{shortcommit}
-Release:	1%{?dist}
+Version:	1.2.1
+Release:	2%{?dist}
 Summary:	A minimal login greeter for greetd that matches the look and feel of Noctalia Shell.
 
 License:	MIT
 URL:		https://github.com/noctalia-dev/%{name}
-Source0:	%{url}/archive/%{commit}/%{name}-%{commit}.tar.gz
+Source0:	%{url}/archive/refs/tags/v%{version}.tar.gz
 
 BuildRequires:  dbus
 BuildRequires:  gcc-c++
@@ -30,6 +24,9 @@ BuildRequires:  pkgconfig(pango)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(wayland-protocols)
 BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:  pkgconfig(tomlplusplus)
+BuildRequires:  pkgconfig(nlohmann_json)
+BuildRequires:  stb-devel
 BuildRequires:  polkit
 BuildRequires:  wlroots-devel >= 0.20
 
@@ -44,7 +41,7 @@ Noctalia Greeter is the screen you see before your desktop session starts.
 It lets you pick a user, enter your password, choose a Wayland session, and pick a color scheme - with the same visual language as Noctalia Shell.
 
 %prep
-%autosetup -n noctalia-greeter-%{commit}
+%autosetup -n noctalia-greeter-%{version}
 
 %conf
 %meson -Db_pie=true
@@ -78,6 +75,9 @@ done
 %{_datadir}/polkit-1/actions/org.noctalia.greeter.apply-appearance.policy
 
 %changelog
+* Fri Jun 19 2026 Cypress Reed <cypress@fyralabs.com>
+- Switch to stable versioning from nightly git
+
 * Fri Jun 19 2026 Cypress Reed <cypress@fyralabs.com>
 - Update dependencies and files for built-in compositor
 

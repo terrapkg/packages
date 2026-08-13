@@ -29,9 +29,9 @@ body:
       description: Which version of Terra are you using?
       options:
         - frawhide
+        - f45
         - f44
         - f43
-        - f42
         - el10
       default: 1
   - type: textarea

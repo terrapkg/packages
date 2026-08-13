@@ -1,6 +1,6 @@
 Name:           vvdec
-Version:        3.1.0
-Release:        1%?dist
+Version:        3.2.0
+Release:        1%{?dist}
 Summary:        VVdeC, the Fraunhofer Versatile Video Decoder
 License:        BSD-3-Clause
 URL:            https://github.com/fraunhoferhhi/%{name}

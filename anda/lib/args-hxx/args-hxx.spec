@@ -1,7 +1,7 @@
 %define debug_package %nil
 
 Name:		args-hxx
-Version:	6.5.0
+Version:	6.6.0
 Release:	1%{?dist}
 Summary:	A simple header-only C++ argument parser library
 License:	MIT
