@@ -71,6 +71,9 @@ rm -rf %buildroot%_bindir/{distro,flask,jsonschema,markdown_py,normalizer,send2t
 %_datadir/pixmaps/anki.png
 
 %changelog
+* Thu Aug 13 2026 madonuko <madonuko@outlook.com> - 26.08.1-1
+- update sources and versioning
+
 * Fri Nov 10 2023 hazel-bunny <dabiswas112@gmail.com> - 23.10-2
 - Add python3-orjson and mpv as dependencies
 
