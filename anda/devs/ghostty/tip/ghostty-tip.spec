@@ -50,7 +50,7 @@ Requires:       libadwaita
 Conflicts:      %{base_name}
 Provides:       %{base_name}-tip = %{ver}^%{commit_date}git%{shortcommit}
 %if 0%{?fedora} <= 46
-Obsoletes:      %{base_name}-nightly < <= 1.3.2~tip^20260812gitc54ec80
+Obsoletes:      %{base_name}-nightly <= 1.3.2~tip^20260812gitc54ec80
 %endif
 Packager:       Gilver E. <roachy@fyralabs.com>
 
