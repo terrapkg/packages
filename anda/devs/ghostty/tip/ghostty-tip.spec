@@ -311,10 +311,10 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %endif
 %{_datadir}/terminfo/x/xterm-%{base_name}
 
-%files -n libghostty-vt-nightly
+%files -n libghostty-vt-tip
 %{_libdir}/libghostty-vt.so.*
 
-%files -n libghostty-vt-nightly-devel
+%files -n libghostty-vt-tip-devel
 %{_libdir}/libghostty-vt.so
 %{_datadir}/pkgconfig/libghostty-vt.pc
 
