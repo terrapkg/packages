@@ -50,7 +50,7 @@ Requires:       libadwaita
 Conflicts:      %{base_name}
 Provides:       %{base_name}-tip = %{ver}^%{commit_date}git%{shortcommit}
 %if 0%{?fedora} <= 46
-Obsoletes:      %{base_name}-nightly < %{evr}
+Obsoletes:      %{base_name}-nightly < <= 1.3.2~tip^20260812gitb2fa293
 %endif
 Packager:       Gilver E. <roachy@fyralabs.com>
 
@@ -63,7 +63,7 @@ Requires:       %{name}
 Requires:       bash-completion
 Supplements:    (%{name} and bash-completion)
 %if 0%{?fedora} <= 46
-Obsoletes:      %{base_name}-nightly-bash-completion < %{evr}
+Obsoletes:      %{base_name}-nightly-bash-completion <= 1.3.2~tip^20260812gitb2fa293
 %endif
 BuildArch:      noarch
 
@@ -76,7 +76,7 @@ Requires:       %{name}
 Requires:       fish
 Supplements:    (%{name} and fish)
 %if 0%{?fedora} <= 46
-Obsoletes:      %{base_name}-nightly-fish-completion < %{evr}
+Obsoletes:      %{base_name}-nightly-fish-completion <= 1.3.2~tip^20260812gitb2fa293
 %endif
 BuildArch:      noarch
 
@@ -89,7 +89,7 @@ Requires:       %{name}
 Requires:       zsh
 Supplements:    (%{name} and zsh)
 %if 0%{?fedora} <= 46
-Obsoletes:      %{base_name}-nightly-zsh-completion < %{evr}
+Obsoletes:      %{base_name}-nightly-zsh-completion <= 1.3.2~tip^20260812gitb2fa293
 %endif
 BuildArch:      noarch
 
@@ -107,7 +107,7 @@ This package includes the development files for Ghostty.
 Summary:        KIO support for Ghostty
 Requires:       %{name} = %{evr}
 %if 0%{?fedora} <= 46
-Obsoletes:      %{base_name}-nightly-kio < %{evr}
+Obsoletes:      %{base_name}-nightly-kio <= 1.3.2~tip^20260812gitb2fa293
 %endif
 BuildArch:      noarch
 
@@ -120,7 +120,7 @@ Supplements:    (%{name} and nautilus)
 Requires:       %{name} = %{evr}
 Requires:       nautilus-python
 %if 0%{?fedora} <= 46
-Obsoletes:      %{base_name}-nightly-nautilus < %{evr}
+Obsoletes:      %{base_name}-nightly-nautilus <= 1.3.2~tip^20260812gitb2fa293
 %endif
 BuildArch:      noarch
 
@@ -134,7 +134,7 @@ Requires:       %{name} = %{evr}
 Requires:       vim-enhanced
 Requires:       vim-filesystem
 %if 0%{?fedora} <= 46
-Obsoletes:      %{base_name}-nightly-vim < %{evr}
+Obsoletes:      %{base_name}-nightly-vim <= 1.3.2~tip^20260812gitb2fa293
 %endif
 BuildArch:      noarch
 
@@ -147,7 +147,7 @@ Supplements:    (%{name} and neovim)
 Requires:       %{name} = %{evr}
 Requires:       neovim
 %if 0%{?fedora} <= 46
-Obsoletes:      %{base_name}-nightly-neovim < %{evr}
+Obsoletes:      %{base_name}-nightly-neovim <= 1.3.2~tip^20260812gitb2fa293
 %endif
 BuildArch:      noarch
 
@@ -160,7 +160,7 @@ Supplements:    (%{name} and bat)
 Requires:       %{name} = %{evr}
 Requires:       bat
 %if 0%{?fedora} <= 46
-Obsoletes:      %{base_name}-nightly-bat-syntax < %{evr}
+Obsoletes:      %{base_name}-nightly-bat-syntax <= 1.3.2~tip^20260812gitb2fa293
 %endif
 BuildArch:      noarch
 
@@ -171,7 +171,7 @@ This package provides the Bat syntax files for Ghostty.
 Summary:        Ghostty shell integration
 Supplements:    %{name}
 %if 0%{?fedora} <= 46
-Obsoletes:      %{base_name}-nightly-shell-integration < %{evr}
+Obsoletes:      %{base_name}-nightly-shell-integration <= 1.3.2~tip^20260812gitb2fa293
 %endif
 BuildArch:      noarch
 
@@ -187,7 +187,7 @@ Supplements:    %{name}
 %if 0%{?fedora} <= 46
 Obsoletes:      %{base_name}-nightly-terminfo < %{evr}
 %endif
-Obsoletes:      %{name}-terminfo-source < %{evr}
+Obsoletes:      %{name}-terminfo-source <= 1.3.2~tip^20260812gitb2fa293
 BuildArch:      noarch
 
 %description    terminfo
@@ -196,7 +196,7 @@ Ghostty's terminfo. Needed for basic terminal function.
 %package -n     libghostty-vt-tip
 Summary:        The libghostty-vt libraries
 %if 0%{?fedora} <= 46
-Obsoletes:      libghostty-vt-nightly < %{evr}
+Obsoletes:      libghostty-vt-nightly <= 1.3.2~tip^20260812gitb2fa293
 %endif
 
 %description -n libghostty-vt-tip
@@ -206,7 +206,7 @@ This package contains the libghostty-vt libraries, the first of many libghostty 
 Summary:        Development files for libghostty-vt
 Requires:       libghostty-vt-tip = %{evr}
 %if 0%{?fedora} <= 46
-Obsoletes:      libghostty-vt-nightly-devel < %{evr}
+Obsoletes:      libghostty-vt-nightly-devel <= 1.3.2~tip^20260812gitb2fa293
 %endif
 
 %description -n libghostty-vt-tip-devel
