@@ -1,4 +1,4 @@
-%global commit b2fa2931b6599f7e32a7c547b3f5520ac3333881
+%global commit c54ec80c55a045312f7c97d66b32c8043526f03c
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
 %global ver 1.3.2
@@ -6,7 +6,7 @@
 %global appid com.mitchellh.%{base_name}
 
 Name:           %{base_name}-tip
-Version:        202608121317
+Version:        202608122048
 Release:        1%{?dist}
 %if 0%{?fedora} <= 46
 Epoch:          1
@@ -328,7 +328,7 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %systemd_user_postun app-%{appid}.service
 
 %changelog
-* Wed Aug 12 2026 Gilver E. <roachy@fyralabs.com> - 1:202608121317-1
+* Wed Aug 12 2026 Gilver E. <roachy@fyralabs.com> - 1:202608122048-1
 - Switch to tracking each Tip release
 * Sat Nov 29 2025 Gilver E. <rockgrub@disroot.org> - 1.3.0~tip^20251128git9baf37a-1
 - Initial libghostty-vt packages
