@@ -12,6 +12,7 @@ body:
       value: |
         Thanks for taking the time to fill out this bug report!
         **Please update the issue title with the short package name.**
+        (e.g. `zed-preview`)
   - type: input
     id: pkg
     attributes:
