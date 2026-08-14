@@ -9,7 +9,7 @@ Summary:        A multi-shell completion binary
 
 License:        Apache-2.0
 URL:            https://github.com/MercuryTechnologies/mercury-cli
-Source0:        %{url}/archive/refs/tags/v0.11.0.tar.gz
+Source0:        %{url}/archive/refs/tags/v%version.tar.gz
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
