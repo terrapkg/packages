@@ -58,7 +58,7 @@ Summary:        %{summary}
 %{_libdir}/open-fprintd/suspend.py
 %{_datadir}/dbus-1/system-services/net.reactivated.Fprint.service
 %{_datadir}/dbus-1/system.d/net.reactivated.Fprint.conf
-%{_libdir}/open-fprintd/__pycache__/*.cpython-314.pyc
+%{_libdir}/open-fprintd/__pycache__/*.cpython-*.pyc
 
 %changelog
 * Thu Aug 13 2026 Owen Zimmerman <owen@fyralabs.com>
