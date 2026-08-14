@@ -9,6 +9,7 @@ Summary:		Flashcard program for using space repetition learning (Installed with 
 License:		AGPL-3.0-or-later AND GPL-3.0-or-later AND LGPL-3.0-or-later AND MIT AND BSD-3-Clause AND CC-BY-SA-3.0 AND CC-BY-3.0 AND Apache-2.0 AND CC-BY-2.5
 URL:			https://apps.ankiweb.net/
 Packager:   madonuko <mado@fyralabs.com>
+BuildRequires:          python3-devel
 BuildRequires:          python3-pip rpm_macro(fdupes) cargo
 Requires:               python3-sqlalchemy python3-simplejson python3-matplotlib python3-decorator python3-markdown python3-orjson
 Requires:               python3-requests python3-pygame python3-beautifulsoup4 python3-httplib2 python3-pyaudio python3-jsonschema
