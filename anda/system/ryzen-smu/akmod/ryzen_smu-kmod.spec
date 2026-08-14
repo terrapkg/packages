@@ -14,11 +14,13 @@
 
 Name:           %{modulename}-kmod
 Version:        0.1.7^%{commitdate}git.%{shortcommit}
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Linux kernel driver that exposes access to the SMU (System Management Unit) for certain AMD Ryzen processors
 License:        GPL-2.0-only
 URL:            https://github.com/amkillam/ryzen_smu
 Source0:        %{url}/archive/%{commit}.tar.gz#/%{modulename}-%{shortcommit}.tar.gz
+# https://github.com/amkillam/ryzen_smu/pull/53
+Patch0:         https://patch-diff.githubusercontent.com/raw/amkillam/ryzen_smu/pull/53.patch
 BuildRequires:  gcc
 BuildRequires:  make
 BuildRequires:  kmodtool
@@ -46,6 +48,7 @@ Use at your own risk.
 kmodtool --target %{_target_cpu} --repo terrapkg.com --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
 %setup -q -c -n %{modulename}-%{commit}
+%patch -P 0 -p1 -d %{modulename}-%{commit}
 
 for kernel_version  in %{?kernel_versions} ; do
   cp -a %{modulename}-%{commit} _kmod_build_${kernel_version%%___*}
