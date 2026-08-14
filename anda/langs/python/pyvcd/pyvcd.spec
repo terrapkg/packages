@@ -2,7 +2,7 @@
 %global _desc Python package for writing Value Change Dump (VCD) files.
 
 Name:			python-%{pypi_name}
-Version:		0.4.2
+Version:		0.5.0
 Release:		1%{?dist}
 Summary:		Python package for writing Value Change Dump (VCD) files
 License:		MIT
@@ -18,6 +18,7 @@ BuildRequires:  python3-setuptools_scm
 BuildRequires:  python3-pip
 BuildRequires:  python3-devel
 BuildRequires:  python3-installer
+BuildRequires:  python3-uv-build
 BuildRequires:  git
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
@@ -44,7 +45,7 @@ Provides:       pyvcd
 %pyproject_save_files vcd
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
-%doc README.rst CODE_OF_CONDUCT.md CHANGELOG.rst
+%doc README.rst CHANGELOG.rst
 %license LICENSE.txt
 %python3_sitelib/pyvcd-%version.dist-info/*
 

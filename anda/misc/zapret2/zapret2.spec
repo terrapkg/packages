@@ -2,7 +2,7 @@
 
 Name:    zapret2
 Version: 1.0.4
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: A multi-platform Deep Packet Inspection (DPI) bypass tool
 License: MIT 
 Packager: madonuko <mado@fyralabs.com>
@@ -34,8 +34,6 @@ Suggests: curl
 Requires: ipset
 Requires: nftables
 # Subpackage dependencies.
-Requires: %{name}-nfqws
-Requires: %{name}-tpws
 
 %description
 A stand-alone (without 3rd party servers) DPI circumvention tool.

@@ -18,6 +18,7 @@ BuildRequires: intltool
 BuildRequires: vala
 BuildRequires: pkgconfig
 BuildRequires: gcc
+BuildRequires: pkgconfig(wayland-protocols)
 
 Requires: parted dosfstools e2fsprogs coreutils util-linux-core uuid dbus-x11 gtk3
 

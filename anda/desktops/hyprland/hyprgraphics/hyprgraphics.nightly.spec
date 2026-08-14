@@ -2,14 +2,14 @@
 
 %global realname hyprgraphics
 %global ver 0.5.1
-%global commit 8699c38f0e4a1ca3bfc84f84ba020509ced1f133
-%global commit_date 20260804
+%global commit 7c895c44e3ca6d28ed68ddd80ec02b02b925e7fc
+%global commit_date 20260811
 %global shortcommit %{sub %commit 1 7}
 
 %bcond libjxl 1
 Name:           %realname.nightly
 Version:        %ver^%{commit_date}git.%shortcommit
-Release:        22%{?dist}
+Release:        25%{?dist}
 Summary:        Graphics library for Hyprland
 
 License:        BSD-3-Clause

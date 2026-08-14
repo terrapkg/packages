@@ -1,5 +1,5 @@
 Name:           faugus-launcher
-Version:        2.0.6
+Version:        2.1.0
 Release:        1%{?dist}
 Summary:        A simple and lightweight app for running Windows games using UMU-Launcher
 
