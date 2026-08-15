@@ -45,9 +45,9 @@ bootable card with an image of the source device.
 %install
 %meson_install
 
-%find_lang %{name
+%find_lang %{name}
 
-%files -f %{name.lang
+%files -f %{name}.lang
 %doc README
 %license debian/copyright
 %{_bindir}/piclone
