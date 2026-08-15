@@ -36,7 +36,7 @@ install -Dm0644 res/app_icon.svg                                %{buildroot}%{_s
 %terra_appstream %{S:1}
 
 %files
-%doc README.md CHANGELOG.md CONTRIBUTING.md
+%doc README.md
 %license LICENSE LICENSE.dependencies
 %{_bindir}/cosmic-ext-applet-clipboard-manager
 %{_appsdir}/%{appid}.desktop
