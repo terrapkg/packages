@@ -1,5 +1,5 @@
 Name:           vibepanel
-Version:        0.15.0
+Version:        0.16.0
 Release:        1%{?dist}
 Summary:        GTK4 panel for Wayland with notifications, OSD, and quick settings – between a status bar and a desktop shell
 URL:            https://github.com/prankstr/vibepanel
