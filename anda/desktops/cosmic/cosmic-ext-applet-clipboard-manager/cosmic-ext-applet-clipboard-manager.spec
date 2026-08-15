@@ -8,6 +8,7 @@ License:        GPL-3.0-only
 Summary:        Clipboard manager for COSMIC
 URL:            https://github.com/cosmic-utils/clipboard-manager
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
+Source1:        io.github.cosmic_utils.cosmic-ext-applet-clipboard-manager.metainfo.xml
 # Not in a release yet
 Source1:        https://github.com/cosmic-utils/clipboard-manager/blob/master/res/metainfo.xml
 BuildRequires:  cargo-rpm-macros
@@ -31,7 +32,8 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %install
 install -Dm0755 target/rpm/cosmic-ext-applet-clipboard-manager  %{buildroot}%{_bindir}/cosmic-ext-applet-clipboard-manager
 install -Dm0644 res/desktop_entry.desktop                       %{buildroot}%{_appsdir}/%{appid}.desktop
-install -Dm0644 res/app_icon.svg                                %{buildroot}%{_scalableiconsdir}/%{appid}.svg
+# Match the metainfo pulled from upstream
+install -Dm0644 res/app_icon.svg                                %{buildroot}%{_scalableiconsdir}/%{appid}-symbolic.svg
 
 %terra_appstream %{S:1}
 
@@ -41,7 +43,7 @@ install -Dm0644 res/app_icon.svg                                %{buildroot}%{_s
 %{_bindir}/cosmic-ext-applet-clipboard-manager
 %{_appsdir}/%{appid}.desktop
 %{_metainfodir}/%{appid}.metainfo.xml
-%{_scalableiconsdir}/%{appid}.svg
+%{_scalableiconsdir}/%{appid}-symbolic.svg
 
 %changelog
 * Fri Aug 14 2026 Owen Zimmerman <owen@fyralabs.com> - 0.1.0-1
