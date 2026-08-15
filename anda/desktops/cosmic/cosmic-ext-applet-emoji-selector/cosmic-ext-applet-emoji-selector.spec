@@ -33,7 +33,7 @@ for icon in data/icons/scalable/apps/*.svg; do
 done
 
 %files
-%doc README.md ATTRIBUTION.md CONFIG.md
+%doc README.md ATTRIBUTION.md
 %license LICENSE
 %{_bindir}/cosmic-ext-applet-emoji-selector
 %{_appsdir}/%{appid}.desktop
