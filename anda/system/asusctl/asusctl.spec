@@ -1,4 +1,3 @@
-%global debug_package %{nil}
 %global appid org.opengamingcollective.rog-control-center
 
 %global asus_system_units asusd.service asus-shutdown.service
