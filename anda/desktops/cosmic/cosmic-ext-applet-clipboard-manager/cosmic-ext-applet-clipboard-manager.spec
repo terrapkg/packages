@@ -9,8 +9,6 @@ Summary:        Clipboard manager for COSMIC
 URL:            https://github.com/cosmic-utils/clipboard-manager
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 Source1:        io.github.cosmic_utils.cosmic-ext-applet-clipboard-manager.metainfo.xml
-# Not in a release yet
-Source1:        https://github.com/cosmic-utils/clipboard-manager/blob/master/res/metainfo.xml
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  rust-xkbcommon-devel
 BuildRequires:  terra-appstream-helper
