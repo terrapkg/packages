@@ -36,14 +36,18 @@ bootable card with an image of the source device.
 %prep
 %autosetup -n piclone-%commit
 
-%build
+%conf
 %meson
+
+%build
 %meson_build
 
 %install
 %meson_install
 
-%files
+%find_lang %{name}
+
+%files -f %{name}.lang
 %doc README
 %license debian/copyright
 %{_bindir}/piclone
