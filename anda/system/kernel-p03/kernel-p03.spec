@@ -106,13 +106,17 @@
 
 %define _basekver   7.2
 %define _stablekver .0
-%define _rel        6
-%define _koji_patch 52
-%define _koji_fc    45
+%define _rel        7
+%define _koji_patch 58
+%define _koji_fc    46
 
-# %tag pins the exact linux-p03 release this build fetches the repo zip
-# from (see Sources below) - update.rhai bumps it to match the latest tag.
-%global tag 7.2.0-52.rc6.p03.15
+# %%tag pins the exact linux-p03 release this build fetches the repo zip
+# from (see Sources below) — update.rhai bumps it to match the latest tag.
+%global tag 7.2.0-58.rc7.p03.16
+
+# 1 = fetch sources and changelog from %%tag above (default)
+# 0 = fetch from the moving main branch instead (useful for testing unreleased commits)
+%define _fetch_tag 1
 
 # Build mode:
 #   1 = dynamic: fetch Fedora kernel SRPM from Koji at prep time (COPR/local)
@@ -162,7 +166,7 @@
 # ==============================================================================
 %define _tarkver    %{_basekver}%{_stablekver}
 %define _custom_tag p03
-%define _buildver   15
+%define _buildver   16
 %define _srcdir     linux-%{_tarkver}
 %define _rpmver     %{version}-%{release}
 %define _kver       %{_rpmver}.%{_arch}
@@ -221,8 +225,8 @@
 # ==============================================================================
 Name:    kernel-%{_custom_tag}%{?_gccpacktag}
 Summary: Linux P03
-Version: %{_basekver}%{_stablekver}^%{_koji_rel_tag}%{_custom_tag}%{?_gccreltag}.%{_buildver}
-Release: 1%{?dist}
+Version: %{_basekver}%{_stablekver}
+Release: %{_koji_rel_tag}%{_custom_tag}%{?_gccreltag}.%{_buildver}%{?dist}
 License: GPL-2.0-only
 URL:     https://github.com/CatPieLeaf/linux-p03
 Packager: CatPieLeaf <catpieleaf@proton.me>
@@ -322,9 +326,9 @@ BuildRequires: koji
 # Sources
 # ==============================================================================
 
-# Fetches the repo zip / raw sources from the %tag pinned above; falls
-# back to the moving main branch if %tag is ever empty.
-%if "%{tag}" == ""
+# Fetches the repo zip / raw sources from the %%tag pinned above;
+# set _fetch_tag 0 to fetch from the moving main branch instead.
+%if !%{_fetch_tag}
 %define _baseurl    https://raw.githubusercontent.com/CatPieLeaf/linux-p03/refs/heads/main/sources
 %define _gh_archive https://github.com/CatPieLeaf/linux-p03/archive/refs/heads/main.tar.gz
 %else
@@ -993,6 +997,8 @@ Requires: nvidia-gpu-firmware
 Requires: zstd
 %endif
 
+# These are the real RPM Fusion package/capability names for the same role -
+# never let both be installed together.
 Conflicts: akmod-nvidia
 Conflicts: kmod-nvidia
 Conflicts: nvidia-kmod
@@ -1070,7 +1076,7 @@ Conflicts: nvidia-kmod
 %files
 
 %changelog
-%if "%{tag}" == ""
+%if !%{_fetch_tag}
 %(
 json=$(curl -fsSL https://api.github.com/repos/CatPieLeaf/linux-p03/commits/main)
 sha=$(echo "$json" | jq -r '.sha[0:7]')
