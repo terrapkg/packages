@@ -78,7 +78,7 @@ if test "\$1" = run && test "\$2" = %{cardwire_toolchain}; then
     shift 3
     exec %{_cargo_home}/cardwire-\$command "\$@"
 fi
-exec /usr/bin/rustup "\$@"
+exec %{_cargo_home}/bin/rustup "\$@"
 EOF
 chmod 0755 %{_cargo_home}/cardwire-cargo %{_cargo_home}/cardwire-rustc %{_cargo_home}/cardwire-rustdoc %{_cargo_home}/rustup
 # This pinned rust-src component may omit the lockfile required by -Z build-std.
