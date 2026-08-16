@@ -65,7 +65,7 @@ install -m 0644 src-tauri/icons/128x128.png %{_hicolordir}/128x128/apps/writit.p
 install -m 0644 src-tauri/icons/128x128@2x.png %{_hicolordir}/128x128@2/apps/writit.png
 
 %check
-%desktop_file_validate %{buildroot}%{_appsdir%/writit.desktop
+%desktop_file_validate %{buildroot}%{_appsdir}/writit.desktop
 
 %changelog
 * Sun Aug 16 2026 NotMega <iamnotmega@proton.me> - 1.0.0-1
