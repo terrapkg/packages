@@ -1,5 +1,5 @@
 Name:           ttop
-Version:        1.6.1
+Version:        1.6.2
 Release:        1%{?dist}
 Summary:        System monitoring tool with historical data service, triggers and top-like TUI
 License:        MIT
