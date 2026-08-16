@@ -1,6 +1,6 @@
 %global appid org.opengamingcollective.cardwire
 %bcond rust_nightly 1
-%global cardwire_toolchain nightly-2026-08-04
+%global cardwire_toolchain nightly-2026-08-12
 %define _cargo_home %{rpmbuilddir}%{?buildsubdir:/%{buildsubdir}}/.cargo
 %global _rustup_home %{rpmbuilddir}/.rustup
 %define __cargo /usr/bin/env CARGO_HOME=%{_cargo_home} RUSTUP_HOME=%{_rustup_home} RUSTFLAGS='%{terra_rustflags}' %{_cargo_home}/cardwire-cargo
