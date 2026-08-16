@@ -1,18 +1,16 @@
-%global commit 1be4fb1cd9d60b5ddefc2a4201a898766a731400
+%global commit d2983668300dd2a598e5a7dc40e71ce0678cc270
 %global debug_package %{nil}
 %global modulename ryzen_smu
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260626
+%global commitdate 20260815
 
 Name:           dkms-%{modulename}
 Version:        0.1.7^%{commitdate}git.%{shortcommit}
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Linux kernel driver that exposes access to the SMU (System Management Unit) for certain AMD Ryzen processors
 License:        GPL-2.0-only
 URL:            https://github.com/amkillam/ryzen_smu
 Source:         %{url}/archive/%{commit}.tar.gz
-# https://github.com/amkillam/ryzen_smu/pull/53
-Patch0:         https://patch-diff.githubusercontent.com/raw/amkillam/ryzen_smu/pull/53.patch
 BuildRequires:  sed
 BuildRequires:  systemd-rpm-macros
 Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
