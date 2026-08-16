@@ -1,72 +1,63 @@
-%global appid org.freedesktop.libfprint
+%global debug_package       %{nil}
+%define relabel_files()     restorecon -R /usr/libexec/fprintd;
+%define selinux_policyver   41.31-1
+%define major_version       1.0
+%define release_version     3
 
-Name:           libfprint-tod
-Version:        1.95.1+tod1
-Release:        2%{?dist}
-URL:            https://gitlab.freedesktop.org/3v1n0/libfprint/
-Source:         %{url}/-/archive/v%{version}/libfprint-v%{version}.tar.gz
-Summary:        a light fork of libfprint to expose internal Drivers API in order to create drivers as shared libraries
-License:        LGPL-2.1-or-later
-Conflicts:      libfprint
+Name:       fprintd_tod_selinux
+Version:	%{major_version}
+Release:	%{release_version}%{?dist}
+Summary:	SELinux policy module for fprintd_tod
 
-BuildRequires:  gcc-c++
-BuildRequires:  meson
-BuildRequires:  cmake
-BuildRequires:  gtk-doc
-BuildRequires:  gdb
-BuildRequires:  valgrind
-BuildRequires:  appstream
-BuildRequires:  pkgconfig(glib-2.0)
-BuildRequires:  pkgconfig(gio-unix-2.0)
-BuildRequires:  pkgconfig(gobject-2.0)
-BuildRequires:  pkgconfig(gobject-introspection-1.0)
-BuildRequires:  pkgconfig(gusb)
-BuildRequires:  pkgconfig(openssl)
-BuildRequires:  pkgconfig(gudev-1.0)
-BuildRequires:  pkgconfig(udev)
-BuildRequires:  pkgconfig(pixman-1)
-BuildRequires:  pkgconfig(cairo)
-BuildRequires:  terra-appstream-helper
+Group:	    System Environment/Base
+License:	GPLv2+
+URL:		https://github.com/ferdiu/fprintd_tod_selinux
+Source0:	https://github.com/ferdiu/fprintd_tod_selinux/archive/refs/tags/v%{major_version}-%{release_version}.tar.gz
 
-Packager:       metcya <metcya@gmail.com>
+
+Requires: policycoreutils-python-utils, libselinux-utils
+Requires(post): selinux-policy-base >= %{selinux_policyver}, policycoreutils-python-utils
+Requires(postun): policycoreutils-python-utils
+BuildRequires: make, selinux-policy-devel
+BuildArch: noarch
 
 %description
-%summary.
-
-%package devel
-%pkg_devel_files
-
-%package doc
-Summary:    Documentation for %{name}
-
-%description doc
-Documentation for %{name}.
+This package installs and sets up the SELinux
+policy security module for fprintd_tod.
 
 %prep
-%autosetup -n libfprint-v%{version}
-
-%conf
-%meson -Ddrivers=all -Dinstalled-tests=false
+%setup -q -n fprintd_tod_selinux-%{major_version}-%{release_version}
 
 %build
-%meson_build
+make -f /usr/share/selinux/devel/Makefile fprintd_tod.pp
 
 %install
-%meson_install
-%terra_appstream
+install -d %{buildroot}%{_datadir}/selinux/packages
+install -m 644 fprintd_tod.pp %{buildroot}%{_datadir}/selinux/packages
+install -d %{buildroot}/etc/selinux/targeted/contexts/users/
+
+%post
+semodule -n -i %{_datadir}/selinux/packages/fprintd_tod.pp
+if /usr/sbin/selinuxenabled ; then
+    /usr/sbin/load_policy
+    %relabel_files
+fi;
+exit 0
+
+%postun
+if [ $1 -eq 0 ]; then
+    semodule -n -r fprintd_tod
+    if /usr/sbin/selinuxenabled ; then
+       /usr/sbin/load_policy
+       %relabel_files
+    fi;
+fi;
+exit 0
 
 %files
-%license COPYING
-%doc AUTHORS HACKING.md INSTALL MAINTAINERS NEWS NEWS.tod.md README.md README.tod.md THANKS code-of-conduct.md
-%{_libdir}/*.so.*
-%{_libdir}/girepository-1.0/*.typelib
-%{_udevhwdbdir}/60-autosuspend-libfprint-2.hwdb
-%{_udevrulesdir}/70-libfprint-2.rules
-%{_metainfodir}/%{appid}.metainfo.xml
+%attr(0600,root,root) %{_datadir}/selinux/packages/fprintd_tod.pp
 
-%files doc
-%{_datadir}/gtk-doc/html/libfprint-2/*.{html,css,png,devhelp2}
 
 %changelog
-* Fri Dec 5 2025 metcya <metcya@gmail.com>
-- Package libfprint-tod
+* Fri Feb 7 2025 Federico Manzella <ferdiu.manzella@gmail.com> 1.0-1
+- Initial version
