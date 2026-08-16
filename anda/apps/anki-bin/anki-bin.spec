@@ -60,11 +60,11 @@ rm -rf %buildroot%_bindir/{distro,flask,jsonschema,markdown_py,normalizer,send2t
 %_bindir/anki
 %_bindir/pyuic6
 %_bindir/pylupdate6
-/usr/lib/python*/site-packages/_aqt/
-/usr/lib/python*/site-packages/anki-%{version}.dist-info/
-/usr/lib/python*/site-packages/anki/
-/usr/lib/python*/site-packages/aqt-%{version}.dist-info/
-/usr/lib/python*/site-packages/aqt/
+%_libdir/python*/site-packages/_aqt/
+%_libdir/python*/site-packages/anki-%{version}.dist-info/
+%_libdir/python*/site-packages/anki/
+%_libdir/python*/site-packages/aqt-%{version}.dist-info/
+%_libdir/python*/site-packages/aqt/
 %_datadir/applications/anki.desktop
 %_datadir/pixmaps/anki.png
 
