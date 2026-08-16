@@ -1,6 +1,7 @@
 %global xurl https://files.pythonhosted.org/packages/2d/cc/3d1fd48589b288347c7d8cc39018a61ec7ca704059c1185925657bd6e4f9/anki-26.8.1-cp310-abi3-manylinux_2_35_x86_64.whl
 %global aurl https://files.pythonhosted.org/packages/0a/bd/82f15738d7d356b69f708816ecb9699bf2dd4a9ead26d17ab4f1010f5607/anki-26.8.1-cp310-abi3-manylinux_2_35_aarch64.whl
 %global qurl https://files.pythonhosted.org/packages/a7/5f/7d08084d5c97b1bad03b9bd64d24246b0918e94faf22ddd5e76fa2e52f7f/aqt-26.8.1-py3-none-any.whl
+%global appid net.ankiweb.Anki
 
 Name:			anki-bin
 Version:		26.08.1
@@ -46,7 +47,9 @@ Anki is based on a theory called spaced repetition.
 %build
 
 %install
-pip3 install --root=%{buildroot} %SOURCE0 %SOURCE1
+cp %{S:0} %{S:1} %_pyproject_wheeldir
+%pyproject_install
+%pyproject_save_files aqt anki
 install -Dm755 %{SOURCE2} "%{buildroot}/usr/bin/anki"
 install -Dm644 %{SOURCE3} "%{buildroot}/usr/share/applications/anki.desktop"
 install -Dm644 %{SOURCE4} "%{buildroot}/usr/share/pixmaps/anki.png"
@@ -57,18 +60,15 @@ rm -rf %buildroot%_bindir/{distro,flask,jsonschema,markdown_py,normalizer,send2t
 
 %fdupes %buildroot%_libdir/python*/site-packages/_aqt/data/
 
+%terra_appstream
 
-%files
+
+%files -f %{pyproject_files}
 %license LICENSE
 %doc README.md
 %_bindir/anki
 %_bindir/pyuic6
 %_bindir/pylupdate6
-%python3_sitearch/_aqt/
-%python3_sitearch/anki-%{version}.dist-info/
-%python3_sitearch/anki/
-%python3_sitearch/aqt-%{version}.dist-info/
-%python3_sitearch/aqt/
 %_datadir/applications/anki.desktop
 %_datadir/pixmaps/anki.png
 
