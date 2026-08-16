@@ -11,7 +11,7 @@ Summary:        Package update notifier applet for the COSMIC desktop
 URL:            https://github.com/Ebbo/cosmic-applet-package-updater
 Source0:        %{url}/archive/%{commit}/cosmic-applet-package-updater-%{commit}.tar.gz
 SourceLicense:  GPL-3.0-or-later
-License:        GPL-3.0-or-later
+License:        (BSD-3-Clause OR MIT OR Apache-2.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 OR BSL-1.0) AND (MIT OR Apache-2.0 OR Zlib) AND (0BSD OR MIT OR Apache-2.0) AND BSD-2-Clause AND Zlib AND MIT AND GPL-3.0-or-later AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND MPL-2.0 AND (MIT OR Apache-2.0 OR CC0-1.0) AND Unicode-3.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND CC0-1.0 AND BSL-1.0 AND ISC AND GPL-3.0-only AND BSD-3-Clause AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (Unlicense OR MIT)
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  pkgconfig(xkbcommon)
 Requires:       cosmic-osd
