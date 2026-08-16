@@ -2,7 +2,7 @@
 %global         zig_arches x86_64 aarch64 riscv64 %{mips64}
 # Signing key from https://ziglang.org/download/
 %global         public_key RWSGOq2NVecA2UPNdBUZykf1CCb147pkmdtYxgb3Ti+JO/wCYvhbAb/U
-%if 0%{?fedora} >= 46
+%if 0%{?fedora} >= 47
 %define         llvm_compat 22
 %endif
 %global         llvm_version 22.0.0
@@ -18,7 +18,7 @@
 %global zig_cache_dir %{builddir}/zig-cache
 
 Name:           zig-master
-Version:        0.17.0~dev.1683+5ceec001b
+Version:        0.17.0~dev.1767+63cfe88f0
 Release:        2%{?dist}
 Summary:        Master builds of the Zig language
 License:        MIT AND NCSA AND LGPL-2.1-or-later AND LGPL-2.1-or-later WITH GCC-exception-2.0 AND GPL-2.0-or-later AND GPL-2.0-or-later WITH GCC-exception-2.0 AND BSD-3-Clause AND Inner-Net-2.0 AND ISC AND LicenseRef-Fedora-Public-Domain AND GFDL-1.1-or-later AND ZPL-2.1

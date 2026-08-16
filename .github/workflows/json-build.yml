@@ -60,7 +60,7 @@ jobs:
 
       - name: Configure sccache
         id: sccache
-        if: ${{ !contains(matrix.pkg.labels.sccache, '0') }}
+        if: ${{ contains(matrix.pkg.labels.sccache, '1') }}
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         env:
           SCCACHE_GHA_VERSION: ${{ matrix.version }}-${{ matrix.pkg.arch }}-${{ matrix.pkg.pkg }}

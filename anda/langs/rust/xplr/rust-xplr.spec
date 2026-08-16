@@ -4,8 +4,8 @@
 %global crate xplr
 
 Name:           rust-xplr
-Version:        1.1.0
-Release:        1%?dist
+Version:        1.1.1
+Release:        1%{?dist}
 Summary:        Hackable, minimal, fast TUI file explorer
 
 License:        MIT

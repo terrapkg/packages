@@ -14,7 +14,7 @@ ExclusiveArch:  x86_64 aarch64
 %global appid ai.opencode.opencode
 
 Name:			opencode
-Version:		1.18.16
+Version:		1.18.18
 Release:		1%{?dist}
 Summary:		Open source AI coding agent for the terminal, IDE, and desktop
 License:		MIT

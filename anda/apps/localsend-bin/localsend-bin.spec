@@ -25,7 +25,7 @@
 %global __requires_exclude ^(libapp|librhttp|libflutter_linux_gtk|lib.*_plugin)\\.so.*$
 
 Name:           localsend-bin
-Version:        1.18.0
+Version:        1.18.1
 Release:        1%{?dist}
 Summary:        An open source cross-platform alternative to AirDrop
 URL:            https://localsend.org
