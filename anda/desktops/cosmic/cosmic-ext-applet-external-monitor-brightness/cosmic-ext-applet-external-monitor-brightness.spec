@@ -38,7 +38,7 @@ install -Dm0644 icon.svg                                                    %{bu
 install -Dm0644 metainfo.xml                                                %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 
 %files
-%doc README.md CONTRIBUTING.md
+%doc README.md
 %license LICENSE
 %{_bindir}/cosmic-ext-applet-external-monitor-brightness
 %{_appsdir}/%{appid}.desktop
