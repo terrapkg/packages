@@ -15,9 +15,8 @@ BuildRequires:	python3-pip rpm_macro(fdupes) cargo
 BuildRequires:	python3-sqlalchemy python3-simplejson python3-matplotlib python3-decorator python3-markdown python3-orjson
 BuildRequires:	python3-requests python3-pygame python3-beautifulsoup4 python3-httplib2 python3-pyaudio python3-jsonschema
 BuildRequires:	python3-flask-cors python3-protobuf python3-requests python3-waitress python3-pyqt6-webengine python3-send2trash
-BuildRequires:	python3-protobuf >= 4.21
-Requires:		pt-compat hicolor-icon-theme sox
-Requires:		pv or mpv-nightly)
+Requires:		libxcrypt-compat hicolor-icon-theme sox
+Requires:		(mpv or mpv-nightly)
 
 Conflicts:		anki
 %ifarch x86_64
@@ -45,7 +44,8 @@ Anki is based on a theory called spaced repetition.
 mkdir -p %_pyproject_wheeldir
 cp %{S:0} %{S:1} %_pyproject_wheeldir
 %pyproject_install
-%pyproject_save_files -D anki '*aqt*' '*anki*'
+%pyproject_save_files -D aqt '*aqt*'
+%pyproject_save_files -D anki '*anki*'
 install -Dm755 %{SOURCE2} "%{buildroot}/usr/bin/anki"
 install -Dm644 %{SOURCE3} "%{buildroot}/usr/share/applications/anki.desktop"
 install -Dm644 %{SOURCE4} "%{buildroot}/usr/share/pixmaps/anki.png"
@@ -55,12 +55,11 @@ install -Dm644 %{SOURCE6} "%{buildroot}/%{_datadir}/doc/%{name}/README.md"
 %terra_appstream
 
 
-%files -f %{pyproject_files}
+%files -f %{pyproject_files}-anki -f %{pyproject_files}-aqt
 %license LICENSE
 %doc README.md
 %_bindir/anki
-%_bindir/pyuic6
-%_bindir/pylupdate6
+%_bindir/ankiw
 %_datadir/applications/anki.desktop
 %_datadir/pixmaps/anki.png
 %_metainfodir/%appid.metainfo.xml
