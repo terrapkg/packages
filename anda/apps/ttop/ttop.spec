@@ -7,6 +7,7 @@ URL:            https://github.com/inv2004/ttop
 Source0:		%url/archive/refs/tags/v%version.tar.gz
 BuildRequires:  anda-srpm-macros
 BuildRequires:  nim
+BuildRequires:  openssl-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
