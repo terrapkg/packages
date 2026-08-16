@@ -2,8 +2,8 @@
 # For user clarity I have separated these into different packages
 
 Name:           terra-winetricks
-Version:        20250102
-Release:        1%{?dist}
+Version:        20260125
+Release:        1%?dist
 Summary:        Winetricks built to be compatible with Terra WINE builds
 License:        LGPL-2.1-or-later
 URL:            https://github.com/Winetricks/winetricks

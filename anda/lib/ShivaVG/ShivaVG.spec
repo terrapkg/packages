@@ -29,7 +29,6 @@ Requires:       %{name} = %evr
 Requires:       glew-devel
 Requires:       mesa-libGL-devel
 %pkg_devel_files
-%_libdir/cmake/OpenVG/
 
 %package static
 Requires:       %{name} = %evr
@@ -39,8 +38,13 @@ Requires:       %{name} = %evr
 %autosetup -n ShivaVG-%{commit}
 sed '/set(CMAKE_C_FLAGS/d' -i CMakeLists.txt
 
+%conf
+%cmake -DBUILD_EXAMPLES=OFF \
+			 -DDEBUG=ON -DPROJECT_VERSION=%commit \
+			 -DCMAKE_C_FLAGS='%build_cflags' \
+			 -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+
 %build
-%cmake -DBUILD_EXAMPLES=OFF -DDEBUG=ON -DPROJECT_VERSION=%commit -DCMAKE_C_FLAGS='%build_cflags'
 %cmake_build
 
 %install

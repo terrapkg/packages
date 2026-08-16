@@ -1,1 +1,1 @@
-rpm.version(gh("magic-wormhole/magic-wormhole"));
+rpm.version(pypi("magic-wormhole"));

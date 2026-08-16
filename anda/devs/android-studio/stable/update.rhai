@@ -1,1 +1,10 @@
-rpm.version(find(`https://redirector.gvt1.com/edgedl/android/studio/ide-zips/([\d.]+)/android-studio-[\d.]+-linux.tar.gz`, get("https://developer.android.com/studio"), 1));
+let html = get("https://developer.android.com/studio");
+let pattern = `ide-zips/([^/]+)/android-studio-(.*?)-linux\.tar\.gz`;
+let nofilter = find(pattern, html, 0);
+let version = find(pattern, html, 1);
+let suffixS = find(pattern, html, 2);
+print(nofilter);
+print(version);
+print(suffixS);
+rpm.version(version);
+rpm.define("suffixS", suffixS);

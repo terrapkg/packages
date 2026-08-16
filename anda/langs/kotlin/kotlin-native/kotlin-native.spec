@@ -1,13 +1,12 @@
 %define _binaries_in_noarch_packages_terminate_build   0
 
-BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 Name:           kotlin-native
-Version:        2.2.21
-Release:        1%?dist
+Version:        2.4.10
+Release:        2%{?dist}
 Summary:        LLVM backend for the Kotlin compiler
 ExclusiveArch:  x86_64
 
-License:        ASL 2.0
+License:        Apache-2.0
 URL:            https://kotlinlang.org/docs/reference/native-overview.html
 Source0:        https://github.com/JetBrains/kotlin/releases/download/v%version/kotlin-native-prebuilt-linux-x86_64-%version.tar.gz
 
@@ -39,7 +38,7 @@ sed -i "s|\(KONAN_HOME *= *\).*|\1%{_datadir}/%{name}|" bin/*
 rm -rf %{buildroot} && mkdir -p %{buildroot}%{_bindir}/ && cd kotlin-native-prebuilt-linux-x86_64-%{version}
 install -m 0755 bin/cinterop %{buildroot}%{_bindir}/
 install -m 0755 bin/generate-platform %{buildroot}%{_bindir}/
-install -m 0755 bin/jsinterop %{buildroot}%{_bindir}/
+%dnl install -m 0755 bin/jsinterop %{buildroot}%{_bindir}/
 install -m 0755 bin/klib %{buildroot}%{_bindir}/
 install -m 0755 bin/konanc %{buildroot}%{_bindir}/
 install -m 0755 bin/konan-lldb %{buildroot}%{_bindir}/

@@ -5,13 +5,13 @@
 %global altdiffname cococonscious-%{crate}
 
 Name:           rust-koji
-Version:        3.2.0
-Release:        1%{?dist}
+Version:        3.4.0
+Release:        1%?dist
 Summary:        Interactive CLI for creating conventional commits
 
 License:        MIT
 URL:            https://crates.io/crates/koji
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 
 BuildRequires:  cargo-rpm-macros >= 24 anda-srpm-macros
 BuildRequires:  openssl-devel

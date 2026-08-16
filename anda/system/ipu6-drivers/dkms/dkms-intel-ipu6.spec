@@ -1,7 +1,7 @@
 %global debug_package %{nil}
-%global commit 9766e218112f4173be9b0f06dfae27cb40c54f40
+%global commit c09fa9a6e98b951ea4ab9d4100aa85281a659074
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20251113
+%global commit_date 20260714
 %global modulename intel-ipu6
 # Actual "release" version, currently unused as the release versions are back and forth on if on if they use 1.0.0 or 1.0.1
 %global ver 1.0.1
@@ -9,7 +9,7 @@
 Name:           dkms-%{modulename}
 Summary:        DKMS module for %{modulename}
 Version:        0^%{commit_date}git.%{shortcommit}
-Release:        1%?dist
+Release:        1%{?dist}
 License:        GPL-2.0-or-later
 URL:            https://github.com/intel/ipu6-drivers
 Source0:        %{url}/archive/%{commit}.tar.gz#/ipu6-drivers-%{shortcommit}.tar.gz
@@ -22,7 +22,7 @@ Requires:       %{modulename}-kmod-common = %{?epoch:%{epoch}:}%{version}
 Requires:       dkms
 Requires:       dkms-usbio-drivers
 BuildArch:      noarch
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 This package enables the Intel IPU6 image processor.

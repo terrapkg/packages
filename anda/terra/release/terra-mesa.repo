@@ -5,7 +5,7 @@ metalink=https://tetsudou.fyralabs.com/metalink?repo=terra$releasever-mesa&arch=
 metadata_expire=6h
 type=rpm
 gpgcheck=1
-gpgkey=https://repos.fyralabs.com/terra$releasever-mesa/key.asc
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-terra$releasever-mesa
 repo_gpgcheck=1
 enabled=1
 enabled_metadata=1
@@ -19,7 +19,7 @@ metalink=https://tetsudou.fyralabs.com/metalink?repo=terra$releasever-mesa-sourc
 metadata_expire=6h
 type=rpm
 gpgcheck=1
-gpgkey=https://repos.fyralabs.com/terra$releasever-mesa-source/key.asc
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-terra$releasever-mesa-source
 repo_gpgcheck=1
 enabled=0
 enabled_metadata=0

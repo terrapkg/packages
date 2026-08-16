@@ -89,7 +89,7 @@ in the PowerPointViewer package, still available on the Microsoft website.
 
 Name:           %{fontname}-fonts
 Version:        1.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Package containing ClearType fonts.
 License:        LicenseRef-MS-Core-Fonts
 URL:            https://mscorefonts2.sourceforge.net
@@ -113,7 +113,7 @@ Requires:       %{fontname}-constantia-fonts
 Requires:       %{fontname}-corbel-fonts
 Requires(post): fontconfig
 BuildArch:      noarch
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %fontpkg -a
 

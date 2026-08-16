@@ -1,8 +1,12 @@
 %global debug_package %{nil}
-%global __strip %{nil}
-%global __brp_strip_comment_note %{nil}
+%global __brp_strip %{nil}
 %global __brp_ldconfig %{nil}
-%define _build_id_links none
+
+%bcond selinux 1
+
+%if %{with selinux}
+%global selinuxtype targeted
+%endif
 
 # systemd 248+
 %if 0%{?rhel} == 8
@@ -10,28 +14,20 @@
 %endif
 
 Name:           nvidia-driver
-Version:        580.105.08
-Release:        1%?dist
+Version:        610.57.04
+Release:        1%{?dist}
 Summary:        NVIDIA's proprietary display driver for NVIDIA graphic cards
 Epoch:          3
 License:        NVIDIA License
 URL:            http://www.nvidia.com/object/unix.html
-ExclusiveArch:  %{ix86} x86_64 aarch64
-
-%dnl Source0:        %{name}-%{version}-i386.tar.xz
-%dnl Source1:        %{name}-%{version}-x86_64.tar.xz
-%dnl Source2:        %{name}-%{version}-aarch64.tar.xz
+Source7:        nvidia-powerd.service
 Source8:        70-nvidia-driver.preset
-Source9:        70-nvidia-driver-cuda.preset
-Source10:       10-nvidia.conf
 Source13:       alternate-install-present
-
 Source40:       com.nvidia.driver.metainfo.xml
 Source41:       parse-supported-gpus.py
 Source42:       com.nvidia.driver.png
-
+Source43:       %{name}.te
 Source99:       nvidia-generate-tarballs.sh
-
 %ifarch x86_64 aarch64
 BuildRequires:  libappstream-glib
 %if 0%{?rhel} == 8
@@ -42,17 +38,18 @@ BuildRequires:  python3
 %endif
 BuildRequires:  systemd-rpm-macros
 %endif
-
 BuildRequires:  wget
 BuildRequires:  coreutils
-
+%if %{with selinux}
+BuildRequires:  bzip2
+BuildRequires:  selinux-policy-devel
+%endif
 Requires:       nvidia-driver-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}
 Requires:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
-
 Conflicts:      nvidia-x11-drv
-Conflicts:      nvidia-x11-drv-470xx
 Conflicts:      xorg-x11-drv-nvidia
-Conflicts:      xorg-x11-drv-nvidia-470xx
+ExclusiveArch:  %{ix86} x86_64 aarch64
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 This package provides the most recent NVIDIA display driver which allows for
@@ -63,8 +60,14 @@ version %{version}.
 
 %package libs
 Summary:        Libraries for %{name}
-Requires:       egl-gbm%{?_isa} >= 2:1.1.2.1
-Requires:       (egl-wayland%{?_isa} >= 1.1.20 or egl-wayland2%{?_isa} >= 1.0.0~20250806gitd4deb7c-3)
+Requires:       egl-gbm%{?_isa} >= 2:1.1.3
+Requires:       egl-wayland2%{?_isa} >= 1.0.0
+Requires:       egl-x11%{?_isa} >= 1.0.4
+%if %{defined fedora}
+%ifarch x86_64
+Requires:       (%{name}-libs(x86-32) = %{evr} if steam)
+%endif
+%endif
 Suggests:       egl-wayland%{?_isa} >= 1.1.20
 Requires:       egl-x11%{?_isa} >= 1.0.3
 Requires:       libvdpau%{?_isa} >= 1.5
@@ -73,60 +76,40 @@ Requires:       libglvnd-egl%{?_isa} >= 1.0
 Requires:       libglvnd-gles%{?_isa} >= 1.0
 Requires:       libglvnd-glx%{?_isa} >= 1.0
 Requires:       libglvnd-opengl%{?_isa} >= 1.0
-Requires:       libnvidia-ml%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       vulkan-loader
-%if 0%{?fedora}
-%ifarch x86_64
-Requires:       (%{name}-libs(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
-%endif
-%endif
-# dlopened
-Requires:       libnvidia-gpucomp%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-Requires:       libnvidia-ml%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-
+#  dlopened:
+Requires:       %{name}-common%{?_isa} = %{evr}
 Conflicts:      nvidia-x11-drv-libs
-Conflicts:      nvidia-x11-drv-470xx-libs
 Conflicts:      xorg-x11-drv-nvidia-libs
-Conflicts:      xorg-x11-drv-nvidia-470xx-libs
 
 %description libs
 This package provides the shared libraries for %{name}.
 
 %package cuda-libs
 Summary:        Libraries for %{name}-cuda
-Provides:       %{name}-devel = %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes:      %{name}-devel < %{?epoch:%{epoch}:}%{version}-%{release}
-Requires:       libnvidia-ml = %{?epoch:%{epoch}:}%{version}-%{release}
-
-%ifarch x86_64 aarch64
-Requires:       libnvidia-cfg = %{?epoch:%{epoch}:}%{version}-%{release}
-%endif
-%if 0%{?fedora}
-%ifarch x86_64
-Requires:       (%{name}-cuda-libs(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
-%endif
-%endif
+Requires:       %{name}-common%{?_isa} = %{evr}
 # dlopened:
-Requires:       libnvidia-gpucomp%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-Requires:       libnvidia-ml = %{?epoch:%{epoch}:}%{version}-%{release}
-
+%if %{defined fedora}
+%ifarch x86_64
+Requires:       (%{name}-cuda-libs(x86-32) = %{evr} if steam)
+%endif
+%endif
 Conflicts:      xorg-x11-drv-nvidia-cuda-libs
-Conflicts:      xorg-x11-drv-nvidia-470xx-cuda-libs
 
 %description cuda-libs
 This package provides the CUDA libraries for %{name}-cuda.
 
 %package -n libnvidia-fbc
 Summary:        NVIDIA OpenGL-based Framebuffer Capture libraries
-Provides:       nvidia-driver-NvFBCOpenGL = %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes:      nvidia-driver-NvFBCOpenGL < %{?epoch:%{epoch}:}%{version}-%{release}
-%if 0%{?fedora}
+Provides:       nvidia-driver-NvFBCOpenGL = %{evr}
+Obsoletes:      nvidia-driver-NvFBCOpenGL < %{evr}
+# dlopened (libnvidia-encode.so):
+Requires:       %{name}-cuda-libs%{?_isa} = %{evr}
+%if %{defined fedora}
 %ifarch x86_64
-Requires:       (libnvidia-fbc(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
+Requires:       (libnvidia-fbc(x86-32) = %{evr} if steam)
 %endif
 %endif
-# dlopened:
-Requires:       %{name}-cuda-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description -n libnvidia-fbc
 This library provides a high performance, low latency interface to capture and
@@ -134,56 +117,30 @@ optionally encode the composited framebuffer of an X screen. NvFBC are private
 APIs that are only available to NVIDIA approved partners for use in remote
 graphics scenarios.
 
-%package -n libnvidia-gpucomp
-Summary:        NVIDIA library for shader compilation (nvgpucomp)
-%if 0%{?fedora}
-%ifarch x86_64
-Requires:       (libnvidia-gpucomp(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
-%endif
-%endif
+%package common
+Summary:        Common files and tools for NVIDIA driver
+Obsoletes:      libnvidia-cfg < %{evr}
+Obsoletes:      libnvidia-gpucomp < %{evr}
+Obsoletes:      libnvidia-ml < %{evr}
+Provides:       cuda-nvml%{?_isa} = %{evr}
+Provides:       libnvidia-cfg = %{evr}
+Provides:       libnvidia-gpucomp = %{evr}
+Provides:       libnvidia-ml = %{evr}
 
-%description -n libnvidia-gpucomp
-This package contains the private libnvidia-gpucomp runtime library which is used by
-other driver components.
-
-%package -n libnvidia-ml
-Summary:        NVIDIA Management Library (NVML)
-Provides:       cuda-nvml%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-Provides:       nvidia-driver-NVML = %{?epoch:%{epoch}:}%{version}-%{release}
-%if 0%{?fedora}
-%ifarch x86_64
-Requires:       (libnvidia-ml(x86-32) = %{?epoch:%{epoch}:}%{version}-%{release} if steam(x86-32))
-%endif
-%endif
-Obsoletes:      nvidia-driver-NVML < %{?epoch:%{epoch}:}%{version}-%{release}
-
-%description -n libnvidia-ml
-A C-based API for monitoring and managing various states of the NVIDIA GPU
-devices. It provides a direct access to the queries and commands exposed via
-nvidia-smi. The run-time version of NVML ships with the NVIDIA display driver,
-and the SDK provides the appropriate header, stub libraries and sample
-applications. Each new version of NVML is backwards compatible and is intended
-to be a platform for building 3rd party applications.
+%description common
+This package contains various libraries and tools which are used by other driver
+components in both desktop and compute only scenarios.
 
 %ifarch x86_64 aarch64
-
-%package -n libnvidia-cfg
-Summary:        NVIDIA Config public interface (nvcfg)
-
-%description -n libnvidia-cfg
-This package contains the private libnvidia-cfg runtime library which is used by
-other driver components.
 
 %package cuda
 Summary:        CUDA integration for %{name}
 Requires:       %{name}-cuda-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}
 Requires:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
 Requires:       nvidia-persistenced = %{?epoch:%{epoch}:}%{version}
+Requires:       (ocl-icd or OpenCL-ICD-Loader)
 Requires:       opencl-filesystem
-Requires:       ocl-icd
-
 Conflicts:      xorg-x11-drv-nvidia-cuda
-Conflicts:      xorg-x11-drv-nvidia-470xx-cuda
 
 %description cuda
 This package provides the CUDA integration components for %{name}.
@@ -194,20 +151,32 @@ Summary:        X.org X11 NVIDIA driver and extensions
 Requires:       %{name}%{?_isa} = %{?epoch:%{epoch}:}%{version}
 Requires:       xorg-x11-server-Xorg%{?_isa}
 Supplements:    (nvidia-driver and xorg-x11-server-Xorg)
-
 Conflicts:      xorg-x11-drv-nvidia
-Conflicts:      xorg-x11-drv-nvidia-470xx
 
 %description -n xorg-x11-nvidia
 The NVIDIA X.org X11 driver and associated components.
 %endif
 
 %endif
- 
+
+%if %{with selinux}
+%package        selinux
+Summary:        SELinux policies for the NVIDIA drivers
+Requires:       selinux-policy-targeted
+Requires(post): libselinux-utils
+Requires(post): policycoreutils
+Requires(post): policycoreutils-python-utils
+Requires(post): selinux-policy-base
+BuildArch:      noarch
+
+%description    selinux
+SELinux policies that allow functionality of the NVIDIA driver.
+%endif
+
 %prep
 source %{SOURCE99}
 export VERSION=%{version}
-%ifarch %ix86
+%ifarch %{ix86}
 export ARCH=x86_64
 %else
 export ARCH=%{_arch}
@@ -232,6 +201,13 @@ rm -f libnvidia-pkcs11.so.%{version}
 %endif
 %endif
 
+# Avoid harmless Vulkan loader message:
+# WARNING: [Loader Message] Code 0 : Path to given binary /usr/lib64/libGLX_nvidia.so.590.48.01
+# was found to differ from OS loaded path /usr/lib64/libGLX_nvidia.so.0
+# See also https://github.com/negativo17/nvidia-driver/issues/195
+mv libGLX_nvidia.so.%{version} libGLX_nvidia.so.0
+ln -sf libGLX_nvidia.so.0 libGLX_nvidia.so.%{version}
+
 # Create symlinks for shared objects
 ldconfig -vn .
 
@@ -244,7 +220,18 @@ ln -sf libnvcuvid.so.%{version} libnvcuvid.so
 # Required for building against CUDA
 ln -sf libcuda.so.%{version} libcuda.so
 
+%if %{with selinux}
+# Needed to build the SELinux policy
+cp %{SOURCE43} -t .
+%endif
+
 %build
+%if %{with selinux}
+# https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/using_selinux/writing-a-custom-selinux-policy_using-selinux#creating-and-enforcing-an-selinux-policy-for-a-custom-application_writing-a-custom-selinux-policy
+make -f %{_datadir}/selinux/devel/Makefile %{name}.pp
+
+bzip2 -9 %{name}.pp
+%endif
 
 %install
 # EGL loader
@@ -253,6 +240,11 @@ install -p -m 0644 -D 10_nvidia.json %{buildroot}%{_datadir}/glvnd/egl_vendor.d/
 # Vulkan loader
 install -p -m 0644 -D nvidia_icd.json %{buildroot}%{_datadir}/vulkan/icd.d/nvidia_icd.%{_target_cpu}.json
 sed -i -e 's|libGLX_nvidia|%{_libdir}/libGLX_nvidia|g' %{buildroot}%{_datadir}/vulkan/icd.d/nvidia_icd.%{_target_cpu}.json
+
+%if %{with selinux}
+# SELinux policy
+install -Dpm644 %{name}.pp.* -t %{buildroot}%{_datadir}/selinux/packages/%{selinuxtype}
+%endif
 
 %ifarch x86_64
 # Vulkan SC loader and compiler
@@ -293,8 +285,7 @@ mkdir -p %{buildroot}%{_sysconfdir}/nvidia/
 install -p -m 0755 -D nvidia.icd %{buildroot}%{_sysconfdir}/OpenCL/vendors/nvidia.icd
 
 # Binaries
-mkdir -p %{buildroot}%{_bindir}
-install -p -m 0755 nvidia-{debugdump,smi,cuda-mps-control,cuda-mps-server,bug-report.sh,ngx-updater,powerd} %{buildroot}%{_bindir}
+install -Dpm755 nvidia-{%{dnl bug-report.sh,}debugdump,smi,cuda-mps-control,cuda-mps-server,ngx-updater,powerd} -t %{buildroot}%{_bindir}
 
 # Man pages
 mkdir -p %{buildroot}%{_mandir}/man1/
@@ -302,7 +293,7 @@ install -p -m 0644 nvidia-{smi,cuda-mps-control}*.gz %{buildroot}%{_mandir}/man1
 
 %if 0%{?fedora} || 0%{?rhel} < 10
 # X stuff
-install -p -m 0644 -D %{SOURCE10} %{buildroot}%{_sysconfdir}/X11/xorg.conf.d/10-nvidia.conf
+install -p -m 0644 -D nvidia-drm-outputclass.conf %{buildroot}%{_sysconfdir}/X11/xorg.conf.d/10-nvidia.conf
 install -p -m 0755 -D nvidia_drv.so %{buildroot}%{_libdir}/xorg/modules/drivers/nvidia_drv.so
 install -p -m 0755 -D libglxserver_nvidia.so.%{version} %{buildroot}%{_libdir}/xorg/modules/extensions/libglxserver_nvidia.so
 %endif
@@ -317,18 +308,12 @@ install -p -m 0644 nvidia-application-profiles-%{version}-rc \
 # OptiX
 install -p -m 0644 nvoptix.bin %{buildroot}%{_datadir}/nvidia/
 
-# Systemd units and script for suspending/resuming
-mkdir -p %{buildroot}%{_systemd_util_dir}/system-preset/
-install -p -m 0644 %{SOURCE8} %{SOURCE9} %{buildroot}%{_systemd_util_dir}/system-preset/
-mkdir -p %{buildroot}%{_unitdir}/
-install -p -m 0644 systemd/system/*.service %{buildroot}%{_unitdir}/
-install -p -m 0755 systemd/nvidia-sleep.sh %{buildroot}%{_bindir}/
-install -p -m 0755 -D systemd/system-sleep/nvidia %{buildroot}%{_systemd_util_dir}/system-sleep/nvidia
-install -p -m 0644 -D nvidia-dbus.conf %{buildroot}%{_datadir}/dbus-1/system.d/nvidia-dbus.conf
-
-# Ignore powerd binary exiting if hardware is not present
-# We should check for information in the DMI table
-sed -i -e 's/ExecStart=/ExecStart=-/g' %{buildroot}%{_unitdir}/nvidia-powerd.service
+# Systemd units and script for power management
+install -Dpm644 %{SOURCE7} %{buildroot}%{_unitdir}/nvidia-powerd.service
+cp -frv systemd/system/systemd-* %{buildroot}%{_unitdir}/
+install -Dpm644 nvidia-dbus.conf %{buildroot}%{_datadir}/dbus-1/system.d/nvidia-dbus.conf
+install -Dpm644 dlsnetparams.csv %{buildroot}%{_datadir}/nvidia/nvidia-powerd/dlsnetparams.csv
+install -Dpm644 %{SOURCE8} %{buildroot}%{_systemd_util_dir}/system-preset/70-nvidia-driver.preset
 
 # Vulkan layer
 install -p -m 0644 -D nvidia_layers.json %{buildroot}%{_datadir}/vulkan/implicit_layer.d/nvidia_layers.json
@@ -359,27 +344,31 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 
 %ifarch x86_64 aarch64
 
-%post
-%systemd_post nvidia-hibernate.service
+%post common
 %systemd_post nvidia-powerd.service
-%systemd_post nvidia-resume.service
-%systemd_post nvidia-suspend.service
-%systemd_post nvidia-suspend-then-hibernate.service
 
-%preun
-%systemd_preun nvidia-hibernate.service
+%preun common
 %systemd_preun nvidia-powerd.service
-%systemd_preun nvidia-resume.service
-%systemd_preun nvidia-suspend.service
-%systemd_preun nvidia-suspend-then-hibernate.service
 
-%postun
-%systemd_postun nvidia-hibernate.service
+%postun common
 %systemd_postun nvidia-powerd.service
-%systemd_postun nvidia-resume.service
-%systemd_postun nvidia-suspend.service
-%systemd_postun nvidia-suspend-then-hibernate.service
 
+%endif
+
+%if %{with selinux}
+%pre selinux
+%selinux_relabel_pre -s %{selinuxtype}
+
+%post selinux
+%selinux_modules_install -s %{selinuxtype} %{_datadir}/selinux/packages/%{selinuxtype}/%{name}.pp.bz2
+
+%postun selinux
+if [ $1 == 0 ]; then
+    %selinux_modules_uninstall -s %{selinuxtype} %{name}
+fi
+
+%posttrans selinux
+%selinux_relabel_post -s %{selinuxtype}
 %endif
 
 %ifarch x86_64 aarch64
@@ -388,24 +377,21 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %license LICENSE
 %doc NVIDIA_Changelog README.txt html supported-gpus/supported-gpus.json
 %dir %{_sysconfdir}/nvidia
-%{_bindir}/nvidia-bug-report.sh
 %{_bindir}/nvidia-ngx-updater
 %ifarch x86_64
 %{_bindir}/nvidia-pcc
 %endif
-%{_bindir}/nvidia-powerd
-%{_bindir}/nvidia-sleep.sh
 %{_metainfodir}/com.nvidia.driver.metainfo.xml
-%{_datadir}/dbus-1/system.d/nvidia-dbus.conf
 %{_datadir}/nvidia/nvidia-application-profiles*
 %{_datadir}/pixmaps/com.nvidia.driver.png
-%{_systemd_util_dir}/system-preset/70-nvidia-driver.preset
-%{_systemd_util_dir}/system-sleep/nvidia
-%{_unitdir}/nvidia-hibernate.service
-%{_unitdir}/nvidia-powerd.service
-%{_unitdir}/nvidia-resume.service
-%{_unitdir}/nvidia-suspend.service
-%{_unitdir}/nvidia-suspend-then-hibernate.service
+%dir %{_unitdir}/systemd-suspend.service.d
+%{_unitdir}/systemd-suspend.service.d/nvidia-suspend-nofreeze.conf
+%dir %{_unitdir}/systemd-hibernate.service.d
+%{_unitdir}/systemd-hibernate.service.d/nvidia-suspend-nofreeze.conf
+%dir %{_unitdir}/systemd-suspend-then-hibernate.service.d
+%{_unitdir}/systemd-suspend-then-hibernate.service.d/nvidia-suspend-nofreeze.conf
+%dir %{_unitdir}/systemd-hybrid-sleep.service.d
+%{_unitdir}/systemd-hybrid-sleep.service.d/nvidia-suspend-nofreeze.conf
 %if 0%{?fedora} < 42 || 0%{?rhel}
 %{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}.conf
 %endif
@@ -417,10 +403,6 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %{_libdir}/xorg/modules/drivers/nvidia_drv.so
 %endif
 
-%files -n libnvidia-cfg
-%{_libdir}/libnvidia-cfg.so.1
-%{_libdir}/libnvidia-cfg.so.%{version}
-
 %files cuda
 %{_sysconfdir}/OpenCL/vendors/*
 %{_bindir}/nvidia-cuda-mps-control
@@ -431,12 +413,26 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %{_mandir}/man1/nvidia-cuda-mps-control.1.*
 %{_mandir}/man1/nvidia-smi.*
 %{_prefix}/lib/nvidia/alternate-install-present
-%{_systemd_util_dir}/system-preset/70-nvidia-driver-cuda.preset
 %if 0%{?fedora} < 42 || 0%{?rhel}
 %{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}-cuda.conf
 %endif
 
 %endif
+
+%files common
+%ifarch x86_64 aarch64
+%{_systemd_util_dir}/system-preset/70-nvidia-driver.preset
+%{_unitdir}/nvidia-powerd.service
+%dnl %{_bindir}/nvidia-bug-report.sh
+%{_bindir}/nvidia-powerd
+%{_datadir}/dbus-1/system.d/nvidia-dbus.conf
+%{_datadir}/nvidia/nvidia-powerd
+%{_libdir}/libnvidia-cfg.so.1
+%{_libdir}/libnvidia-cfg.so.%{version}
+%endif
+%{_libdir}/libnvidia-gpucomp.so.%{version}
+%{_libdir}/libnvidia-ml.so.1
+%{_libdir}/libnvidia-ml.so.%{version}
 
 %files libs
 %{_datadir}/glvnd/egl_vendor.d/10_nvidia.json
@@ -459,7 +455,6 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %{_libdir}/libnvidia-glcore.so.%{version}
 %{_libdir}/libnvidia-glsi.so.%{version}
 %{_libdir}/libnvidia-glvkspirv.so.%{version}
-%{_libdir}/libnvidia-gpucomp.so.%{version}
 %{_libdir}/libnvidia-tls.so.%{version}
 %{_libdir}/vdpau/libvdpau_nvidia.so.1
 %{_libdir}/vdpau/libvdpau_nvidia.so.%{version}
@@ -469,26 +464,30 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %{_libdir}/libnvidia-api.so.1
 %{_libdir}/libnvidia-ngx.so.1
 %{_libdir}/libnvidia-ngx.so.%{version}
+%{_libdir}/libnvidia-present.so.%{version}
 %{_libdir}/libnvidia-rtcore.so.%{version}
 %{_libdir}/libnvoptix.so.1
 %{_libdir}/libnvoptix.so.%{version}
 %endif
 %ifarch x86_64
 %{_datadir}/vulkansc/icd.d/nvidia_icd.%{_target_cpu}.json
-%if v"%{version}" > v"570.144"
-%{_libdir}/libnvidia-present.so.%{version}
-%endif
 %{_libdir}/libnvidia-vksc-core.so.1
 %{_libdir}/libnvidia-vksc-core.so.%{version}
 %dir %{_libdir}/nvidia
 %dir %{_libdir}/nvidia/wine
-%{_libdir}/nvidia/wine/*.dll
+%{_libdir}/nvidia/wine/_nvngx.dll
+%{_libdir}/nvidia/wine/nvngx.dll
+%{_libdir}/nvidia/wine/nvngx_dlssg.dll
 %endif
 
 %files cuda-libs
 %{_libdir}/libcuda.so
 %{_libdir}/libcuda.so.1
 %{_libdir}/libcuda.so.%{version}
+%ifarch aarch64
+%{_libdir}/libnvcuextend.so.1
+%{_libdir}/libnvcuextend.so.%{version}
+%endif
 %{_libdir}/libnvcuvid.so
 %{_libdir}/libnvcuvid.so.1
 %{_libdir}/libnvcuvid.so.%{version}
@@ -503,12 +502,11 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %{_libdir}/libnvidia-opticalflow.so.%{version}
 %{_libdir}/libnvidia-ptxjitcompiler.so.1
 %{_libdir}/libnvidia-ptxjitcompiler.so.%{version}
+%{_libdir}/libnvidia-tileiras.so.%{version}
 %ifarch x86_64 aarch64
 %{_libdir}/libcudadebugger.so.1
 %{_libdir}/libcudadebugger.so.%{version}
-%if v"%{version}" > v"570.144"
 %{_libdir}/libnvidia-nvvm70.so.4
-%endif
 %{_libdir}/libnvidia-sandboxutils.so.1
 %{_libdir}/libnvidia-sandboxutils.so.%{version}
 %endif
@@ -524,12 +522,14 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.me
 %{_libdir}/libnvidia-fbc.so.1
 %{_libdir}/libnvidia-fbc.so.%{version}
 
-%files -n libnvidia-gpucomp
-%{_libdir}/libnvidia-gpucomp.so.%{version}
-
-%files -n libnvidia-ml
-%{_libdir}/libnvidia-ml.so.1
-%{_libdir}/libnvidia-ml.so.%{version}
+%if %{with selinux}
+%files selinux
+%{_datadir}/selinux/packages/%{selinuxtype}/%{name}.pp.*
+%ghost %verify(not md5 size mode mtime) %{_sharedstatedir}/selinux/%{selinuxtype}/active/modules/200/%{name}
+%endif
 
 %changelog
-%autochangelog
+* Thu Jul 16 2026 Gilver E. <roachy@fyralabs.com> - 3:610.43.03-2
+- Update for SELinux policies
+* Mon Apr 13 2026 Gilver E. <roachy@fyralabs.com> - 3:595.58.03-2
+- Update spec for Terra packaging team

@@ -6,8 +6,8 @@
 %global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 Name:           discord-canary-openasar
-Version:        0.0.814
-Release:        1%?dist
+Version:        1.0.1682
+Release:        1%{?dist}
 Summary:        A snappier Discord rewrite with features like further customization and theming
 License:        MIT AND https://discord.com/terms
 URL:            https://github.com/GooseMod/OpenAsar
@@ -41,6 +41,7 @@ mkdir -p %{buildroot}%{_datadir}/applications/
 mkdir -p %{buildroot}%{_datadir}/pixmaps
 ln -s %_datadir/discord-canary-openasar/discord-canary.desktop %{buildroot}%{_datadir}/applications/discord-canary-openasar.desktop
 ln -s %_datadir/discord-canary-openasar/discord.png %{buildroot}%{_datadir}/pixmaps/discord-canary-openasar.png
+mkdir -p %{buildroot}%{_datadir}/discord-canary-openasar/resources
 cp -v %{SOURCE1} %{buildroot}%{_datadir}/discord-canary-openasar/resources/app.asar
 chmod o+w %{buildroot}%{_datadir}/discord-canary-openasar/resources -R
 ln -s %_datadir/discord-canary-openasar/DiscordCanary %buildroot%_bindir/discord-canary-openasar
@@ -54,7 +55,7 @@ ln -s %_datadir/discord-canary-openasar/DiscordCanary %buildroot%_bindir/discord
 
 
 %changelog
-* Wed Jan 18 2023 windowsboy111 <windowsboy111@fyralabs.com> - 0.0.146-1
+* Wed Jan 18 2023 madonuko <mado@fyralabs.com> - 0.0.146-1
 - Renamed from openasar-canary to discord-canary-openasar
 - Fix issues after removing discord-canary package
 - Bundle discord-canary

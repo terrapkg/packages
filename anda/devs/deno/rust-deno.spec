@@ -5,29 +5,34 @@
 %global appstream_component runtime
 %global crate deno
 
+%global debug_level 1
+%undefine _debugsource_packages
+
 Name:           rust-deno
-Version:        2.5.6
-Release:        3%?dist
+Version:        2.9.5
+Release:        1%{?dist}
 Summary:        Deno executable
 
 License:        MIT
 URL:            https://crates.io/crates/deno
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 Source1:        https://raw.githubusercontent.com/denoland/deno/refs/tags/v%version/LICENSE.md
 Source2:        gcc-wrapper.sh
 Source3:        land.deno.deno.metainfo.xml
 # Automatically generated patch to strip dependencies and normalize metadata
-Patch:          deno-fix-metadata-auto.diff
+%dnl Patch:          deno-fix-metadata-auto.diff
 
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros
 BuildRequires:  protobuf-compiler
-BuildRequires:  llvm17-devel
+BuildRequires:  llvm19-devel
 BuildRequires:  python3
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  clang
 BuildRequires:  clang-devel
+# Why did Deno name their NPX equivalent this? At least OpenDX is pretty much dead.
+Conflicts:      dx
 
 %global _description %{expand:
 Provides the deno executable.}
@@ -47,6 +52,7 @@ License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) 
 %doc README.md
 %{_metainfodir}/%{appid}.metainfo.xml
 %{_bindir}/deno
+%{_bindir}/dx
 
 %pkg_completion -Bfzn %crate
 
@@ -59,7 +65,7 @@ cp %{S:2} gcc
 
 
 %global __cc %_builddir/%buildsubdir/gcc
-sed '/\[env\]/a CC="%__cc"' -i .cargo/config
+%dnl sed '/\[env\]/a CC="%__cc"' -i .cargo/config
 
 %build
 %{cargo_license_summary_online}
@@ -73,4 +79,9 @@ target/rpm/deno completions bash > %buildroot%bash_completions_dir/deno
 %dnl target/rpm/deno completions elvish > %buildroot%elvish_completions_dir/deno.elv
 target/rpm/deno completions fish > %buildroot%fish_completions_dir/deno.fish
 target/rpm/deno completions zsh > %buildroot%zsh_completions_dir/_deno
+pushd %{buildroot}%{_bindir}
+./deno x --install-alias
+popd
 %terra_appstream -o %{SOURCE3}
+
+rm -rf target # save space

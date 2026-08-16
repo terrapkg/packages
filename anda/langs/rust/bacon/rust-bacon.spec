@@ -5,14 +5,14 @@
 %global features "sound,clipboard"
 
 Name:           rust-bacon
-Version:        3.20.1
-Release:        1%?dist
+Version:        3.24.0
+Release:        2%{?dist}
 Summary:        Background rust compiler
-Packager:       metcya <metcya@gmail.com>
+Packager:       Olivia <git@olivia.sh>
 
 License:        AGPL-3.0
 URL:            https://crates.io/crates/bacon
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 
 BuildRequires:  anda-srpm-macros 
 BuildRequires:  mold
@@ -131,4 +131,7 @@ use the "sound" feature of the "%{crate}" crate.
 %endif
 
 %changelog
+* Sun Jul 19 2026 Olivia <git@olivia.sh> - 3.24.0-2
+- Update packager
+
 %autochangelog

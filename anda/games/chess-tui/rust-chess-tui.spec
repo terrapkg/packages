@@ -4,15 +4,16 @@
 %global crate chess-tui
 
 Name:           rust-chess-tui
-Version:        1.6.2
-Release:        1%?dist
+Version:        2.7.1
+Release:        1%{?dist}
 Summary:        Rusty chess game in your terminal 🦀
 
 License:        MIT
 URL:            https://crates.io/crates/chess-tui
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 
 BuildRequires:  cargo-rpm-macros >= 24
+BuildRequires:  pkgconfig(openssl)
 
 %global _description %{expand:
 A rusty chess game in your terminal 🦀.}

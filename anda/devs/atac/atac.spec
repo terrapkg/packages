@@ -6,13 +6,13 @@
 %global __brp_mangle_shebangs %{nil}
 
 Name:           atac
-Version:        0.22.1
+Version:        0.23.0
 Release:        1%?dist
 Summary:        Arguably a Terminal API Client
 
 License:        MIT
 URL:            https://crates.io/crates/atac
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 
 Packager:       xiaoshihou <xiaoshihou@tutamail.com>
 BuildRequires:  anda-srpm-macros cargo-rpm-macros mold

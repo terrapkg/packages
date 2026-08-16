@@ -1,0 +1,23 @@
+From 62997595c884f3ff35903a6c1ae864b5a7735301 Mon Sep 17 00:00:00 2001
+From: Jan200101 <sentrycraft123@gmail.com>
+Date: Sun, 28 Jun 2026 17:40:10 +0200
+Subject: [PATCH] Enabling support for Python 3.15
+
+Signed-off-by: Jan200101 <sentrycraft123@gmail.com>
+---
+ Ghidra/application.properties | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Ghidra/application.properties b/Ghidra/application.properties
+index 5b99998751..0f8a9f1096 100644
+--- a/Ghidra/application.properties
++++ b/Ghidra/application.properties
+@@ -7,4 +7,4 @@ application.gradle.max=
+ application.java.min=21
+ application.java.max=
+ application.java.compiler=21
+-application.python.supported=3.14, 3.13, 3.12, 3.11, 3.10, 3.9
++application.python.supported=3.15, 3.14, 3.13, 3.12, 3.11, 3.10, 3.9
+-- 
+2.54.0
+

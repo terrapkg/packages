@@ -1,0 +1,245 @@
+# https://ziglang.org/download/VERSION/release-notes.html#Support-Table
+%global         zig_arches x86_64 aarch64 riscv64 %{mips64}
+# Signing key from https://ziglang.org/download/
+%global         public_key RWSGOq2NVecA2UPNdBUZykf1CCb147pkmdtYxgb3Ti+JO/wCYvhbAb/U
+%if 0%{?fedora} >= 43 || 0%{?rhel} >= 9
+%define         llvm_compat 20
+%endif
+
+%global         llvm_version 20.0.0
+
+%bcond bootstrap 1
+%bcond docs      %{without bootstrap}
+%bcond test      1
+# GCC < 16.0 miscompiles on RISC-V
+%ifarch riscv64
+%if 0%{?fedora} < 44
+%global toolchain clang
+%endif
+%endif
+%global zig_cache_dir %{builddir}/zig-cache
+
+%global         realname zig
+Name:           %{realname}0.15
+Version:        0.15.2
+Release:        1%{?dist}
+Summary:        compatibility build for ${realname} %{version}
+# The minisign file references a specific archive name so we store for ease of use
+%global         archive_name %{realname}-%{version}.tar.xz
+
+License:        MIT AND NCSA AND LGPL-2.1-or-later AND LGPL-2.1-or-later WITH GCC-exception-2.0 AND GPL-2.0-or-later AND GPL-2.0-or-later WITH GCC-exception-2.0 AND BSD-3-Clause AND Inner-Net-2.0 AND ISC AND LicenseRef-Fedora-Public-Domain AND GFDL-1.1-or-later AND ZPL-2.1
+URL:            https://ziglang.org
+Source0:        %{url}/download/%{version}/%{archive_name}
+Source1:        %{url}/download/%{version}/%{archive_name}.minisig
+Patch0:         0000-remove-native-lib-directories-from-rpath.patch
+%if %{defined rhel}
+Patch1:         0001-Remove-unsupported-LLVM-targets-for-EPEL.patch
+%endif
+BuildRequires:  cmake
+%if %["%{toolchain}" == "clang"]
+BuildRequires:  clang
+%else
+BuildRequires:  gcc
+BuildRequires:  gcc-c++
+%endif
+BuildRequires:  libxml2-devel
+BuildRequires:  llvm%{?llvm_compat}-devel
+BuildRequires:  clang%{?llvm_compat}-devel
+BuildRequires:  lld%{?llvm_compat}-devel
+BuildRequires:  zlib-devel
+# for man page generation
+BuildRequires:  help2man
+# for signature verification
+BuildRequires:  minisign
+%if %{without bootstrap}
+BuildRequires:  %{name} = %{version}
+%endif
+%if %{with test}
+BuildRequires:  elfutils-libelf-devel
+BuildRequires:  libstdc++-static
+%endif
+Requires:       %{name}-libs = %{version}
+# Apache-2.0 WITH LLVM-exception OR NCSA OR MIT
+Provides:       bundled(compiler-rt) = %{llvm_version}
+# LGPL-2.1-or-later AND SunPro AND LGPL-2.1-or-later WITH GCC-exception-2.0 AND BSD-3-Clause AND GPL-2.0-or-later AND LGPL-2.1-or-later WITH GNU-compiler-exception AND GPL-2.0-only AND ISC AND LicenseRef-Fedora-Public-Domain AND HPND AND CMU-Mach AND LGPL-2.0-or-later AND Unicode-3.0 AND GFDL-1.1-or-later AND GPL-1.0-or-later AND FSFUL AND MIT AND Inner-Net-2.0 AND X11 AND GPL-2.0-or-later WITH GCC-exception-2.0 AND GFDL-1.3-only AND GFDL-1.1-only
+Provides:       bundled(glibc) = 2.43
+# Apache-2.0 WITH LLVM-exception OR MIT OR NCSA
+Provides:       bundled(libcxx) = %{llvm_version}
+# Apache-2.0 WITH LLVM-exception OR MIT OR NCSA
+Provides:       bundled(libcxxabi) = %{llvm_version}
+# NCSA
+Provides:       bundled(libunwind) = %{llvm_version}
+# BSD, LGPG, ZPL
+Provides:       bundled(mingw) = 3839e21b08807479a31d5a9764666f82ae2f0356
+# MIT
+Provides:       bundled(musl) = 1.2.5
+# Apache-2.0 WITH LLVM-exception AND Apache-2.0 AND MIT AND BSD-2-Clause
+Provides:       bundled(wasi-libc) = d03829489904d38c624f6de9983190f1e5e7c9c5
+Conflicts:      zig
+ExclusiveArch:  %{zig_arches}
+Packager:       Jan200101 <sentrycraft123@gmail.com>
+
+# Must be defined AFTER the version is
+%global zig_build_options %{shrink: \
+    --verbose \
+    --release=fast \
+    --summary all \
+    \
+    -Dtarget=native \
+    -Dcpu=baseline \
+    --zig-lib-dir lib \
+    --build-id=sha1 \
+    \
+    --cache-dir "%{zig_cache_dir}" \
+    --global-cache-dir "%{zig_cache_dir}" \
+    \
+    -Dversion-string="%{version}" \
+    -Dstatic-llvm=false \
+    -Denable-llvm=true \
+    -Dno-langref=true \
+    -Dstd-docs=false \
+    -Dpie \
+    -Dconfig_h="%{__cmake_builddir}/config.h" \
+}
+%global zig_install_options %zig_build_options %{shrink: \
+    --prefix "%{_prefix}" \
+}
+
+%description
+Zig is an open source alternative to C. 
+This package provides the master/"prerelease" builds of the Zig compiler and the associated runtime.
+Please note these are not stable releases and should only be used for Zig projects that use these or Git versions of Zig.
+
+# The Zig stdlib only contains uncompiled code
+%package libs
+Summary:        Zig Standard Library
+Conflicts:      zig-libs
+BuildArch:      noarch
+
+%description libs
+Zig Standard Library
+
+%if %{with docs}
+%package doc
+Summary:        Documentation for Zig
+Conflicts:      zig-doc
+BuildArch:      noarch
+Requires:       %{name} = %{version}
+
+%description doc
+Documentation for Zig. For more information, visit %{url}
+%endif
+
+%prep
+/usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key} | grep -F -C5 "file:%{archive_name}" || exit 1
+%autosetup -p1 -n %{realname}-%{version}
+%if %{without bootstrap}
+# Ensure that the pre-build stage1 binary is not used
+rm -f stage1/zig1.wasm
+%endif
+
+%conf
+# Force the correct LLVM version
+%if %{defined llvm_compat}
+export LLVM_DIR=%{_libdir}/llvm%{?llvm_compat}/%{_lib}/cmake
+%endif
+# zig doesn't know how to dynamically link llvm on its own so we need cmake to generate a header ahead of time
+# if we provide the header we need to also build zigcpp
+
+# C_FLAGS: wasm2c output generates a lot of noise with -Wunused.
+# EXTRA_BUILD_ARGS: explicitly specify a build-id
+%cmake \
+    -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo \
+    -DCMAKE_C_FLAGS_RELWITHDEBINFO:STRING="-DNDEBUG -Wno-unused" \
+    -DCMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING="-DNDEBUG -Wno-unused" \
+    \
+    -DZIG_EXTRA_BUILD_ARGS:STRING="--verbose;--build-id=sha1" \
+    -DZIG_SHARED_LLVM:BOOL=true \
+    -DZIG_PIE:BOOL=true \
+    \
+    -DZIG_TARGET_MCPU:STRING=baseline \
+    -DZIG_TARGET_TRIPLE:STRING=native \
+    \
+    -DZIG_VERSION:STRING="%{version}"
+
+
+%build
+# Zig generates a large C file for bootstrapping which does not
+# behave well with ccache so explicitly disable it.
+export CCACHE_DISABLE=1
+
+%if %{with bootstrap}
+%cmake_build --target stage3
+%else
+%cmake_build --target zigcpp
+zig build %{zig_build_options}
+
+# Zig has no official manpage
+# https://github.com/ziglang/zig/issues/715
+help2man --no-discard-stderr --no-info "./zig-out/bin/zig" --version-option=version --output=zig.1
+%endif
+
+
+%if %{with docs}
+# Use the newly made stage 3 compiler to generate docs
+# Zig has an extremely annoying issue with transitive failures when trying to build the docs, retry until it succeeds
+max=3
+attempt=1
+while
+  ./zig-out/bin/zig build docs \
+    --verbose \
+    --global-cache-dir "%{zig_cache_dir}" \
+    -Dversion-string="%(v=%{version_no_tilde}; echo ${v:0:6})"
+  [[ $? != 0 ]]
+do
+  echo "Transitive failure. Trying again." >&2
+
+  if [[ $attempt == $max ]]
+  then
+    break
+  fi
+
+  sleep 1
+  ((attempt++))  
+done
+%endif
+
+%install
+%if %{with bootstrap}
+%cmake_install
+%else
+DESTDIR="%{buildroot}" zig build install %{zig_install_options}
+
+install -Dpm644 zig.1 -t %{buildroot}%{_mandir}/man1/ 
+%endif
+
+%if %{with test}
+%check
+# Run reduced set of tests, based on the Zig CI
+"%{buildroot}%{_bindir}/zig" test test/behavior.zig -Itest
+%endif
+
+%files
+%license LICENSE
+%{_bindir}/zig
+%if %{without bootstrap}
+%{_mandir}/man1/zig.1.*
+%endif
+
+%files libs
+%{_prefix}/lib/zig
+
+%if %{with docs}
+%files doc
+%doc README.md
+%doc zig-out/doc/langref.html
+%doc zig-out/doc/std
+%endif
+
+%changelog
+* Sat May 10 2025 Gilver E. <rockgrub@disroot.org> - 0.15.0~dev.482+2c241b263-2
+- Added GCC runtime dependency to pass system information to Zig
+* Fri Apr 25 2025 Gilver E. <rockgrub@disroot.org> - 0.15.0~dev.384+c06fecd46-2
+- Ported Fedora Zig patches
+* Wed Apr 23 2025 Gilver E. <rockgrub@disroot.org>
+- Initial package

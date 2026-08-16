@@ -1,6 +1,9 @@
 name: Manual Builds
 permissions:
   contents: read
+  attestations: write
+  artifact-metadata: write
+  id-token: write
 on:
   workflow_dispatch:
     inputs:
@@ -23,13 +26,13 @@ jobs:
   manifest:
     outputs:
       build_matrix: ${{ steps.parsing.outputs.build_matrix }}
-    runs-on: ubuntu-24.04-arm
+    runs-on: arc-runner-set
     container:
       image: ghcr.io/terrapkg/builder:frawhide
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
       - name: Setup Git

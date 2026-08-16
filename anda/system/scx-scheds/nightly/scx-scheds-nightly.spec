@@ -1,15 +1,15 @@
-%global commit 365d85d48f4315e94562cd307223234e71b161b8
+%global commit 558aa09863e7bddb09101e4b242cc6efaee3dd5f
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20251128
-%global ver 1.0.18
+%global commitdate 20260814
+%global ver 1.1.2
 %undefine __brp_mangle_shebangs
 
 Name:           scx-scheds-nightly
 Version:        %{ver}^%{commitdate}.git.%{shortcommit}
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Nightly builds of sched_ext schedulers and tools
 SourceLicense:  GPL-2.0-only
-License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND BSD-2-Clause AND BSD-3-Clause AND GPL-2.0-only AND ISC AND (LGPL-2.1-only OR BSD-2-Clause) AND LGPL-2.1 AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MIT AND (MPL-2.0 OR MIT OR Apache-2.0) AND MPL-2.0-only and MPL-2.0-or-later AND (Unlicense OR MIT) AND Zlib
+License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND BSD-2-Clause AND BSD-3-Clause AND BSL-1.0 AND GPL-2.0-only AND ISC AND (LGPL-2.1-only OR BSD-2-Clause) AND LGPL-2.1-only AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MIT AND (MPL-2.0 OR MIT OR Apache-2.0) AND MPL-2.0-or-later AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT) AND Zlib
 URL:            https://github.com/sched-ext/scx
 Source0:        %{URL}/archive/%{commit}/scx-%{commit}.tar.gz
 BuildRequires:  anda-srpm-macros
@@ -33,6 +33,7 @@ BuildRequires:  rust
 BuildRequires:  systemd
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  zlib-ng-compat
+BuildRequires:  pkgconfig(openssl)
 Requires:       (scx-tools or scx-tools-nightly)
 Suggests:       scx-tools-nightly
 Requires:       elfutils-libelf
@@ -53,7 +54,7 @@ Provides:       scx_layered
 Provides:       scx_rustland
 Provides:       scx_rusty
 Obsoletes:      scxctl <= 0.3.4
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 sched_ext is a Linux kernel feature which enables implementing kernel thread schedulers in BPF and dynamically loading them.
@@ -84,13 +85,10 @@ License:       GPL-2.0-only
      --exclude scx_arena_selftests
 
 %install
-find target/rpm \
-    -maxdepth 1 -type f -executable ! -name '*.so' \
-    -exec install -Dm755 -t %{buildroot}%{_bindir} {} +
+%install_cargo_bins
+%install_cargo_devel_libs
 
-install -Dm755 target/rpm/*.so -t %{buildroot}%{_libdir}
-
-%{cargo_license_online} > LICENSE.dependencies
+%{cargo_license_online -a} > LICENSE.dependencies
 
 %files
 %doc OVERVIEW.md
@@ -100,5 +98,7 @@ install -Dm755 target/rpm/*.so -t %{buildroot}%{_libdir}
 %{_bindir}/scx*
 
 %changelog
+* Sat May 2 2026 Gilver E. <roachy@fyralabs.com> - 1.1.0^20260502.git.ce8aa3d-2
+- Update licenses
 * Sun Jun 15 2025 Gilver E. <rockgrub@disroot.org> - 1.0.13^20250612.git.c1507b0-1
 - Initial package

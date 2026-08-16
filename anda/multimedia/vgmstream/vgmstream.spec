@@ -1,10 +1,10 @@
-%global commit      daba5cd9726706e49ef81bbd682042796ba3e368
+%global commit      5bf4bdf0de37710b412bd81649e513fb054cef85
 %global shortcommit %{sub %{commit} 1 7}
-%global commit_date 20251127
+%global commit_date 20260814
 
 Name:			vgmstream
 Version:		0~%{commit_date}git.%shortcommit
-Release:		1%?dist
+Release:		1%{?dist}
 Summary:		A library for playback of various streamed audio formats used in video games
 License:		ISC
 URL:			https://vgmstream.org

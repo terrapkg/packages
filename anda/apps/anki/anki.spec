@@ -1,9 +1,10 @@
 Name:           anki
-Version:        25.09.2
-Release:        1%?dist
+Version:        26.08.1
+Release:        1%{?dist}
 Summary:        Flashcard program for using space repetition learning
 License:        AGPL-3.0-or-later AND GPL-3.0-or-later AND LGPL-3.0-or-later AND MIT AND BSD-3-Clause AND CC-BY-SA-3.0 AND CC-BY-3.0 AND Apache-2.0 AND CC-BY-2.5
 URL:            https://apps.ankiweb.net/
+Packager:       madonuko <mado@fyralabs.com>
 BuildRequires:  python3-devel python3-setuptools python3-waitress python3-protobuf python3-pysocks rpm_macro(fdupes)
 BuildRequires:  python3-distro python3-flask-cors python3-jsonschema python3-send2trash python3-certifi python3-simplejson
 BuildRequires:  python3-installer make mold cargo git rsync ninja-build libxcrypt-compat nodejs python3.9 python-unversioned-command gcc python3-pyqt6-webengine
@@ -25,9 +26,7 @@ phrases in a foreign language) as easily, quickly and efficiently as possible.
 Anki is based on a theory called spaced repetition.
 
 %prep
-rm -rf *
-git clone https://github.com/ankitects/anki .
-git checkout %{version}
+%git_clone https://github.com/ankitects/anki
 %patch 0 -p1
 
 # See https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=anki
@@ -36,7 +35,7 @@ git checkout %{version}
 export RELEASE=1
 export PYTHONPATH="%{python3_sitelib}:%{python3_sitearch}:%{buildroot}%{python3_sitelib}:%{buildroot}%{python3_sitearch}:$PYTHONPATH"
 cargo update
-mold -run ./tools/build
+./tools/build
 
 
 %install
@@ -73,5 +72,5 @@ chmod 755 %{buildroot}%{_bindir}/anki
 
 
 %changelog
-* Tue Jan 3 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2.1.60
+* Tue Jan 3 2023 madonuko <mado@fyralabs.com> - 2.1.60
 - Initial package

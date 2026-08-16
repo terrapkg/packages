@@ -11,7 +11,7 @@
 # https://github.com/grpc/grpc-go
 %global goipath         google.golang.org/grpc
 %global forgeurl        https://github.com/grpc/grpc-go
-Version:                1.77.0
+Version:                1.83.0
 
 %gometa -L
 
@@ -24,7 +24,7 @@ The Go language implementation of gRPC. HTTP/2 based RPC.}
                         Documentation
 
 Name:           golang-google-grpc.terra
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        The Go language implementation of gRPC. HTTP/2 based RPC
 
 License:        Apache-2.0

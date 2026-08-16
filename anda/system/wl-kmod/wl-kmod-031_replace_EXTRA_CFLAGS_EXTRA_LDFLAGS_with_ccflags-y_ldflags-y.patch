@@ -1,0 +1,63 @@
+From 26597004c02ca97d4ff620ed11091cf0dd68a92d Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Nicolas=20Vi=C3=A9ville?= <nicolas.vieville@uphf.fr>
+Date: Tue, 17 Jun 2025 14:34:24 +0200
+Subject: [PATCH] makefile: replace EXTRA_CFLAGS and EXTRA_LDFLAGS with
+ ccflags-y and ldflags-y from commit "kbuild: remove EXTRA_*FLAGS support"
+ (Masahiro Yamada, 6 Feb 2025) saying they have been deprecated since 2007
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Nicolas Viéville <nicolas.vieville@uphf.fr>
+---
+ Makefile | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 296162c..6e90afb 100644
+--- a/Makefile
++++ b/Makefile
+@@ -131,15 +131,15 @@ GCCVERSION := $(subst $(space),$(empty),$(GCCVERSION))
+ GCCVERSION := $(shell expr `echo $(GCCVERSION)` | cut -b1-3)
+ GE_49 := $(shell expr `echo $(GCCVERSION)` \>= 490)
+ 
+-EXTRA_CFLAGS :=
++ccflags-y :=
+ 
+ ifeq ($(APIFINAL),CFG80211)
+-  EXTRA_CFLAGS += -DUSE_CFG80211
++  ccflags-y += -DUSE_CFG80211
+   $(info Using CFG80211 API)
+ endif
+ 
+ ifeq ($(APIFINAL),WEXT)
+-  EXTRA_CFLAGS += -DUSE_IW
++  ccflags-y += -DUSE_IW
+   $(info Using Wireless Extension API)
+ endif
+ 
+@@ -151,15 +151,15 @@ wl-objs            += src/wl/sys/wl_linux.o
+ wl-objs            += src/wl/sys/wl_iw.o
+ wl-objs            += src/wl/sys/wl_cfg80211_hybrid.o
+ 
+-EXTRA_CFLAGS       += -I$(src)/src/include -I$(src)/src/common/include
+-EXTRA_CFLAGS       += -I$(src)/src/wl/sys -I$(src)/src/wl/phy -I$(src)/src/wl/ppr/include
+-EXTRA_CFLAGS       += -I$(src)/src/shared/bcmwifi/include
+-#EXTRA_CFLAGS       += -DBCMDBG_ASSERT -DBCMDBG_ERR
++ccflags-y          += -I$(src)/src/include -I$(src)/src/common/include
++ccflags-y          += -I$(src)/src/wl/sys -I$(src)/src/wl/phy -I$(src)/src/wl/ppr/include
++ccflags-y          += -I$(src)/src/shared/bcmwifi/include
++#ccflags-y          += -DBCMDBG_ASSERT -DBCMDBG_ERR
+ ifeq "$(GE_49)" "1"
+-EXTRA_CFLAGS       += -Wno-date-time
++ccflags-y          += -Wno-date-time
+ endif
+ 
+-EXTRA_LDFLAGS      := $(src)/lib/wlc_hybrid.o_shipped
++ldflags-y          := $(src)/lib/wlc_hybrid.o_shipped
+ 
+ KBASE              ?= /lib/modules/`uname -r`
+ KBUILD_DIR         ?= $(KBASE)/build
+-- 
+2.49.0
+

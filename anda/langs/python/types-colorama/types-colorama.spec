@@ -1,5 +1,5 @@
-%global commit 148b8e631d9a76f7bdcc5478d36692ff79e16227
-%global commit_date 20251129
+%global commit f8938c23fe268dca47f7aaad36fa954f44796815
+%global commit_date 20260816
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %global pypi_name types-colorama
@@ -7,7 +7,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0~%{commit_date}git.%shortcommit
-Release:		1%?dist
+Release:		1%{?dist}
 Summary:		Typing stubs for colorama
 License:		Apache-2.0
 URL:			https://github.com/python/typeshed

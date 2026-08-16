@@ -2,8 +2,8 @@
 %global crate sleepy-launcher
 %global appid moe.launcher.sleepy-launcher
 Name:           %{crate}
-Version:        1.6.0
-Release:        1%?dist
+Version:        1.7.0
+Release:        1%{?dist}
 Summary:        Sleepy Game Launcher for Linux with automatic patching and telemetry disabling 
 
 License:        GPL-3.0-or-later

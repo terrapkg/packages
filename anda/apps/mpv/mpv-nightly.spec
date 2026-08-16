@@ -1,14 +1,14 @@
 # Disable X11 for RHEL 10+
 %bcond x11 %[%{undefined rhel} || 0%{?rhel} < 10]
 
-%global commit 23f9381b8053ad7fcba11b61607497ce43eaebc7
+%global commit e167836802da6d5a4301bd4c4eeb3c5c3c17ccb8
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20251129
-%global ver 0.40.0
+%global commit_date 20260815
+%global ver 0.41.0
 
 Name:           mpv-nightly
 Version:        %ver^%commit_date.%shortcommit
-Release:        1%?dist
+Release:        1%{?dist}
 
 License:        GPL-2.0-or-later AND LGPL-2.1-or-later
 Summary:        Movie player playing most video formats and DVDs
@@ -21,6 +21,7 @@ BuildRequires:  gcc
 BuildRequires:  libappstream-glib
 BuildRequires:  libatomic
 BuildRequires:  meson
+BuildRequires:  cmake
 BuildRequires:  python3-docutils
 
 BuildRequires:  perl(Encode)
@@ -188,7 +189,6 @@ sed -e "s|/usr/local/etc|%{_sysconfdir}/mpv|" -i etc/mpv.conf
     -Dsdl2-audio=enabled \
     -Dsdl2-gamepad=enabled \
     -Dsdl2-video=enabled \
-    -Dsdl2=enabled \
     -Dshaderc=disabled \
     -Dsndio=disabled \
     -Dspirv-cross=disabled \

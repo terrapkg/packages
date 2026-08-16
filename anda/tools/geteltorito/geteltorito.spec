@@ -4,9 +4,9 @@
 
 Name:          geteltorito
 Version:       %{commit_date}.%{shortcommit}
-Release:       1%?dist
+Release:       2%?dist
 Summary:       An El Torito boot image extractor
-License:       GPLv3
+License:       GPL-3.0-only
 Packager:      Owen Zimmerman <owen@fyralabs.com>
 Url:           https://github.com/rainer042/geteltorito
 Source0:       %{url}/archive/%{commit}.tar.gz
@@ -14,7 +14,7 @@ BuildArch:     noarch
 Requires:      perl
 
 %description
-%summary
+%summary.
 
 %prep
 %autosetup -n geteltorito-%commit

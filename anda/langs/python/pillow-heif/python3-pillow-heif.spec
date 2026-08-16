@@ -6,8 +6,8 @@
 %bcond_with doc
 
 Name:           python-%{srcname}
-Version:        1.1.1
-Release:        1%?dist
+Version:        1.5.0
+Release:        1%{?dist}
 Summary:        Python library for working with HEIF images and plugin for Pillow
 
 License:        BSD-3-Clause

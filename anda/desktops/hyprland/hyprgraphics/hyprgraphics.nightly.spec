@@ -1,15 +1,15 @@
 #? https://src.fedoraproject.org/rpms/hyprgraphics/blob/rawhide/f/hyprgraphics.spec
 
 %global realname hyprgraphics
-%global ver 0.3.0
-%global commit ffc999d980c7b3bca85d3ebd0a9fbadf984a8162
-%global commit_date 20251107
+%global ver 0.5.1
+%global commit 7c895c44e3ca6d28ed68ddd80ec02b02b925e7fc
+%global commit_date 20260811
 %global shortcommit %{sub %commit 1 7}
 
 %bcond libjxl 1
 Name:           %realname.nightly
 Version:        %ver^%{commit_date}git.%shortcommit
-Release:        1%?dist
+Release:        25%{?dist}
 Summary:        Graphics library for Hyprland
 
 License:        BSD-3-Clause
@@ -65,5 +65,4 @@ rm tests/resource/images/hyprland.jpg
 %files
 %license LICENSE
 %doc README.md
-%{_libdir}/libhyprgraphics.so.0
-%{_libdir}/libhyprgraphics.so.%{ver}
+%{_libdir}/libhyprgraphics.so.*

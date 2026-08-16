@@ -4,8 +4,8 @@
 %global crate halloy
 
 Name:           halloy
-Version:        2025.12
-Release:        1%?dist
+Version:        2026.8
+Release:        1%{?dist}
 Summary:        An open-source IRC client written in Rust, with the Iced GUI library
 Packager:      Yoong jin <solomoncyj@gmail.com>
 SourceLicense:  GPL-3.0-or-later
@@ -18,6 +18,7 @@ BuildRequires: alsa-lib-devel
 BuildRequires: cargo-rpm-macros >= 24
 BuildRequires: desktop-file-utils
 BuildRequires: openssl-devel
+BuildRequires: pkgconfig(xcb)
 
 
 %description
@@ -32,14 +33,13 @@ BuildRequires: openssl-devel
 %cargo_build
 
 %install
-%crate_install_bin
+install -Dm755 target/rpm/halloy %{buildroot}%{_bindir}/halloy
 desktop-file-install assets/linux/%{appid}.desktop
 install -Dpm644 assets/linux/%{appid}.appdata.xml -t %{buildroot}%{_datadir}/metainfo
 
 mkdir -p %{buildroot}%{_datadir}
 cp -r assets/linux/icons -t %{buildroot}%{_datadir}
 
-%cargo_license_summary_online
 %{cargo_license_online} > LICENSE.dependencies
 
 %if %{with check}

@@ -1,0 +1,64 @@
+From 642f61c3ff369e5938eb6b70bf5cc9566a7e04ae Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Nicolas=20Vi=C3=A9ville?= <nicolas.vieville@uphf.fr>
+Date: Tue, 17 Jun 2025 15:04:16 +0200
+Subject: [PATCH] =?UTF-8?q?wl=5Flinux.c=20and=20makefile:=20added=20warnin?=
+ =?UTF-8?q?g=20when=20the=20module=20is=20loaded=20about=20unmaintained=20?=
+ =?UTF-8?q?state=20of=20driver=20and=20its=20provided=20binary=20blob=20an?=
+ =?UTF-8?q?d=20possible=20security=20risks=20related=20to=20current=20Linu?=
+ =?UTF-8?q?x=20kernel=20security=20standards=20(e.g.=20IBT)=20-=20disablin?=
+ =?UTF-8?q?g=20objtool=20accordingly=20as=20well=20-=20thanks=20to=20Joan?=
+ =?UTF-8?q?=20Bruguera=20Mic=C3=B3?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Nicolas Viéville <nicolas.vieville@uphf.fr>
+---
+ Makefile              | 15 +++++++++++++++
+ src/wl/sys/wl_linux.c |  4 ++++
+ 2 files changed, 19 insertions(+)
+
+diff --git a/Makefile b/Makefile
+index 6e90afb..c38c3ee 100644
+--- a/Makefile
++++ b/Makefile
+@@ -169,6 +169,21 @@ MDEST_DIR          ?= $(KBASE)/kernel/drivers/net/wireless
+ CROSS_TOOLS        = /path/to/tools
+ CROSS_KBUILD_DIR   = /path/to/kernel/tree
+ 
++# Rel. commit "objtool: Always fail on fatal errors" (Josh Poimboeuf, 31 Mar 2025)
++# This is a *ugly* hack to disable objtool during the final processing of wl.o.
++# Since is embeds the proprietary blob (wlc_hybrid.o_shipped), objtool can't
++# process it, as it does not follow the requirements of current kernels,
++# including support for critical security features. As of Linux v6.15+, it causes
++# a build error. Disable it, at your own risk. Note the MIT license applies:
++# THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
++# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
++# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
++# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
++# SOFTWARE.
++wl.o: override objtool-enabled =
++
+ all:
+ 	KBUILD_NOPEDANTIC=1 make -C $(KBUILD_DIR) M=`pwd`
+ 
+diff --git a/src/wl/sys/wl_linux.c b/src/wl/sys/wl_linux.c
+index 0c08fe7..59873e1 100644
+--- a/src/wl/sys/wl_linux.c
++++ b/src/wl/sys/wl_linux.c
+@@ -922,6 +922,10 @@ static struct pci_driver wl_pci_driver __refdata = {
+ static int __init
+ wl_module_init(void)
+ {
++	printk(KERN_WARNING "You are using the Broadcom STA wireless driver, which is "
++		"not maintained and is incompatible with Linux kernel security mitigations. "
++		"It is heavily recommended to replace the hardware and remove the driver. "
++		"Proceed at your own risk!");
+ 	int error = -ENODEV;
+ 
+ #ifdef BCMDBG
+-- 
+2.49.0
+

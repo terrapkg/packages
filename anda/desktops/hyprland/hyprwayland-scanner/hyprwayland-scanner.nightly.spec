@@ -1,10 +1,10 @@
 #? https://src.fedoraproject.org/rpms/hyprwayland-scanner/blob/rawhide/f/hyprwayland-scanner.spec
 
 %global realname hyprwayland-scanner
-%global ver 0.4.5
-%global commit f6cf414ca0e16a4d30198fd670ec86df3c89f671
+%global ver 0.4.6
+%global commit 62e62c1ca23da17612c6890d4ad2064f575643db
 %global shortcommit %{sub %commit 1 7}
-%global commit_date 20251121
+%global commit_date 20260812
 
 Name:           %realname.nightly
 Version:        %ver^%{commit_date}git.%shortcommit

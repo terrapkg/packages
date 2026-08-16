@@ -1,15 +1,15 @@
-%global commit 9baf37a9b2a1119c697b0eabf32391bfb41ef287
+%global commit 9009122953f59d4900143aad587202a70c2136f4
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global fulldate 2025-11-28
+%global fulldate 2026-08-15
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
-%global ver 1.3.0
+%global ver 1.3.2
 %global base_name ghostty
 %global appid com.mitchellh.%{base_name}
 
 Name:           %{base_name}-nightly
 Version:        %{ver}~tip^%{commit_date}git%{shortcommit}
-Release:        1%?dist
+Release:        1%{?dist}
 %if 0%{?fedora} <= 41
 Epoch:          1
 %endif
@@ -28,7 +28,7 @@ BuildRequires:  ncurses
 BuildRequires:  ncurses-devel
 BuildRequires:  pandoc-cli
 BuildRequires:  systemd-rpm-macros
-BuildRequires:  zig >= 0.14.0
+BuildRequires:  zig
 BuildRequires:  zig-rpm-macros
 BuildRequires:  pkgconfig(blueprint-compiler)
 BuildRequires:  pkgconfig(bzip2)
@@ -55,7 +55,7 @@ Provides:       %{base_name}-tip = %{ver}^%{commit_date}git%{shortcommit}
 Provides:       %{name} = %{commit_date}.%{shortcommit}
 %endif
 Obsoletes:      %{name} = 20250130.04d3636
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 👻 Ghostty is a fast, feature-rich, and cross-platform terminal emulator that uses platform-native UI and GPU acceleration.
@@ -118,6 +118,7 @@ This package allows Ghostty to interact with KIO.
 Summary:        Nautilus menu support for Ghostty
 Supplements:    (%{name} and nautilus)
 Requires:       %{name} = %{evr}
+Requires:       nautilus-python
 BuildArch:      noarch
 
 %description    nautilus
@@ -180,10 +181,24 @@ BuildArch:      noarch
 %description    terminfo
 Ghostty's terminfo. Needed for basic terminal function.
 
+%package -n     libghostty-vt-nightly
+Summary:        The libghostty-vt libraries
+
+%description -n libghostty-vt-nightly
+This package contains the libghostty-vt libraries, the first of many libghostty libaries in development.
+
+%package -n     libghostty-vt-nightly-devel
+Summary:        Development files for libghostty-vt
+Requires:       libghostty-vt-nightly = %{evr}
+
+%description -n libghostty-vt-nightly-devel
+This package contains the libraries and header files that are needed for developing with libghostty-vt.
+
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
-%autosetup -n %{base_name}-%{ver}-main+%{shortcommit}
+%autosetup -n %{base_name}-%{ver}-main-+%{shortcommit}
 
+%zig_prep
 ZIG_GLOBAL_CACHE_DIR="%{_zig_cache_dir}" ./nix/build-support/fetch-zig-cache.sh
 
 %build
@@ -240,8 +255,6 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 
 %files devel
 %{_includedir}/ghostty/
-%{_libdir}/libghostty-vt.so
-%{_datadir}/pkgconfig/libghostty-vt.pc
 
 %files kio
 %{_datadir}/kio/servicemenus/%{appid}.desktop
@@ -270,6 +283,7 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %{_datadir}/%{base_name}/shell-integration/bash/%{base_name}.bash
 %{_datadir}/%{base_name}/shell-integration/elvish/lib/%{base_name}-integration.elv
 %{_datadir}/%{base_name}/shell-integration/fish/vendor_conf.d/%{base_name}-shell-integration.fish
+%{_datadir}/%{base_name}/shell-integration/nushell/vendor/autoload/%{base_name}.nu
 %{_datadir}/%{base_name}/shell-integration/zsh/.zshenv
 %{_datadir}/%{base_name}/shell-integration/zsh/%{base_name}-integration
 
@@ -278,6 +292,13 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %{_datadir}/terminfo/g/%{base_name}
 %endif
 %{_datadir}/terminfo/x/xterm-%{base_name}
+
+%files -n libghostty-vt-nightly
+%{_libdir}/libghostty-vt.so.*
+
+%files -n libghostty-vt-nightly-devel
+%{_libdir}/libghostty-vt.so
+%{_datadir}/pkgconfig/libghostty-vt.pc
 
 %post
 %systemd_user_post app-%{appid}.service
@@ -289,6 +310,8 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %systemd_user_postun app-%{appid}.service
 
 %changelog
+* Sat Nov 29 2025 Gilver E. <rockgrub@disroot.org> - 1.3.0~tip^20251128git9baf37a-1
+- Initial libghostty-vt packages
 * Tue Oct 28 2025 Gilver E. <rockgrub@disroot.org> - 1.3.0~tip^20251027gitd40321a-2
 - Disabled bundled themes
  * This is necessary to address licensing issues in the themes repo Ghostty uses
@@ -297,10 +320,10 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 - Updated for Zig 0.14.0
 - Updated for ncurses-term compatibility in Fedora 42 and Rawhide
 * Wed Mar 05 2025 Gilver E. <rockgrub@disroot.org>
-- Update to 1.1.3~tip^20250305git66e8d91-2%{?dist}
+- Update to 1.1.3~tip^20250305git66e8d91-2
  * Ghostty now has localization support via gettext as well as corresponding localization files
 * Fri Jan 31 2025 Gilver E. <rockgrub@disroot.org>
-- Update to 1.1.1~tip^20250131git5508e7-1%{?dist}
+- Update to 1.1.1~tip^20250131git5508e7-1
  * Low GHSA-98wc-794w-gjx3: Ghostty leaked file descriptors allowing the shell and any of its child processes to impact other Ghostty terminal instances
  * Better Git versioning scheme
  * Ghostty terminfo source files are now a subpackage

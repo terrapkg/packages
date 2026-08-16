@@ -1,10 +1,10 @@
-%global commit 7d705d0a65c027bb39825bf428fe7c5316411197
-%global commit_date 20251014
+%global commit cbae7f3f5d0b0b2732299196dba33da2c059b3a8
+%global commit_date 20260529
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           piclone
 Version:        %commit_date.git~%shortcommit
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Utility to back up Pi to an SD card reader
 License:        BSD-3-Clause
 URL:            https://github.com/raspberrypi-ui/piclone
@@ -18,8 +18,11 @@ BuildRequires: intltool
 BuildRequires: vala
 BuildRequires: pkgconfig
 BuildRequires: gcc
+BuildRequires: pkgconfig(wayland-protocols)
 
 Requires: parted dosfstools e2fsprogs coreutils util-linux-core uuid dbus-x11 gtk3
+
+Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
 SD Card backup program for Raspberry Pi.
@@ -33,14 +36,18 @@ bootable card with an image of the source device.
 %prep
 %autosetup -n piclone-%commit
 
-%build
+%conf
 %meson
+
+%build
 %meson_build
 
 %install
 %meson_install
 
-%files
+%find_lang %{name}
+
+%files -f %{name}.lang
 %doc README
 %license debian/copyright
 %{_bindir}/piclone

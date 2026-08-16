@@ -18,7 +18,7 @@ package.
 ### Different name because of font package and setup macro weirdness
 Name:           mscore-tahoma-fonts
 Version:        1.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Microsoft core Tahoma fonts for better Windows compatibility
 License:        LicenseRef-MS-Core-Fonts
 URL:            https://mscorefonts2.sourceforge.net
@@ -30,7 +30,7 @@ BuildRequires:  fontpackages-devel
 Requires:       xorg-x11-font-utils
 Requires:       fontconfig
 BuildArch:      noarch
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %fontpkg -a
 
