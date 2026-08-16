@@ -19,6 +19,7 @@ BuildRequires:  rust
 BuildRequires:  cargo
 BuildRequires:  nodejs
 BuildRequires:  npm
+BuildRequires:  desktop-file-utils
 
 %description
 %{summary}.
