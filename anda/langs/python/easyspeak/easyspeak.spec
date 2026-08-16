@@ -32,9 +32,11 @@ Summary:        %{summary}
 sed -E '/^requires-python/c requires-python = ">=3.10"' -i pyproject.toml
 
 %build
+export SETUPTOOLS_SCM_PRETEND_VERSION=%version
 %pyproject_wheel
 
 %install
+export SETUPTOOLS_SCM_PRETEND_VERSION=%version
 %pyproject_install
 %pyproject_save_files easyspeak
 
