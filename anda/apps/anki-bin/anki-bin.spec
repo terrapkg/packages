@@ -46,6 +46,7 @@ Anki is based on a theory called spaced repetition.
 %build
 
 %install
+mkdir -p %_pyproject_wheeldir
 cp %{S:0} %{S:1} %_pyproject_wheeldir
 %pyproject_install
 %pyproject_save_files aqt anki
