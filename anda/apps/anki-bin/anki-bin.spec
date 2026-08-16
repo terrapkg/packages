@@ -23,7 +23,6 @@ Requires:		python3-protobuf >= 4.21
 Requires:		pt-compat hicolor-icon-theme sox
 Requires:		pv or mpv-nightly)
 
-%dnl ExclusiveArch:	        x86_64
 Conflicts:		anki
 %ifarch x86_64
 Source0:		%xurl
@@ -71,6 +70,7 @@ rm -rf %buildroot%_bindir/{distro,flask,jsonschema,markdown_py,normalizer,send2t
 %_bindir/pylupdate6
 %_datadir/applications/anki.desktop
 %_datadir/pixmaps/anki.png
+%_metainfodir/%appid.metainfo.xml
 
 %changelog
 * Thu Aug 13 2026 madonuko <madonuko@outlook.com> - 26.08.1-1
