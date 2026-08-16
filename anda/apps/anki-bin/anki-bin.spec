@@ -16,10 +16,6 @@ BuildRequires:	python3-sqlalchemy python3-simplejson python3-matplotlib python3-
 BuildRequires:	python3-requests python3-pygame python3-beautifulsoup4 python3-httplib2 python3-pyaudio python3-jsonschema
 BuildRequires:	python3-flask-cors python3-protobuf python3-requests python3-waitress python3-pyqt6-webengine python3-send2trash
 BuildRequires:	python3-protobuf >= 4.21
-Requires:		python3-sqlalchemy python3-simplejson python3-matplotlib python3-decorator python3-markdown python3-orjson
-Requires:		python3-requests python3-pygame python3-beautifulsoup4 python3-httplib2 python3-pyaudio python3-jsonschema
-Requires:		python3-flask-cors python3-protobuf python3-requests python3-waitress python3-pyqt6-webengine python3-send2trash
-Requires:		python3-protobuf >= 4.21
 Requires:		pt-compat hicolor-icon-theme sox
 Requires:		pv or mpv-nightly)
 
