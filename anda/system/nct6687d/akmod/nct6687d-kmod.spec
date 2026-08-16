@@ -7,8 +7,8 @@
 %global debug_package %{nil}
 %endif
 
-%global commit bd3e537d1ce36b8081c5171c2186d52eb9814b1f
-%global commitdate 20260815
+%global commit 4864fd681346119cf17417f82934a8ce05d88ff6
+%global commitdate 20260816
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global modulename nct6687d
 
