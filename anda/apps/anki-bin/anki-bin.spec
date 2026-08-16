@@ -18,7 +18,7 @@ Requires:               python3-protobuf >= 4.21
 Requires:               libxcrypt-compat hicolor-icon-theme sox
 Requires:               (mpv or mpv-nightly)
 
-ExclusiveArch:	        x86_64
+%dnl ExclusiveArch:	        x86_64
 Conflicts:		anki
 %ifarch x86_64
 Source0:		%xurl
@@ -60,11 +60,11 @@ rm -rf %buildroot%_bindir/{distro,flask,jsonschema,markdown_py,normalizer,send2t
 %_bindir/anki
 %_bindir/pyuic6
 %_bindir/pylupdate6
-#python3_sitelib/_aqt/
-#python3_sitelib/anki-%{version}.dist-info/
-#python3_sitelib/anki/
-#python3_sitelib/aqt-%{version}.dist-info/
-#python3_sitelib/aqt/
+%python3_sitearch/_aqt/
+%python3_sitearch/anki-%{version}.dist-info/
+%python3_sitearch/anki/
+%python3_sitearch/aqt-%{version}.dist-info/
+%python3_sitearch/aqt/
 %_datadir/applications/anki.desktop
 %_datadir/pixmaps/anki.png
 
