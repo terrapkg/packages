@@ -49,17 +49,13 @@ Anki is based on a theory called spaced repetition.
 mkdir -p %_pyproject_wheeldir
 cp %{S:0} %{S:1} %_pyproject_wheeldir
 %pyproject_install
-%pyproject_save_files -D aqt
-%pyproject_save_files -D anki
+%pyproject_save_files -D *aqt*
+%pyproject_save_files -D *anki*
 install -Dm755 %{SOURCE2} "%{buildroot}/usr/bin/anki"
 install -Dm644 %{SOURCE3} "%{buildroot}/usr/share/applications/anki.desktop"
 install -Dm644 %{SOURCE4} "%{buildroot}/usr/share/pixmaps/anki.png"
 install -Dm644 %{SOURCE5} "%{buildroot}/%{_datadir}/licenses/%{name}/LICENSE"
 install -Dm644 %{SOURCE6} "%{buildroot}/%{_datadir}/doc/%{name}/README.md"
-
-rm -rf %buildroot%_bindir/{distro,flask,jsonschema,markdown_py,normalizer,send2trash,waitress-serve}
-
-%fdupes %buildroot%_libdir/python*/site-packages/_aqt/data/
 
 %terra_appstream
 
