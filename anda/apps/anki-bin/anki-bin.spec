@@ -8,6 +8,8 @@ Release:		1%{?dist}
 Summary:		Flashcard program for using space repetition learning (Installed with wheel)
 License:		AGPL-3.0-or-later AND GPL-3.0-or-later AND LGPL-3.0-or-later AND MIT AND BSD-3-Clause AND CC-BY-SA-3.0 AND CC-BY-3.0 AND Apache-2.0 AND CC-BY-2.5
 URL:			https://apps.ankiweb.net/
+Packager:   madonuko <mado@fyralabs.com>
+BuildRequires:          python3-devel
 BuildRequires:          python3-pip rpm_macro(fdupes) cargo
 Requires:               python3-sqlalchemy python3-simplejson python3-matplotlib python3-decorator python3-markdown python3-orjson
 Requires:               python3-requests python3-pygame python3-beautifulsoup4 python3-httplib2 python3-pyaudio python3-jsonschema
@@ -47,10 +49,6 @@ install -Dm644 %{SOURCE4} "%{buildroot}/usr/share/pixmaps/anki.png"
 install -Dm644 %{SOURCE5} "%{buildroot}/%{_datadir}/licenses/%{name}/LICENSE"
 install -Dm644 %{SOURCE6} "%{buildroot}/%{_datadir}/doc/%{name}/README.md"
 
-cp -r %buildroot%_libdir/python3*/site-packages/{_aqt,anki*,aqt*} .
-rm -rf %buildroot{%_libdir,/usr/lib}/python3*/site-packages/*
-cp -r ./{_aqt,anki*,aqt*} %buildroot/usr/lib/python3*/site-packages/
-
 rm -rf %buildroot%_bindir/{distro,flask,jsonschema,markdown_py,normalizer,send2trash,waitress-serve}
 
 %fdupes %buildroot%_libdir/python*/site-packages/_aqt/data/
@@ -62,15 +60,18 @@ rm -rf %buildroot%_bindir/{distro,flask,jsonschema,markdown_py,normalizer,send2t
 %_bindir/anki
 %_bindir/pyuic6
 %_bindir/pylupdate6
-/usr/lib/python*/site-packages/_aqt/
-/usr/lib/python*/site-packages/anki-%{version}.dist-info/
-/usr/lib/python*/site-packages/anki/
-/usr/lib/python*/site-packages/aqt-%{version}.dist-info/
-/usr/lib/python*/site-packages/aqt/
+%_libdir/python*/site-packages/_aqt/
+%_libdir/python*/site-packages/anki-%{version}.dist-info/
+%_libdir/python*/site-packages/anki/
+%_libdir/python*/site-packages/aqt-%{version}.dist-info/
+%_libdir/python*/site-packages/aqt/
 %_datadir/applications/anki.desktop
 %_datadir/pixmaps/anki.png
 
 %changelog
+* Thu Aug 13 2026 madonuko <madonuko@outlook.com> - 26.08.1-1
+- update sources and versioning
+
 * Fri Nov 10 2023 hazel-bunny <dabiswas112@gmail.com> - 23.10-2
 - Add python3-orjson and mpv as dependencies
 
