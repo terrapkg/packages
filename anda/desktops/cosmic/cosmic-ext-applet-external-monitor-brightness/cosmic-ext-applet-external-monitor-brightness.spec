@@ -10,6 +10,7 @@ URL:            https://github.com/cosmic-utils/cosmic-ext-applet-external-monit
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 # Not in release
 Source1:        %{url}/blob/master/res/icons/display-symbolic.svg
+Source2:        %{url}/blob/master/res/metainfo.xml
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  rust-xkbcommon-devel
 BuildRequires:  systemd-devel
@@ -23,6 +24,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %autosetup -C
 %cargo_prep_online
 cp %{S:1} icon.svg
+cp %{S:2} metainfo.xml
 
 %build
 %cargo_build
@@ -33,7 +35,7 @@ cp %{S:1} icon.svg
 install -Dm0755 target/rpm/cosmic-ext-applet-external-monitor-brightness    %{buildroot}%{_bindir}/cosmic-ext-applet-external-monitor-brightness
 install -Dm0644 res/desktop_entry.desktop                                   %{buildroot}%{_appsdir}/%{appid}.desktop
 install -Dm0644 icon.svg                                                    %{buildroot}%{_scalableiconsdir}/%{appid}.svg
-install -Dm0644 res/metainfo.xml                                            %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
+install -Dm0644 metainfo.xml                                                %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 
 %files
 %doc README.md CONTRIBUTING.md
