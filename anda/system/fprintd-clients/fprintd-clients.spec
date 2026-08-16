@@ -1,5 +1,5 @@
 Name:           fprintd-clients
-Version:        1.90.1
+Version:        
 Release:        1%{?dist}
 Summary:        D-Bus service to access fingerprint readers
 License:        GPL-2.0-or-later
