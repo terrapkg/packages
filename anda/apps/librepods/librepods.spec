@@ -16,6 +16,7 @@ BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  g++
 BuildRequires:  qt6-qtbase-devel
+BuildRequires:  qt6-qttools-devel
 BuildRequires:  qt6-qtconnectivity-devel
 BuildRequires:  qt6-qtmultimedia-devel
 BuildRequires:  qt6-qtdeclarative-devel
