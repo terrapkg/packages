@@ -7,7 +7,7 @@
 
 Name:           terra-gamescope
 Version:        137.%{short_commit}
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Micro-compositor for video games on Wayland
 
 License:        BSD
