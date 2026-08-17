@@ -130,12 +130,17 @@ popd
 %{_datadir}/icons/hicolor/
 %{_datadir}/icons/%{name}/
 %{_datadir}/icons/%{name}-dark/
-%{_datadir}/plasma/desktoptheme/kite-*/
+%{_datadir}/config.kcfg/klassy.kcfg
+%{_datadir}/config.kcfg/klassy-decoration.kcfg
 
 %{_kf6_datadir}/kstyle/themes/%{name}.themerc
 
 %{_kf6_datadir}/plasma/layout-templates/org.kde.klassy.*
 %{_kf6_datadir}/plasma/look-and-feel/org.kde.klassy*
+
+%{_datadir}/config.kcfg/klassy.kcfg
+%{_datadir}/plasma/desktoptheme/klassy-dark/*
+%{_datadir}/plasma/desktoptheme/klassy-light/*
 
 %changelog
 %autochangelog
