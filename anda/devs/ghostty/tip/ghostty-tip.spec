@@ -1,16 +1,14 @@
-%global commit 9009122953f59d4900143aad587202a70c2136f4
+%global commit 12967b68f7d46bdbfb2cfffb6768332fb9db68c0
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global fulldate 2026-08-15
-%global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
 %global ver 1.3.2
 %global base_name ghostty
 %global appid com.mitchellh.%{base_name}
 
-Name:           %{base_name}-nightly
-Version:        %{ver}~tip^%{commit_date}git%{shortcommit}
+Name:           %{base_name}-tip
+Version:        202608172035
 Release:        1%{?dist}
-%if 0%{?fedora} <= 41
+%if 0%{?fedora} <= 46
 Epoch:          1
 %endif
 Summary:        A fast, native terminal emulator written in Zig; this is the Tip (nightly) build.
@@ -51,10 +49,9 @@ Requires:       gtk4-layer-shell
 Requires:       libadwaita
 Conflicts:      %{base_name}
 Provides:       %{base_name}-tip = %{ver}^%{commit_date}git%{shortcommit}
-%if 0%{?fedora} <= 41
-Provides:       %{name} = %{commit_date}.%{shortcommit}
+%if 0%{?fedora} <= 46
+Obsoletes:      %{base_name}-nightly <= 1.3.2~tip^20260812gitc54ec80
 %endif
-Obsoletes:      %{name} = 20250130.04d3636
 Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
@@ -65,8 +62,8 @@ Summary:        Ghostty Bash completion
 Requires:       %{name}
 Requires:       bash-completion
 Supplements:    (%{name} and bash-completion)
-%if 0%{?fedora} <= 41
-Provides:       %{name}-bash-completion = %{commit_date}.%{shortcommit}
+%if 0%{?fedora} <= 46
+Obsoletes:      %{base_name}-nightly-bash-completion <= 1.3.2~tip^20260812gitc54ec80
 %endif
 BuildArch:      noarch
 
@@ -78,8 +75,8 @@ Summary:        Ghostty Fish completion
 Requires:       %{name}
 Requires:       fish
 Supplements:    (%{name} and fish)
-%if 0%{?fedora} <= 41
-Provides:       %{name}-fish-completion = %{commit_date}.%{shortcommit}
+%if 0%{?fedora} <= 46
+Obsoletes:      %{base_name}-nightly-fish-completion <= 1.3.2~tip^20260812gitc54ec80
 %endif
 BuildArch:      noarch
 
@@ -91,8 +88,8 @@ Summary:        Ghostty Zsh completion
 Requires:       %{name}
 Requires:       zsh
 Supplements:    (%{name} and zsh)
-%if 0%{?fedora} <= 41
-Provides:       %{name}-zsh-completion = %{commit_date}.%{shortcommit}
+%if 0%{?fedora} <= 46
+Obsoletes:      %{base_name}-nightly-zsh-completion <= 1.3.2~tip^20260812gitc54ec80
 %endif
 BuildArch:      noarch
 
@@ -109,6 +106,9 @@ This package includes the development files for Ghostty.
 %package        kio
 Summary:        KIO support for Ghostty
 Requires:       %{name} = %{evr}
+%if 0%{?fedora} <= 46
+Obsoletes:      %{base_name}-nightly-kio <= 1.3.2~tip^20260812gitc54ec80
+%endif
 BuildArch:      noarch
 
 %description    kio
@@ -119,6 +119,9 @@ Summary:        Nautilus menu support for Ghostty
 Supplements:    (%{name} and nautilus)
 Requires:       %{name} = %{evr}
 Requires:       nautilus-python
+%if 0%{?fedora} <= 46
+Obsoletes:      %{base_name}-nightly-nautilus <= 1.3.2~tip^20260812gitc54ec80
+%endif
 BuildArch:      noarch
 
 %description    nautilus
@@ -130,6 +133,9 @@ Supplements:    (%{name} and vim-filesystem)
 Requires:       %{name} = %{evr}
 Requires:       vim-enhanced
 Requires:       vim-filesystem
+%if 0%{?fedora} <= 46
+Obsoletes:      %{base_name}-nightly-vim <= 1.3.2~tip^20260812gitc54ec80
+%endif
 BuildArch:      noarch
 
 %description    vim
@@ -140,6 +146,9 @@ Summary:        Neovim plugins for Ghostty
 Supplements:    (%{name} and neovim)
 Requires:       %{name} = %{evr}
 Requires:       neovim
+%if 0%{?fedora} <= 46
+Obsoletes:      %{base_name}-nightly-neovim <= 1.3.2~tip^20260812gitc54ec80
+%endif
 BuildArch:      noarch
 
 %description    neovim
@@ -150,6 +159,9 @@ Summary:        Bat syntax for Ghostty
 Supplements:    (%{name} and bat)
 Requires:       %{name} = %{evr}
 Requires:       bat
+%if 0%{?fedora} <= 46
+Obsoletes:      %{base_name}-nightly-bat-syntax <= 1.3.2~tip^20260812gitc54ec80
+%endif
 BuildArch:      noarch
 
 %description    bat-syntax
@@ -158,8 +170,8 @@ This package provides the Bat syntax files for Ghostty.
 %package        shell-integration
 Summary:        Ghostty shell integration
 Supplements:    %{name}
-%if 0%{?fedora} <= 41
-Provides:       %{name}-shell-integration = %{commit_date}.%{shortcommit}
+%if 0%{?fedora} <= 46
+Obsoletes:      %{base_name}-nightly-shell-integration <= 1.3.2~tip^20260812gitc54ec80
 %endif
 BuildArch:      noarch
 
@@ -172,26 +184,32 @@ Summary:        Ghostty terminfo
 Requires:       ncurses-term >= 6.5-5.20250125
 %endif
 Supplements:    %{name}
-%if 0%{?fedora} <= 41
-Provides:       %{name}-terminfo = %{commit_date}.%{shortcommit}
+%if 0%{?fedora} <= 46
+Obsoletes:      %{base_name}-nightly-terminfo < %{evr}
 %endif
-Obsoletes:      %{name}-terminfo-source < %{evr}
+Obsoletes:      %{name}-terminfo-source <= 1.3.2~tip^20260812gitc54ec80
 BuildArch:      noarch
 
 %description    terminfo
 Ghostty's terminfo. Needed for basic terminal function.
 
-%package -n     libghostty-vt-nightly
+%package -n     libghostty-vt-tip
 Summary:        The libghostty-vt libraries
+%if 0%{?fedora} <= 46
+Obsoletes:      libghostty-vt-nightly <= 1.3.2~tip^20260812gitc54ec80
+%endif
 
-%description -n libghostty-vt-nightly
+%description -n libghostty-vt-tip
 This package contains the libghostty-vt libraries, the first of many libghostty libaries in development.
 
-%package -n     libghostty-vt-nightly-devel
+%package -n     libghostty-vt-tip-devel
 Summary:        Development files for libghostty-vt
-Requires:       libghostty-vt-nightly = %{evr}
+Requires:       libghostty-vt-tip = %{evr}
+%if 0%{?fedora} <= 46
+Obsoletes:      libghostty-vt-nightly-devel <= 1.3.2~tip^20260812gitc54ec80
+%endif
 
-%description -n libghostty-vt-nightly-devel
+%description -n libghostty-vt-tip-devel
 This package contains the libraries and header files that are needed for developing with libghostty-vt.
 
 %prep
@@ -226,7 +244,7 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %license LICENSE
 %{_bindir}/%{base_name}
 %{_datadir}/applications/%{appid}.desktop
-%dir %{_datadir}/%{base_name}
+%{_datadir}/%{base_name}
 %{_datadir}/%{base_name}/doc
 %{_datadir}/metainfo/%{appid}.metainfo.xml
 %{_datadir}/dbus-1/services/%{appid}.service
@@ -278,7 +296,7 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %{_datadir}/bat/syntaxes/%{base_name}.sublime-syntax
 
 %files shell-integration
-%dir %{_datadir}/%{base_name}/shell-integration
+%{_datadir}/%{base_name}/shell-integration
 %{_datadir}/%{base_name}/shell-integration/bash/bash-preexec.sh
 %{_datadir}/%{base_name}/shell-integration/bash/%{base_name}.bash
 %{_datadir}/%{base_name}/shell-integration/elvish/lib/%{base_name}-integration.elv
@@ -293,10 +311,10 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %endif
 %{_datadir}/terminfo/x/xterm-%{base_name}
 
-%files -n libghostty-vt-nightly
+%files -n libghostty-vt-tip
 %{_libdir}/libghostty-vt.so.*
 
-%files -n libghostty-vt-nightly-devel
+%files -n libghostty-vt-tip-devel
 %{_libdir}/libghostty-vt.so
 %{_datadir}/pkgconfig/libghostty-vt.pc
 
@@ -310,6 +328,8 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %systemd_user_postun app-%{appid}.service
 
 %changelog
+* Sun Aug 16 2026 Gilver E. <roachy@fyralabs.com> - 1:202608122048-1
+- Switch to tracking each Tip release
 * Sat Nov 29 2025 Gilver E. <rockgrub@disroot.org> - 1.3.0~tip^20251128git9baf37a-1
 - Initial libghostty-vt packages
 * Tue Oct 28 2025 Gilver E. <rockgrub@disroot.org> - 1.3.0~tip^20251027gitd40321a-2

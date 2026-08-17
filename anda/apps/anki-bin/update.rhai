@@ -2,10 +2,10 @@ let aarch64_regex = `<a href="https://files\.pythonhosted\.org/packages/(..)/(..
 let html = get("https://pypi.org/project/anki/");
 let relevant = find(aarch64_regex, html, 0);
 let ver = find(aarch64_regex, relevant, 4);
-rpm.version(ver);
+rpm.global("aurl", find(`"(.+)"`, relevant, 1));
 if rpm.changed() {
+    rpm.version(gh("ankitects/anki"));
     rpm.release();
-    rpm.global("aurl", find(`"(.+)"`, relevant, 1));
     let cp = find(aarch64_regex, relevant, 5);
     let x86_64_regex = `<a href="https://files\.pythonhosted\.org/packages/(..)/(..)/(.{60})/anki-${ver}-cp${cp}-abi3-manylinux_.+?_x86_64.whl">`;
     let relevant1 = find(x86_64_regex, html, 0);
