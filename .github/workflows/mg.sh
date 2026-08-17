@@ -2,7 +2,7 @@ set -x
 
 dirs=$2
 dirs=${dirs/\/pkg/}
-export p="{\"id\":\"$5\",\"ver\":\"%v\",\"rel\":\"%r\",\"arch\":\"$4\",\"dirs\":\"$dirs\",\"succ\":$1}"
+export p="{\"id\":\"$5\",\"ver\":\"%v\",\"rel\":\"%r\",\"arch\":\"$4\",\"dirs\":\"$dirs\",\"succ\":$1,\"commit\":\"$7\"}"
 
 if [[ $1 == false ]]; then
 	d=${p/\%v/?}
@@ -17,5 +17,5 @@ for f in anda-build/rpm/rpms/*; do
 	r=$(lesspipe.sh $f | grep -E "Release\s*: " | sed "s@Release\s*: @@")
 	d=${p/\%v/$v}
 	d=${d/\%r/$r}
-	curl -H "Authorization: Bearer $6" https://madoguchi.fyralabs.com/ci/terra$3/builds/$n -X PUT -H "Content-Type: application/json" -d $d --fail-with-body
+	curl -H "Authorization: Bearer $6" https://madoguchi.fyralabs.com/ci5/terra$3/builds/$n -X PUT -H "Content-Type: application/json" -d $d --fail-with-body
 done

@@ -1,0 +1,1 @@
+rpm.version(crates("onefetch"));

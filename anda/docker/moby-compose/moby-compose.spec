@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:           moby-compose
-Version:        2.28.1
+Version:        2.32.0
 Release:        1%?dist
 Summary:        Define and run multi-container applications with Docker
 
@@ -13,7 +13,6 @@ Source0:        %{url}archive/refs/tags/v%{version}.tar.gz
 BuildRequires:  go-rpm-macros
 BuildRequires:  git-core
 BuildRequires:  docker
-Requires:       docker
 Provides:       docker-compose = %{version}-%{release}
 Provides:       docker-compose-cli = %{version}-%{release}
 

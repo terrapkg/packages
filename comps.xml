@@ -81,8 +81,28 @@
     <uservisible>true</uservisible>
     <packagelist>
       <packagereq type="default">libhelium</packagereq>
-      <packagereq type="default">tau-helium</packagereq>
-      <packagereq type="default">tau-hydrogen</packagereq>
+      <packagereq type="default">helium-gtk-theme</packagereq>
+      <packagereq type="default">hydrogen-icon-theme</packagereq>
+    </packagelist>
+  </group>
+  <group>
+    <id>stardust-xr</id>
+    <name>Stardust XR</name>
+    <description>All Stardust XR packages needed to run the Stardust server</description>
+    <default>false</default>
+    <uservisable>true</uservisable>
+    <packagelist>
+      <packagereq type="default">stardust-xr-armillary</packagereq>
+      <packagereq type="default">stardust-xr-atmosphere</packagereq>
+      <packagereq type="default">stardust-xr-black-hole</packagereq>
+      <packagereq type="default">stardust-xr-comet</packagereq>
+      <packagereq type="default">stardust-xr-flatland</packagereq>
+      <packagereq type="default">stardust-xr-gravity</packagereq>
+      <packagereq type="default">stardust-xr-magnetar</packagereq>
+      <packagereq type="default">stardust-xr-non-spatial-input</packagereq>
+      <packagereq type="default">stardust-xr-protostar</packagereq>
+      <packagereq type="default">stardust-xr-server</packagereq>
+      <packagereq type="default">stardust-xr-telescope</packagereq>
     </packagelist>
   </group>
 </comps>

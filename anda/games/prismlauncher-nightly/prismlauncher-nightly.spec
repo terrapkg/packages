@@ -1,11 +1,11 @@
 %global real_name prismlauncher
 %global nice_name PrismLauncher
 
-%global commit 8014283bf4150fa6eb3f9d5d4ebaf37262a17308
+%global commit e2b346fc53bc326a5e67a74ab67bc5447044afa0
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global libnbtplusplus_commit a5e8fd52b8bf4ab5d5bcc042b2a247867589985f
+%global libnbtplusplus_commit 23b955121b8217c1c348a9ed2483167a6f3ff4ad
 
-%global commit_date 20240619
+%global commit_date 20241009
 %global snapshot_info %{commit_date}.%{shortcommit}
 
 %bcond_without qt6
@@ -43,7 +43,16 @@ Patch0:           0001-find-cmark-with-pkgconfig.patch
 BuildRequires:    cmake >= 3.15
 BuildRequires:    extra-cmake-modules
 BuildRequires:    gcc-c++
+# JDKs less than the most recent release & LTS are no longer in the default
+# Fedora repositories
+# Make sure you have Adoptium's repositories enabled
+# https://fedoraproject.org/wiki/Changes/ThirdPartyLegacyJdks
+# https://adoptium.net/installation/linux/#_centosrhelfedora_instructions
+%if 0%{?fedora} > 41
+BuildRequires:    temurin-17-jdk
+%else
 BuildRequires:    java-17-openjdk-devel
+%endif
 BuildRequires:    desktop-file-utils
 BuildRequires:    libappstream-glib
 BuildRequires:    tomlplusplus-devel
@@ -77,9 +86,11 @@ Requires(postun): desktop-file-utils
 Requires:         qt%{qt_version}-qtimageformats
 Requires:         qt%{qt_version}-qtsvg
 Requires:         javapackages-filesystem
-Recommends:       java-21-openjdk
+# See note above
+%if 0%{?fedora} && 0%{?fedora} < 42
 Recommends:       java-17-openjdk
 Suggests:         java-1.8.0-openjdk
+%endif
 
 # xrandr needed for LWJGL [2.9.2, 3) https://github.com/LWJGL/lwjgl/issues/128
 Recommends:       xrandr
@@ -116,6 +127,9 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 %cmake \
   -DLauncher_QT_VERSION_MAJOR="%{qt_version}" \
   -DLauncher_BUILD_PLATFORM="%{build_platform}" \
+  %if 0%{?fedora} > 41
+  -DLauncher_ENABLE_JAVA_DOWNLOADER=ON \
+  %endif
   %if "%{msa_id}" != "default"
   -DLauncher_MSA_CLIENT_ID="%{msa_id}" \
   %endif

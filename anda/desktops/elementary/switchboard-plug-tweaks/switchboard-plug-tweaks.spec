@@ -2,15 +2,19 @@
 
 %global plug_type personal
 %global plug_name pantheon-tweaks
+%global app io.github.pantheon_tweaks.pantheon-tweaks
 
 Name:           switchboard-plug-tweaks
 Summary:        Switchboard Tweaks Plug
 Version:        2.0.2
-Release:        1%?dist
+Release:        2%?dist
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/pantheon-tweaks/pantheon-tweaks
 Source0:        %{url}/archive/%{version}/%{plug_name}-%{version}.tar.gz
+
+Provides:       pantheon-tweaks = %version-%release
+Obsoletes:      pantheon-tweaks < 2.0.2-2
 
 BuildRequires:  gcc
 BuildRequires:  gettext
@@ -22,7 +26,7 @@ BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(granite) >= 6.0.0
 BuildRequires:  pkgconfig(gtk+-3.0)
-BuildRequires:  pkgconfig(switchboard-2.0)
+BuildRequires:  pkgconfig(switchboard-3)
 
 Requires:       switchboard%{?_isa}
 
@@ -63,28 +67,22 @@ de trabalho.
 %install
 %meson_install
 
-%find_lang %{plug_name}-plug
+%find_lang %{plug_name}
 
 # remove the specified stock icon from metainfo (invalid in libappstream-glib)
-sed -i '/icon type="stock"/d' %{buildroot}/%{_datadir}/metainfo/%{plug_name}.metainfo.xml
+sed -i '/icon type="stock"/d' %buildroot%_metainfodir/%app.metainfo.xml
 
 %check
-appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{plug_name}.metainfo.xml
+appstream-util validate-relax --nonet %buildroot%_metainfodir/%app.metainfo.xml
 
 
-%files -f %{plug_name}-plug.lang
+%files -f %{plug_name}.lang
 %license COPYING
 %doc README.md
 %doc AUTHORS
 %doc CONTRIBUTORS
 
-%{_libdir}/switchboard/%{plug_type}/lib%{plug_name}.so
-
-%{_datadir}/metainfo/%{plug_name}.metainfo.xml
-%{_datadir}/icons/hicolor/*/categories/preferences-*.svg
-
-
-%changelog
-* Sat Oct 15 2022 windowsboy111 <windowsboy111@fyralabs.com>
-- Repackaged for Terra
+%_bindir/pantheon-tweaks
+%_datadir/applications/%app.desktop
+%_iconsdir/hicolor/*/apps/%app.svg
+%_metainfodir/io.github.pantheon_tweaks.pantheon-tweaks.metainfo.xml

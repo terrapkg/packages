@@ -5,8 +5,8 @@
 
 Name:           wingpanel-indicator-bluetooth
 Summary:        Bluetooth Indicator for wingpanel
-Version:        7.0.1
-Release:        1%{?dist}
+Version:        8.0.0
+Release:        1%?dist
 License:        LGPL-2.0-or-later
 
 URL:            https://github.com/elementary/%{name}

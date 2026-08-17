@@ -5,8 +5,8 @@
 
 Name:           wingpanel-indicator-power
 Summary:        Power indicator for wingpanel
-Version:        6.2.1
-Release:        1%{?dist}
+Version:        8.0.0
+Release:        1%?dist
 License:        GPL-2.0-or-later
 
 URL:            https://github.com/elementary/wingpanel-indicator-power

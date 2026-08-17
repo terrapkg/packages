@@ -2,8 +2,8 @@
 
 Name:           gala
 Summary:        Gala window manager
-Version:        7.1.3
-Release:        2%{?dist}
+Version:        8.0.0
+Release:        1%?dist
 License:        GPL-3.0-or-later
 Epoch:          1
 

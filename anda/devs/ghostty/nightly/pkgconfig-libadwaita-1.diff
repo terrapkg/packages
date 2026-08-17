@@ -1,0 +1,13 @@
+diff --git a/build.zig b/build.zig
+index 0969c64..68e16cd 100644
+--- a/build.zig
++++ b/build.zig
+@@ -1374,7 +1374,7 @@ fn addDeps(
+ 
+             .gtk => {
+                 step.linkSystemLibrary2("gtk4", dynamic_link_opts);
+-                if (config.adwaita) step.linkSystemLibrary2("adwaita-1", dynamic_link_opts);
++                if (config.adwaita) step.linkSystemLibrary2("libadwaita-1", dynamic_link_opts);
+ 
+                 {
+                     const gresource = @import("src/apprt/gtk/gresource.zig");

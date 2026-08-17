@@ -4,6 +4,5 @@ project pkg {
   }
   labels {
     nightly = 1
-    large = 1
   }
 }

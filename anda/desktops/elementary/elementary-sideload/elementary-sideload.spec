@@ -3,8 +3,8 @@
  
 Name:           elementary-sideload
 Summary:        Sideload flatpaks on Pantheon
-Version:        6.2.1
-Release:        1%{?dist}
+Version:        6.2.2
+Release:        1%?dist
 License:        GPL-3.0-or-later
  
 URL:            https://github.com/elementary/sideload

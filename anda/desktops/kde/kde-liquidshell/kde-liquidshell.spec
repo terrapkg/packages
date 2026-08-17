@@ -1,6 +1,6 @@
 Name:		kde-liquidshell
-Version:	1.9.0
-Release:	%autorelease
+Version:	1.10.0
+Release:	1%?dist
 Summary:	Basic desktop shell using QtWidgets
 Provides:	liquidshell = %version
 

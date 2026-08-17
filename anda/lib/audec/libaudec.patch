@@ -1,0 +1,12 @@
+diff -uraN libaudec-v0.2.2/meson.build omv-libaudec-v0.2.2/meson.build
+--- libaudec-v0.2.2/meson.build	2020-05-16 13:50:13.000000000 +0200
++++ omv-libaudec-v0.2.2/meson.build	2020-07-20 12:41:48.461809598 +0200
+@@ -212,8 +212,6 @@
+   install: not meson.is_subproject(),
+   )
+ 
+-subdir('tests')
+-
+ summary = [
+   '',
+   '------',

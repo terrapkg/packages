@@ -1,11 +1,11 @@
 # ref: https://src.fedoraproject.org/rpms/openh264
-%global commit1 e7d30b921df736a1121a0c8e0cf3ab1ce5b8a4b7
+%global commit1 1f5a2f07a565a9465c14d3a8b12f3202f83c775e
 %global shortcommit1 %(c=%{commit1}; echo ${c:0:7})
 
 Name:           openh264
-Version:        2.4.1
+Version:        2.5.0
 # Also bump the Release tag for gstreamer1-plugin-openh264 down below
-Release:        1%{?dist}
+Release:        1%?dist
 Summary:        H.264 codec library
 
 License:        BSD
