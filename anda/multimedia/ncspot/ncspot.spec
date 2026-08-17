@@ -36,6 +36,7 @@ official Spotify client.}
 
 %description %{_description}
 
+%pkg_completion -befz
 %files -n %{crate}
 %license LICENSE
 %license LICENSE.dependencies
