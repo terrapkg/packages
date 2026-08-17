@@ -3,16 +3,16 @@
 %global priority 90
 
 %global real_name vala
-%global commit 781cba14b1402e8968f85aed84d73f6fc4ea48ba
+%global commit c5d31b3fcdb9d564dc3340714a129f72a072391f
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global repo https://gitlab.gnome.org/GNOME/%{real_name}.git
 
-%global commit_date 20240605
+%global commit_date 20260528
 %global snapshot_info %{commit_date}.%{shortcommit}
 
 Name:           vala-nightly
 Version:        0.58.0^%{snapshot_info}
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        A modern programming language for GNOME
 
 # Most files are LGPLv2.1+, curses.vapi is 2-clause BSD
@@ -138,12 +138,15 @@ cd %{real_name}-%{commit}
 git checkout %{commit}
 
 
-%build
+%conf
 cd %{real_name}-%{commit}
 ./autogen.sh --help
 %configure
 # Don't use rpath!
 sed -i 's|/lib /usr/lib|/lib /usr/lib /lib64 /usr/lib64|' libtool
+
+%build
+cd %{real_name}-%{commit}
 %make_build
 
 %install

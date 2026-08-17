@@ -1,20 +1,33 @@
 %{?python_enable_dependency_generator}
 
+%global __arch_install_post /bin/true
+%global _sbindir /usr/sbin
+
+# Rakuos's fork hit a debuginfo Name collision with apparmor-libs32.spec
+# on EL10 CI. Fedora branches build fine with debuginfo enabled, so only
+# disable it there.
+%if 0%{?rhel}
+%global debug_package %{nil}
+%endif
+
 %bcond_with tests
 
 Name:           apparmor
-Version:        4.0.0~alpha3
-Release:        2%{?dist}
+Version:        5.0.2
+Release:        3%{?dist}
 Summary:        AppArmor userspace components
 
 %define baseversion %(echo %{version} | cut -d. -f-2)
 %global normver %(echo %version | sed 's/~/-/')
 
-License:        GPL-2.0
-URL:            https://launchpad.net/apparmor
-Source0:        %{url}/%{baseversion}/%normver/+download/%{name}-%{version}.tar.gz
+License:        GPL-2.0-only
+URL:            https://gitlab.com/apparmor/apparmor
+Source0:        %url/-/archive/v%normver/apparmor-v%normver.tar.gz
 Source1:        apparmor.preset
 Patch01:        0001-fix-avahi-daemon-authselect-denial-in-fedora.patch
+Patch02:        0001-fix-denial-on-dnsmask-for-nsswitch.patch
+Patch03:        0001-fix-apparmor-waydroid-denials.patch
+Patch04:        0001-fix-swig-new_copy_array-removed-in-swig-4.5.0.patch
 
 BuildRequires:  gcc
 BuildRequires:  automake
@@ -32,8 +45,10 @@ BuildRequires:  gettext
 BuildRequires:  pam-devel
 BuildRequires:  httpd-devel
 BuildRequires:  systemd-rpm-macros
+BuildRequires:  autoconf-archive
 BuildRequires:  gawk
 BuildRequires:  which
+BuildRequires:  libzstd-devel
 %if %{with tests}
 BuildRequires:  %{_bindir}/runtest
 BuildRequires:  %{_bindir}/prove
@@ -111,6 +126,7 @@ program profiles to the AppArmor Security kernel module.
 Summary:        AppArmor User-Level Utilities
 Requires:       python3-apparmor = %{version}
 Requires:       python3-notify2
+Requires:       %{name}-parser
 
 %description    utils
 This package provides the aa-logprof, aa-genprof, aa-autodep,
@@ -138,11 +154,12 @@ confinement policies when running virtual hosts in the webserver by using the
 changehat abilities exposed through libapparmor.
 
 %prep
-%autosetup -p1 -n %{name}-%{version}
+%autosetup -p1 -n %name-v%normver
+
+%conf
 sed -i 's/@VERSION@/%normver/g' libraries/libapparmor/swig/python/setup.py.in
 sed -i 's/${VERSION}/%normver/g' utils/Makefile
 
-%build
 export PYTHON=%{__python3}
 export PYTHON_VERSION=3
 export PYTHON_VERSIONS=python3
@@ -150,8 +167,12 @@ export PYTHON_VERSIONS=python3
 pushd libraries/libapparmor
 ./autogen.sh
 %configure \
-    --with-python \
+    --with-python
+popd
 
+%build
+
+pushd libraries/libapparmor
 %make_build VERSION=%normver
 popd
 
@@ -164,11 +185,38 @@ popd
 %make_build -C utils/vim
 
 %install
+mkdir -p %buildroot%_datadir/polkit-1/actions/
 %make_install -C libraries/libapparmor
 %make_install -C binutils
 %make_install -C parser \
     APPARMOR_BIN_PREFIX=%{buildroot}%{_prefix}/lib/apparmor \
     SBINDIR=%{buildroot}%{_sbindir}
+
+# Enable parser cache writing/compression by default so profile loads at
+# boot (rc.apparmor.functions parses 1500+ profiles) don't re-parse from
+# source every time, and point the cache at a dedicated /var/cache/apparmor
+# instead of the default /etc/apparmor.d/cache (read-only image /etc).
+sed -i \
+    -e 's/^#write-cache$/write-cache/' \
+    -e 's/^#Optimize=compress-fast$/Optimize=compress-fast/' \
+    %{buildroot}%{_sysconfdir}/apparmor/parser.conf
+echo 'cache-loc /var/cache/apparmor' >> %{buildroot}%{_sysconfdir}/apparmor/parser.conf
+install -dm755 %{buildroot}%{_localstatedir}/cache/apparmor
+
+# init/ installs aa-teardown, apparmor.service, and the rc.apparmor.functions
+# helpers into APPARMOR_BIN_PREFIX - none of this is covered by the parser
+# install above (their Makefiles are separate), so the parser package's
+# aa-teardown/apparmor.service/%{_prefix}/lib/apparmor entries need it.
+# Without this, nothing ever loads profiles into the kernel at boot - the
+# LSM comes up with zero profiles, and anything execing with
+# AppArmorProfile= (e.g. dbus-broker's systemd drop-in) fails outright
+# because the profile it expects was never loaded.
+%make_install -C init \
+    DISTRO=redhat \
+    APPARMOR_BIN_PREFIX=%{buildroot}%{_prefix}/lib/apparmor \
+    SBINDIR=%{buildroot}%{_sbindir} \
+    USR_SBINDIR=%{buildroot}%{_sbindir} \
+    SYSTEMD_UNIT_DIR=%{buildroot}%{_unitdir}
 %make_install -C profiles
 %make_install -C utils
 %make_install -C changehat/pam_apparmor \
@@ -180,9 +228,21 @@ install -Dm644 %{SOURCE1} %{buildroot}%{_presetdir}/70-apparmor.preset
 
 find %{buildroot} \( -name "*.a" -o -name "*.la" \) -delete
 
+mkdir -p %buildroot%python3_sitearch/LibAppArmor
+mv %buildroot%python3_sitearch/{LibAppArmor.py,_LibAppArmor.cpython-*-linux-gnu.so,__pycache__/LibAppArmor.*} %buildroot%python3_sitearch/LibAppArmor/
+# Without this, the moved-into-a-subdir LibAppArmor.py is never executed on
+# `import LibAppArmor` - Python just treats the directory as an empty
+# implicit namespace package, so callers (e.g. apparmor-utils'
+# logparser.py, which does `import LibAppArmor` then
+# `LibAppArmor.parse_record(...)`) get "module 'LibAppArmor' has no
+# attribute 'parse_record'" even though the real SWIG bindings are right
+# there on disk.
+echo 'from .LibAppArmor import *' > %buildroot%python3_sitearch/LibAppArmor/__init__.py
+
 %find_lang aa-binutils
 %find_lang apparmor-parser
 %find_lang apparmor-utils
+
 
 %if %{with tests}
 %check
@@ -231,32 +291,14 @@ make -C utils check
 
 %files profiles
 %dir %{_sysconfdir}/apparmor.d/
-%dir %{_sysconfdir}/apparmor.d/abi
-%config(noreplace) %{_sysconfdir}/apparmor.d/abi/3.0
-%config(noreplace) %{_sysconfdir}/apparmor.d/abi/4.0
-%config(noreplace) %{_sysconfdir}/apparmor.d/abi/kernel-5.4-outoftree-network
-%config(noreplace) %{_sysconfdir}/apparmor.d/abi/kernel-5.4-vanilla
-%config(noreplace) %{_sysconfdir}/apparmor.d/php-fpm
-%config(noreplace) %{_sysconfdir}/apparmor.d/samba-bgqd
-%config(noreplace) %{_sysconfdir}/apparmor.d/samba-dcerpcd
-%config(noreplace) %{_sysconfdir}/apparmor.d/samba-rpcd
-%config(noreplace) %{_sysconfdir}/apparmor.d/samba-rpcd-classic
-%config(noreplace) %{_sysconfdir}/apparmor.d/samba-rpcd-spoolss
-%config(noreplace) %{_sysconfdir}/apparmor.d/zgrep
-%dir %{_sysconfdir}/apparmor.d/abstractions
-%config(noreplace) %{_sysconfdir}/apparmor.d/abstractions/*
-%dir %{_sysconfdir}/apparmor.d/disable
-%dir %{_sysconfdir}/apparmor.d/local
-%dir %{_sysconfdir}/apparmor.d/tunables
-%config(noreplace) %{_sysconfdir}/apparmor.d/tunables/*
-%dir %{_sysconfdir}/apparmor.d/apache2.d
-%config(noreplace) %{_sysconfdir}/apparmor.d/apache2.d/phpsysinfo
-%config(noreplace) %{_sysconfdir}/apparmor.d/bin.*
-%config(noreplace) %{_sysconfdir}/apparmor.d/sbin.*
-%config(noreplace) %{_sysconfdir}/apparmor.d/usr.*
-%config(noreplace) %{_sysconfdir}/apparmor.d/lsb_release
-%config(noreplace) %{_sysconfdir}/apparmor.d/nvidia_modprobe
-%config(noreplace) %{_sysconfdir}/apparmor.d/local/*
+# Everything under apparmor.d/ (the flat sample profiles, abi/,
+# abstractions/, local/, tunables/, apache2.d/) is claimed recursively by
+# this single glob instead of being enumerated by name - upstream adds and
+# removes bundled sample profiles between releases (5.0.2 ships ~150 of
+# them, not the dozen this list used to hardcode), and an enumerated list
+# silently drifts out of sync, leaving newly-added files unpackaged and
+# build failing with "Installed (but unpackaged) file(s) found".
+%config(noreplace) %{_sysconfdir}/apparmor.d/*
 %dir %{_datadir}/apparmor/
 %{_datadir}/apparmor/extra-profiles
 
@@ -265,19 +307,20 @@ make -C utils check
 %doc parser/README
 %doc parser/*.[1-9].html
 %doc common/apparmor.css
-%doc parser/techdoc.pdf
 %{_sbindir}/apparmor_parser
 %{_bindir}/aa-enabled
 %{_bindir}/aa-exec
 %{_bindir}/aa-features-abi
 %{_sbindir}/aa-load
+%{_sbindir}/aa-show-usage
 %{_sbindir}/aa-teardown
 %{_unitdir}/apparmor.service
 %{_presetdir}/70-apparmor.preset
 %{_prefix}/lib/apparmor
 %dir %{_sysconfdir}/apparmor
+%config(noreplace) %{_sysconfdir}/apparmor/default_unconfined.template
 %config(noreplace) %{_sysconfdir}/apparmor/parser.conf
-%{_sharedstatedir}/apparmor
+%dir %{_localstatedir}/cache/apparmor
 %{_mandir}/man1/aa-enabled.1.gz
 %{_mandir}/man1/aa-exec.1.gz
 %{_mandir}/man1/aa-features-abi.1.gz
@@ -285,6 +328,8 @@ make -C utils check
 %{_mandir}/man5/apparmor.vim.5.gz
 %{_mandir}/man7/apparmor.7.gz
 %{_mandir}/man7/apparmor_xattrs.7.gz
+%{_mandir}/man8/aa-load.8.gz
+%{_mandir}/man8/aa-show-usage.8.gz
 %{_mandir}/man8/aa-teardown.8.gz
 %{_mandir}/man8/apparmor_parser.8.gz
 
@@ -297,6 +342,7 @@ make -C utils check
 %config(noreplace) %{_sysconfdir}/apparmor/logprof.conf
 %config(noreplace) %{_sysconfdir}/apparmor/notify.conf
 %config(noreplace) %{_sysconfdir}/apparmor/severity.db
+%{_bindir}/aa-easyprof
 %{_sbindir}/aa-audit
 %{_sbindir}/aa-autodep
 %{_sbindir}/aa-cleanprof
@@ -312,10 +358,10 @@ make -C utils check
 %{_sbindir}/aa-status
 %{_sbindir}/aa-unconfined
 %{_sbindir}/apparmor_status
-%{_bindir}/aa-easyprof
 %dir %{_datadir}/apparmor
 %{_datadir}/apparmor/easyprof
 %{_datadir}/apparmor/apparmor.vim
+%{_datadir}/polkit-1/actions/net.apparmor.pkexec.aa-notify.policy
 %{_mandir}/man5/logprof.conf.5.gz
 %{_mandir}/man8/aa-audit.8.gz
 %{_mandir}/man8/aa-autodep.8.gz
@@ -343,4 +389,24 @@ make -C utils check
 %{_mandir}/man8/mod_apparmor.8.gz
 
 %changelog
+* Fri Aug 07 2026 CatPieLeaf <catpieleaf@proton.me> - 5.0.2-2
+- Package the apparmor.service systemd unit (init/ was never built, so
+  nothing ever loaded profiles into the kernel at boot); fix a %files
+  parser/profiles file-conflict landmine; replace the stale enumerated
+  %files profiles list with a recursive glob so it can't drift out of
+  sync with upstream again; enable parser cache write/compression;
+  fix LibAppArmor's __init__.py; utils Requires apparmor-parser and
+  Obsoletes setroubleshoot; two more upstream sample-profile patches
+  (dnsmasq nsswitch, waydroid).
+- Patch SWIG's removed %new_copy_array macro (swig 4.5.0+ breaks the
+  python bindings build otherwise).
+- Fix two EL10/CentOS Stream 10 CI parse failures shared with
+  apparmor-libs32.spec: a debuginfo Name collision (now scoped to
+  rhel builds only, per review - Fedora keeps normal debuginfo) and
+  RPM macro-expanding install/files section tokens inside comments.
+- Use the proper SPDX GPL-2.0-only identifier instead of bare GPL-2.0.
+
+* Sat Aug 08 2026 CatPieLeaf <catpieleaf@proton.me> - 5.0.2-3
+- Hotfix: Removed "Obsoletes: setroubleshoot"
+
 %autochangelog

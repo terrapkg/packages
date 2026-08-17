@@ -1,15 +1,15 @@
-%global commit 8f19c751dc296cedb9a921badb7a02a8c0cb1aeb
-%global ver 1.8.31
-%global commit_date 20240219
+%global commit 022d60202e446ad1287b9fb68e687c8a0760788b
+%global ver 1.8.66
+%global commit_date 20260718
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
-Name: tdlib-nightly
-Version: %ver^%commit_date.%shortcommit
-Release: 1%?dist
-License: BSL-1.0
-URL: https://github.com/tdlib/td
-Summary: Cross-platform library for building Telegram clients
-Source0: %url/archive/%commit/tdlib-%commit.tar.gz
+Name:          tdlib-nightly
+Version:       %ver^%commit_date.%shortcommit
+Release:       1%{?dist}
+License:       BSL-1.0
+URL:           https://github.com/tdlib/td
+Summary:       Cross-platform library for building Telegram clients
+Source0:       %url/archive/%commit/tdlib-%commit.tar.gz
 
 BuildRequires: gperftools-devel
 BuildRequires: openssl-devel
@@ -20,7 +20,7 @@ BuildRequires: gperf
 BuildRequires: cmake
 BuildRequires: gcc
 
-Provides: bundled(sqlite) = 3.31.0
+Provides:      bundled(sqlite) = 3.31.0
 
 %description
 TDLib (Telegram Database library) is a cross-platform library for
@@ -62,10 +62,18 @@ sed -e 's/"DEFAULT"/"PROFILE=SYSTEM"/g' -i tdnet/td/net/SslStream.cpp
 %install
 %cmake_install
 
+mv LICENSE_1_0.txt *.md example ..
+rm -rf *
+mv ../LICENSE_1_0.txt ../*.md .
+
+mkdir -p %buildroot%_datadir/%{name}
+cp -r ../example %buildroot%_datadir/%{name}
+
 %files
 %license LICENSE_1_0.txt
 %doc README.md CHANGELOG.md
 %_libdir/libtd*.so.%ver
+%_datadir/%{name}/example/*
 
 %files devel
 %_includedir/td
@@ -77,7 +85,7 @@ sed -e 's/"DEFAULT"/"PROFILE=SYSTEM"/g' -i tdnet/td/net/SslStream.cpp
 %_libdir/libtd*.a
 
 %changelog
-* Sun May 28 2023 windowsboy111 <windowsboy111@fyralabs.com> - 1.8.14^54b34e9180dabc017210ebe3995f01d0c2fbaef1-1
+* Sun May 28 2023 madonuko <mado@fyralabs.com> - 1.8.14^54b34e9180dabc017210ebe3995f01d0c2fbaef1-1
 - Repackaged for Terra
 
 * Sat Jan 21 2023 Fedora Release Engineering <releng@fedoraproject.org> - 1.8.0-3

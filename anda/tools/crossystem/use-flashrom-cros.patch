@@ -1,0 +1,13 @@
+diff --git a/host/lib/flashrom.c b/host/lib/flashrom.c
+index 6a80201..c67a99d 100644
+--- a/host/lib/flashrom.c
++++ b/host/lib/flashrom.c
+@@ -23,7 +23,7 @@
+ #include "flashrom.h"
+ #include "subprocess.h"
+
+-#define FLASHROM_EXEC_NAME "flashrom"
++#define FLASHROM_EXEC_NAME "flashrom-cros"
+
+ /**
+  * Helper to create a temporary file, and optionally write some data

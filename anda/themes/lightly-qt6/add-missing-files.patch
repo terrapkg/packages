@@ -1,0 +1,186 @@
+diff --git a/kdecoration/config/CMakeLists.txt b/kdecoration/config/CMakeLists.txt
+new file mode 100644
+index 00000000..e4b08f0a
+--- /dev/null
++++ b/kdecoration/config/CMakeLists.txt
+@@ -0,0 +1,37 @@
++#####  config classes ææææææ
++
++set(lightlydecoration_config_SRCS
++  ../lightlyexceptionlist.cpp
++    lightlyconfigwidget.cpp
++    lightlydetectwidget.cpp
++    lightlyexceptiondialog.cpp
++    lightlyexceptionlistwidget.cpp
++    lightlyexceptionmodel.cpp
++    lightlyitemmodel.cpp
++)
++ki18n_wrap_ui(lightlydecoration_config_SRCS
++    ui/lightlyconfigurationui.ui
++    ui/lightlydetectwidget.ui
++    ui/lightlyexceptiondialog.ui
++    ui/lightlyexceptionlistwidget.ui
++)
++
++kcoreaddons_add_plugin(kcm_lightlydecoration SOURCES kcm_lightlydecoration.cpp ${lightlydecoration_config_SRCS} INSTALL_NAMESPACE "${KDECORATION_KCM_PLUGIN_DIR}")
++kconfig_add_kcfg_files(kcm_lightlydecoration ../lightlysettings.kcfgc)
++target_include_directories(kcm_lightlydecoration PRIVATE ${CMAKE_SOURCE_DIR}/kdecoration ${CMAKE_BINARY_DIR}/kdecoration/)
++target_link_libraries(kcm_lightlydecoration
++     PUBLIC
++        Qt6::Core
++        Qt6::Gui
++        Qt6::DBus
++        KDecoration2::KDecoration
++     PRIVATE
++        KF6::CoreAddons
++        KF6::ConfigWidgets
++        KF6::GuiAddons
++        KF6::I18n
++        KF6::IconThemes
++        KF6::WindowSystem
++        KF6::KCMUtils
++)
++kcmutils_generate_desktop_file(kcm_lightlydecoration)
+diff --git a/kdecoration/config/kcm_lightlydecoration.cpp b/kdecoration/config/kcm_lightlydecoration.cpp
+new file mode 100644
+index 00000000..de9ac802
+--- /dev/null
++++ b/kdecoration/config/kcm_lightlydecoration.cpp
+@@ -0,0 +1,6 @@
++#include "lightlyconfigwidget.h"
++#include <KPluginFactory>
++
++K_PLUGIN_CLASS_WITH_JSON(Lightly::ConfigWidget, "kcm_lightlydecoration.json")
++
++#include "kcm_lightlydecoration.moc"
+diff --git a/kdecoration/config/kcm_lightlydecoration.json b/kdecoration/config/kcm_lightlydecoration.json
+new file mode 100644
+index 00000000..d2013276
+--- /dev/null
++++ b/kdecoration/config/kcm_lightlydecoration.json
+@@ -0,0 +1,60 @@
++{
++    "KPlugin": {
++        "Description": "Modify the appearance of window decorations",
++        "Description[ar]": "عدّل مظهر زخرفات النّوافذ",
++        "Description[az]": "Pəncərə tərtibatının görünüşünü dəyişdirin",
++        "Description[bg]": "Настройване на външния изглед на прозорците",
++        "Description[ca@valencia]": "Modifica l'aparença de les decoracions de les finestres",
++        "Description[ca]": "Modifica l'aparença de les decoracions de les finestres",
++        "Description[cs]": "Změnit vzhled dekorace oken",
++        "Description[da]": "Ændr vinduesdekorationers udseende",
++        "Description[de]": "Das Erscheinungsbild der Fensterdekoration ändern",
++        "Description[el]": "Τροποποίηση εμφάνισης της διακόσμησης παραθύρου",
++        "Description[en_GB]": "Modify the appearance of window decorations",
++        "Description[es]": "Modificar el aspecto de las decoraciones de las ventanas",
++        "Description[et]": "Akna dekoratsioonide välimuse muutmine",
++        "Description[eu]": "Aldatu leiho apainduren itxura",
++        "Description[fi]": "Muuta ikkunoiden kehysten ulkoasua",
++        "Description[fr]": "Modifier l'apparence des décorations des fenêtres",
++        "Description[gl]": "Modifica a aparencia da decoración da xanela",
++        "Description[he]": "התאם את מראה מסגרות החלונות",
++        "Description[hi]": "विंडो सजावटों की दिखावट को परिवर्तित करें",
++        "Description[hu]": "Az ablakdekorációk megjelenésének módosítása",
++        "Description[ia]": "Modifica le apparentia de decorationes de fenestra",
++        "Description[id]": "Memodifikasi penampilan dekorasi window",
++        "Description[it]": "Modifica l'aspetto delle decorazioni delle finestre",
++        "Description[ja]": "ウィンドウ装飾の外観を編集",
++        "Description[ko]": "창 장식의 모습을 수정합니다",
++        "Description[lt]": "Keisti lango dekoracijų išvaizdą",
++        "Description[nb]": "Endre utseende for vindusdekorasjoner",
++        "Description[nl]": "Wijzig het uiterlijk van vensterdecoraties",
++        "Description[nn]": "Endra utsjånad på vindaugspynt",
++        "Description[pa]": "ਵਿੰਡੋ ਸਜਾਵਟ ਦੀ ਦਿੱਖ ਨੂੰ ਸੋਧੋ",
++        "Description[pl]": "Zmień wygląd i wystrój okien",
++        "Description[pt]": "Modificar a aparência das decorações das janelas",
++        "Description[pt_BR]": "Modifica a aparência das decorações da janela",
++        "Description[ro]": "Modifică aspectul decorațiilor pentru ferestre",
++        "Description[ru]": "Настройка заголовков окон в стиле Breeze",
++        "Description[sk]": "Zmena vzhľadu dekorácie okien",
++        "Description[sl]": "Spremenite videz okrasitve oken",
++        "Description[sr@ijekavian]": "Измијените изглед декорација прозора",
++        "Description[sr@ijekavianlatin]": "Izmijenite izgled dekoracija prozora",
++        "Description[sr@latin]": "Izmenite izgled dekoracija prozora",
++        "Description[sr]": "Измените изглед декорација прозора",
++        "Description[sv]": "Ändra utseendet hos fönsterdekorationer",
++        "Description[tg]": "Тағйир додани ороиши намуди зоҳирии равзанаҳо",
++        "Description[tr]": "Pencere dekorasyonlarının görünümünü değiştir",
++        "Description[uk]": "Зміна вигляду декорацій вікон",
++        "Description[x-test]": "xxModify the appearance of window decorationsxx",
++        "Description[zh_CN]": "修改窗口装饰外观",
++        "Description[zh_TW]": "變更視窗裝飾外觀",
++        "Icon": "preferences-system-windows",
++        "Name": "Lightly: Window Decoration",
++        "ServiceTypes": [
++            "KCModule"
++        ]
++    },
++    "X-KDE-Keywords": "Lightly,decoration",
++    "X-KDE-ParentApp": "kcontrol",
++    "X-KDE-Weight": 50
++}
+diff --git a/kstyle/config/lightlystyleconfig.json b/kstyle/config/lightlystyleconfig.json
+new file mode 100644
+index 00000000..f4f58aeb
+--- /dev/null
++++ b/kstyle/config/lightlystyleconfig.json
+@@ -0,0 +1,59 @@
++{
++    "KPlugin": {
++        "Description": "Modify the appearance of widgets",
++        "Description[ar]": "عدّل مظهر الودجات",
++        "Description[az]": "Vidjetin görünüşünü dəyişin",
++        "Description[bg]": "Настройване на външния изглед на приставките",
++        "Description[ca@valencia]": "Modifica l'aparença dels ginys",
++        "Description[ca]": "Modifica l'aparença dels ginys",
++        "Description[cs]": "Změnit vzhled widgetů",
++        "Description[da]": "Ændr kontrollers udseende",
++        "Description[de]": "Das Erscheinungsbild der Bedienelemente ändern",
++        "Description[el]": "Τροποποίηση εμφάνισης συστατικών",
++        "Description[en_GB]": "Modify the appearance of widgets",
++        "Description[es]": "Modificar el aspecto de los elementos gráficos",
++        "Description[et]": "Vidinate välimuse muutmine",
++        "Description[eu]": "Aldatu trepeten itxura",
++        "Description[fi]": "Muuta elementtien ulkoasua",
++        "Description[fr]": "Modifier l'apparence des composants graphiques",
++        "Description[gl]": "Modifica a aparencia dos trebellos",
++        "Description[he]": "התאם את המראה של היישומונים",
++        "Description[hi]": "विजेट की दिखावट को परिवर्तित करें",
++        "Description[hu]": "Az elemek megjelenésének módosítása",
++        "Description[ia]": "Modifica le apparentia de widgets",
++        "Description[id]": "Memodifikasi penampilan widget",
++        "Description[it]": "Modifica l'aspetto degli oggetti",
++        "Description[ja]": "ウィジェットの外観を編集",
++        "Description[ko]": "위젯의 모습을 수정합니다",
++        "Description[lt]": "Keisti valdiklių išvaizdą",
++        "Description[nb]": "Endre utseende for skjermelementer",
++        "Description[nl]": "Wijzig het uiterlijk van widgets",
++        "Description[nn]": "Endra utsjånaden på skjermkontrollar",
++        "Description[pl]": "Zmień wygląd interfejsu",
++        "Description[pt]": "Modificar a aparência dos elementos gráficos",
++        "Description[pt_BR]": "Modifica a aparência dos widgets",
++        "Description[ro]": "Modifică aspectul controalelor",
++        "Description[ru]": "Настройка элементов интерфейса в стиле Breeze",
++        "Description[sk]": "Zmena vzhľadu miniaplikácií",
++        "Description[sl]": "Spremenite videz gradnikov",
++        "Description[sr@ijekavian]": "Измијените изглед виџета̂",
++        "Description[sr@ijekavianlatin]": "Izmijenite izgled vidžetâ̂",
++        "Description[sr@latin]": "Izmenite izgled vidžetâ̂",
++        "Description[sr]": "Измените изглед виџета̂",
++        "Description[sv]": "Ändra utseende hos grafiska komponenter",
++        "Description[tg]": "Тағйир додани намуди зоҳирии виҷетҳо",
++        "Description[tr]": "Araç takımlarının görünümünü değiştir",
++        "Description[uk]": "Зміна вигляду віджетів",
++        "Description[x-test]": "xxModify the appearance of widgetsxx",
++        "Description[zh_CN]": "调整窗口部件外观",
++        "Description[zh_TW]": "變更元件外觀",
++        "Icon": "preferences-desktop-theme",
++        "Name": "Lightly: Widget Style",
++        "ServiceTypes": [
++            "KCModule"
++        ]
++    },
++    "X-KDE-Keywords": "lightly,widget,style",
++    "X-KDE-ParentApp": "kcontrol",
++    "X-KDE-Weight": 60
++}

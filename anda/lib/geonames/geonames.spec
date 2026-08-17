@@ -1,9 +1,9 @@
 %global forgeurl https://gitlab.com/ubports/development/core/geonames
-%global commit 447653042655072bdd5e539ed509623e56c418ec
+%global commit 91792a7f85ced64915652c33e3c3a9513c106f58
 %forgemeta
 
 Name:       geonames
-Version:    0.3.1
+Version:    0.3.2
 Release:    1%{?dist}
 Summary:    Parse and query the geonames database
 License:    GPL-3.0

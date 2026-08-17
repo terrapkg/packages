@@ -1,0 +1,30 @@
+From d38877279728c4e5711ae4dd373486bf2148ee48 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Nicolas=20Vi=C3=A9ville?= <nicolas.vieville@uphf.fr>
+Date: Tue, 17 Dec 2024 20:19:49 +0100
+Subject: [PATCH] linuxver.h: net/lib80211.h dropped from includes for kernel
+ >= 6.13.x
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Nicolas Viéville <nicolas.vieville@uphf.fr>
+---
+ src/include/linuxver.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/include/linuxver.h b/src/include/linuxver.h
+index b05bc32..bbe1d3c 100644
+--- a/src/include/linuxver.h
++++ b/src/include/linuxver.h
+@@ -147,7 +147,7 @@ typedef irqreturn_t(*FN_ISR) (int irq, void *dev_id, struct pt_regs *ptregs);
+ #include <linux/sched.h>
+ #endif
+ 
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 29)
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 29) && LINUX_VERSION_CODE < KERNEL_VERSION(6, 13, 0)
+ #include <net/lib80211.h>
+ #endif
+ #if LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 29)
+-- 
+2.47.1
+

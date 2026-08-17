@@ -1,8 +1,7 @@
-BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
 Name:           kotlin
-Version:        2.0.0
-Release:        1%?dist
+Version:        2.4.10
+Release:        1%{?dist}
 Summary:        Statically typed programming language
 
 License:        Apache-2.0
@@ -35,7 +34,7 @@ sed -i "s|\(KOTLIN_HOME *= *\).*|\1%{_datadir}/%{name}|" bin/*
 %install
 rm -rf %{buildroot} && mkdir -p %{buildroot}%{_bindir}/ && cd kotlinc
 install -m 0755 bin/kotlin %{buildroot}%{_bindir}/
-install -m 0755 bin/kotlin-dce-js %{buildroot}%{_bindir}/
+install -m 0755 bin/kapt %{buildroot}%{_bindir}/
 install -m 0755 bin/kotlinc %{buildroot}%{_bindir}/
 install -m 0755 bin/kotlinc-js %{buildroot}%{_bindir}/
 install -m 0755 bin/kotlinc-jvm %{buildroot}%{_bindir}/

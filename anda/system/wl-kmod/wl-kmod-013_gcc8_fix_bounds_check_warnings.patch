@@ -1,0 +1,18 @@
+diff -Naur hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_linux.c hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_linux.c
+--- hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_linux.c	2018-02-15 00:54:30.184690464 +0100
++++ hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_linux.c	2018-04-18 08:07:30.068342420 +0200
+@@ -2986,7 +2986,14 @@
+ 	}
+ 
+ 	ASSERT(strlen(wlif->name) > 0);
++#if __GNUC__ < 8
+ 	strncpy(wlif->dev->name, wlif->name, strlen(wlif->name));
++#else
++	// Should have been:
++	// strncpy(wlif->dev->name, wlif->name, sizeof(wlif->dev->name) - 1);
++	// wlif->dev->name[sizeof(wlif->dev->name) - 1] = '\0';
++ 	memcpy(wlif->dev->name, wlif->name, strlen(wlif->name));
++#endif
+ 
+ 	wl->monitor_dev = dev;
+ 	if (wl->monitor_type == 1)

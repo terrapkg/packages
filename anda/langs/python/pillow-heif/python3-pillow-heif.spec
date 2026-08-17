@@ -6,7 +6,7 @@
 %bcond_with doc
 
 Name:           python-%{srcname}
-Version:        0.16.0
+Version:        1.5.0
 Release:        1%{?dist}
 Summary:        Python library for working with HEIF images and plugin for Pillow
 
@@ -22,6 +22,7 @@ BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-pillow-devel
 BuildRequires:  libheif-devel
+BuildRequires:  python%{python3_pkgversion}dist(pip)
 %if %{with doc}
 BuildRequires:  make
 BuildRequires:  python%{python3_pkgversion}-sphinx
@@ -72,7 +73,11 @@ Documentation for %{srcname}.
 
 %build
 # Native build
+%if 0%{?fedora} <= 41 || 0%{?rhel}
 %py3_build
+%else
+%pyproject_wheel
+%endif
 
 # Doc build
 %if %{with doc}
@@ -83,7 +88,11 @@ rm -f docs/_build_py3/html/.buildinfo
 
 %install
 # Native build
+%if 0%{?fedora} <= 41 || 0%{?rhel}
 %py3_install
+%else
+%pyproject_install
+%endif
 
 %check
 # Check Python 3 modules
@@ -97,7 +106,11 @@ popd
 %doc README.md CHANGELOG.md
 %license LICENSE.txt
 %{python3_sitearch}/pillow_heif/
+%if 0%{?fedora} <= 41 || 0%{?rhel}
 %{python3_sitearch}/pillow_heif-%{version}-py%{python3_version}.egg-info/
+%else
+%{python3_sitearch}/pillow_heif-%{version}.dist-info/
+%endif
 %{python3_sitearch}/_pillow_heif.*.so
 
 %files -n python%{python3_pkgversion}-%{srcname}-devel
@@ -108,5 +121,8 @@ popd
 %endif
 
 %changelog
+* Wed Jul 10 2024 Trung Lê <8@tle.id.au> - 0.17.0-0
+- New upstream release
+
 * Thu Jun 27 2024 Trung Lê <8@tle.id.au> - 0.16.0-1
 - Initial RPM package

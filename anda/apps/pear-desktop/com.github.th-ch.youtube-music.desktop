@@ -1,0 +1,20 @@
+[Desktop Entry]
+Version=1.0
+Name=Pear Desktop
+GenericName=YouTube Music Client
+Comment=YouTube Music desktop app with custom plugins
+Comment[de]=YouTube Music Desktop-App mit benutzerdefinierten Plugins
+Comment[es]=Aplicación de escritorio de YouTube Music con plugins personalizados
+Comment[fr]=Application de bureau YouTube Music avec plugins personnalisés
+Comment[it]=Applicazione desktop di YouTube Music con plugin personalizzati
+Comment[ja]=カスタムプラグインを備えた YouTube Music デスクトップアプリ
+Comment[pt_BR]=Aplicativo desktop do YouTube Music com plugins personalizados
+Comment[ru]=Десктопное приложение YouTube Music с пользовательскими плагинами
+Comment[zh_CN]=带有自定义插件的 YouTube Music 桌面应用
+Exec=/usr/bin/pear-desktop %U
+TryExec=/usr/bin/pear-desktop
+Icon=pear-desktop
+Terminal=false
+Type=Application
+StartupWMClass=com.github.th-ch.youtube-music
+Categories=AudioVideo;

@@ -1,0 +1,115 @@
+%if 0%{?fedora} >= 44
+%global gcc_compat 15
+%global __cc gcc-%{gcc_compat}
+%global __cxx g++-%{gcc_compat}
+%endif
+
+Name:			tracy
+Version:		0.14.0
+Release:		1%{?dist}
+Summary:		A real time, nanosecond resolution, remote telemetry, hybrid frame and sampling profiler for games and other applications
+License:		BSD-3-Clause
+URL:			https://github.com/wolfpld/tracy
+Source0:		https://github.com/wolfpld/tracy/archive/refs/tags/v%version.tar.gz
+BuildRequires:  pkgconfig(egl)
+BuildRequires:  pkgconfig(glfw3)
+BuildRequires:  pkgconfig(freetype2)
+BuildRequires:  pkgconfig(dbus-1)
+BuildRequires:  pkgconfig(libunwind)
+BuildRequires:  pkgconfig(libdebuginfod)
+BuildRequires:  pkgconfig(tbb)
+BuildRequires:  pkgconfig(wayland-client)
+BuildRequires:  pkgconfig(wayland-protocols)
+BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:  pkgconfig(capstone)
+BuildRequires:  pkgconfig(openssl)
+BuildRequires:  pkgconfig(pugixml)
+BuildRequires:  pkgconfig(libcurl)
+BuildRequires:  pkgconfig(libxslt)
+BuildRequires:  pkgconfig(libnghttp2)
+BuildRequires:  pkgconfig(libidn2)
+BuildRequires:  pkgconfig(libssh2)
+BuildRequires:  tbb
+BuildRequires:  expat
+BuildRequires:  libxml2
+BuildRequires:  openssl-libs
+BuildRequires:  cmake
+BuildRequires:  meson
+BuildRequires:  gcc%{?gcc_compat}
+BuildRequires:  gcc%{?gcc_compat}-c++
+
+Packager:       Owen Zimmerman <owen@fyralabs.com>
+
+%description
+Tracy is a real time, nanosecond resolution, remote telemetry, hybrid frame and sampling profiler for games and other applications.
+
+%package devel
+Summary: Development files for the tracy package
+Requires:    tracy = %{evr}
+
+%description devel
+Development files for the tracy package.
+
+%prep
+%autosetup
+
+%conf
+%meson -Dcpp_std=c++17
+
+%build
+%meson_build
+for project in capture csvexport import update profiler
+do
+    pushd $project
+    %cmake -DDOWNLOAD_CAPSTONE=1 \
+           -DCMAKE_CXX_STANDARD=17 \
+           -DCMAKE_SKIP_RPATH=ON \
+           -DCMAKE_SKIP_INSTALL_RPATH=ON
+    %cmake_build
+    popd
+done
+
+%install
+%meson_install
+
+# NOTE: the subprojects don't have install targets so we do it manually
+install -Dm755 capture/%__cmake_builddir/tracy-capture %buildroot%_bindir/tracy-capture
+install -Dm755 csvexport/%__cmake_builddir/tracy-csvexport %buildroot%_bindir/tracy-csvexport
+install -Dm755 import/%__cmake_builddir/tracy-import-chrome %buildroot%_bindir/tracy-import-chrome
+install -Dm755 import/%__cmake_builddir/tracy-import-fuchsia %buildroot%_bindir/tracy-import-fuchsia
+install -Dm755 update/%__cmake_builddir/tracy-update %buildroot%_bindir/tracy-update
+install -Dm755 profiler/%__cmake_builddir/tracy-profiler %buildroot%_bindir/tracy
+
+install -Dm644 extra/desktop/tracy.desktop %buildroot%_datadir/applications/tracy.desktop
+install -Dm644 icon/icon.svg %buildroot%_iconsdir/hicolor/scalable/apps/tracy.svg
+install -Dm644 extra/desktop/application-tracy.xml %buildroot%_datadir/mime/packages/application-tracy.xml
+install -Dm644 icon/application-tracy.svg %buildroot%_iconsdir/hicolor/scalable/apps/application-tracy.svg
+
+%files
+%license LICENSE
+%doc README.*
+%_bindir/tracy
+%_bindir/tracy-capture
+%_bindir/tracy-csvexport
+%_bindir/tracy-import-chrome
+%_bindir/tracy-import-fuchsia
+%_bindir/tracy-update
+%_libdir/libtracy.so
+%_datadir/applications/tracy.desktop
+%_datadir/mime/packages/application-tracy.xml
+%_iconsdir/hicolor/scalable/apps/tracy.svg
+%_iconsdir/hicolor/scalable/apps/application-tracy.svg
+
+%files devel
+%_libdir/pkgconfig/tracy.pc
+%_includedir/tracy/*
+
+%changelog
+* Tue Apr 21 2026 Owen Zimmerman <owen@fyralabs.com> - 0.13.1-2
+- Make gcc15 the default compiler on Fedora 44+
+
+* Mon Jan 19 2026 Owen Zimmerman <owen@fyralabs.com> - 0.13.1-1
+- Fix compile issues, update for 0.13.1
+
+* Wed Jul 24 2024 Owen Zimmerman <owen@fyralabs.com> - 0.11-1
+- Initial package.

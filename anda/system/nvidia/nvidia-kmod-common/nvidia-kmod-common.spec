@@ -1,0 +1,83 @@
+%global _dracut_conf_d  %{_prefix}/lib/dracut/dracut.conf.d
+
+# gsp_*.bin: ELF 64-bit LSB executable, UCB RISC-V
+%global _binaries_in_noarch_packages_terminate_build 0
+%global __brp_strip %{nil}
+
+Name:           nvidia-kmod-common
+Version:        610.57.04
+Release:        1%{?dist}
+Summary:        Common file for NVIDIA's proprietary driver kernel modules
+Epoch:          3
+License:        NVIDIA License
+URL:            http://www.nvidia.com/object/unix.html
+Source0:        http://download.nvidia.com/XFree86/Linux-x86_64/%{version}/NVIDIA-Linux-x86_64-%{version}.run
+Source17:       nvidia-boot-update
+Source20:       nvidia.conf
+Source21:       60-nvidia.rules
+Source24:       99-nvidia.conf
+# UDev rule location (_udevrulesdir) and systemd macros:
+BuildRequires:  systemd-rpm-macros
+Requires:       dracut
+Requires:       nvidia-modprobe
+Requires:       nvidia-driver = %{?epoch:%{epoch}:}%{version}
+Requires:       nvidia-driver-libs = %{?epoch:%{epoch}:}%{version}
+Requires:       nvidia-kmod = %{?epoch:%{epoch}:}%{version}
+Requires:       gcc-c++
+Requires:       (nvidia-driver-selinux if selinux-policy-targeted)
+Provides:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
+Obsoletes:      nvidia-open-kmod-common < %{?epoch:%{epoch}:}%{version}
+Obsoletes:      cuda-nvidia-kmod-common < %{?epoch:%{epoch}:}%{version}
+BuildArch:      noarch
+Packager:       Terra Packaging Team <terra@fyralabs.com>
+
+%description
+This package provides the common files required by all NVIDIA kernel module
+package variants.
+
+%prep
+sh %{SOURCE0} -x --target nvidia-kmod-%{version}-x86_64
+%setup -T -D -n nvidia-kmod-%{version}-x86_64
+
+%install
+# Script for post/preun tasks
+install -p -m 0755 -D %{SOURCE17} %{buildroot}%{_bindir}/nvidia-boot-update
+
+# Load nvidia-uvm, enable complete power management:
+install -p -m 0644 -D %{SOURCE20} %{buildroot}%{_modprobedir}/nvidia.conf
+
+# Avoid Nvidia modules getting in the initrd:
+install -p -m 0644 -D %{SOURCE24} %{buildroot}%{_dracut_conf_d}/99-nvidia.conf
+
+# UDev rules
+# https://github.com/NVIDIA/nvidia-modprobe/blob/master/modprobe-utils/nvidia-modprobe-utils.h#L33-L46
+# https://github.com/negativo17/nvidia-kmod-common/issues/11
+# https://github.com/negativo17/nvidia-driver/issues/27
+install -p -m 644 -D %{SOURCE21} %{buildroot}%{_udevrulesdir}/60-nvidia.rules
+
+# Firmware files:
+mkdir -p %{buildroot}%{_prefix}/lib/firmware/nvidia/%{version}/
+install -p -m 644 firmware/* %{buildroot}%{_prefix}/lib/firmware/nvidia/%{version}
+
+%post
+%{_bindir}/nvidia-boot-update post
+
+%preun
+if [ "$1" -eq "0" ]; then
+  %{_bindir}/nvidia-boot-update preun
+fi ||:
+
+%files
+%{_dracut_conf_d}/99-nvidia.conf
+%{_modprobedir}/nvidia.conf
+%dir %{_prefix}/lib/firmware
+%dir %{_prefix}/lib/firmware/nvidia
+%{_prefix}/lib/firmware/nvidia/%{version}
+%{_bindir}/nvidia-boot-update
+%{_udevrulesdir}/60-nvidia.rules
+
+%changelog
+* Fri Jul 10 2026 Gilver E. <roachy@fyralabs.com> - 3:610.43.03-2
+- Update for file changes
+* Mon Apr 13 2026 Gilver E. <roachy@fyralabs.com> - 3:595.58.03-2
+- Update spec for Terra packaging team

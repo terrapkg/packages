@@ -1,0 +1,11 @@
+diff -Naur hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_cfg80211_hybrid.c hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_cfg80211_hybrid.c
+--- hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_cfg80211_hybrid.c	2019-06-01 14:37:25.675650990 +0200
++++ hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_cfg80211_hybrid.c	2019-10-16 16:33:57.319456346 +0200
+@@ -856,6 +856,7 @@
+ 		break;
+ 	case NL80211_AUTHTYPE_NETWORK_EAP:
+ 		WL_DBG(("network eap\n"));
++		__attribute__((__fallthrough__)); /* [[fallthrough]]; falls through */
+ 	default:
+ 		val = 2;
+ 		WL_ERR(("invalid auth type (%d)\n", sme->auth_type));

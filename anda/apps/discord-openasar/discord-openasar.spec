@@ -6,8 +6,8 @@
 %global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 Name:           discord-openasar
-Version:        0.0.58
-Release:        1%?dist
+Version:        1.0.154
+Release:        1%{?dist}
 Summary:        A snappier Discord rewrite with features like further customization and theming
 License:        MIT AND https://discord.com/terms
 URL:            https://github.com/GooseMod/OpenAsar
@@ -34,22 +34,26 @@ sed "s@Discord@Discord OpenAsar@g" a > discord.desktop
 
 %install
 rm -rf $RPM_BUILD_ROOT
+mkdir -p %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_datadir}/discord-openasar
 cp -rv * %{buildroot}%{_datadir}/discord-openasar
 mkdir -p %{buildroot}%{_datadir}/applications/
 mkdir -p %{buildroot}%{_datadir}/pixmaps
 ln -s %_datadir/discord-openasar/discord.desktop %{buildroot}%{_datadir}/applications/discord-openasar.desktop
 ln -s %_datadir/discord-openasar/discord.png %{buildroot}%{_datadir}/pixmaps/discord-openasar.png
+mkdir -p %{buildroot}%{_datadir}/discord-openasar/resources
 cp -v %{SOURCE1} %{buildroot}%{_datadir}/discord-openasar/resources/app.asar
 chmod o+w %{buildroot}%{_datadir}/discord-openasar/resources -R
+ln -s %_datadir/discord-openasar/Discord %buildroot%_bindir/discord-openasar
 
 
 %files
+%_bindir/discord-openasar
 %{_datadir}/discord-openasar/
 %{_datadir}/applications/discord-openasar.desktop
 %{_datadir}/pixmaps/discord-openasar.png
 
 
 %changelog
-* Sat Jan 21 2023 windowsboy111 <windowsboy111@fyralabs.com> - 0.0.38-1
+* Sat Jan 21 2023 madonuko <mado@fyralabs.com> - 0.0.38-1
 - Initial package

@@ -1,0 +1,8 @@
+libdir=LIBDIR
+includedir=INCLUDE_DIR
+
+Name: cusparse
+Description: CUDA Sparse Matrix Library
+Version: CUDA_VERSION
+Libs: -L${libdir} -lcusparse
+Cflags: -I${includedir}

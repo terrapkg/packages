@@ -1,6 +1,6 @@
 Name:           anki-qt5
-Version:        24.06.3
-Release:        1%?dist
+Version:        26.08.1
+Release:        1%{?dist}
 Summary:        Flashcard program for using space repetition learning
 License:        AGPL-3.0-or-later AND GPL-3.0-or-later AND LGPL-3.0-or-later AND MIT AND BSD-3-Clause AND CC-BY-SA-3.0 AND CC-BY-3.0 AND Apache-2.0 AND CC-BY-2.5
 URL:            https://apps.ankiweb.net/
@@ -20,6 +20,7 @@ phrases in a foreign language) as easily, quickly and efficiently as possible.
 Anki is based on a theory called spaced repetition.
 
 %prep
+rm -rf ./*
 git clone https://github.com/ankitects/anki .
 git checkout %version
 %patch 1 -p1
@@ -61,5 +62,5 @@ find %{buildroot} -iname direct_url.json | xargs -r rm -rf
 /usr/lib64/python*/site-packages/anki-%{version}.dist-info/
 
 %changelog
-* Tue Jan 3 2023 windowsboy111 <windowsboy111@fyralabs.com> - 2.1.60
+* Tue Jan 3 2023 madonuko <mado@fyralabs.com> - 2.1.60
 - Initial package

@@ -1,0 +1,15 @@
+[Unit]
+Description=NVIDIA Persistence Daemon
+
+[Service]
+Type=forking
+PIDFile=/run/nvidia-persistenced/nvidia-persistenced.pid
+Restart=always
+ExecStart=/usr/bin/nvidia-persistenced
+User=nvidia-persistenced
+Group=nvidia-persistenced
+RuntimeDirectory=nvidia-persistenced
+TimeoutSec=300
+
+[Install]
+WantedBy=multi-user.target

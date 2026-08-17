@@ -1,5 +1,5 @@
-%global commit 7cb289b6466b662fdf9f7d7ccc9f3c08a7dc0cac
-%global commit_date 20240219
+%global commit 11f6a53130182a85908505b9120313f8b817f32c
+%global commit_date 20250328
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global debug_package %{nil}
 %define __os_install_post %{nil}
@@ -13,8 +13,8 @@ Summary:        Set of tools designed to help develop and debug software and fir
 URL:            https://github.com/thesofproject/avsdk
 Source0:        https://github.com/thesofproject/avsdk/archive/%commit/avsdk-%commit.tar.gz
 
-Requires:       dotnet-runtime-6.0
-BuildRequires:  dotnet-sdk-6.0 make
+Requires:       dotnet-runtime-8.0
+BuildRequires:  dotnet-sdk-8.0 make
 
 %description
 Set of tools designed to help develop and debug software and firmware on Intel platforms with AudioDSP onboard.

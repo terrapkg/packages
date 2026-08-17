@@ -1,10 +1,10 @@
 %define debug_package %nil
-%global commit 688ca6ae29de89174794a48be61ecd0fb1111c96
-%global commit_date 20240430
+%global commit 6142a5687c9e6e5e0bc615e9cfaf8382cb5d4d81
+%global commit_date 20251225
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           albius
-Version:        %date.%shortcommit
+Version:        %commit_date.%shortcommit
 Release:        1%?dist
 Summary:        A Linux installer backend with support for SquashFS and OCI installations
 License:        GPL-3.0

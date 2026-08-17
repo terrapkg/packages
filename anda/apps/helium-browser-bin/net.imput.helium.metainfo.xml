@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component type="runtime">
+  <id>net.imput.helium</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-only AND BSD-3-Clause</project_license>
+
+  <name>Helium Browser</name>
+  <summary>Private, fast, and honest web browser based on Chromium.</summary>
+
+  <icon type="local">
+  /usr/share/icons/hicolor/256x256/apps/net.imput.helium.png
+  </icon>
+  <description>
+    <p>
+    Private, fast, and honest web browser based on Chromium.
+    Based on ungoogled-chromium with additional privacy and usability improvements.
+    </p>
+  </description>
+  <url type="homepage">https://helium.computer</url>
+
+  <releases>
+    <release version="0.6.9.1" />
+  </releases>
+</component>

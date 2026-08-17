@@ -1,17 +1,14 @@
 {
-  "name": "Fedora",
-  "build": {
-    "dockerfile": "Dockerfile",
-    "args": { "VARIANT": "38" }
-  },
-  "remoteUser": "vscode",
-  "runArgs": [
-    "--privileged"
-  ],
+  "name": "Terra Devcontainer",
+  "image": "ghcr.io/terrapkg/builder:frawhide",
+  "runArgs": ["--privileged"],
   "customizations": {
     "vscode": {
       "extensions": [
-        "rhaiscript.vscode-rhai"
+        "rhaiscript.vscode-rhai",
+        "1dot75cm.rpmspec",
+        "hashicorp.hcl",
+        "redhat.vscode-xml"
       ]
     }
   }

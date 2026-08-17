@@ -3,6 +3,7 @@ project pkg {
 		spec = "tdlib-nightly.spec"
 	}
 	labels {
-		nightly = "1"
+		nightly = 1
+    large = 1
 	}
 }

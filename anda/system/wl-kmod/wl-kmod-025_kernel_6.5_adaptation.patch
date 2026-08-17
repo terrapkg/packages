@@ -1,0 +1,208 @@
+diff -Naur hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/include/bcmutils.h hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/include/bcmutils.h
+--- hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/include/bcmutils.h	2023-01-03 00:23:40.088556742 +0100
++++ hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/include/bcmutils.h	2023-08-30 14:18:41.387888952 +0200
+@@ -21,6 +21,8 @@
+ #ifndef	_bcmutils_h_
+ #define	_bcmutils_h_
+ 
++#include <linux/version.h>
++
+ #define bcm_strcpy_s(dst, noOfElements, src)            strcpy((dst), (src))
+ #define bcm_strncpy_s(dst, noOfElements, src, count)    strncpy((dst), (src), (count))
+ #define bcm_strcat_s(dst, noOfElements, src)            strcat((dst), (src))
+@@ -558,7 +560,11 @@
+ typedef struct bcm_tlv {
+ 	uint8	id;
+ 	uint8	len;
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 5, 0)
++	uint8	data[];
++#else
+ 	uint8	data[1];
++#endif
+ } bcm_tlv_t;
+ 
+ #define bcm_valid_tlv(elt, buflen) ((buflen) >= 2 && (int)(buflen) >= (int)(2 + (elt)->len))
+diff -Naur hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/include/wlioctl.h hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/include/wlioctl.h
+--- hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/include/wlioctl.h	2023-01-03 00:23:40.089556752 +0100
++++ hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/include/wlioctl.h	2023-08-30 14:52:25.925883656 +0200
+@@ -24,6 +24,7 @@
+ #ifndef _wlioctl_h_
+ #define	_wlioctl_h_
+ 
++#include <linux/version.h>
+ #include <typedefs.h>
+ #include <proto/ethernet.h>
+ #include <proto/bcmeth.h>
+@@ -91,7 +92,11 @@
+ 	uint32 buflen;
+ 	uint32 version;
+ 	uint32 count;
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 5, 0)
++	wl_bss_info_t bss_info[];
++#else
+ 	wl_bss_info_t bss_info[1];
++#endif
+ } wl_scan_results_t;
+ 
+ #define WL_MAXRATES_IN_SET		16	
+@@ -129,7 +134,11 @@
+ 
+ 	uint32 count;
+ 
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 5, 0)
++	uint32 element[];
++#else
+ 	uint32 element[1];
++#endif
+ } wl_uint32_list_t;
+ 
+ typedef struct wl_assoc_params {
+@@ -247,7 +256,11 @@
+ 
+ typedef struct _pmkid_list {
+ 	uint32	npmkid;
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 5, 0)
++	pmkid_t	pmkid[];
++#else
+ 	pmkid_t	pmkid[1];
++#endif
+ } pmkid_list_t;
+ 
+ typedef struct _pmkid_cand {
+@@ -257,7 +270,11 @@
+ 
+ typedef struct _pmkid_cand_list {
+ 	uint32	npmkid_cand;
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 5, 0)
++	pmkid_cand_t	pmkid_cand[];
++#else
+ 	pmkid_cand_t	pmkid_cand[1];
++#endif
+ } pmkid_cand_list_t;
+ 
+ typedef struct {
+@@ -278,7 +295,11 @@
+ 
+ struct maclist {
+ 	uint count;			
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 5, 0)
++	struct ether_addr ea[];
++#else
+ 	struct ether_addr ea[1];	
++#endif
+ };
+ 
+ typedef struct wl_ioctl {
+diff -Naur hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_cfg80211_hybrid.c hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_cfg80211_hybrid.c
+--- hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_cfg80211_hybrid.c	2023-01-03 09:20:31.743032501 +0100
++++ hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_cfg80211_hybrid.c	2023-08-30 14:37:43.085793226 +0200
+@@ -1655,7 +1655,11 @@
+                       struct cfg80211_pmksa *pmksa)
+ {
+ 	struct wl_cfg80211_priv *wl = wiphy_to_wl(wiphy);
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 5, 0)
++	struct { pmkid_t pmkid[1]; } pmkid;
++#else
+ 	struct _pmkid_list pmkid;
++#endif
+ 	s32 err = 0;
+ 	int i;
+ 
+@@ -2113,7 +2117,11 @@
+ 		WL_DBG(("Beacon is larger than buffer. Discarding\n"));
+ 		return -E2BIG;
+ 	}
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 5, 0)
++	notif_bss_info = kzalloc(sizeof(*notif_bss_info) + sizeof(*mgmt) +
++#else
+ 	notif_bss_info = kzalloc(sizeof(*notif_bss_info) + sizeof(*mgmt) - sizeof(u8) +
++#endif
+ 	                         WL_BSS_INFO_MAX, GFP_KERNEL);
+ 	if (!notif_bss_info) {
+ 		WL_ERR(("notif_bss_info alloc failed\n"));
+diff -Naur hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_cfg80211_hybrid.h hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_cfg80211_hybrid.h
+--- hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_cfg80211_hybrid.h	2023-01-03 00:23:40.092556781 +0100
++++ hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_cfg80211_hybrid.h	2023-08-30 14:42:11.976820187 +0200
+@@ -22,6 +22,7 @@
+ #ifndef _wl_cfg80211_h_
+ #define _wl_cfg80211_h_
+ 
++#include <linux/version.h>
+ #include <net/cfg80211.h>
+ #include <wlioctl.h>
+ 
+@@ -103,7 +104,11 @@
+ 	__le64 timestamp;
+ 	__le16 beacon_int;
+ 	__le16 capab_info;
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 5, 0)
++	u8 variable[];
++#else
+ 	u8 variable[0];
++#endif
+ } __attribute__ ((packed));
+ 
+ struct wl_cfg80211_conf {
+@@ -126,7 +131,11 @@
+ 	u16 channel;
+ 	s16 rssi;
+ 	u16 frame_len;
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 5, 0)
++	u8 frame_buf[];
++#else
+ 	u8 frame_buf[1];
++#endif
+ };
+ 
+ struct wl_cfg80211_scan_req {
+@@ -142,7 +151,11 @@
+ 	struct list_head eq_list;
+ 	u32 etype;
+ 	wl_event_msg_t emsg;
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 5, 0)
++	s8 edata[];
++#else
+ 	s8 edata[1];
++#endif
+ };
+ 
+ struct wl_cfg80211_security {
+@@ -174,7 +187,11 @@
+ 
+ struct wl_cfg80211_pmk_list {
+ 	pmkid_list_t pmkids;
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 5, 0)
++	pmkid_t foo[MAXPMKID];
++#else
+ 	pmkid_t foo[MAXPMKID - 1];
++#endif
+ };
+ 
+ struct wl_cfg80211_priv {
+diff -Naur hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_iw.c hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_iw.c
+--- hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_iw.c	2023-01-03 00:23:40.091556771 +0100
++++ hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_iw.c	2023-08-30 14:45:12.154012702 +0200
+@@ -1907,7 +1907,11 @@
+ #if WIRELESS_EXT > 17
+ struct {
+ 	pmkid_list_t pmkids;
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 5, 0)
++	pmkid_t foo[MAXPMKID];
++#else
+ 	pmkid_t foo[MAXPMKID-1];
++#endif
+ } pmkid_list;
+ static int
+ wl_iw_set_pmksa(
+@@ -1930,7 +1934,11 @@
+ 		bzero((char *)&pmkid_list, sizeof(pmkid_list));
+ 	}
+ 	if (iwpmksa->cmd == IW_PMKSA_REMOVE) {
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 5, 0)
++		struct { pmkid_t pmkid[1]; } pmkid, *pmkidptr;
++#else
+ 		pmkid_list_t pmkid, *pmkidptr;
++#endif
+ 		pmkidptr = &pmkid;
+ 		bcopy(&iwpmksa->bssid.sa_data[0], &pmkidptr->pmkid[0].BSSID, ETHER_ADDR_LEN);
+ 		bcopy(&iwpmksa->pmkid[0], &pmkidptr->pmkid[0].PMKID, WPA2_PMKID_LEN);

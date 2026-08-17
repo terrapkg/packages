@@ -5,15 +5,15 @@
 %global crate gitoxide
 
 Name:           rust-gitoxide
-Version:        0.36.0
-Release:        1%?dist
+Version:        0.56.0
+Release:        1%{?dist}
 Summary:        Command-line application for interacting with git repositories
 
 License:        MIT OR Apache-2.0
 URL:            https://crates.io/crates/gitoxide
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 
-BuildRequires:  openssl-devel cmake anda-srpm-macros rust-packaging >= 21
+BuildRequires:  openssl-devel cmake anda-srpm-macros rust-packaging >= 21 mold
 
 %global _description %{expand:
 A command-line application for interacting with git repositories.}

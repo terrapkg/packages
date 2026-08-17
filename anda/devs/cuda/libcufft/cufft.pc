@@ -1,0 +1,8 @@
+libdir=LIBDIR
+includedir=INCLUDE_DIR
+
+Name: cufft
+Description: CUDA Fast Fourier Transform
+Version: CUDA_VERSION
+Libs: -L${libdir} -lcufft
+Cflags: -I${includedir}

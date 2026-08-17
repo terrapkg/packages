@@ -1,3 +1,1 @@
-let html = get("https://discordapp.com/api/download/canary?platform=linux&format=tar.gz");
-let newver = find("https://dl-canary\\.discordapp\\.net/apps/linux/([\\.\\d]+)/", html, 1);
-rpm.version(newver);
+rpm.version(get("https://discord.com/api/canary/updates?platform=linux").json().name);

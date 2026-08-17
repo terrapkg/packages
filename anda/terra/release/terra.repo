@@ -1,23 +1,24 @@
 [terra]
 name=Terra $releasever
-baseurl=https://repos.fyralabs.com/terra$releasever
+#baseurl=https://repos.fyralabs.com/terra$releasever
+metalink=https://tetsudou.fyralabs.com/metalink?repo=terra$releasever&arch=$basearch
 metadata_expire=6h
 type=rpm
-skip_if_unavailable=True
 gpgcheck=1
-gpgkey=https://repos.fyralabs.com/terra$releasever/key.asc
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-terra$releasever
 repo_gpgcheck=1
 enabled=1
 enabled_metadata=1
+countme=1
 
 [terra-source]
 name=Terra $releasever - Source
-baseurl=https://repos.fyralabs.com/terra$releasever-source
+#baseurl=https://repos.fyralabs.com/terra$releasever-source
+metalink=https://tetsudou.fyralabs.com/metalink?repo=terra$releasever-source&arch=$basearch
 metadata_expire=6h
 type=rpm
-skip_if_unavailable=True
 gpgcheck=1
-gpgkey=https://repos.fyralabs.com/terra$releasever-source/key.asc
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-terra$releasever-source
 repo_gpgcheck=1
 enabled=0
 enabled_metadata=0

@@ -1,27 +1,14 @@
-%define debug_package %{nil}
-%global _build_id_links none
-
-%ifarch x86_64
-%global garch x64
-%elifarch aarch64
-%global garch arm64
-%endif
-
-# Exclude private libraries
-%global __requires_exclude libffmpeg.so
-%global __provides_exclude_from %{_libdir}/%{name}/.*\\.so
-
 Name:			electron
-Version:		31.1.0
-Release:		1%?dist
+%electronmeta
+Version:		43.4.0
+Release:		1%{?dist}
 Summary:		Build cross platform desktop apps with web technologies
-License:		MIT
+License:		%{electron_license}
 URL:			https://electronjs.org/
-Source0:		https://github.com/electron/electron/releases/download/v%{version}/chromedriver-v%{version}-linux-%{garch}.zip
-Source1:		https://github.com/electron/electron/releases/download/v%{version}/electron-v%{version}-linux-%{garch}.zip
+Source0:		https://github.com/electron/electron/releases/download/v%{version}/chromedriver-v%{version}-linux-%{_electron_cpu}.zip
+Source1:		https://github.com/electron/electron/releases/download/v%{version}/electron-v%{version}-linux-%{_electron_cpu}.zip
 Source2:		https://raw.githubusercontent.com/electron/electron/v%version/README.md
-Requires:		c-ares gtk3 minizip nss re2
-BuildRequires:	unzip
+BuildRequires:  anda-srpm-macros >= 0.2.26
 
 %description
 The Electron framework lets you write cross-platform desktop applications using
@@ -59,5 +46,5 @@ install -Dm644 %SOURCE2 %buildroot%_docdir/%name/
 
 
 %changelog
-* Fri Feb 10 2023 windowsboy111 <windowsboy111@fyralabs.com> - 20.3.12-1
+* Fri Feb 10 2023 madonuko <mado@fyralabs.com> - 20.3.12-1
 - Initial package

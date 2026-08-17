@@ -1,0 +1,31 @@
+--- a/source/Makefile.deps.mk
++++ b/source/Makefile.deps.mk
+@@ -276,7 +276,7 @@ ifeq ($(HAVE_QT5),true)
+ QT5_HOSTBINS   = $(shell $(PKG_CONFIG) --variable=host_bins Qt5Core)
+ QT5_PREFIX     = $(shell $(PKG_CONFIG) --variable=prefix Qt5Core)
+ QT5_CXX_FLAGS  = $(shell $(PKG_CONFIG) --cflags Qt5Core Qt5Gui Qt5Widgets)
+-QT5_LINK_FLAGS = -Wl,-rpath,$(QT5_PREFIX)/lib $(shell $(PKG_CONFIG) --libs Qt5Core Qt5Gui Qt5Widgets)
++QT5_LINK_FLAGS = $(shell $(PKG_CONFIG) --libs Qt5Core Qt5Gui Qt5Widgets)
+ QT5_STYLES_DIR = $(shell pkg-config --variable=libdir Qt5Core)/qt5/plugins/styles
+ else ifeq ($(HAVE_QT5PKG),true)
+ QT5_HOSTBINS   = $(shell $(PKG_CONFIG) --variable=prefix Qt5OpenGLExtensions)/bin
+@@ -296,7 +296,7 @@ ifeq ($(HAVE_QT6),true)
+ QT6_HOSTBINS   = $(shell $(PKG_CONFIG) --variable=libexecdir Qt6Core)
+ QT6_PREFIX     = $(shell $(PKG_CONFIG) --variable=prefix Qt6Core)
+ QT6_CXX_FLAGS  = $(shell $(PKG_CONFIG) --cflags Qt6Core Qt6Gui Qt6Widgets) -std=gnu++17
+-QT6_LINK_FLAGS = -Wl,-rpath,$(QT6_PREFIX)/lib $(shell $(PKG_CONFIG) --libs Qt6Core Qt6Gui Qt6Widgets)
++QT6_LINK_FLAGS = $(shell $(PKG_CONFIG) --libs Qt6Core Qt6Gui Qt6Widgets)
+ QT6_STYLES_DIR = $(shell pkg-config --variable=libdir Qt6Core)/qt6/plugins/styles
+ else ifeq ($(HAVE_QT6BREW),true)
+ QT6_HOSTBINS   = /opt/homebrew/opt/qt6/share/qt/libexec
+--- a/source/frontend/Makefile
++++ b/source/frontend/Makefile
+@@ -44,7 +44,7 @@ ifeq ($(MACOS),true)
+ QT_LINK_FLAGS += -install_name @rpath/libcarla_frontend.dylib
+ # FIXME this does not work: -Wl,-rpath,@loader_path
+ else
+-QT_LINK_FLAGS += -Wl,-rpath,'$${ORIGIN}'
++#QT_LINK_FLAGS += -Wl,-rpath,'$${ORIGIN}'
+ endif
+ 
+ # ---------------------------------------------------------------------------------------------------------------------

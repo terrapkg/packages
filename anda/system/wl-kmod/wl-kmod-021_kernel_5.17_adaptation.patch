@@ -1,0 +1,78 @@
+diff -Naur hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_iw.h hybrid-v35_64-nodebug-pcoem-6_30_223_271-021_kernel_5.17_adaptation/src/wl/sys/wl_iw.h
+--- hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_iw.h	2020-12-29 18:29:39.463940664 +0100
++++ hybrid-v35_64-nodebug-pcoem-6_30_223_271-021_kernel_5.17_adaptation/src/wl/sys/wl_iw.h	2022-04-01 10:25:05.515054893 +0200
+@@ -70,7 +70,9 @@
+ #define	WL_IW_RSSI_EXCELLENT	-57	
+ #define	WL_IW_RSSI_INVALID	 0	
+ #define MAX_WX_STRING 80
++#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 17, 0)
+ #define isprint(c) bcm_isprint(c)
++#endif
+ #define WL_IW_SET_ACTIVE_SCAN	(SIOCIWFIRSTPRIV+1)
+ #define WL_IW_GET_RSSI			(SIOCIWFIRSTPRIV+3)
+ #define WL_IW_SET_PASSIVE_SCAN	(SIOCIWFIRSTPRIV+5)
+diff -Naur hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_linux.c hybrid-v35_64-nodebug-pcoem-6_30_223_271-021_kernel_5.17_adaptation/src/wl/sys/wl_linux.c
+--- hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_linux.c	2020-12-29 21:55:44.899067286 +0100
++++ hybrid-v35_64-nodebug-pcoem-6_30_223_271-021_kernel_5.17_adaptation/src/wl/sys/wl_linux.c	2022-04-01 10:00:24.985252480 +0200
+@@ -638,7 +638,11 @@
+ 			WL_ERROR(("wl%d: Error setting MAC ADDRESS\n", unit));
+ 	}
+ #endif 
++#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 17, 0)
+ 	bcopy(&wl->pub->cur_etheraddr, dev->dev_addr, ETHER_ADDR_LEN);
++#else
++	dev_addr_mod(dev, 0, &wl->pub->cur_etheraddr, ETHER_ADDR_LEN);
++#endif
+ 
+ 	online_cpus = 1;
+ 
+@@ -1862,7 +1866,11 @@
+ 
+ 	WL_LOCK(wl);
+ 
++#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 17, 0)
+ 	bcopy(sa->sa_data, dev->dev_addr, ETHER_ADDR_LEN);
++#else
++	dev_addr_mod(dev, 0, sa->sa_data, ETHER_ADDR_LEN);
++#endif
+ 	err = wlc_iovar_op(wl->wlc, "cur_etheraddr", NULL, 0, sa->sa_data, ETHER_ADDR_LEN,
+ 		IOV_SET, (WL_DEV_IF(dev))->wlcif);
+ 	WL_UNLOCK(wl);
+@@ -3054,7 +3062,11 @@
+ 	else
+ 		dev->type = ARPHRD_IEEE80211_RADIOTAP;
+ 
++#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 17, 0)
+ 	bcopy(wl->dev->dev_addr, dev->dev_addr, ETHER_ADDR_LEN);
++#else
++	dev_addr_mod(dev, 0, wl->dev->dev_addr, ETHER_ADDR_LEN);
++#endif
+ 
+ #if defined(WL_USE_NETDEV_OPS)
+ 	dev->netdev_ops = &wl_netdev_monitor_ops;
+@@ -3335,8 +3347,12 @@
+ static ssize_t
+ wl_proc_read(struct file *filp, char __user *buffer, size_t length, loff_t *offp)
+ {
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 17, 0))
++	wl_info_t * wl = pde_data(file_inode(filp));
++#else
+ 	wl_info_t * wl = PDE_DATA(file_inode(filp));
+ #endif
++#endif
+ 	int bcmerror, len;
+ 	int to_user = 0;
+ 	char tmp[8];
+@@ -3392,8 +3408,12 @@
+ static ssize_t
+ wl_proc_write(struct file *filp, const char __user *buff, size_t length, loff_t *offp)
+ {
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 17, 0))
++	wl_info_t * wl = pde_data(file_inode(filp));
++#else
+ 	wl_info_t * wl = PDE_DATA(file_inode(filp));
+ #endif
++#endif
+ 	int from_user = 0;
+ 	int bcmerror;
+ 

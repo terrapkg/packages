@@ -1,0 +1,90 @@
+%global commit fb0cc1557d8321fb2e3f34e94beddefe56211e04
+
+Name:	       noctalia-qs
+Version:       0.0.12
+Release:       5%{?dist}
+Summary:       Flexible QtQuick based desktop shell toolkit
+License:       LGPL-3.0-only AND GPL-3.0-only
+URL:	       https://github.com/noctalia-dev/noctalia-qs
+Source0:       https://github.com/noctalia-dev/noctalia-qs/archive/refs/tags/v%{version}.tar.gz
+
+Packager:      Cypress Reed <cypress@fyralabs.com>
+
+BuildRequires: cmake
+BuildRequires: cmake(Qt6Core)
+BuildRequires: cmake(Qt6Qml)
+BuildRequires: cmake(Qt6ShaderTools)
+BuildRequires: cmake(Qt6WaylandClient)
+BuildRequires: gcc-c++
+BuildRequires: ninja-build
+BuildRequires: qt6-qtbase-private-devel
+BuildRequires: spirv-tools
+BuildRequires: anda-srpm-macros
+BuildRequires: breakpad-devel
+BuildRequires: breakpad-static
+BuildRequires: pkgconfig
+BuildRequires: pkgconfig(jemalloc)
+BuildRequires: pkgconfig(libpipewire-0.3)
+BuildRequires: pkgconfig(wayland-client)
+BuildRequires: pkgconfig(wayland-protocols)
+BuildRequires: pkgconfig(xcb)
+BuildRequires: pkgconfig(pam)
+BuildRequires: pkgconfig(libdrm)
+BuildRequires: pkgconfig(gbm)
+BuildRequires: pkgconfig(CLI11)
+BuildRequires: glib2-devel
+BuildRequires: polkit-devel
+
+Conflicts:    quickshell
+Provides:     quickshell
+
+Provides:     desktop-notification-daemon
+Provides:     PolicyKit-authentication-agent
+
+%description
+Flexible QtQuick based desktop shell toolkit.
+
+%prep
+%autosetup -n %{name}-%{version}
+
+%build
+%cmake  -GNinja \
+        -DBUILD_SHARED_LIBS=OFF \
+        -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+        -DDISTRIBUTOR="Fedora Terra" \
+        -DDISTRIBUTOR_DEBUGINFO_AVAILABLE=YES \
+        -DGIT_REVISION=%{commit} \
+        -DINSTALL_QML_PREFIX=%{_lib}/qt6/qml
+%cmake_build
+
+%install
+%cmake_install
+
+%files
+%license LICENSE LICENSE-GPL
+%doc BUILD.md
+%doc CONTRIBUTING.md
+%doc README.md
+%doc changelog/next.md
+%{_bindir}/qs
+%{_bindir}/quickshell
+%{_appsdir}/dev.noctalia.noctalia-qs.desktop
+%{_scalableiconsdir}/dev.noctalia.noctalia-qs.svg
+%{_libdir}/qt6/qml/Quickshell
+
+%changelog
+* Thu Jun 04 2026 Cypress Reed <cypress@fyralabs.com>
+- Update email and name (was Willow Reed or Willow C Reed) (I'm official now!)
+
+* Thu May 21 2026 Cypress Reed <cypress@fyralabs.com>
+- Add update script so that release bumps when Qt updates its minor version, triggering a rebuild
+
+* Sun Mar 29 2026 Cypress Reed <cypress@fyralabs.com>
+- Add provides for a polkit agent and desktop notification daemon (so gnome doesn't get installed)
+
+* Thu Mar 05 2026 Cypress Reed <cypress@fyralabs.com>
+- Fix revision to actually be defined as a specific git commit since it never gets initialized rn
+- Also fix that noctalia-qs is replacing quickshell overall and not just for noctlaia users
+
+* Fri Feb 27 2026 Cypress Reed <cypress@fyralabs.com>
+- Initial commit based on quickshell spec

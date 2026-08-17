@@ -1,0 +1,69 @@
+From 1e6f315ec4e867fe25da5c6d216bb4757757515e Mon Sep 17 00:00:00 2001
+From: Kate Hsuan <hpa@redhat.com>
+Date: Mon, 15 Sep 2025 17:15:41 +0800
+Subject: [PATCH] patches: remove "u64 dma_mask" for the kernel higher than
+ 6.16
+
+The upstream commits 1284c9693953aed2a9974a5a384ce2a42a1b9ae8 brought the
+kernel crash
+
+[    6.697129] BUG: unable to handle page fault for address: 00000000ff78d008
+[    6.697134] #PF: supervisor read access in kernel mode
+[    6.697135] #PF: error_code(0x0000) - not-present page
+[    6.697137] PGD 0 P4D 0
+[    6.697141] Oops: Oops: 0000 [#1] SMP NOPTI
+[    6.697145] CPU: 12 UID: 0 PID: 1149 Comm: (udev-worker) Tainted: G           OE       6.16.5-200.fc42.x86_64 #1 PREEMPT(lazy)
+[    6.697149] Tainted: [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[    6.697150] Hardware name: LENOVO 21HQSIT024/21HQSIT024, BIOS N3XET40W (1.15 ) 05/22/2023
+[    6.697152] RIP: 0010:ipu6_psys_probe+0x384/0x3b0 [intel_ipu6_psys]
+[    6.697164] Code: ff c7 44 24 10 fb fd ff ff e9 f8 fc ff ff c7 44 24 10 f4 ff ff ff eb cb 49 8b 84 24 98 03 00 00 48 c7 c6 cf 51 ad c1 4c 89 e7 <48> 8b 40 08 89 43 18 89 c2 e8 8e a5 e3 e4 80 3d 33 6b f3 ff 00 0f
+[    6.697166] RSP: 0018:ffffcee981177860 EFLAGS: 00010246
+[    6.697169] RAX: 00000000ff78d000 RBX: ffff8bc153c8e028 RCX: 0000000000002000
+[    6.697171] RDX: ffff8bc146d58020 RSI: ffffffffc1ad51cf RDI: ffff8bc14e7d1000
+[    6.697172] RBP: ffff8bc146d58020 R08: 0000000000000002 R09: ffffcee980ba7000
+[    6.697174] R10: ffffcee980ba7000 R11: ffff8bc141b00480 R12: ffff8bc14e7d1000
+[    6.697175] R13: ffff8bc153c8e440 R14: ffff8bc146d5a020 R15: ffff8bc146d5a000
+[    6.697176] FS:  00007feae3a8d3c0(0000) GS:ffff8bc4e565f000(0000) knlGS:0000000000000000
+[    6.697179] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[    6.697180] CR2: 00000000ff78d008 CR3: 0000000104809001 CR4: 0000000000f70ef0
+[    6.697182] PKRU: 55555554
+[    6.697183] Call Trace:
+[    6.697186]  <TASK>
+[    6.697189]  ? __pfx_ipu6_psys_probe+0x10/0x10 [intel_ipu6_psys]
+[    6.697196]  auxiliary_bus_probe+0x46/0x80
+[    6.697202]  really_probe+0xdb/0x340
+
+Since the upstream commit 1284c9693953aed2a9974a5a384ce2a42a1b9ae8
+removed dms_mask from struct ipu6_bus_device, the size of
+struct ipu6_bus_device isn't the same as it is in the upstream kernel.
+"u64 dms_mask" has to be removed when it is built with the upstream kernel
+higher than 6.16.
+
+Resolves: #372
+---
+ patches/0001-v6.10-IPU6-headers-used-by-PSYS.patch | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/patches/0001-v6.10-IPU6-headers-used-by-PSYS.patch b/patches/0001-v6.10-IPU6-headers-used-by-PSYS.patch
+index b8eeaae662d3..44c213050d9d 100644
+--- a/patches/0001-v6.10-IPU6-headers-used-by-PSYS.patch
++++ b/patches/0001-v6.10-IPU6-headers-used-by-PSYS.patch
+@@ -28,7 +28,7 @@ new file mode 100644
+ index 000000000..b26c6aee1
+ --- /dev/null
+ +++ b/drivers/media/pci/intel/ipu6/ipu6-bus.h
+-@@ -0,0 +1,58 @@
++@@ -0,0 +1,60 @@
+ +/* SPDX-License-Identifier: GPL-2.0-only */
+ +/* Copyright (C) 2013 - 2024 Intel Corporation */
+ +
+@@ -59,7 +59,9 @@ index 000000000..b26c6aee1
+ +	struct ipu6_mmu *mmu;
+ +	struct ipu6_device *isp;
+ +	struct ipu6_buttress_ctrl *ctrl;
+++#if LINUX_VERSION_CODE < KERNEL_VERSION(6, 16, 0)
+ +	u64 dma_mask;
+++#endif
+ +	const struct firmware *fw;
+ +	struct sg_table fw_sgt;
+ +	u64 *pkg_dir;

@@ -1,0 +1,59 @@
+name: Update per branch
+permissions:
+  contents: read
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+jobs:
+  autoupdate:
+    permissions:
+      contents: write
+    runs-on: arc-runner-set
+    strategy:
+      matrix:
+        branch:
+          - frawhide
+          - f45
+          - f44
+          - f43
+          - el10
+    container:
+      image: ghcr.io/terrapkg/builder:frawhide
+      options: --cap-add=SYS_ADMIN --privileged
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ matrix.branch }}
+          fetch-depth: 0
+          ssh-key: ${{ secrets.SSH_AUTHENTICATION_KEY }}
+
+      - name: Install SSH signing key & Set up git repository
+        run: |
+          mkdir -p ${{ runner.temp }}
+          echo "${{ secrets.SSH_SIGNING_KEY }}" > ${{ runner.temp }}/signing_key
+          chmod 0700 ${{ runner.temp }}/signing_key
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - name: Run Update
+        run: |
+          nbranch="${{ matrix.branch }}"
+          [ "$nbranch" = 'frawhide' ] && nbranch='f42'
+          anda update --filters updbranch=1 --labels branch=${{ matrix.branch }},nbranch=$nbranch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUST_BACKTRACE: full
+
+      - name: Save
+        run: |
+          if [[ `git status --porcelain` ]]; then
+            git config user.name "Raboneko"
+            git config user.email "raboneko@fyralabs.com"
+            git config gpg.format "ssh"
+            git config user.signingkey "${{ runner.temp }}/signing_key"
+            msg="bump(branch): $(anda run andax/ci/update_commit_message.rhai)"
+            git commit -S -a -m "$msg"
+            git push -u origin --all
+          fi

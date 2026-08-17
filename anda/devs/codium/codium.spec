@@ -1,36 +1,30 @@
-%define debug_package %nil
-%global _build_id_links none
+%global appid com.vscodium.VSCodium
 
-# Exclude private libraries
-%global __requires_exclude libffmpeg.so
-%global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
-
-%ifarch x86_64
-%define a x64
-%elifarch aarch64
-%define a arm64
-%endif
-
-Name:			codium
-Version:		1.90.2.24171
-Release:		1%?dist
-Summary:		Code editing. Redefined.
-License:		MIT
-URL:			https://vscodium.com/
-Source0:		https://github.com/VSCodium/vscodium/releases/download/%version/VSCodium-linux-%a-%version.tar.gz
-Source1:		https://raw.githubusercontent.com/VSCodium/vscodium/%version/README.md
-Source2:		https://raw.githubusercontent.com/VSCodium/vscodium/%version/LICENSE
-Requires:		at-spi2-atk cairo expat gtk3 xrandr mesa-libgbm nspr nss nss-util xdg-utils
+Name:			      codium
+Version:		    1.126.04524
+%electronmeta -D
+%global __requires_exclude %{__requires_exclude}|libcurl.so|libmsalruntime.so
+Release:		    2%{?dist}
+Summary:		    Code editing. Redefined.
+License:	      %{electron_license}
+URL:            https://vscodium.com/
+Source0:        https://github.com/VSCodium/vscodium/releases/download/%{version}/VSCodium-linux-%{_electron_cpu}-%{version}.tar.gz
+Source1:        https://raw.githubusercontent.com/VSCodium/vscodium/%{version}/README.md
+Source2:		    https://raw.githubusercontent.com/VSCodium/vscodium/%{version}/LICENSE
+Requires:		    at-spi2-atk cairo expat gtk3 xrandr mesa-libgbm nspr nss nss-util xdg-utils
+Provides:       vscodium = %{evr}
 BuildRequires:	rpm_macro(fdupes)
 
 %description
 VSCodium is a new choice of tool that combines the simplicity of a code editor
 with what developers need for the core edit-build-debug cycle.
 
+%pkg_completion -Bz
+
 %prep
 mkdir stuff
 cd stuff
-tar xf %SOURCE0
+tar xf %{SOURCE0}
 
 cat <<EOF > vscodium-bin-uri-handler.desktop
 [Desktop Entry]
@@ -52,7 +46,7 @@ cat <<EOF > vscodium-bin.desktop
 Name=VSCodium
 Comment=Code Editing. Redefined.
 GenericName=Text Editor
-Exec=/usr/bin/codium --no-sandbox --unity-launch %F
+Exec=/usr/bin/codium --no-sandbox %F
 Icon=vscodium
 Type=Application
 StartupNotify=false
@@ -72,47 +66,54 @@ EOF
 %build
 
 %install
+%ifnarch %{x86_64}
+find . -name "x64" -type d -prune -exec rm -rf "{}" ";"
+%endif
+
+%ifnarch %{arm64}
+find . -name "arm64" -type d -prune -exec rm -rf "{}" ";"
+%endif
+
 cd stuff
-mkdir -p %buildroot%_datadir/doc/%name/ %buildroot%_datadir/licenses/%name
-install -Dm644 %SOURCE1 %buildroot%_docdir/%name/
-install -Dm644 %SOURCE2 %buildroot%_datadir/licenses/%name/
-install -dm755 %buildroot%_datadir/%name
-install -dm755 %buildroot%_bindir
-install -dm755 %buildroot%_datadir/{applications,pixmaps}
-cp -r * %buildroot%_datadir/%name
-rm -rf %buildroot%_datadir/%name/*.desktop
-ln -s %_datadir/%name/bin/codium %buildroot%_bindir/codium
-ln -s %_datadir/%name/bin/codium %buildroot%_bindir/vscodium
-install -D -m644 vscodium-bin.desktop %buildroot%_datadir/applications/codium.desktop
-install -D -m644 vscodium-bin-uri-handler.desktop %buildroot%_datadir/applications/codium-uri-handler.desktop
-install -D -m644 resources/app/resources/linux/code.png %buildroot%_datadir/pixmaps/vscodium.png
+mkdir -p %{buildroot}%{_datadir}/doc/%{name}/ %{buildroot}%{_datadir}/licenses/%{name}
+install -Dm644 %{SOURCE1} %{buildroot}%{_docdir}/%{name}/
+install -Dm644 %{SOURCE2} %{buildroot}%{_datadir}/licenses/%{name}/
+install -dm755 %{buildroot}%{_datadir}/%{name}
+install -dm755 %{buildroot}%{_bindir}
+install -dm755 %{buildroot}%{_datadir}/{applications,pixmaps}
+cp -r * %{buildroot}%{_datadir}/%{name}
+rm -rf %{buildroot}%{_datadir}/%{name}/*.desktop
+ln -s %{_datadir}/%{name}/bin/codium %{buildroot}%{_bindir}/codium
+ln -s %{_datadir}/%{name}/bin/codium %{buildroot}%{_bindir}/vscodium
+install -D -m644 vscodium-bin.desktop %{buildroot}%{_datadir}/applications/codium.desktop
+install -D -m644 vscodium-bin-uri-handler.desktop %{buildroot}%{_datadir}/applications/codium-uri-handler.desktop
+install -D -m644 resources/app/resources/linux/code.png %{buildroot}%{_datadir}/pixmaps/vscodium.png
 
 # Symlink shell completions
-install -dm755 %buildroot%_datadir/zsh/site-functions
-install -dm755 %buildroot%_datadir/bash-completion/completions
-ln -s %_datadir/%name/resources/completions/zsh/_codium %buildroot%_datadir/zsh/site-functions
-ln -s %_datadir/%name/resources/completions/bash/codium %buildroot%_datadir/bash-completion/completions
+install -dm755 %{buildroot}%{_datadir}/zsh/site-functions
+install -dm755 %{buildroot}%{_datadir}/bash-completion/completions
+ln -s %{_datadir}/%{name}/resources/completions/zsh/_codium %{buildroot}%{_datadir}/zsh/site-functions
+ln -s %{_datadir}/%{name}/resources/completions/bash/codium %{buildroot}%{_datadir}/bash-completion/completions
 
-%fdupes %_datadir/%name/resources/app/extensions/
+%fdupes %{_datadir}/%{name}/resources/app/extensions/
 
+#terra_appstream
 
 %files
 %doc README.md
 %license LICENSE
-%_datadir/%name
-%_bindir/codium
-%_bindir/vscodium
-%_datadir/applications/codium.desktop
-%_datadir/applications/codium-uri-handler.desktop
-%_datadir/pixmaps/vscodium.png
-%_datadir/zsh/site-functions/_codium
-%_datadir/bash-completion/completions/codium
+%{_datadir}/%{name}
+%{_bindir}/codium
+%{_bindir}/vscodium
+%{_datadir}/applications/codium.desktop
+%{_datadir}/applications/codium-uri-handler.desktop
+%{_datadir}/pixmaps/vscodium.png
+%dnl %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
-* Sat Jun 17 2023 windowsboy111 <windowsboy111@fyralabs.com> - 1.79.2.23166-2
+* Sat Jun 17 2023 madonuko <mado@fyralabs.com> - 1.79.2.23166-2
 - Use /usr/share/ instead of /opt/.
 - Remove lib dependencies.
 
-* Sun Apr 2 2023 windowsboy111 <windowsboy111@fyralabs.com> - 1.77.3.23102-1
+* Sun Apr 2 2023 madonuko <mado@fyralabs.com> - 1.77.3.23102-1
 - Initial package.
-

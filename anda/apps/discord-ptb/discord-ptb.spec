@@ -1,28 +1,20 @@
-%define debug_package %{nil}
-%global _build_id_links none
-
-# Exclude private libraries
-%global __requires_exclude libffmpeg.so
-%global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
-
 Name:           discord-ptb
-Version:        0.0.92
-Release:        1%?dist
+Version:        1.0.209
+Release:        1%{?dist}
 Summary:        Free Voice and Text Chat for Gamers.
 URL:            https://discord.com
-Source0:        https://dl-ptb.discordapp.net/apps/linux/%{version}/discord-ptb-%{version}.tar.gz
-License:        https://discord.com/terms
-Requires:       glibc GConf2
-Requires:       nspr >= 4.13
-Requires:       nss >= 3.27
-Requires:       libX11 >= 1.6
-Requires:       libXtst >= 1.2
+Source0:        https://dl-ptb.discordapp.net/apps/linux/%{version}/%{name}-%{version}.tar.gz
+Source1:        https://discord.com/terms#/terms.html
+License:        Proprietary
+Requires:       zenity
 Group:          Applications/Internet
 ExclusiveArch:  x86_64
+
+%electronmeta -D
+
 %description
-Imagine a place where you can belong to a school club, a gaming group, or a
-worldwide art community. Where just you and a handful of friends can spend time
-together. A place that makes it easy to talk every day and hang out more often.
+All-in-one voice and text chat for gamers that's free, secure, and works on
+both your desktop and phone.
 
 %prep
 %autosetup -n DiscordPTB
@@ -30,25 +22,28 @@ together. A place that makes it easy to talk every day and hang out more often.
 %build
 
 %install
-rm -rf $RPM_BUILD_ROOT
-mkdir -p %{buildroot}%{_datadir}/discord-ptb
-cp -rv * %{buildroot}%{_datadir}/discord-ptb
-mkdir -p %{buildroot}%{_datadir}/applications/
-mkdir -p %{buildroot}%{_datadir}/pixmaps
-ln -s %_datadir/discord-ptb/discord-ptb.desktop %{buildroot}%{_datadir}/applications/
-ln -s %_datadir/discord-ptb/discord.png %{buildroot}%{_datadir}/pixmaps/discord-ptb.png
+install -Dpm755 updater_bootstrap -t %{buildroot}%{_datadir}/%{name}
+install -Dpm755 %{name} -t %{buildroot}%{_bindir}
+install -Dpm644 discord.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
+%desktop_file_install %{name}.desktop
+cp %{SOURCE1} -t .
 
 %files
-%{_datadir}/discord-ptb/
-%{_datadir}/applications/discord-ptb.desktop
-%{_datadir}/pixmaps/discord-ptb.png
+%license terms.html
+%{_bindir}/%{name}
+%{_datadir}/%{name}/
+%{_appsdir}/%{name}.desktop
+%{_datadir}/pixmaps/%{name}.png
 
 %changelog
-* Thu Nov 17 2022 windowsboy111 <wboy111@outlook.com> - 0.0.35-1
+* Tue May 5 2026 Gilver E. <roachy@fyralabs.com> - 1.0.189-2
+- Update build for new bootstrap format
+
+* Thu Nov 17 2022 madonuko <mado@fyralabs.com> - 0.0.35-1
 - new version
 
-* Thu Oct 20 2022 windowsboy111 <wboy111@outlook.com> - 0.0.34-1
+* Thu Oct 20 2022 madonuko <mado@fyralabs.com> - 0.0.34-1
 - new version
 
-* Sun Oct 16 2022 windowsboy111 <wboy111@outlook.com> - 0.0.33
+* Sun Oct 16 2022 madonuko <mado@fyralabs.com> - 0.0.33
 - Initial Package.

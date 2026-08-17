@@ -1,6 +1,6 @@
 Name:		groovy-docs
-Version:	4.0.22
-Release:	1%?dist
+Version:	5.1.0
+Release:	1%{?dist}
 Summary:	Documentation for the Groovy programming language
 URL:		https://groovy-lang.org/
 License:	Apache-2.0
@@ -27,5 +27,5 @@ cp -r groovy-%{version} %{buildroot}/usr/share/doc/
 /usr/share/doc/groovy-%{version}
 
 %changelog
-* Tue Feb 7 2023 windowsboy111 <windowsboy111@fyralabs.com>
+* Tue Feb 7 2023 madonuko <mado@fyralabs.com>
 - Initial package

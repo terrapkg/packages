@@ -1,0 +1,4 @@
+# Enable Dynamic Boost. From:
+# file:///usr/share/doc/nvidia-driver/html/dynamicboost.html
+
+enable nvidia-powerd.service

@@ -3,6 +3,6 @@ project pkg {
 		spec = "vala-language-server-nightly.spec"
 	}
 	labels {
-		nightly = "1"
+		nightly = 1
 	}
 }

@@ -1,8 +1,8 @@
 Name:       libayatana-common
 Summary:    Common functions for Ayatana System Indicators
-Version:    0.9.10
-Release:    2%{?dist}
-License:    GPL-3.0
+Version:    0.9.13
+Release:    1%{?dist}
+License:    GPL-3.0-or-later
 URL:        https://github.com/AyatanaIndicators/libayatana-common
 Source0:    %{url}/archive/refs/tags/%{version}.tar.gz
 
@@ -17,6 +17,8 @@ BuildRequires:  pkgconfig(gobject-introspection-1.0)
 BuildRequires:  vala-devel
 BuildRequires:  vala
 BuildRequires:  intltool
+BuildRequires:  gcc-c++
+BuildRequires:  gtest-devel
 
 %description
 The Ayatana Indicators project is the continuation of Application Indicators
@@ -33,11 +35,12 @@ This package contains the development header files for %{name}.
 %prep
 %autosetup -n %{name}-%{version}
 
-%build
+%conf
 %cmake -DENABLE_LOMIRI_FEATURES=ON \
        -DENABLE_TESTS=ON \
        -DENABLE_COVERAGE=OFF
 
+%build
 %cmake_build
 
 %install
@@ -48,12 +51,12 @@ This package contains the development header files for %{name}.
 %license COPYING
 %{_userunitdir}/ayatana-indicators.target
 %{_libdir}/libayatana-common.so.*
-%{_libdir}/girepository-1.0/AyatanaCommon-0.0.typelib
+%{_libdir}/girepository-1.0/AyatanaCommon-0.*.typelib
 %{_datadir}/glib-2.0/schemas/org.ayatana.common.gschema.xml
 
 %files devel
 %{_libdir}/libayatana-common.so
-%{_datadir}/gir-1.0/AyatanaCommon-0.0.gir
+%{_datadir}/gir-1.0/AyatanaCommon-0.*.gir
 %{_libdir}/pkgconfig/libayatana-common.pc
 %dir %{_includedir}/ayatana
 %dir %{_includedir}/ayatana/common

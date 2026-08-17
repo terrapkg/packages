@@ -1,0 +1,15 @@
+diff -Naur hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_linux.c hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_linux.c
+--- hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_linux.c	2020-03-19 10:24:18.154395810 +0100
++++ hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_linux.c	2020-11-11 13:39:00.579562572 +0100
+@@ -1659,7 +1659,11 @@
+ 		goto done2;
+ 	}
+ 
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 9, 0)
++	if (uaccess_kernel())
++#else
+ 	if (segment_eq(get_fs(), KERNEL_DS))
++#endif
+ 		buf = ioc.buf;
+ 
+ 	else if (ioc.buf) {

@@ -1,6 +1,6 @@
 Name:			groovy
-Version:		4.0.22
-Release:		1%?dist
+Version:		5.1.0
+Release:		1%{?dist}
 Summary:		A multi-faceted language for the Java platform
 BuildArch:		noarch
 URL:			https://groovy-lang.org/
@@ -63,5 +63,5 @@ install -Dm644 %{name}.desktop -t %{buildroot}/usr/share/applications
 
 
 %changelog
-* Wed Feb 8 2023 windowsboy111 <windowsboy111@fyralabs.com> - 4.0.12-1
+* Wed Feb 8 2023 madonuko <mado@fyralabs.com> - 4.0.12-1
 - Initial package

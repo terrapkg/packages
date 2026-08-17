@@ -1,0 +1,60 @@
+diff -Naur nvidia-settings-525.60.11.old/src/Makefile nvidia-settings-525.60.11/src/Makefile
+--- nvidia-settings-525.60.11.old/src/Makefile	2022-12-01 07:56:28.657046446 +0100
++++ nvidia-settings-525.60.11/src/Makefile	2022-12-01 08:01:09.920906524 +0100
+@@ -60,7 +60,7 @@
+   endif
+ 
+   ifndef GTK2_LDFLAGS
+-    GTK2_LDFLAGS         := -Wl,--no-as-needed $(shell $(PKG_CONFIG) --libs gtk+-2.0)
++    GTK2_LDFLAGS         := $(shell $(PKG_CONFIG) --libs gtk+-2.0)
+   endif
+ else
+   GTK2_CFLAGS ?=
+@@ -82,7 +82,7 @@
+   endif
+ 
+   ifndef GTK3_LDFLAGS
+-    GTK3_LDFLAGS         := -Wl,--no-as-needed $(shell $(PKG_CONFIG) --libs gtk+-3.0)
++    GTK3_LDFLAGS         := $(shell $(PKG_CONFIG) --libs gtk+-3.0)
+   endif
+ else
+   GTK3_CFLAGS ?=
+@@ -337,30 +337,29 @@
+ $(eval $(call DEBUG_INFO_RULES, $(GTK2LIB)))
+ $(GTK2LIB).unstripped: $(LIBXNVCTRL) $(GTK2_OBJS) $(XCP_OBJS) $(IMAGE_OBJS) $(VERSION_MK)
+ 	$(call quiet_cmd,LINK) -shared $(CFLAGS) $(LDFLAGS) $(BIN_LDFLAGS) \
+-	    $(LIBXNVCTRL) $(LIBS) $(GTK2_LIBS) \
+-	    -Wl,--unresolved-symbols=ignore-all -o $@ \
++	    -o $@ \
+ 	    -Wl,-soname -Wl,$(GTK2LIB_SONAME) \
+-	    $(GTK2_OBJS) $(IMAGE_OBJS) $(XCP_OBJS)
++	    $(GTK2_OBJS) $(IMAGE_OBJS) $(XCP_OBJS) \
++	    $(LIBXNVCTRL) $(LIBS) $(GTK2_LIBS)
+ endif
+ 
+ ifdef BUILD_GTK3LIB
+ $(eval $(call DEBUG_INFO_RULES, $(GTK3LIB)))
+ $(GTK3LIB).unstripped: $(LIBXNVCTRL) $(GTK3_OBJS) $(XCP_OBJS) $(IMAGE_OBJS) $(VERSION_MK)
+ 	$(call quiet_cmd,LINK) -shared $(CFLAGS) $(LDFLAGS)  $(BIN_LDFLAGS) \
+-	    $(LIBXNVCTRL) $(LIBS) $(GTK3_LIBS) \
+-	    -Wl,--unresolved-symbols=ignore-all -o $@ \
++	    -o $@ \
+ 	    -Wl,-soname -Wl,$(GTK3LIB_SONAME) \
+-	    $(GTK3_OBJS) $(XCP_OBJS) $(IMAGE_OBJS)
++	    $(GTK3_OBJS) $(XCP_OBJS) $(IMAGE_OBJS) \
++	    $(LIBXNVCTRL) $(LIBS) $(GTK3_LIBS)
+ endif
+ 
+ ifdef BUILD_WAYLANDLIB
+ $(eval $(call DEBUG_INFO_RULES, $(WAYLANDLIB)))
+ $(WAYLANDLIB).unstripped: $(WAYLAND_OBJS)
+ 	$(call quiet_cmd,LINK) -shared $(CFLAGS) $(LDFLAGS)  $(BIN_LDFLAGS) \
+-	    $(LIBS) $(WAYLAND_LIBS) \
+-	    -Wl,--unresolved-symbols=ignore-all -o $@ \
++	    -o $@ \
+ 	    -Wl,-soname -Wl,$(WAYLANDLIB_SONAME) \
+-	    $(WAYLAND_OBJS)
++	    $(WAYLAND_OBJS) $(LIBS) $(WAYLAND_LIBS)
+ 
+ endif
+ 

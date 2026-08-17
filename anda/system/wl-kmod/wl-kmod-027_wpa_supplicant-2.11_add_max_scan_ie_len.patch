@@ -1,0 +1,35 @@
+From d9d6f584c57f10349876a68f9bf029ef47c9a74b Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Nicolas=20Vi=C3=A9ville?= <nicolas.vieville@uphf.fr>
+Date: Wed, 21 Aug 2024 23:49:28 +0200
+Subject: [PATCH] wpa_supplicant-2.11: wl_cfg80211_hybrid.c: add
+ max_scan_ie_len in order to make wpa_supplicant scans not to fail
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Nicolas Viéville <nicolas.vieville@uphf.fr>
+---
+ src/wl/sys/wl_cfg80211_hybrid.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/src/wl/sys/wl_cfg80211_hybrid.c b/src/wl/sys/wl_cfg80211_hybrid.c
+index ff5a3fb..5ffa0b3 100644
+--- a/src/wl/sys/wl_cfg80211_hybrid.c
++++ b/src/wl/sys/wl_cfg80211_hybrid.c
+@@ -2011,6 +2011,13 @@ static s32 wl_alloc_wdev(struct device *dev, struct wireless_dev **rwdev)
+ 	}
+ 	set_wiphy_dev(wdev->wiphy, dev);
+ 	wdev->wiphy->max_scan_ssids = WL_NUM_SCAN_MAX;
++
++	/* Set max_scan_ie_len to a random value in order to make wpa_supplicant
++	 * scans not to fail. The driver should ignore the extra passed IEs.
++	 * Value taken and fix inspired from:
++	 * https://patchwork.kernel.org/project/linux-wireless/patch/20211212221310.5453-1-merlijn@wizzup.org/
++	 */
++	wdev->wiphy->max_scan_ie_len = 512;
+ #if LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 33)
+ 	wdev->wiphy->max_num_pmkids = WL_NUM_PMKIDS_MAX;
+ #endif
+-- 
+2.46.0
+

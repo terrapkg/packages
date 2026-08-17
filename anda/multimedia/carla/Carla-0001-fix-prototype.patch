@@ -1,0 +1,25 @@
+From 0144d822d04d19acd625ac57d0e5121181d79943 Mon Sep 17 00:00:00 2001
+From: Yann Collette <ycollette.nospam@free.fr>
+Date: Fri, 5 Apr 2024 22:13:29 +0200
+Subject: [PATCH] fix prototype
+
+---
+ source/backend/CarlaPlugin.hpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/source/backend/CarlaPlugin.hpp b/source/backend/CarlaPlugin.hpp
+index fe581bc..215bcd7 100644
+--- a/source/backend/CarlaPlugin.hpp
++++ b/source/backend/CarlaPlugin.hpp
+@@ -24,7 +24,7 @@
+ // -----------------------------------------------------------------------
+ // Avoid including extra libs here
+ 
+-typedef void* lo_message;
++typedef struct lo_message_ *lo_message;
+ typedef struct _NativePluginDescriptor NativePluginDescriptor;
+ struct LADSPA_RDF_Descriptor;
+ 
+-- 
+2.44.0
+

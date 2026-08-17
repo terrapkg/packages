@@ -1,0 +1,8 @@
+libdir=LIBDIR
+includedir=INCLUDE_DIR
+
+Name: accinj64
+Description: OpenACC 64-bit Injection Library
+Version: CUDA_VERSION
+Libs: -L${libdir} -laccinj64
+Cflags: -I${includedir}

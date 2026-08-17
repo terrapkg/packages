@@ -1,11 +1,11 @@
-%global rn 4
+%global rn 1
 
 Name:           unity-greeter
-Version:        23.10.1
-Release:        %autorelease
+Version:        25.04.1
+Release:        2%?dist
 Summary:        Unity Greeter for Lightdm
 
-License:        GPL-3.0
+License:        GPL-3.0-or-later
 URL:            https://launchpad.net/unity-greeter
 Source0:        http://archive.ubuntu.com/ubuntu/pool/universe/u/unity-greeter/unity-greeter_%version-0ubuntu%rn.tar.xz
 Patch1:         0001-Remove-libido.patch
@@ -35,12 +35,13 @@ It is implemented as a LightDM greeter.
 %prep
 %autosetup -p1
 
-%build
+%conf
 NOCONFIGURE=1 \
 ./autogen.sh
 
 %configure --disable-static
 
+%build
 %make_build
 
 %install

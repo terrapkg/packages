@@ -1,0 +1,51 @@
+diff -Naur hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_cfg80211_hybrid.c hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_cfg80211_hybrid.c
+--- hybrid-v35_64-nodebug-pcoem-6_30_223_271.orig/src/wl/sys/wl_cfg80211_hybrid.c	2016-09-07 22:38:13.303835653 +0200
++++ hybrid-v35_64-nodebug-pcoem-6_30_223_271/src/wl/sys/wl_cfg80211_hybrid.c	2016-09-07 22:54:53.550730661 +0200
+@@ -2439,8 +2439,17 @@
+ 	s32 err = 0;
+ 
+ 	if (wl->scan_request) {
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 8, 0)
++		struct cfg80211_scan_info info = {
++			.aborted = true,
++		};
++#endif
+ 		WL_DBG(("%s: Aborting scan\n", __FUNCTION__));
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 8, 0)
++		cfg80211_scan_done(wl->scan_request, &info);     
++#else
+ 		cfg80211_scan_done(wl->scan_request, true);     
++#endif
+ 		wl->scan_request = NULL;
+ 	}
+ 
+@@ -2541,7 +2550,14 @@
+ 
+ scan_done_out:
+ 	if (wl->scan_request) {
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 8, 0)
++		struct cfg80211_scan_info info = {
++			.aborted = false,
++		};
++		cfg80211_scan_done(wl->scan_request, &info);
++#else
+ 		cfg80211_scan_done(wl->scan_request, false);
++#endif
+ 		wl->scan_request = NULL;
+ 	}
+ 	rtnl_unlock();
+@@ -2970,7 +2986,14 @@
+ 	s32 err = 0;
+ 
+ 	if (wl->scan_request) {
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 8, 0)
++		struct cfg80211_scan_info info = {
++			.aborted = true,
++		};
++		cfg80211_scan_done(wl->scan_request, &info);
++#else
+ 		cfg80211_scan_done(wl->scan_request, true);	
++#endif
+ 		wl->scan_request = NULL;
+ 	}
+ 

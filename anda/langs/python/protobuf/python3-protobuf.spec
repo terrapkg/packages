@@ -2,8 +2,8 @@
 %global pypi_name protobuf
 
 Name:           python-%{pypi_name}
-Version:        5.27.1
-Release:        2%?dist
+Version:        7.35.1
+Release:        1%{?dist}
 Summary:        Protocol Buffers
 
 License:        BSD-3-Clause
@@ -11,6 +11,7 @@ URL:            https://developers.google.com/protocol-buffers/
 Source0:        %{pypi_source}
 
 BuildRequires:  python3-devel gcc
+BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(setuptools)
 
 %description
@@ -30,20 +31,31 @@ Protocol Buffers are Google's data interchange format
 rm -rf %{pypi_name}.egg-info
 
 %build
+%if 0%{?fedora} <= 41 || 0%{?rhel}
 %py3_build
+%else
+%pyproject_wheel
+%endif
 
 %install
+%if 0%{?fedora} <= 41 || 0%{?rhel}
 %py3_install
+%else
+%pyproject_install
+%endif
 
 %files -n python3-%{pypi_name}
 %doc README.md
-%{python3_sitearch}/google
-%{python3_sitearch}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
-%{python3_sitearch}/%{pypi_name}-%{version}-py%{python3_version}-nspkg.pth
+%{python3_sitearch}/google/
+%if 0%{?fedora} <= 41 || 0%{?rhel}
+%{python3_sitearch}/%{pypi_name}-%{version}-py%{python3_version}.egg-info/
+%else
+%{python3_sitearch}/%{pypi_name}-%{version}.dist-info/
+%endif
 
 %changelog
-* Sun Feb 19 2023 windowsboy111 <wboy111@outlook.com> - 4.22.0-1
+* Sun Feb 19 2023 madonuko <mado@fyralabs.com> - 4.22.0-1
 - Bump.
 
-* Tue Jan 10 2023 windowsboy111 <wboy111@outlook.com> - 4.21.12-1
+* Tue Jan 10 2023 madonuko <mado@fyralabs.com> - 4.21.12-1
 - Initial package.

@@ -7,8 +7,8 @@
 %global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 Name:           asar
-Version:        3.2.10
-Release:        1%?dist
+Version:        4.2.1
+Release:        1%{?dist}
 Summary:        Simple extensive tar-like archive format with indexing
 License:        MIT
 URL:            https://github.com/electron/asar

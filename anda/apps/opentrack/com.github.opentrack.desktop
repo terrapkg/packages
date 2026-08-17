@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Opentrack
+Comment=Head tracking for games and simulation
+Exec=opentrack
+Icon=opentrack
+Terminal=false
+Categories=Game;Settings;
