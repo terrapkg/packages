@@ -20,7 +20,7 @@ powered by a virtual distributed filesystem (VDFS) written in Rust.
 %prep
 %autosetup
 %rustup_nightly
-%tauri_prep
+%tauri_prep -n $PWD
 
 %build
 %bun_build
