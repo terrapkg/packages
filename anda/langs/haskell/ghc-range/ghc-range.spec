@@ -8,7 +8,7 @@
 # testsuite missing deps: test-framework-quickcheck2 doctest
 
 Name:           ghc-%{pkg_name}
-Version:        0.3.2.2
+Version:        1.0.0.0
 Release:        1%{?dist}
 Summary:        An efficient and versatile range library
 
