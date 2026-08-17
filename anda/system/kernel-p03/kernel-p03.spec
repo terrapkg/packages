@@ -18,17 +18,6 @@
 #  \________________|_|_|_|________________/
 
 # ==============================================================================
-# Build system overrides
-# ==============================================================================
-%define __spec_install_post   %{__os_install_post}
-%define _build_id_links       none
-%define _default_patch_fuzz   2
-%define _disable_source_fetch 0
-%define make_build            LD_PRELOAD=libmimalloc.so.2 make %{?_clang_args} %{?_gcc_ld_args} %{?_smp_mflags}
-%undefine __brp_mangle_shebangs
-%undefine _auto_set_build_flags
-
-# ==============================================================================
 # Distro detection / RHEL & openSUSE compatibility
 # ==============================================================================
 
@@ -40,6 +29,22 @@
   %{warn: could not detect distro (%%fedora/%%rhel/%%suse_version all unset) — falling back to Fedora packaging rules}
   %define _distro_fedora 1
 %endif
+
+# ==============================================================================
+# Build system overrides
+# ==============================================================================
+%define __spec_install_post   %{__os_install_post}
+%define _build_id_links       none
+%define _default_patch_fuzz   2
+%define _disable_source_fetch 0
+%if %{_distro_suse}
+%define _mimalloc_lib libmimalloc.so.3
+%else
+%define _mimalloc_lib libmimalloc.so.2
+%endif
+%define make_build            LD_PRELOAD=%{_mimalloc_lib} make %{?_clang_args} %{?_gcc_ld_args} %{?_smp_mflags}
+%undefine __brp_mangle_shebangs
+%undefine _auto_set_build_flags
 
 # ==============================================================================
 # Feature flags
@@ -98,76 +103,73 @@
 %define _nv_pkg   open-gpu-kernel-modules-%{_nv_ver}
 
 # ==============================================================================
-# Build identification
+# Build identification — the only section you edit
 # ==============================================================================
-# _rel:    %%undefine = stable, 0 = rc0, N = release candidate rcN
-# _koji_patch: 0 = latest available build, N = pin to exact patch number
-# _koji_fc:    0 = auto-detect from {dist}, N = override (e.g. 45)
 
-%define _basekver   7.2
-%define _stablekver .0
-%define _rel        7
-%define _koji_patch 58
-%define _koji_fc    46
+# Paste the full Koji NVR for the kernel you want to build against.
+# Accepted formats:
+#   kernel-7.2.0-0.rc7.260814g2f1baf1fc892.58.fc46
+#   kernel-7.2.0-0.rc7.54.fc45
+#   kernel-7.1.8-200.fc44
+%define _koji_nvr  kernel-7.2.0-0.rc7.260814g2f1baf1fc892.58.fc46
 
-# %%tag pins the exact linux-p03 release this build fetches the repo zip
-# from (see Sources below) — update.rhai bumps it to match the latest tag.
-%global tag 7.2.0-58.rc7.p03.16
+# openSUSE only — paste the NVR from Kernel:HEAD OBS project:
+#   https://download.opensuse.org/repositories/Kernel:/HEAD/standard/src/
+# Formats (git hash suffix is always present):
+#   kernel-source-7.2~rc7-2.1.gaf18d8c     (RC)
+#   kernel-source-7.1.8-5.1.ga5cdd68       (stable)
+%define _suse_nvr  kernel-source-7.2~rc7-2.1.gaf18d8c
 
-# 1 = fetch sources and changelog from %%tag above (default)
-# 0 = fetch from the moving main branch instead (useful for testing unreleased commits)
+# p03 release tag — sets the version suffix and the GitHub source ref.
+# Must match an existing tag in the repo when _fetch_tag is 1.
+# Format: p03.N
+%define _tag_ver   p03.17
+
+# 1 = fetch GitHub sources from %%_tag_ver above (default; tagged releases)
+# 0 = fetch from the moving main branch (COPR/OBS bleeding edge)
 %define _fetch_tag 1
 
-# Build mode:
-#   1 = dynamic: fetch Fedora kernel SRPM from Koji at prep time (COPR/local)
-#   0 = static:  use a pre-fetched SRPM as Source0 (RPM Fusion / offline builds)
-#                requires _koji_patch > 0
+# ==============================================================================
+# Version string derivation — do not edit below this line
+# ==============================================================================
+# Each distro parses its own NVR into the same RPM version string
+# (e.g. 7.2.0.rc7.p03.18). openSUSE's tilde (7.2~rc7) is normalized to
+# Fedora's dotted form (7.2.0).
 #
-%define _koji_dynamic 1
+%define _buildnum   %(echo "%{_tag_ver}" | sed -E 's/^p03\\.//')
 
-# Release field examples:
-#   stable, patch=205  →  205.p03.4.fc44
-#   rc0, patch=33      →  33.rc0.p03.4.fc45
-#   rc4, patch=33      →  33.rc4.p03.4.fc45
-#   rc4, auto-patch    →  rc4.p03.4.fc45
-%if "%{?_rel}" != ""
-  %if %{_koji_patch} > 0
-    %define _koji_rel_tag %{_koji_patch}.rc%{_rel}.
-  %else
-    %define _koji_rel_tag rc%{_rel}.
-  %endif
+%if %{_distro_suse}
+%define _is_rc    %(echo "%{_suse_nvr}" | grep -cE -- '~rc[0-9]')
+%define _rcnum    %(echo "%{_suse_nvr}" | sed -nE 's/.*~rc([0-9]+).*/\\1/p')
+%define _kver_str %(echo "%{_suse_nvr}" | cut -d- -f3 | sed 's/~.*//;/^[0-9]*\\.[0-9]*$/s/$/.0/')
+%define _basekver %(echo "%{_suse_nvr}" | sed -E 's/^kernel-source-([0-9]+\\.[0-9]+).*/\\1/')
 %else
-  %if %{_koji_patch} > 0
-    %define _koji_rel_tag %{_koji_patch}.
-  %else
-    %define _koji_rel_tag %{nil}
-  %endif
+%define _kver_str %(echo "%{_koji_nvr}" | cut -d- -f2)
+%define _krel_str %(echo "%{_koji_nvr}" | cut -d- -f3-)
+%define _is_rc    %(echo "%{_koji_nvr}" | grep -cE -- '-0\\.rc[0-9]')
+%define _rcnum    %(echo "%{_koji_nvr}" | sed -nE 's/.*-0\\.rc([0-9]+)\\..*/\\1/p')
+%define _basekver %(echo "%{_koji_nvr}" | sed -E 's/^kernel-([0-9]+\\.[0-9]+)\\..*/\\1/')
 %endif
 
-%if !%{_koji_dynamic}
-  %if %{_koji_patch} == 0
-    %{error: static mode (_koji_dynamic 0) requires a pinned _koji_patch > 0}
-  %endif
-  %if "%{?_rel}" != ""
-    %define _static_koji_release 0.rc%{_rel}.%{_koji_patch}.fc%{_koji_fc}
-  %else
-    %define _static_koji_release %{_koji_patch}.fc%{_koji_fc}
-  %endif
-  %define _static_nvr kernel-%{_tarkver}-%{_static_koji_release}
+%if %{_is_rc} && "%{_rcnum}" == ""
+  %{error: could not parse the RC number from the pasted NVR}
 %endif
 
 %if %{_build_gcc}
-    %define _gccreltag .gcc
+    %define _gccreltag  .gcc
     %define _gccpacktag -gcc
 %endif
 
-# ==============================================================================
-# Version strings
-# ==============================================================================
-%define _tarkver    %{_basekver}%{_stablekver}
 %define _custom_tag p03
-%define _buildver   16
-%define _srcdir     linux-%{_tarkver}
+%define _srcdir     linux-%{_kver_str}
+
+%if %{_is_rc}
+%define _pkgver_suffix .rc%{_rcnum}.%{_custom_tag}%{?_gccreltag}.%{_buildnum}
+%else
+%define _pkgver_suffix .%{_custom_tag}%{?_gccreltag}.%{_buildnum}
+%endif
+%define _pkgver %{_kver_str}%{_pkgver_suffix}
+
 %define _rpmver     %{version}-%{release}
 %define _kver       %{_rpmver}.%{_arch}
 %define _devel_dir  %{_usrsrc}/kernels/%{_kver}
@@ -225,18 +227,19 @@
 # ==============================================================================
 Name:    kernel-%{_custom_tag}%{?_gccpacktag}
 Summary: Linux P03
-Version: %{_basekver}%{_stablekver}
-Release: %{_koji_rel_tag}%{_custom_tag}%{?_gccreltag}.%{_buildver}%{?dist}
+Version: %{_pkgver}
+Release: 1%{?dist}
 License: GPL-2.0-only
 URL:     https://github.com/CatPieLeaf/linux-p03
 Packager: CatPieLeaf <catpieleaf@proton.me>
-BuildRequires: curl
-BuildRequires: jq
 
 Requires: %{name}-core    = %{_rpmver}
 Requires: %{name}-modules = %{_rpmver}
 
 Provides: installonlypkg(kernel)
+%if %{_distro_suse}
+Provides: multiversion(kernel)
+%endif
 Provides: kernel-%{_custom_tag}%{?_gccpacktag} > 6.12.9-cb1.0%{?_clang_args:.lto}.%{_custom_tag}%{?dist}
 
 Obsoletes: kernel-%{_custom_tag}%{?_gccpacktag} <= 6.12.9-cb1.0.lto.%{_custom_tag}%{?dist}
@@ -259,6 +262,7 @@ BuildRequires: zstd
 BuildRequires: rust
 BuildRequires: rust-src
 BuildRequires: quilt
+BuildRequires: p7zip
 BuildRequires: ncurses-devel
 
 %if %{_distro_suse}
@@ -284,7 +288,11 @@ BuildRequires: python3-PyYAML
 BuildRequires: python3-pyyaml
 %endif
 
+%if %{_distro_suse}
+BuildRequires: libmimalloc3
+%else
 BuildRequires: mimalloc
+%endif
 
 %if %{_distro_suse}
 BuildRequires: rust-bindgen
@@ -293,7 +301,10 @@ BuildRequires: cargo
 BuildRequires: bindgen
 %endif
 
+# openSUSE's "rust" package already bundles rustfmt; it has no standalone package.
+%if !%{_distro_suse}
 BuildRequires: rustfmt
+%endif
 
 BuildRequires: lld
 
@@ -303,7 +314,11 @@ BuildRequires: llvm
 %endif
 
 %if %{_build_clang} && %{_build_lto}
+%if %{_distro_suse}
+BuildRequires: llvm-polly
+%else
 BuildRequires: polly
+%endif
 %endif
 
 %if %{_build_nv}
@@ -318,26 +333,22 @@ BuildRequires: qt5-qtbase-devel
 %endif
 %endif
 
-%if %{_koji_dynamic}
-BuildRequires: koji
-%endif
-
 # ==============================================================================
 # Sources
 # ==============================================================================
 
-# Fetches the repo zip / raw sources from the %%tag pinned above;
-# set _fetch_tag 0 to fetch from the moving main branch instead.
-%if !%{_fetch_tag}
+%if %{_fetch_tag}
+%define _baseurl    https://raw.githubusercontent.com/CatPieLeaf/linux-p03/refs/tags/%{_tag_ver}/sources
+%define _gh_archive https://github.com/CatPieLeaf/linux-p03/archive/refs/tags/%{_tag_ver}.tar.gz
+%else
 %define _baseurl    https://raw.githubusercontent.com/CatPieLeaf/linux-p03/refs/heads/main/sources
 %define _gh_archive https://github.com/CatPieLeaf/linux-p03/archive/refs/heads/main.tar.gz
-%else
-%define _baseurl    https://raw.githubusercontent.com/CatPieLeaf/linux-p03/refs/tags/%{tag}/sources
-%define _gh_archive https://github.com/CatPieLeaf/linux-p03/archive/refs/tags/%{tag}.tar.gz
 %endif
 
-%if !%{_koji_dynamic}
-Source0: https://koji.fedoraproject.org/packages/kernel/%{_tarkver}/%{_static_koji_release}/src/%{_static_nvr}.src.rpm#/%{_static_nvr}.srpm
+%if !%{_distro_suse}
+Source0: https://koji.fedoraproject.org/packages/kernel/%{_kver_str}/%{_krel_str}/src/%{_koji_nvr}.src.rpm
+%else
+Source0: https://download.opensuse.org/repositories/Kernel:/HEAD/standard/src/%{_suse_nvr}.src.rpm
 %endif
 
 Source1: %{_baseurl}/kconfig/linux-p03.config
@@ -368,7 +379,6 @@ Source10: https://github.com/NVIDIA/open-gpu-kernel-modules/archive/%{_nv_ver}/%
 # ==============================================================================
 %setup -q %{?SOURCE10:-b 10} -c -T -n %{_srcdir}
 
-    # Create local patch drop directories so the user knows they exist.
     mkdir -p "%{_sourcedir}/local-patches"
     mkdir -p "%{_sourcedir}/local-patches-nvidia"
 
@@ -400,53 +410,45 @@ Source10: https://github.com/NVIDIA/open-gpu-kernel-modules/archive/%{_nv_ver}/%
     fi
 %endif
 
-%if %{_koji_dynamic}
-    # Dynamic mode: resolve and fetch Fedora kernel SRPM from Koji
-    _fedoraver=$(echo '%{?dist}' | sed 's/.*\.fc//')
-  %if %{_koji_fc} > 0
-    _fedoraver="%{_koji_fc}"
-  %endif
-    [ -z "${_fedoraver}" ] && { echo "ERROR: %{dist} is empty — cannot determine Fedora version" >&2; exit 1; }
+%if %{_distro_suse}
+    # openSUSE: Source0 is the Kernel:HEAD SRPM, pre-fetched by OBS.
+    mkdir -p %{_builddir}/suse-srpm
+    cd %{_builddir}/suse-srpm
+    rpm2cpio %{SOURCE0} | cpio -idm
+    _suse_tarball=$(ls linux-*.tar.xz)
+    tar xf "${_suse_tarball}" --strip-components=1 -C %{_builddir}/%{_srcdir}
+    cd %{_builddir}/%{_srcdir}
 
-  %if "%{?_rel}" != ""
-    %if %{_koji_patch} > 0
-      _pattern="kernel-%{_tarkver}-0.rc%{_rel}*%{_koji_patch}.fc${_fedoraver}"
-    %else
-      _pattern="kernel-%{_tarkver}-0.rc%{_rel}*.fc${_fedoraver}"
-    %endif
-  %else
-    %if %{_koji_patch} > 0
-      _pattern="kernel-%{_tarkver}-%{_koji_patch}.fc${_fedoraver}"
-    %else
-      _pattern="kernel-%{_tarkver}-*.fc${_fedoraver}"
-    %endif
-  %endif
-    _nvr=$(koji list-builds --package=kernel --state=COMPLETE --pattern="${_pattern}" --quiet \
-           | awk '{print $1}' \
-           | sort -V | tail -1)
-    [ -z "${_nvr}" ] && { echo "ERROR: no Koji build matched: ${_pattern}" >&2; exit 1; }
-    _koji_srpm="${_nvr}.src.rpm"
+    tar xjf %{_builddir}/suse-srpm/patches.rpmify.tar.bz2 -C %{_builddir}/suse-srpm
+    tar xjf %{_builddir}/suse-srpm/patches.suse.tar.bz2   -C %{_builddir}/suse-srpm
 
-    if [ -f "%{_sourcedir}/${_koji_srpm}" ]; then
-        cp "%{_sourcedir}/${_koji_srpm}" "%{_builddir}/${_koji_srpm}"
-    else
-        cd %{_builddir} && koji download-build --arch=src "${_nvr}"
-        cp "%{_builddir}/${_koji_srpm}" "%{_sourcedir}/${_koji_srpm}"
-    fi
-    _srpm_path="%{_builddir}/${_koji_srpm}"
+    mkdir -p %{_builddir}/suse-patches
+    export QUILT_PATCHES=%{_builddir}/suse-patches
+
+    find "%{_builddir}/suse-srpm/patches.rpmify" -maxdepth 1 -type f -exec cp {} "%{_builddir}/suse-patches/" \;
+    find "%{_builddir}/suse-srpm/patches.suse"   -maxdepth 1 -type f -exec cp {} "%{_builddir}/suse-patches/" \;
+
+    grep -oE '^[[:space:]]*patches\.(rpmify|suse)/[^[:space:]]+' %{_builddir}/suse-srpm/series.conf \
+        | xargs -n1 basename >> %{_builddir}/suse-patches/series
+
+    quilt push -a --fuzz=2 --leave-rejects
+
+    rm -rf %{_builddir}/%{_srcdir}/.pc
+
+    # Base kconfig: openSUSE's x86_64 "default" flavor, same role as
+    # Fedora's kernel-x86_64-fedora.config.
+    tar xjf %{_builddir}/suse-srpm/config.tar.bz2 -C %{_builddir}/suse-srpm
+    cp %{_builddir}/suse-srpm/config/x86_64/default .config
 %else
-    # Static mode: use pre-fetched Source0
-    _srpm_path="%{SOURCE0}"
-%endif
-
+    # Fedora/RHEL: Source0 is the Koji SRPM, pre-fetched before build.
     cd %{_builddir}
-    rpm2cpio "${_srpm_path}" | cpio -idm
+    rpm2cpio %{SOURCE0} | cpio -idm
     _tarball=$(ls linux-*.tar.xz)
     tar xf "${_tarball}" --strip-components=1 -C %{_srcdir}
     cd %{_srcdir}
 
     cp %{_builddir}/kernel-x86_64-fedora.config .config
-
+%endif
 %if %{_build_minimal}
     %make_build LSMOD=%{SOURCE2} localmodconfig
 %else
@@ -600,7 +602,7 @@ fi
 # ==============================================================================
 %build
 # ==============================================================================
-    %make_build EXTRAVERSION=-%{release}.%{_arch} KCFLAGS="%{?_kcflags}" KRUSTFLAGS="%{?_krustflags}" all
+    %make_build EXTRAVERSION=%{_pkgver_suffix}-%{release}.%{_arch} KCFLAGS="%{?_kcflags}" KRUSTFLAGS="%{?_krustflags}" all
 
     # bpftool vmlinux.h for the devel package
     %make_build -C tools/bpf/bpftool vmlinux.h feature-clang-bpf-co-re=1 || true
@@ -732,12 +734,15 @@ AutoReq: no
 
 Conflicts: xfsprogs < 4.3.0-1
 %if %{_distro_suse}
-Conflicts: xf86-video-vmmouse < 13.0.99
+Conflicts: xf86-input-vmmouse < 13.0.99
 %else
 Conflicts: xorg-x11-drv-vmmouse < 13.0.99
 %endif
 
 Provides: installonlypkg(kernel)
+%if %{_distro_suse}
+Provides: multiversion(kernel)
+%endif
 Provides: kernel              = %{_rpmver}
 Provides: kernel-core-uname-r = %{_kver}
 Provides: kernel-uname-r      = %{_kver}
@@ -912,6 +917,9 @@ Summary:     Development package for building kernel modules against %{name}
 AutoReqProv: no
 
 Provides: installonlypkg(kernel)
+%if %{_distro_suse}
+Provides: multiversion(kernel)
+%endif
 Provides: kernel-devel         = %{_rpmver}
 Provides: kernel-devel-uname-r = %{_kver}
 
@@ -936,7 +944,11 @@ Requires: lld
 Requires: clang
 Requires: llvm
 %if %{_build_lto}
+%if %{_distro_suse}
+Requires: llvm-polly
+%else
 Requires: polly
+%endif
 %endif
 %else
 Requires: gcc
@@ -967,6 +979,9 @@ Requires: gcc
 Summary: Meta package to install matching core, modules and devel for %{name}
 
 Provides: installonlypkg(kernel)
+%if %{_distro_suse}
+Provides: multiversion(kernel)
+%endif
 Provides: kernel-devel-matched = %{_rpmver}
 
 Requires: %{name}-core    = %{_rpmver}
@@ -1076,19 +1091,5 @@ Conflicts: nvidia-kmod
 %files
 
 %changelog
-%if !%{_fetch_tag}
-%(
-json=$(curl -fsSL https://api.github.com/repos/CatPieLeaf/linux-p03/commits/main)
-sha=$(echo "$json" | jq -r '.sha[0:7]')
-msg=$(echo "$json" | jq -r '.commit.message | split("\n")[0]' | sed 's/%/%%/g')
-echo "* $(date '+%a %b %d %Y') CatPieLeaf <catpieleaf@proton.me> - %{version}-%{release}"
-echo "- ${sha}: ${msg}"
-)
-%else
-%(
-json=$(curl -fsSL https://api.github.com/repos/CatPieLeaf/linux-p03/releases/tags/%{tag})
-desc=$(echo "$json" | jq -r '.body // .name // "%{tag}"' | tr '\n' ' ' | sed -e 's/  */ /g' -e 's/%/%%/g' -e 's/[[:space:]]*$//')
-echo "* $(date '+%a %b %d %Y') CatPieLeaf <catpieleaf@proton.me> - %{version}-%{release}"
-echo "- ${desc}"
-)
-%endif
+* %(date '+%a %b %d %Y') CatPieLeaf <catpieleaf@proton.me> - %{version}-%{release}
+- See https://github.com/CatPieLeaf/linux-p03/releases/tag/%{_tag_ver}
