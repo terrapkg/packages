@@ -1,6 +1,8 @@
 project "pkg" {
     rpm {
         spec = "nvidia-patch.spec"
-        nightly = "1"
     }
+   	labels {
+		nightly = "1"
+	}
 }

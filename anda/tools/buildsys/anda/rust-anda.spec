@@ -5,8 +5,8 @@
 %global crate anda
 
 Name:           rust-anda
-Version:        0.1.22
-Release:        1%{?dist}
+Version:        0.4.4
+Release:        1%?dist
 Summary:        Andaman Build toolchain
 
 License:        MIT
@@ -19,11 +19,15 @@ BuildRequires:  rust-packaging >= 21
 BuildRequires:  anda-srpm-macros
 BuildRequires:  openssl-devel
 BuildRequires:  git-core
+BuildRequires:  libgit2-devel
+BuildRequires:  libssh2-devel
+BuildRequires:  mold
 
 Requires:       mock
 Requires:       rpm-build
 Requires:       createrepo_c
 Requires:       git-core
+Requires:       libgit2
 %global _description %{expand:
 Andaman Build toolchain.}
 

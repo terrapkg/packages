@@ -5,7 +5,7 @@
 
 # https://github.com/FyshOS/fynedesk
 %global goipath         github.com/FyshOS/fynedesk
-Version:                0.3.0
+Version:                0.4.0
 
 %gometa -f
 
@@ -17,7 +17,7 @@ A full desktop environment for Linux/Unix using Fyne.}
 %global godocs          AUTHORS README.md CHANGELOG.md
 
 Name:           %{goname}
-Release:        1%{?dist}
+Release:        1%?dist
 Summary:        A full desktop environment for Linux/Unix using Fyne
 
 License:        BSD-3-Clause

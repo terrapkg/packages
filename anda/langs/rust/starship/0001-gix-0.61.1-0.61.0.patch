@@ -1,0 +1,25 @@
+From b62e3879abe83e0b879421a023d8e944e31f00cb Mon Sep 17 00:00:00 2001
+From: madomado <madonuko@outlook.com>
+Date: Mon, 25 Mar 2024 18:33:25 +0800
+Subject: [PATCH] gix 0.61.1 -> 0.61.0
+
+---
+ Cargo.toml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Cargo.toml b/Cargo.toml
+index d98ba90..c3059c9 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -82,7 +82,7 @@ version = "1.0.4"
+ version = "0.4.3"
+ 
+ [dependencies.gix]
+-version = "0.61.1"
++version = "0.61.0"
+ features = [
+     "max-performance-safe",
+     "revision",
+-- 
+2.44.0
+

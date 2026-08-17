@@ -1,0 +1,26 @@
+<component type="driver">
+  <id>io.github.xpadneo</id>
+  <name>xpadneo</name>
+  <pkgname>xpadneo</pkgname>
+  <summary>Advanced Linux Driver for Xbox One Wireless Controller (shipped with Xbox One S)</summary>
+  <description>
+    <p>
+    Wireless Drivers for the Xbox One and Series S|X controllers.
+
+    Across all models, xpadneo won't support audio features of the controllers because the firmware doesn't support audio in Bluetooth mode. In the future, xpadneo may support audio when USB and dongle support will be added.
+    </p>
+  </description>
+  <url type="homepage">https://atar-axis.github.io/xpadneo/</url>
+  <metadata_license>CC0-1.0</metadata_license>
+  <!-- gplv3 -->
+  <project_license>GPL-3.0</project_license>
+
+  <developer id="atar-axis.github.io">
+    <name>Florian Dollinger</name>
+  </developer>
+
+  <provides>
+  <!-- /devices/virtual/misc/uhid/0005:045E:02FD.0008/input/input27 -->
+    <modalias>usb:v045Ep02FDd0008dc00dsc00dp00ic03isc00ip00in00</modalias>
+  </provides>
+</component>

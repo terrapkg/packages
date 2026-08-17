@@ -1,6 +1,7 @@
 if filters.contains("nightly") {
-	let req = new_req("https://gitlab.gnome.org/api/v4/projects/1551/repository/branches/main");
-	let sha = json(req.get()).commit.id;
-	rpm.global("commit", sha);
-	rpm.release();
+	rpm.global("commit", gitlab_commit("gitlab.gnome.org", "1551", "main"));
+	if rpm.changed() {
+		rpm.global("commit_date", date());
+		rpm.release();
+	}
 }

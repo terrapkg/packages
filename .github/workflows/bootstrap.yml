@@ -21,7 +21,7 @@ jobs:
       - name: Install Anda
         run: cargo install anda
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: f${{ matrix.version }}
           fetch-depth: 1

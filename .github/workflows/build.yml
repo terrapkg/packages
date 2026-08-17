@@ -5,16 +5,39 @@ on:
       packages:
         description: "Packages to Build"
         required: true
+      custom_builder:
+        description: "Custom Builder"
+        required: false
+        default: ""
+      architecture:
+        description: "Architecture"
+        required: false
+        default: all
+        type: string
 
 jobs:
   parse:
     outputs:
       pkgs: ${{ steps.parsing.outputs.pkgs }}
+      builder: ${{ inputs.custom_builder }}
+      arch: ${{ steps.parsing.outputs.arch }}
     runs-on: "ubuntu-latest"
     steps:
       - name: Parse Input
         id: parsing
-        run: echo "${{ inputs.packages }}" | sed 's/ /\n/g' | sed 's/$/\//g' | jq -R . | jq -s . | jq -c . | sed 's/^/pkgs=/' >> $GITHUB_OUTPUT
+        run: |
+          echo "${{ inputs.packages }}" | sed 's/ /\n/g' | sed 's/$/\//g' | jq -R . | jq -s . | jq -c . | sed 's/^/pkgs=/' >> $GITHUB_OUTPUT
+          echo "builder=${{ inputs.custom_builder }}" >> $GITHUB_OUTPUT
+          arch="${{ inputs.architecture }}"
+          # Convert to json array using jq
+          # if arch is not all, convert to array
+          if [ "$arch" != "all" ]; then
+            # jq, array with single element as string
+             arch=$(echo $arch | sed 's/,/\n/g')
+             echo "arch=$(echo $arch | jq -Rs 'split("\n")' | jq 'map(select(length > 0))' | jq -c .)" >> $GITHUB_OUTPUT
+          else
+             echo "arch=$(echo '["aarch64", "x86_64"]' | jq -c .)" >> $GITHUB_OUTPUT
+          fi
 
   build:
     needs: parse
@@ -22,29 +45,33 @@ jobs:
       matrix:
         pkg: ${{ fromJson(needs.parse.outputs.pkgs) }}
         version: ["39"]
-        arch: ["x86_64", "aarch64"]
+        arch: ${{ fromJson(needs.parse.outputs.arch) }}
       fail-fast: false
-    runs-on: ${{ matrix.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
+    runs-on: ${{ matrix.arch == 'aarch64' && 'ARM64' || needs.parse.outputs.builder && needs.parse.outputs.builder || 'ubuntu-latest' }}
     container:
       image: ghcr.io/terrapkg/builder:f${{ matrix.version }}
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Checkout latest Mock configs
+        uses: actions/checkout@v4
+        with:
+          repository: terrapkg/mock-configs
+          path: mock-configs
+
       - name: Set up git repository
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
-      - name: Cache buildroot
-        id: br-cache
-        uses: actions/cache@v3
-        with:
-          path: /var/cache
-          key: ${{ runner.os }}-br-${{ matrix.version }}-${{ matrix.arch }}-${{ matrix.pkg }}
+      - name: Include custom build template instead of package default
+        run: |
+          cp -v mock-configs/terra.tpl /etc/mock/templates/terra.tpl
 
       - name: Build with Andaman
-        run: anda build anda/${{ matrix.pkg }}pkg --package rpm -c anda/terra/mock-configs/terra-${{ matrix.version }}-${{ matrix.arch }}.cfg
+        run: anda build anda/${{ matrix.pkg }}pkg --package rpm -c mock-configs/terra-${{ matrix.version }}-${{ matrix.arch }}.cfg
 
       - name: Generating artifact name
         id: art
@@ -53,9 +80,10 @@ jobs:
           x=${NAME//\//@}
           echo "name=$x" >> $GITHUB_OUTPUT
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: ${{ steps.art.outputs.name }}
+          compression-level: 0 # The RPMs are already compressed :p
           path: |
             anda-build/rpm/rpms/*
             anda-build/rpm/srpm/*
@@ -68,7 +96,6 @@ jobs:
             terra${{ matrix.version }} anda-build/rpm/rpms/*
 
       - name: Upload source packages to subatomic
-        if: github.event_name == 'push'
         run: |
           subatomic-cli upload --prune \
             --server https://subatomic.fyralabs.com \
@@ -77,7 +104,7 @@ jobs:
 
       - name: Notify Madoguchi (Success)
         if: success()
-        run: ./.github/workflows/mg.sh true ${{matrix.pkg}} ${{matrix.version}} ${{matrix.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}}
+        run: ./.github/workflows/mg.sh true ${{matrix.pkg}} ${{matrix.version}} ${{matrix.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}} $GITHUB_SHA
       - name: Notify Madoguchi (Failure)
         if: cancelled() || failure()
-        run: ./.github/workflows/mg.sh false ${{matrix.pkg}} ${{matrix.version}} ${{matrix.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}}
+        run: ./.github/workflows/mg.sh false ${{matrix.pkg}} ${{matrix.version}} ${{matrix.arch}} ${{github.run_id}} ${{secrets.MADOGUCHI_JWT}} $GITHUB_SHA

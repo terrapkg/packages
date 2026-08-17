@@ -1,5 +1,5 @@
 project pkg {
   rpm {
-	spec = "openh264.spec"
+    spec = "openh264.spec"
   }
 }

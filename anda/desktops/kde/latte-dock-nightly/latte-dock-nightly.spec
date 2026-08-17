@@ -1,6 +1,6 @@
 %global forgeurl https://github.com/KDE/latte-dock/
 
-%global commit 5e0872c396a712b9c089eac939cb30d20c47f29e
+%global commit b4b16f61f1d69c994701f149e54335c40b9b201d
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global commit_date %(date '+%Y%m%d')
 %global snapshot_info %{commit_date}.%{shortcommit}
@@ -9,7 +9,7 @@ Name:     latte-dock-nightly
 Version:  0.10.0^%{snapshot_info}
 
 %forgemeta
-Release:  1%{?dist}
+Release:  1%?dist
 Summary:  Latte is a dock based on plasma frameworks
 License:  GPL-2.0-or-later
 

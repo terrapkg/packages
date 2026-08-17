@@ -2,11 +2,11 @@
 %global _build_id_links none
 
 %ifarch x86_64
-%global src ArmCord-%version
+%global src ArmCord-%version-linux-x64
 %elifarch aarch64
-%global src ArmCord-%version-arm64
+%global src ArmCord-%version-linux-arm64
 %elifarch armv7l
-%global src ArmCord-%version-armv7l
+%global src ArmCord-%version-linux-armv7l
 %endif
 
 # Exclude private libraries
@@ -14,8 +14,8 @@
 %global __provides_exclude_from %{_datadir}/armcord/.*\\.so
 
 Name:			armcord-bin
-Version:		3.2.6
-Release:		1%{?dist}
+Version:		1.0.2
+Release:		1%?dist
 License:		OSL-3.0
 Summary:		Custom lightweight Discord client designed to enhance your experience
 URL:			https://github.com/ArmCord/ArmCord

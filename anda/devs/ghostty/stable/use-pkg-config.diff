@@ -1,0 +1,12 @@
+diff --git a/build.zig b/build.zig
+index a0ecf25..0969c64 100644
+--- a/build.zig
++++ b/build.zig
+@@ -1047,6 +1047,7 @@ fn addDeps(
+     const dynamic_link_opts: std.Build.Module.LinkSystemLibraryOptions = .{
+         .preferred_link_mode = .dynamic,
+         .search_strategy = .mode_first,
++        .use_pkg_config = .force,
+     };
+ 
+     // Freetype

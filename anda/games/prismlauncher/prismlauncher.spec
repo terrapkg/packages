@@ -22,8 +22,8 @@ Name:             prismlauncher
 %else
 Name:             prismlauncher-qt5
 %endif
-Version:          8.0
-Release:          1%{?dist}
+Version:          9.1
+Release:          1%?dist
 Summary:          Minecraft launcher with ability to manage multiple instances
 # see COPYING.md for more information
 # each file in the source also contains a SPDX-License-Identifier header that declares its license
@@ -35,7 +35,16 @@ Source0:          https://github.com/PrismLauncher/PrismLauncher/releases/downlo
 BuildRequires:    cmake >= 3.15
 BuildRequires:    extra-cmake-modules
 BuildRequires:    gcc-c++
+# JDKs less than the most recent release & LTS are no longer in the default
+# Fedora repositories
+# Make sure you have Adoptium's repositories enabled
+# https://fedoraproject.org/wiki/Changes/ThirdPartyLegacyJdks
+# https://adoptium.net/installation/linux/#_centosrhelfedora_instructions
+%if 0%{?fedora} > 41
+BuildRequires:    temurin-17-jdk
+%else
 BuildRequires:    java-17-openjdk-devel
+%endif
 BuildRequires:    desktop-file-utils
 BuildRequires:    libappstream-glib
 BuildRequires:    cmake(ghc_filesystem)
@@ -46,10 +55,16 @@ BuildRequires:    cmake(Qt%{qt_version}Network) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Test) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Widgets) >= %{min_qt_version}
 BuildRequires:    cmake(Qt%{qt_version}Xml) >= %{min_qt_version}
+BuildRequires:    cmake(Qt%{qt_version}NetworkAuth) >= %{min_qt_version}
+BuildRequires:    tomlplusplus-devel
 
 %if %{with qt6}
 BuildRequires:    cmake(Qt6Core5Compat)
+BuildRequires:    quazip-qt6-devel
+%else
+BuildRequires:    quazip-qt5-devel
 %endif
+
 
 BuildRequires:    pkgconfig(libcmark)
 BuildRequires:    pkgconfig(scdoc)
@@ -61,8 +76,12 @@ Requires(postun): desktop-file-utils
 Requires:         qt%{qt_version}-qtimageformats
 Requires:         qt%{qt_version}-qtsvg
 Requires:         javapackages-filesystem
-Requires:         java-17-openjdk
-Requires:         java-1.8.0-openjdk
+Recommends:       java-21-openjdk
+# See note above
+%if 0%{?fedora} && 0%{?fedora} < 42
+Recommends:       java-17-openjdk
+Suggests:         java-1.8.0-openjdk
+%endif
 
 # xrandr needed for LWJGL [2.9.2, 3) https://github.com/LWJGL/lwjgl/issues/128
 Recommends:       xrandr
@@ -94,6 +113,9 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 %cmake \
   -DLauncher_QT_VERSION_MAJOR="%{qt_version}" \
   -DLauncher_BUILD_PLATFORM="%{build_platform}" \
+  %if 0%{?fedora} > 41
+  -DLauncher_ENABLE_JAVA_DOWNLOADER=ON \
+  %endif
   %if "%{msa_id}" != "default"
   -DLauncher_MSA_CLIENT_ID="%{msa_id}" \
   %endif
@@ -131,6 +153,12 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 
 
 %changelog
+* Sun Jun 23 2024 Trung Lê <8@tle.id.au> - 8.2-2
+- update to 8.4. Add quazip-qt deps
+
+* Wed Apr 03 2024 seth <getchoo at tuta dot io> - 8.2-2
+- move JREs to weak deps, add java 21 for snapshots
+
 * Wed Jul 26 2023 seth <getchoo at tuta dot io> - 7.2-2
 - remove terra-fractureiser-detector from recommends, use proper build platform
 

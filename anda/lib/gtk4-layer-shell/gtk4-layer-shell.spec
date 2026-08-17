@@ -1,12 +1,13 @@
 Name:			gtk4-layer-shell
-Version:		1.0.2
-Release:		1%{?dist}
+Version:		1.0.4
+Release:		1%?dist
 Summary:		Library to build desktop components using Layer Shell Wayland protocol and GTK4
 License:		MIT
 URL:			https://github.com/wmww/gtk4-layer-shell
 Source0:		%url/archive/refs/tags/v%version.tar.gz
 BuildRequires:	meson ninja-build python3.11 vala
 BuildRequires:	libwayland-client gtk4-devel gobject-introspection gtk-doc
+BuildRequires:  pkgconfig(wayland-protocols)
 Recommends:		gtk4-layer-shell-devel
 
 %description

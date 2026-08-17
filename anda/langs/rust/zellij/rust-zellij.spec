@@ -5,8 +5,8 @@
 %global crate zellij
 
 Name:           rust-zellij
-Version:        0.39.2
-Release:        1%{?dist}
+Version:        0.41.2
+Release:        1%?dist
 Summary:        Terminal workspace with batteries included
 
 License:        MIT
@@ -20,6 +20,7 @@ BuildRequires:  rust-packaging
 BuildRequires:  openssl-devel
 BuildRequires:  gcc
 BuildRequires:  perl
+BuildRequires:  mold
 
 #BuildRequires:  external:crate:sccache
 

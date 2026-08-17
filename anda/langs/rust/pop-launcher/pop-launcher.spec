@@ -6,8 +6,8 @@
 %global crate pop-launcher
 
 Name:           %{crate}
-Version:        1.2.1
-Release:        1%{?dist}
+Version:        1.2.4
+Release:        1%?dist
 Summary:        Library for writing plugins and frontends for pop-launcher
 
 # Upstream license specification: MPL-2.0

@@ -1,4 +1,4 @@
-%define archive unity_7.7.0+23.04.20230222.2-0ubuntu4.tar.xz
+%define archive unity_7.7.0+23.04.20230222.2-0ubuntu7.tar.xz
 
 Name:		unity-shell
 Version:	7.7.0

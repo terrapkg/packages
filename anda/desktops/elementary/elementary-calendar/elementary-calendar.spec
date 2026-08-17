@@ -5,8 +5,8 @@
 
 Name:           elementary-calendar
 Summary:        Desktop calendar app designed for elementary
-Version:        7.0.0
-Release:        1%{?dist}
+Version:        8.0.0
+Release:        1%?dist
 License:        GPL-3.0-or-later
 
 URL:            https://github.com/elementary/calendar

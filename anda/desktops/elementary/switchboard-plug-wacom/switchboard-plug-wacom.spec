@@ -4,11 +4,11 @@
 
 %global plug_type hardware
 %global plug_name wacom
-%global plug_rdnn io.elementary.switchboard.wacom
+%global plug_rdnn io.elementary.settings.wacom
 
 Name:           switchboard-plug-wacom
 Summary:        Switchboard Wacom Plug
-Version:        1.0.1
+Version:        8.0.0
 Release:        1%?dist
 License:        GPL-3.0-or-later
 
@@ -25,7 +25,7 @@ BuildRequires:  pkgconfig(libwacom)
 BuildRequires:  pkgconfig(gudev-1.0)
 BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(xi)
-BuildRequires:  switchboard-devel
+BuildRequires:  pkgconfig(switchboard-3)
 
 Requires:       switchboard%{?_isa}
 Supplements:    switchboard%{?_isa}
@@ -45,22 +45,18 @@ Supplements:    switchboard%{?_isa}
 %install
 %meson_install
 
-%find_lang %{plug_name}-plug
+%find_lang %{plug_rdnn}
 
 
 %check
 appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
+    %{buildroot}/%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml
 
 
-%files -f %{plug_name}-plug.lang
+%files -f %{plug_rdnn}.lang
 %doc README.md
 %license COPYING
 
-%{_libdir}/switchboard/%{plug_type}/lib%{plug_name}.so
+%{_libdir}/switchboard-3/%{plug_type}/lib%{plug_name}.so
 
-%{_datadir}/metainfo/%{plug_rdnn}.appdata.xml
-
-%changelog
-* Tue Jun 13 2023 windowsboy111 <windowsboy111@fyralabs.com> - 1.0.1-1
-- Initial package.
+%{_datadir}/metainfo/%{plug_rdnn}.metainfo.xml

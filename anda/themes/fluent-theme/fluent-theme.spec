@@ -1,8 +1,8 @@
-%global tag 2023-06-20
+%global tag 2024-06-12
 
 Name:           fluent-theme
-Version:        20230620
-Release:        1%{?dist}
+Version:        20240612
+Release:        1%?dist
 Summary:        Fluent design theme for GNOME/GTK based desktop environments
 
 License:        GPL-3.0

@@ -3,8 +3,8 @@
 
 Name:           elementary-shortcut-overlay
 Summary:        Native, OS-wide shortcut overlay
-Version:        2.0.1
-Release:        %autorelease
+Version:        8.0.0
+Release:        1%?dist
 License:        GPL-3.0
 
 URL:            https://github.com/elementary/shortcut-overlay
@@ -49,7 +49,7 @@ desktop-file-validate \
     %{buildroot}/%{_datadir}/applications/%{appname}.desktop
 
 appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
+    %{buildroot}/%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %files -f %{appname}.lang
@@ -59,7 +59,7 @@ appstream-util validate-relax --nonet \
 %{_bindir}/%{appname}
 
 %{_datadir}/applications/%{appname}.desktop
-%{_datadir}/metainfo/%{appname}.appdata.xml
+%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %changelog

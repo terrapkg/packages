@@ -1,0 +1,11 @@
+[Unit]
+Description=arRPC Discord RPC daemon
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/arrpc
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

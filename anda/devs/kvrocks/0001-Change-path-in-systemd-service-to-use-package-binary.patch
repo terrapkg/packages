@@ -1,0 +1,25 @@
+From 518d106d6d54bc65d37116e3c5bc940b5c93fb0e Mon Sep 17 00:00:00 2001
+From: Philipp Trulson <der-eismann@users.noreply.github.com>
+Date: Tue, 13 Aug 2024 10:22:14 +0200
+Subject: [PATCH] Change path in systemd service to use package binary
+
+---
+ utils/systemd/kvrocks.service | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/utils/systemd/kvrocks.service b/utils/systemd/kvrocks.service
+index c0180b7c..17482b7a 100644
+--- a/utils/systemd/kvrocks.service
++++ b/utils/systemd/kvrocks.service
+@@ -6,7 +6,7 @@ After=network-online.target
+ 
+ [Service]
+ Type=notify
+-ExecStart=/usr/local/bin/kvrocks -c /etc/kvrocks/kvrocks.conf
++ExecStart=/usr/bin/kvrocks -c /etc/kvrocks/kvrocks.conf
+ Restart=on-failure
+ ExecStop=/bin/kill -s TERM $MAINPID
+ RestartSec=10s
+-- 
+2.45.2
+

@@ -1,6 +1,6 @@
 Name:		bibata-cursor-theme
-Version:	2.0.6
-Release:	1%{?dist}
+Version:	2.0.7
+Release:	1%?dist
 URL:		https://github.com/ful1e5/Bibata_Cursor
 Source0:	%{url}/releases/download/v%{version}/Bibata.tar.xz
 Source1:	https://raw.githubusercontent.com/ful1e5/Bibata_Cursor/v%{version}/README.md

@@ -1,0 +1,1 @@
+rpm.version(gh("willPower3309/swayfx"));

@@ -3,8 +3,8 @@
 
 Name:           elementary-wallpapers
 Summary:        Collection of wallpapers from the elementary project
-Version:        7.0.0
-Release:        1%{?dist}
+Version:        8.0.0
+Release:        1%?dist
 
 # License breakdown is available in debian/copyright
 License:        CC-BY-SA-4.0 AND CC0-1.0 AND Unlicense

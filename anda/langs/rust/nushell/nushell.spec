@@ -1,25 +1,27 @@
 Name:			nushell
-Version:		0.89.0
-Release:		1%{?dist}
+Version:		0.100.0
+Release:		1%?dist
 Summary:		A new type of shell
 License:		MIT
 URL:			https://www.nushell.sh/
-Source0:		https://github.com/nushell/nushell/archive/refs/tags/%version.tar.gz
-BuildRequires:	anda-srpm-macros rust-packaging openssl-devel
+BuildRequires:	anda-srpm-macros rust-packaging git-core
+BuildRequires:  openssl-devel
 Requires:		glibc openssl zlib
 
 %description
 %summary.
 
 %prep
-%autosetup
+rm -rf ./*
+git clone https://github.com/nushell/nushell -b %version --depth 1 .
 %cargo_prep_online
 
 %build
-%{cargo_build -f extra,dataframe} --workspace
+%{cargo_build} --workspace
 
 %install
-%cargo_install -f extra,dataframe
+mkdir -p %buildroot%_bindir
+cp target/rpm/nu* %buildroot%_bindir/
 rm -rf .cargo
 
 %post

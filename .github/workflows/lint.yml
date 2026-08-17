@@ -17,6 +17,6 @@ jobs:
       image: ghcr.io/terrapkg/builder:f39
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Lint spec files
         run: rpmlint $(find anda -type f -name "*.spec" -type f)

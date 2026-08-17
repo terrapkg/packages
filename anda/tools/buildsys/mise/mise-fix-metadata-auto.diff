@@ -1,0 +1,25 @@
+--- mise-2024.12.14/Cargo.toml	1970-01-01T00:00:01+00:00
++++ mise-2024.12.14/Cargo.toml	2024-12-19T16:42:09.096450+00:00
+@@ -461,17 +461,6 @@
+ ]
+ default-features = false
+ 
+-[target."cfg(windows)".dependencies.self_update]
+-version = "0.41"
+-features = [
+-    "archive-zip",
+-    "signatures",
+-]
+-default-features = false
+-
+-[target."cfg(windows)".dependencies.sevenz-rust]
+-version = "0.6"
+-
+ [lints.clippy]
+ borrowed_box = "allow"
+ 
+@@ -479,3 +468,4 @@
+ level = "warn"
+ priority = 0
+ check-cfg = ["cfg(coverage,coverage_nightly)"]
++

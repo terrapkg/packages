@@ -5,15 +5,12 @@
 
 Name:           elementary-photos
 Summary:        Photo manager and viewer from elementary
-Version:        2.8.0
-Release:        2%?dist
+Version:        8.0.0
+Release:        1%?dist
 License:        LGPL-2.0-or-later
 
 URL:            https://github.com/elementary/photos
 Source0:        %{url}/archive/%{version}/%{srcname}-%{version}.tar.gz
-
-# RIP the publishing plugins (sorry for the "wide" patch, having issues with just the relevant commits)
-Patch0:         https://github.com/elementary/photos/compare/7261606a05d1f41116aba5c86b62d1f739419ed1..09e55943b266bc2861b913251cb834169d81743e.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
@@ -22,6 +19,7 @@ BuildRequires:  meson >= 0.46.0
 BuildRequires:  vala
 BuildRequires:  fdupes
 BuildRequires:  git-core
+BuildRequires:  cmake
 
 BuildRequires:  pkgconfig(gee-0.8) >= 0.8.5
 BuildRequires:  pkgconfig(geocode-glib-2.0)
@@ -43,6 +41,8 @@ BuildRequires:  pkgconfig(libhandy-1)
 BuildRequires:  pkgconfig(libraw) >= 0.13.2
 BuildRequires:  pkgconfig(libwebp) >= 0.4.4
 BuildRequires:  pkgconfig(sqlite3) >= 3.5.9
+BuildRequires:  pkgconfig(libportal)
+BuildRequires:  pkgconfig(libportal-gtk3)
 
 Requires:       hicolor-icon-theme
 
@@ -53,7 +53,6 @@ Foundation.
 
 %prep
 %autosetup -n %{srcname}-%{version} -N
-git apply %PATCH0 # The .patch file has Git binary patches, so we need to apply it manually with Git
 
 
 %build
@@ -75,10 +74,10 @@ desktop-file-validate \
     %{buildroot}/%{_datadir}/applications/%{appname}.desktop
 
 desktop-file-validate \
-    %{buildroot}/%{_datadir}/applications/%{appname}-viewer.desktop
+    %{buildroot}/%{_datadir}/applications/%{appname}.viewer.desktop
 
 appstream-util validate-relax --nonet \
-    %{buildroot}/%{_datadir}/metainfo/%{appname}.appdata.xml
+    %{buildroot}/%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %files -f %{appname}.lang
@@ -92,11 +91,11 @@ appstream-util validate-relax --nonet \
 %{_libexecdir}/%{appname}/
 
 %{_datadir}/applications/%{appname}.desktop
-%{_datadir}/applications/%{appname}-viewer.desktop
+%{_datadir}/applications/%{appname}.viewer.desktop
 %{_datadir}/glib-2.0/schemas/%{appname}.gschema.xml
 %{_datadir}/icons/hicolor/*/apps/%{appname}.svg
-%{_datadir}/icons/hicolor/*/apps/%{appname}-viewer.svg
-%{_datadir}/metainfo/%{appname}.appdata.xml
+%{_datadir}/icons/hicolor/*/apps/%{appname}.viewer.svg
+%{_datadir}/metainfo/%{appname}.metainfo.xml
 
 
 %changelog

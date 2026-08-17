@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2022 Luya Tshimbalanga <luya_tfz@thefinalzone.net> -->
+<component type="driver">
+  <id>org.mesa3d.vaapi.freeworld</id>
+  <name>Video Acceleration API</name>
+  <summary>Video Acceleration API Driver</summary>
+  <description>
+    <p>
+      The Mesa VA-API (Video Acceleration API)
+      user mode driver brings hardware accelerated decoding, encoding,
+      and video post processing for AMD graphics processing units and NVIDIA 
+      counterpart running on Nouveau driver. The drive provides support for H264, AVC  and VC-1.
+    </p>
+  </description>
+  <translation/>
+  <url type="homepage">https://github.com/intel/intel-media-driver</url>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <developer_name>MESA 3D</developer_name>
+  <keywords>
+    <keyword>AMD</keyword>
+    <keyword>Nouveau</keyword>
+    <keyword>NVIDIA</keyword>
+    <keyword>driver</keyword>
+    <keyword>VA-API</keyword>
+    <keyword>vaapi</keyword>
+    <keyword>HW</keyword>
+    <keyword>Media</keyword>
+    <keyword>Video</keyword>
+    <keyword>Decode</keyword>
+    <keyword>Encode</keyword>
+    <keyword>hevc</keyword>
+    <keyword>h264</keyword>
+    <keyword>vp8</keyword>
+    <keyword>vp9</keyword>
+  </keywords>
+  <url type="bugtracker">https://bugzilla.rpmfusion.org</url>
+  <update_contact>mesa-freeworld-owner@rpmfusion.org</update_contact>
+</component>

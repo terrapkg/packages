@@ -3,8 +3,8 @@
 
 
 Name:           elementary-notifications
-Version:        7.0.1
-Release:        1%{?dist}
+Version:        8.0.0
+Release:        1%?dist
 Summary:        GTK Notification server for Pantheon
 
 License:        GPL-3.0
@@ -54,7 +54,6 @@ appstream-util validate-relax --nonet %buildroot%_datadir/metainfo/%appname.meta
 %{_bindir}/%{appname}.demo
 %{_datadir}/applications/%{appname}.demo.desktop
 
-%config %{_sysconfdir}/xdg/autostart/%{appname}.desktop
 %{_datadir}/glib-2.0/schemas/%{appname}.gschema.xml
 %{_metainfodir}/%{appname}.metainfo.xml
 
