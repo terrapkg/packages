@@ -7,7 +7,7 @@ Version:        %(echo "%{ver}" | sed 's/v//g;s/-hotfix//g')
 Release:        1%{?dist}
 License:        GPL-3.0-only
 URL:            https://github.com/kavishdevar/librepods
-Source0:        %url/archive/refs/tags/linux-v%version.tar.gz
+Source0:        %url/archive/refs/tags/%{ver}.tar.gz
 Source1:        com.github.librepods.metainfo.xml
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
