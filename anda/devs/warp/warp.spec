@@ -14,7 +14,7 @@ BuildRequires:  cargo
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  cargo-rpm-macros
-BuildRequires:	protobuf-devel
+BuildRequires:  protobuf-devel
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
