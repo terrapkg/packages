@@ -13,9 +13,9 @@ ExclusiveArch:  x86_64 aarch64
 
 %global appid ai.opencode.opencode
 
-Name:			opencode
+Name:			opencode-cli
 Version:		1.18.18
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Open source AI coding agent for the terminal, IDE, and desktop
 License:		MIT
 URL:			https://opencode.ai
@@ -51,7 +51,7 @@ export HOME=%{_builddir}/oc-home
 mkdir -p "$HOME"
 
 BIN=packages/opencode/dist/opencode-linux-%{a}/bin/opencode
-install -Dpm755 "$BIN" -t %{buildroot}%{_bindir}
+install -Dpm755 "$BIN" %{buildroot}%{_bindir}/opencode-cli
 
 "$BIN" completion bash > opencode.bash
 "$BIN" completion zsh  > _opencode
@@ -86,7 +86,7 @@ install -Dm644 opencode.fish %{buildroot}%{fish_completions_dir}/opencode.fish
 %lang(vi) %doc README.vi.md
 %lang(zh_CN) %doc README.zh.md
 %lang(zh_TW) %doc README.zht.md
-%{_bindir}/opencode
+%{_bindir}/opencode-cli
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
