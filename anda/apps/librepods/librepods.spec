@@ -50,7 +50,6 @@ pushd linux
 popd
 
 %install
-install -Dm644 linux-rust/assets/icon.png %{buildroot}%{_iconsdir}/hicolor/512x512/apps/librepods.png
 pushd linux
 %cmake_install
 popd
@@ -60,9 +59,11 @@ popd
 %doc README.md linux/README.md CHANGELOG.md
 %license LICENSE
 %{_bindir}/librepods
+%{_bindir}/librepods-ctl
 %{_appsdir}/me.kavishdevar.librepods.desktop
 %{_metainfodir}/com.github.librepods.metainfo.xml
-%{_hicolordir}/512x512/apps/librepods.png
+%{_scalableiconsdir}/librepods.svg
+%{_datadir}/librepods/translations/librepods_tr.qm
 
 %changelog
 * Wed Nov 19 2025 Owen Zimmerman <owen@fyralabs.com>
