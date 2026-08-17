@@ -41,6 +41,8 @@ official Spotify client.}
 %license LICENSE.dependencies
 %doc README.md
 %{_bindir}/%{crate}
+%{_appsdir}/%{crate}.desktop
+%{_mandir}/man1/*.1.gz
 
 %prep
 %autosetup -n %{crate}-%{version}
