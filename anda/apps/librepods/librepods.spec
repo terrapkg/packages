@@ -50,7 +50,6 @@ pushd linux
 popd
 
 %install
-install -Dm644 linux/assets/librepods.svg %{buildroot}%{_scalableiconsdir}/librepods.svg
 pushd linux
 %cmake_install
 popd
