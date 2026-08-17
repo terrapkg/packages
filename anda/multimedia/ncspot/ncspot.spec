@@ -55,6 +55,14 @@ official Spotify client.}
 
 %install
 %crate_install_bin
+cargo xtask generate-manpage
+cargo xtask generate-shell-completion
+install -Dpm644 misc/%{crate}.desktop -t %buildroot%_appsdir
+install -Dm644 misc/*.1 -t %buildroot%_mandir/man1
+install -Dm755 misc/%{crate}.bash -t %buildroot%bash_completions_dir
+install -Dm755 misc/%{crate}.elv -t %buildroot%elvish_completions_dir
+install -Dm755 misc/%{crate}.fish -t %buildroot%fish_completions_dir
+install -Dm755 misc/_%{crate} -t %buildroot%zsh_completions_dir
 
 %changelog
 * Wed Mar 18 2026 like-engels <higashikataengels@icloud.com> - 1.3.3-1
