@@ -2,7 +2,7 @@
 
 Name:           terra-gpg-keys
 Version:        %{?fedora:%{fedora}}%{?rhel:%{rhel}}
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        GPG keys for Terra
 Requires:       filesystem >= 3.18-6
 
@@ -84,7 +84,6 @@ install -d -m 755 $RPM_BUILD_ROOT%{_sysconfdir}/pki/rpm-gpg
 install -m 644 %{_sourcedir}/RPM-GPG-KEY* $RPM_BUILD_ROOT%{_sysconfdir}/pki/rpm-gpg/
 
 %files
-%dir %{_sysconfdir}/pki/rpm-gpg
 %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-*
 
 %changelog
