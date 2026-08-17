@@ -244,7 +244,7 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %license LICENSE
 %{_bindir}/%{base_name}
 %{_datadir}/applications/%{appid}.desktop
-%dir %{_datadir}/%{base_name}
+%{_datadir}/%{base_name}
 %{_datadir}/%{base_name}/doc
 %{_datadir}/metainfo/%{appid}.metainfo.xml
 %{_datadir}/dbus-1/services/%{appid}.service
@@ -296,7 +296,7 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %{_datadir}/bat/syntaxes/%{base_name}.sublime-syntax
 
 %files shell-integration
-%dir %{_datadir}/%{base_name}/shell-integration
+%{_datadir}/%{base_name}/shell-integration
 %{_datadir}/%{base_name}/shell-integration/bash/bash-preexec.sh
 %{_datadir}/%{base_name}/shell-integration/bash/%{base_name}.bash
 %{_datadir}/%{base_name}/shell-integration/elvish/lib/%{base_name}-integration.elv
