@@ -130,7 +130,7 @@ popd
 %{_datadir}/icons/hicolor/
 %{_datadir}/icons/%{name}/
 %{_datadir}/icons/%{name}-dark/
-%{_datadir}/config.kcfg/klassy-decoration.k
+%dnl %{_datadir}/config.kcfg/klassy-decoration.k
 
 %{_kf6_datadir}/kstyle/themes/%{name}.themerc
 
