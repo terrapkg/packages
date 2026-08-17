@@ -2,7 +2,7 @@
 
 Name:           librepods
 Summary:        AirPods liberated from Apple's ecosystem
-Version:        0.1.0
+Version:        1.0.0.rc1
 Release:        1%{?dist}
 License:        GPL-3.0-only
 URL:            https://github.com/kavishdevar/librepods
