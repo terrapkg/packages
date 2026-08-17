@@ -11,7 +11,7 @@
 %global debug_package %{nil}
 
 Name:           apparmor
-Version:        5.0.2
+Version:        4.1.8
 Release:        1%{?dist}
 Summary:        AppArmor userspace components (32-bit multilib libs)
 
