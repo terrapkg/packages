@@ -11,7 +11,7 @@ SourceLicense:  Apache-2.0
 License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND (0BSD OR MIT OR Apache-2.0) AND Apache-2.0 AND (Apache-2.0 AND ISC) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND BSD-2-Clause AND BSD-3-Clause AND BSL-1.0 AND CDLA-Permissive-2.0 AND ISC AND LGPL-2.0-or-later AND MIT AND (MIT OR Apache-2.0) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Zlib OR Apache-2.0) AND MPL-2.0 AND MPL-2.0+ AND Unicode-3.0 AND (Unlicense OR MIT) AND Zlib
 URL:            https://crates.io/crates/zoi-rs
 Source0:        https://static.crates.io/crates/%{crate}/%{crate}-%{crate_version}.crate
-Source1:        https://gitlab.com/zillowe/zillwen/zusty/zoi/-/blob/main/LICENSE
+Source1:        https://gitlab.com/zillowe/zillwen/zusty/zoi/-/raw/main/LICENSE
 BuildRequires:  cargo
 BuildRequires:  gcc-c++
 BuildRequires:  clang-devel
