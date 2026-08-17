@@ -6,7 +6,7 @@
 
 Name:           cosmic-ext-applet-sysinfo
 Version:        %{ver}^%{commitdate}.git%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Simple system info applet for cosmic
 
 SourceLicense:  GPL-3.0-or-later
@@ -17,7 +17,7 @@ Source0:        %{url}/archive/%{commit}.tar.gz
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(xkbcommon)
-Requires:       cosmic-osm
+Requires:       cosmic-osd
 
 Packager:       Olivia <git@olivia.sh>
 
