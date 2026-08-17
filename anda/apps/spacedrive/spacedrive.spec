@@ -1,5 +1,7 @@
+%global appid com.spacedrive.Spacedrive
+
 Name:			spacedrive
-Version:		0.4.0
+Version:		0.4.3
 Release:		1%?dist
 Summary:		An open source cross-platform file explorer
 License:		AGPL-3.0
@@ -15,37 +17,19 @@ Spacedrive is an open source cross-platform file manager, powered by a virtual d
 
 %prep
 %autosetup
-
-# we need nightly cargo
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -o rustup.sh
-chmod +x ./rustup.sh
-./rustup.sh -y -t nightly --profile minimal
-source "$HOME/.cargo/env"
-rm rustup.sh %SOURCE0
-
-pnpm setup
-source $HOME/.bashrc
-pnpm i -g pnpm
-$HOME/.local/share/pnpm/pnpm install
-$HOME/.local/share/pnpm/pnpm store prune # GH workers running out of disk space… oh well
+%rustup_nightly
+%tauri_prep
 
 %build
-source $HOME/.cargo/env
-source $HOME/.bashrc
-export CARGO_TARGET_DIR=target
-
-# hack
-cp $HOME/.local/share/pnpm/pnpm %_bindir/pnpm
-
-$HOME/.local/share/pnpm/pnpm prep
-$HOME/.local/share/pnpm/pnpm tauri build --bundles app -- --no-default-features
+%pnpm_build -Bc
+%tauri_cargo_license > LICENSE.dependencies
 
 %install
-install -Dm755 -t %buildroot%_bindir apps/desktop/src-tauri/target/release/spacedrive
+install -Dm755 -t %buildroot%_bindir apps/desktop/src-tauri/target/rpm/spacedrive
+
+%terra_appstream
 
 %files
-%license LICENSE
+%license LICENSE LICENSE.dependencies
 %_bindir/spacedrive
-
-%changelog
-%autochangelog
+%_metainfodir/%appid.metadata.xml
