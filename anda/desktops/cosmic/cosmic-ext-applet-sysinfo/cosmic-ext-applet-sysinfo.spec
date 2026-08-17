@@ -4,7 +4,7 @@
 %global shortcommit %{sub %{commit} 0 7}
 %global appid io.github.cosmic_utils.sysinfo-applet
 
-Name:           
+Name:           cosmic-ext-applet-sysinfo
 Version:        %{ver}^%{commitdate}.git%{shortcommit}
 Release:        2%{?dist}
 Summary:        Simple system info applet for cosmic
