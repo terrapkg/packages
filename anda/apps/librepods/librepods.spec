@@ -36,7 +36,11 @@ hearing aid, customized transparency mode, battery status, and more - all the
 premium features you paid for but Apple locked to their ecosystem.
 
 %prep
-%autosetup -n %{name}-linux-v%{version}
+%if "%{ver}" == *-hotfix
+%{name}-%{version}-hotfix
+%else
+%autosetup -n %{name}-%{version}
+%endif
 
 %conf
 pushd linux
