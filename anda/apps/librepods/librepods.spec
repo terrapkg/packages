@@ -59,9 +59,11 @@ popd
 %doc README.md linux/README.md CHANGELOG.md
 %license LICENSE
 %{_bindir}/librepods
+%{_bindir}/librepods-ctl
 %{_appsdir}/me.kavishdevar.librepods.desktop
 %{_metainfodir}/com.github.librepods.metainfo.xml
 %{_scalableiconsdir}/librepods.svg
+%{_datadir}/librepods/translations/librepods_tr.qm
 
 %changelog
 * Wed Nov 19 2025 Owen Zimmerman <owen@fyralabs.com>
