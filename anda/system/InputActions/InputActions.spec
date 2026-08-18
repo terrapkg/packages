@@ -1,5 +1,3 @@
-%global debug_package %{nil}
-
 Name:           inputactions
 Version:        0.9.0
 Release:        1%{?dist}
