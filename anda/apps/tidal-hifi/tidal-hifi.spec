@@ -16,7 +16,7 @@ The web version of TIDAL running in electron with Hi-Fi (High & Max) support tha
 %autosetup
 
 %build
-%npm_build -B
+%npm_build -BC ./build/electron-builder.base.yml
 
 %install
 %electron_install
