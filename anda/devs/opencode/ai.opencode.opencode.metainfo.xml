@@ -18,7 +18,7 @@
   </description>
 
   <provides>
-    <binary>opencode-cli</binary>
+    <binary>opencode</binary>
   </provides>
   <url type="homepage">https://opencode.ai</url>
 
