@@ -128,6 +128,7 @@ install -Dm644 debian/asm-first-run.desktop \
 %doc README.md CONTRIBUTING.md CHANGELOG.md
 %license LICENSE
 %{_bindir}/asm-cli
+%{_bindir}/asm-clipd
 %{_bindir}/asm-daemon
 %{_bindir}/asm-diag-dinit
 %{_bindir}/asm-gui
