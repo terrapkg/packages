@@ -13,6 +13,7 @@ Packager:       madonuko <mado@fyralabs.com>
 Provides:       porffor = %evr
 Provides:       porf = %evr
 BuildRequires:  clang mold compiler-rt
+BuildRequires:  nodejs-node
 
 %description
 Porffor is a 100% AOT compiled JS engine/runtime. There is nothing interpreted or compiled just-in-time. Porffor compiles JS to C (with an IR inbetween).
