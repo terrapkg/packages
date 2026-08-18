@@ -1,1 +1,1 @@
-rpm.version(npm("devcontainers/cli"));
+rpm.version(npm("@devcontainers/cli"));
