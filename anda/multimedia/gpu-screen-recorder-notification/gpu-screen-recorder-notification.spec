@@ -33,5 +33,5 @@ Packager:       madonuko <mado@fyralabs.com>
 %files
 %license LICENSE
 %doc README.md
-%_bindir/gst-notify
-%_datadir/gsr-notify
+#_bindir/gst-notify
+#_datadir/gsr-notify
