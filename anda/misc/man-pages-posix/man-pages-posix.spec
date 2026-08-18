@@ -27,3 +27,7 @@ This package contains the POSIX.1-2017 man pages (pages in sections except 0p, 1
 %_mandir/man0p/*
 %_mandir/man1p/*
 %_mandir/man3p/*
+
+%changelog
+* Tue Aug 18 2026 madonuko <mado@fyralabs.com> - 2017.a-1
+- Initial package
