@@ -31,6 +31,7 @@ BuildRequires:  pkgconfig(libdrm)
 BuildRequires:  pkgconfig(dbus-1)
 BuildRequires:  pkgconfig(pango)
 BuildRequires:  pkgconfig(libcap)
+BuildRequires:  rpm_macro(buildsystem_meson_conf)
 BuildSystem:    meson
 
 Packager:       madonuko <mado@fyralabs.com>
