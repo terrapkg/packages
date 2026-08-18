@@ -29,5 +29,7 @@ install -Dm644 man/colorls.1 -t %buildroot%_mandir/man1
 install -Dm755 zsh/_colorls -t %buildroot%zsh_completions_dir
 
 %files
+%doc README.md
+%license LICENSE.md
 %_bindir/colorls
 %_mandir/man1/colorls.1.*
