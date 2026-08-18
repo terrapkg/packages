@@ -16,6 +16,8 @@ License:        MIT AND MPL-2.0 AND OFL-1.1 AND (WTFPL OR CC0-1.0) AND Apache-2.
 URL:            https://%{base_name}.org
 Source0:        https://github.com/%{base_name}-org/%{base_name}/releases/download/tip/%{base_name}-source.tar.gz
 Source1:        https://github.com/%{base_name}-org/%{base_name}/releases/download/tip/%{base_name}-source.tar.gz.minisig
+Source2:        strip.sh
+Patch0:         %{base_name}-translate.patch
 BuildRequires:  anda-srpm-macros >= 0.2.15
 BuildRequires:  gettext
 BuildRequires:  gtk4-devel
@@ -48,11 +50,14 @@ Requires:       gtk4
 Requires:       gtk4-layer-shell
 Requires:       libadwaita
 Conflicts:      %{base_name}
-Provides:       %{base_name}-tip = %{ver}^%{commit_date}git%{shortcommit}
 %if 0%{?fedora} <= 46
 Obsoletes:      %{base_name}-nightly <= 1.3.2~tip^20260812gitc54ec80
 %endif
 Packager:       Gilver E. <roachy@fyralabs.com>
+
+# Work around a Zig 0.16.0 mislinking bug
+# I <3 Zig
+%global __strip %{S:2}
 
 %description
 👻 Ghostty is a fast, feature-rich, and cross-platform terminal emulator that uses platform-native UI and GPU acceleration.
@@ -212,18 +217,29 @@ Obsoletes:      libghostty-vt-nightly-devel <= 1.3.2~tip^20260812gitc54ec80
 %description -n libghostty-vt-tip-devel
 This package contains the libraries and header files that are needed for developing with libghostty-vt.
 
+%package -n     libghostty-vt-tip-static
+Summary:        Static files for libghostty-vt
+Requires:       libghostty-vt-tip = %{evr}
+
+%description -n libghostty-vt-tip-static
+This package contains the static files that are used for developing with libghostty-vt.
+
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
-%autosetup -n %{base_name}-%{ver}-main-+%{shortcommit}
+%setup -qn %{base_name}-%{ver}-main-+%{shortcommit}
 
 %zig_prep
 ZIG_GLOBAL_CACHE_DIR="%{_zig_cache_dir}" ./nix/build-support/fetch-zig-cache.sh
 
+# Patch Ghostty's broken translate_c fork
+pushd zig-pkg/translate_c*
+%autopatch -p1
+popd
+
 %build
 
 %install
-DESTDIR="%{buildroot}" \
-%{zig_build_target -r fast} \
+%{zig_install_target -r fast} \
     --prefix "%{_prefix}" --prefix-lib-dir "%{_libdir}" \
     --prefix-exe-dir "%{_bindir}" --prefix-include-dir "%{_includedir}" \
     -Dversion-string="%{ver}-dev+%{shortcommit}" \
@@ -244,8 +260,7 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %license LICENSE
 %{_bindir}/%{base_name}
 %{_datadir}/applications/%{appid}.desktop
-%{_datadir}/%{base_name}
-%{_datadir}/%{base_name}/doc
+%{_datadir}/%{base_name}/doc/
 %{_datadir}/metainfo/%{appid}.metainfo.xml
 %{_datadir}/dbus-1/services/%{appid}.service
 %{_iconsdir}/hicolor/16x16/apps/%{appid}.png
@@ -296,14 +311,7 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %{_datadir}/bat/syntaxes/%{base_name}.sublime-syntax
 
 %files shell-integration
-%{_datadir}/%{base_name}/shell-integration
-%{_datadir}/%{base_name}/shell-integration/bash/bash-preexec.sh
-%{_datadir}/%{base_name}/shell-integration/bash/%{base_name}.bash
-%{_datadir}/%{base_name}/shell-integration/elvish/lib/%{base_name}-integration.elv
-%{_datadir}/%{base_name}/shell-integration/fish/vendor_conf.d/%{base_name}-shell-integration.fish
-%{_datadir}/%{base_name}/shell-integration/nushell/vendor/autoload/%{base_name}.nu
-%{_datadir}/%{base_name}/shell-integration/zsh/.zshenv
-%{_datadir}/%{base_name}/shell-integration/zsh/%{base_name}-integration
+%{_datadir}/%{base_name}/shell-integration/
 
 %files terminfo
 %if 0%{?fedora} < 42
@@ -317,6 +325,10 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{base_name}
 %files -n libghostty-vt-tip-devel
 %{_libdir}/libghostty-vt.so
 %{_datadir}/pkgconfig/libghostty-vt.pc
+
+%files -n libghostty-vt-tip-static
+%{_libdir}/libghostty-vt.a
+%{_datadir}/pkgconfig/libghostty-vt-static.pc
 
 %post
 %systemd_user_post app-%{appid}.service
