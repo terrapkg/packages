@@ -1,4 +1,4 @@
-%global commit d4d72f3205f7a995fa4578f4b5369937f0b17a18
+%global commit 364f8e9ac1e6dd79233e59fd46435c54e2117caf
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
 %global ver 1.3.2
