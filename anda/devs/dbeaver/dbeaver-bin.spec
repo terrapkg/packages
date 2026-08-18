@@ -1,5 +1,6 @@
 %define debug_package %nil
 %global appid io.dbeaver.DBeaver
+%global appstream_component desktop-application
 
 Name:           dbeaver-bin
 Version:        26.1.5
@@ -37,8 +38,6 @@ mv %buildroot{%_datadir/%name,%_appsdir}/dbeaver-ce.desktop
 mv %buildroot%_datadir/%name/readme.txt .
 
 %terra_appstream
-
-sed '3a <icon>dbeaver</icon>' -i %buildroot%_metainfodir/%appid.metainfo.xml
 
 %files
 %doc readme.txt
