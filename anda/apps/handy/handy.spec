@@ -1,3 +1,5 @@
+%define __brp_mangle_shebangs %{nil}
+
 Name:           handy
 Version:        0.9.5
 Release:        1%?dist
@@ -8,9 +10,16 @@ URL:            https://handy.computer
 Source0:        https://github.com/cjpais/Handy/archive/refs/tags/v%version.tar.gz
 Packager:       madonuko <mado@fyrlabs.com>
 BuildRequires:  bun-bin %tauri_buildrequires
+BuildRequires:  cmake
 BuildRequires:  cmake(SPIRV-Headers)
 BuildRequires:  pkgconfig(gtk-layer-shell-0)
 BuildRequires:  pkgconfig(alsa)
+BuildRequires:  pkgconfig(vulkan)
+BuildRequires:  vulkan-loader
+BuildRequires:  vulkan-headers
+BuildRequires:  vulkan-devel
+BuildRequires:	cmake(VulkanHeaders)
+BuildRequires:	glslc
 
 %description
 Handy is a cross-platform desktop application that provides simple, privacy-focused speech transcription. Press a shortcut, speak, and have your words appear in any text field. This happens on your own computer without sending any information to the cloud.
