@@ -12,7 +12,7 @@ Source0:		    https://github.com/CanadaHonk/porffor/archive/%commit/porffor-%com
 Packager:       madonuko <mado@fyralabs.com>
 Provides:       porffor = %evr
 Provides:       porf = %evr
-BuildRequires:  clang mold compiler-rt
+BuildRequires:  clang mold compiler-rt llvm-profdata
 BuildRequires:  nodejs
 
 %description
