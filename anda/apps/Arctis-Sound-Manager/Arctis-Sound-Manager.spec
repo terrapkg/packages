@@ -139,7 +139,7 @@ install -Dm644 debian/asm-first-run.desktop \
 %{_userunitdir}/arctis-manager.service
 %{_userunitdir}/arctis-video-router.service
 %{_userunitdir}/arctis-stream-guard.service
-%{_userunitdir}/app-ArctisManager
+%{_userunitdir}/app-ArctisManager.service
 %{_datadir}/%{name}/dinit/arctis-manager
 %{_datadir}/%{name}/dinit/arctis-video-router
 %{_datadir}/%{name}/dinit/pipewire-filter-chain
