@@ -31,7 +31,9 @@ BuildOption(conf):  -DINPUTACTIONS_BUILD_CTL=ON -DINPUTACTIONS_BUILD_KWIN=ON
 sed -i '1i #include <unistd.h>' \
     kwin/lib/core/lib/libevdev-cpp/src/libevdev-cpp/Device.cpp \
     kwin/lib/core/src/libinputactions/interfaces/implementations/FileConfigProvider.cpp
-sed 's@kwin/wayland/textinput_v1.h@kwin/wayland/textinput.h@g' -i kwin/src/input/KWinVirtualKeyboard.cpp
+sed 's@kwin/wayland/textinput_v1.h@kwin/wayland/textinput_v2.h@g' -i kwin/src/input/KWinVirtualKeyboard.cpp
+# HACK: force use of V2 and pray
+sed 's@V1@V2@g' -i kwin/src/input/KWinVirtualKeyboard.cpp
 
 
 %files
