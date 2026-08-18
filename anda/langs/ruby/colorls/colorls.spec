@@ -3,10 +3,11 @@
 
 Name:           colorls
 Version:        1.5.0
-Release:        1%?dist
+Release:        2%?dist
 Summary:        A Ruby gem that beautifies the terminal's ls command, with color and font-awesome icons
 License:        MIT
 URL:            https://github.com/athityakumar/colorls
+Packager:       madonuko <mado@fyralabs.com>
 Source0:        https://rubygems.org/downloads/colorls-1.5.0.gem
 BuildRequires:  rubygems-devel
 
