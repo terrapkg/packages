@@ -38,6 +38,8 @@ mv %buildroot%_datadir/%name/readme.txt .
 
 %terra_appstream
 
+sed '3a <icon>dbeaver</icon>' -i %buildroot%_metainfodir/%appid.metainfo.xml
+
 %files
 %doc readme.txt
 %license %_licensedir/%name
