@@ -27,6 +27,7 @@ BuildRequires:  cmake
 BuildRequires:  pkgconfig(gobject-introspection-1.0) >= 1.35.9
 BuildRequires:  pkgconfig(gtk4) >= %{gtk4_version}
 BuildRequires:  pkgconfig(libadwaita-1) >= %{libadwaita_version}
+BuildRequires:  pkgconfig(gtksourceview-5)
 
 Requires:       hicolor-icon-theme
 Requires:       gtk4 >= %{gtk4_version}
