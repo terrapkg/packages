@@ -137,9 +137,6 @@ install -Dm644 debian/asm-first-run.desktop \
 %{_bindir}/asm-stream-guard
 %{_udevrulesdir}/91-steelseries-arctis.rules
 %{_userunitdir}/%{gsub %{quote:%arctis_sound_manager_services} %{quote: } ,}
-%{_userunitdir}/arctis-video-router.service
-%{_userunitdir}/arctis-stream-guard.service
-%{_userunitdir}/app-ArctisManager.service
 %{_datadir}/%{name}/dinit/arctis-manager
 %{_datadir}/%{name}/dinit/arctis-video-router
 %{_datadir}/%{name}/dinit/pipewire-filter-chain
