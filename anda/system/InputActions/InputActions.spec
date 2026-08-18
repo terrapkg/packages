@@ -14,6 +14,7 @@ BuildRequires:  kwin-devel
 BuildRequires:  kf6-kcmutils-devel
 BuildRequires:  kf6-ki18n-devel
 BuildRequires:  pkgconfig(libevdev)
+BuildRequires:  pkgconfig(epoxy)
 BuildRequires:  cmake(CLI11)
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 BuildSystem:    cmake
