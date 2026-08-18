@@ -9,7 +9,7 @@ URL:            https://git.dec05eba.com/%{name}/about
 
 Source:         https://dec05eba.com/snapshot/%{name}.git.%{version}.tar.gz
 
-BuildRequires:  meson gcc gcc-c++
+BuildRequires:  gcc gcc-c++
 BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(xrandr)
 BuildRequires:  pkgconfig(xrender)
@@ -22,6 +22,7 @@ BuildRequires:  pkgconfig(gl)
 BuildRequires:  pkgconfig(glx)
 BuildRequires:  pkgconfig(egl)
 BuildRequires:  pkgconfig(pango)
+BuildRequires:  rpm_macro(buildsystem_meson_conf)
 BuildSystem:    meson
 
 Packager:       madonuko <mado@fyralabs.com>
