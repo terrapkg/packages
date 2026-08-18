@@ -46,9 +46,9 @@ Keywords=discord;vesktop;vencord;shelter;armcord;electron;
 EOF
 
 %build
-pnpm install
-pnpm buildLibVesktop
-pnpm package:dir
+%__pnpm install
+%__pnpm buildLibVesktop
+%__pnpm package:dir
 
 %install
 mkdir -p %buildroot/usr/share/vesktop
