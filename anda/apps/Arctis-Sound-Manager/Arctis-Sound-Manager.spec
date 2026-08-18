@@ -81,9 +81,7 @@ python3 scripts/generate_udev_rules.py src/arctis_sound_manager/devices/ \
     > %{buildroot}%{_udevrulesdir}/91-steelseries-arctis.rules
 
 # Systemd user services (single source of truth in systemd/, not heredocs)
-install -Dm644 systemd/arctis-manager.service       %{buildroot}%{_userunitdir}/arctis-manager.service
-install -Dm644 systemd/arctis-video-router.service  %{buildroot}%{_userunitdir}/arctis-video-router.service
-%dnl install -Dm644 systemd/arctis-gui.service           %{buildroot}%{_userunitdir}/arctis-gui.service
+install -Dm644 systemd/*.service -t %{buildroot}%{_userunitdir}
 
 # dinit service templates
 install -Dm644 dinit/arctis-manager %{buildroot}%{_datadir}/%{name}/dinit/arctis-manager
@@ -139,7 +137,8 @@ install -Dm644 debian/asm-first-run.desktop \
 %{_udevrulesdir}/91-steelseries-arctis.rules
 %{_userunitdir}/arctis-manager.service
 %{_userunitdir}/arctis-video-router.service
-%{_userunitdir}/arctis-gui.service
+%{_userunitdir}/arctis-stream-guard.service
+%{_userunitdir}/app-ArctisManager.service
 %{_datadir}/%{name}/dinit/arctis-manager
 %{_datadir}/%{name}/dinit/arctis-video-router
 %{_datadir}/%{name}/dinit/pipewire-filter-chain
