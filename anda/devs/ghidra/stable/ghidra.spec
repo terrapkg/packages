@@ -15,7 +15,7 @@
 %global         jre_ver         25
 
 Name:           ghidra
-Version:        12.1.2
+Version:        12.1.3
 %global         short_version %{version}
 Release:        1%{?dist}
 Summary:        a software reverse engineering (SRE) framework
