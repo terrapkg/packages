@@ -1,1 +1,1 @@
-rpm.version(gh_rawfile("devcontainers/cli", "main", "package.json").json().version);
+rpm.version(npm("devcontainers/cli"));
