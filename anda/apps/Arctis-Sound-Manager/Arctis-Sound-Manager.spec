@@ -1,7 +1,7 @@
 %global pypi_name arctis-sound-manager
 %global _desc Linux GUI for SteelSeries Arctis headsets — Nova Pro Wireless & Wired, Nova Pro Omni, Nova Elite, Nova 7/7P/5/3, Arctis 7/7+/9/Pro Wireless. Device settings, Sonar EQ, 4-channel Game/Chat/Media mixer, PipeWire routing.
 
-%global arctis_sound_manager_services arctis-manager.service arctis-video-router.service arctis-gui.service
+%global arctis_sound_manager_services arctis-manager.service arctis-video-router.service arctis-stream-guard.service app-ArctisManager.service
 
 Name:			python-%{pypi_name}
 Version:		1.3.0
@@ -136,7 +136,7 @@ install -Dm644 debian/asm-first-run.desktop \
 %{_bindir}/asm-setup
 %{_bindir}/asm-stream-guard
 %{_udevrulesdir}/91-steelseries-arctis.rules
-%{_userunitdir}/arctis-manager.service
+%{_userunitdir}/%{gsub %{quote:%arctis_sound_manager_services} %{quote: } ,}
 %{_userunitdir}/arctis-video-router.service
 %{_userunitdir}/arctis-stream-guard.service
 %{_userunitdir}/app-ArctisManager.service
