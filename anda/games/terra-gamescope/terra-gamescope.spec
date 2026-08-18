@@ -109,8 +109,9 @@ Requires: terra-gamescope = %{evr}
 
 %prep
 %setup -Tc
-# git clone --depth 1 --branch %%{gamescope_tag} %%{url}.git
-%git_clone %{url}.git %{gamescope_commit}
+git clone %{url}.git $PWD
+git checkout %{gamescope_commit}
+git submodule update --init --recursive
 mkdir -p pkgconfig
 cp %{SOURCE0} pkgconfig/stb.pc
 
