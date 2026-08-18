@@ -47,7 +47,7 @@ mv ./logitech-trueforce-linux-driver-%{commit}/docs/TRUEFORCE_PROTOCOL.md .
 rm -rf ./logitech-trueforce-linux-driver-%{commit}
 
 %build
-%make_build PREFIX=%{_prefix} LIBDIR=%{_libdir} CFLAGS="%{build_cflags}"
+%make_build PREFIX=%{_prefix} LIBDIR=%{_libdir} CFLAGS="%(echo %{build_cflags} | sed 's/-fPIE//g') -fPIC"
 
 %install
 %make_install PREFIX=%{_prefix} LIBDIR=%{_libdir}
