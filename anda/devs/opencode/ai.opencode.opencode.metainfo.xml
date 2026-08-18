@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component type="console-application">
+  <id>ai.opencode.opencode</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <icon type="stock">utilities-terminal</icon>
+
+  <name>opencode-cli</name>
+  <summary>Open source AI coding agent for the terminal, IDE, and desktop</summary>
+
+  <description>
+    <p>
+      opencode is an open source AI coding agent that helps you write code in
+      your terminal, IDE, or desktop. It supports 75+ LLM providers (including
+      local models), LSP integration, multi-session workflows, GitHub Copilot
+      and ChatGPT login, and the Model Context Protocol (MCP).
+    </p>
+  </description>
+
+  <provides>
+    <binary>opencode</binary>
+  </provides>
+  <url type="homepage">https://opencode.ai</url>
+
+  <releases>
+    <release version="1.18.9" date="2026-07-28" />
+  </releases>
+</component>

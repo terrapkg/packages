@@ -1,5 +1,5 @@
 Name:           ttop
-Version:        1.6.1
+Version:        1.6.2
 Release:        1%{?dist}
 Summary:        System monitoring tool with historical data service, triggers and top-like TUI
 License:        MIT
@@ -7,6 +7,7 @@ URL:            https://github.com/inv2004/ttop
 Source0:		%url/archive/refs/tags/v%version.tar.gz
 BuildRequires:  anda-srpm-macros
 BuildRequires:  nim
+BuildRequires:  openssl-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 

@@ -38,5 +38,5 @@ A model viewer for Stardust XR which works great for hand tracking, pointers, an
 * Sat Jan 10 2026 Owen Zimmerman <owen@fyralabs.com>
 - Switch to version based
 
-* Sat Sep 7 2024 Owen-sz <owen@fyralabs.com>
+* Sat Sep 7 2024 Owen Zimmerman <owen@fyralabs.com>
 - Package StardustXR armillary

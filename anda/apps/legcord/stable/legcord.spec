@@ -4,18 +4,19 @@
 
 Name:           legcord
 %electronmeta -D
-Version:        1.2.4
-Release:        1%{?dist}
+Version:        1.3.0
+Release:        2%{?dist}
 License:        OSL-3.0 AND %{electron_license}
 Summary:        Custom lightweight Discord client designed to enhance your experience
 URL:            https://github.com/Legcord/Legcord
+Source0:        Legcord.desktop
 Group:          Applications/Internet
 Packager:       madonuko <mado@fyralabs.com>
 Requires:       xdg-utils
 Obsoletes:      armcord < 3.3.2-1
 Obsoletes:      legcord-bin < 1.1.5-2
 Conflicts:      legcord-nightly
-BuildRequires:  anda-srpm-macros pnpm nodejs-npm git-core gcc gcc-c++ make desktop-file-utils zlib-ng-compat-devel
+BuildRequires:  anda-srpm-macros nvm pnpm git-core gcc gcc-c++ make desktop-file-utils zlib-ng-compat-devel
 
 %description
 Legcord is a custom client designed to enhance your Discord experience
@@ -25,13 +26,15 @@ while keeping everything lightweight.
 %git_clone %url v%version
 
 %build
+%vendor_nodejs -v 26
 %pnpm_build -r build
 
 %install
-%electron_install -i legcord -l -I dist/.icon-set/icon_16.png -I dist/.icon-set/icon_32.png -I dist/.icon-set/icon_48x48.png -I dist/.icon-set/icon_64.png -I dist/.icon-set/icon_128.png -I dist/.icon-set/icon_256.png -I dist/.icon-set/icon_512.png -I dist/.icon-set/icon_1024.png
+%electron_install -i legcord -l -I dist/.icon-set/
+%desktop_file_install %{S:0}
 
-dist/Legcord-*.AppImage --appimage-extract '*.desktop'
-%desktop_file_install -k Exec,Icon -v "%{_libdir}/legcord/Legcord",legcord -u %U -f squashfs-root/Legcord.desktop
+%check
+%desktop_file_validate %{buildroot}%{_appsdir}/Legcord.desktop
 
 %files
 %doc README.md
@@ -40,15 +43,18 @@ dist/Legcord-*.AppImage --appimage-extract '*.desktop'
 %{_datadir}/applications/Legcord.desktop
 %{_libdir}/legcord/
 %{_iconsdir}/hicolor/16x16/apps/legcord.png
+%{_iconsdir}/hicolor/24x24/apps/legcord.png
 %{_iconsdir}/hicolor/32x32/apps/legcord.png
 %{_iconsdir}/hicolor/48x48/apps/legcord.png
 %{_iconsdir}/hicolor/64x64/apps/legcord.png
 %{_iconsdir}/hicolor/128x128/apps/legcord.png
 %{_iconsdir}/hicolor/256x256/apps/legcord.png
 %{_iconsdir}/hicolor/512x512/apps/legcord.png
-%{_iconsdir}/hicolor/1024x1024/apps/legcord.png
 
 %changelog
+* Thu Jul 30 2026 Owen Zimmerman <owen@fyralabs.com> - 1.3.0-1
+- Vendor our own .desktop file
+
 * Mon May 18 2026 june-fish <june@fyralabs.com> - 1.2.4-1
 - Use electron macros
 
