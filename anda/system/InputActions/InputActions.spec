@@ -39,6 +39,9 @@ sed 's@V1@V2@g' -i kwin/src/input/KWinVirtualKeyboard.cpp
 %files
 %doc README.md
 %license LICENSE
+%_bindir/inputactions
+%_qt6_plugindir/kwin/effects/configs/inputactions_kwin_kcm.so
+%_qt6_plugindir/kwin/effects/plugins/kwin_gestures.so
 
 
 %changelog
