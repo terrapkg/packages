@@ -19,11 +19,9 @@ Group:		Applications/Internet
 Source0:    %{giturl}/archive/refs/tags/v%{version}.tar.gz
 Source1:    %{giturl}/releases/download/v%{version}/%{appid}.metainfo.xml
 Requires:   xdg-utils
-%if 0%{?fedora} >= 44
-BuildRequires: nodejs24-npm-bin git
-%else
-BuildRequires:	nodejs-npm git
-%endif
+BuildRequires:	pnpm
+# for buildLibVesktop
+BuildRequires:  curl pkgconf-pkg-config glib2-devel python3
 Recommends:	arrpc
 
 %description
@@ -48,8 +46,9 @@ Keywords=discord;vesktop;vencord;shelter;armcord;electron;
 EOF
 
 %build
-%__npx pnpm install
-%__npx pnpm package:dir
+pnpm install
+pnpm buildLibVesktop
+pnpm package:dir
 
 %install
 mkdir -p %buildroot/usr/share/vesktop
@@ -73,6 +72,9 @@ install -Dm644 %{SOURCE1} %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
+* Web Aug 19 2026 madonuko <mado@fyralabs.com> - 1.6.7-2
+- Use pnpm package directly
+- build libvesktop
 * Wed Feb 04 2026 Kaitlyn <kaitlynyaa@kaitlynyaa.dev> - 1.6.4
 - Added appstream metainfo and fixed buildrequires to adhere to new npm package naming scheme
 * Thu Jul 24 2025 Atmois <info@atmois.com> - 1.5.8-2
