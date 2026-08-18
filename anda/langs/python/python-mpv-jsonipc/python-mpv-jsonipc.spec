@@ -7,7 +7,7 @@ Release:		1%{?dist}
 Summary:		Python API to MPV using JSON IPC
 License:		Apache-2.0
 URL:			https://github.com/iwalton3/python-mpv-jsonipc
-Source0:		https://files.pythonhosted.org/packages/source/p/python-mpv-jsonipc/python_mpv_jsonipc-%version.tar.gz
+Source0:		%{pypi_source python_mpv_jsonipc}
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
