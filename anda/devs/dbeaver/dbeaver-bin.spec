@@ -47,3 +47,7 @@ mv %buildroot%_datadir/%name/readme.txt .
 %_datadir/%name/
 %_hicolordir/256x256/apps/dbeaver.png
 %_metainfodir/%appid.metainfo.xml
+
+%changelog
+* Mon Aug 17 2026 madonuko <mado@fyralabs.com> - 26.1.5-1
+- Initial package
