@@ -17,7 +17,7 @@ Summary:	Vesktop is a cross platform desktop app aiming to give you a snappier D
 URL:		https://vesktop.dev
 Group:		Applications/Internet
 Source0:    %{giturl}/archive/refs/tags/v%{version}.tar.gz
-Source1:    %{giturl}/releases/download/v%{version}/%{appid}.metainfo.xml
+Source1:    %{giturl}/releases/download/v1.6.7/%{appid}.metainfo.xml
 Requires:   xdg-utils
 %if 0%{?fedora} >= 44
 BuildRequires: nodejs24-npm-bin git
