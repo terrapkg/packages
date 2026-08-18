@@ -1,6 +1,6 @@
 Name:           powerstation
 Version:        0.8.1
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Daemon for controlling TDP and performance over DBus
 
 SourceLicense:  GPL-3.0-or-later
@@ -40,6 +40,10 @@ install -Dm644 rootfs%_datadir/dbus-1/system.d/org.shadowblip.PowerStation.conf 
 
 install -Dm644 rootfs%_unitdir/powerstation.service -t %buildroot%_unitdir
 
+# APU platform databases
+install -Dm644 rootfs%_datadir/powerstation/platform/*.toml \
+  -t %buildroot%_datadir/powerstation/platform
+
 sed -i 's/After=graphical-session.target//g' %buildroot%_unitdir/powerstation.service
 
 echo 'enable powerstation.service' | install -Dm644 /dev/stdin %buildroot%_presetdir/95-enable-powerstation.preset
@@ -49,6 +53,7 @@ echo 'enable powerstation.service' | install -Dm644 /dev/stdin %buildroot%_prese
 %doc README.md
 %_bindir/powerstation
 %_datadir/dbus-1/system.d/org.shadowblip.PowerStation.conf
+%_datadir/powerstation/
 %_unitdir/powerstation.service
 %_presetdir/95-enable-powerstation.preset
 
@@ -63,5 +68,8 @@ echo 'enable powerstation.service' | install -Dm644 /dev/stdin %buildroot%_prese
 
 
 %changelog
+* Thu Aug 06 2026 Kyle Gospodnetich <me@kylegospodneti.ch> - 0.8.1-2
+- Package the APU platform databases
+
 * Fri Jan 30 2026 madonuko <mado@fyralabs.com> - 0.7.0-1
 - Ported from https://copr-dist-git.fedorainfracloud.org/packages/gloriouseggroll/nobara-43/powerstation.git/tree/powerstation.spec?h=f43

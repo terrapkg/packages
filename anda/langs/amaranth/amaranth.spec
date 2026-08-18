@@ -4,8 +4,8 @@
 %define _python_dist_allow_version_zero 1
 
 Name:			python-%{pypi_name}
-Version:		0.5.8
-Release:		3%?dist
+Version:		0.5.9
+Release:		1%{?dist}
 Summary:		A modern hardware definition language and toolchain based on Python
 License:		BSD-2-Clause
 URL:			https://github.com/amaranth-lang/amaranth

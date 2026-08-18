@@ -1,0 +1,150 @@
+From 8649648f2066e53e034f24f26fa82fa2717f9269 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Nicolas=20Vi=C3=A9ville?= <nicolas.vieville@uphf.fr>
+Date: Wed, 13 May 2026 15:26:05 +0200
+Subject: [PATCH] wl_cfg80211_hybrid.c: adapt compatibility with kernel >=
+ 7.1.x replace net_device struct with wireless_dev struct - Related to commit
+ "wifi: nl80211/cfg80211: support stations of non-netdev interfaces" (Miri
+ Korenblit, 19 Feb 2026) and to commit "wifi: cfg80211: support key
+ installation on non-netdev wdevs" (Avraham Stern, 7 Jan 2026)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Nicolas Viéville <nicolas.vieville@uphf.fr>
+---
+ src/wl/sys/wl_cfg80211_hybrid.c | 56 +++++++++++++++++++++++++++++----
+ 1 file changed, 50 insertions(+), 6 deletions(-)
+
+diff --git a/src/wl/sys/wl_cfg80211_hybrid.c b/src/wl/sys/wl_cfg80211_hybrid.c
+index 58f1023..e30fed0 100644
+--- a/src/wl/sys/wl_cfg80211_hybrid.c
++++ b/src/wl/sys/wl_cfg80211_hybrid.c
+@@ -83,9 +83,14 @@ static s32 wl_cfg80211_leave_ibss(struct wiphy *wiphy, struct net_device *dev);
+ #if LINUX_VERSION_CODE < KERNEL_VERSION(3, 16, 0)
+ static s32 wl_cfg80211_get_station(struct wiphy *wiphy,
+            struct net_device *dev, u8 *mac, struct station_info *sinfo);
+-#else
++#elif LINUX_VERSION_CODE < KERNEL_VERSION(7, 1, 0)
+ static s32 wl_cfg80211_get_station(struct wiphy *wiphy,
+            struct net_device *dev, const u8 *mac, struct station_info *sinfo);
++#else
++// Related to commit "wifi: nl80211/cfg80211: support stations of non-netdev
++// interfaces" (Miri Korenblit, 19 Feb 2026)
++static s32 wl_cfg80211_get_station(struct wiphy *wiphy,
++           struct wireless_dev *wdev, const u8 *mac, struct station_info *sinfo);
+ #endif
+ 
+ static s32 wl_cfg80211_set_power_mgmt(struct wiphy *wiphy,
+@@ -133,7 +138,17 @@ static s32 wl_cfg80211_config_default_key(struct wiphy *wiphy,
+ static s32 wl_cfg80211_config_default_key(struct wiphy *wiphy,
+            struct net_device *dev, u8 key_idx);
+ #endif
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 1, 0)
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(7, 1, 0)
++// Related to commit "wifi: cfg80211: support key installation on non-netdev
++// wdevs" (Avraham Stern, 7 Jan 2026)
++static s32 wl_cfg80211_add_key(struct wiphy *wiphy, struct wireless_dev *wdev,
++           int link_id, u8 key_idx, bool pairwise, const u8 *mac_addr, struct key_params *params);
++static s32 wl_cfg80211_del_key(struct wiphy *wiphy, struct wireless_dev *wdev,
++           int link_id, u8 key_idx, bool pairwise, const u8 *mac_addr);
++static s32 wl_cfg80211_get_key(struct wiphy *wiphy, struct wireless_dev *wdev,
++           int link_id, u8 key_idx, bool pairwise, const u8 *mac_addr,
++           void *cookie, void (*callback) (void *cookie, struct key_params *params));
++#elif LINUX_VERSION_CODE >= KERNEL_VERSION(6, 1, 0)
+ static s32 wl_cfg80211_add_key(struct wiphy *wiphy, struct net_device *dev,
+            int link_id, u8 key_idx, bool pairwise, const u8 *mac_addr, struct key_params *params);
+ static s32 wl_cfg80211_del_key(struct wiphy *wiphy, struct net_device *dev,
+@@ -1309,7 +1324,11 @@ wl_cfg80211_config_default_key(struct wiphy *wiphy,
+ 	return 0;
+ }
+ 
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 1, 0)
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(7, 1, 0)
++static s32
++wl_cfg80211_add_key(struct wiphy *wiphy, struct wireless_dev *wdev,
++                    int link_id, u8 key_idx, bool pairwise, const u8 *mac_addr, struct key_params *params)
++#elif LINUX_VERSION_CODE >= KERNEL_VERSION(6, 1, 0)
+ static s32
+ wl_cfg80211_add_key(struct wiphy *wiphy, struct net_device *dev,
+                     int link_id, u8 key_idx, bool pairwise, const u8 *mac_addr, struct key_params *params)
+@@ -1323,6 +1342,9 @@ wl_cfg80211_add_key(struct wiphy *wiphy, struct net_device *dev,
+                     u8 key_idx, const u8 *mac_addr, struct key_params *params)
+ #endif
+ {
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(7, 1, 0)
++	struct net_device *dev = wdev->netdev;
++#endif
+ 	struct wl_cfg80211_priv *wl = ndev_to_wl(dev);
+ 	struct wl_wsec_key key;
+ 	s32 secval, secnew = 0;
+@@ -1434,7 +1456,11 @@ wl_cfg80211_add_key(struct wiphy *wiphy, struct net_device *dev,
+ 	return err;
+ }
+ 
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 1, 0)
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(7, 1, 0)
++static s32
++wl_cfg80211_del_key(struct wiphy *wiphy, struct wireless_dev *wdev,
++                    int link_id, u8 key_idx, bool pairwise, const u8 *mac_addr)
++#elif LINUX_VERSION_CODE >= KERNEL_VERSION(6, 1, 0)
+ static s32
+ wl_cfg80211_del_key(struct wiphy *wiphy, struct net_device *dev,
+                     int link_id, u8 key_idx, bool pairwise, const u8 *mac_addr)
+@@ -1448,6 +1474,9 @@ wl_cfg80211_del_key(struct wiphy *wiphy, struct net_device *dev,
+                     u8 key_idx, const u8 *mac_addr)
+ #endif
+ {
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(7, 1, 0)
++	struct net_device *dev = wdev->netdev;
++#endif
+ 	struct wl_wsec_key key;
+ 	s32 err = 0;
+ 
+@@ -1481,7 +1510,12 @@ wl_cfg80211_del_key(struct wiphy *wiphy, struct net_device *dev,
+ 	return err;
+ }
+ 
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 1, 0)
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(7, 1, 0)
++static s32
++wl_cfg80211_get_key(struct wiphy *wiphy, struct wireless_dev *wdev,
++                    int link_id, u8 key_idx, bool pairwise, const u8 *mac_addr,
++                    void *cookie, void (*callback) (void *cookie, struct key_params * params))
++#elif LINUX_VERSION_CODE >= KERNEL_VERSION(6, 1, 0)
+ static s32
+ wl_cfg80211_get_key(struct wiphy *wiphy, struct net_device *dev,
+                     int link_id, u8 key_idx, bool pairwise, const u8 *mac_addr, void *cookie,
+@@ -1498,6 +1532,9 @@ wl_cfg80211_get_key(struct wiphy *wiphy, struct net_device *dev,
+                     void (*callback) (void *cookie, struct key_params * params))
+ #endif
+ {
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(7, 1, 0)
++	struct net_device *dev = wdev->netdev;
++#endif
+ 	struct key_params params;
+ 	struct wl_wsec_key key;
+ 	struct wl_cfg80211_priv *wl = wiphy_to_wl(wiphy);
+@@ -1557,12 +1594,19 @@ wl_cfg80211_get_key(struct wiphy *wiphy, struct net_device *dev,
+ static s32
+ wl_cfg80211_get_station(struct wiphy *wiphy, struct net_device *dev,
+                         u8 *mac, struct station_info *sinfo)
+-#else
++#elif LINUX_VERSION_CODE < KERNEL_VERSION(7, 1, 0)
+ static s32
+ wl_cfg80211_get_station(struct wiphy *wiphy, struct net_device *dev,
+                         const u8 *mac, struct station_info *sinfo)
++#else
++static s32
++wl_cfg80211_get_station(struct wiphy *wiphy, struct wireless_dev *wdev,
++                        const u8 *mac, struct station_info *sinfo)
+ #endif
+ {
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(7, 1, 0)
++	struct net_device *dev = wdev->netdev;
++#endif
+ 	struct wl_cfg80211_priv *wl = wiphy_to_wl(wiphy);
+ 	scb_val_t scb_val;
+ 	int rssi;
+-- 
+2.54.0
+

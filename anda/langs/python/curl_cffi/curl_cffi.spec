@@ -5,8 +5,8 @@
 %global _version 0.14.0b2
 
 Name:			python-%{pypi_name}
-Version:		0.15.0
-Release:		2%{?dist}
+Version:		0.16.0
+Release:		1%{?dist}
 Summary:		Python binding for curl-impersonate fork via cffi..
 License:		MIT
 URL:			https://github.com/lexiforest/curl_cffi
@@ -18,7 +18,7 @@ BuildRequires:  python3-setuptools
 BuildRequires:  python3-pip
 BuildRequires:  curl-impersonate-chrome-devel
 
-Packager:	    Metcya <metcya@gmail.com>
+Packager:	    Olivia <git@olivia.sh>
 
 %description
 %_desc
@@ -51,5 +51,8 @@ Provides:       %{pypi_name}
 %{python3_sitelib}/%{pypi_name}/requests/__pycache__/*.pyc
 
 %changelog
-* Sun Nov 02 2025 Metcya <metcya@gmail.com>
+* Sun Jul 19 2026 Olivia <git@olivia.sh> - 0.15.0-3
+- Update packager
+
+* Sun Nov 02 2025 Olivia <git@olivia.sh>
 - Initial commit

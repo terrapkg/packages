@@ -1,0 +1,24 @@
+From d248cca7f6d0007d9d1e9ed59bd0f20d9c94ec3d Mon Sep 17 00:00:00 2001
+From: Thomas Crider <gloriouseggroll@gmail.com>
+Date: Sat, 19 Nov 2022 20:36:40 -0500
+Subject: [PATCH] fix denial on dnsmask for nsswitch
+
+---
+ profiles/apparmor.d/usr.sbin.dnsmasq | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/profiles/apparmor.d/usr.sbin.dnsmasq b/profiles/apparmor.d/usr.sbin.dnsmasq
+index 379d72f..e2cf6fb 100644
+--- a/profiles/apparmor.d/usr.sbin.dnsmasq
++++ b/profiles/apparmor.d/usr.sbin.dnsmasq
+@@ -43,6 +43,7 @@ profile dnsmasq /usr/{bin,sbin}/dnsmasq flags=(attach_disconnected) {
+   /etc/dnsmasq.d/* r,
+   /etc/dnsmasq.d-available/ r,
+   /etc/dnsmasq.d-available/* r,
++    /etc/authselect/nsswitch.conf r,
+   /etc/ethers r,
+   /etc/NetworkManager/dnsmasq.d/ r,
+   /etc/NetworkManager/dnsmasq.d/* r,
+-- 
+2.38.1
+

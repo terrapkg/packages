@@ -1,4 +1,4 @@
-name: Bootstrap Andaman and Subatomic
+name: Bootstrap Core Terra Packages
 permissions:
   contents: read
   attestations: write
@@ -24,7 +24,7 @@ jobs:
           dnf5 swap -y --setopt=install_weak_deps=False systemd-standalone-sysusers systemd
           dnf5 install -y --setopt=install_weak_deps=False curl wget git-core openssl-devel cargo podman fuse-overlayfs dnf5-plugins rpmbuild script
 
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: f${{ matrix.version }}
           fetch-depth: 1
@@ -60,8 +60,12 @@ jobs:
           export PATH=$PATH:/github/home/.cargo/bin
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           anda build -D "vendor Terra" -rrpmbuild anda/terra/mock-configs/pkg
+
       - name: Install terra-mock-configs
         run: dnf5 install -y anda-build/rpm/rpms/terra-mock-configs*.rpm
+
+      - name: Build terra-gpg-keys
+        run: anda build -D "vendor Terra" -rrpmbuild anda/terra/gpg-keys/pkg
 
       - name: Build terra-release
         run: anda build -D "vendor Terra" -rrpmbuild anda/terra/release/pkg
@@ -92,8 +96,12 @@ jobs:
             --token ${{ secrets.SUBATOMIC_TOKEN }} \
             terra${{ matrix.version }}-source anda-build/rpm/srpm/*
 
+      - name: Create Madoguchi Repository
+        run: |
+          curl -H "Authorization: Bearer ${{ secrets.MADOGUCHI_JWT }}" https://madoguchi.fyralabs.com/v4/repos/terra${{ matrix.version }} -X PUT -H "Content-Type: application/json" -d '{"gh":"https://github.com/terrapkg/packages/tree/${{ matrix.version }}","link":"https://repos.fyralabs.com/terra${{ matrix.version }}/"}' --fail-with-body
+
       - name: Attest build provenance
-        uses: actions/attest-build-provenance@0f67c3f4856b2e3261c31976d6725780e5e4c373 # v4.1.1
+        uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
         with:
           subject-path: |
             anda-build/rpm/rpms/*

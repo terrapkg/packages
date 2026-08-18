@@ -1,0 +1,15 @@
+[Unit]
+Description=nvidia-powerd service
+StartLimitIntervalSec=infinity
+StartLimitBurst=5
+ConditionPathExistsGlob=/dev/nvidia*
+
+[Service]
+Type=simple
+# Not all the hardware can use nvidia-powerd:
+ExecStart=-/usr/bin/nvidia-powerd
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

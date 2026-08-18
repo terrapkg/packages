@@ -1,18 +1,18 @@
 %define debug_package %nil
 
-%global commit b5c2d0d3ebcefa7450d9d4336dd5802aa96d8513
+%global commit d2ca2f0ceae081a3f9205541e7e02d8b9e8f8046
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260202
+%global commit_date 20260810
 
 Name:           gamescope-session
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        3%?dist
+Release:        1%?dist
 Summary:        Gamescope session based on Valve's gamescope
 License:        MIT
 URL:            https://github.com/OpenGamingCollective/gamescope-session
 Source0:        %url/archive/%commit.tar.gz
 Requires:       gamescope
-Recommends:     switcheroo-control
+Recommends:     (cardwire or switcheroo-control)
 BuildRequires:  systemd-rpm-macros
 Packager:       Tulip Blossom <tulilirockz@outlook.com>
 BuildArch:      noarch

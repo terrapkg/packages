@@ -5,7 +5,7 @@
 %global debug_package %{nil}
 
 Name:           %{modulename}-kmod
-Version:        580.159.04
+Version:        580.178.04
 Release:        1%{?dist}
 Summary:        NVIDIA display driver kernel module
 Epoch:          3
@@ -42,7 +42,7 @@ sh %{SOURCE0} -x --target %{name}-%{version}-%{_arch}
 %setup -T -D -n %{name}-%{version}-%{_arch}/kernel
 %endif
 
-rm -f dkms.conf
+rm -f */dkms.conf
 
 for kernel_version in %{?kernel_versions}; do
     mkdir _kmod_build_${kernel_version%%___*}
@@ -65,5 +65,7 @@ done
 %{?akmod_install}
 
 %changelog
+* Fri Jul 10 2026 Gilver E. <roachy@fyralabs.com> - 3:580.159.04-2
+- Update build
 * Mon Apr 13 2026 Gilver E. <roachy@fyralabs.com> - 3:580.142-1
 - Update spec for Terra packaging team

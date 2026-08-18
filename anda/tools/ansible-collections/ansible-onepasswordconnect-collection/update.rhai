@@ -1,1 +1,1 @@
-rpm.version(gh("1Password/ansible-onepasswordconnect-collection"));
+rpm.version(ansible_galaxy("onepassword", "connect"));

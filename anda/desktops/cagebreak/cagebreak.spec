@@ -4,14 +4,14 @@
 
 Name:           cagebreak
 Version:        %{tag}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A wayland tiling compositor inspired by Ratpoison
 
 License:        MIT
 URL:            %{forgeurl}
 Source0:        %{forgesource}
 
-Packager:       metcya <metcya@gmail.com>
+Packager:       Olivia <git@olivia.sh>
 
 BuildRequires:  meson
 BuildRequires:  gcc
@@ -60,5 +60,8 @@ conceptually based on the X11 window manager ratpoison.
 
 
 %changelog
-* Wed Feb 04 2026 metcya <metcya@gmail.com>
+* Sun Jul 19 2026 Olivia <git@olivia.sh> - 3.2.1-2
+- Update packager
+
+* Wed Feb 04 2026 Olivia <git@olivia.sh>
 - Initial package

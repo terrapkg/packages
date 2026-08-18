@@ -1,5 +1,5 @@
-%global commit d447878f6fbb79c81db5cfa41113f6980dff2fb2
-%global commit_date 20260709
+%global commit c8b57344ffd8394bafb55c4595ca03b12d4b02b3
+%global commit_date 20260818
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           libsingularity
@@ -61,6 +61,7 @@ A GTK4 application and widget framework for the Singularity Desktop Environment.
 %{_datadir}/vala/vapi/singularity-system-1.0.deps
 %{_datadir}/vala/vapi/singularity-system-1.0.vapi
 %{_datadir}/themes/Singularity/
+%{_datadir}/singularity
 
 %changelog
 * Sat May 16 2026 Owen Zimmerman <owen@fyralabs.com>

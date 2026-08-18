@@ -2,8 +2,8 @@
 
 Name:			signal-desktop
 %electronmeta -aD
-Version:		8.17.0
-Release:		2%{?dist}
+Version:		8.23.0
+Release:		1%{?dist}
 Summary:		A private messenger for Windows, macOS, and Linux
 URL:			https://signal.org
 Source0:		https://github.com/signalapp/Signal-Desktop/archive/refs/tags/v%{version}.tar.gz
@@ -75,6 +75,7 @@ echo "Electron Builder" > %{rpmbuilddir}/webapp-tool.txt
 %install
 mv ./packages/mute-state-change/LICENSE ./packages/mute-state-change/LICENSE.mute-state-change
 mv ./packages/windows-ucv/LICENSE ./packages/mute-state-change/LICENSE.windows-ucv
+mv ./packages/types/LICENSE ./packages/mute-state-change/LICENSE.types
 %electron_install -i signal -l -I build/icons/png
 
 %desktop_file_install %{SOURCE1}

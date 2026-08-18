@@ -1,5 +1,5 @@
 Name:           driftwm
-Version:        0.13.0
+Version:        0.17.2
 Release:        1%{?dist}
 Summary:        A trackpad-first infinite canvas Wayland compositor
 License:        GPL-3.0-or-later

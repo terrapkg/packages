@@ -1,0 +1,36 @@
+From: CatPieLeaf <catpieleaf@proton.me>
+Date: Fri, 7 Aug 2026 18:30:00 -0300
+Subject: [PATCH] swig: replace removed %new_copy_array macro
+
+SWIG 4.5.0 removed the %new_copy_array macro (see upstream SWIG
+CHANGES.current, 2026-05-16): calls to it are now passed through
+unexpanded to the C compiler, which fails with:
+
+    libapparmor_wrap.c:6601:14: error: expected expression before '%' token
+          arg1 = %new_copy_array(con_ptr, con_len+1, char);
+
+Builds fine against SWIG < 4.5.0 (e.g. 4.4.1), which still has the
+macro - this only breaks once the SWIG toolchain moves to 4.5.0+.
+Replace the single call site with the equivalent manual
+malloc+memcpy, with the same allocation-failure handling already used
+elsewhere in this same file via SWIG_exception_fail/SWIG_MemoryError.
+---
+ libraries/libapparmor/swig/SWIG/libapparmor.i | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+--- a/libraries/libapparmor/swig/SWIG/libapparmor.i
++++ b/libraries/libapparmor/swig/SWIG/libapparmor.i
+@@ -143,7 +143,12 @@
+   }
+   if (alloc_status != SWIG_NEWOBJ) {
+     // Unconditionally copy because the C function modifies the string in place
+-    $1 = %new_copy_array(con_ptr, con_len+1, char);
++    // %new_copy_array was removed in SWIG 4.5.0; do the copy manually
++    $1 = ($1_ltype) malloc((con_len+1)*sizeof($*1_ltype));
++    if (!$1) {
++      SWIG_exception_fail(SWIG_MemoryError, "Unable to allocate memory");
++    }
++    memcpy((void *)$1, (const void *)con_ptr, (con_len+1)*sizeof($*1_ltype));
+   } else {
+     $1 = con_ptr;
+   }

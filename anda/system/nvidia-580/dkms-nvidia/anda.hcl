@@ -1,6 +1,6 @@
 project pkg {
 	rpm {
-		spec = "dkms-nvidia-580.spec"
+		spec = "dkms-nvidia-580xx.spec"
 	}
 	labels {
 		subrepo = "nvidia"

@@ -1,21 +1,15 @@
-%if 0%{?fedora} > 43
-%global gcc_compat 15
-%global __cc gcc-%{gcc_compat}
-%global __cxx g++-%{gcc_compat}
-%endif
-
 Name:           vicinae
 License:        GPL-3.0-or-later
-Version:        0.23.0
+Version:        0.26.0
 Release:        1%{?dist}
 URL:            https://docs.vicinae.com
 Source:         https://github.com/vicinaehq/%{name}/archive/refs/tags/v%{version}.tar.gz
 Summary:        A high-performance, native launcher for Linux
-Packager:       metcya <metcya@gmail.com>
+Packager:       Olivia <git@olivia.sh>, Jaiden Riordan <jade@fyralabs.com>
 
 BuildRequires:  cmake
-BuildRequires:  gcc%{?gcc_compat}
-BuildRequires:  gcc%{?gcc_compat}-c++
+BuildRequires:  gcc
+BuildRequires:  gcc-c++
 BuildRequires:  kf6-syntax-highlighting-devel
 BuildRequires:  cmake(absl)
 BuildRequires:  openssl-devel
@@ -38,8 +32,10 @@ BuildRequires:  anda-srpm-macros
 BuildRequires:  ninja-build
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtbase-private-devel
+BuildRequires:  cmake(Qt6LinguistTools)
 BuildRequires:  xcb-util-keysyms-devel
 BuildRequires:  desktop-file-utils
+BuildRequires:   pkgconfig(wayland-protocols)
 
 Requires:       nodejs-npm
 Requires:       layer-shell-qt
@@ -96,6 +92,12 @@ install -Dm 644 extra/%{name}-url-handler.desktop -t %{buildroot}%{_appsdir}
 %dnl %{_udevrulesdir}/70-vicinae.rules
 
 %changelog
+* Sun Jul 19 2026 Jaiden Riordan <jade@fyralabs.com> - 0.24.0-1
+- Remove GCC compats
+
+* Sun Jul 19 2026 Olivia <git@olivia.sh> - 0.23.2-2
+- Update packager
+
 * Thu May 14 2026 Owen Zimmerman <owen@fyralabs.com> - 0.21.0-1
 - Update spec for 0.21.0
 
@@ -105,5 +107,5 @@ install -Dm 644 extra/%{name}-url-handler.desktop -t %{buildroot}%{_appsdir}
 * Wed Feb 18 2026 Jaiden Riordan <jade@fyralabs.com> - 0.19.8
 - Fixup desktop file and xdgpp
 
-* Fri Dec 26 2025 metcya <metcya@gmail.com> - 0.17.3
+* Fri Dec 26 2025 Olivia <git@olivia.sh> - 0.17.3
 - Package vicinae

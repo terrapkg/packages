@@ -1,1 +1,1 @@
-print(sourcehut("~alextee/libaudec"));
+rpm.version(sourcehut("~alextee/libaudec"));

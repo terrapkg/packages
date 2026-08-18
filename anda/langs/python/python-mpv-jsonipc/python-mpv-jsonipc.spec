@@ -2,12 +2,12 @@
 %global _desc Python API to MPV using JSON IPC.
 
 Name:			python-%{pypi_name}
-Version:		1.2.2
-Release:		2%{?dist}
+Version:		1.3.0
+Release:		1%{?dist}
 Summary:		Python API to MPV using JSON IPC
 License:		Apache-2.0
 URL:			https://github.com/iwalton3/python-mpv-jsonipc
-Source0:		%{pypi_source}
+Source0:		%{pypi_source python_mpv_jsonipc}
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
@@ -28,7 +28,7 @@ Provides:       python-mpv-jsonipc
 %_desc
 
 %prep
-%autosetup -n %{pypi_name}-%{version}
+%autosetup -n python_mpv_jsonipc-%{version}
 
 %build
 %pyproject_wheel

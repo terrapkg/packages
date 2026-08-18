@@ -18,6 +18,7 @@ BuildRequires: intltool
 BuildRequires: vala
 BuildRequires: pkgconfig
 BuildRequires: gcc
+BuildRequires: pkgconfig(wayland-protocols)
 
 Requires: parted dosfstools e2fsprogs coreutils util-linux-core uuid dbus-x11 gtk3
 
@@ -35,14 +36,18 @@ bootable card with an image of the source device.
 %prep
 %autosetup -n piclone-%commit
 
-%build
+%conf
 %meson
+
+%build
 %meson_build
 
 %install
 %meson_install
 
-%files
+%find_lang %{name}
+
+%files -f %{name}.lang
 %doc README
 %license debian/copyright
 %{_bindir}/piclone

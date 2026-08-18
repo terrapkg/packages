@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.14.0
-Release:		2%?dist
+Release:		3%?dist
 Summary:		Parser for 'pyproject.toml'
 License:		MIT
 URL:			https://pyproject-parser.readthedocs.io/en/latest/
@@ -21,7 +21,6 @@ Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
-Provides:       pyvcd
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}

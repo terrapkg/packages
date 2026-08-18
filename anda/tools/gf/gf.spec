@@ -8,7 +8,7 @@
 
 Name:           gf
 Version:        0^%{commitdate}.git%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A GDB frontend for Linux
 
 License:        MIT
@@ -22,7 +22,7 @@ BuildRequires:  libX11-devel
 BuildRequires:  gdb
 Requires:       gdb
 
-Packager:       metcya <metcya@gmail.com>
+Packager:       Olivia <git@olivia.sh>
 
 %description
 %{summary}.
@@ -43,5 +43,8 @@ install -Dm 755 gf2 %{buildroot}%{_bindir}/gf2
 %{_bindir}/gf2
 
 %changelog
-* Thu Feb 19 2026 metcya <metcya@gmail.com>
+* Sun Jul 19 2026 Olivia <git@olivia.sh> - 0^20251231.git1c04ed9-2
+- Update packager
+
+* Thu Feb 19 2026 Olivia <git@olivia.sh>
 - Initial package

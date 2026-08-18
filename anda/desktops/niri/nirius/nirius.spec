@@ -1,5 +1,5 @@
 Name:           nirius
-Version:        0.8.0
+Version:        0.9.0
 Release:        1%{?dist}
 Summary:        Utility commands for niri
 
@@ -7,7 +7,7 @@ License:        GPL-3.0-or-later AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR 
 URL:            https://git.sr.ht/~tsdh/nirius
 Source0:        %{url}/archive/%{name}-%{version}.tar.gz
 
-Packager:       metcya <metcya@gmail.com>
+Packager:       Olivia <git@olivia.sh>
 
 BuildRequires:  cargo
 BuildRequires:  cargo-rpm-macros
@@ -40,5 +40,8 @@ install -Dm 755 target/rpm/niriusd %{buildroot}%{_bindir}/niriusd
 %{_bindir}/niriusd
 
 %changelog
-* Thu Jan 22 2026 metcya <metcya@gmail.com>
+* Sun Jul 19 2026 Olivia <git@olivia.sh> - 0.8.0-2
+- Update packager
+
+* Thu Jan 22 2026 Olivia <git@olivia.sh>
 - Initial package

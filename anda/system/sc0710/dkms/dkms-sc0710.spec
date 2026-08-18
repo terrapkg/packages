@@ -1,6 +1,6 @@
-%global commit 921ca8e50441bf85ddc843d35fb833493af8cdd3
+%global commit 681fece9ad5641daa26178d2ac0a85638a72fce5
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260702
+%global commitdate 20260817
 %global ver 0
 %global debug_package %{nil}
 %global modulename sc0710

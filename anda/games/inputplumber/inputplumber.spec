@@ -1,13 +1,15 @@
 %global __brp_mangle_shebangs %{nil}
 
 Name:           inputplumber
-Version:        0.77.7
-Release:        1%{?dist}
+Version:        0.78.0
+Release:        5%{?dist}
 Summary:        Open source input router and remapper daemon for Linux
 License:        GPL-3.0-or-later
 URL:            https://github.com/ShadowBlip/InputPlumber
 Source0:        %{url}/archive/refs/tags/v%version.tar.gz
 Patch0:         make-install-dont-build.patch
+Patch1:         https://patch-diff.githubusercontent.com/raw/ShadowBlip/InputPlumber/pull/637.patch
+Patch2:         https://patch-diff.githubusercontent.com/raw/ShadowBlip/InputPlumber/pull/644.patch
 BuildRequires:  libevdev-devel libiio-devel git make cargo libudev-devel llvm-devel clang-devel
 BuildRequires:  rust-packaging cargo-rpm-macros mold rpm_macro(cargo_prep_online) systemd-rpm-macros
 Requires:       libevdev libiio
@@ -22,7 +24,7 @@ can be used to combine any number of input devices (like gamepads, mice, and
 keyboards) and translate their input to a variety of virtual device formats.
 
 %prep
-%autosetup -n InputPlumber-%version
+%autosetup -n InputPlumber-%version -p1
 %cargo_prep_online
 
 %build
@@ -52,6 +54,7 @@ keyboards) and translate their input to a variety of virtual device formats.
 %_datadir/dbus-1/system.d/org.shadowblip.InputPlumber.conf
 %_datadir/inputplumber/
 %{_udevrulesdir}/99-inputplumber-device-setup.rules
+%{_udevrulesdir}/60-inputplumber-uaccess.rules
 %{_udevrulesdir}/50-8bitdo-u2-controller.rules
 %{_datadir}/polkit-1/actions/org.shadowblip.InputPlumber.policy
 %{_datadir}/polkit-1/rules.d/org.shadowblip.InputPlumber.rules

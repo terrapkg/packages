@@ -1,11 +1,11 @@
 %global mangowc_ver 0.12.5-1
 
 Name:           mangowm
-Version:        0.14.4
+Version:        0.16.1
 Release:        1%{?dist}
 Summary:        A modern, lightweight, high-performance Wayland compositor built on dwl
 License:        GPL-3.0-or-later AND MIT AND X11 AND CC0-1.0
-Packager:       metcya <metcya@gmail.com>
+Packager:       Olivia <git@olivia.sh>
 URL:            https://github.com/mangowm/mango
 Source:         %{url}/archive/%{version}.tar.gz
 
@@ -22,6 +22,7 @@ BuildRequires:  pkgconfig(libinput)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(libpcre2-8)
 BuildRequires:  pkgconfig(libcjson)
+BuildRequires:  pkgconfig(pangocairo)
 BuildRequires:  scenefx-devel
 
 Conflicts:      mangowc < %{mangowc_ver}
@@ -45,11 +46,6 @@ dwl — crafted for speed, flexibility, and a customizable desktop experience.
 %files
 %doc README.md
 %license LICENSE
-%license LICENSE.wlroots
-%license LICENSE.tinywl 
-%license LICENSE.sway 
-%license LICENSE.dwm 
-%license LICENSE.dwl 
 %{_bindir}/mango
 %{_bindir}/mmsg
 %{_sysconfdir}/mango/config.conf
@@ -58,8 +54,11 @@ dwl — crafted for speed, flexibility, and a customizable desktop experience.
 %{_mandir}/man1/mmsg.1.*
 
 %changelog
-* Wed Mar 04 2026 metcya <metcya@gmail.com> - 0.12.5-1
+* Sun Jul 19 2026 Olivia <git@olivia.sh> - 0.15.4-2
+- Update packager
+
+* Wed Mar 04 2026 Olivia <git@olivia.sh> - 0.12.5-1
 - Rename to mangowm
 
-* Wed Nov 12 2025 metcya <metcya@gmail.com>
+* Wed Nov 12 2025 Olivia <git@olivia.sh>
 - Package mangowc

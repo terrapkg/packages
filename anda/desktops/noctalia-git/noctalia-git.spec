@@ -2,20 +2,21 @@
 
 %global ver 5.0.0
 
-%global commit          c2aac465cf24ea0e924fbe405425dec1818db91d
+%global commit          74db8e7a62c04e85c876da4827405700455c160c
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
-%global commitdate      20260709
+%global commitdate      20260818
 
 Name:   	noctalia-git
 Version:	%{ver}^%{commitdate}git.%{shortcommit}
 Release:	1%{?dist}
-Summary:	A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with no Qt or GTK dependency
+Summary:	A sleek, customizable desktop shell crafted for Wayland
 
 License:	MIT
 URL:		https://github.com/noctalia-dev/noctalia
 Source0:	https://github.com/noctalia-dev/noctalia/archive/%{commit}/noctalia-%{commit}.tar.gz
 
 BuildRequires:  meson
+BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  git
 BuildRequires:  desktop-file-utils
@@ -44,6 +45,11 @@ BuildRequires:  pkgconfig(polkit-gobject-1)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(wayland-protocols)
 BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:  pkgconfig(libsecret-1)
+BuildRequires:  pkgconfig(libsodium)
+BuildRequires:  pkgconfig(libjxl)
+BuildRequires:  pkgconfig(libical)
+BuildRequires:  pkgconfig(sndfile)
 
 Provides:       desktop-notification-daemon
 Provides:       PolicyKit-authentication-agent
@@ -52,6 +58,8 @@ Requires:       hicolor-icon-theme
 Requires:       dejavu-sans-fonts
 Requires:       libwebp
 
+Conflicts:      noctalia
+
 Recommends:     ddcutil
 Recommends:     gpu-screen-recorder
 Recommends:     power-profiles-daemon
@@ -59,7 +67,7 @@ Recommends:     power-profiles-daemon
 Packager:       Cypress Reed <cypress@fyralabs.com>
 
 %description
-A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES, with no Qt or GTK dependency.
+%{Summary}.
 
 %prep
 %autosetup -n noctalia-%{commit}
@@ -97,7 +105,13 @@ done
 %{_scalableiconsdir}/noctalia.svg
 
 %changelog
-* Wed Jul 09 2026 Cypress Reed <cypress@fyralabs.com>
+* Mon Aug 03 2026 Cypress Reed <cypress@fyralabs.com>
+- Update description and summary per developer's request
+
+* Thu Jul 16 2026 Cypress Reed <cypress@fyralabs.com>
+- Add conflicts with noctalia
+
+* Thu Jul 09 2026 Cypress Reed <cypress@fyralabs.com>
 - Noctalia requires system libraries now, so remove the meson options
 
 * Wed Jul 01 2026 Cypress Reed <cypress@fyralabs.com>

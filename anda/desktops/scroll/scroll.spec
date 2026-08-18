@@ -1,5 +1,5 @@
 Name:           scroll
-Version:        1.12.16
+Version:        1.12.19
 Release:        1%{?dist}
 Summary:        i3-compatible Wayland compositor (sway) with a PaperWM layout like niri or hyprscroller
 License:        MIT
@@ -42,6 +42,7 @@ BuildRequires:  pkgconfig(libpcre2-8)
 BuildRequires:  pkgconfig(cairo)
 BuildRequires:  pkgconfig(pango)
 BuildRequires:  pkgconfig(gdk-pixbuf-2.0)
+BuildRequires:  readline-devel
 
 Provides:       sway-scroll
 

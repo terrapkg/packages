@@ -2,13 +2,12 @@
 %global _desc The model-definition framework for state-of-the-art machine learning models.
 
 Name:			python-%{pypi_name}
-Version:		5.13.0
+Version:		5.15.0
 Release:		1%{?dist}
 Summary:		The model-definition framework for state-of-the-art machine learning models
 License:		Apache-2.0
 URL:			https://huggingface.co/docs/transformers/index
 Source0:		%{pypi_source}
-Patch0:			versions.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
@@ -28,7 +27,10 @@ Summary:        %{summary}
 %_desc
 
 %prep
-%autosetup -n %{pypi_name}-%{version} -p1
+%autosetup -n %{pypi_name}-%{version}
+
+%pyproject_patch_dependency huggingface-hub:drop_constraints
+%pyproject_patch_dependency tokenizers:drop_constraints
 
 %build
 %pyproject_wheel

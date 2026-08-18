@@ -1,5 +1,5 @@
 Name:			gradle
-Version:		9.6.1
+Version:		9.7.0
 Release:		1%{?dist}
 Summary:		Powerful build system for the JVM
 URL:			https://gradle.org/
@@ -7,8 +7,8 @@ Source0:		https://github.com/gradle/gradle/archive/refs/tags/v%{version}.tar.gz
 Packager:		madonuko <mado@fyralabs.com>
 License:		Apache-2.0
 Requires:		java coreutils findutils sed which bash
-BuildRequires:	java-21-openjdk-devel asciidoc xmlto groovy unzip git
-BuildRequires:  temurin-17-jdk temurin-17-jre anda-srpm-macros
+BuildRequires:	java-25-openjdk-devel asciidoc xmlto groovy unzip git
+BuildRequires:  temurin-17-jdk temurin-17-jre temurin-8-jdk anda-srpm-macros
 BuildArch:		noarch
 Recommends:		gradle-doc gradle-src
 
@@ -34,7 +34,6 @@ export GRADLE_HOME=/usr/share/java/gradle
 EOF
 
 %build
-export PATH="/usr/lib/jvm/java-21-openjdk/bin:${PATH}"
 ./gradlew installAll --parallel \
 	-Porg.gradle.java.installations.auto-download=false \
 	-PfinalRelease=true \

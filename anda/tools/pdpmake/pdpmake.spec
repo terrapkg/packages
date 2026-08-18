@@ -7,10 +7,10 @@
 
 Name:           pdpmake
 Version:        %{tag}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Public domain POSIX make 
 
-Packager:       metcya <metcya@gmail.com>
+Packager:       Olivia <git@olivia.sh>
 
 License:        Unlicense
 URL:            https://frippery.org/make
@@ -45,5 +45,8 @@ install -Dm 644 pdpmake.1 %{buildroot}%{_mandir}/man1/pdpmake.1
 %{_mandir}/man1/%{name}.1.*
 
 %changelog
-* Sun Jan 25 2026 metcya <metcya@gmail.com>
+* Sun Jul 19 2026 Olivia <git@olivia.sh> - 2.0.4-2
+- Update packager
+
+* Sun Jan 25 2026 Olivia <git@olivia.sh>
 - Initial package
