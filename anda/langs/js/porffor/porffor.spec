@@ -43,3 +43,7 @@ install -Dpm755 porf -t %buildroot%_bindir
 %doc README.md
 %license LICENSE
 %_bindir/porf
+
+%changelog
+* Tue Aug 18 2026 madonuko <mado@fyralabs.com> - 0~20260812git.747d551-1
+- Initial package
