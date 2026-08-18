@@ -1,7 +1,7 @@
 Name:           gpu-screen-recorder-notification
 Version:        1.3.4
 Release:        1%{?dist}
-Summary:        A fullscreen overlay UI for GPU Screen Recorder in the style of ShadowPlay
+Summary:        Notification in the style of ShadowPlay
 
 License:        GPL-3.0-or-later
 
