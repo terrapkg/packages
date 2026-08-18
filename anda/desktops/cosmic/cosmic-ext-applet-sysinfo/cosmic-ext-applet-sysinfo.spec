@@ -1,12 +1,12 @@
 %global ver 0.4.0
 %global commitdate 20260814
-%global commit f66e0c7b133bf4249d23ab7483693cedca46ad19
+%global commit a536bcff2b2638fad72d454db73c708522fc09f3
 %global shortcommit %{sub %{commit} 0 7}
 %global appid io.github.cosmic_utils.sysinfo-applet
 
 Name:           cosmic-ext-applet-sysinfo
 Version:        %{ver}^%{commitdate}.git%{shortcommit}
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Simple system info applet for cosmic
 
 SourceLicense:  GPL-3.0-or-later
