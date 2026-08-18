@@ -9,6 +9,7 @@ Source0:        https://github.com/ataraxy-labs/weave/archive/refs/tags/v%versio
 Packager:       madonuko <mado@fyralabs.com>
 
 BuildRequires:  rust-packaging
+BuildRequires:  pkgconfig(openssl)
 
 %description
 Entity-level semantic merge driver for Git.
