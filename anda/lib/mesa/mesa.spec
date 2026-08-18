@@ -87,7 +87,7 @@ Summary:        Mesa graphics libraries
 %global ver 26.2.0
 Epoch:          1
 Version:        %{lua:ver = string.gsub(rpm.expand("%{ver}"), "-", "~"); print(ver)}
-Release:        3%{?dist}
+Release:        4%{?dist}
 Packager:       Kyle Gospodnetich <me@kylegospodneti.ch>
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0
 URL:            https://mesa3d.org
@@ -118,6 +118,7 @@ Source15:       https://static.crates.io/crates/rustc-hash/rustc-hash-%{rustc_ha
 # Open Gaming Collective Patches
 Patch30:        https://raw.githubusercontent.com/OpenGamingCollective/mesa/refs/tags/%{ver}/limiter.patch
 Patch31:        https://raw.githubusercontent.com/OpenGamingCollective/mesa/refs/tags/%{ver}/radv-defaults.patch
+Patch32:        https://raw.githubusercontent.com/OpenGamingCollective/mesa/refs/tags/%{ver}/vram-overcommit.patch
 
 BuildRequires:  meson >= 1.3.0
 BuildRequires:  gcc
