@@ -10,6 +10,7 @@ Packager:       madonuko <mado@fyrlabs.com>
 BuildRequires:  bun-bin %tauri_buildrequires
 BuildRequires:  cmake(SPIRV-Headers)
 BuildRequires:  pkgconfig(gtk-layer-shell-0)
+BuildRequires:  pkgconfig(alsa)
 
 %description
 Handy is a cross-platform desktop application that provides simple, privacy-focused speech transcription. Press a shortcut, speak, and have your words appear in any text field. This happens on your own computer without sending any information to the cloud.
