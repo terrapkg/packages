@@ -35,3 +35,7 @@ Packager:       madonuko <mado@fyralabs.com>
 %doc README.md
 %_bindir/gsr-notify
 %_datadir/gsr-notify
+
+%changelog
+* Tue Aug 18 2026 madonuko <mado@fyralabs.com> - 1.3.4-1
+- Initial package
