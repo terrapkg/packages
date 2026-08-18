@@ -7,6 +7,7 @@ Release:        1%?dist
 Summary:        YAML language server
 License:        MIT
 URL:            https://github.com/redhat-developer/yaml-language-server
+Packager:       madonuko <mado@fyralabs.com>
 BuildRequires:  nodejs-packaging
 BuildRequires:  nodejs-npm
 BuildRequires:  nodejs-license-checker
