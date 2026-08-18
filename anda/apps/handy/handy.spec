@@ -9,6 +9,7 @@ Source0:        https://github.com/cjpais/Handy/archive/refs/tags/v%version.tar.
 Packager:       madonuko <mado@fyrlabs.com>
 BuildRequires:  bun-bin %tauri_buildrequires
 BuildRequires:  cmake(SPIRV-Headers)
+BuildRequires:  pkgconfig(gtk-layer-shell-0)
 
 %description
 Handy is a cross-platform desktop application that provides simple, privacy-focused speech transcription. Press a shortcut, speak, and have your words appear in any text field. This happens on your own computer without sending any information to the cloud.
@@ -30,3 +31,7 @@ Handy is a cross-platform desktop application that provides simple, privacy-focu
 %license LICENSE
 %_bindir/handy
 %_appdir/%name.desktop
+
+%changelog
+* Tue Aug 18 2026 madonuko <mado@fyralabs.com> - 0.9.5-1
+- Initial package
