@@ -57,3 +57,7 @@ setcap cap_setuid+ep /usr/bin/gsr-global-hotkeys
 %_hicolordir/*/apps/gpu-screen-recorder.png
 %_mandir/man1/gsr-ui-cli.1.*
 %_mandir/man1/gsr-ui.1.*
+
+%changelog
+* Tue Aug 18 2026 madonuko <mado@fyralabs.com> - 1.13.5-1
+- Initial package
