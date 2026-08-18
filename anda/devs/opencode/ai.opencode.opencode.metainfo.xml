@@ -5,7 +5,7 @@
   <project_license>MIT</project_license>
   <icon type="stock">utilities-terminal</icon>
 
-  <name>opencode</name>
+  <name>opencode-cli</name>
   <summary>Open source AI coding agent for the terminal, IDE, and desktop</summary>
 
   <description>
