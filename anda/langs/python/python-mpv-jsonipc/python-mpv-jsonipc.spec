@@ -28,7 +28,7 @@ Provides:       python-mpv-jsonipc
 %_desc
 
 %prep
-%autosetup -n %{pypi_name}-%{version}
+%autosetup -n python_mpv_jsonipc-%{version}
 
 %build
 %pyproject_wheel
