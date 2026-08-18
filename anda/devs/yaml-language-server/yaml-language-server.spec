@@ -5,7 +5,8 @@ Name:           %npm_name
 Version:        1.24.0
 Release:        1%?dist
 Summary:        YAML language server
-License:        MIT
+License:        MIT AND BSD-3-Clause AND ISC
+SourceLicense:  MIT
 URL:            https://github.com/redhat-developer/yaml-language-server
 Packager:       madonuko <mado@fyralabs.com>
 BuildRequires:  nodejs-packaging
