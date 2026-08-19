@@ -36,6 +36,7 @@ Requires:       kf6-kiconthemes
 Requires:       kf6-kwindowsystem
 Requires:       kf6-frameworkintegration
 Requires:       kf6-plasma
+Requires:       %{name}-devel = %{evr}
 
 %description
 %{summary}.
