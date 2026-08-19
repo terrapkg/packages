@@ -1,1 +1,1 @@
-rpm.version(gh("fluxerapp/fluxer"));
+rpm.global("ver", gh("fluxerapp/fluxer"));

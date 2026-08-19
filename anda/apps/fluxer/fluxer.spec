@@ -1,7 +1,10 @@
 %global appid app.fluxer.Fluxer
 
+%global ver fluxer.app.proxy@2026.819.164933
+%global sanitized_ver %(echo %{ver} | sed 's/^fluxer\.app\.proxy@//')
+
 Name:           fluxer
-Version:        fluxer.app.proxy@2026.819.164933
+Version:        %{sanitized_ver}
 Release:        1%{?dist}
 Summary:        Fluxer is a free and open source instant messaging and VoIP platform built for friends, groups, and communities
 URL:            https://fluxer.app
