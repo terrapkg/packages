@@ -33,7 +33,7 @@ Provides:       bundled(zlib)
 %summary.
 
 %prep
-%autosetup
+%autosetup -C
 %cargo_prep_online
 
 %build
