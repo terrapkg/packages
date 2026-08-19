@@ -1,1 +1,2 @@
-rpm.version(find_all(`/gpu-screen-recorder-notification/tag/\?h=([\d.]+)`, get(`https://git.dec05eba.com/gpu-screen-recorder-notification/refs/`))[0][1]);
+let tags = git_tags("https://repo.dec05eba.com/gpu-screen-recorder-notification");
+rpm.version(tags[tags.len()-1]);
