@@ -12,6 +12,7 @@ BuildRequires:  pkgconfig(libusb)
 BuildRequires:  cmake(VulkanMemoryAllocator)
 BuildRequires:  cmake(VulkanUtilityLibraries)
 BuildRequires:  pkgconfig(gamemode)
+BuildRequires:  cmake(sdl2)
 BuildRequires:  cmake(sdl3)
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  boost-devel
