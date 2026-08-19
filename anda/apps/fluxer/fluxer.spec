@@ -13,7 +13,7 @@ URL:            https://fluxer.app
 %global __provides_exclude %{__provides_exclude}|libcbor\.so.*|libcrypto\.so.*|libfido2\.so.*|libudev\.so.*|libz\.so.*|libcap\.so.*
 
 License:        AGPL-3.0-or-later AND %electron_license
-Source0:        https://github.com/fluxerapp/fluxer/archive/refs/tags/%version.tar.gz
+Source0:        https://github.com/fluxerapp/fluxer/archive/refs/tags/%ver.tar.gz
 BuildRequires:  rust-packaging nodejs nodejs-npm nodejs-packaging pnpm
 BuildRequires:  xorg-x11-proto-devel
 BuildRequires:  pkgconfig(openssl)
