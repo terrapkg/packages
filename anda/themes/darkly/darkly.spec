@@ -36,18 +36,9 @@ Requires:       kf6-kiconthemes
 Requires:       kf6-kwindowsystem
 Requires:       kf6-frameworkintegration
 Requires:       kf6-plasma
-Requires:       %{name}-devel = %{evr}
 
 %description
 %{summary}.
-
-%package devel
-Summary:       Development files for %{name}
-Requires:      %{name} = %{evr}
-
-%description   devel
-This package contains the development libraries for %{name}.
-
 
 %prep
 %autosetup -n Darkly-%{version}
@@ -73,8 +64,6 @@ This package contains the development libraries for %{name}.
 %{_datadir}/kservices6/darklydecorationconfig.desktop
 %{_datadir}/kstyle/themes/darkly.themerc
 %{_datadir}/plasma/desktoptheme/darkly/*
-
-%files devel
 %{_libdir}/cmake/Darkly/
 %{_qt6_plugindir}/kstyle_config/darklystyleconfig.so
 %{_qt6_plugindir}/org.kde.kdecoration3/org.kde.darkly.so
