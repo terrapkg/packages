@@ -1,7 +1,7 @@
 %undefine __brp_mangle_shebangs
 
 Name:           wlctl
-Version:        0.1.9
+Version:        0.1.10
 Release:        1%{?dist}
 Summary:        TUI for managing wifi/ethernet/vpn on Linux with Network Manager
 URL:            https://github.com/aashish-thapa/wlctl
