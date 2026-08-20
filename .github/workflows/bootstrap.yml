@@ -29,6 +29,13 @@ jobs:
           ref: el${{ matrix.version }}
           fetch-depth: 1
 
+      - name: Build anda-srpm-macros
+        run: |
+          mkdir -p anda-build/rpm/rpms
+          rpmbuild -bb anda/terra/srpm-macros/*.spec --undefine=_disable_source_fetch -D "_sourcedir $(pwd)/anda/terra/srpm-macros/" -D "_rpmdir $(pwd)/anda-build/rpm/rpms/"
+          mv ./anda-build/rpm/rpms/*/anda-*.rpm ./anda-build/rpm/rpms/
+          dnf install -y ./anda-build/rpm/rpms/anda-*.rpm
+
       - name: Install dependencies
         run: dnf builddep -y anda/terra/{mock-configs,srpm-macros,appstream-helper}/*.spec anda/{buildsys/anda,tools/subatomic}/*.spec
 
