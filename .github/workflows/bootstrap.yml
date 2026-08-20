@@ -74,6 +74,9 @@ jobs:
       - name: Build Andaman
         run: anda build anda/buildsys/anda/pkg --rpm-builder=rpmbuild
 
+      - name: Tidy up output directory
+        run: rmdir anda-build/rpm/rpms/{noarch,aarch64,x86_64} | true
+
       - name: Upload packages to subatomic
         run: |
           subatomic-cli upload --prune \
