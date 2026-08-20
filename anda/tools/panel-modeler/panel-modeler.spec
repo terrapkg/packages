@@ -1,5 +1,5 @@
 Name:   	panel-modeler
-Version:	2.1.0
+Version:	2.1.2
 Release:	1%{?dist}
 Summary:	Photovoltaic decay modeling through PVWatts
 
@@ -55,6 +55,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/dev.willo
 %{fish_completions_dir}/panel-modeler.fish
 %{_docdir}/panel-modeler/
 %{_appsdir}/%{name}.desktop
+%{_scalableiconsdir}/%{name}.svg
 %{_metainfodir}/dev.willowidk.%{name}.metainfo.xml
 
 %changelog
