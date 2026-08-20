@@ -116,5 +116,8 @@ rm -rf %buildroot%python3_sitelib%_usr
 %gopkgfiles
 
 %changelog
+* Thu Aug 20 2026 Owen Zimmerman <owen@fyralabs.com>
+- Package systemd service
+
 * Mon Mar 16 2026 Owen Zimmerman <owen@fyralabs.com>
 - Fix build, clean up spec
