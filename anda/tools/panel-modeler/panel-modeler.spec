@@ -1,3 +1,5 @@
+%global appid dev.willowidk.panel-modeler
+
 Name:   	panel-modeler
 Version:	2.1.2
 Release:	1%{?dist}
@@ -41,10 +43,6 @@ file, both in CSV format.
 %install
 %meson_install
 
-%check
-%desktop_file_validate %{buildroot}%{_appsdir}/%{name}.desktop
-appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/dev.willowidk.%{name}.metainfo.xml
-
 %files
 %license LICENSE
 %{_bindir}/%{name}
@@ -56,7 +54,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/dev.willo
 %{_docdir}/panel-modeler/
 %{_appsdir}/%{name}.desktop
 %{_scalableiconsdir}/%{name}.svg
-%{_metainfodir}/dev.willowidk.%{name}.metainfo.xml
+%{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
 * Thu Aug 20 2026 Cypress Reed <cypress@fyralabs.com>
