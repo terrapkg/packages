@@ -2,7 +2,7 @@
 
 Name:           fluxer
 Version:        2026.820.180916
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Fluxer is a free and open source instant messaging and VoIP platform built for friends, groups, and communities
 URL:            https://fluxer.app
 
