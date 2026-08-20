@@ -20,7 +20,7 @@ Snitch.}
                         utils/packaging/ui/deb/debian/changelog
 
 Name:           opensnitch
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        OpenSnitch is a GNU/Linux interactive application firewall inspired by Little Snitch
 
 License:        GPL-3.0-only AND LGPL-2.1-or-later
@@ -79,6 +79,7 @@ popd
 %install
 %gopkginstall
 install -Dm755 opensnitchd -t %buildroot%_bindir
+install -Dm644 daemon/data/init/opensnitchd.service %{buildroot}%{_unitdir}/opensnitchd.service
 
 pushd ui
 %pyproject_install
@@ -88,6 +89,15 @@ popd
 rm -rf %buildroot%python3_sitelib/tests/
 cp -r %buildroot%python3_sitelib%_usr/ %buildroot%_usr/ --preserve=all --no-target-directory
 rm -rf %buildroot%python3_sitelib%_usr
+
+%post
+%systemd_post opensnitchd.service
+
+%preun
+%systemd_preun opensnitchd.service
+
+%postun
+%systemd_postun_with_restart opensnitchd.service
 
 %files -f %{pyproject_files}
 %license LICENSE
@@ -101,6 +111,7 @@ rm -rf %buildroot%python3_sitelib%_usr
 %_datadir/kservices5/kcm_opensnitch.desktop
 %_metainfodir/io.github.evilsocket.opensnitch.appdata.xml
 %_scalableiconsdir/opensnitch-ui.svg
+%{_unitdir}/opensnitchd.service
 
 %gopkgfiles
 
