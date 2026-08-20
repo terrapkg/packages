@@ -35,6 +35,7 @@ Provides:       zipstream-ng
 %autosetup -n zipstream-ng-%{version}
 
 %build
+sed 's@/usr/bin/env python@/usr/bin/python3@g' -i src/*/*.py
 %pyproject_wheel
 
 %install
