@@ -2,7 +2,7 @@
 
 Name:           fluxer
 Version:        2026.820.180916
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Fluxer is a free and open source instant messaging and VoIP platform built for friends, groups, and communities
 URL:            https://fluxer.app
 
@@ -66,7 +66,7 @@ install -Dm644 packaging/linux/%appid.svg %{buildroot}%{_scalableiconsdir}/%appi
 %_metainfodir/%appid.metainfo.xml
 
 %changelog
-* Thu Aug 20 2026 Cypress Reed <cypress@fyralabs.com> - 2026.820.180916-1
+* Thu Aug 20 2026 Cypress Reed <cypress@fyralabs.com> - 2026.820.180916-2
 - Fix update function to only update for fluxer-app-proxy
 
 * Mon Jun 15 2026 madonuko <mado@fyralabs.com> - 2026.703.173023-1
