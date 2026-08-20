@@ -108,5 +108,5 @@ sed -i 's|/usr/sbin/bpftune|%{_bindir}/bpftune|' %{buildroot}%{_unitdir}/bpftune
 %{pcpdir}/%{upstream_name}/*
 
 %changelog
-* Wed Aug 19 2026 Kyle Gospodnetich <me@kylegospodneti.ch> - 0.4-2
+* Wed Aug 19 2026 Kyle Gospodnetich <me@kylegospodneti.ch> - 0.4-2-1
 - Initial package release
