@@ -65,9 +65,9 @@ jobs:
         run: anda build -D "vendor Terra" -rrpmbuild anda/terra/appstream-helper/pkg
 
       - name: Build Subatomic
-        run: anda build -D "vendor Terra" -rrpmbuild anda/tools/buildsys/subatomic/pkg
-      - name: Install Subatomic and anda-srpm-macros
-        run: dnf install -y ./anda-build/rpm/rpms/{subatomic,anda-srpm-macros}-*.rpm
+        run: anda build -D "vendor Terra" -rrpmbuild anda/tools/subatomic/pkg
+      - name: Install Subatomic
+        run: dnf install -y ./anda-build/rpm/rpms/subatomic-*.rpm
 
       - name: Install Build Dependencies for Andaman
         run: dnf builddep -y anda/tools/buildsys/anda/*.spec
