@@ -72,7 +72,7 @@ jobs:
       - name: Install Build Dependencies for Andaman
         run: dnf builddep -y anda/buildsys/anda/*.spec
       - name: Build Andaman
-        run: anda build anda/tools/buildsys/anda/pkg --rpm-builder=rpmbuild
+        run: anda build anda/buildsys/anda/pkg --rpm-builder=rpmbuild
 
       - name: Upload packages to subatomic
         run: |
