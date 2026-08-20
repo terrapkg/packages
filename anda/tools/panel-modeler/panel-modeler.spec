@@ -60,7 +60,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/dev.willo
 
 %changelog
 * Thu Aug 20 2026 Cypress Reed <cypress@fyralabs.com>
-- Add bash/zsh/fish completions
+- Add bash/zsh/fish completions and .desktop file and appstream metainfo
 - Add packages required for v2.1.0
 
 * Thu Jul 30 2026 Cypress Reed <cypress@fyralabs.com>
