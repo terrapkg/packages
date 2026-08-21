@@ -43,14 +43,14 @@ file, both in CSV format.
 %install
 %meson_install
 
+%check
+%desktop_file_validate %{buildroot}%{_appsdir}/%{name}.desktop
+
 %files
 %license LICENSE
 %{_bindir}/%{name}
 %{_bindir}/%{name}-gui
 %{_datadir}/panel-modeler/
-%{bash_completions_dir}/panel-modeler.bash
-%{zsh_completions_dir}/_panel-modeler
-%{fish_completions_dir}/panel-modeler.fish
 %{_docdir}/panel-modeler/
 %{_appsdir}/%{name}.desktop
 %{_scalableiconsdir}/%{name}.svg
