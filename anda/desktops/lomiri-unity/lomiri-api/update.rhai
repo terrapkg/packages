@@ -1,3 +1,3 @@
-let txt = get("https://gitlab.com/api/v4/projects/17117186/repository/tags");
-let ver = txt.json_arr()[0].name;
+let tags = git_tags("https://gitlab.com/ubports/development/core/lomiri-api");
+let ver = tags[tags.len - 1];
 rpm.version(ver);
