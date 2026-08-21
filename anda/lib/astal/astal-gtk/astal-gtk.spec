@@ -1,13 +1,14 @@
 %global commit a16a08c662d9decece15b7ee6d8019e686e529ea
-%global shortcommit a16a08c
+%global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global commit_date 20260819
 
 Name:			astal
-Version:		0^%commit_date.%commit
+Version:		0^%{commit_date}git.%{shortcommit}
 Release:		1%{?dist}
 Summary:		Building blocks for creating custom desktop shells
 License:		LGPL-2.1-only
 URL:			https://aylur.github.io/astal
+Source0:        https://github.com/Aylur/astal/archive/%{commit}/astal-%{commit}.tar.gz
 Packager:		madonuko <mado@fyralabs.com>
 BuildRequires:	meson gobject-introspection vala valadoc cmake
 BuildRequires:	pkgconfig(astal-io-0.1)
