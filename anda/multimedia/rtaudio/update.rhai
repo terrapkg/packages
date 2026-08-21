@@ -1,5 +1,6 @@
 rpm.global("commit", gh_commit("thestk/rtaudio"));
 if rpm.changed() {
+    rpm.release();
     let v = gh("thestk/rtaudio");
     v.crop(1);
 	rpm.global("ver", v);
