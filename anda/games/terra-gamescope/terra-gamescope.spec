@@ -2,15 +2,15 @@
 
 %global _default_patch_fuzz 2
 %global build_timestamp %(date +"%Y%m%d")
-%global gamescope_commit 49771ecf8ff3ea07622f76a0481bd4d917ba2805
+%global gamescope_commit a057260524f04f138eac0cda9d324d8debf2ea7b
 %define short_commit %(echo %{gamescope_commit} | cut -c1-8)
 
 Name:           terra-gamescope
 Version:        137.%{short_commit}
-Release:        2%?dist
+Release:        1%?dist
 Summary:        Micro-compositor for video games on Wayland
 
-License:        BSD
+License:        BSD-2-Clause
 URL:            https://github.com/OpenGamingCollective/gamescope
 
 Provides:       gamescope = %{version}-%{release}
@@ -103,12 +103,12 @@ BuildRequires:  pkgconfig(xwayland)
 
 %package libs
 Summary:	libs for %{name}
+Requires: terra-gamescope = %{evr}
 %description libs
 %summary
 
 %prep
 %setup -Tc
-# git clone --depth 1 --branch %%{gamescope_tag} %%{url}.git
 git clone %{url}.git $PWD
 git checkout %{gamescope_commit}
 git submodule update --init --recursive
@@ -120,11 +120,13 @@ sed -i 's^../thirdparty/SPIRV-Headers/include/spirv/^/usr/include/spirv/^' src/m
 
 %autopatch -p1
 
-%build
+%conf
 export PKG_CONFIG_PATH=pkgconfig
 %meson \
     --auto-features=enabled \
     -Dforce_fallback_for=vkroots,wlroots,libliftoff
+
+%build
 %meson_build
 
 %install

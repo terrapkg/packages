@@ -1,9 +1,9 @@
 %global debug_package   %{nil}
 
-%global ver 5.0.0-beta.8
+%global ver 5.0.0-beta.9
 
 Name:   	noctalia
-Version:	5.0.0~beta.8
+Version:	5.0.0~beta.9
 Release:	1%{?dist}
 Summary:	A sleek, customizable desktop shell crafted for Wayland
 

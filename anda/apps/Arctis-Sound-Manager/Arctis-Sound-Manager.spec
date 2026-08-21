@@ -1,10 +1,10 @@
 %global pypi_name arctis-sound-manager
 %global _desc Linux GUI for SteelSeries Arctis headsets — Nova Pro Wireless & Wired, Nova Pro Omni, Nova Elite, Nova 7/7P/5/3, Arctis 7/7+/9/Pro Wireless. Device settings, Sonar EQ, 4-channel Game/Chat/Media mixer, PipeWire routing.
 
-%global arctis_sound_manager_services arctis-manager.service arctis-video-router.service arctis-gui.service
+%global arctis_sound_manager_services arctis-manager.service arctis-video-router.service arctis-stream-guard.service app-ArctisManager.service
 
 Name:			python-%{pypi_name}
-Version:		1.2.33
+Version:		1.4.3
 Release:		1%{?dist}
 Summary:		GUI for SteelSeries Arctis headsets
 License:		GPL-3.0-or-later
@@ -81,9 +81,7 @@ python3 scripts/generate_udev_rules.py src/arctis_sound_manager/devices/ \
     > %{buildroot}%{_udevrulesdir}/91-steelseries-arctis.rules
 
 # Systemd user services (single source of truth in systemd/, not heredocs)
-install -Dm644 systemd/arctis-manager.service       %{buildroot}%{_userunitdir}/arctis-manager.service
-install -Dm644 systemd/arctis-video-router.service  %{buildroot}%{_userunitdir}/arctis-video-router.service
-install -Dm644 systemd/arctis-gui.service           %{buildroot}%{_userunitdir}/arctis-gui.service
+install -Dm644 systemd/*.service -t %{buildroot}%{_userunitdir}
 
 # dinit service templates
 install -Dm644 dinit/arctis-manager %{buildroot}%{_datadir}/%{name}/dinit/arctis-manager
@@ -130,6 +128,7 @@ install -Dm644 debian/asm-first-run.desktop \
 %doc README.md CONTRIBUTING.md CHANGELOG.md
 %license LICENSE
 %{_bindir}/asm-cli
+%{_bindir}/asm-clipd
 %{_bindir}/asm-daemon
 %{_bindir}/asm-diag-dinit
 %{_bindir}/asm-gui
@@ -139,7 +138,8 @@ install -Dm644 debian/asm-first-run.desktop \
 %{_udevrulesdir}/91-steelseries-arctis.rules
 %{_userunitdir}/arctis-manager.service
 %{_userunitdir}/arctis-video-router.service
-%{_userunitdir}/arctis-gui.service
+%{_userunitdir}/arctis-stream-guard.service
+%{_userunitdir}/app-ArctisManager.service
 %{_datadir}/%{name}/dinit/arctis-manager
 %{_datadir}/%{name}/dinit/arctis-video-router
 %{_datadir}/%{name}/dinit/pipewire-filter-chain

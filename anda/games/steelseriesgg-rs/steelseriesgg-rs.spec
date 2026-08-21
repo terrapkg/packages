@@ -1,5 +1,5 @@
 Name:           steelseriesgg-rs
-Version:        0.1.2
+Version:        0.1.4
 Release:        1%{?dist}
 Summary:        Open-source SteelSeries GG replacement for Linux
 URL:            https://github.com/Ven0m0/steelseriesgg-rs

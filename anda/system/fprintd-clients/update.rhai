@@ -1,1 +1,1 @@
-rpm.version(gitlab("gitlab.freedesktop.org", "6774"));
+rpm.version(gitlab_tag("gitlab.freedesktop.org", "6774"));

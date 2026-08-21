@@ -1,6 +1,6 @@
 Name:           budgie-extras
-Version:        2.2.3
-Release:        3%{?dist}
+Version:        2.3.0
+Release:        1%{?dist}
 
 License:        GPL-3.0-or-later
 Summary:        Additional Budgie Desktop enhancements for user experience
