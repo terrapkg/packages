@@ -1,5 +1,9 @@
-let v = gh_tag("warpdotdev/warp");
+let tags = git_tags("https://github.com/warpdotdev/warp");
+tags.reverse();
 
-if `v[\d.]+\.stable_[\d]+`.find_all(v).len == 1 {
-  rpm.version(find(`v([\d.]+)\.stable_[\d]+`, v, 1));
+for tag in tags {
+  if `v[\\d.]+\\.stable_[\\d]+`.find_all(tag).len == 1 {
+    rpm.version(find(`v([\\d.]+)\\.stable_[\\d]+`, tag, 1));
+    break;
+  }
 }
