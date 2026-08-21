@@ -1,5 +1,5 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-settings-components
-%global commit 3fcff0a27374d675702671564018b10d3627bd1b
+
 %forgemeta
 
 Name:       lomiri-settings-components
@@ -8,7 +8,7 @@ Release:    1%{?dist}
 Summary:    The system settings components for Lomiri
 License:    GPLv3 AND LGPLv3
 URL:        https://gitlab.com/ubports/development/core/lomiri-settings-components
-Source0:    %{url}/-/archive/%commit/lomiri-settings-components-%commit.tar.gz
+Source0:    %{url}/-/archive/%{version}/lomiri-settings-components-%{version}.tar.gz
 
 BuildRequires: cmake
 BuildRequires: gcc-c++
@@ -22,7 +22,7 @@ Recommends:    lomiri-system-settings
 The system settings qml components for lomiri-system-settings.
 
 %prep
-%autosetup -n %{name}-%commit
+%autosetup -n %{name}-%{version}
 
 %build
 %cmake

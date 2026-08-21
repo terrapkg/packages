@@ -1,5 +1,5 @@
 %global forgeurl https://gitlab.com/ubports/development/core/libqtdbusmock
-%global commit e875ddd9b79d87bffe6b10047e592b304bd62a47
+
 %forgemeta
 
 Name:       qtdbusmock
@@ -8,7 +8,7 @@ Release:    1%{?dist}
 Summary:    Library for mocking DBus interactions using Qt
 License:    LGPL-3.0-or-later
 URL:        https://gitlab.com/ubports/development/core/libqtdbusmock
-Source0:    %{url}/-/archive/%commit/libqtdbusmock-%commit.tar.gz
+Source0:    %{url}/-/archive/%{version}/libqtdbusmock-%{version}.tar.gz
 
 BuildRequires: cmake
 BuildRequires: cmake-extras
@@ -31,7 +31,7 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %prep
-%autosetup -n libqtdbusmock-%commit
+%autosetup -n libqtdbusmock-%{version}
 
 %conf
 %cmake -DCMAKE_POLICY_VERSION_MINIMUM=3.5

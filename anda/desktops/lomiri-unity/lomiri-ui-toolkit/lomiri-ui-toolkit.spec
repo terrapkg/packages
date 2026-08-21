@@ -1,5 +1,5 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-ui-toolkit
-%global commit 74d94596a8b273dc02dc6d5a44d614a16bb2383b
+
 %forgemeta
 
 Name:           lomiri-ui-toolkit
@@ -9,7 +9,7 @@ Summary:        QML components to ease the creation of beautiful applications in
 
 License:        LGPL-3.0
 URL:            https://gitlab.com/ubports/development/core/lomiri-ui-toolkit
-Source0:        %{url}/-/archive/%commit/lomiri-ui-toolkit-%commit.tar.gz
+Source0:        %{url}/-/archive/%{version}/lomiri-ui-toolkit-%{version}.tar.gz
 Patch0:         https://sources.debian.org/data/main/l/lomiri-ui-toolkit/1.3.5110+dfsg-2/debian/patches/2003_stop-using-Ubuntu-fonts.patch
 
 BuildRequires: pkgconfig
@@ -80,7 +80,7 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 Examples for Lomiri-ui-toolkit.
 
 %prep
-%autosetup -n lomiri-ui-toolkit-%commit -p1
+%autosetup -n lomiri-ui-toolkit-%{version} -p1
 
 %build
 %{qmake_qt5} 'CONFIG+=ubuntu-uitk-compat' 'CONFIG+=test'

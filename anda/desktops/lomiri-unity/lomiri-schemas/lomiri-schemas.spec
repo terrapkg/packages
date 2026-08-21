@@ -1,5 +1,5 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-schemas
-%global commit 1e7766c845373fd4689dae9307274c3dc4f1ac2d
+
 %forgemeta
 
 Name:       lomiri-schemas
@@ -8,7 +8,7 @@ Release:    1%{?dist}
 Summary:    Configuration schemas for lomiri
 License:    LGPL-2.0-or-later
 URL:        https://gitlab.com/ubports/development/core/lomiri-schemas
-Source0:    %url/-/archive/%commit/lomiri-schemas-%commit.tar.gz
+Source0:    %url/-/archive/%{version}/lomiri-schemas-%{version}.tar.gz
 Source1:    com.lomiri.Shell.gschema.xml
 BuildArch:  noarch
 
@@ -22,7 +22,7 @@ BuildRequires: intltool
 Configuration schemas for lomiri desktop enviroment.
 
 %prep
-%autosetup -n %{name}-%commit
+%autosetup -n %{name}-%{version}
 
 %build
 %cmake -DCMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT=true
