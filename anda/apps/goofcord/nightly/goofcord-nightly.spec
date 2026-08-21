@@ -7,7 +7,7 @@
 %global appid io.github.milkshiift.GoofCord
 
 Name:          %{base_name}-nightly
-Version:       %{ver}^%{commit_date}.git.%{shortcommit}
+Version:       %{ver}%{commit_date}.git.%{shortcommit}
 Release:       1%{?dist}
 License:       OSL-3.0
 Summary:       A privacy-minded Legcord fork.
