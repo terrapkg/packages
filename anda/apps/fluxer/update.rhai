@@ -1,6 +1,6 @@
-let tags = get("https://api.github.com/repos/fluxerapp/fluxer/tags?per_page=100").json_arr();
+let tags = git_tags("https://github.com/fluxerapp/fluxer");
 for tag in tags {
-    let v = tag.name;
+    let v = tag;
     if v.starts_with("fluxer-app-proxy@") {
         v.crop(17);
         rpm.version(v);
