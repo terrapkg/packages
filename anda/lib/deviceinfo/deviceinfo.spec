@@ -1,5 +1,5 @@
 %global forgeurl https://gitlab.com/ubports/development/core/deviceinfo
-%global commit 41a4e2b50c18a4650cd3c3dae83cce72017fa74b
+
 %forgemeta
 
 Name:       deviceinfo
@@ -8,7 +8,7 @@ Release:    2%?dist
 Summary:    Library to detect and configure devices
 License:    GPL-3.0-or-later
 URL:        https://gitlab.com/ubports/development/core/deviceinfo
-Source0:    %{url}/-/archive/%commit/deviceinfo-%commit.tar.gz
+Source0:    %{url}/-/archive/%{version}/deviceinfo-%{version}.tar.gz
 
 BuildRequires: cmake
 BuildRequires: cmake-extras
@@ -29,7 +29,7 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %prep
-%autosetup -n deviceinfo-%commit
+%autosetup -n deviceinfo-%{version}
 
 %conf
 %cmake
