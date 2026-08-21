@@ -1,6 +1,6 @@
-%global commit 7f63a9da2e8ed83403f6f920e9b1628a37b38ef4
+%global commit d2e771537c2a496fb34de8dcfe9ac3bfb97cb262
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20251215
+%global commit_date 20260821
 %global ver 5.12.0.4
 %global modulename rtl8821cu
 %global git_name 8821cu-20210916
@@ -9,7 +9,7 @@ Linux Driver for USB Wi-Fi Adapters that are based on the RTL8811CU, RTL8821CU, 
 
 Name:          dkms-%{modulename}
 Version:       %{ver}^%{commit_date}git.%{shortcommit}
-Release:       3%{?dist}
+Release:       1%{?dist}
 Summary:       Linux Driver for USB Wi-Fi Adapters using RTL8821 chipsets
 License:       GPL-2.0-only
 URL:           https://github.com/morrownr/8821cu-20210916
