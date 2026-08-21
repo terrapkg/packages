@@ -1,1 +1,1 @@
-rpm.version(gitlab_tag("25716028"));
+rpm.version(gitlab_tag("24742019"));
