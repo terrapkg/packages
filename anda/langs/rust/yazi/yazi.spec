@@ -36,6 +36,7 @@ A new article explaining its internal workings: Why is Yazi Fast?
 %cargo_prep_online
 
 %build
+export VERGEN_GIT_SHA="Terra"
 %cargo_build
 
 %install
