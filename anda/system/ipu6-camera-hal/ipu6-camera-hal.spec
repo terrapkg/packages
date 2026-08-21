@@ -1,5 +1,5 @@
-%global commit 9899efa70921906ee6dd23c9f83aff343968f164
-%global commit_date 20260121
+%global commit 6fefa86dfa14bb33d908a46f104a96c59b41c7eb
+%global commit_date 20260821
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global build_cflags %{__build_flags_lang_c} %{?_distro_extra_cflags} -Wno-alloc-size-larger-than
 %global build_cxxflags %{__build_flags_lang_cxx} %{?_distro_extra_cxxflags} -Wno-alloc-size-larger-than
@@ -8,7 +8,7 @@
 Name:           ipu6-camera-hal
 Summary:        Hardware abstraction layer for Intel IPU6
 Version:        %{ver}^%{commit_date}git%{shortcommit}
-Release:        2%{?dist}
+Release:        1%{?dist}
 License:        Apache-2.0
 URL:            https://github.com/intel/ipu6-camera-hal
 Source0:        %{url}/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
