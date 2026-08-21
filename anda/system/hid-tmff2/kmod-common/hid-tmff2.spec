@@ -34,16 +34,12 @@ Akmods modules for the akmod-%{name} package.
 echo hid-tmff-new > %{name}.conf
 
 %install
-# UDev rules:
-install -Dpm644 udev/99-thrustmaster.rules -t %{buildroot}%{_udevrulesdir}/
-
 # Akmods modules
 install -Dm644 %{name}.conf -t %{buildroot}%{_modulesloaddir}
 
 %files
 %license LICENSE
 %doc README.md
-%{_udevrulesdir}/99-thrustmaster.rules
 
 %files akmod-modules
 %{_modulesloaddir}/%{name}.conf
