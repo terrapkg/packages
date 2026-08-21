@@ -1,7 +1,7 @@
 %global ver 0.0.15-beta
 
 Name:          holyc
-Version:       %(echo "%{ver}" | sed 's/-/~/g')
+Version:       0.0.15~beta
 Release:       1%{?dist}
 Summary:       HolyC compiler and transpiler
 License:       BSD-2-Clause
