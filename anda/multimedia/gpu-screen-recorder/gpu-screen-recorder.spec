@@ -1,6 +1,6 @@
 Name:           gpu-screen-recorder
 Version:        6.0.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A shadowplay-like screen recorder for Linux
 
 License:        GPL-3.0-or-later
@@ -64,11 +64,13 @@ Shadowplay-like screen recorder for Linux. Uses GPU acceleration to record in H.
 %license LICENSE
 %doc README.md
 %{_bindir}/%{name}
+%{_bindir}/gsr-cli
 %caps(cap_sys_admin+ep) %{_bindir}/gsr-kms-server
 %{_datadir}/%{name}/scripts/*.sh
 %{_includedir}/gsr/plugin.h
 %{_userunitdir}/%{name}.service
 %{_modprobedir}/gsr-nvidia.conf
+%{_mandir}/man1/gsr-cli.1*
 %{_mandir}/man1/gsr-kms-server.1*
 %{_mandir}/man1/%{name}.1*
 
