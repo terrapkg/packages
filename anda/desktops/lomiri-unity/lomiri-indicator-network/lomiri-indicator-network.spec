@@ -1,9 +1,9 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-indicator-network
 
-%forgemeta
-
 Name:       lomiri-indicator-network
 Version:    1.99.0
+
+%forgemeta
 Release:    1%{?dist}
 Summary:    The Network indicator for Ubuntu Touch
 License:    GPL-3.0 AND LGPL-3.0

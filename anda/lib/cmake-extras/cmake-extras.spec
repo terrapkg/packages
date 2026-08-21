@@ -1,9 +1,9 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-api
 
-%forgemeta
-
 Name:       cmake-extras
 Version:    1.10
+
+%forgemeta
 Release:    1%{?dist}
 Summary:    A collection of add-ons for the CMake build tool
 License:    GPL-3.0-or-later

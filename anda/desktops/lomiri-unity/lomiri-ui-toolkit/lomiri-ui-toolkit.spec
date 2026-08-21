@@ -1,9 +1,9 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-ui-toolkit
 
-%forgemeta
-
 Name:           lomiri-ui-toolkit
 Version:        1.3.5907
+
+%forgemeta
 Release:        1%{?dist}
 Summary:        QML components to ease the creation of beautiful applications in QML for Lomiri
 

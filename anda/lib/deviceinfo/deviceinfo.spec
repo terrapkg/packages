@@ -1,9 +1,9 @@
 %global forgeurl https://gitlab.com/ubports/development/core/deviceinfo
 
-%forgemeta
-
 Name:       deviceinfo
 Version:    0.2.4
+
+%forgemeta
 Release:    2%?dist
 Summary:    Library to detect and configure devices
 License:    GPL-3.0-or-later

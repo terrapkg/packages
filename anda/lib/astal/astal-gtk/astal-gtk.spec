@@ -59,7 +59,7 @@ This package contains development files and documentation for astal-gtk4.
 
 
 %prep
-%git_clone https://github.com/Aylur/astal
+%git_clone https://github.com/Aylur/astal %{commit}
 
 %build
 my_build() {

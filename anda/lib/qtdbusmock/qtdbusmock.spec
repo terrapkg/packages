@@ -1,9 +1,9 @@
 %global forgeurl https://gitlab.com/ubports/development/core/libqtdbusmock
 
-%forgemeta
-
 Name:       qtdbusmock
 Version:    0.10.0
+
+%forgemeta
 Release:    1%{?dist}
 Summary:    Library for mocking DBus interactions using Qt
 License:    LGPL-3.0-or-later

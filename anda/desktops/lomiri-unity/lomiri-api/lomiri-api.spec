@@ -1,9 +1,9 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-api
 
-%forgemeta
-
 Name:          lomiri-api
 Version:       0.3.2
+
+%forgemeta
 Release:       1%{?dist}
 Summary:       API for Lomiri
 

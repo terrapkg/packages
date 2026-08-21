@@ -1,9 +1,9 @@
 %global forgeurl https://gitlab.com/ubports/development/core/click
 
-%forgemeta
-
 Name:           click
 Version:        0.5.2
+
+%forgemeta
 Release:        4%?dist
 Summary:        An app building method
 License:        LGPL-3.0-or-later

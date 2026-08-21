@@ -1,12 +1,13 @@
 %global appid io.missioncenter.MissionCenter
 
 %global forgeurl0 https://gitlab.com/mission-center-devs/mission-center
-%global commit1 a5272b3c1d853caa4044b737cf49257bfc4c86f2
-
-%forgemeta -a
 
 Name:           mission-center
 Version:        1.2.0
+%global tag0 v%{version}
+%global commit1 a5272b3c1d853caa4044b737cf49257bfc4c86f2
+
+%forgemeta -a
 Release:        1%{?dist}
 Summary:        Monitor your CPU, Memory, Disk, Network and GPU usage
 SourceLicense:  GPL-3.0-or-later
