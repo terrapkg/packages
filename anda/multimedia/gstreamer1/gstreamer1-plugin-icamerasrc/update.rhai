@@ -5,3 +5,7 @@ let d = json.commit.author.date;
 d.truncate(10);
 rpm.global("commit", c);
 rpm.global("fulldate", d);
+
+if rpm.changed() {
+    rpm.release();
+}
