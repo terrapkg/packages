@@ -6,7 +6,7 @@ rpm.global("commit", gh_commit("Milkshiift/GoofCord"));
      let v = sub(`-beta\.\d+`, `~`, v);
      rpm.global("ver", v);
    } else {
-   rpm.global("ver", v + `^`);
+   rpm.global("ver", v);
    }
    rpm.global("commit_date", date());
    rpm.release();
