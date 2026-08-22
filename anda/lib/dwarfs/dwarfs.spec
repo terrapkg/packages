@@ -103,6 +103,10 @@ Zsh shell completion for dwarfs.
 
 %install
 %cmake_install
+rm %{buildroot}%{_sbindir}/mount.%{name}
+# even if we pass a correct path to INSTALL_SBINDIR, the / at the beginning of the path is hardcoded in the cmake file
+# replace with our own symlink.
+ln -sr %{buildroot}%{_sbindir}/dwarfs %{buildroot}%{_sbindir}/mount.%{name}
 
 %files
 %doc README.md
