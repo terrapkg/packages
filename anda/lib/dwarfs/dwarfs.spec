@@ -11,6 +11,7 @@ Summary:       A fast high compression read-only file system for Linux, Windows 
 License:       GPL-3.0-or-later
 URL:           https://github.com/mhx/%{name}
 Source0:       %{url}/archive/refs/tags/v%{version}.tar.gz
+BuildRequires: anda-srpm-macros
 BuildRequires: binutils-devel
 BuildRequires: boost-devel
 %if 0%{?fedora} >= 44
@@ -96,7 +97,6 @@ Zsh shell completion for dwarfs.
 -DWITH_FUSE_DRIVER=ON \
 -DBUILD_SHARED_LIBS=ON \
 -DWITH_MAN_OPTION=OFF \
--DCMAKE_INSTALL_SBINDIR="%(echo %{_sbindir} | sed 's|^/usr||')"
 
 %build
 %cmake_build
