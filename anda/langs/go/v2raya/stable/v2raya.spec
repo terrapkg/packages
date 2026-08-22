@@ -1,5 +1,5 @@
 %global goipath         github.com/v2rayA/v2rayA
-Version:                2.4.12
+Version:                2.4.13
 
 %global golicenses      LICENSE
 %global godocs          README.md 
