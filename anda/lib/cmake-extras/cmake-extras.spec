@@ -1,14 +1,14 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-api
-%global commit 99aab4514ee182cb7a94821b4b51e4d8cb9a82ef
-%forgemeta
 
 Name:       cmake-extras
 Version:    1.10
+
+%forgemeta
 Release:    1%{?dist}
 Summary:    A collection of add-ons for the CMake build tool
 License:    GPL-3.0-or-later
 URL:        https://gitlab.com/ubports/development/core/cmake-extras
-Source0:    %{url}/-/archive/%commit/cmake-extras-%commit.tar.gz
+Source0:    %{url}/-/archive/%{version}/cmake-extras-%{version}.tar.gz
 BuildArch:  noarch
 
 BuildRequires: cmake
@@ -25,7 +25,7 @@ A collection of add-ons for the CMake build tool used to build lomiri and other
 applications.
 
 %prep
-%autosetup -n cmake-extras-%commit
+%autosetup -n cmake-extras-%{version}
 sed -i 's/#!\/bin\/sh/#!\/usr\/bin\/sh/' src/FormatCode/formatcode.in
 sed -i 's/#!\/bin\/sh/#!\/usr\/bin\/sh/' src/CopyrightTest/check_copyright.sh
 sed -i 's/python/python3/' src/IncludeChecker/include_checker.py

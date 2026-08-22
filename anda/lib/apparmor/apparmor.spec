@@ -1,5 +1,6 @@
 %{?python_enable_dependency_generator}
 
+%global normver 6.0.0-alpha1
 %global __arch_install_post /bin/true
 %global _sbindir /usr/sbin
 
@@ -18,7 +19,6 @@ Release:        1%{?dist}
 Summary:        AppArmor userspace components
 
 %define baseversion %(echo %{version} | cut -d. -f-2)
-%global normver %(echo %version | sed 's/~/-/')
 
 License:        GPL-2.0-only
 URL:            https://gitlab.com/apparmor/apparmor

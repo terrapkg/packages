@@ -4,5 +4,6 @@ project pkg {
 	}
 	labels {
 		updbranch = 1
+		nightly = 1
 	}
 }

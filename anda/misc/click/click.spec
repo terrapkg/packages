@@ -1,14 +1,14 @@
 %global forgeurl https://gitlab.com/ubports/development/core/click
-%global commit 6e4342ae0ef3710343e2dbf0b8da586853625e2e
-%forgemeta
 
 Name:           click
 Version:        0.5.2
+
+%forgemeta
 Release:        4%?dist
 Summary:        An app building method
 License:        LGPL-3.0-or-later
 URL:            https://gitlab.com/ubports/development/core/click
-Source0:        %{url}/-/archive/%commit/click-%commit.tar.gz
+Source0:        %{url}/-/archive/%{version}/click-%{version}.tar.gz
 
 BuildRequires: automake libtool
 BuildRequires: make
@@ -56,7 +56,7 @@ BuildArch: noarch
 Provides HTML and Manpage (documentation) for Click.
 
 %prep
-%autosetup -n click-%commit
+%autosetup -n click-%{version}
 
 %conf
 NOCONFIGURE=1 \
