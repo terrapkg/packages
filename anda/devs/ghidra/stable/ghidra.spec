@@ -17,7 +17,7 @@
 Name:           ghidra
 Version:        12.1.3
 %global         short_version %{version}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        a software reverse engineering (SRE) framework
 Packager:       Jan200101 <sentrycraft123@gmail.com>
 
@@ -115,9 +115,9 @@ ln -s %{_libdir}/%{name}/server/svrUninstall %{buildroot}/%{_bindir}/%{name}-ser
 for size in 16 24 32 48 64 128 256; do
     mkdir -p "%{buildroot}/%{_hicolordir}/${size}x${size}/apps"
 
-    convert \
+    magick \
         "%{ghidra_dir}/Ghidra/RuntimeScripts/Windows/support/ghidra.ico" \
-        -thumbnail 256x256 \
+        -thumbnail ${size}x${size} \
         -alpha on \
         -background none \
         -flatten \
@@ -145,5 +145,8 @@ done
 %{_libdir}/%{name}/docs/
 
 %changelog
+* Sat Aug 22 2026 Jan200101 <sentrycraft123@gmail.com> - 12.1.3-2
+- fix application icons
+
 * Sun Jun 28 2026 Jan200101 <sentrycraft123@gmail.com>
 - Initial package
