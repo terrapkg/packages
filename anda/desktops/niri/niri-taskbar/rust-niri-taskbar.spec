@@ -2,7 +2,7 @@
 %bcond check 0
 
 %global crate niri-taskbar
-%global crate_version 0.2.0+niri.25.05
+%global crate_version 0.4.0+niri.25.11
 
 Name:           rust-niri-taskbar
 Version:        %(echo %crate_version | sed 's/\+.*//g')
@@ -12,8 +12,6 @@ Summary:        Niri taskbar module for Waybar
 License:        MIT
 URL:            https://crates.io/crates/niri-taskbar
 Source:         https://static.crates.io/crates/%{crate}/%{crate}-%{crate_version}.crate
-# Automatically generated patch to strip dependencies and normalize metadata
-Patch:          niri-taskbar-fix-metadata-auto.diff
 
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  pkgconfig(cairo-gobject)
