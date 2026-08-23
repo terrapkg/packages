@@ -11,7 +11,7 @@ Requires:		ffmpeg libheif gtk3 webkit2gtk4.1 pango gdk-pixbuf2 cairo libsoup gli
 BuildRequires:	pnpm git-core perl gcc javascriptcoregtk4.1-devel pkgconfig(webkit2gtk-4.1)
 BuildRequires:  pkgconfig(libsoup-2.4) glib2-devel gtk3-devel openssl-devel pkgconfig(zlib)
 BuildRequires:  openssl clang-devel
-BuildRequires:	bun rustup
+BuildRequires:	bun-bin rustup
 
 %description
 Spacedrive is an open source cross-platform file manager,
