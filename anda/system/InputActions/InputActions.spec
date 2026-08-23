@@ -32,14 +32,12 @@ sed 's@kwin/wayland/textinput_v1.h@kwin/wayland/textinput_v2.h@g' -i kwin/src/in
 # HACK: force use of V2 and pray
 sed 's@V1@V2@g' -i kwin/src/input/KWinVirtualKeyboard.cpp
 
-
 %files
 %doc README.md
 %license LICENSE
 %_bindir/inputactions
 %_qt6_plugindir/kwin/effects/configs/inputactions_kwin_kcm.so
 %_qt6_plugindir/kwin/effects/plugins/kwin_gestures.so
-
 
 %changelog
 * Fri Jul 24 2026 Owen Zimmerman <owen@fyralabs.com>
