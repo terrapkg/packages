@@ -12,6 +12,8 @@ Summary:        Niri taskbar module for Waybar
 License:        MIT
 URL:            https://crates.io/crates/niri-taskbar
 Source:         https://static.crates.io/crates/%{crate}/%{crate}-%{crate_version}.crate
+# https://github.com/LawnGnome/niri-taskbar/pull/34
+Patch:          https://github.com/LawnGnome/niri-taskbar/commit/b73c567ca27aa8f266be1c4dc0275dc4db7e1b70.patch
 
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  pkgconfig(cairo-gobject)
