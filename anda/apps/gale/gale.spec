@@ -3,7 +3,7 @@
 %global appid com.kesomannen.gale
 
 Name:           gale
-Version:        1.21.0
+Version:        1.22.0
 Release:        1%{?dist}
 Summary:        A modern mod manager for Thunderstore
 Packager:       Jan200101 <sentrycraft123@gmail.com>
