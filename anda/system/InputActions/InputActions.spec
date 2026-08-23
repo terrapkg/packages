@@ -23,7 +23,6 @@ BuildOption(conf):  -DINPUTACTIONS_BUILD_CTL=ON -DINPUTACTIONS_BUILD_KWIN=ON
 %description
 %{summary}.
 
-
 %prep
 %git_clone https://github.com/taj-ny/InputActions
 sed -i '1i #include <unistd.h>' \
