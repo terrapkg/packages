@@ -25,3 +25,7 @@ The web version of TIDAL running in electron with Hi-Fi (High & Max) support tha
 %doc README.md
 %license LICENSE
 %_bindir/%name
+
+%changelog
+* Mon Aug 17 2026 madonuko <mado@fyralabs.com>
+- Initial package
