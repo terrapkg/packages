@@ -27,6 +27,7 @@ BuildRequires:  pkgconfig(tomlplusplus)
 BuildRequires:  pkgconfig(gbm)
 BuildRequires:  pkgconfig(nlohmann_json)
 BuildRequires:  pkgconfig(gtk4)
+BuildRequires:  systemd-rpm-macros
 
 Packager:       Cypress Reed <cypress@fyralabs.com>
 
@@ -48,9 +49,24 @@ sed -i "s/'unknown'/'%{shortcommit}'/g" meson.build
 %install
 %meson_install
 
+%post
+%systemd_post xdg-desktop-portal-umbriel.service
+
+%preun
+%systemd_preun xdg-desktop-portal-umbriel.service
+
+%postun
+%systemd_postun xdg-desktop-portal-umbriel.service
+
 %files
 %doc README.md
 %license LICENSE
+%{_userunitdir}/xdg-desktop-portal-umbriel.service
+%{_libexecdir}/umbriel-share-picker
+%{_libexecdir}/xdg-desktop-portal-umbriel
+%{_datadir}/dbus-1/services/org.freedesktop.impl.portal.desktop.umbriel.service
+%{_datadir}/xdg-desktop-portal/portals/umbriel.portal
+%{_datadir}/xdg-desktop-portal/umbriel-portals.conf
 
 %changelog
 * Mon Aug 24 2026 Cypress Reed <cypress@fyralabs.com>
