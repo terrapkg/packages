@@ -1,6 +1,6 @@
 Name:           darkly
-Version:        0.5.38
-Release:        2%{?dist}
+Version:        0.5.39
+Release:        1%{?dist}
 License:        GPL-2.0-or-later
 Summary:        Forked from the lightly theme, this style brings a fresh and unique look to your applications
 URL:            https://github.com/Bali10050/Darkly
