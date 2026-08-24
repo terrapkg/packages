@@ -39,7 +39,7 @@ Packager:       Cypress Reed <cypress@fyralabs.com>
 %{summary}.
 
 %prep
-%git_clone %{url} --recurse-submodules %{commit}
+%git_clone %{url} %{commit} --recursive-submodules
 
 %conf
 %meson
