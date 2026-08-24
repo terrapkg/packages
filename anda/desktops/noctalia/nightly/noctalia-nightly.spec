@@ -69,7 +69,7 @@ Recommends:     power-profiles-daemon
 Packager:       Cypress Reed <cypress@fyralabs.com>
 
 %description
-%{Summary}.
+%{summary}.
 
 %prep
 %autosetup -n noctalia-%{commit}
@@ -107,6 +107,9 @@ done
 %{_scalableiconsdir}/noctalia.svg
 
 %changelog
+* Mon Aug 24 2026 Cypress Reed <cypress@fyralabs.com>
+- Rename package to noctalia-nightly
+
 * Mon Aug 03 2026 Cypress Reed <cypress@fyralabs.com>
 - Update description and summary per developer's request
 
