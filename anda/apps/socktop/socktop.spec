@@ -1,4 +1,4 @@
-%global ver v1.60.1
+%global ver v1.60.2
 %global download_ver %(echo %{ver} | sed 's/v//g')
 %global sanitized_ver %(echo %{ver} | sed 's/-//g')
 
