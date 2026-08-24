@@ -24,6 +24,7 @@ BuildRequires:  pkgconfig(libdrm)
 BuildRequires:  pkgconfig(libpipewire-0.3)
 BuildRequires:  pkgconfig(cairo)
 BuildRequires:  pkgconfig(tomlplusplus)
+BuildRequires:  pkgconfig(gbm)
 
 Packager:       Cypress Reed <cypress@fyralabs.com>
 
