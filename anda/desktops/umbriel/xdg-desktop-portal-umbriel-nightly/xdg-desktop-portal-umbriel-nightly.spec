@@ -50,13 +50,13 @@ sed -i "s/'unknown'/'%{shortcommit}'/g" meson.build
 %meson_install
 
 %post
-%systemd_post xdg-desktop-portal-umbriel.service
+%systemd_user_post xdg-desktop-portal-umbriel.service
 
 %preun
-%systemd_preun xdg-desktop-portal-umbriel.service
+%systemd_user_preun xdg-desktop-portal-umbriel.service
 
 %postun
-%systemd_postun xdg-desktop-portal-umbriel.service
+%systemd_user_postun xdg-desktop-portal-umbriel.service
 
 %files
 %doc README.md
@@ -66,7 +66,7 @@ sed -i "s/'unknown'/'%{shortcommit}'/g" meson.build
 %{_libexecdir}/xdg-desktop-portal-umbriel
 %{_datadir}/dbus-1/services/org.freedesktop.impl.portal.desktop.umbriel.service
 %{_datadir}/xdg-desktop-portal/portals/umbriel.portal
-%{_datadir}/xdg-desktop-portal/umbriel-portals.conf
+%config %{_datadir}/xdg-desktop-portal/umbriel-portals.conf
 
 %changelog
 * Mon Aug 24 2026 Cypress Reed <cypress@fyralabs.com>
