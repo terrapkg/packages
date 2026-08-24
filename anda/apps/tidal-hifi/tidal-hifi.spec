@@ -1,5 +1,5 @@
 Name:           tidal-hifi
-Version:        8.1.2
+Version:        8.1.3
 Release:        1%?dist
 Summary:        The web version of Tidal running in electron with hifi support thanks to widevine
 %electronmeta
