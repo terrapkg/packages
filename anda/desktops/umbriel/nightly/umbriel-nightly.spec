@@ -37,7 +37,7 @@ Requires:       xdg-desktop-portal-nightly
 Packager:       Cypress Reed <cypress@fyralabs.com>
 
 %description
-%{Summary}.
+%{summary}.
 
 %prep
 %autosetup -n umbriel-%{commit}
