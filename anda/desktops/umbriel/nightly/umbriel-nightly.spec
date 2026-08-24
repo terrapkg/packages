@@ -32,7 +32,7 @@ BuildRequires:  pkgconfig(cairo)
 BuildRequires:  pkgconfig(pangocairo)
 
 Requires:       xwayland-satellite
-Requires:       xdg-desktop-portal-nightly
+Requires:       xdg-desktop-portal-umbriel-nightly
 
 Packager:       Cypress Reed <cypress@fyralabs.com>
 
