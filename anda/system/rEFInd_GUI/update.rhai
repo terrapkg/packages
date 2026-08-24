@@ -1,0 +1,1 @@
+rpm.version(gh("jlobue10/rEFInd_GUI"));
