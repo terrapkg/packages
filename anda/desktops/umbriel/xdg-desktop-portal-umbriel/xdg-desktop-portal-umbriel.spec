@@ -26,6 +26,7 @@ BuildRequires:  pkgconfig(cairo)
 BuildRequires:  pkgconfig(tomlplusplus)
 BuildRequires:  pkgconfig(gbm)
 BuildRequires:  pkgconfig(nlohmann_json)
+BuildRequires:  pkgconfig(gtk4)
 
 Packager:       Cypress Reed <cypress@fyralabs.com>
 
