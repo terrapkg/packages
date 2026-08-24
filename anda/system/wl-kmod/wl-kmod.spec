@@ -10,7 +10,7 @@
 
 Name:       wl-kmod
 Version:    6.30.223.271
-Release:    7%{?dist}
+Release:    8%{?dist}
 Summary:    Kernel module for Broadcom wireless devices
 Group:      System Environment/Kernel
 License:    Redistributable, no modification permitted
@@ -54,6 +54,7 @@ Patch32:    wl-kmod-034_kernel_6.15_adaptation_replace_del_timer_with_timer_dele
 Patch33:    wl-kmod-035_kernel_6.17_adaptation_fix_functions_prototypes.patch
 Patch34:    wl-kmod-036_kernel_7.1_adaptation_replace_net_device_struct_with_wireless_dev_struct.patch
 Patch35:    wl-kmod-037_kernel_6.13_remove_flush_scheduled_work.patch
+Patch36:    wl-kmod-038_kernel_7.2_adaptation_remove_strncpy_function.patch
 ExclusiveArch:  i686 x86_64
 BuildRequires:  kmodtool
 BuildRequires:  elfutils-libelf-devel
@@ -115,6 +116,7 @@ pushd %{name}-%{version}-src
 %patch -P 33 -p1 -b .kernel_6.17_adaptation
 %patch -P 34 -p1 -b .kernel_7.1_adaptation
 %patch -P 35 -p1 -b .flush_scheduled_work
+%patch -P 36 -p1 -b .kernel_7.2_adaptation
 
 # Manual patching to build for RHEL - inspired by CentOS wl-kmod.spec
 # Actually works for RHEL 6.x and 7.x
@@ -378,6 +380,10 @@ pushd %{name}-%{version}-src
    %{__sed} -i  's/ >= KERNEL_VERSION(6, 14, 0)/ >= KERNEL_VERSION(5, 14, 0)/g' src/wl/sys/wl_cfg80211_hybrid.c
    %{__sed} -i  's/ >= KERNEL_VERSION(6, 17, 0)/ >= KERNEL_VERSION(5, 14, 0)/g' src/wl/sys/wl_cfg80211_hybrid.c
   %endif
+  %if %{kvr} >= 687
+   #  Apply to EL 9.8 point release and later
+   #   >  No changes currently needed for EL 9.8 point release
+  %endif
  %endif
 %endif
 %if 0%{?rhel} == 10
@@ -414,7 +420,11 @@ done
 %build
 for kernel_version in %{?kernel_versions}; do
  pushd _kmod_build_${kernel_version%%___*}
+%if 0%{?rhel} >= 10
+ make -C ${kernel_version##*___} M=`pwd` objtool=/usr/bin/true modules
+%else
  make -C ${kernel_version##*___} M=`pwd` modules
+%endif
  popd
 done
 
@@ -431,4 +441,5 @@ chmod 0755 $RPM_BUILD_ROOT%{kmodinstdir_prefix}*%{kmodinstdir_postfix}/* || :
 %{?akmod_install}
 
 %changelog
-%autochangelog
+* Mon Aug 24 2026 LionHeartP <LionHeartP@proton.me> - 6.30.223.271-8
+- Sync changes from rpmfusion: Add new patch for kernel 7.2+, adjust rhel >=10 build command and prepare section for EL>=9.8
