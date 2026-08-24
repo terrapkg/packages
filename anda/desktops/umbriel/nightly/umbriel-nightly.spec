@@ -53,25 +53,19 @@ Packager:       Cypress Reed <cypress@fyralabs.com>
 
 %post
 %systemd_user_post umbriel.service
-%systemd_user_post umbriel-session.target
-%systemd_user_post umbriel-shutdown.target
 
 %preun
 %systemd_user_preun umbriel.service
-%systemd_user_preun umbriel-session.target
-%systemd_user_preun umbriel-shutdown.target
 
 %postun
 %systemd_user_postun umbriel.service
-%systemd_user_postun umbriel-session.target
-%systemd_user_postun umbriel-shutdown.target
 
 %files
 %doc README.md
 %license LICENSE
 %{_bindir}/umbriel
 %{_bindir}/start-umbriel
-%{_datadir}/umbriel/config.toml
+%config %{_datadir}/umbriel/config.toml
 %{_datadir}/wayland-sessions/umbriel.desktop
 %{_userunitdir}/umbriel.service
 %{_userunitdir}/umbriel-session.target
