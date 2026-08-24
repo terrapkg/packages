@@ -226,7 +226,7 @@ export BTM_GENERATE=true
 ls target/tmp/bottom
 install -Dpm 0644 target/tmp/bottom/completion/btm.bash %{buildroot}%{_datadir}/bash-completion/completions/btm
 install -Dpm 0644 target/tmp/bottom/completion/btm.fish %{buildroot}%{_datadir}/fish/vendor_completions.d/btm.fish
-install -Dpm 0644 target/tmp/bottom/completion/_btm %{buildroot}%{_datadir}/zsh/site-functions/_btm
+install -Dpm 0644 target/tmp/bottom/completion/_btm %{buildroot}%{zsh_functions_dir}/_btm
 install -Dpm 0644 target/tmp/bottom/manpage/btm.1 %{buildroot}%{_mandir}/man1/btm.1
 
 %if %{with check}
