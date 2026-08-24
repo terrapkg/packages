@@ -51,8 +51,20 @@ Packager:       Cypress Reed <cypress@fyralabs.com>
 %install
 %meson_install --skip-subprojects
 
-%check
-%desktop_file_validate %{buildroot}%{_appsdir}/dev.noctalia.Noctalia.desktop
+%post
+%systemd_user_post umbriel.service
+%systemd_user_post umbriel-session.target
+%systemd_user_post umbriel-shutdown.target
+
+%preun
+%systemd_user_preun umbriel.service
+%systemd_user_preun umbriel-session.target
+%systemd_user_preun umbriel-shutdown.target
+
+%postun
+%systemd_user_postun umbriel.service
+%systemd_user_postun umbriel-session.target
+%systemd_user_postun umbriel-shutdown.target
 
 %files
 %doc README.md
