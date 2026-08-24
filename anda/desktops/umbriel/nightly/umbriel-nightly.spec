@@ -11,7 +11,6 @@ Summary:	A work-in-progress Wayland compositor designed for daily use, with scro
 
 License:	MIT
 URL:		https://github.com/noctalia-dev/umbriel
-Source0:	https://github.com/noctalia-dev/umbriel/archive/%{commit}/umbriel-%{commit}.tar.gz
 
 BuildRequires:  wlroots-devel >= 0.20
 BuildRequires:  meson
@@ -40,7 +39,7 @@ Packager:       Cypress Reed <cypress@fyralabs.com>
 %{summary}.
 
 %prep
-%autosetup -n umbriel-%{commit}
+%git_clone %{url} %{commit} --recurse-submodules
 
 %conf
 %meson
