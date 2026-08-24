@@ -18,10 +18,10 @@ BuildRequires:  meson
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  git
-BuildRequires:  sdbus-cpp-devel
-BuildRequires:  tomlplusplus-devel
-BuildRequires:  json-devel
-BuildRequires:  md4c-devel
+BuildRequires:  pkgconfig(sdbus-c++)
+BuildRequires:  pkgconfig(tomlplusplus)
+BuildRequires:  pkgconfig(json)
+BuildRequires:  pkgconfig(md4c)
 BuildRequires:  stb-devel
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(jemalloc)
