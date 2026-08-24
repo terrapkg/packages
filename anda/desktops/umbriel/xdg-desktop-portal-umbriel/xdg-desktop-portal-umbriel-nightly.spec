@@ -4,7 +4,7 @@
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
 %global commitdate      20260824
 
-Name:   	xdg-desktop-portal-umbriel
+Name:   	xdg-desktop-portal-umbriel-nightly
 Version:	0^%{commitdate}git.%{shortcommit}
 Release:	1%{?dist}
 Summary:    An xdg-desktop-portal backend for the Umbriel compositor
