@@ -25,6 +25,7 @@ BuildRequires:  pkgconfig(libpipewire-0.3)
 BuildRequires:  pkgconfig(cairo)
 BuildRequires:  pkgconfig(tomlplusplus)
 BuildRequires:  pkgconfig(gbm)
+BuildRequires:  pkgconfig(nlohmann_json)
 
 Packager:       Cypress Reed <cypress@fyralabs.com>
 
