@@ -30,7 +30,7 @@ BuildRequires:  pkgconfig(nlohmann_json)
 Packager:       Cypress Reed <cypress@fyralabs.com>
 
 %description
-%{Summary}.
+%{summary}.
 
 %prep
 %autosetup -n xdg-desktop-portal-umbriel-%{commit}
