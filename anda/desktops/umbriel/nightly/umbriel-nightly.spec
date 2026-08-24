@@ -29,6 +29,7 @@ BuildRequires:  pkgconfig(wayland-protocols)
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  pkgconfig(scenefx-0.5)
 BuildRequires:  pkgconfig(cairo)
+BuildRequires:  pkgconfig(pangocairo)
 
 Requires:       xwayland-satellite
 Requires:       xdg-desktop-portal-nightly
