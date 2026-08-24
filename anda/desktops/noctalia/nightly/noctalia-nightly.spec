@@ -8,7 +8,7 @@
 
 Name:   	noctalia-nightly
 Version:	%{ver}^%{commitdate}git.%{shortcommit}
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	A sleek, customizable desktop shell crafted for Wayland
 
 License:	MIT
@@ -60,7 +60,7 @@ Requires:       libwebp
 
 Conflicts:      noctalia
 
-Obsoletes:      noctalia-git <= 5.0.0^20260824git.a9cd1c8
+Obsoletes:      noctalia-git <= 5.0.0^20260824git.a9cd1c8-1
 
 Recommends:     ddcutil
 Recommends:     gpu-screen-recorder
