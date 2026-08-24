@@ -441,4 +441,5 @@ chmod 0755 $RPM_BUILD_ROOT%{kmodinstdir_prefix}*%{kmodinstdir_postfix}/* || :
 %{?akmod_install}
 
 %changelog
-%autochangelog
+* Mon Aug 24 2026 LionHeartP <LionHeartP@proton.me> - 6.30.223.271-8
+- Sync changes from rpmfusion: Add new patch for kernel 7.2+, adjust rhel >=10 build command and prepare section for EL>=9.8
