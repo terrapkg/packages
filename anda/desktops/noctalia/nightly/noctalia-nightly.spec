@@ -2,11 +2,11 @@
 
 %global ver 5.0.0
 
-%global commit          69a90183531de388cab40e84a3a221ba94464501
+%global commit          8ac887eebb1bf2ec6db1b4fc4c36593e99476b6e
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
-%global commitdate      20260822
+%global commitdate      20260825
 
-Name:   	noctalia-git
+Name:   	noctalia-nightly
 Version:	%{ver}^%{commitdate}git.%{shortcommit}
 Release:	1%{?dist}
 Summary:	A sleek, customizable desktop shell crafted for Wayland
@@ -60,6 +60,8 @@ Requires:       libwebp
 
 Conflicts:      noctalia
 
+Obsoletes:      noctalia-git <= 5.0.0^20260824git.a9cd1c8-1
+
 Recommends:     ddcutil
 Recommends:     gpu-screen-recorder
 Recommends:     power-profiles-daemon
@@ -67,7 +69,7 @@ Recommends:     power-profiles-daemon
 Packager:       Cypress Reed <cypress@fyralabs.com>
 
 %description
-%{Summary}.
+%{summary}.
 
 %prep
 %autosetup -n noctalia-%{commit}
@@ -105,6 +107,9 @@ done
 %{_scalableiconsdir}/noctalia.svg
 
 %changelog
+* Mon Aug 24 2026 Cypress Reed <cypress@fyralabs.com>
+- Rename package to noctalia-nightly
+
 * Mon Aug 03 2026 Cypress Reed <cypress@fyralabs.com>
 - Update description and summary per developer's request
 

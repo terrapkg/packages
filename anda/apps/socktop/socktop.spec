@@ -1,5 +1,5 @@
 Name:           socktop
-Version:        1.60.1
+Version:        1.60.2
 Release:        1%?dist
 Summary:        socktop is a remote system monitor with a rich TUI interface
 URL:            https://github.com/jasonwitty/socktop

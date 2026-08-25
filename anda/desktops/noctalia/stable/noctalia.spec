@@ -63,7 +63,7 @@ Recommends:     power-profiles-daemon
 Packager:       Cypress Reed <cypress@fyralabs.com>
 
 %description
-%{Summary}.
+%{summary}.
 
 %prep
 %autosetup -n noctalia-release
