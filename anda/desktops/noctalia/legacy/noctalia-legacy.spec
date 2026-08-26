@@ -2,7 +2,7 @@
 
 Name:           noctalia-legacy
 Version:		4.7.7
-Release:        4%{?dist}
+Release:        3%{?dist}
 Summary:        A Quickshell-based custom shell setup
 
 License:        MIT
@@ -27,8 +27,7 @@ Recommends:	    power-profiles-daemon
 Recommends:	    wlsunset
 Recommends:    	gpu-screen-recorder
 
-Provides:       noctalia-shell = %{version}-%{release}
-Obsoletes:      noctalia-shell < 5
+Obsoletes:      noctalia-shell <= 4.7.7-1
 
 Packager:       Cypress Reed <cypress@fyralabs.com>
 
@@ -54,7 +53,7 @@ echo "noctalia-shell has been renamed to noctalia"
 echo "noctalia v5 is coming soon! keep an eye out as this legacy package will become obsolete"
 
 %changelog
-* Tue Aug 25 2026 Gabriel Silva Gouvêa <gouswat@gmail.com> - 4.7.7-4
+* Tue Aug 25 2026 Gabriel Silva Gouvêa <gouswat@gmail.com>
 - Preserve Bluetooth discovery ownership when pairing finishes
 - Complete the transition from the former noctalia-shell package
 
