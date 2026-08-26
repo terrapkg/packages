@@ -46,12 +46,9 @@ cd apps/desktop
 %tauri_prep
 
 %build
-export PATH="$CARGO_HOME/bin:$RUSTUP_HOME/bin:$PATH"
-if ! command -v rustup >/dev/null 2>&1; then
-    ln -s "$(command -v rustup-init)" "$CARGO_HOME/bin/rustup"
-fi
+. .cargo/env
 %{__pnpm} install --frozen-lockfile
-%{__pnpm} prep
+NODE_ENV=debug %{__pnpm} prep
 %{__pnpm} tauri build
 %tauri_cargo_license_summary
 %{tauri_cargo_license} > LICENSE.dependencies
