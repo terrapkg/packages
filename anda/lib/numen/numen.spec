@@ -8,6 +8,7 @@ URL:            https://github.com/vicinaehq/numen
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 
 BuildRequires:  gcc-c++
+BuildRequires:  cmake
 BuildRequires:  cmake-rpm-macros
 
 BuildSystem:    cmake
