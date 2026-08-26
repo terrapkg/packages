@@ -14,8 +14,8 @@ ExclusiveArch:  x86_64 aarch64
 %global appid ai.opencode.opencode
 
 Name:			opencode-cli
-Version:		1.18.18
-Release:		2%{?dist}
+Version:		1.18.23
+Release:		1%{?dist}
 Summary:		Open source AI coding agent for the terminal, IDE, and desktop
 License:		MIT
 URL:			https://opencode.ai

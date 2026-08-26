@@ -1,5 +1,5 @@
 Name:           somewm
-Version:        1.4.3
+Version:        1.4.4
 Release:        1%{?dist}
 Summary:        Wayland compositor that brings AwesomeWM's Lua API to Wayland
 License:        GPL-3.0-or-later
@@ -27,6 +27,7 @@ BuildRequires:  dbus-devel
 BuildRequires:  pkgconfig(dbus-1)
 BuildRequires:  python3-devel
 BuildRequires:  ninja-build
+BuildRequires:  pkgconfig(wlroots-0.20)
 
 %description
 somewm is a Wayland compositor that brings AwesomeWM's Lua API to Wayland, built on wlroots.

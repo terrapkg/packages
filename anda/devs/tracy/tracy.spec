@@ -5,7 +5,7 @@
 %endif
 
 Name:			tracy
-Version:		0.14.0
+Version:		0.14.1
 Release:		1%{?dist}
 Summary:		A real time, nanosecond resolution, remote telemetry, hybrid frame and sampling profiler for games and other applications
 License:		BSD-3-Clause

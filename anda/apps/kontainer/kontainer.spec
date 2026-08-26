@@ -1,7 +1,7 @@
 %global appid   io.github.DenysMb.Kontainer
 
 Name:           kontainer
-Version:        1.6.1
+Version:        1.6.2
 Release:        1%{?dist}
 Summary:        A Kirigami Distrobox GUI
 URL:            https://github.com/DenysMb/Kontainer
