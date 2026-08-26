@@ -12,6 +12,8 @@ BuildRequires:  gcc-c++
 BuildSystem:    cmake
 BuildOption:    -DBUILD_SHARED_LIBS=ON
 
+Packager:       Olivia <git@olivia.sh>
+
 %description
 Zero dependency calculator library with first class support for units and
 timezone conversions.
