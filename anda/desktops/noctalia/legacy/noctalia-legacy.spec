@@ -8,7 +8,10 @@ Summary:        A Quickshell-based custom shell setup
 License:        MIT
 URL:            https://github.com/noctalia-dev/noctalia
 Source0:        https://github.com/noctalia-dev/noctalia/releases/download/v%{version}/noctalia-v%{version}.tar.gz
-Patch0:         https://github.com/gouveags/noctalia/commit/a676e9586286d155a3e3c8129b4214a9847eff56.patch
+# Downstream fix for https://github.com/terrapkg/packages/issues/16213.
+# Noctalia v4 is no longer maintained upstream. Original signed fix:
+# https://github.com/gouveags/noctalia/commit/a676e9586286d155a3e3c8129b4214a9847eff56
+Patch0:         noctalia-legacy-bluetooth-discovery.patch
 
 Requires:	    brightnessctl
 Requires:    	dejavu-sans-fonts
