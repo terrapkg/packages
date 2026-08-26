@@ -31,7 +31,7 @@ index ee26af6476..3878421d83 100644
        }
        if (isDiscoverable && !showOnlyLists) {
 @@ -124,7 +122,7 @@ Item {
- 
+
    Component.onDestruction: {
      // Ensure scanning is stopped when component is closed
 -    if (isScanningActive && !showOnlyLists) {
@@ -45,17 +45,17 @@ index 9146763dd5..74d347257f 100644
 +++ b/Services/Networking/BluetoothService.qml
 @@ -53,7 +53,7 @@ Singleton {
    property bool pinRequired: false
- 
+
    // Internal variables
 -  property bool _discoveryWasRunning: false
 +  property bool _scanRequested: false
    property bool _ctlInit: false
    property var _autoConnectQueue: []
- 
+
 @@ -183,12 +183,12 @@ Singleton {
      }
    }
- 
+
 -  // Unify discovery controls
 -  function setScanActive(active) {
 +  function _applyScanRequest() {
@@ -70,7 +70,7 @@ index 9146763dd5..74d347257f 100644
 @@ -198,6 +198,12 @@ Singleton {
      }
    }
- 
+
 +  // Track whether the visible Bluetooth UI owns an active discovery request.
 +  function setScanActive(active) {
 +    root._scanRequested = active;
@@ -83,7 +83,7 @@ index 9146763dd5..74d347257f 100644
 @@ -368,12 +374,6 @@ Singleton {
      const intervalMs = Math.max(500, Number(root.connectRetryIntervalMs) | 0);
      const intervalSec = Math.max(1, Math.round(intervalMs / 1000));
- 
+
 -    // Temporarily pause discovery during pair/connect to reduce HCI churn
 -    root._discoveryWasRunning = root.scanningActive;
 -    if (root.scanningActive) {
