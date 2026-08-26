@@ -1,0 +1,115 @@
+From a676e9586286d155a3e3c8129b4214a9847eff56 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Gabriel=20Silva=20Gouv=C3=AAa?= <gouswat@gmail.com>
+Date: Tue, 25 Aug 2026 17:34:18 -0300
+Subject: [PATCH] fix(bluetooth): preserve discovery ownership through pairing
+
+---
+ .../Tabs/Connections/BluetoothSubTab.qml      |  8 +++----
+ Services/Networking/BluetoothService.qml      | 24 ++++++++-----------
+ 2 files changed, 13 insertions(+), 19 deletions(-)
+
+diff --git a/Modules/Panels/Settings/Tabs/Connections/BluetoothSubTab.qml b/Modules/Panels/Settings/Tabs/Connections/BluetoothSubTab.qml
+index ee26af6476..3878421d83 100644
+--- a/Modules/Panels/Settings/Tabs/Connections/BluetoothSubTab.qml
++++ b/Modules/Panels/Settings/Tabs/Connections/BluetoothSubTab.qml
+@@ -105,15 +105,13 @@ Item {
+   function _updateScanningState() {
+     if (effectivelyVisible && BluetoothService.enabled && !showOnlyLists) {
+       Logger.d("BluetoothPrefs", "Panel/tab active");
+-      if (!isScanningActive) {
+-        BluetoothService.setScanActive(true);
+-      }
++      BluetoothService.setScanActive(true);
+       if (!Settings.data.network.disableDiscoverability && !isDiscoverable) {
+         BluetoothService.setDiscoverable(true);
+       }
+     } else {
+       Logger.d("BluetoothPrefs", "Panel/tab inactive");
+-      if (isScanningActive && !showOnlyLists) {
++      if (!showOnlyLists) {
+         BluetoothService.setScanActive(false);
+       }
+       if (isDiscoverable && !showOnlyLists) {
+@@ -124,7 +122,7 @@ Item {
+
+   Component.onDestruction: {
+     // Ensure scanning is stopped when component is closed
+-    if (isScanningActive && !showOnlyLists) {
++    if (!showOnlyLists) {
+       BluetoothService.setScanActive(false);
+     }
+     // Ensure discoverable is disabled when component is closed
+diff --git a/Services/Networking/BluetoothService.qml b/Services/Networking/BluetoothService.qml
+index 9146763dd5..74d347257f 100644
+--- a/Services/Networking/BluetoothService.qml
++++ b/Services/Networking/BluetoothService.qml
+@@ -53,7 +53,7 @@ Singleton {
+   property bool pinRequired: false
+
+   // Internal variables
+-  property bool _discoveryWasRunning: false
++  property bool _scanRequested: false
+   property bool _ctlInit: false
+   property var _autoConnectQueue: []
+
+@@ -183,12 +183,12 @@ Singleton {
+     }
+   }
+
+-  // Unify discovery controls
+-  function setScanActive(active) {
++  function _applyScanRequest() {
+     if (!adapter) {
+       Logger.d("Bluetooth", "Scan request ignored: adapter unavailable");
+       return;
+     }
++    const active = root._scanRequested && !pairingProcess.running;
+     try {
+       if (active || adapter.discovering) { // Only attempt to set if activating, or if deactivating and currently currently discovering
+         adapter.discovering = active;
+@@ -198,6 +198,12 @@ Singleton {
+     }
+   }
+
++  // Track whether the visible Bluetooth UI owns an active discovery request.
++  function setScanActive(active) {
++    root._scanRequested = active;
++    root._applyScanRequest();
++  }
++
+   // Toggle adapter discoverability (advertising visibility) via bluetoothctl
+   function setDiscoverable(state) {
+     if (!adapter) {
+@@ -368,12 +374,6 @@ Singleton {
+     const intervalMs = Math.max(500, Number(root.connectRetryIntervalMs) | 0);
+     const intervalSec = Math.max(1, Math.round(intervalMs / 1000));
+
+-    // Temporarily pause discovery during pair/connect to reduce HCI churn
+-    root._discoveryWasRunning = root.scanningActive;
+-    if (root.scanningActive) {
+-      root.setScanActive(false);
+-    }
+-
+     const scriptPath = Quickshell.shellDir + "/Scripts/python/src/network/bluetooth-pair.py";
+     pairingProcess.command = ["python3", scriptPath, String(addr), String(pairWait), String(attempts), String(intervalSec)];
+     pairingProcess.running = true;
+@@ -516,6 +516,7 @@ Singleton {
+   // Interactive pairing process
+   Process {
+     id: pairingProcess
++    onRunningChanged: root._applyScanRequest()
+     stdout: SplitParser {
+       onRead: data => {
+         Logger.d("Bluetooth", data);
+@@ -528,11 +529,6 @@ Singleton {
+     onExited: {
+       root.pinRequired = false;
+       Logger.i("Bluetooth", "Pairing process exited.");
+-      // Restore discovery if we paused it
+-      if (root._discoveryWasRunning) {
+-        root.setScanActive(true);
+-      }
+-      root._discoveryWasRunning = false;
+     }
+     environment: ({
+                     "LC_ALL": "C"
