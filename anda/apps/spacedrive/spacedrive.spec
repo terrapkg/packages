@@ -52,6 +52,7 @@ rm -f .spacedrive-config.toml.mustache
 
 %build
 . .cargo/env
+export CARGO_NET_GIT_FETCH_WITH_CLI=true
 %{__pnpm} install --frozen-lockfile
 %{__pnpm} prep
 %{__pnpm} tauri build
