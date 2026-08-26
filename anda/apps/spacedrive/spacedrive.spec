@@ -47,6 +47,7 @@ cd apps/desktop
 
 %build
 %{__pnpm} install --frozen-lockfile
+%{__pnpm} prep
 %{__pnpm} tauri build
 %tauri_cargo_license_summary
 %{tauri_cargo_license} > LICENSE.dependencies
