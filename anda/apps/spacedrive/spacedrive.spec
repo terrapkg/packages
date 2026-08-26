@@ -8,6 +8,7 @@ License:		AGPL-3.0-or-later
 URL:			https://spacedrive.com
 Source0:		https://github.com/spacedriveapp/spacedrive/archive/refs/tags/%version.tar.gz
 Source1:		spacedrive.desktop
+
 Requires:		ffmpeg
 Requires:		libheif
 Requires:		gtk3
