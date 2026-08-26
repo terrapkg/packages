@@ -1,15 +1,19 @@
 %global debug_package   %{nil}
 
-%global ver 5.0.0-beta.9
+%global ver 5.0.0
 
-Name:   	noctalia
-Version:	5.0.0~beta.9
+%global commit          994638f14f2e9406ec1219492eed10430b9f1f45
+%global shortcommit     %(c=%{commit}; echo ${c:0:7})
+%global commitdate      20260826
+
+Name:   	noctalia-nightly
+Version:	%{ver}^%{commitdate}git.%{shortcommit}
 Release:	1%{?dist}
 Summary:	A sleek, customizable desktop shell crafted for Wayland
 
 License:	MIT
 URL:		https://github.com/noctalia-dev/noctalia
-Source0:	https://github.com/noctalia-dev/noctalia/releases/download/v%{ver}/noctalia-v%{ver}.tar.gz
+Source0:	https://github.com/noctalia-dev/noctalia/archive/%{commit}/noctalia-%{commit}.tar.gz
 
 BuildRequires:  meson
 BuildRequires:  cmake
@@ -54,7 +58,9 @@ Requires:       hicolor-icon-theme
 Requires:       dejavu-sans-fonts
 Requires:       libwebp
 
-Conflicts:      noctalia-git
+Conflicts:      noctalia
+
+Obsoletes:      noctalia-git <= 5.0.0^20260824git.a9cd1c8-1
 
 Recommends:     ddcutil
 Recommends:     gpu-screen-recorder
@@ -63,10 +69,13 @@ Recommends:     power-profiles-daemon
 Packager:       Cypress Reed <cypress@fyralabs.com>
 
 %description
-%{Summary}.
+%{summary}.
 
 %prep
-%autosetup -n noctalia-release
+%autosetup -n noctalia-%{commit}
+
+# Manually insert commit hash
+sed -i "s/'unknown'/'%{shortcommit}'/g" meson.build
 
 %conf
 %meson
@@ -98,14 +107,14 @@ done
 %{_scalableiconsdir}/noctalia.svg
 
 %changelog
+* Mon Aug 24 2026 Cypress Reed <cypress@fyralabs.com>
+- Rename package to noctalia-nightly
+
 * Mon Aug 03 2026 Cypress Reed <cypress@fyralabs.com>
 - Update description and summary per developer's request
 
-* Thu Jul 30 2026 Cypress Reed <cypress@fyralabs.com>
-- add dependencies
-
 * Thu Jul 16 2026 Cypress Reed <cypress@fyralabs.com>
-- Create noctalia package based on noctalia-git
+- Add conflicts with noctalia
 
 * Thu Jul 09 2026 Cypress Reed <cypress@fyralabs.com>
 - Noctalia requires system libraries now, so remove the meson options
