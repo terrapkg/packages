@@ -42,6 +42,7 @@ powered by a virtual distributed filesystem (VDFS) written in Rust.
 %prep
 %autosetup
 %rustup_nightly
+cd apps/desktop
 %tauri_prep
 
 %build
