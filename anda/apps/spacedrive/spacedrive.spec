@@ -20,7 +20,7 @@ Requires:		libsoup
 Requires:		glib2
 Requires:		openssl
 
-BuildRequires:	bun-bin
+BuildRequires:	pnpm
 BuildRequires:	rustup
 BuildRequires:	%tauri_buildrequires
 BuildRequires:	git-core
@@ -45,7 +45,8 @@ powered by a virtual distributed filesystem (VDFS) written in Rust.
 %tauri_prep
 
 %build
-%bun_build
+%{__pnpm} install --frozen-lockfile
+%{__pnpm} tauri build
 %tauri_cargo_license_summary
 %{tauri_cargo_license} > LICENSE.dependencies
 
