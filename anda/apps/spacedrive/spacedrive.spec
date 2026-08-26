@@ -7,11 +7,32 @@ Summary:		An open source cross-platform file explorer
 License:		AGPL-3.0-or-later
 URL:			https://spacedrive.com
 Source0:		https://github.com/spacedriveapp/spacedrive/archive/refs/tags/%version.tar.gz
-Requires:		ffmpeg libheif gtk3 webkit2gtk4.1 pango gdk-pixbuf2 cairo libsoup glib2 openssl
-BuildRequires:	pnpm git-core perl gcc javascriptcoregtk4.1-devel pkgconfig(webkit2gtk-4.1)
-BuildRequires:  pkgconfig(libsoup-2.4) glib2-devel gtk3-devel openssl-devel pkgconfig(zlib)
-BuildRequires:  openssl clang-devel
-BuildRequires:	bun-bin rustup tauri
+Source1:		spacedrive.desktop
+Requires:		ffmpeg
+Requires:		libheif
+Requires:		gtk3
+Requires:		webkit2gtk4.1
+Requires:		pango
+Requires:		gdk-pixbuf2
+Requires:		cairo
+Requires:		libsoup
+Requires:		glib2
+Requires:		openssl
+
+BuildRequires:	bun-bin
+BuildRequires:	rustup
+BuildRequires:	%tauri_buildrequires
+BuildRequires:	git-core
+BuildRequires:	perl
+BuildRequires:	gcc
+BuildRequires:	clang-devel
+BuildRequires:	openssl-devel
+BuildRequires:	pkgconfig(zlib)
+BuildRequires:	pkgconfig(webkit2gtk-4.1)
+BuildRequires:	pkgconfig(libsoup-2.4)
+BuildRequires:	anda-srpm-macros
+BuildRequires:	terra-appstream-helper
+BuildRequires:	desktop-file-utils
 
 %description
 Spacedrive is an open source cross-platform file manager,
@@ -20,7 +41,7 @@ powered by a virtual distributed filesystem (VDFS) written in Rust.
 %prep
 %autosetup
 %rustup_nightly
-%tauri_prep -n $PWD
+%tauri_prep
 
 %build
 %bun_build
@@ -28,14 +49,23 @@ powered by a virtual distributed filesystem (VDFS) written in Rust.
 %{tauri_cargo_license} > LICENSE.dependencies
 
 %install
-install -Dm755 -t %buildroot%_bindir apps/desktop/src-tauri/target/rpm/spacedrive
+install -Dpm755 apps/desktop/src-tauri/target/rpm/%{name} \
+    %{buildroot}%{_bindir}/%{name}
+%desktop_file_install %{SOURCE1}
+install -Dpm644 apps/desktop/src-tauri/icons/icon.png \
+    %{buildroot}%{_hicolordir}/512x512/apps/%{appid}.png
 
 %terra_appstream
 
+%check
+desktop-file-validate %{buildroot}%{_appsdir}/spacedrive.desktop
+
 %files
 %license LICENSE LICENSE.dependencies
-%_bindir/spacedrive
-%_metainfodir/%appid.metadata.xml
+%_bindir/%{name}
+%_appsdir/spacedrive.desktop
+%_hicolordir/512x512/apps/%{appid}.png
+%_metainfodir/%{appid}.metainfo.xml
 
 %changelog
 * Wed Aug 26 2026 madonuko <mado@fyralabs.com>
