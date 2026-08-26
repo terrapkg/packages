@@ -41,14 +41,19 @@ powered by a virtual distributed filesystem (VDFS) written in Rust.
 
 %prep
 %autosetup
+cp .cargo/config.toml.mustache .spacedrive-config.toml.mustache
 %rustup_nightly
 cd apps/desktop
 %tauri_prep
+cd %{_builddir}/%{name}-%{version}
+mkdir -p .cargo
+cp .spacedrive-config.toml.mustache .cargo/config.toml.mustache
+rm -f .spacedrive-config.toml.mustache
 
 %build
 . .cargo/env
 %{__pnpm} install --frozen-lockfile
-NODE_ENV=debug %{__pnpm} prep
+%{__pnpm} prep
 %{__pnpm} tauri build
 %tauri_cargo_license_summary
 %{tauri_cargo_license} > LICENSE.dependencies
