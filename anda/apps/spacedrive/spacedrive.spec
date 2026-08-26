@@ -15,7 +15,7 @@ BuildRequires:	bun-bin rustup tauri
 
 %description
 Spacedrive is an open source cross-platform file manager,
-powered by a virtual distributed filesystem (VDFS) written in Rust. 
+powered by a virtual distributed filesystem (VDFS) written in Rust.
 
 %prep
 %autosetup
@@ -36,3 +36,7 @@ install -Dm755 -t %buildroot%_bindir apps/desktop/src-tauri/target/rpm/spacedriv
 %license LICENSE LICENSE.dependencies
 %_bindir/spacedrive
 %_metainfodir/%appid.metadata.xml
+
+%changelog
+* Wed Aug 26 2026 madonuko <mado@fyralabs.com>
+- Initial package
