@@ -1,7 +1,7 @@
 %global appid app.fluxer.Fluxer
 
 Name:           fluxer
-Version:        fluxer.app.proxy@2026.826.133435
+Version:        2026.820.180916
 Release:        1%{?dist}
 Summary:        Fluxer is a free and open source instant messaging and VoIP platform built for friends, groups, and communities
 URL:            https://fluxer.app
@@ -10,7 +10,7 @@ URL:            https://fluxer.app
 %global __provides_exclude %{__provides_exclude}|libcbor\.so.*|libcrypto\.so.*|libfido2\.so.*|libudev\.so.*|libz\.so.*|libcap\.so.*
 
 License:        AGPL-3.0-or-later AND %electron_license
-Source0:        https://github.com/fluxerapp/fluxer/archive/refs/tags/%version.tar.gz
+Source0:        https://github.com/fluxerapp/fluxer/archive/refs/tags/fluxer-app-proxy@%{version}.tar.gz
 BuildRequires:  rust-packaging nodejs nodejs-npm nodejs-packaging pnpm
 BuildRequires:  xorg-x11-proto-devel
 BuildRequires:  pkgconfig(openssl)
@@ -30,7 +30,7 @@ Provides:       bundled(zlib)
 %summary.
 
 %prep
-%autosetup
+%autosetup -C
 %cargo_prep_online
 
 %build
@@ -66,5 +66,8 @@ install -Dm644 packaging/linux/%appid.svg %{buildroot}%{_scalableiconsdir}/%appi
 %_metainfodir/%appid.metainfo.xml
 
 %changelog
+* Thu Aug 20 2026 Cypress Reed <cypress@fyralabs.com> - 2026.820.180916-2
+- Fix update function to only update for fluxer-app-proxy
+
 * Mon Jun 15 2026 madonuko <mado@fyralabs.com> - 2026.703.173023-1
 - Initial package.
