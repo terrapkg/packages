@@ -91,7 +91,7 @@ install -Dm 644 extra/%{name}-url-handler.desktop -t %{buildroot}%{_appsdir}
 %dnl %{_libexecdir}/%{name}/vicinae-snippet-server
 %{_libexecdir}/%{name}/vicinae-input-server
 %{_libexecdir}/%{name}/vicinae-file-indexer
-%config %{_modulesloaddir}/vicinae.conf
+%{_modulesloaddir}/vicinae.conf
 %dnl %{_udevrulesdir}/70-vicinae.rules
 
 %changelog
