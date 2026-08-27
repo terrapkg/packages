@@ -15,9 +15,9 @@ Source0:                %{url}/archive/%{commit}/birdtray-%{commit}.tar.gz
 
 BuildRequires:          cmake-rpm-macros
 BuildRequires:          gcc-c++
-BuildRequires:          cmake(Qt5Core)
-BuildRequires:          cmake(Qt5Svg)
-BuildRequires:          cmake(Qt5X11Extras)
+BuildRequires:          cmake(Qt6Core)
+BuildRequires:          cmake(Qt6Svg)
+BuildRequires:          cmake(Qt6X11Extras)
 BuildSystem:            cmake
 BuildOption(conf):      -DCMAKE_POLICY_VERSION_MINIMUM=3.5
 Packager:		Owen Zimmerman <owen@fyralabs.com>
