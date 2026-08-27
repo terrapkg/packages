@@ -7,7 +7,7 @@
 
 Name:           discord-openasar
 Version:        1.0.151
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A snappier Discord rewrite with features like further customization and theming
 License:        MIT AND https://discord.com/terms
 URL:            https://github.com/GooseMod/OpenAsar
