@@ -1,5 +1,5 @@
 Name:     nvm
-Version:  0.40.6
+Version:  0.40.7
 Release:  1%{?dist}
 Summary:  Node Version Manager
 License:  MIT

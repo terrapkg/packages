@@ -2,13 +2,11 @@
 # is because akmods use the srpm to build the kmod package, and if the kmod package is included
 # in the main package, akmods will reinstall the userspace package every time the kernel is updated.
 
-%if 0%{?fedora}
 %global buildforkernels akmod
 %global debug_package %{nil}
-%endif
 
-%global commit cd735225a95e04dda3e2befd94ba77e1f7609dcc
-%global commitdate 20260630
+%global commit 4864fd681346119cf17417f82934a8ce05d88ff6
+%global commitdate 20260816
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global modulename nct6687d
 

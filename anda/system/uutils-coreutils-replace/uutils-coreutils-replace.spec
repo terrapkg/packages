@@ -5,7 +5,7 @@
 %endif
 
 Name:           uutils-coreutils-replace
-Version:        0.9.0
+Version:        0.10.0
 Release:        1%{?dist}
 Summary:        Cross-platform Rust rewrite of the GNU coreutils
 License:        MIT
@@ -75,7 +75,7 @@ cat <<EOF > files.txt
 %cmds %_datadir/bash-completion/completions/ ""
 %cmds %_datadir/fish/vendor_completions.d/ .fish
 %cmds %_mandir/man1/ .1.gz
-%cmds %_datadir/zsh/site-functions/_ ""
+%cmds %zsh_functions_dir/_ ""
 EOF
 sed -i 's@ @\n@g' files.txt
 

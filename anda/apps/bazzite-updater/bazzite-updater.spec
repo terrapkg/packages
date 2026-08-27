@@ -1,7 +1,7 @@
 %global appid io.github.rfrench3.bazzite-updater
 
 Name:           bazzite-updater
-Version:        0.9.0
+Version:        0.9.4
 Release:        1%{?dist}
 Summary:        Update your system
 
@@ -29,6 +29,7 @@ BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  cmake(KF6Kirigami)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6KirigamiAddons)

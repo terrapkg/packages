@@ -1,8 +1,8 @@
 %undefine __brp_mangle_shebangs
 
-%global latest_stable_version v0.0.31
-%global commit 5192f777fe54c2a2a359f6c25ecf5fbde46d49b0
-%global commit_date 20260802
+%global latest_stable_version 0.0.33
+%global commit 994372ba43810e64027c537231da200988faa7ca
+%global commit_date 20260826
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global buildnum %(printf '%d' 0x%{shortcommit})
 %global electron_version %{latest_stable_version}-nightly.%{commit_date}.%{buildnum}
@@ -66,7 +66,7 @@ chmod 4755 %{buildroot}%{_libdir}/%{name}/chrome-sandbox
 install -dm755 %{buildroot}%{_bindir}
 ln -sf %{_libdir}/%{name}/t3code %{buildroot}%{_bindir}/%{name}
 
-install -Dm644 apps/desktop/resources/icon.png %{buildroot}%{_hicolordir}/512x512/apps/%{name}.png
+install -Dm644 apps/marketing/public/icon.png %{buildroot}%{_hicolordir}/512x512/apps/%{name}.png
 
 cat <<EOF > %{name}.desktop
 [Desktop Entry]

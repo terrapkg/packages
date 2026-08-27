@@ -1,8 +1,8 @@
-%global commit 1be4fb1cd9d60b5ddefc2a4201a898766a731400
+%global commit d2983668300dd2a598e5a7dc40e71ce0678cc270
 %global debug_package %{nil}
 %global modulename ryzen_smu
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260626
+%global commitdate 20260815
 
 Name:           dkms-%{modulename}
 Version:        0.1.7^%{commitdate}git.%{shortcommit}

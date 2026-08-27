@@ -1,7 +1,7 @@
 %global _distro_extra_cflags -Wno-discarded-qualifiers -Wno-maybe-uninitialized
 
 Name:           quickjs-ng
-Version:        0.16.0
+Version:        0.16.2
 Release:        1%{?dist}
 License:        MIT
 Summary:        A mighty JavaScript engine
@@ -41,8 +41,10 @@ Example files for %{name}
 %prep
 %autosetup -p1 -n quickjs-%{version}
 
-%build
+%conf
 %cmake
+
+%build
 %cmake_build
 
 %install
@@ -54,9 +56,8 @@ rm %{buildroot}%{_docdir}/quickjs/LICENSE
 %license LICENSE
 %{_bindir}/qjs
 %{_bindir}/qjsc
-%{_mandir}/man1/qjs.1/qjs.man.*
-%{_mandir}/man1/qjsc.1/qjsc.man.*
-
+%{_mandir}/man1/qjs.1.*
+%{_mandir}/man1/qjsc.1.*
 
 %files examples
 %license LICENSE

@@ -5,7 +5,7 @@
 Name:           legcord
 %electronmeta -D
 Version:        1.3.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        OSL-3.0 AND %{electron_license}
 Summary:        Custom lightweight Discord client designed to enhance your experience
 URL:            https://github.com/Legcord/Legcord
@@ -16,7 +16,7 @@ Requires:       xdg-utils
 Obsoletes:      armcord < 3.3.2-1
 Obsoletes:      legcord-bin < 1.1.5-2
 Conflicts:      legcord-nightly
-BuildRequires:  anda-srpm-macros pnpm nodejs-npm git-core gcc gcc-c++ make desktop-file-utils zlib-ng-compat-devel
+BuildRequires:  anda-srpm-macros nvm pnpm git-core gcc gcc-c++ make desktop-file-utils zlib-ng-compat-devel
 
 %description
 Legcord is a custom client designed to enhance your Discord experience
@@ -26,6 +26,7 @@ while keeping everything lightweight.
 %git_clone %url v%version
 
 %build
+%vendor_nodejs -v 26
 %pnpm_build -r build
 
 %install
@@ -51,7 +52,7 @@ while keeping everything lightweight.
 %{_iconsdir}/hicolor/512x512/apps/legcord.png
 
 %changelog
-* Thu Jul 30 2026 Owen-sz <owen@fyralabs.com> - 1.3.0-1
+* Thu Jul 30 2026 Owen Zimmerman <owen@fyralabs.com> - 1.3.0-1
 - Vendor our own .desktop file
 
 * Mon May 18 2026 june-fish <june@fyralabs.com> - 1.2.4-1

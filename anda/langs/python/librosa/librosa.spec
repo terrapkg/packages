@@ -2,8 +2,8 @@
 %global _desc Python library for audio and music analysis.
 
 Name:			python-%{pypi_name}
-Version:		0.11.0
-Release:		2%?dist
+Version:		1.0.0
+Release:		1%{?dist}
 Summary:		Python library for audio and music analysis
 License:		MIT
 URL:			https://librosa.org

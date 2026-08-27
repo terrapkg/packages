@@ -1,7 +1,7 @@
 Name:           vicinae
 License:        GPL-3.0-or-later
-Version:        0.24.0
-Release:        1%{?dist}
+Version:        0.27.1
+Release:        2%{?dist}
 URL:            https://docs.vicinae.com
 Source:         https://github.com/vicinaehq/%{name}/archive/refs/tags/v%{version}.tar.gz
 Summary:        A high-performance, native launcher for Linux
@@ -22,6 +22,7 @@ BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  cmake(Qt6Keychain)
 BuildRequires:  cmake(LayerShellQt)
 BuildRequires:  cmake(Qt6ShaderTools)
+BuildRequires:  cmake(numen)
 BuildRequires:  pkgconfig(libqalculate)
 BuildRequires:  pkgconfig(protobuf)
 BuildRequires:  pkgconfig(icu-uc)
@@ -35,6 +36,7 @@ BuildRequires:  qt6-qtbase-private-devel
 BuildRequires:  cmake(Qt6LinguistTools)
 BuildRequires:  xcb-util-keysyms-devel
 BuildRequires:  desktop-file-utils
+BuildRequires:   pkgconfig(wayland-protocols)
 
 Requires:       nodejs-npm
 Requires:       layer-shell-qt
@@ -46,8 +48,10 @@ your desktop — built with C++ and Qt.
 %prep
 %autosetup
 
+%conf
+%cmake -G Ninja -DCMAKE_BUILD_TYPE=None -DBUILD_SHARED_LIBS=OFF -DUSE_SYSTEM_NUMEN=ON -DNOSTRIP=ON
+
 %build
-%cmake -G Ninja -DCMAKE_BUILD_TYPE=None -DBUILD_SHARED_LIBS=OFF -DNOSTRIP=ON
 %cmake_build
 
 %install

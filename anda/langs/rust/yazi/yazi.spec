@@ -1,7 +1,7 @@
 %undefine __brp_mangle_shebangs
 
 Name:           yazi
-Version:        26.5.6
+Version:        26.8.15
 Release:        1%{?dist}
 Summary:        Blazing fast terminal file manager written in Rust, based on async I/O
 URL:            https://yazi-rs.github.io/
@@ -36,6 +36,7 @@ A new article explaining its internal workings: Why is Yazi Fast?
 %cargo_prep_online
 
 %build
+export VERGEN_GIT_SHA="Terra"
 %cargo_build
 
 %install

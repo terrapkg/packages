@@ -1,6 +1,6 @@
 Name:           zola
-Version:        0.22.1
-Release:        1%?dist
+Version:        0.23.4
+Release:        1%{?dist}
 Summary:        A fast static site generator in a single binary with everything built-in
 URL:            https://www.getzola.org
 Source0:        https://github.com/getzola/%{name}/archive/refs/tags/v%{version}.tar.gz

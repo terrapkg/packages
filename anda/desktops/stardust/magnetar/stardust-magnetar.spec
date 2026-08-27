@@ -37,5 +37,5 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %doc README.md
 
 %changelog
-* Wed Sep 11 2024 Owen-sz <owen@fyralabs.com>
+* Wed Sep 11 2024 Owen Zimmerman <owen@fyralabs.com>
 - Package StardustXR magnetar

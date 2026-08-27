@@ -1,5 +1,5 @@
-%global commit df7fc5328ff6294762ed1199225392f57b5584f5
-%global commit_date 20260801
+%global commit d2df28394b5811fb5bb78b115645dd22ca4cb39a
+%global commit_date 20260810
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 # terrible evil no good very bad hack
 # fix one day
@@ -17,7 +17,7 @@ Packager:       Owen <owen@fyralabs.com>
 Requires:       xdg-utils
 Obsoletes:      armcord < 3.3.2-1
 Conflicts:      legcord
-BuildRequires:  anda-srpm-macros pnpm nodejs-npm git-core gcc gcc-c++ make desktop-file-utils zlib-ng-compat-devel nvm
+BuildRequires:  anda-srpm-macros nvm pnpm git-core gcc gcc-c++ make desktop-file-utils zlib-ng-compat-devel nvm
 
 %description
 Legcord is a custom client designed to enhance your Discord experience
@@ -34,7 +34,7 @@ while keeping everything lightweight.
 %electron_install -i legcord -l -I dist/.icon-set/
 
 dist/Legcord-*.AppImage --appimage-extract '*.desktop'
-%desktop_file_install -k Exec,Icon -v "%{_libdir}/legcord-nightly/Legcord",legcord -u %U -f squashfs-root/legcord.desktop
+%desktop_file_install -k Exec,Icon -v "%{_libdir}/legcord-nightly/legcord",legcord -u %U -f squashfs-root/legcord.desktop
 
 %files
 %doc README.md

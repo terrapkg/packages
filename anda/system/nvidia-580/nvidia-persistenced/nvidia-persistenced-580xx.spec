@@ -1,7 +1,7 @@
 %global real_name nvidia-persistenced
 
 Name:             %{real_name}-580xx
-Version:          580.173.02
+Version:          580.178.04
 Release:          1%{?dist}
 Summary:          A daemon to maintain persistent software state in the NVIDIA driver
 Epoch:            3
