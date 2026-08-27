@@ -17,7 +17,7 @@ BuildRequires:          cmake-rpm-macros
 BuildRequires:          gcc-c++
 BuildRequires:          cmake(Qt6Core)
 BuildRequires:          cmake(Qt6Svg)
-BuildRequires:          cmake(Qt6X11Extras)
+BuildRequires:          cmake(Qt5X11Extras)
 BuildSystem:            cmake
 BuildOption(conf):      -DCMAKE_POLICY_VERSION_MINIMUM=3.5
 Packager:		Owen Zimmerman <owen@fyralabs.com>
