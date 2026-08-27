@@ -7,7 +7,7 @@ License:        LicenseRef-unrar AND BSD-2-Clause AND CC0-1.0 AND LicenseRef-Fed
 URL:            https://www.rarlab.com/rar_add.htm
 Source0:        https://www.rarlab.com/rar/unrarsrc-%{version}.tar.gz
 # Man page from debian
-Source1:        unrar.1
+Source1:        https://raw.githubusercontent.com/debian-calibre/unrar-nonfree/master/debian/unrar-nonfree.1
 
 Packager:       ammix <maxim@ammix.dev>
 
