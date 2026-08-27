@@ -97,6 +97,10 @@ rm -rf %buildroot%python3_sitelib/tests/
 cp -r %buildroot%python3_sitelib%_usr/ %buildroot%_usr/ --preserve=all --no-target-directory
 rm -rf %buildroot%python3_sitelib%_usr
 
+install -Dm644 daemon/data/default-config.json  %{buildroot}%{_sysconfdir}/opensnitchd/default-config.json
+install -Dm644 daemon/data/network_aliases.json %{buildroot}%{_sysconfdir}/opensnitchd/network_aliases.json
+install -Dm644 daemon/data/system-fw.json       %{buildroot}%{_sysconfdir}/opensnitchd/system-fw.json
+
 %post
 %systemd_post opensnitchd.service
 
@@ -119,6 +123,9 @@ rm -rf %buildroot%python3_sitelib%_usr
 %_metainfodir/io.github.evilsocket.opensnitch.appdata.xml
 %_scalableiconsdir/opensnitch-ui.svg
 %{_unitdir}/opensnitchd.service
+%{_sysconfdir}/opensnitchd/default-config.json
+%{_sysconfdir}/opensnitchd/network_aliases.json
+%{_sysconfdir}/opensnitchd/system-fw.json
 
 %gopkgfiles
 
