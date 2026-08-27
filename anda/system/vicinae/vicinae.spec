@@ -22,6 +22,7 @@ BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  cmake(Qt6Keychain)
 BuildRequires:  cmake(LayerShellQt)
 BuildRequires:  cmake(Qt6ShaderTools)
+BuildRequires:  cmake(numen)
 BuildRequires:  pkgconfig(libqalculate)
 BuildRequires:  pkgconfig(protobuf)
 BuildRequires:  pkgconfig(icu-uc)
@@ -48,7 +49,7 @@ your desktop — built with C++ and Qt.
 %autosetup
 
 %build
-%cmake -G Ninja -DCMAKE_BUILD_TYPE=None -DBUILD_SHARED_LIBS=OFF -DNOSTRIP=ON
+%cmake -G Ninja -DCMAKE_BUILD_TYPE=None -DBUILD_SHARED_LIBS=OFF -DUSE_SYSTEM_NUMEN=ON -DNOSTRIP=ON
 %cmake_build
 
 %install
