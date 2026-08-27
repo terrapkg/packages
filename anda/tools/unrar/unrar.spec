@@ -72,7 +72,6 @@ echo "%%unrar_version %{version}" > %{buildroot}%{_rpmmacrodir}/macros.unrar
 %{_libdir}/libunrar.so
 
 %files -n libunrar-devel
-%license license.txt acknow.txt
 %doc readme.txt
 %{_includedir}/unrar/
 %{_rpmmacrodir}/macros.unrar
