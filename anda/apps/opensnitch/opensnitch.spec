@@ -130,6 +130,9 @@ install -Dm644 daemon/data/system-fw.json       %{buildroot}%{_sysconfdir}/opens
 %gopkgfiles
 
 %changelog
+* Wed Aug 26 2026 Owen Zimmerman <owen@fyralabs.com>
+- Install configs and proper systemd service, add runtime deps
+
 * Thu Aug 20 2026 Owen Zimmerman <owen@fyralabs.com>
 - Package systemd service
 
