@@ -49,7 +49,7 @@ your desktop — built with C++ and Qt.
 %autosetup
 
 %build
-%cmake -G Ninja -DCMAKE_BUILD_TYPE=None -DBUILD_SHARED_LIBS=OFF -DNOSTRIP=ON
+%cmake -G Ninja -DCMAKE_BUILD_TYPE=None -DBUILD_SHARED_LIBS=OFF -DUSE_SYSTEM_NUMEN=ON -DNOSTRIP=ON
 %cmake_build
 
 %install
