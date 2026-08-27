@@ -48,8 +48,10 @@ your desktop — built with C++ and Qt.
 %prep
 %autosetup
 
-%build
+%conf
 %cmake -G Ninja -DCMAKE_BUILD_TYPE=None -DBUILD_SHARED_LIBS=OFF -DUSE_SYSTEM_NUMEN=ON -DNOSTRIP=ON
+
+%build
 %cmake_build
 
 %install
@@ -89,7 +91,7 @@ install -Dm 644 extra/%{name}-url-handler.desktop -t %{buildroot}%{_appsdir}
 %dnl %{_libexecdir}/%{name}/vicinae-snippet-server
 %{_libexecdir}/%{name}/vicinae-input-server
 %{_libexecdir}/%{name}/vicinae-file-indexer
-%{_modulesloaddir}/vicinae.conf
+%config %{_modulesloaddir}/vicinae.conf
 %dnl %{_udevrulesdir}/70-vicinae.rules
 
 %changelog
