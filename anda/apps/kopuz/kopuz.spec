@@ -4,7 +4,7 @@ Release:        1%{?dist}
 Summary:        Modern, lightweight, music player application
 # TODO - Next release is EUPL-1.2
 SourceLicense:  MIT
-License:        EUPL-1.2
+License:        MIT
 URL:            https://github.com/Kopuz-org/kopuz
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 Packager:       Owen Zimmerman <owen@fyralabs.com>
