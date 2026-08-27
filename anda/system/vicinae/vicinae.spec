@@ -1,7 +1,7 @@
 Name:           vicinae
 License:        GPL-3.0-or-later
 Version:        0.27.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 URL:            https://docs.vicinae.com
 Source:         https://github.com/vicinaehq/%{name}/archive/refs/tags/v%{version}.tar.gz
 Summary:        A high-performance, native launcher for Linux
@@ -48,8 +48,10 @@ your desktop — built with C++ and Qt.
 %prep
 %autosetup
 
-%build
+%conf
 %cmake -G Ninja -DCMAKE_BUILD_TYPE=None -DBUILD_SHARED_LIBS=OFF -DUSE_SYSTEM_NUMEN=ON -DNOSTRIP=ON
+
+%build
 %cmake_build
 
 %install
