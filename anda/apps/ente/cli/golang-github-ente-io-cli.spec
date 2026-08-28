@@ -12,7 +12,7 @@
 
 # https://github.com/ente-io/ente
 %global goipath         github.com/ente-io/ente/cli
-%global tag             cli-v0.2.3
+%global tag             cli-v0.1.11
 Version:                %(echo %tag | sed 's/^cli-v//')
 
 %gometa -f
@@ -23,7 +23,7 @@ The Ente CLI is a Command Line Utility for exporting data from Ente. It also doe
 %global golicenses      LICENSE
 %global godocs          CODE_OF_CONDUCT.md CONTRIBUTING.md cli/README.md SECURITY.md SUPPORT.md
 Name:           ente
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        💚 End-to-end encrypted cloud for everything
 Packager:       madonuko <mado@fyralabs.com>
 
