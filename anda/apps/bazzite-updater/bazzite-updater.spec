@@ -14,12 +14,14 @@ Packager:       Robert French <frenchrobertm@outlook.com>
 BuildRequires:  desktop-file-utils
 BuildRequires:  libappstream-glib
 BuildRequires:  systemd-rpm-macros
+BuildRequires:  gettext
 
 BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(SDL3)
 BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  cmake(Qt6QuickControls2)
@@ -62,11 +64,13 @@ By default, it is configured for Bazzite.
 %install
 %cmake_install
 
+%find_lang bazzite-updater
+
 %check
 appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/%{appid}.*.xml || :
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/%{appid}.desktop
 
-%files
+%files -f bazzite-updater.lang
 %license LICENSES/{BSD-3-Clause.txt,CC0-1.0.txt,GPL-2.0-or-later.txt}
 %doc README.md
 %{_bindir}/bazzite-updater
