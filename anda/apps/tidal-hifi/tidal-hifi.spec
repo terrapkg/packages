@@ -1,3 +1,5 @@
+%global debug_package %{nil}
+
 Name:           tidal-hifi
 Version:        8.1.3
 Release:        1%?dist
@@ -22,10 +24,15 @@ The web version of TIDAL running in electron with Hi-Fi (High & Max) support tha
 %install
 %electron_install
 
+# Do not ship an absolute symlink from /usr/bin.
+rm -f %{buildroot}%{_bindir}/%{name}
+ln -s ../%{_lib}/%{name}/%{name} %{buildroot}%{_bindir}/%{name}
+
 %files
 %doc README.md
 %license LICENSE
-%_bindir/%name
+%{_bindir}/%{name}
+%{_libdir}/%{name}
 
 %changelog
 * Mon Aug 17 2026 madonuko <mado@fyralabs.com>
