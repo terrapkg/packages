@@ -22,7 +22,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %{summary}.
 
 %prep
-%autosetup
+%autosetup -C
 %cargo_prep_online
 
 %build

@@ -1,6 +1,6 @@
 project pkg {
   rpm {
-    spec = "noctalia-git.spec"
+    spec = "umbriel-nightly.spec"
   }
   labels {
     nightly = 1

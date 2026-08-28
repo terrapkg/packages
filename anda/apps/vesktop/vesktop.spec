@@ -1,5 +1,3 @@
-%define debug_package %nil
-
 %global giturl https://github.com/Vencord/Vesktop
 %global appid dev.vencord.Vesktop
 
@@ -11,7 +9,8 @@ Name:		vesktop
 Obsoletes:  VencordDesktop < 1.5.8-1
 Obsoletes:  vencord-desktop < 1.5.8-1
 Version:	1.6.7
-Release:	1%{?dist}
+%electronmeta -aD
+Release:	2%{?dist}
 License:	GPL-3.0-or-later
 Summary:	Vesktop is a cross platform desktop app aiming to give you a snappier Discord experience with Vencord pre-installed
 URL:		https://vesktop.dev
@@ -19,11 +18,9 @@ Group:		Applications/Internet
 Source0:    %{giturl}/archive/refs/tags/v%{version}.tar.gz
 Source1:    %{giturl}/releases/download/v%{version}/%{appid}.metainfo.xml
 Requires:   xdg-utils
-%if 0%{?fedora} >= 44
-BuildRequires: nodejs24-npm-bin git
-%else
-BuildRequires:	nodejs-npm git
-%endif
+BuildRequires:	pnpm
+# for buildLibVesktop
+BuildRequires:  curl pkgconf-pkg-config glib2-devel python3
 Recommends:	arrpc
 
 %description
@@ -48,8 +45,9 @@ Keywords=discord;vesktop;vencord;shelter;armcord;electron;
 EOF
 
 %build
-%__npx pnpm install --no-frozen-lockfile
-%__npx pnpm package:dir
+%__pnpm install
+%__pnpm buildLibVesktop
+%__pnpm package:dir
 
 %install
 mkdir -p %buildroot/usr/share/vesktop
@@ -73,6 +71,9 @@ install -Dm644 %{SOURCE1} %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
+* Web Aug 19 2026 madonuko <mado@fyralabs.com> - 1.6.7-2
+- Use pnpm package directly
+- build libvesktop
 * Wed Feb 04 2026 Kaitlyn <kaitlynyaa@kaitlynyaa.dev> - 1.6.4
 - Added appstream metainfo and fixed buildrequires to adhere to new npm package naming scheme
 * Thu Jul 24 2025 Atmois <info@atmois.com> - 1.5.8-2

@@ -1,6 +1,6 @@
-%global commit 5586acd9cab3e6ce7381bb3cf0f8ff9e52a1d46f
+%global commit 72ded510498258babe128d96b7ff3470a68a95c4
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260822
+%global commitdate 20260828
 
 Name:           logitech-rs50-linux-driver
 Version:        1.0^%{commitdate}git.%{shortcommit}

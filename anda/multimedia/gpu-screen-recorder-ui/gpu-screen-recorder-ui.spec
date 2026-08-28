@@ -10,6 +10,7 @@ URL:            https://git.dec05eba.com/%{name}/about
 Source:         https://dec05eba.com/snapshot/%{name}.git.%{version}.tar.gz
 
 BuildRequires:  meson gcc gcc-c++
+BuildRequires:  desktop-file-utils
 BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(xrandr)
 BuildRequires:  pkgconfig(xrender)

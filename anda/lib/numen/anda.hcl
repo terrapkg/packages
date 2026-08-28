@@ -1,5 +1,5 @@
 project pkg {
   rpm {
-    spec = "noctalia.spec"
+    spec = "numen.spec"
   }
 }

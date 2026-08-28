@@ -1,6 +1,6 @@
 Name:           vicinae
 License:        GPL-3.0-or-later
-Version:        0.26.3
+Version:        0.27.3
 Release:        1%{?dist}
 URL:            https://docs.vicinae.com
 Source:         https://github.com/vicinaehq/%{name}/archive/refs/tags/v%{version}.tar.gz
@@ -22,6 +22,7 @@ BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  cmake(Qt6Keychain)
 BuildRequires:  cmake(LayerShellQt)
 BuildRequires:  cmake(Qt6ShaderTools)
+BuildRequires:  cmake(numen)
 BuildRequires:  pkgconfig(libqalculate)
 BuildRequires:  pkgconfig(protobuf)
 BuildRequires:  pkgconfig(icu-uc)
@@ -47,8 +48,10 @@ your desktop — built with C++ and Qt.
 %prep
 %autosetup
 
+%conf
+%cmake -G Ninja -DCMAKE_BUILD_TYPE=None -DBUILD_SHARED_LIBS=OFF -DUSE_SYSTEM_NUMEN=ON -DNOSTRIP=ON
+
 %build
-%cmake -G Ninja -DCMAKE_BUILD_TYPE=None -DBUILD_SHARED_LIBS=OFF -DNOSTRIP=ON
 %cmake_build
 
 %install

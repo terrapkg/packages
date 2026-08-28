@@ -2,7 +2,7 @@
 %global _desc Accessible large language models via k-bit quantization for PyTorch.
 
 Name:			python-%{pypi_name}
-Version:		0.50.1
+Version:		0.50.2
 Release:		1%{?dist}
 Summary:		Accessible large language models via k-bit quantization for PyTorch
 License:		MIT
