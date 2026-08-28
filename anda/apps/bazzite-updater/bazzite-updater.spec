@@ -39,6 +39,7 @@ BuildRequires:  cmake(KF6KirigamiAddons)
 Requires:       kf6-kirigami%{?_isa}
 Requires:       kf6-kirigami-addons%{?_isa}
 Requires:       kf6-qqc2-desktop-style%{?_isa}
+Requires:       qqc2-breeze-style%{?_isa}
 Requires:       qt6-controllable%{?_isa}
 Requires:       hicolor-icon-theme
 Requires:       systemd%{?_isa} >= 258
