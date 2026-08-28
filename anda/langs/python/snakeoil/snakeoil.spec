@@ -2,7 +2,7 @@
 %global _desc A python library that implements optimized versions of common functionality.
 
 Name:			python-%{pypi_name}
-Version:		0.11.4
+Version:		0.11.5
 Release:		1%{?dist}
 Summary:		Implements optimized versions of common functionality
 License:		BSD-3-Clause
