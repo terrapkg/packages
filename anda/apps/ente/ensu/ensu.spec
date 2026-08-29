@@ -1,4 +1,4 @@
-%global tag                 ensu-v0.1.10
+%global tag                 ensu-v0.1.11
 %global appid               io.ente.ensu
 %global developer           "Ente"
 %global org                 "io.ente"
