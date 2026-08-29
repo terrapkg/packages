@@ -1,6 +1,6 @@
-%global commit      e07a4a1f2d32658b8420e046276a7cfc425c9bf2
+%global commit      05dbda9b930b8d174f03387fb626d97d827d0647
 %global shortcommit %{sub %{commit} 1 7}
-%global commit_date 20260828
+%global commit_date 20260829
 
 Name:			vgmstream
 Version:		0~%{commit_date}git.%shortcommit
