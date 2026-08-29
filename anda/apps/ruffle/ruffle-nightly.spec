@@ -1,4 +1,4 @@
-%global ver 2026-08-28
+%global ver 2026-08-29
 %global goodver %(echo %ver | sed 's/-//g')
 %global __brp_mangle_shebangs %{nil}
 %bcond_without mold
