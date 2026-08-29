@@ -1,6 +1,3 @@
-%global ver 0.5.0-1
-%global sanitized_ver %(echo %{ver} | sed 's/-/./')
-
 %define debug_package %{nil}
 
 Name:           surface-control
