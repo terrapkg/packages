@@ -7,7 +7,7 @@ Summary:        Control various aspects of Microsoft Surface devices from the sh
 
 License:        MIT
 URL:            https://github.com/linux-surface/surface-control
-Source0:        %{url}/archive/refs/tags/v%{ver}.tar.gz
+Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 
 Requires:       dbus
 Requires:       libgcc
