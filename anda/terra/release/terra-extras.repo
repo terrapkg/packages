@@ -10,7 +10,9 @@ repo_gpgcheck=1
 enabled=1
 enabled_metadata=1
 countme=1
-priority=150
+# Since Terra Extras replaces Fedora packages and is optional, it should have precedence over Fedora packages.
+# see #2882
+priority=80
 
 [terra-extras-source]
 name=Terra $releasever (Extras) - Source
@@ -23,4 +25,4 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-terra$releasever-extras-source
 repo_gpgcheck=1
 enabled=0
 enabled_metadata=0
-priority=150
+priority=80
