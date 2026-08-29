@@ -81,7 +81,7 @@ export PATH="%{_builddir}/crystal-%{bootstrap_version}-%{_arch}-alpine-linux-mus
 
 %changelog
 * Thu Jul 16 2026 Owen Zimmerman <owen@fyralabs.com> - 1.21.0-1 
-- Update for 1.21.0, use %%pkg_completions
+- Update for 1.21.0, use %%pkg_completion
 
 * Mon Nov 03 2025 Carl Hörberg <carl@84codes.com> -  1.18.2-2
 - Build from source, support multiple architectures.
