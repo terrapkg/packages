@@ -23,7 +23,7 @@ Unlock the full capabilities of Logitech mice, keyboards, and webcams over HID++
 %cargo_prep_online
 
 %build
-%cargo_build -- -p openlogi -p openlogi-desktop -p openlogi-agent
+%cargo_build -- -p openlogi -p openlogi-desktop -p openlogi-overlay -p openlogi-agent
 
 %install
 ls -laH target/rpm
