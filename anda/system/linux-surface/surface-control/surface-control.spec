@@ -34,13 +34,9 @@ devices.
 
 %build
 export CARGO_TARGET_DIR="$PWD/target"
-export CARGO_INCREMENTAL=0
-
 %cargo_build
-strip --strip-all "target/rpm/surface"
 
 %install
-ls -laH target
 install -Dm755 target/rpm/surface                   %{buildroot}%{_bindir}/surface
 install -Dm644 target/surface.bash                  %{buildroot}%{bash_completions_dir}/surface.bash
 install -Dm644 target/_surface                      %{buildroot}%{zsh_completions_dir}/_surface
