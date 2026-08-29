@@ -46,6 +46,8 @@ Provides:       rp-appset
 %{_datadir}/rpcc/ui/pipanel.ui
 %{_libdir}/rpcc/librpcc_pipanel.so
 %{_iconsdir}/hicolor/*x*/apps/appset-taskbar.png
+%{_iconsdir}/hicolor/*x*/apps/appset-desktop.png
+
 %{_scalableiconsdir}/appset-desktop.svg
 %{_scalableiconsdir}/appset-taskbar.svg
 
