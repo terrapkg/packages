@@ -10,6 +10,7 @@ Packager:	Owen Zimmerman <owen@fyralabs.com>
 BuildRequires:	cargo-rpm-macros
 BuildRequires:	systemd-rpm-macros
 BuildRequires:	rustc
+BuildRequires:	fontconfig-devel
 BuildRequires:  clang-devel
 
 Provides:	openlogi
