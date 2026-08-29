@@ -12,6 +12,7 @@ BuildRequires:	systemd-rpm-macros
 BuildRequires:	rustc
 BuildRequires:	fontconfig-devel
 BuildRequires:  clang-devel
+BuildRequires:  libxkbcommon-x11-devel
 
 Provides:	openlogi
 
