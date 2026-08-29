@@ -23,16 +23,17 @@ Unlock the full capabilities of Logitech mice, keyboards, and webcams over HID++
 %cargo_prep_online
 
 %build
-%cargo_build
+%cargo_build -- -p openlogi -p openlogi-desktop -p openlogi-agent
 
 %install
-install -Dm755 target/rpm/openlogi				%{buildroot}%{_bindir}/openlogi
-install -Dm755 target/rpm/openlogi-desktop			%{buildroot}%{_bindir}/openlogi-desktop
-install -Dm755 target/rpm/openlogi-overlay			%{buildroot}%{_bindir}/openlogi-overlay
-install -Dm755 target/rpm/openlogi-agent			%{buildroot}%{_bindir}/openlogi-agent
-install -Dm644 packaging/linux/udev/70-openlogi.rules		%{buildroot}%{_udevrulesdir}/70-openlogi.rules
+ls -laH target/rpm
+install -Dm755 target/rpm/openlogi				                %{buildroot}%{_bindir}/openlogi
+install -Dm755 target/rpm/openlogi-desktop			            %{buildroot}%{_bindir}/openlogi-desktop
+install -Dm755 target/rpm/openlogi-overlay			            %{buildroot}%{_bindir}/openlogi-overlay
+install -Dm755 target/rpm/openlogi-agent			            %{buildroot}%{_bindir}/openlogi-agent
+install -Dm644 packaging/linux/udev/70-openlogi.rules		    %{buildroot}%{_udevrulesdir}/70-openlogi.rules
 install -Dm644 packaging/linux/systemd/openlogi-agent.service	%{buildroot}%{_userunitdir}/openlogi-agent.service
-install -Dm644 packaging/linux/desktop/openlogi.desktop		%{buildroot}%{_appsdir}/openlogi.desktop
+install -Dm644 packaging/linux/desktop/openlogi.desktop		    %{buildroot}%{_appsdir}/openlogi.desktop
 
 # See https://github.com/AprilNEA/OpenLogi/issues/794 and https://github.com/terrapkg/packages/pull/16078
 # For why we cannot include this file (but hopefully this can change).
@@ -59,6 +60,5 @@ install -Dm644 packaging/linux/desktop/openlogi.desktop		%{buildroot}%{_appsdir}
 %{_appsdir}/openlogi.desktop
 
 %changelog
-* Sat Aug 22 2026 Owen Zimmerman <owen@fyralabs.com> - 0.7.4-1 
+* Sat Aug 22 2026 Owen Zimmerman <owen@fyralabs.com> - 0.7.4-1
 - Initial commit
-
