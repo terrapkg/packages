@@ -4,7 +4,7 @@
 %define debug_package %{nil}
 
 Name:           surface-control
-Version:        0.5.0.1
+Version:        %{sanitized_ver}
 Release:        1%{?dist}
 Summary:        Control various aspects of Microsoft Surface devices from the shell
 
