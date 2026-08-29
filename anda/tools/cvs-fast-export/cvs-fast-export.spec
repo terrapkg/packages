@@ -1,5 +1,5 @@
 Name:           cvs-fast-export
-Version:        2.3
+Version:        2.4
 Release:        1%{?dist}
 Summary:        Export an RCS or CVS history as a fast-import stream
 

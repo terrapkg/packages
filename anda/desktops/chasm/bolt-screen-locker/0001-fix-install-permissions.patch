@@ -1,0 +1,13 @@
+diff --git a/Makefile b/Makefile
+index 5c6f213..035f484 100644
+--- a/Makefile
++++ b/Makefile
+@@ -52,7 +52,7 @@ img/logo.rgba: $(LOGO_SRC)
+ install: bolt bolt-auth
+ 	install -d $(DESTDIR)$(BINDIR)
+ 	install -m 0755 bolt $(DESTDIR)$(BINDIR)/bolt
+-	install -m 4755 -o root -g root bolt-auth $(DESTDIR)$(BINDIR)/bolt-auth
++	install -m 0755 bolt-auth $(DESTDIR)$(BINDIR)/bolt-auth
+ 	@echo
+ 	@echo "  bolt installed. The auth helper is suid root (mode 4755):"
+ 	@ls -la $(DESTDIR)$(BINDIR)/bolt-auth

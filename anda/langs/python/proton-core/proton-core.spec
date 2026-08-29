@@ -3,8 +3,8 @@
 %global _desc The proton-core component contains core logic used by the other Proton components.
 
 Name:       python-proton-core
-Version:    0.7.0
-Release:    2%?dist
+Version:    0.7.4
+Release:    1%{?dist}
 Summary:    %{unmangled_name} library
 License:    GPL-3.0-or-later
 URL:        https://github.com/ProtonVPN/%{github_repo_name}

@@ -23,7 +23,7 @@ on:
 
 jobs:
   manifest:
-    runs-on: ubuntu-24.04-arm
+    runs-on: arc-runner-set
     outputs:
       build_matrix: ${{ steps.generate_build_matrix.outputs.build_matrix }}
     container:
@@ -49,7 +49,7 @@ jobs:
 
   appstream:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: arc-runner-set
     container:
       image: ghcr.io/terrapkg/appstream-generator:main
     steps:
@@ -62,6 +62,7 @@ jobs:
         id: catalog
         # run appstream-builder, then add step summary
         run: |
+          set -o pipefail
           set -x
           appstream-builder -v \
             --packages-dir=artifacts/rpms \
@@ -94,11 +95,14 @@ jobs:
         if: steps.catalog.outcome == 'success'
         run: |
           if stat output/*.xml.gz &>/dev/null; then
-            echo "## AppStream Builder Log" >> $GITHUB_STEP_SUMMARY
+            echo "<details>" >> $GITHUB_STEP_SUMMARY
+            echo "<summary>AppStream Builder Log</summary>" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
             echo '```log' >> $GITHUB_STEP_SUMMARY
             cat asb.log >> $GITHUB_STEP_SUMMARY
             echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "</details>" >> $GITHUB_STEP_SUMMARY
             echo '---' >> $GITHUB_STEP_SUMMARY
           else
             echo "Nothing to do."
@@ -113,15 +117,19 @@ jobs:
           if stat output/*.xml.gz &>/dev/null; then
             if grep -q "veto" asb.log; then
               echo "::group::Vetoed packages"
-              echo "### Vetoed packages" >> $GITHUB_STEP_SUMMARY
+              echo "<details>" >> $GITHUB_STEP_SUMMARY
+              echo "<summary>Vetoed packages</summary>" >> $GITHUB_STEP_SUMMARY
               echo "" >> $GITHUB_STEP_SUMMARY
               echo '```xml' >> $GITHUB_STEP_SUMMARY
               echo "$(grep -i 'veto' asb.log)" >> $GITHUB_STEP_SUMMARY
               echo '```' >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "</details>" >> $GITHUB_STEP_SUMMARY
               echo "::warning file=asb.log::Some packages were vetoed during AppStream generation. Please review the 'Vetoed packages' section in the summary for details."
               echo "::endgroup::"
             fi
-            echo "## Full Data Summary" >> $GITHUB_STEP_SUMMARY
+            echo "<details>" >> $GITHUB_STEP_SUMMARY
+            echo "<summary>Full Data Summary</summary>" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
             echo "### Generated Appstream files:" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
@@ -133,6 +141,17 @@ jobs:
               echo '```' >> $GITHUB_STEP_SUMMARY
               echo "" >> $GITHUB_STEP_SUMMARY
             done
+            echo "</details>" >> $GITHUB_STEP_SUMMARY
           else
             echo "No appstream files found." >> $GITHUB_STEP_SUMMARY
           fi
+
+      - name: Fail on AppStream package failures
+        if: steps.report_summary.outcome == 'success'
+        run: |
+          for file in output/*.xml.gz; do
+            if zgrep -q '<veto>' "$file"; then
+              echo "::error file=$file::AppStream validation failed: package vetoes were found."
+              exit 1
+            fi
+          done

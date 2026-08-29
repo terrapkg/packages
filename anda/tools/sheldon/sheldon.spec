@@ -15,6 +15,7 @@ Source:         %{terra_crates_source}
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros
 BuildRequires:  pkgconfig(openssl)
+BuildRequires:  zlib-ng-compat-devel
 
 %global _description %{expand:
 Fast, configurable, shell plugin manager.}

@@ -1,5 +1,5 @@
 Name:       ktailctl
-Version:    0.22.1
+Version:    0.22.2
 Release:    1%{?dist}
 Summary:    A GUI to monitor and manage Tailscale on your Linux desktop
 License:    GPL-3.0-only

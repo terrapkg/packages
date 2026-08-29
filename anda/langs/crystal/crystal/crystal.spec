@@ -64,7 +64,7 @@ export PATH="%{_builddir}/crystal-%{bootstrap_version}-%{_arch}-alpine-linux-mus
 %license %{_datadir}/licenses/crystal/LICENSE
 %{_bindir}/crystal
 %{_datadir}/crystal
-%{_datadir}/zsh/site-functions/_crystal
+%{zsh_functions_dir}/_crystal
 %{_mandir}/man1/crystal.1.gz
 %{_mandir}/man1/crystal-build.1.gz
 %{_mandir}/man1/crystal-docs.1.gz

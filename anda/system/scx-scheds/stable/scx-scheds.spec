@@ -1,7 +1,7 @@
 %undefine __brp_mangle_shebangs
 
 Name:           scx-scheds
-Version:        1.1.2
+Version:        1.1.3
 Release:        1%{?dist}
 Summary:        sched_ext schedulers
 SourceLicense:  GPL-2.0-only

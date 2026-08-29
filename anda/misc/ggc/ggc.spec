@@ -1,5 +1,5 @@
 %global goipath github.com/bmf-san/ggc/v8
-Version:        8.7.2
+Version:        8.7.3
 
 %gometa -f
 

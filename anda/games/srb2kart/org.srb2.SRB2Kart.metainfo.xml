@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!-- Copyright 2020 Flathub maintainers -->
+<component type="desktop-application">
+  <id>org.srb2.SRB2Kart</id>
+  <metadata_license>FSFAP</metadata_license>
+  <project_license>GPL-2.0+</project_license>
+  <name>Sonic Robo Blast 2 Kart</name>
+  <summary>A kart racing mod based on the 3D Sonic the Hedgehog fangame Sonic Robo Blast 2</summary>
+  <description>
+    <p>
+      Sonic Robo Blast 2 Kart (usually shortened to SRB2Kart or SRB2K) is a
+      kart racing game with Sonic-themed characters, items and race tracks.
+      SRB2Kart features over 100 maps for two game modes: the main Race mode
+      and a Battle mode where players fight each other using the items
+      available in the game.
+    </p>
+  </description>
+  <icon type="stock">srb2kart</icon>
+  <categories>
+    <category>Game</category>
+  </categories>
+  <launchable type="desktop-id">srb2kart.desktop</launchable>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://wiki.srb2.org/w/images/a/ac/Srb2kart_title.png</image>
+      <caption>Title screen</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://user-images.githubusercontent.com/1964655/82821946-486b3780-9ea5-11ea-8818-f1a801000985.png</image>
+      <caption>Game modes</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://user-images.githubusercontent.com/1964655/82821921-3d180c00-9ea5-11ea-937b-e1f53fe6c686.png</image>
+      <caption>Game play as Sonic</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://user-images.githubusercontent.com/1964655/82821933-41442980-9ea5-11ea-9146-38998161edae.png</image>
+      <caption>Game play as Tails</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://user-images.githubusercontent.com/1964655/82821966-502adc00-9ea5-11ea-9cbd-274d7adb479e.png</image>
+      <caption>Game play as Eggman</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://user-images.githubusercontent.com/1964655/82821980-5620bd00-9ea5-11ea-9eec-2835ebb2a262.png</image>
+      <caption>Game play as Metal Sonic</caption>
+    </screenshot>
+  </screenshots>
+  <developer id="org.srb2">
+    <name>Kart Krew</name>
+  </developer>
+  <provides>
+    <binary>srb2kart</binary>
+  </provides>
+  <releases>
+    <release version="1.6" date="2022-11-04">
+      <url>https://github.com/STJr/Kart-Public/releases/tag/v1.6</url>
+    </release>
+    <release version="1.5" date="2022-08-20">
+      <url>https://github.com/STJr/Kart-Public/releases/tag/v1.5</url>
+    </release>
+    <release version="1.4" date="2022-08-19">
+      <url>https://github.com/STJr/Kart-Public/releases/tag/v1.4</url>
+    </release>
+    <release version="1.3" date="2020-09-14">
+      <url>https://github.com/STJr/Kart-Public/releases/tag/v1.3</url>
+    </release>
+    <release version="1.2" date="2020-05-12">
+      <url>https://github.com/STJr/Kart-Public/releases/tag/v1.2</url>
+    </release>
+  </releases>
+  <content_rating type="oars-1.1">
+    <content_attribute id="violence-cartoon">moderate</content_attribute>
+    <content_attribute id="language-humor">mild</content_attribute>
+    <content_attribute id="social-chat">intense</content_attribute>
+    <content_attribute id="social-info">mild</content_attribute>
+  </content_rating>
+  <url type="homepage">https://mb.srb2.org/addons/srb2kart.2435/</url>
+</component>

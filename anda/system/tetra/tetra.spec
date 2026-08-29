@@ -1,9 +1,9 @@
 Name:           tetra
-Version:        0.1.0
-Release:        1%{?dist}
+Version:        0.2.1
+Release:        2%{?dist}
 Summary:        Modular host agent for Ultramarine Server and cloud hosts
-SourceLicense:  LGPL-2.1-or-later
-License:        LGPL-2.1-or-later AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND MIT AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND Zlib
+SourceLicense:  AGPL-3.0-or-later
+License:        (ISC AND (Apache-2.0 OR ISC)) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 OR BSL-1.0) AND AGPL-3.0-or-later AND (ISC AND (Apache-2.0 OR ISC) AND Apache-2.0 AND MIT AND BSD-3-Clause AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR ISC OR MIT-0)) AND MIT AND (MIT OR Apache-2.0 OR BSD-1-Clause) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND ISC AND BSD-3-Clause AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (Unlicense OR MIT)
 URL:            https://github.com/Ultramarine-Linux/tetra
 Source0:        https://github.com/Ultramarine-Linux/tetra/archive/refs/tags/v%{version}.tar.gz
 
@@ -63,7 +63,7 @@ install -Dm644 systemd/tetra.service %{buildroot}%{_unitdir}/tetra.service
 
 %files
 %license LICENSE LICENSE.dependencies
-%doc README.md SECURITY.md elements.md docs/*
+%doc README.md SECURITY.md docs/*
 %{_bindir}/tetra
 %{_unitdir}/tetra.service
 %{_datadir}/tetra/templates
@@ -72,5 +72,8 @@ install -Dm644 systemd/tetra.service %{buildroot}%{_unitdir}/tetra.service
 %dir %attr(0750, root, root) %{_sharedstatedir}/tetra/identity
 
 %changelog
+* Sun Aug 09 2026 Cypress Reed <cypress@fyralabs.com>
+- Change license to AGPL
+
 * Sun Jul 26 2026 Cypress Reed <cypress@fyralabs.com>
 - Initial package release

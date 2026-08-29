@@ -1,6 +1,6 @@
-%global commit 8187920ed261c7024826f8204cc7bea45153a3da
+%global commit d890a93105a0aa52028ac49282fa1b579e12566e
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260310
+%global commitdate 20260826
 %global ver 0.83
 
 %global debug_package %{nil}
@@ -8,7 +8,7 @@
 
 Name:           dkms-%{modulename}
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        4%{?dist}
+Release:        1%{?dist}
 Summary:        Thrustmaster Force Feedback kernel module (DKMS)
 License:        GPL-2.0-only
 URL:            https://github.com/Kimplul/%{modulename}

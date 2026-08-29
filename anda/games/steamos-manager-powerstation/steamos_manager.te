@@ -1,4 +1,4 @@
-policy_module(steamos_manager, 1.0.4)
+policy_module(steamos_manager, 1.0.7)
 
 ########################################
 # Init
@@ -26,7 +26,7 @@ init_status(steamos_manager_t)
 gen_require(`
 	type systemd_unit_file_t;
 ')
-allow steamos_manager_t systemd_unit_file_t:service status;
+allow steamos_manager_t systemd_unit_file_t:service { start stop status };
 
 ########################################
 # Process permissions
@@ -71,6 +71,7 @@ gen_require(`
      type sysfs_t;
 ')
 allow steamos_manager_t sysfs_t:dir { write add_name remove_name };
+allow steamos_manager_t sysfs_t:file { create setattr unlink };
 
 ########################################
 # Procfs access
@@ -81,6 +82,9 @@ kernel_read_system_state(steamos_manager_t)
 
 # Read /proc/{pid}/comm, environ, stat, fd/ for display sleep inhibition
 domain_read_all_domains_state(steamos_manager_t)
+
+# ds-inhibit walks /proc/{pid}/fd/
+allow steamos_manager_t self:capability { dac_read_search sys_ptrace };
 
 ########################################
 # Tracefs and debugfs
@@ -122,14 +126,7 @@ optional_policy(`
 	allow steamos_manager_t uinput_device_t:chr_file { open read write ioctl getattr };
 ')
 
-# /dev/hidraw* — DualSense controller inhibitor
-optional_policy(`
-	gen_require(`
-		type hidraw_device_t;
-	')
-	allow steamos_manager_t hidraw_device_t:chr_file { open read write getattr ioctl watch watch_reads };
-')
-
+# /dev/hidraw* — DualSense controller inhibitor.
 optional_policy(`
 	gen_require(`
 		type usb_device_t;
@@ -142,18 +139,30 @@ dev_rw_input_dev(steamos_manager_t)
 dev_getattr_all_chr_files(steamos_manager_t)
 dev_getattr_all_blk_files(steamos_manager_t)
 
+gen_require(`
+	type devpts_t;
+')
+allow steamos_manager_t devpts_t:dir getattr;	# /dev/pts
+
+optional_policy(`
+	gen_require(`
+		type mqueue_spool_t;
+	')
+	allow steamos_manager_t mqueue_spool_t:dir getattr;	# /dev/mqueue
+')
+
 optional_policy(`
 	gen_require(`
 		type hugetlbfs_t;
 	')
-	allow steamos_manager_t hugetlbfs_t:dir getattr;
+	allow steamos_manager_t hugetlbfs_t:dir getattr;	# /dev/hugepages
 ')
 
 optional_policy(`
 	gen_require(`
 		type proc_kcore_t;
 	')
-	allow steamos_manager_t proc_kcore_t:file getattr;
+	allow steamos_manager_t proc_kcore_t:file getattr;	# /dev/core -> /proc/kcore
 ')
 
 # Udev events via netlink socket
