@@ -52,7 +52,7 @@ License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) 
 %doc README.md
 %{_metainfodir}/%{appid}.metainfo.xml
 %{_bindir}/deno
-%{_bindir}/dx
+%dnl %{_bindir}/dx
 
 %pkg_completion -Bfzn %crate
 
@@ -74,7 +74,6 @@ cp %{S:2} gcc
 
 %install
 %crate_install_bin
-install -Dm755 target/rpm/dx %{buildroot}%{_bindir}/dx
 mkdir -p %buildroot{%bash_completions_dir,%elvish_completions_dir,%fish_completions_dir,%zsh_completions_dir}
 target/rpm/deno completions bash > %buildroot%bash_completions_dir/deno
 %dnl target/rpm/deno completions elvish > %buildroot%elvish_completions_dir/deno.elv
