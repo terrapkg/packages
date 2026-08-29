@@ -1,0 +1,27 @@
+*** engine/python/mozboot/mozboot/bootstrap.py  2025-01-04 18:11:05.917961573 +0800
+--- engine/python/mozboot/mozboot/bootstrap.py  2025-01-04 18:12:07.050496890 +0800
+***************
+*** 645,666 ****
+              self._write_default_mozconfig(raw_mozconfig)
+  
+      def _validate_python_environment(self, topsrcdir):
+-         valid = True
+-         pip3 = to_optional_path(which("pip3"))
+-         if not pip3:
+-             print("ERROR: Could not find pip3.", file=sys.stderr)
+-             self.instance.suggest_install_pip3()
+-             valid = False
+-         if not valid:
+-             print(
+-                 "ERROR: Your Python installation will not be able to run "
+-                 "`mach bootstrap`. `mach bootstrap` cannot maintain your "
+-                 "Python environment for you; fix the errors shown here, and "
+-                 "then re-run `mach bootstrap`.",
+-                 file=sys.stderr,
+-             )
+-             sys.exit(1)
+- 
+          mach_site = MachSiteManager.from_environment(
+              topsrcdir,
+              lambda: os.path.normpath(get_state_dir(True, topsrcdir=topsrcdir)),
+--- 645,650 ----

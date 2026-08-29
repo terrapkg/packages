@@ -1,0 +1,13 @@
+diff --git a/python/mozboot/mozboot/bootstrap.py b/python/mozboot/mozboot/bootstrap.py
+index df3f39f548..0e3e454d63 100644
+--- a/python/mozboot/mozboot/bootstrap.py
++++ b/python/mozboot/mozboot/bootstrap.py
+@@ -281,7 +281,7 @@ class Bootstrapper(object):
+                 full_distribution_name=False
+             )
+ 
+-            if dist_id in FEDORA_DISTROS:
++            if True:
+                 cls = CentOSFedoraBootstrapper
+                 args["distro"] = dist_id
+             elif dist_id in DEBIAN_DISTROS:
