@@ -34,7 +34,9 @@ install -Dm644 packaging/linux/udev/70-openlogi.rules		%{buildroot}%{_udevrulesd
 install -Dm644 packaging/linux/systemd/openlogi-agent.service	%{buildroot}%{_userunitdir}/openlogi-agent.service
 install -Dm644 packaging/linux/desktop/openlogi.desktop		%{buildroot}%{_appsdir}/openlogi.desktop
 
-%dnl /usr/share/icons/hicolor/1024x1024/apps/openlogi.png
+# See https://github.com/AprilNEA/OpenLogi/issues/794 and https://github.com/terrapkg/packages/pull/16078
+# For why we cannot include this file (but hopefully this can change).
+%dnl install -Dm644 design/icon/openlogi.png %{buildroot}%{_hicolordir}/1024x1024/apps/openlogi.png
 
 %post
 %systemd_user_post openlogi.service
