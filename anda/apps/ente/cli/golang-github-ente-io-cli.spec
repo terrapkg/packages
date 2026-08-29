@@ -12,7 +12,7 @@
 
 # https://github.com/ente-io/ente
 %global goipath         github.com/ente-io/ente/cli
-%global tag             cli-v0.1.12
+%global tag             cli-v0.1.11
 Version:                %(echo %tag | sed 's/^cli-v//')
 
 %gometa -f
