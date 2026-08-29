@@ -1,6 +1,3 @@
-%global ver 0.5.0-1
-%global sanitized_ver %(echo %{ver} | sed 's/-/./')
-
 %define debug_package %{nil}
 
 Name:           surface-control
@@ -10,7 +7,7 @@ Summary:        Control various aspects of Microsoft Surface devices from the sh
 
 License:        MIT
 URL:            https://github.com/linux-surface/surface-control
-Source0:        %{url}/archive/refs/tags/v%{ver}.tar.gz
+Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 
 Requires:       dbus
 Requires:       libgcc
