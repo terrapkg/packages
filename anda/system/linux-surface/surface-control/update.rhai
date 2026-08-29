@@ -1,1 +1,1 @@
-rpm.version(gh("linux-surface/surface-control"));
+rpm.global("ver", gh("linux-surface/surface-control"));
