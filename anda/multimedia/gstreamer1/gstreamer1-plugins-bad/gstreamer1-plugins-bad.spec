@@ -18,6 +18,7 @@ Source1:        gstreamer-bad.metainfo.xml
 Patch0:         %{name}-lcevcdec4.patch
 
 # Requires Provides with and without _isa defined due to package dependencies
+Obsoletes:      %{name}-libs < 2:1.26.8-3
 Obsoletes:      %{name}-free < %{?epoch}:%{version}-%{release}
 Provides:       %{name}-free = %{?epoch}:%{version}-%{release}
 Provides:       %{name}-free%{?_isa} = %{?epoch}:%{version}-%{release}
