@@ -3,8 +3,8 @@
 %global appstream_component desktop-application
 
 Name:           dbeaver-bin
-Version:        26.1.5
-Release:        1%?dist
+Version:        26.2.0
+Release:        1%{?dist}
 Summary:        Free universal database tool and SQL client
 License:        Apache-2.0
 URL:            https://dbeaver.io
