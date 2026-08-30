@@ -1,5 +1,6 @@
 %define _ubuntu_rel 25.10.20250930-0ubuntu3
 %global _hardened_build 0
+%global build_cflags %{__build_flags_lang_c} -Wno-incompatible-pointer-types
 
 Name:           compiz9
 Version:        0.9.14.2
@@ -77,7 +78,8 @@ Compiz Config Manager helps configure Compiz Window Manager, version 0.9 series
 Compiz 9 branch, which is newer then what Fedora packages and required by Unity 7.6 and higher.
 
 %prep
-%autosetup -p1 -n compiz-%version+%(echo %_ubuntu_rel | sed 's@-0ubuntu.@@')
+%autosetup -p1 -n compiz-%version+%(echo %_ubuntu_rel | sed -E 's@-0ubuntu.+@@')
+grep -rlZ -- '-Wall' . | xargs -0 sed -i 's/-Wall//g'
 
 %build
 # The driver blacklist hack is obselete
