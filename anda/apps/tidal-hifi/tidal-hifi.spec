@@ -2,7 +2,7 @@
 
 Name:           tidal-hifi
 Version:        8.1.3
-Release:        2%?dist
+Release:        3%?dist
 Summary:        The web version of Tidal running in electron with hifi support thanks to widevine
 %electronmeta
 License:        MIT AND %electron_license
@@ -22,7 +22,7 @@ The web version of TIDAL running in electron with Hi-Fi (High & Max) support tha
 %npm_build -r compile -BC ./build/electron-builder.base.yml
 
 %install
-%electron_install
+%electron_install -I build/icons
 %desktop_file_install packaging/aur/%{name}.desktop
 
 # Do not ship an absolute symlink from /usr/bin.
@@ -34,9 +34,13 @@ ln -s ../%{_lib}/%{name}/%{name} %{buildroot}%{_bindir}/%{name}
 %license LICENSE
 %{_appsdir}/%{name}.desktop
 %{_bindir}/%{name}
+%{_hicolordir}/*x*/apps/%{name}.png
 %{_libdir}/%{name}
 
 %changelog
+* Sun Aug 30 2026 ammix <maxim@ammix.dev>
+- Add icons
+
 * Sun Aug 30 2026 ammix <maxim@ammix.dev>
 - Add desktop file
 
