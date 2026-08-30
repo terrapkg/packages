@@ -10,7 +10,6 @@ URL:            https://github.com/Mastermindzh/tidal-hifi
 Source0:        %url/archive/refs/tags/%version.tar.gz
 Packager:       madonuko <mado@fyralabs.com>
 
-BuildRequires:  desktop-file-utils
 BuildRequires:  nodejs-packaging
 
 %description
@@ -24,7 +23,7 @@ The web version of TIDAL running in electron with Hi-Fi (High & Max) support tha
 
 %install
 %electron_install
-desktop-file-install --dir=%{buildroot}%{_appsdir} packaging/aur/%{name}.desktop
+%desktop_file_install packaging/aur/%{name}.desktop
 
 # Do not ship an absolute symlink from /usr/bin.
 rm -f %{buildroot}%{_bindir}/%{name}
