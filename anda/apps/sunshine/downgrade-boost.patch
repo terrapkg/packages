@@ -1,0 +1,13 @@
+diff --git a/cmake/dependencies/Boost_Sunshine.cmake b/cmake/dependencies/Boost_Sunshine.cmake
+index eb2ac409..109c3238 100644
+--- a/cmake/dependencies/Boost_Sunshine.cmake
++++ b/cmake/dependencies/Boost_Sunshine.cmake
+@@ -3,7 +3,7 @@
+ #
+ include_guard(GLOBAL)
+ 
+-set(BOOST_VERSION "1.87.0")
++set(BOOST_VERSION "1.83.0")
+ set(BOOST_COMPONENTS
+         filesystem
+         locale
