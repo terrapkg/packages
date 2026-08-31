@@ -1,0 +1,29 @@
+From c5d2bd44d5e09cb5218c80ed50f172bf88fe918a Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Marek=20Ol=C5=A1=C3=A1k?= <maraeo@gmail.com>
+Date: Sun, 30 Aug 2026 04:05:25 -0400
+Subject: [PATCH] radv: fix RADV_FORCE_VRS (Persona 3 Reload)
+
+This field affects register programming and shouldn't be set when there is
+no per-vertex VRS export.
+
+Fixes: 743b466c724 - radv: disallow force_vrs_per_vertex with FragCoord when using GPL & ESO
+Closes: https://gitlab.freedesktop.org/mesa/mesa/-/work_items/16187
+---
+ src/amd/vulkan/radv_pipeline_graphics.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/amd/vulkan/radv_pipeline_graphics.c b/src/amd/vulkan/radv_pipeline_graphics.c
+index 710280b7a220..d8eb9e8a5a2d 100644
+--- a/src/amd/vulkan/radv_pipeline_graphics.c
++++ b/src/amd/vulkan/radv_pipeline_graphics.c
+@@ -2765,6 +2765,7 @@ radv_graphics_shaders_compile(const struct radv_compiler_info *compiler_info, st
+          }
+       } else if (fs_stage && fs_stage->info.ps.disallow_force_vrs_per_vertex) {
+          stages[i].info.force_vrs_per_vertex = false;
++         stages[i].info.outinfo.writes_primitive_shading_rate = false;
+       }
+       break;
+    }
+-- 
+GitLab
+
