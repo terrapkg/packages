@@ -10,6 +10,7 @@ Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 BuildRequires:  cargo
 BuildRequires:  cargo-rpm-macros
+BuildRequires:  pkgconfig(glib-2.0)
 
 %description
 Kopuz is a modern, lightweight, music player application
