@@ -9,8 +9,8 @@
 # GLIBCXX_ASSERTIONS is known to break RPCS3
 %global build_cflags %(echo "%{__build_flags_lang_c}" | sed 's|-Wp,-D_GLIBCXX_ASSERTIONS ||g') %{?_distro_extra_cflags}
 %global build_cxxflags %(echo "%{__build_flags_lang_cxx}" | sed 's|-Wp,-D_GLIBCXX_ASSERTIONS ||g') %{?_distro_extra_cflags}
-%global commit d9799c7f38e15bb7a13905a7ad25be030244a8be
-%global ver 0.0.42-19894
+%global commit c6e96729cc80f9cf0bb5239679877bbfd832599e
+%global ver 0.0.42-19895
 
 Name:           rpcs3
 Version:        %(echo %{ver} | sed 's/-/^/g')
