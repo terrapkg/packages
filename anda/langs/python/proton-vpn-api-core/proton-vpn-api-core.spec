@@ -8,8 +8,8 @@
 # A lot of this spec has been based on the Arch Linux build - https://gitlab.archlinux.org/archlinux/packaging/packages/python-proton-vpn-api-core/-/blob/main/PKGBUILD?ref_type=heads
 
 Name:			python-%{pypi_name}
-Version:		5.5.15
-Release:		2%{?dist}
+Version:		5.6.10
+Release:		1%{?dist}
 Summary:		A facade to the other Proton VPN components
 License:		GPL-3.0-Only
 URL:			https://github.com/ProtonVPN/python-proton-vpn-api-core
