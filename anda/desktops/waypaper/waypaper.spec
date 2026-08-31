@@ -41,15 +41,24 @@ Provides:       waypaper
 %pyproject_install
 %pyproject_save_files waypaper
 
+%post
+%systemd_user_post waypaperd.service
+
+%preun
+%systemd_user_preun waypaperd.service
+
+%postun
+%systemd_user_postun_with_restart waypaperd.service
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
 %{_bindir}/waypaper
+%{_bindir}/waypaperd
 %{_datadir}/applications/waypaper.desktop
 %{_datadir}/icons/hicolor/scalable/apps/waypaper.svg
 %{_mandir}/man1/waypaper.1.gz
-%dnl %python3_sitelib/__pycache__/*.cpython-*.pyc
-%dnl %python3_sitelib/waypaper/subcommands/__pycache__/*.cpython-*.pyc
+%{_userunitdir}/waypaperd.service
 
 %changelog
 * Sun Nov 09 2025 Owen Zimmerman <owen@fyralabs.com>
