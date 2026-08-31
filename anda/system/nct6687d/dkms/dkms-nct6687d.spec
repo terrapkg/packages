@@ -1,8 +1,8 @@
-%global commit 4864fd681346119cf17417f82934a8ce05d88ff6
+%global commit 9d8ac05fe840c47104c85260d5c98f788a92e767
 %global debug_package %{nil}
 %global modulename nct6687d
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260816
+%global commitdate 20260831
 
 Name:           dkms-%{modulename}
 Version:        1.0^%{commitdate}git.%{shortcommit}
