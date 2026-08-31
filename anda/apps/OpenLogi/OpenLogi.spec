@@ -28,7 +28,6 @@ Unlock the full capabilities of Logitech mice, keyboards, and webcams over HID++
 %cargo_build -- -p openlogi -p openlogi-desktop -p openlogi-overlay -p openlogi-agent
 
 %install
-ls -laH target/rpm
 install -Dm755 target/rpm/openlogi				                %{buildroot}%{_bindir}/openlogi
 install -Dm755 target/rpm/openlogi-desktop			            %{buildroot}%{_bindir}/openlogi-desktop
 install -Dm755 target/rpm/openlogi-overlay			            %{buildroot}%{_bindir}/openlogi-overlay
@@ -41,6 +40,9 @@ install -Dm644 packaging/linux/desktop/openlogi.desktop		    %{buildroot}%{_apps
 # For why we cannot include this file (but hopefully this can change).
 %dnl install -Dm644 design/icon/openlogi.png %{buildroot}%{_hicolordir}/1024x1024/apps/openlogi.png
 
+%cargo_license_summary_online
+%{cargo_license_online} > LICENSE.dependencies
+
 %post
 %systemd_user_post openlogi.service
 
@@ -51,7 +53,7 @@ install -Dm644 packaging/linux/desktop/openlogi.desktop		    %{buildroot}%{_apps
 %systemd_user_postun_with_restart openlogi.service
 
 %files
-%license LICENSE-APACHE LICENSE-MIT
+%license LICENSE-APACHE LICENSE-MIT LICENSE.dependencies
 %doc docs/* README.md CHANGELOG.md
 %{_bindir}/openlogi
 %{_bindir}/openlogi-desktop
