@@ -20,6 +20,7 @@ Patch0:         fix-protun-protocol.patch
 BuildRequires:  python3-devel
 BuildRequires:  python3-pip
 BuildRequires:  python3-setuptools
+BuildRequires:  cargo-rpm-macros
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
