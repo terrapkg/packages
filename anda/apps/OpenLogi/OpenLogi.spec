@@ -1,5 +1,5 @@
 Name:		OpenLogi
-Version:	0.7.4
+Version:	0.8.3
 Release:        1%{?dist}
 Summary:	A native, local-first alternative to Logitech Options+
 SourceLicense:	Apache-2.0 AND MIT
