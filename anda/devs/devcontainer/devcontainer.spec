@@ -2,8 +2,8 @@
 %global npm_name @devcontainers/cli
 
 Name:           devcontainer
-Version:        0.88.0
-Release:        1%?dist
+Version:        0.89.0
+Release:        1%{?dist}
 Summary:        Dev Containers CLI
 SourceLicense:  MIT
 License:        MIT
