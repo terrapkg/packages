@@ -11,6 +11,11 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 BuildRequires:  cargo
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  pkgconfig(glib-2.0)
+BuildRequires:  pkgconfig(gdk-3.0)
+BuildRequires:  pkgconfig(openssl)
+BuildRequires:  pkgconfig(libsoup-3.0)
+BuildRequires:  pkgconfig(javascriptcoregtk-4.1)
+BuildRequires:  pkgconfig(webkit2gtk-4.1)
 
 %description
 Kopuz is a modern, lightweight, music player application
