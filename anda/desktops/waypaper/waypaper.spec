@@ -4,7 +4,7 @@
 %define _python_dist_allow_version_zero 1
 
 Name:			python-%{pypi_name}
-Version:		2.8
+Version:		2.9
 Release:		1%{?dist}
 Summary:		GUI wallpaper manager for Wayland and Xorg Linux systems
 License:		GPL-3.0-only

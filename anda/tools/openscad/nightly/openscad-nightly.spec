@@ -1,12 +1,12 @@
-%global commit 2fddda3e5fb79f0fc47a236ed1382b05e9e5ffa6
-%global commit_date 20260829
+%global commit 36a29273ba927e42d747bc6d4c9a4b72d4f058ce
+%global commit_date 20260830
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global latest_stable_version 2021.01
 
 %global realname openscad
 Name:           %{realname}-nightly
 Version:        %{latest_stable_version}^%{commit_date}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        The Programmers Solid 3D CAD Modeller
 # OpenSCAD is GPL-2.0-only WITH CGAL-linking-exception
 # Appdata file is CC0-1.0
@@ -98,7 +98,8 @@ git submodule update --init --recursive
     -DUSE_BUILTIN_CLIPPER2:BOOL=OFF \
     -DUSE_CCACHE:BOOL=OFF \
     -DUSE_BUILTIN_MANIFOLD:BOOL=OFF \
-    -DUSE_BUILTIN_OPENCSG:BOOL=OFF
+    -DUSE_BUILTIN_OPENCSG:BOOL=OFF \
+    -DEXPERIMENTAL:BOOL=ON
 
 %build
 %cmake_build
@@ -138,5 +139,8 @@ rm -rf %{buildroot}%{_datadir}/%{realname}/fonts
 %{_datadir}/%{realname}/libraries/MCAD
 
 %changelog
+* Mon Aug 31 2026 Jan200101 <sentrycraft123@gmail.com> - 2021.01^20260830git.36a2927-2
+- add EXPERIMENTAL build option
+
 * Wed Aug 19 2026 Jan200101 <sentrycraft123@gmail.com> - 0~20260819git.1ee676b-1
 - Initial package
