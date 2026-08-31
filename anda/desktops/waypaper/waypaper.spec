@@ -59,7 +59,7 @@ Provides:       waypaper
 %{_datadir}/applications/waypaper.desktop
 %{_datadir}/icons/hicolor/scalable/apps/waypaper.svg
 %{_mandir}/man1/waypaper.1.gz
-%{_userunitdir}/waypaperd.service
+%{_datadir}/systemd/user/waypaperd.service
 
 %changelog
 * Sun Nov 09 2025 Owen Zimmerman <owen@fyralabs.com>
