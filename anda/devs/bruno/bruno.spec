@@ -3,7 +3,7 @@
 
 Name:           bruno
 %electronmeta -D
-Version:        4.0.0
+Version:        4.1.0
 Release:        1%{?dist}
 Summary:        Open source API client for exploring and testing APIs
 License:        MIT AND %{electron_license}
