@@ -1,12 +1,12 @@
-%global commit 36a29273ba927e42d747bc6d4c9a4b72d4f058ce
-%global commit_date 20260830
+%global commit c55e8eff7225dc4ac1b375f2565ee9fccf824210
+%global commit_date 20260901
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global latest_stable_version 2021.01
 
 %global realname openscad
 Name:           %{realname}-nightly
 Version:        %{latest_stable_version}^%{commit_date}git.%{shortcommit}
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        The Programmers Solid 3D CAD Modeller
 # OpenSCAD is GPL-2.0-only WITH CGAL-linking-exception
 # Appdata file is CC0-1.0
