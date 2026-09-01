@@ -1,8 +1,8 @@
-%global commit f4dc68f89a41e1978582d52c01e00083570565ef
+%global commit 9aa2324d679637ac2c4e2238127aeacdf7a8d8e6
 %global debug_package %{nil}
 %global modulename logitech-rs50-linux-driver
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260831
+%global commitdate 20260901
 
 Name:           dkms-%{modulename}
 Version:        1.0^%{commitdate}git.%{shortcommit}
