@@ -1,6 +1,6 @@
 %global ver 0.4.0
 %global commitdate 20260814
-%global commit a536bcff2b2638fad72d454db73c708522fc09f3
+%global commit 7335c27f936b8d68c07c6441d086474c523baddc
 %global shortcommit %{sub %{commit} 0 7}
 %global appid io.github.cosmic_utils.sysinfo-applet
 
