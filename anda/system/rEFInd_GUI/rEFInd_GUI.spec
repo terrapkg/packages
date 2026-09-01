@@ -1,5 +1,5 @@
 Name:           rEFInd_GUI
-Version:        3.4.1
+Version:        3.4.3
 Release:        1%{?dist}
 Summary:        Small GUI for customizing and installing rEFInd bootloader
 

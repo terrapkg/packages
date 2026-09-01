@@ -1,5 +1,5 @@
-%global commit c99dc960f2301465484b340c6c0096dbcfb69509
-%global commit_date 20260826
+%global commit a415d194e74948f0ac32b9d608153ea8720c71fd
+%global commit_date 20260829
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           porffor-nightly

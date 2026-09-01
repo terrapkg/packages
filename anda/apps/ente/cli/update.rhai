@@ -1,10 +1,7 @@
-let tagobjs = get("https://api.github.com/repos/ente-io/ente/tags").json_arr();
-for tagobj in tagobjs {
-  if tagobj.name.starts_with("cli-v") {
-    rpm.global("tag", tagobj.name);
-    if rpm.changed() {
-      rpm.release();
-      break;
-    }
-  }
+let stable_tag = `^cli-v\d+\.\d+\.\d+$`;
+let tags = git_tags("https://github.com/ente-io/ente")
+  .filter(|tag| stable_tag.find_all(tag).len == 1);
+rpm.global("tag", tags[tags.len - 1]);
+if rpm.changed() {
+  rpm.release();
 }

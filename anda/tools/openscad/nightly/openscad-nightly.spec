@@ -1,5 +1,5 @@
-%global commit 3da45dd566ef5710138d33e80758cfa068bd0304
-%global commit_date 20260824
+%global commit c55e8eff7225dc4ac1b375f2565ee9fccf824210
+%global commit_date 20260901
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global latest_stable_version 2021.01
 
@@ -98,7 +98,8 @@ git submodule update --init --recursive
     -DUSE_BUILTIN_CLIPPER2:BOOL=OFF \
     -DUSE_CCACHE:BOOL=OFF \
     -DUSE_BUILTIN_MANIFOLD:BOOL=OFF \
-    -DUSE_BUILTIN_OPENCSG:BOOL=OFF
+    -DUSE_BUILTIN_OPENCSG:BOOL=OFF \
+    -DEXPERIMENTAL:BOOL=ON
 
 %build
 %cmake_build
@@ -138,5 +139,8 @@ rm -rf %{buildroot}%{_datadir}/%{realname}/fonts
 %{_datadir}/%{realname}/libraries/MCAD
 
 %changelog
+* Mon Aug 31 2026 Jan200101 <sentrycraft123@gmail.com> - 2021.01^20260830git.36a2927-2
+- add EXPERIMENTAL build option
+
 * Wed Aug 19 2026 Jan200101 <sentrycraft123@gmail.com> - 0~20260819git.1ee676b-1
 - Initial package

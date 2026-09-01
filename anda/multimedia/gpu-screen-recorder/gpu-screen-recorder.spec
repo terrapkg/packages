@@ -1,6 +1,6 @@
 Name:           gpu-screen-recorder
-Version:        6.0.1
-Release:        2%{?dist}
+Version:        6.1.0
+Release:        1%{?dist}
 Summary:        A shadowplay-like screen recorder for Linux
 
 License:        GPL-3.0-or-later
