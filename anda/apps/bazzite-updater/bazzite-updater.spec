@@ -2,7 +2,7 @@
 
 Name:           bazzite-updater
 Version:        0.10.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Update your system
 
 License:        GPL-2.0-or-later AND BSD-3-Clause AND CC0-1.0
