@@ -43,6 +43,7 @@ export NODE_OPTIONS="--max-old-space-size=4096"
 %{__npm} run build:bruno-requests
 %{__npm} run build:schema-types
 %{__npm} run build:bruno-filestore
+%{__npm} run build:bruno-sqlite
 %{__npm} run sandbox:bundle-libraries --workspace=packages/bruno-js
 
 %{__npm} run build:web
