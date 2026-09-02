@@ -1,8 +1,8 @@
 %define debug_package %nil
 
 Name:    zapret2
-Version: 1.0.4
-Release: 2%{?dist}
+Version: 1.0.5
+Release: 1%{?dist}
 Summary: A multi-platform Deep Packet Inspection (DPI) bypass tool
 License: MIT 
 Packager: madonuko <mado@fyralabs.com>
