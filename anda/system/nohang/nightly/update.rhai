@@ -6,4 +6,4 @@ if rpm.changed() {
   rpm.release(rel + 1);
 }
 
-rpm.version(gh("hakavlad/nohang"));
+rpm.global("ver", gh("hakavlad/nohang"));
