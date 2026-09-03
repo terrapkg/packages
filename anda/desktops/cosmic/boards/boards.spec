@@ -44,7 +44,7 @@ install -Dm0644 resources/icons/hicolor/scalable/apps/icon.svg  %{buildroot}%{_s
 %{_bindir}/boards
 %{_appsdir}/%{appid}.desktop
 %{_metainfodir}/%{appid}.metainfo.xml
-%{_scaleableiconsdir}/%{appid}.svg
+%{_scalableiconsdir}/%{appid}.svg
 
 %changelog
 * Wed Sep 02 2026 Owen Zimmerman <owen@fyralabs.com>
