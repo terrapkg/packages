@@ -2,7 +2,7 @@
 %global _desc A pure Python wrapper for SDL3.
 
 Name:			python-%{pypi_name}
-Version:		0.9.12b0
+Version:		0.9.12b1
 Release:		1%{?dist}
 Summary:		A pure Python wrapper for SDL3
 License:		MIT
