@@ -41,6 +41,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %build
 export VERGEN_GIT_SHA=%{commit}
+export VERGEN_GIT_COMMIT_DATE=%{commitdate}
 %cargo_build
 %{cargo_license_online} > LICENSE.dependencies
 
