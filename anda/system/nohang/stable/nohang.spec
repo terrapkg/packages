@@ -1,9 +1,9 @@
-%global commit      bf477da78041a1fce8a82d04da422ef60e86c556
+%global commit      50fad9429ff03e759f8a9405c383339683dbe7f4
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           nohang
 Version:        0.3.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Sophisticated low memory handler for Linux
 License:        MIT
 Summary:        Sophisticated low memory handler for Linux
