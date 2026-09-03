@@ -1,5 +1,5 @@
-%global commit 625fd7fd4b4187e600c3ebaf0a0f61a32cd54249
-%global commit_date 20260829
+%global commit 8b9c6c6624bd05c158199778d72a6a146e307e67
+%global commit_date 20260903
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           piclone
