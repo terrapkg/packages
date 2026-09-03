@@ -19,6 +19,7 @@ BuildRequires:  cargo-rpm-macros
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  clang-devel
+BuildRequires:  gcc
 Requires:       udisks2
 Recommends:     exfatprogs
 Recommends:     dosfstools
