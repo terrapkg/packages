@@ -7,7 +7,7 @@ SourceLicense:  BSD-3-Clause
 License:        %{sourcelicense}
 Summary:        COSMIC applet for Tailscale
 URL:            https://github.com/cosmic-utils/gui-scale-applet
-Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
+Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  rust-xkbcommon-devel
 BuildRequires:  systemd-devel
