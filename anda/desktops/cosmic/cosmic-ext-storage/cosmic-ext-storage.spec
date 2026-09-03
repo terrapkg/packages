@@ -18,6 +18,7 @@ Source0:        %{url}/archive/%{commit}.tar.gz
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:  clang-devel
 Requires:       udisks2
 Recommends:     exfatprogs
 Recommends:     dosfstools
