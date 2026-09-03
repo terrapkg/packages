@@ -21,6 +21,7 @@ BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(cairo)
 BuildRequires:  pkgconfig(cairo-gobject)
+BuildRequires:  poppler-glib-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
