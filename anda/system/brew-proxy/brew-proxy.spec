@@ -143,6 +143,7 @@ fi
 %{_datadir}/polkit-1/actions/%{proxy_dbus_name}.policy
 %{_datadir}/polkit-1/rules.d/%{proxy_dbus_name}.rules
 %{_environmentdir}/30-%{name}.conf
+%{_tmpfilesdir}/brew-proxy.conf
 
 %files selinux
 %{_datadir}/selinux/packages/%{selinuxtype}/%{modulename}.pp.bz2
