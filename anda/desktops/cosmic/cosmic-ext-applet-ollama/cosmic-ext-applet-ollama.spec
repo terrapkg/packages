@@ -17,6 +17,7 @@ Source0:        %{url}/archive/%{commit}.tar.gz
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  /usr/bin/just
 BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:  pkgconfig(openssl)
 Requires:       cosmic-osd
 
 Packager:       Olivia <git@olivia.sh>
