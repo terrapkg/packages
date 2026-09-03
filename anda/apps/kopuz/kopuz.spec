@@ -1,3 +1,5 @@
+%global _pkg_extra_ldflags -fPIE
+
 Name:           kopuz
 Version:        0.16.1
 Release:        1%{?dist}
