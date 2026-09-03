@@ -65,11 +65,12 @@ Our documentation can be found on our [docs site](https://docs.terrapkg.com).
 ## Searching Packages
 
 [pkgs.org](https://fedora.pkgs.org/rawhide/terra/) and [Repology](https://repology.org/) provide a list of the packages available in Terra.
+You can also `dnf search` for all packages, or search in graphical app stores for packages (they must package an [AppStream MetaData](https://www.freedesktop.org/software/appstream/docs/chap-AppStream-About.html) file to be seen this way) once you have Terra installed.
 
 ## Questions?
 
-Feel free to reach out by [joining our community](https://wiki.ultramarine-linux.org/en/community/community/). We're always happy to help!
+Feel free to reach out by joining our chats above, or opening a GitHub issue.
 
-- [Contribution Guide](https://docs.terrapkg.com/contributing/getting-started)
-- [FAQ](https://docs.terrapkg.com/reference/faq)
-- [Guidelines](https://docs.terrapkg.com/contributing/guidelines)
+## Support
+
+Maintaining Terra requires a ton of infrastructure, package maintainer, submission review, and software engineering work to effectively maintain. If you would like to financially sponsor Terra, please go to [the Fyra Labs sponsor page](https://fyralabs.com/sponsor/) for an overview of how to do this, and thank you so much for helping us out!
