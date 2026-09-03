@@ -41,7 +41,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 install -Dm0755 target/rpm/noctua                                                   %{buildroot}%{_bindir}/noctua
 install -Dm0644 resources/org.codeberg.wfx.Noctua.desktop                           %{buildroot}%{_appsdir}/%{appid}.desktop
 install -Dm0644 resources/org.codeberg.wfx.Noctua.metainfo.xml                      %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
-install -Dm0644 resources/icons/hicolor/scalable/apps/org.codeberg.wfx.Noctua.svg   %{buildroot}%{_scaleableiconsdir}/%{appid}.svg
+install -Dm0644 resources/icons/hicolor/scalable/apps/org.codeberg.wfx.Noctua.svg   %{buildroot}%{_scalableiconsdir}/%{appid}.svg
 
 %files
 %license LICENSE LICENSE.dependencies
@@ -49,7 +49,7 @@ install -Dm0644 resources/icons/hicolor/scalable/apps/org.codeberg.wfx.Noctua.sv
 %{_bindir}/noctua
 %{_appsdir}/%{appid}.desktop
 %{_metainfodir}/%{appid}.metainfo.xml
-%{_scaleableiconsdir}/%{appid}.svg
+%{_scalableiconsdir}/%{appid}.svg
 
 %changelog
 * Wed Sep 02 2026 Owen Zimmerman <owen@fyralabs.com>
