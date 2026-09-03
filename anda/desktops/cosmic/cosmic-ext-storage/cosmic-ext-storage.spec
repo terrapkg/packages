@@ -20,6 +20,7 @@ BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  clang-devel
 BuildRequires:  gcc-c++
+BuildRequires:  libbtrfsutil
 Requires:       udisks2
 Recommends:     exfatprogs
 Recommends:     dosfstools
