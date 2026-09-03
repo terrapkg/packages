@@ -25,7 +25,7 @@ can be used to combine any number of input devices (like gamepads, mice, and
 keyboards) and translate their input to a variety of virtual device formats.
 
 %prep
-%autosetup -n InputPlumber-%version -p1
+%autosetup -n InputPlumber-%version -S git_am -p1
 %cargo_prep_online
 
 %build
