@@ -1,3 +1,5 @@
+%global toolchain clang
+
 Name:       bolt-launcher
 Version:    0.23.2
 Release:    1%{?dist}
@@ -8,7 +10,7 @@ Source0:    %{url}.git
 
 BuildRequires: cmake
 BuildRequires: cmake-extras
-BuildRequires: gcc-c++
+BuildRequires: clang
 BuildRequires: cef-devel
 BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig(gio-2.0)
