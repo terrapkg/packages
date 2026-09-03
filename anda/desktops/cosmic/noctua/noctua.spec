@@ -17,6 +17,7 @@ Source0:        %{url}/archive/%{commit}.tar.gz
 
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:  pkgconfig(glib-2.0)
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
