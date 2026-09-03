@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		5.16.1
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		The model-definition framework for state-of-the-art machine learning models
 License:		Apache-2.0
 URL:			https://huggingface.co/docs/transformers/index
@@ -31,6 +31,7 @@ Summary:        %{summary}
 
 %pyproject_patch_dependency huggingface-hub:drop_constraints
 %pyproject_patch_dependency tokenizers:drop_constraints
+%pyproject_patch_dependency safetensors:drop_constraints
 
 %build
 %pyproject_wheel
