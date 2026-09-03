@@ -15,6 +15,7 @@ Source0:        %{url}/archive/%{commit}.tar.gz
 
 BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo-rpm-macros
+BuildRequires:  desktop-file-utils
 BuildRequires:  pkgconfig(xkbcommon)
 Requires:       cosmic-osd
 
