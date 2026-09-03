@@ -51,7 +51,7 @@ export VERGEN_GIT_COMMIT_DATE=%{commitdate}
 install -Dm0755 target/rpm/cosmic-ext-storage                                       %{buildroot}%{_bindir}/cosmic-ext-storage
 install -Dm0644 resources/app.desktop                                               %{buildroot}%{_appsdir}/%{appid}.desktop
 install -Dm0644 resources/app.metainfo.xml                                          %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
-install -Dm0644 resources/icons/hicolor/scalable/apps/com.cosmic.ext.Storage.svg    %{buildroot}%{_scaleableiconsdir}/%{appid}.svg
+install -Dm0644 resources/icons/hicolor/scalable/apps/com.cosmic.ext.Storage.svg    %{buildroot}%{_scalableiconsdir}/%{appid}.svg
 
 %files
 %license LICENSE LICENSE.dependencies
@@ -59,7 +59,7 @@ install -Dm0644 resources/icons/hicolor/scalable/apps/com.cosmic.ext.Storage.svg
 %{_bindir}/cosmic-ext-storage
 %{_appsdir}/%{appid}.desktop
 %{_metainfodir}/%{appid}.metainfo.xml
-%{_scaleableiconsdir}/%{appid}.svg
+%{_scalableiconsdir}/%{appid}.svg
 
 %changelog
 * Wed Sep 02 2026 Owen Zimmerman <owen@fyralabs.com>
