@@ -36,7 +36,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 install -Dm0755 target/rpm/boards                               %{buildroot}%{_bindir}/boards
 install -Dm0644 resources/app.desktop                           %{buildroot}%{_appsdir}/%{appid}.desktop
 install -Dm0644 resources/app.metainfo.xml                      %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
-install -Dm0644 resources/icons/hicolor/scalable/apps/icon.svg  %{buildroot}%{_scaleableiconsdir}/%{appid}.svg
+install -Dm0644 resources/icons/hicolor/scalable/apps/icon.svg  %{buildroot}%{_scalableiconsdir}/%{appid}.svg
 
 %files
 %license LICENSE LICENSE.dependencies
