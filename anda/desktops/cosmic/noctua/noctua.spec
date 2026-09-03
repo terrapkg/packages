@@ -19,6 +19,7 @@ BuildRequires:  cargo-rpm-macros
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(cairo)
+BuildRequires:  pkgconfig(cairo-gobject)
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
