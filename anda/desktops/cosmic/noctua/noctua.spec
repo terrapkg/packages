@@ -3,7 +3,7 @@
 %global shortcommit %{sub %{commit} 0 7}
 %global appid org.codeberg.wfx.Noctua
 
-Name:           noctua
+Name:           noctua-nightly
 Version:        0^%{commitdate}.git%{shortcommit}
 Release:        1%{?dist}
 Summary:        An image viewer application for the COSMIC™ desktop
@@ -22,6 +22,7 @@ BuildRequires:  pkgconfig(cairo)
 BuildRequires:  pkgconfig(cairo-gobject)
 BuildRequires:  poppler-glib-devel
 BuildRequires:  desktop-file-utils
+Provides:       noctua
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
