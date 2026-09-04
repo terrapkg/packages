@@ -12,6 +12,7 @@ Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 BuildRequires:  cargo
 BuildRequires:  ImageMagick
 BuildRequires:  pnpm
+BuildRequires:  pkgconfig(libsecret-1)
 
 Requires:       git-core
 Suggests:       azure-cli

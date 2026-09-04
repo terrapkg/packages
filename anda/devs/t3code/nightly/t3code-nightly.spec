@@ -20,6 +20,7 @@ BuildRequires:  cargo
 BuildRequires:  ImageMagick
 BuildRequires:  pnpm
 BuildRequires:  nodejs24
+BuildRequires:  pkgconfig(libsecret-1)
 
 Requires:       git-core
 Suggests:       azure-cli
