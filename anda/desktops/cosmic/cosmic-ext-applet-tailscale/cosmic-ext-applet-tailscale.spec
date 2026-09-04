@@ -31,7 +31,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %install
 install -Dm0755 target/rpm/gui-scale-applet                             %{buildroot}%{_bindir}/gui-scale-applet
-%destop_file_install data/com.bhh32.gui-scale-applet.desktop
+%desktop_file_install data/com.bhh32.gui-scale-applet.desktop
 install -Dm0644 data/com.bhh32.gui-scale-applet.metainfo.xml            %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 install -Dm0644 data/icons/scalable/apps/com.bhh32.gui-scale-applet.png %{buildroot}%{_hicolordir}/256x256/apps/%{appid}.png
 
