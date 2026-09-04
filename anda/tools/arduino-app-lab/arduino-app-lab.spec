@@ -42,7 +42,7 @@ touch .env
 
 %build
 %{__yarn}
-%{__yarn} install --mode update-lockfile
+%{__yarn} install
 pushd standalone-apps/app-lab-desktop/internal/board/
 ./download_resources.sh
 popd
