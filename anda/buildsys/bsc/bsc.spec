@@ -22,6 +22,7 @@ BuildRequires:  flex
 BuildRequires:  bison
 BuildRequires:  zlib-ng-compat-devel
 BuildRequires:  tcl-devel
+ExclusiveArch:  x86_64
 
 # For check
 BuildRequires:  binutils
