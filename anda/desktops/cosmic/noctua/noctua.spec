@@ -22,6 +22,7 @@ BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(cairo)
 BuildRequires:  pkgconfig(cairo-gobject)
 BuildRequires:  poppler-glib-devel
+BuildRequires:  desktop-file-utils
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
@@ -39,9 +40,11 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %install
 install -Dm0755 target/rpm/noctua                                                   %{buildroot}%{_bindir}/noctua
-install -Dm0644 resources/org.codeberg.wfx.Noctua.desktop                           %{buildroot}%{_appsdir}/%{appid}.desktop
+%desktop_file_install resources/org.codeberg.wfx.Noctua.desktop
 install -Dm0644 resources/org.codeberg.wfx.Noctua.metainfo.xml                      %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 install -Dm0644 resources/icons/hicolor/scalable/apps/org.codeberg.wfx.Noctua.svg   %{buildroot}%{_scalableiconsdir}/%{appid}.svg
+
+%terra_appstream
 
 %files
 %license LICENSE LICENSE.dependencies
