@@ -56,6 +56,7 @@ echo "v%{version}" > %{buildroot}%{_usrsrc}/%{modulename}-%{version}/.git_hash
 # the driver package.
 
 %files
+%license COPYING
 %{_usrsrc}/%{modulename}-%{version}/
 
 %post
