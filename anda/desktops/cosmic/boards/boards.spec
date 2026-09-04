@@ -17,6 +17,7 @@ Source0:        %{url}/archive/%{commit}.tar.gz
 
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:  desktop-file-utils
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
@@ -34,9 +35,11 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %install
 install -Dm0755 target/rpm/boards                               %{buildroot}%{_bindir}/boards
-install -Dm0644 resources/app.desktop                           %{buildroot}%{_appsdir}/%{appid}.desktop
+%desktop_file_install resources/app.desktop
 install -Dm0644 resources/app.metainfo.xml                      %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 install -Dm0644 resources/icons/hicolor/scalable/apps/icon.svg  %{buildroot}%{_scalableiconsdir}/%{appid}.svg
+
+%terra_appstream
 
 %files
 %license LICENSE LICENSE.dependencies
