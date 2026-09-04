@@ -20,6 +20,7 @@ BuildRequires:  cargo
 BuildRequires:  ImageMagick
 BuildRequires:  pnpm
 BuildRequires:  nodejs24
+BuildRequires:  pkgconfig(libsecret-1)
 
 Requires:       git-core
 Suggests:       azure-cli
@@ -66,7 +67,7 @@ chmod 4755 %{buildroot}%{_libdir}/%{name}/chrome-sandbox
 install -dm755 %{buildroot}%{_bindir}
 ln -sf %{_libdir}/%{name}/t3code %{buildroot}%{_bindir}/%{name}
 
-install -Dm644 apps/marketing/public/icon.png %{buildroot}%{_hicolordir}/512x512/apps/%{name}.png
+install -Dm644 assets/prod/black-universal-1024.png %{buildroot}%{_hicolordir}/1024x1024/apps/%{name}.png
 
 cat <<EOF > %{name}.desktop
 [Desktop Entry]
@@ -95,6 +96,9 @@ EOF
 %{_hicolordir}/*/apps/%{name}.png
 
 %changelog
+* Fri Sep 04 2026 Addison LeClair <me@addi.lol>
+- Add new libsecret dependency
+
 * Thu Jul 30 2026 Addison LeClair <me@addi.lol>
 - Fix T3 Connect by adding missing auth variables
 - Fix .desktop title to match upstream
