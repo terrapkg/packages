@@ -1,6 +1,6 @@
 %global ver 0.1.0
-%global commitdate 20260224
-%global commit fc6e8c80568011dc05eb4f4f1dab626772f69c73
+%global commitdate 20260608
+%global commit 68a41d2f817380cfd1c429354ffc7d097b5b910f
 %global shortcommit %{sub %{commit} 0 7}
 %global appid org.codeberg.wfx.Noctua
 
@@ -12,7 +12,7 @@ Summary:        An image viewer application for the COSMIC™ desktop
 SourceLicense:  GPL-3.0-or-later
 License:        %{sourcelicense} AND (BSD-3-Clause OR MIT OR Apache-2.0) AND ((MIT OR Apache-2.0) AND NCSA) AND Unlicense AND (Apache-2.0 OR MIT) AND (MIT OR Apache-2.0 OR Zlib) AND (0BSD OR MIT OR Apache-2.0) AND BSD-2-Clause AND Zlib AND MIT AND (Apache-2.0 OR GPL-2.0-only) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND MPL-2.0 AND (MIT OR Apache-2.0 OR CC0-1.0) AND GPL-2.0 AND Unicode-3.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND CC0-1.0 AND (CC0-1.0 OR Apache-2.0) AND (BSD-3-Clause OR Apache-2.0) AND BSL-1.0 AND ISC AND GPL-3.0-only AND BSD-3-Clause AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (Unlicense OR MIT)
 
-URL:            https://github.com/cosmic-utils/noctua
+URL:            https://codeberg.org/wfx/noctua
 Source0:        %{url}/archive/%{commit}.tar.gz
 
 BuildRequires:  cargo-rpm-macros
