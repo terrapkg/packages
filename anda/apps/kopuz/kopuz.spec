@@ -18,6 +18,7 @@ BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pkgconfig(libsoup-3.0)
 BuildRequires:  pkgconfig(javascriptcoregtk-4.1)
 BuildRequires:  pkgconfig(webkit2gtk-4.1)
+BuildRequires:  pkgconfig(alsa)
 
 %description
 Kopuz is a modern, lightweight, music player application
