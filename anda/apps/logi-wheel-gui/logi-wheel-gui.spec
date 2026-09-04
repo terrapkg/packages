@@ -7,6 +7,7 @@ URL:            https://github.com/mescon/logitech-trueforce-linux-driver
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 Source1:        com.github.logi-wheel-gui.metainfo.xml
 Packager:       Luan Oliveira <luanv.oliveira@outlook.com>
+ExclusiveArch:  x86_64
 
 BuildRequires:  cargo
 BuildRequires:  rust
