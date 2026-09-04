@@ -6,6 +6,8 @@ License:        GPL-2.0-only
 URL:            https://github.com/mescon/logitech-trueforce-linux-driver
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 Source1:        com.github.logitech-trueforce-linux-driver.metainfo.xml
+Packager:       Luan Oliveira <luanv.oliveira@outlook.com>
+
 BuildArch:      noarch
 BuildRequires:  systemd-rpm-macros
 
@@ -32,8 +34,6 @@ Obsoletes:      logitech-rs50-linux-driver <= 1.0^20260904git.320bf50-1%{?dist}
 Obsoletes:      logitech-rs50-linux-driver-kmod-common <= 1.0^20260904git.320bf50-1%{?dist}
 Obsoletes:      dkms-logitech-rs50-linux-driver <= 1.0^20260904git.320bf50-1%{?dist}
 Obsoletes:      akmod-logitech-rs50-linux-driver <= 1.0^20260904git.320bf50-1%{?dist}
-
-Packager:       Luan V. <luanv.oliveira@outlook.com>
 
 %description
 Force feedback, TrueForce texture routing, and G HUB-equivalent settings
