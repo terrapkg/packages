@@ -10,6 +10,7 @@ Summary:        Kernel module for Logitech racing wheels (RS50, G PRO, G923)
 License:        GPL-2.0-only
 URL:            https://github.com/mescon/logitech-trueforce-linux-driver
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
+Packager:       Luan Oliveira <luanv.oliveira@outlook.com>
 
 buildarch:      x86_64
 BuildRequires:  gcc

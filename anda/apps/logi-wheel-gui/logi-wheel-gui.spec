@@ -6,8 +6,7 @@ License:        GPL-3.0-or-later
 URL:            https://github.com/mescon/logitech-trueforce-linux-driver
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 Source1:        com.github.logi-wheel-gui.metainfo.xml
-
-Packager:       Luan V. <luanv.oliveira@outlook.com>
+Packager:       Luan Oliveira <luanv.oliveira@outlook.com>
 
 BuildRequires:  cargo
 BuildRequires:  rust
