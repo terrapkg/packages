@@ -158,6 +158,7 @@ ln -s logi-wheel-gui %{buildroot}%{_bindir}/logi-dd-gui
 install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/metainfo/com.github.logi-wheel-gui.metainfo.xml
 
 %files
+%license COPYING
 %{_bindir}/logi-wheel-gui
 %{_bindir}/logi-dd-gui
 %{_datadir}/applications/logi-wheel-gui.desktop
@@ -165,6 +166,7 @@ install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/metainfo/com.github.logi-wheel
 %{_datadir}/metainfo/com.github.logi-wheel-gui.metainfo.xml
 
 %files -n logi-wheel
+%license COPYING
 %{_bindir}/logi-wheel
 %{_bindir}/logi-dd
 %{_bindir}/logi-ffb
