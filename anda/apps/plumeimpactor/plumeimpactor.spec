@@ -38,7 +38,7 @@ done
 
 %files
 %doc README.md SECURITY.md
-%license LICENSE LICENSE_ELLEKIT
+%license LICENSE
 %{_bindir}/plumeimpactor
 %{_hicolordir}/*x*/apps/%{appid}.png
 %{_appsdir}/%{appid}.desktop
