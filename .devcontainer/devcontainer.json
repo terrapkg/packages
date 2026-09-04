@@ -11,7 +11,5 @@
         "redhat.vscode-xml"
       ]
     }
-  },
-  "remoteUser": "vscode",
-  "onCreateCommand": "sudo usermod -a -G mock vscode"
+  }
 }

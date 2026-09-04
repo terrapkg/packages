@@ -7,8 +7,8 @@
 %global debug_package %{nil}
 %endif
 
-%global commit 1be4fb1cd9d60b5ddefc2a4201a898766a731400
-%global commitdate 20260626
+%global commit d2983668300dd2a598e5a7dc40e71ce0678cc270
+%global commitdate 20260815
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global modulename ryzen_smu
 

@@ -30,7 +30,7 @@
 
 # Metadata.
 Name:    brew-proxy
-Version: 0.3.4
+Version: 0.3.6
 Release: 1%{?dist}
 Summary: DBus-activated proxy service for a more secure Homebrew setup on Linux 
 License:        %{shrink:
@@ -143,6 +143,7 @@ fi
 %{_datadir}/polkit-1/actions/%{proxy_dbus_name}.policy
 %{_datadir}/polkit-1/rules.d/%{proxy_dbus_name}.rules
 %{_environmentdir}/30-%{name}.conf
+%{_tmpfilesdir}/brew-proxy.conf
 
 %files selinux
 %{_datadir}/selinux/packages/%{selinuxtype}/%{modulename}.pp.bz2

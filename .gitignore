@@ -1,5 +1,6 @@
 anda-build/
 **/*.tar*
+**/*.cabal
 **/*.crate
 **/*.zip
 **/*.minisig

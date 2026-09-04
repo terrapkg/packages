@@ -1,10 +1,10 @@
 %global pypi_name arctis-sound-manager
 %global _desc Linux GUI for SteelSeries Arctis headsets — Nova Pro Wireless & Wired, Nova Pro Omni, Nova Elite, Nova 7/7P/5/3, Arctis 7/7+/9/Pro Wireless. Device settings, Sonar EQ, 4-channel Game/Chat/Media mixer, PipeWire routing.
 
-%global arctis_sound_manager_services arctis-manager.service arctis-video-router.service arctis-gui.service
+%global arctis_sound_manager_services arctis-manager.service arctis-video-router.service arctis-stream-guard.service app-ArctisManager.service
 
 Name:			python-%{pypi_name}
-Version:		1.2.8
+Version:		1.4.18
 Release:		1%{?dist}
 Summary:		GUI for SteelSeries Arctis headsets
 License:		GPL-3.0-or-later
@@ -22,6 +22,33 @@ BuildRequires:  systemd-rpm-macros
 BuildRequires:  python3-ruamel-yaml
 BuildRequires:  desktop-file-utils
 
+# ── Runtime dependencies ─────────────────────────────────────────────────────
+# Kept in sync with the upstream spec at
+# https://github.com/loteran/Arctis-Sound-Manager/blob/main/arctis-sound-manager.spec
+# The Python bindings are omitted on purpose: they are declared in
+# pyproject.toml, so RPM generates them automatically. Everything below is
+# reached through the filesystem or dlopen, where nothing can infer it.
+#
+# Audio stack the daemon drives directly.
+Requires:       pipewire
+Requires:       pipewire-pulseaudio
+Requires:       wireplumber
+Requires:       libusb1
+Requires:       pulseaudio-libs
+# The `pactl` CLI (used at GUI startup and for EQ/Sonar routing) ships in
+# pulseaudio-utils, NOT in pipewire-pulseaudio or pulseaudio-libs. Without it
+# a clean install crashes on launch with FileNotFoundError: 'pactl'.
+# https://github.com/loteran/Arctis-Sound-Manager/issues/117
+Requires:       pulseaudio-utils
+# Fedora ships the Steve Harris SWH LADSPA pack as `ladspa-swh-plugins`.
+# Required by the HeSuVi 7.1 virtual surround graph (`plate_1423` reverb);
+# Spatial Audio loads nothing and stays silent without it.
+# https://github.com/loteran/Arctis-Sound-Manager/issues/23
+Requires:       ladspa-swh-plugins
+# Used by asm-setup to fetch the HRIR file on first run; without it Spatial
+# Audio has no impulse response to convolve with.
+Requires:       curl
+
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
 BuildArch:      noarch
@@ -33,6 +60,7 @@ Provides:       Arctis-Sound-Manager
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
+Provides:       arctis-sound-manager = %{evr}
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
@@ -53,9 +81,7 @@ python3 scripts/generate_udev_rules.py src/arctis_sound_manager/devices/ \
     > %{buildroot}%{_udevrulesdir}/91-steelseries-arctis.rules
 
 # Systemd user services (single source of truth in systemd/, not heredocs)
-install -Dm644 systemd/arctis-manager.service       %{buildroot}%{_userunitdir}/arctis-manager.service
-install -Dm644 systemd/arctis-video-router.service  %{buildroot}%{_userunitdir}/arctis-video-router.service
-install -Dm644 systemd/arctis-gui.service           %{buildroot}%{_userunitdir}/arctis-gui.service
+install -Dm644 systemd/*.service -t %{buildroot}%{_userunitdir}
 
 # dinit service templates
 install -Dm644 dinit/arctis-manager %{buildroot}%{_datadir}/%{name}/dinit/arctis-manager
@@ -102,15 +128,18 @@ install -Dm644 debian/asm-first-run.desktop \
 %doc README.md CONTRIBUTING.md CHANGELOG.md
 %license LICENSE
 %{_bindir}/asm-cli
+%{_bindir}/asm-clipd
 %{_bindir}/asm-daemon
 %{_bindir}/asm-diag-dinit
 %{_bindir}/asm-gui
 %{_bindir}/asm-router
 %{_bindir}/asm-setup
+%{_bindir}/asm-stream-guard
 %{_udevrulesdir}/91-steelseries-arctis.rules
 %{_userunitdir}/arctis-manager.service
 %{_userunitdir}/arctis-video-router.service
-%{_userunitdir}/arctis-gui.service
+%{_userunitdir}/arctis-stream-guard.service
+%{_userunitdir}/app-ArctisManager.service
 %{_datadir}/%{name}/dinit/arctis-manager
 %{_datadir}/%{name}/dinit/arctis-video-router
 %{_datadir}/%{name}/dinit/pipewire-filter-chain
@@ -124,5 +153,10 @@ install -Dm644 debian/asm-first-run.desktop \
 %{_datadir}/python-arctis-sound-manager/dinit/arctis-gui
 
 %changelog
+* Fri Jul 31 2026 loteran <https://github.com/loteran> - 1.2.19-2
+- Declare the runtime dependencies RPM cannot infer: the audio stack the daemon
+  drives, pulseaudio-utils for pactl (issue #117), ladspa-swh-plugins for the
+  virtual surround graph (issue #23), and curl for the first-run HRIR download
+
 * Mon Jun 15 2026 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit

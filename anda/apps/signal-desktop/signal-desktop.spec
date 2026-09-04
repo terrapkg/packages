@@ -2,7 +2,7 @@
 
 Name:			signal-desktop
 %electronmeta -aD
-Version:		8.20.0
+Version:		8.26.0
 Release:		1%{?dist}
 Summary:		A private messenger for Windows, macOS, and Linux
 URL:			https://signal.org
@@ -76,6 +76,7 @@ echo "Electron Builder" > %{rpmbuilddir}/webapp-tool.txt
 mv ./packages/mute-state-change/LICENSE ./packages/mute-state-change/LICENSE.mute-state-change
 mv ./packages/windows-ucv/LICENSE ./packages/mute-state-change/LICENSE.windows-ucv
 mv ./packages/types/LICENSE ./packages/mute-state-change/LICENSE.types
+mv ./packages/lame/LICENSE ./packages/mute-state-change/LICENSE.lame
 %electron_install -i signal -l -I build/icons/png
 
 %desktop_file_install %{SOURCE1}

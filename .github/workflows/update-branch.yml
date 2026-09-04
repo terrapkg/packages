@@ -1,6 +1,11 @@
 name: Update per branch
 permissions:
   contents: read
+
+concurrency:
+  group: update-branch
+  cancel-in-progress: true
+
 on:
   schedule:
     - cron: "*/30 * * * *"

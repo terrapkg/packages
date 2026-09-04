@@ -1,5 +1,5 @@
 Name:           pion
-Version:        0.1.1
+Version:        0.2.0
 Release:        1%{?dist}
 Summary:        Binder IPC Linux userspace root service
 License:        MIT AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (Unlicense OR MIT)
@@ -24,7 +24,7 @@ Binder IPC Linux userspace root service... Binder objects bound to files (like U
 %install
 install -Dm755 target/rpm/pion-binder   %{buildroot}%{_bindir}/pion-binder
 install -Dm644 dist/pion-binder.service %{buildroot}%{_unitdir}/pion-binder.service
-install -Dm644 dist/dev-binderfs.mount  %{buildroot}%{_unitdir}/dev-binderfs.mount
+install -Dm644 dist/dev-pionfs.mount  %{buildroot}%{_unitdir}/dev-pionfs.mount
 
 %post
 %systemd_post pion-binder.service
@@ -40,7 +40,7 @@ install -Dm644 dist/dev-binderfs.mount  %{buildroot}%{_unitdir}/dev-binderfs.mou
 %license LICENSE LICENSE.dependencies
 %{_bindir}/pion-binder
 %{_unitdir}/pion-binder.service
-%{_unitdir}/dev-binderfs.mount
+%{_unitdir}/dev-pionfs.mount
 
 %changelog
 * Tue Mar 17 2026 Owen Zimmerman <owen@fyralabs.com>

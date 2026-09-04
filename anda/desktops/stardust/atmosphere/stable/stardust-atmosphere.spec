@@ -38,5 +38,5 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 * Sat Jan 10 2026 Owen Zimmerman <owen@fyralabs.com>
 - Switch to version based
 
-* Tue Sep 10 2024 Owen-sz <owen@fyralabs.com>
+* Tue Sep 10 2024 Owen Zimmerman <owen@fyralabs.com>
 - Package StardustXR atmosphere

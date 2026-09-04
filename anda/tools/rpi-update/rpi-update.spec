@@ -1,12 +1,12 @@
 %define debug_package %nil
 
-%global commit e30e6978b61abed7f6f665eff55dc74835c9de85
-%global commit_date 20251219
+%global commit 0fd4cffe552e9c323ca97d89ccdc25f63e112f8b
+%global commit_date 20260827
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           rpi-update
 Version:        %commit_date.git~%shortcommit
-Release:        2%?dist
+Release:        1%{?dist}
 Summary:        An easier way to update the firmware of your Raspberry Pi. 
 License:        MIT
 URL:            https://github.com/raspberrypi/rpi-update

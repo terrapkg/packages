@@ -1,4 +1,4 @@
-%global ver 0.0.14-beta
+%global ver 0.0.15-beta
 
 Name:          holyc
 Version:       %(echo "%{ver}" | sed 's/-/~/g')
@@ -27,11 +27,13 @@ sed -i 's|git rev-parse main|git rev-parse HEAD|g' CMakeLists.txt
 # Make the binary correctly report its installed location as /usr/bin instead of /usr
 sed -i 's|binary: %%s/hcc|binary: %%s/bin/hcc|g' cli.c
 
-%build
+%conf
 %cmake \
   -DCMAKE_BUILD_TYPE="Release" \
   -DHCC_LINK_SQLITE3="1" \
   -DHCC_ENABLE_JIT="ON"
+
+%build
 %cmake_build
 
 %install

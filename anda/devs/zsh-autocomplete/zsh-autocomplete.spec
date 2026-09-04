@@ -1,6 +1,6 @@
 Name:           zsh-autocomplete
-Version:        25.03.19
-Release:        1%?dist
+Version:        26.08.04
+Release:        1%{?dist}
 Summary:        Real-time type-ahead completion for Zsh
 License:        MIT
 URL:            https://github.com/marlonrichert/zsh-autocomplete

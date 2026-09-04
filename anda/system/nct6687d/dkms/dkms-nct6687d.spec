@@ -1,17 +1,17 @@
-%global commit cd735225a95e04dda3e2befd94ba77e1f7609dcc
+%global commit 5997c92b41081bfb870a9b6167b7e96e3efdd50f
 %global debug_package %{nil}
 %global modulename nct6687d
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260630
+%global commitdate 20260902
 
 Name:           dkms-%{modulename}
 Version:        1.0^%{commitdate}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Linux kernel driver for the NCT6687D hardware monitoring chip
 License:        GPL-2.0-or-later
 URL:            https://github.com/Fred78290/%{modulename}
 Source0:        %{url}/archive/%{commit}.tar.gz#/%{name}-%{shortcommit}.tar.gz
-Patch0:         dkms-version.patch
+Patch0:         0001-patch-version-tag-for-package-build.patch
 BuildRequires:  sed
 BuildRequires:  systemd-rpm-macros
 Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
@@ -36,7 +36,7 @@ Akmods modules for the akmod-%{name} package.
 
 %prep
 %autosetup -p1 -n %{modulename}-%{commit}
-sed -i -e 's/__VERSION_STRING/%{version}/g' dkms.conf
+sed -i -e 's/__VERSION_STRING__/%{version}/g' dkms.conf
 
 %install
 mkdir -p %{buildroot}%{_usrsrc}/%{modulename}-%{version}

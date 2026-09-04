@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:           MareTF
-Version:        0.12.0
+Version:        0.12.1
 Release:        1%{?dist}
 License:        MIT
 Summary:        A utility to create, edit, and display every type of VTF file ever made
@@ -31,8 +31,7 @@ BuildRequires:  vulkan-headers
 %cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DMARETF_BUILD_INSTALLER=ON \
-    -DCPACK_GENERATOR=RPM \
-    -DMARETF_BUILD_INSTALLER=ON
+    -DCPACK_GENERATOR=RPM
 
 %build
 %cmake_build
