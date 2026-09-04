@@ -29,7 +29,7 @@ BuildRequires:  jq
 Suggests:       arduino-flasher-cli
 Suggests:       arduino-app-cli
 
-Obsoletes:      arduino-app-lab-bin < 0.10.0-1
+Obsoletes:      arduino-app-lab-bin <= 0.10.0-1
 
 Packager:       Jaiden Riordan <jade@fyralabs.com>, Owen Zimmerman <owen@fyralabs.com>
 
