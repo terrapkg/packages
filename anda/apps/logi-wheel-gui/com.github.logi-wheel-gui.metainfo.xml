@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component type="desktop">
+  <id>com.github.logi-wheel-gui</id>
+  <name>Logi Wheel GUI</name>
+  <project_license>GPL-3.0-or-later</project_license>
+  <icon type="local">/usr/share/icons/scalable/apps/logi-wheel-gui.svg</icon>
+  <developer id="com.github.logi-wheel-gui">
+    <name>mescon</name>
+  </developer>
+  <summary>Graphical settings app for the Logitech racing wheel driver</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <url type="homepage">https://github.com/mescon/logitech-trueforce-linux-driver</url>
+  <url type="help">https://github.com/mescon/logitech-trueforce-linux-driver/issues</url>
+  <url type="donation">https://github.com/sponsors/mescon</url>
+  <url
+        type="contribute"
+    >https://github.com/mescon/logitech-trueforce-linux-driver#contributing</url>
+  <launchable type="desktop-id">logi-wheel-gui.desktop</launchable>
+  <description>
+    <p>
+    logi-wheel-gui, a graphical settings app (GPL-3.0-or-later, with a desktop
+    menu entry) for the Logitech direct-drive wheel driver: wheel settings,
+    LIGHTSYNC, response curves, game-helper setup pages, and a test section.
+    </p>
+  </description>
+  <provides>
+    <binary>logi-wheel-gui</binary>
+  </provides>
+  <keywords>
+    <keyword>logitech</keyword>
+    <keyword>wheel</keyword>
+    <keyword>settings</keyword>
+  </keywords>
+  <screenshots>
+    <screenshot type="default">
+      <image
+                type="source"
+            >https://raw.githubusercontent.com/mescon/logitech-trueforce-linux-driver/master/docs/images/logi-wheel-info-testing.png</image>
+      <caption>Typical view of the window (Windows version)</caption>
+    </screenshot>
+  </screenshots>
+</component>
