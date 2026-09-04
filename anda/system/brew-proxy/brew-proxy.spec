@@ -28,6 +28,8 @@
 %global modulename brew-proxy
 %global selinuxtype targeted
 
+%global brew_proxy_services %{name}-daemon.service %{name}-setup.service %{name}-fix-ownership.service
+
 # Metadata.
 Name:    brew-proxy
 Version: 0.3.6
@@ -98,16 +100,13 @@ SELinux policy for %{name}.
 %cargo_test -- -p %{name}-utils
 
 %post
-%systemd_post %{name}-daemon.service
-%systemd_post %{name}-setup.service
+%systemd_post %{brew_proxy_services}
 
 %preun
-%systemd_preun %{name}-daemon.service
-%systemd_preun %{name}-setup.service
+%systemd_preun %{brew_proxy_services}
 
 %postun
-%systemd_postun_with_restart %{name}-daemon.service
-%systemd_postun_with_reload %{name}-setup.service
+%systemd_postun_with_restart %{brew_proxy_services}
 
 %pre selinux
 %selinux_relabel_pre -s %{selinuxtype}
@@ -135,6 +134,7 @@ fi
 %{_bindir}/%{name}
 %{_unitdir}/%{name}-daemon.service
 %{_unitdir}/%{name}-setup.service
+%{_unitdir}/%{name}-fix-ownership.service
 %{_sysusersdir}/%{name}.conf
 %{_libexecdir}/%{name}/
 %{_datadir}/dbus-1/system-services/{%proxy_dbus_name}.service
