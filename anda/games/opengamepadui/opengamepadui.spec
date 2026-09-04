@@ -66,8 +66,6 @@ gamepad input to mouse and keyboard inputs.
 %patch 0 -p1
 %patch 1 -p1
 %patch 2 -p1
-%patch 3 -p1
-%patch 4 -p1
 
 %build
 %make_build import
