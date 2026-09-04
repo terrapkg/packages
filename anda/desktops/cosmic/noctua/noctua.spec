@@ -1,11 +1,10 @@
-%global ver 0.1.0
 %global commitdate 20260608
 %global commit 68a41d2f817380cfd1c429354ffc7d097b5b910f
 %global shortcommit %{sub %{commit} 0 7}
 %global appid org.codeberg.wfx.Noctua
 
 Name:           noctua
-Version:        %{ver}^%{commitdate}.git%{shortcommit}
+Version:        0^%{commitdate}.git%{shortcommit}
 Release:        1%{?dist}
 Summary:        An image viewer application for the COSMIC™ desktop
 
