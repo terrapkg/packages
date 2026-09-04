@@ -1,8 +1,11 @@
 %global toolchain clang
+# excluded because syslog-ng claims to provide it.
+# we explicitly require cef so we will definitely get it.
+%global __requires_exclude ^libcef\\.so\\(\\)\\(64bit\\)$
 
 Name:       bolt-launcher
 Version:    0.23.2
-Release:    1%{?dist}
+Release:    2%{?dist}
 Summary:    A third-party, free-software launcher for your favourite MMORPG
 License:    AGPL-3.0-or-later
 URL:        https://codeberg.org/Adamcake/Bolt
@@ -76,5 +79,8 @@ export LD_LIBRARY_PATH="%{_libdir}/cef${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}"
 %{_scalableiconsdir}/BoltLauncher.svg
 
 %changelog
+* Fri Sep 04 2026 Caleb Jones <caleb@fyralabs.com>
+- Exclude libcef.so to fix unnecessary syslog-ng dependency
+
 * Fri May 22 2026 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit
