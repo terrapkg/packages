@@ -11,6 +11,7 @@ Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  rust-xkbcommon-devel
 BuildRequires:  systemd-devel
+BuildRequires:  desktop-file-utils
 Requires:       cosmic-osd
 Requires:       tailscale
 Provides:       gui-scale-applet
@@ -30,9 +31,11 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %install
 install -Dm0755 target/rpm/gui-scale-applet                             %{buildroot}%{_bindir}/gui-scale-applet
-install -Dm0644 data/com.bhh32.gui-scale-applet.desktop                 %{buildroot}%{_appsdir}/%{appid}.desktop
+%destop_file_install data/com.bhh32.gui-scale-applet.desktop
 install -Dm0644 data/com.bhh32.gui-scale-applet.metainfo.xml            %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 install -Dm0644 data/icons/scalable/apps/com.bhh32.gui-scale-applet.png %{buildroot}%{_hicolordir}/256x256/apps/%{appid}.png
+
+%terra_appstream
 
 %files
 %doc README.md
