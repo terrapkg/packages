@@ -5,6 +5,7 @@ Summary:        kernel driver for Logitech racing wheels (RS50, G PRO, G923)
 License:        GPL-2.0-only
 URL:            https://github.com/mescon/logitech-trueforce-linux-driver
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
+Source1:        com.github.logitech-trueforce-linux-driver.metainfo.xml
 BuildArch:      noarch
 BuildRequires:  systemd-rpm-macros
 
@@ -73,6 +74,8 @@ install -D -m 0644 udev/73-logitech-xbox-modeswitch.rules \
 install -D -m 0644 packaging/modprobe.d/hid-logitech-dd.conf \
     %{buildroot}%{_sysconfdir}/modprobe.d/hid-logitech-dd.conf
 
+install -Dm644 %{SOURCE1} %{buildroot}%{_datadir}/metainfo/com.github.logitech-trueforce-linux-driver.metainfo.xml
+
 %files
 %license COPYING
 %doc README.md
@@ -81,6 +84,8 @@ install -D -m 0644 packaging/modprobe.d/hid-logitech-dd.conf \
 %{_prefix}/lib/udev/rules.d/72-logitech-g923-rebind.rules
 %{_prefix}/lib/udev/rules.d/73-logitech-xbox-modeswitch.rules
 %config(noreplace) %{_sysconfdir}/modprobe.d/hid-logitech-dd.conf
+%{_datadir}/metainfo/com.github.logitech-trueforce-linux-driver.metainfo.xml
+
 
 %changelog
 * Wed Sep 2 2026 luan Oliveira <luanv.oliveira@outlook.com> - 0.39.2-1
