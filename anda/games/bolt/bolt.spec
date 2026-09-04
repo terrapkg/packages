@@ -79,7 +79,6 @@ export LD_LIBRARY_PATH="%{_libdir}/cef${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}"
 %{_scalableiconsdir}/BoltLauncher.svg
 
 %changelog
-
 * Fri Sep 04 2026 Caleb Jones <caleb@fyralabs.com>
 - Exclude libcef.so to fix unnecessary syslog-ng dependency
 
