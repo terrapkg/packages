@@ -1,3 +1,5 @@
+From: Terra <terra@fyralabs.com>
+Subject: [PATCH] make install not depend on build
 --- a/Makefile	2025-05-21 22:56:09.064696169 -0500
 +++ b/Makefile	2025-05-21 23:14:40.494058939 -0500
 @@ -41,8 +41,8 @@

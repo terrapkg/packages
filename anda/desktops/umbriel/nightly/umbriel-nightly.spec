@@ -1,8 +1,8 @@
 %global debug_package   %{nil}
 
-%global commit          729e7eb521c2207dd562ca1284bc0fbf9aecd270
+%global commit          fd3bc638626574696ab522e44616d17f08cf4aca
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
-%global commitdate      20260901
+%global commitdate      20260904
 
 Name:   	umbriel-nightly
 Version:	0^%{commitdate}git.%{shortcommit}
