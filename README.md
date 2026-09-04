@@ -65,7 +65,7 @@ Our documentation can be found on our [docs site](https://docs.terrapkg.com).
 ## Searching Packages
 
 [pkgs.org](https://fedora.pkgs.org/rawhide/terra/) and [Repology](https://repology.org/) provide a list of the packages available in Terra.
-You can also `dnf search` for all packages, or search in graphical app stores for packages (they must package an [AppStream MetaData](https://www.freedesktop.org/software/appstream/docs/chap-AppStream-About.html) file to be seen this way) once you have Terra installed.
+You can also `dnf search` for all packages, or search in graphical app stores for packages with [AppStream MetaData](https://www.freedesktop.org/software/appstream/docs/chap-AppStream-About.html) once you have Terra installed.
 
 ## Questions?
 
