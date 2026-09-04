@@ -2,7 +2,7 @@
 %define debug_package %{nil}
 
 Name:           arduino-app-lab
-Version:        0.9.0
+Version:        0.10.0
 Release:        2%?dist
 Summary:        A powerful visual environment for managing the Arduino UNO Q
 
@@ -29,7 +29,7 @@ BuildRequires:  jq
 Suggests:       arduino-flasher-cli
 Suggests:       arduino-app-cli
 
-Obsoletes:      arduino-app-lab-bin < 0.9.0-1
+Obsoletes:      arduino-app-lab-bin < 0.10.0-1
 
 Packager:       Jaiden Riordan <jade@fyralabs.com>, Owen Zimmerman <owen@fyralabs.com>
 
