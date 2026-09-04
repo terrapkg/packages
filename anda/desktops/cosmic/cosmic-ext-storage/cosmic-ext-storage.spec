@@ -21,6 +21,7 @@ BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  clang-devel
 BuildRequires:  gcc-c++
 BuildRequires:  btrfs-progs-devel
+BuildRequires:  desktop-file-utils
 Requires:       udisks2
 Recommends:     exfatprogs
 Recommends:     dosfstools
@@ -39,7 +40,6 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %prep
 %autosetup -C
 %cargo_prep_online
-%cargo_license_summary_online
 
 %build
 export VERGEN_GIT_SHA=%{commit}
@@ -49,9 +49,11 @@ export VERGEN_GIT_COMMIT_DATE=%{commitdate}
 
 %install
 install -Dm0755 target/rpm/cosmic-ext-storage                                       %{buildroot}%{_bindir}/cosmic-ext-storage
-install -Dm0644 resources/app.desktop                                               %{buildroot}%{_appsdir}/%{appid}.desktop
+%desktop_file_install resources/app.desktop
 install -Dm0644 resources/app.metainfo.xml                                          %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 install -Dm0644 resources/icons/hicolor/scalable/apps/com.cosmic.ext.Storage.svg    %{buildroot}%{_scalableiconsdir}/%{appid}.svg
+
+%terra_appstream
 
 %files
 %license LICENSE LICENSE.dependencies
