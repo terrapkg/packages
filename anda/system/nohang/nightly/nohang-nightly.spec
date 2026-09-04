@@ -2,7 +2,7 @@
 %global commit_date 20260805
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global pkgname     nohang
-%global ver         0.3.0
+%global ver         v0.3.0
 
 Name:           nohang-nightly
 Version:        %{ver}^%{commit_date}.git%{shortcommit}
