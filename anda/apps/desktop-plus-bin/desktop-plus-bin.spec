@@ -11,7 +11,7 @@
 Name:           desktop-plus-bin
 %global appname desktop-plus
 %global appid   org.desktop-plus.DesktopPlus
-Version:        3.6.4.4
+Version:        3.6.5.0
 %electronmeta -D
 %global __requires_exclude %{?__requires_exclude:%{__requires_exclude}|}CURL_GNUTLS
 Release:        1%{?dist}
