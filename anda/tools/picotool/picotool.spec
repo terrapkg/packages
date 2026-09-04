@@ -1,4 +1,4 @@
-%define sdk_version 2.3.0
+%define sdk_version 2.3.1
 %global ver 2.3.0
 %global sanitized_ver %(echo %{ver} | sed 's/-//g')
 
