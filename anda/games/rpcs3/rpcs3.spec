@@ -9,8 +9,8 @@
 # GLIBCXX_ASSERTIONS is known to break RPCS3
 %global build_cflags %(echo "%{__build_flags_lang_c}" | sed 's|-Wp,-D_GLIBCXX_ASSERTIONS ||g') %{?_distro_extra_cflags}
 %global build_cxxflags %(echo "%{__build_flags_lang_cxx}" | sed 's|-Wp,-D_GLIBCXX_ASSERTIONS ||g') %{?_distro_extra_cflags}
-%global commit 87608865b60de01480320b4a29a1bcbda387bad3
-%global ver 0.0.41-19511
+%global commit bf949109ad1d2f3c963a03419a515eccd3fd6341
+%global ver 0.0.42-19929
 
 Name:           rpcs3
 Version:        %(echo %{ver} | sed 's/-/^/g')
@@ -55,9 +55,11 @@ BuildRequires:  pkgconfig(libswscale)
 BuildRequires:  pkgconfig(libswresample)
 BuildRequires:  pkgconfig(wayland-server)
 BuildRequires:  pkgconfig(wayland-cursor)
+BuildRequires:  pkgconfig(xkbcommon-x11)
 #BuildRequires:  pkgconfig(wayland-eglstream)
 BuildRequires:  doxygen
 BuildRequires:  qt6-qtbase-private-devel vulkan-devel jack-audio-connection-kit-devel
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 %summary.
@@ -107,3 +109,8 @@ export LLVM_DIR=%{_libdir}/llvm%{?llvm_major}/%{_lib}/cmake
 %_datadir/rpcs3/
 %_iconsdir/hicolor/48x48/apps/rpcs3.png
 %_iconsdir/hicolor/scalable/apps/rpcs3.svg
+
+%changelog
+* Mon Jul 20 2026 Gilver E. <roachy@fyralabs.com> - 0.0.41^19600
+- Updated build for libxkbcommon-x11 dependency
+- Added packager

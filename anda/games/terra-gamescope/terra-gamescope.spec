@@ -2,7 +2,7 @@
 
 %global _default_patch_fuzz 2
 %global build_timestamp %(date +"%Y%m%d")
-%global gamescope_commit 7c5ebe991af905c17fa26f6287704ff07dcf69ca
+%global gamescope_commit 77e6ea94dbc3feca4b95daef433d6238a9efdd68
 %define short_commit %(echo %{gamescope_commit} | cut -c1-8)
 
 Name:           terra-gamescope
@@ -10,7 +10,7 @@ Version:        137.%{short_commit}
 Release:        1%?dist
 Summary:        Micro-compositor for video games on Wayland
 
-License:        BSD
+License:        BSD-2-Clause
 URL:            https://github.com/OpenGamingCollective/gamescope
 
 Provides:       gamescope = %{version}-%{release}
@@ -23,11 +23,6 @@ Patch0:         Use-system-stb-glm.patch
 
 Patch1:         0001-cstdint.patch
 
-%if 0%{?fedora} >= 44
-# Fix build with libinput >= 1.27 / GCC 16 (-Werror=switch)
-Patch2:         0002-wlroots-libinput-switch-keypad-slide.patch
-%endif
-
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
@@ -38,6 +33,7 @@ BuildRequires:  libXcursor-devel
 BuildRequires:  libXmu-devel
 BuildRequires:  meson >= 0.54.0
 BuildRequires:  ninja-build
+BuildRequires:  pkgconfig(catch2-with-main)
 BuildRequires:  pkgconfig(hwdata)
 BuildRequires:  pkgconfig(libavif)
 BuildRequires:  pkgconfig(libcap)
@@ -107,12 +103,12 @@ BuildRequires:  pkgconfig(xwayland)
 
 %package libs
 Summary:	libs for %{name}
+Requires: terra-gamescope = %{evr}
 %description libs
 %summary
 
 %prep
 %setup -Tc
-# git clone --depth 1 --branch %%{gamescope_tag} %%{url}.git
 git clone %{url}.git $PWD
 git checkout %{gamescope_commit}
 git submodule update --init --recursive
@@ -124,11 +120,13 @@ sed -i 's^../thirdparty/SPIRV-Headers/include/spirv/^/usr/include/spirv/^' src/m
 
 %autopatch -p1
 
-%build
+%conf
 export PKG_CONFIG_PATH=pkgconfig
 %meson \
     --auto-features=enabled \
     -Dforce_fallback_for=vkroots,wlroots,libliftoff
+
+%build
 %meson_build
 
 %install
@@ -152,5 +150,5 @@ export PKG_CONFIG_PATH=pkgconfig
 * Fri Mar 13 2026 Kyle Gospodnetich <me@kylegospodneti.ch>
 - Switch to OGC sources
 
-* Thu Jan 2 2025 Owen-sz <owen@fyralabs.com>
+* Thu Jan 2 2025 Owen Zimmerman <owen@fyralabs.com>
 - Package gamescope, port from Bazzite

@@ -1,13 +1,13 @@
 %global _distro_extra_cflags -Wno-discarded-qualifiers -Wno-maybe-uninitialized
 
 Name:           quickjs-ng
-Version:        0.15.1
+Version:        0.16.2
 Release:        1%{?dist}
 License:        MIT
 Summary:        A mighty JavaScript engine
 URL:            https://github.com/quickjs-ng/quickjs
 Source:         %{url}/archive/refs/tags/v%{version}.tar.gz
-Packager:       Metcya <metcya@gmail.com>
+Packager:       Olivia <git@olivia.sh>
 Provides:       qjs
 Provides:       qjsc
 
@@ -32,10 +32,6 @@ intent of reigniting its development.
 Requires:   %{name}-libs%{_isa} = %evr
 %pkg_devel_files
 
-%files devel
-%{_libdir}/cmake/qjs/*.cmake
-
-
 %package examples
 Summary:    Example files for %{name}
 
@@ -45,8 +41,10 @@ Example files for %{name}
 %prep
 %autosetup -p1 -n quickjs-%{version}
 
-%build
+%conf
 %cmake
+
+%build
 %cmake_build
 
 %install
@@ -58,11 +56,16 @@ rm %{buildroot}%{_docdir}/quickjs/LICENSE
 %license LICENSE
 %{_bindir}/qjs
 %{_bindir}/qjsc
+%{_mandir}/man1/qjs.1.*
+%{_mandir}/man1/qjsc.1.*
 
 %files examples
 %license LICENSE
 %{_docdir}/quickjs/examples/*
 
 %changelog
-* Sun Dec 07 2025 metcya <metcya@gmail.com> - 0.11.0
+* Sun Jul 19 2026 Olivia <git@olivia.sh> - 0.15.1-2
+- Update packager
+
+* Sun Dec 07 2025 Olivia <git@olivia.sh> - 0.11.0
 - Package quickjs-ng

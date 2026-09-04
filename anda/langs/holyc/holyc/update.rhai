@@ -1,5 +1,5 @@
 let v = gh("Jamesbarford/holyc-lang");
-v.crop(6);
+v.crop(1);
 rpm.global("ver", v);
 
 if rpm.changed() {

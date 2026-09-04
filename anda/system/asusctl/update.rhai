@@ -1,2 +1,2 @@
-rpm.version(gh_tag("OpenGamingCollective/asusctl"));
+rpm.version(gh("OpenGamingCollective/asusctl"));
 

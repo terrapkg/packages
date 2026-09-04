@@ -20,7 +20,7 @@ Snitch.}
                         utils/packaging/ui/deb/debian/changelog
 
 Name:           opensnitch
-Release:        1%{?dist}
+Release:        3%{?dist}
 Summary:        OpenSnitch is a GNU/Linux interactive application firewall inspired by Little Snitch
 
 License:        GPL-3.0-only AND LGPL-2.1-or-later
@@ -37,6 +37,13 @@ BuildRequires:  /usr/bin/lrelease-qt5
 BuildRequires:  protobuf-compiler
 BuildRequires:  pkgconfig(libnetfilter_queue)
 BuildRequires:  qt6-linguist
+
+Requires:       python3-PyQt6
+Requires:       python3-grpcio
+Requires:       python3-slugify
+Requires:       python3-notify2
+Requires:       python3-pyasn
+Requires:       python3-protobuf
 
 %description %{common_description}
 
@@ -79,6 +86,7 @@ popd
 %install
 %gopkginstall
 install -Dm755 opensnitchd -t %buildroot%_bindir
+install -Dm644 utils/packaging/daemon/deb/debian/opensnitch.service %{buildroot}%{_unitdir}/opensnitchd.service
 
 pushd ui
 %pyproject_install
@@ -88,6 +96,19 @@ popd
 rm -rf %buildroot%python3_sitelib/tests/
 cp -r %buildroot%python3_sitelib%_usr/ %buildroot%_usr/ --preserve=all --no-target-directory
 rm -rf %buildroot%python3_sitelib%_usr
+
+install -Dm644 daemon/data/default-config.json  %{buildroot}%{_sysconfdir}/opensnitchd/default-config.json
+install -Dm644 daemon/data/network_aliases.json %{buildroot}%{_sysconfdir}/opensnitchd/network_aliases.json
+install -Dm644 daemon/data/system-fw.json       %{buildroot}%{_sysconfdir}/opensnitchd/system-fw.json
+
+%post
+%systemd_post opensnitchd.service
+
+%preun
+%systemd_preun opensnitchd.service
+
+%postun
+%systemd_postun_with_restart opensnitchd.service
 
 %files -f %{pyproject_files}
 %license LICENSE
@@ -101,9 +122,19 @@ rm -rf %buildroot%python3_sitelib%_usr
 %_datadir/kservices5/kcm_opensnitch.desktop
 %_metainfodir/io.github.evilsocket.opensnitch.appdata.xml
 %_scalableiconsdir/opensnitch-ui.svg
+%{_unitdir}/opensnitchd.service
+%{_sysconfdir}/opensnitchd/default-config.json
+%{_sysconfdir}/opensnitchd/network_aliases.json
+%{_sysconfdir}/opensnitchd/system-fw.json
 
 %gopkgfiles
 
 %changelog
+* Wed Aug 26 2026 Owen Zimmerman <owen@fyralabs.com>
+- Install configs and proper systemd service, add runtime deps
+
+* Thu Aug 20 2026 Owen Zimmerman <owen@fyralabs.com>
+- Package systemd service
+
 * Mon Mar 16 2026 Owen Zimmerman <owen@fyralabs.com>
 - Fix build, clean up spec

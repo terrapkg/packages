@@ -1,12 +1,12 @@
 Name:           nemu
 Version:        3.5.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Ncurses UI for QEMU
 
 URL:            https://github.com/nemuTUI/nemu
 Source:         %{url}/archive/v%{version}.tar.gz
 License:        BSD-2-Clause
-Packager:       metcya <metcya@gmail.com>
+Packager:       Olivia <git@olivia.sh>
 
 BuildRequires:  cmake
 BuildRequires:  gcc
@@ -50,4 +50,7 @@ Requires:       tigervnc
 %pkg_completion -Bz nemu
 
 %changelog
+* Sun Jul 19 2026 Olivia <git@olivia.sh> - 3.5.0-2
+- Update packager
+
 %autochangelog

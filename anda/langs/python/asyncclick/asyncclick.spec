@@ -2,7 +2,7 @@
 %global _desc Python composable command line utility, trio-compatible version.
 
 Name:			python-%{pypi_name}
-Version:		8.3.0.7
+Version:		8.4.2.1
 Release:		1%{?dist}
 Summary:		Python composable command line utility, trio-compatible version
 License:		BSD-3-Clause

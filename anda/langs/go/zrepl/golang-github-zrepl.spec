@@ -58,7 +58,7 @@ install -m 0755 -vp %{gobuilddir}/bin/*                 %{buildroot}%{_bindir}/
 install -Dm 0644 %{gobuilddir}/zrepl.service            %{buildroot}%{_unitdir}/zrepl.service
 install -Dm 0644 %{gobuilddir}/zrepl.yml                %{buildroot}%{_sysconfdir}/zrepl/zrepl.yml
 install -Dm 0644 %{gobuilddir}/bash_completion          %{buildroot}%{_datadir}/bash-completion/completions/zrepl
-install -Dm 0644 %{gobuilddir}/zsh_completion           %{buildroot}%{_datadir}/zsh/site-functions/_zrepl
+install -Dm 0644 %{gobuilddir}/zsh_completion           %{buildroot}%{zsh_functions_dir}/_zrepl
 install -d                                              %{buildroot}%{_datadir}/doc/zrepl
 cp -a   config/samples                                  %{buildroot}%{_datadir}/doc/zrepl/examples
 
@@ -79,7 +79,7 @@ cp -a   config/samples                                  %{buildroot}%{_datadir}/
 %dir %{_sysconfdir}/zrepl
 %config(noreplace) %{_sysconfdir}/zrepl/zrepl.yml
 %{_datadir}/bash-completion/completions/zrepl
-%{_datadir}/zsh/site-functions/_zrepl
+%{zsh_funtsions_dir}/_zrepl
 %{_datadir}/doc/zrepl
 
 %gopkgfiles

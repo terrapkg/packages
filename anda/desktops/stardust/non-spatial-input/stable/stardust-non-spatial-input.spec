@@ -47,5 +47,5 @@ wait
 * Sat Jan 10 2026 Owen Zimmerman <owen@fyralabs.com>
 - Switch to version based
 
-* Mon Sep 9 2024 Owen-sz <owen@fyralabs.com>
+* Mon Sep 9 2024 Owen Zimmerman <owen@fyralabs.com>
 - Package StardustXR non-spatial-input

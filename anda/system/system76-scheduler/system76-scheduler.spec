@@ -1,15 +1,13 @@
-%define debug_package %nil
-
 Name:			system76-scheduler
 Version:		2.0.2
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Auto-configure CFS, process priorities for improved DE responsiveness
 License:		MPL-2.0
 URL:			https://github.com/pop-os/system76-scheduler
 Source0:		%url/archive/refs/tags/%version.tar.gz
 BuildRequires:	cargo clang clang-devel pipewire-devel pkg-config systemd-rpm-macros rust-packaging just
 BuildRequires:  bcc-tools
-Requires:       bcc-tools
+Packager:		madonuko <mado@fyralabs.com>
 
 %description
 Scheduling service which optimizes Linux's CPU scheduler and automatically
@@ -22,11 +20,14 @@ process priority.
 
 %prep
 %autosetup
+sed 's@target/release@target/rpm@g' -i justfile
+%cargo_prep_online
 
 %build
 export EXECSNOOP_PATH=/usr/share/bcc/tools/execsnoop
 # We don't use our macro since one of the dependencies fails to build with our profile :/
-%(echo "%{cargo_build}" | sed "s@--profile rpm@--profile release@g" | sed "s@-j @@")
+%dnl %(echo "%{cargo_build}" | sed "s@--profile rpm@--profile release@g" | sed "s@-j @@")
+%cargo_build
 
 %install
 just rootdir=%buildroot sysconfdir=%_datadir install
@@ -57,6 +58,9 @@ just rootdir=%buildroot sysconfdir=%_datadir install
 %_unitdir/com.system76.Scheduler.service
 
 %changelog
+* Fri Jul 03 2026 madonuko <mado@fyralabs.com> - 2.0.2-2
+- undep bcc-tools
+
 * Tue Sep 26 2023 Cappy Ishihara <cappy@cappuchino.xyz> - 2.0.1-2
 - Move default configurations to /usr/share/system76-scheduler
 - Add Requires: bcc-tools so execsnoop is available

@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Signal
-Exec=signal-desktop --use-tray-icon %U
+Exec=signal-desktop %U
 Terminal=false
 Type=Application
 Icon=signal

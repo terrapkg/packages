@@ -1,11 +1,11 @@
-%global commit 454a6e24af830a1f434385fc3faebec19c0cbefa
+%global commit 30dc182391e2c002f6f7c988e76aa477a4772aa2
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %define appid io.github.ilya_zlobintsev.LACT
 
 Name:           lact
-Version:        0.9.0
-Release:        5%{?dist}
+Version:        0.10.1
+Release:        1%{?dist}
 Summary:        Linux GPU Configuration And Monitoring Tool
 URL:            https://github.com/ilya-zlobintsev/LACT
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
@@ -23,6 +23,7 @@ BuildRequires:	pkgconfig(graphene-gobject-1.0)
 BuildRequires:	pkgconfig(hwdata)
 BuildRequires:	pkgconfig(gtk4)
 BuildRequires:	pkgconfig(gdk-pixbuf-2.0)
+BuildRequires:  pkgconfig(libdisplay-info)
 
 Requires:       gtk4
 Requires:       libdrm

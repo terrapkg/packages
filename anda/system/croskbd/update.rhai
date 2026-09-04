@@ -1,1 +1,1 @@
-rpm.version(gh("WeirdTreeThing/croskbd"));
+rpm.version(gh_tag("WeirdTreeThing/croskbd"));

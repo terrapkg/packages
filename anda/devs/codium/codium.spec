@@ -1,10 +1,10 @@
 %global appid com.vscodium.VSCodium
 
 Name:			      codium
-Version:		    1.121.03429
+Version:		    1.126.04524
 %electronmeta -D
 %global __requires_exclude %{__requires_exclude}|libcurl.so|libmsalruntime.so
-Release:		    1%{?dist}
+Release:		    2%{?dist}
 Summary:		    Code editing. Redefined.
 License:	      %{electron_license}
 URL:            https://vscodium.com/
@@ -66,6 +66,14 @@ EOF
 %build
 
 %install
+%ifnarch %{x86_64}
+find . -name "x64" -type d -prune -exec rm -rf "{}" ";"
+%endif
+
+%ifnarch %{arm64}
+find . -name "arm64" -type d -prune -exec rm -rf "{}" ";"
+%endif
+
 cd stuff
 mkdir -p %{buildroot}%{_datadir}/doc/%{name}/ %{buildroot}%{_datadir}/licenses/%{name}
 install -Dm644 %{SOURCE1} %{buildroot}%{_docdir}/%{name}/
@@ -82,9 +90,9 @@ install -D -m644 vscodium-bin-uri-handler.desktop %{buildroot}%{_datadir}/applic
 install -D -m644 resources/app/resources/linux/code.png %{buildroot}%{_datadir}/pixmaps/vscodium.png
 
 # Symlink shell completions
-install -dm755 %{buildroot}%{_datadir}/zsh/site-functions
+install -dm755 %{buildroot}%{zsh_functions_dir}
 install -dm755 %{buildroot}%{_datadir}/bash-completion/completions
-ln -s %{_datadir}/%{name}/resources/completions/zsh/_codium %{buildroot}%{_datadir}/zsh/site-functions
+ln -s %{_datadir}/%{name}/resources/completions/zsh/_codium %{buildroot}%{zsh_functions_dir}
 ln -s %{_datadir}/%{name}/resources/completions/bash/codium %{buildroot}%{_datadir}/bash-completion/completions
 
 %fdupes %{_datadir}/%{name}/resources/app/extensions/

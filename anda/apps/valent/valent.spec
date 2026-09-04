@@ -4,7 +4,7 @@
 
 Name:               valent
 Version:            0~%{commit_date}git.%{shortcommit}
-Release:            1%{?dist}
+Release:            2%{?dist}
 Summary:            Connect, control and sync devices
 License:            GPL-3.0-or-later
 URL:                https://github.com/andyholmes/valent
@@ -25,6 +25,7 @@ BuildRequires:      pkgconfig(gnutls)
 BuildRequires:      pkgconfig(gstreamer-1.0)
 BuildRequires:      pkgconfig(json-glib-1.0)
 BuildRequires:      pkgconfig(libadwaita-1)
+BuildRequires:      pkgconfig(libdex-1)
 BuildRequires:      pkgconfig(libpeas-2)
 BuildRequires:      pkgconfig(libpipewire-0.3)
 BuildRequires:      pkgconfig(libportal-gtk4)
@@ -38,8 +39,6 @@ BuildRequires:      pkgconfig(tracker-sparql-3.0)
 %pkg_devel_files
 %{_datadir}/vala/vapi/libvalent-1.deps
 %{_datadir}/vala/vapi/libvalent-1.vapi
-%{_libdir}/libvalent-1.so.0
-%{_libdir}/libvalent-1.so.1.0.0
 
 %package langpacks
 Summary:           Translations for %{name}
@@ -75,6 +74,7 @@ mv subprojects/libgnome-volume-control* subprojects/gvc
 %{_datadir}/applications/ca.andyholmes.Valent.desktop
 %{_datadir}/dbus-1/services/ca.andyholmes.Valent.service
 %{_datadir}/gir-1.0/Valent-1.gir
+%{_datadir}/glib-2.0/schemas/ca.andyholmes.Valent.gschema.xml
 %{_datadir}/glib-2.0/schemas/ca.andyholmes.Valent.Plugin.battery.gschema.xml
 %{_datadir}/glib-2.0/schemas/ca.andyholmes.Valent.Plugin.clipboard.gschema.xml
 %{_datadir}/glib-2.0/schemas/ca.andyholmes.Valent.Plugin.connectivity_report.gschema.xml
@@ -86,11 +86,12 @@ mv subprojects/libgnome-volume-control* subprojects/gvc
 %{_datadir}/glib-2.0/schemas/ca.andyholmes.Valent.Plugin.systemvolume.gschema.xml
 %{_datadir}/glib-2.0/schemas/ca.andyholmes.Valent.Plugin.telephony.gschema.xml
 %{_datadir}/glib-2.0/schemas/ca.andyholmes.Valent.Plugin.xdp.gschema.xml
-%{_datadir}/glib-2.0/schemas/ca.andyholmes.Valent.gschema.xml
 %{_datadir}/icons/hicolor/scalable/apps/ca.andyholmes.Valent.svg
 %{_datadir}/icons/hicolor/symbolic/apps/ca.andyholmes.Valent-symbolic.svg
 %{_datadir}/metainfo/ca.andyholmes.Valent.metainfo.xml
 %{_libdir}/girepository-1.0/Valent-1.typelib
+%{_libdir}/libvalent-1.so.0
+%{_libdir}/libvalent-1.so.1.0.0
 %{_sysconfdir}/xdg/autostart/ca.andyholmes.Valent-autostart.desktop
 
 %changelog

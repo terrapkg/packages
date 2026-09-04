@@ -1,5 +1,5 @@
 Name:           plasma6-applet-appgrid
-Version:        1.9.2
+Version:        1.9.3
 Release:        1%{?dist}
 Summary:        A modern application launcher for KDE Plasma
 # Main code: GPL-2.0-or-later

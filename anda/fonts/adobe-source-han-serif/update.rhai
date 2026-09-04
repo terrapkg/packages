@@ -1,1 +1,1 @@
-rpm.version(gh("adobe-fonts/source-han-serif"));
+rpm.global("ver", gh("adobe-fonts/source-han-serif"));

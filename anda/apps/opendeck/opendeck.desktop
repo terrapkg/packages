@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=OpenDeck
+Comment=Use stream controllers
+Exec=opendeck
+Icon=opendeck
+Terminal=false
+Categories=Utility;
+StartupWMClass=opendeck
+MimeType=x-scheme-handler/opendeck;x-scheme-handler/openaction;x-scheme-handler/streamdeck;

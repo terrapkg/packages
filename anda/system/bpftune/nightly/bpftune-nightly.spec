@@ -8,13 +8,13 @@
 
 %bcond_with openrc
 
-%global commit  4712347f2da0b7d4a5fbdb0d81d071c1704b3f20
+%global commit  d5d9f609ebe79df5e5788289c4ab51211f57bbef
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260227
+%global commit_date 20260805
 
 Name:           bpftune-nightly
 Version:        %(echo '%ver' | sed 's/-/~/g')^%{commit_date}git.%{shortcommit}
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        BPF/tracing tools for auto-tuning Linux
 License:        GPL-2.0-only WITH Linux-syscall-note
 Packager:       veuxit <erroor234@gmail.com>

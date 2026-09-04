@@ -5,12 +5,13 @@ A fast high compression read-only file system for Linux and Windows.}
 %global _distro_extra_cxxflags -include %{_includedir}/c++/*/cstdint
 
 Name:          dwarfs
-Version:       0.15.3
+Version:       0.15.7
 Release:       1%{?dist}
 Summary:       A fast high compression read-only file system for Linux, Windows and macOS
 License:       GPL-3.0-or-later
 URL:           https://github.com/mhx/%{name}
 Source0:       %{url}/archive/refs/tags/v%{version}.tar.gz
+BuildRequires: anda-srpm-macros
 BuildRequires: binutils-devel
 BuildRequires: boost-devel
 %if 0%{?fedora} >= 44
@@ -88,7 +89,7 @@ Zsh shell completion for dwarfs.
 %prep
 %git_clone %{url}.git v%{version}
 
-%build
+%conf
 %cmake \
 -DWITH_TESTS=ON \
 -DWITH_LIBDWARFS=ON \
@@ -96,17 +97,16 @@ Zsh shell completion for dwarfs.
 -DWITH_FUSE_DRIVER=ON \
 -DBUILD_SHARED_LIBS=ON \
 -DWITH_MAN_OPTION=OFF \
--DCMAKE_INSTALL_SBINDIR="%(echo %{_sbindir} | sed 's|^/usr||')" \
-%cmake_build
-%ifarch aarch64
--DCMAKE_C_FLAGS="$CFLAGS -fno-lto -fno-use-linker-plugin" \
--DCMAKE_CXX_FLAGS="$CXXFLAGS -fno-lto -fno-use-linker-plugin" \
--DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS -fno-lto -fno-use-linker-plugin" \
-%endif
+
+%build
 %cmake_build
 
 %install
 %cmake_install
+rm %{buildroot}%{_sbindir}/mount.%{name}
+# even if we pass a correct path to INSTALL_SBINDIR, the / at the beginning of the path is hardcoded in the cmake file
+# replace with our own symlink.
+ln -sr %{buildroot}%{_bindir}/dwarfs %{buildroot}%{_sbindir}/mount.%{name}
 
 %files
 %doc README.md

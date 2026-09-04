@@ -3,7 +3,7 @@
 
 Name:           adobe-source-han-sans-fonts
 Version:        %(echo %ver | sed -E 's/R$//')
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Source Han Sans | 思源黑体 | 思源黑體 | 思源黑體 香港 | 源ノ角ゴシック | 본고딕
 License:        OFL-1.1
 URL:            https://github.com/adobe-fonts/source-han-sans
@@ -20,7 +20,13 @@ This package ships the Static OTC versions.
 
 %files
 %license LICENSE.txt
-%_datadir/fonts/%name/
+%_datadir/fonts/%name/SourceHanSans-Bold.ttc
+%_datadir/fonts/%name/SourceHanSans-ExtraLight.ttc
+%_datadir/fonts/%name/SourceHanSans-Heavy.ttc
+%_datadir/fonts/%name/SourceHanSans-Light.ttc
+%_datadir/fonts/%name/SourceHanSans-Medium.ttc
+%_datadir/fonts/%name/SourceHanSans-Normal.ttc
+%_datadir/fonts/%name/SourceHanSans-Regular.ttc
 
 
 %dnl DO NOT CHANGE THIS TO `%global`, I REPEAT, DO NOT USE `%global`, OTHERWISE MACROS LIKE `%{-h}` DO NOT EXPAND.

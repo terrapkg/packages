@@ -1,7 +1,7 @@
-%global commit 7cd0395ebd3e0591c0ae4f850f22425b0be30a45
+%global commit 00c7a9d326bb76760d86259ad7bce34acfb06d5f
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260612
-%global ver 2.2.1^
+%global commit_date 20260722
+%global ver 2.3.0^
 %global base_name goofcord
 %global git_name GoofCord
 %global appid io.github.milkshiift.GoofCord
@@ -47,13 +47,13 @@ install -Dm644 assetsDev/%{appid}.metainfo.xml -t %{buildroot}%{_metainfodir}
 %{_libdir}/%{base_name}/
 %{_metainfodir}/%{appid}.metainfo.xml
 %{_hicolordir}/16x16/apps/%{base_name}.png
+%{_hicolordir}/24x24/apps/%{base_name}.png
 %{_hicolordir}/32x32/apps/%{base_name}.png
 %{_hicolordir}/48x48/apps/%{base_name}.png
 %{_hicolordir}/64x64/apps/%{base_name}.png
 %{_hicolordir}/128x128/apps/%{base_name}.png
 %{_hicolordir}/256x256/apps/%{base_name}.png
 %{_hicolordir}/512x512/apps/%{base_name}.png
-%{_hicolordir}/1024x1024/apps/%{base_name}.png
 
 %changelog
 * Sat Jun 28 2025 Gilver E. <rockgrub@disroot.org> - 1.10.1^20250615.git.3f5eda1
