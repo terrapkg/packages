@@ -20,8 +20,8 @@ Requires:        gcc
 Requires:        make
 Provides:        dkms-logitech-trueforce = %{?epoch:%{epoch}:}%{version}
 Requires:        %{modulename}-kmod-common = %{?epoch:%{epoch}:}%{version}
-Provides:       dkms-logitech-rs50-linux-driver = 1.0^20260903git.1624918-100%{?dist}
-Obsoletes:      dkms-logitech-rs50-linux-driver <= 1.0^20260903git.1624918-1%{?dist}
+Provides:       dkms-logitech-rs50-linux-driver = 1.0^20260904git.320bf50-100%{?dist}
+Obsoletes:      dkms-logitech-rs50-linux-driver <= 1.0^20260904git.320bf50-1%{?dist}
 
 
 %description

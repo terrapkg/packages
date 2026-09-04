@@ -23,10 +23,10 @@ Requires:       make
 Requires:       kernel-devel
 conflicts:      dkms-%{modulename}
 
-Provides:       logitech-rs50-linux-driver-kmod = 1.0^20260903git.1624918-100%{?dist}
-Provides:       akmod-logitech-rs50-linux-driver = 1.0^20260903git.1624918-100%{?dist}
-Obsoletes:      logitech-rs50-linux-driver-kmod <= 1.0^20260903git.1624918-1%{?dist}
-Obsoletes:      akmod-logitech-rs50-linux-driver <= 1.0^20260903git.1624918-1%{?dist}
+Provides:       logitech-rs50-linux-driver-kmod = 1.0^20260904git.320bf50-100%{?dist}
+Provides:       akmod-logitech-rs50-linux-driver = 1.0^20260904git.320bf50-100%{?dist}
+Obsoletes:      logitech-rs50-linux-driver-kmod <= 1.0^20260904git.320bf50-1%{?dist}
+Obsoletes:      akmod-logitech-rs50-linux-driver <= 1.0^20260904git.320bf50-1%{?dist}
 
 
 # Two build modes from one spec, selected by whether `kernels` is defined:

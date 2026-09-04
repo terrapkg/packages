@@ -24,14 +24,14 @@ Requires: ((%{name}-kmod = %{?epoch:%{epoch}:}%{version}) or (dkms-%{name} = %{?
 
 Provides:       %{name}-kmod-common = %{?epoch:%{epoch}:}%{version}
 
-Provides:       logitech-rs50-linux-driver = 1.0^20260903git.1624918-100%{?dist}
-Provides:       logitech-rs50-linux-driver-kmod-common = 1.0^20260903git.1624918-100%{?dist}
-Provides:       akmod-logitech-rs50-linux-driver = 1.0^20260903git.1624918-100%{?dist}
-Provides:       dkms-logitech-rs50-linux-driver = 1.0^20260903git.1624918-100%{?dist}
-Obsoletes:      logitech-rs50-linux-driver <= 1.0^20260903git.1624918-1%{?dist}
-Obsoletes:      logitech-rs50-linux-driver-kmod-common <= 1.0^20260903git.1624918-1%{?dist}
-Obsoletes:      dkms-logitech-rs50-linux-driver <= 1.0^20260903git.1624918-1%{?dist}
-Obsoletes:      akmod-logitech-rs50-linux-driver <= 1.0^20260903git.1624918-1%{?dist}
+Provides:       logitech-rs50-linux-driver = 1.0^20260904git.320bf50-100%{?dist}
+Provides:       logitech-rs50-linux-driver-kmod-common = 1.0^20260904git.320bf50-100%{?dist}
+Provides:       akmod-logitech-rs50-linux-driver = 1.0^20260904git.320bf50-100%{?dist}
+Provides:       dkms-logitech-rs50-linux-driver = 1.0^20260904git.320bf50-100%{?dist}
+Obsoletes:      logitech-rs50-linux-driver <= 1.0^20260904git.320bf50-1%{?dist}
+Obsoletes:      logitech-rs50-linux-driver-kmod-common <= 1.0^20260904git.320bf50-1%{?dist}
+Obsoletes:      dkms-logitech-rs50-linux-driver <= 1.0^20260904git.320bf50-1%{?dist}
+Obsoletes:      akmod-logitech-rs50-linux-driver <= 1.0^20260904git.320bf50-1%{?dist}
 
 Packager:       Luan V. <luanv.oliveira@outlook.com>
 
