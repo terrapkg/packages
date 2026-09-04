@@ -1,1 +1,1 @@
-rpm.version(gh("https://github.com/cosmic-utils/gui-scale-applet"));
+rpm.version(gh("cosmic-utils/gui-scale-applet"));
