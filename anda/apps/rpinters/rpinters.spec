@@ -39,6 +39,7 @@ BuildRequires: pkgconfig(gsettings-desktop-schemas)
 %license debian/copyright
 %{_datadir}/rpcc/ui/%{name}.ui
 %{_libdir}/rpcc/librpcc_rpinters.so
+%{_datadir}/polkit-1/rules.d/10-rpinters.rules
 
 %changelog
 * Fri Aug 08 2025 Owen Zimmerman <owen@fyralabs.com>
