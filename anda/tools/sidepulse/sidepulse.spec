@@ -50,7 +50,8 @@ Provides:       sidepulse
 %{python3_sitelib}/agent_monitor/*
 %{python3_sitelib}/sidepulse_cli/*
 %{_bindir}/agent-monitor
-%{_bindir}/agent-status-bar
+# macOS only
+%ghost %{_bindir}/agent-status-bar
 %{_bindir}/sidepulse
 %{_bindir}/sidepulse-reply
 
