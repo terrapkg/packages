@@ -96,6 +96,9 @@ EOF
 %{_hicolordir}/*/apps/%{name}.png
 
 %changelog
+* Fri Sep 04 2026 Addison LeClair <me@addi.lol>
+- Add new libsecret dependency
+
 * Thu Jul 30 2026 Addison LeClair <me@addi.lol>
 - Fix T3 Connect by adding missing auth variables
 - Fix .desktop title to match upstream
