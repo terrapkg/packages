@@ -1,5 +1,5 @@
 Name:		limine
-Version:	12.7.0
+Version:	12.8.0
 Release:	1%{?dist}
 Summary:	Modern, advanced, portable, multiprotocol bootloader
 License:	BSD-2-Clause
