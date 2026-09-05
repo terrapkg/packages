@@ -1,10 +1,10 @@
-%global commit 5997c92b41081bfb870a9b6167b7e96e3efdd50f
+%global commit a49a8abdfb6221772ecc836b3109e0cc338203cf
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260902
+%global commitdate 20260905
 
 Name:           nct6687d
 Version:        1.0^%{commitdate}git.%{shortcommit}
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Linux kernel driver for the NCT6687D hardware monitoring chip
 License:        GPL-2.0-or-later
 URL:            https://github.com/Fred78290/%{name}
