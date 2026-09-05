@@ -1,1 +1,1 @@
-rpm.repoversion(gh("mescon/logitech-trueforce-linux-driver"));
+rpm.global("repoversion", gh("mescon/logitech-trueforce-linux-driver"));
