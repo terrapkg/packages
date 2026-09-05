@@ -3,7 +3,7 @@
   <id>com.github.logi-wheel-gui</id>
   <name>Logi Wheel GUI</name>
   <project_license>GPL-3.0-or-later</project_license>
-  <icon type="local">/usr/share/icons/scalable/apps/logi-wheel-gui.svg</icon>
+  <icon type="local">/usr/share/icons/hicolor/scalable/apps/logi-wheel-gui.svg</icon>
   <developer id="com.github.logi-wheel-gui">
     <name>mescon</name>
   </developer>
