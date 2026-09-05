@@ -1,10 +1,10 @@
 project pkg {
         arches = ["x86_64"]
 	rpm {
-		spec = "dkms-logitech-rs50-linux-driver.spec"
+		spec = "dkms-logitech-trueforce.spec"
 	}
 	labels {
-		updbranch = 1
 		mock = 1
+		updbranch = 1
 	}
 }
