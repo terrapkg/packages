@@ -9,6 +9,7 @@ License:        GPL-3.0-or-later
 URL:            https://github.com/OpenGamingCollective/plasma-applet-tdp-control
 Source0:        %url/archive/%commit/plasma-applet-tdp-control-%commit.tar.gz
 
+BuildRequires:  make
 Requires:       plasma-workspace
 Requires:       plasma-desktop
 Requires:       steamos-manager
