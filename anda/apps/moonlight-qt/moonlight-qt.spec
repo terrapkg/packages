@@ -1,5 +1,4 @@
 %global appid com.moonlight_stream.Moonlight
-%global _qt6_cxxflags -fpermissive
 
 Name:           moonlight-qt
 Version:        6.1.0
@@ -37,12 +36,10 @@ Moonlight PC is an open source PC client for NVIDIA GameStream and Sunshine.
 
 %conf
 # evil
-echo $CFLAGS
-echo $CXXFLAGS
 %qmake_qt6 PREFIX=%{buildroot}%{_prefix}
 
 %build
-%make_build
+%make_build release
 
 %install
 %make_install
