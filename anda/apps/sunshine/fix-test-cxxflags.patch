@@ -1,0 +1,15 @@
+diff --git a/tests/CMakeLists.txt b/tests/CMakeLists.txt
+index e9ac882d..f7793a27 100644
+--- a/tests/CMakeLists.txt
++++ b/tests/CMakeLists.txt
+@@ -30,8 +30,8 @@ if(SUNSHINE_LLVM_COVERAGE)
+     add_compile_options(-fprofile-instr-generate -fcoverage-mapping -ggdb -O0)
+     add_link_options(-fprofile-instr-generate)
+ else()
+-   set(CMAKE_CXX_FLAGS "-fprofile-arcs -ftest-coverage -ggdb -O0")
+-   set(CMAKE_C_FLAGS "-fprofile-arcs -ftest-coverage -ggdb -O0")
++	set(CMAKE_CXX_FLAGS "-fprofile-arcs -ftest-coverage -ggdb -O0 -fPIE")
++	set(CMAKE_C_FLAGS "-fprofile-arcs -ftest-coverage -ggdb -O0 -fPIE")
+ endif()
+ 
+ # Link the libgcov that belongs to the selected compiler. Asking GCC directly
