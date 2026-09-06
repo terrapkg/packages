@@ -19,6 +19,8 @@ BuildRequires:  pkgconfig(libsystemd)
 BuildRequires:  pkgconfig(libssh2)
 BuildRequires:  pkgconfig(libzstd)
 
+Recommends:     postgresql
+
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
