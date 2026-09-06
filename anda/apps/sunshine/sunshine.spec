@@ -18,6 +18,7 @@ BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  openssl-devel
 BuildRequires:  boost-devel
+BuildRequires:	libev-devel
 BuildRequires:  pkgconfig(libcap)
 BuildRequires:  pkgconfig(libdrm)
 BuildRequires:  pkgconfig(libva)
@@ -40,6 +41,8 @@ BuildRequires:  pkgconfig(opus)
 BuildRequires:  pkgconfig(gbm)
 BuildRequires:  pkgconfig(libpulse)
 BuildRequires:  pkgconfig(numa)
+BuildRequires:	pkgconfig(libpipewire-0.3)
+BuildRequires:	pkgconfig(libinputtino)
 BuildRequires:  doxygen
 BuildRequires:  nodejs-npm
 BuildRequires:  systemd-rpm-macros
