@@ -1,0 +1,50 @@
+From 9641c87e36f660f19896e76c23f094faf2b675bf Mon Sep 17 00:00:00 2001
+From: Fabio Valentini <decathorpe@gmail.com>
+Date: Thu, 23 May 2024 17:52:19 +0200
+Subject: [PATCH 1/8] Drop Windows-specific dependencies
+
+---
+ Cargo.toml | 27 ---------------------------
+ 1 file changed, 27 deletions(-)
+
+diff --git a/Cargo.toml b/Cargo.toml
+index 69940708..ac9f4600 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -112,33 +112,6 @@ zstd = { version = "0.13", default-features = false }
+ snapbox = { version = "1", features = ["term-svg"], optional = true }
+ walkdir = { version = "2", optional = true }
+ 
+-[target."cfg(windows)".dependencies]
+-cc = "1"
+-scopeguard = "1"
+-windows-registry = "0.6"
+-windows-result = "0.4"
+-
+-[target."cfg(windows)".dependencies.windows-sys]
+-features = [
+-  "Win32_Foundation",
+-  "Win32_Security",
+-  "Win32_Storage_FileSystem",
+-  "Win32_System_Console",
+-  "Win32_System_Diagnostics_ToolHelp",
+-  "Win32_System_IO",
+-  "Win32_System_Ioctl",
+-  "Win32_System_JobObjects",
+-  "Win32_System_Kernel",
+-  "Win32_System_LibraryLoader",
+-  "Win32_System_SystemInformation",
+-  "Win32_System_SystemServices",
+-  "Win32_System_Threading",
+-  "Win32_System_WindowsProgramming",
+-  "Win32_UI",
+-  "Win32_UI_WindowsAndMessaging",
+-]
+-version = "0.61"
+-
+ [dev-dependencies]
+ enum-map = "2.5.0"
+ http-body-util = "0.1.0"
+-- 
+2.55.0
+

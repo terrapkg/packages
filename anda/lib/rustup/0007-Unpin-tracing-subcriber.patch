@@ -1,0 +1,42 @@
+From 0791ba212ef8241e8982b9ecbda2740fc901d534 Mon Sep 17 00:00:00 2001
+From: Dirkjan Ochtman <dirkjan@ochtman.nl>
+Date: Fri, 13 Mar 2026 11:10:49 +0100
+Subject: [PATCH 7/8] Unpin tracing-subcriber
+
+---
+ Cargo.toml     | 4 +---
+ src/cli/log.rs | 3 ++-
+ 2 files changed, 3 insertions(+), 4 deletions(-)
+
+diff --git a/Cargo.toml b/Cargo.toml
+index e1556329..2334b86c 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -96,9 +96,7 @@ toml = "1.0"
+ tracing = "0.1"
+ tracing-log = "0.2"
+ tracing-opentelemetry = { version = "0.32", optional = true }
+-# Newer versions render ANSI escape codes, causing CLI errors to be ugly
+-# See also https://github.com/tokio-rs/tracing/issues/3369
+-tracing-subscriber = { version = "=0.3.19", features = ["env-filter"] }
++tracing-subscriber = { version = "0.3.23", features = ["env-filter"] }
+ url = "2.4"
+ wait-timeout = "0.2"
+ xz2 = "0.1.3"
+diff --git a/src/cli/log.rs b/src/cli/log.rs
+index 17f1e874..ab20922a 100644
+--- a/src/cli/log.rs
++++ b/src/cli/log.rs
+@@ -50,7 +50,8 @@ where
+     let process = process.clone();
+     let logger = tracing_subscriber::fmt::layer()
+         .with_writer(process.stderr())
+-        .with_ansi(true); // `process.stderr()` will translate ANSI escape codes
++        .with_ansi(true)
++        .with_ansi_sanitization(false); // `process.stderr()` will translate ANSI escape codes
+     if let Ok(directives) = maybe_rustup_log_directives {
+         let (env_filter, handle) = reload::Layer::new(
+             EnvFilter::builder()
+-- 
+2.55.0
+

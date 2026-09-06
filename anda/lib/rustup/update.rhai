@@ -1,0 +1,1 @@
+rpm.version(gh("rust-lang/rustup"));
