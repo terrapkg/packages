@@ -1,5 +1,5 @@
 Name:           mdp
-Version:        1.0.18
+Version:        1.0.19
 Release:        1%{?dist}
 Summary:        A command-line based markdown presentation tool. 
 Packager:       Jan200101 <sentrycraft123@gmail.com>
