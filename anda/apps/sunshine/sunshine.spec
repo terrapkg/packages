@@ -3,10 +3,10 @@
 
 %global appid dev.lizardbyte.app.Sunshine
 %global github_url https://github.com/LizardByte/Sunshine.git
-%global commit 86188d47a7463b0f73b35de18a628353adeaa20e
+%global commit 14ffa6fdaa53f7b51512be2b3d24f3939695403c
 
 Name:           sunshine
-Version:        2025.924.154138
+Version:        2026.516.143833
 Release:        1%{?dist}
 License:        GPL-3.0-only AND CC0-1.0
 URL:            http://app.lizardbyte.dev/Sunshine/
@@ -68,7 +68,7 @@ browser. Pair from the local server or any mobile device.
 %git_clone %{github_url} v%{version}
 %autopatch -p1
 
-%build
+%conf
 export BRANCH=master
 export BUILD_VERSION=%{version}
 export CLONE_URL=%{github_url}
@@ -76,6 +76,8 @@ export COMMIT=%{commit}
 export TAG=v%{version}
 %cmake -DSUNSHINE_ENABLE_CUDA=%{?with_cuda:ON:OFF} \
        -DSUNSHINE_ASSETS_DIR=share/%{name}
+
+%build
 %cmake_build
 
 %install
