@@ -71,6 +71,7 @@ Packager:       Cypress Reed <cypress@fyralabs.com>
 %{_userunitdir}/umbriel-session.target
 %{_userunitdir}/umbriel-shutdown.target
 %{_datadir}/umbriel/shaders/reveal.glsl
+%{_datadir}/umbriel/shaders/squash.glsl
 
 %changelog
 * Mon Aug 24 2026 Cypress Reed <cypress@fyralabs.com>
