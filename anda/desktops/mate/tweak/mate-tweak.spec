@@ -1,5 +1,3 @@
-%define debug_package %nil
-
 Name:		mate-tweak
 Version:	22.10.0
 Release:	2%?dist
@@ -8,15 +6,14 @@ License:	GPL-2.0
 URL:		https://github.com/ubuntu-mate/mate-tweak
 Source0:	%url/archive/refs/tags/%version.tar.gz
 Requires:	python3
-BuildRequires:	python3dist(setuptools) python3-devel python3dist(pip) intltool desktop-file-utils
+BuildRequires:	python3dist(setuptools) python3-distutils-extra python-devel python3dist(pip) intltool desktop-file-utils
+BuildArch: noarch
 
 %description
 This is MATE Tweak, a fork of mintDesktop.
 
 %prep
 %autosetup
-python3 -m ensurepip
-python3 -m pip install distutils-extra-python
 
 %build
 %if 0%{?fedora} <= 41
