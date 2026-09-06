@@ -1,5 +1,5 @@
-%bcond_without cuda
-%bcond_without check
+%bcond_with cuda
+%bcond_with check
 
 %global appid dev.lizardbyte.app.Sunshine
 %global github_url https://github.com/LizardByte/Sunshine.git
@@ -10,13 +10,10 @@ Version:        2026.516.143833
 Release:        1%{?dist}
 License:        GPL-3.0-only AND CC0-1.0
 URL:            http://app.lizardbyte.dev/Sunshine/
-Patch0:         fix-test-cxxflags.patch
-# 44 _should_ have boost-1.90.0, so this probably wont be needed
-Patch1:         downgrade-boost.patch
+%dnl Patch0:         fix-test-cxxflags.patch
 Summary:        Self-hosted game stream host for Moonlight
 Packager:       metcya <metcya@gmail.com>
 
-BuildRequires:  anda-srpm-macros
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  openssl-devel
@@ -46,13 +43,13 @@ BuildRequires:  pkgconfig(numa)
 BuildRequires:  doxygen
 BuildRequires:  nodejs-npm
 BuildRequires:  systemd-rpm-macros
+BuildRequires:  glslc
 
 %if %{with cuda}
 BuildRequires:  cuda
 %endif
 
 %if %{with check}
-BuildRequires:  appstream
 BuildRequires:  desktop-file-utils
 %endif
 
@@ -66,7 +63,7 @@ browser. Pair from the local server or any mobile device.
 
 %prep
 %git_clone %{github_url} v%{version}
-%autopatch -p1
+%dnl %autopatch -p1
 
 %conf
 export BRANCH=master
@@ -96,11 +93,12 @@ export TAG=v%{version}
 
 %if %{with check}
 %check
-appstreamcli validate %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
-desktop-file-validate %{buildroot}%{_appsdir}/%{appid}{,.terminal}.desktop
+%desktop_file_validate %{buildroot}%{_appsdir}/%{appid}{,.terminal}.desktop
 %endif
 
 %files
+%doc README.md
+%license LICENSE
 %{_bindir}/%{name}
 %{_bindir}/%{name}-%{version}
 %{_datadir}/%{name}/
