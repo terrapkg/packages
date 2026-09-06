@@ -92,7 +92,7 @@ desktop-file-install --dir=%buildroot%_datadir/applications packaging/metadata/%
 install -Dpm644 packaging/metadata/%rdnn.svg %buildroot%_iconsdir/hicolor/scalable/apps/%rdnn.svg
 install -Dpm644 packaging/metadata/%rdnn-alert.svg %buildroot%_iconsdir/hicolor/scalable/apps/%rdnn-alert.svg
 install -Dpm644 packaging/metadata/%rdnn-symbolic.svg %buildroot%_iconsdir/hicolor/symbolic/apps/%rdnn-symbolic.svg
-install -Dpm644 packaging/metadata/%rdnn-symbolic-alert.svg %buildroot%_iconsdir/hicolor/symbolic/apps/%rdnn-symbolic-alert.svg
+install -Dpm644 packaging/metadata/%rdnn-alert-symbolic.svg %buildroot%_iconsdir/hicolor/symbolic/apps/%rdnn-alert-symbolic.svg
 install -Dpm644 packaging/metadata/%rdnn.png %buildroot%_iconsdir/hicolor/256x256/apps/%rdnn.png
 install -Dpm644 packaging/metadata/%rdnn-alert.png %buildroot%_iconsdir/hicolor/256x256/apps/%rdnn-alert.png
 for f in packaging/systemd/*.service; do
@@ -134,6 +134,9 @@ appstream-util validate-relax --nonet %buildroot%_metainfodir/%rdnn.metainfo.xml
 %_unitdir/coolercontrold.service
 
 %changelog
+* Sun Sep 06 2026 Guy Boldon <gb@guyboldon.com> - 5.0.0-2
+- Use fixed symbolic icon name
+
 * Sat Feb 28 2026 Guy Boldon <gb@guyboldon.com> - 3.1.1-2
 - Updated dependencies and build to match current version
 
