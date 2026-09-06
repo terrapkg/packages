@@ -9,6 +9,8 @@ License:        GPL-3.0-only AND CC-1.0
 URL:            https://github.com/moonlight-stream/moonlight-qt
 Source0:        %{url}/releases/download/v%{version}/MoonlightSrc-%{version}.tar.gz
 
+Packager:       Olivia <git@olivia.sh>
+
 BuildRequires:  make
 BuildRequires:  gcc
 BuildRequires:  qt6-rpm-macros
