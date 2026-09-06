@@ -37,6 +37,7 @@ Features include:
 %cargo_prep_online
 
 %build
+export RUSTFLAGS="%{build_rustflags}"
 %cargo_build
 
 %install
