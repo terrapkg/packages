@@ -7,7 +7,7 @@
 Name:           ipu6-camera-bins
 Summary:        Libraries for Intel IPU6
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
-Release:        1%?dist
+Release:        2%{?dist}
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Epoch:          1
 %endif
@@ -36,7 +36,7 @@ Provides:       %{name} = %{?epoch:%{epoch}:}%{commit_date}.%{shortcommit}-%{rel
 Obsoletes:      %{name} < %{?epoch:%{epoch}:}%{commit_date}.%{shortcommit}-2
 %endif
 ExclusiveArch:  x86_64
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 Provides binary libraries for Intel IPU6.

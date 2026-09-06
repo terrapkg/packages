@@ -1,1 +1,1 @@
-rpm.version(gh("arduino/app-bricks-py"));
+rpm.global("ver", gh("arduino/app-bricks-py"));

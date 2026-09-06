@@ -1,10 +1,10 @@
-%global commit 1815ad67432803843058a3cf7eefbf376e9c02c9
-%global commit_date 20251029
+%global commit 9f39d6000265f5fc4a05e5d95ffa2c97d4b9eb2a
+%global commit_date 20260903
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           rpinters
 Version:        0~%commit_date.git~%shortcommit
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Raspberry Pi printing utility module
 License:        GPL-2+ AND BSD-3-Clause
 URL:            https://github.com/raspberrypi-ui/rpinters
@@ -39,6 +39,7 @@ BuildRequires: pkgconfig(gsettings-desktop-schemas)
 %license debian/copyright
 %{_datadir}/rpcc/ui/%{name}.ui
 %{_libdir}/rpcc/librpcc_rpinters.so
+%{_datadir}/polkit-1/rules.d/10-rpinters.rules
 
 %changelog
 * Fri Aug 08 2025 Owen Zimmerman <owen@fyralabs.com>

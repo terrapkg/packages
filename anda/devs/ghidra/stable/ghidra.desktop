@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Icon=ghidra
+Exec=ghidra
+Name=Ghidra
+Comment=A software reverse engineering (SRE) suite of tools 
+Terminal=false
+StartupNotify=false
+Categories=Development;

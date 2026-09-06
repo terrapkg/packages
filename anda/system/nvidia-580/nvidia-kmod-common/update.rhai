@@ -1,3 +1,3 @@
-import "andax/nvidia.rhai" as nvidia;
+import "andax/bump_extras.rhai" as bump;
 
-rpm.version(nvidia::nvidia_legacy_version());
+rpm.version(bump::madoguchi("nvidia-driver-580xx", labels.branch));

@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=LocalSend
+GenericName=File transfer
+Comment=Share files easily with LocalSend
+Exec=localsend
+Icon=org.localsend.localsend_app
+Terminal=false
+Categories=Network;FileTransfer;Utility;
+Keywords=Sharing;LAN;Files;
+StartupNotify=true
+StartupWMClass=org.localsend.localsend_app

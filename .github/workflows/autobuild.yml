@@ -3,6 +3,9 @@
 name: Automatically build packages
 permissions:
   contents: read
+  attestations: write
+  artifact-metadata: write
+  id-token: write
 on:
   push:
     paths:
@@ -20,7 +23,7 @@ on:
 
 jobs:
   manifest:
-    runs-on: ubuntu-24.04-arm
+    runs-on: arc-runner-set
     outputs:
       build_matrix: ${{ steps.generate_build_matrix.outputs.build_matrix }}
     container:
@@ -30,7 +33,7 @@ jobs:
       - name: Set workspace as safe
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
       - name: Generate build matrix
@@ -46,18 +49,20 @@ jobs:
 
   appstream:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: arc-runner-set
     container:
       image: ghcr.io/terrapkg/appstream-generator:main
     steps:
       - name: Download artifacts
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           merge-multiple: true
           path: ./artifacts
       - name: Generate test catalog
+        id: catalog
         # run appstream-builder, then add step summary
         run: |
+          set -o pipefail
           set -x
           appstream-builder -v \
             --packages-dir=artifacts/rpms \
@@ -69,40 +74,84 @@ jobs:
             --basename=test \
             --veto-ignore=missing-parents \
             --veto-ignore=missing-info 2>&1 | tee asb.log
+
+      - name: Run appstreamcli validate
+        if: steps.catalog.outcome == 'success'
+        run: |
+          if stat output/test.xml.gz &>/dev/null; then
+            echo "## AppStream MetaInfo Validation" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo '```xml' >> $GITHUB_STEP_SUMMARY
+            appstreamcli validate output/test.xml.gz >> $GITHUB_STEP_SUMMARY | true
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          else
+            echo "Nothing to do."
+          fi
+          
+          
       - name: Export logs
         id: export_logs
+        if: steps.catalog.outcome == 'success'
         run: |
-          echo "## AppStream Builder Log" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo '```log' >> $GITHUB_STEP_SUMMARY
-          cat asb.log >> $GITHUB_STEP_SUMMARY
-          echo '```' >> $GITHUB_STEP_SUMMARY
-          echo '---' >> $GITHUB_STEP_SUMMARY
+          if stat output/*.xml.gz &>/dev/null; then
+            echo "<details>" >> $GITHUB_STEP_SUMMARY
+            echo "<summary>AppStream Builder Log</summary>" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo '```log' >> $GITHUB_STEP_SUMMARY
+            cat asb.log >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "</details>" >> $GITHUB_STEP_SUMMARY
+            echo '---' >> $GITHUB_STEP_SUMMARY
+          else
+            echo "Nothing to do."
+          fi
 
       - name: Report Summary
         id: report_summary
+        if: steps.export_logs.outcome == 'success'
         run: |
           echo "## AppStream Builder Report" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          if grep -q "veto" asb.log; then
-            echo "::group::Vetoed packages"
-            echo "### Vetoed packages" >> $GITHUB_STEP_SUMMARY
+          if stat output/*.xml.gz &>/dev/null; then
+            if grep -q "veto" asb.log; then
+              echo "::group::Vetoed packages"
+              echo "<details>" >> $GITHUB_STEP_SUMMARY
+              echo "<summary>Vetoed packages</summary>" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo '```xml' >> $GITHUB_STEP_SUMMARY
+              echo "$(grep -i 'veto' asb.log)" >> $GITHUB_STEP_SUMMARY
+              echo '```' >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "</details>" >> $GITHUB_STEP_SUMMARY
+              echo "::warning file=asb.log::Some packages were vetoed during AppStream generation. Please review the 'Vetoed packages' section in the summary for details."
+              echo "::endgroup::"
+            fi
+            echo "<details>" >> $GITHUB_STEP_SUMMARY
+            echo "<summary>Full Data Summary</summary>" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
-            echo '```xml' >> $GITHUB_STEP_SUMMARY
-            echo "$(grep -i 'veto' asb.log)" >> $GITHUB_STEP_SUMMARY
-            echo '```' >> $GITHUB_STEP_SUMMARY
-            echo "::warning file=asb.log::Some packages were vetoed during AppStream generation. Please review the 'Vetoed packages' section in the summary for details."
-            echo "::endgroup::"
+            echo "### Generated Appstream files:" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            for file in output/*.xml.gz; do
+              echo "#### \`$file\`" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo '```xml' >> $GITHUB_STEP_SUMMARY
+              zcat "$file" >> $GITHUB_STEP_SUMMARY || true
+              echo '```' >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+            done
+            echo "</details>" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "No appstream files found." >> $GITHUB_STEP_SUMMARY
           fi
-          echo "## Full Data Summary" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### Generated Appstream files:" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
+
+      - name: Fail on AppStream package failures
+        if: steps.report_summary.outcome == 'success'
+        run: |
           for file in output/*.xml.gz; do
-            echo "#### \`$file\`" >> $GITHUB_STEP_SUMMARY
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo '```xml' >> $GITHUB_STEP_SUMMARY
-            zcat "$file" >> $GITHUB_STEP_SUMMARY
-            echo '```' >> $GITHUB_STEP_SUMMARY
-            echo "" >> $GITHUB_STEP_SUMMARY
+            if zgrep -q '<veto>' "$file"; then
+              echo "::error file=$file::AppStream validation failed: package vetoes were found."
+              exit 1
+            fi
           done

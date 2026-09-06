@@ -2,10 +2,8 @@
 # is because akmods use the srpm to build the kmod package, and if the kmod package is included
 # in the main package, akmods will reinstall the userspace package every time the kernel is updated.
 
-%if 0%{?fedora}
 %global buildforkernels akmod
 %global debug_package %{nil}
-%endif
 
 %global commit 58f2fda7184fbde95033f492f7c54990552ef86f
 %global commitdate 20250831
@@ -14,7 +12,7 @@
 
 Name:           %{modulename}-kmod
 Version:        1.0^%{commitdate}git.%{shortcommit}
-Release:        2%{?dist}
+Release:        4%{?dist}
 Summary:        Exposes the energy counters that are reported via the Running Average Power Limit (RAPL) Model-specific Registers (MSRs) via the hardware monitor (HWMON) sysfs interface.
 License:        GPL-2.0
 URL:            https://github.com/BoukeHaarsma23/zenergy
@@ -33,7 +31,7 @@ Requires:       kernel-devel
 Conflicts:      dkms-%{modulename}
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
 
-%{expand:%(kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
+%{expand:%(kmodtool --target %{_target_cpu} --repo terrapkg.com --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 
 %description
 Based on AMD_ENERGY driver, but with some jiffies added so non-root users can read it safely.
@@ -45,7 +43,7 @@ via the hardware monitor (HWMON) sysfs interface.
 %{?kmodtool_check}
 
 # print kmodtool output for debugging purposes:
-kmodtool --target %{_target_cpu} --repo terra.fyralabs.com --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
+kmodtool --target %{_target_cpu} --repo terrapkg.com --kmodname %{modulename} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
 %setup -q -c -n %{modulename}-%{commit}
 

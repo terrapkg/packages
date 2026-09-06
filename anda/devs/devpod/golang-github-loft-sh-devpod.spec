@@ -17,7 +17,7 @@ and lets you use any cloud, kubernetes or just localhost docker.}
                         loadtest/README.md
 
 Name:           devpod
-Release:        2%?dist
+Release:        3%?dist
 Summary:        Spin up dev environments in any infra
 Provides:       golang-github-loft-sh-devpod
 BuildRequires:  anda-srpm-macros mold

@@ -1,17 +1,17 @@
 # Terra Sources
-
-[![Repository status](https://repology.org/badge/repository-big/terra_rawhide.svg?header=Terra+Rawhide)](https://repology.org/repository/terra_rawhide)
-
+<a href="https://repology.org/repository/terra_rawhide"><img align="left" src="https://repology.org/badge/repository-big/terra_rawhide.svg?header=Terra+Rawhide" alt="Repository status"></a>
 Terra is a rolling-release Fedora repository for all the software you need.
 With Terra, you can install the latest packages knowing that quality and security are assured.
 
-See the introduction at [our website](https://terra.fyralabs.com).
-
+See the introduction at [our website](https://terrapkg.com).
 This monorepo contains the package manifests for all packages in Terra.
+
+<a href="https://scorecard.dev/viewer/?uri=github.com/terrapkg/packages"><img align="left" src="https://api.scorecard.dev/projects/github.com/terrapkg/packages/badge" alt="OpenSSF Scorecard"></a>
+<br clear="left">
 
 ## Installation
 
-The latest detailed instructions are available in our Devdocs: https://developer.fyralabs.com/terra/installing
+The latest detailed instructions are available in our docs: https://docs.terrapkg.com/usage/installing
 
 ### Fedora
 
@@ -25,8 +25,14 @@ If you are using immutable/atomic editions of Fedora, run the following commands
 curl -fsSL https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo | pkexec tee /etc/yum.repos.d/terra.repo
 sudo rpm-ostree install terra-release
 ```
+#### Subrepos
 
-Optionally, you can install `terra-release-extra` to use the Extras repository. This also installs the Nvidia, and Mesa streams but does not enable them.
+On Fedora, you can optionally install the Terra subrepos. Extra care and caution may be needed as some of these packages may conflict with other repositories such as RPM Fusion.
+
+- Install `terra-release-extras` to enable the Extras subrepo. This repo contains packages which conflict with Fedora packages in some way, such as being a patched version of the same package.
+- Install `terra-release-mesa` to install the Mesa subrepo which contains a patched and codec complete Mesa.
+- Install `terra-release-nvidia` to install the NVIDIA subrepo which contains NVIDIA drivers.
+- Install `terra-release-multimedia` for multimedia packages in Terra. **This repository is currently considered unstable and a work in progress.**
 
 ### Enterprise Linux (EL)
 
@@ -48,22 +54,23 @@ sudo dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/t
 
 First of all, thanks for being interested in contributing to Terra! If you have any questions about contributing, please [join our chats](https://wiki.ultramarine-linux.org/en/community/community/).
 
-- [Contribution Guide](https://developer.fyralabs.com/terra/contributing)
-- [FAQ](https://developer.fyralabs.com/terra/faq)
-- [Guidelines](https://developer.fyralabs.com/terra/guidelines)
+- [Contribution Guide](https://docs.terrapkg.com/contributing/getting-started)
+- [FAQ](https://docs.terrapkg.com/reference/faq)
+- [Guidelines](https://docs.terrapkg.com/contributing/guidelines)
 
 ## Documentation
 
-Our documentation can be found on our [Devdocs](https://developer.fyralabs.com/terra/).
+Our documentation can be found on our [docs site](https://docs.terrapkg.com).
 
 ## Searching Packages
 
 [pkgs.org](https://fedora.pkgs.org/rawhide/terra/) and [Repology](https://repology.org/) provide a list of the packages available in Terra.
+You can also `dnf search` for all packages, or search in graphical app stores for packages with [AppStream MetaData](https://www.freedesktop.org/software/appstream/docs/chap-AppStream-About.html) once you have Terra installed.
 
 ## Questions?
 
-Feel free to reach out by [joining our community](https://wiki.ultramarine-linux.org/en/community/community/). We're always happy to help!
+Feel free to reach out by joining our chats above, or opening a GitHub issue.
 
-- [Contribution Guide](https://developer.fyralabs.com/terra/contributing)
-- [FAQ](https://developer.fyralabs.com/terra/faq)
-- [Guidelines](https://developer.fyralabs.com/terra/guidelines)
+## Support
+
+Maintaining Terra requires a ton of infrastructure, package maintainer, submission review, and software engineering work. If you would like to financially sponsor Terra, please go to [the Fyra Labs sponsor page](https://fyralabs.com/sponsor/) for an overview of how to do this, and thank you so much for helping us out!

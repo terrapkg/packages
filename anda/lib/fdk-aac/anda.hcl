@@ -4,8 +4,8 @@ project pkg {
     spec = "fdk-aac.spec"
   }
   labels {
-        mock=1
+        mock = 1
         subrepo = "multimedia"
-        weekly = 1
+        updbranch = 1
     }
 }

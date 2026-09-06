@@ -3,11 +3,11 @@
 
 Name:			python-%{pypi_name}
 Version:		0.6.0
-Release:		1%?dist
+Release:		2%?dist
 Summary:		FFMPEG wrapper for Python
 License:		BSD-2-Clause
 URL:			https://github.com/imageio/imageio-ffmpeg
-Source0:		%url/archive/refs/tags/v%{version}.tar.gz
+Source0:		%{url}/archive/refs/tags/v%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel

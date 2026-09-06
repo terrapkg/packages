@@ -5,16 +5,18 @@
 %ifnarch s390x
 %global with_hardware 1
 %global with_kmsro 1
-%global with_nvk 1
 %global with_radeonsi 1
 %global with_spirv_tools 1
 %global with_vmware 1
 %global with_vulkan_hw 1
-%global with_va 1
 %if !0%{?rhel}
 %global with_r300 1
 %global with_r600 1
 %global with_opencl 1
+%global with_va 1
+%endif
+%if !0%{?rhel} || 0%{?rhel} >= 9            
+%global with_nvk %{with_vulkan_hw}            
 %endif
 %global base_vulkan %{?with_vulkan_hw:,amd}%{!?with_vulkan_hw:%{nil}}
 %endif
@@ -82,13 +84,13 @@
 
 Name:           %{srcname}
 Summary:        Mesa graphics libraries
-%global ver 25.3.1
+%global ver 26.2.2
 Epoch:          1
 Version:        %{lua:ver = string.gsub(rpm.expand("%{ver}"), "-", "~"); print(ver)}
-Release:        2
+Release:        1%{?dist}
 Packager:       Kyle Gospodnetich <me@kylegospodneti.ch>
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0
-URL:            http://www.mesa3d.org
+URL:            https://mesa3d.org
 
 Source0:        https://archive.mesa3d.org/%{srcname}-%{version}.tar.xz
 # src/gallium/auxiliary/postprocess/pp_mlaa* have an ... interestingly worded license.
@@ -101,30 +103,22 @@ Source1:        Mesa-MLAA-License-Clarification-Email.txt
 # https://gitlab.freedesktop.org/mesa/mesa/-/tree/main/subprojects
 # but we generally want the latest compatible versions
 %global rust_paste_ver 1.0.15
-%global rust_proc_macro2_ver 1.0.101
-%global rust_quote_ver 1.0.40
-%global rust_syn_ver 2.0.106
-%global rust_unicode_ident_ver 1.0.18
+%global rust_proc_macro2_ver 1.0.106
+%global rust_quote_ver 1.0.44
+%global rust_syn_ver 2.0.115
+%global rust_unicode_ident_ver 1.0.23
 %global rustc_hash_ver 2.1.1
-Source10:       https://crates.io/api/v1/crates/paste/%{rust_paste_ver}/download#/paste-%{rust_paste_ver}.tar.gz
-Source11:       https://crates.io/api/v1/crates/proc-macro2/%{rust_proc_macro2_ver}/download#/proc-macro2-%{rust_proc_macro2_ver}.tar.gz
-Source12:       https://crates.io/api/v1/crates/quote/%{rust_quote_ver}/download#/quote-%{rust_quote_ver}.tar.gz
-Source13:       https://crates.io/api/v1/crates/syn/%{rust_syn_ver}/download#/syn-%{rust_syn_ver}.tar.gz
-Source14:       https://crates.io/api/v1/crates/unicode-ident/%{rust_unicode_ident_ver}/download#/unicode-ident-%{rust_unicode_ident_ver}.tar.gz
-Source15:       https://crates.io/api/v1/crates/rustc-hash/%{rustc_hash_ver}/download#/rustc-hash-%{rustc_hash_ver}.tar.gz
+Source10:       https://static.crates.io/crates/paste/paste-%{rust_paste_ver}.crate
+Source11:       https://static.crates.io/crates/proc-macro2/proc-macro2-%{rust_proc_macro2_ver}.crate
+Source12:       https://static.crates.io/crates/quote/quote-%{rust_quote_ver}.crate
+Source13:       https://static.crates.io/crates/syn/syn-%{rust_syn_ver}.crate
+Source14:       https://static.crates.io/crates/unicode-ident/unicode-ident-%{rust_unicode_ident_ver}.crate
+Source15:       https://static.crates.io/crates/rustc-hash/rustc-hash-%{rustc_hash_ver}.crate
 
-# Teflon: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/38532
-Patch12:        mesa-38532.patch
-
-# SteamVR: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/38987
-Patch20:        mesa-38987.patch
-
-# Add required patches for Wine Wayland (From Proton-GE Release Notes)
-Patch21:        wine-wayland.patch
-
-# SteamOS Patches
-Patch30:        gamescope.patch
-Patch31:        horizon5.patch
+# Open Gaming Collective Patches
+Patch30:        https://raw.githubusercontent.com/OpenGamingCollective/mesa/refs/tags/%{ver}/limiter.patch
+Patch31:        https://raw.githubusercontent.com/OpenGamingCollective/mesa/refs/tags/%{ver}/radv-defaults.patch
+Patch32:        https://raw.githubusercontent.com/OpenGamingCollective/mesa/refs/tags/%{ver}/vram-overcommit.patch
 
 BuildRequires:  meson >= 1.3.0
 BuildRequires:  gcc
@@ -137,7 +131,7 @@ BuildRequires:  systemd-devel
 # We only check for the minimum version of pkgconfig(libdrm) needed so that the
 # SRPMs for each arch still have the same build dependencies. See:
 # https://bugzilla.redhat.com/show_bug.cgi?id=1859515
-BuildRequires:  pkgconfig(libdrm) >= 2.4.122
+BuildRequires:  pkgconfig(libdrm) >= 2.4.133
 %if 0%{?with_libunwind}
 BuildRequires:  pkgconfig(libunwind)
 %endif
@@ -198,6 +192,9 @@ BuildRequires:  rust-toolset
 BuildRequires:  cargo-rpm-macros
 %endif
 %endif
+%if 0%{?with_opencl}
+BuildRequires:  libstdc++-static
+%endif 
 %if 0%{?with_nvk}
 BuildRequires:  cbindgen
 %endif
@@ -214,7 +211,7 @@ BuildRequires:  glslang
 BuildRequires:  pkgconfig(vulkan)
 %endif
 %if 0%{?with_d3d12}
-BuildRequires:  pkgconfig(DirectX-Headers) >= 1.618.1
+BuildRequires:  pkgconfig(DirectX-Headers) >= 1.619.1
 %endif
 
 %description
@@ -244,8 +241,8 @@ Obsoletes:      %{name}-libOSMesa < %{?epoch:%{epoch}:}25.1.0~rc2-1
 Summary:        Mesa libGL development package
 Requires:       (%{name}-libGL%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release} if %{name}-libGL%{?_isa})
 Requires:       libglvnd-devel%{?_isa} >= 1:1.3.2
-Provides:       libGL-devel
-Provides:       libGL-devel%{?_isa}
+Provides:       libGL-devel = %{?epoch:%{epoch}:}%{version}-%{release}            
+Provides:       libGL-devel%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Recommends:     gl-manpages
 Obsoletes:      %{name}-libOSMesa-devel < %{?epoch:%{epoch}:}25.1.0~rc2-1
 
@@ -266,8 +263,8 @@ Summary:        Mesa libEGL development package
 Requires:       (%{name}-libEGL%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release} if %{name}-libEGL%{?_isa})
 Requires:       libglvnd-devel%{?_isa} >= 1:1.3.2
 Requires:       %{name}-khr-devel%{?_isa}
-Provides:       libEGL-devel
-Provides:       libEGL-devel%{?_isa}
+Provides:       libEGL-devel = %{?epoch:%{epoch}:}%{version}-%{release}            
+Provides:       libEGL-devel%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description libEGL-devel
 %{summary}.
@@ -275,29 +272,20 @@ Provides:       libEGL-devel%{?_isa}
 %package dri-drivers
 Summary:        Mesa-based DRI drivers
 Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-%if 0%{?with_va}
-Recommends:     %{name}-va-drivers%{?_isa}
-%endif
+Requires:       %{name}-libgbm%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Obsoletes:      %{name}-libglapi < %{?epoch:%{epoch}:}25.0.0~rc2-1
-Provides:       %{name}-libglapi >= %{?epoch:%{epoch}:}25.0.0~rc2-1
+Obsoletes:      %{name}-va-drivers < %{?epoch:%{epoch}:}26.0.0-5
+Provides:       %{name}-va-drivers = %{?epoch:%{epoch}:}%{version}-%{release}            
+Provides:       %{name}-va-drivers%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Obsoletes:      %{name}-vaapi-drivers < %{?epoch:%{epoch}:}22.2.0-5
 
 %description dri-drivers
 %{summary}.
 
-%if 0%{?with_va}
-%package        va-drivers
-Summary:        Mesa-based VA-API video acceleration drivers
-Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes:      %{name}-vaapi-drivers < %{?epoch:%{epoch}:}22.2.0-5
-
-%description va-drivers
-%{summary}.
-%endif
-
 %package libgbm
 Summary:        Mesa gbm runtime library
-Provides:       libgbm
-Provides:       libgbm%{?_isa}
+Provides:       libgbm = %{?epoch:%{epoch}:}%{version}-%{release}            
+Provides:       libgbm%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Recommends:     %{name}-dri-drivers%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 # If mesa-dri-drivers are installed, they must match in version. This is here to prevent using
 # older mesa-dri-drivers together with a newer mesa-libgbm and its dependants.
@@ -310,8 +298,8 @@ Requires:       (%{name}-dri-drivers%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{r
 %package libgbm-devel
 Summary:        Mesa libgbm development package
 Requires:       %{name}-libgbm%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-Provides:       libgbm-devel
-Provides:       libgbm-devel%{?_isa}
+Provides:       libgbm-devel = %{?epoch:%{epoch}:}%{version}-%{release}            
+Provides:       libgbm-devel%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description libgbm-devel
 %{summary}.
@@ -494,7 +482,7 @@ rewrite_wrap_file rustc-hash
 
 %if 0%{?with_nvk}
 %cargo_license_summary
-%{cargo_license} > LICENSE.dependencies
+%{cargo_license} > LICENSE.dependencies.%{_arch}
 %if 0%{?vendor_nvk_crates}
 %cargo_vendor_manifest
 %endif
@@ -517,14 +505,7 @@ rm -vf %{buildroot}%{_libdir}/dri/apple_dri.so
 
 # glvnd needs a default provider for indirect rendering where it cannot
 # determine the vendor
-ln -s %{_libdir}/libGLX_mesa.so.0 %{buildroot}%{_libdir}/libGLX_system.so.0
-
-# this keeps breaking, check it early.  note that the exit from eu-ftr is odd.
-pushd %{buildroot}%{_libdir}
-for i in libGL.so ; do
-    eu-findtextrel $i && exit 1
-done
-popd
+ln -s libGLX_mesa.so.0 %{buildroot}%{_libdir}/libGLX_system.so.0
 
 %files filesystem
 %doc docs/Mesa-MLAA-License-Clarification-Email.txt
@@ -579,20 +560,26 @@ popd
 %{_libdir}/dri/libdril_dri.so
 %{_libdir}/dri/swrast_dri.so
 %{_libdir}/dri/virtio_gpu_dri.so
+%{_datadir}/drirc.d/00-virtio_gpu-defaults.conf
 
 %if 0%{?with_hardware}
 %if 0%{?with_r300}
 %{_libdir}/dri/r300_dri.so
+%{_datadir}/drirc.d/00-r300-defaults.conf
 %endif
 %if 0%{?with_radeonsi}
 %if 0%{?with_r600}
 %{_libdir}/dri/r600_dri.so
+%{_datadir}/drirc.d/00-r600-defaults.conf
 %endif
 %{_libdir}/dri/radeonsi_dri.so
+%{_datadir}/drirc.d/00-radeonsi-defaults.conf
 %endif
 %ifarch %{ix86} x86_64
 %{_libdir}/dri/crocus_dri.so
+%{_datadir}/drirc.d/00-crocus-defaults.conf
 %{_libdir}/dri/iris_dri.so
+%{_datadir}/drirc.d/00-iris-defaults.conf
 %if 0%{?with_i915}
 %{_libdir}/dri/i915_dri.so
 %endif
@@ -601,9 +588,11 @@ popd
 %if 0%{?with_asahi}
 %{_libdir}/dri/apple_dri.so
 %{_libdir}/dri/asahi_dri.so
+%{_datadir}/drirc.d/00-asahi-defaults.conf
 %endif
 %if 0%{?with_d3d12}
 %{_libdir}/dri/d3d12_dri.so
+%{_datadir}/drirc.d/00-d3d12-defaults.conf
 %endif
 %{_libdir}/dri/ingenic-drm_dri.so
 %{_libdir}/dri/imx-drm_dri.so
@@ -621,10 +610,12 @@ popd
 %endif
 %if 0%{?with_v3d}
 %{_libdir}/dri/v3d_dri.so
+%{_datadir}/drirc.d/00-v3d-defaults.conf
 %endif
 %if 0%{?with_freedreno}
 %{_libdir}/dri/kgsl_dri.so
 %{_libdir}/dri/msm_dri.so
+%{_datadir}/drirc.d/00-msm-defaults.conf
 %endif
 %if 0%{?with_etnaviv}
 %{_libdir}/dri/etnaviv_dri.so
@@ -638,10 +629,12 @@ popd
 %if 0%{?with_panfrost}
 %{_libdir}/dri/panfrost_dri.so
 %{_libdir}/dri/panthor_dri.so
+%{_datadir}/drirc.d/00-panfrost-defaults.conf
 %endif
 %{_libdir}/dri/nouveau_dri.so
 %if 0%{?with_vmware}
 %{_libdir}/dri/vmwgfx_dri.so
+%{_datadir}/drirc.d/00-vmwgfx-defaults.conf
 %endif
 %endif
 %if 0%{?with_kmsro}
@@ -674,10 +667,9 @@ popd
 %endif
 %if 0%{?with_vulkan_hw}
 %{_libdir}/dri/zink_dri.so
+%{_datadir}/drirc.d/00-zink-defaults.conf
 %endif
-
 %if 0%{?with_va}
-%files va-drivers
 %{_libdir}/dri/nouveau_drv_video.so
 %if 0%{?with_r600}
 %{_libdir}/dri/r600_drv_video.so
@@ -700,13 +692,14 @@ popd
 
 %files vulkan-drivers
 %if 0%{?with_nvk}
-%license LICENSE.dependencies
+%license LICENSE.dependencies.%{_arch}
 %if 0%{?vendor_nvk_crates}
 %license cargo-vendor.txt
 %endif
 %endif
 %{_libdir}/libvulkan_lvp.so
 %{_datadir}/vulkan/icd.d/lvp_icd.*.json
+%{_datadir}/drirc.d/00-lavapipe-defaults.conf
 %{_libdir}/libVkLayer_MESA_device_select.so
 %{_libdir}/libVkLayer_MESA_anti_lag.so
 %{_datadir}/vulkan/implicit_layer.d/VkLayer_MESA_device_select.json
@@ -714,6 +707,7 @@ popd
 %if 0%{?with_virtio}
 %{_libdir}/libvulkan_virtio.so
 %{_datadir}/vulkan/icd.d/virtio_icd.*.json
+%{_datadir}/drirc.d/00-venus-defaults.conf
 %endif
 %if 0%{?with_vulkan_hw}
 %{_libdir}/libvulkan_radeon.so
@@ -722,32 +716,42 @@ popd
 %if 0%{?with_nvk}
 %{_libdir}/libvulkan_nouveau.so
 %{_datadir}/vulkan/icd.d/nouveau_icd.*.json
+%{_datadir}/drirc.d/00-nvk-defaults.conf
 %endif
 %if 0%{?with_d3d12}
 %{_libdir}/libvulkan_dzn.so
 %{_datadir}/vulkan/icd.d/dzn_icd.*.json
+%{_datadir}/drirc.d/00-dzn-defaults.conf
 %endif
 %ifarch %{ix86} x86_64
 %{_libdir}/libvulkan_intel.so
 %{_datadir}/vulkan/icd.d/intel_icd.*.json
+%{_datadir}/drirc.d/00-anv-defaults.conf
 %{_libdir}/libvulkan_intel_hasvk.so
 %{_datadir}/vulkan/icd.d/intel_hasvk_icd.*.json
+%{_datadir}/drirc.d/00-hasvk-defaults.conf
 %endif
 %ifarch aarch64 x86_64 %{ix86}
 %if 0%{?with_asahi}
 %{_libdir}/libvulkan_asahi.so
 %{_datadir}/vulkan/icd.d/asahi_icd.*.json
+%{_datadir}/drirc.d/00-hk-defaults.conf
 %endif
 %{_libdir}/libvulkan_broadcom.so
 %{_datadir}/vulkan/icd.d/broadcom_icd.*.json
+%{_datadir}/drirc.d/00-v3dv-defaults.conf
 %{_libdir}/libvulkan_freedreno.so
 %{_datadir}/vulkan/icd.d/freedreno_icd.*.json
+%{_datadir}/drirc.d/00-turnip-defaults.conf
 %{_libdir}/libvulkan_panfrost.so
 %{_datadir}/vulkan/icd.d/panfrost_icd.*.json
+%{_datadir}/drirc.d/00-panvk-defaults.conf
 %{_libdir}/libvulkan_powervr_mesa.so
 %{_datadir}/vulkan/icd.d/powervr_mesa_icd.*.json
+%{_datadir}/drirc.d/00-pvr-defaults.conf
 %endif
 %endif
 
 %changelog
-%autochangelog
+* Sun Mar 15 2026 Tulip Blossom <tulilirockz@outlook.com>
+- Split out cargo dependencies into architecture-specific files to prevent conflicts with i386 and amd64 package installs

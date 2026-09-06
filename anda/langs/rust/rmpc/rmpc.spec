@@ -1,7 +1,7 @@
 %undefine __brp_mangle_shebangs
 
 Name:           rmpc
-Version:        0.10.0
+Version:        0.11.0
 Release:        1%?dist
 Summary:        A modern, configurable, terminal based MPD Client with album art support via various terminal image protocols
 URL:            https://rmpc.mierak.dev/

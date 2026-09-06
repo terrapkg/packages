@@ -1,1 +1,1 @@
-rpm.version(gh("qmk/qmk_cli"));
+rpm.version(pypi("qmk"));

@@ -4,8 +4,8 @@
 %global __brp_mangle_shebangs %{nil}
 
 Name:           jujutsu
-Version:        0.36.0
-Release:        1%?dist
+Version:        0.45.1
+Release:        1%{?dist}
 Summary:        Git-compatible DVCS that is both simple and powerful
 License:        Apache-2.0 AND CC-BY-4.0
 URL:            https://www.jj-vcs.dev/latest/
@@ -16,8 +16,6 @@ BuildRequires:  gnupg
 BuildRequires:  gpgme
 BuildRequires:  openssh
 Requires:       glibc
-Requires:       libgit2
-Requires:       libssh2
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
@@ -113,5 +111,8 @@ rm -rf %{buildroot}%{_pkgdocdir}/images
 %doc %{_pkgdocdir}
 
 %changelog
+* Sat Aug 29 2026 ammix <maxim@ammix.dev>
+- Drop stale libgit2 and libssh2 dependencies
+
 * Tue Dec 16 2025 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit

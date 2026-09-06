@@ -1,7 +1,7 @@
 Name:           lily
 Summary:        Interpreted language focused on expressiveness and type safety
-Version:        2.2
-Release:        1%?dist
+Version:        2.5
+Release:        1%{?dist}
 License:        MIT
 URL:            https://github.com/fascinatedbox/lily
 Source0:        %url/archive/refs/tags/v%version.tar.gz
@@ -22,8 +22,10 @@ Requires:      %{name}
 %prep
 %autosetup -n %{name}-%{version}
 
-%build
+%conf
 %cmake
+
+%build
 %cmake_build
 
 %install

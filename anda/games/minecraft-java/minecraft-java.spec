@@ -6,7 +6,7 @@
 
 Name:		minecraft-launcher
 Version:	2.3.2
-Release:	3%{?dist}
+Release:	4%{?dist}
 Summary:	Official launcher for Minecraft
 
 License:	https://www.minecraft.net/en-us/eula

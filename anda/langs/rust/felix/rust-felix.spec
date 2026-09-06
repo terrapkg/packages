@@ -9,7 +9,7 @@ Summary:        Tui file manager with vim-like key mapping
 
 License:        MIT
 URL:            https://crates.io/crates/felix
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 
 BuildRequires:  anda-srpm-macros rust-packaging >= 21 mold
 

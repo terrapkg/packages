@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.2.2
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Python functions for encoding and decoding COBS
 License:		MIT
 URL:			https://pypi.org/project/cobs/

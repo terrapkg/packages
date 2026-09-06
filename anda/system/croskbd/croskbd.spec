@@ -39,5 +39,5 @@ BuildRequires:  make gcc systemd-rpm-macros
 %{_unitdir}/%{name}.service
 
 %changelog
-* Tue Oct 07 2025 Owen-sz <owen@fyralabs.com>
+* Tue Oct 07 2025 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit

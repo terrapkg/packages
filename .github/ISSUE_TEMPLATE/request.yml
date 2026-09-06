@@ -1,0 +1,31 @@
+name: Package Request
+description: Request a new package to be added to Terra.
+title: "[Request] "
+labels: ["new"]
+type: request
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This issue is for suggesting new software/packages to be added to Terra. If you want to
+        submit a new package to Terra, you can create a pull request without filling this in.
+  - type: input
+    id: name
+    attributes:
+      label: Name of the software
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the Package
+      description: What does the package do? Why should this be packaged in Terra?
+    validations:
+      required: true
+  - type: textarea
+    id: upstream
+    attributes:
+      label: Upstream
+      description: Provide the link to source code, website, spec files, etc.
+    validations:
+      required: true

@@ -1,8 +1,8 @@
-%global commit 88709e6ee84ddf7266457f8246c476bee3212ba3
+%global commit b58d624095da102fef99b5825ad6dc78a5cec5a1
 
 Name:           lightdm-kde-greeter
-Version:        6.1.2
-Release:        1%?dist
+Version:        6.1.6
+Release:        1%{?dist}
 Summary:        Login screen using the LightDM framework
 License:        GPL-3.0-or-later
 URL:            https://invent.kde.org/plasma/%name

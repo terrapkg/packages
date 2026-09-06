@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.5.0
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Bunch of click parameters to use
 License:		Apache-2.0
 URL:			https://click-params.readthedocs.io/en/stable/

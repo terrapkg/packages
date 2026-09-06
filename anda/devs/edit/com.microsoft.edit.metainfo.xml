@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component type="console-application">
   <id>com.microsoft.edit</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
   <name>Microsoft Edit</name>
-  <summary>We all edit.</summary>
+  <summary>We all edit</summary>
   <screenshots>
-    <image type="source">https://github.com/microsoft/edit/blob/main/assets/edit_hero_image.png</image>
+    <screenshot type="default"><image>https://github.com/microsoft/edit/blob/main/assets/edit_hero_image.png</image></screenshot>
   </screenshots>
   <description>
     <p>A simple editor for simple needs.</p>
@@ -13,6 +15,7 @@
     The goal is to provide an accessible editor that even users largely unfamiliar with terminals can easily use.
     </p>
   </description>
+  <url type="homepage">https://github.com/microsoft/edit</url>
   <url type="vcs-browser">https://github.com/microsoft/edit</url>
   <developer id="com.microsoft">
     <name>Microsoft Corporation</name>

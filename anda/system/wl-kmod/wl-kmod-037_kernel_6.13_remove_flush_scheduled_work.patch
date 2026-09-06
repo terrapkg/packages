@@ -1,0 +1,33 @@
+From cf35ee5c912482a44d22a24a162ca966ab565469 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Nicolas=20Vi=C3=A9ville?= <nicolas.vieville@uphf.fr>
+Date: Wed, 13 May 2026 15:57:21 +0200
+Subject: [PATCH] wl_linux.c: remove flush_scheduled_work - not recommended
+ since kernel 6.13 and warns since kernel 6.17
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Nicolas Viéville <nicolas.vieville@uphf.fr>
+---
+ src/wl/sys/wl_linux.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/src/wl/sys/wl_linux.c b/src/wl/sys/wl_linux.c
+index 4512f73..b0cb8b7 100644
+--- a/src/wl/sys/wl_linux.c
++++ b/src/wl/sys/wl_linux.c
+@@ -1502,7 +1502,11 @@ wl_down(wl_info_t *wl)
+ 		int i = 0;
+ 		for (i = 0; (atomic_read(&wl->callbacks) > callbacks) && i < 10000; i++) {
+ 			schedule();
++// Flushing system-wide queue was not recommended since kernel 6.13 and
++// provided warnings since kernel 6.17, so remove flush_scheduled_work call.
++#if LINUX_VERSION_CODE < KERNEL_VERSION(6, 13, 0)
+ 			flush_scheduled_work();
++#endif
+ 		}
+ 	}
+ 	else
+-- 
+2.54.0
+

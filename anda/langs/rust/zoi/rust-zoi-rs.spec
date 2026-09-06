@@ -1,20 +1,20 @@
 %define __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 %global crate zoi-rs
-%global crate_version 1.4.0
+%global crate_version 1.27.1
 
 Name:           rust-zoi-rs
 Version:        %(echo %crate_version | sed 's/-/~/g')
-Release:        1%?dist
-Summary:        Universal Package Manager & Environment Setup Tool
+Release:        2%?dist
+Summary:        Advanced Package Manager & Environment Orchestrator
 SourceLicense:  Apache-2.0
-License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND (0BSD OR MIT OR Apache-2.0) AND Apache-2.0 AND (Apache-2.0 AND ISC) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND BSD-2-Clause AND BSD-3-Clause AND BSL-1.0 AND CDLA-Permissive-2.0 AND ISC AND LGPL-2.0-or-later AND MIT AND (MIT OR Apache-2.0) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Zlib OR Apache-2.0) AND MPL-2.0 AND MPL-2.0+ AND Unicode-3.0 AND (Unlicense OR MIT) AND Zlib
+License:        ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache-2.0) AND Apache-2.0 AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND BSD-3-Clause AND BSL-1.0 AND CDLA-Permissive-2.0 AND ISC AND (ISC AND (Apache-2.0 OR ISC)) AND (ISC AND (Apache-2.0 OR ISC) AND Apache-2.0 AND MIT AND BSD-3-Clause AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR ISC OR MIT-0)) AND LGPL-2.0-or-later AND (LGPL-3.0-or-later OR MPL-2.0) AND MIT AND (MIT OR Apache-2.0) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Zlib OR Apache-2.0) AND MPL-2.0 AND MPL-2.0+ AND Unicode-3.0 AND (Unlicense OR MIT) AND Zlib AND bzip2-1.0.6
 URL:            https://crates.io/crates/zoi-rs
-Source:         %{crates_source %{crate} %{crate_version}}
-# Automatically generated patch to strip dependencies and normalize metadata
-Patch:          zoi-rs-fix-metadata-auto.diff
+Source0:        https://static.crates.io/crates/%{crate}/%{crate}-%{crate_version}.crate
+Source1:        https://gitlab.com/zillowe/zillwen/zusty/zoi/-/raw/Prod-Release-%crate_version/LICENSE
 BuildRequires:  cargo
 BuildRequires:  gcc-c++
+BuildRequires:  clang-devel
 BuildRequires:  rpm_macro(cargo_install)
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  perl(FindBin)
@@ -26,7 +26,9 @@ BuildRequires:  perl(Time::Piece)
 Packager:       madonuko <mado@fyralabs.com>
 
 %global _description %{expand:
-Universal Package Manager & Environment Setup Tool.}
+Zoi is an advanced package manager and environment orchestrator, designed to
+simplify package management and environment configuration across multiple
+operating systems.}
 
 %description %{_description}
 
@@ -42,19 +44,16 @@ Requires:       git
 %files       -n %{crate}
 %license LICENSE
 %license LICENSE.dependencies
-%doc CHANGELOG.md
-%doc CODE_OF_CONDUCT.md
-%doc PACKAGING.md
 %doc README.md
-%doc RELEASE.md
-%doc SECURITY.md
 %{_bindir}/zoi
+%dnl %{_bindir}/zoi-mini
 
 %pkg_completion -Befz zoi -n %{crate}
 
 %package        devel
 Summary:        %{summary}
 BuildArch:      noarch
+Requires:        %{name}-%{crate} = %{evr}
 
 %description    devel %{_description}
 
@@ -62,18 +61,12 @@ This package contains library source intended for building other packages which
 use the "%{crate}" crate.
 
 %files          devel
-%license %{crate_instdir}/LICENSE
-%doc %{crate_instdir}/CHANGELOG.md
-%doc %{crate_instdir}/CODE_OF_CONDUCT.md
-%doc %{crate_instdir}/PACKAGING.md
-%doc %{crate_instdir}/README.md
-%doc %{crate_instdir}/RELEASE.md
-%doc %{crate_instdir}/SECURITY.md
 %{crate_instdir}/
 
 %package     -n %{name}+default-devel
 Summary:        %{summary}
 BuildArch:      noarch
+Requires:        %{name}-%{crate} = %{evr}
 
 %description -n %{name}+default-devel %{_description}
 
@@ -86,6 +79,7 @@ use the "default" feature of the "%{crate}" crate.
 %prep
 %autosetup -n %{crate}-%{crate_version}
 %cargo_prep_online
+cp %{S:1} .
 
 %build
 %cargo_license_summary_online

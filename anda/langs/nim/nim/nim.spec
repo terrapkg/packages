@@ -2,8 +2,8 @@
 %global debug_package %{nil}
 
 Name:			nim
-Version:		2.2.6
-Release:		1%?dist
+Version:		2.2.10
+Release:		1%{?dist}
 Summary:		Imperative, multi-paradigm, compiled programming language
 License:		MIT and BSD
 URL:			https://nim-lang.org
@@ -11,7 +11,7 @@ Source1:		nim.1
 Source2:		nimgrep.1
 Source3:		nimble.1
 Source4:		nimsuggest.1
-BuildRequires:	gcc mold git-core gcc-c++ nodejs openssl-devel pkgconfig(bash-completion) gc-devel pcre-devel
+BuildRequires:	gcc mold git-core gcc-c++ nodejs openssl-devel pkgconfig(bash-completion) gc-devel pcre2-devel
 BuildRequires:  redhat-rpm-config anda-srpm-macros
 Requires:		gcc
 Recommends:		nim-tools

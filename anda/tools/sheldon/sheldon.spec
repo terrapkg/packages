@@ -10,11 +10,12 @@ Summary:        Fast, configurable, shell plugin manager
 
 License:        MIT OR Apache-2.0
 URL:            https://sheldon.cli.rs
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros
 BuildRequires:  pkgconfig(openssl)
+BuildRequires:  zlib-ng-compat-devel
 
 %global _description %{expand:
 Fast, configurable, shell plugin manager.}

@@ -1,12 +1,9 @@
-%global ver 1.55.0-test2
-%global sanitized_ver %(echo %{ver} | sed 's/-//g')
-
 Name:           socktop
-Version:        %sanitized_ver
+Version:        1.60.2
 Release:        1%?dist
 Summary:        socktop is a remote system monitor with a rich TUI interface
 URL:            https://github.com/jasonwitty/socktop
-Source0:        %{url}/archive/refs/tags/v%{ver}.tar.gz
+Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 License:        MIT
 BuildRequires:  rust libdrm-devel systemd-rpm-macros cargo-rpm-macros
 Requires:       libdrm
@@ -17,7 +14,7 @@ socktop is a remote system monitor with a rich TUI interface, inspired by `top` 
 that communicates with a lightweight remote agent over WebSockets.
 
 %prep
-%autosetup -n %{name}-%{ver}
+%autosetup -n %{name}-%{version}
 %cargo_prep_online
 
 %build

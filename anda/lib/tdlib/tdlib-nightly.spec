@@ -1,11 +1,11 @@
-%global commit 0da5c72f8365fb4857096e716d53175ddbdf5a15
-%global ver 1.8.60
-%global commit_date 20260104
+%global commit d1085f9cebc5a62379991ae1652673954f229c1f
+%global ver 1.8.67
+%global commit_date 20260825
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:          tdlib-nightly
 Version:       %ver^%commit_date.%shortcommit
-Release:       1%?dist
+Release:       1%{?dist}
 License:       BSL-1.0
 URL:           https://github.com/tdlib/td
 Summary:       Cross-platform library for building Telegram clients

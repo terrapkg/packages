@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.0.14
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Colored symbols for various log levels for Python
 License:		MIT
 URL:			https://github.com/manrajgrover/py-log-symbols

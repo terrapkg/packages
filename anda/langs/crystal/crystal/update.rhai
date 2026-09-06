@@ -1,1 +1,1 @@
-rpm.version(gh_tag("crystal-lang/crystal"));
+rpm.version(gh("crystal-lang/crystal"));

@@ -1,7 +1,7 @@
 Name:           fontviewer
 Epoch:          1
-Version:        1.2.0
-Release:        1%?dist
+Version:        1.3.0
+Release:        1%{?dist}
 Summary:        View and install fonts
 
 License:        GPL-2.0

@@ -1,5 +1,5 @@
 Name:          flatpost
-Version:       1.1.1
+Version:       1.2.0
 Release:       1%?dist
 License:       BSD-2-Clause
 Summary:       Desktop environment agnostic Flathub software center.

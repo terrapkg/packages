@@ -4,7 +4,7 @@
 %bcond test 0
 
 Name:          nodejs-license-checker
-Version:       4.4.2
+Version:       5.0.1
 Release:       1%{?dist}
 Summary:       Check NPM package licenses
 SourceLicense: BSD-3-Clause
@@ -16,7 +16,7 @@ BuildRequires: nodejs-npm
 BuildRequires: nodejs-packaging
 ExclusiveArch: %{nodejs_arches} noarch
 BuildArch:     noarch
-Packager:      Gilver E. <rockgrub@disroot.org>
+Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description
 Extract NPM package licenses.

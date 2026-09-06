@@ -1,0 +1,18 @@
+From: porkloin <porkloin@users.noreply.github.com>
+Subject: [PATCH] wlroots: handle LIBINPUT_SWITCH_KEYPAD_SLIDE enum in switch.c
+
+libinput added LIBINPUT_SWITCH_KEYPAD_SLIDE and GCC 16 on Fedora 44
+treats the unhandled enum value as -Werror=switch, breaking the build.
+
+diff --git a/subprojects/wlroots/backend/libinput/switch.c b/subprojects/wlroots/backend/libinput/switch.c
+--- a/subprojects/wlroots/backend/libinput/switch.c
++++ b/subprojects/wlroots/backend/libinput/switch.c
+@@ -34,6 +34,8 @@ void handle_switch_toggle(struct libinput_event *event,
+ 	case LIBINPUT_SWITCH_TABLET_MODE:
+ 		wlr_event.switch_type = WLR_SWITCH_TYPE_TABLET_MODE;
+ 		break;
++	case LIBINPUT_SWITCH_KEYPAD_SLIDE:
++		break;
+ 	}
+ 	switch (libinput_event_switch_get_switch_state(sevent)) {
+ 	case LIBINPUT_SWITCH_STATE_OFF:

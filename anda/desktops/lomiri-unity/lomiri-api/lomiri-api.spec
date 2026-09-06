@@ -3,8 +3,8 @@
 %forgemeta
 
 Name:          lomiri-api
-Version:       0.2.3
-Release:       1%?dist
+Version:       0.3.2
+Release:       1%{?dist}
 Summary:       API for Lomiri
 
 License:       LGPL-3.0-or-later

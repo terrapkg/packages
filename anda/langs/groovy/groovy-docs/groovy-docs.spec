@@ -1,6 +1,6 @@
 Name:		groovy-docs
-Version:	5.0.3
-Release:	1%?dist
+Version:	5.1.1
+Release:	1%{?dist}
 Summary:	Documentation for the Groovy programming language
 URL:		https://groovy-lang.org/
 License:	Apache-2.0

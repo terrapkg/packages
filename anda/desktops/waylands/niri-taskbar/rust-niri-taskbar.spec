@@ -11,7 +11,7 @@ Summary:        Niri taskbar module for Waybar
 
 License:        MIT
 URL:            https://crates.io/crates/niri-taskbar
-Source:         %{crates_source %{crate} %{crate_version}}
+Source:         https://static.crates.io/crates/%{crate}/%{crate}-%{crate_version}.crate
 # Automatically generated patch to strip dependencies and normalize metadata
 Patch:          niri-taskbar-fix-metadata-auto.diff
 

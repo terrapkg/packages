@@ -3,7 +3,7 @@ Steam Tinker Launch is a Linux wrapper tool for use with the Steam client which 
 
 Name:           steamtinkerlaunch
 Version:        12.12
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Wrapper tool for use with the Steam client for custom launch options
 License:        GPL-3.0-or-later
 URL:            https://github.com/sonic2kk/steamtinkerlaunch
@@ -46,7 +46,7 @@ Recommends:     winetricks
 Recommends:     xdg-utils
 Conflicts:      %{name}-git
 BuildArch:      noarch
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description %_description
 

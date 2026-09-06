@@ -3,8 +3,8 @@
 
 # Metadata.
 Name:           DirectXShaderCompiler
-Version:        1.8.2505.1
-Release:        5%?dist
+Version:        1.10.2605.37
+Release:        1%{?dist}
 Summary:        A Direct X Shader compiler.
 License:        MIT
 Packager:       libffi <contact@ffi.lol>

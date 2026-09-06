@@ -4,7 +4,7 @@
 
 Name:           python-%{pypi_name}
 Version:        %{pypi_version}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Live patches pip to use system certs by default
 
 License:        BSD-2-Clause

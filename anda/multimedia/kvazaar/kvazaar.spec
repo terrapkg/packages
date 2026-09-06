@@ -1,8 +1,8 @@
 Name:           kvazaar
-Version:        2.3.1
-Release:        2%{?dist}
+Version:        2.3.2
+Release:        3%{?dist}
 Summary:        An open-source HEVC encoder
-License:        BSD and ISC
+License:        BSD AND ISC
 URL:            https://ultravideo.fi/kvazaar.html
 
 Source0:        https://github.com/ultravideo/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
@@ -33,11 +33,13 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %prep
-%autosetup -p1
+%autosetup
 
-%build
+%conf
 autoreconf -vif
 %configure --enable-static=no
+
+%build
 %make_build
 
 %install
@@ -55,7 +57,7 @@ rm -fr %{buildroot}%{_docdir}
 %license LICENSE*
 %doc README.md CREDITS
 %{_libdir}/lib%{name}.so.7
-%{_libdir}/lib%{name}.so.7.4.0
+%{_libdir}/lib%{name}.so.7.5.0
 
 %files devel
 %{_includedir}/%{name}.h

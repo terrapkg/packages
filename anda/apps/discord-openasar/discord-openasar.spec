@@ -6,8 +6,8 @@
 %global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 Name:           discord-openasar
-Version:        0.0.119
-Release:        1%?dist
+Version:        1.0.156
+Release:        1%{?dist}
 Summary:        A snappier Discord rewrite with features like further customization and theming
 License:        MIT AND https://discord.com/terms
 URL:            https://github.com/GooseMod/OpenAsar
@@ -41,13 +41,15 @@ mkdir -p %{buildroot}%{_datadir}/applications/
 mkdir -p %{buildroot}%{_datadir}/pixmaps
 ln -s %_datadir/discord-openasar/discord.desktop %{buildroot}%{_datadir}/applications/discord-openasar.desktop
 ln -s %_datadir/discord-openasar/discord.png %{buildroot}%{_datadir}/pixmaps/discord-openasar.png
+mkdir -p %{buildroot}%{_datadir}/discord-openasar/resources
 cp -v %{SOURCE1} %{buildroot}%{_datadir}/discord-openasar/resources/app.asar
 chmod o+w %{buildroot}%{_datadir}/discord-openasar/resources -R
-ln -s %_datadir/discord-openasar/Discord %buildroot%_bindir/discord-openasar
-
+ln -s %_datadir/discord-openasar/discord %buildroot%_bindir/discord-openasar
+ln -s %_datadir/discord-openasar/updater_bootstrap %buildroot%_bindir/updater_bootstrap
 
 %files
 %_bindir/discord-openasar
+%{_bindir}/updater_bootstrap
 %{_datadir}/discord-openasar/
 %{_datadir}/applications/discord-openasar.desktop
 %{_datadir}/pixmaps/discord-openasar.png

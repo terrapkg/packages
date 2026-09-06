@@ -1,0 +1,7 @@
+let html = get("https://developer.android.com/studio/preview");
+let pattern = `ide-zips/([^/]+)/android-studio-(.*?)-linux\.tar\.gz`;
+let nofilter = find(pattern, html, 0);
+let version = find(pattern, html, 1);
+let suffixS = find(pattern, html, 2);
+rpm.version(version);
+rpm.define("suffixS", suffixS);

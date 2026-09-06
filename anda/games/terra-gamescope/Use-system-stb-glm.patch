@@ -1,0 +1,28 @@
+From 1a37d7113ed29ede9dcd30be16898b10464cd76e Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Franti=C5=A1ek=20Zatloukal?= <fzatlouk@redhat.com>
+Date: Wed, 28 May 2025 12:19:05 +0200
+Subject: [PATCH] Use system stb/glm
+ 
+---
+ meson.build | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
+ 
+diff --git a/meson.build b/meson.build
+index c300b07..3044e54 100644
+--- a/meson.build
++++ b/meson.build
+@@ -47,10 +47,8 @@ dep_x11 = dependency('x11')
+ dep_wayland = dependency('wayland-client')
+ vulkan_dep = dependency('vulkan')
+ 
+-glm_proj = subproject('glm')
+-glm_dep = glm_proj.get_variable('glm_dep')
+-stb_proj = subproject('stb')
+-stb_dep = stb_proj.get_variable('stb_dep')
++glm_dep = dependency('glm')
++stb_dep = dependency('stb')
+ 
+ if get_option('enable_openvr_support')
+   openvr_dep = dependency('openvr', version: '>= 2.7', required : false)
+-- 
+2.49.0

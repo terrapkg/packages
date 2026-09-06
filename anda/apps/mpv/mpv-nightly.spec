@@ -1,14 +1,14 @@
 # Disable X11 for RHEL 10+
 %bcond x11 %[%{undefined rhel} || 0%{?rhel} < 10]
 
-%global commit 0035bb7cbd1faf97aa91414a9b376a53b4c821bd
+%global commit f5bcfb195412e0ca733eac2e850879cd3b1ded18
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260105
+%global commit_date 20260904
 %global ver 0.41.0
 
 Name:           mpv-nightly
 Version:        %ver^%commit_date.%shortcommit
-Release:        1%?dist
+Release:        1%{?dist}
 
 License:        GPL-2.0-or-later AND LGPL-2.1-or-later
 Summary:        Movie player playing most video formats and DVDs
@@ -21,6 +21,7 @@ BuildRequires:  gcc
 BuildRequires:  libappstream-glib
 BuildRequires:  libatomic
 BuildRequires:  meson
+BuildRequires:  cmake
 BuildRequires:  python3-docutils
 
 BuildRequires:  perl(Encode)

@@ -3,7 +3,7 @@
 %global fontcontact security@fyralabs.com
 %global fontorg com.fyralabs.terra
 
-Version:		2.1.0
+Version:		2.2.0
 Release:		1%?dist
 URL:			https://www.cambus.net/spleen-monospaced-bitmap-fonts/
 

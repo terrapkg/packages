@@ -153,7 +153,7 @@ http://www.microsoft.com/typography/fontpack.
 
 Name:            ms-core-fonts
 Version:         2.2
-Release:         1%{?dist}
+Release:         2%{?dist}
 Summary:         Microsoft core fonts
 License:         LicenseRef-MS-Core-Fonts
 URL:             https://mscorefonts2.sourceforge.net
@@ -192,7 +192,7 @@ Requires:        %{fontname}-webdings-fonts
 Requires:        xorg-x11-font-utils
 Requires(post):  fontconfig
 BuildArch:       noarch
-Packager:        Gilver E. <rockgrub@disroot.org>
+Packager:        Gilver E. <roachy@fyralabs.com>
 
 %fontpkg -a
 

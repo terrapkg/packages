@@ -17,10 +17,12 @@ Packager:       madonuko <mado@fyralabs.com>
 
 %prep
 %autosetup
+
+%conf
 autoreconf -fi
+%configure --with-gtk3
 
 %build
-%configure --with-gtk3
 %make_build
 
 %install

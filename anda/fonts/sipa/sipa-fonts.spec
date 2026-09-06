@@ -5,7 +5,7 @@
 # namespace
 %global fontorg th.or.sipa
 Version:		20200217
-Release:		7%{?dist}
+Release:		8%{?dist}
 URL:			https://www.nstda.or.th/home/news_post/thai-font/
 %global fontlicense       LicenseRef-DIP-SIPA AND OFL-1.1-RFN
 %global fontlicenses      LICENSE
@@ -59,7 +59,7 @@ BuildArch:		noarch
 
 %global fontfamily1        TH Sarabun PSK
 %global foundry1           Suppakit Chalermlarp
-%global fonts1             'TH Sarabun'*.ttf
+%global fonts1             'TH Sarabun'.ttf 'TH Sarabun Italic.ttf' 'TH Sarabun Bold.ttf' 'TH Sarabun BoldItalic.ttf'
 %global fontsummary1       %{fontfamily1} font family
 %global fontdescription1   %{common_description}
 

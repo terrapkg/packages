@@ -38,7 +38,7 @@ developing applications that use %{name}.
 %prep
 %autosetup -n grail-%{version}
 
-%build
+%conf
 autoreconf --force --install
 PYTHON=%{__python3}
 export PYTHON
@@ -49,6 +49,7 @@ export PYTHON
 	--with-x11 \
 	--disable-static
 
+%build
 %make_build
 
 %install

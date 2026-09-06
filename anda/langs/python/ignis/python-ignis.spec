@@ -1,6 +1,8 @@
+%global debug_package %{nil}
+
 Name:           python-ignis
-Version:        0.5.1
-Release:        2%?dist
+Version:        0.6.0
+Release:        1%{?dist}
 Summary:        A widget framework for building desktop shells, written and configurable in Python
 
 License:        LGPL-2.1-or-later
@@ -19,6 +21,10 @@ BuildRequires:  pkgconfig(gtk4-layer-shell-0)
 BuildRequires:  pkgconfig(libpulse)
 BuildRequires:  python3dist(meson-python)
 BuildRequires:  python3dist(pip)
+BuildRequires:  python3dist(hatchling)
+BuildRequires:  python3dist(hatch-vcs)
+BuildRequires:  python3dist(setuptools)
+BuildRequires:  python3-setuptools_scm
 
 %global _description %{expand:
 %summary.}
@@ -40,6 +46,7 @@ Summary:        %{summary}
 
 
 %build
+export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
 %pyproject_wheel
 
 
