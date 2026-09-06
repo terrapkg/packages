@@ -1,6 +1,6 @@
 Name:           uupd
 Version:        1.4.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Centralized update service/checker made for Universal Blue
 License:        Apache-2.0
 URL:            https://github.com/ublue-os/uupd
@@ -28,7 +28,7 @@ Packager:       Tulip Blossom <tulilirockz@outlook.com>
 %install
 install -Dpm0755 -t %{buildroot}%{_bindir}/ %{name}
 install -Dpm0644 -t %{buildroot}%{_unitdir}/ %{name}.service %{name}.timer
-install -Dpm0644 -t %{buildroot}%{_sysconfdir}/polkit-1/rules.d/%{name}.rules %{name}.rules
+install -Dpm0644 -t %{buildroot}%{_sysconfdir}/polkit-1/rules.d/ %{name}.rules
 
 %post
 %systemd_post %{name}.timer
@@ -45,5 +45,8 @@ install -Dpm0644 -t %{buildroot}%{_sysconfdir}/polkit-1/rules.d/%{name}.rules %{
 %{_sysconfdir}/polkit-1/rules.d/%{name}.rules
 
 %changelog
+* Sat Sep 5 2026 Hec <hec@heccraft.com.
+- Fix location of uupd.rules polkit file
+
 * Sun Apr 19 2026 Tulip Blossom <tulilirockz@outlook.com>
 - Initial commit
