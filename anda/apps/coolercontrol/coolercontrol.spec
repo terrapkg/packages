@@ -9,7 +9,7 @@ for background device management, as well as a GUI to expertly customize your se
 
 Name:           coolercontrol
 Version:        5.0.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Cooling device control for Linux
 ExclusiveArch:  x86_64 aarch64
 License:        GPL-3.0-or-later
@@ -124,7 +124,7 @@ appstream-util validate-relax --nonet %buildroot%_metainfodir/%rdnn.metainfo.xml
 %_iconsdir/hicolor/*/apps/%rdnn.*
 %_iconsdir/hicolor/*/apps/%rdnn-alert.*
 %_iconsdir/hicolor/*/apps/%rdnn-symbolic.svg
-%_iconsdir/hicolor/*/apps/%rdnn-symbolic-alert.svg
+%_iconsdir/hicolor/*/apps/%rdnn-alert-symbolic.svg
 
 %files -n coolercontrold
 %doc coolercontrold/README.md
