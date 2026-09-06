@@ -1,6 +1,6 @@
 Name:           uupd
 Version:        1.4.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Centralized update service/checker made for Universal Blue
 License:        Apache-2.0
 URL:            https://github.com/ublue-os/uupd
@@ -31,10 +31,10 @@ install -Dpm0644 -t %{buildroot}%{_unitdir}/ %{name}.service %{name}.timer
 install -Dpm0644 -t %{buildroot}%{_sysconfdir}/polkit-1/rules.d/ %{name}.rules
 
 %post
-%systemd_post %{name}.timer
+%systemd_post %{name}.service
 
 %preun
-%systemd_preun %{name}.timer
+%systemd_preun %{name}.service
 
 %files
 %license LICENSE
