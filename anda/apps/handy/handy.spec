@@ -40,7 +40,7 @@ Handy is a cross-platform desktop application that provides simple, privacy-focu
 %doc README.md
 %license LICENSE
 %_bindir/handy
-%_appdir/%name.desktop
+%_appsdir/%name.desktop
 
 %changelog
 * Tue Aug 18 2026 madonuko <mado@fyralabs.com> - 0.9.5-1
