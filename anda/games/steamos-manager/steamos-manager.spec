@@ -1,6 +1,8 @@
+%global steamos_manager_userunits steamos-manager.service steamos-manager-configure-cecd.service steamos-manager-session-cleanup.service
+
 Name:           steamos-manager
 Version:        26.4.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        SteamOS Manager is a system daemon that aims to abstract Steam's interactions with the operating system.
 License:        MIT AND (MIT OR Apache-2.0) AND Unicode-3.0 AND Apache-2.0 OR BSL-1.0 AND Apache-2.0 OR MIT AND Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT AND BSD-3-Clause OR MIT OR Apache-2.0 AND ISC AND LGPL-2.1 OR MIT OR Apache-2.0 AND MIT AND MIT OR Apache-2.0 AND MIT OR Apache-2.0 OR LGPL-2.1-or-later AND Unlicense OR MIT AND Zlib OR Apache-2.0 OR MIT
 URL:            https://gitlab.steamos.cloud/holo/steamos-manager
@@ -45,18 +47,15 @@ ln -s %{_userunitdir}/steamos-manager.service %{buildroot}%{_userunitdir}/gamesc
 
 %post
 %systemd_post steamos-manager.service
-%systemd_post steamos-manager-configure-cecd.service
-%systemd_post steamos-manager-session-cleanup.service
+%systemd_user_post %{steamos_manager_userunits}
 
 %preun
 %systemd_preun steamos-manager.service
-%systemd_preun steamos-manager-configure-cecd.service
-%systemd_preun steamos-manager-session-cleanup.service
+%systemd_user_preun %{steamos_manager_userunits}
 
 %postun
 %systemd_postun_with_restart steamos-manager.service
-%systemd_postun_with_restart steamos-manager-configure-cecd.service
-%systemd_postun_with_restart steamos-manager-session-cleanup.service
+%systemd_user_postun_with_restart %{steamos_manager_userunits}
 
 %files
 %license %{_datadir}/licenses/steamos-manager/LICENSE
@@ -80,5 +79,8 @@ ln -s %{_userunitdir}/steamos-manager.service %{buildroot}%{_userunitdir}/gamesc
 %{_userunitdir}/gamescope-session-plus.service.wants/steamos-manager.service
 
 %changelog
+* Sun Sep 06 2026 Owen Zimmerman <owen@fyralabs.com> - 26.4.1-2 
+- Fix systemd user units
+
 * Wed Feb 04 2026 Tulip Blossom <tulilirockz@outlook.com> - 25.12.0-1
 - Intial Commit
