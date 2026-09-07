@@ -5,7 +5,7 @@ Version:        0.21.7
 Release:        1%{?dist}
 Summary:        Modern connection manager for Linux with GTK4/Wayland-native interface
 SourceLicense:  GPL-3.0-or-later
-License:        %{sourcelicense}
+License:        %{sourcelicense} AND (BSD-3-Clause OR MIT OR Apache-2.0) AND bzip2-1.0.6 AND Unlicense AND (Apache-2.0 OR MIT) AND (Apache-2.0 OR BSL-1.0) AND (MIT OR Apache-2.0 OR Zlib) AND (0BSD OR MIT OR Apache-2.0) AND BSD-2-Clause AND Zlib AND MIT AND (MIT OR Apache-2.0 OR BSD-1-Clause) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND GPL-3.0-or-later AND Apache-2.0 AND MPL-2.0 AND Unicode-3.0 AND (CC0-1.0 OR MIT-0 OR Apache-2.0) AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND CC0-1.0 AND Apache-2.0 AND ISC AND (BSD-3-Clause OR Apache-2.0) AND (CC0-1.0 OR MIT-0) AND ISC AND BSD-3-Clause AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (Unlicense OR MIT)
 URL:            https://github.com/totoshko88/RustConn
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 
