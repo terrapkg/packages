@@ -3,11 +3,13 @@
 %global _default_patch_fuzz 2
 %global build_timestamp %(date +"%Y%m%d")
 %global gamescope_commit 77e6ea94dbc3feca4b95daef433d6238a9efdd68
+%global commit_date 20260903
 %define short_commit %(echo %{gamescope_commit} | cut -c1-8)
 
 Name:           terra-gamescope
-Version:        137.%{short_commit}
+Version:        0~%{commit_date}git.%{short_commit}
 Release:        1%?dist
+Epoch:          1
 Summary:        Micro-compositor for video games on Wayland
 
 License:        BSD-2-Clause
