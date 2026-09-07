@@ -33,7 +33,7 @@ BuildRequires:  cmake(cpp-jwt)
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  pkgconfig(bzip2)
 BuildRequires:  pkgconfig(gl)
-BuildRequires:  qt5-qtcharts-devel
+BuildRequires:  cmake(Qt6Charts)
 BuildOption(conf):  -DCMAKE_BUILD_TYPE=RelWithDebInfo
 BuildOption(conf):  -DYUZU_TESTS=OFF
 
