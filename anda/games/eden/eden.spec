@@ -35,6 +35,7 @@ BuildRequires:  pkgconfig(bzip2)
 BuildRequires:  pkgconfig(gl)
 BuildRequires:  cmake(Qt6Charts)
 BuildRequires:  cmake(Qt6GuiPrivate)
+BuildRequires:  ffmpeg-free-devel
 BuildOption(conf):  -DCMAKE_BUILD_TYPE=RelWithDebInfo
 BuildOption(conf):  -DYUZU_TESTS=OFF
 
