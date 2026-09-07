@@ -1,13 +1,12 @@
-%global commit cf553bcd2ee87e651d82dcdb3f77c4abda515967
 %global appid org.opengamingcollective.tdpcontrol
 
 Name:           plasma-applet-tdp-control
-Version:        1.9.3
+Version:        0.1.0
 Release:        1%{?dist}
 Summary:        A Plasma applet for steamos-manager's performance profile, TDP limit and manual GPU clock
 License:        GPL-3.0-or-later
 URL:            https://github.com/OpenGamingCollective/plasma-applet-tdp-control
-Source0:        %url/archive/%commit/plasma-applet-tdp-control-%commit.tar.gz
+Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 
 BuildRequires:  make
 Requires:       plasma-workspace
