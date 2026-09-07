@@ -51,6 +51,7 @@ animated profile avatars and higher-resolution emotes.
 
 %conf
 %cmake -G Ninja \
+    -DCMAKE_BUILD_TYPE=Release \
     -DUSE_SYSTEM_QTKEYCHAIN=ON \
     -DUSE_SYSTEM_MINIAUDIO=ON \
     -DCHATTERINO_NO_AVIF_PLUGIN=ON \
