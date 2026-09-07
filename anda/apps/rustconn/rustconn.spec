@@ -24,6 +24,7 @@ BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(webkitgtk-6.0)
 BuildRequires:  pkgconfig(libadwaita-1)
 BuildRequires:  pkgconfig(vte-2.91-gtk4)
+BuildRequires:  desktop-file-utils
 
 %description
 RustConn is a cross-platform connection orchestrator with a
