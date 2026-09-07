@@ -3,15 +3,15 @@
 Name:           libtrueforce
 Version:        1.3.11^%{repoversion}
 Epoch:		    1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Native Linux implementation of the Logitech Trueforce SDK
 License:        GPL-2.0-only
 URL:            https://github.com/mescon/logitech-trueforce-linux-driver
 Source0:        %{url}/archive/refs/tags/v%{repoversion}.tar.gz
 BuildRequires:  gcc
 BuildRequires:  make
-Requires:       logitech-rs50-linux-driver
-Provides:       trueforce-sdk = %{?epoch:%{epoch}:}%{version}
+Requires:       logitech-trueforce
+Provides:       trueforce-sdk = %{evr}
 Packager:       Luan V. <luanv.oliveira@outlook.com>
 ExclusiveArch:  x86_64
 
@@ -24,15 +24,15 @@ docs/TRUEFORCE_PROTOCOL.md in the parent repo for the protocol documentation.
 
 %package static
 Summary:        Static library for %{name}
-Requires:       %{name}%{?_isa} = %{version}-%{release}
-
+Requires:       %{name}%{?_isa} = %{evr}
+Requires:       %{name}-devel%{?_isa} = %{evr}
 %description static
 The %{name}-static package contains the static library for %{name}.
 
 
 %package devel
 Summary:        Development files for %{name}
-Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{evr}
 
 %description devel
 The %{name}-devel package contains libraries and header files for
