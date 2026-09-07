@@ -19,11 +19,11 @@ Requires:       niri
 %cargo_prep_online
 
 %build
-%{cargo_license_online} > LICENSE.dependencies
 %cargo_build
 
 %install
 install -Dm755 target/rpm/%{name} %{buildroot}%{_bindir}/%{name}
+%{cargo_license_online} > LICENSE.dependencies
 
 %files
 %license LICENSE
