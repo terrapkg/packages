@@ -50,12 +50,19 @@ install -Dm644 rustconn/assets/icons/hicolor/128x128/apps/%{appid}.png          
 install -Dm644 rustconn/assets/icons/hicolor/scalable/apps/%{appid}.svg         %{buildroot}%{_scalableiconsdir}/%{appid}.svg
 install -Dm644 rustconn/assets/icons/hicolor/scalable/apps/%{appid}-tray.svg    %{buildroot}%{_scalableiconsdir}/%{appid}-tray.svg
 install -Dm644 rustconn/assets/io.github.totoshko88.RustConn-vv.xml             %{buildroot}%{_datadir}/mime/packages/%{appid}-vv.xml
+
 %desktop_file_install rustconn/assets/%{appid}.desktop
 
 %terra_appstream
 
 %cargo_license_summary_online
 %{cargo_license_online} > LICENSE.dependencies
+
+for po_file in po/*.po; do
+    lang=$(basename $po_file .po)
+    mkdir -p %{buildroot}%{_datadir}/locale/$lang/LC_MESSAGES
+    msgfmt -o %{buildroot}%{_datadir}/locale/$lang/LC_MESSAGES/rustconn.mo $po_file
+done
 
 %find_lang rustconn
 
