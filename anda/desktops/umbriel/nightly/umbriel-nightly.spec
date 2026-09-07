@@ -1,8 +1,8 @@
 %global debug_package   %{nil}
 
-%global commit          fd3bc638626574696ab522e44616d17f08cf4aca
+%global commit          035ec0c4b8117fa58ed40c21d77e93e367d7c7eb
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
-%global commitdate      20260904
+%global commitdate      20260907
 
 Name:   	umbriel-nightly
 Version:	0^%{commitdate}git.%{shortcommit}
@@ -70,6 +70,8 @@ Packager:       Cypress Reed <cypress@fyralabs.com>
 %{_userunitdir}/umbriel.service
 %{_userunitdir}/umbriel-session.target
 %{_userunitdir}/umbriel-shutdown.target
+%{_datadir}/umbriel/shaders/reveal.glsl
+%{_datadir}/umbriel/shaders/squash.glsl
 
 %changelog
 * Mon Aug 24 2026 Cypress Reed <cypress@fyralabs.com>

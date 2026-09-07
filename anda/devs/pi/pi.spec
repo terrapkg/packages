@@ -2,7 +2,7 @@
 %define npm_name @earendil-works/pi-coding-agent
 
 Name:           pi
-Version:        0.85.0
+Version:        0.85.1
 Release:        1%{?dist}
 Summary:        Coding agent CLI with read, bash, edit, write tools and session management
 License:        MIT
