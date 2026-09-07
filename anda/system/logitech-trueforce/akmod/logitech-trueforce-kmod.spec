@@ -13,7 +13,7 @@ Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 Packager:       Luan Oliveira <luanv.oliveira@outlook.com>
 ExclusiveArch:  x86_64
 
-buildarch:      x86_64
+BuildArch:      x86_64
 BuildRequires:  gcc
 BuildRequires:  make
 BuildRequires:  kmodtool
@@ -23,7 +23,7 @@ Requires:       %{modulename} = %{?epoch:%{epoch}:}%{version}
 Requires:       gcc
 Requires:       make
 Requires:       kernel-devel
-conflicts:      dkms-%{modulename}
+Conflicts:      dkms-%{modulename}
 
 Provides:       logitech-rs50-linux-driver-kmod = 1.0^20260906git.30cacfc-100%{?dist}
 Provides:       akmod-logitech-rs50-linux-driver = 1.0^20260906git.30cacfc-100%{?dist}

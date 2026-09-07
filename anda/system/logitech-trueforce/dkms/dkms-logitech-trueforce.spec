@@ -28,7 +28,7 @@ Obsoletes:      dkms-logitech-rs50-linux-driver <= 1.0^20260906git.30cacfc-1%{?d
 
 
 %description
-dkms-%{modulename} builds and installs the kernel module for the running kernel
+dkms-%{modulename} builds and installs the kernel module for the running kernel.
 %prep
 %autosetup -n logitech-trueforce-linux-driver-%{version}
 
