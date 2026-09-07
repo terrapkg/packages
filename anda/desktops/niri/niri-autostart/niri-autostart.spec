@@ -8,7 +8,6 @@ URL:            https://github.com/partanskiy/niri-autostart
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 Packager:       Its-J <jonah@fyralabs.com>
 
-BuildRequires:  cargo
 BuildRequires:  cargo-rpm-macros
 Requires:       niri
 
@@ -20,18 +19,17 @@ Requires:       niri
 %cargo_prep_online
 
 %build
-%cargo_license_summary_online
 %{cargo_license_online} > LICENSE.dependencies
 %cargo_build
 
 %install
-install -Dm 755 target/rpm/%{name} %{buildroot}%{_bindir}/%{name}
+install -Dm755 target/rpm/%{name} %{buildroot}%{_bindir}/%{name}
 
 %files
 %license LICENSE
 %license LICENSE.dependencies
 %doc README.md
-%{_bindir}/niri-autostart
+%{_bindir}/%{name}
 
 %changelog
 * Sun Sep 06 2026 Its-J <jonah@fyralabs.com> - 0.3.2-1
