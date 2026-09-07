@@ -13,6 +13,7 @@ BuildRequires:  cargo
 BuildRequires:  rust
 BuildRequires:  rustc
 BuildRequires:  cargo-rpm-macros
+BuildRequires:  rust-packaging
 # owns the hicolor icon directories during the post-build filelist check
 BuildRequires:  hicolor-icon-theme
 # logi-tf-sim's build.rs compiles the in-repo libtrueforce.a via make+gcc
