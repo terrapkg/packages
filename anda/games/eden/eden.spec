@@ -44,6 +44,17 @@ BuildOption(conf):  -DYUZU_TESTS=OFF
 Eden is a free and opensource (FOSS) Switch 1 emulator started by developer Camille LaVey.
 Written in C++, with builds for Windows, Linux, macOS, Android, FreeBSD and more.
 
+%files
+%license LICENSE.txt
+%doc README.md CONTRIBUTING.md
+%{_bindir}/eden
+%{_bindir}/eden-cli
+%{_bindir}/eden-room
+%{_appsdir}/dev.eden_emu.eden.desktop
+%{_scalableiconsdir}/dev.eden_emu.eden.svg
+%{_metainfodir}/dev.eden_emu.eden.metainfo.xml
+%{_datadir}/mime/packages/dev.eden_emu.eden.xml
+
 %changelog
 * Wed Aug 19 2026 madonuko <mado@fyralabs.com> - 0.2.1-1
 - Initial package
