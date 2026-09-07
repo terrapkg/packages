@@ -48,7 +48,7 @@ device, so no blacklist is needed.
 
 TrueForce in Proton sims additionally needs Logitech's proprietary signed SDK
 DLLs, which are not shipped by this package; see the bundled Getting Started
-guide
+guide.
 
 %prep
 %autosetup -n logitech-trueforce-linux-driver-%{version}
