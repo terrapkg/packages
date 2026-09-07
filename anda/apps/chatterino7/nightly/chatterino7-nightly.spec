@@ -53,13 +53,15 @@ animated profile avatars and higher-resolution emotes.
 %prep
 %git_clone %{url} %{commit}
 
-%build
+%conf
 %cmake -G Ninja \
     -DUSE_SYSTEM_MINIAUDIO=ON \
     -DCHATTERINO_NO_AVIF_PLUGIN=ON \
     -DCHATTERINO_UPDATER=OFF \
     -DCHATTERINO_NIGHTLY_BUILD=ON \
     -DSKIP_JSON_GENERATION=ON
+
+%build
 %cmake_build
 
 %install
