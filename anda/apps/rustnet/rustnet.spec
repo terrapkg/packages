@@ -8,8 +8,6 @@ Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
-BuildRequires:  cargo
-BuildRequires:  rust
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  libpcap-devel
 BuildRequires:  elfutils-libelf-devel
@@ -36,15 +34,15 @@ Features include:
 
 %prep
 %autosetup -n %{name}-%{version}
+%cargo_prep_online
 
 %build
 export RUSTFLAGS="%{build_rustflags}"
-# Cargo macros fail due to RUSTC_BOOTSTRAP and build target
-cargo build
+%cargo_build
 
 %install
-install -Dm755 target/debug/rustnet -t %{buildroot}%{_bindir}/
-install -Dm644 assets/services -t %{buildroot}%{_datadir}/%{name}/
+install -Dm755 target/rpm/rustnet -t %{buildroot}%{_bindir}/
+install -Dm644 assets/rustnet.svg -t %{buildroot}%{_scalableiconsdir}/
 install -Dm644 resources/packaging/linux/graphics/rustnet.png -t %{buildroot}%{_hicolordir}/256x256/apps/
 install -Dm644 resources/packaging/linux/rustnet.desktop -t %{buildroot}%{_appsdir}/
 
@@ -55,10 +53,13 @@ install -Dm644 resources/packaging/linux/rustnet.desktop -t %{buildroot}%{_appsd
 %license LICENSE.dependencies
 %doc *.md
 %{_bindir}/rustnet
-%{_datadir}/%{name}/services
+%{_scalableiconsdir}/rustnet.svg
 %{_hicolordir}/256x256/apps/rustnet.png
 %{_appsdir}/rustnet.desktop
 
 %changelog
+* Sun Sep 06 2026 Owen Zimmerman <owen@fyralabs.com> - 1.6.0-1
+- Fix install paths, use %%cargo_prep_online
+
 * Mon Jan 12 2026 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit
