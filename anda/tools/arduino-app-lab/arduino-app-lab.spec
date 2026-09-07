@@ -47,6 +47,9 @@ go mod tidy
 pushd standalone-apps/app-lab-desktop/internal/board/
 ./download_resources.sh
 popd
+pushd standalone-apps/app-lab-desktop/internal/lsp/scripts
+./download_lsps.sh linux_amd64
+popd
 pushd standalone-apps/app-lab-desktop
 wails build -tags webkit2_41
 popd
@@ -65,7 +68,7 @@ install -Dm644 standalone-apps/app-lab-desktop/build/appicon.png        %{buildr
 
 %files
 %license LICENSE
-%doc README.md
+%doc README.md docs/*.md
 %{_bindir}/%{name}
 %{_hicolordir}/512x512/apps/%{appid}.png
 %{_appsdir}/%{appid}.desktop
