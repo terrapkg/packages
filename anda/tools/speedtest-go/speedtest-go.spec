@@ -1,5 +1,3 @@
-%dnl %define debug_package %{nil}
-
 %global goipath github.com/showwin/speedtest-go
 Version:        1.8.3
 
