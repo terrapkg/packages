@@ -4,7 +4,7 @@
 %global debug_package %{nil}
 
 Name:           %{modulename}-kmod
-Version:        0.39.2
+Version:        0.40.0
 Release:        1%{?dist}
 Summary:        Kernel module for Logitech racing wheels (RS50, G PRO, G923)
 License:        GPL-2.0-only
@@ -25,10 +25,10 @@ Requires:       make
 Requires:       kernel-devel
 Conflicts:      dkms-%{modulename}
 
-Provides:       logitech-rs50-linux-driver-kmod = 1.0^20260906git.30cacfc-100%{?dist}
-Provides:       akmod-logitech-rs50-linux-driver = 1.0^20260906git.30cacfc-100%{?dist}
-Obsoletes:      logitech-rs50-linux-driver-kmod <= 1.0^20260906git.30cacfc-1%{?dist}
-Obsoletes:      akmod-logitech-rs50-linux-driver <= 1.0^20260906git.30cacfc-1%{?dist}
+Provides:       logitech-rs50-linux-driver-kmod = 1.0^20260907git.63812bb-100%{?dist}
+Provides:       akmod-logitech-rs50-linux-driver = 1.0^20260907git.63812bb-100%{?dist}
+Obsoletes:      logitech-rs50-linux-driver-kmod <= 1.0^20260907git.63812bb-1%{?dist}
+Obsoletes:      akmod-logitech-rs50-linux-driver <= 1.0^20260907git.63812bb-1%{?dist}
 
 
 # Two build modes from one spec, selected by whether `kernels` is defined:

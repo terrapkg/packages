@@ -2,7 +2,7 @@
 %global modulename logitech-trueforce
 
 Name:            dkms-%{modulename}
-Version:         0.39.2
+Version:         0.40.0
 Release:         1%{?dist}
 Summary:         DKMS kernel driver for Logitech racing wheels (RS50, G PRO, G923)
 License:         GPL-2.0-only
@@ -23,8 +23,8 @@ Requires:        gcc
 Requires:        make
 Provides:        dkms-logitech-trueforce = %{?epoch:%{epoch}:}%{version}
 Requires:        %{modulename}-kmod-common = %{?epoch:%{epoch}:}%{version}
-Provides:       dkms-logitech-rs50-linux-driver = 1.0^20260906git.30cacfc-100%{?dist}
-Obsoletes:      dkms-logitech-rs50-linux-driver <= 1.0^20260906git.30cacfc-1%{?dist}
+Provides:       dkms-logitech-rs50-linux-driver = 1.0^20260907git.63812bb-100%{?dist}
+Obsoletes:      dkms-logitech-rs50-linux-driver <= 1.0^20260907git.63812bb-1%{?dist}
 
 
 %description

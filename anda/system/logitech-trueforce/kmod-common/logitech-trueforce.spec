@@ -1,5 +1,5 @@
 Name:           logitech-trueforce
-Version:        0.39.2
+Version:        0.40.0
 Release:        1%{?dist}
 Summary:        kernel driver for Logitech racing wheels (RS50, G PRO, G923)
 License:        GPL-2.0-only
@@ -26,14 +26,14 @@ Requires: ((%{name}-kmod = %{?epoch:%{epoch}:}%{version}) or (dkms-%{name} = %{?
 
 Provides:       %{name}-kmod-common = %{?epoch:%{epoch}:}%{version}
 
-Provides:       logitech-rs50-linux-driver = 1.0^20260906git.30cacfc-100%{?dist}
-Provides:       logitech-rs50-linux-driver-kmod-common = 1.0^20260906git.30cacfc-100%{?dist}
-Provides:       akmod-logitech-rs50-linux-driver = 1.0^20260906git.30cacfc-100%{?dist}
-Provides:       dkms-logitech-rs50-linux-driver = 1.0^20260906git.30cacfc-100%{?dist}
-Obsoletes:      logitech-rs50-linux-driver <= 1.0^20260906git.30cacfc-1%{?dist}
-Obsoletes:      logitech-rs50-linux-driver-kmod-common <= 1.0^20260906git.30cacfc-1%{?dist}
-Obsoletes:      dkms-logitech-rs50-linux-driver <= 1.0^20260906git.30cacfc-1%{?dist}
-Obsoletes:      akmod-logitech-rs50-linux-driver <= 1.0^20260906git.30cacfc-1%{?dist}
+Provides:       logitech-rs50-linux-driver = 1.0^20260907git.63812bb-100%{?dist}
+Provides:       logitech-rs50-linux-driver-kmod-common = 1.0^20260907git.63812bb-100%{?dist}
+Provides:       akmod-logitech-rs50-linux-driver = 1.0^20260907git.63812bb-100%{?dist}
+Provides:       dkms-logitech-rs50-linux-driver = 1.0^20260907git.63812bb-100%{?dist}
+Obsoletes:      logitech-rs50-linux-driver <= 1.0^20260907git.63812bb-1%{?dist}
+Obsoletes:      logitech-rs50-linux-driver-kmod-common <= 1.0^20260907git.63812bb-1%{?dist}
+Obsoletes:      dkms-logitech-rs50-linux-driver <= 1.0^20260907git.63812bb-1%{?dist}
+Obsoletes:      akmod-logitech-rs50-linux-driver <= 1.0^20260907git.63812bb-1%{?dist}
 
 %description
 Force feedback, TrueForce texture routing, and G HUB-equivalent settings
