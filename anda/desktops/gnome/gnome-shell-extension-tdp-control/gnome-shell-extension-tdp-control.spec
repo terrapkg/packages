@@ -1,16 +1,13 @@
 %global extension   tdp-control
 %global uuid        %{extension}@opengamingcollective.org
 
-%global commit bb179aaa677c6a5f1dbef719dded7599eac3dcee
-
 Name:           gnome-shell-extension-%{extension}
-Version:        10
+Version:        0.1.0
 Release:        1%{?dist}
 Summary:        A GNOME shell extension for steamos-manager's performance profile, TDP limit and manual GPU clock
 License:        GPL-3.0-or-later
 URL:            https://github.com/OpenGamingCollective/gnome-shell-extension-tdp-control
-Source0:        %url/archive/%commit/gnome-shell-extension-tdp-control-%commit.tar.gz
-
+Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 BuildArch:      noarch
 
 Requires:       gnome-shell >= 48~
