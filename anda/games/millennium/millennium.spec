@@ -21,7 +21,7 @@ Open-source modding framework for creating and managing Steam Client themes and 
 
 %conf -p
 sed 's/find_package(ZLIB/find_package(zlib/' -i scripts/cmake/bootstrap_deps.cmake
-sed 's/find_package(CURL/find_package(curl/' -i scripts/cmake/bootstrap_deps.cmake
+%dnl sed 's/find_package(CURL/find_package(curl/' -i scripts/cmake/bootstrap_deps.cmake
 
 %files
 %doc README.md
