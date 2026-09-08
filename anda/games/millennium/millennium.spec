@@ -12,6 +12,8 @@ BuildOption(conf):  -DCURL_LIBRARY=%_libdir/libcurl.so -DCURL_INCLUDE_DIR=%_incl
 BuildRequires:  cmake(zlib)
 BuildRequires:  cmake-rpm-macros
 BuildRequires:  cmake
+BuildRequires:  gcc
+BuildRequires:  gcc-c++
 BuildRequires:  zlib-ng-compat-static
 
 %description
