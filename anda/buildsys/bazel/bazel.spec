@@ -20,8 +20,6 @@ Packager:       Cypress Reed <cypress@fyralabs.com>
 BuildRequires:  bazel
 %endif
 
-# FIXME: should only disable stripping and keep everything else
-%define __spec_install_post /bin/true
 
 %description
 Build and test software of any size, quickly and reliably.
