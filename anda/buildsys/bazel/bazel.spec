@@ -1,3 +1,5 @@
+%global debug_package %{nil}
+
 Name:           bazel
 Version:        9.2.0
 Release:        1%{?dist}
@@ -47,7 +49,7 @@ install -Dpm 0644 ./scripts/zsh_completion/_bazel         -t %{buildroot}%{zsh_c
 
 %files
 %{_bindir}/bazel
-%doc README.md CHANGELOG.md CODE_OF_CONDUCT.md CONTRIBUTING.md SECURITY.md docs
+%doc README.md CHANGELOG.md CODE_OF_CONDUCT.md CONTRIBUTING.md SECURITY.md docs/*
 %license LICENSE
 
 %pkg_completion -zb
