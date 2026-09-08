@@ -1,7 +1,7 @@
 %global appid io.github.totoshko88.RustConn
 
 Name:           rustconn
-Version:        0.21.8
+Version:        0.21.9
 Release:        1%{?dist}
 Summary:        Modern connection manager for Linux with GTK4/Wayland-native interface
 SourceLicense:  GPL-3.0-or-later
