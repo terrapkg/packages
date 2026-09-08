@@ -10,6 +10,7 @@ BuildSystem:    cmake
 BuildOption(conf):  -DDISTRO_NIX=ON -DBUILD_SHARED_LIBS=ON -DBUiLD_STATIC_LIBS=OFF
 BuildOption(conf):  -DCURL_LIBRARY=%_libdir/libcurl.so -DCURL_INCLUDE_DIR=%_includedir/curl/
 BuildRequires:  cmake(zlib)
+BuildRequires:  cmake-rpm-macros
 BuildRequires:  zlib-ng-compat-static
 
 
