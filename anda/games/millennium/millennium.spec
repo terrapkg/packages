@@ -1,5 +1,5 @@
 Name:           millennium
-Version:        3.4.0
+Version:        3.4.1
 Release:        1%?dist
 Summary:        Open-source modding framework for creating and managing Steam Client themes and plugins
 License:        MIT
@@ -12,7 +12,6 @@ BuildOption(conf):  -DCURL_LIBRARY=%_libdir/libcurl.so -DCURL_INCLUDE_DIR=%_incl
 BuildRequires:  cmake(zlib)
 BuildRequires:  cmake-rpm-macros
 BuildRequires:  zlib-ng-compat-static
-
 
 %description
 Open-source modding framework for creating and managing Steam Client themes and plugins.
