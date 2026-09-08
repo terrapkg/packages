@@ -4,8 +4,8 @@
 %global __requires_exclude ^libcef\\.so\\(\\)\\(64bit\\)$
 
 Name:       bolt-launcher
-Version:    0.23.2
-Release:    2%{?dist}
+Version:    0.24.0
+Release:    1%{?dist}
 Summary:    A third-party, free-software launcher for your favourite MMORPG
 License:    AGPL-3.0-or-later
 URL:        https://codeberg.org/Adamcake/Bolt
