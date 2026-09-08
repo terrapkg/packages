@@ -17,8 +17,9 @@ BuildRequires:  python
 
 Packager:       Cypress Reed <cypress@fyralabs.com>
 
-%bcond bootstrap 1
-%if %{without bootstrap}
+%global bootstrap 1
+
+%if %{bootstrap} == 0
 BuildRequires:  bazel
 %endif
 
@@ -30,7 +31,7 @@ BuildRequires:  bazel
 %setup -q -c -n %{name}-%{version}
 
 %build
-%if %{without bootstrap}
+%if %{bootstrap} == 0
     echo "Using system Bazel for the build"
     bazel build //src:bazel //scripts:bazel-complete.bash \
         --tool_java_runtime_version=local_jdk \
