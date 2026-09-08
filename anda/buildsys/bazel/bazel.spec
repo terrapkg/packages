@@ -13,6 +13,8 @@ BuildRequires:  unzip
 BuildRequires:  java-21-openjdk-devel
 BuildRequires:  python
 
+Packager:       Cypress Reed <cypress@fyralabs.com>
+
 %bcond bootstrap 1
 %if %{without bootstrap}
 BuildRequires:  bazel
