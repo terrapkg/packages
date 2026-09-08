@@ -1,7 +1,7 @@
 Name:           bazel
 Version:        9.2.0
 Release:        1%{?dist}
-Summary:        Build and test software of any size, quickly and reliably.
+Summary:        Build and test software of any size, quickly and reliably
 License:        Apache-2.0
 URL:            https://bazel.build/
 Source:         https://github.com/bazelbuild/bazel/releases/download/%{version}/bazel-%{version}-dist.zip
@@ -22,7 +22,7 @@ BuildRequires:  bazel
 
 
 %description
-Build and test software of any size, quickly and reliably.
+%{summary}.
 
 %prep
 %setup -q -c -n %{name}-%{version}
@@ -47,7 +47,7 @@ install -Dpm 0644 ./scripts/zsh_completion/_bazel         -t %{buildroot}%{zsh_c
 
 %files
 %{_bindir}/bazel
-%doc
+%doc README.md CONTRIBUTING.md SECURITY.md docs
 %license LICENSE
 
 %pkg_completion -zb
