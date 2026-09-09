@@ -11,6 +11,7 @@ BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(gdk-3.0)
 BuildRequires:  pkgconfig(libsoup-3.0)
 BuildRequires:  pkgconfig(javascriptcoregtk-4.1)
+BuildRequires:	pkgconfig(webkit2gtk-4.1)
 %dnl Requires:       runtime deps here
 Packager:       Emmett Zimmerman <miniipadfun@icloud.com>
 
