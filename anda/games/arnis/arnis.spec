@@ -1,3 +1,5 @@
+%undefine __brp_mangle_shebangs
+
 Name:           arnis
 Version:        3.1.0
 Release:        1%{?dist}
