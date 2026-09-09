@@ -1,3 +1,2 @@
-let tags = get("https://api.github.com/repos/AyatanaIndicators/ayatana-indicator-session/git/refs/tags").json_arr();
-let split_ref = tags[tags.len-1].ref.split("/");
-rpm.version(split_ref[split_ref.len-1]);
+let tags = git_tags("https://github.com/AyatanaIndicators/ayatana-indicator-session");
+rpm.version(tags[tags.len - 1]);

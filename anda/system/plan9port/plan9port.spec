@@ -1,10 +1,10 @@
-%global commit 337c6acbfed51d8d9f08598c6cd398f53abcca7d
-%global commit_date 20260711
+%global commit b6564bd96ca189c69e28797738dad56f91eb5967
+%global commit_date 20260827
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           plan9port
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Plan 9 from User Space
 URL:            https://9fans.github.io/plan9port/
 Source0:        https://github.com/9fans/plan9port/archive/%{commit}/plan9port-%{commit}.tar.gz

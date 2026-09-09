@@ -2,7 +2,7 @@
 %global _desc Python API to MPV using JSON IPC.
 
 Name:			python-%{pypi_name}
-Version:		1.3.0
+Version:		1.4.0
 Release:		1%{?dist}
 Summary:		Python API to MPV using JSON IPC
 License:		Apache-2.0
