@@ -7,8 +7,8 @@
 %global major_package_version 13-1
 
 Name:           %(echo %real_name | tr '_' '-')
-Version:        13.3.73
-Release:        2%{?dist}
+Version:        13.4.59
+Release:        1%{?dist}
 Summary:        CUDA NVVM
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
