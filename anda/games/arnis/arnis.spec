@@ -1,7 +1,7 @@
 %undefine __brp_mangle_shebangs
 
 Name:           arnis
-Version:        3.1.0
+Version:        3.2.0
 Release:        1%{?dist}
 Summary:        Generate any location from the real world in  Minecraft with a high level of detail
 URL:            https://github.com/louis-e/arnis
