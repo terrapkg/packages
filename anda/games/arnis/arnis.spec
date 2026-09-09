@@ -12,7 +12,7 @@ BuildRequires:  pkgconfig(gdk-3.0)
 BuildRequires:  pkgconfig(libsoup-3.0)
 BuildRequires:  pkgconfig(javascriptcoregtk-4.1)
 BuildRequires:	pkgconfig(webkit2gtk-4.1)
-%dnl Requires:       runtime deps here
+BuildRequires:	desktop-file-utils
 Packager:       Emmett Zimmerman <miniipadfun@icloud.com>
 
 %description
