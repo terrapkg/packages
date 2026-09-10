@@ -5,7 +5,7 @@
 
 Name:           terra-gamescope
 Version:        3.16.28
-Release:        1.ogc%{ogc_release}%?dist
+Release:        %{ogc_release}%?dist
 Summary:        Micro-compositor for video games on Wayland
 
 License:        BSD-2-Clause
