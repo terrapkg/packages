@@ -1,12 +1,12 @@
 %global debug_package   %{nil}
 
-%global commit          509db24f4ad282e3fbd96bcf0ca7bc9ac08216ee
+%global commit          3efacb3640a9859c7711e7ddd0b157c143b45f9c
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
-%global commitdate      20260908
+%global commitdate      20260910
 
 Name:   	umbriel-nightly
 Version:	0^%{commitdate}git.%{shortcommit}
-Release:	2%{?dist}
+Release:	1%{?dist}
 Summary:	A work-in-progress Wayland compositor designed for daily use, with scrolling and dwindle layouts, per-output workspaces, window rules, blur, shadows, and fluid animations
 
 License:	MIT
