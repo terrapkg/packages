@@ -1,10 +1,9 @@
 %global ver v0.5.0-1
-%global sanitized_ver %(echo %{ver} | sed 's/-/./')
 
 %define debug_package %{nil}
 
 Name:           surface-control
-Version:        %{sanitized_ver}
+Version:        0.5.0.1
 Release:        1%{?dist}
 Summary:        Control various aspects of Microsoft Surface devices from the shell
 
