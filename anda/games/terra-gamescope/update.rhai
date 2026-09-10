@@ -1,3 +1,5 @@
-let tag = gh_tag("OpenGamingCollective/gamescope");
-rpm.version(find(`^([\d.]+)-ogc\d+$`, tag, 1));
-rpm.global("ogc_release", find(`-ogc(\d+)$`, tag, 1));
+let v = gh_tag("OpenGamingCollective/gamescope");
+
+rpm.global("ver", v);
+v.replace("-ogc", "^");
+rpm.version(v);

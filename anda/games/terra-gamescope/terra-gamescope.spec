@@ -1,11 +1,11 @@
 %global libliftoff_minver 0.4.1
 
 %global _default_patch_fuzz 2
-%global ogc_release 1
+%global ver 3.16.28-ogc1
 
 Name:           terra-gamescope
-Version:        3.16.28
-Release:        %{ogc_release}%?dist
+Version:        3.16.28^1
+Release:        1%?dist
 Summary:        OGC fork of the Micro-compositor for video games on Wayland
 
 License:        BSD-2-Clause
@@ -109,10 +109,7 @@ Requires: terra-gamescope = %{evr}
 %summary
 
 %prep
-%setup -Tc
-git clone %{url}.git $PWD
-git checkout %{version}-ogc%{ogc_release}
-git submodule update --init --recursive
+%git_clone %{url} %{ver}
 mkdir -p pkgconfig
 cp %{SOURCE0} pkgconfig/stb.pc
 
