@@ -1,7 +1,7 @@
 %global appid app.fluxer.Fluxer
 
 Name:           fluxer
-Version:        fluxer.gateway@2026.909.171723
+Version:        fluxer.api@2026.910.927
 Release:        1%{?dist}
 Summary:        Fluxer is a free and open source instant messaging and VoIP platform built for friends, groups, and communities
 URL:            https://fluxer.app
