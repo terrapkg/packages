@@ -1,7 +1,6 @@
-%define debug_package %{nil}
-
 Name:           subatomic
-Version:        1.0.0
+# Last go/subatomic-v0 release
+Version:        0.15.0
 Release:        1%{?dist}
 Summary:        A modern package delivery system
 
@@ -48,6 +47,7 @@ install -pm 755 build/bin/subatomic %{buildroot}%{_bindir}/
 
 
 %files
+%doc README.md
 %{_bindir}/subatomic
 
 
