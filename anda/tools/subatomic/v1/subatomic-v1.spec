@@ -1,7 +1,7 @@
 %bcond rust_nightly 0
 %undefine __brp_mangle_shebangs
 
-Name:           subatomic
+Name:           subatomic-v1
 Version:        1.0.0
 Release:        1%{?dist}
 Summary:        A modern package delivery system
