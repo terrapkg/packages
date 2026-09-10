@@ -30,7 +30,7 @@
 %global toolchain clang
 
 Name:           zen-browser
-Version:        1.21.16b
+Version:        1.21.16
 Release:        1%{?dist}
 Summary:        Calm and private web browser that is built on Firefox
 
