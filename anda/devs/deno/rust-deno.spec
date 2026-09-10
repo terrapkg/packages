@@ -52,7 +52,7 @@ License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) 
 %doc README.md
 %{_metainfodir}/%{appid}.metainfo.xml
 %{_bindir}/deno
-%{_bindir}/dx
+%dnl %{_bindir}/dx
 
 %pkg_completion -Bfzn %crate
 
