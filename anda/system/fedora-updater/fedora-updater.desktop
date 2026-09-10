@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=fedora-updater
+Comment=System, Flatpak, and firmware updates (dev build)
+Exec=/usr/bin/fedora-updater
+Icon=dev.fedora.Updater.png
+Terminal=false
+Categories=System;PackageManager;
+StartupNotify=true
+StartupWMClass=dev.fedora.Updater
