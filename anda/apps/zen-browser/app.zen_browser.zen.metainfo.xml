@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <metadata_license>CC0-1.0</metadata_license>
+
+  <developer id="app.zen_browser">
+    <name>Zen OSS Team</name>
+  </developer>
+
+
+  <description>
+    <p>
+      Zen Browser is a web browser that is built on the Firefox platform.
+      It gives you a calm interface, a workspace-based layout, and vertical
+      tabs, so that you can keep many tasks apart.
+    </p>
+    <p>
+      This package is built from the Zen Browser release source. The build
+      removes the telemetry reporting of Mozilla, and it uses the system
+      libraries of Fedora where possible.
+    </p>
+  </description>
+
+  <launchable type="desktop-id">app.zen_browser.zen.desktop</launchable>
+
+  <!-- The package installs the icons in the hicolor theme. Without this
+       element, terra-appstream-helper puts a generic stock icon in place.
+       Note: a stock icon must have a name from the freedesktop icon list.
+       appstream-util refuses an application name there. -->
+  <icon type="local">/usr/share/icons/hicolor/128x128/apps/app.zen_browser.zen.png</icon>
+
+  <url type="bugtracker">https://github.com/zen-browser/desktop/issues</url>
+  <url type="help">https://docs.zen-browser.app</url>
+  <url type="vcs-browser">https://github.com/zen-browser/desktop</url>
+
+  <categories>
+    <category>Network</category>
+    <category>WebBrowser</category>
+  </categories>
+
+  <content_rating type="oars-1.1"/>
+</component>
