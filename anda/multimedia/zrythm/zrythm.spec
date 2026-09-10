@@ -24,6 +24,14 @@ BuildRequires: boost-devel
 BuildRequires: (ffmpeg-free-devel or ffmpeg-devel)
 BuildRequires: ladspa-devel
 BuildRequires: graphviz-devel
+BuildRequires: libXrandr-devel
+BuildRequires: libXinerama-devel
+BuildRequires: libXcursor-devel
+BuildRequires: qt6-qtbase-devel
+BuildRequires: qt6-canvaspainter-devel
+BuildRequires: json-devel
+BuildRequires: json-schema-validator-devel
+BuildRequires: libsndfile-devel
 BuildRequires: pkgconfig(carla-host-plugin) >= 2.6.0
 BuildRequires: pkgconfig(gtk4)
 BuildRequires: pkgconfig(gtksourceview-5)
@@ -33,9 +41,7 @@ BuildRequires: pkgconfig(audec)
 BuildRequires: pkgconfig(libadwaita-1)
 BuildRequires: pkgconfig(libchromaprint)
 BuildRequires: pkgconfig(libcurl)
-#BuildRequires: pkgconfig(libfl)
 BuildRequires: libfl-devel
-# ^ maybe?
 BuildRequires: pkgconfig(libgtop-2.0)
 BuildRequires: pkgconfig(libsass)
 BuildRequires: pkgconfig(libxml-2.0)
@@ -59,9 +65,6 @@ BuildRequires: pkgconfig(rubberband)
 BuildRequires: pkgconfig(jack)
 BuildRequires: pkgconfig(json-glib-1.0)
 BuildRequires: pkgconfig(x11)
-BuildRequires: pkgconfig(Qt5Core)
-BuildRequires: pkgconfig(Qt5Gui)
-BuildRequires: pkgconfig(Qt5Widgets)
 BuildRequires: pkgconfig(libxdot)
 BuildRequires: python3dist(sphinx)
 BuildRequires: python3dist(pypandoc)
@@ -72,6 +75,11 @@ BuildRequires: pkgconfig(soxr)
 BuildRequires: pkgconfig(zix-0)
 BuildRequires: pkgconfig(yyjson)
 BuildRequires: pkgconfig(epoxy)
+BuildRequires: cmake(Qt6Core)
+BuildRequires: cmake(Qt6Gui)
+BuildRequires: cmake(Qt6Widgets)
+BuildRequires: cmake(Qt6Quick)
+BuildRequires: cmake(Qt6LinguistTools)
 BuildRequires: libstdc++
 BuildRequires: libstdc++-devel
 BuildRequires: libstdc++-static
@@ -80,7 +88,6 @@ BuildRequires: jq-devel
 BuildRequires: help2man
 BuildRequires: texi2html
 BuildRequires: xdg-utils
-BuildRequires: meson
 BuildRequires: guile22
 BuildRequires: flex
 Requires:      ladspa
@@ -103,21 +110,22 @@ various plugin and file formats.
 %autosetup -n %name-%v
 
 
-%build
+%conf
 CFLAGS=$(echo "$CFLAGS -fuse-ld=mold -Wno-incompatible-pointer-types" | sed -E "s@\b-Werror\b@@")
 CXXFLAGS=$(echo "$CFLAGS -fuse-ld=mold" | sed -E "s@\b-Werror\b@@")
 
-%meson \
+%cmake \
        -Drtmidi=enabled \
        -Drtaudio=enabled \
        -Dsdl=enabled \
        -Dlsp_dsp=disabled \
-       -Dgraphviz=enabled \
-       --buildtype=release
-%meson_build
+       -Dgraphviz=enabled
+
+%build
+%cmake_build
 
 %install
-%meson_install
+%cmake_install
 
 %find_lang %name
 
