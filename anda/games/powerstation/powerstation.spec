@@ -1,6 +1,6 @@
 Name:           powerstation
 Version:        0.8.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Daemon for controlling TDP and performance over DBus
 
 SourceLicense:  GPL-3.0-or-later
@@ -8,6 +8,8 @@ License:        ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache
 URL:            https://github.com/ShadowBlip/PowerStation
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 Packager:       madonuko <mado@fyralabs.com>
+
+Patch0:         https://patch-diff.githubusercontent.com/raw/ShadowBlip/PowerStation/pull/46.patch
 
 ExcludeArch:    %{ix86}
 
