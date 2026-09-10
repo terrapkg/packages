@@ -4,7 +4,8 @@ Name:			      codium
 Version:		    1.135.06055
 %electronmeta -D
 %global __requires_exclude %{__requires_exclude}|libcurl.so|libmsalruntime.so
-Release:		    1%{?dist}
+%global __requires_exclude_from ^%{_datadir}/%{name}/resources/app/node_modules\\.asar\\.unpacked/@vscode/ripgrep-universal/bin/
+Release:		    2%{?dist}
 Summary:		    Code editing. Redefined.
 License:	      %{electron_license}
 URL:            https://vscodium.com/
@@ -111,6 +112,9 @@ ln -s %{_datadir}/%{name}/resources/completions/bash/codium %{buildroot}%{_datad
 %dnl %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
+* Thu Sep 10 2026 ammix <maxim@ammix.dev>
+- Fix dependencies from bundled ripgrep binaries
+
 * Sat Jun 17 2023 madonuko <mado@fyralabs.com> - 1.79.2.23166-2
 - Use /usr/share/ instead of /opt/.
 - Remove lib dependencies.
