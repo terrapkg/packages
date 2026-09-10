@@ -129,7 +129,7 @@ Welcome to a calmer internet.
 
 %prep
 
-%autosetup -c -n %{name}-%{version} -p1
+%autosetup -c -n %{name}-%{version}
 
 %build
 export MOZBUILD_STATE_PATH="%{rpmbuilddir}/mozbuild"
