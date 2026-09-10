@@ -6,7 +6,7 @@
 Name:           terra-gamescope
 Version:        3.16.28
 Release:        %{ogc_release}%?dist
-Summary:        Micro-compositor for video games on Wayland
+Summary:        OGC fork of the Micro-compositor for video games on Wayland
 
 License:        BSD-2-Clause
 URL:            https://github.com/OpenGamingCollective/gamescope
@@ -98,6 +98,8 @@ BuildRequires:  pkgconfig(xwayland)
 
 %description
 %{name} is the micro-compositor optimized for running video games on Wayland.
+This version is a fork by the OpenGamingCollective that improves support for
+additional hardware.
 
 %package libs
 Summary:	libs for %{name}
