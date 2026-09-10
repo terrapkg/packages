@@ -27,6 +27,7 @@ BuildRequires:  pkgconfig(uuid)
 BuildRequires:  pkgconfig(lomiri-sounds)
 BuildRequires:  pkgconfig(dbustest-1)
 BuildRequires:  pkgconfig(systemd)
+BuildRequires:  cmake(ECM)
 
 %description
 The Ayatana Indicators project is the continuation of Application Indicators
