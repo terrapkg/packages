@@ -5,6 +5,6 @@ project pkg {
   }
   rpm {
     spec = "bazel.spec"
-    extra_repos = ["https://packages.adoptium.net/artifactory/rpm/fedora/\\$releasever/\\$basearch"]
+    extra_repos = ["https://packages.adoptium.net/artifactory/rpm/rhel/\\$releasever/\\$basearch"]
   }
 }
