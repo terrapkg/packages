@@ -1,10 +1,10 @@
 %global appid com.vscodium.VSCodium
 
 Name:			      codium
-Version:		    1.126.04524
+Version:		    1.135.06055
 %electronmeta -D
 %global __requires_exclude %{__requires_exclude}|libcurl.so|libmsalruntime.so
-Release:		    2%{?dist}
+Release:		    1%{?dist}
 Summary:		    Code editing. Redefined.
 License:	      %{electron_license}
 URL:            https://vscodium.com/

@@ -1,10 +1,10 @@
-%global commit 2aa6d0d770546fb36dd8714801c373060e4dd912
+%global commit 30dc182391e2c002f6f7c988e76aa477a4772aa2
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %define appid io.github.ilya_zlobintsev.LACT
 
 Name:           lact
-Version:        0.10.0
+Version:        0.10.1
 Release:        1%{?dist}
 Summary:        Linux GPU Configuration And Monitoring Tool
 URL:            https://github.com/ilya-zlobintsev/LACT

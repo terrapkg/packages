@@ -1,0 +1,68 @@
+Name:		OpenLogi
+Version:	0.8.3
+Release:        1%{?dist}
+Summary:	A native, local-first alternative to Logitech Options+
+SourceLicense:	Apache-2.0 AND MIT
+License: (Apache-2.0 OR MIT) AND BSD-3-Clause AND (MIT OR Apache-2.0) AND Unicode-3.0 AND 0BSD AND (0BSD OR Apache-2.0) AND (0BSD OR MIT OR Apache-2.0) AND Apache-2.0 AND MIT AND ISC AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR GPL-2.0-only) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND BSD-2-Clause AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR MIT OR Apache-2.0) AND BSD-3-Clause AND (BSD-3-Clause OR Apache-2.0) AND (BSD-3-Clause OR MIT OR Apache-2.0) AND CC0-1.0 AND (CC0-1.0 OR MIT-0 OR Apache-2.0) AND CDLA-Permissive-2.0 AND GPL-3.0-or-later AND ISC AND MIT AND (MIT OR Apache-2.0) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Zlib OR Apache-2.0) AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT) AND Zlib AND (Zlib OR Apache-2.0 OR MIT) AND bzip2-1.0.6
+URL:		https://openlogi.org
+Source0:	https://github.com/AprilNEA/OpenLogi/archive/refs/tags/v%{version}.tar.gz
+Packager:	Owen Zimmerman <owen@fyralabs.com>
+BuildRequires:	cargo-rpm-macros
+BuildRequires:	systemd-rpm-macros
+BuildRequires:	rustc
+BuildRequires:	fontconfig-devel
+BuildRequires:  clang-devel
+BuildRequires:  libxkbcommon-x11-devel
+
+Provides:	openlogi
+
+%description
+⚡️ A native, local-first alternative to Logitech Options+, written in Rust 🦀.
+Unlock the full capabilities of Logitech mice, keyboards, and webcams over HID++ and UVC.
+
+%prep
+%autosetup -C
+%cargo_prep_online
+
+%build
+%cargo_build -- -p openlogi -p openlogi-desktop -p openlogi-overlay -p openlogi-agent
+
+%install
+install -Dm755 target/rpm/openlogi				                %{buildroot}%{_bindir}/openlogi
+install -Dm755 target/rpm/openlogi-desktop			            %{buildroot}%{_bindir}/openlogi-desktop
+install -Dm755 target/rpm/openlogi-overlay			            %{buildroot}%{_bindir}/openlogi-overlay
+install -Dm755 target/rpm/openlogi-agent			            %{buildroot}%{_bindir}/openlogi-agent
+install -Dm644 packaging/linux/udev/70-openlogi.rules		    %{buildroot}%{_udevrulesdir}/70-openlogi.rules
+install -Dm644 packaging/linux/systemd/openlogi-agent.service	%{buildroot}%{_userunitdir}/openlogi-agent.service
+install -Dm644 packaging/linux/desktop/openlogi.desktop		    %{buildroot}%{_appsdir}/openlogi.desktop
+
+# See https://github.com/AprilNEA/OpenLogi/issues/794 and https://github.com/terrapkg/packages/pull/16078
+# For why we cannot include this file (but hopefully this can change).
+%dnl install -Dm644 design/icon/openlogi.png %{buildroot}%{_hicolordir}/1024x1024/apps/openlogi.png
+
+%cargo_license_summary_online
+%{cargo_license_online} > LICENSE.dependencies
+
+%post
+%systemd_user_post openlogi.service
+
+%preun
+%systemd_user_preun openlogi.service
+
+%postun
+%systemd_user_postun_with_restart openlogi.service
+
+%files
+%license LICENSE-APACHE LICENSE-MIT LICENSE.dependencies
+%doc docs/* README.md CHANGELOG.md
+%{_bindir}/openlogi
+%{_bindir}/openlogi-desktop
+%{_bindir}/openlogi-overlay
+%{_bindir}/openlogi-agent
+%{_udevrulesdir}/70-openlogi.rules
+%{_userunitdir}/openlogi-agent.service
+%{_appsdir}/openlogi.desktop
+
+%changelog
+* Sat Aug 22 2026 Owen Zimmerman <owen@fyralabs.com> - 0.7.4-1
+- Initial commit

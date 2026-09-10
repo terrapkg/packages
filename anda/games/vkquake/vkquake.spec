@@ -3,7 +3,7 @@
 
 Summary:        Vulkan Quake port based on QuakeSpasm
 Name:           vkquake
-Version:        1.35.0
+Version:        1.36.0
 Release:        1%{?dist}
 Packager:       Jan200101 <sentrycraft123@gmail.com>
 

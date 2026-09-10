@@ -2,7 +2,7 @@
 
 %global _default_patch_fuzz 2
 %global build_timestamp %(date +"%Y%m%d")
-%global gamescope_commit 55ac921a1afb346696b6f80541741d431b3eba29
+%global gamescope_commit 77e6ea94dbc3feca4b95daef433d6238a9efdd68
 %define short_commit %(echo %{gamescope_commit} | cut -c1-8)
 
 Name:           terra-gamescope

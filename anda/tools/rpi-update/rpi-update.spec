@@ -1,7 +1,7 @@
 %define debug_package %nil
 
-%global commit ff8cd74d60b577d07883d4fc7080f156b28767d2
-%global commit_date 20260730
+%global commit 0fd4cffe552e9c323ca97d89ccdc25f63e112f8b
+%global commit_date 20260827
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           rpi-update

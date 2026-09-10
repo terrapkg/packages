@@ -1,8 +1,8 @@
 %define _binaries_in_noarch_packages_terminate_build   0
 
 Name:           kotlin-native
-Version:        2.4.10
-Release:        2%{?dist}
+Version:        2.4.20
+Release:        1%{?dist}
 Summary:        LLVM backend for the Kotlin compiler
 ExclusiveArch:  x86_64
 
