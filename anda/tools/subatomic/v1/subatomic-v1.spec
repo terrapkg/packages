@@ -18,6 +18,8 @@ BuildRequires: rustup
 Requires:       ostree
 Requires:       createrepo_c
 
+Packager:       Owen Zimmerman <owen@fyralabs.com>
+
 %description
 Subatomic is a package delivery system which supports multiple package formats.
 It manages a repository of packages, handling updating, signing, and other
