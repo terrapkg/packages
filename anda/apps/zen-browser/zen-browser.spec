@@ -5,9 +5,10 @@
 %global zen_app_name    zen
 %global zendir          %{_libdir}/%{zen_app_name}
 %global brandingdir     browser/branding/release
+%global download_ver    1.22b
 
 # Fedora rustc gives more than one valid target triple.
-# `x86_64-oe-linux-gnu` and `x86_64-unknown-linux-gnu` both agree with 
+# `x86_64-oe-linux-gnu` and `x86_64-unknown-linux-gnu` both agree with
 # `x86_64-pc-linux-gnu` and so the mozilla build system just stops.
 # Just Fedora Things:tm:
 %global rust_triple     %{_arch}-unknown-linux-gnu
@@ -30,14 +31,14 @@
 %global toolchain clang
 
 Name:           zen-browser
-Version:        1.21.16
+Version:        1.22
 Release:        1%{?dist}
 Summary:        Calm and private web browser that is built on Firefox
 
 License:        MPL-2.0
 URL:            https://zen-browser.app
 
-Source0:        %{giturl}/releases/download/%{version}/zen.source.tar.zst
+Source0:        %{giturl}/releases/download/%{download_ver}/zen.source.tar.zst
 Source1:        zen.sh.in
 Source2:        %{appid}.desktop
 Source3:        zen-browser-default-prefs.js
