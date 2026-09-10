@@ -8,12 +8,13 @@ Version:        2.7.1
 Release:        1%{?dist}
 Summary:        Rusty chess game in your terminal 🦀
 
-License:        MIT
+License:        MIT AND ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND Apache-2.0 AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR MIT OR Apache-2.0) AND BSD-3-Clause AND (BSD-3-Clause OR MIT OR Apache-2.0) AND CDLA-Permissive-2.0 AND GPL-3.0 AND GPL-3.0+ AND ISC AND (ISC AND (Apache-2.0 OR ISC)) AND (ISC AND (Apache-2.0 OR ISC) AND Apache-2.0 AND MIT AND BSD-3-Clause AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR ISC OR MIT-0)) AND MIT AND (MIT OR Apache-2.0) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT) AND Zlib AND (Zlib OR Apache-2.0 OR MIT)
 URL:            https://crates.io/crates/chess-tui
 Source:         %{terra_crates_source}
 
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  pkgconfig(openssl)
+BuildRequires:  pkgconfig(alsa)
 
 %global _description %{expand:
 A rusty chess game in your terminal 🦀.}
@@ -32,7 +33,7 @@ License:        (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 
 %license LICENSE.dependencies
 %doc CONTRIBUTING.md
 %doc README.md
-%{_bindir}/chess-tui
+%{_bindir}/chess_tui
 
 %package        devel
 Summary:        %{summary}
@@ -45,8 +46,10 @@ use the "%{crate}" crate.
 
 %files          devel
 %license %{crate_instdir}/LICENSE
+%doc %{crate_instdir}/CODE_OF_CONDUCT.md
 %doc %{crate_instdir}/CONTRIBUTING.md
 %doc %{crate_instdir}/README.md
+%doc %{crate_instdir}/SECURITY.md
 %{crate_instdir}/
 
 %package     -n %{name}+default-devel
@@ -61,24 +64,36 @@ use the "default" feature of the "%{crate}" crate.
 %files       -n %{name}+default-devel
 %ghost %{crate_instdir}/Cargo.toml
 
-%package     -n %{name}+chess-tui-devel
+%package     -n %{name}+rodio-devel
 Summary:        %{summary}
 BuildArch:      noarch
 
-%description -n %{name}+chess-tui-devel %{_description}
+%description -n %{name}+rodio-devel %{_description}
 
 This package contains library source intended for building other packages which
-use the "chess-tui" feature of the "%{crate}" crate.
+use the "rodio" feature of the "%{crate}" crate.
 
-%files       -n %{name}+chess-tui-devel
+%files       -n %{name}+rodio-devel
+%ghost %{crate_instdir}/Cargo.toml
+
+%package     -n %{name}+sound-devel
+Summary:        %{summary}
+BuildArch:      noarch
+
+%description -n %{name}+sound-devel %{_description}
+
+This package contains library source intended for building other packages which
+use the "sound" feature of the "%{crate}" crate.
+
+%files       -n %{name}+sound-devel
 %ghost %{crate_instdir}/Cargo.toml
 
 %prep
 %autosetup -n %{crate}-%{version} -p1
 %cargo_prep_online
+sed -i 's/chess-tui/chess_tui/g' Cargo.toml
 
 %build
-%{cargo_license_summary_online}
 %{cargo_license_online} > LICENSE.dependencies
 
 %install
