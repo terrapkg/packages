@@ -10,6 +10,7 @@ Summary:        OGC fork of the Micro-compositor for video games on Wayland
 
 License:        BSD-2-Clause
 URL:            https://github.com/OpenGamingCollective/gamescope
+Packager:       Kyle Gospodnetich <me@kylegospodneti.ch>
 
 Provides:       gamescope = %{version}-%{release}
 Conflicts:      gamescope
