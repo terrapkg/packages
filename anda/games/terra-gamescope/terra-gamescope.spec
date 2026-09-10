@@ -1,13 +1,11 @@
 %global libliftoff_minver 0.4.1
 
 %global _default_patch_fuzz 2
-%global build_timestamp %(date +"%Y%m%d")
-%global gamescope_commit 77e6ea94dbc3feca4b95daef433d6238a9efdd68
-%define short_commit %(echo %{gamescope_commit} | cut -c1-8)
+%global ogc_release 1
 
 Name:           terra-gamescope
-Version:        137.%{short_commit}
-Release:        1%?dist
+Version:        3.16.28
+Release:        1.ogc%{ogc_release}%?dist
 Summary:        Micro-compositor for video games on Wayland
 
 License:        BSD-2-Clause
@@ -110,7 +108,7 @@ Requires: terra-gamescope = %{evr}
 %prep
 %setup -Tc
 git clone %{url}.git $PWD
-git checkout %{gamescope_commit}
+git checkout %{version}-ogc%{ogc_release}
 git submodule update --init --recursive
 mkdir -p pkgconfig
 cp %{SOURCE0} pkgconfig/stb.pc
