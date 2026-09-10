@@ -9,6 +9,7 @@ Summary:        Night-light / gamma utility for the COSMIC desktop (Pop!_OS), vi
 URL:            https://github.com/cosmic-nightlight/cosmic-nightlight
 Source0:       	%{url}/archive/refs/tags/v%{version}.tar.gz
 BuildRequires:  cargo-rpm-macros
+BuildRequires:  kxcbcommon-devel
 Requires:       cosmic-osd
 Provides:	cosmic-nightlight
 Packager:       Owen Zimmerman <owen@fyralabs.com>
