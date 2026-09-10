@@ -1,8 +1,8 @@
 %global appid io.github.rfrench3.bazzite-updater
 
 Name:           bazzite-updater
-Version:        0.10.0
-Release:        3%{?dist}
+Version:        0.10.1
+Release:        1%{?dist}
 Summary:        Update your system
 
 License:        GPL-2.0-or-later AND BSD-3-Clause AND CC0-1.0
