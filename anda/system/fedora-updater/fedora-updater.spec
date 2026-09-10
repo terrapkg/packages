@@ -7,7 +7,7 @@ Version:        0^%{commitdate}.git%{shortcommit}
 Release:        1%{?dist}
 Summary:        Alternative desktop application to Gnome Software Update to use on Fedora Desktop 
 SourceLicense:  Apache-2.0
-License:	Apache-2.0
+License:	%{sourcelicense} AND (Apache-2.0 OR MIT) AND MIT AND (Unlicense OR MIT)
 URL:            https://github.com/rkalla/fedora-updater
 Source0:        %{url}/archive/%{commit}.tar.gz
 Source1:	fedora-updater.desktop
