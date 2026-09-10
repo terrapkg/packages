@@ -1,7 +1,7 @@
 %global appid app.fluxer.Fluxer
 
 Name:           fluxer
-Version:        2026.820.180916
+Version:        2026.909.202036
 Release:        1%{?dist}
 Summary:        Fluxer is a free and open source instant messaging and VoIP platform built for friends, groups, and communities
 URL:            https://fluxer.app
@@ -10,7 +10,7 @@ URL:            https://fluxer.app
 %global __provides_exclude %{__provides_exclude}|libcbor\.so.*|libcrypto\.so.*|libfido2\.so.*|libudev\.so.*|libz\.so.*|libcap\.so.*
 
 License:        AGPL-3.0-or-later AND %electron_license
-Source0:        https://github.com/fluxerapp/fluxer/archive/refs/tags/fluxer-app-proxy@%{version}.tar.gz
+Source0:        https://github.com/fluxerapp/fluxer/archive/refs/tags/fluxer-desktop-canary@%{version}.tar.gz
 BuildRequires:  rust-packaging nodejs nodejs-npm nodejs-packaging pnpm
 BuildRequires:  xorg-x11-proto-devel
 BuildRequires:  pkgconfig(openssl)
