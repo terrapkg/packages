@@ -7,6 +7,7 @@ URL:            https://git.lsfg-vk.dev/lsfg-vk/
 Source0:        https://git.lsfg-vk.dev/lsfg-vk/snapshot/lsfg-vk-%{version}.tar.xz
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 BuildRequires:  cmake
+BuildRequires:  qt6-qtbase-devel
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
 
