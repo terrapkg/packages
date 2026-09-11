@@ -5,8 +5,7 @@ set -euo pipefail
 # This is the fork's fedora-43-6.19.8-3 release commit.
 readonly linux_surface_repository="https://github.com/Ultramarine-Linux/linux-surface.git"
 readonly linux_surface_commit="4cbbe2ed574d7ec3384c611fba32fad3bf7b6ee8"
-readonly package_name="terra-surface"
-readonly spec_name="terra-surface-kernel"
+readonly spec_name="kernel-surface"
 
 readonly workdir="$(mktemp -d)"
 
@@ -35,13 +34,8 @@ git -C "$workdir/kernel-ark" config user.email "builds@terrapkg.com"
 
 # The checkout already contains the pinned tag. Avoid build-ark.py's unbounded
 # `git fetch --tags`, which would otherwise download kernel-ark's full history.
-sed -i \
-    -e '/system("git fetch --tags")/d' \
-    -e "/SPECPACKAGE_NAME='kernel-%s'/c\\cmd.append(\"SPECPACKAGE_NAME='$spec_name'\")" \
+sed -i '/system("git fetch --tags")/d' \
     "$workdir/linux-surface/pkg/fedora/kernel-surface/build-ark.py"
-sed -i \
-    -e "s/^PACKAGE_NAME = \"surface\"$/PACKAGE_NAME = \"$package_name\"/" \
-    "$workdir/linux-surface/pkg/fedora/kernel-surface/build-linux-surface.py"
 
 pushd "$workdir/linux-surface/pkg/fedora/kernel-surface" >/dev/null
 python3 build-linux-surface.py \
