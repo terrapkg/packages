@@ -34,7 +34,14 @@ git -C "$workdir/kernel-ark" config user.email "builds@terrapkg.com"
 
 # The checkout already contains the pinned tag. Avoid build-ark.py's unbounded
 # `git fetch --tags`, which would otherwise download kernel-ark's full history.
-sed -i '/system("git fetch --tags")/d' \
+# build-ark.py resets kernel-ark after cloning. Restrict its configuration
+# generation after that reset, otherwise it needlessly processes every Fedora
+# and RHEL architecture for this x86_64-only package.
+sed -i \
+    -e '/system("git fetch --tags")/d' \
+    -e '/system("git reset --hard/a\\    system("grep -E \\\"^(#|$|EMPTY|ORDER|x86_64)\\\" redhat/configs/priority.fedora > redhat/configs/priority.fedora.x86_64 && mv redhat/configs/priority.fedora.x86_64 redhat/configs/priority.fedora")' \
+    -e '/system("git reset --hard/a\\    system("grep -E \\\"^(#|$|EMPTY|ORDER|x86_64)\\\" redhat/configs/priority.rhel > redhat/configs/priority.rhel.x86_64 && mv redhat/configs/priority.rhel.x86_64 redhat/configs/priority.rhel")' \
+    -e '/system("git reset --hard/a\\    system("sed -i \\\"s/^ARCH_LIST=.*/ARCH_LIST=x86_64/\\\" redhat/Makefile")' \
     "$workdir/linux-surface/pkg/fedora/kernel-surface/build-ark.py"
 
 pushd "$workdir/linux-surface/pkg/fedora/kernel-surface" >/dev/null
