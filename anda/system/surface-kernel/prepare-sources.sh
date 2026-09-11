@@ -5,6 +5,8 @@ set -euo pipefail
 # This is the fork's fedora-43-6.19.8-3 release commit.
 readonly linux_surface_repository="https://github.com/Ultramarine-Linux/linux-surface.git"
 readonly linux_surface_commit="4cbbe2ed574d7ec3384c611fba32fad3bf7b6ee8"
+readonly package_name="terra-surface"
+readonly spec_name="terra-surface-kernel"
 
 readonly workdir="$(mktemp -d)"
 
@@ -29,8 +31,13 @@ git -C "$workdir/kernel-ark" fetch --depth 1 origin \
 
 # The checkout already contains the pinned tag. Avoid build-ark.py's unbounded
 # `git fetch --tags`, which would otherwise download kernel-ark's full history.
-sed -i '/system("git fetch --tags")/d' \
+sed -i \
+    -e '/system("git fetch --tags")/d' \
+    -e "s/SPECPACKAGE_NAME='kernel-%s'/SPECPACKAGE_NAME='$spec_name'/" \
     "$workdir/linux-surface/pkg/fedora/kernel-surface/build-ark.py"
+sed -i \
+    -e "s/^PACKAGE_NAME = \"surface\"$/PACKAGE_NAME = \"$package_name\"/" \
+    "$workdir/linux-surface/pkg/fedora/kernel-surface/build-linux-surface.py"
 
 pushd "$workdir/linux-surface/pkg/fedora/kernel-surface" >/dev/null
 python3 build-linux-surface.py \
@@ -38,9 +45,9 @@ python3 build-linux-surface.py \
     --ark-dir "$workdir/kernel-ark" \
     --outdir "$workdir/srpm"
 
-srpm=("$workdir"/srpm/kernel-surface-*.src.rpm)
+srpm=("$workdir"/srpm/"$spec_name"-*.src.rpm)
 if [[ ${#srpm[@]} -ne 1 || ! -f ${srpm[0]} ]]; then
-    echo "Expected exactly one kernel-surface SRPM" >&2
+    echo "Expected exactly one $spec_name SRPM" >&2
     exit 1
 fi
 
@@ -49,13 +56,13 @@ popd >/dev/null
 mkdir -p "$workdir/extracted"
 rpm2cpio "${srpm[0]}" | (cd "$workdir/extracted" && cpio -idm --quiet)
 
-spec="$workdir/extracted/kernel-surface.spec"
+spec="$workdir/extracted/$spec_name.spec"
 if [[ ! -f $spec ]]; then
-    echo "Generated SRPM does not contain kernel-surface.spec" >&2
+    echo "Generated SRPM does not contain $spec_name.spec" >&2
     exit 1
 fi
 
 find . -maxdepth 1 -type f \( ! -name 'prepare-sources.sh' -a ! -name 'surface-kernel.spec' -a \( -name '*.patch' -o -name '*.config' -o -name '*.tar.*' -o -name '*.xz' \) \) -delete
 rm -f surface-kernel.spec
 cp -a "$workdir/extracted"/. .
-mv kernel-surface.spec surface-kernel.spec
+mv "$spec_name.spec" surface-kernel.spec
