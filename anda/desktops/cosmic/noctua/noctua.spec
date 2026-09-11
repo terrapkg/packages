@@ -13,6 +13,7 @@ License:        %{sourcelicense} AND (BSD-3-Clause OR MIT OR Apache-2.0) AND ((M
 
 URL:            https://codeberg.org/wfx/noctua
 Source0:        %{url}/archive/%{commit}.tar.gz
+Patch0:         noctua-libcosmic-api.patch
 
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  gcc-c++
@@ -30,7 +31,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %{summary}.
 
 %prep
-%autosetup -C
+%autosetup -C -p1
 %cargo_prep_online
 %cargo_license_summary_online
 
@@ -39,10 +40,10 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %{cargo_license_online} > LICENSE.dependencies
 
 %install
-install -Dm0755 target/rpm/noctua                                                   %{buildroot}%{_bindir}/noctua
-%desktop_file_install resources/org.codeberg.wfx.Noctua.desktop
-install -Dm0644 resources/org.codeberg.wfx.Noctua.metainfo.xml                      %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
-install -Dm0644 resources/icons/hicolor/scalable/apps/org.codeberg.wfx.Noctua.svg   %{buildroot}%{_scalableiconsdir}/%{appid}.svg
+install -Dm0755 target/rpm/noctua-cosmic                                            %{buildroot}%{_bindir}/noctua
+%desktop_file_install ui/cosmic/resources/app.desktop
+install -Dm0644 ui/cosmic/resources/app.metainfo.xml                      %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
+install -Dm0644 ui/cosmic/resources/icons/hicolor/scalable/apps/icon.svg   %{buildroot}%{_scalableiconsdir}/%{appid}.svg
 
 %terra_appstream
 
