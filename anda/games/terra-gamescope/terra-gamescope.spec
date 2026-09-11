@@ -6,6 +6,7 @@
 Name:           terra-gamescope
 Version:        3.16.28^1
 Release:        1%?dist
+Epoch:          1
 Summary:        OGC fork of the Micro-compositor for video games on Wayland
 
 License:        BSD-2-Clause
