@@ -29,9 +29,13 @@ tasks.
 pushd crates/kiritan
 %cargo_build
 popd
+pushd crates/satm
+%cargo_build
+popd
 
 %install
 install -Dm 755 target/rpm/subatomic    %{buildroot}%{_bindir}/subatomic
+install -Dm 755 target/rpm/satm         %{buildroot}%{_bindir}/satm
 install -Dm 755 target/rpm/kiritan      %{buildroot}%{_bindir}/kiritan
 %{cargo_license_online} > LICENSE.dependencies
 
