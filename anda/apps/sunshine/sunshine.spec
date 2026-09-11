@@ -5,6 +5,8 @@
 %global github_url https://github.com/LizardByte/Sunshine.git
 %global commit 14ffa6fdaa53f7b51512be2b3d24f3939695403c
 
+%global __requires_exclude ^lib(boost_[a-z_]+|glad_(gl|egl)|libdisplaydevice_common)\.so.*$
+
 Name:           sunshine
 Version:        2026.516.143833
 Release:        1%{?dist}
@@ -40,12 +42,9 @@ BuildRequires:  pkgconfig(opus)
 BuildRequires:  pkgconfig(gbm)
 BuildRequires:  pkgconfig(libpulse)
 BuildRequires:  pkgconfig(numa)
-<<<<<<< HEAD
 BuildRequires:  pkgconfig(libpipewire-0.3)
-=======
 BuildRequires:	pkgconfig(libpipewire-0.3)
 BuildRequires:	pkgconfig(libinputtino)
->>>>>>> bcf049010a6450ea187bcb9401511024fe4648d9
 BuildRequires:  doxygen
 BuildRequires:  nodejs-npm
 BuildRequires:  systemd-rpm-macros
