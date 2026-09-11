@@ -8,8 +8,8 @@
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
-Version:        13.3.73
-Release:        2%{?dist}
+Version:        13.4.49
+Release:        1%{?dist}
 Summary:        Utility to extract information from CUDA binary files
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
