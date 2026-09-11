@@ -30,7 +30,8 @@ pushd crates/kiritan
 %cargo_build
 popd
 pushd crates/satm
-%cargo_build -- --locked
+cargo fetch --locked
+%cargo_build -- --frozen
 popd
 
 %install
