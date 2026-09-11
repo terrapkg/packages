@@ -1,14 +1,14 @@
 %global forgeurl https://gitlab.com/ubports/development/core/geonames
-%global commit 91792a7f85ced64915652c33e3c3a9513c106f58
-%forgemeta
 
 Name:       geonames
 Version:    0.3.2
+
+%forgemeta
 Release:    1%{?dist}
 Summary:    Parse and query the geonames database
 License:    GPL-3.0
 URL:        https://gitlab.com/ubports/development/core/geonames
-Source0:    %{url}/-/archive/%commit/geonames-%commit.tar.gz
+Source0:    %{url}/-/archive/%{version}/geonames-%{version}.tar.gz
 
 BuildRequires: cmake
 BuildRequires: gcc-c++
@@ -36,7 +36,7 @@ BuildArch: noarch
 The %{name}-doc package contains documenation for %{name}.
 
 %prep
-%autosetup -n geonames-%commit
+%autosetup -n geonames-%{version}
 
 %build
 %cmake

@@ -1,15 +1,23 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri
+<<<<<<< HEAD
+
+Name:          lomiri
+Version:       0.6.1
+
+%forgemeta
+=======
 %global commit fdba5843bd7a84ed7d84f72ba29507757d2b35b7
 %forgemeta
 
 Name:          lomiri
 Version:       0.6.2
+>>>>>>> origin/frawhide
 Release:       1%{?dist}
 Summary:       A convergent desktop environment by Ubports
 
 License:       GPLv3 AND LGPLv3
 URL:           https://gitlab.com/ubports/development/core/lomiri
-Source0:       %{url}/-/archive/%commit/lomiri-%commit.tar.gz
+Source0:       %{url}/-/archive/%{version}/lomiri-%{version}.tar.gz
 Patch0:        https://sources.debian.org/data/main/l/lomiri/0.1.2-3/debian/patches/disable-broken-test-mir2.patch
 Patch1:        0001-Add-support-for-both-older-qtmir-and-newer-qtmir-wit.patch
 BuildRequires: cmake
@@ -94,7 +102,7 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 The %{name}-tests package contains test files for %{name}.
 
 %prep
-%autosetup -n lomiri-%commit -p1
+%autosetup -n lomiri-%{version} -p1
 # Ubuntu specific, may have to be updated every background image change on Gnome or Ubuntu
 for i in $(grep -rl warty-final-ubuntu); do
 sed -i 's!warty-final-ubuntu.png!f38/default/f38-01-day.png!' $i

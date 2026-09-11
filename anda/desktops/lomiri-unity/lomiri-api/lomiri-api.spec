@@ -1,15 +1,15 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-api
-%global commit 9e2618e1a68f114581dad9f624bd509d46c9d984
-%forgemeta
 
 Name:          lomiri-api
 Version:       0.3.2
+
+%forgemeta
 Release:       1%{?dist}
 Summary:       API for Lomiri
 
 License:       LGPL-3.0-or-later
 URL:           https://gitlab.com/ubports/development/core/lomiri-api
-Source0:       %{url}/-/archive/%commit/lomiri-api-%commit.tar.gz
+Source0:       %{url}/-/archive/%{version}/lomiri-api-%{version}.tar.gz
 
 BuildRequires: cmake
 BuildRequires: pkgconfig
@@ -40,7 +40,7 @@ BuildArch: noarch
 The %{name}-doc contains documentation for %{name}.
 
 %prep
-%autosetup -n lomiri-api-%commit
+%autosetup -n lomiri-api-%{version}
 
 %build
 # Requires static file that Fedora doesn't package

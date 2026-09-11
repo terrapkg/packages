@@ -1,5 +1,9 @@
+<<<<<<< HEAD
+rpm.version(gitlab_tag("25770177"));
+=======
 let o = get("https://gitlab.com/api/v4/projects/25770177/repository/tags").json_arr()[0];
 rpm.version(o.name);
 if rpm.changed() {
 	rpm.global("commit", o.commit.id);
 }
+>>>>>>> origin/frawhide

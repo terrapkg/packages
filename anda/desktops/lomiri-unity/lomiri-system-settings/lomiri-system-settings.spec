@@ -1,14 +1,19 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-system-settings
+<<<<<<< HEAD
+=======
 %global commit 3911ddb6294294c236ec7a21ecdab69a02839734
 %forgemeta
+>>>>>>> origin/frawhide
 
 Name:       lomiri-system-settings
 Version:    1.4.0
+
+%forgemeta
 Release:    1%{?dist}
 Summary:    The system settings application for Lomiri
 License:    GPLv3
 URL:        https://gitlab.com/ubports/development/core/lomiri-system-settings
-Source0:    %{url}/-/archive/%commit/lomiri-system-settings-%commit.tar.gz
+Source0:    %{url}/-/archive/%{version}/lomiri-system-settings-%{version}.tar.gz
 Patch0:     2002_use-Noto-font-instead-of-Ubuntu-font.patch
 Patch1:     2011_build-without-trust-store.patch
 Patch2:     2013_show-hotspot-on-desktop.patch
@@ -48,7 +53,7 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %prep
-%autosetup -n lomiri-system-settings-%commit -p1
+%autosetup -n lomiri-system-settings-%{version} -p1
 
 %build
 %cmake
