@@ -34,34 +34,8 @@ git -C "$workdir/kernel-ark" config user.email "builds@terrapkg.com"
 
 # The checkout already contains the pinned tag. Avoid build-ark.py's unbounded
 # `git fetch --tags`, which would otherwise download kernel-ark's full history.
-# Patch the helper with Python rather than shell-quoting a multi-line sed
-# insertion. The injected code runs after build-ark.py resets kernel-ark.
-python3 - "$workdir/linux-surface/pkg/fedora/kernel-surface/build-ark.py" <<'PY'
-import re
-import sys
-from pathlib import Path
-
-path = Path(sys.argv[1])
-text = path.read_text()
-text = text.replace('system("git fetch --tags")\n', '')
-needle = 'system("git reset --hard \'%s\'" % args.package_tag)\n'
-injected = needle + '''
-# Terra builds only x86_64.
-for priority in ("fedora", "rhel"):
-    priority_path = "redhat/configs/priority." + priority
-    lines = Path(priority_path).read_text().splitlines(keepends=True)
-    Path(priority_path).write_text("".join(
-        line for line in lines
-        if re.match(r"^(#|$|EMPTY|ORDER|x86_64)", line)
-    ))
-Path("redhat/Makefile").write_text(
-    re.sub(r"^ARCH_LIST=.*$", "ARCH_LIST=x86_64", Path("redhat/Makefile").read_text(), flags=re.MULTILINE)
-)
-'''
-if needle not in text:
-    raise SystemExit("kernel-ark reset line not found")
-path.write_text(text.replace(needle, injected, 1))
-PY
+sed -i '/system("git fetch --tags")/d' \
+    "$workdir/linux-surface/pkg/fedora/kernel-surface/build-ark.py"
 
 pushd "$workdir/linux-surface/pkg/fedora/kernel-surface" >/dev/null
 python3 build-linux-surface.py \
