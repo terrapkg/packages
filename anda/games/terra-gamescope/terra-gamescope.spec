@@ -1,17 +1,17 @@
 %global libliftoff_minver 0.4.1
 
 %global _default_patch_fuzz 2
-%global build_timestamp %(date +"%Y%m%d")
-%global gamescope_commit 77e6ea94dbc3feca4b95daef433d6238a9efdd68
-%define short_commit %(echo %{gamescope_commit} | cut -c1-8)
+%global ver 3.16.28-ogc1
 
 Name:           terra-gamescope
-Version:        137.%{short_commit}
-Release:        1%?dist
-Summary:        Micro-compositor for video games on Wayland
+Version:        3.16.28^1
+Release:        2%{?dist}
+Epoch:          1
+Summary:        OGC fork of the Micro-compositor for video games on Wayland
 
 License:        BSD-2-Clause
 URL:            https://github.com/OpenGamingCollective/gamescope
+Packager:       Kyle Gospodnetich <me@kylegospodneti.ch>
 
 Provides:       gamescope = %{version}-%{release}
 Conflicts:      gamescope
@@ -80,9 +80,9 @@ BuildRequires:  /usr/bin/glslangValidator
 # libliftoff hasn't bumped soname, but API/ABI has changed for 0.2.0 release
 Requires:       libliftoff%{?_isa} >= %{libliftoff_minver}
 Requires:       xorg-x11-server-Xwayland
-Requires:       terra-gamescope-libs = %{version}-%{release}
+Requires:       terra-gamescope-libs = %{evr}
 %ifarch x86_64
-Requires:       terra-gamescope-libs(x86-32) = %{version}-%{release}
+Requires:       terra-gamescope-libs(x86-32) = %{evr}
 %endif
 Recommends:     mesa-dri-drivers
 Recommends:     mesa-vulkan-drivers
@@ -100,6 +100,8 @@ BuildRequires:  pkgconfig(xwayland)
 
 %description
 %{name} is the micro-compositor optimized for running video games on Wayland.
+This version is a fork by the OpenGamingCollective that improves support for
+additional hardware.
 
 %package libs
 Summary:	libs for %{name}
@@ -108,10 +110,7 @@ Requires: terra-gamescope = %{evr}
 %summary
 
 %prep
-%setup -Tc
-git clone %{url}.git $PWD
-git checkout %{gamescope_commit}
-git submodule update --init --recursive
+%git_clone %{url} %{ver}
 mkdir -p pkgconfig
 cp %{SOURCE0} pkgconfig/stb.pc
 

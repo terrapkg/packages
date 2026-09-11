@@ -2,6 +2,9 @@
 # excluded because syslog-ng claims to provide it.
 # we explicitly require cef so we will definitely get it.
 %global __requires_exclude ^libcef\\.so\\(\\)\\(64bit\\)$
+# determine cef-devel install location from /usr/src/cef-<version>;
+%global cef_root %(ls -d /usr/src/cef-*/ 2>/dev/null | sort -V | tail -n 1)
+%global appid com.adamcake.Bolt
 
 Name:       bolt-launcher
 Version:    0.24.0
@@ -19,10 +22,8 @@ BuildRequires: cef
 BuildRequires: cef-devel
 BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig(gio-2.0)
-%dnl BuildRequires: pkgconfig(liblomiri-api)
 BuildRequires: pkgconfig(gmock)
 BuildRequires: pkgconfig(gtest)
-%dnl BuildRequires: pkgconfig(libqtdbustest-1)
 BuildRequires: pkgconfig(luajit)
 BuildRequires: pkgconfig(libarchive)
 BuildRequires: pkgconfig(x11)
@@ -46,10 +47,11 @@ sed -i 's/#  define FMT_USE_CONSTEVAL 1/#  define FMT_USE_CONSTEVAL 0/' modules/
 
 %conf
 %cmake \
-    -D CEF_ROOT="/usr/src/cef-146.0.11" \
+    -D CEF_ROOT=%{cef_root} \
     -D CMAKE_MODULE_PATH="%{_datadir}/cmake/Modules" \
     -D CEF_LIBRARY="%{_libdir}/cef/libcef.so" \
     -D BUILD_SHARED_LIBS=OFF \
+    -D BOLT_META_NAME=%{appid} \
     -D BOLT_CEF_INCLUDEPATH="%{_includedir}/cef" \
     -D BOLT_LIBCEF_DIRECTORY="%{_libdir}/cef" \
     -D BOLT_CEF_RESOURCEDIR_OVERRIDE="%{_libdir}/cef" \
@@ -73,14 +75,18 @@ export LD_LIBRARY_PATH="%{_libdir}/cef${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}"
 %license LICENCE
 %{_bindir}/bolt
 %{_libdir}/%{name}/
-%{_appsdir}/BoltLauncher.desktop
-%{_appsdir}/BoltLauncher.RuneScape.desktop
-%{_metainfodir}/BoltLauncher.metainfo.xml
-%{_scalableiconsdir}/BoltLauncher.svg
+%{_appsdir}/%{appid}.desktop
+%{_appsdir}/%{appid}.RuneScape.desktop
+%{_metainfodir}/%{appid}.metainfo.xml
+%{_scalableiconsdir}/%{appid}.svg
 
 %changelog
-* Fri Sep 04 2026 Caleb Jones <caleb@fyralabs.com>
+* Fri Sep 11 2026 Caleb Jones <owen@fyralabs.com> - 0.24.0-1
+- Change CEF root so it works with various cef versons.
+- Various improvements
+
+* Fri Sep 04 2026 Caleb Jones <caleb@fyralabs.com> - 0.23.2-2
 - Exclude libcef.so to fix unnecessary syslog-ng dependency
 
-* Fri May 22 2026 Owen Zimmerman <owen@fyralabs.com>
+* Fri May 22 2026 Owen Zimmerman <owen@fyralabs.com> - 0.23.2-1
 - Initial commit
