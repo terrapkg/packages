@@ -26,7 +26,7 @@ It manages a repository of packages, handling updating, signing, and other
 tasks.
 
 %prep
-%autosetup
+%autosetup -C
 %if %{with rust_nightly}
 %rustup_nightly
 %endif
