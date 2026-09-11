@@ -37,6 +37,7 @@ Handy is a cross-platform desktop application that provides simple, privacy-focu
 %install
 %tauri_install
 install -Dm644 src-tauri/icons/icon.png %{buildroot}%{_hicolordir}/apps/512x512/handy.png
+%desktop_file_install %{S:1}
 
 %check
 %desktop_file_validate %{buildroot}%{_appsdir}/%{name}.desktop
