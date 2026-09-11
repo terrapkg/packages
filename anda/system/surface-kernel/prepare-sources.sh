@@ -28,12 +28,16 @@ git clone --depth 1 --branch kernel-6.19.8-0 \
 # matching upstream branch; fetch only that ref instead of all tags/history.
 git -C "$workdir/kernel-ark" fetch --depth 1 origin \
     linux-6.19.y:refs/remotes/origin/linux-6.19.y
+# build-ark.py applies the Surface patches with git am, which creates commits.
+# The ephemeral CI checkout has no configured author identity.
+git -C "$workdir/kernel-ark" config user.name "Terra Build System"
+git -C "$workdir/kernel-ark" config user.email "builds@terrapkg.com"
 
 # The checkout already contains the pinned tag. Avoid build-ark.py's unbounded
 # `git fetch --tags`, which would otherwise download kernel-ark's full history.
 sed -i \
     -e '/system("git fetch --tags")/d' \
-    -e "s/SPECPACKAGE_NAME='kernel-%s'/SPECPACKAGE_NAME='$spec_name'/" \
+    -e "/SPECPACKAGE_NAME='kernel-%s'/c\\cmd.append(\"SPECPACKAGE_NAME='$spec_name'\")" \
     "$workdir/linux-surface/pkg/fedora/kernel-surface/build-ark.py"
 sed -i \
     -e "s/^PACKAGE_NAME = \"surface\"$/PACKAGE_NAME = \"$package_name\"/" \
