@@ -11,8 +11,6 @@ Source0:        %url/archive/refs/tags/v%version.tar.gz
 
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  ostree-devel
-Requires:       ostree
-Requires:       createrepo_c
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
