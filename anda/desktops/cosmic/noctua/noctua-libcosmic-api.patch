@@ -1,0 +1,34 @@
+From 90bc3ba3453b0fa49681e427ef81d36d62f5996d Mon Sep 17 00:00:00 2001
+From: halfcyan <cypress@fyralabs.com>
+Date: Fri, 11 Sep 2026 06:10:02 +0200
+Subject: [PATCH] rename imports to iced
+
+---
+ ui/cosmic/src/app.rs | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/ui/cosmic/src/app.rs b/ui/cosmic/src/app.rs
+index 50e74cb..d708c52 100644
+--- a/ui/cosmic/src/app.rs
++++ b/ui/cosmic/src/app.rs
+@@ -7,7 +7,7 @@ use cosmic::cosmic_config::{self, CosmicConfigEntry};
+ use cosmic::iced::alignment::{Horizontal, Vertical};
+ use cosmic::iced::{Alignment, Length, Subscription};
+ use cosmic::widget::{self, about::About, icon, menu, nav_bar};
+-use cosmic::{iced_futures, prelude::*};
++use cosmic::{iced, prelude::*};
+ use futures_util::SinkExt;
+ use std::collections::HashMap;
+ use std::time::Duration;
+@@ -260,9 +260,9 @@ impl cosmic::Application for AppModel {
+         // Conditionally enables a timer that emits a message every second.
+         if self.watch_is_active {
+             subscriptions.push(Subscription::run(|| {
+-                iced_futures::stream::channel(
++                iced::stream::channel(
+                     1,
+-                    |mut emitter: iced_futures::futures::channel::mpsc::Sender<Message>| async move {
++                    |mut emitter: iced::futures::channel::mpsc::Sender<Message>| async move {
+                         let mut time = 1;
+                         let mut interval = tokio::time::interval(Duration::from_secs(1));
+ 
