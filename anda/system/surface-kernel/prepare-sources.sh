@@ -34,15 +34,34 @@ git -C "$workdir/kernel-ark" config user.email "builds@terrapkg.com"
 
 # The checkout already contains the pinned tag. Avoid build-ark.py's unbounded
 # `git fetch --tags`, which would otherwise download kernel-ark's full history.
-# build-ark.py resets kernel-ark after cloning. Restrict its configuration
-# generation after that reset, otherwise it needlessly processes every Fedora
-# and RHEL architecture for this x86_64-only package.
-sed -i \
-    -e '/system("git fetch --tags")/d' \
-    -e '/system("git reset --hard/a\\    system("grep -E \\\"^(#|$|EMPTY|ORDER|x86_64)\\\" redhat/configs/priority.fedora > redhat/configs/priority.fedora.x86_64 && mv redhat/configs/priority.fedora.x86_64 redhat/configs/priority.fedora")' \
-    -e '/system("git reset --hard/a\\    system("grep -E \\\"^(#|$|EMPTY|ORDER|x86_64)\\\" redhat/configs/priority.rhel > redhat/configs/priority.rhel.x86_64 && mv redhat/configs/priority.rhel.x86_64 redhat/configs/priority.rhel")' \
-    -e '/system("git reset --hard/a\\    system("sed -i \\\"s/^ARCH_LIST=.*/ARCH_LIST=x86_64/\\\" redhat/Makefile")' \
-    "$workdir/linux-surface/pkg/fedora/kernel-surface/build-ark.py"
+# Patch the helper with Python rather than shell-quoting a multi-line sed
+# insertion. The injected code runs after build-ark.py resets kernel-ark.
+python3 - "$workdir/linux-surface/pkg/fedora/kernel-surface/build-ark.py" <<'PY'
+import re
+import sys
+from pathlib import Path
+
+path = Path(sys.argv[1])
+text = path.read_text()
+text = text.replace('system("git fetch --tags")\n', '')
+needle = 'system("git reset --hard \'%s\'" % args.package_tag)\n'
+injected = needle + '''
+# Terra builds only x86_64.
+for priority in ("fedora", "rhel"):
+    priority_path = "redhat/configs/priority." + priority
+    lines = Path(priority_path).read_text().splitlines(keepends=True)
+    Path(priority_path).write_text("".join(
+        line for line in lines
+        if re.match(r"^(#|$|EMPTY|ORDER|x86_64)", line)
+    ))
+Path("redhat/Makefile").write_text(
+    re.sub(r"^ARCH_LIST=.*$", "ARCH_LIST=x86_64", Path("redhat/Makefile").read_text(), flags=re.MULTILINE)
+)
+'''
+if needle not in text:
+    raise SystemExit("kernel-ark reset line not found")
+path.write_text(text.replace(needle, injected, 1))
+PY
 
 pushd "$workdir/linux-surface/pkg/fedora/kernel-surface" >/dev/null
 python3 build-linux-surface.py \
