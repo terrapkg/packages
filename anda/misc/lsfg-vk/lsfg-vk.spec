@@ -8,7 +8,7 @@ Source0:        https://git.lsfg-vk.dev/lsfg-vk/snapshot/lsfg-vk-%{version}.tar.
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 BuildRequires:  cmake
 BuildRequires:  gcc
-BuildRequiree:  gcc-c++
+BuildRequires:  gcc-c++
 
 %description
 %{summary}.
