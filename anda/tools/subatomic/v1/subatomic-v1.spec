@@ -1,4 +1,3 @@
-%bcond rust_nightly 0
 %undefine __brp_mangle_shebangs
 
 Name:           subatomic-v1
@@ -12,9 +11,6 @@ Source0:        %url/archive/refs/tags/v%version.tar.gz
 
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  ostree-devel
-%if %{with rust_nightly}
-BuildRequires: rustup
-%endif
 Requires:       ostree
 Requires:       createrepo_c
 
@@ -27,9 +23,6 @@ tasks.
 
 %prep
 %autosetup -C
-%if %{with rust_nightly}
-%rustup_nightly
-%endif
 %cargo_prep_online
 %cargo_license_summary_online
 
@@ -38,12 +31,8 @@ tasks.
 pushd crates/kiritan
 %cargo_build
 popd
-pushd crates/libsubatomic
-%cargo_build
-popd
 
 %install
-ls -laH target/rpm
 install -Dm 755 target/rpm/subatomic    %{buildroot}%{_bindir}/subatomic
 install -Dm 755 target/rpm/kiritan      %{buildroot}%{_bindir}/kiritan
 %{cargo_license_online} > LICENSE.dependencies
