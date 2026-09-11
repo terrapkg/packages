@@ -17,6 +17,7 @@ BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  openssl-devel
 BuildRequires:  boost-devel
+BuildRequires:	libev-devel
 BuildRequires:  pkgconfig(libcap)
 BuildRequires:  pkgconfig(libdrm)
 BuildRequires:  pkgconfig(libva)
@@ -39,7 +40,12 @@ BuildRequires:  pkgconfig(opus)
 BuildRequires:  pkgconfig(gbm)
 BuildRequires:  pkgconfig(libpulse)
 BuildRequires:  pkgconfig(numa)
+<<<<<<< HEAD
 BuildRequires:  pkgconfig(libpipewire-0.3)
+=======
+BuildRequires:	pkgconfig(libpipewire-0.3)
+BuildRequires:	pkgconfig(libinputtino)
+>>>>>>> bcf049010a6450ea187bcb9401511024fe4648d9
 BuildRequires:  doxygen
 BuildRequires:  nodejs-npm
 BuildRequires:  systemd-rpm-macros
