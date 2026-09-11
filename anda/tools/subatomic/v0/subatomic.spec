@@ -1,3 +1,5 @@
+%define debug_package %{nil}
+
 Name:           subatomic
 # Last go/subatomic-v0 release
 Version:        0.15.0
