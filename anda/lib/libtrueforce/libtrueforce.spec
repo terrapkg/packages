@@ -10,7 +10,7 @@ URL:            https://github.com/mescon/logitech-trueforce-linux-driver
 Source0:        %{url}/archive/refs/tags/v%{repoversion}.tar.gz
 BuildRequires:  gcc
 BuildRequires:  make
-Requires:       logitech-trueforce
+Suggests:       logitech-trueforce
 Provides:       trueforce-sdk = %{evr}
 Packager:       Luan V. <luanv.oliveira@outlook.com>
 ExclusiveArch:  x86_64
