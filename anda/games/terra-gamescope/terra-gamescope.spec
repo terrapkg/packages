@@ -1,11 +1,11 @@
 %global libliftoff_minver 0.4.1
 
 %global _default_patch_fuzz 2
-%global ver dmemcg-experimental
+%global ver 3.16.28-ogc1
 
 Name:           terra-gamescope
-Version:        dmemcg.experimental
-Release:        1%{?dist}
+Version:        3.16.28^1
+Release:        2%{?dist}
 Epoch:          1
 Summary:        OGC fork of the Micro-compositor for video games on Wayland
 
@@ -80,9 +80,9 @@ BuildRequires:  /usr/bin/glslangValidator
 # libliftoff hasn't bumped soname, but API/ABI has changed for 0.2.0 release
 Requires:       libliftoff%{?_isa} >= %{libliftoff_minver}
 Requires:       xorg-x11-server-Xwayland
-Requires:       terra-gamescope-libs = %{version}-%{release}
+Requires:       terra-gamescope-libs = %{evr}
 %ifarch x86_64
-Requires:       terra-gamescope-libs(x86-32) = %{version}-%{release}
+Requires:       terra-gamescope-libs(x86-32) = %{evr}
 %endif
 Recommends:     mesa-dri-drivers
 Recommends:     mesa-vulkan-drivers
