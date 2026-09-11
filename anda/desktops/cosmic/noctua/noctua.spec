@@ -46,12 +46,12 @@ install -Dm0755 target/rpm/noctua-cosmic                                        
 mv %{buildroot}%{_appsdir}/app.desktop %{buildroot}%{_appsdir}/%{appid}.desktop
 install -Dm0644 ui/cosmic/resources/app.metainfo.xml                      %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 install -Dm0644 ui/cosmic/resources/icons/hicolor/scalable/apps/icon.svg   %{buildroot}%{_scalableiconsdir}/%{appid}.svg
-install -Dm0644 %{SOURCE1} %{buildroot}%{_licensedir}/%{appid}/LICENSE
+install -Dm0644 %{SOURCE1} LICENSE
 
 %terra_appstream
 
 %files
-%license %{_licensedir}/%{appid}/LICENSE LICENSE.dependencies
+%license LICENSE LICENSE.dependencies
 %doc README.md
 %{_bindir}/noctua
 %{_appsdir}/%{appid}.desktop
