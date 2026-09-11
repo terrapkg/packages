@@ -1,17 +1,17 @@
 %global libliftoff_minver 0.4.1
 
 %global _default_patch_fuzz 2
-%global build_timestamp %(date +"%Y%m%d")
-%global gamescope_commit a057260524f04f138eac0cda9d324d8debf2ea7b
-%define short_commit %(echo %{gamescope_commit} | cut -c1-8)
+%global ver 3.16.28-ogc1
 
 Name:           terra-gamescope
-Version:        137.%{short_commit}
+Version:        3.16.28^1
 Release:        1%?dist
-Summary:        Micro-compositor for video games on Wayland
+Epoch:          1
+Summary:        OGC fork of the Micro-compositor for video games on Wayland
 
 License:        BSD-2-Clause
 URL:            https://github.com/OpenGamingCollective/gamescope
+Packager:       Kyle Gospodnetich <me@kylegospodneti.ch>
 
 Provides:       gamescope = %{version}-%{release}
 Conflicts:      gamescope
@@ -100,6 +100,8 @@ BuildRequires:  pkgconfig(xwayland)
 
 %description
 %{name} is the micro-compositor optimized for running video games on Wayland.
+This version is a fork by the OpenGamingCollective that improves support for
+additional hardware.
 
 %package libs
 Summary:	libs for %{name}
@@ -108,10 +110,7 @@ Requires: terra-gamescope = %{evr}
 %summary
 
 %prep
-%setup -Tc
-git clone %{url}.git $PWD
-git checkout %{gamescope_commit}
-git submodule update --init --recursive
+%git_clone %{url} %{ver}
 mkdir -p pkgconfig
 cp %{SOURCE0} pkgconfig/stb.pc
 

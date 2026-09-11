@@ -1,4 +1,9 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-system-settings
+<<<<<<< HEAD
+=======
+%global commit 3911ddb6294294c236ec7a21ecdab69a02839734
+%forgemeta
+>>>>>>> origin/frawhide
 
 Name:       lomiri-system-settings
 Version:    1.4.0

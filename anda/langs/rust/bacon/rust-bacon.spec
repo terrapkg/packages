@@ -5,8 +5,8 @@
 %global features "sound,clipboard"
 
 Name:           rust-bacon
-Version:        3.24.0
-Release:        2%{?dist}
+Version:        3.25.0
+Release:        1%{?dist}
 Summary:        Background rust compiler
 Packager:       Olivia <git@olivia.sh>
 

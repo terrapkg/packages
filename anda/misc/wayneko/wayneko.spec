@@ -1,6 +1,6 @@
 %global _distro_extra_cflags -Wno-sign-compare
 
-%global commit 6330dd12dd59f3ccc78bcf72c061eed2c675362b
+%global commit 0d0d917a174deadcb6f1f56f96be38052fa76d97
 %global shortcommit %{sub %{commit} 0 7}
 %global commitdate 20260623
 

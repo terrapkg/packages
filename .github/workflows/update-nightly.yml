@@ -1,6 +1,11 @@
 name: Nightly Update
 permissions:
   contents: read
+
+concurrency:
+  group: update-nightly
+  cancel-in-progress: true
+
 on:
   schedule:
     - cron: "0 0 * * *"

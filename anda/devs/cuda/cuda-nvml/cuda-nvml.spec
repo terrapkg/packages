@@ -8,8 +8,8 @@
 
 Name:           cuda-nvml
 Epoch:          1
-Version:        13.3.29
-Release:        2%{?dist}
+Version:        13.4.61
+Release:        1%{?dist}
 Summary:        NVIDIA Management library (NVML)
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit

@@ -1,10 +1,10 @@
-%global commit 747d551844750fc5ed32cf88cdf0b3854aee267e
-%global commit_date 20260812
+%global commit 3543bdc81104eb54b40a2a49a5b23edca4812ea6
+%global commit_date 20260910
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           porffor-nightly
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        An ahead-of-time JavaScript compiler
 License:        MIT
 URL:            https://porffor.dev/

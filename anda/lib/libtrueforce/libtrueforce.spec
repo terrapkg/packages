@@ -1,21 +1,19 @@
-%global commit 0dfd98c24440f0a63972be8e57040a502d0146fd
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260821
-%global debug_package %{nil}
+%global repoversion 0.40.3
 
 Name:           libtrueforce
-Version:        1.3.11^%{commitdate}git.%{shortcommit}
-Release:        1%{?dist}
+Version:        1.3.11^%{repoversion}
+Epoch:		    1
+Release:        2%{?dist}
 Summary:        Native Linux implementation of the Logitech Trueforce SDK
 License:        GPL-2.0-only
-URL:            https://github.com/mescon/logitech-rs50-linux-driver
-Source0:        %{url}/archive/%{commit}.tar.gz#/%{name}-%{shortcommit}.tar.gz
+URL:            https://github.com/mescon/logitech-trueforce-linux-driver
+Source0:        %{url}/archive/refs/tags/v%{repoversion}.tar.gz
 BuildRequires:  gcc
 BuildRequires:  make
-Requires:       logitech-rs50-linux-driver
-Provides:       trueforce-sdk = %{?epoch:%{epoch}:}%{version}
+Requires:       logitech-trueforce
+Provides:       trueforce-sdk = %{evr}
 Packager:       Luan V. <luanv.oliveira@outlook.com>
-
+ExclusiveArch:  x86_64
 
 %description
 Native Linux implementation of the Logitech Trueforce SDK
@@ -26,25 +24,25 @@ docs/TRUEFORCE_PROTOCOL.md in the parent repo for the protocol documentation.
 
 %package static
 Summary:        Static library for %{name}
-Requires:       %{name}%{?_isa} = %{version}-%{release}
-
+Requires:       %{name}%{?_isa} = %{evr}
+Requires:       %{name}-devel%{?_isa} = %{evr}
 %description static
 The %{name}-static package contains the static library for %{name}.
 
 
 %package devel
 Summary:        Development files for %{name}
-Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{evr}
 
 %description devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %prep
-%autosetup -c -n %{name}-%{commit}
-mv ./logitech-trueforce-linux-driver-%{commit}/userspace/%{name}/* .
-mv ./logitech-trueforce-linux-driver-%{commit}/docs/TRUEFORCE_PROTOCOL.md .
-rm -rf ./logitech-trueforce-linux-driver-%{commit}
+%autosetup -c -n %{name}-%{repoversion}
+mv ./logitech-trueforce-linux-driver-%{repoversion}/userspace/%{name}/* .
+mv ./logitech-trueforce-linux-driver-%{repoversion}/docs/TRUEFORCE_PROTOCOL.md .
+rm -rf ./logitech-trueforce-linux-driver-%{repoversion}
 
 %build
 %make_build PREFIX=%{_prefix} LIBDIR=%{_libdir} CFLAGS="%(echo %{build_cflags} | sed 's/-fPIE//g') -fPIC"
@@ -56,14 +54,14 @@ install -D -m644 %{name}.a %{buildroot}%{_libdir}/
 %files
 %doc README.md TRUEFORCE_PROTOCOL.md
 %license COPYING
-%{_libdir}/*.so.*
+%{_libdir}/libtrueforce.so.*
 
 %files devel
-%{_libdir}/*.so
+%{_libdir}/libtrueforce.so
 %{_includedir}/trueforce.h
 
 %files static
-%{_libdir}/*.a
+%{_libdir}/libtrueforce.a
 
 
 %changelog

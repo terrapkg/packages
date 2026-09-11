@@ -1,0 +1,12 @@
+diff --git a/resources/nm-protun.name b/resources/nm-protun.name
+index 2bc3ee3..3f949ed 100644
+--- a/resources/nm-protun.name
++++ b/resources/nm-protun.name
+@@ -3,6 +3,7 @@ name=protun
+ service=org.freedesktop.NetworkManager.protun
+ program=$PWD/target/debug/nm-protun-service
+ supports-multiple-connections=false
++supports-safe-private-file-access=true
+ SystemdService=nm-protun.service
+
+ [GNOME]

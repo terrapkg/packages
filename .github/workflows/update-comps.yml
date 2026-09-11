@@ -2,6 +2,10 @@ name: Push comps updates
 permissions:
   contents: read
 
+concurrency:
+  group: update-comps
+  cancel-in-progress: true
+
 on:
   push:
     branches:

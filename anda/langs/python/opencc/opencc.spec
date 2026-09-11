@@ -2,7 +2,7 @@
 %global _desc Open Chinese Convert.
 
 Name:			python-%{pypi_name}
-Version:		1.4.1
+Version:		1.4.2
 Release:		1%{?dist}
 Summary:		Open Chinese Convert
 License:		Apache-2.0

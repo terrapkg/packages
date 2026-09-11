@@ -1,4 +1,4 @@
-policy_module(steamos_manager, 1.0.6)
+policy_module(steamos_manager, 1.0.7)
 
 ########################################
 # Init
@@ -26,7 +26,7 @@ init_status(steamos_manager_t)
 gen_require(`
 	type systemd_unit_file_t;
 ')
-allow steamos_manager_t systemd_unit_file_t:service status;
+allow steamos_manager_t systemd_unit_file_t:service { start stop status };
 
 ########################################
 # Process permissions

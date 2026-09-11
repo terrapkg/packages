@@ -1,0 +1,24 @@
+From 2c5d7691b7664746d989c4123eff8bd7c432cc5e Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Luan=20Vitor=20Simi=C3=A3o=20oliveira?=
+ <luanv.oliveira@outlook.com>
+Date: Wed, 2 Sep 2026 15:07:59 -0300
+Subject: [PATCH] patch: version tag for package build
+
+---
+ dkms.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/dkms.conf b/dkms.conf
+index 95ffe51..d8976ab 100644
+--- a/dkms.conf
++++ b/dkms.conf
+@@ -1,5 +1,5 @@
+ PACKAGE_NAME="nct6687d"
+-PACKAGE_VERSION="1"
++PACKAGE_VERSION="__VERSION_STRING__"
+ MAKE[0]="make -C ${kernel_source_dir} M=${dkms_tree}/${PACKAGE_NAME}/${PACKAGE_VERSION}/build"
+ BUILT_MODULE_NAME[0]="nct6687"
+ DEST_MODULE_LOCATION[0]="/updates"
+-- 
+2.55.0
+
