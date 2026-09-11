@@ -10,9 +10,8 @@ Version:        2026.516.143833
 Release:        1%{?dist}
 License:        GPL-3.0-only AND CC0-1.0
 URL:            http://app.lizardbyte.dev/Sunshine/
-%dnl Patch0:         fix-test-cxxflags.patch
 Summary:        Self-hosted game stream host for Moonlight
-Packager:       metcya <metcya@gmail.com>
+Packager:       metcya <metcya@gmail.com>, Owen Zimmerman <owen@fyralabs.com>
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
@@ -40,6 +39,7 @@ BuildRequires:  pkgconfig(opus)
 BuildRequires:  pkgconfig(gbm)
 BuildRequires:  pkgconfig(libpulse)
 BuildRequires:  pkgconfig(numa)
+BuildRequires:  pkgconfig(libpipewire-0.3)
 BuildRequires:  doxygen
 BuildRequires:  nodejs-npm
 BuildRequires:  systemd-rpm-macros
@@ -63,7 +63,6 @@ browser. Pair from the local server or any mobile device.
 
 %prep
 %git_clone %{github_url} v%{version}
-%dnl %autopatch -p1
 
 %conf
 export BRANCH=master
@@ -72,7 +71,8 @@ export CLONE_URL=%{github_url}
 export COMMIT=%{commit}
 export TAG=v%{version}
 %cmake -DSUNSHINE_ENABLE_CUDA=%{?with_cuda:ON:OFF} \
-       -DSUNSHINE_ASSETS_DIR=share/%{name}
+       -DSUNSHINE_ASSETS_DIR=share/%{name} \
+       -DCMAKE_EXE_LINKER_FLAGS="-Wl,-z,notext"
 
 %build
 %cmake_build
@@ -83,13 +83,13 @@ export TAG=v%{version}
 %terra_appstream
 
 %post
-%systemd_user_post %{name}.service
+%systemd_user_post %{appid}.service
 
 %preun
-%systemd_user_preun %{name}.service
+%systemd_user_preun %{appid}.service
 
 %postun
-%systemd_user_postun_with_restart %{name}.service
+%systemd_user_postun_with_restart %{appid}.service
 
 %if %{with check}
 %check
@@ -100,16 +100,18 @@ export TAG=v%{version}
 %doc README.md
 %license LICENSE
 %{_bindir}/%{name}
-%{_bindir}/%{name}-%{version}
 %{_datadir}/%{name}/
-%{_userunitdir}/%{name}.service
+%{_userunitdir}/app-%{appid}.service
 %{_udevrulesdir}/60-%{name}.rules
 %{_modulesloaddir}/60-%{name}.conf
-%{_scalableiconsdir}/%{name}.svg
+%{_scalableiconsdir}/%{appid}.svg
 %{_hicolordir}/scalable/status/*.svg
 %{_appsdir}/*.desktop
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
+* Thu Sep 10 2026 Owen Zimmerman <owen@fyralabs.com> - 2026.516.143833-1
+- Make build work
+
 * Sun Jan 04 2026 metcya <metcya@gmail.com> - 2025.924.154138-1
 - Initial package
