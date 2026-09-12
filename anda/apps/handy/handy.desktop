@@ -1,0 +1,10 @@
+[Desktop Entry]
+Categories=Accessibility;Utility;
+Comment=Speech-to-text application that works completely offline.
+Comment[ru]=Приложение для преобразования речи в текст оффлайн.
+Exec=handy
+StartupWMClass=handy
+Icon=handy
+Name=Handy
+Terminal=false
+Type=Application
