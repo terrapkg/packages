@@ -13,7 +13,7 @@ BuildRequires:  gcc
 BuildRequires:  gcc-c++
 
 %description
-%{summary}
+%{summary}.
 
 %package    ui
 Summary:    UI for %{name}
@@ -22,7 +22,7 @@ Requires:   qt6-qtdeclarative
 Requires:   qt6-qtbase
 
 %description ui
-GUI for lsfg-vk
+GUI for lsfg-vk.
 
 %prep
 %autosetup -C
