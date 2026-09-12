@@ -1,5 +1,5 @@
 %global appname MangoHud
-%gppbal packagename mangohud
+%global packagename mangohud
 
 %global imgui_ver 1.91.6
 %global vulkan_headers_ver 1.4.346
