@@ -8,6 +8,7 @@ License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) 
 SourceLicense:  MIT
 URL:            https://handy.computer
 Source0:        https://github.com/cjpais/Handy/archive/refs/tags/v%version.tar.gz
+Source1:        handy.desktop
 Packager:       madonuko <mado@fyrlabs.com>
 BuildRequires:  bun-bin %tauri_buildrequires
 BuildRequires:  cmake
@@ -25,7 +26,7 @@ BuildRequires:	glslc
 Handy is a cross-platform desktop application that provides simple, privacy-focused speech transcription. Press a shortcut, speak, and have your words appear in any text field. This happens on your own computer without sending any information to the cloud.
 
 %prep
-%autosetup -n Handy-%version
+%autosetup -n Handy-%{version}
 %tauri_prep
 
 %build
@@ -35,13 +36,22 @@ Handy is a cross-platform desktop application that provides simple, privacy-focu
 
 %install
 %tauri_install
+install -Dm644 src-tauri/icons/icon.png %{buildroot}%{_hicolordir}/apps/512x512/handy.png
+%desktop_file_install %{S:1}
+
+%check
+%desktop_file_validate %{buildroot}%{_appsdir}/%{name}.desktop
 
 %files
 %doc README.md
 %license LICENSE
-%_bindir/handy
-%_appsdir/%name.desktop
+%{_bindir}/handy
+%{_appsdir}/%{name}.desktop
+%{_hicolordir}/apps/512x512/handy.png
 
 %changelog
+* Fri Sep 11 2026 Owen Zimmerman <owen@fyralabs.com> - 0.9.6-1
+- Package desktop file and icon
+
 * Tue Aug 18 2026 madonuko <mado@fyralabs.com> - 0.9.5-1
 - Initial package
