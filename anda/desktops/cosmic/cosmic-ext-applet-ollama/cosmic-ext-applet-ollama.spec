@@ -1,6 +1,6 @@
 %global ver 0.1.1
-%global commitdate 20260509
-%global commit cd3b97c256bbfb04b6fee0500677b1ee57b39e1c
+%global commitdate 20260912
+%global commit 72559d8fb71ab08b6799ed7d9c5c750c79deb041
 %global shortcommit %{sub %{commit} 0 7}
 %global appid dev.heppen.ollama
 
