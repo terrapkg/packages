@@ -3,7 +3,7 @@ Version:        2.0.0
 Release:        1%{?dist}
 Summary:        Lossless Scaling Frame Generation on Linux
 License:        CC-BY-NC-ND-4.0
-URL:            https://git.lsfg-vk.dev/lsfg-vk/
+URL:            https://lsfg-vk.dev
 Source0:        https://git.lsfg-vk.dev/lsfg-vk/snapshot/lsfg-vk-%{version}.tar.xz
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 BuildRequires:  cmake
@@ -13,14 +13,16 @@ BuildRequires:  gcc
 BuildRequires:  gcc-c++
 
 %description
-%{summary}.
+%{summary}
 
 %package    ui
 Summary:    UI for %{name}
 Requires:   %{name} = %{evr}
+Requires:   qt6-qtdeclarative
+Requires:   qt6-qtbase
 
 %description ui
-%{summary}.
+GUI for lsfg-vk
 
 %prep
 %autosetup -C
@@ -33,6 +35,14 @@ Requires:   %{name} = %{evr}
 
 %install
 %cmake_install
+
+%post
+if ! rpm -q lsfg-vk-ui &>/dev/null; then
+    echo "=============================================================="
+    echo "If you want the UI for lsfg-vk, you should install lsfg-vk-ui"
+    echo "    sudo dnf install lsfg-vk-ui"
+    echo "=============================================================="
+fi
 
 %files
 %license LICENSE.txt
