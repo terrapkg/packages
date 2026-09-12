@@ -142,13 +142,13 @@ Patch5:         ffmpeg-vapoursynth-script-soname.patch
 Patch1002:      ffmpeg-chromium.patch
 
 
-Requires:       libavcodec%{?pkg_suffix}%{_isa} = %{version}-%{release}
-Requires:       libavdevice%{?pkg_suffix}%{_isa} = %{version}-%{release}
-Requires:       libavfilter%{?pkg_suffix}%{_isa} = %{version}-%{release}
-Requires:       libavformat%{?pkg_suffix}%{_isa} = %{version}-%{release}
-Requires:       libavutil%{?pkg_suffix}%{_isa} = %{version}-%{release}
-Requires:       libswresample%{?pkg_suffix}%{_isa} = %{version}-%{release}
-Requires:       libswscale%{?pkg_suffix}%{_isa} = %{version}-%{release}
+Requires:       libavcodec%{?pkg_suffix}%{_isa} = %{evr}
+Requires:       libavdevice%{?pkg_suffix}%{_isa} = %{evr}
+Requires:       libavfilter%{?pkg_suffix}%{_isa} = %{evr}
+Requires:       libavformat%{?pkg_suffix}%{_isa} = %{evr}
+Requires:       libavutil%{?pkg_suffix}%{_isa} = %{evr}
+Requires:       libswresample%{?pkg_suffix}%{_isa} = %{evr}
+Requires:       libswscale%{?pkg_suffix}%{_isa} = %{evr}
 
 BuildRequires:  AMF-devel
 # NOTE: This MUST be done otherwise the binary is NOT REDISTRIBUTABLE.
@@ -326,13 +326,13 @@ This build of ffmpeg is limited in the number of codecs supported.
 %if "x%{?pkg_suffix}" != "x"
 %package -n     %{pkg_name}
 Summary:        A complete solution to record, convert and stream audio and video
-Requires:       libavcodec%{?pkg_suffix}%{_isa} = %{version}-%{release}
-Requires:       libavdevice%{?pkg_suffix}%{_isa} = %{version}-%{release}
-Requires:       libavfilter%{?pkg_suffix}%{_isa} = %{version}-%{release}
-Requires:       libavformat%{?pkg_suffix}%{_isa} = %{version}-%{release}
-Requires:       libavutil%{?pkg_suffix}%{_isa} = %{version}-%{release}
-Requires:       libswresample%{?pkg_suffix}%{_isa} = %{version}-%{release}
-Requires:       libswscale%{?pkg_suffix}%{_isa} = %{version}-%{release}
+Requires:       libavcodec%{?pkg_suffix}%{_isa} = %{evr}
+Requires:       libavdevice%{?pkg_suffix}%{_isa} = %{evr}
+Requires:       libavfilter%{?pkg_suffix}%{_isa} = %{evr}
+Requires:       libavformat%{?pkg_suffix}%{_isa} = %{evr}
+Requires:       libavutil%{?pkg_suffix}%{_isa} = %{evr}
+Requires:       libswresample%{?pkg_suffix}%{_isa} = %{evr}
+Requires:       libswscale%{?pkg_suffix}%{_isa} = %{evr}
 
 
 %description -n %{pkg_name}
@@ -363,13 +363,13 @@ This build of ffmpeg is limited in the number of codecs supported.
 
 %package -n     %{pkg_name}-devel
 Summary:        Development package for %{name}
-Requires:       libavcodec%{?pkg_suffix}-devel = %{version}-%{release}
-Requires:       libavdevice%{?pkg_suffix}-devel = %{version}-%{release}
-Requires:       libavfilter%{?pkg_suffix}-devel = %{version}-%{release}
-Requires:       libavformat%{?pkg_suffix}-devel = %{version}-%{release}
-Requires:       libavutil%{?pkg_suffix}-devel = %{version}-%{release}
-Requires:       libswresample%{?pkg_suffix}-devel = %{version}-%{release}
-Requires:       libswscale%{?pkg_suffix}-devel = %{version}-%{release}
+Requires:       libavcodec%{?pkg_suffix}-devel = %{evr}
+Requires:       libavdevice%{?pkg_suffix}-devel = %{evr}
+Requires:       libavfilter%{?pkg_suffix}-devel = %{evr}
+Requires:       libavformat%{?pkg_suffix}-devel = %{evr}
+Requires:       libavutil%{?pkg_suffix}-devel = %{evr}
+Requires:       libswresample%{?pkg_suffix}-devel = %{evr}
+Requires:       libswscale%{?pkg_suffix}-devel = %{evr}
 Requires:       pkgconfig
 
 %description -n %{pkg_name}-devel
@@ -387,8 +387,8 @@ community or a corporation.
 
 %package -n libavcodec%{?pkg_suffix}
 Summary:        FFmpeg codec library
-Requires:       libavutil%{?pkg_suffix}%{_isa} = %{version}-%{release}
-Requires:       libswresample%{?pkg_suffix}%{_isa} = %{version}-%{release}
+Requires:       libavutil%{?pkg_suffix}%{_isa} = %{evr}
+Requires:       libswresample%{?pkg_suffix}%{_isa} = %{evr}
 # We require libopenh264 library, which has a dummy implementation and a real one
 # In the event that this is being installed, we want to prefer openh264 if available
 Suggests:       openh264%{_isa}
@@ -410,8 +410,8 @@ This build of ffmpeg is limited in the number of codecs supported.
 
 %package -n libavcodec%{?pkg_suffix}-devel
 Summary:        Development files for FFmpeg's codec library
-Requires:       libavutil%{?pkg_suffix}-devel = %{version}-%{release}
-Requires:       libavcodec%{?pkg_suffix}%{_isa} = %{version}-%{release}
+Requires:       libavutil%{?pkg_suffix}-devel = %{evr}
+Requires:       libavcodec%{?pkg_suffix}%{_isa} = %{evr}
 Requires:       pkgconfig
 
 %description -n libavcodec%{?pkg_suffix}-devel
@@ -431,10 +431,10 @@ This subpackage contains the headers for FFmpeg libavcodec.
 
 %package -n libavdevice%{?pkg_suffix}
 Summary:        FFmpeg device library
-Requires:       libavcodec%{?pkg_suffix}%{_isa} = %{version}-%{release}
-Requires:       libavfilter%{?pkg_suffix}%{_isa} = %{version}-%{release}
-Requires:       libavformat%{?pkg_suffix}%{_isa} = %{version}-%{release}
-Requires:       libavutil%{?pkg_suffix}%{_isa} = %{version}-%{release}
+Requires:       libavcodec%{?pkg_suffix}%{_isa} = %{evr}
+Requires:       libavfilter%{?pkg_suffix}%{_isa} = %{evr}
+Requires:       libavformat%{?pkg_suffix}%{_isa} = %{evr}
+Requires:       libavutil%{?pkg_suffix}%{_isa} = %{evr}
 
 %description -n libavdevice%{?pkg_suffix}
 The libavdevice library provides a generic framework for grabbing from
@@ -450,13 +450,13 @@ DShow, and ALSA.
 
 %package -n libavdevice%{?pkg_suffix}-devel
 Summary:        Development files for FFmpeg's device library
-Requires:       libavcodec%{?pkg_suffix}-devel = %{version}-%{release}
-Requires:       libavfilter%{?pkg_suffix}-devel = %{version}-%{release}
-Requires:       libavformat%{?pkg_suffix}-devel = %{version}-%{release}
-Requires:       libavutil%{?pkg_suffix}-devel = %{version}-%{release}
-Requires:       libswresample%{?pkg_suffix}-devel = %{version}-%{release}
-Requires:       libswscale%{?pkg_suffix}-devel = %{version}-%{release}
-Requires:       libavdevice%{?pkg_suffix}%{_isa} = %{version}-%{release}
+Requires:       libavcodec%{?pkg_suffix}-devel = %{evr}
+Requires:       libavfilter%{?pkg_suffix}-devel = %{evr}
+Requires:       libavformat%{?pkg_suffix}-devel = %{evr}
+Requires:       libavutil%{?pkg_suffix}-devel = %{evr}
+Requires:       libswresample%{?pkg_suffix}-devel = %{evr}
+Requires:       libswscale%{?pkg_suffix}-devel = %{evr}
+Requires:       libavdevice%{?pkg_suffix}%{_isa} = %{evr}
 Requires:       pkgconfig
 
 %description -n libavdevice%{?pkg_suffix}-devel
@@ -477,11 +477,11 @@ This subpackage contains the headers for FFmpeg libavdevice.
 
 %package -n libavfilter%{?pkg_suffix}
 Summary:        FFmpeg audio and video filtering library
-Requires:       libavcodec%{?pkg_suffix}%{_isa} = %{version}-%{release}
-Requires:       libavformat%{?pkg_suffix}%{_isa} = %{version}-%{release}
-Requires:       libavutil%{?pkg_suffix}%{_isa} = %{version}-%{release}
-Requires:       libswresample%{?pkg_suffix}%{_isa} = %{version}-%{release}
-Requires:       libswscale%{?pkg_suffix}%{_isa} = %{version}-%{release}
+Requires:       libavcodec%{?pkg_suffix}%{_isa} = %{evr}
+Requires:       libavformat%{?pkg_suffix}%{_isa} = %{evr}
+Requires:       libavutil%{?pkg_suffix}%{_isa} = %{evr}
+Requires:       libswresample%{?pkg_suffix}%{_isa} = %{evr}
+Requires:       libswscale%{?pkg_suffix}%{_isa} = %{evr}
 
 %description -n libavfilter%{?pkg_suffix}
 The libavfilter library provides a generic audio/video filtering
@@ -495,12 +495,12 @@ framework containing several filters, sources and sinks.
 
 %package -n libavfilter%{?pkg_suffix}-devel
 Summary:        Development files for FFmpeg's audio/video filter library
-Requires:       libavcodec%{?pkg_suffix}-devel = %{version}-%{release}
-Requires:       libavformat%{?pkg_suffix}-devel = %{version}-%{release}
-Requires:       libavutil%{?pkg_suffix}-devel = %{version}-%{release}
-Requires:       libswresample%{?pkg_suffix}-devel = %{version}-%{release}
-Requires:       libswscale%{?pkg_suffix}-devel = %{version}-%{release}
-Requires:       libavfilter%{?pkg_suffix} = %{version}-%{release}
+Requires:       libavcodec%{?pkg_suffix}-devel = %{evr}
+Requires:       libavformat%{?pkg_suffix}-devel = %{evr}
+Requires:       libavutil%{?pkg_suffix}-devel = %{evr}
+Requires:       libswresample%{?pkg_suffix}-devel = %{evr}
+Requires:       libswscale%{?pkg_suffix}-devel = %{evr}
+Requires:       libavfilter%{?pkg_suffix} = %{evr}
 Requires:       pkgconfig
 
 %description -n libavfilter%{?pkg_suffix}-devel
@@ -519,8 +519,8 @@ This subpackage contains the headers for FFmpeg libavfilter.
 
 %package -n libavformat%{?pkg_suffix}
 Summary:        FFmpeg's stream format library
-Requires:       libavcodec%{?pkg_suffix}%{_isa} = %{version}-%{release}
-Requires:       libavutil%{?pkg_suffix}%{_isa} = %{version}-%{release}
+Requires:       libavcodec%{?pkg_suffix}%{_isa} = %{evr}
+Requires:       libavutil%{?pkg_suffix}%{_isa} = %{evr}
 
 %description -n libavformat%{?pkg_suffix}
 The libavformat library provides a generic framework for multiplexing
@@ -540,10 +540,10 @@ This build of ffmpeg is limited in the number of codecs supported.
 
 %package -n libavformat%{?pkg_suffix}-devel
 Summary:        Development files for FFmpeg's stream format library
-Requires:       libavcodec%{?pkg_suffix}-devel = %{version}-%{release}
-Requires:       libavutil%{?pkg_suffix}-devel = %{version}-%{release}
-Requires:       libswresample%{?pkg_suffix}-devel = %{version}-%{release}
-Requires:       libavformat%{?pkg_suffix}%{_isa} = %{version}-%{release}
+Requires:       libavcodec%{?pkg_suffix}-devel = %{evr}
+Requires:       libavutil%{?pkg_suffix}-devel = %{evr}
+Requires:       libswresample%{?pkg_suffix}-devel = %{evr}
+Requires:       libavformat%{?pkg_suffix}%{_isa} = %{evr}
 Requires:       pkgconfig
 
 %description -n libavformat%{?pkg_suffix}-devel
@@ -582,7 +582,7 @@ for pixel and sample formats).
 
 %package -n libavutil%{?pkg_suffix}-devel
 Summary:        Development files for FFmpeg's utility library
-Requires:       libavutil%{?pkg_suffix}%{_isa} = %{version}-%{release}
+Requires:       libavutil%{?pkg_suffix}%{_isa} = %{evr}
 Requires:       pkgconfig
 Obsoletes:      libpostproc%{?pkg_suffix}-devel < 8.0
 
@@ -605,7 +605,7 @@ This subpackage contains the headers for FFmpeg libavutil.
 
 %package -n libswresample%{?pkg_suffix}
 Summary:        FFmpeg software resampling library
-Requires:       libavutil%{?pkg_suffix}%{_isa} = %{version}-%{release}
+Requires:       libavutil%{?pkg_suffix}%{_isa} = %{evr}
 
 %description -n libswresample%{?pkg_suffix}
 The libswresample library performs audio conversion between different
@@ -619,8 +619,8 @@ sample rates, channel layout and channel formats.
 
 %package -n libswresample%{?pkg_suffix}-devel
 Summary:        Development files for the FFmpeg software resampling library
-Requires:       libavutil%{?pkg_suffix}-devel = %{version}-%{release}
-Requires:       libswresample%{?pkg_suffix}%{_isa} = %{version}-%{release}
+Requires:       libavutil%{?pkg_suffix}-devel = %{evr}
+Requires:       libswresample%{?pkg_suffix}%{_isa} = %{evr}
 
 %description -n libswresample%{?pkg_suffix}-devel
 The libswresample library performs audio conversion between different
@@ -638,7 +638,7 @@ This subpackage contains the headers for FFmpeg libswresample.
 
 %package -n libswscale%{?pkg_suffix}
 Summary:        FFmpeg image scaling and colorspace/pixel conversion library
-Requires:       libavutil%{?pkg_suffix}%{_isa} = %{version}-%{release}
+Requires:       libavutil%{?pkg_suffix}%{_isa} = %{evr}
 
 %description -n libswscale%{?pkg_suffix}
 The libswscale library performs image scaling and colorspace and
@@ -652,10 +652,10 @@ pixel format conversion operations.
 
 %package -n libswscale%{?pkg_suffix}-devel
 Summary:        Development files for FFmpeg's image scaling and colorspace library
-Provides:       libswscale%{?pkg_suffix}-devel = %{version}-%{release}
-Conflicts:      libswscale%{?pkg_suffix}-devel < %{version}-%{release}
-Requires:       libavutil%{?pkg_suffix}-devel = %{version}-%{release}
-Requires:       libswscale%{?pkg_suffix}%{_isa} = %{version}-%{release}
+Provides:       libswscale%{?pkg_suffix}-devel = %{evr}
+Conflicts:      libswscale%{?pkg_suffix}-devel < %{evr}
+Requires:       libavutil%{?pkg_suffix}-devel = %{evr}
+Requires:       libswscale%{?pkg_suffix}%{_isa} = %{evr}
 
 %description -n libswscale%{?pkg_suffix}-devel
 The libswscale library performs image scaling and colorspace and
@@ -677,9 +677,9 @@ This subpackage contains the headers for FFmpeg libswscale.
 %if %{with freeworld_lavc}
 %package -n libavcodec-freeworld
 Summary:        FFmpeg codec library - freeworld overlay
-Requires:       libavutil%{?basepkg_suffix}%{_isa} >= %{version}-%{release}
-Requires:       libswresample%{?basepkg_suffix}%{_isa} >= %{version}-%{release}
-Supplements:    libavcodec%{?basepkg_suffix}%{_isa} >= %{version}-%{release}
+Requires:       libavutil%{?basepkg_suffix}%{_isa} >= %{evr}
+Requires:       libswresample%{?basepkg_suffix}%{_isa} >= %{evr}
+Supplements:    libavcodec%{?basepkg_suffix}%{_isa} >= %{evr}
 # We require libopenh264 library, which has a dummy implementation and a real one
 # In the event that this is being installed, we want to install this version
 Requires:       openh264%{_isa}
