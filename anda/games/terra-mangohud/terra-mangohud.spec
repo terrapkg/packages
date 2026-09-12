@@ -116,7 +116,7 @@ sed -i "s/  cmocka = subproject('cmocka')//g" meson.build
 sed -i "s/cmocka_dep = cmocka.get_variable('cmocka_dep')/cmocka_dep = dependency('cmocka')/g" meson.build
 %endif
 
-%build
+%conf
 %meson \
     -Dmangoapp=true \
     -Dmangohudctl=true \
@@ -130,6 +130,8 @@ sed -i "s/cmocka_dep = cmocka.get_variable('cmocka_dep')/cmocka_dep = dependency
     -Dtests=disabled \
     %endif
     %{nil}
+
+%build
 %meson_build
 
 
