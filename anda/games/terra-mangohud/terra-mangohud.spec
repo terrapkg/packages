@@ -1,4 +1,5 @@
 %global appname MangoHud
+%gppbal packagename mangohud
 
 %global imgui_ver 1.91.6
 %global vulkan_headers_ver 1.4.346
@@ -18,7 +19,7 @@ Packager:       Kyle Gospodnetich <me@kylegospodneti.ch>
 
 License:        MIT
 URL:            https://github.com/flightlessmango/MangoHud
-Source0:        %{url}/archive/v%{tarball_version}/%{name}-%{tarball_version}.tar.gz
+Source0:        %{url}/archive/v%{tarball_version}/%{packagename}-%{tarball_version}.tar.gz
 # imgui
 Source1:        https://github.com/ocornut/imgui/archive/v%{imgui_ver}/imgui-%{imgui_ver}.tar.gz
 # Vulkan-Headers
