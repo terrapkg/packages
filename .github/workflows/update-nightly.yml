@@ -14,7 +14,7 @@ on:
 jobs:
   autoupdate-nightly:
     permissions:
-      contents: write
+      contents: read
     runs-on: arc-runner-set
     container:
       image: ghcr.io/terrapkg/builder:frawhide
@@ -34,37 +34,23 @@ jobs:
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
       - name: Run Nightly Update
-        run: anda update --filters nightly=$(echo "$(date +%H) / 6" | bc)
+        run: anda update --filters nightly=$((10#$(date -u +%H) / 6 + 1))
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RUST_BACKTRACE: full
 
-      - name: Save
-        run: |
-          if [[ `git status --porcelain` ]]; then
-            git config user.name "Raboneko"
-            git config user.email "raboneko@fyralabs.com"
-            git config gpg.format "ssh"
-            git config user.signingkey "${{ runner.temp }}/signing_key"
-            msg="bump(nightly): $(anda run andax/ci/update_commit_message.rhai)"
-            git commit -S -a -m "$msg"
-            git format-patch HEAD^
-            copy_over () {
-              git checkout $1
-              git apply *.patch || true
-              git add anda
-              git commit -S -a -m "$msg"
-            }
-            copy_over f45 || true
-            copy_over f44 || true
-            copy_over f43 || true
-            copy_over el10 || true
-            git push -u origin --all
-          fi
+      - name: Save update patch
+        run: git diff --binary > nightly.patch
+
+      - name: Upload update patch
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: nightly-patch
+          path: nightly.patch
 
   autoupdate-quaterdaily:
     permissions:
-      contents: write
+      contents: read
     runs-on: arc-runner-set
     container:
       image: ghcr.io/terrapkg/builder:frawhide
@@ -89,25 +75,91 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RUST_BACKTRACE: full
 
-      - name: Save
+      - name: Save update patch
+        run: git diff --binary > quaterdaily.patch
+
+      - name: Upload update patch
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: quaterdaily-patch
+          path: quaterdaily.patch
+
+  push-updates:
+    needs: [autoupdate-nightly, autoupdate-quaterdaily]
+    permissions:
+      contents: write
+    runs-on: arc-runner-set
+    container:
+      image: ghcr.io/terrapkg/builder:frawhide
+      options: --cap-add=SYS_ADMIN --privileged
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          ref: frawhide
+          ssh-key: ${{ secrets.SSH_AUTHENTICATION_KEY }}
+
+      - name: Download update patches
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          pattern: "*-patch"
+          merge-multiple: true
+
+      - name: Install SSH signing key & Set up git repository
         run: |
-          if [[ `git status --porcelain` ]]; then
-            git config user.name "Raboneko"
-            git config user.email "raboneko@fyralabs.com"
-            git config gpg.format "ssh"
-            git config user.signingkey "${{ runner.temp }}/signing_key"
-            msg="bump(quaterdaily): $(anda run andax/ci/update_commit_message.rhai)"
-            git commit -S -a -m "$msg"
-            git format-patch HEAD^
-            copy_over () {
-              git checkout $1
-              git apply *.patch || true
+          mkdir -p ${{ runner.temp }}
+          echo "${{ secrets.SSH_SIGNING_KEY }}" > ${{ runner.temp }}/signing_key
+          chmod 0700 ${{ runner.temp }}/signing_key
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - name: Configure git signing
+        run: |
+          git config user.name "Raboneko"
+          git config user.email "raboneko@fyralabs.com"
+          git config gpg.format "ssh"
+          git config user.signingkey "${{ runner.temp }}/signing_key"
+
+      - name: Apply nightly update
+        run: |
+          if [[ -s nightly.patch ]]; then
+            git apply nightly.patch
+            if [[ `git status --porcelain` ]]; then
+              msg="bump(nightly): $(anda run andax/ci/update_commit_message.rhai)"
               git add anda
-              git commit -S -a -m "$msg"
-            }
-            copy_over f45 || true
-            copy_over f44 || true
-            copy_over f43 || true
-            copy_over el10 || true
-            git push -u origin --all
+              git commit -S -m "$msg"
+              git diff --binary HEAD^ HEAD > nightly-branch.patch
+              for branch in f45 f44 f43 el10; do
+                git checkout "$branch"
+                if git apply "$GITHUB_WORKSPACE/nightly-branch.patch"; then
+                  git add anda
+                  git commit -S -m "$msg"
+                fi
+              done
+              git checkout frawhide
+            fi
           fi
+
+      - name: Apply quaterdaily update
+        run: |
+          if [[ -s quaterdaily.patch ]]; then
+            git apply quaterdaily.patch
+            if [[ `git status --porcelain` ]]; then
+              msg="bump(quaterdaily): $(anda run andax/ci/update_commit_message.rhai)"
+              git add anda
+              git commit -S -m "$msg"
+              git diff --binary HEAD^ HEAD > quaterdaily-branch.patch
+              for branch in f45 f44 f43 el10; do
+                git checkout "$branch"
+                if git apply "$GITHUB_WORKSPACE/quaterdaily-branch.patch"; then
+                  git add anda
+                  git commit -S -m "$msg"
+                fi
+              done
+              git checkout frawhide
+            fi
+          fi
+
+      - name: Push update
+        run: |
+          git push -u origin --all
