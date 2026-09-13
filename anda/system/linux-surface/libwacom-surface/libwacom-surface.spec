@@ -1,4 +1,4 @@
-%global surface_libwacom_ver libwacom-1.3
+%global surface_libwacom_ver 1.3
 %global libwacom_ver 2.17.0
 %global sanitized_ver %(echo %{ver} | sed 's/-/./g')
 
@@ -11,7 +11,7 @@ Provides:       libwacom
 Conflicts:      libwacom
 License:        HPND
 URL:            https://github.com/linux-surface/libwacom
-Source0:        %{url}/archive/refs/tags/libwacom-1.3.tar.gz
+Source0:        %{url}/archive/refs/tags/libwacom-%{surface_libwacom_ver}.tar.gz
 BuildRequires:  meson gcc
 BuildRequires:  glib2-devel
 BuildRequires:  libgudev1-devel
