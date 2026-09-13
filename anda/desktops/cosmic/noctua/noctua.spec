@@ -14,7 +14,6 @@ License:        %{sourcelicense} AND (BSD-3-Clause OR MIT OR Apache-2.0) AND ((M
 URL:            https://codeberg.org/wfx/noctua
 Source0:        %{url}/archive/%{commit}.tar.gz
 Source1:        https://github.com/cosmic-utils/noctua/raw/refs/heads/main/LICENSE
-Patch0:         noctua-libcosmic-api.patch
 
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  gcc-c++
@@ -32,7 +31,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %{summary}.
 
 %prep
-%autosetup -C -p1
+%autosetup -C
 %cargo_prep_online
 %cargo_license_summary_online
 
