@@ -27,7 +27,6 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %{cargo_license_online} > LICENSE.dependencies
 
 %install
-ls -laH target/rpm
 install -Dm755 target/rpm/cosmic-nightlight	 					%{buildroot}%{_bindir}/cosmic-nightlight
 install -Dm755 target/rpm/cosmic-nightlight-helper	 					%{buildroot}%{_bindir}/cosmic-nightlight-helper
 install -Dm644 data/io.github.cosmic_nightlight.desktop					%{buildroot}%{_appsdir}/%{appid}.desktop
