@@ -87,7 +87,7 @@ Summary:        Mesa graphics libraries
 %global ver 26.2.2
 Epoch:          1
 Version:        %{lua:ver = string.gsub(rpm.expand("%{ver}"), "-", "~"); print(ver)}
-Release:        2%{?dist}
+Release:        3%{?dist}
 Packager:       Kyle Gospodnetich <me@kylegospodneti.ch>
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0
 URL:            https://mesa3d.org
@@ -308,7 +308,7 @@ Provides:       libgbm-devel%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 %package libOpenCL
 Summary:        Mesa OpenCL runtime library
 Requires:       (ocl-icd%{?_isa} or OpenCL-ICD-Loader%{?_isa})
-Requires:       libclc22%{?_isa}
+Requires:       libclc%{?_isa}
 Requires:       %{name}-libgbm%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       opencl-filesystem
 
