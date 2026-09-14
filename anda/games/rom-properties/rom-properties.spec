@@ -135,6 +135,7 @@ KDE Plasma 6 file manager integration for rom-properties.
 %{_libdir}/qt6/plugins/kf6/overlayicon/overlayiconplugin_rom-properties-kf6.so
 %{_libdir}/qt6/plugins/kf6/propertiesdialog/rom-properties-kf6.so
 %{_libdir}/qt6/plugins/kf6/thumbcreator/RomThumbnailCreator-kf6.so
+%{_libdir}/qt6/plugins/kf6/thumbcreator/RomThumbnailCreator-kf6-dir.so
 
 %package utils
 Summary:        Utilities for rom-properties
