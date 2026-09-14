@@ -8,6 +8,7 @@ License:		AGPL-3.0-or-later
 URL:			https://spacedrive.com
 Source0:		https://github.com/spacedriveapp/spacedrive/archive/refs/tags/%version.tar.gz
 Source1:		spacedrive.desktop
+Patch0:         0001-drop-first-party-dep.patch
 
 Requires:		ffmpeg
 Requires:		libheif
