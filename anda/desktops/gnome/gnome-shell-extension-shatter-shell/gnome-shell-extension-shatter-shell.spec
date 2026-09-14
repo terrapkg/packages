@@ -19,7 +19,6 @@ Source3:        50_org.gnome.mutter.wayland.%{extension}.gschema.override
 Source4:        50_org.gnome.settings-daemon.plugins.media-keys.%{extension}.gschema.override
 Source5:        50_%{appid}.gschema.override
 # downstream-only
-Source6:        %{appid}.metainfo.xml
 Patch:          0001-Remove-schema-handling-from-transpile.sh.patch
 
 BuildRequires:  anda-srpm-macros
@@ -27,7 +26,6 @@ BuildRequires:  nodejs
 BuildRequires:  nodejs-npm
 BuildRequires:  nodejs-packaging
 BuildRequires:  make
-BuildRequires:  terra-appstream-helper
 
 Requires:       gnome-shell >= 48
 Recommends:     gnome-extensions-app
@@ -80,8 +78,6 @@ install -p -m 0644 keybindings/*.xml %{buildroot}%{_datadir}/gnome-control-cente
 install -d -m 0755 %{buildroot}%{_datadir}/glib-2.0/schemas
 install -p -m 0644 %{S:1} %{S:2} %{S:3} %{S:4} %{S:5} %{buildroot}%{_datadir}/glib-2.0/schemas/
 
-%terra_appstream -o %{SOURCE6}
-
 
 %files
 %license LICENSE
@@ -89,7 +85,6 @@ install -p -m 0644 %{S:1} %{S:2} %{S:3} %{S:4} %{S:5} %{buildroot}%{_datadir}/gl
 %{_datadir}/gnome-shell/extensions/%{uuid}
 %{_datadir}/glib-2.0/schemas/%{appid}.gschema.xml
 %{_datadir}/gnome-control-center/keybindings/*.xml
-%{_metainfodir}/%{appid}.metainfo.xml
 
 
 %files shortcut-overrides
