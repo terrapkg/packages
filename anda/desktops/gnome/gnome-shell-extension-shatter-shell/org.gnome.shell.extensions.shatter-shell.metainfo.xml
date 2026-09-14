@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="addon">
+  <id>org.gnome.shell.extensions.shatter-shell</id>
+  <metadata_license>GPL-3.0-only</metadata_license>
+  <project_license>GPL-3.0-only</project_license>
+
+  <name>Shatter Shell</name>
+  <summary>Advanced tiling window management extension for GNOME</summary>
+
+  <extends>org.gnome.shell</extends>
+
+  <url type="homepage">https://github.com/adil192/shatter-shell</url>
+  <url type="bugtracker">https://github.com/adil192/shatter-shell/issues</url>
+  <url type="donation">https://github.com/sponsors/adil192</url>
+  <url type="vcs-browser">https://github.com/adil192/shatter-shell</url>
+
+  <developer id="com.adilhanney">
+    <name>Adil Hanney</name>
+  </developer>
+
+  <description>
+    <p>
+      Shatter Shell is a keyboard-driven layer for GNOME Shell which allows for quick and sensible
+      navigation and management of windows. The core feature of Shatter Shell is the addition of
+      advanced tiling window management — a feature that has been highly sought within our
+      community. For many — ourselves included — i3wm has become the leading competitor to the GNOME
+      desktop.
+    </p>
+    <p>
+      Tiling window management in GNOME is virtually nonexistent, which makes the desktop awkward to
+      interact with when your needs exceed that of two windows at a given time. Luckily, GNOME Shell
+      is an extensible desktop with the foundations that make it possible to implement a tiling
+      window manager on top of the desktop.
+    </p>
+    <p>
+      Therefore, we see an opportunity here to advance the usability of the GNOME desktop to better
+      accommodate the needs of our community with Shatter Shell. Advanced tiling window management
+      is a must for the desktop, so we&apos;ve merged i3-like tiling window management with the
+      GNOME desktop for the best of both worlds.
+    </p>
+    <p>
+      Shatter Shell is a fork of Pop Shell.
+    </p>
+  </description>
+
+  <screenshots>
+    <screenshot type="default">
+      <caption>Tiling and stacking: window management with Shatter Shell.</caption>
+      <image type="source" width="1920" height="1200">
+        https://raw.githubusercontent.com/adil192/shatter-shell/refs/heads/master_resolute/screenshot.webp
+      </image>
+    </screenshot>
+  </screenshots>
+</component>
