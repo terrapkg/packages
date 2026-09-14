@@ -67,7 +67,7 @@ NVIDIA open kernel modules with nvidia-drm.modeset=1.
 
 %package selinux
 Summary:        SELinux policy module for Waydroid
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name} = %{evr}
 Requires:       container-selinux
 %{?selinux_requires}
 
