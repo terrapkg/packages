@@ -1,6 +1,5 @@
 %global surface_libwacom_ver 1.3
 %global libwacom_ver 2.17.0
-%global sanitized_ver %(echo %{ver} | sed 's/-/./g')
 
 Name:           libwacom-surface
 Version:        %{surface_libwacom_ver}^%{libwacom_ver}
