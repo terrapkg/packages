@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component type="addon">
-  <id>org.gnome.shell.extensions.shatter-shell</id>
+<component type="shell-extension">
+  <id>shatter-shell_adilhanney.com</id>
   <metadata_license>GPL-3.0-only</metadata_license>
   <project_license>GPL-3.0-only</project_license>
 
@@ -8,6 +8,9 @@
   <summary>Advanced tiling window management extension for GNOME</summary>
 
   <extends>org.gnome.shell</extends>
+  <custom>
+    <value key="shell-extensions::uuid">shatter-shell@adilhanney.com</value>
+  </custom>
 
   <url type="homepage">https://github.com/adil192/shatter-shell</url>
   <url type="bugtracker">https://github.com/adil192/shatter-shell/issues</url>
