@@ -6,18 +6,18 @@
 %global um_commit 46892acafb2fff3f3ace425d4694382c92645feb
 %global um_shortcommit %(c=%{um_commit}; echo ${c:0:7})
 
-%global debug_package %{nil}
 %define __os_install_post %{nil}
 
 Name:           cros-keyboard-map
 Version:        %commit_date.%tree_shortcommit.%um_shortcommit
-Release:        2%?dist
+Release:        3%{?dist}
 
-License:        BSD-3-Clause and GPLv3
+License:        BSD-3-Clause and GPL-3.0-or-later
 Summary:        Utility to generate keyd configurations for use on Chromebooks
 URL:            https://github.com/Ultramarine-Linux/cros-keyboard-map
 Source0:        https://github.com/WeirdTreeThing/cros-keyboard-map/archive/%{tree_commit}/cros-keyboard-map-%{tree_commit}.tar.gz
 Source1:        https://github.com/Ultramarine-Linux/cros-keyboard-map/archive/%{um_commit}/cros-keyboard-map-%{um_commit}.tar.gz
+BuildArch:      noarch
 
 %{?systemd_requires}
 BuildRequires:  systemd-rpm-macros
