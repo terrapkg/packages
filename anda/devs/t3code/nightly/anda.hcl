@@ -3,4 +3,7 @@ project pkg {
 	rpm {
 		spec = "t3code-nightly.spec"
 	}
+	labels {
+		nightly = 1
+	}
 }

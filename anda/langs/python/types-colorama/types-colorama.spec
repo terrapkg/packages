@@ -1,5 +1,5 @@
-%global commit 5b9d62452dff273c458460aba635de4ddafc06a1
-%global commit_date 20260904
+%global commit 778a4561a5f5dbc153d0bc0b317e024873f7eac6
+%global commit_date 20260912
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %global pypi_name types-colorama

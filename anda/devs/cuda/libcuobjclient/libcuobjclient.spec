@@ -6,7 +6,7 @@
 
 Name:           libcuobjclient
 Epoch:          1
-Version:        1.2.0.68
+Version:        1.3.0.109
 Release:        1%{?dist}
 Summary:        NVIDIA CUDA cuObject Client
 License:        CUDA Toolkit
@@ -65,6 +65,7 @@ sed -i \
 %doc README cuObjRDMADESCRprotocolformat.pdf
 %{_includedir}/cuobjclient.h
 %{_includedir}/cuobjtelem.h
+%{_includedir}/cuobjextrc_types.h
 %{_libdir}/libcuobjclient.so
 %{_libdir}/pkgconfig/cuobjclient.pc
 

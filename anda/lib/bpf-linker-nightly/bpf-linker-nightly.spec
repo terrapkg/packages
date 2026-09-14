@@ -3,7 +3,7 @@
 %bcond check 0
 
 Name:           bpf-linker-nightly
-Version:        0.11.0
+Version:        0.11.1
 Release:        1%{?dist}
 Summary:        BPF static linker built with Rust nightly
 URL:            https://github.com/aya-rs/bpf-linker
