@@ -149,9 +149,9 @@ done
     %{buildroot}%{_bindir}/waydroid-nvidia-setup
 
 %check
-desktop-file-validate %{buildroot}%{_datadir}/applications/Waydroid.desktop
-desktop-file-validate %{buildroot}%{_datadir}/applications/waydroid.market.desktop
-desktop-file-validate %{buildroot}%{_datadir}/applications/waydroid.app.install.desktop
+%desktop_file_validate %{buildroot}%{_datadir}/applications/Waydroid.desktop
+%desktop_file_validate %{buildroot}%{_datadir}/applications/waydroid.market.desktop
+%desktop_file_validate %{buildroot}%{_datadir}/applications/waydroid.app.install.desktop
 appstream-util validate --nonet %{buildroot}%{_metainfodir}/id.waydro.waydroid.metainfo.xml
 test -x %{buildroot}%{_prefix}/lib/waydroid-nvidia/virgl_test_server
 test -f %{buildroot}%{_prefix}/lib/waydroid-nvidia/guest/vendor/lib/hw/vulkan.virtio.so
