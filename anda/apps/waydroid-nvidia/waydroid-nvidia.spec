@@ -193,11 +193,11 @@ udevadm control --reload > /dev/null 2>&1 || :
 %doc README.md docs/
 %{_prefix}/lib/waydroid
 %{_prefix}/lib/waydroid-nvidia
-%{_datadir}/applications/Waydroid.desktop
-%{_datadir}/applications/waydroid.market.desktop
-%{_datadir}/applications/waydroid.app.install.desktop
-%{_datadir}/metainfo/id.waydro.waydroid.metainfo.xml
-%{_datadir}/icons/hicolor/512x512/apps/waydroid.png
+%{_appsdir}/Waydroid.desktop
+%{_appsdir}/waydroid.market.desktop
+%{_appsdir}/waydroid.app.install.desktop
+%{_metainfodir}/id.waydro.waydroid.metainfo.xml
+%{_hicolordir}/512x512/apps/waydroid.png
 %{_bindir}/waydroid
 %{_bindir}/waydroid-nvidia-setup
 %{_unitdir}/waydroid-container.service
