@@ -67,6 +67,7 @@ Documentation files for %{pypi_name}
 rm -rf %{pypi_name}.egg-info
 
 %build
+export CMAKE_POLICY_VERSION_MINIMUM=3.5
 ## This is not a fully Python project and is mostly C++
 %if 0%{?fedora} <= 41 || 0%{?rhel}
 %py3_build
