@@ -23,6 +23,7 @@ BuildRequires: python3dist(setuptools)
 %if %{with docs}
 BuildRequires: python3dist(modern-colorthief)
 BuildRequires: python3dist(myst-parser)
+BuildRequires: python3dist(pygments)
 BuildRequires: python3dist(shibuya)
 BuildRequires: python3dist(sphinx)
 %endif
