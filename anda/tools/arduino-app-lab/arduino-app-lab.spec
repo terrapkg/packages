@@ -19,7 +19,7 @@ ExclusiveArch:  x86_64
 Requires:       android-tools
 
 BuildRequires:  desktop-file-utils
-BuildRequires:  yarnpkg
+BuildRequires:  yarnpkg-berry
 BuildRequires:  wails
 BuildRequires:  webkit2gtk4.1-devel
 BuildRequires:  golang
