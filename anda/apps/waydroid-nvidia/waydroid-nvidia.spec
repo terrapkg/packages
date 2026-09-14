@@ -46,7 +46,7 @@ Requires:       python3dist(dbus-python)
 Requires:       python3-gobject
 Requires:       lxc
 Requires:       gtk3
-Requires:       (%{name}-selinux = %{version}-%{release} if selinux-policy-%{selinuxtype})
+Requires:       (%{name}-selinux = %{evr} if selinux-policy-%{selinuxtype})
 Requires:       nftables
 Requires:       iproute
 Requires:       dnsmasq
