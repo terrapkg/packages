@@ -1,7 +1,7 @@
 %global appid io.github.gnhen.midscroll
 
 Name:		midscroll
-Version:	1.14
+Version:	1.15
 Release:    1%{?dist}
 Summary:	FOSS Middle Mouse Scroll replacement for Linux
 License:	Unlicense

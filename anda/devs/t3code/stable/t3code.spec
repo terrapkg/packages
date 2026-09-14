@@ -2,7 +2,7 @@
 
 Name:           t3code
 %electronmeta -D
-Version:        0.0.33
+Version:        0.0.40
 Release:        1%{?dist}
 Summary:        Minimal web GUI for coding agents
 License:        MIT AND %{electron_license}
@@ -12,6 +12,7 @@ Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 BuildRequires:  cargo
 BuildRequires:  ImageMagick
 BuildRequires:  pnpm
+BuildRequires:  pkgconfig(libsecret-1)
 
 Requires:       git-core
 Suggests:       azure-cli
@@ -87,6 +88,9 @@ EOF
 %{_hicolordir}/*/apps/%{name}.png
 
 %changelog
+* Fri Sep 04 2026 Addison LeClair <me@addi.lol>
+- Add new libsecret dependency
+
 * Thu Jul 30 2026 Addison LeClair <me@addi.lol> - 0.0.31-1
 - Fix T3 Connect by adding missing auth variables
 - Fix .desktop title to match upstream

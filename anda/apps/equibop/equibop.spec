@@ -1,8 +1,8 @@
 %global appid org.equicord.equibop
 
 Name:           equibop
-Version:        3.2.2
-Release:        2%{?dist}
+Version:        3.3.0
+Release:        1%{?dist}
 Summary:        Custom Discord client focused on performance and Linux support
 Packager:       bangetto <bangettoyou2@gmail.com>
 License:        GPL-3.0-only AND %electron_license

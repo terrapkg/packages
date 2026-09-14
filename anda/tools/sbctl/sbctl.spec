@@ -72,7 +72,7 @@ fi
 %{_mandir}/man5/sbctl.conf.5*
 %{_datadir}/bash-completion/completions/sbctl
 %{_datadir}/fish/vendor_completions.d/sbctl.fish
-%{_datadir}/zsh/site-functions/_sbctl
+%{zsh_functions_dir}/_sbctl
 %{_metainfodir}/%{appid}.metainfo.xml
 
 

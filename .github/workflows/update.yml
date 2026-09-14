@@ -1,6 +1,11 @@
 name: Update
 permissions:
   contents: read
+
+concurrency:
+  group: update
+  cancel-in-progress: true
+
 on:
   #schedule:
   #  - cron: "*/10 * * * *"

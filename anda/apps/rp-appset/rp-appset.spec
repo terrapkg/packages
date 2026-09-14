@@ -1,5 +1,5 @@
-%global commit d4283e2e9bae6a95673227e41d2c345d7780990a
-%global commit_date 20260519
+%global commit 26d1e16e08cb66e8ec561d0a016ffddfc3c37043
+%global commit_date 20260829
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           appset
@@ -29,8 +29,10 @@ Provides:       rp-appset
 %prep
 %autosetup -n appset-%commit
 
-%build
+%conf
 %meson
+
+%build
 %meson_build
 
 %install
@@ -43,10 +45,11 @@ Provides:       rp-appset
 %license debian/copyright
 %{_datadir}/rpcc/ui/pipanel.ui
 %{_libdir}/rpcc/librpcc_pipanel.so
-%{_iconsdir}/hicolor/24x24/apps/appset-desktop.png
-%{_iconsdir}/hicolor/24x24/apps/appset-taskbar.png
-%{_iconsdir}/hicolor/32x32/apps/appset-desktop.png
-%{_iconsdir}/hicolor/32x32/apps/appset-taskbar.png
+%{_iconsdir}/hicolor/*x*/apps/appset-taskbar.png
+%{_iconsdir}/hicolor/*x*/apps/appset-desktop.png
+
+%{_scalableiconsdir}/appset-desktop.svg
+%{_scalableiconsdir}/appset-taskbar.svg
 
 %changelog
 * Sat Oct 25 2025 Owen Zimmerman <owen@fyralabs.com>

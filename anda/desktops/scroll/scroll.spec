@@ -1,5 +1,5 @@
 Name:           scroll
-Version:        1.12.20
+Version:        1.12.21
 Release:        1%{?dist}
 Summary:        i3-compatible Wayland compositor (sway) with a PaperWM layout like niri or hyprscroller
 License:        MIT

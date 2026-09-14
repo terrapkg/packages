@@ -11,6 +11,7 @@ Summary:       A fast high compression read-only file system for Linux, Windows 
 License:       GPL-3.0-or-later
 URL:           https://github.com/mhx/%{name}
 Source0:       %{url}/archive/refs/tags/v%{version}.tar.gz
+BuildRequires: anda-srpm-macros
 BuildRequires: binutils-devel
 BuildRequires: boost-devel
 %if 0%{?fedora} >= 44
@@ -96,13 +97,16 @@ Zsh shell completion for dwarfs.
 -DWITH_FUSE_DRIVER=ON \
 -DBUILD_SHARED_LIBS=ON \
 -DWITH_MAN_OPTION=OFF \
--DCMAKE_INSTALL_SBINDIR="%(echo %{_sbindir} | sed 's|^/usr||')"
 
 %build
 %cmake_build
 
 %install
 %cmake_install
+rm %{buildroot}%{_sbindir}/mount.%{name}
+# even if we pass a correct path to INSTALL_SBINDIR, the / at the beginning of the path is hardcoded in the cmake file
+# replace with our own symlink.
+ln -sr %{buildroot}%{_bindir}/dwarfs %{buildroot}%{_sbindir}/mount.%{name}
 
 %files
 %doc README.md

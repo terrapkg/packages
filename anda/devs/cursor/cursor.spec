@@ -2,7 +2,7 @@
 %global __strip /bin/true
 %global _build_id_links none
 
-%global commit 2fdd31c9f33f7fbe501f2d57772dc5bf64b63621
+%global commit 0c32194e3fb5ffaced9fb36430b860ec301e1fc8
 
 %ifarch x86_64
 %global platform x64
@@ -13,7 +13,7 @@
 %endif
 
 Name:           cursor
-Version:        3.17.8
+Version:        3.20.17
 %electronmeta -D
 Release:        1%{?dist}
 Summary:        The AI Code Editor
@@ -44,7 +44,7 @@ tar xf data.tar.xz
 %install
 cp -pr usr %{buildroot}/
 mv %{buildroot}%{_datadir}/appdata %{buildroot}%{_metainfodir}
-mv %{buildroot}%{_datadir}/zsh/vendor-completions %{buildroot}%{_datadir}/zsh/site-functions
+mv %{buildroot}%{_datadir}/zsh/vendor-completions %{buildroot}%{zsh_site_functions}
 mkdir -p %{buildroot}%{_bindir}
 ln -sf %{_datadir}/%{name}/bin/%{name} %{buildroot}%{_bindir}/%{name}
 cp -p usr/share/cursor/resources/app/LICENSE.txt .
