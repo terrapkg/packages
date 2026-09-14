@@ -43,6 +43,7 @@ touch .env
 %build
 %{__yarn}
 %{__yarn} install
+go get -u golang.org/x/net
 go mod tidy
 pushd standalone-apps/app-lab-desktop/internal/board/
 ./download_resources.sh
