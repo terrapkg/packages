@@ -2,7 +2,7 @@
 
 Name:           inputplumber
 Version:        0.81.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Open source input router and remapper daemon for Linux
 License:        GPL-3.0-or-later
 URL:            https://github.com/ShadowBlip/InputPlumber
