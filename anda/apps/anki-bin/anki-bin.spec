@@ -1,10 +1,10 @@
-%global xurl https://files.pythonhosted.org/packages/a3/9b/ff8e6aa35f3d6dcbc60f117df710460663cde52c6dbc17caf0f21839f5c8/anki-26.9.1-cp310-abi3-manylinux_2_35_x86_64.whl
-%global aurl https://files.pythonhosted.org/packages/08/d3/4b914db85f583aca440feb2d3ff31ca24fa5acd486ae99d204da63ff3974/anki-26.9.1-cp310-abi3-manylinux_2_35_aarch64.whl
-%global qurl https://files.pythonhosted.org/packages/e6/e7/e026d92c16ebd30fd5e3f3c499f46725c674a911b231caea4b51d1e83eb5/aqt-26.9.1-py3-none-any.whl
+%global xurl https://files.pythonhosted.org/packages/99/a1/b351db3b5f94764f29cc9813a26dab1e729a5ec0e7bf8bce065bdea79ec4/anki-26.9.2-cp310-abi3-manylinux_2_35_x86_64.whl
+%global aurl https://files.pythonhosted.org/packages/0d/1a/24a691862dac680a2e787a281127f9d1589138049cf463625ca53848efb3/anki-26.9.2-cp310-abi3-manylinux_2_35_aarch64.whl
+%global qurl https://files.pythonhosted.org/packages/ba/e7/a0f77e5a3af76c24024f313204918a9922759e87c2913909708c5dd54281/aqt-26.9.2-py3-none-any.whl
 %global appid net.ankiweb.Anki
 
 Name:			anki-bin
-Version:		26.09
+Version:		26.09.2
 Release:		1%{?dist}
 Summary:		Flashcard program for using space repetition learning (Installed with wheel)
 License:		AGPL-3.0-or-later AND GPL-3.0-or-later AND LGPL-3.0-or-later AND MIT AND BSD-3-Clause AND CC-BY-SA-3.0 AND CC-BY-3.0 AND Apache-2.0 AND CC-BY-2.5
