@@ -45,6 +45,7 @@ export SETUPTOOLS_SCM_PRETEND_VERSION=%version
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md CONTRIBUTING.md
 %license LICENSE
+%{_bindir}/easyspeak
 
 %changelog
 * Sun Jun 07 2026 Owen Zimmerman <owen@fyralabs.com>
