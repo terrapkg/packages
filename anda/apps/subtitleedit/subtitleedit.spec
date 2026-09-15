@@ -7,7 +7,7 @@ Release:        1%{?dist}
 Summary:        An advanced subtitle editor and converter
 License:        GPL-3.0-only
 URL:            https://www.nikse.dk/SubtitleEdit
-Source0:        https://github.com/SubtitleEdit/subtitleedit/releases/download/%version/SE%{gsub %version %. %{quote:}}.zip
+Source0:        %{url}/archive/refs/tags/v5.2.0.tar.gz
 Source1:        https://github.com/SubtitleEdit/subtitleedit/blob/%version/src/libse/Icon.png?raw=true
 Packager:       madonuko <mado@fyralabs.com>
 Provides:       %realname = %evr
