@@ -65,6 +65,7 @@ sed -i \
 %doc README cuObjRDMADESCRprotocolformat.pdf
 %{_includedir}/cuobjclient.h
 %{_includedir}/cuobjtelem.h
+%{_includedir}/cuobjextrc_types.h
 %{_libdir}/libcuobjclient.so
 %{_libdir}/pkgconfig/cuobjclient.pc
 
