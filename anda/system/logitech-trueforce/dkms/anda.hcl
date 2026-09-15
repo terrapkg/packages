@@ -3,8 +3,4 @@ project pkg {
 	rpm {
 		spec = "dkms-logitech-trueforce.spec"
 	}
-	labels {
-		mock = 1
-		updbranch = 1
-	}
 }
