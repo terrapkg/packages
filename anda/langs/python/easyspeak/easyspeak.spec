@@ -1,6 +1,8 @@
 %global pypi_name easyspeak-linux
 %global _desc Voice control for Linux desktops. Fully local, no cloud, Wayland-native.
 
+%define _python_dist_allow_version_zero 1
+
 Name:			python-%{pypi_name}
 Version:		0.12.0
 Release:		1%{?dist}
