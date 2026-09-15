@@ -2,8 +2,8 @@
 %global major_package_version 13-1
 
 Name:           cuda
-Version:        13.3.73
-Release:        3%{?dist}
+Version:        13.4.49
+Release:        1%{?dist}
 Summary:        NVIDIA Compute Unified Device Architecture Toolkit
 Epoch:          1
 License:        CUDA Toolkit
