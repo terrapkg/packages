@@ -52,6 +52,7 @@ dwl — crafted for speed, flexibility, and a customizable desktop experience.
 %{_datadir}/wayland-sessions/mango.desktop
 %{_datadir}/xdg-desktop-portal/mango-portals.conf
 %{_mandir}/man1/mmsg.1.*
+%{_userunitdir}/mango-session.target
 
 %changelog
 * Sun Jul 19 2026 Olivia <git@olivia.sh> - 0.15.4-2
