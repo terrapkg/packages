@@ -2,7 +2,7 @@
 
 Name:           opengamepadui
 Version:        0.46.1
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Open source gamepad-native game launcher and overlay
 
 License:        GPL-3.0-or-later
@@ -14,6 +14,8 @@ Patch0:         disable-manage-all.patch
 Patch1:         https://patch-diff.githubusercontent.com/raw/ShadowBlip/OpenGamepadUI/pull/531.patch
 # https://github.com/ShadowBlip/OpenGamepadUI/pull/525
 Patch2:         https://patch-diff.githubusercontent.com/raw/ShadowBlip/OpenGamepadUI/pull/525.patch
+# https://github.com/ShadowBlip/OpenGamepadUI/pull/548
+Patch3:         https://patch-diff.githubusercontent.com/raw/ShadowBlip/OpenGamepadUI/pull/548.patch
 
 BuildRequires:  godot
 BuildRequires:  scons
@@ -66,6 +68,7 @@ gamepad input to mouse and keyboard inputs.
 %patch 0 -p1
 %patch 1 -p1
 %patch 2 -p1
+%patch 3 -p1
 
 %build
 %make_build import
