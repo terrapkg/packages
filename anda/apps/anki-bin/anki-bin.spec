@@ -1,6 +1,6 @@
-%global xurl https://files.pythonhosted.org/packages/22/53/d5d6a192f1bd28611b182941b7a56a353d477b4f2a17e4080c537ecffb17/anki-26.9-cp310-abi3-manylinux_2_35_x86_64.whl
-%global aurl https://files.pythonhosted.org/packages/f4/66/231b143f9d41bb0024d32ffc3ea53a9be1f111538ae15330568491e31101/anki-26.9-cp310-abi3-manylinux_2_35_aarch64.whl
-%global qurl https://files.pythonhosted.org/packages/95/52/852bac9b5ba859ad4c6d93061bf3bb35ef9ed020eafb5c80949f30306a3c/aqt-26.9-py3-none-any.whl
+%global xurl https://files.pythonhosted.org/packages/a3/9b/ff8e6aa35f3d6dcbc60f117df710460663cde52c6dbc17caf0f21839f5c8/anki-26.9.1-cp310-abi3-manylinux_2_35_x86_64.whl
+%global aurl https://files.pythonhosted.org/packages/08/d3/4b914db85f583aca440feb2d3ff31ca24fa5acd486ae99d204da63ff3974/anki-26.9.1-cp310-abi3-manylinux_2_35_aarch64.whl
+%global qurl https://files.pythonhosted.org/packages/e6/e7/e026d92c16ebd30fd5e3f3c499f46725c674a911b231caea4b51d1e83eb5/aqt-26.9.1-py3-none-any.whl
 %global appid net.ankiweb.Anki
 
 Name:			anki-bin
