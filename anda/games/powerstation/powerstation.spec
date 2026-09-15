@@ -24,7 +24,7 @@ Powerstation is a daemon for controlling TDP and performance over DBus.
 It is designed for use on AMD platforms with access to libryzenadj.
 
 %prep
-%autosetup -n PowerStation-%{version}
+%autosetup -n PowerStation-%{version} -p1
 %cargo_prep_online
 
 %build
