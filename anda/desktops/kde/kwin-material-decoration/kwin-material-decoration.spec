@@ -33,7 +33,7 @@ BuildRequires:  cmake(kf6kcmutils)
 Requires:       kwin
 
 %description
-%summary.
+%{summary}.
 
 %prep
 %autosetup -C
@@ -46,18 +46,14 @@ Requires:       kwin
 
 %install
 %cmake_install
+%find_lang materialdecoration
 
-%files
+%files -f materialdecoration.lang
 %license LICENSE
+%doc README.md
 %{_qt6_plugindir}/org.kde.kdecoration3/materialdecoration.so
 %{_qt6_plugindir}/org.kde.kdecoration3.kcm/materialdecoration_kcm.so
 %{_appsdir}/materialdecoration_kcm.desktop
-%lang(de) %{_datadir}/locale/de/LC_MESSAGES/materialdecoration.mo
-%lang(es) %{_datadir}/locale/es/LC_MESSAGES/materialdecoration.mo
-%lang(fr) %{_datadir}/locale/fr/LC_MESSAGES/materialdecoration.mo
-%lang(it) %{_datadir}/locale/it/LC_MESSAGES/materialdecoration.mo
-%lang(nl) %{_datadir}/locale/nl/LC_MESSAGES/materialdecoration.mo
-%lang(zh_CN) %{_datadir}/locale/zh_CN/LC_MESSAGES/materialdecoration.mo
 %{_metainfodir}/materialdecoration_kcm.json
 
 %changelog
