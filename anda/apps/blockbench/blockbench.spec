@@ -35,7 +35,7 @@ exported into standardized formats for use in games, rendering, and 3D printing.
 
 %install
 mkdir -p dist
-mv dist-electron/*-unpacked dist/linux-unpacked
+mv dist-electron/*-unpacked dist/
 %electron_install -i %{name} -s %{name} -b %{name} -I icon.png
 %desktop_file_install %{SOURCE1}
 %terra_appstream -o %{SOURCE2}
