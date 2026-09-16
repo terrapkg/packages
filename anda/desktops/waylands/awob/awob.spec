@@ -10,6 +10,7 @@ Source0:        https://github.com/jmylchreest/awob/archive/refs/tags/v%{version
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  pkgconfig(libudev)
 BuildRequires:  pkgconfig(libpipewire-0.3)
+BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  clang-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
