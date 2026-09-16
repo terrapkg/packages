@@ -1,0 +1,65 @@
+From ec2c13504308158a6b255a9ed59202064d3da610 Mon Sep 17 00:00:00 2001
+From: Anton Bambura <jenneron@protonmail.com>
+Date: Sun, 13 Sep 2026 20:14:01 +0300
+Subject: [PATCH] load hexagonrpcd firmware
+
+---
+ msm-firmware-loader.sh | 31 ++++++++++++++++++++++++++++++-
+ 1 file changed, 30 insertions(+), 1 deletion(-)
+
+diff --git a/msm-firmware-loader.sh b/msm-firmware-loader.sh
+index 9ff9a59..a7e2178 100644
+--- a/msm-firmware-loader.sh
++++ b/msm-firmware-loader.sh
+@@ -30,6 +30,15 @@ ab_get_slot() {
+ 	echo "$ab_slot_suffix"
+ }
+ 
++# Check path $1 path for existence and link it to $2
++link_path() {
++	if [ -e "$1" ]
++	then
++		mkdir -p "$(dirname "$2")"
++		ln -s "$1" "$2"
++	fi
++}
++
+ # Configurations:
+ 
+ # List of partitions to be mounted and inspected for blobs.
+@@ -166,6 +175,27 @@ then
+ 	ln -s "$BASEDIR"/mnt/persist/sensors/sns.reg "$BASEDIR"/target/qcom/sensors/sns.reg
+ fi
+ 
++# Mount hexagonrpc paths, see
++# https://github.com/linux-msm/hexagonrpc#hexagonfs
++
++link_path "$BASEDIR/mnt/vendor$(ab_get_slot)/etc/acdbdata" "$BASEDIR/hexagonrpc/acdb"
++
++if [ -d "$BASEDIR/mnt/dsp$(ab_get_slot)/adsp" ] || \
++	[ -d "$BASEDIR/mnt/dsp$(ab_get_slot)/cdsp" ] || \
++	[ -d "$BASEDIR/mnt/dsp$(ab_get_slot)/sdsp" ]
++then
++	# Some devices with separated dsp_a/dsp_b
++	link_path "$BASEDIR/mnt/dsp$(ab_get_slot)" "$BASEDIR/hexagonrpc/dsp"
++else
++	# Documented hexagonrpc path
++	link_path "$BASEDIR/mnt/vendor$(ab_get_slot)/dsp" "$BASEDIR/hexagonrpc/dsp"
++fi
++
++link_path "$BASEDIR/mnt/vendor$(ab_get_slot)/etc/sensors/config" "$BASEDIR/hexagonrpc/sensors/config"
++link_path "$BASEDIR/mnt/persist/sensors/registry/registry" "$BASEDIR/hexagonrpc/sensors/registry"
++link_path "$BASEDIR/mnt/vendor$(ab_get_slot)/etc/sensors/sns_reg_config" "$BASEDIR/hexagonrpc/sensors/sns_reg.conf"
++link_path "/sys/devices/soc0" "$BASEDIR/hexagonrpc/socinfo"
++
+ # Check WCNSS_qcom_wlan_nv.bin in persist partition
+ if [ -f "$BASEDIR"/mnt/persist/WCNSS_qcom_wlan_nv.bin ]
+ then
+@@ -255,4 +285,3 @@ fi
+ 
+ # Set the new custom firmware path:
+ printf "%s" "$BASEDIR/target" > /sys/module/firmware_class/parameters/path
+-
+-- 
+GitLab
+
