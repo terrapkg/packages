@@ -20,6 +20,8 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  terra-appstream-helper
 BuildRequires:  appstream
 
+Packager:       Cypress Reed <cypress@fyralabs.com>
+
 %description
 Blockbench is a low-poly 3D model editor with pixel art textures. Models can be
 exported into standardized formats for use in games, rendering, and 3D printing.
