@@ -8,6 +8,7 @@ License:        %{sourcelicense} AND (Apache-2.0 OR MIT) AND (MIT OR Apache-2.0 
 URL:            https://jmylchreest.github.io/awob/
 Source0:        https://github.com/jmylchreest/awob/archive/refs/tags/v%{version}.tar.gz
 BuildRequires:  cargo-rpm-macros
+BuildRequires:  pkgconfig(libudev)
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
