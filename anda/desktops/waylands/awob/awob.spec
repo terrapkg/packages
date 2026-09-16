@@ -7,6 +7,7 @@ SourceLicense:  MIT
 License:        %{sourcelicense} AND (Apache-2.0 OR MIT) AND (MIT OR Apache-2.0 OR Zlib) AND (0BSD OR MIT OR Apache-2.0) AND BSD-2-Clause AND Zlib AND (Apache-2.0 OR GPL-2.0-only) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND CC0-1.0 AND ISC AND BSD-3-Clause AND (Unlicense OR MIT)
 URL:            https://jmylchreest.github.io/awob/
 Source0:        https://github.com/jmylchreest/awob/archive/refs/tags/v%{version}.tar.gz
+BuildRequires:  cargo-rpm-macros
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
