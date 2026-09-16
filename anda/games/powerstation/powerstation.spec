@@ -1,12 +1,13 @@
 Name:           powerstation
 Version:        0.8.4
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Daemon for controlling TDP and performance over DBus
 
 SourceLicense:  GPL-3.0-or-later
 License:        ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (BSD-3-Clause OR MIT OR Apache-2.0) AND GPL-3.0-or-later AND ISC AND LGPL-3.0 AND MIT AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MPL-2.0 AND (Unlicense OR MIT)
 URL:            https://github.com/ShadowBlip/PowerStation
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
+Patch0:         https://patch-diff.githubusercontent.com/raw/ShadowBlip/PowerStation/pull/48.patch
 Packager:       madonuko <mado@fyralabs.com>
 
 ExcludeArch:    %{ix86}
@@ -23,7 +24,7 @@ Powerstation is a daemon for controlling TDP and performance over DBus.
 It is designed for use on AMD platforms with access to libryzenadj.
 
 %prep
-%autosetup -n PowerStation-%{version}
+%autosetup -n PowerStation-%{version} -p1
 %cargo_prep_online
 
 %build
