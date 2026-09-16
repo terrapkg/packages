@@ -8,6 +8,8 @@ License:        %{sourcelicense} AND (Apache-2.0 OR MIT) AND (MIT OR Apache-2.0 
 URL:            https://jmylchreest.github.io/awob/
 Source0:        https://github.com/jmylchreest/awob/archive/refs/tags/v%{version}.tar.gz
 
+Packager:       Owen Zimmerman <owen@fyralabs.com>
+
 %description
 Another Wayland Overlay Bar — drop-in replacement for wob with
 richer theming, typed IPC, and an event-source listener ecosystem.
