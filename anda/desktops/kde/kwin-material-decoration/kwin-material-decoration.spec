@@ -38,8 +38,10 @@ Requires:       kwin
 %prep
 %autosetup -C
 
-%build
+%conf
 %cmake
+
+%build
 %cmake_build
 
 %install
