@@ -18,7 +18,6 @@ jobs:
     runs-on: arc-runner-set
     container:
       image: ghcr.io/terrapkg/builder:frawhide
-      options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -39,25 +38,28 @@ jobs:
           from pathlib import Path
           import re
 
+          nightly_pattern = re.compile(
+              r"^(?P<prefix>\s*nightly\s*=\s*)(?P<quote>\"?)(?P<value>\d+)(?P=quote)(?P<suffix>\s*)$",
+              re.MULTILINE,
+          )
           packages = []
           for path in sorted(Path("anda").rglob("anda.hcl")):
               text = path.read_text()
-              if re.search(r"^\s*nightly\s*=\s*\d+\s*$", text, re.MULTILINE):
+              if nightly_pattern.search(text):
                   packages.append((path, text))
 
           for index, (path, text) in enumerate(packages):
-              updated = re.sub(
-                  r"^(\s*nightly\s*=\s*)\d+(\s*)$",
-                  rf"\g<1>{index % 4}\g<2>",
-                  text,
-                  flags=re.MULTILINE,
-              )
+              def assign_run(match):
+                  return (
+                      f"{match.group('prefix')}{match.group('quote')}"
+                      f"{index % 4}{match.group('quote')}{match.group('suffix')}"
+                  )
+
+              updated = nightly_pattern.sub(assign_run, text)
               if updated != text:
                   path.write_text(updated)
           print(f"Assigned {len(packages)} nightly packages across 4 runs")
           PY
-        env:
-          RUST_BACKTRACE: full
 
       - name: Save
         run: |

@@ -97,7 +97,6 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
-          ref: frawhide
           ssh-key: ${{ secrets.SSH_AUTHENTICATION_KEY }}
 
       - name: Download update patches
@@ -128,10 +127,9 @@ jobs:
               msg="bump(nightly): $(anda run andax/ci/update_commit_message.rhai)"
               git add anda
               git commit -S -m "$msg"
-              git diff --binary HEAD^ HEAD > nightly-branch.patch
               for branch in f45 f44 f43 el10; do
                 git checkout "$branch"
-                if git apply "$GITHUB_WORKSPACE/nightly-branch.patch"; then
+                if git apply "$GITHUB_WORKSPACE/nightly.patch"; then
                   git add anda
                   git commit -S -m "$msg"
                 fi
@@ -148,10 +146,9 @@ jobs:
               msg="bump(quaterdaily): $(anda run andax/ci/update_commit_message.rhai)"
               git add anda
               git commit -S -m "$msg"
-              git diff --binary HEAD^ HEAD > quaterdaily-branch.patch
               for branch in f45 f44 f43 el10; do
                 git checkout "$branch"
-                if git apply "$GITHUB_WORKSPACE/quaterdaily-branch.patch"; then
+                if git apply "$GITHUB_WORKSPACE/quaterdaily.patch"; then
                   git add anda
                   git commit -S -m "$msg"
                 fi
