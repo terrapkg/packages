@@ -1,0 +1,64 @@
+From: Armada <armada@armada-os.dev>
+Date: Mon, 15 Sep 2026 00:00:00 +0000
+Subject: [PATCH] data: only start hexagonrpcd when the HexagonFS tree is staged
+
+Without the staged tree the daemon starts, fails on the first DSP file
+request, and restart-loops. acdb is rootpd-only; sensorspd verified
+without it.
+---
+ data/hexagonrpcd-adsp-rootpd.service.in    | 6 ++++++
+ data/hexagonrpcd-adsp-sensorspd.service.in | 5 +++++
+ data/hexagonrpcd-sdsp.service.in           | 5 +++++
+ 3 files changed, 16 insertions(+)
+
+diff --git a/data/hexagonrpcd-adsp-rootpd.service.in b/data/hexagonrpcd-adsp-rootpd.service.in
+index 3333333..4444444 100644
+--- a/data/hexagonrpcd-adsp-rootpd.service.in
++++ b/data/hexagonrpcd-adsp-rootpd.service.in
+@@ -7,6 +7,12 @@
+ # of the SDM845 devices
+ ConditionPathExists=!/dev/fastrpc-sdsp
+ ConditionPathExists=/dev/fastrpc-adsp
++ConditionPathExists=/run/msm-firmware-loader/hexagonrpc/acdb
++ConditionPathExists=/run/msm-firmware-loader/hexagonrpc/dsp
++ConditionPathExists=/run/msm-firmware-loader/hexagonrpc/sensors/config
++ConditionPathExists=/run/msm-firmware-loader/hexagonrpc/sensors/registry
++ConditionPathExists=/run/msm-firmware-loader/hexagonrpc/sensors/sns_reg.conf
++ConditionPathExists=/run/msm-firmware-loader/hexagonrpc/socinfo
+ 
+ [Service]
+ ExecStart=@bindir@/hexagonrpcd -f /dev/fastrpc-adsp -d adsp -R /run/msm-firmware-loader/hexagonrpc
+diff --git a/data/hexagonrpcd-adsp-sensorspd.service.in b/data/hexagonrpcd-adsp-sensorspd.service.in
+index 3333333..4444444 100644
+--- a/data/hexagonrpcd-adsp-sensorspd.service.in
++++ b/data/hexagonrpcd-adsp-sensorspd.service.in
+@@ -6,6 +6,11 @@
+ # This service shouldn't be run on devices with an SDSP
+ ConditionPathExists=!/dev/fastrpc-sdsp
+ ConditionPathExists=/dev/fastrpc-adsp
++ConditionPathExists=/run/msm-firmware-loader/hexagonrpc/dsp
++ConditionPathExists=/run/msm-firmware-loader/hexagonrpc/sensors/config
++ConditionPathExists=/run/msm-firmware-loader/hexagonrpc/sensors/registry
++ConditionPathExists=/run/msm-firmware-loader/hexagonrpc/sensors/sns_reg.conf
++ConditionPathExists=/run/msm-firmware-loader/hexagonrpc/socinfo
+ 
+ [Service]
+ ExecStart=@bindir@/hexagonrpcd -f /dev/fastrpc-adsp -d adsp -s -R /run/msm-firmware-loader/hexagonrpc
+diff --git a/data/hexagonrpcd-sdsp.service.in b/data/hexagonrpcd-sdsp.service.in
+index 3333333..4444444 100644
+--- a/data/hexagonrpcd-sdsp.service.in
++++ b/data/hexagonrpcd-sdsp.service.in
+@@ -2,6 +2,11 @@
+ After=msm-firmware-loader.service
+ Description=Server for FastRPC remote procedure calls from Qualcomm SDSP
+ ConditionPathExists=/dev/fastrpc-sdsp
++ConditionPathExists=/run/msm-firmware-loader/hexagonrpc/dsp
++ConditionPathExists=/run/msm-firmware-loader/hexagonrpc/sensors/config
++ConditionPathExists=/run/msm-firmware-loader/hexagonrpc/sensors/registry
++ConditionPathExists=/run/msm-firmware-loader/hexagonrpc/sensors/sns_reg.conf
++ConditionPathExists=/run/msm-firmware-loader/hexagonrpc/socinfo
+ 
+ [Service]
+ ExecStart=@bindir@/hexagonrpcd -f /dev/fastrpc-sdsp -d sdsp -s -R /run/msm-firmware-loader/hexagonrpc
+-- 
+2.47.0
