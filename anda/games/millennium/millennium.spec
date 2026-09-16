@@ -18,6 +18,7 @@ BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  zlib-ng-compat-static
 BuildRequires:  zlib-ng-compat-devel
+BuildRequires:  bzip2-devel
 
 %description
 Open-source modding framework for creating and managing Steam Client themes and plugins.
