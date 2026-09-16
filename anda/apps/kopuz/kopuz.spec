@@ -1,4 +1,9 @@
-%global _pkg_extra_ldflags -fPIE
+%undefine __brp_mangle_shebangs
+
+# rustix 0.37.x enables the obsolete rustc_attrs cfg when RUSTC_BOOTSTRAP=1.
+# The cargo macros set that variable for -Z avoid-dev-deps, which is not
+# needed here and is incompatible with the system compiler.
+%global __cargo_common_opts %{?_smp_mflags}
 
 Name:           kopuz
 Version:        0.16.2
@@ -11,6 +16,12 @@ Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 BuildRequires:  cargo
 BuildRequires:  cargo-rpm-macros
+BuildRequires:  cmake
+BuildRequires:  gcc-c++
+BuildRequires:  libayatana-appindicator-gtk3-devel
+BuildRequires:  libxdo-devel
+BuildRequires:  opus-devel
+BuildRequires:  pkgconf-pkg-config
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(gdk-3.0)
 BuildRequires:  pkgconfig(openssl)
@@ -30,6 +41,7 @@ enjoying your local music collection.
 %cargo_prep_online
 
 %build
+%global __cargo /usr/bin/env AWS_LC_SYS_CMAKE_BUILDER=1 CARGO_HOME=.cargo RUSTFLAGS='%{build_rustflags}' /usr/bin/cargo
 %cargo_build
 
 %install
@@ -39,6 +51,9 @@ install -Dm644 data/moe.kopuz.kopuz.metainfo.xml    %{buildroot}%{_metainfodir}/
 install -Dm644 packaging/systemd/kopuz-web.service  %{buildroot}%{_unitdir}/kopuz-web.service
 install -Dm644 crates/kopuz/assets/logo.png         %{buildroot}%{_hicolordir}/256x256/apps/moe.kopuz.kopuz.png
 
+# cargo_license_online still uses -Z avoid-dev-deps, so restore bootstrap for
+# this cargo tree-only operation after the build has completed.
+%global __cargo /usr/bin/env AWS_LC_SYS_CMAKE_BUILDER=1 CARGO_HOME=.cargo RUSTC_BOOTSTRAP=1 RUSTFLAGS='%{build_rustflags}' /usr/bin/cargo
 %{cargo_license_online} > LICENSE.dependencies
 
 %post
