@@ -90,7 +90,7 @@ END
   install -Dm644 docs/LICENSE.txt -T %buildroot/usr/share/licenses/%name/LICENSE
 
 %files
-%doc changes.txt changes_compat.txt LICENSE.txt manual.en.md manual.md readme.md
+%doc changes.txt LICENSE.txt manual.en.md manual.md readme.md
 %license docs/LICENSE.txt LICENSE
 %_bindir/zapret2
 %_bindir/nfqws2
