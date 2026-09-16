@@ -39,14 +39,16 @@ Requires:       kwin
 %autosetup -C
 
 %conf
-%cmake
+%cmake_kf6 \
+    -DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
+    -DBUILD_TESTING=OFF
 
 %build
 %cmake_build
 
 %install
 %cmake_install
-%find_lang materialdecoration
+%find_lang materialdecoration --with-kde
 
 %files -f materialdecoration.lang
 %license LICENSE
