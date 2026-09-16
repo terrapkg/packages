@@ -36,14 +36,14 @@ Build smaller, faster, and more secure desktop and mobile applications with a we
 %cargo_prep_online
 
 %build
-%global __cargo /usr/bin/env CARGO_HOME=.cargo RUSTFLAGS='%{build_rustflags}' /usr/bin/cargo
+%global __cargo /usr/bin/env CARGO_HOME=%{_cargo_home} RUSTFLAGS='%{build_rustflags}' /usr/bin/cargo
 %cargo_build
 
 %install
 install -Dpm755 target/rpm/cargo-tauri %{buildroot}%{_bindir}/tauri
 
 # cargo_license_online uses -Z avoid-dev-deps and needs bootstrap.
-%global __cargo /usr/bin/env CARGO_HOME=.cargo RUSTC_BOOTSTRAP=1 RUSTFLAGS='%{build_rustflags}' /usr/bin/cargo
+%global __cargo /usr/bin/env CARGO_HOME=%{_cargo_home} RUSTC_BOOTSTRAP=1 RUSTFLAGS='%{build_rustflags}' /usr/bin/cargo
 %{cargo_license_online} > LICENSE.dependencies
 mkdir -p %{buildroot}{%{bash_completions_dir},%{fish_completions_dir},%{zsh_completions_dir}}
 
