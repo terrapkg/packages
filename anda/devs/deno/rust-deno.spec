@@ -9,7 +9,7 @@
 %undefine _debugsource_packages
 
 Name:           rust-deno
-Version:        2.9.6
+Version:        2.9.7
 Release:        1%{?dist}
 Summary:        Deno executable
 
