@@ -1,8 +1,8 @@
 %global debug_package   %{nil}
 
-%global commit          035ec0c4b8117fa58ed40c21d77e93e367d7c7eb
+%global commit          6ca1d08c7fe49f396fe68eb65386ab59f5ca7c6e
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
-%global commitdate      20260907
+%global commitdate      20260916
 
 Name:   	umbriel-nightly
 Version:	0^%{commitdate}git.%{shortcommit}
@@ -11,6 +11,7 @@ Summary:	A work-in-progress Wayland compositor designed for daily use, with scro
 
 License:	MIT
 URL:		https://github.com/noctalia-dev/umbriel
+Source0:    https://github.com/noctalia-dev/umbriel/archive/%{commit}.tar.gz
 
 BuildRequires:  wlroots-devel >= 0.20
 BuildRequires:  meson
@@ -27,7 +28,6 @@ BuildRequires:  pkgconfig(jemalloc)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(wayland-protocols)
 BuildRequires:  pkgconfig(xkbcommon)
-BuildRequires:  pkgconfig(scenefx-0.5)
 BuildRequires:  pkgconfig(cairo)
 BuildRequires:  pkgconfig(pangocairo)
 
@@ -40,10 +40,10 @@ Packager:       Cypress Reed <cypress@fyralabs.com>
 %{summary}.
 
 %prep
-%git_clone %{url}.git %{commit}
+%autosetup -n umbriel-%{commit}
 
 %conf
-%meson
+%meson --buildtype=release
 
 %build
 %meson_build
@@ -74,5 +74,8 @@ Packager:       Cypress Reed <cypress@fyralabs.com>
 %{_datadir}/umbriel/shaders/squash.glsl
 
 %changelog
+* Mon Sep 07 2026 Cypress Reed <cypress@fyralabs.com>
+- No more submodule needed, remove system scenefx requirement
+
 * Mon Aug 24 2026 Cypress Reed <cypress@fyralabs.com>
 - Initial package

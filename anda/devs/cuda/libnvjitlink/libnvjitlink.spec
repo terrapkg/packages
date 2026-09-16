@@ -6,8 +6,8 @@
 
 Name:           libnvjitlink
 Epoch:          1
-Version:        13.3.33
-Release:        2%{?dist}
+Version:        13.4.52
+Release:        1%{?dist}
 Summary:        NVIDIA compiler library for JIT LTO functionality
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit

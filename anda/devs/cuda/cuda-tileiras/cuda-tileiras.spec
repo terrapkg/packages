@@ -8,7 +8,7 @@
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
-Version:        13.3.36
+Version:        13.4.59
 Release:        1%{?dist}
 Summary:        NVIDIA CUDA TileIR
 License:        CUDA Toolkit
