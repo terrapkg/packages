@@ -1,17 +1,16 @@
 %global debug_package %{nil}
 %global ver v0.3.11-1
-%global ver2 %(echo %{ver} | sed 's/^v//')
 
-Name:           terra-surface-dtx-daemon
-Version:        %(echo %ver | sed 's/-/~/g')
-Release:        4%{?dist}
+Name:           surface-dtx-daemon
+Version:        %(echo %ver | sed 's/^v//;s/-/./g')
+Release:        5%{?dist}
 Summary:        Surface Detachment System (DTX) Daemon
 License:        MIT
 URL:            https://github.com/linux-surface/surface-dtx-daemon
-Source:         %url/archive/refs/tags/%ver.tar.gz
+Source:         %{url}/archive/refs/tags/%{ver}.tar.gz
 BuildRequires:  rust cargo dbus-devel anda-srpm-macros cargo-rpm-macros mold
 Packager:       Owen Zimmerman <owen@fyralabs.com>
-Obsoletes:      surface-dtx-daemon < 0.3.8~1-3
+Obsoletes:      terra-surface-dtx-daemon <= v0.3.11~1-4
 
 %description
 Linux User-Space Detachment System (DTX) Daemon for the Surface ACPI Driver
@@ -21,7 +20,7 @@ lack of driver-support on the Surface Book 1. This may change in the future.
 %pkg_completion -Bfz surface-dtx-daemon surface-dtx-userd
 
 %prep
-%autosetup -n surface-dtx-daemon-%{ver2}
+%autosetup -C
 %cargo_prep_online
 
 %build
@@ -52,7 +51,6 @@ install -D -m644 "target/_surface-dtx-userd" "%{buildroot}/usr/share/zsh/site-fu
 install -D -m644 "target/surface-dtx-daemon.fish" "%{buildroot}/usr/share/fish/vendor_completions.d/surface-dtx-daemon.fish"
 install -D -m644 "target/surface-dtx-userd.fish" "%{buildroot}/usr/share/fish/vendor_completions.d/surface-dtx-userd.fish"
 
-# These systemd services should be included in the preset file for Ultramarine Linux Surface images
 %post
 %systemd_post surface-dtx-daemon.service
 %systemd_user_post surface-dtx-userd.service
@@ -69,12 +67,15 @@ install -D -m644 "target/surface-dtx-userd.fish" "%{buildroot}/usr/share/fish/ve
 %config /etc/dbus-1/system.d/org.surface.dtx.conf
 %config /etc/udev/rules.d/40-surface_dtx.rules
 %config(noreplace) /etc/surface-dtx/*
-/usr/bin/surface-dtx-daemon
-/usr/bin/surface-dtx-userd
-/usr/lib/systemd/system/surface-dtx-daemon.service
-/usr/lib/systemd/user/surface-dtx-userd.service
+%{_bindir}/surface-dtx-daemon
+%{_bindir}/surface-dtx-userd
+%{_unitdir}/surface-dtx-daemon.service
+%{_userunitdir}/surface-dtx-userd.service
 
 %changelog
+* Thu Sep 10 2026 Owen Zimmerman <owen@fyralabs.com> - VERSION-RELEASE
+- Revive surface-dtx-daemon
+
 * Wed Feb 5 2025 Owen Zimmerman <owen@fyralabs.com>
 - rename to terra-surface-dtx-daemon
 
