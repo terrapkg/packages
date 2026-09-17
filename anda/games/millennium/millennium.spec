@@ -9,7 +9,7 @@ URL:            https://steambrew.app
 Source0:        https://github.com/SteamClientHomebrew/Millennium/archive/refs/tags/v%version.tar.gz
 Packager:       madonuko <mado@fyralabs.com>
 BuildSystem:    cmake
-BuildOption(conf):  -DDISTRO_NIX=ON -DBUILD_SHARED_LIBS=ON -DBUiLD_STATIC_LIBS=OFF
+BuildOption(conf):  -DDISTRO_NIX=ON -DBUILD_SHARED_LIBS=ON -DBUiLD_STATIC_LIBS=OFF -DTHREADS_PREFER_PTHREAD_FLAG=ON
 BuildOption(conf):  -DCURL_LIBRARY=%_libdir/libcurl.so -DCURL_INCLUDE_DIR=%_includedir/curl/
 BuildOption(conf):  -DZLIB_LIBRARY=%_libdir/libz.so -DZLIB_INCLUDE_DIR=%_includedir
 BuildOption(conf):  -DBZIP2_LIBRARIES=%_libdir/libbz2.so -DBZIP2_INCLUDE_DIR=%_includedir
