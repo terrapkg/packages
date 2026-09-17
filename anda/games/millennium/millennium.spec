@@ -48,3 +48,7 @@ sed 's/find_package(ZLIB/find_package(zlib/' -i scripts/cmake/bootstrap_deps.cma
 %files
 %doc README.md
 %license LICENSE.md
+
+%changelog
+* Thu Sep 17 2026 madonuko <mado@fyralabs.com>
+- initial package
