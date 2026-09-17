@@ -1,1 +1,1 @@
-rpm.version(gh("whitequark/libfx2"));
+rpm.version(pypi("fx2"));

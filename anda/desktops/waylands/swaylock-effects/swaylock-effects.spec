@@ -30,22 +30,19 @@ Conflicts:      swaylock
 %description
 swaylock-effects is a fork of swaylock which adds built-in screenshots and image manipulation effects like blurring.
 
-
 %pkg_completion -Bfz %binary_name
-
 
 %prep
 %autosetup -n %{name}-%{commit}
 
+%conf
+%meson
 
 %build
-%meson
 %meson_build
-
 
 %install
 %meson_install
-
 
 %files
 %license LICENSE
@@ -53,7 +50,6 @@ swaylock-effects is a fork of swaylock which adds built-in screenshots and image
 %{_bindir}/%{binary_name}
 %{_mandir}/man1/%{binary_name}.1.gz
 %config(noreplace) %{_sysconfdir}/pam.d/%{binary_name}
-
 
 %changelog
 * Tue Feb 04 2025 sadlerm <lerm@chromebooks.lol>

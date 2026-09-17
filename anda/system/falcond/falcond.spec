@@ -1,21 +1,20 @@
-%global _include_minidebuginfo 0
-
 Name:           falcond
-Version:        1.1.9
-Release:        1%?dist
+Version:        2.0.14
+Release:        1%{?dist}
 Summary:        Advanced Linux Gaming Performance Daemon
 License:        MIT
 URL:            https://git.pika-os.com/general-packages/falcond
 Source0:        %{url}/archive/v%{version}.tar.gz
-Source1:        %{name}.preset
-BuildRequires:  anda-srpm-macros >= 0.2.18
+BuildRequires:  anda-srpm-macros >= 0.3.9
 BuildRequires:  systemd-rpm-macros
-BuildRequires:  zig >= 0.14.0
+BuildRequires:  zig >= 0.16.0
 BuildRequires:  zig-rpm-macros
 Requires:       %{name}-profiles
 Requires:       (scx-scheds or scx-scheds-nightly)
+Suggests:       %{name}-gui
 Conflicts:      gamemode
-Packager:       Gilver E. <rockgrub@disroot.org>
+Provides:       group(falcond)
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 falcond is a powerful system daemon designed to automatically optimize your Linux gaming experience.
@@ -24,19 +23,25 @@ This eliminates the need to manually configure settings for each game.
 
 %prep
 %autosetup -n %{name}/%{name}
+%zig_prep
 
 %build
 
 %install
-install -Dm644 debian/%{name}.service -t %{buildroot}%{_unitdir}
-install -Dm644 %{SOURCE1} %{buildroot}%{_presetdir}/60-%{name}.preset
 # When DNF supports microarchitectures the fallback option for -c can be used here instead
-DESTDIR="%{buildroot}" \
 %ifarch x86_64
-%{zig_build_target -r fast -c x86_64_v2 -s} \
+%{zig_install_target -r fast -Cx86_64_v2 -s}
 %elifarch aarch64
-%{zig_build_target -r fast -s} \
+%{zig_install_target -r fast -s}
 %endif
+install -Dm644 debian/%{name}.service -t %{buildroot}%{_unitdir}
+
+%pre
+# Create falcond group if it doesn't exist
+getent group 'falcond' >/dev/null || groupadd -f -r 'falcond' || :
+
+# Root must be a member of the group
+usermod -aG 'falcond' root || :
 
 %post
 %systemd_post %{name}.service
@@ -52,9 +57,14 @@ DESTDIR="%{buildroot}" \
 %license ../LICENSE
 %{_bindir}/%{name}
 %{_unitdir}/%{name}.service
-%{_presetdir}/60-%{name}.preset
 
 %changelog
+* Thu May  14 2026 Gilver E. <roachy@fyralabs.com> - 2.0.6-2
+- Updated for Zig and zig-rpm-macros 0.16.0
+- Updated for anda-srpm-macros 0.3.9
+* Thu Jan 1 2026 Gilver E. <roachy@fyralabs.com> - 1.2.1-2
+- Disabled service by default in favor of user enablement via falcond-gui
+- Added weak dep on falcond-gui
 * Fri Jun 20 2025 Gilver E. <rockgrub@disroot.org> - 1.1.5-2
 - Enable service by default
 - Enable aarch64 CPU features

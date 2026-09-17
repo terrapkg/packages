@@ -1,10 +1,10 @@
-%global commit 03cf34575b7806fcb69553c41ba88f75d0fe839e
-%global commit_date 20251025
+%global commit a1fffc5bfab716bd022dd228ee96fe3965cdb33d
+%global commit_date 20260810
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           tela-icon-theme
 Version:        %commit_date.%shortcommit
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Tela icon theme for linux desktops
 
 License:        GPL-3.0-only

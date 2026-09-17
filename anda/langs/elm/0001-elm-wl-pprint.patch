@@ -1,0 +1,152 @@
+From f7c697e02b07d608b1b6ebe52cd7a0a4d7e7c967 Mon Sep 17 00:00:00 2001
+From: Jamie Murphy <hello@itsjamie.dev>
+Date: Sun, 16 Aug 2026 21:23:39 -0500
+Subject: [PATCH] Doc: Update to function with compatibility library
+
+ansi-wl-pprint is deprecated and replaced with a compatibility shim for
+prettyprinter.
+---
+ compiler/src/Reporting/Doc.hs | 84 +++++------------------------------
+ elm.cabal                     |  5 ++-
+ 2 files changed, 15 insertions(+), 74 deletions(-)
+
+diff --git a/compiler/src/Reporting/Doc.hs b/compiler/src/Reporting/Doc.hs
+index ccfb0d19..b1b48025 100644
+--- a/compiler/src/Reporting/Doc.hs
++++ b/compiler/src/Reporting/Doc.hs
+@@ -46,10 +46,10 @@ module Reporting.Doc
+ import Prelude hiding (cycle)
+ import qualified Data.List as List
+ import qualified Data.Name as Name
+-import qualified System.Console.ANSI.Types as Ansi
+ import qualified System.Info as Info
+ import System.IO (Handle)
+ import qualified Text.PrettyPrint.ANSI.Leijen as P
++import qualified Prettyprinter as PP
+ 
+ import qualified Data.Index as Index
+ import qualified Elm.Package as Pkg
+@@ -307,88 +307,28 @@ data Color
+ toJsonHelp :: Style -> [String] -> P.SimpleDoc -> [E.Value]
+ toJsonHelp style revChunks simpleDoc =
+   case simpleDoc of
+-    P.SFail ->
++    PP.SFail ->
+       error $
+         "according to the main implementation, @SFail@ can not\
+         \ appear uncaught in a rendered @SimpleDoc@"
+ 
+-    P.SEmpty ->
++    PP.SEmpty ->
+       [ encodeChunks style revChunks ]
+ 
+-    P.SChar char rest ->
++    PP.SChar char rest ->
+       toJsonHelp style ([char] : revChunks) rest
+ 
+-    P.SText _ string rest ->
+-      toJsonHelp style (string : revChunks) rest
++    PP.SText _ string rest ->
++      toJsonHelp style (show string : revChunks) rest
+ 
+-    P.SLine indent rest ->
++    PP.SLine indent rest ->
+       toJsonHelp style (replicate indent ' ' : "\n" : revChunks) rest
+ 
+-    P.SSGR sgrs rest ->
+-      encodeChunks style revChunks : toJsonHelp (sgrToStyle sgrs style) [] rest
+-
+-
+-sgrToStyle :: [Ansi.SGR] -> Style -> Style
+-sgrToStyle sgrs style@(Style bold underline color) =
+-  case sgrs of
+-    [] ->
+-      style
+-
+-    sgr : rest ->
+-      sgrToStyle rest $
+-        case sgr of
+-          Ansi.Reset                         -> noStyle
+-          Ansi.SetConsoleIntensity i         -> Style (isBold i) underline color
+-          Ansi.SetItalicized _               -> style
+-          Ansi.SetUnderlining u              -> Style bold (isUnderline u) color
+-          Ansi.SetBlinkSpeed _               -> style
+-          Ansi.SetVisible _                  -> style
+-          Ansi.SetSwapForegroundBackground _ -> style
+-          Ansi.SetColor l i c                -> Style bold underline (toColor l i c)
+-          Ansi.SetRGBColor _ _               -> style
+-          Ansi.SetPaletteColor _ _           -> style
+-          Ansi.SetDefaultColor _             -> style
+-
+-
+-isBold :: Ansi.ConsoleIntensity -> Bool
+-isBold intensity =
+-  case intensity of
+-    Ansi.BoldIntensity -> True
+-    Ansi.FaintIntensity -> False
+-    Ansi.NormalIntensity -> False
+-
+-
+-isUnderline :: Ansi.Underlining -> Bool
+-isUnderline underlining =
+-  case underlining of
+-    Ansi.SingleUnderline -> True
+-    Ansi.DoubleUnderline -> False
+-    Ansi.NoUnderline -> False
+-
+-
+-toColor :: Ansi.ConsoleLayer -> Ansi.ColorIntensity -> Ansi.Color -> Maybe Color
+-toColor layer intensity color =
+-  case layer of
+-    Ansi.Background ->
+-      Nothing
+-
+-    Ansi.Foreground ->
+-      let
+-        pick dull vivid =
+-          case intensity of
+-            Ansi.Dull -> dull
+-            Ansi.Vivid -> vivid
+-      in
+-      Just $
+-        case color of
+-          Ansi.Red     -> pick Red     RED
+-          Ansi.Magenta -> pick Magenta MAGENTA
+-          Ansi.Yellow  -> pick Yellow  YELLOW
+-          Ansi.Green   -> pick Green   GREEN
+-          Ansi.Cyan    -> pick Cyan    CYAN
+-          Ansi.Blue    -> pick Blue    BLUE
+-          Ansi.White   -> pick White   WHITE
+-          Ansi.Black   -> pick Black   BLACK
++    PP.SAnnPush _ rest ->
++      toJsonHelp style revChunks rest
++
++    PP.SAnnPop rest ->
++      toJsonHelp style revChunks rest
+ 
+ 
+ encodeChunks :: Style -> [String] -> E.Value
+diff --git a/elm.cabal b/elm.cabal
+index 429d6874..7cddb817 100644
+--- a/elm.cabal
++++ b/elm.cabal
+@@ -13,13 +13,14 @@ license-file: LICENSE
+ 
+ 
+ executable elm
+-    ghc-options: -O2 -rtsopts -threaded "-with-rtsopts=-N -qg -A128m" -Wall -Werror
++    ghc-options: -O2 -rtsopts -threaded "-with-rtsopts=-N -qg -A128m" -Wall -Werror -Wno-deprecations
+         -- add -eventlog for (elm make src/Main.elm +RTS -l; threadscope elm.eventlog)
+         -- https://www.oreilly.com/library/view/parallel-and-concurrent/9781449335939/
+ 
+     build-depends:
+         ansi-terminal,
+-        ansi-wl-pprint < 1,
++        ansi-wl-pprint,
++        prettyprinter,
+         base,
+         binary,
+         bytestring,
+-- 
+2.50.1 (Apple Git-155)
+

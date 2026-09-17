@@ -1,0 +1,22 @@
+<component type="driver">
+  <id>com.github.nct6687d</id>
+  <name>NCT6687D Kernel module</name>
+  <pkgname>nct6687d</pkgname>
+  <summary>Linux kernel driver for the NCT6687D hardware monitoring chip.</summary>
+  <description>
+    <p>
+This kernel module permit to recognize the chipset Nuvoton NCT6687-R in lm-sensors package. This sensor is present on some B550 motherboard such as MSI or ASUS.
+
+The implementation is minimalist and was done by reverse coding of Windows 10 source code from <a href="https://github.com/LibreHardwareMonitor/LibreHardwareMonitor">LibreHardwareMonitor</a>.
+    </p>
+  </description>
+  <url type="homepage">https://github.com/Fred78290/nct6687d</url>
+  <metadata_license>CC0-1.0</metadata_license>
+  <!-- gplv2 -->
+  <project_license>GPL-2.0-or-later</project_license>
+
+  <developer id="com.github.Fred78290">
+    <name>Fred78290</name>
+  </developer>
+
+</component>

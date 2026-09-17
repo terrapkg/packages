@@ -1,4 +1,10 @@
 anda-build/
 **/*.tar*
+**/*.cabal
 **/*.crate
 **/*.zip
+**/*.minisig
+**/*.nupkg
+**/*.rpm
+**/*.kate-swp
+**/.DS_Store

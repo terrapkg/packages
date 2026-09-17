@@ -3,7 +3,7 @@
 
 Name:           8bitdo-udev-rules
 Version:        1.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Udev rules for 8Bitdo controllers
 Provides: 8bitdo-udev = %{version}-%{release}
 License:        Unlicense

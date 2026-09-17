@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Terminal=false
+Name=KopiaUI
+Comment=Fast and secure open-source backup/restore tool
+Exec=kopia-ui
+Icon=kopia

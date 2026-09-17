@@ -1,1 +1,1 @@
-rpm.version(gh("zephyrproject-rtos/west"));
+rpm.version(pypi("west"));

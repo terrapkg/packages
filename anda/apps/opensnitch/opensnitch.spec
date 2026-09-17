@@ -4,7 +4,7 @@
 
 # https://github.com/evilsocket/opensnitch
 %global goipath         github.com/evilsocket/opensnitch
-Version:                1.7.0.0
+Version:                1.8.0
 
 %gometa -f
 
@@ -20,7 +20,7 @@ Snitch.}
                         utils/packaging/ui/deb/debian/changelog
 
 Name:           opensnitch
-Release:        %autorelease
+Release:        3%{?dist}
 Summary:        OpenSnitch is a GNU/Linux interactive application firewall inspired by Little Snitch
 
 License:        GPL-3.0-only AND LGPL-2.1-or-later
@@ -36,8 +36,14 @@ BuildRequires:  python3dist(pyqt5)
 BuildRequires:  /usr/bin/lrelease-qt5
 BuildRequires:  protobuf-compiler
 BuildRequires:  pkgconfig(libnetfilter_queue)
-#BuildRequires:  protoc-gen-go
-#BuildRequires:  /usr/bin/protoc-gen-go-grpc
+BuildRequires:  qt6-linguist
+
+Requires:       python3-PyQt6
+Requires:       python3-grpcio
+Requires:       python3-slugify
+Requires:       python3-notify2
+Requires:       python3-pyasn
+Requires:       python3-protobuf
 
 %description %{common_description}
 
@@ -46,7 +52,6 @@ BuildRequires:  pkgconfig(libnetfilter_queue)
 
 %prep
 %goprep -A
-%autopatch -p1
 
 export GOBIN=$(go env GOPATH | sed -E 's/:.+$//')/bin
 echo $GOBIN > %_builddir/gobin
@@ -81,28 +86,31 @@ popd
 %install
 %gopkginstall
 install -Dm755 opensnitchd -t %buildroot%_bindir
+install -Dm644 utils/packaging/daemon/deb/debian/opensnitch.service %{buildroot}%{_unitdir}/opensnitchd.service
 
 pushd ui
-%if 0%{?fedora} <= 41
-%py3_install
-%else
 %pyproject_install
 %pyproject_save_files %name
-%endif
 popd
 
 rm -rf %buildroot%python3_sitelib/tests/
 cp -r %buildroot%python3_sitelib%_usr/ %buildroot%_usr/ --preserve=all --no-target-directory
 rm -rf %buildroot%python3_sitelib%_usr
 
+install -Dm644 daemon/data/default-config.json  %{buildroot}%{_sysconfdir}/opensnitchd/default-config.json
+install -Dm644 daemon/data/network_aliases.json %{buildroot}%{_sysconfdir}/opensnitchd/network_aliases.json
+install -Dm644 daemon/data/system-fw.json       %{buildroot}%{_sysconfdir}/opensnitchd/system-fw.json
 
-%if 0%{?fedora} <= 41
-%files
-%{python3_sitelib}/%name/
-%{python3_sitelib}/%name-%{version}-py%{python3_version}.egg-info/
-%else
+%post
+%systemd_post opensnitchd.service
+
+%preun
+%systemd_preun opensnitchd.service
+
+%postun
+%systemd_postun_with_restart opensnitchd.service
+
 %files -f %{pyproject_files}
-%endif
 %license LICENSE
 %doc README.md
 %_bindir/opensnitch-ui
@@ -113,7 +121,20 @@ rm -rf %buildroot%python3_sitelib%_usr
 %_iconsdir/hicolor/scalable/apps/opensnitch-ui.svg
 %_datadir/kservices5/kcm_opensnitch.desktop
 %_metainfodir/io.github.evilsocket.opensnitch.appdata.xml
-
-/usr/share/icons/hicolor/scalable/apps/opensnitch-ui.svg
+%_scalableiconsdir/opensnitch-ui.svg
+%{_unitdir}/opensnitchd.service
+%{_sysconfdir}/opensnitchd/default-config.json
+%{_sysconfdir}/opensnitchd/network_aliases.json
+%{_sysconfdir}/opensnitchd/system-fw.json
 
 %gopkgfiles
+
+%changelog
+* Wed Aug 26 2026 Owen Zimmerman <owen@fyralabs.com>
+- Install configs and proper systemd service, add runtime deps
+
+* Thu Aug 20 2026 Owen Zimmerman <owen@fyralabs.com>
+- Package systemd service
+
+* Mon Mar 16 2026 Owen Zimmerman <owen@fyralabs.com>
+- Fix build, clean up spec

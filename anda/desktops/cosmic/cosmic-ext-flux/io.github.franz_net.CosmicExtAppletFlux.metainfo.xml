@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component type="desktop-application">
+  <id>io.github.franz_net.CosmicExtAppletFlux</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-only</project_license>
+  <icon type="local">/usr/share/icons/hicolor/scalable/apps/io.github.franz_net.CosmicExtAppletFlux.svg</icon>
+
+  <name>cosmic-ext-flux</name>
+  <summary>Animated desktop wallpapers for COSMIC — play any video or GIF as your background</summary>
+
+  <screenshots>
+    <screenshot type="default"><image>https://github.com/franz-net/cosmic-ext-flux/blob/main/assets/screenshot.png</image></screenshot>
+  </screenshots>
+
+  <description>
+    <p>
+        Animated desktop wallpapers for COSMIC — play any video or GIF as your background.
+    </p>
+  </description>
+
+  <launchable type="desktop-id">io.github.franz_net.CosmicExtAppletFlux.desktop</launchable>
+
+  <url type="homepage">https://www.franz-e.net/cosmic-ext-flux/</url>
+
+  <keywords>
+    <keyword>Cosmic</keyword>
+  </keywords>
+</component>

@@ -3,6 +3,6 @@ project pkg {
         spec = "micro-nightly.spec"
     }
     labels {
-        nightly = 1
+        nightly = 3
     }
 }

@@ -2,8 +2,8 @@
 %global _desc python3-library to convert Markdown with included LaTeX-Formulas to HTML with MathML.
 
 Name:			python-%{pypi_name}
-Version:		1.3.1
-Release:		1%?dist
+Version:		1.3.2
+Release:		2%?dist
 Summary:		python3-library to convert Markdown with included LaTeX-Formulas to HTML with MathML
 License:		LGPL-2.1
 URL:			https://github.com/polarwinkel/mdtex2html

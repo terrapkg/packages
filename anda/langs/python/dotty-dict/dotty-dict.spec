@@ -3,11 +3,11 @@
 
 Name:			python-%{pypi_name}
 Version:		1.3.1
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Dictionary wrapper for quick access to deeply nested keys
 License:		MIT
 URL:			https://github.com/pawelzny/dotty_dict
-Source0:		%url/archive/refs/tags/v%{version}.tar.gz
+Source0:		%{url}/archive/refs/tags/v%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel

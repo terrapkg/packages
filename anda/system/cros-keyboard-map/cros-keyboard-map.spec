@@ -1,27 +1,29 @@
-%global commit_date 20250921
+%global commit_date 20251219
 
-%global tree_commit 7f7bfe5647635084b5699b2b7f4f5dfb489bbdae
+%global tree_commit 146753f3646a13f069bf3ea1e2fb8ebbe0d1b46a
 %global tree_shortcommit %(c=%{tree_commit}; echo ${c:0:7})
 
 %global um_commit 46892acafb2fff3f3ace425d4694382c92645feb
 %global um_shortcommit %(c=%{um_commit}; echo ${c:0:7})
 
-%global debug_package %{nil}
 %define __os_install_post %{nil}
 
 Name:           cros-keyboard-map
 Version:        %commit_date.%tree_shortcommit.%um_shortcommit
-Release:        1%?dist
+Release:        3%{?dist}
 
-License:        BSD-3-Clause and GPLv3
+License:        BSD-3-Clause and GPL-3.0-or-later
 Summary:        Utility to generate keyd configurations for use on Chromebooks
 URL:            https://github.com/Ultramarine-Linux/cros-keyboard-map
 Source0:        https://github.com/WeirdTreeThing/cros-keyboard-map/archive/%{tree_commit}/cros-keyboard-map-%{tree_commit}.tar.gz
 Source1:        https://github.com/Ultramarine-Linux/cros-keyboard-map/archive/%{um_commit}/cros-keyboard-map-%{um_commit}.tar.gz
+BuildArch:      noarch
 
 %{?systemd_requires}
 BuildRequires:  systemd-rpm-macros
 Requires:       keyd python3 python3-libfdt
+
+Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
 Bash script and systemd service to apply WeirdTreeThing's Chromebook keyboard maps.
@@ -59,9 +61,11 @@ chmod +x %buildroot%{_bindir}/um-generate-cros-keymap
 %{_bindir}/um-generate-cros-keymap
 
 %changelog
-* Sat Oct 12 2024 Owen-sz <owen@fyralabs.com>
+* Sat Oct 12 2024 Owen Zimmerman <owen@fyralabs.com>
 - Fix the systemd preset application
+
 * Sat Aug 24 2024 junefish <june@fyralabs.com>
 - Split off into seperate git repo.
-* Sat May 4 2024 Owen-sz <owen@fyralabs.com>
+
+* Sat May 4 2024 Owen Zimmerman <owen@fyralabs.com>
 - Initial package.

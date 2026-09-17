@@ -1,0 +1,13 @@
+<component>
+    <name>KopiaUI</name>
+    <summary>
+        A backup/restore tool that allows you to create encrypted snapshots
+    </summary>
+    <categories>
+        <category>System</category>
+        <category>Network</category>
+    </categories>
+    <provides>
+        <binary>kopia-ui</binary>
+    </provides>
+</component>

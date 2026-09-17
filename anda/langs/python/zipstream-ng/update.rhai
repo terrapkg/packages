@@ -1,1 +1,1 @@
-rpm.version(gh("pR0Ps/zipstream-ng"));
+rpm.version(pypi("zipstream-ng"));

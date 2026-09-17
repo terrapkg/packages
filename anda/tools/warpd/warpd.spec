@@ -35,6 +35,6 @@ rm %buildroot/usr/local/bin/warpd %buildroot/usr/local/share/man/man1/warpd*
 %_mandir/man1/warpd*
 
 %changelog
-* Thu Jun 15 2023 windowsboy111 <windowsboy111@fyralabs.com> - 1.3.5-1
+* Thu Jun 15 2023 madonuko <mado@fyralabs.com> - 1.3.5-1
 - Initial package.
 

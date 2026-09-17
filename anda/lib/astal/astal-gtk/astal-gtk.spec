@@ -1,10 +1,10 @@
-%global commit 5baeb660214bcafc9ae0b733a1bc84f5fa6078f4
-%global shortcommit 5baeb66
-%global commit_date 20251108
+%global commit a16a08c662d9decece15b7ee6d8019e686e529ea
+%global shortcommit a16a08c
+%global commit_date 20260819
 
 Name:			astal
 Version:		0^%commit_date.%commit
-Release:		1%?dist
+Release:		1%{?dist}
 Summary:		Building blocks for creating custom desktop shells
 License:		LGPL-2.1-only
 URL:			https://aylur.github.io/astal

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component type="desktop">
+  <id>org.signal.Signal</id>
+  <name>Signal Desktop</name>
+  <project_license>AGPL-3.0-only</project_license>
+  <icon type="local">/usr/share/icons/hicolor/1024x1024/apps/signal.png</icon>
+  <developer id="org.Signal">
+    <name>Signal Foundation</name>
+  </developer>
+  <summary>A private messenger for Windows, macOS, and Linux</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <url type="homepage">https://signal.org/</url>
+  <url type="help">https://support.signal.org/</url>
+  <url type="donation">https://signal.org/donate/</url>
+  <url
+        type="contribute"
+    >https://github.com/signalapp/Signal-Desktop/blob/main/CONTRIBUTING.md</url>
+  <launchable type="desktop-id">org.signal.Signal.desktop</launchable>
+  <description>
+    <p>
+    Signal Desktop links with Signal on Android or iOS and lets you message from your Windows, macOS, and Linux computers.
+    </p>
+  </description>
+  <provides>
+    <binary>signal-desktop</binary>
+  </provides>
+  <keywords>
+    <keyword>signal</keyword>
+  </keywords>
+  <screenshots>
+    <screenshot type="default">
+      <image
+                type="source"
+            >https://web.archive.org/web/20240219132433if_/https://signal.org/assets/images/screenshots/download-desktop-windows.png</image>
+      <caption>Typical view of the window (Windows version)</caption>
+    </screenshot>
+  </screenshots>
+</component>

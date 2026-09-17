@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component type="driver">
   <id>com.8bitdo.Udev</id>
-  <name>udev Rules for 8BitDo devices</name>
+  <name>8BitDo Controller Support</name>
   <description>
-    <p>Udev rules for 8BitDo controllers to enable proper functionality and device access on Linux systems.</p>
+    <p>Enables proper functionality and device access for 8BitDo devices.</p>
   </description>
   <developer id="com.8bitdo">
     <name>Shenzhen 8BitDo Tech Co., Ltd.</name>

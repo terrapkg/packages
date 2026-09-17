@@ -7,8 +7,8 @@ An editor that pays homage to the classic MS-DOS Editor, but with a modern inter
 %global appstream_component console-application
 
 Name:          %{crate}
-Version:       1.2.1
-Release:       2%?dist
+Version:       2.0.0
+Release:       1%{?dist}
 Summary:       A simple editor for simple needs.
 SourceLicense: MIT
 License:       MIT AND (MIT OR Apache-2.0)
@@ -21,7 +21,7 @@ BuildRequires: cargo-rpm-macros
 BuildRequires: rustup
 %endif
 BuildRequires: mold
-Packager:      Gilver E. <rockgrub@disroot.org>
+Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description %_description
 
@@ -37,7 +37,9 @@ Packager:      Gilver E. <rockgrub@disroot.org>
 
 %install
 %crate_install_bin
-%{cargo_license_online} > LICENSE.dependencies
+pushd crates/edit
+%{cargo_license_online} > ../../LICENSE.dependencies
+popd
 install -Dm644 assets/edit.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps/%{appid}.svg
 
 sed -i "s|^Icon=edit$|Icon=%{appid}|g" assets/%{appid}.desktop
@@ -58,4 +60,3 @@ install -Dm644 assets/%{appid}.desktop %{buildroot}%{_datadir}/applications/%{ap
 %changelog
 * Thu May 22 2025 Gilver E. <rockgrub@disroot.org> - 1.0.0-1
 - Initial package
-

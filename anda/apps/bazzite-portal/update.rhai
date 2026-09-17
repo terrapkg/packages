@@ -1,0 +1,1 @@
+rpm.version(gh("ublue-os/yafti-gtk"));
