@@ -29,7 +29,7 @@ License:       ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) A
 %description -n tauri
 Build smaller, faster, and more secure desktop and mobile applications with a web frontend.
 
-%pkg_completion -n tauri -bfz
+%pkg_completion -n tauri -Bfz
 
 %prep
 %autosetup -n %{crate}-%{version} -p1
