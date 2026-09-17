@@ -8,7 +8,6 @@ Summary:        A command-line program to download videos from online video plat
 
 License:        Unlicense
 URL:            https://github.com/yt-dlp/yt-dlp
-Source0:        https://src.fedoraproject.org/rpms/yt-dlp/raw/rawhide/f/yt-dlp.spec.license
 # Downgrade websockets version requirement on <= 41
 Patch1:         https://src.fedoraproject.org/rpms/yt-dlp/raw/6308364583e19fe367ca9be500e8c3a9366ff10c/f/0001-Revert-rh-websockets-Upgrade-websockets-to-13.0-1081.patch
 # Downgrade requests version requirement on 40
