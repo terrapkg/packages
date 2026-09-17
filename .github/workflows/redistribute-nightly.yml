@@ -1,0 +1,86 @@
+name: Redistribute Nightly Packages
+permissions:
+  contents: read
+
+concurrency:
+  group: redistribute-nightly
+  cancel-in-progress: true
+
+on:
+  schedule:
+    - cron: "0 3 * * 2"
+  workflow_dispatch:
+
+jobs:
+  redistribute:
+    permissions:
+      contents: write
+    runs-on: arc-runner-set
+    container:
+      image: ghcr.io/terrapkg/builder:frawhide
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          ssh-key: ${{ secrets.SSH_AUTHENTICATION_KEY }}
+
+      - name: Install SSH signing key & Set up git repository
+        run: |
+          mkdir -p ${{ runner.temp }}
+          echo "${{ secrets.SSH_SIGNING_KEY }}" > ${{ runner.temp }}/signing_key
+          chmod 0700 ${{ runner.temp }}/signing_key
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - name: Redistribute Nightly Packages
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          nightly_pattern = re.compile(
+              r"^(?P<prefix>\s*nightly\s*=\s*)(?P<quote>\"?)(?P<value>\d+)(?P=quote)(?P<suffix>\s*)$",
+              re.MULTILINE,
+          )
+          packages = []
+          for path in sorted(Path("anda").rglob("anda.hcl")):
+              text = path.read_text()
+              if nightly_pattern.search(text):
+                  packages.append((path, text))
+
+          for index, (path, text) in enumerate(packages):
+              def assign_run(match):
+                  return (
+                      f"{match.group('prefix')}{match.group('quote')}"
+                      f"{index % 4}{match.group('quote')}{match.group('suffix')}"
+                  )
+
+              updated = nightly_pattern.sub(assign_run, text)
+              if updated != text:
+                  path.write_text(updated)
+          print(f"Assigned {len(packages)} nightly packages across 4 runs")
+          PY
+
+      - name: Save
+        run: |
+          if [[ `git status --porcelain` ]]; then
+            git config user.name "Raboneko"
+            git config user.email "raboneko@fyralabs.com"
+            git config gpg.format "ssh"
+            git config user.signingkey "${{ runner.temp }}/signing_key"
+            msg="chore(nightly): redistribute packages across update runs"
+            git add anda
+            git commit -S -m "$msg"
+            git format-patch HEAD^
+            copy_over () {
+              git checkout $1
+              git apply *.patch || true
+              git add anda
+              git commit -S -m "$msg"
+            }
+            copy_over f45 || true
+            copy_over f44 || true
+            copy_over f43 || true
+            copy_over el10 || true
+            git push -u origin --all
+          fi
