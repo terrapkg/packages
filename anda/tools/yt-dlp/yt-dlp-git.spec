@@ -19,7 +19,6 @@ Packager:       madonuko <mado@fyralabs.com>
 Recommends:     (deno or bun or nodejs-npm)
 
 BuildRequires:  python3-devel
-BuildRequires:  anda-srpm-macros
 
 %if %{with tests}
 # Needed for %%check
@@ -96,11 +95,7 @@ Fish command line completion support for %{name}.
 # Remove unnecessary shebangs
 find -type f ! -executable -name '*.py' -print -exec sed -i -e '1{\@^#!.*@d}' '{}' +
 
-%if 0%{?fedora} <= 41
 %autopatch 1 -p1
-%endif
-%if 0%{?fedora} = 40
-%autopatch 2 -p1
 
 # Update version number
 %{python3} devscripts/update-version.py %{version} -c master -r yt-dlp/yt-dlp-master-builds
