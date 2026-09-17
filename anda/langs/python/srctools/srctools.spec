@@ -11,6 +11,8 @@ Source0:		%{pypi_source}
 
 BuildRequires:  meson
 BuildRequires:  ninja-build
+BuildRequires:  gcc
+BuildRequires:  gcc-c++
 BuildRequires:  python3dist(meson-python)
 BuildRequires:  python3-devel
 BuildRequires:  python3-wheel
