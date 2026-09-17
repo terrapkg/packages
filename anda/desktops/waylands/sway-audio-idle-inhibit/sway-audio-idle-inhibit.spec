@@ -15,8 +15,10 @@ BuildRequires:	pkgconfig(libsystemd)
 %prep
 %autosetup -n SwayAudioIdleInhibit-%version
 
-%build
+%conf
 %meson -Dlogind-provider=systemd
+
+%build
 %meson_build
 
 %install

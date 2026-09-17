@@ -1,6 +1,6 @@
 Name:           gpu-screen-recorder
-Version:        5.12.5
-Release:        3%?dist
+Version:        6.1.2
+Release:        1%{?dist}
 Summary:        A shadowplay-like screen recorder for Linux
 
 License:        GPL-3.0-or-later
@@ -29,10 +29,11 @@ BuildRequires:  meson
 BuildRequires:  pkgconfig(dbus-1)
 BuildRequires:  pkgconfig(libspa-0.2)
 BuildRequires:  pkgconfig(libglvnd)
+BuildRequires:  pkgconfig(vulkan)
 Requires(post): libcap
 BuildRequires:  systemd-rpm-macros
 
-Packager:       Willow Reed <terra@willowidk.dev>
+Packager:       Cypress Reed <cypress@fyralabs.com>
 
 %description
 Shadowplay-like screen recorder for Linux. Uses GPU acceleration to record in H.264, HEVC, AV1, VP8, or VP9.
@@ -63,17 +64,22 @@ Shadowplay-like screen recorder for Linux. Uses GPU acceleration to record in H.
 %license LICENSE
 %doc README.md
 %{_bindir}/%{name}
+%{_bindir}/gsr-cli
 %caps(cap_sys_admin+ep) %{_bindir}/gsr-kms-server
 %{_datadir}/%{name}/scripts/*.sh
 %{_includedir}/gsr/plugin.h
 %{_userunitdir}/%{name}.service
 %{_modprobedir}/gsr-nvidia.conf
+%{_mandir}/man1/gsr-cli.1*
 %{_mandir}/man1/gsr-kms-server.1*
 %{_mandir}/man1/%{name}.1*
 
 %changelog
-* Sun Mar 15 2026 Willow C Reed <terra@willowidk.dev>
+* Thu Jun 04 2026 Cypress Reed <cypress@fyralabs.com>
+- Update email and name (was Willow Reed or Willow C Reed) (I'm official now!)
+
+* Sun Mar 15 2026 Cypress Reed <cypress@fyralabs.com>
 - Fix package source
 
-* Fri Jan 02 2026 Willow Reed <terra@willowidk.dev>
+* Fri Jan 02 2026 Cypress Reed <cypress@fyralabs.com>
 - Initial commit

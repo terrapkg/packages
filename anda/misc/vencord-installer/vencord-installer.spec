@@ -20,14 +20,18 @@ A cross platform gui/cli app for installing Vencord.}
 %global godocs          README.md
 
 Name:           vencord-installer
-Release:        1%{?dist}
+Release:        2%{?dist}
 Provides:       golang-github-vencord-installer = %{version}-%{release}
 Summary:        A cross platform gui/cli app for installing Vencord
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
 License:        GPL-3.0-only
 URL:            %{gourl}
+
 Source:         %{gosource}
 Source1:        %appid.metainfo.xml
+Source2:        dev.vencord.Installer.desktop
+Source3:        dev.vencord.Installer.policy
+
 BuildRequires:  go-rpm-macros
 BuildRequires:  go-srpm-macros
 BuildRequires:  anda-srpm-macros
@@ -43,6 +47,7 @@ BuildRequires:  wayland-devel
 BuildRequires:  libxkbcommon-devel
 BuildRequires:  wayland-protocols-devel
 BuildRequires:  extra-cmake-modules
+BuildRequires:  desktop-file-utils
 
 %description %{common_description}
 
@@ -122,12 +127,17 @@ export CGO_LDFLAGS="${LDFLAGS}"
 install -m 0755 -vd                     %{buildroot}%{_bindir}
 install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %terra_appstream -o %{SOURCE1}
+%desktop_file_install %{S:2}
+install -Dm644 %{SOURCE3} %{buildroot}%{_datadir}/polkit-1/actions/%{appid}
 
 %files
 %license LICENSE
 %doc README.md
 %{_bindir}/vencord-installer
 %{_datadir}/metainfo/%appid.metainfo.xml
+%{_datadir}/applications/%{appid}.desktop
+%{_datadir}/polkit-1/actions/%{appid}
+
 
 %files cli
 %license LICENSE

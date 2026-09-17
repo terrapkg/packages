@@ -1,7 +1,3 @@
-let v = gh_tag("OpenGamingCollective/xonedo")
-v.crop(1);
-rpm.global("ver", v);
+let v = gh_tag("OpenGamingCollective/xonedo");
 
-if rpm.changed() {
-  rpm.release();
-}
+rpm.version(find(`([\d.]+)-ogc`, v, 1));

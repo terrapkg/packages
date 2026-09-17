@@ -1,8 +1,8 @@
 Name:          binsider
 Version:       0.3.2
-Release:       1%?dist
+Release:       2%?dist
 Summary:       Analyze ELF binaries like a boss 😼🕵️‍♂️
-License:       Apache-2.0 AND MIT
+License:       Apache-2.0 OR MIT
 URL:           https://github.com/orhun/binsider
 Source0:       %url/archive/refs/tags/v%{version}.tar.gz
 

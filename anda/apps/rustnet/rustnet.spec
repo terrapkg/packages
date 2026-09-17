@@ -1,5 +1,5 @@
 Name:           rustnet
-Version:        1.1.0
+Version:        1.6.0
 Release:        1%{?dist}
 Summary:        A cross-platform network monitoring terminal UI tool built with Rust
 License:        Apache-2.0 AND (MIT OR Apache-2.0) AND Unicode-3.0 AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 AND ISC) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND BSD-2-Clause AND (BSD-3-Clause OR Apache-2.0) AND BSL-1.0 AND ISC AND (LGPL-2.1-only OR BSD-2-Clause) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Zlib OR Apache-2.0) AND MIT AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT) AND Zlib
@@ -8,8 +8,6 @@ Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
-BuildRequires:  cargo
-BuildRequires:  rust
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  libpcap-devel
 BuildRequires:  elfutils-libelf-devel
@@ -36,15 +34,15 @@ Features include:
 
 %prep
 %autosetup -n %{name}-%{version}
+%cargo_prep_online
 
 %build
 export RUSTFLAGS="%{build_rustflags}"
-# Cargo macros fail due to RUSTC_BOOTSTRAP and build target
-cargo build
+%cargo_build
 
 %install
-install -Dm755 target/debug/rustnet -t %{buildroot}%{_bindir}/
-install -Dm644 assets/services -t %{buildroot}%{_datadir}/%{name}/
+install -Dm755 target/rpm/rustnet -t %{buildroot}%{_bindir}/
+install -Dm644 assets/rustnet.svg -t %{buildroot}%{_scalableiconsdir}/
 install -Dm644 resources/packaging/linux/graphics/rustnet.png -t %{buildroot}%{_hicolordir}/256x256/apps/
 install -Dm644 resources/packaging/linux/rustnet.desktop -t %{buildroot}%{_appsdir}/
 
@@ -55,10 +53,13 @@ install -Dm644 resources/packaging/linux/rustnet.desktop -t %{buildroot}%{_appsd
 %license LICENSE.dependencies
 %doc *.md
 %{_bindir}/rustnet
-%{_datadir}/%{name}/services
+%{_scalableiconsdir}/rustnet.svg
 %{_hicolordir}/256x256/apps/rustnet.png
 %{_appsdir}/rustnet.desktop
 
 %changelog
+* Sun Sep 06 2026 Owen Zimmerman <owen@fyralabs.com> - 1.6.0-1
+- Fix install paths, use %%cargo_prep_online
+
 * Mon Jan 12 2026 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit

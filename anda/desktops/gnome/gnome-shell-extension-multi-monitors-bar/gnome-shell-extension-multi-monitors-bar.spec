@@ -1,5 +1,5 @@
-%global commit 376fe37ca7e6b8535fa7de1629cdca5d311cef88
-%global commit_date 20260328
+%global commit 26e3002f85f4a90c49331c8bf8bc3f50c3805763
+%global commit_date 20260909
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %global extension   multi-monitors-bar
@@ -17,7 +17,7 @@ BuildArch:      noarch
 Source0:        %url/archive/%commit/multi-monitors-bar_fapv2-%commit.tar.gz
 # README declared the license, but they do not provide a license file
 
-Requires:       (gnome-shell >= 48~ with gnome-shell < 50~)
+Requires:       gnome-shell >= 48~
 Recommends:     gnome-extensions-app
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>

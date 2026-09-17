@@ -1,14 +1,14 @@
-%global commit  7a6498ae1cacdc6ec3356ad29d9566d7f0242f56
+%global commit  fd96fbac6cffc06ab9a10d6ee8fad61afe9b771c
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global ver 202603050223
-%global commit_date 20260122
+%global ver 202609050329
+%global commit_date 20260905
 
 %global year %{gsub %commit_date %%d%%d%%d%%d$ %{quote:}}
 %global month %{gsub %commit_date %%d%%d%%d%%d(%%d%%d)%%d%%d %%1}
 
 Name:           v2ray-geoip
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        GeoIP for V2Ray
 License:        CC-BY-SA-4.0
 Packager:       veuxit <erroor234@gmail.com>

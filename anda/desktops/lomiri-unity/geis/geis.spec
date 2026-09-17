@@ -37,7 +37,7 @@ developing applications that use %{name}.
 %prep
 %autosetup -n geis-%{version}+16.04.20160126 -p1
 
-%build
+%conf
 NOCONFIGURE=1 \
 ./autogen.sh
 
@@ -48,6 +48,7 @@ export PYTHON
   --disable-silent-rules \
   --disable-static
 
+%build
 %make_build
 
 %install

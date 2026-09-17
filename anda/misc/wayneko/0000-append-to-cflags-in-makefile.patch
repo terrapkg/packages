@@ -1,0 +1,13 @@
+diff --git a/Makefile b/Makefile
+index 71ac623..a61e15c 100644
+--- a/Makefile
++++ b/Makefile
+@@ -6,7 +6,7 @@ MANDIR=$(PREFIX)/share/man
+ BASHCOMPDIR=$(PREFIX)/share/bash-completion/completions
+ ZSHCOMPDIR=$(PREFIX)/share/zsh/vendor-completions
+ 
+-CFLAGS=-Wall -Werror -Wextra -Wpedantic -Wno-unused-parameter -Wconversion $\
++CFLAGS+=-Wall -Werror -Wextra -Wpedantic -Wno-unused-parameter -Wconversion $\
+ 	-Wformat-security -Wformat -Wsign-conversion -Wfloat-conversion $\
+ 	-Wunused-result $(shell pkg-config --cflags pixman-1)
+ LIBS=-lwayland-client $(shell pkg-config --libs pixman-1) -lrt

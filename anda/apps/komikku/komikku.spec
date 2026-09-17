@@ -3,10 +3,9 @@
 %global gtk4_version        4.14.4
 %global libadwaita_version  1.5.1
 %global pure_protobuf_version 2.0.0
-%global raw_ver v50.0.1
 
 Name:           komikku
-Version:        50.0.1
+Version:        51.0.0
 %forgemeta
 Release:        1%{?dist}
 Summary:        A manga reader for GNOME
@@ -15,7 +14,7 @@ BuildArch:      noarch
 
 License:        GPL-3.0-or-later
 URL:            https://apps.gnome.org/Komikku/
-Source0:        https://codeberg.org/valos/%{appname}/archive/%{raw_ver}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        https://codeberg.org/valos/%{appname}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  intltool
@@ -28,6 +27,7 @@ BuildRequires:  cmake
 BuildRequires:  pkgconfig(gobject-introspection-1.0) >= 1.35.9
 BuildRequires:  pkgconfig(gtk4) >= %{gtk4_version}
 BuildRequires:  pkgconfig(libadwaita-1) >= %{libadwaita_version}
+BuildRequires:  pkgconfig(gtksourceview-5)
 
 Requires:       hicolor-icon-theme
 Requires:       gtk4 >= %{gtk4_version}

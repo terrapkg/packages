@@ -1,6 +1,6 @@
 Name:           zlib
 Version:        1.3.2
-Release:        1%?dist
+Release:        2%?dist
 License:        Zlib
 URL:            https://zlib.net
 Source:         https://github.com/madler/zlib/archive/v%{version}.tar.gz
@@ -19,14 +19,10 @@ BuildRequires:  gcc
 %pkg_static_files
 
 %prep
-%autosetup 
-export CFLAGS="%optflags"
-export LDFLAGS="%build_ldflags"
-./configure --libdir=%_libdir \
-            --includedir=%_includedir \
-            --sysconfdir=%_sysconfdir \
-            --localstatedir=%_localstatedir \
-            --prefix=%_prefix
+%autosetup
+
+%conf
+%configure
 
 %build
 %make_build
@@ -41,5 +37,11 @@ export LDFLAGS="%build_ldflags"
 %_libdir/libz.so.*
 
 %changelog
-* Wed Nov 26 2025 metcya <metcya@gmail.com>
+* Sun Jul 19 2026 Olivia <git@olivia.sh> - 1.3.2-2
+- Update packager
+
+* Tue Apr 21 2026 Owen Zimmerman <owen@fyralabs.com>
+- Use %conf and %configure
+
+* Wed Nov 26 2025 Olivia <git@olivia.sh>
 - package zlib

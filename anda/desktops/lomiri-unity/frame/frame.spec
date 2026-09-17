@@ -33,7 +33,7 @@ developing applications that use %{name}.
 %prep
 %autosetup -c -p1
 
-%build
+%conf
 NOCONFIGURE=1 \
 ./autogen.sh
 
@@ -44,6 +44,7 @@ export PYTHON
   --disable-silent-rules \
   --disable-static
 
+%build
 %make_build
 
 %install

@@ -1,1 +1,1 @@
-rpm.version(codeberg("Limine/Limine"));
+rpm.version(gh("limine-bootloader/limine"));

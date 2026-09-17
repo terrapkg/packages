@@ -7,12 +7,12 @@ The library enables developers to write highly concurrent applications using syn
 
 Name:           libfiber-devel
 Version:        1.1.0
-Release:        1%?dist
+Release:        2%?dist
 URL:            https://deepwiki.com/iqiyi/libfiber
 Source0:        https://github.com/iqiyi/libfiber/archive/refs/tags/v%version.tar.gz
 Patch0:         add-missing-header.patch
 Summary:        The high performance c/c++ coroutine/fiber library for Linux/FreeBSD/MacOS/Windows, supporting select/poll/epoll/kqueue/iouring/iocp/windows GUI
-License:        LGPL-3.0
+License:        LGPL-3.0-or-later
 ExclusiveArch:  x86_64
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
