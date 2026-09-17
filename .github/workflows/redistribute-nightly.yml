@@ -39,26 +39,38 @@ jobs:
           import re
 
           nightly_pattern = re.compile(
-              r"(?P<prefix>(?:^|(?<=\{))[ \t]*nightly[ \t]*=[ \t]*)(?P<quote>\"?)(?P<value>\d+)(?P=quote)",
+              r"(?P<prefix>(?:^|(?<=\{))[ \t]*nightly[ \t]*=[ \t]*)"
+              r"(?P<quote>[\"']?)(?P<value>\d+)(?P=quote)",
               re.MULTILINE,
           )
           packages = []
           for path in sorted(Path("anda").rglob("anda.hcl")):
               text = path.read_text()
-              if nightly_pattern.search(text):
+              matches = [match for match in nightly_pattern.finditer(text) if int(match.group("value")) != 0]
+              if matches:
                   packages.append((path, text))
 
-          for index, (path, text) in enumerate(packages):
+          assigned = [0, 0, 0, 0]
+          package_index = [0]
+          for path, text in packages:
               def assign_run(match):
+                  if int(match.group("value")) == 0:
+                      return match.group(0)
+                  run = package_index[0] % 4
+                  package_index[0] += 1
+                  assigned[run] += 1
                   return (
                       f"{match.group('prefix')}{match.group('quote')}"
-                      f"{index % 4 + 1}{match.group('quote')}"
+                      f"{run + 1}{match.group('quote')}"
                   )
 
               updated = nightly_pattern.sub(assign_run, text)
               if updated != text:
                   path.write_text(updated)
-          print(f"Assigned {len(packages)} nightly packages across 4 runs")
+
+          if not packages:
+              raise SystemExit("No packages with nightly != 0 found")
+          print(f"Assigned {package_index[0]} nightly packages across runs: {assigned}")
           PY
 
       - name: Save
@@ -71,16 +83,20 @@ jobs:
             msg="chore(nightly): redistribute packages across update runs"
             git add anda
             git commit -S -m "$msg"
-            git format-patch HEAD^
+            git format-patch --stdout HEAD^ > nightly.patch
             copy_over () {
-              git checkout $1
-              git apply *.patch || true
+              git checkout "$1"
+              git apply --check nightly.patch
+              git apply nightly.patch
               git add anda
-              git commit -S -m "$msg"
+              if [[ `git status --porcelain` ]]; then
+                git commit -S -m "$msg"
+              fi
             }
-            copy_over f45 || true
-            copy_over f44 || true
-            copy_over f43 || true
-            copy_over el10 || true
+            copy_over f45
+            copy_over f44
+            copy_over f43
+            copy_over el10
+            git checkout frawhide
             git push -u origin --all
           fi
