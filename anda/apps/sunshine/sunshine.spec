@@ -8,7 +8,7 @@
 %global __requires_exclude ^lib(boost_[a-z_]+|glad_(gl|egl)|libdisplaydevice_common)\.so.*$
 
 Name:           sunshine
-Version:        2026.516.143833
+Version:        2026.914.233613
 Release:        1%{?dist}
 License:        GPL-3.0-only AND CC0-1.0
 URL:            http://app.lizardbyte.dev/Sunshine/
