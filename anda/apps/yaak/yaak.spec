@@ -43,7 +43,7 @@ cargo install --locked --root %{wasm_pack_root} wasm-pack
 
 %build
 export PATH="%{wasm_pack_root}/bin:$PATH"
-export CMAKE_ARGS="${CMAKE_ARGS:-} -DCMAKE_POLICY_VERSION_MINIMUM=3.5"
+export CMAKE_POLICY_VERSION_MINIMUM=3.5
 # client:bundle selects the release Tauri configuration and builds the frontend,
 # Rust application, sidecars, and Linux bundle through the upstream build script.
 %npm_build -r client:bundle
