@@ -54,6 +54,8 @@ BuildRequires:  vulkan-loader-devel
 BuildRequires:  vulkan-headers
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtsvg-devel
+BuildRequires:  python3-jinja2
+BuildRequires:  python3-uv
 
 %if %{with cuda}
 BuildRequires:  cuda
