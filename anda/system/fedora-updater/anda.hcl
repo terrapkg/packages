@@ -3,6 +3,6 @@ project pkg {
 		spec = "fedora-updater.spec"
 	}
 	labels {
-		nightly = 1
+		nightly = 2
 	}
 }
