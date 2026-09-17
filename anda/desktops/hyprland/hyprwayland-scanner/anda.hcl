@@ -3,7 +3,7 @@ project pkg {
 		spec = "hyprwayland-scanner.nightly.spec"
 	}
 	labels {
-		nightly = 1
+		nightly = 4
 		subrepo = "extras"
 	}
 }
