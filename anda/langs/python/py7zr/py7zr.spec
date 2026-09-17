@@ -1,6 +1,8 @@
 %global pypi_name py7zr
 %global _desc Pure python 7-zip library.
 
+%global _python_dist_allow_version_zero 1
+
 Name:			python-%{pypi_name}
 Version:		1.1.3
 Release:		1%{?dist}
