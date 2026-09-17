@@ -13,7 +13,7 @@ BuildArch:      noarch
 BuildRequires:  python3-devel
 %dnl BuildRequires:  python3-wheel
 %dnl BuildRequires:  python3-setuptools
-%dnl BuildRequires:  python3-pip
+BuildRequires:  python3-pip
 
 Packager:	    Its-J <jonah@fyralabs.com>
 
