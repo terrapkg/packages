@@ -1,6 +1,8 @@
 %global pypi_name pybcj
 %global _desc BCJ(Branch-Call-Jump) filter for python.
 
+%define _python_dist_allow_version_zero 1
+
 Name:			python-%{pypi_name}
 Version:		1.0.8
 Release:		1%{?dist}
