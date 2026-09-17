@@ -1,0 +1,46 @@
+%global pypi_name pyppmd
+%global _desc PPMd compression/decompression library.
+
+Name:			python-%{pypi_name}
+Version:		1.3.1
+Release:		1%{?dist}
+Summary:		PPMd compression/decompression library
+License:		LGPL-2.1-or-later
+URL:			https://pyppmd.readthedocs.io/
+Source0:		%{pypi_source}
+BuildRequires:  cmake
+BuildRequires:  gcc-c++
+BuildRequires:  python3-devel
+BuildRequires:  python3-wheel
+BuildRequires:  python3-setuptools
+BuildRequires:  python3-pip
+
+Packager:	    Owen Zimmerman <owen@fyralabs.com>
+
+%description
+%_desc
+
+%package -n     python3-%{pypi_name}
+Summary:        %{summary}
+%{?python_provide:%python_provide python3-%{pypi_name}}
+
+%description -n python3-%{pypi_name}
+%_desc
+
+%prep
+%autosetup -C
+
+%build
+%pyproject_wheel
+
+%install
+%pyproject_install
+%pyproject_save_files %{pypi_name}
+
+%files -n python3-%{pypi_name} -f %{pyproject_files}
+%doc README.rst
+%license LICENSE
+
+%changelog
+* Wed Sep 16 2026 Owen Zimmerman <owen@fyralabs.com>
+- Initial commit
