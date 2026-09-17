@@ -19,6 +19,8 @@ BuildRequires:  cmake(zlib)
 BuildRequires:  cmake(minizip-ng)
 BuildRequires:  cmake-rpm-macros
 BuildRequires:  cmake
+BuildRequires:  rust
+BuildRequires:  bun-bin
 BuildRequires:  pkgconfig(libzstd)
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
@@ -27,6 +29,15 @@ BuildRequires:  zlib-ng-compat-devel
 BuildRequires:  bzip2-devel
 BuildRequires:  bzip2-libs
 BuildRequires:  xz-devel
+BuildRequires:  libX11-devel
+BuildRequires:  libXtst-devel
+BuildRequires:  libgcc(x86-32)
+BuildRequires:  libstdc++(x86-32)
+BuildRequires:  openssl-devel(x86-32)
+BuildRequires:  openssl-libs(x86-32)
+BuildRequires:  libidn2(x86-32)
+
+ExclusiveArch:  x86_64
 
 %description
 Open-source modding framework for creating and managing Steam Client themes and plugins.
