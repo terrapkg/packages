@@ -1,8 +1,8 @@
 %undefine __brp_mangle_shebangs
 
-%global latest_stable_version 0.0.33
-%global commit a4cc1367b03ee0c1dc2b50fceac81ef5e63212e2
-%global commit_date 20260818
+%global latest_stable_version 0.0.40
+%global commit 0bf2d6b0109f243add8fb6d727e153e97dd51802
+%global commit_date 20260916
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global buildnum %(printf '%d' 0x%{shortcommit})
 %global electron_version %{latest_stable_version}-nightly.%{commit_date}.%{buildnum}
@@ -20,6 +20,7 @@ BuildRequires:  cargo
 BuildRequires:  ImageMagick
 BuildRequires:  pnpm
 BuildRequires:  nodejs24
+BuildRequires:  pkgconfig(libsecret-1)
 
 Requires:       git-core
 Suggests:       azure-cli
@@ -66,7 +67,7 @@ chmod 4755 %{buildroot}%{_libdir}/%{name}/chrome-sandbox
 install -dm755 %{buildroot}%{_bindir}
 ln -sf %{_libdir}/%{name}/t3code %{buildroot}%{_bindir}/%{name}
 
-install -Dm644 apps/marketing/public/icon.png %{buildroot}%{_hicolordir}/512x512/apps/%{name}.png
+install -Dm644 assets/prod/black-universal-1024.png %{buildroot}%{_hicolordir}/1024x1024/apps/%{name}.png
 
 cat <<EOF > %{name}.desktop
 [Desktop Entry]
@@ -95,6 +96,9 @@ EOF
 %{_hicolordir}/*/apps/%{name}.png
 
 %changelog
+* Fri Sep 04 2026 Addison LeClair <me@addi.lol>
+- Add new libsecret dependency
+
 * Thu Jul 30 2026 Addison LeClair <me@addi.lol>
 - Fix T3 Connect by adding missing auth variables
 - Fix .desktop title to match upstream

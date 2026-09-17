@@ -1,5 +1,5 @@
 %global goipath         github.com/arduino/arduino-flasher-cli
-Version:                0.5.1
+Version:                0.5.3
 
 %gometa -f
 

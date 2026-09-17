@@ -1,7 +1,7 @@
-%global commit 3acca9f5e211edb601000bb64767b78b2468f787
+%global commit 6988ca6b3e41703a4925488d2fd8a15709e20e80
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260710
-%global ver 0.10.3.1
+%global commitdate 20260915
+%global ver 0.10.4
 %define buildforkernels akmod
 %global debug_package %{nil}
 %global modulename xpadneo

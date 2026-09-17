@@ -1,12 +1,12 @@
 %define debug_package %nil
 
-%global commit d2ca2f0ceae081a3f9205541e7e02d8b9e8f8046
+%global commit 2f2715ce22cbcb0290f5ea82080796753a455b4b
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260810
+%global commit_date 20260912
 
 Name:           gamescope-session
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Gamescope session based on Valve's gamescope
 License:        MIT
 URL:            https://github.com/OpenGamingCollective/gamescope-session

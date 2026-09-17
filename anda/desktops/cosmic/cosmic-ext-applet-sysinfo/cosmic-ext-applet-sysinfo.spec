@@ -1,12 +1,12 @@
 %global ver 0.4.0
-%global commitdate 20260814
-%global commit f66e0c7b133bf4249d23ab7483693cedca46ad19
+%global commit_date 20260915
+%global commit 173bd1d078cbd1f43cade8fcd82fae4da5cf9735
 %global shortcommit %{sub %{commit} 0 7}
 %global appid io.github.cosmic_utils.sysinfo-applet
 
 Name:           cosmic-ext-applet-sysinfo
-Version:        %{ver}^%{commitdate}.git%{shortcommit}
-Release:        2%{?dist}
+Version:        %{ver}^%{commit_date}.git%{shortcommit}
+Release:        1%{?dist}
 Summary:        Simple system info applet for cosmic
 
 SourceLicense:  GPL-3.0-or-later
@@ -46,5 +46,8 @@ Simple system info applet for cosmic.
 %{_appsdir}/%{appid}.desktop
 
 %changelog
+* Thu Sep 03 2026 ammix <maxim@ammix.dev>
+- Fix nightly commit date updates
+
 * Mon Aug 17 2026 Olivia <git@olivia.sh>
 - Initial package
