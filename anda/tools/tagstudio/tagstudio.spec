@@ -1,6 +1,6 @@
 Name:           tagstudio
 Version:        9.6.3
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        User-focused photo and file management system
 License:        GPL-3.0-only
 URL:            https://github.com/TagStudioDev/TagStudio
@@ -14,8 +14,9 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  hicolor-icon-theme
 
 # TagStudio's media preview and playback support uses these external tools.
-Requires:       ffmpeg
+Requires:       (ffmpeg or ffmpeg-free)
 Requires:       hicolor-icon-theme
+Requires:       python3-pillow-qt
 Recommends:     ripgrep
 
 BuildArch:      noarch
