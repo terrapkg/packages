@@ -19,6 +19,7 @@ BuildRequires:  cmake(zlib)
 BuildRequires:  cmake(minizip-ng)
 BuildRequires:  cmake-rpm-macros
 BuildRequires:  cmake
+BuildRequires:  pkgconfig(libzstd)
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  zlib-ng-compat-static
