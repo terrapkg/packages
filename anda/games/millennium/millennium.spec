@@ -10,7 +10,7 @@ BuildSystem:    cmake
 BuildOption(conf):  -DDISTRO_NIX=ON -DBUILD_SHARED_LIBS=ON -DBUiLD_STATIC_LIBS=OFF
 BuildOption(conf):  -DCURL_LIBRARY=%_libdir/libcurl.so -DCURL_INCLUDE_DIR=%_includedir/curl/
 BuildOption(conf):  -DZLIB_LIBRARY=%_libdir/libz.so -DZLIB_INCLUDE_DIR=%_includedir
-BuildOption(conf):  -BZLIP2_LIBRARIES=%_libdir/libbz2.so -DBZLIP2_INCLUDE_DIR=%_includedir
+BuildOption(conf):  -DBZIP2_LIBRARIES=%_libdir/libbz2.so -DBZIP2_INCLUDE_DIR=%_includedir
 BuildRequires:  cmake(zlib)
 BuildRequires:  cmake(minizip-ng)
 BuildRequires:  cmake-rpm-macros
