@@ -19,7 +19,7 @@ BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  openssl-devel
 BuildRequires:  boost-devel
-BuildRequires:	libev-devel
+BuildRequires:  libev-devel
 BuildRequires:  pkgconfig(libcap)
 BuildRequires:  pkgconfig(libdrm)
 BuildRequires:  pkgconfig(libva)
@@ -49,6 +49,7 @@ BuildRequires:  doxygen
 BuildRequires:  nodejs-npm
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  glslc
+BuildRequires:  vulkan-loader
 
 %if %{with cuda}
 BuildRequires:  cuda
