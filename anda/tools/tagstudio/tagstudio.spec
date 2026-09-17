@@ -1,6 +1,6 @@
 Name:           tagstudio
 Version:        9.6.3
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        User-focused photo and file management system
 License:        GPL-3.0-only
 URL:            https://github.com/TagStudioDev/TagStudio
@@ -41,6 +41,7 @@ sed -i 's/>=3.12,<3.14/>=3.12,<3.15/' pyproject.toml
 %pyproject_patch_dependency requests:drop_constraints
 %pyproject_patch_dependency structlog:drop_constraints
 %pyproject_patch_dependency opencv-python:drop_constraints
+%pyproject_patch_dependency py7zr:drop_constraints
 
 %build
 %pyproject_wheel
