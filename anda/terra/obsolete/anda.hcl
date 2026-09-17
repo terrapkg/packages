@@ -3,4 +3,7 @@ project pkg {
 	rpm {
 		spec = "terra-obsolete.spec"
 	}
+	labels {
+		updbranch = 1
+	}
 }

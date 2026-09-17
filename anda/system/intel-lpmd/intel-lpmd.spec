@@ -1,7 +1,7 @@
 %global _distro_extra_cflags -Wno-unused-variable -Wno-unused-function -Wno-switch -I/usr/lib/gcc/**/include/
 
 Name:			intel-lpmd
-Version:		0.0.9
+Version:		0.1.0
 Release:		1%?dist
 Summary:		Linux daemon designed to optimize active idle power
 License:		GPL-2.0-only

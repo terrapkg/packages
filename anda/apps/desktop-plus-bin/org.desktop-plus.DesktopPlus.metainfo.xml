@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component type="desktop-application">
+  <id>org.desktop-plus.DesktopPlus</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <name>Desktop Plus</name>
+  <summary>A GitHub Desktop fork with advanced functionality and improvements</summary>
+
+  <description>
+    <p>
+      Desktop Plus is a community fork of GitHub Desktop with additional features
+      including commit search, multi-account support (GitHub, Bitbucket, GitLab,
+      Codeberg), commit graph visualization, and multiple stashes per branch.
+    </p>
+  </description>
+
+  <launchable type="desktop-id">desktop-plus.desktop</launchable>
+  <url type="homepage">https://desktop-plus.org</url>
+
+  <releases>
+    <release version="3.6.4.1" date="2026-07-28" />
+  </releases>
+</component>

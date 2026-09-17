@@ -4,6 +4,6 @@ project pkg {
     spec = "ipu6-camera-bins.spec"
   }
   labels {
-        nightly = 1
+        nightly = 4
     }
 }

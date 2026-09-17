@@ -1,12 +1,12 @@
 Name:		google-black-cursor-theme
 Version:	2.0.0
-Release:	1%{?dist}
+Release:	2%{?dist}
 URL:		https://github.com/ful1e5/Google_Cursor
 Source0:	%{url}/releases/download/v%{version}/GoogleDot-Black.tar.gz
 Source1:	https://raw.githubusercontent.com/ful1e5/Google_Cursor/v%{version}/README.md
 Source2:	https://raw.githubusercontent.com/ful1e5/Google_Cursor/v%{version}/LICENSE
-License:	GPL-3.0
-Summary:	An opensource cursor theme inspired by Google. 
+License:	GPL-3.0-or-later
+Summary:	An opensource cursor theme inspired by Google.
 BuildArch:	noarch
 BuildRequires:	rpm_macro(fdupes)
 

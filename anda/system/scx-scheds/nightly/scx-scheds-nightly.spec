@@ -1,14 +1,15 @@
-%global commit 910ec138361437cb1720361b04d5aac11af7c8c2
+%global commit e54610876330f9f3cf0000bb1b09dfc3b5cd47d8
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20250822
-%global ver 1.0.15
+%global commitdate 20260917
+%global ver 1.1.3
+%undefine __brp_mangle_shebangs
 
 Name:           scx-scheds-nightly
 Version:        %{ver}^%{commitdate}.git.%{shortcommit}
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Nightly builds of sched_ext schedulers and tools
 SourceLicense:  GPL-2.0-only
-License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND BSD-2-Clause AND BSD-3-Clause AND GPL-2.0-only AND ISC AND (LGPL-2.1-only OR BSD-2-Clause) AND LGPL-2.1 AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MIT AND (MPL-2.0 OR MIT OR Apache-2.0) AND MPL-2.0-only and MPL-2.0-or-later AND (Unlicense OR MIT) AND Zlib
+License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND BSD-2-Clause AND BSD-3-Clause AND BSL-1.0 AND GPL-2.0-only AND ISC AND (LGPL-2.1-only OR BSD-2-Clause) AND LGPL-2.1-only AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MIT AND (MPL-2.0 OR MIT OR Apache-2.0) AND MPL-2.0-or-later AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT) AND Zlib
 URL:            https://github.com/sched-ext/scx
 Source0:        %{URL}/archive/%{commit}/scx-%{commit}.tar.gz
 BuildRequires:  anda-srpm-macros
@@ -32,6 +33,9 @@ BuildRequires:  rust
 BuildRequires:  systemd
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  zlib-ng-compat
+BuildRequires:  pkgconfig(openssl)
+Requires:       (scx-tools or scx-tools-nightly)
+Suggests:       scx-tools-nightly
 Requires:       elfutils-libelf
 Requires:       jq
 Requires:       libseccomp
@@ -50,7 +54,7 @@ Provides:       scx_layered
 Provides:       scx_rustland
 Provides:       scx_rusty
 Obsoletes:      scxctl <= 0.3.4
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 sched_ext is a Linux kernel feature which enables implementing kernel thread schedulers in BPF and dynamically loading them.
@@ -70,43 +74,31 @@ License:       GPL-2.0-only
 %cargo_prep_online
 
 %build
-%meson \
- -Dsystemd=enabled \
- -Dopenrc=disabled
-%meson_build
-
+%{cargo_build -a} \
+     --workspace \
+     --exclude scx_rlfifo \
+     --exclude scx_mitosis \
+     --exclude scx_wd40 \
+     --exclude xtask \
+     --exclude scxcash \
+     --exclude vmlinux_docify \
+     --exclude scx_arena_selftests
 
 %install
-%meson_install
+%install_cargo_bins
+%install_cargo_devel_libs
 
-%{cargo_license_online} > LICENSE.dependencies
-
-%post
-%systemd_post scx_loader.service
-%systemd_post scx.service
-
-%preun
-%systemd_preun scx_loader.service
-%systemd_preun scx.service
-
-%postun
-%systemd_postun_with_restart scx_loader.service
-%systemd_postun_with_restart scx.service
+%{cargo_license_online -a} > LICENSE.dependencies
 
 %files
 %doc OVERVIEW.md
 %doc README.md
 %license LICENSE
 %license LICENSE.dependencies
-%attr(0644,root,root) %config(noreplace) %{_sysconfdir}/default/scx
 %{_bindir}/scx*
-%{_bindir}/vmlinux_docify
-%{_unitdir}/scx_loader.service
-%{_unitdir}/scx.service
-%{_datadir}/dbus-1/system.d/org.scx.Loader.conf
-%{_datadir}/dbus-1/system-services/org.scx.Loader.service
-%attr(0644,root,root) %config(noreplace) %{_datadir}/scx_loader/config.toml
 
 %changelog
+* Sat May 2 2026 Gilver E. <roachy@fyralabs.com> - 1.1.0^20260502.git.ce8aa3d-2
+- Update licenses
 * Sun Jun 15 2025 Gilver E. <rockgrub@disroot.org> - 1.0.13^20250612.git.c1507b0-1
 - Initial package

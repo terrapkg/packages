@@ -1,1 +1,1 @@
-rpm.version(gh("GeopJr/BLAHAJ"));
+rpm.version(codeberg("GeopJr/BLAHAJ"));

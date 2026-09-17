@@ -1,0 +1,20 @@
+## <summary>policy for steamos_manager</summary>
+
+########################################
+## <summary>
+##	Execute steamos_manager in the steamos_manager domain.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed to transition.
+##	</summary>
+## </param>
+#
+interface(`steamos_manager_domtrans',`
+	gen_require(`
+		type steamos_manager_t, steamos_manager_exec_t;
+	')
+
+	corecmd_search_bin($1)
+	domtrans_pattern($1, steamos_manager_exec_t, steamos_manager_t)
+')

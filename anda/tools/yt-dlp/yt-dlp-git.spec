@@ -2,13 +2,12 @@
 %global oldpkgname yt-dlp-nightly
 
 Name:           yt-dlp-git
-Version:        2025.08.22.031546
-Release:        1%?dist
+Version:        2026.09.16.074918
+Release:        1%{?dist}
 Summary:        A command-line program to download videos from online video platforms
 
 License:        Unlicense
 URL:            https://github.com/yt-dlp/yt-dlp
-# License of the specfile
 Source0:        https://src.fedoraproject.org/rpms/yt-dlp/raw/rawhide/f/yt-dlp.spec.license
 # Downgrade websockets version requirement on <= 41
 Patch1:         https://src.fedoraproject.org/rpms/yt-dlp/raw/6308364583e19fe367ca9be500e8c3a9366ff10c/f/0001-Revert-rh-websockets-Upgrade-websockets-to-13.0-1081.patch
@@ -16,6 +15,8 @@ Patch1:         https://src.fedoraproject.org/rpms/yt-dlp/raw/6308364583e19fe367
 Patch2:         https://src.fedoraproject.org/rpms/yt-dlp/raw/b8d3a225839bf53a4d53cc79ee8cbb0a7640dafd/f/0002-Revert-rh-requests-Bump-minimum-requests-version-to-.patch
 
 BuildArch:      noarch
+Packager:       madonuko <mado@fyralabs.com>
+Recommends:     (deno or bun or nodejs-npm)
 
 BuildRequires:  python3-devel
 BuildRequires:  anda-srpm-macros
@@ -34,6 +35,7 @@ Requires:       yt-dlp-git+default = %{?epoch:%{epoch}:}%{version}-%{release}
 # ffmpeg-free is now available in Fedora.
 Recommends:     /usr/bin/ffmpeg
 Recommends:     /usr/bin/ffprobe
+Recommends:     yt-dlp-ejs
 
 Conflicts:      yt-dlp
 

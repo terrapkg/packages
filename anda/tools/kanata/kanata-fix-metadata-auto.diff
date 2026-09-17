@@ -1,12 +1,12 @@
---- kanata-1.9.0/Cargo.toml	1970-01-01T00:00:01+00:00
-+++ kanata-1.9.0/Cargo.toml	2025-06-23T09:19:38.121344+00:00
-@@ -45,23 +45,9 @@
+--- kanata-1.11.0/Cargo.toml	1970-01-01T00:00:01+00:00
++++ kanata-1.11.0/Cargo.toml	2026-02-12T16:56:59.169531+00:00
+@@ -47,23 +47,9 @@
      "kanata-parser/gui",
      "win_sendinput_send_scancodes",
      "win_llhook_read_scancodes",
--    "muldiv",
--    "strip-ansi-escapes",
-     "open",
+-    "dep:muldiv",
+-    "dep:strip-ansi-escapes",
+     "dep:open",
 -    "dep:windows-sys",
 -    "winapi/processthreadsapi",
 -    "native-windows-gui/tray-notification",
@@ -20,29 +20,19 @@
 -    "native-windows-gui/animation-timer",
  ]
  interception_driver = [
--    "kanata-interception",
+-    "dep:kanata-interception",
      "kanata-parser/interception_driver",
  ]
  passthru_ahk = [
-@@ -75,9 +61,7 @@
- wasm = ["instant/wasm-bindgen"]
- win_llhook_read_scancodes = ["kanata-parser/win_llhook_read_scancodes"]
- win_manifest = [
--    "embed-resource",
-     "indoc",
--    "regex",
- ]
- win_sendinput_send_scancodes = ["kanata-parser/win_sendinput_send_scancodes"]
- zippychord = ["kanata-parser/zippychord"]
-@@ -186,97 +170,9 @@
- [target.'cfg(target_os = "linux")'.dependencies.signal-hook]
- version = "0.3.14"
+@@ -202,88 +188,9 @@
+ [target.'cfg(not(any(target_arch = "wasm32", target_os = "android")))'.dependencies.arboard]
+ version = "3.4"
  
 -[target.'cfg(target_os = "macos")'.dependencies.core-graphics]
 -version = "0.24.0"
 -
 -[target.'cfg(target_os = "macos")'.dependencies.karabiner-driverkit]
--version = "0.1.5"
+-version = "0.2.0"
 -
 -[target.'cfg(target_os = "macos")'.dependencies.libc]
 -version = "0.2"
@@ -91,6 +81,9 @@
 -    "wincon",
 -    "timeapi",
 -    "mmsystem",
+-    "winuser",
+-    "windef",
+-    "minwindef",
 -]
 -
 -[target.'cfg(target_os = "windows")'.dependencies.windows-sys]
@@ -113,18 +106,6 @@
 -    "Wdk_System",
 -    "Wdk_System_SystemServices",
 -]
--optional = true
--
--[target.'cfg(target_os = "windows")'.build-dependencies.embed-resource]
--version = "2.4.2"
--optional = true
--
--[target.'cfg(target_os = "windows")'.build-dependencies.indoc]
--version = "2.0.4"
--optional = true
--
--[target.'cfg(target_os = "windows")'.build-dependencies.regex]
--version = "1.10.4"
 -optional = true
 -
  [profile.release]

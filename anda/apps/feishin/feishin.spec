@@ -1,4 +1,3 @@
-%define debug_package %nil
 %global _build_id_links none
 
 # Exclude private libraries
@@ -6,10 +5,11 @@
 %global __provides_exclude_from %{_datadir}/%{name}/.*\\.so
 
 Name:			feishin
-Version:		0.19.0
-Release:		1%?dist
+%electronmeta -aD
+Version:		1.17.0
+Release:		2%{?dist}
 Summary:		A modern self-hosted music player
-License:		GPL-3.0
+License:		GPL-3.0-or-later
 URL:			https://github.com/jeffvli/feishin
 Source0:		%url/archive/refs/tags/v%version.tar.gz
 Requires:		fuse mpv
@@ -54,7 +54,8 @@ pnpm exec electron-builder --linux dir --%a
 %install
 mkdir -p %buildroot%_datadir/{pixmaps,applications} %buildroot%_bindir
 mv dist/*-unpacked %buildroot%_datadir/feishin
-install -Dm644 assets/icons/icon.png %buildroot%_datadir/pixmaps/feishin.png
+cp -r assets %buildroot%_datadir/feishin/resources/
+install -Dm644 assets/icons/icon.png %buildroot%_datadir/pixmaps/feishin.png 
 ln -s %_datadir/feishin/feishin %buildroot%_bindir/feishin
 install -Dm644 feishin.desktop %buildroot%_datadir/applications/
 
@@ -63,6 +64,7 @@ install -Dm644 feishin.desktop %buildroot%_datadir/applications/
 %license LICENSE
 %_bindir/feishin
 %_datadir/feishin/
+%_datadir/feishin/resources/assets/
 %_datadir/applications/feishin.desktop
 %_datadir/pixmaps/feishin.png
 

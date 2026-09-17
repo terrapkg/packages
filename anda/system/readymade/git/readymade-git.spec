@@ -1,10 +1,10 @@
-%global commit 5f9416645827ecf6ed781f2255afef1e05fd8e2f
-%global commit_date 20250702
+%global commit ccdf092314b2241ec13ede2381d8174b051d5d09
+%global commit_date 20260524
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-
+%global crate readymade
 Name:           readymade-git
 Version:        %commit_date.%shortcommit
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Install ready-made distribution images!
 License:        GPL-3.0-or-later
 URL:            https://github.com/FyraLabs/readymade
@@ -12,12 +12,21 @@ Source0:        %url/archive/%commit.tar.gz
 Source1:        https://github.com/FyraLabs/rdms_proc_macros/archive/HEAD.tar.gz
 BuildRequires:	anda-srpm-macros rust-packaging mold
 BuildRequires:  pkgconfig(libhelium-1)
+BuildRequires:  pkgconfig(openssl)
+BuildRequires:  pkgconfig(libacl)
 BuildRequires:  clang-devel
+BuildRequires:  gcc
 BuildRequires:  cmake
+BuildRequires:  glibc-all-langpacks
+# We'll need cryptsetup to unlock disks for now
+Requires:       cryptsetup
+Recommends:     readymade-config
 Conflicts:      readymade
 Obsoletes:      readymade-nightly < 20250502.4dc78ec-3
 
 Requires:  efibootmgr
+
+Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
 Readymade is a simple Linux Distribution installer.
@@ -39,7 +48,7 @@ This package contains the configuration files for Readymade to install Ultramari
 %prep
 %autosetup -n readymade-%commit
 tar xf %{S:1}
-rmdir taidan_proc_macros && mv rdms_proc_macros* taidan_proc_macros
+rmdir crates/taidan_proc_macros && mv rdms_proc_macros* crates/taidan_proc_macros
 %cargo_prep_online
 
 %build
@@ -53,6 +62,7 @@ ln -sf %{_datadir}/applications/com.fyralabs.Readymade.desktop %{buildroot}%{_da
 
 %files config-ultramarine
 %_sysconfdir/readymade.toml
+%_datadir/readymade/*
 
 
 %files
@@ -63,4 +73,3 @@ ln -sf %{_datadir}/applications/com.fyralabs.Readymade.desktop %{buildroot}%{_da
 %_datadir/applications/liveinst.desktop
 %ghost %_datadir/readymade
 %_datadir/icons/hicolor/scalable/apps/com.fyralabs.Readymade.svg
-

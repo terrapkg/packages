@@ -2,10 +2,10 @@
 
 Name:           fluent-theme
 Version:        20250417
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Fluent design theme for GNOME/GTK based desktop environments
 
-License:        GPL-3.0
+License:        GPL-3.0-or-later
 URL:            https://github.com/vinceliuice/Fluent-gtk-theme
 Source0:        https://github.com/vinceliuice/Fluent-gtk-theme/archive/refs/tags/%{tag}.tar.gz
 

@@ -1,14 +1,13 @@
-%global commit 945c687aa1e62ee0b95b1ddd1dbfdbd513c30152
+%global commit bda65aac150d2cde0df9603206eec23a6f3b77c4
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250722
+%global commit_date 20260822
 %global ver 5.12.0.4
 %global modulename rtl8821cu
 %global git_name 8821cu-20210916
-%global debug_package %{nil}
 
 Name:           %{modulename}-kmod-common
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Common files and documentation for the rtl8821cu driver
 License:        GPL-2.0-only
 URL:            https://github.com/morrownr/8821cu-20210916
@@ -16,7 +15,7 @@ Source0:        %{url}/archive/%{commit}.tar.gz#/%{git_name}-%{shortcommit}.tar.
 BuildRequires:  systemd-rpm-macros
 Requires:       rtl8821cu-kmod = %{version}
 BuildArch:      noarch
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 Necessary files for the %{modulename} driver.

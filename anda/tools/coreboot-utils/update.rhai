@@ -1,1 +1,1 @@
-rpm.version(gh("coreboot/coreboot"));
+rpm.version(gh_tag("coreboot/coreboot"));

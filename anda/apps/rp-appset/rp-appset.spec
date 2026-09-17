@@ -1,10 +1,10 @@
-%global commit 5b4b8f65c3d2795a61e765a01e07af9bfe3d1990
-%global commit_date 20250501
+%global commit 2a3d6daca24314e05b042b7a9f5ebbc72a300e9b
+%global commit_date 20260917
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           appset
 Version:        0~%commit_date.git~%shortcommit
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Application for customisation of appearance of Raspberry Pi Desktop
 License:        BSD-3-Clause
 URL:            https://github.com/raspberrypi-ui/appset
@@ -19,7 +19,6 @@ BuildRequires:  intltool
 BuildRequires:  gcc
 
 Requires:       libxml2
-Requires:       gtk3
 
 Provides:       pipanel
 Provides:       rp-appset
@@ -30,22 +29,30 @@ Provides:       rp-appset
 %prep
 %autosetup -n appset-%commit
 
-%build
+%conf
 %meson
+
+%build
 %meson_build
 
 %install
 %meson_install
 
-%find_lang pipanel
+%find_lang rpcc_pipanel
 
-%files -f pipanel.lang
+%files -f rpcc_pipanel.lang
 %doc README
 %license debian/copyright
-%{_bindir}/pipanel
-%{_datadir}/applications/pipanel.desktop
-%{_datadir}/pipanel/ui/pipanel.ui
+%{_datadir}/rpcc/ui/pipanel.ui
+%{_libdir}/rpcc/librpcc_pipanel.so
+%{_iconsdir}/hicolor/*x*/apps/appset-taskbar.png
+%{_iconsdir}/hicolor/*x*/apps/appset-desktop.png
+
+%{_scalableiconsdir}/appset-desktop.svg
+%{_scalableiconsdir}/appset-taskbar.svg
 
 %changelog
+* Sat Oct 25 2025 Owen Zimmerman <owen@fyralabs.com>
+- Follow upstream by changing to build plugin instead of application
 * Fri Aug 15 2025 Owen Zimmerman <owen@fyralabs.com>
 - Package appset

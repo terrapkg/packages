@@ -1,5 +1,3 @@
-%global _dracutopts_in  rd.driver.blacklist=nouveau modprobe.blacklist=nouveau
-%global _dracutopts_rm  nomodeset gfxpayload=vga=normal nouveau.modeset=0 nvidia-drm.modeset=1 initcall_blacklist=simpledrm_platform_driver_init
 %global _dracut_conf_d  %{_prefix}/lib/dracut/dracut.conf.d
 
 # gsp_*.bin: ELF 64-bit LSB executable, UCB RISC-V
@@ -7,49 +5,49 @@
 %global __brp_strip %{nil}
 
 Name:           nvidia-kmod-common
-Version:        580.76.05
-Release:        1%?dist
+Version:        610.57.04
+Release:        1%{?dist}
 Summary:        Common file for NVIDIA's proprietary driver kernel modules
 Epoch:          3
 License:        NVIDIA License
 URL:            http://www.nvidia.com/object/unix.html
-
-BuildArch:      noarch
-
 Source0:        http://download.nvidia.com/XFree86/Linux-x86_64/%{version}/NVIDIA-Linux-x86_64-%{version}.run
-Source18:       MODULE_VARIANT.txt
-Source19:       nvidia-modeset.conf
+Source17:       nvidia-boot-update
 Source20:       nvidia.conf
 Source21:       60-nvidia.rules
-Source22:       nvidia-fallback.service
-Source23:       10-nvidia-fallback.rules
-
+Source24:       99-nvidia.conf
 # UDev rule location (_udevrulesdir) and systemd macros:
 BuildRequires:  systemd-rpm-macros
-
 Requires:       dracut
 Requires:       nvidia-modprobe
 Requires:       nvidia-driver = %{?epoch:%{epoch}:}%{version}
 Requires:       nvidia-driver-libs = %{?epoch:%{epoch}:}%{version}
-Requires:       (nvidia-open-kmod = %{?epoch:%{epoch}:}%{version} or nvidia-kmod = %{?epoch:%{epoch}:}%{version})
+Requires:       nvidia-kmod = %{?epoch:%{epoch}:}%{version}
+Requires:       gcc-c++
+Requires:       (nvidia-driver-selinux if selinux-policy-targeted)
 Provides:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
-Provides:       nvidia-open-kmod-common = %{?epoch:%{epoch}:}%{version}
+Obsoletes:      nvidia-open-kmod-common < %{?epoch:%{epoch}:}%{version}
 Obsoletes:      cuda-nvidia-kmod-common < %{?epoch:%{epoch}:}%{version}
+BuildArch:      noarch
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 This package provides the common files required by all NVIDIA kernel module
 package variants.
- 
+
 %prep
 sh %{SOURCE0} -x --target nvidia-kmod-%{version}-x86_64
 %setup -T -D -n nvidia-kmod-%{version}-x86_64
 
 %install
-# Nvidia modesetting support:
-install -p -m 0644 -D %{SOURCE19} %{buildroot}%{_sysconfdir}/modprobe.d/nvidia-modeset.conf
+# Script for post/preun tasks
+install -p -m 0755 -D %{SOURCE17} %{buildroot}%{_bindir}/nvidia-boot-update
 
 # Load nvidia-uvm, enable complete power management:
 install -p -m 0644 -D %{SOURCE20} %{buildroot}%{_modprobedir}/nvidia.conf
+
+# Avoid Nvidia modules getting in the initrd:
+install -p -m 0644 -D %{SOURCE24} %{buildroot}%{_dracut_conf_d}/99-nvidia.conf
 
 # UDev rules
 # https://github.com/NVIDIA/nvidia-modprobe/blob/master/modprobe-utils/nvidia-modprobe-utils.h#L33-L46
@@ -61,35 +59,25 @@ install -p -m 644 -D %{SOURCE21} %{buildroot}%{_udevrulesdir}/60-nvidia.rules
 mkdir -p %{buildroot}%{_prefix}/lib/firmware/nvidia/%{version}/
 install -p -m 644 firmware/* %{buildroot}%{_prefix}/lib/firmware/nvidia/%{version}
 
-# Old kernel.conf rewritten as a doc file.
-cp %{SOURCE18} .
+%post
+%{_bindir}/nvidia-boot-update post
 
-# Fallback service. Fall back to Nouveau if NVIDIA drivers fail.
-# This is actually from RPM Fusion.
-install -Dm644 %{SOURCE22} -t %{buildroot}%{_unitdir}
-install -Dm644 %{SOURCE23} -t %{buildroot}%{_udevrulesdir}
-
-%pre
-# Remove the kernel command line adjustments one last time when doing an upgrade
-# from a version that was still setting up the command line parameters:
-if [ "$1" -eq "2" ] && [ -x %{_bindir}/nvidia-boot-update ]; then
+%preun
+if [ "$1" -eq "0" ]; then
   %{_bindir}/nvidia-boot-update preun
-
 fi ||:
 
-%triggerin -- nvidia-kmod,nvidia-open-kmod
-dracut --regenerate-all --force
-
 %files
-%doc MODULE_VARIANT.txt
+%{_dracut_conf_d}/99-nvidia.conf
 %{_modprobedir}/nvidia.conf
 %dir %{_prefix}/lib/firmware
 %dir %{_prefix}/lib/firmware/nvidia
 %{_prefix}/lib/firmware/nvidia/%{version}
-%config(noreplace) %{_sysconfdir}/modprobe.d/nvidia-modeset.conf
-%{_udevrulesdir}/10-nvidia-fallback.rules
+%{_bindir}/nvidia-boot-update
 %{_udevrulesdir}/60-nvidia.rules
-%{_unitdir}/nvidia-fallback.service
 
 %changelog
-%autochangelog
+* Fri Jul 10 2026 Gilver E. <roachy@fyralabs.com> - 3:610.43.03-2
+- Update for file changes
+* Mon Apr 13 2026 Gilver E. <roachy@fyralabs.com> - 3:595.58.03-2
+- Update spec for Terra packaging team

@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=sam
+Type=Application
+Exec=sam
+GenericName=Editor
+Comment='Rob Pike's other popular text editor'
+Categories=Development

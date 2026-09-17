@@ -1,0 +1,97 @@
+diff -Naur nvidia-settings-525.60.11.old/src/libXNVCtrl/Makefile nvidia-settings-525.60.11/src/libXNVCtrl/Makefile
+--- nvidia-settings-525.60.11.old/src/libXNVCtrl/Makefile	2022-12-01 07:56:28.691047034 +0100
++++ nvidia-settings-525.60.11/src/libXNVCtrl/Makefile	2022-12-01 08:02:18.889098255 +0100
+@@ -49,9 +49,10 @@
+ ##############################################################################
+ 
+ .PHONY: all
+-all: $(LIBXNVCTRL)
++all: $(LIBXNVCTRL_SHARED)
+ 
+ .PHONY: clean
+ clean:
+ 	rm -rf $(LIBXNVCTRL) *~ \
+ 		$(OUTPUTDIR)/*.o $(OUTPUTDIR)/*.d
++	rm -f $(LIBXNVCTRL_SHARED) $(LIBXNVCTRL_SHARED).*
+diff -Naur nvidia-settings-525.60.11.old/src/libXNVCtrl/xnvctrl.mk nvidia-settings-525.60.11/src/libXNVCtrl/xnvctrl.mk
+--- nvidia-settings-525.60.11.old/src/libXNVCtrl/xnvctrl.mk	2022-12-01 07:56:28.691047034 +0100
++++ nvidia-settings-525.60.11/src/libXNVCtrl/xnvctrl.mk	2022-12-01 08:02:18.934099033 +0100
+@@ -39,6 +39,8 @@
+ 
+ LIBXNVCTRL = $(OUTPUTDIR)/libXNVCtrl.a
+ 
++LIBXNVCTRL_SHARED = $(OUTPUTDIR)/libXNVCtrl.so
++
+ LIBXNVCTRL_SRC = $(XNVCTRL_DIR)/NVCtrl.c
+ 
+ LIBXNVCTRL_OBJ = $(call BUILD_OBJECT_LIST,$(LIBXNVCTRL_SRC))
+@@ -47,3 +49,9 @@
+ 
+ $(LIBXNVCTRL) : $(LIBXNVCTRL_OBJ)
+ 	$(call quiet_cmd,AR) ru $@ $(LIBXNVCTRL_OBJ)
++
++$(LIBXNVCTRL_SHARED): $(LIBXNVCTRL_OBJ)
++	$(RM) $@ $@.*
++	$(CC) -shared -Wl,-soname=$(@F).0 -o $@.0.0.0 $(LDFLAGS) $^ -lXext -lX11
++	ln -s $(@F).0.0.0 $@.0
++	ln -s $(@F).0 $@
+diff -Naur nvidia-settings-525.60.11.old/src/Makefile nvidia-settings-525.60.11/src/Makefile
+--- nvidia-settings-525.60.11.old/src/Makefile	2022-12-01 08:02:11.280966791 +0100
++++ nvidia-settings-525.60.11/src/Makefile	2022-12-01 08:02:59.233795388 +0100
+@@ -303,7 +303,11 @@
+ all: $(NVIDIA_SETTINGS) $(GTK2LIB) $(GTK3LIB) $(WAYLANDLIB)
+ 
+ .PHONY: install
+-install: NVIDIA_SETTINGS_install NVIDIA_GTKLIB_install WAYLAND_LIB_install
++install: NVIDIA_SETTINGS_install NVIDIA_GTKLIB_install WAYLAND_LIB_install NVIDIA_XNVCTRL_install
++
++NVIDIA_XNVCTRL_install:
++	$(MKDIR) $(LIBDIR)
++	cp -a $(LIBXNVCTRL_SHARED)* $(LIBDIR)
+ 
+ .PHONY: NVIDIA_GTKLIB_install
+ NVIDIA_GTKLIB_install: $(GTK2LIB) $(GTK3LIB)
+@@ -329,28 +333,28 @@
+ 	$(INSTALL) $(INSTALL_BIN_ARGS) $< $(BINDIR)/$(notdir $<)
+ 
+ $(eval $(call DEBUG_INFO_RULES, $(NVIDIA_SETTINGS)))
+-$(NVIDIA_SETTINGS).unstripped: $(OBJS) $(LIBXNVCTRL)
++$(NVIDIA_SETTINGS).unstripped: $(OBJS) $(LIBXNVCTRL_SHARED)
+ 	$(call quiet_cmd,LINK) $(CFLAGS) $(LDFLAGS) $(BIN_LDFLAGS) \
+-	    -rdynamic -o $@ $(OBJS) $(LIBXNVCTRL) $(LIBS)
++	    -rdynamic -o $@ $(OBJS) $(LIBXNVCTRL_SHARED) $(LIBS)
+ 
+ ifdef BUILD_GTK2LIB
+ $(eval $(call DEBUG_INFO_RULES, $(GTK2LIB)))
+-$(GTK2LIB).unstripped: $(LIBXNVCTRL) $(GTK2_OBJS) $(XCP_OBJS) $(IMAGE_OBJS) $(VERSION_MK)
++$(GTK2LIB).unstripped: $(LIBXNVCTRL_SHARED) $(GTK2_OBJS) $(XCP_OBJS) $(IMAGE_OBJS) $(VERSION_MK)
+ 	$(call quiet_cmd,LINK) -shared $(CFLAGS) $(LDFLAGS) $(BIN_LDFLAGS) \
+ 	    -o $@ \
+ 	    -Wl,-soname -Wl,$(GTK2LIB_SONAME) \
+ 	    $(GTK2_OBJS) $(IMAGE_OBJS) $(XCP_OBJS) \
+-	    $(LIBXNVCTRL) $(LIBS) $(GTK2_LIBS)
++	    $(LIBXNVCTRL_SHARED) $(LIBS) $(GTK2_LIBS)
+ endif
+ 
+ ifdef BUILD_GTK3LIB
+ $(eval $(call DEBUG_INFO_RULES, $(GTK3LIB)))
+-$(GTK3LIB).unstripped: $(LIBXNVCTRL) $(GTK3_OBJS) $(XCP_OBJS) $(IMAGE_OBJS) $(VERSION_MK)
++$(GTK3LIB).unstripped: $(LIBXNVCTRL_SHARED) $(GTK3_OBJS) $(XCP_OBJS) $(IMAGE_OBJS) $(VERSION_MK)
+ 	$(call quiet_cmd,LINK) -shared $(CFLAGS) $(LDFLAGS)  $(BIN_LDFLAGS) \
+ 	    -o $@ \
+ 	    -Wl,-soname -Wl,$(GTK3LIB_SONAME) \
+ 	    $(GTK3_OBJS) $(XCP_OBJS) $(IMAGE_OBJS) \
+-	    $(LIBXNVCTRL) $(LIBS) $(GTK3_LIBS)
++	    $(LIBXNVCTRL_SHARED) $(LIBS) $(GTK3_LIBS)
+ endif
+ 
+ ifdef BUILD_WAYLANDLIB
+@@ -379,7 +383,7 @@
+ 		$(OUTPUTDIR)/*.o $(OUTPUTDIR)/*.d \
+ 		$(GTK2LIB) $(GTK3LIB) $(GTK2LIB_DIR) $(GTK3LIB_DIR) \
+ 		$(WAYLANDLIB) $(WAYLANDLIB_DIR) \
+-		$(IMAGE_HEADERS) $(LIBXNVCTRL)
++		$(IMAGE_HEADERS) $(LIBXNVCTRL_SHARED)
+ 
+ ifdef BUILD_GTK2LIB
+ $(foreach src,$(GTK_SRC), \

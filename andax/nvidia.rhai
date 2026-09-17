@@ -16,3 +16,8 @@ fn nvidia_driver_version() {
     let driver = get("https://gfwsl.geforce.com/services_toolkit/services/com/nvidia/services/AjaxDriverService.php?func=DriverManualLookup&osID=12&languageCode=1033&numberOfResults=1&beta=0").json().IDS[0].downloadInfo.DisplayVersion;
     return(driver);
 }
+
+fn nvidia_legacy_version() {
+    let driver = get("https://gfwsl.geforce.com/services_toolkit/services/com/nvidia/services/AjaxDriverService.php?func=DriverManualLookup&osID=12&languageCode=1033&numberOfResults=1&beta=0&release=580").json().IDS[0].downloadInfo.DisplayVersion;
+    return(driver);
+}

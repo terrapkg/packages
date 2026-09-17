@@ -1,17 +1,21 @@
 %define debug_package %nil
 
-%global commit 1c14e09d2cf75c9716fb8ca808d243ea9f5e9154
+%global commit 2f2715ce22cbcb0290f5ea82080796753a455b4b
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250802
+%global commit_date 20260912
 
 Name:           gamescope-session
-Version:        %commit_date.%shortcommit
-Release:        1%?dist
-Summary:        ChimeraOS session on Gamescope
+Version:        0~%{commit_date}git.%{shortcommit}
+Release:        1%{?dist}
+Summary:        Gamescope session based on Valve's gamescope
 License:        MIT
-URL:            https://github.com/ChimeraOS/gamescope-session
+URL:            https://github.com/OpenGamingCollective/gamescope-session
 Source0:        %url/archive/%commit.tar.gz
+Requires:       gamescope
+Recommends:     (cardwire or switcheroo-control)
 BuildRequires:  systemd-rpm-macros
+Packager:       Tulip Blossom <tulilirockz@outlook.com>
+BuildArch:      noarch
 
 %description
 Gamescope session plus based on Valve's gamescope.
@@ -22,18 +26,24 @@ Gamescope session plus based on Valve's gamescope.
 %build
 
 %install
-mkdir -p %buildroot
-cp -r usr %buildroot/
+install -Dpm0755 -t "%buildroot%_bindir/" ".%_bindir/export-gpu"
+install -Dpm0755 -t "%buildroot%_bindir/" ".%_bindir/gamescope-session-plus"
+install -Dpm0644 -t "%buildroot%_userunitdir/" ".%_userunitdir/gamescope-session-plus@.service"
+install -Dpm0644 -t "%buildroot%_userunitdir/" ".%_userunitdir/gamescope-session.target"
+install -Dpm0644 -t "%buildroot%_datadir/gamescope-session-plus/" ".%_datadir/gamescope-session-plus/device-quirks"
+install -Dpm0755 -t "%buildroot%_datadir/gamescope-session-plus/" ".%_datadir/gamescope-session-plus/gamescope-session-plus"
+install -Dpm0644 -t "%buildroot%_datadir/gamescope/scripts/50-custom/50-disable-explicit-sync.lua" ".%_datadir/gamescope/scripts/50-custom/50-disable-explicit-sync.lua"
 
 %files
 %doc README.md
 %license LICENSE
-%_bindir/export-gpu
-%_bindir/gamescope-session-plus
-%_userunitdir/gamescope-session-plus@.service
-%_datadir/gamescope-session-plus/device-quirks
-%_datadir/gamescope-session-plus/gamescope-session-plus
-%_datadir/gamescope/scripts/50-custom/50-disable-explicit-sync.lua
+%{_bindir}/export-gpu
+%{_bindir}/gamescope-session-plus
+%{_datadir}/gamescope-session-plus/device-quirks
+%{_datadir}/gamescope-session-plus/gamescope-session-plus
+%{_datadir}/gamescope/scripts/50-custom/50-disable-explicit-sync.lua
+%{_userunitdir}/gamescope-session-plus@.service
+%{_userunitdir}/gamescope-session.target
 
 %changelog
 %autochangelog

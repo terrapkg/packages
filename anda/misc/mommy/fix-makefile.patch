@@ -1,0 +1,30 @@
+diff --git a/GNUmakefile b/GNUmakefile
+index c288fd1..08d0c5d 100644
+--- a/GNUmakefile
++++ b/GNUmakefile
+@@ -14,8 +14,8 @@ zsh_prefix = $(prefix)/share/zsh/site-functions/
+ shellspec_bin := shellspec
+ 
+ # Man page compression method
+-man_compress_cmd := gzip -9nf
+-man_compress_ext := .gz
++man_compress_cmd := true
++man_compress_ext :=
+ 
+ 
+ ## Target-specific overrides
+@@ -109,10 +109,10 @@ install: build
+ 	@install -m 755 -d "$(bin_prefix)" "$(man_prefix)/man1/" "$(fish_prefix)" "$(zsh_prefix)"
+ 
+ 	@# Copy files
+-	@install -m 755 "$(build_dir)/bin/mommy" "$(bin_prefix)"
+-	@install -m 644 "$(build_dir)/man/man1/mommy.1$(man_compress_ext)" "$(man_prefix)/man1/"
+-	@install -m 644 "$(build_dir)/completions/fish/mommy.fish" "$(fish_prefix)"
+-	@install -m 644 "$(build_dir)/completions/zsh/_mommy" "$(zsh_prefix)"
++	@install -Dm 755 "$(build_dir)/bin/mommy" "$(bin_prefix)"
++	@install -Dm 644 "$(build_dir)/man/man1/mommy.1$(man_compress_ext)" "$(man_prefix)/man1/"
++	@install -Dm 644 "$(build_dir)/completions/fish/mommy.fish" "$(fish_prefix)"
++	@install -Dm 644 "$(build_dir)/completions/zsh/_mommy" "$(zsh_prefix)"
+ 
+ # Install, with target-specific overrides from the preamble
+ .PHONY: install/%

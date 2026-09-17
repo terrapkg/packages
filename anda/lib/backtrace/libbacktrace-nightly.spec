@@ -1,8 +1,8 @@
 %global debug_package %nil
 
-%global commit 793921876c981ce49759114d7bb89bb89b2d3a2d
+%global commit 0b9b49cf4a2c9229fc052d6716e1528b2f23e91a
 %global shortcommit %(c=%commit; echo ${c:0:7})
-%global commit_date 20250411
+%global commit_date 20260904
 
 %global _desc %{expand:
 A C library that may be linked into a C/C++ program to produce symbolic backtraces.
@@ -10,7 +10,7 @@ A C library that may be linked into a C/C++ program to produce symbolic backtrac
 
 Name:           libbacktrace-nightly
 Version:        1.0^%commit_date.%shortcommit
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Library to produce symbolic backtraces
 License:        BSD-3-Clause
 URL:            https://github.com/ianlancetaylor/libbacktrace
@@ -36,13 +36,15 @@ This package contains the development files for the %name package.
 %prep
 %autosetup -n libbacktrace-%commit
 
-%build
+%conf
 autoreconf -fiv
 %configure \
   --disable-static \
   --enable-shared \
   --with-system-libunwind \
   --enable-silent-rules
+
+%build
 %make_build
 
 %check

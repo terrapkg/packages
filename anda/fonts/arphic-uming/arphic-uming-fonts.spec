@@ -27,5 +27,5 @@ install -D -m644 uming.ttc %{buildroot}/%{_datadir}/fonts/arphic-uming/uming.ttc
 /%{_datadir}/fonts/arphic-uming/uming.ttc
 
 %changelog
-* Mon Nov 21 2022 windowsboy111 <windowsboy111@fyralabs.com> - 0.2.20080216.2-1
+* Mon Nov 21 2022 madonuko <mado@fyralabs.com> - 0.2.20080216.2-1
 - Initial package

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE comps PUBLIC "-//Red Hat, Inc.//DTD Comps info//EN" "comps.dtd">
 <comps>
   <group>
@@ -16,7 +16,8 @@
   <group>
     <id>stardust-xr</id>
     <name>Stardust XR</name>
-    <description>All Stardust XR packages needed to run the Stardust server</description>
+    <description
+        >All Stardust XR packages needed to run the Stardust server</description>
     <default>false</default>
     <uservisable>true</uservisable>
     <packagelist>
@@ -30,6 +31,7 @@
       <packagereq type="default">stardust-xr-non-spatial-input</packagereq>
       <packagereq type="default">stardust-xr-protostar</packagereq>
       <packagereq type="default">stardust-xr-server</packagereq>
+      <packagereq type="default">stardust-xr-solar-sailer</packagereq>
       <packagereq type="default">stardust-xr-telescope</packagereq>
     </packagelist>
   </group>

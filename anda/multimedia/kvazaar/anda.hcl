@@ -4,6 +4,6 @@ project pkg {
         spec = "kvazaar.spec"
     }
     labels {
-       mock =1
+       mock = 1
     }
 }

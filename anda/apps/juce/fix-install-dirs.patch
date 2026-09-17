@@ -1,0 +1,60 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index f8864a6dc5..6518db0532 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -137,10 +137,10 @@ write_basic_package_version_file("${JUCE_BINARY_DIR}/JUCEConfigVersion.cmake"
+     VERSION ${JUCE_VERSION}
+     COMPATIBILITY ExactVersion)
+ 
+-set(JUCE_INSTALL_DESTINATION "lib/cmake/JUCE-${JUCE_VERSION}" CACHE STRING
++set(JUCE_INSTALL_DESTINATION "lib64/cmake/juce" CACHE STRING
+     "The location, relative to the install prefix, where the JUCE config file will be installed")
+ 
+-set(JUCE_MODULE_PATH "include/JUCE-${JUCE_VERSION}/modules")
++set(JUCE_MODULE_PATH "share/juce/modules")
+ set(UTILS_INSTALL_DIR "${JUCE_INSTALL_DESTINATION}")
+ set(JUCEAIDE_PATH "${JUCE_TOOL_INSTALL_DIR}/${JUCE_JUCEAIDE_NAME}")
+ configure_package_config_file("${JUCE_CMAKE_UTILS_DIR}/JUCEConfig.cmake.in"
+@@ -148,7 +148,6 @@ configure_package_config_file("${JUCE_CMAKE_UTILS_DIR}/JUCEConfig.cmake.in"
+     PATH_VARS UTILS_INSTALL_DIR JUCEAIDE_PATH JUCE_MODULE_PATH
+     INSTALL_DESTINATION "${JUCE_INSTALL_DESTINATION}")
+ 
+-set(JUCE_MODULE_PATH "${JUCE_MODULES_DIR}")
+ set(UTILS_INSTALL_DIR "${CMAKE_CURRENT_SOURCE_DIR}/extras/Build/CMake")
+ get_target_property(JUCEAIDE_PATH juceaide IMPORTED_LOCATION)
+ configure_package_config_file("${JUCE_CMAKE_UTILS_DIR}/JUCEConfig.cmake.in"
+@@ -181,7 +180,7 @@ if(("${CMAKE_SOURCE_DIR}" STREQUAL "${JUCE_SOURCE_DIR}") AND (NOT JUCE_BUILD_HEL
+     _juce_add_lv2_manifest_helper_target()
+ 
+     if(TARGET juce_lv2_helper)
+-        install(TARGETS juce_lv2_helper EXPORT LV2_HELPER DESTINATION "bin/JUCE-${JUCE_VERSION}")
++        install(TARGETS juce_lv2_helper EXPORT LV2_HELPER DESTINATION "bin")
+         install(EXPORT LV2_HELPER NAMESPACE juce:: DESTINATION "${JUCE_INSTALL_DESTINATION}")
+     endif()
+ endif()
+diff --git a/extras/Build/juceaide/CMakeLists.txt b/extras/Build/juceaide/CMakeLists.txt
+index 17e5520974..afcd55981d 100644
+--- a/extras/Build/juceaide/CMakeLists.txt
++++ b/extras/Build/juceaide/CMakeLists.txt
+@@ -168,7 +168,7 @@ else()
+ 
+     add_executable(juce::juceaide ALIAS juceaide)
+ 
+-    set(JUCE_TOOL_INSTALL_DIR "bin/JUCE-${JUCE_VERSION}" CACHE STRING
++    set(JUCE_TOOL_INSTALL_DIR "bin" CACHE STRING
+         "The location, relative to the install prefix, where juceaide will be installed")
+ 
+     install(PROGRAMS "${imported_location}" DESTINATION "${JUCE_TOOL_INSTALL_DIR}")
+diff --git a/modules/CMakeLists.txt b/modules/CMakeLists.txt
+index db8a56774d..652da64743 100644
+--- a/modules/CMakeLists.txt
++++ b/modules/CMakeLists.txt
+@@ -31,7 +31,7 @@
+ # ==============================================================================
+ 
+ juce_add_modules(
+-    INSTALL_PATH "include/JUCE-${JUCE_VERSION}/modules"
++    INSTALL_PATH "share/juce/modules"
+     ALIAS_NAMESPACE juce
+     juce_analytics
+     juce_animation

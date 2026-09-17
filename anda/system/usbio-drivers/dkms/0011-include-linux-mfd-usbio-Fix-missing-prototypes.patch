@@ -1,0 +1,34 @@
+From c86e7a74c151304af7393c27f8f3df84d7d005ae Mon Sep 17 00:00:00 2001
+From: Kate Hsuan <hpa@redhat.com>
+Date: Tue, 23 Sep 2025 14:17:05 +0800
+Subject: [PATCH 2/2] include: linux: mfd: usbio: Fix missing-prototypes
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Fix the following missing-prototypes issues
+
+drivers/mfd/usbio.c: At top level:
+drivers/mfd/usbio.c:473:6: warning: no previous prototype for ‘usbio_unregister_event_cb’ [-Wmissing-prototypes]
+  473 | void usbio_unregister_event_cb(struct platform_device *pdev)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~
+---
+ include/linux/mfd/usbio.h | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/include/linux/mfd/usbio.h b/include/linux/mfd/usbio.h
+index c8024a8..ecf8ac9 100644
+--- a/include/linux/mfd/usbio.h
++++ b/include/linux/mfd/usbio.h
+@@ -45,5 +45,8 @@ int usbio_transfer(struct platform_device *pdev, u8 cmd, const void *obuf,
+ 		  int obuf_len, void *ibuf, int *ibuf_len);
+ int usbio_transfer_noack(struct platform_device *pdev, u8 cmd, const void *obuf,
+ 			int obuf_len);
++int usbio_register_event_cb(struct platform_device *pdev,
++			    usbio_event_cb_t event_cb);
++void usbio_unregister_event_cb(struct platform_device *pdev);
+ 
+ #endif
+-- 
+2.51.0
+

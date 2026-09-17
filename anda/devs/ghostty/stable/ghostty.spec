@@ -3,14 +3,15 @@
 %global appid com.mitchellh.ghostty
 
 Name:           ghostty
-Version:        1.1.3
-Release:        2%?dist
+Version:        1.3.1
+Release:        3%{?dist}
 Summary:        A fast, native terminal emulator written in Zig.
 License:        MIT AND MPL-2.0 AND OFL-1.1 AND (WTFPL OR CC0-1.0) AND Apache-2.0
 URL:            https://ghostty.org/
 Source0:        https://release.files.ghostty.org/%{version}/ghostty-%{version}.tar.gz
 Source1:        https://release.files.ghostty.org/%{version}/ghostty-%{version}.tar.gz.minisig
 BuildRequires:  anda-srpm-macros >= 0.2.15
+BuildRequires:  gettext
 BuildRequires:  gtk4-devel
 BuildRequires:  libadwaita-devel
 BuildRequires:  libX11-devel
@@ -18,32 +19,36 @@ BuildRequires:  minisign
 BuildRequires:  ncurses
 BuildRequires:  ncurses-devel
 BuildRequires:  pandoc-cli
-BuildRequires:  zig >= 0.14.0
+BuildRequires:  systemd-rpm-macros
+BuildRequires:  zig0.15
 BuildRequires:  zig-rpm-macros
+BuildRequires:  pkgconfig(blueprint-compiler)
 BuildRequires:  pkgconfig(bzip2)
 BuildRequires:  pkgconfig(freetype2)
 BuildRequires:  pkgconfig(fontconfig)
 BuildRequires:  pkgconfig(gtk4)
+BuildRequires:  pkgconfig(gtk4-layer-shell-0)
 BuildRequires:  pkgconfig(harfbuzz)
 BuildRequires:  pkgconfig(libadwaita-1)
 BuildRequires:  pkgconfig(libpng)
 BuildRequires:  pkgconfig(libxml-2.0)
 BuildRequires:  pkgconfig(oniguruma)
 BuildRequires:  pkgconfig(zlib)
-Requires:       %{name}-terminfo = %{version}-%{release}
-Requires:       %{name}-shell-integration = %{version}-%{release}
-Requires:       (%{name}-kio = %{evr} if kf6-kio)
+Requires:       %{name}-terminfo = %{evr}
+Requires:       (%{name}-kio = %{evr} if kf5-kio-core)
+Requires:       (%{name}-kio = %{evr} if kf6-kio-core)
 Requires:       gtk4
+Requires:       gtk4-layer-shell
 Requires:       libadwaita
 Conflicts:      ghostty-nightly
-Packager:       Gilver E. <rockgrub@disroot.org>
+Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 👻 Ghostty is a fast, feature-rich, and cross-platform terminal emulator that uses platform-native UI and GPU acceleration.
 
 %package        bash-completion
 Summary:        Ghostty Bash completion
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}
 Requires:       bash-completion
 Supplements:    (%{name} and bash-completion)
 BuildArch:      noarch
@@ -53,7 +58,7 @@ Bash shell completion for Ghostty.
 
 %package        fish-completion
 Summary:        Ghostty Fish completion
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}
 Requires:       fish
 Supplements:    (%{name} and fish)
 BuildArch:      noarch
@@ -63,13 +68,20 @@ Fish shell completion for Ghostty.
 
 %package        zsh-completion
 Summary:        Ghostty Zsh completion
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}
 Requires:       zsh
 Supplements:    (%{name} and zsh)
 BuildArch:      noarch
 
 %description    zsh-completion
 Zsh shell completion for Ghostty.
+
+%package        devel
+Summary:        Development files for Ghostty.
+Requires:       %{name} = %{evr}
+
+%description    devel
+This package includes the development files for Ghostty.
 
 %package        kio
 Summary:        KIO support for Ghostty
@@ -83,6 +95,7 @@ This package allows Ghostty to interact with KIO.
 Summary:        Nautilus menu support for Ghostty
 Supplements:    (%{name} and nautilus)
 Requires:       %{name} = %{evr}
+Requires:       nautilus-python
 BuildArch:      noarch
 
 %description    nautilus
@@ -129,33 +142,36 @@ This package contains files allowing Ghostty to integrate with various shells.
 
 %package        terminfo
 Summary:        Ghostty terminfo
-Supplements:    %{name}
 %if 0%{?fedora} >= 42
-Requires:       ncurses-term >= 6.5-5.20250125%{?dist}
+Requires:       ncurses-term >= 6.5-5.20250125
 %endif
+Supplements:    %{name}
 Obsoletes:      %{name}-terminfo-source < %{evr}
 BuildArch:      noarch
 
 %description    terminfo
 Ghostty's terminfo. Needed for basic terminal function.
 
-%package        terminfo-source
-Summary:        Source files for Ghostty's terminfo
-Requires:       %{name}
-Requires:       %{name}-terminfo
-BuildArch:      noarch
+%package -n     libghostty-vt
+Summary:        The libghostty-vt libraries
 
-%description    terminfo-source
-Source files for Ghostty's terminfo. Available for debugging use.
+%description -n libghostty-vt
+This package contains the libghostty-vt libraries, the first of many libghostty libaries in development.
+
+%package -n     libghostty-vt-devel
+Summary:        Development files for libghostty-vt
+Requires:       libghostty-vt = %{evr}
+
+%description -n libghostty-vt-devel
+This package contains the libraries and header files that are needed for developing with libghostty-vt.
 
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
 %autosetup
 
-export ZIG_GLOBAL_CACHE_DIR="%{_zig_cache_dir}"
-zig build --fetch
-zig fetch git+https://github.com/zigimg/zigimg#3a667bdb3d7f0955a5a51c8468eac83210c1439e
-zig fetch git+https://github.com/mitchellh/libxev#f6a672a78436d8efee1aa847a43a900ad773618b
+ZIG_GLOBAL_CACHE_DIR="%{_zig_cache_dir}" ./nix/build-support/fetch-zig-cache.sh
+# Workaround for 0.16 macros working around zig problem
+mv "%{_zig_cache_dir}/p" "zig-pkg"
 
 %build
 
@@ -167,22 +183,24 @@ DESTDIR="%{buildroot}" \
     -Dversion-string="%{version}" \
     -Dstrip=false \
     -Dpie=true \
-    -Demit-docs
+    -Demit-docs \
+    -Demit-themes=false
 
-#Don't conflict with ncurses-term on F42 and up
+# Don't conflict with ncurses-term on F42 and up
 %if 0%{?fedora} >= 42
-rm -rf %{buildroot}%{_datadir}/terminfo/g/ghostty
+rm -rf %{buildroot}%{_datadir}/terminfo/g/%{name}
 %endif
 
-%files
+%find_lang %{appid}
+
+%files -f %{appid}.lang
 %doc README.md
 %license LICENSE
 %{_bindir}/%{name}
 %{_datadir}/applications/%{appid}.desktop
-%dir %{_datadir}/%{name}
-%{_datadir}/%{name}/doc
-%{_datadir}/%{name}/themes
+%{_datadir}/%{name}/doc/
 %{_datadir}/metainfo/%{appid}.metainfo.xml
+%{_datadir}/dbus-1/services/%{appid}.service
 %{_iconsdir}/hicolor/16x16/apps/%{appid}.png
 %{_iconsdir}/hicolor/16x16@2/apps/%{appid}.png
 %{_iconsdir}/hicolor/32x32/apps/%{appid}.png
@@ -195,8 +213,7 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/ghostty
 %{_iconsdir}/hicolor/1024x1024/apps/%{appid}.png
 %{_mandir}/man1/%{name}.1.gz
 %{_mandir}/man5/%{name}.5.gz
-%{_userunitdir}/%{appid}.service
-%{_prefix}/lib/dbus-1/services/%{appid}.service
+%{_userunitdir}/app-%{appid}.service
 
 %files bash-completion
 %{bash_completions_dir}/%{name}.bash
@@ -206,6 +223,9 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/ghostty
 
 %files zsh-completion
 %{zsh_completions_dir}/_%{name}
+
+%files devel
+%{_includedir}/ghostty/
 
 %files kio
 %{_datadir}/kio/servicemenus/%{appid}.desktop
@@ -229,27 +249,37 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/ghostty
 %{_datadir}/bat/syntaxes/%{name}.sublime-syntax
 
 %files shell-integration
-%dir %{_datadir}/%{name}/shell-integration
-%{_datadir}/%{name}/shell-integration/bash/bash-preexec.sh
-%{_datadir}/%{name}/shell-integration/bash/%{name}.bash
-%{_datadir}/%{name}/shell-integration/elvish/lib/%{name}-integration.elv
-%{_datadir}/%{name}/shell-integration/fish/vendor_conf.d/%{name}-shell-integration.fish
-%{_datadir}/%{name}/shell-integration/zsh/.zshenv
-%{_datadir}/%{name}/shell-integration/zsh/%{name}-integration
+%{_datadir}/%{name}/shell-integration/
 
 %files terminfo
 %if 0%{?fedora} < 42
-%{_datadir}/terminfo/g/ghostty
+%{_datadir}/terminfo/g/%{name}
 %endif
-%{_datadir}/terminfo/x/xterm-ghostty
+%{_datadir}/terminfo/x/xterm-%{name}
 
-%files terminfo-source
-%{_datadir}/terminfo/ghostty.termcap
-%{_datadir}/terminfo/ghostty.terminfo
+%post
+%systemd_user_post app-%{appid}.service
+
+%preun
+%systemd_user_preun app-%{appid}.service
+
+%postun
+%systemd_user_postun app-%{appid}.service
+
+%files -n libghostty-vt
+%{_libdir}/libghostty-vt.so.*
+
+%files -n libghostty-vt-devel
+%{_libdir}/libghostty-vt.so
+%{_datadir}/pkgconfig/libghostty-vt.pc
 
 %changelog
+* Tue Oct 28 2025 Gilver E. <rockgrub@disroot.org> - 1.2.3-2
+- Disabled bundled themes
+ * This is necessary to address licensing issues in the themes repo Ghostty uses
+ * See: https://github.com/mbadolato/iTerm2-Color-Schemes/issues/638
 * Fri Jan 31 2025 Gilver E. <rockgrub@disroot.org>
-- Update to 1.1.0-1%{?dist}
+- Update to 1.1.0-1
  * Low GHSA-98wc-794w-gjx3: Ghostty leaked file descriptors allowing the shell and any of its child processes to impact other Ghostty terminal instances
  * Ghostty terminfo source files are now a subpackage
  * Shell integration and completion and terminfo subpackages are now properly noarch
