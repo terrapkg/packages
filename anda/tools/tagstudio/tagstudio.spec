@@ -1,6 +1,6 @@
 Name:           tagstudio
 Version:        9.6.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        User-focused photo and file management system
 License:        GPL-3.0-only
 URL:            https://github.com/TagStudioDev/TagStudio
@@ -33,6 +33,12 @@ requiring sidecar metadata files.
 # Fedora 44 ships Python 3.14. The current upstream branch has raised this
 # upper bound, while the v9.6.3 release metadata still stops at Python 3.13.
 sed -i 's/>=3.12,<3.14/>=3.12,<3.15/' pyproject.toml
+
+%pyproject_patch_dependency chardet:drop_constraints
+%pyproject_patch_dependency pillow:drop_constraints
+%pyproject_patch_dependency pillow-heif:drop_constraints
+%pyproject_patch_dependency pyside6:drop_constraints
+%pyproject_patch_dependency requests:drop_constraints
 
 %build
 %pyproject_wheel
