@@ -43,34 +43,63 @@ jobs:
               r"(?P<quote>[\"']?)(?P<value>\d+)(?P=quote)",
               re.MULTILINE,
           )
-          packages = []
+          records = []
+          files = {}
           for path in sorted(Path("anda").rglob("anda.hcl")):
               text = path.read_text()
-              matches = [match for match in nightly_pattern.finditer(text) if int(match.group("value")) != 0]
-              if matches:
-                  packages.append((path, text))
+              files[path] = text
+              for match in nightly_pattern.finditer(text):
+                  value = int(match.group("value"))
+                  if value != 0:
+                      records.append((path, match.start(), value))
+
+          if not records:
+              raise SystemExit("No packages with nightly != 0 found")
+
+          package_count = len(records)
+          targets = [package_count // 4 + (run < package_count % 4) for run in range(4)]
+          retained = [0, 0, 0, 0]
+          changes = {}
+          pending = []
+
+          # Keep existing valid assignments whenever their run is not overfull.
+          for path, start, value in records:
+              if 1 <= value <= 4 and retained[value - 1] < targets[value - 1]:
+                  retained[value - 1] += 1
+              else:
+                  pending.append((path, start, value))
+
+          # Only move packages needed to fill the underfull runs.
+          for path, start, old_value in pending:
+              run = next(run for run in range(4) if retained[run] < targets[run])
+              retained[run] += 1
+              new_value = run + 1
+              if old_value != new_value:
+                  changes[(path, start)] = new_value
 
           assigned = [0, 0, 0, 0]
-          package_index = [0]
-          for path, text in packages:
+          for path, text in files.items():
               def assign_run(match):
-                  if int(match.group("value")) == 0:
+                  value = int(match.group("value"))
+                  if value == 0:
                       return match.group(0)
-                  run = package_index[0] % 4
-                  package_index[0] += 1
-                  assigned[run] += 1
+                  new_value = changes.get((path, match.start()), value)
+                  assigned[new_value - 1] += 1
+                  if new_value == value:
+                      return match.group(0)
                   return (
                       f"{match.group('prefix')}{match.group('quote')}"
-                      f"{run + 1}{match.group('quote')}"
+                      f"{new_value}{match.group('quote')}"
                   )
 
               updated = nightly_pattern.sub(assign_run, text)
               if updated != text:
                   path.write_text(updated)
 
-          if not packages:
-              raise SystemExit("No packages with nightly != 0 found")
-          print(f"Assigned {package_index[0]} nightly packages across runs: {assigned}")
+          print(
+              f"Balanced {package_count} nightly packages across runs: {assigned}; "
+              f"changed {len(changes)} labels"
+          )
           PY
 
       - name: Save
