@@ -56,6 +56,9 @@ BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtsvg-devel
 BuildRequires:  python3-jinja2
 BuildRequires:  python3-uv
+BuildRequires:  autoconf
+BuildRequires:  automake
+BuildRequires:  libtool
 
 %if %{with cuda}
 BuildRequires:  cuda
