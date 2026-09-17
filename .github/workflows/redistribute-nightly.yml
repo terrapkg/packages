@@ -39,7 +39,7 @@ jobs:
           import re
 
           nightly_pattern = re.compile(
-              r"^(?P<prefix>\s*nightly\s*=\s*)(?P<quote>\"?)(?P<value>\d+)(?P=quote)(?P<suffix>\s*)$",
+              r"(?P<prefix>(?:^|(?<=\{))[ \t]*nightly[ \t]*=[ \t]*)(?P<quote>\"?)(?P<value>\d+)(?P=quote)",
               re.MULTILINE,
           )
           packages = []
@@ -52,7 +52,7 @@ jobs:
               def assign_run(match):
                   return (
                       f"{match.group('prefix')}{match.group('quote')}"
-                      f"{index % 4}{match.group('quote')}{match.group('suffix')}"
+                      f"{index % 4 + 1}{match.group('quote')}"
                   )
 
               updated = nightly_pattern.sub(assign_run, text)
