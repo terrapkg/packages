@@ -40,5 +40,5 @@ Summary:        %{summary}
 %license LICENSE LICENSE.LibRaw
 
 %changelog
-* Thu Jan 08 2026 Owen Zimmerman <owen@fyralabs.com>
+* Wed Sep 16 2026 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit
