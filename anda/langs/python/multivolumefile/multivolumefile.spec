@@ -1,5 +1,6 @@
 %global pypi_name multivolumefile
 %global _desc Multi-volume file wrapper library.
+%define _python_dist_allow_version_zero 1
 
 Name:			python-%{pypi_name}
 Version:		0.2.3
