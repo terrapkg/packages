@@ -13,6 +13,7 @@ BuildRequires:  gcc-c++
 BuildRequires:  python3-devel
 BuildRequires:  python3-pip
 BuildRequires:  python3-setuptools
+BuildRequires:  python3-numpy
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
 %description
