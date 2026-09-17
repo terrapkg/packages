@@ -45,12 +45,15 @@ BuildRequires:  pkgconfig(numa)
 BuildRequires:  pkgconfig(libpipewire-0.3)
 BuildRequires:	pkgconfig(libpipewire-0.3)
 BuildRequires:	pkgconfig(libinputtino)
+BuildRequires:  pkgconfig(libnotify)
 BuildRequires:  doxygen
 BuildRequires:  nodejs-npm
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  glslc
 BuildRequires:  vulkan-loader-devel
 BuildRequires:  vulkan-headers
+BuildRequires:  qt6-qtbase-devel
+BuildRequires:  qt6-qtsvg-devel
 
 %if %{with cuda}
 BuildRequires:  cuda
