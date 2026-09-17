@@ -4,6 +4,6 @@ project pkg {
 		spec = "discord-canary-openasar.spec"
 	}
 	labels {
-	  quadridaily = 1
+	  quaterdaily = 1
 	}
 }
