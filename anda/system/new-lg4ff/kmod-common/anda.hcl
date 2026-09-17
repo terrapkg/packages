@@ -4,6 +4,6 @@ project pkg {
 		spec = "new-lg4ff.spec"
 	}
 	labels {
-		nightly = 1
+		nightly = 4
 	}
 }

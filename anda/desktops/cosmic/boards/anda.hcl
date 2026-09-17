@@ -3,6 +3,6 @@ project pkg {
 		spec = "boards.spec"
 	}
 	labels {
-		nightly = 1
+		nightly = 2
 	}
 }

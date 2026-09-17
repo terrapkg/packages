@@ -3,7 +3,7 @@ project pkg {
     spec = "hyprutils.nightly.spec"
   }
   labels {
-    nightly = 1
+    nightly = 3
     subrepo = "extras"
   }
 }

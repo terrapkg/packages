@@ -5,7 +5,7 @@ project pkg {
 	}
 	labels {
 		mock = 1
-		nightly = 1
+		nightly = 2
 		subrepo = "extras"
 	}
 }

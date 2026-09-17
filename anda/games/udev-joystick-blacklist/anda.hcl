@@ -4,6 +4,6 @@ project pkg {
 		spec = "udev-joystick-blacklist.spec"
 	}
 	labels {
-		nightly = 1
+		nightly = 3
 	}
 }
