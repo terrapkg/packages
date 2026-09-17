@@ -39,26 +39,67 @@ jobs:
           import re
 
           nightly_pattern = re.compile(
-              r"(?P<prefix>(?:^|(?<=\{))[ \t]*nightly[ \t]*=[ \t]*)(?P<quote>\"?)(?P<value>\d+)(?P=quote)",
+              r"(?P<prefix>(?:^|(?<=\{))[ \t]*nightly[ \t]*=[ \t]*)"
+              r"(?P<quote>[\"']?)(?P<value>\d+)(?P=quote)",
               re.MULTILINE,
           )
-          packages = []
+          records = []
+          files = {}
           for path in sorted(Path("anda").rglob("anda.hcl")):
               text = path.read_text()
-              if nightly_pattern.search(text):
-                  packages.append((path, text))
+              files[path] = text
+              for match in nightly_pattern.finditer(text):
+                  value = int(match.group("value"))
+                  if value != 0:
+                      records.append((path, match.start(), value))
 
-          for index, (path, text) in enumerate(packages):
+          if not records:
+              raise SystemExit("No packages with nightly != 0 found")
+
+          package_count = len(records)
+          targets = [package_count // 4 + (run < package_count % 4) for run in range(4)]
+          retained = [0, 0, 0, 0]
+          changes = {}
+          pending = []
+
+          # Keep existing valid assignments whenever their run is not overfull.
+          for path, start, value in records:
+              if 1 <= value <= 4 and retained[value - 1] < targets[value - 1]:
+                  retained[value - 1] += 1
+              else:
+                  pending.append((path, start, value))
+
+          # Only move packages needed to fill the underfull runs.
+          for path, start, old_value in pending:
+              run = next(run for run in range(4) if retained[run] < targets[run])
+              retained[run] += 1
+              new_value = run + 1
+              if old_value != new_value:
+                  changes[(path, start)] = new_value
+
+          assigned = [0, 0, 0, 0]
+          for path, text in files.items():
               def assign_run(match):
+                  value = int(match.group("value"))
+                  if value == 0:
+                      return match.group(0)
+                  new_value = changes.get((path, match.start()), value)
+                  assigned[new_value - 1] += 1
+                  if new_value == value:
+                      return match.group(0)
                   return (
                       f"{match.group('prefix')}{match.group('quote')}"
-                      f"{index % 4 + 1}{match.group('quote')}"
+                      f"{new_value}{match.group('quote')}"
                   )
 
               updated = nightly_pattern.sub(assign_run, text)
               if updated != text:
                   path.write_text(updated)
-          print(f"Assigned {len(packages)} nightly packages across 4 runs")
+
+          print(
+              f"Balanced {package_count} nightly packages across runs: {assigned}; "
+              f"changed {len(changes)} labels"
+          )
           PY
 
       - name: Save
@@ -71,16 +112,20 @@ jobs:
             msg="chore(nightly): redistribute packages across update runs"
             git add anda
             git commit -S -m "$msg"
-            git format-patch HEAD^
+            git format-patch --stdout HEAD^ > nightly.patch
             copy_over () {
-              git checkout $1
-              git apply *.patch || true
+              git checkout "$1"
+              git apply --check nightly.patch
+              git apply nightly.patch
               git add anda
-              git commit -S -m "$msg"
+              if [[ `git status --porcelain` ]]; then
+                git commit -S -m "$msg"
+              fi
             }
-            copy_over f45 || true
-            copy_over f44 || true
-            copy_over f43 || true
-            copy_over el10 || true
+            copy_over f45
+            copy_over f44
+            copy_over f43
+            copy_over el10
+            git checkout frawhide
             git push -u origin --all
           fi
