@@ -36,6 +36,7 @@ BuildRequires:  libstdc++(x86-32)
 BuildRequires:  openssl-devel(x86-32)
 BuildRequires:  openssl-libs(x86-32)
 BuildRequires:  libidn2(x86-32)
+BuildRequires:  glibc-devel
 
 ExclusiveArch:  x86_64
 
