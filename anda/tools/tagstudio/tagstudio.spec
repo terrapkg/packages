@@ -40,6 +40,7 @@ sed -i 's/>=3.12,<3.14/>=3.12,<3.15/' pyproject.toml
 %pyproject_patch_dependency pyside6:drop_constraints
 %pyproject_patch_dependency requests:drop_constraints
 %pyproject_patch_dependency structlog:drop_constraints
+%pyproject_patch_dependency opencv-python:drop_constraints
 
 %build
 %pyproject_wheel
