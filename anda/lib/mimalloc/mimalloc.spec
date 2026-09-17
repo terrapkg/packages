@@ -2,7 +2,7 @@
 %undefine __cmake_in_source_build
 
 Name:           mimalloc
-Version:        3.5.2
+Version:        3.5.3
 Release:        1%{?dist}
 Summary:        A general purpose allocator with excellent performance
 
