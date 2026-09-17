@@ -49,7 +49,8 @@ BuildRequires:  doxygen
 BuildRequires:  nodejs-npm
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  glslc
-BuildRequires:  vulkan-loader
+BuildRequires:  vulkan-loader-devel
+BuildRequires:  vulkan-headers
 
 %if %{with cuda}
 BuildRequires:  cuda
