@@ -1,6 +1,8 @@
 %global pypi_name inflate64
 %global _desc deflate64 compression/decompression library.
 
+%define _python_dist_allow_version_zero 1
+
 Name:			python-%{pypi_name}
 Version:		1.0.4
 Release:		1%{?dist}
