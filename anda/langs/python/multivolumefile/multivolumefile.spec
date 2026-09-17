@@ -12,7 +12,6 @@ Source0:		%{pypi_source}
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
-%dnl BuildRequires:  python3-wheel
 BuildRequires:  python3-setuptools
 BuildRequires:  python3-pip
 
