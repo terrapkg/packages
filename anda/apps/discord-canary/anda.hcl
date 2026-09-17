@@ -4,6 +4,6 @@ project pkg {
 		spec = "discord-canary.spec"
 	}
 	labels {
-	  quadridaily = 1
+	  quaterdaily = 1
 	}
 }
