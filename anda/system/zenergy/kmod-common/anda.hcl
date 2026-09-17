@@ -4,6 +4,6 @@ project pkg {
 		spec = "zenergy.spec"
 	}
 	labels {
-		nightly = 1
+		nightly = 3
 	}
 }

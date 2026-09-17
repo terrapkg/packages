@@ -1,5 +1,5 @@
-%global commit_date 20260903
-%global commit 52a9e3a4ac6de8d8476a3b609dcea32feae490a6
+%global commit_date 20260913
+%global commit 7792d617245ae990ea2460c805e515b514a14ae6
 %global shortcommit %{sub %{commit} 0 7}
 %global appid io.github.cosmic_utils.weather-applet
 

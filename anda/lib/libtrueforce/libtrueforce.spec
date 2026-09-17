@@ -1,4 +1,4 @@
-%global repoversion 0.40.3
+%global repoversion 0.41.0
 
 Name:           libtrueforce
 Version:        1.3.11^%{repoversion}
@@ -10,7 +10,6 @@ URL:            https://github.com/mescon/logitech-trueforce-linux-driver
 Source0:        %{url}/archive/refs/tags/v%{repoversion}.tar.gz
 BuildRequires:  gcc
 BuildRequires:  make
-Requires:       logitech-trueforce
 Provides:       trueforce-sdk = %{evr}
 Packager:       Luan V. <luanv.oliveira@outlook.com>
 ExclusiveArch:  x86_64

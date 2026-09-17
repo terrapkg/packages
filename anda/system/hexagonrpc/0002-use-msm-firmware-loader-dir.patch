@@ -1,0 +1,59 @@
+From: Radical <radical@radical.fun>
+Date: Sun, 13 Sep 2026 00:00:00 +0000
+Subject: [PATCH] Load firmware from msm-firmware-loader
+
+---
+diff --git a/data/hexagonrpcd-adsp-rootpd.service.in b/data/hexagonrpcd-adsp-rootpd.service.in
+index bd37175..47fd838 100644
+--- a/data/hexagonrpcd-adsp-rootpd.service.in
++++ b/data/hexagonrpcd-adsp-rootpd.service.in
+@@ -1,4 +1,5 @@
+ [Unit]
++After=msm-firmware-loader.service
+ Description=Server for FastRPC remote procedure calls from Qualcomm ADSP - RootPD
+ Conflicts=suspend.target
+ Before=suspend.target
+@@ -8,7 +9,7 @@ ConditionPathExists=!/dev/fastrpc-sdsp
+ ConditionPathExists=/dev/fastrpc-adsp
+ 
+ [Service]
+-ExecStart=@bindir@/hexagonrpcd -f /dev/fastrpc-adsp -d adsp
++ExecStart=@bindir@/hexagonrpcd -f /dev/fastrpc-adsp -d adsp -R /run/msm-firmware-loader/hexagonrpc
+ Restart=always
+ RestartSec=3
+ User=fastrpc
+diff --git a/data/hexagonrpcd-adsp-sensorspd.service.in b/data/hexagonrpcd-adsp-sensorspd.service.in
+index 23d31a4..6b3b2a8 100644
+--- a/data/hexagonrpcd-adsp-sensorspd.service.in
++++ b/data/hexagonrpcd-adsp-sensorspd.service.in
+@@ -1,4 +1,5 @@
+ [Unit]
++After=msm-firmware-loader.service
+ Description=Server for FastRPC remote procedure calls from Qualcomm ADSP - sensorspd
+ Conflicts=suspend.target
+ Before=suspend.target
+@@ -7,7 +8,7 @@ ConditionPathExists=!/dev/fastrpc-sdsp
+ ConditionPathExists=/dev/fastrpc-adsp
+ 
+ [Service]
+-ExecStart=@bindir@/hexagonrpcd -f /dev/fastrpc-adsp -d adsp -s
++ExecStart=@bindir@/hexagonrpcd -f /dev/fastrpc-adsp -d adsp -s -R /run/msm-firmware-loader/hexagonrpc
+ Restart=always
+ RestartSec=3
+ User=fastrpc
+diff --git a/data/hexagonrpcd-sdsp.service.in b/data/hexagonrpcd-sdsp.service.in
+index 6a5c2f8..9f00d81 100644
+--- a/data/hexagonrpcd-sdsp.service.in
++++ b/data/hexagonrpcd-sdsp.service.in
+@@ -1,9 +1,10 @@
+ [Unit]
++After=msm-firmware-loader.service
+ Description=Server for FastRPC remote procedure calls from Qualcomm SDSP
+ ConditionPathExists=/dev/fastrpc-sdsp
+ 
+ [Service]
+-ExecStart=@bindir@/hexagonrpcd -f /dev/fastrpc-sdsp -d sdsp -s
++ExecStart=@bindir@/hexagonrpcd -f /dev/fastrpc-sdsp -d sdsp -s -R /run/msm-firmware-loader/hexagonrpc
+ Restart=always
+ RestartSec=3
+ User=fastrpc
