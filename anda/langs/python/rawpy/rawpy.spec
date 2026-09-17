@@ -8,7 +8,7 @@ Summary:		RAW image processing for Python, a wrapper for libraw
 License:		MIT AND LGPL-2.1-or-later
 URL:			https://pypi.python.org/pypi/rawpy
 Source0:		%{pypi_source}
-
+BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  python3-devel
 BuildRequires:  python3-pip
