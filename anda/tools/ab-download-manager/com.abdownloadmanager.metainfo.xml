@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component type="desktop-application">
+  <id>com.abdownloadmanager.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>Apache-2.0</project_license>
+
+  <name>AB Download Manager</name>
+  <summary>A fast, open-source download manager</summary>
+
+  <description>
+    <p>
+      AB Download Manager is a fast, modern download manager that helps you
+      manage and organize your downloads more efficiently.
+    </p>
+    <p>
+      It supports download queues, scheduling, multiple connections, browser
+      integration, and a modern desktop interface.
+    </p>
+  </description>
+
+  <launchable type="desktop-id">abdownloadmanager.desktop</launchable>
+  <provides>
+    <binary>ABDownloadManager</binary>
+  </provides>
+
+  <categories>
+    <category>Network</category>
+    <category>Utility</category>
+  </categories>
+
+  <keywords>
+    <keyword>download</keyword>
+    <keyword>downloader</keyword>
+    <keyword>download manager</keyword>
+    <keyword>queue</keyword>
+    <keyword>scheduler</keyword>
+  </keywords>
+
+  <url type="homepage">https://abdownloadmanager.com</url>
+  <url type="bugtracker">https://github.com/amir1376/ab-download-manager/issues</url>
+  <url type="vcs-browser">https://github.com/amir1376/ab-download-manager</url>
+</component>
