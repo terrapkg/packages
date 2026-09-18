@@ -1,6 +1,7 @@
 %dnl %bcond rust_nightly 0
 
 # The bare-metal target invokes rust-lld directly rather than cc/gcc.
+%global debug_package %{nil}
 %bcond_with mold
 %define terra_rustflags %build_rustflags
 %define _package_note_flags %nil
