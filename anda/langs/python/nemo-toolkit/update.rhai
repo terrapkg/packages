@@ -1,1 +1,1 @@
-rpm.version(pypi("PyQt6-Qt6"));
+rpm.version(pypi("nemo_toolkit"));
