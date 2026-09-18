@@ -1,5 +1,11 @@
 %dnl %bcond rust_nightly 0
 
+# The bare-metal target invokes rust-lld directly rather than cc/gcc.
+%bcond_with mold
+%define terra_rustflags %build_rustflags
+%define _package_note_flags %nil
+%undefine _package_note_status
+
 Name:           rust-hypervisor-firmware
 Version:        0.4.2
 Release:        1%{?dist}
@@ -53,7 +59,7 @@ is not possible to boot all the way into the OS.
 %dnl %{cargo_build} -Zbuild-std=core,alloc -Zbuild-std-features=compiler-builtins-mem
 
 %install
-install -Dm755 target/rpm/hypervisor-fw %{buildroot}%{_bindir}/hypervisor-fw
+install -Dm755 target/x86_64-unknown-none/rpm/hypervisor-fw %{buildroot}%{_bindir}/hypervisor-fw
 %cargo_license_summary_online
 %{cargo_license_online} > LICENSE.dependencies
 
