@@ -52,7 +52,7 @@ git-lfs checkout
 %__npm install --no-audit --no-fund
 
 %build
-%__npm run build
+%__npm run clean-build
 app/scripts/dir_build -f -p l -a %{zotero_arch}
 
 %install
@@ -78,7 +78,7 @@ done
 appstreamcli validate --no-net %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 
 %files
-%doc README.md
+%doc README.md CONTRIBUTING.md
 %license COPYING
 %{_bindir}/zotero
 %{bundledir}/
