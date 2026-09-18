@@ -41,6 +41,7 @@ BuildRequires: desktop-file-utils
 BuildRequires: appstream-data
 BuildRequires: libappstream-glib
 Recommends: nethogs
+Requires:   lm_sensors
 
 %description
 Monitor your CPU, Memory, Disk, Network and GPU usage
