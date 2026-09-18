@@ -28,7 +28,7 @@ install -Dm 755 target/rpm/%{name} %{buildroot}%{_bindir}/%{name}
 %files
 %{_bindir}/%{name}
 %license LICENSE LICENSE.dependencies
-%doc README.md
+%doc README.md docs/*
 
 %changelog
 * Thu Sep 17 2026 Its-J <jonah@fyralabs.com> - 0.5.0-1
