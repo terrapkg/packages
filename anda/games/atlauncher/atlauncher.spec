@@ -39,7 +39,7 @@ Packager:       Cypress Reed <cypress@fyralabs.com>
 %autosetup -n ATLauncher-%{version}
 
 sed -i "/include('app')/d" settings.gradle
-# Normalize upstream AppStream metadata for Terra.
+
 sed -i \
     -e 's|<id>atlauncher</id>|<id>%{appid}</id>|' \
     -e 's|<icon type="remote"[^>]*>[^<]*</icon>|<icon type="stock">atlauncher</icon>|' \
@@ -47,20 +47,6 @@ sed -i \
     -e '/<releases>/,/<\/releases>/d' \
     packaging/linux/_common/atlauncher.metainfo.xml
 
-# Older build plugins use APIs removed by the Gradle version in Terra.
-sed -i "/id 'org.cadixdev.licenser'/d; s/id 'com.github.johnrengelman.shadow' version '8.1.1'/id 'com.gradleup.shadow' version '9.2.2'/" build.gradle
-awk '
-  /^license \{$/ { skip = 1; depth = 1; next }
-  skip {
-    line = $0
-    depth += gsub(/\{/, "", line)
-    depth -= gsub(/\}/, "", line)
-    if (depth <= 0) skip = 0
-    next
-  }
-  { print }
-' build.gradle > build.gradle.tmp
-mv build.gradle.tmp build.gradle
 unzip -q %{SOURCE1}
 
 %build
