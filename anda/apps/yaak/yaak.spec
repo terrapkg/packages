@@ -19,6 +19,7 @@ BuildRequires:  nodejs-npm
 BuildRequires:  nodejs-packaging
 BuildRequires:  typescript
 BuildRequires:  desktop-file-utils
+BuildRequires:  xdg-utils
 BuildRequires:  cargo
 BuildRequires:  rust-std-static-wasm32-unknown-unknown
 BuildRequires:  perl
