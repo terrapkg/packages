@@ -6,7 +6,7 @@
 %global run 1
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global buildnum %(printf '%d' 0x%{shortcommit})
-%global electron_version %{latest_stable_version}-nightly.%{commit_date}.%{buildnum}
+%global electron_version %{latest_stable_version}-nightly.%{commitdate}.%{buildnum}
 
 Name:           t3code-nightly
 %electronmeta -D
