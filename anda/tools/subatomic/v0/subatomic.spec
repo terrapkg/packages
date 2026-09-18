@@ -1,7 +1,8 @@
 %define debug_package %{nil}
 
 Name:           subatomic
-Version:        1.0.0
+# Last go/subatomic-v0 release
+Version:        0.15.0
 Release:        1%{?dist}
 Summary:        A modern package delivery system
 
@@ -15,6 +16,8 @@ BuildRequires:  ostree-devel
 BuildRequires:  gcc
 Requires:       ostree
 Requires:       createrepo_c
+
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 Subatomic is a package delivery system which supports multiple package formats.
@@ -48,6 +51,7 @@ install -pm 755 build/bin/subatomic %{buildroot}%{_bindir}/
 
 
 %files
+%doc README.md
 %{_bindir}/subatomic
 
 
