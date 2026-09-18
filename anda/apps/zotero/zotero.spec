@@ -1,3 +1,4 @@
+%global debug_package %{nil}
 %global appid org.zotero.Zotero
 %global bundledir %{_libdir}/zotero
 
