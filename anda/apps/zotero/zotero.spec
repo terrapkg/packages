@@ -10,7 +10,7 @@
 
 Name:           zotero
 Version:        10.0.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Collect, organize, cite, and share your research sources
 URL:            https://www.zotero.org/
 License:        AGPL-3.0-or-later
