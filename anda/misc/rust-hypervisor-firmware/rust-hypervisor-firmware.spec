@@ -7,7 +7,7 @@
 %undefine _package_note_status
 
 Name:           rust-hypervisor-firmware
-Version:        0.4.2
+Version:        0.5.0
 Release:        1%{?dist}
 Summary:        Simple firmware that is designed to be launched from anything that supports loading ELF binaries
 URL:            https://github.com/cloud-hypervisor/rust-hypervisor-firmware
