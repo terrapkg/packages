@@ -54,6 +54,9 @@ ExclusiveArch:  x86_64
 %description
 Open-source modding framework for creating and managing Steam Client themes and plugins.
 
+%package static
+%pkg_static_files
+
 %conf -p
 sed 's/find_package(ZLIB/find_package(zlib/' -i scripts/cmake/bootstrap_deps.cmake
 sed '/find_package(zlib       REQUIRED)/a\    set_target_properties(ZLIB::ZLIB PROPERTIES IMPORTED_LOCATION "/usr/lib/libz.so")' -i scripts/cmake/bootstrap_deps.cmake
@@ -74,7 +77,6 @@ sed '/target_link_libraries(${MILLENNIUM_RTB_NAME}/i\target_compile_options(${MI
 %license LICENSE.md
 %{_bindir}/luajit
 %{_includedir}/luajit/
-%{_libdir}/libluajit.a
 
 %changelog
 * Thu Sep 17 2026 madonuko <mado@fyralabs.com>
