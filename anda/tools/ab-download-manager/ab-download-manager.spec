@@ -1,4 +1,4 @@
-%global appid   com.abdownloadmanager
+%global appid   com.abdownloadmanager.desktop
 %global giturl  https://github.com/amir1376/ab-download-manager
 
 Name:           ab-download-manager
@@ -7,7 +7,7 @@ Release:        1%?dist
 Summary:        A fast, open-source download manager
 URL:            https://abdownloadmanager.com
 Source0:        abdownloadmanager.desktop
-Source1:        com.abdownloadmanager.metainfo.xml
+Source1:        com.abdownloadmanager.desktop.metainfo.xml
 
 License:        Apache-2.0
 

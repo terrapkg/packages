@@ -3,6 +3,7 @@
   <id>com.abdownloadmanager.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>Apache-2.0</project_license>
+  <icon type="stock">abdownloadmanager</icon>
 
   <name>AB Download Manager</name>
   <summary>A fast, open-source download manager</summary>
