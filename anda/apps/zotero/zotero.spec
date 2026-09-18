@@ -78,6 +78,8 @@ done
 appstreamcli validate --no-net %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 
 %files
+%doc README.md
+%license LICENSE
 %{_bindir}/zotero
 %{bundledir}/
 %{_appsdir}/zotero.desktop
