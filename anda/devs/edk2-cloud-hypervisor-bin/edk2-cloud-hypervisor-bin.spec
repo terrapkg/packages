@@ -1,6 +1,6 @@
-%global release_tag ch-fa2451264b
-%global commit_date 20260917
-%global shortcommit fa2451264b
+%global release_tag vUDK2018
+%global commit_date 20260918
+%global shortcommit K2018
 
 Name:           edk2-cloud-hypervisor-bin
 Version:        0^%{commit_date}git.%{shortcommit}
