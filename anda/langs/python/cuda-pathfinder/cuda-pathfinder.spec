@@ -1,6 +1,8 @@
 %global pypi_name cuda-pathfinder
 %global _desc Pathfinder for CUDA components.
 
+%define _python_dist_allow_version_zero 1
+
 Name:			python-%{pypi_name}
 Version:		13.4.2
 Release:		1%{?dist}
