@@ -5,7 +5,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.1.3
-Release:		2%{?dist}
+Release:		3%{?dist}
 Summary:		Pure python 7-zip library
 License:		LGPL-2.1-or-later
 URL:			https://py7zr.readthedocs.io/
@@ -33,6 +33,9 @@ Provides:       %{pypi_name}
 %autosetup -n %{pypi_name}-%{version}
 
 %pyproject_patch_dependency multivolumefile:drop_constraints
+%pyproject_patch_dependency inflate64:drop_constraints
+%pyproject_patch_dependency pybcj:drop_constraints
+%pyproject_patch_dependency pyppmd:drop_constraints
 
 %build
 %pyproject_wheel
