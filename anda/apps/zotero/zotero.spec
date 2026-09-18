@@ -59,7 +59,7 @@ install -dm755 %{buildroot}%{bundledir}
 cp -a app/staging/Zotero_linux-*/* %{buildroot}%{bundledir}/
 
 install -dm755 %{buildroot}%{_bindir}
-ln -s %{bundledir}/zotero %{buildroot}%{_bindir}/zotero
+ln -sr %{buildroot}%{bundledir}/zotero %{buildroot}%{_bindir}/zotero
 
 %desktop_file_install -k Exec,Icon -v zotero,zotero -u %U \
     %{buildroot}%{bundledir}/zotero.desktop
