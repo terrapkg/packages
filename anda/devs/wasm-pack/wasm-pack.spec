@@ -3,8 +3,8 @@ Version:        0.15.0
 Release:        1%{?dist}
 Summary:        Your favorite Rust → Wasm workflow tool!
 SourceLicense:  MIT OR Apache-2.0
-License:        %{SourceLicense} AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 OR MIT OR Zlib) AND (Apache-2.0 OR MIT OR Zlib) AND (MIT OR Unlicense) AND (Apache-2.0 OR Zlib OR MIT) AND Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND ISC AND MIT
-URL:            https://github.com/rustwasm/wasm-pack
+License:        %{sourcelicense} AND (MIT OR Apache-2.0) AND Unicode-3.0 AND (0BSD OR MIT OR Apache-2.0) AND Apache-2.0 AND (Apache-2.0 AND ISC) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND BSD-3-Clause AND (CC0-1.0 OR MIT-0 OR Apache-2.0) AND CDLA-Permissive-2.0 AND ISC AND MIT AND (MIT OR Apache-2.0) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Zlib OR Apache-2.0) AND Unicode-3.0 AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT)
+URL:            https://github.com/wasm-bindgen/wasm-pack
 Source0:        https://github.com/wasm-bindgen/wasm-pack/archive/refs/tags/v%{version}.tar.gz
 
 BuildRequires:  cargo-rpm-macros
