@@ -3,7 +3,7 @@
 %global appid com.atlauncher.atlauncher
 
 Name:           atlauncher
-Version:        3.4.41.2
+Version:        3.4.41.3
 Release:        1%{?dist}
 Summary:        A launcher for Minecraft which integrates multiple different modpacks
 
