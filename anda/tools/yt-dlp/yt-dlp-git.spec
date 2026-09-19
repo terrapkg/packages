@@ -8,10 +8,6 @@ Summary:        A command-line program to download videos from online video plat
 
 License:        Unlicense
 URL:            https://github.com/yt-dlp/yt-dlp
-# Downgrade websockets version requirement on <= 41
-Patch1:         https://src.fedoraproject.org/rpms/yt-dlp/raw/6308364583e19fe367ca9be500e8c3a9366ff10c/f/0001-Revert-rh-websockets-Upgrade-websockets-to-13.0-1081.patch
-# Downgrade requests version requirement on 40
-Patch2:         https://src.fedoraproject.org/rpms/yt-dlp/raw/b8d3a225839bf53a4d53cc79ee8cbb0a7640dafd/f/0002-Revert-rh-requests-Bump-minimum-requests-version-to-.patch
 
 BuildArch:      noarch
 Packager:       madonuko <mado@fyralabs.com>
@@ -93,8 +89,6 @@ Fish command line completion support for %{name}.
 
 # Remove unnecessary shebangs
 find -type f ! -executable -name '*.py' -print -exec sed -i -e '1{\@^#!.*@d}' '{}' +
-
-%autopatch 1 -p1
 
 # Update version number
 %{python3} devscripts/update-version.py %{version} -c master -r yt-dlp/yt-dlp-master-builds
