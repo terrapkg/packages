@@ -3,11 +3,15 @@
 %global selinuxtype targeted
 %global debug_package %{nil}
 
+# Prevent RPM depdendency generation from the prepackaged waydroid images
+%global __requires_exclude_from ^%{_prefix}/lib/waydroid-nvidia/guest/.*$
+%global __provides_exclude_from ^%{_prefix}/lib/waydroid-nvidia/guest/.*$
+
 Name:           waydroid-nvidia
 Version:        0.1.2
 %global tag v%{version}
 
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Waydroid with NVIDIA GPU acceleration
 License:        GPL-3.0-or-later AND MIT
 URL:            https://github.com/Shiro836/waydroid-nvidia
