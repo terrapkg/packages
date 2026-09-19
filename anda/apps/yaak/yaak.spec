@@ -26,6 +26,7 @@ BuildRequires:  cargo
 BuildRequires:  rust-std-static-wasm32-unknown-unknown
 BuildRequires:  perl
 BuildRequires:  cmake
+BuildRequires:  wasm-pack
 
 Packager:       Cypress Reed <cypress@fyralabs.com>
 
@@ -41,11 +42,7 @@ sed -i '/"apps\/yaak-proxy",/d; s|"bootstrap:build": "npm run build --workspace 
 sed -i 's|"targets": \["app", "appimage", "deb", "dmg", "nsis", "rpm"\]|"targets": []|' \
     %{tauri_dir}/tauri.release.conf.json
 
-RUSTFLAGS="-C debuginfo=0" cargo install --locked \
-    --jobs %{_smp_build_ncpus} --root %{wasm_pack_root} wasm-pack
-
 %build
-export PATH="%{wasm_pack_root}/bin:$PATH"
 export CARGO_BUILD_JOBS="%{_smp_build_ncpus}"
 export CMAKE_POLICY_VERSION_MINIMUM=3.5
 %npm_build -r client:bundle
