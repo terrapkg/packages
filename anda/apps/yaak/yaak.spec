@@ -64,7 +64,8 @@ install -Dpm755 target/release/yaak-app-client \
 %desktop_file_install %{SOURCE1}
 install -Dpm644 %{tauri_dir}/icons/icon.png \
     %{buildroot}%{_hicolordir}/512x512/apps/%{appid}.png
-%terra-appstream -o flatpak/%{appid}.metainfo.xml
+install -Dpm644 flatpak/%{appid}.metainfo.xml \
+    %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 
 %check
 appstreamcli validate --no-net %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
