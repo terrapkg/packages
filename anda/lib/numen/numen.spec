@@ -1,5 +1,5 @@
 Name:           numen
-Version:        0.6.1
+Version:        0.6.2
 Release:        1%{?dist}
 Summary:        Zero dependency calculator library
 
