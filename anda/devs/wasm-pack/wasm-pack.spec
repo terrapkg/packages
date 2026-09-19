@@ -14,7 +14,7 @@ BuildRequires:  cmake
 Packager:       Cypress Reed <cypress@fyralabs.com>
 
 %description
-This tool seeks to be a one-stop shop for building and working with rust-generated WebAssembly that
+This tool seeks to be a one-stop shop for building and working with Rust-generated WebAssembly that
 you would like to interop with JavaScript, in the browser or with Node.js. wasm-pack helps you build
 rust-generated WebAssembly packages that you could publish to the npm registry, or otherwise use
 alongside any javascript packages in workflows that you already use, such as webpack.
