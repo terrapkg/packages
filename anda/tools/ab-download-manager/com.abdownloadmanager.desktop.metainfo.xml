@@ -37,6 +37,10 @@
     <keyword>scheduler</keyword>
   </keywords>
 
+  <releases>
+      <release version="1.10.4" date="2026-09-17" />
+  </releases>
+
   <url type="homepage">https://abdownloadmanager.com</url>
   <url type="bugtracker">https://github.com/amir1376/ab-download-manager/issues</url>
   <url type="vcs-browser">https://github.com/amir1376/ab-download-manager</url>

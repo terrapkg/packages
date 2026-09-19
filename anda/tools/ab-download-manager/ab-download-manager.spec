@@ -1,4 +1,6 @@
+%global debug_package %{nil}
 %global appid   com.abdownloadmanager.desktop
+%global _build_id_links none
 %global giturl  https://github.com/amir1376/ab-download-manager
 
 Name:           ab-download-manager
@@ -34,7 +36,8 @@ integration, multiple connections, and a modern desktop interface.
 %build
 # The Android build is not needed for the Linux desktop package.
 export SKIP_ANDROID_BUILD=true
-./gradlew --no-daemon createReleaseFolderForCi
+gradle --no-daemon --parallel \
+    createReleaseFolderForCi
 
 %install
 install -dm755 %{buildroot}%{_libdir}/ABDownloadManager
@@ -47,7 +50,7 @@ archive=$(find build -type f \( \
 test -n "$archive"
 tar -xzf "$archive" -C %{buildroot}%{_libdir}
 
-ln -s %{_libdir}/ABDownloadManager/bin/ABDownloadManager \
+ln -sr %{buildroot}%{_libdir}/ABDownloadManager/bin/ABDownloadManager \
       %{buildroot}%{_bindir}/ABDownloadManager
 
 %desktop_file_install %{SOURCE0} %{buildroot}%{_appsdir}/abdownloadmanager.desktop
