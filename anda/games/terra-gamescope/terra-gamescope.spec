@@ -1,10 +1,10 @@
 %global libliftoff_minver 0.4.1
 
 %global _default_patch_fuzz 2
-%global ver 3.16.28-ogc3
+%global ver 3.16.29-ogc1
 
 Name:           terra-gamescope
-Version:        3.16.28^3
+Version:        3.16.29^1
 Release:        1%{?dist}
 Epoch:          1
 Summary:        OGC fork of the Micro-compositor for video games on Wayland

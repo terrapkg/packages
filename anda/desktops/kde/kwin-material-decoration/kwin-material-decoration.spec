@@ -1,5 +1,5 @@
 Name:          kwin-material-decoration
-Version:       26.09.07
+Version:       26.09.18
 Release:       1%{?dist}
 Summary:       Material-ish window decoration theme for KWin
 License:       GPL-2.0-only
