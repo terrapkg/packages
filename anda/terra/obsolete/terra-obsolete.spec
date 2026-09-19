@@ -123,8 +123,6 @@ Packager:   Terra Packaging Team <terra@fyralabs.com>
 %obsolete_ticket https://github.com/terrapkg/packages/issues/991
 %obsolete iosevka-fusion-fonts 25.1.1-2
 
-<<<<<<< HEAD
-=======
 %obsolete_ticket https://github.com/terrapkg/packages/pull/3138
 %obsolete terra-sddm 0.21.0-6
 %obsolete terra-rgbds 0.9.0-3
@@ -150,7 +148,6 @@ Packager:   Terra Packaging Team <terra@fyralabs.com>
 %obsolete switchboard-plug-security-privacy 8.0.0-2
 %obsolete switchboard-plug-useraccounts 8.0.0-2
 %obsolete switchboard-plug-wacom 8.0.0-2
->>>>>>> f33a6de130 (fix(obsolete): don't obsolete nushell (#12980))
 
 %obsolete_ticket https://github.com/terrapkg/packages/pull/7098
 %obsolete terra-surface-dtx-daemon v0.3.10~1-5
