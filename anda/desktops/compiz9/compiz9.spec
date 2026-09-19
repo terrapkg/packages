@@ -109,6 +109,14 @@ categories},22x22/{categories,devices,mimetypes}}
 %fdupes %buildroot%_datadir/glib-2.0/schemas/
 %fdupes %buildroot%_datadir/ccsm/icons/hicolor/scalable/apps/
 
+%post
+%systemd_user_post compiz.service
+
+%preun
+%systemd_user_preun compiz.service
+
+%postun
+%systemd_user_postun_with_restart compiz.service
 
 %files -f compiz.lang
 %doc AUTHORS README NEWS
@@ -143,6 +151,7 @@ categories},22x22/{categories,devices,mimetypes}}
 %{_datadir}/compiz/xslt/
 %{_datadir}/glib-2.0/schemas/org.compiz*.gschema.xml
 %{_datadir}/gnome-control-center/keybindings/50-compiz-*.xml
+%{_userunitdir}/compiz.service
 
 %files devel
 %{_includedir}/compiz/
