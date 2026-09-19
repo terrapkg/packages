@@ -38,12 +38,11 @@ Git-friendly format, and includes an extensible plugin system.
 %prep
 %autosetup -n yaak-%{version}
 %tauri_prep -n %{tauri_dir}
-sed -i '/"apps\/yaak-proxy"/d; s|"bootstrap:build": "npm run build --workspace @yaakapp/yaak-client"|"bootstrap:build": "npm run build"|' package.json
+sed -i '/"apps\/yaak-proxy"/d; s|"apps/yaak-client",|"apps/yaak-client"|; s|"bootstrap:build": "npm run build --workspace @yaakapp/yaak-client"|"bootstrap:build": "npm run build"|' package.json
 sed -i 's|"targets": \["app", "appimage", "deb", "dmg", "nsis", "rpm"\]|"targets": []|' \
     %{tauri_dir}/tauri.release.conf.json
 
 %build
-export CARGO_BUILD_JOBS="%{_smp_build_ncpus}"
 export CMAKE_POLICY_VERSION_MINIMUM=3.5
 %npm_build -r client:bundle
 %tauri_cargo_license_summary -f updater,license,wry
