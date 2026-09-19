@@ -5,7 +5,7 @@ Version:        0.4.1
 Release:        1%{?dist}
 Summary:        Generate wiring harness documentation from YAML descriptions
 URL:            https://github.com/wireviz/WireViz
-Source0:        https://github.com/wireviz/WireViz/archive/refs/tags/v%{version}.tar.gz
+Source0:        %{pypi_source}
 License:        GPL-3.0-only
 BuildArch:      noarch
 
