@@ -38,7 +38,7 @@ Git-friendly format, and includes an extensible plugin system.
 %prep
 %autosetup -n yaak-%{version}
 %tauri_prep -n %{tauri_dir}
-sed -i '/"apps\/yaak-proxy",/d; s|"bootstrap:build": "npm run build --workspace @yaakapp/yaak-client"|"bootstrap:build": "npm run build"|' package.json
+sed -i '/"apps\/yaak-proxy"/d; s|"bootstrap:build": "npm run build --workspace @yaakapp/yaak-client"|"bootstrap:build": "npm run build"|' package.json
 sed -i 's|"targets": \["app", "appimage", "deb", "dmg", "nsis", "rpm"\]|"targets": []|' \
     %{tauri_dir}/tauri.release.conf.json
 
