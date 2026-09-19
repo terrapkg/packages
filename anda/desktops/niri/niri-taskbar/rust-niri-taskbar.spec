@@ -2,7 +2,7 @@
 %bcond check 0
 
 %global crate niri-taskbar
-%global crate_version 0.2.0+niri.25.05
+%global crate_version 0.4.0+niri.25.11
 
 Name:           rust-niri-taskbar
 Version:        %(echo %crate_version | sed 's/\+.*//g')
@@ -12,8 +12,8 @@ Summary:        Niri taskbar module for Waybar
 License:        MIT
 URL:            https://crates.io/crates/niri-taskbar
 Source:         https://static.crates.io/crates/%{crate}/%{crate}-%{crate_version}.crate
-# Automatically generated patch to strip dependencies and normalize metadata
-Patch:          niri-taskbar-fix-metadata-auto.diff
+# https://github.com/LawnGnome/niri-taskbar/pull/34
+Patch:          https://github.com/LawnGnome/niri-taskbar/commit/b73c567ca27aa8f266be1c4dc0275dc4db7e1b70.patch
 
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  pkgconfig(cairo-gobject)
@@ -67,3 +67,7 @@ install -Dm755 target/rpm/libniri_taskbar.so -t %buildroot%_libdir/waybar/
 %check
 %cargo_test
 %endif
+
+%changelog
+* Tue Aug 26 2026 madomado <mado@fyralabs.com>
+- Fix patch link
