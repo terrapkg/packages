@@ -21,7 +21,7 @@ The universal proxy platform.}
                         obfs/README.md
 
 Name:           sing-box
-Release:        1%?dist
+Release:        2%?dist
 Summary:        The universal proxy platform
 
 License:        BSD-3-Clause AND LGPL-3.0-only AND GPL-3.0-only
@@ -46,11 +46,26 @@ Packager:       madonuko <mado@fyralabs.com>
 %gopkginstall
 install -m 0755 -vd                     %{buildroot}%{_bindir}
 install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
+install -Dm644 release/config/sing-box.service %{buildroot}%{_unitdir}/sing-box.service
+install -Dm644 release/config/sing-box@.service %{buildroot}%{_unitdir}/sing-box@.service
+install -Dm644 release/config/sing-box.confd    %{buildroot}%{_sysusersdir}/sing-box.confd
+
+%post
+%systemd_post sing-box.service sing-box@.service
+
+%preun
+%systemd_preun sing-box.service sing-box@.service
+
+%postun
+%systemd_postun_with_restart sing-box.service sing-box@.service
 
 %files
 %license LICENSE common/ja3/LICENSE common/windivert/assets/LICENSE.txt
 %doc docs README.md common/ja3/README.md common/tlsspoof/README.md
 %doc transport/simple-obfs/README.md
 %{_bindir}/sing-box
+%{_unitdir}/sing-box.service
+%{_unitdir}/sing-box@.service
+%{_sysusersdir}/sing-box.confd
 
 %gopkgfiles
