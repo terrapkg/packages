@@ -38,7 +38,7 @@ Requires:       python3dist(pyyaml)
 Python library and command-line tool for generating wiring harness documentation with WireViz.
 
 %prep
-%autosetup -n WireViz-%{version}
+%autosetup -n %{pypi_name}-%{version}
 
 %build
 %pyproject_wheel
