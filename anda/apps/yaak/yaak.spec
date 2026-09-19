@@ -5,7 +5,7 @@
 %global wasm_pack_root  %{_builddir}/wasm-pack
 
 Name:           yaak
-Version:        2026.7.1
+Version:        2026.8.0
 Release:        1%{?dist}
 Summary:        A fast, privacy-first API client
 SourceLicense:  MIT
