@@ -19,6 +19,7 @@ BuildRequires:  glslc
 BuildRequires:  cmake gcc gcc-c++
 BuildRequires:  pkgconfig(vulkan)
 BuildRequires:  desktop-file-utils
+BuildRequires:  spirv-headers-devel
 
 ExclusiveArch:  x86_64
 
@@ -62,7 +63,7 @@ desktop-file-install \
     --set-icon="%appid" \
     --set-key=Exec --set-value=%name \
     --dir=%buildroot%_appsdir \
-    share/applications/%appid.desktop
+    Buzz.desktop
 
 %terra_appstream share/metainfo/%{appid}.metainfo.xml
 install -Dpm644 share/icons/%{appid}.svg -t %{buildroot}%{_scalableiconsdir}
@@ -71,7 +72,7 @@ install -Dpm644 share/icons/%{appid}.svg -t %{buildroot}%{_scalableiconsdir}
 %doc README.md
 %license LICENSE
 %{_bindir}/buzz
-%{_appsdir}/%appid.desktop
+%{_appsdir}/Buzz.desktop
 %{_metainfodir}/%appid.metainfo.xml
 %{_scalableiconsdir}/%appid.svg
 %{python3_sitearch}/demucs/
