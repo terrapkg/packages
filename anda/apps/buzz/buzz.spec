@@ -1,7 +1,7 @@
 %global appid io.github.chidiwilliams.Buzz
 
 Name:           buzz
-Version:        1.4.4
+Version:        1.4.5
 Release:        1%{?dist}
 Summary:        Buzz transcribes and translates audio offline on your personal computer
 License:        MIT
@@ -43,6 +43,11 @@ sed '/^requires-python/s@3\.13@3.15@' -i pyproject.toml
 %pyproject_patch_dependency nltk:drop_constraints
 %pyproject_patch_dependency onnx:drop_constraints
 %pyproject_patch_dependency onnxruntime:drop_constraints
+%pyproject_patch_dependency openai:drop_constraints
+%pyproject_patch_dependency lhotse:drop_constraints
+%pyproject_patch_dependency pyqt6:drop_constraints
+%pyproject_patch_dependency pyqt6-sip:drop_constraints
+%pyproject_patch_dependency hydra-colorlog:drop_constraints
 
 %build
 %pyproject_wheel
