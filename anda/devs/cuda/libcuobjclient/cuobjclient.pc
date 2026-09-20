@@ -1,0 +1,8 @@
+libdir=LIBDIR
+includedir=INCLUDE_DIR
+
+Name: cuobjclient
+Description: CUDA cuObject Client
+Version: CUDA_VERSION
+Libs: -L${libdir} -lcuobjclient
+Cflags: -I${includedir}

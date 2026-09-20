@@ -5,10 +5,10 @@
 
 Name:          qtmir
 Version:       0.8.0
-Release:       %autorelease
+Release:       2%{?dist}
 Summary:       Mir backed compositor using Qt
 
-License:       LGPLv3+ AND GPLv3+
+License:       LGPL-3.0-or-later AND GPL-3.0-or-later
 URL:           https://gitlab.com/ubports/development/core/qtmir
 Source0:       %{url}/-/archive/%commit/qtmir-%commit.tar.gz
 Patch0:        https://sources.debian.org/data/main/q/qtmir/0.8.0~git20230223.bd21224-3/debian/patches/1003_require-miroil-in-pkgconfig-file.patch

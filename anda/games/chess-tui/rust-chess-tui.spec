@@ -10,7 +10,7 @@ Summary:        Rusty chess game in your terminal 🦀
 
 License:        MIT
 URL:            https://crates.io/crates/chess-tui
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  pkgconfig(openssl)

@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.0.24
-Release:		1%?dist
+Release:		2%?dist
 Summary:		More than 60 spinners for terminal, python wrapper for amazing node library cli-spinners
 License:		MIT
 URL:			https://pypi.org/project/spinners/

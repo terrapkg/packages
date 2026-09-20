@@ -3,6 +3,4 @@ project pkg {
     rpm {
         spec = "consolekit.spec"
     }
-   	labels {
-	}
 }

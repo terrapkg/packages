@@ -1,5 +1,5 @@
 %global goipath github.com/wailsapp/wails/v2
-Version:        2.12.0
+Version:        2.14.0
 
 %gometa -f
 

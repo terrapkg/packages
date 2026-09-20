@@ -3,7 +3,7 @@ project pkg {
     spec = "hyprgraphics.nightly.spec"
   }
   labels {
-    nightly = 1
+    updbranch = 1
     subrepo = "extras"
   }
 }

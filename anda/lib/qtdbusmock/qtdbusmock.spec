@@ -3,10 +3,10 @@
 %forgemeta
 
 Name:       qtdbusmock
-Version:    0.9.0
-Release:    %autorelease
+Version:    0.10.0
+Release:    1%{?dist}
 Summary:    Library for mocking DBus interactions using Qt
-License:    LGPL-3.0
+License:    LGPL-3.0-or-later
 URL:        https://gitlab.com/ubports/development/core/libqtdbusmock
 Source0:    %{url}/-/archive/%commit/libqtdbusmock-%commit.tar.gz
 
@@ -33,8 +33,10 @@ developing applications that use %{name}.
 %prep
 %autosetup -n libqtdbusmock-%commit
 
+%conf
+%cmake -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+
 %build
-%cmake
 %cmake_build
 
 %install

@@ -1,13 +1,13 @@
-%global commit f7bf935f0e534434d41e159d695f4a6c81e19fe9
+%global commit f7a3e1c5953035036665e0d78b527d04fde4d491
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260106
-%global ver 0.2.2
+%global commitdate 20260915
+%global ver 0.2.3
 %global debug_package %{nil}
 %global modulename hid-fanatecff
 
 Name:           dkms-%{modulename}
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        3%{?dist}
+Release:        1%{?dist}
 Summary:        Fanatec force feedback kernel module (DKMS)
 License:        GPL-2.0-only
 URL:            https://github.com/gotzl/%{modulename}

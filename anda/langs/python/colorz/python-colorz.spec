@@ -2,7 +2,7 @@
 
 Name:           python-%{pypi_name}
 Version:        1.0.3
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Color scheme generator
 License:        MIT
 URL:            https://github.com/metakirby5/colorz

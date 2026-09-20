@@ -3,9 +3,7 @@
   <id>com.github.librepods</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-only</project_license>
-  <icon
-        type="remote"
-    >https://github.com/kavishdevar/librepods/blob/main/linux/assets/librepods.png</icon>
+  <icon type="stock">librepods</icon>
 
   <name>librepods</name>
   <summary>AirPods liberated from Apple's ecosystem</summary>
