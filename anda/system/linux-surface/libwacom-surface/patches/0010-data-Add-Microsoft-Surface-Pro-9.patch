@@ -1,0 +1,34 @@
+From d084b641aa1cf5847109f57d3b2dcc553ae51f56 Mon Sep 17 00:00:00 2001
+From: Maximilian Luz <luzmaximilian@gmail.com>
+Date: Wed, 14 Jun 2023 21:11:36 +0200
+Subject: [PATCH] data: Add Microsoft Surface Pro 9
+
+IDs taken from https://github.com/quo/ithc-linux/issues/5
+---
+ data/surface-pro9.tablet | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+ create mode 100644 data/surface-pro9.tablet
+
+diff --git a/data/surface-pro9.tablet b/data/surface-pro9.tablet
+new file mode 100644
+index 00000000..ee2b3eea
+--- /dev/null
++++ b/data/surface-pro9.tablet
+@@ -0,0 +1,14 @@
++# This is for the Microsoft Surface Pro 9
++
++[Device]
++Name=Microsoft Surface Pro 9
++Class=PenDisplay
++DeviceMatch=virt|045e|0c52
++Width=10
++Height=6
++IntegratedIn=Display;System;
++
++[Features]
++Stylus=false
++Touch=true
++Buttons=0
+-- 
+2.55.0
+
