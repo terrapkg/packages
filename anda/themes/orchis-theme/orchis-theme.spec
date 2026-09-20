@@ -1,7 +1,7 @@
 %define theme_name orchis
 %define original_theme_name Orchis
 
-%global ver 2025-04-25
+%global ver 2026-07-07
 %global sanitized_ver %(echo %{ver} | sed 's/-//g')
 
 Name: gtk-theme-%theme_name

@@ -3,7 +3,7 @@
 
 Name:       terra-%{pypi_name}
 Version:    1.14.1
-Release:    1%{?dist}
+Release:    2%{?dist}
 Summary:    Simple wrapper that does winetricks things for Proton enabled games
 BuildArch:  noarch
 

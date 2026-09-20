@@ -1,11 +1,11 @@
-%global commit 8187920ed261c7024826f8204cc7bea45153a3da
+%global commit d890a93105a0aa52028ac49282fa1b579e12566e
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260310
+%global commitdate 20260826
 %global ver 0.83
 
 Name:           hid-tmff2
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        4%{?dist}
+Release:        1%{?dist}
 Summary:        Thrustmaster Force Feedback driver common files
 License:        GPL-2.0-only
 URL:            https://github.com/Kimplul/%{name}
@@ -34,16 +34,12 @@ Akmods modules for the akmod-%{name} package.
 echo hid-tmff-new > %{name}.conf
 
 %install
-# UDev rules:
-install -Dpm644 udev/99-thrustmaster.rules -t %{buildroot}%{_udevrulesdir}/
-
 # Akmods modules
 install -Dm644 %{name}.conf -t %{buildroot}%{_modulesloaddir}
 
 %files
 %license LICENSE
 %doc README.md
-%{_udevrulesdir}/99-thrustmaster.rules
 
 %files akmod-modules
 %{_modulesloaddir}/%{name}.conf

@@ -1,5 +1,5 @@
-%global commit 546ca2a939542c397b6668e1fc1883046126b6fe
-%global commit_date 20260523
+%global commit 6f3b5ef68af0d48dbcbab964803dd09eaf260629
+%global commit_date 20260919
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           libsingularity
@@ -13,12 +13,18 @@ BuildRequires:  meson
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  vala
+BuildRequires:  sassc
 BuildRequires:  pkgconfig(gtk4)
 BuildRequires:  pkgconfig(gtk4-layer-shell-0)
 BuildRequires:  pkgconfig(gee-0.8)
 BuildRequires:  pkgconfig(json-glib-1.0)
 BuildRequires:  pkgconfig(libpeas-2)
 BuildRequires:  pkgconfig(libsoup-3.0)
+BuildRequires:  pkgconfig(gtksourceview-5)
+BuildRequires:  pkgconfig(libpulse)
+BuildRequires:  pkgconfig(gudev-1.0)
+BuildRequires:  pkgconfig(upower-glib)
+BuildRequires:  pkgconfig(libnm)
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
@@ -47,8 +53,15 @@ A GTK4 application and widget framework for the Singularity Desktop Environment.
 %{_libdir}/girepository-1.0/Singularity-1.0.typelib
 %{_libdir}/libsingularity.so.0
 %{_libdir}/libsingularity.so.0.1.0
+%{_libdir}/libsingularity-system.so.0
+%{_libdir}/libsingularity-system.so.0.1.0
 %{_datadir}/vala/vapi/singularity-1.0.vapi
 %{_datadir}/vala/vapi/libsingularity-1.0.vapi
+%{_datadir}/vala/vapi/singularity-1.0.deps
+%{_datadir}/vala/vapi/singularity-system-1.0.deps
+%{_datadir}/vala/vapi/singularity-system-1.0.vapi
+%{_datadir}/themes/Singularity/
+%{_datadir}/singularity
 
 %changelog
 * Sat May 16 2026 Owen Zimmerman <owen@fyralabs.com>

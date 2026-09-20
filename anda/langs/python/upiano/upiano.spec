@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.1.2
-Release:		3%?dist
+Release:		4%?dist
 Summary:		Terminal Piano App
 License:		MIT
 URL:			https://github.com/eliasdorneles/upiano

@@ -2,7 +2,7 @@
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-xr-server
-Version:        0.51.1
+Version:        0.52.0
 Release:        1%{?dist}
 Epoch:          1
 Summary:        Usable Linux display server that reinvents human-computer interaction for all kinds of XR
@@ -54,5 +54,5 @@ install -Dm755 target/rpm/stardust-xr-server %{buildroot}%{_bindir}/stardust-xr-
 * Tue Dec 02 2025 Owen Zimmerman <owen@fyralabs.com>
 - Update spec to reflect upstream changes, add LICENSE.dependencies
 
-* Sat Sep 14 2024 Owen-sz <owen@fyralabs.com>
+* Sat Sep 14 2024 Owen Zimmerman <owen@fyralabs.com>
 - Package StardustXR Server

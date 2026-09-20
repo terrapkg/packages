@@ -1,6 +1,6 @@
-%global commit 57b26b8927b133566be13a7702f74a62109bad15
+%global commit 8ec9b54d21f7474a9c406cf7366598a298d145f7
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260325
+%global commitdate 20260806
 
 Name:           VK_hdr_layer
 Version:        0^%{commitdate}git%{shortcommit}

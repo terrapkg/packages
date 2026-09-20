@@ -1,8 +1,8 @@
 %define debug_package %{nil}
 
 Name:           newsraft
-Version:        0.34
-Release:        1%?dist
+Version:        0.37
+Release:        1%{?dist}
 Summary:        Newsraft is a feed reader with text-based user interface.
 
 # It's hosted on codeberg but updates are easier from the github mirror.

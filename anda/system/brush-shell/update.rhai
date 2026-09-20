@@ -1,1 +1,1 @@
-rpm.version(gh("reubeno/brush"));
+rpm.global("ver", gh("reubeno/brush"));

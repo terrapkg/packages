@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		2.2.6
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Advanced directory tree synchronisation tool
 License:		MIT
 URL:			https://github.com/domdfcoding/deprecation-alias

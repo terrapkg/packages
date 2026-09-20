@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Acme
+Type=Application
+Exec=acme
+GenericName=Editor
+Comment='Editor from Plan 9'
+Categories=Development

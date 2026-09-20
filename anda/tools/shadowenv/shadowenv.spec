@@ -1,6 +1,6 @@
 Name:           shadowenv
-Version:        3.4.0
-Release:        1%?dist
+Version:        3.5.1
+Release:        1%{?dist}
 License:        MIT
 Summary:        Reversible directory-local environment variable manipulations
 URL:            https://shopify.github.io/shadowenv/

@@ -3,7 +3,4 @@ project pkg {
   rpm {
     spec = "proton-core.spec"
   }
-  labels {
-    subrepo = "extras"
-  }
 }

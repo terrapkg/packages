@@ -5,13 +5,13 @@
 %global crate television
 
 Name:           rust-television
-Version:        0.15.7
+Version:        0.15.9
 Release:        1%{?dist}
 Summary:        Very fast, portable and hackable fuzzy finder for the terminal
 
 License:        MIT
 URL:            https://crates.io/crates/television
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 # Automatically generated patch to strip dependencies and normalize metadata
 Patch:          television-fix-metadata-auto.diff
 
