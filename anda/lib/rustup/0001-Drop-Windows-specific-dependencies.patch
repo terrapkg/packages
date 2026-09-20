@@ -1,0 +1,37 @@
+diff --git a/Cargo.toml b/Cargo.toml
+index 069ba4a801b3bf181438a4c51dcc1fd2eb5a117b..34a51b6afd875eaea29fa2f0bd950f3d3726dfc9 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -111,32 +111,6 @@ zstd = { version = "0.13", default-features = false }
+ snapbox = { version = "1", features = ["term-svg"], optional = true }
+ walkdir = { version = "2", optional = true }
+ 
+-[target."cfg(windows)".dependencies]
+-scopeguard = "1"
+-windows-registry = "0.6"
+-windows-result = "0.4"
+-
+-[target."cfg(windows)".dependencies.windows-sys]
+-features = [
+-  "Win32_Foundation",
+-  "Win32_Security",
+-  "Win32_Storage_FileSystem",
+-  "Win32_System_Console",
+-  "Win32_System_Diagnostics_ToolHelp",
+-  "Win32_System_IO",
+-  "Win32_System_Ioctl",
+-  "Win32_System_JobObjects",
+-  "Win32_System_Kernel",
+-  "Win32_System_LibraryLoader",
+-  "Win32_System_SystemInformation",
+-  "Win32_System_SystemServices",
+-  "Win32_System_Threading",
+-  "Win32_System_WindowsProgramming",
+-  "Win32_UI",
+-  "Win32_UI_WindowsAndMessaging",
+-]
+-version = "0.61"
+-
+ # HACK: Temporarily pinned due to `zlib` regression, to be removed when
+ # <https://github.com/madler/zlib/issues/1168> is resolved.
+ # See: <https://github.com/rust-lang/rustup/issues/4760>

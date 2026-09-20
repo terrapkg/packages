@@ -1,0 +1,35 @@
+diff --git a/Cargo.toml b/Cargo.toml
+index 5c26e1f7d8c65e78771cde13c1a6623b9a8d3d6c..b2c359215c90e5be1b85f64852deef4281356892 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -78,7 +78,7 @@ regex = "1"
+ remove_dir_all = { version = "1.0.0", features = ["parallel"] }
+ reqwest = { version = "0.13", default-features = false, features = ["blocking", "gzip", "http2", "socks", "stream"], optional = true }
+ retry = { version = "2", default-features = false, features = ["random"] }
+-rustls = { version = "0.23", optional = true, default-features = false, features = ["logging", "aws_lc_rs", "tls12"] }
++rustls = { version = "0.23", optional = true, default-features = false, features = ["logging", "ring", "tls12"] }
+ rustls-platform-verifier = { version = "0.7", optional = true }
+ same-file = "1"
+ semver = "1.0"
+diff --git a/src/download/mod.rs b/src/download/mod.rs
+index 31f7c83624c0b3d535d8a01b3f08ae21c3dea9fe..93be2e85c32c6473b3f6bc6149d811e4401b40a1 100644
+--- a/src/download/mod.rs
++++ b/src/download/mod.rs
+@@ -565,7 +565,7 @@ mod reqwest_be {
+     use anyhow::{Context, anyhow};
+     use reqwest::{Client, ClientBuilder, Proxy, Response, header};
+     #[cfg(feature = "reqwest-rustls-tls")]
+-    use rustls::crypto::aws_lc_rs;
++    use rustls::crypto::ring;
+     #[cfg(feature = "reqwest-rustls-tls")]
+     use rustls_platform_verifier::Verifier;
+     use tokio_stream::StreamExt;
+@@ -627,7 +627,7 @@ mod reqwest_be {
+             return Ok(client);
+         }
+ 
+-        let provider = Arc::new(aws_lc_rs::default_provider());
++        let provider = Arc::new(ring::default_provider());
+         #[cfg(not(target_os = "android"))]
+         let result =
+             Verifier::new_with_extra_roots(RUSTUP_TRUST_ANCHORS.iter().cloned(), provider.clone());

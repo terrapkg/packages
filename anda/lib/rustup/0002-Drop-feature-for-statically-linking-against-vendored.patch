@@ -1,0 +1,13 @@
+diff --git a/Cargo.toml b/Cargo.toml
+index 34a51b6afd875eaea29fa2f0bd950f3d3726dfc9..4e3f31fc39c3340e29c842c00f7966a18ff80bd5 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -14,8 +14,6 @@ build = "build.rs"
+ curl-backend = ["dep:curl"]
+ default = ["curl-backend", "reqwest-native-tls", "reqwest-rustls-tls"]
+ 
+-vendored-openssl = ['openssl/vendored']
+-
+ reqwest-native-tls = ["reqwest/native-tls", "dep:reqwest", "dep:env_proxy"]
+ reqwest-rustls-tls = [
+   "reqwest/rustls-no-provider",

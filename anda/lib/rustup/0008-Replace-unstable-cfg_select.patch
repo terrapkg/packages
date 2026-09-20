@@ -1,0 +1,43 @@
+diff --git a/src/bin/rustup-init.rs b/src/bin/rustup-init.rs
+--- a/src/bin/rustup-init.rs
++++ b/src/bin/rustup-init.rs
+@@ -94,11 +94,15 @@ async fn run_rustup_inner(
+         Some(n) if n.starts_with("rustup-gc-") => {
+             // This is the final uninstallation stage on windows where
+             // rustup deletes its own exe
+-            cfg_select! {
+-                windows => self_update::complete_windows_uninstall(process),
+-                _ => unreachable!(
++            #[cfg(windows)]
++            {
++                self_update::complete_windows_uninstall(process)
++            }
++            #[cfg(not(windows))]
++            {
++                unreachable!(
+                     "Attempted to use Windows-specific code on a non-Windows platform. Aborting."
+-                ),
++                )
+             }
+         }
+         Some(n) => {
+diff --git a/src/cli/self_update.rs b/src/cli/self_update.rs
+index 88bc516f81f928e2b507ce1da5ebcabc15c0faf3..c79fad08d7bb3008e14ed6c34b754163ccc5c53b 100644
+--- a/src/cli/self_update.rs
++++ b/src/cli/self_update.rs
+@@ -602,10 +602,11 @@ fn canonical_cargo_home(process: &Process) -> Result<Cow<'static, str>> {
+         .unwrap_or_else(|| PathBuf::from("."))
+         .join(".cargo");
+     Ok(if default_cargo_home == path {
+-        cfg_select! {
+-            windows => r"%USERPROFILE%\.cargo".into(),
+-            _ => "$HOME/.cargo".into(),
+-        }
++        #[cfg(windows)]
++        let cargo_home = r"%USERPROFILE%\.cargo";
++        #[cfg(not(windows))]
++        let cargo_home = "$HOME/.cargo";
++        cargo_home.into()
+     } else {
+         path.to_string_lossy().into_owned().into()
+     })

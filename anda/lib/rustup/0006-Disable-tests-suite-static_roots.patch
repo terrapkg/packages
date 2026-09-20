@@ -1,0 +1,23 @@
+diff --git a/Cargo.toml b/Cargo.toml
+index b2c359215c90e5be1b85f64852deef4281356892..7bd68d3c239405f42f99e2751c1d5de52871db04 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -116,9 +116,5 @@ libz-sys = "=1.1.24"
+ [dev-dependencies]
+-enum-map = "3.0.0"
+ proptest = "1.1.0"
+-rustls-webpki = { version = "0.103.3" }
+-tokio-rustls = "0.26.4"
+-webpki-root-certs = "1"
+ 
+ [build-dependencies]
+ platforms = "4"
+diff --git a/tests/suite/mod.rs b/tests/suite/mod.rs
+index 2fa175e633dfe4491680a0e65d2c6a9f7931b4e3..fc3158a7888a061273139f55189b66145844ae45 100644
+--- a/tests/suite/mod.rs
++++ b/tests/suite/mod.rs
+@@ -10,4 +10,3 @@ mod cli_v1;
+ mod cli_v2;
+ mod dist_install;
+ mod known_target_tuples;
+-mod static_roots;

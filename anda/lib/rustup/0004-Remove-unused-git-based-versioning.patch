@@ -1,0 +1,148 @@
+diff --git a/Cargo.toml b/Cargo.toml
+index f0d64e58fc683d3421c9d9a0cd5753c5e2873fe5..5c26e1f7d8c65e78771cde13c1a6623b9a8d3d6c 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -56,7 +56,6 @@ faster-hex = "0.10.0"
+ flate2 = { version = "1.1.1", default-features = false, features = ["zlib-rs"] }
+ fs_at = "0.2.1"
+ futures-util = "0.3.31"
+-git-testament = "0.2"
+ home = "0.5.4"
+ http-body-util = "0.1.0"
+ hyper = { version = "1.0", default-features = false, features = ["server", "http1"] }
+diff --git a/src/cli/common.rs b/src/cli/common.rs
+index e9d9ccd26f4ad568c27b21e2aafb05ccd48cf097..2868ca3f0ff001daee43468cbd57bb659922d584 100644
+--- a/src/cli/common.rs
++++ b/src/cli/common.rs
+@@ -4,14 +4,12 @@ use std::fmt::Display;
+ use std::fs;
+ use std::io::{BufRead, Write};
+ use std::path::Path;
+-use std::sync::LazyLock;
+ use std::{cmp, env};
+ 
+ use anstyle::Style;
+ use anyhow::{Context, Result, anyhow};
+ use clap_cargo::style::{CONTEXT, ERROR, UPDATE_ADDED, UPDATE_UNCHANGED, UPDATE_UPGRADED};
+ use futures_util::future::join_all;
+-use git_testament::{git_testament, render_testament};
+ use tracing::{error, info, warn};
+ use tracing_subscriber::{EnvFilter, Registry, reload::Handle};
+ 
+@@ -395,67 +393,8 @@ pub(crate) fn list_overrides(cfg: &Cfg<'_>) -> Result<ExitCode> {
+     Ok(ExitCode::SUCCESS)
+ }
+ 
+-git_testament!(TESTAMENT);
+-
+-pub(crate) fn version() -> &'static str {
+-    // Because we trust our `stable` branch given the careful release
+-    // process, we mark it trusted here so that our version numbers look
+-    // right when built from CI before the tag is pushed
+-    static RENDERED: LazyLock<String> = LazyLock::new(|| render_testament!(TESTAMENT, "stable"));
+-    &RENDERED
+-}
+-
+-pub(crate) fn dump_testament(process: &Process) -> Result<ExitCode> {
+-    use git_testament::GitModification::*;
+-    writeln!(
+-        process.stdout().lock(),
+-        "Rustup version renders as: {}",
+-        version()
+-    )?;
+-    writeln!(
+-        process.stdout().lock(),
+-        "Current crate version: {}",
+-        env!("CARGO_PKG_VERSION")
+-    )?;
+-    if TESTAMENT.branch_name.is_some() {
+-        writeln!(
+-            process.stdout().lock(),
+-            "Built from branch: {}",
+-            TESTAMENT.branch_name.unwrap()
+-        )?;
+-    } else {
+-        writeln!(process.stdout().lock(), "Branch information missing")?;
+-    }
+-    writeln!(process.stdout().lock(), "Commit info: {}", TESTAMENT.commit)?;
+-    if TESTAMENT.modifications.is_empty() {
+-        writeln!(process.stdout().lock(), "Working tree is clean")?;
+-    } else {
+-        for fmod in TESTAMENT.modifications {
+-            match fmod {
+-                Added(f) => writeln!(
+-                    process.stdout().lock(),
+-                    "Added: {}",
+-                    String::from_utf8_lossy(f)
+-                )?,
+-                Removed(f) => writeln!(
+-                    process.stdout().lock(),
+-                    "Removed: {}",
+-                    String::from_utf8_lossy(f)
+-                )?,
+-                Modified(f) => writeln!(
+-                    process.stdout().lock(),
+-                    "Modified: {}",
+-                    String::from_utf8_lossy(f)
+-                )?,
+-                Untracked(f) => writeln!(
+-                    process.stdout().lock(),
+-                    "Untracked: {}",
+-                    String::from_utf8_lossy(f)
+-                )?,
+-            }
+-        }
+-    }
+-    Ok(ExitCode::SUCCESS)
++pub(crate) fn version() -> &'static str {
++    env!("CARGO_PKG_VERSION")
+ }
+ 
+ fn show_backtrace(process: &Process) -> bool {
+diff --git a/src/cli/rustup_mode.rs b/src/cli/rustup_mode.rs
+index 8dbe6dad5d2a67d2ba354b8fcac3abe4db9b93ca..01703ee1896fc2397681ff2473f80847cf6f2ca5 100644
+--- a/src/cli/rustup_mode.rs
++++ b/src/cli/rustup_mode.rs
+@@ -715,7 +715,7 @@ pub async fn main(
+     let should_warn = subcmd.should_warn_empty_setup();
+ 
+     let exit_code = match subcmd {
+-        RustupSubcmd::DumpTestament => common::dump_testament(process),
++        RustupSubcmd::DumpTestament => unimplemented!(),
+         RustupSubcmd::Install { opts } => update(cfg, opts, true).await,
+         RustupSubcmd::Uninstall { opts } => toolchain_remove(cfg, opts).await,
+         RustupSubcmd::Show { verbose, subcmd } => handle_epipe(match subcmd {
+diff --git a/src/cli/setup_mode.rs b/src/cli/setup_mode.rs
+index f0eeb4e6b8a3de7d87c5ef01748e8021197dba4e..9fedbb22b7f8fc31c53f01bbf8e98db77593808a 100644
+--- a/src/cli/setup_mode.rs
++++ b/src/cli/setup_mode.rs
+@@ -68,10 +68,6 @@ struct RustupInit {
+     /// Secret command used during self-update. Not for users
+     #[arg(long, hide = true)]
+     self_replace: bool,
+-
+-    /// Internal testament dump used during CI. Not for users
+-    #[arg(long, hide = true)]
+-    dump_testament: bool,
+ }
+ 
+ #[tracing::instrument(level = "trace", skip(process, console_filter))]
+@@ -94,7 +90,6 @@ pub async fn main(
+         no_update_default_toolchain,
+         no_modify_path,
+         self_replace,
+-        dump_testament,
+     } = match RustupInit::try_parse() {
+         Ok(args) => args,
+         Err(e) if [ErrorKind::DisplayHelp, ErrorKind::DisplayVersion].contains(&e.kind()) => {
+@@ -109,10 +104,6 @@ pub async fn main(
+         return self_update::self_replace(process);
+     }
+ 
+-    if dump_testament {
+-        return common::dump_testament(process);
+-    }
+-
+     if profile == Profile::Complete {
+         warn!("{}", common::WARN_COMPLETE_PROFILE);
+     }
