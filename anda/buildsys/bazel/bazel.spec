@@ -1,4 +1,5 @@
 %global debug_package %{nil}
+%global __strip /bin/true
 
 Name:           bazel
 Version:        9.2.0
