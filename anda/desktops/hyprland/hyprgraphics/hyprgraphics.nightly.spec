@@ -9,7 +9,7 @@
 %bcond libjxl 1
 Name:           %realname.nightly
 Version:        %ver^%{commit_date}git.%shortcommit
-Release:        26%{?dist}
+Release:        27%{?dist}
 Summary:        Graphics library for Hyprland
 
 License:        BSD-3-Clause

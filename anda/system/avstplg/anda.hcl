@@ -3,6 +3,6 @@ project pkg {
 		spec = "avstplg.spec"
 	}
   labels {
-    nightly = "1"
+    nightly = "3"
   }
 }

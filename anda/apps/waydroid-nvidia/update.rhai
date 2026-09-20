@@ -1,0 +1,1 @@
+rpm.version(gh("Shiro836/waydroid-nvidia"));

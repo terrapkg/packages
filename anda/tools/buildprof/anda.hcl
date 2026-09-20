@@ -1,5 +1,5 @@
 project pkg {
 	rpm {
-		spec = "bolt.spec"
+		spec = "buildprof.spec"
 	}
 }

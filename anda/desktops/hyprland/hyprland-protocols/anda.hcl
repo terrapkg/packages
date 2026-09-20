@@ -4,7 +4,7 @@ project pkg {
     spec = "hyprland-protocols.nightly.spec"
   }
   labels {
-    nightly = 1
+    nightly = 2
     subrepo = "extras"
   }
 }

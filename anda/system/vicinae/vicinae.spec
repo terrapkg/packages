@@ -1,6 +1,6 @@
 Name:           vicinae
 License:        GPL-3.0-or-later
-Version:        0.28.1
+Version:        0.29.0
 Release:        1%{?dist}
 URL:            https://docs.vicinae.com
 Source:         https://github.com/vicinaehq/%{name}/archive/refs/tags/v%{version}.tar.gz
@@ -37,6 +37,7 @@ BuildRequires:  cmake(Qt6LinguistTools)
 BuildRequires:  xcb-util-keysyms-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:   pkgconfig(wayland-protocols)
+BuildRequires:  libxkbcommon-x11-devel
 
 Requires:       nodejs-npm
 Requires:       layer-shell-qt

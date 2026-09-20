@@ -1,7 +1,7 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-download-manager
 
 Name:       lomiri-download-manager
-Version:    0.3.2
+Version:    0.3.3
 
 %forgemeta
 Release:    1%{?dist}
