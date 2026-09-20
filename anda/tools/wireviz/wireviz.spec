@@ -1,6 +1,6 @@
 %global pypi_name wireviz
 
-Name:           python-%{pypi_name}
+Name:           wireviz
 Version:        0.4.1
 Release:        1%{?dist}
 Summary:        Generate wiring harness documentation from YAML descriptions
@@ -47,10 +47,15 @@ Python library and command-line tool for generating wiring harness documentation
 %pyproject_install
 %pyproject_save_files %{pypi_name}
 
+%files
+%license LICENSE
+# readme is in docs/
+%doc docs/*
+%{_bindir}/wireviz
+
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %license LICENSE
 %doc docs/*
-%{_bindir}/wireviz
 
 %changelog
 * Sat Sep 19 2026 Cypress Reed <cypress@fyralabs.com>
