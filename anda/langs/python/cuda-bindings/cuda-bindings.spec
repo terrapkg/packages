@@ -15,7 +15,7 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
 BuildRequires:  python3-pip
 BuildRequires:  cuda-nvrtc-devel
-BuildRequires:  libnvvm-devel
+%dnl BuildRequires:  libnvvm-devel
 BuildRequires:  libcufile-devel
 BuildRequires:  cuda-profiler-devel
 BuildRequires:  cuda-cudart-devel
