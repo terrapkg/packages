@@ -21,7 +21,7 @@ The universal proxy platform.}
                         obfs/README.md
 
 Name:           sing-box
-Release:        2%?dist
+Release:        3%?dist
 Summary:        The universal proxy platform
 
 License:        BSD-3-Clause AND LGPL-3.0-only AND GPL-3.0-only
@@ -33,13 +33,17 @@ Packager:       madonuko <mado@fyralabs.com>
 
 %gopkg
 
+%pkg_completion -Bfz
+
 %prep
 %autosetup -n %name-%(echo %ver | sed 's/v//')
 %goprep -Ae
 %autopatch -p1
 
 %build
+%global currentgoldflags %{?currentgoldflags} -X github.com/sagernet/sing-box/constant.Version=%{version}
 %global gomodulesmode GO111MODULE=on
+export GO_BUILDTAGS="with_gvisor with_quic with_dhcp with_wireguard with_utls with_acme with_clash_api with_tailscale with_ccm with_ocm with_cloudflared with_usbip with_openvpn with_openconnect badlinkname tfogo_checklinkname0"
 %gobuild -o %{gobuilddir}/bin/sing-box ./cmd/sing-box
 
 %install
@@ -48,7 +52,17 @@ install -m 0755 -vd                     %{buildroot}%{_bindir}
 install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 install -Dm644 release/config/sing-box.service %{buildroot}%{_unitdir}/sing-box.service
 install -Dm644 release/config/sing-box@.service %{buildroot}%{_unitdir}/sing-box@.service
-install -Dm644 release/config/sing-box.confd    %{buildroot}%{_sysusersdir}/sing-box.confd
+install -Dm644 release/config/sing-box.sysusers %{buildroot}%{_sysusersdir}/sing-box.conf
+
+install -d -m 0755 %{buildroot}%{_sysconfdir}/sing-box
+install -Dm644 release/config/config.json %{buildroot}%{_sysconfdir}/sing-box/config.json
+
+install -Dm644 release/config/sing-box.rules %{buildroot}%{_datadir}/polkit-1/rules.d/sing-box.rules
+install -Dm644 release/config/sing-box-split-dns.xml %{buildroot}%{_datadir}/dbus-1/system.d/sing-box-split-dns.conf
+
+install -Dm644 release/completions/sing-box.bash %{buildroot}%{bash_completions_dir}/sing-box
+install -Dm644 release/completions/sing-box.fish %{buildroot}%{fish_completions_dir}/sing-box.fish
+install -Dm644 release/completions/sing-box.zsh  %{buildroot}%{zsh_completions_dir}/_sing-box
 
 %post
 %systemd_post sing-box.service sing-box@.service
@@ -66,6 +80,10 @@ install -Dm644 release/config/sing-box.confd    %{buildroot}%{_sysusersdir}/sing
 %{_bindir}/sing-box
 %{_unitdir}/sing-box.service
 %{_unitdir}/sing-box@.service
-%{_sysusersdir}/sing-box.confd
+%config %{_sysusersdir}/sing-box.conf
+%dir %{_sysconfdir}/sing-box
+%config(noreplace) %{_sysconfdir}/sing-box/config.json
+%{_datadir}/polkit-1/rules.d/sing-box.rules
+%config %{_datadir}/dbus-1/system.d/sing-box-split-dns.conf
 
 %gopkgfiles
