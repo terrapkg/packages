@@ -32,5 +32,8 @@
   <url type="homepage">https://quollwriter.com/</url>
   <url type="bugtracker">https://github.com/garybentley/quollwriter/issues</url>
   <url type="vcs-browser">https://github.com/garybentley/quollwriter</url>
+  <releases>
+    <release version="3.0.4" date="2025-03-03" />
+  </releases>
   <content_rating type="oars-1.1" />
 </component>

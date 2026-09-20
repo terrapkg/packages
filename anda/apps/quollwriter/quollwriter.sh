@@ -3,7 +3,7 @@
 exec /usr/bin/java \
     -Xmx512m \
     -Djava.locale.providers=COMPAT \
-    --module-path /usr/share/openjfx/lib \
+    --module-path /usr/lib/jvm/openjfx \
     --add-modules=javafx.controls,javafx.swing,javafx.media,javafx.web,java.instrument,jdk.attach \
     --add-exports javafx.graphics/com.sun.javafx.iio=ALL-UNNAMED \
     --add-exports javafx.graphics/com.sun.javafx.iio.common=ALL-UNNAMED \
