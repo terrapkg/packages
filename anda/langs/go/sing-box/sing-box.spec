@@ -33,6 +33,8 @@ Packager:       madonuko <mado@fyralabs.com>
 
 %gopkg
 
+%pkg_completion -Bfz
+
 %prep
 %autosetup -n %name-%(echo %ver | sed 's/v//')
 %goprep -Ae
@@ -58,9 +60,9 @@ install -Dm644 release/config/config.json %{buildroot}%{_sysconfdir}/sing-box/co
 install -Dm644 release/config/sing-box.rules %{buildroot}%{_datadir}/polkit-1/rules.d/sing-box.rules
 install -Dm644 release/config/sing-box-split-dns.xml %{buildroot}%{_datadir}/dbus-1/system.d/sing-box-split-dns.conf
 
-install -Dm644 release/completions/sing-box.bash %{buildroot}%{_datadir}/bash-completion/completions/sing-box
-install -Dm644 release/completions/sing-box.fish %{buildroot}%{_datadir}/fish/vendor_completions.d/sing-box.fish
-install -Dm644 release/completions/sing-box.zsh  %{buildroot}%{_datadir}/zsh/site-functions/_sing-box
+install -Dm644 release/completions/sing-box.bash %{buildroot}%{bash_completions_dir}/sing-box
+install -Dm644 release/completions/sing-box.fish %{buildroot}%{fish_completions_dir}/sing-box.fish
+install -Dm644 release/completions/sing-box.zsh  %{buildroot}%{zsh_completions_dir}/_sing-box
 
 %post
 %systemd_post sing-box.service sing-box@.service
@@ -82,9 +84,6 @@ install -Dm644 release/completions/sing-box.zsh  %{buildroot}%{_datadir}/zsh/sit
 %dir %{_sysconfdir}/sing-box
 %config(noreplace) %{_sysconfdir}/sing-box/config.json
 %{_datadir}/polkit-1/rules.d/sing-box.rules
-%{_datadir}/dbus-1/system.d/sing-box-split-dns.conf
-%{_datadir}/bash-completion/completions/sing-box
-%{_datadir}/fish/vendor_completions.d/sing-box.fish
-%{_datadir}/zsh/site-functions/_sing-box
+%config %{_datadir}/dbus-1/system.d/sing-box-split-dns.conf
 
 %gopkgfiles
