@@ -112,7 +112,8 @@ make install-libs DESTDIR=%{buildroot} V=1
 rm -f %{buildroot}%{_libdir}/*.so
 
 %files
-%license COPYING.GPLv2 LICENSE.md
+%license COPYING.GPLv2 COPYING.GPLv3 COPYING.LGPLv2.1 COPYING.LGPLv3 LICENSE.md
+%doc README.md Changelog CREDITS RELEASE_NOTES
 %{_libdir}/libavcodec.so.%{av_codec_soversion}{,.*}
 %{_libdir}/libavdevice.so.%{av_device_soversion}{,.*}
 %{_libdir}/libavfilter.so.%{av_filter_soversion}{,.*}
