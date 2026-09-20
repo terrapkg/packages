@@ -1,0 +1,13 @@
+diff --git a/Cargo.toml b/Cargo.toml
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -50,6 +50,8 @@ console = "0.16"
+ curl = { version = "0.4.44", optional = true }
+ effective-limits = "0.5.5"
+-enum-map = "3.0.0"
++# The only non-yanked 3.x release requires Rust 1.95; use the latest
++# compatible 2.x release for the Rust 1.92 buildroot.
++enum-map = "=2.7.3"
+ env_proxy = { version = "0.4.1", optional = true }
+ faster-hex = "0.10.0"
+ flate2 = { version = "1.1.1", default-features = false, features = ["zlib-rs"] }

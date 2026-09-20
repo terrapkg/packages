@@ -4,13 +4,13 @@
 %global cargo_install_lib 0
 
 Name:           rustup
-Version:        1.29.0
+Version:        1.29.1
 Release:        1%{?dist}
 Summary:        Manage multiple rust installations with ease
 Packager:       Cypress Reed <cypress@fyralabs.com>
 
 SourceLicense:  MIT OR Apache-2.0
-License:        Apache-2.0 AND BSD-3-Clause AND ISC AND MIT AND Unicode-3.0 AND Unicode-DFS-2016 AND Zlib AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (MIT OR Zlib OR Apache-2.0) AND (Unlicense OR MIT)
+License:        (%{sourcelicense}) AND Apache-2.0 AND BSD-3-Clause AND ISC AND MIT AND Unicode-3.0 AND Unicode-DFS-2016 AND Zlib AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (MIT OR Zlib OR Apache-2.0) AND (Unlicense OR MIT)
 # LICENSE.dependencies contains a full license breakdown
 
 URL:            https://github.com/rust-lang/rustup
@@ -29,15 +29,10 @@ Patch:          0004-Remove-unused-git-based-versioning.patch
 Patch:          0005-Revert-back-to-rustls-ring-instead-of-aws_lc_rs.patch
 # * Disable tests/suite/static_roots to avoid a few dev-deps
 Patch:          0006-Disable-tests-suite-static_roots.patch
-# * Unpin tracing-subscriber
-#   https://github.com/rust-lang/rustup/pull/4745
-#   https://github.com/tokio-rs/tracing/issues/3369
-Patch:          0007-Unpin-tracing-subcriber.patch
-
-# Upgrade to rustls-platform-verifier 0.7
-# (without changes to Cargo.lock)
-# https://github.com/rust-lang/rustup/commit/4d7b4b68b9736aa1dccf43c4b6df0976e88b3c8a
-Patch:          0008-Upgrade-to-rustls-platform-verifier-0.7.patch
+# * keep dependency resolution compatible with the Rust 1.92 buildroot
+Patch:          0007-Pin-enum-map-for-Rust-1.92.patch
+# * replace cfg_select!, which is unstable with the Rust 1.92 compiler
+Patch:          0008-Replace-unstable-cfg_select.patch
 
 ExcludeArch:    %{ix86}
 
@@ -73,18 +68,15 @@ install -Dpm 0644 _rustup -t %{buildroot}%{zsh_completions_dir}
 %if %{with check}
 %check
 # * skip tests that require internet access
-# * skip tests for the "rustup" binary that is not built in this package
+# * skip self-update tests: the package is built with the no-self-update feature
+# * skip a shell-profile permissions test: the CI build user can amend its profile
 # * skip harmless test failures due to mismatch with the "platforms" crate
-%cargo_test -f test -- -- --skip suite::cli_exact::check_updates --skip suite::cli_ui::rustup_ui_doc_text_tests --skip suite::known_tuples::gen_known_tuples
+%cargo_test -f test -- -- --skip suite::cli_exact::check_updates --skip suite::cli_exact::update_once_and_check_self_update --skip suite::cli_exact::update_once_and_self_update --skip suite::cli_paths::unix::install_errors_when_rc_cannot_be_updated --skip suite::cli_self_upd::rustup_self_update_exact --skip suite::cli_self_upd::rustup_self_updates_trivial --skip suite::cli_self_upd::rustup_self_updates_with_specified_toolchain --skip suite::cli_ui::rustup_ui_doc_text_tests --skip suite::known_tuples::gen_known_tuples
 %endif
 
 %files
-%license LICENSE-APACHE
-%license LICENSE-MIT
-%license LICENSE.dependencies
-%doc CHANGELOG.md
-%doc README.md
-
+%license LICENSE-APACHE LICENSE-MIT LICENSE.dependencies
+%doc CHANGELOG.md README.md
 %{_bindir}/rustup-init
 
 %changelog

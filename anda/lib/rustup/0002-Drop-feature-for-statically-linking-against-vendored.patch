@@ -1,15 +1,5 @@
-From aeed26593b69de03b7f52ffbe1229e3d31f4ec81 Mon Sep 17 00:00:00 2001
-From: Fabio Valentini <decathorpe@gmail.com>
-Date: Wed, 8 Nov 2023 17:53:44 +0100
-Subject: [PATCH 2/8] Drop feature for statically linking against vendored
- OpenSSL
-
----
- Cargo.toml | 2 --
- 1 file changed, 2 deletions(-)
-
 diff --git a/Cargo.toml b/Cargo.toml
-index ac9f4600..9369ae86 100644
+index 34a51b6afd875eaea29fa2f0bd950f3d3726dfc9..4e3f31fc39c3340e29c842c00f7966a18ff80bd5 100644
 --- a/Cargo.toml
 +++ b/Cargo.toml
 @@ -14,8 +14,6 @@ build = "build.rs"
@@ -21,6 +11,3 @@ index ac9f4600..9369ae86 100644
  reqwest-native-tls = ["reqwest/native-tls", "dep:reqwest", "dep:env_proxy"]
  reqwest-rustls-tls = [
    "reqwest/rustls-no-provider",
--- 
-2.55.0
-

@@ -1,39 +1,23 @@
-From bfbac381857182bb948bd3f67e0c9653b219c9ca Mon Sep 17 00:00:00 2001
-From: Josh Stone <jistone@redhat.com>
-Date: Sat, 14 Mar 2026 15:30:36 -0700
-Subject: [PATCH 6/8] Disable tests/suite/static_roots
-
-This test only exists to make sure `src/anchors.rs` is up to date, but
-we can't access that in package builds anyway. We could just skip it,
-but removing it from the build entirely lets us drop a few dependencies.
----
- Cargo.toml         | 3 ---
- tests/suite/mod.rs | 1 -
- 2 files changed, 4 deletions(-)
-
 diff --git a/Cargo.toml b/Cargo.toml
-index 643096c3..e1556329 100644
+index b2c359215c90e5be1b85f64852deef4281356892..7bd68d3c239405f42f99e2751c1d5de52871db04 100644
 --- a/Cargo.toml
 +++ b/Cargo.toml
-@@ -114,9 +114,6 @@ http-body-util = "0.1.0"
- hyper = { version = "1.0", default-features = false, features = ["server", "http1"] }
- hyper-util = { version = "0.1.1", features = ["tokio"] }
+@@ -116,9 +116,5 @@ libz-sys = "=1.1.24"
+ [dev-dependencies]
+-enum-map = "3.0.0"
  proptest = "1.1.0"
 -rustls-webpki = { version = "0.103.3" }
 -tokio-rustls = "0.26.4"
 -webpki-root-certs = "1"
  
  [build-dependencies]
- platforms = "3.4"
+ platforms = "4"
 diff --git a/tests/suite/mod.rs b/tests/suite/mod.rs
-index 296102d6..240e1042 100644
+index 2fa175e633dfe4491680a0e65d2c6a9f7931b4e3..fc3158a7888a061273139f55189b66145844ae45 100644
 --- a/tests/suite/mod.rs
 +++ b/tests/suite/mod.rs
 @@ -10,4 +10,3 @@ mod cli_v1;
  mod cli_v2;
  mod dist_install;
- mod known_tuples;
+ mod known_target_tuples;
 -mod static_roots;
--- 
-2.55.0
-

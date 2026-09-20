@@ -1,1 +1,1 @@
-rpm.version(gh("rust-lang/rustup"));
+rpm.version(gh_tag("rust-lang/rustup"));
