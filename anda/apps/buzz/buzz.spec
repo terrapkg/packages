@@ -46,6 +46,7 @@ sed '/^requires-python/s@3\.13@3.15@' -i pyproject.toml
 %pyproject_patch_dependency openai:drop_constraints
 %pyproject_patch_dependency lhotse:drop_constraints
 %pyproject_patch_dependency pyqt6:drop_constraints
+%pyproject_patch_dependency pyqt6-qt6:ignore
 %pyproject_patch_dependency pyqt6-sip:drop_constraints
 %pyproject_patch_dependency hydra-colorlog:drop_constraints
 
