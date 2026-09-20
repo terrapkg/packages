@@ -33,22 +33,18 @@ BuildRequires:  bazel
 %build
 %if %{bootstrap} == 0
     echo "Using system Bazel for the build"
-    bazel build //src:bazel //scripts:bazel-complete.bash \
+    bazel build //src:bazel-bin //scripts:bazel-complete.bash \
         --tool_java_runtime_version=local_jdk \
         --compilation_mode=opt --stamp --embed_label=%{version}
 %else
     echo "No system Bazel available; bootstrapping Bazel from the distribution"
     env EXTRA_BAZEL_ARGS="--tool_java_runtime_version=local_jdk" bash ./compile.sh
-    ./output/bazel build //src:bazel //scripts:bazel-complete.bash \
+    ./output/bazel build //src:bazel-bin //scripts:bazel-complete.bash \
         --compilation_mode=opt --stamp --embed_label=%{version}
 %endif
 
 %install
-%if %{bootstrap} == 1
-install -Dpm 0755 ./output/bazel                         %{buildroot}%{_bindir}/bazel
-%else
-install -Dpm 0755 ./bazel-bin/src/bazel                 %{buildroot}%{_bindir}/bazel
-%endif
+install -Dpm 0755 ./bazel-bin/src/bazel                    %{buildroot}%{_bindir}/bazel
 install -Dpm 0644 ./bazel-bin/scripts/bazel-complete.bash %{buildroot}%{bash_completions_dir}/%{name}.bash
 install -Dpm 0644 ./scripts/zsh_completion/_bazel         -t %{buildroot}%{zsh_completions_dir}
 
