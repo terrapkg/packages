@@ -15,6 +15,7 @@ BuildRequires:  zip
 BuildRequires:  unzip
 BuildRequires:  java-21-openjdk-devel
 BuildRequires:  python
+Requires:       /bin/bash
 
 Packager:       Cypress Reed <cypress@fyralabs.com>
 
@@ -30,6 +31,12 @@ BuildRequires:  bazel
 
 %prep
 %setup -q -c -n %{name}-%{version}
+
+# The distribution archive marks documentation executable and includes copies
+# for every historical Bazel release.
+rm -rf docs/versions
+find README.md CHANGELOG.md CODE_OF_CONDUCT.md CONTRIBUTING.md SECURITY.md LICENSE docs \
+    -type f -exec chmod 0644 {} +
 
 %build
 %if %{bootstrap} == 0
@@ -50,8 +57,6 @@ BuildRequires:  bazel
 %endif
 
 %install
-# The Bazel launcher must contain the embedded distribution ZIP.  The plain
-# client binary from //src:client is not runnable as an installed Bazel.
 unzip -t ./bazel-bin/src/bazel >/dev/null
 install -Dpm 0755 ./bazel-bin/src/bazel                    %{buildroot}%{_bindir}/bazel
 install -Dpm 0644 ./bazel-bin/scripts/bazel-complete.bash %{buildroot}%{bash_completions_dir}/%{name}.bash
@@ -65,5 +70,8 @@ install -Dpm 0644 ./scripts/zsh_completion/_bazel         -t %{buildroot}%{zsh_c
 %pkg_completion -zb
 
 %changelog
+* Sun Sep 20 2026 Cypress Reed <cypress@fyralabs.com>
+- fix installation, make docs non-executable, don't install historical docs
+
 * Mon Sep 07 2026 Cypress Reed <cypress@fyralabs.com>
 - Port to Terra from COPR https://github.com/lihaohong6/COPR
