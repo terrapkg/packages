@@ -1,7 +1,7 @@
 %define debug_package %nil
 
 Name:    zapret2
-Version: 1.0.4
+Version: 1.0.5.2
 Release: 1%{?dist}
 Summary: A multi-platform Deep Packet Inspection (DPI) bypass tool
 License: MIT 
@@ -34,8 +34,6 @@ Suggests: curl
 Requires: ipset
 Requires: nftables
 # Subpackage dependencies.
-Requires: %{name}-nfqws
-Requires: %{name}-tpws
 
 %description
 A stand-alone (without 3rd party servers) DPI circumvention tool.
@@ -92,7 +90,7 @@ END
   install -Dm644 docs/LICENSE.txt -T %buildroot/usr/share/licenses/%name/LICENSE
 
 %files
-%doc changes.txt changes_compat.txt LICENSE.txt manual.en.md manual.md readme.md
+%doc changes.txt LICENSE.txt manual.en.md manual.md readme.md
 %license docs/LICENSE.txt LICENSE
 %_bindir/zapret2
 %_bindir/nfqws2

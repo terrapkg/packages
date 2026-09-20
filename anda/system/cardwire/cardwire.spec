@@ -1,6 +1,6 @@
 %global appid org.opengamingcollective.cardwire
 %bcond rust_nightly 1
-%global cardwire_toolchain nightly-2026-08-04
+%global cardwire_toolchain nightly-2026-08-12
 %define _cargo_home %{rpmbuilddir}%{?buildsubdir:/%{buildsubdir}}/.cargo
 %global _rustup_home %{rpmbuilddir}/.rustup
 %define __cargo /usr/bin/env CARGO_HOME=%{_cargo_home} RUSTUP_HOME=%{_rustup_home} RUSTFLAGS='%{terra_rustflags}' %{_cargo_home}/cardwire-cargo
@@ -8,7 +8,7 @@
 %define __rustdoc %{_cargo_home}/cardwire-rustdoc
 
 Name:           cardwire
-Version:        0.12.0
+Version:        0.12.2
 Release:        1%{?dist}
 Summary:        A GPU Manager for linux that uses eBPF LSM hooks to block GPUs
 URL:            https://opengamingcollective.github.io/cardwire/
@@ -78,7 +78,7 @@ if test "\$1" = run && test "\$2" = %{cardwire_toolchain}; then
     shift 3
     exec %{_cargo_home}/cardwire-\$command "\$@"
 fi
-exec /usr/bin/rustup "\$@"
+exec %{_cargo_home}/bin/rustup "\$@"
 EOF
 chmod 0755 %{_cargo_home}/cardwire-cargo %{_cargo_home}/cardwire-rustc %{_cargo_home}/cardwire-rustdoc %{_cargo_home}/rustup
 # This pinned rust-src component may omit the lockfile required by -Z build-std.

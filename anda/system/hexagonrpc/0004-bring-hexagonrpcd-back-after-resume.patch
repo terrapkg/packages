@@ -1,0 +1,42 @@
+From: Armada <armada@armada-os.dev>
+Date: Mon, 14 Sep 2026 00:00:00 +0000
+Subject: [PATCH] data: bring hexagonrpcd back after resume from suspend
+
+Conflicts=suspend.target stops the units and nothing starts them again, so
+they stay dead until reboot. Add a oneshot after suspend.target that
+restarts the enabled ones.
+---
+ data/hexagonrpcd-resume.service.in | 17 +++++++++++++++++
+ data/meson.build                   |  1 +
+ 2 files changed, 18 insertions(+)
+
+diff --git a/data/hexagonrpcd-resume.service.in b/data/hexagonrpcd-resume.service.in
+new file mode 100644
+index 0000000..7a8b9c0
+--- /dev/null
++++ b/data/hexagonrpcd-resume.service.in
+@@ -0,0 +1,12 @@
++[Unit]
++Description=Restart hexagonrpcd after resume from suspend
++After=suspend.target
++
++[Service]
++Type=oneshot
++# Only start units left enabled; each unit's own
++# ConditionPathExists still decides whether it actually runs on this device.
++ExecStart=/bin/sh -c 'for unit in hexagonrpcd-adsp-rootpd.service hexagonrpcd-adsp-sensorspd.service hexagonrpcd-sdsp.service; do systemctl is-enabled --quiet "$$unit" && systemctl start --no-block "$$unit" || true; done'
++
++[Install]
++WantedBy=suspend.target
+--- a/data/meson.build
++++ b/data/meson.build
+@@ -2,6 +2,7 @@
+   'hexagonrpcd-adsp-rootpd.service',
+   'hexagonrpcd-adsp-sensorspd.service',
+   'hexagonrpcd-sdsp.service',
++  'hexagonrpcd-resume.service',
+ ]
+ 
+ systemd_dep = dependency('systemd', required : false)
+-- 
+2.47.0

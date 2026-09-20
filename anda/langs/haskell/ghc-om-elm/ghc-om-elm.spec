@@ -6,7 +6,7 @@
 %{?haskell_setup}
 
 Name:           ghc-%{pkg_name}
-Version:        2.1.0.0
+Version:        2.1.0.1
 Release:        1%{?dist}
 Summary:        Haskell utilities for building embedded Elm programs
 

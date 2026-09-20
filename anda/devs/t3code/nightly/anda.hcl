@@ -4,6 +4,6 @@ project pkg {
 		spec = "t3code-nightly.spec"
 	}
 	labels {
-	  nightly = 1
+		nightly = 1
 	}
 }

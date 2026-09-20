@@ -12,7 +12,7 @@
 
 # https://github.com/Equicord/Equilotl
 %global goipath         github.com/Equicord/Equilotl
-Version:                2.2.6
+Version:                2.2.7
 
 %gometa -f
 
@@ -23,7 +23,7 @@ A cross platform gui/cli app for installing Equicord.}
 %global godocs          README.md
 
 Name:           equilotl
-Release:        %autorelease
+Release:        1%{?dist}
 Summary:        A cross platform gui app for installing Equicord
 
 License:        GPL-3.0-only

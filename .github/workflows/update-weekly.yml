@@ -1,6 +1,11 @@
 name: Weekly Update
 permissions:
   contents: read
+
+concurrency:
+  group: update-weekly
+  cancel-in-progress: true
+
 on:
   schedule:
     - cron: "0 0 * * 0"

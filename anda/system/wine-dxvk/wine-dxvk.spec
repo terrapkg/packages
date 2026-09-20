@@ -2,8 +2,8 @@
 %global debug_package %{nil}
 %{?mingw_package_header}
 
-%global libdisplay_ver 0.4.0-dev
-%global libdisplay_commit 887bb6c4c4af01a9ccb757e92d35fca3896794f6
+%global libdisplay_ver 0.5.0-dev
+%global libdisplay_commit bf14419e5fa7eacb817b7b632f03cb61d61bbad7
 %global libdisplay_shortcommit %(c=%{libdisplay_commit}; echo ${c:0:7})
 
 %ifarch x86_64
@@ -23,7 +23,7 @@
 %global wine_lib_dir %{_datadir}/wine-staging/lib64
 
 Name:           terra-wine-dxvk
-Version:        3.0.2
+Version:        3.1.1
 Release:        1%{?dist}
 Summary:        Vulkan-based implementation of D3D8, 9, 10 and 11 for Linux / Wine
 

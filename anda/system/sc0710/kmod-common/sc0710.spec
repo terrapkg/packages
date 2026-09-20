@@ -1,6 +1,6 @@
-%global commit ac4c8ede81b1c05e6b40e1b17144394280517e8d
+%global commit ea0a71215e24a33aa8b26b5cc66e3592c9dfdfe1
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260809
+%global commitdate 20260903
 %global ver 0
 
 Name:           sc0710

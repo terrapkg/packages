@@ -1,14 +1,14 @@
-%global glyph_ver 0.5.0
+%global glyph_ver v0.5.0
 %global _hardened_ldflags %nil
 
 Name:           glass
 Release:        1%{?dist}
-Version:        0.3.46
+Version:        0.3.48
 Summary:        Pure assembly terminal emulator
 License:        Unlicense
 URL:            https://github.com/isene/glass
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
-Source1:        https://github.com/isene/glyph/archive/refs/tags/v%{glyph_ver}.tar.gz
+Source1:        https://github.com/isene/glyph/archive/refs/tags/%{glyph_ver}.tar.gz
 BuildRequires:  nasm gcc
 BuildRequires:  make
 Requires:       xorg-x11-server-Xorg

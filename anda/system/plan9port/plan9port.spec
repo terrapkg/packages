@@ -1,5 +1,5 @@
-%global commit 337c6acbfed51d8d9f08598c6cd398f53abcca7d
-%global commit_date 20260711
+%global commit b6564bd96ca189c69e28797738dad56f91eb5967
+%global commit_date 20260827
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           plan9port
@@ -164,7 +164,7 @@ install -Dm755 bin/ed                       %{buildroot}%{_bindir}/9ed
 install -Dm755 bin/factor                   %{buildroot}%{_bindir}/9factor
 install -Dm755 bin/file                     %{buildroot}%{_bindir}/9file
 install -Dm755 bin/fmt                      %{buildroot}%{_bindir}/9fmt
-install -Dm755 bin/fortune                  %{buildroot}%{_bindir}/fortune
+install -Dm755 bin/fortune                  %{buildroot}%{_bindir}/9fortune
 install -Dm755 bin/freq                     %{buildroot}%{_bindir}/freq
 install -Dm755 bin/fsize                    %{buildroot}%{_bindir}/fsize
 install -Dm755 bin/getflags                 %{buildroot}%{_bindir}/getflags
@@ -802,7 +802,7 @@ install -Dm644 lib/*.a                   -t %{buildroot}%{_libdir}/
 %{_bindir}/9factor
 %{_bindir}/9file
 %{_bindir}/9fmt
-%{_bindir}/fortune
+%{_bindir}/9fortune
 %{_bindir}/freq
 %{_bindir}/fsize
 %{_bindir}/getflags

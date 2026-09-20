@@ -1,2 +1,2 @@
 rpm.version(gh("isene/glass"));
-rpm.global(gh("isene/glyph"));
+rpm.global("glyph_ver", gh("isene/glyph"));

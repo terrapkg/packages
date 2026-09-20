@@ -4,7 +4,7 @@
 
 Name:           ghostty
 Version:        1.3.1
-Release:        1%{?dist}
+Release:        3%{?dist}
 Summary:        A fast, native terminal emulator written in Zig.
 License:        MIT AND MPL-2.0 AND OFL-1.1 AND (WTFPL OR CC0-1.0) AND Apache-2.0
 URL:            https://ghostty.org/
@@ -198,8 +198,7 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{name}
 %license LICENSE
 %{_bindir}/%{name}
 %{_datadir}/applications/%{appid}.desktop
-%dir %{_datadir}/%{name}
-%{_datadir}/%{name}/doc
+%{_datadir}/%{name}/doc/
 %{_datadir}/metainfo/%{appid}.metainfo.xml
 %{_datadir}/dbus-1/services/%{appid}.service
 %{_iconsdir}/hicolor/16x16/apps/%{appid}.png
@@ -250,14 +249,7 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{name}
 %{_datadir}/bat/syntaxes/%{name}.sublime-syntax
 
 %files shell-integration
-%dir %{_datadir}/%{name}/shell-integration
-%{_datadir}/%{name}/shell-integration/bash/bash-preexec.sh
-%{_datadir}/%{name}/shell-integration/bash/%{name}.bash
-%{_datadir}/%{name}/shell-integration/elvish/lib/%{name}-integration.elv
-%{_datadir}/%{name}/shell-integration/fish/vendor_conf.d/%{name}-shell-integration.fish
-%{_datadir}/%{name}/shell-integration/nushell/vendor/autoload/%{name}.nu
-%{_datadir}/%{name}/shell-integration/zsh/.zshenv
-%{_datadir}/%{name}/shell-integration/zsh/%{name}-integration
+%{_datadir}/%{name}/shell-integration/
 
 %files terminfo
 %if 0%{?fedora} < 42
