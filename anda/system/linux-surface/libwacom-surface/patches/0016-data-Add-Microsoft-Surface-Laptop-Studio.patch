@@ -1,0 +1,34 @@
+From a909f1bf018428ea03a454fad9f76cfa1a0d4702 Mon Sep 17 00:00:00 2001
+From: Maximilian Luz <luzmaximilian@gmail.com>
+Date: Wed, 14 Jun 2023 21:12:41 +0200
+Subject: [PATCH] data: Add Microsoft Surface Laptop Studio
+
+IDs taken from https://github.com/quo/ithc-linux/issues/5
+---
+ data/surface-laptop-studio.tablet | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+ create mode 100644 data/surface-laptop-studio.tablet
+
+diff --git a/data/surface-laptop-studio.tablet b/data/surface-laptop-studio.tablet
+new file mode 100644
+index 00000000..60774030
+--- /dev/null
++++ b/data/surface-laptop-studio.tablet
+@@ -0,0 +1,14 @@
++# This is for the Microsoft Surface Laptop Studio
++
++[Device]
++Name=Microsoft Surface Laptop Studio
++Class=PenDisplay
++DeviceMatch=virt|045e|0c1b
++Width=10
++Height=6
++IntegratedIn=Display;System;
++
++[Features]
++Stylus=false
++Touch=true
++Buttons=0
+-- 
+2.55.0
+
