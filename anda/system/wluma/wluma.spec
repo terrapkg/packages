@@ -1,5 +1,5 @@
 Name:           wluma
-Version:        5.0.0
+Version:        5.0.1
 Release:        1%{?dist}
 Summary:        Automatic brightness adjustment based on screen contents and ALS
 URL:            https://github.com/max-baz/wluma
