@@ -80,7 +80,7 @@ install -Dm644 release/completions/sing-box.zsh  %{buildroot}%{zsh_completions_d
 %{_bindir}/sing-box
 %{_unitdir}/sing-box.service
 %{_unitdir}/sing-box@.service
-%{_sysusersdir}/sing-box.conf
+%config %{_sysusersdir}/sing-box.conf
 %dir %{_sysconfdir}/sing-box
 %config(noreplace) %{_sysconfdir}/sing-box/config.json
 %{_datadir}/polkit-1/rules.d/sing-box.rules
