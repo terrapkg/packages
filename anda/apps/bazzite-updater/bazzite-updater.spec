@@ -1,8 +1,8 @@
 %global appid io.github.rfrench3.bazzite-updater
 
 Name:           bazzite-updater
-Version:        0.10.0
-Release:        2%{?dist}
+Version:        0.10.1
+Release:        1%{?dist}
 Summary:        Update your system
 
 License:        GPL-2.0-or-later AND BSD-3-Clause AND CC0-1.0
@@ -40,6 +40,7 @@ Requires:       kf6-kirigami%{?_isa}
 Requires:       kf6-kirigami-addons%{?_isa}
 Requires:       kf6-qqc2-desktop-style%{?_isa}
 Requires:       qqc2-breeze-style%{?_isa}
+Requires:       qt6-qtimageformats%{?_isa}
 Requires:       qt6-controllable%{?_isa}
 Requires:       hicolor-icon-theme
 Requires:       systemd%{?_isa} >= 258

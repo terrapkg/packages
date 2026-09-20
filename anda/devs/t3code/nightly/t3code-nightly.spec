@@ -1,15 +1,16 @@
 %undefine __brp_mangle_shebangs
 
-%global latest_stable_version 0.0.38
-%global commit bfba7781681eaa03eb465ce3d9a4ec07bf952b78
-%global commit_date 20260906
+%global latest_stable_version 0.0.42
+%global commit 6deac7a924e6d90eef400cd218703cd3ad00a383
+%global commitdate 20260917
+%global run 1
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global buildnum %(printf '%d' 0x%{shortcommit})
-%global electron_version %{latest_stable_version}-nightly.%{commit_date}.%{buildnum}
+%global electron_version %{latest_stable_version}-nightly.%{commitdate}.%{buildnum}
 
 Name:           t3code-nightly
 %electronmeta -D
-Version:        %{latest_stable_version}^%{commit_date}git.%{shortcommit}
+Version:        %{latest_stable_version}^%{commitdate}^%{run}git.%{shortcommit}
 Release:        1%{?dist}
 Summary:        Minimal web GUI for coding agents
 License:        MIT AND %{electron_license}

@@ -1,6 +1,6 @@
 Name:           unrar
-Version:        7.2.7
-Release:        2%{?dist}
+Version:        7.3.1
+Release:        1%{?dist}
 Summary:        Utility for extracting, testing and viewing RAR archives
 
 License:        LicenseRef-unrar AND BSD-2-Clause AND CC0-1.0 AND LicenseRef-Fedora-Public-Domain

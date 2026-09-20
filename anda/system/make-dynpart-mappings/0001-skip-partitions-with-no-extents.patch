@@ -1,0 +1,27 @@
+From: Armada <armada@armada-os.dev>
+Date: Mon, 15 Sep 2026 00:00:00 +0000
+Subject: [PATCH] skip partitions with no extents
+
+A partition with no extents holds no data, and mapping it takes the name
+from a later metadata slot that does populate it.
+---
+ main.c | 3 ++++++++-----
+ 1 file changed, 3 insertions(+), 0 deletions(-)
+
+diff --git a/main.c b/main.c
+index 5555555..6666666 100644
+--- a/main.c
++++ b/main.c
+@@ -201,6 +201,10 @@
+ 			break;
+ 		}
+ 
++		// A partition with no extents in this slot holds no data.
++		if (le32toh(parts[i].num_extents) == 0)
++			continue;
++
+ 		dmt = dm_task_create(DM_DEVICE_CREATE);
+ 
+ 		// Prevent out of bounds memory access when concatenating strings
+-- 
+2.47.0
