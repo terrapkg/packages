@@ -40,7 +40,8 @@ BuildRequires:  bazel
         --compilation_mode=opt --stamp --embed_label=%{version}
 %else
     echo "No system Bazel available; bootstrapping Bazel from the distribution"
-    env EXTRA_BAZEL_ARGS="--tool_java_runtime_version=local_jdk" bash ./compile.sh
+    env EXTRA_BAZEL_ARGS="--tool_java_runtime_version=local_jdk --host_platform=//:default_host_platform --platforms=//:default_host_platform" bash ./compile.sh
+    rm -rf bazel-bin bazel-out
     ./output/bazel build //src:bazel-bin //scripts:bazel-complete.bash \
         --host_platform=//:default_host_platform \
         --platforms=//:default_host_platform \
