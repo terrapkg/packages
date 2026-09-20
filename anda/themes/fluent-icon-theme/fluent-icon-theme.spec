@@ -1,7 +1,7 @@
-%global tag 2026-06-19
+%global tag 2026-07-27
 
 Name:           fluent-icon-theme
-Version:        20260619
+Version:        20260727
 Release:        1%{?dist}
 Summary:        Fluent icon theme for linux desktops
 

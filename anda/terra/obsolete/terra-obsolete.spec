@@ -4,7 +4,7 @@ Version:    %{?fedora:%{fedora}}%{?rhel:%{rhel}}
 # The dist number is the version here, it is intentionally not repeated in the release
 %global dist %nil
 
-Release:    5%{?dist}
+Release:    6%{?dist}
 Summary:    A package to obsolete retired packages, based on Fedora's equivalent package
 
 License:    LicenseRef-Fedora-Public-Domain
@@ -149,9 +149,6 @@ Packager:   Terra Packaging Team <terra@fyralabs.com>
 %obsolete switchboard-plug-useraccounts 8.0.0-2
 %obsolete switchboard-plug-wacom 8.0.0-2
 
-%obsolete_ticket https://github.com/terrapkg/packages/pull/7098
-%obsolete terra-surface-dtx-daemon v0.3.10~1-5
-
 %obsolete_ticket https://github.com/terrapkg/packages/pull/12665
 %obsolete supergfxctl 5.2.7-3
 
@@ -168,6 +165,9 @@ Packager:   Terra Packaging Team <terra@fyralabs.com>
 
 %obsolete_ticket https://github.com/terrapkg/packages/pull/7503
 %obsolete zig-master-bootstrap 0.16.0~dev.1484+d0ba6642b-3
+
+%obsolete_ticket https://github.com/terrapkg/packages/pull/14943
+%obsolete dkms-mediatek-mt7927 2.13.1-2
 
 %description
 Currently obsoleted packages:

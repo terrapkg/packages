@@ -5,7 +5,7 @@ labels: ["bug", "triage"]
 #projects: ["octo-org/1", "octo-org/44"]
 assignees:
   - hamachitan
-#type: bug
+type: bug
 body:
   - type: markdown
     attributes:

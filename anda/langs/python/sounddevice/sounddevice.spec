@@ -2,8 +2,8 @@
 %global _desc 🔉 Play and Record Sound with Python 🐍.
 
 Name:			python-%{pypi_name}
-Version:		0.5.5
-Release:		2%?dist
+Version:		0.5.6
+Release:		1%{?dist}
 Summary:		Play and Record Sound with Python 🐍
 License:		MIT
 URL:			https://python-sounddevice.rtfd.io/

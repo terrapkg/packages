@@ -1,6 +1,6 @@
-%global commit 1be4fb1cd9d60b5ddefc2a4201a898766a731400
+%global commit d2983668300dd2a598e5a7dc40e71ce0678cc270
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260626
+%global commitdate 20260815
 
 Name:           ryzen_smu
 Version:        0.1.7^%{commitdate}git.%{shortcommit}
@@ -35,6 +35,7 @@ Akmods modules for the akmod-%{name} package.
 # Autoload the module on boot
 echo %{name} > %{name}.conf
 
+%install
 # Akmods modules
 install -Dm644 %{name}.conf -t %{buildroot}%{_modulesloaddir}
 

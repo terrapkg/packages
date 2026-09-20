@@ -63,7 +63,7 @@ EOF
 %{_udevrulesdir}/99-%{name}.rules
 
 %changelog
-* Tue Jun 16 2026 Owen-sz <owen@fyralabs.com> - 0.11-2
+* Tue Jun 16 2026 Owen Zimmerman <owen@fyralabs.com> - 0.11-2
 - Clean up spec
 
 * Sat Nov 4 2023 <rmnscnce@ya.ru> - 0.11-1

@@ -1,12 +1,13 @@
+%global ver v0.2.5
 %global appid com.github.librepods
 
 Name:           librepods
 Summary:        AirPods liberated from Apple's ecosystem
-Version:        0.1.0
+Version:        %(echo "%{ver}" | sed 's/v//g;s/-hotfix//g')
 Release:        1%{?dist}
 License:        GPL-3.0-only
 URL:            https://github.com/kavishdevar/librepods
-Source0:        %url/archive/refs/tags/linux-v%version.tar.gz
+Source0:        %url/archive/refs/tags/%{ver}.tar.gz
 Source1:        com.github.librepods.metainfo.xml
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
@@ -15,6 +16,7 @@ BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  g++
 BuildRequires:  qt6-qtbase-devel
+BuildRequires:  qt6-qttools-devel
 BuildRequires:  qt6-qtconnectivity-devel
 BuildRequires:  qt6-qtmultimedia-devel
 BuildRequires:  qt6-qtdeclarative-devel
@@ -35,7 +37,7 @@ hearing aid, customized transparency mode, battery status, and more - all the
 premium features you paid for but Apple locked to their ecosystem.
 
 %prep
-%autosetup -n %{name}-linux-v%{version}
+%autosetup -C
 
 %conf
 pushd linux
@@ -48,7 +50,6 @@ pushd linux
 popd
 
 %install
-install -Dm644 linux-rust/assets/icon.png %{buildroot}%{_iconsdir}/hicolor/512x512/apps/librepods.png
 pushd linux
 %cmake_install
 popd
@@ -58,9 +59,11 @@ popd
 %doc README.md linux/README.md CHANGELOG.md
 %license LICENSE
 %{_bindir}/librepods
+%{_bindir}/librepods-ctl
 %{_appsdir}/me.kavishdevar.librepods.desktop
 %{_metainfodir}/com.github.librepods.metainfo.xml
-%{_hicolordir}/512x512/apps/librepods.png
+%{_scalableiconsdir}/librepods.svg
+%{_datadir}/librepods/translations/librepods_tr.qm
 
 %changelog
 * Wed Nov 19 2025 Owen Zimmerman <owen@fyralabs.com>

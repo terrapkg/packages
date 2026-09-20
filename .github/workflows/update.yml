@@ -1,6 +1,11 @@
 name: Update
 permissions:
   contents: read
+
+concurrency:
+  group: update
+  cancel-in-progress: true
+
 on:
   #schedule:
   #  - cron: "*/10 * * * *"
@@ -29,7 +34,7 @@ jobs:
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
       - name: Run Update
-        run: anda update --excludes nightly=1 --excludes weekly=1 --excludes updbranch=1
+        run: anda update --excludes weekly=1 --excludes updbranch=1 --excludes nightly=1 --excludes nightly=2 --excludes nightly=3 --excludes nightly=4 --excludes quadridaily=1
         env:
           GITHUB_TOKEN: ${{ secrets.AUTOUPDATE_GH_TOKEN }}
           RUST_BACKTRACE: full

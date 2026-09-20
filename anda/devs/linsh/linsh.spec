@@ -1,5 +1,5 @@
 Name:          linsh
-Version:       0.02
+Version:       0.03
 Release:       1%{?dist}
 Summary:       Linux shell
 License:       GPL-2.0-or-later

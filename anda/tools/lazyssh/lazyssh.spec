@@ -39,5 +39,5 @@ install -Dm 0755 %{gobuilddir}/lazyssh %{buildroot}%{_bindir}/lazyssh
 %{_bindir}/lazyssh
 
 %changelog
-* Sun Jun 14 2026 Owen-sz <owen@fyralabs.com> - 0.3.0-1
+* Sun Jun 14 2026 Owen Zimmerman <owen@fyralabs.com> - 0.3.0-1
 - Initial commit

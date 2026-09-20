@@ -223,7 +223,7 @@ pushd packages/system
 %pyproject_install
 popd
 
-rm -rf %{buildroot}/usr/lib/python3.14/site-packages/pitop/protoplus/
+rm -rf %{buildroot}%{python3_sitelib}/pitop/protoplus/
 
 %files -n python3-%{pypi_name}
 %license LICENSE
