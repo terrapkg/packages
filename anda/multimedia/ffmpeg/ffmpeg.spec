@@ -108,7 +108,7 @@ Name:           ffmpeg
 %global pkg_name %{name}%{?pkg_suffix}
 
 Version:        8.1.2
-Release:        2%{?dist}
+Release:        3%{?dist}
 Epoch:          1
 Summary:        A complete solution to record, convert and stream audio and video
 License:        GPL-3.0-or-later
@@ -142,13 +142,13 @@ Patch5:         ffmpeg-vapoursynth-script-soname.patch
 Patch1002:      ffmpeg-chromium.patch
 
 
-Requires:       libavcodec%{?pkg_suffix}%{_isa} = %{version}-%{release}
-Requires:       libavdevice%{?pkg_suffix}%{_isa} = %{version}-%{release}
-Requires:       libavfilter%{?pkg_suffix}%{_isa} = %{version}-%{release}
-Requires:       libavformat%{?pkg_suffix}%{_isa} = %{version}-%{release}
-Requires:       libavutil%{?pkg_suffix}%{_isa} = %{version}-%{release}
-Requires:       libswresample%{?pkg_suffix}%{_isa} = %{version}-%{release}
-Requires:       libswscale%{?pkg_suffix}%{_isa} = %{version}-%{release}
+Requires:       libavcodec%{?pkg_suffix}%{_isa} = %{evr}
+Requires:       libavdevice%{?pkg_suffix}%{_isa} = %{evr}
+Requires:       libavfilter%{?pkg_suffix}%{_isa} = %{evr}
+Requires:       libavformat%{?pkg_suffix}%{_isa} = %{evr}
+Requires:       libavutil%{?pkg_suffix}%{_isa} = %{evr}
+Requires:       libswresample%{?pkg_suffix}%{_isa} = %{evr}
+Requires:       libswscale%{?pkg_suffix}%{_isa} = %{evr}
 
 BuildRequires:  AMF-devel
 # NOTE: This MUST be done otherwise the binary is NOT REDISTRIBUTABLE.
