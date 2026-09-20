@@ -1,16 +1,32 @@
-%global surface_libwacom_ver 1.3
-%global libwacom_ver 2.17.0
+%global libwacom_ver 2.20.0
 
 Name:           libwacom-surface
-Version:        %{surface_libwacom_ver}^%{libwacom_ver}
+Version:        %{libwacom_ver}
 Release:        1%{?dist}
 Summary:        Tablet Information Client Library
 Requires:       %{name}-data
 Provides:       libwacom
 Conflicts:      libwacom
 License:        HPND
-URL:            https://github.com/linux-surface/libwacom
-Source0:        %{url}/archive/refs/tags/libwacom-%{surface_libwacom_ver}.tar.gz
+URL:            https://github.com/linuxwacom/libwacom
+# Surface patch series: https://github.com/Ultramarine-Linux/libwacom-surface/tree/master/patches/v2
+Source0:        https://github.com/linuxwacom/libwacom/releases/download/libwacom-%{libwacom_ver}/libwacom-%{libwacom_ver}.tar.xz
+Patch0001:      patches/0001-Add-support-for-BUS_VIRTUAL.patch
+Patch0002:      patches/0002-Add-support-for-Intel-Management-Engine-bus.patch
+Patch0003:      patches/0003-data-Add-Microsoft-Surface-Pro-3.patch
+Patch0004:      patches/0004-data-Add-Microsoft-Surface-Pro-4.patch
+Patch0005:      patches/0005-data-Add-Microsoft-Surface-Pro-5.patch
+Patch0006:      patches/0006-data-Add-Microsoft-Surface-Pro-6.patch
+Patch0007:      patches/0007-data-Add-Microsoft-Surface-Pro-7.patch
+Patch0008:      patches/0008-data-Add-Microsoft-Surface-Pro-7.patch
+Patch0009:      patches/0009-data-Add-Microsoft-Surface-Pro-8.patch
+Patch0010:      patches/0010-data-Add-Microsoft-Surface-Pro-9.patch
+Patch0011:      patches/0011-data-Add-Microsoft-Surface-Book.patch
+Patch0012:      patches/0012-data-Add-Microsoft-Surface-Book-2-13.5.patch
+Patch0013:      patches/0013-data-Add-Microsoft-Surface-Book-2-15.patch
+Patch0014:      patches/0014-data-Add-Microsoft-Surface-Book-3-13.5.patch
+Patch0015:      patches/0015-data-Add-Microsoft-Surface-Book-3-15.patch
+Patch0016:      patches/0016-data-Add-Microsoft-Surface-Laptop-Studio.patch
 BuildRequires:  meson gcc
 BuildRequires:  glib2-devel
 BuildRequires:  libgudev1-devel
@@ -47,8 +63,18 @@ Conflicts:      libwacom-data
 %description data
 Tablet information client library data files.
 
+%package utils
+Summary:        Tablet Information Client Library Utilities Package
+Requires:       %{name} = %{evr}
+Requires:       python3-libevdev python3-pyudev
+Provides:       libwacom-utils
+Conflicts:      libwacom-utils
+
+%description utils
+Utilities to handle and/or debug libwacom devices.
+
 %prep
-%autosetup -S git -C
+%autosetup -p1 -n libwacom-%{libwacom_ver}
 
 %conf
 %meson -Dtests=disabled -Ddocumentation=disabled
@@ -58,7 +84,6 @@ Tablet information client library data files.
 
 %install
 %meson_install
-ls -laH redhat-linux-build
 
 %check
 %meson_test
@@ -70,6 +95,7 @@ ls -laH redhat-linux-build
 %doc README.md
 %{_libdir}/libwacom.so.*
 %{_bindir}/libwacom-list-local-devices
+%{_bindir}/libwacom-update-db
 %{_mandir}/man1/libwacom-list-local-devices.1*
 
 %files devel
@@ -82,13 +108,23 @@ ls -laH redhat-linux-build
 %files data
 %doc COPYING
 %{_udevrulesdir}/65-libwacom.rules
+%{_udevhwdbdir}/65-libwacom.hwdb
 %dir %{_datadir}/libwacom
 %{_datadir}/libwacom/*.tablet
 %{_datadir}/libwacom/*.stylus
 %dir %{_datadir}/libwacom/layouts
 %{_datadir}/libwacom/layouts/*.svg
 
+%files utils
+%{_bindir}/libwacom-list-devices
+%{_bindir}/libwacom-show-stylus
+%{_mandir}/man1/libwacom-list-devices.1*
+%{_mandir}/man1/libwacom-show-stylus.1*
+
 %changelog
+* Sun Sep 20 2026 Cypress Reed <cypress@fyralabs.com> - 2.20.0-1
+- Build upstream libwacom 2.20.0 with the rebased Surface v2 patch series
+
 * Thu Sep 10 2026 Owen Zimmerman <owen@fyralabs.com> - 2.17.0.1-1
 - Initial commit, port to Terra from linux-surface
 
