@@ -34,16 +34,23 @@ BuildRequires:  bazel
 %if %{bootstrap} == 0
     echo "Using system Bazel for the build"
     bazel build //src:bazel-bin //scripts:bazel-complete.bash \
+        --host_platform=//:default_host_platform \
+        --platforms=//:default_host_platform \
         --tool_java_runtime_version=local_jdk \
         --compilation_mode=opt --stamp --embed_label=%{version}
 %else
     echo "No system Bazel available; bootstrapping Bazel from the distribution"
     env EXTRA_BAZEL_ARGS="--tool_java_runtime_version=local_jdk" bash ./compile.sh
     ./output/bazel build //src:bazel-bin //scripts:bazel-complete.bash \
+        --host_platform=//:default_host_platform \
+        --platforms=//:default_host_platform \
         --compilation_mode=opt --stamp --embed_label=%{version}
 %endif
 
 %install
+# The Bazel launcher must contain the embedded distribution ZIP.  The plain
+# client binary from //src:client is not runnable as an installed Bazel.
+unzip -t ./bazel-bin/src/bazel >/dev/null
 install -Dpm 0755 ./bazel-bin/src/bazel                    %{buildroot}%{_bindir}/bazel
 install -Dpm 0644 ./bazel-bin/scripts/bazel-complete.bash %{buildroot}%{bash_completions_dir}/%{name}.bash
 install -Dpm 0644 ./scripts/zsh_completion/_bazel         -t %{buildroot}%{zsh_completions_dir}
