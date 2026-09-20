@@ -1,7 +1,7 @@
 %undefine __brp_mangle_shebangs
 
 Name:			dorion
-Version:		6.13.0
+Version:		6.13.1
 Release:		1%{?dist}
 Summary:		Tiny alternative Discord client with a smaller footprint, snappier startup, themes, plugins and more!
 SourceLicense:	GPL-3.0-only

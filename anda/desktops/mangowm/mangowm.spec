@@ -1,7 +1,7 @@
 %global mangowc_ver 0.12.5-1
 
 Name:           mangowm
-Version:        0.16.1
+Version:        0.17.2
 Release:        1%{?dist}
 Summary:        A modern, lightweight, high-performance Wayland compositor built on dwl
 License:        GPL-3.0-or-later AND MIT AND X11 AND CC0-1.0
@@ -52,6 +52,7 @@ dwl — crafted for speed, flexibility, and a customizable desktop experience.
 %{_datadir}/wayland-sessions/mango.desktop
 %{_datadir}/xdg-desktop-portal/mango-portals.conf
 %{_mandir}/man1/mmsg.1.*
+%{_userunitdir}/mango-session.target
 
 %changelog
 * Sun Jul 19 2026 Olivia <git@olivia.sh> - 0.15.4-2

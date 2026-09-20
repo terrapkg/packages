@@ -6,15 +6,15 @@
 
 Name:           rust-bacon
 Version:        3.25.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Background rust compiler
 Packager:       Olivia <git@olivia.sh>
 
-License:        AGPL-3.0
+License:        AGPL-3.0-or-later
 URL:            https://crates.io/crates/bacon
 Source:         %{terra_crates_source}
 
-BuildRequires:  anda-srpm-macros 
+BuildRequires:  anda-srpm-macros
 BuildRequires:  mold
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  alsa-lib-devel
@@ -133,5 +133,3 @@ use the "sound" feature of the "%{crate}" crate.
 %changelog
 * Sun Jul 19 2026 Olivia <git@olivia.sh> - 3.24.0-2
 - Update packager
-
-%autochangelog

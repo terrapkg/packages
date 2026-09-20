@@ -1,6 +1,6 @@
 Name:           mommy
-Version:        1.8.0
-Release:        4%?dist
+Version:        2.0.0
+Release:        1%{?dist}
 Summary:        mommy's here to support you, in any shell, on any system~ ❤️ 
 URL:            https://github.com/fwdekker/mommy
 Source:         %{url}/archive/refs/tags/v%{version}.tar.gz

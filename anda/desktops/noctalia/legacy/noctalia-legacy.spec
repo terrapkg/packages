@@ -2,12 +2,16 @@
 
 Name:           noctalia-legacy
 Version:		4.7.7
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A Quickshell-based custom shell setup
 
 License:        MIT
 URL:            https://github.com/noctalia-dev/noctalia
 Source0:        https://github.com/noctalia-dev/noctalia/releases/download/v%{version}/noctalia-v%{version}.tar.gz
+# Downstream fix for https://github.com/terrapkg/packages/issues/16213.
+# Noctalia v4 is no longer maintained upstream. Original signed fix:
+# https://github.com/gouveags/noctalia/commit/a676e9586286d155a3e3c8129b4214a9847eff56
+Patch0:         noctalia-legacy-bluetooth-discovery.patch
 
 Requires:	    brightnessctl
 Requires:    	dejavu-sans-fonts
@@ -31,7 +35,7 @@ Packager:       Cypress Reed <cypress@fyralabs.com>
 A beautiful, minimal desktop shell for Wayland that actually gets out of your way. Built on Quickshell with a warm lavender aesthetic that you can easily customize to match your vibe.
 
 %prep
-%autosetup -n noctalia-release
+%autosetup -n noctalia-release -p1
 
 %build
 
@@ -49,6 +53,10 @@ echo "noctalia-shell has been renamed to noctalia"
 echo "noctalia v5 is coming soon! keep an eye out as this legacy package will become obsolete"
 
 %changelog
+* Tue Aug 25 2026 Gabriel Silva Gouvêa <gouswat@gmail.com>
+- Preserve Bluetooth discovery ownership when pairing finishes
+- Complete the transition from the former noctalia-shell package
+
 * Thu Jun 04 2026 Cypress Reed <cypress@fyralabs.com>
 - Update email and name (was Willow Reed or Willow C Reed) (I'm official now!)
 

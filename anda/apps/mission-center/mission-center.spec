@@ -9,7 +9,7 @@ Version: 1.2.0
 %forgemeta -a
 
 Name:           mission-center
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Monitor your CPU, Memory, Disk, Network and GPU usage
 SourceLicense:  GPL-3.0-or-later
 License:        %{sourcelicense} AND (Apache-2.0 OR MIT) AND MIT AND Apache-2.0 AND BSL-1.0 AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (Unlicense OR MIT)
@@ -41,6 +41,7 @@ BuildRequires: desktop-file-utils
 BuildRequires: appstream-data
 BuildRequires: libappstream-glib
 Recommends: nethogs
+Requires:   lm_sensors
 
 %description
 Monitor your CPU, Memory, Disk, Network and GPU usage
