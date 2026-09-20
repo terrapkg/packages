@@ -1,6 +1,6 @@
 Name:           tagstudio
 Version:        9.6.3
-Release:        2%{?dist}
+Release:        6%{?dist}
 Summary:        User-focused photo and file management system
 License:        GPL-3.0-only
 URL:            https://github.com/TagStudioDev/TagStudio
@@ -14,8 +14,9 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  hicolor-icon-theme
 
 # TagStudio's media preview and playback support uses these external tools.
-Requires:       ffmpeg
+Requires:       (ffmpeg or ffmpeg-free)
 Requires:       hicolor-icon-theme
+Requires:       python3-pillow-qt
 Recommends:     ripgrep
 
 BuildArch:      noarch
@@ -39,6 +40,12 @@ sed -i 's/>=3.12,<3.14/>=3.12,<3.15/' pyproject.toml
 %pyproject_patch_dependency pillow-heif:drop_constraints
 %pyproject_patch_dependency pyside6:drop_constraints
 %pyproject_patch_dependency requests:drop_constraints
+%pyproject_patch_dependency structlog:drop_constraints
+%pyproject_patch_dependency opencv-python:drop_constraints
+%pyproject_patch_dependency py7zr:drop_constraints
+%pyproject_patch_dependency inflate64:drop_constraints
+%pyproject_patch_dependency pybcj:drop_constraints
+%pyproject_patch_dependency pyppmd:drop_constraints
 
 %build
 %pyproject_wheel
