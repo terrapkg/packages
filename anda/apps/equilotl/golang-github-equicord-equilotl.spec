@@ -12,7 +12,7 @@
 
 # https://github.com/Equicord/Equilotl
 %global goipath         github.com/Equicord/Equilotl
-Version:                2.2.7
+Version:                2.2.8
 
 %gometa -f
 
