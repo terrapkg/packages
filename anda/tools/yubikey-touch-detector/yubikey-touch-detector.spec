@@ -1,5 +1,5 @@
 %global goipath github.com/max-baz/yubikey-touch-detector
-Version:        1.14.0
+Version:        1.15.0
 
 %gometa
 
