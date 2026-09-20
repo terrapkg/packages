@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component type="desktop-application">
+  <id>com.quollwriter.QuollWriter</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>Apache-2.0</project_license>
+  <icon type="stock">quollwriter</icon>
+  <developer id="com.quollwriter">
+    <name>Gary Bentley</name>
+  </developer>
+  <name>Quoll Writer</name>
+  <summary>A writing application that lets you focus on your words</summary>
+  <description>
+    <p>
+      Quoll Writer is a writing application for planning, drafting, and managing
+      long-form work.
+    </p>
+  </description>
+  <launchable type="desktop-id">com.quollwriter.QuollWriter.desktop</launchable>
+  <provides>
+    <binary>quollwriter</binary>
+  </provides>
+  <categories>
+    <category>Office</category>
+    <category>WordProcessor</category>
+  </categories>
+  <keywords>
+    <keyword>writing</keyword>
+    <keyword>writer</keyword>
+    <keyword>novel</keyword>
+    <keyword>author</keyword>
+  </keywords>
+  <url type="homepage">https://quollwriter.com/</url>
+  <url type="bugtracker">https://github.com/garybentley/quollwriter/issues</url>
+  <url type="vcs-browser">https://github.com/garybentley/quollwriter</url>
+  <content_rating type="oars-1.1" />
+</component>
