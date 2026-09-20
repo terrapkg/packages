@@ -69,5 +69,5 @@ install -Dm755 target/rpm/libniri_taskbar.so -t %buildroot%_libdir/waybar/
 %endif
 
 %changelog
-* Tue Aug 26 2026 madomado <mado@fyralabs.com>
+* Thu Aug 26 2026 madomado <mado@fyralabs.com>
 - Fix patch link
