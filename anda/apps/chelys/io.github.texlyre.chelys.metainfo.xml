@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component type="desktop-application">
+  <id>io.github.texlyre.chelys</id>
+  <name>Chelys</name>
+  <summary>A local desktop companion app for TeXlyre</summary>
+  <metadata_license>MIT</metadata_license>
+  <project_license>AGPL-3.0-or-later</project_license>
+  <url type="homepage">https://github.com/TeXlyre/chelys</url>
+  <url type="bugtracker">https://github.com/TeXlyre/chelys/issues</url>
+  <description>
+    <p
+        >Chelys runs local tooling that a browser cannot, such as language servers and typesetting engines, and keeps your TeXlyre account synchronized across devices over peer-to-peer connections.</p>
+  </description>
+  <launchable type="desktop-id">io.github.texlyre.chelys.desktop</launchable>
+  <provides>
+    <binary>Chelys</binary>
+  </provides>
+  <releases>
+    <release version="1.2.1" date="2026-09-10" />
+  </releases>
+  <content_rating type="oars-1.1" />
+</component>
