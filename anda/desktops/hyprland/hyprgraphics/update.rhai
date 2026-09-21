@@ -5,6 +5,7 @@ rpm.global("commit", gh_commit("hyprwm/hyprgraphics"));
 if rpm.changed() {
 	rpm.global("ver", gh_rawfile("hyprwm/hyprgraphics", "main", "VERSION"));
 	rpm.global("commit_date", date());
+	rpm.release();
 }
 
 // FIXME: should be updbranch but we also need nightly and we are using gh_commit()?
