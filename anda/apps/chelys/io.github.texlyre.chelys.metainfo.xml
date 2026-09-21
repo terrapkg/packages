@@ -15,6 +15,9 @@
   <provides>
     <binary>Chelys</binary>
   </provides>
+  <categories>
+    <category>Utility</category>
+  </categories>
   <releases>
     <release version="1.2.1" date="2026-09-10" />
   </releases>

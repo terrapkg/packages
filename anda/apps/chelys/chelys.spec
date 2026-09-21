@@ -10,7 +10,8 @@ URL:            https://github.com/TeXlyre/chelys
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 Source1:        %{appid}.desktop
 Source2:        %{appid}.metainfo.xml
-License:        AGPL-3.0-or-later
+SourceLicense:  AGPL-3.0-or-later
+License:        (%{sourcelicense}) AND (BSD-3-Clause OR MIT OR Apache-2.0) AND (Apache-2.0 OR ISC OR MIT) AND Apache-2.0 AND MIT AND (Apache-2.0 OR BSL-1.0) AND (MIT OR Apache-2.0 OR Zlib) AND (0BSD OR MIT OR Apache-2.0) AND Zlib AND MIT AND (MIT OR Apache-2.0 OR BSD-1-Clause) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND MPL-2.0 AND Unicode-3.0 AND (CC0-1.0 OR MIT-0 OR Apache-2.0) AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND Apache-2.0 AND ISC AND (BSD-3-Clause OR Apache-2.0) AND BSD-3-Clause AND MIT AND BSL-1.0 AND ISC AND BSD-3-Clause AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (Unlicense OR MIT)
 
 BuildRequires:  cargo
 BuildRequires:  nodejs
@@ -41,6 +42,7 @@ install -Dm755 src-tauri/target/rpm/Chelys %{buildroot}%{_bindir}/Chelys
 install -Dm644 src-tauri/icons/128x128.png %{buildroot}%{_hicolordir}/128x128/apps/chelys.png
 install -Dm644 src-tauri/icons/128x128@2x.png %{buildroot}%{_hicolordir}/256x256/apps/chelys.png
 install -Dm644 src-tauri/icons/32x32.png %{buildroot}%{_hicolordir}/32x32/apps/chelys.png
+%tauri_cargo_license_summary
 %{tauri_cargo_license} > LICENSE.dependencies
 
 %check
@@ -49,8 +51,7 @@ appstreamcli validate --no-net %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 
 %files
 %doc README.md
-%license LICENSE
-%license LICENSE.dependencies
+%license LICENSE LICENSE.dependencies
 %{_bindir}/Chelys
 %{_hicolordir}/128x128/apps/chelys.png
 %{_hicolordir}/256x256/apps/chelys.png
@@ -59,5 +60,5 @@ appstreamcli validate --no-net %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
-* Mon Jan 19 2026 Cypress Reed <cypress@fyralabs.com>
+* Mon Sep 21 2026 Cypress Reed <cypress@fyralabs.com>
 - Initial commit
