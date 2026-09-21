@@ -21,6 +21,7 @@ BuildRequires:  %{tauri_buildrequires -a}
 BuildRequires:  desktop-file-utils
 BuildRequires:  terra-appstream-helper
 BuildRequires:  appstream
+Recommends:     podman
 
 Packager:       Cypress Reed <cypress@fyralabs.com>
 
