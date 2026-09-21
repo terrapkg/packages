@@ -1,6 +1,6 @@
 %global ver 0.1.0
 %global commitdate 20260714
-%global commit 2adfe6b2be0e0517243b39f7450fd4ade8853830
+%global commit bed9d2a82543ab0c94baf1f0521dc2fbcb22e96d
 %global shortcommit %{sub %{commit} 0 7}
 %global appid dev.edfloreshz.Boards
 
