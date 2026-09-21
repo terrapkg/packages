@@ -7,3 +7,7 @@ if get(`https://github.com/stakira/OpenUtau/releases/expanded_assets/${v}`).cont
   print(`openutau: ${v} (waiting for ${url})`);
   terminate();
 }
+
+if rpm.changed() {
+  rpm.release();
+}
