@@ -19,7 +19,7 @@ BuildRequires:  nodejs-packaging
 BuildRequires:  nodejs-license-checker
 BuildRequires:  python3
 BuildRequires:  xsel
-Requires:       nodejs-serve
+Requires:       python3
 Requires:       xsel
 BuildArch:      noarch
 
@@ -57,12 +57,12 @@ mkdir -p %{buildroot}%{_datadir}/texlyre %{buildroot}%{_bindir}
 cp -a dist/. %{buildroot}%{_datadir}/texlyre/
 cat > %{buildroot}%{_bindir}/texlyre <<'EOF'
 #!/bin/sh
-exec /usr/bin/serve -s /usr/share/texlyre "$@"
+exec /usr/bin/python3 -m http.server "${1:-8000}" --directory /usr/share/texlyre
 EOF
 chmod 0755 %{buildroot}%{_bindir}/texlyre
 
 %files
-%license LICENSE* LICENSE.modules
+%license LICENSE LICENSE.modules
 %doc README.md
 %{_bindir}/texlyre
 %{_datadir}/texlyre/
