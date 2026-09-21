@@ -10,7 +10,7 @@
 # collision on Rakuos's fork of this spec. Disabled defensively.
 %global debug_package %{nil}
 
-%global normver 6.0.0-alpha1
+%global normver v6.0.0-alpha1
 
 Name:           apparmor
 Version:        6.0.0~alpha1

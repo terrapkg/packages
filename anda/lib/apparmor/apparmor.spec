@@ -1,6 +1,6 @@
 %{?python_enable_dependency_generator}
 
-%global normver 6.0.0-alpha1
+%global normver v6.0.0-alpha1
 %global __arch_install_post /bin/true
 %global _sbindir /usr/sbin
 
