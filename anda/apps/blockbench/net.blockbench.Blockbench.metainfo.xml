@@ -50,5 +50,6 @@
 
   <releases>
     <release version="5.1.6" date="2026-07-25" />
+    <release version="5.2.1" date="2026-09-21" />
   </releases>
 </component>
