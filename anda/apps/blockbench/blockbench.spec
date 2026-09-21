@@ -1,7 +1,7 @@
 %global appid net.blockbench.Blockbench
 
 Name:           blockbench
-Version:        5.2.0
+Version:        5.2.1
 Release:        1%{?dist}
 Summary:        Low-poly 3D modeling and animation software
 
