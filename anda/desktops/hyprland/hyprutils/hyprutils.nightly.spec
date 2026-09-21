@@ -3,13 +3,13 @@
 %global realname hyprutils
 %global ver 0.14.2
 
-%global commit a21e87b878e72ee5dfd375899e8b2ad0d0c4c0e1
-%global commit_date 20260906
+%global commit 95983ee836ff205e615bba67d1f67098e1231941
+%global commit_date 20260921
 %global shortcommit %{sub %commit 1 7}
 
 Name:           %realname.nightly
 Version:        %ver^%{commit_date}git.%shortcommit
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Hyprland utilities library used across the ecosystem
 
 License:        BSD-3-Clause
