@@ -4,7 +4,7 @@
 
 Name:           texlyre
 Version:        0.12.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Local-first LaTeX and Typst web editor with real-time collaboration and offline support
 License:        AGPL-3.0-only
 URL:            https://github.com/TeXlyre/texlyre
