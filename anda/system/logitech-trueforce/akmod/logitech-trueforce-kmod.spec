@@ -4,7 +4,7 @@
 %global debug_package %{nil}
 
 Name:           %{modulename}-kmod
-Version:        0.42.1
+Version:        0.42.2
 Release:        1%{?dist}
 Summary:        Kernel module for Logitech racing wheels (RS50, G PRO, G923)
 License:        GPL-2.0-only
