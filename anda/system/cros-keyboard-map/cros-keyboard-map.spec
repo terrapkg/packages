@@ -1,6 +1,6 @@
-%global commit_date 20251219
+%global commit_date 20260921
 
-%global tree_commit 146753f3646a13f069bf3ea1e2fb8ebbe0d1b46a
+%global tree_commit 965a6839dcf17627e717dc07bfde0650f882679b
 %global tree_shortcommit %(c=%{tree_commit}; echo ${c:0:7})
 
 %global um_commit 46892acafb2fff3f3ace425d4694382c92645feb
@@ -10,7 +10,7 @@
 
 Name:           cros-keyboard-map
 Version:        %commit_date.%tree_shortcommit.%um_shortcommit
-Release:        3%{?dist}
+Release:        1%{?dist}
 
 License:        BSD-3-Clause and GPL-3.0-or-later
 Summary:        Utility to generate keyd configurations for use on Chromebooks
