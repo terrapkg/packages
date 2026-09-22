@@ -1,5 +1,5 @@
 %global goipath github.com/SurgeDM/Surge
-Version:        ext.v2.1.3
+Version:        0.12.2
 
 %gometa
 
