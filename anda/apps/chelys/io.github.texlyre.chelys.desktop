@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Chelys
+Comment=A local desktop companion app for TeXlyre
+Exec=Chelys
+Icon=chelys
+Terminal=false
+Type=Application
+Categories=Utility;
+StartupWMClass=Chelys
