@@ -1,5 +1,5 @@
 %global commitdate 20260608
-%global commit 55ea2873ee1e2a49110c9bf0bf37e93192da07cc
+%global commit 8668c428b7abf62b935ef8434901f6208e812432
 %global shortcommit %{sub %{commit} 0 7}
 %global appid org.codeberg.wfx.Noctua
 

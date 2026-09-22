@@ -1,15 +1,14 @@
 %global appid io.missioncenter.MissionCenter
 
 %global forgeurl0 https://gitlab.com/mission-center-devs/mission-center
-Version: 1.2.0
+Version:        1.2.0
 %global tag0 v%{version}
 %global commit1 a5272b3c1d853caa4044b737cf49257bfc4c86f2
-
 
 %forgemeta -a
 
 Name:           mission-center
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Monitor your CPU, Memory, Disk, Network and GPU usage
 SourceLicense:  GPL-3.0-or-later
 License:        %{sourcelicense} AND (Apache-2.0 OR MIT) AND MIT AND Apache-2.0 AND BSL-1.0 AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (Unlicense OR MIT)
@@ -41,12 +40,13 @@ BuildRequires: desktop-file-utils
 BuildRequires: appstream-data
 BuildRequires: libappstream-glib
 Recommends: nethogs
+Requires:   lm_sensors
 
 %description
 Monitor your CPU, Memory, Disk, Network and GPU usage
 
 %prep
-%git_clone %{url}.git %{tag0}
+%git_clone %{url}.git v%{version}
 ls -la
 mkdir -p ./subprojects/magpie
 pushd ./subprojects/magpie/

@@ -4,6 +4,6 @@ project pkg {
     spec = "v2ray-geoip.spec"
   }
   labels {
-    nightly = 1
+    nightly = 3
   }
 }

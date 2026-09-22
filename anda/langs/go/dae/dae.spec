@@ -10,7 +10,7 @@
 
 # https://github.com/daeuniverse/dae
 %global goipath         github.com/daeuniverse/dae
-Version:                2.0.0
+Version:                2.1.1
 
 %gometa -f
 
@@ -22,7 +22,7 @@ EBPF-based Linux high-performance transparent proxy solution.}
                         hack/templates/example-config.md
 
 Name:           dae
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        EBPF-based Linux high-performance transparent proxy solution
 
 License:        AGPL-3.0-only

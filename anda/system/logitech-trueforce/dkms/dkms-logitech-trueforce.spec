@@ -2,7 +2,7 @@
 %global modulename logitech-trueforce
 
 Name:            dkms-%{modulename}
-Version:         0.40.0
+Version:         0.42.3
 Release:         1%{?dist}
 Summary:         DKMS kernel driver for Logitech racing wheels (RS50, G PRO, G923)
 License:         GPL-2.0-only
