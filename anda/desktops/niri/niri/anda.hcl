@@ -4,7 +4,4 @@ project pkg {
         spec = "niri.spec"
         update = "update.rhai"
     }
-    labels {
-    	weekly = 2 # tuesday
-    }
 }
