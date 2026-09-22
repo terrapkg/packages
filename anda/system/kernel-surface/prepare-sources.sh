@@ -63,4 +63,3 @@ fi
 find . -maxdepth 1 -type f \( ! -name 'prepare-sources.sh' -a ! -name 'kernel-surface.spec' -a \( -name '*.patch' -o -name '*.config' -o -name '*.tar.*' -o -name '*.xz' \) \) -delete
 rm -f kernel-surface.spec
 cp -a "$workdir/extracted"/. .
-mv "$spec_name.spec" kernel-surface.spec
