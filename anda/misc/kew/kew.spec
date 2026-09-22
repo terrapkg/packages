@@ -1,5 +1,5 @@
 Name:           kew
-Version:        4.3.5
+Version:        4.3.6
 Release:        1%{?dist}
 Summary:        Music for the Shell
 URL:            https://codeberg.org/ravachol/kew
