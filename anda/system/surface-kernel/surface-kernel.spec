@@ -1,6 +1,6 @@
 # This bootstrap spec lets Andaman discover the package.  pre.rhai replaces it
 # with the pinned linux-surface-generated Fedora kernel spec before builddep.
-Name:           terra-surface-kernel
+Name:           surface-kernel
 Version:        6.19.8
 Release:        1%{?dist}
 Summary:        Fedora kernel with Ultramarine linux-surface patches
