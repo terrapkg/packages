@@ -3,7 +3,7 @@ project pkg {
   pre_script = "pre.rhai"
 
   rpm {
-    spec = "surface-kernel.spec"
+    spec = "kernel-surface.spec"
   }
   labels {
     large = 1

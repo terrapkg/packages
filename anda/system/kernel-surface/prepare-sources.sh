@@ -60,7 +60,7 @@ if [[ ! -f $spec ]]; then
     exit 1
 fi
 
-find . -maxdepth 1 -type f \( ! -name 'prepare-sources.sh' -a ! -name 'surface-kernel.spec' -a \( -name '*.patch' -o -name '*.config' -o -name '*.tar.*' -o -name '*.xz' \) \) -delete
-rm -f surface-kernel.spec
+find . -maxdepth 1 -type f \( ! -name 'prepare-sources.sh' -a ! -name 'kernel-surface.spec' -a \( -name '*.patch' -o -name '*.config' -o -name '*.tar.*' -o -name '*.xz' \) \) -delete
+rm -f kernel-surface.spec
 cp -a "$workdir/extracted"/. .
-mv "$spec_name.spec" surface-kernel.spec
+mv "$spec_name.spec" kernel-surface.spec
