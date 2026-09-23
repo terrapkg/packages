@@ -25,6 +25,7 @@ BuildRequires:  ocaml-ppx-log-devel
 BuildRequires:  ocaml-ppx-expect-devel
 BuildRequires:  ocaml-ppx-sexp-value-devel
 BuildRequires:  ocaml-ppx-pipebang-devel
+BuildRequires:  ocaml-ppx-optional-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
