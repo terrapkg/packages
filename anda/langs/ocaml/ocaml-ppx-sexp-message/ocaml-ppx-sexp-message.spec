@@ -1,7 +1,7 @@
 Name:           ocaml-ppx-sexp-message
 Version:        0.17.0
 Release:        1%{?dist}
-Summary:        installs a ppx-jane executable
+Summary:        ease the creation of s-expressions in OCaml
 
 License:        MIT
 URL:            https://github.com/janestreet/ppx_sexp_message
