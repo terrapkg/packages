@@ -11,6 +11,7 @@ BuildSystem:    dune
 BuildRequires:  ocaml
 BuildRequires:  ocaml-dune
 BuildRequires:  ocaml-ppxlib-devel
+BuildRequires:  ocaml-ppx-base-devel
 BuildRequires:  ocaml-base-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
