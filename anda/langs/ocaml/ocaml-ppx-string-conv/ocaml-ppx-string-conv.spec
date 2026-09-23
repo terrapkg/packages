@@ -13,7 +13,7 @@ BuildRequires:  ocaml-dune
 BuildRequires:  ocaml-ppxlib-devel
 BuildRequires:  ocaml-capitalization-devel
 BuildRequires:  ocaml-ppx-let-devel
-BuildRequires:  ocaml-ppx-string
+BuildRequires:  ocaml-ppx-string-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
