@@ -14,6 +14,7 @@ BuildRequires:  ocaml-ppxlib-devel
 BuildRequires:  ocaml-ppx-fields-conv-devel
 BuildRequires:  ocaml-ppx-assert-devel
 BuildRequires:  ocaml-ppx-bench-devel
+BuildRequires:  ocaml-ppx-sexp-message-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
