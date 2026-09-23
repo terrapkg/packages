@@ -43,3 +43,6 @@ install -Dm644 %{SOURCE2} %{buildroot}%{_datadir}/applications/copr-gui.desktop
 %{_iconsdir}/hicolor/32x32/apps/copr.png
 %{_datadir}/applications/copr-gui.desktop
 
+%changelog
+* Wed Sep 23 2026 moordjin - 0.1.5-1
+- Initial package
