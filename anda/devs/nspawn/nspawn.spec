@@ -108,9 +108,6 @@ fi
 %{_datadir}/dbus-1/system-services/org.nspawn.service
 %{_datadir}/dbus-1/system.d/org.nspawn.conf
 %{_datadir}/polkit-1/actions/org.nspawn.policy
-%{_datadir}/bash-completion/completions/%{name}
-%{_datadir}/zsh/site-functions/_%{name}
-%{_datadir}/fish/vendor_completions.d/%{name}.fish
 %{_mandir}/man1/%{name}.1*
 %dir %{_sysconfdir}/%{name}
 %dir %{_sharedstatedir}/%{name}
