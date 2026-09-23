@@ -18,6 +18,7 @@ BuildRequires:  ocaml-ppx-base-devel
 BuildRequires:  ocaml-ppx-fields-conv-devel
 BuildRequires:  ocaml-ppx-let-devel
 BuildRequires:  ocaml-ppx-sexp-message-devel
+BuildRequires:  ocaml-ppx-sexp-value-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
