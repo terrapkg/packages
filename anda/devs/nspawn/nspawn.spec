@@ -12,7 +12,6 @@ Recommends:     (%{name}-selinux if selinux-policy-%{selinuxtype}) polkit
 
 Packager: Jaiden Riordan <jade@fyralabs.com>
 
-
 %description
 nspawn pulls OCI images from a registry, keeps them as shared layers, and
 runs them as systemd-nspawn machines with a bridge network, published ports
