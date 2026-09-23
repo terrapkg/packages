@@ -15,7 +15,7 @@
 
 Name:           nvidia-driver
 Version:        615.71.09
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        NVIDIA's proprietary display driver for NVIDIA graphic cards
 Epoch:          3
 License:        NVIDIA License
@@ -156,6 +156,18 @@ Conflicts:      xorg-x11-drv-nvidia
 %description -n xorg-x11-nvidia
 The NVIDIA X.org X11 driver and associated components.
 %endif
+
+%package -n libnvidia-fmdrv
+Summary:        Fabric Manager API versioning and compatibility layer
+
+%description -n libnvidia-fmdrv
+Fabric Manager API versioning and compatibility layer.
+
+%package -n libnvidia-imex
+Summary:        IMEX API versioning and a compatibility layer
+
+%description -n libnvidia-imex
+IMEX API versioning and a compatibility layer.
 
 %endif
 
@@ -433,6 +445,9 @@ fi
 %{_libdir}/libnvidia-gpucomp.so.%{version}
 %{_libdir}/libnvidia-ml.so.1
 %{_libdir}/libnvidia-ml.so.%{version}
+%ifarch aarch64
+%{_libdir}/libnvidia-rmapi-tegra.so.%{version}
+%endif
 
 %files libs
 %{_datadir}/glvnd/egl_vendor.d/10_nvidia.json
@@ -522,6 +537,16 @@ fi
 %{_libdir}/libnvidia-fbc.so.1
 %{_libdir}/libnvidia-fbc.so.%{version}
 
+%ifarch x86_64 aarch64
+%files -n libnvidia-fmdrv
+%{_libdir}/libnvidia-fmdrv.so.1
+%{_libdir}/libnvidia-fmdrv.so.%{version}
+
+%files -n libnvidia-imex
+%{_libdir}/libnvidia-imex.so.1
+%{_libdir}/libnvidia-imex.so.%{version}
+%endif
+
 %if %{with selinux}
 %files selinux
 %{_datadir}/selinux/packages/%{selinuxtype}/%{name}.pp.*
@@ -529,6 +554,8 @@ fi
 %endif
 
 %changelog
+* Wed Sep 23 2026 Dmytro Loiko <49129010+hilltty@users.noreply.github.com> - 3:615.71.09-2
+- Package new libnvidia-fmdrv, libnvidia-imex and libnvidia-rmapi-tegra libraries
 * Thu Jul 16 2026 Gilver E. <roachy@fyralabs.com> - 3:610.43.03-2
 - Update for SELinux policies
 * Mon Apr 13 2026 Gilver E. <roachy@fyralabs.com> - 3:595.58.03-2
