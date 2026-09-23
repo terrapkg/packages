@@ -13,6 +13,7 @@ BuildRequires:  ocaml-dune
 BuildRequires:  ocaml-ppxlib-devel
 BuildRequires:  ocaml-time-now-devel
 BuildRequires:  ocaml-stdio-devel
+BuildRequires:  ocaml-ppx-base-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
