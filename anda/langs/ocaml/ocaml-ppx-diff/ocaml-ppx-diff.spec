@@ -18,6 +18,7 @@ BuildRequires:  ocaml-ppxlib-jane-devel
 BuildRequires:  ocaml-ppx-enumerate-devel
 BuildRequires:  ocaml-ppx-stable-devel
 BuildRequires:  ocaml-base-quickcheck-devel
+BuildRequires:  ocaml-ppx-log-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
