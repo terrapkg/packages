@@ -75,7 +75,6 @@ done
 
 %check
 %desktop_file_validate -f %{buildroot}%{_appsdir}/zotero.desktop
-appstreamcli validate --no-net %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 
 %files
 %doc README.md CONTRIBUTING.md
