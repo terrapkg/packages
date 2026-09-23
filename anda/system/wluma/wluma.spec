@@ -6,6 +6,7 @@ URL:            https://github.com/max-baz/wluma
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 License:        ISC
 BuildRequires:  cargo anda-srpm-macros cargo-rpm-macros mold v4l-utils libv4l-devel rust-libudev-devel vulkan-loader-devel dbus-devel clang systemd-rpm-macros
+BuildRequires:  pkgconfig(libpipewire-0.3)
 Packager:       Its-J <jonah@fyralabs.com>
 
 %description
@@ -24,7 +25,6 @@ Packager:       Its-J <jonah@fyralabs.com>
 %{cargo_license_online -a} > LICENSE.dependencies
 install -Dm 644 %{name}.service %{buildroot}%{_userunitdir}/%{name}.service
 install -Dm 644 90-%{name}-backlight.rules %{buildroot}%{_udevrulesdir}/90-%{name}-backlight.rules
-install -Dm 644 config.toml %{buildroot}%{_datadir}/%{name}/config.toml
 
 %post
 %systemd_user_post %{name}.service
@@ -42,7 +42,6 @@ install -Dm 644 config.toml %{buildroot}%{_datadir}/%{name}/config.toml
 %{_bindir}/wluma
 %{_userunitdir}/%{name}.service
 %{_udevrulesdir}/90-%{name}-backlight.rules
-%{_datadir}/%{name}/config.toml
 
 %changelog
 * Sun Jul 19 2026 Olivia <git@olivia.sh> - 4.11.1-2
