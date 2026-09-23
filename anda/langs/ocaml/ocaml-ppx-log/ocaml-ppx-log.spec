@@ -15,6 +15,8 @@ BuildRequires:  ocaml-sexplib-devel
 BuildRequires:  ocaml-ppx-expect-devel
 BuildRequires:  ocaml-ppx-fields-conv-devel
 BuildRequires:  ocaml-ppx-sexp-value-devel
+BuildRequires:  ocaml-ppx-sexp-message-devel
+BuildRequires:  ocaml-ppx-variants-conv-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
