@@ -12,6 +12,7 @@ BuildRequires:  ocaml
 BuildRequires:  ocaml-dune
 BuildRequires:  ocaml-ppxlib-devel
 BuildRequires:  ocaml-ppxlib-jane-devel
+BuildRequires:  ocaml-base-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
