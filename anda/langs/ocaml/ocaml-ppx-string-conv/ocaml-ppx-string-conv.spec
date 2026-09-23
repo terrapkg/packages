@@ -1,28 +1,25 @@
-Name:           ocaml-ppx-module-timer
+Name:           ocaml-ppx-string-conv
 Version:        0.17.0
 Release:        1%{?dist}
-Summary:        instrumentation to record ppx startup time
+Summary:        A ppx to help derive of_string and to_string
 
 License:        MIT
-URL:            https://github.com/janestreet/ppx_module_timer
-Source:         %{url}/archive/v%{version}/ppx_module_timer-%{version}.tar.gz
+URL:            https://github.com/janestreet/ppx_string_conv
+Source:         %{url}/archive/v%{version}/ppx_string_conv-%{version}.tar.gz
 
 BuildSystem:    dune
 BuildRequires:  ocaml
 BuildRequires:  ocaml-dune
 BuildRequires:  ocaml-ppxlib-devel
-BuildRequires:  ocaml-time-now-devel
-BuildRequires:  ocaml-stdio-devel
-BuildRequires:  ocaml-ppx-base-devel
+BuildRequires:  ocaml-capitalization-devel
+BuildRequires:  ocaml-ppx-let-devel
+BuildRequires:  ocaml-ppx-string-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
-Modules using ppx_module_timer (included in ppx_jane_kernel)
-now have instrumentation to record their startup time.
-If the environment variable PPX_MODULE_TIMER is set (to anything),
-each module records its startup time, and before exiting the
-process prints out all of the module times in the order they occurred.
+ppx_string_conv is a ppx to help derive of_string
+and to_string, primarily for variant types.
 
 %package        devel
 Summary:        Development files for %{name}

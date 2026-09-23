@@ -1,28 +1,23 @@
-Name:           ocaml-ppx-module-timer
+Name:           ocaml-ppx-string
 Version:        0.17.0
 Release:        1%{?dist}
-Summary:        instrumentation to record ppx startup time
+Summary:        Ppx extension for string interpolation
 
 License:        MIT
-URL:            https://github.com/janestreet/ppx_module_timer
-Source:         %{url}/archive/v%{version}/ppx_module_timer-%{version}.tar.gz
+URL:            https://github.com/janestreet/ppx_string
+Source:         %{url}/archive/v%{version}/ppx_string-%{version}.tar.gz
 
 BuildSystem:    dune
 BuildRequires:  ocaml
 BuildRequires:  ocaml-dune
 BuildRequires:  ocaml-ppxlib-devel
-BuildRequires:  ocaml-time-now-devel
-BuildRequires:  ocaml-stdio-devel
 BuildRequires:  ocaml-ppx-base-devel
+BuildRequires:  ocaml-base-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
-Modules using ppx_module_timer (included in ppx_jane_kernel)
-now have instrumentation to record their startup time.
-If the environment variable PPX_MODULE_TIMER is set (to anything),
-each module records its startup time, and before exiting the
-process prints out all of the module times in the order they occurred.
+%{summary}.
 
 %package        devel
 Summary:        Development files for %{name}
