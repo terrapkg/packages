@@ -14,6 +14,7 @@ BuildRequires:  ocaml-ppxlib-devel
 BuildRequires:  ocaml-ppx-fields-conv-devel
 BuildRequires:  ocaml-ppx-custom-printf-devel
 BuildRequires:  ocaml-ppx-ignore-instrumentation-devel
+BuildRequires:  ocaml-ppx-variants-conv-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
