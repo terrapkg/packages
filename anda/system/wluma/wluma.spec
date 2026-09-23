@@ -4,7 +4,8 @@ Release:        1%{?dist}
 Summary:        Automatic brightness adjustment based on screen contents and ALS
 URL:            https://github.com/max-baz/wluma
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
-License:        ISC
+SourceLicense:  ISC
+License:        %{SourceLicense} AND (Apache-2.0 OR MIT) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT OR Zlib) AND MIT AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (BSD-2-Clause OR MIT OR Apache-2.0) AND (Unlicense OR MIT)
 BuildRequires:  cargo anda-srpm-macros cargo-rpm-macros mold v4l-utils libv4l-devel rust-libudev-devel vulkan-loader-devel dbus-devel clang systemd-rpm-macros
 BuildRequires:  pkgconfig(libpipewire-0.3)
 Packager:       Its-J <jonah@fyralabs.com>
@@ -21,7 +22,6 @@ Packager:       Its-J <jonah@fyralabs.com>
 
 %install
 %cargo_install
-%cargo_license_summary_online
 %{cargo_license_online -a} > LICENSE.dependencies
 install -Dm 644 %{name}.service %{buildroot}%{_userunitdir}/%{name}.service
 install -Dm 644 90-%{name}-backlight.rules %{buildroot}%{_udevrulesdir}/90-%{name}-backlight.rules
