@@ -27,6 +27,7 @@ BuildRequires:  ocaml-ppx-stable-witness-devel
 BuildRequires:  ocaml-ppx-sexp-value-devel
 BuildRequires:  ocaml-ppx-pipebang-devel
 BuildRequires:  ocaml-ppx-optional-devel
+BuildRequires:  ocaml-ppx-module-timer-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
