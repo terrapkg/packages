@@ -15,6 +15,7 @@ BuildRequires:  ocaml-base-devel
 BuildRequires:  ocaml-ppxlib-jane-devel
 BuildRequires:  ocaml-splittable-random-devel
 BuildRequires:  ocaml-ppx-base-devel
+BuildRequires:  ocaml-ppx-fields-conv-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
