@@ -32,6 +32,7 @@ BuildRequires:  ocaml-ppx-fixed-literal-devel
 BuildRequires:  ocaml-ppx-disable-unused-warnings-devel
 BuildRequires:  ocaml-ppx-bin-prot-devel
 BuildRequires:  ocaml-ppx-assert-devel
+BuildRequires:  ocaml-bin-prot-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
