@@ -1,4 +1,4 @@
-Name:           hardcaml
+Name:           ocaml-hardcaml
 Version:        0.17.1
 Release:        1%?dist
 Summary:        An embedded DSL for designing and simulating hardware in OCaml
@@ -15,6 +15,7 @@ BuildRequires:  ocaml-ppxlib
 BuildRequires:  ocaml-ppxlib-jane-devel
 BuildRequires:  ocaml-ppx-sexp-conv
 ExclusiveArch:  %{ocaml_native_compiler}
+Provides:       hardcaml
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
