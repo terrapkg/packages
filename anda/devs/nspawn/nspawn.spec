@@ -101,7 +101,7 @@ fi
 %selinux_relabel_post -s %{selinuxtype}
 
 %files
-%license LICENSE
+%license LICENSE LICENSE.dependencies
 %doc README.md docs/ARCHITECTURE.md docs/DBUS.md packaging/polkit/nspawn-wheel.rules
 %{_bindir}/%{name}
 %{_unitdir}/%{name}.service
