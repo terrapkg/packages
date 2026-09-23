@@ -6,6 +6,7 @@ URL:            https://github.com/max-baz/wluma
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 License:        ISC
 BuildRequires:  cargo anda-srpm-macros cargo-rpm-macros mold v4l-utils libv4l-devel rust-libudev-devel vulkan-loader-devel dbus-devel clang systemd-rpm-macros
+BuildRequires:  pkgconfig(libpipewire-0.3)
 Packager:       Its-J <jonah@fyralabs.com>
 
 %description
