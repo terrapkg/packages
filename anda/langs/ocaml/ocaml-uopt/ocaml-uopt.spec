@@ -30,6 +30,7 @@ BuildRequires:  ocaml-ppx-module-timer-devel
 BuildRequires:  ocaml-ppx-let-devel
 BuildRequires:  ocaml-ppx-fixed-literal-devel
 BuildRequires:  ocaml-ppx-fields-conv-devel
+BuildRequires:  ocaml-ppx-disable-unused-warnings-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
