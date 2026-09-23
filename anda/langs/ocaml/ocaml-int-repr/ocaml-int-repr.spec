@@ -25,6 +25,7 @@ BuildRequires:  ocaml-ppx-tydi-devel
 BuildRequires:  ocaml-ppx-string-conv-devel
 BuildRequires:  ocaml-ppx-stable-witness-devel
 BuildRequires:  ocaml-ppx-sexp-value-devel
+BuildRequires:  ocaml-ppx-pipebang-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
