@@ -5,7 +5,7 @@
 %global zen_app_name    zen
 %global zendir          %{_libdir}/%{zen_app_name}
 %global brandingdir     browser/branding/release
-%global download_ver    1.22.2b
+%global download_ver    1.22.3b
 
 # Fedora rustc gives more than one valid target triple.
 # `x86_64-oe-linux-gnu` and `x86_64-unknown-linux-gnu` both agree with
@@ -31,7 +31,7 @@
 %global toolchain clang
 
 Name:           zen-browser
-Version:        1.22.2
+Version:        1.22.3
 Release:        1%{?dist}
 Summary:        Calm and private web browser that is built on Firefox
 
