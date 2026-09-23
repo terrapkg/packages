@@ -15,6 +15,10 @@ BuildRequires:  ocaml-jst-config-devel
 BuildRequires:  ocaml-ppx-base-devel
 BuildRequires:  ocaml-ppx-jane-devel
 BuildRequires:  ocaml-ppx-inline-test-devel
+BuildRequires:  ocaml-ppx-sexp-message-devel
+BuildRequires:  ocaml-ppx-diff-devel
+BuildRequires:  ocaml-variantslib-devel
+BuildRequires:  ocaml-ppx-stable-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
