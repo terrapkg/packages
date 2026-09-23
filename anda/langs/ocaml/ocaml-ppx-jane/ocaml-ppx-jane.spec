@@ -22,7 +22,7 @@ BuildRequires:  ocaml-ppx-tydi-devel
 BuildRequires:  ocaml-base-quickcheck-devel
 BuildRequires:  ocaml-ppx-stable-witness-devel
 BuildRequires:  ocaml-ppx-log-devel
-BuildReqruies:  ocaml-ppx-expect-devel
+BuildRequires:  ocaml-ppx-expect-devel
 BuildRequires:  ocaml-ppx-sexp-value-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
