@@ -15,8 +15,8 @@ BuildRequires:  vulkan-loader-devel
 BuildRequires:  dbus-devel
 BuildRequires:  clang
 BuildRequires:  systemd-rpm-macros
-
 BuildRequires:  pkgconfig(libpipewire-0.3)
+
 Packager:       Its-J <jonah@fyralabs.com>
 
 %description
