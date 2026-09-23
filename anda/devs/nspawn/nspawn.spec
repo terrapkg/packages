@@ -27,7 +27,7 @@ Summary:        SELinux policy for the nspawn service
 BuildArch:      noarch
 
 BuildRequires:  selinux-policy-devel bzip2
-Requires:       selinux-policy-%{selinuxtype}
+Requires:       selinux-policy-%{selinuxtype} %{name} = %{evr}
 Requires(post): selinux-policy-%{selinuxtype}
 
 %{?selinux_requires}
