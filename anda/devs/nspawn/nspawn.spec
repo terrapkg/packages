@@ -14,6 +14,7 @@ Requires:       systemd-container systemd iproute nftables
 Recommends:     (%{name}-selinux if selinux-policy-%{selinuxtype}) polkit
 
 Packager: Jaiden Riordan <jade@fyralabs.com>
+%pkg_completion -Bfz
 
 %description
 nspawn pulls OCI images from a registry, keeps them as shared layers, and
