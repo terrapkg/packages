@@ -12,6 +12,7 @@ BuildRequires:  ocaml >= 5.1.0
 BuildRequires:  ocaml-dune >= 3.11.0
 BuildRequires:  ocaml-ppxlib-devel >= 0.28.0
 BuildRequires:  ocaml-ppx-sexp-conv-devel
+BuildRequires:  ocaml-ppx-here-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
