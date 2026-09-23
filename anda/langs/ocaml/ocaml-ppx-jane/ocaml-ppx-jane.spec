@@ -16,6 +16,8 @@ BuildRequires:  ocaml-ppx-custom-printf-devel
 BuildRequires:  ocaml-ppx-ignore-instrumentation-devel
 BuildRequires:  ocaml-ppx-variants-conv-devel
 BuildRequires:  ocaml-ppx-string-conv-devel
+BuildRequires:  ocaml-ppx-stable-devel
+BuildRequires:  ocaml-ppx-typerep-conv-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
