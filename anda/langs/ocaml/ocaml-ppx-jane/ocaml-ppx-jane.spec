@@ -18,6 +18,8 @@ BuildRequires:  ocaml-ppx-variants-conv-devel
 BuildRequires:  ocaml-ppx-string-conv-devel
 BuildRequires:  ocaml-ppx-stable-devel
 BuildRequires:  ocaml-ppx-typerep-conv-devel
+BuildRequires:  ocaml-ppx-tydi-devel
+BuildRequires:  ocaml-base-quickcheck-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
