@@ -10,6 +10,7 @@ Source:         %{url}/archive/v%{version}/ppx_disable_unnused_warnings-%{versio
 BuildSystem:    dune
 BuildRequires:  ocaml
 BuildRequires:  ocaml-dune
+BuildRequires:  ocaml-ppxlib-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
