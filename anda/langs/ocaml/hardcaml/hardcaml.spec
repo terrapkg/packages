@@ -45,5 +45,5 @@ developing applications that use %{name}.
 %files devel -f .ofiles-devel
 
 %changelog
-* Tue Sep 22 2026 Owen Zimmerman <owen@fyralabs.com> -0.17.1-1
+* Tue Sep 22 2026 Owen Zimmerman <owen@fyralabs.com> 0.17.1-1
 - Initial commit
