@@ -6,7 +6,7 @@
 %global crate typeracer
 
 Name:           rust-typeracer
-Version:        2.1.6
+Version:        2.2.0
 Release:        1%{?dist}
 Summary:        Terminal typing game
 
