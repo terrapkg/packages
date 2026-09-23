@@ -21,6 +21,7 @@ BuildRequires:  ocaml-base-quickcheck-devel
 BuildRequires:  ocaml-ppx-log-devel
 BuildRequires:  ocaml-ppx-expect-devel
 BuildRequires:  ocaml-ppx-ignore-instrumentation-devel
+BuildRequires:  ocaml-ppx-variants-conv-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
