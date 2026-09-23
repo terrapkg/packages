@@ -10,14 +10,6 @@ Source:         %{url}/archive/v%{version}/ppx_stable-%{version}.tar.gz
 BuildSystem:    dune
 BuildRequires:  ocaml >= 5.1.0
 BuildRequires:  ocaml-dune >= 3.11.0
-BuildRequires:  ocaml-ppx-cold-devel >= 0.17
-BuildRequires:  ocaml-ppx-compare-devel >= 0.17
-BuildRequires:  ocaml-ppx-enumerate-devel >= 0.17
-BuildRequires:  ocaml-ppx-globalize-devel >= 0.17
-BuildRequires:  ocaml-ppx-hash-devel >= 0.17
-BuildRequires:  ocaml-ppx-sexp-conv-devel >= 0.17
-BuildRequires:  ocaml-ppx-stable-witness
-BuildRequires:  ocaml-ppx-variants-conv
 BuildRequires:  ocaml-ppxlib-devel >= 0.28.0
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
