@@ -13,6 +13,8 @@ BuildRequires:  ocaml-dune
 BuildRequires:  ocaml-ppxlib-devel
 BuildRequires:  ocaml-sexplib-devel
 BuildRequires:  ocaml-ppx-expect-devel
+BuildRequires:  ocaml-ppx-fields-conv-devel
+BuildRequires:  ocaml-ppx-sexp-value-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
