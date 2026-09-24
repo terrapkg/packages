@@ -9,7 +9,7 @@
 
 Name:           walker
 Version:        %{gsub %{gsub %ver - ~ 1} - _}
-Release:        %autorelease
+Release:        1%{?dist}
 Summary:        Multi-Purpose Launcher with a lot of features. Highly Customizable and fast.
 
 SourceLicense:  GPL-3.0

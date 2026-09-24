@@ -4,6 +4,6 @@ project pkg {
 		spec = "dkms-zenergy.spec"
 	}
 	labels {
-		nightly = 1
+		nightly = 2
 	}
 }
