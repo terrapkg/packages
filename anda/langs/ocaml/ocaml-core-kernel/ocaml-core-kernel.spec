@@ -30,6 +30,7 @@ BuildRequires:  ocaml-ppx-fixed-literal-devel
 BuildRequires:  ocaml-ppx-fields-conv-devel
 BuildRequires:  ocaml-base-devel
 BuildRequires:  ocaml-int-repr-devel
+BuildRequires:  ocaml-ppx-disable-unused-warnings-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
