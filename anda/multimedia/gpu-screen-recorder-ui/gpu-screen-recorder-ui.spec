@@ -1,5 +1,5 @@
 Name:           gpu-screen-recorder-ui
-Version:        1.13.9
+Version:        1.13.10
 Release:        1%{?dist}
 Summary:        A fullscreen overlay UI for GPU Screen Recorder in the style of ShadowPlay
 

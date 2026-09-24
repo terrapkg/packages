@@ -107,7 +107,7 @@
 Name:           ffmpeg
 %global pkg_name %{name}%{?pkg_suffix}
 
-Version:        9.0.1
+Version:        9.0.2
 Release:        1%{?dist}
 Epoch:          1
 Summary:        A complete solution to record, convert and stream audio and video
