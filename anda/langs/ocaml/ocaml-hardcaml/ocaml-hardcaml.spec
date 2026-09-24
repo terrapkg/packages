@@ -21,6 +21,7 @@ BuildRequires:  ocaml-core-kernel-devel
 BuildRequires:  ocaml-ppx-log-devel
 BuildRequires:  ocaml-ppx-ignore-instrumentation-devel
 BuildRequires:  ocaml-ppx-variants-conv-devel
+BuildRequires:  ocaml-ppx-typerep-conv-devel
 
 ExclusiveArch:  %{ocaml_native_compiler}
 Provides:       hardcaml
