@@ -4,6 +4,6 @@ project pkg {
         spec = "gamescope-session-ogui-steam.spec"
     }
     labels {
-        nightly = 1
+        nightly = 4
     }
 }

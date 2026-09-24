@@ -3,6 +3,6 @@ project pkg {
     spec = "gf.spec"
   }
   labels {
-    nightly = 1
+    nightly = 4
   }
 }
