@@ -13,6 +13,8 @@ BuildRequires:  ocaml-dune
 BuildRequires:  ocaml-ppxlib-devel
 BuildRequires:  ocaml-jst-config-devel
 BuildRequires:  ocaml-int-repr
+BuildRequires:  ocaml-ppx-jane-devel
+
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
