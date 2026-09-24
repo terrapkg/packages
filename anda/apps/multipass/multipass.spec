@@ -32,6 +32,7 @@ to date.
 
 %conf
 export VCPKG_FORCE_SYSTEM_BINARIES=1
+export CMAKE_MAKE_PROGRAM=Ninja
 %cmake .
 
 %build
