@@ -21,6 +21,7 @@ BuildRequires:  ocaml-variantslib-devel
 BuildRequires:  ocaml-ppx-stable-devel
 BuildRequires:  ocaml-ppx-log-devel
 BuildRequires:  ocaml-ppx-expect-devel
+BuildRequires:  ocaml-typerep-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
