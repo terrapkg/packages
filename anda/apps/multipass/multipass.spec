@@ -1,11 +1,23 @@
 Name:			multipass
-Version:		1.16.1
-Release:		1%?dist
+Version:		1.16.4
+Release:		1%{?dist}
 Summary:		Multipass orchestrates virtual Ubuntu instances
-License:		GPL-3.0
+License:		GPL-3.0-or-later
 URL:			https://canonical.com/multipass
 
-BuildRequires:          cmake gcc-c++ mold ninja-build cmake(fmt) openssl-devel cmake(gRPC) cmake(yaml-cpp) cmake(semver) cmake(Qt6) cmake(Qt6Core) cmake(Qt6Concurrent) cmake(Qt6Network)
+BuildRequires:  cmake
+BuildRequires:  gcc-c++
+BuildRequires:  mold
+BuildRequires:  ninja-build
+BuildRequires:  cmake(fmt)
+BuildRequires:  openssl-devel
+BuildRequires:  cmake(gRPC)
+BuildRequires:  cmake(yaml-cpp)
+BuildRequires:  cmake(semver)
+BuildRequires:  cmake(Qt6)
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Concurrent)
+BuildRequires:  cmake(Qt6Network)
 
 %description
 Multipass is a lightweight VM manager for Linux, Windows and macOS. It's
@@ -18,15 +30,19 @@ to date.
 %prep
 %git_clone https://github.com/canonical/%{name}.git v%{version}
 
-%build
+%conf
 export VCPKG_FORCE_SYSTEM_BINARIES=1
 %cmake .
+
+%build
 %cmake_build
 
 %install
 %cmake_install
 
 %files
+%doc README.md
+%license LICENSE
 
 %changelog
 * Mon Oct 27 2025 Jaiden Riordan <jade@fyralabs.com>
