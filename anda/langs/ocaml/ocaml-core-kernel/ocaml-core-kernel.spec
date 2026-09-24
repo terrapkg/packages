@@ -26,6 +26,7 @@ BuildRequires:  ocaml-ppx-sexp-value-devel
 BuildRequires:  ocaml-ppx-pipebang-devel
 BuildRequires:  ocaml-ppx-optional-devel
 BuildRequires:  ocaml-ppx-let-devel
+BuildRequires:  ocaml-ppx-fixed-literal-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
