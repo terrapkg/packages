@@ -6,7 +6,7 @@ Summary:        Core suite of libraries is an industrial strength alternative to
 License:        MIT
 URL:            https://github.com/janestreet/core_kernel
 Source:         %{url}/archive/v%{version}/core_kernel-%{version}.tar.gz
-
+ 
 BuildSystem:    dune
 BuildRequires:  ocaml
 BuildRequires:  ocaml-dune
