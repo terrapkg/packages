@@ -14,6 +14,8 @@ BuildRequires:  ocaml-stdio
 BuildRequires:  ocaml-ppxlib
 BuildRequires:  ocaml-ppxlib-jane-devel
 BuildRequires:  ocaml-ppx-sexp-conv
+BuildRequires:  ocaml-ppx-jane-devel
+
 ExclusiveArch:  %{ocaml_native_compiler}
 Provides:       hardcaml
 
