@@ -1,14 +1,14 @@
 Name:          shards
 Version:       0.20.0
-Release:       2%?dist
+Release:       3%?dist
 Summary:       Dependency manager for the Crystal language 
 License:       Apache-2.0
 Packager:      Carl Hörberg <carl@84codes.com>
 URL:           https://crystal-lang.org/
 Source0:       https://github.com/crystal-lang/shards/archive/refs/tags/v%version.tar.gz
 BuildRequires: crystal make
-BuildRequires: gcc gc-devel libyaml-devel pcre2-devel
-Suggests:      git make
+BuildRequires: libyaml-devel
+Recommends:    git make
 Supplements:   crystal
 
 %description
@@ -31,5 +31,9 @@ Shards is a dependency manager for the Crystal programming language. It allows y
 %{_mandir}/man5/shard.yml.5.gz
 
 %changelog
+* Thu Sep 24 2026 Carl Hörberg <carl@84codes.com> - 0.20.0-3
+- Make git/make recommended instead of suggested, since shards needs them to do useful work
+- Drop BuildRequires already pulled in by crystal
+
 * Mon Nov 03 2025 Carl Hörberg <carl@84codes.com> - 0.19.1-1
 - Initial package
