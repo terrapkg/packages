@@ -1,6 +1,6 @@
 Name:           terra-scripts
 Version:        0.2.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Helpful scripts for contributing to Terra
 License:        AGPL-3.0-or-later
 URL:            https://github.com/terrapkg/cli-tools
@@ -26,6 +26,7 @@ install -Dm 755 ldd-dnf.sh %{buildroot}%{_bindir}/ldd-dnf
 install -Dm 755 changelog.sh %{buildroot}%{_bindir}/changelog
 install -Dm 755 getcommit.sh %{buildroot}%{_bindir}/getcommit
 install -Dm 755 panda.sh %{buildroot}%{_bindir}/panda
+install -Dm 755 icedtea-fetch.sh %{buildroot}%{_bindir}/icedtea-fetch
 
 %files
 %doc README.md
@@ -35,11 +36,17 @@ install -Dm 755 panda.sh %{buildroot}%{_bindir}/panda
 %{_bindir}/changelog
 %{_bindir}/getcommit
 %{_bindir}/panda
+%{_bindir}/icedtea-fetch
 
 %changelog
+* Wed Sep 23 2026 Owen Zimmerman <owen@fyralabs.com>
+- Update for 0.2.3
+
 * Fri May 29 2026 Jaiden Riordan <jade@fyralabs.com>
 - Add panda.sh
+
 * Sun May 24 2026 Its-J <jonah@fyralabs.com>
 - Add getcommit.sh
+
 * Sat May 23 2026 Its-J <jonah@fyralabs.com>
 - Package terra-scripts
