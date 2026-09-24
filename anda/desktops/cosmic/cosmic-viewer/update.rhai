@@ -1,2 +1,3 @@
-rpm.version(gh_tag("pop-os/cosmic-viewer"));
-// TODO: cut off fornt of returned version
+let v = gh_tag("pop-os/cosmic-viewer");
+v.crop(6);
+rpm.version(v);
