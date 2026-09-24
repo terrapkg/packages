@@ -32,6 +32,7 @@ BuildRequires:  ocaml-ppx-string-conv-devel
 BuildRequires:  ocaml-ppx-sexp-value-devel
 BuildRequires:  ocaml-ppx-pipebang-devel
 BuildRequires:  ocaml-ppx-optional-devel
+BuildRequires:  ocaml-ppx-let-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
