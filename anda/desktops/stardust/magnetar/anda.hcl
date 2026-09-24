@@ -3,6 +3,6 @@ project pkg {
         spec = "stardust-magnetar.spec"
     }
     labels {
-       nightly = 1
+       nightly = 2
     }
 }

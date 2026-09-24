@@ -3,6 +3,6 @@ project pkg {
 		spec = "vetro.spec"
 	}
 	labels {
-		nightly = 1
+		nightly = 3
 	}
 }
