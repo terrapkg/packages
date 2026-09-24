@@ -3,6 +3,6 @@ project pkg {
 		spec = "cosmic-applet-package-updater.spec"
 	}
 	labels {
-		nightly = 1
+		nightly = 3
 	}
 }

@@ -3,6 +3,6 @@ project pkg {
     spec = "xray-nightly.spec"
   }
   labels {
-    nightly = 1
+    nightly = 3
   }
 }
