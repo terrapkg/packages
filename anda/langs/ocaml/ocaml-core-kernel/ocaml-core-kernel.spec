@@ -13,6 +13,8 @@ BuildRequires:  ocaml-dune
 BuildRequires:  ocaml-ppxlib-devel
 BuildRequires:  ocaml-core-devel
 BuildRequires:  ocaml-ppx-optcomp-devel
+BuildRequires:  ocaml-uopt-devel
+BuildRequires:  ocaml-ppx-jane-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
