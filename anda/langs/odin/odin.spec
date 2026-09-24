@@ -1,5 +1,5 @@
 %global ver dev-2026-09
-%global sanitized_ver %(echo %{ver} | sed -E 's/^dev-([0-9]{4})-([0-9]{2})[a-z]?$/\1.\2/')
+%global sanitized_ver %(echo %{ver} | sed 's/^dev-//;s/-/./')
 
 %global __requires_exclude_from ^%{_libexecdir}/Odin/vendor/.*$
 
@@ -10,8 +10,9 @@ Summary:        Odin Programming Language
 URL:            odin-lang.org
 Source0:        https://github.com/odin-lang/Odin/archive/refs/tags/%{ver}.tar.gz
 License:        Zlib
-BuildRequires:  llvm-devel
+BuildRequires:  llvm-devel(major) = 22
 BuildRequires:  clang
+Requires:       clang
 Provides:       Odin
 Provides:       odin-lang
 Provides:       Odin-lang
@@ -37,7 +38,7 @@ export LLVM_CONFIG=/usr/bin/llvm-config-22
 %install
 mkdir -p %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_libexecdir}/Odin
-cp -a odin core vendor %{buildroot}%{_libexecdir}/Odin
+cp -a odin base core vendor %{buildroot}%{_libexecdir}/Odin
 %{__ln_s} ../libexec/Odin/odin %{buildroot}%{_bindir}/odin-lang
 %{__ln_s} ../libexec/Odin/odin %{buildroot}%{_bindir}/odin
 
@@ -49,6 +50,12 @@ cp -a odin core vendor %{buildroot}%{_libexecdir}/Odin
 %{_libexecdir}/Odin
 
 %changelog
+* Thu Sep 24 2026 ammix <maxim@ammix.dev>
+- Add base collection
+- Fix version sed
+- Pin llvm22
+- Require clang
+
 * Thu Jul 23 2026 Owen Zimmerman <owen@fyralabs.com>
 - Fix sanitized_ver sed script
 
