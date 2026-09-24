@@ -4,6 +4,6 @@ project pkg {
 		spec = "ryzen_smu.spec"
 	}
 	labels {
-		nightly = 1
+		nightly = 2
 	}
 }

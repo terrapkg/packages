@@ -3,6 +3,6 @@ project pkg {
         spec = "stardust-protostar-nightly.spec"
     }
     labels {
-       nightly = 1
+       nightly = 4
     }
 }

@@ -3,6 +3,6 @@ project pkg {
     spec = "cosmic-ext-applet-ollama.spec"
   }
 	labels {
-		nightly = 1
+		nightly = 4
 	}
 }

@@ -3,6 +3,6 @@ project pkg {
     spec = "rpcc.spec"
   }
   labels {
-    nightly = 1
+    nightly = 2
   }
 }
