@@ -15,6 +15,7 @@ BuildRequires:  ocaml-core-devel
 BuildRequires:  ocaml-ppx-optcomp-devel
 BuildRequires:  ocaml-uopt-devel
 BuildRequires:  ocaml-ppx-jane-devel
+BuildRequires:  ocaml-ppx-stable-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
