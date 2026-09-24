@@ -17,6 +17,7 @@ BuildRequires:  ocaml-ppx-jane-devel
 BuildRequires:  ocaml-ppx-stable-devel
 BuildRequires:  ocaml-ppx-log-devel
 BuildRequires:  ocaml-ppx-expect-devel
+BuildRequires:  ocaml-ppx-ignore-instrumentation-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
